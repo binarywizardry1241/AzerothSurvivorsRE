@@ -1,0 +1,746 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.139.1",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d",
+    "size_bytes": 150633472
+  },
+  "scope": "Complete source-first review of all23 added and28 removed candidate occurrences versus0.139.0. Every selector is assigned exactly once within its target-bound direction. Zero added/removed AS diagnostic modules. Literal/source roles remain candidates; no native semantic or source contract is promoted.",
+  "inputs": {
+    "current_inventory": {
+      "path": "runtime/coverage/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/inventory.json",
+      "sha256": "c96af38af8bf84c2c07bd00c136258815ae4df2f50fec592c112821d0cb6d9fb",
+      "regenerate": "python3 scripts/inventory-current-target.py --write"
+    },
+    "predecessor_inventory": {
+      "path": "runtime/coverage/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/inventory.json",
+      "sha256": "28823fd7cccdcef390c798de10e170d2a52c8e8f56b1565626ef6cae457bcc2a",
+      "regenerate": "python3 scripts/inventory-current-target.py --write"
+    },
+    "discovery_delta": {
+      "path": "docs/analysis/evidence/0.139.1/discovery-delta.json",
+      "sha256": "c53112d85b2c0a99e1c38fbaf379c50630904eb75afb3b22eca75c16a8d3c247"
+    },
+    "predecessor_review": {
+      "path": "docs/analysis/evidence/0.139.0/source-frontier.json",
+      "sha256": "9855f91cf068ab7827a1540953dfaab6c9e54eb0d6b3034b4ecbad666a706a46"
+    },
+    "benilla_provenance": {
+      "path": "docs/analysis/benilla-vendor.json",
+      "sha256": "fe63e833a2a34af9c426cc3467679bfaed304281c00d9bb2d48461515006f7f8"
+    },
+    "inspected_sources": {
+      "crates/azeroth-survivors-re/src/gameplay/client.rs": "af27006aba63e552fac2eefd5249a65ecf2022640af85a47e3e8125707f4dcfb",
+      "crates/azeroth-survivors-re/src/gameplay/meter.rs": "6f9571df4db2be54db95a01ad8551369e1ec85fa14b3580889ddeb53ecaa4c05",
+      "crates/azeroth-survivors-re/src/gameplay/native_overlays.rs": "7715c7da7ce4970887c4e6b4aeef1798baf5628d4b4b1269512335225f8caf45",
+      "crates/azeroth-survivors-re/src/gameplay/run_hud/controls.rs": "b1f400cd33b8f1592e3ad67e41810311f43f597a4fde2ca9e042f3d8ed29ec51",
+      "crates/azeroth-survivors-re/src/menu.rs": "572274bac7863b390d7e9d2a1c8530e0251cccf2154ad0ed7dcd63d0bb972641",
+      "crates/azeroth-survivors-re/src/menu_overlay.rs": "b1e19117bb31f2b0005b283ccc6e4fd40131742dee59ca6267f7f719150c7e60",
+      "crates/azeroth-survivors-re/src/menu_scene.rs": "6ce7227abdf6ad8c2161116527fe5a46ba6d29df42ccc0f4f63a7629aa236a8f",
+      "crates/azeroth-survivors-re/src/native_input/acquisition.rs": "62305e4bdb3a3b11c34ae097ba44d995e143dfe55b9eb42f2f0756c6ef0c0e29",
+      "crates/azeroth-survivors-re/src/native_input/focus.rs": "856cee162a9ca9069bcebc592afbcd2f415b9478c1d7c23dac1f73c2b94e6faf",
+      "crates/azeroth-survivors-re/src/native_input/mod.rs": "60b81b89deb99ec397f51c462a8af37773fc14a23273169948affd76c73e01a8",
+      "crates/azeroth-survivors-re/src/options.rs": "842b84d68bef6f8d7dfa8f8b725811e8f90d6d247b791f5c15f6a66a6623dc38",
+      "crates/azeroth-survivors-re/src/preview.rs": "2ef1aa3c7f39748f16235df7f3ed7c9079b3ebf2bf9b3431e9c61bb122cbf4bc",
+      "crates/benilla-app/src/blob_shadow.rs": "41934276baa5150a2a3e5c254ed00b8c6dda9c51bb3de5f7fcfe56281aa778fd",
+      "crates/benilla-app/src/combat_text/mod.rs": "0381d46f36cc3a7f168dd3a419da1a35458c9058ed18f02105e21556d1ba8338",
+      "crates/benilla-app/src/creature_anim/driver.rs": "44bb9440da14073ca7cda85354e4d3d4b8cb4ddb48f145f1a2bed7e65cecf01f",
+      "crates/benilla-app/src/game_plugins.rs": "fd1e3c0da9fe2cdc17447e44494532bf044d0e03f70af806a0e8970284a57731",
+      "crates/benilla-app/src/items.rs": "4f85f62d06ab5e623b5841aa8a7660c59c95e23336a95a68a869ae6c60a55571",
+      "crates/benilla-app/src/local_client.rs": "77349aa97420295ac8a07c5e2edd36bf3df3ff5efce26b94f1783773a6bd2b40",
+      "crates/benilla-app/src/local_client/extension.rs": "d73e5b16338f92cf14100c56c20e7affc7f6febb116c86b0aad89ccf1759efee",
+      "crates/benilla-app/src/net/io.rs": "d574ee975298c66ba14d0856d2b8b592379d6f5bd62092664d7f3cee490106e9",
+      "crates/benilla-app/src/player/camera.rs": "7e0341472e96558c6c6e888ce27821c41768bdab71c415feddc8a8387af4f1b7",
+      "crates/benilla-app/src/shutdown.rs": "83701090f49983fcd34ea6662af11d34d7ca6df9d5c168af250920c2860a8b6d",
+      "crates/benilla-app/src/sound/output/cpal.rs": "18fe1921d8aaf9aabf51ae351c0368ad2d503361d31694938d26e4fe11189a4b",
+      "crates/benilla-app/src/sound/output/mod.rs": "8698b7eadc0aa189ea302baf944407000097591a7fa975b75150989f9756455f",
+      "crates/benilla-app/src/target/mod.rs": "9a212f2ba37511157fa3f31b531f64ee9fa771a9789445a704524e218f511c5c",
+      "crates/benilla-app/src/ui_bind_confirm.rs": "c1b0096e75c9389c6bae1893c0d7bda801959226e703e7ca543bb76149d081b8",
+      "crates/benilla-app/src/ui_binder.rs": "dc576d6d8714c973d2c0da4aa7ab707ad7a6685913488fc4f3bd0c0757c90a03",
+      "crates/benilla-app/src/ui_items/mod.rs": "db24d794d2f4fc84bceabf1968ea75b643a01632effacd0d45ef4bb5811a28f9",
+      "crates/benilla-app/src/ui_layout.rs": "4805a66223550c1bd8f3373124ac35c85c6d1f5b89375eace4e5209021362883",
+      "crates/benilla-app/src/ui_quest_log.rs": "a9a935ca497f8de70a478cfc2f8cd36f29794da2413623087449110b250ce968",
+      "crates/benilla-app/src/ui_script/glue.rs": "0317500b2d5943253a3f6717edc5dbcde20cb810d1a88c2776c2646741fcc51b",
+      "crates/benilla-app/src/ui_script/input.rs": "2de18bc98972ea247c77ca84e52becafae53096d8b2327ad5919687d4a01d9f1",
+      "crates/benilla-app/src/ui_text/engine/gpu.rs": "cef82a630e04fbb781c2e8faa4352df8dabb9de02c8a9ba93e012ce8cd421056",
+      "crates/benilla-app/src/ui_text/engine/mod.rs": "70991c04261a1fd2a20ca9941d27749ab6494909241e799fc05f560ca2b87649",
+      "crates/benilla-app/src/ui_world_map.rs": "8d66d00697944ee1e712b3ad93b3130276eb87bca36fdd2a388983a522fe3dc7",
+      "crates/benilla-world/src/bgwin.rs": "f879354a3e0c599980abb4c4d48237dddc653d81032c383592061650640a8d1f",
+      "crates/benilla-world/src/entity_shade.rs": "bc842a6d66e00d359a4938d2544c2be3cfe07a5fd0b543d3044773d5267d3e6d",
+      "crates/benilla-world/src/thread_qos.rs": "9601264690d12675c8dbf40dc60c0f6e2dfa5029a323c681be4f30c83a5be219",
+      "crates/benilla-world/src/water_fx/mod.rs": "3c79a4c8a0b23b89307f5b5bc2c3b246f02c09a0b0a0feb46ff9cd62341a787d"
+    }
+  },
+  "counts": {
+    "current_AS_diagnostic_modules": 77,
+    "predecessor_AS_diagnostic_modules": 77,
+    "new_AS_modules": 0,
+    "removed_AS_modules": 0,
+    "added_distinct_literals": 23,
+    "reviewed_added_candidate_occurrences": 23,
+    "removed_distinct_literals": 28,
+    "reviewed_removed_candidate_occurrences": 28,
+    "by_category": {
+      "module_type_namespace": {
+        "added_distinct_literals": 23,
+        "added_candidate_occurrences": 23,
+        "reviewed_occurrences": 23,
+        "removed_distinct_literals": 26,
+        "removed_candidate_occurrences": 26,
+        "reviewed_removed_occurrences": 26
+      },
+      "game_binding_identifier": {
+        "added_distinct_literals": 0,
+        "added_candidate_occurrences": 0,
+        "reviewed_occurrences": 0,
+        "removed_distinct_literals": 0,
+        "removed_candidate_occurrences": 0,
+        "reviewed_removed_occurrences": 0
+      },
+      "lua_ui_registration": {
+        "added_distinct_literals": 0,
+        "added_candidate_occurrences": 0,
+        "reviewed_occurrences": 0,
+        "removed_distinct_literals": 0,
+        "removed_candidate_occurrences": 0,
+        "reviewed_removed_occurrences": 0
+      },
+      "textual_id_assignment": {
+        "added_distinct_literals": 0,
+        "added_candidate_occurrences": 0,
+        "reviewed_occurrences": 0,
+        "removed_distinct_literals": 0,
+        "removed_candidate_occurrences": 0,
+        "reviewed_removed_occurrences": 0
+      },
+      "textual_numeric_id": {
+        "added_distinct_literals": 0,
+        "added_candidate_occurrences": 0,
+        "reviewed_occurrences": 0,
+        "removed_distinct_literals": 0,
+        "removed_candidate_occurrences": 0,
+        "reviewed_removed_occurrences": 0
+      },
+      "save_configuration_key_lead": {
+        "added_distinct_literals": 0,
+        "added_candidate_occurrences": 0,
+        "reviewed_occurrences": 0,
+        "removed_distinct_literals": 0,
+        "removed_candidate_occurrences": 0,
+        "reviewed_removed_occurrences": 0
+      },
+      "resource_path": {
+        "added_distinct_literals": 0,
+        "added_candidate_occurrences": 0,
+        "reviewed_occurrences": 0,
+        "removed_distinct_literals": 2,
+        "removed_candidate_occurrences": 2,
+        "reviewed_removed_occurrences": 2
+      },
+      "lua_function_declaration": {
+        "added_distinct_literals": 0,
+        "added_candidate_occurrences": 0,
+        "reviewed_occurrences": 0,
+        "removed_distinct_literals": 0,
+        "removed_candidate_occurrences": 0,
+        "reviewed_removed_occurrences": 0
+      }
+    },
+    "semantic_decompilation_count": 0,
+    "established_new_module_source_assignments": 0,
+    "bounded_instruction_reviews": 0
+  },
+  "new_AS_modules": [],
+  "candidate_review_groups": {
+    "gamepad-input-interface": {
+      "classification": "AS_interface_recovery_candidate",
+      "gap_ids": [
+        22
+      ],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/native_input/mod.rs",
+        "crates/azeroth-survivors-re/src/native_input/focus.rs",
+        "crates/azeroth-survivors-re/src/native_input/acquisition.rs"
+      ],
+      "assessment": "The added packed xinputmessage9 candidate retains the old xinput prefix with a different suffix. Actual source separates Select-to-character/C from East/cancel and backend acquisition. The suffix is not a proved type, button ID or new function.",
+      "next_static_step": "Recover current physical Back/Select enum/backend/edge mapping, focus/capture admission and character action. Preserve existing Select-to-C source; a changed packed literal does not prove its absence.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:239"
+      ],
+      "reviewed_occurrence_count": 1,
+      "native_ownership": "unestablished_by_literal_or_source_review"
+    },
+    "host-input-gate-composition": {
+      "classification": "AS_interface_recovery_candidate",
+      "gap_ids": [
+        310,
+        302,
+        137,
+        11,
+        23
+      ],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/menu.rs",
+        "crates/azeroth-survivors-re/src/menu_overlay.rs",
+        "crates/azeroth-survivors-re/src/options.rs",
+        "crates/azeroth-survivors-re/src/gameplay/run_hud/controls.rs",
+        "crates/azeroth-survivors-re/src/gameplay/meter.rs",
+        "crates/benilla-app/src/local_client.rs",
+        "crates/benilla-app/src/local_client/extension.rs",
+        "crates/benilla-app/src/ui_script/input.rs"
+      ],
+      "assessment": "One packed composition adds the InputGatePlugin name among retained menu-scene/local-clock/touch/position/on-top components. Existing embedding pointer, binding-capture and Escape interfaces are real source seams; no local host_controls::input_gate implementation was found. Namespace adjacency does not establish schedule, typed resources or native ownership.",
+      "next_static_step": "Recover actual current InputGate registration, resources, reset/consumption schedule and pointer/wheel/keyboard consumers under#310; retain separate clock/position/on-top/touch owners for their existing interfaces.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:241"
+      ],
+      "reviewed_occurrence_count": 1,
+      "native_ownership": "unestablished_by_literal_or_source_review"
+    },
+    "retained-preview-combat-marker-composition": {
+      "classification": "AS_interface_recovery_candidate",
+      "gap_ids": [
+        60,
+        297,
+        307,
+        96
+      ],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/preview.rs",
+        "crates/azeroth-survivors-re/src/menu_scene.rs",
+        "crates/azeroth-survivors-re/src/gameplay/native_overlays.rs",
+        "crates/benilla-app/src/combat_text/mod.rs"
+      ],
+      "assessment": "The added literal combines retained hero-preview, combat-anchor and markers plugin names that were separate predecessor candidates. Existing preview/scenery, marker and ordinary combat-text source is a reuse seam; neither new functionality nor current code/data correspondence follows from repacking.",
+      "next_static_step": "Preserve previous recovery and exact identities; map only a demonstrated affected AS preview/marker/anchor producer or dependency using current ownership evidence, stopping at existing generic render/camera interfaces.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:243"
+      ],
+      "reviewed_occurrence_count": 1,
+      "native_ownership": "unestablished_by_literal_or_source_review"
+    },
+    "engine-plugin-composition": {
+      "classification": "engine_supporting_context_candidate",
+      "gap_ids": [],
+      "source_refs": [
+        "crates/benilla-app/src/game_plugins.rs",
+        "crates/benilla-app/src/ui_text/engine/gpu.rs"
+      ],
+      "assessment": "Two long packed plugin compositions regroup ordinary engine plugins, GPU text and effects. Source game_plugins documents registration ordering as meaningful, but string order is not registration/execution proof.",
+      "next_static_step": "Retain as generic plugin-registration context. Follow actual current registration only if a concrete AS input/schedule contract requires it; do not infer an engine revision or recurse through all plugins.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:735",
+        "Q41-I01:module_type_namespace:736"
+      ],
+      "reviewed_occurrence_count": 2,
+      "native_ownership": "unestablished_by_literal_or_source_review"
+    },
+    "engine-platform-process-context": {
+      "classification": "engine_supporting_context_candidate",
+      "gap_ids": [],
+      "source_refs": [
+        "crates/benilla-world/src/bgwin.rs",
+        "crates/benilla-world/src/thread_qos.rs",
+        "crates/benilla-app/src/shutdown.rs"
+      ],
+      "assessment": "Packed QoS/background/macOS-quit and dev/AltF4 strings regroup existing process plugins. Local BgWin activation logic and QoS promotion are macOS-only or no-op elsewhere; AltF4 is a deliberate close chord. These are not evidence of the reported Windows-on-Wine alt-tab crash or repair.",
+      "next_static_step": "Stop at these established source roles. #311 separately needs an actual Windows activation/focus/lifetime native path; do not label these plugin strings its root cause.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:528",
+        "Q41-I01:module_type_namespace:529"
+      ],
+      "reviewed_occurrence_count": 2,
+      "native_ownership": "unestablished_by_literal_or_source_review"
+    },
+    "engine-world-context": {
+      "classification": "engine_supporting_context_candidate",
+      "gap_ids": [],
+      "source_refs": [
+        "crates/benilla-world/src/entity_shade.rs",
+        "crates/benilla-world/src/water_fx/mod.rs"
+      ],
+      "assessment": "Changed message suffixes identify candidate ground-shading and water-effect namespaces. Existing terrain-shade and wake/ripple interfaces supply generic source roles; no AS-specific override or changed semantics is established.",
+      "next_static_step": "Retain generic rendering context and stop unless a specific AS resource/state/consumer difference requires a bounded trace.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:792",
+        "Q41-I01:module_type_namespace:799"
+      ],
+      "reviewed_occurrence_count": 2,
+      "native_ownership": "unestablished_by_literal_or_source_review"
+    },
+    "engine-audio-context": {
+      "classification": "engine_supporting_context_candidate",
+      "gap_ids": [],
+      "source_refs": [
+        "crates/benilla-app/src/sound/output/mod.rs",
+        "crates/benilla-app/src/sound/output/cpal.rs"
+      ],
+      "assessment": "Two candidates identify the existing cfg-selected output/device and Windows COM namespace seams. The local cpal adapter already anchors its cached enumerator apartment. Packed namespace changes do not establish changed device behavior or an activation-crash cause.",
+      "next_static_step": "Retain the ordinary audio device/COM interface as supporting context. Trace it further only if current AS failure/activation evidence identifies this dependency; do not infer#311 from a Windows-specific label.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:503",
+        "Q41-I01:module_type_namespace:507"
+      ],
+      "reviewed_occurrence_count": 2,
+      "native_ownership": "unestablished_by_literal_or_source_review"
+    },
+    "engine-render-text-context": {
+      "classification": "engine_supporting_context_candidate",
+      "gap_ids": [],
+      "source_refs": [
+        "crates/benilla-app/src/ui_text/engine/mod.rs"
+      ],
+      "assessment": "The message/crates suffix changes around the retained UI font-engine namespace. Existing glyph-cache/VM-measure/render lock boundaries are available source. No font or IME behavior is recovered from this candidate.",
+      "next_static_step": "Stop at the generic font interface; #293 requires its actual commit/composition consumer rather than a namespace-based font reconstruction.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:502"
+      ],
+      "reviewed_occurrence_count": 1,
+      "native_ownership": "unestablished_by_literal_or_source_review"
+    },
+    "engine-client-services-context": {
+      "classification": "engine_supporting_context_candidate",
+      "gap_ids": [],
+      "source_refs": [
+        "crates/benilla-app/src/items.rs",
+        "crates/benilla-app/src/ui_items/mod.rs",
+        "crates/benilla-app/src/ui_quest_log.rs",
+        "crates/benilla-app/src/ui_layout.rs",
+        "crates/benilla-app/src/ui_world_map.rs",
+        "crates/benilla-app/src/ui_bind_confirm.rs",
+        "crates/benilla-app/src/ui_binder.rs"
+      ],
+      "assessment": "Seven candidates cover item state/use, quest log, persisted window layout, world map, item soulbinding confirmation and innkeeper home binding. ui_bind_confirm/ui_binder are not the Options keyboard binding editor. These source roles are supporting context, not new AS behavior or missing key-capture code.",
+      "next_static_step": "Retain generic service/UI interfaces and stop. Recover only an actual AS modal/window dependency under#310 if its native producer/consumer path reaches one; labels alone are insufficient.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:476",
+        "Q41-I01:module_type_namespace:530",
+        "Q41-I01:module_type_namespace:597",
+        "Q41-I01:module_type_namespace:600",
+        "Q41-I01:module_type_namespace:628",
+        "Q41-I01:module_type_namespace:649",
+        "Q41-I01:module_type_namespace:777"
+      ],
+      "reviewed_occurrence_count": 7,
+      "native_ownership": "unestablished_by_literal_or_source_review"
+    },
+    "engine-network-context": {
+      "classification": "engine_supporting_context_candidate",
+      "gap_ids": [],
+      "source_refs": [
+        "crates/benilla-app/src/net/io.rs"
+      ],
+      "assessment": "The changed suffix belongs to the ordinary login/realm/world socket worker interface in local source. No co-op message schema, packet difference or AS admission contract is established.",
+      "next_static_step": "Stop at the generic network-thread interface unless a concrete AS request/transport contract requires a bounded dependency trace.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:680"
+      ],
+      "reviewed_occurrence_count": 1,
+      "native_ownership": "unestablished_by_literal_or_source_review"
+    },
+    "engine-creature-animation-context": {
+      "classification": "engine_supporting_context_candidate",
+      "gap_ids": [],
+      "source_refs": [
+        "crates/benilla-app/src/creature_anim/driver.rs"
+      ],
+      "assessment": "The retained animation-driver namespace changes packed suffix. Existing source drives ordinary animation/sheath/death state phases; no new AS animation behavior is proved.",
+      "next_static_step": "Retain generic animation context without recursing into the state machine absent a concrete AS override/dependency.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:689"
+      ],
+      "reviewed_occurrence_count": 1,
+      "native_ownership": "unestablished_by_literal_or_source_review"
+    },
+    "engine-target-context": {
+      "classification": "engine_supporting_context_candidate",
+      "gap_ids": [],
+      "source_refs": [
+        "crates/benilla-app/src/target/mod.rs",
+        "crates/benilla-app/src/player/camera.rs"
+      ],
+      "assessment": "The target-scan namespace changes packed suffix. Existing world picking/camera interfaces are source seams; a namespace does not establish which current modal or drag gates reach them.",
+      "next_static_step": "Stop the generic scan branch; #310 must recover an actual foreground ownership edge into world picking before expanding this dependency.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:737"
+      ],
+      "reviewed_occurrence_count": 1,
+      "native_ownership": "unestablished_by_literal_or_source_review"
+    },
+    "retained-world-hold-context": {
+      "classification": "engine_supporting_context_candidate",
+      "gap_ids": [],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/client.rs",
+        "crates/benilla-app/src/local_client/extension.rs"
+      ],
+      "assessment": "WorldHoldPlugin was already a predecessor namespace; only its packed suffix changes. Local AS client/pause ownership and extension are candidate interface seams, while an exact local spell_override module counterpart was not established. Neither current native ownership nor behavior is inferred.",
+      "next_static_step": "Preserve the prior lead and unknown interface correspondence. Follow it only when a concrete AS pause/input producer/consumer contract requires this hold dependency; do not recreate generic engine code from its label.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:240"
+      ],
+      "reviewed_occurrence_count": 1,
+      "native_ownership": "unestablished_by_literal_or_source_review"
+    }
+  },
+  "reviewed_candidate_identity_sha256": "11aed38e515ee5677d07f5b7a6e8d3dbbd9c43e958686ade8c64119ac28efbbb",
+  "removed_candidate_review_groups": {
+    "retained-preview-combat-marker-composition": {
+      "classification": "AS_interface_recovery_candidate",
+      "gap_ids": [
+        60,
+        297,
+        307,
+        96
+      ],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/preview.rs",
+        "crates/azeroth-survivors-re/src/menu_scene.rs",
+        "crates/azeroth-survivors-re/src/gameplay/native_overlays.rs",
+        "crates/benilla-app/src/combat_text/mod.rs"
+      ],
+      "assessment": "Predecessor literal membership only: retained namespace components are now regrouped or have changed packed suffixes. This does not prove function, feature, source or behavior removal. The added literal combines retained hero-preview, combat-anchor and markers plugin names that were separate predecessor candidates. Existing preview/scenery, marker and ordinary combat-text source is a reuse seam; neither new functionality nor current code/data correspondence follows from repacking.",
+      "next_static_step": "Preserve previous recovery and exact identities; map only a demonstrated affected AS preview/marker/anchor producer or dependency using current ownership evidence, stopping at existing generic render/camera interfaces.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:237",
+        "Q41-I01:module_type_namespace:238",
+        "Q41-I01:module_type_namespace:244"
+      ],
+      "reviewed_occurrence_count": 3,
+      "target": {
+        "version": "0.139.0",
+        "path": "installed-game/AzerothSurvivors.exe",
+        "sha256": "0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274",
+        "size_bytes": 150595584
+      }
+    },
+    "host-input-gate-composition": {
+      "classification": "AS_interface_recovery_candidate",
+      "gap_ids": [
+        310,
+        302,
+        137,
+        11,
+        23
+      ],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/menu.rs",
+        "crates/azeroth-survivors-re/src/menu_overlay.rs",
+        "crates/azeroth-survivors-re/src/options.rs",
+        "crates/azeroth-survivors-re/src/gameplay/run_hud/controls.rs",
+        "crates/azeroth-survivors-re/src/gameplay/meter.rs",
+        "crates/benilla-app/src/local_client.rs",
+        "crates/benilla-app/src/local_client/extension.rs",
+        "crates/benilla-app/src/ui_script/input.rs"
+      ],
+      "assessment": "Predecessor literal membership only: retained namespace components are now regrouped or have changed packed suffixes. This does not prove function, feature, source or behavior removal. One packed composition adds the InputGatePlugin name among retained menu-scene/local-clock/touch/position/on-top components. Existing embedding pointer, binding-capture and Escape interfaces are real source seams; no local host_controls::input_gate implementation was found. Namespace adjacency does not establish schedule, typed resources or native ownership.",
+      "next_static_step": "Recover actual current InputGate registration, resources, reset/consumption schedule and pointer/wheel/keyboard consumers under#310; retain separate clock/position/on-top/touch owners for their existing interfaces.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:241"
+      ],
+      "reviewed_occurrence_count": 1,
+      "target": {
+        "version": "0.139.0",
+        "path": "installed-game/AzerothSurvivors.exe",
+        "sha256": "0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274",
+        "size_bytes": 150595584
+      }
+    },
+    "gamepad-input-interface": {
+      "classification": "AS_interface_recovery_candidate",
+      "gap_ids": [
+        22
+      ],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/native_input/mod.rs",
+        "crates/azeroth-survivors-re/src/native_input/focus.rs",
+        "crates/azeroth-survivors-re/src/native_input/acquisition.rs"
+      ],
+      "assessment": "Predecessor literal membership only: retained namespace components are now regrouped or have changed packed suffixes. This does not prove function, feature, source or behavior removal. The added packed xinputmessage9 candidate retains the old xinput prefix with a different suffix. Actual source separates Select-to-character/C from East/cancel and backend acquisition. The suffix is not a proved type, button ID or new function.",
+      "next_static_step": "Recover current physical Back/Select enum/backend/edge mapping, focus/capture admission and character action. Preserve existing Select-to-C source; a changed packed literal does not prove its absence.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:242"
+      ],
+      "reviewed_occurrence_count": 1,
+      "target": {
+        "version": "0.139.0",
+        "path": "installed-game/AzerothSurvivors.exe",
+        "sha256": "0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274",
+        "size_bytes": 150595584
+      }
+    },
+    "retained-world-hold-context": {
+      "classification": "engine_supporting_context_candidate",
+      "gap_ids": [],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/client.rs",
+        "crates/benilla-app/src/local_client/extension.rs"
+      ],
+      "assessment": "Predecessor literal membership only: retained namespace components are now regrouped or have changed packed suffixes. This does not prove function, feature, source or behavior removal. WorldHoldPlugin was already a predecessor namespace; only its packed suffix changes. Local AS client/pause ownership and extension are candidate interface seams, while an exact local spell_override module counterpart was not established. Neither current native ownership nor behavior is inferred.",
+      "next_static_step": "Preserve the prior lead and unknown interface correspondence. Follow it only when a concrete AS pause/input producer/consumer contract requires this hold dependency; do not recreate generic engine code from its label.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:246"
+      ],
+      "reviewed_occurrence_count": 1,
+      "target": {
+        "version": "0.139.0",
+        "path": "installed-game/AzerothSurvivors.exe",
+        "sha256": "0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274",
+        "size_bytes": 150595584
+      }
+    },
+    "engine-client-services-context": {
+      "classification": "engine_supporting_context_candidate",
+      "gap_ids": [],
+      "source_refs": [
+        "crates/benilla-app/src/items.rs",
+        "crates/benilla-app/src/ui_items/mod.rs",
+        "crates/benilla-app/src/ui_quest_log.rs",
+        "crates/benilla-app/src/ui_layout.rs",
+        "crates/benilla-app/src/ui_world_map.rs",
+        "crates/benilla-app/src/ui_bind_confirm.rs",
+        "crates/benilla-app/src/ui_binder.rs"
+      ],
+      "assessment": "Predecessor literal membership only: retained namespace components are now regrouped or have changed packed suffixes. This does not prove function, feature, source or behavior removal. Seven candidates cover item state/use, quest log, persisted window layout, world map, item soulbinding confirmation and innkeeper home binding. ui_bind_confirm/ui_binder are not the Options keyboard binding editor. These source roles are supporting context, not new AS behavior or missing key-capture code.",
+      "next_static_step": "Retain generic service/UI interfaces and stop. Recover only an actual AS modal/window dependency under#310 if its native producer/consumer path reaches one; labels alone are insufficient.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:267",
+        "Q41-I01:module_type_namespace:268",
+        "Q41-I01:module_type_namespace:298",
+        "Q41-I01:module_type_namespace:327",
+        "Q41-I01:module_type_namespace:355",
+        "Q41-I01:module_type_namespace:420",
+        "Q41-I01:module_type_namespace:722"
+      ],
+      "reviewed_occurrence_count": 7,
+      "target": {
+        "version": "0.139.0",
+        "path": "installed-game/AzerothSurvivors.exe",
+        "sha256": "0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274",
+        "size_bytes": 150595584
+      }
+    },
+    "engine-platform-process-context": {
+      "classification": "engine_supporting_context_candidate",
+      "gap_ids": [],
+      "source_refs": [
+        "crates/benilla-world/src/bgwin.rs",
+        "crates/benilla-world/src/thread_qos.rs",
+        "crates/benilla-app/src/shutdown.rs"
+      ],
+      "assessment": "Predecessor literal membership only: retained namespace components are now regrouped or have changed packed suffixes. This does not prove function, feature, source or behavior removal. Packed QoS/background/macOS-quit and dev/AltF4 strings regroup existing process plugins. Local BgWin activation logic and QoS promotion are macOS-only or no-op elsewhere; AltF4 is a deliberate close chord. These are not evidence of the reported Windows-on-Wine alt-tab crash or repair.",
+      "next_static_step": "Stop at these established source roles. #311 separately needs an actual Windows activation/focus/lifetime native path; do not label these plugin strings its root cause.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:323",
+        "Q41-I01:module_type_namespace:680",
+        "Q41-I01:module_type_namespace:782"
+      ],
+      "reviewed_occurrence_count": 3,
+      "target": {
+        "version": "0.139.0",
+        "path": "installed-game/AzerothSurvivors.exe",
+        "sha256": "0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274",
+        "size_bytes": 150595584
+      }
+    },
+    "engine-render-text-context": {
+      "classification": "engine_supporting_context_candidate",
+      "gap_ids": [],
+      "source_refs": [
+        "crates/benilla-app/src/ui_text/engine/mod.rs"
+      ],
+      "assessment": "Predecessor literal membership only: retained namespace components are now regrouped or have changed packed suffixes. This does not prove function, feature, source or behavior removal. The message/crates suffix changes around the retained UI font-engine namespace. Existing glyph-cache/VM-measure/render lock boundaries are available source. No font or IME behavior is recovered from this candidate.",
+      "next_static_step": "Stop at the generic font interface; #293 requires its actual commit/composition consumer rather than a namespace-based font reconstruction.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:326"
+      ],
+      "reviewed_occurrence_count": 1,
+      "target": {
+        "version": "0.139.0",
+        "path": "installed-game/AzerothSurvivors.exe",
+        "sha256": "0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274",
+        "size_bytes": 150595584
+      }
+    },
+    "engine-audio-context": {
+      "classification": "engine_supporting_context_candidate",
+      "gap_ids": [],
+      "source_refs": [
+        "crates/benilla-app/src/sound/output/mod.rs",
+        "crates/benilla-app/src/sound/output/cpal.rs"
+      ],
+      "assessment": "Predecessor literal membership only: retained namespace components are now regrouped or have changed packed suffixes. This does not prove function, feature, source or behavior removal. Two candidates identify the existing cfg-selected output/device and Windows COM namespace seams. The local cpal adapter already anchors its cached enumerator apartment. Packed namespace changes do not establish changed device behavior or an activation-crash cause.",
+      "next_static_step": "Retain the ordinary audio device/COM interface as supporting context. Trace it further only if current AS failure/activation evidence identifies this dependency; do not infer#311 from a Windows-specific label.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:353",
+        "Q41-I01:module_type_namespace:725"
+      ],
+      "reviewed_occurrence_count": 2,
+      "target": {
+        "version": "0.139.0",
+        "path": "installed-game/AzerothSurvivors.exe",
+        "sha256": "0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274",
+        "size_bytes": 150595584
+      }
+    },
+    "engine-network-context": {
+      "classification": "engine_supporting_context_candidate",
+      "gap_ids": [],
+      "source_refs": [
+        "crates/benilla-app/src/net/io.rs"
+      ],
+      "assessment": "Predecessor literal membership only: retained namespace components are now regrouped or have changed packed suffixes. This does not prove function, feature, source or behavior removal. The changed suffix belongs to the ordinary login/realm/world socket worker interface in local source. No co-op message schema, packet difference or AS admission contract is established.",
+      "next_static_step": "Stop at the generic network-thread interface unless a concrete AS request/transport contract requires a bounded dependency trace.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:675"
+      ],
+      "reviewed_occurrence_count": 1,
+      "target": {
+        "version": "0.139.0",
+        "path": "installed-game/AzerothSurvivors.exe",
+        "sha256": "0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274",
+        "size_bytes": 150595584
+      }
+    },
+    "engine-plugin-composition": {
+      "classification": "engine_supporting_context_candidate",
+      "gap_ids": [],
+      "source_refs": [
+        "crates/benilla-app/src/game_plugins.rs",
+        "crates/benilla-app/src/ui_text/engine/gpu.rs"
+      ],
+      "assessment": "Predecessor literal membership only: retained namespace components are now regrouped or have changed packed suffixes. This does not prove function, feature, source or behavior removal. Two long packed plugin compositions regroup ordinary engine plugins, GPU text and effects. Source game_plugins documents registration ordering as meaningful, but string order is not registration/execution proof.",
+      "next_static_step": "Retain as generic plugin-registration context. Follow actual current registration only if a concrete AS input/schedule contract requires it; do not infer an engine revision or recurse through all plugins.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:681",
+        "Q41-I01:module_type_namespace:682"
+      ],
+      "reviewed_occurrence_count": 2,
+      "target": {
+        "version": "0.139.0",
+        "path": "installed-game/AzerothSurvivors.exe",
+        "sha256": "0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274",
+        "size_bytes": 150595584
+      }
+    },
+    "engine-creature-animation-context": {
+      "classification": "engine_supporting_context_candidate",
+      "gap_ids": [],
+      "source_refs": [
+        "crates/benilla-app/src/creature_anim/driver.rs"
+      ],
+      "assessment": "Predecessor literal membership only: retained namespace components are now regrouped or have changed packed suffixes. This does not prove function, feature, source or behavior removal. The retained animation-driver namespace changes packed suffix. Existing source drives ordinary animation/sheath/death state phases; no new AS animation behavior is proved.",
+      "next_static_step": "Retain generic animation context without recursing into the state machine absent a concrete AS override/dependency.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:709"
+      ],
+      "reviewed_occurrence_count": 1,
+      "target": {
+        "version": "0.139.0",
+        "path": "installed-game/AzerothSurvivors.exe",
+        "sha256": "0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274",
+        "size_bytes": 150595584
+      }
+    },
+    "engine-target-context": {
+      "classification": "engine_supporting_context_candidate",
+      "gap_ids": [],
+      "source_refs": [
+        "crates/benilla-app/src/target/mod.rs",
+        "crates/benilla-app/src/player/camera.rs"
+      ],
+      "assessment": "Predecessor literal membership only: retained namespace components are now regrouped or have changed packed suffixes. This does not prove function, feature, source or behavior removal. The target-scan namespace changes packed suffix. Existing world picking/camera interfaces are source seams; a namespace does not establish which current modal or drag gates reach them.",
+      "next_static_step": "Stop the generic scan branch; #310 must recover an actual foreground ownership edge into world picking before expanding this dependency.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:710"
+      ],
+      "reviewed_occurrence_count": 1,
+      "target": {
+        "version": "0.139.0",
+        "path": "installed-game/AzerothSurvivors.exe",
+        "sha256": "0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274",
+        "size_bytes": 150595584
+      }
+    },
+    "engine-world-context": {
+      "classification": "engine_supporting_context_candidate",
+      "gap_ids": [],
+      "source_refs": [
+        "crates/benilla-world/src/entity_shade.rs",
+        "crates/benilla-world/src/water_fx/mod.rs"
+      ],
+      "assessment": "Predecessor literal membership only: retained namespace components are now regrouped or have changed packed suffixes. This does not prove function, feature, source or behavior removal. Changed message suffixes identify candidate ground-shading and water-effect namespaces. Existing terrain-shade and wake/ripple interfaces supply generic source roles; no AS-specific override or changed semantics is established.",
+      "next_static_step": "Retain generic rendering context and stop unless a specific AS resource/state/consumer difference requires a bounded trace.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:784",
+        "Q41-I01:module_type_namespace:799"
+      ],
+      "reviewed_occurrence_count": 2,
+      "target": {
+        "version": "0.139.0",
+        "path": "installed-game/AzerothSurvivors.exe",
+        "sha256": "0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274",
+        "size_bytes": 150595584
+      }
+    },
+    "removed-shadow-resource-pattern": {
+      "classification": "engine_supporting_context_candidate",
+      "gap_ids": [],
+      "source_refs": [
+        "crates/benilla-app/src/blob_shadow.rs"
+      ],
+      "assessment": "The old //textures/shadowblob.blp regex pattern is absent from the new distinct resource-pattern set. Local blob_shadow still loads mpq://textures/shadowblob.blp through the asset server. No asset deletion, missing MPQ member or changed draw consumer is proved.",
+      "next_static_step": "Retain historical literal evidence and the existing source consumer. Inspect a current exact native resource lookup/loader only if a concrete AS requirement needs it; do not infer removed assets/features from regex deltas.",
+      "selectors": [
+        "Q41-I01:resource_path:27"
+      ],
+      "reviewed_occurrence_count": 1,
+      "target": {
+        "version": "0.139.0",
+        "path": "installed-game/AzerothSurvivors.exe",
+        "sha256": "0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274",
+        "size_bytes": 150595584
+      }
+    },
+    "removed-glue-resource-pattern": {
+      "classification": "engine_supporting_context_candidate",
+      "gap_ids": [],
+      "source_refs": [
+        "crates/benilla-app/src/ui_script/glue.rs"
+      ],
+      "assessment": "The old AccountLoginRealmlist.xml pattern is absent from the new distinct resource-pattern set. Local glue.rs::GLUE_LAYER still names and loads that builtin overlay after GlueXML.toc. Pattern membership does not prove a deleted file, removal of the character-select UI or a fixed Enter consumer.",
+      "next_static_step": "Retain historical literal evidence and the existing source consumer. Inspect a current exact native resource lookup/loader only if a concrete AS requirement needs it; do not infer removed assets/features from regex deltas.",
+      "selectors": [
+        "Q41-I01:resource_path:58"
+      ],
+      "reviewed_occurrence_count": 1,
+      "target": {
+        "version": "0.139.0",
+        "path": "installed-game/AzerothSurvivors.exe",
+        "sha256": "0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274",
+        "size_bytes": 150595584
+      }
+    }
+  },
+  "reviewed_removed_candidate_identity_sha256": "2d7fc8b4496f53b1a0279b77d81966d586647f92a23b3bc4e43103d8f6af7f21",
+  "additional_current_data_leads": [],
+  "api_review": {
+    "primary_api": "Exact22984-byte current embedded-api.lua has the same payload SHA256 as0.139.0 at a different current range. This establishes byte equality within that Lua scope only; native producers, runtime registration/scheduling and source/feature applicability remain separate. No new distinct Lua function, binding, ID, save key or resource literal was found by this inventory delta.",
+    "input_gate": "InputGatePlugin appears in one newly packed host-control composition. The actual typed state, registration/schedule, pointer/wheel/keyboard consumers, on-top exceptions and lifecycle must be recovered under#310. Namespace evidence alone establishes none of them.",
+    "gamepad": "Existing Select-to-C source and East/cancel separation remain; packed xinput suffix9 is not a button enum or proof of a new mapping. Recover Back/Select acquisition/capture/action under#22.",
+    "windows_activation": "No added candidate establishes the0.139.1 Windows-on-Wine activation repair. Existing game-window title, native window/cursor/focus and audio COM seams are candidate interfaces only; macOS QoS/BgWin names cannot be attributed to#311.",
+    "binding_terminology": "ui_bind_confirm and ui_binder are item soulbinding and innkeeper home binding in actual local source; neither is evidence of Options keyboard capture under#17."
+  },
+  "retained_knowledge": "All77 predecessor module identities, historical source, bounded contracts, classifications and stable findings remain retained. The eight0.139 module source candidates remain candidates unless independent selected-target evidence resolves them. Zero new diagnostic paths and literal payload equality do not certify unchanged native behavior or transfer runtime/parity proof.",
+  "validation": {
+    "source_review": "Actual local input/platform and generic interface owners inspected first; exact source hashes bound. No native queries, source changes, application compilation or execution performed by this review.",
+    "candidate_membership": "All23 added occurrences and all28 removed predecessor occurrences assigned exactly once. Added selectors bind0.139.1; removed selectors explicitly bind0.139.0. No copied bulk literal inventory.",
+    "identity_digest_method": "SHA256 of UTF8 compact JSON sorted list [selector,file_offset,byte_count,sha256], ensure_ascii=False and separators comma/colon; added and removed target populations have separate commitments.",
+    "native_decompilation": "not_performed_by_this_review",
+    "application_compilation": "not_run",
+    "game_client_network_server_execution": "not_run",
+    "parity": "unverified"
+  },
+  "bounded_native_reviews": []
+}
