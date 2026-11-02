@@ -1,0 +1,4995 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.139.1",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d",
+    "size_bytes": 150633472
+  },
+  "predecessor": {
+    "version": "0.139.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274",
+    "size_bytes": 150595584
+  },
+  "inputs": [
+    {
+      "path": "docs/analysis/evidence/0.139.0/native-frontier-plan.json",
+      "sha256": "b77bcccd8a9fe87666682b6d0b6079cb641febd045aca5a3bd9c84b91e5358dc"
+    },
+    {
+      "path": "docs/analysis/evidence/0.139.0/native-frontier-results.json",
+      "sha256": "92e3221c5f2662dc3c2816166771e909513330ca0da8f18ee96f0725fb8e9fcf"
+    },
+    {
+      "path": "docs/analysis/native-frontier-0.139.0.md",
+      "sha256": "3d625873e9491221d90f94df7988b17f9bb736606ad59d39b6aa20c23822ed56"
+    },
+    {
+      "path": "docs/analysis/evidence/0.139.0/audit-boundary.json",
+      "sha256": "9c604cfc9097312d5f1fe4902cbb576648db2d2569f0a54b21fa0b4ed6715325"
+    },
+    {
+      "path": "runtime/analysis/objects/d1/d1199154ebd7e8217d462c81f0f7d625171b0aff789be21fee098a61611b568d",
+      "sha256": "d1199154ebd7e8217d462c81f0f7d625171b0aff789be21fee098a61611b568d"
+    }
+  ],
+  "frozen_registration": {
+    "evidence": {
+      "path": "runtime/analysis/objects/d1/d1199154ebd7e8217d462c81f0f7d625171b0aff789be21fee098a61611b568d",
+      "sha256": "d1199154ebd7e8217d462c81f0f7d625171b0aff789be21fee098a61611b568d"
+    },
+    "git_source": {
+      "commit": "71f10f5d5dafc469b5f3ca489431aacd8a3cb0ae",
+      "path": "docs/analysis/coverage/systems.json"
+    },
+    "selector": [
+      "evidence_target_bindings",
+      "docs/analysis/evidence/0.139.0/native-frontier-results.json",
+      "bounded_contract_owner_scopes"
+    ]
+  },
+  "method": {
+    "decoder": {
+      "name": "Capstone",
+      "version": "5.0.7",
+      "architecture": "x86_64",
+      "detail": true,
+      "skipdata": false
+    },
+    "PE_parser": {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "e2a4746cf3c5c0a8433c2000d6000b768a2a17b01b25040505705f61ddf1f6fa"
+    },
+    "exact_search": "All 13 complete retained raw inputs searched across the whole new image: zero matches.",
+    "normalization": "Encoded RIP-relative disp32, branch/call address immediates and preferred-image address immediates are excluded for navigation. All other bytes match. Registered local scopes additionally check internal branch opcode/displacement bytes and target instruction/owner offsets without masking.",
+    "RIP_width_note": "Capstone 5.0.7 reports a 2-byte disp_size for some 0x66-prefixed SSE RIP operands. This comparison uses the architectural RIP-relative disp32 width at the decoded disp_offset and verifies it fits the instruction; numerical/field/enum immediates remain unmasked."
+  },
+  "navigation": [
+    {
+      "module_id": "custom-app-screens-inspect",
+      "old_procedure": "0x14030a950",
+      "old_raw": {
+        "path": "runtime/execheck-0.139.0/native-frontier-inputs/slices/picker-14030a950.bin",
+        "sha256": "c4daed4d6074e7da4bdf2cf1ef179dc075b49be8ad2c1ace91bb2df06d7e475e",
+        "source_file_offset": "0x309d50",
+        "source_file_end_exclusive": "0x30ac3a",
+        "original_virtual_address": "0x14030a950",
+        "original_virtual_end_exclusive": "0x14030b83a",
+        "byte_count": 3818,
+        "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+      },
+      "anchor": {
+        "old_offset": 1003,
+        "byte_count": 224,
+        "sha256": "f9822b07ee6edefa983f1aef50ef029414d8ce887bbdfdff5cbd0b199ad4f353"
+      },
+      "correspondence_status": "unique_relocation_normalized_instruction_candidate_only",
+      "exact_complete_raw_matches": 0,
+      "scope": "Navigation only, not whole-owner semantics or source assignment.",
+      "current_owner": {
+        "virtual_address": "0x140268cd0",
+        "end_exclusive": "0x140269bba",
+        "file_offset": "0x2680d0",
+        "byte_count": 3818,
+        "sha256": "785a56091559d048fe8139e8d882e1c01d81f5fe9dd0548266f132e5fb3419fd",
+        "declared_unwind_end_exclusive": "0x140269bba",
+        "declared_extent_equal": true,
+        "instruction_bytes_decoded": 3818,
+        "all_unmasked_bytes_equal": true
+      },
+      "normalized_byte_sha256": "fbb4cb23f430a1599be647bdefcee5af2f6c3204b20727371365749fd9150ac8",
+      "excluded_address_field_count": 175
+    },
+    {
+      "module_id": "custom-app-screens-inspect",
+      "old_procedure": "0x140319c90",
+      "old_raw": {
+        "path": "runtime/execheck-0.139.0/native-frontier-inputs/slices/picker-140319c90.bin",
+        "sha256": "b0ac13401aa170c590f36bf30c46e9a6e267fe5f91be294f8aa652f3f3c4a1d3",
+        "source_file_offset": "0x319090",
+        "source_file_end_exclusive": "0x319804",
+        "original_virtual_address": "0x140319c90",
+        "original_virtual_end_exclusive": "0x14031a404",
+        "byte_count": 1908,
+        "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+      },
+      "anchor": {
+        "old_offset": 0,
+        "byte_count": 197,
+        "sha256": "6b19965d10ff2ae023a95de25f18479f804204b401a65b2b8a5f1505780988c4"
+      },
+      "correspondence_status": "unique_relocation_normalized_instruction_candidate_only",
+      "exact_complete_raw_matches": 0,
+      "scope": "Navigation only, not whole-owner semantics or source assignment.",
+      "current_owner": {
+        "virtual_address": "0x1402794f0",
+        "end_exclusive": "0x140279c64",
+        "file_offset": "0x2788f0",
+        "byte_count": 1908,
+        "sha256": "5f3b24cf59315f1b576d4199c57a2653eb8ae972355de6ee2931ce55706a8d60",
+        "declared_unwind_end_exclusive": "0x140279c64",
+        "declared_extent_equal": true,
+        "instruction_bytes_decoded": 1908,
+        "all_unmasked_bytes_equal": true
+      },
+      "normalized_byte_sha256": "3e67499eca7dbe7c5d26cdbf8a3ca0bf2074ceed22d1517d8656940a4d758e3d",
+      "excluded_address_field_count": 64
+    },
+    {
+      "module_id": "custom-app-screens-localclock",
+      "old_procedure": "0x140311940",
+      "old_raw": {
+        "path": "runtime/execheck-0.139.0/native-frontier-inputs/slices/picker-140311940.bin",
+        "sha256": "a948553e7a5813c7bcfdbd179cfbce885e5a2d9ee047049399f9d79fa5e4ae1c",
+        "source_file_offset": "0x310d40",
+        "source_file_end_exclusive": "0x311742",
+        "original_virtual_address": "0x140311940",
+        "original_virtual_end_exclusive": "0x140312342",
+        "byte_count": 2562,
+        "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+      },
+      "anchor": {
+        "old_offset": 1858,
+        "byte_count": 179,
+        "sha256": "6cd8ee5318554e38672292ae2b9c6982454b80a64666a8e4ad05bb6a025892b3"
+      },
+      "correspondence_status": "changed_body_candidate_from_unique_exact_anchor_and_declared_extent",
+      "exact_complete_raw_matches": 0,
+      "scope": "Navigation only, not whole-owner semantics or source assignment.",
+      "current_navigation_candidate": {
+        "anchor_virtual_address": "0x1402579b2",
+        "owner": {
+          "virtual_address": "0x140257270",
+          "end_exclusive": "0x140257c72",
+          "file_offset": "0x256670",
+          "byte_count": 2562,
+          "sha256": "5ceb42e945d556f8a698ccfcee4a10e3df813c9c46cdd1fb695351730dd7526f"
+        },
+        "anchor_position_delta_within_owner": 0
+      }
+    },
+    {
+      "module_id": "custom-app-screens-localclock",
+      "old_procedure": "0x140312430",
+      "old_raw": {
+        "path": "runtime/execheck-0.139.0/native-frontier-inputs/slices/picker-140312430.bin",
+        "sha256": "8c62ceddfc1a208a3002ff2d80643bdc21935959a70dc5cf44a3e31cf26d737c",
+        "source_file_offset": "0x311830",
+        "source_file_end_exclusive": "0x311f41",
+        "original_virtual_address": "0x140312430",
+        "original_virtual_end_exclusive": "0x140312b41",
+        "byte_count": 1809,
+        "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+      },
+      "anchor": {
+        "old_offset": 1281,
+        "byte_count": 367,
+        "sha256": "ecffb8f660341995ac1c2e4641a3821b026af8f040599a46aa1a736f501ac3a9"
+      },
+      "correspondence_status": "unique_relocation_normalized_instruction_candidate_only",
+      "exact_complete_raw_matches": 0,
+      "scope": "Navigation only, not whole-owner semantics or source assignment.",
+      "current_owner": {
+        "virtual_address": "0x140272e50",
+        "end_exclusive": "0x140273561",
+        "file_offset": "0x272250",
+        "byte_count": 1809,
+        "sha256": "2369af32625da32bd2444d6d650566a3837aabf3252acf66007b82455314b6ba",
+        "declared_unwind_end_exclusive": "0x140273561",
+        "declared_extent_equal": true,
+        "instruction_bytes_decoded": 1809,
+        "all_unmasked_bytes_equal": true
+      },
+      "normalized_byte_sha256": "01058b06261ea8383e3972aade21d69d41de552886a2514442f115a5dce0294e",
+      "excluded_address_field_count": 35
+    },
+    {
+      "module_id": "custom-app-screens-readycheck",
+      "old_procedure": "0x14011dc10",
+      "old_raw": {
+        "path": "runtime/execheck-0.139.0/native-frontier-inputs/slices/picker-14011dc10.bin",
+        "sha256": "6acd5cb6cac2571bf1c94cfe51d15c92aae785afea53bb44ce1d15cacb8c361c",
+        "source_file_offset": "0x11d010",
+        "source_file_end_exclusive": "0x11def9",
+        "original_virtual_address": "0x14011dc10",
+        "original_virtual_end_exclusive": "0x14011eaf9",
+        "byte_count": 3817,
+        "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+      },
+      "anchor": {
+        "old_offset": 440,
+        "byte_count": 294,
+        "sha256": "aa9c195a89d2edbc89c1ca0ad02ba623103800f78b96ab77316a1ed4d64bc32a"
+      },
+      "correspondence_status": "changed_body_candidate_from_unique_exact_anchor_and_declared_extent",
+      "exact_complete_raw_matches": 0,
+      "scope": "Navigation only, not whole-owner semantics or source assignment.",
+      "current_navigation_candidate": {
+        "anchor_virtual_address": "0x1400e8ee8",
+        "owner": {
+          "virtual_address": "0x1400e8d30",
+          "end_exclusive": "0x1400e9c29",
+          "file_offset": "0xe8130",
+          "byte_count": 3833,
+          "sha256": "62461034fc88aefa73bd555e445e7592bfa0652c82d2255271340d1ce4d85a49"
+        },
+        "anchor_position_delta_within_owner": 0
+      }
+    },
+    {
+      "module_id": "custom-app-screens-recap",
+      "old_procedure": "0x140161d90",
+      "old_raw": {
+        "path": "runtime/execheck-0.139.0/native-frontier-inputs/slices/picker-140161d90.bin",
+        "sha256": "754855f16aa5160311d5d8fdd400c919ad565e833b6456c8404ceb9937680b24",
+        "source_file_offset": "0x161190",
+        "source_file_end_exclusive": "0x162ed2",
+        "original_virtual_address": "0x140161d90",
+        "original_virtual_end_exclusive": "0x140163ad2",
+        "byte_count": 7490,
+        "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+      },
+      "anchor": {
+        "old_offset": 3710,
+        "byte_count": 204,
+        "sha256": "59e9badb1ccc516a86531a466568e1a013fc509391dad05b753b4765d7948194"
+      },
+      "correspondence_status": "unique_relocation_normalized_instruction_candidate_only",
+      "exact_complete_raw_matches": 0,
+      "scope": "Navigation only, not whole-owner semantics or source assignment.",
+      "current_owner": {
+        "virtual_address": "0x140161bf0",
+        "end_exclusive": "0x140163932",
+        "file_offset": "0x160ff0",
+        "byte_count": 7490,
+        "sha256": "918e0d9556d86fd7abb2e03d862e3a414ba0b32b8d406a78158564a8b8e72f3c",
+        "declared_unwind_end_exclusive": "0x140163932",
+        "declared_extent_equal": true,
+        "instruction_bytes_decoded": 7490,
+        "all_unmasked_bytes_equal": true
+      },
+      "normalized_byte_sha256": "71cee487fe90894c98ba80f43bf6b6f0eff0303a8adb3ee69d03e020beabe216",
+      "excluded_address_field_count": 302
+    },
+    {
+      "module_id": "custom-app-screens-recap",
+      "old_procedure": "0x140178750",
+      "old_raw": {
+        "path": "runtime/execheck-0.139.0/native-frontier-inputs/slices/picker-140178750.bin",
+        "sha256": "1336f385bec10b9e280515678cfdd0a6498f4fb8a04fecac978e3f2f8e662577",
+        "source_file_offset": "0x177b50",
+        "source_file_end_exclusive": "0x17832a",
+        "original_virtual_address": "0x140178750",
+        "original_virtual_end_exclusive": "0x140178f2a",
+        "byte_count": 2010,
+        "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+      },
+      "anchor": {
+        "old_offset": 0,
+        "byte_count": 249,
+        "sha256": "79d2929da0b440d20ec7d3fcb5f2b057bad6900c6a80646800074c530ac97535"
+      },
+      "correspondence_status": "unique_relocation_normalized_instruction_candidate_only",
+      "exact_complete_raw_matches": 0,
+      "scope": "Navigation only, not whole-owner semantics or source assignment.",
+      "current_owner": {
+        "virtual_address": "0x14018f390",
+        "end_exclusive": "0x14018fb6a",
+        "file_offset": "0x18e790",
+        "byte_count": 2010,
+        "sha256": "7fcc0935e27ef83da7cbeb6b5f7a6d773400d434c4d1744800d0c51144d26295",
+        "declared_unwind_end_exclusive": "0x14018fb6a",
+        "declared_extent_equal": true,
+        "instruction_bytes_decoded": 2010,
+        "all_unmasked_bytes_equal": true
+      },
+      "normalized_byte_sha256": "3089fa48b99f1126ec56ede3f0ce20ee69f25466bad518668c61234599e98e1c",
+      "excluded_address_field_count": 68
+    },
+    {
+      "module_id": "custom-game-game-enhancement",
+      "old_procedure": "0x145ebdd50",
+      "old_raw": {
+        "path": "runtime/execheck-0.139.0/native-frontier-inputs/slices/picker-145ebdd50.bin",
+        "sha256": "dd80e6eb83ee29034f2f9d40e6e94be55a52e7c0a306b3175e25cfe42ef01aec",
+        "source_file_offset": "0x5ebd150",
+        "source_file_end_exclusive": "0x5ebfac2",
+        "original_virtual_address": "0x145ebdd50",
+        "original_virtual_end_exclusive": "0x145ec06c2",
+        "byte_count": 10610,
+        "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+      },
+      "anchor": {
+        "old_offset": 0,
+        "byte_count": 226,
+        "sha256": "5ca1b1fec33919be288ae343e4105d0c1f1a26741aba588a798879a7c8c9c871"
+      },
+      "correspondence_status": "unique_relocation_normalized_instruction_candidate_only",
+      "exact_complete_raw_matches": 0,
+      "scope": "Navigation only, not whole-owner semantics or source assignment.",
+      "current_owner": {
+        "virtual_address": "0x145ec5800",
+        "end_exclusive": "0x145ec8172",
+        "file_offset": "0x5ec4c00",
+        "byte_count": 10610,
+        "sha256": "aa15065260e1e3e5a94a0507eb749e49d21a348e8f45aacc828223fb2fd26f92",
+        "declared_unwind_end_exclusive": "0x145ec8172",
+        "declared_extent_equal": true,
+        "instruction_bytes_decoded": 10610,
+        "all_unmasked_bytes_equal": true
+      },
+      "normalized_byte_sha256": "4a8fa73565fd081357c8948328ffaeb3a97a8b591d1d0a75466b696a1048b800",
+      "excluded_address_field_count": 416
+    },
+    {
+      "module_id": "custom-game-game-meterfeed",
+      "old_procedure": "0x145f50e10",
+      "old_raw": {
+        "path": "runtime/execheck-0.139.0/native-frontier-inputs/slices/picker-145f50e10.bin",
+        "sha256": "aa4d415bec02688ae561bf5dca76105de0c01f1b7b88d4acc0227dbedecf15ba",
+        "source_file_offset": "0x5f50210",
+        "source_file_end_exclusive": "0x5f523bd",
+        "original_virtual_address": "0x145f50e10",
+        "original_virtual_end_exclusive": "0x145f52fbd",
+        "byte_count": 8621,
+        "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+      },
+      "anchor": {
+        "old_offset": 5304,
+        "byte_count": 291,
+        "sha256": "0c282e858d1e4b763484b37b85f31cafc4282e7564470bbbf2a026d7f2c4c43b"
+      },
+      "correspondence_status": "unique_relocation_normalized_instruction_candidate_only",
+      "exact_complete_raw_matches": 0,
+      "scope": "Navigation only, not whole-owner semantics or source assignment.",
+      "current_owner": {
+        "virtual_address": "0x145f588c0",
+        "end_exclusive": "0x145f5aa6d",
+        "file_offset": "0x5f57cc0",
+        "byte_count": 8621,
+        "sha256": "05d31b2084b4ab7a12775593141c7f8a9293246ffb8bde3b9058376f5b95b87d",
+        "declared_unwind_end_exclusive": "0x145f5aa6d",
+        "declared_extent_equal": true,
+        "instruction_bytes_decoded": 8621,
+        "all_unmasked_bytes_equal": true
+      },
+      "normalized_byte_sha256": "8a9a69178197acefb81e0709c678f4ab77eff6479d711b98eb112817cc17534f",
+      "excluded_address_field_count": 297
+    },
+    {
+      "module_id": "custom-game-game-meterfeed",
+      "old_procedure": "0x145f56de0",
+      "old_raw": {
+        "path": "runtime/execheck-0.139.0/native-frontier-inputs/slices/picker-145f56de0.bin",
+        "sha256": "4079f65a63a12aa7aed09db8f850e9fe4650b1986a5371070ab783d033c48d07",
+        "source_file_offset": "0x5f561e0",
+        "source_file_end_exclusive": "0x5f5a821",
+        "original_virtual_address": "0x145f56de0",
+        "original_virtual_end_exclusive": "0x145f5b421",
+        "byte_count": 17985,
+        "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+      },
+      "anchor": {
+        "old_offset": 1574,
+        "byte_count": 282,
+        "sha256": "8631ecee19303bd089f9239f47bef52d071249a7c2745b8a16da1cee526e8c22"
+      },
+      "correspondence_status": "unique_relocation_normalized_instruction_candidate_only",
+      "exact_complete_raw_matches": 0,
+      "scope": "Navigation only, not whole-owner semantics or source assignment.",
+      "current_owner": {
+        "virtual_address": "0x145f5e890",
+        "end_exclusive": "0x145f62ed1",
+        "file_offset": "0x5f5dc90",
+        "byte_count": 17985,
+        "sha256": "f7dfea489ec24b500804e5b8baec26574b9595fe71c5d08061b50d96183de33c",
+        "declared_unwind_end_exclusive": "0x145f62ed1",
+        "declared_extent_equal": true,
+        "instruction_bytes_decoded": 17985,
+        "all_unmasked_bytes_equal": true
+      },
+      "normalized_byte_sha256": "ea6567bae4ecb7b4205989de9edeada51a24aec7abd94d843f2e9c737efc28fd",
+      "excluded_address_field_count": 699
+    },
+    {
+      "module_id": "custom-game-game-meterlog",
+      "old_procedure": "0x145e768f0",
+      "old_raw": {
+        "path": "runtime/execheck-0.139.0/native-frontier-inputs/slices/picker-145e768f0.bin",
+        "sha256": "d30785c6d6e652ee26fcfb0ff85fd37019fbad17b4a82c63c86c79db0f3c0889",
+        "source_file_offset": "0x5e75cf0",
+        "source_file_end_exclusive": "0x5e768ac",
+        "original_virtual_address": "0x145e768f0",
+        "original_virtual_end_exclusive": "0x145e774ac",
+        "byte_count": 3004,
+        "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+      },
+      "anchor": {
+        "old_offset": 1343,
+        "byte_count": 129,
+        "sha256": "75591a909ddb7c1a7f773da2e4fd0030ff64edd538c7d22254345cf3f9abe96a"
+      },
+      "correspondence_status": "unique_relocation_normalized_instruction_candidate_only",
+      "exact_complete_raw_matches": 0,
+      "scope": "Navigation only, not whole-owner semantics or source assignment.",
+      "current_owner": {
+        "virtual_address": "0x145e7e3b0",
+        "end_exclusive": "0x145e7ef6c",
+        "file_offset": "0x5e7d7b0",
+        "byte_count": 3004,
+        "sha256": "4e0c837bcc6ccc7323689f355480561c7059c059578b04bfdbbde824727464c0",
+        "declared_unwind_end_exclusive": "0x145e7ef6c",
+        "declared_extent_equal": true,
+        "instruction_bytes_decoded": 3004,
+        "all_unmasked_bytes_equal": true
+      },
+      "normalized_byte_sha256": "03303de02a23942a1fa7eb4478581b2420ea2c7134b0a0c3ea2c13438cc501fd",
+      "excluded_address_field_count": 134
+    },
+    {
+      "module_id": "custom-game-server-party-readycheck",
+      "old_procedure": "0x145e4bdb0",
+      "old_raw": {
+        "path": "runtime/execheck-0.139.0/native-frontier-inputs/slices/picker-145e4bdb0.bin",
+        "sha256": "8a9ec7d0cf3a942727cc1b6a7bf4942636e9ff9f83156a44a844c97ac118c34d",
+        "source_file_offset": "0x5e4b1b0",
+        "source_file_end_exclusive": "0x5e4b258",
+        "original_virtual_address": "0x145e4bdb0",
+        "original_virtual_end_exclusive": "0x145e4be58",
+        "byte_count": 168,
+        "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+      },
+      "anchor": {
+        "old_offset": 76,
+        "byte_count": 24,
+        "sha256": "6216e1ba1e4a8aa3cfa3da3c9df7985cead4938e8bd381d4aedef2a3572c8aae"
+      },
+      "correspondence_status": "unique_relocation_normalized_instruction_candidate_only",
+      "exact_complete_raw_matches": 0,
+      "scope": "Navigation only, not whole-owner semantics or source assignment.",
+      "current_owner": {
+        "virtual_address": "0x145e53aa0",
+        "end_exclusive": "0x145e53b48",
+        "file_offset": "0x5e52ea0",
+        "byte_count": 168,
+        "sha256": "36f5d17205e3820dc19654b9b0caba293ee8b1e72e5405e995d05445936ab474",
+        "declared_unwind_end_exclusive": "0x145e53b48",
+        "declared_extent_equal": true,
+        "instruction_bytes_decoded": 168,
+        "all_unmasked_bytes_equal": true
+      },
+      "normalized_byte_sha256": "8a906796f24b420acee8053f3a2791118977c92154b733e0f5c8187cd4883af8",
+      "excluded_address_field_count": 11
+    },
+    {
+      "module_id": "custom-app-screens-localclock",
+      "old_procedure": "0x1402fe070",
+      "old_raw": {
+        "path": "runtime/execheck-0.139.0/native-frontier-inputs/clock-text/slices/picker-1402fe070.bin",
+        "sha256": "0b0da1f091cff483e57bca9ee519e7656f906190685a1de70a07a721cef358a6",
+        "source_file_offset": "0x2fd470",
+        "source_file_end_exclusive": "0x2fd832",
+        "original_virtual_address": "0x1402fe070",
+        "original_virtual_end_exclusive": "0x1402fe432",
+        "byte_count": 962,
+        "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+      },
+      "anchor": {
+        "old_offset": 371,
+        "byte_count": 291,
+        "sha256": "42f0b0482335c9035cec5fd34528fa8da7734ce5e581c7818e9640cf3a5fd8c8"
+      },
+      "correspondence_status": "changed_body_candidate_from_unique_exact_anchor_and_declared_extent",
+      "exact_complete_raw_matches": 0,
+      "scope": "Navigation only, not whole-owner semantics or source assignment.",
+      "current_navigation_candidate": {
+        "anchor_virtual_address": "0x14025c3f3",
+        "owner": {
+          "virtual_address": "0x14025c270",
+          "end_exclusive": "0x14025c65c",
+          "file_offset": "0x25b670",
+          "byte_count": 1004,
+          "sha256": "768e614a87e18ee762afd4a69fe881fd0bb8d7a24a886b395ab47c0bb2193658"
+        },
+        "anchor_position_delta_within_owner": 16
+      }
+    }
+  ],
+  "counts": {
+    "retained_raw_ranges": 13,
+    "exact_complete_raw_matches": 0,
+    "unique_address_normalized_owner_candidates": 10,
+    "changed_body_navigation_candidates": 3,
+    "revalidated_original_local_scopes": 4,
+    "internal_branches_independently_checked": 402
+  },
+  "retained_query_provenance": {
+    "0x140161d90": {
+      "query_proof": {
+        "raw_input": {
+          "path": "runtime/execheck-0.139.0/native-frontier-inputs/slices/picker-140161d90.bin",
+          "sha256": "754855f16aa5160311d5d8fdd400c919ad565e833b6456c8404ceb9937680b24"
+        },
+        "slice_virtual_address": "0x140161d90",
+        "procedure": "0x140161d90",
+        "plan": {
+          "path": "runtime/execheck-0.139.0/native-frontier-inputs/slices/plan-140161d90.json",
+          "sha256": "33916c613ac1c8c3764dcbe2c8bbad59ae4d3112c147a919bd77b3969ff8a1c0"
+        },
+        "journal": {
+          "path": "runtime/analysis/tasks/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/new-module-interface-140161d90/journal.json",
+          "sha256": "f599ea6cedaf958d1bcf59376bd7e94ca81edc8af8490f7729b70058a7eb9bfe"
+        },
+        "result": {
+          "path": "runtime/analysis/tasks/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/new-module-interface-140161d90/results/5241d8d917a88b272e802e52130cc80050f1afec5b1539b5c253da1e86a3351f-a6b68db0e0de981a.json",
+          "sha256": "3f964f6f73cf49c86a7a8dc5f67699d0d94f69249b2348e70f968033b8bfe1a9"
+        },
+        "evidence_id": "ev_c22e6294fcfa94a208857c23db254baa27f5c912d0932672bcb85ca8c2a72344",
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "analysis_profile_digest": "e5db8bd573c740c4f55d405f73feb68ae10279ac5c97f9a8183730eb5a3317c7"
+      },
+      "selected_owner": {
+        "path": "runtime/execheck-0.139.0/native-frontier-inputs/slices/picker-140161d90.bin",
+        "sha256": "754855f16aa5160311d5d8fdd400c919ad565e833b6456c8404ceb9937680b24",
+        "source_file_offset": "0x161190",
+        "source_file_end_exclusive": "0x162ed2",
+        "original_virtual_address": "0x140161d90",
+        "original_virtual_end_exclusive": "0x140163ad2",
+        "byte_count": 7490,
+        "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+      },
+      "canonical_pseudocode": {
+        "path": "docs/analysis/evidence/0.139.0/native-frontier/owner-140161d90.c",
+        "sha256": "7f58ce5c571ce0078412678ac15d9e802393a34cd15d798d8b6f6d7ec9b97aae"
+      }
+    },
+    "0x140178750": {
+      "query_proof": {
+        "raw_input": {
+          "path": "runtime/execheck-0.139.0/native-frontier-inputs/slices/picker-140178750.bin",
+          "sha256": "1336f385bec10b9e280515678cfdd0a6498f4fb8a04fecac978e3f2f8e662577"
+        },
+        "slice_virtual_address": "0x140178750",
+        "procedure": "0x140178750",
+        "plan": {
+          "path": "runtime/execheck-0.139.0/native-frontier-inputs/slices/plan-140178750.json",
+          "sha256": "270851b60a68d7e480f6ab0ee521d8c6391eeefd602e4022caf7d376b1d0b8cc"
+        },
+        "journal": {
+          "path": "runtime/analysis/tasks/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/new-module-interface-140178750/journal.json",
+          "sha256": "46b6f61e69ef30d302f9865c2179dd06b1934638a0422e6434b9eec755042f36"
+        },
+        "result": {
+          "path": "runtime/analysis/tasks/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/new-module-interface-140178750/results/aa6b5faed7a8ba4cf7260df0ad6028d97aec03eff04adbeaf8844c9148d2e6ed-071d68e37b332250.json",
+          "sha256": "9093a2bc134b54a72d0c55fce521348edf4b5558edb2c2d019e815d06aa9415a"
+        },
+        "evidence_id": "ev_516665329e680feb3317ba525466d75eae438fc3c7a9ba37c2d096bbac368bfc",
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "analysis_profile_digest": "8bf8e39cb10033cb7414a00c48ce19c31c2f47f3f60d630746af1de6056d80ef"
+      },
+      "selected_owner": {
+        "path": "runtime/execheck-0.139.0/native-frontier-inputs/slices/picker-140178750.bin",
+        "sha256": "1336f385bec10b9e280515678cfdd0a6498f4fb8a04fecac978e3f2f8e662577",
+        "source_file_offset": "0x177b50",
+        "source_file_end_exclusive": "0x17832a",
+        "original_virtual_address": "0x140178750",
+        "original_virtual_end_exclusive": "0x140178f2a",
+        "byte_count": 2010,
+        "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+      },
+      "canonical_pseudocode": {
+        "path": "docs/analysis/evidence/0.139.0/native-frontier/owner-140178750.c",
+        "sha256": "218fd7de7a82347ba85ead0990839ffe795283a3e24ba980c1a7cf0d47f1cbac"
+      }
+    },
+    "0x145ebdd50": {
+      "query_proof": {
+        "raw_input": {
+          "path": "runtime/execheck-0.139.0/native-frontier-inputs/slices/picker-145ebdd50.bin",
+          "sha256": "dd80e6eb83ee29034f2f9d40e6e94be55a52e7c0a306b3175e25cfe42ef01aec"
+        },
+        "slice_virtual_address": "0x145ebdd50",
+        "procedure": "0x145ebdd50",
+        "plan": {
+          "path": "runtime/execheck-0.139.0/native-frontier-inputs/slices/plan-145ebdd50.json",
+          "sha256": "2da99efad1ed2431ff4f3040476b01d7c00a8d530f57473ad050939ef4d6cd31"
+        },
+        "journal": {
+          "path": "runtime/analysis/tasks/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/new-module-interface-145ebdd50/journal.json",
+          "sha256": "502968bb43a543aa0e9e5a7d039c1ae47e5d9def9ab3c5e32b1954b22446f7e9"
+        },
+        "result": {
+          "path": "runtime/analysis/tasks/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/new-module-interface-145ebdd50/results/98bf868834de92b6c316dd681b2dcd41a57a2ca57db9d9679a5df6c6a721ab55-cbe4534b3b399221.json",
+          "sha256": "0f32d2aadde557326927f3302de59540723d7db08ad4842e68da1fe2276cdc87"
+        },
+        "evidence_id": "ev_5ed6da3736fee114d59d5b906c5bd08c7939936b83aeacedab0aea1c98fe4a04",
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "analysis_profile_digest": "9af744894ccc396a326b13eb09e86690778c3598bab04a1d52048429bc5cdcc3"
+      },
+      "selected_owner": {
+        "path": "runtime/execheck-0.139.0/native-frontier-inputs/slices/picker-145ebdd50.bin",
+        "sha256": "dd80e6eb83ee29034f2f9d40e6e94be55a52e7c0a306b3175e25cfe42ef01aec",
+        "source_file_offset": "0x5ebd150",
+        "source_file_end_exclusive": "0x5ebfac2",
+        "original_virtual_address": "0x145ebdd50",
+        "original_virtual_end_exclusive": "0x145ec06c2",
+        "byte_count": 10610,
+        "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+      },
+      "canonical_pseudocode": {
+        "path": "docs/analysis/evidence/0.139.0/native-frontier/owner-145ebdd50.c",
+        "sha256": "5cb3c27077d87c2afa621e2890a1da480ee15dddc4b269759f89fe9674b79b24"
+      }
+    },
+    "0x145e4bdb0": {
+      "query_proof": {
+        "raw_input": {
+          "path": "runtime/execheck-0.139.0/native-frontier-inputs/slices/picker-145e4bdb0.bin",
+          "sha256": "8a9ec7d0cf3a942727cc1b6a7bf4942636e9ff9f83156a44a844c97ac118c34d"
+        },
+        "slice_virtual_address": "0x145e4bdb0",
+        "procedure": "0x145e4bdb0",
+        "plan": {
+          "path": "runtime/execheck-0.139.0/native-frontier-inputs/slices/plan-145e4bdb0.json",
+          "sha256": "d739b4af132fb5fd0efab385c0d55a1e998b3c3c16524072b360efaecc94dec7"
+        },
+        "journal": {
+          "path": "runtime/analysis/tasks/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/new-module-interface-145e4bdb0/journal.json",
+          "sha256": "14a427f52dba3aac74e6984cb769bc0c4acd5c1c265a145a54353c16a4709694"
+        },
+        "result": {
+          "path": "runtime/analysis/tasks/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/new-module-interface-145e4bdb0/results/a19e43368cde1b2a19707adbb70dcba3a527c01a1e720afadcbdb0e5e43954ef-db9a5b723b5ef538.json",
+          "sha256": "93fbd3f304f06de8fab10cc1b81a79a7be5626d0d9883c41171cbbc4c089c2fc"
+        },
+        "evidence_id": "ev_3a7d4710d4db9d4d7c3f2a556ee8025b641cceb3e94a73c4f7a4ebe68f1b8f0a",
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "analysis_profile_digest": "58d976f1ef38011e071a7a4f2b77d1ba9185694f458b3aec7d3607680d0c8387"
+      },
+      "selected_owner": {
+        "path": "runtime/execheck-0.139.0/native-frontier-inputs/slices/picker-145e4bdb0.bin",
+        "sha256": "8a9ec7d0cf3a942727cc1b6a7bf4942636e9ff9f83156a44a844c97ac118c34d",
+        "source_file_offset": "0x5e4b1b0",
+        "source_file_end_exclusive": "0x5e4b258",
+        "original_virtual_address": "0x145e4bdb0",
+        "original_virtual_end_exclusive": "0x145e4be58",
+        "byte_count": 168,
+        "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+      },
+      "canonical_pseudocode": {
+        "path": "docs/analysis/evidence/0.139.0/native-frontier/owner-145e4bdb0.c",
+        "sha256": "aaa34f1e47c222b65500fd999115a08d3cc07b7acf81263c20d64a4de43f02ae"
+      }
+    },
+    "0x1402fe070": {
+      "query_proof": {
+        "raw_input": {
+          "path": "runtime/execheck-0.139.0/native-frontier-inputs/clock-text/slices/picker-1402fe070.bin",
+          "sha256": "0b0da1f091cff483e57bca9ee519e7656f906190685a1de70a07a721cef358a6"
+        },
+        "slice_virtual_address": "0x1402fe070",
+        "procedure": "0x1402fe070",
+        "plan": {
+          "path": "runtime/execheck-0.139.0/native-frontier-inputs/clock-text/slices/plan-1402fe070.json",
+          "sha256": "451a476b293c716faa782d5b1a55e555a89cf340a4d98e1125f81e697c568eb1"
+        },
+        "journal": {
+          "path": "runtime/analysis/tasks/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/new-module-interface-1402fe070/journal.json",
+          "sha256": "e3268a9feb559d83c22790257c8c86d5c2c03f88cea87fb0ceacc5222c6a3e57"
+        },
+        "result": {
+          "path": "runtime/analysis/tasks/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/new-module-interface-1402fe070/results/55993f64167d9f3ec75b7a4e96831c20b1bed6290386a062275ed9b670cad8c5-a78a017f25ffcd94.json",
+          "sha256": "5ce0a082e0c7d0d17c04b610a255c2b22423bc0a2c3895d3296914c37bf9e625"
+        },
+        "evidence_id": "ev_d941bac365ddc559045addbaa49f29195feab54cdc7e660eb7ae436feba7f7b1",
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "analysis_profile_digest": "02c2dd9edbff9451713e6af7b11a539fb67fff375956cf290ebcd8dee59aed72"
+      },
+      "selected_owner": {
+        "path": "runtime/execheck-0.139.0/native-frontier-inputs/clock-text/slices/picker-1402fe070.bin",
+        "sha256": "0b0da1f091cff483e57bca9ee519e7656f906190685a1de70a07a721cef358a6",
+        "source_file_offset": "0x2fd470",
+        "source_file_end_exclusive": "0x2fd832",
+        "original_virtual_address": "0x1402fe070",
+        "original_virtual_end_exclusive": "0x1402fe432",
+        "byte_count": 962,
+        "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+      },
+      "canonical_pseudocode": {
+        "path": "docs/analysis/evidence/0.139.0/native-frontier/owner-1402fe070.c",
+        "sha256": "0d15c7ec3bb4ccd29d306dc8b69650b8bd0d3c2c08d61b54b05e22eaae07c730"
+      }
+    }
+  },
+  "internal_control_flow": {
+    "0x140161d90": {
+      "current_owner": "0x140161bf0",
+      "edge_format": "[source_offset, instruction_size, mnemonic, target_offset], relative to each owner",
+      "internal_direct_branch_count": 80,
+      "internal_edges": [
+        [
+          155,
+          2,
+          "jns",
+          173
+        ],
+        [
+          173,
+          2,
+          "je",
+          281
+        ],
+        [
+          218,
+          2,
+          "je",
+          160
+        ],
+        [
+          254,
+          2,
+          "jne",
+          292
+        ],
+        [
+          279,
+          2,
+          "jmp",
+          308
+        ],
+        [
+          290,
+          2,
+          "je",
+          256
+        ],
+        [
+          300,
+          6,
+          "jle",
+          7488
+        ],
+        [
+          591,
+          2,
+          "jne",
+          600
+        ],
+        [
+          607,
+          2,
+          "jne",
+          673
+        ],
+        [
+          616,
+          2,
+          "je",
+          634
+        ],
+        [
+          621,
+          2,
+          "jne",
+          668
+        ],
+        [
+          632,
+          2,
+          "jmp",
+          673
+        ],
+        [
+          666,
+          2,
+          "jmp",
+          673
+        ],
+        [
+          757,
+          2,
+          "jne",
+          766
+        ],
+        [
+          773,
+          2,
+          "jne",
+          840
+        ],
+        [
+          783,
+          2,
+          "je",
+          801
+        ],
+        [
+          788,
+          2,
+          "jne",
+          808
+        ],
+        [
+          799,
+          2,
+          "jmp",
+          840
+        ],
+        [
+          806,
+          2,
+          "jmp",
+          840
+        ],
+        [
+          1043,
+          2,
+          "je",
+          1060
+        ],
+        [
+          1070,
+          2,
+          "je",
+          1090
+        ],
+        [
+          1125,
+          2,
+          "jne",
+          1134
+        ],
+        [
+          1144,
+          6,
+          "jne",
+          1668
+        ],
+        [
+          1158,
+          2,
+          "je",
+          1189
+        ],
+        [
+          1163,
+          2,
+          "jne",
+          1209
+        ],
+        [
+          1182,
+          2,
+          "jae",
+          1255
+        ],
+        [
+          1184,
+          5,
+          "jmp",
+          1668
+        ],
+        [
+          1202,
+          2,
+          "jae",
+          1255
+        ],
+        [
+          1204,
+          5,
+          "jmp",
+          1668
+        ],
+        [
+          1249,
+          6,
+          "jb",
+          1668
+        ],
+        [
+          1321,
+          2,
+          "jne",
+          1330
+        ],
+        [
+          1337,
+          2,
+          "jne",
+          1404
+        ],
+        [
+          1347,
+          2,
+          "je",
+          1365
+        ],
+        [
+          1352,
+          2,
+          "jne",
+          1372
+        ],
+        [
+          1363,
+          2,
+          "jmp",
+          1404
+        ],
+        [
+          1370,
+          2,
+          "jmp",
+          1404
+        ],
+        [
+          1564,
+          2,
+          "je",
+          1584
+        ],
+        [
+          1594,
+          2,
+          "je",
+          1614
+        ],
+        [
+          1624,
+          2,
+          "je",
+          1644
+        ],
+        [
+          1703,
+          2,
+          "jne",
+          1735
+        ],
+        [
+          1733,
+          2,
+          "jmp",
+          1751
+        ],
+        [
+          1743,
+          6,
+          "jle",
+          7488
+        ],
+        [
+          2722,
+          2,
+          "jne",
+          2731
+        ],
+        [
+          2741,
+          2,
+          "jne",
+          2753
+        ],
+        [
+          2751,
+          2,
+          "jmp",
+          2762
+        ],
+        [
+          3379,
+          2,
+          "je",
+          3463
+        ],
+        [
+          3461,
+          2,
+          "jne",
+          3408
+        ],
+        [
+          3498,
+          2,
+          "jne",
+          3507
+        ],
+        [
+          3517,
+          6,
+          "jne",
+          5046
+        ],
+        [
+          3530,
+          6,
+          "je",
+          5046
+        ],
+        [
+          4174,
+          2,
+          "jmp",
+          4237
+        ],
+        [
+          4235,
+          2,
+          "je",
+          4342
+        ],
+        [
+          4271,
+          2,
+          "jne",
+          4276
+        ],
+        [
+          4283,
+          2,
+          "jne",
+          4192
+        ],
+        [
+          4293,
+          2,
+          "je",
+          4176
+        ],
+        [
+          4298,
+          2,
+          "jne",
+          4311
+        ],
+        [
+          4309,
+          2,
+          "jmp",
+          4192
+        ],
+        [
+          4337,
+          5,
+          "jmp",
+          4192
+        ],
+        [
+          5037,
+          2,
+          "jne",
+          4992
+        ],
+        [
+          5074,
+          2,
+          "jne",
+          5083
+        ],
+        [
+          5093,
+          6,
+          "jne",
+          6174
+        ],
+        [
+          5107,
+          2,
+          "je",
+          5138
+        ],
+        [
+          5112,
+          2,
+          "jne",
+          5158
+        ],
+        [
+          5131,
+          2,
+          "jae",
+          5204
+        ],
+        [
+          5133,
+          5,
+          "jmp",
+          6174
+        ],
+        [
+          5151,
+          2,
+          "jae",
+          5204
+        ],
+        [
+          5153,
+          5,
+          "jmp",
+          6174
+        ],
+        [
+          5198,
+          6,
+          "jb",
+          6174
+        ],
+        [
+          5212,
+          6,
+          "jb",
+          6174
+        ],
+        [
+          5805,
+          2,
+          "je",
+          5839
+        ],
+        [
+          5837,
+          2,
+          "jmp",
+          5856
+        ],
+        [
+          5847,
+          6,
+          "jle",
+          7488
+        ],
+        [
+          7031,
+          2,
+          "jns",
+          7060
+        ],
+        [
+          7055,
+          5,
+          "jmp",
+          7488
+        ],
+        [
+          7063,
+          2,
+          "je",
+          7147
+        ],
+        [
+          7095,
+          2,
+          "je",
+          7036
+        ],
+        [
+          7121,
+          2,
+          "je",
+          7161
+        ],
+        [
+          7145,
+          2,
+          "jmp",
+          7177
+        ],
+        [
+          7159,
+          2,
+          "jne",
+          7123
+        ],
+        [
+          7169,
+          6,
+          "jle",
+          7488
+        ]
+      ],
+      "edge_sha256": "86845541e01f0def83cdb0853d5096c4e8c783fbaa1d20a047d877bdab054717",
+      "all_source_and_target_instruction_offsets_equal": true,
+      "all_branch_instruction_bytes_equal_without_masking": true,
+      "all_targets_are_instruction_starts_in_same_owner": true,
+      "external_or_indirect_jump_count": 0,
+      "scope": "Exhaustive structural direct-jump check within these compared owners; unrelated instructions and callee semantics are not classified."
+    },
+    "0x140178750": {
+      "current_owner": "0x14018f390",
+      "edge_format": "[source_offset, instruction_size, mnemonic, target_offset], relative to each owner",
+      "internal_direct_branch_count": 37,
+      "internal_edges": [
+        [
+          248,
+          2,
+          "jne",
+          369
+        ],
+        [
+          259,
+          2,
+          "je",
+          369
+        ],
+        [
+          329,
+          2,
+          "jne",
+          363
+        ],
+        [
+          356,
+          2,
+          "jne",
+          422
+        ],
+        [
+          358,
+          5,
+          "jmp",
+          610
+        ],
+        [
+          416,
+          6,
+          "je",
+          610
+        ],
+        [
+          424,
+          6,
+          "jne",
+          610
+        ],
+        [
+          432,
+          6,
+          "jne",
+          610
+        ],
+        [
+          488,
+          2,
+          "je",
+          544
+        ],
+        [
+          503,
+          2,
+          "je",
+          585
+        ],
+        [
+          531,
+          2,
+          "je",
+          496
+        ],
+        [
+          533,
+          2,
+          "jmp",
+          585
+        ],
+        [
+          551,
+          2,
+          "je",
+          585
+        ],
+        [
+          583,
+          2,
+          "je",
+          544
+        ],
+        [
+          588,
+          6,
+          "jne",
+          1990
+        ],
+        [
+          603,
+          2,
+          "jne",
+          662
+        ],
+        [
+          605,
+          5,
+          "jmp",
+          1990
+        ],
+        [
+          619,
+          6,
+          "je",
+          1990
+        ],
+        [
+          758,
+          2,
+          "jne",
+          790
+        ],
+        [
+          760,
+          5,
+          "jmp",
+          1017
+        ],
+        [
+          788,
+          2,
+          "jne",
+          840
+        ],
+        [
+          792,
+          2,
+          "jne",
+          778
+        ],
+        [
+          803,
+          6,
+          "je",
+          1211
+        ],
+        [
+          836,
+          2,
+          "je",
+          800
+        ],
+        [
+          838,
+          2,
+          "jmp",
+          768
+        ],
+        [
+          972,
+          6,
+          "je",
+          800
+        ],
+        [
+          978,
+          5,
+          "jmp",
+          778
+        ],
+        [
+          1015,
+          2,
+          "jne",
+          1068
+        ],
+        [
+          1019,
+          2,
+          "jne",
+          1001
+        ],
+        [
+          1027,
+          6,
+          "je",
+          1211
+        ],
+        [
+          1064,
+          2,
+          "je",
+          1024
+        ],
+        [
+          1066,
+          2,
+          "jmp",
+          992
+        ],
+        [
+          1200,
+          6,
+          "je",
+          1024
+        ],
+        [
+          1206,
+          5,
+          "jmp",
+          1001
+        ],
+        [
+          1215,
+          6,
+          "jne",
+          1990
+        ],
+        [
+          1228,
+          6,
+          "je",
+          1990
+        ],
+        [
+          1308,
+          6,
+          "jne",
+          1990
+        ]
+      ],
+      "edge_sha256": "2ead019d61824230215d2d0cea32ffc14086b6cd291bc6b26c9c4c16e9429c23",
+      "all_source_and_target_instruction_offsets_equal": true,
+      "all_branch_instruction_bytes_equal_without_masking": true,
+      "all_targets_are_instruction_starts_in_same_owner": true,
+      "external_or_indirect_jump_count": 0,
+      "scope": "Exhaustive structural direct-jump check within these compared owners; unrelated instructions and callee semantics are not classified."
+    },
+    "0x145ebdd50": {
+      "current_owner": "0x145ec5800",
+      "edge_format": "[source_offset, instruction_size, mnemonic, target_offset], relative to each owner",
+      "internal_direct_branch_count": 276,
+      "internal_edges": [
+        [
+          241,
+          2,
+          "jmp",
+          277
+        ],
+        [
+          280,
+          6,
+          "je",
+          518
+        ],
+        [
+          299,
+          6,
+          "jbe",
+          458
+        ],
+        [
+          391,
+          2,
+          "jne",
+          413
+        ],
+        [
+          467,
+          6,
+          "jb",
+          277
+        ],
+        [
+          491,
+          6,
+          "jne",
+          256
+        ],
+        [
+          513,
+          5,
+          "jmp",
+          256
+        ],
+        [
+          528,
+          6,
+          "je",
+          1055
+        ],
+        [
+          579,
+          2,
+          "je",
+          652
+        ],
+        [
+          648,
+          2,
+          "je",
+          576
+        ],
+        [
+          650,
+          2,
+          "jmp",
+          691
+        ],
+        [
+          675,
+          2,
+          "je",
+          752
+        ],
+        [
+          689,
+          2,
+          "jne",
+          672
+        ],
+        [
+          745,
+          2,
+          "jne",
+          771
+        ],
+        [
+          747,
+          5,
+          "jmp",
+          948
+        ],
+        [
+          765,
+          6,
+          "je",
+          948
+        ],
+        [
+          803,
+          2,
+          "je",
+          874
+        ],
+        [
+          870,
+          2,
+          "je",
+          800
+        ],
+        [
+          872,
+          2,
+          "jmp",
+          895
+        ],
+        [
+          883,
+          2,
+          "je",
+          948
+        ],
+        [
+          893,
+          2,
+          "jne",
+          880
+        ],
+        [
+          908,
+          2,
+          "jne",
+          937
+        ],
+        [
+          958,
+          2,
+          "je",
+          1023
+        ],
+        [
+          1002,
+          6,
+          "jbe",
+          10015
+        ],
+        [
+          1021,
+          2,
+          "jne",
+          992
+        ],
+        [
+          1215,
+          6,
+          "jbe",
+          1733
+        ],
+        [
+          1329,
+          2,
+          "je",
+          1431
+        ],
+        [
+          1363,
+          2,
+          "je",
+          1408
+        ],
+        [
+          1387,
+          2,
+          "je",
+          1360
+        ],
+        [
+          1396,
+          2,
+          "jne",
+          1411
+        ],
+        [
+          1398,
+          2,
+          "jmp",
+          1424
+        ],
+        [
+          1415,
+          2,
+          "jb",
+          1433
+        ],
+        [
+          1422,
+          2,
+          "jmp",
+          1342
+        ],
+        [
+          1429,
+          2,
+          "jmp",
+          1500
+        ],
+        [
+          1547,
+          2,
+          "je",
+          1655
+        ],
+        [
+          1587,
+          2,
+          "je",
+          1632
+        ],
+        [
+          1611,
+          2,
+          "je",
+          1584
+        ],
+        [
+          1620,
+          2,
+          "jne",
+          1635
+        ],
+        [
+          1622,
+          2,
+          "jmp",
+          1648
+        ],
+        [
+          1639,
+          2,
+          "jb",
+          1657
+        ],
+        [
+          1646,
+          2,
+          "jmp",
+          1560
+        ],
+        [
+          1653,
+          2,
+          "jmp",
+          1724
+        ],
+        [
+          1891,
+          6,
+          "jbe",
+          2337
+        ],
+        [
+          1972,
+          2,
+          "je",
+          2074
+        ],
+        [
+          2072,
+          2,
+          "jne",
+          2000
+        ],
+        [
+          2084,
+          2,
+          "je",
+          2108
+        ],
+        [
+          2120,
+          6,
+          "jbe",
+          2261
+        ],
+        [
+          2163,
+          2,
+          "je",
+          2198
+        ],
+        [
+          2177,
+          2,
+          "jne",
+          2160
+        ],
+        [
+          2194,
+          2,
+          "je",
+          2203
+        ],
+        [
+          2196,
+          2,
+          "jmp",
+          2261
+        ],
+        [
+          2201,
+          2,
+          "jne",
+          2261
+        ],
+        [
+          2222,
+          2,
+          "jbe",
+          2261
+        ],
+        [
+          2269,
+          2,
+          "jbe",
+          2335
+        ],
+        [
+          2307,
+          2,
+          "je",
+          2335
+        ],
+        [
+          2317,
+          2,
+          "jne",
+          2304
+        ],
+        [
+          2369,
+          2,
+          "ja",
+          2395
+        ],
+        [
+          2388,
+          2,
+          "jne",
+          2411
+        ],
+        [
+          2390,
+          5,
+          "jmp",
+          3097
+        ],
+        [
+          2405,
+          6,
+          "je",
+          3097
+        ],
+        [
+          2421,
+          2,
+          "je",
+          2448
+        ],
+        [
+          2434,
+          2,
+          "jne",
+          2458
+        ],
+        [
+          2446,
+          2,
+          "jmp",
+          2539
+        ],
+        [
+          2456,
+          2,
+          "jmp",
+          2559
+        ],
+        [
+          2475,
+          2,
+          "jmp",
+          2489
+        ],
+        [
+          2487,
+          2,
+          "je",
+          2533
+        ],
+        [
+          2493,
+          2,
+          "je",
+          2512
+        ],
+        [
+          2500,
+          2,
+          "jne",
+          2480
+        ],
+        [
+          2502,
+          2,
+          "jmp",
+          2525
+        ],
+        [
+          2523,
+          2,
+          "jne",
+          2480
+        ],
+        [
+          2531,
+          2,
+          "jmp",
+          2480
+        ],
+        [
+          2537,
+          2,
+          "je",
+          2551
+        ],
+        [
+          2543,
+          2,
+          "jne",
+          2551
+        ],
+        [
+          2602,
+          6,
+          "jb",
+          3097
+        ],
+        [
+          2678,
+          6,
+          "je",
+          9922
+        ],
+        [
+          2844,
+          2,
+          "jbe",
+          2854
+        ],
+        [
+          2933,
+          2,
+          "jne",
+          2948
+        ],
+        [
+          3080,
+          2,
+          "je",
+          3097
+        ],
+        [
+          3177,
+          2,
+          "jmp",
+          3194
+        ],
+        [
+          3197,
+          6,
+          "jae",
+          9051
+        ],
+        [
+          3216,
+          6,
+          "jae",
+          10328
+        ],
+        [
+          3247,
+          6,
+          "je",
+          3380
+        ],
+        [
+          3278,
+          2,
+          "jmp",
+          3289
+        ],
+        [
+          3287,
+          2,
+          "je",
+          3376
+        ],
+        [
+          3294,
+          2,
+          "jne",
+          3280
+        ],
+        [
+          3302,
+          2,
+          "jne",
+          3280
+        ],
+        [
+          3314,
+          6,
+          "je",
+          4899
+        ],
+        [
+          3328,
+          2,
+          "jne",
+          3380
+        ],
+        [
+          3361,
+          2,
+          "jne",
+          3380
+        ],
+        [
+          3363,
+          5,
+          "jmp",
+          4945
+        ],
+        [
+          3416,
+          6,
+          "jae",
+          10295
+        ],
+        [
+          3437,
+          6,
+          "jne",
+          4112
+        ],
+        [
+          3454,
+          2,
+          "je",
+          3490
+        ],
+        [
+          3464,
+          2,
+          "jne",
+          3568
+        ],
+        [
+          3482,
+          2,
+          "je",
+          3568
+        ],
+        [
+          3488,
+          2,
+          "jmp",
+          3568
+        ],
+        [
+          3521,
+          2,
+          "jne",
+          3568
+        ],
+        [
+          3623,
+          6,
+          "jbe",
+          4112
+        ],
+        [
+          3639,
+          6,
+          "jb",
+          4112
+        ],
+        [
+          3649,
+          6,
+          "jbe",
+          4112
+        ],
+        [
+          3688,
+          6,
+          "je",
+          10460
+        ],
+        [
+          3721,
+          2,
+          "jne",
+          3736
+        ],
+        [
+          3892,
+          2,
+          "jne",
+          3907
+        ],
+        [
+          3984,
+          6,
+          "je",
+          10490
+        ],
+        [
+          4017,
+          2,
+          "jne",
+          4032
+        ],
+        [
+          4115,
+          6,
+          "jae",
+          10361
+        ],
+        [
+          4151,
+          6,
+          "je",
+          3184
+        ],
+        [
+          4161,
+          6,
+          "ja",
+          3194
+        ],
+        [
+          4184,
+          6,
+          "jae",
+          10427
+        ],
+        [
+          4215,
+          6,
+          "je",
+          4488
+        ],
+        [
+          4225,
+          6,
+          "jne",
+          4522
+        ],
+        [
+          4267,
+          6,
+          "je",
+          5006
+        ],
+        [
+          4309,
+          2,
+          "je",
+          4391
+        ],
+        [
+          4347,
+          2,
+          "je",
+          4391
+        ],
+        [
+          4385,
+          6,
+          "jne",
+          4522
+        ],
+        [
+          4401,
+          6,
+          "je",
+          6046
+        ],
+        [
+          4429,
+          2,
+          "jmp",
+          4445
+        ],
+        [
+          4439,
+          6,
+          "je",
+          5717
+        ],
+        [
+          4450,
+          2,
+          "jne",
+          4432
+        ],
+        [
+          4458,
+          2,
+          "jne",
+          4432
+        ],
+        [
+          4483,
+          5,
+          "jmp",
+          5722
+        ],
+        [
+          4516,
+          6,
+          "je",
+          5006
+        ],
+        [
+          4656,
+          6,
+          "je",
+          6559
+        ],
+        [
+          4672,
+          6,
+          "jae",
+          10550
+        ],
+        [
+          4685,
+          6,
+          "jne",
+          4833
+        ],
+        [
+          4699,
+          6,
+          "je",
+          4833
+        ],
+        [
+          4848,
+          6,
+          "jbe",
+          6562
+        ],
+        [
+          4864,
+          6,
+          "je",
+          5366
+        ],
+        [
+          4883,
+          6,
+          "jne",
+          5370
+        ],
+        [
+          4894,
+          5,
+          "jmp",
+          5448
+        ],
+        [
+          4939,
+          6,
+          "jne",
+          3380
+        ],
+        [
+          4964,
+          6,
+          "jbe",
+          3380
+        ],
+        [
+          5001,
+          5,
+          "jmp",
+          3380
+        ],
+        [
+          5167,
+          6,
+          "je",
+          6559
+        ],
+        [
+          5239,
+          6,
+          "je",
+          6559
+        ],
+        [
+          5262,
+          2,
+          "je",
+          5328
+        ],
+        [
+          5268,
+          2,
+          "jne",
+          5303
+        ],
+        [
+          5297,
+          6,
+          "je",
+          7450
+        ],
+        [
+          5338,
+          6,
+          "je",
+          4662
+        ],
+        [
+          5361,
+          5,
+          "jmp",
+          7291
+        ],
+        [
+          5368,
+          2,
+          "jmp",
+          5468
+        ],
+        [
+          5386,
+          2,
+          "jmp",
+          5409
+        ],
+        [
+          5407,
+          2,
+          "je",
+          5442
+        ],
+        [
+          5419,
+          2,
+          "jne",
+          5425
+        ],
+        [
+          5435,
+          2,
+          "jne",
+          5392
+        ],
+        [
+          5440,
+          2,
+          "jmp",
+          5392
+        ],
+        [
+          5446,
+          2,
+          "je",
+          5468
+        ],
+        [
+          5457,
+          2,
+          "jne",
+          5464
+        ],
+        [
+          5504,
+          6,
+          "je",
+          5705
+        ],
+        [
+          5530,
+          6,
+          "jae",
+          10262
+        ],
+        [
+          5699,
+          6,
+          "jne",
+          5520
+        ],
+        [
+          5712,
+          5,
+          "jmp",
+          6562
+        ],
+        [
+          5725,
+          2,
+          "jmp",
+          5737
+        ],
+        [
+          5735,
+          2,
+          "je",
+          5833
+        ],
+        [
+          5742,
+          2,
+          "jne",
+          5728
+        ],
+        [
+          5750,
+          2,
+          "jne",
+          5728
+        ],
+        [
+          5831,
+          2,
+          "jmp",
+          5848
+        ],
+        [
+          5835,
+          6,
+          "je",
+          6046
+        ],
+        [
+          5965,
+          6,
+          "je",
+          6228
+        ],
+        [
+          5987,
+          6,
+          "jne",
+          6183
+        ],
+        [
+          6012,
+          6,
+          "jb",
+          6228
+        ],
+        [
+          6035,
+          6,
+          "jne",
+          6204
+        ],
+        [
+          6041,
+          5,
+          "jmp",
+          6228
+        ],
+        [
+          6178,
+          5,
+          "jmp",
+          4654
+        ],
+        [
+          6202,
+          2,
+          "jb",
+          6228
+        ],
+        [
+          6371,
+          6,
+          "je",
+          6559
+        ],
+        [
+          6483,
+          6,
+          "je",
+          7258
+        ],
+        [
+          6535,
+          6,
+          "je",
+          7258
+        ],
+        [
+          6554,
+          5,
+          "jmp",
+          7085
+        ],
+        [
+          6583,
+          6,
+          "jae",
+          10394
+        ],
+        [
+          6612,
+          2,
+          "je",
+          6648
+        ],
+        [
+          6622,
+          2,
+          "jne",
+          6720
+        ],
+        [
+          6640,
+          2,
+          "je",
+          6720
+        ],
+        [
+          6646,
+          2,
+          "jmp",
+          6720
+        ],
+        [
+          6679,
+          2,
+          "jne",
+          6720
+        ],
+        [
+          6776,
+          2,
+          "jne",
+          6865
+        ],
+        [
+          6802,
+          2,
+          "jne",
+          6853
+        ],
+        [
+          6843,
+          2,
+          "jne",
+          6853
+        ],
+        [
+          6868,
+          6,
+          "je",
+          7052
+        ],
+        [
+          6921,
+          6,
+          "je",
+          8682
+        ],
+        [
+          6948,
+          2,
+          "jmp",
+          6973
+        ],
+        [
+          6967,
+          6,
+          "je",
+          8682
+        ],
+        [
+          6978,
+          2,
+          "jne",
+          6960
+        ],
+        [
+          6986,
+          2,
+          "jne",
+          6960
+        ],
+        [
+          6998,
+          6,
+          "je",
+          7301
+        ],
+        [
+          7008,
+          6,
+          "jne",
+          8682
+        ],
+        [
+          7041,
+          6,
+          "jne",
+          8682
+        ],
+        [
+          7047,
+          5,
+          "jmp",
+          7343
+        ],
+        [
+          7059,
+          5,
+          "jmp",
+          3194
+        ],
+        [
+          7079,
+          6,
+          "je",
+          7258
+        ],
+        [
+          7089,
+          2,
+          "jne",
+          7072
+        ],
+        [
+          7096,
+          2,
+          "jne",
+          7072
+        ],
+        [
+          7223,
+          2,
+          "jbe",
+          7258
+        ],
+        [
+          7268,
+          6,
+          "je",
+          4662
+        ],
+        [
+          7296,
+          5,
+          "jmp",
+          4662
+        ],
+        [
+          7337,
+          6,
+          "jne",
+          8682
+        ],
+        [
+          7362,
+          6,
+          "jbe",
+          8682
+        ],
+        [
+          7403,
+          6,
+          "jae",
+          8682
+        ],
+        [
+          7423,
+          6,
+          "jae",
+          8678
+        ],
+        [
+          7445,
+          5,
+          "jmp",
+          8682
+        ],
+        [
+          7491,
+          6,
+          "je",
+          5303
+        ],
+        [
+          7511,
+          2,
+          "jne",
+          7488
+        ],
+        [
+          7603,
+          6,
+          "je",
+          5303
+        ],
+        [
+          7633,
+          2,
+          "jne",
+          7600
+        ],
+        [
+          7845,
+          2,
+          "jne",
+          7860
+        ],
+        [
+          7982,
+          6,
+          "je",
+          8999
+        ],
+        [
+          8050,
+          2,
+          "je",
+          8097
+        ],
+        [
+          8056,
+          6,
+          "jne",
+          8240
+        ],
+        [
+          8089,
+          6,
+          "jne",
+          8240
+        ],
+        [
+          8095,
+          2,
+          "jmp",
+          8135
+        ],
+        [
+          8133,
+          2,
+          "jne",
+          8240
+        ],
+        [
+          8145,
+          2,
+          "je",
+          8240
+        ],
+        [
+          8160,
+          2,
+          "jmp",
+          8185
+        ],
+        [
+          8183,
+          2,
+          "je",
+          8240
+        ],
+        [
+          8189,
+          2,
+          "jne",
+          8176
+        ],
+        [
+          8196,
+          2,
+          "jne",
+          8176
+        ],
+        [
+          8378,
+          2,
+          "jbe",
+          8448
+        ],
+        [
+          8398,
+          2,
+          "jne",
+          8448
+        ],
+        [
+          8439,
+          2,
+          "je",
+          8538
+        ],
+        [
+          8527,
+          6,
+          "jne",
+          8032
+        ],
+        [
+          8533,
+          5,
+          "jmp",
+          8999
+        ],
+        [
+          8548,
+          2,
+          "je",
+          8448
+        ],
+        [
+          8564,
+          2,
+          "jmp",
+          8589
+        ],
+        [
+          8583,
+          6,
+          "je",
+          8448
+        ],
+        [
+          8598,
+          2,
+          "jne",
+          8576
+        ],
+        [
+          8651,
+          2,
+          "jne",
+          8576
+        ],
+        [
+          8659,
+          6,
+          "jb",
+          8448
+        ],
+        [
+          8673,
+          5,
+          "jmp",
+          8448
+        ],
+        [
+          8784,
+          2,
+          "jne",
+          8799
+        ],
+        [
+          8876,
+          6,
+          "je",
+          10520
+        ],
+        [
+          8909,
+          2,
+          "jne",
+          8924
+        ],
+        [
+          8994,
+          5,
+          "jmp",
+          3194
+        ],
+        [
+          9006,
+          2,
+          "je",
+          9038
+        ],
+        [
+          9046,
+          5,
+          "jmp",
+          5303
+        ],
+        [
+          9083,
+          6,
+          "jb",
+          9732
+        ],
+        [
+          9272,
+          2,
+          "je",
+          9322
+        ],
+        [
+          9278,
+          2,
+          "jne",
+          9355
+        ],
+        [
+          9293,
+          2,
+          "jne",
+          9355
+        ],
+        [
+          9305,
+          2,
+          "jne",
+          9359
+        ],
+        [
+          9317,
+          5,
+          "jmp",
+          9726
+        ],
+        [
+          9349,
+          6,
+          "je",
+          9956
+        ],
+        [
+          9357,
+          2,
+          "je",
+          9307
+        ],
+        [
+          9529,
+          2,
+          "jne",
+          9544
+        ],
+        [
+          9618,
+          6,
+          "je",
+          10580
+        ],
+        [
+          9651,
+          2,
+          "jne",
+          9666
+        ],
+        [
+          9757,
+          2,
+          "je",
+          9781
+        ],
+        [
+          9788,
+          2,
+          "je",
+          9824
+        ],
+        [
+          9800,
+          2,
+          "je",
+          9824
+        ],
+        [
+          9945,
+          6,
+          "jne",
+          3082
+        ],
+        [
+          9951,
+          5,
+          "jmp",
+          3097
+        ],
+        [
+          10004,
+          6,
+          "jne",
+          9359
+        ],
+        [
+          10010,
+          5,
+          "jmp",
+          9307
+        ],
+        [
+          10022,
+          2,
+          "jae",
+          10092
+        ],
+        [
+          10037,
+          2,
+          "jne",
+          10104
+        ],
+        [
+          10051,
+          2,
+          "jbe",
+          10080
+        ],
+        [
+          10090,
+          2,
+          "jmp",
+          10104
+        ],
+        [
+          10099,
+          5,
+          "jmp",
+          1023
+        ],
+        [
+          10107,
+          6,
+          "je",
+          10250
+        ],
+        [
+          10131,
+          2,
+          "jmp",
+          10143
+        ],
+        [
+          10141,
+          2,
+          "je",
+          10250
+        ],
+        [
+          10153,
+          2,
+          "jbe",
+          10204
+        ],
+        [
+          10200,
+          2,
+          "jbe",
+          10133
+        ],
+        [
+          10202,
+          2,
+          "jmp",
+          10215
+        ],
+        [
+          10213,
+          2,
+          "jbe",
+          10133
+        ],
+        [
+          10248,
+          2,
+          "jmp",
+          10133
+        ],
+        [
+          10257,
+          5,
+          "jmp",
+          1023
+        ],
+        [
+          10290,
+          5,
+          "jmp",
+          10608
+        ],
+        [
+          10323,
+          5,
+          "jmp",
+          10608
+        ],
+        [
+          10356,
+          5,
+          "jmp",
+          10608
+        ],
+        [
+          10389,
+          5,
+          "jmp",
+          10608
+        ],
+        [
+          10422,
+          5,
+          "jmp",
+          10608
+        ],
+        [
+          10455,
+          5,
+          "jmp",
+          10608
+        ],
+        [
+          10488,
+          2,
+          "jmp",
+          10608
+        ],
+        [
+          10518,
+          2,
+          "jmp",
+          10608
+        ],
+        [
+          10548,
+          2,
+          "jmp",
+          10608
+        ],
+        [
+          10578,
+          2,
+          "jmp",
+          10608
+        ]
+      ],
+      "edge_sha256": "e4a135c13986ee8fa4e273b01c15422ddbd5a6a3d0070a67f533ec0ca85c2f24",
+      "all_source_and_target_instruction_offsets_equal": true,
+      "all_branch_instruction_bytes_equal_without_masking": true,
+      "all_targets_are_instruction_starts_in_same_owner": true,
+      "external_or_indirect_jump_count": 0,
+      "scope": "Exhaustive structural direct-jump check within these compared owners; unrelated instructions and callee semantics are not classified."
+    },
+    "0x145e4bdb0": {
+      "current_owner": "0x145e53aa0",
+      "edge_format": "[source_offset, instruction_size, mnemonic, target_offset], relative to each owner",
+      "internal_direct_branch_count": 9,
+      "internal_edges": [
+        [
+          11,
+          6,
+          "jne",
+          143
+        ],
+        [
+          27,
+          2,
+          "jae",
+          148
+        ],
+        [
+          52,
+          2,
+          "je",
+          143
+        ],
+        [
+          62,
+          2,
+          "je",
+          143
+        ],
+        [
+          74,
+          2,
+          "je",
+          143
+        ],
+        [
+          99,
+          2,
+          "jmp",
+          121
+        ],
+        [
+          119,
+          2,
+          "je",
+          143
+        ],
+        [
+          125,
+          2,
+          "jne",
+          112
+        ],
+        [
+          132,
+          2,
+          "jne",
+          112
+        ]
+      ],
+      "edge_sha256": "d43337f520844abeda86dffb568d8eddab79f767c7a7b017938b5a15b8d2e24c",
+      "all_source_and_target_instruction_offsets_equal": true,
+      "all_branch_instruction_bytes_equal_without_masking": true,
+      "all_targets_are_instruction_starts_in_same_owner": true,
+      "external_or_indirect_jump_count": 0,
+      "scope": "Exhaustive structural direct-jump check within these compared owners; unrelated instructions and callee semantics are not classified."
+    }
+  },
+  "clock_construction": {
+    "predecessor_construction": {
+      "virtual_address": "0x1402fe090",
+      "end_exclusive": "0x1402fe0ae",
+      "byte_count": 30,
+      "sha256": "828f72e61779b6669655929c8ea2424dd8e8b7afc76982e95c7506cb7f8571d2",
+      "raw_input": "runtime/execheck-0.139.0/native-frontier-inputs/clock-text/slices/picker-1402fe070.bin"
+    },
+    "current_construction": {
+      "virtual_address": "0x14025c290",
+      "end_exclusive": "0x14025c2ae",
+      "file_offset": "0x25b690",
+      "byte_count": 30,
+      "sha256": "65c046af35d6af74341bfc9c03a6c9f68bf9230162fb09b49c97b79640e6f517",
+      "bytes_hex": "488d0519ca2d064889451048c7451813000000488d051605000048894520"
+    },
+    "instruction_shape_equal_except_two_RIP_disp32": true,
+    "instructions": [
+      {
+        "address": "0x14025c290",
+        "bytes_hex": "488d0519ca2d06",
+        "mnemonic": "lea",
+        "operands": "rax, [rip + 0x62dca19]"
+      },
+      {
+        "address": "0x14025c297",
+        "bytes_hex": "48894510",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rbp + 0x10], rax"
+      },
+      {
+        "address": "0x14025c29b",
+        "bytes_hex": "48c7451813000000",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rbp + 0x18], 0x13"
+      },
+      {
+        "address": "0x14025c2a3",
+        "bytes_hex": "488d0516050000",
+        "mnemonic": "lea",
+        "operands": "rax, [rip + 0x516]"
+      },
+      {
+        "address": "0x14025c2aa",
+        "bytes_hex": "48894520",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rbp + 0x20], rax"
+      }
+    ],
+    "conditional_or_unconditional_branch_count": 0,
+    "name": {
+      "virtual_address": "0x146538cb0",
+      "file_offset": "0x6537ab0",
+      "byte_count": 19,
+      "value": "AZS_NativeLocalTime",
+      "sha256": "0ecd0e9c6949dd7f0193767bdf862f128b8573d5f559afaab1fe860a57913477"
+    },
+    "length": 19,
+    "callback": "0x14025c7c0",
+    "callback_scope": "Pointer construction only; callback implementation is excluded."
+  },
+  "separate_clock_registration_boundary": {
+    "new_admission": {
+      "call": "0x14025c2ae",
+      "callee": "0x140118880",
+      "comparison": "AL against 2",
+      "branch": "0x14025c2b5: jae 0x14025c5fb",
+      "meaning": "pending"
+    },
+    "new_registration_wrapper": {
+      "call": "0x14025c2c9",
+      "callee": "0x14016c980",
+      "argument_order": "descriptor RCX, retained context RDX",
+      "meaning": "pending"
+    },
+    "code_range": {
+      "virtual_address": "0x14025c2ae",
+      "end_exclusive": "0x14025c2ce",
+      "file_offset": "0x25b6ae",
+      "byte_count": 32,
+      "sha256": "e29b2d5728d9a7b8ae8f84401e8f30cedb1c25e01094d533bb3f5c8aab86730a",
+      "bytes_hex": "e8cdc5ebff3c020f83400300004c8d0506ca2d06488d4d104889f2e8b206f1ff"
+    },
+    "instructions": [
+      {
+        "address": "0x14025c2ae",
+        "bytes_hex": "e8cdc5ebff",
+        "mnemonic": "call",
+        "operands": "0x140118880"
+      },
+      {
+        "address": "0x14025c2b3",
+        "bytes_hex": "3c02",
+        "mnemonic": "cmp",
+        "operands": "al, 2"
+      },
+      {
+        "address": "0x14025c2b5",
+        "bytes_hex": "0f8340030000",
+        "mnemonic": "jae",
+        "operands": "0x14025c5fb"
+      },
+      {
+        "address": "0x14025c2bb",
+        "bytes_hex": "4c8d0506ca2d06",
+        "mnemonic": "lea",
+        "operands": "r8, [rip + 0x62dca06]"
+      },
+      {
+        "address": "0x14025c2c2",
+        "bytes_hex": "488d4d10",
+        "mnemonic": "lea",
+        "operands": "rcx, [rbp + 0x10]"
+      },
+      {
+        "address": "0x14025c2c6",
+        "bytes_hex": "4889f2",
+        "mnemonic": "mov",
+        "operands": "rdx, rsi"
+      },
+      {
+        "address": "0x14025c2c9",
+        "bytes_hex": "e8b206f1ff",
+        "mnemonic": "call",
+        "operands": "0x14016c980"
+      }
+    ],
+    "scope": "Separate boundary outside the descriptor construction; neither new callee nor an input-focus/Wine/IME relationship is established.",
+    "branch_target_is_instruction_start_in_current_clock_owner": true,
+    "diagnostic_context": {
+      "virtual_address": "0x146538cc8",
+      "file_offset": "0x6537ac8",
+      "byte_count": 24,
+      "sha256": "497035ad240c392ce1f620a3a28ac79b629094779f7d63cb9ae77a5867ba55ff",
+      "bytes_hex": "1b8c53460100000032000000000000001600000009000000",
+      "path_payload": {
+        "virtual_address": "0x146538c1b",
+        "file_offset": "0x6537a1b",
+        "byte_count": 50,
+        "sha256": "edb9db6df3e84002940298001a9d9a892f9b30d6b6baac2e494d38c9c7b19ae9",
+        "value": "crates\\wenilla-rogue-app\\src\\screens\\localclock.rs"
+      },
+      "source_line": 22,
+      "source_column": 9,
+      "scope": "Location record supports context only; it does not identify either callee or the AL predicate."
+    }
+  },
+  "recap_payload_key_references": [
+    {
+      "old_owner": "0x140161d90",
+      "current_owner": "0x140161bf0",
+      "old_instruction": "0x140161e14",
+      "current_instruction": "0x140161c74",
+      "old_target": "0x146510f2f",
+      "current_target": "0x14651749f",
+      "length": 11,
+      "value": "Death Recap",
+      "sha256": "939fa70c675f963f3fbef0a75df8bc49980589ba6ae8f53b5d5c5945c1cb8d8a",
+      "current_reference_instruction": {
+        "address": "0x140161c74",
+        "bytes_hex": "488d0d24583b06",
+        "mnemonic": "lea",
+        "operands": "rcx, [rip + 0x63b5824]"
+      },
+      "current_file_offset": "0x651629f",
+      "bytes_hex": "4465617468205265636170"
+    },
+    {
+      "old_owner": "0x140161d90",
+      "current_owner": "0x140161bf0",
+      "old_instruction": "0x140162063",
+      "current_instruction": "0x140161ec3",
+      "old_target": "0x146510fb4",
+      "current_target": "0x146517524",
+      "length": 4,
+      "value": "secs",
+      "sha256": "e6c5669ee730a0d114b26d080020854e9a89fc112dfd453b7dc6c95117e800ca",
+      "current_reference_instruction": {
+        "address": "0x140161ec3",
+        "bytes_hex": "488d3d5a563b06",
+        "mnemonic": "lea",
+        "operands": "rdi, [rip + 0x63b565a]"
+      },
+      "current_file_offset": "0x6516324",
+      "bytes_hex": "73656373"
+    },
+    {
+      "old_owner": "0x140161d90",
+      "current_owner": "0x140161bf0",
+      "old_instruction": "0x1401621d9",
+      "current_instruction": "0x140162039",
+      "old_target": "0x146510fc0",
+      "current_target": "0x146517530",
+      "length": 8,
+      "value": "absorbed",
+      "sha256": "2f6378a857d08ce052081ac314f77184bdd0f4ad8845fb4db9bf09600092148f",
+      "current_reference_instruction": {
+        "address": "0x140162039",
+        "bytes_hex": "488d0df0543b06",
+        "mnemonic": "lea",
+        "operands": "rcx, [rip + 0x63b54f0]"
+      },
+      "current_file_offset": "0x6516330",
+      "bytes_hex": "6162736f72626564"
+    },
+    {
+      "old_owner": "0x140161d90",
+      "current_owner": "0x140161bf0",
+      "old_instruction": "0x14016229d",
+      "current_instruction": "0x1401620fd",
+      "old_target": "0x146510fc0",
+      "current_target": "0x146517530",
+      "length": 8,
+      "value": "absorbed",
+      "sha256": "2f6378a857d08ce052081ac314f77184bdd0f4ad8845fb4db9bf09600092148f",
+      "current_reference_instruction": {
+        "address": "0x1401620fd",
+        "bytes_hex": "488d0d2c543b06",
+        "mnemonic": "lea",
+        "operands": "rcx, [rip + 0x63b542c]"
+      },
+      "current_file_offset": "0x6516330",
+      "bytes_hex": "6162736f72626564"
+    },
+    {
+      "old_owner": "0x140161d90",
+      "current_owner": "0x140161bf0",
+      "old_instruction": "0x14016257c",
+      "current_instruction": "0x1401623dc",
+      "old_target": "0x146510fde",
+      "current_target": "0x14651754e",
+      "length": 11,
+      "value": "Final Blows",
+      "sha256": "9d33800fbf2c8ee2c8729218d0c897f9234d4ab7ca60c416f6fb89bdde9240b0",
+      "current_reference_instruction": {
+        "address": "0x1401623dc",
+        "bytes_hex": "488d0d6b513b06",
+        "mnemonic": "lea",
+        "operands": "rcx, [rip + 0x63b516b]"
+      },
+      "current_file_offset": "0x651634e",
+      "bytes_hex": "46696e616c20426c6f7773"
+    },
+    {
+      "old_owner": "0x140161d90",
+      "current_owner": "0x140161bf0",
+      "old_instruction": "0x140162816",
+      "current_instruction": "0x140162676",
+      "old_target": "0x146510fe9",
+      "current_target": "0x146517559",
+      "length": 4,
+      "value": "hits",
+      "sha256": "62f51d296d3429d8f502e2a1cf5fd430a118615b9c4b97d7fbac538e9966fe26",
+      "current_reference_instruction": {
+        "address": "0x140162676",
+        "bytes_hex": "488d0ddc4e3b06",
+        "mnemonic": "lea",
+        "operands": "rcx, [rip + 0x63b4edc]"
+      },
+      "current_file_offset": "0x6516359",
+      "bytes_hex": "68697473"
+    },
+    {
+      "old_owner": "0x140161d90",
+      "current_owner": "0x140161bf0",
+      "old_instruction": "0x140162b1e",
+      "current_instruction": "0x14016297e",
+      "old_target": "0x146510fed",
+      "current_target": "0x14651755d",
+      "length": 2,
+      "value": "by",
+      "sha256": "a7e2d26e8d15814dd9c6a1bdc90585c8d0a3170dfffeb21fc42986683113041b",
+      "current_reference_instruction": {
+        "address": "0x14016297e",
+        "bytes_hex": "488d0dd84b3b06",
+        "mnemonic": "lea",
+        "operands": "rcx, [rip + 0x63b4bd8]"
+      },
+      "current_file_offset": "0x651635d",
+      "bytes_hex": "6279"
+    },
+    {
+      "old_owner": "0x140161d90",
+      "current_owner": "0x140161bf0",
+      "old_instruction": "0x140162b6b",
+      "current_instruction": "0x1401629cb",
+      "old_target": "0x146510fef",
+      "current_target": "0x14651755f",
+      "length": 16,
+      "value": "Damage by Source",
+      "sha256": "19e69be443495a514d143ce829e98f15fb7406edc9b0ba9fe1a76de1e7f114cd",
+      "current_reference_instruction": {
+        "address": "0x1401629cb",
+        "bytes_hex": "488d0d8d4b3b06",
+        "mnemonic": "lea",
+        "operands": "rcx, [rip + 0x63b4b8d]"
+      },
+      "current_file_offset": "0x651635f",
+      "bytes_hex": "44616d61676520627920536f75726365"
+    },
+    {
+      "old_owner": "0x140161d90",
+      "current_owner": "0x140161bf0",
+      "old_instruction": "0x14016314d",
+      "current_instruction": "0x140162fad",
+      "old_target": "0x146510fff",
+      "current_target": "0x14651756f",
+      "length": 9,
+      "value": "avoidable",
+      "sha256": "73602c084af414fa2a4a3ed229cbded872497fcbf67114b4d288e264ca14fa62",
+      "current_reference_instruction": {
+        "address": "0x140162fad",
+        "bytes_hex": "488d0dbb453b06",
+        "mnemonic": "lea",
+        "operands": "rcx, [rip + 0x63b45bb]"
+      },
+      "current_file_offset": "0x651636f",
+      "bytes_hex": "61766f696461626c65"
+    },
+    {
+      "old_owner": "0x140178750",
+      "current_owner": "0x14018f390",
+      "old_instruction": "0x14017885c",
+      "current_instruction": "0x14018f49c",
+      "old_target": "0x146510f24",
+      "current_target": "0x146517494",
+      "length": 5,
+      "value": "recap",
+      "sha256": "a3a6e0df57e9e3aef68b6b8f298d34c6bc10a38940f0f7a82f99b29d0dec8f38",
+      "current_reference_instruction": {
+        "address": "0x14018f49c",
+        "bytes_hex": "488d0df17f3806",
+        "mnemonic": "lea",
+        "operands": "rcx, [rip + 0x6387ff1]"
+      },
+      "current_file_offset": "0x6516294",
+      "bytes_hex": "7265636170"
+    },
+    {
+      "old_owner": "0x140178750",
+      "current_owner": "0x14018f390",
+      "old_instruction": "0x14017887b",
+      "current_instruction": "0x14018f4bb",
+      "old_target": "0x146510f29",
+      "current_target": "0x146517499",
+      "length": 6,
+      "value": "killer",
+      "sha256": "ed45d626b07112a8a501d9672f3b92796a6754b8d8d9cb4c617fec9774889220",
+      "current_reference_instruction": {
+        "address": "0x14018f4bb",
+        "bytes_hex": "488d0dd77f3806",
+        "mnemonic": "lea",
+        "operands": "rcx, [rip + 0x6387fd7]"
+      },
+      "current_file_offset": "0x6516299",
+      "bytes_hex": "6b696c6c6572"
+    },
+    {
+      "old_owner": "0x140178750",
+      "current_owner": "0x14018f390",
+      "old_instruction": "0x140178c29",
+      "current_instruction": "0x14018f869",
+      "old_target": "0x146510f24",
+      "current_target": "0x146517494",
+      "length": 5,
+      "value": "recap",
+      "sha256": "a3a6e0df57e9e3aef68b6b8f298d34c6bc10a38940f0f7a82f99b29d0dec8f38",
+      "current_reference_instruction": {
+        "address": "0x14018f869",
+        "bytes_hex": "488d0d247c3806",
+        "mnemonic": "lea",
+        "operands": "rcx, [rip + 0x6387c24]"
+      },
+      "current_file_offset": "0x6516294",
+      "bytes_hex": "7265636170"
+    },
+    {
+      "old_owner": "0x140178750",
+      "current_owner": "0x14018f390",
+      "old_instruction": "0x140178c4e",
+      "current_instruction": "0x14018f88e",
+      "old_target": "0x146510f29",
+      "current_target": "0x146517499",
+      "length": 6,
+      "value": "killer",
+      "sha256": "ed45d626b07112a8a501d9672f3b92796a6754b8d8d9cb4c617fec9774889220",
+      "current_reference_instruction": {
+        "address": "0x14018f88e",
+        "bytes_hex": "488d0d047c3806",
+        "mnemonic": "lea",
+        "operands": "rcx, [rip + 0x6387c04]"
+      },
+      "current_file_offset": "0x6516299",
+      "bytes_hex": "6b696c6c6572"
+    }
+  ],
+  "recap_external_consumer_edges": [
+    {
+      "old_instruction": "0x140161fd7",
+      "current_instruction": "0x140161e37",
+      "old_callee": "0x143868070",
+      "current_callee": "0x143870c20",
+      "callee_semantic_correspondence": "pending; original boundary stopped here"
+    },
+    {
+      "old_instruction": "0x14016205d",
+      "current_instruction": "0x140161ebd",
+      "old_callee": "0x140165160",
+      "current_callee": "0x140164fc0",
+      "callee_semantic_correspondence": "pending; original boundary stopped here"
+    },
+    {
+      "old_instruction": "0x14016207c",
+      "current_instruction": "0x140161edc",
+      "old_callee": "0x143868070",
+      "current_callee": "0x143870c20",
+      "callee_semantic_correspondence": "pending; original boundary stopped here"
+    },
+    {
+      "old_instruction": "0x1401621ec",
+      "current_instruction": "0x14016204c",
+      "old_callee": "0x143868070",
+      "current_callee": "0x143870c20",
+      "callee_semantic_correspondence": "pending; original boundary stopped here"
+    },
+    {
+      "old_instruction": "0x1401622b0",
+      "current_instruction": "0x140162110",
+      "old_callee": "0x143868070",
+      "current_callee": "0x143870c20",
+      "callee_semantic_correspondence": "pending; original boundary stopped here"
+    },
+    {
+      "old_instruction": "0x14016231d",
+      "current_instruction": "0x14016217d",
+      "old_callee": "0x140165160",
+      "current_callee": "0x140164fc0",
+      "callee_semantic_correspondence": "pending; original boundary stopped here"
+    },
+    {
+      "old_instruction": "0x140162829",
+      "current_instruction": "0x140162689",
+      "old_callee": "0x143868070",
+      "current_callee": "0x143870c20",
+      "callee_semantic_correspondence": "pending; original boundary stopped here"
+    },
+    {
+      "old_instruction": "0x140162b31",
+      "current_instruction": "0x140162991",
+      "old_callee": "0x143868070",
+      "current_callee": "0x143870c20",
+      "callee_semantic_correspondence": "pending; original boundary stopped here"
+    },
+    {
+      "old_instruction": "0x140162e36",
+      "current_instruction": "0x140162c96",
+      "old_callee": "0x143868070",
+      "current_callee": "0x143870c20",
+      "callee_semantic_correspondence": "pending; original boundary stopped here"
+    },
+    {
+      "old_instruction": "0x140163130",
+      "current_instruction": "0x140162f90",
+      "old_callee": "0x14015ff90",
+      "current_callee": "0x14015ff50",
+      "callee_semantic_correspondence": "pending; original boundary stopped here"
+    },
+    {
+      "old_instruction": "0x140163159",
+      "current_instruction": "0x140162fb9",
+      "old_callee": "0x143868070",
+      "current_callee": "0x143870c20",
+      "callee_semantic_correspondence": "pending; original boundary stopped here"
+    },
+    {
+      "old_instruction": "0x140178868",
+      "current_instruction": "0x14018f4a8",
+      "old_callee": "0x143868070",
+      "current_callee": "0x143870c20",
+      "callee_semantic_correspondence": "pending; original boundary stopped here"
+    },
+    {
+      "old_instruction": "0x14017888a",
+      "current_instruction": "0x14018f4ca",
+      "old_callee": "0x143868070",
+      "current_callee": "0x143870c20",
+      "callee_semantic_correspondence": "pending; original boundary stopped here"
+    },
+    {
+      "old_instruction": "0x140178c38",
+      "current_instruction": "0x14018f878",
+      "old_callee": "0x143868070",
+      "current_callee": "0x143870c20",
+      "callee_semantic_correspondence": "pending; original boundary stopped here"
+    },
+    {
+      "old_instruction": "0x140178c5d",
+      "current_instruction": "0x14018f89d",
+      "old_callee": "0x143868070",
+      "current_callee": "0x143870c20",
+      "callee_semantic_correspondence": "pending; original boundary stopped here"
+    },
+    {
+      "old_instruction": "0x140178f10",
+      "current_instruction": "0x14018fb50",
+      "old_callee": "0x1403add50",
+      "current_callee": "0x140373140",
+      "callee_semantic_correspondence": "pending; original boundary stopped here"
+    }
+  ],
+  "enhancement_required_float_references": [
+    {
+      "old_instruction": "0x145ebde2d",
+      "current_instruction": "0x145ec58dd",
+      "old_target": "0x1464d5b60",
+      "current_target": "0x1464dbb20",
+      "file_offset": "0x64da920",
+      "bytes_hex": "0000803f",
+      "sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c",
+      "f32": 1.0,
+      "current_reference_instruction": {
+        "address": "0x145ec58dd",
+        "bytes_hex": "f3440f10053a626100",
+        "mnemonic": "movss",
+        "operands": "xmm8, dword ptr [rip + 0x61623a]"
+      },
+      "current_file_offset": "0x64da920"
+    },
+    {
+      "old_instruction": "0x145ebe6e0",
+      "current_instruction": "0x145ec6190",
+      "old_target": "0x1464d5b60",
+      "current_target": "0x1464dbb20",
+      "file_offset": "0x64da920",
+      "bytes_hex": "0000803f",
+      "sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c",
+      "f32": 1.0,
+      "current_reference_instruction": {
+        "address": "0x145ec6190",
+        "bytes_hex": "f30f103d88596100",
+        "mnemonic": "movss",
+        "operands": "xmm7, dword ptr [rip + 0x615988]"
+      },
+      "current_file_offset": "0x64da920"
+    },
+    {
+      "old_instruction": "0x145ebe747",
+      "current_instruction": "0x145ec61f7",
+      "old_target": "0x1464d5b60",
+      "current_target": "0x1464dbb20",
+      "file_offset": "0x64da920",
+      "bytes_hex": "0000803f",
+      "sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c",
+      "f32": 1.0,
+      "current_reference_instruction": {
+        "address": "0x145ec61f7",
+        "bytes_hex": "f30f583d21596100",
+        "mnemonic": "addss",
+        "operands": "xmm7, dword ptr [rip + 0x615921]"
+      },
+      "current_file_offset": "0x64da920"
+    },
+    {
+      "old_instruction": "0x145ebeb27",
+      "current_instruction": "0x145ec65d7",
+      "old_target": "0x1464d5ea0",
+      "current_target": "0x1464dbe60",
+      "file_offset": "0x64dac60",
+      "bytes_hex": "0000c040",
+      "sha256": "fedcca07b1ccdacce623cb6d8afdeed0314e8508d763e228871f18d4e0ebb7c4",
+      "f32": 6.0,
+      "current_reference_instruction": {
+        "address": "0x145ec65d7",
+        "bytes_hex": "f30f5d1581586100",
+        "mnemonic": "minss",
+        "operands": "xmm2, dword ptr [rip + 0x615881]"
+      },
+      "current_file_offset": "0x64dac60"
+    },
+    {
+      "old_instruction": "0x145ebf0c4",
+      "current_instruction": "0x145ec6b74",
+      "old_target": "0x1464d5ea0",
+      "current_target": "0x1464dbe60",
+      "file_offset": "0x64dac60",
+      "bytes_hex": "0000c040",
+      "sha256": "fedcca07b1ccdacce623cb6d8afdeed0314e8508d763e228871f18d4e0ebb7c4",
+      "f32": 6.0,
+      "current_reference_instruction": {
+        "address": "0x145ec6b74",
+        "bytes_hex": "f30f590de4526100",
+        "mnemonic": "mulss",
+        "operands": "xmm1, dword ptr [rip + 0x6152e4]"
+      },
+      "current_file_offset": "0x64dac60"
+    },
+    {
+      "old_instruction": "0x145ebf0cc",
+      "current_instruction": "0x145ec6b7c",
+      "old_target": "0x1464d5e80",
+      "current_target": "0x1464dbe40",
+      "file_offset": "0x64dac40",
+      "bytes_hex": "0000c842",
+      "sha256": "2238f30df488055daf5e8f362cf904e370011a172d20df193c1b7ae8e5db8e01",
+      "f32": 100.0,
+      "current_reference_instruction": {
+        "address": "0x145ec6b7c",
+        "bytes_hex": "f30f5e0dbc526100",
+        "mnemonic": "divss",
+        "operands": "xmm1, dword ptr [rip + 0x6152bc]"
+      },
+      "current_file_offset": "0x64dac40"
+    },
+    {
+      "old_instruction": "0x145ebf4c1",
+      "current_instruction": "0x145ec6f71",
+      "old_target": "0x1464d5ea0",
+      "current_target": "0x1464dbe60",
+      "file_offset": "0x64dac60",
+      "bytes_hex": "0000c040",
+      "sha256": "fedcca07b1ccdacce623cb6d8afdeed0314e8508d763e228871f18d4e0ebb7c4",
+      "f32": 6.0,
+      "current_reference_instruction": {
+        "address": "0x145ec6f71",
+        "bytes_hex": "f30f1025e74e6100",
+        "mnemonic": "movss",
+        "operands": "xmm4, dword ptr [rip + 0x614ee7]"
+      },
+      "current_file_offset": "0x64dac60"
+    },
+    {
+      "old_instruction": "0x145ebf57f",
+      "current_instruction": "0x145ec702f",
+      "old_target": "0x1464d5ea0",
+      "current_target": "0x1464dbe60",
+      "file_offset": "0x64dac60",
+      "bytes_hex": "0000c040",
+      "sha256": "fedcca07b1ccdacce623cb6d8afdeed0314e8508d763e228871f18d4e0ebb7c4",
+      "f32": 6.0,
+      "current_reference_instruction": {
+        "address": "0x145ec702f",
+        "bytes_hex": "f30f1025294e6100",
+        "mnemonic": "movss",
+        "operands": "xmm4, dword ptr [rip + 0x614e29]"
+      },
+      "current_file_offset": "0x64dac60"
+    },
+    {
+      "old_instruction": "0x145ebf58c",
+      "current_instruction": "0x145ec703c",
+      "old_target": "0x1464d5e80",
+      "current_target": "0x1464dbe40",
+      "file_offset": "0x64dac40",
+      "bytes_hex": "0000c842",
+      "sha256": "2238f30df488055daf5e8f362cf904e370011a172d20df193c1b7ae8e5db8e01",
+      "f32": 100.0,
+      "current_reference_instruction": {
+        "address": "0x145ec703c",
+        "bytes_hex": "f30f5e05fc4d6100",
+        "mnemonic": "divss",
+        "operands": "xmm0, dword ptr [rip + 0x614dfc]"
+      },
+      "current_file_offset": "0x64dac40"
+    },
+    {
+      "old_instruction": "0x145ebf77d",
+      "current_instruction": "0x145ec722d",
+      "old_target": "0x1464d5ea0",
+      "current_target": "0x1464dbe60",
+      "file_offset": "0x64dac60",
+      "bytes_hex": "0000c040",
+      "sha256": "fedcca07b1ccdacce623cb6d8afdeed0314e8508d763e228871f18d4e0ebb7c4",
+      "f32": 6.0,
+      "current_reference_instruction": {
+        "address": "0x145ec722d",
+        "bytes_hex": "f30f5d0d2b4c6100",
+        "mnemonic": "minss",
+        "operands": "xmm1, dword ptr [rip + 0x614c2b]"
+      },
+      "current_file_offset": "0x64dac60"
+    },
+    {
+      "old_instruction": "0x145ebf80d",
+      "current_instruction": "0x145ec72bd",
+      "old_target": "0x1464d5ea0",
+      "current_target": "0x1464dbe60",
+      "file_offset": "0x64dac60",
+      "bytes_hex": "0000c040",
+      "sha256": "fedcca07b1ccdacce623cb6d8afdeed0314e8508d763e228871f18d4e0ebb7c4",
+      "f32": 6.0,
+      "current_reference_instruction": {
+        "address": "0x145ec72bd",
+        "bytes_hex": "f30f5d0d9b4b6100",
+        "mnemonic": "minss",
+        "operands": "xmm1, dword ptr [rip + 0x614b9b]"
+      },
+      "current_file_offset": "0x64dac60"
+    },
+    {
+      "old_instruction": "0x145ebfa22",
+      "current_instruction": "0x145ec74d2",
+      "old_target": "0x1464d5ea0",
+      "current_target": "0x1464dbe60",
+      "file_offset": "0x64dac60",
+      "bytes_hex": "0000c040",
+      "sha256": "fedcca07b1ccdacce623cb6d8afdeed0314e8508d763e228871f18d4e0ebb7c4",
+      "f32": 6.0,
+      "current_reference_instruction": {
+        "address": "0x145ec74d2",
+        "bytes_hex": "f30f591586496100",
+        "mnemonic": "mulss",
+        "operands": "xmm2, dword ptr [rip + 0x614986]"
+      },
+      "current_file_offset": "0x64dac60"
+    },
+    {
+      "old_instruction": "0x145ebfa2a",
+      "current_instruction": "0x145ec74da",
+      "old_target": "0x1464d5e80",
+      "current_target": "0x1464dbe40",
+      "file_offset": "0x64dac40",
+      "bytes_hex": "0000c842",
+      "sha256": "2238f30df488055daf5e8f362cf904e370011a172d20df193c1b7ae8e5db8e01",
+      "f32": 100.0,
+      "current_reference_instruction": {
+        "address": "0x145ec74da",
+        "bytes_hex": "f30f5e155e496100",
+        "mnemonic": "divss",
+        "operands": "xmm2, dword ptr [rip + 0x61495e]"
+      },
+      "current_file_offset": "0x64dac40"
+    },
+    {
+      "old_instruction": "0x145ebfd6a",
+      "current_instruction": "0x145ec781a",
+      "old_target": "0x1464d5e80",
+      "current_target": "0x1464dbe40",
+      "file_offset": "0x64dac40",
+      "bytes_hex": "0000c842",
+      "sha256": "2238f30df488055daf5e8f362cf904e370011a172d20df193c1b7ae8e5db8e01",
+      "f32": 100.0,
+      "current_reference_instruction": {
+        "address": "0x145ec781a",
+        "bytes_hex": "f30f5e051e466100",
+        "mnemonic": "divss",
+        "operands": "xmm0, dword ptr [rip + 0x61461e]"
+      },
+      "current_file_offset": "0x64dac40"
+    },
+    {
+      "old_instruction": "0x145ec0451",
+      "current_instruction": "0x145ec7f01",
+      "old_target": "0x1464d5ea0",
+      "current_target": "0x1464dbe60",
+      "file_offset": "0x64dac60",
+      "bytes_hex": "0000c040",
+      "sha256": "fedcca07b1ccdacce623cb6d8afdeed0314e8508d763e228871f18d4e0ebb7c4",
+      "f32": 6.0,
+      "current_reference_instruction": {
+        "address": "0x145ec7f01",
+        "bytes_hex": "f30f5d05573f6100",
+        "mnemonic": "minss",
+        "operands": "xmm0, dword ptr [rip + 0x613f57]"
+      },
+      "current_file_offset": "0x64dac60"
+    }
+  ],
+  "critical_local_instruction_receipts": {
+    "0x140161d90": [],
+    "0x140178750": [
+      {
+        "old_address": "0x140178840",
+        "current": {
+          "address": "0x14018f480",
+          "bytes_hex": "8b86e4000000",
+          "mnemonic": "mov",
+          "operands": "eax, dword ptr [rsi + 0xe4]"
+        }
+      },
+      {
+        "old_address": "0x14017884a",
+        "current": {
+          "address": "0x14018f48a",
+          "bytes_hex": "80bea0000000ff",
+          "mnemonic": "cmp",
+          "operands": "byte ptr [rsi + 0xa0], 0xff"
+        }
+      },
+      {
+        "old_address": "0x140178855",
+        "current": {
+          "address": "0x14018f495",
+          "bytes_hex": "4c8d86a0000000",
+          "mnemonic": "lea",
+          "operands": "r8, [rsi + 0xa0]"
+        }
+      },
+      {
+        "old_address": "0x140178896",
+        "current": {
+          "address": "0x14018f4d6",
+          "bytes_hex": "803805",
+          "mnemonic": "cmp",
+          "operands": "byte ptr [rax], 5"
+        }
+      },
+      {
+        "old_address": "0x1401788a7",
+        "current": {
+          "address": "0x14018f4e7",
+          "bytes_hex": "8b8ee4000000",
+          "mnemonic": "mov",
+          "operands": "ecx, dword ptr [rsi + 0xe4]"
+        }
+      },
+      {
+        "old_address": "0x1401788bb",
+        "current": {
+          "address": "0x14018f4fb",
+          "bytes_hex": "8b86e4000000",
+          "mnemonic": "mov",
+          "operands": "eax, dword ptr [rsi + 0xe4]"
+        }
+      },
+      {
+        "old_address": "0x1401788e3",
+        "current": {
+          "address": "0x14018f523",
+          "bytes_hex": "8b8ee4000000",
+          "mnemonic": "mov",
+          "operands": "ecx, dword ptr [rsi + 0xe4]"
+        }
+      },
+      {
+        "old_address": "0x140178c15",
+        "current": {
+          "address": "0x14018f855",
+          "bytes_hex": "80bea0000000ff",
+          "mnemonic": "cmp",
+          "operands": "byte ptr [rsi + 0xa0], 0xff"
+        }
+      },
+      {
+        "old_address": "0x140178c69",
+        "current": {
+          "address": "0x14018f8a9",
+          "bytes_hex": "803805",
+          "mnemonic": "cmp",
+          "operands": "byte ptr [rax], 5"
+        }
+      },
+      {
+        "old_address": "0x140178d3e",
+        "current": {
+          "address": "0x14018f97e",
+          "bytes_hex": "0f288424a0000000",
+          "mnemonic": "movaps",
+          "operands": "xmm0, xmmword ptr [rsp + 0xa0]"
+        }
+      },
+      {
+        "old_address": "0x140178f10",
+        "current": {
+          "address": "0x14018fb50",
+          "bytes_hex": "e8eb351e00",
+          "mnemonic": "call",
+          "operands": "0x140373140"
+        }
+      }
+    ],
+    "0x145ebdd50": [
+      {
+        "old_address": "0x145ebea20",
+        "current": {
+          "address": "0x145ec64d0",
+          "bytes_hex": "4983c240",
+          "mnemonic": "add",
+          "operands": "r10, 0x40"
+        }
+      },
+      {
+        "old_address": "0x145ebea24",
+        "current": {
+          "address": "0x145ec64d4",
+          "bytes_hex": "4c39d1",
+          "mnemonic": "cmp",
+          "operands": "rcx, r10"
+        }
+      },
+      {
+        "old_address": "0x145ebea27",
+        "current": {
+          "address": "0x145ec64d7",
+          "bytes_hex": "7457",
+          "mnemonic": "je",
+          "operands": "0x145ec6530"
+        }
+      },
+      {
+        "old_address": "0x145ebea29",
+        "current": {
+          "address": "0x145ec64d9",
+          "bytes_hex": "43803c112a",
+          "mnemonic": "cmp",
+          "operands": "byte ptr [r9 + r10], 0x2a"
+        }
+      },
+      {
+        "old_address": "0x145ebea2e",
+        "current": {
+          "address": "0x145ec64de",
+          "bytes_hex": "75f0",
+          "mnemonic": "jne",
+          "operands": "0x145ec64d0"
+        }
+      },
+      {
+        "old_address": "0x145ebea30",
+        "current": {
+          "address": "0x145ec64e0",
+          "bytes_hex": "43807c11020a",
+          "mnemonic": "cmp",
+          "operands": "byte ptr [r9 + r10 + 2], 0xa"
+        }
+      },
+      {
+        "old_address": "0x145ebea36",
+        "current": {
+          "address": "0x145ec64e6",
+          "bytes_hex": "75e8",
+          "mnemonic": "jne",
+          "operands": "0x145ec64d0"
+        }
+      },
+      {
+        "old_address": "0x145ebea38",
+        "current": {
+          "address": "0x145ec64e8",
+          "bytes_hex": "430fb64c1101",
+          "mnemonic": "movzx",
+          "operands": "ecx, byte ptr [r9 + r10 + 1]"
+        }
+      },
+      {
+        "old_address": "0x145ebea3e",
+        "current": {
+          "address": "0x145ec64ee",
+          "bytes_hex": "4983f80b",
+          "mnemonic": "cmp",
+          "operands": "r8, 0xb"
+        }
+      },
+      {
+        "old_address": "0x145ebf091",
+        "current": {
+          "address": "0x145ec6b41",
+          "bytes_hex": "4c31ca",
+          "mnemonic": "xor",
+          "operands": "rdx, r9"
+        }
+      },
+      {
+        "old_address": "0x145ebf094",
+        "current": {
+          "address": "0x145ec6b44",
+          "bytes_hex": "4c09c2",
+          "mnemonic": "or",
+          "operands": "rdx, r8"
+        }
+      },
+      {
+        "old_address": "0x145ebf097",
+        "current": {
+          "address": "0x145ec6b47",
+          "bytes_hex": "410f28c8",
+          "mnemonic": "movaps",
+          "operands": "xmm1, xmm8"
+        }
+      },
+      {
+        "old_address": "0x145ebf09b",
+        "current": {
+          "address": "0x145ec6b4b",
+          "bytes_hex": "0f85e3f9ffff",
+          "mnemonic": "jne",
+          "operands": "0x145ec6534"
+        }
+      },
+      {
+        "old_address": "0x145ebf0a1",
+        "current": {
+          "address": "0x145ec6b51",
+          "bytes_hex": "f30f10863c010000",
+          "mnemonic": "movss",
+          "operands": "xmm0, dword ptr [rsi + 0x13c]"
+        }
+      },
+      {
+        "old_address": "0x145ebf0a9",
+        "current": {
+          "address": "0x145ec6b59",
+          "bytes_hex": "0f2e86880e0000",
+          "mnemonic": "ucomiss",
+          "operands": "xmm0, dword ptr [rsi + 0xe88]"
+        }
+      },
+      {
+        "old_address": "0x145ebf0b0",
+        "current": {
+          "address": "0x145ec6b60",
+          "bytes_hex": "410f28c8",
+          "mnemonic": "movaps",
+          "operands": "xmm1, xmm8"
+        }
+      },
+      {
+        "old_address": "0x145ebf0b4",
+        "current": {
+          "address": "0x145ec6b64",
+          "bytes_hex": "0f86caf9ffff",
+          "mnemonic": "jbe",
+          "operands": "0x145ec6534"
+        }
+      },
+      {
+        "old_address": "0x145ebf0ba",
+        "current": {
+          "address": "0x145ec6b6a",
+          "bytes_hex": "0fb6c9",
+          "mnemonic": "movzx",
+          "operands": "ecx, cl"
+        }
+      },
+      {
+        "old_address": "0x145ebf0bd",
+        "current": {
+          "address": "0x145ec6b6d",
+          "bytes_hex": "0f57c9",
+          "mnemonic": "xorps",
+          "operands": "xmm1, xmm1"
+        }
+      },
+      {
+        "old_address": "0x145ebf0c0",
+        "current": {
+          "address": "0x145ec6b70",
+          "bytes_hex": "f30f2ac9",
+          "mnemonic": "cvtsi2ss",
+          "operands": "xmm1, ecx"
+        }
+      },
+      {
+        "old_address": "0x145ebf0c4",
+        "current": {
+          "address": "0x145ec6b74",
+          "bytes_hex": "f30f590de4526100",
+          "mnemonic": "mulss",
+          "operands": "xmm1, dword ptr [rip + 0x6152e4]"
+        }
+      },
+      {
+        "old_address": "0x145ebf0cc",
+        "current": {
+          "address": "0x145ec6b7c",
+          "bytes_hex": "f30f5e0dbc526100",
+          "mnemonic": "divss",
+          "operands": "xmm1, dword ptr [rip + 0x6152bc]"
+        }
+      },
+      {
+        "old_address": "0x145ebf0d4",
+        "current": {
+          "address": "0x145ec6b84",
+          "bytes_hex": "f3410f58c8",
+          "mnemonic": "addss",
+          "operands": "xmm1, xmm8"
+        }
+      },
+      {
+        "old_address": "0x145ebf0d9",
+        "current": {
+          "address": "0x145ec6b89",
+          "bytes_hex": "e9a6f9ffff",
+          "mnemonic": "jmp",
+          "operands": "0x145ec6534"
+        }
+      },
+      {
+        "old_address": "0x145ebf0de",
+        "current": {
+          "address": "0x145ec6b8e",
+          "bytes_hex": "8b5108",
+          "mnemonic": "mov",
+          "operands": "edx, dword ptr [rcx + 8]"
+        }
+      },
+      {
+        "old_address": "0x145ebf0e1",
+        "current": {
+          "address": "0x145ec6b91",
+          "bytes_hex": "f30f104114",
+          "mnemonic": "movss",
+          "operands": "xmm0, dword ptr [rcx + 0x14]"
+        }
+      },
+      {
+        "old_address": "0x145ebf0e6",
+        "current": {
+          "address": "0x145ec6b96",
+          "bytes_hex": "448b4118",
+          "mnemonic": "mov",
+          "operands": "r8d, dword ptr [rcx + 0x18]"
+        }
+      },
+      {
+        "old_address": "0x145ebf0ea",
+        "current": {
+          "address": "0x145ec6b9a",
+          "bytes_hex": "448b4934",
+          "mnemonic": "mov",
+          "operands": "r9d, dword ptr [rcx + 0x34]"
+        }
+      },
+      {
+        "old_address": "0x145ebf0ee",
+        "current": {
+          "address": "0x145ec6b9e",
+          "bytes_hex": "45894c2410",
+          "mnemonic": "mov",
+          "operands": "dword ptr [r12 + 0x10], r9d"
+        }
+      },
+      {
+        "old_address": "0x145ebf880",
+        "current": {
+          "address": "0x145ec7330",
+          "bytes_hex": "4983c240",
+          "mnemonic": "add",
+          "operands": "r10, 0x40"
+        }
+      },
+      {
+        "old_address": "0x145ebf884",
+        "current": {
+          "address": "0x145ec7334",
+          "bytes_hex": "4c39d2",
+          "mnemonic": "cmp",
+          "operands": "rdx, r10"
+        }
+      },
+      {
+        "old_address": "0x145ebf887",
+        "current": {
+          "address": "0x145ec7337",
+          "bytes_hex": "0f84ad060000",
+          "mnemonic": "je",
+          "operands": "0x145ec79ea"
+        }
+      },
+      {
+        "old_address": "0x145ebf88d",
+        "current": {
+          "address": "0x145ec733d",
+          "bytes_hex": "43803c112a",
+          "mnemonic": "cmp",
+          "operands": "byte ptr [r9 + r10], 0x2a"
+        }
+      },
+      {
+        "old_address": "0x145ebf892",
+        "current": {
+          "address": "0x145ec7342",
+          "bytes_hex": "75ec",
+          "mnemonic": "jne",
+          "operands": "0x145ec7330"
+        }
+      },
+      {
+        "old_address": "0x145ebf894",
+        "current": {
+          "address": "0x145ec7344",
+          "bytes_hex": "43807c11020a",
+          "mnemonic": "cmp",
+          "operands": "byte ptr [r9 + r10 + 2], 0xa"
+        }
+      },
+      {
+        "old_address": "0x145ebf89a",
+        "current": {
+          "address": "0x145ec734a",
+          "bytes_hex": "75e4",
+          "mnemonic": "jne",
+          "operands": "0x145ec7330"
+        }
+      },
+      {
+        "old_address": "0x145ebf89c",
+        "current": {
+          "address": "0x145ec734c",
+          "bytes_hex": "430fb6541101",
+          "mnemonic": "movzx",
+          "operands": "edx, byte ptr [r9 + r10 + 1]"
+        }
+      },
+      {
+        "old_address": "0x145ebf8a2",
+        "current": {
+          "address": "0x145ec7352",
+          "bytes_hex": "4983f80b",
+          "mnemonic": "cmp",
+          "operands": "r8, 0xb"
+        }
+      },
+      {
+        "old_address": "0x145ebf9f3",
+        "current": {
+          "address": "0x145ec74a3",
+          "bytes_hex": "4c31c9",
+          "mnemonic": "xor",
+          "operands": "rcx, r9"
+        }
+      },
+      {
+        "old_address": "0x145ebf9f6",
+        "current": {
+          "address": "0x145ec74a6",
+          "bytes_hex": "4c09c1",
+          "mnemonic": "or",
+          "operands": "rcx, r8"
+        }
+      },
+      {
+        "old_address": "0x145ebf9f9",
+        "current": {
+          "address": "0x145ec74a9",
+          "bytes_hex": "0f853b050000",
+          "mnemonic": "jne",
+          "operands": "0x145ec79ea"
+        }
+      },
+      {
+        "old_address": "0x145ebf9ff",
+        "current": {
+          "address": "0x145ec74af",
+          "bytes_hex": "f30f108e3c010000",
+          "mnemonic": "movss",
+          "operands": "xmm1, dword ptr [rsi + 0x13c]"
+        }
+      },
+      {
+        "old_address": "0x145ebfa07",
+        "current": {
+          "address": "0x145ec74b7",
+          "bytes_hex": "f30f109e880e0000",
+          "mnemonic": "movss",
+          "operands": "xmm3, dword ptr [rsi + 0xe88]"
+        }
+      },
+      {
+        "old_address": "0x145ebfa0f",
+        "current": {
+          "address": "0x145ec74bf",
+          "bytes_hex": "0f2ecb",
+          "mnemonic": "ucomiss",
+          "operands": "xmm1, xmm3"
+        }
+      },
+      {
+        "old_address": "0x145ebfa12",
+        "current": {
+          "address": "0x145ec74c2",
+          "bytes_hex": "0f8622050000",
+          "mnemonic": "jbe",
+          "operands": "0x145ec79ea"
+        }
+      },
+      {
+        "old_address": "0x145ebfa18",
+        "current": {
+          "address": "0x145ec74c8",
+          "bytes_hex": "0fb6ca",
+          "mnemonic": "movzx",
+          "operands": "ecx, dl"
+        }
+      },
+      {
+        "old_address": "0x145ebfa1b",
+        "current": {
+          "address": "0x145ec74cb",
+          "bytes_hex": "0f57d2",
+          "mnemonic": "xorps",
+          "operands": "xmm2, xmm2"
+        }
+      },
+      {
+        "old_address": "0x145ebfa1e",
+        "current": {
+          "address": "0x145ec74ce",
+          "bytes_hex": "f30f2ad1",
+          "mnemonic": "cvtsi2ss",
+          "operands": "xmm2, ecx"
+        }
+      },
+      {
+        "old_address": "0x145ebfa22",
+        "current": {
+          "address": "0x145ec74d2",
+          "bytes_hex": "f30f591586496100",
+          "mnemonic": "mulss",
+          "operands": "xmm2, dword ptr [rip + 0x614986]"
+        }
+      },
+      {
+        "old_address": "0x145ebfa2a",
+        "current": {
+          "address": "0x145ec74da",
+          "bytes_hex": "f30f5e155e496100",
+          "mnemonic": "divss",
+          "operands": "xmm2, dword ptr [rip + 0x61495e]"
+        }
+      }
+    ],
+    "0x145e4bdb0": [
+      {
+        "old_address": "0x145e4bdb0",
+        "current": {
+          "address": "0x145e53aa0",
+          "bytes_hex": "4883ec28",
+          "mnemonic": "sub",
+          "operands": "rsp, 0x28"
+        }
+      },
+      {
+        "old_address": "0x145e4bdb4",
+        "current": {
+          "address": "0x145e53aa4",
+          "bytes_hex": "83b9600f000003",
+          "mnemonic": "cmp",
+          "operands": "dword ptr [rcx + 0xf60], 3"
+        }
+      },
+      {
+        "old_address": "0x145e4bdbb",
+        "current": {
+          "address": "0x145e53aab",
+          "bytes_hex": "0f857e000000",
+          "mnemonic": "jne",
+          "operands": "0x145e53b2f"
+        }
+      },
+      {
+        "old_address": "0x145e4bdc1",
+        "current": {
+          "address": "0x145e53ab1",
+          "bytes_hex": "488b81a00f0000",
+          "mnemonic": "mov",
+          "operands": "rax, qword ptr [rcx + 0xfa0]"
+        }
+      },
+      {
+        "old_address": "0x145e4bdc8",
+        "current": {
+          "address": "0x145e53ab8",
+          "bytes_hex": "4839c2",
+          "mnemonic": "cmp",
+          "operands": "rdx, rax"
+        }
+      },
+      {
+        "old_address": "0x145e4bdcb",
+        "current": {
+          "address": "0x145e53abb",
+          "bytes_hex": "7377",
+          "mnemonic": "jae",
+          "operands": "0x145e53b34"
+        }
+      },
+      {
+        "old_address": "0x145e4bdcd",
+        "current": {
+          "address": "0x145e53abd",
+          "bytes_hex": "4c8b89980f0000",
+          "mnemonic": "mov",
+          "operands": "r9, qword ptr [rcx + 0xf98]"
+        }
+      },
+      {
+        "old_address": "0x145e4bdd4",
+        "current": {
+          "address": "0x145e53ac4",
+          "bytes_hex": "4869d258080000",
+          "mnemonic": "imul",
+          "operands": "rdx, rdx, 0x858"
+        }
+      },
+      {
+        "old_address": "0x145e4bddb",
+        "current": {
+          "address": "0x145e53acb",
+          "bytes_hex": "4983bc1190030000ff",
+          "mnemonic": "cmp",
+          "operands": "qword ptr [r9 + rdx + 0x390], -1"
+        }
+      },
+      {
+        "old_address": "0x145e4bde4",
+        "current": {
+          "address": "0x145e53ad4",
+          "bytes_hex": "7459",
+          "mnemonic": "je",
+          "operands": "0x145e53b2f"
+        }
+      },
+      {
+        "old_address": "0x145e4bde6",
+        "current": {
+          "address": "0x145e53ad6",
+          "bytes_hex": "4883b9e00f0000ff",
+          "mnemonic": "cmp",
+          "operands": "qword ptr [rcx + 0xfe0], -1"
+        }
+      },
+      {
+        "old_address": "0x145e4bdee",
+        "current": {
+          "address": "0x145e53ade",
+          "bytes_hex": "744f",
+          "mnemonic": "je",
+          "operands": "0x145e53b2f"
+        }
+      },
+      {
+        "old_address": "0x145e4bdf0",
+        "current": {
+          "address": "0x145e53ae0",
+          "bytes_hex": "488b81f00f0000",
+          "mnemonic": "mov",
+          "operands": "rax, qword ptr [rcx + 0xff0]"
+        }
+      },
+      {
+        "old_address": "0x145e4bdf7",
+        "current": {
+          "address": "0x145e53ae7",
+          "bytes_hex": "4885c0",
+          "mnemonic": "test",
+          "operands": "rax, rax"
+        }
+      },
+      {
+        "old_address": "0x145e4bdfa",
+        "current": {
+          "address": "0x145e53aea",
+          "bytes_hex": "7443",
+          "mnemonic": "je",
+          "operands": "0x145e53b2f"
+        }
+      },
+      {
+        "old_address": "0x145e4bdfc",
+        "current": {
+          "address": "0x145e53aec",
+          "bytes_hex": "4901d1",
+          "mnemonic": "add",
+          "operands": "r9, rdx"
+        }
+      },
+      {
+        "old_address": "0x145e4bdff",
+        "current": {
+          "address": "0x145e53aef",
+          "bytes_hex": "4d8b8960050000",
+          "mnemonic": "mov",
+          "operands": "r9, qword ptr [r9 + 0x560]"
+        }
+      },
+      {
+        "old_address": "0x145e4be06",
+        "current": {
+          "address": "0x145e53af6",
+          "bytes_hex": "488b89e80f0000",
+          "mnemonic": "mov",
+          "operands": "rcx, qword ptr [rcx + 0xfe8]"
+        }
+      },
+      {
+        "old_address": "0x145e4be0d",
+        "current": {
+          "address": "0x145e53afd",
+          "bytes_hex": "48c1e004",
+          "mnemonic": "shl",
+          "operands": "rax, 4"
+        }
+      },
+      {
+        "old_address": "0x145e4be11",
+        "current": {
+          "address": "0x145e53b01",
+          "bytes_hex": "31d2",
+          "mnemonic": "xor",
+          "operands": "edx, edx"
+        }
+      },
+      {
+        "old_address": "0x145e4be13",
+        "current": {
+          "address": "0x145e53b03",
+          "bytes_hex": "eb14",
+          "mnemonic": "jmp",
+          "operands": "0x145e53b19"
+        }
+      },
+      {
+        "old_address": "0x145e4be15",
+        "current": {
+          "address": "0x145e53b05",
+          "bytes_hex": "66662e0f1f840000000000",
+          "mnemonic": "nop",
+          "operands": "word ptr cs:[rax + rax]"
+        }
+      },
+      {
+        "old_address": "0x145e4be20",
+        "current": {
+          "address": "0x145e53b10",
+          "bytes_hex": "4883c210",
+          "mnemonic": "add",
+          "operands": "rdx, 0x10"
+        }
+      },
+      {
+        "old_address": "0x145e4be24",
+        "current": {
+          "address": "0x145e53b14",
+          "bytes_hex": "4839d0",
+          "mnemonic": "cmp",
+          "operands": "rax, rdx"
+        }
+      },
+      {
+        "old_address": "0x145e4be27",
+        "current": {
+          "address": "0x145e53b17",
+          "bytes_hex": "7416",
+          "mnemonic": "je",
+          "operands": "0x145e53b2f"
+        }
+      },
+      {
+        "old_address": "0x145e4be29",
+        "current": {
+          "address": "0x145e53b19",
+          "bytes_hex": "4c390c11",
+          "mnemonic": "cmp",
+          "operands": "qword ptr [rcx + rdx], r9"
+        }
+      },
+      {
+        "old_address": "0x145e4be2d",
+        "current": {
+          "address": "0x145e53b1d",
+          "bytes_hex": "75f1",
+          "mnemonic": "jne",
+          "operands": "0x145e53b10"
+        }
+      },
+      {
+        "old_address": "0x145e4be2f",
+        "current": {
+          "address": "0x145e53b1f",
+          "bytes_hex": "807c110800",
+          "mnemonic": "cmp",
+          "operands": "byte ptr [rcx + rdx + 8], 0"
+        }
+      },
+      {
+        "old_address": "0x145e4be34",
+        "current": {
+          "address": "0x145e53b24",
+          "bytes_hex": "75ea",
+          "mnemonic": "jne",
+          "operands": "0x145e53b10"
+        }
+      },
+      {
+        "old_address": "0x145e4be36",
+        "current": {
+          "address": "0x145e53b26",
+          "bytes_hex": "b002",
+          "mnemonic": "mov",
+          "operands": "al, 2"
+        }
+      },
+      {
+        "old_address": "0x145e4be38",
+        "current": {
+          "address": "0x145e53b28",
+          "bytes_hex": "4428c0",
+          "mnemonic": "sub",
+          "operands": "al, r8b"
+        }
+      },
+      {
+        "old_address": "0x145e4be3b",
+        "current": {
+          "address": "0x145e53b2b",
+          "bytes_hex": "88441108",
+          "mnemonic": "mov",
+          "operands": "byte ptr [rcx + rdx + 8], al"
+        }
+      },
+      {
+        "old_address": "0x145e4be3f",
+        "current": {
+          "address": "0x145e53b2f",
+          "bytes_hex": "4883c428",
+          "mnemonic": "add",
+          "operands": "rsp, 0x28"
+        }
+      },
+      {
+        "old_address": "0x145e4be43",
+        "current": {
+          "address": "0x145e53b33",
+          "bytes_hex": "c3",
+          "mnemonic": "ret",
+          "operands": ""
+        }
+      },
+      {
+        "old_address": "0x145e4be44",
+        "current": {
+          "address": "0x145e53b34",
+          "bytes_hex": "4c8d053df68401",
+          "mnemonic": "lea",
+          "operands": "r8, [rip + 0x184f63d]"
+        }
+      },
+      {
+        "old_address": "0x145e4be4b",
+        "current": {
+          "address": "0x145e53b3b",
+          "bytes_hex": "4889d1",
+          "mnemonic": "mov",
+          "operands": "rcx, rdx"
+        }
+      },
+      {
+        "old_address": "0x145e4be4e",
+        "current": {
+          "address": "0x145e53b3e",
+          "bytes_hex": "4889c2",
+          "mnemonic": "mov",
+          "operands": "rdx, rax"
+        }
+      },
+      {
+        "old_address": "0x145e4be51",
+        "current": {
+          "address": "0x145e53b41",
+          "bytes_hex": "e87d086800",
+          "mnemonic": "call",
+          "operands": "0x1464d43c3"
+        }
+      },
+      {
+        "old_address": "0x145e4be56",
+        "current": {
+          "address": "0x145e53b46",
+          "bytes_hex": "0f0b",
+          "mnemonic": "ud2",
+          "operands": ""
+        }
+      }
+    ]
+  },
+  "registered_local_contracts": [
+    {
+      "id": "local-clock-binding-registration",
+      "system_id": "custom-app-screens-localclock",
+      "finding_ids": [
+        302
+      ],
+      "frozen_registered_scope": "Exact AZS_NativeLocalTime descriptor-name/length/callback construction at0x1402fe070 only; callback time acquisition/format/schema, VM lifetime and widget resources remain open.",
+      "current_status": "revalidated_exact_original_local_scope",
+      "verified": "Exact current AZS_NativeLocalTime/length 19/callback construction at the independently diagnostic-linked current owner.",
+      "missing_proof_within_registered_scope": [],
+      "outside_registered_scope": [
+        "New callee 0x140118880 and the AL>=2 branch away from ordinary registration precede the wrapper; their meaning is pending.",
+        "New registration wrapper 0x14016c980 and changed descriptor/context argument order need a bounded contract.",
+        "Device-time provider/locale/schema/VM lifetime remains outside the original registered scope."
+      ],
+      "source_assignment": "not_established",
+      "runtime_validation": "not_run",
+      "parity": "unverified"
+    },
+    {
+      "id": "recap-payload-key-type-generation-consumer-boundary",
+      "system_id": "custom-app-screens-recap",
+      "finding_ids": [
+        300
+      ],
+      "frozen_registered_scope": "Exact recap/killer nested-payload admission, generation/open-state invalidation and named renderer-field consumer scopes at0x140178750/0x140161d90; capture, grouping, recipient delivery, helpers/numeric edges and input lifecycle remain open.",
+      "current_status": "revalidated_exact_original_local_scope",
+      "verified": "Both owners have unique relocation-normalized complete instruction candidates and equal unwind extents; secs/absorbed/hits/by/avoidable/recap/killer and headings are read at actual current targets; object tag 5 and state +0xe4/+0xa0 operations and direct consumer edges are unchanged locally.",
+      "missing_proof_within_registered_scope": [],
+      "outside_registered_scope": [
+        "Relocated value-lookup and row/terminal consumer helpers have actual new call targets but no independent callee-semantic correspondence in this precheck.",
+        "The normalized whole renderer references formatting/layout/numeric data beyond the specifically verified keys; that broader dependency closure is not promoted.",
+        "Capture/window/grouping/recipient production and runtime/parity were already outside the original bounded scope."
+      ],
+      "source_assignment": "not_established",
+      "runtime_validation": "not_run",
+      "parity": "unverified"
+    },
+    {
+      "id": "enhancement-timed-rockbiter-stormstrike-cooldown-consumer",
+      "system_id": "custom-game-game-enhancement",
+      "finding_ids": [
+        305
+      ],
+      "frozen_registered_scope": "Only exact rockbiter/stormstrike raw-tag42/subtype10 timed cooldown consumer regions within mixed0x145ebdd50; descriptor/expiry producer, source mapping, proc graph and surrounding generic body are excluded.",
+      "current_status": "revalidated_exact_original_local_scope",
+      "verified": "Unique complete normalized owner with equal unwind extent; exact inline Rockbiter/Stormstrike keys, raw effect 42/subtype 10, rank-byte field, +0x13c/+0xe88 time fields and arithmetic instructions retained; all 15 references to required 1/6/100 f32 values independently read and verified.",
+      "missing_proof_within_registered_scope": [],
+      "outside_registered_scope": [
+        "Flurry descriptor/subtype identity, expiry producer, Windfury/repeat dispatch and broader external callees remain outside this local consumer scope."
+      ],
+      "source_assignment": "not_established",
+      "runtime_validation": "not_run",
+      "parity": "unverified"
+    },
+    {
+      "id": "server-ready-check-first-answer-admission-mutation",
+      "system_id": "custom-game-server-party-readycheck",
+      "finding_ids": [
+        306
+      ],
+      "frozen_registered_scope": "Exact phase3/member-index/identity/pending-byte first-answer mutation at0x145e4bdb0, including2-r8b; caller bool/enum meanings, response creation, routing, deadline/cancel and run-start remain open.",
+      "current_status": "revalidated_exact_original_local_scope",
+      "verified": "Unique complete 168-byte normalized owner and equal unwind extent; phase 3, index bound, member stride0x858, identity +0x560, 16-byte rows, unanswered byte 0 and 2-r8b mutation are unchanged instructions; admitted path is local and calls no external helper.",
+      "missing_proof_within_registered_scope": [],
+      "outside_registered_scope": [
+        "Generic invalid-index panic interface remains stopped.",
+        "Caller boolean/enum semantics, request routing, membership production, start/cancel/timeout and all-ready admission remain outside the local mutation scope."
+      ],
+      "source_assignment": "not_established",
+      "runtime_validation": "not_run",
+      "parity": "unverified"
+    }
+  ],
+  "source_first_VM_boundary": {
+    "source_receipts": [
+      {
+        "path": "crates/benilla-ui/src/script/mod.rs",
+        "sha256": "4e9bd0361d7909a5bdb44c22b914b5a4a5e1de7b3de6caea71e2ebdf76664c67"
+      },
+      {
+        "path": "crates/benilla-app/src/local_client/extension.rs",
+        "sha256": "d73e5b16338f92cf14100c56c20e7affc7f6febb116c86b0aad89ccf1759efee"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs",
+        "sha256": "17c20a02756d09f6f541042612a419e0f076691742d92abcf77ec75c7bd29fbd"
+      }
+    ],
+    "interfaces": [
+      "UiScript::{new,new_glue,lua,vm_kind,session}",
+      "LocalClientExtension::seed and existing FrameXML/prelude extension"
+    ],
+    "conclusion": "Available source supplies the VM/embedding seam. Neither new native callee is identified with a particular source method. Generic internals stop at the AS descriptor boundary; no focus/Wine/IME edge is established."
+  },
+  "validation": {
+    "native_queries_run": 0,
+    "application_compilation": "not_run",
+    "game_client_network_server": "not_run",
+    "source_assignment": "not_established",
+    "parity": "unverified"
+  },
+  "limits": [
+    "All four original registered scopes and exclusions are preserved exactly.",
+    "Whole-owner correspondence and local branch geometry are structural facts, not whole-function semantic equivalence or source assignment.",
+    "Current keys/required coefficients are independently read at decoded addresses. Excluded helpers/numeric edges, producers, lifecycle and broader consumer dependencies remain open.",
+    "Clock construction precedes the separate new predicate and wrapper; their meanings are not assigned to input focus, Wine or IME."
+  ]
+}
