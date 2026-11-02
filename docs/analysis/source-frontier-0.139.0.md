@@ -35,7 +35,7 @@ Each module has its exact `diagnostics[path=…]` selector, full declared-owner 
 | `lua_function_declaration` | 68 | 68 |
 | **Total** | **293** | **684** |
 
-All 684 occurrences are assigned exactly once to the groups below, using exact `Q41-I01:<category>:<ordinal>` inventory selectors. The hash-bound inventory retains the literal, original bytes/range and address; the curated review does not duplicate that bulk inventory. Repeated literal occurrences are not independent behaviors. Regex candidates can join packed adjacent names: `AZS_SKIP*`, `AZS_OPENI` and long namespace strings are not asserted API/type identities.
+All 684 occurrences are assigned exactly once to the groups below, using exact `Q41-I01:<category>:<ordinal>` inventory selectors. The hash-bound inventory retains the literal, original bytes/range and address; the curated review does not duplicate that bulk inventory. Repeated literal occurrences are not independent behaviors. Regex candidates can join packed adjacent names or instruction bytes: `AZS_SKIP*`, `AZS_OPENI` and long namespace strings are not asserted API/type identities. The bounded stored-level comparison below resolves this one `AZS_OPENI` occurrence.
 
 | Reviewed source boundary | Occurrences | Source/recovery owner |
 | --- | ---: | --- |
@@ -61,6 +61,14 @@ All 684 occurrences are assigned exactly once to the groups below, using exact `
 
 The machine groups contain the actual inspected source files, precise assessment, complete selector membership and next static action. Independent AS leads use their feature owners; generic renderer/codec/compiler/OS/context uncertainty remains in the exact residual partition and is not relabeled as a gameplay defect. Source names and inspected source roles do not prove whole-function native exclusions.
 
+## Bounded stored-level binding comparison
+
+`Q41-I01:game_binding_identifier:3` at file `0x1f730f` is executable code, not a renamed binding. The hash-bound current range `[0x1f730d,0x1f7367)` (preferred PE VAs `[0x1401f7f0d,0x1401f7f67)`) independently decodes with Capstone 5.0.7 as 21 instructions over 90 bytes. Its exact bytes, range hash, decoder binding and canonical instructions are retained in `bounded_native_reviews[id=stored-level-binding-literal]` in the machine review.
+
+The first `movabs` loads `AZS_OPEN`; the next loads `ENLEVELS`. The apparent trailing `I` in the regex candidate is byte `0x49`, the next instruction’s REX prefix. The later predicate checks length 14 and compares the first 8 bytes and bytes+6 against those two constants, combining mismatch bits. This proves the exact `AZS_OPENLEVELS` string comparison and matches the existing `native_bindings.rs::COMMAND` literal. It does not establish complete binding dispatch, VM publication, saved/default/rebind behavior or the downstream consumer.
+
+Keep **#21**’s existing implementation and verification history; this regex hit establishes no new source defect and does not by itself reopen that source repair. Any independent current-target dispatch/consumer applicability remains separately pending under its existing owner. No module contract or whole-function source correspondence is registered from this bounded predicate.
+
 ## AS interfaces moved into engine namespaces
 
 `benilla_app::host_controls` adds concrete AS-facing dependencies: `combat_text` belongs to **#307**, `local_clock` to **#302**, `player_position` to **#137**, and the packed composition includes `over_screens` under **#11**. The existing reconstructed client supplies `LocalClientExtension`, the stock combat-text and camera/UI passes, player control, and the on-top adapter. Those are reuse boundaries, not proof that the newer compiled interfaces already exist or match. Recover the specific registration, producer/state, schedule and consumer contract, then stop at the established generic engine seam.
@@ -81,6 +89,6 @@ The [clock proposal](../addon-api/local-clock-proposal-supplied.md) and addon re
 
 ## Limits and next static frontier
 
-This completes the added-candidate source-first review, not all six global semantic discovery stages. No native decompilation or new bounded semantic contract was produced by this review. The [current native census](native-census-0.139.0.md), [AS graph](coverage/as-discovery.json), [CURRENT-STATE](../CURRENT-STATE.md) and exact unknown queue own the broader frontier. Follow each numbered feature’s pending registration/dispatch/state/data/consumer questions using these selectors and retained recovery.
+This completes the added-candidate source-first review, not all six global semantic discovery stages. No native decompilation or registered module contract was produced by this review. The one bounded instruction comparison above establishes only its stated string predicate. The [current native census](native-census-0.139.0.md), [AS graph](coverage/as-discovery.json), [CURRENT-STATE](../CURRENT-STATE.md) and exact unknown queue own the broader frontier. Follow each numbered feature’s pending registration/dispatch/state/data/consumer questions using these selectors and retained recovery.
 
 Prior semantic knowledge, source repairs and stable issue identities remain retained with their actual target provenance. Pending 0.139 correspondence does not erase them. Compilation, compiling tests, client/game/network/server execution and controlled original/rebuilt comparisons were not performed; parity is unverified.

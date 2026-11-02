@@ -219,7 +219,8 @@
       }
     },
     "semantic_decompilation_count": 0,
-    "established_new_module_source_assignments": 0
+    "established_new_module_source_assignments": 0,
+    "bounded_instruction_reviews": 1
   },
   "new_AS_modules": [
     {
@@ -1579,7 +1580,7 @@
       "reviewed_occurrence_count": 6
     },
     "stored-level-binding": {
-      "classification": "AS_interface_recovery_candidate",
+      "classification": "bounded_current_literal_comparison",
       "gap_ids": [
         21
       ],
@@ -1587,8 +1588,8 @@
         "crates/azeroth-survivors-re/src/native_bindings.rs",
         "crates/azeroth-survivors-re/src/gameplay/stored_hud.rs"
       ],
-      "assessment": "AZS_OPENI is a changed packed regex boundary candidate. Retained source already supplies the stored-level binding and consumer; candidate-set removal of AZS_OPENLEVELS does not prove its removal.",
-      "next_static_step": "Check exact current binding string/slice and dispatch only where changed; preserve the retained stored-level contract and do not invent a new binding from the regex suffix.",
+      "assessment": "The regex candidate AZS_OPENI crosses the eight-byte immediate AZS_OPEN and the following REX byte49. The sequence checks string length14, compares its first8 bytes against AZS_OPEN and bytes+6 against ENLEVELS, then combines mismatches. This bounds an exact AZS_OPENLEVELS literal comparison, not a renamed/new binding.",
+      "next_static_step": "Retain the existing stored-level command/source. This packed regex hit needs no new source repair. Map any independently pending current-target dispatch/VM/default/rebind/consumer applicability under the existing binding/module findings; do not promote this bounded comparison to a full binding contract.",
       "selectors": [
         "Q41-I01:game_binding_identifier:3"
       ],
@@ -1917,6 +1918,162 @@
     "native_decompilation": "Not performed by this source-first review; main full-image census is separate.",
     "application_compilation": "not_run",
     "game_client_network_server_execution": "not_run",
-    "parity": "unverified"
-  }
+    "parity": "unverified",
+    "bounded_instruction_review": "One90-byte current constant-comparison range independently decoded as21 instructions with Capstone5.0.7; no native decompilation or full function/call correspondence."
+  },
+  "bounded_native_reviews": [
+    {
+      "id": "stored-level-binding-literal",
+      "gap_ids": [
+        21
+      ],
+      "selector": "Q41-I01:game_binding_identifier:3",
+      "target_sha256": "0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274",
+      "range": {
+        "file_offset": "0x1f730d",
+        "virtual_address": "0x1401f7f0d",
+        "byte_count": 90,
+        "sha256": "91d7ac2dcaf6e7b90b7c1431822a05900b94c51b58e8c9a6429e3f62a9622f5a"
+      },
+      "decoder": {
+        "name": "Capstone",
+        "version": "5.0.7",
+        "python_binding_path": "runtime/tests/query-python-deps/capstone/__init__.py",
+        "python_binding_sha256": "6f8a27fe069aa89a46974e189b5365d56eb5e02c2fd581d2fbfad7fbba51549f"
+      },
+      "instructions": [
+        {
+          "address": "0x1401f7f0d",
+          "bytes": "48ba415a535f4f50454e",
+          "mnemonic": "movabs",
+          "operands": "rdx, 0x4e45504f5f535a41"
+        },
+        {
+          "address": "0x1401f7f17",
+          "bytes": "49b8454e4c4556454c53",
+          "mnemonic": "movabs",
+          "operands": "r8, 0x534c4556454c4e45"
+        },
+        {
+          "address": "0x1401f7f21",
+          "bytes": "eb21",
+          "mnemonic": "jmp",
+          "operands": "0x1401f7f44"
+        },
+        {
+          "address": "0x1401f7f23",
+          "bytes": "666666662e0f1f840000000000",
+          "mnemonic": "nop",
+          "operands": "word ptr cs:[rax + rax]"
+        },
+        {
+          "address": "0x1401f7f30",
+          "bytes": "4c8d48f8",
+          "mnemonic": "lea",
+          "operands": "r9, [rax - 8]"
+        },
+        {
+          "address": "0x1401f7f34",
+          "bytes": "49ffc4",
+          "mnemonic": "inc",
+          "operands": "r12"
+        },
+        {
+          "address": "0x1401f7f37",
+          "bytes": "4883c030",
+          "mnemonic": "add",
+          "operands": "rax, 0x30"
+        },
+        {
+          "address": "0x1401f7f3b",
+          "bytes": "4983c130",
+          "mnemonic": "add",
+          "operands": "r9, 0x30"
+        },
+        {
+          "address": "0x1401f7f3f",
+          "bytes": "4939c9",
+          "mnemonic": "cmp",
+          "operands": "r9, rcx"
+        },
+        {
+          "address": "0x1401f7f42",
+          "bytes": "7428",
+          "mnemonic": "je",
+          "operands": "0x1401f7f6c"
+        },
+        {
+          "address": "0x1401f7f44",
+          "bytes": "488378f8ff",
+          "mnemonic": "cmp",
+          "operands": "qword ptr [rax - 8], -1"
+        },
+        {
+          "address": "0x1401f7f49",
+          "bytes": "74e5",
+          "mnemonic": "je",
+          "operands": "0x1401f7f30"
+        },
+        {
+          "address": "0x1401f7f4b",
+          "bytes": "488378080e",
+          "mnemonic": "cmp",
+          "operands": "qword ptr [rax + 8], 0xe"
+        },
+        {
+          "address": "0x1401f7f50",
+          "bytes": "75de",
+          "mnemonic": "jne",
+          "operands": "0x1401f7f30"
+        },
+        {
+          "address": "0x1401f7f52",
+          "bytes": "4c8b08",
+          "mnemonic": "mov",
+          "operands": "r9, qword ptr [rax]"
+        },
+        {
+          "address": "0x1401f7f55",
+          "bytes": "4d8b11",
+          "mnemonic": "mov",
+          "operands": "r10, qword ptr [r9]"
+        },
+        {
+          "address": "0x1401f7f58",
+          "bytes": "4931d2",
+          "mnemonic": "xor",
+          "operands": "r10, rdx"
+        },
+        {
+          "address": "0x1401f7f5b",
+          "bytes": "4d8b4906",
+          "mnemonic": "mov",
+          "operands": "r9, qword ptr [r9 + 6]"
+        },
+        {
+          "address": "0x1401f7f5f",
+          "bytes": "4d31c1",
+          "mnemonic": "xor",
+          "operands": "r9, r8"
+        },
+        {
+          "address": "0x1401f7f62",
+          "bytes": "4d09d1",
+          "mnemonic": "or",
+          "operands": "r9, r10"
+        },
+        {
+          "address": "0x1401f7f65",
+          "bytes": "75c9",
+          "mnemonic": "jne",
+          "operands": "0x1401f7f30"
+        }
+      ],
+      "conclusion": "The regex candidate AZS_OPENI crosses the eight-byte immediate AZS_OPEN and the following REX byte49. The sequence checks string length14, compares its first8 bytes against AZS_OPEN and bytes+6 against ENLEVELS, then combines mismatches. This bounds an exact AZS_OPENLEVELS literal comparison, not a renamed/new binding.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/native_bindings.rs"
+      ],
+      "limits": "Current instruction bytes and this constant-comparison predicate only. No decompilation, complete function/dispatch ownership, VM command publication, default/rebind/consumer correspondence, registered module contract, execution or parity is established."
+    }
+  ]
 }
