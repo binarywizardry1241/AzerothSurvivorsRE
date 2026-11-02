@@ -1,8 +1,8 @@
 # Original game changelog
 
-This is the single readable changelog for the original game, covering the supplied releases from 0.19.0 through 0.139.0. Installed-target identity and audit status are recorded in the linked current-state register. It describes original-game changes, not implemented reconstruction features or verified binary/runtime parity. See [current state and gaps](CURRENT-STATE.md) for the repository's target and implementation status.
+This is the single readable changelog for the original game, covering the supplied releases from 0.19.0 through 0.139.1. Installed-target identity and audit status are recorded in the linked current-state register. It describes original-game changes, not implemented reconstruction features or verified binary/runtime parity. See [current state and gaps](CURRENT-STATE.md) for the repository's target and implementation status.
 
-The entries through 0.92.0 come from the unchanged [historical JSON source archive](../changelog_2026-10-15_1.json) (140 messages, 138 version sections). The entries from 0.93.1 through 0.100.0 were supplied on 2026-10-18; 0.101.0 through 0.105.0 were supplied on 2026-10-20; 0.106.0, 0.107.0 and 0.109.0 were supplied on 2026-10-21; 0.109.1 through 0.112.0 were supplied on 2026-10-22; 0.112.2, 0.112.5 and 0.113.0 through 0.113.2 were supplied on 2026-10-23; 0.113.3 through 0.115.0 were supplied on 2026-10-24; 0.116.0 and 0.117.0 were supplied on 2026-10-25; 0.118.0, 0.119.0, 0.119.1 and 0.120.0 were supplied on 2026-10-26; 0.120.1 through 0.121.0 were supplied on 2026-10-27; 0.122.0 and 0.123.0 were supplied on 2026-10-28; the full 0.124.0 through 0.127.0 notes were supplied on 2026-10-29 (replacing the earlier 0.124.0 addon-only excerpt); 0.128.0 through 0.139.0 (including 0.130.1 and 0.135.1) were supplied on 2026-11-02; no 0.108.0 notes were supplied. Release text and version order are preserved, including supplied release acknowledgements; chat timestamps and unrelated unversioned conversation are omitted. Relative timestamps are not converted into release dates. Versions absent from the supplied sources are not invented. The historical [analysis guide and source index](analysis/changelog-guide.md) retain the older evidence context.
+The entries through 0.92.0 come from the unchanged [historical JSON source archive](../changelog_2026-10-15_1.json) (140 messages, 138 version sections). The entries from 0.93.1 through 0.100.0 were supplied on 2026-10-18; 0.101.0 through 0.105.0 were supplied on 2026-10-20; 0.106.0, 0.107.0 and 0.109.0 were supplied on 2026-10-21; 0.109.1 through 0.112.0 were supplied on 2026-10-22; 0.112.2, 0.112.5 and 0.113.0 through 0.113.2 were supplied on 2026-10-23; 0.113.3 through 0.115.0 were supplied on 2026-10-24; 0.116.0 and 0.117.0 were supplied on 2026-10-25; 0.118.0, 0.119.0, 0.119.1 and 0.120.0 were supplied on 2026-10-26; 0.120.1 through 0.121.0 were supplied on 2026-10-27; 0.122.0 and 0.123.0 were supplied on 2026-10-28; the full 0.124.0 through 0.127.0 notes were supplied on 2026-10-29 (replacing the earlier 0.124.0 addon-only excerpt); 0.128.0 through 0.139.0 (including 0.130.1 and 0.135.1) and 0.139.1 were supplied on 2026-11-02; no 0.108.0 notes were supplied. Release text and version order are preserved, including supplied release acknowledgements; chat timestamps and unrelated unversioned conversation are omitted. Relative timestamps are not converted into release dates. Versions absent from the supplied sources are not invented. The historical [analysis guide and source index](analysis/changelog-guide.md) retain the older evidence context.
 
 ## 0.19.0
 
@@ -2061,3 +2061,19 @@ Engine update: the game now runs on a newer version of the client it is built on
 - For addon authors: combat text events now say which damage meter line each hit counts toward, as meterSource (the line's name) and meterSourceKey (its sourceKey in AZS_GetMeterSnapshot). A Shadow Weaving strike that floats as Shadow Word: Pain says Shadow Weaving, and a pet's or a summon's swing says whose it is.
 
 notes: game can be fucky wucky after engine update i didnt test it fully
+
+
+## 0.139.1
+
+Fixes the old WoW menu opening behind the pause menu, where a click could hit its Exit Game and close the game. Menus and windows now stop your clicks and scrolling from reaching what's behind them. The Windows version no longer crashes after alt-tabbing when run on Linux through Proton or Wine.
+
+- The Windows version run on Linux (Proton, Wine, Steam, Lutris and the like) no longer crashes after alt-tabbing.
+- Escape no longer opens the old WoW game menu behind the pause menu, so clicking Options or the space between the buttons can't press Exit Game.
+- Clicks and the mouse wheel on any menu or window stay on it: nothing behind it gets clicked, and the camera no longer zooms while you scroll over the pause menu.
+- Moving the HUD or the damage meter no longer clicks what's behind them.
+- Enter on the hero picker no longer reaches the character select behind it.
+- Binding a key in the options no longer also runs that key's old action.
+- Gamepad: Back opens the character pane again.
+- Chinese, Japanese and Korean input methods in the downloaded game: finished text reaches the chat box again, and Enter or Space choosing a character no longer also acts on the chat line or your key bindings.
+
+notes: live in 20 minutes
