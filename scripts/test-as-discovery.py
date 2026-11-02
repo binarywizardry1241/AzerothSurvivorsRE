@@ -774,6 +774,36 @@ class ProfileTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Stale input"):
             inputs.stable()
 
+    def test_portable_target_metadata_uses_registered_identity_without_copy(self):
+        (self.root / "docs/analysis/coverage").mkdir(parents=True)
+        current = dict(version="0.139.0", path="installed-game/AzerothSurvivors.exe",
+                       sha256="a" * 64, size_bytes=64)
+        historical = dict(current, version="0.127.0", sha256="b" * 64, size_bytes=32)
+        registry = self.write_json("docs/analysis/coverage/targets.json",
+                                   dict(targets=[historical, current]))
+        inputs = discovery.Inputs(self.root)
+        inputs.references(dict(target=current, predecessor=dict(target=historical),
+                               evidence=self.source))
+        self.assertEqual(inputs.commitments[registry["path"]], registry)
+        self.assertIn("source.rs", inputs.commitments)
+        self.assertFalse((self.root / current["path"]).exists())
+        inputs.stable()
+
+    def test_portable_target_metadata_rejects_unregistered_or_incomplete_identity(self):
+        (self.root / "docs/analysis/coverage").mkdir(parents=True)
+        target = dict(version="0.139.0", path="installed-game/AzerothSurvivors.exe",
+                      sha256="a" * 64, size_bytes=64)
+        self.write_json("docs/analysis/coverage/targets.json", dict(targets=[target]))
+        for changed in (dict(target, sha256="b" * 64), dict(target, size_bytes=32),
+                        dict(target, version="0.127.0"),
+                        {k: v for k, v in target.items() if k != "size_bytes"}):
+            with self.subTest(changed=changed), self.assertRaisesRegex(ValueError, "Unregistered"):
+                discovery.Inputs(self.root).references(dict(target=changed))
+
+    def test_target_named_field_does_not_bypass_ordinary_file_hashes(self):
+        with self.assertRaisesRegex(ValueError, "Stale input"):
+            discovery.Inputs(self.root).references(dict(target=dict(self.source, sha256="0" * 64)))
+
     def test_observed_source_disappearance_cannot_replace_its_hash(self):
         inputs = discovery.Inputs(self.root)
         inputs.observe_source("source.rs")

@@ -126,7 +126,16 @@ class Inputs:
         """Verify declared file commitments, without interpreting native hashes."""
         if isinstance(value, dict):
             if isinstance(value.get("path"), str) and isinstance(value.get("sha256"), str):
-                self.commit(value["path"], value["sha256"])
+                if value["path"] == "installed-game/AzerothSurvivors.exe":
+                    fields = ("version", "path", "sha256", "size_bytes")
+                    registry = self.load("docs/analysis/coverage/targets.json")
+                    if (not all(key in value for key in fields)
+                            or type(value.get("size_bytes")) is not int
+                            or not any(all(row.get(key) == value[key] for key in fields)
+                                       for row in registry["targets"])):
+                        raise ValueError("Unregistered portable target identity")
+                else:
+                    self.commit(value["path"], value["sha256"])
             else:
                 for child in value.values():
                     self.references(child)
