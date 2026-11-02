@@ -1,0 +1,1922 @@
+{
+  "schema_version": 2,
+  "target": {
+    "version": "0.139.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274",
+    "size_bytes": 150595584
+  },
+  "scope": "Complete source-first review of all added candidate occurrences versus0.127.0 and eight new AS diagnostic modules. Grouped selectors reference the exact hash-bound current inventory without duplicating its bulk literals. Native/source semantic correspondence is separately pending.",
+  "inputs": {
+    "current_inventory": {
+      "path": "runtime/coverage/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/inventory.json",
+      "sha256": "28823fd7cccdcef390c798de10e170d2a52c8e8f56b1565626ef6cae457bcc2a",
+      "regenerate": "python3 scripts/inventory-current-target.py --write"
+    },
+    "predecessor_inventory": {
+      "path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/inventory.json",
+      "sha256": "c9cd72f3a0743b4310a511d8ce5ecd413ddbbbf15f6a9e8a9a21459470cb5d02",
+      "regenerate": "python3 scripts/inventory-current-target.py --write"
+    },
+    "diagnostic_inventory": {
+      "path": "runtime/analysis/objects/81/818559f70f29b1819e862adf73285a057aa7f2b771abdead8e06a970c661c2ef",
+      "sha256": "818559f70f29b1819e862adf73285a057aa7f2b771abdead8e06a970c661c2ef",
+      "scope": "Frozen initial current-target diagnostic identities/reference bytes; reviewed system IDs can change in the canonical projection without changing these native leads."
+    },
+    "discovery_delta": {
+      "path": "docs/analysis/evidence/0.139.0/discovery-delta.json",
+      "sha256": "8527fcd6d3404c43615974f264ae35c12921ed2ae3d0456f1372e603bae17c2e"
+    },
+    "benilla_provenance": {
+      "path": "docs/analysis/benilla-vendor.json",
+      "sha256": "fe63e833a2a34af9c426cc3467679bfaed304281c00d9bb2d48461515006f7f8"
+    },
+    "inspected_sources": {
+      "crates/azeroth-survivors-re/src/armory.rs": "f5557f19f1de7b78e7e5fcfd8de446ef66cb5160dcc997fba56da981f84ea03c",
+      "crates/azeroth-survivors-re/src/coop/server_party.rs": "009c67624841ac6f036c7a5eaa139b5f5a5e816f61cdfea69caa291b1a91b66c",
+      "crates/azeroth-survivors-re/src/coop/session.rs": "a4df410ed828d578ab31d26e727aa86000596df5949e98de240f3ed32d63920f",
+      "crates/azeroth-survivors-re/src/coop_profile.rs": "261ad48971ad973a54e0800808c785c20671008e81f4d41c611f2cd4b310a95e",
+      "crates/azeroth-survivors-re/src/coop_runtime.rs": "cd542f26037fae993a9d8302bb9f18b5ebb30730e544b718dfb05886efaa0cce",
+      "crates/azeroth-survivors-re/src/coop_ui.rs": "25ba0960a29aa2ef09d6215237067fda598e5120910e11028096b36382a6c9d5",
+      "crates/azeroth-survivors-re/src/gameplay/addon_meters.rs": "ecd828caac2a595074c514b15c9314244d5f106ea39ee9c36af0f31f6c6eaf8b",
+      "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs": "17c20a02756d09f6f541042612a419e0f076691742d92abcf77ec75c7bd29fbd",
+      "crates/azeroth-survivors-re/src/gameplay/client/addon_feed.rs": "ca66508ca91162fdb1cce4049e73c2fb87f0fcbaf2de8c9eabeb41dd4409c81e",
+      "crates/azeroth-survivors-re/src/gameplay/client/addon_scalars.rs": "fafa4706da43b303cc37773fdfaedcbed75eb89fda57f3aa19932ebccc448c19",
+      "crates/azeroth-survivors-re/src/gameplay/client/events.rs": "6f257addef4ba0a2d6c98c9a08d3bc0de4168e0be5283534d89ef339ad5c11cd",
+      "crates/azeroth-survivors-re/src/gameplay/client/run_stats.rs": "0d5fe8045b161195cfbb5ab22f3a7f93835a4a9a0dfd26f5d714dd3459c7223d",
+      "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs": "500bb58ad5c434015062cf6b622a4717cf374bd391a3b909bcc789fee1ff07bb",
+      "crates/azeroth-survivors-re/src/gameplay/mechanics/attacks.rs": "f0558cdba9f303494659d1247520b530902686c516043a575fe0f5832a87798f",
+      "crates/azeroth-survivors-re/src/gameplay/meter.rs": "6f9571df4db2be54db95a01ad8551369e1ec85fa14b3580889ddeb53ecaa4c05",
+      "crates/azeroth-survivors-re/src/gameplay/native_overlays.rs": "7715c7da7ce4970887c4e6b4aeef1798baf5628d4b4b1269512335225f8caf45",
+      "crates/azeroth-survivors-re/src/gameplay/run_hud/settings.rs": "3357e441be1c0dc3076a77b7a2d4702ebd409e02cb3dd4479e37d473db5a4b09",
+      "crates/azeroth-survivors-re/src/gameplay/stored_hud.rs": "5c5b038808f199645862d9d0e787e443af666931bf2e8c508476b3c29f1b7cbc",
+      "crates/azeroth-survivors-re/src/gameplay/terminal.rs": "1744bc61c04ead90ea80a6ad74804cfb47395fabcc52f73e92dcdf0b196e185b",
+      "crates/azeroth-survivors-re/src/gameplay/terminal_view.rs": "ef9166cb007570dfb4cd7e1bf18ea2fd3cc49ef5706c0230fe665419c0dc475b",
+      "crates/azeroth-survivors-re/src/menu_scene.rs": "6ce7227abdf6ad8c2161116527fe5a46ba6d29df42ccc0f4f63a7629aa236a8f",
+      "crates/azeroth-survivors-re/src/native_bindings.rs": "6106d990e9e69a371e5f007a31417f7d4a0c1a5bdb660b3ceb639b75b77b90ad",
+      "crates/azeroth-survivors-re/src/options.rs": "842b84d68bef6f8d7dfa8f8b725811e8f90d6d247b791f5c15f6a66a6623dc38",
+      "crates/azeroth-survivors-re/src/picker.rs": "f2ac9e92ff01a0912766d62ac5597a8d1ee9fc15609dee9dba860e8f189f2333",
+      "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs": "2ff1e7a127f06bec47319b03fb6cd167a08c59cccdc122fc8b78357cf0975dd2",
+      "crates/azeroth-survivors-re/src/player_abilities/behavior/hit_passives.rs": "a0a64aceffa6bc0c7306f658c971f5b835378ea7d835f536aeca81b4a0fb0212",
+      "crates/azeroth-survivors-re/src/player_abilities/catalog.rs": "bed3b8a73f346f4c08c982d5065ac5c8d9114d914a04e56d1a07a05d20d16362",
+      "crates/azeroth-survivors-re/src/preview.rs": "2ef1aa3c7f39748f16235df7f3ed7c9079b3ebf2bf9b3431e9c61bb122cbf4bc",
+      "crates/azeroth-survivors-re/src/run_meter.rs": "b3f3a91144d546ba04d16b3e2ec5911fab5e411751d5143d0f764d951c796687",
+      "crates/azeroth-survivors-re/src/save/achievements.rs": "de90d7a7ff2c16cfde1685b9dfe06191f334634a796e69f3bd5aa5daf034cc79",
+      "crates/azeroth-survivors-re/src/talents.rs": "b51db12ac83b406a72d935b546fdcd4ea2ec28eb72b08cbac5fb71928d063451",
+      "crates/azeroth-survivors-re/src/update_check.rs": "c09abc18aee1b7d717d8f41080a2f18d6edf8fac21adfd121fb3096d314f543a",
+      "crates/azeroth-survivors-re/src/update_ui.rs": "9a80f64dbd975a574cf954ecc60fe5886f2fe1145d3a6aa8f1a3d1c4bd27ac39",
+      "crates/benilla-app/src/bindings.rs": "b85c5e22b9b982f852d00977e9594f07ab049d09e82015162f2e9225d9265d4d",
+      "crates/benilla-app/src/combat_log/mod.rs": "71eae2e19628c6843b15ca817da0779d29866381d344446dbd975ddf7caa8321",
+      "crates/benilla-app/src/combat_text/mod.rs": "0381d46f36cc3a7f168dd3a419da1a35458c9058ed18f02105e21556d1ba8338",
+      "crates/benilla-app/src/crash.rs": "efe306da4783273af51480958c41bfbbeb2ce68e9ec924957f4c2273e9d5b8ba",
+      "crates/benilla-app/src/entities/skin_composite.rs": "c96a97d4d5a8cce16c2bb2ebd34e159bc09aea14e94855c802bd4ea7dbc3d260",
+      "crates/benilla-app/src/game_plugins.rs": "fd1e3c0da9fe2cdc17447e44494532bf044d0e03f70af806a0e8970284a57731",
+      "crates/benilla-app/src/item_watch.rs": "64a71237aaa6751c00e1e18e0bffaff3f0a2782283d83677515e133ee172f935",
+      "crates/benilla-app/src/items.rs": "4f85f62d06ab5e623b5841aa8a7660c59c95e23336a95a68a869ae6c60a55571",
+      "crates/benilla-app/src/loading_screen.rs": "57dbaddc9f3b91e0d149f638f08d3d3fcef0d84c121ae2eb40a839ee09db71bc",
+      "crates/benilla-app/src/local_client.rs": "77349aa97420295ac8a07c5e2edd36bf3df3ff5efce26b94f1783773a6bd2b40",
+      "crates/benilla-app/src/local_client/extension.rs": "d73e5b16338f92cf14100c56c20e7affc7f6febb116c86b0aad89ccf1759efee",
+      "crates/benilla-app/src/names.rs": "ed7c5f408c34d7d6b60dbe2d6a8fb460305b2ad7ea2a23735573e71e0a44428a",
+      "crates/benilla-app/src/player/controller.rs": "768bffb6e82a3221d95d9d721b8dc4f6a42be72a337608a4f7d9c699854f2ef8",
+      "crates/benilla-app/src/portrait/hero_booth.rs": "d04cc6a4fefca83d5afc13d4948360edde6a0714bc6c933bc2e9fdabaf7f5f72",
+      "crates/benilla-app/src/script_calls.rs": "fb0dd58d14dbac6105d0fcfc24c600dff245b7999a97c24f25960636868159b7",
+      "crates/benilla-app/src/target/mod.rs": "9a212f2ba37511157fa3f31b531f64ee9fa771a9789445a704524e218f511c5c",
+      "crates/benilla-app/src/transport.rs": "9f4a30dc2b2b96d8df473c8cf1eb278bd9dc197ac0de258dc04b76c726366967",
+      "crates/benilla-app/src/ui_action/mod.rs": "39928bb1d0c5df04456eee08394c891688aa71481b5f7f150f0d3250d439fe7b",
+      "crates/benilla-app/src/ui_chat.rs": "afd97eed743d6acec9310554254ba201eb8846fa6a339d0e2fd94357514a11ae",
+      "crates/benilla-app/src/ui_guild/mod.rs": "c10d14a3dbfbd5f01235746be7ea8290e10aff986dad722fdc93570ebb1533b4",
+      "crates/benilla-app/src/ui_items/mod.rs": "db24d794d2f4fc84bceabf1968ea75b643a01632effacd0d45ef4bb5811a28f9",
+      "crates/benilla-app/src/ui_pass.rs": "3ea6f618e67dc3436ecb847d273acb2830921e376bbfaa37a4546514352fee5a",
+      "crates/benilla-app/src/ui_saved.rs": "30f12b692c446dab7d531a06b0718a64f1907ac8b61563f1d6267c475e2ebc0e",
+      "crates/benilla-app/src/ui_script/lifecycle.rs": "7151de08640c19babc2a1b24c3dfbb5153a2ba8a45681d920248529fdc434c38",
+      "crates/benilla-app/src/ui_script/mod.rs": "a8c137e7690cdcded8192309c6145630d4c7be425797b09f002fb7deb41a2836",
+      "crates/benilla-app/src/ui_talent_wipe.rs": "653b627dafdf06167c36831be44e678f5215c4034be7022dd7a5cdf188719646",
+      "crates/benilla-app/src/ui_world_map.rs": "8d66d00697944ee1e712b3ad93b3130276eb87bca36fdd2a388983a522fe3dc7",
+      "crates/benilla-assets/src/lib.rs": "9e2fb16ed222728ad37aca6bb161970eaffd7158faff095873da2c63aa0a85bf",
+      "crates/benilla-assets/src/m2.rs": "31df472bb01cbf59d4c88e3a2b72eb20623374fd20170bb14f8078b80bba98a1",
+      "crates/benilla-assets/src/wmo.rs": "97ea91a6514ca72c7910923f35b9cdd0dc85659269ab7ca348f04181f6d7e976",
+      "crates/benilla-assets/src/world_assets/mod.rs": "60f4d8fb540eda650a9f2dfa843561cfcfcc88e1560d882847e22351975702e7",
+      "crates/benilla-formats/src/chain.rs": "3f44e391645132c4ed97373b4bf4d8251ca170211a01da0725470f4364b518e2",
+      "crates/benilla-formats/src/durability.rs": "80ecf82c63c47c9d0c03e0afb3d5631f17ef946e68b28693d549035aecba9869",
+      "crates/benilla-formats/src/factions.rs": "89a0e299396ce58ee0add34b54d36430d342510b443e39762d714640246d1141",
+      "crates/benilla-formats/src/footsteps.rs": "798d99b9cedd0803e238cfe310e25af6e3086706e404454ced477429dd0f8e60",
+      "crates/benilla-formats/src/languages.rs": "bb1c4b9f1dfc1bfd6644876565ea10e620a2d2d9f80affe43c3c36de51520909",
+      "crates/benilla-formats/src/loading_screen.rs": "c61fbcfbc891e4d4f0ab456639a11ead5fc9af5f27641438b77377b808ec5011",
+      "crates/benilla-formats/src/lock.rs": "8e3b76379d969afabdf9cd3a9c2d0a9f25f71fa2bc6ca44adc6c1d065afea485",
+      "crates/benilla-formats/src/mail_template.rs": "9bf05d093b76391624e7768bbd5f343c0fadea17973cbeea758cc630c91a9026",
+      "crates/benilla-formats/src/packages.rs": "a77f3a6ff29484fcb943e153c9889d8f3c77bd57897583c027596bfcb501bace",
+      "crates/benilla-formats/src/resistances.rs": "a31c63021e1d3a039d4617d50d49e7655481997f3ff6006a47eaf0fd8595037d",
+      "crates/benilla-formats/src/spell_visual/chain_effects.rs": "67d175da6265e0c64f9ea7cba361f73522ff67b7166fc98471cc7b2dfaf20db5",
+      "crates/benilla-formats/src/stationery.rs": "13029d98dc32714c13ca94abfa186603c81ed89b3b3704e75d92057b8bbe6abc",
+      "crates/benilla-lua/src/lib.rs": "62e74f0b70a5850656133cb4079c666157f37762df294de8916c52025e76257f",
+      "crates/benilla-world/src/assets/mod.rs": "6024abdb100bbb03dd432ca4e51917fa1e54a794590be8501281fa5b5c2a19cf",
+      "crates/benilla-world/src/bgwin.rs": "f879354a3e0c599980abb4c4d48237dddc653d81032c383592061650640a8d1f",
+      "crates/benilla-world/src/doodad_anim/mod.rs": "5b6033fe2365c475ae26a8dc66c926377afbcce39bf2e0fd978daa29ef2c2960",
+      "crates/benilla-world/src/entity_shade.rs": "bc842a6d66e00d359a4938d2544c2be3cfe07a5fd0b543d3044773d5267d3e6d",
+      "crates/benilla-world/src/frame_pace.rs": "6761bbeff9eb48a3dce69b1a63362bf446524d018fc3c4ad5280824dddc9a761",
+      "crates/benilla-world/src/interior.rs": "ab6ce72b0eef4def10efa175765399587b116fe2add680877f6a8b7c28164424",
+      "crates/benilla-world/src/lighting/blob.rs": "0f08bf5f46c2f8ff4dc8cb2d2906fd7393318326b978eb3beb8e7be0460170a3",
+      "crates/benilla-world/src/lighting/prop_probes.rs": "3e05ff763c2ef9c055015573039d635757bc4bbaab392074ba7a09a194ad4241",
+      "crates/benilla-world/src/mac_quit.rs": "77bed6db4e39ae1018e7186f83e8dadfa3e6911774fb9f50e4c3a5b50d47a8ce",
+      "crates/benilla-world/src/model_fade.rs": "8c811b5882f3786fed6294d3a05fe83cf8dbbffce0a7efb0ce8f1dd607056d0c",
+      "crates/benilla-world/src/rig_palette.rs": "b67a5bbd25669fca8ee300613317e6de066e367952a407e423603f787298f8ea",
+      "crates/benilla-world/src/sky.rs": "f1839260af23b0519d259641a0202f8a41a76fca282025403520e744ca2dd5ac",
+      "crates/benilla-world/src/skybox.rs": "f93b3738863d82d5b6fb0c8223908fafb6e88aa7c3f91bca556bb2b0f5afa9bf",
+      "crates/benilla-world/src/static_gx/mod.rs": "0ee695cfe408348b7e1d6b4fa6f5cc91b40c2108ab3f69cf101309644bdbf938",
+      "crates/benilla-world/src/sun/mod.rs": "c50452c3594503eafe978bbd5ebdf70dfb62a1fd2bc5e8b34837dd17b237f1b6",
+      "crates/benilla-world/src/terrain_stream.rs": "7408e0af9843378b798f0746e5f04085c84fdbbe2e2b7760911f55153e5b2111",
+      "crates/benilla-world/src/thread_qos.rs": "9601264690d12675c8dbf40dc60c0f6e2dfa5029a323c681be4f30c83a5be219",
+      "crates/benilla-world/src/view.rs": "b0ab43e033501a80c2b2cdb80b0af372fcf1f76da38f83eef515b1c88e68859c",
+      "crates/benilla-world/src/water_fx/mod.rs": "3c79a4c8a0b23b89307f5b5bc2c3b246f02c09a0b0a0feb46ff9cd62341a787d",
+      "crates/benilla-world/src/wmo_portal/mod.rs": "80162a2fe2a5e486358c65432dbe99507fd959c3351dffb348a4cd7fd8da773a",
+      "crates/benilla-world/src/world_plugins.rs": "0b64de4ac490db141354c01d2fc8824c63f52080987dc8e76aee44bb5ec89444"
+    },
+    "supplied_api_reference": {
+      "path": "docs/addon-api/reference-supplied-0.139.0.md",
+      "sha256": "01d6bf3e373d69be368aff69b72a13b3f867f21829ff32ba3592e4ce533be3b7",
+      "authority": "user_supplied_document_not_EXE_behavior_proof"
+    },
+    "supplied_clock_proposal": {
+      "path": "docs/addon-api/local-clock-proposal-supplied.md",
+      "sha256": "ecea02949299ad57f93dfcb1fc20317ff91baf2e62efa638837135eef8183872",
+      "authority": "proposal_not_EXE_behavior_proof"
+    },
+    "embedded_api": {
+      "file_offset": "0x768b608",
+      "virtual_address": "0x14768c808",
+      "byte_count": 22984,
+      "sha256": "eb88eba838da6002f8ec9e7837292cd27081f86d880137a1d6ff8259c2c15cd8",
+      "canonical_extract": "docs/analysis/evidence/0.139.0/embedded-api.lua",
+      "boundary": "Exact start comment through final event-handler registration; adjacent packed constants excluded.",
+      "native_dependencies_revalidated": false
+    },
+    "supplemental_scripts": {
+      "path": "docs/analysis/evidence/0.139.0/addon-supplemental-scripts.json",
+      "sha256": "6dc09d26b0b0c5b783c575c8c93d88371b2e5dc5dd534b0fcf1af05465521ce6",
+      "extracts": [
+        {
+          "file_offset": "0x7a20ce0",
+          "byte_count": 50637,
+          "sha256": "2871135e74cc78964c4997e12d3c9360a80adfa57ca166ddde3f4d4af1295588",
+          "path": "docs/analysis/evidence/0.139.0/meter-api.lua"
+        },
+        {
+          "file_offset": "0x7a2fe4b",
+          "byte_count": 9167,
+          "sha256": "7a582d603d7d11c4df4a4ffad889ccee4e125427b064a433808fdbe2cd4d2ec3",
+          "path": "docs/analysis/evidence/0.139.0/paperdoll-run-stats.lua"
+        }
+      ]
+    }
+  },
+  "counts": {
+    "current_AS_diagnostic_modules": 77,
+    "predecessor_AS_diagnostic_modules": 69,
+    "new_AS_modules": 8,
+    "removed_AS_modules": 0,
+    "added_distinct_literals": 293,
+    "reviewed_added_candidate_occurrences": 684,
+    "by_category": {
+      "module_type_namespace": {
+        "added_distinct_literals": 116,
+        "added_candidate_occurrences": 120,
+        "reviewed_occurrences": 120
+      },
+      "game_binding_identifier": {
+        "added_distinct_literals": 85,
+        "added_candidate_occurrences": 470,
+        "reviewed_occurrences": 470
+      },
+      "lua_ui_registration": {
+        "added_distinct_literals": 0,
+        "added_candidate_occurrences": 0,
+        "reviewed_occurrences": 0
+      },
+      "textual_id_assignment": {
+        "added_distinct_literals": 3,
+        "added_candidate_occurrences": 5,
+        "reviewed_occurrences": 5
+      },
+      "textual_numeric_id": {
+        "added_distinct_literals": 0,
+        "added_candidate_occurrences": 0,
+        "reviewed_occurrences": 0
+      },
+      "save_configuration_key_lead": {
+        "added_distinct_literals": 0,
+        "added_candidate_occurrences": 0,
+        "reviewed_occurrences": 0
+      },
+      "resource_path": {
+        "added_distinct_literals": 21,
+        "added_candidate_occurrences": 21,
+        "reviewed_occurrences": 21
+      },
+      "lua_function_declaration": {
+        "added_distinct_literals": 68,
+        "added_candidate_occurrences": 68,
+        "reviewed_occurrences": 68
+      }
+    },
+    "semantic_decompilation_count": 0,
+    "established_new_module_source_assignments": 0
+  },
+  "new_AS_modules": [
+    {
+      "id": "custom-app-screens-inspect",
+      "path": "crates/wenilla-rogue-app/src/screens/inspect.rs",
+      "group_id": "lobby-inspect",
+      "gap_ids": [
+        299
+      ],
+      "candidate_source_refs": [
+        "crates/azeroth-survivors-re/src/coop_ui.rs",
+        "crates/azeroth-survivors-re/src/coop_profile.rs",
+        "crates/azeroth-survivors-re/src/armory.rs",
+        "crates/azeroth-survivors-re/src/preview.rs",
+        "crates/azeroth-survivors-re/src/talents.rs",
+        "crates/azeroth-survivors-re/src/save/achievements.rs"
+      ],
+      "source_correspondence": "candidate_only_not_counted_as_established",
+      "current_bounded_contract": "not_registered_by_this_review",
+      "diagnostic_selector": "diagnostics[path='crates/wenilla-rogue-app/src/screens/inspect.rs']",
+      "diagnostic_occurrences": [
+        {
+          "file_offset": "0x6542012",
+          "virtual_address": "0x146543212",
+          "byte_count": 47,
+          "sha256": "84e82baba41563566a2b70114ffd2369546f914c32d4b1cb5ea6245ebf0ab2c3"
+        },
+        {
+          "file_offset": "0x6546f27",
+          "virtual_address": "0x146548127",
+          "byte_count": 47,
+          "sha256": "84e82baba41563566a2b70114ffd2369546f914c32d4b1cb5ea6245ebf0ab2c3"
+        }
+      ],
+      "verified_reference_count": 19,
+      "declared_owners": [
+        {
+          "start": "0x1400b34a0",
+          "end": "0x1400b365b",
+          "sha256": "78a66b9c19277d9fa18bc2af2cca68f456b90d8107dbc6d854698365f76c6135"
+        },
+        {
+          "start": "0x140308180",
+          "end": "0x1403089ec",
+          "sha256": "f03ca3a43df9b2d895e114380aa4363891122429e749a08c25b12e9a462bc4ee"
+        },
+        {
+          "start": "0x14030a950",
+          "end": "0x14030b83a",
+          "sha256": "c4daed4d6074e7da4bdf2cf1ef179dc075b49be8ad2c1ace91bb2df06d7e475e"
+        },
+        {
+          "start": "0x14030bee0",
+          "end": "0x14030c99d",
+          "sha256": "b22053c3b11c878d0e761c325540bc37816e525951cfa45eeeecc74a81451a52"
+        },
+        {
+          "start": "0x14030d910",
+          "end": "0x14030dce4",
+          "sha256": "e05c400245c5af51303dcff6c79345fd79497dff4d6eafe755f80935305ba4dc"
+        },
+        {
+          "start": "0x140311880",
+          "end": "0x14031193e",
+          "sha256": "8f972e5721395f36d09efd4723da125f679d8ae2417bc2406757fcc18dd7f3e2"
+        },
+        {
+          "start": "0x140319c90",
+          "end": "0x14031a404",
+          "sha256": "b0ac13401aa170c590f36bf30c46e9a6e267fe5f91be294f8aa652f3f3c4a1d3"
+        },
+        {
+          "start": "0x1403e7da0",
+          "end": "0x1403e8345",
+          "sha256": "03cb7b45e4a99417c1d6e651dc88672057ca720760a1084c84222818d1627b1d"
+        },
+        {
+          "start": "0x1403e87f0",
+          "end": "0x1403e8c9a",
+          "sha256": "74a58e82fe492b4e639ce39366872f621fc4e1b7f1d37cad967b52a00926a4e6"
+        },
+        {
+          "start": "0x1403e8cf0",
+          "end": "0x1403e8ebb",
+          "sha256": "e4dbffb8d1da01610c6f16190273264e62db7c7336e1f9766c46446c61de4eca"
+        },
+        {
+          "start": "0x1403ecc80",
+          "end": "0x1403ee1fc",
+          "sha256": "e6f2568954c5296b697410259262cfee300889d55c1c8ba005793872a04bec26"
+        },
+        {
+          "start": "0x1403ee7f0",
+          "end": "0x1403ef8cf",
+          "sha256": "ecc9693b8dfc83ca1bfb598610b873a441dcc8bc49725934004abfe4c79e57b3"
+        }
+      ],
+      "representative_reference": {
+        "kind": "rust_location",
+        "instruction_address": "0x1400b361d",
+        "target_address": "0x1465433f8",
+        "runtime_function_start": "0x1400b34a0",
+        "runtime_function_end": "0x1400b365b",
+        "source_line": 949,
+        "source_column": 61,
+        "path_address": "0x146543212",
+        "instruction_bytes": "4c8d05d4fd4806",
+        "instruction": "lea r8, [rip + 0x648fdd4]",
+        "owner_file_offset": "0xb28a0",
+        "owner_byte_count": 443,
+        "owner_sha256": "78a66b9c19277d9fa18bc2af2cca68f456b90d8107dbc6d854698365f76c6135"
+      },
+      "next_static_step": "Trace diagnostic owners through row action, member identity, inspect snapshot/change publication, gear/star/appearance/set totals, tree and achievement tabs and teardown; connect recovered fields to existing source."
+    },
+    {
+      "id": "custom-app-screens-localclock",
+      "path": "crates/wenilla-rogue-app/src/screens/localclock.rs",
+      "group_id": "local-clock",
+      "gap_ids": [
+        302
+      ],
+      "candidate_source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/run_hud/settings.rs",
+        "crates/azeroth-survivors-re/src/options.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs",
+        "crates/benilla-app/src/local_client/extension.rs"
+      ],
+      "source_correspondence": "candidate_only_not_counted_as_established",
+      "current_bounded_contract": "not_registered_by_this_review",
+      "diagnostic_selector": "diagnostics[path='crates/wenilla-rogue-app/src/screens/localclock.rs']",
+      "diagnostic_occurrences": [
+        {
+          "file_offset": "0x65423ab",
+          "virtual_address": "0x1465435ab",
+          "byte_count": 50,
+          "sha256": "edb9db6df3e84002940298001a9d9a892f9b30d6b6baac2e494d38c9c7b19ae9"
+        }
+      ],
+      "verified_reference_count": 6,
+      "declared_owners": [
+        {
+          "start": "0x1402fe070",
+          "end": "0x1402fe432",
+          "sha256": "0b0da1f091cff483e57bca9ee519e7656f906190685a1de70a07a721cef358a6"
+        },
+        {
+          "start": "0x140311940",
+          "end": "0x140312342",
+          "sha256": "a948553e7a5813c7bcfdbd179cfbce885e5a2d9ee047049399f9d79fa5e4ae1c"
+        },
+        {
+          "start": "0x140312430",
+          "end": "0x140312b41",
+          "sha256": "8c62ceddfc1a208a3002ff2d80643bdc21935959a70dc5cf44a3e31cf26d737c"
+        }
+      ],
+      "representative_reference": {
+        "kind": "rust_location",
+        "instruction_address": "0x1402fe0ae",
+        "target_address": "0x146543658",
+        "runtime_function_start": "0x1402fe070",
+        "runtime_function_end": "0x1402fe432",
+        "source_line": 22,
+        "source_column": 9,
+        "path_address": "0x1465435ab",
+        "instruction_bytes": "4c8d05a3552406",
+        "instruction": "lea r8, [rip + 0x62455a3]",
+        "owner_file_offset": "0x2fd470",
+        "owner_byte_count": 962,
+        "owner_sha256": "0b0da1f091cff483e57bca9ee519e7656f906190685a1de70a07a721cef358a6"
+      },
+      "next_static_step": "Trace localclock.rs owners and host_controls::local_clock registration/producer, English versus other-locale formatting, minimap/scale/show gates and hudLocalClock propagation."
+    },
+    {
+      "id": "custom-app-screens-readycheck",
+      "path": "crates/wenilla-rogue-app/src/screens/readycheck.rs",
+      "group_id": "ready-check",
+      "gap_ids": [
+        306
+      ],
+      "candidate_source_refs": [
+        "crates/azeroth-survivors-re/src/coop_ui.rs",
+        "crates/azeroth-survivors-re/src/coop_runtime.rs",
+        "crates/azeroth-survivors-re/src/coop/session.rs",
+        "crates/azeroth-survivors-re/src/coop/server_party.rs",
+        "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs"
+      ],
+      "source_correspondence": "candidate_only_not_counted_as_established",
+      "current_bounded_contract": "not_registered_by_this_review",
+      "diagnostic_selector": "diagnostics[path='crates/wenilla-rogue-app/src/screens/readycheck.rs']",
+      "diagnostic_occurrences": [
+        {
+          "file_offset": "0x650b3c8",
+          "virtual_address": "0x14650c5c8",
+          "byte_count": 50,
+          "sha256": "614060a5a65ecf8c21fec360e04bd1a6d9475620e2e4db6633f03712b959672e"
+        }
+      ],
+      "verified_reference_count": 4,
+      "declared_owners": [
+        {
+          "start": "0x14011dc10",
+          "end": "0x14011eaf9",
+          "sha256": "6acd5cb6cac2571bf1c94cfe51d15c92aae785afea53bb44ce1d15cacb8c361c"
+        }
+      ],
+      "representative_reference": {
+        "kind": "rust_location",
+        "instruction_address": "0x14011e009",
+        "target_address": "0x14650c600",
+        "runtime_function_start": "0x14011dc10",
+        "runtime_function_end": "0x14011eaf9",
+        "source_line": 63,
+        "source_column": 32,
+        "path_address": "0x14650c5c8",
+        "instruction_bytes": "488d15f0e53e06",
+        "instruction": "lea rdx, [rip + 0x63ee5f0]",
+        "owner_file_offset": "0x11d010",
+        "owner_byte_count": 3817,
+        "owner_sha256": "6acd5cb6cac2571bf1c94cfe51d15c92aae785afea53bb44ce1d15cacb8c361c"
+      },
+      "next_static_step": "Recover custom host enter request, authoritative ready state/30-second clock, answer/cancel/timeout branches, member changes and exactly-once zone admission; map both UI and server diagnostic modules."
+    },
+    {
+      "id": "custom-app-screens-recap",
+      "path": "crates/wenilla-rogue-app/src/screens/recap.rs",
+      "group_id": "death-recap",
+      "gap_ids": [
+        300
+      ],
+      "candidate_source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
+        "crates/azeroth-survivors-re/src/gameplay/terminal_view.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/events.rs",
+        "crates/azeroth-survivors-re/src/run_meter.rs"
+      ],
+      "source_correspondence": "candidate_only_not_counted_as_established",
+      "current_bounded_contract": "not_registered_by_this_review",
+      "diagnostic_selector": "diagnostics[path='crates/wenilla-rogue-app/src/screens/recap.rs']",
+      "diagnostic_occurrences": [
+        {
+          "file_offset": "0x650ef21",
+          "virtual_address": "0x146510121",
+          "byte_count": 45,
+          "sha256": "91c9446a4ae9a73b3269f16cf9e1cba8c2582b63f22e9eafd8332207bec0e3c1"
+        }
+      ],
+      "verified_reference_count": 10,
+      "declared_owners": [
+        {
+          "start": "0x14015ff90",
+          "end": "0x1401603fa",
+          "sha256": "2142c2fc7e92f9719b0cf0822286003e36b2459a9ce23a8ddcbfcfd2bfc571d5"
+        },
+        {
+          "start": "0x140161d90",
+          "end": "0x140163ad2",
+          "sha256": "754855f16aa5160311d5d8fdd400c919ad565e833b6456c8404ceb9937680b24"
+        },
+        {
+          "start": "0x140170090",
+          "end": "0x140170525",
+          "sha256": "c938b0150dda74ebd0bd527d7eb7cf1370ea387a152818b76d97991f85e16d37"
+        },
+        {
+          "start": "0x140178750",
+          "end": "0x140178f2a",
+          "sha256": "1336f385bec10b9e280515678cfdd0a6498f4fb8a04fecac978e3f2f8e662577"
+        }
+      ],
+      "representative_reference": {
+        "kind": "rust_location",
+        "instruction_address": "0x140178ec1",
+        "target_address": "0x146510f40",
+        "runtime_function_start": "0x140178750",
+        "runtime_function_end": "0x140178f2a",
+        "source_line": 243,
+        "source_column": 10,
+        "path_address": "0x146510121",
+        "instruction_bytes": "4c8d0d78803906",
+        "instruction": "lea r9, [rip + 0x6398078]",
+        "owner_file_offset": "0x177b50",
+        "owner_byte_count": 2010,
+        "owner_sha256": "1336f385bec10b9e280515678cfdd0a6498f4fb8a04fecac978e3f2f8e662577"
+      },
+      "next_static_step": "Trace recap.rs owners to per-player damage history, shield/health/overkill records, killing blow, grouping/source/avoidable ranking and end-screen open/close/Escape consumers."
+    },
+    {
+      "id": "custom-game-game-enhancement",
+      "path": "crates/wenilla-rogue/src/game/enhancement.rs",
+      "group_id": "enhancement",
+      "gap_ids": [
+        305
+      ],
+      "candidate_source_refs": [
+        "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/hit_passives.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/attacks.rs",
+        "crates/azeroth-survivors-re/src/talents.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/run_stats.rs"
+      ],
+      "source_correspondence": "candidate_only_not_counted_as_established",
+      "current_bounded_contract": "not_registered_by_this_review",
+      "diagnostic_selector": "diagnostics[path='crates/wenilla-rogue/src/game/enhancement.rs']",
+      "diagnostic_occurrences": [
+        {
+          "file_offset": "0x7a1a3b0",
+          "virtual_address": "0x147a1b5b0",
+          "byte_count": 44,
+          "sha256": "d9c91ea1928cc1f20e394b05f928253f763b47e0891c40175aacfc4005890a21"
+        }
+      ],
+      "verified_reference_count": 1,
+      "declared_owners": [
+        {
+          "start": "0x145ebdd50",
+          "end": "0x145ec06c2",
+          "sha256": "dd80e6eb83ee29034f2f9d40e6e94be55a52e7c0a306b3175e25cfe42ef01aec"
+        }
+      ],
+      "representative_reference": {
+        "kind": "rust_location",
+        "instruction_address": "0x145ec0617",
+        "target_address": "0x147a1b5e0",
+        "runtime_function_start": "0x145ebdd50",
+        "runtime_function_end": "0x145ec06c2",
+        "source_line": 105,
+        "source_column": 40,
+        "path_address": "0x147a1b5b0",
+        "instruction_bytes": "4c8d05c2afb501",
+        "instruction": "lea r8, [rip + 0x1b5afc2]",
+        "owner_file_offset": "0x5ebd150",
+        "owner_byte_count": 10610,
+        "owner_sha256": "dd80e6eb83ee29034f2f9d40e6e94be55a52e7c0a306b3175e25cfe42ef01aec"
+      },
+      "next_static_step": "Recover current enhancement.rs dispatch, proc origin/repeat suppression, targets/crit/cooldown/buff/debuff state, necklace replacements/scaling and talent migration. Resolve current 0.137 requirements rather than obsolete intermediate values."
+    },
+    {
+      "id": "custom-game-game-meterfeed",
+      "path": "crates/wenilla-rogue/src/game/meterfeed.rs",
+      "group_id": "meter-ledger",
+      "gap_ids": [
+        75
+      ],
+      "candidate_source_refs": [
+        "crates/azeroth-survivors-re/src/run_meter.rs",
+        "crates/azeroth-survivors-re/src/gameplay/addon_meters.rs",
+        "crates/azeroth-survivors-re/src/gameplay/meter.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/addon_feed.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/events.rs"
+      ],
+      "source_correspondence": "candidate_only_not_counted_as_established",
+      "current_bounded_contract": "not_registered_by_this_review",
+      "diagnostic_selector": "diagnostics[path='crates/wenilla-rogue/src/game/meterfeed.rs']",
+      "diagnostic_occurrences": [
+        {
+          "file_offset": "0x732f28e",
+          "virtual_address": "0x14733048e",
+          "byte_count": 42,
+          "sha256": "50a98296ea8c6a14f8850b14c9a058c46d80b81cca2ad6d6a24713d136a9f01b"
+        },
+        {
+          "file_offset": "0x7a1a1d1",
+          "virtual_address": "0x147a1b3d1",
+          "byte_count": 42,
+          "sha256": "50a98296ea8c6a14f8850b14c9a058c46d80b81cca2ad6d6a24713d136a9f01b"
+        },
+        {
+          "file_offset": "0x7a36a80",
+          "virtual_address": "0x147a37c80",
+          "byte_count": 42,
+          "sha256": "50a98296ea8c6a14f8850b14c9a058c46d80b81cca2ad6d6a24713d136a9f01b"
+        }
+      ],
+      "verified_reference_count": 14,
+      "declared_owners": [
+        {
+          "start": "0x145dd3d50",
+          "end": "0x145dd4015",
+          "sha256": "3623a7b148b9bfb026b430547cd8bdd729e667882cc85403c5fdac6e0554e882"
+        },
+        {
+          "start": "0x145dd67e0",
+          "end": "0x145dd7192",
+          "sha256": "bbcfcb55bd0023b6935695ead517a6f097af731f53f8b55665e14a2fd7419a9d"
+        },
+        {
+          "start": "0x145f50e10",
+          "end": "0x145f52fbd",
+          "sha256": "aa4d415bec02688ae561bf5dca76105de0c01f1b7b88d4acc0227dbedecf15ba"
+        },
+        {
+          "start": "0x145f56de0",
+          "end": "0x145f5b421",
+          "sha256": "4079f65a63a12aa7aed09db8f850e9fe4650b1986a5371070ab783d033c48d07"
+        },
+        {
+          "start": "0x145faf0e0",
+          "end": "0x145faf238",
+          "sha256": "eb98edc56f2205e6352ccdb9dff02580bdcf72bd28e70b885c3c83d603aede05"
+        },
+        {
+          "start": "0x145fe25f0",
+          "end": "0x145fe2a4d",
+          "sha256": "013cc2e91dbd0feed4c717a757fa6bd64a6860e7b327964fcf704931b21c1bbd"
+        }
+      ],
+      "representative_reference": {
+        "kind": "rust_location",
+        "instruction_address": "0x145dd3fd1",
+        "target_address": "0x14734ffa8",
+        "runtime_function_start": "0x145dd3d50",
+        "runtime_function_end": "0x145dd4015",
+        "source_line": 509,
+        "source_column": 36,
+        "path_address": "0x14733048e",
+        "instruction_bytes": "4c8d05d0bf5701",
+        "instruction": "lea r8, [rip + 0x157bfd0]",
+        "owner_file_offset": "0x5dd3150",
+        "owner_byte_count": 709,
+        "owner_sha256": "3623a7b148b9bfb026b430547cd8bdd729e667882cc85403c5fdac6e0554e882"
+      },
+      "next_static_step": "Trace meterfeed.rs/meterlog.rs constructors, transport/poll/request producers and Lua snapshot/query validation, descriptors/sourceKey/actor joins, recent windows/checkpoints and /reload lifetime. Keep damage-source attribution and rendering-facing anchor delivery separately scoped under #307."
+    },
+    {
+      "id": "custom-game-game-meterlog",
+      "path": "crates/wenilla-rogue/src/game/meterlog.rs",
+      "group_id": "meter-ledger",
+      "gap_ids": [
+        75
+      ],
+      "candidate_source_refs": [
+        "crates/azeroth-survivors-re/src/run_meter.rs",
+        "crates/azeroth-survivors-re/src/gameplay/addon_meters.rs",
+        "crates/azeroth-survivors-re/src/gameplay/meter.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/addon_feed.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/events.rs"
+      ],
+      "source_correspondence": "candidate_only_not_counted_as_established",
+      "current_bounded_contract": "not_registered_by_this_review",
+      "diagnostic_selector": "diagnostics[path='crates/wenilla-rogue/src/game/meterlog.rs']",
+      "diagnostic_occurrences": [
+        {
+          "file_offset": "0x732f034",
+          "virtual_address": "0x147330234",
+          "byte_count": 41,
+          "sha256": "11874a22dcdbd2dcefb9d4b8fbeaf4cfb74a2c0c0f432cac86a1fa3dcfcd298b"
+        },
+        {
+          "file_offset": "0x76a1612",
+          "virtual_address": "0x1476a2812",
+          "byte_count": 41,
+          "sha256": "11874a22dcdbd2dcefb9d4b8fbeaf4cfb74a2c0c0f432cac86a1fa3dcfcd298b"
+        },
+        {
+          "file_offset": "0x7a1f854",
+          "virtual_address": "0x147a20a54",
+          "byte_count": 41,
+          "sha256": "11874a22dcdbd2dcefb9d4b8fbeaf4cfb74a2c0c0f432cac86a1fa3dcfcd298b"
+        },
+        {
+          "file_offset": "0x7a3439a",
+          "virtual_address": "0x147a3559a",
+          "byte_count": 41,
+          "sha256": "11874a22dcdbd2dcefb9d4b8fbeaf4cfb74a2c0c0f432cac86a1fa3dcfcd298b"
+        }
+      ],
+      "verified_reference_count": 81,
+      "declared_owners": [
+        {
+          "start": "0x145dccc90",
+          "end": "0x145dcdcba",
+          "sha256": "4dd7805056342d035ce6135e8a7217fdeb02a019a684e1341048aa290cb49859"
+        },
+        {
+          "start": "0x145e768f0",
+          "end": "0x145e774ac",
+          "sha256": "d30785c6d6e652ee26fcfb0ff85fd37019fbad17b4a82c63c86c79db0f3c0889"
+        },
+        {
+          "start": "0x145e7e280",
+          "end": "0x145e7ecb1",
+          "sha256": "5ebb45627769d15c4ef3140d50fdf01714fb17f8b3378e8a813622ec9200245f"
+        },
+        {
+          "start": "0x145f79cd0",
+          "end": "0x145f79e65",
+          "sha256": "e4552c4a2af118567c08ce51ac8915d220fb0ab874bc619c9263c2bb871a2a48"
+        },
+        {
+          "start": "0x145f7bf70",
+          "end": "0x145f7c218",
+          "sha256": "22481310f43c66423f1a7bea6e9b8e84672fe7883851bc722f3a3e3cac25720b"
+        },
+        {
+          "start": "0x145f82a50",
+          "end": "0x145f82c6f",
+          "sha256": "59693bfa43bfc389410147f7b15557acdacccc25069add01da9f116b09d8ab3c"
+        },
+        {
+          "start": "0x145f8a530",
+          "end": "0x145f8aa52",
+          "sha256": "aae2042850869d1ecf83d936e2339b59be7ecf61a0f3842415ee263f5ad5d547"
+        },
+        {
+          "start": "0x145fc15f0",
+          "end": "0x145fc1936",
+          "sha256": "7cda480f5af5d34eb2b9896e5e96d27636b3956e345188d844eb025d529d13de"
+        },
+        {
+          "start": "0x145fc29c0",
+          "end": "0x145fc2b94",
+          "sha256": "3b13a2a13339f9614a5c110f3108d34ac73e4202f7f6ce739cc81caa9b220c0a"
+        },
+        {
+          "start": "0x145fc52b0",
+          "end": "0x145fc6784",
+          "sha256": "e56669a6eac6cc5d0c1b7be27fec9234ab08053376c56d0cbc73f8150411e660"
+        },
+        {
+          "start": "0x145fcd0f0",
+          "end": "0x145fcdf34",
+          "sha256": "365906e3453258d745bec27808fc92fdc18203c370edcc6ac8bef0890f651aa2"
+        }
+      ],
+      "representative_reference": {
+        "kind": "rust_location",
+        "instruction_address": "0x145dcdc84",
+        "target_address": "0x147330af0",
+        "runtime_function_start": "0x145dccc90",
+        "runtime_function_end": "0x145dcdcba",
+        "source_line": 749,
+        "source_column": 27,
+        "path_address": "0x147330234",
+        "instruction_bytes": "4c8d05652e5601",
+        "instruction": "lea r8, [rip + 0x1562e65]",
+        "owner_file_offset": "0x5dcc090",
+        "owner_byte_count": 4138,
+        "owner_sha256": "4dd7805056342d035ce6135e8a7217fdeb02a019a684e1341048aa290cb49859"
+      },
+      "next_static_step": "Trace meterfeed.rs/meterlog.rs constructors, transport/poll/request producers and Lua snapshot/query validation, descriptors/sourceKey/actor joins, recent windows/checkpoints and /reload lifetime. Keep damage-source attribution and rendering-facing anchor delivery separately scoped under #307."
+    },
+    {
+      "id": "custom-game-server-party-readycheck",
+      "path": "crates/wenilla-rogue/src/server/party/readycheck.rs",
+      "group_id": "ready-check",
+      "gap_ids": [
+        306
+      ],
+      "candidate_source_refs": [
+        "crates/azeroth-survivors-re/src/coop_ui.rs",
+        "crates/azeroth-survivors-re/src/coop_runtime.rs",
+        "crates/azeroth-survivors-re/src/coop/session.rs",
+        "crates/azeroth-survivors-re/src/coop/server_party.rs",
+        "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs"
+      ],
+      "source_correspondence": "candidate_only_not_counted_as_established",
+      "current_bounded_contract": "not_registered_by_this_review",
+      "diagnostic_selector": "diagnostics[path='crates/wenilla-rogue/src/server/party/readycheck.rs']",
+      "diagnostic_occurrences": [
+        {
+          "file_offset": "0x769d220",
+          "virtual_address": "0x14769e420",
+          "byte_count": 51,
+          "sha256": "45c79aa350bbfc746bd296aee9abe9f830560eb8ef449ebb092787a597acb5e1"
+        }
+      ],
+      "verified_reference_count": 1,
+      "declared_owners": [
+        {
+          "start": "0x145e4bdb0",
+          "end": "0x145e4be58",
+          "sha256": "8a9ec7d0cf3a942727cc1b6a7bf4942636e9ff9f83156a44a844c97ac118c34d"
+        }
+      ],
+      "representative_reference": {
+        "kind": "rust_location",
+        "instruction_address": "0x145e4be44",
+        "target_address": "0x14769e458",
+        "runtime_function_start": "0x145e4bdb0",
+        "runtime_function_end": "0x145e4be58",
+        "source_line": 72,
+        "source_column": 33,
+        "path_address": "0x14769e420",
+        "instruction_bytes": "4c8d050d268501",
+        "instruction": "lea r8, [rip + 0x185260d]",
+        "owner_file_offset": "0x5e4b1b0",
+        "owner_byte_count": 168,
+        "owner_sha256": "8a9ec7d0cf3a942727cc1b6a7bf4942636e9ff9f83156a44a844c97ac118c34d"
+      },
+      "next_static_step": "Recover custom host enter request, authoritative ready state/30-second clock, answer/cancel/timeout branches, member changes and exactly-once zone admission; map both UI and server diagnostic modules."
+    }
+  ],
+  "candidate_review_groups": {
+    "lobby-inspect": {
+      "classification": "AS_interface_recovery_candidate",
+      "gap_ids": [
+        299
+      ],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/coop_ui.rs",
+        "crates/azeroth-survivors-re/src/coop_profile.rs",
+        "crates/azeroth-survivors-re/src/armory.rs",
+        "crates/azeroth-survivors-re/src/preview.rs",
+        "crates/azeroth-survivors-re/src/talents.rs",
+        "crates/azeroth-survivors-re/src/save/achievements.rs"
+      ],
+      "assessment": "Existing party hero/profile data, equipment/preview, read-only talent drawing and saved achievement timestamps are candidate reuse seams. No current inspection-screen payload, request/response, refresh subscription or complete native/source correspondence is established.",
+      "next_static_step": "Trace diagnostic owners through row action, member identity, inspect snapshot/change publication, gear/star/appearance/set totals, tree and achievement tabs and teardown; connect recovered fields to existing source.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:125",
+        "Q41-I01:module_type_namespace:126",
+        "Q41-I01:module_type_namespace:127",
+        "Q41-I01:module_type_namespace:128",
+        "Q41-I01:module_type_namespace:130",
+        "Q41-I01:module_type_namespace:132",
+        "Q41-I01:module_type_namespace:133",
+        "Q41-I01:module_type_namespace:211",
+        "Q41-I01:resource_path:3"
+      ],
+      "reviewed_occurrence_count": 9
+    },
+    "local-clock": {
+      "classification": "AS_interface_recovery_candidate",
+      "gap_ids": [
+        302
+      ],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/run_hud/settings.rs",
+        "crates/azeroth-survivors-re/src/options.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs",
+        "crates/benilla-app/src/local_client/extension.rs"
+      ],
+      "assessment": "Current Lua calls AZS_NativeLocalTime and returns a fresh text/hour/minute/is24Hour table. Existing source has ten HUD parts and embeds the older API; it has no local-clock part in that registry. The native device-time producer, widget geometry/visibility and independent pre-run VM lifetime remain open.",
+      "next_static_step": "Trace localclock.rs owners and host_controls::local_clock registration/producer, English versus other-locale formatting, minimap/scale/show gates and hudLocalClock propagation.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:164",
+        "Q41-I01:module_type_namespace:166",
+        "Q41-I01:module_type_namespace:224",
+        "Q41-I01:module_type_namespace:742",
+        "Q41-I01:game_binding_identifier:11",
+        "Q41-I01:game_binding_identifier:124",
+        "Q41-I01:game_binding_identifier:125",
+        "Q41-I01:lua_function_declaration:140"
+      ],
+      "reviewed_occurrence_count": 8
+    },
+    "ready-check": {
+      "classification": "AS_interface_recovery_candidate",
+      "gap_ids": [
+        306
+      ],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/coop_ui.rs",
+        "crates/azeroth-survivors-re/src/coop_runtime.rs",
+        "crates/azeroth-survivors-re/src/coop/session.rs",
+        "crates/azeroth-survivors-re/src/coop/server_party.rs",
+        "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs"
+      ],
+      "assessment": "Existing party request/session/server owners are candidate seams; generic engine ready-check packet support is a separate stock-client interface and does not supply this custom run-start handshake.",
+      "next_static_step": "Recover custom host enter request, authoritative ready state/30-second clock, answer/cancel/timeout branches, member changes and exactly-once zone admission; map both UI and server diagnostic modules.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:7",
+        "Q41-I01:module_type_namespace:9",
+        "Q41-I01:module_type_namespace:11",
+        "Q41-I01:module_type_namespace:167",
+        "Q41-I01:module_type_namespace:225"
+      ],
+      "reviewed_occurrence_count": 5
+    },
+    "death-recap": {
+      "classification": "AS_interface_recovery_candidate",
+      "gap_ids": [
+        300
+      ],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
+        "crates/azeroth-survivors-re/src/gameplay/terminal_view.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/events.rs",
+        "crates/azeroth-survivors-re/src/run_meter.rs"
+      ],
+      "assessment": "TerminalSummary currently contains aggregate taken damage and ordinary end actions, not a per-hit recap model or recap action. Existing combat/meter events are candidate inputs; release text and new namespace types do not establish retained-window or grouping semantics.",
+      "next_static_step": "Trace recap.rs owners to per-player damage history, shield/health/overkill records, killing blow, grouping/source/avoidable ranking and end-screen open/close/Escape consumers.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:73",
+        "Q41-I01:module_type_namespace:190"
+      ],
+      "reviewed_occurrence_count": 2
+    },
+    "enhancement": {
+      "classification": "AS_interface_recovery_candidate",
+      "gap_ids": [
+        305
+      ],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/hit_passives.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/attacks.rs",
+        "crates/azeroth-survivors-re/src/talents.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/run_stats.rs"
+      ],
+      "assessment": "Existing source retains Call of Flame and historical class/passive/talent contracts. Current AZS_Stormguard Lua consumes bwk/bwa and labels active/inactive Lightning-Shield-dependent reduction; this does not prove the numeric producer or the new proc graph.",
+      "next_static_step": "Recover current enhancement.rs dispatch, proc origin/repeat suppression, targets/crit/cooldown/buff/debuff state, necklace replacements/scaling and talent migration. Resolve current 0.137 requirements rather than obsolete intermediate values.",
+      "selectors": [
+        "Q41-I01:game_binding_identifier:782",
+        "Q41-I01:game_binding_identifier:802",
+        "Q41-I01:lua_function_declaration:240"
+      ],
+      "reviewed_occurrence_count": 3
+    },
+    "meter-ledger": {
+      "classification": "AS_interface_recovery_candidate",
+      "gap_ids": [
+        75
+      ],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/run_meter.rs",
+        "crates/azeroth-survivors-re/src/gameplay/addon_meters.rs",
+        "crates/azeroth-survivors-re/src/gameplay/meter.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/addon_feed.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/events.rs"
+      ],
+      "assessment": "Existing source owns damage/healing provenance, totals, legacy addon lines and co-op UI. Separately bound meter-api.lua provides actual full-ledger multipart assembly, predecessor-sequence validation, source/actor descriptors and closure, snapshot query validation, checkpoint/loadout/portrait Lua and reload requests. Native packet serialization/authorization, accounting/history/retention and host consumers remain unconnected; declared feature flags do not prove those producers.",
+      "next_static_step": "Reuse the complete extracted Lua consumer. Trace meterfeed.rs/meterlog.rs native constructors/serialization, transport/poll/request producers, exact row/sourceKey/actor joins, recent-window/checkpoint sources and reload replay lifetime. Keep per-hit camera-anchor attribution separately scoped under#307.",
+      "selectors": [
+        "Q41-I01:game_binding_identifier:278",
+        "Q41-I01:game_binding_identifier:279",
+        "Q41-I01:game_binding_identifier:280",
+        "Q41-I01:game_binding_identifier:281",
+        "Q41-I01:game_binding_identifier:282",
+        "Q41-I01:game_binding_identifier:283",
+        "Q41-I01:game_binding_identifier:284",
+        "Q41-I01:game_binding_identifier:285",
+        "Q41-I01:game_binding_identifier:286",
+        "Q41-I01:game_binding_identifier:287",
+        "Q41-I01:game_binding_identifier:288",
+        "Q41-I01:game_binding_identifier:289",
+        "Q41-I01:game_binding_identifier:290",
+        "Q41-I01:game_binding_identifier:291",
+        "Q41-I01:game_binding_identifier:292",
+        "Q41-I01:game_binding_identifier:293",
+        "Q41-I01:game_binding_identifier:294",
+        "Q41-I01:game_binding_identifier:295",
+        "Q41-I01:game_binding_identifier:296",
+        "Q41-I01:game_binding_identifier:297",
+        "Q41-I01:game_binding_identifier:298",
+        "Q41-I01:game_binding_identifier:299",
+        "Q41-I01:game_binding_identifier:300",
+        "Q41-I01:game_binding_identifier:301",
+        "Q41-I01:game_binding_identifier:302",
+        "Q41-I01:game_binding_identifier:303",
+        "Q41-I01:game_binding_identifier:304",
+        "Q41-I01:game_binding_identifier:305",
+        "Q41-I01:game_binding_identifier:306",
+        "Q41-I01:game_binding_identifier:307",
+        "Q41-I01:game_binding_identifier:308",
+        "Q41-I01:game_binding_identifier:309",
+        "Q41-I01:game_binding_identifier:310",
+        "Q41-I01:game_binding_identifier:311",
+        "Q41-I01:game_binding_identifier:312",
+        "Q41-I01:game_binding_identifier:313",
+        "Q41-I01:game_binding_identifier:314",
+        "Q41-I01:game_binding_identifier:315",
+        "Q41-I01:game_binding_identifier:316",
+        "Q41-I01:game_binding_identifier:317",
+        "Q41-I01:game_binding_identifier:318",
+        "Q41-I01:game_binding_identifier:319",
+        "Q41-I01:game_binding_identifier:320",
+        "Q41-I01:game_binding_identifier:321",
+        "Q41-I01:game_binding_identifier:322",
+        "Q41-I01:game_binding_identifier:323",
+        "Q41-I01:game_binding_identifier:324",
+        "Q41-I01:game_binding_identifier:325",
+        "Q41-I01:game_binding_identifier:326",
+        "Q41-I01:game_binding_identifier:327",
+        "Q41-I01:game_binding_identifier:328",
+        "Q41-I01:game_binding_identifier:329",
+        "Q41-I01:game_binding_identifier:330",
+        "Q41-I01:game_binding_identifier:331",
+        "Q41-I01:game_binding_identifier:332",
+        "Q41-I01:game_binding_identifier:333",
+        "Q41-I01:game_binding_identifier:334",
+        "Q41-I01:game_binding_identifier:335",
+        "Q41-I01:game_binding_identifier:336",
+        "Q41-I01:game_binding_identifier:337",
+        "Q41-I01:game_binding_identifier:338",
+        "Q41-I01:game_binding_identifier:339",
+        "Q41-I01:game_binding_identifier:340",
+        "Q41-I01:game_binding_identifier:341",
+        "Q41-I01:game_binding_identifier:342",
+        "Q41-I01:game_binding_identifier:343",
+        "Q41-I01:game_binding_identifier:344",
+        "Q41-I01:game_binding_identifier:345",
+        "Q41-I01:game_binding_identifier:346",
+        "Q41-I01:game_binding_identifier:347",
+        "Q41-I01:game_binding_identifier:348",
+        "Q41-I01:game_binding_identifier:349",
+        "Q41-I01:game_binding_identifier:350",
+        "Q41-I01:game_binding_identifier:351",
+        "Q41-I01:game_binding_identifier:352",
+        "Q41-I01:game_binding_identifier:353",
+        "Q41-I01:game_binding_identifier:354",
+        "Q41-I01:game_binding_identifier:355",
+        "Q41-I01:game_binding_identifier:356",
+        "Q41-I01:game_binding_identifier:357",
+        "Q41-I01:game_binding_identifier:358",
+        "Q41-I01:game_binding_identifier:359",
+        "Q41-I01:game_binding_identifier:360",
+        "Q41-I01:game_binding_identifier:361",
+        "Q41-I01:game_binding_identifier:362",
+        "Q41-I01:game_binding_identifier:363",
+        "Q41-I01:game_binding_identifier:364",
+        "Q41-I01:game_binding_identifier:365",
+        "Q41-I01:game_binding_identifier:366",
+        "Q41-I01:game_binding_identifier:367",
+        "Q41-I01:game_binding_identifier:368",
+        "Q41-I01:game_binding_identifier:369",
+        "Q41-I01:game_binding_identifier:370",
+        "Q41-I01:game_binding_identifier:371",
+        "Q41-I01:game_binding_identifier:372",
+        "Q41-I01:game_binding_identifier:373",
+        "Q41-I01:game_binding_identifier:374",
+        "Q41-I01:game_binding_identifier:375",
+        "Q41-I01:game_binding_identifier:376",
+        "Q41-I01:game_binding_identifier:377",
+        "Q41-I01:game_binding_identifier:378",
+        "Q41-I01:game_binding_identifier:379",
+        "Q41-I01:game_binding_identifier:380",
+        "Q41-I01:game_binding_identifier:381",
+        "Q41-I01:game_binding_identifier:382",
+        "Q41-I01:game_binding_identifier:383",
+        "Q41-I01:game_binding_identifier:384",
+        "Q41-I01:game_binding_identifier:385",
+        "Q41-I01:game_binding_identifier:386",
+        "Q41-I01:game_binding_identifier:387",
+        "Q41-I01:game_binding_identifier:388",
+        "Q41-I01:game_binding_identifier:389",
+        "Q41-I01:game_binding_identifier:390",
+        "Q41-I01:game_binding_identifier:391",
+        "Q41-I01:game_binding_identifier:392",
+        "Q41-I01:game_binding_identifier:393",
+        "Q41-I01:game_binding_identifier:394",
+        "Q41-I01:game_binding_identifier:395",
+        "Q41-I01:game_binding_identifier:396",
+        "Q41-I01:game_binding_identifier:397",
+        "Q41-I01:game_binding_identifier:398",
+        "Q41-I01:game_binding_identifier:399",
+        "Q41-I01:game_binding_identifier:400",
+        "Q41-I01:game_binding_identifier:401",
+        "Q41-I01:game_binding_identifier:402",
+        "Q41-I01:game_binding_identifier:403",
+        "Q41-I01:game_binding_identifier:404",
+        "Q41-I01:game_binding_identifier:405",
+        "Q41-I01:game_binding_identifier:406",
+        "Q41-I01:game_binding_identifier:407",
+        "Q41-I01:game_binding_identifier:408",
+        "Q41-I01:game_binding_identifier:409",
+        "Q41-I01:game_binding_identifier:410",
+        "Q41-I01:game_binding_identifier:411",
+        "Q41-I01:game_binding_identifier:412",
+        "Q41-I01:game_binding_identifier:413",
+        "Q41-I01:game_binding_identifier:414",
+        "Q41-I01:game_binding_identifier:415",
+        "Q41-I01:game_binding_identifier:416",
+        "Q41-I01:game_binding_identifier:417",
+        "Q41-I01:game_binding_identifier:418",
+        "Q41-I01:game_binding_identifier:419",
+        "Q41-I01:game_binding_identifier:420",
+        "Q41-I01:game_binding_identifier:421",
+        "Q41-I01:game_binding_identifier:422",
+        "Q41-I01:game_binding_identifier:423",
+        "Q41-I01:game_binding_identifier:424",
+        "Q41-I01:game_binding_identifier:425",
+        "Q41-I01:game_binding_identifier:426",
+        "Q41-I01:game_binding_identifier:427",
+        "Q41-I01:game_binding_identifier:428",
+        "Q41-I01:game_binding_identifier:429",
+        "Q41-I01:game_binding_identifier:430",
+        "Q41-I01:game_binding_identifier:431",
+        "Q41-I01:game_binding_identifier:432",
+        "Q41-I01:game_binding_identifier:433",
+        "Q41-I01:game_binding_identifier:434",
+        "Q41-I01:game_binding_identifier:435",
+        "Q41-I01:game_binding_identifier:436",
+        "Q41-I01:game_binding_identifier:437",
+        "Q41-I01:game_binding_identifier:438",
+        "Q41-I01:game_binding_identifier:439",
+        "Q41-I01:game_binding_identifier:440",
+        "Q41-I01:game_binding_identifier:441",
+        "Q41-I01:game_binding_identifier:442",
+        "Q41-I01:game_binding_identifier:443",
+        "Q41-I01:game_binding_identifier:444",
+        "Q41-I01:game_binding_identifier:445",
+        "Q41-I01:game_binding_identifier:446",
+        "Q41-I01:game_binding_identifier:447",
+        "Q41-I01:game_binding_identifier:448",
+        "Q41-I01:game_binding_identifier:449",
+        "Q41-I01:game_binding_identifier:450",
+        "Q41-I01:game_binding_identifier:451",
+        "Q41-I01:game_binding_identifier:452",
+        "Q41-I01:game_binding_identifier:453",
+        "Q41-I01:game_binding_identifier:454",
+        "Q41-I01:game_binding_identifier:455",
+        "Q41-I01:game_binding_identifier:456",
+        "Q41-I01:game_binding_identifier:457",
+        "Q41-I01:game_binding_identifier:458",
+        "Q41-I01:game_binding_identifier:459",
+        "Q41-I01:game_binding_identifier:460",
+        "Q41-I01:game_binding_identifier:461",
+        "Q41-I01:game_binding_identifier:462",
+        "Q41-I01:game_binding_identifier:463",
+        "Q41-I01:game_binding_identifier:464",
+        "Q41-I01:game_binding_identifier:465",
+        "Q41-I01:game_binding_identifier:466",
+        "Q41-I01:game_binding_identifier:467",
+        "Q41-I01:game_binding_identifier:468",
+        "Q41-I01:game_binding_identifier:469",
+        "Q41-I01:game_binding_identifier:470",
+        "Q41-I01:game_binding_identifier:471",
+        "Q41-I01:game_binding_identifier:472",
+        "Q41-I01:game_binding_identifier:473",
+        "Q41-I01:game_binding_identifier:474",
+        "Q41-I01:game_binding_identifier:475",
+        "Q41-I01:game_binding_identifier:476",
+        "Q41-I01:game_binding_identifier:477",
+        "Q41-I01:game_binding_identifier:478",
+        "Q41-I01:game_binding_identifier:479",
+        "Q41-I01:game_binding_identifier:480",
+        "Q41-I01:game_binding_identifier:481",
+        "Q41-I01:game_binding_identifier:482",
+        "Q41-I01:game_binding_identifier:483",
+        "Q41-I01:game_binding_identifier:484",
+        "Q41-I01:game_binding_identifier:485",
+        "Q41-I01:game_binding_identifier:486",
+        "Q41-I01:game_binding_identifier:487",
+        "Q41-I01:game_binding_identifier:488",
+        "Q41-I01:game_binding_identifier:489",
+        "Q41-I01:game_binding_identifier:490",
+        "Q41-I01:game_binding_identifier:491",
+        "Q41-I01:game_binding_identifier:492",
+        "Q41-I01:game_binding_identifier:493",
+        "Q41-I01:game_binding_identifier:494",
+        "Q41-I01:game_binding_identifier:495",
+        "Q41-I01:game_binding_identifier:496",
+        "Q41-I01:game_binding_identifier:497",
+        "Q41-I01:game_binding_identifier:498",
+        "Q41-I01:game_binding_identifier:499",
+        "Q41-I01:game_binding_identifier:500",
+        "Q41-I01:game_binding_identifier:501",
+        "Q41-I01:game_binding_identifier:502",
+        "Q41-I01:game_binding_identifier:503",
+        "Q41-I01:game_binding_identifier:504",
+        "Q41-I01:game_binding_identifier:505",
+        "Q41-I01:game_binding_identifier:506",
+        "Q41-I01:game_binding_identifier:507",
+        "Q41-I01:game_binding_identifier:508",
+        "Q41-I01:game_binding_identifier:509",
+        "Q41-I01:game_binding_identifier:510",
+        "Q41-I01:game_binding_identifier:511",
+        "Q41-I01:game_binding_identifier:512",
+        "Q41-I01:game_binding_identifier:513",
+        "Q41-I01:game_binding_identifier:514",
+        "Q41-I01:game_binding_identifier:515",
+        "Q41-I01:game_binding_identifier:516",
+        "Q41-I01:game_binding_identifier:517",
+        "Q41-I01:game_binding_identifier:518",
+        "Q41-I01:game_binding_identifier:519",
+        "Q41-I01:game_binding_identifier:520",
+        "Q41-I01:game_binding_identifier:521",
+        "Q41-I01:game_binding_identifier:522",
+        "Q41-I01:game_binding_identifier:523",
+        "Q41-I01:game_binding_identifier:524",
+        "Q41-I01:game_binding_identifier:525",
+        "Q41-I01:game_binding_identifier:526",
+        "Q41-I01:game_binding_identifier:527",
+        "Q41-I01:game_binding_identifier:528",
+        "Q41-I01:game_binding_identifier:529",
+        "Q41-I01:game_binding_identifier:530",
+        "Q41-I01:game_binding_identifier:531",
+        "Q41-I01:game_binding_identifier:532",
+        "Q41-I01:game_binding_identifier:533",
+        "Q41-I01:game_binding_identifier:534",
+        "Q41-I01:game_binding_identifier:535",
+        "Q41-I01:game_binding_identifier:536",
+        "Q41-I01:game_binding_identifier:537",
+        "Q41-I01:game_binding_identifier:538",
+        "Q41-I01:game_binding_identifier:539",
+        "Q41-I01:game_binding_identifier:540",
+        "Q41-I01:game_binding_identifier:541",
+        "Q41-I01:game_binding_identifier:542",
+        "Q41-I01:game_binding_identifier:543",
+        "Q41-I01:game_binding_identifier:544",
+        "Q41-I01:game_binding_identifier:545",
+        "Q41-I01:game_binding_identifier:546",
+        "Q41-I01:game_binding_identifier:547",
+        "Q41-I01:game_binding_identifier:548",
+        "Q41-I01:game_binding_identifier:549",
+        "Q41-I01:game_binding_identifier:550",
+        "Q41-I01:game_binding_identifier:551",
+        "Q41-I01:game_binding_identifier:552",
+        "Q41-I01:game_binding_identifier:553",
+        "Q41-I01:game_binding_identifier:554",
+        "Q41-I01:game_binding_identifier:555",
+        "Q41-I01:game_binding_identifier:556",
+        "Q41-I01:game_binding_identifier:557",
+        "Q41-I01:game_binding_identifier:558",
+        "Q41-I01:game_binding_identifier:559",
+        "Q41-I01:game_binding_identifier:560",
+        "Q41-I01:game_binding_identifier:561",
+        "Q41-I01:game_binding_identifier:562",
+        "Q41-I01:game_binding_identifier:563",
+        "Q41-I01:game_binding_identifier:564",
+        "Q41-I01:game_binding_identifier:565",
+        "Q41-I01:game_binding_identifier:566",
+        "Q41-I01:game_binding_identifier:567",
+        "Q41-I01:game_binding_identifier:568",
+        "Q41-I01:game_binding_identifier:569",
+        "Q41-I01:game_binding_identifier:570",
+        "Q41-I01:game_binding_identifier:571",
+        "Q41-I01:game_binding_identifier:572",
+        "Q41-I01:game_binding_identifier:573",
+        "Q41-I01:game_binding_identifier:574",
+        "Q41-I01:game_binding_identifier:575",
+        "Q41-I01:game_binding_identifier:576",
+        "Q41-I01:game_binding_identifier:577",
+        "Q41-I01:game_binding_identifier:578",
+        "Q41-I01:game_binding_identifier:579",
+        "Q41-I01:game_binding_identifier:580",
+        "Q41-I01:game_binding_identifier:581",
+        "Q41-I01:game_binding_identifier:582",
+        "Q41-I01:game_binding_identifier:583",
+        "Q41-I01:game_binding_identifier:584",
+        "Q41-I01:game_binding_identifier:585",
+        "Q41-I01:game_binding_identifier:586",
+        "Q41-I01:game_binding_identifier:587",
+        "Q41-I01:game_binding_identifier:588",
+        "Q41-I01:game_binding_identifier:589",
+        "Q41-I01:game_binding_identifier:590",
+        "Q41-I01:game_binding_identifier:591",
+        "Q41-I01:game_binding_identifier:592",
+        "Q41-I01:game_binding_identifier:593",
+        "Q41-I01:game_binding_identifier:594",
+        "Q41-I01:game_binding_identifier:595",
+        "Q41-I01:game_binding_identifier:596",
+        "Q41-I01:game_binding_identifier:597",
+        "Q41-I01:game_binding_identifier:598",
+        "Q41-I01:game_binding_identifier:599",
+        "Q41-I01:game_binding_identifier:600",
+        "Q41-I01:game_binding_identifier:601",
+        "Q41-I01:game_binding_identifier:602",
+        "Q41-I01:game_binding_identifier:603",
+        "Q41-I01:game_binding_identifier:604",
+        "Q41-I01:game_binding_identifier:605",
+        "Q41-I01:game_binding_identifier:606",
+        "Q41-I01:game_binding_identifier:607",
+        "Q41-I01:game_binding_identifier:608",
+        "Q41-I01:game_binding_identifier:609",
+        "Q41-I01:game_binding_identifier:610",
+        "Q41-I01:game_binding_identifier:611",
+        "Q41-I01:game_binding_identifier:612",
+        "Q41-I01:game_binding_identifier:613",
+        "Q41-I01:game_binding_identifier:614",
+        "Q41-I01:game_binding_identifier:615",
+        "Q41-I01:game_binding_identifier:616",
+        "Q41-I01:game_binding_identifier:617",
+        "Q41-I01:game_binding_identifier:618",
+        "Q41-I01:game_binding_identifier:619",
+        "Q41-I01:game_binding_identifier:620",
+        "Q41-I01:game_binding_identifier:621",
+        "Q41-I01:game_binding_identifier:622",
+        "Q41-I01:game_binding_identifier:623",
+        "Q41-I01:game_binding_identifier:624",
+        "Q41-I01:game_binding_identifier:625",
+        "Q41-I01:game_binding_identifier:626",
+        "Q41-I01:game_binding_identifier:627",
+        "Q41-I01:game_binding_identifier:628",
+        "Q41-I01:game_binding_identifier:629",
+        "Q41-I01:game_binding_identifier:630",
+        "Q41-I01:game_binding_identifier:631",
+        "Q41-I01:game_binding_identifier:632",
+        "Q41-I01:game_binding_identifier:633",
+        "Q41-I01:game_binding_identifier:634",
+        "Q41-I01:game_binding_identifier:635",
+        "Q41-I01:game_binding_identifier:637",
+        "Q41-I01:game_binding_identifier:639",
+        "Q41-I01:game_binding_identifier:640",
+        "Q41-I01:game_binding_identifier:642",
+        "Q41-I01:game_binding_identifier:643",
+        "Q41-I01:game_binding_identifier:644",
+        "Q41-I01:game_binding_identifier:645",
+        "Q41-I01:game_binding_identifier:646",
+        "Q41-I01:game_binding_identifier:647",
+        "Q41-I01:game_binding_identifier:653",
+        "Q41-I01:game_binding_identifier:654",
+        "Q41-I01:game_binding_identifier:655",
+        "Q41-I01:game_binding_identifier:656",
+        "Q41-I01:game_binding_identifier:657",
+        "Q41-I01:game_binding_identifier:658",
+        "Q41-I01:game_binding_identifier:659",
+        "Q41-I01:game_binding_identifier:660",
+        "Q41-I01:game_binding_identifier:661",
+        "Q41-I01:game_binding_identifier:662",
+        "Q41-I01:game_binding_identifier:663",
+        "Q41-I01:game_binding_identifier:664",
+        "Q41-I01:game_binding_identifier:665",
+        "Q41-I01:game_binding_identifier:666",
+        "Q41-I01:game_binding_identifier:667",
+        "Q41-I01:game_binding_identifier:668",
+        "Q41-I01:game_binding_identifier:669",
+        "Q41-I01:game_binding_identifier:670",
+        "Q41-I01:game_binding_identifier:672",
+        "Q41-I01:game_binding_identifier:674",
+        "Q41-I01:game_binding_identifier:675",
+        "Q41-I01:game_binding_identifier:676",
+        "Q41-I01:game_binding_identifier:677",
+        "Q41-I01:game_binding_identifier:678",
+        "Q41-I01:game_binding_identifier:679",
+        "Q41-I01:game_binding_identifier:680",
+        "Q41-I01:game_binding_identifier:681",
+        "Q41-I01:game_binding_identifier:682",
+        "Q41-I01:game_binding_identifier:683",
+        "Q41-I01:game_binding_identifier:684",
+        "Q41-I01:game_binding_identifier:685",
+        "Q41-I01:game_binding_identifier:686",
+        "Q41-I01:game_binding_identifier:687",
+        "Q41-I01:game_binding_identifier:688",
+        "Q41-I01:game_binding_identifier:689",
+        "Q41-I01:game_binding_identifier:690",
+        "Q41-I01:game_binding_identifier:691",
+        "Q41-I01:game_binding_identifier:692",
+        "Q41-I01:game_binding_identifier:693",
+        "Q41-I01:game_binding_identifier:696",
+        "Q41-I01:game_binding_identifier:697",
+        "Q41-I01:game_binding_identifier:698",
+        "Q41-I01:game_binding_identifier:699",
+        "Q41-I01:game_binding_identifier:700",
+        "Q41-I01:game_binding_identifier:701",
+        "Q41-I01:game_binding_identifier:702",
+        "Q41-I01:game_binding_identifier:703",
+        "Q41-I01:game_binding_identifier:704",
+        "Q41-I01:game_binding_identifier:705",
+        "Q41-I01:game_binding_identifier:706",
+        "Q41-I01:game_binding_identifier:707",
+        "Q41-I01:textual_id_assignment:2",
+        "Q41-I01:textual_id_assignment:3",
+        "Q41-I01:textual_id_assignment:4",
+        "Q41-I01:textual_id_assignment:5",
+        "Q41-I01:textual_id_assignment:6",
+        "Q41-I01:lua_function_declaration:160",
+        "Q41-I01:lua_function_declaration:161",
+        "Q41-I01:lua_function_declaration:162",
+        "Q41-I01:lua_function_declaration:163",
+        "Q41-I01:lua_function_declaration:164",
+        "Q41-I01:lua_function_declaration:165",
+        "Q41-I01:lua_function_declaration:166",
+        "Q41-I01:lua_function_declaration:167",
+        "Q41-I01:lua_function_declaration:168",
+        "Q41-I01:lua_function_declaration:169",
+        "Q41-I01:lua_function_declaration:170",
+        "Q41-I01:lua_function_declaration:171",
+        "Q41-I01:lua_function_declaration:172",
+        "Q41-I01:lua_function_declaration:173",
+        "Q41-I01:lua_function_declaration:174",
+        "Q41-I01:lua_function_declaration:175",
+        "Q41-I01:lua_function_declaration:176",
+        "Q41-I01:lua_function_declaration:177",
+        "Q41-I01:lua_function_declaration:178",
+        "Q41-I01:lua_function_declaration:179",
+        "Q41-I01:lua_function_declaration:180",
+        "Q41-I01:lua_function_declaration:181",
+        "Q41-I01:lua_function_declaration:182",
+        "Q41-I01:lua_function_declaration:183",
+        "Q41-I01:lua_function_declaration:184",
+        "Q41-I01:lua_function_declaration:185",
+        "Q41-I01:lua_function_declaration:186",
+        "Q41-I01:lua_function_declaration:187",
+        "Q41-I01:lua_function_declaration:188",
+        "Q41-I01:lua_function_declaration:189",
+        "Q41-I01:lua_function_declaration:190",
+        "Q41-I01:lua_function_declaration:191",
+        "Q41-I01:lua_function_declaration:192",
+        "Q41-I01:lua_function_declaration:193",
+        "Q41-I01:lua_function_declaration:194",
+        "Q41-I01:lua_function_declaration:195",
+        "Q41-I01:lua_function_declaration:196",
+        "Q41-I01:lua_function_declaration:197",
+        "Q41-I01:lua_function_declaration:198",
+        "Q41-I01:lua_function_declaration:199",
+        "Q41-I01:lua_function_declaration:200",
+        "Q41-I01:lua_function_declaration:201",
+        "Q41-I01:lua_function_declaration:202",
+        "Q41-I01:lua_function_declaration:203",
+        "Q41-I01:lua_function_declaration:204",
+        "Q41-I01:lua_function_declaration:207",
+        "Q41-I01:lua_function_declaration:208",
+        "Q41-I01:lua_function_declaration:209",
+        "Q41-I01:lua_function_declaration:211",
+        "Q41-I01:lua_function_declaration:212",
+        "Q41-I01:lua_function_declaration:213",
+        "Q41-I01:lua_function_declaration:214",
+        "Q41-I01:lua_function_declaration:215",
+        "Q41-I01:lua_function_declaration:216"
+      ],
+      "reviewed_occurrence_count": 477
+    },
+    "player-position": {
+      "classification": "AS_interface_recovery_candidate",
+      "gap_ids": [
+        137
+      ],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/client/addon_scalars.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs",
+        "crates/benilla-app/src/local_client.rs",
+        "crates/benilla-app/src/player/controller.rs"
+      ],
+      "assessment": "Exact current Lua constructs m<map>:<run-or-none> spaces and tags destinations. The separate meter-script position wrapper reads AZS_NativePlayerSample, rejects invalid map/coordinates and constructs per-frame samples. Existing source publishes historical run packet positions; native live-pose, teleport/readiness and dungeon/raid correspondence remain open.",
+      "next_static_step": "Recover host_controls::player_position registration/sample owner and AS run/map space tagging; prove current rendered pose/frame identity and loading/teleport failures instead of treating server movement packets as the live sample.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:776",
+        "Q41-I01:game_binding_identifier:9",
+        "Q41-I01:game_binding_identifier:105",
+        "Q41-I01:game_binding_identifier:108",
+        "Q41-I01:game_binding_identifier:109",
+        "Q41-I01:game_binding_identifier:112",
+        "Q41-I01:game_binding_identifier:257",
+        "Q41-I01:game_binding_identifier:261",
+        "Q41-I01:game_binding_identifier:636",
+        "Q41-I01:game_binding_identifier:638",
+        "Q41-I01:game_binding_identifier:641",
+        "Q41-I01:game_binding_identifier:652",
+        "Q41-I01:game_binding_identifier:671",
+        "Q41-I01:game_binding_identifier:673",
+        "Q41-I01:lua_function_declaration:132",
+        "Q41-I01:lua_function_declaration:133",
+        "Q41-I01:lua_function_declaration:205",
+        "Q41-I01:lua_function_declaration:206",
+        "Q41-I01:lua_function_declaration:210"
+      ],
+      "reviewed_occurrence_count": 19
+    },
+    "combat-text-anchors": {
+      "classification": "AS_interface_recovery_candidate",
+      "gap_ids": [
+        307
+      ],
+      "source_refs": [
+        "crates/benilla-app/src/combat_text/mod.rs",
+        "crates/benilla-app/src/combat_log/mod.rs",
+        "crates/benilla-app/src/ui_pass.rs",
+        "crates/benilla-app/src/ui_script/mod.rs",
+        "crates/benilla-world/src/view.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/events.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs"
+      ],
+      "assessment": "Ordinary source combat text already anchors stock numbers in the world. Current Lua adds an independent native event/project bridge, declared capacities/retention and handler registry/callback. Missing addon-facing native stream, dead-target anchor lifetime, frame ordering and meterSource/sourceKey provenance are not supplied by stock numbers.",
+      "next_static_step": "Trace host_controls::combat_text producers/registration, exact event fields and per-hit sourceKey attribution, stream/cursor/drop lifetime and anchor projection/death retention; prove callback runs after the current camera and before extraction/paint.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:238",
+        "Q41-I01:module_type_namespace:358",
+        "Q41-I01:module_type_namespace:683",
+        "Q41-I01:game_binding_identifier:10",
+        "Q41-I01:game_binding_identifier:126",
+        "Q41-I01:game_binding_identifier:127",
+        "Q41-I01:game_binding_identifier:128",
+        "Q41-I01:game_binding_identifier:129",
+        "Q41-I01:game_binding_identifier:130",
+        "Q41-I01:game_binding_identifier:131",
+        "Q41-I01:game_binding_identifier:132",
+        "Q41-I01:game_binding_identifier:133",
+        "Q41-I01:game_binding_identifier:134",
+        "Q41-I01:game_binding_identifier:135",
+        "Q41-I01:game_binding_identifier:136",
+        "Q41-I01:game_binding_identifier:137",
+        "Q41-I01:game_binding_identifier:138",
+        "Q41-I01:game_binding_identifier:139",
+        "Q41-I01:game_binding_identifier:140",
+        "Q41-I01:game_binding_identifier:141",
+        "Q41-I01:game_binding_identifier:142",
+        "Q41-I01:game_binding_identifier:143",
+        "Q41-I01:game_binding_identifier:144",
+        "Q41-I01:game_binding_identifier:145",
+        "Q41-I01:game_binding_identifier:146",
+        "Q41-I01:game_binding_identifier:147",
+        "Q41-I01:game_binding_identifier:148",
+        "Q41-I01:game_binding_identifier:149",
+        "Q41-I01:game_binding_identifier:150",
+        "Q41-I01:game_binding_identifier:151",
+        "Q41-I01:lua_function_declaration:141",
+        "Q41-I01:lua_function_declaration:142",
+        "Q41-I01:lua_function_declaration:143",
+        "Q41-I01:lua_function_declaration:144",
+        "Q41-I01:lua_function_declaration:145",
+        "Q41-I01:lua_function_declaration:146",
+        "Q41-I01:lua_function_declaration:147"
+      ],
+      "reviewed_occurrence_count": 37
+    },
+    "on-top-interface": {
+      "classification": "AS_interface_recovery_candidate",
+      "gap_ids": [
+        11
+      ],
+      "source_refs": [
+        "crates/benilla-app/src/local_client/extension.rs",
+        "crates/benilla-app/src/ui_pass.rs",
+        "crates/benilla-app/src/ui_script/mod.rs",
+        "crates/azeroth-survivors-re/src/gameplay/native_overlays.rs"
+      ],
+      "assessment": "Retained source already implements the bounded on-top registry/hit/compositor adapter. New host_controls::over_screens namespace is a current engine-interface mapping lead, not evidence of removed implementation.",
+      "next_static_step": "Map the moved current host_controls boundary to retained on-top contracts and consumer dependencies; retain historical implementation and do not restart generic rendering recovery.",
+      "selectors": [],
+      "reviewed_occurrence_count": 0
+    },
+    "host-control-composition": {
+      "classification": "AS_interface_recovery_candidate",
+      "gap_ids": [
+        302,
+        137,
+        11
+      ],
+      "source_refs": [
+        "crates/benilla-app/src/local_client.rs",
+        "crates/benilla-app/src/local_client/extension.rs",
+        "crates/benilla-app/src/player/controller.rs",
+        "crates/benilla-app/src/ui_pass.rs"
+      ],
+      "assessment": "Packed plugin composition names LocalClockPlugin, TouchDrivePlugin, PlayerPositionPlugin and over_screens. Known AS dependencies require their individual bounded interfaces; the concatenated candidate is not a single module/type.",
+      "next_static_step": "Follow clock #302, rendered position #137 and on-top #11 contracts; retain existing touch/controller source as supporting context. Do not infer equality from the plugin names.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:241"
+      ],
+      "reviewed_occurrence_count": 1
+    },
+    "skip-binding": {
+      "classification": "AS_interface_recovery_candidate",
+      "gap_ids": [
+        304
+      ],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/native_bindings.rs",
+        "crates/azeroth-survivors-re/src/gameplay/native_overlays.rs",
+        "crates/benilla-app/src/bindings.rs"
+      ],
+      "assessment": "Existing custom binding source installs only stored-level AZS_OPENLEVELS/Y. AZS_SKIP* variants include packed lexical suffixes; they are not all asserted public API names.",
+      "next_static_step": "Recover default X, rebind/label publication, press-only/skippable-card gating and fallback to ordinary sit/stand outside those cards.",
+      "selectors": [
+        "Q41-I01:game_binding_identifier:0",
+        "Q41-I01:game_binding_identifier:1",
+        "Q41-I01:game_binding_identifier:4",
+        "Q41-I01:game_binding_identifier:5",
+        "Q41-I01:game_binding_identifier:6",
+        "Q41-I01:game_binding_identifier:8"
+      ],
+      "reviewed_occurrence_count": 6
+    },
+    "stored-level-binding": {
+      "classification": "AS_interface_recovery_candidate",
+      "gap_ids": [
+        21
+      ],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/native_bindings.rs",
+        "crates/azeroth-survivors-re/src/gameplay/stored_hud.rs"
+      ],
+      "assessment": "AZS_OPENI is a changed packed regex boundary candidate. Retained source already supplies the stored-level binding and consumer; candidate-set removal of AZS_OPENLEVELS does not prove its removal.",
+      "next_static_step": "Check exact current binding string/slice and dispatch only where changed; preserve the retained stored-level contract and do not invent a new binding from the regex suffix.",
+      "selectors": [
+        "Q41-I01:game_binding_identifier:3"
+      ],
+      "reviewed_occurrence_count": 1
+    },
+    "manual-update-check": {
+      "classification": "AS_interface_recovery_candidate",
+      "gap_ids": [
+        132,
+        77
+      ],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/update_check.rs",
+        "crates/azeroth-survivors-re/src/update_ui.rs",
+        "crates/azeroth-survivors-re/src/picker.rs"
+      ],
+      "assessment": "Existing updater check/notification and picker seams are available. New CheckButton/Toast candidates and independent mapped update-result version data require manual-check input/result-state correspondence.",
+      "next_static_step": "Recover picker CheckButton action, checking/already-downloading/up-to-date/error toast state and existing updater handoff; do not execute updater/network flows.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:0",
+        "Q41-I01:module_type_namespace:210"
+      ],
+      "reviewed_occurrence_count": 2
+    },
+    "menu-preview-interface": {
+      "classification": "AS_interface_recovery_candidate",
+      "gap_ids": [
+        60,
+        297
+      ],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/menu_scene.rs",
+        "crates/azeroth-survivors-re/src/preview.rs",
+        "crates/benilla-app/src/portrait/hero_booth.rs",
+        "crates/benilla-app/src/local_client.rs"
+      ],
+      "assessment": "Native engine MenuScenePlugin/HeroPreviewPlugin names are candidate counterparts of existing reconstructed scene and preview adapters. Source already contains the world request/readiness/preview path; compiled revision, framing and rendering applicability remain separate.",
+      "next_static_step": "Map only AS scene/preview requests, masks, readiness, booth output and foot/turn consumers; stop at existing generic world/model interfaces.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:237"
+      ],
+      "reviewed_occurrence_count": 1
+    },
+    "loading-interface": {
+      "classification": "AS_interface_recovery_candidate",
+      "gap_ids": [
+        61
+      ],
+      "source_refs": [
+        "crates/benilla-app/src/loading_screen.rs",
+        "crates/benilla-formats/src/loading_screen.rs",
+        "crates/azeroth-survivors-re/src/menu_scene.rs"
+      ],
+      "assessment": "Existing loading cover, progress/input and MPQ loading-art table are source counterparts. Added hold/route names and packed resource paths are current boundary candidates, not evidence of a missing loading system.",
+      "next_static_step": "Establish current AS world-entry hold/readiness/progress consumer correspondence under #61; trace new route semantics only if this interface requires them.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:406",
+        "Q41-I01:module_type_namespace:493",
+        "Q41-I01:module_type_namespace:494",
+        "Q41-I01:module_type_namespace:663",
+        "Q41-I01:module_type_namespace:681",
+        "Q41-I01:resource_path:37",
+        "Q41-I01:resource_path:175",
+        "Q41-I01:resource_path:266"
+      ],
+      "reviewed_occurrence_count": 8
+    },
+    "engine-client-context": {
+      "classification": "engine_supporting_context_candidate",
+      "gap_ids": [],
+      "source_refs": [
+        "crates/benilla-app/src/game_plugins.rs",
+        "crates/benilla-app/src/bindings.rs",
+        "crates/benilla-app/src/script_calls.rs",
+        "crates/benilla-app/src/items.rs",
+        "crates/benilla-app/src/names.rs",
+        "crates/benilla-app/src/item_watch.rs",
+        "crates/benilla-app/src/crash.rs",
+        "crates/benilla-app/src/ui_saved.rs",
+        "crates/benilla-app/src/ui_script/lifecycle.rs",
+        "crates/benilla-app/src/entities/skin_composite.rs",
+        "crates/benilla-app/src/player/controller.rs",
+        "crates/benilla-app/src/target/mod.rs",
+        "crates/benilla-app/src/transport.rs",
+        "crates/benilla-app/src/ui_action/mod.rs",
+        "crates/benilla-app/src/ui_chat.rs",
+        "crates/benilla-app/src/ui_guild/mod.rs",
+        "crates/benilla-app/src/ui_items/mod.rs",
+        "crates/benilla-app/src/ui_world_map.rs",
+        "crates/benilla-app/src/ui_talent_wipe.rs"
+      ],
+      "assessment": "Bounded source review identifies existing ordinary engine composition, saved-variable/account, item/name cache, script dispatch, targeting, UI/network and platform roles. Several compiled namespace paths have moved or split; source role candidates do not establish matching compiled revision, whole-function generic exclusion or equivalent behavior.",
+      "next_static_step": "Keep exact native selectors in supporting residual context. Expand only an identified AS interface/override; generic client implementation/revision reconstruction is outside this audit.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:247",
+        "Q41-I01:module_type_namespace:267",
+        "Q41-I01:module_type_namespace:270",
+        "Q41-I01:module_type_namespace:273",
+        "Q41-I01:module_type_namespace:274",
+        "Q41-I01:module_type_namespace:283",
+        "Q41-I01:module_type_namespace:286",
+        "Q41-I01:module_type_namespace:301",
+        "Q41-I01:module_type_namespace:302",
+        "Q41-I01:module_type_namespace:326",
+        "Q41-I01:module_type_namespace:327",
+        "Q41-I01:module_type_namespace:332",
+        "Q41-I01:module_type_namespace:334",
+        "Q41-I01:module_type_namespace:338",
+        "Q41-I01:module_type_namespace:346",
+        "Q41-I01:module_type_namespace:350",
+        "Q41-I01:module_type_namespace:353",
+        "Q41-I01:module_type_namespace:379",
+        "Q41-I01:module_type_namespace:382",
+        "Q41-I01:module_type_namespace:387",
+        "Q41-I01:module_type_namespace:389",
+        "Q41-I01:module_type_namespace:390",
+        "Q41-I01:module_type_namespace:392",
+        "Q41-I01:module_type_namespace:397",
+        "Q41-I01:module_type_namespace:407",
+        "Q41-I01:module_type_namespace:409",
+        "Q41-I01:module_type_namespace:411",
+        "Q41-I01:module_type_namespace:434",
+        "Q41-I01:module_type_namespace:440",
+        "Q41-I01:module_type_namespace:444",
+        "Q41-I01:module_type_namespace:446",
+        "Q41-I01:module_type_namespace:447",
+        "Q41-I01:module_type_namespace:448",
+        "Q41-I01:module_type_namespace:450",
+        "Q41-I01:module_type_namespace:451",
+        "Q41-I01:module_type_namespace:452",
+        "Q41-I01:module_type_namespace:453",
+        "Q41-I01:module_type_namespace:454",
+        "Q41-I01:module_type_namespace:455",
+        "Q41-I01:module_type_namespace:456",
+        "Q41-I01:module_type_namespace:457",
+        "Q41-I01:module_type_namespace:459",
+        "Q41-I01:module_type_namespace:656",
+        "Q41-I01:module_type_namespace:675",
+        "Q41-I01:module_type_namespace:682",
+        "Q41-I01:module_type_namespace:685",
+        "Q41-I01:module_type_namespace:687",
+        "Q41-I01:module_type_namespace:689",
+        "Q41-I01:module_type_namespace:705",
+        "Q41-I01:module_type_namespace:710",
+        "Q41-I01:module_type_namespace:722",
+        "Q41-I01:module_type_namespace:725",
+        "Q41-I01:module_type_namespace:727",
+        "Q41-I01:module_type_namespace:730",
+        "Q41-I01:module_type_namespace:736",
+        "Q41-I01:module_type_namespace:753",
+        "Q41-I01:module_type_namespace:755",
+        "Q41-I01:module_type_namespace:759",
+        "Q41-I01:module_type_namespace:760",
+        "Q41-I01:module_type_namespace:762",
+        "Q41-I01:module_type_namespace:780"
+      ],
+      "reviewed_occurrence_count": 61
+    },
+    "engine-world-context": {
+      "classification": "engine_supporting_context_candidate",
+      "gap_ids": [],
+      "source_refs": [
+        "crates/benilla-world/src/world_plugins.rs",
+        "crates/benilla-world/src/assets/mod.rs",
+        "crates/benilla-world/src/bgwin.rs",
+        "crates/benilla-world/src/mac_quit.rs",
+        "crates/benilla-world/src/doodad_anim/mod.rs",
+        "crates/benilla-world/src/entity_shade.rs",
+        "crates/benilla-world/src/frame_pace.rs",
+        "crates/benilla-world/src/interior.rs",
+        "crates/benilla-world/src/lighting/blob.rs",
+        "crates/benilla-world/src/lighting/prop_probes.rs",
+        "crates/benilla-world/src/model_fade.rs",
+        "crates/benilla-world/src/rig_palette.rs",
+        "crates/benilla-world/src/sky.rs",
+        "crates/benilla-world/src/sun/mod.rs",
+        "crates/benilla-world/src/skybox.rs",
+        "crates/benilla-world/src/static_gx/mod.rs",
+        "crates/benilla-world/src/terrain_stream.rs",
+        "crates/benilla-world/src/thread_qos.rs",
+        "crates/benilla-world/src/view.rs",
+        "crates/benilla-world/src/wmo_portal/mod.rs"
+      ],
+      "assessment": "Existing source exposes ordinary streaming, rendering, shading, rig/animation, view, culling and OS/window interfaces. Packed namespace suffixes and revised composition are discovery context; matching source role is not native semantic exclusion.",
+      "next_static_step": "Retain native residual uncertainty and stop at source-defined engine interfaces unless a concrete AS dependency/override is demonstrated.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:323",
+        "Q41-I01:module_type_namespace:462",
+        "Q41-I01:module_type_namespace:565",
+        "Q41-I01:module_type_namespace:680",
+        "Q41-I01:module_type_namespace:786",
+        "Q41-I01:module_type_namespace:787",
+        "Q41-I01:module_type_namespace:788",
+        "Q41-I01:module_type_namespace:795",
+        "Q41-I01:module_type_namespace:796",
+        "Q41-I01:module_type_namespace:799",
+        "Q41-I01:module_type_namespace:801",
+        "Q41-I01:module_type_namespace:807",
+        "Q41-I01:module_type_namespace:808",
+        "Q41-I01:module_type_namespace:811",
+        "Q41-I01:module_type_namespace:831",
+        "Q41-I01:module_type_namespace:860",
+        "Q41-I01:module_type_namespace:934",
+        "Q41-I01:module_type_namespace:952",
+        "Q41-I01:module_type_namespace:954",
+        "Q41-I01:module_type_namespace:956",
+        "Q41-I01:module_type_namespace:958",
+        "Q41-I01:module_type_namespace:977"
+      ],
+      "reviewed_occurrence_count": 22
+    },
+    "engine-assets-context": {
+      "classification": "engine_supporting_context_candidate",
+      "gap_ids": [],
+      "source_refs": [
+        "crates/benilla-assets/src/lib.rs",
+        "crates/benilla-assets/src/m2.rs",
+        "crates/benilla-assets/src/wmo.rs",
+        "crates/benilla-assets/src/world_assets/mod.rs"
+      ],
+      "assessment": "Existing asset loaders/store provide model, terrain, texture and world asset interfaces; concatenated type/registration names do not prove a new AS resource or missing implementation.",
+      "next_static_step": "Use the existing MPQ/asset parser boundary for an actual AS consumer; do not recurse into generic asset internals.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:992",
+        "Q41-I01:module_type_namespace:997",
+        "Q41-I01:module_type_namespace:999",
+        "Q41-I01:module_type_namespace:1004"
+      ],
+      "reviewed_occurrence_count": 4
+    },
+    "engine-lua-context": {
+      "classification": "engine_supporting_context_candidate",
+      "gap_ids": [],
+      "source_refs": [
+        "crates/benilla-lua/src/lib.rs",
+        "crates/benilla-app/src/ui_script/mod.rs"
+      ],
+      "assessment": "Existing new_state() installs the client Lua libraries and compat chunk. Native Lua/compat candidates are ordinary VM interface context, with compiled revision and behavior correspondence unproved.",
+      "next_static_step": "Stop at the existing VM host boundary unless an AS registration or script consumer requires deeper proof.",
+      "selectors": [
+        "Q41-I01:module_type_namespace:1007"
+      ],
+      "reviewed_occurrence_count": 1
+    },
+    "engine-resource-context": {
+      "classification": "engine_supporting_context_candidate",
+      "gap_ids": [],
+      "source_refs": [
+        "crates/benilla-formats/src/chain.rs",
+        "crates/benilla-formats/src/factions.rs",
+        "crates/benilla-formats/src/languages.rs",
+        "crates/benilla-formats/src/stationery.rs",
+        "crates/benilla-formats/src/durability.rs",
+        "crates/benilla-formats/src/resistances.rs",
+        "crates/benilla-formats/src/lock.rs",
+        "crates/benilla-formats/src/packages.rs",
+        "crates/benilla-formats/src/footsteps.rs",
+        "crates/benilla-formats/src/mail_template.rs",
+        "crates/benilla-formats/src/spell_visual/chain_effects.rs",
+        "crates/benilla-assets/src/lib.rs",
+        "crates/benilla-world/src/sun/mod.rs",
+        "crates/benilla-world/src/water_fx/mod.rs",
+        "crates/benilla-app/src/loading_screen.rs"
+      ],
+      "assessment": "Source-first resource review finds existing patch-chain, DBC catalog, Lua compatibility, celestial/water texture and placeholder-model interfaces. Packed path strings can join several files or prefixes; candidate membership changes do not prove new/missing assets or source behavior.",
+      "next_static_step": "Resolve only an actual AS resource consumer/dependency. Keep mount/locale/resource-consumer and generic compiled-revision uncertainty explicit.",
+      "selectors": [
+        "Q41-I01:resource_path:27",
+        "Q41-I01:resource_path:49",
+        "Q41-I01:resource_path:195",
+        "Q41-I01:resource_path:206",
+        "Q41-I01:resource_path:213",
+        "Q41-I01:resource_path:215",
+        "Q41-I01:resource_path:300",
+        "Q41-I01:resource_path:301",
+        "Q41-I01:resource_path:302",
+        "Q41-I01:resource_path:303",
+        "Q41-I01:resource_path:306",
+        "Q41-I01:resource_path:307",
+        "Q41-I01:resource_path:308",
+        "Q41-I01:resource_path:310",
+        "Q41-I01:resource_path:318",
+        "Q41-I01:resource_path:320",
+        "Q41-I01:resource_path:323"
+      ],
+      "reviewed_occurrence_count": 17
+    }
+  },
+  "reviewed_candidate_identity_sha256": "16b29705fae3890a74f563a0604a63159ebe0c9d47d14d6d7cfe3f2c23bf811a",
+  "additional_current_data_leads": [
+    {
+      "key": "meterSource",
+      "file_offset": "0x65d5078",
+      "byte_count": 11,
+      "sha256": "5d98bc1b2e5e6e6f841fa641422dc19573d98378fcc487c80b4df0f80a9d6b22",
+      "group_id": "combat-text-anchors",
+      "gap_ids": [
+        307
+      ],
+      "status": "packed_native_key_not_yet_bound_to_constructor_or_sourceKey_producer"
+    },
+    {
+      "key": "meterSourceKey",
+      "file_offset": "0x65d5083",
+      "byte_count": 14,
+      "sha256": "43862a19ebf35db1b8972bc9c413e3187fadab07b2078ee3cc60abcf11587bbf",
+      "group_id": "combat-text-anchors",
+      "gap_ids": [
+        307
+      ],
+      "status": "packed_native_key_not_yet_bound_to_constructor_or_sourceKey_producer"
+    }
+  ],
+  "api_review": {
+    "local_clock": "Current Lua explicitly delegates to AZS_NativeLocalTime and returns text/hour/minute/is24Hour. Source registry/bootstrap remain older; native clock/widget/CVar/VM lifetime must be connected under#302.",
+    "combat_text": "Current Lua declares capabilities and delegates events/projection to native functions; handler registry/callback Lua is explicit. Native event production, retained anchors, camera ordering and meter attribution remain under#307.",
+    "meter": "The separately descriptor-bound50,637-byte meter-api.lua recovers actual Lua assembly/validation of multipart feeds, full/delta predecessor sequence checks, descriptor/source/actor closure, query errors, native history, snapshots, loadouts, portraits and a64-checkpoint quota. Native serializer/authorization, exact row accounting, recent-window producers and /reload rebuild delivery remain#75; Lua feature flags do not prove those native paths.",
+    "position": "Current SpaceOf/TagSpace and meter-api.lua::AZS_MPosition establish the Lua run/map/space gate and finite-coordinate/error validation. AZS_NativePlayerSample, current rendered pose/frame identity and loading/teleport readiness remain an engine boundary under#137.",
+    "meter_source_document_limit": "The supplied combat-event field table does not document meterSource or meterSourceKey. Their native packed keys occur at the exact ranges above; the0.139 release defines the requested semantics, not proof that those constructors use them correctly.",
+    "textual_id_limit": "runId=1,ownerId=1,checkpointId=1 are Lua allowed-query/loadout key-set entries, not recovered numeric enum IDs."
+  },
+  "retained_knowledge": "All69 predecessor implementations, contracts, repairs, classifications and stable finding identities retain their actual provenance. Current source candidates do not transfer historical contract applicability or runtime/parity evidence.",
+  "validation": {
+    "source_review": "Bounded actual source entrypoints/data owners and current/predecessor candidate membership inspected; source hashes bound.",
+    "candidate_membership": "All684 added occurrences assigned exactly once to an inspected group; no new group hidden under#41.",
+    "native_decompilation": "Not performed by this source-first review; main full-image census is separate.",
+    "application_compilation": "not_run",
+    "game_client_network_server_execution": "not_run",
+    "parity": "unverified"
+  }
+}
