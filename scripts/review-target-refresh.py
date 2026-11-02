@@ -8,10 +8,10 @@ import argparse
 import hashlib
 import importlib.util
 import json
-import struct
 from pathlib import Path
 
-from coverage_common import ROOT, file_sha256, json_text, latest_target, load_json, project_path, target_bytes
+from coverage_common import (ROOT, file_sha256, installed_version, json_text, latest_target,
+                             load_json, platform_descriptor_versions, project_path, target_bytes)
 
 
 def review(previous_path):
@@ -41,39 +41,24 @@ def review(previous_path):
                     byte_count=count, sha256=hashlib.sha256(raw).hexdigest())
 
     version = target["version"].encode()
+    if installed_version(data) != target["version"]:
+        raise ValueError("Registered and embedded versions disagree")
     checker = version + b"\x1eupdate: up to date"
-    if data.count(checker) != 1:
-        raise ValueError("Updater identity is not unique")
-    platform = version + b"\0"
-    descriptors = []
-    cursor = 0
-    while (at := data.find(platform, cursor)) >= 0:
-        cursor = at + len(platform)
-        # Rust may align the adjacent slice descriptors after the NUL-terminated
-        # version. Admit only bounded zero padding and both exact self-pointers;
-        # a nearby version/platform literal is not enough.
-        for padding in range(8):
-            raw = (platform + bytes(padding)
-                   + struct.pack("<QQ", pe.offset_va(at), len(version))
-                   + b"windows\0")
-            raw += struct.pack("<QQ", pe.offset_va(at + len(raw) - 8), 7)
-            if data[at:at + len(raw)] == raw:
-                descriptors.append({**span(at, len(raw)), "zero_padding_bytes": padding})
-    if len(descriptors) != 1:
-        # Current builds store the version's display slice away from the
-        # independent Windows platform descriptor. Require its exact self
-        # pointer/length and compiled display format instead of proximity.
-        descriptors = []
-        cursor = 0
-        while (at := data.find(platform, cursor)) >= 0:
-            cursor = at + len(platform)
-            raw = (platform + struct.pack("<QQ", pe.offset_va(at), len(version))
-                   + b"\x01v\xc0\x02 (\xc0\x01)\0")
-            if data[at:at + len(raw)] == raw:
-                descriptors.append({**span(at, len(raw)), "zero_padding_bytes": 0,
-                                    "kind": "mapped_version_display_slice"})
-        if len(descriptors) != 1:
-            raise ValueError("Expected one mapped version/platform or version/display descriptor")
+    def descriptor_span(row):
+        return {**span(row["file_offset"], row["byte_count"]), "kind": row["kind"],
+                "descriptor_file_offset": hex(row["descriptor_offset"])}
+    if data.count(checker) == 1:
+        updater = span(data.index(checker), len(checker))
+    else:
+        rows = platform_descriptor_versions(data, updater=True, details=True)
+        if len(rows) != 1:
+            raise ValueError("Updater identity is not unique")
+        updater = descriptor_span(rows[0])
+    rows = (platform_descriptor_versions(data, details=True)
+            or platform_descriptor_versions(data, display=True, details=True))
+    if len(rows) != 1:
+        raise ValueError("Expected one mapped version/platform or version/display descriptor")
+    descriptors = [descriptor_span(row) for row in rows]
 
     start_marker = b"\n\n-- Azeroth Survivors: the run for addons,"
     end_marker = b'AZSApiFrame:SetScript("OnEvent", AZS_ApiOnEvent);'
@@ -98,7 +83,7 @@ def review(previous_path):
     report = dict(target=current["target"], previous_target=previous["target"],
         generator={"path": "scripts/review-target-refresh.py", "sha256": file_sha256(__file__)},
         inventories={"current": current["inventory"], "historical": previous["inventory"]},
-        version_evidence={"updater": span(data.index(checker), len(checker)),
+        version_evidence={"updater": updater,
                           "platform_descriptors": descriptors},
         custom_paths_added=sorted(diagnostics(after) - diagnostics(before)),
         custom_paths_removed=sorted(diagnostics(before) - diagnostics(after)),

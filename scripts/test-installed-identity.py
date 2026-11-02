@@ -4,7 +4,7 @@ import re
 import struct
 import time
 import unittest
-from coverage_common import embedded_marker_versions, installed_version
+from coverage_common import embedded_marker_versions, installed_version, platform_descriptor_versions
 
 class VersionMarkers(unittest.TestCase):
     def test_exact_existing_regex_semantics(self):
@@ -46,6 +46,44 @@ class VersionMarkers(unittest.TestCase):
         return image
     def test_mapped_display_descriptor_replaces_separated_platform(self):
         self.assertEqual(installed_version(self.display_image()),'0.127.0')
+    def manual_update_image(self, version=b'0.139.0', display_version=None):
+        image=self.platform_image(version=version,copies=0)
+        image[512:600]=bytes(88)  # The former adjacent updater marker is gone.
+        value=version if display_version is None else display_version
+        # Newer Rust strings need not have a NUL between text and descriptor.
+        image[1015:1024]=b'f79c5e2b4'
+        raw=value+struct.pack('<QQ',0x140001200,len(value))+b'\x01v\xc0\x02 (\xc0\x01)\0'
+        image[1024:1024+len(raw)]=raw
+        marker='You\u2019re up to date (v{version}).version'.encode('utf-8')
+        start=1536+len(marker)
+        raw=marker+version+b'\0'+struct.pack('<QQ',0x140001000+start-512,len(version))
+        image[1536:1536+len(raw)]=raw
+        return image, start
+    def test_independent_manual_update_and_nonterminated_display_slices(self):
+        image,start=self.manual_update_image()
+        self.assertEqual(installed_version(image),'0.139.0')
+        display=platform_descriptor_versions(image,display=True,details=True)
+        updater=platform_descriptor_versions(image,updater=True,details=True)
+        self.assertEqual(display,[dict(version='0.139.0',file_offset=1024,byte_count=33,
+                                      descriptor_offset=1031,kind='mapped_version_display_slice')])
+        self.assertEqual(updater[0]['descriptor_offset'],start+8)
+    def test_manual_update_and_display_slices_are_fail_closed(self):
+        image,_=self.manual_update_image(display_version=b'0.138.0')
+        with self.assertRaises(ValueError):installed_version(image)
+        image,start=self.manual_update_image();image[start+8]^=1
+        with self.assertRaises(ValueError):installed_version(image)
+        image,start=self.manual_update_image();image[start+16]=8
+        with self.assertRaises(ValueError):installed_version(image)
+        image,_=self.manual_update_image();image[1031]^=1
+        with self.assertRaises(ValueError):installed_version(image)
+        image,start=self.manual_update_image();image[start:start+7]=b'0.138.0'
+        with self.assertRaises(ValueError):installed_version(image)
+        image,start=self.manual_update_image();image[1536:start+24]=bytes(start+24-1536)
+        with self.assertRaises(ValueError):installed_version(image)
+    def test_manual_update_cannot_hide_legacy_identity_conflict(self):
+        image,_=self.manual_update_image()
+        image+=b'0.138.0\x1eupdate: up to date\0'
+        with self.assertRaises(ValueError):installed_version(image)
     def test_display_identity_is_fail_closed(self):
         image=self.display_image();image[1032]^=1
         with self.assertRaises(ValueError):installed_version(image)

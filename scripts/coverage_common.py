@@ -150,7 +150,7 @@ def embedded_marker_versions(data, marker):
     return versions
 
 
-def platform_descriptor_versions(data, *, display=False):
+def platform_descriptor_versions(data, *, display=False, updater=False, details=False):
     """Read the PE's self-referencing version/platform Rust string slices.
 
     Newer targets store the version separately from the dialog text. Require
@@ -176,27 +176,54 @@ def platform_descriptor_versions(data, *, display=False):
         def address(at):
             owners = [base + at - start for start, end, base in mapped if start <= at < end]
             return owners[0] if len(owners) == 1 else None
+        def slice_at(at):
+            pointer, length = struct.unpack_from("<QQ", data, at)
+            if not 5 <= length <= 64:
+                return None
+            owners = [start + pointer - base for start, end, base in mapped
+                      if base <= pointer and pointer + length <= base + end - start]
+            if len(owners) != 1:
+                return None
+            start = owners[0]
+            value = data[start:start + length]
+            return (start, value) if len(value) == length and re.fullmatch(rb"[0-9]+\.[0-9]+\.[0-9]+", value) else None
+        def record(version, start, end, descriptor_at, kind):
+            versions.append(dict(version=version.decode("ascii"), file_offset=start,
+                                 byte_count=end - start, descriptor_offset=descriptor_at,
+                                 kind=kind) if details else version)
         versions, cursor = [], 0
+        if updater:
+            # The manual update-result message embeds its named version
+            # argument as a mapped Rust slice, independently of the display.
+            marker = "You\u2019re up to date (v{version}).version".encode("utf-8")
+            while (message_at := data.find(marker, cursor)) >= 0:
+                cursor = message_at + len(marker)
+                end = data.find(b"\0", cursor, cursor + 65)
+                if end < 0:
+                    continue
+                value = slice_at(end + 1)
+                if value is not None and value[0] == cursor and cursor + len(value[1]) == end:
+                    record(value[1], message_at, end + 17, end + 1, "mapped_manual_update_version_slice")
+            return versions
         if display:
             # The version display is independently stored from the updater.
-            # Its Rust slice points back to version\0 immediately before it;
-            # the compiled display format follows the descriptor.
+            # Its Rust slice points back to the version immediately before it
+            # (with or without a NUL); the compiled format follows the slice.
             versions = []
             marker = b"\x01v\xc0\x02 (\xc0\x01)\0"
             cursor = 0
             while (format_at := data.find(marker, cursor)) >= 0:
                 cursor = format_at + len(marker)
-                version_end = format_at - 17
-                if version_end < 0 or data[version_end] != 0:
+                if format_at < 16:
                     continue
-                pointer, length = struct.unpack_from("<QQ", data, format_at - 16)
-                if not 5 <= length <= 64:
+                value = slice_at(format_at - 16)
+                if value is None:
                     continue
-                start = version_end - length
-                version = data[start:version_end]
-                if (re.fullmatch(rb"[0-9]+\.[0-9]+\.[0-9]+", version)
-                        and address(start) == pointer):
-                    versions.append(version)
+                start, version = value
+                end = start + len(version)
+                if end == format_at - 16 or (end == format_at - 17 and data[end] == 0):
+                    record(version, start, format_at + len(marker), format_at - 16,
+                           "mapped_version_display_slice")
             return versions
         marker = b"windows\0"
         while (platform_at := data.find(marker, cursor)) >= 0:
@@ -218,7 +245,8 @@ def platform_descriptor_versions(data, *, display=False):
                 continue
             if struct.unpack_from("<QQ", data, platform_at + 8) != (platform_va, 7):
                 continue
-            versions.append(version)
+            record(version, version_at, platform_at + 24, platform_at - 16,
+                   "mapped_version_platform_slices")
         return versions
     except (struct.error, IndexError):
         return []
@@ -227,15 +255,17 @@ def platform_descriptor_versions(data, *, display=False):
 def installed_version(data):
     """Bind updater identity to the legacy dialog or mapped platform slices."""
     checker = embedded_marker_versions(data, b"\x1eupdate: up to date")
+    updater = platform_descriptor_versions(data, updater=True)
     dialog = embedded_marker_versions(data, b"A new version is out!")
     platform = platform_descriptor_versions(data)
     display = platform_descriptor_versions(data, display=True)
+    primary = checker or updater
     witness = dialog or platform or display
-    if (len(checker) != 1 or len(witness) != 1 or checker != witness
-            or any(values and (len(values) != 1 or values != checker)
-                   for values in (platform, display))):
+    if (len(primary) != 1 or len(witness) != 1 or primary != witness
+            or any(values and (len(values) != 1 or values != primary)
+                   for values in (checker, updater, dialog, platform, display))):
         raise ValueError("Embedded game version markers are absent, ambiguous or disagree; inspect with REA")
-    version = checker[0].decode("ascii")
+    version = primary[0].decode("ascii")
     version_key(version)
     return version
 
