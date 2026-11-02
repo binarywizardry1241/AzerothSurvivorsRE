@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "target": {
-    "version": "0.127.0",
+    "version": "0.139.0",
     "path": "installed-game/AzerothSurvivors.exe",
-    "sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
-    "size_bytes": 146721280
+    "sha256": "0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274",
+    "size_bytes": 150595584
   },
   "generator": {
     "path": "scripts/audit-exe-connections.py",
@@ -13,7 +13,7 @@
   "generator_dependencies": [
     {
       "path": "scripts/coverage_common.py",
-      "sha256": "5a04a45f488ad0a51801ad9d8263bfeb3e7048c77b0f906708e384064ce76cf7"
+      "sha256": "4adab1999dab972a63e3ab29b7a95d4ab223471398a383967b17f8a39dee5d2a"
     },
     {
       "path": "scripts/revalidate-historical-native-ranges.py",
@@ -23,109 +23,108 @@
   "inputs": [
     {
       "path": "docs/analysis/coverage/systems.json",
-      "sha256": "97d11fd15c90c4e2076ba13fba6ae00bab023a83d1fdc4410cfd6eb10cb3fa1f"
+      "sha256": "d1199154ebd7e8217d462c81f0f7d625171b0aff789be21fee098a61611b568d"
     },
     {
       "path": "docs/analysis/coverage/native-summary.json",
-      "sha256": "7d5e4468bedcdf2b876d7c2c7f323178b288b975a7738d8c41106137fde5dad1"
+      "sha256": "88aa655f008ed1e200638cba4c352cf54b6bc99338f47729f49566d1ef10683b"
     },
     {
       "path": "docs/analysis/coverage/historical-range-revalidation.json",
-      "sha256": "682ef52e6f582618b9237289bc481b81b2553f5df9dd52f1a0db15058f110c58"
+      "sha256": "5df8bde10c29a309c6081b6eb0d037a23e3db41824e2439ad47090e1c5c77091"
     },
     {
-      "path": "docs/analysis/evidence/0.127.0/native-custom-coverage.json",
-      "sha256": "47f014b6e4a3d72ddfe218f4a64aa76d022f5ac83c98bf34249a4a47623ea0fd"
+      "path": "docs/analysis/evidence/0.139.0/native-custom-coverage.json",
+      "sha256": "104f65cb6db91a239ee0518afe4c2c9ee79819072d5966c285959fccb6d9abbd"
     },
     {
       "path": "docs/analysis/coverage/changelog.json",
-      "sha256": "5a08b15c28705200fe7fed4915562cd125167b983a02d73b67521a819f8ab94b"
+      "sha256": "408a312a1dc8da3a031266b1b807002f4c92a6a4527e9339259725c0f431719e"
     },
     {
-      "path": "docs/analysis/coverage/full-image-execheck-0.127.0.json",
-      "sha256": "b4ceaa4e01be2febed5c096d300c38c4baebaa8aedddf883604cd85e689e4c25"
+      "path": "docs/analysis/coverage/full-image-selected-0.139.0.json",
+      "sha256": "9f5a6c325e41cad7ab9b70b6c8e9fa0e09c087a98e1a381e5b1412a57295673e"
     }
   ],
   "current_native_body_census": {
-    "path": "docs/analysis/coverage/full-image-execheck-0.127.0.json",
-    "sha256": "b4ceaa4e01be2febed5c096d300c38c4baebaa8aedddf883604cd85e689e4c25"
+    "path": "docs/analysis/coverage/full-image-selected-0.139.0.json",
+    "sha256": "9f5a6c325e41cad7ab9b70b6c8e9fa0e09c087a98e1a381e5b1412a57295673e"
   },
   "supporting_inputs": [
     {
       "path": "docs/analysis/coverage/native-ownership-classification.json",
-      "sha256": "f75cfdd24afaba1ca1bc88a6215fcf4bc038d5608bc096e70b3dae52db133196",
+      "sha256": "b0d52c25fefdb061b2bf3c6d8fe804923e3cf7f53a3d925ae2eb66334deba055",
       "target": {
+        "version": "0.139.0",
         "path": "installed-game/AzerothSurvivors.exe",
-        "sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
-        "size_bytes": 146721280,
-        "version": "0.127.0"
+        "sha256": "0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274",
+        "size_bytes": 150595584
       },
       "role": "current_supporting_ownership"
     }
   ],
   "counts": {
-    "custom_system_rows": 69,
-    "with_registered_current_evidence": 69,
+    "custom_system_rows": 77,
+    "with_registered_current_evidence": 77,
     "without_registered_current_evidence": 0,
-    "with_registered_current_bounded_contract": 21,
-    "without_registered_current_bounded_contract": 48,
-    "without_source_correspondence": 0,
-    "ownerless_native_location_references": 55,
+    "with_registered_current_bounded_contract": 4,
+    "without_registered_current_bounded_contract": 73,
+    "without_source_correspondence": 8,
+    "ownerless_native_location_references": 52,
     "paths_with_ownerless_native_location_references": 12,
-    "retained_evidence_json_documents": 1737,
+    "retained_evidence_json_documents": 1757,
     "evidence_document_identity_roles": {
-      "current": 69,
-      "historical": 1576,
+      "current": 19,
+      "historical": 1646,
       "requires_owning_manifest_or_review": 92
     },
     "directly_embedded_assets": 177,
     "embedded_asset_provenance": {
-      "current": 3,
-      "historical": 122,
+      "historical": 125,
       "not_declared_in_asset": 52
     },
-    "historical_range_commitments": 21724,
+    "historical_range_commitments": 22584,
     "historical_range_results": {
-      "ambiguous-exact-bytes-at-least-two-locations": 5199,
-      "canonical-preimage-bytes-hash-verified": 12000,
-      "canonical-preimage-bytes-unavailable": 9724,
+      "ambiguous-exact-bytes-at-least-two-locations": 5313,
+      "canonical-preimage-bytes-hash-verified": 12452,
+      "canonical-preimage-bytes-unavailable": 10132,
       "documents-admitted-by-exact-owning-manifest-hash": 4,
       "documents-with-ambiguous-owning-target-bindings": 1,
-      "documents-with-explicit-target-identity": 1591,
-      "documents-without-explicit-target-or-exact-manifest-binding": 69,
-      "exact-bytes-not-found": 5321,
-      "historical-documents-with-range-commitments": 922,
-      "historical-documents-without-supported-range-commitments": 657,
-      "historical-location-not-revalidated": 21716,
-      "preimage:assembly-byte-columns": 1796,
-      "preimage:committed-native-range-artifact": 4,
-      "preimage:contiguous-addressed-json-spans": 182,
+      "documents-with-explicit-target-identity": 1665,
+      "documents-without-explicit-target-or-exact-manifest-binding": 73,
+      "exact-bytes-not-found": 5628,
+      "historical-documents-with-range-commitments": 966,
+      "historical-documents-without-supported-range-commitments": 684,
+      "historical-location-not-revalidated": 22575,
+      "preimage:assembly-byte-columns": 1840,
+      "preimage:committed-native-range-artifact": 6,
+      "preimage:contiguous-addressed-json-spans": 184,
       "preimage:explicit-json-bytes": 94,
-      "preimage:explicit-json-bytes_hex": 1014,
-      "preimage:explicit-json-hex": 5610,
-      "preimage:explicit-json-native_record_hex": 131,
+      "preimage:explicit-json-bytes_hex": 1260,
+      "preimage:explicit-json-hex": 5688,
+      "preimage:explicit-json-native_record_hex": 132,
       "preimage:explicit-json-payload": 241,
-      "preimage:explicit-json-raw_hex": 1614,
-      "preimage:literal-json-utf8": 932,
-      "preimage:little-endian-enemy-u32-words": 11,
+      "preimage:explicit-json-raw_hex": 1652,
+      "preimage:literal-json-utf8": 993,
+      "preimage:little-endian-enemy-u32-words": 7,
       "preimage:little-endian-i32-relative-entries": 2,
       "preimage:little-endian-notification-14Q": 1,
       "preimage:little-endian-pvp-6Q": 3,
       "preimage:little-endian-pvp-6f": 4,
       "preimage:little-endian-pvp-f": 4,
-      "preimage:little-endian-u32-bit-words": 21,
+      "preimage:little-endian-u32-bit-words": 23,
       "preimage:little-endian-upgrade-I": 1,
       "preimage:little-endian-upgrade-f": 4,
       "preimage:native-range-artifact-with-added-terminal-LF": 1,
-      "preimage:ordered-verbatim-64-byte-effects": 313,
+      "preimage:ordered-verbatim-64-byte-effects": 295,
       "preimage:verbatim-notification-constant-bytes": 17,
-      "same-address-byte-match": 3,
-      "same-offset-byte-match": 5,
-      "selected-target-documents-excluded-from-historical-audit": 16,
-      "unique-exact-byte-range": 1480,
-      "unique-match:executable-without-complete-body-owner": 43,
-      "unique-match:non-executable-data-or-headers": 1315,
-      "unique-match:whole-native-body-range": 122
+      "same-address-byte-match": 2,
+      "same-offset-byte-match": 7,
+      "selected-target-documents-excluded-from-historical-audit": 19,
+      "unique-exact-byte-range": 1511,
+      "unique-match:executable-without-complete-body-owner": 50,
+      "unique-match:non-executable-data-or-headers": 1338,
+      "unique-match:whole-native-body-range": 123
     }
   },
   "systems": [
@@ -214,6 +213,7 @@
         71,
         98,
         107,
+        109,
         112,
         122,
         157,
@@ -222,16 +222,17 @@
         173,
         174,
         181,
-        182
+        182,
+        300
       ],
       "location_reference_count": 2,
       "location_body_owners": [
-        "0x140069bb0"
+        "0x140015a50"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-app-lib]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-lib]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -346,6 +347,7 @@
         236,
         237,
         239,
+        242,
         257,
         271,
         280,
@@ -358,46 +360,43 @@
         289,
         290,
         291,
-        297
+        297,
+        299
       ],
       "location_reference_count": 35,
       "location_body_owners": [
-        "0x140057330",
-        "0x14011f4b0",
-        "0x14012d2b0",
-        "0x14012e990",
-        "0x14013c630",
-        "0x14013cf00",
-        "0x14013fc70",
-        "0x140140b80",
-        "0x140317ab0",
-        "0x14035c940",
-        "0x140362af0",
-        "0x140366480",
-        "0x14036a9e0",
-        "0x140370640",
-        "0x140371b10",
-        "0x140373550"
+        "0x1401928b0",
+        "0x1401a55e0",
+        "0x1401a6cc0",
+        "0x1401b1ff0",
+        "0x1401b28c0",
+        "0x1401b5980",
+        "0x1401b68c0",
+        "0x1402f8cc0",
+        "0x140361200",
+        "0x1403b1550",
+        "0x1403b7700",
+        "0x1403bb090",
+        "0x1403bf5f0",
+        "0x1403c5250",
+        "0x1403c6720",
+        "0x1403c8160"
       ],
       "ownerless_location_sites": [
-        "0x14013f28d",
-        "0x14013f2a0",
-        "0x14013f27a",
-        "0x14013f267",
-        "0x1401f3245"
+        "0x140124c43",
+        "0x1401b4f9d",
+        "0x1401b4fb0",
+        "0x1401b4f8a",
+        "0x1401b4f77"
       ],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-armory]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-armory]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": true,
-      "current_bounded_contract_scopes": {
-        "docs/analysis/evidence/0.127.0/ranked-gear/collection.json": "Owned-rank collector [0,8), armor-only summary projection and forty-star denominator. No complete page/widget, weapon-label current applicability, rendering or parity certificate."
-      },
-      "current_bounded_contract_refs": [
-        "docs/analysis/evidence/0.127.0/ranked-gear/collection.json"
-      ]
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_scopes": {},
+      "current_bounded_contract_refs": []
     },
     {
       "id": "custom-app-screens-backdrop",
@@ -431,12 +430,12 @@
       ],
       "location_reference_count": 2,
       "location_body_owners": [
-        "0x1401f8900"
+        "0x140129030"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-backdrop]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-backdrop]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -502,20 +501,23 @@
         33,
         41,
         102,
-        124
+        124,
+        301,
+        304
       ],
-      "location_reference_count": 17,
+      "location_reference_count": 24,
       "location_body_owners": [
-        "0x1402801b0",
-        "0x140288e80",
-        "0x14028e6c0",
-        "0x14028eef0",
-        "0x14028ff30"
+        "0x1402fecd0",
+        "0x140307b30",
+        "0x140313390",
+        "0x140313bc0",
+        "0x140314c50",
+        "0x140318260"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-cards]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-cards]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -558,37 +560,34 @@
         17,
         34,
         41,
-        73
+        73,
+        301
       ],
       "location_reference_count": 38,
       "location_body_owners": [
-        "0x140009720",
-        "0x14000a1b0",
-        "0x14000b580",
-        "0x14000fbb0",
-        "0x1400c2b60",
-        "0x140100ec0",
-        "0x14011e080",
-        "0x14011ec30",
-        "0x14011ed70",
-        "0x140123cc0",
-        "0x140276c30",
-        "0x14027af30",
-        "0x140350420"
+        "0x1400aefa0",
+        "0x1400cf380",
+        "0x140149480",
+        "0x14014a5c0",
+        "0x14014b290",
+        "0x14014bbb0",
+        "0x14014f7c0",
+        "0x140151ec0",
+        "0x140152000",
+        "0x14015e440",
+        "0x1401d3d80",
+        "0x1401d8550",
+        "0x1403a0740"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-codex]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-codex]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": true,
-      "current_bounded_contract_scopes": {
-        "docs/analysis/evidence/0.127.0/codex-growth-dispatch/manifest.json": "Indexed 72-byte jewelry row producer, all 23 current keys/base bits/kind/slot fields, six bounded growth text families and the existing 12px detail growth consumer. No missing source behavior was identified. Full formatters/locales/widgets and arbitrary mutable aliases are outside this scope."
-      },
-      "current_bounded_contract_refs": [
-        "docs/analysis/evidence/0.127.0/codex-growth-dispatch/manifest.json"
-      ]
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_scopes": {},
+      "current_bounded_contract_refs": []
     },
     {
       "id": "custom-app-screens-discord",
@@ -618,14 +617,14 @@
       ],
       "location_reference_count": 11,
       "location_body_owners": [
-        "0x1400d2d90",
-        "0x1400d5630",
-        "0x1400dc8b0"
+        "0x14022f9f0",
+        "0x140232eb0",
+        "0x14023a690"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-discord]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-discord]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -709,23 +708,25 @@
         106,
         125,
         163,
+        206,
         291,
-        296
+        296,
+        302
       ],
       "location_reference_count": 22,
       "location_body_owners": [
-        "0x14019c1b0",
-        "0x1401a64b0",
-        "0x1401a7e30",
-        "0x1401a8db0",
-        "0x1401aa190",
-        "0x1401ab860",
-        "0x1401ae6a0"
+        "0x1400d6650",
+        "0x1400e1c60",
+        "0x1400e35e0",
+        "0x1400e4560",
+        "0x1400e5940",
+        "0x1400e7010",
+        "0x1400e9e50"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-hud]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-hud]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -774,16 +775,17 @@
         7,
         33,
         41,
-        126
+        126,
+        302
       ],
       "location_reference_count": 3,
       "location_body_owners": [
-        "0x140143fa0"
+        "0x14031d800"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-hudparts]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-hudparts]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -867,12 +869,12 @@
       ],
       "location_reference_count": 3,
       "location_body_owners": [
-        "0x14029ac10"
+        "0x14017a360"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-language]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-language]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -913,22 +915,24 @@
         63,
         75,
         251,
-        252
+        252,
+        305,
+        307
       ],
       "location_reference_count": 19,
       "location_body_owners": [
-        "0x1400c7340",
-        "0x1401061b0",
-        "0x140212fa0",
-        "0x140213d90",
-        "0x140225ba0",
-        "0x140226b30",
-        "0x140227300"
+        "0x1400b4d60",
+        "0x14021c440",
+        "0x140265330",
+        "0x140266640",
+        "0x14026a7f0",
+        "0x14026b730",
+        "0x14026bef0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-meter]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-meter]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -997,22 +1001,24 @@
         23,
         41,
         98,
-        128
+        128,
+        300
       ],
-      "location_reference_count": 16,
+      "location_reference_count": 20,
       "location_body_owners": [
-        "0x14024a2e0",
-        "0x140250df0",
-        "0x140252100",
-        "0x140252930",
-        "0x140252d80",
-        "0x140253c10",
-        "0x140257fd0"
+        "0x1402c7f80",
+        "0x1402c8bb0",
+        "0x1402c8e20",
+        "0x1402c9300",
+        "0x1402ca1b0",
+        "0x1402cae90",
+        "0x1402cd550",
+        "0x1402dc2f0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-mod]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-mod]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -1106,32 +1112,34 @@
         23,
         33,
         41,
-        129
+        129,
+        302,
+        303
       ],
-      "location_reference_count": 25,
+      "location_reference_count": 26,
       "location_body_owners": [
-        "0x14015bb40",
-        "0x14015c060",
-        "0x14015ddc0",
-        "0x14015efb0",
-        "0x14017ca70",
-        "0x14017d1b0",
-        "0x14017e270"
+        "0x1401e2c40",
+        "0x1401e3110",
+        "0x1401e4e70",
+        "0x1401e6060",
+        "0x1401f6100",
+        "0x1401f6840",
+        "0x1401f7900"
       ],
       "ownerless_location_sites": [
-        "0x14015e21c",
-        "0x14015e1f0",
-        "0x14015ed71",
-        "0x1401800b9",
-        "0x140180342",
-        "0x140180925",
-        "0x14018038c",
-        "0x140185063",
-        "0x140184d90"
+        "0x1401e52cc",
+        "0x1401e52a0",
+        "0x1401e5e21",
+        "0x1401f98f5",
+        "0x1401f9b72",
+        "0x1401fa33f",
+        "0x1401f9bbc",
+        "0x1401ff493",
+        "0x1401ff1c0"
       ],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-options]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-options]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -1170,14 +1178,14 @@
       ],
       "location_reference_count": 3,
       "location_body_owners": [
-        "0x14024a2e0",
-        "0x14025a860",
-        "0x14025cbe0"
+        "0x1402ca840",
+        "0x1402cd550",
+        "0x1402df4a0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-pad]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-pad]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -1221,25 +1229,28 @@
         52,
         63,
         77,
+        132,
         135,
         163,
         219,
         250,
         293,
         294,
-        295
+        295,
+        305
       ],
-      "location_reference_count": 14,
+      "location_reference_count": 15,
       "location_body_owners": [
-        "0x1401ef7c0",
-        "0x1401f53f0",
-        "0x140385260",
-        "0x140387250"
+        "0x1401210d0",
+        "0x140126df0",
+        "0x1403d20a0",
+        "0x1403dacd0",
+        "0x1403dc940"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-picker]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-picker]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -1341,16 +1352,16 @@
       ],
       "location_reference_count": 4,
       "location_body_owners": [
-        "0x14039a8d0"
+        "0x1403f7f50"
       ],
       "ownerless_location_sites": [
-        "0x1401f7b2e",
-        "0x1401f7b44",
-        "0x1401f7b57"
+        "0x14008bc30",
+        "0x14008bc55",
+        "0x14008bc46"
       ],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-rewards]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-rewards]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -1454,12 +1465,12 @@
       ],
       "location_reference_count": 4,
       "location_body_owners": [
-        "0x1402e6130"
+        "0x140178f30"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-runmods]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-runmods]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -1520,17 +1531,18 @@
         47,
         78,
         119,
-        169
+        169,
+        305
       ],
       "location_reference_count": 2,
       "location_body_owners": [
-        "0x140131e50",
-        "0x1403a99b0"
+        "0x14006df40",
+        "0x140407800"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-talents]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-talents]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -1581,13 +1593,13 @@
       ],
       "location_reference_count": 6,
       "location_body_owners": [
-        "0x14028cf80",
-        "0x14028de90"
+        "0x14011f7c0",
+        "0x1401206d0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-talentview]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-talentview]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -1620,14 +1632,14 @@
       ],
       "location_reference_count": 5,
       "location_body_owners": [
-        "0x140213bf0",
-        "0x140218810",
-        "0x1402293d0"
+        "0x14019c760",
+        "0x1401afb90",
+        "0x1401b0720"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-touch]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-touch]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -1659,15 +1671,16 @@
         41,
         132
       ],
-      "location_reference_count": 6,
+      "location_reference_count": 12,
       "location_body_owners": [
-        "0x140075450",
-        "0x140076800"
+        "0x1401ea640",
+        "0x1401eb210",
+        "0x1401ec170"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-update]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-update]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -1701,12 +1714,12 @@
       ],
       "location_reference_count": 1,
       "location_body_owners": [
-        "0x140141a10"
+        "0x1401b7780"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-xinput]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-xinput]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -1745,19 +1758,21 @@
       "gap_ids": [
         17,
         41,
+        132,
         133,
         256,
         263
       ],
-      "location_reference_count": 2,
+      "location_reference_count": 3,
       "location_body_owners": [
-        "0x14001f8b0",
-        "0x1400c7d10"
+        "0x1400274e0",
+        "0x1400292f0",
+        "0x14021cec0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-app-update]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-update]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -1880,26 +1895,23 @@
         287,
         288,
         289,
-        290
+        290,
+        299
       ],
       "location_reference_count": 3,
       "location_body_owners": [
-        "0x145b2d3a0",
-        "0x145b2da80"
+        "0x145da9940",
+        "0x145daa020"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-achievements]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-achievements]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": true,
-      "current_bounded_contract_scopes": {
-        "docs/analysis/evidence/0.127.0/ranked-gear/earned-marks.json": "Typed tag13 equipment receipts, per-hero boss serial/base marks, recipient Save duplicate ledger and run/boss feat sum/maximum only; other achievements and protocol variants remain independent."
-      },
-      "current_bounded_contract_refs": [
-        "docs/analysis/evidence/0.127.0/ranked-gear/earned-marks.json"
-      ]
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_scopes": {},
+      "current_bounded_contract_refs": []
     },
     {
       "id": "custom-game-appearance",
@@ -1947,6 +1959,7 @@
       ],
       "gap_ids": [
         17,
+        24,
         25,
         34,
         41,
@@ -1972,12 +1985,12 @@
       ],
       "location_reference_count": 2,
       "location_body_owners": [
-        "0x145b821d0"
+        "0x145f8c110"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-appearance]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-appearance]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -2024,16 +2037,17 @@
         22,
         23,
         41,
-        84
+        84,
+        304
       ],
       "location_reference_count": 1,
       "location_body_owners": [
-        "0x145cc7ad0"
+        "0x145df05e0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-bindings]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-bindings]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -2095,57 +2109,56 @@
         294,
         295
       ],
-      "location_reference_count": 48,
+      "location_reference_count": 44,
       "location_body_owners": [
-        "0x145b059e0",
-        "0x145b43970",
-        "0x145b43d10",
-        "0x145b4f590",
-        "0x145b89b00",
-        "0x145b94f40",
-        "0x145b9ae00",
-        "0x145c0a510",
-        "0x145c0c300",
-        "0x145c17af0",
-        "0x145c24420",
-        "0x145c27700",
-        "0x145c322c0",
-        "0x145c67060",
-        "0x145c6dd00",
-        "0x145c6fa80",
-        "0x145c7a530",
-        "0x145c88720",
-        "0x145c8b290",
-        "0x145c8cb20",
-        "0x145c8d8a0",
-        "0x145d06b90",
-        "0x145d0e8e0",
-        "0x145d0ed60",
-        "0x145d203a0",
-        "0x145d24ea0",
-        "0x145d25330",
-        "0x145d25590",
-        "0x145d268e0"
+        "0x145d693a0",
+        "0x145d867a0",
+        "0x145de2830",
+        "0x145defcd0",
+        "0x145df0070",
+        "0x145eb7670",
+        "0x145eb77a0",
+        "0x145eba7e0",
+        "0x145ebae90",
+        "0x145ec8ae0",
+        "0x145ecb000",
+        "0x145ed8770",
+        "0x145edbe90",
+        "0x145ee6190",
+        "0x145ef0cf0",
+        "0x145f1e800",
+        "0x145f24ae0",
+        "0x145f25930",
+        "0x145f278f0",
+        "0x145f40820",
+        "0x145f43250",
+        "0x145f44af0",
+        "0x145f45b30",
+        "0x145f731a0",
+        "0x145fb2e80",
+        "0x145fbb8d0",
+        "0x145fbbd50",
+        "0x145fbe1a0",
+        "0x145fde690",
+        "0x145fe35d0",
+        "0x145fe3a60"
       ],
       "ownerless_location_sites": [
-        "0x145c79367",
-        "0x145c793a3",
-        "0x145c793df",
-        "0x145c7941b",
-        "0x145c79454",
-        "0x145c7948d",
-        "0x145c9513e",
-        "0x145c9ad21",
-        "0x145d2211a",
-        "0x145d22154",
-        "0x145d2218b",
-        "0x145d29625",
-        "0x145d29655",
-        "0x145d296b8"
+        "0x145ea3e1e",
+        "0x145ea3e56",
+        "0x145f20a94",
+        "0x145f4d4b1",
+        "0x145f52f95",
+        "0x145fe0336",
+        "0x145fe0370",
+        "0x145fe03a7",
+        "0x145fe7e63",
+        "0x145fe7e93",
+        "0x145fe7ec3"
       ],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-content]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-content]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -2180,15 +2193,15 @@
       ],
       "location_reference_count": 8,
       "location_body_owners": [
-        "0x145b26f10",
-        "0x145b965b0",
-        "0x145d0f020",
-        "0x145d1dfb0"
+        "0x145f63920",
+        "0x145f8bfb0",
+        "0x145fbc010",
+        "0x145fdbf80"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-dbc]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-dbc]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -2262,6 +2275,7 @@
         198,
         203,
         205,
+        206,
         236,
         237,
         256,
@@ -2292,12 +2306,12 @@
       ],
       "location_reference_count": 1,
       "location_body_owners": [
-        "0x145bea330"
+        "0x145e11790"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-driver]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-driver]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -2344,18 +2358,18 @@
       ],
       "location_reference_count": 16,
       "location_body_owners": [
-        "0x145b44f50",
-        "0x145cb72f0",
-        "0x145cc2d90",
-        "0x145cc3600",
-        "0x145cc71b0"
+        "0x145d951d0",
+        "0x145ddb500",
+        "0x145de7160",
+        "0x145de79d0",
+        "0x145deb580"
       ],
       "ownerless_location_sites": [
-        "0x145cc602b"
+        "0x145dea3fb"
       ],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-fonts]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-fonts]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -2434,6 +2448,7 @@
         157,
         163,
         177,
+        188,
         198,
         203,
         236,
@@ -2453,36 +2468,36 @@
         290,
         293,
         294,
-        295
+        295,
+        305,
+        307,
+        308,
+        309
       ],
-      "location_reference_count": 21,
+      "location_reference_count": 20,
       "location_body_owners": [
-        "0x145c0f250",
-        "0x145c65f70",
-        "0x145c67660",
-        "0x145d06d20"
+        "0x145ebdd50",
+        "0x145f1d6e0",
+        "0x145f1ee20",
+        "0x145fb32a0"
       ],
       "ownerless_location_sites": [
-        "0x145b9ebcf",
-        "0x145b9ebd8",
-        "0x145b9ebb4",
-        "0x145b9ebc6",
-        "0x145b9ebbd",
-        "0x145c64677",
-        "0x145c62bdc"
+        "0x145f1be0c",
+        "0x145f19dd8",
+        "0x145f64e9f",
+        "0x145f64ea8",
+        "0x145f64e84",
+        "0x145f64e96",
+        "0x145f64e8d"
       ],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-game-abilities]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-abilities]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": true,
-      "current_bounded_contract_scopes": {
-        "docs/analysis/evidence/0.127.0/enemy-control/manifest.json": "Actor-owned root/stun/Fear/Polymorph admission count, duration/cap, sixth-attempt cancellation and eight-second immunity plus creation/expiry/addon consumers only; slows and unrelated aura contracts remain independent."
-      },
-      "current_bounded_contract_refs": [
-        "docs/analysis/evidence/0.127.0/enemy-control/manifest.json"
-      ]
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_scopes": {},
+      "current_bounded_contract_refs": []
     },
     {
       "id": "custom-game-game-addon",
@@ -2555,6 +2570,7 @@
         33,
         41,
         63,
+        75,
         137,
         157,
         163,
@@ -2572,16 +2588,18 @@
         287,
         288,
         289,
-        290
+        290,
+        302,
+        307
       ],
       "location_reference_count": 1,
       "location_body_owners": [
-        "0x145d1ccf0"
+        "0x145fdaab0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-game-addon]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-addon]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -2653,25 +2671,22 @@
         287,
         288,
         289,
-        290
+        290,
+        305
       ],
       "location_reference_count": 1,
       "location_body_owners": [
-        "0x145c0a640"
+        "0x145eb77a0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-game-auras]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-auras]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": true,
-      "current_bounded_contract_scopes": {
-        "docs/analysis/evidence/0.127.0/enemy-control/manifest.json": "Actor-owned root/stun/Fear/Polymorph admission count, duration/cap, sixth-attempt cancellation and eight-second immunity plus creation/expiry/addon consumers only; slows and unrelated aura contracts remain independent."
-      },
-      "current_bounded_contract_refs": [
-        "docs/analysis/evidence/0.127.0/enemy-control/manifest.json"
-      ]
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_scopes": {},
+      "current_bounded_contract_refs": []
     },
     {
       "id": "custom-game-game-companions",
@@ -2729,20 +2744,21 @@
         116,
         117,
         119,
+        130,
         266,
         278
       ],
       "location_reference_count": 18,
       "location_body_owners": [
-        "0x145c7aec0",
-        "0x145c7b2b0",
-        "0x145c7b4f0",
-        "0x145c7c2e0"
+        "0x145f33a20",
+        "0x145f33e10",
+        "0x145f34050",
+        "0x145f34e40"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-game-companions]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-companions]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -2842,23 +2858,23 @@
       ],
       "location_reference_count": 27,
       "location_body_owners": [
-        "0x145c6fa80",
-        "0x145c88720",
-        "0x145c8a0e0",
-        "0x145c8b290",
-        "0x145c8b5b0",
-        "0x145c8bee0",
-        "0x145c8cb20",
-        "0x145c8d8a0",
-        "0x145c8dd10",
-        "0x145c8df20",
-        "0x145c8e110",
-        "0x145d058f0"
+        "0x145f278f0",
+        "0x145f40820",
+        "0x145f42020",
+        "0x145f43250",
+        "0x145f43570",
+        "0x145f43eb0",
+        "0x145f44af0",
+        "0x145f45b30",
+        "0x145f45fa0",
+        "0x145f461b0",
+        "0x145f463a0",
+        "0x145fb1900"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-game-demons]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-demons]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -3018,45 +3034,37 @@
       ],
       "location_reference_count": 30,
       "location_body_owners": [
-        "0x145b752c0",
-        "0x145b75890",
-        "0x145b76250",
-        "0x145c2f0c0",
-        "0x145c31220",
-        "0x145c322c0",
-        "0x145c3a1f0",
-        "0x145c436e0",
-        "0x145c449f0",
-        "0x145c44d30",
-        "0x145c46070",
-        "0x145cface0",
-        "0x145d05dd0"
+        "0x145dc63d0",
+        "0x145dc69a0",
+        "0x145dd2050",
+        "0x145ee2f90",
+        "0x145ee50f0",
+        "0x145ee6190",
+        "0x145ef0cf0",
+        "0x145efa4d0",
+        "0x145efb7e0",
+        "0x145efbb20",
+        "0x145efce50",
+        "0x145fa5f90",
+        "0x145fb20c0"
       ],
       "ownerless_location_sites": [
-        "0x145c4013a",
-        "0x145c401a7",
-        "0x145c3ffea",
-        "0x145c49f67",
-        "0x145c49f76",
-        "0x145c49fda",
-        "0x145c49fcb"
+        "0x145ef6f26",
+        "0x145ef6f93",
+        "0x145ef6dd6",
+        "0x145f00d67",
+        "0x145f00d76",
+        "0x145f00dda",
+        "0x145f00dcb"
       ],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-game-enemy]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-enemy]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": true,
-      "current_bounded_contract_scopes": {
-        "docs/analysis/evidence/0.127.0/caster-navigation/manifest.json": "Tag1 caster start/completion line-of-sight gates, close-range chase, native target-cell correction and delayed hostile-hit source-to-current-victim wall admission through existing world collision interfaces only.",
-        "docs/analysis/evidence/0.127.0/coop-scaling/manifest.json": "Current live-count/retained-other-hero arithmetic and connected density, health, incoming damage, admission/rescale and reciprocal private reward consumers only; no other Heroic or scheduling certificate.",
-        "docs/analysis/evidence/0.127.0/enemy-control/manifest.json": "Actor-owned root/stun/Fear/Polymorph admission count, duration/cap, sixth-attempt cancellation and eight-second immunity plus creation/expiry/addon consumers only; slows and unrelated aura contracts remain independent."
-      },
-      "current_bounded_contract_refs": [
-        "docs/analysis/evidence/0.127.0/caster-navigation/manifest.json",
-        "docs/analysis/evidence/0.127.0/coop-scaling/manifest.json",
-        "docs/analysis/evidence/0.127.0/enemy-control/manifest.json"
-      ]
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_scopes": {},
+      "current_bounded_contract_refs": []
     },
     {
       "id": "custom-game-game-guardians",
@@ -3164,15 +3172,15 @@
       ],
       "location_reference_count": 14,
       "location_body_owners": [
-        "0x145c27700",
-        "0x145c9c5c0",
-        "0x145c9dad0",
-        "0x145c9dfd0"
+        "0x145edbe90",
+        "0x145f54d50",
+        "0x145f56260",
+        "0x145f56750"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-game-guardians]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-guardians]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -3319,6 +3327,7 @@
         64,
         65,
         67,
+        75,
         118,
         135,
         140,
@@ -3330,6 +3339,7 @@
         174,
         176,
         178,
+        188,
         194,
         195,
         196,
@@ -3350,22 +3360,23 @@
         293,
         294,
         295,
-        296
+        296,
+        300
       ],
       "location_reference_count": 16,
       "location_body_owners": [
-        "0x145bf77a0",
-        "0x145c0d580",
-        "0x145c14810",
-        "0x145c166d0",
-        "0x145c18970",
-        "0x145c1a0c0",
-        "0x145c9e440"
+        "0x145ea1af0",
+        "0x145ebbd70",
+        "0x145ec2280",
+        "0x145ec4170",
+        "0x145ec9960",
+        "0x145ece060",
+        "0x145f5f250"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-game-mod]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-mod]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -3442,17 +3453,20 @@
         288,
         289,
         290,
-        292
+        292,
+        307,
+        308,
+        309
       ],
       "location_reference_count": 2,
       "location_body_owners": [
-        "0x145c7eed0",
-        "0x145c85030"
+        "0x145f37430",
+        "0x145f3d600"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-game-procs]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-procs]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -3551,20 +3565,22 @@
         287,
         288,
         289,
-        290
+        290,
+        305,
+        309
       ],
-      "location_reference_count": 17,
+      "location_reference_count": 18,
       "location_body_owners": [
-        "0x145b80170",
-        "0x145c6fa80",
-        "0x145c7a790"
+        "0x145e55250",
+        "0x145f278f0",
+        "0x145f32350"
       ],
       "ownerless_location_sites": [
-        "0x145c794a3"
+        "0x145f31142"
       ],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-game-talents]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-talents]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -3632,22 +3648,23 @@
         271,
         280,
         291,
-        296
+        296,
+        304
       ],
       "location_reference_count": 11,
       "location_body_owners": [
-        "0x145c8e970",
-        "0x145c964a0",
-        "0x145cb4770",
-        "0x145d0e310",
-        "0x145d1cb20"
+        "0x145f46c10",
+        "0x145f4e870",
+        "0x145f8efe0",
+        "0x145fbb300",
+        "0x145fda8e0"
       ],
       "ownerless_location_sites": [
-        "0x145c9515b"
+        "0x145f4d4ce"
       ],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-game-upgrades]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-upgrades]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -3729,6 +3746,7 @@
         236,
         237,
         239,
+        242,
         257,
         271,
         280,
@@ -3744,34 +3762,28 @@
       ],
       "location_reference_count": 18,
       "location_body_owners": [
-        "0x145b83c70",
-        "0x145b83fd0",
-        "0x145b85630",
-        "0x145b86350",
-        "0x145babc90",
-        "0x145bae7c0",
-        "0x145cef640",
-        "0x145cfaec0",
-        "0x145d1d940",
-        "0x145d1e6b0",
-        "0x145d1e910",
-        "0x145d1eb70"
+        "0x145e0beb0",
+        "0x145e0c210",
+        "0x145e0d870",
+        "0x145e0e590",
+        "0x145e225e0",
+        "0x145e25130",
+        "0x145f99b80",
+        "0x145fa6170",
+        "0x145fdb910",
+        "0x145fdc8a0",
+        "0x145fdcb00",
+        "0x145fdcd60"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-gear]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-gear]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": true,
-      "current_bounded_contract_scopes": {
-        "docs/analysis/evidence/0.127.0/ranked-gear/earned-marks.json": "Typed tag13 equipment receipts, per-hero boss serial/base marks, recipient Save duplicate ledger and run/boss feat sum/maximum only; other achievements and protocol variants remain independent.",
-        "docs/analysis/evidence/0.127.0/ranked-gear/stars.json": "Final-star arithmetic, armor echo, same-class/slot missing-stat bridge and connected per-piece effect projection only; no whole catalog, set-bonus or runtime/parity certificate."
-      },
-      "current_bounded_contract_refs": [
-        "docs/analysis/evidence/0.127.0/ranked-gear/earned-marks.json",
-        "docs/analysis/evidence/0.127.0/ranked-gear/stars.json"
-      ]
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_scopes": {},
+      "current_bounded_contract_refs": []
     },
     {
       "id": "custom-game-i18n",
@@ -3870,19 +3882,20 @@
         294,
         295
       ],
-      "location_reference_count": 13,
+      "location_reference_count": 14,
       "location_body_owners": [
-        "0x145be6710",
-        "0x145be82d0",
-        "0x145be86b0",
-        "0x145be9570",
-        "0x145beb410",
-        "0x145d25680"
+        "0x145e8f630",
+        "0x145e8f7e0",
+        "0x145e913a0",
+        "0x145e91780",
+        "0x145e92640",
+        "0x145e94d60",
+        "0x145fe3cc0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-i18n]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-i18n]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -3958,17 +3971,20 @@
         250,
         293,
         294,
-        295
+        295,
+        301,
+        305,
+        308
       ],
       "location_reference_count": 2,
       "location_body_owners": [
-        "0x145b41a00",
-        "0x145d203a0"
+        "0x145dedd80",
+        "0x145fde690"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-jewelry]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-jewelry]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -4002,6 +4018,7 @@
         41,
         42,
         43,
+        75,
         93,
         135,
         157,
@@ -4028,42 +4045,38 @@
       ],
       "location_reference_count": 61,
       "location_body_owners": [
-        "0x145b98300",
-        "0x145b986d0",
-        "0x145b98c90",
-        "0x145b98df0",
-        "0x145b995f0",
-        "0x145b99a00",
-        "0x145b9ae00",
-        "0x145ba09e0",
-        "0x145ba0bc0",
-        "0x145ba0cc0",
-        "0x145ba12b0",
-        "0x145c27700",
-        "0x145c30990",
-        "0x145c31e30",
-        "0x145c4bf00",
-        "0x145cec090",
-        "0x145d1d660"
+        "0x145edbe90",
+        "0x145ee4860",
+        "0x145ee5d00",
+        "0x145f02d00",
+        "0x145f96210",
+        "0x145fbe1a0",
+        "0x145fd2500",
+        "0x145fd28d0",
+        "0x145fd2e90",
+        "0x145fd2ff0",
+        "0x145fd37d0",
+        "0x145fd3be0",
+        "0x145fd4bc0",
+        "0x145fd4da0",
+        "0x145fd4ea0",
+        "0x145fd5490",
+        "0x145fdb630"
       ],
       "ownerless_location_sites": [
-        "0x145c49f1f",
-        "0x145c49f31",
-        "0x145c49f43",
-        "0x145c49f55"
+        "0x145f00d1f",
+        "0x145f00d31",
+        "0x145f00d43",
+        "0x145f00d55"
       ],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-nav]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-nav]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": true,
-      "current_bounded_contract_scopes": {
-        "docs/analysis/evidence/0.127.0/caster-navigation/manifest.json": "Tag1 caster start/completion line-of-sight gates, close-range chase, native target-cell correction and delayed hostile-hit source-to-current-victim wall admission through existing world collision interfaces only."
-      },
-      "current_bounded_contract_refs": [
-        "docs/analysis/evidence/0.127.0/caster-navigation/manifest.json"
-      ]
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_scopes": {},
+      "current_bounded_contract_refs": []
     },
     {
       "id": "custom-game-proto",
@@ -4155,26 +4168,25 @@
         230,
         239,
         291,
-        296
+        296,
+        299,
+        300,
+        306
       ],
       "location_reference_count": 2,
       "location_body_owners": [
-        "0x145b4e260",
-        "0x145b50bf0"
+        "0x145e82550",
+        "0x145e84610"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-proto]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-proto]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": true,
-      "current_bounded_contract_scopes": {
-        "docs/analysis/evidence/0.127.0/ranked-gear/earned-marks.json": "Typed tag13 equipment receipts, per-hero boss serial/base marks, recipient Save duplicate ledger and run/boss feat sum/maximum only; other achievements and protocol variants remain independent."
-      },
-      "current_bounded_contract_refs": [
-        "docs/analysis/evidence/0.127.0/ranked-gear/earned-marks.json"
-      ]
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_scopes": {},
+      "current_bounded_contract_refs": []
     },
     {
       "id": "custom-game-realmd",
@@ -4224,12 +4236,12 @@
       ],
       "location_reference_count": 2,
       "location_body_owners": [
-        "0x145ce1000"
+        "0x145dc02b0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-realmd]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-realmd]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -4373,6 +4385,7 @@
         174,
         188,
         189,
+        195,
         198,
         203,
         235,
@@ -4391,32 +4404,28 @@
         289,
         290
       ],
-      "location_reference_count": 19,
+      "location_reference_count": 17,
       "location_body_owners": [
-        "0x145b0ce60",
-        "0x145b0d990",
-        "0x145b0e560",
-        "0x145b0eb10",
-        "0x145b0f870",
-        "0x145b10640",
-        "0x145b10d20",
-        "0x145b19b50",
-        "0x145b1efb0",
-        "0x145b1f4c0"
+        "0x145e5a100",
+        "0x145e5ab30",
+        "0x145e5b710",
+        "0x145e5bc00",
+        "0x145e5c970",
+        "0x145e5d750",
+        "0x145e5de30",
+        "0x145e67150",
+        "0x145e6c640",
+        "0x145e6cb50"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-save]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-save]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": true,
-      "current_bounded_contract_scopes": {
-        "docs/analysis/evidence/0.127.0/ranked-gear/earned-marks.json": "Typed tag13 equipment receipts, per-hero boss serial/base marks, recipient Save duplicate ledger and run/boss feat sum/maximum only; other achievements and protocol variants remain independent."
-      },
-      "current_bounded_contract_refs": [
-        "docs/analysis/evidence/0.127.0/ranked-gear/earned-marks.json"
-      ]
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_scopes": {},
+      "current_bounded_contract_refs": []
     },
     {
       "id": "custom-game-server",
@@ -4504,26 +4513,22 @@
       ],
       "location_reference_count": 12,
       "location_body_owners": [
-        "0x145bb2760",
-        "0x145bb29f0",
-        "0x145bc2740",
-        "0x145bc8a60",
-        "0x145bcedf0",
-        "0x145d05500"
+        "0x145e295a0",
+        "0x145e29830",
+        "0x145e3ba40",
+        "0x145e421e0",
+        "0x145e485c0",
+        "0x145fb13a0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-server]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-server]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": true,
-      "current_bounded_contract_scopes": {
-        "docs/analysis/evidence/0.127.0/coop-dispatch/manifest.json": "Four exact current server.rs RustLocations bind the coordinator local-request/service-event interface within145bb29f0. Selected request22..27, actual local-Game/role gates, service-code publication and their connected source consumers are bounded; complete server/driver behavior and arbitrary aliases are not certified."
-      },
-      "current_bounded_contract_refs": [
-        "docs/analysis/evidence/0.127.0/coop-dispatch/manifest.json"
-      ]
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_scopes": {},
+      "current_bounded_contract_refs": []
     },
     {
       "id": "custom-game-talents",
@@ -4597,18 +4602,19 @@
         47,
         119,
         148,
-        249
+        249,
+        305
       ],
       "location_reference_count": 5,
       "location_body_owners": [
-        "0x145b4afa0",
-        "0x145b4be80",
-        "0x145b4d320"
+        "0x145dc9e30",
+        "0x145dcaae0",
+        "0x145dcbf20"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-talents]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-talents]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -4682,27 +4688,24 @@
       ],
       "location_reference_count": 28,
       "location_body_owners": [
-        "0x145b96b30",
-        "0x145b9a540",
-        "0x145b9ae00",
-        "0x145b9e1e0",
-        "0x145ba16b0",
-        "0x145ba1840",
-        "0x145ba39c0"
+        "0x145d6e7a0",
+        "0x145d6eb00",
+        "0x145d6f3c0",
+        "0x145d70790",
+        "0x145d71ee0",
+        "0x145d72070",
+        "0x145d741e0",
+        "0x145fbe1a0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-terrain]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-terrain]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": true,
-      "current_bounded_contract_scopes": {
-        "docs/analysis/evidence/0.127.0/caster-navigation/manifest.json": "Tag1 caster start/completion line-of-sight gates, close-range chase, native target-cell correction and delayed hostile-hit source-to-current-victim wall admission through existing world collision interfaces only."
-      },
-      "current_bounded_contract_refs": [
-        "docs/analysis/evidence/0.127.0/caster-navigation/manifest.json"
-      ]
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_scopes": {},
+      "current_bounded_contract_refs": []
     },
     {
       "id": "custom-app-screens-markers",
@@ -4813,18 +4816,18 @@
       ],
       "location_reference_count": 10,
       "location_body_owners": [
-        "0x140106000",
-        "0x14027cf50",
-        "0x14027d620",
-        "0x14027d960",
-        "0x140289c00"
+        "0x1400b49a0",
+        "0x1401d9a80",
+        "0x1401da150",
+        "0x1401da490",
+        "0x1401dede0"
       ],
       "ownerless_location_sites": [
-        "0x140298cee"
+        "0x1401f41de"
       ],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-markers]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-markers]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -4849,12 +4852,12 @@
       ],
       "location_reference_count": 1,
       "location_body_owners": [
-        "0x14001cfd0"
+        "0x140024970"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-app-legacy-config]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-legacy-config]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -4951,18 +4954,18 @@
       ],
       "location_reference_count": 46,
       "location_body_owners": [
-        "0x145c50640",
-        "0x145c596e0",
-        "0x145c5a780",
-        "0x145cfb070"
+        "0x145f07690",
+        "0x145f107b0",
+        "0x145f11850",
+        "0x145fa6320"
       ],
       "ownerless_location_sites": [
-        "0x145c55d7c",
-        "0x145c55e6e"
+        "0x145f0ce4c",
+        "0x145f0cf3e"
       ],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-hazards]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-hazards]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -5058,28 +5061,26 @@
         259,
         260,
         291,
-        296
+        296,
+        299,
+        306
       ],
       "location_reference_count": 8,
       "location_body_owners": [
-        "0x1402af200",
-        "0x1402deba0",
-        "0x1402e4490",
-        "0x1402e5540"
+        "0x1401515d0",
+        "0x14016fa40",
+        "0x1401761c0",
+        "0x140177240"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-coop]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-coop]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": true,
-      "current_bounded_contract_scopes": {
-        "docs/analysis/evidence/0.127.0/coop-lobby-ui/manifest.json": "Typed coop::ChatList/StaffName consumers and selected current UI owners bind the chat window, input/retention/scroll/unread, member/race/country/RTT display, action routing and signed-title/pulse/tooltip consumer. Backend transport contracts retain their separate coop-dispatch proof. Complete UI/module behavior and runtime/parity remain unverified."
-      },
-      "current_bounded_contract_refs": [
-        "docs/analysis/evidence/0.127.0/coop-lobby-ui/manifest.json"
-      ]
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_scopes": {},
+      "current_bounded_contract_refs": []
     },
     {
       "id": "custom-game-coop-route",
@@ -5158,21 +5159,17 @@
       ],
       "location_reference_count": 1,
       "location_body_owners": [
-        "0x145cc86a0"
+        "0x145dd15d0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-coop-route]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-coop-route]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": true,
-      "current_bounded_contract_scopes": {
-        "docs/analysis/evidence/0.127.0/relay-load/manifest.json": "Five-tag reliable relay sender/receiver/control/ACK/range replay and pending limits, plus PlayerLogin Sync6 admission and queue-before-sync bootstrap consumer ordering only; external relay-service artifact reachability and other session/service semantics remain independent."
-      },
-      "current_bounded_contract_refs": [
-        "docs/analysis/evidence/0.127.0/relay-load/manifest.json"
-      ]
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_scopes": {},
+      "current_bounded_contract_refs": []
     },
     {
       "id": "custom-game-coop-tcp",
@@ -5232,12 +5229,12 @@
       ],
       "location_reference_count": 1,
       "location_body_owners": [
-        "0x145b74940"
+        "0x145e08c60"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-coop-tcp]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-coop-tcp]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -5349,6 +5346,7 @@
       "gap_ids": [
         41,
         63,
+        75,
         95,
         101,
         102,
@@ -5364,9 +5362,11 @@
         168,
         177,
         179,
+        195,
         198,
         203,
         205,
+        206,
         219,
         230,
         236,
@@ -5391,55 +5391,50 @@
         289,
         290,
         291,
-        296
+        296,
+        299,
+        300,
+        306
       ],
-      "location_reference_count": 58,
+      "location_reference_count": 60,
       "location_body_owners": [
-        "0x145be1510",
-        "0x145bec840",
-        "0x145becdc0",
-        "0x145bed170",
-        "0x145bed740",
-        "0x145bedbd0",
-        "0x145bee090",
-        "0x145bee590",
-        "0x145bee930",
-        "0x145beedd0",
-        "0x145bef430",
-        "0x145bf0320",
-        "0x145bf07b0",
-        "0x145bf0d10",
-        "0x145bf1350",
-        "0x145bf18d0",
-        "0x145bf1d90",
-        "0x145bf21e0",
-        "0x145bf25b0",
-        "0x145bf2990",
-        "0x145bf3960",
-        "0x145bf4200",
-        "0x145bf4790",
-        "0x145bf4bd0",
-        "0x145bfdac0",
-        "0x145c06ac0",
-        "0x145c09880"
+        "0x145e8a580",
+        "0x145e96010",
+        "0x145e96590",
+        "0x145e96940",
+        "0x145e96f10",
+        "0x145e973a0",
+        "0x145e97860",
+        "0x145e97d60",
+        "0x145e98100",
+        "0x145e985a0",
+        "0x145e98cb0",
+        "0x145e99ba0",
+        "0x145e9a030",
+        "0x145e9a590",
+        "0x145e9abd0",
+        "0x145e9b150",
+        "0x145e9b610",
+        "0x145e9ba60",
+        "0x145e9be30",
+        "0x145e9c210",
+        "0x145e9d1e0",
+        "0x145e9da80",
+        "0x145e9e010",
+        "0x145e9e450",
+        "0x145ea9fc0",
+        "0x145eb3630",
+        "0x145eb64e0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-game-party]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-party]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": true,
-      "current_bounded_contract_scopes": {
-        "docs/analysis/evidence/0.127.0/coop-bootstrap/manifest.json": "Sync6 producer/admission and host initial Engine7 queue-before-sync ordering only; no whole engine/client or runtime certificate.",
-        "docs/analysis/evidence/0.127.0/coop-scaling/manifest.json": "Current live-count/retained-other-hero arithmetic and connected density, health, incoming damage, admission/rescale and reciprocal private reward consumers only; no other Heroic or scheduling certificate.",
-        "docs/analysis/evidence/0.127.0/relay-load/manifest.json": "Five-tag reliable relay sender/receiver/control/ACK/range replay and pending limits, plus PlayerLogin Sync6 admission and queue-before-sync bootstrap consumer ordering only; external relay-service artifact reachability and other session/service semantics remain independent."
-      },
-      "current_bounded_contract_refs": [
-        "docs/analysis/evidence/0.127.0/coop-bootstrap/manifest.json",
-        "docs/analysis/evidence/0.127.0/coop-scaling/manifest.json",
-        "docs/analysis/evidence/0.127.0/relay-load/manifest.json"
-      ]
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_scopes": {},
+      "current_bounded_contract_refs": []
     },
     {
       "id": "custom-game-server-party",
@@ -5566,6 +5561,7 @@
         203,
         204,
         205,
+        206,
         209,
         230,
         236,
@@ -5600,42 +5596,34 @@
         293,
         294,
         295,
-        296
+        296,
+        306
       ],
-      "location_reference_count": 24,
+      "location_reference_count": 26,
       "location_body_owners": [
-        "0x145bae7c0",
-        "0x145bb29f0",
-        "0x145bc2740",
-        "0x145bd31f0",
-        "0x145bd5c90",
-        "0x145bd6280",
-        "0x145bd7620",
-        "0x145bd79b0",
-        "0x145bdd530",
-        "0x145bed170",
-        "0x145cf58a0",
-        "0x145d05ab0"
+        "0x145e25130",
+        "0x145e29830",
+        "0x145e3ba40",
+        "0x145e4d4b0",
+        "0x145e50220",
+        "0x145e507f0",
+        "0x145e519b0",
+        "0x145e51d60",
+        "0x145e54d80",
+        "0x145e86260",
+        "0x145e96940",
+        "0x145f9fbc0",
+        "0x145fb1da0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-server-party]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-server-party]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": true,
-      "current_bounded_contract_scopes": {
-        "docs/analysis/evidence/0.127.0/coop-admission/manifest.json": "Exact current protocol8 and 0.127.0 admission version gate only; other party admission predicates independent.",
-        "docs/analysis/evidence/0.127.0/coop-bootstrap/manifest.json": "Sync6 producer/admission and host initial Engine7 queue-before-sync ordering only; no whole engine/client or runtime certificate.",
-        "docs/analysis/evidence/0.127.0/coop-dispatch/manifest.json": "Exact server/party.rs RustLocations bind the coordinator and145bd6280 handler. Selected decoded-message/cleanup roles, joined/actual-hero guards, chat/country/RTT/Kick payload and lifetime interfaces are connected; complete party/session/networking semantics remain outside this bounded proof.",
-        "docs/analysis/evidence/0.127.0/relay-load/manifest.json": "Five-tag reliable relay sender/receiver/control/ACK/range replay and pending limits, plus PlayerLogin Sync6 admission and queue-before-sync bootstrap consumer ordering only; external relay-service artifact reachability and other session/service semantics remain independent."
-      },
-      "current_bounded_contract_refs": [
-        "docs/analysis/evidence/0.127.0/coop-admission/manifest.json",
-        "docs/analysis/evidence/0.127.0/coop-bootstrap/manifest.json",
-        "docs/analysis/evidence/0.127.0/coop-dispatch/manifest.json",
-        "docs/analysis/evidence/0.127.0/relay-load/manifest.json"
-      ]
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_scopes": {},
+      "current_bounded_contract_refs": []
     },
     {
       "id": "custom-game-banners",
@@ -5655,12 +5643,12 @@
       ],
       "location_reference_count": 1,
       "location_body_owners": [
-        "0x145b50e10"
+        "0x145dcf500"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-banners]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-banners]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -5697,12 +5685,12 @@
       ],
       "location_reference_count": 1,
       "location_body_owners": [
-        "0x145b54240"
+        "0x145df3220"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-coop-trust]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-coop-trust]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -5808,22 +5796,18 @@
       ],
       "location_reference_count": 2,
       "location_body_owners": [
-        "0x145cb7780",
-        "0x145cc1a30"
+        "0x145f650e0",
+        "0x145f70e40"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-coop-relay]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-coop-relay]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": true,
-      "current_bounded_contract_scopes": {
-        "docs/analysis/evidence/0.127.0/relay-load/manifest.json": "Five-tag reliable relay sender/receiver/control/ACK/range replay and pending limits, plus PlayerLogin Sync6 admission and queue-before-sync bootstrap consumer ordering only; external relay-service artifact reachability and other session/service semantics remain independent."
-      },
-      "current_bounded_contract_refs": [
-        "docs/analysis/evidence/0.127.0/relay-load/manifest.json"
-      ]
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_scopes": {},
+      "current_bounded_contract_refs": []
     },
     {
       "id": "custom-game-heroic",
@@ -5905,21 +5889,17 @@
       ],
       "location_reference_count": 1,
       "location_body_owners": [
-        "0x145b2cdb0"
+        "0x145e6d4f0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-heroic]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-heroic]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": true,
-      "current_bounded_contract_scopes": {
-        "docs/analysis/evidence/0.127.0/coop-scaling/manifest.json": "Current live-count/retained-other-hero arithmetic and connected density, health, incoming damage, admission/rescale and reciprocal private reward consumers only; no other Heroic or scheduling certificate."
-      },
-      "current_bounded_contract_refs": [
-        "docs/analysis/evidence/0.127.0/coop-scaling/manifest.json"
-      ]
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_scopes": {},
+      "current_bounded_contract_refs": []
     },
     {
       "id": "custom-game-game-affixes",
@@ -5973,12 +5953,12 @@
       ],
       "location_reference_count": 1,
       "location_body_owners": [
-        "0x145c46070"
+        "0x145efce50"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-game-affixes]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-affixes]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -6057,14 +6037,15 @@
         290,
         291
       ],
-      "location_reference_count": 1,
+      "location_reference_count": 2,
       "location_body_owners": [
-        "0x145b8ccd0"
+        "0x145de5680",
+        "0x145de5db0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-sets]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-sets]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -6127,16 +6108,17 @@
         287,
         288,
         289,
-        290
+        290,
+        304
       ],
       "location_reference_count": 1,
       "location_body_owners": [
-        "0x145b49150"
+        "0x145dc5af0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-coop-pick]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-coop-pick]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -6177,12 +6159,12 @@
       ],
       "location_reference_count": 2,
       "location_body_owners": [
-        "0x145ba3e60"
+        "0x145f71480"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Assess/register 0.127.0 applicability of retained bounded contracts at the current diagnostic/body leads: establish the relevant inputs, dispatch, values/layouts, producers/consumers and required AS dependencies. Preserve prior source and semantic knowledge.",
-        "Continue the historical remaining subcases retained in docs/analysis/evidence/0.127.0/incremental-correspondence.json:retained_module_assessments[id=custom-game-coop-smooth]; pending applicability alone is excluded from ordinary fixgap implementation choices."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-coop-smooth]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
@@ -6222,21 +6204,18 @@
       ],
       "location_reference_count": 3,
       "location_body_owners": [
-        "0x1402dd560",
-        "0x1402dd780"
+        "0x1402c81c0",
+        "0x1402dd970"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Identify a proved AS visible Preedit/composing-Enter consumer or required browser artifact/source boundary before implementing those remaining #293 behaviors; the current reader census finds the Commit bridge as the sole AS Messages<Ime> reader. Do not invent inline composition presentation."
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-ime]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": true,
-      "current_bounded_contract_scopes": {
-        "docs/analysis/evidence/0.127.0/ime-bridge/manifest.json": "Native AS process-key filtering, Commit-to-key forwarding, focused picker/FrameXML request, caret/window updates and the recovered PreUpdate/BeforeInputSystems boundary are connected. Visible Preedit presentation, composing-Enter behavior and browser resource/source consumers remain unresolved; no whole-module or runtime/parity claim."
-      },
-      "current_bounded_contract_refs": [
-        "docs/analysis/evidence/0.127.0/ime-bridge/manifest.json"
-      ]
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_scopes": {},
+      "current_bounded_contract_refs": []
     },
     {
       "id": "custom-app-screens-ontop",
@@ -6305,20 +6284,19 @@
       ],
       "location_reference_count": 4,
       "location_body_owners": [
-        "0x1402130f0",
-        "0x1402138e0",
-        "0x140217070"
+        "0x14019ad00",
+        "0x1401aec20",
+        "0x1401af410"
       ],
       "ownerless_location_sites": [],
-      "remaining_source_work": [],
+      "remaining_source_work": [
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-ontop]; pending applicability alone is excluded from ordinary fixgap choices."
+      ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": true,
-      "current_bounded_contract_scopes": {
-        "docs/analysis/evidence/0.127.0/source-frontier-native.json": "Owners 0x1402138e0/0x1402130f0: exact AZS_ON_TOP_FRAMES pointer/length passed through the VM lookup interface, absent-VM/missing-global sentinels, owned return conversion and element cleanup; selected Window-like pointer-coordinate bounds and additional predicate precede vector/list updates. Parser/helper return meanings, frame-name resolution, camera/visibility/input/resize lifetime and complete layering remain unproved."
-      },
-      "current_bounded_contract_refs": [
-        "docs/analysis/evidence/0.127.0/source-frontier-native.json"
-      ]
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_scopes": {},
+      "current_bounded_contract_refs": []
     },
     {
       "id": "custom-game-smsg",
@@ -6358,20 +6336,250 @@
       ],
       "location_reference_count": 5,
       "location_body_owners": [
-        "0x145afbe60",
-        "0x145b00d90"
+        "0x145d7ca70",
+        "0x145d81b50"
       ],
       "ownerless_location_sites": [],
-      "remaining_source_work": [],
+      "remaining_source_work": [
+        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-smsg]; pending applicability alone is excluded from ordinary fixgap choices."
+      ],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_scopes": {},
+      "current_bounded_contract_refs": []
+    },
+    {
+      "id": "custom-app-screens-inspect",
+      "original_path": "crates/wenilla-rogue-app/src/screens/inspect.rs",
+      "source_refs": [],
+      "source_anchors": [],
+      "gap_ids": [
+        41,
+        299
+      ],
+      "location_reference_count": 19,
+      "location_body_owners": [
+        "0x1400b34a0",
+        "0x140308180",
+        "0x14030a950",
+        "0x14030bee0",
+        "0x14030d910",
+        "0x140311880",
+        "0x140319c90",
+        "0x1403e7da0",
+        "0x1403e87f0",
+        "0x1403e8cf0",
+        "0x1403ecc80",
+        "0x1403ee7f0"
+      ],
+      "ownerless_location_sites": [],
+      "remaining_source_work": [
+        "Trace diagnostic owners through row action, member identity, inspect snapshot/change publication, gear/star/appearance/set totals, tree and achievement tabs and teardown; connect recovered fields to existing source.",
+        "Establish native/source assignment separately from current-target bounded-contract registration.",
+        "Retain current native-frontier scope and its exact external boundaries/failure records; establish actual native/source assignment separately. No source implementation or runtime/parity follows from decompilation."
+      ],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_scopes": {},
+      "current_bounded_contract_refs": []
+    },
+    {
+      "id": "custom-app-screens-localclock",
+      "original_path": "crates/wenilla-rogue-app/src/screens/localclock.rs",
+      "source_refs": [],
+      "source_anchors": [],
+      "gap_ids": [
+        41,
+        302
+      ],
+      "location_reference_count": 6,
+      "location_body_owners": [
+        "0x1402fe070",
+        "0x140311940",
+        "0x140312430"
+      ],
+      "ownerless_location_sites": [],
+      "remaining_source_work": [
+        "Trace localclock.rs owners and host_controls::local_clock registration/producer, English versus other-locale formatting, minimap/scale/show gates and hudLocalClock propagation.",
+        "Establish native/source assignment separately from current-target bounded-contract registration.",
+        "Retain current native-frontier scope and its exact external boundaries/failure records; establish actual native/source assignment separately. No source implementation or runtime/parity follows from decompilation."
+      ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": true,
       "current_bounded_contract_scopes": {
-        "docs/analysis/evidence/0.127.0/coop-item-carrier/manifest.json": "Current valid ItemQuery replies carry ordered spell text through native variant 24 / wire 25; the guest validates, sanitizes and interns populated slots before ordinary opcode 0x58 admission. This establishes the bounded message-helper assignment, not complete message-module semantics.",
-        "docs/analysis/evidence/0.127.0/source-frontier-native.json": "Owners 0x145afbe60/0x145b00d90: reject high-bit/negative ItemQuery entry responses, find four NUL strings from byte 12, require complete trailing fixed fields, then read or rewrite five u32 spell_id cells at string-end + 0x104 + i*0x18; malformed owned input is consumed and returns absence. AS callers/opcode admission, synthetic-ID remapping, recipient context, jewelry stats and complete publication lifecycle remain unproved."
+        "docs/analysis/evidence/0.139.0/native-frontier-results.json": "Exact AZS_NativeLocalTime descriptor-name/length/callback construction at0x1402fe070 only; callback time acquisition/format/schema, VM lifetime and widget resources remain open."
       },
       "current_bounded_contract_refs": [
-        "docs/analysis/evidence/0.127.0/coop-item-carrier/manifest.json",
-        "docs/analysis/evidence/0.127.0/source-frontier-native.json"
+        "docs/analysis/evidence/0.139.0/native-frontier-results.json"
+      ]
+    },
+    {
+      "id": "custom-app-screens-readycheck",
+      "original_path": "crates/wenilla-rogue-app/src/screens/readycheck.rs",
+      "source_refs": [],
+      "source_anchors": [],
+      "gap_ids": [
+        41,
+        306
+      ],
+      "location_reference_count": 4,
+      "location_body_owners": [
+        "0x14011dc10"
+      ],
+      "ownerless_location_sites": [],
+      "remaining_source_work": [
+        "Recover custom host enter request, authoritative ready state/30-second clock, answer/cancel/timeout branches, member changes and exactly-once zone admission; map both UI and server diagnostic modules.",
+        "Establish native/source assignment separately from current-target bounded-contract registration.",
+        "Retain current native-frontier scope and its exact external boundaries/failure records; establish actual native/source assignment separately. No source implementation or runtime/parity follows from decompilation."
+      ],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_scopes": {},
+      "current_bounded_contract_refs": []
+    },
+    {
+      "id": "custom-app-screens-recap",
+      "original_path": "crates/wenilla-rogue-app/src/screens/recap.rs",
+      "source_refs": [],
+      "source_anchors": [],
+      "gap_ids": [
+        41,
+        300
+      ],
+      "location_reference_count": 3,
+      "location_body_owners": [
+        "0x140178750"
+      ],
+      "ownerless_location_sites": [],
+      "remaining_source_work": [
+        "Trace recap.rs owners to per-player damage history, shield/health/overkill records, killing blow, grouping/source/avoidable ranking and end-screen open/close/Escape consumers.",
+        "Establish native/source assignment separately from current-target bounded-contract registration.",
+        "Retain current native-frontier scope and its exact external boundaries/failure records; establish actual native/source assignment separately. No source implementation or runtime/parity follows from decompilation."
+      ],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/evidence/0.139.0/native-frontier-results.json": "Exact recap/killer nested-payload admission, generation/open-state invalidation and named renderer-field consumer scopes at0x140178750/0x140161d90; capture, grouping, recipient delivery, helpers/numeric edges and input lifecycle remain open."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/evidence/0.139.0/native-frontier-results.json"
+      ]
+    },
+    {
+      "id": "custom-game-game-enhancement",
+      "original_path": "crates/wenilla-rogue/src/game/enhancement.rs",
+      "source_refs": [],
+      "source_anchors": [],
+      "gap_ids": [
+        41,
+        305
+      ],
+      "location_reference_count": 1,
+      "location_body_owners": [
+        "0x145ebdd50"
+      ],
+      "ownerless_location_sites": [],
+      "remaining_source_work": [
+        "Recover current enhancement.rs dispatch, proc origin/repeat suppression, targets/crit/cooldown/buff/debuff state, necklace replacements/scaling and talent migration. Resolve current 0.137 requirements rather than obsolete intermediate values.",
+        "Establish native/source assignment separately from current-target bounded-contract registration.",
+        "Retain current native-frontier scope and its exact external boundaries/failure records; establish actual native/source assignment separately. No source implementation or runtime/parity follows from decompilation."
+      ],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/evidence/0.139.0/native-frontier-results.json": "Only exact rockbiter/stormstrike raw-tag42/subtype10 timed cooldown consumer regions within mixed0x145ebdd50; descriptor/expiry producer, source mapping, proc graph and surrounding generic body are excluded."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/evidence/0.139.0/native-frontier-results.json"
+      ]
+    },
+    {
+      "id": "custom-game-game-meterfeed",
+      "original_path": "crates/wenilla-rogue/src/game/meterfeed.rs",
+      "source_refs": [],
+      "source_anchors": [],
+      "gap_ids": [
+        41,
+        75,
+        307
+      ],
+      "location_reference_count": 12,
+      "location_body_owners": [
+        "0x145dd3d50",
+        "0x145dd67e0",
+        "0x145f56de0",
+        "0x145faf0e0",
+        "0x145fe25f0"
+      ],
+      "ownerless_location_sites": [],
+      "remaining_source_work": [
+        "Trace meterfeed.rs/meterlog.rs constructors, transport/poll/request producers and Lua snapshot/query validation, descriptors/sourceKey/actor joins, recent windows/checkpoints and /reload lifetime. Keep damage-source attribution and rendering-facing anchor delivery separately scoped under #307.",
+        "Establish native/source assignment separately from current-target bounded-contract registration.",
+        "Retain current native-frontier scope and its exact external boundaries/failure records; establish actual native/source assignment separately. No source implementation or runtime/parity follows from decompilation."
+      ],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_scopes": {},
+      "current_bounded_contract_refs": []
+    },
+    {
+      "id": "custom-game-game-meterlog",
+      "original_path": "crates/wenilla-rogue/src/game/meterlog.rs",
+      "source_refs": [],
+      "source_anchors": [],
+      "gap_ids": [
+        41,
+        75
+      ],
+      "location_reference_count": 37,
+      "location_body_owners": [
+        "0x145dccc90",
+        "0x145e7e280",
+        "0x145f79cd0",
+        "0x145f7bf70",
+        "0x145f82a50",
+        "0x145f8a530",
+        "0x145fc29c0",
+        "0x145fcd0f0"
+      ],
+      "ownerless_location_sites": [],
+      "remaining_source_work": [
+        "Trace meterfeed.rs/meterlog.rs constructors, transport/poll/request producers and Lua snapshot/query validation, descriptors/sourceKey/actor joins, recent windows/checkpoints and /reload lifetime. Keep damage-source attribution and rendering-facing anchor delivery separately scoped under #307.",
+        "Establish native/source assignment separately from current-target bounded-contract registration.",
+        "Retain current native-frontier scope and its exact external boundaries/failure records; establish actual native/source assignment separately. No source implementation or runtime/parity follows from decompilation."
+      ],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_scopes": {},
+      "current_bounded_contract_refs": []
+    },
+    {
+      "id": "custom-game-server-party-readycheck",
+      "original_path": "crates/wenilla-rogue/src/server/party/readycheck.rs",
+      "source_refs": [],
+      "source_anchors": [],
+      "gap_ids": [
+        41,
+        306
+      ],
+      "location_reference_count": 1,
+      "location_body_owners": [
+        "0x145e4bdb0"
+      ],
+      "ownerless_location_sites": [],
+      "remaining_source_work": [
+        "Recover custom host enter request, authoritative ready state/30-second clock, answer/cancel/timeout branches, member changes and exactly-once zone admission; map both UI and server diagnostic modules.",
+        "Establish native/source assignment separately from current-target bounded-contract registration.",
+        "Retain current native-frontier scope and its exact external boundaries/failure records; establish actual native/source assignment separately. No source implementation or runtime/parity follows from decompilation."
+      ],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/evidence/0.139.0/native-frontier-results.json": "Exact phase3/member-index/identity/pending-byte first-answer mutation at0x145e4bdb0, including2-r8b; caller bool/enum meanings, response creation, routing, deadline/cancel and run-start remain open."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/evidence/0.139.0/native-frontier-results.json"
       ]
     }
   ],
@@ -6389,7 +6597,7 @@
   "whole_system_semantics_verified": false,
   "parity_verified": false,
   "inventory": {
-    "path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/exe-connections.json",
-    "sha256": "b0b62ea8ba0b715254b594b27857a6f430b790c1d9bf155d43982a0fca2917b3"
+    "path": "runtime/coverage/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/exe-connections.json",
+    "sha256": "929fd4203b953f882c34baf4a8ac25ada36203ced813f49288d00dca5a0dacc5"
   }
 }
