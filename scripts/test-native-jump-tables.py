@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """Non-compiling guarded jump-table proof regressions on synthetic bytes."""
 import importlib.util
+import hashlib
+import io
+from contextlib import redirect_stderr
+from copy import deepcopy
 from pathlib import Path
 import struct
 import unittest
@@ -10,6 +14,7 @@ def module(name,file):
     spec=importlib.util.spec_from_file_location(name,ROOT/file);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
 recovery=module('native_table_recovery','scripts/recover-native-jump-tables.py')
 classifier=module('native_table_classifier','scripts/classify-native-ownership.py')
+native_inventory=module('native_table_linear_inventory','scripts/inventory-native-instructions.py')
 class FakePe:
     image_base=0x140000000
     def __init__(self,writable=False):
@@ -153,4 +158,112 @@ class GuardedTables(unittest.TestCase):
     def test_image_address_is_not_a_stable_numeric_selector(self):
         self.assertIsNone(self.domain('488d0500000000'))
         self.assertIsNone(self.domain('48b80010004001000000'))
+
+class DeclaredLinearTables(unittest.TestCase):
+    def setUp(self):
+        self.decoder=capstone.Cs(capstone.CS_ARCH_X86,capstone.CS_MODE_64)
+        self.decoder.detail=True;self.decoder.skipdata=False
+        self.pe=FakePe();raw=bytearray()
+        # One declared extent contains six strict dispatch blocks. Observing
+        # only the first flow block must not hide the five later linear leads.
+        for index in range(6):
+            address=self.pe.image_base+0x1000+len(raw);table=self.pe.image_base+0x2000+index*8
+            block=bytes.fromhex('4883f8017750488d0d')+struct.pack('<i',table-address-13)
+            block+=bytes.fromhex('486304814801c8ffe0');raw.extend(block)
+            for case in range(2):struct.pack_into('<i',self.pe.data,0x1000+index*8+case*4,0x1300+index*2+case-0x2000-index*8)
+        self.first_block=bytes(raw[:22]);raw.extend(b'\x90'*(0x400-len(raw)))
+        self.pe.data[:len(raw)]=raw;self.pe.functions=lambda:[(0x1000,0x1400,0)]
+        self.target=dict(version='fixture',path='fixture.exe',sha256='a'*64,size_bytes=len(self.pe.data))
+        source='scripts/inventory-native-instructions.py'
+        generator=dict(path=source,sha256=recovery.file_sha256(ROOT/source),decoder='Capstone',
+            decoder_version=capstone.__version__,parser_sha256=recovery.file_sha256(ROOT/'scripts/inventory-executable.py'))
+        from shared_native_inventory import decoder_contract
+        self.metadata=dict(target_sha256=self.target['sha256'],generator=generator,
+            unwind_records_sha256=hashlib.sha256(recovery.json_text(self.pe.functions()).encode()).hexdigest(),
+            decoder_contract=decoder_contract((ROOT/source).read_text()))
+        self.summary=dict(target=self.target,generator=generator,declared_extent_pass_complete=True,
+            counts=dict(pending_extents=0,unwind_extents=1))
+        self.connection=native_inventory.open_inventory(':memory:',self.metadata)
+        self.addCleanup(self.connection.close)
+        start=self.pe.image_base+0x1000
+        decoded,count,refs=native_inventory.decode_extent(bytes(raw),start,self.decoder,capstone)
+        self.connection.execute('INSERT INTO extents VALUES(?,?,?,?,?,?,?)',
+            (0,start,start+len(raw),0,hashlib.sha256(raw).hexdigest(),start+decoded,count))
+        self.connection.executemany('INSERT INTO refs VALUES(?,?,?,?,?,?,?)',[(0,*row)for row in refs])
+        self.connection.commit()
+
+    def collect(self,starts=(),lengths=()):
+        return recovery.recover_declared_linear(self.connection,self.pe,self.decoder,capstone,classifier,
+            starts,lengths,lambda address:False)
+
+    def test_all_six_tables_are_found_without_promoting_linear_reachability(self):
+        observed_instructions=list(self.decoder.disasm(self.first_block,self.pe.image_base+0x1000))
+        observed,reason=recovery.recover(observed_instructions,self.pe,capstone,classifier)
+        self.assertIsNone(reason)
+        tables,rejected,receipt=self.collect([i.address for i in observed_instructions],[i.size for i in observed_instructions])
+        merged,conflicts=recovery.merge_linear_tables([observed],tables)
+        self.assertEqual((len(tables),len(merged),len(rejected),len(conflicts)),(6,6,0,0))
+        self.assertEqual(sum(t['candidate_origins']==['declared-linear']for t in merged),5)
+        self.assertEqual(merged[0]['candidate_origins'],['ghidra-observed','declared-linear'])
+        self.assertNotIn('candidate_origins',observed)
+        self.assertEqual(receipt['counts']['complete_extents_scanned'],1)
+        self.assertEqual(receipt['counts']['indirect_jump_records'],6)
+        for table in tables:
+            self.assertEqual(len(table['case_targets']),2)
+            self.assertFalse(table['declared_linear_origin']['reachability_or_function_ownership_established'])
+            self.assertFalse(table['declared_linear_origin']['whole_domain_instruction_boundaries']['exceptions'])
+
+    def test_incomplete_extent_stays_explicit_without_candidates(self):
+        self.connection.execute('UPDATE extents SET decoded_end=end-1')
+        tables,rejected,receipt=self.collect()
+        self.assertEqual(tables,[]);self.assertEqual(rejected,[])
+        self.assertEqual(receipt['counts']['incomplete_extents_not_scanned'],1)
+        self.assertFalse(receipt['extents'][0]['complete_linear_decode'])
+
+    def test_changed_pe_bytes_or_indirect_jump_receipt_are_rejected(self):
+        self.pe.data[0]^=1
+        with self.assertRaisesRegex(ValueError,'extent bytes differ'):self.collect()
+        self.pe.data[0]^=1
+        self.connection.execute("UPDATE refs SET bytes='90' WHERE kind='jump_indirect' AND site=(SELECT min(site) FROM refs WHERE kind='jump_indirect')")
+        with self.assertRaisesRegex(ValueError,'indirect-jump bytes or boundaries differ'):self.collect()
+
+    def test_case_target_inside_observed_instruction_rejects_whole_table(self):
+        struct.pack_into('<i',self.pe.data,0x1000,0x1001-0x2000)
+        tables,rejected,_=self.collect([self.pe.image_base+0x1000],[4])
+        self.assertEqual((len(tables),len(rejected)),(5,1))
+        self.assertEqual(len(rejected[0]['case_targets']),2)
+        self.assertEqual(rejected[0]['whole_domain_instruction_boundaries']['exceptions'][0]['reason'],'inside-established-instruction')
+
+    def test_dispatch_inside_observed_instruction_is_not_added(self):
+        first=list(self.decoder.disasm(self.first_block,self.pe.image_base+0x1000))[-1].address
+        tables,rejected,_=self.collect([first-1],[4])
+        self.assertEqual((len(tables),len(rejected)),(5,1))
+        self.assertTrue(rejected[0]['declared_linear_origin']['dispatch_instruction_boundary']['exceptions'])
+
+    def test_conflicting_linear_hypothesis_cannot_replace_observed_contract(self):
+        tables,_,_=self.collect();observed=deepcopy(tables[0]);observed['guard_kind']='alias-ja'
+        merged,rejected=recovery.merge_linear_tables([observed],tables)
+        self.assertEqual(len(merged),6);self.assertEqual(len(rejected),1)
+        self.assertEqual(merged[0]['guard_kind'],'alias-ja')
+        self.assertEqual(merged[0]['candidate_origins'],['ghidra-observed'])
+        self.assertEqual(rejected[0]['candidate_rejection_reason'],'declared-linear-conflicts-with-observed-table')
+
+    def test_linear_input_requires_current_target_complete_pass_and_exact_producer(self):
+        self.assertEqual(recovery.validate_linear_inventory(self.summary,self.metadata,self.target,self.pe,capstone),self.metadata['decoder_contract'])
+        for which,key,value in [('summary','target',dict(self.target,sha256='b'*64)),
+                ('summary','declared_extent_pass_complete',False),('metadata','target_sha256','b'*64),
+                ('metadata','decoder_contract','b'*64),('metadata','unwind_records_sha256','b'*64),
+                ('summary','generator',dict(self.summary['generator'],decoder_version='different'))]:
+            summary,metadata=deepcopy(self.summary),deepcopy(self.metadata)
+            (summary if which=='summary'else metadata)[key]=value
+            with self.subTest(which=which,key=key):
+                with self.assertRaises(ValueError):recovery.validate_linear_inventory(summary,metadata,self.target,self.pe,capstone)
+
+    def test_linear_candidates_are_explicitly_opt_in(self):
+        self.assertFalse(recovery.arguments([]).include_declared_linear)
+        self.assertIsNone(recovery.arguments([]).linear_summary)
+        self.assertTrue(recovery.arguments(['--include-declared-linear']).include_declared_linear)
+        with redirect_stderr(io.StringIO()):
+            with self.assertRaises(SystemExit):recovery.arguments(['--linear-summary','fixture.json'])
+
 if __name__=='__main__':unittest.main()

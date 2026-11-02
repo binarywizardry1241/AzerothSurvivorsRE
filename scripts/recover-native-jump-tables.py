@@ -8,7 +8,7 @@ runtime invariants remain unknown. Table targets are code seeds, not functions.
 import argparse
 from array import array
 from bisect import bisect_right
-from collections import Counter,deque
+from collections import Counter,defaultdict,deque
 import hashlib
 import importlib.util
 import json
@@ -197,8 +197,123 @@ def validate_scalar_targets(table,starts,lengths,linear_boundary):
         else:failures.append({'target':hex(target),'reason':'no-independent-instruction-boundary'})
     return {'existing_flow_instruction_targets':known,'declared_linear_instruction_targets':linear,'exceptions':failures}
 
+def validate_linear_inventory(summary,metadata,target,pe,capstone):
+    """Admit only the complete current declared-linear inventory and producer."""
+    from shared_native_inventory import decoder_contract
+    source='scripts/inventory-native-instructions.py'
+    expected={'path':source,'sha256':file_sha256(ROOT/source),'decoder':'Capstone',
+        'decoder_version':capstone.__version__,'parser_sha256':file_sha256(ROOT/'scripts/inventory-executable.py')}
+    if summary.get('target')!=target or metadata.get('target_sha256')!=target['sha256']:
+        raise ValueError('Declared-linear inventory belongs to another target')
+    if summary.get('declared_extent_pass_complete') is not True or summary.get('counts',{}).get('pending_extents')!=0:
+        raise ValueError('Complete declared-linear inventory required')
+    if summary.get('generator')!=expected or metadata.get('generator')!=expected:
+        raise ValueError('Declared-linear producer/parser/decoder commitment differs')
+    records=pe.functions()
+    if summary['counts'].get('unwind_extents')!=len(records) or metadata.get('unwind_records_sha256')!=hashlib.sha256(json_text(records).encode()).hexdigest():
+        raise ValueError('Declared-linear unwind range commitment differs')
+    contract=decoder_contract((ROOT/source).read_text())
+    if metadata.get('decoder_contract')!=contract:
+        raise ValueError('Declared-linear decoder contract differs')
+    return contract
+
+def recover_declared_linear(connection,pe,decoder,capstone,classifier,starts,lengths,linear_boundary):
+    """Reuse strict recovery on complete, exact PE-declared linear extents.
+
+    The inventory selects extents containing encoded indirect jumps, not new
+    functions or reachable paths. A sparse chunk-backed read avoids requiring
+    another expanded SQLite inventory or a whole-image instruction detail cache.
+    """
+    if decoder.skipdata or not decoder.detail or decoder.arch!=capstone.CS_ARCH_X86 or decoder.mode!=capstone.CS_MODE_64:
+        raise ValueError('Declared-linear recovery requires detail without skip-data')
+    jumps=defaultdict(dict)
+    for ordinal,site,raw in connection.execute("SELECT extent,site,bytes FROM refs WHERE kind='jump_indirect' ORDER BY extent,site"):
+        if site in jumps[ordinal]:raise ValueError('Duplicate declared-linear indirect jump')
+        jumps[ordinal][site]=raw
+    records=pe.functions();tables=[];rejected=[];extents=[];counts=Counter()
+    counts['indirect_jump_records']=sum(map(len,jumps.values()))
+    counts['candidate_extents']=len(jumps)
+    found=set()
+    for ordinal,start,end,offset,checksum,decoded_end,instruction_count in connection.execute('SELECT ordinal,start,end,file_offset,sha256,decoded_end,instructions FROM extents ORDER BY ordinal'):
+        if ordinal not in jumps:continue
+        if ordinal in found:raise ValueError('Duplicate declared-linear extent')
+        found.add(ordinal)
+        if not 0<=ordinal<len(records) or (start,end)!=tuple(pe.image_base+n for n in records[ordinal][:2]):
+            raise ValueError('Declared-linear extent is not an exact PE unwind range')
+        actual_offset=pe.rva_offset(start-pe.image_base)
+        if end<=start or actual_offset!=offset or pe.rva_offset(end-pe.image_base-1)!=offset+end-start-1:
+            raise ValueError('Declared-linear extent file mapping differs')
+        raw=bytes(pe.data[offset:offset+end-start])
+        if len(raw)!=end-start or hashlib.sha256(raw).hexdigest()!=checksum:
+            raise ValueError('Declared-linear extent bytes differ')
+        receipt={'ordinal':ordinal,'start':hex(start),'end_exclusive':hex(end),'file_offset':hex(offset),
+            'byte_count':len(raw),'sha256':checksum,'complete_linear_decode':decoded_end==end}
+        extents.append(receipt)
+        if decoded_end!=end:
+            counts['incomplete_extents_not_scanned']+=1;continue
+        instructions=list(decoder.disasm(raw,start))
+        if (sum(i.size for i in instructions)!=len(raw) or len(instructions)!=instruction_count
+                or not instructions or instructions[0].address!=start
+                or any(a.address+a.size!=b.address for a,b in zip(instructions,instructions[1:]))):
+            raise ValueError('Declared-linear current decode differs from inventory')
+        decoded={i.address:i for i in instructions}
+        expected={i.address:i.bytes.hex() for i in instructions if i.group(capstone.CS_GRP_JUMP)
+            and (not i.operands or i.operands[0].type!=capstone.x86_const.X86_OP_IMM)}
+        if jumps[ordinal]!=expected:raise ValueError('Declared-linear indirect-jump bytes or boundaries differ')
+        receipt.update(instruction_count=len(instructions),instruction_starts_sha256=hashlib.sha256('\n'.join(f'{i.address:x}' for i in instructions).encode()).hexdigest())
+        counts['complete_extents_scanned']+=1;ring=[]
+        boundary=lambda address:address in decoded or linear_boundary(address)
+        for instruction in instructions:
+            ring.append(instruction)
+            if instruction.address in expected:
+                table,reason=recover(ring,pe,capstone,classifier)
+                if table is None:counts[reason]+=1
+                else:
+                    site_check=validate_scalar_targets({'case_targets':[table['site']]},starts,lengths,boundary)
+                    case_check=validate_scalar_targets(table,starts,lengths,boundary)
+                    first=ring[0].address;last=instruction.address+instruction.size
+                    context_offset=offset+first-start
+                    table['candidate_origins']=['declared-linear']
+                    table['declared_linear_origin']={'extent_ordinal':ordinal,'context_start':hex(first),
+                        'context_end_exclusive':hex(last),'context_sha256':hashlib.sha256(bytes(pe.data[context_offset:context_offset+last-first])).hexdigest(),
+                        'dispatch_instruction_boundary':site_check,'whole_domain_instruction_boundaries':case_check,
+                        'reachability_or_function_ownership_established':False}
+                    table['whole_domain_instruction_boundaries']=case_check
+                    if site_check['exceptions'] or case_check['exceptions']:
+                        table['candidate_rejection_reason']='declared-linear-instruction-boundary-conflict-or-unproved-target'
+                        rejected.append(table);counts[table['candidate_rejection_reason']]+=1
+                    else:tables.append(table);counts['strict_tables_with_validated_dispatch_and_all_targets']+=1
+            if instruction.mnemonic in ('jmp','ud2') or any(instruction.group(g) for g in (capstone.CS_GRP_CALL,capstone.CS_GRP_RET,capstone.CS_GRP_INT,capstone.CS_GRP_IRET)):
+                ring=[]
+    if found!=set(jumps):raise ValueError('Declared-linear indirect jump names an absent extent')
+    return tables,rejected,{'counts':dict(sorted(counts.items())),'extents':extents}
+
+def merge_linear_tables(observed,linear):
+    """Keep observed hypotheses, rejecting conflicting linear alternatives."""
+    fields=('site','guard','selector_register','guard_kind','guard_bound','selector_minimum','selector_maximum',
+        'table_address','relative_base','file_offset','byte_count','sha256','case_targets')
+    result={row['site']:dict(row,candidate_origins=['ghidra-observed']) for row in observed};rejected=[]
+    if len(result)!=len(observed):raise ValueError('Duplicate observed table site')
+    for row in linear:
+        old=result.get(row['site'])
+        if old is None:result[row['site']]=row
+        elif all(old.get(field)==row.get(field) for field in fields):
+            old['candidate_origins']=['ghidra-observed','declared-linear'];old['declared_linear_origin']=row['declared_linear_origin']
+        else:rejected.append(dict(row,candidate_rejection_reason='declared-linear-conflicts-with-observed-table'))
+    return [result[site] for site in sorted(result,key=lambda value:int(value,16))],rejected
+
+def arguments(argv=None):
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--census-summary',default='docs/analysis/coverage/full-image-integrated.json')
+    parser.add_argument('--inventory-output');parser.add_argument('--summary-output',default='docs/analysis/coverage/native-jump-tables.json')
+    parser.add_argument('--include-declared-linear',action='store_true',help='Opt in to strict byte/boundary-verified candidates from the current declared-linear inventory; no reachability or function ownership inferred')
+    parser.add_argument('--linear-summary',help='Current declared-linear summary; requires --include-declared-linear (default: docs/analysis/coverage/instruction-summary.json)')
+    parser.add_argument('--write',action='store_true');args=parser.parse_args(argv)
+    if args.linear_summary and not args.include_declared_linear:parser.error('--linear-summary requires --include-declared-linear')
+    return args
+
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--census-summary',default='docs/analysis/coverage/full-image-integrated.json');parser.add_argument('--inventory-output');parser.add_argument('--summary-output',default='docs/analysis/coverage/native-jump-tables.json');parser.add_argument('--write',action='store_true');args=parser.parse_args()
+    args=arguments()
     import capstone
     target=latest_target();report=load_json(project_path(args.census_summary))
     if report['target']['sha256']!=target['sha256'] or not report['independent_instructions'].get('exact_source_bytes_verified'):raise ValueError('Verified current census required')
@@ -247,20 +362,54 @@ def main():
             counts['guarded-relative-tables']-=1;counts[table['candidate_rejection_reason']]+=1
         else:admitted.append(table)
     tables=admitted
+    scalar_rejected_count=len(candidate_tables)
+    linear_input=None;linear_review=None;origin_counts=None
+    if args.include_declared_linear:
+        from shared_native_inventory import _open_chunks_readonly
+        summary_path=project_path(args.linear_summary or 'docs/analysis/coverage/instruction-summary.json')
+        summary_checksum=file_sha256(summary_path)
+        linear_summary=load_json(summary_path);database=project_path(linear_summary['inventory']['path'])
+        if file_sha256(summary_path)!=summary_checksum:raise ValueError('Declared-linear summary changed while reading')
+        if file_sha256(database)!=linear_summary['inventory']['sha256']:raise ValueError('Declared-linear inventory commitment differs')
+        linear_helpers=[{'path':name,'sha256':file_sha256(ROOT/name)} for name in (
+            'scripts/inventory-native-instructions.py','scripts/shared_native_inventory.py','scripts/coverage_common.py',
+            'scripts/native_scalar_aliases.py','scripts/classify-native-ownership.py','scripts/summarize-native-image.py',
+            'scripts/inventory-current-target.py','scripts/inventory-executable.py')]
+        decoder_binding=dict(classifier.native_decoder_identity(),skipdata=False)
+        with _open_chunks_readonly(database,root=ROOT) as connection:
+            metadata=json.loads(connection.execute('SELECT value FROM metadata WHERE id=1').fetchone()[0])
+            contract=validate_linear_inventory(linear_summary,metadata,report['target'],pe,capstone)
+            linear_tables,linear_rejected,linear_review=recover_declared_linear(
+                connection,pe,decoder,capstone,classifier,observed_starts,observed_lengths,linear_boundary)
+        tables,conflicts=merge_linear_tables(tables,linear_tables)
+        candidate_tables=[dict(row,candidate_origins=['ghidra-observed']) for row in candidate_tables]
+        candidate_tables.extend(linear_rejected+conflicts)
+        counts['guarded-relative-tables']=len(tables)
+        origin_counts={'ghidra_observed':sum('ghidra-observed' in row['candidate_origins'] for row in tables),
+            'declared_linear_only':sum(row['candidate_origins']==['declared-linear'] for row in tables),
+            'observed_and_declared_linear':sum(len(row['candidate_origins'])==2 for row in tables),
+            'rejected_declared_linear_tables':len(linear_rejected)+len(conflicts)}
+        linear_input={'summary':{'path':summary_path.relative_to(ROOT).as_posix(),'sha256':summary_checksum},
+            'inventory':{'path':database.relative_to(ROOT).as_posix(),'sha256':linear_summary['inventory']['sha256']},
+            'decoder_contract':contract,'decoder':decoder_binding,'helpers':linear_helpers}
+        linear_review['input']=linear_input
     output=project_path(args.inventory_output) if args.inventory_output else directory/'guarded-jump-tables.json'
     boundary_output=output.with_name(output.stem+'-linear-boundaries.json')
     boundary_payload={'target':report['target'],'generator':{'path':'scripts/recover-native-jump-tables.py','sha256':GENERATOR_SHA256,'capstone_version':capstone.__version__},
         'source_census':{'path':args.census_summary,'sha256':file_sha256(project_path(args.census_summary))},
         'method':'Exact current PE .pdata extents, decoded linearly from their declared beginning; no owner or source semantics inferred.',
         'extents':[linear_extents[index] for index in sorted(linear_extents)]}
+    if linear_review is not None:boundary_payload['declared_linear_recovery']=linear_review
     boundary_text=json_text(boundary_payload)
     payload={'schema_version':1,'target':report['target'],'census_summary':args.census_summary,'census_summary_sha256':file_sha256(project_path(args.census_summary)),
         'generator':{'path':'scripts/recover-native-jump-tables.py','sha256':GENERATOR_SHA256,'capstone_version':capstone.__version__},
         'counts':dict(sorted(counts.items())),'tables':tables,'candidate_tables':candidate_tables,
         'linear_boundary_input':{'path':boundary_output.relative_to(ROOT).as_posix(),'sha256':hashlib.sha256(boundary_text.encode()).hexdigest()},'pe_parser_helpers':pe_dependencies,'native_semantics_or_all_computed_edges_complete':False}
+    if linear_input is not None:payload.update(declared_linear_input=linear_input,candidate_origin_counts=origin_counts)
     serialized=json_text(payload)
     compact={key:value for key,value in payload.items() if key not in ('tables','candidate_tables')}
-    compact['rejected_scalar_domain_tables']=len(candidate_tables)
+    compact['rejected_scalar_domain_tables']=scalar_rejected_count
+    if linear_input is not None:compact['rejected_candidate_tables']=len(candidate_tables)
     compact['selector_alias_helpers']={'path':'scripts/native_scalar_aliases.py','sha256':ALIAS_HELPER_SHA256}
     compact['alias_guard_tables']=sum(table['selector_alias_proof'] is not None for table in tables)
     compact.update(case_entries=sum(len(t['case_targets']) for t in tables),unique_target_addresses=len({value for t in tables for value in t['case_targets']}),
@@ -273,6 +422,11 @@ def main():
             'Successors seed code and flow edges, never invented function boundaries. No application compilation or execution.'])
     if file_sha256(ROOT/'scripts/native_scalar_aliases.py')!=ALIAS_HELPER_SHA256 or any(file_sha256(ROOT/row['path'])!=row['sha256'] for row in pe_dependencies) or file_sha256(ROOT/'scripts/recover-native-jump-tables.py')!=GENERATOR_SHA256:raise ValueError('Jump proof generator changed during analysis; rerun before publication')
     if file_sha256(ROOT/'scripts/summarize-native-image.py')!=helpers.GENERATOR_SHA256 or file_sha256(ROOT/'scripts/classify-native-ownership.py')!=classifier.GENERATOR_SHA256:raise ValueError('Jump proof dependency changed during analysis')
+    if linear_input is not None:
+        for reference in [linear_input['summary'],linear_input['inventory'],*linear_input['helpers']]:
+            if file_sha256(ROOT/reference['path'])!=reference['sha256']:raise ValueError('Declared-linear input changed during recovery')
+        if dict(classifier.native_decoder_identity(),skipdata=False)!=linear_input['decoder']:raise ValueError('Declared-linear decoder changed during recovery')
+        target_bytes(target)
     if args.write:boundary_output.write_text(boundary_text);output.write_text(serialized);project_path(args.summary_output).write_text(json_text(compact))
     print(json_text({key:compact[key] for key in ('counts','case_entries','unique_target_addresses')}))
 if __name__=='__main__':main()
