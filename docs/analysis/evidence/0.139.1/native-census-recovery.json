@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.139.1",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d",
+    "size_bytes": 150633472
+  },
+  "initial_expansion": {
+    "plan": {
+      "path": "runtime/analysis/objects/aa/aa3844f821c4360df6efee3c9e3417aa5bd05c229d4aaf0bb26b59675b834086",
+      "sha256": "aa3844f821c4360df6efee3c9e3417aa5bd05c229d4aaf0bb26b59675b834086",
+      "original_recorded_path": "runtime/coverage/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/pipeline/39c76fdd2bc3e80d/expanded/plan.json"
+    },
+    "saved_progress": {
+      "path": "runtime/analysis/objects/a7/a73d419ebf33ba4f43a3711f5536050989ed89373469ff5a37e9d3a299f1df7b",
+      "sha256": "a73d419ebf33ba4f43a3711f5536050989ed89373469ff5a37e9d3a299f1df7b",
+      "original_recorded_path": "runtime/coverage/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/pipeline/39c76fdd2bc3e80d/expanded/progress.json"
+    },
+    "result": {
+      "path": "runtime/analysis/objects/48/48d47fbd3f50be034c0d52c188d630f972aa4000e35f3b3f53c5d14e10a17cde",
+      "sha256": "48d47fbd3f50be034c0d52c188d630f972aa4000e35f3b3f53c5d14e10a17cde",
+      "original_recorded_path": "runtime/coverage/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/pipeline/39c76fdd2bc3e80d/expanded/session-result.json"
+    },
+    "collector_sha256": "9620e0505314b2ce1797f7419c89c9919beac2adfa772289bcfc15006a9be9df",
+    "status": "failed_at_guarded_dispatch_check_not_complete",
+    "saved_stage": "disassembly-finished",
+    "saved_generation": 3,
+    "failure": "Guarded dispatch instruction differs; the original error omitted the site address. Three automatic retries made no saved progress after the completed disassembly checkpoint.",
+    "curated_diagnostic": {
+      "original_sha256": "0083fa8f80e13f2dc3b72bab17af7ff52aad41923991bf33706f3a323297e6e0",
+      "original_bytes": 6942,
+      "source": "Final original Ghidra diagnostic from the failed v1 expansion",
+      "lines": [
+        "2026-11-02 14:56:35 INFO  (GhidraScript) ReaNativeCensus.java> REA census resumed generation 3 at \"disassembly-finished\"  ",
+        "2026-11-02 14:56:37 ERROR (HeadlessAnalyzer) REPORT SCRIPT ERROR:  java.lang.IllegalArgumentException: Guarded dispatch instruction differs",
+        "\tat ReaNativeCensus.collect(ReaNativeCensus.java:495)"
+      ],
+      "full_attempt_diagnostics_retained": false
+    },
+    "planned_tables": 2984,
+    "planned_edges": 19853
+  },
+  "identified_integration_boundary": "Strict declared-linear proposals can have no observed dispatch instruction. The prior collector seeded only case targets, then required an actual computed JMP at every dispatch site. Current correction seeds executable dispatch sites as code only and retains strict computed-JMP validation; it does not invent function entries or incoming flow.",
+  "corrected_expansion_status": "complete_current_v2_verified_selected_pass_and_stable_guarded_frontier",
+  "original_declared_pass": {
+    "path": "docs/analysis/coverage/full-image-declared-0.139.1.json",
+    "sha256": "05846cbd9bf9392f98d5a97cebc7e3b7425b832aa56627f13542c79170e2eb45"
+  },
+  "limits": "The failed profile is preserved as failed, not relabeled or overwritten. Exact prior producers, native inputs, checkpoints and verified cold Program remain reusable. Compilation of the reconstructed application, game/client/server execution and parity were not performed.",
+  "correction": {
+    "commit": "1f959de8",
+    "collector_sha256": "8b94d1cc686c61e1da81c8654c2e634120eb16685ab44f89f2e1ff487ab31e7d",
+    "decoder_contract": "rea-incremental-census-v2",
+    "source": "scripts/ghidra/ReaNativeCensus.java",
+    "validation": "Existing 16 resume, 7 incremental and 13 image-census Python fixtures plus the workspace mode/adoption fixture pass. The current-image initial v2 expansion also passes complete independent original-byte/instruction-boundary verification; this does not establish semantic completeness or parity.",
+    "legacy_identity": "Absent decoder_contract retains exact v1 identity/pass/profile hashes. Unknown contracts fail. Compatible v2 seed additions share one Program; no per-task variant or unfinished-checkpoint bypass."
+  },
+  "preserved_failed_program": {
+    "archive_id": "7d635670e0e89a937721b287b3bc9e455d4f8be70c878d7889eab14f5827e969",
+    "original_bytes": 1348404268,
+    "archive_bytes": 447581018,
+    "purpose": "Exact original declared-pass and failed expansion Program/checkpoints, preserved losslessly in cold storage; neither is relabeled as v2.",
+    "lossless_restore_and_recold_round_trip_verified": true,
+    "verified_restored_files": 9,
+    "verified_restored_bytes": 1348404268
+  },
+  "corrected_verified_pass": {
+    "path": "docs/analysis/coverage/full-image-execheck-0.139.1.json",
+    "sha256": "c6936d83516995b5e83534893c24ae1e1dddcd341fe89979f04cc10eb65f527c"
+  },
+  "verification_publication": {
+    "status": "corrected_and_both_passes_independently_reverified",
+    "cause": "The follow-up DAG reused the initial verification artifact directory. The immutable full-summary guard refused publication after instruction checks; the two passes now have separate directories.",
+    "original_initial_artifacts_reproduced_exactly": [
+      {
+        "path": "runtime/coverage/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/pipeline/39c76fdd2bc3e80d/verify-expanded-186d5c98a96710ed/missing-declared-ranges.tsv.gz",
+        "sha256": "477a2399be4eef66ab5f254c079e168756f0cb3bc32f7fe54f4e7f43596870bc"
+      },
+      {
+        "path": "runtime/coverage/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/pipeline/39c76fdd2bc3e80d/verify-expanded-186d5c98a96710ed/missing-executable-ranges.tsv.gz",
+        "sha256": "fcc616208cddca770fe1e9c30918f42dfee32b377e7cce7da0446ec2bb1e44b3"
+      },
+      {
+        "path": "runtime/coverage/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/pipeline/39c76fdd2bc3e80d/verify-expanded-186d5c98a96710ed/diagnostic-bindings.json",
+        "sha256": "ede4f7720f9e8734951be67f96d98891802a8c192bd91c83df3cd8dd29ac9fe8"
+      },
+      {
+        "path": "runtime/coverage/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/pipeline/39c76fdd2bc3e80d/verify-expanded-186d5c98a96710ed/full-summary.json",
+        "sha256": "3dc4027588bb4781ac4c11a16fe199d42ddb1eebba640198fc80f3215bda1912"
+      }
+    ],
+    "limits": "This was a derived-output publication collision, not a native decoding failure. Original source/bytes and native exports were preserved."
+  },
+  "selected_completion": {
+    "path": "docs/analysis/coverage/full-image-selected-0.139.1.json",
+    "sha256": "ff4d8ade21d386b138ee678cdda16efeca1d7d99f4f9a50a7c8b7e4d0f56eb18",
+    "applied_tables": 3924,
+    "added_changed_removed_or_undecoded_final_proposals": 0
+  }
+}
