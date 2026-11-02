@@ -2,7 +2,7 @@
 
 Selected installed EXE SHA-256:
 `0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274`.
-Configured installed EXE/Data were read in place. Structural scans, native
+This is a historical 0.139.0 census. The installed 0.139.1 input requires its own refresh; current status belongs to [CURRENT-STATE](../CURRENT-STATE.md). Configured installed EXE/Data were read in place. Structural scans, native
 observations, recovered behavior, source connection and parity are independent.
 
 ## Complete input and independent inventories
