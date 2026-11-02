@@ -1,12 +1,87 @@
 {
   "schema_version": 1,
   "target": {
-    "version": "0.127.0",
+    "version": "0.139.1",
     "path": "installed-game/AzerothSurvivors.exe",
-    "sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
-    "size_bytes": 146721280
+    "sha256": "1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d",
+    "size_bytes": 150633472
   },
-  "profile_id": "35870ad87b9a37c13ae0a8f3d9817785266e735ce37b9771987384398871d225",
+  "review_input": {
+    "path": "docs/analysis/evidence/0.139.1/as-discovery-reviews.json",
+    "sha256": "92667256df134a4e5eadb38b86face3e552a7d435fa0228526617570873a1b7a"
+  },
+  "data_classification_input": {
+    "path": "docs/analysis/evidence/0.139.1/data-classification/manifest.json",
+    "sha256": "4af777b73525f94bcc8071937d5a4fee416ddbf237234c05e9659172f5c6376b"
+  },
+  "current_native_body_census": {
+    "path": "docs/analysis/coverage/full-image-selected-0.139.1.json",
+    "sha256": "ff4d8ade21d386b138ee678cdda16efeca1d7d99f4f9a50a7c8b7e4d0f56eb18"
+  },
+  "connection_ledger_input": {
+    "path": "docs/analysis/coverage/exe-connections.json",
+    "sha256": "61839c7f229d1edd070e4d46bdb8f444b03f192e8faf63ef5de680e387e6963b"
+  },
+  "unknown_selector_input": {
+    "path": "docs/analysis/evidence/0.139.1/source-connected-unknown-recovery.json",
+    "sha256": "43541c0f176c1963ee6164f3cd2441155e618a353e2a5a3bb2b8d6be09698b04"
+  },
+  "incremental_correspondence": {
+    "path": "docs/analysis/evidence/0.139.1/incremental-correspondence.json",
+    "sha256": "a2221e4abe7500625d19f26b285a46cc1387533ccdb884438bbfca2a82568802"
+  },
+  "retained_historical_recovery": {
+    "last_published_registry": {
+      "path": "runtime/analysis/objects/11/11655002deb353cc70e3fb0011091776cd400e55bb7453bdae42714a08fc5753",
+      "sha256": "11655002deb353cc70e3fb0011091776cd400e55bb7453bdae42714a08fc5753",
+      "target": {
+        "version": "0.127.0",
+        "path": "installed-game/AzerothSurvivors.exe",
+        "sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "size_bytes": 146721280
+      }
+    },
+    "immediate_predecessor_review": {
+      "path": "docs/analysis/evidence/0.139.0/as-discovery-reviews.json",
+      "sha256": "271ca949b5c3d822eecbed388d1d20ae0535fbe1d04776b9e71fe5dbb9b4d925"
+    },
+    "immediate_predecessor_audit_boundary": {
+      "path": "docs/analysis/evidence/0.139.0/audit-boundary.json",
+      "sha256": "9c604cfc9097312d5f1fe4902cbb576648db2d2569f0a54b21fa0b4ed6715325"
+    },
+    "scope": "The last published graph was 0.127.0. Unpublished 0.139.0 recovery retains 12 query reviews, 71 bindings, one failed native lead and fourteen classified original questions with their actual targets. Existing source and semantic recovery are not reset or promoted as current."
+  },
+  "current_module_dimensions": {
+    "custom_system_rows": 77,
+    "with_partial_reconstructed_source": 69,
+    "with_registered_current_bounded_contract": 4,
+    "scope": "Module dimensions only. InputGate is a separate supporting boundary outside the 77 diagnostic modules; no AS code, behavior, implementation completeness or parity."
+  },
+  "stages": {
+    "candidate_graph": "partial",
+    "resumable_recovery_queue": "partial",
+    "indirect_connections": "partial",
+    "data_through_consumers": "partial",
+    "unassigned_code_and_data": "partial",
+    "source_comparison": "partial"
+  },
+  "semantic_frontier_closed": false,
+  "global_native_semantics_complete": false,
+  "parity_verified": false,
+  "current_computed_correspondence": {
+    "path": "docs/analysis/evidence/0.139.1/computed-correspondence-frontier.json",
+    "sha256": "d3a2af4baf234a6b1edd3b423a031eb4d4e0eae32ae1e7cdcad859b48badd6fa"
+  },
+  "complete_current_AS_context_review": {
+    "path": "docs/analysis/evidence/0.139.1/switch-context-source-review.json",
+    "sha256": "ddd13585fd5d5b94417c746abf78b9272067aa8b68f0b8cdafc15324bb32417d"
+  },
+  "limits": [
+    "Structural inventories, attribution, native query outcomes, bounded contracts, source assignment and parity are separate.",
+    "69 current finding bindings, four actual current query reviews and fourteen pending correspondence questions retain their exact proof scopes.",
+    "All six global semantic stages remain partial. No application compilation, game/client/server/network operation or original/rebuilt comparison."
+  ],
+  "profile_id": "9ab52faf3d6ba493d07c402ca5c880d4ed75843ad34c0393be92daca6c83553c",
   "generator": {
     "dependencies": [
       {
@@ -15,7 +90,7 @@
       },
       {
         "path": "scripts/coverage_common.py",
-        "sha256": "5a04a45f488ad0a51801ad9d8263bfeb3e7048c77b0f906708e384064ce76cf7"
+        "sha256": "4adab1999dab972a63e3ab29b7a95d4ab223471398a383967b17f8a39dee5d2a"
       },
       {
         "path": "scripts/discovery_native_subject.py",
@@ -23,775 +98,247 @@
       },
       {
         "path": "scripts/inventory-executable.py",
-        "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+        "sha256": "e2a4746cf3c5c0a8433c2000d6000b768a2a17b01b25040505705f61ddf1f6fa"
       }
     ],
     "path": "scripts/compose-as-discovery.py",
-    "sha256": "614e32f16eac2c20f3375ca85d4c3d9854096d216adaa75f4f2e5e4947fa3592"
+    "sha256": "565a15dffb50c5c4e64d8ed67f19fd0dad129e813416a93af2bcad1f03950df6"
   },
   "artifacts": {
     "profile.json": {
-      "path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/as-discovery/35870ad87b9a37c13ae0a8f3d9817785266e735ce37b9771987384398871d225/profile.json",
-      "sha256": "35870ad87b9a37c13ae0a8f3d9817785266e735ce37b9771987384398871d225"
+      "path": "runtime/coverage/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/as-discovery/9ab52faf3d6ba493d07c402ca5c880d4ed75843ad34c0393be92daca6c83553c/profile.json",
+      "sha256": "9ab52faf3d6ba493d07c402ca5c880d4ed75843ad34c0393be92daca6c83553c"
     },
     "graph.json": {
-      "path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/as-discovery/35870ad87b9a37c13ae0a8f3d9817785266e735ce37b9771987384398871d225/graph.json",
-      "sha256": "616cbc1ed80055eda7d745659daeae68535c85ea2f77b19f940197ff71f58f9b"
+      "path": "runtime/coverage/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/as-discovery/9ab52faf3d6ba493d07c402ca5c880d4ed75843ad34c0393be92daca6c83553c/graph.json",
+      "sha256": "e29827d34117e53224160a35925488aa0494928b0f6aeaddc6eac6d1be237a86"
     },
     "queue.json": {
-      "path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/as-discovery/35870ad87b9a37c13ae0a8f3d9817785266e735ce37b9771987384398871d225/queue.json",
-      "sha256": "1b99888e8848f8d5c39c8d08c68a3315f71b534b56141e232609c05280ba56ad"
+      "path": "runtime/coverage/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/as-discovery/9ab52faf3d6ba493d07c402ca5c880d4ed75843ad34c0393be92daca6c83553c/queue.json",
+      "sha256": "957cbd80bc875da44003d85141d3c0c555eab74285aa9634f0ddb4b8cd3b349b"
     },
     "journal.json": {
-      "path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/as-discovery/35870ad87b9a37c13ae0a8f3d9817785266e735ce37b9771987384398871d225/journal.json",
-      "sha256": "234874c19aa63ba09826137b267634b6ddeb9daed637d1bae20a36e785efe35a"
+      "path": "runtime/coverage/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/as-discovery/9ab52faf3d6ba493d07c402ca5c880d4ed75843ad34c0393be92daca6c83553c/journal.json",
+      "sha256": "730ec56bd239964a92b76bf244cef9728b55a3beeee67118b8494af52ca3306b"
     }
   },
-  "review_input": {
-    "path": "docs/analysis/evidence/0.127.0/as-discovery-reviews.json",
-    "sha256": "e7514f241d65d7bb8532bd3f8fc17b0d07fd2a580982872bb014b277f219b242"
-  },
-  "data_classification_input": {
-    "path": "docs/analysis/evidence/0.127.0/data-classification/manifest.json",
-    "sha256": "e4a5a2b9a0389e31b5a1fd2aad045780f2f50f45c8e1ad4e2d9b1dcdbb9c682a"
-  },
-  "current_native_body_census": {
-    "path": "docs/analysis/coverage/full-image-execheck-0.127.0.json",
-    "sha256": "b4ceaa4e01be2febed5c096d300c38c4baebaa8aedddf883604cd85e689e4c25"
-  },
-  "connection_ledger_input": {
-    "path": "docs/analysis/coverage/exe-connections.json",
-    "sha256": "c166019e512ef8564d676571d5f9f5c59d935a9654d54ffc5d9f8de39a20bb40"
-  },
-  "unknown_selector_input": {
-    "path": "docs/analysis/evidence/0.127.0/unknown-recovery.json",
-    "sha256": "eee674ee0e41d3bab59ef4a5c7f58eea00da1e3acf68f9844671d760e49fc58b"
-  },
-  "incremental_correspondence": {
-    "path": "docs/analysis/evidence/0.127.0/incremental-correspondence.json",
-    "sha256": "ed64e3f535be8699e2084df6efe875115782e9054efea910bbca762c6c48d753"
-  },
-  "retained_historical_recovery": {
-    "target_versions": [
-      "0.120.2",
-      "0.120.4",
-      "0.120.5",
-      "0.121.0"
-    ],
-    "bounded_review_identities": 97,
-    "pre_0_121_review_records": 93,
-    "predecessor_0_121_original_query_reviews": 4,
-    "classified_table_questions": 14,
-    "scope": "Original semantic/source recovery, classifications and source repairs preserve their actual targets. These overlapping records are not additive features or automatic current contract admission. Current producer/dependency/consumer applicability remains separate."
-  },
-  "current_module_dimensions": {
-    "custom_system_rows": 69,
-    "with_partial_reconstructed_source": 66,
-    "with_registered_current_bounded_contract": 2,
-    "scope": "Module dimensions only; not AS code/behavioral completeness or parity."
-  },
   "counts": {
-    "nodes": 10498,
-    "edges": 57305,
+    "nodes": 11538,
+    "edges": 59573,
     "node_kinds": {
-      "embedded_candidate": 2183,
-      "registered_contract_artifact": 15,
-      "explicit_finding_binding": 11,
-      "registered_module_context": 69,
-      "flow_body_context": 902,
-      "static_reference_site": 5486,
+      "embedded_candidate": 2799,
+      "registered_contract_artifact": 1,
+      "explicit_finding_binding": 69,
+      "registered_module_context": 77,
+      "flow_body_context": 1039,
+      "static_reference_site": 5578,
       "explicit_pending_correspondence": 14,
-      "explicit_pending_native_lead": 1,
-      "explicit_bounded_review": 14,
-      "source_file": 1538,
-      "observed_string_container": 117,
-      "encoded_pointer_length_descriptor_candidate": 107,
+      "explicit_bounded_review": 4,
+      "source_file": 1553,
+      "observed_string_container": 120,
+      "encoded_pointer_length_descriptor_candidate": 111,
       "target": 1,
-      "residual_selector": 40
+      "residual_selector": 172
     },
     "node_ownership_states": {
-      "unknown": 10487,
-      "as_specific": 7,
-      "shared_AS_dependency": 4
+      "unknown": 11538
     },
     "queue_states": {
-      "pending": 2586,
-      "reviewed_bounded": 14
+      "pending": 3345,
+      "reviewed_bounded": 4
     },
-    "input_commitments": 1676,
-    "finding_bindings": 11,
-    "bounded_semantic_reviews": 14,
+    "input_commitments": 1649,
+    "finding_bindings": 69,
+    "bounded_semantic_reviews": 4,
     "review_states": {
-      "reviewed_bounded": 14
+      "reviewed_bounded": 4
     },
     "reviewed_ownership_states": {
-      "as_specific": 7,
-      "shared_AS_dependency": 4,
-      "unknown": 3
+      "unknown": 4
     },
-    "selected_review_query_records": 14,
-    "distinct_selected_review_queries": 11,
-    "distinct_selected_decompiler_queries": 10,
+    "selected_review_query_records": 4,
+    "distinct_selected_review_queries": 4,
+    "distinct_selected_decompiler_queries": 2,
     "source_connection_review_states": {
-      "connected": 9,
-      "partial_interface_connected": 5
+      "pending_source_assignment": 4
     },
-    "source_connected_review_scopes": 9,
-    "partial_source_interface_review_scopes": 5,
-    "pending_frontier_entries": 2586,
-    "pending_native_leads": 1,
+    "source_connected_review_scopes": 0,
+    "partial_source_interface_review_scopes": 0,
+    "pending_frontier_entries": 3345,
+    "pending_native_leads": 0,
     "pending_correspondence_leads": 14,
     "resolved_original_table_questions": 0
   },
   "reviews": [
     {
-      "id": "current-codex-growth-text-families",
-      "selector": "AS-context-table:0x140352e9a",
+      "id": "input-gate-1408882e0-procedure_info",
+      "selector": "Q41-NEW:input-gate:0x1408882e0:procedure_info",
       "finding_ids": [
-        17,
-        41,
-        73
-      ],
-      "state": "reviewed_bounded",
-      "ownership": "as_specific",
-      "semantic_status": "bounded_review_only",
-      "source_connection_state": "connected"
-    },
-    {
-      "id": "current-coop-dispatch-0x145bb6640",
-      "selector": "AS-context-table:0x145bb6640",
-      "finding_ids": [
-        41,
-        63,
-        291
-      ],
-      "state": "reviewed_bounded",
-      "ownership": "as_specific",
-      "semantic_status": "bounded_review_only",
-      "source_connection_state": "connected"
-    },
-    {
-      "id": "current-coop-dispatch-0x145bd6353",
-      "selector": "AS-context-table:0x145bd6353",
-      "finding_ids": [
-        41,
-        63,
-        291
-      ],
-      "state": "reviewed_bounded",
-      "ownership": "as_specific",
-      "semantic_status": "bounded_review_only",
-      "source_connection_state": "connected"
-    },
-    {
-      "id": "current-coop-dispatch-0x145bd679a",
-      "selector": "AS-context-table:0x145bd679a",
-      "finding_ids": [
-        41,
-        63
-      ],
-      "state": "reviewed_bounded",
-      "ownership": "shared_AS_dependency",
-      "semantic_status": "bounded_review_only",
-      "source_connection_state": "partial_interface_connected"
-    },
-    {
-      "id": "current-coop-dispatch-0x145bd7007",
-      "selector": "AS-context-table:0x145bd7007",
-      "finding_ids": [
-        41,
-        63
-      ],
-      "state": "reviewed_bounded",
-      "ownership": "shared_AS_dependency",
-      "semantic_status": "bounded_review_only",
-      "source_connection_state": "partial_interface_connected"
-    },
-    {
-      "id": "current-ime-process-filter-source-interface",
-      "selector": "Q41-NEW:ime:0x1402dd560",
-      "finding_ids": [
-        293
-      ],
-      "state": "reviewed_bounded",
-      "ownership": "as_specific",
-      "semantic_status": "bounded_review_only",
-      "source_connection_state": "connected"
-    },
-    {
-      "id": "current-service-event-dispatch-typed-interface",
-      "selector": "AS-context-table:0x145cb7c68",
-      "finding_ids": [
-        198
-      ],
-      "state": "reviewed_bounded",
-      "ownership": "as_specific",
-      "semantic_status": "bounded_review_only",
-      "source_connection_state": "connected"
-    },
-    {
-      "id": "current-shared-hazard-action-dispatch-interface",
-      "selector": "AS-context-table:0x145c5aac0",
-      "finding_ids": [
-        294
-      ],
-      "state": "reviewed_bounded",
-      "ownership": "as_specific",
-      "semantic_status": "bounded_review_only",
-      "source_connection_state": "partial_interface_connected"
-    },
-    {
-      "id": "source-frontier-ime-focus",
-      "selector": "Q41-NEW:ime:0x1402dd560",
-      "finding_ids": [
-        293
+        310
       ],
       "state": "reviewed_bounded",
       "ownership": "unknown",
       "semantic_status": "bounded_review_only",
-      "source_connection_state": "partial_interface_connected"
+      "source_connection_state": "pending_source_assignment"
     },
     {
-      "id": "source-frontier-ime-input",
-      "selector": "Q41-NEW:ime:0x1402dd780",
+      "id": "input-gate-1408882e0-procedure_pseudo_code",
+      "selector": "Q41-NEW:input-gate:0x1408882e0:procedure_pseudo_code",
       "finding_ids": [
-        293
+        310
       ],
       "state": "reviewed_bounded",
       "ownership": "unknown",
       "semantic_status": "bounded_review_only",
-      "source_connection_state": "partial_interface_connected"
+      "source_connection_state": "pending_source_assignment"
     },
     {
-      "id": "source-frontier-ontop-bridge",
-      "selector": "Q41-NEW:ontop:0x1402138e0",
+      "id": "input-gate-140f1f330-procedure_info",
+      "selector": "Q41-NEW:input-gate:0x140f1f330:procedure_info",
       "finding_ids": [
-        11
-      ],
-      "state": "reviewed_bounded",
-      "ownership": "as_specific",
-      "semantic_status": "bounded_review_only",
-      "source_connection_state": "connected"
-    },
-    {
-      "id": "source-frontier-ontop-frame-projection",
-      "selector": "Q41-NEW:ontop:0x1402130f0",
-      "finding_ids": [
-        11
+        310
       ],
       "state": "reviewed_bounded",
       "ownership": "unknown",
       "semantic_status": "bounded_review_only",
-      "source_connection_state": "connected"
+      "source_connection_state": "pending_source_assignment"
     },
     {
-      "id": "source-frontier-smsg-producer",
-      "selector": "Q41-NEW:smsg:0x145afbe60",
+      "id": "input-gate-140f1f330-procedure_pseudo_code",
+      "selector": "Q41-NEW:input-gate:0x140f1f330:procedure_pseudo_code",
       "finding_ids": [
-        298,
-        101
+        310
       ],
       "state": "reviewed_bounded",
-      "ownership": "shared_AS_dependency",
+      "ownership": "unknown",
       "semantic_status": "bounded_review_only",
-      "source_connection_state": "connected"
-    },
-    {
-      "id": "source-frontier-smsg-publication",
-      "selector": "Q41-NEW:smsg:0x145b00d90",
-      "finding_ids": [
-        298,
-        101
-      ],
-      "state": "reviewed_bounded",
-      "ownership": "shared_AS_dependency",
-      "semantic_status": "bounded_review_only",
-      "source_connection_state": "connected"
+      "source_connection_state": "pending_source_assignment"
     }
   ],
   "query_records": [
     {
-      "analysis_profile_digest": "03a0505d1b93879933a084f2c0dd4353dbc03874400e9aff0fa72abc4424cda5",
-      "evidence_id": "ev_052f8e5e585ec3ffc1c44c237f394b48227a7f1096ba232231f17dc3ddff3ab6",
+      "analysis_profile_digest": "766e48aad8d027e3d1b5dc9c7991f5534376270d6ae465782e138a58de6b5f98",
+      "evidence_id": "ev_24189c89dfc06fa7dc879ddadbaa54cbbb7f673778170b86bb7780b409519fca",
       "journal": {
-        "path": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/ime-focus/rea/journal.json",
-        "sha256": "a9fa38930070a5c7f0ef9e5009ec4149638126ef64debdbca0b0aecb60e7c54b"
+        "path": "runtime/analysis/tasks/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/input-gate-filter-140f1f330/journal.json",
+        "sha256": "17608c1446a658e018c4087d6c3810c1a5c326da09f37fcdde1638cea857b971"
       },
-      "normalized_text_sha256": "f5c45717c342d18c22fa9058022d5f1e92973c224d897210e36a15873f38fd7c",
       "plan": {
-        "path": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/ime-focus/plan.json",
-        "sha256": "4d6aed4f4245dc9c0d2a215f11a4cee464b320616843bcf065524672db3846ca"
+        "path": "runtime/execheck-0.139.1/input-gate-native/filter/slices/plan-140f1f330.json",
+        "sha256": "155791406e83bcef18eb546aab3b852212d3f82ebec4739cc4557cb612498337"
       },
-      "procedure": "0x1402dd560",
+      "procedure": "0x140f1f330",
       "provider": {
         "id": "ghidra",
         "name": "Ghidra",
         "version": "12.1.4"
       },
-      "pseudocode": {
-        "path": "docs/analysis/evidence/0.127.0/source-frontier-native/ime-focus.c",
-        "sha256": "f5c45717c342d18c22fa9058022d5f1e92973c224d897210e36a15873f38fd7c"
-      },
       "raw_input": {
-        "path": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/ime-focus/body.bin",
-        "sha256": "2a221e9ad0f542908f4db03439332f0906afcf7fcd0eed41caeaee1cdc198c5d"
+        "path": "runtime/execheck-0.139.1/input-gate-native/filter/slices/picker-140f1f330.bin",
+        "sha256": "56a7f36ccbcdcfacace833a8e1abbb518fec8ded1ef3a36d275ec088278429f2"
       },
       "result": {
-        "path": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/ime-focus/rea/results/52dc516cf1eecfde47214f5ab02466e0fa3f79eaf3fd666c12c3cfe8c77c6263.json",
-        "sha256": "fe0a131771492b3c81d4cceb47d30d83bf673da57c74b968110fdb77604f35de"
+        "path": "runtime/analysis/tasks/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/input-gate-filter-140f1f330/results/8f82f367bcf7493ba3ce534e893ad50f28405189155adac21f8eb32e23523b9a-2c1cb379c2cd33be.json",
+        "sha256": "f9fa0cb377008602e7414751ac383a3662e4e6af2fa2f9e85aa2607a56737830"
       },
-      "slice_virtual_address": "0x1402dd560",
-      "subject_verification": {
-        "byte_count": 530,
-        "file_offset": "0x2dc960",
-        "kind": "exact_declared_PE_raw_slice",
-        "raw_sha256": "2a221e9ad0f542908f4db03439332f0906afcf7fcd0eed41caeaee1cdc198c5d",
-        "result": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/ime-focus/rea/results/52dc516cf1eecfde47214f5ab02466e0fa3f79eaf3fd666c12c3cfe8c77c6263.json",
-        "semantic_or_runtime_correspondence_established": false,
-        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
-        "virtual_address": "0x1402dd560"
-      }
+      "slice_virtual_address": "0x140f1f330"
     },
     {
-      "analysis_profile_digest": "c539602d3fd6a59e35c515e0403105d3fcfa700e6809c884fc4bc2cee6d6282d",
-      "evidence_bundle": {
-        "path": "runtime/analysis/tasks/fixgap-294-0.127.0/hazards/rea-145c5a780/attempts/0002/evidence-bundle.json",
-        "sha256": "940ad959447addd8d2270e6edb45a9d0be3112387878063f2b4308a1ca241f08"
-      },
-      "evidence_id": "ev_1349a833d030f80204d36dfd1582e77137c4c7767405ad4aa1a759afb118532d",
+      "analysis_profile_digest": "0631dd8ef03faa372753cacda7502890dbd761a0488ec2db92370cf3614f2ce9",
+      "evidence_id": "ev_7973407e2a409b49c6c5acad266bee95b7c7f9e38fe984a3dc84c06a7394dd21",
       "journal": {
-        "path": "runtime/analysis/tasks/fixgap-294-0.127.0/hazards/rea-145c5a780/journal.json",
-        "sha256": "30c7c30ef3a2c77525c591d535a36d8bf7b8eb4935903afbfa30951997e258b9"
-      },
-      "limits": [
-        "Raw import omits external code/data and uses generic ABI; original instructions govern argument interpretation."
-      ],
-      "operation": "analyze_function",
-      "parameters": {
-        "procedure": "0x145c5a780"
+        "path": "runtime/analysis/tasks/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/input-gate-interface-1408882e0/journal.json",
+        "sha256": "c1b765d1126f20f293fcf5ded6f2aa159b11108e371eb8f16e2a2f0dc0ee0d0d"
       },
       "plan": {
-        "path": "runtime/analysis/tasks/fixgap-294-0.127.0/hazards/slices/plan-145c5a780.json",
-        "sha256": "ff02a6bf7a9ea8e441c0452a479053598e2ef6bc6199b7706b355e48f4433352"
+        "path": "runtime/execheck-0.139.1/input-gate-native/slices/plan-1408882e0.json",
+        "sha256": "12b4625a3005a0c451c803ecded3aa5934321ddc0517df8510f780fd5d293a7e"
       },
-      "procedure": "0x145c5a780",
+      "procedure": "0x1408882e0",
       "provider": {
         "id": "ghidra",
         "name": "Ghidra",
         "version": "12.1.4"
       },
       "raw_input": {
-        "path": "runtime/analysis/tasks/fixgap-294-0.127.0/hazards/slices/picker-145c5a780.bin",
-        "sha256": "60cd9489a2081ac3af2a19965eb563100c7032f35465bad480f80d107ff5bdae"
-      },
-      "raw_subject": {
-        "architecture": "x86_64",
-        "format": "raw-binary"
+        "path": "runtime/execheck-0.139.1/input-gate-native/slices/picker-1408882e0.bin",
+        "sha256": "18084b160314446252985ea2a97a392b17b97abaf134511cbd5237c1d4dd5280"
       },
       "result": {
-        "path": "runtime/analysis/tasks/fixgap-294-0.127.0/hazards/rea-145c5a780/results/d435bd54df98ad8934ba8fa3cf35be7cfba605796596c5f14c59ab45c7bac880.json",
-        "sha256": "c7b037fea1297c50bd9927e4039d918230d8748e4fdc7a9fe624c15a71225399"
+        "path": "runtime/analysis/tasks/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/input-gate-interface-1408882e0/results/0428b051fe037d3d0fa861b811640e5bcb2274cb987ed0bc53b2ce1b12df07b2-ee764b5a9cb08ad5.json",
+        "sha256": "7c2feb22e92a9cf822c8f20ef21702a434f4cd015929605bd4ff71e7ad032c7b"
       },
-      "result_status": "completed",
-      "role": "action-dispatch-prefix",
-      "slice_virtual_address": "0x145c5a780"
+      "slice_virtual_address": "0x1408882e0"
     },
     {
-      "analysis_profile_digest": "632172b935c7477016320893d0cf18e8ed947f6b0fa75f8058ea1f185d36a082",
-      "evidence_id": "ev_206483ded8336319b79ddb90f092d3d0dcdff29220f7d83de08d5f7055a8cf55",
+      "analysis_profile_digest": "0631dd8ef03faa372753cacda7502890dbd761a0488ec2db92370cf3614f2ce9",
+      "evidence_id": "ev_8b38dcd249c951122e557fb8174efbb8c1950cbea2b47a2ba47d31ea9fd8e336",
       "journal": {
-        "path": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/smsg-publication/rea/journal.json",
-        "sha256": "7bd110631f3e817667c48976d319fcada15eab8a8a9108f5bcb1f75bba013fb0"
+        "path": "runtime/analysis/tasks/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/input-gate-interface-1408882e0/journal.json",
+        "sha256": "c1b765d1126f20f293fcf5ded6f2aa159b11108e371eb8f16e2a2f0dc0ee0d0d"
       },
-      "normalized_text_sha256": "9ed119da9c323528f3faaf9117a6f9900606df1c702209d173a4fa513e6c3f8d",
       "plan": {
-        "path": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/smsg-publication/plan.json",
-        "sha256": "4e836008d00d3878fb157a9db99573e1fc736fa2e973f9dd937509100f0d85c4"
+        "path": "runtime/execheck-0.139.1/input-gate-native/slices/plan-1408882e0.json",
+        "sha256": "12b4625a3005a0c451c803ecded3aa5934321ddc0517df8510f780fd5d293a7e"
       },
-      "procedure": "0x145b00d90",
+      "procedure": "0x1408882e0",
       "provider": {
         "id": "ghidra",
         "name": "Ghidra",
         "version": "12.1.4"
       },
-      "pseudocode": {
-        "path": "docs/analysis/evidence/0.127.0/source-frontier-native/smsg-publication.c",
-        "sha256": "9ed119da9c323528f3faaf9117a6f9900606df1c702209d173a4fa513e6c3f8d"
-      },
       "raw_input": {
-        "path": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/smsg-publication/body.bin",
-        "sha256": "d4e76ac463a70b116014c161b3e67472c9f117b3336d79112e6386b5c0cb0f61"
+        "path": "runtime/execheck-0.139.1/input-gate-native/slices/picker-1408882e0.bin",
+        "sha256": "18084b160314446252985ea2a97a392b17b97abaf134511cbd5237c1d4dd5280"
       },
       "result": {
-        "path": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/smsg-publication/rea/results/51ea642796cf7efd12911ec340653cfab066836dfcd2cd05a048615483ceafc2.json",
-        "sha256": "da63dbd296dc63f6aa8fe763c2594680c3c071f47e9e794846905ea7623d08a8"
+        "path": "runtime/analysis/tasks/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/input-gate-interface-1408882e0/results/8974a1d48a42653c6a34462221ff13096d0bdeebac6e5bfef810ee2dec7b4f6a-eaf1cdb3f0c206a3.json",
+        "sha256": "e376ac3bc99a72412406ba91574e6ef4684a3bdcf5dcd7aaafca8707b31fe360"
       },
-      "slice_virtual_address": "0x145b00d90",
-      "subject_verification": {
-        "byte_count": 436,
-        "file_offset": "0x5b00190",
-        "kind": "exact_declared_PE_raw_slice",
-        "raw_sha256": "d4e76ac463a70b116014c161b3e67472c9f117b3336d79112e6386b5c0cb0f61",
-        "result": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/smsg-publication/rea/results/51ea642796cf7efd12911ec340653cfab066836dfcd2cd05a048615483ceafc2.json",
-        "semantic_or_runtime_correspondence_established": false,
-        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
-        "virtual_address": "0x145b00d90"
-      }
+      "slice_virtual_address": "0x1408882e0"
     },
     {
-      "analysis_profile_digest": "0fad63a2230874f51475f98bdcaed149aa1121a36b7a68efc34c7a42ffa789db",
-      "evidence_id": "ev_2262a8ee360607bf5fef86107a465a0caad58710c593f7265d789c3eeb88486f",
+      "analysis_profile_digest": "766e48aad8d027e3d1b5dc9c7991f5534376270d6ae465782e138a58de6b5f98",
+      "evidence_id": "ev_b54e0c9229ccf438eeeb0ae16107aa6a8fe7ddd99dc82f0106f0ab665c8ccb2f",
       "journal": {
-        "path": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/smsg-producer/rea/journal.json",
-        "sha256": "dc1bcbef4f5a094ce6d6f07e7f37210f506fd33be8b017b35857075991fcbfbe"
+        "path": "runtime/analysis/tasks/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/input-gate-filter-140f1f330/journal.json",
+        "sha256": "17608c1446a658e018c4087d6c3810c1a5c326da09f37fcdde1638cea857b971"
       },
-      "normalized_text_sha256": "4d05d9773e413c565ba8fa1021335575bd386cdca52339faeb3e835cdcc2b1c6",
       "plan": {
-        "path": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/smsg-producer/plan.json",
-        "sha256": "4c50fe167cf0d1e8fd0569e01d4918179c8adc846320fa2f9cf5e220f13c0c9b"
+        "path": "runtime/execheck-0.139.1/input-gate-native/filter/slices/plan-140f1f330.json",
+        "sha256": "155791406e83bcef18eb546aab3b852212d3f82ebec4739cc4557cb612498337"
       },
-      "procedure": "0x145afbe60",
-      "provider": {
-        "id": "ghidra",
-        "name": "Ghidra",
-        "version": "12.1.4"
-      },
-      "pseudocode": {
-        "path": "docs/analysis/evidence/0.127.0/source-frontier-native/smsg-producer.c",
-        "sha256": "4d05d9773e413c565ba8fa1021335575bd386cdca52339faeb3e835cdcc2b1c6"
-      },
-      "raw_input": {
-        "path": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/smsg-producer/body.bin",
-        "sha256": "cb8fe71f68b01ee200370fc716c58b63afbbb553627eedfd2091de6fe68225e6"
-      },
-      "result": {
-        "path": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/smsg-producer/rea/results/dc4a8690e051b78a9c3853ab8fa96d0790baaae181241045a87c480452168ced.json",
-        "sha256": "382cc5ad2d8f621b9969204194420c6c43b366eb78a51bb4af103d57de3350bc"
-      },
-      "slice_virtual_address": "0x145afbe60",
-      "subject_verification": {
-        "byte_count": 762,
-        "file_offset": "0x5afb260",
-        "kind": "exact_declared_PE_raw_slice",
-        "raw_sha256": "cb8fe71f68b01ee200370fc716c58b63afbbb553627eedfd2091de6fe68225e6",
-        "result": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/smsg-producer/rea/results/dc4a8690e051b78a9c3853ab8fa96d0790baaae181241045a87c480452168ced.json",
-        "semantic_or_runtime_correspondence_established": false,
-        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
-        "virtual_address": "0x145afbe60"
-      }
-    },
-    {
-      "analysis_profile_digest": "a767f56d761d4c885cd273e90e4ab0162bb218e020cfc371fd4f0e7ede276ea0",
-      "evidence_id": "ev_27f3843ce6bd7f13f1cfe1a9fa55ba49feaee0dea04ef22b266f10b3ab9f7bf7",
-      "journal": {
-        "path": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/ontop-bridge/rea/journal.json",
-        "sha256": "fd32226a31cf9da92059a8fcbe8d2d7d8677d79ba77fd11997880d5476dd5ebc"
-      },
-      "normalized_text_sha256": "44cd69778291950536494bc465023932de99ab81e773c289ea1132cbcc4e2518",
-      "plan": {
-        "path": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/ontop-bridge/plan.json",
-        "sha256": "f833eb2afeae92ff6bdf0e02f0b0ab16819059adee66dbe212abeb7e21936202"
-      },
-      "procedure": "0x1402138e0",
-      "provider": {
-        "id": "ghidra",
-        "name": "Ghidra",
-        "version": "12.1.4"
-      },
-      "pseudocode": {
-        "path": "docs/analysis/evidence/0.127.0/source-frontier-native/ontop-bridge.c",
-        "sha256": "44cd69778291950536494bc465023932de99ab81e773c289ea1132cbcc4e2518"
-      },
-      "raw_input": {
-        "path": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/ontop-bridge/body.bin",
-        "sha256": "ad9adb6e85e519c4912bce86f6b15032ba16396f3df23be816f020f6e81c527c"
-      },
-      "result": {
-        "path": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/ontop-bridge/rea/results/038f221a576f2bed0a54241cb7289d510c8067545088af6e2cd348980c8e5940.json",
-        "sha256": "ff0a2453536d95fa8baf1359cd29bfa8aaa52e56783edb7aedd87de6fe345e13"
-      },
-      "slice_virtual_address": "0x1402138e0",
-      "subject_verification": {
-        "byte_count": 670,
-        "file_offset": "0x212ce0",
-        "kind": "exact_declared_PE_raw_slice",
-        "raw_sha256": "ad9adb6e85e519c4912bce86f6b15032ba16396f3df23be816f020f6e81c527c",
-        "result": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/ontop-bridge/rea/results/038f221a576f2bed0a54241cb7289d510c8067545088af6e2cd348980c8e5940.json",
-        "semantic_or_runtime_correspondence_established": false,
-        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
-        "virtual_address": "0x1402138e0"
-      }
-    },
-    {
-      "analysis_profile_digest": "08d3bd320ea7b445bb34884dcee3f62549d06afd0fe86929f4e5c5ffd532460c",
-      "evidence_id": "ev_32f3ab6863bb58e1ed55cbcb9e5c015933b9c8a88ee5b1213070ce12fbaa81f1",
-      "journal": {
-        "path": "runtime/analysis/tasks/fixgap-198-203-0.127.0/relay/seeded-query/journal.json",
-        "sha256": "92f0ab1ada81a72ef8424fb2d9fb4dd3f62c41dd85a51821b4d44c640c44309d"
-      },
-      "normalized_text_sha256": "ab735f8fb9d74de4b827b843ae8c3544dae8b7291e207a210fbde5584dcce01b",
-      "plan": {
-        "path": "runtime/analysis/tasks/fixgap-198-203-0.127.0/relay/seeded-plan.json",
-        "sha256": "520ae839767799e54d60273143da204578529c3f2b88c12b8d956cecb03eb54d"
-      },
-      "procedure": "0x145cb7780",
+      "procedure": "0x140f1f330",
       "provider": {
         "id": "ghidra",
         "name": "Ghidra",
         "version": "12.1.4"
       },
       "raw_input": {
-        "path": "runtime/analysis/tasks/fixgap-198-203-0.127.0/relay/body.bin",
-        "sha256": "c42e196c4a0f045d52553b57a68e69ce1a0c1184dc33192ef9babb78eb2b4ba5"
+        "path": "runtime/execheck-0.139.1/input-gate-native/filter/slices/picker-140f1f330.bin",
+        "sha256": "56a7f36ccbcdcfacace833a8e1abbb518fec8ded1ef3a36d275ec088278429f2"
       },
       "result": {
-        "path": "runtime/analysis/tasks/fixgap-198-203-0.127.0/relay/seeded-query/results/6665a3373dd2feaecb6d8cd3de2c1242ccc406c181108c0cc3ce605075c276c5-1fc08f191d5a1639.json",
-        "sha256": "ad9eaf58324fe7b319e47f07e0fdb9cfe7799276394b428f1fc1a9f828979de6"
+        "path": "runtime/analysis/tasks/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/input-gate-filter-140f1f330/results/38ae7dda23e14f1c67514dbe4a5e2b2f22bf42b4b6a67873347298d284d43983-c10a374422a10b37.json",
+        "sha256": "21f2f09c20b14f7d5c305a2e9ebe2e80466ed4bbe317a91512f60c64069b958c"
       },
-      "role": "shared-service-pump",
-      "slice_virtual_address": "0x145cb7780",
-      "subject_verification": {
-        "byte_count": 46500,
-        "file_offset": "0x5cb6b80",
-        "kind": "exact_declared_PE_raw_slice",
-        "raw_sha256": "c42e196c4a0f045d52553b57a68e69ce1a0c1184dc33192ef9babb78eb2b4ba5",
-        "result": "runtime/analysis/objects/ad/ad9eaf58324fe7b319e47f07e0fdb9cfe7799276394b428f1fc1a9f828979de6",
-        "semantic_or_runtime_correspondence_established": false,
-        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
-        "virtual_address": "0x145cb7780"
-      }
-    },
-    {
-      "analysis_profile_digest": "b6fbb796fafbac9c3850bd7fb331b4d44847e9d0d87f2537977bf6ca730aa947",
-      "evidence_id": "ev_4cd525c466a9aa4e228beaeb2c4229f4b91c69aaa17361f45f61f967da6b963b",
-      "journal": {
-        "path": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/ime-input/rea/journal.json",
-        "sha256": "d93e2763cbfd1dad9a6d3e07e1b48cafb2d7a30a9aca8b738cc22b046b3473a8"
-      },
-      "normalized_text_sha256": "7de19c8a03e609c9a27dad0bbb8da1604b28cca23b3ba9ad2d7532229a782d14",
-      "plan": {
-        "path": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/ime-input/plan.json",
-        "sha256": "330a29cf1cfd7952e1837c93df18adc68f60edc65228703b58036c64afd6d851"
-      },
-      "procedure": "0x1402dd780",
-      "provider": {
-        "id": "ghidra",
-        "name": "Ghidra",
-        "version": "12.1.4"
-      },
-      "pseudocode": {
-        "path": "docs/analysis/evidence/0.127.0/source-frontier-native/ime-input.c",
-        "sha256": "7de19c8a03e609c9a27dad0bbb8da1604b28cca23b3ba9ad2d7532229a782d14"
-      },
-      "raw_input": {
-        "path": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/ime-input/body.bin",
-        "sha256": "39e3c8a3a0843f69ca6c35a85cf48b36380ed5891193615c7d46dedb852af794"
-      },
-      "result": {
-        "path": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/ime-input/rea/results/5afc6873806dbd4bc0c1765428e9cddf8f3a247be05a8f4a8ce9a13735f72400.json",
-        "sha256": "2cb260102259ad575b480b0c4f48431b0cf9fad1c040dfd6c8e8915871aaeb94"
-      },
-      "slice_virtual_address": "0x1402dd780",
-      "subject_verification": {
-        "byte_count": 1550,
-        "file_offset": "0x2dcb80",
-        "kind": "exact_declared_PE_raw_slice",
-        "raw_sha256": "39e3c8a3a0843f69ca6c35a85cf48b36380ed5891193615c7d46dedb852af794",
-        "result": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/ime-input/rea/results/5afc6873806dbd4bc0c1765428e9cddf8f3a247be05a8f4a8ce9a13735f72400.json",
-        "semantic_or_runtime_correspondence_established": false,
-        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
-        "virtual_address": "0x1402dd780"
-      }
-    },
-    {
-      "analysis_profile_digest": "01d44e561741106ee3925fddd54dfdb721100ac801d7fe52763ee283047a00ab",
-      "evidence_id": "ev_6151a19421b5fc66dbddc52f44f30a03d2242e7deefeee5c121b74c7ea8a3025",
-      "journal": {
-        "path": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/ontop-frame-projection/rea/journal.json",
-        "sha256": "317cb1b14f89631a3426b3a553a24b47b6daec351c45190c7d7803974b8843e2"
-      },
-      "normalized_text_sha256": "7e54fa0f46dbc509f857c4371c5e9793152f344eb144f42153497e3daf65dfc6",
-      "plan": {
-        "path": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/ontop-frame-projection/plan.json",
-        "sha256": "2068860fb6c61cc451b2d53c30ac92d2f2b8248912e7b0c3ec8fe25daa56647c"
-      },
-      "procedure": "0x1402130f0",
-      "provider": {
-        "id": "ghidra",
-        "name": "Ghidra",
-        "version": "12.1.4"
-      },
-      "pseudocode": {
-        "path": "docs/analysis/evidence/0.127.0/source-frontier-native/ontop-frame-projection.c",
-        "sha256": "7e54fa0f46dbc509f857c4371c5e9793152f344eb144f42153497e3daf65dfc6"
-      },
-      "raw_input": {
-        "path": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/ontop-frame-projection/body.bin",
-        "sha256": "838427f7cf79402ec82eb70ab2dbd2ace40f93cb27b3e510ad22441fc5eb0a9a"
-      },
-      "result": {
-        "path": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/ontop-frame-projection/rea/results/ddefa2d2341b5375d7dd68a29e37e10651adcdc8e22d5cfbc3e110ce3ba0cb81.json",
-        "sha256": "9f83564d558a26503ebc8c9d6feceff53e126b5c92aaf7ded9c9f913f1685845"
-      },
-      "slice_virtual_address": "0x1402130f0",
-      "subject_verification": {
-        "byte_count": 1848,
-        "file_offset": "0x2124f0",
-        "kind": "exact_declared_PE_raw_slice",
-        "raw_sha256": "838427f7cf79402ec82eb70ab2dbd2ace40f93cb27b3e510ad22441fc5eb0a9a",
-        "result": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/ontop-frame-projection/rea/results/ddefa2d2341b5375d7dd68a29e37e10651adcdc8e22d5cfbc3e110ce3ba0cb81.json",
-        "semantic_or_runtime_correspondence_established": false,
-        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
-        "virtual_address": "0x1402130f0"
-      }
-    },
-    {
-      "analysis_profile_digest": "0d38e1ab56f38a84761a624b89b7021e7c6577d0bd609c37f459987f185b85fe",
-      "evidence_id": "ev_82eb43a1a0fa42d6f6151d793f20d07b05d9c045f8ebf67e1dcdf5b0f41fa443",
-      "journal": {
-        "path": "runtime/analysis/tasks/fixgap-41-codex-0.127.0/rea-140350420/journal.json",
-        "sha256": "16d6586692c11adbbfaa69badcbbb92de68a57acfa7469e3eff3d69f25e8bd4c"
-      },
-      "normalized_sha256": "238b3a569535d8b14c50fdcafeeb2b501ab4fcf3cdd56b75ba12746b5b3db8a5",
-      "plan": {
-        "path": "runtime/analysis/tasks/fixgap-41-codex-0.127.0/slices/plan-140350420.json",
-        "sha256": "8e1832aa0b583b43ef6037f0388044d0bf2cb6d1a1b7b72f0aa141c35574ef22"
-      },
-      "procedure": "0x140350420",
-      "provider": {
-        "id": "ghidra",
-        "name": "Ghidra",
-        "version": "12.1.4"
-      },
-      "raw_input": {
-        "path": "runtime/analysis/tasks/fixgap-41-codex-0.127.0/slices/picker-140350420.bin",
-        "sha256": "d303f4948021732c60d9fc3ae935f20ea47f83181a0b40b48346e085f6f2f334"
-      },
-      "result": {
-        "path": "runtime/analysis/tasks/fixgap-41-codex-0.127.0/rea-140350420/results/83044c5df229c2f368b3a326d0962c47ace146d950b6467e316db12f238ac94c.json",
-        "sha256": "0fca33e955ab59e98502051b77a1154984f7b250a20c6eea3956cc162bda3d7e"
-      },
-      "slice_virtual_address": "0x140350420"
-    },
-    {
-      "analysis_profile_digest": "5a4334324ff1d6bdf0aeaf9a44ae4ae5ac0241992f1a56ade5a6d22a41ad46ef",
-      "evidence_id": "ev_871a39ab227c2266accd1a8ff4492b7a459692297a10dbee42b5ddd1c9a89eb3",
-      "journal": {
-        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/rea-145bb29f0/journal.json",
-        "sha256": "3d92beddc0ee45690e3ab9362d218e9f3bdc74f346e92f0411e2f1c6f98d581a"
-      },
-      "normalized_text_sha256": "108cded2be46056e7fa37e9dd44657cd56466465a4011c288c0a9c4be729343c",
-      "plan": {
-        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/slices/plan-145bb29f0.json",
-        "sha256": "92e6f0cd80a5180622bfcbaa5313b961e224d7cc532d844cdd3797a0095ce628"
-      },
-      "procedure": "0x145bb29f0",
-      "provider": {
-        "id": "ghidra",
-        "name": "Ghidra",
-        "version": "12.1.4"
-      },
-      "raw_input": {
-        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/slices/picker-145bb29f0.bin",
-        "sha256": "332147aa07e399d36b92ae9a4ca36f4d8bcf9943eba0adfcdc75be4569fe184d"
-      },
-      "result": {
-        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/rea-145bb29f0/results/433346ba21423f054811a125f75e167bbdda0768f5cd5a97434b5402c01e47c4.json",
-        "sha256": "4ece71095c33f48f0bb8cd36f8403cf73223d2b31760cc5fd1b6538379085cde"
-      },
-      "role": "frame",
-      "slice_virtual_address": "0x145bb29f0",
-      "subject_verification": {
-        "byte_count": 33394,
-        "file_offset": "0x5bb1df0",
-        "kind": "exact_declared_PE_raw_slice",
-        "raw_sha256": "332147aa07e399d36b92ae9a4ca36f4d8bcf9943eba0adfcdc75be4569fe184d",
-        "result": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/rea-145bb29f0/results/433346ba21423f054811a125f75e167bbdda0768f5cd5a97434b5402c01e47c4.json",
-        "semantic_or_runtime_correspondence_established": false,
-        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
-        "virtual_address": "0x145bb29f0"
-      }
-    },
-    {
-      "analysis_profile_digest": "d6a101986160d8efa8693eb4512c1d72f4c9e3c3bd809f319e60582287e4d5b3",
-      "evidence_id": "ev_a839c952bbc6093f6467c832ac2a32c3160d7945cffbab929079d33bfddeba6e",
-      "journal": {
-        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/rea-145bd6280/journal.json",
-        "sha256": "97fbb6c2e1273d318bc219246420afb49ac70a7873213696aad1288f298cf587"
-      },
-      "normalized_text_sha256": "7406e478a6d3e643b0f82253519f8e86f6ae925bdf06f7aa35f90eed733cfb2b",
-      "plan": {
-        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/slices/plan-145bd6280.json",
-        "sha256": "33ab2f575f32eb363036baaae21710fa2a705a9a1d07b375afd0b31b6255ce5a"
-      },
-      "procedure": "0x145bd6280",
-      "provider": {
-        "id": "ghidra",
-        "name": "Ghidra",
-        "version": "12.1.4"
-      },
-      "raw_input": {
-        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/slices/picker-145bd6280.bin",
-        "sha256": "6c0ba71b65e3c935e90894507cda149dcff43500c6836546a69d4410e095fe5b"
-      },
-      "result": {
-        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/rea-145bd6280/results/1715f15178db25b788e8384446be4af1cdd73804afb0cb88dbee69a9f8b32c29.json",
-        "sha256": "2ec4fc6f40be02305773c32cd2e8a1662bf642c7c936e3d37a5c6196198a6197"
-      },
-      "role": "handler",
-      "slice_virtual_address": "0x145bd6280",
-      "subject_verification": {
-        "byte_count": 3604,
-        "file_offset": "0x5bd5680",
-        "kind": "exact_declared_PE_raw_slice",
-        "raw_sha256": "6c0ba71b65e3c935e90894507cda149dcff43500c6836546a69d4410e095fe5b",
-        "result": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/rea-145bd6280/results/1715f15178db25b788e8384446be4af1cdd73804afb0cb88dbee69a9f8b32c29.json",
-        "semantic_or_runtime_correspondence_established": false,
-        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
-        "virtual_address": "0x145bd6280"
-      }
+      "slice_virtual_address": "0x140f1f330"
     }
   ],
-  "stages": {
-    "1": "partial",
-    "2": "partial",
-    "3": "partial",
-    "4": "partial",
-    "5": "partial",
-    "6": "partial"
-  },
-  "semantic_frontier_closed": false,
-  "global_native_semantics_complete": false,
-  "parity_verified": false,
+  "resolved_correspondence_questions": [],
   "reproduce": {
     "write": [
-      "python3 -B scripts/compose-as-discovery.py --classification docs/analysis/evidence/0.127.0/data-classification/manifest.json --unknown docs/analysis/evidence/0.127.0/unknown-recovery.json --connections docs/analysis/coverage/exe-connections.json --census docs/analysis/coverage/full-image-execheck-0.127.0.json --reviews docs/analysis/evidence/0.127.0/as-discovery-reviews.json --write --retain-stale-source-reviews",
-      "python3 -B scripts/summarize-as-discovery.py --profile runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/as-discovery/35870ad87b9a37c13ae0a8f3d9817785266e735ce37b9771987384398871d225 --write"
+      "python3 -B scripts/compose-as-discovery.py --classification docs/analysis/evidence/0.139.1/data-classification/manifest.json --unknown docs/analysis/evidence/0.139.1/source-connected-unknown-recovery.json --connections docs/analysis/coverage/exe-connections.json --census docs/analysis/coverage/full-image-selected-0.139.1.json --reviews docs/analysis/evidence/0.139.1/as-discovery-reviews.json --write",
+      "python3 -B scripts/summarize-as-discovery.py --profile runtime/coverage/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/as-discovery/9ab52faf3d6ba493d07c402ca5c880d4ed75843ad34c0393be92daca6c83553c --write"
     ],
     "check": [
-      "python3 -B scripts/compose-as-discovery.py --classification docs/analysis/evidence/0.127.0/data-classification/manifest.json --unknown docs/analysis/evidence/0.127.0/unknown-recovery.json --connections docs/analysis/coverage/exe-connections.json --census docs/analysis/coverage/full-image-execheck-0.127.0.json --reviews docs/analysis/evidence/0.127.0/as-discovery-reviews.json --check --retain-stale-source-reviews",
-      "python3 -B scripts/summarize-as-discovery.py --profile runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/as-discovery/35870ad87b9a37c13ae0a8f3d9817785266e735ce37b9771987384398871d225 --check"
+      "python3 -B scripts/compose-as-discovery.py --classification docs/analysis/evidence/0.139.1/data-classification/manifest.json --unknown docs/analysis/evidence/0.139.1/source-connected-unknown-recovery.json --connections docs/analysis/coverage/exe-connections.json --census docs/analysis/coverage/full-image-selected-0.139.1.json --reviews docs/analysis/evidence/0.139.1/as-discovery-reviews.json --check",
+      "python3 -B scripts/summarize-as-discovery.py --profile runtime/coverage/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/as-discovery/9ab52faf3d6ba493d07c402ca5c880d4ed75843ad34c0393be92daca6c83553c --check"
     ]
   },
-  "limits": [
-    "Six current raw-subject queries establish only their exact bounded scopes; existing benilla interfaces stop generic dependency recovery. Native discovery, behavioral recovery and source implementation remain separate.",
-    "Fourteen stable finite questions preserve their original semantic/source context and exact current geometry candidates where available. Producer/dependency/consumer applicability remains pending; no implementation progress is reset.",
-    "Prior bounded reviews, classifications and source repairs retain their original target provenance through the incremental-correspondence record. These overlapping populations are not additive features or current contract admission.",
-    "All 46 current AS-context tables have source/interface assessments. Eight exact current selector questions have explicit existing finding owners and pending native queue entries; no new behavior is inferred from geometry.",
-    "All six global semantic discovery stages remain partial. Compilation, client/game/network/server execution and original/rebuilt parity remain unverified."
-  ],
-  "current_computed_correspondence": {
-    "path": "docs/analysis/evidence/0.127.0/computed-correspondence-frontier.json",
-    "sha256": "e2bdd8dac1977cc8e3485e9447c863a9135989a514f94cfdf0b69866e01a7d45"
-  },
-  "complete_current_AS_context_review": {
-    "path": "docs/analysis/evidence/0.127.0/switch-context-source-review.json",
-    "sha256": "7186d6b8e9c01e84b85a1104ab6003252a9d7fc1f93a38f8b6929efbb9dc9cd5"
-  },
-  "resolved_correspondence_questions": [],
   "summary_generator": {
     "path": "scripts/summarize-as-discovery.py",
-    "sha256": "473afc294bb8eb8160d9a9c2fa31c3f9888efc6232d483336eef646092f607e7",
+    "sha256": "76dd4aead1571614e3c92718a9cd839852a30ff944de5b5b4bc824c7e7befecc",
     "scope": "Deterministic graph/review/query counts and current compact registry; no inferred native ownership or closure.",
     "dependencies": [
       {
@@ -800,11 +347,11 @@
       },
       {
         "path": "scripts/inventory-executable.py",
-        "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+        "sha256": "e2a4746cf3c5c0a8433c2000d6000b768a2a17b01b25040505705f61ddf1f6fa"
       },
       {
         "path": "scripts/coverage_common.py",
-        "sha256": "5a04a45f488ad0a51801ad9d8263bfeb3e7048c77b0f906708e384064ce76cf7"
+        "sha256": "4adab1999dab972a63e3ab29b7a95d4ab223471398a383967b17f8a39dee5d2a"
       }
     ]
   }
