@@ -5,8 +5,12 @@ Selected reconstruction/package baseline **0.139.1**, SHA-256
 (150,633,472 bytes). [Identity](target-refresh-0.139.1.json),
 [target review](target-0.139.1.md), [native census](native-census-0.139.1.md),
 [release review](release-review-0.139.1.md), [AS review](as-discovery-0.139.1.md)
-and [unknown queue](unknown-recovery-0.139.1.md) own the current audit.
+and [unknown queue](unknown-recovery-0.139.1.md) own the completed 0.139.1 audit.
 Configured installed inputs were read directly without compilation or application operation.
+
+The installed 0.139.2 EXE is unregistered and awaits refresh, as recorded in
+[CURRENT-STATE](../CURRENT-STATE.md). The following accounting retains its
+0.139.1 target; it does not apply to the newer installed bytes.
 
 The disjoint 26-range ledger covers every file byte with zero overlap/omission.
 All 371,460 declared extents decode linearly: 24,784,974 instructions /

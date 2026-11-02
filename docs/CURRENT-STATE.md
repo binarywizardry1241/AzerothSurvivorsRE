@@ -2,9 +2,15 @@
 
 [Gameplay/runtime verification backlog](verification-needed.md) owns post-source checks and completed finding history.
 
-Reviewed **2026-11-02**. Selected installed target: **0.139.1**,
+Reviewed **2026-11-02**. Last completed audit target: **0.139.1**,
 150,633,472 bytes, SHA-256
 `1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d`.
+The installed EXE is now **0.139.2**, 150,793,728 bytes, SHA-256
+`0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908`.
+It is unregistered and awaits a full target refresh. The records and counts
+below retain their 0.139.1 scope; current-installed-target coverage accounting
+rejects this newer identity. No 0.139.2 behavior or correspondence is established.
+
 [Identity/resources](analysis/target-refresh-0.139.1.json),
 [release review](analysis/release-review-0.139.1.md) and
 [source frontier](analysis/source-frontier-0.139.1.md) bind the current observations.

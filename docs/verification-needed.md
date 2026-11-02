@@ -26,8 +26,10 @@ remain unverified. The records below retain their own selected scope, native/sta
 and separate execution/parity limits.
 
 
-Selected installed target: **0.139.1**, 150,633,472 bytes, SHA-256
+Last completed audit target: **0.139.1**, 150,633,472 bytes, SHA-256
 `1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d`.
+The newer installed 0.139.2 identity awaits registration and full refresh in
+[CURRENT-STATE](CURRENT-STATE.md); no verification result below is promoted to it.
 The [fresh structural scans and source register](CURRENT-STATE.md) retain their
 own scopes; selected-target full-image REA/Ghidra byte/boundary verification
 and guarded-frontier reconciliation are complete. Semantic/source closure and
