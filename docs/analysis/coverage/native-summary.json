@@ -1,41 +1,41 @@
 {
   "schema_version": 1,
   "target": {
-    "version": "0.127.0",
+    "version": "0.139.0",
     "path": "installed-game/AzerothSurvivors.exe",
-    "sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
-    "size_bytes": 146721280
+    "sha256": "0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274",
+    "size_bytes": 150595584
   },
   "inventory": {
-    "path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/inventory.json",
-    "sha256": "c9cd72f3a0743b4310a511d8ce5ecd413ddbbbf15f6a9e8a9a21459470cb5d02",
+    "path": "runtime/coverage/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/inventory.json",
+    "sha256": "28823fd7cccdcef390c798de10e170d2a52c8e8f56b1565626ef6cae457bcc2a",
     "regenerate": "python3 scripts/inventory-current-target.py --write"
   },
   "counts": {
-    "file_bytes": 146721280,
+    "file_bytes": 150595584,
     "sections": 6,
-    "runtime_function_records": 359575,
-    "executable_virtual_bytes": 102793566,
-    "executable_bytes_inside_runtime_function_extents": 97522563,
-    "executable_bytes_outside_runtime_function_extents": 5271003,
-    "imports": 425,
+    "runtime_function_records": 371108,
+    "executable_virtual_bytes": 105699438,
+    "executable_bytes_inside_runtime_function_extents": 100340730,
+    "executable_bytes_outside_runtime_function_extents": 5358708,
+    "imports": 430,
     "exports": 0,
-    "base_relocation_records_nonpadding": 638646,
+    "base_relocation_records_nonpadding": 643479,
     "relocation_types_including_padding": {
-      "0": 1606,
-      "10": 638646
+      "0": 1633,
+      "10": 643479
     },
-    "diagnostic_paths": 771,
-    "custom_game_diagnostic_paths": 69,
-    "engine_or_other_crate_diagnostic_paths": 702,
+    "diagnostic_paths": 837,
+    "custom_game_diagnostic_paths": 77,
+    "engine_or_other_crate_diagnostic_paths": 760,
     "embedded_candidates": {
-      "game_binding_identifier": 379,
-      "lua_function_declaration": 193,
-      "lua_ui_registration": 341,
-      "module_type_namespace": 946,
-      "resource_path": 316,
+      "game_binding_identifier": 865,
+      "lua_function_declaration": 247,
+      "lua_ui_registration": 347,
+      "module_type_namespace": 1008,
+      "resource_path": 324,
       "save_configuration_key_lead": 6,
-      "textual_id_assignment": 2,
+      "textual_id_assignment": 7,
       "textual_numeric_id": 0
     }
   },
@@ -46,9 +46,9 @@
   "native_analysis": {
     "status": "separate_resumable_census_required",
     "command": "python3 scripts/census-current-target.py --run --limit 10",
-    "progress_path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/ghidra/full-image-bounded-analysis/progress.json",
+    "progress_path": "runtime/coverage/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/ghidra/full-image-bounded-analysis/progress.json",
     "pipeline_sample_command": "python3 scripts/census-current-target.py --run --sample --limit 1",
-    "pipeline_sample_progress_path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/ghidra/sample-first-unwind-extent/progress.json",
+    "pipeline_sample_progress_path": "runtime/coverage/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/ghidra/sample-first-unwind-extent/progress.json",
     "decoded_instruction_coverage": "unknown_until_provider_records_are_present",
     "all_native_semantics_or_reference_edges_recovered": false
   },
