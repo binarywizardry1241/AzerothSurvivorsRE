@@ -1,0 +1,10 @@
+; 0.109.0 SHA256 76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0
+; 0x1401803a4..0x1401803cc SHA256 99a36d6fedef2fb412bdabb6efa1931d96bb3908daa7f34a292f6f991862a6e4
+0x1401803a4: mov byte ptr [rbp + 0x235], 1
+0x1401803ab: lea rcx, [rbp + 0x128]
+0x1401803b2: call 0x140185a30
+0x1401803b7: nop
+0x1401803b8: mov rax, qword ptr [rbp + 0x128]
+0x1401803bf: mov qword ptr [rbp + 0x228], rax
+0x1401803c6: cmp rax, -1
+0x1401803ca: je 0x140180434

@@ -1,0 +1,38 @@
+{
+  "target_sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+  "target_executed": false,
+  "provider": {
+    "id": "ghidra",
+    "name": "Ghidra",
+    "version": "12.1.4"
+  },
+  "operations": [
+    {
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_60aba37a3e490872d00185de6e5c2378f67cd85faa331ddccd71e2f437bc63c6",
+      "analysis_profile_sha256": "21b3ad8191c8fe7b61c1b8b2e3cbfbd84db48dfa254e934c40eae190f10e72b5",
+      "va": "0x14594a80b",
+      "byte_count": 162,
+      "input_sha256": "d77f3afb22b9dca1f8c81b56f49450e2acde1991ed4ef2c8636a200d62df04d7",
+      "pseudocode": "queue.c",
+      "pseudocode_sha256": "627dffb3262ab90f8097667fb3e44b8df679d5f05fbdf82df0ea3f08cb44c675",
+      "pseudocode_formatting": "Decode literal newlines and trim trailing whitespace only."
+    },
+    {
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_312191c1fabe4f99733a45e3fd12c1e77c5da8029bc98d8406d8fc19cd0089a9",
+      "analysis_profile_sha256": "d94c8d2cf22c05b49f9f1ea78071736e186b0e7355eee7f32b2c1a61b45d925c",
+      "va": "0x14594810a",
+      "byte_count": 324,
+      "input_sha256": "5c555e4e9a78952ea9f80c14e4a591be7e136157aacc8b069a7c5b0f21153e39",
+      "pseudocode": "phase-request.c",
+      "pseudocode_sha256": "9783522ce61b413a20e64917c0a82104c47dedb7c4e0038f63ff3076dc922542",
+      "pseudocode_formatting": "Decode literal newlines and trim trailing whitespace only."
+    }
+  ],
+  "limits": [
+    "Bounded raw import; no PE-wide callers, actor state or engine callbacks are supplied.",
+    "Decompiler bad-data halts are omitted continuation boundaries, not observed native faults.",
+    "Independent installed-byte verification and isolated queue fixtures own exact filter/copy/terminator behavior."
+  ]
+}

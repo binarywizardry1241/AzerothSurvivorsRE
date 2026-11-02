@@ -1,0 +1,22 @@
+14028e0eb 41803a00 cmp byte ptr [r10], 0
+14028e0ef 741f je 0x14028e110
+14028e0f1 41b101 mov r9b, 1
+14028e0f4 89e9 mov ecx, ebp
+14028e0f6 ffc5 inc ebp
+14028e0f8 45380c0c cmp byte ptr [r12 + rcx], r9b
+14028e0fc 0f8446ffffff je 0x14028e048
+14028e102 eb3f jmp 0x14028e143
+14028e104 6666662e0f1f840000000000 nop word ptr cs:[rax + rax]
+14028e110 41f6c001 test r8b, 1
+14028e114 740b je 0x14028e121
+14028e116 488b4c2418 mov rcx, qword ptr [rsp + 0x18]
+14028e11b 80790401 cmp byte ptr [rcx + 4], 1
+14028e11f 75d0 jne 0x14028e0f1
+14028e121 41f6c701 test r15b, 1
+14028e125 740b je 0x14028e132
+14028e127 488b4c2418 mov rcx, qword ptr [rsp + 0x18]
+14028e12c 80790500 cmp byte ptr [rcx + 5], 0
+14028e130 74bf je 0x14028e0f1
+14028e132 4531c9 xor r9d, r9d
+14028e135 89e9 mov ecx, ebp
+14028e137 ffc5 inc ebp

@@ -1,0 +1,171 @@
+{
+  "target": {
+    "version": "0.115.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+    "size_bytes": 142111232
+  },
+  "lead_id": "BANNER01",
+  "gap_ids": [
+    41,
+    58,
+    11
+  ],
+  "raw_import": {
+    "path": "runtime/banner-takeover-0.115.0/record-parser/owners.bin",
+    "sha256": "6ac15e9be5ba64fed52ab016afaf962c231c70f7593ac55c61b3f1bd9204e0e7",
+    "base": "0x145853470",
+    "size_bytes": 25005084,
+    "padding": "zero",
+    "segments": [
+      {
+        "start": "0x145853470",
+        "end_exclusive": "0x145853bb9",
+        "file_offset": "0x5852870",
+        "sha256": "54944b5518b0a17ec680854d207949598cfaadce19014ee4e08911e1baa16e3a"
+      },
+      {
+        "start": "0x14585aba0",
+        "end_exclusive": "0x14585b57a",
+        "file_offset": "0x5859fa0",
+        "sha256": "29bdc4d98e9e7a6fb129d9193cf2885bd58815cd3a1bf84d1a0c6ef97651b156"
+      },
+      {
+        "start": "0x14700cc10",
+        "end_exclusive": "0x14700cedb",
+        "file_offset": "0x700b810",
+        "sha256": "fc23918eb1cc675c09c49a5f7f69115587803950a7ea90627173df427fd58dfc"
+      },
+      {
+        "start": "0x14700d348",
+        "end_exclusive": "0x14700d390",
+        "file_offset": "0x700bf48",
+        "sha256": "bae70a1c961aec69f4b9e81b1ab585d0686cb0dbb5d8e18c4d8c8642f31e2714"
+      },
+      {
+        "start": "0x14702c06c",
+        "end_exclusive": "0x14702c08c",
+        "file_offset": "0x702ac6c",
+        "sha256": "a8fa91fe7ef4005690de336e32ae71a1afec6f8c72b33872b5b1d9ea269fe30f"
+      }
+    ]
+  },
+  "query": {
+    "plan": "runtime/banner-takeover-0.115.0/record-parser/plan.json",
+    "plan_sha256": "c51324d048883441c72d9a96c4ea327e789b6dd55f9eff6163c15d0e8d9cfc81",
+    "seed_sha256": "4c797321cdebeb3412505cfe8d4ea63c59eacc6254fa2929fc44ab43e8fc7b9a",
+    "status": "completed"
+  },
+  "observations": [
+    {
+      "address": "0x145853470",
+      "evidence_id": "ev_e009cf0ee25218a24018ee763822fce85c152e80abe7f5ef9cf18423bd35a7a3",
+      "operation": "procedure_pseudo_code",
+      "retained_result": {
+        "path": "runtime/banner-takeover-0.115.0/record-parser/rea/results/fec6b2cfc7e769aa3d8b8706671881397a4d3219a6b7f4b816222ca5aec0cf3c.json",
+        "sha256": "e76630f7a94e7ab1fcfb16636ebe5b7cc2cd8e1a355ad65ccc1302efdb0c9c60"
+      },
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.115.0/banner-takeover/record-parser.txt",
+        "sha256": "4879133c946d968d2aba31239f87884f87fd338435834196cd1367a8371f0bfc",
+        "normalization": "Surrounding blank lines and trailing whitespace removed; original provider result remains retained by digest."
+      },
+      "analysis_profile_digest": "d492bc6ca12b6f90d9ac43747d8088f0135acc134235bd57b7605c8c85960b75",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "import_context": {
+        "target_format": "raw-binary",
+        "architecture": "x86_64",
+        "entry_point": "0x145853470",
+        "language_id": "x86:LE:64:default",
+        "compiler_spec_id": "gcc"
+      }
+    },
+    {
+      "address": "0x14585aba0",
+      "evidence_id": "ev_9aecf4108d72c0a88475d2ea24182acad8852f802ad4d7dee7b4894c8e1f510d",
+      "operation": "procedure_pseudo_code",
+      "retained_result": {
+        "path": "runtime/banner-takeover-0.115.0/record-parser/rea/results/9976ac63d6dd6eb3cb400bd4b8ee1b3fbfacdc633aebb503015f4c2fe4c13e78.json",
+        "sha256": "27b6f3d42ca90e2ba931b7d18141d4fe00577aab611b4275e7dd41163ee78fd2"
+      },
+      "canonical_extract_ref": "docs/analysis/evidence/0.115.0/banners-owner.json",
+      "analysis_profile_digest": "d492bc6ca12b6f90d9ac43747d8088f0135acc134235bd57b7605c8c85960b75",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "import_context": {
+        "target_format": "raw-binary",
+        "architecture": "x86_64",
+        "entry_point": "0x145853470",
+        "language_id": "x86:LE:64:default",
+        "compiler_spec_id": "gcc"
+      }
+    }
+  ],
+  "full_pe_reference_input": {
+    "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/native-instructions.sqlite",
+    "sha256": "984e341b1702fd801b9d5b63326590a0eafd110a72aff5d2facdab0076dc433e",
+    "regenerate": "python3 -B scripts/inventory-native-instructions.py --write"
+  },
+  "current_direct_edges": [
+    {
+      "site": "0x1458535a1",
+      "target": "0x14585aba0",
+      "role": "kind"
+    },
+    {
+      "site": "0x145853a2c",
+      "target": "0x14585aba0",
+      "role": "text"
+    },
+    {
+      "site": "0x145853a76",
+      "target": "0x14585aba0",
+      "role": "name"
+    },
+    {
+      "site": "0x1458d6f1e",
+      "target": "0x145853470",
+      "role": "scoped-local-reader"
+    },
+    {
+      "site": "0x14587cd8c",
+      "target": "0x1458d6dc0",
+      "role": "update-reader"
+    }
+  ],
+  "current_update_evidence": {
+    "manifest": "docs/analysis/evidence/0.115.0/revive-addon/manifest.json",
+    "evidence_id": "ev_4c6de210dace6ef2b5056207016c99a8408cbcdc364fb74a2ebd3e7195a1e6a1",
+    "retained_result": "runtime/revive-hud-0.115.0/rea-cadence/journal.json"
+  },
+  "assembly": {
+    "path": "record-parser.asm",
+    "sha256": "d89cc4a3730e59f238ef9f61568ab1dc793b57f64dfe442d011a2fb720d8c3a0"
+  },
+  "classification": "AS serialized banner record rewrite/localization boundary; no suppression CVar read in the selected record parser or scoped-locale wrapper.",
+  "source_boundary": "Live local events already localize and publish text/name directly; this record rewrite is not an additional HUD visibility toggle. Cooperative replication/producers remain excluded. Translation internals are separate #17 ownership.",
+  "limits": [
+    "Raw input is exact selected EXE segments plus zero gaps; omitted helpers/globals/types constrain decompilation.",
+    "Full-PE caller sites come from independently decoded current instruction inventory; incoming computed aliases remain unknown.",
+    "Twelve kind strings, quoted field access, integer-id parsing, text/name processing and returned owned output are bounded observations, not full banner-system closure.",
+    "Record parser and locale wrapper do not identify the reported sustained duplicate cause; actual VM/addon/hook/rendering comparison remains open.",
+    "Raw data omits the referenced header-prefix constant; the exact current prefix is bound separately in supplemental_data_bindings. Pseudocode DAT labels do not supply that value."
+  ],
+  "supplemental_data_bindings": [
+    {
+      "start": "0x14700ba63",
+      "file_offset": "0x700a663",
+      "byte_count": 9,
+      "bytes": "7b2274797065223a22",
+      "sha256": "7c26cd0c52abeb4e696bfd50514092b36d6a2511ac4b229996df660adda570e5",
+      "role": "Actual nine-byte input prefix, referenced by14585349f/1458534a9; outside selected raw data segments and verified independently."
+    }
+  ]
+}

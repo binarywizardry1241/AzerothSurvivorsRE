@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.127.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+    "size_bytes": 146721280
+  },
+  "target_executed": false,
+  "compiled": false,
+  "query": {
+    "procedure": "0x145c12330",
+    "slice_virtual_address": "0x145c12330",
+    "raw_input": {
+      "path": "runtime/analysis/tasks/fixgap-295-0.127.0/incoming/body.bin",
+      "sha256": "bf518b17764c45c3abf024f0c0b7fae77c3cf0d21a9ab6e8d9f5fb7c3fa77d73"
+    },
+    "plan": {
+      "path": "runtime/analysis/tasks/fixgap-295-0.127.0/incoming/plan.json",
+      "sha256": "351f4056f0a0835433507f9fdb813038e5dbe31e4ea7fe062d3ffba9024d7235"
+    },
+    "journal": {
+      "path": "runtime/analysis/tasks/fixgap-295-0.127.0/incoming/query/journal.json",
+      "sha256": "89c14db9c98c1446b7d2fc9668fedd1f0ae95c7f5ba8f808fc804e4654184250"
+    },
+    "result": {
+      "path": "runtime/analysis/tasks/fixgap-295-0.127.0/incoming/query/results/cbbf87aa894a5e7c8f9b6ce23ab44552c1c779183c100c630928daacb1fe3fcf.json",
+      "sha256": "509c67d6d0656ac809ef7feb9d6e4aeafcc8ef54194f786e66d63c0bd8f5f9f3"
+    },
+    "evidence_id": "ev_be0f4ba953688e4e6f28b36b9f971fbbaf80d87117f2c638b16fc8f4d5708ecb",
+    "provider": {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "version": "12.1.4"
+    },
+    "analysis_profile_digest": "07bfb4b6198f6fbf774e4ae6272f60ec4a0626cbd2fe595371c9687fcb3d6f08",
+    "normalized_text_sha256": "fd35c0b665efe8678460aec9b7bb150aca4c653f5380937506a72c4e67b2b076",
+    "subject_verification": {
+      "kind": "exact_declared_PE_raw_slice",
+      "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+      "raw_sha256": "bf518b17764c45c3abf024f0c0b7fae77c3cf0d21a9ab6e8d9f5fb7c3fa77d73",
+      "virtual_address": "0x145c12330",
+      "file_offset": "0x5c11730",
+      "byte_count": 7303,
+      "result": "runtime/analysis/tasks/fixgap-295-0.127.0/incoming/query/results/cbbf87aa894a5e7c8f9b6ce23ab44552c1c779183c100c630928daacb1fe3fcf.json",
+      "semantic_or_runtime_correspondence_established": false
+    }
+  },
+  "native_spans": [
+    {
+      "role": "incoming-owner",
+      "start": "0x145c12330",
+      "end_exclusive": "0x145c13fb7",
+      "file_offset": "0x5c11730",
+      "byte_count": 7303,
+      "sha256": "bf518b17764c45c3abf024f0c0b7fae77c3cf0d21a9ab6e8d9f5fb7c3fa77d73"
+    }
+  ],
+  "constants": [
+    {
+      "role": "half-health",
+      "start": "0x146233124",
+      "end_exclusive": "0x146233128",
+      "file_offset": "0x6231724",
+      "byte_count": 4,
+      "sha256": "d99e58435243d9fef9c88273b8d553b4fba4d0baf8009d29eae74fa99e0d9f57"
+    },
+    {
+      "role": "grace-two-seconds",
+      "start": "0x14624c6a8",
+      "end_exclusive": "0x14624c6ac",
+      "file_offset": "0x624aca8",
+      "byte_count": 4,
+      "sha256": "d88c86f15bbea365d658ad95a81d45367c465f7af6f7264fb077f01747ddc77d"
+    }
+  ],
+  "native_contract": {
+    "admission": "145c12441..12495 reads Game+cc0, scans Game+3d8/+3e0 32-byte auras, refuses raw12 when expiry+18 > clock; equality and unordered expiry admit damage.",
+    "charge_health": "145c135c3..135f5: require positive Game+598 charges, decrement once, restore Game+538 = Game+4c8 * .5f.",
+    "visual": "145c135f5..13684 emits spell21169 targeting Game+4b0 before installing grace.",
+    "replacement": "145c13684..13720 with retention branch145c13d61: remove every spell1020 retaining other order, append source0/raw12/spell1020/expiry=clock+2/healing0, refresh145c0d580.",
+    "burst": "145c137e2..138c4 captures targets and resolves15237 only after grace write/refresh. Same-tick re-entry sees the same aura."
+  },
+  "source_refs": [
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs",
+    "crates/azeroth-survivors-re/src/player_abilities/behavior/incoming.rs",
+    "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs",
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs"
+  ],
+  "limits": [
+    "Raw Ghidra import lacks external callees/constants and its generic signature is not the native Win64 ABI. Original instructions and parent PE data bind field/argument interpretation.",
+    "Source/static recovery only; compilation, game/client/network/server execution and original/rebuilt parity remain unverified."
+  ]
+}

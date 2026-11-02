@@ -1,0 +1,28 @@
+//! Generated from the hash-checked 0.100.1 EXE; see recover-treasure-0.100.1-generation.py.
+use super::JewelryDefinition;
+pub const JEWELRY: [JewelryDefinition; 22] = [
+    JewelryDefinition { key: "accuria", name: "Band of Accuria", icon: "INV_Jewelry_Ring_15", description: "+{v}% damage", base: f32::from_bits(0x3e2e147b), tag: 0, slot: 0 },
+    JewelryDefinition { key: "quick_strike", name: "Quick Strike Ring", icon: "INV_Jewelry_Ring_07", description: "-{v}% cooldowns", base: f32::from_bits(0x3db851ec), tag: 1, slot: 0 },
+    JewelryDefinition { key: "dark_iron", name: "Heavy Dark Iron Ring", icon: "INV_Jewelry_Ring_14", description: "+{v}% max health", base: f32::from_bits(0x3e4ccccd), tag: 2, slot: 0 },
+    JewelryDefinition { key: "dragonslayer", name: "Master Dragonslayer's Ring", icon: "INV_Jewelry_Ring_41", description: "+{v}% critical strike chance", base: f32::from_bits(0x3d23d70a), tag: 3, slot: 0 },
+    JewelryDefinition { key: "archimtiros", name: "Archimtiros' Ring of Reckoning", icon: "INV_Jewelry_Ring_40", description: "+{v}% damage reduction{max}, +{h}% max health", base: f32::from_bits(0x3d0f5c29), tag: 5, slot: 0 },
+    JewelryDefinition { key: "devoured", name: "Ring of the Devoured", icon: "INV_Jewelry_Ring_AhnQiraj_05", description: "+{v} health per second", base: f32::from_bits(0x3fc00000), tag: 6, slot: 0 },
+    JewelryDefinition { key: "spell_power", name: "Ring of Spell Power", icon: "INV_Jewelry_Ring_38", description: "+{v}% area of effect", base: f32::from_bits(0x3e0f5c29), tag: 7, slot: 0 },
+    JewelryDefinition { key: "seal_damned", name: "Seal of the Damned", icon: "INV_Jewelry_Ring_51Naxxramas", description: "Your damage over time spells tick {v}% faster", base: f32::from_bits(0x3dcccccd), tag: 18, slot: 0 },
+    JewelryDefinition { key: "blooddrinker", name: "Blooddrinker's Band", icon: "INV_Jewelry_Ring_49Naxxramas", description: "{v}% of all damage dealt heals you", base: f32::from_bits(0x3c23d70a), tag: 17, slot: 0 },
+    JewelryDefinition { key: "earthstrike", name: "Earthstrike", icon: "Spell_Nature_AbolishMagic", description: "+{v}% damage", base: f32::from_bits(0x3e051eb8), tag: 0, slot: 1 },
+    JewelryDefinition { key: "tep", name: "Talisman of Ephemeral Power", icon: "INV_Misc_StoneTablet_11", description: "-{v}% cooldowns", base: f32::from_bits(0x3d8f5c29), tag: 1, slot: 1 },
+    JewelryDefinition { key: "lifegiving", name: "Lifegiving Gem", icon: "INV_Misc_Gem_Pearl_05", description: "+{v}% max health", base: f32::from_bits(0x3e23d70a), tag: 2, slot: 1 },
+    JewelryDefinition { key: "hoj", name: "Hand of Justice", icon: "INV_Jewelry_Talisman_01", description: "{v}% chance for a spell to cast twice", base: f32::from_bits(0x3d75c28f), tag: 8, slot: 1 },
+    JewelryDefinition { key: "blackhand", name: "Blackhand's Breadth", icon: "INV_Misc_ArmorKit_09", description: "+{v}% critical strike damage", base: f32::from_bits(0x3e47ae14), tag: 4, slot: 1 },
+    JewelryDefinition { key: "carrot", name: "Carrot on a Stick", icon: "INV_Misc_Food_54", description: "+{v}% movement speed", base: f32::from_bits(0x3da3d70a), tag: 9, slot: 1 },
+    JewelryDefinition { key: "remote", name: "Gnomish Universal Remote", icon: "INV_Misc_PocketWatch_01", description: "+{v}% pickup range", base: f32::from_bits(0x3eb33333), tag: 10, slot: 1 },
+    JewelryDefinition { key: "insignia", name: "Insignia of the Horde", icon: "INV_Jewelry_TrinketPVP_02", description: "+{v}% experience", base: f32::from_bits(0x3df5c28f), tag: 11, slot: 1 },
+    JewelryDefinition { key: "eldre_thalas", name: "Royal Seal of Eldre'Thalas", icon: "INV_Jewelry_Talisman_10", description: "+{v}% gold", base: f32::from_bits(0x3e800000), tag: 12, slot: 1 },
+    JewelryDefinition { key: "chosen", name: "Mark of the Chosen", icon: "INV_Jewelry_Talisman_08", description: "+{v}% luck", base: f32::from_bits(0x3e19999a), tag: 13, slot: 1 },
+    JewelryDefinition { key: "onyxia_blood", name: "Onyxia Blood Talisman", icon: "Spell_Shadow_LifeDrain", description: "Each kill heals {v} health", base: f32::from_bits(0x40000000), tag: 14, slot: 1 },
+    JewelryDefinition { key: "war_horn", name: "Horn of the Warchief", icon: "INV_Misc_Horn_01", description: "Your buffs are {v}% stronger", base: f32::from_bits(0x3e19999a), tag: 16, slot: 1 },
+    JewelryDefinition { key: "soulstone", name: "Major Soulstone", icon: "INV_Misc_Orb_04", description: "+{v} return to life at half health (2 at most)", base: f32::from_bits(0x3f800000), tag: 15, slot: 1 },
+];
+pub const RARITY_MULTIPLIERS: [f32; 5] = [f32::from_bits(0x3f800000), f32::from_bits(0x3fb33333), f32::from_bits(0x3fe66666), f32::from_bits(0x4019999a), f32::from_bits(0x404ccccd)];
+pub const AMULET_STEPS: [f32; 5] = [f32::from_bits(0x3f19999a), f32::from_bits(0x3f000000), f32::from_bits(0x3eb33333), f32::from_bits(0x3e800000), f32::from_bits(0x3e4ccccd)];

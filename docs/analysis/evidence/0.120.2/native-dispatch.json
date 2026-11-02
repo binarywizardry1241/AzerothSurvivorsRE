@@ -1,0 +1,48 @@
+{
+  "target": {
+    "version": "0.120.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c",
+    "size_bytes": 145484288
+  },
+  "generator": {
+    "path": "scripts/audit-native-dispatch.py",
+    "sha256": "be13ef587b806b4a5e1a8d4bf96297baf4df8d58b356fdcd003e6643623a45cb"
+  },
+  "source_census": {
+    "path": "docs/analysis/coverage/full-image-execheck-0.120.2.json",
+    "sha256": "d76c8b14b186cbe420a416e6fb3a9fb8add17019d46ad9e32828b5ce89a1d03a"
+  },
+  "computed_jump_operands": {
+    "register": 11307,
+    "fixed-or-rip-memory": 183,
+    "memory-with-base-field": 133,
+    "memory-with-index": 1
+  },
+  "register_producer_shapes": {
+    "add-produced-register": 8361,
+    "memory-load-base-field": 2905,
+    "no-producer-in-contiguous-fallthrough-region": 13,
+    "producer-mov": 17,
+    "memory-load-fixed-or-rip": 2,
+    "producer-lea": 9
+  },
+  "unowned_direct_flow_counts": {
+    "destinations": 5655,
+    "exact_instructions": 5655,
+    "interior_conflicts": 0,
+    "undecoded": 0
+  },
+  "unowned_direct_reference_kinds": {
+    "UNCONDITIONAL_JUMP": 1215,
+    "CONDITIONAL_JUMP": 6356
+  },
+  "incoming_source_body_ownership": {
+    "False": 7571
+  },
+  "limits": [
+    "Last-producer shapes in observed contiguous fallthrough regions are candidates, not complete aliases, type invariants, table bounds or runtime dispatch.",
+    "Encoded jumps into unowned code do not establish source function ownership; all incoming source owners and actual instruction boundaries are retained."
+  ]
+}
+

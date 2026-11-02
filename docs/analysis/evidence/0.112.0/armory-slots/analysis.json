@@ -1,0 +1,60 @@
+{
+  "target_sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+  "analyses": [
+    {
+      "role": "armory-class-builder",
+      "address": "0x1400fe650",
+      "evidence_id": "ev_c6f72b9a07758a2b251734074204e5eaf82917d338992806515a7adb2f709f4d",
+      "subject_sha256": "714f1acbdb228c270f3d63d5fa40fa5a205d311fde00cf8bb297049ad42a7944",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "e03da128ffbe851459da9c01db1fb81892c42c5a724f6c4d7c6d19c398409a90",
+      "seed_sha256": "25c3dafe797d45324d0a1fb3169f1867e9a444c8b28167e96dbca202f8ec7de4"
+    },
+    {
+      "role": "armory-slot-filter",
+      "address": "0x1400853e0",
+      "evidence_id": "ev_6f098b55c32695eb86277bc949b8bce3481cb22f860d08fc7d5307c9e9820f55",
+      "subject_sha256": "3c13980017f08f4349e334b6d479b85d2158ac68f69c2254a623f490dc48281c",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "8eb4ad2a5f257f10ec545147368544d12184f26aa0d7952958aac01dd1bd03ab",
+      "seed_sha256": "b18c9cf989509384511dcfbbbbd616070d531a0db68d3f8fcd828d75ac2fe62f"
+    },
+    {
+      "role": "armory-slot-predicate",
+      "address": "0x1400f8890",
+      "evidence_id": "ev_9e93fe6fdcdc6de476ad42eff8a8b6d2d1b1477bd6cf74506a127ba9b1b60ddc",
+      "subject_sha256": "2c53b28ba5dc422c3243d80608c2155026967db71d37b2e447e22689aaa0bdcb",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "f4e8ea1231d1876e82dafef9d77fbd0fb7639b78a34f1f8d64ac138454c7e40c",
+      "seed_sha256": "d0c197f86d3222df608b040aa42e3480a7efb9bc40a4003aad50dd9d04beb5fb"
+    },
+    {
+      "role": "armory-class-slots",
+      "address": "0x1459962d0",
+      "evidence_id": "ev_567adb57ffadc0d0033981af1c2ae3c44e8c24f65d8aa861ea110593dd5a9926",
+      "subject_sha256": "f08b3714669e532ca9a6e50b857501e790c92d6880f2178494e23a7cc34bc0ba",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "4b97f4ade33a1753a3c67fcb19a6605a229eee5ddbb480b61683a16295314e95",
+      "seed_sha256": "90e8c3a2baae39edbd5f6bfa50b89edef6861860f93cb95290c11232beae5dd0"
+    }
+  ],
+  "limits": [
+    "Original VA raw-range imports; external function signatures and some data references are incomplete in Ghidra pseudocode. Native replay executes the unchanged full PE with explicit typed metadata and byte/allocator seams."
+  ]
+}

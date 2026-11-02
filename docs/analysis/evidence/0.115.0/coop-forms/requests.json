@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.115.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+    "size_bytes": 142111232
+  },
+  "target_executed": false,
+  "limits": [
+    "Raw-range Ghidra omits external bodies/data and cannot recover omitted jump tables by itself.",
+    "Native instruction replay uses explicit allocation, string-cloning, trim and queue seams; it does not execute reconstructed Rust, a game or any service.",
+    "Compilation, input/network/rendered execution and original/rebuilt parity remain unverified.",
+    "Headerless Ghidra imports omit external code/data and switch-table destinations; original PE instructions/data and bounded replay supply those selected contracts.",
+    "Keyboard replay starts after ECS acquisition and stops before the next event; it does not execute the actual ECS queue/reader or a Bevy keyboard source. Unicode counts, reserve, and submit helpers are explicit seams.",
+    "Status replay has explicit English lookup, allocation, formatting, and zone-display seams. Native zone-key selector executes original instructions; whole locale/runtime execution remains unverified.",
+    "Node captures bind selected geometry only; the engine child builders, renderer, fonts, input timing and layout execution remain unverified.",
+    "No compilation, Rust regression execution, service connection, sockets, application/game launch or original/rebuilt comparison ran.",
+    "zone-key raw query range retains seven trailing INT3 bytes beyond the last observed return; it is not a declared unwind extent."
+  ],
+  "functions": [
+    {
+      "role": "service-request-encoder",
+      "start": "0x145b7a740",
+      "end_exclusive": "0x145b7af41",
+      "file_offset": "0x5b79b40",
+      "sha256": "a1601a4fd6f44251fc383931fc003f1a0ff5a30fd6521efd2ada42947d1f6170"
+    },
+    {
+      "role": "service-profile-encoder",
+      "start": "0x145b7a4f0",
+      "end_exclusive": "0x145b7a734",
+      "file_offset": "0x5b798f0",
+      "sha256": "ad8c239c8555723b46466d94c5caa0344a88a377473e5a06142c59820e2b5db2"
+    },
+    {
+      "role": "secondary-auth-encoder",
+      "start": "0x145b7a240",
+      "end_exclusive": "0x145b7a4e1",
+      "file_offset": "0x5b79640",
+      "sha256": "23bf1f86d03e208bec7e335ed2c9fa343abbc29dd8a8c6512f3a1191379346f4"
+    },
+    {
+      "role": "utf8-lossy-service-string-boundary",
+      "start": "0x145ce4d50",
+      "end_exclusive": "0x145ce4f7a",
+      "file_offset": "0x5ce4150",
+      "sha256": "2dad7f68ea720db16c371dbf72988e83e15acc792a62c3c87086b444dcb1681f"
+    }
+  ],
+  "ghidra": [
+    {
+      "role": "service-request-encoder",
+      "evidence_id": "ev_3a8b3e7fba1dd26d5cca4c5f680118dbbbb3b82ae905869ccf50af4af3affbef",
+      "input_sha256": "a1601a4fd6f44251fc383931fc003f1a0ff5a30fd6521efd2ada42947d1f6170",
+      "profile_digest": "fb0c768126ef23009173e03a8d554e575b276e48bc27b129772c307c1a046f85",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "journal_ref": "runtime/gap100/query-0x145b7a740/journal.json",
+      "query_plan_sha256": "b744c80c6f50a06e72a67f9d93e477df117fa860fe6422c8b27cfcbb0338b216",
+      "retained_result": {
+        "path": "runtime/gap100/query-0x145b7a740/results/6dcef0d997aef9c59f069756e1fdb009216af5f26a77b28f7b06d3c8e285bb3d.json",
+        "sha256": "85e5799b35200be8e4df4c7300a5a511fee1a0187667ec712e7f3f4db0997114"
+      }
+    },
+    {
+      "role": "service-profile-encoder",
+      "evidence_id": "ev_10db42611f650819ec0aa8e743e1664422f250307f6bc8ea4c639b9eb883912a",
+      "input_sha256": "ad8c239c8555723b46466d94c5caa0344a88a377473e5a06142c59820e2b5db2",
+      "profile_digest": "a3d38bf8b842c60f5b68d4c8fe795c0dfe72c2efedf6d2fcca0280d7ba6ad0d2",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "journal_ref": "runtime/gap100/query-0x145b7a4f0/journal.json",
+      "query_plan_sha256": "257bcdaf81df518a1ba6ea054d0aaea83df2d6abdafc44c74d3b5c76b035869c",
+      "retained_result": {
+        "path": "runtime/gap100/query-0x145b7a4f0/results/76eb0291798ae4ce419fafea4204e0068399dc525355943373b3bcb5043059b2.json",
+        "sha256": "300994abd606a044370c0b706df388755b522bc7a033cf6ea0fa712d4ec866e1"
+      }
+    },
+    {
+      "role": "secondary-auth-encoder",
+      "evidence_id": "ev_501d857280c213407849fd0472783ee37b316e3fac4c12f27d55e8ffb7fc9f07",
+      "input_sha256": "23bf1f86d03e208bec7e335ed2c9fa343abbc29dd8a8c6512f3a1191379346f4",
+      "profile_digest": "be7d23c903f3711109db977f751f7c0e76ab2c0f64cceaa499a5e5083257a92b",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "journal_ref": "runtime/gap100/codec/query-0x145b7a240/journal.json",
+      "query_plan_sha256": "8d8976f14fbbd3160978b0d9bb1918ef103b39c81201e1e3bca59a7c8ae6f18b",
+      "retained_result": {
+        "path": "runtime/gap100/codec/query-0x145b7a240/results/df0ba8cba086dc80c74bef48b3c6438bf208edd65d31e1c0fae790ed646a5b55.json",
+        "sha256": "5563ee14e1011687a43d7859cc657486841301acdbd962d98382cf544da77859"
+      }
+    },
+    {
+      "role": "utf8-lossy-service-string-boundary",
+      "evidence_id": "ev_bb4fcfca08f5d57d15b7b8a3956e69d4795c29022af585644362c133837592b3",
+      "input_sha256": "2dad7f68ea720db16c371dbf72988e83e15acc792a62c3c87086b444dcb1681f",
+      "profile_digest": "df1cc30745c79ecfdb4b9b9bb82e48f5103d11b4a7df63dbc622bcf5afd750a5",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "journal_ref": "runtime/gap100/codec/query-0x145ce4d50/journal.json",
+      "query_plan_sha256": "f2f818acb764b2940ef7aa295bd2a53634541457745b1e98949ed55f517f0631",
+      "retained_result": {
+        "path": "runtime/gap100/codec/query-0x145ce4d50/results/6530705a2ce3cef2a961429607a095a3d2561335327dfb675aeaec6997f2c9b1.json",
+        "sha256": "70715ea9156d31353fdc8c0012c44c19e513980a7118701635a01675d1ec9072"
+      }
+    }
+  ],
+  "extracts": {
+    "0x145b7a740.asm": "1f72794d92d74908738b9a6a9f39bdec1f8e9f933efb12ffbc7b1b0878da2bf0",
+    "0x145b7a740.c": "789c588d9ac9d5ba6725a6ad9f1146e8fe0f94b5af54d12d38d9455a8d07a936",
+    "0x145b7a4f0.asm": "b7db6dbcca006e28127a53edcde088e01c9e8e415a36f3d382173f0ed632df86",
+    "0x145b7a4f0.c": "23df6f7ade4baa30aff3823f72f96cac69086378ba88faa8acc5767f14715b43",
+    "0x145b7a240.asm": "49517cfa9104f2baa09d8255bbca81bc72a43ecb20b3105b61e63a591fd8c349",
+    "0x145b7a240.c": "cf36afe334d8b20e7eafc4e2443df3959f8dbb37008a6053fbded95ce39ce8a6",
+    "0x145ce4d50.asm": "7a3319345c11deaf607f0c45fe3075b54500b2b89841f45ce66460844e79a182",
+    "0x145ce4d50.c": "81c533b4c1ebaef11bb553f0a1ae9303f40d2188bf57adb8e13c7a7ee4aaad62"
+  },
+  "data_ranges": [
+    {
+      "start": "0x1473ad390",
+      "file_offset": "0x73abf90",
+      "byte_count": 44,
+      "sha256": "b5ea600753e090f81fa9105787cec45fdedb6e68c1d08ca8a6e2d7dbe52bd1e4",
+      "bytes_hex": "13d47cfefbd77cfe67d67cfeb6d77cfe1ed57cfe11d87cfea6d87cfee5d77cfe11d97cfed8d57cfee5d87cfe"
+    }
+  ]
+}

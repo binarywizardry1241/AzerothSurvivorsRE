@@ -1,0 +1,273 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.120.4",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "7e3e3f9558de1d87e615592c7b5d83f00de393ac8efa4e67d8f9b634ed07d6bf",
+    "size_bytes": 145489408
+  },
+  "gap_ids": [
+    41
+  ],
+  "counts": {
+    "applied_tables": 2582,
+    "proposed_tables": 3682,
+    "added_tables": 1100,
+    "changed_case_vectors": 0,
+    "distinct_proposed_target_addresses": 6808,
+    "exact_target_starts": 582,
+    "targets_in_instruction_interiors": 0,
+    "undecoded_targets": 6226,
+    "tables_with_as_owner_context": 14,
+    "tables_with_as_extent_context": 14
+  },
+  "generator": {
+    "path": "runtime/coverage/7e3e3f9558de1d87e615592c7b5d83f00de393ac8efa4e67d8f9b634ed07d6bf/native-final/review-proposals.py",
+    "sha256": "5e4fe92025094c218be2fe88974478f9ec28de0e5ab4388cd39c9b1fc8325767"
+  },
+  "inputs": [
+    {
+      "path": "runtime/coverage/7e3e3f9558de1d87e615592c7b5d83f00de393ac8efa4e67d8f9b634ed07d6bf/native-final/jump-proposal-review.json",
+      "sha256": "50cfc516bf62afdec70deaf02c9486363cdc566aae66b95cb923a828571c4494"
+    },
+    {
+      "path": "docs/analysis/coverage/full-image-execheck-0.120.4.json",
+      "sha256": "fbf0eb386920f23116e3cf84dbf3226a1371a8c2913cfaaa19c09845d4985587"
+    },
+    {
+      "path": "docs/analysis/coverage/native-jump-tables.json",
+      "sha256": "c55342d2b8dd1e41203c19e91cde90f446b5e1e1cebd10e539985e9b331e517a"
+    },
+    {
+      "path": "docs/analysis/coverage/native-jump-tables-rechecked-0.120.4.json",
+      "sha256": "6e59e125f3eb4a5bb125473443e0511cfe977cd2d779e75ff6e6567f386b2b9f"
+    },
+    {
+      "path": "runtime/analysis/census/7e3e3f9558de1d87e615592c7b5d83f00de393ac8efa4e67d8f9b634ed07d6bf/07bb267d4b063b3a2219c9ba5a01bda533dbc827e99baa35f41554ddeb5f7dba/guarded-jump-tables.json",
+      "sha256": "57e31a3f6ebdf4a07889c699df7bca9e14688f7f334336b41a7ce85b26311d2b"
+    },
+    {
+      "path": "runtime/coverage/7e3e3f9558de1d87e615592c7b5d83f00de393ac8efa4e67d8f9b634ed07d6bf/native-final/guarded-proposals.json",
+      "sha256": "86529031dc876947038ddcd1b6e21064f5df3d32ec10fdaac1c14564c79effe6"
+    },
+    {
+      "path": "runtime/analysis/census/7e3e3f9558de1d87e615592c7b5d83f00de393ac8efa4e67d8f9b634ed07d6bf/ed22aac50af61b73b04f0790b181fbaa7a4226ae591c7a85c4a1a65d8e871435/instructions.tsv.gz",
+      "sha256": "a52ae3eec7d1b8a48f34181eacae68ca9e0b3b541a5a284263c4ea9b822379e2"
+    },
+    {
+      "path": "runtime/analysis/census/7e3e3f9558de1d87e615592c7b5d83f00de393ac8efa4e67d8f9b634ed07d6bf/ed22aac50af61b73b04f0790b181fbaa7a4226ae591c7a85c4a1a65d8e871435/bodies.tsv.gz",
+      "sha256": "187574596afd9246d1acb9bde7d744fb15aad0da642154819d0a45d97684f061"
+    },
+    {
+      "path": "runtime/coverage/7e3e3f9558de1d87e615592c7b5d83f00de393ac8efa4e67d8f9b634ed07d6bf/diagnostic-ownership.json",
+      "sha256": "c178ac8781b40ae8da1e4fe9440390076678dd4b068e6913032fb97c5013ff22"
+    },
+    {
+      "path": "scripts/summarize-native-image.py",
+      "sha256": "8f39d797aec3f11a2537d7517d7077de8ad6b4f8d24ee59a44ff725665f59ab1"
+    }
+  ],
+  "as_context_records": [
+    {
+      "site": "0x1402e1b02",
+      "table_address": "0x1461c4330",
+      "native_owner": "0x1402de9d0",
+      "as_owner_diagnostic_contexts": [
+        "crates/wenilla-rogue-app/src/screens/codex.rs"
+      ],
+      "as_declared_extent_contexts": [
+        "crates/wenilla-rogue-app/src/screens/codex.rs"
+      ],
+      "all_targets_exact_instructions": false
+    },
+    {
+      "site": "0x145b03ae7",
+      "table_address": "0x1472f25dc",
+      "native_owner": "0x145b02e10",
+      "as_owner_diagnostic_contexts": [
+        "crates/wenilla-rogue/src/gear.rs",
+        "crates/wenilla-rogue/src/server/party.rs"
+      ],
+      "as_declared_extent_contexts": [
+        "crates/wenilla-rogue/src/gear.rs",
+        "crates/wenilla-rogue/src/server/party.rs"
+      ],
+      "all_targets_exact_instructions": false
+    },
+    {
+      "site": "0x145b04c22",
+      "table_address": "0x1472f279c",
+      "native_owner": "0x145b02e10",
+      "as_owner_diagnostic_contexts": [
+        "crates/wenilla-rogue/src/gear.rs",
+        "crates/wenilla-rogue/src/server/party.rs"
+      ],
+      "as_declared_extent_contexts": [
+        "crates/wenilla-rogue/src/gear.rs",
+        "crates/wenilla-rogue/src/server/party.rs"
+      ],
+      "all_targets_exact_instructions": false
+    },
+    {
+      "site": "0x145b04cc1",
+      "table_address": "0x1472f2914",
+      "native_owner": "0x145b02e10",
+      "as_owner_diagnostic_contexts": [
+        "crates/wenilla-rogue/src/gear.rs",
+        "crates/wenilla-rogue/src/server/party.rs"
+      ],
+      "as_declared_extent_contexts": [
+        "crates/wenilla-rogue/src/gear.rs",
+        "crates/wenilla-rogue/src/server/party.rs"
+      ],
+      "all_targets_exact_instructions": false
+    },
+    {
+      "site": "0x145b04e75",
+      "table_address": "0x1472f2ae8",
+      "native_owner": "0x145b02e10",
+      "as_owner_diagnostic_contexts": [
+        "crates/wenilla-rogue/src/gear.rs",
+        "crates/wenilla-rogue/src/server/party.rs"
+      ],
+      "as_declared_extent_contexts": [
+        "crates/wenilla-rogue/src/gear.rs",
+        "crates/wenilla-rogue/src/server/party.rs"
+      ],
+      "all_targets_exact_instructions": false
+    },
+    {
+      "site": "0x145b04fbf",
+      "table_address": "0x1472f2c7c",
+      "native_owner": "0x145b02e10",
+      "as_owner_diagnostic_contexts": [
+        "crates/wenilla-rogue/src/gear.rs",
+        "crates/wenilla-rogue/src/server/party.rs"
+      ],
+      "as_declared_extent_contexts": [
+        "crates/wenilla-rogue/src/gear.rs",
+        "crates/wenilla-rogue/src/server/party.rs"
+      ],
+      "all_targets_exact_instructions": false
+    },
+    {
+      "site": "0x145b04fe8",
+      "table_address": "0x1472f296c",
+      "native_owner": "0x145b02e10",
+      "as_owner_diagnostic_contexts": [
+        "crates/wenilla-rogue/src/gear.rs",
+        "crates/wenilla-rogue/src/server/party.rs"
+      ],
+      "as_declared_extent_contexts": [
+        "crates/wenilla-rogue/src/gear.rs",
+        "crates/wenilla-rogue/src/server/party.rs"
+      ],
+      "all_targets_exact_instructions": false
+    },
+    {
+      "site": "0x145b05014",
+      "table_address": "0x1472f2df8",
+      "native_owner": "0x145b02e10",
+      "as_owner_diagnostic_contexts": [
+        "crates/wenilla-rogue/src/gear.rs",
+        "crates/wenilla-rogue/src/server/party.rs"
+      ],
+      "as_declared_extent_contexts": [
+        "crates/wenilla-rogue/src/gear.rs",
+        "crates/wenilla-rogue/src/server/party.rs"
+      ],
+      "all_targets_exact_instructions": false
+    },
+    {
+      "site": "0x145b0530f",
+      "table_address": "0x1472f2e50",
+      "native_owner": "0x145b02e10",
+      "as_owner_diagnostic_contexts": [
+        "crates/wenilla-rogue/src/gear.rs",
+        "crates/wenilla-rogue/src/server/party.rs"
+      ],
+      "as_declared_extent_contexts": [
+        "crates/wenilla-rogue/src/gear.rs",
+        "crates/wenilla-rogue/src/server/party.rs"
+      ],
+      "all_targets_exact_instructions": false
+    },
+    {
+      "site": "0x145b05337",
+      "table_address": "0x1472f315c",
+      "native_owner": "0x145b02e10",
+      "as_owner_diagnostic_contexts": [
+        "crates/wenilla-rogue/src/gear.rs",
+        "crates/wenilla-rogue/src/server/party.rs"
+      ],
+      "as_declared_extent_contexts": [
+        "crates/wenilla-rogue/src/gear.rs",
+        "crates/wenilla-rogue/src/server/party.rs"
+      ],
+      "all_targets_exact_instructions": false
+    },
+    {
+      "site": "0x145b05374",
+      "table_address": "0x1472f2e28",
+      "native_owner": "0x145b02e10",
+      "as_owner_diagnostic_contexts": [
+        "crates/wenilla-rogue/src/gear.rs",
+        "crates/wenilla-rogue/src/server/party.rs"
+      ],
+      "as_declared_extent_contexts": [
+        "crates/wenilla-rogue/src/gear.rs",
+        "crates/wenilla-rogue/src/server/party.rs"
+      ],
+      "all_targets_exact_instructions": false
+    },
+    {
+      "site": "0x145b053a0",
+      "table_address": "0x1472f32d8",
+      "native_owner": "0x145b02e10",
+      "as_owner_diagnostic_contexts": [
+        "crates/wenilla-rogue/src/gear.rs",
+        "crates/wenilla-rogue/src/server/party.rs"
+      ],
+      "as_declared_extent_contexts": [
+        "crates/wenilla-rogue/src/gear.rs",
+        "crates/wenilla-rogue/src/server/party.rs"
+      ],
+      "all_targets_exact_instructions": false
+    },
+    {
+      "site": "0x145b05647",
+      "table_address": "0x1472f3450",
+      "native_owner": "0x145b02e10",
+      "as_owner_diagnostic_contexts": [
+        "crates/wenilla-rogue/src/gear.rs",
+        "crates/wenilla-rogue/src/server/party.rs"
+      ],
+      "as_declared_extent_contexts": [
+        "crates/wenilla-rogue/src/gear.rs",
+        "crates/wenilla-rogue/src/server/party.rs"
+      ],
+      "all_targets_exact_instructions": false
+    },
+    {
+      "site": "0x145b056e1",
+      "table_address": "0x1472f32ec",
+      "native_owner": "0x145b02e10",
+      "as_owner_diagnostic_contexts": [
+        "crates/wenilla-rogue/src/gear.rs",
+        "crates/wenilla-rogue/src/server/party.rs"
+      ],
+      "as_declared_extent_contexts": [
+        "crates/wenilla-rogue/src/gear.rs",
+        "crates/wenilla-rogue/src/server/party.rs"
+      ],
+      "all_targets_exact_instructions": false
+    }
+  ],
+  "source_semantics_complete": false,
+  "source_ownership_established": false,
+  "parity_verified": false,
+  "limits": [
+    "Diagnostic/body/extent association is supporting context, not semantic AS ownership. Proposed edges are not applied census edges. A current context cannot transfer historical semantic/source or runtime proof.",
+    "Historical semantic classifications are retained separately; these exact current table contexts and instruction-boundary results do not automatically transfer target applicability or re-open resolved behavior."
+  ]
+}

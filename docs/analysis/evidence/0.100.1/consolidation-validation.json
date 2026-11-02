@@ -1,0 +1,62 @@
+{
+  "reviewed_utc": "2026-10-19T01:19:22.971643+00:00",
+  "target_version": "0.100.1",
+  "target_sha256": "17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b",
+  "tested_source_commit": "f00978c8465970f2594fa2a1320a78a91dc6eb4c",
+  "tests": {
+    "command": "./scripts/cargo test -p azeroth-survivors-re --locked --offline --profile menu --lib --bin AzerothSurvivorsRE --tests --no-fail-fast",
+    "suites": 29,
+    "passed": 544,
+    "failed": 0,
+    "log": {
+      "path": "runtime/consolidation-2026-10-19/final-regressions-r20.log",
+      "bytes": 102801,
+      "sha256": "f0cfa9b664ea50faac52ad964a98912eb71a95a10d1d492b35e4cadd979cc437"
+    }
+  },
+  "build": {
+    "command": "./scripts/cargo build -p azeroth-survivors-re --locked --offline --profile menu",
+    "result": "passed",
+    "log": {
+      "path": "runtime/consolidation-2026-10-19/footer-build.log",
+      "bytes": 21351,
+      "sha256": "eca51b5c27c9f5d2eecfb5a18a8b49fb22a2001dc29f5e82bdfa90120fa96524"
+    }
+  },
+  "captures": [
+    {
+      "path": "runtime/consolidation-2026-10-19/rebuilt/menu-final.png",
+      "bytes": 3810603,
+      "sha256": "cb3f1634de26987fe67cd7c7eaaf5babfa1242dcff56bcb8faf242ba69905326",
+      "width": 4320,
+      "height": 2700,
+      "observation": "Menu rendered; visually confirmed target footer v0.100.1 (903c892d)."
+    },
+    {
+      "path": "runtime/consolidation-2026-10-19/rebuilt/elwynn-final.png",
+      "bytes": 8270088,
+      "sha256": "80666b7a42ac2c2be347359b89f33afcf29d095039511a259e192fafbe4c3e3c",
+      "width": 3200,
+      "height": 1800,
+      "observation": "Resident real-MPQ ready scene with player, FrameXML and Move to begin; no interactive movement or combat was performed."
+    }
+  ],
+  "runtime_logs": [
+    {
+      "path": "runtime/consolidation-2026-10-19/rebuilt/logs/final-menu-footer.log",
+      "bytes": 11534,
+      "sha256": "bb211017de913311e636bf0f787af55bf23a563fc9bec935c25393e7abba5067"
+    },
+    {
+      "path": "runtime/consolidation-2026-10-19/rebuilt/logs/final-elwynn.log",
+      "bytes": 69870,
+      "sha256": "b7b5e43afff9470f8e6854265ff25df82bee20cf3312a9ea90d75c84d3ac493c"
+    }
+  ],
+  "runtime_limits": [
+    "Mac locked; final CUA inventory reports automatic unlock failed. Original/rebuilt interactive comparison remains blocked.",
+    "Rebuilt capture invocations used isolated BENILLA_HOME and WOW_ROGUE_SAVE paths under this checkout and exited successfully.",
+    "Elwynn cold load logged engine settle timeout before world readiness and audio starvation; interactive walking/collision/playback need follow-up.",
+    "No Windows execution, full-run interaction, native parity, push, PR, merge or Actions run is claimed."
+  ]
+}

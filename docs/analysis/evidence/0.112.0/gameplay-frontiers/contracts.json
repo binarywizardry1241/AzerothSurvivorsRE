@@ -1,0 +1,2199 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.112.0",
+    "sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+    "size_bytes": 140514816
+  },
+  "generator": {
+    "path": "scripts/check-gameplay-frontiers-0.112.0.py",
+    "sha256": "2ecc806b7a08de4f1bda784b89a118320f0485f291fb126e227616e50e8458ba"
+  },
+  "closed_return_contract": {
+    "site": "0x1459471a1",
+    "selector_register": "AL",
+    "selector_domain": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "domain_status": "closed-normal-return-domain",
+    "producer": {
+      "va": "0x1459b7f00",
+      "end_exclusive": "0x1459b82a6",
+      "byte_count": 934,
+      "sha256": "d2a234fcf1b6715ab6ba41ff988e5f7d36e38d9347434a2e67dc1afa3d50239e"
+    },
+    "canonical_producer_manifest": "docs/analysis/evidence/0.112.0/raid-inputs/manifest.json",
+    "canonical_producer_pseudocode": "docs/analysis/evidence/0.112.0/raid-inputs/guardian-reset.pseudo.c",
+    "direct_call": {
+      "va": "0x14594718a",
+      "end_exclusive": "0x14594718f",
+      "byte_count": 5,
+      "sha256": "8aa82c0b80139bd27fb207ed049c8378a3f5fd1066efbfa9491e48c3f5f83f38"
+    },
+    "consumer": {
+      "va": "0x14594718f",
+      "end_exclusive": "0x1459471a3",
+      "byte_count": 20,
+      "sha256": "c5e6d295289ecefd45663db6f818ca13ec105cfca4ab68b1b3fa819c5a4e8f0e"
+    },
+    "proof": {
+      "normal_return_values": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "normal_return_sites": [
+        "0x1459b8200"
+      ],
+      "reached_instruction_count": 220,
+      "calls_with_unrestricted_return_values": [
+        "0x1459b8004",
+        "0x1459b8011",
+        "0x1459b81b3",
+        "0x1459b829f"
+      ],
+      "proof": "Complete direct-CFG AL lattice; all conditional paths explored and all calls clobber AL; no input-value assumptions."
+    },
+    "table": {
+      "va": "0x146c0c66c",
+      "end_exclusive": "0x146c0c67c",
+      "byte_count": 16,
+      "sha256": "4e76a7d65710a23577b2fadd231612d84965cf092cd84b69ed939e57addbf6cc",
+      "encoding": "signed-LE32-relative-to-table",
+      "hex": "37abd3fe19add3fed9afd3feadadd3fe",
+      "index_values": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "targets": [
+        "0x1459471a3",
+        "0x145947385",
+        "0x145947645",
+        "0x145947419"
+      ],
+      "whole_domain_independent_instruction_boundaries": true
+    },
+    "native_cases": [
+      {
+        "awake": 0,
+        "player_x": 0.0,
+        "result": 1
+      },
+      {
+        "awake": 0,
+        "player_x": 10.0,
+        "result": 0
+      },
+      {
+        "awake": 0,
+        "player_x": 97.5,
+        "result": 0
+      },
+      {
+        "awake": 0,
+        "player_x": 98.0,
+        "result": 0
+      },
+      {
+        "awake": 1,
+        "player_x": 0.0,
+        "result": 3
+      },
+      {
+        "awake": 1,
+        "player_x": 10.0,
+        "result": 3
+      },
+      {
+        "awake": 1,
+        "player_x": 97.5,
+        "result": 3
+      },
+      {
+        "awake": 1,
+        "player_x": 98.0,
+        "result": 2
+      }
+    ],
+    "prefix_replays": [
+      {
+        "selector": 0,
+        "destination": "0x1459471a3"
+      },
+      {
+        "selector": 1,
+        "destination": "0x145947385"
+      },
+      {
+        "selector": 2,
+        "destination": "0x145947645"
+      },
+      {
+        "selector": 3,
+        "destination": "0x145947419"
+      }
+    ]
+  },
+  "fixed_input_contract": {
+    "site": "0x14590512b",
+    "selector_register": "ESI",
+    "selector_domain": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "domain_status": "closed-for-recovered-fixed-four-byte-input-route",
+    "producer": {
+      "va": "0x1459cbd40",
+      "end_exclusive": "0x1459cbeab",
+      "byte_count": 363,
+      "sha256": "e49050525b1f4a141e5ea55856dc2e1b1e66d28e564bf9736f699fb3b84120a9"
+    },
+    "fixed_input": {
+      "va": "0x145904df8",
+      "end_exclusive": "0x145904e32",
+      "byte_count": 58,
+      "sha256": "34c6f51db4c0b70e0c6dd9641cabc43faef68fc8e093865095d6049d8d1e84c6"
+    },
+    "iterator_layout": "state pointer, cursor0, end4, inline bytes00/01/02/03",
+    "filter_rule": "Copies each supplied inline byte except the byte addressed by the state pointer, in order.",
+    "output_stores": [
+      {
+        "va": "0x1459cbda6",
+        "end_exclusive": "0x1459cbda8",
+        "byte_count": 2,
+        "sha256": "336badb91c15b26fd3b97a0131fb8cee9b0e3dc52f1684b4168dc50da6dbb6f5"
+      },
+      {
+        "va": "0x1459cbe7e",
+        "end_exclusive": "0x1459cbe85",
+        "byte_count": 7,
+        "sha256": "a4ed86ef526ef186bf2f318223e01d29f276107d1aed8ee71f3ce32715c7c9c5"
+      }
+    ],
+    "selected_byte_load": {
+      "va": "0x145904ed0",
+      "end_exclusive": "0x145904ef2",
+      "byte_count": 34,
+      "sha256": "f5b1718a0f3cb8e1ad9248e8e74196d63c295456c7a72acc0439ac8f4160dcb0"
+    },
+    "fallback_scalar_save": {
+      "va": "0x145904fe9",
+      "end_exclusive": "0x145904fef",
+      "byte_count": 6,
+      "sha256": "8c62b96f809162591721f93c367eb10564636d79bd07cdd6114f2b9271bfddd0"
+    },
+    "fallback_scalar_restore": {
+      "va": "0x145905050",
+      "end_exclusive": "0x145905060",
+      "byte_count": 16,
+      "sha256": "9d4712dc5eac1ccb2689b6b0f0a13ce41d2b0d183b3726211c913e4fff4d9b78"
+    },
+    "consumer": {
+      "va": "0x14590511b",
+      "end_exclusive": "0x14590512d",
+      "byte_count": 18,
+      "sha256": "af491afd64e6c282f01ea4e6d1cca46ead47963d5d88863f5442a4e68d54b858"
+    },
+    "table": {
+      "va": "0x146c0c200",
+      "end_exclusive": "0x146c0c210",
+      "byte_count": 16,
+      "sha256": "f3314de61c6ef5963d0533763f2dd8ac6a7ce5047b80a76e7dab9dd6e2f08f4e",
+      "encoding": "signed-LE32-relative-to-table",
+      "hex": "2d8fcffe6d91cffe9d8fcffe3c90cffe",
+      "index_values": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "targets": [
+        "0x14590512d",
+        "0x14590536d",
+        "0x14590519d",
+        "0x14590523c"
+      ],
+      "whole_domain_independent_instruction_boundaries": true
+    },
+    "native_previous_state_cases": 256,
+    "case_results_sha256": "34f71f34d7a8151c8a336925a9e72b9487b56cad7c7b01fe70140376e7738cd2",
+    "prefix_replays": [
+      {
+        "selector": 0,
+        "destination": "0x14590512d"
+      },
+      {
+        "selector": 1,
+        "destination": "0x14590536d"
+      },
+      {
+        "selector": 2,
+        "destination": "0x14590519d"
+      },
+      {
+        "selector": 3,
+        "destination": "0x14590523c"
+      }
+    ],
+    "whole_program_incoming_aliases_or_native_body_ownership_claimed": false,
+    "limits": [
+      "The fixed input and complete filter writes close this producer route; no arbitrary replacement vector is admitted.",
+      "The native caller selects through a length-checked UniformInt index and preserves its chosen byte through the fallback stack slot.",
+      "Allocator and external helper stack/ABI contracts are independent shared interfaces; no whole-program alias theorem is inferred."
+    ]
+  },
+  "equipped_effect_input_contract": {
+    "current_talent_descriptors": 355,
+    "current_talent_effect_payloads": 429,
+    "current_rank_collector_cases": 1121,
+    "current_ranked_effect_rows": 1227,
+    "descriptor_order_sha256": "1ebdb3c91ed622b0dab1930c696589ec3a108e77e6eaa8d5c44e799b1c2b7044",
+    "current_amulet_descriptors": {
+      "generated": 113,
+      "shared": 16,
+      "produced_effect_rows": 372
+    },
+    "input_effect_tag_counts": {
+      "0": 28,
+      "1": 5,
+      "3": 5,
+      "4": 9,
+      "5": 3,
+      "6": 35,
+      "7": 12,
+      "8": 44,
+      "9": 14,
+      "10": 5,
+      "11": 26,
+      "12": 2,
+      "13": 3,
+      "14": 2,
+      "15": 5,
+      "17": 3,
+      "18": 13,
+      "19": 5,
+      "20": 1,
+      "21": 1,
+      "22": 2,
+      "23": 2,
+      "24": 1,
+      "25": 3,
+      "26": 14,
+      "27": 19,
+      "28": 6,
+      "29": 18,
+      "30": 3,
+      "31": 3,
+      "32": 1,
+      "33": 6,
+      "34": 2,
+      "35": 3,
+      "36": 640,
+      "37": 655
+    },
+    "spell_modifier_domain": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "source_talent_tags_order_and_modifiers_checked": true,
+    "aggregate_cases": 1599,
+    "generic_rows": 304,
+    "spell_rows": 655,
+    "merged_stats": 29,
+    "original_generic_metadata_order_verified": true,
+    "original_generic_record_copy_verified": true,
+    "generic_output_domain": [
+      0,
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35
+    ],
+    "native_aggregate": {
+      "va": "0x1458975c0",
+      "end_exclusive": "0x1458977e0",
+      "byte_count": 544,
+      "sha256": "0e2f215f14fefde51b00b090182878ec52a1223cf168bdfa0d0adc22a8ffb124"
+    },
+    "native_rebuild_publication": {
+      "va": "0x14592d831",
+      "end_exclusive": "0x14592d894",
+      "byte_count": 99,
+      "sha256": "7c358a2e7b6a3771416069fde83d41afc5faf9040b30fec0a90fd9299ded3b58"
+    },
+    "producer_contract": "Native36 and37 are diverted into stats/modifier vectors; all other current records retain full64 bytes and matching40-byte provenance in original order.",
+    "executor_table": {
+      "va": "0x146c0c540",
+      "end_exclusive": "0x146c0c5d0",
+      "byte_count": 144,
+      "sha256": "475ae2350de0653ca0188f65efe278d75d1bc6de71794b1f4239d0dd013f229e",
+      "encoding": "signed-LE32-relative-to-table",
+      "hex": "ea9cd2fe66a1d2fe4f99d2fe2c9bd2fe5194d2fe3b9ad2fe40a2d2fee19ed2fefca4d2fec7a0d2fe7697d2fe218ad2fe268bd2fe9089d2fe118cd2fe5a96d2fe7598d2fe8995d2fee296d2fe9089d2fe9089d2fe9089d2fe9089d2fe9089d2fe9089d2fe9089d2fe9089d2fe9089d2fe9089d2fe9089d2fe9089d2fe9089d2fe9089d2fe318cd2fe9089d2fe798dd2fe",
+      "index_values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35
+      ],
+      "targets": [
+        "0x14593622a",
+        "0x1459366a6",
+        "0x145935e8f",
+        "0x14593606c",
+        "0x145935991",
+        "0x145935f7b",
+        "0x145936780",
+        "0x145936421",
+        "0x145936a3c",
+        "0x145936607",
+        "0x145935cb6",
+        "0x145934f61",
+        "0x145935066",
+        "0x145934ed0",
+        "0x145935151",
+        "0x145935b9a",
+        "0x145935db5",
+        "0x145935ac9",
+        "0x145935c22",
+        "0x145934ed0",
+        "0x145934ed0",
+        "0x145934ed0",
+        "0x145934ed0",
+        "0x145934ed0",
+        "0x145934ed0",
+        "0x145934ed0",
+        "0x145934ed0",
+        "0x145934ed0",
+        "0x145934ed0",
+        "0x145934ed0",
+        "0x145934ed0",
+        "0x145934ed0",
+        "0x145934ed0",
+        "0x145935171",
+        "0x145934ed0",
+        "0x1459352b9"
+      ],
+      "whole_domain_independent_instruction_boundaries": true
+    },
+    "content_tables": [
+      {
+        "va": "0x147246884",
+        "end_exclusive": "0x1472468a0",
+        "byte_count": 28,
+        "sha256": "c32d7e4f8471b3ed7e7357f6949c2efdffb4727c7a9897cc6bf53b9975be34aa",
+        "encoding": "signed-LE32-relative-to-table",
+        "hex": "aaf07afe9cf27afe13fc7afeadf67afe81f57afee5fc7afec8f37afe",
+        "index_values": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "targets": [
+          "0x1459f592e",
+          "0x1459f5b20",
+          "0x1459f6497",
+          "0x1459f5f31",
+          "0x1459f5e05",
+          "0x1459f6569",
+          "0x1459f5c4c"
+        ],
+        "whole_domain_independent_instruction_boundaries": true
+      },
+      {
+        "va": "0x147246868",
+        "end_exclusive": "0x147246884",
+        "byte_count": 28,
+        "sha256": "2837ef7c7d9710614c67e780be60b6485aeacaeca4d931c2a937bb119b4908b1",
+        "encoding": "signed-LE32-relative-to-table",
+        "hex": "c6f07afeb8f27afe26f97afec9f67afe9df57afefbf97afee4f37afe",
+        "index_values": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "targets": [
+          "0x1459f592e",
+          "0x1459f5b20",
+          "0x1459f618e",
+          "0x1459f5f31",
+          "0x1459f5e05",
+          "0x1459f6263",
+          "0x1459f5c4c"
+        ],
+        "whole_domain_independent_instruction_boundaries": true
+      },
+      {
+        "va": "0x1472468f4",
+        "end_exclusive": "0x147246910",
+        "byte_count": 28,
+        "sha256": "a8cc8117ee26ae914ced3e6a3b124d1c4fe61b8625caa531200b30f0f0ee6371",
+        "encoding": "signed-LE32-relative-to-table",
+        "hex": "1d387bfeba3d7bfe073c7bfedc3c7bfe293b7bfe983e7bfe763f7bfe",
+        "index_values": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "targets": [
+          "0x1459fa111",
+          "0x1459fa6ae",
+          "0x1459fa4fb",
+          "0x1459fa5d0",
+          "0x1459fa41d",
+          "0x1459fa78c",
+          "0x1459fa86a"
+        ],
+        "whole_domain_independent_instruction_boundaries": true
+      }
+    ],
+    "executor_prefix_replays": [
+      {
+        "selector": 0,
+        "destination": "0x14593622a"
+      },
+      {
+        "selector": 1,
+        "destination": "0x1459366a6"
+      },
+      {
+        "selector": 2,
+        "destination": "0x145935e8f"
+      },
+      {
+        "selector": 3,
+        "destination": "0x14593606c"
+      },
+      {
+        "selector": 4,
+        "destination": "0x145935991"
+      },
+      {
+        "selector": 5,
+        "destination": "0x145935f7b"
+      },
+      {
+        "selector": 6,
+        "destination": "0x145936780"
+      },
+      {
+        "selector": 7,
+        "destination": "0x145936421"
+      },
+      {
+        "selector": 8,
+        "destination": "0x145936a3c"
+      },
+      {
+        "selector": 9,
+        "destination": "0x145936607"
+      },
+      {
+        "selector": 10,
+        "destination": "0x145935cb6"
+      },
+      {
+        "selector": 11,
+        "destination": "0x145934f61"
+      },
+      {
+        "selector": 12,
+        "destination": "0x145935066"
+      },
+      {
+        "selector": 13,
+        "destination": "0x145934ed0"
+      },
+      {
+        "selector": 14,
+        "destination": "0x145935151"
+      },
+      {
+        "selector": 15,
+        "destination": "0x145935b9a"
+      },
+      {
+        "selector": 16,
+        "destination": "0x145935db5"
+      },
+      {
+        "selector": 17,
+        "destination": "0x145935ac9"
+      },
+      {
+        "selector": 18,
+        "destination": "0x145935c22"
+      },
+      {
+        "selector": 19,
+        "destination": "0x145934ed0"
+      },
+      {
+        "selector": 20,
+        "destination": "0x145934ed0"
+      },
+      {
+        "selector": 21,
+        "destination": "0x145934ed0"
+      },
+      {
+        "selector": 22,
+        "destination": "0x145934ed0"
+      },
+      {
+        "selector": 23,
+        "destination": "0x145934ed0"
+      },
+      {
+        "selector": 24,
+        "destination": "0x145934ed0"
+      },
+      {
+        "selector": 25,
+        "destination": "0x145934ed0"
+      },
+      {
+        "selector": 26,
+        "destination": "0x145934ed0"
+      },
+      {
+        "selector": 27,
+        "destination": "0x145934ed0"
+      },
+      {
+        "selector": 28,
+        "destination": "0x145934ed0"
+      },
+      {
+        "selector": 29,
+        "destination": "0x145934ed0"
+      },
+      {
+        "selector": 30,
+        "destination": "0x145934ed0"
+      },
+      {
+        "selector": 31,
+        "destination": "0x145934ed0"
+      },
+      {
+        "selector": 32,
+        "destination": "0x145934ed0"
+      },
+      {
+        "selector": 33,
+        "destination": "0x145935171"
+      },
+      {
+        "selector": 34,
+        "destination": "0x145934ed0"
+      },
+      {
+        "selector": 35,
+        "destination": "0x1459352b9"
+      }
+    ],
+    "content_prefix_replays": [
+      {
+        "site": "0x1459f5738",
+        "cases": [
+          {
+            "selector": 0,
+            "destination": "0x1459f592e"
+          },
+          {
+            "selector": 1,
+            "destination": "0x1459f5b20"
+          },
+          {
+            "selector": 2,
+            "destination": "0x1459f6497"
+          },
+          {
+            "selector": 3,
+            "destination": "0x1459f5f31"
+          },
+          {
+            "selector": 4,
+            "destination": "0x1459f5e05"
+          },
+          {
+            "selector": 5,
+            "destination": "0x1459f6569"
+          },
+          {
+            "selector": 6,
+            "destination": "0x1459f5c4c"
+          }
+        ]
+      },
+      {
+        "site": "0x1459f592c",
+        "cases": [
+          {
+            "selector": 0,
+            "destination": "0x1459f592e"
+          },
+          {
+            "selector": 1,
+            "destination": "0x1459f5b20"
+          },
+          {
+            "selector": 2,
+            "destination": "0x1459f618e"
+          },
+          {
+            "selector": 3,
+            "destination": "0x1459f5f31"
+          },
+          {
+            "selector": 4,
+            "destination": "0x1459f5e05"
+          },
+          {
+            "selector": 5,
+            "destination": "0x1459f6263"
+          },
+          {
+            "selector": 6,
+            "destination": "0x1459f5c4c"
+          }
+        ]
+      },
+      {
+        "site": "0x1459f5b1e",
+        "cases": [
+          {
+            "selector": 0,
+            "destination": "0x1459f592e"
+          },
+          {
+            "selector": 1,
+            "destination": "0x1459f5b20"
+          },
+          {
+            "selector": 2,
+            "destination": "0x1459f6497"
+          },
+          {
+            "selector": 3,
+            "destination": "0x1459f5f31"
+          },
+          {
+            "selector": 4,
+            "destination": "0x1459f5e05"
+          },
+          {
+            "selector": 5,
+            "destination": "0x1459f6569"
+          },
+          {
+            "selector": 6,
+            "destination": "0x1459f5c4c"
+          }
+        ]
+      },
+      {
+        "site": "0x1459fa10f",
+        "cases": [
+          {
+            "selector": 0,
+            "destination": "0x1459fa111"
+          },
+          {
+            "selector": 1,
+            "destination": "0x1459fa6ae"
+          },
+          {
+            "selector": 2,
+            "destination": "0x1459fa4fb"
+          },
+          {
+            "selector": 3,
+            "destination": "0x1459fa5d0"
+          },
+          {
+            "selector": 4,
+            "destination": "0x1459fa41d"
+          },
+          {
+            "selector": 5,
+            "destination": "0x1459fa78c"
+          },
+          {
+            "selector": 6,
+            "destination": "0x1459fa86a"
+          }
+        ]
+      }
+    ],
+    "limits": [
+      "All current355 talent and129 amulet descriptor inputs, native rank transforms and original aggregate copies are covered.",
+      "The reconstructed source uses historical internal tags30/31 and explicit253 markers for current Warlock29..35; numeric inputs never acquire generic effect indices.",
+      "These producer domains do not by themselves prove every saved-input, caller alias or mutable Vec writer in the complete program."
+    ]
+  },
+  "aggregate_order_fixtures": [
+    {
+      "native_inputs_hex": [],
+      "native_generic_tags": [],
+      "native_generic_input_indices": [],
+      "spell_count": 0,
+      "stat_tag_value_bits": []
+    },
+    {
+      "native_inputs_hex": [
+        "240000000000803e0300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "25000000000000000000000000000000000000000000000000000000000000000000003e00000000000000000000000000000000000000000100000000000000"
+      ],
+      "native_generic_tags": [],
+      "native_generic_input_indices": [],
+      "spell_count": 1,
+      "stat_tag_value_bits": [
+        [
+          3,
+          1048576000
+        ]
+      ]
+    },
+    {
+      "native_inputs_hex": [
+        "240000000000803e0300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000",
+        "25000000000000000000000000000000000000000000000000000000000000000000803e00000000000000000000000000000000000000000200000000000000",
+        "0d000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000300000000000000",
+        "24000000000088400300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000400000000000000",
+        "1d000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000500000000000000",
+        "1e000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000600000000000000",
+        "21000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000700000000000000"
+      ],
+      "native_generic_tags": [
+        0,
+        13,
+        29,
+        30,
+        33
+      ],
+      "native_generic_input_indices": [
+        1,
+        3,
+        5,
+        6,
+        7
+      ],
+      "spell_count": 1,
+      "stat_tag_value_bits": [
+        [
+          3,
+          1083179008
+        ]
+      ]
+    },
+    {
+      "native_inputs_hex": [
+        "25000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "240000000000a03f0300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000",
+        "25000000000000000000000000000000000000000000000000000000000000000000803e00000000000000000000000000000000000000000200000000000000",
+        "04000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000300000000000000",
+        "1f000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000400000000000000",
+        "23000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000500000000000000"
+      ],
+      "native_generic_tags": [
+        4,
+        31,
+        35
+      ],
+      "native_generic_input_indices": [
+        3,
+        4,
+        5
+      ],
+      "spell_count": 2,
+      "stat_tag_value_bits": [
+        [
+          3,
+          1067450368
+        ]
+      ]
+    }
+  ],
+  "generic_slot_reset_contract": {
+    "native_range": {
+      "va": "0x14592d894",
+      "end_exclusive": "0x14592da81",
+      "byte_count": 493,
+      "sha256": "657ae495a34cdee8aef64b887adb54a6a7966a4542b4436a7076eea4fd675289"
+    },
+    "cases": 147,
+    "arrays": [
+      "Game+68/70/78 u32",
+      "Game+80/88/90 u32",
+      "Game+98/a0/a8 Vec<f32>"
+    ],
+    "rule": "Preserve min(old length,generic talent count), then initialize the entire generic suffix and publish its total length.",
+    "results_sha256": "eb3f5e2c2737e36652833073e54ad35605a7156e7022353336bb818ba8b047e4",
+    "source": "crates/azeroth-survivors-re/src/run_effects/milestones.rs::refresh_slots",
+    "limits": "Synthetic spare capacities avoid allocator-growth branches; borrowed empty nested vectors identify retained slots. No Rust executes."
+  },
+  "temporary_prefix_reset_contract": {
+    "native_ranges": [
+      {
+        "va": "0x14592da81",
+        "end_exclusive": "0x14592dab9",
+        "byte_count": 56,
+        "sha256": "11826edef90bd891889ae6db66ba95e05ffdb22fb3d1acdb8e657545dcb95326"
+      },
+      {
+        "va": "0x14592df8f",
+        "end_exclusive": "0x14592e03b",
+        "byte_count": 172,
+        "sha256": "5676f91a186111a3547913256ee5b983a78dbbed066bc6c0d9c59e24675dcbd6"
+      }
+    ],
+    "cases": 49,
+    "results_sha256": "19fca19320d9f8378501fa1cf67e170bd118dfd7e974e7426d07a7e1c98d238b",
+    "rule": "Stable retain effect_index < generic talent count; discard the complete old amulet suffix even when a replacement keeps its numeric index.",
+    "fixture_layout": "16-byte source-index/stacks/expiry records; no active effect or Rust game executes."
+  },
+  "observed_direct_calls": {
+    "targets": {
+      "0x145944310": [
+        {
+          "call": {
+            "va": "0x1458fbe0d",
+            "end_exclusive": "0x1458fbe12",
+            "byte_count": 5,
+            "sha256": "0ffe7f895bdd93264d061054a316631e11bb69d76eb14b9a03dbf91c0d674d3c"
+          },
+          "bytes": "e8fe840400",
+          "owner": [
+            "0x1458fb890",
+            "0x145908680"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x1458fbe3c",
+            "end_exclusive": "0x1458fbe41",
+            "byte_count": 5,
+            "sha256": "0c1b3ccb801b76466c685d633ca0a9945f0278f4ec20022b041eac50874a5ea8"
+          },
+          "bytes": "e8cf840400",
+          "owner": [
+            "0x1458fb890",
+            "0x145908680"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x1458fbe6b",
+            "end_exclusive": "0x1458fbe70",
+            "byte_count": 5,
+            "sha256": "7593798567d45ada692a9ed2e50eadc360f022c56250083dfc1675b01da5e99f"
+          },
+          "bytes": "e8a0840400",
+          "owner": [
+            "0x1458fb890",
+            "0x145908680"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x1458fbe9d",
+            "end_exclusive": "0x1458fbea2",
+            "byte_count": 5,
+            "sha256": "7df3be2068401f8f6ae124bbdf16d71f4948bda4035f67a43cb520823bf5c7de"
+          },
+          "bytes": "e86e840400",
+          "owner": [
+            "0x1458fb890",
+            "0x145908680"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x1458fbec9",
+            "end_exclusive": "0x1458fbece",
+            "byte_count": 5,
+            "sha256": "3e7633c0a9b015207d2956b0a395a5739d57be427f34ec476eacf3800e41f3a3"
+          },
+          "bytes": "e842840400",
+          "owner": [
+            "0x1458fb890",
+            "0x145908680"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x1458fbef5",
+            "end_exclusive": "0x1458fbefa",
+            "byte_count": 5,
+            "sha256": "da3a69018231bfd4a7f29cc462636ce4cddc496eb0ff88a5f64c1e425115c141"
+          },
+          "bytes": "e816840400",
+          "owner": [
+            "0x1458fb890",
+            "0x145908680"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x1458fbf21",
+            "end_exclusive": "0x1458fbf26",
+            "byte_count": 5,
+            "sha256": "87f58942de95b0af359c58c91e68bcd93396168d0bc23da9dfdad190f2e77ec5"
+          },
+          "bytes": "e8ea830400",
+          "owner": [
+            "0x1458fb890",
+            "0x145908680"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x1458fbf4d",
+            "end_exclusive": "0x1458fbf52",
+            "byte_count": 5,
+            "sha256": "0569c6e1801b8ba00b1675440c4b4a2b68e26d4f458c8c88e284f129addb5981"
+          },
+          "bytes": "e8be830400",
+          "owner": [
+            "0x1458fb890",
+            "0x145908680"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x1458fbf76",
+            "end_exclusive": "0x1458fbf7b",
+            "byte_count": 5,
+            "sha256": "daea1839626c414a929d568ab3f885e7752c20461103d8d0c67fc6034f2502e1"
+          },
+          "bytes": "e895830400",
+          "owner": [
+            "0x1458fb890",
+            "0x145908680"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x145906794",
+            "end_exclusive": "0x145906799",
+            "byte_count": 5,
+            "sha256": "3bd96e731c2b9f65f2355f2822ebc839758fd4bdddaa66925d2859b63086ab98"
+          },
+          "bytes": "e877db0300",
+          "owner": [
+            "0x1458fb890",
+            "0x145908680"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x1459068e0",
+            "end_exclusive": "0x1459068e5",
+            "byte_count": 5,
+            "sha256": "0146b70bc84608a47c0d41f371a030af0f6c80230098618e90ec020b5ccaa930"
+          },
+          "bytes": "e82bda0300",
+          "owner": [
+            "0x1458fb890",
+            "0x145908680"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x145906959",
+            "end_exclusive": "0x14590695e",
+            "byte_count": 5,
+            "sha256": "ac4f0f9ee6873d0efa0cce8342247beb8d48a7e53dc675994f4d2eab4251831f"
+          },
+          "bytes": "e8b2d90300",
+          "owner": [
+            "0x1458fb890",
+            "0x145908680"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x14590f400",
+            "end_exclusive": "0x14590f405",
+            "byte_count": 5,
+            "sha256": "7b7de3f41a1cccaccb6b770a43118b4559c0b547720fe5aa539797e7523147e4"
+          },
+          "bytes": "e80b4f0300",
+          "owner": [
+            "0x14590d7a0",
+            "0x145910cfa"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x14590f421",
+            "end_exclusive": "0x14590f426",
+            "byte_count": 5,
+            "sha256": "c6e91e6d220ada8b39bb86434705e4d4a5839af156d12eb06e11dde47647362b"
+          },
+          "bytes": "e8ea4e0300",
+          "owner": [
+            "0x14590d7a0",
+            "0x145910cfa"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x14593d4e8",
+            "end_exclusive": "0x14593d4ed",
+            "byte_count": 5,
+            "sha256": "a6153e728cd6e3224890dd94a3d4eb8cabba91c63e6376b4773dcf68a0757475"
+          },
+          "bytes": "e8236e0000",
+          "owner": [
+            "0x14593d3f0",
+            "0x14593d4f6"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x145940607",
+            "end_exclusive": "0x14594060c",
+            "byte_count": 5,
+            "sha256": "f7b592a16b1c7bb95cf70e9103f03f326c43a5c537c2908ac9728cc5137003ee"
+          },
+          "bytes": "e8043d0000",
+          "owner": [
+            "0x14593ec90",
+            "0x145942543"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x145940786",
+            "end_exclusive": "0x14594078b",
+            "byte_count": 5,
+            "sha256": "a8b444a8757e909bfdd59b281ef6906c25b6f51facb2e2a9909e5f2181a412c5"
+          },
+          "bytes": "e8853b0000",
+          "owner": [
+            "0x14593ec90",
+            "0x145942543"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x1459407df",
+            "end_exclusive": "0x1459407e4",
+            "byte_count": 5,
+            "sha256": "93bcff902e17dae2d2592d73949a08367de28b0ed94820a34bccdaaf26ae7703"
+          },
+          "bytes": "e82c3b0000",
+          "owner": [
+            "0x14593ec90",
+            "0x145942543"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x14594084e",
+            "end_exclusive": "0x145940853",
+            "byte_count": 5,
+            "sha256": "396e76db7a99d2ca912ab86f6da1c4e011c7a6aaa7bc227440cb8fc064c14f7f"
+          },
+          "bytes": "e8bd3a0000",
+          "owner": [
+            "0x14593ec90",
+            "0x145942543"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x145940c53",
+            "end_exclusive": "0x145940c58",
+            "byte_count": 5,
+            "sha256": "08704955902cbbe752251602ba4b883f4763725368bda0f7ffbe8452a83a2766"
+          },
+          "bytes": "e8b8360000",
+          "owner": [
+            "0x14593ec90",
+            "0x145942543"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x145940d68",
+            "end_exclusive": "0x145940d6d",
+            "byte_count": 5,
+            "sha256": "3e1ec62c3c89d2f75135da89fe73d6bfb72d08ec61709d0c84d424ae8e58706e"
+          },
+          "bytes": "e8a3350000",
+          "owner": [
+            "0x14593ec90",
+            "0x145942543"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x145940dd6",
+            "end_exclusive": "0x145940ddb",
+            "byte_count": 5,
+            "sha256": "87c24333409ad8e744e3a32a228dd9afa8e372bd00f022e2632ad78a25de5d0d"
+          },
+          "bytes": "e835350000",
+          "owner": [
+            "0x14593ec90",
+            "0x145942543"
+          ]
+        }
+      ],
+      "0x14591f490": [
+        {
+          "call": {
+            "va": "0x14591fc98",
+            "end_exclusive": "0x14591fc9d",
+            "byte_count": 5,
+            "sha256": "429c5168eca1ddffeac48daa0b259c7eb7dd4df14105bcb835bc705d12286cf8"
+          },
+          "bytes": "e8f3f7ffff",
+          "owner": [
+            "0x14591f790",
+            "0x145924bf2"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x14591fe8b",
+            "end_exclusive": "0x14591fe90",
+            "byte_count": 5,
+            "sha256": "b4dea681ebde12801f67e87bf822214083c08d67145c4a3e9b0809afa0bcaf84"
+          },
+          "bytes": "e800f6ffff",
+          "owner": [
+            "0x14591f790",
+            "0x145924bf2"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x1459204b0",
+            "end_exclusive": "0x1459204b5",
+            "byte_count": 5,
+            "sha256": "1c72874720dc834606060d8e9107665d25560115b481aa74dc0c95aec9599b25"
+          },
+          "bytes": "e8dbefffff",
+          "owner": [
+            "0x14591f790",
+            "0x145924bf2"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x14592070b",
+            "end_exclusive": "0x145920710",
+            "byte_count": 5,
+            "sha256": "09f4e9c788678ad861bd6e408f78089699e8862098796142d2b7f5d92a8bfb99"
+          },
+          "bytes": "e880edffff",
+          "owner": [
+            "0x14591f790",
+            "0x145924bf2"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x145920c9b",
+            "end_exclusive": "0x145920ca0",
+            "byte_count": 5,
+            "sha256": "30e8c068e7b1433ebfc80635ffcdb7fe1921ef1b7f47ff3055fe4caa1b9497f1"
+          },
+          "bytes": "e8f0e7ffff",
+          "owner": [
+            "0x14591f790",
+            "0x145924bf2"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x145921399",
+            "end_exclusive": "0x14592139e",
+            "byte_count": 5,
+            "sha256": "51a005098b15918a82c497d9bbedbbadbb048edb95c62818b9156926e2e5a90d"
+          },
+          "bytes": "e8f2e0ffff",
+          "owner": [
+            "0x14591f790",
+            "0x145924bf2"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x145921b3d",
+            "end_exclusive": "0x145921b42",
+            "byte_count": 5,
+            "sha256": "2a3eea3a279a155a761b92e2aa64ba8f05100ff3a8957062222d5dbb37aad543"
+          },
+          "bytes": "e84ed9ffff",
+          "owner": [
+            "0x14591f790",
+            "0x145924bf2"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x14592242d",
+            "end_exclusive": "0x145922432",
+            "byte_count": 5,
+            "sha256": "3a9594d8507a0900857858f75f745416a7d0155ce12562554dc4e6d1c6128ed4"
+          },
+          "bytes": "e85ed0ffff",
+          "owner": [
+            "0x14591f790",
+            "0x145924bf2"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x1459225ea",
+            "end_exclusive": "0x1459225ef",
+            "byte_count": 5,
+            "sha256": "382c3626986cc31def771ba6d0d9a3fdd75a94b9c2aaca86135a3902f04aa6d6"
+          },
+          "bytes": "e8a1ceffff",
+          "owner": [
+            "0x14591f790",
+            "0x145924bf2"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x145922b08",
+            "end_exclusive": "0x145922b0d",
+            "byte_count": 5,
+            "sha256": "4d4bb219ab7b2c4dcf136266bb37f357644e6744f3ec37d3f0ab227a99e65a12"
+          },
+          "bytes": "e883c9ffff",
+          "owner": [
+            "0x14591f790",
+            "0x145924bf2"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x145922fe1",
+            "end_exclusive": "0x145922fe6",
+            "byte_count": 5,
+            "sha256": "60128d36d387f21583cc7b1661c2a36bdf5127a14bf7a1a23580f30b54c8d98b"
+          },
+          "bytes": "e8aac4ffff",
+          "owner": [
+            "0x14591f790",
+            "0x145924bf2"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x145923d89",
+            "end_exclusive": "0x145923d8e",
+            "byte_count": 5,
+            "sha256": "d9b51f99937d6b145bca88d0f9f322b6bdb32d1f3c565353714d16fad032a66f"
+          },
+          "bytes": "e802b7ffff",
+          "owner": [
+            "0x14591f790",
+            "0x145924bf2"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x145923f62",
+            "end_exclusive": "0x145923f67",
+            "byte_count": 5,
+            "sha256": "b32aee967e7e64ce343c5a6ef708fb059da5f336492c1b07be3b1929cab70694"
+          },
+          "bytes": "e829b5ffff",
+          "owner": [
+            "0x14591f790",
+            "0x145924bf2"
+          ]
+        }
+      ],
+      "0x145924df0": [
+        {
+          "call": {
+            "va": "0x1458ed009",
+            "end_exclusive": "0x1458ed00e",
+            "byte_count": 5,
+            "sha256": "6477e7e6a3568731b5187f14d64f3c217051ef5bb9f2c70c6a7ffc938d95fb61"
+          },
+          "bytes": "e8e27d0300",
+          "owner": [
+            "0x1458ec3f0",
+            "0x1458edb1c"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x1458fd149",
+            "end_exclusive": "0x1458fd14e",
+            "byte_count": 5,
+            "sha256": "d43c949f1a3efe0c3dfe3fe1d1fd81c2200b573f05384fd2fcb31bfae8ca4049"
+          },
+          "bytes": "e8a27c0200",
+          "owner": [
+            "0x1458fb890",
+            "0x145908680"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x1458fd480",
+            "end_exclusive": "0x1458fd485",
+            "byte_count": 5,
+            "sha256": "c356fb7a0c958be39fb40ac2b9619c8fd74515eaabd003158d6c56692e4d82de"
+          },
+          "bytes": "e86b790200",
+          "owner": [
+            "0x1458fb890",
+            "0x145908680"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x1458fd783",
+            "end_exclusive": "0x1458fd788",
+            "byte_count": 5,
+            "sha256": "dc9264821bc50e90cdca816754382b51014220cf40d86b7cc286dfa7a37623e3"
+          },
+          "bytes": "e868760200",
+          "owner": [
+            "0x1458fb890",
+            "0x145908680"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x14592f560",
+            "end_exclusive": "0x14592f565",
+            "byte_count": 5,
+            "sha256": "815bc3530cd4800b2f4f44a6b61f08848f9dea9ad5a62dbcd1f060647c38dd51"
+          },
+          "bytes": "e88b58ffff",
+          "owner": [
+            "0x14592f2b0",
+            "0x1459334d8"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x1459370cc",
+            "end_exclusive": "0x1459370d1",
+            "byte_count": 5,
+            "sha256": "b2017b1ff1d5e9f1cc93073dca5807454ad0ae547f1d05a36a264e7fa3f4fbe9"
+          },
+          "bytes": "e81fddfeff",
+          "owner": [
+            "0x145934c50",
+            "0x145938917"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x145937123",
+            "end_exclusive": "0x145937128",
+            "byte_count": 5,
+            "sha256": "f2e3b6148983399b1632d443a2fe836cdd7fbf25ac04bf783f33fd56336e1cac"
+          },
+          "bytes": "e8c8dcfeff",
+          "owner": [
+            "0x145934c50",
+            "0x145938917"
+          ]
+        }
+      ],
+      "0x1458975c0": [
+        {
+          "call": {
+            "va": "0x14589799f",
+            "end_exclusive": "0x1458979a4",
+            "byte_count": 5,
+            "sha256": "a5059906669cf063bbd9b9ff6729c17eafa2354b89965840a033bebff4da1c32"
+          },
+          "bytes": "e81cfcffff",
+          "owner": [
+            "0x145897880",
+            "0x145897a15"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x14592d7ac",
+            "end_exclusive": "0x14592d7b1",
+            "byte_count": 5,
+            "sha256": "36aa52f426ad3db93a02c731a5085b857c07f722d5916a70b18d0cc11a3188b8"
+          },
+          "bytes": "e80f9ef6ff",
+          "owner": [
+            "0x14592d530",
+            "0x14592e0f4"
+          ]
+        }
+      ],
+      "0x14592d530": [
+        {
+          "call": {
+            "va": "0x145967777",
+            "end_exclusive": "0x14596777c",
+            "byte_count": 5,
+            "sha256": "1701460a48390d05040eed4e36ce32c41095a1901c87f416f8e4e5ee48a0b897"
+          },
+          "bytes": "e8b45dfcff",
+          "owner": [
+            "0x145966a60",
+            "0x145968b5e"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x145968ae0",
+            "end_exclusive": "0x145968ae5",
+            "byte_count": 5,
+            "sha256": "977f753a41f43e7ba46e64b8d80b6b883e3b8526bc61a1259de270fa95b00ceb"
+          },
+          "bytes": "e84b4afcff",
+          "owner": [
+            "0x145966a60",
+            "0x145968b5e"
+          ]
+        }
+      ],
+      "0x145934c50": [
+        {
+          "call": {
+            "va": "0x1458ec800",
+            "end_exclusive": "0x1458ec805",
+            "byte_count": 5,
+            "sha256": "54585a32909039a73d05a2ba3acd600fbca538c7dbbb1f395b22988bc2909f68"
+          },
+          "bytes": "e84b840400",
+          "owner": [
+            "0x1458ec3f0",
+            "0x1458edb1c"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x1458ecdb6",
+            "end_exclusive": "0x1458ecdbb",
+            "byte_count": 5,
+            "sha256": "7fd5106d4bbf2118ebbffcc6a450a8e53e5796b45c8dd8222d0b47046ee55c4f"
+          },
+          "bytes": "e8957e0400",
+          "owner": [
+            "0x1458ec3f0",
+            "0x1458edb1c"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x1458ecde6",
+            "end_exclusive": "0x1458ecdeb",
+            "byte_count": 5,
+            "sha256": "95a69b2a3fb3b41ec7c1c3e2fac7531178b0bff136d31073a05e1794a8358edf"
+          },
+          "bytes": "e8657e0400",
+          "owner": [
+            "0x1458ec3f0",
+            "0x1458edb1c"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x1458ed96a",
+            "end_exclusive": "0x1458ed96f",
+            "byte_count": 5,
+            "sha256": "2b622bcdf829e792c4e47d3d4825cc96cdfd4dafded4bdafd4d97756ce00f7a1"
+          },
+          "bytes": "e8e1720400",
+          "owner": [
+            "0x1458ec3f0",
+            "0x1458edb1c"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x1458fd209",
+            "end_exclusive": "0x1458fd20e",
+            "byte_count": 5,
+            "sha256": "168235f3abeed767950fb8695e71c4d2ae893e8148ce5eb7ae09cbb93287146c"
+          },
+          "bytes": "e8427a0300",
+          "owner": [
+            "0x1458fb890",
+            "0x145908680"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x14592f64a",
+            "end_exclusive": "0x14592f64f",
+            "byte_count": 5,
+            "sha256": "70b0aa5f4f562f39c4a4084777401ef6e97cb781136dab621abf22791e2a7009"
+          },
+          "bytes": "e801560000",
+          "owner": [
+            "0x14592f2b0",
+            "0x1459334d8"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x145942207",
+            "end_exclusive": "0x14594220c",
+            "byte_count": 5,
+            "sha256": "ec15c50bc0fa95a9ef769ec0d7e824d67546a2efd89b92e0f2c1e6a4124b46fa"
+          },
+          "bytes": "e8442affff",
+          "owner": [
+            "0x14593ec90",
+            "0x145942543"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x1459422c7",
+            "end_exclusive": "0x1459422cc",
+            "byte_count": 5,
+            "sha256": "04a8cc2bd01c70f26ee89f3455c61fa2fc345807ee9acde5b28e2fcec4045478"
+          },
+          "bytes": "e88429ffff",
+          "owner": [
+            "0x14593ec90",
+            "0x145942543"
+          ]
+        }
+      ],
+      "0x1459f5490": [
+        {
+          "call": {
+            "va": "0x145967ed3",
+            "end_exclusive": "0x145967ed8",
+            "byte_count": 5,
+            "sha256": "5f23f13a4099e2f7f8733ce4eff6af0a964b5699a094957aae2bdf5b235ac92f"
+          },
+          "bytes": "e8b8d50800",
+          "owner": [
+            "0x145966a60",
+            "0x145968b5e"
+          ]
+        }
+      ],
+      "0x1459f9fb0": [
+        {
+          "call": {
+            "va": "0x1458a0f38",
+            "end_exclusive": "0x1458a0f3d",
+            "byte_count": 5,
+            "sha256": "526bfb15d563662bbb88874750fb1a4906d6e490607b13803c4fc301da7705d1"
+          },
+          "bytes": "e873901500",
+          "owner": [
+            "0x1458a0e10",
+            "0x1458a0f7a"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x1458a1673",
+            "end_exclusive": "0x1458a1678",
+            "byte_count": 5,
+            "sha256": "c50c81481ddd72f868e1361f1d94aa46ad0b624e6ba8f35a707816b8c769ad7b"
+          },
+          "bytes": "e838891500",
+          "owner": [
+            "0x1458a1550",
+            "0x1458a16b5"
+          ]
+        },
+        {
+          "call": {
+            "va": "0x1459f57a8",
+            "end_exclusive": "0x1459f57ad",
+            "byte_count": 5,
+            "sha256": "31c0c51ac7323d98b876c290d2d1866b1e589d3e46958f5fbf33d512b5c8feb3"
+          },
+          "bytes": "e803480000",
+          "owner": [
+            "0x1459f5490",
+            "0x1459f72d7"
+          ]
+        }
+      ]
+    },
+    "method": "All file-backed executable E8/E9 candidates, validated against independently decoded unwind-owner instruction boundaries.",
+    "limits": "Computed calls, veneers, mutable aliases and reachability are separate; this does not promote census body ownership."
+  },
+  "mutable_alias_boundaries": {
+    "vector_headers": [
+      {
+        "role": "pickups",
+        "header": "Game+608/610/618",
+        "stride": 72,
+        "tag_offset": 32,
+        "append_owners": [
+          "0x145944310"
+        ],
+        "removal_owners": [
+          "0x14594d9e0"
+        ],
+        "shared_boundary": "145c0da10 Vec growth;145c0a3ed complete72-byte compaction"
+      },
+      {
+        "role": "hazards",
+        "header": "Game+590/598/5a0",
+        "stride": 128,
+        "shape_offset": 48,
+        "kind_offset": 16,
+        "append_owners": [
+          "0x14591f490",
+          "0x14591f790"
+        ],
+        "removal_owners": [
+          "0x1459164c0"
+        ],
+        "active_shape_mutation": "0x14591785b -> shape2",
+        "canonical_producers": "docs/analysis/evidence/0.112.0/raid-hazards/manifest.json",
+        "shared_boundary": "145c0daf0 Vec growth;145c0a3ed complete128-byte compaction"
+      },
+      {
+        "role": "queued-actions",
+        "header": "Game+5a8/5b0/5b8",
+        "stride": 64,
+        "action_offset": 16,
+        "tag_offset": 61,
+        "append_owners": [
+          "0x14591f790"
+        ],
+        "removal_owners": [
+          "0x1459164c0"
+        ],
+        "canonical_producers": "docs/analysis/evidence/0.112.0/raid/manifest.json",
+        "shared_boundary": "145c165c0 Vec growth;145c0a3ed complete64-byte compaction; copied48-byte typed action payload"
+      },
+      {
+        "role": "generic-effects",
+        "header": "Game+820/828/830",
+        "stride": 64,
+        "tag_offset": 0,
+        "publication_owner": "0x14592d530",
+        "publication_sites": [
+          "0x14592d855",
+          "0x14592d878"
+        ],
+        "shared_boundary": "145c0a3db snapshot copy; opaque incoming typed Game/instance resource identity"
+      }
+    ],
+    "read_only_slice_cases": {
+      "linked-pickup-guids": {
+        "cases": 512,
+        "results_sha256": "f80d377be6c482dbfe4c3885ef79b699b007b9fb3284ce7095bc6870b2ea18d6"
+      },
+      "eligible-pickup-guids": {
+        "cases": 4112,
+        "results_sha256": "ea29d538df4475f3c679275575357842924b37bf803ab5b476df56d3cc9b60e2"
+      },
+      "army-descriptor-filter": {
+        "cases": 288,
+        "results_sha256": "a6f1c11b20dba60e7315e63f326edcb8cba6bd187765aad3ec097527f9e55d47"
+      },
+      "timed-cast-collector": {
+        "cases": 40,
+        "results_sha256": "0b210752f9a90bbfef9a245daeb1e2d108d1740a1fa72eb64ecdc7213e29f6f4"
+      }
+    },
+    "reader_ranges": [
+      {
+        "va": "0x1459d4d20",
+        "end_exclusive": "0x1459d4edc",
+        "byte_count": 444,
+        "sha256": "bdced178f1512f16904995d266e1db452b01eea6acea185aa9f2287b2c132271"
+      },
+      {
+        "va": "0x1459d4350",
+        "end_exclusive": "0x1459d45ae",
+        "byte_count": 606,
+        "sha256": "4c9b8de1c7be3352b07cdd7518652bd1fd5d3ceef7816d8f8773bd9718cfaa59"
+      },
+      {
+        "va": "0x1459cc290",
+        "end_exclusive": "0x1459cc40f",
+        "byte_count": 383,
+        "sha256": "f093561b7bcbd36b8a80c4b79f6331ac57f89194d66c49ce08eddd699481376e"
+      },
+      {
+        "va": "0x1459cdb60",
+        "end_exclusive": "0x1459cdcb3",
+        "byte_count": 339,
+        "sha256": "ba396e7b4e8f8666f3a98378423da34cbf5c72ece549e2cc879560db76ec7bdd"
+      }
+    ],
+    "source_rows_unchanged_in_all_reader_cases": true,
+    "selector_boundaries": [
+      {
+        "va": "0x145934b40",
+        "end_exclusive": "0x145934c46",
+        "byte_count": 262,
+        "sha256": "05791bd43fb3ef7039bb77aa1c7897b20d66c5c032776363d1c1eba20a992640",
+        "non_stack_explicit_memory_writes": 0,
+        "call_targets": [
+          "0x145939990"
+        ]
+      },
+      {
+        "va": "0x145939990",
+        "end_exclusive": "0x145939be9",
+        "byte_count": 601,
+        "sha256": "5224df4fbcf92da50d7084c9e64603177a6edb6739444d551a7a57812428ac83",
+        "non_stack_explicit_memory_writes": 0,
+        "call_targets": [
+          "0x145c0a3e7",
+          "0x145da9a60"
+        ]
+      }
+    ],
+    "aura_contract": "docs/analysis/evidence/0.112.0/player-aura-indices/contracts.json",
+    "aura_contract_sha256": "acb1a542ba46e32ff4bddb0bed28b3b2a16dce14e40c125a90d7e472d04beb3e",
+    "remaining_obligation": "Whole typed-resource pointer/lifetime identity and absence of unseen computed/aliased writes are separate static ownership claims. All identified AS producer/state/presentation paths in this focused audit have source consumers; no additional concrete missing AS behavior remains demonstrated.",
+    "limits": "Header/source-operand audit is bounded to existing custom diagnostic/selected AS owners. Bulk inventory remains ignored; no whole-image or body ownership promotion."
+  },
+  "contextual_recovery": {
+    "hazard_hoisted_table_aliases": [
+      {
+        "site": "0x1459179b6",
+        "initializer": {
+          "va": "0x145917234",
+          "end_exclusive": "0x14591723b",
+          "byte_count": 7,
+          "sha256": "e54629d571c787d74b50cba5a8373a2709869df39590e8df1eb9fb534c8fd7c1"
+        },
+        "register": "r12",
+        "table_va": "0x146c0c25c",
+        "unchanged_linear_span": {
+          "va": "0x14591723b",
+          "end_exclusive": "0x1459179b8",
+          "byte_count": 1917,
+          "sha256": "23e2c563248c124716f5dd414c5eaa887035a066bf35eea372adb423be22dd23"
+        },
+        "input_domain_closed": false,
+        "limits": "Observed linear initializer/preservation only; alternate incoming aliases and shape producers remain separate."
+      },
+      {
+        "site": "0x145919a34",
+        "initializer": {
+          "va": "0x1459198e5",
+          "end_exclusive": "0x1459198ec",
+          "byte_count": 7,
+          "sha256": "7728d7666831074d195fe197e922a933af9b2a9bfa94413489b7912f46c15343"
+        },
+        "register": "r14",
+        "table_va": "0x146c0c220",
+        "unchanged_linear_span": {
+          "va": "0x1459198ec",
+          "end_exclusive": "0x145919a36",
+          "byte_count": 330,
+          "sha256": "0c4c79e67875281431148e4b9aaf9eee9f7f27172235ca2445fbf8783f74a0f8"
+        },
+        "input_domain_closed": false,
+        "limits": "Observed linear initializer/preservation only; alternate incoming aliases and shape producers remain separate."
+      }
+    ],
+    "content_inner_selectors": {
+      "outer_record_stride": 64,
+      "outer_tag": 37,
+      "inner_byte_offset": 36,
+      "selector_reads": [
+        {
+          "va": "0x1459f55e9",
+          "end_exclusive": "0x1459f55ee",
+          "byte_count": 5,
+          "sha256": "6ae35214990671bc33bd8cf8f6710fa9842c1f711492f8996482a97c56341bac"
+        },
+        {
+          "va": "0x1459fa0eb",
+          "end_exclusive": "0x1459fa0f0",
+          "byte_count": 5,
+          "sha256": "36b07f0e1788a79846ba918253486cddf002f80eeb2f6b85895bf78a1225f38e"
+        }
+      ],
+      "sites": [
+        "0x1459f5738",
+        "0x1459f592c",
+        "0x1459f5b1e",
+        "0x1459fa10f"
+      ],
+      "domain_closed": false,
+      "current_catalog_domain": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "limitation": "Current catalogs and scaling preserve modifier0..6; this is not the independent five-value ability-upgrade slice. Whole mutable buffer identity is separate."
+    },
+    "additional_direct_paths": {
+      "reward_owner": {
+        "va": "0x145966a60",
+        "end_exclusive": "0x145968b5e",
+        "byte_count": 8446,
+        "sha256": "01fd4912202c797e93562e27cbedd8385e2585bf0f2b54d3b00a149fcf9bcb3a"
+      },
+      "amulet_tooltip_scaled_buffer": {
+        "va": "0x145967df1",
+        "end_exclusive": "0x145967ed8",
+        "byte_count": 231,
+        "sha256": "ba21a520b40a018fa2e6ea122596460075e81cb5650b6405f5c5e76a870aaae5"
+      },
+      "reward_rebuild_calls": [
+        {
+          "va": "0x145967777",
+          "end_exclusive": "0x14596777c",
+          "byte_count": 5,
+          "sha256": "1701460a48390d05040eed4e36ce32c41095a1901c87f416f8e4e5ee48a0b897"
+        },
+        {
+          "va": "0x145968ae0",
+          "end_exclusive": "0x145968ae5",
+          "byte_count": 5,
+          "sha256": "977f753a41f43e7ba46e64b8d80b6b883e3b8526bc61a1259de270fa95b00ceb"
+        }
+      ],
+      "generic_proxy_casts": {
+        "va": "0x14593707d",
+        "end_exclusive": "0x145937129",
+        "byte_count": 172,
+        "sha256": "b3a2d8b05b14765c801b7d3fe88f6ac12b87a243f937522d747ac89c135f074d"
+      },
+      "canonical_proxy_contract": "docs/analysis/soul-reaping-0.112.0.md",
+      "source_consumers": [
+        "gameplay/mechanics/treasure.rs::choose_cache_reward",
+        "gameplay/native_overlay_payload.rs::for_treasure/for_choice",
+        "gameplay/mechanics/milestones.rs::generic_freecast"
+      ]
+    },
+    "unresolved_sites": [
+      {
+        "site": "0x145903061",
+        "input": "72-byte pickup Vec at Game+0x610/+0x618; dword+0x20",
+        "missing": "Current22 direct kind arguments are bounded; no-unseen-writer/computed-caller closure for the mutable pickup Vec remains unproved."
+      },
+      {
+        "site": "0x1459167bd",
+        "input": "byte from queued48-byte action+45; normalized below35 to0",
+        "missing": "Current493-node graph/producers and sentinel are covered; identities of all copied action-buffer aliases remain unclosed."
+      },
+      {
+        "site": "0x1459179b6",
+        "input": "shape dword at live128-byte hazard+0x30",
+        "missing": "Current13 direct common-constructor calls and explicit active shape2 mutation are covered; arbitrary mutable hazard-row alias writes remain unclosed."
+      },
+      {
+        "site": "0x145918086",
+        "input": "shape dword at live128-byte hazard+0x30",
+        "missing": "Current13 direct common-constructor calls and explicit active shape2 mutation are covered; arbitrary mutable hazard-row alias writes remain unclosed."
+      },
+      {
+        "site": "0x1459182c9",
+        "input": "shape dword at live128-byte hazard+0x30",
+        "missing": "Current13 direct common-constructor calls and explicit active shape2 mutation are covered; arbitrary mutable hazard-row alias writes remain unclosed."
+      },
+      {
+        "site": "0x1459192d7",
+        "input": "shape dword at live128-byte hazard+0x30",
+        "missing": "Current13 direct common-constructor calls and explicit active shape2 mutation are covered; arbitrary mutable hazard-row alias writes remain unclosed."
+      },
+      {
+        "site": "0x145919353",
+        "input": "shape dword at live128-byte hazard+0x30",
+        "missing": "Current13 direct common-constructor calls and explicit active shape2 mutation are covered; arbitrary mutable hazard-row alias writes remain unclosed."
+      },
+      {
+        "site": "0x145919a34",
+        "input": "shape dword at live128-byte hazard+0x30",
+        "missing": "Current13 direct common-constructor calls and explicit active shape2 mutation are covered; arbitrary mutable hazard-row alias writes remain unclosed."
+      },
+      {
+        "site": "0x14591a026",
+        "input": "kind dword at live128-byte hazard+0x10",
+        "missing": "Current common-constructor descriptors and hz presentation are covered; arbitrary mutable hazard-row kind writes remain unclosed."
+      },
+      {
+        "site": "0x1459250f3",
+        "input": "ability descriptor byte+0x75 via incoming instance pointer",
+        "missing": "Current113 immutable descriptors and seven direct cast callers are covered; closed instance/descriptor pointer identity across arbitrary aliases remains unproved."
+      },
+      {
+        "site": "0x145934f5e",
+        "input": "byte0 of64-byte live effect record",
+        "missing": "Current talent/amulet rank/scaling/aggregate/publication route is covered; closed identity/no-unseen-writer proof for arbitrary generic Vec aliases remains unproved."
+      },
+      {
+        "site": "0x1459f5738",
+        "input": "effect modifier byte+0x24 when outer64-byte tag37",
+        "missing": "Current catalog modifiers/scaler and known tooltip caller buffers are covered; arbitrary caller/buffer alias identity remains unclosed."
+      },
+      {
+        "site": "0x1459f592c",
+        "input": "effect modifier byte+0x24 when outer64-byte tag37",
+        "missing": "Current catalog modifiers/scaler and known tooltip caller buffers are covered; arbitrary caller/buffer alias identity remains unclosed."
+      },
+      {
+        "site": "0x1459f5b1e",
+        "input": "effect modifier byte+0x24 when outer64-byte tag37",
+        "missing": "Current catalog modifiers/scaler and known tooltip caller buffers are covered; arbitrary caller/buffer alias identity remains unclosed."
+      },
+      {
+        "site": "0x1459fa10f",
+        "input": "effect modifier byte+0x24 when outer64-byte tag37",
+        "missing": "Current catalog modifiers/scaler and known tooltip caller buffers are covered; arbitrary caller/buffer alias identity remains unclosed."
+      }
+    ]
+  },
+  "source_connections": [
+    {
+      "path": "crates/azeroth-survivors-re/src/enemies/waves.rs",
+      "sha256": "6e8c51dc750a1625b6fcea88efb1fb0233b18872c0c686e053565bd055a8f9c1",
+      "checked_connections": [
+        "pub enum Pattern { Swarm = 0, Stampede = 1, Wall = 2, Pack = 3 }",
+        "[Pattern::Swarm, Pattern::Stampede, Pattern::Wall, Pattern::Pack]",
+        ".into_iter().filter(|pattern| *pattern as u8 != self.previous_pattern).collect()",
+        "let pattern = patterns[uniform_index(patterns.len(), rng)]",
+        "self.previous_pattern = pattern as u8"
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/guardians/ai.rs",
+      "sha256": "0c0d52f8198309da45e4843a9516c9d2c930c76f541ce37ee69a20a5e7a1714f",
+      "checked_connections": [
+        "pub enum GuardianDecision",
+        "Idle,",
+        "Engage,",
+        "Reset { restored_health: f32 }",
+        "Combat,"
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/guardians.rs",
+      "sha256": "ad1c13a2bab3d73d31c9ed34fbc58a91e415cf51b700271c21fd8731eca714ca",
+      "checked_connections": [
+        "match guardian.ai.evaluate(",
+        "GuardianDecision::Idle",
+        "GuardianDecision::Reset { restored_health }",
+        "GuardianDecision::Engage",
+        "GuardianDecision::Combat"
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/run_effects.rs",
+      "sha256": "a106dd3b6909e384e23406c242e7c6a9de9ca29af58e07bfc5e6cb4c6d4a409a",
+      "checked_connections": [
+        "pub fn is_generic(&self) -> bool",
+        "!matches!(self.tag(), 30 | 31)",
+        "pub spell_rows: Vec<EffectRow>",
+        "self.rows.clear()",
+        "self.spell_rows.clear()",
+        "for row in inputs",
+        "self.spell_rows.push(row)",
+        "self.rows.push(row)",
+        "for row in &self.spell_rows",
+        "matches!(value.bytes[63], 30 | 33)"
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
+      "sha256": "661ed923b593bf8c425219c3ea29e7e54867200c81f1b3f3e796551445e45ea1",
+      "checked_connections": [
+        "let generic_count = effects.iter().filter(|row| row.is_generic()).count()",
+        "let base_count = self.effect_state.equipped.generic_talent_count()",
+        "amulets::Effect::Passive { .. }",
+        ".clone_from(&self.effect_state.talent_meter_sources)",
+        ".clone_from(&self.effect_state.talent_provenance)",
+        "self.effect_state.equipped.rows.len()",
+        "run_effects::milestones::refresh_slots("
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/demons.rs",
+      "sha256": "6c96f566b28d1b87100c1b8b57966d27a5544bf0d81e90f38f57559b0c786125",
+      "checked_connections": [
+        "&self.core.equipped.spell_rows"
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs",
+      "sha256": "bc0ee913e85317261c5cc7b7a95c419546b7415d65668c173a43386613a52887",
+      "checked_connections": [
+        "let rows = self.core.equipped.rows.clone()",
+        "for (index, row) in rows.iter().enumerate()",
+        "source_words: [1, 0, index as u32, (index as u64 >> 32) as u32]"
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/milestones.rs",
+      "sha256": "190765721a83157f2c5d982727e9d08a7e4c7a18cd9d5d3dd0d6925fc8a581a2",
+      "checked_connections": [
+        "pub(super) fn generic_freecast(",
+        "Some(key) => self.free_instance(key)",
+        "self.core.generic.source = Some(index)",
+        "let words = [1, 0, index as u32, (index as u64 >> 32) as u32]",
+        "dispatch::cast(&instance, context, &targets, execution, rng, counter, self)",
+        "self.core.attribution = original",
+        "self.core.generic.source = original_source"
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/run_effects/actions.rs",
+      "sha256": "8cb2ad3e4ba8764ec23718cf6d86169157a707b90a4fb29e1889471a78476ed9",
+      "checked_connections": [
+        "(row.tag() == 26).then(|| Self {",
+        "key: row.key(8).expect(\"native timed cast key\")",
+        "interval_override: row.float(4)"
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/run_effects/conditions.rs",
+      "sha256": "03e43f88b178540908af3e2498a604cee5fcdf8c6cd0d4ca81764c9c38901bc0",
+      "checked_connections": [
+        "pub fn matches_event(",
+        "pub fn condition_matches(",
+        "match self.word(condition_offset)",
+        "admitted && self.matches_event(condition_offset + 8, event, definition)"
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/run_effects/player_auras.rs",
+      "sha256": "ce36dea13f90a000d5b04feedec5c483835c3677523715ddeb7ceaf214354e7b",
+      "checked_connections": [
+        "(\"Soul Link\",0)=>19028",
+        "row.tag()==253&&row.bytes[63]==31",
+        "let alias=|index,kind|player_aura_alias(self.provenance[index],kind)"
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/native_overlay_payload.rs",
+      "sha256": "baa2161f6867654a32e7860f0ad26588801bfdeb8d5eedf4c2af814541671b32",
+      "checked_connections": [
+        "amulets::description_lines(definition, rarity, next_picks)",
+        "amulets::description_lines(item.payload, item.rarity, item.picks)"
+      ]
+    }
+  ],
+  "return_proof_negative_cases": 6,
+  "fixture": {
+    "path": "scripts/native_talent_fixture_0_112.py",
+    "sha256": "fd1a3c2e98f4da91ef6d2496c5615b464d82b10032b59508040eb4ef2f1f93bd",
+    "observed_seams": [
+      "0x1400021c0",
+      "0x1400021d0",
+      "0x140002200",
+      "0x14598ddd0",
+      "0x145bb40a0",
+      "0x145c0a3db",
+      "0x145c0a3e1"
+    ]
+  },
+  "compilation_run": false,
+  "game_process_run": false,
+  "native_body_ownership_updated": false,
+  "parity_verified": false,
+  "limits": [
+    "Closed normal-return AL proof and fixed four-byte input route are distinct claims.",
+    "Current original instructions and input/output assertions establish only the described static contracts.",
+    "Generic engine census unknowns are outside this AS repair; other live AS producer/type/alias contracts remain explicit."
+  ]
+}

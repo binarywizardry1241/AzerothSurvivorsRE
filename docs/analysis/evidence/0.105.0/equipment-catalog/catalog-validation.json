@@ -1,0 +1,122 @@
+{
+  "version": "0.105.0",
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "target_executed": false,
+  "ordinary_gear_count": 415,
+  "historical_amulets_unchanged": 129,
+  "generated_count": 113,
+  "shared_count": 17,
+  "live_amulet_count": 130,
+  "amulet_effect_count": 375,
+  "normalized_amulet_digest": "61e86508c7810e4ff51b6bfbf15e0dd47ddc953a31ce7dee878b74244808796c",
+  "native_to_internal_effect_variants": {
+    "35": 30,
+    "36": 31
+  },
+  "host_seam_calls": {
+    "0x145bfb270": 113,
+    "0x1458da590": 225,
+    "0x145b9c4d0": 335,
+    "0x1400021d0": 110,
+    "0x14023ff50": 1,
+    "0x145bc977b": 1,
+    "0x145bc9817": 208
+  },
+  "generic_amulet_scaling": {
+    "case_count": 1484,
+    "factors": [
+      1.0,
+      1.5,
+      2.0,
+      2.5
+    ],
+    "normalized_output_sha256": "7740c483ca32a98c578fa2013fa483122cea263cdc50a205d1906d20fda8db08"
+  },
+  "source_scaling_function_sha256": "927faca767006f65bda0dc0559ebd5803900296d40dde449125e314a8ebf656d",
+  "current_rarity_step_bits": [
+    1058642330,
+    1056964608,
+    1051931443,
+    1048576000,
+    1045220557
+  ],
+  "native_spans": [
+    {
+      "role": "amulet-constructor",
+      "virtual_address": "0x14587b8e0",
+      "file_offset": "0x587ace0",
+      "byte_count": 5863,
+      "sha256": "22a6c2dc5f4a32e1de408f7f8d112a3702adde58a2f3b9805c5271c4c3d871be"
+    },
+    {
+      "role": "amulet-offers",
+      "virtual_address": "0x145959720",
+      "file_offset": "0x5958b20",
+      "byte_count": 5401,
+      "sha256": "3d044207dc97242424afe7c2f6ace451c18228b7ee8a775a259e393e3512c5a8"
+    },
+    {
+      "role": "ability-descriptors",
+      "virtual_address": "0x146bacad8",
+      "file_offset": "0x6babcd8",
+      "byte_count": 13560,
+      "sha256": "cb09f0278b1d28b0c7c05f94cfda0962ec1ed19a102cd28535fba2648cd5a546"
+    },
+    {
+      "role": "shared-amulets",
+      "virtual_address": "0x146bb5798",
+      "file_offset": "0x6bb4998",
+      "byte_count": 1360,
+      "sha256": "edae4343c07c8424398572f5d0973e36e01a3fe7e437df8e6268b458995f9f50"
+    },
+    {
+      "role": "constructor-jump-table",
+      "virtual_address": "0x146bb66a8",
+      "file_offset": "0x6bb58a8",
+      "byte_count": 64,
+      "sha256": "6fa52aabb6db0b671ae47b413ed26f080bdc54efe2a677600764f4bf493c1430"
+    },
+    {
+      "role": "effect-scaling-iterator",
+      "virtual_address": "0x1459b5410",
+      "file_offset": "0x59b4810",
+      "byte_count": 457,
+      "sha256": "291726d61219859ceee2e7c1034fbabd45367e1da607160153d9f7cf310c46b2"
+    },
+    {
+      "role": "passive-scaling-leaf",
+      "virtual_address": "0x1458e0750",
+      "file_offset": "0x58dfb50",
+      "byte_count": 1162,
+      "sha256": "e780d007c1a4ac1c1e6bc4f899b852b03b2fb353a430af0d028e7a8c4be7a859"
+    },
+    {
+      "role": "passive-scaling-jump-table",
+      "virtual_address": "0x146e78018",
+      "file_offset": "0x6e77218",
+      "byte_count": 140,
+      "sha256": "c6fcd3278cb6906fe29666e77fb2c2e1e2946be1e31d16c11a310a6c8260889b"
+    },
+    {
+      "role": "amulet-rarity-steps",
+      "virtual_address": "0x146bb64c4",
+      "file_offset": "0x6bb56c4",
+      "byte_count": 20,
+      "sha256": "5d46759d58bc8c1bf879c031a32cf9a7b0bbe6468d96fffcec103b1583281709"
+    }
+  ],
+  "ordinary_gear_evidence": "docs/analysis/evidence/0.105.0/pvp-gear/data-evidence.json",
+  "ordinary_gear_consumers": "docs/analysis/evidence/0.105.0/pvp-gear/procedures.json",
+  "native_catalogs": [
+    "crates/azeroth-survivors-re/assets/armory.json",
+    "crates/azeroth-survivors-re/assets/native-amulets-0.100.1.json",
+    "crates/azeroth-survivors-re/assets/legionlord-0.105.0.json"
+  ],
+  "limits": [
+    "Historical raw amulet payloads retain their original pointer/provenance namespace.",
+    "Native 35/36 stat/spell variants normalize to existing internal 30/31; all other selected variants match unchanged.",
+    "Generic scaling cases compare original x64 with a source translation; Rust execution and cross-platform powf parity are not established.",
+    "Legionlord's separate rank path is covered by the canonical demon-offers evidence, not the generic cases.",
+    "Only immutable definitions, constructors and selected scaling consumers are checked; proc execution, UI, build and runtime parity are not established."
+  ]
+}

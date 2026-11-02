@@ -1,0 +1,540 @@
+{
+  "schema": "as-party-achievement-share-v1",
+  "target": {
+    "version": "0.120.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c",
+    "size_bytes": 145484288
+  },
+  "gap_ids": [
+    194,
+    195,
+    196
+  ],
+  "notes_release": "0.120.1",
+  "notes_for_selected_release_supplied": false,
+  "scope": "Ordinary boss-killing-blow histories and per-recipient boss counter, distinct from existing cooperative composition feats.",
+  "native_ranges": [
+    {
+      "role": "lethal-history-capture",
+      "start": "0x145bbaa05",
+      "end_exclusive": "0x145bbac0b",
+      "file_offset": "0x5bb9e05",
+      "size_bytes": 518,
+      "sha256": "3197df2c55e1b6bc56b5b110a938959996b30bae6142ac9da7e69acbeaaf96ca",
+      "instruction_count": 102,
+      "assembly": "docs/analysis/evidence/0.120.2/party-achievement-share/lethal-history-capture.asm",
+      "assembly_sha256": "a8122e05c880f5de9ad8a26b809adec2f783beee03abe7c9a91eee22d9c5dfa1"
+    },
+    {
+      "role": "queue-drain",
+      "start": "0x145b64210",
+      "end_exclusive": "0x145b6424e",
+      "file_offset": "0x5b63610",
+      "size_bytes": 62,
+      "sha256": "e465e83aeed8248f0ae7675d165024a1e8c100c05312d0c6066dd1d83b68bf7b",
+      "instruction_count": 7,
+      "assembly": "docs/analysis/evidence/0.120.2/party-achievement-share/queue-drain.asm",
+      "assembly_sha256": "ab1c302795c95545868ad1113091849c530490ffec96b6113259338f15926729"
+    },
+    {
+      "role": "local-recipient-distribution",
+      "start": "0x145b64334",
+      "end_exclusive": "0x145b6448d",
+      "file_offset": "0x5b63734",
+      "size_bytes": 345,
+      "sha256": "c42c67633bbda80722471eec5a11a0e205900a94b3c1065fa4ebf403a775981e",
+      "instruction_count": 76,
+      "assembly": "docs/analysis/evidence/0.120.2/party-achievement-share/local-recipient-distribution.asm",
+      "assembly_sha256": "82e8ebf22f3b554226607254c08a05a834c662ec52c12c2379180942589bfa87"
+    },
+    {
+      "role": "remote-recipient-callback",
+      "start": "0x145b46770",
+      "end_exclusive": "0x145b46a7f",
+      "file_offset": "0x5b45b70",
+      "size_bytes": 783,
+      "sha256": "9569e0a13db47143f1eec89d439a22f4685d31e45983a83350024c3983859925",
+      "instruction_count": 197,
+      "assembly": "docs/analysis/evidence/0.120.2/party-achievement-share/remote-recipient-callback.asm",
+      "assembly_sha256": "0ab576a37b7ade971f60ef51b65bc82c686fd5ffa809797d619fc67c271ceef7"
+    },
+    {
+      "role": "abandon-admission",
+      "start": "0x145b89df0",
+      "end_exclusive": "0x145b89e6a",
+      "file_offset": "0x5b891f0",
+      "size_bytes": 122,
+      "sha256": "f3d7eb1d036b03954301d3043ef3e7242a0e117c86ac7020bf6f46925bc01a0c",
+      "instruction_count": 33,
+      "assembly": "docs/analysis/evidence/0.120.2/party-achievement-share/abandon-admission.asm",
+      "assembly_sha256": "8402d396ef3f2d6a7c4a8fba3de6e2c97716d26f732d887a31dc3df13c14e479"
+    },
+    {
+      "role": "abandon-swap",
+      "start": "0x145b8cc98",
+      "end_exclusive": "0x145b8ccb6",
+      "file_offset": "0x5b8c098",
+      "size_bytes": 30,
+      "sha256": "335e86d98a5be8d5297ac922c12aeefaeb369dac2dd235e85ef76711237eee25",
+      "instruction_count": 4,
+      "assembly": "docs/analysis/evidence/0.120.2/party-achievement-share/abandon-swap.asm",
+      "assembly_sha256": "d753eeb4a171592db229457f459d58879ae913bcda75596c9b93b605d6337a58"
+    },
+    {
+      "role": "ongoing-feat-delivery",
+      "start": "0x145b01b00",
+      "end_exclusive": "0x145b01bd3",
+      "file_offset": "0x5b00f00",
+      "size_bytes": 211,
+      "sha256": "2390cab13b77b252f4f824d0f16a2fad4d7896daf7a6d8783b2bd9ccab29486b",
+      "instruction_count": 52,
+      "assembly": "docs/analysis/evidence/0.120.2/party-achievement-share/ongoing-feat-delivery.asm",
+      "assembly_sha256": "450dd7f4cd52a4187bfe59717fca2da187b128dfdf62ec77790f792cae199f12"
+    },
+    {
+      "role": "recipient-snapshot",
+      "start": "0x145b205a0",
+      "end_exclusive": "0x145b2081c",
+      "file_offset": "0x5b1f9a0",
+      "size_bytes": 636,
+      "sha256": "b27558a83b5aea1f61de163cb56d3339d24fdcd8f00beab8d703da8689208490",
+      "instruction_count": 120,
+      "assembly": "docs/analysis/evidence/0.120.2/party-achievement-share/recipient-snapshot.asm",
+      "assembly_sha256": "467b042705fc7137b96cd3192632355e18981bacac24537f63d4b4f59ac493e9"
+    },
+    {
+      "role": "account-delivery",
+      "start": "0x145b1f210",
+      "end_exclusive": "0x145b1f747",
+      "file_offset": "0x5b1e610",
+      "size_bytes": 1335,
+      "sha256": "35ad916f5cc4f77eb3df495f0f72bdac01e0886e16d29de8fb63433a7536bc48",
+      "instruction_count": 297,
+      "assembly": "docs/analysis/evidence/0.120.2/party-achievement-share/account-delivery.asm",
+      "assembly_sha256": "904d889da87fba8251416561aa6b0b93c94219797ae5c5f90276e96381721853"
+    },
+    {
+      "role": "state-builder",
+      "start": "0x145af1160",
+      "end_exclusive": "0x145af178e",
+      "file_offset": "0x5af0560",
+      "size_bytes": 1582,
+      "sha256": "745a4a1fa77dbf09198e6d7a456f9c61dba3578011ec6ac11504679b694e1bac",
+      "instruction_count": 371,
+      "assembly": "docs/analysis/evidence/0.120.2/party-achievement-share/state-builder.asm",
+      "assembly_sha256": "d04cbbc258b29f111913782febfb19ae6d01d7f9219cdecd430f7d773d67319e"
+    },
+    {
+      "role": "ordinary-feat-evaluator",
+      "start": "0x145b400f0",
+      "end_exclusive": "0x145b40bb6",
+      "file_offset": "0x5b3f4f0",
+      "size_bytes": 2758,
+      "sha256": "9f9ba25863b2517fb41e0baa9fbbe6d41905e239fdc90d93052a1822c9d35600",
+      "instruction_count": 619,
+      "assembly": "docs/analysis/evidence/0.120.2/party-achievement-share/ordinary-feat-evaluator.asm",
+      "assembly_sha256": "330556fd996ae6ba5f24c3d866a37c1444735a948b466964bad98a81139dda36"
+    }
+  ],
+  "queries": [
+    {
+      "procedure": "0x145b01b00",
+      "operation": "procedure_pseudo_code",
+      "query": {
+        "name": "procedure_pseudo_code",
+        "arguments": {
+          "procedure": "0x145b01b00"
+        }
+      },
+      "plan": "runtime/0.120.2/party-achievement-review/plan-v2.json",
+      "plan_sha256": "e2e4f18029f018fc7871f3a9a52e8468e7dfca48f58ccb4ea6ea8a7d6e66ebe9",
+      "journal": "runtime/0.120.2/party-achievement-review/query-v2/journal.json",
+      "journal_sha256": "00323ca9971e3789a74f2e3cf9cc57b0cf3c9bb3178e421195e4a05773434ce1",
+      "result": "runtime/0.120.2/party-achievement-review/query-v2/results/1fcfd34777d66777aa08ec069d6a4457b89fcd32c277582d748acd46182a3f8c.json",
+      "result_sha256": "e1f94a95045d4077b18352b5e9e593adaf926287867c761af65046d98e9d9923",
+      "evidence_id": "ev_912b47c0c37911738a010e47bc60d9c19ebdce9fa30891a47f8f836b2c159042",
+      "analysis_profile_digest": "705ed7bd5fae92da10f5486557d6e03d43a8404d46a02a7568357976ebd9acab",
+      "normalized_sha256": "c7c1753353de91e7f3233be222c791ff371370b273a5fd36f0559ea4edb87575",
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+        "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Ghidra analysis was seeded before auto-analysis from runtime/0.120.2/party-achievement-review/seeds-v2.tsv (sha256 c7aab38f96aa93d5dc8cbed3b4a272d004f57bfe42d9a90fb8ade9ae022e80dd: 5 function, 5 code, 0 label entries). Seeded functions, code and names are caller assertions, not Ghidra discoveries.",
+        "Seed outcome: 0 functions created, 5 already present, 0 failed; 5 code seeds decoded, 0 failed; 0 labels applied, 0 failed; 0 seeds outside initialized memory.",
+        "The target references PDB benilla_rogue.pdb (GUID 3e1ddce0-c9eb-47e5-8453-f075c9439e88, age (hex) 1, signature unknown, version RSDS); Ghidra reports load state unknown. Original names and types may be missing; an empty name search does not prove a procedure is absent. Use list_procedures and address-based analysis to inspect recovered functions. REA does not admit a caller-selected PDB companion."
+      ]
+    },
+    {
+      "procedure": "0x145b1f210",
+      "operation": "procedure_pseudo_code",
+      "query": {
+        "name": "procedure_pseudo_code",
+        "arguments": {
+          "procedure": "0x145b1f210"
+        }
+      },
+      "plan": "runtime/0.120.2/party-achievement-review/plan-v2.json",
+      "plan_sha256": "e2e4f18029f018fc7871f3a9a52e8468e7dfca48f58ccb4ea6ea8a7d6e66ebe9",
+      "journal": "runtime/0.120.2/party-achievement-review/query-v2/journal.json",
+      "journal_sha256": "00323ca9971e3789a74f2e3cf9cc57b0cf3c9bb3178e421195e4a05773434ce1",
+      "result": "runtime/0.120.2/party-achievement-review/query-v2/results/1e59bbce1a20eec26e1d66fca391c0d0eae97e9f568a0be3236cc285b747c108-db6ce38d36c51646.json",
+      "result_sha256": "19c3c432178a4450fc282934071591cf40ce6814d52fbd1f42be70e8883141f1",
+      "evidence_id": "ev_b55563370ed8010a66519c4d6a2e1cb0c1ccf778ae482b4e0741f58216684b2c",
+      "analysis_profile_digest": "705ed7bd5fae92da10f5486557d6e03d43a8404d46a02a7568357976ebd9acab",
+      "normalized_sha256": "7c51b9ca39866133585ace4e298d67f2ce9ede37abd316da6ffcd795bad5553e",
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+        "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Ghidra analysis was seeded before auto-analysis from runtime/0.120.2/party-achievement-review/seeds-v2.tsv (sha256 c7aab38f96aa93d5dc8cbed3b4a272d004f57bfe42d9a90fb8ade9ae022e80dd: 5 function, 5 code, 0 label entries). Seeded functions, code and names are caller assertions, not Ghidra discoveries.",
+        "Seed outcome: 0 functions created, 5 already present, 0 failed; 5 code seeds decoded, 0 failed; 0 labels applied, 0 failed; 0 seeds outside initialized memory.",
+        "The target references PDB benilla_rogue.pdb (GUID 3e1ddce0-c9eb-47e5-8453-f075c9439e88, age (hex) 1, signature unknown, version RSDS); Ghidra reports load state unknown. Original names and types may be missing; an empty name search does not prove a procedure is absent. Use list_procedures and address-based analysis to inspect recovered functions. REA does not admit a caller-selected PDB companion."
+      ]
+    },
+    {
+      "procedure": "0x145b205a0",
+      "operation": "procedure_pseudo_code",
+      "query": {
+        "name": "procedure_pseudo_code",
+        "arguments": {
+          "procedure": "0x145b205a0"
+        }
+      },
+      "plan": "runtime/0.120.2/party-achievement-review/plan-v2.json",
+      "plan_sha256": "e2e4f18029f018fc7871f3a9a52e8468e7dfca48f58ccb4ea6ea8a7d6e66ebe9",
+      "journal": "runtime/0.120.2/party-achievement-review/query-v2/journal.json",
+      "journal_sha256": "00323ca9971e3789a74f2e3cf9cc57b0cf3c9bb3178e421195e4a05773434ce1",
+      "result": "runtime/0.120.2/party-achievement-review/query-v2/results/a5d6e1c6e465da1aad800dcc5ab12c64204e7cfb416b9a6dde479d8fd04e6b8a-8567bd216f91d230.json",
+      "result_sha256": "3c392f282eed53c8222bf0cafac9ce744d6730edf567a035e19894e70ec68450",
+      "evidence_id": "ev_db9f9f3f08833d0603b2953234c43e6987f6f260fe19a88968ce2073141846bc",
+      "analysis_profile_digest": "705ed7bd5fae92da10f5486557d6e03d43a8404d46a02a7568357976ebd9acab",
+      "normalized_sha256": "2ceeb6ac3c39c404c924633e2fd1fff67358cdec43f4cfca839040da3e6051a4",
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+        "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Ghidra analysis was seeded before auto-analysis from runtime/0.120.2/party-achievement-review/seeds-v2.tsv (sha256 c7aab38f96aa93d5dc8cbed3b4a272d004f57bfe42d9a90fb8ade9ae022e80dd: 5 function, 5 code, 0 label entries). Seeded functions, code and names are caller assertions, not Ghidra discoveries.",
+        "Seed outcome: 0 functions created, 5 already present, 0 failed; 5 code seeds decoded, 0 failed; 0 labels applied, 0 failed; 0 seeds outside initialized memory.",
+        "The target references PDB benilla_rogue.pdb (GUID 3e1ddce0-c9eb-47e5-8453-f075c9439e88, age (hex) 1, signature unknown, version RSDS); Ghidra reports load state unknown. Original names and types may be missing; an empty name search does not prove a procedure is absent. Use list_procedures and address-based analysis to inspect recovered functions. REA does not admit a caller-selected PDB companion."
+      ]
+    },
+    {
+      "procedure": "0x145bba060",
+      "operation": "procedure_pseudo_code",
+      "query": {
+        "name": "procedure_pseudo_code",
+        "arguments": {
+          "procedure": "0x145bba060"
+        }
+      },
+      "plan": "runtime/0.120.2/party-achievement-review/plan-v2.json",
+      "plan_sha256": "e2e4f18029f018fc7871f3a9a52e8468e7dfca48f58ccb4ea6ea8a7d6e66ebe9",
+      "journal": "runtime/0.120.2/party-achievement-review/query-v2/journal.json",
+      "journal_sha256": "00323ca9971e3789a74f2e3cf9cc57b0cf3c9bb3178e421195e4a05773434ce1",
+      "result": "runtime/0.120.2/party-achievement-review/query-v2/results/36b7e234428fcca1dd0e99d266eee12dc0dfda196a0a962a420a7ec7f611bef1-48689fd3e4e23502.json",
+      "result_sha256": "af2ec19f7e891cc024440eb8509f042c23888b6c5a488b23f0fb65ff15a4f7ad",
+      "evidence_id": "ev_e7dc8174f6725ff449437774dd95b6264a9f6c979a358de74992daf388f8e50f",
+      "analysis_profile_digest": "705ed7bd5fae92da10f5486557d6e03d43a8404d46a02a7568357976ebd9acab",
+      "normalized_sha256": "31fd1148ececec702145b248320c46eb9b2b2b68327e08aac0066027bea7da1a",
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+        "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Ghidra analysis was seeded before auto-analysis from runtime/0.120.2/party-achievement-review/seeds-v2.tsv (sha256 c7aab38f96aa93d5dc8cbed3b4a272d004f57bfe42d9a90fb8ade9ae022e80dd: 5 function, 5 code, 0 label entries). Seeded functions, code and names are caller assertions, not Ghidra discoveries.",
+        "Seed outcome: 0 functions created, 5 already present, 0 failed; 5 code seeds decoded, 0 failed; 0 labels applied, 0 failed; 0 seeds outside initialized memory.",
+        "The target references PDB benilla_rogue.pdb (GUID 3e1ddce0-c9eb-47e5-8453-f075c9439e88, age (hex) 1, signature unknown, version RSDS); Ghidra reports load state unknown. Original names and types may be missing; an empty name search does not prove a procedure is absent. Use list_procedures and address-based analysis to inspect recovered functions. REA does not admit a caller-selected PDB companion."
+      ]
+    },
+    {
+      "procedure": "0x145b68b20",
+      "operation": "procedure_pseudo_code",
+      "query": {
+        "name": "procedure_pseudo_code",
+        "arguments": {
+          "procedure": "0x145b68b20"
+        }
+      },
+      "plan": "runtime/0.120.2/party-achievement-review/plan-v2.json",
+      "plan_sha256": "e2e4f18029f018fc7871f3a9a52e8468e7dfca48f58ccb4ea6ea8a7d6e66ebe9",
+      "journal": "runtime/0.120.2/party-achievement-review/query-v2/journal.json",
+      "journal_sha256": "00323ca9971e3789a74f2e3cf9cc57b0cf3c9bb3178e421195e4a05773434ce1",
+      "result": "runtime/0.120.2/party-achievement-review/query-v2/results/eb1aea8ce81ecf06acaf203c99efdeb8e75390a5df27d0b7ae7b2e1b91648d3a-efd0fafcb2c77a33.json",
+      "result_sha256": "6d83592d559aba629ea38a2c5934b0447c2e5d5fac52b290e4fce1a48cddce71",
+      "evidence_id": "ev_c80ea6abea602963fe62e77237819b7b30fe3662def88a03f0f14a8ec29c26e5",
+      "analysis_profile_digest": "705ed7bd5fae92da10f5486557d6e03d43a8404d46a02a7568357976ebd9acab",
+      "normalized_sha256": "55cdd831e53449b7ec0cea58af0b4bfba7e2915e329536823a6a7d3adbbdd2ce",
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+        "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Ghidra analysis was seeded before auto-analysis from runtime/0.120.2/party-achievement-review/seeds-v2.tsv (sha256 c7aab38f96aa93d5dc8cbed3b4a272d004f57bfe42d9a90fb8ade9ae022e80dd: 5 function, 5 code, 0 label entries). Seeded functions, code and names are caller assertions, not Ghidra discoveries.",
+        "Seed outcome: 0 functions created, 5 already present, 0 failed; 5 code seeds decoded, 0 failed; 0 labels applied, 0 failed; 0 seeds outside initialized memory.",
+        "The target references PDB benilla_rogue.pdb (GUID 3e1ddce0-c9eb-47e5-8453-f075c9439e88, age (hex) 1, signature unknown, version RSDS); Ghidra reports load state unknown. Original names and types may be missing; an empty name search does not prove a procedure is absent. Use list_procedures and address-based analysis to inspect recovered functions. REA does not admit a caller-selected PDB companion."
+      ]
+    },
+    {
+      "procedure": "0x145b1ea00",
+      "operation": "procedure_pseudo_code",
+      "query": {
+        "name": "procedure_pseudo_code",
+        "arguments": {
+          "procedure": "0x145b1ea00"
+        }
+      },
+      "plan": "runtime/0.120.2/party-achievement-review/consumer-plan.json",
+      "plan_sha256": "a04397a48b14dab22309022774c414ca7d29029f8cab8ddf494cfab7720cef4b",
+      "journal": "runtime/0.120.2/party-achievement-review/consumer-query/journal.json",
+      "journal_sha256": "1bdc0525364719d7a66e4aeca9f148d71c66fa29766004cd2d338bf0aab8e63f",
+      "result": "runtime/0.120.2/party-achievement-review/consumer-query/results/013ab7defc84ebbdc377beded62fe036723a3d831ba4dfa5e1c9b7aed997b802.json",
+      "result_sha256": "83d76a20394768ee75f4b6e4b118311ace8a3ad9da1b907fe7fb836c80765e91",
+      "evidence_id": "ev_4b5ce49b53910cba23a0f9c976b9051c635235d893ca5698b09b273281b0f2c1",
+      "analysis_profile_digest": "561182ec1390b72f568d2ddb5e74a1d9f34aaca48236835e57a2abdb15eee389",
+      "normalized_sha256": "cea6656710407840e6c4becfc8823c3c3da671d0415c243f460d842e69f49e8b",
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+        "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Ghidra analysis was seeded before auto-analysis from runtime/0.120.2/party-achievement-review/consumer-seeds.tsv (sha256 c4109243b4160d6c048021f93c5bfc32685517c47dae3304180751456c8d0a75: 5 function, 5 code, 0 label entries). Seeded functions, code and names are caller assertions, not Ghidra discoveries.",
+        "Seed outcome: 0 functions created, 5 already present, 0 failed; 5 code seeds decoded, 0 failed; 0 labels applied, 0 failed; 0 seeds outside initialized memory.",
+        "The target references PDB benilla_rogue.pdb (GUID 3e1ddce0-c9eb-47e5-8453-f075c9439e88, age (hex) 1, signature unknown, version RSDS); Ghidra reports load state unknown. Original names and types may be missing; an empty name search does not prove a procedure is absent. Use list_procedures and address-based analysis to inspect recovered functions. REA does not admit a caller-selected PDB companion."
+      ]
+    },
+    {
+      "procedure": "0x145af1160",
+      "operation": "procedure_pseudo_code",
+      "query": {
+        "name": "procedure_pseudo_code",
+        "arguments": {
+          "procedure": "0x145af1160"
+        }
+      },
+      "plan": "runtime/0.120.2/party-achievement-review/consumer-plan.json",
+      "plan_sha256": "a04397a48b14dab22309022774c414ca7d29029f8cab8ddf494cfab7720cef4b",
+      "journal": "runtime/0.120.2/party-achievement-review/consumer-query/journal.json",
+      "journal_sha256": "1bdc0525364719d7a66e4aeca9f148d71c66fa29766004cd2d338bf0aab8e63f",
+      "result": "runtime/0.120.2/party-achievement-review/consumer-query/results/f6f56618de98f2a6702b4b887cd49dc73a9001036493af7f3eebb8d8e5523ad0-3067837dcadb2167.json",
+      "result_sha256": "41605ceb723c764a84016a215f2525987b367e1e5affe70ab8fcd817ef0cf5cb",
+      "evidence_id": "ev_bdc6e8e569907cdb5c4026696b3d9aa82ba9ff4b8f39c38228f7415996e10bff",
+      "analysis_profile_digest": "561182ec1390b72f568d2ddb5e74a1d9f34aaca48236835e57a2abdb15eee389",
+      "normalized_sha256": "8ea19192bdb0bee399370c8b954a58eb94777ced3ea7a98c5fe4439fb6bf3e51",
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+        "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Ghidra analysis was seeded before auto-analysis from runtime/0.120.2/party-achievement-review/consumer-seeds.tsv (sha256 c4109243b4160d6c048021f93c5bfc32685517c47dae3304180751456c8d0a75: 5 function, 5 code, 0 label entries). Seeded functions, code and names are caller assertions, not Ghidra discoveries.",
+        "Seed outcome: 0 functions created, 5 already present, 0 failed; 5 code seeds decoded, 0 failed; 0 labels applied, 0 failed; 0 seeds outside initialized memory.",
+        "The target references PDB benilla_rogue.pdb (GUID 3e1ddce0-c9eb-47e5-8453-f075c9439e88, age (hex) 1, signature unknown, version RSDS); Ghidra reports load state unknown. Original names and types may be missing; an empty name search does not prove a procedure is absent. Use list_procedures and address-based analysis to inspect recovered functions. REA does not admit a caller-selected PDB companion."
+      ]
+    },
+    {
+      "procedure": "0x145b400f0",
+      "operation": "procedure_pseudo_code",
+      "query": {
+        "name": "procedure_pseudo_code",
+        "arguments": {
+          "procedure": "0x145b400f0"
+        }
+      },
+      "plan": "runtime/0.120.2/party-achievement-review/consumer-plan.json",
+      "plan_sha256": "a04397a48b14dab22309022774c414ca7d29029f8cab8ddf494cfab7720cef4b",
+      "journal": "runtime/0.120.2/party-achievement-review/consumer-query/journal.json",
+      "journal_sha256": "1bdc0525364719d7a66e4aeca9f148d71c66fa29766004cd2d338bf0aab8e63f",
+      "result": "runtime/0.120.2/party-achievement-review/consumer-query/results/7dafaba6928395122361efc51e1b0436ee4a481485fb596b40ecc0651fba9952-a276a05e2026bc55.json",
+      "result_sha256": "f69fe143d8a45c18e3b4dd44c042865bcf762dc6eae4643f177f95fb94296cd0",
+      "evidence_id": "ev_f2624ed433890afb1be44b74ac09db1c010ccf624cfd697a4b70bbf9305e7f40",
+      "analysis_profile_digest": "561182ec1390b72f568d2ddb5e74a1d9f34aaca48236835e57a2abdb15eee389",
+      "normalized_sha256": "c1c8e91e2fed386a0c2584b86fd1c50b5db21022842c26e013677622db502d50",
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+        "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Ghidra analysis was seeded before auto-analysis from runtime/0.120.2/party-achievement-review/consumer-seeds.tsv (sha256 c4109243b4160d6c048021f93c5bfc32685517c47dae3304180751456c8d0a75: 5 function, 5 code, 0 label entries). Seeded functions, code and names are caller assertions, not Ghidra discoveries.",
+        "Seed outcome: 0 functions created, 5 already present, 0 failed; 5 code seeds decoded, 0 failed; 0 labels applied, 0 failed; 0 seeds outside initialized memory.",
+        "The target references PDB benilla_rogue.pdb (GUID 3e1ddce0-c9eb-47e5-8453-f075c9439e88, age (hex) 1, signature unknown, version RSDS); Ghidra reports load state unknown. Original names and types may be missing; an empty name search does not prove a procedure is absent. Use list_procedures and address-based analysis to inspect recovered functions. REA does not admit a caller-selected PDB companion."
+      ]
+    },
+    {
+      "procedure": "0x145b60c20",
+      "operation": "procedure_pseudo_code",
+      "query": {
+        "name": "procedure_pseudo_code",
+        "arguments": {
+          "procedure": "0x145b60c20"
+        }
+      },
+      "plan": "runtime/0.120.2/party-achievement-review/consumer-plan.json",
+      "plan_sha256": "a04397a48b14dab22309022774c414ca7d29029f8cab8ddf494cfab7720cef4b",
+      "journal": "runtime/0.120.2/party-achievement-review/consumer-query/journal.json",
+      "journal_sha256": "1bdc0525364719d7a66e4aeca9f148d71c66fa29766004cd2d338bf0aab8e63f",
+      "result": "runtime/0.120.2/party-achievement-review/consumer-query/results/9a8f99a277c07f0b483b6152e89418d03a359c9fd9387686adc55a42925a8e0c-74d3473476c94cd1.json",
+      "result_sha256": "5abdc84353da80cdc036efd7e0947fbd043d1184ced8b4540fa5ec185ccd0d8e",
+      "evidence_id": "ev_53ddbba0f185b0f1800262a3fe2d2d03e01085b2046aa7c012aa1ec590a997a1",
+      "analysis_profile_digest": "561182ec1390b72f568d2ddb5e74a1d9f34aaca48236835e57a2abdb15eee389",
+      "normalized_sha256": "d6a4009fd8811d443d5205473f83caec1b8dd51d498d148804e7f7ee9d3782fe",
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+        "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Ghidra analysis was seeded before auto-analysis from runtime/0.120.2/party-achievement-review/consumer-seeds.tsv (sha256 c4109243b4160d6c048021f93c5bfc32685517c47dae3304180751456c8d0a75: 5 function, 5 code, 0 label entries). Seeded functions, code and names are caller assertions, not Ghidra discoveries.",
+        "Seed outcome: 0 functions created, 5 already present, 0 failed; 5 code seeds decoded, 0 failed; 0 labels applied, 0 failed; 0 seeds outside initialized memory.",
+        "The target references PDB benilla_rogue.pdb (GUID 3e1ddce0-c9eb-47e5-8453-f075c9439e88, age (hex) 1, signature unknown, version RSDS); Ghidra reports load state unknown. Original names and types may be missing; an empty name search does not prove a procedure is absent. Use list_procedures and address-based analysis to inspect recovered functions. REA does not admit a caller-selected PDB companion."
+      ]
+    },
+    {
+      "procedure": "0x145b46770",
+      "operation": "procedure_pseudo_code",
+      "query": {
+        "name": "procedure_pseudo_code",
+        "arguments": {
+          "procedure": "0x145b46770"
+        }
+      },
+      "plan": "runtime/0.120.2/party-achievement-review/consumer-plan.json",
+      "plan_sha256": "a04397a48b14dab22309022774c414ca7d29029f8cab8ddf494cfab7720cef4b",
+      "journal": "runtime/0.120.2/party-achievement-review/consumer-query/journal.json",
+      "journal_sha256": "1bdc0525364719d7a66e4aeca9f148d71c66fa29766004cd2d338bf0aab8e63f",
+      "result": "runtime/0.120.2/party-achievement-review/consumer-query/results/527d72e5a2911e7b0d7c67ebb6c6c2e237272f76dc0c5642b5a803c36872f9ad-3cd562610fe22daa.json",
+      "result_sha256": "e885e569c33c6392cb4cac1dce1a25327e4acc942770b1b2b860e68279311b58",
+      "evidence_id": "ev_e8dae30bf7c0d497863f8e3b48a14ebf43297a4532757d37f9fc961c15be27d4",
+      "analysis_profile_digest": "561182ec1390b72f568d2ddb5e74a1d9f34aaca48236835e57a2abdb15eee389",
+      "normalized_sha256": "5d5e0b526cfd63ff320ce5b16987cd5929c354c3c132abd42e2f58966206fe96",
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+        "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Ghidra analysis was seeded before auto-analysis from runtime/0.120.2/party-achievement-review/consumer-seeds.tsv (sha256 c4109243b4160d6c048021f93c5bfc32685517c47dae3304180751456c8d0a75: 5 function, 5 code, 0 label entries). Seeded functions, code and names are caller assertions, not Ghidra discoveries.",
+        "Seed outcome: 0 functions created, 5 already present, 0 failed; 5 code seeds decoded, 0 failed; 0 labels applied, 0 failed; 0 seeds outside initialized memory.",
+        "The target references PDB benilla_rogue.pdb (GUID 3e1ddce0-c9eb-47e5-8453-f075c9439e88, age (hex) 1, signature unknown, version RSDS); Ghidra reports load state unknown. Original names and types may be missing; an empty name search does not prove a procedure is absent. Use list_procedures and address-based analysis to inspect recovered functions. REA does not admit a caller-selected PDB companion."
+      ]
+    }
+  ],
+  "source_observations": [
+    {
+      "role": "ordinary_lethal_capture",
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs",
+      "start_marker": "        self.generic.killing_blows.push(",
+      "end_marker": "        row.actor.dead = true;",
+      "sha256": "4a5a4c7f6c11983d209b9cf46b71f7c5c2b2ee4e4235cd18971ad247204cafa6",
+      "observation": "Captures private ordinary history and shared composition-event history; no ordinary non-killer queue."
+    },
+    {
+      "role": "reward_distribution",
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
+      "start_marker": "    fn distribute_party_rewards(",
+      "end_marker": "    /// Invoked only",
+      "sha256": "44aa08c8f4a14650a0ae45c36699d082c2e3d60ed0c2d9e82d88542f26826545",
+      "observation": "Distributes equipment/experience/gold; no non-killer boss counter or ordinary history propagation."
+    },
+    {
+      "role": "ordinary_predicates",
+      "path": "crates/azeroth-survivors-re/src/account_progression.rs",
+      "start_marker": "pub fn meets_feat_with_events(",
+      "end_marker": "/// Current14593f52e",
+      "sha256": "a1300afc7d2aeb13c90990dfd7c7cab3fef764cce00583ff4ac0a62e7a6cf331",
+      "observation": "Ordinary predicates consume supplied private histories; damage-exclusion input remains recipient-local."
+    },
+    {
+      "role": "per_hero_boss_state",
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
+      "start_marker": "            fn swap(",
+      "end_marker": "\n#[cfg(test)]",
+      "sha256": "4c8fda1f31e98ed136ad7110f1aada363274a1c5ea474728600fe7f5f427f81b",
+      "observation": "Swaps each recipient boss_death state including boss_kills; shared composition history stays separate."
+    },
+    {
+      "role": "counter_consumer",
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs",
+      "start_marker": "    fn terminal_counts(",
+      "end_marker": "\n    }",
+      "sha256": "485d70af762f802dcd2cdd954df6fc09bece36732152c96e45e64d38021fd789",
+      "observation": "Counter3 reads this recipient boss_kills and reaches existing terminal/account consumers."
+    }
+  ],
+  "bounded_contract_system_ids": [
+    "custom-game-game-mod",
+    "custom-game-achievements"
+  ],
+  "source_status": {
+    "195": "missing non-killer ordinary pair/enriched history producer and distribution",
+    "196": "missing non-killer per-hero boss counter increment"
+  },
+  "prior_recovery": [
+    "docs/analysis/party-achievement-producer-0.117.0.md",
+    "docs/analysis/party-achievements-0.117.0.md",
+    "docs/analysis/party-achievement-wire-0.117.0.md"
+  ],
+  "limits": [
+    "Static PE addresses are not observed live-memory addresses.",
+    "10 current full-PE Ghidra results retain inferred ABI/types, disabled-analyzer and warning limits; exact original bytes and bounded replay establish the selected queue/field operations.",
+    "The lethal-owner decompiler reports overlapping instructions and unsettled types outside the curated capture boundary; no whole-body conclusion relies on inferred pseudocode.",
+    "Only ordinary pair/enriched histories are copied; recipient damage history remains separate.",
+    "Existing State15/account/save/source knowledge is retained with historical provenance; this review does not register all wire/server dependencies current or establish persistence.",
+    "No Rust compilation, compiling tests, application/client/game/server/network operation, actual disk delivery or original/rebuilt parity comparison."
+  ],
+  "replay_tool": {
+    "path": "scripts/check-party-achievement-share-0.120.2.py",
+    "sha256": "45e08e058e515748d3fe5fbc2abed5d7a03ad9f2eb45b9ec9172d561adaed4c0"
+  },
+  "replay_helper": {
+    "path": "scripts/native_terminal.py",
+    "sha256": "69010622ca4e60a5dfe6f3f1509f342236450169fa5d8964a88eee0875a30e60"
+  },
+  "source_first": {
+    "paths": [
+      "crates/azeroth-survivors-re/src/gameplay/mechanics/party_achievements.rs",
+      "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs",
+      "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
+      "crates/azeroth-survivors-re/src/account_progression.rs",
+      "crates/azeroth-survivors-re/src/progression.rs",
+      "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs",
+      "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+      "docs/analysis/benilla-vendor.json"
+    ],
+    "conclusion": "Existing AS/engine state, codec, account/save and event interfaces were inspected first. Bounded recovery follows the new AS boss-credit producer/recipient branch; available engine collection/allocation/I/O internals remain established interface context."
+  },
+  "static_check": {
+    "path": "docs/analysis/evidence/0.120.2/party-achievement-share/static-check.json",
+    "sha256": "c7dce3a20ab5dea71daa89daa318ea617ba39fa1566af5e835b82459d0cec0dd"
+  }
+}

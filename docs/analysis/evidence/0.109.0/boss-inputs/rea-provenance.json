@@ -1,0 +1,50 @@
+{
+  "target_version": "0.109.0",
+  "target_sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+  "provider": "Ghidra via ./scripts/rea",
+  "queries": [
+    {
+      "role": "health-endless",
+      "procedure": "0x14596dab9",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_ed27ae9f25df746741c34f528dd26cc6dceb3543bdfe3a6787a6d9a256783a80",
+      "analysis_profile_digest": "40d867bd9d978e2d2ea966dca1a0a517a14cdf6b3a72d83dea6a98d50492085e",
+      "raw_input": {
+        "va": "0x14596dab9",
+        "file_offset": "0x596ceb9",
+        "byte_count": 173,
+        "sha256": "713e6530a67f0a8220c0346e6fc55725b0b6c0a0fbbd1b82deeff8182455091d"
+      },
+      "pseudocode": "health-endless.c",
+      "pseudocode_sha256": "6a3d3951f52aa9ffac7fb7fa1b713b59052a83e37817ef629123729f1983b7ea"
+    },
+    {
+      "role": "damage-actor-stats",
+      "procedure": "0x14596dec9",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_8b304608f12fa3bcc4082baf6aadb357dfb5a16bd1577180fd8d70c2e75f1b3d",
+      "analysis_profile_digest": "22475b54422137623cf1282cdb3505ad47bb4d6e2d2e94317b415c3b3ed92b50",
+      "raw_input": {
+        "va": "0x14596dec9",
+        "file_offset": "0x596d2c9",
+        "byte_count": 351,
+        "sha256": "5a98f12d2efee3ecc0e49d14522656207806e9839290cacdf5b3ec4dd752a9f2"
+      },
+      "pseudocode": "damage-actor-stats.c",
+      "pseudocode_sha256": "fcc66bcbe02bea1c126c469342dd38a2514c854dd5ae6962e0955f331d67ecbc"
+    }
+  ],
+  "limitations": [
+    "Raw fragments omit external code/data and use a generic Ghidra compiler specification. Registers, caller frames and type names may be misidentified; assembly and bounded native instruction cases own precise fields/arithmetic.",
+    "Branch entries are explicitly seeded within one raw dispatcher import, not independent declared native functions. Pseudocode may show truncated control flow at raw boundaries.",
+    "The whole hazard-owner decompilation timed out; selected lifecycle instruction ranges were recovered and checked separately. This is not full-image reference coverage or original/rebuilt parity."
+  ]
+}

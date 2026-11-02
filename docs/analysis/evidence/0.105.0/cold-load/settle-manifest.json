@@ -1,0 +1,29 @@
+{
+  "target": "AzerothSurvivors/AzerothSurvivors-0.105.0.exe",
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "target_process_launched": false,
+  "owners": [
+    {
+      "role": "settle-release",
+      "start": "0x140836110",
+      "end_exclusive": "0x14083647b",
+      "file_offset": "0x835510",
+      "sha256": "036637d180e06b86c93c1c1b6ee2294bf81daf7b628824a39c1ce1a6efd049eb",
+      "assembly": "hold-140836110.asm",
+      "evidence_id": "ev_2fa93e81e4460e99f3f7aa6e65d1e1978d412e2e75ee1e6ba1eb82d28e617d0c",
+      "pseudocode": "hold-140836110.c",
+      "provider": "Ghidra 12.1.4",
+      "limitation": "Headerless slice: ABI and external data require original-PE instructions."
+    }
+  ],
+  "timeout": {
+    "address": "0x145d6d428",
+    "value": 6.0
+  },
+  "validation": {
+    "native_cases": 6
+  },
+  "limits": [
+    "No compilation, source-test execution, MPQ load, application launch or native runtime parity comparison."
+  ]
+}

@@ -1,0 +1,4 @@
+1400a6f50 4889d1 mov rcx, rdx
+1400a6f53 488d1590afd205 lea rdx, [rip + 0x5d2af90]
+1400a6f5a 41b806000000 mov r8d, 6
+1400a6f60 e98bcdb205 jmp 0x145bd3cf0

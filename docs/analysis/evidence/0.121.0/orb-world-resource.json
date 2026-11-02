@@ -1,0 +1,1463 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "finding_ids": [
+    248
+  ],
+  "queries": [
+    {
+      "role": "world-ward-create",
+      "procedure": "0x145be8d10",
+      "evidence_id": "ev_3491e0f92849284c37454dd13b62b8c46df49995356aa631340d863b85cf029b",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "2833ae69dbcd34f19f839ffbabcf042bbe38a28770dedc33d384c8c2ac0ecae4",
+      "normalized_text_sha256": "3e1a954f8091ce3bfac9441c70afb3be319d2403ea892994a9196ec450cba7b9",
+      "plan": {
+        "path": "runtime/fixgap220229/affixes/orb-create/plan.json",
+        "sha256": "ea9262d51ff38d595ec8c30a522f63e464ca086bd1b4954adda6b07290940212"
+      },
+      "journal": {
+        "path": "runtime/fixgap220229/affixes/orb-create/query/journal.json",
+        "sha256": "712f97d70e3a4e85ac11958f0e4bfc3e8930a792cc80c754af4b4ee4887b93d9"
+      },
+      "result": {
+        "path": "runtime/fixgap220229/affixes/orb-create/query/results/321b468f67d66d7728a944a64353d161a575d8b034755ef58bcb5e81a6375936.json",
+        "sha256": "48844f066f73bde22e9fe0cf72a0f7396fd3e5a74c7cea89c76afce5d0f0e6e1"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap220229/affixes/orb-create/code.bin",
+        "sha256": "136ea12b128fb9715046521340f19ab96db45d827467886c777ff5aa7f8d9f0d"
+      },
+      "slice_virtual_address": "0x145be8d10"
+    },
+    {
+      "role": "world-create-field-publication",
+      "procedure": "0x145c13ce0",
+      "evidence_id": "ev_2a268769d5feb9ed91896a3f72d254f49f6fa32a0cf4ebc3843b868db717cea6",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "79953da4ee14f941761251ba54410c767d1b998c0bdebedb9fc53863ac9c9dbc",
+      "normalized_text_sha256": "cbbc7968a91205f652ca2f7cb29812da0885906fd9689563aa50c0fd12e2c292",
+      "plan": {
+        "path": "runtime/fixgap-0.121.0/resource-query/world-create-publication/plan.json",
+        "sha256": "46e74354becf3325e40ee232357fbce2a362f27adac71c025ea1cf76273fd9b4"
+      },
+      "journal": {
+        "path": "runtime/fixgap-0.121.0/resource-query/world-create-publication/query/journal.json",
+        "sha256": "b2057a3dce628dd28bbe922de8346e13ae61feeec2f7485beaae96dd6791320d"
+      },
+      "result": {
+        "path": "runtime/fixgap-0.121.0/resource-query/world-create-publication/query/results/e04272be392842c182684d018be80f128959d7b6c1232a1c079dc5c19702d81e.json",
+        "sha256": "baa82013c671ca89ab1965a9cac206794bfd55ee58c5fc7c426e559eec196131"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap-0.121.0/resource-query/world-create-publication/code.bin",
+        "sha256": "a2860511a43f94daef7e3f2de8b196bb6448a34f684571c505b27e2ddf92446c"
+      },
+      "slice_virtual_address": "0x145c13ce0"
+    }
+  ],
+  "create_interface": "0x145c13ce0",
+  "selector_prefix": {
+    "virtual_address": "0x145be8d58",
+    "byte_count": 130,
+    "file_offset": "0x5be8158",
+    "sha256": "bc20c316a686c6e2463f45e5e6c7f83816ab58f4eee50f19cbf29d74340e1439",
+    "instruction_count": 26
+  },
+  "template_table": {
+    "virtual_address": "0x146fc0b40",
+    "byte_count": 416,
+    "file_offset": "0x6fbf940",
+    "sha256": "e42f006ad4d0cf04c3ce44e4d0a64814884e8751374f22288f48c78bc6861126"
+  },
+  "selected_descriptor": "0x146fc0cc0",
+  "cases": [
+    {
+      "template_input": 11,
+      "counter_input": 0,
+      "template_selected": 11,
+      "entry": 9611,
+      "display_id": 4590,
+      "guid": 17379391123268567041,
+      "scale_bits": 1068708659
+    },
+    {
+      "template_input": 11,
+      "counter_input": 16777215,
+      "template_selected": 11,
+      "entry": 9611,
+      "display_id": 4590,
+      "guid": 17379391123268567040,
+      "scale_bits": 1068708659
+    },
+    {
+      "template_input": 11,
+      "counter_input": 4294967295,
+      "template_selected": 11,
+      "entry": 9611,
+      "display_id": 4590,
+      "guid": 17379391123268567040,
+      "scale_bits": 1068708659
+    },
+    {
+      "template_input": 12,
+      "counter_input": 0,
+      "template_selected": 12,
+      "entry": 9612,
+      "display_id": 16111,
+      "guid": 17379391123285344257,
+      "scale_bits": 1063675494
+    },
+    {
+      "template_input": 12,
+      "counter_input": 16777215,
+      "template_selected": 12,
+      "entry": 9612,
+      "display_id": 16111,
+      "guid": 17379391123285344256,
+      "scale_bits": 1063675494
+    },
+    {
+      "template_input": 12,
+      "counter_input": 4294967295,
+      "template_selected": 12,
+      "entry": 9612,
+      "display_id": 16111,
+      "guid": 17379391123285344256,
+      "scale_bits": 1063675494
+    },
+    {
+      "template_input": 13,
+      "counter_input": 0,
+      "template_selected": 12,
+      "entry": 9612,
+      "display_id": 16111,
+      "guid": 17379391123285344257,
+      "scale_bits": 1063675494
+    },
+    {
+      "template_input": 13,
+      "counter_input": 16777215,
+      "template_selected": 12,
+      "entry": 9612,
+      "display_id": 16111,
+      "guid": 17379391123285344256,
+      "scale_bits": 1063675494
+    },
+    {
+      "template_input": 13,
+      "counter_input": 4294967295,
+      "template_selected": 12,
+      "entry": 9612,
+      "display_id": 16111,
+      "guid": 17379391123285344256,
+      "scale_bits": 1063675494
+    },
+    {
+      "template_input": 18446744073709551615,
+      "counter_input": 0,
+      "template_selected": 12,
+      "entry": 9612,
+      "display_id": 16111,
+      "guid": 17379391123285344257,
+      "scale_bits": 1063675494
+    },
+    {
+      "template_input": 18446744073709551615,
+      "counter_input": 16777215,
+      "template_selected": 12,
+      "entry": 9612,
+      "display_id": 16111,
+      "guid": 17379391123285344256,
+      "scale_bits": 1063675494
+    },
+    {
+      "template_input": 18446744073709551615,
+      "counter_input": 4294967295,
+      "template_selected": 12,
+      "entry": 9612,
+      "display_id": 16111,
+      "guid": 17379391123285344256,
+      "scale_bits": 1063675494
+    }
+  ],
+  "original_instruction_steps": 312,
+  "publication": {
+    "virtual_address": "0x145c13ce0",
+    "byte_count": 868,
+    "file_offset": "0x5c130e0",
+    "sha256": "a2860511a43f94daef7e3f2de8b196bb6448a34f684571c505b27e2ddf92446c",
+    "instruction_count": 212,
+    "packet_builder_interface": "0x145b422d0",
+    "cases": [
+      {
+        "display_input": 0,
+        "target_guid_input": 1311768467463790320,
+        "run_level": 1,
+        "health_input": 1.0,
+        "fields": [
+          [
+            0,
+            2348810241
+          ],
+          [
+            1,
+            4046454821
+          ],
+          [
+            2,
+            9
+          ],
+          [
+            3,
+            9612
+          ],
+          [
+            4,
+            1063675494
+          ],
+          [
+            22,
+            1
+          ],
+          [
+            28,
+            1
+          ],
+          [
+            34,
+            1
+          ],
+          [
+            35,
+            14
+          ],
+          [
+            36,
+            256
+          ],
+          [
+            46,
+            0
+          ],
+          [
+            126,
+            2000
+          ],
+          [
+            127,
+            2000
+          ],
+          [
+            129,
+            1055286886
+          ],
+          [
+            130,
+            1068289228
+          ],
+          [
+            131,
+            0
+          ],
+          [
+            132,
+            0
+          ],
+          [
+            134,
+            1084227584
+          ],
+          [
+            135,
+            1092616192
+          ],
+          [
+            145,
+            1065353216
+          ],
+          [
+            16,
+            2596069104
+          ],
+          [
+            17,
+            305419896
+          ]
+        ],
+        "packet_guid": 17379391123285344257,
+        "packet_object_kind": 3
+      },
+      {
+        "display_input": 0,
+        "target_guid_input": 1311768467463790320,
+        "run_level": 1,
+        "health_input": 50.25,
+        "fields": [
+          [
+            0,
+            2348810241
+          ],
+          [
+            1,
+            4046454821
+          ],
+          [
+            2,
+            9
+          ],
+          [
+            3,
+            9612
+          ],
+          [
+            4,
+            1063675494
+          ],
+          [
+            22,
+            51
+          ],
+          [
+            28,
+            51
+          ],
+          [
+            34,
+            1
+          ],
+          [
+            35,
+            14
+          ],
+          [
+            36,
+            256
+          ],
+          [
+            46,
+            0
+          ],
+          [
+            126,
+            2000
+          ],
+          [
+            127,
+            2000
+          ],
+          [
+            129,
+            1055286886
+          ],
+          [
+            130,
+            1068289228
+          ],
+          [
+            131,
+            0
+          ],
+          [
+            132,
+            0
+          ],
+          [
+            134,
+            1084227584
+          ],
+          [
+            135,
+            1092616192
+          ],
+          [
+            145,
+            1065353216
+          ],
+          [
+            16,
+            2596069104
+          ],
+          [
+            17,
+            305419896
+          ]
+        ],
+        "packet_guid": 17379391123285344257,
+        "packet_object_kind": 3
+      },
+      {
+        "display_input": 0,
+        "target_guid_input": 1311768467463790320,
+        "run_level": 100,
+        "health_input": 1.0,
+        "fields": [
+          [
+            0,
+            2348810241
+          ],
+          [
+            1,
+            4046454821
+          ],
+          [
+            2,
+            9
+          ],
+          [
+            3,
+            9612
+          ],
+          [
+            4,
+            1063675494
+          ],
+          [
+            22,
+            1
+          ],
+          [
+            28,
+            1
+          ],
+          [
+            34,
+            63
+          ],
+          [
+            35,
+            14
+          ],
+          [
+            36,
+            256
+          ],
+          [
+            46,
+            0
+          ],
+          [
+            126,
+            2000
+          ],
+          [
+            127,
+            2000
+          ],
+          [
+            129,
+            1055286886
+          ],
+          [
+            130,
+            1068289228
+          ],
+          [
+            131,
+            0
+          ],
+          [
+            132,
+            0
+          ],
+          [
+            134,
+            1084227584
+          ],
+          [
+            135,
+            1092616192
+          ],
+          [
+            145,
+            1065353216
+          ],
+          [
+            16,
+            2596069104
+          ],
+          [
+            17,
+            305419896
+          ]
+        ],
+        "packet_guid": 17379391123285344257,
+        "packet_object_kind": 3
+      },
+      {
+        "display_input": 0,
+        "target_guid_input": 1311768467463790320,
+        "run_level": 100,
+        "health_input": 50.25,
+        "fields": [
+          [
+            0,
+            2348810241
+          ],
+          [
+            1,
+            4046454821
+          ],
+          [
+            2,
+            9
+          ],
+          [
+            3,
+            9612
+          ],
+          [
+            4,
+            1063675494
+          ],
+          [
+            22,
+            51
+          ],
+          [
+            28,
+            51
+          ],
+          [
+            34,
+            63
+          ],
+          [
+            35,
+            14
+          ],
+          [
+            36,
+            256
+          ],
+          [
+            46,
+            0
+          ],
+          [
+            126,
+            2000
+          ],
+          [
+            127,
+            2000
+          ],
+          [
+            129,
+            1055286886
+          ],
+          [
+            130,
+            1068289228
+          ],
+          [
+            131,
+            0
+          ],
+          [
+            132,
+            0
+          ],
+          [
+            134,
+            1084227584
+          ],
+          [
+            135,
+            1092616192
+          ],
+          [
+            145,
+            1065353216
+          ],
+          [
+            16,
+            2596069104
+          ],
+          [
+            17,
+            305419896
+          ]
+        ],
+        "packet_guid": 17379391123285344257,
+        "packet_object_kind": 3
+      },
+      {
+        "display_input": 16111,
+        "target_guid_input": 1311768467463790320,
+        "run_level": 1,
+        "health_input": 1.0,
+        "fields": [
+          [
+            0,
+            2348810241
+          ],
+          [
+            1,
+            4046454821
+          ],
+          [
+            2,
+            9
+          ],
+          [
+            3,
+            9612
+          ],
+          [
+            4,
+            1063675494
+          ],
+          [
+            22,
+            1
+          ],
+          [
+            28,
+            1
+          ],
+          [
+            34,
+            1
+          ],
+          [
+            35,
+            14
+          ],
+          [
+            36,
+            256
+          ],
+          [
+            46,
+            0
+          ],
+          [
+            126,
+            2000
+          ],
+          [
+            127,
+            2000
+          ],
+          [
+            129,
+            1055286886
+          ],
+          [
+            130,
+            1068289228
+          ],
+          [
+            131,
+            16111
+          ],
+          [
+            132,
+            16111
+          ],
+          [
+            134,
+            1084227584
+          ],
+          [
+            135,
+            1092616192
+          ],
+          [
+            145,
+            1065353216
+          ],
+          [
+            16,
+            2596069104
+          ],
+          [
+            17,
+            305419896
+          ]
+        ],
+        "packet_guid": 17379391123285344257,
+        "packet_object_kind": 3
+      },
+      {
+        "display_input": 16111,
+        "target_guid_input": 1311768467463790320,
+        "run_level": 1,
+        "health_input": 50.25,
+        "fields": [
+          [
+            0,
+            2348810241
+          ],
+          [
+            1,
+            4046454821
+          ],
+          [
+            2,
+            9
+          ],
+          [
+            3,
+            9612
+          ],
+          [
+            4,
+            1063675494
+          ],
+          [
+            22,
+            51
+          ],
+          [
+            28,
+            51
+          ],
+          [
+            34,
+            1
+          ],
+          [
+            35,
+            14
+          ],
+          [
+            36,
+            256
+          ],
+          [
+            46,
+            0
+          ],
+          [
+            126,
+            2000
+          ],
+          [
+            127,
+            2000
+          ],
+          [
+            129,
+            1055286886
+          ],
+          [
+            130,
+            1068289228
+          ],
+          [
+            131,
+            16111
+          ],
+          [
+            132,
+            16111
+          ],
+          [
+            134,
+            1084227584
+          ],
+          [
+            135,
+            1092616192
+          ],
+          [
+            145,
+            1065353216
+          ],
+          [
+            16,
+            2596069104
+          ],
+          [
+            17,
+            305419896
+          ]
+        ],
+        "packet_guid": 17379391123285344257,
+        "packet_object_kind": 3
+      },
+      {
+        "display_input": 16111,
+        "target_guid_input": 1311768467463790320,
+        "run_level": 100,
+        "health_input": 1.0,
+        "fields": [
+          [
+            0,
+            2348810241
+          ],
+          [
+            1,
+            4046454821
+          ],
+          [
+            2,
+            9
+          ],
+          [
+            3,
+            9612
+          ],
+          [
+            4,
+            1063675494
+          ],
+          [
+            22,
+            1
+          ],
+          [
+            28,
+            1
+          ],
+          [
+            34,
+            63
+          ],
+          [
+            35,
+            14
+          ],
+          [
+            36,
+            256
+          ],
+          [
+            46,
+            0
+          ],
+          [
+            126,
+            2000
+          ],
+          [
+            127,
+            2000
+          ],
+          [
+            129,
+            1055286886
+          ],
+          [
+            130,
+            1068289228
+          ],
+          [
+            131,
+            16111
+          ],
+          [
+            132,
+            16111
+          ],
+          [
+            134,
+            1084227584
+          ],
+          [
+            135,
+            1092616192
+          ],
+          [
+            145,
+            1065353216
+          ],
+          [
+            16,
+            2596069104
+          ],
+          [
+            17,
+            305419896
+          ]
+        ],
+        "packet_guid": 17379391123285344257,
+        "packet_object_kind": 3
+      },
+      {
+        "display_input": 16111,
+        "target_guid_input": 1311768467463790320,
+        "run_level": 100,
+        "health_input": 50.25,
+        "fields": [
+          [
+            0,
+            2348810241
+          ],
+          [
+            1,
+            4046454821
+          ],
+          [
+            2,
+            9
+          ],
+          [
+            3,
+            9612
+          ],
+          [
+            4,
+            1063675494
+          ],
+          [
+            22,
+            51
+          ],
+          [
+            28,
+            51
+          ],
+          [
+            34,
+            63
+          ],
+          [
+            35,
+            14
+          ],
+          [
+            36,
+            256
+          ],
+          [
+            46,
+            0
+          ],
+          [
+            126,
+            2000
+          ],
+          [
+            127,
+            2000
+          ],
+          [
+            129,
+            1055286886
+          ],
+          [
+            130,
+            1068289228
+          ],
+          [
+            131,
+            16111
+          ],
+          [
+            132,
+            16111
+          ],
+          [
+            134,
+            1084227584
+          ],
+          [
+            135,
+            1092616192
+          ],
+          [
+            145,
+            1065353216
+          ],
+          [
+            16,
+            2596069104
+          ],
+          [
+            17,
+            305419896
+          ]
+        ],
+        "packet_guid": 17379391123285344257,
+        "packet_object_kind": 3
+      },
+      {
+        "display_input": 4294967295,
+        "target_guid_input": 1311768467463790320,
+        "run_level": 1,
+        "health_input": 1.0,
+        "fields": [
+          [
+            0,
+            2348810241
+          ],
+          [
+            1,
+            4046454821
+          ],
+          [
+            2,
+            9
+          ],
+          [
+            3,
+            9612
+          ],
+          [
+            4,
+            1063675494
+          ],
+          [
+            22,
+            1
+          ],
+          [
+            28,
+            1
+          ],
+          [
+            34,
+            1
+          ],
+          [
+            35,
+            14
+          ],
+          [
+            36,
+            256
+          ],
+          [
+            46,
+            0
+          ],
+          [
+            126,
+            2000
+          ],
+          [
+            127,
+            2000
+          ],
+          [
+            129,
+            1055286886
+          ],
+          [
+            130,
+            1068289228
+          ],
+          [
+            131,
+            4294967295
+          ],
+          [
+            132,
+            4294967295
+          ],
+          [
+            134,
+            1084227584
+          ],
+          [
+            135,
+            1092616192
+          ],
+          [
+            145,
+            1065353216
+          ],
+          [
+            16,
+            2596069104
+          ],
+          [
+            17,
+            305419896
+          ]
+        ],
+        "packet_guid": 17379391123285344257,
+        "packet_object_kind": 3
+      },
+      {
+        "display_input": 4294967295,
+        "target_guid_input": 1311768467463790320,
+        "run_level": 1,
+        "health_input": 50.25,
+        "fields": [
+          [
+            0,
+            2348810241
+          ],
+          [
+            1,
+            4046454821
+          ],
+          [
+            2,
+            9
+          ],
+          [
+            3,
+            9612
+          ],
+          [
+            4,
+            1063675494
+          ],
+          [
+            22,
+            51
+          ],
+          [
+            28,
+            51
+          ],
+          [
+            34,
+            1
+          ],
+          [
+            35,
+            14
+          ],
+          [
+            36,
+            256
+          ],
+          [
+            46,
+            0
+          ],
+          [
+            126,
+            2000
+          ],
+          [
+            127,
+            2000
+          ],
+          [
+            129,
+            1055286886
+          ],
+          [
+            130,
+            1068289228
+          ],
+          [
+            131,
+            4294967295
+          ],
+          [
+            132,
+            4294967295
+          ],
+          [
+            134,
+            1084227584
+          ],
+          [
+            135,
+            1092616192
+          ],
+          [
+            145,
+            1065353216
+          ],
+          [
+            16,
+            2596069104
+          ],
+          [
+            17,
+            305419896
+          ]
+        ],
+        "packet_guid": 17379391123285344257,
+        "packet_object_kind": 3
+      },
+      {
+        "display_input": 4294967295,
+        "target_guid_input": 1311768467463790320,
+        "run_level": 100,
+        "health_input": 1.0,
+        "fields": [
+          [
+            0,
+            2348810241
+          ],
+          [
+            1,
+            4046454821
+          ],
+          [
+            2,
+            9
+          ],
+          [
+            3,
+            9612
+          ],
+          [
+            4,
+            1063675494
+          ],
+          [
+            22,
+            1
+          ],
+          [
+            28,
+            1
+          ],
+          [
+            34,
+            63
+          ],
+          [
+            35,
+            14
+          ],
+          [
+            36,
+            256
+          ],
+          [
+            46,
+            0
+          ],
+          [
+            126,
+            2000
+          ],
+          [
+            127,
+            2000
+          ],
+          [
+            129,
+            1055286886
+          ],
+          [
+            130,
+            1068289228
+          ],
+          [
+            131,
+            4294967295
+          ],
+          [
+            132,
+            4294967295
+          ],
+          [
+            134,
+            1084227584
+          ],
+          [
+            135,
+            1092616192
+          ],
+          [
+            145,
+            1065353216
+          ],
+          [
+            16,
+            2596069104
+          ],
+          [
+            17,
+            305419896
+          ]
+        ],
+        "packet_guid": 17379391123285344257,
+        "packet_object_kind": 3
+      },
+      {
+        "display_input": 4294967295,
+        "target_guid_input": 1311768467463790320,
+        "run_level": 100,
+        "health_input": 50.25,
+        "fields": [
+          [
+            0,
+            2348810241
+          ],
+          [
+            1,
+            4046454821
+          ],
+          [
+            2,
+            9
+          ],
+          [
+            3,
+            9612
+          ],
+          [
+            4,
+            1063675494
+          ],
+          [
+            22,
+            51
+          ],
+          [
+            28,
+            51
+          ],
+          [
+            34,
+            63
+          ],
+          [
+            35,
+            14
+          ],
+          [
+            36,
+            256
+          ],
+          [
+            46,
+            0
+          ],
+          [
+            126,
+            2000
+          ],
+          [
+            127,
+            2000
+          ],
+          [
+            129,
+            1055286886
+          ],
+          [
+            130,
+            1068289228
+          ],
+          [
+            131,
+            4294967295
+          ],
+          [
+            132,
+            4294967295
+          ],
+          [
+            134,
+            1084227584
+          ],
+          [
+            135,
+            1092616192
+          ],
+          [
+            145,
+            1065353216
+          ],
+          [
+            16,
+            2596069104
+          ],
+          [
+            17,
+            305419896
+          ]
+        ],
+        "packet_guid": 17379391123285344257,
+        "packet_object_kind": 3
+      }
+    ],
+    "original_instruction_steps": 2112,
+    "seams": [
+      "Typed field-write collection at145a9a130",
+      "ceilf/atan2f library results",
+      "Stop at create-packet builder145b422d0 before serialization"
+    ]
+  },
+  "model_receipt": {
+    "path": "docs/analysis/evidence/0.121.0/resource-consumer-9612.json",
+    "sha256": "2c531030406941bd42c6eecf2e404d392a6afa084840ed48e102f5bcd2307188"
+  },
+  "joined_display_id": 16111,
+  "joined_model_id": 2247,
+  "authored_model_name": "Creature\\SporeCreature\\SporeCreature.mdx",
+  "normalized_model_name": "creature\\sporecreature\\sporecreature.m2",
+  "source_connection": {
+    "status": "connected_source_unexecuted",
+    "template_index": 12,
+    "entry": 9612,
+    "display_id": 16111,
+    "scale_bits": "0x3f666666",
+    "path": "affix spawn -> WardState::spawn/template12 -> actor_appearance/ward_actors -> ActorView -> unit_snapshot -> unit_visual/LocalUnitVisual fields4/131/132",
+    "receipts": [
+      {
+        "path": "crates/azeroth-survivors-re/src/bosses/raid_wards.rs",
+        "sha256": "cf0f6dab19b2507ed5af36897e5a5e90606504b0891936c45763596147b4a244"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/affixes.rs",
+        "sha256": "30500318760c4784768569203f1eb9dc360b0c3cd755f010a2a163b772959866"
+      }
+    ],
+    "mechanics_display_scope": {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+      "scope": "whitespace-normalized ward template display/scale forwarding in actor_appearance and ward collection return in ward_actors only",
+      "fragments": [
+        ".or_else(||self.boss_state.wards.actors.iter().find(|row|row.guid==guid).map(|row|(row.template.display,row.template.scale)))",
+        "&self)->&[azeroth_survivors_re::bosses::raid_wards::Ward]{&self.boss_state.wards.actors}"
+      ],
+      "scope_sha256": "02e0caef1a5a05aefc6036b8be4b7396bdb3a7aa5f0ee78a58b892bcb58e3755"
+    },
+    "visual_display_scope": {
+      "path": "crates/azeroth-survivors-re/src/gameplay/visuals.rs",
+      "scope": "whitespace-normalized display/scale fragments in ward ActorView, unit_snapshot and unit_visual only",
+      "fragments": [
+        "game.actor_appearance(row.guid).unwrap_or((row.template.display,row.template.scale))",
+        "ActorView{guid:row.guid,display_id,scale,",
+        "display_id:actor.display_id,scale_bits:scale.to_bits(),",
+        "(4,unit.scale_bits)",
+        "(131,unit.display_id),(132,unit.display_id)",
+        "fields:ObjectFields::from_pairs(&fields)"
+      ],
+      "scope_sha256": "3ce1e748eb7544a345bae7437b5e0542750d9f7c7353acb578d2562f39149ef5"
+    }
+  },
+  "source_boundaries": [
+    {
+      "path": "crates/azeroth-survivors-re/src/bosses/raid_wards.rs",
+      "sha256": "cf0f6dab19b2507ed5af36897e5a5e90606504b0891936c45763596147b4a244"
+    },
+    {
+      "path": "crates/benilla-formats/src/creatures.rs",
+      "sha256": "a9268ff31358291e2609d9852cada6937ede10a3e5c7e88c36b23159f0dfaae3"
+    },
+    {
+      "path": "crates/benilla-formats/src/models/mod.rs",
+      "sha256": "98439ccdccc82857f84782845a078eed49001229b48beff00d523938527c8af1"
+    },
+    {
+      "path": "crates/benilla-formats/src/chain.rs",
+      "sha256": "3f44e391645132c4ed97373b4bf4d8251ca170211a01da0725470f4364b518e2"
+    }
+  ],
+  "result": "current world-create selects Orb display16111 and receiving AS helper writes it unchanged to fields131/132 with scale0.9 atfield4; configured DBC route names model2247 with no available named M2/MDX member",
+  "limits": [
+    "Current original code executes through AS field writes and create-packet interface inputs; generic field-vector internals, packet serialization and engine object delivery are explicit boundaries.",
+    "Existing source boundaries do not certify the selected target's compiled generic model/mount/alias implementation.",
+    "Retained DBC/model receipt keeps its exact archive/hash/row and22negative probes; no model payload or texture/emitter table exists on this configured route.",
+    "No substitute model, inferred DUST2B link, actual loading/rendering or parity claim."
+  ]
+}

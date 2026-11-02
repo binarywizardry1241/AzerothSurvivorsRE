@@ -1,0 +1,48 @@
+{
+  "target_sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+  "date": "2026-10-16",
+  "call_chain": [
+    "0x140209470 equipment builder: spawn call 0x14020a241",
+    "0x1401b3940 copies136-byte packed bundle, queues0x140236730",
+    "0x140236730 calls0x14034a2c0",
+    "0x14034a2c0 calls0x1402de030",
+    "0x1402de030 calls0x1403133f0",
+    "0x1403133f0 binds exact bundle type name at0x145906ef0 length151"
+  ],
+  "bundle_type": "(bevy_ecs::hierarchy::ChildOf, (bevy_ui::widget::text::Text, bevy_text::text::TextFont, bevy_text::text::TextColor, bevy_ui::widget::text::TextShadow))",
+  "bundle_type_va": "0x145906ef0",
+  "bundle_type_file_offset": "0x59056f0",
+  "native_values": {
+    "shadow_color": "Color::Srgba(0,0,0,0.85)",
+    "alpha_va": "0x1458ba908",
+    "offset": "Vec2(0,1.5)",
+    "offset_va": "0x1458a81f0",
+    "equipment_shadow_stores": [
+      "0x14020a201..0x14020a21c"
+    ],
+    "equivalent_literal_references": [
+      "0x1401fdd0e/0x1401fdd2a class text",
+      "0x14020c791/0x14020c7ad identity text",
+      "0x140208f25/0x140208f43 zone text",
+      "0x1402049a4/0x1402049c0 footer text"
+    ]
+  },
+  "rea_evidence": [
+    {
+      "address": "0x140209470",
+      "evidence_id": "ev_42ee7eb8c1eed8e9b40370c75071fb217bcedeb2f6ab4fcbaf791ffa03f204f7"
+    },
+    {
+      "address": "0x1401b3940",
+      "evidence_id": "ev_5e3121c66d4c10ca0d3848b5a85bd46b7caee78c220f0d0fb0598af1ba80e7bd"
+    },
+    {
+      "address": "0x1403133f0",
+      "evidence_id": "ev_241b37775ebf4331e1bfc4aafc0b09b44a1a94684de16d2b6cc923d689ab3b63"
+    }
+  ],
+  "limits": [
+    "The bare native Text tuple adds no explicit Node width or TextLayout at this equipment/no-gear site. No invented wrap clamp was added.",
+    "Static type/literal binding plus default Bevy required components establishes this shadow, not full text raster parity."
+  ]
+}

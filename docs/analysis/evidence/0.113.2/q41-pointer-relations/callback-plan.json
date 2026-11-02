@@ -1,0 +1,43 @@
+{
+  "target": "installed-game/AzerothSurvivors.exe",
+  "output": "runtime/q41-pointer-relations-0.113.2/replay-rea-callback",
+  "init_timeout": 60,
+  "timeout": 240,
+  "environment": {
+    "REA_GHIDRA_SEED_FILE": "docs/analysis/evidence/0.113.2/q41-pointer-relations/callback-seeds.tsv",
+    "REA_GHIDRA_DISABLED_ANALYZERS": "Stack,Decompiler Switch Analysis,Function ID,Function Start Search,Disassemble Entry Points,Subroutine References,Data Reference,Reference,Non-Returning Functions - Discovered,Shared Return Calls,Create Address Tables,Call Convention ID,Call-Fixup Installer,Variadic Function Signature Override",
+    "REA_GHIDRA_STARTUP_TIMEOUT_MS": "600000"
+  },
+  "operations": [
+    {
+      "name": "analyze_function",
+      "arguments": {
+        "procedure": "0x14017f820"
+      },
+      "label": "function-14017f820",
+      "timeout": 660
+    },
+    {
+      "name": "read_function_instructions",
+      "arguments": {
+        "procedure": "0x14017f820"
+      },
+      "label": "instructions-14017f820"
+    },
+    {
+      "name": "analyze_function",
+      "arguments": {
+        "procedure": "0x145895ad0"
+      },
+      "label": "function-145895ad0",
+      "timeout": 660
+    },
+    {
+      "name": "read_function_instructions",
+      "arguments": {
+        "procedure": "0x145895ad0"
+      },
+      "label": "instructions-145895ad0"
+    }
+  ]
+}

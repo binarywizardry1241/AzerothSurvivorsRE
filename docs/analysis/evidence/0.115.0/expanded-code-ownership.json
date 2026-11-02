@@ -1,0 +1,667 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.115.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+    "size_bytes": 142111232
+  },
+  "gap_ids": [
+    41
+  ],
+  "lead_ids": [
+    "Q41-U01",
+    "Q41-U03",
+    "Q41-B01",
+    "Q41-M01",
+    "Q41-A01"
+  ],
+  "generator": {
+    "path": "scripts/classify-expanded-code-ownership-0.115.0.py",
+    "sha256": "8922e0373e89734e1954f4d9b09890e489339e79cd98c26923d0454d746d3d8f"
+  },
+  "dependencies": [
+    {
+      "path": "scripts/coverage_common.py",
+      "sha256": "8e076cd7c55c918ff626e5e4c7df2e2efb0a8861ed3f39844b53ccd3d4c391ce"
+    },
+    {
+      "path": "scripts/derived_gzip.py",
+      "sha256": "27f82ab71c755614d19f72257d09100a721534dc45a2aa017e6062cc2429cdd5"
+    },
+    {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+    },
+    {
+      "path": "scripts/summarize-native-image.py",
+      "sha256": "dd5748de3b992dfd49bf0eca53dac1f8fabfb27102fda0c4815dc331c7f28e14"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "docs/analysis/coverage/full-image-execheck-0.115.0.json",
+      "sha256": "121df2416b8462945a48f1af9539c3cdf476b756f531ad5dce98720b4ae84684"
+    },
+    {
+      "path": "docs/analysis/evidence/0.115.0/data-classification/manifest.json",
+      "sha256": "4efd1224c62c0bed8014a18724644d9a32db7ed393533e802636136dca4d6bef"
+    },
+    {
+      "path": "docs/analysis/evidence/0.115.0/execheck-residuals.json",
+      "sha256": "548582b6a4ff0b0dd19e4f44ae4eed2d5453cd531d5ec40d4689c78097dce1ec"
+    },
+    {
+      "path": "docs/analysis/evidence/0.115.0/native-residuals.json",
+      "sha256": "912caeef5ae48f4cb592389fdcb3f7e8ffd55997f89e1c7f223ea733abd7f1f8"
+    },
+    {
+      "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/execheck-2026-10-25/bodies.tsv.gz",
+      "sha256": "d7907c54ebdf0ee00e8e048e14ae1aa5d23d65abc741b56df8e31da035032b4a"
+    },
+    {
+      "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/execheck-2026-10-25/instructions.tsv.gz",
+      "sha256": "94a38a5766f02524b8bf56aef8a1164a48218b61132bdaab217d9349154a99b2"
+    },
+    {
+      "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/execheck-2026-10-25/missing-executable-ranges.tsv.gz",
+      "sha256": "16d53b316e2e90787ac52a8b04f4e8fbbf698c3cd4631e4ac4ea62cb541d59b4"
+    },
+    {
+      "path": "runtime/execheck-2026-10-25/expanded-residuals/diagnostic-sites.jsonl.gz",
+      "sha256": "6f4c7f22299abd6e2f8085103e6b6e2722b719a6776a2d79aa9c69ed58cd819f"
+    },
+    {
+      "path": "runtime/execheck-2026-10-25/expanded-residuals/ownerless-instructions.tsv.gz",
+      "sha256": "6965125999ada042c58dcdd043debb8012d17a8fabb7b40a1f28b7bac0d806d3"
+    },
+    {
+      "path": "runtime/execheck-2026-10-25/expanded-residuals/ownerless-reference-sources.tsv.gz",
+      "sha256": "0545bd1eddf2b943d52f4931fefc2ccbb16acdc8c798d6d6dc96b196381ac229"
+    },
+    {
+      "path": "runtime/execheck-2026-10-25/expanded-residuals/static-reference-roles.tsv.gz",
+      "sha256": "fbe3f9b2b9a37d170b8371cfefbafbfd491ad511dbf82f05688ea4f8d886fb5e"
+    },
+    {
+      "path": "runtime/execheck-2026-10-25/expanded-residuals/unowned-executable-destinations.tsv.gz",
+      "sha256": "63d5270195171e4a09f4f213a683594bcace6c55587fc996d4efd97287353ac4"
+    },
+    {
+      "path": "runtime/q41-ownership-0.115.0/residuals-v2/ownerless-reference-sources.tsv.gz",
+      "sha256": "485e342e02ae6db461b9ee647bece6f66459ebcc2b67e109b846bc24a24d0af0"
+    },
+    {
+      "path": "scripts/coverage_common.py",
+      "sha256": "8e076cd7c55c918ff626e5e4c7df2e2efb0a8861ed3f39844b53ccd3d4c391ce"
+    },
+    {
+      "path": "scripts/derived_gzip.py",
+      "sha256": "27f82ab71c755614d19f72257d09100a721534dc45a2aa017e6062cc2429cdd5"
+    },
+    {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+    },
+    {
+      "path": "scripts/summarize-native-image.py",
+      "sha256": "dd5748de3b992dfd49bf0eca53dac1f8fabfb27102fda0c4815dc331c7f28e14"
+    }
+  ],
+  "outputs": {
+    "ownerless-instruction-roles.tsv.gz": {
+      "path": "runtime/q41-expanded-ownership-0.115.0/ownerless-instruction-roles.tsv.gz",
+      "sha256": "d56e2d2da50b6412b744b718c5dcb53965b8ee6cf6be397fcb600361211c763d",
+      "rows": 73536
+    },
+    "ownerless-components.jsonl.gz": {
+      "path": "runtime/q41-expanded-ownership-0.115.0/ownerless-components.jsonl.gz",
+      "sha256": "dcf23560f6a3fd18fb08cfb8151a916f984e7411fa02cd89b3835a2f18cc358f",
+      "rows": 6507
+    },
+    "missing-range-boundaries.tsv.gz": {
+      "path": "runtime/q41-expanded-ownership-0.115.0/missing-range-boundaries.tsv.gz",
+      "sha256": "fcaf29e91048e2fbb011833384d0a5aa8ec5bf01f6701d65bc17267d3e6463a9",
+      "rows": 463115
+    }
+  },
+  "counts": {
+    "ownerless_instructions": 73536,
+    "ownerless_instruction_classes": {
+      "declared:AS-context": 851,
+      "declared:ownership-unestablished": 55007,
+      "outside-declared:ownership-unestablished": 17678
+    },
+    "ownerless_flow_kinds": {
+      "COMPUTED_CALL": 302,
+      "COMPUTED_JUMP": 324,
+      "CONDITIONAL_JUMP": 6021,
+      "FALL_THROUGH": 55243,
+      "TERMINATOR": 3367,
+      "UNCONDITIONAL_CALL": 5155,
+      "UNCONDITIONAL_JUMP": 3124
+    },
+    "ownerless_components": 6507,
+    "components_with_AS_context": 44,
+    "AS_context_components_without_direct_AS_diagnostic": 0,
+    "ownerless_AS_diagnostic_instruction_sites": 60,
+    "ownerless_reference_records": 790042,
+    "canonical_metadata_reference_records": 775329,
+    "executable_ownerless_reference_records": 14713,
+    "ownerless_source_domains": [
+      {
+        "section": ".pdata",
+        "type": "DATA",
+        "records": 701424
+      },
+      {
+        "section": ".rdata",
+        "type": "DATA",
+        "records": 73888
+      },
+      {
+        "section": ".text",
+        "type": "CONDITIONAL_JUMP",
+        "records": 6021
+      },
+      {
+        "section": ".text",
+        "type": "INDIRECTION",
+        "records": 3
+      },
+      {
+        "section": ".text",
+        "type": "READ",
+        "records": 408
+      },
+      {
+        "section": ".text",
+        "type": "READ_WRITE",
+        "records": 2
+      },
+      {
+        "section": ".text",
+        "type": "UNCONDITIONAL_CALL",
+        "records": 5155
+      },
+      {
+        "section": ".text",
+        "type": "UNCONDITIONAL_JUMP",
+        "records": 3124
+      },
+      {
+        "section": "PE-headers-or-external",
+        "type": "DATA",
+        "records": 17
+      }
+    ],
+    "unowned_executable_destinations": 5128,
+    "incoming_edges_to_unowned_destinations": 6635,
+    "incoming_edge_types": {
+      "UNCONDITIONAL_JUMP": 761,
+      "CONDITIONAL_JUMP": 5874
+    },
+    "owned_source_edges_to_unowned_destinations": 0,
+    "encoded_edges_into_missing_ranges": 0,
+    "unobserved_ranges": 463115,
+    "unobserved_bytes": 8496512,
+    "missing_range_previous_flow": {
+      "declared:COMPUTED_JUMP": 4738,
+      "declared:FALL_THROUGH": 9,
+      "declared:TERMINATOR": 1695,
+      "declared:UNCONDITIONAL_JUMP": 48739,
+      "outside-declared:COMPUTED_CALL_TERMINATOR": 3,
+      "outside-declared:COMPUTED_JUMP": 75942,
+      "outside-declared:FALL_THROUGH": 1,
+      "outside-declared:TERMINATOR": 290306,
+      "outside-declared:UNCONDITIONAL_JUMP": 39128,
+      "outside-declared:no-adjacent-saved-predecessor": 2554
+    },
+    "AS_context_missing_ranges": 997,
+    "AS_context_missing_bytes": 119531,
+    "AS_context_missing_candidate_and_predecessor": {
+      "NOP-CC-instruction-candidate:COMPUTED_JUMP": 1,
+      "NOP-CC-instruction-candidate:TERMINATOR": 2,
+      "NOP-CC-instruction-candidate:UNCONDITIONAL_JUMP": 781,
+      "mixed-unclassified:COMPUTED_JUMP": 67,
+      "mixed-unclassified:TERMINATOR": 8,
+      "mixed-unclassified:UNCONDITIONAL_JUMP": 83,
+      "uniform-NOP-candidate:UNCONDITIONAL_JUMP": 55
+    },
+    "unobserved_bytes_by_location_and_candidate_kind": {
+      "declared:NOP-CC-instruction-candidate": 366635,
+      "declared:mixed-unclassified": 4861110,
+      "declared:uniform-CC-candidate": 2,
+      "declared:uniform-NOP-candidate": 4553,
+      "outside-declared:NOP-CC-instruction-candidate": 1584444,
+      "outside-declared:mixed-unclassified": 143455,
+      "outside-declared:uniform-CC-candidate": 1523810,
+      "outside-declared:uniform-NOP-candidate": 12503
+    }
+  },
+  "ownerless_outgoing_AS_interfaces": [
+    {
+      "site": "0x1400acbdd",
+      "destination": "0x1400ad504",
+      "type": "UNCONDITIONAL_JUMP",
+      "destination_body": "0x1400aad80",
+      "paths": [
+        "crates/wenilla-rogue-app/src/screens/options.rs"
+      ]
+    },
+    {
+      "site": "0x1400ace66",
+      "destination": "0x1400ad504",
+      "type": "UNCONDITIONAL_JUMP",
+      "destination_body": "0x1400aad80",
+      "paths": [
+        "crates/wenilla-rogue-app/src/screens/options.rs"
+      ]
+    },
+    {
+      "site": "0x1400aceb0",
+      "destination": "0x1400ad504",
+      "type": "UNCONDITIONAL_JUMP",
+      "destination_body": "0x1400aad80",
+      "paths": [
+        "crates/wenilla-rogue-app/src/screens/options.rs"
+      ]
+    },
+    {
+      "site": "0x1400ad449",
+      "destination": "0x1400ad504",
+      "type": "UNCONDITIONAL_JUMP",
+      "destination_body": "0x1400aad80",
+      "paths": [
+        "crates/wenilla-rogue-app/src/screens/options.rs"
+      ]
+    },
+    {
+      "site": "0x1458430c5",
+      "destination": "0x1458430e9",
+      "type": "UNCONDITIONAL_JUMP",
+      "destination_body": "0x145840690",
+      "paths": [
+        "crates/wenilla-rogue/src/fonts.rs"
+      ]
+    },
+    {
+      "site": "0x145927ff8",
+      "destination": "0x145928346",
+      "type": "UNCONDITIONAL_JUMP",
+      "destination_body": "0x145922f90",
+      "paths": [
+        "crates/wenilla-rogue/src/game/hazards.rs"
+      ]
+    },
+    {
+      "site": "0x14595a6fe",
+      "destination": "0x14595a8bb",
+      "type": "UNCONDITIONAL_JUMP",
+      "destination_body": "0x145954e80",
+      "paths": [
+        "crates/wenilla-rogue/src/game/enemy.rs"
+      ]
+    },
+    {
+      "site": "0x14595a84e",
+      "destination": "0x14595a8bb",
+      "type": "UNCONDITIONAL_JUMP",
+      "destination_body": "0x145954e80",
+      "paths": [
+        "crates/wenilla-rogue/src/game/enemy.rs"
+      ]
+    },
+    {
+      "site": "0x145961b9f",
+      "destination": "0x145961c5e",
+      "type": "UNCONDITIONAL_JUMP",
+      "destination_body": "0x14595f120",
+      "paths": [
+        "crates/wenilla-rogue/src/game/enemy.rs"
+      ]
+    },
+    {
+      "site": "0x145961bb1",
+      "destination": "0x145961c5e",
+      "type": "UNCONDITIONAL_JUMP",
+      "destination_body": "0x14595f120",
+      "paths": [
+        "crates/wenilla-rogue/src/game/enemy.rs"
+      ]
+    },
+    {
+      "site": "0x145961bc3",
+      "destination": "0x145961c5e",
+      "type": "UNCONDITIONAL_JUMP",
+      "destination_body": "0x14595f120",
+      "paths": [
+        "crates/wenilla-rogue/src/game/enemy.rs"
+      ]
+    },
+    {
+      "site": "0x145961bd5",
+      "destination": "0x145961c5e",
+      "type": "UNCONDITIONAL_JUMP",
+      "destination_body": "0x14595f120",
+      "paths": [
+        "crates/wenilla-rogue/src/game/enemy.rs"
+      ]
+    },
+    {
+      "site": "0x145961bea",
+      "destination": "0x145961c5e",
+      "type": "UNCONDITIONAL_JUMP",
+      "destination_body": "0x14595f120",
+      "paths": [
+        "crates/wenilla-rogue/src/game/enemy.rs"
+      ]
+    },
+    {
+      "site": "0x145961c00",
+      "destination": "0x145961c5e",
+      "type": "UNCONDITIONAL_JUMP",
+      "destination_body": "0x14595f120",
+      "paths": [
+        "crates/wenilla-rogue/src/game/enemy.rs"
+      ]
+    },
+    {
+      "site": "0x145961c4b",
+      "destination": "0x145961c5e",
+      "type": "UNCONDITIONAL_JUMP",
+      "destination_body": "0x14595f120",
+      "paths": [
+        "crates/wenilla-rogue/src/game/enemy.rs"
+      ]
+    },
+    {
+      "site": "0x145979895",
+      "destination": "0x1458e0370",
+      "type": "UNCONDITIONAL_CALL",
+      "destination_body": "0x1458e0370",
+      "paths": [
+        "crates/wenilla-rogue/src/i18n.rs"
+      ]
+    },
+    {
+      "site": "0x1459798e2",
+      "destination": "0x1458dff90",
+      "type": "UNCONDITIONAL_CALL",
+      "destination_body": "0x1458dff90",
+      "paths": [
+        "crates/wenilla-rogue/src/i18n.rs"
+      ]
+    },
+    {
+      "site": "0x145979e1d",
+      "destination": "0x1458e0370",
+      "type": "UNCONDITIONAL_CALL",
+      "destination_body": "0x1458e0370",
+      "paths": [
+        "crates/wenilla-rogue/src/i18n.rs"
+      ]
+    },
+    {
+      "site": "0x145979e7a",
+      "destination": "0x1458dff90",
+      "type": "UNCONDITIONAL_CALL",
+      "destination_body": "0x1458dff90",
+      "paths": [
+        "crates/wenilla-rogue/src/i18n.rs"
+      ]
+    },
+    {
+      "site": "0x1459e0740",
+      "destination": "0x1458e0370",
+      "type": "UNCONDITIONAL_CALL",
+      "destination_body": "0x1458e0370",
+      "paths": [
+        "crates/wenilla-rogue/src/i18n.rs"
+      ]
+    },
+    {
+      "site": "0x1459e0876",
+      "destination": "0x1458e0370",
+      "type": "UNCONDITIONAL_CALL",
+      "destination_body": "0x1458e0370",
+      "paths": [
+        "crates/wenilla-rogue/src/i18n.rs"
+      ]
+    },
+    {
+      "site": "0x1459e091c",
+      "destination": "0x1458e0370",
+      "type": "UNCONDITIONAL_CALL",
+      "destination_body": "0x1458e0370",
+      "paths": [
+        "crates/wenilla-rogue/src/i18n.rs"
+      ]
+    },
+    {
+      "site": "0x1459e2e9b",
+      "destination": "0x1459e2f47",
+      "type": "UNCONDITIONAL_JUMP",
+      "destination_body": "0x1459e1110",
+      "paths": [
+        "crates/wenilla-rogue/src/content.rs",
+        "crates/wenilla-rogue/src/jewelry.rs"
+      ]
+    },
+    {
+      "site": "0x1459e2ed5",
+      "destination": "0x1459e2f47",
+      "type": "UNCONDITIONAL_JUMP",
+      "destination_body": "0x1459e1110",
+      "paths": [
+        "crates/wenilla-rogue/src/content.rs",
+        "crates/wenilla-rogue/src/jewelry.rs"
+      ]
+    },
+    {
+      "site": "0x1459e2f0c",
+      "destination": "0x1459e2f47",
+      "type": "UNCONDITIONAL_JUMP",
+      "destination_body": "0x1459e1110",
+      "paths": [
+        "crates/wenilla-rogue/src/content.rs",
+        "crates/wenilla-rogue/src/jewelry.rs"
+      ]
+    },
+    {
+      "site": "0x1459e9c56",
+      "destination": "0x1459e9daf",
+      "type": "UNCONDITIONAL_JUMP",
+      "destination_body": "0x1459e6f00",
+      "paths": [
+        "crates/wenilla-rogue/src/content.rs",
+        "crates/wenilla-rogue/src/i18n.rs"
+      ]
+    },
+    {
+      "site": "0x1459e9c86",
+      "destination": "0x1459e9daf",
+      "type": "UNCONDITIONAL_JUMP",
+      "destination_body": "0x1459e6f00",
+      "paths": [
+        "crates/wenilla-rogue/src/content.rs",
+        "crates/wenilla-rogue/src/i18n.rs"
+      ]
+    },
+    {
+      "site": "0x1459e9ce9",
+      "destination": "0x1459e9daf",
+      "type": "UNCONDITIONAL_JUMP",
+      "destination_body": "0x1459e6f00",
+      "paths": [
+        "crates/wenilla-rogue/src/content.rs",
+        "crates/wenilla-rogue/src/i18n.rs"
+      ]
+    }
+  ],
+  "fallthrough_boundaries": [
+    {
+      "start": "0x145b53f14",
+      "end_exclusive": "0x145b53f20",
+      "byte_count": 12,
+      "category": "uniform-NOP-candidate",
+      "AS_context_paths": [],
+      "first_instruction": {
+        "bytes": "90",
+        "mnemonic": "nop",
+        "operands": ""
+      }
+    },
+    {
+      "start": "0x145b59abf",
+      "end_exclusive": "0x145b59bcd",
+      "byte_count": 270,
+      "category": "mixed-unclassified",
+      "AS_context_paths": [],
+      "first_instruction": {
+        "bytes": "c4e36544c500",
+        "mnemonic": "vpclmulqdq",
+        "operands": "ymm0, ymm3, ymm5, 0"
+      }
+    },
+    {
+      "start": "0x145b59daa",
+      "end_exclusive": "0x145b5a249",
+      "byte_count": 1183,
+      "category": "mixed-unclassified",
+      "AS_context_paths": [],
+      "first_instruction": {
+        "bytes": "c4621ddce2",
+        "mnemonic": "vaesenc",
+        "operands": "ymm12, ymm12, ymm2"
+      }
+    },
+    {
+      "start": "0x145b5a29f",
+      "end_exclusive": "0x145b5a34f",
+      "byte_count": 176,
+      "category": "mixed-unclassified",
+      "AS_context_paths": [],
+      "first_instruction": {
+        "bytes": "c4621ddce2",
+        "mnemonic": "vaesenc",
+        "operands": "ymm12, ymm12, ymm2"
+      }
+    },
+    {
+      "start": "0x145b5a374",
+      "end_exclusive": "0x145b5a49b",
+      "byte_count": 295,
+      "category": "mixed-unclassified",
+      "AS_context_paths": [],
+      "first_instruction": {
+        "bytes": "c4621ddce2",
+        "mnemonic": "vaesenc",
+        "operands": "ymm12, ymm12, ymm2"
+      }
+    },
+    {
+      "start": "0x145b5a629",
+      "end_exclusive": "0x145b5a65a",
+      "byte_count": 49,
+      "category": "mixed-unclassified",
+      "AS_context_paths": [],
+      "first_instruction": {
+        "bytes": "c4621ddce2",
+        "mnemonic": "vaesenc",
+        "operands": "ymm12, ymm12, ymm2"
+      }
+    },
+    {
+      "start": "0x145b5a663",
+      "end_exclusive": "0x145b5a694",
+      "byte_count": 49,
+      "category": "mixed-unclassified",
+      "AS_context_paths": [],
+      "first_instruction": {
+        "bytes": "c4621ddce2",
+        "mnemonic": "vaesenc",
+        "operands": "ymm12, ymm12, ymm2"
+      }
+    },
+    {
+      "start": "0x145b5a6b3",
+      "end_exclusive": "0x145b5a8ea",
+      "byte_count": 567,
+      "category": "mixed-unclassified",
+      "AS_context_paths": [],
+      "first_instruction": {
+        "bytes": "c4e36544ec00",
+        "mnemonic": "vpclmulqdq",
+        "operands": "ymm5, ymm3, ymm4, 0"
+      }
+    },
+    {
+      "start": "0x145b5a940",
+      "end_exclusive": "0x145b5a9f0",
+      "byte_count": 176,
+      "category": "mixed-unclassified",
+      "AS_context_paths": [],
+      "first_instruction": {
+        "bytes": "c4621ddce2",
+        "mnemonic": "vaesenc",
+        "operands": "ymm12, ymm12, ymm2"
+      }
+    },
+    {
+      "start": "0x145b5aa15",
+      "end_exclusive": "0x145b5ab3c",
+      "byte_count": 295,
+      "category": "mixed-unclassified",
+      "AS_context_paths": [],
+      "first_instruction": {
+        "bytes": "c4621ddce2",
+        "mnemonic": "vaesenc",
+        "operands": "ymm12, ymm12, ymm2"
+      }
+    }
+  ],
+  "canonical_metadata_roles": [
+    {
+      "section": ".pdata",
+      "classification": "PE_x64_runtime_function_table_context",
+      "records": 701424
+    },
+    {
+      "section": ".rdata",
+      "classification": "PE_import_address_table_context",
+      "records": 425
+    },
+    {
+      "section": ".rdata",
+      "classification": "PE_load_configuration_context",
+      "records": 3
+    },
+    {
+      "section": ".rdata",
+      "classification": "PE_load_configuration_indirection_slot_context",
+      "records": 2
+    },
+    {
+      "section": ".rdata",
+      "classification": "standard_x64_unwind_prefix_metadata",
+      "records": 73458
+    },
+    {
+      "section": "PE_headers",
+      "classification": "PE_header_data_reference",
+      "records": 17
+    }
+  ],
+  "global_aliasing_complete": false,
+  "source_semantics_complete": false,
+  "unobserved_bytes_classified_as_padding": false,
+  "parity_verified": false,
+  "limits": [
+    "Full populations are projected; component membership is undirected fallthrough/branch topology, never a proved function, execution path or source owner.",
+    "An exact custom diagnostic or shared declared interval is AS context only. Adjacent path literals retain their established bounded meanings.",
+    "Zero encoded incoming edges in the saved export does not exclude computed, erased, unwind, unexported or runtime entries.",
+    "Canonical metadata field roles are reused only after complete source/destination/type multiset equality, not from equal totals.",
+    "No generic engine recovery, application compilation, native/game execution or original/rebuilt comparison."
+  ]
+}

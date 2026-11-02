@@ -1,0 +1,79 @@
+{
+  "target": {
+    "version": "0.112.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+    "size_bytes": 140514816,
+    "identity_manifest": "docs/analysis/coverage/targets.json",
+    "version_provenance": "matching_embedded_updater_and_dialog_markers",
+    "runtime_data": {
+      "directory": "installed-game/Data",
+      "archives": [
+        {
+          "path": "installed-game/Data/patch-2.MPQ",
+          "size_bytes": 4690878,
+          "sha256": "366edee41642a5dda22ed90cc252b543ee375755b7e8bee81e2a6cd59fd7b286"
+        },
+        {
+          "path": "installed-game/Data/patch-3.MPQ",
+          "size_bytes": 2580491,
+          "sha256": "75c35ca5b8075197252581e301e8900143007fdf37b493ad271ae1bd39f95a29"
+        },
+        {
+          "path": "installed-game/Data/patch-4.MPQ",
+          "size_bytes": 22769233,
+          "sha256": "2e895e0e0ff6a4781d0e0aaa6ea7d32ed1fe36841e17806fe1855cb880d18865"
+        },
+        {
+          "path": "installed-game/Data/patch-5.MPQ",
+          "size_bytes": 267019039,
+          "sha256": "5008e56873718b468fa5ae1b697dcbe4f5da9ffe6c793f3ef9939dbd7716f3d8"
+        },
+        {
+          "path": "installed-game/Data/patch-6.MPQ",
+          "size_bytes": 212228,
+          "sha256": "cad6ff59b5df028a507581befb836fce07894057e15fe63d9fdc553a95b7ceb5"
+        },
+        {
+          "path": "installed-game/Data/patch-7.MPQ",
+          "size_bytes": 276649,
+          "sha256": "f5fb15b181cf01cc6b5cf2ee9948a27ecc4ba27bab9a8bec584df4381932aae6"
+        },
+        {
+          "path": "installed-game/Data/patch-8.MPQ",
+          "size_bytes": 4155417,
+          "sha256": "ae3aaa29cadb7aeba8255f5b4a8305c7cbecfe8f0d3ed9646522113d16c3e12e"
+        },
+        {
+          "path": "installed-game/Data/patch-9.MPQ",
+          "size_bytes": 5739608,
+          "sha256": "ffff8ea890bdaf91a1680543ac60106db92132bc2210105279610fa73661a524"
+        },
+        {
+          "path": "installed-game/Data/patch.MPQ",
+          "size_bytes": 1340199244,
+          "sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf"
+        }
+      ]
+    }
+  },
+  "interval": {
+    "address": "0x14595d7bb",
+    "end_exclusive": "0x14595d970",
+    "sha256": "cf3e3103d6d35e62ae0346745f2d5fb6f671c2ba7d9afb4086d3f3c5a36300b4"
+  },
+  "cases": 682,
+  "output_sha256": "ac530053b6ccbcbe828ac214871fe0c1a21a28be4b406fc7853ed222a2e7571a",
+  "host_calls": {
+    "0x140002200": 626,
+    "0x1400021c0": 626,
+    "0x145c0a3db": 626,
+    "0x145bdd5f0": 626
+  },
+  "observed_contract": "Display-time jewelry/amulet keys and raw quality bytes append in order; ordinary ability/gold rows skip; prior queued records survive.",
+  "limits": [
+    "Synthetic choice records use current native tag layout; real jewelry definitions and owned amulet keys supply payloads.",
+    "Allocation/clone/copy are supplied; capacity is preallocated. Native append/filter/order code executes; actual reallocation, save I/O and Rust do not.",
+    "Current regular tick gates, source save queues, rendering, compilation and parity are not executed by this fixture."
+  ]
+}

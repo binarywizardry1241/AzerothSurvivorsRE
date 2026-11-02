@@ -1,0 +1,601 @@
+{
+  "target_sha256": "17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b",
+  "method": "Replay current manual-cast gates and the desktop host's native capability.\n\nNo EXE process, allocations, host-call replacements or UI are used. Every\nexecuted instruction belongs to a retained span. The factory's indirect call\nexecutes the actual selected desktop vtable slot, including its native return.\nAlternate enabled-host payloads are static recovery, not desktop UI parity.\n",
+  "owners": [
+    {
+      "role": "desktop-host",
+      "start": "0x14000d230",
+      "end_exclusive": "0x14000d4fc",
+      "sha256": "09fcaacd81b7ad3608ba6a2364e1d0b9435a18e28731800d7e8a45cd3dae756a"
+    },
+    {
+      "role": "core-host-forwarder",
+      "start": "0x1454241d0",
+      "end_exclusive": "0x1454242c3",
+      "sha256": "0c83f0b24c988ee4d67e3b9728e28216be153928ed2e8a2064e5b52e7c5b3d62"
+    },
+    {
+      "role": "core-wrapper-forwarder",
+      "start": "0x145452f80",
+      "end_exclusive": "0x145453009",
+      "sha256": "26d7cf31a8eac12a99118851b9569c03c756e3b2523ca88c23d0991199ed1509"
+    },
+    {
+      "role": "callback-ownership",
+      "start": "0x14543f1ab",
+      "end_exclusive": "0x14543f1c7",
+      "sha256": "ba53c80af6f3f33a4d857de2ffd12e9c289973403fb49163cd087311959507e8"
+    },
+    {
+      "role": "desktop-capability",
+      "start": "0x140030500",
+      "end_exclusive": "0x140030503",
+      "sha256": "251447ee91a9067dcd6ab96703133f617565974cd6c4819021760c4688c91abf"
+    },
+    {
+      "role": "startup-empty",
+      "start": "0x14543f148",
+      "end_exclusive": "0x14543f166",
+      "sha256": "168cd41da5c1fffeb6216665fb1e5b966b2a1abc062b5ae9ac35dfaa45829528"
+    },
+    {
+      "role": "game-initial-discriminant",
+      "start": "0x1454add49",
+      "end_exclusive": "0x1454add75",
+      "sha256": "14bd3c8da53a7184ec660a0f25e080643477c2bb86f5273f81c04be1ff458217"
+    },
+    {
+      "role": "factory-missing-config",
+      "start": "0x14544f73d",
+      "end_exclusive": "0x14544f7ce",
+      "sha256": "0d56f77e1652912b7f3834b2210825a79a3035b75ca2b8a2d6395c9737a9d3e6"
+    },
+    {
+      "role": "factory-capability",
+      "start": "0x14544fc62",
+      "end_exclusive": "0x14544fcb4",
+      "sha256": "4761800a6d20c86a1dc9c93cb66f963826ad9c1cf02e84166bc9a05c400c8390"
+    },
+    {
+      "role": "factory-publish",
+      "start": "0x14544ff3f",
+      "end_exclusive": "0x14544ff51",
+      "sha256": "e33e55b87c9bcd39af78c6e588875028338eeab30af80344d9fadfca6deafa6a"
+    },
+    {
+      "role": "reload-clear",
+      "start": "0x14544d6de",
+      "end_exclusive": "0x14544d713",
+      "sha256": "81a90807e5189a3c4f9b631df22745db44dcd615d4b8b6280d97fa7bd935a55c"
+    },
+    {
+      "role": "disconnect-clear",
+      "start": "0x14543fe5c",
+      "end_exclusive": "0x14543fea5",
+      "sha256": "3dadb830c2091b4dc9695cebe474d38abbce8e19d1ffe1ece9b1829f8bcf5ca8"
+    },
+    {
+      "role": "manual-cast-response",
+      "start": "0x14544518a",
+      "end_exclusive": "0x14544520b",
+      "sha256": "24325bdad2aa1932d478af2e8424511770b30bb3ce116d0ffe4f6251bfc63418"
+    },
+    {
+      "role": "manual-cast-phase-two",
+      "start": "0x1454453cb",
+      "end_exclusive": "0x1454453d9",
+      "sha256": "5116460bddfa79e6249195d3494c683b7255d3f02b6c0ab67180c6aac77c3f23"
+    },
+    {
+      "role": "choice-payload",
+      "start": "0x1454ee470",
+      "end_exclusive": "0x1454eea26",
+      "sha256": "97e2d9419a5b74654146c00367428534f53f002bcd0adcec0524598b3dbf11a6"
+    },
+    {
+      "role": "result-payload",
+      "start": "0x1454f0640",
+      "end_exclusive": "0x1454f0c60",
+      "sha256": "c198303661f87a8e38c2ba33f335ae5b25b6031f3f9acb9a12584b4dbe587156"
+    },
+    {
+      "role": "gossip-publisher",
+      "start": "0x1454f9790",
+      "end_exclusive": "0x1454f9943",
+      "sha256": "0091bc24013494e5678f568980b85af97fabf778dcfc7b38aab24a77f9c259f8"
+    },
+    {
+      "role": "gossip-serializer-header",
+      "start": "0x14545cf50",
+      "end_exclusive": "0x14545cfbc",
+      "sha256": "0609ebb0707cdb49026e94fab120d5094e855e737b38132ef6e77b676d5afbf5"
+    },
+    {
+      "role": "npc-text-serializer-header",
+      "start": "0x14545e340",
+      "end_exclusive": "0x14545e3b0",
+      "sha256": "ff02fe533c308d7bf7cd6a46c42793dc989810c5cade7abc473a27b7cba23973"
+    }
+  ],
+  "ghidra": [
+    {
+      "role": "choices",
+      "evidence_id": "ev_fa735cca6b410e4ac645626a11633d74bc1a9e78c30faf52229719a90df65857",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "subject": {
+        "sha256": "97e2d9419a5b74654146c00367428534f53f002bcd0adcec0524598b3dbf11a6"
+      }
+    },
+    {
+      "role": "results",
+      "evidence_id": "ev_5285656fb89cb51bb9bc667083cf28910fdc09fef6ea24f6c28a7a466acb77ca",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "subject": {
+        "sha256": "c198303661f87a8e38c2ba33f335ae5b25b6031f3f9acb9a12584b4dbe587156"
+      }
+    }
+  ],
+  "desktop_vtable": {
+    "address": "0x145907f38",
+    "slot": "0x40",
+    "target": "0x140030500",
+    "result": 0,
+    "bytes": "10730040010000002000000000000000080000000000000040d242450100000010ce42450100000090cf424501000000c0c342450100000050cc4245010000000005034001000000",
+    "sha256": "12828d26ebc820a86a6e10610b47f8ca37425d81e36f1205b8151c8f91801b34"
+  },
+  "phase_actions": [
+    {
+      "wrapper_discriminant": 0,
+      "phase": 0,
+      "next_owner": "0x145447a82"
+    },
+    {
+      "wrapper_discriminant": 0,
+      "phase": 1,
+      "next_owner": "0x145447a82"
+    },
+    {
+      "wrapper_discriminant": 0,
+      "phase": 2,
+      "next_owner": "0x1454ee470"
+    },
+    {
+      "wrapper_discriminant": 0,
+      "phase": 3,
+      "next_owner": "0x145447a82"
+    },
+    {
+      "wrapper_discriminant": 0,
+      "phase": 4,
+      "next_owner": "0x1454f0640"
+    },
+    {
+      "wrapper_discriminant": 0,
+      "phase": 5,
+      "next_owner": "0x1454f0640"
+    },
+    {
+      "wrapper_discriminant": 0,
+      "phase": 6,
+      "next_owner": "0x145447a82"
+    },
+    {
+      "wrapper_discriminant": 0,
+      "phase": 7,
+      "next_owner": "0x145447a82"
+    },
+    {
+      "wrapper_discriminant": 0,
+      "phase": 255,
+      "next_owner": "0x145447a82"
+    },
+    {
+      "wrapper_discriminant": 1,
+      "phase": 0,
+      "next_owner": "0x145447a82"
+    },
+    {
+      "wrapper_discriminant": 1,
+      "phase": 1,
+      "next_owner": "0x145447a82"
+    },
+    {
+      "wrapper_discriminant": 1,
+      "phase": 2,
+      "next_owner": "0x1454ee470"
+    },
+    {
+      "wrapper_discriminant": 1,
+      "phase": 3,
+      "next_owner": "0x145447a82"
+    },
+    {
+      "wrapper_discriminant": 1,
+      "phase": 4,
+      "next_owner": "0x1454f0640"
+    },
+    {
+      "wrapper_discriminant": 1,
+      "phase": 5,
+      "next_owner": "0x1454f0640"
+    },
+    {
+      "wrapper_discriminant": 1,
+      "phase": 6,
+      "next_owner": "0x145447a82"
+    },
+    {
+      "wrapper_discriminant": 1,
+      "phase": 7,
+      "next_owner": "0x145447a82"
+    },
+    {
+      "wrapper_discriminant": 1,
+      "phase": 255,
+      "next_owner": "0x145447a82"
+    },
+    {
+      "wrapper_discriminant": 2,
+      "phase": 0,
+      "next_owner": "0x145447a82"
+    },
+    {
+      "wrapper_discriminant": 2,
+      "phase": 1,
+      "next_owner": "0x145447a82"
+    },
+    {
+      "wrapper_discriminant": 2,
+      "phase": 2,
+      "next_owner": "0x145447a82"
+    },
+    {
+      "wrapper_discriminant": 2,
+      "phase": 3,
+      "next_owner": "0x145447a82"
+    },
+    {
+      "wrapper_discriminant": 2,
+      "phase": 4,
+      "next_owner": "0x145447a82"
+    },
+    {
+      "wrapper_discriminant": 2,
+      "phase": 5,
+      "next_owner": "0x145447a82"
+    },
+    {
+      "wrapper_discriminant": 2,
+      "phase": 6,
+      "next_owner": "0x145447a82"
+    },
+    {
+      "wrapper_discriminant": 2,
+      "phase": 7,
+      "next_owner": "0x145447a82"
+    },
+    {
+      "wrapper_discriminant": 2,
+      "phase": 255,
+      "next_owner": "0x145447a82"
+    },
+    {
+      "wrapper_discriminant": 3,
+      "phase": 0,
+      "next_owner": "0x145447a82"
+    },
+    {
+      "wrapper_discriminant": 3,
+      "phase": 1,
+      "next_owner": "0x145447a82"
+    },
+    {
+      "wrapper_discriminant": 3,
+      "phase": 2,
+      "next_owner": "0x1454ee470"
+    },
+    {
+      "wrapper_discriminant": 3,
+      "phase": 3,
+      "next_owner": "0x145447a82"
+    },
+    {
+      "wrapper_discriminant": 3,
+      "phase": 4,
+      "next_owner": "0x1454f0640"
+    },
+    {
+      "wrapper_discriminant": 3,
+      "phase": 5,
+      "next_owner": "0x1454f0640"
+    },
+    {
+      "wrapper_discriminant": 3,
+      "phase": 6,
+      "next_owner": "0x145447a82"
+    },
+    {
+      "wrapper_discriminant": 3,
+      "phase": 7,
+      "next_owner": "0x145447a82"
+    },
+    {
+      "wrapper_discriminant": 3,
+      "phase": 255,
+      "next_owner": "0x145447a82"
+    },
+    {
+      "wrapper_discriminant": 4294967295,
+      "phase": 0,
+      "next_owner": "0x145447a82"
+    },
+    {
+      "wrapper_discriminant": 4294967295,
+      "phase": 1,
+      "next_owner": "0x145447a82"
+    },
+    {
+      "wrapper_discriminant": 4294967295,
+      "phase": 2,
+      "next_owner": "0x1454ee470"
+    },
+    {
+      "wrapper_discriminant": 4294967295,
+      "phase": 3,
+      "next_owner": "0x145447a82"
+    },
+    {
+      "wrapper_discriminant": 4294967295,
+      "phase": 4,
+      "next_owner": "0x1454f0640"
+    },
+    {
+      "wrapper_discriminant": 4294967295,
+      "phase": 5,
+      "next_owner": "0x1454f0640"
+    },
+    {
+      "wrapper_discriminant": 4294967295,
+      "phase": 6,
+      "next_owner": "0x145447a82"
+    },
+    {
+      "wrapper_discriminant": 4294967295,
+      "phase": 7,
+      "next_owner": "0x145447a82"
+    },
+    {
+      "wrapper_discriminant": 4294967295,
+      "phase": 255,
+      "next_owner": "0x145447a82"
+    }
+  ],
+  "guards": [
+    {
+      "role": "choices",
+      "capability_byte": 0,
+      "choice_kind": 0,
+      "produces_payload": false
+    },
+    {
+      "role": "results",
+      "capability_byte": 0,
+      "choice_kind": 0,
+      "produces_payload": false
+    },
+    {
+      "role": "choices",
+      "capability_byte": 0,
+      "choice_kind": 1,
+      "produces_payload": false
+    },
+    {
+      "role": "results",
+      "capability_byte": 0,
+      "choice_kind": 1,
+      "produces_payload": false
+    },
+    {
+      "role": "choices",
+      "capability_byte": 0,
+      "choice_kind": 2,
+      "produces_payload": false
+    },
+    {
+      "role": "results",
+      "capability_byte": 0,
+      "choice_kind": 2,
+      "produces_payload": false
+    },
+    {
+      "role": "choices",
+      "capability_byte": 0,
+      "choice_kind": 255,
+      "produces_payload": false
+    },
+    {
+      "role": "results",
+      "capability_byte": 0,
+      "choice_kind": 255,
+      "produces_payload": false
+    },
+    {
+      "role": "choices",
+      "capability_byte": 1,
+      "choice_kind": 0,
+      "produces_payload": true
+    },
+    {
+      "role": "results",
+      "capability_byte": 1,
+      "choice_kind": 0,
+      "produces_payload": true
+    },
+    {
+      "role": "choices",
+      "capability_byte": 1,
+      "choice_kind": 1,
+      "produces_payload": true
+    },
+    {
+      "role": "results",
+      "capability_byte": 1,
+      "choice_kind": 1,
+      "produces_payload": true
+    },
+    {
+      "role": "choices",
+      "capability_byte": 1,
+      "choice_kind": 2,
+      "produces_payload": true
+    },
+    {
+      "role": "results",
+      "capability_byte": 1,
+      "choice_kind": 2,
+      "produces_payload": true
+    },
+    {
+      "role": "choices",
+      "capability_byte": 1,
+      "choice_kind": 255,
+      "produces_payload": false
+    },
+    {
+      "role": "results",
+      "capability_byte": 1,
+      "choice_kind": 255,
+      "produces_payload": true
+    },
+    {
+      "role": "choices",
+      "capability_byte": 2,
+      "choice_kind": 0,
+      "produces_payload": true
+    },
+    {
+      "role": "results",
+      "capability_byte": 2,
+      "choice_kind": 0,
+      "produces_payload": false
+    },
+    {
+      "role": "choices",
+      "capability_byte": 2,
+      "choice_kind": 1,
+      "produces_payload": true
+    },
+    {
+      "role": "results",
+      "capability_byte": 2,
+      "choice_kind": 1,
+      "produces_payload": false
+    },
+    {
+      "role": "choices",
+      "capability_byte": 2,
+      "choice_kind": 2,
+      "produces_payload": true
+    },
+    {
+      "role": "results",
+      "capability_byte": 2,
+      "choice_kind": 2,
+      "produces_payload": false
+    },
+    {
+      "role": "choices",
+      "capability_byte": 2,
+      "choice_kind": 255,
+      "produces_payload": false
+    },
+    {
+      "role": "results",
+      "capability_byte": 2,
+      "choice_kind": 255,
+      "produces_payload": false
+    },
+    {
+      "role": "choices",
+      "capability_byte": 255,
+      "choice_kind": 0,
+      "produces_payload": true
+    },
+    {
+      "role": "results",
+      "capability_byte": 255,
+      "choice_kind": 0,
+      "produces_payload": false
+    },
+    {
+      "role": "choices",
+      "capability_byte": 255,
+      "choice_kind": 1,
+      "produces_payload": true
+    },
+    {
+      "role": "results",
+      "capability_byte": 255,
+      "choice_kind": 1,
+      "produces_payload": false
+    },
+    {
+      "role": "choices",
+      "capability_byte": 255,
+      "choice_kind": 2,
+      "produces_payload": true
+    },
+    {
+      "role": "results",
+      "capability_byte": 255,
+      "choice_kind": 2,
+      "produces_payload": false
+    },
+    {
+      "role": "choices",
+      "capability_byte": 255,
+      "choice_kind": 255,
+      "produces_payload": false
+    },
+    {
+      "role": "results",
+      "capability_byte": 255,
+      "choice_kind": 255,
+      "produces_payload": false
+    }
+  ],
+  "lifecycle": [
+    {
+      "role": "startup",
+      "before": 0,
+      "after": 2
+    },
+    {
+      "role": "construct_game",
+      "before": 2,
+      "after": 0
+    },
+    {
+      "role": "reload",
+      "before": 0,
+      "after": 2
+    },
+    {
+      "role": "disconnect",
+      "before": 1,
+      "after": 2
+    }
+  ],
+  "limitations": [
+    "Enabled-host payload bodies are static/Ghidra recovery only.",
+    "No original/rebuilt GUI runtime comparison ran."
+  ]
+}

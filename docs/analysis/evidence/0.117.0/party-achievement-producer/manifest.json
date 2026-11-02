@@ -1,0 +1,243 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.117.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293",
+    "size_bytes": 145283072
+  },
+  "scope": "Current party-feat state producer and synchronous capture boundary; no game/network execution or original/rebuilt parity.",
+  "native_ranges": [
+    {
+      "name": "context",
+      "start_va": "0x145b84e60",
+      "end_va": "0x145b84ff5",
+      "file_offset": "0x5b84260",
+      "size_bytes": 405,
+      "sha256": "96cc6ba2021fa64396aa7162593100d6308b32064e717b55b39ed946fb6c64dd",
+      "assembly_path": "docs/analysis/evidence/0.117.0/party-achievement-producer/context.asm",
+      "assembly_sha256": "5f3c6431bd37430ee7b4e574f7d9fabec45bc95c26c43507befe172c1e112363",
+      "instruction_count": 105,
+      "contract": "Optional context builder: retained remote presence, cached membership/events, death count and maximum modifiers."
+    },
+    {
+      "name": "members",
+      "start_va": "0x145c22000",
+      "end_va": "0x145c223ff",
+      "file_offset": "0x5c21400",
+      "size_bytes": 1023,
+      "sha256": "770f5c37aa36808cf30a7e24f75bdcdbbced8fe77ec994664c779a1fca678687",
+      "assembly_path": "docs/analysis/evidence/0.117.0/party-achievement-producer/members.asm",
+      "assembly_sha256": "92be088cc2d852d29c4935b7d77dd6d0e9f89fde657da89ea6cea744f50dfcb0",
+      "instruction_count": 249,
+      "contract": "Ordered remote member projection: abandoned exclusion, unique maximum rank, talent bits."
+    },
+    {
+      "name": "tick-members",
+      "start_va": "0x145b7d08d",
+      "end_va": "0x145b7d4f6",
+      "file_offset": "0x5b7c48d",
+      "size_bytes": 1129,
+      "sha256": "8facfa72b13afba79f1c3f79c72e54ed9ca2c53e4ca9b38fb638c752c7f72edc",
+      "assembly_path": "docs/analysis/evidence/0.117.0/party-achievement-producer/tick-members.asm",
+      "assembly_sha256": "4a8bace30b4bb0bb9ebbd26741329a4b032d1e6f11006de519f118c615e2ac02",
+      "instruction_count": 249,
+      "contract": "Shared tick phase gate, clock advance and local-first member rebuild before simulation."
+    },
+    {
+      "name": "tick-simulation",
+      "start_va": "0x145b7db98",
+      "end_va": "0x145b7dc8a",
+      "file_offset": "0x5b7cf98",
+      "size_bytes": 242,
+      "sha256": "76a6ddc3d7707fcfca6b75dad324c49bac1dfc3ee389c05a1be8811ded697076",
+      "assembly_path": "docs/analysis/evidence/0.117.0/party-achievement-producer/tick-simulation.asm",
+      "assembly_sha256": "ba0a345851d49aae6e1023632e71aa0b7f4ebdd67d47b2a086d29cf86a1f8b24",
+      "instruction_count": 45,
+      "contract": "Later local/remote hero simulation and context swapping after member rebuild."
+    },
+    {
+      "name": "lethal-events",
+      "start_va": "0x145bd65d2",
+      "end_va": "0x145bd6a6f",
+      "file_offset": "0x5bd59d2",
+      "size_bytes": 1181,
+      "sha256": "650656f0fc11e930bc731ff3dc722d024ed65d7e8d70af6095548dd17e642cb2",
+      "assembly_path": "docs/analysis/evidence/0.117.0/party-achievement-producer/lethal-events.asm",
+      "assembly_sha256": "74db8533110437fe19e65cee479d71c485774aa1a20817d838e7edad2f0e5f10",
+      "instruction_count": 247,
+      "contract": "Lethal boss metadata, ordinary hero event and shared copied-member event before subsequent callbacks."
+    },
+    {
+      "name": "death-phase",
+      "start_va": "0x145b95c0f",
+      "end_va": "0x145b95c50",
+      "file_offset": "0x5b9500f",
+      "size_bytes": 65,
+      "sha256": "d32e5188a36b762da9527df3ea8e0ad55a1b1c54f5ba8f0ee8e293cc6853349d",
+      "assembly_path": "docs/analysis/evidence/0.117.0/party-achievement-producer/death-phase.asm",
+      "assembly_sha256": "a1f6d56891dc649c58300125c4b52ded1aaf858dd7f12ad10d99effe81745a20",
+      "instruction_count": 11,
+      "contract": "Phase4 death owner and cooperative branch."
+    },
+    {
+      "name": "death-count",
+      "start_va": "0x145b95faf",
+      "end_va": "0x145b96041",
+      "file_offset": "0x5b953af",
+      "size_bytes": 146,
+      "sha256": "80f35f1ffed4e209c394375a42860aee5f1ee1993d75c6a1cadad5ad7c5fef78",
+      "assembly_path": "docs/analysis/evidence/0.117.0/party-achievement-producer/death-count.asm",
+      "assembly_sha256": "b49bcc4586ae00c3c2d0912b42511817fcd5c1e52269aec20a98873ccf34e63a",
+      "instruction_count": 28,
+      "contract": "Cooperative abandoned branch skips message and wrapping increment of shared death count."
+    },
+    {
+      "name": "death-init",
+      "start_va": "0x145b9f31a",
+      "end_va": "0x145b9f338",
+      "file_offset": "0x5b9e71a",
+      "size_bytes": 30,
+      "sha256": "324e405b2620a4f0a02cddbe05c8735b92554d35bc073411ef06e8b84e86c31c",
+      "assembly_path": "docs/analysis/evidence/0.117.0/party-achievement-producer/death-init.asm",
+      "assembly_sha256": "6b644a550622ccb1bb8bb53bf884c0de561cd003e522557f74e5f19b8464ee39",
+      "instruction_count": 3,
+      "contract": "New Game death count initialized to0."
+    },
+    {
+      "name": "abandon",
+      "start_va": "0x145ba5dc0",
+      "end_va": "0x145ba5e3a",
+      "file_offset": "0x5ba51c0",
+      "size_bytes": 122,
+      "sha256": "469a9fa710e387e9cfe17ff19392c4c482a65e318facfb8bd79a06b261dfe90b",
+      "assembly_path": "docs/analysis/evidence/0.117.0/party-achievement-producer/abandon.asm",
+      "assembly_sha256": "c5ca2f021e5a360eeb2a042e8b53730d4f8d7fa0a598b906412fde0dcc343923",
+      "instruction_count": 33,
+      "contract": "Active phase1..3 abandon sets finished before entering death owner."
+    },
+    {
+      "name": "hero-swap",
+      "start_va": "0x145ba8140",
+      "end_va": "0x145ba94a1",
+      "file_offset": "0x5ba7540",
+      "size_bytes": 4961,
+      "sha256": "5d44f29af4d22b5894cabee2b56fec90fcc4ce1cd6accc9503d519e6f2a3f451",
+      "assembly_path": "docs/analysis/evidence/0.117.0/party-achievement-producer/hero-swap.asm",
+      "assembly_sha256": "137235ef38b6335d959eac29ed22732d83d021f188024487fbfc2ecbb420b12e",
+      "instruction_count": 723,
+      "contract": "Complete straight-line leaf swaps private hero fields; c77 maps to remote983, shared feat state omitted."
+    }
+  ],
+  "constants": [
+    {
+      "name": "density_minimum",
+      "start_va": "0x1472a56de",
+      "file_offset": "0x72a40de",
+      "size_bytes": 2,
+      "hex": "f401",
+      "value": 500,
+      "sha256": "b7e60cdf144aa31d1e03e0e0e257772daa5424d99382b1d38ac8d0e0f4af6e86"
+    },
+    {
+      "name": "health_minimum",
+      "start_va": "0x1472a570e",
+      "file_offset": "0x72a410e",
+      "size_bytes": 2,
+      "hex": "f401",
+      "value": 500,
+      "sha256": "b7e60cdf144aa31d1e03e0e0e257772daa5424d99382b1d38ac8d0e0f4af6e86"
+    },
+    {
+      "name": "damage_minimum",
+      "start_va": "0x1472a573e",
+      "file_offset": "0x72a413e",
+      "size_bytes": 2,
+      "hex": "2c01",
+      "value": 300,
+      "sha256": "f85ad8f0233b99ba122d3b79773c1a1936b3d3b988b9d1b475fd890b4032f3c4"
+    },
+    {
+      "name": "speed_minimum",
+      "start_va": "0x1472a576e",
+      "file_offset": "0x72a416e",
+      "size_bytes": 2,
+      "hex": "9600",
+      "value": 150,
+      "sha256": "73e1afc1fd9896051479dbc8b24a7558d67afdde30d247b208505579faa49c85"
+    },
+    {
+      "name": "tranquility",
+      "start_va": "0x1475c67ec",
+      "file_offset": "0x75c51ec",
+      "size_bytes": 11,
+      "hex": "7472616e7175696c697479",
+      "sha256": "06b384b3b9798926c2a48eb5a4e8d9c651b29f33328b72a1a66c93210a39ac70"
+    },
+    {
+      "name": "bladestorm",
+      "start_va": "0x1475c6b17",
+      "file_offset": "0x75c5517",
+      "size_bytes": 10,
+      "hex": "626c61646573746f726d",
+      "sha256": "6c4754ea42bacf4eb2ad3546ab1f84c454713c6652014b49a50a27869765a029"
+    }
+  ],
+  "queries": {
+    "context": {
+      "plan": "runtime/0.117.0/party-achievement-producer/context-plan.json",
+      "plan_sha256": "ae0a989876a2add0bde2245d7993c65c3fcb4fe7a278fc0c1032d8cacee11746",
+      "result": "runtime/0.117.0/party-achievement-producer/context-query/results/6e8bb2fce3def3a2f22aa7fa375a9b58ad720e7b6bce354783a1092568ac4f5c.json",
+      "result_sha256": "7fe63abf2c5bc0a003ee3c86105bbcb572d76b60e1587cab789b0733b575fe6d",
+      "evidence_id": "ev_4ee327378889928087a51783edd30f7f9594427e71529e7ae02e52cf686da496",
+      "raw_subject_sha256": "96cc6ba2021fa64396aa7162593100d6308b32064e717b55b39ed946fb6c64dd",
+      "journal": "runtime/0.117.0/party-achievement-producer/context-query/journal.json",
+      "limits": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+        "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+        "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+        "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+      ]
+    },
+    "members": {
+      "plan": "runtime/0.117.0/party-achievement-producer/members-plan.json",
+      "plan_sha256": "45c9be7314f93ba3a6f5c940a579007a253bea0483615c655a689e5207cae4b9",
+      "result": "runtime/0.117.0/party-achievement-producer/members-query/results/cc1ac802bbc68bab372e6ab97e5c6459d94fac3c0759907cc1b3c5485b318180.json",
+      "result_sha256": "031bc0f7adaf43b6764e4961e1f1b4d245a965739a59291940eeaca8866a43dd",
+      "evidence_id": "ev_d08cc6c81f5dbe6181f593b6ba2b677ec2d09a11d0e5b7888c7b4d927f5eefba",
+      "raw_subject_sha256": "770f5c37aa36808cf30a7e24f75bdcdbbced8fe77ec994664c779a1fca678687",
+      "journal": "runtime/0.117.0/party-achievement-producer/members-query/journal.json",
+      "limits": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+        "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+        "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+        "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+      ]
+    }
+  },
+  "source_files": [
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/party_achievements.rs",
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs",
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs"
+  ],
+  "limits": [
+    "All native addresses are preferred PE VAs, not observed runtime addresses.",
+    "Capstone5.0.7 decoded the complete selected byte ranges from their instruction starts; this is bounded discovery, not full native ownership or alias closure.",
+    "Ghidra12.1.4 raw slices omit external callees/data and have inferred ABI/types; direct PE reads resolve the selected constants and source connections.",
+    "Journaled query launcher uses guarded persistent target/profile-bound Programs; generic underlying provider ephemeral-session text does not describe launcher retention.",
+    "State15 serialization/admission and recipient account eligibility/persistence belong to the separately linked wire/route reports."
+  ]
+}

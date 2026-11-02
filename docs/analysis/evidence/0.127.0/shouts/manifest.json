@@ -1,0 +1,438 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.127.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+    "size_bytes": 146721280
+  },
+  "ranges": [
+    {
+      "role": "strongest-window",
+      "start": "0x145b760b0",
+      "end_exclusive": "0x145b7624b",
+      "file_offset": "0x5b754b0",
+      "byte_count": 411,
+      "sha256": "f82ad3229c0d96861c4135e2f0aeb1ef03b7826e3f4a9083a134838d25373f67"
+    },
+    {
+      "role": "aura-stat-consumer",
+      "start": "0x145c19060",
+      "end_exclusive": "0x145c1920e",
+      "file_offset": "0x5c18460",
+      "byte_count": 430,
+      "sha256": "f4814c902b50748797ac546ca7881cb5e1adc58976bd76e6491b9a00ff914e24"
+    },
+    {
+      "role": "active-shout-tooltip",
+      "start": "0x145c0c300",
+      "end_exclusive": "0x145c0c668",
+      "file_offset": "0x5c0b700",
+      "byte_count": 872,
+      "sha256": "fe0127a2b564255893681b4789888190a07d000677e1fad0566a363415b66f9a"
+    },
+    {
+      "role": "party-aura-producer",
+      "start": "0x145c05c60",
+      "end_exclusive": "0x145c05d41",
+      "file_offset": "0x5c05060",
+      "byte_count": 225,
+      "sha256": "5e581acbc56d8c330a3dd45c59fbf9c463c0e5c33f62a0710f292efa2ba99641"
+    },
+    {
+      "role": "self-shout-publication",
+      "start": "0x145c6437c",
+      "end_exclusive": "0x145c6448d",
+      "file_offset": "0x5c6377c",
+      "byte_count": 273,
+      "sha256": "1e948511fdcd8bf9b4381a46eb421bf473fd4b33231c4728e4486f4de3d2d9b8"
+    },
+    {
+      "role": "party-aura-recipient",
+      "start": "0x145c07c20",
+      "end_exclusive": "0x145c0844f",
+      "file_offset": "0x5c07020",
+      "byte_count": 2095,
+      "sha256": "757f13e5b5b994b08395994bdfb85ca6a2f17e78cc1387bef03c76be682976a1"
+    },
+    {
+      "role": "party-recipient-routing",
+      "start": "0x145bfe5b0",
+      "end_exclusive": "0x145bfe7f0",
+      "file_offset": "0x5bfd9b0",
+      "byte_count": 576,
+      "sha256": "7ecf5c34960f8d74182df5e6f8dc57c2c69ec4a2c6e10a7a33757ff648084b7a"
+    },
+    {
+      "role": "enemy-weakening",
+      "start": "0x145c6910f",
+      "end_exclusive": "0x145c691b7",
+      "file_offset": "0x5c6850f",
+      "byte_count": 168,
+      "sha256": "71081adb51e5da520700906ef5f633bd7f8e4c8f3c332bf7b991ebed31f91134"
+    },
+    {
+      "role": "amplification-discriminator",
+      "start": "0x145c771da",
+      "end_exclusive": "0x145c77239",
+      "file_offset": "0x5c765da",
+      "byte_count": 95,
+      "sha256": "6d478d1319fd7da76e8c5e221751ad0dcfaf20954b15ef9fef66eaae415a6aa9"
+    },
+    {
+      "role": "amplification-update",
+      "start": "0x145c77942",
+      "end_exclusive": "0x145c7797c",
+      "file_offset": "0x5c76d42",
+      "byte_count": 58,
+      "sha256": "087b98f6f555d5e3b4b0903e0a2fa298cb547350f18effd7bda981688649bbf9"
+    },
+    {
+      "role": "judgement-update",
+      "start": "0x145c7916f",
+      "end_exclusive": "0x145c7917d",
+      "file_offset": "0x5c7856f",
+      "byte_count": 14,
+      "sha256": "f4a09cbbb27ecd1277e7f345b41af90feed5b213f9e88a7ed96a4fcb1c12ad37"
+    },
+    {
+      "role": "independent-hit-consumers",
+      "start": "0x145c326bf",
+      "end_exclusive": "0x145c3270a",
+      "file_offset": "0x5c31abf",
+      "byte_count": 75,
+      "sha256": "deaf030b73964e6370fc2b2bad504a5c30c49c1b65f137fbbda23a64ec35df65"
+    }
+  ],
+  "talent_inputs": [
+    {
+      "key": "imp_demo_shout",
+      "definition_address": "0x147054e40",
+      "definition_sha256": "74cb159dd5cbed11870dd4166d74d3b7d41cc20bef58b8005caee361148bbe7e",
+      "effect_address": "0x1470541f0",
+      "effect_hex": "080000000000803fffffffffcdcc4c3d0000c0400000000000000000000000000100000000000000922c0547010000000a000000000000000000000000000000",
+      "effect_sha256": "b58b90f8024e6266939ec612c57b5ea66368debe4072a5ed3d649f7f79394179",
+      "source_payload_sha256": "72b879903506a12aa8980f0d7d033620511d697d467d46b4e1ccd572c703ff1c",
+      "selector": "demo_shout",
+      "description_address": "0x147054230",
+      "description": "Enemies hit by Demoralizing Shout take {v}% more damage from you and your allies for 6 sec."
+    },
+    {
+      "key": "judgement_crusader",
+      "definition_address": "0x147057480",
+      "definition_sha256": "b278ca48a5e40cf38a9b20686d047ec78221f67f806afde9eb8bd1bd2dede232",
+      "effect_address": "0x147056740",
+      "effect_hex": "080000000000803fffffffff0ad7233d000040400000000000000000000000000100000000000000ed590547010000000c000000000000000000000000000000",
+      "effect_sha256": "28892f947e11f2e9726576eb7aa17bda7dd3898be2f20e5e9e3d7f8a6cf30c36",
+      "source_payload_sha256": "e3affe7920e1c21d7745593368daac142a6d3c34edbb4634fa503d553cc7324f",
+      "selector": "consecration",
+      "description_address": "0x147056780",
+      "description": "Enemies burning in your Consecration take {v}% more damage from you for 3 sec."
+    }
+  ],
+  "localized_amplification": [
+    {
+      "code": "en",
+      "payload": {
+        "virtual_address": "0x147086446",
+        "file_offset": "0x7084a46",
+        "byte_count": 221489,
+        "sha256": "ab4970dccafac5b5ea7920bba16f159f96e8e0f02042a00fd62193e520f6169a"
+      },
+      "key": "Enemies hit by Demoralizing Shout take {v}% more damage from you and your allies for 6 sec.",
+      "value": "Enemies hit by Demoralizing Shout take {v}% more damage from you and your allies for 6 sec."
+    },
+    {
+      "code": "pl",
+      "payload": {
+        "virtual_address": "0x1470bc57f",
+        "file_offset": "0x70bab7f",
+        "byte_count": 236278,
+        "sha256": "45d932234f52de6014360fecbcc434283c6215a00e3431f1c0d9524a3f64a814"
+      },
+      "key": "Enemies hit by Demoralizing Shout take {v}% more damage from you and your allies for 6 sec.",
+      "value": "Wrogowie trafieni Demoralizuj\u0105cym Okrzykiem otrzymuj\u0105 od ciebie i twoich sojusznik\u00f3w {v}% wi\u0119cej obra\u017ce\u0144 przez 6 s."
+    },
+    {
+      "code": "cs",
+      "payload": {
+        "virtual_address": "0x1470f6080",
+        "file_offset": "0x70f4680",
+        "byte_count": 236496,
+        "sha256": "294522c7a54f1d46786f8af2ef2b1cb0bd9a9d6cce72f9ed84327aba25550edf"
+      },
+      "key": "Enemies hit by Demoralizing Shout take {v}% more damage from you and your allies for 6 sec.",
+      "value": "Nep\u0159\u00e1tel\u00e9 zasa\u017een\u00ed Demoralizuj\u00edc\u00edm v\u00fdk\u0159ikem od tebe a tv\u00fdch spojenc\u016f utr\u017e\u00ed o {v} % v\u00edce po\u0161kozen\u00ed po 6 s."
+    },
+    {
+      "code": "de",
+      "payload": {
+        "virtual_address": "0x14712fc59",
+        "file_offset": "0x712e259",
+        "byte_count": 241954,
+        "sha256": "646e32c97c8cfe0c95d36c8adb955a43a2ddf38cf176b0bfaa85e16ed090a1f4"
+      },
+      "key": "Enemies hit by Demoralizing Shout take {v}% more damage from you and your allies for 6 sec.",
+      "value": "Von Demoralisierendem Ruf getroffene Feinde erleiden 6 Sek. lang {v}% mehr Schaden durch dich und deine Verb\u00fcndeten."
+    },
+    {
+      "code": "pt",
+      "payload": {
+        "virtual_address": "0x14716ad90",
+        "file_offset": "0x7169390",
+        "byte_count": 234452,
+        "sha256": "fb87b43bd82d7d609d2a0f7e83a76362e804abae79454b7e9650557418b1f59c"
+      },
+      "key": "Enemies hit by Demoralizing Shout take {v}% more damage from you and your allies for 6 sec.",
+      "value": "Inimigos atingidos por Grito Desmoralizante sofrem {v}% a mais de dano seu e dos seus aliados por 6 s."
+    },
+    {
+      "code": "es",
+      "payload": {
+        "virtual_address": "0x1471a416e",
+        "file_offset": "0x71a276e",
+        "byte_count": 241562,
+        "sha256": "de4c013287b8f9bb3c3b16616874ce31be63ac44e4336728294b3387b288e9ad"
+      },
+      "key": "Enemies hit by Demoralizing Shout take {v}% more damage from you and your allies for 6 sec.",
+      "value": "Los enemigos alcanzados por Grito desmoralizador reciben un {v}% m\u00e1s de da\u00f1o de ti y de tus aliados durante 6 s."
+    },
+    {
+      "code": "fr",
+      "payload": {
+        "virtual_address": "0x1471df113",
+        "file_offset": "0x71dd713",
+        "byte_count": 246439,
+        "sha256": "94e6f183ebe2dbc9ab581523bfc5e3811b0ed1b127c90605d788cbeb3dffb2dc"
+      },
+      "key": "Enemies hit by Demoralizing Shout take {v}% more damage from you and your allies for 6 sec.",
+      "value": "Les ennemis touch\u00e9s par Cri d\u00e9moralisant subissent {v}% de d\u00e9g\u00e2ts en plus de votre part et de celle de vos alli\u00e9s pendant 6 s."
+    },
+    {
+      "code": "ro",
+      "payload": {
+        "virtual_address": "0x14721b3c4",
+        "file_offset": "0x72199c4",
+        "byte_count": 241996,
+        "sha256": "b6fec8c2c228497bae33a50c20136ce59d891c85ebfd14e3534141f79506b8fa"
+      },
+      "key": "Enemies hit by Demoralizing Shout take {v}% more damage from you and your allies for 6 sec.",
+      "value": "Inamicii lovi\u021bi de Strig\u0103t demoralizator primesc de la tine \u0219i de la alia\u021bii t\u0103i cu {v}% mai multe daune timp de 6 s."
+    },
+    {
+      "code": "tr",
+      "payload": {
+        "virtual_address": "0x14725651a",
+        "file_offset": "0x7254b1a",
+        "byte_count": 234235,
+        "sha256": "2823790ed9fe18a1cebbfc8317872535766a6fe740143681b1ddfde62811a917"
+      },
+      "key": "Enemies hit by Demoralizing Shout take {v}% more damage from you and your allies for 6 sec.",
+      "value": "Demoralizing Shout'un vurdu\u011fu d\u00fc\u015fmanlar 6 sn boyunca senden ve m\u00fcttefiklerinden %{v} daha fazla hasar al\u0131r."
+    },
+    {
+      "code": "ru",
+      "payload": {
+        "virtual_address": "0x14728f825",
+        "file_offset": "0x728de25",
+        "byte_count": 320079,
+        "sha256": "558385eec6aa8c6cb709f2ec8d96d9d77d0b81700b1eff281592f523a6b8c3dc"
+      },
+      "key": "Enemies hit by Demoralizing Shout take {v}% more damage from you and your allies for 6 sec.",
+      "value": "\u0412\u0440\u0430\u0433\u0438, \u0437\u0430\u0434\u0435\u0442\u044b\u0435 \u00ab\u0414\u0435\u043c\u043e\u0440\u0430\u043b\u0438\u0437\u0443\u044e\u0449\u0438\u043c \u043a\u0440\u0438\u043a\u043e\u043c\u00bb, \u043f\u043e\u043b\u0443\u0447\u0430\u044e\u0442 \u043e\u0442 \u0432\u0430\u0441 \u0438 \u0432\u0430\u0448\u0438\u0445 \u0441\u043e\u044e\u0437\u043d\u0438\u043a\u043e\u0432 \u043d\u0430 {v}% \u0431\u043e\u043b\u044c\u0448\u0435 \u0443\u0440\u043e\u043d\u0430 \u0432 \u0442\u0435\u0447\u0435\u043d\u0438\u0435 6 \u0441\u0435\u043a."
+    },
+    {
+      "code": "uk",
+      "payload": {
+        "virtual_address": "0x1472dda8a",
+        "file_offset": "0x72dc08a",
+        "byte_count": 312296,
+        "sha256": "bca10587591dc1697ebad4fca550f4b13cf4394c5bd327662b166e58c1fb9a28"
+      },
+      "key": "Enemies hit by Demoralizing Shout take {v}% more damage from you and your allies for 6 sec.",
+      "value": "\u0412\u043e\u0440\u043e\u0433\u0438, \u0443\u0440\u0430\u0436\u0435\u043d\u0456 \u00ab\u0414\u0435\u043c\u043e\u0440\u0430\u043b\u0456\u0437\u0443\u044e\u0447\u0438\u043c \u043a\u0440\u0438\u043a\u043e\u043c\u00bb, \u043e\u0442\u0440\u0438\u043c\u0443\u044e\u0442\u044c \u0432\u0456\u0434 \u0432\u0430\u0441 \u0456 \u0432\u0430\u0448\u0438\u0445 \u0441\u043e\u044e\u0437\u043d\u0438\u043a\u0456\u0432 \u043d\u0430 {v}% \u0431\u0456\u043b\u044c\u0448\u0435 \u0448\u043a\u043e\u0434\u0438 \u043f\u0440\u043e\u0442\u044f\u0433\u043e\u043c 6 \u0441."
+    },
+    {
+      "code": "zh",
+      "payload": {
+        "virtual_address": "0x147329e80",
+        "file_offset": "0x7328480",
+        "byte_count": 220079,
+        "sha256": "ec71709d5d94501fb63ca7371d1ee6bbeccab50487208bd3bdf21cbfcd2e9dda"
+      },
+      "key": "Enemies hit by Demoralizing Shout take {v}% more damage from you and your allies for 6 sec.",
+      "value": "\u88ab\u632b\u5fd7\u6012\u543c\u51fb\u4e2d\u7684\u654c\u4eba\u57286\u79d2\u5185\u53d7\u5230\u4f60\u548c\u4f60\u7684\u76df\u53cb\u7684\u4f24\u5bb3\u63d0\u9ad8{v}%\u3002"
+    },
+    {
+      "code": "ja",
+      "payload": {
+        "virtual_address": "0x14735fa3a",
+        "file_offset": "0x735e03a",
+        "byte_count": 266217,
+        "sha256": "053bbd4a3612bce3453b2cafaaa113f2ce7ce6eb98433f82766b2cefdeff7f8c"
+      },
+      "key": "Enemies hit by Demoralizing Shout take {v}% more damage from you and your allies for 6 sec.",
+      "value": "\u300c\u58eb\u6c17\u3092\u632b\u304f\u53eb\u3073\u300d\u3092\u53d7\u3051\u305f\u6575\u306f\u30016\u79d2\u9593\u3042\u306a\u305f\u3068\u5473\u65b9\u304b\u3089\u53d7\u3051\u308b\u30c0\u30e1\u30fc\u30b8\u304c{v}%\u5897\u52a0\u3057\u307e\u3059\u3002"
+    },
+    {
+      "code": "ko",
+      "payload": {
+        "virtual_address": "0x1473a0a2e",
+        "file_offset": "0x739f02e",
+        "byte_count": 248530,
+        "sha256": "fa560f38f57c175ba16e8ca09f9fcf3fc2e1a3723b5bf206c1db9116f1f0fc91"
+      },
+      "key": "Enemies hit by Demoralizing Shout take {v}% more damage from you and your allies for 6 sec.",
+      "value": "\uc0ac\uae30\uc758 \uc678\uce68\uc5d0 \ub9de\uc740 \uc801\uc740 6\ucd08 \ub3d9\uc548 \ub2f9\uc2e0\uacfc \uc544\uad70\uc5d0\uac8c\uc11c \ubc1b\ub294 \ud53c\ud574\uac00 {v}% \uc99d\uac00\ud569\ub2c8\ub2e4."
+    }
+  ],
+  "queries": [
+    {
+      "procedure": "0x145b760b0",
+      "slice_virtual_address": "0x145b760b0",
+      "raw_input": {
+        "path": "runtime/warlock-current/145b760b0/body.bin",
+        "sha256": "f82ad3229c0d96861c4135e2f0aeb1ef03b7826e3f4a9083a134838d25373f67"
+      },
+      "plan": {
+        "path": "runtime/warlock-current/145b760b0/plan.json",
+        "sha256": "634a47cbd26881fdea604ea954659dcba979e01461fb40cde081d17c4809d569"
+      },
+      "journal": {
+        "path": "runtime/warlock-current/145b760b0/rea/journal.json",
+        "sha256": "2cc93fad708d1a5e5ff0c0a48130e08732309d6c937491358e432cf906949987"
+      },
+      "result": {
+        "path": "runtime/warlock-current/145b760b0/rea/results/ebeeceda810806281647a2c7e32e85ad0db3a5b74432e8bf85166f646ea6d823.json",
+        "sha256": "888acf4f17104b510fc9d4b2e0358e7e1b86d994605f5c05eff84029ae1a4aea"
+      },
+      "evidence_id": "ev_d76e137edde084e49d092654bb91e00c32d7f3c96079861e29f2e9f6e6beb861",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "07e4e95a86155bf4ec217a1ee1c544cea2cb1a7de9e1f6a1acce60b1dddb98ab"
+    },
+    {
+      "procedure": "0x145c18970",
+      "slice_virtual_address": "0x145c18970",
+      "raw_input": {
+        "path": "runtime/warlock-current/145c18970/body.bin",
+        "sha256": "a8cba2ff666646b81b24e705a9dbb76d9c30c300bd2da6500f59e856e44b1f40"
+      },
+      "plan": {
+        "path": "runtime/warlock-current/145c18970/plan.json",
+        "sha256": "c748d5967be061d1f5c834e4fc55ccf02d72e9721cd8bae47204599f12c6a50e"
+      },
+      "journal": {
+        "path": "runtime/warlock-current/145c18970/rea/journal.json",
+        "sha256": "fb8e344b60d0e071b71617096ef3768e1fffdd4581b30b615c758840911efe25"
+      },
+      "result": {
+        "path": "runtime/warlock-current/145c18970/rea/results/be122cdc7b0cbde8faaec7fdff6559b72c87abd1a735d3958d7bafe8b848fd5c.json",
+        "sha256": "3d1001f44742de531318df958ef4e6e1f2cf9174acdccb0e560bdb6701789b11"
+      },
+      "evidence_id": "ev_0536e4445d39bc9298b7505bd7ed3485ff56a3bd51b1e4356c0ea63f0ec350e3",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "629a9b9ee13dc06213a02ba46e1ed2041001edd4a1af6563c93c2a0539dbb46c"
+    },
+    {
+      "procedure": "0x145c68a30",
+      "slice_virtual_address": "0x145c68a30",
+      "raw_input": {
+        "path": "runtime/warlock-current/145c68a30/body.bin",
+        "sha256": "940d85656ed0224e0ad2843796871976857708dc0500e188d42a7418a148bc08"
+      },
+      "plan": {
+        "path": "runtime/warlock-current/145c68a30/plan.json",
+        "sha256": "9a79c30f847391834422f1fb817959e8798179aa106c004a5b5903e4c37e535e"
+      },
+      "journal": {
+        "path": "runtime/warlock-current/145c68a30/rea/journal.json",
+        "sha256": "7b8167606d96946e285eda569dbd795e3c2310e56f93a1f9989523099da54bd8"
+      },
+      "result": {
+        "path": "runtime/warlock-current/145c68a30/rea/results/ee9844713c5869bff4b68e9e7c16c9e4574484a0aff4647f0e47c8bd834e6c4a.json",
+        "sha256": "cda8ce89aee44f5c59c87c16b3668b6092ff9cdea7bba36cd7e5dbaf04dca05d"
+      },
+      "evidence_id": "ev_4b6102a6c95f915c566b3f93fe567f5f126d506cca12fc8fc579019aad862244",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "c89274fac38be339e02512829e1f87f75ca093ef8fbd764c411f041d66dd8e0a"
+    },
+    {
+      "procedure": "0x145c0c300",
+      "slice_virtual_address": "0x145c0c300",
+      "raw_input": {
+        "path": "runtime/warlock-current/145c0c300/body.bin",
+        "sha256": "fe0127a2b564255893681b4789888190a07d000677e1fad0566a363415b66f9a"
+      },
+      "plan": {
+        "path": "runtime/warlock-current/145c0c300/plan.json",
+        "sha256": "48db476be29612ab0d4811f097bbc69e4a675c8bac8c1515b1ba2fd2434603d7"
+      },
+      "journal": {
+        "path": "runtime/warlock-current/145c0c300/rea-v2/journal.json",
+        "sha256": "798953b0f44202e7bfbe12fbbe6fff9549a417bd912fb891bb67f1e0cd4fe383"
+      },
+      "result": {
+        "path": "runtime/warlock-current/145c0c300/rea-v2/results/cc202b440d6967ea67b665ba4d3065b91b4fa41062aaf9b5269d7b552831703a-cb0514837d628131.json",
+        "sha256": "e7d6257c1cf7a86b9d95b82712dbf333be593448ceed1343c5235643b64db005"
+      },
+      "evidence_id": "ev_f53824a296d75701a93678fcf18ec5c7c9e8eaf6d11aef91c613ba2bbf56198e",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "47f7b2f3066b28c7a32d2b9923f886a525a7dc11fb93b127020700a38a84553a"
+    },
+    {
+      "procedure": "0x145bfdac0",
+      "slice_virtual_address": "0x145bfdac0",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-168-271-280-0.127.0/revive/body.bin",
+        "sha256": "bcb77329b7bcea9a7a156fe944beb8fb57c23a247d5be8abf2205d980f3c9949"
+      },
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-168-271-280-0.127.0/revive/plan-v2.json",
+        "sha256": "554620f5090d97af7c313d5ca0e44c0dafed06c58843c593d2d372f835c09041"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-168-271-280-0.127.0/revive/query-v2/journal.json",
+        "sha256": "0b03c88edb17145b863dca96d10822e86f200e73dc2949877a3b217bb03d51c5"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-168-271-280-0.127.0/revive/query-v2/results/779af40fd0742dcd6a8f9cfefffe8512c34b99bf3bb629bfabf35b258475fa5a.json",
+        "sha256": "7857f613d01557b1a0e5e54ba441858571ecc51a2119f090370deb06fe9517b1"
+      },
+      "evidence_id": "ev_b571bf20959b0df89df3feb18a951dca7817a1047689d9eef743194dd3ff0e5d",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "cc53b09f22b1887c3b3fe06ff98784c2e9b200dbd5591681e2c4c5f401c418db",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "bcb77329b7bcea9a7a156fe944beb8fb57c23a247d5be8abf2205d980f3c9949",
+        "virtual_address": "0x145bfdac0",
+        "file_offset": "0x5bfcec0",
+        "byte_count": 17861,
+        "result": "runtime/analysis/tasks/fixgap-168-271-280-0.127.0/revive/query-v2/results/779af40fd0742dcd6a8f9cfefffe8512c34b99bf3bb629bfabf35b258475fa5a.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    }
+  ],
+  "assembly_sha256": "ed7893859361b2c4a78e5e059cf50c223dc84d8ce01df497b218a01d7f689707",
+  "native_cases_sha256": "a2e64cb1027c6ab103070638b12c9e1d62161b123a0a96577b5278aa0b216352"
+}

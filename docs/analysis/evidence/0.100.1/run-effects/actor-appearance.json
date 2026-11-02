@@ -1,0 +1,111 @@
+{
+  "target_sha256": "17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b",
+  "owners": [
+    {
+      "role": "actor-create",
+      "address": "0x1454d2910",
+      "end_exclusive": "0x1454d3682",
+      "file_offset": "0x54d1d10",
+      "sha256": "dc8b948cf66a5fc75155eec15c38dfd987fe4264c214d2b3699e36e0e535a184",
+      "rea_evidence_id": "ev_fb87050ee57343bda230eadf643ef410d4487ba89ddf5728dbefd07c6c86fa0b",
+      "analysis_profile": {
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "parameters": {
+          "target_kind": "executable",
+          "target_format": "raw-binary",
+          "architecture": "x86_64",
+          "available_architectures": [
+            "x86_64"
+          ],
+          "import_mode": "ephemeral-source-immutable",
+          "annotation_policy": "atomic-function-entry-metadata-v1",
+          "load_image_observations": "source-mappings-entry-context-v2",
+          "function_body_evidence": "complete-inclusive-ranges-v1",
+          "function_references": "complete-body-and-entry-reference-manager-v2",
+          "call_relationship_coverage": "function-body-call-coverage-v5",
+          "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+          "string_inventory_evidence": "defined-data-coverage-v1",
+          "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+          "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+          "instruction_flow_evidence": "decoded-return-pcode-v1",
+          "instruction_references": "exact-address-incoming-v1",
+          "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+          "no_return_repair": "returning-imports-decoded-return-v2",
+          "process_launch": "inspected-jvm-launch-support-v1",
+          "load_image_evidence": "independent-raw-mapping-context-v4",
+          "jump_table_evidence": "typed-case-default-blocks-v1",
+          "decompiler_jump_loads": true,
+          "loader": "BinaryLoader",
+          "language_id": "x86:LE:64:default",
+          "compiler_spec_id": "gcc",
+          "language_selection": "caller-supplied-v1",
+          "entry_point": "0x1454d2910",
+          "entry_seed": "external-entry-and-function-before-analysis-v1",
+          "analyzer_preset": "ghidra-default+disabled:Function ID,Function Start Search,Disassemble Entry Points,Subroutine References,Non-Returning Functions - Discovered",
+          "analysis_options": {
+            "disabled_analyzers": [
+              "Function ID",
+              "Function Start Search",
+              "Disassemble Entry Points",
+              "Subroutine References",
+              "Non-Returning Functions - Discovered"
+            ]
+          }
+        },
+        "digest": "743343dadb543d1e8898a071f2c5b964616de881f3964e96a6a12d3518432e32"
+      }
+    },
+    {
+      "role": "ordinary-create",
+      "address": "0x1454d4130",
+      "end_exclusive": "0x1454d4a7d",
+      "file_offset": "0x54d3530",
+      "sha256": "83886d3a5932b7cf5336e4aeffc4c2a0fe5873dd6a56e8d1848fd27a3c834055"
+    },
+    {
+      "role": "primary-boss-create",
+      "address": "0x1454d11f0",
+      "end_exclusive": "0x1454d1fdc",
+      "file_offset": "0x54d05f0",
+      "sha256": "6f08a0acdd5e9d45a877b231879f098926d2bec23930f1228451a04149ae475d"
+    },
+    {
+      "role": "guardian-appearance-create",
+      "address": "0x1454bb6d0",
+      "end_exclusive": "0x1454bba35",
+      "file_offset": "0x54baad0",
+      "sha256": "22a2b27d0c2d1c90c51afcc2c0fd38141edd3f891a539457fa7094415985ac6e"
+    },
+    {
+      "role": "actor-appearance-restore",
+      "address": "0x1454d70af",
+      "end_exclusive": "0x1454d70ed",
+      "file_offset": "0x54d64af",
+      "sha256": "1c9c6221838e9581540f55ad345d856213265909debf20ac2bbad385981bdf7e"
+    },
+    {
+      "role": "actor-vital-publication",
+      "address": "0x1454d5aed",
+      "end_exclusive": "0x1454d5caf",
+      "file_offset": "0x54d4eed",
+      "sha256": "d8f98db047fb146051306feccbbef80ed18b46185d696ffc2ee3ce7ed7a32fc9"
+    }
+  ],
+  "guardian_scale": {
+    "address": "0x1469f5db0",
+    "value": 1.350000023841858
+  },
+  "findings": [
+    "Ordinary creator stores definition pointer in Actor+90 and definition.scale(+28) in Actor+108.",
+    "Guardian creator stores the same metadata pointer and definition.scale*1.35 in Actor+108.",
+    "Primary boss creator stores null in Actor+90 and separate boss metadata; ordinary restoration fails its pointer gate.",
+    "Restoration owner reads Actor+108 scale and Actor+90->+24 model then calls1454e75f0.",
+    "Shared current packet constructor ceilf14577327d computes health once for fields22/28.",
+    "Current actor-hit separately calls ceilf for health field22 and maximum-health field28.",
+    "Native model/scale values are retained in run state, independently of presentation event consumption."
+  ]
+}

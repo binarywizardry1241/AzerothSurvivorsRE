@@ -1,0 +1,72 @@
+{
+  "target_sha256": "dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b",
+  "owner": "0x145947920",
+  "end_exclusive": "0x14594cf62",
+  "raw_input_sha256": "b002dd6d1af1b6e7398c0b89f4a1e4b7c0bdc66110a3c391e92af21a9674a32d",
+  "evidence_id": "ev_3bc36889ea7a62cf56fc52eaa19e6f191daaeba14f54a405087f51d94831c41d",
+  "provider": {
+    "id": "ghidra",
+    "name": "Ghidra",
+    "version": "12.1.4"
+  },
+  "analysis_profile": {
+    "provider": {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "version": "12.1.4"
+    },
+    "parameters": {
+      "target_kind": "executable",
+      "target_format": "raw-binary",
+      "architecture": "x86_64",
+      "available_architectures": [
+        "x86_64"
+      ],
+      "import_mode": "ephemeral-source-immutable",
+      "annotation_policy": "atomic-function-entry-metadata-v1",
+      "load_image_observations": "source-mappings-entry-context-v2",
+      "function_body_evidence": "complete-inclusive-ranges-v1",
+      "function_references": "complete-body-and-entry-reference-manager-v2",
+      "call_relationship_coverage": "function-body-call-coverage-v5",
+      "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+      "string_inventory_evidence": "defined-data-coverage-v1",
+      "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+      "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+      "instruction_flow_evidence": "decoded-return-pcode-v1",
+      "instruction_references": "exact-address-incoming-v1",
+      "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+      "no_return_repair": "returning-imports-decoded-return-v2",
+      "process_launch": "inspected-jvm-launch-support-v1",
+      "load_image_evidence": "independent-raw-mapping-context-v4",
+      "jump_table_evidence": "typed-case-default-blocks-v1",
+      "decompiler_jump_loads": true,
+      "loader": "BinaryLoader",
+      "language_id": "x86:LE:64:default",
+      "compiler_spec_id": "gcc",
+      "language_selection": "caller-supplied-v1",
+      "entry_point": "0x145947920",
+      "entry_seed": "external-entry-and-function-before-analysis-v1",
+      "analyzer_preset": "ghidra-default+disabled:Stack,Decompiler Switch Analysis,Function ID,Function Start Search,Disassemble Entry Points,Subroutine References,Data Reference,Reference,Non-Returning Functions - Discovered,Shared Return Calls,Create Address Tables",
+      "analysis_options": {
+        "disabled_analyzers": [
+          "Stack",
+          "Decompiler Switch Analysis",
+          "Function ID",
+          "Function Start Search",
+          "Disassemble Entry Points",
+          "Subroutine References",
+          "Data Reference",
+          "Reference",
+          "Non-Returning Functions - Discovered",
+          "Shared Return Calls",
+          "Create Address Tables"
+        ]
+      }
+    },
+    "digest": "85ad274acb2c540a0f7a0860fa8f6093d39c6519b25c39f3d4b90aa2592fc0b5"
+  },
+  "limits": [
+    "Fresh bounded raw import at original VA via scripts/rea Ghidra; generic compiler-spec and disabled discovery; external callers/data and complete Windows calling-convention semantics require instruction review.",
+    "Full protocol and pseudocode retained under ignored runtime/raid-producers-0.108.0; compact canonical ranges accompany manifest."
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.113.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+    "size_bytes": 141932032
+  },
+  "owner": {
+    "va": "0x14591cad0",
+    "end_exclusive": "0x14591cc4e",
+    "byte_count": 382,
+    "sha256": "a54100371a8c38dc8b8314ace641998c8c1014c9c2e92a5b59ab41980d701f28"
+  },
+  "native_queue_cases": 1554,
+  "cases_sha256": "53e0a9eebf3881e226609f050a5055542dbbc33fadeeb101675a133e9d573ce3",
+  "queue_layout": "Game+5c0/5c8/5d0, 32-byte records: source0/deadline8/spell12/position16",
+  "source_refs": [
+    "crates/azeroth-survivors-re/src/bosses/raid_actions.rs"
+  ],
+  "limits": [
+    "Memmove and the returned 32-byte spell-packet record are explicit host seams.",
+    "Preallocated queue capacity excludes allocator growth; actual serializer/client/render behavior is not executed.",
+    "Source queue regression is authored but not compiled or executed; whole Game and original/rebuilt parity remain unverified."
+  ]
+}

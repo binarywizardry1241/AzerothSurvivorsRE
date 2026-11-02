@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-16",
+  "target_sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+  "status": "Superseded: custom-picker activation confirmed by existing native log; see menu-audio.json and main-menu-audio.md",
+  "native_function": {
+    "address": "0x1409017a0",
+    "rea_evidence_id": "ev_f4c78b512643dfc1052a3328f15a22a6d87157997b1fa64c0a18078dd2c02982",
+    "path_reference": "0x14090185f",
+    "path_va": "0x1459de39b",
+    "path_file_offset": "0x59dcb9b",
+    "path": "Sound\\Music\\GlueScreenMusic\\wow_main_theme.mp3",
+    "path_byte_count": 46,
+    "path_bytes_hex": "536f756e645c4d757369635c476c756553637265656e4d757369635c776f775f6d61696e5f7468656d652e6d7033"
+  },
+  "direct_call_observations": [
+    {
+      "call": "0x140922d38",
+      "containing_runtime_function": "0x140922b00\u20130x140922e25"
+    },
+    {
+      "call": "0x141237d2b",
+      "containing_runtime_function": "0x141237a90\u20130x141237e76"
+    }
+  ],
+  "source_context": {
+    "path": "crates/benilla-app/src/sound/glue.rs",
+    "routine": "start_glue_music",
+    "gates": "ClientState Login or CharSelect, and native_glue",
+    "scope": "Inherited route now corroborated by the current target controller and existing native runtime log; complete scheduling equivalence remains unverified."
+  },
+  "limits": [
+    "This file preserves the historical candidate trace. Its activation uncertainty is superseded by menu-audio.json.",
+    "No audible native/rebuilt comparison has been performed; complete audio parity remains unverified."
+  ],
+  "provenance": "native-menu-audio-provenance.json",
+  "additional_2026_10_16_static_trace": {
+    "system_wrappers": [
+      {
+        "address": "0x140922b00",
+        "evidence_id": "ev_7794bae502ce3c9fc6a27f3e42b4ca802c73d500454336e22b74bb79358879ae"
+      },
+      {
+        "address": "0x141237a90",
+        "evidence_id": "ev_67f2ce261f606ac719d2dafb50fe58d9a12b0be2fb348cf77880156cff8c4e19"
+      }
+    ],
+    "observed": "Both wrappers fetch non-send audio state/output and optional asset/config resources before calling0x1409017a0. The body returns on resource discriminant2 and a missing optional asset resource.",
+    "limit": "The resource discriminant is now identified as unavailable mixer output, rather than a ClientState gate. See the current audio report for superseding evidence.",
+    "provenance": "menu-audio-gates-provenance.json",
+    "source_change": "Historical no-change observation; build26 adds a source bridge, pending compile/playback validation."
+  },
+  "superseded_by": "menu-audio.json"
+}

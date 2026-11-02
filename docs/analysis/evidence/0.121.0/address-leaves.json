@@ -1,0 +1,739 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "gap_ids": [
+    41
+  ],
+  "lead_ids": [
+    "Q41-A01",
+    "Q41-M01"
+  ],
+  "generator": {
+    "path": "scripts/classify-address-leaves-0.121.0.py",
+    "sha256": "421fe6d9d1c82cd711c7131b38c70ab9306a93a9523376a20097b3460de4f80b"
+  },
+  "inputs": [
+    {
+      "path": "docs/analysis/evidence/0.121.0/native-operands.json",
+      "sha256": "34bcc5ef07183c52bdba4a7e4c4f14691f67a05ce2e1d51c969165c9142e2229"
+    },
+    {
+      "path": "runtime/coverage/22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150/pipeline/bedf416e7a9cae19/derived/operand-boundaries.json",
+      "sha256": "881aeaa6c221fb58559a1c4bf042eb77ddca990104127929fbb96b877916b6c1"
+    },
+    {
+      "path": "runtime/coverage/22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150/pipeline/bedf416e7a9cae19/derived/operands.jsonl.gz",
+      "sha256": "4f91d366023493c9199901a01522c3a6518e1d1a2adaeadf52a9f4657f2282cb"
+    },
+    {
+      "path": "docs/analysis/evidence/0.113.2/address-leaves/contract.json",
+      "sha256": "d38e9743238a4bb70230b590561a1122949cf0ba1bbcc9906c1ee475a47cb7e9"
+    },
+    {
+      "path": "docs/analysis/evidence/0.113.2/address-leaves/leaves.asm",
+      "sha256": "a0b0f5618f81c64931959265d7ff1b9c1aafeb34a7f953a35340b0229d8fc114"
+    }
+  ],
+  "selector": "native-operands.json:details.unowned_executable_address_candidates[decode_status == 'not-observed']",
+  "counts": {
+    "destinations": 20,
+    "forming_operands": 21,
+    "retained_leaf_byte_matches": 18
+  },
+  "selected_operands": [
+    {
+      "operand_index": 1,
+      "kind": "address-expression",
+      "target": "0x1442ee9a0",
+      "width": 8,
+      "access": 1,
+      "site": "0x1442f7e61",
+      "instruction_bytes": "488d05386bffff",
+      "source_native_owner": "0x1442f7c20",
+      "program_reference_pair_present": false,
+      "target_region": ".text"
+    },
+    {
+      "operand_index": 1,
+      "kind": "address-expression",
+      "target": "0x1442ee990",
+      "width": 8,
+      "access": 1,
+      "site": "0x1442f7e8e",
+      "instruction_bytes": "488d05fb6affff",
+      "source_native_owner": "0x1442f7c20",
+      "program_reference_pair_present": false,
+      "target_region": ".text"
+    },
+    {
+      "operand_index": 1,
+      "kind": "address-expression",
+      "target": "0x144b40830",
+      "width": 8,
+      "access": 1,
+      "site": "0x144b4f562",
+      "instruction_bytes": "488d0dc712ffff",
+      "source_native_owner": "0x144b4f550",
+      "program_reference_pair_present": false,
+      "target_region": ".text"
+    },
+    {
+      "operand_index": 1,
+      "kind": "address-expression",
+      "target": "0x14540ecc0",
+      "width": 8,
+      "access": 1,
+      "site": "0x145426580",
+      "instruction_bytes": "4c8d053987feff",
+      "source_native_owner": null,
+      "program_reference_pair_present": false,
+      "target_region": ".text"
+    },
+    {
+      "operand_index": 1,
+      "kind": "address-expression",
+      "target": "0x145a60000",
+      "width": 8,
+      "access": 1,
+      "site": "0x145a601d0",
+      "instruction_bytes": "4c8d0529feffff",
+      "source_native_owner": null,
+      "program_reference_pair_present": false,
+      "target_region": ".text"
+    },
+    {
+      "operand_index": 1,
+      "kind": "address-expression",
+      "target": "0x145a60010",
+      "width": 8,
+      "access": 1,
+      "site": "0x145a601e0",
+      "instruction_bytes": "4c8d0529feffff",
+      "source_native_owner": null,
+      "program_reference_pair_present": false,
+      "target_region": ".text"
+    },
+    {
+      "operand_index": 1,
+      "kind": "address-expression",
+      "target": "0x145a60020",
+      "width": 8,
+      "access": 1,
+      "site": "0x145a60be0",
+      "instruction_bytes": "4c8d0539f4ffff",
+      "source_native_owner": null,
+      "program_reference_pair_present": false,
+      "target_region": ".text"
+    },
+    {
+      "operand_index": 1,
+      "kind": "address-expression",
+      "target": "0x145a5b2d0",
+      "width": 8,
+      "access": 1,
+      "site": "0x145a60f00",
+      "instruction_bytes": "4c8d05c9a3ffff",
+      "source_native_owner": null,
+      "program_reference_pair_present": false,
+      "target_region": ".text"
+    },
+    {
+      "operand_index": 1,
+      "kind": "address-expression",
+      "target": "0x14540ecc0",
+      "width": 8,
+      "access": 1,
+      "site": "0x145a621b0",
+      "instruction_bytes": "4c8d0509cb9aff",
+      "source_native_owner": null,
+      "program_reference_pair_present": false,
+      "target_region": ".text"
+    },
+    {
+      "operand_index": 1,
+      "kind": "address-expression",
+      "target": "0x145a76ee0",
+      "width": 8,
+      "access": 1,
+      "site": "0x145a88dd7",
+      "instruction_bytes": "4c8d0d02e1feff",
+      "source_native_owner": "0x145a88bc0",
+      "program_reference_pair_present": false,
+      "target_region": ".text"
+    },
+    {
+      "operand_index": 1,
+      "kind": "address-expression",
+      "target": "0x145a76e60",
+      "width": 8,
+      "access": 1,
+      "site": "0x145a88dde",
+      "instruction_bytes": "4c8d3d7be0feff",
+      "source_native_owner": "0x145a88bc0",
+      "program_reference_pair_present": false,
+      "target_region": ".text"
+    },
+    {
+      "operand_index": 1,
+      "kind": "address-expression",
+      "target": "0x145a76de0",
+      "width": 8,
+      "access": 1,
+      "site": "0x145a88de5",
+      "instruction_bytes": "4c8d15f4dffeff",
+      "source_native_owner": "0x145a88bc0",
+      "program_reference_pair_present": false,
+      "target_region": ".text"
+    },
+    {
+      "operand_index": 1,
+      "kind": "address-expression",
+      "target": "0x145a76f20",
+      "width": 8,
+      "access": 1,
+      "site": "0x145a88e01",
+      "instruction_bytes": "4c8d0d18e1feff",
+      "source_native_owner": "0x145a88bc0",
+      "program_reference_pair_present": false,
+      "target_region": ".text"
+    },
+    {
+      "operand_index": 1,
+      "kind": "address-expression",
+      "target": "0x145a76ea0",
+      "width": 8,
+      "access": 1,
+      "site": "0x145a88e08",
+      "instruction_bytes": "4c8d3d91e0feff",
+      "source_native_owner": "0x145a88bc0",
+      "program_reference_pair_present": false,
+      "target_region": ".text"
+    },
+    {
+      "operand_index": 1,
+      "kind": "address-expression",
+      "target": "0x145a76e20",
+      "width": 8,
+      "access": 1,
+      "site": "0x145a88e0f",
+      "instruction_bytes": "4c8d150ae0feff",
+      "source_native_owner": "0x145a88bc0",
+      "program_reference_pair_present": false,
+      "target_region": ".text"
+    },
+    {
+      "operand_index": 1,
+      "kind": "address-expression",
+      "target": "0x145a76f40",
+      "width": 8,
+      "access": 1,
+      "site": "0x145a88e18",
+      "instruction_bytes": "4c8d0d21e1feff",
+      "source_native_owner": "0x145a88bc0",
+      "program_reference_pair_present": false,
+      "target_region": ".text"
+    },
+    {
+      "operand_index": 1,
+      "kind": "address-expression",
+      "target": "0x145a76ec0",
+      "width": 8,
+      "access": 1,
+      "site": "0x145a88e1f",
+      "instruction_bytes": "4c8d3d9ae0feff",
+      "source_native_owner": "0x145a88bc0",
+      "program_reference_pair_present": false,
+      "target_region": ".text"
+    },
+    {
+      "operand_index": 1,
+      "kind": "address-expression",
+      "target": "0x145a76e40",
+      "width": 8,
+      "access": 1,
+      "site": "0x145a88e26",
+      "instruction_bytes": "4c8d1513e0feff",
+      "source_native_owner": "0x145a88bc0",
+      "program_reference_pair_present": false,
+      "target_region": ".text"
+    },
+    {
+      "operand_index": 1,
+      "kind": "address-expression",
+      "target": "0x145a923f0",
+      "width": 8,
+      "access": 1,
+      "site": "0x145a907d0",
+      "instruction_bytes": "4c8d05191c0000",
+      "source_native_owner": null,
+      "program_reference_pair_present": false,
+      "target_region": ".text"
+    },
+    {
+      "operand_index": 1,
+      "kind": "address-expression",
+      "target": "0x145a92410",
+      "width": 8,
+      "access": 1,
+      "site": "0x145a907e0",
+      "instruction_bytes": "4c8d05291c0000",
+      "source_native_owner": null,
+      "program_reference_pair_present": false,
+      "target_region": ".text"
+    },
+    {
+      "operand_index": 1,
+      "kind": "address-expression",
+      "target": "0x145ddcf60",
+      "width": 8,
+      "access": 1,
+      "site": "0x145ddd2cb",
+      "instruction_bytes": "4c8d258efcffff",
+      "source_native_owner": "0x145ddd0a0",
+      "program_reference_pair_present": false,
+      "target_region": ".text"
+    }
+  ],
+  "leaves": [
+    {
+      "address": "0x1442ee990",
+      "native_range": {
+        "start": "0x1442ee990",
+        "end_exclusive": "0x1442ee99a",
+        "file_offset": "0x42edd90",
+        "sha256": "3371d57174836e37ba04a7e63cbe92bce97d646dbdafd3fe2acd2a7f72ac84ea"
+      },
+      "predecessor_address": "0x144094d80",
+      "retained_role": "tag12/u32 carrier constructor; observed WGSL-parser context",
+      "correspondence": "complete leaf byte match; current surrounding context/targets checked separately",
+      "AS_contract_established": false,
+      "original_decode_status": "not-observed"
+    },
+    {
+      "address": "0x1442ee9a0",
+      "native_range": {
+        "start": "0x1442ee9a0",
+        "end_exclusive": "0x1442ee9aa",
+        "file_offset": "0x42edda0",
+        "sha256": "8638f1f00b80e1203eafb0afd22628a1e41dfee6a31a5b5ec41eb06aa486135d"
+      },
+      "predecessor_address": "0x144094d90",
+      "retained_role": "tag11/u32 carrier constructor; observed WGSL-parser context",
+      "correspondence": "complete leaf byte match; current surrounding context/targets checked separately",
+      "AS_contract_established": false,
+      "original_decode_status": "not-observed"
+    },
+    {
+      "address": "0x144b40830",
+      "native_range": {
+        "start": "0x144b40830",
+        "end_exclusive": "0x144b40843",
+        "file_offset": "0x4b3fc30",
+        "sha256": "584d729b38f3bf22c0ce0f197555cf51f8a26a8597400c5f8275e2d87ff980af"
+      },
+      "predecessor_address": "0x1448e61d0",
+      "retained_role": "three-word argument forwarding into observed futures-lite I/O context",
+      "correspondence": "complete leaf byte match; current surrounding context/targets checked separately",
+      "AS_contract_established": false,
+      "original_decode_status": "not-observed"
+    },
+    {
+      "address": "0x14540ecc0",
+      "native_range": {
+        "start": "0x14540ecc0",
+        "end_exclusive": "0x14540ed15",
+        "file_offset": "0x540e0c0",
+        "sha256": "01ff2d4942dd5ebd3c7ae7af7a7ffd6f0c2b09c1d685df656059ce25bd45f3f9"
+      },
+      "predecessor_address": "0x14517fe00",
+      "retained_role": "NaN/infinite-unit-power guard followed by the external pow import",
+      "correspondence": "complete opcode/register/branch correspondence plus separately checked current constants and pow import",
+      "AS_contract_established": false,
+      "original_decode_status": "not-observed"
+    },
+    {
+      "address": "0x145a60000",
+      "native_range": {
+        "start": "0x145a60000",
+        "end_exclusive": "0x145a60005",
+        "file_offset": "0x5a5f400",
+        "sha256": "58774d5e1bcba81cf404ea132602e02aadcbbd7315c3a7d2f1b5403fcec0a991"
+      },
+      "predecessor_address": "0x1457ca250",
+      "retained_role": "u32 bitwise OR leaf; existing Lua math counterpart candidate",
+      "correspondence": "complete leaf byte match; current surrounding context/targets checked separately",
+      "AS_contract_established": false,
+      "original_decode_status": "not-observed"
+    },
+    {
+      "address": "0x145a60010",
+      "native_range": {
+        "start": "0x145a60010",
+        "end_exclusive": "0x145a60015",
+        "file_offset": "0x5a5f410",
+        "sha256": "228bb5ad96baa4b2e2a61203986601aec2c2aa30b4973fcbc6c166c561114e31"
+      },
+      "predecessor_address": "0x1457ca260",
+      "retained_role": "u32 bitwise XOR leaf; existing Lua math counterpart candidate",
+      "correspondence": "complete leaf byte match; current surrounding context/targets checked separately",
+      "AS_contract_established": false,
+      "original_decode_status": "not-observed"
+    },
+    {
+      "address": "0x145a60020",
+      "native_range": {
+        "start": "0x145a60020",
+        "end_exclusive": "0x145a60025",
+        "file_offset": "0x5a5f420",
+        "sha256": "0f5b1c60531ec7429bbd802780d71d2a3710d140675cc696833e01e2c0f4d8ee"
+      },
+      "predecessor_address": "0x1457ca270",
+      "retained_role": "u32 bitwise AND leaf; existing Lua math counterpart candidate",
+      "correspondence": "complete leaf byte match; current surrounding context/targets checked separately",
+      "AS_contract_established": false,
+      "original_decode_status": "not-observed"
+    },
+    {
+      "address": "0x145a76de0",
+      "native_range": {
+        "start": "0x145a76de0",
+        "end_exclusive": "0x145a76dfc",
+        "file_offset": "0x5a761e0",
+        "sha256": "1749e87f837a77802ce7bbc31e67a703eab39d303735a76b536c577be8291e07"
+      },
+      "predecessor_address": "0x1457de290",
+      "retained_role": "packed register/constant arithmetic-op carrier in observed Lua compiler",
+      "correspondence": "complete leaf byte match; current surrounding context/targets checked separately",
+      "AS_contract_established": false,
+      "original_decode_status": "not-observed"
+    },
+    {
+      "address": "0x145a76e20",
+      "native_range": {
+        "start": "0x145a76e20",
+        "end_exclusive": "0x145a76e3c",
+        "file_offset": "0x5a76220",
+        "sha256": "f52d4264c7327f6d1a703f13d1833b0724aea998428b28c134d67468ff0d74b6"
+      },
+      "predecessor_address": "0x1457de2d0",
+      "retained_role": "packed register/constant arithmetic-op carrier in observed Lua compiler",
+      "correspondence": "complete leaf byte match; current surrounding context/targets checked separately",
+      "AS_contract_established": false,
+      "original_decode_status": "not-observed"
+    },
+    {
+      "address": "0x145a76e40",
+      "native_range": {
+        "start": "0x145a76e40",
+        "end_exclusive": "0x145a76e5c",
+        "file_offset": "0x5a76240",
+        "sha256": "a6d829ef09c7f8f7495a8e78decb77ea7e5689bb13b56ef05c3384586ba6f3ef"
+      },
+      "predecessor_address": "0x1457de2f0",
+      "retained_role": "packed register/constant arithmetic-op carrier in observed Lua compiler",
+      "correspondence": "complete leaf byte match; current surrounding context/targets checked separately",
+      "AS_contract_established": false,
+      "original_decode_status": "not-observed"
+    },
+    {
+      "address": "0x145a76e60",
+      "native_range": {
+        "start": "0x145a76e60",
+        "end_exclusive": "0x145a76e7f",
+        "file_offset": "0x5a76260",
+        "sha256": "f6ae490aabe78c03a794dc86069ba9c226baa23bf34c8782521f501986d48cfd"
+      },
+      "predecessor_address": "0x1457de310",
+      "retained_role": "packed register/constant arithmetic-op carrier in observed Lua compiler",
+      "correspondence": "complete leaf byte match; current surrounding context/targets checked separately",
+      "AS_contract_established": false,
+      "original_decode_status": "not-observed"
+    },
+    {
+      "address": "0x145a76ea0",
+      "native_range": {
+        "start": "0x145a76ea0",
+        "end_exclusive": "0x145a76ebf",
+        "file_offset": "0x5a762a0",
+        "sha256": "2f6626a381acc7c61e6b3197ffcc7c69ea0905ebc206557baa7bc4e02b10750c"
+      },
+      "predecessor_address": "0x1457de350",
+      "retained_role": "packed register/constant arithmetic-op carrier in observed Lua compiler",
+      "correspondence": "complete leaf byte match; current surrounding context/targets checked separately",
+      "AS_contract_established": false,
+      "original_decode_status": "not-observed"
+    },
+    {
+      "address": "0x145a76ec0",
+      "native_range": {
+        "start": "0x145a76ec0",
+        "end_exclusive": "0x145a76edf",
+        "file_offset": "0x5a762c0",
+        "sha256": "5b1055f8644b9e20af49d4478145dd494be04b62d07cb8d213fe3c02bf73a72c"
+      },
+      "predecessor_address": "0x1457de370",
+      "retained_role": "packed register/constant arithmetic-op carrier in observed Lua compiler",
+      "correspondence": "complete leaf byte match; current surrounding context/targets checked separately",
+      "AS_contract_established": false,
+      "original_decode_status": "not-observed"
+    },
+    {
+      "address": "0x145a76ee0",
+      "native_range": {
+        "start": "0x145a76ee0",
+        "end_exclusive": "0x145a76eff",
+        "file_offset": "0x5a762e0",
+        "sha256": "965ae47814f90c155bdeb259781c980266af32796243c04f52c338fed99a0edc"
+      },
+      "predecessor_address": "0x1457de390",
+      "retained_role": "packed register/constant arithmetic-op carrier in observed Lua compiler",
+      "correspondence": "complete leaf byte match; current surrounding context/targets checked separately",
+      "AS_contract_established": false,
+      "original_decode_status": "not-observed"
+    },
+    {
+      "address": "0x145a76f20",
+      "native_range": {
+        "start": "0x145a76f20",
+        "end_exclusive": "0x145a76f3f",
+        "file_offset": "0x5a76320",
+        "sha256": "5d21d60d315fcc229647fb9d53d95a318c10e0dbff55ef0f94be306c003df5dc"
+      },
+      "predecessor_address": "0x1457de3d0",
+      "retained_role": "packed register/constant arithmetic-op carrier in observed Lua compiler",
+      "correspondence": "complete leaf byte match; current surrounding context/targets checked separately",
+      "AS_contract_established": false,
+      "original_decode_status": "not-observed"
+    },
+    {
+      "address": "0x145a76f40",
+      "native_range": {
+        "start": "0x145a76f40",
+        "end_exclusive": "0x145a76f5f",
+        "file_offset": "0x5a76340",
+        "sha256": "89b614db9d0967e7a40c8cc259e7c113e828bac91957bbe4966ef6873b9d48fd"
+      },
+      "predecessor_address": "0x1457de3f0",
+      "retained_role": "packed register/constant arithmetic-op carrier in observed Lua compiler",
+      "correspondence": "complete leaf byte match; current surrounding context/targets checked separately",
+      "AS_contract_established": false,
+      "original_decode_status": "not-observed"
+    },
+    {
+      "address": "0x145a923f0",
+      "native_range": {
+        "start": "0x145a923f0",
+        "end_exclusive": "0x145a9240b",
+        "file_offset": "0x5a917f0",
+        "sha256": "32be91fda83953a1e1bdab840493dc3b8c57a6ed089f5840f6ad50e3d7605e9f"
+      },
+      "predecessor_address": "0x1457fb960",
+      "retained_role": "ASCII/Latin-1 lowercase codepoint mapping; existing Lua string counterpart",
+      "correspondence": "complete leaf byte match; current surrounding context/targets checked separately",
+      "AS_contract_established": false,
+      "original_decode_status": "not-observed"
+    },
+    {
+      "address": "0x145a92410",
+      "native_range": {
+        "start": "0x145a92410",
+        "end_exclusive": "0x145a9242b",
+        "file_offset": "0x5a91810",
+        "sha256": "d81dd3e7b819ec803a6634452dc05ca80ee33d05f3bd363618cc1cc77cf01354"
+      },
+      "predecessor_address": "0x1457fb980",
+      "retained_role": "ASCII/Latin-1 uppercase codepoint mapping; existing Lua string counterpart",
+      "correspondence": "complete leaf byte match; current surrounding context/targets checked separately",
+      "AS_contract_established": false,
+      "original_decode_status": "not-observed"
+    },
+    {
+      "address": "0x145ddcf60",
+      "native_range": {
+        "start": "0x145ddcf60",
+        "end_exclusive": "0x145ddcf68",
+        "file_offset": "0x5ddc360",
+        "sha256": "40e5711e36a1425b96db5ad99a27ae9a6ed32b12d6ecfd8140dc607bac6238c8"
+      },
+      "predecessor_address": "0x145af18c0",
+      "retained_role": "indirect formatting carrier; authentication labels in expanded decompilation",
+      "correspondence": "complete leaf byte match; current surrounding context/targets checked separately",
+      "AS_contract_established": false,
+      "original_decode_status": "not-observed"
+    },
+    {
+      "address": "0x145a5b2d0",
+      "native_range": {
+        "start": "0x145a5b2d0",
+        "end_exclusive": "0x145a5b318",
+        "file_offset": "0x5a5a6d0",
+        "sha256": "82d185f3f6ba863d124c0ed21b91f9ad274cf37045e3718f2b58fd8a3de79e65"
+      },
+      "retained_role": "finite absolute-argument >=2^63 returns negative quiet NaN; other inputs reach imported tan",
+      "AS_contract_established": false,
+      "original_decode_status": "not-observed"
+    }
+  ],
+  "diagnostic_contexts": [
+    {
+      "native_range": {
+        "start": "0x1442f7c20",
+        "end_exclusive": "0x1442f7fec",
+        "file_offset": "0x42f7020",
+        "sha256": "be6150b6d14d8a5a1886c556128047ed7f76f0ca4d90ccec63ca317bf66ba99a"
+      },
+      "location": {
+        "start": "0x146c49d78",
+        "end_exclusive": "0x146c49d90",
+        "file_offset": "0x6c48b78",
+        "sha256": "b9f527e464a374c0c1f580a885b09455b9ebbd9ad0391d6c2fbf0b2a0645181f"
+      },
+      "operand_site": "0x1442f7fd9",
+      "portable_suffix": "naga-27.0.3/src/front/wgsl/parse/mod.rs",
+      "line": 2005,
+      "column": 26,
+      "path_sha256": "f833ca455e561af5e6b4c6a3c2092bf40577e8f848b4c74f12ffd9f969113cee"
+    },
+    {
+      "native_range": {
+        "start": "0x144b42430",
+        "end_exclusive": "0x144b42593",
+        "file_offset": "0x4b41830",
+        "sha256": "94c741991f37a768ccbcfe932a953c832e52da1d5eb1186c309f9c486ce29215"
+      },
+      "location": {
+        "start": "0x146df20a0",
+        "end_exclusive": "0x146df20b8",
+        "file_offset": "0x6df0ea0",
+        "sha256": "1118e1111b5edc99b9746c18510046179552669740350a75ac55f5232bfd80ca"
+      },
+      "operand_site": "0x144b4257e",
+      "portable_suffix": "futures-lite-2.6.1/src/io.rs",
+      "line": 2340,
+      "column": 58,
+      "path_sha256": "b508f200552b0d8d0964009ff6aa7faa4d72576df21bd3f896ed009d53217bd7"
+    },
+    {
+      "native_range": {
+        "start": "0x145a88bc0",
+        "end_exclusive": "0x145a8903d",
+        "file_offset": "0x5a87fc0",
+        "sha256": "73306d6f8e3374b5094d5479a0ef0d05e1f2215047ed4a0f8ae9d61d9bbc3460"
+      },
+      "location": {
+        "start": "0x146fb06d0",
+        "end_exclusive": "0x146fb06e8",
+        "file_offset": "0x6faf4d0",
+        "sha256": "79e07ba59019cde9ac5f2d775898ca65f2cf5603b9da57164b08926bb0c5c257"
+      },
+      "operand_site": "0x145a8902f",
+      "portable_suffix": "crates/benilla-lua/src/compile.rs",
+      "line": 532,
+      "column": 28,
+      "path_sha256": "3efbc85fe712a11854391be427ff57283afc0d84055024fce70672da98c9a779"
+    }
+  ],
+  "constants": [
+    {
+      "start": "0x1461d6040",
+      "end_exclusive": "0x1461d6050",
+      "file_offset": "0x61d4e40",
+      "sha256": "6db4845ea3835187f15ebd6bdf52f0c51684d803eb0d4ac481f48faf042421f1",
+      "hex_bytes": "ffffffffffffff7fffffffffffffff7f"
+    },
+    {
+      "start": "0x1461a8d08",
+      "end_exclusive": "0x1461a8d10",
+      "file_offset": "0x61a7b08",
+      "sha256": "6c3c396ed6b5c36dcae172271f462051b1266b851e92df3deea8ac65478fd712",
+      "hex_bytes": "000000000000f03f"
+    },
+    {
+      "start": "0x1463a86c8",
+      "end_exclusive": "0x1463a86d0",
+      "file_offset": "0x63a74c8",
+      "sha256": "74999fd28ab18ccca2bee199f260d19764603a3c78353d773d16d215eebe8e19",
+      "hex_bytes": "000000000000f87f"
+    },
+    {
+      "start": "0x146198918",
+      "end_exclusive": "0x146198920",
+      "file_offset": "0x6197718",
+      "sha256": "79d42401983a19953cd76220e0cf558400ba5ae159af2da29374ecb9928f305f",
+      "hex_bytes": "000000000000e043"
+    },
+    {
+      "start": "0x146fae718",
+      "end_exclusive": "0x146fae720",
+      "file_offset": "0x6fad518",
+      "sha256": "2399fcd7f479a73c8d0600bb9ff95d8c0cf687e2e9653d2747d14a026f1c5997",
+      "hex_bytes": "000000000000f8ff"
+    }
+  ],
+  "imports": [
+    {
+      "start": "0x145febce7",
+      "end_exclusive": "0x145febced",
+      "file_offset": "0x5feb0e7",
+      "sha256": "ecd657c0f72b4004fa1b4892c7487e2132c086a1840f874f4373ab5b02e8cf3a",
+      "symbol": "pow",
+      "library": "api-ms-win-crt-math-l1-1-0.dll",
+      "iat_slot": "0x146195400"
+    },
+    {
+      "start": "0x145febcf9",
+      "end_exclusive": "0x145febcff",
+      "file_offset": "0x5feb0f9",
+      "sha256": "36efbedb0f4407bf49dc129a60c1e2804dd15ee07631b7ab7996ead4e4f782b4",
+      "symbol": "tan",
+      "library": "api-ms-win-crt-math-l1-1-0.dll",
+      "iat_slot": "0x146195418"
+    }
+  ],
+  "formatter_context": {
+    "native_range": {
+      "start": "0x145ddd560",
+      "end_exclusive": "0x145ddd6ab",
+      "file_offset": "0x5ddc960",
+      "sha256": "6aa517520ce8300c7d025aad5cae90ea42ac65cf31cff2e1a0645d8f11bac13e"
+    },
+    "label_ranges": [
+      {
+        "start": "0x1476d175b",
+        "end_exclusive": "0x1476d1770",
+        "file_offset": "0x76d055b",
+        "sha256": "8b56e29920aa89728623824b6661517438f784114578cdd59dace6bc9eca0968"
+      },
+      {
+        "start": "0x1476d1770",
+        "end_exclusive": "0x1476d1785",
+        "file_offset": "0x76d0570",
+        "sha256": "0b0d375570b0090edafa6c537bb8da265778de06f58ee87172d1ab1588c1e2d1"
+      }
+    ],
+    "role": "21-byte authentication labels forwarded through formatter vtable +0x18; concrete dynamic type unproved"
+  },
+  "source_candidates": [
+    {
+      "path": "crates/benilla-lua/src/lib_math.rs",
+      "sha256": "d87ed5f6b8fc89ea810603b903d414449c61248852d1bc42f8c1880c04dc4db0"
+    },
+    {
+      "path": "crates/benilla-lua/src/number.rs",
+      "sha256": "0a2c331eb31735651bf1318e597843840d45db3db050567d2ef085f507f29de7"
+    }
+  ],
+  "original_census_populations_unchanged": true,
+  "limits": [
+    "Complete20-target/21-forming-operand selector; all primitive bytes and current supporting boundaries checked.",
+    "No new Ghidra query, import, seed, body ownership or census claim; existing19 supporting roles retained with separate current bindings.",
+    "Locations and source counterparts give bounded context, not full parser/compiler/I/O/VM/TLS reconstruction, actual AS use or dynamic type identity.",
+    "No AS source defect or missing gameplay contract established; generic supporting branches stop at these interfaces.",
+    "No compilation, source/game/client/network/server execution or original/rebuilt comparison."
+  ]
+}

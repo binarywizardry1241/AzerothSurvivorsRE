@@ -1,0 +1,152 @@
+{
+  "target": "AzerothSurvivors/AzerothSurvivors-0.105.0.exe",
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "ranges": [
+    {
+      "role": "queued-command",
+      "virtual_address": "0x140226080",
+      "end_exclusive": "0x1402260f8",
+      "file_offset": "0x225480",
+      "byte_count": 120,
+      "sha256": "be9f369b4068c067097e1901c965a52d97edec6d5a40390f56ca6f026be835e2"
+    },
+    {
+      "role": "bundle-register",
+      "virtual_address": "0x140337440",
+      "end_exclusive": "0x1403376d3",
+      "file_offset": "0x336840",
+      "byte_count": 659,
+      "sha256": "4c55cb41938ba0036ac03dd09d438f39916aad99f0c9333421f0339ca8effe16",
+      "provider": "ghidra",
+      "rea_evidence_id": "ev_05c6478cb4d96a8942a7d7a79a471efae28aeab61fc17ec05cac2a3e84e5a97a"
+    },
+    {
+      "role": "bundle-components",
+      "virtual_address": "0x14028e740",
+      "end_exclusive": "0x14028ebd1",
+      "file_offset": "0x28db40",
+      "byte_count": 1169,
+      "sha256": "ee582be104436247f1479504a1a4e01e0d7eb05c838d9eb2a9eba0a72908cb40",
+      "provider": "ghidra",
+      "rea_evidence_id": "ev_7453db9c1263c27b0b70ed4315fb20d33e20904938f79ec3dbda2acacd9887a5"
+    },
+    {
+      "role": "interaction-register",
+      "virtual_address": "0x140295cf0",
+      "end_exclusive": "0x140296146",
+      "file_offset": "0x2950f0",
+      "byte_count": 1110,
+      "sha256": "024a89e1c5829ca270d49bccac1213f9de12e9234428214f58b776e5e8842a0f",
+      "provider": "ghidra",
+      "rea_evidence_id": "ev_8cf8ea837baeb0a10ef55292ac9e8f81ecf3962c35001005d46b3698d86fac89"
+    },
+    {
+      "role": "component-info-new",
+      "virtual_address": "0x144e2d8f0",
+      "end_exclusive": "0x144e2d9d9",
+      "file_offset": "0x4e2ccf0",
+      "byte_count": 233,
+      "sha256": "762e0f5d00a826dfeba14b7b3c1d305a00cc0d2f7e5b33e781ca57e5f75f1eaa",
+      "provider": "ghidra",
+      "rea_evidence_id": "ev_66cc270e3b5b17bb5a28a6b6b64141d7cab5f4b3118d7659dd68100eaa7f9c3a",
+      "pseudocode": "component-info-new.c",
+      "pseudocode_sha256": "5e4ffa867115c576ed54feb735d73ae04dddd4ba95ad1ef2ce53e7e8bd81f18b"
+    },
+    {
+      "role": "required-dependency-propagation",
+      "virtual_address": "0x144e2db80",
+      "end_exclusive": "0x144e2dc06",
+      "file_offset": "0x4e2cf80",
+      "byte_count": 134,
+      "sha256": "5fd932f798ddfe1e625b7eb7c987d78dc4ecd1a57afad092fbdd4d35470eac76"
+    }
+  ],
+  "calls": [
+    [
+      "0x1402260b4",
+      "0x140049960"
+    ],
+    [
+      "0x140049998",
+      "0x1402e2170"
+    ],
+    [
+      "0x140337520",
+      "0x14028e740"
+    ],
+    [
+      "0x14028e9c6",
+      "0x140011c70"
+    ],
+    [
+      "0x14028ea5e",
+      "0x144e2db80"
+    ],
+    [
+      "0x14028eb3f",
+      "0x140086df0"
+    ],
+    [
+      "0x140295f93",
+      "0x140011c70"
+    ],
+    [
+      "0x140296036",
+      "0x144e2db80"
+    ]
+  ],
+  "contracts": {
+    "source_owner": "crates/azeroth-survivors-re/src/gameplay/terminal_view.rs::button",
+    "source_change": "Use Interaction::None explicitly; omit the unsupported Bevy Button marker. No picker Hover component or invented visual painter is inserted.",
+    "component_info_bytes": 304,
+    "component_descriptor_bytes": 88,
+    "component_id_offset": 256,
+    "hook_offsets": [
+      264,
+      272,
+      280,
+      288,
+      296
+    ],
+    "hook_initializers": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "new_EndAction_required_components": 0,
+    "new_Interaction_required_components": 0,
+    "native_required_state": "Both direct and inherited dependency collections begin empty; generic144e2db80 visits the existing inherited dependency vector at+0x48 and does nothing when its length is zero.",
+    "custom_painter_queries": "The three direct custom Interaction/BorderColor queries still require unrelated 4/56/44-byte control-local state; visual-query-owners.json remains canonical.",
+    "source_adapter": "Pad focus and custom-touch press queries share a filter requiring Interaction plus either the existing Button marker or typed DeviceTerminalAction. This preserves terminal routing without admitting arbitrary Interaction roots/tooltips; the exact native device query is not newly recovered."
+  },
+  "additional_discovery": {
+    "kind": "Full-PE objdump decoded RIP-relative references to exact copies of EndAction/Interaction TypeId constants",
+    "count": 50,
+    "EndAction_owners": [
+      "0x140113fe0 debug conversion",
+      "0x14015fde0 descriptor debug adapter",
+      "0x14028e740 terminal bundle registration",
+      "0x1402a6930 terminal query registration"
+    ],
+    "Interaction_extra_registration_owners": [
+      "0x140086df0 bundle component getter",
+      "0x1425449f0 engine component getter",
+      "0x1425e4280 required-component builder",
+      "0x14261a0f0 reflected component getter"
+    ],
+    "classification": "Engine registration aliases use the same initially-empty component metadata. Additional reflected enum/default/conversion/type-registration references are not terminal visual systems. This discovery does not claim a complete semantic call graph."
+  },
+  "checks": {
+    "script": "scripts/check-terminal-component-hooks-0.105.0.py",
+    "native_initializer_case_count": 24,
+    "execution": "Three reviewed linear instruction spans only; no native calls, branches, returns or game execution."
+  },
+  "limitations": [
+    "The hook/default/required-component result applies to new registrations and the terminal queued bundle. It does not establish the contents of a component registry modified later through an unclassified computed/dynamic call.",
+    "RIP-relative TypeId discovery and direct-call censuses do not establish every possible encoded/computed reference or complete global system scheduling.",
+    "Native Ghidra slices omit external data/callees and use generic compiler types; checked original PE instructions and the bounded initializer vectors establish the retained contracts.",
+    "No compilation, compiling tests, game launch, resize/DPI/touch interaction or original/rebuilt visual/gameplay parity."
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "initial_sequence": 1,
+  "initial_run_speed": 7.0,
+  "speed_scale": 7.0,
+  "speed_comparison": "abs(f32(candidate - remembered)) > f32(0.01); unordered difference suppresses packet; remembered changes only when sent",
+  "packet_contracts": {
+    "teleport": {
+      "owner": "1458b57d0",
+      "opcode": 199,
+      "wire": [
+        "packed GUID",
+        "u32LE sequence",
+        "u32LE movement flags=0",
+        "u32LE time=0",
+        "XYZ f32LE via145895ba0",
+        "f32LE facing",
+        "u32LE fall_time=0"
+      ]
+    },
+    "run_speed": {
+      "owner": "1458ad310",
+      "opcode": 226,
+      "wire": [
+        "packed GUID",
+        "u32LE sequence",
+        "f32LE speed"
+      ]
+    },
+    "root": {
+      "owner": "1458a9970",
+      "opcode": 232,
+      "wire": [
+        "packed GUID",
+        "u32LE sequence"
+      ]
+    },
+    "unroot": {
+      "canonical": "continuation-effects-contracts.json#unroot"
+    }
+  },
+  "source": {
+    "owner": "gameplay/mechanics/player_mover.rs::PlayerMover",
+    "independent_actor_owner": "Mechanics.movement_counter remains unchanged",
+    "speed": "initial finalization follows complete equipment/talent/race composition; later refresh_effects and ordinary tick update remembered speed before victory root; initial body speed uses remembered value",
+    "relocation": "report-driven Admission::Corrected -> Mechanics.relocate_player -> Teleport",
+    "terminal": "victory root and accepted Endless unroot share queue; terminal drains immediately before Endless notice",
+    "consumer": "ordinary inbound table -> player/wire_in; paused local-host drain shares same mode/teleport helpers and speed ACK path",
+    "queue": "Mover events are inline in ordered RunEvents; tick retains unconsumed mover entries so pre-tick report corrections survive. Terminal selectively drains movers before notice and preserves remaining events."
+  },
+  "limits": [
+    "Existing floor coordinate admission still has historical0.100.1 provenance; only the selected-target teleport packet and shared sequence are established here.",
+    "Optional sink-test tick producer is documented separately by parent gate recovery; no invented gameplay trigger.",
+    "Static checks do not compile Rust or execute the source, target, client, packets, UI or gameplay."
+  ],
+  "validation": "27 unchanged native instruction cases:18 speed prefixes,8 counter prefixes and1 constructor; explicit serializer/queue seams; source contracts and Rust parser only."
+}

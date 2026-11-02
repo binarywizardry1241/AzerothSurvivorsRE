@@ -1,0 +1,1570 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "gap_ids": [
+    41
+  ],
+  "lead_ids": [
+    "Q41-M01",
+    "Q41-A01",
+    "Q41-A02",
+    "Q41-F01",
+    "Q41-F02"
+  ],
+  "generator": {
+    "path": "scripts/classify-q41-data-slots-0.121.0.py",
+    "sha256": "2525851eefc6006908cf56257ac9ffb969fc888c2f0799c335c24ab9ebc604ee"
+  },
+  "dependencies": [
+    {
+      "path": "scripts/coverage_common.py",
+      "sha256": "aec38237b60b6982f17e0e93c6f6ba111100956fb389d44b397dbd5a6bdb1903"
+    },
+    {
+      "path": "scripts/script_sources.py",
+      "sha256": "bc4cdf0f6c4a0805b7052d06c28acc48e644484d08decb79a97168cec6458cfa"
+    },
+    {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+    },
+    {
+      "path": "scripts/discovery_native_subject.py",
+      "sha256": "e0bedb2d826d136b6b4c1bfb51b970160c2c42875b713fb1d2814ac360090a6a"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "docs/analysis/evidence/0.121.0/native-residuals.json",
+      "sha256": "73c79b074893b375a612adf34ea53ed19dd389bbf514df69fbd4dbeacad40d69"
+    },
+    {
+      "path": "docs/analysis/evidence/0.121.0/native-operands.json",
+      "sha256": "34bcc5ef07183c52bdba4a7e4c4f14691f67a05ce2e1d51c969165c9142e2229"
+    },
+    {
+      "path": "docs/analysis/evidence/0.121.0/as-reference-frontier.json",
+      "sha256": "a6775f38d6d137e7de9d8ef6a476d5f7eaf6e26b76f26a8494b7a8a178010a7f"
+    }
+  ],
+  "native_operand_inventory": {
+    "path": "runtime/coverage/22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150/pipeline/bedf416e7a9cae19/derived/operands.jsonl.gz",
+    "sha256": "4f91d366023493c9199901a01522c3a6518e1d1a2adaeadf52a9f4657f2282cb"
+  },
+  "counts": {
+    "complete_explicit_operands": 676285,
+    "actual_AS_context_owners": 315,
+    "AS_context_data_operands": 230,
+    "exact_slots": 30,
+    "complete_exact_slot_operands": 9176,
+    "classification_profiles": 11
+  },
+  "method": "Complete two-pass exact-address reverse join of every explicit expression, using the frozen315actual-body AS diagnostic-context owners. No sampling, recursive engine reconstruction or dynamic alias inference.",
+  "profiles": [
+    {
+      "id": "catalog-carriers",
+      "slots": [
+        "0x1485c6448",
+        "0x1485c6450",
+        "0x1485c6460",
+        "0x1485c6468"
+      ],
+      "classification": "Fixed zone/hero/jewelry definition-slice carriers; exact observed readers have existing catalog consumers.",
+      "source_receipts": [
+        {
+          "path": "crates/azeroth-survivors-re/src/catalog.rs",
+          "sha256": "971817c6611760c6f92aa82ce787b622d370ba2061e7045e7b6942d3c06d5a23"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/codex.rs",
+          "sha256": "159f37324f1a79bf99479b65df1b96f38bb9163dbbf4bde1e0400ea58bdd9043"
+        }
+      ]
+    },
+    {
+      "id": "frontend-fallback",
+      "slots": [
+        "0x14859c338"
+      ],
+      "classification": "Shared frontend empty-context fallback; selected meter consumers already retain their separate current proofs.",
+      "source_receipts": [
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/meter/view.rs",
+          "sha256": "e35445dd8d08dbbd91253e716e398abd5456b831ba7c58adbb57ec0ec96b6087"
+        }
+      ]
+    },
+    {
+      "id": "shared-registry",
+      "slots": [
+        "0x1485bf750"
+      ],
+      "classification": "Locked heterogeneous registry with an erased key/constructor interface; stop at the shared-engine/library interface.",
+      "source_receipts": []
+    },
+    {
+      "id": "logging-filter-and-callsites",
+      "slots": [
+        "0x1485b9058",
+        "0x14857d050",
+        "0x14857d060",
+        "0x14857d068",
+        "0x14857d078"
+      ],
+      "classification": "Shared logging level/filter and callsite metadata interface; no new AS operation is established.",
+      "source_receipts": []
+    },
+    {
+      "id": "shared-panic-poison-state",
+      "slots": [
+        "0x1485c6b78"
+      ],
+      "classification": "Shared panic-count/poison guard used by the registry and other synchronization consumers; no AS mechanic.",
+      "source_receipts": []
+    },
+    {
+      "id": "locale-cache-fields",
+      "slots": [
+        "0x1485c6470",
+        "0x1485c6478",
+        "0x1485c6480",
+        "0x1485c6488",
+        "0x1485c6490",
+        "0x1485c6498",
+        "0x1485c64a0",
+        "0x1485c64a8",
+        "0x1485c64b0",
+        "0x1485c64b8",
+        "0x1485c64c0",
+        "0x1485c64c8"
+      ],
+      "classification": "Three lazy i18n aggregate/field groups; direct address escape invokes the existing lazy-initialization interface.",
+      "source_receipts": [
+        {
+          "path": "crates/azeroth-survivors-re/src/localization.rs",
+          "sha256": "55297efb429366d09d6023b8b1fceff38de02957eefe4711583f63d915e1c80d"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/localization/catalogs.rs",
+          "sha256": "3681e0985c8fe6d54f452264c5d7086edfc7a96fef5cd89a9b88cde39f0c656c"
+        }
+      ]
+    },
+    {
+      "id": "locale-selection",
+      "slots": [
+        "0x1485c9220"
+      ],
+      "classification": "Exact fourteen-code process locale selector with English fallback; existing language_index/select and per-recipient locale source supply the bounded behavior.",
+      "source_receipts": [
+        {
+          "path": "crates/azeroth-survivors-re/src/localization.rs",
+          "sha256": "55297efb429366d09d6023b8b1fceff38de02957eefe4711583f63d915e1c80d"
+        }
+      ]
+    },
+    {
+      "id": "locale-indexed-cache",
+      "slots": [
+        "0x1485c6778"
+      ],
+      "classification": "Fourteen lazy32-byte locale entries selected by TLS override or process selection, clamped at13; existing locale/catalog consumers are retained.",
+      "source_receipts": [
+        {
+          "path": "crates/azeroth-survivors-re/src/localization.rs",
+          "sha256": "55297efb429366d09d6023b8b1fceff38de02957eefe4711583f63d915e1c80d"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/localization/catalogs.rs",
+          "sha256": "3681e0985c8fe6d54f452264c5d7086edfc7a96fef5cd89a9b88cde39f0c656c"
+        }
+      ]
+    },
+    {
+      "id": "PE-thread-local-index",
+      "slots": [
+        "0x1485c93e8"
+      ],
+      "classification": "Windows loader TLS index, followed by GS:[58] and the thread block; shared platform interface, not a missing AS state producer.",
+      "source_receipts": []
+    },
+    {
+      "id": "transport-observation-counters",
+      "slots": [
+        "0x1485c9208",
+        "0x1485c9218"
+      ],
+      "classification": "Atomic outgoing-byte and send counters before the existing transport-send interface; payload/state behavior retains its owning source contracts.",
+      "source_receipts": [
+        {
+          "path": "crates/azeroth-survivors-re/src/coop/session.rs",
+          "sha256": "71d97a3ed91e24e15694433a817af18031ec0eafa585322bfab60865a7aefd95"
+        }
+      ]
+    },
+    {
+      "id": "spell-effect-admission",
+      "slots": [
+        "0x1485c6d38"
+      ],
+      "classification": "noSpellEffects publication and engine creation gates; existing live CVar consumer preserves the recovered admission rule.",
+      "source_receipts": [
+        {
+          "path": "crates/benilla-app/src/local_client/spell_settings.rs",
+          "sha256": "806aac56d347e4f5252dc5a89af6f7a41a4a4374eb21d2d56607dd4fac98b6a3"
+        }
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "address": "0x14857d050",
+      "profile": "logging-filter-and-callsites",
+      "AS_context_operands": 4,
+      "complete_exact_slot_operands": 4,
+      "operand_access": {
+        "address-expression:1": 1,
+        "fixed-memory:1": 3
+      },
+      "source_native_owner_count": 1,
+      "AS_context_native_owners": [
+        "0x140097040"
+      ],
+      "writers_and_address_escapes": [
+        {
+          "site": "0x140098e73",
+          "source_native_owner": "0x140097040",
+          "kind": "address-expression",
+          "access": 1
+        }
+      ],
+      "initial_state": {
+        "kind": "file-backed",
+        "role": "logging-filter-and-callsites",
+        "virtual_address": "0x14857d050",
+        "end_exclusive": "0x14857d058",
+        "file_offset": "0x857bc50",
+        "byte_count": 8,
+        "sha256": "54cbff9102672290c9fd5201d4621cfc02f386e3adee6ea7cf1eaa0cc5d83621"
+      }
+    },
+    {
+      "address": "0x14857d060",
+      "profile": "logging-filter-and-callsites",
+      "AS_context_operands": 1,
+      "complete_exact_slot_operands": 1,
+      "operand_access": {
+        "fixed-memory:1": 1
+      },
+      "source_native_owner_count": 1,
+      "AS_context_native_owners": [
+        "0x140097040"
+      ],
+      "writers_and_address_escapes": [],
+      "initial_state": {
+        "kind": "file-backed",
+        "role": "logging-filter-and-callsites",
+        "virtual_address": "0x14857d060",
+        "end_exclusive": "0x14857d061",
+        "file_offset": "0x857bc60",
+        "byte_count": 1,
+        "sha256": "a8100ae6aa1940d0b663bb31cd466142ebbdbd5187131b92d93818987832eb89"
+      }
+    },
+    {
+      "address": "0x14857d068",
+      "profile": "logging-filter-and-callsites",
+      "AS_context_operands": 3,
+      "complete_exact_slot_operands": 3,
+      "operand_access": {
+        "address-expression:1": 1,
+        "fixed-memory:1": 2
+      },
+      "source_native_owner_count": 1,
+      "AS_context_native_owners": [
+        "0x140097040"
+      ],
+      "writers_and_address_escapes": [
+        {
+          "site": "0x140098433",
+          "source_native_owner": "0x140097040",
+          "kind": "address-expression",
+          "access": 1
+        }
+      ],
+      "initial_state": {
+        "kind": "file-backed",
+        "role": "logging-filter-and-callsites",
+        "virtual_address": "0x14857d068",
+        "end_exclusive": "0x14857d070",
+        "file_offset": "0x857bc68",
+        "byte_count": 8,
+        "sha256": "995d664813c6da871a073f17ad42c8345c81d268e27e5330a4c68bac40cd535a"
+      }
+    },
+    {
+      "address": "0x14857d078",
+      "profile": "logging-filter-and-callsites",
+      "AS_context_operands": 1,
+      "complete_exact_slot_operands": 1,
+      "operand_access": {
+        "fixed-memory:1": 1
+      },
+      "source_native_owner_count": 1,
+      "AS_context_native_owners": [
+        "0x140097040"
+      ],
+      "writers_and_address_escapes": [],
+      "initial_state": {
+        "kind": "file-backed",
+        "role": "logging-filter-and-callsites",
+        "virtual_address": "0x14857d078",
+        "end_exclusive": "0x14857d079",
+        "file_offset": "0x857bc78",
+        "byte_count": 1,
+        "sha256": "a8100ae6aa1940d0b663bb31cd466142ebbdbd5187131b92d93818987832eb89"
+      }
+    },
+    {
+      "address": "0x14859c338",
+      "profile": "frontend-fallback",
+      "AS_context_operands": 127,
+      "complete_exact_slot_operands": 204,
+      "operand_access": {
+        "fixed-memory:1": 204
+      },
+      "source_native_owner_count": 36,
+      "AS_context_native_owners": [
+        "0x1400130d0",
+        "0x14002f290",
+        "0x140089790",
+        "0x140089c00",
+        "0x140089ea0",
+        "0x14008a5e0",
+        "0x14008b0a0",
+        "0x14008b5f0",
+        "0x14008cab0",
+        "0x140097040",
+        "0x14009a4e0",
+        "0x14017b860",
+        "0x14019e1f0",
+        "0x1401a5180",
+        "0x1401c8e30",
+        "0x14040a910",
+        "0x1404126b0",
+        "0x140414030"
+      ],
+      "writers_and_address_escapes": [],
+      "initial_state": {
+        "kind": "file-backed",
+        "role": "frontend-fallback",
+        "virtual_address": "0x14859c338",
+        "end_exclusive": "0x14859c340",
+        "file_offset": "0x859af38",
+        "byte_count": 8,
+        "sha256": "ac17f7f8a0e75843bfef0b44407873e09fdf822c570386a16086d9b0e1822d83"
+      }
+    },
+    {
+      "address": "0x1485b9058",
+      "profile": "logging-filter-and-callsites",
+      "AS_context_operands": 2,
+      "complete_exact_slot_operands": 2009,
+      "operand_access": {
+        "fixed-memory:1": 2009
+      },
+      "source_native_owner_count": 1114,
+      "AS_context_native_owners": [
+        "0x140097040"
+      ],
+      "writers_and_address_escapes": [],
+      "initial_state": {
+        "kind": "file-backed",
+        "role": "logging-filter-and-callsites",
+        "virtual_address": "0x1485b9058",
+        "end_exclusive": "0x1485b9060",
+        "file_offset": "0x85b7c58",
+        "byte_count": 8,
+        "sha256": "d182845ce219a485bc0ec27c2c0b3467e77885f7b6c04dd85cbc1965cecca99d"
+      }
+    },
+    {
+      "address": "0x1485bf750",
+      "profile": "shared-registry",
+      "AS_context_operands": 18,
+      "complete_exact_slot_operands": 4244,
+      "operand_access": {
+        "fixed-memory:1": 4244
+      },
+      "source_native_owner_count": 3082,
+      "AS_context_native_owners": [
+        "0x1400571d0",
+        "0x1402ad260"
+      ],
+      "writers_and_address_escapes": [],
+      "initial_state": {
+        "kind": "file-backed",
+        "role": "shared-registry",
+        "virtual_address": "0x1485bf750",
+        "end_exclusive": "0x1485bf758",
+        "file_offset": "0x85be350",
+        "byte_count": 8,
+        "sha256": "d70966316f6b135f0e211c24f312eab402589e22d70046de2e852b717db46104"
+      }
+    },
+    {
+      "address": "0x1485c6448",
+      "profile": "catalog-carriers",
+      "AS_context_operands": 8,
+      "complete_exact_slot_operands": 16,
+      "operand_access": {
+        "fixed-memory:1": 16
+      },
+      "source_native_owner_count": 11,
+      "AS_context_native_owners": [
+        "0x1400c7860",
+        "0x140103710",
+        "0x1401098c0",
+        "0x14012bbe0"
+      ],
+      "writers_and_address_escapes": [],
+      "initial_state": {
+        "kind": "file-backed",
+        "role": "catalog-carriers",
+        "virtual_address": "0x1485c6448",
+        "end_exclusive": "0x1485c6450",
+        "file_offset": "0x85c5048",
+        "byte_count": 8,
+        "sha256": "8506f8a83c42c596e33e525fde78d6f7c99f1be489efc8d997a0055b182841f6"
+      }
+    },
+    {
+      "address": "0x1485c6450",
+      "profile": "catalog-carriers",
+      "AS_context_operands": 1,
+      "complete_exact_slot_operands": 6,
+      "operand_access": {
+        "fixed-memory:1": 6
+      },
+      "source_native_owner_count": 6,
+      "AS_context_native_owners": [
+        "0x14009a4e0"
+      ],
+      "writers_and_address_escapes": [],
+      "initial_state": {
+        "kind": "file-backed",
+        "role": "catalog-carriers",
+        "virtual_address": "0x1485c6450",
+        "end_exclusive": "0x1485c6458",
+        "file_offset": "0x85c5050",
+        "byte_count": 8,
+        "sha256": "f4c2d010bfae4e0a9995a55b19fe0678290e3af45f8120b688dcb9a58779420c"
+      }
+    },
+    {
+      "address": "0x1485c6460",
+      "profile": "catalog-carriers",
+      "AS_context_operands": 7,
+      "complete_exact_slot_operands": 8,
+      "operand_access": {
+        "fixed-memory:1": 8
+      },
+      "source_native_owner_count": 6,
+      "AS_context_native_owners": [
+        "0x1400f7380",
+        "0x1401a0030",
+        "0x1402a7680",
+        "0x1403de470",
+        "0x1403e21b0"
+      ],
+      "writers_and_address_escapes": [],
+      "initial_state": {
+        "kind": "file-backed",
+        "role": "catalog-carriers",
+        "virtual_address": "0x1485c6460",
+        "end_exclusive": "0x1485c6468",
+        "file_offset": "0x85c5060",
+        "byte_count": 8,
+        "sha256": "91c9ead30dd5c8c46f8b9787a4ae0de18eaf7792500afd9d82fad568ffe1166b"
+      }
+    },
+    {
+      "address": "0x1485c6468",
+      "profile": "catalog-carriers",
+      "AS_context_operands": 24,
+      "complete_exact_slot_operands": 25,
+      "operand_access": {
+        "fixed-memory:1": 25
+      },
+      "source_native_owner_count": 13,
+      "AS_context_native_owners": [
+        "0x140005e20",
+        "0x1400f7380",
+        "0x140172fa0",
+        "0x14018d310",
+        "0x1401b9900",
+        "0x1402630e0",
+        "0x140263b70",
+        "0x140264840",
+        "0x140268be0",
+        "0x1403de470",
+        "0x1403de5b0",
+        "0x1403e21b0"
+      ],
+      "writers_and_address_escapes": [],
+      "initial_state": {
+        "kind": "file-backed",
+        "role": "catalog-carriers",
+        "virtual_address": "0x1485c6468",
+        "end_exclusive": "0x1485c6470",
+        "file_offset": "0x85c5068",
+        "byte_count": 8,
+        "sha256": "0a1f1e6a4c95391fb2521703efdf03444b258ec7fe441df77df5c6b377bed73e"
+      }
+    },
+    {
+      "address": "0x1485c6470",
+      "profile": "locale-cache-fields",
+      "AS_context_operands": 1,
+      "complete_exact_slot_operands": 3,
+      "operand_access": {
+        "address-expression:1": 3
+      },
+      "source_native_owner_count": 3,
+      "AS_context_native_owners": [
+        "0x145aeaf60"
+      ],
+      "writers_and_address_escapes": [
+        {
+          "site": "0x145aeb1bb",
+          "source_native_owner": "0x145aeaf60",
+          "kind": "address-expression",
+          "access": 1
+        },
+        {
+          "site": "0x145b8a9e6",
+          "source_native_owner": "0x145b8a960",
+          "kind": "address-expression",
+          "access": 1
+        },
+        {
+          "site": "0x145b8abe9",
+          "source_native_owner": "0x145b8ab80",
+          "kind": "address-expression",
+          "access": 1
+        }
+      ],
+      "initial_state": {
+        "kind": "file-backed",
+        "role": "locale-cache-fields",
+        "virtual_address": "0x1485c6470",
+        "end_exclusive": "0x1485c6478",
+        "file_offset": "0x85c5070",
+        "byte_count": 8,
+        "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+      }
+    },
+    {
+      "address": "0x1485c6478",
+      "profile": "locale-cache-fields",
+      "AS_context_operands": 1,
+      "complete_exact_slot_operands": 4,
+      "operand_access": {
+        "fixed-memory:1": 4
+      },
+      "source_native_owner_count": 3,
+      "AS_context_native_owners": [
+        "0x145aeaf60"
+      ],
+      "writers_and_address_escapes": [],
+      "initial_state": {
+        "kind": "file-backed",
+        "role": "locale-cache-fields",
+        "virtual_address": "0x1485c6478",
+        "end_exclusive": "0x1485c6480",
+        "file_offset": "0x85c5078",
+        "byte_count": 8,
+        "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+      }
+    },
+    {
+      "address": "0x1485c6480",
+      "profile": "locale-cache-fields",
+      "AS_context_operands": 1,
+      "complete_exact_slot_operands": 4,
+      "operand_access": {
+        "fixed-memory:1": 4
+      },
+      "source_native_owner_count": 3,
+      "AS_context_native_owners": [
+        "0x145aeaf60"
+      ],
+      "writers_and_address_escapes": [],
+      "initial_state": {
+        "kind": "file-backed",
+        "role": "locale-cache-fields",
+        "virtual_address": "0x1485c6480",
+        "end_exclusive": "0x1485c6488",
+        "file_offset": "0x85c5080",
+        "byte_count": 8,
+        "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+      }
+    },
+    {
+      "address": "0x1485c6488",
+      "profile": "locale-cache-fields",
+      "AS_context_operands": 1,
+      "complete_exact_slot_operands": 3,
+      "operand_access": {
+        "fixed-memory:1": 3
+      },
+      "source_native_owner_count": 3,
+      "AS_context_native_owners": [
+        "0x145aeaf60"
+      ],
+      "writers_and_address_escapes": [],
+      "initial_state": {
+        "kind": "file-backed",
+        "role": "locale-cache-fields",
+        "virtual_address": "0x1485c6488",
+        "end_exclusive": "0x1485c648c",
+        "file_offset": "0x85c5088",
+        "byte_count": 4,
+        "sha256": "9d9f290527a6be626a8f5985b26e19b237b44872b03631811df4416fc1713178"
+      }
+    },
+    {
+      "address": "0x1485c6490",
+      "profile": "locale-cache-fields",
+      "AS_context_operands": 1,
+      "complete_exact_slot_operands": 1,
+      "operand_access": {
+        "address-expression:1": 1
+      },
+      "source_native_owner_count": 1,
+      "AS_context_native_owners": [
+        "0x145ae93a0"
+      ],
+      "writers_and_address_escapes": [
+        {
+          "site": "0x145ae9ff0",
+          "source_native_owner": "0x145ae93a0",
+          "kind": "address-expression",
+          "access": 1
+        }
+      ],
+      "initial_state": {
+        "kind": "file-backed",
+        "role": "locale-cache-fields",
+        "virtual_address": "0x1485c6490",
+        "end_exclusive": "0x1485c6498",
+        "file_offset": "0x85c5090",
+        "byte_count": 8,
+        "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+      }
+    },
+    {
+      "address": "0x1485c6498",
+      "profile": "locale-cache-fields",
+      "AS_context_operands": 1,
+      "complete_exact_slot_operands": 1,
+      "operand_access": {
+        "fixed-memory:1": 1
+      },
+      "source_native_owner_count": 1,
+      "AS_context_native_owners": [
+        "0x145ae93a0"
+      ],
+      "writers_and_address_escapes": [],
+      "initial_state": {
+        "kind": "file-backed",
+        "role": "locale-cache-fields",
+        "virtual_address": "0x1485c6498",
+        "end_exclusive": "0x1485c64a0",
+        "file_offset": "0x85c5098",
+        "byte_count": 8,
+        "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+      }
+    },
+    {
+      "address": "0x1485c64a0",
+      "profile": "locale-cache-fields",
+      "AS_context_operands": 1,
+      "complete_exact_slot_operands": 1,
+      "operand_access": {
+        "fixed-memory:1": 1
+      },
+      "source_native_owner_count": 1,
+      "AS_context_native_owners": [
+        "0x145ae93a0"
+      ],
+      "writers_and_address_escapes": [],
+      "initial_state": {
+        "kind": "file-backed",
+        "role": "locale-cache-fields",
+        "virtual_address": "0x1485c64a0",
+        "end_exclusive": "0x1485c64a8",
+        "file_offset": "0x85c50a0",
+        "byte_count": 8,
+        "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+      }
+    },
+    {
+      "address": "0x1485c64a8",
+      "profile": "locale-cache-fields",
+      "AS_context_operands": 1,
+      "complete_exact_slot_operands": 1,
+      "operand_access": {
+        "fixed-memory:1": 1
+      },
+      "source_native_owner_count": 1,
+      "AS_context_native_owners": [
+        "0x145ae93a0"
+      ],
+      "writers_and_address_escapes": [],
+      "initial_state": {
+        "kind": "file-backed",
+        "role": "locale-cache-fields",
+        "virtual_address": "0x1485c64a8",
+        "end_exclusive": "0x1485c64ac",
+        "file_offset": "0x85c50a8",
+        "byte_count": 4,
+        "sha256": "9d9f290527a6be626a8f5985b26e19b237b44872b03631811df4416fc1713178"
+      }
+    },
+    {
+      "address": "0x1485c64b0",
+      "profile": "locale-cache-fields",
+      "AS_context_operands": 1,
+      "complete_exact_slot_operands": 1,
+      "operand_access": {
+        "address-expression:1": 1
+      },
+      "source_native_owner_count": 1,
+      "AS_context_native_owners": [
+        "0x145ae93a0"
+      ],
+      "writers_and_address_escapes": [
+        {
+          "site": "0x145aea013",
+          "source_native_owner": "0x145ae93a0",
+          "kind": "address-expression",
+          "access": 1
+        }
+      ],
+      "initial_state": {
+        "kind": "file-backed",
+        "role": "locale-cache-fields",
+        "virtual_address": "0x1485c64b0",
+        "end_exclusive": "0x1485c64b8",
+        "file_offset": "0x85c50b0",
+        "byte_count": 8,
+        "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+      }
+    },
+    {
+      "address": "0x1485c64b8",
+      "profile": "locale-cache-fields",
+      "AS_context_operands": 1,
+      "complete_exact_slot_operands": 1,
+      "operand_access": {
+        "fixed-memory:1": 1
+      },
+      "source_native_owner_count": 1,
+      "AS_context_native_owners": [
+        "0x145ae93a0"
+      ],
+      "writers_and_address_escapes": [],
+      "initial_state": {
+        "kind": "file-backed",
+        "role": "locale-cache-fields",
+        "virtual_address": "0x1485c64b8",
+        "end_exclusive": "0x1485c64c0",
+        "file_offset": "0x85c50b8",
+        "byte_count": 8,
+        "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+      }
+    },
+    {
+      "address": "0x1485c64c0",
+      "profile": "locale-cache-fields",
+      "AS_context_operands": 1,
+      "complete_exact_slot_operands": 1,
+      "operand_access": {
+        "fixed-memory:1": 1
+      },
+      "source_native_owner_count": 1,
+      "AS_context_native_owners": [
+        "0x145ae93a0"
+      ],
+      "writers_and_address_escapes": [],
+      "initial_state": {
+        "kind": "file-backed",
+        "role": "locale-cache-fields",
+        "virtual_address": "0x1485c64c0",
+        "end_exclusive": "0x1485c64c8",
+        "file_offset": "0x85c50c0",
+        "byte_count": 8,
+        "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+      }
+    },
+    {
+      "address": "0x1485c64c8",
+      "profile": "locale-cache-fields",
+      "AS_context_operands": 1,
+      "complete_exact_slot_operands": 1,
+      "operand_access": {
+        "fixed-memory:1": 1
+      },
+      "source_native_owner_count": 1,
+      "AS_context_native_owners": [
+        "0x145ae93a0"
+      ],
+      "writers_and_address_escapes": [],
+      "initial_state": {
+        "kind": "file-backed",
+        "role": "locale-cache-fields",
+        "virtual_address": "0x1485c64c8",
+        "end_exclusive": "0x1485c64cc",
+        "file_offset": "0x85c50c8",
+        "byte_count": 4,
+        "sha256": "9d9f290527a6be626a8f5985b26e19b237b44872b03631811df4416fc1713178"
+      }
+    },
+    {
+      "address": "0x1485c6778",
+      "profile": "locale-indexed-cache",
+      "AS_context_operands": 1,
+      "complete_exact_slot_operands": 9,
+      "operand_access": {
+        "address-expression:1": 9
+      },
+      "source_native_owner_count": 9,
+      "AS_context_native_owners": [
+        "0x145b917c0"
+      ],
+      "writers_and_address_escapes": [
+        {
+          "site": "0x145b4caba",
+          "source_native_owner": "0x145b4c110",
+          "kind": "address-expression",
+          "access": 1
+        },
+        {
+          "site": "0x145b91fc8",
+          "source_native_owner": "0x145b917c0",
+          "kind": "address-expression",
+          "access": 1
+        },
+        {
+          "site": "0x145b96b3e",
+          "source_native_owner": "0x145b96b10",
+          "kind": "address-expression",
+          "access": 1
+        },
+        {
+          "site": "0x145b96c9e",
+          "source_native_owner": "0x145b96c70",
+          "kind": "address-expression",
+          "access": 1
+        },
+        {
+          "site": "0x145b97328",
+          "source_native_owner": "0x145b972f0",
+          "kind": "address-expression",
+          "access": 1
+        },
+        {
+          "site": "0x145ba35cc",
+          "source_native_owner": "0x145ba3590",
+          "kind": "address-expression",
+          "access": 1
+        },
+        {
+          "site": "0x145ba6503",
+          "source_native_owner": "0x145ba6470",
+          "kind": "address-expression",
+          "access": 1
+        },
+        {
+          "site": "0x145ba772b",
+          "source_native_owner": "0x145ba7310",
+          "kind": "address-expression",
+          "access": 1
+        },
+        {
+          "site": "0x145ba8ddf",
+          "source_native_owner": "0x145ba8d90",
+          "kind": "address-expression",
+          "access": 1
+        }
+      ],
+      "initial_state": {
+        "kind": "file-backed",
+        "role": "locale-indexed-cache",
+        "virtual_address": "0x1485c6778",
+        "end_exclusive": "0x1485c6780",
+        "file_offset": "0x85c5378",
+        "byte_count": 8,
+        "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+      }
+    },
+    {
+      "address": "0x1485c6b78",
+      "profile": "shared-panic-poison-state",
+      "AS_context_operands": 2,
+      "complete_exact_slot_operands": 2355,
+      "operand_access": {
+        "fixed-memory:1": 2355
+      },
+      "source_native_owner_count": 1656,
+      "AS_context_native_owners": [
+        "0x145b13630"
+      ],
+      "writers_and_address_escapes": [],
+      "initial_state": {
+        "kind": "file-backed",
+        "role": "shared-panic-poison-state",
+        "virtual_address": "0x1485c6b78",
+        "end_exclusive": "0x1485c6b80",
+        "file_offset": "0x85c5778",
+        "byte_count": 8,
+        "sha256": "87ee4afd0e07aab8a9a36ab076ae91aafb396f4afa8a99135b89dcb81e54ab2b"
+      }
+    },
+    {
+      "address": "0x1485c6d38",
+      "profile": "spell-effect-admission",
+      "AS_context_operands": 1,
+      "complete_exact_slot_operands": 6,
+      "operand_access": {
+        "fixed-memory:1": 5,
+        "fixed-memory:2": 1
+      },
+      "source_native_owner_count": 6,
+      "AS_context_native_owners": [
+        "0x140062e30"
+      ],
+      "writers_and_address_escapes": [
+        {
+          "site": "0x140673fe0",
+          "source_native_owner": "0x140062e30",
+          "kind": "fixed-memory",
+          "access": 2
+        }
+      ],
+      "initial_state": {
+        "kind": "file-backed",
+        "role": "spell-effect-admission",
+        "virtual_address": "0x1485c6d38",
+        "end_exclusive": "0x1485c6d39",
+        "file_offset": "0x85c5938",
+        "byte_count": 1,
+        "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+      }
+    },
+    {
+      "address": "0x1485c9208",
+      "profile": "transport-observation-counters",
+      "AS_context_operands": 5,
+      "complete_exact_slot_operands": 14,
+      "operand_access": {
+        "fixed-memory:3": 14
+      },
+      "source_native_owner_count": 10,
+      "AS_context_native_owners": [
+        "0x145b13630",
+        "0x145b21eb0",
+        "0x145b34840"
+      ],
+      "writers_and_address_escapes": [
+        {
+          "site": "0x145b15e4d",
+          "source_native_owner": "0x145b13630",
+          "kind": "fixed-memory",
+          "access": 3
+        },
+        {
+          "site": "0x145b16fb8",
+          "source_native_owner": "0x145b13630",
+          "kind": "fixed-memory",
+          "access": 3
+        },
+        {
+          "site": "0x145b22175",
+          "source_native_owner": "0x145b21eb0",
+          "kind": "fixed-memory",
+          "access": 3
+        },
+        {
+          "site": "0x145b2609d",
+          "source_native_owner": "0x145b21eb0",
+          "kind": "fixed-memory",
+          "access": 3
+        },
+        {
+          "site": "0x145b2c6cc",
+          "source_native_owner": "0x145b2c5c0",
+          "kind": "fixed-memory",
+          "access": 3
+        },
+        {
+          "site": "0x145b31b1c",
+          "source_native_owner": "0x145b319b0",
+          "kind": "fixed-memory",
+          "access": 3
+        },
+        {
+          "site": "0x145b32ab0",
+          "source_native_owner": "0x145b32940",
+          "kind": "fixed-memory",
+          "access": 3
+        },
+        {
+          "site": "0x145b32b97",
+          "source_native_owner": "0x145b32940",
+          "kind": "fixed-memory",
+          "access": 3
+        },
+        {
+          "site": "0x145b3373f",
+          "source_native_owner": "0x145b33690",
+          "kind": "fixed-memory",
+          "access": 3
+        },
+        {
+          "site": "0x145b33f9d",
+          "source_native_owner": "0x145b33be0",
+          "kind": "fixed-memory",
+          "access": 3
+        },
+        {
+          "site": "0x145b3491c",
+          "source_native_owner": "0x145b34840",
+          "kind": "fixed-memory",
+          "access": 3
+        },
+        {
+          "site": "0x145b63517",
+          "source_native_owner": "0x145b634c0",
+          "kind": "fixed-memory",
+          "access": 3
+        },
+        {
+          "site": "0x145b66219",
+          "source_native_owner": "0x145b661c0",
+          "kind": "fixed-memory",
+          "access": 3
+        },
+        {
+          "site": "0x145b662d1",
+          "source_native_owner": "0x145b661c0",
+          "kind": "fixed-memory",
+          "access": 3
+        }
+      ],
+      "initial_state": {
+        "kind": "PE-loader-zero-fill",
+        "section": ".data",
+        "virtual_address": "0x1485c9208",
+        "byte_count": 8,
+        "initial_value_hex": "0000000000000000"
+      }
+    },
+    {
+      "address": "0x1485c9218",
+      "profile": "transport-observation-counters",
+      "AS_context_operands": 5,
+      "complete_exact_slot_operands": 14,
+      "operand_access": {
+        "fixed-memory:3": 14
+      },
+      "source_native_owner_count": 10,
+      "AS_context_native_owners": [
+        "0x145b13630",
+        "0x145b21eb0",
+        "0x145b34840"
+      ],
+      "writers_and_address_escapes": [
+        {
+          "site": "0x145b15e55",
+          "source_native_owner": "0x145b13630",
+          "kind": "fixed-memory",
+          "access": 3
+        },
+        {
+          "site": "0x145b16fc0",
+          "source_native_owner": "0x145b13630",
+          "kind": "fixed-memory",
+          "access": 3
+        },
+        {
+          "site": "0x145b2217d",
+          "source_native_owner": "0x145b21eb0",
+          "kind": "fixed-memory",
+          "access": 3
+        },
+        {
+          "site": "0x145b260a5",
+          "source_native_owner": "0x145b21eb0",
+          "kind": "fixed-memory",
+          "access": 3
+        },
+        {
+          "site": "0x145b2c6d4",
+          "source_native_owner": "0x145b2c5c0",
+          "kind": "fixed-memory",
+          "access": 3
+        },
+        {
+          "site": "0x145b31b24",
+          "source_native_owner": "0x145b319b0",
+          "kind": "fixed-memory",
+          "access": 3
+        },
+        {
+          "site": "0x145b32ab8",
+          "source_native_owner": "0x145b32940",
+          "kind": "fixed-memory",
+          "access": 3
+        },
+        {
+          "site": "0x145b32b9f",
+          "source_native_owner": "0x145b32940",
+          "kind": "fixed-memory",
+          "access": 3
+        },
+        {
+          "site": "0x145b33747",
+          "source_native_owner": "0x145b33690",
+          "kind": "fixed-memory",
+          "access": 3
+        },
+        {
+          "site": "0x145b33fa5",
+          "source_native_owner": "0x145b33be0",
+          "kind": "fixed-memory",
+          "access": 3
+        },
+        {
+          "site": "0x145b34924",
+          "source_native_owner": "0x145b34840",
+          "kind": "fixed-memory",
+          "access": 3
+        },
+        {
+          "site": "0x145b6351f",
+          "source_native_owner": "0x145b634c0",
+          "kind": "fixed-memory",
+          "access": 3
+        },
+        {
+          "site": "0x145b66221",
+          "source_native_owner": "0x145b661c0",
+          "kind": "fixed-memory",
+          "access": 3
+        },
+        {
+          "site": "0x145b662d9",
+          "source_native_owner": "0x145b661c0",
+          "kind": "fixed-memory",
+          "access": 3
+        }
+      ],
+      "initial_state": {
+        "kind": "PE-loader-zero-fill",
+        "section": ".data",
+        "virtual_address": "0x1485c9218",
+        "byte_count": 8,
+        "initial_value_hex": "0000000000000000"
+      }
+    },
+    {
+      "address": "0x1485c9220",
+      "profile": "locale-selection",
+      "AS_context_operands": 4,
+      "complete_exact_slot_operands": 30,
+      "operand_access": {
+        "fixed-memory:1": 16,
+        "fixed-memory:2": 14
+      },
+      "source_native_owner_count": 16,
+      "AS_context_native_owners": [
+        "0x145ae93a0",
+        "0x145aeaf60",
+        "0x145b917c0"
+      ],
+      "writers_and_address_escapes": [
+        {
+          "site": "0x145aeb289",
+          "source_native_owner": "0x145aeb1e0",
+          "kind": "fixed-memory",
+          "access": 2
+        },
+        {
+          "site": "0x145aeb293",
+          "source_native_owner": "0x145aeb1e0",
+          "kind": "fixed-memory",
+          "access": 2
+        },
+        {
+          "site": "0x145aeb2a0",
+          "source_native_owner": "0x145aeb1e0",
+          "kind": "fixed-memory",
+          "access": 2
+        },
+        {
+          "site": "0x145aeb2ad",
+          "source_native_owner": "0x145aeb1e0",
+          "kind": "fixed-memory",
+          "access": 2
+        },
+        {
+          "site": "0x145aeb2ba",
+          "source_native_owner": "0x145aeb1e0",
+          "kind": "fixed-memory",
+          "access": 2
+        },
+        {
+          "site": "0x145aeb2c7",
+          "source_native_owner": "0x145aeb1e0",
+          "kind": "fixed-memory",
+          "access": 2
+        },
+        {
+          "site": "0x145aeb2d4",
+          "source_native_owner": "0x145aeb1e0",
+          "kind": "fixed-memory",
+          "access": 2
+        },
+        {
+          "site": "0x145aeb2e1",
+          "source_native_owner": "0x145aeb1e0",
+          "kind": "fixed-memory",
+          "access": 2
+        },
+        {
+          "site": "0x145aeb2ee",
+          "source_native_owner": "0x145aeb1e0",
+          "kind": "fixed-memory",
+          "access": 2
+        },
+        {
+          "site": "0x145aeb2fb",
+          "source_native_owner": "0x145aeb1e0",
+          "kind": "fixed-memory",
+          "access": 2
+        },
+        {
+          "site": "0x145aeb308",
+          "source_native_owner": "0x145aeb1e0",
+          "kind": "fixed-memory",
+          "access": 2
+        },
+        {
+          "site": "0x145aeb315",
+          "source_native_owner": "0x145aeb1e0",
+          "kind": "fixed-memory",
+          "access": 2
+        },
+        {
+          "site": "0x145aeb322",
+          "source_native_owner": "0x145aeb1e0",
+          "kind": "fixed-memory",
+          "access": 2
+        },
+        {
+          "site": "0x145aeb32f",
+          "source_native_owner": "0x145aeb1e0",
+          "kind": "fixed-memory",
+          "access": 2
+        }
+      ],
+      "initial_state": {
+        "kind": "PE-loader-zero-fill",
+        "section": ".data",
+        "virtual_address": "0x1485c9220",
+        "byte_count": 8,
+        "initial_value_hex": "0000000000000000"
+      }
+    },
+    {
+      "address": "0x1485c93e8",
+      "profile": "PE-thread-local-index",
+      "AS_context_operands": 4,
+      "complete_exact_slot_operands": 205,
+      "operand_access": {
+        "fixed-memory:1": 205
+      },
+      "source_native_owner_count": 191,
+      "AS_context_native_owners": [
+        "0x145ae0e80",
+        "0x145ae4da0",
+        "0x145ae93a0",
+        "0x145aeaf60"
+      ],
+      "writers_and_address_escapes": [],
+      "initial_state": {
+        "kind": "PE-loader-zero-fill",
+        "section": ".data",
+        "virtual_address": "0x1485c93e8",
+        "byte_count": 4,
+        "initial_value_hex": "00000000"
+      }
+    }
+  ],
+  "catalog_slices": [
+    {
+      "slot": "0x1485c6448",
+      "role": "zone-definition-slice",
+      "slice_pointer": "0x146fc7da8",
+      "records": 12,
+      "first_key": "elwynn",
+      "key": {
+        "role": "zone-definition-slice-key",
+        "virtual_address": "0x146fb2578",
+        "end_exclusive": "0x146fb257e",
+        "file_offset": "0x6fb1378",
+        "byte_count": 6,
+        "sha256": "b775868beeab571ba5190ce13d5f9e8d25e03dbe2d095b6d96a4d32b9b228565"
+      },
+      "slice": {
+        "role": "zone-definition-slice",
+        "virtual_address": "0x146fc7da8",
+        "end_exclusive": "0x146fc7db8",
+        "file_offset": "0x6fc6ba8",
+        "byte_count": 16,
+        "sha256": "91adfb0e5280d393493a13c0fc83e59696dc7889938555d583892f0047fd0ff1"
+      }
+    },
+    {
+      "slot": "0x1485c6450",
+      "role": "hero-definition-slice",
+      "slice_pointer": "0x146fc7db8",
+      "records": 9,
+      "first_key": "warrior",
+      "key": {
+        "role": "hero-definition-slice-key",
+        "virtual_address": "0x146fbf6d0",
+        "end_exclusive": "0x146fbf6d7",
+        "file_offset": "0x6fbe4d0",
+        "byte_count": 7,
+        "sha256": "ffb29103283b6b9997b82997ed5a6a687f34bcfff7c07f33c715555942a30aa6"
+      },
+      "slice": {
+        "role": "hero-definition-slice",
+        "virtual_address": "0x146fc7db8",
+        "end_exclusive": "0x146fc7dc8",
+        "file_offset": "0x6fc6bb8",
+        "byte_count": 16,
+        "sha256": "c695b3ea9215e63bb09f567e39cf54d519cf15c0386907c2027408bae5510147"
+      }
+    },
+    {
+      "slot": "0x1485c6460",
+      "role": "ring-trinket-definition-slice",
+      "slice_pointer": "0x14730d958",
+      "records": 23,
+      "first_key": "accuria",
+      "key": {
+        "role": "ring-trinket-definition-slice-key",
+        "virtual_address": "0x147303bc5",
+        "end_exclusive": "0x147303bcc",
+        "file_offset": "0x73029c5",
+        "byte_count": 7,
+        "sha256": "48a7b58d373d4714055deb1f9a2b8f4dc85c124fc86f9e31467eca349c272d54"
+      },
+      "slice": {
+        "role": "ring-trinket-definition-slice",
+        "virtual_address": "0x14730d958",
+        "end_exclusive": "0x14730d968",
+        "file_offset": "0x730c758",
+        "byte_count": 16,
+        "sha256": "abb5f8bfe4e4dd71a5762e90c512573e885a7246d2a8b974dd0e42112c79ab3b"
+      }
+    },
+    {
+      "slot": "0x1485c6468",
+      "role": "shared-amulet-definition-slice",
+      "slice_pointer": "0x14730d968",
+      "records": 16,
+      "first_key": "mark_of_fordring",
+      "key": {
+        "role": "shared-amulet-definition-slice-key",
+        "virtual_address": "0x1473048ec",
+        "end_exclusive": "0x1473048fc",
+        "file_offset": "0x73036ec",
+        "byte_count": 16,
+        "sha256": "9bac75dc6759a6cc38704612fa2f6efea9808b31858354cd03f203b7a502648b"
+      },
+      "slice": {
+        "role": "shared-amulet-definition-slice",
+        "virtual_address": "0x14730d968",
+        "end_exclusive": "0x14730d978",
+        "file_offset": "0x730c768",
+        "byte_count": 16,
+        "sha256": "63b42b35dd6b80f23435c052d4cc3ccc47653f29566e8e00670210c2bb562b03"
+      }
+    }
+  ],
+  "native_queries": [
+    {
+      "procedure": "0x145aeb1e0",
+      "slice_virtual_address": "0x145aeb1e0",
+      "plan": {
+        "path": "runtime/q41-data-slots-0.121.0/locale-selector/plan.json",
+        "sha256": "89eef1310ecde7024e17fb26cc389e00ab4758405995f2dfc323d7f9ab58c068"
+      },
+      "journal": {
+        "path": "runtime/q41-data-slots-0.121.0/locale-selector/query/journal.json",
+        "sha256": "57c14a00aa63a008b58c9912371440286ccbc2fab496b3f2b0dc61bbd3c65f3c"
+      },
+      "result": {
+        "path": "runtime/q41-data-slots-0.121.0/locale-selector/query/results/46aef7ed045c23901f07eff06694b5e3ab27b20d9ea4d1d0c189ca13aa2c7c41.json",
+        "sha256": "885b9e9e41b767910cf9f1fc005cfe59b025ae051f25b05a06d050d661cbf505"
+      },
+      "raw_input": {
+        "path": "runtime/q41-data-slots-0.121.0/locale-selector/code.bin",
+        "sha256": "9dd5df2539d1afdcfa183b30959d3b7645d103a409516446cebdc956862d8aa1"
+      },
+      "evidence_id": "ev_8aa1558bc1ee7b285ffb5984398b7d2fe1b87710aed6220d3b95242a6d5a6d1a",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "62bb1fa20ee119216ae3fd17bad23bdd9804217726f0dfbe2dfad32fe9f6de88",
+      "normalized_text_sha256": "84970219e04d01262a9c3fbd44b4e6384353ac9f742df4297a832c74867a40bd",
+      "subject_binding": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+        "raw_sha256": "9dd5df2539d1afdcfa183b30959d3b7645d103a409516446cebdc956862d8aa1",
+        "virtual_address": "0x145aeb1e0",
+        "file_offset": "0x5aea5e0",
+        "byte_count": 343,
+        "result": "runtime/q41-data-slots-0.121.0/locale-selector/query/results/46aef7ed045c23901f07eff06694b5e3ab27b20d9ea4d1d0c189ca13aa2c7c41.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "procedure": "0x145b96c70",
+      "slice_virtual_address": "0x145b96c70",
+      "plan": {
+        "path": "runtime/q41-data-slots-0.121.0/locale-cache/plan.json",
+        "sha256": "33822924b936cd63c7c61e1b64503d5ccd6ea42b40646f459eb17a7f73700ade"
+      },
+      "journal": {
+        "path": "runtime/q41-data-slots-0.121.0/locale-cache/query/journal.json",
+        "sha256": "f093bac9e891e9e192139659ea3cf7d675e05864e8d867c5d37f2f9eb1fd1bc0"
+      },
+      "result": {
+        "path": "runtime/q41-data-slots-0.121.0/locale-cache/query/results/99d62710303cdad2e071a3a5be9a5a17d94229fce00700ada3eeac3840c67c08.json",
+        "sha256": "0388c7f6399a0bb20347c0a57a40ccfeff6e3e241f63de4b03074db3899ccdf7"
+      },
+      "raw_input": {
+        "path": "runtime/q41-data-slots-0.121.0/locale-cache/code.bin",
+        "sha256": "fd4e2e8a89a3aacad491665e511d916130259f3405dad8fc69f2628297a89531"
+      },
+      "evidence_id": "ev_830d623ef4eb091c41fb1e6900205775e426a6852028631c1bbcdcdae873d252",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "50e0a771264464350dd2c47b4008a567049871d44fc7dab33c220cfab259e40e",
+      "normalized_text_sha256": "3621a5cf1c083e67a26f2ce9615f24dede3fb02b2845b5e6abdfe9d944fe2531",
+      "subject_binding": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+        "raw_sha256": "fd4e2e8a89a3aacad491665e511d916130259f3405dad8fc69f2628297a89531",
+        "virtual_address": "0x145b96c70",
+        "file_offset": "0x5b96070",
+        "byte_count": 89,
+        "result": "runtime/q41-data-slots-0.121.0/locale-cache/query/results/99d62710303cdad2e071a3a5be9a5a17d94229fce00700ada3eeac3840c67c08.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "procedure": "0x1402aa300",
+      "slice_virtual_address": "0x1402aa300",
+      "plan": {
+        "path": "runtime/q41-data-slots-0.121.0/shared-state-helper/plan.json",
+        "sha256": "0895c39530652d21e08e95a9f69ef0f573a073e5c0621e862f3ff2c5a964de55"
+      },
+      "journal": {
+        "path": "runtime/q41-data-slots-0.121.0/shared-state-helper/query/journal.json",
+        "sha256": "ac3d4269c8397de33171f01702c7e4e2f44716313333f2c7a27427bec363f98f"
+      },
+      "result": {
+        "path": "runtime/q41-data-slots-0.121.0/shared-state-helper/query/results/6bc6049fc23db4f4028ea37616328d98e7bff6264da7e80190aecb73f383a972.json",
+        "sha256": "13dd1c33cace7750cd819eda124ad2dd92a818010472e257a5f0d3a5fa581ab7"
+      },
+      "raw_input": {
+        "path": "runtime/q41-data-slots-0.121.0/shared-state-helper/code.bin",
+        "sha256": "4364ee50065f56a85b7fe3456bb0985e5e9c2b16591ea7bfe077f7221379f31d"
+      },
+      "evidence_id": "ev_c7f26b545603327dc88f1b7a6d15f34eda4cc9ca05592d8a4d9cdafb8d8b3649",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "75fe29fe223b229badb12ff6fcef789e19e24559432d39ccee2e8b657a358d0b",
+      "normalized_text_sha256": "b8c0b97ba80625c337fbb125f3f73358bedd72b0389251a53b3a7797e0efdcb7",
+      "subject_binding": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+        "raw_sha256": "4364ee50065f56a85b7fe3456bb0985e5e9c2b16591ea7bfe077f7221379f31d",
+        "virtual_address": "0x1402aa300",
+        "file_offset": "0x2a9700",
+        "byte_count": 1593,
+        "result": "runtime/q41-data-slots-0.121.0/shared-state-helper/query/results/6bc6049fc23db4f4028ea37616328d98e7bff6264da7e80190aecb73f383a972.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    }
+  ],
+  "native_locale_selector_cases": {
+    "two_byte_words": 65536,
+    "other_length_cases": 70,
+    "total": 65606,
+    "actual_source_codes": [
+      "en",
+      "pl",
+      "cs",
+      "de",
+      "pt",
+      "es",
+      "fr",
+      "ro",
+      "tr",
+      "ru",
+      "uk",
+      "zh",
+      "ja",
+      "ko"
+    ],
+    "engine": "Unicorn",
+    "engine_version": "2.1.4",
+    "scope": "Original pure selector instructions only, with synthetic memory/stack; invalid UTF-8 byte words are native-boundary probes, not manufactured valid Rust strings."
+  },
+  "full_operand_artifact": {
+    "path": "runtime/q41-data-slots-0.121.0/exact-slot-operands.jsonl.gz",
+    "rows": 9176,
+    "uncompressed_sha256": "36e2d7e0be570363d2db80f4ef4e9d9df10b9dda9571c876129eb888cdbe9028",
+    "sha256": "adb99242d922bd03b24077b8580eee0aab140740c8ce46e9a1e3eb6bbc653d6e"
+  },
+  "source_defect_established": false,
+  "global_dynamic_aliases_closed": false,
+  "limits": [
+    "The exact-address join does not enumerate stores through arbitrary pointers or interior indexed aliases, nor all reachable filename-free AS state.",
+    "A .data placement or diagnostic association alone establishes neither mutability nor semantic AS ownership.",
+    "The three Ghidra results have raw-subject and incoming-type limitations; original bytes and exact producer/consumer coordinates govern the stated boundary.",
+    "Catalog identity, existing source and generic registry/TLS/logging interfaces do not certify whole-system native completeness or application parity.",
+    "No application compilation, compiling test, client/game/server/network execution or original/rebuilt comparison was performed."
+  ]
+}

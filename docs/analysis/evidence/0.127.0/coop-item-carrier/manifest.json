@@ -1,0 +1,643 @@
+{
+  "target": {
+    "version": "0.127.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+    "size_bytes": 146721280
+  },
+  "gap_ids": [
+    101,
+    298
+  ],
+  "scope": "ItemQuery wire25 text carrier, slot-local ID rebinding and recipient delivery",
+  "target_executed": false,
+  "ranges": [
+    {
+      "role": "template-remap",
+      "start": "0x145b53260",
+      "end_exclusive": "0x145b53565",
+      "file_offset": "0x5b52660",
+      "byte_count": 773,
+      "sha256": "4ba9fdc58d1c5c73f71b0a2b0416f083060772037959ff5f8823e344eb2a271f"
+    },
+    {
+      "role": "template-spell-publish",
+      "start": "0x145b91b10",
+      "end_exclusive": "0x145b91bed",
+      "file_offset": "0x5b90f10",
+      "byte_count": 221,
+      "sha256": "4b6729f8312da119e1e2d042c88b8d6d482d2ef7859bc7b7e579886c3533d267"
+    },
+    {
+      "role": "host-envelope",
+      "start": "0x145bd5b20",
+      "end_exclusive": "0x145bd5c13",
+      "file_offset": "0x5bd4f20",
+      "byte_count": 243,
+      "sha256": "a6bf86b1efb13587e798c47ca983dec0800be352cdf39664d37c7bb509d870d6"
+    },
+    {
+      "role": "guest-envelope",
+      "start": "0x145bd7b40",
+      "end_exclusive": "0x145bd95ef",
+      "file_offset": "0x5bd6f40",
+      "byte_count": 6831,
+      "sha256": "527f1697b0177bd366544fda60b85e7ad0eb2aa6c467ee0f2a11fa67afb02fda"
+    },
+    {
+      "role": "host-strings",
+      "start": "0x145d032d0",
+      "end_exclusive": "0x145d03403",
+      "file_offset": "0x5d026d0",
+      "byte_count": 307,
+      "sha256": "43002ff27737d5c7bc560a5ad46d4f1961f314a770f0b77761e4cda92a7affa7"
+    },
+    {
+      "role": "text-intern",
+      "start": "0x145b54cc0",
+      "end_exclusive": "0x145b54ea2",
+      "file_offset": "0x5b540c0",
+      "byte_count": 482,
+      "sha256": "08dc183324b9599ce9e113aaa58531975fe60e1d8eddba83c9d58ebefb1c5725"
+    },
+    {
+      "role": "text-wrapper",
+      "start": "0x145af3a50",
+      "end_exclusive": "0x145af3c52",
+      "file_offset": "0x5af2e50",
+      "byte_count": 514,
+      "sha256": "5b78730cb78c144121099537555f0e69490555642578a1fef2814ac71520d7c8"
+    },
+    {
+      "role": "guest-item-branch",
+      "start": "0x145bd7ee8",
+      "end_exclusive": "0x145bd7fa6",
+      "file_offset": "0x5bd72e8",
+      "byte_count": 190,
+      "sha256": "6f8fae3cb9d493832b78b1d499761da4bd38df56e5c3e54fc5565217c9ce18db"
+    },
+    {
+      "role": "serializer",
+      "start": "0x145d14a90",
+      "end_exclusive": "0x145d160dc",
+      "file_offset": "0x5d13e90",
+      "byte_count": 5708,
+      "sha256": "ea3d6084623730a98ecd9ba9b18930c44bc7cfa3ac67d8cf3cef32b4375cd706"
+    },
+    {
+      "role": "serialize-item-branch",
+      "start": "0x145d14cc9",
+      "end_exclusive": "0x145d14d2f",
+      "file_offset": "0x5d140c9",
+      "byte_count": 102,
+      "sha256": "5a401e83f14764f9c64a0ea45cbf99e4a856ec2763ab03402e59a8496ee90bc5"
+    },
+    {
+      "role": "smsg-producer",
+      "start": "0x145afbe60",
+      "end_exclusive": "0x145afc15a",
+      "file_offset": "0x5afb260",
+      "byte_count": 762,
+      "sha256": "cb8fe71f68b01ee200370fc716c58b63afbbb553627eedfd2091de6fe68225e6",
+      "gap_ids": [
+        298
+      ],
+      "rea_evidence_id": "ev_2262a8ee360607bf5fef86107a465a0caad58710c593f7265d789c3eeb88486f",
+      "query_index": 4,
+      "pseudocode": "smsg-producer.c",
+      "pseudocode_sha256": "4d05d9773e413c565ba8fa1021335575bd386cdca52339faeb3e835cdcc2b1c6",
+      "independently_decoded_instructions": 203,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "smsg-publication",
+      "start": "0x145b00d90",
+      "end_exclusive": "0x145b00f44",
+      "file_offset": "0x5b00190",
+      "byte_count": 436,
+      "sha256": "d4e76ac463a70b116014c161b3e67472c9f117b3336d79112e6386b5c0cb0f61",
+      "gap_ids": [
+        298
+      ],
+      "rea_evidence_id": "ev_206483ded8336319b79ddb90f092d3d0dcdff29220f7d83de08d5f7055a8cf55",
+      "query_index": 5,
+      "pseudocode": "smsg-publication.c",
+      "pseudocode_sha256": "9ed119da9c323528f3faaf9117a6f9900606df1c702209d173a4fa513e6c3f8d",
+      "independently_decoded_instructions": 131,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "decoder-entry",
+      "start": "0x145d106f0",
+      "end_exclusive": "0x145d1078b",
+      "byte_count": 155,
+      "sha256": "71720a4ea855ad342c7b352ed852979ef0d17a9e2513370b2bc5c3a7bd8d87d6",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-item-carrier/decoder-entry.asm",
+        "sha256": "f6c3451460a13b83e9c0581711ae038d9c939194bc5d30c444d363179b12d8e4"
+      },
+      "scope": "Original instruction evidence using the existing independent native decoder; not a new Ghidra query."
+    },
+    {
+      "role": "decoder-carrier-branch",
+      "start": "0x145d10f1b",
+      "end_exclusive": "0x145d10fea",
+      "byte_count": 207,
+      "sha256": "ef80972311d9da4cc1fe515b9de557f691550076fa022d03d53cd85c7cad6aa9",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-item-carrier/decoder-carrier-branch.asm",
+        "sha256": "5135b18d0470904d5c5a339d68b4413cd21caa44eb8893990df30cf3a64b1ea6"
+      },
+      "scope": "Original instruction evidence using the existing independent native decoder; not a new Ghidra query."
+    }
+  ],
+  "queries": [
+    {
+      "role": "template-remap",
+      "procedure": "0x145b53260",
+      "slice_virtual_address": "0x145b53260",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_96a1b563f5087330f267c67a810ab66250494b1803d3d13013e484fc67ac2c45",
+      "analysis_profile_digest": "9e5ed0c5d135a5ce794844429db9438d9eafb8ff505c1e0a1c258f0fc5aa272b",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/template-remap/plan.json",
+        "sha256": "b535d7deaba993a20d04406f046896b8ca124f1a937f482b120bfff4f0fe4a52"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/template-remap/rea/journal.json",
+        "sha256": "b03a7eb07547ee9c9ee56e843236bd58d7bba2aa3d5cfcbd76123ef381d5ba20"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/template-remap/rea/results/fdca721da26cd7e773127c191239e34decd2bbb684d7420b4f2a9400af8bd73e.json",
+        "sha256": "d442c6065eeaf5f90943bf83435dc4f994800b313e3548a954b32b0bab2a247c"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/template-remap/body.bin",
+        "sha256": "4ba9fdc58d1c5c73f71b0a2b0416f083060772037959ff5f8823e344eb2a271f"
+      },
+      "normalized_sha256": "297efd07f69a27fc42c504a0ea61ae4e0111e7521bd8a07368407e352a510eb2",
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-item-carrier/template-remap.c",
+        "sha256": "297efd07f69a27fc42c504a0ea61ae4e0111e7521bd8a07368407e352a510eb2"
+      }
+    },
+    {
+      "role": "template-remap",
+      "procedure": "0x145b53260",
+      "slice_virtual_address": "0x145b53260",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_acf16e0e8f17ab9435e21c4cafeae45a8f91449ce56c5c39d7e757b4775fadd0",
+      "analysis_profile_digest": "9e5ed0c5d135a5ce794844429db9438d9eafb8ff505c1e0a1c258f0fc5aa272b",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/template-remap/assembly-plan.json",
+        "sha256": "67cb8be2c2ecf771b569a0a861489d58fe73fbf01413c1eb154d63e1f5747597"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/template-remap/assembly/journal.json",
+        "sha256": "c4562a074811efa2b0bc55ce455c8b00122d8c8ed8d4f109585ff63073a6e010"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/template-remap/assembly/results/8671aa284e7ae01a71f0124b60c360f63d0c895bccb33e817e967a2d11120499.json",
+        "sha256": "122fd6de860239436e0d4d54ae634680976ec52e2c43e813acb64fe355429457"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/template-remap/body.bin",
+        "sha256": "4ba9fdc58d1c5c73f71b0a2b0416f083060772037959ff5f8823e344eb2a271f"
+      },
+      "normalized_sha256": "46f8f9352b7be9efe63c2c6ac05bf95d5bbbf5f1b5305edbfd13e56db2a44969"
+    },
+    {
+      "role": "template-spell-publish",
+      "procedure": "0x145b91b10",
+      "slice_virtual_address": "0x145b91b10",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_7aabe5e50a94098161a1d0cae73283593c91b83f77b753f517871ec61b326d2a",
+      "analysis_profile_digest": "901487acf89941c324f3ce1dec0868fc4e9595748e7765ca6b1717663d431c15",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/template-spell-publish/plan.json",
+        "sha256": "a3f82cf0a2a55432ffa35ff1fe42099d177142efc0d179c7209325122a63e87b"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/template-spell-publish/rea/journal.json",
+        "sha256": "8b4957fe95693589c9837119d6f5ae95151deaa34f58282201ad81313c034c77"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/template-spell-publish/rea/results/e50c2a919ca6d578799937ec905c2458a507991e4def292ad0576121aa8d36e4.json",
+        "sha256": "0bdd8cc54f5be37d18caa9a0a27f736172544c36c469b36618478243dcc3910b"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/template-spell-publish/body.bin",
+        "sha256": "4b6729f8312da119e1e2d042c88b8d6d482d2ef7859bc7b7e579886c3533d267"
+      },
+      "normalized_sha256": "2875a02fd1db2b79973038e3165889e993137417428047a6dd6284d7c0003851",
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-item-carrier/template-spell-publish.c",
+        "sha256": "2875a02fd1db2b79973038e3165889e993137417428047a6dd6284d7c0003851"
+      }
+    },
+    {
+      "role": "host-envelope",
+      "procedure": "0x145bd5b20",
+      "slice_virtual_address": "0x145bd5b20",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_ec9a28ce59e9c23fa3fd21477de9a6e1bd27b206ceace2f3b32e0146a2c6c6de",
+      "analysis_profile_digest": "d79630df117c0791c21e10508f8922abe95b6c2d4450060c78f12eeb3fd7224b",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/host-envelope/plan.json",
+        "sha256": "0afd97b78f2e790f99f91a7c0bdbe9e4506e158d6f8308965dff81c2267df631"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/host-envelope/rea/journal.json",
+        "sha256": "a95ddfff3a8d92a2fcc982d713598ce4a6f39d1123f45cdbdce3fd5ac6534da5"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/host-envelope/rea/results/f8a7f86a0f299a14da9e8b0c25a508d975016501751b166d8f4027bb3cc26020.json",
+        "sha256": "eaecf251efa37740ec3e516ca5046b80fd261dddfa6ebbc45bda9d2a40d62584"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/host-envelope/body.bin",
+        "sha256": "a6bf86b1efb13587e798c47ca983dec0800be352cdf39664d37c7bb509d870d6"
+      },
+      "normalized_sha256": "cc9bc4d1c58e26e432ff777644c7173e07737523bc1570a03e3d48d1978480d6",
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-item-carrier/host-envelope.c",
+        "sha256": "cc9bc4d1c58e26e432ff777644c7173e07737523bc1570a03e3d48d1978480d6"
+      }
+    },
+    {
+      "role": "guest-envelope",
+      "procedure": "0x145bd7b40",
+      "slice_virtual_address": "0x145bd7b40",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_da1f8719187d80a29570e9839d66a2917849fd0ff9b3dae2e8dae4bb4b0618b7",
+      "analysis_profile_digest": "d3868f6314f69a395ad40768d7d7247d25a81e9f98ac64b1b405046088b2e52d",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/guest-envelope/plan.json",
+        "sha256": "155f836b616e03e188debccb406afed1ba293244b91b015cf4c848d9d7240878"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/guest-envelope/rea/journal.json",
+        "sha256": "b01f2fc51ba9857abb745c2cf12ea0a713df832f21eefb897a4505a33536d8b9"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/guest-envelope/rea/results/d60267d56ec61f46696f4195eea547c8090bb0f5db3aed7d2d39092698159b32.json",
+        "sha256": "c62665947a6680da1c9203a69c57ea0ac46256693259828180b55c78bf1a2cb1"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/guest-envelope/body.bin",
+        "sha256": "527f1697b0177bd366544fda60b85e7ad0eb2aa6c467ee0f2a11fa67afb02fda"
+      },
+      "normalized_sha256": "9c09f7a3658e5993e8d2682b01e061754646392f566acbe3aeaa15a138fc9c2d",
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-item-carrier/guest-envelope.c",
+        "sha256": "9c09f7a3658e5993e8d2682b01e061754646392f566acbe3aeaa15a138fc9c2d"
+      }
+    },
+    {
+      "role": "host-strings",
+      "procedure": "0x145d032d0",
+      "slice_virtual_address": "0x145d032d0",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_d5e8cf64a59dd168d25fda7526b78366ea5788b23b0366d3ffefc9883683c7c5",
+      "analysis_profile_digest": "62be74f0f0a9f4dd38c2730082c6db40d8ac2f2d50704aea520079a5f2bd06d8",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/host-strings/plan.json",
+        "sha256": "66fb707d01a35e208a4482598b304c409d278f2a3d303d69de1fa9b18495278b"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/host-strings/rea/journal.json",
+        "sha256": "514d488a804f127ef2d071f20e21006d17aa589c2aa100e91679a9c633d06588"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/host-strings/rea/results/7a7883e49594239f8c6fd1d58027d274d978ea58ff18fd596418ffdab16f4f49.json",
+        "sha256": "6a13d3a1478d48d6090f8c002d74a8d3b4faca4be3dc8b6d63d57d95991af945"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/host-strings/body.bin",
+        "sha256": "43002ff27737d5c7bc560a5ad46d4f1961f314a770f0b77761e4cda92a7affa7"
+      },
+      "normalized_sha256": "4c1f47da85c7b47675f9e4515048010859116394355b78732e797f5fe9c299c6",
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-item-carrier/host-strings.c",
+        "sha256": "4c1f47da85c7b47675f9e4515048010859116394355b78732e797f5fe9c299c6"
+      }
+    },
+    {
+      "role": "text-intern",
+      "procedure": "0x145b54cc0",
+      "slice_virtual_address": "0x145b54cc0",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_6312dd156c718ac616f9b1e78f4ad17be4ef4f864a444f63de7e65349c6fc982",
+      "analysis_profile_digest": "f5e5a958dc0273025c9df530e35cfccd4c598d2f478c74e2ee63c9182beedfb3",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/text-intern/plan.json",
+        "sha256": "a595d11bdb22c26f64f6e4378e908c88b2aa2860a874a987c7f583e56643febe"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/text-intern/rea/journal.json",
+        "sha256": "27cbfb12168d4819df3c9a1bc917cd07d8d2503d902bcbc27da21beb2983c2ce"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/text-intern/rea/results/981a06157af0ff677cc28d6f75fdf059aa92a3c6d15345cb72362ad2b9a42926.json",
+        "sha256": "0317613e38466b22fa1021c9bb1d984f94dc17ca8e672ab17c6410a1e2999f0e"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/text-intern/body.bin",
+        "sha256": "08dc183324b9599ce9e113aaa58531975fe60e1d8eddba83c9d58ebefb1c5725"
+      },
+      "normalized_sha256": "841edc1d889021c691e6c8a5e19aa8c7917bb27c8d7705de814e9758228ae198",
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-item-carrier/text-intern.c",
+        "sha256": "841edc1d889021c691e6c8a5e19aa8c7917bb27c8d7705de814e9758228ae198"
+      }
+    },
+    {
+      "role": "text-wrapper",
+      "procedure": "0x145af3a50",
+      "slice_virtual_address": "0x145af3a50",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_7f4d83a5ac6385d9cf1e51684930bf20b1387951d28d28d97143b8587aad8616",
+      "analysis_profile_digest": "2c61e84e60867684aded4a59c8dcbfd313dfe064b8892c71345c4d8ef98c2e28",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/text-wrapper/plan.json",
+        "sha256": "5014fff8658cd6809ee3783ade426ded9eea8397a13c1dd04fa1f138f7f33a8f"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/text-wrapper/rea/journal.json",
+        "sha256": "866a068a1ec54b24d8e30c6c3f4d582347328ecb0ca288952b90b20f08b8a900"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/text-wrapper/rea/results/99d1d94a26010aaa3a518c7cead907fae25f95107836fb39c1065df0b424b096.json",
+        "sha256": "413b0ff99ca4d819cb6224d07bcb0eb94046684af86419c0036b43b4a33d6393"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/text-wrapper/body.bin",
+        "sha256": "5b78730cb78c144121099537555f0e69490555642578a1fef2814ac71520d7c8"
+      },
+      "normalized_sha256": "f22a0d56bbb461a6c419a1006cf2609e322a382618c31b3793de64472ca2e1b5",
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-item-carrier/text-wrapper.c",
+        "sha256": "f22a0d56bbb461a6c419a1006cf2609e322a382618c31b3793de64472ca2e1b5"
+      }
+    },
+    {
+      "role": "guest-item-branch",
+      "procedure": "0x145bd7ee8",
+      "slice_virtual_address": "0x145bd7ee8",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_84edc5e74905b852bef6b33d6f5035e832afbe8d2fe04e809a71a583dce18844",
+      "analysis_profile_digest": "7c7c4bea513ca246f4a76e4e96525b759c2bd10e0a2784d46c3623787ef39c7a",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/guest-item-branch/plan.json",
+        "sha256": "de75db495e3c121de7211c3b9838173b3554f25c08cf3dabff8d9ded19142ae9"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/guest-item-branch/rea/journal.json",
+        "sha256": "272102185f61c7f7eb2a7e0d608bfcc43254acbd6a2d1ba838ecd77a629f9d65"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/guest-item-branch/rea/results/a9337bb96adea01af0574e062263a91581ac2c74b9616fdb8b798d3f33e581d2.json",
+        "sha256": "db9548e36dd51b560638039c8b6e7090973520fad1d6bf421b39d85b316f60ec"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/guest-item-branch/body.bin",
+        "sha256": "6f8fae3cb9d493832b78b1d499761da4bd38df56e5c3e54fc5565217c9ce18db"
+      },
+      "normalized_sha256": "7bf67df35b67a8291febe59c921368e36909026fe23cde15171f4b50cefd2165",
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-item-carrier/guest-item-branch.c",
+        "sha256": "7bf67df35b67a8291febe59c921368e36909026fe23cde15171f4b50cefd2165"
+      }
+    },
+    {
+      "role": "serializer",
+      "procedure": "0x145d14a90",
+      "slice_virtual_address": "0x145d14a90",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_97bbe28004b41c53b881825dffea09105ed6ea3266838774c3c2587e1ea3be8f",
+      "analysis_profile_digest": "541fd90b010b66664b5f1c4e3915bd0a715988cf860b42796dc7b7b41228ff93",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/serializer/plan.json",
+        "sha256": "c34d7305b50e878cc04be8e92a1a482ddfde70f18f246196f04279e892e778c1"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/serializer/rea/journal.json",
+        "sha256": "55c48485e0e67b102f726a54053a1efd6d3319545cefd1ffa9592d29567e2b7c"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/serializer/rea/results/63277a1bd7723663d55760932149ca3e217d923077fa21547186f8bee832e3ed.json",
+        "sha256": "a700462c95880001e54de00c2fa55a4316a7211191ba1bc4fec5f131945668a4"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/serializer/body.bin",
+        "sha256": "ea3d6084623730a98ecd9ba9b18930c44bc7cfa3ac67d8cf3cef32b4375cd706"
+      },
+      "normalized_sha256": "031f118696e380fa0401799e116693d10bb922ac4face9e2e22c9dcf1b13778b"
+    },
+    {
+      "role": "serialize-item-branch",
+      "procedure": "0x145d14cc9",
+      "slice_virtual_address": "0x145d14cc9",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_b8d5f350578cb8be541d3adf8296dfdc4e37a3d949de35c743a31f0e1669cd44",
+      "analysis_profile_digest": "f9df6d3bf00ccd62e8d449d27f476262a7440c70f02084758cc9edf5b57da9a3",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/serialize-item-branch/plan.json",
+        "sha256": "24ca0d1cbba77c92c9625dd8b2de070077887f0df706f3a6a9898e250ea7c8d0"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/serialize-item-branch/rea/journal.json",
+        "sha256": "db7cdf164a45dd410283c5ef0e7db4896fa6e28772b5edfa827fb12d2a3d000f"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/serialize-item-branch/rea/results/8c9c28adae99f14d759727a5cc27bdc405dbea8470f871fc80dac8fc6fc6fdca.json",
+        "sha256": "cf25fe2c0e7e85db43ea9887e7d204bf0f39f4dc3f396aadbc4401b1a796b40b"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/serialize-item-branch/body.bin",
+        "sha256": "5a401e83f14764f9c64a0ea45cbf99e4a856ec2763ab03402e59a8496ee90bc5"
+      },
+      "normalized_sha256": "a4e8b7434fe5f6ca0c7419ec0fd53b9c73d5b2507f42430083a1e93d159e0143",
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-item-carrier/serialize-item-branch.c",
+        "sha256": "a4e8b7434fe5f6ca0c7419ec0fd53b9c73d5b2507f42430083a1e93d159e0143"
+      }
+    },
+    {
+      "role": "serialize-item-branch",
+      "procedure": "0x145d14cc9",
+      "slice_virtual_address": "0x145d14cc9",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_91886dfc90baf0f22fa2f6beb76b70f66ab436177554e3c8cc11e059e018a776",
+      "analysis_profile_digest": "f9df6d3bf00ccd62e8d449d27f476262a7440c70f02084758cc9edf5b57da9a3",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/serialize-item-branch/plan.json",
+        "sha256": "24ca0d1cbba77c92c9625dd8b2de070077887f0df706f3a6a9898e250ea7c8d0"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/serialize-item-branch/rea/journal.json",
+        "sha256": "db7cdf164a45dd410283c5ef0e7db4896fa6e28772b5edfa827fb12d2a3d000f"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/serialize-item-branch/rea/results/b8d91da042102e96efd6859c5d1b34ad486230723ebb1accd12eae42e1383a1b-7cd788697a155339.json",
+        "sha256": "49829a6522502a8cb85739ff6cb9109cb872dc5e6f5f7593034181a280aa9de6"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/serialize-item-branch/body.bin",
+        "sha256": "5a401e83f14764f9c64a0ea45cbf99e4a856ec2763ab03402e59a8496ee90bc5"
+      },
+      "normalized_sha256": "ee247e8c17bb4ef64ee2c9c648afa2aef0aebf16f204f07aec882f72c2d0f157"
+    },
+    {
+      "evidence_id": "ev_2262a8ee360607bf5fef86107a465a0caad58710c593f7265d789c3eeb88486f",
+      "procedure": "0x145afbe60",
+      "slice_virtual_address": "0x145afbe60",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "0fad63a2230874f51475f98bdcaed149aa1121a36b7a68efc34c7a42ffa789db",
+      "plan": {
+        "path": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/smsg-producer/plan.json",
+        "sha256": "4c50fe167cf0d1e8fd0569e01d4918179c8adc846320fa2f9cf5e220f13c0c9b"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/smsg-producer/rea/journal.json",
+        "sha256": "dc1bcbef4f5a094ce6d6f07e7f37210f506fd33be8b017b35857075991fcbfbe"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/smsg-producer/rea/results/dc4a8690e051b78a9c3853ab8fa96d0790baaae181241045a87c480452168ced.json",
+        "sha256": "382cc5ad2d8f621b9969204194420c6c43b366eb78a51bb4af103d57de3350bc"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/smsg-producer/body.bin",
+        "sha256": "cb8fe71f68b01ee200370fc716c58b63afbbb553627eedfd2091de6fe68225e6"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/source-frontier-native/smsg-producer.c",
+        "sha256": "4d05d9773e413c565ba8fa1021335575bd386cdca52339faeb3e835cdcc2b1c6"
+      },
+      "normalized_sha256": "4d05d9773e413c565ba8fa1021335575bd386cdca52339faeb3e835cdcc2b1c6"
+    },
+    {
+      "evidence_id": "ev_206483ded8336319b79ddb90f092d3d0dcdff29220f7d83de08d5f7055a8cf55",
+      "procedure": "0x145b00d90",
+      "slice_virtual_address": "0x145b00d90",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "632172b935c7477016320893d0cf18e8ed947f6b0fa75f8058ea1f185d36a082",
+      "plan": {
+        "path": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/smsg-publication/plan.json",
+        "sha256": "4e836008d00d3878fb157a9db99573e1fc736fa2e973f9dd937509100f0d85c4"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/smsg-publication/rea/journal.json",
+        "sha256": "7bd110631f3e817667c48976d319fcada15eab8a8a9108f5bcb1f75bba013fb0"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/smsg-publication/rea/results/51ea642796cf7efd12911ec340653cfab066836dfcd2cd05a048615483ceafc2.json",
+        "sha256": "da63dbd296dc63f6aa8fe763c2594680c3c071f47e9e794846905ea7623d08a8"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/execheck-0.127.0/source-frontier-native/smsg-publication/body.bin",
+        "sha256": "d4e76ac463a70b116014c161b3e67472c9f117b3336d79112e6386b5c0cb0f61"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/source-frontier-native/smsg-publication.c",
+        "sha256": "9ed119da9c323528f3faaf9117a6f9900606df1c702209d173a4fa513e6c3f8d"
+      },
+      "normalized_sha256": "9ed119da9c323528f3faaf9117a6f9900606df1c702209d173a4fa513e6c3f8d"
+    }
+  ],
+  "synthetic_id_base": "0xf00000",
+  "wire_tag": 25,
+  "spell_offsets": {
+    "after_four_names": "0x104",
+    "stride": "0x18",
+    "count": 5,
+    "minimum_tail_bytes": "0x17c"
+  },
+  "limits": [
+    "Raw slices omit external code/data; native Windows-x64 argument bindings checked through original instructions.",
+    "Full game/client/network/server/compilation/parity not run.",
+    "Existing recipient jewelry producers retain historical provenance; this repair connects their generated text rather than recovering unrelated new stat formulas."
+  ],
+  "dispatch_tables": [
+    {
+      "role": "guest-variant24",
+      "address": "0x147085ea0",
+      "entries": 24,
+      "index": 23,
+      "selected_target": "0x145bd7ee8",
+      "sha256": "2bc48a8da33aa55059b74bc1c6cff0bb2b3add353dc6fdb9ab9c405540c010d8"
+    },
+    {
+      "role": "serializer-variant24",
+      "address": "0x14771f0c4",
+      "entries": 25,
+      "index": 24,
+      "selected_target": "0x145d14cc9",
+      "sha256": "f33c5d013af9654a9807d4cf984fd4161e8657984b4098e815ba88d80c50f0c3"
+    },
+    {
+      "role": "decoder-wire25",
+      "address": "0x14771f034",
+      "entries": 25,
+      "index": 24,
+      "selected_target": "0x145d10f1b",
+      "sha256": "05fbc510f5ce3eb4cde6f073fbdf67f6d4c458bb2318d81fe29fc4d3e6444278"
+    }
+  ]
+}

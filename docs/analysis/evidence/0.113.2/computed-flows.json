@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.113.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+    "size_bytes": 141932032,
+    "identity_manifest": "docs/analysis/coverage/targets.json",
+    "version_provenance": "matching_embedded_updater_and_dialog_markers",
+    "runtime_data": {
+      "directory": "installed-game/Data",
+      "archives": [
+        {
+          "path": "installed-game/Data/patch-2.MPQ",
+          "size_bytes": 4690878,
+          "sha256": "366edee41642a5dda22ed90cc252b543ee375755b7e8bee81e2a6cd59fd7b286"
+        },
+        {
+          "path": "installed-game/Data/patch-3.MPQ",
+          "size_bytes": 2580491,
+          "sha256": "75c35ca5b8075197252581e301e8900143007fdf37b493ad271ae1bd39f95a29"
+        },
+        {
+          "path": "installed-game/Data/patch-4.MPQ",
+          "size_bytes": 22769233,
+          "sha256": "2e895e0e0ff6a4781d0e0aaa6ea7d32ed1fe36841e17806fe1855cb880d18865"
+        },
+        {
+          "path": "installed-game/Data/patch-5.MPQ",
+          "size_bytes": 267019039,
+          "sha256": "5008e56873718b468fa5ae1b697dcbe4f5da9ffe6c793f3ef9939dbd7716f3d8"
+        },
+        {
+          "path": "installed-game/Data/patch-6.MPQ",
+          "size_bytes": 212228,
+          "sha256": "cad6ff59b5df028a507581befb836fce07894057e15fe63d9fdc553a95b7ceb5"
+        },
+        {
+          "path": "installed-game/Data/patch-7.MPQ",
+          "size_bytes": 276649,
+          "sha256": "f5fb15b181cf01cc6b5cf2ee9948a27ecc4ba27bab9a8bec584df4381932aae6"
+        },
+        {
+          "path": "installed-game/Data/patch-8.MPQ",
+          "size_bytes": 4155417,
+          "sha256": "ae3aaa29cadb7aeba8255f5b4a8305c7cbecfe8f0d3ed9646522113d16c3e12e"
+        },
+        {
+          "path": "installed-game/Data/patch-9.MPQ",
+          "size_bytes": 5739608,
+          "sha256": "ffff8ea890bdaf91a1680543ac60106db92132bc2210105279610fa73661a524"
+        },
+        {
+          "path": "installed-game/Data/patch.MPQ",
+          "size_bytes": 1340199244,
+          "sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf"
+        }
+      ]
+    }
+  },
+  "gap_ids": [
+    41
+  ],
+  "lead_ids": [
+    "Q41-F01",
+    "Q41-F02",
+    "Q41-M03"
+  ],
+  "input_proof": {
+    "path": "docs/analysis/evidence/0.113.2/unknown-recovery.json",
+    "sha256": "d4148a7bcd2feb746bdd36dd5c88dfbe804b5f608edeafe16792841405ac342b"
+  },
+  "census": {
+    "path": "docs/analysis/coverage/full-image-execheck.json",
+    "sha256": "ebae5060940521069357ab552e63b0fded96efdecc7b9372692a03d3bb058252"
+  },
+  "generator": {
+    "path": "scripts/check-q41-computed-flows-0.113.2.py",
+    "sha256": "8c41f0e1d1e6390681fd70f1b462fcf28b3bcc1ef89d027bd6f6e6be0c46c10c"
+  },
+  "capstone_version": "5.0.7",
+  "original_selector_counts": {
+    "Q41-F01-call": 70681,
+    "Q41-F01-jump": 140058
+  },
+  "instruction_roles": {
+    "Q41-F01-call:call": 70459,
+    "Q41-F01-call:trap:int": 219,
+    "Q41-F01-call:trap:int3": 3,
+    "Q41-F01-jump:jump": 11516,
+    "Q41-F01-jump:trap:ud2": 128542
+  },
+  "independent_views": {
+    "Q41-F02-call": {
+      "records": 72276,
+      "output_sha256": "51647a1883fcdebae232c4efefcbfa240097393dfa90e29d4faf70cd29175ef1",
+      "comparison": {
+        "same-Ghidra-indirect-start": 70451,
+        "not-a-Ghidra-indirect-start": 1825
+      }
+    },
+    "Q41-F02-jump": {
+      "records": 10292,
+      "output_sha256": "9442e66acdbeb64591f94dfb9788d03b514f37dfdac4102c1fda4730b0258a5b",
+      "comparison": {
+        "same-Ghidra-indirect-start": 7323,
+        "not-a-Ghidra-indirect-start": 2969
+      }
+    },
+    "Q41-F02-complement": {
+      "records": 647,
+      "output_sha256": "de719095702907441c0ededf7dc3503654cccc8824d63a47f64d072f5e8ba9b3",
+      "comparison": {
+        "same-Ghidra-indirect-start": 647
+      }
+    }
+  },
+  "classifier": {
+    "path": "docs/analysis/evidence/0.113.2/native-call-candidates.json",
+    "sha256": "494534608baec7a3dbdbe0d1e275b71f2095843d09710aa2f9b6990e65e74487"
+  },
+  "candidate_targets": {
+    "declared-import-slot:call": 1370,
+    "declared-import-slot:jump": 185,
+    "encoded-executable-address:call": 982,
+    "encoded-executable-address:jump": 14
+  },
+  "unresolved_candidates": {
+    "call:indexed-register-or-segment-address-not-established-in-block": 43788,
+    "call:memory-slot-not-statically-bound": 6,
+    "call:register-value-not-established-in-observed-block": 24313,
+    "jump:indexed-register-or-segment-address-not-established-in-block": 122,
+    "jump:register-value-not-established-in-observed-block": 11195
+  },
+  "actual_indirect_sites": 81975,
+  "trap_sites": 128764,
+  "complete_runtime_aliases_or_source_semantics": false,
+  "limits": [
+    "Every selected original instruction is checked against current image bytes. Original populations and their overlap are retained.",
+    "Trap encodings are neither indirect calls/jumps nor proof of unreachable/padding bytes.",
+    "Encoded imports/native targets are static candidates; mutable tables, incoming register state, full AS ownership and callee behavior remain unproved.",
+    "The current candidate classifier is not the missing complete semantic/source/alias inventory. No compilation, application, network or gameplay execution."
+  ]
+}

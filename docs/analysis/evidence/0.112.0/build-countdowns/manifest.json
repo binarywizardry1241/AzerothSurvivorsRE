@@ -1,0 +1,276 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.112.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+    "size_bytes": 140514816
+  },
+  "owners": [
+    {
+      "role": "hud-producer",
+      "address": "0x1458f40b0",
+      "end_exclusive": "0x1458f7396",
+      "byte_count": 13030,
+      "file_offset": "0x58f34b0",
+      "sha256": "18e1a4bfef0b1522799447dc399b6d92075c7d461f6c6780cb90c0f14f6b6933"
+    },
+    {
+      "role": "hud-updater",
+      "address": "0x1400cef80",
+      "end_exclusive": "0x1400d213a",
+      "byte_count": 12730,
+      "file_offset": "0xce380",
+      "sha256": "ea5bf36abc76f1d9b3711e5d2450c738a66abc42892def20abb71b87f171ccb4"
+    },
+    {
+      "role": "build-row-constructor",
+      "address": "0x14025a730",
+      "end_exclusive": "0x14025b8c1",
+      "byte_count": 4497,
+      "file_offset": "0x259b30",
+      "sha256": "4ec7caba7b173aad45f10c7ab23009a251a58bde37b974884b639ab12379f8a2"
+    },
+    {
+      "role": "icon-loader",
+      "address": "0x140126de0",
+      "end_exclusive": "0x14012704e",
+      "byte_count": 622,
+      "file_offset": "0x1261e0",
+      "sha256": "1cdaf85d11ddaa47b9926501b551a60bde2e2c76e2a02321f80b2c4538222b24"
+    }
+  ],
+  "ranges": [
+    {
+      "role": "timer-admission-deadline",
+      "address": "0x1458f5400",
+      "end_exclusive": "0x1458f5493",
+      "byte_count": 147,
+      "file_offset": "0x58f4800",
+      "sha256": "b80e70b5dd22e3cc93847259cf603357269352e99c2f935b67a1b340c1742e69",
+      "assembly": "timer-admission-deadline.asm",
+      "assembly_sha256": "403e1cb86e342fa187c0fd4b726cf0bbbacecca37923a0940349b0f5956aad8e"
+    },
+    {
+      "role": "inactive-timer",
+      "address": "0x1458f55f0",
+      "end_exclusive": "0x1458f5602",
+      "byte_count": 18,
+      "file_offset": "0x58f49f0",
+      "sha256": "85520100243e95f79e9879ecf9d1569c689c62fd179c43bf91103dc68824f3c0",
+      "assembly": "inactive-timer.asm",
+      "assembly_sha256": "210c95a04d3cfb62090e8b222226f3128f3af4e83ae90db75901dab0a1a4a747"
+    },
+    {
+      "role": "remaining-clamp",
+      "address": "0x1458f557d",
+      "end_exclusive": "0x1458f5587",
+      "byte_count": 10,
+      "file_offset": "0x58f497d",
+      "sha256": "1e7fb6a01611c5439479d5a380b9dca6c6f17c2c4d5232bbd69fad7a77f87d55",
+      "assembly": "remaining-clamp.asm",
+      "assembly_sha256": "2f707abab85ebe1496b23c1ad08ed6fef4ce55136808b52df420e43e306abd04"
+    },
+    {
+      "role": "number-finite-gate",
+      "address": "0x14598f8cf",
+      "end_exclusive": "0x14598f8f6",
+      "byte_count": 39,
+      "file_offset": "0x598eccf",
+      "sha256": "e19f30d06b7cb1cff409b7d2c281018f43000ef685ece877889e7179d5b6abcc",
+      "assembly": "number-finite-gate.asm",
+      "assembly_sha256": "994d59c1cb43ff3aa3e6a84cdef472d1faebe738f72afcde8c8afa11002c61f7"
+    },
+    {
+      "role": "number-nonfinite-zero",
+      "address": "0x14598f913",
+      "end_exclusive": "0x14598f929",
+      "byte_count": 22,
+      "file_offset": "0x598ed13",
+      "sha256": "10aedd3ec11f9d0b0decfa44e905b57f31a3801334361715e267edc56673bb58",
+      "assembly": "number-nonfinite-zero.asm",
+      "assembly_sha256": "33398f36a9ca91b347deb90600463171d533d93541eab4a9405ad9efaa79f302"
+    },
+    {
+      "role": "timer-schema-key-icon",
+      "address": "0x1458f54eb",
+      "end_exclusive": "0x1458f557d",
+      "byte_count": 146,
+      "file_offset": "0x58f48eb",
+      "sha256": "15f0092f4ccdfb6e3ce082fffb5177e4354f5a43f85db3194be59140e675344e",
+      "assembly": "timer-schema-key-icon.asm",
+      "assembly_sha256": "c20b9e77966fab96f1969f2d7414a9c2348da9b39f5630d0f532daa2953809e1"
+    },
+    {
+      "role": "timer-schema-left",
+      "address": "0x1458f5587",
+      "end_exclusive": "0x1458f55b1",
+      "byte_count": 42,
+      "file_offset": "0x58f4987",
+      "sha256": "098117b3434b5d2751eb37519dc53576ded021043284a587af4075092dba02b3",
+      "assembly": "timer-schema-left.asm",
+      "assembly_sha256": "f06bd06a930d1204e2fa40ce5e960df10868eb2d0af958c11f2767e7355a5470"
+    },
+    {
+      "role": "three-build-vectors",
+      "address": "0x1400d1473",
+      "end_exclusive": "0x1400d17cf",
+      "byte_count": 860,
+      "file_offset": "0xd0873",
+      "sha256": "91fdebb8aee2ce4894fc11a75b63db50ff29c1826a663afb600b64dc08e6fa8e",
+      "assembly": "three-build-vectors.asm",
+      "assembly_sha256": "2e1c492108deffa4d68d3733a5bad38bafdcd6db70680e8e019b261d345e52f8"
+    },
+    {
+      "role": "timer-label-input",
+      "address": "0x1400d1d52",
+      "end_exclusive": "0x1400d1e3f",
+      "byte_count": 237,
+      "file_offset": "0xd1152",
+      "sha256": "b901a3ee82408f6b060cd5be044c85a4684dd5991522ca973b4ebf7eb4743fd3",
+      "assembly": "timer-label-input.asm",
+      "assembly_sha256": "6948143ac4de0f0598b39d8a5090ea892edfb16f12d7ec1f73f2348c682887e1"
+    },
+    {
+      "role": "timer-label-style",
+      "address": "0x14025b6d5",
+      "end_exclusive": "0x14025b77d",
+      "byte_count": 168,
+      "file_offset": "0x25aad5",
+      "sha256": "f192f113e915999320d9af36cdcff484e2d8c72597b6d5d76cbd0e2b7208ff40",
+      "assembly": "timer-label-style.asm",
+      "assembly_sha256": "bd87b78e788e92c06d9dff6c8e997d50ea287460dde166529040de29c32e3f36"
+    },
+    {
+      "role": "timer-icon-style",
+      "address": "0x14025b443",
+      "end_exclusive": "0x14025b5eb",
+      "byte_count": 424,
+      "file_offset": "0x25a843",
+      "sha256": "d52c78eea88d2556cb9514afdc690cce49f350102191b8e08572343a42b7eeae",
+      "assembly": "timer-icon-style.asm",
+      "assembly_sha256": "e54b9d3fac677acb686ce55368a3417485d3c15ec6e33508d0e98499f61b7c36"
+    }
+  ],
+  "literals": [
+    {
+      "role": "timer-keys",
+      "address": "0x145db9108",
+      "end_exclusive": "0x145db9112",
+      "byte_count": 10,
+      "file_offset": "0x5db8308",
+      "sha256": "745ef4f3c784abd3e29b67177c48846c76982205717cd193803bea0a089b567e",
+      "bytes_hex": "74696d6572736c656674"
+    },
+    {
+      "role": "producer-keys",
+      "address": "0x146c09b40",
+      "end_exclusive": "0x146c09b54",
+      "byte_count": 20,
+      "file_offset": "0x6c08d40",
+      "sha256": "9dbf95d1be1e38bc950621c8ba4fe5cdf12da1db12380d978eeea612e675d3c7",
+      "bytes_hex": "6b65796e616d6569636f6e72616e6b636463644d"
+    },
+    {
+      "role": "producer-timer-key",
+      "address": "0x146c09c0d",
+      "end_exclusive": "0x146c09c13",
+      "byte_count": 6,
+      "file_offset": "0x6c08e0d",
+      "sha256": "e17f74aa873fe07ebf61cd2b44184a54baf36bb12ff09902152b8d2abd07bc11",
+      "bytes_hex": "74696d657273"
+    },
+    {
+      "role": "icon-size",
+      "address": "0x145dc99e0",
+      "end_exclusive": "0x145dc99f0",
+      "byte_count": 16,
+      "file_offset": "0x5dc8be0",
+      "sha256": "d7b2dc9210848623861515ff3ab1801ea90dcd7310179fe94b2ad086df48e90c",
+      "bytes_hex": "010000000000e041010000000000e041"
+    },
+    {
+      "role": "icon-radius",
+      "address": "0x145dbae80",
+      "end_exclusive": "0x145dbae90",
+      "byte_count": 16,
+      "file_offset": "0x5dba080",
+      "sha256": "c1b73ddf85f538a262934e17ba4d1188f7f5710e307066d66462f2dfd34839a6",
+      "bytes_hex": "01000000000040400100000000004040"
+    },
+    {
+      "role": "label-color",
+      "address": "0x145e06ba8",
+      "end_exclusive": "0x145e06bbc",
+      "byte_count": 20,
+      "file_offset": "0x5e05da8",
+      "sha256": "a92a10f99f6e525a84ab42fe1f285b0f5cb09ef805f853bebe867dfd2c133487",
+      "bytes_hex": "000000008716793faaf1523ff4fdd43e0000803f"
+    },
+    {
+      "role": "label-shadow-offset",
+      "address": "0x145db16b0",
+      "end_exclusive": "0x145db16b8",
+      "byte_count": 8,
+      "file_offset": "0x5db08b0",
+      "sha256": "1cab600f57951016c0b4bd619177c26235366a7f52e26e839e3aac1219cda82d",
+      "bytes_hex": "000000000000c03f"
+    },
+    {
+      "role": "label-shadow-color",
+      "address": "0x145dbea48",
+      "end_exclusive": "0x145dbea5c",
+      "byte_count": 20,
+      "file_offset": "0x5dbdc48",
+      "sha256": "95be9fcc34c5e7c112a6e106dffecc2667cd50bbd05a7f4d220cad5a6d3f7854",
+      "bytes_hex": "000000000000000000000000000000009a99593f"
+    },
+    {
+      "role": "ceil-import-thunk",
+      "address": "0x145c0a429",
+      "end_exclusive": "0x145c0a42f",
+      "byte_count": 6,
+      "file_offset": "0x5c09829",
+      "sha256": "adbd739123fbcf4a9fa557c57a13b0bec7cb257be31f60f6c212af94144d7754",
+      "bytes_hex": "ff2501001a00"
+    }
+  ],
+  "limits": [
+    "Focused Ghidra raw-range recovery; imports, global callers and ECS ownership remain bounded.",
+    "No compilation, game, rendered/native interaction or original/rebuilt parity check."
+  ],
+  "generator": {
+    "path": "scripts/check-build-countdowns-0.112.0.py",
+    "sha256": "65f1847c2173eea74066f9ae78a01ed2e4b849a820b00162bce1787273165ca6"
+  },
+  "ghidra": [
+    {
+      "role": "hud-producer",
+      "evidence_id": "ev_742f6380db43c51fd97f847db8180c95a49508fdd2fbe4b73418aa8cb8ecb59c",
+      "import_sha256": "18e1a4bfef0b1522799447dc399b6d92075c7d461f6c6780cb90c0f14f6b6933",
+      "decompiler_text_sha256": "56c0b595abee7457a118899b5f11bb0209c659d3ce3dec164b2c8723a30438af",
+      "limitations": "Raw x86-64 import, inferred ABI/types; external PE/global callers are not recovered."
+    },
+    {
+      "role": "hud-updater",
+      "evidence_id": "ev_fc51e39d8d7a304ad1e708439b9c87309484987aaa59b8f09a35e704a0451d07",
+      "import_sha256": "84c72f431ee4fb6b0ef036d83d66f355bf275848d4abbcb9349e0c6e30e625cc",
+      "decompiler_text_sha256": "eed0969267318458bc5bf72254cdcb0197c01337591ab691e2116a11ec4711dc",
+      "limitations": "Raw x86-64 import, inferred ABI/types; external PE/global callers are not recovered."
+    },
+    {
+      "role": "build-row-constructor",
+      "evidence_id": "ev_3eb2ee607c5802e9a32a144eb1839991107ade18eefe1eb7b8eaa8460a026985",
+      "import_sha256": "4ec7caba7b173aad45f10c7ab23009a251a58bde37b974884b639ab12379f8a2",
+      "decompiler_text_sha256": "3d342b9e587c8eb06994eca2c9b476dc8a00072c906d2f3be5c2345841a69989",
+      "limitations": "Raw x86-64 import, inferred ABI/types; external PE/global callers are not recovered."
+    },
+    {
+      "role": "icon-loader",
+      "evidence_id": "ev_2d68d640478acfbec80b131821b792d8fa6648baab62f972439f4c3dcbbd3233",
+      "import_sha256": "1cdaf85d11ddaa47b9926501b551a60bde2e2c76e2a02321f80b2c4538222b24",
+      "decompiler_text_sha256": "8d1766d1c1547e130f39d1d61c24b59feea4896d6fd1511127f81ffdce989053",
+      "limitations": "Raw x86-64 import, inferred ABI/types; external PE/global callers are not recovered."
+    }
+  ]
+}

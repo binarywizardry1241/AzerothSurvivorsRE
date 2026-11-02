@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.120.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c",
+    "size_bytes": 145484288
+  },
+  "generator": [
+    {
+      "path": "scripts/inventory-target-ranges.py",
+      "sha256": "0f54f9deb467c80dae7080812662a4a6d4eb4218e7242605a3695ff1f348a6c4"
+    },
+    {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+    },
+    {
+      "path": "scripts/coverage_common.py",
+      "sha256": "aec38237b60b6982f17e0e93c6f6ba111100956fb389d44b397dbd5a6bdb1903"
+    }
+  ],
+  "ledger": {
+    "path": "runtime/coverage/80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c/file-ranges.json",
+    "sha256": "50325d7ee4a073cc6aaa086aee27ab4106f85d40cbd7fc5d8dd73c74501ac778"
+  },
+  "counts": {
+    "ranges": 26,
+    "partition_bytes": 145484288,
+    "overlap_bytes": 0,
+    "omitted_bytes": 0,
+    "bytes_by_structural_class": {
+      "coff_header": 20,
+      "dos_header": 64,
+      "dos_stub_unknown": 200,
+      "executable_section_semantics_unknown": 102045854,
+      "header_slack_unknown": 256,
+      "nonexecutable_section_semantics_unknown": 43436356,
+      "optional_header": 240,
+      "pe_signature": 4,
+      "raw_alignment_tail_unknown": 1054,
+      "section_table": 240
+    },
+    "semantic_recovery_status": "unknown_not_measured_by_structural_partition",
+    "data_files": 10,
+    "registered_archives": 10,
+    "unregistered_data_files": 0
+  },
+  "selectors": {
+    "exe": "ranges[selector]; exact file_start/file_end_exclusive and sha256",
+    "data": "data_resources[selector]; exact portable path and complete sha256"
+  },
+  "unknown_queue": "docs/analysis/unknown-recovery-0.120.2.md#whole-file-and-data-range-leads",
+  "limits": [
+    "Structural PE classes do not establish semantic/source recovery.",
+    "Uniform bytes and raw alignment tails remain unknown; no padding is proved.",
+    "Data file identity is complete; archive members, overrides and their consumers are not inventoried by this tool.",
+    "Decoded/native residual populations overlap this ledger; never add their totals.",
+    "No native decoding, application compilation, game execution or parity comparison."
+  ],
+  "reconstruction_complete": false,
+  "parity_verified": false
+}

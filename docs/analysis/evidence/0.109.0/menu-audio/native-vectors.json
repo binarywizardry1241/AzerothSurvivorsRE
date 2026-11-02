@@ -1,0 +1,940 @@
+{
+  "target_sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+  "theme": "Sound\\Music\\GlueScreenMusic\\wow_main_theme.mp3",
+  "native_fragment": {
+    "cases": [
+      {
+        "name": "disabled",
+        "enabled": false,
+        "music_enabled": true,
+        "music_bits": "3ecccccd",
+        "native_db_bits": "c2700000",
+        "import_calls": []
+      },
+      {
+        "name": "music disabled",
+        "enabled": true,
+        "music_enabled": false,
+        "music_bits": "3ecccccd",
+        "native_db_bits": "c2700000",
+        "import_calls": []
+      },
+      {
+        "name": "zero",
+        "enabled": true,
+        "music_enabled": true,
+        "music_bits": "00000000",
+        "native_db_bits": "c2700000",
+        "import_calls": []
+      },
+      {
+        "name": "below floor",
+        "enabled": true,
+        "music_enabled": true,
+        "music_bits": "3a83126f",
+        "native_db_bits": "c2700000",
+        "import_calls": []
+      },
+      {
+        "name": "exact floor",
+        "enabled": true,
+        "music_enabled": true,
+        "music_bits": "3aa3d70a",
+        "native_db_bits": "c2700000",
+        "import_calls": []
+      },
+      {
+        "name": "above floor",
+        "enabled": true,
+        "music_enabled": true,
+        "music_bits": "3b03126f",
+        "native_db_bits": "c25faba0",
+        "import_calls": [
+          "CRT log10f"
+        ]
+      },
+      {
+        "name": "default",
+        "enabled": true,
+        "music_enabled": true,
+        "music_bits": "3ecccccd",
+        "native_db_bits": "c11e5a1c",
+        "import_calls": [
+          "CRT log10f"
+        ]
+      },
+      {
+        "name": "maximum",
+        "enabled": true,
+        "music_enabled": true,
+        "music_bits": "3f800000",
+        "native_db_bits": "bff816f1",
+        "import_calls": [
+          "CRT log10f"
+        ]
+      },
+      {
+        "name": "NaN",
+        "enabled": true,
+        "music_enabled": true,
+        "music_bits": "7fc00000",
+        "native_db_bits": "7fc00000",
+        "import_calls": [
+          "CRT log10f"
+        ]
+      }
+    ]
+  },
+  "cases": [
+    {
+      "key": "MasterVolume",
+      "input": "-2",
+      "field": "master",
+      "offset": 0,
+      "kind": "f32",
+      "native_bits_le": "00000000"
+    },
+    {
+      "key": "MasterVolume",
+      "input": "0",
+      "field": "master",
+      "offset": 0,
+      "kind": "f32",
+      "native_bits_le": "00000000"
+    },
+    {
+      "key": "MasterVolume",
+      "input": "0.25",
+      "field": "master",
+      "offset": 0,
+      "kind": "f32",
+      "native_bits_le": "0000803e"
+    },
+    {
+      "key": "MasterVolume",
+      "input": "1",
+      "field": "master",
+      "offset": 0,
+      "kind": "f32",
+      "native_bits_le": "0000803f"
+    },
+    {
+      "key": "MasterVolume",
+      "input": "2",
+      "field": "master",
+      "offset": 0,
+      "kind": "f32",
+      "native_bits_le": "0000803f"
+    },
+    {
+      "key": "MasterVolume",
+      "input": "NaN",
+      "field": "master",
+      "offset": 0,
+      "kind": "f32",
+      "native_bits_le": "0000c07f"
+    },
+    {
+      "key": "MasterVolume",
+      "input": "bad",
+      "field": "master",
+      "offset": 0,
+      "kind": "f32",
+      "native_bits_le": "00000000"
+    },
+    {
+      "key": "MasterVolume",
+      "input": "  .5 \n",
+      "field": "master",
+      "offset": 0,
+      "kind": "f32",
+      "native_bits_le": "0000003f"
+    },
+    {
+      "key": "SoundVolume",
+      "input": "-2",
+      "field": "sfx",
+      "offset": 4,
+      "kind": "f32",
+      "native_bits_le": "00000000"
+    },
+    {
+      "key": "SoundVolume",
+      "input": "0",
+      "field": "sfx",
+      "offset": 4,
+      "kind": "f32",
+      "native_bits_le": "00000000"
+    },
+    {
+      "key": "SoundVolume",
+      "input": "0.25",
+      "field": "sfx",
+      "offset": 4,
+      "kind": "f32",
+      "native_bits_le": "0000803e"
+    },
+    {
+      "key": "SoundVolume",
+      "input": "1",
+      "field": "sfx",
+      "offset": 4,
+      "kind": "f32",
+      "native_bits_le": "0000803f"
+    },
+    {
+      "key": "SoundVolume",
+      "input": "2",
+      "field": "sfx",
+      "offset": 4,
+      "kind": "f32",
+      "native_bits_le": "0000803f"
+    },
+    {
+      "key": "SoundVolume",
+      "input": "NaN",
+      "field": "sfx",
+      "offset": 4,
+      "kind": "f32",
+      "native_bits_le": "0000c07f"
+    },
+    {
+      "key": "SoundVolume",
+      "input": "bad",
+      "field": "sfx",
+      "offset": 4,
+      "kind": "f32",
+      "native_bits_le": "00000000"
+    },
+    {
+      "key": "SoundVolume",
+      "input": "  .5 \n",
+      "field": "sfx",
+      "offset": 4,
+      "kind": "f32",
+      "native_bits_le": "0000003f"
+    },
+    {
+      "key": "MusicVolume",
+      "input": "-2",
+      "field": "music",
+      "offset": 8,
+      "kind": "f32",
+      "native_bits_le": "00000000"
+    },
+    {
+      "key": "MusicVolume",
+      "input": "0",
+      "field": "music",
+      "offset": 8,
+      "kind": "f32",
+      "native_bits_le": "00000000"
+    },
+    {
+      "key": "MusicVolume",
+      "input": "0.25",
+      "field": "music",
+      "offset": 8,
+      "kind": "f32",
+      "native_bits_le": "0000803e"
+    },
+    {
+      "key": "MusicVolume",
+      "input": "1",
+      "field": "music",
+      "offset": 8,
+      "kind": "f32",
+      "native_bits_le": "0000803f"
+    },
+    {
+      "key": "MusicVolume",
+      "input": "2",
+      "field": "music",
+      "offset": 8,
+      "kind": "f32",
+      "native_bits_le": "0000803f"
+    },
+    {
+      "key": "MusicVolume",
+      "input": "NaN",
+      "field": "music",
+      "offset": 8,
+      "kind": "f32",
+      "native_bits_le": "0000c07f"
+    },
+    {
+      "key": "MusicVolume",
+      "input": "bad",
+      "field": "music",
+      "offset": 8,
+      "kind": "f32",
+      "native_bits_le": "00000000"
+    },
+    {
+      "key": "MusicVolume",
+      "input": "  .5 \n",
+      "field": "music",
+      "offset": 8,
+      "kind": "f32",
+      "native_bits_le": "0000003f"
+    },
+    {
+      "key": "AmbienceVolume",
+      "input": "-2",
+      "field": "ambience",
+      "offset": 12,
+      "kind": "f32",
+      "native_bits_le": "00000000"
+    },
+    {
+      "key": "AmbienceVolume",
+      "input": "0",
+      "field": "ambience",
+      "offset": 12,
+      "kind": "f32",
+      "native_bits_le": "00000000"
+    },
+    {
+      "key": "AmbienceVolume",
+      "input": "0.25",
+      "field": "ambience",
+      "offset": 12,
+      "kind": "f32",
+      "native_bits_le": "0000803e"
+    },
+    {
+      "key": "AmbienceVolume",
+      "input": "1",
+      "field": "ambience",
+      "offset": 12,
+      "kind": "f32",
+      "native_bits_le": "0000803f"
+    },
+    {
+      "key": "AmbienceVolume",
+      "input": "2",
+      "field": "ambience",
+      "offset": 12,
+      "kind": "f32",
+      "native_bits_le": "0000803f"
+    },
+    {
+      "key": "AmbienceVolume",
+      "input": "NaN",
+      "field": "ambience",
+      "offset": 12,
+      "kind": "f32",
+      "native_bits_le": "0000c07f"
+    },
+    {
+      "key": "AmbienceVolume",
+      "input": "bad",
+      "field": "ambience",
+      "offset": 12,
+      "kind": "f32",
+      "native_bits_le": "00000000"
+    },
+    {
+      "key": "AmbienceVolume",
+      "input": "  .5 \n",
+      "field": "ambience",
+      "offset": 12,
+      "kind": "f32",
+      "native_bits_le": "0000003f"
+    },
+    {
+      "key": "MasterSoundEffects",
+      "input": "-2",
+      "field": "enabled",
+      "offset": 16,
+      "kind": "bool",
+      "native_bits_le": "01"
+    },
+    {
+      "key": "MasterSoundEffects",
+      "input": "0",
+      "field": "enabled",
+      "offset": 16,
+      "kind": "bool",
+      "native_bits_le": "00"
+    },
+    {
+      "key": "MasterSoundEffects",
+      "input": "2",
+      "field": "enabled",
+      "offset": 16,
+      "kind": "bool",
+      "native_bits_le": "01"
+    },
+    {
+      "key": "MasterSoundEffects",
+      "input": "NaN",
+      "field": "enabled",
+      "offset": 16,
+      "kind": "bool",
+      "native_bits_le": "01"
+    },
+    {
+      "key": "MasterSoundEffects",
+      "input": "bad",
+      "field": "enabled",
+      "offset": 16,
+      "kind": "bool",
+      "native_bits_le": "00"
+    },
+    {
+      "key": "EnableMusic",
+      "input": "-2",
+      "field": "music_enabled",
+      "offset": 18,
+      "kind": "bool",
+      "native_bits_le": "01"
+    },
+    {
+      "key": "EnableMusic",
+      "input": "0",
+      "field": "music_enabled",
+      "offset": 18,
+      "kind": "bool",
+      "native_bits_le": "00"
+    },
+    {
+      "key": "EnableMusic",
+      "input": "2",
+      "field": "music_enabled",
+      "offset": 18,
+      "kind": "bool",
+      "native_bits_le": "01"
+    },
+    {
+      "key": "EnableMusic",
+      "input": "NaN",
+      "field": "music_enabled",
+      "offset": 18,
+      "kind": "bool",
+      "native_bits_le": "01"
+    },
+    {
+      "key": "EnableMusic",
+      "input": "bad",
+      "field": "music_enabled",
+      "offset": 18,
+      "kind": "bool",
+      "native_bits_le": "00"
+    },
+    {
+      "key": "EnableAmbience",
+      "input": "-2",
+      "field": "ambience_enabled",
+      "offset": 19,
+      "kind": "bool",
+      "native_bits_le": "01"
+    },
+    {
+      "key": "EnableAmbience",
+      "input": "0",
+      "field": "ambience_enabled",
+      "offset": 19,
+      "kind": "bool",
+      "native_bits_le": "00"
+    },
+    {
+      "key": "EnableAmbience",
+      "input": "2",
+      "field": "ambience_enabled",
+      "offset": 19,
+      "kind": "bool",
+      "native_bits_le": "01"
+    },
+    {
+      "key": "EnableAmbience",
+      "input": "NaN",
+      "field": "ambience_enabled",
+      "offset": 19,
+      "kind": "bool",
+      "native_bits_le": "01"
+    },
+    {
+      "key": "EnableAmbience",
+      "input": "bad",
+      "field": "ambience_enabled",
+      "offset": 19,
+      "kind": "bool",
+      "native_bits_le": "00"
+    },
+    {
+      "key": "EnableErrorSpeech",
+      "input": "-2",
+      "field": "error_speech",
+      "offset": 20,
+      "kind": "bool",
+      "native_bits_le": "01"
+    },
+    {
+      "key": "EnableErrorSpeech",
+      "input": "0",
+      "field": "error_speech",
+      "offset": 20,
+      "kind": "bool",
+      "native_bits_le": "00"
+    },
+    {
+      "key": "EnableErrorSpeech",
+      "input": "2",
+      "field": "error_speech",
+      "offset": 20,
+      "kind": "bool",
+      "native_bits_le": "01"
+    },
+    {
+      "key": "EnableErrorSpeech",
+      "input": "NaN",
+      "field": "error_speech",
+      "offset": 20,
+      "kind": "bool",
+      "native_bits_le": "01"
+    },
+    {
+      "key": "EnableErrorSpeech",
+      "input": "bad",
+      "field": "error_speech",
+      "offset": 20,
+      "kind": "bool",
+      "native_bits_le": "00"
+    },
+    {
+      "key": "Sound_EnableSoundWhenGameIsInBG",
+      "input": "-2",
+      "field": "background_sound",
+      "offset": 21,
+      "kind": "bool",
+      "native_bits_le": "01"
+    },
+    {
+      "key": "Sound_EnableSoundWhenGameIsInBG",
+      "input": "0",
+      "field": "background_sound",
+      "offset": 21,
+      "kind": "bool",
+      "native_bits_le": "00"
+    },
+    {
+      "key": "Sound_EnableSoundWhenGameIsInBG",
+      "input": "2",
+      "field": "background_sound",
+      "offset": 21,
+      "kind": "bool",
+      "native_bits_le": "01"
+    },
+    {
+      "key": "Sound_EnableSoundWhenGameIsInBG",
+      "input": "NaN",
+      "field": "background_sound",
+      "offset": 21,
+      "kind": "bool",
+      "native_bits_le": "01"
+    },
+    {
+      "key": "Sound_EnableSoundWhenGameIsInBG",
+      "input": "bad",
+      "field": "background_sound",
+      "offset": 21,
+      "kind": "bool",
+      "native_bits_le": "00"
+    },
+    {
+      "key": "SoundReverb",
+      "input": "-2",
+      "field": "reverb",
+      "offset": 22,
+      "kind": "bool",
+      "native_bits_le": "01"
+    },
+    {
+      "key": "SoundReverb",
+      "input": "0",
+      "field": "reverb",
+      "offset": 22,
+      "kind": "bool",
+      "native_bits_le": "00"
+    },
+    {
+      "key": "SoundReverb",
+      "input": "2",
+      "field": "reverb",
+      "offset": 22,
+      "kind": "bool",
+      "native_bits_le": "01"
+    },
+    {
+      "key": "SoundReverb",
+      "input": "NaN",
+      "field": "reverb",
+      "offset": 22,
+      "kind": "bool",
+      "native_bits_le": "01"
+    },
+    {
+      "key": "SoundReverb",
+      "input": "bad",
+      "field": "reverb",
+      "offset": 22,
+      "kind": "bool",
+      "native_bits_le": "00"
+    },
+    {
+      "key": "SoundOutputLimiter",
+      "input": "-2",
+      "field": "limiter",
+      "offset": 25,
+      "kind": "bool",
+      "native_bits_le": "01"
+    },
+    {
+      "key": "SoundOutputLimiter",
+      "input": "0",
+      "field": "limiter",
+      "offset": 25,
+      "kind": "bool",
+      "native_bits_le": "00"
+    },
+    {
+      "key": "SoundOutputLimiter",
+      "input": "2",
+      "field": "limiter",
+      "offset": 25,
+      "kind": "bool",
+      "native_bits_le": "01"
+    },
+    {
+      "key": "SoundOutputLimiter",
+      "input": "NaN",
+      "field": "limiter",
+      "offset": 25,
+      "kind": "bool",
+      "native_bits_le": "01"
+    },
+    {
+      "key": "SoundOutputLimiter",
+      "input": "bad",
+      "field": "limiter",
+      "offset": 25,
+      "kind": "bool",
+      "native_bits_le": "00"
+    },
+    {
+      "key": "SoundListenerAtCharacter",
+      "input": "-2",
+      "field": "listener_at_character",
+      "offset": 26,
+      "kind": "bool",
+      "native_bits_le": "01"
+    },
+    {
+      "key": "SoundListenerAtCharacter",
+      "input": "0",
+      "field": "listener_at_character",
+      "offset": 26,
+      "kind": "bool",
+      "native_bits_le": "00"
+    },
+    {
+      "key": "SoundListenerAtCharacter",
+      "input": "2",
+      "field": "listener_at_character",
+      "offset": 26,
+      "kind": "bool",
+      "native_bits_le": "01"
+    },
+    {
+      "key": "SoundListenerAtCharacter",
+      "input": "NaN",
+      "field": "listener_at_character",
+      "offset": 26,
+      "kind": "bool",
+      "native_bits_le": "01"
+    },
+    {
+      "key": "SoundListenerAtCharacter",
+      "input": "bad",
+      "field": "listener_at_character",
+      "offset": 26,
+      "kind": "bool",
+      "native_bits_le": "00"
+    },
+    {
+      "key": "EmoteSounds",
+      "input": "-2",
+      "field": "emote_sounds",
+      "offset": 27,
+      "kind": "bool",
+      "native_bits_le": "01"
+    },
+    {
+      "key": "EmoteSounds",
+      "input": "0",
+      "field": "emote_sounds",
+      "offset": 27,
+      "kind": "bool",
+      "native_bits_le": "00"
+    },
+    {
+      "key": "EmoteSounds",
+      "input": "2",
+      "field": "emote_sounds",
+      "offset": 27,
+      "kind": "bool",
+      "native_bits_le": "01"
+    },
+    {
+      "key": "EmoteSounds",
+      "input": "NaN",
+      "field": "emote_sounds",
+      "offset": 27,
+      "kind": "bool",
+      "native_bits_le": "01"
+    },
+    {
+      "key": "EmoteSounds",
+      "input": "bad",
+      "field": "emote_sounds",
+      "offset": 27,
+      "kind": "bool",
+      "native_bits_le": "00"
+    },
+    {
+      "key": "SoundZoneMusicNoDelay",
+      "input": "-2",
+      "field": "zone_music_no_delay",
+      "offset": 28,
+      "kind": "bool",
+      "native_bits_le": "01"
+    },
+    {
+      "key": "SoundZoneMusicNoDelay",
+      "input": "0",
+      "field": "zone_music_no_delay",
+      "offset": 28,
+      "kind": "bool",
+      "native_bits_le": "00"
+    },
+    {
+      "key": "SoundZoneMusicNoDelay",
+      "input": "2",
+      "field": "zone_music_no_delay",
+      "offset": 28,
+      "kind": "bool",
+      "native_bits_le": "01"
+    },
+    {
+      "key": "SoundZoneMusicNoDelay",
+      "input": "NaN",
+      "field": "zone_music_no_delay",
+      "offset": 28,
+      "kind": "bool",
+      "native_bits_le": "01"
+    },
+    {
+      "key": "SoundZoneMusicNoDelay",
+      "input": "bad",
+      "field": "zone_music_no_delay",
+      "offset": 28,
+      "kind": "bool",
+      "native_bits_le": "00"
+    }
+  ],
+  "handoff": [
+    {
+      "previous": false,
+      "covered": false,
+      "client": 0,
+      "handle": false,
+      "faded": false,
+      "fade_seconds": null
+    },
+    {
+      "previous": false,
+      "covered": false,
+      "client": 0,
+      "handle": true,
+      "faded": false,
+      "fade_seconds": null
+    },
+    {
+      "previous": false,
+      "covered": false,
+      "client": 1,
+      "handle": false,
+      "faded": false,
+      "fade_seconds": null
+    },
+    {
+      "previous": false,
+      "covered": false,
+      "client": 1,
+      "handle": true,
+      "faded": false,
+      "fade_seconds": null
+    },
+    {
+      "previous": false,
+      "covered": false,
+      "client": 2,
+      "handle": false,
+      "faded": false,
+      "fade_seconds": null
+    },
+    {
+      "previous": false,
+      "covered": false,
+      "client": 2,
+      "handle": true,
+      "faded": false,
+      "fade_seconds": null
+    },
+    {
+      "previous": false,
+      "covered": true,
+      "client": 0,
+      "handle": false,
+      "faded": false,
+      "fade_seconds": null
+    },
+    {
+      "previous": false,
+      "covered": true,
+      "client": 0,
+      "handle": true,
+      "faded": false,
+      "fade_seconds": null
+    },
+    {
+      "previous": false,
+      "covered": true,
+      "client": 1,
+      "handle": false,
+      "faded": false,
+      "fade_seconds": null
+    },
+    {
+      "previous": false,
+      "covered": true,
+      "client": 1,
+      "handle": true,
+      "faded": false,
+      "fade_seconds": null
+    },
+    {
+      "previous": false,
+      "covered": true,
+      "client": 2,
+      "handle": false,
+      "faded": false,
+      "fade_seconds": null
+    },
+    {
+      "previous": false,
+      "covered": true,
+      "client": 2,
+      "handle": true,
+      "faded": false,
+      "fade_seconds": null
+    },
+    {
+      "previous": true,
+      "covered": false,
+      "client": 0,
+      "handle": false,
+      "faded": false,
+      "fade_seconds": null
+    },
+    {
+      "previous": true,
+      "covered": false,
+      "client": 0,
+      "handle": true,
+      "faded": false,
+      "fade_seconds": null
+    },
+    {
+      "previous": true,
+      "covered": false,
+      "client": 1,
+      "handle": false,
+      "faded": false,
+      "fade_seconds": null
+    },
+    {
+      "previous": true,
+      "covered": false,
+      "client": 1,
+      "handle": true,
+      "faded": false,
+      "fade_seconds": null
+    },
+    {
+      "previous": true,
+      "covered": false,
+      "client": 2,
+      "handle": false,
+      "faded": false,
+      "fade_seconds": null
+    },
+    {
+      "previous": true,
+      "covered": false,
+      "client": 2,
+      "handle": true,
+      "faded": true,
+      "fade_seconds": 3
+    },
+    {
+      "previous": true,
+      "covered": true,
+      "client": 0,
+      "handle": false,
+      "faded": false,
+      "fade_seconds": null
+    },
+    {
+      "previous": true,
+      "covered": true,
+      "client": 0,
+      "handle": true,
+      "faded": false,
+      "fade_seconds": null
+    },
+    {
+      "previous": true,
+      "covered": true,
+      "client": 1,
+      "handle": false,
+      "faded": false,
+      "fade_seconds": null
+    },
+    {
+      "previous": true,
+      "covered": true,
+      "client": 1,
+      "handle": true,
+      "faded": false,
+      "fade_seconds": null
+    },
+    {
+      "previous": true,
+      "covered": true,
+      "client": 2,
+      "handle": false,
+      "faded": false,
+      "fade_seconds": null
+    },
+    {
+      "previous": true,
+      "covered": true,
+      "client": 2,
+      "handle": true,
+      "faded": false,
+      "fade_seconds": null
+    }
+  ]
+}

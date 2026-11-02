@@ -1,0 +1,55 @@
+{
+  "recorded_at_utc": "2026-10-18T23:28:58.037085+00:00",
+  "target_version": "0.100.1",
+  "data": [
+    {
+      "path": "AzerothSurvivors/Data/patch-2.MPQ",
+      "size": 4690878,
+      "sha256": "366edee41642a5dda22ed90cc252b543ee375755b7e8bee81e2a6cd59fd7b286"
+    },
+    {
+      "path": "AzerothSurvivors/Data/patch-3.MPQ",
+      "size": 2580491,
+      "sha256": "75c35ca5b8075197252581e301e8900143007fdf37b493ad271ae1bd39f95a29"
+    },
+    {
+      "path": "AzerothSurvivors/Data/patch-4.MPQ",
+      "size": 22769233,
+      "sha256": "2e895e0e0ff6a4781d0e0aaa6ea7d32ed1fe36841e17806fe1855cb880d18865"
+    },
+    {
+      "path": "AzerothSurvivors/Data/patch-5.MPQ",
+      "size": 267019039,
+      "sha256": "5008e56873718b468fa5ae1b697dcbe4f5da9ffe6c793f3ef9939dbd7716f3d8"
+    },
+    {
+      "path": "AzerothSurvivors/Data/patch-6.MPQ",
+      "size": 212228,
+      "sha256": "cad6ff59b5df028a507581befb836fce07894057e15fe63d9fdc553a95b7ceb5"
+    },
+    {
+      "path": "AzerothSurvivors/Data/patch.MPQ",
+      "size": 1340199244,
+      "sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf"
+    }
+  ],
+  "probe": {
+    "path": "mpq-probe.json",
+    "size": 8536,
+    "sha256": "89bb8607c56c42556f592d842448639d4d02a9e6326612fbffea453ed7f31470",
+    "command": "./scripts/cargo run -p azeroth-survivors-re --locked --offline --profile menu --example native_floor_probe -- --data-dir AzerothSurvivors/Data --zone all"
+  },
+  "limits": [
+    "This is structural execution of reconstructed MPQ cache production and query coverage.",
+    "The original EXE was not launched; no original/rebuilt parity result is claimed.",
+    "Compatible MPQs are supplied separately and are not committed."
+  ],
+  "mount_priority_ascending": [
+    "AzerothSurvivors/Data/patch.MPQ",
+    "AzerothSurvivors/Data/patch-2.MPQ",
+    "AzerothSurvivors/Data/patch-3.MPQ",
+    "AzerothSurvivors/Data/patch-4.MPQ",
+    "AzerothSurvivors/Data/patch-5.MPQ",
+    "AzerothSurvivors/Data/patch-6.MPQ"
+  ]
+}

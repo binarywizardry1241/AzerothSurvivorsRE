@@ -1,0 +1,65 @@
+{
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "extracts": [
+    {
+      "role": "class-selector",
+      "virtual_address": "0x1458e62c0",
+      "end_exclusive": "0x1458e66ad",
+      "file_offset": "0x58e56c0",
+      "byte_count": 1005,
+      "sha256": "7317cdd11e9115910e4a96fda081907c32e7569d0b8ace7e439e6757928886db",
+      "assembly": "class-selector.asm",
+      "assembly_sha256": "047c666795c8d0bd8110b9b3277bd33851df9b8672479004c44b27efc8ced981",
+      "rea_evidence_id": "ev_ea91997ed138c022c780275bf315a34ce077cd4ed612ef6fa8d5ac3cc9984eed",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "b53354917de871f2cb1af7cfa9da30b9d8461535211fec1a7901765e00e8839b",
+      "rea_input_sha256": "7317cdd11e9115910e4a96fda081907c32e7569d0b8ace7e439e6757928886db"
+    },
+    {
+      "role": "expiry-selector",
+      "virtual_address": "0x1459a1a40",
+      "end_exclusive": "0x1459a1ba5",
+      "file_offset": "0x59a0e40",
+      "byte_count": 357,
+      "sha256": "ed4c841fc06062effc77f391f251599a0c48f7dd7f3935a8768e7696e9bbb4e8",
+      "assembly": "expiry-selector.asm",
+      "assembly_sha256": "65a9f7c6a6bf975cb72fb7145ffbeefad5a202531e060684b773347dec0f6ca4",
+      "rea_evidence_id": "ev_6b0fc0e5db8d284d205efa3930286ffa639efc5fc177c615fd7c5db5de967bc6",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "556f9056924c759490138a90f1bb3322922f0dd61cbf1e15fc1efddea827ac65",
+      "rea_input_sha256": "ed4c841fc06062effc77f391f251599a0c48f7dd7f3935a8768e7696e9bbb4e8"
+    },
+    {
+      "role": "departure-origin-gate",
+      "virtual_address": "0x145904df5",
+      "end_exclusive": "0x145904e24",
+      "file_offset": "0x59041f5",
+      "byte_count": 47,
+      "sha256": "ab93e0ef152bef41341e4723080686ecb7be501ee10c1502d34ce3f4ef5a4aca",
+      "assembly": "departure-origin-gate.asm",
+      "assembly_sha256": "b3cbf5442b1099e98c27daa7c47208493fbf5ffdcad3f4b84b5c0b609a2e7d51",
+      "scope": "Interior native branch; traced with the existing capstone-departure arithmetic and fresh expiry selector."
+    }
+  ],
+  "shared_evidence": {
+    "showcase_caller": "docs/analysis/evidence/0.105.0/showcase/all-companion-spells.asm",
+    "create_and_wrapper": "docs/analysis/evidence/0.105.0/pet-creation/manifest.json",
+    "departure_arithmetic": "docs/analysis/evidence/0.105.0/demon-effects/capstone-departure.asm",
+    "whole_pet_stage": "docs/analysis/evidence/0.105.0/power-scaling/pet-loop-rea.json",
+    "talent_producers": "docs/analysis/evidence/0.105.0/balance-catalog/manifest.json",
+    "amulet_producers": "docs/analysis/evidence/0.105.0/equipment-catalog/catalog-validation.json"
+  },
+  "limitations": [
+    "Ghidra inputs contain bounded code without external data or callee bodies; class selector decompilation cannot resolve its three jump tables. Original assembly and original-PE instruction vectors establish those branches.",
+    "Allocator and Vec capacity/storage routines are declared seams; original class traversal, deduplication, expiry decisions and origin gates execute unchanged.",
+    "No build, game process, rendered/interactive comparison or full source runtime parity is established."
+  ]
+}

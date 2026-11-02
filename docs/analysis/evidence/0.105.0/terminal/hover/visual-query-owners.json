@@ -1,0 +1,225 @@
+{
+  "target": "AzerothSurvivors/AzerothSurvivors-0.105.0.exe",
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "ranges": [
+    {
+      "role": "visual-owner-a",
+      "virtual_address": "0x14027b430",
+      "end_exclusive": "0x14027c2e8",
+      "file_offset": "0x27a830",
+      "byte_count": 3768,
+      "sha256": "197c82be46b6e0df2304e58652261b8d1b38704298397595e9e32bcfe9dcb85c",
+      "rea_evidence_id": "ev_1bf11e891d278454fb29b0bdb6ea1e7e4c6a74ebe06b4b1dd802a0b5863648a9",
+      "provider": "ghidra",
+      "pseudocode": "visual-owner-a.c",
+      "pseudocode_sha256": "7cc2ee64f02c82b29a6fab3ea3001a96643e4d68824996dbbbac9bf6bdb36cae"
+    },
+    {
+      "role": "visual-owner-b",
+      "virtual_address": "0x1401342b0",
+      "end_exclusive": "0x1401353ae",
+      "file_offset": "0x1336b0",
+      "byte_count": 4350,
+      "sha256": "bf12d442e46defce3fc0e8e5a55a27c0695408d9177ad9bd92a3d7068da5b52b",
+      "rea_evidence_id": "ev_a807ce3003280ae2a52e378f222a9fc0d3532651026926b96d269507d818f2a2",
+      "provider": "ghidra",
+      "pseudocode": "visual-owner-b.c",
+      "pseudocode_sha256": "fb6e23ff12b10ce29397990f726b882668c84c6537ea8eb9d457e85728c93c4f"
+    },
+    {
+      "role": "enter-visual-query",
+      "virtual_address": "0x1403926d0",
+      "end_exclusive": "0x1403929b0",
+      "file_offset": "0x391ad0",
+      "byte_count": 736,
+      "sha256": "8edb7796e0178b2b1b1a850d9eec3fa8005944a9c466360510330cd90e0dbdbe",
+      "assembly": "enter-visual-query.asm",
+      "assembly_sha256": "e6f966ee936dbbf1076ede97e518f0eeb0dfe88d100997d139542c7e41eb4ae6"
+    },
+    {
+      "role": "card-visual-query",
+      "virtual_address": "0x140392db0",
+      "end_exclusive": "0x14039307c",
+      "file_offset": "0x3921b0",
+      "byte_count": 716,
+      "sha256": "2046fb641868a9da5b1d2209fbd0a2d1b99bdf29386767b300a7e94abf415563",
+      "assembly": "card-visual-query.asm",
+      "assembly_sha256": "97854e717112b09e008b35f70facaad8fc0219fc8100bac5aff44e91ed225f0a"
+    },
+    {
+      "role": "terminal-action-registration",
+      "virtual_address": "0x1402a6930",
+      "end_exclusive": "0x1402a6d86",
+      "file_offset": "0x2a5d30",
+      "byte_count": 1110,
+      "sha256": "0e88913fd6917959046204ee74fabd7786a0047e935fddbac13236382df090a2",
+      "rea_evidence_id": "ev_03858287b45f738148b38b2f60635c37f6f4edac1286c8954a5761703cd52459",
+      "provider": "ghidra",
+      "pseudocode": "end-action-registration.c",
+      "pseudocode_sha256": "cff90916d85724f1f49c74c4d719deac875c57fa77ce6968771ff0e828c7ef8e"
+    }
+  ],
+  "interaction_direct_callers": [
+    "0x140382fc0",
+    "0x140383b90",
+    "0x140383ff0",
+    "0x140384450",
+    "0x1403848b0",
+    "0x140388630",
+    "0x1403895a0",
+    "0x14038a060",
+    "0x14038a390",
+    "0x14038af10",
+    "0x14038e5f0",
+    "0x14038ece0",
+    "0x1403926d0",
+    "0x140392db0",
+    "0x140393c80",
+    "0x140394910",
+    "0x140394d30",
+    "0x1403959b0",
+    "0x140395d80",
+    "0x1403960b0",
+    "0x1403964d0",
+    "0x1403968f0",
+    "0x1403974f0",
+    "0x1403978e0",
+    "0x140397ce0",
+    "0x1403980d0",
+    "0x1403984b0",
+    "0x1403987e0",
+    "0x140398bc0",
+    "0x140399720",
+    "0x140399b20",
+    "0x140399f00",
+    "0x14039a2e0",
+    "0x14039a610",
+    "0x14039a9f0",
+    "0x14039ad20",
+    "0x14039b100",
+    "0x14039b4e0",
+    "0x14039b810",
+    "0x14039bbf0",
+    "0x14039bfd0",
+    "0x14039ecb0",
+    "0x1403a0440"
+  ],
+  "visual_queries": [
+    {
+      "query": "0x1403926d0",
+      "owner": "0x14027b430",
+      "required_extra_state_bytes": 4,
+      "classification": "Singleton animated control; picker Enter ownership is inferred from its application admission and singleton presentation, not recovered as an original source name.",
+      "call_contracts": [
+        [
+          "0x1403926ff",
+          "0x1402a0dc0"
+        ],
+        [
+          "0x14039270a",
+          "0x140295cf0"
+        ],
+        [
+          "0x140392720",
+          "0x1402967d0"
+        ],
+        [
+          "0x1402875ce",
+          "0x1403926d0"
+        ],
+        [
+          "0x140287add",
+          "0x14027b430"
+        ]
+      ]
+    },
+    {
+      "query": "0x140392db0",
+      "owner": "0x1401342b0",
+      "required_extra_state_bytes": 56,
+      "classification": "Per-card entry/hover/exit animation, with card-local birth/exit/hover state.",
+      "call_contracts": [
+        [
+          "0x140392ddd",
+          "0x1402a99a0"
+        ],
+        [
+          "0x140392de8",
+          "0x140295cf0"
+        ],
+        [
+          "0x140392e09",
+          "0x1402967d0"
+        ],
+        [
+          "0x14013ddff",
+          "0x140392db0"
+        ],
+        [
+          "0x14013e370",
+          "0x1401342b0"
+        ]
+      ]
+    },
+    {
+      "query": "0x140399720",
+      "owner": "0x14008e860",
+      "required_extra_state_bytes": 44,
+      "classification": "Picker-specific Hover component; existing canonical query/body/fields remain in manifest.json.",
+      "call_contracts": [
+        [
+          "0x14039974b",
+          "0x140295cf0"
+        ],
+        [
+          "0x140399756",
+          "0x1402b80e0"
+        ],
+        [
+          "0x140399761",
+          "0x1402967d0"
+        ]
+      ]
+    }
+  ],
+  "state_layouts": [
+    {
+      "role": "singleton state size",
+      "address": "0x1402a1031",
+      "bytes_hex": "48c745d804000000"
+    },
+    {
+      "role": "card state size",
+      "address": "0x1402a9c11",
+      "bytes_hex": "48c745d838000000"
+    }
+  ],
+  "existing_canonical_evidence": [
+    "manifest.json",
+    "../button-contracts.json",
+    "../mechanics-manifest.json",
+    "../summary-input.asm"
+  ],
+  "conclusion": "The three verified direct Interaction/BorderColor query constructors require additional per-control state. None is a proven generic painter for the recovered terminal constructor. Preserve existing terminal defaults; do not infer hover interpolation, active colors, lift or shadows.",
+  "limitations": [
+    "CALL-rel32 scanning inside executable sections/unwind ranges is a discovery boundary, not a complete call graph.",
+    "Two visual bodies and the selected EndAction registration body were decompiled with Ghidra. Raw slices omit external data/callees; direct call contracts and original PE bytes bind the queries and runners.",
+    "Complete indirect/global visual hooks and component insertion/hook lifecycles remain unresolved under #9/#41.",
+    "No compilation, application/game execution or original/rebuilt input/rendering comparison.",
+    "Absolute-pointer scanning excludes encoded/relative/computed addresses. Only the selected EndAction getter and known query call are classified; no complete component-hook lifecycle or dynamic system registry is claimed."
+  ],
+  "registration_reference_census": {
+    "component_getter": "0x1402a6930",
+    "decoded_direct_callers": [
+      "0x140397ce0"
+    ],
+    "call_site": "0x140397d16",
+    "absolute_pointer_file_offsets": {
+      "0x1402a6930": [],
+      "0x140295cf0": []
+    },
+    "component_type_id_va": "0x145d9e700",
+    "component_type_id_hex": "f98ae32d8ecd98345b9b51cc07b02704",
+    "conclusion": "Current EndAction getter has one instruction-verified direct query caller, the terminal action query. Its body registers one-byte component metadata and transfers existing registry data. No absolute stored pointer to that getter or Interaction getter is present. Generic/dynamic registry and externally installed hook behavior remain unrecovered; these negative reference observations do not rule out indirect/global painters."
+  }
+}

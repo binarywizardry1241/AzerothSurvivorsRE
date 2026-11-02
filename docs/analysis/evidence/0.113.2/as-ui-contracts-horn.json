@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.113.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+    "size_bytes": 141932032
+  },
+  "generator": {
+    "path": "scripts/check-horn-offers-0.113.2.py",
+    "sha256": "53cd6cf9b766caa791728616b807c9774ccd9ceb5f1d483792c698d8e6d3c3f8"
+  },
+  "reward_owner": {
+    "va": "0x14596cbb0",
+    "end_exclusive": "0x14596e080",
+    "byte_count": 5328,
+    "sha256": "d727473ae6d7a71dccfe5750b1391f274de470679a8b52b326bc031d798c249a"
+  },
+  "predicate": {
+    "va": "0x14596cd85",
+    "end_exclusive": "0x14596ce0f",
+    "byte_count": 138,
+    "sha256": "4e19ab5d8eb2a864b2180ca4faf3b7dd9f9134bf4f76962e75dbc61e1a7a5d74"
+  },
+  "descriptor_table": {
+    "va": "0x146fe05c8",
+    "end_exclusive": "0x146fe3ac0",
+    "byte_count": 13560,
+    "sha256": "9684cd1b32ab20cff00127018935a40c385c59fdfd60b5422e941ac7a8aaf749"
+  },
+  "descriptor_count": 113,
+  "descriptor_source_projection_checked": true,
+  "native_effect_tags": [
+    7,
+    8,
+    9,
+    10,
+    13
+  ],
+  "stable_source_effect_tags": [
+    7,
+    8,
+    9,
+    10,
+    12
+  ],
+  "native_cases": 226,
+  "executed_instruction_boundaries": 38,
+  "detailed_cases": {
+    "path": "runtime/as-ui-contracts-0.113.2/horn-cases.json",
+    "sha256": "66ca5c849f6616cc04328d33f3d37cfd119e3f805bca5e1f19e3806af4402406"
+  },
+  "ghidra": {
+    "evidence_id": "ev_6c28075e8386dc03951966d73020687f0b45e7d39b2f95f9e63e1f00dfa9ab1e",
+    "provider": {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "version": "12.1.4"
+    },
+    "analysis_profile": {
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "parameters": {
+        "target_kind": "executable",
+        "target_format": "raw-binary",
+        "architecture": "x86_64",
+        "available_architectures": [
+          "x86_64"
+        ],
+        "import_mode": "ephemeral-source-immutable",
+        "annotation_policy": "atomic-function-entry-metadata-v1",
+        "load_image_observations": "source-mappings-entry-context-v2",
+        "function_body_evidence": "complete-inclusive-ranges-v1",
+        "function_references": "complete-body-and-entry-reference-manager-v2",
+        "call_relationship_coverage": "function-body-call-coverage-v5",
+        "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+        "string_inventory_evidence": "defined-data-coverage-v1",
+        "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+        "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+        "instruction_flow_evidence": "decoded-return-pcode-v1",
+        "instruction_references": "exact-address-incoming-v1",
+        "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+        "no_return_repair": "returning-imports-decoded-return-v2",
+        "process_launch": "inspected-jvm-launch-support-v1",
+        "load_image_evidence": "independent-raw-mapping-context-v4",
+        "jump_table_evidence": "typed-case-default-blocks-v1",
+        "decompiler_jump_loads": true,
+        "loader": "BinaryLoader",
+        "language_id": "x86:LE:64:default",
+        "compiler_spec_id": "gcc",
+        "language_selection": "caller-supplied-v1",
+        "entry_point": "0x14596cbb0",
+        "entry_seed": "external-entry-and-function-before-analysis-v1",
+        "analyzer_preset": "ghidra-default",
+        "analysis_seeds": {
+          "format": "rea-ghidra-seeds-body-repair-v1",
+          "path": "runtime/as-ui-contracts-0.113.2/reward-choices/seeds.tsv",
+          "configured_path": "runtime/as-ui-contracts-0.113.2/reward-choices/seeds.tsv",
+          "sha256": "c41e92e33454a2e91bbb43f6ec2fcd5bb5eccbacbd090223a81be65d38f520fc",
+          "entries": {
+            "function": 1,
+            "code": 1,
+            "label": 0
+          }
+        }
+      },
+      "digest": "0f0e4999800c65cbbf4852aa559cb704fafa672e83316419cc48594cdd49a97d"
+    },
+    "pseudocode_sha256": "7912db742dc2487e6ada59c40325db94b7186902ec163057812c7de5cbbc09e7"
+  },
+  "source": [
+    {
+      "path": "crates/azeroth-survivors-re/src/loot_rewards.rs",
+      "sha256": "df6de8544308d740a2f57d44b4f64cdf6ef48b0a3361df79b36ce255214f1d3b"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
+      "sha256": "bed3b8a73f346f4c08c982d5065ac5c8d9114d914a04e56d1a07a05d20d16362"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/tests/loot_rewards.rs",
+      "sha256": "51494cf7e9ca369465a32b9685d68099d9fb88a3b4557ad88c6a6f44929282a6"
+    }
+  ],
+  "limits": [
+    "Exact current base/learned Horn predicate and all current descriptor inputs only.",
+    "Full reward construction, mutation aliases, generic ECS resources and UI are not established by this prefix.",
+    "Raw Ghidra import omits immutable data and external callees; instruction replay uses the actual current PE.",
+    "No external seam, compiler, Rust execution, game launch or original/rebuilt parity comparison."
+  ],
+  "gap_ids": [
+    41
+  ],
+  "compilation_run": false,
+  "game_run": false,
+  "parity_verified": false
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "gap_ids": [
+    237
+  ],
+  "queries": [
+    {
+      "procedure": "0x145b973b0",
+      "evidence_id": "ev_acf05f6019d64089e5537b7831e323621100e98de432700e88cb941705b9614d",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "7756277edbca93ae70ee777affb721b7f9163fb9d274141148650e4ddc877e4c",
+      "normalized_text_sha256": "5e8235c6719c101634520fb47533e955c8dce2c518005b7a24e4f4abb02cd4c9",
+      "result": {
+        "path": "runtime/fixgap230239/achievements/query/results/dc2a3816a54dda3844481d3241461ece8c0b8cfd18f084844a770990e8966a52-91e6caf752d4f55c.json",
+        "sha256": "8f0803be7ddca26a069494120aab54576cbc231b26a0ba315b4f8a86419e8b46"
+      },
+      "plan": {
+        "path": "runtime/fixgap230239/achievements/plan.json",
+        "sha256": "19df85246f6b08dbe5ad1109aaf8c21551a79eb3115944dff639186a7187bc90"
+      },
+      "journal": {
+        "path": "runtime/fixgap230239/achievements/query/journal.json",
+        "sha256": "ce96153f4e65decd1a5eb28183f839bfc99a0ec1eb327c00e38c2d7da959ec0b"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap230239/achievements/code.bin",
+        "sha256": "1bd8b20387f68ec0713429404bccfdb0ed071fb2aef17c7e6e7865abda1335fb"
+      },
+      "slice_virtual_address": "0x145b96cd0"
+    }
+  ],
+  "native_ranges": [
+    {
+      "role": "catalog-constructor",
+      "virtual_address": "0x145b973b0",
+      "file_offset": "0x5b967b0",
+      "byte_count": 39314,
+      "sha256": "a11bd5985411f31169d59b885b0c4bebeb45555cf81039dbefb0493d67100530"
+    },
+    {
+      "role": "class-gear-iterator",
+      "virtual_address": "0x145c7d050",
+      "file_offset": "0x5c7c450",
+      "byte_count": 1227,
+      "sha256": "85d2954489a5646ebacdaf31450def98aa69214ada336eabe517ffbf82ccda3f"
+    }
+  ],
+  "entries": 124,
+  "total_points": 2950,
+  "category_counts": [
+    24,
+    20,
+    14,
+    26,
+    15,
+    16,
+    9
+  ],
+  "asset_path": "crates/azeroth-survivors-re/assets/achievement-catalog-0.121.0.json",
+  "asset_sha256": "7e546e5da14cbb7c150700c62f3fd578b5ebe5acc298788fdb9531451bf3c939",
+  "source_consumer": {
+    "path": "crates/azeroth-survivors-re/src/progression.rs",
+    "start": "//145b973b0 supplies the complete current order",
+    "end": "// Native unlock rows retain",
+    "sha256": "0aa1fb50043792fa6f54c8bbc9cfd2410f80e19a56c875011f86686de815dfce"
+  },
+  "seams": [
+    "synthetic allocation/Vec growth/memcpy",
+    "original formatter identities for strings and u32/u64",
+    "missing-locale fallback and keyed locale sentinel",
+    "native token-replacement interface"
+  ],
+  "historical_unlocks": "Existing source rewards retain their own evidence; current menu descriptors do not independently establish reward grants.",
+  "compilation": "not_run",
+  "application_executed": false,
+  "parity_verified": false
+}

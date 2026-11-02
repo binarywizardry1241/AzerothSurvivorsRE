@@ -1,0 +1,3 @@
+140099f57	4889f9	mov	rcx, rdi
+140099f5a	e8c12ffdff	call	0x14006cf20
+140099f5f	4989c7	mov	r15, rax

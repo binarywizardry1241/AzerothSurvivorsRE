@@ -1,0 +1,53 @@
+{
+  "target_version": "0.108.0",
+  "target_sha256": "dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b",
+  "target_executed": false,
+  "method": "Unicorn runs the complete selected native schedule loop with synthetic state and a preallocated deferred queue; no calls are reached.",
+  "instruction_span": {
+    "va": "0x145973b45",
+    "file_offset": "0x5972f45",
+    "byte_count": 588,
+    "sha256": "3f50c2c0914ce544b3b0e43310394d759b7e409bc5fe36e2510c0ba97e0f3ed2"
+  },
+  "canonical_assembly": "docs/analysis/evidence/0.108.0/boss-minions/scheduled-repeat.asm",
+  "canonical_ghidra_manifest": "docs/analysis/evidence/0.108.0/boss-minions/manifest.json",
+  "case_count": 7680,
+  "cases": {
+    "bosses": 60,
+    "enraged": [
+      false,
+      true
+    ],
+    "cast_deadlines": [
+      9,
+      10,
+      11,
+      "NaN"
+    ],
+    "timers": [
+      -1,
+      0,
+      0.5,
+      "NaN"
+    ],
+    "elapsed": 0.5,
+    "now": 10,
+    "earlier_queue": [
+      "none",
+      "same actor blocking",
+      "same actor minion",
+      "other actor blocking"
+    ]
+  },
+  "established": [
+    "All selected native slots, original order and repeat cooldown payloads; constructor initial scale is retained by the canonical manifest.",
+    "Timers decrement even while positive, unordered, cast-gated or blocked by an earlier queued request.",
+    "Only admitted requests reset timers; overshoot has no catchup.",
+    "Selected3/6 are blocking; native5 bypasses both active cast and earlier blocking requests.",
+    "Equal/NaN cast deadlines are not active; NaN timers do not fire."
+  ],
+  "limits": [
+    "No Rust compilation, game process or visual/terrain comparison.",
+    "Ordering/interactions with unimplemented native moves/phases remain gap42."
+  ]
+}

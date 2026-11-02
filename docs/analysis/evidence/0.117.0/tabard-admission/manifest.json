@@ -1,0 +1,380 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.117.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293",
+    "size_bytes": 145283072
+  },
+  "gap_ids": [
+    156,
+    160
+  ],
+  "question": "Distinguish achievement-owned tabard90025 class projection from purchased-ID normalization; recover current native ownership and purchase contracts.",
+  "native_ranges": [
+    {
+      "label": "class-slot",
+      "va": "0x145ac20b0",
+      "end_exclusive": "0x145ac2250",
+      "file_offset": "0x5ac14b0",
+      "byte_count": 416,
+      "sha256": "ba53b73770b933718eb360c15c0d37a92f6d0ed59c6d2684087a40c857251ce4"
+    },
+    {
+      "label": "tabard-gate",
+      "va": "0x145b4a9f0",
+      "end_exclusive": "0x145b4ab76",
+      "file_offset": "0x5b49df0",
+      "byte_count": 390,
+      "sha256": "01459186fc35b32cc809d7af103500db5b1655d9c1f4ee7c1a4897c80c0c62d1"
+    },
+    {
+      "label": "purchase-value",
+      "va": "0x145b2bbd0",
+      "end_exclusive": "0x145b2bdee",
+      "file_offset": "0x5b2afd0",
+      "byte_count": 542,
+      "sha256": "c18c75d0d13a2f1d3ec67afa14902cf0a87cd6bf9c438a8bcd11591b074b9d55"
+    },
+    {
+      "label": "purchase-prefix",
+      "va": "0x145c0e3e0",
+      "end_exclusive": "0x145c0e64b",
+      "file_offset": "0x5c0d7e0",
+      "byte_count": 619,
+      "sha256": "f47a989dce5105e184f2fc078039d7f2de2da1105accb2266b2620eb37d220ab"
+    },
+    {
+      "label": "purchase-parser",
+      "va": "0x145c382a0",
+      "end_exclusive": "0x145c38458",
+      "file_offset": "0x5c376a0",
+      "byte_count": 440,
+      "sha256": "21815612da179fa7438df7da01fbffaf00376b397836215ae61722e38f048224"
+    },
+    {
+      "label": "purchase-collector",
+      "va": "0x145c34400",
+      "end_exclusive": "0x145c34546",
+      "file_offset": "0x5c33800",
+      "byte_count": 326,
+      "sha256": "623b705b6bad591e975f0a7c7608b86e324a41f45dfb38cf2085d7aa61618ff1"
+    },
+    {
+      "label": "save-parser",
+      "va": "0x145ac5150",
+      "end_exclusive": "0x145ac98b4",
+      "file_offset": "0x5ac4550",
+      "byte_count": 18276,
+      "sha256": "e04ea027589510d3954309da93cfa6606d3505ea4289d4e487b71f82a298b35f"
+    },
+    {
+      "label": "save-formatter",
+      "va": "0x145acb970",
+      "end_exclusive": "0x145ace12e",
+      "file_offset": "0x5acad70",
+      "byte_count": 10174,
+      "sha256": "945b9162fb0635b1b9f3d7e16daa6fc72cc845a94f66cfd212eabf82ade7e475"
+    },
+    {
+      "label": "available-collector",
+      "va": "0x145c33e40",
+      "end_exclusive": "0x145c33faa",
+      "file_offset": "0x5c33240",
+      "byte_count": 362,
+      "sha256": "94c74120eb92033bad5417359da765cee1bfa8772f8f22999a6b44a16051d8ce"
+    },
+    {
+      "label": "combined-inventory",
+      "va": "0x145ac4e00",
+      "end_exclusive": "0x145ac505b",
+      "file_offset": "0x5ac4200",
+      "byte_count": 603,
+      "sha256": "94dabb04b6b9e4763a690b6121d54866aa266cc0b3134f1c90052de3f1b42e6d"
+    },
+    {
+      "label": "class-getter",
+      "va": "0x145acb7a0",
+      "end_exclusive": "0x145acb925",
+      "file_offset": "0x5acaba0",
+      "byte_count": 389,
+      "sha256": "1e129a23fdf3c2a1f986abfbcec5f69c0ef64a3b0a31d7bba0d2db980e7aad66"
+    },
+    {
+      "label": "class-projector",
+      "va": "0x145ac28d0",
+      "end_exclusive": "0x145ac2a88",
+      "file_offset": "0x5ac1cd0",
+      "byte_count": 440,
+      "sha256": "0689b4d89002291b098442321302402486dc6d927fab3ec30b300f8b82f59f22"
+    }
+  ],
+  "queries": [
+    {
+      "label": "class-slot",
+      "extract": {
+        "label": "class-slot",
+        "va": "0x145ac20b0",
+        "end_exclusive": "0x145ac2250",
+        "file_offset": "0x5ac14b0",
+        "byte_count": 416,
+        "sha256": "ba53b73770b933718eb360c15c0d37a92f6d0ed59c6d2684087a40c857251ce4"
+      },
+      "plan_path": "runtime/0.117.0/tabard-admission/class-slot-plan.json",
+      "plan_sha256": "a1b3c8bee13a9b788f47a45ac62ab9a0e1c0f5233cbb11d9f743bd960bf6c58c",
+      "result_path": "runtime/0.117.0/tabard-admission/class-slot-query/results/8c5fc748319522c67a103381649bc816b27b207394113538b28ef4f2e8ccfe97.json",
+      "result_sha256": "5e8d5c2713999d8a5463903d3830a2376a35c67bfa578ec6910651b44466b82d",
+      "evidence_id": "ev_4195cc28112c65bca9138f91a572023b44e37e95012df28639ca970afc9ee08d",
+      "analysis_profile_digest": "3c7248862568c4af25c14d503ea6b537f03b7b2b7c5b76f80e189db5424ce99c",
+      "normalized_pseudocode_sha256": "f1d1e0686720a90d06e75f80f503a115869b97c0246e5f230d263707da4fcbc9"
+    },
+    {
+      "label": "tabard-gate",
+      "extract": {
+        "label": "tabard-gate",
+        "va": "0x145b4a9f0",
+        "end_exclusive": "0x145b4ab76",
+        "file_offset": "0x5b49df0",
+        "byte_count": 390,
+        "sha256": "01459186fc35b32cc809d7af103500db5b1655d9c1f4ee7c1a4897c80c0c62d1"
+      },
+      "plan_path": "runtime/0.117.0/tabard-admission/tabard-gate-plan.json",
+      "plan_sha256": "27bcc5d4b5bb9b5d3f272da9897252c1f20d1fb2d86f4c77d8d18a4d0977ef8d",
+      "result_path": "runtime/0.117.0/tabard-admission/tabard-gate-query/results/854f2f19c0f64c2487c45db250bb2e06dcc385149ec543ce0cbd495cfc0c43bf.json",
+      "result_sha256": "98701bf2b09cd7d8aa7a1c17af5acaab69ecf4db4859f057e2578edeb8994fe8",
+      "evidence_id": "ev_883605a69a18da0f6e47463edf100433f30bbe874b668abfd49de1e23cfe95e3",
+      "analysis_profile_digest": "b1ecd6ddccc8eaddc57ca647f99102a8c10b96ad02d15a10998a40131e0fc73d",
+      "normalized_pseudocode_sha256": "6c160e267a4a72a99f75afb3dc961df1a3dd4d93dadb83542815316a127880a9"
+    },
+    {
+      "label": "purchase-value",
+      "extract": {
+        "label": "purchase-value",
+        "va": "0x145b2bbd0",
+        "end_exclusive": "0x145b2bdee",
+        "file_offset": "0x5b2afd0",
+        "byte_count": 542,
+        "sha256": "c18c75d0d13a2f1d3ec67afa14902cf0a87cd6bf9c438a8bcd11591b074b9d55"
+      },
+      "plan_path": "runtime/0.117.0/tabard-admission/purchase-value-plan.json",
+      "plan_sha256": "9d05acd441bdac1b72275191fd2a5dee8ce3d46057ea384c8679238f5fae71a3",
+      "result_path": "runtime/0.117.0/tabard-admission/purchase-value-query/results/0db4502fea60e47d1ddfdfc7e25f6073020d0befdbfe3891a36c42464ad7b74b.json",
+      "result_sha256": "8b95f9f3903149a92e882c4717ace1ba9735d35fdf3fcec20227f90913774c0b",
+      "evidence_id": "ev_fdad998135a165ca2b7fda2db864a655f7473eae1b21e0764cb2b7dffb26f55f",
+      "analysis_profile_digest": "827b4423b51fd44e14453b7c929dbf5155a11a344d1998c91bfac3b3d92a4f70",
+      "normalized_pseudocode_sha256": "070c44d2cd488056199f4eb03d2a63e4c6df71a7a5787862800705111bcaea8e"
+    },
+    {
+      "label": "purchase-prefix",
+      "extract": {
+        "label": "purchase-prefix",
+        "va": "0x145c0e3e0",
+        "end_exclusive": "0x145c0e64b",
+        "file_offset": "0x5c0d7e0",
+        "byte_count": 619,
+        "sha256": "f47a989dce5105e184f2fc078039d7f2de2da1105accb2266b2620eb37d220ab"
+      },
+      "plan_path": "runtime/0.117.0/tabard-admission/purchase-prefix-plan.json",
+      "plan_sha256": "384ae7361f72b783389f5997fca7cf6d990d221ab34673397ee1eccc88abf9eb",
+      "result_path": "runtime/0.117.0/tabard-admission/purchase-prefix-query/results/7da23ee2b07f76967a3b88884f0ca3f787b313460d77c8c30866e008e0e5a082.json",
+      "result_sha256": "15e211be3ff48bc4cab8a631192fdab18e035b3eb95fc3893ea3ee2c8cc119af",
+      "evidence_id": "ev_cc427ad9bf065fccb604988980d0fcb8a9ca3dddaf4175c9f3802f1a41f85c53",
+      "analysis_profile_digest": "f034375ae31aa609f61853314437e0108aeb68951072a49d43465fe671d5892b",
+      "normalized_pseudocode_sha256": "f99cb6cf9a3bfd5cc30120576fd38a7084c14bacb57df2c4dbbbe097f9bdd51d"
+    },
+    {
+      "label": "purchase-parser",
+      "extract": {
+        "label": "purchase-parser",
+        "va": "0x145c382a0",
+        "end_exclusive": "0x145c38458",
+        "file_offset": "0x5c376a0",
+        "byte_count": 440,
+        "sha256": "21815612da179fa7438df7da01fbffaf00376b397836215ae61722e38f048224"
+      },
+      "plan_path": "runtime/0.117.0/tabard-admission/purchase-parser-plan.json",
+      "plan_sha256": "08216e7fbb3b6cea0d22144a048e3e4c8b03a48e911999ec431bbe1028650b01",
+      "result_path": "runtime/0.117.0/tabard-admission/purchase-parser-query/results/ff72f2af0c0d48b1fd2b3401d987cabcc16252d06a5caa8b0f6f2c0ad646e151.json",
+      "result_sha256": "9016f0119a7f21e2fd20ba421df8487222d26270af4ee72df9e97db238c64407",
+      "evidence_id": "ev_10a1fce269ec87ed77a18ec765fd95e108e1455356d304b6443f6e2f8ba6636a",
+      "analysis_profile_digest": "5f687a431c205937a0090cdc123832995ac617141a62139b4bab203fc805bced",
+      "normalized_pseudocode_sha256": "60f2521041e46849615093c14287abd992dfd50b97b41eb1354427a271cdfa54"
+    },
+    {
+      "label": "purchase-collector",
+      "extract": {
+        "label": "purchase-collector",
+        "va": "0x145c34400",
+        "end_exclusive": "0x145c34546",
+        "file_offset": "0x5c33800",
+        "byte_count": 326,
+        "sha256": "623b705b6bad591e975f0a7c7608b86e324a41f45dfb38cf2085d7aa61618ff1"
+      },
+      "plan_path": "runtime/0.117.0/tabard-admission/purchase-collector-plan.json",
+      "plan_sha256": "6850aca52fc36472ef7bed955187bf82a5b7b2b5751c4c1334b7dda1cfd97a06",
+      "result_path": "runtime/0.117.0/tabard-admission/purchase-collector-query/results/3c2d2c8d454377242253c105831af5125bd23ef10af4348cd23e49ff4fae4163.json",
+      "result_sha256": "5e74ffa612c77ae7ba882cdc26565697dd1fb967c7fdd43ef77b8b03232094f6",
+      "evidence_id": "ev_d12242922c6f51d100596093d17c3ed5c84f2fdbbe0ead75b2173a3088c9a9d5",
+      "analysis_profile_digest": "0920789ba17728df27331b45c1b30dc9560b9dea2db84b9f04b290fda230dda9",
+      "normalized_pseudocode_sha256": "dbc618ae4b27bdcf4abaa4e1d9dbf50634d5486686f29ec2af189028950d30f9"
+    },
+    {
+      "label": "save-parser",
+      "extract": {
+        "label": "save-parser",
+        "va": "0x145ac5150",
+        "end_exclusive": "0x145ac98b4",
+        "file_offset": "0x5ac4550",
+        "byte_count": 18276,
+        "sha256": "e04ea027589510d3954309da93cfa6606d3505ea4289d4e487b71f82a298b35f"
+      },
+      "plan_path": "runtime/0.117.0/tabard-admission/save-parser-plan.json",
+      "plan_sha256": "25de13d186887252894ee125c43d846b4865cbbf13ecfd66928b3c7f41e3ebba",
+      "result_path": "runtime/0.117.0/tabard-admission/save-parser-query/results/de9923d459b50aaab6bdef7db700f2844f9f4b2d680bb8fdb8449b743835acce.json",
+      "result_sha256": "fab7e8f099cc031e9dc12d68f8a17ec10c6d60b9017a846f3ee513ecd4f80b31",
+      "evidence_id": "ev_60079182d57b6ae2ccdc5edadb127e9f1d4c0c903529eaae0ad38fe1cd483787",
+      "analysis_profile_digest": "ecf03c2e3a5de4c7fe41f4938c7c03cfaa79697950f83067a53079059203be81",
+      "normalized_pseudocode_sha256": "e025b522179bd2cc18f6643f8e116ff2f6861f5d3204c6a44bb4a35d517b2beb"
+    },
+    {
+      "label": "save-formatter",
+      "extract": {
+        "label": "save-formatter",
+        "va": "0x145acb970",
+        "end_exclusive": "0x145ace12e",
+        "file_offset": "0x5acad70",
+        "byte_count": 10174,
+        "sha256": "945b9162fb0635b1b9f3d7e16daa6fc72cc845a94f66cfd212eabf82ade7e475"
+      },
+      "plan_path": "runtime/0.117.0/tabard-admission/save-formatter-plan.json",
+      "plan_sha256": "6cee72ca5dcda5fb873aca4598e7d6567fab0dc7d4198517a4228f96a074b1f7",
+      "result_path": "runtime/0.117.0/tabard-admission/save-formatter-query/results/9c4eb3bd1d8fbb351f617ed6eaae169d6baeb21cdddb28c5839105a9eddb6e5c.json",
+      "result_sha256": "002a19df4535ec2bac31e9c79053a007640b72f0d852440a225a11b79ae62c7c",
+      "evidence_id": "ev_2cd688e7f26e50019ee429c95d61ec90cc99b1e27491c35bebfcb09b0f5a4a73",
+      "analysis_profile_digest": "bbac266e808923fac212e7cdea60267e15e945f16f4a309577dde0ab8f97b94b",
+      "normalized_pseudocode_sha256": "c44f763d97da709eef792f8c35436c5a4f7ed5fb7b4947ac570dcbbcbda3a249"
+    }
+  ],
+  "source_consumers": [
+    {
+      "path": "crates/azeroth-survivors-re/src/armory.rs",
+      "symbols": [
+        "GearSave::valid_item",
+        "GearSave::project",
+        "GearSave::read_for",
+        "sanitize_coop_loadout",
+        "apply_authoritative_record"
+      ],
+      "contract": "Current tabard ID/slot range and actual authority membership, not a grant from the ID alone."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/progression.rs",
+      "symbols": [
+        "Tabard::available",
+        "available_tabard_ids",
+        "is_purchasable_tabard"
+      ],
+      "contract": "Tabard availability uses earned-key membership for gated descriptors; is_purchasable_tabard is a re-export of the shared public-library predicate, not a second implementation."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/save/schema.rs",
+      "symbols": [
+        "normalize"
+      ],
+      "contract": "Load/import/plaintext normalization calls the shared public-library account_progression::is_purchasable_tabard predicate without a UI module dependency or Save read. Earned keys and class looks remain distinct."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/account_progression.rs",
+      "symbols": [
+        "is_purchasable_tabard"
+      ],
+      "contract": "Single public-library catalog-only exact-ID/null-gate predicate shared by Save normalization and the binary re-export; performs no Save read or UI call. This source consumer does not establish native module ownership."
+    }
+  ],
+  "static_checks": [
+    "python3 -B scripts/check-tabard-admission-0.117.0.py",
+    "python3 -B scripts/check-purchased-tabards-0.117.0.py"
+  ],
+  "curated_artifacts": [
+    {
+      "path": "docs/analysis/evidence/0.117.0/tabard-admission/available-collector.asm",
+      "sha256": "4c14f592678478a76679088ad242797d9135972ae29534871f17da36743f3552"
+    },
+    {
+      "path": "docs/analysis/evidence/0.117.0/tabard-admission/cases.json",
+      "sha256": "17f2b0b64341f8a375addfef7b711d0a9382f6b6c342b469c3b7cbd831d43f86"
+    },
+    {
+      "path": "docs/analysis/evidence/0.117.0/tabard-admission/class-getter.asm",
+      "sha256": "0e8d037a3099d11162c238fc28ed6c7192ab3dd51801e5025796db104e558afb"
+    },
+    {
+      "path": "docs/analysis/evidence/0.117.0/tabard-admission/class-projector.asm",
+      "sha256": "42cda6540adca80a00e2dab8637f978fce5f55875b4b99ed03f555f84d96c5ce"
+    },
+    {
+      "path": "docs/analysis/evidence/0.117.0/tabard-admission/class-slot.asm",
+      "sha256": "06a042cbf582e027ae4f7621a07337db74e5a21a53cff736b97fc31ae057cf0f"
+    },
+    {
+      "path": "docs/analysis/evidence/0.117.0/tabard-admission/class-slot.c",
+      "sha256": "0139b9457cb62bd31bee7a4d248d50dbf7e589913acb6a9c89a5c6960cbf38b2"
+    },
+    {
+      "path": "docs/analysis/evidence/0.117.0/tabard-admission/combined-inventory.asm",
+      "sha256": "315b3974b0c0581d520178c8a8377605bbd4e74c9a4c21129b2151ef1fb4539d"
+    },
+    {
+      "path": "docs/analysis/evidence/0.117.0/tabard-admission/purchase-collector.asm",
+      "sha256": "c6533c6f581dc0d0f87c4571368b34534919f5c5429626f725ceaa150a4d7444"
+    },
+    {
+      "path": "docs/analysis/evidence/0.117.0/tabard-admission/purchase-collector.c",
+      "sha256": "57d476d077b389f2e6954aac5c2f2a0d648604da36737b35c2d59fb88a43ecaf"
+    },
+    {
+      "path": "docs/analysis/evidence/0.117.0/tabard-admission/purchase-parser.asm",
+      "sha256": "ff4f66f06eb7d39d9da4ae05a0445124b7a3d12102309dc75a33643c189150ad"
+    },
+    {
+      "path": "docs/analysis/evidence/0.117.0/tabard-admission/purchase-parser.c",
+      "sha256": "3ffe19b0bc1b36f8d957d9f80447a5f121c840e7980a566b39bff54e96e84fca"
+    },
+    {
+      "path": "docs/analysis/evidence/0.117.0/tabard-admission/purchase-prefix.asm",
+      "sha256": "a075a47d2affac7aa042276eee5c2833b228eb213875160c49d0b4b27a54aad5"
+    },
+    {
+      "path": "docs/analysis/evidence/0.117.0/tabard-admission/purchase-prefix.c",
+      "sha256": "8e22d48b9370b1509b74348c100d7263af6cd39d06802941718d89face8d9521"
+    },
+    {
+      "path": "docs/analysis/evidence/0.117.0/tabard-admission/purchase-value.asm",
+      "sha256": "9b8b11619edd2ace493dd507a13e7edd3d798fb7459abc5d75e43631cbcf6856"
+    },
+    {
+      "path": "docs/analysis/evidence/0.117.0/tabard-admission/purchase-value.c",
+      "sha256": "46c252aede3bc96254ebdd053f78abb24c4e6d74962ff118ab65a9cb13aff391"
+    },
+    {
+      "path": "docs/analysis/evidence/0.117.0/tabard-admission/purchases.json",
+      "sha256": "0e65ecac910349ed7a77a43fe3d1fbbc7a90eb2db180b2dd6c90e53fe1862afc"
+    },
+    {
+      "path": "docs/analysis/evidence/0.117.0/tabard-admission/tabard-gate.asm",
+      "sha256": "34cab117207fb32f1d643e19083ff7170740d9d97686339f9beb43f8d3ee6e91"
+    },
+    {
+      "path": "docs/analysis/evidence/0.117.0/tabard-admission/tabard-gate.c",
+      "sha256": "636b70bf13ec57f1d9a0505616ffbc3ea08eb8304996aee87df0caaefeb31a0f"
+    }
+  ],
+  "limits": [
+    "Current hash-bound raw x64 Ghidra imports omit PE/data/external callees and can infer incorrect argument types; actual decoded registers, data and bounded instruction fixtures own the stated contracts.",
+    "Full Save queries retain decompiler unreachable/type-propagation warnings. Only selected purchased-field producer/sort/dedup/format connections are used, not a complete Save recovery or execution claim.",
+    "Full Save query results remain under runtime/ for shared co-op history/White Devilsaur recovery; the small purchase and admission contracts are curated once here.",
+    "No compilation, Rust test execution, game/client/server/network/file operations, rendering or original/rebuilt parity comparison."
+  ],
+  "source_status": "The #156 class-slot admission and #160 catalog-based purchased-ID normalization source corrections are complete; compilation, actual Save operations, rendering, multiplayer and parity remain unverified.",
+  "extract_formatting": "Curated assembly/decompiler text trims trailing whitespace and blank EOF lines only; query pseudocode digests retain the original provider-normalized result. Native range bytes are unchanged."
+}

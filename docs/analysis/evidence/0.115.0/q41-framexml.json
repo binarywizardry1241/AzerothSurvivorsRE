@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.115.0",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
+  },
+  "gap_ids": [
+    41,
+    105
+  ],
+  "lead_ids": [
+    "Q41-B02",
+    "Q41-I01"
+  ],
+  "generator": {
+    "path": "scripts/check-q41-framexml-0.115.0.py",
+    "sha256": "f27a8aefe533e750e95aec750372f6276ebc9b4aa42a253022b913ea87b91526"
+  },
+  "canonical_evidence": [
+    {
+      "path": "docs/analysis/evidence/0.115.0/raid-targets/manifest.json",
+      "sha256": "9a02087b6cbe9c4906ce975a8e8230053b4744b7cbf8c59702c044ce4f71197e"
+    },
+    {
+      "path": "docs/analysis/evidence/0.115.0/raid-targets/native.asm",
+      "sha256": "1424dacd10c6089975185cc92a10932d6f13c44295d7005f5c0a1e71236e2442"
+    },
+    {
+      "path": "docs/analysis/evidence/0.108.0/hud-framexml/world-state-patch.lua",
+      "sha256": "3b5ff88881d8b8c733440604d0f34ee29a6f7628e435a5c136d71cc02b2daa88"
+    },
+    {
+      "path": "docs/analysis/evidence/0.115.0/raid-targets/popup.lua",
+      "sha256": "aaa7e325170aa8d3e35274b691b51bf04dc9fd642bf183cedd0909b1e62639a9"
+    }
+  ],
+  "native_patch": {
+    "descriptor": {
+      "file_offset": "0x73352f0",
+      "bytes": "d43b3347010000001a2b000000000000",
+      "address": "0x1473366f0",
+      "pointer": "0x147333bd4",
+      "length": 11034
+    },
+    "bytes": 11034,
+    "sha256": "c71f24c567d36c3c7f7c557e71ef8e136c6d62ae34369f3fdae386f623061809",
+    "canonical_without_popup_bytes": 10204,
+    "restored_prefix_bytes": 989,
+    "restored_suffix_bytes": 1024,
+    "separate_popup_offset": 9728
+  },
+  "bootstrap": {
+    "role": "core-patch-bootstrap",
+    "start": "0x145996550",
+    "end_exclusive": "0x1459967dd",
+    "file_offset": "0x5995950",
+    "sha256": "58169971e1855db9c07974569e605ac8a847df043ab5e1c7f80e9ff60a61954e"
+  },
+  "source_files": [
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/client/framexml_hud.rs",
+      "sha256": "587f300b6abd425703d51409b7699a2e8db8f2f71836f146ad577ec9785ffbec"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/client.rs",
+      "sha256": "09a4f4ff1eed057a8e66f65f7946caa3da4faef7db1a4064f1577bbd46117260"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/client/raid_targets.rs",
+      "sha256": "9df005f8fa330111ae4343260c11ba876ba07d1f8f7c2e4104936a6d49bdebe3"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs",
+      "sha256": "20943a79bdef384c5ada65a37a700b0d3f525ad9300f6de6fb9a536bd6381a08"
+    },
+    {
+      "path": "crates/benilla-app/src/ui_script/addons.rs",
+      "sha256": "eb8b773979dc5e97bb17c6ff0c7f8ef96ee90354e3e8191c175dc1dd1d6c8a24"
+    },
+    {
+      "path": "crates/benilla-app/src/ui_script/manifest.rs",
+      "sha256": "212e464618ed2a7e058775600d9b76b72a653d1acf5978433671601bf98b50b6"
+    }
+  ],
+  "source_inspection": {
+    "whole immutable Lua source appended without substring filtering": true,
+    "HUD append precedes generated API and separate popup appends": true,
+    "popup still has one dedicated source owner": true,
+    "direct and nested core reads append all matching fragments": true,
+    "locale changes update stats postlude rather than replaying core wrappers": true
+  },
+  "interpreted_lua": {
+    "harness": {
+      "path": "scripts/check-framexml-hud.lua",
+      "sha256": "3e0b53c650969dbc97a4c8099af1ee98b9289f068dbd9ae2b492a45702e206d6"
+    },
+    "cases": 242,
+    "vm_generations": 2
+  },
+  "limits": [
+    "Native bootstrap/code and descriptor reuse current hash-bound Ghidra evidence; no new native query is required for these exact bytes.",
+    "Lua executes with explicit widgets, stock-function, event and tooltip seams; source inspection does not execute Rust or the real core loader.",
+    "No compilation, application launch, real input/rendering, game/network execution or original/rebuilt parity comparison."
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "target": "AzerothSurvivors/AzerothSurvivors-0.105.0.exe",
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "ranges": [
+    {
+      "role": "picker-update",
+      "virtual_address": "0x14008e860",
+      "end_exclusive": "0x14008f07e",
+      "file_offset": "0x8dc60",
+      "byte_count": 2078,
+      "sha256": "187cf9abdb5d1c60a5c4bb0834ee745369b78885f461d2cb714c2d5c34da0944",
+      "assembly": "picker-update.asm",
+      "rea_evidence_id": "ev_7f98a97428a4b2ebbb32ff780941a42c0bf47f18cd86bb818c2b5060d833e7fb",
+      "provider": "ghidra",
+      "pseudocode": "picker-update.c"
+    },
+    {
+      "role": "picker-query",
+      "virtual_address": "0x140399720",
+      "end_exclusive": "0x140399a5a",
+      "file_offset": "0x398b20",
+      "byte_count": 826,
+      "sha256": "614a7f209654d3cbae02f93e312c5f41e40f6103a91c7a54e403c69efef5ebe3",
+      "assembly": "picker-query.asm"
+    },
+    {
+      "role": "terminal-action-binding",
+      "virtual_address": "0x140286380",
+      "end_exclusive": "0x140286948",
+      "file_offset": "0x285780",
+      "byte_count": 1480,
+      "sha256": "cc42b46eccea1f73614b28a8650cc975b9384fcbaa54e99c5cbea7bbbf18a3de",
+      "assembly": "terminal-action-binding.asm"
+    },
+    {
+      "role": "terminal-action-query",
+      "virtual_address": "0x140397ce0",
+      "end_exclusive": "0x140398008",
+      "file_offset": "0x3970e0",
+      "byte_count": 808,
+      "sha256": "bb6f9a92f2e112df75dcfaf09c834ed9385f47572e1e7b9d6a5bb75a56857faf",
+      "assembly": "terminal-action-query.asm"
+    }
+  ],
+  "contracts": {
+    "query_fields": [
+      [
+        "Interaction",
+        "0x140295cf0"
+      ],
+      [
+        "picker::Hover44",
+        "0x1402b80e0"
+      ],
+      [
+        "BorderColor80",
+        "0x1402967d0"
+      ],
+      [
+        "optional UiTransform32",
+        "0x140294c10"
+      ]
+    ],
+    "changed_filter": "Interaction getter repeated at0x140399790",
+    "interaction_none": 2,
+    "resting_color_offset": 0,
+    "active_color_offset": 20,
+    "lift_offset": 40,
+    "paint": "All four BorderColor sides receive resting Color for None, active Color for other Interaction tags; optional UiTransform translation is Px(0),Px(-lift) while active and Px(0),Px(0) otherwise.",
+    "terminal_constructor": "../button-contracts.json",
+    "terminal_bound_negative": "The terminal EndAction constructor contains neither picker::Hover nor Bevy Button. The revalidated generic picker updater therefore cannot affect this constructor bundle. The terminal input binding carries no border/gradient/shadow component in its query.",
+    "terminal_input_binding": {
+      "vtable_address": "0x145dc0a30",
+      "init_slot": "0x145dc0aa8 ->0x140286380",
+      "run_slot": "0x145dc0a70 ->0x140286680",
+      "query_init_call": "0x14028640b ->0x140397ce0",
+      "handler_call": "0x14028685c ->0x140275bc0",
+      "query_getters": [
+        "0x140295cf0 Interaction",
+        "0x1402a6930 one-byte action candidate",
+        "0x1402a2340 32-byte component unresolved",
+        "0x140295cf0 Changed Interaction"
+      ]
+    }
+  },
+  "limits": [
+    "This does not prove the absence of every indirect/global painter or component hook.",
+    "Full-PE E8 candidate scan identified43 direct Interaction-getter callers and only3 with direct BorderColor getter calls; this is a discovery aid, not complete semantic callgraph coverage.",
+    "No active terminal color, gradient interpolation or hover shadow was recovered or invented.",
+    "Raw Ghidra slice omits external data/callees and uses generic compiler types; original PE instructions corroborate query/body.",
+    "No compilation, game execution or original/rebuilt runtime/visual comparison."
+  ]
+}

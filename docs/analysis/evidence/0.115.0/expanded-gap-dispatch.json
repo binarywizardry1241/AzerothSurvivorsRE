@@ -1,0 +1,1296 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.115.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+    "size_bytes": 142111232
+  },
+  "gap_ids": [
+    41
+  ],
+  "lead_ids": [
+    "Q41-U01",
+    "Q41-U03",
+    "Q41-B01",
+    "Q41-M01",
+    "Q41-F01"
+  ],
+  "generator": {
+    "path": "scripts/recover-expanded-gap-dispatch-0.115.0.py",
+    "sha256": "1c4b129f917b8c7b4d7672f5b0a49d067f8c1c3bf2950c1cb5afeeee98fbde41"
+  },
+  "inputs": [
+    {
+      "path": "docs/analysis/evidence/0.115.0/expanded-code-ownership.json",
+      "sha256": "4e469d3cb4f88900478b11f969dd86034130a5f306fe0c1514188a9079ad99e5"
+    },
+    {
+      "path": "runtime/q41-expanded-ownership-0.115.0/missing-range-boundaries.tsv.gz",
+      "sha256": "fcaf29e91048e2fbb011833384d0a5aa8ec5bf01f6701d65bc17267d3e6463a9"
+    },
+    {
+      "path": "scripts/classify-native-ownership.py",
+      "sha256": "17e55ad17f776f62445cc162af1fd12f68d361f7a8435429e3ab906bb8bc7381"
+    },
+    {
+      "path": "scripts/coverage_common.py",
+      "sha256": "8e076cd7c55c918ff626e5e4c7df2e2efb0a8861ed3f39844b53ccd3d4c391ce"
+    },
+    {
+      "path": "scripts/derived_gzip.py",
+      "sha256": "27f82ab71c755614d19f72257d09100a721534dc45a2aa017e6062cc2429cdd5"
+    },
+    {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+    },
+    {
+      "path": "scripts/native_scalar_aliases.py",
+      "sha256": "d262801367fbfd316920a73f051f744edc1cd5126913a591288c93c08abba335"
+    },
+    {
+      "path": "scripts/recover-native-jump-tables.py",
+      "sha256": "e334caee6931e56e9aa4b81a40fbec0a1137223c30acd946fe3538bdf6074a46"
+    }
+  ],
+  "artifact": {
+    "path": "runtime/q41-expanded-ownership-0.115.0/AS-computed-gap-context.jsonl.gz",
+    "sha256": "fb88e18a5e4451e501d8df7d08c7a5fada4dae6eeb5695a80e0a80ebf8c04539",
+    "rows": 68
+  },
+  "counts": {
+    "selected_boundaries": 68,
+    "architectural_traps": 8,
+    "register_jumps": 60,
+    "base_candidate_bases": {
+      "bounded_straight_line_encoded_value": 53,
+      "nearest_lexical_RIP_LEA_requires_incoming_state": 7
+    },
+    "finite_scalar_read_windows": 18,
+    "existing_bounded_recovery_reasons": {
+      "bounded-table-has-non-executable-target": 10,
+      "relative-table-without-proven-unsigned-bound": 14,
+      "not-relative-add": 14,
+      "recovered_bounded_guard": 17,
+      "table-base-not-static": 5
+    }
+  },
+  "site_classifications": [
+    {
+      "site": "0x14007e1bb",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x145ee50c0",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x14007e1ad",
+          "bytes": "488d0d0c6fe605",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x5e66f0c]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": {
+        "minimum": 0,
+        "maximum": 255,
+        "producer": {
+          "site": "0x14007e1a9",
+          "bytes": "400fb6c6",
+          "mnemonic": "movzx",
+          "operands": "eax, sil"
+        },
+        "kind": "zero-extension",
+        "valid_native_enum_values_established": false
+      }
+    },
+    {
+      "site": "0x1400871db",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x145ee50d8",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x1400871cd",
+          "bytes": "488d0d04dfe505",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x5e5df04]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": {
+        "minimum": 0,
+        "maximum": 255,
+        "producer": {
+          "site": "0x1400871c9",
+          "bytes": "400fb6c7",
+          "mnemonic": "movzx",
+          "operands": "eax, dil"
+        },
+        "kind": "zero-extension",
+        "valid_native_enum_values_established": false
+      }
+    },
+    {
+      "site": "0x1400a34d7",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x145eeec90",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x1400a34c9",
+          "bytes": "488d0dc0b7e405",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x5e4b7c0]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x1400a38b0",
+      "classification": "architectural_UD2_trap_not_indirect_dispatch",
+      "base_candidate": null,
+      "selector_candidate": null
+    },
+    {
+      "site": "0x1400a38dd",
+      "classification": "architectural_UD2_trap_not_indirect_dispatch",
+      "base_candidate": null,
+      "selector_candidate": null
+    },
+    {
+      "site": "0x1400a4137",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x145eeeca0",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x1400a4129",
+          "bytes": "488d0d70abe405",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x5e4ab70]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x1400a4430",
+      "classification": "architectural_UD2_trap_not_indirect_dispatch",
+      "base_candidate": null,
+      "selector_candidate": null
+    },
+    {
+      "site": "0x1400ab763",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x145eeece0",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x1400ab734",
+          "bytes": "4c8d3da535e405",
+          "mnemonic": "lea",
+          "operands": "r15, [rip + 0x5e435a5]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x1400ad504",
+      "classification": "architectural_UD2_trap_not_indirect_dispatch",
+      "base_candidate": null,
+      "selector_candidate": null
+    },
+    {
+      "site": "0x1400b0e45",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x145eeed14",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x1400b0e37",
+          "bytes": "488d15d6dee305",
+          "mnemonic": "lea",
+          "operands": "rdx, [rip + 0x5e3ded6]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x1400b1b87",
+      "classification": "architectural_UD2_trap_not_indirect_dispatch",
+      "base_candidate": null,
+      "selector_candidate": null
+    },
+    {
+      "site": "0x14010c265",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x145ef3538",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x14010c257",
+          "bytes": "488d15da72de05",
+          "mnemonic": "lea",
+          "operands": "rdx, [rip + 0x5de72da]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": {
+        "minimum": 0,
+        "maximum": 255,
+        "producer": {
+          "site": "0x14010c254",
+          "bytes": "0fb608",
+          "mnemonic": "movzx",
+          "operands": "ecx, byte ptr [rax]"
+        },
+        "kind": "zero-extension",
+        "valid_native_enum_values_established": false
+      }
+    },
+    {
+      "site": "0x14010cc6e",
+      "classification": "architectural_UD2_trap_not_indirect_dispatch",
+      "base_candidate": null,
+      "selector_candidate": null
+    },
+    {
+      "site": "0x140113990",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x145ef3584",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x140113982",
+          "bytes": "488d0dfbfbdd05",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x5ddfbfb]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x140113bf0",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x145ef3594",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x140113be2",
+          "bytes": "488d0dabf9dd05",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x5ddf9ab]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x140167764",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x145f042f4",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x14016774f",
+          "bytes": "488d059ecbd905",
+          "mnemonic": "lea",
+          "operands": "rax, [rip + 0x5d9cb9e]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": {
+        "minimum": 0,
+        "maximum": 255,
+        "producer": {
+          "site": "0x14016774b",
+          "bytes": "410fb6ce",
+          "mnemonic": "movzx",
+          "operands": "ecx, r14b"
+        },
+        "kind": "zero-extension",
+        "valid_native_enum_values_established": false
+      }
+    },
+    {
+      "site": "0x1402553a6",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x145f174e0",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x140255398",
+          "bytes": "488d154121cc05",
+          "mnemonic": "lea",
+          "operands": "rdx, [rip + 0x5cc2141]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x1402b1263",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x145f23718",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x1402b1255",
+          "bytes": "488d15bc24c705",
+          "mnemonic": "lea",
+          "operands": "rdx, [rip + 0x5c724bc]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": {
+        "minimum": 0,
+        "maximum": 255,
+        "producer": {
+          "site": "0x1402b1252",
+          "bytes": "0fb608",
+          "mnemonic": "movzx",
+          "operands": "ecx, byte ptr [rax]"
+        },
+        "kind": "zero-extension",
+        "valid_native_enum_values_established": false
+      }
+    },
+    {
+      "site": "0x140301ad7",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x145f29978",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x140301ac2",
+          "bytes": "488d05af7ec205",
+          "mnemonic": "lea",
+          "operands": "rax, [rip + 0x5c27eaf]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x140303c12",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x145f299d0",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x140303c04",
+          "bytes": "488d0dc55dc205",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x5c25dc5]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": {
+        "minimum": 0,
+        "maximum": 255,
+        "producer": {
+          "site": "0x140303bee",
+          "bytes": "0fb64044",
+          "mnemonic": "movzx",
+          "operands": "eax, byte ptr [rax + 0x44]"
+        },
+        "kind": "zero-extension",
+        "valid_native_enum_values_established": false
+      }
+    },
+    {
+      "site": "0x140306e02",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x145f29a70",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x140306df4",
+          "bytes": "488d0d752cc205",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x5c22c75]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": {
+        "minimum": 0,
+        "maximum": 255,
+        "producer": {
+          "site": "0x140306df1",
+          "bytes": "0fb602",
+          "mnemonic": "movzx",
+          "operands": "eax, byte ptr [rdx]"
+        },
+        "kind": "zero-extension",
+        "valid_native_enum_values_established": false
+      }
+    },
+    {
+      "site": "0x1458413f9",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x14700bedc",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x1458413eb",
+          "bytes": "488d0deaaa7c01",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x17caaea]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": {
+        "minimum": 0,
+        "maximum": 255,
+        "producer": {
+          "site": "0x1458413e9",
+          "bytes": "89c0",
+          "mnemonic": "mov",
+          "operands": "eax, eax"
+        },
+        "kind": "propagated-scalar-domain",
+        "valid_native_enum_values_established": false
+      }
+    },
+    {
+      "site": "0x14584297a",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x14700bef0",
+        "basis": "nearest_lexical_RIP_LEA_requires_incoming_state",
+        "nearest_definition": {
+          "site": "0x1458427b7",
+          "bytes": "4c8d3d32977c01",
+          "mnemonic": "lea",
+          "operands": "r15, [rip + 0x17c9732]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x145854245",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x14702c08c",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x145854237",
+          "bytes": "488d154e7e7d01",
+          "mnemonic": "lea",
+          "operands": "rdx, [rip + 0x17d7e4e]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": {
+        "minimum": 0,
+        "maximum": 255,
+        "producer": {
+          "site": "0x145854234",
+          "bytes": "0fb6c2",
+          "mnemonic": "movzx",
+          "operands": "eax, dl"
+        },
+        "kind": "zero-extension",
+        "valid_native_enum_values_established": false
+      }
+    },
+    {
+      "site": "0x1458747b7",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x14702e5a4",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x1458747a9",
+          "bytes": "488d0df49d7b01",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x17b9df4]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x1458758a2",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x14702e764",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x145875894",
+          "bytes": "488d0dc98e7b01",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x17b8ec9]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x145875941",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x14702e8dc",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x145875933",
+          "bytes": "488d0da28f7b01",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x17b8fa2]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x145875af8",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x14702ea90",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x145875aea",
+          "bytes": "488d0d9f8f7b01",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x17b8f9f]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x145875c27",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x14702ec24",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x145875c19",
+          "bytes": "488d0d04907b01",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x17b9004]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x145875c50",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x14702e914",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x145875c42",
+          "bytes": "488d0dcb8c7b01",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x17b8ccb]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x145875c7c",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x14702eda0",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x145875c6e",
+          "bytes": "488d0d2b917b01",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x17b912b]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x145875f5d",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x14702edf8",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x145875f4f",
+          "bytes": "488d0da28e7b01",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x17b8ea2]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x145875f9f",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x14702f104",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x145875f91",
+          "bytes": "488d0d6c917b01",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x17b916c]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x145875fdc",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x14702edd0",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x145875fce",
+          "bytes": "488d0dfb8d7b01",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x17b8dfb]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x145876008",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x14702f280",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x145875ffa",
+          "bytes": "488d0d7f927b01",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x17b927f]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x1458762af",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x14702f3f8",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x1458762a1",
+          "bytes": "488d0d50917b01",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x17b9150]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x145876349",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x14702f294",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x14587633b",
+          "bytes": "488d0d528f7b01",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x17b8f52]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x1458763a7",
+      "classification": "architectural_UD2_trap_not_indirect_dispatch",
+      "base_candidate": null,
+      "selector_candidate": null
+    },
+    {
+      "site": "0x1458784ab",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x14702fbb4",
+        "basis": "nearest_lexical_RIP_LEA_requires_incoming_state",
+        "nearest_definition": {
+          "site": "0x145878383",
+          "bytes": "4c8d2d2a787b01",
+          "mnemonic": "lea",
+          "operands": "r13, [rip + 0x17b782a]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x145884d16",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x14702fc38",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x145884d01",
+          "bytes": "488d0d30af7a01",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x17aaf30]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": {
+        "minimum": 0,
+        "maximum": 255,
+        "producer": {
+          "site": "0x145884cfe",
+          "bytes": "0fb6c0",
+          "mnemonic": "movzx",
+          "operands": "eax, al"
+        },
+        "kind": "zero-extension",
+        "valid_native_enum_values_established": false
+      }
+    },
+    {
+      "site": "0x1458acf26",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x147030830",
+        "basis": "nearest_lexical_RIP_LEA_requires_incoming_state",
+        "nearest_definition": {
+          "site": "0x1458aced8",
+          "bytes": "4c8d3d51397801",
+          "mnemonic": "lea",
+          "operands": "r15, [rip + 0x1783951]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": {
+        "minimum": 0,
+        "maximum": 3,
+        "producer": {
+          "site": "0x1458acf14",
+          "bytes": "4183e503",
+          "mnemonic": "and",
+          "operands": "r13d, 3"
+        },
+        "kind": "and-mask",
+        "valid_native_enum_values_established": false
+      }
+    },
+    {
+      "site": "0x1458ad180",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x147030850",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x1458ad16b",
+          "bytes": "488d05de367801",
+          "mnemonic": "lea",
+          "operands": "rax, [rip + 0x17836de]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": {
+        "minimum": 0,
+        "maximum": 3,
+        "producer": {
+          "site": "0x1458ad167",
+          "bytes": "4183e603",
+          "mnemonic": "and",
+          "operands": "r14d, 3"
+        },
+        "kind": "and-mask",
+        "valid_native_enum_values_established": false
+      }
+    },
+    {
+      "site": "0x1458ee65d",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x147332964",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x1458ee64f",
+          "bytes": "4c8d050e43a401",
+          "mnemonic": "lea",
+          "operands": "r8, [rip + 0x1a4430e]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": {
+        "minimum": 0,
+        "maximum": 255,
+        "producer": {
+          "site": "0x1458ee643",
+          "bytes": "410fb608",
+          "mnemonic": "movzx",
+          "operands": "ecx, byte ptr [r8]"
+        },
+        "kind": "zero-extension",
+        "valid_native_enum_values_established": false
+      }
+    },
+    {
+      "site": "0x1459232ed",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x147332b54",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x1459232df",
+          "bytes": "488d156ef8a001",
+          "mnemonic": "lea",
+          "operands": "rdx, [rip + 0x1a0f86e]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x14592449a",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x147332ba0",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x14592448c",
+          "bytes": "488d0d0de7a001",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x1a0e70d]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x145924b4b",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x147332bb0",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x145924b3d",
+          "bytes": "488d0d6ce0a001",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x1a0e06c]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x145924d8d",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x147332bc0",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x145924d7f",
+          "bytes": "488d0d3adea001",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x1a0de3a]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x1459262e8",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x147332b64",
+        "basis": "nearest_lexical_RIP_LEA_requires_incoming_state",
+        "nearest_definition": {
+          "site": "0x1459261a8",
+          "bytes": "488d1db5c9a001",
+          "mnemonic": "lea",
+          "operands": "rbx, [rip + 0x1a0c9b5]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x145926914",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x147332b74",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x1459268ff",
+          "bytes": "488d0d6ec2a001",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x1a0c26e]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x145931af4",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x147332c6c",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x145931ad8",
+          "bytes": "4c8d058d11a001",
+          "mnemonic": "lea",
+          "operands": "r8, [rip + 0x1a0118d]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x145934d14",
+      "classification": "architectural_UD2_trap_not_indirect_dispatch",
+      "base_candidate": null,
+      "selector_candidate": null
+    },
+    {
+      "site": "0x1459439b4",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x147332e9c",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x1459439a6",
+          "bytes": "4c8d05eff49e01",
+          "mnemonic": "lea",
+          "operands": "r8, [rip + 0x19ef4ef]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": {
+        "minimum": 0,
+        "maximum": 255,
+        "producer": {
+          "site": "0x1459439a4",
+          "bytes": "89d2",
+          "mnemonic": "mov",
+          "operands": "edx, edx"
+        },
+        "kind": "propagated-scalar-domain",
+        "valid_native_enum_values_established": false
+      }
+    },
+    {
+      "site": "0x145950d62",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x147332f9c",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x145950d52",
+          "bytes": "488d1543229e01",
+          "mnemonic": "lea",
+          "operands": "rdx, [rip + 0x19e2243]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": {
+        "minimum": 0,
+        "maximum": 255,
+        "producer": {
+          "site": "0x145950d4f",
+          "bytes": "4489f9",
+          "mnemonic": "mov",
+          "operands": "ecx, r15d"
+        },
+        "kind": "propagated-scalar-domain",
+        "valid_native_enum_values_established": false
+      }
+    },
+    {
+      "site": "0x145956f58",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x147332fc8",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x145956f4a",
+          "bytes": "488d0d77c09d01",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x19dc077]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": {
+        "minimum": 0,
+        "maximum": 255,
+        "producer": {
+          "site": "0x145956f47",
+          "bytes": "0fb6c0",
+          "mnemonic": "movzx",
+          "operands": "eax, al"
+        },
+        "kind": "zero-extension",
+        "valid_native_enum_values_established": false
+      }
+    },
+    {
+      "site": "0x14595e21d",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x147332fd8",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x14595e20f",
+          "bytes": "488d0dc24d9d01",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x19d4dc2]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x1459600d5",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x147332ff4",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x1459600c7",
+          "bytes": "488d0d262f9d01",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x19d2f26]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x145970c58",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x147333018",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x145970c4a",
+          "bytes": "488d15c7239c01",
+          "mnemonic": "lea",
+          "operands": "rdx, [rip + 0x19c23c7]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": {
+        "minimum": 0,
+        "maximum": 255,
+        "producer": {
+          "site": "0x145970c45",
+          "bytes": "410fb64039",
+          "mnemonic": "movzx",
+          "operands": "eax, byte ptr [r8 + 0x39]"
+        },
+        "kind": "zero-extension",
+        "valid_native_enum_values_established": false
+      }
+    },
+    {
+      "site": "0x1459793ef",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x147333160",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x1459793da",
+          "bytes": "488d057f9d9b01",
+          "mnemonic": "lea",
+          "operands": "rax, [rip + 0x19b9d7f]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x14597c785",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x147333174",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x14597c76f",
+          "bytes": "488d0dfe699b01",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x19b69fe]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x14597e7f4",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x1473331c4",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x14597e7df",
+          "bytes": "488d05de499b01",
+          "mnemonic": "lea",
+          "operands": "rax, [rip + 0x19b49de]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x1459df713",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x14733bf48",
+        "basis": "nearest_lexical_RIP_LEA_requires_incoming_state",
+        "nearest_definition": {
+          "site": "0x1459df6c5",
+          "bytes": "4c8d2d7cc89501",
+          "mnemonic": "lea",
+          "operands": "r13, [rip + 0x195c87c]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x1459df953",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x14733bf7c",
+        "basis": "nearest_lexical_RIP_LEA_requires_incoming_state",
+        "nearest_definition": {
+          "site": "0x1459df905",
+          "bytes": "4c8d2d70c69501",
+          "mnemonic": "lea",
+          "operands": "r13, [rip + 0x195c670]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x1459dfb93",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x14733bfb0",
+        "basis": "nearest_lexical_RIP_LEA_requires_incoming_state",
+        "nearest_definition": {
+          "site": "0x1459dfb45",
+          "bytes": "4c8d2d64c49501",
+          "mnemonic": "lea",
+          "operands": "r13, [rip + 0x195c464]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x1459e066f",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x14733bfe4",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x1459e0661",
+          "bytes": "488d0d7cb99501",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x195b97c]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": {
+        "minimum": 0,
+        "maximum": 255,
+        "producer": {
+          "site": "0x1459e065f",
+          "bytes": "89c0",
+          "mnemonic": "mov",
+          "operands": "eax, eax"
+        },
+        "kind": "propagated-scalar-domain",
+        "valid_native_enum_values_established": false
+      }
+    },
+    {
+      "site": "0x1459e13b8",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x14733c014",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x1459e13a5",
+          "bytes": "488d0d68ac9501",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x195ac68]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x1459e15ac",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x14733bff8",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x1459e159e",
+          "bytes": "488d0d53aa9501",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x195aa53]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x1459e179e",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x14733c014",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x1459e1788",
+          "bytes": "488d0d85a89501",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x195a885]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    },
+    {
+      "site": "0x1459e705f",
+      "classification": "AS_context_signed_relative_expression_incoming_state_or_valid_domain_open",
+      "base_candidate": {
+        "address": "0x14733c084",
+        "basis": "bounded_straight_line_encoded_value",
+        "nearest_definition": {
+          "site": "0x1459e7051",
+          "bytes": "488d0d2c509501",
+          "mnemonic": "lea",
+          "operands": "rcx, [rip + 0x195502c]"
+        },
+        "incoming_paths_proven": false
+      },
+      "selector_candidate": null
+    }
+  ],
+  "incoming_state_complete": false,
+  "source_semantics_complete": false,
+  "parity_verified": false,
+  "limits": [
+    "Every selected site is present; Ghidra COMPUTED_JUMP UD2 observations are kept apart from actual indirect jumps.",
+    "A nearest lexical RIP-LEA or finite machine scalar domain is a candidate, not incoming dominance, a native valid enum domain or table length.",
+    "No AS source defect follows from absent Ghidra bytes. Existing repaired source is not reopened for proof-only target registration.",
+    "No native queries, compilation, game/native execution or original/rebuilt comparison."
+  ]
+}

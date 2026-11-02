@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.120.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c",
+    "size_bytes": 145484288
+  },
+  "gap_ids": [
+    41,
+    64,
+    65,
+    201
+  ],
+  "bounded_contract_system_ids": [
+    "custom-game-server-party"
+  ],
+  "bounded_contract_owner_scopes": {
+    "custom-game-server-party": "Only item/GameObject/Creature EngineCommand entry prefix admission and live recipient response path; no whole-handler/module completeness."
+  },
+  "query": {
+    "procedure": "0x145b01eb0",
+    "provider": {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "version": "12.1.4"
+    },
+    "evidence_id": "ev_36d5d4f05f8280bac7805ea9943ccbd40f0780f4b8f09d5dcffac13f937a8bcb",
+    "analysis_profile_digest": "f8a07edc5474ac7458a558b70cd0522435f673de76fc7d395598caa6f2eb57ac",
+    "normalized_sha256": "f073faeae789ff50f8ff6a2aaa4f58873fde7ef845d9c6f74db39e817e6ad939",
+    "plan": {
+      "path": "runtime/0.120.2/creature-query-recovery/plan.json",
+      "sha256": "213934660b849d11a0abf60d2633417a65e4968fb56bccaaba30bf4211f2a0b3"
+    },
+    "journal": {
+      "path": "runtime/0.120.2/creature-query-recovery/query/journal.json",
+      "sha256": "2d426b571b2377a7cba1e5e314dfdf0c08354e7d92eb858994d481aab45b325d"
+    },
+    "result": {
+      "path": "runtime/0.120.2/creature-query-recovery/query/results/437445ebf203d8565601846060578b1978e93bbad049df5b0ea1ebddad9180fb.json",
+      "sha256": "b70f563e01ccd2f13832d671753aade88e385497a63f94fdb7d2e670bcb80b6d"
+    }
+  },
+  "native_owner": {
+    "virtual_address": "0x145b01eb0",
+    "end_exclusive": "0x145b04a8a",
+    "file_offset": "0x5b012b0",
+    "byte_count": 11226,
+    "sha256": "d72b12528b42424e518ddb5dd06beb5fe1e05aaf3d7b9afed7d541e58ac67075"
+  },
+  "static_check": {
+    "path": "docs/analysis/evidence/0.120.2/template-query-input/static-check.json",
+    "sha256": "b17d6d2391d21e4660d15a6676f332bd7e57c4139a78ce9219d7e085deaf6344"
+  },
+  "source_connection": {
+    "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+    "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5",
+    "state": "connected",
+    "contract": "All three template query arms use zero-filled first-four-byte entry reader then existing per-client locale/catalog/event-encode/recipient-send."
+  },
+  "readers": {
+    "0x56": {
+      "stop": "0x145b02908",
+      "output_register": "RDI"
+    },
+    "0x5e": {
+      "stop": "0x145b02ac8",
+      "output_register": "R14"
+    },
+    "0x60": {
+      "stop": "0x145b02b69",
+      "output_register": "R14"
+    }
+  },
+  "source_static_repair_complete": true,
+  "application_compiled": false,
+  "runtime_validation": "not_run",
+  "parity": "unverified",
+  "limits": [
+    "Original opcode dispatch and bounded prefix readers only; no catalog or network execution.",
+    "Source guards do not execute or compile Rust. Authored Rust regression is unrun.",
+    "No client/server/game execution or original/rebuilt parity comparison."
+  ]
+}

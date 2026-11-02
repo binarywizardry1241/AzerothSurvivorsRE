@@ -1,0 +1,166 @@
+{
+  "date": "2026-10-16",
+  "target_sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+  "method": "Exact static REA/Ghidra scopes plus original PE strings and Win64 instructions.",
+  "rea_dossiers": [
+    {
+      "function": "0x140eaf640",
+      "evidence_id": "ev_304832b8c431ad7af197c3c69c485272fa6a36c6a0913e147bf0144e33b08ef5",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "References cover the complete Ghidra function-body AddressSet and exact entry. Dossier incoming edges omit sources owned by that function; procedure_references also retains those internal edges.",
+        "The dossier combines Ghidra FunctionManager, Listing, ReferenceManager, BasicBlockModel, and decompiler observations; provider-specific pseudocode and assembly are not cross-provider text invariants.",
+        "Resolved reference metadata identifies computed, indirect, external, call, jump, and data edges; unresolved targetless flows remain unknown, and function classifications distinguish thunks and externals.",
+        "Synthetic Ghidra entry-point references without actionable memory sources are omitted.",
+        "The Java bridge serializes one function request per Program and lets each decompilation run until it completes or the caller cancels.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+        "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+        "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+      ]
+    },
+    {
+      "function": "0x1408d0c20",
+      "evidence_id": "ev_f3211c036680fbb32f7fffc8dd5fcd05e287d0f993ddefcf1bf06688d13d960a",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "References cover the complete Ghidra function-body AddressSet and exact entry. Dossier incoming edges omit sources owned by that function; procedure_references also retains those internal edges.",
+        "The dossier combines Ghidra FunctionManager, Listing, ReferenceManager, BasicBlockModel, and decompiler observations; provider-specific pseudocode and assembly are not cross-provider text invariants.",
+        "Resolved reference metadata identifies computed, indirect, external, call, jump, and data edges; unresolved targetless flows remain unknown, and function classifications distinguish thunks and externals.",
+        "Synthetic Ghidra entry-point references without actionable memory sources are omitted.",
+        "The Java bridge serializes one function request per Program and lets each decompilation run until it completes or the caller cancels.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+        "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+        "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+      ]
+    },
+    {
+      "function": "0x140c937d0",
+      "evidence_id": "ev_d27b61f12421f97fea9842480d67374331186733eb585b3183b3c6adb71613dd",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "References cover the complete Ghidra function-body AddressSet and exact entry. Dossier incoming edges omit sources owned by that function; procedure_references also retains those internal edges.",
+        "The dossier combines Ghidra FunctionManager, Listing, ReferenceManager, BasicBlockModel, and decompiler observations; provider-specific pseudocode and assembly are not cross-provider text invariants.",
+        "Resolved reference metadata identifies computed, indirect, external, call, jump, and data edges; unresolved targetless flows remain unknown, and function classifications distinguish thunks and externals.",
+        "Synthetic Ghidra entry-point references without actionable memory sources are omitted.",
+        "The Java bridge serializes one function request per Program and lets each decompilation run until it completes or the caller cancels.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+        "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+        "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+      ]
+    },
+    {
+      "function": "0x140c8f030",
+      "evidence_id": "ev_370e84561156ff0f484718032763ee08ef65dfd561149f3013570d00af1891a0",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "References cover the complete Ghidra function-body AddressSet and exact entry. Dossier incoming edges omit sources owned by that function; procedure_references also retains those internal edges.",
+        "The dossier combines Ghidra FunctionManager, Listing, ReferenceManager, BasicBlockModel, and decompiler observations; provider-specific pseudocode and assembly are not cross-provider text invariants.",
+        "Resolved reference metadata identifies computed, indirect, external, call, jump, and data edges; unresolved targetless flows remain unknown, and function classifications distinguish thunks and externals.",
+        "Synthetic Ghidra entry-point references without actionable memory sources are omitted.",
+        "The Java bridge serializes one function request per Program and lets each decompilation run until it completes or the caller cancels.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+        "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+        "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+      ]
+    },
+    {
+      "function": "0x140c90460",
+      "evidence_id": "ev_ce651787ea946bc3798065d76e49754cf1096a282c4d3ce5995f38966680f543",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "References cover the complete Ghidra function-body AddressSet and exact entry. Dossier incoming edges omit sources owned by that function; procedure_references also retains those internal edges.",
+        "The dossier combines Ghidra FunctionManager, Listing, ReferenceManager, BasicBlockModel, and decompiler observations; provider-specific pseudocode and assembly are not cross-provider text invariants.",
+        "Resolved reference metadata identifies computed, indirect, external, call, jump, and data edges; unresolved targetless flows remain unknown, and function classifications distinguish thunks and externals.",
+        "Synthetic Ghidra entry-point references without actionable memory sources are omitted.",
+        "The Java bridge serializes one function request per Program and lets each decompilation run until it completes or the caller cancels.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+        "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+        "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+      ]
+    }
+  ],
+  "deserialize_entry": {
+    "reader": "140eaf640 calls1408d0c20 at140eaf748 with LocalConfig ptr145a4a878,len11 and field array145a4a888,count1.",
+    "field": {
+      "name": "cvars",
+      "address": "0x145a4a883",
+      "length": 5
+    },
+    "typed_parse": "1408d0c20 parses TOML through14097e710, then passes the typed struct descriptor to140c937d0 at1408d0ee2. Only success tag2 returns the24-byte CVar map; every other result takes the whole-document error path.",
+    "reader_result": "140eaf74e tests typed success; success maps to StoredConfig::Table tag1. Parse/type errors become Bad tag2 with the malformed/defaults message. Missing/config-path-absent is tag0."
+  },
+  "struct_visitor": {
+    "owner": "140c8f030..140c8f810",
+    "field_match": "140c8f176..140c8f19e compares exact5-byte key cvars; field names are case sensitive.",
+    "unknown": "140c8f224..140c8f249 calls140c8fd20 to skip unknown root fields.",
+    "value": "140c8f32d calls the typed map decoder140c90460; non-success at140c8f333 propagates the error instead of returning a partial LocalConfig.",
+    "absent": "140c8f503..140c8f542 returns the default empty map when no cvars field was consumed.",
+    "duplicates": "The already-consumed-field branch140c8f254..140c8f25b reaches140c8f774's duplicate-field error."
+  },
+  "parser_dependency": {
+    "literal": "toml-0.8.23",
+    "file_offset": "0x5b5c235",
+    "source_lock": "Cargo.lock also resolves toml0.8.23; source uses typed serde Config, not an untyped partial fold."
+  },
+  "string_map_evidence": "options-config-string-map-native.json independently closes per-entry String-only typing, whole-map failure and the whole-field DateTime adapter.",
+  "implementation": {
+    "module": "crates/azeroth-survivors-re/src/options_config.rs",
+    "owner": "crates/azeroth-survivors-re/src/options.rs",
+    "scope": "Whole typed parse; warning/default fallback without boot write or permanent hold; recognized menu CVar numeric validation with original raw map retained.",
+    "validation": "Build25 PASS14.34s locked/offline; six config fixtures PASS within105 overlapping focused menu harness cases. No app launch or installed-file access.",
+    "limits": [
+      "The complete native registry, session environment ownership and callbacks are not integrated.",
+      "No original or rebuilt UI was launched for malformed-config comparison."
+    ]
+  },
+  "limitations": [
+    "Generic raw-image Ghidra signatures are not Win64 parameter proof; original instructions supply register mapping.",
+    "Generic TOML dispatchers reference external jump tables omitted from slices. Type-specific visitor and original PE instructions are read separately.",
+    "The separate startup-load dossier binds warning, raw-map preservation and numeric parsing; this script does not execute target instructions."
+  ]
+}

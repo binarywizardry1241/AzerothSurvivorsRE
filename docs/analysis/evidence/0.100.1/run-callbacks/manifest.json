@@ -1,0 +1,662 @@
+{
+  "date": "2026-10-18",
+  "target": "AzerothSurvivors/AzerothSurvivors-0.100.1.exe",
+  "target_sha256": "17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b",
+  "target_executed": false,
+  "search_rvas": [
+    "0x5300000",
+    "0x5800000"
+  ],
+  "method": "Unique exact 32-byte historical fragment votes locate target PE unwind functions; unchanged target slices imported through project-local REA/Ghidra.",
+  "functions": [
+    {
+      "role": "player-damage",
+      "historical_address": "0x14548f420",
+      "location_votes": 32,
+      "location_proofs": [
+        {
+          "old_address": "0x14548f420",
+          "address": "0x1454a0910",
+          "hex": "5541574156415541545657534881ec88010000488dac2480000000440f2995f0"
+        },
+        {
+          "old_address": "0x14548f440",
+          "address": "0x1454a0930",
+          "hex": "00000066440f298de0000000440f2985d00000000f29bdc00000000f29b5b000"
+        },
+        {
+          "old_address": "0x14548f4c0",
+          "address": "0x1454a09b0",
+          "hex": "488d14524989c0660f1f8400000000004885d274224d89c24983c018f3410f10"
+        },
+        {
+          "old_address": "0x14548f7a0",
+          "address": "0x1454a0c90",
+          "hex": "4839ca743e4881c1600100004d39a8880000004d8d806001000075e44883bc08"
+        },
+        {
+          "old_address": "0x14548f860",
+          "address": "0x1454a0d50",
+          "hex": "5dc0c1e30449c7c7ffffffff48898da0000000666666662e0f1f840000000000"
+        },
+        {
+          "old_address": "0x14548f8c0",
+          "address": "0x1454a0db0",
+          "hex": "0174bd0fb6c085c0742beb044c8b7dc0488b8590000000488b8da00000004983"
+        },
+        {
+          "old_address": "0x14548f900",
+          "address": "0x1454a0df0",
+          "hex": "4c896d484c897d50488b85900000004889455848c74538000000004c8b65c84c"
+        },
+        {
+          "old_address": "0x14548f920",
+          "address": "0x1454a0e10",
+          "hex": "8b7dd04c8b6dd8eb144c89753848897d404889454848c7455000000000488d4d"
+        }
+      ],
+      "source": {
+        "address": "0x1454a0910",
+        "end_exclusive": "0x1454a1e1e",
+        "file_offset": "0x549fd10",
+        "byte_count": 5390,
+        "sha256": "7cb79cde0584f75e956f55f10968cb3a0932404897bd08fe5d2dd324201c0c14"
+      },
+      "rea_evidence": {
+        "evidence_id": "ev_5c5548a8713328ddd2482bd9b5a8b809dfd17cd725a0d629299f89876896c599",
+        "subject": {
+          "name": "player-damage.bin",
+          "digest": {
+            "sha256": "7cb79cde0584f75e956f55f10968cb3a0932404897bd08fe5d2dd324201c0c14"
+          },
+          "local_path": "runtime/run-callbacks-0.100.1/player-damage.bin",
+          "format": "raw-binary",
+          "architecture": "x86_64"
+        },
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "analysis_profile": {
+          "provider": {
+            "id": "ghidra",
+            "name": "Ghidra",
+            "version": "12.1.4"
+          },
+          "parameters": {
+            "target_kind": "executable",
+            "target_format": "raw-binary",
+            "architecture": "x86_64",
+            "available_architectures": [
+              "x86_64"
+            ],
+            "import_mode": "ephemeral-source-immutable",
+            "annotation_policy": "atomic-function-entry-metadata-v1",
+            "load_image_observations": "source-mappings-entry-context-v2",
+            "function_body_evidence": "complete-inclusive-ranges-v1",
+            "function_references": "complete-body-and-entry-reference-manager-v2",
+            "call_relationship_coverage": "function-body-call-coverage-v5",
+            "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+            "string_inventory_evidence": "defined-data-coverage-v1",
+            "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+            "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+            "instruction_flow_evidence": "decoded-return-pcode-v1",
+            "instruction_references": "exact-address-incoming-v1",
+            "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+            "no_return_repair": "returning-imports-decoded-return-v2",
+            "process_launch": "inspected-jvm-launch-support-v1",
+            "load_image_evidence": "independent-raw-mapping-context-v4",
+            "jump_table_evidence": "typed-case-default-blocks-v1",
+            "decompiler_jump_loads": true,
+            "loader": "BinaryLoader",
+            "language_id": "x86:LE:64:default",
+            "compiler_spec_id": "gcc",
+            "language_selection": "caller-supplied-v1",
+            "entry_point": "0x1454a0910",
+            "entry_seed": "external-entry-and-function-before-analysis-v1",
+            "analyzer_preset": "ghidra-default"
+          },
+          "digest": "982958dea7c36d4b201ed4cd9b0dd8502e906f55d0f1b60839a4fc5fe6b04fe7"
+        },
+        "predicate_type": "rea.analysis",
+        "operation": "procedure_pseudo_code",
+        "parameters": {
+          "procedure": "0x1454a0910"
+        },
+        "raw_result": {
+          "value": "\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nvoid entry(undefined8 param_1,float param_2)\n\n{\n  int *piVar1;\n  undefined8 *puVar2;\n  undefined4 *puVar3;\n  long *plVar4;\n  byte bVar5;\n  undefined1 uVar6;\n  ushort uVar7;\n  code *pcVar8;\n  float fVar9;\n  ulong uVar10;\n  char cVar11;\n  int iVar12;\n  undefined4 uVar13;\n  double *pdVar14;\n  char *pcVar15;\n  long in_RCX;\n  float *pfVar16;\n  long lVar17;\n  float *pfVar18;\n  ulong uVar19;\n  long lVar20;\n  int *piVar21;\n  undefined4 uVar22;\n  undefined8 uVar23;\n  int *piVar24;\n  float *in_R8;\n  int *piVar25;\n  int *piVar26;\n  ulong uVar27;\n  char in_R9B;\n  ulong uVar28;\n  ulong uVar29;\n  int iVar30;\n  long lVar31;\n  float *pfVar32;\n  ulong uVar33;\n  bool bVar34;\n  float fVar35;\n  float fVar36;\n  float fVar37;\n  float fVar38;\n  undefined4 in_XMM6_Da;\n  undefined4 in_XMM7_Da;\n  float fVar39;\n  double dVar40;\n  float local_164;\n  undefined8 local_160;\n  undefined8 local_150;\n  undefined8 local_148;\n  undefined4 local_140;\n  float *local_138;\n  undefined4 uStack_130;\n  undefined4 uStack_12c;\n  undefined4 uStack_128;\n  undefined4 uStack_124;\n  float fStack_120;\n  undefined4 uStack_11c;\n  undefined2 local_118;\n  undefined1 local_116;\n  float *local_110;\n  undefined8 uStack_108;\n  undefined8 uStack_100;\n  float fStack_f8;\n  undefined2 uStack_f4;\n  undefined2 uStack_f2;\n  undefined2 local_f0;\n  undefined1 uStack_ee;\n  undefined1 uStack_ed;\n  undefined4 uStack_ec;\n  undefined4 uStack_e8;\n  undefined4 uStack_e4;\n  undefined4 uStack_e0;\n  undefined4 local_dc;\n  undefined4 uStack_d8;\n  undefined4 uStack_d4;\n  undefined4 uStack_d0;\n  undefined4 local_cc;\n  undefined4 uStack_c8;\n  undefined8 uStack_c4;\n  float *local_b8;\n  char local_a9;\n  float *local_a8;\n  undefined8 local_a0;\n  undefined4 local_98;\n  undefined4 local_88;\n  \n  piVar21 = (int *)&local_148;\n  local_a0 = 0xfffffffffffffffe;\n  if (*(char *)(in_RCX + 0x9b9) != '\\x01') {\n    return;\n  }\n  if (*(char *)(in_RCX + 0x9b2) != '\\0') {\n    return;\n  }\n  fVar35 = *(float *)(in_RCX + 0x934);\n  piVar26 = *(int **)(in_RCX + 0x310);\n  uVar33 = *(ulong *)(in_RCX + 0x318);\n  lVar17 = uVar33 * 0x18;\n  piVar24 = piVar26;\n  while (piVar25 = piVar24, lVar17 != 0) {\n    lVar17 = lVar17 + -0x18;\n    piVar24 = piVar25 + 6;\n    if ((fVar35 < (float)piVar25[4]) && (*piVar25 == 0xb)) {\n      return;\n    }\n  }\n  fVar39 = (_DAT_145907490 - *(float *)(in_RCX + 0x490)) * param_2;\n  fVar38 = *(float *)(in_RCX + 0x41c);\n  local_164 = fVar35;\n  local_98 = in_XMM6_Da;\n  local_88 = in_XMM7_Da;\n  if (0.0 < fVar38) {\n    fVar36 = fVar39;\n    if (fVar38 <= fVar39) {\n      fVar36 = fVar38;\n    }\n    fVar36 = (float)(-(uint)NAN(fVar36) & (uint)fVar39 | ~-(uint)NAN(fVar36) & (uint)fVar36);\n    *(float *)(in_RCX + 0x41c) = fVar38 - fVar36;\n    iVar12 = *(int *)(in_RCX + 0x3f0);\n    bVar34 = fVar36 < *(float *)(in_RCX + 0x3f4);\n    iVar30 = 0;\n    if (bVar34) {\n      iVar30 = iVar12;\n    }\n    fVar37 = 0.0;\n    if (bVar34 || iVar12 == 0) {\n      fVar37 = *(float *)(in_RCX + 0x3f4) - fVar36;\n    }\n    fVar39 = fVar39 - fVar36;\n    *(int *)(in_RCX + 0x3f0) = iVar30;\n    *(float *)(in_RCX + 0x3f4) = fVar37;\n    if (fVar38 - fVar36 <= 0.0) {\n      *(undefined8 *)(in_RCX + 0x3f0) = 0;\n      if (uVar33 != 0) {\n        uVar28 = 0;\n        piVar24 = piVar26;\n        do {\n          if (*piVar24 == 7) {\n            uVar29 = uVar28 + 1;\n            if (uVar29 < uVar33) {\n              uVar27 = uVar28 - uVar33;\n              uVar19 = uVar28;\n              uVar10 = uVar27;\n              if ((uVar27 & 1) == 0) {\n                if (piVar24[6] != 7) {\n                  *(undefined8 *)(piVar24 + 4) = *(undefined8 *)(piVar24 + 10);\n                  *(undefined8 *)piVar24 = *(undefined8 *)(piVar24 + 6);\n                  *(undefined8 *)(piVar24 + 2) = *(undefined8 *)(piVar24 + 8);\n                  uVar19 = uVar28 + 1;\n                }\n                uVar29 = uVar28 + 2;\n                uVar10 = uVar19;\n              }\n              uVar28 = uVar10;\n              if (uVar27 != 0xfffffffffffffffe) {\n                piVar24 = piVar26 + uVar29 * 6;\n                lVar17 = uVar33 - uVar29;\n                uVar28 = uVar19;\n                do {\n                  if (*piVar24 == 7) {\n                    iVar12 = piVar24[6];\n                  }\n                  else {\n                    *(undefined8 *)(piVar26 + uVar28 * 6 + 4) = *(undefined8 *)(piVar24 + 4);\n                    uVar23 = *(undefined8 *)(piVar24 + 2);\n                    *(undefined8 *)(piVar26 + uVar28 * 6) = *(undefined8 *)piVar24;\n                    *(undefined8 *)(piVar26 + uVar28 * 6 + 2) = uVar23;\n                    uVar28 = uVar28 + 1;\n                    iVar12 = piVar24[6];\n                  }\n                  if (iVar12 != 7) {\n                    *(undefined8 *)(piVar26 + uVar28 * 6 + 4) = *(undefined8 *)(piVar24 + 10);\n                    uVar23 = *(undefined8 *)(piVar24 + 8);\n                    *(undefined8 *)(piVar26 + uVar28 * 6) = *(undefined8 *)(piVar24 + 6);\n                    *(undefined8 *)(piVar26 + uVar28 * 6 + 2) = uVar23;\n                    uVar28 = uVar28 + 1;\n                  }\n                  piVar24 = piVar24 + 0xc;\n                  lVar17 = lVar17 + -2;\n                } while (lVar17 != 0);\n              }\n            }\n            goto LAB_1454a1e00;\n          }\n          uVar28 = uVar28 + 1;\n          piVar24 = piVar24 + 6;\n        } while (uVar28 != uVar33);\n      }\n    }\n    else {\n      if (bVar34 || iVar12 == 0) {\n        *(float *)(in_RCX + 0x110) = *(float *)(in_RCX + 0x110) + fVar36;\n        fVar36 = *(float *)(in_RCX + 0x114);\n        fVar37 = fVar36;\n        if (fVar36 <= fVar38) {\n          fVar37 = fVar38;\n        }\n        *(uint *)(in_RCX + 0x114) =\n             -(uint)NAN(fVar37) & (uint)fVar36 | ~-(uint)NAN(fVar37) & (uint)fVar37;\n        goto LAB_1454a0c29;\n      }\n      if (uVar33 != 0) {\n        uVar28 = 0;\n        piVar24 = piVar26;\nLAB_1454a0ac0:\n        if (piVar24[3] != iVar12) goto code_r0x0001454a0aca;\n        uVar29 = uVar28 + 1;\n        if (uVar29 < uVar33) {\n          uVar27 = uVar28 - uVar33;\n          uVar10 = uVar27;\n          uVar19 = uVar28;\n          if ((uVar27 & 1) == 0) {\n            if (piVar24[9] != iVar12) {\n              *(undefined8 *)(piVar24 + 4) = *(undefined8 *)(piVar24 + 10);\n              *(undefined8 *)piVar24 = *(undefined8 *)(piVar24 + 6);\n              *(undefined8 *)(piVar24 + 2) = *(undefined8 *)(piVar24 + 8);\n              uVar19 = uVar28 + 1;\n            }\n            uVar29 = uVar28 + 2;\n            uVar10 = uVar19;\n          }\n          uVar28 = uVar10;\n          if (uVar27 != 0xfffffffffffffffe) {\n            piVar24 = piVar26 + uVar29 * 6;\n            lVar17 = uVar33 - uVar29;\n            uVar28 = uVar19;\n            do {\n              if (piVar24[3] == iVar12) {\n                iVar30 = piVar24[9];\n              }\n              else {\n                *(undefined8 *)(piVar26 + uVar28 * 6 + 4) = *(undefined8 *)(piVar24 + 4);\n                uVar23 = *(undefined8 *)(piVar24 + 2);\n                *(undefined8 *)(piVar26 + uVar28 * 6) = *(undefined8 *)piVar24;\n                *(undefined8 *)(piVar26 + uVar28 * 6 + 2) = uVar23;\n                uVar28 = uVar28 + 1;\n                iVar30 = piVar24[9];\n              }\n              if (iVar30 != iVar12) {\n                *(undefined8 *)(piVar26 + uVar28 * 6 + 4) = *(undefined8 *)(piVar24 + 10);\n                uVar23 = *(undefined8 *)(piVar24 + 8);\n                *(undefined8 *)(piVar26 + uVar28 * 6) = *(undefined8 *)(piVar24 + 6);\n                *(undefined8 *)(piVar26 + uVar28 * 6 + 2) = uVar23;\n                uVar28 = uVar28 + 1;\n              }\n              piVar24 = piVar24 + 0xc;\n              lVar17 = lVar17 + -2;\n            } while (lVar17 != 0);\n          }\n        }\nLAB_1454a1e00:\n        *(ulong *)(in_RCX + 0x318) = uVar28;\n      }\n    }\nLAB_1454a0b19:\n    func_0x00014549e650();\n    fVar36 = *(float *)(in_RCX + 0x110) + fVar36;\n    fVar37 = *(float *)(in_RCX + 0x114);\n    fVar9 = fVar37;\n    if (fVar37 <= fVar38) {\n      fVar9 = fVar38;\n    }\n    fVar37 = (float)(-(uint)NAN(fVar9) & (uint)fVar37 | ~-(uint)NAN(fVar9) & (uint)fVar9);\n    *(undefined8 *)(in_RCX + 0x110) = 0;\n    fVar38 = fVar36;\n    if (fVar37 <= fVar36) {\n      fVar38 = fVar37;\n    }\n    fVar38 = (float)(-(uint)NAN(fVar38) & (uint)fVar36 | ~-(uint)NAN(fVar38) & (uint)fVar38);\n    if ((0.0 < fVar38) && (*(long *)(in_RCX + 0x718) != 0)) {\n      uStack_100._4_4_ = *(undefined4 *)(in_RCX + 0x408);\n      uStack_108._4_4_ = (float)*(undefined8 *)(in_RCX + 0x400);\n      uStack_100._0_4_ = (undefined4)((ulong)*(undefined8 *)(in_RCX + 0x400) >> 0x20);\n      uStack_108._0_4_ = 0;\n      local_110 = (float *)0x0;\n      uStack_f4 = 0x600;\n      uStack_f2 = 0;\n      local_f0 = 0;\n      uStack_ee = 0;\n      fStack_f8 = fVar38;\n      func_0x0001454cba10();\n    }\n  }\nLAB_1454a0c29:\n  *(float *)(in_RCX + 0x418) = *(float *)(in_RCX + 0x418) - fVar39;\n  *(float *)(in_RCX + 0x4d4) = fVar35;\n  dVar40 = (double)fVar39;\n  *(double *)(in_RCX + 0x630) = *(double *)(in_RCX + 0x630) + dVar40;\n  piVar24 = *(int **)(in_RCX + 0x4e0);\n  pfVar32 = (float *)0x1469f69b4;\n  lVar17 = 0;\n  piVar26 = piVar24;\n  do {\n    lVar20 = lVar17;\n    if (*(long *)(in_RCX + 0x4e8) * 0x160 - lVar20 == 0) {\n      piVar24 = (int *)0x4;\n      goto LAB_1454a0d0c;\n    }\n    piVar25 = piVar26 + 0x22;\n    piVar26 = piVar26 + 0x58;\n    lVar17 = lVar20 + 0x160;\n  } while (*(float **)piVar25 != in_R8);\n  if (*(long *)((long)piVar24 + lVar20 + 0x18) == -1) {\n    bVar5 = *(byte *)((long)piVar24 + lVar20 + 0x158);\n    pfVar18 = (float *)0x1469f69cc;\n    if (in_R9B != '\\0') {\n      pfVar18 = (float *)0x1469f69d5;\n    }\n    pfVar32 = (float *)0x1469f629c;\n    if (bVar5 == 0) {\n      pfVar32 = pfVar18;\n    }\n    piVar24 = (int *)((ulong)(bVar5 ^ 1) * 4 + 5);\n  }\n  else {\n    pfVar32 = (float *)0x1469f69b8;\n    if (in_R9B != '\\0') {\n      pfVar32 = (float *)0x1469f69c2;\n    }\n    piVar24 = (int *)0xa;\n  }\nLAB_1454a0d0c:\n  pfVar18 = (float *)(in_RCX + 0x638);\n  pfVar16 = *(float **)(in_RCX + 0x638);\n  local_a9 = in_R9B;\n  if (pfVar16 != (float *)0x0) {\n    lVar17 = *(long *)(in_RCX + 0x640);\n    local_b8 = pfVar18;\n    do {\n      uVar7 = *(ushort *)((long)pfVar16 + 0x112);\n      lVar20 = (ulong)uVar7 << 4;\n      uVar33 = 0xffffffffffffffff;\n      local_a8 = pfVar16;\n      do {\n        uVar28 = (ulong)uVar7;\n        if (lVar20 == 0) goto LAB_1454a0dc0;\n        piVar26 = *(int **)(pfVar16 + 2);\n        lVar31 = (long)piVar24 - (long)piVar26;\n        if (piVar24 < piVar26) {\n          piVar26 = piVar24;\n        }\n        pfVar16 = pfVar16 + 4;\n        iVar12 = func_0x0001457731e7();\n        if (iVar12 != 0) {\n          lVar31 = (long)iVar12;\n        }\n        uVar33 = uVar33 + 1;\n        lVar20 = lVar20 + -0x10;\n      } while ((char)((0 < lVar31) - (lVar31 < 0)) == '\\x01');\n      uVar28 = uVar33;\n      if (0 < lVar31 == lVar31 < 0) {\n        uStack_108._0_4_ = SUB84(local_a8,0);\n        uStack_108._4_4_ = (float)((ulong)local_a8 >> 0x20);\n        uStack_100._0_4_ = (undefined4)lVar17;\n        uStack_100._4_4_ = (undefined4)((ulong)lVar17 >> 0x20);\n        fStack_f8 = (float)uVar33;\n        uStack_f4 = (undefined2)(uVar33 >> 0x20);\n        uStack_f2 = (undefined2)(uVar33 >> 0x30);\n        local_f0 = SUB82(local_b8,0);\n        uStack_ee = (undefined1)((ulong)local_b8 >> 0x10);\n        uStack_ed = (undefined1)((ulong)local_b8 >> 0x18);\n        uStack_ec = (undefined4)((ulong)local_b8 >> 0x20);\n        local_110 = (float *)0x0;\n        goto LAB_1454a0e0b;\n      }\nLAB_1454a0dc0:\n      bVar34 = lVar17 == 0;\n      lVar17 = lVar17 + -1;\n      if (bVar34) goto LAB_1454a1ad0;\n      pfVar16 = *(float **)(local_a8 + uVar28 * 2 + 0x46);\n    } while( true );\n  }\n  uStack_108._0_4_ = SUB84(piVar24,0);\n  uStack_108._4_4_ = 0.0;\n  fStack_f8 = 0.0;\n  uStack_f4 = 0;\n  uStack_f2 = 0;\n  local_110 = pfVar32;\n  goto LAB_1454a0e2d;\ncode_r0x0001454a0aca:\n  uVar28 = uVar28 + 1;\n  piVar24 = piVar24 + 6;\n  if (uVar28 == uVar33) goto LAB_1454a0b19;\n  goto LAB_1454a0ac0;\nLAB_1454a1ad0:\n  fStack_f8 = SUB84(local_a8,0);\n  uStack_f4 = (undefined2)((ulong)local_a8 >> 0x20);\n  uStack_f2 = (undefined2)((ulong)local_a8 >> 0x30);\n  local_f0 = 0;\n  uStack_ee = 0;\n  uStack_ed = 0;\n  uStack_ec = 0;\n  uStack_e8 = (undefined4)uVar28;\n  uStack_e4 = (undefined4)(uVar28 >> 0x20);\n  uStack_108._0_4_ = SUB84(piVar24,0);\n  uStack_108._4_4_ = (float)((ulong)piVar24 >> 0x20);\n  uStack_100._0_4_ = SUB84(local_b8,0);\n  uStack_100._4_4_ = (undefined4)((ulong)local_b8 >> 0x20);\n  local_110 = pfVar32;\nLAB_1454a0e0b:\n  pfVar18 = (float *)CONCAT44(uStack_100._4_4_,(undefined4)uStack_100);\nLAB_1454a0e2d:\n  uStack_100 = pfVar18;\n  pdVar14 = (double *)func_0x00014552a410();\n  *pdVar14 = dVar40 + *pdVar14;\n  uVar33 = *(ulong *)(in_RCX + 0x318);\n  if (uVar33 == 0) {\nLAB_1454a0f40:\n    if (((in_R8 != (float *)0x0) && (local_a9 != '\\0')) && (*(char *)(in_RCX + 0x9b9) == '\\x01')) {\nLAB_1454a0f60:\n      uVar33 = *(ulong *)(in_RCX + 0x6e8);\n      if (uVar33 != 0) {\n        lVar17 = *(long *)(in_RCX + 0x6e0);\n        fVar35 = _DAT_14591334c;\n        if (uVar33 == 1) {\n          uVar28 = 0;\nLAB_1454a0fda:\n          if (*(char *)(lVar17 + uVar28 * 8) == '\\x16') {\n            fVar35 = fVar35 + *(float *)(lVar17 + 4 + uVar28 * 8);\n          }\n        }\n        else {\n          uVar28 = 0;\n          do {\n            if (*(char *)(lVar17 + uVar28 * 8) == '\\x16') {\n              fVar35 = fVar35 + *(float *)(lVar17 + 4 + uVar28 * 8);\n              cVar11 = *(char *)(lVar17 + 8 + uVar28 * 8);\n            }\n            else {\n              cVar11 = *(char *)(lVar17 + 8 + uVar28 * 8);\n            }\n            if (cVar11 == '\\x16') {\n              fVar35 = fVar35 + *(float *)(lVar17 + 0xc + uVar28 * 8);\n            }\n            uVar28 = uVar28 + 2;\n          } while ((uVar33 & 0xfffffffffffffffe) != uVar28);\n          if ((uVar33 & 1) != 0) goto LAB_1454a0fda;\n        }\n        if ((0.0 < param_2) && (0.0 < fVar35)) {\n          uVar6 = *(undefined1 *)(in_RCX + 0x129);\n          *(undefined1 *)(in_RCX + 0x129) = 3;\n          func_0x0001454d4ff0();\n          *(undefined1 *)(in_RCX + 0x129) = uVar6;\n        }\n      }\n      uStack_100._4_4_ = *(undefined4 *)(in_RCX + 0x408);\n      uStack_108._4_4_ = (float)*(undefined8 *)(in_RCX + 0x400);\n      uStack_100._0_4_ = (undefined4)((ulong)*(undefined8 *)(in_RCX + 0x400) >> 0x20);\n      uStack_130 = 0;\n      uStack_12c = (undefined4)*(undefined8 *)(in_RCX + 0x400);\n      uStack_128 = (undefined4)((ulong)*(undefined8 *)(in_RCX + 0x400) >> 0x20);\n      uStack_124 = *(undefined4 *)(in_RCX + 0x408);\n      uStack_11c = 0x400;\n      local_118 = 0;\n      local_116 = 0;\n      local_138 = in_R8;\n      fStack_120 = fVar39;\n      func_0x0001454cba10();\n      uStack_108._0_4_ = 0;\n      uStack_f4 = 0x500;\n      uStack_f2 = 0;\n      local_f0 = 0;\n      uStack_ee = 0;\n      piVar26 = (int *)0x0;\n      local_110 = in_R8;\n      fStack_f8 = fVar39;\n      func_0x0001454cba10();\n    }\n  }\n  else {\n    piVar24 = *(int **)(in_RCX + 0x310);\n    fVar38 = _DAT_14591334c;\n    if (uVar33 == 1) {\n      piVar25 = (int *)0x0;\nLAB_1454a0ed5:\n      piVar26 = (int *)((long)piVar25 * 3);\n      if ((fVar35 < (float)piVar24[(long)piVar25 * 6 + 4]) &&\n         (piVar26 = piVar24 + (long)piVar25 * 6, *piVar26 == 0xc)) {\n        fVar38 = fVar38 + (float)piVar26[1];\n      }\n    }\n    else {\n      piVar25 = (int *)0x0;\n      piVar26 = piVar24;\n      do {\n        if ((fVar35 < (float)piVar26[4]) && (*piVar26 == 0xc)) {\n          fVar38 = fVar38 + (float)piVar26[1];\n        }\n        if ((fVar35 < (float)piVar26[10]) && (piVar26[6] == 0xc)) {\n          fVar38 = fVar38 + (float)piVar26[7];\n        }\n        piVar25 = (int *)((long)piVar25 + 2);\n        piVar26 = piVar26 + 0xc;\n      } while ((int *)(uVar33 & 0xfffffffffffffffe) != piVar25);\n      piVar26 = piVar25;\n      if ((uVar33 & 1) != 0) goto LAB_1454a0ed5;\n    }\n    if (fVar38 <= 0.0) goto LAB_1454a0f40;\n    piVar26 = (int *)CONCAT71((int7)((ulong)piVar26 >> 8),in_R8 == (float *)0x0);\n    if (local_a9 == '\\x01' && in_R8 != (float *)0x0) {\n      piVar25 = (int *)0x0;\n      do {\n        if ((int *)(uVar33 * 0x18) == piVar25) break;\n        piVar26 = piVar25 + 6;\n        piVar1 = (int *)((long)piVar24 + (long)piVar25);\n        piVar25 = piVar26;\n      } while (*piVar1 != 0xc);\n      func_0x0001454d4ff0();\n      if (*(char *)(in_RCX + 0x9b9) != '\\x01') goto LAB_1454a10c2;\n      goto LAB_1454a0f60;\n    }\n  }\nLAB_1454a10c2:\n  fVar35 = *(float *)(in_RCX + 0x418);\n  if (*(char *)(in_RCX + 0x9b4) != '\\0') {\n    if (fVar35 <= _DAT_145907490) {\n      fVar35 = _DAT_145907490;\n    }\n    *(float *)(in_RCX + 0x418) = fVar35;\n  }\n  fVar38 = 0.0;\n  if (fVar35 <= 0.0) {\n    if (((*(float **)(in_RCX + 0x390))[0x1a] == 1.54143e-44) && (*(float *)(in_RCX + 0x39c) <= 0.0))\n    {\n      uStack_108._0_4_ = *(undefined4 *)(in_RCX + 0x398);\n      fStack_f8 = *(float *)(in_RCX + 0x3a8);\n      local_dc = *(undefined4 *)(in_RCX + 0x3c4);\n      uStack_ec = (undefined4)*(undefined8 *)(in_RCX + 0x3b4);\n      uStack_e8 = (undefined4)((ulong)*(undefined8 *)(in_RCX + 0x3b4) >> 0x20);\n      uStack_e4 = (undefined4)*(undefined8 *)(in_RCX + 0x3bc);\n      uStack_e0 = (undefined4)((ulong)*(undefined8 *)(in_RCX + 0x3bc) >> 0x20);\n      uStack_d8 = *(undefined4 *)(in_RCX + 0x3c8);\n      uStack_d4 = *(undefined4 *)(in_RCX + 0x3cc);\n      uStack_d0 = *(undefined4 *)(in_RCX + 0x3d0);\n      uStack_c4 = *(undefined8 *)(in_RCX + 0x3dc);\n      _local_cc = CONCAT44((int)((ulong)*(undefined8 *)(in_RCX + 0x3d4) >> 0x20),\n                           *(undefined4 *)(in_RCX + 0x3d4));\n      uStack_100._0_4_ = (undefined4)*(undefined8 *)(in_RCX + 0x3a0);\n      uStack_100._4_4_ = (undefined4)((ulong)*(undefined8 *)(in_RCX + 0x3a0) >> 0x20);\n      uVar23 = *(undefined8 *)(in_RCX + 0x3ac);\n      uStack_f4 = (undefined2)uVar23;\n      uStack_f2 = (undefined2)((ulong)uVar23 >> 0x10);\n      local_f0 = (undefined2)((ulong)uVar23 >> 0x20);\n      uStack_ee = (undefined1)((ulong)uVar23 >> 0x30);\n      uStack_ed = (undefined1)((ulong)uVar23 >> 0x38);\n      *(undefined4 *)(in_RCX + 0x418) = 0x3f800000;\n      local_110 = *(float **)(in_RCX + 0x390);\n      uStack_108._4_4_ = *(float *)(in_RCX + 0x39c);\n      cVar11 = func_0x0001454f9bf0();\n      if (cVar11 != '\\0') {\n        fVar35 = *(float *)(*(long *)(in_RCX + 0x390) + 0x48) * _DAT_1459186f0 *\n                 *(float *)(in_RCX + 0x3a4) * *(float *)(in_RCX + 0x3cc) *\n                 *(float *)(in_RCX + 0x478);\n        if (fVar35 <= _DAT_1459095e0) {\n          fVar35 = _DAT_1459095e0;\n        }\n        *(float *)(in_RCX + 0x39c) = fVar35;\n        fVar35 = fVar35 * _DAT_145915918;\n        uVar22 = 0;\n        if (0.0 <= fVar35) {\n          uVar22 = (undefined4)(long)fVar35;\n        }\n        fVar39 = *(float *)(*(long *)(in_RCX + 0x390) + 0x40);\n        uVar13 = 0xffffffff;\n        if (fVar35 <= _DAT_14590752c) {\n          uVar13 = uVar22;\n        }\n        local_148 = CONCAT44(uVar13,fVar39);\n        func_0x00014545d760(in_RCX + 0x550);\n        lVar17 = *(long *)(in_RCX + 0x560);\n        piVar26 = piVar21;\n        if (lVar17 == *(long *)(in_RCX + 0x550)) {\n          func_0x000145774710();\n          piVar26 = piVar21;\n        }\n        lVar20 = *(long *)(in_RCX + 0x558);\n        puVar3 = (undefined4 *)(lVar20 + 0x10 + lVar17 * 0x20);\n        *puVar3 = uStack_128;\n        puVar3[1] = uStack_124;\n        puVar3[2] = fStack_120;\n        puVar3[3] = uStack_11c;\n        puVar2 = (undefined8 *)(lVar20 + lVar17 * 0x20);\n        *puVar2 = local_138;\n        puVar2[1] = CONCAT44(uStack_12c,uStack_130);\n        *(long *)(in_RCX + 0x560) = lVar17 + 1;\n        uVar23 = *(undefined8 *)(in_RCX + 1000);\n        func_0x000140002200();\n        pfVar32 = (float *)func_0x0001400021c0();\n        if (pfVar32 == (float *)0x0) {\n          func_0x00014590379b();\n                    /* WARNING: Does not return */\n          pcVar8 = (code *)invalidInstructionException();\n          (*pcVar8)();\n        }\n        *pfVar32 = fVar39;\n        *(undefined8 *)(pfVar32 + 1) = uVar23;\n        lVar17 = *(long *)(in_RCX + 0x560);\n        local_a8 = pfVar32;\n        if (lVar17 == *(long *)(in_RCX + 0x550)) {\n          func_0x000145774710();\n        }\n        lVar20 = *(long *)(in_RCX + 0x558);\n        lVar31 = lVar17 * 0x20;\n        *(undefined8 *)(lVar20 + lVar31) = 0x20;\n        *(float **)(lVar20 + 8 + lVar31) = local_a8;\n        *(undefined8 *)(lVar20 + 0x10 + lVar31) = 0xc;\n        *(undefined2 *)(lVar20 + 0x18 + lVar31) = 0x135;\n        *(long *)(in_RCX + 0x560) = lVar17 + 1;\n        goto LAB_1454a10f5;\n      }\n      *(float *)(in_RCX + 0x418) = fVar35;\n    }\n    fVar35 = *(float *)(in_RCX + 0x934);\n    lVar17 = *(long *)(in_RCX + 0x718);\n    if (lVar17 != 0) {\n      pcVar15 = *(char **)(in_RCX + 0x710);\n      if (*pcVar15 == '\\x13') {\nLAB_1454a1546:\n        if (*(float *)(in_RCX + 0x118) <= fVar35) {\n          fVar39 = *(float *)(pcVar15 + 0xc);\n          fVar36 = *(float *)(pcVar15 + 8);\n          *(float *)(in_RCX + 0x118) = *(float *)(pcVar15 + 4) + fVar35;\n          *(float *)(in_RCX + 0x418) = fVar36 * *(float *)(in_RCX + 0x470);\n          func_0x000145728850();\n          if (fVar39 <= 0.0) {\n            local_150 = *(undefined8 *)(in_RCX + 1000);\n            local_148 = CONCAT44(local_148._4_4_,2);\n            local_160 = (ulong)local_160._4_4_ << 0x20;\n            func_0x000145466ab0();\n            lVar17 = *(long *)(in_RCX + 0x560);\n            if (lVar17 == *(long *)(in_RCX + 0x550)) {\n              func_0x000145774710();\n            }\n            lVar20 = *(long *)(in_RCX + 0x558);\n            plVar4 = (long *)(lVar20 + 0x10 + lVar17 * 0x20);\n            *plVar4 = (long)uStack_100;\n            *(float *)(plVar4 + 1) = fStack_f8;\n            *(uint *)((long)plVar4 + 0xc) = CONCAT22(uStack_f2,uStack_f4);\n            puVar2 = (undefined8 *)(lVar20 + lVar17 * 0x20);\n            *puVar2 = local_110;\n            puVar2[1] = CONCAT44(uStack_108._4_4_,(undefined4)uStack_108);\n            *(long *)(in_RCX + 0x560) = lVar17 + 1;\n            func_0x000145457cb0(CONCAT44(uStack_12c,uStack_130),0x13,0x13,0x1469f6da0);\n            func_0x000145459d40();\n            lVar17 = *(long *)(in_RCX + 0x560);\n            if (lVar17 == *(long *)(in_RCX + 0x550)) {\n              func_0x000145774710();\n            }\n            lVar20 = *(long *)(in_RCX + 0x558);\n            plVar4 = (long *)(lVar20 + 0x10 + lVar17 * 0x20);\n            *plVar4 = (long)uStack_100;\n            *(float *)(plVar4 + 1) = fStack_f8;\n            *(uint *)((long)plVar4 + 0xc) = CONCAT22(uStack_f2,uStack_f4);\n            puVar2 = (undefined8 *)(lVar20 + lVar17 * 0x20);\n            *puVar2 = local_110;\n            puVar2[1] = CONCAT44(uStack_108._4_4_,(undefined4)uStack_108);\n            *(long *)(in_RCX + 0x560) = lVar17 + 1;\n            uStack_100._4_4_ = *(undefined4 *)(in_RCX + 0x408);\n            uStack_108._4_4_ = (float)*(undefined8 *)(in_RCX + 0x400);\n            uStack_100._0_4_ = (undefined4)((ulong)*(undefined8 *)(in_RCX + 0x400) >> 0x20);\n            uStack_108._0_4_ = 0;\n            uStack_f4 = 0x700;\n            local_110 = (float *)0x0;\n            fStack_f8 = 0.0;\n            uStack_f2 = 0;\n            local_f0 = 0;\n            uStack_ee = 0;\n            piVar26 = (int *)0x0;\n            func_0x0001454cba10();\n          }\n          else {\n            local_150 = *(undefined8 *)(in_RCX + 1000);\n            local_148 = CONCAT44(local_148._4_4_,2);\n            local_160 = (ulong)local_160._4_4_ << 0x20;\n            func_0x000145466ab0();\n            lVar17 = *(long *)(in_RCX + 0x560);\n            if (lVar17 == *(long *)(in_RCX + 0x550)) {\n              func_0x000145774710();\n            }\n            lVar20 = *(long *)(in_RCX + 0x558);\n            plVar4 = (long *)(lVar20 + 0x10 + lVar17 * 0x20);\n            *plVar4 = (long)uStack_100;\n            *(float *)(plVar4 + 1) = fStack_f8;\n            *(uint *)((long)plVar4 + 0xc) = CONCAT22(uStack_f2,uStack_f4);\n            puVar2 = (undefined8 *)(lVar20 + lVar17 * 0x20);\n            *puVar2 = local_110;\n            puVar2[1] = CONCAT44(uStack_108._4_4_,(undefined4)uStack_108);\n            *(long *)(in_RCX + 0x560) = lVar17 + 1;\n            lVar17 = *(long *)(in_RCX + 0x318);\n            if (lVar17 == *(long *)(in_RCX + 0x308)) {\n              func_0x00014577ffc0();\n            }\n            lVar20 = *(long *)(in_RCX + 0x310);\n            *(undefined4 *)(lVar20 + lVar17 * 0x18) = 0xb;\n            *(undefined4 *)(lVar20 + 0xc + lVar17 * 0x18) = 0x740;\n            *(float *)(lVar20 + 0x10 + lVar17 * 0x18) = fVar35 + fVar39;\n            *(undefined4 *)(lVar20 + 0x14 + lVar17 * 0x18) = 0;\n            *(long *)(in_RCX + 0x318) = lVar17 + 1;\n            func_0x00014549e650();\n            piVar26 = (int *)CONCAT44(uStack_124,uStack_128);\n            func_0x000145457cb0(CONCAT44(uStack_12c,uStack_130),0x10,0x10,0x1469f6db3);\n            func_0x000145459d40();\n            lVar17 = *(long *)(in_RCX + 0x560);\n            if (lVar17 == *(long *)(in_RCX + 0x550)) {\n              func_0x000145774710();\n            }\n            lVar20 = *(long *)(in_RCX + 0x558);\n            plVar4 = (long *)(lVar20 + 0x10 + lVar17 * 0x20);\n            *plVar4 = (long)uStack_100;\n            plVar4[1] = CONCAT26(uStack_f2,CONCAT24(uStack_f4,fStack_f8));\n            puVar2 = (undefined8 *)(lVar20 + lVar17 * 0x20);\n            *puVar2 = local_110;\n            puVar2[1] = CONCAT44(uStack_108._4_4_,(undefined4)uStack_108);\n            *(long *)(in_RCX + 0x560) = lVar17 + 1;\n          }\n          if (local_138 != (float *)0x0) {\n            piVar26 = (int *)0x1;\n            func_0x0001400021d0();\n          }\n          goto LAB_1454a10f5;\n        }\n      }\n      else if (lVar17 != 1) {\n        lVar17 = lVar17 * 0x40 + -0x40;\n        do {\n          pcVar15 = pcVar15 + 0x40;\n          if (*pcVar15 == '\\x13') goto LAB_1454a1546;\n          lVar17 = lVar17 + -0x40;\n        } while (lVar17 != 0);\n      }\n    }\n    if (*(int *)(in_RCX + 0x4c0) == 0) {\n      *(undefined4 *)(in_RCX + 0x418) = 0;\n      *(undefined1 *)(in_RCX + 0x9b9) = 4;\n      *(undefined4 *)(in_RCX + 0x878) = 1;\n      *(float *)(in_RCX + 0x87c) = fVar35;\n      func_0x0001454a44d0();\n      piVar26 = (int *)0x1469f6aa0;\n      func_0x0001454c86f0();\n      lVar17 = *(long *)(in_RCX + 0x578);\n      if (lVar17 == *(long *)(in_RCX + 0x568)) {\n        local_a8 = local_110;\n        local_b8 = (float *)CONCAT44(uStack_108._4_4_,(undefined4)uStack_108);\n        func_0x0001457745c0();\n      }\n      lVar20 = *(long *)(in_RCX + 0x570);\n      *(float **)(lVar20 + 0x10 + lVar17 * 0x18) = uStack_100;\n      puVar2 = (undefined8 *)(lVar20 + lVar17 * 0x18);\n      *puVar2 = local_110;\n      puVar2[1] = uStack_108;\n      *(long *)(in_RCX + 0x578) = lVar17 + 1;\n    }\n    else {\n      *(int *)(in_RCX + 0x4c0) = *(int *)(in_RCX + 0x4c0) + -1;\n      *(float *)(in_RCX + 0x418) = *(float *)(in_RCX + 0x470) * _DAT_145907498;\n      local_160 = *(long *)(in_RCX + 1000);\n      local_138 = (float *)CONCAT44(local_138._4_4_,2);\n      local_148 = local_148 & 0xffffffff00000000;\n      func_0x000145466ab0();\n      lVar17 = *(long *)(in_RCX + 0x560);\n      if (lVar17 == *(long *)(in_RCX + 0x550)) {\n        func_0x000145774710();\n      }\n      lVar20 = *(long *)(in_RCX + 0x558);\n      plVar4 = (long *)(lVar20 + 0x10 + lVar17 * 0x20);\n      *plVar4 = (long)uStack_100;\n      *(float *)(plVar4 + 1) = fStack_f8;\n      *(uint *)((long)plVar4 + 0xc) = CONCAT22(uStack_f2,uStack_f4);\n      puVar2 = (undefined8 *)(lVar20 + lVar17 * 0x20);\n      *puVar2 = local_110;\n      puVar2[1] = CONCAT44(uStack_108._4_4_,(undefined4)uStack_108);\n      *(long *)(in_RCX + 0x560) = lVar17 + 1;\n      func_0x000145728850();\n      local_a8 = (float *)CONCAT44(uStack_12c,uStack_130);\n      piVar26 = (int *)CONCAT44(uStack_124,uStack_128);\n      func_0x000145457cb0();\n      func_0x000145459d40();\n      lVar17 = *(long *)(in_RCX + 0x560);\n      if (lVar17 == *(long *)(in_RCX + 0x550)) {\n        func_0x000145774710();\n      }\n      lVar20 = *(long *)(in_RCX + 0x558);\n      plVar4 = (long *)(lVar20 + 0x10 + lVar17 * 0x20);\n      *plVar4 = (long)uStack_100;\n      *(float *)(plVar4 + 1) = fStack_f8;\n      *(uint *)((long)plVar4 + 0xc) = CONCAT22(uStack_f2,uStack_f4);\n      puVar2 = (undefined8 *)(lVar20 + lVar17 * 0x20);\n      *puVar2 = local_110;\n      puVar2[1] = CONCAT44(uStack_108._4_4_,(undefined4)uStack_108);\n      *(long *)(in_RCX + 0x560) = lVar17 + 1;\n      if (local_138 != (float *)0x0) {\n        piVar26 = (int *)0x1;\n        func_0x0001400021d0();\n      }\n      local_140 = *(undefined4 *)(in_RCX + 0x408);\n      local_148 = *(ulong *)(in_RCX + 0x400);\n      local_110 = *(float **)(in_RCX + 0x4e0);\n      uStack_108 = local_110 + *(long *)(in_RCX + 0x4e8) * 0x58;\n      uStack_100 = &local_164;\n      fStack_f8 = SUB84(piVar21,0);\n      uStack_f4 = (undefined2)((ulong)piVar21 >> 0x20);\n      uStack_f2 = (undefined2)((ulong)piVar21 >> 0x30);\n      func_0x0001455405b0();\n      local_b8 = local_138;\n      local_a8 = (float *)CONCAT44(uStack_12c,uStack_130);\n      lVar17 = CONCAT44(uStack_124,uStack_128) << 3;\n      lVar20 = 0;\n      while (lVar17 != lVar20) {\n        lVar20 = lVar20 + 8;\n        func_0x0001454d4ff0();\n      }\n      if (local_b8 != (float *)0x0) {\n        piVar26 = (int *)0x8;\n        func_0x0001400021d0();\n      }\n    }\n  }\nLAB_1454a10f5:\n  fVar35 = (float)func_0x00014577327d();\n  uVar22 = 0;\n  piVar21 = (int *)((long)fVar35 & 0xffffffff);\n  if (fVar35 < fVar38) {\n    piVar21 = (int *)0x0;\n  }\n  if (_DAT_14590752c < fVar35) {\n    piVar21 = (int *)0xffffffff;\n  }\n  fVar35 = _DAT_14590752c;\n  fVar39 = (float)func_0x00014577327d();\n  uVar13 = (int)(long)fVar39;\n  if (fVar39 < fVar38) {\n    uVar13 = uVar22;\n  }\n  if (fVar35 < fVar39) {\n    uVar13 = 0xffffffff;\n  }\n  plVar4 = (long *)(in_RCX + 0x8d8);\n  lVar17 = *(long *)(in_RCX + 0x8d8);\n  if (lVar17 != 0) {\n    lVar20 = *(long *)(in_RCX + 0x8e0);\n    do {\n      uVar33 = (ulong)((uint)*(ushort *)(lVar17 + 0x36) * 2);\n      piVar24 = (int *)0xffffffffffffffff;\n      do {\n        piVar26 = (int *)(ulong)*(ushort *)(lVar17 + 0x36);\n        if (uVar33 == 0) goto LAB_1454a11be;\n        uVar7 = *(ushort *)(lVar17 + 0x3a + (long)piVar24 * 2);\n        piVar26 = (int *)((long)piVar24 + 1);\n        uVar33 = uVar33 - 2;\n        piVar24 = piVar26;\n      } while ((char)((uVar7 < 0x16) - (0x16 < uVar7)) == '\\x01');\n      if (uVar7 < 0x16 == 0x16 < uVar7) {\n        *(int *)(lVar17 + 8 + (long)piVar26 * 4) = (int)piVar21;\n        lVar17 = *plVar4;\n        if (lVar17 != 0) goto LAB_1454a11e0;\n        goto LAB_1454a14a8;\n      }\nLAB_1454a11be:\n      bVar34 = lVar20 == 0;\n      lVar20 = lVar20 + -1;\n      if (bVar34) goto LAB_1454a1470;\n      lVar17 = *(long *)(lVar17 + 0x50 + (long)piVar26 * 8);\n    } while( true );\n  }\n  lVar17 = 0;\nLAB_1454a1470:\n  uStack_108._0_4_ = (undefined4)lVar17;\n  uStack_108._4_4_ = (float)((ulong)lVar17 >> 0x20);\n  uStack_100._0_4_ = 0;\n  uStack_100._4_4_ = 0;\n  fStack_f8 = SUB84(piVar26,0);\n  uStack_f4 = (undefined2)((ulong)piVar26 >> 0x20);\n  uStack_f2 = (undefined2)((ulong)piVar26 >> 0x30);\n  local_f0 = 0x16;\n  uStack_ee = 0;\n  uStack_ed = 0;\n  uStack_ec = 0;\n  local_110 = (float *)plVar4;\n  func_0x00014552a730();\n  lVar17 = *plVar4;\n  piVar26 = piVar21;\n  if (lVar17 == 0) {\nLAB_1454a14a8:\n    lVar17 = 0;\nLAB_1454a14aa:\n    uStack_108._0_4_ = (undefined4)lVar17;\n    uStack_108._4_4_ = (float)((ulong)lVar17 >> 0x20);\n    uStack_100._0_4_ = 0;\n    uStack_100._4_4_ = 0;\n    fStack_f8 = SUB84(piVar26,0);\n    uStack_f4 = (undefined2)((ulong)piVar26 >> 0x20);\n    uStack_f2 = (undefined2)((ulong)piVar26 >> 0x30);\n    local_f0 = 0x1c;\n    uStack_ee = 0;\n    uStack_ed = 0;\n    uStack_ec = 0;\n    local_110 = (float *)plVar4;\n    func_0x00014552a730();\n    return;\n  }\nLAB_1454a11e0:\n  lVar20 = *(long *)(in_RCX + 0x8e0);\n  do {\n    uVar33 = (ulong)((uint)*(ushort *)(lVar17 + 0x36) * 2);\n    piVar21 = (int *)0xffffffffffffffff;\n    do {\n      piVar26 = (int *)(ulong)*(ushort *)(lVar17 + 0x36);\n      if (uVar33 == 0) goto LAB_1454a122e;\n      uVar7 = *(ushort *)(lVar17 + 0x3a + (long)piVar21 * 2);\n      piVar26 = (int *)((long)piVar21 + 1);\n      uVar33 = uVar33 - 2;\n      piVar21 = piVar26;\n    } while ((char)((uVar7 < 0x1c) - (0x1c < uVar7)) == '\\x01');\n    if (uVar7 < 0x1c == 0x1c < uVar7) {\n      *(undefined4 *)(lVar17 + 8 + (long)piVar26 * 4) = uVar13;\n      return;\n    }\nLAB_1454a122e:\n    bVar34 = lVar20 == 0;\n    lVar20 = lVar20 + -1;\n    if (bVar34) goto LAB_1454a14aa;\n    lVar17 = *(long *)(lVar17 + 0x50 + (long)piVar26 * 8);\n  } while( true );\n}\n\n",
+          "limitations": []
+        },
+        "normalized_result": "\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nvoid entry(undefined8 param_1,float param_2)\n\n{\n  int *piVar1;\n  undefined8 *puVar2;\n  undefined4 *puVar3;\n  long *plVar4;\n  byte bVar5;\n  undefined1 uVar6;\n  ushort uVar7;\n  code *pcVar8;\n  float fVar9;\n  ulong uVar10;\n  char cVar11;\n  int iVar12;\n  undefined4 uVar13;\n  double *pdVar14;\n  char *pcVar15;\n  long in_RCX;\n  float *pfVar16;\n  long lVar17;\n  float *pfVar18;\n  ulong uVar19;\n  long lVar20;\n  int *piVar21;\n  undefined4 uVar22;\n  undefined8 uVar23;\n  int *piVar24;\n  float *in_R8;\n  int *piVar25;\n  int *piVar26;\n  ulong uVar27;\n  char in_R9B;\n  ulong uVar28;\n  ulong uVar29;\n  int iVar30;\n  long lVar31;\n  float *pfVar32;\n  ulong uVar33;\n  bool bVar34;\n  float fVar35;\n  float fVar36;\n  float fVar37;\n  float fVar38;\n  undefined4 in_XMM6_Da;\n  undefined4 in_XMM7_Da;\n  float fVar39;\n  double dVar40;\n  float local_164;\n  undefined8 local_160;\n  undefined8 local_150;\n  undefined8 local_148;\n  undefined4 local_140;\n  float *local_138;\n  undefined4 uStack_130;\n  undefined4 uStack_12c;\n  undefined4 uStack_128;\n  undefined4 uStack_124;\n  float fStack_120;\n  undefined4 uStack_11c;\n  undefined2 local_118;\n  undefined1 local_116;\n  float *local_110;\n  undefined8 uStack_108;\n  undefined8 uStack_100;\n  float fStack_f8;\n  undefined2 uStack_f4;\n  undefined2 uStack_f2;\n  undefined2 local_f0;\n  undefined1 uStack_ee;\n  undefined1 uStack_ed;\n  undefined4 uStack_ec;\n  undefined4 uStack_e8;\n  undefined4 uStack_e4;\n  undefined4 uStack_e0;\n  undefined4 local_dc;\n  undefined4 uStack_d8;\n  undefined4 uStack_d4;\n  undefined4 uStack_d0;\n  undefined4 local_cc;\n  undefined4 uStack_c8;\n  undefined8 uStack_c4;\n  float *local_b8;\n  char local_a9;\n  float *local_a8;\n  undefined8 local_a0;\n  undefined4 local_98;\n  undefined4 local_88;\n  \n  piVar21 = (int *)&local_148;\n  local_a0 = 0xfffffffffffffffe;\n  if (*(char *)(in_RCX + 0x9b9) != '\\x01') {\n    return;\n  }\n  if (*(char *)(in_RCX + 0x9b2) != '\\0') {\n    return;\n  }\n  fVar35 = *(float *)(in_RCX + 0x934);\n  piVar26 = *(int **)(in_RCX + 0x310);\n  uVar33 = *(ulong *)(in_RCX + 0x318);\n  lVar17 = uVar33 * 0x18;\n  piVar24 = piVar26;\n  while (piVar25 = piVar24, lVar17 != 0) {\n    lVar17 = lVar17 + -0x18;\n    piVar24 = piVar25 + 6;\n    if ((fVar35 < (float)piVar25[4]) && (*piVar25 == 0xb)) {\n      return;\n    }\n  }\n  fVar39 = (_DAT_145907490 - *(float *)(in_RCX + 0x490)) * param_2;\n  fVar38 = *(float *)(in_RCX + 0x41c);\n  local_164 = fVar35;\n  local_98 = in_XMM6_Da;\n  local_88 = in_XMM7_Da;\n  if (0.0 < fVar38) {\n    fVar36 = fVar39;\n    if (fVar38 <= fVar39) {\n      fVar36 = fVar38;\n    }\n    fVar36 = (float)(-(uint)NAN(fVar36) & (uint)fVar39 | ~-(uint)NAN(fVar36) & (uint)fVar36);\n    *(float *)(in_RCX + 0x41c) = fVar38 - fVar36;\n    iVar12 = *(int *)(in_RCX + 0x3f0);\n    bVar34 = fVar36 < *(float *)(in_RCX + 0x3f4);\n    iVar30 = 0;\n    if (bVar34) {\n      iVar30 = iVar12;\n    }\n    fVar37 = 0.0;\n    if (bVar34 || iVar12 == 0) {\n      fVar37 = *(float *)(in_RCX + 0x3f4) - fVar36;\n    }\n    fVar39 = fVar39 - fVar36;\n    *(int *)(in_RCX + 0x3f0) = iVar30;\n    *(float *)(in_RCX + 0x3f4) = fVar37;\n    if (fVar38 - fVar36 <= 0.0) {\n      *(undefined8 *)(in_RCX + 0x3f0) = 0;\n      if (uVar33 != 0) {\n        uVar28 = 0;\n        piVar24 = piVar26;\n        do {\n          if (*piVar24 == 7) {\n            uVar29 = uVar28 + 1;\n            if (uVar29 < uVar33) {\n              uVar27 = uVar28 - uVar33;\n              uVar19 = uVar28;\n              uVar10 = uVar27;\n              if ((uVar27 & 1) == 0) {\n                if (piVar24[6] != 7) {\n                  *(undefined8 *)(piVar24 + 4) = *(undefined8 *)(piVar24 + 10);\n                  *(undefined8 *)piVar24 = *(undefined8 *)(piVar24 + 6);\n                  *(undefined8 *)(piVar24 + 2) = *(undefined8 *)(piVar24 + 8);\n                  uVar19 = uVar28 + 1;\n                }\n                uVar29 = uVar28 + 2;\n                uVar10 = uVar19;\n              }\n              uVar28 = uVar10;\n              if (uVar27 != 0xfffffffffffffffe) {\n                piVar24 = piVar26 + uVar29 * 6;\n                lVar17 = uVar33 - uVar29;\n                uVar28 = uVar19;\n                do {\n                  if (*piVar24 == 7) {\n                    iVar12 = piVar24[6];\n                  }\n                  else {\n                    *(undefined8 *)(piVar26 + uVar28 * 6 + 4) = *(undefined8 *)(piVar24 + 4);\n                    uVar23 = *(undefined8 *)(piVar24 + 2);\n                    *(undefined8 *)(piVar26 + uVar28 * 6) = *(undefined8 *)piVar24;\n                    *(undefined8 *)(piVar26 + uVar28 * 6 + 2) = uVar23;\n                    uVar28 = uVar28 + 1;\n                    iVar12 = piVar24[6];\n                  }\n                  if (iVar12 != 7) {\n                    *(undefined8 *)(piVar26 + uVar28 * 6 + 4) = *(undefined8 *)(piVar24 + 10);\n                    uVar23 = *(undefined8 *)(piVar24 + 8);\n                    *(undefined8 *)(piVar26 + uVar28 * 6) = *(undefined8 *)(piVar24 + 6);\n                    *(undefined8 *)(piVar26 + uVar28 * 6 + 2) = uVar23;\n                    uVar28 = uVar28 + 1;\n                  }\n                  piVar24 = piVar24 + 0xc;\n                  lVar17 = lVar17 + -2;\n                } while (lVar17 != 0);\n              }\n            }\n            goto LAB_1454a1e00;\n          }\n          uVar28 = uVar28 + 1;\n          piVar24 = piVar24 + 6;\n        } while (uVar28 != uVar33);\n      }\n    }\n    else {\n      if (bVar34 || iVar12 == 0) {\n        *(float *)(in_RCX + 0x110) = *(float *)(in_RCX + 0x110) + fVar36;\n        fVar36 = *(float *)(in_RCX + 0x114);\n        fVar37 = fVar36;\n        if (fVar36 <= fVar38) {\n          fVar37 = fVar38;\n        }\n        *(uint *)(in_RCX + 0x114) =\n             -(uint)NAN(fVar37) & (uint)fVar36 | ~-(uint)NAN(fVar37) & (uint)fVar37;\n        goto LAB_1454a0c29;\n      }\n      if (uVar33 != 0) {\n        uVar28 = 0;\n        piVar24 = piVar26;\nLAB_1454a0ac0:\n        if (piVar24[3] != iVar12) goto code_r0x0001454a0aca;\n        uVar29 = uVar28 + 1;\n        if (uVar29 < uVar33) {\n          uVar27 = uVar28 - uVar33;\n          uVar10 = uVar27;\n          uVar19 = uVar28;\n          if ((uVar27 & 1) == 0) {\n            if (piVar24[9] != iVar12) {\n              *(undefined8 *)(piVar24 + 4) = *(undefined8 *)(piVar24 + 10);\n              *(undefined8 *)piVar24 = *(undefined8 *)(piVar24 + 6);\n              *(undefined8 *)(piVar24 + 2) = *(undefined8 *)(piVar24 + 8);\n              uVar19 = uVar28 + 1;\n            }\n            uVar29 = uVar28 + 2;\n            uVar10 = uVar19;\n          }\n          uVar28 = uVar10;\n          if (uVar27 != 0xfffffffffffffffe) {\n            piVar24 = piVar26 + uVar29 * 6;\n            lVar17 = uVar33 - uVar29;\n            uVar28 = uVar19;\n            do {\n              if (piVar24[3] == iVar12) {\n                iVar30 = piVar24[9];\n              }\n              else {\n                *(undefined8 *)(piVar26 + uVar28 * 6 + 4) = *(undefined8 *)(piVar24 + 4);\n                uVar23 = *(undefined8 *)(piVar24 + 2);\n                *(undefined8 *)(piVar26 + uVar28 * 6) = *(undefined8 *)piVar24;\n                *(undefined8 *)(piVar26 + uVar28 * 6 + 2) = uVar23;\n                uVar28 = uVar28 + 1;\n                iVar30 = piVar24[9];\n              }\n              if (iVar30 != iVar12) {\n                *(undefined8 *)(piVar26 + uVar28 * 6 + 4) = *(undefined8 *)(piVar24 + 10);\n                uVar23 = *(undefined8 *)(piVar24 + 8);\n                *(undefined8 *)(piVar26 + uVar28 * 6) = *(undefined8 *)(piVar24 + 6);\n                *(undefined8 *)(piVar26 + uVar28 * 6 + 2) = uVar23;\n                uVar28 = uVar28 + 1;\n              }\n              piVar24 = piVar24 + 0xc;\n              lVar17 = lVar17 + -2;\n            } while (lVar17 != 0);\n          }\n        }\nLAB_1454a1e00:\n        *(ulong *)(in_RCX + 0x318) = uVar28;\n      }\n    }\nLAB_1454a0b19:\n    func_0x00014549e650();\n    fVar36 = *(float *)(in_RCX + 0x110) + fVar36;\n    fVar37 = *(float *)(in_RCX + 0x114);\n    fVar9 = fVar37;\n    if (fVar37 <= fVar38) {\n      fVar9 = fVar38;\n    }\n    fVar37 = (float)(-(uint)NAN(fVar9) & (uint)fVar37 | ~-(uint)NAN(fVar9) & (uint)fVar9);\n    *(undefined8 *)(in_RCX + 0x110) = 0;\n    fVar38 = fVar36;\n    if (fVar37 <= fVar36) {\n      fVar38 = fVar37;\n    }\n    fVar38 = (float)(-(uint)NAN(fVar38) & (uint)fVar36 | ~-(uint)NAN(fVar38) & (uint)fVar38);\n    if ((0.0 < fVar38) && (*(long *)(in_RCX + 0x718) != 0)) {\n      uStack_100._4_4_ = *(undefined4 *)(in_RCX + 0x408);\n      uStack_108._4_4_ = (float)*(undefined8 *)(in_RCX + 0x400);\n      uStack_100._0_4_ = (undefined4)((ulong)*(undefined8 *)(in_RCX + 0x400) >> 0x20);\n      uStack_108._0_4_ = 0;\n      local_110 = (float *)0x0;\n      uStack_f4 = 0x600;\n      uStack_f2 = 0;\n      local_f0 = 0;\n      uStack_ee = 0;\n      fStack_f8 = fVar38;\n      func_0x0001454cba10();\n    }\n  }\nLAB_1454a0c29:\n  *(float *)(in_RCX + 0x418) = *(float *)(in_RCX + 0x418) - fVar39;\n  *(float *)(in_RCX + 0x4d4) = fVar35;\n  dVar40 = (double)fVar39;\n  *(double *)(in_RCX + 0x630) = *(double *)(in_RCX + 0x630) + dVar40;\n  piVar24 = *(int **)(in_RCX + 0x4e0);\n  pfVar32 = (float *)0x1469f69b4;\n  lVar17 = 0;\n  piVar26 = piVar24;\n  do {\n    lVar20 = lVar17;\n    if (*(long *)(in_RCX + 0x4e8) * 0x160 - lVar20 == 0) {\n      piVar24 = (int *)0x4;\n      goto LAB_1454a0d0c;\n    }\n    piVar25 = piVar26 + 0x22;\n    piVar26 = piVar26 + 0x58;\n    lVar17 = lVar20 + 0x160;\n  } while (*(float **)piVar25 != in_R8);\n  if (*(long *)((long)piVar24 + lVar20 + 0x18) == -1) {\n    bVar5 = *(byte *)((long)piVar24 + lVar20 + 0x158);\n    pfVar18 = (float *)0x1469f69cc;\n    if (in_R9B != '\\0') {\n      pfVar18 = (float *)0x1469f69d5;\n    }\n    pfVar32 = (float *)0x1469f629c;\n    if (bVar5 == 0) {\n      pfVar32 = pfVar18;\n    }\n    piVar24 = (int *)((ulong)(bVar5 ^ 1) * 4 + 5);\n  }\n  else {\n    pfVar32 = (float *)0x1469f69b8;\n    if (in_R9B != '\\0') {\n      pfVar32 = (float *)0x1469f69c2;\n    }\n    piVar24 = (int *)0xa;\n  }\nLAB_1454a0d0c:\n  pfVar18 = (float *)(in_RCX + 0x638);\n  pfVar16 = *(float **)(in_RCX + 0x638);\n  local_a9 = in_R9B;\n  if (pfVar16 != (float *)0x0) {\n    lVar17 = *(long *)(in_RCX + 0x640);\n    local_b8 = pfVar18;\n    do {\n      uVar7 = *(ushort *)((long)pfVar16 + 0x112);\n      lVar20 = (ulong)uVar7 << 4;\n      uVar33 = 0xffffffffffffffff;\n      local_a8 = pfVar16;\n      do {\n        uVar28 = (ulong)uVar7;\n        if (lVar20 == 0) goto LAB_1454a0dc0;\n        piVar26 = *(int **)(pfVar16 + 2);\n        lVar31 = (long)piVar24 - (long)piVar26;\n        if (piVar24 < piVar26) {\n          piVar26 = piVar24;\n        }\n        pfVar16 = pfVar16 + 4;\n        iVar12 = func_0x0001457731e7();\n        if (iVar12 != 0) {\n          lVar31 = (long)iVar12;\n        }\n        uVar33 = uVar33 + 1;\n        lVar20 = lVar20 + -0x10;\n      } while ((char)((0 < lVar31) - (lVar31 < 0)) == '\\x01');\n      uVar28 = uVar33;\n      if (0 < lVar31 == lVar31 < 0) {\n        uStack_108._0_4_ = SUB84(local_a8,0);\n        uStack_108._4_4_ = (float)((ulong)local_a8 >> 0x20);\n        uStack_100._0_4_ = (undefined4)lVar17;\n        uStack_100._4_4_ = (undefined4)((ulong)lVar17 >> 0x20);\n        fStack_f8 = (float)uVar33;\n        uStack_f4 = (undefined2)(uVar33 >> 0x20);\n        uStack_f2 = (undefined2)(uVar33 >> 0x30);\n        local_f0 = SUB82(local_b8,0);\n        uStack_ee = (undefined1)((ulong)local_b8 >> 0x10);\n        uStack_ed = (undefined1)((ulong)local_b8 >> 0x18);\n        uStack_ec = (undefined4)((ulong)local_b8 >> 0x20);\n        local_110 = (float *)0x0;\n        goto LAB_1454a0e0b;\n      }\nLAB_1454a0dc0:\n      bVar34 = lVar17 == 0;\n      lVar17 = lVar17 + -1;\n      if (bVar34) goto LAB_1454a1ad0;\n      pfVar16 = *(float **)(local_a8 + uVar28 * 2 + 0x46);\n    } while( true );\n  }\n  uStack_108._0_4_ = SUB84(piVar24,0);\n  uStack_108._4_4_ = 0.0;\n  fStack_f8 = 0.0;\n  uStack_f4 = 0;\n  uStack_f2 = 0;\n  local_110 = pfVar32;\n  goto LAB_1454a0e2d;\ncode_r0x0001454a0aca:\n  uVar28 = uVar28 + 1;\n  piVar24 = piVar24 + 6;\n  if (uVar28 == uVar33) goto LAB_1454a0b19;\n  goto LAB_1454a0ac0;\nLAB_1454a1ad0:\n  fStack_f8 = SUB84(local_a8,0);\n  uStack_f4 = (undefined2)((ulong)local_a8 >> 0x20);\n  uStack_f2 = (undefined2)((ulong)local_a8 >> 0x30);\n  local_f0 = 0;\n  uStack_ee = 0;\n  uStack_ed = 0;\n  uStack_ec = 0;\n  uStack_e8 = (undefined4)uVar28;\n  uStack_e4 = (undefined4)(uVar28 >> 0x20);\n  uStack_108._0_4_ = SUB84(piVar24,0);\n  uStack_108._4_4_ = (float)((ulong)piVar24 >> 0x20);\n  uStack_100._0_4_ = SUB84(local_b8,0);\n  uStack_100._4_4_ = (undefined4)((ulong)local_b8 >> 0x20);\n  local_110 = pfVar32;\nLAB_1454a0e0b:\n  pfVar18 = (float *)CONCAT44(uStack_100._4_4_,(undefined4)uStack_100);\nLAB_1454a0e2d:\n  uStack_100 = pfVar18;\n  pdVar14 = (double *)func_0x00014552a410();\n  *pdVar14 = dVar40 + *pdVar14;\n  uVar33 = *(ulong *)(in_RCX + 0x318);\n  if (uVar33 == 0) {\nLAB_1454a0f40:\n    if (((in_R8 != (float *)0x0) && (local_a9 != '\\0')) && (*(char *)(in_RCX + 0x9b9) == '\\x01')) {\nLAB_1454a0f60:\n      uVar33 = *(ulong *)(in_RCX + 0x6e8);\n      if (uVar33 != 0) {\n        lVar17 = *(long *)(in_RCX + 0x6e0);\n        fVar35 = _DAT_14591334c;\n        if (uVar33 == 1) {\n          uVar28 = 0;\nLAB_1454a0fda:\n          if (*(char *)(lVar17 + uVar28 * 8) == '\\x16') {\n            fVar35 = fVar35 + *(float *)(lVar17 + 4 + uVar28 * 8);\n          }\n        }\n        else {\n          uVar28 = 0;\n          do {\n            if (*(char *)(lVar17 + uVar28 * 8) == '\\x16') {\n              fVar35 = fVar35 + *(float *)(lVar17 + 4 + uVar28 * 8);\n              cVar11 = *(char *)(lVar17 + 8 + uVar28 * 8);\n            }\n            else {\n              cVar11 = *(char *)(lVar17 + 8 + uVar28 * 8);\n            }\n            if (cVar11 == '\\x16') {\n              fVar35 = fVar35 + *(float *)(lVar17 + 0xc + uVar28 * 8);\n            }\n            uVar28 = uVar28 + 2;\n          } while ((uVar33 & 0xfffffffffffffffe) != uVar28);\n          if ((uVar33 & 1) != 0) goto LAB_1454a0fda;\n        }\n        if ((0.0 < param_2) && (0.0 < fVar35)) {\n          uVar6 = *(undefined1 *)(in_RCX + 0x129);\n          *(undefined1 *)(in_RCX + 0x129) = 3;\n          func_0x0001454d4ff0();\n          *(undefined1 *)(in_RCX + 0x129) = uVar6;\n        }\n      }\n      uStack_100._4_4_ = *(undefined4 *)(in_RCX + 0x408);\n      uStack_108._4_4_ = (float)*(undefined8 *)(in_RCX + 0x400);\n      uStack_100._0_4_ = (undefined4)((ulong)*(undefined8 *)(in_RCX + 0x400) >> 0x20);\n      uStack_130 = 0;\n      uStack_12c = (undefined4)*(undefined8 *)(in_RCX + 0x400);\n      uStack_128 = (undefined4)((ulong)*(undefined8 *)(in_RCX + 0x400) >> 0x20);\n      uStack_124 = *(undefined4 *)(in_RCX + 0x408);\n      uStack_11c = 0x400;\n      local_118 = 0;\n      local_116 = 0;\n      local_138 = in_R8;\n      fStack_120 = fVar39;\n      func_0x0001454cba10();\n      uStack_108._0_4_ = 0;\n      uStack_f4 = 0x500;\n      uStack_f2 = 0;\n      local_f0 = 0;\n      uStack_ee = 0;\n      piVar26 = (int *)0x0;\n      local_110 = in_R8;\n      fStack_f8 = fVar39;\n      func_0x0001454cba10();\n    }\n  }\n  else {\n    piVar24 = *(int **)(in_RCX + 0x310);\n    fVar38 = _DAT_14591334c;\n    if (uVar33 == 1) {\n      piVar25 = (int *)0x0;\nLAB_1454a0ed5:\n      piVar26 = (int *)((long)piVar25 * 3);\n      if ((fVar35 < (float)piVar24[(long)piVar25 * 6 + 4]) &&\n         (piVar26 = piVar24 + (long)piVar25 * 6, *piVar26 == 0xc)) {\n        fVar38 = fVar38 + (float)piVar26[1];\n      }\n    }\n    else {\n      piVar25 = (int *)0x0;\n      piVar26 = piVar24;\n      do {\n        if ((fVar35 < (float)piVar26[4]) && (*piVar26 == 0xc)) {\n          fVar38 = fVar38 + (float)piVar26[1];\n        }\n        if ((fVar35 < (float)piVar26[10]) && (piVar26[6] == 0xc)) {\n          fVar38 = fVar38 + (float)piVar26[7];\n        }\n        piVar25 = (int *)((long)piVar25 + 2);\n        piVar26 = piVar26 + 0xc;\n      } while ((int *)(uVar33 & 0xfffffffffffffffe) != piVar25);\n      piVar26 = piVar25;\n      if ((uVar33 & 1) != 0) goto LAB_1454a0ed5;\n    }\n    if (fVar38 <= 0.0) goto LAB_1454a0f40;\n    piVar26 = (int *)CONCAT71((int7)((ulong)piVar26 >> 8),in_R8 == (float *)0x0);\n    if (local_a9 == '\\x01' && in_R8 != (float *)0x0) {\n      piVar25 = (int *)0x0;\n      do {\n        if ((int *)(uVar33 * 0x18) == piVar25) break;\n        piVar26 = piVar25 + 6;\n        piVar1 = (int *)((long)piVar24 + (long)piVar25);\n        piVar25 = piVar26;\n      } while (*piVar1 != 0xc);\n      func_0x0001454d4ff0();\n      if (*(char *)(in_RCX + 0x9b9) != '\\x01') goto LAB_1454a10c2;\n      goto LAB_1454a0f60;\n    }\n  }\nLAB_1454a10c2:\n  fVar35 = *(float *)(in_RCX + 0x418);\n  if (*(char *)(in_RCX + 0x9b4) != '\\0') {\n    if (fVar35 <= _DAT_145907490) {\n      fVar35 = _DAT_145907490;\n    }\n    *(float *)(in_RCX + 0x418) = fVar35;\n  }\n  fVar38 = 0.0;\n  if (fVar35 <= 0.0) {\n    if (((*(float **)(in_RCX + 0x390))[0x1a] == 1.54143e-44) && (*(float *)(in_RCX + 0x39c) <= 0.0))\n    {\n      uStack_108._0_4_ = *(undefined4 *)(in_RCX + 0x398);\n      fStack_f8 = *(float *)(in_RCX + 0x3a8);\n      local_dc = *(undefined4 *)(in_RCX + 0x3c4);\n      uStack_ec = (undefined4)*(undefined8 *)(in_RCX + 0x3b4);\n      uStack_e8 = (undefined4)((ulong)*(undefined8 *)(in_RCX + 0x3b4) >> 0x20);\n      uStack_e4 = (undefined4)*(undefined8 *)(in_RCX + 0x3bc);\n      uStack_e0 = (undefined4)((ulong)*(undefined8 *)(in_RCX + 0x3bc) >> 0x20);\n      uStack_d8 = *(undefined4 *)(in_RCX + 0x3c8);\n      uStack_d4 = *(undefined4 *)(in_RCX + 0x3cc);\n      uStack_d0 = *(undefined4 *)(in_RCX + 0x3d0);\n      uStack_c4 = *(undefined8 *)(in_RCX + 0x3dc);\n      _local_cc = CONCAT44((int)((ulong)*(undefined8 *)(in_RCX + 0x3d4) >> 0x20),\n                           *(undefined4 *)(in_RCX + 0x3d4));\n      uStack_100._0_4_ = (undefined4)*(undefined8 *)(in_RCX + 0x3a0);\n      uStack_100._4_4_ = (undefined4)((ulong)*(undefined8 *)(in_RCX + 0x3a0) >> 0x20);\n      uVar23 = *(undefined8 *)(in_RCX + 0x3ac);\n      uStack_f4 = (undefined2)uVar23;\n      uStack_f2 = (undefined2)((ulong)uVar23 >> 0x10);\n      local_f0 = (undefined2)((ulong)uVar23 >> 0x20);\n      uStack_ee = (undefined1)((ulong)uVar23 >> 0x30);\n      uStack_ed = (undefined1)((ulong)uVar23 >> 0x38);\n      *(undefined4 *)(in_RCX + 0x418) = 0x3f800000;\n      local_110 = *(float **)(in_RCX + 0x390);\n      uStack_108._4_4_ = *(float *)(in_RCX + 0x39c);\n      cVar11 = func_0x0001454f9bf0();\n      if (cVar11 != '\\0') {\n        fVar35 = *(float *)(*(long *)(in_RCX + 0x390) + 0x48) * _DAT_1459186f0 *\n                 *(float *)(in_RCX + 0x3a4) * *(float *)(in_RCX + 0x3cc) *\n                 *(float *)(in_RCX + 0x478);\n        if (fVar35 <= _DAT_1459095e0) {\n          fVar35 = _DAT_1459095e0;\n        }\n        *(float *)(in_RCX + 0x39c) = fVar35;\n        fVar35 = fVar35 * _DAT_145915918;\n        uVar22 = 0;\n        if (0.0 <= fVar35) {\n          uVar22 = (undefined4)(long)fVar35;\n        }\n        fVar39 = *(float *)(*(long *)(in_RCX + 0x390) + 0x40);\n        uVar13 = 0xffffffff;\n        if (fVar35 <= _DAT_14590752c) {\n          uVar13 = uVar22;\n        }\n        local_148 = CONCAT44(uVar13,fVar39);\n        func_0x00014545d760(in_RCX + 0x550);\n        lVar17 = *(long *)(in_RCX + 0x560);\n        piVar26 = piVar21;\n        if (lVar17 == *(long *)(in_RCX + 0x550)) {\n          func_0x000145774710();\n          piVar26 = piVar21;\n        }\n        lVar20 = *(long *)(in_RCX + 0x558);\n        puVar3 = (undefined4 *)(lVar20 + 0x10 + lVar17 * 0x20);\n        *puVar3 = uStack_128;\n        puVar3[1] = uStack_124;\n        puVar3[2] = fStack_120;\n        puVar3[3] = uStack_11c;\n        puVar2 = (undefined8 *)(lVar20 + lVar17 * 0x20);\n        *puVar2 = local_138;\n        puVar2[1] = CONCAT44(uStack_12c,uStack_130);\n        *(long *)(in_RCX + 0x560) = lVar17 + 1;\n        uVar23 = *(undefined8 *)(in_RCX + 1000);\n        func_0x000140002200();\n        pfVar32 = (float *)func_0x0001400021c0();\n        if (pfVar32 == (float *)0x0) {\n          func_0x00014590379b();\n                    /* WARNING: Does not return */\n          pcVar8 = (code *)invalidInstructionException();\n          (*pcVar8)();\n        }\n        *pfVar32 = fVar39;\n        *(undefined8 *)(pfVar32 + 1) = uVar23;\n        lVar17 = *(long *)(in_RCX + 0x560);\n        local_a8 = pfVar32;\n        if (lVar17 == *(long *)(in_RCX + 0x550)) {\n          func_0x000145774710();\n        }\n        lVar20 = *(long *)(in_RCX + 0x558);\n        lVar31 = lVar17 * 0x20;\n        *(undefined8 *)(lVar20 + lVar31) = 0x20;\n        *(float **)(lVar20 + 8 + lVar31) = local_a8;\n        *(undefined8 *)(lVar20 + 0x10 + lVar31) = 0xc;\n        *(undefined2 *)(lVar20 + 0x18 + lVar31) = 0x135;\n        *(long *)(in_RCX + 0x560) = lVar17 + 1;\n        goto LAB_1454a10f5;\n      }\n      *(float *)(in_RCX + 0x418) = fVar35;\n    }\n    fVar35 = *(float *)(in_RCX + 0x934);\n    lVar17 = *(long *)(in_RCX + 0x718);\n    if (lVar17 != 0) {\n      pcVar15 = *(char **)(in_RCX + 0x710);\n      if (*pcVar15 == '\\x13') {\nLAB_1454a1546:\n        if (*(float *)(in_RCX + 0x118) <= fVar35) {\n          fVar39 = *(float *)(pcVar15 + 0xc);\n          fVar36 = *(float *)(pcVar15 + 8);\n          *(float *)(in_RCX + 0x118) = *(float *)(pcVar15 + 4) + fVar35;\n          *(float *)(in_RCX + 0x418) = fVar36 * *(float *)(in_RCX + 0x470);\n          func_0x000145728850();\n          if (fVar39 <= 0.0) {\n            local_150 = *(undefined8 *)(in_RCX + 1000);\n            local_148 = CONCAT44(local_148._4_4_,2);\n            local_160 = (ulong)local_160._4_4_ << 0x20;\n            func_0x000145466ab0();\n            lVar17 = *(long *)(in_RCX + 0x560);\n            if (lVar17 == *(long *)(in_RCX + 0x550)) {\n              func_0x000145774710();\n            }\n            lVar20 = *(long *)(in_RCX + 0x558);\n            plVar4 = (long *)(lVar20 + 0x10 + lVar17 * 0x20);\n            *plVar4 = (long)uStack_100;\n            *(float *)(plVar4 + 1) = fStack_f8;\n            *(uint *)((long)plVar4 + 0xc) = CONCAT22(uStack_f2,uStack_f4);\n            puVar2 = (undefined8 *)(lVar20 + lVar17 * 0x20);\n            *puVar2 = local_110;\n            puVar2[1] = CONCAT44(uStack_108._4_4_,(undefined4)uStack_108);\n            *(long *)(in_RCX + 0x560) = lVar17 + 1;\n            func_0x000145457cb0(CONCAT44(uStack_12c,uStack_130),0x13,0x13,0x1469f6da0);\n            func_0x000145459d40();\n            lVar17 = *(long *)(in_RCX + 0x560);\n            if (lVar17 == *(long *)(in_RCX + 0x550)) {\n              func_0x000145774710();\n            }\n            lVar20 = *(long *)(in_RCX + 0x558);\n            plVar4 = (long *)(lVar20 + 0x10 + lVar17 * 0x20);\n            *plVar4 = (long)uStack_100;\n            *(float *)(plVar4 + 1) = fStack_f8;\n            *(uint *)((long)plVar4 + 0xc) = CONCAT22(uStack_f2,uStack_f4);\n            puVar2 = (undefined8 *)(lVar20 + lVar17 * 0x20);\n            *puVar2 = local_110;\n            puVar2[1] = CONCAT44(uStack_108._4_4_,(undefined4)uStack_108);\n            *(long *)(in_RCX + 0x560) = lVar17 + 1;\n            uStack_100._4_4_ = *(undefined4 *)(in_RCX + 0x408);\n            uStack_108._4_4_ = (float)*(undefined8 *)(in_RCX + 0x400);\n            uStack_100._0_4_ = (undefined4)((ulong)*(undefined8 *)(in_RCX + 0x400) >> 0x20);\n            uStack_108._0_4_ = 0;\n            uStack_f4 = 0x700;\n            local_110 = (float *)0x0;\n            fStack_f8 = 0.0;\n            uStack_f2 = 0;\n            local_f0 = 0;\n            uStack_ee = 0;\n            piVar26 = (int *)0x0;\n            func_0x0001454cba10();\n          }\n          else {\n            local_150 = *(undefined8 *)(in_RCX + 1000);\n            local_148 = CONCAT44(local_148._4_4_,2);\n            local_160 = (ulong)local_160._4_4_ << 0x20;\n            func_0x000145466ab0();\n            lVar17 = *(long *)(in_RCX + 0x560);\n            if (lVar17 == *(long *)(in_RCX + 0x550)) {\n              func_0x000145774710();\n            }\n            lVar20 = *(long *)(in_RCX + 0x558);\n            plVar4 = (long *)(lVar20 + 0x10 + lVar17 * 0x20);\n            *plVar4 = (long)uStack_100;\n            *(float *)(plVar4 + 1) = fStack_f8;\n            *(uint *)((long)plVar4 + 0xc) = CONCAT22(uStack_f2,uStack_f4);\n            puVar2 = (undefined8 *)(lVar20 + lVar17 * 0x20);\n            *puVar2 = local_110;\n            puVar2[1] = CONCAT44(uStack_108._4_4_,(undefined4)uStack_108);\n            *(long *)(in_RCX + 0x560) = lVar17 + 1;\n            lVar17 = *(long *)(in_RCX + 0x318);\n            if (lVar17 == *(long *)(in_RCX + 0x308)) {\n              func_0x00014577ffc0();\n            }\n            lVar20 = *(long *)(in_RCX + 0x310);\n            *(undefined4 *)(lVar20 + lVar17 * 0x18) = 0xb;\n            *(undefined4 *)(lVar20 + 0xc + lVar17 * 0x18) = 0x740;\n            *(float *)(lVar20 + 0x10 + lVar17 * 0x18) = fVar35 + fVar39;\n            *(undefined4 *)(lVar20 + 0x14 + lVar17 * 0x18) = 0;\n            *(long *)(in_RCX + 0x318) = lVar17 + 1;\n            func_0x00014549e650();\n            piVar26 = (int *)CONCAT44(uStack_124,uStack_128);\n            func_0x000145457cb0(CONCAT44(uStack_12c,uStack_130),0x10,0x10,0x1469f6db3);\n            func_0x000145459d40();\n            lVar17 = *(long *)(in_RCX + 0x560);\n            if (lVar17 == *(long *)(in_RCX + 0x550)) {\n              func_0x000145774710();\n            }\n            lVar20 = *(long *)(in_RCX + 0x558);\n            plVar4 = (long *)(lVar20 + 0x10 + lVar17 * 0x20);\n            *plVar4 = (long)uStack_100;\n            plVar4[1] = CONCAT26(uStack_f2,CONCAT24(uStack_f4,fStack_f8));\n            puVar2 = (undefined8 *)(lVar20 + lVar17 * 0x20);\n            *puVar2 = local_110;\n            puVar2[1] = CONCAT44(uStack_108._4_4_,(undefined4)uStack_108);\n            *(long *)(in_RCX + 0x560) = lVar17 + 1;\n          }\n          if (local_138 != (float *)0x0) {\n            piVar26 = (int *)0x1;\n            func_0x0001400021d0();\n          }\n          goto LAB_1454a10f5;\n        }\n      }\n      else if (lVar17 != 1) {\n        lVar17 = lVar17 * 0x40 + -0x40;\n        do {\n          pcVar15 = pcVar15 + 0x40;\n          if (*pcVar15 == '\\x13') goto LAB_1454a1546;\n          lVar17 = lVar17 + -0x40;\n        } while (lVar17 != 0);\n      }\n    }\n    if (*(int *)(in_RCX + 0x4c0) == 0) {\n      *(undefined4 *)(in_RCX + 0x418) = 0;\n      *(undefined1 *)(in_RCX + 0x9b9) = 4;\n      *(undefined4 *)(in_RCX + 0x878) = 1;\n      *(float *)(in_RCX + 0x87c) = fVar35;\n      func_0x0001454a44d0();\n      piVar26 = (int *)0x1469f6aa0;\n      func_0x0001454c86f0();\n      lVar17 = *(long *)(in_RCX + 0x578);\n      if (lVar17 == *(long *)(in_RCX + 0x568)) {\n        local_a8 = local_110;\n        local_b8 = (float *)CONCAT44(uStack_108._4_4_,(undefined4)uStack_108);\n        func_0x0001457745c0();\n      }\n      lVar20 = *(long *)(in_RCX + 0x570);\n      *(float **)(lVar20 + 0x10 + lVar17 * 0x18) = uStack_100;\n      puVar2 = (undefined8 *)(lVar20 + lVar17 * 0x18);\n      *puVar2 = local_110;\n      puVar2[1] = uStack_108;\n      *(long *)(in_RCX + 0x578) = lVar17 + 1;\n    }\n    else {\n      *(int *)(in_RCX + 0x4c0) = *(int *)(in_RCX + 0x4c0) + -1;\n      *(float *)(in_RCX + 0x418) = *(float *)(in_RCX + 0x470) * _DAT_145907498;\n      local_160 = *(long *)(in_RCX + 1000);\n      local_138 = (float *)CONCAT44(local_138._4_4_,2);\n      local_148 = local_148 & 0xffffffff00000000;\n      func_0x000145466ab0();\n      lVar17 = *(long *)(in_RCX + 0x560);\n      if (lVar17 == *(long *)(in_RCX + 0x550)) {\n        func_0x000145774710();\n      }\n      lVar20 = *(long *)(in_RCX + 0x558);\n      plVar4 = (long *)(lVar20 + 0x10 + lVar17 * 0x20);\n      *plVar4 = (long)uStack_100;\n      *(float *)(plVar4 + 1) = fStack_f8;\n      *(uint *)((long)plVar4 + 0xc) = CONCAT22(uStack_f2,uStack_f4);\n      puVar2 = (undefined8 *)(lVar20 + lVar17 * 0x20);\n      *puVar2 = local_110;\n      puVar2[1] = CONCAT44(uStack_108._4_4_,(undefined4)uStack_108);\n      *(long *)(in_RCX + 0x560) = lVar17 + 1;\n      func_0x000145728850();\n      local_a8 = (float *)CONCAT44(uStack_12c,uStack_130);\n      piVar26 = (int *)CONCAT44(uStack_124,uStack_128);\n      func_0x000145457cb0();\n      func_0x000145459d40();\n      lVar17 = *(long *)(in_RCX + 0x560);\n      if (lVar17 == *(long *)(in_RCX + 0x550)) {\n        func_0x000145774710();\n      }\n      lVar20 = *(long *)(in_RCX + 0x558);\n      plVar4 = (long *)(lVar20 + 0x10 + lVar17 * 0x20);\n      *plVar4 = (long)uStack_100;\n      *(float *)(plVar4 + 1) = fStack_f8;\n      *(uint *)((long)plVar4 + 0xc) = CONCAT22(uStack_f2,uStack_f4);\n      puVar2 = (undefined8 *)(lVar20 + lVar17 * 0x20);\n      *puVar2 = local_110;\n      puVar2[1] = CONCAT44(uStack_108._4_4_,(undefined4)uStack_108);\n      *(long *)(in_RCX + 0x560) = lVar17 + 1;\n      if (local_138 != (float *)0x0) {\n        piVar26 = (int *)0x1;\n        func_0x0001400021d0();\n      }\n      local_140 = *(undefined4 *)(in_RCX + 0x408);\n      local_148 = *(ulong *)(in_RCX + 0x400);\n      local_110 = *(float **)(in_RCX + 0x4e0);\n      uStack_108 = local_110 + *(long *)(in_RCX + 0x4e8) * 0x58;\n      uStack_100 = &local_164;\n      fStack_f8 = SUB84(piVar21,0);\n      uStack_f4 = (undefined2)((ulong)piVar21 >> 0x20);\n      uStack_f2 = (undefined2)((ulong)piVar21 >> 0x30);\n      func_0x0001455405b0();\n      local_b8 = local_138;\n      local_a8 = (float *)CONCAT44(uStack_12c,uStack_130);\n      lVar17 = CONCAT44(uStack_124,uStack_128) << 3;\n      lVar20 = 0;\n      while (lVar17 != lVar20) {\n        lVar20 = lVar20 + 8;\n        func_0x0001454d4ff0();\n      }\n      if (local_b8 != (float *)0x0) {\n        piVar26 = (int *)0x8;\n        func_0x0001400021d0();\n      }\n    }\n  }\nLAB_1454a10f5:\n  fVar35 = (float)func_0x00014577327d();\n  uVar22 = 0;\n  piVar21 = (int *)((long)fVar35 & 0xffffffff);\n  if (fVar35 < fVar38) {\n    piVar21 = (int *)0x0;\n  }\n  if (_DAT_14590752c < fVar35) {\n    piVar21 = (int *)0xffffffff;\n  }\n  fVar35 = _DAT_14590752c;\n  fVar39 = (float)func_0x00014577327d();\n  uVar13 = (int)(long)fVar39;\n  if (fVar39 < fVar38) {\n    uVar13 = uVar22;\n  }\n  if (fVar35 < fVar39) {\n    uVar13 = 0xffffffff;\n  }\n  plVar4 = (long *)(in_RCX + 0x8d8);\n  lVar17 = *(long *)(in_RCX + 0x8d8);\n  if (lVar17 != 0) {\n    lVar20 = *(long *)(in_RCX + 0x8e0);\n    do {\n      uVar33 = (ulong)((uint)*(ushort *)(lVar17 + 0x36) * 2);\n      piVar24 = (int *)0xffffffffffffffff;\n      do {\n        piVar26 = (int *)(ulong)*(ushort *)(lVar17 + 0x36);\n        if (uVar33 == 0) goto LAB_1454a11be;\n        uVar7 = *(ushort *)(lVar17 + 0x3a + (long)piVar24 * 2);\n        piVar26 = (int *)((long)piVar24 + 1);\n        uVar33 = uVar33 - 2;\n        piVar24 = piVar26;\n      } while ((char)((uVar7 < 0x16) - (0x16 < uVar7)) == '\\x01');\n      if (uVar7 < 0x16 == 0x16 < uVar7) {\n        *(int *)(lVar17 + 8 + (long)piVar26 * 4) = (int)piVar21;\n        lVar17 = *plVar4;\n        if (lVar17 != 0) goto LAB_1454a11e0;\n        goto LAB_1454a14a8;\n      }\nLAB_1454a11be:\n      bVar34 = lVar20 == 0;\n      lVar20 = lVar20 + -1;\n      if (bVar34) goto LAB_1454a1470;\n      lVar17 = *(long *)(lVar17 + 0x50 + (long)piVar26 * 8);\n    } while( true );\n  }\n  lVar17 = 0;\nLAB_1454a1470:\n  uStack_108._0_4_ = (undefined4)lVar17;\n  uStack_108._4_4_ = (float)((ulong)lVar17 >> 0x20);\n  uStack_100._0_4_ = 0;\n  uStack_100._4_4_ = 0;\n  fStack_f8 = SUB84(piVar26,0);\n  uStack_f4 = (undefined2)((ulong)piVar26 >> 0x20);\n  uStack_f2 = (undefined2)((ulong)piVar26 >> 0x30);\n  local_f0 = 0x16;\n  uStack_ee = 0;\n  uStack_ed = 0;\n  uStack_ec = 0;\n  local_110 = (float *)plVar4;\n  func_0x00014552a730();\n  lVar17 = *plVar4;\n  piVar26 = piVar21;\n  if (lVar17 == 0) {\nLAB_1454a14a8:\n    lVar17 = 0;\nLAB_1454a14aa:\n    uStack_108._0_4_ = (undefined4)lVar17;\n    uStack_108._4_4_ = (float)((ulong)lVar17 >> 0x20);\n    uStack_100._0_4_ = 0;\n    uStack_100._4_4_ = 0;\n    fStack_f8 = SUB84(piVar26,0);\n    uStack_f4 = (undefined2)((ulong)piVar26 >> 0x20);\n    uStack_f2 = (undefined2)((ulong)piVar26 >> 0x30);\n    local_f0 = 0x1c;\n    uStack_ee = 0;\n    uStack_ed = 0;\n    uStack_ec = 0;\n    local_110 = (float *)plVar4;\n    func_0x00014552a730();\n    return;\n  }\nLAB_1454a11e0:\n  lVar20 = *(long *)(in_RCX + 0x8e0);\n  do {\n    uVar33 = (ulong)((uint)*(ushort *)(lVar17 + 0x36) * 2);\n    piVar21 = (int *)0xffffffffffffffff;\n    do {\n      piVar26 = (int *)(ulong)*(ushort *)(lVar17 + 0x36);\n      if (uVar33 == 0) goto LAB_1454a122e;\n      uVar7 = *(ushort *)(lVar17 + 0x3a + (long)piVar21 * 2);\n      piVar26 = (int *)((long)piVar21 + 1);\n      uVar33 = uVar33 - 2;\n      piVar21 = piVar26;\n    } while ((char)((uVar7 < 0x1c) - (0x1c < uVar7)) == '\\x01');\n    if (uVar7 < 0x1c == 0x1c < uVar7) {\n      *(undefined4 *)(lVar17 + 8 + (long)piVar26 * 4) = uVar13;\n      return;\n    }\nLAB_1454a122e:\n    bVar34 = lVar20 == 0;\n    lVar20 = lVar20 + -1;\n    if (bVar34) goto LAB_1454a14aa;\n    lVar17 = *(long *)(lVar17 + 0x50 + (long)piVar26 * 8);\n  } while( true );\n}\n\n",
+        "confidence": "observed",
+        "authority": "shipped-artifact",
+        "environment": null,
+        "limitations": [
+          "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+          "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+          "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+          "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+          "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+          "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+          "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+          "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+          "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+          "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+        ],
+        "relationship_coverage": null,
+        "locations": [],
+        "evidence_links": []
+      }
+    },
+    {
+      "role": "actor-hit",
+      "historical_address": "0x1454c2eb0",
+      "location_votes": 122,
+      "location_proofs": [
+        {
+          "old_address": "0x1454c2f70",
+          "address": "0x1454d50b0",
+          "hex": "4839d00f841f0400004881c2600100004939b8880000004d8d806001000075e0"
+        },
+        {
+          "old_address": "0x1454c2f90",
+          "address": "0x1454d50d0",
+          "hex": "f3410f104c16e40f2ec8771bf3410f108c163cffffff0f2ec8770cf3410f104c"
+        },
+        {
+          "old_address": "0x1454c3010",
+          "address": "0x1454d5150",
+          "hex": "4983c1024d39cb742f43803cc812741043807cc8081275e8eb15660f1f440000"
+        },
+        {
+          "old_address": "0x1454c3030",
+          "address": "0x1454d5170",
+          "hex": "f3470f5844c80443807cc8081275d1f3470f5844c80cebc841f6c201740e4380"
+        },
+        {
+          "old_address": "0x1454c3110",
+          "address": "0x1454d5250",
+          "hex": "4983c1024d39cb742f43803cc813741043807cc8081375e8eb15660f1f440000"
+        },
+        {
+          "old_address": "0x1454c3130",
+          "address": "0x1454d5270",
+          "hex": "f3430f584cc80443807cc8081375d1f3430f584cc80cebc841f6c201740e4380"
+        },
+        {
+          "old_address": "0x1454c31d0",
+          "address": "0x1454d5310",
+          "hex": "4983c1024d39cb742f43803cc815741043807cc8081575e8eb15660f1f440000"
+        },
+        {
+          "old_address": "0x1454c31f0",
+          "address": "0x1454d5330",
+          "hex": "f3430f584cc80443807cc8081575d1f3430f584cc80cebc841f6c201740e4380"
+        }
+      ],
+      "source": {
+        "address": "0x1454d4ff0",
+        "end_exclusive": "0x1454d8595",
+        "file_offset": "0x54d43f0",
+        "byte_count": 13733,
+        "sha256": "9159dbe8076d35435d9b7e32f8f4cd2b1debd966f895986d6e11cbe03b7775b5"
+      }
+    },
+    {
+      "role": "game-tick",
+      "historical_address": "0x14549d550",
+      "location_votes": 106,
+      "location_proofs": [
+        {
+          "old_address": "0x14549d550",
+          "address": "0x1454aefa0",
+          "hex": "5541574156415541545657534881eca8040000488dac2480000000440f29bd10"
+        },
+        {
+          "old_address": "0x14549da20",
+          "address": "0x1454af7d0",
+          "hex": "f30f104b10f30f5ccf0f28d1f30f5fd60f28daf30fc2da030f54cb0f55da0f56"
+        },
+        {
+          "old_address": "0x14549db70",
+          "address": "0x1454af920",
+          "hex": "660f76e9660f6be5660f63d466440fd7da4983c2104585db74b6eb23c1e00245"
+        },
+        {
+          "old_address": "0x14549e0b0",
+          "address": "0x1454afe60",
+          "hex": "c875edf3420f104c09c4b80100000083f8017407eb4283f801753df3410f598d"
+        },
+        {
+          "old_address": "0x14549e120",
+          "address": "0x1454afed0",
+          "hex": "48c1e10631d2662e0f1f8400000000004839d1741c803c1015488d524075f1f3"
+        },
+        {
+          "old_address": "0x14549e200",
+          "address": "0x1454affb0",
+          "hex": "7cd1081075eaeb150f1f840000000000f30f587cd104807cd1081075d3f30f58"
+        },
+        {
+          "old_address": "0x14549e9e0",
+          "address": "0x1454b07a0",
+          "hex": "85ff0f85f1000000e9ab01000048c1e206803c111875048b44110401d889c389"
+        },
+        {
+          "old_address": "0x14549ea50",
+          "address": "0x1454b0810",
+          "hex": "4a8d142948c1c2174c01ea4d89e049c1e0114c31e84c31e14931c44931cd48c1"
+        }
+      ],
+      "source": {
+        "address": "0x1454aefa0",
+        "end_exclusive": "0x1454bcd52",
+        "file_offset": "0x54ae3a0",
+        "byte_count": 56754,
+        "sha256": "b85eb47da145e046ae8775007286306e6b20fac60374a2cc8e6e693aa843cf60"
+      }
+    },
+    {
+      "role": "passive-multi-hit",
+      "historical_address": "0x1454d43d0",
+      "location_votes": 7,
+      "location_proofs": [
+        {
+          "old_address": "0x1454d43f0",
+          "address": "0x1454e65a0",
+          "hex": "440f2945600f297d500f29754048c74538feffffff44894d204c8945284889ce"
+        },
+        {
+          "old_address": "0x1454d4410",
+          "address": "0x1454e65c0",
+          "hex": "f30f10b5000100004c8badf0000000488b9df80000004c8b224885db0f841b01"
+        },
+        {
+          "old_address": "0x1454d4530",
+          "address": "0x1454e66e0",
+          "hex": "0000000048c74640000000000f2ec80f871bffffff0f28d6e913ffffff488bbe"
+        },
+        {
+          "old_address": "0x1454d4610",
+          "address": "0x1454e67c0",
+          "hex": "4885c074324805a0feffff48399188000000488d896001000075e5eb27488b55"
+        },
+        {
+          "old_address": "0x1454d4650",
+          "address": "0x1454e6800",
+          "hex": "8b0000004c8b4d08c745b802000000c745cc000000004c894d18c6453701488d"
+        },
+        {
+          "old_address": "0x1454d4670",
+          "address": "0x1454e6820",
+          "hex": "45cc4889442430488d45b848894424284c89742420488d4de0448b45204c894d"
+        },
+        {
+          "old_address": "0x1454d47f0",
+          "address": "0x1454e69a0",
+          "hex": "000f117e20440f1146404883c7084939fe0f8519ffffff488b55204885d27413"
+        }
+      ],
+      "source": {
+        "address": "0x1454e6580",
+        "end_exclusive": "0x1454e69f9",
+        "file_offset": "0x54e5980",
+        "byte_count": 1145,
+        "sha256": "e7d38aea42c335fde687470e11046ccf601ecfe8baaf8ac2685a8254cab8cc06"
+      }
+    },
+    {
+      "role": "begin-passive",
+      "historical_address": "0x1454d49e0",
+      "location_votes": 4,
+      "location_proofs": [
+        {
+          "old_address": "0x1454d4a00",
+          "address": "0x1454e6bb0",
+          "hex": "2975e048c745d8feffffff4889ce4c8b02498b18498b78084883ff0b74284883"
+        },
+        {
+          "old_address": "0x1454d4ae0",
+          "address": "0x1454e6c90",
+          "hex": "34404531edeb12660f1f8400000000004983c5184d39ee74364b397c2c0875f0"
+        },
+        {
+          "old_address": "0x1454d4b80",
+          "address": "0x1454e6d30",
+          "hex": "498b3e498b5e084531edeb0d0f1f40004983c5584d39ec74234b8b042f483958"
+        },
+        {
+          "old_address": "0x1454d4ca0",
+          "address": "0x1454e6e50",
+          "hex": "d948c1e10548c7040820000000488b55d0488954080848c74408100c00000066"
+        }
+      ],
+      "source": {
+        "address": "0x1454e6b90",
+        "end_exclusive": "0x1454e6ead",
+        "file_offset": "0x54e5f90",
+        "byte_count": 797,
+        "sha256": "33f34a4698549fa7df4ea2167a4e4edf464f727fb7956bd8c72bab8ec3d4a978"
+      }
+    },
+    {
+      "role": "polymorph-producer",
+      "historical_address": "0x1454d4dc0",
+      "location_votes": 17,
+      "location_proofs": [
+        {
+          "old_address": "0x1454d4dc0",
+          "address": "0x1454e6f70",
+          "hex": "41574156415541545657534881ec100100000f29bc24000100000f29b424f000"
+        },
+        {
+          "old_address": "0x1454d4e00",
+          "address": "0x1454e6fb0",
+          "hex": "49bb706f6c796d6f7270eb110f1f40004983c1584d39ca0f84eb0300004f8b24"
+        },
+        {
+          "old_address": "0x1454d4e20",
+          "address": "0x1454e6fd0",
+          "hex": "0849837c24080975e7498b0424488b304c31de0fb678084883f7684809f775d0"
+        },
+        {
+          "old_address": "0x1454d4e40",
+          "address": "0x1454e6ff0",
+          "hex": "478b540808f3430f10440814478b5c0818438b74083489b424cc000000430f10"
+        },
+        {
+          "old_address": "0x1454d4e60",
+          "address": "0x1454e7010",
+          "hex": "4c08240f118c24bc000000430f104c0838430f105408440f118c24d00000000f"
+        },
+        {
+          "old_address": "0x1454d4e80",
+          "address": "0x1454e7030",
+          "hex": "119424dc0000004c89a4249800000044899424a0000000f2430f104c080cf20f"
+        },
+        {
+          "old_address": "0x1454d4ea0",
+          "address": "0x1454e7050",
+          "hex": "118c24a4000000f30f118424ac00000044899c24b0000000f2430f1044081cf2"
+        },
+        {
+          "old_address": "0x1454d4f00",
+          "address": "0x1454e70b0",
+          "hex": "494531c9eb13662e0f1f8400000000004983c1184d39ca742b4b837c08080975"
+        }
+      ],
+      "source": {
+        "address": "0x1454e6f70",
+        "end_exclusive": "0x1454e73db",
+        "file_offset": "0x54e6370",
+        "byte_count": 1131,
+        "sha256": "0d963b02f84b8943343dfe13cf0de4a8ed747a4250fa4deccb7bd96114f82b00"
+      }
+    },
+    {
+      "role": "redemption-enqueue",
+      "historical_address": "0x1454d5230",
+      "location_votes": 1,
+      "location_proofs": [
+        {
+          "old_address": "0x1454d5270",
+          "address": "0x1454e7420",
+          "hex": "4983c3584c39de0f84ac0100004b8b041a488378080a75e8488b184c8b334931"
+        }
+      ],
+      "source": {
+        "address": "0x1454e73e0",
+        "end_exclusive": "0x1454e75eb",
+        "file_offset": "0x54e67e0",
+        "byte_count": 523,
+        "sha256": "887735c1f1d52f1d0eb718cc957edf695cd5cfadbe4600fe5981f62701abc6f9"
+      }
+    },
+    {
+      "role": "soul-fire-credit",
+      "historical_address": "0x1454d68b0",
+      "location_votes": 1,
+      "location_proofs": [
+        {
+          "old_address": "0x1454d68f0",
+          "address": "0x1454e8aa0",
+          "hex": "4983c0584d39c10f84da0000004e8b140249837a080975e8498b02488b304c31"
+        }
+      ],
+      "source": {
+        "address": "0x1454e8a60",
+        "end_exclusive": "0x1454e8b9e",
+        "file_offset": "0x54e7e60",
+        "byte_count": 318,
+        "sha256": "b4fdc2453ada9f0f16783909b8197015b871b68ebea221b0ac629f7c0edca091"
+      }
+    },
+    {
+      "role": "bloodrage-publish",
+      "historical_address": "0x1454d69f0",
+      "location_votes": 9,
+      "location_proofs": [
+        {
+          "old_address": "0x1454d69f0",
+          "address": "0x1454e8ba0",
+          "hex": "55415741565657534881ec58010000488dac2480000000440f298dc000000044"
+        },
+        {
+          "old_address": "0x1454d6a70",
+          "address": "0x1454e8c20",
+          "hex": "8d144931c949b8626c6f6f64726167eb186666666666662e0f1f840000000000"
+        },
+        {
+          "old_address": "0x1454d6af0",
+          "address": "0x1454e8ca0",
+          "hex": "1c6666666666662e0f1f8400000000004883c1584839ca0f8474030000488b3c"
+        },
+        {
+          "old_address": "0x1454d6b10",
+          "address": "0x1454e8cc0",
+          "hex": "0848837f080975e84c8b0f4d8b114d31c2450fb649084983f1654d09d175d18b"
+        },
+        {
+          "old_address": "0x1454d6b30",
+          "address": "0x1454e8ce0",
+          "hex": "540808f30f10440814448b440818448b4c083444894d040f104c08240f114df4"
+        },
+        {
+          "old_address": "0x1454d6b50",
+          "address": "0x1454e8d00",
+          "hex": "0f104c08380f105408440f114d080f11551448897dd08955d8f30f107c0810f2"
+        },
+        {
+          "old_address": "0x1454d6b70",
+          "address": "0x1454e8d20",
+          "hex": "0f104c080cf20f114ddcf30f1145e4448945e8f20f1044081cf20f1145ecf344"
+        },
+        {
+          "old_address": "0x1454d6c70",
+          "address": "0x1454e8e20",
+          "hex": "452c4889442430488d45c0488944242848895c2420488d4d3841b87e1400004c"
+        }
+      ],
+      "source": {
+        "address": "0x1454e8ba0",
+        "end_exclusive": "0x1454e905f",
+        "file_offset": "0x54e7fa0",
+        "byte_count": 1215,
+        "sha256": "a5b319e4c35df0d6c1a04f8e3bbade1dba0fff5c697046a680d61b62a16aef03"
+      }
+    },
+    {
+      "role": "seal-fate-publish",
+      "historical_address": "0x1454d7020",
+      "location_votes": 12,
+      "location_proofs": [
+        {
+          "old_address": "0x1454d7020",
+          "address": "0x1454e91d0",
+          "hex": "5541574156415541545657534881ec78010000488dac2480000000440f299de0"
+        },
+        {
+          "old_address": "0x1454d7120",
+          "address": "0x1454e92d0",
+          "hex": "1c6666666666662e0f1f8400000000004883c1584839ca0f841f0400004c8b34"
+        },
+        {
+          "old_address": "0x1454d7140",
+          "address": "0x1454e92f0",
+          "hex": "0849837e080975e84d8b0e4d8b114d31c2450fb649084983f1654d09d175d18b"
+        },
+        {
+          "old_address": "0x1454d7160",
+          "address": "0x1454e9310",
+          "hex": "540808f30f10440814448b7c0818448b440834448945f40f104c08240f114de4"
+        },
+        {
+          "old_address": "0x1454d7180",
+          "address": "0x1454e9330",
+          "hex": "0f104c08380f105408440f114df80f1155044c8975c08955c8f30f107c0810f2"
+        },
+        {
+          "old_address": "0x1454d71a0",
+          "address": "0x1454e9350",
+          "hex": "0f104c080cf20f114dccf30f1145d444897dd8f20f1044081cf20f1145dcf344"
+        },
+        {
+          "old_address": "0x1454d7240",
+          "address": "0x1454e93f0",
+          "hex": "89454848895d604c8d65604c8965304883ff010f8545030000418b46544501fd"
+        },
+        {
+          "old_address": "0x1454d7260",
+          "address": "0x1454e9410",
+          "hex": "4101c544036d0085c0440f44e84183fd03b803000000410f42c54585edbb0100"
+        }
+      ],
+      "source": {
+        "address": "0x1454e91d0",
+        "end_exclusive": "0x1454e97b7",
+        "file_offset": "0x54e85d0",
+        "byte_count": 1511,
+        "sha256": "dc991c2adffe78baa29fb1fa369117cd1906f7a5e56c7dc12f76eb9c13408908"
+      }
+    },
+    {
+      "role": "soul-fire-publish",
+      "historical_address": "0x1454d5bd0",
+      "location_votes": 26,
+      "location_proofs": [
+        {
+          "old_address": "0x1454d5cf0",
+          "address": "0x1454e7ea0",
+          "hex": "1c6666666666662e0f1f8400000000004883c1584839ca0f84760700004c8b24"
+        },
+        {
+          "old_address": "0x1454d5d10",
+          "address": "0x1454e7ec0",
+          "hex": "0849837c24080975e74d8b0c244d8b114d31c2450fb649084983f1654d09d175"
+        },
+        {
+          "old_address": "0x1454d5d30",
+          "address": "0x1454e7ee0",
+          "hex": "cf448b440808f30f104408148b540818448b4c083444894d0c0f104c08240f11"
+        },
+        {
+          "old_address": "0x1454d5d50",
+          "address": "0x1454e7f00",
+          "hex": "4dfc0f104c08380f105408440f11551c0f114d104c8965d8448945e0f30f1074"
+        },
+        {
+          "old_address": "0x1454d5d70",
+          "address": "0x1454e7f20",
+          "hex": "0810f20f104c080cf20f114de4f30f1145ec8955f0f20f1044081cf20f1145f4"
+        },
+        {
+          "old_address": "0x1454d5db0",
+          "address": "0x1454e7f60",
+          "hex": "0085c00f44d083fa03b8030000000f42c285d241be01000000440f45f048c745"
+        },
+        {
+          "old_address": "0x1454d5dd0",
+          "address": "0x1454e7f80",
+          "hex": "580000000048c745600800000048c74568000000004585f60f84b202000031ff"
+        },
+        {
+          "old_address": "0x1454d5df0",
+          "address": "0x1454e7fa0",
+          "hex": "450f57d249bffcffffffffffff07b8080000004885ff0f84a70000004c8b6d60"
+        }
+      ],
+      "source": {
+        "address": "0x1454e7d80",
+        "end_exclusive": "0x1454e86ac",
+        "file_offset": "0x54e7180",
+        "byte_count": 2348,
+        "sha256": "75a01ee7c043ffec8230e544ebfb64de8afae3f2da24d3cc05e6b6d68d9db7e2"
+      }
+    },
+    {
+      "role": "self-buff",
+      "historical_address": "0x1454e8880",
+      "status": "Historical label is an interior branch, not an unwind-function boundary; no target address inferred."
+    },
+    {
+      "role": "passive-description",
+      "historical_address": "0x1454d7be0",
+      "location_votes": 27,
+      "location_proofs": [
+        {
+          "old_address": "0x1454d7be0",
+          "address": "0x1454e9d90",
+          "hex": "5541574156415541545657534881ec28020000488dac2480000000440f298590"
+        },
+        {
+          "old_address": "0x1454d7c00",
+          "address": "0x1454e9db0",
+          "hex": "0100000f29bd800100000f29b57001000048c78568010000feffffff4d89c648"
+        },
+        {
+          "old_address": "0x1454d7c20",
+          "address": "0x1454e9dd0",
+          "hex": "89d34889ce4c8b3af3410f1010f3410f104804f3410f104744f30f107210f30f"
+        },
+        {
+          "old_address": "0x1454d7dc0",
+          "address": "0x1454e9f70",
+          "hex": "09c00f8566ffffff48c7060000000048c746080100000048c746100000000048"
+        },
+        {
+          "old_address": "0x1454d7de0",
+          "address": "0x1454e9f90",
+          "hex": "8b06488945e0488b4608488945e848c745f0000000004883c2f74883fa040f87"
+        },
+        {
+          "old_address": "0x1454d7e20",
+          "address": "0x1454e9fd0",
+          "hex": "674833080fb650084883f2654809ca0f846b06000048b97365616c5f66617448"
+        },
+        {
+          "old_address": "0x1454d7e40",
+          "address": "0x1454e9ff0",
+          "hex": "33080fb650084883f2654809ca0f841907000048b96c6967687477656c483308"
+        },
+        {
+          "old_address": "0x1454d7e60",
+          "address": "0x1454ea010",
+          "hex": "0fb650084883f26c4809ca0f842708000048b9736f756c5f6669724833080fb6"
+        }
+      ],
+      "source": {
+        "address": "0x1454e9d90",
+        "end_exclusive": "0x1454eb783",
+        "file_offset": "0x54e9190",
+        "byte_count": 6643,
+        "sha256": "21383a5d1a0b04491b354d60cc10d88481e1fb4c813c162879a3e8ae3cfa01da"
+      }
+    }
+  ],
+  "limitations": [
+    "Location votes do not prove unchanged behavior.",
+    "Raw Ghidra imports infer generic ABI and unresolved external constants; original PE assembly governs Win64 arguments.",
+    "Static analysis does not establish runtime parity."
+  ]
+}

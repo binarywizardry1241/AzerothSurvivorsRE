@@ -1,0 +1,538 @@
+{
+  "target": {
+    "version": "0.112.0",
+    "sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+    "size_bytes": 140514816
+  },
+  "contracts": {
+    "xp_parts": {
+      "cases": 1546,
+      "sha256": "90d700f8631f838c6eb0b77302e7533afd6cb4e9486e88e11be8bc9b2c615a8c"
+    },
+    "xp_delta_and_checkpoint": {
+      "cases": 102,
+      "sha256": "e60a9f8e746c87c94f9cbbc931cb52a4e96948aa67b2a589d2826da4552233f1"
+    },
+    "terminal_counts": {
+      "cases": 259,
+      "sha256": "e7378f7a7c6514e730609f03225cd4ce4dbda5c51e0c47a291e61ad53c38baeb"
+    },
+    "terminal_phase_edge": {
+      "cases": 147,
+      "sha256": "0d54cdbfaceb3e6a0a8c63d77eec1a1f46b3101f53ddc785726860a19aefc34e"
+    },
+    "counter_gate": {
+      "cases": 18,
+      "sha256": "eba03b08f0d46dcf9f15039fc95cbe2135b52dad66586ca2e5f7bd1576aaba3b"
+    },
+    "summary_gate": {
+      "cases": 21,
+      "sha256": "c8a0094a915aead6f181360b00829c97f235c27516097c48e330239a01aa357f"
+    },
+    "xp_gate": {
+      "cases": 18,
+      "sha256": "3c3f680dfc25981542e11764dbf11e3412a0949cc438ff8a129e1eb666b29770"
+    },
+    "class_xp_mutation": {
+      "cases": 432,
+      "sha256": "d6c3d65972e4c01b97f9b25a5f94153c8d253633509d9a1a0c017924bb83d7c7"
+    },
+    "backend_xp_save_route": {
+      "cases": 36,
+      "sha256": "1172aad79b4bb40be62bc5ed7500a7c57f1e2dabac1060b40d6f34f621321c14"
+    },
+    "permanent_character_bests": {
+      "cases": 504,
+      "sha256": "2613ab030011eec0a50a94c2bc3d1ab307a3a3b1e7e3824c7817898b1a1305ae"
+    },
+    "optional_character_bests": {
+      "cases": 36,
+      "sha256": "86242b7a8e7b1b53e92e8dd9a6a04afeba6bfcdaf718386d795b6a8feb2d626b"
+    },
+    "first_result_and_counts": {
+      "cases": 14,
+      "sha256": "204ec752edf169da3d880dcf529ab8715bf5f50ea5e7ba8950217122b37226c7"
+    },
+    "beaten_zone_insertion": {
+      "cases": 432,
+      "sha256": "9d9df00d4b3a63ecee6296356a7d48524c6faefd668f708a4208b712c5082056"
+    }
+  },
+  "instructions": 430939,
+  "terminal_marker_writes": [
+    "0x1458b0a90"
+  ],
+  "typed_xp_save_cases": [
+    {
+      "input": "talent|1|80|imp_heroic:1\ntalent|1|80|deflection:1\nspec|1|2|deflection:1|imp_heroic:1|deflection:1\nstat|wins=7\n",
+      "class_id": 1,
+      "amount": 80,
+      "before": "talent|1|80|imp_heroic:1\ntalent|1|80|deflection:1\nspec|1|2|deflection:1|imp_heroic:1|deflection:1\nstat|kills=0,gold=0,guardians=0,bosses=0,runs=0,wins=7,caches=0\n",
+      "after": "talent|1|160|imp_heroic:1\ntalent|1|80|deflection:1\nspec|1|2|deflection:1|imp_heroic:1|deflection:1\nstat|kills=0,gold=0,guardians=0,bosses=0,runs=0,wins=7,caches=0\n"
+    },
+    {
+      "input": "talent|1|4294967294|imp_heroic:1\ntalent|1|80|deflection:1\nspec|1|2|deflection:1|imp_heroic:1|deflection:1\nstat|wins=7\n",
+      "class_id": 1,
+      "amount": 80,
+      "before": "talent|1|4294967294|imp_heroic:1\ntalent|1|80|deflection:1\nspec|1|2|deflection:1|imp_heroic:1|deflection:1\nstat|kills=0,gold=0,guardians=0,bosses=0,runs=0,wins=7,caches=0\n",
+      "after": "talent|1|4294967295|imp_heroic:1\ntalent|1|80|deflection:1\nspec|1|2|deflection:1|imp_heroic:1|deflection:1\nstat|kills=0,gold=0,guardians=0,bosses=0,runs=0,wins=7,caches=0\n"
+    },
+    {
+      "input": "talent|1|80|imp_heroic:1\ntalent|1|80|deflection:1\nspec|1|2|deflection:1|imp_heroic:1|deflection:1\nstat|wins=7\n",
+      "class_id": 9,
+      "amount": 80,
+      "before": "talent|1|80|imp_heroic:1\ntalent|1|80|deflection:1\nspec|1|2|deflection:1|imp_heroic:1|deflection:1\nstat|kills=0,gold=0,guardians=0,bosses=0,runs=0,wins=7,caches=0\n",
+      "after": "talent|1|80|imp_heroic:1\ntalent|1|80|deflection:1\ntalent|9|80|\nspec|1|2|deflection:1|imp_heroic:1|deflection:1\nstat|kills=0,gold=0,guardians=0,bosses=0,runs=0,wins=7,caches=0\n"
+    }
+  ],
+  "selected_xp": [
+    {
+      "inputs": {
+        "kills": 100,
+        "bosses": 1,
+        "seconds": 60.0,
+        "won": false,
+        "zone": 0,
+        "mods": [
+          100,
+          100,
+          100,
+          100
+        ],
+        "veteran": 0.0
+      },
+      "parts": [
+        12,
+        10,
+        40,
+        0,
+        0,
+        0,
+        0
+      ],
+      "total": 62
+    },
+    {
+      "inputs": {
+        "kills": 5,
+        "bosses": 0,
+        "seconds": 2.5,
+        "won": false,
+        "zone": 0,
+        "mods": [
+          100,
+          100,
+          100,
+          100
+        ],
+        "veteran": 0.0
+      },
+      "parts": [
+        1,
+        1,
+        0,
+        0,
+        -1,
+        0,
+        0
+      ],
+      "total": 1
+    },
+    {
+      "inputs": {
+        "kills": 100,
+        "bosses": 1,
+        "seconds": 60.0,
+        "won": true,
+        "zone": 0,
+        "mods": [
+          100,
+          300,
+          300,
+          150
+        ],
+        "veteran": 0.4
+      },
+      "parts": [
+        12,
+        10,
+        40,
+        200,
+        0,
+        262,
+        210
+      ],
+      "total": 734
+    },
+    {
+      "inputs": {
+        "kills": 0,
+        "bosses": 0,
+        "seconds": 0.0,
+        "won": false,
+        "zone": 0,
+        "mods": [
+          100,
+          100,
+          100,
+          100
+        ],
+        "veteran": 0.0
+      },
+      "parts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "total": 0
+    },
+    {
+      "inputs": {
+        "kills": 4294967295,
+        "bosses": 4294967295,
+        "seconds": 36000.0,
+        "won": true,
+        "zone": 11,
+        "mods": [
+          500,
+          500,
+          300,
+          150
+        ],
+        "veteran": 1.0
+      },
+      "parts": [
+        7200,
+        85899352,
+        171798691800,
+        200,
+        -167589631257,
+        4294967296,
+        8589934592
+      ],
+      "total": 4294967295
+    },
+    {
+      "inputs": {
+        "kills": 100,
+        "bosses": 1,
+        "seconds": 60.0,
+        "won": false,
+        "zone": 0,
+        "mods": [
+          100,
+          100,
+          100,
+          0
+        ],
+        "veteran": 0.0
+      },
+      "parts": [
+        12,
+        10,
+        40,
+        0,
+        0,
+        -124,
+        0
+      ],
+      "total": 0
+    },
+    {
+      "inputs": {
+        "kills": 1,
+        "bosses": 0,
+        "seconds": -60.0,
+        "won": false,
+        "zone": 0,
+        "mods": [
+          100,
+          100,
+          100,
+          100
+        ],
+        "veteran": 0.0
+      },
+      "parts": [
+        -12,
+        0,
+        0,
+        0,
+        12,
+        0,
+        0
+      ],
+      "total": 0
+    },
+    {
+      "inputs": {
+        "kills": 4294967295,
+        "bosses": 5,
+        "seconds": 1800.0,
+        "won": false,
+        "zone": 11,
+        "mods": [
+          0,
+          100,
+          100,
+          100
+        ],
+        "veteran": 0.2
+      },
+      "parts": [
+        360,
+        429496736,
+        200,
+        0,
+        687195568,
+        -55834656,
+        212171648
+      ],
+      "total": 1273029856
+    },
+    {
+      "inputs": {
+        "kills": 0,
+        "bosses": 0,
+        "seconds": 375.0,
+        "won": false,
+        "zone": 0,
+        "mods": [
+          100,
+          125,
+          110,
+          125
+        ],
+        "veteran": 0.0
+      },
+      "parts": [
+        75,
+        0,
+        0,
+        0,
+        0,
+        49,
+        0
+      ],
+      "total": 124
+    },
+    {
+      "inputs": {
+        "kills": 0,
+        "bosses": 0,
+        "seconds": 125.0,
+        "won": false,
+        "zone": 0,
+        "mods": [
+          100,
+          125,
+          120,
+          110
+        ],
+        "veteran": 0.0
+      },
+      "parts": [
+        25,
+        0,
+        0,
+        0,
+        0,
+        11,
+        0
+      ],
+      "total": 36
+    }
+  ],
+  "delta_boundaries": [
+    {
+      "current": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "previous": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "awarded": 0
+    },
+    {
+      "current": [
+        -1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "previous": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "delta": [
+        -1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "awarded": 0
+    },
+    {
+      "current": [
+        1,
+        -2,
+        3,
+        -4,
+        5,
+        -6,
+        7
+      ],
+      "previous": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "delta": [
+        1,
+        -2,
+        3,
+        -4,
+        5,
+        -6,
+        7
+      ],
+      "awarded": 4
+    },
+    {
+      "current": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "previous": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "delta": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "awarded": 0
+    },
+    {
+      "current": [
+        9223372036854775807,
+        9223372036854775807,
+        9223372036854775807,
+        9223372036854775807,
+        9223372036854775807,
+        9223372036854775807,
+        9223372036854775807
+      ],
+      "previous": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "delta": [
+        -9223372036854775808,
+        -9223372036854775808,
+        -9223372036854775808,
+        -9223372036854775808,
+        -9223372036854775808,
+        -9223372036854775808,
+        -9223372036854775808
+      ],
+      "awarded": 0
+    },
+    {
+      "current": [
+        4294967296,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "previous": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "delta": [
+        4294967296,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "awarded": 1
+    }
+  ],
+  "limits": [
+    "Scoped original PE replay and current AS source tracing; no compiler, application, game, filesystem write or runtime comparison executes.",
+    "Zone index and CRT roundf are explicit seams. Full original XP row mutation executes with preallocated vector capacity. Typed save routing ends at serialization, sealing and write-owner interfaces; OS/filesystem behavior is not replayed.",
+    "Full current summary Ghidra owner is reused through the canonical addon-bridge manifest; omitted diagnostic/string formatting and UI publication are not part of terminal arithmetic replay.",
+    "Additional typed Save cases reuse current parser/serializer owners with explicit host memory-management, C-byte and English localization seams; no OS/filesystem or sealed-import cryptography executes."
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "target": "AzerothSurvivors/AzerothSurvivors-0.105.0.exe",
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "assembly": "tick-sink-test.asm",
+  "ranges": [
+    {
+      "role": "default-disabled",
+      "start": "0x145900d5f",
+      "end_exclusive": "0x145900d69",
+      "file_offset": "0x590015f",
+      "sha256": "7d405c7867c201c7c68f7d6ef4e279c3e3ac421127658e8e1187a16e35c1dee0"
+    },
+    {
+      "role": "sink-enable-deadline-and-env",
+      "start": "0x1459021c8",
+      "end_exclusive": "0x145902213",
+      "file_offset": "0x59015c8",
+      "sha256": "5a1b07345af28ccb7d87c5cecbc073a25168e6c9d1fe5f3350e89d747beeedc7"
+    },
+    {
+      "role": "sink-position-and-floor",
+      "start": "0x1459022f9",
+      "end_exclusive": "0x1459023b6",
+      "file_offset": "0x59016f9",
+      "sha256": "03ca71e9385d00b4600858af5476813e5129672d960a88d7991f76f8d52185d7"
+    },
+    {
+      "role": "sink-pending-report-guard",
+      "start": "0x1459024a4",
+      "end_exclusive": "0x1459024e5",
+      "file_offset": "0x59018a4",
+      "sha256": "1e1366f3e5be575f481fbe3d9562c1f2e5b922d4bb6004009a129c176879fb95"
+    }
+  ],
+  "owning_tick": {
+    "start": "0x145901d80",
+    "end_exclusive": "0x145911a64",
+    "sha256": "778d449d91426876a8705f9fab0724f1b1e3ebb5ed1113d57a8188bc19760842",
+    "provider": "ghidra",
+    "rea_evidence_id": "ev_4e8932b8ef1b157ac28055f7470b06d9ade376d4bd4c087e816ef5dc3f631d99",
+    "scope": "Complete function statically decompiled; only necessary instruction spans retained."
+  },
+  "contract": {
+    "enable_field": "Game+948; u32; native constructor default0",
+    "deadline": "Game+a50; branch runs when enable==1 and deadline is not ordered greater than clock, including unordered float inputs",
+    "interval": "Game+94c; next deadline=clock+interval",
+    "position_source": "Cycle parsed WOW_ROGUE_SINK_AT XY pairs with Game+9a8; empty list uses player XY",
+    "environment_literal": {
+      "address": "0x146e78de9",
+      "byte_length": 17,
+      "value": "WOW_ROGUE_SINK_AT"
+    },
+    "floor": "Primary floor query1458cac10; successful floor plus f32(-0.6)",
+    "sequence_writer": "Existing player-mover-counter.asm / tick-player-relocation-counter in continuation-effects-manifest.json",
+    "pending": "Write destination and pending12 reports after queueing0xc7 teleport",
+    "classification": "Explicit sink-test injection; not an additional ordinary gameplay relocation trigger."
+  },
+  "checks": {
+    "script": "scripts/recover-terminal-contracts-0.105.0.py",
+    "sink_gate_cases": 15,
+    "native_default_checked": true
+  },
+  "limitations": [
+    "Selected-target static code/data and bounded prefix replay only. Sink environment parsing, enable producer and injected runtime are not implemented or exercised.",
+    "The generic raw Ghidra slice omits external data/callees; instruction branches determine NaN behavior rather than its inferred <= expression.",
+    "No compiler, game application, original/rebuilt interaction or rendering comparison."
+  ]
+}

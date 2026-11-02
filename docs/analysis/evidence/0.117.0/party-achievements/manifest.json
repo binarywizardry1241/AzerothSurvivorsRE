@@ -1,0 +1,74 @@
+{
+  "schema": "as-party-achievement-delivery-v1",
+  "target": {
+    "version": "0.117.0",
+    "sha256": "507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293",
+    "size_bytes": 145283072
+  },
+  "native_spans": [
+    {
+      "role": "ongoing-feat-delivery",
+      "start": "0x145af9030",
+      "end_exclusive": "0x145af9103",
+      "file_offset": "0x5af8430",
+      "byte_count": 211,
+      "sha256": "a02be0c31109bcc7cd7e4e96e11494edeeb53e9c92d5a213dad89ef6cf713951",
+      "extract": "docs/analysis/evidence/0.117.0/party-achievements/ongoing-feat-delivery.asm",
+      "extract_sha256": "fe4d0ed46785d56bf055df21e2baf221c313233705ae8379da5de021e9838805"
+    },
+    {
+      "role": "account-party-delivery",
+      "start": "0x145b154f0",
+      "end_exclusive": "0x145b15a17",
+      "file_offset": "0x5b148f0",
+      "byte_count": 1319,
+      "sha256": "c3b141482280e307c4b7c0351dcd9b47dd71c5965659e0f6270aed5e65682abb",
+      "extract": "docs/analysis/evidence/0.117.0/party-achievements/account-party-delivery.asm",
+      "extract_sha256": "e8566fc6304bbf6414619e3062cb6726a723e4f4e0c077d58fcf5dd2f812fb0e"
+    },
+    {
+      "role": "recipient-snapshot",
+      "start": "0x145b16870",
+      "end_exclusive": "0x145b16aec",
+      "file_offset": "0x5b15c70",
+      "byte_count": 636,
+      "sha256": "1cb27c69e043a3dbdba1f5adfa06551e89318b1fb0755420777b2f70127e013d",
+      "extract": "docs/analysis/evidence/0.117.0/party-achievements/recipient-snapshot.asm",
+      "extract_sha256": "ff876fcbf0570eb9e65b42ca56fc04f0bacfbc82ab4e3cfb796d6a703d1c7c75"
+    }
+  ],
+  "queries": [
+    {
+      "role": "local-feat-wrapper",
+      "plan": "runtime/0.117.0/party-achievement-route/local-feat-wrapper-plan.json",
+      "plan_sha256": "e6ac6a602d0700be3668bc4840f938f53107a0fe9a38cf8a6c07a45afde1a61b",
+      "input": "runtime/0.117.0/party-achievement-route/local-feat-wrapper.bin",
+      "input_sha256": "a02be0c31109bcc7cd7e4e96e11494edeeb53e9c92d5a213dad89ef6cf713951",
+      "result": "runtime/0.117.0/party-achievement-route/local-feat-wrapper-query/results/f074752f0857fec59e066ebc808a8d9c0ba602c4a0631377f6d4c7c429b32473.json",
+      "result_sha256": "5d7f7777e59e08678c0a665f0db13ee3efd519473239a1481b7797311d02b721",
+      "evidence_id": "ev_cc93932da70a370bd275375885b4b4d68d7ca99ecc7949bc4daa58ca5e9bb1ff",
+      "profile_digest": "d8fe61e4b6891e892bc820253f8ffc0b0d14df138a04d2e2b6865c4565209e50",
+      "normalized_sha256": "8d7e1b54bc6f38a783ce98875ead610640b0cd19e00dccd12c207327f313f7b5"
+    },
+    {
+      "role": "party-feat-wrapper",
+      "plan": "runtime/0.117.0/party-achievement-route/party-feat-wrapper-plan.json",
+      "plan_sha256": "1e026378f9d7e3b27d10497b3ac21de9832ad9a45aa526a5d2e549238986f4be",
+      "input": "runtime/0.117.0/party-achievement-route/party-feat-wrapper.bin",
+      "input_sha256": "c3b141482280e307c4b7c0351dcd9b47dd71c5965659e0f6270aed5e65682abb",
+      "result": "runtime/0.117.0/party-achievement-route/party-feat-wrapper-query/results/0e55a97371f51e1e6c33913f4d5104343e95b4e30e50f8cb056a7152eccc6347.json",
+      "result_sha256": "d8a8a365ecee790f88c7aee3fa2acfb4b6902c8c6c014154b363ef6418209608",
+      "evidence_id": "ev_af88fa22b1cb2a23f6c8da18f138c7ba213e796235eb27a8fba90089c9a67034",
+      "profile_digest": "8ca74ff26b8683182077fba595b3805b058870694137ac7cbebfcf4863d39574",
+      "normalized_sha256": "b09f9c414c95cfd8b8582200e8957e40781489ba4630f788c7071bd05bbe562c"
+    }
+  ],
+  "shared_producer": "docs/analysis/evidence/0.117.0/party-achievement-producer/manifest.json",
+  "replication": "docs/analysis/evidence/0.117.0/party-achievement-wire/manifest.json",
+  "persistent_writer": "docs/analysis/evidence/0.117.0/party-achievement-delivery/writer.json",
+  "limits": [
+    "Bounded current native contracts and manual source tracing; no Rust or gameplay execution.",
+    "Raw Ghidra inferred ABI/types are uncertain; instruction bytes and call operands establish selected interfaces.",
+    "No extra grant/save is inferred in End18 teardown."
+  ]
+}

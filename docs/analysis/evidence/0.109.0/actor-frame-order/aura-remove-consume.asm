@@ -1,0 +1,12 @@
+14597c250: 4885f6 test rsi, rsi
+14597c253: 7420 je 0x14597c275
+14597c255: 488d7810 lea rdi, [rax + 0x10]
+14597c259: 488b10 mov rdx, qword ptr [rax]
+14597c25c: 448b4008 mov r8d, dword ptr [rax + 8]
+14597c260: 4883c6f0 add rsi, -0x10
+14597c264: 4c89f9 mov rcx, r15
+14597c267: 4531c9 xor r9d, r9d
+14597c26a: e8d1420000 call 0x145980540
+14597c26f: 90 nop 
+14597c270: 4889f8 mov rax, rdi
+14597c273: ebdb jmp 0x14597c250

@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-18",
+  "target_version": "0.97.2",
+  "target_sha256": "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589",
+  "tests": {
+    "command": "./scripts/cargo test --locked --offline --profile menu -p azeroth-survivors-re --test treasure_chests --test loot_rewards --test mob_loot",
+    "result": "passed",
+    "total": 38,
+    "suites": {
+      "treasure_chests": 22,
+      "loot_rewards": 11,
+      "mob_loot": 5
+    },
+    "compile_seconds": 17.42,
+    "log": "runtime/treasure-0.97.2/source-tests-final.log"
+  },
+  "native_cases": {
+    "chest_scalar_cases": 30,
+    "jewelry_increment": 660,
+    "rarity_calculation": 12,
+    "ordinary_death": 252,
+    "boss_candidates": 780,
+    "equipment_multiplier": 8,
+    "boss_equipment_rolls": 2160,
+    "total": 3902,
+    "method": "Unchanged original x86-64 instructions in Unicorn with explicit bounded scopes and hooks; no game process launch."
+  },
+  "fixtures": {
+    "treasure-chests-0.97.2-native.json": {
+      "sha256": "d5de2402982b492eb6d22d53cd8af3b58b87fd45cede0e60573c32cd1cddef07",
+      "bytes": 19970
+    },
+    "jewelry-0.97.2-native.json": {
+      "sha256": "61cb672f88720a976a2b20caa832bbb03541271159a37d368b556cb3b9e1d481",
+      "bytes": 136782
+    },
+    "mob-loot-0.97.2-native.json": {
+      "sha256": "73356196caeaa7a6e2a80c8f0efa3e578a398950d7263d87870973f14cea0ff2",
+      "bytes": 1295772
+    }
+  },
+  "build": {
+    "command": "./scripts/cargo build --locked --offline --profile menu -p azeroth-survivors-re --lib --bin AzerothSurvivorsRE",
+    "result": "passed",
+    "seconds": 16.52,
+    "host": "macOS Apple Silicon",
+    "log": "runtime/treasure-0.97.2/source-build.log"
+  },
+  "rea": {
+    "successful_focused_records": 17,
+    "provider": "Ghidra 12.1.4",
+    "provenance": "rea-provenance.json",
+    "full_pe_attempt": {
+      "result": "cancelled during initial analysis after 762.383s; no function result used",
+      "failure": "KeyboardInterrupt: ",
+      "closed": true
+    }
+  },
+  "initial_validation_failure": "First aggregate build failed on two concurrent menu camera Vec3-to-array type mismatches. Corrected required .into() conversions in the working file; those unrelated menu changes are excluded from the loot commit. Final test/build then passed.",
+  "not_run": [
+    "original game process",
+    "rebuilt game process",
+    "visual comparison",
+    "audio/network/save adapters",
+    "Windows build"
+  ],
+  "limitations": [
+    "Components require real world/entity/terrain/stat/choice/persistence owners; menu does not enter gameplay.",
+    "Primary boss/guardian XP/gold/magnet pickup scheduling, generated amulets/effect decoder and complete spell upgrades remain incomplete.",
+    "Host powf and trigonometry parity with Windows remain unverified.",
+    "Native fixtures are bounded arithmetic/control-flow checks, not full-game parity."
+  ],
+  "git_delivery": "Local commit only; push remains forbidden until menu parity or explicit user authorization.",
+  "source_sha256": {
+    "crates/azeroth-survivors-re/src/loot_rewards.rs": "eaae9bc4ff5d69eb2197aca65e0174d0121bb06ba314ced7bb5e042b2fba9fdf",
+    "crates/azeroth-survivors-re/src/loot_rewards/catalog.rs": "9da17c3cbd46cf24b1946aca4fb1a9ef911dcf9bec9013e1c93e4cbf3c52cbb4",
+    "crates/azeroth-survivors-re/src/mob_loot.rs": "bf0442ef8a0c230e8b4bae44425b02c171ff3c1bdd3c317090aefaad14bb5ac2",
+    "crates/azeroth-survivors-re/src/mob_loot_catalog.rs": "dc9ec346cbbd4626224f292a1455bcfcbd735fd37df55b9cdd4ee9e71ac03fde",
+    "crates/azeroth-survivors-re/src/treasure_chests/catalog.rs": "4ec3c2863f4998a63e8660ae33bcd6bb52fe48147e4d90222b2c6239ba2b66e8",
+    "crates/azeroth-survivors-re/src/treasure_chests/mod.rs": "ae4898cb710dfb591883185a6b2fc748f6f56488df9f2fa935b3024058f14c5c"
+  },
+  "warnings": "Application reported19 unused/dead-code warnings; block0.1.6 future-incompatibility warning remains. No new lint gate was run.",
+  "scope_note": "Other chats changed package/AGENTS/menu/guardian/enemy source concurrently. Their uncommitted work is excluded. No further compilation or native replay is run after the newly recorded source-only phase."
+}

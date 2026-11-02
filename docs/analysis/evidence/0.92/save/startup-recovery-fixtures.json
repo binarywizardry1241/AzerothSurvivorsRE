@@ -1,0 +1,1405 @@
+{
+  "target_sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+  "method": "Unchanged native loader, backup-slot helper, zone clamp and zone-index leaf executed in bounded Unicorn x86_64. IO is a declared in-memory stub; no OS/files/network calls are reachable inside emulated execution.",
+  "native_ranges": [
+    {
+      "start": "0x1453f9d00",
+      "end_exclusive": "0x1453fa51f",
+      "sha256": "9b431d9b39ce29a7f06747921f1db6c5dbea78fa644df70a471cb9b64f6244af"
+    },
+    {
+      "start": "0x1453f8ad0",
+      "end_exclusive": "0x1453f8bae",
+      "sha256": "83e5c61d16d3cc61f10e159be6e0ca888b658b69052e750b4ab318b5b628e8f4"
+    },
+    {
+      "start": "0x1453f9130",
+      "end_exclusive": "0x1453f92c7",
+      "sha256": "fe221ce6c23d06711e080462f53182685aff3fe2d325a4eb354c9100c86f2077"
+    },
+    {
+      "start": "0x1453e23e0",
+      "end_exclusive": "0x1453e24c1",
+      "sha256": "9e441e747ab4ee1d24d11438804105dbc807c83c722bc00b9fbaf86032ef6fd8"
+    }
+  ],
+  "stubs": {
+    "active_reader": "Option<String> supplied as None or the declared invalid sealed input",
+    "seal_opener": "Returns None only for the independently invalid RSE1:broken fixture",
+    "auxiliary_reader": "Option<String> from the declared backup map",
+    "auxiliary_writer": "Records attempted stem/raw-text write; native caller ignores its result",
+    "trim": "ASCII fixture trim only",
+    "format": "Reviewed compact Rust string/u64 formatting",
+    "allocation_free": "Project-local emulator heap and no-op deallocation"
+  },
+  "calls": {
+    "0x145421330": 6,
+    "0x14104f070": 5,
+    "0x1454569f0": 5,
+    "0x1456c9ba0": 85,
+    "0x145421620": 70,
+    "0x1400021d0": 233,
+    "0x145420cf0": 5,
+    "0x1456b37a0": 5,
+    "0x1457149f7": 1,
+    "0x140002200": 76,
+    "0x1400021c0": 76,
+    "0x1457149fd": 76
+  },
+  "cases": [
+    {
+      "label": "read_failure",
+      "input": null,
+      "backups": {},
+      "native_events": [],
+      "native_account_sha256": "e4383a1b08f90dcf681adec46b7713ef601bc62cd068b8def00348574de95fb9",
+      "native_pick_present": false,
+      "native_hero_count": 0
+    },
+    {
+      "label": "first_unused",
+      "input": "RSE1:broken",
+      "backups": {},
+      "native_events": [
+        {
+          "read_backup": "characters.unreadable.1"
+        },
+        {
+          "write_backup": "characters.unreadable.1",
+          "raw_text": "RSE1:broken"
+        },
+        {
+          "stderr": "rogue: the save does not open; starting fresh, the old one kept as characters.unreadable.1\n"
+        }
+      ],
+      "native_account_sha256": "e4383a1b08f90dcf681adec46b7713ef601bc62cd068b8def00348574de95fb9",
+      "native_pick_present": false,
+      "native_hero_count": 0
+    },
+    {
+      "label": "reuse_identical_second",
+      "input": "RSE1:broken",
+      "backups": {
+        "characters.unreadable.1": "different",
+        "characters.unreadable.2": "RSE1:broken"
+      },
+      "native_events": [
+        {
+          "read_backup": "characters.unreadable.1"
+        },
+        {
+          "read_backup": "characters.unreadable.2"
+        },
+        {
+          "write_backup": "characters.unreadable.2",
+          "raw_text": "RSE1:broken"
+        },
+        {
+          "stderr": "rogue: the save does not open; starting fresh, the old one kept as characters.unreadable.2\n"
+        }
+      ],
+      "native_account_sha256": "e4383a1b08f90dcf681adec46b7713ef601bc62cd068b8def00348574de95fb9",
+      "native_pick_present": false,
+      "native_hero_count": 0
+    },
+    {
+      "label": "skip_to_third",
+      "input": "RSE1:broken",
+      "backups": {
+        "characters.unreadable.1": "different",
+        "characters.unreadable.2": "also-different"
+      },
+      "native_events": [
+        {
+          "read_backup": "characters.unreadable.1"
+        },
+        {
+          "read_backup": "characters.unreadable.2"
+        },
+        {
+          "read_backup": "characters.unreadable.3"
+        },
+        {
+          "write_backup": "characters.unreadable.3",
+          "raw_text": "RSE1:broken"
+        },
+        {
+          "stderr": "rogue: the save does not open; starting fresh, the old one kept as characters.unreadable.3\n"
+        }
+      ],
+      "native_account_sha256": "e4383a1b08f90dcf681adec46b7713ef601bc62cd068b8def00348574de95fb9",
+      "native_pick_present": false,
+      "native_hero_count": 0
+    },
+    {
+      "label": "all32_occupied",
+      "input": "RSE1:broken",
+      "backups": {
+        "characters.unreadable.1": "earlier-1",
+        "characters.unreadable.2": "earlier-2",
+        "characters.unreadable.3": "earlier-3",
+        "characters.unreadable.4": "earlier-4",
+        "characters.unreadable.5": "earlier-5",
+        "characters.unreadable.6": "earlier-6",
+        "characters.unreadable.7": "earlier-7",
+        "characters.unreadable.8": "earlier-8",
+        "characters.unreadable.9": "earlier-9",
+        "characters.unreadable.10": "earlier-10",
+        "characters.unreadable.11": "earlier-11",
+        "characters.unreadable.12": "earlier-12",
+        "characters.unreadable.13": "earlier-13",
+        "characters.unreadable.14": "earlier-14",
+        "characters.unreadable.15": "earlier-15",
+        "characters.unreadable.16": "earlier-16",
+        "characters.unreadable.17": "earlier-17",
+        "characters.unreadable.18": "earlier-18",
+        "characters.unreadable.19": "earlier-19",
+        "characters.unreadable.20": "earlier-20",
+        "characters.unreadable.21": "earlier-21",
+        "characters.unreadable.22": "earlier-22",
+        "characters.unreadable.23": "earlier-23",
+        "characters.unreadable.24": "earlier-24",
+        "characters.unreadable.25": "earlier-25",
+        "characters.unreadable.26": "earlier-26",
+        "characters.unreadable.27": "earlier-27",
+        "characters.unreadable.28": "earlier-28",
+        "characters.unreadable.29": "earlier-29",
+        "characters.unreadable.30": "earlier-30",
+        "characters.unreadable.31": "earlier-31",
+        "characters.unreadable.32": "earlier-32"
+      },
+      "native_events": [
+        {
+          "read_backup": "characters.unreadable.1"
+        },
+        {
+          "read_backup": "characters.unreadable.2"
+        },
+        {
+          "read_backup": "characters.unreadable.3"
+        },
+        {
+          "read_backup": "characters.unreadable.4"
+        },
+        {
+          "read_backup": "characters.unreadable.5"
+        },
+        {
+          "read_backup": "characters.unreadable.6"
+        },
+        {
+          "read_backup": "characters.unreadable.7"
+        },
+        {
+          "read_backup": "characters.unreadable.8"
+        },
+        {
+          "read_backup": "characters.unreadable.9"
+        },
+        {
+          "read_backup": "characters.unreadable.10"
+        },
+        {
+          "read_backup": "characters.unreadable.11"
+        },
+        {
+          "read_backup": "characters.unreadable.12"
+        },
+        {
+          "read_backup": "characters.unreadable.13"
+        },
+        {
+          "read_backup": "characters.unreadable.14"
+        },
+        {
+          "read_backup": "characters.unreadable.15"
+        },
+        {
+          "read_backup": "characters.unreadable.16"
+        },
+        {
+          "read_backup": "characters.unreadable.17"
+        },
+        {
+          "read_backup": "characters.unreadable.18"
+        },
+        {
+          "read_backup": "characters.unreadable.19"
+        },
+        {
+          "read_backup": "characters.unreadable.20"
+        },
+        {
+          "read_backup": "characters.unreadable.21"
+        },
+        {
+          "read_backup": "characters.unreadable.22"
+        },
+        {
+          "read_backup": "characters.unreadable.23"
+        },
+        {
+          "read_backup": "characters.unreadable.24"
+        },
+        {
+          "read_backup": "characters.unreadable.25"
+        },
+        {
+          "read_backup": "characters.unreadable.26"
+        },
+        {
+          "read_backup": "characters.unreadable.27"
+        },
+        {
+          "read_backup": "characters.unreadable.28"
+        },
+        {
+          "read_backup": "characters.unreadable.29"
+        },
+        {
+          "read_backup": "characters.unreadable.30"
+        },
+        {
+          "read_backup": "characters.unreadable.31"
+        },
+        {
+          "read_backup": "characters.unreadable.32"
+        },
+        {
+          "write_backup": "characters.unreadable.32",
+          "raw_text": "RSE1:broken"
+        },
+        {
+          "stderr": "rogue: the save does not open; starting fresh, the old one kept as characters.unreadable.32\n"
+        }
+      ],
+      "native_account_sha256": "e4383a1b08f90dcf681adec46b7713ef601bc62cd068b8def00348574de95fb9",
+      "native_pick_present": false,
+      "native_hero_count": 0
+    },
+    {
+      "label": "last_unused",
+      "input": "RSE1:broken",
+      "backups": {
+        "characters.unreadable.1": "earlier-1",
+        "characters.unreadable.2": "earlier-2",
+        "characters.unreadable.3": "earlier-3",
+        "characters.unreadable.4": "earlier-4",
+        "characters.unreadable.5": "earlier-5",
+        "characters.unreadable.6": "earlier-6",
+        "characters.unreadable.7": "earlier-7",
+        "characters.unreadable.8": "earlier-8",
+        "characters.unreadable.9": "earlier-9",
+        "characters.unreadable.10": "earlier-10",
+        "characters.unreadable.11": "earlier-11",
+        "characters.unreadable.12": "earlier-12",
+        "characters.unreadable.13": "earlier-13",
+        "characters.unreadable.14": "earlier-14",
+        "characters.unreadable.15": "earlier-15",
+        "characters.unreadable.16": "earlier-16",
+        "characters.unreadable.17": "earlier-17",
+        "characters.unreadable.18": "earlier-18",
+        "characters.unreadable.19": "earlier-19",
+        "characters.unreadable.20": "earlier-20",
+        "characters.unreadable.21": "earlier-21",
+        "characters.unreadable.22": "earlier-22",
+        "characters.unreadable.23": "earlier-23",
+        "characters.unreadable.24": "earlier-24",
+        "characters.unreadable.25": "earlier-25",
+        "characters.unreadable.26": "earlier-26",
+        "characters.unreadable.27": "earlier-27",
+        "characters.unreadable.28": "earlier-28",
+        "characters.unreadable.29": "earlier-29",
+        "characters.unreadable.30": "earlier-30",
+        "characters.unreadable.31": "earlier-31"
+      },
+      "native_events": [
+        {
+          "read_backup": "characters.unreadable.1"
+        },
+        {
+          "read_backup": "characters.unreadable.2"
+        },
+        {
+          "read_backup": "characters.unreadable.3"
+        },
+        {
+          "read_backup": "characters.unreadable.4"
+        },
+        {
+          "read_backup": "characters.unreadable.5"
+        },
+        {
+          "read_backup": "characters.unreadable.6"
+        },
+        {
+          "read_backup": "characters.unreadable.7"
+        },
+        {
+          "read_backup": "characters.unreadable.8"
+        },
+        {
+          "read_backup": "characters.unreadable.9"
+        },
+        {
+          "read_backup": "characters.unreadable.10"
+        },
+        {
+          "read_backup": "characters.unreadable.11"
+        },
+        {
+          "read_backup": "characters.unreadable.12"
+        },
+        {
+          "read_backup": "characters.unreadable.13"
+        },
+        {
+          "read_backup": "characters.unreadable.14"
+        },
+        {
+          "read_backup": "characters.unreadable.15"
+        },
+        {
+          "read_backup": "characters.unreadable.16"
+        },
+        {
+          "read_backup": "characters.unreadable.17"
+        },
+        {
+          "read_backup": "characters.unreadable.18"
+        },
+        {
+          "read_backup": "characters.unreadable.19"
+        },
+        {
+          "read_backup": "characters.unreadable.20"
+        },
+        {
+          "read_backup": "characters.unreadable.21"
+        },
+        {
+          "read_backup": "characters.unreadable.22"
+        },
+        {
+          "read_backup": "characters.unreadable.23"
+        },
+        {
+          "read_backup": "characters.unreadable.24"
+        },
+        {
+          "read_backup": "characters.unreadable.25"
+        },
+        {
+          "read_backup": "characters.unreadable.26"
+        },
+        {
+          "read_backup": "characters.unreadable.27"
+        },
+        {
+          "read_backup": "characters.unreadable.28"
+        },
+        {
+          "read_backup": "characters.unreadable.29"
+        },
+        {
+          "read_backup": "characters.unreadable.30"
+        },
+        {
+          "read_backup": "characters.unreadable.31"
+        },
+        {
+          "read_backup": "characters.unreadable.32"
+        },
+        {
+          "write_backup": "characters.unreadable.32",
+          "raw_text": "RSE1:broken"
+        },
+        {
+          "stderr": "rogue: the save does not open; starting fresh, the old one kept as characters.unreadable.32\n"
+        }
+      ],
+      "native_account_sha256": "e4383a1b08f90dcf681adec46b7713ef601bc62cd068b8def00348574de95fb9",
+      "native_pick_present": false,
+      "native_hero_count": 0
+    }
+  ],
+  "startup_zone_cases": [
+    {
+      "class": 1,
+      "unlock": null,
+      "input_zone": "elwynn",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": null,
+      "input_zone": "duskwood",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": null,
+      "input_zone": "wsg",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": null,
+      "input_zone": "ab",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": null,
+      "input_zone": "feralas",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": null,
+      "input_zone": "arena",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": null,
+      "input_zone": "av",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": null,
+      "input_zone": "brm",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": null,
+      "input_zone": "aq",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": 0,
+      "input_zone": "elwynn",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": 0,
+      "input_zone": "duskwood",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": 0,
+      "input_zone": "wsg",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": 0,
+      "input_zone": "ab",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": 0,
+      "input_zone": "feralas",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": 0,
+      "input_zone": "arena",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": 0,
+      "input_zone": "av",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": 0,
+      "input_zone": "brm",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": 0,
+      "input_zone": "aq",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": 1,
+      "input_zone": "elwynn",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": 1,
+      "input_zone": "duskwood",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": 1,
+      "input_zone": "wsg",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": 1,
+      "input_zone": "ab",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": 1,
+      "input_zone": "feralas",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": 1,
+      "input_zone": "arena",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": 1,
+      "input_zone": "av",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": 1,
+      "input_zone": "brm",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": 1,
+      "input_zone": "aq",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": 2,
+      "input_zone": "elwynn",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": 2,
+      "input_zone": "duskwood",
+      "native_zone": "duskwood"
+    },
+    {
+      "class": 1,
+      "unlock": 2,
+      "input_zone": "wsg",
+      "native_zone": "duskwood"
+    },
+    {
+      "class": 1,
+      "unlock": 2,
+      "input_zone": "ab",
+      "native_zone": "duskwood"
+    },
+    {
+      "class": 1,
+      "unlock": 2,
+      "input_zone": "feralas",
+      "native_zone": "duskwood"
+    },
+    {
+      "class": 1,
+      "unlock": 2,
+      "input_zone": "arena",
+      "native_zone": "duskwood"
+    },
+    {
+      "class": 1,
+      "unlock": 2,
+      "input_zone": "av",
+      "native_zone": "duskwood"
+    },
+    {
+      "class": 1,
+      "unlock": 2,
+      "input_zone": "brm",
+      "native_zone": "duskwood"
+    },
+    {
+      "class": 1,
+      "unlock": 2,
+      "input_zone": "aq",
+      "native_zone": "duskwood"
+    },
+    {
+      "class": 1,
+      "unlock": 3,
+      "input_zone": "elwynn",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": 3,
+      "input_zone": "duskwood",
+      "native_zone": "duskwood"
+    },
+    {
+      "class": 1,
+      "unlock": 3,
+      "input_zone": "wsg",
+      "native_zone": "wsg"
+    },
+    {
+      "class": 1,
+      "unlock": 3,
+      "input_zone": "ab",
+      "native_zone": "wsg"
+    },
+    {
+      "class": 1,
+      "unlock": 3,
+      "input_zone": "feralas",
+      "native_zone": "wsg"
+    },
+    {
+      "class": 1,
+      "unlock": 3,
+      "input_zone": "arena",
+      "native_zone": "wsg"
+    },
+    {
+      "class": 1,
+      "unlock": 3,
+      "input_zone": "av",
+      "native_zone": "wsg"
+    },
+    {
+      "class": 1,
+      "unlock": 3,
+      "input_zone": "brm",
+      "native_zone": "wsg"
+    },
+    {
+      "class": 1,
+      "unlock": 3,
+      "input_zone": "aq",
+      "native_zone": "wsg"
+    },
+    {
+      "class": 1,
+      "unlock": 8,
+      "input_zone": "elwynn",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": 8,
+      "input_zone": "duskwood",
+      "native_zone": "duskwood"
+    },
+    {
+      "class": 1,
+      "unlock": 8,
+      "input_zone": "wsg",
+      "native_zone": "wsg"
+    },
+    {
+      "class": 1,
+      "unlock": 8,
+      "input_zone": "ab",
+      "native_zone": "ab"
+    },
+    {
+      "class": 1,
+      "unlock": 8,
+      "input_zone": "feralas",
+      "native_zone": "feralas"
+    },
+    {
+      "class": 1,
+      "unlock": 8,
+      "input_zone": "arena",
+      "native_zone": "arena"
+    },
+    {
+      "class": 1,
+      "unlock": 8,
+      "input_zone": "av",
+      "native_zone": "av"
+    },
+    {
+      "class": 1,
+      "unlock": 8,
+      "input_zone": "brm",
+      "native_zone": "brm"
+    },
+    {
+      "class": 1,
+      "unlock": 8,
+      "input_zone": "aq",
+      "native_zone": "brm"
+    },
+    {
+      "class": 1,
+      "unlock": 9,
+      "input_zone": "elwynn",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": 9,
+      "input_zone": "duskwood",
+      "native_zone": "duskwood"
+    },
+    {
+      "class": 1,
+      "unlock": 9,
+      "input_zone": "wsg",
+      "native_zone": "wsg"
+    },
+    {
+      "class": 1,
+      "unlock": 9,
+      "input_zone": "ab",
+      "native_zone": "ab"
+    },
+    {
+      "class": 1,
+      "unlock": 9,
+      "input_zone": "feralas",
+      "native_zone": "feralas"
+    },
+    {
+      "class": 1,
+      "unlock": 9,
+      "input_zone": "arena",
+      "native_zone": "arena"
+    },
+    {
+      "class": 1,
+      "unlock": 9,
+      "input_zone": "av",
+      "native_zone": "av"
+    },
+    {
+      "class": 1,
+      "unlock": 9,
+      "input_zone": "brm",
+      "native_zone": "brm"
+    },
+    {
+      "class": 1,
+      "unlock": 9,
+      "input_zone": "aq",
+      "native_zone": "aq"
+    },
+    {
+      "class": 1,
+      "unlock": 10,
+      "input_zone": "elwynn",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": 10,
+      "input_zone": "duskwood",
+      "native_zone": "duskwood"
+    },
+    {
+      "class": 1,
+      "unlock": 10,
+      "input_zone": "wsg",
+      "native_zone": "wsg"
+    },
+    {
+      "class": 1,
+      "unlock": 10,
+      "input_zone": "ab",
+      "native_zone": "ab"
+    },
+    {
+      "class": 1,
+      "unlock": 10,
+      "input_zone": "feralas",
+      "native_zone": "feralas"
+    },
+    {
+      "class": 1,
+      "unlock": 10,
+      "input_zone": "arena",
+      "native_zone": "arena"
+    },
+    {
+      "class": 1,
+      "unlock": 10,
+      "input_zone": "av",
+      "native_zone": "av"
+    },
+    {
+      "class": 1,
+      "unlock": 10,
+      "input_zone": "brm",
+      "native_zone": "brm"
+    },
+    {
+      "class": 1,
+      "unlock": 10,
+      "input_zone": "aq",
+      "native_zone": "aq"
+    },
+    {
+      "class": 1,
+      "unlock": 18446744073709551615,
+      "input_zone": "elwynn",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 1,
+      "unlock": 18446744073709551615,
+      "input_zone": "duskwood",
+      "native_zone": "duskwood"
+    },
+    {
+      "class": 1,
+      "unlock": 18446744073709551615,
+      "input_zone": "wsg",
+      "native_zone": "wsg"
+    },
+    {
+      "class": 1,
+      "unlock": 18446744073709551615,
+      "input_zone": "ab",
+      "native_zone": "ab"
+    },
+    {
+      "class": 1,
+      "unlock": 18446744073709551615,
+      "input_zone": "feralas",
+      "native_zone": "feralas"
+    },
+    {
+      "class": 1,
+      "unlock": 18446744073709551615,
+      "input_zone": "arena",
+      "native_zone": "arena"
+    },
+    {
+      "class": 1,
+      "unlock": 18446744073709551615,
+      "input_zone": "av",
+      "native_zone": "av"
+    },
+    {
+      "class": 1,
+      "unlock": 18446744073709551615,
+      "input_zone": "brm",
+      "native_zone": "brm"
+    },
+    {
+      "class": 1,
+      "unlock": 18446744073709551615,
+      "input_zone": "aq",
+      "native_zone": "aq"
+    },
+    {
+      "class": 8,
+      "unlock": null,
+      "input_zone": "elwynn",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": null,
+      "input_zone": "duskwood",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": null,
+      "input_zone": "wsg",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": null,
+      "input_zone": "ab",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": null,
+      "input_zone": "feralas",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": null,
+      "input_zone": "arena",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": null,
+      "input_zone": "av",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": null,
+      "input_zone": "brm",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": null,
+      "input_zone": "aq",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": 0,
+      "input_zone": "elwynn",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": 0,
+      "input_zone": "duskwood",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": 0,
+      "input_zone": "wsg",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": 0,
+      "input_zone": "ab",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": 0,
+      "input_zone": "feralas",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": 0,
+      "input_zone": "arena",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": 0,
+      "input_zone": "av",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": 0,
+      "input_zone": "brm",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": 0,
+      "input_zone": "aq",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": 1,
+      "input_zone": "elwynn",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": 1,
+      "input_zone": "duskwood",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": 1,
+      "input_zone": "wsg",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": 1,
+      "input_zone": "ab",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": 1,
+      "input_zone": "feralas",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": 1,
+      "input_zone": "arena",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": 1,
+      "input_zone": "av",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": 1,
+      "input_zone": "brm",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": 1,
+      "input_zone": "aq",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": 2,
+      "input_zone": "elwynn",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": 2,
+      "input_zone": "duskwood",
+      "native_zone": "duskwood"
+    },
+    {
+      "class": 8,
+      "unlock": 2,
+      "input_zone": "wsg",
+      "native_zone": "duskwood"
+    },
+    {
+      "class": 8,
+      "unlock": 2,
+      "input_zone": "ab",
+      "native_zone": "duskwood"
+    },
+    {
+      "class": 8,
+      "unlock": 2,
+      "input_zone": "feralas",
+      "native_zone": "duskwood"
+    },
+    {
+      "class": 8,
+      "unlock": 2,
+      "input_zone": "arena",
+      "native_zone": "duskwood"
+    },
+    {
+      "class": 8,
+      "unlock": 2,
+      "input_zone": "av",
+      "native_zone": "duskwood"
+    },
+    {
+      "class": 8,
+      "unlock": 2,
+      "input_zone": "brm",
+      "native_zone": "duskwood"
+    },
+    {
+      "class": 8,
+      "unlock": 2,
+      "input_zone": "aq",
+      "native_zone": "duskwood"
+    },
+    {
+      "class": 8,
+      "unlock": 3,
+      "input_zone": "elwynn",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": 3,
+      "input_zone": "duskwood",
+      "native_zone": "duskwood"
+    },
+    {
+      "class": 8,
+      "unlock": 3,
+      "input_zone": "wsg",
+      "native_zone": "wsg"
+    },
+    {
+      "class": 8,
+      "unlock": 3,
+      "input_zone": "ab",
+      "native_zone": "wsg"
+    },
+    {
+      "class": 8,
+      "unlock": 3,
+      "input_zone": "feralas",
+      "native_zone": "wsg"
+    },
+    {
+      "class": 8,
+      "unlock": 3,
+      "input_zone": "arena",
+      "native_zone": "wsg"
+    },
+    {
+      "class": 8,
+      "unlock": 3,
+      "input_zone": "av",
+      "native_zone": "wsg"
+    },
+    {
+      "class": 8,
+      "unlock": 3,
+      "input_zone": "brm",
+      "native_zone": "wsg"
+    },
+    {
+      "class": 8,
+      "unlock": 3,
+      "input_zone": "aq",
+      "native_zone": "wsg"
+    },
+    {
+      "class": 8,
+      "unlock": 8,
+      "input_zone": "elwynn",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": 8,
+      "input_zone": "duskwood",
+      "native_zone": "duskwood"
+    },
+    {
+      "class": 8,
+      "unlock": 8,
+      "input_zone": "wsg",
+      "native_zone": "wsg"
+    },
+    {
+      "class": 8,
+      "unlock": 8,
+      "input_zone": "ab",
+      "native_zone": "ab"
+    },
+    {
+      "class": 8,
+      "unlock": 8,
+      "input_zone": "feralas",
+      "native_zone": "feralas"
+    },
+    {
+      "class": 8,
+      "unlock": 8,
+      "input_zone": "arena",
+      "native_zone": "arena"
+    },
+    {
+      "class": 8,
+      "unlock": 8,
+      "input_zone": "av",
+      "native_zone": "av"
+    },
+    {
+      "class": 8,
+      "unlock": 8,
+      "input_zone": "brm",
+      "native_zone": "brm"
+    },
+    {
+      "class": 8,
+      "unlock": 8,
+      "input_zone": "aq",
+      "native_zone": "brm"
+    },
+    {
+      "class": 8,
+      "unlock": 9,
+      "input_zone": "elwynn",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": 9,
+      "input_zone": "duskwood",
+      "native_zone": "duskwood"
+    },
+    {
+      "class": 8,
+      "unlock": 9,
+      "input_zone": "wsg",
+      "native_zone": "wsg"
+    },
+    {
+      "class": 8,
+      "unlock": 9,
+      "input_zone": "ab",
+      "native_zone": "ab"
+    },
+    {
+      "class": 8,
+      "unlock": 9,
+      "input_zone": "feralas",
+      "native_zone": "feralas"
+    },
+    {
+      "class": 8,
+      "unlock": 9,
+      "input_zone": "arena",
+      "native_zone": "arena"
+    },
+    {
+      "class": 8,
+      "unlock": 9,
+      "input_zone": "av",
+      "native_zone": "av"
+    },
+    {
+      "class": 8,
+      "unlock": 9,
+      "input_zone": "brm",
+      "native_zone": "brm"
+    },
+    {
+      "class": 8,
+      "unlock": 9,
+      "input_zone": "aq",
+      "native_zone": "aq"
+    },
+    {
+      "class": 8,
+      "unlock": 10,
+      "input_zone": "elwynn",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": 10,
+      "input_zone": "duskwood",
+      "native_zone": "duskwood"
+    },
+    {
+      "class": 8,
+      "unlock": 10,
+      "input_zone": "wsg",
+      "native_zone": "wsg"
+    },
+    {
+      "class": 8,
+      "unlock": 10,
+      "input_zone": "ab",
+      "native_zone": "ab"
+    },
+    {
+      "class": 8,
+      "unlock": 10,
+      "input_zone": "feralas",
+      "native_zone": "feralas"
+    },
+    {
+      "class": 8,
+      "unlock": 10,
+      "input_zone": "arena",
+      "native_zone": "arena"
+    },
+    {
+      "class": 8,
+      "unlock": 10,
+      "input_zone": "av",
+      "native_zone": "av"
+    },
+    {
+      "class": 8,
+      "unlock": 10,
+      "input_zone": "brm",
+      "native_zone": "brm"
+    },
+    {
+      "class": 8,
+      "unlock": 10,
+      "input_zone": "aq",
+      "native_zone": "aq"
+    },
+    {
+      "class": 8,
+      "unlock": 18446744073709551615,
+      "input_zone": "elwynn",
+      "native_zone": "elwynn"
+    },
+    {
+      "class": 8,
+      "unlock": 18446744073709551615,
+      "input_zone": "duskwood",
+      "native_zone": "duskwood"
+    },
+    {
+      "class": 8,
+      "unlock": 18446744073709551615,
+      "input_zone": "wsg",
+      "native_zone": "wsg"
+    },
+    {
+      "class": 8,
+      "unlock": 18446744073709551615,
+      "input_zone": "ab",
+      "native_zone": "ab"
+    },
+    {
+      "class": 8,
+      "unlock": 18446744073709551615,
+      "input_zone": "feralas",
+      "native_zone": "feralas"
+    },
+    {
+      "class": 8,
+      "unlock": 18446744073709551615,
+      "input_zone": "arena",
+      "native_zone": "arena"
+    },
+    {
+      "class": 8,
+      "unlock": 18446744073709551615,
+      "input_zone": "av",
+      "native_zone": "av"
+    },
+    {
+      "class": 8,
+      "unlock": 18446744073709551615,
+      "input_zone": "brm",
+      "native_zone": "brm"
+    },
+    {
+      "class": 8,
+      "unlock": 18446744073709551615,
+      "input_zone": "aq",
+      "native_zone": "aq"
+    }
+  ],
+  "limits": [
+    "Native OS reader/UTF8 error-to-None behavior is proved separately from145421330 instructions, not by its stub.",
+    "Fixtures cover native damaged-seal branch/account outputs and slot selection, not valid plaintext parsing or complete legacy migration.",
+    "The original application was not launched. The native25ms Core-worker cadence remains outside this fixture."
+  ]
+}

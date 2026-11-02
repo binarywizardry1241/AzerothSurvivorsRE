@@ -1,0 +1,72 @@
+{
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "method": "Unchanged selected-PE settle-release instructions in Unicorn",
+  "seams": [
+    "Controlled Bevy resource layout, clock, player flags, tile and six residency counters.",
+    "world_to_tile returns the supplied matching tile; memcmp compares actual counter bytes.",
+    "The settle log callback is intercepted; no networking, asset worker or game process runs.",
+    "Paused deadlines are supplied inputs: this does not execute the Rust pause adapter."
+  ],
+  "cases": [
+    {
+      "name": "expired_clock_during_loading_pause",
+      "now": 18.0,
+      "supplied_deadline": 6.0,
+      "scene_ready": false,
+      "stale": false,
+      "counters_changed": false,
+      "outcome": "timeout",
+      "deadline_after": 6.0
+    },
+    {
+      "name": "pause_accounted_before_release",
+      "now": 18.0,
+      "supplied_deadline": 24.0,
+      "scene_ready": false,
+      "stale": false,
+      "counters_changed": false,
+      "outcome": "held",
+      "deadline_after": 24.0
+    },
+    {
+      "name": "resident_world_during_loading_pause",
+      "now": 18.0,
+      "supplied_deadline": 24.0,
+      "scene_ready": true,
+      "stale": false,
+      "counters_changed": false,
+      "outcome": "resident",
+      "deadline_after": 24.0
+    },
+    {
+      "name": "resumed_stalled_world",
+      "now": 31.0,
+      "supplied_deadline": 24.0,
+      "scene_ready": false,
+      "stale": false,
+      "counters_changed": false,
+      "outcome": "timeout",
+      "deadline_after": 24.0
+    },
+    {
+      "name": "advancing_unpaused_world",
+      "now": 18.0,
+      "supplied_deadline": 6.0,
+      "scene_ready": false,
+      "stale": false,
+      "counters_changed": true,
+      "outcome": "held",
+      "deadline_after": 24.0
+    },
+    {
+      "name": "stale_world",
+      "now": 18.0,
+      "supplied_deadline": 6.0,
+      "scene_ready": false,
+      "stale": true,
+      "counters_changed": false,
+      "outcome": "held",
+      "deadline_after": 24.0
+    }
+  ]
+}

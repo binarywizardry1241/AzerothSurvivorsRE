@@ -1,0 +1,407 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.109.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+    "size_bytes": 140447744
+  },
+  "generator": {
+    "path": "scripts/summarize-native-image.py",
+    "sha256": "f86fadbebc8f17192438d71973d988c637a685a47d538ecdda93f7a92dbded90"
+  },
+  "installed_reference_import": "read-only-in-place",
+  "profile": {
+    "format": "rea-whole-image-native-census-diagnostic-code-v3",
+    "guarded_jump_tables_sha256": "cf9b9cf9e959cd66c170540737b256df7432fd6a88afdb21e2bdbdd08301f40c",
+    "diagnostic_code_leads_sha256": "e4fa84f037863590a83de8c1b0e9eab8056d943800fb4d7634947c2c054f1a99",
+    "target_sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+    "script_sha256": "0b084b5a5dc0ab182cd1ae471abf3734462a8500d1f2c52f9f12aa1137d6d8c8",
+    "starts_sha256": "ec8eb2b96f7b7120b1c459340fde087f49d4f2ce04a4c22d6ca542153fb425ef",
+    "auto_analysis": false,
+    "installed_reference_import": "read-only-in-place",
+    "heap": "6G",
+    "ghidra_version": "12.1.4"
+  },
+  "profile_digest": "4c2198c98ec81e43e6e9cce4546b28a2a72013793dfa6d19e35029a6b7f2a6b7",
+  "counts": {
+    "instructions": 22348643,
+    "instruction_bytes": 89358375,
+    "computed_calls": 69872,
+    "computed_jumps": 139007,
+    "native_functions": 420580,
+    "body_ranges": 474007,
+    "references": 3868251,
+    "external_locations": 420,
+    "seeds_without_instructions": 0,
+    "seeds_without_functions": 0,
+    "seeded_functions_repaired": 420399
+  },
+  "guarded_flow_observations": {
+    "guarded_tables": 3246,
+    "guarded_table_edges": 20962,
+    "additional_code_seed_targets": 22425,
+    "guarded_flow_edges_applied": 20962,
+    "additional_code_seeds_without_instructions": 0
+  },
+  "guarded_edge_digest": "d1fbb8b8cfbd7cd82fcf6e4b52d1a718dfa637e3e69f743581da5b55a2abf7d8",
+  "direct_call_helper_observations": {
+    "direct_call_helper_targets": 2357,
+    "direct_call_helper_functions_created": 2342,
+    "direct_call_helpers_without_instructions": 0,
+    "direct_call_helpers_without_owner": 0
+  },
+  "direct_call_helper_final_ownership": {
+    "counts": {
+      "targets": 2357,
+      "without_final_owner": 0,
+      "owner_changed_during_primary_body_repair": 11
+    },
+    "raw_helper_owner_observation_stage": "before-primary-body-repair",
+    "final_owner_audit": {
+      "path": "runtime/coverage/76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0/ghidra/full-image-streaming-diagnostics/direct-call-helper-final-owners.tsv.gz",
+      "sha256": "6cb61719c5a9b752ee350223c8f2dcca0150e101a0963b7ef3e15b8b14def5ba"
+    }
+  },
+  "guarded_table_input": {
+    "path": "runtime/coverage/76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0/ghidra/full-image-streaming-switches-v3/guarded-jump-tables.json",
+    "sha256": "cf9b9cf9e959cd66c170540737b256df7432fd6a88afdb21e2bdbdd08301f40c"
+  },
+  "diagnostic_code_input": {
+    "path": "runtime/coverage/76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0/ghidra/full-image-streaming-switches-v3/diagnostic-code-leads.json",
+    "sha256": "e4fa84f037863590a83de8c1b0e9eab8056d943800fb4d7634947c2c054f1a99"
+  },
+  "additional_diagnostic_code_starts": 1792,
+  "seed_scope": "all",
+  "requested_seeds": 420399,
+  "requested_seed_function_records": 420399,
+  "requested_seeds_with_decoded_entries": 420399,
+  "requested_seeds_with_repaired_flow_bodies": 420399,
+  "declared_starts": 347099,
+  "declared_starts_with_actual_bodies": 347099,
+  "independent_instructions": {
+    "performed": true,
+    "decoder": "Capstone",
+    "version": "5.0.7",
+    "exact_source_bytes_verified": true,
+    "instruction_records": 22348643,
+    "decoded_bytes": 89358375,
+    "instructions_inside_declared_extents": 21892679,
+    "instructions_outside_declared_extents": 455964,
+    "flow_kinds": {
+      "COMPUTED_CALL": 69869,
+      "COMPUTED_CALL_TERMINATOR": 3,
+      "COMPUTED_JUMP": 139007,
+      "CONDITIONAL_JUMP": 1416730,
+      "FALL_THROUGH": 18802669,
+      "TERMINATOR": 429409,
+      "UNCONDITIONAL_CALL": 1057483,
+      "UNCONDITIONAL_JUMP": 433473
+    },
+    "declared_extent_bytes_unobserved_by_ghidra": 5555387,
+    "unobserved_declared_ranges": 56627,
+    "unobserved_bytes_by_candidate_kind": {
+      "NOP-CC-instruction-candidate": 361441,
+      "mixed-unclassified": 5189459,
+      "uniform-CC-candidate": 2,
+      "uniform-NOP-candidate": 4485
+    },
+    "unobserved_range_inventory": {
+      "path": "runtime/coverage/76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0/ghidra/full-image-streaming-diagnostics/missing-declared-ranges.tsv.gz",
+      "sha256": "edbf9625704ce95a1cff04789b89ad7e518f33b50f10b6da11cec06bcc0b747a"
+    },
+    "executable_sections": {
+      "mapped_bytes": 98142894,
+      "observed_instruction_union_bytes": 89358375,
+      "unobserved_bytes": 8784519,
+      "unobserved_declared_bytes": 5555387,
+      "unobserved_outside_declared_bytes": 3229132,
+      "unobserved_ranges": 455624,
+      "unobserved_bytes_by_location_and_candidate_kind": {
+        "declared:NOP-CC-instruction-candidate": 361441,
+        "declared:mixed-unclassified": 5189459,
+        "declared:uniform-CC-candidate": 2,
+        "declared:uniform-NOP-candidate": 4485,
+        "outside-declared:NOP-CC-instruction-candidate": 1565888,
+        "outside-declared:mixed-unclassified": 169889,
+        "outside-declared:uniform-CC-candidate": 1480985,
+        "outside-declared:uniform-NOP-candidate": 12370
+      },
+      "range_inventory": {
+        "path": "runtime/coverage/76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0/ghidra/full-image-streaming-diagnostics/missing-executable-ranges.tsv.gz",
+        "sha256": "48c67da4ba8938aec73e207718cc22f07fd977e9781c606912231275f2bd0a10"
+      }
+    },
+    "padding_or_noncode_proven": false
+  },
+  "reference_kinds": {
+    "COMPUTED_JUMP": 20962,
+    "CONDITIONAL_JUMP": 1416730,
+    "DATA": 767439,
+    "INDIRECTION": 177,
+    "READ": 171247,
+    "READ_WRITE": 376,
+    "UNCONDITIONAL_CALL": 1057483,
+    "UNCONDITIONAL_JUMP": 433473,
+    "WRITE": 364
+  },
+  "reference_destinations": {
+    "memory-without-native-body": 592373,
+    "native-body": 3275458,
+    "non-default-address-space": 420
+  },
+  "reference_source_ownership": {
+    "inside_native_body": 3098042,
+    "outside_native_body": 770209
+  },
+  "declared_import_observations": {
+    "slot_count": 420,
+    "libraries": {
+      "ADVAPI32.dll": 1,
+      "GDI32.dll": 5,
+      "KERNEL32.dll": 50,
+      "USER32.dll": 10,
+      "VCRUNTIME140.dll": 9,
+      "advapi32.dll": 10,
+      "api-ms-win-core-synch-l1-2-0.dll": 3,
+      "api-ms-win-core-winrt-l1-1-0.dll": 1,
+      "api-ms-win-crt-heap-l1-1-0.dll": 2,
+      "api-ms-win-crt-locale-l1-1-0.dll": 1,
+      "api-ms-win-crt-math-l1-1-0.dll": 56,
+      "api-ms-win-crt-runtime-l1-1-0.dll": 19,
+      "api-ms-win-crt-stdio-l1-1-0.dll": 2,
+      "api-ms-win-crt-string-l1-1-0.dll": 2,
+      "avrt.dll": 3,
+      "bcrypt.dll": 1,
+      "bcryptprimitives.dll": 1,
+      "dwmapi.dll": 2,
+      "gdi32.dll": 6,
+      "imm32.dll": 6,
+      "kernel32.dll": 80,
+      "ntdll.dll": 7,
+      "ole32.dll": 10,
+      "oleaut32.dll": 8,
+      "opengl32.dll": 5,
+      "pdh.dll": 7,
+      "powrprof.dll": 1,
+      "psapi.dll": 2,
+      "shell32.dll": 3,
+      "uiautomationcore.dll": 6,
+      "user32.dll": 81,
+      "uxtheme.dll": 1,
+      "ws2_32.dll": 19
+    },
+    "native_references_by_library": {
+      "ADVAPI32.dll": 3,
+      "GDI32.dll": 6,
+      "KERNEL32.dll": 100,
+      "USER32.dll": 17,
+      "VCRUNTIME140.dll": 7,
+      "advapi32.dll": 13,
+      "api-ms-win-core-synch-l1-2-0.dll": 261,
+      "api-ms-win-core-winrt-l1-1-0.dll": 6,
+      "api-ms-win-crt-heap-l1-1-0.dll": 2,
+      "api-ms-win-crt-locale-l1-1-0.dll": 1,
+      "api-ms-win-crt-math-l1-1-0.dll": 56,
+      "api-ms-win-crt-runtime-l1-1-0.dll": 19,
+      "api-ms-win-crt-stdio-l1-1-0.dll": 2,
+      "api-ms-win-crt-string-l1-1-0.dll": 2,
+      "avrt.dll": 5,
+      "bcrypt.dll": 1,
+      "bcryptprimitives.dll": 2,
+      "dwmapi.dll": 6,
+      "gdi32.dll": 9,
+      "imm32.dll": 16,
+      "kernel32.dll": 620,
+      "ntdll.dll": 24,
+      "ole32.dll": 22,
+      "oleaut32.dll": 30,
+      "opengl32.dll": 74,
+      "pdh.dll": 8,
+      "powrprof.dll": 1,
+      "psapi.dll": 2,
+      "shell32.dll": 6,
+      "uiautomationcore.dll": 6,
+      "user32.dll": 261,
+      "uxtheme.dll": 1,
+      "ws2_32.dll": 104
+    },
+    "slot_source_owner_pairs": 1341,
+    "runtime_slot_overwrites_or_external_implementation_verified": false
+  },
+  "relocated_code_pointer_observations": {
+    "slots": 522845,
+    "slot_sections": {
+      ".data": 63,
+      ".rdata": 522782
+    },
+    "distinct_encoded_targets": 134801,
+    "slots_targeting_actual_native_entries": 522811,
+    "slots_targeting_native_body_bytes": 522845,
+    "native_reference_kinds_to_slots": {
+      "DATA": 2,
+      "INDIRECTION": 1,
+      "READ": 128,
+      "WRITE": 9
+    },
+    "slot_source_owner_pairs": 63,
+    "dynamic_callee_or_vtable_semantics_established": false
+  },
+  "direct_native_call_pairs": 786495,
+  "call_destinations_without_native_owner": 0,
+  "call_source_sites_without_native_owner": 1878,
+  "global_static_observations": {
+    "read_write_reference_records": {
+      "READ": 171247,
+      "READ_WRITE": 376,
+      "WRITE": 364
+    },
+    "distinct_targets": 49642,
+    "reader_pairs": 141045,
+    "writer_pairs": 534,
+    "complete_alias_or_global_semantics": false
+  },
+  "artifacts": {
+    "directory": "runtime/coverage/76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0/ghidra/full-image-streaming-diagnostics",
+    "plan_sha256": "2508845276d12cfda7a06b11074cc9efbd73e5fc18a5e9f1303292c9e05a3fb7",
+    "progress_sha256": "c864c07a1f82598b34fcf5904ea5f664215c826852547f8108a4a1eff9919c95",
+    "session_result_sha256": "d287abba224628625df840e11d24c1ef725bb1cad469b082e9af343baf92f758",
+    "files": {
+      "instructions.tsv.gz": {
+        "sha256": "83bffa935ca9164adca8555df9e77b9dcd76d48d56dcf6a5d62b2ffa949aafb9",
+        "bytes": 121549371
+      },
+      "bodies.tsv.gz": {
+        "sha256": "5f03e42e16fba755e582299d2cf0c87a584edb3e5922c3ff1b75a21dbef001b9",
+        "bytes": 4178293
+      },
+      "references.tsv.gz": {
+        "sha256": "6e7f777da3f316c94151ba202b6aa6b67f654e86a7eb783b0cb505f72172e952",
+        "bytes": 22717399
+      },
+      "externals.tsv.gz": {
+        "sha256": "7c562c0a5fe9ee1e5cb37862281de4fbcc1bf0a0fbcf4880c6cab47a75cb6940",
+        "bytes": 4200
+      },
+      "direct-call-helpers.tsv.gz": {
+        "sha256": "89a28137591ab980517a9f711bde821b1b1c76f1c83a5bc84fef0dc46fc6f387",
+        "bytes": 12291
+      }
+    }
+  },
+  "whole_image_input": true,
+  "all_seeded_body_operations_complete": true,
+  "global_native_semantics_complete": false,
+  "global_references_complete": false,
+  "native_source_ownership_complete": false,
+  "parity_verified": false,
+  "gap_ids": [
+    41
+  ],
+  "limits": [
+    "Ghidra flow bodies are observed, not forced to declared unwind extents; computed flow and decoder disagreements remain explicit.",
+    "Auto-analysis and semantic/decompiler/address-table passes are disabled. Exported static references are complete for this Program state, not all possible runtime edges.",
+    "Global read/write records and direct call pairs establish machine-code relationships, not source-level aliasing, reconstructed behavior or semantic ownership.",
+    "No application compilation, target execution or original/rebuilt comparison."
+  ],
+  "curation_generator": {
+    "path": "scripts/compact-native-census.py",
+    "sha256": "39b0fb37220646c2dbc947212c7f34e9a9cb6e2b4ba2c1a5dbed1c5d8c9cb7af"
+  },
+  "diagnostic_binding_counts": {
+    "paths": 725,
+    "custom_paths": 53,
+    "paths_with_verified_diagnostic_sites": 564,
+    "paths_with_actual_native_owners": 548,
+    "verified_sites": 17682,
+    "sites_without_actual_native_owner": 1792
+  },
+  "diagnostic_owner_exceptions": {
+    "paths_with_unowned_verified_sites": 70,
+    "custom_paths": [
+      {
+        "path": "crates/wenilla-rogue-app/src/screens/armory.rs",
+        "unowned_sites": 5
+      },
+      {
+        "path": "crates/wenilla-rogue-app/src/screens/markers.rs",
+        "unowned_sites": 1
+      },
+      {
+        "path": "crates/wenilla-rogue-app/src/screens/options.rs",
+        "unowned_sites": 9
+      },
+      {
+        "path": "crates/wenilla-rogue-app/src/screens/rewards.rs",
+        "unowned_sites": 2
+      },
+      {
+        "path": "crates/wenilla-rogue/src/content.rs",
+        "unowned_sites": 16
+      },
+      {
+        "path": "crates/wenilla-rogue/src/fonts.rs",
+        "unowned_sites": 1
+      },
+      {
+        "path": "crates/wenilla-rogue/src/game/abilities.rs",
+        "unowned_sites": 11
+      },
+      {
+        "path": "crates/wenilla-rogue/src/game/auras.rs",
+        "unowned_sites": 2
+      },
+      {
+        "path": "crates/wenilla-rogue/src/game/demons.rs",
+        "unowned_sites": 1
+      },
+      {
+        "path": "crates/wenilla-rogue/src/game/enemy.rs",
+        "unowned_sites": 7
+      },
+      {
+        "path": "crates/wenilla-rogue/src/game/hazards.rs",
+        "unowned_sites": 35
+      },
+      {
+        "path": "crates/wenilla-rogue/src/game/talents.rs",
+        "unowned_sites": 1
+      },
+      {
+        "path": "crates/wenilla-rogue/src/game/upgrades.rs",
+        "unowned_sites": 1
+      },
+      {
+        "path": "crates/wenilla-rogue/src/nav.rs",
+        "unowned_sites": 4
+      }
+    ],
+    "whole_queue_paths_without_any_owner": [
+      "crates/benilla-app/src/creature_anim/driver/mode.rs",
+      "crates/benilla-app/src/ui_mail/net.rs",
+      "crates/benilla-app/src/ui_script/extract/text.rs",
+      "crates/benilla-app/src/ui_social/query.rs",
+      "crates/benilla-app/src/ui_text/markup.rs",
+      "crates/benilla-assets/src/blp.rs",
+      "crates/benilla-protocol/src/auth.rs",
+      "crates/benilla-protocol/src/lib.rs",
+      "crates/benilla-protocol/src/messages/items.rs",
+      "crates/benilla-protocol/src/transport/local.rs",
+      "crates/benilla-protocol/src/transport/native.rs",
+      "crates/benilla-protocol/src/world/mod.rs",
+      "crates/benilla-protocol/src/world/reader.rs",
+      "crates/benilla-protocol/src/world/session.rs",
+      "crates/benilla-ui/src/script/backdrop.rs",
+      "crates/benilla-ui/src/script/char_name.rs"
+    ],
+    "complete_exception_records_in_diagnostic_binding_audit": true
+  },
+  "diagnostic_binding_audit": {
+    "path": "runtime/coverage/76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0/ghidra/full-image-streaming-diagnostics/diagnostic-bindings.json",
+    "sha256": "3dff38617666c35d6d562a1711984f9b03039b7a3485f69c7645126bbfbd2885"
+  },
+  "full_summary_snapshot": {
+    "path": "runtime/coverage/76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0/ghidra/full-image-streaming-diagnostics/full-summary.json",
+    "sha256": "ed2ccb8b6e5b63b388767683e8a6725ea41543004f51e0b8960fd7e7c784cb93"
+  }
+}

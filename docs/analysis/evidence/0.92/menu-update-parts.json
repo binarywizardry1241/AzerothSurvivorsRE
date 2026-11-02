@@ -1,0 +1,217 @@
+{
+  "date": "2026-10-16",
+  "target_sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+  "owners": [
+    {
+      "address": "0x14012b670",
+      "end": "0x14012ba49",
+      "sha256": "b618fef45d452224d7851969736ee701dda7be8f6c2e936c7c14f930742062f7",
+      "rea_evidence_id": "ev_4cdf869d9543a5b38a269a40a9eb3f0985686fb719459ccf34ed311020d16b34",
+      "role": "Lazy sequential response reader, progress, rate and failure transitions"
+    },
+    {
+      "address": "0x1400e8d80",
+      "end": "0x1400e9523",
+      "sha256": "6bc7226c1a7962370378ac94c58834ac730261e40c15194b66b53da18ebde599",
+      "rea_evidence_id": "ev_46419078ecefb7e76d4f771f4615f59e98c7127fd069d2e34f3fa4788156fdb4",
+      "role": "One progress context initialized before patch/EXE sequence"
+    },
+    {
+      "address": "0x1456a1e60",
+      "end": "0x1456a1ea0",
+      "sha256": "522ec7b239a4ada967ca339a54998712c190c0def6ed1e63df926ff1515d889c",
+      "rea_evidence_id": "ev_ec225490f96bbfcccbefcfff18e2c6f9a6b8ff29194abe261955e8e32c48b1a9",
+      "role": "Elapsed now minus saved timestamp; backwards result saturates zero"
+    },
+    {
+      "address": "0x14012bf90",
+      "end": "0x14012c0f7",
+      "sha256": "bdc761722575a96bcda756455e50eca1685836814f9248f9dffbe59665b6d9c9",
+      "rea_evidence_id": "ev_71056c5736c2ef8548cdfda063f71fcbaffdbb1824d9450c75db769edd791186",
+      "role": "Clone retained plan before every positive-read publication"
+    },
+    {
+      "address": "0x1403a3c30",
+      "end": "0x1403a3cae",
+      "sha256": "b653746f9a180112dce23deec484dcdc7fbe817e9241d354f4ab56d82168de94",
+      "rea_evidence_id": "ev_84af65941213beac11fcd38e44e1b4d7696761ab0928fe41a22fbc700b0dbc91",
+      "role": "HTTP error-to-I/O wrapper; decompiler truncates after allocation"
+    },
+    {
+      "address": "0x1456dae10",
+      "end": "0x1456daef1",
+      "sha256": "164d488cadb54e0a1e0398304d9e3f44fee93a1ac7bb51015b5215a698204543",
+      "rea_evidence_id": "ev_43b2bbfadd60cc5d5eb80b55a594037a11592619ca5355401a533d0e00d440cb",
+      "role": "I/O Display dispatch; original table-bound branch names kind41 Other"
+    }
+  ],
+  "native_checks": {
+    "threshold": [
+      {
+        "seconds": 0,
+        "nanoseconds": 0,
+        "samples": false
+      },
+      {
+        "seconds": 0,
+        "nanoseconds": 249999999,
+        "samples": false
+      },
+      {
+        "seconds": 0,
+        "nanoseconds": 250000000,
+        "samples": true
+      },
+      {
+        "seconds": 1,
+        "nanoseconds": 0,
+        "samples": true
+      },
+      {
+        "seconds": 18446744073709551615,
+        "nanoseconds": 999999999,
+        "samples": true
+      }
+    ],
+    "rate": [
+      {
+        "done": 40,
+        "previous_done": 0,
+        "old_rate": 0.0,
+        "elapsed": 0.25,
+        "native_rate": 160.0,
+        "rate_bits_hex": "0000000000006440"
+      },
+      {
+        "done": 50,
+        "previous_done": 40,
+        "old_rate": 160.0,
+        "elapsed": 0.25,
+        "native_rate": 124.0,
+        "rate_bits_hex": "0000000000005f40"
+      },
+      {
+        "done": 1,
+        "previous_done": 18446744073709551614,
+        "old_rate": 0.0,
+        "elapsed": 0.25,
+        "native_rate": 12.0,
+        "rate_bits_hex": "0000000000002840"
+      },
+      {
+        "done": 18446744073709551615,
+        "previous_done": 0,
+        "old_rate": 0.0,
+        "elapsed": 1.0,
+        "native_rate": 1.8446744073709552e+19,
+        "rate_bits_hex": "000000000000f043"
+      },
+      {
+        "done": 143,
+        "previous_done": 127,
+        "old_rate": 2.2,
+        "elapsed": 1.25,
+        "native_rate": 5.38,
+        "rate_bits_hex": "85eb51b81e851540"
+      }
+    ],
+    "intervals": [
+      {
+        "start": "0x14012b6f1",
+        "end": "0x14012b733",
+        "sha256": "80b75aa3bba79b09f285d6c93e1d83907f21735b1d8d354947f1d6dcd1dd9ede"
+      },
+      {
+        "start": "0x14012b966",
+        "end": "0x14012b9cd",
+        "sha256": "fe6950402e27ad90f886de657e201fcae42f3765bb36b7f5015ffd807e9d978c"
+      }
+    ],
+    "boundary": "Only pure conversion/threshold/rate instructions run in Unicorn. Threshold stops at either branch; rate stops before Instant::now call12b9cd. Any other call/branch aborts. Rate block precondition elapsed>=.25; zero elapsed is checked separately at the threshold. No OS, HTTP, file or full updater instructions execute."
+  },
+  "read_rules": {
+    "open": "If no current reader, consume next part index before attempting open; open failure leaves current=None and consumed index.",
+    "short_read": "A positive response read returns immediately; it does not fill remaining caller buffer from the next part.",
+    "eof": "On Ok0 drop current reader before attempting next; skip empty parts; final EOF returns0 without time/account/publication.",
+    "error": "Read error propagates unchanged with current reader retained; no progress/time/publication. The outer downloader stops on error, without application retry.",
+    "empty_buffer": "No early empty-buffer return exists. Underlying readers returning0 cause all remaining parts to be opened/read/dropped, potentially draining the part list without bytes."
+  },
+  "progress": {
+    "initialization": "0e8dc9 samples now once; context done/rate/last_done=0, total from entire plan, reused across patch and optional EXE downloads.",
+    "count": "Response-reader bytes before payload gzip decode, not TCP/HTTP headers or decoded output. Add exact positive count with u64 wrapping; no total clamp.",
+    "elapsed": "1456a1e60 samples now, subtracts last sample timestamp, saturates backwards to zero; convert seconds + nanos/1e9 to f64.",
+    "threshold": "elapsed>=0.25; below threshold retains old rate and previous sample byte/time lanes.",
+    "rate": "instantaneous=wrapping_sub(done,last_done) as f64 / elapsed; if old_rate==0 use instantaneous; otherwise 0.3*instantaneous+0.7*old_rate.",
+    "reset": "At a speed update call now a second time, store that timestamp and current done. Do not reuse elapsed's first timestamp.",
+    "publication": "Every positive read: account, optionally sample/reset, clone retained plan12bf90, publish Downloading2(done,total,rate,plan) via112360, then return count."
+  },
+  "failure_boundary": {
+    "http_conversion": "12b94e passes native I/O-kind byte0x29 into3a3c30. Target Display and Debug tables bind41 to Other. Source PartHost propagates converted io::Error unchanged; source26 NativeParts supplies the target-backed io::Error::other conversion as code.",
+    "decompiler": "3a3c30 truncates after allocation/conversion and1456dae10 at an external jump table. The original in-owner branch and both43-entry string tables close kind naming without inventing a complete transport adapter.",
+    "kind_branch": {
+      "start": "0x1456dae9a",
+      "end": "0x1456daef1",
+      "sha256": "554231a8d3d910a1b4e37d83838280f1dfafdf07af33dcb133c2c3bee62e3a0e",
+      "boundary": "Exact original in-owner branch, not an original standalone function; replay stops before formatting callback or stack epilogue.",
+      "rea_evidence_id": "ev_a65d1f543295e7c6d8586e28ff68aac973f79315f29c66dc980b477b060bac9f"
+    },
+    "native_kind_checks": [
+      {
+        "index": 40,
+        "display": "too many open files",
+        "display_pointer": "0x146ae8c37",
+        "debug": "TooManyOpenFiles",
+        "debug_pointer": "0x146aef14c"
+      },
+      {
+        "index": 41,
+        "display": "other error",
+        "display_pointer": "0x146ae8c4a",
+        "debug": "Other",
+        "debug_pointer": "0x146aef15c"
+      },
+      {
+        "index": 42,
+        "display": "uncategorized error",
+        "display_pointer": "0x146ae8c55",
+        "debug": "Uncategorized",
+        "debug_pointer": "0x146aef161"
+      }
+    ],
+    "tables": [
+      {
+        "address": "0x146aef260",
+        "byte_count": 344,
+        "sha256": "a0650c0964fd352517ff86ff8f419156425ff921aa0fe0f753f18dca38bd80d0"
+      },
+      {
+        "address": "0x146aef3b8",
+        "byte_count": 344,
+        "sha256": "e6a7d64ae16d98bc48931497558cf494293de6b595afd2b590d4e774196a6dfb"
+      },
+      {
+        "address": "0x146aef510",
+        "byte_count": 344,
+        "sha256": "e6d6219ff3f676e5e09545ba5110c9e9ffd33357b7f152985ddc5913ffafa322"
+      },
+      {
+        "address": "0x146aef668",
+        "byte_count": 344,
+        "sha256": "ec501a4de62471d0b50c7fecd78404ca3752b61163fc83ec0b93e1f3110c648f"
+      }
+    ]
+  },
+  "implementation": {
+    "module": "crates/azeroth-survivors-re/src/update_parts.rs",
+    "parent": "update::install child, called by source26 worker through NativeParts; also normal installer harness",
+    "linked_to_app": true,
+    "scope": "Read/time/publication host interface; source26 NativeParts supplies real gated ureq/Instant/publication code without executing it during validation.",
+    "fixtures": "Six part-reader fixtures PASS within18 installer cases in build25. Locked offline build14.34s;test compile7.54s;105 harness cases with overlap PASS:41 binary,15 native-save,6 config,1 run-modifier,10 save-browser,14 updater,18 installer. No app/request/backend execution.",
+    "source26_validation": "Build26 final --locked --offline PASS in11.08s (menu-build-26-final.log); preceding combined build PASS in29.09s. All169 focused harness cases with overlap PASS:74 binary,19 native-save,6 config,1 run-modifier,14 save-browser,37 updater,18 installer; test compilation12.95s (menu-tests-26-menu-bridges.log). The five connected memory-only fixtures passed within those harnesses. No live adapter, app, metadata/HTTP request, download, staging/replacement/install or process launch was executed."
+  },
+  "limits": [
+    "Native arithmetic/table lookups were replayed, but no live response, worker, UI or updater process was executed.",
+    "Source26 worker calls the part reader through NativeParts; compilation and connected memory-only fixtures passed in build26, no real backend execution.",
+    "The helper receives converted io errors; source26 NativeParts uses io::Error::other, bound to target kind41/Other; no real HTTP call executed."
+  ]
+}

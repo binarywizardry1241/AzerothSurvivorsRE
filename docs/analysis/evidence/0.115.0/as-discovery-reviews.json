@@ -1,0 +1,647 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.115.0",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
+  },
+  "reviews": [
+    {
+      "id": "upgrade-private-choice-envelope",
+      "selector": "ranges[0]:[0x1459770c0,0x1459782df)",
+      "finding_ids": [
+        91
+      ],
+      "ownership": "as_specific",
+      "conclusion": "Private choice/card envelope and existing host/guest consumers only. Canonical assembly is manifest-bound; this review does not retain a raw query export. Full offer/application/RNG/stored-level contracts remain open.",
+      "next_action": "Recover eligibility, rarity/caps/RNG, reroll/application/reset and stored-level transitions; retain build/runtime/parity needs.",
+      "parent": "module:custom-game-game-upgrades",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_overlay.rs",
+            "sha256": "30b262753026937f339657d12ccadf5ea19eac26d20e5cadef99ee2bfc2475ff"
+          },
+          {
+            "path": "docs/analysis/benilla-vendor.json",
+            "sha256": "149ca3dfa3c2a3dd9e3e8372f8c0bcebc86ef1420420073e9fa3773882910fd3"
+          }
+        ],
+        "conclusion": "Current choices_json/card_json, publish_private and receive_private paths match the retained private envelope. Later spell-resource and guest-metadata projection changes do not establish or change eligibility/RNG/application behavior. Existing benilla source remains the engine boundary."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.115.0/coop-overlay/manifest.json",
+        "sha256": "1623e7ae2ffa6bf356039cd831efbff19a9c03b5937a6700cb2d0e865ef6c9be"
+      },
+      "query": {
+        "selector": [
+          "ranges",
+          0
+        ],
+        "sha256": "dee8de9e377df9b4f7b53d24a65da84e0fedd58cca8f8726040b329fbf1af504"
+      },
+      "results": [
+        {
+          "path": "docs/analysis/evidence/0.115.0/coop-overlay/choices-json.asm",
+          "sha256": "d5cd1f54039d02766f1bd90529947638f5c48d8ae8550756b6a60701d535df4e"
+        }
+      ]
+    },
+    {
+      "id": "marker-hzt-keep",
+      "selector": "owner:[0x1401116e0,0x140112b87);ranges[role=hzt-clock-movement-keep]",
+      "finding_ids": [
+        96
+      ],
+      "ownership": "as_specific",
+      "conclusion": "Strict keep:true gate follows clock/movement updates and preserves occupancy; actual receiver inspected. Canonical assembly is manifest-bound; this review does not retain a raw query result. Whole marker geometry/fade/rendering remains open.",
+      "next_action": "Recover remaining marker geometry/fade/render contracts from exact native selectors; retain controlled comparison needs.",
+      "parent": "module:custom-app-screens-markers",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/raid_markers.rs",
+            "sha256": "55d7bfd60f1897dcc7672b028f02030b0b44aeb84c191afc895d62b1f4c341ef"
+          },
+          {
+            "path": "docs/analysis/benilla-vendor.json",
+            "sha256": "149ca3dfa3c2a3dd9e3e8372f8c0bcebc86ef1420420073e9fa3773882910fd3"
+          }
+        ],
+        "conclusion": "Existing local source inspected first. Stop at the available benilla interface boundary; source presence is not native equivalence."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.115.0/coop-markers/manifest.json",
+        "sha256": "c7a2e69250671d9ad101e51f1db8c307ba67ecc4a1562243cc0c286284e68f37"
+      },
+      "query": {
+        "selector": [
+          "query"
+        ],
+        "sha256": "6de963ad8fcdd7b513df7fbcd76ad9e01e8005fd1e03a92f293de0ceb9daa4b5"
+      },
+      "results": [
+        {
+          "path": "docs/analysis/evidence/0.115.0/coop-markers/hzt-clock-movement-keep.asm",
+          "sha256": "3be28c1193df491246906ac973e0d521b325494efdb9dde5fbf13c31a3c3d0b1"
+        },
+        {
+          "path": "docs/analysis/evidence/0.115.0/coop-markers/occupancy-input.asm",
+          "sha256": "a2e264066cf34f6820cc0a63cc86892e60a1ea422793c1a4b2791bf5c2173d2a"
+        },
+        {
+          "path": "docs/analysis/evidence/0.115.0/coop-markers/occupancy-ending-gate.asm",
+          "sha256": "2e86547304c0fe039e72161a46b035f6198cb60fe6519e28f58abceacdfab4c7"
+        }
+      ]
+    },
+    {
+      "id": "terminal-talent-context",
+      "selector": "TALENTXP01:producer:[0x145889ce0,0x14588b0a4);queries[0]",
+      "finding_ids": [
+        98
+      ],
+      "ownership": "as_specific",
+      "conclusion": "Retained producer query and current context/request consumer inspected. Bounded producer/parser/queue source is connected; compilation, terminal presentation and parity remain unverified.",
+      "next_action": "Follow remaining producer/consumer dependencies and validate scheduling/presentation only under separate build/runtime authorization.",
+      "parent": "module:custom-app-screens-mod",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/talent_context.rs",
+            "sha256": "399575f233dab0e519dc932cba9720416097bcff06294c4148d32e470012ef83"
+          },
+          {
+            "path": "docs/analysis/benilla-vendor.json",
+            "sha256": "149ca3dfa3c2a3dd9e3e8372f8c0bcebc86ef1420420073e9fa3773882910fd3"
+          }
+        ],
+        "conclusion": "Existing local source inspected first. Stop at the available benilla interface boundary; source presence is not native equivalence."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.115.0/talent-context/manifest.json",
+        "sha256": "0d74277c2a8a2a601dcd7d59f3886d6d136c477e02232c050dde5e4c1a3aaff8"
+      },
+      "query": {
+        "selector": [
+          "queries",
+          0
+        ],
+        "sha256": "d4600b2a090ec4f87a12778251d807397d9b40701fc490d1dde45809d413e165"
+      },
+      "results": [
+        {
+          "path": "runtime/gap98-producer-0.115.0/producer-query-v2/results/5dfd9521e6958720cb955ee7436b83e0cea027ecde42f503a4af8469be9254cc.json",
+          "sha256": "f14e7cc67332b28d82b51d074696ba1bb3183846ac0ed26a4ccaa9e3e4e5297c"
+        }
+      ]
+    },
+    {
+      "id": "public-directory-parser",
+      "selector": "LOBBYDIR01:functions[role=directory-message-receiver]:[0x14021b980,0x14021c652)",
+      "finding_ids": [
+        99
+      ],
+      "ownership": "as_specific",
+      "conclusion": "Retained receiver query and snapshot parser/stable-title sorting inspected. Binary WebSocket producer, refresh/projection and live presentation retain active draft and execution limits. The expanded manifest preserves the original receiver query/result and ranges; newly added row-presentation evidence is outside this review.",
+      "next_action": "Review service producer/refresh/projection source and exact response/row contracts; retain service/list and parity comparisons.",
+      "parent": "module:custom-app-screens-coop",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/coop/directory.rs",
+            "sha256": "260bd16cf98a31f4abeab858be6d0f27e0c40cd2d5f4a8b5f557ce66c0833d6a"
+          },
+          {
+            "path": "docs/analysis/benilla-vendor.json",
+            "sha256": "149ca3dfa3c2a3dd9e3e8372f8c0bcebc86ef1420420073e9fa3773882910fd3"
+          }
+        ],
+        "conclusion": "Current parser retains lobbies-only admission, absent-before-first-list, whole replacement, strict u64-to-u8 class filtering, native defaults and stable titled-host ordering against the retained parser/sort contracts. Existing benilla source remains the engine boundary; live service and rendering are unverified."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.115.0/coop-directory/manifest.json",
+        "sha256": "df14f725fc25805530276990dc17e7f60bc50640b486243eda0a3644c50ac8d8"
+      },
+      "query": {
+        "selector": [
+          "ghidra",
+          0
+        ],
+        "sha256": "cac79dbbe71ab2d7040fbab2a54a244066111991d20d47821cd726146ac37c7b"
+      },
+      "results": [
+        {
+          "path": "runtime/fixgap-99-native-schema/rea-14021b980/results/07d57ffb8f47b13c092ed53815804f09585d3e93619c382b5ce6bbebe9b8430e.json",
+          "sha256": "ce725c03898360724da32794cb15de18dde8e45a33afd7dfaf279de55906e8d6"
+        }
+      ]
+    },
+    {
+      "id": "host-code-request-helper",
+      "selector": "HOSTCODE01:functions[role=request-helper]:[0x14020f670,0x14020f91f)",
+      "finding_ids": [
+        100
+      ],
+      "ownership": "as_specific",
+      "conclusion": "Retained request-helper query and form state/request producer inspected. Complete dispatcher/error paths and UI/session integration retain active draft limits; no input/service/parity execution. Renewed owning-manifest receipt admits only the unchanged selected native query/result; additional manifest contracts are outside this review.",
+      "next_action": "Retain completed source/static request, submit/cancel/error and session connections under #100; compilation, actual input/save/service/session execution, rendering and parity remain unverified.",
+      "parent": "module:custom-app-screens-coop",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/coop_forms.rs",
+            "sha256": "168dc0d72f833faaed82a52614291f5348abd9d2c4b891ff154caf2f95372ccc"
+          },
+          {
+            "path": "docs/analysis/benilla-vendor.json",
+            "sha256": "149ca3dfa3c2a3dd9e3e8372f8c0bcebc86ef1420420073e9fa3773882910fd3"
+          }
+        ],
+        "conclusion": "Existing local source inspected first. Stop at the available benilla interface boundary; source presence is not native equivalence."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.115.0/coop-forms/manifest.json",
+        "sha256": "159483086b75f0cc8eeb4b5ce53ca7900bcf9bd40dfe46ed97f7f1fb28557a27"
+      },
+      "query": {
+        "selector": [
+          "ghidra",
+          0
+        ],
+        "sha256": "931b41d9394d293cc72dc6e5cd19dd4286a5fbaa64f2b34f7034de3f01fe3aa1"
+      },
+      "results": [
+        {
+          "path": "runtime/gap100/query-0x14020f670/results/e385c77786da6c2abf082b66f8ac3ebe940a7595649c80e751ae9193f3ce5976.json",
+          "sha256": "5fad24cad421cc913b522d692deabb21e773cf37dd670ea0017a75bd345c7867"
+        }
+      ]
+    },
+    {
+      "id": "recipient-item-text-intern",
+      "selector": "ITEMTEXT01:ranges[role=text-intern]:[0x1459a8f50,0x1459a9152)",
+      "finding_ids": [
+        101
+      ],
+      "ownership": "as_specific",
+      "conclusion": "Process-global interning, recipient query and existing engine description registry inspected. Canonical Ghidra extract is manifest-bound; this review does not retain a raw query export. Guest registry population remains an unresolved bridge; no transport is inferred.",
+      "next_action": "Trace the guest synthetic effect-text registry producer/lifetime from interner/serializer/receiver boundaries; retain mixed-language runtime/parity needs.",
+      "parent": "module:custom-game-proto",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs",
+            "sha256": "a16f248fd4024c63d6b3ef1334a21843452df4dd87ee4c4422610284f5c968e1"
+          },
+          {
+            "path": "crates/benilla-app/src/local_client/item_descriptions.rs",
+            "sha256": "810ab16efca38ee468d36ab9c1e75df4fef76b4261931aeba97cf8300848a19b"
+          },
+          {
+            "path": "docs/analysis/benilla-vendor.json",
+            "sha256": "149ca3dfa3c2a3dd9e3e8372f8c0bcebc86ef1420420073e9fa3773882910fd3"
+          }
+        ],
+        "conclusion": "Existing local source inspected first. Stop at the available benilla interface boundary; source presence is not native equivalence."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.115.0/coop-item-text/manifest.json",
+        "sha256": "0d75f30d2adb80493919194fa515629e8e08cfb8e212bb8d4541606ea70927ed"
+      },
+      "query": {
+        "selector": [
+          "ranges",
+          2
+        ],
+        "sha256": "7483d9446fe563d0ffd614507318aeed49c9808cc47f8e4753544975cb940ea3"
+      },
+      "results": [
+        {
+          "path": "docs/analysis/evidence/0.115.0/coop-item-text/text-intern.c",
+          "sha256": "bf5e3db328cf530f4a11860086dc2575fd2c7a37763e5529dd4072041965c185"
+        }
+      ]
+    },
+    {
+      "id": "spell-tooltip-constructor",
+      "selector": "SPELLTEXT01:constructor:[0x1458629b0,0x14586664e)",
+      "finding_ids": [
+        102
+      ],
+      "ownership": "as_specific",
+      "conclusion": "Selected constructor identity and canonical assembly bind this native range; actual tooltip append source inspected. Canonical export is not a retained raw query result. Complete append/auxiliary prose recovery and rendered/localized parity retain active draft limits.",
+      "next_action": "Recover native raw-resource-to-FrameXML-cache lineage beyond the classified typed consumer routes; append/auxiliary source is connected, with compilation, rendering and parity unverified.",
+      "parent": "module:custom-game-game-party",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_spell_text.rs",
+            "sha256": "1324e2962b9c032db2734a1310430482b0682149bfbbf05e2f87ad43f16755bf"
+          },
+          {
+            "path": "docs/analysis/benilla-vendor.json",
+            "sha256": "149ca3dfa3c2a3dd9e3e8372f8c0bcebc86ef1420420073e9fa3773882910fd3"
+          }
+        ],
+        "conclusion": "Existing local source inspected first. Stop at the available benilla interface boundary; source presence is not native equivalence."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.115.0/coop-spell-text/manifest.json",
+        "sha256": "64d0732631cbc5cda40b78c23436e311574fb545aa298fb59f1b0f6afacc4680"
+      },
+      "query": {
+        "selector": [
+          "functions",
+          0
+        ],
+        "sha256": "afcb2f7bd17b3b7e79f12131c584541bc47e0c796f4a8f72dc64468f73aefbd4"
+      },
+      "results": [
+        {
+          "path": "docs/analysis/evidence/0.115.0/coop-spell-text/1458629b0.asm",
+          "sha256": "4735274c8efb7ad927660c91d9e0521d0593a7e4a209c40417e21f683817057e"
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Seven bounded regions only; no transfer of ownership to neighbors.",
+    "Canonical exports and retained raw query results are explicitly distinguished and hash-checked.",
+    "Active source drafts do not imply completed discovery stages, compilation, gameplay or parity."
+  ],
+  "finding_bindings": [
+    {
+      "id": "talent-context-exact-key",
+      "selectors": [
+        "Q41-I01:save_configuration_key_lead:0"
+      ],
+      "finding_ids": [
+        98
+      ],
+      "conclusion": "Exact native talentxp immediate/comparison is a runtime JSON-context patch lead already owned by #98. Retain its producer/parser/source proof separately; no save-field meaning or global ownership is inferred.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.115.0/data-classification/manifest.json",
+        "sha256": "4efd1224c62c0bed8014a18724644d9a32db7ed393533e802636136dca4d6bef"
+      },
+      "proof": {
+        "selector": [
+          "outputs",
+          "embedded-classification.jsonl"
+        ],
+        "sha256": "910f5de787fe6b0be4e5dd97c480ab52b02130ed34c781c74b1e23bcd5431e6f"
+      }
+    },
+    {
+      "id": "open-levels-exact-comparison",
+      "selectors": [
+        "Q41-I01:game_binding_identifier:0"
+      ],
+      "finding_ids": [
+        21,
+        84
+      ],
+      "conclusion": "Exact encoded comparison reconstructs AZS_OPENLEVELS at the recorded instruction sites. Existing input/binding findings #21/#84 own dispatch recovery; substring membership alone is not a binding/consumer contract.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.115.0/data-classification/manifest.json",
+        "sha256": "4efd1224c62c0bed8014a18724644d9a32db7ed393533e802636136dca4d6bef"
+      },
+      "proof": {
+        "selector": [
+          "outputs",
+          "embedded-classification.jsonl"
+        ],
+        "sha256": "910f5de787fe6b0be4e5dd97c480ab52b02130ed34c781c74b1e23bcd5431e6f"
+      }
+    },
+    {
+      "id": "exact-embedded-addon-container",
+      "selectors": [
+        "Q41-I01:game_binding_identifier:5",
+        "Q41-I01:game_binding_identifier:6",
+        "Q41-I01:game_binding_identifier:7",
+        "Q41-I01:game_binding_identifier:8",
+        "Q41-I01:game_binding_identifier:9",
+        "Q41-I01:game_binding_identifier:10",
+        "Q41-I01:game_binding_identifier:11",
+        "Q41-I01:game_binding_identifier:12",
+        "Q41-I01:game_binding_identifier:13",
+        "Q41-I01:game_binding_identifier:14",
+        "Q41-I01:game_binding_identifier:15",
+        "Q41-I01:game_binding_identifier:16",
+        "Q41-I01:game_binding_identifier:17",
+        "Q41-I01:game_binding_identifier:18",
+        "Q41-I01:game_binding_identifier:19",
+        "Q41-I01:game_binding_identifier:20",
+        "Q41-I01:game_binding_identifier:21",
+        "Q41-I01:game_binding_identifier:22",
+        "Q41-I01:game_binding_identifier:23",
+        "Q41-I01:game_binding_identifier:24",
+        "Q41-I01:game_binding_identifier:25",
+        "Q41-I01:resource_path:207",
+        "Q41-I01:lua_function_declaration:123",
+        "Q41-I01:game_binding_identifier:26",
+        "Q41-I01:lua_function_declaration:124",
+        "Q41-I01:game_binding_identifier:27",
+        "Q41-I01:lua_function_declaration:125",
+        "Q41-I01:game_binding_identifier:28",
+        "Q41-I01:game_binding_identifier:29",
+        "Q41-I01:game_binding_identifier:30",
+        "Q41-I01:game_binding_identifier:31",
+        "Q41-I01:game_binding_identifier:32",
+        "Q41-I01:lua_function_declaration:126",
+        "Q41-I01:game_binding_identifier:33",
+        "Q41-I01:game_binding_identifier:34",
+        "Q41-I01:lua_function_declaration:127",
+        "Q41-I01:game_binding_identifier:35",
+        "Q41-I01:game_binding_identifier:36",
+        "Q41-I01:lua_function_declaration:128",
+        "Q41-I01:game_binding_identifier:37",
+        "Q41-I01:game_binding_identifier:38",
+        "Q41-I01:game_binding_identifier:39",
+        "Q41-I01:game_binding_identifier:40",
+        "Q41-I01:lua_function_declaration:129",
+        "Q41-I01:game_binding_identifier:41",
+        "Q41-I01:game_binding_identifier:42",
+        "Q41-I01:game_binding_identifier:43",
+        "Q41-I01:game_binding_identifier:44",
+        "Q41-I01:lua_function_declaration:130",
+        "Q41-I01:game_binding_identifier:45",
+        "Q41-I01:game_binding_identifier:46",
+        "Q41-I01:lua_function_declaration:131",
+        "Q41-I01:game_binding_identifier:47",
+        "Q41-I01:game_binding_identifier:48",
+        "Q41-I01:lua_function_declaration:132",
+        "Q41-I01:game_binding_identifier:49",
+        "Q41-I01:game_binding_identifier:50",
+        "Q41-I01:game_binding_identifier:51",
+        "Q41-I01:game_binding_identifier:52",
+        "Q41-I01:lua_function_declaration:133",
+        "Q41-I01:game_binding_identifier:53",
+        "Q41-I01:game_binding_identifier:54",
+        "Q41-I01:game_binding_identifier:55",
+        "Q41-I01:game_binding_identifier:56",
+        "Q41-I01:lua_function_declaration:134",
+        "Q41-I01:game_binding_identifier:57",
+        "Q41-I01:game_binding_identifier:58",
+        "Q41-I01:game_binding_identifier:59",
+        "Q41-I01:game_binding_identifier:60",
+        "Q41-I01:lua_function_declaration:135",
+        "Q41-I01:game_binding_identifier:61",
+        "Q41-I01:game_binding_identifier:62",
+        "Q41-I01:game_binding_identifier:63",
+        "Q41-I01:game_binding_identifier:64",
+        "Q41-I01:game_binding_identifier:65",
+        "Q41-I01:lua_function_declaration:136",
+        "Q41-I01:game_binding_identifier:66",
+        "Q41-I01:lua_function_declaration:137",
+        "Q41-I01:game_binding_identifier:67",
+        "Q41-I01:game_binding_identifier:68",
+        "Q41-I01:game_binding_identifier:69",
+        "Q41-I01:game_binding_identifier:70",
+        "Q41-I01:lua_function_declaration:138",
+        "Q41-I01:game_binding_identifier:71",
+        "Q41-I01:game_binding_identifier:72",
+        "Q41-I01:game_binding_identifier:73",
+        "Q41-I01:lua_function_declaration:139",
+        "Q41-I01:game_binding_identifier:74",
+        "Q41-I01:game_binding_identifier:75",
+        "Q41-I01:game_binding_identifier:76",
+        "Q41-I01:game_binding_identifier:77",
+        "Q41-I01:lua_function_declaration:140",
+        "Q41-I01:game_binding_identifier:78",
+        "Q41-I01:game_binding_identifier:79",
+        "Q41-I01:lua_function_declaration:141",
+        "Q41-I01:game_binding_identifier:80",
+        "Q41-I01:game_binding_identifier:81",
+        "Q41-I01:game_binding_identifier:82",
+        "Q41-I01:lua_function_declaration:142",
+        "Q41-I01:game_binding_identifier:83",
+        "Q41-I01:game_binding_identifier:84",
+        "Q41-I01:game_binding_identifier:85",
+        "Q41-I01:game_binding_identifier:86",
+        "Q41-I01:game_binding_identifier:87",
+        "Q41-I01:lua_function_declaration:143",
+        "Q41-I01:game_binding_identifier:88",
+        "Q41-I01:game_binding_identifier:89",
+        "Q41-I01:lua_function_declaration:144",
+        "Q41-I01:game_binding_identifier:90",
+        "Q41-I01:game_binding_identifier:91",
+        "Q41-I01:game_binding_identifier:92",
+        "Q41-I01:lua_function_declaration:145",
+        "Q41-I01:game_binding_identifier:93",
+        "Q41-I01:game_binding_identifier:94",
+        "Q41-I01:lua_function_declaration:146",
+        "Q41-I01:game_binding_identifier:95",
+        "Q41-I01:lua_function_declaration:147",
+        "Q41-I01:game_binding_identifier:96",
+        "Q41-I01:lua_function_declaration:148",
+        "Q41-I01:game_binding_identifier:97",
+        "Q41-I01:game_binding_identifier:98",
+        "Q41-I01:lua_function_declaration:149",
+        "Q41-I01:game_binding_identifier:99",
+        "Q41-I01:game_binding_identifier:100",
+        "Q41-I01:game_binding_identifier:101",
+        "Q41-I01:game_binding_identifier:102",
+        "Q41-I01:lua_function_declaration:150",
+        "Q41-I01:game_binding_identifier:103",
+        "Q41-I01:game_binding_identifier:104",
+        "Q41-I01:game_binding_identifier:105",
+        "Q41-I01:game_binding_identifier:106",
+        "Q41-I01:lua_function_declaration:151",
+        "Q41-I01:game_binding_identifier:107",
+        "Q41-I01:game_binding_identifier:108",
+        "Q41-I01:game_binding_identifier:109",
+        "Q41-I01:game_binding_identifier:110",
+        "Q41-I01:lua_function_declaration:152",
+        "Q41-I01:game_binding_identifier:111",
+        "Q41-I01:game_binding_identifier:112",
+        "Q41-I01:game_binding_identifier:113",
+        "Q41-I01:game_binding_identifier:114",
+        "Q41-I01:lua_function_declaration:153",
+        "Q41-I01:game_binding_identifier:115",
+        "Q41-I01:lua_function_declaration:154",
+        "Q41-I01:game_binding_identifier:116",
+        "Q41-I01:game_binding_identifier:117",
+        "Q41-I01:game_binding_identifier:118",
+        "Q41-I01:game_binding_identifier:119",
+        "Q41-I01:game_binding_identifier:120",
+        "Q41-I01:game_binding_identifier:121",
+        "Q41-I01:game_binding_identifier:122",
+        "Q41-I01:game_binding_identifier:123",
+        "Q41-I01:game_binding_identifier:124",
+        "Q41-I01:game_binding_identifier:125",
+        "Q41-I01:lua_function_declaration:155",
+        "Q41-I01:game_binding_identifier:126",
+        "Q41-I01:game_binding_identifier:127",
+        "Q41-I01:game_binding_identifier:128",
+        "Q41-I01:game_binding_identifier:129",
+        "Q41-I01:game_binding_identifier:130",
+        "Q41-I01:lua_function_declaration:156",
+        "Q41-I01:game_binding_identifier:131",
+        "Q41-I01:game_binding_identifier:132",
+        "Q41-I01:game_binding_identifier:133",
+        "Q41-I01:game_binding_identifier:134",
+        "Q41-I01:game_binding_identifier:135",
+        "Q41-I01:game_binding_identifier:136",
+        "Q41-I01:game_binding_identifier:137",
+        "Q41-I01:game_binding_identifier:138",
+        "Q41-I01:game_binding_identifier:139",
+        "Q41-I01:game_binding_identifier:140",
+        "Q41-I01:game_binding_identifier:141",
+        "Q41-I01:game_binding_identifier:142",
+        "Q41-I01:game_binding_identifier:143",
+        "Q41-I01:game_binding_identifier:144",
+        "Q41-I01:game_binding_identifier:145",
+        "Q41-I01:game_binding_identifier:146",
+        "Q41-I01:game_binding_identifier:147",
+        "Q41-I01:game_binding_identifier:148",
+        "Q41-I01:game_binding_identifier:149",
+        "Q41-I01:game_binding_identifier:150",
+        "Q41-I01:game_binding_identifier:151",
+        "Q41-I01:game_binding_identifier:152",
+        "Q41-I01:game_binding_identifier:153",
+        "Q41-I01:game_binding_identifier:154",
+        "Q41-I01:game_binding_identifier:155",
+        "Q41-I01:game_binding_identifier:156",
+        "Q41-I01:game_binding_identifier:157",
+        "Q41-I01:game_binding_identifier:158",
+        "Q41-I01:game_binding_identifier:159",
+        "Q41-I01:game_binding_identifier:160",
+        "Q41-I01:game_binding_identifier:161",
+        "Q41-I01:game_binding_identifier:162",
+        "Q41-I01:game_binding_identifier:163",
+        "Q41-I01:game_binding_identifier:164",
+        "Q41-I01:game_binding_identifier:165",
+        "Q41-I01:game_binding_identifier:166",
+        "Q41-I01:game_binding_identifier:167",
+        "Q41-I01:game_binding_identifier:168",
+        "Q41-I01:game_binding_identifier:169",
+        "Q41-I01:game_binding_identifier:170",
+        "Q41-I01:game_binding_identifier:171",
+        "Q41-I01:game_binding_identifier:172",
+        "Q41-I01:game_binding_identifier:173",
+        "Q41-I01:game_binding_identifier:174",
+        "Q41-I01:game_binding_identifier:175",
+        "Q41-I01:game_binding_identifier:176",
+        "Q41-I01:game_binding_identifier:177",
+        "Q41-I01:game_binding_identifier:178",
+        "Q41-I01:game_binding_identifier:179",
+        "Q41-I01:game_binding_identifier:180",
+        "Q41-I01:game_binding_identifier:181",
+        "Q41-I01:game_binding_identifier:182",
+        "Q41-I01:game_binding_identifier:183",
+        "Q41-I01:game_binding_identifier:184",
+        "Q41-I01:game_binding_identifier:185",
+        "Q41-I01:game_binding_identifier:186",
+        "Q41-I01:game_binding_identifier:187",
+        "Q41-I01:game_binding_identifier:188",
+        "Q41-I01:game_binding_identifier:189",
+        "Q41-I01:game_binding_identifier:190",
+        "Q41-I01:game_binding_identifier:191",
+        "Q41-I01:game_binding_identifier:192",
+        "Q41-I01:lua_ui_registration:314",
+        "Q41-I01:lua_ui_registration:315",
+        "Q41-I01:lua_ui_registration:316",
+        "Q41-I01:lua_ui_registration:317",
+        "Q41-I01:game_binding_identifier:193"
+      ],
+      "finding_ids": [
+        11
+      ],
+      "conclusion": "These exact row ranges lie inside the current hash-bound embedded AS addon API script container. #11 owns its Lua/API producer-consumer recovery; container membership does not certify every registration or callback.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.115.0/data-classification/manifest.json",
+        "sha256": "4efd1224c62c0bed8014a18724644d9a32db7ed393533e802636136dca4d6bef"
+      },
+      "proof": {
+        "selector": [
+          "outputs",
+          "embedded-classification.jsonl"
+        ],
+        "sha256": "910f5de787fe6b0be4e5dd97c480ab52b02130ed34c781c74b1e23bcd5431e6f"
+      }
+    },
+    {
+      "id": "progression-bar-current-consumer",
+      "selectors": [
+        "Q41-I01:resource_path:0"
+      ],
+      "finding_ids": [
+        103
+      ],
+      "conclusion": "Exact current URI reads in body 0x1400972e0 require native asset-handle-to-bar consumer recovery. Candidate progression::load_art/Art.progress_bar/bar_flow is source-first navigation, not established diagnostic ownership; historical 0.113.2 owner differs.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.115.0/data-classification/manifest.json",
+        "sha256": "4efd1224c62c0bed8014a18724644d9a32db7ed393533e802636136dca4d6bef"
+      },
+      "proof": {
+        "selector": [
+          "outputs",
+          "embedded-classification.jsonl"
+        ],
+        "sha256": "910f5de787fe6b0be4e5dd97c480ab52b02130ed34c781c74b1e23bcd5431e6f"
+      }
+    },
+    {
+      "id": "achievement-dragon-current-consumer",
+      "selectors": [
+        "Q41-I01:resource_path:4"
+      ],
+      "finding_ids": [
+        104
+      ],
+      "conclusion": "Exact current URI reads in body 0x1402dc170 require native asset-handle-to-sidebar consumer recovery. Candidate progression::load_art/Art.dragon/achievements_sidebar::draw is source-first navigation, not established diagnostic ownership; historical 0.113.2 owner differs.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.115.0/data-classification/manifest.json",
+        "sha256": "4efd1224c62c0bed8014a18724644d9a32db7ed393533e802636136dca4d6bef"
+      },
+      "proof": {
+        "selector": [
+          "outputs",
+          "embedded-classification.jsonl"
+        ],
+        "sha256": "910f5de787fe6b0be4e5dd97c480ab52b02130ed34c781c74b1e23bcd5431e6f"
+      }
+    }
+  ]
+}

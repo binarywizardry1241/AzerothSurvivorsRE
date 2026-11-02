@@ -1,0 +1,140 @@
+{
+  "target": "installed-game/AzerothSurvivors.exe",
+  "output": "runtime/q41-pointer-relations-0.113.2/replay-rea",
+  "init_timeout": 60,
+  "timeout": 240,
+  "environment": {
+    "REA_GHIDRA_SEED_FILE": "docs/analysis/evidence/0.113.2/q41-pointer-relations/seeds.tsv",
+    "REA_GHIDRA_DISABLED_ANALYZERS": "Stack,Decompiler Switch Analysis,Function ID,Function Start Search,Disassemble Entry Points,Subroutine References,Data Reference,Reference,Non-Returning Functions - Discovered,Shared Return Calls,Create Address Tables,Call Convention ID,Call-Fixup Installer,Variadic Function Signature Override",
+    "REA_GHIDRA_STARTUP_TIMEOUT_MS": "600000"
+  },
+  "operations": [
+    {
+      "name": "analyze_function",
+      "arguments": {
+        "procedure": "0x140136300"
+      },
+      "label": "function-140136300",
+      "timeout": 660
+    },
+    {
+      "name": "read_function_instructions",
+      "arguments": {
+        "procedure": "0x140136300"
+      },
+      "label": "instructions-140136300"
+    },
+    {
+      "name": "analyze_function",
+      "arguments": {
+        "procedure": "0x1400020e0"
+      },
+      "label": "function-1400020e0",
+      "timeout": 660
+    },
+    {
+      "name": "read_function_instructions",
+      "arguments": {
+        "procedure": "0x1400020e0"
+      },
+      "label": "instructions-1400020e0"
+    },
+    {
+      "name": "analyze_function",
+      "arguments": {
+        "procedure": "0x1400051c0"
+      },
+      "label": "function-1400051c0",
+      "timeout": 660
+    },
+    {
+      "name": "read_function_instructions",
+      "arguments": {
+        "procedure": "0x1400051c0"
+      },
+      "label": "instructions-1400051c0"
+    },
+    {
+      "name": "analyze_function",
+      "arguments": {
+        "procedure": "0x1458956d0"
+      },
+      "label": "function-1458956d0",
+      "timeout": 660
+    },
+    {
+      "name": "read_function_instructions",
+      "arguments": {
+        "procedure": "0x1458956d0"
+      },
+      "label": "instructions-1458956d0"
+    },
+    {
+      "name": "analyze_function",
+      "arguments": {
+        "procedure": "0x145cdf5d0"
+      },
+      "label": "function-145cdf5d0",
+      "timeout": 660
+    },
+    {
+      "name": "read_function_instructions",
+      "arguments": {
+        "procedure": "0x145cdf5d0"
+      },
+      "label": "instructions-145cdf5d0"
+    },
+    {
+      "name": "read_bytes",
+      "arguments": {
+        "address": "0x145ed76d0",
+        "length": 56
+      },
+      "label": "bytes-145ed76d0"
+    },
+    {
+      "name": "resolve_containing_procedure",
+      "arguments": {
+        "address": "0x145ed76d0"
+      },
+      "label": "owner-145ed76d0"
+    },
+    {
+      "name": "read_bytes",
+      "arguments": {
+        "address": "0x145ed6df8",
+        "length": 46
+      },
+      "label": "bytes-145ed6df8"
+    },
+    {
+      "name": "resolve_containing_procedure",
+      "arguments": {
+        "address": "0x145ed6df8"
+      },
+      "label": "owner-145ed6df8"
+    },
+    {
+      "name": "read_bytes",
+      "arguments": {
+        "address": "0x1481fa240",
+        "length": 12
+      },
+      "label": "bytes-1481fa240"
+    },
+    {
+      "name": "resolve_containing_procedure",
+      "arguments": {
+        "address": "0x1481fa240"
+      },
+      "label": "owner-1481fa240"
+    },
+    {
+      "name": "xrefs",
+      "arguments": {
+        "address": "0x140136300"
+      },
+      "label": "armory-builder-references"
+    }
+  ]
+}

@@ -1,0 +1,279 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "native_ranges": [
+    {
+      "role": "xp-parts",
+      "virtual_address": "0x145b2852b",
+      "file_offset": "0x5b2792b",
+      "byte_count": 539,
+      "sha256": "34a032a116c4321ef27160cf35a4ec7ed72a886db2efac0a3fcf6234fb6b8d19",
+      "bytes_hex": "8b755048898da0000000488995a8000000e84f3cf7ff48898588020000448b6d5cf3480f2afe8b5d74f30f593d58fd66000f28c7e811374c00f34c0f2ce0f3440f100d2af07300410f2ec149bfffffffffffffff7f4d0f47e70f2ec0b8000000004c0f4ae0f30f5e3598136c00f30f5935d0fb66000f28c6e8cd364c00f3480f2cf0410f2ec1490f47f70f2ec0b800000000480f4af04a8d0ced000000004c8d3c894488b5970200004584f649c7c638ffffff4c0f44f0480f44f875050f57c9eb08f30f100d4be46d00f3490f2ad5f30f58f7f30f59151e026700f30f58d60f57c0f30f2a8588020000f30f590563036700f30f5e059b6d7200f30f58d1f30f58056ffb6600f30f59c2e83b364c00f3480f2cc0410f2ec0b9000000000f42c1410f2ec2b9ffffffff0f47c14a8d0c3e4c01e14929ce4901c64889b5c00000004c89a5c80000004c89bdd00000004889bdd80000004c89b5e000000080fb05b8050000000f42c384db74300fb6c0488d0440c1e004488d0d391c4a01488d14084883c2d04885d274124801c1f3440f1041fcf3440f58056afb66004901f44c01ff4c01e74c01f70f57c0f3480f2ac7f3410f59c0e891354c00f3480f2cc0410f2ec148bbffffffffffffff7f480f47c331f60f2ec0480f4ac6488985e80000004801f80f57c0f3480f2ac04c8bb580020000f3410f5986401a0000e84a354c00f3480f2cc0410f2ec1480f47c30f2ec0480f4ac6488985f0000000",
+      "assembly": "docs/analysis/evidence/0.121.0/heroic-rewards/xp-parts.asm",
+      "instruction_count": 112
+    },
+    {
+      "role": "snapshot-local",
+      "virtual_address": "0x145afaed0",
+      "file_offset": "0x5afa2d0",
+      "byte_count": 2158,
+      "sha256": "c691c3cfc64077529bf2fbd0d7aa88c80ac1673e9975ff8f1e26893ede3ef331",
+      "bytes_hex": "5541574156415541545657534881ec88010000488dac248000000066440f7f9df000000066440f7f95e000000066440f7f8dd000000066440f7f85c00000000f29bdb00000000f29b5a000000048c78598000000feffffff4989d648894de0f30f10ba740c00000fb6822f0d00008885810000000fb6822a0d00008885820000000fb682300d00008885830000008b823005000089451c8b82900b00008945188b820c0800008945140fb6826f030000888580000000f20f10b2f40700000fb6825c0300008845780fb6825d03000088858f0000000fb6825e03000088858e0000000fb6825f03000088858d0000000fb6826003000088858c0000000fb6826103000088858b0000000fb6826203000088858a0000000fb682630300008885890000000fb682640300008885880000000fb682650300008885870000000fb682660300008885850000000fb682670300008885840000008b820808000089452c8b82040800008945308b82fc0700008945288b82100800008945248b82d80c0000894520488d925c030000498d8e00030000410fb68668030000888586000000410fb6b669030000410fb69e6a030000450fb6a66b030000410fb6be6c030000450fb6be6d030000450fb6ae6e030000e8bb90fcff4d8b86d80200004d85c079104531e44c89e14c89c2e8fc8f69000f0b4c8945404088b596000000889d950000004488a5940000004088bd930000004488bd920000004488ad91000000889590000000488945e8418b8600030000894534418b860403000089453c418b8608030000894538f3450f6f963c030000f3450f6f8e2c030000f3450f6f9e1c030000f3450f6f860c030000410fb69e5403000074404d8bbed0020000e8b07050fa41bc01000000ba01000000488b7d404889f9e8597050fa4989f84885c00f8441ffffff488945484889c14c89fae8990a4f00eb09b801000000488945484d8bae700700004e8d3ced000000004c89e848c1e83d0f95c049bafcffffffffffff7f4d39d70f97c108c1440fb6657874144531ed4c89e94c89fae8ee8e690090e948010000889d97000000498bbe680700004d85ff0f84340100004c89ebe80f7050fa41bd04000000ba040000004c89f9e8bc6f50fa488945604885c074b54989dd48895d50440fb6657849bafcffffffffffff7f4d85ed7419488b4d604889fa4d89f8e8e4094f0049bafcffffffffffff7f498b9e88070000488d049d000000004c8d3c4048b8aaaaaaaaaaaaaa0a4839c376144531ed4c89e94c89fae84a8e690090e9a4000000498bb6800700004d85ff4c896df00f8474040000e8706f50fa41bd04000000ba040000004c89f9e81d6f50fa4885c074be4989c348895d58440fb6657849bafcffffffffffff7f48895df84885db741e4c89d94889f24d89f84c89dee843094f004989f349bafcffffffffffff7f498b9ea00700004c8d3c9d000000004889d848c1e83e0f95c04d39d70f97c108c14c895d0874304531ed4c89e94c89fae8a18d6900900f0bb8040000004889456048c74550000000004d85ed0f85f1feffffe905ffffff498b96980700004d85ff0f84d303000048895500e8ab6e50fa41bd04000000ba040000004c89f9e8586e50fa488945684885c0749e48895d70440fb66578488b55004885db740d488b4d684d89f8e88c084f009048895d78488d4da84c89f2e820750c0090410fb6cc0fb6b58f0000000fb6958e000000440fb6858d000000440fb68d8c000000440fb6958b000000440fb69d8a0000000fb6bd89000000440fb6b5880000004038f10f47f14038d60f46f24438c6410f46f04438ce410f46f14438d6410f46f24438de410f46f34038fe0f46f74438f6410f46f60fb68d870000004038ce0f46f10fb68d850000004038ce0f46f10fb68d840000004038ce0f46f10fb68d860000004038ce0f46f10fb68d960000004038ce0f46f10fb68d950000004038ce0f46f10fb68d940000004038ce0f46f10fb68d930000004038ce0f46f10fb68d920000004038ce0f46f10fb68d910000004038ce0f46f18b45340b453c0b4538660fefc066440f76c066440f76d866450f6bc366440f76c866440f76d066450f6bca66450f63c1410f94c366450fd7c84489cac1ea0f4589c841c1e80e4589ca41c1ea0d4489cfc1ef0c4589ce41c1ee0b4489c9c1e90a4589cc41c1ec094589cd41c1ed084584c9410f98c74520ef4520e74589cc41c0ec054589cd41c0ed044520e54589cc41c0ec064520e54589cc41c0ec034489cbc0eb024420e34520cb41d0e94520d94120d94520e94520cf4420f14020f94420d14420c14420f920d1488b45e8fec04531c080bd90000000020fb6d0410f44d080bd8200000000440fb68583000000440fb68d81000000450f44c14180e0064180f804488b45e0f30f11b898000000448888c30000000f9480c0000000448b451c4489809c000000448b4518448880c1000000f30f104530f30f104d2cf30f105528f30f105d140f14c10f14d30f16d00f1190a0000000448b4524448980b0000000440fb68580000000448880c4000000448b4520448980b40000000f13b0b80000004088b0c50000008890c60000008888c20000000fb68d970000008888c7000000488b5540488910488b4d484889480848895010488b4d5048894818488b4d6048894820488b4df048894828488b4d5848894830488b4d0848894838488b4df848894840488b4d7048894848488b4d6848894850488b4d7848894858488b4dd8488988900000000f1045a80f104db80f1055c80f1190800000000f1148700f1140600f28b5a00000000f28bdb0000000440f2885c0000000440f288dd0000000440f2895e0000000440f289df00000004881c4880100005b5f5e415c415d415e415f5dc341bb0400000048c745580000000048895df84885db0f85adfbffffe9c6fbffffb8040000004889456848c74570000000004885db0f854afcffffe952fcffff",
+      "assembly": "docs/analysis/evidence/0.121.0/heroic-rewards/snapshot-local.asm",
+      "instruction_count": 464
+    },
+    {
+      "role": "snapshot-selection",
+      "virtual_address": "0x145b2ddad",
+      "file_offset": "0x5b2d1ad",
+      "byte_count": 228,
+      "sha256": "dff72e6a503143853f6909e4cad70e4c2f94855b856b8a93256a45ad23826586",
+      "bytes_hex": "837a10020f85a400000083ba480d0000010f87cd0000004883bac00f0000ff0f84bf0000004989cc488d82c00f0000f30f10ba58100000440f10825c100000f2440f108a6c1000008bba74100000f20f10b278100000f2440f109280100000488d4dd84989d54889c2e8151049004d8bbde80f00004a8d34fd000000004c89f948c1e93d0f95c148bafcffffffffffff7f4839d60f97c208ca747e31db4889d94889f2e86662660090e9710200004883c2100f2875400f287d50440f284560440f284d70440f2895800000004881c4180100005b5f5e415c415d415e415f5de93fd0fcff",
+      "assembly": "docs/analysis/evidence/0.121.0/heroic-rewards/snapshot-selection.asm",
+      "instruction_count": 50
+    },
+    {
+      "role": "party-rank",
+      "virtual_address": "0x145bc28c0",
+      "file_offset": "0x5bc1cc0",
+      "byte_count": 329,
+      "sha256": "bb56fdc8ce86809bb35d2d87382d89fef2db139df22bda9b30800a4e85543cf6",
+      "bytes_hex": "5541574156415541545657534883ec58488d6c245048c74500feffffff80ba2a0d00000175484883ba180a000000743e4c8bb2200b00004a8d34f5000000004c89f048c1e83d0f95c049b8fcffffffffffff7f4c39c6410f97c04108c0742a31db4889d94889f2e88f175d000f0b48c701ffffffff4889c84883c4585b5f5e415c415d415e415f5dc34989cf488bba180b00004885f64989d40f8495000000e89cf843fabb04000000ba040000004889f1e84af843fa4885c074a64989c54c8975f84c89e24d85f674114c89e94889fa4989f0e8839242004c89e24c896df08bb2100d00004881c2280b0000488d4dd8e8db5b0c00904180bc246f03000003488b45e84c89f9498947280f1045d8410f114718488b45f8498907488b45f0498947084d89771041897730410f934734e941ffffff41bd0400000048c745f8000000004d85f67583eb92",
+      "assembly": "docs/analysis/evidence/0.121.0/heroic-rewards/party-rank.asm",
+      "instruction_count": 89
+    },
+    {
+      "role": "xp-label",
+      "virtual_address": "0x145b28bd2",
+      "file_offset": "0x5b27fd2",
+      "byte_count": 56,
+      "sha256": "89b53094af4626f913c3d3e9641a7bdb8a04490f5f0fb2c0da8437adc5053713",
+      "bytes_hex": "4883fe057532c685a202000001ba06000000488d0d65a7b301e87023fcff904885c0b906000000480f44d1488d0d4ca7b301480f44c1eb76",
+      "assembly": "docs/analysis/evidence/0.121.0/heroic-rewards/xp-label.asm",
+      "instruction_count": 13
+    },
+    {
+      "role": "reward-helper",
+      "virtual_address": "0x145ac0330",
+      "file_offset": "0x5abf730",
+      "byte_count": 54,
+      "sha256": "7cf256b0e9c147ba009b8ef469ddefbb74e697d257cea22f16da138cab297ec9",
+      "bytes_hex": "8d41fa3cfb0f92c20fb6c1488d0c40c1e104488d05979f50014801c84883f8300f94c108d17409f30f1005417e6d00c3f30f1040fcc3",
+      "assembly": "docs/analysis/evidence/0.121.0/heroic-rewards/reward-helper.asm",
+      "instruction_count": 16
+    }
+  ],
+  "native_data": [
+    {
+      "role": "xp-Heroic-key",
+      "virtual_address": "0x147663350",
+      "file_offset": "0x7662150",
+      "byte_count": 6,
+      "sha256": "4d9a10c23241d941280af52025cd23fdc4a3ef83deb46530c96211ca2b94d80c",
+      "bytes_hex": "4865726f6963"
+    },
+    {
+      "role": "reward-1",
+      "virtual_address": "0x146fca30c",
+      "file_offset": "0x6fc910c",
+      "byte_count": 4,
+      "sha256": "ffcd594324296033e35bb6b3ea4a3d6e9b3b4db169f4e1968861c5746a9bf958",
+      "bytes_hex": "6666a63f"
+    },
+    {
+      "role": "reward-2",
+      "virtual_address": "0x146fca33c",
+      "file_offset": "0x6fc913c",
+      "byte_count": 4,
+      "sha256": "55bcbd6097be4e6dbb2e3a87d63d96cb17ed13c4483b7f9a79c7cb115111b3ce",
+      "bytes_hex": "3333b33f"
+    },
+    {
+      "role": "reward-3",
+      "virtual_address": "0x146fca36c",
+      "file_offset": "0x6fc916c",
+      "byte_count": 4,
+      "sha256": "c0e336a5f371ef22cd534e094269f2c1a9635cd080b71ffa671086832d3b60b7",
+      "bytes_hex": "0000c03f"
+    },
+    {
+      "role": "reward-4",
+      "virtual_address": "0x146fca39c",
+      "file_offset": "0x6fc919c",
+      "byte_count": 4,
+      "sha256": "7976acfbc3de10e4e4720f1fe68a3621615536679ef373fd7d6df906c8c86dc4",
+      "bytes_hex": "cdcccc3f"
+    },
+    {
+      "role": "reward-5",
+      "virtual_address": "0x146fca3cc",
+      "file_offset": "0x6fc91cc",
+      "byte_count": 4,
+      "sha256": "42cbbe7ad6950d50bb1d8381d7e2d7f9e49ac53d0134e46b5852e49d0cdc66b7",
+      "bytes_hex": "9a99d93f"
+    },
+    {
+      "role": "incoming-u32-conversion-bound",
+      "virtual_address": "0x1461aae70",
+      "file_offset": "0x61a9c70",
+      "byte_count": 4,
+      "sha256": "2a25271875e056e323462f5d609558c140e993d0d331e6bfbfd211949974594c",
+      "bytes_hex": "ffff7f4f"
+    }
+  ],
+  "queries": [
+    {
+      "role": "summary-snapshot-producer",
+      "procedure": "0x145b2dd70",
+      "slice_virtual_address": "0x145b28410",
+      "evidence_id": "ev_1754fe60b9d8e968df3fdba09b28ad4b171eee9b286f5a35ec09a04fabb110ff",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "77434c00fa12715fb5203ceab7aa1a9b966249b814c9502d098b6b5b5f01bfa4",
+      "normalized_text_sha256": "f42c58b3dd790e5e2997adea071d7fe76dbc364db1726ef68b3561a2f0e8c235",
+      "plan": {
+        "path": "runtime/fixgap226-0.121.0/plan.json",
+        "sha256": "cc0e8647eacf3ea391625993d345f188a9fa24cac637b747c533610ee523e831"
+      },
+      "journal": {
+        "path": "runtime/fixgap226-0.121.0/query/journal.json",
+        "sha256": "b0b61782c19e73dca21a8b85250489440ebb19eb373217bd456ff4ab7f0021d3"
+      },
+      "result": {
+        "path": "runtime/fixgap226-0.121.0/query/results/f3abf2625441d8ccb9fd75d8204985dd63bd553c162a3d82f19d9e7ba4c66d2b-2a124293d1ec46cd.json",
+        "sha256": "e34481b2f7d859306d6bfbc81d7f0052a9ebfe3a509f023fd6acc06e9123789d"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap226-0.121.0/summary.bin",
+        "sha256": "cbd14b79741f917a9a2628571a146f5d4599571a5ee8e3381d70e4653b0822a6"
+      }
+    },
+    {
+      "role": "talent-xp-summary",
+      "procedure": "0x145b28410",
+      "slice_virtual_address": "0x145b28410",
+      "evidence_id": "ev_eb9fc683b34ad10e7585a035ee9335533d04ecfcb08dbb3462f5742e9f63c299",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "77434c00fa12715fb5203ceab7aa1a9b966249b814c9502d098b6b5b5f01bfa4",
+      "normalized_text_sha256": "7bf1a4afe425cd93d57413c9215eb19148cc3bcfffb673be13f2b954286d6938",
+      "plan": {
+        "path": "runtime/fixgap226-0.121.0/plan.json",
+        "sha256": "cc0e8647eacf3ea391625993d345f188a9fa24cac637b747c533610ee523e831"
+      },
+      "journal": {
+        "path": "runtime/fixgap226-0.121.0/query/journal.json",
+        "sha256": "b0b61782c19e73dca21a8b85250489440ebb19eb373217bd456ff4ab7f0021d3"
+      },
+      "result": {
+        "path": "runtime/fixgap226-0.121.0/query/results/f46a74ca1750bbd7b6dce2b5d04542f59ed5bfb61948effb9ba38a5de0ca2b90.json",
+        "sha256": "59f6479cffdf9ecaf32c7bbb6acd75422b79dfe7d24931369ea0fe34b2720392"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap226-0.121.0/summary.bin",
+        "sha256": "cbd14b79741f917a9a2628571a146f5d4599571a5ee8e3381d70e4653b0822a6"
+      }
+    },
+    {
+      "role": "local-summary-snapshot",
+      "procedure": "0x145afaed0",
+      "slice_virtual_address": "0x145afaed0",
+      "evidence_id": "ev_bd5c24271053c6a714117a1dde929f25f6fd6e51e2749502e0a102c37b42c1c1",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "452116dd353e057a126af5fc357474320bd873619beefef65ea2ac162fd4c39a",
+      "normalized_text_sha256": "dcbd141f734637efe850a893f1404d2394e9ce3489f1f97e3b4d405e6b75be1c",
+      "plan": {
+        "path": "runtime/fixgap226-0.121.0/local-snapshot/plan.json",
+        "sha256": "6f45040852e91c2e0738acee9eb7f20e0b7583ffceabd27728667b998fa90639"
+      },
+      "journal": {
+        "path": "runtime/fixgap226-0.121.0/local-snapshot/query/journal.json",
+        "sha256": "d67095d87d7ad4e3cc634556b5bbe16f2214c1f0a51d90921f6d9e37de95c291"
+      },
+      "result": {
+        "path": "runtime/fixgap226-0.121.0/local-snapshot/query/results/ad7e126b02252e1a185c420b9529b3c6e32eee52387ec7b96dafbd4d0e1c8fc6.json",
+        "sha256": "c27ab43b3ced72cd3e9334c5ea57909dcc5d9c47d24e7c01c4b0e5c956055011"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap226-0.121.0/local-snapshot/code.bin",
+        "sha256": "c691c3cfc64077529bf2fbd0d7aa88c80ac1673e9975ff8f1e26893ede3ef331"
+      }
+    },
+    {
+      "role": "party-feat-rank-input",
+      "procedure": "0x145bc28c0",
+      "slice_virtual_address": "0x145bc28c0",
+      "evidence_id": "ev_acc2bb3f87b8b0ab73072fde9cd380287b1ca990496225ace8ea182eed82b961",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "865984a54a251275af058a3fcce6cb6c2431f12425d068787691a6db9c85c25d",
+      "normalized_text_sha256": "8ea078a73e325ae8a5ab646d54fb73fb0b49d5043d604f781a60bff7ec21fd5c",
+      "plan": {
+        "path": "runtime/fixgap226-0.121.0/party-feat/plan.json",
+        "sha256": "eb5a475b55728f6c04a847b3202a7fe65de2593ac329c567f95ad2a0f3689e81"
+      },
+      "journal": {
+        "path": "runtime/fixgap226-0.121.0/party-feat/query/journal.json",
+        "sha256": "2d755527b8ce650dd08ade886335235f30ab3db55c2cf40b64adcdbe46ebd580"
+      },
+      "result": {
+        "path": "runtime/fixgap226-0.121.0/party-feat/query/results/f59fdd38fa048cda2663aec4f79d2120142fc3ee4e053c40af04a87d79eac206.json",
+        "sha256": "74ebd0260063fe8f7e224124a1924a5458cd38d4a13e72e5a7cc41b1568178b1"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap226-0.121.0/party-feat/code.bin",
+        "sha256": "bb56fdc8ce86809bb35d2d87382d89fef2db139df22bda9b30800a4e85543cf6"
+      }
+    }
+  ],
+  "source_paths": [
+    "crates/azeroth-survivors-re/src/run_progression.rs",
+    "crates/azeroth-survivors-re/src/account_progression.rs",
+    "crates/azeroth-survivors-re/src/gameplay/client/events.rs",
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs",
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
+    "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs"
+  ],
+  "reward_contract": {
+    "rank0": 1,
+    "rank1_to5": [
+      1.3,
+      1.4,
+      1.5,
+      1.6,
+      1.7
+    ],
+    "summary_rank_overflow": "clamp_to_5",
+    "helper_rank_overflow": "default_1",
+    "kill_input": "raw_u32",
+    "party_threshold": 3
+  },
+  "canonical_descriptor_owner": "docs/analysis/evidence/0.121.0/heroic-source.json:native_data[role=heroic-five-descriptors]",
+  "target_executed": false,
+  "compilation": "not_run",
+  "runtime": "not_run",
+  "parity": "unverified",
+  "limits": [
+    "Snapshot rank comes from current localGame36f->snapshotc4; accepted guest cache preserves the current rank. Wire details retain separate#238ownership.",
+    "Synthetic XP replay hooks zone-key lookup and CRT roundf; party context uses an empty event-vector clone seam.",
+    "Ordinary/new achievement descriptors and predicates remain separately owned by#237; party context threshold proof alone does not certify every feat."
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "target_sha256": "17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b",
+  "target_executed": false,
+  "method": "Recover bounded current-target spell-description expressions; no OS/game launch.\n\nbaseline/modified execute only the admitted native formatter/math routines in\nUnicorn. Allocation, String formatting and the three named math imports are\nreviewed boundaries; unknown code fails closed. collect retains source/evidence.\n",
+  "functions": [
+    {
+      "role": "description",
+      "start": "0x145487680",
+      "end_exclusive": "0x14548a76c",
+      "file_offset": "0x5486a80",
+      "sha256": "8328e54b32565a3ba4f528b9b426ebaff79126cc143418fbb0978d0cb7497e4a"
+    },
+    {
+      "role": "school-name",
+      "start": "0x1454875e0",
+      "end_exclusive": "0x14548767f",
+      "file_offset": "0x54869e0",
+      "sha256": "755a9fccdf38a87d62878f468af62f35ec834d73ea4d230f6372a0685cecd11b"
+    },
+    {
+      "role": "damage-fragment",
+      "start": "0x1454952c0",
+      "end_exclusive": "0x14549540d",
+      "file_offset": "0x54946c0",
+      "sha256": "2460a3979758566b0d4730e1292b02546479537cc4a60ed8a8348ebb66f10cf4"
+    },
+    {
+      "role": "passive-description",
+      "start": "0x1454e9d90",
+      "end_exclusive": "0x1454eb783",
+      "file_offset": "0x54e9190",
+      "sha256": "21383a5d1a0b04491b354d60cc10d88481e1fb4c813c162879a3e8ae3cfa01da"
+    },
+    {
+      "role": "passive-cooldown",
+      "start": "0x1454537e0",
+      "end_exclusive": "0x1454538a4",
+      "file_offset": "0x5452be0",
+      "sha256": "e89dfd673a540b348fb19a838a46b9bc7cb2bd7f9f70469d4945e3ebe8dbee56"
+    },
+    {
+      "role": "upgrade-line-writer",
+      "start": "0x14554d6e0",
+      "end_exclusive": "0x14554dade",
+      "file_offset": "0x554cae0",
+      "sha256": "b84e402769b55a3283cb1743954684c12842387ea29f2ae72026e34e86804ed5"
+    },
+    {
+      "role": "upgrade-power-line",
+      "start": "0x145420ad0",
+      "end_exclusive": "0x145420d23",
+      "file_offset": "0x541fed0",
+      "sha256": "9b394fad835241edb5f4b1ed1a42d877092dd2f4c3eac7381b8469574202c327"
+    },
+    {
+      "role": "upgrade-cooldown-line",
+      "start": "0x1454531a0",
+      "end_exclusive": "0x145453411",
+      "file_offset": "0x54525a0",
+      "sha256": "ffd7b67ccaff0e2f6e8ff091d77b23e5a38931e0304b935b501c56afd21bc1b3"
+    },
+    {
+      "role": "upgrade-magnitude",
+      "start": "0x14550c1f0",
+      "end_exclusive": "0x14550c3f1",
+      "file_offset": "0x550b5f0",
+      "sha256": "250d88907c7a872e32c465c80146ea4c46296c186a53750c9c4325bd84db5daf"
+    },
+    {
+      "role": "percentage-format",
+      "start": "0x14543eb60",
+      "end_exclusive": "0x14543ec8d",
+      "file_offset": "0x543df60",
+      "sha256": "ac86cff68ba39ff761a69e15da6a30ab116f3a91b4dd5dd6dea26968902c6318"
+    },
+    {
+      "role": "passive-minimum",
+      "start": "0x1454536c0",
+      "end_exclusive": "0x1454537d4",
+      "file_offset": "0x5452ac0",
+      "sha256": "c95fed885d376f07c57675246f79a6aada7e4eddadb5bd3e27fbfeff82beb667"
+    },
+    {
+      "role": "new-spell-payload",
+      "start": "0x1454f0f10",
+      "end_exclusive": "0x1454f2ba9",
+      "file_offset": "0x54f0310",
+      "sha256": "88a797bc042790f78370ae0b4031fb784d24a233ecfe8c2598cc40106f73ad6c"
+    }
+  ],
+  "description_inputs": {
+    "stat_row_game_offset": "0x470",
+    "area_offset40": "numeric.area",
+    "buff_offset64": "numeric.buff_bonus",
+    "periodic_tick_offset72": "numeric.dot_tick"
+  },
+  "new_spell_preview_order": [
+    "learned neutral instance",
+    "current spell modifier aggregate145451c30",
+    "learned rarity145420e20",
+    "description145487680"
+  ],
+  "validation": {
+    "definitions": 112,
+    "description_scenarios": 338,
+    "independent_modified_numeric_comparisons": 573,
+    "upgrade_bundles": 1120,
+    "upgrade_lines": 5600
+  },
+  "limitations": [
+    "Bounded derived instruction evidence; no original/rebuilt application parity.",
+    "Host named math/format primitives are reviewed boundaries; unsupported calls fail closed."
+  ],
+  "description_ghidra": {
+    "evidence_id": "ev_c3b9bd0d33dc6ca2f88d6c92029e6bfe2a0b327177d93cf600f5a33ff2ca2b8c",
+    "analysis_profile": {
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "parameters": {
+        "target_kind": "executable",
+        "target_format": "raw-binary",
+        "architecture": "x86_64",
+        "available_architectures": [
+          "x86_64"
+        ],
+        "import_mode": "ephemeral-source-immutable",
+        "annotation_policy": "atomic-function-entry-metadata-v1",
+        "load_image_observations": "source-mappings-entry-context-v2",
+        "function_body_evidence": "complete-inclusive-ranges-v1",
+        "function_references": "complete-body-and-entry-reference-manager-v2",
+        "call_relationship_coverage": "function-body-call-coverage-v5",
+        "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+        "string_inventory_evidence": "defined-data-coverage-v1",
+        "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+        "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+        "instruction_flow_evidence": "decoded-return-pcode-v1",
+        "instruction_references": "exact-address-incoming-v1",
+        "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+        "no_return_repair": "returning-imports-decoded-return-v2",
+        "process_launch": "inspected-jvm-launch-support-v1",
+        "load_image_evidence": "independent-raw-mapping-context-v4",
+        "jump_table_evidence": "typed-case-default-blocks-v1",
+        "decompiler_jump_loads": true,
+        "loader": "BinaryLoader",
+        "language_id": "x86:LE:64:default",
+        "compiler_spec_id": "gcc",
+        "language_selection": "caller-supplied-v1",
+        "entry_point": "0x145487680",
+        "entry_seed": "external-entry-and-function-before-analysis-v1",
+        "analyzer_preset": "ghidra-default+disabled:Function ID,Function Start Search,Disassemble Entry Points,Subroutine References,Non-Returning Functions - Discovered",
+        "analysis_options": {
+          "disabled_analyzers": [
+            "Function ID",
+            "Function Start Search",
+            "Disassemble Entry Points",
+            "Subroutine References",
+            "Non-Returning Functions - Discovered"
+          ]
+        }
+      },
+      "digest": "8b11714b8dbe83dd25627eb056c174f5f690dff633a399e45caa2dccff963d40"
+    }
+  }
+}

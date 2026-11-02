@@ -1,0 +1,268 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.119.1",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c",
+    "size_bytes": 145374208
+  },
+  "gap_ids": [
+    101
+  ],
+  "predecessor": {
+    "path": "docs/analysis/evidence/0.119.0/item-registry-frontier.json",
+    "sha256": "5e5c192cde4fd81cf175983a794fbfe94c90ead2f3e7f0c7e9370b2dae63ff88"
+  },
+  "method": "Unique retained interner suffix matched to current unwind extent; complete Capstone boundaries and actual RIP-relative lock operand. Candidate correspondence only; prior decoder recovery is retained without rerunning it.",
+  "signature": {
+    "bytes_hex": "81c60000f00089f04883c448",
+    "file_offset": "0x5b5f179",
+    "virtual_address": "0x145b5fd79",
+    "matches": 1
+  },
+  "native_candidate": {
+    "virtual_address": "0x145b5fbb0",
+    "end_exclusive": "0x145b5fdb2",
+    "file_offset": "0x5b5efb0",
+    "byte_count": 514,
+    "sha256": "9179d1d5b5514b3be4b7990f163a1b79fc3c072e5b1486f79da188d79239a07f"
+  },
+  "lock_operand": {
+    "site": "0x145b5fbd7",
+    "bytes_hex": "f00fb00d31ad9b02",
+    "instruction": "lock cmpxchg byte ptr [rip + 0x29bad31], cl",
+    "preferred_registry_address": "0x14851a910"
+  },
+  "inputs": [
+    {
+      "path": "runtime/coverage/b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c/native-instructions.sqlite",
+      "sha256": "3cf26dc4d17f5806e46f4bad9f8e36f40e38124fff661f55556766eba01a7766",
+      "regenerate": "python3 -B scripts/inventory-native-instructions.py --write"
+    },
+    {
+      "path": "runtime/coverage/b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c/unwind-complement.sqlite",
+      "sha256": "b5a19fe627d5e7fd15993e4f1d751756936069ee682e11657bc6b2f434f48549",
+      "regenerate": "python3 -B scripts/inventory-unwind-complement.py --write"
+    }
+  ],
+  "source_first": {
+    "paths": [
+      {
+        "path": "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs",
+        "sha256": "75fc8e61dd32a2091daecfa07447dc454964418f4f821ed63e6bc12951ca7825"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+        "sha256": "2e628ee8f24a2c67d9e650d5feb266e352da05e663167f13bb9629af9385cb9f"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+        "sha256": "c3435c8c4b5bdb0d36339c62c9a74aab3a02b00d3ee77260e5b4b8d45a2d64c0"
+      },
+      {
+        "path": "crates/benilla-app/src/local_client/item_descriptions.rs",
+        "sha256": "810ab16efca38ee468d36ab9c1e75df4fef76b4261931aeba97cf8300848a19b"
+      }
+    ],
+    "conclusion": "Existing persistent synthetic IDs and LocalItemDescriptions tooltip publication are retained. 0.119.0 already recovers ordinary decoder/query/receive/cache and observed reserve aliases; no concrete alternative guest registry writer/carrier is established. This current signature/RIP mapping is candidate correspondence, not renewed semantic closure."
+  },
+  "state": "pending_current_applicability_and_alternative_guest_writer_carrier",
+  "next_action": "First establish current applicability of the retained interner/query/receive/decoder/lookup contracts through their relevant dependency edges. Continue only a concrete alternative guest registry producer/carrier or computed/mutable writer lead; do not repeat the ordinary decoder absent an affected dependency, or invent packet/ID-remap/reset/merge policy.",
+  "limits": [
+    "Preferred PE addresses are static values, not observed live pointers.",
+    "Suffix/unwind/RIP correspondence identifies candidate owners, not full behavior or a guest carrier.",
+    "No Ghidra query, source repair, compilation, game/network/server execution or parity."
+  ],
+  "encoded_reference_selection": {
+    "selector": "refs WHERE (target >= ? AND target < ?) OR target = ?",
+    "parameters": [
+      "0x14851a910",
+      "0x14851a930",
+      "0x145b5fbb0"
+    ],
+    "rows": 30,
+    "references": [
+      {
+        "input": "instruction-summary",
+        "site": "0x145b51ced",
+        "kind": "memory",
+        "target": "0x14851a910"
+      },
+      {
+        "input": "instruction-summary",
+        "site": "0x145b51cfc",
+        "kind": "address",
+        "target": "0x14851a910"
+      },
+      {
+        "input": "instruction-summary",
+        "site": "0x145b51d15",
+        "kind": "memory",
+        "target": "0x14851a911"
+      },
+      {
+        "input": "instruction-summary",
+        "site": "0x145b5fbd7",
+        "kind": "memory",
+        "target": "0x14851a910"
+      },
+      {
+        "input": "instruction-summary",
+        "site": "0x145b5fc02",
+        "kind": "memory",
+        "target": "0x14851a911"
+      },
+      {
+        "input": "instruction-summary",
+        "site": "0x145b5fc09",
+        "kind": "memory",
+        "target": "0x14851a928"
+      },
+      {
+        "input": "instruction-summary",
+        "site": "0x145b5fc19",
+        "kind": "memory",
+        "target": "0x14851a920"
+      },
+      {
+        "input": "instruction-summary",
+        "site": "0x145b5fc79",
+        "kind": "address",
+        "target": "0x14851a910"
+      },
+      {
+        "input": "instruction-summary",
+        "site": "0x145b5fc94",
+        "kind": "memory",
+        "target": "0x14851a911"
+      },
+      {
+        "input": "instruction-summary",
+        "site": "0x145b5fc9b",
+        "kind": "memory",
+        "target": "0x14851a928"
+      },
+      {
+        "input": "instruction-summary",
+        "site": "0x145b5fcf8",
+        "kind": "memory",
+        "target": "0x14851a928"
+      },
+      {
+        "input": "instruction-summary",
+        "site": "0x145b5fcff",
+        "kind": "memory",
+        "target": "0x14851a918"
+      },
+      {
+        "input": "instruction-summary",
+        "site": "0x145b5fd13",
+        "kind": "memory",
+        "target": "0x14851a918"
+      },
+      {
+        "input": "instruction-summary",
+        "site": "0x145b5fd1c",
+        "kind": "address",
+        "target": "0x14851a918"
+      },
+      {
+        "input": "instruction-summary",
+        "site": "0x145b5fd29",
+        "kind": "memory",
+        "target": "0x14851a920"
+      },
+      {
+        "input": "instruction-summary",
+        "site": "0x145b5fd4e",
+        "kind": "memory",
+        "target": "0x14851a928"
+      },
+      {
+        "input": "instruction-summary",
+        "site": "0x145b5fd6f",
+        "kind": "memory",
+        "target": "0x14851a910"
+      },
+      {
+        "input": "instruction-summary",
+        "site": "0x145b5fd92",
+        "kind": "address",
+        "target": "0x14851a910"
+      },
+      {
+        "input": "instruction-summary",
+        "site": "0x145b5fda9",
+        "kind": "memory",
+        "target": "0x14851a911"
+      },
+      {
+        "input": "instruction-summary",
+        "site": "0x145b5fe84",
+        "kind": "memory",
+        "target": "0x14851a910"
+      },
+      {
+        "input": "instruction-summary",
+        "site": "0x145b5fea3",
+        "kind": "memory",
+        "target": "0x14851a911"
+      },
+      {
+        "input": "instruction-summary",
+        "site": "0x145b5feab",
+        "kind": "memory",
+        "target": "0x14851a928"
+      },
+      {
+        "input": "instruction-summary",
+        "site": "0x145b5fec2",
+        "kind": "memory",
+        "target": "0x14851a920"
+      },
+      {
+        "input": "instruction-summary",
+        "site": "0x145b5feee",
+        "kind": "address",
+        "target": "0x14851a910"
+      },
+      {
+        "input": "instruction-summary",
+        "site": "0x145b5ff1e",
+        "kind": "memory",
+        "target": "0x14851a911"
+      },
+      {
+        "input": "instruction-summary",
+        "site": "0x145b5ff26",
+        "kind": "memory",
+        "target": "0x14851a928"
+      },
+      {
+        "input": "instruction-summary",
+        "site": "0x145b5ff47",
+        "kind": "memory",
+        "target": "0x14851a910"
+      },
+      {
+        "input": "instruction-summary",
+        "site": "0x145b5ff5d",
+        "kind": "address",
+        "target": "0x14851a910"
+      },
+      {
+        "input": "instruction-summary",
+        "site": "0x145b5ff83",
+        "kind": "memory",
+        "target": "0x14851a911"
+      },
+      {
+        "input": "instruction-summary",
+        "site": "0x145b6b287",
+        "kind": "call_direct",
+        "target": "0x145b5fbb0"
+      }
+    ],
+    "search_window_meaning": "Retained historical32-byte registry aggregate window is an explicit candidate-reference query, not newly recovered current native type/layout."
+  }
+}

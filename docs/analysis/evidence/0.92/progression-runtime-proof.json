@@ -1,0 +1,84 @@
+{
+  "target": {
+    "version": "0.92.0",
+    "sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2"
+  },
+  "observed_date": "2026-10-16",
+  "environment": "Original Windows EXE in isolated project-local ReferenceQA profile; 1600x900 logical content, DPI 2.",
+  "fixture": {
+    "achievement_keys": "All 66 catalog keys, no gear; stats/date fields synthetically set solely to expose menu states.",
+    "earned_points": 1365,
+    "dates": {
+      "zone:elwynn": 1792108800,
+      "count:runs10": 1792022400
+    }
+  },
+  "observations": [
+    "Original imported the sealed fixture through Options > Saves and rendered all 66 achievements / 1365 points.",
+    "Clicking an unaffordable unowned tabard does nothing. Clicking affordable Stormwind Tabard immediately adds 10-point pending purchase; repeated click removes it.",
+    "Confirm writes purchased tabard. Clicking purchased tabard immediately wears it; native look slot is 18. Take the tabard off appears below the grid.",
+    "Unconfirmed perk plan survives Done > picker > Rewards and Achievements > Rewards.",
+    "Appearance selection writes immediately, even before Companion is purchased, preserving the pending upgrade plan. Native pet serialization writes two slots.",
+    "One planned companion permits one planned instinct; a second instinct click remained disabled.",
+    "Confirm commits rank; confirmed ranks cannot be decremented through minus.",
+    "Reset requires a second click, clears every perk, retains purchased/worn tabard and both pet appearances; first reset leaves 1 of 2, second leaves 0 of 2.",
+    "Earned card dates render 16 Oct 2026 and 15 Oct 2026 from UTC epoch values; missing date renders Earned.",
+    "Recent undated high-point entries include Master of All and The Whole Armory; tie/secondary sorting still needs exact comparator recovery.",
+    "At end, imported progression-empty.sav through original Saves, verified zero earned/spent, two resets remaining and default Squirrel, then returned picker."
+  ],
+  "native_records": {
+    "wear": [
+      "look|1|18:90011",
+      "achat|count:runs10=1792022400,zone:elwynn=1792108800",
+      "stat|kills=12345,gold=5678,guardians=10,bosses=5,runs=11,wins=2,caches=3",
+      "tabard|90011"
+    ],
+    "confirmed": [
+      "look|1|18:90011",
+      "achat|count:runs10=1792022400,zone:elwynn=1792108800",
+      "stat|kills=12345,gold=5678,guardians=10,bosses=5,runs=11,wins=2,caches=3",
+      "perk|companion:1",
+      "tabard|90011",
+      "pets|kingsnake,squirrel",
+      "resets|1"
+    ],
+    "first_reset": [
+      "look|1|18:90011",
+      "achat|count:runs10=1792022400,zone:elwynn=1792108800",
+      "stat|kills=12345,gold=5678,guardians=10,bosses=5,runs=11,wins=2,caches=3",
+      "tabard|90011",
+      "pets|kingsnake,squirrel",
+      "resets|1"
+    ]
+  },
+  "captures": [
+    {
+      "path": "runtime/reference-captures/achievements-earned.png",
+      "sha256": "51b89db04bd9ba98ce2e92e201d6695f4e62a35c18711e97b0579bc911865b7b"
+    },
+    {
+      "path": "runtime/reference-captures/rewards-earned-plan.png",
+      "sha256": "3aa8937b0308027d18932eb720fe809b72b9c117603d0cefcd334372558eab60"
+    },
+    {
+      "path": "runtime/reference-captures/rewards-companion-plan.png",
+      "sha256": "b094b04193b43a421501eb8d7b6d8e5553146e6a04fe0d89dddac7844ebf1243"
+    },
+    {
+      "path": "runtime/reference-captures/rewards-reset-confirm.png",
+      "sha256": "12591621f7ee9530e3d0996829849ae4deec1f8451892b371c14e73d8f844a6c"
+    },
+    {
+      "path": "runtime/reference-captures/rewards-reset-result.png",
+      "sha256": "a692ffbbc346d738d2660ee3c077ff722af63b36c3704ab6eb68aa0209ae6c58"
+    },
+    {
+      "path": "runtime/reference-captures/rewards-resets-exhausted.png",
+      "sha256": "bd315aab1d174e17f8778122ab8486ca94320efb3d258e4c28dc11fcf6cc646b"
+    },
+    {
+      "path": "runtime/reference-captures/progression-empty-restored.png",
+      "sha256": "94ad38f6815cd66c43b975410a3117582b64d9d07a66f7efecf7c898ffcad255"
+    }
+  ]
+}

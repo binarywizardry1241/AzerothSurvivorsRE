@@ -1,0 +1,9 @@
+1402900d0 f2410f5fc0 maxsd xmm0, xmm8
+1402900d5 f2440f5ed0 divsd xmm10, xmm0
+1402900da f2450f59d1 mulsd xmm10, xmm9
+1402900df 660f57c0 xorpd xmm0, xmm0
+1402900e3 f2410f5fc2 maxsd xmm0, xmm10
+1402900e8 66410f28c9 movapd xmm1, xmm9
+1402900ed f20f5dc8 minsd xmm1, xmm0
+1402900f1 0f57c0 xorps xmm0, xmm0
+1402900f4 f20f5ac1 cvtsd2ss xmm0, xmm1

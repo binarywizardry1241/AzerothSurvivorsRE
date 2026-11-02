@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.113.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+    "size_bytes": 141932032
+  },
+  "entries": [
+    {
+      "role": "server-step",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_a76fd6f720385f644edd8c770907545e52854706231420bb64109c884ec6f25b",
+      "profile_digest": "384be9e401c26cc300cd170edc574ba20abe69fab7b51cfea10d0a34b826ea56",
+      "raw_import": {
+        "va": "0x1458681b5",
+        "end_exclusive": "0x1458681f1",
+        "byte_count": 60,
+        "sha256": "6fc7df0b20f89bb89aca9cdb78be38b9da0790fa4f0353f16b85153e0cdb5d97"
+      },
+      "runtime_response": "runtime/as-state-contracts-0.113.2/server-step-rea/003-procedure_pseudo_code.json",
+      "runtime_response_sha256": "83d4a485a2f20071c9030faaf536a0f5b0e45d9a623ffc898f86902eee7a15e1"
+    },
+    {
+      "role": "local-update",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_1a61be8d8822f3178a7dc2f593fb9e0f96e2417a4c8a1114b3d71154ecfbe08d",
+      "profile_digest": "6d7ee15bf06d5e0d059ac8b2f0d3fa5e5097d642918c19b2cbbac0acb61f7b1c",
+      "raw_import": {
+        "va": "0x14590a1e0",
+        "end_exclusive": "0x14590ad4f",
+        "byte_count": 2927,
+        "sha256": "6968f3c31a5d4355e42df5b9e25e8fa57d85976595f954d6dc10c53cd6a2e9fb"
+      },
+      "runtime_response": "runtime/as-state-contracts-0.113.2/local-update-rea/003-procedure_pseudo_code.json",
+      "runtime_response_sha256": "fcb15d9093170d35bd4101e1a7cd0ad696a4e2d9a37affa2beeccfe7bbb3282b"
+    }
+  ],
+  "selected_instructions": [
+    {
+      "role": "server scalar",
+      "va": "0x1458681b5",
+      "end_exclusive": "0x1458681f1",
+      "byte_count": 60,
+      "sha256": "6fc7df0b20f89bb89aca9cdb78be38b9da0790fa4f0353f16b85153e0cdb5d97",
+      "instructions": 14
+    },
+    {
+      "role": "actual Game update call",
+      "va": "0x14586c2e1",
+      "end_exclusive": "0x14586c2f9",
+      "byte_count": 24,
+      "sha256": "0390fdd7e8826c726b228bde8f456ba441d7b97709a13d66122cab1247a9bdbd",
+      "instructions": 5
+    },
+    {
+      "role": "ordinary local phase clock gate",
+      "va": "0x14590a241",
+      "end_exclusive": "0x14590a2f2",
+      "byte_count": 177,
+      "sha256": "ddb4541b2ce56242873819623788c89d1261cdd1d1bfac0f71cf8ca7cbddd2d5",
+      "instructions": 38
+    },
+    {
+      "role": "same scalar hazard and enemy calls",
+      "va": "0x14590ab19",
+      "end_exclusive": "0x14590ab70",
+      "byte_count": 87,
+      "sha256": "2c28c20f754d37813bc9d93c7226857e83d0a664411ca32a73d7bbc9f4173949",
+      "instructions": 23
+    }
+  ],
+  "artifacts": {
+    "step.json": "7dac31b8c2454f887a1061f6f14a16fc2df2a97a6f5de15ece940e1eb8fa86cc",
+    "step.asm": "831ca4cbca30735ccac01e4a36288268c4f86360cfca06fde29ffc8ad270021d"
+  },
+  "limits": [
+    "Original-VA raw imports have no external PE data/ABI model; exact instructions and current immutable constants own the claims.",
+    "The local-update nonlocal tail jump leaves its raw import and produces a decompiler bad-instruction warning; that excluded branch is not used to infer local behavior.",
+    "No whole local tick, cooperative behavior, native timestamp acquisition, source execution or parity claim."
+  ]
+}

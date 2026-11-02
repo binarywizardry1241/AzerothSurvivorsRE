@@ -1,0 +1,1074 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "gap_ids": [
+    251
+  ],
+  "generator": {
+    "path": "scripts/check-party-meter-ui-0.121.0.py",
+    "sha256": "d9e6ef89652eb99afcb45b84af37f20b163f385f4a36665a312e36503ef48a8f"
+  },
+  "dependencies": [
+    {
+      "path": "scripts/coverage_common.py",
+      "sha256": "aec38237b60b6982f17e0e93c6f6ba111100956fb389d44b397dbd5a6bdb1903"
+    },
+    {
+      "path": "scripts/discovery_native_subject.py",
+      "sha256": "e0bedb2d826d136b6b4c1bfb51b970160c2c42875b713fb1d2814ac360090a6a"
+    },
+    {
+      "path": "scripts/script_sources.py",
+      "sha256": "bc4cdf0f6c4a0805b7052d06c28acc48e644484d08decb79a97168cec6458cfa"
+    },
+    {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+    }
+  ],
+  "source_contracts": [
+    {
+      "path": "crates/azeroth-survivors-re/src/run_meter.rs",
+      "sha256": "b3f3a91144d546ba04d16b3e2ec5911fab5e411751d5143d0f764d951c796687"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/meter.rs",
+      "sha256": "6f9571df4db2be54db95a01ad8551369e1ec85fa14b3580889ddeb53ecaa4c05"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/meter/settings.rs",
+      "sha256": "6bffbe4e79eef405721075c36715dcccff806fc9fef8776ff77a2890d4f6da6f"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/meter/view.rs",
+      "sha256": "e35445dd8d08dbbd91253e716e398abd5456b831ba7c58adbb57ec0ec96b6087"
+    }
+  ],
+  "host_projection": {
+    "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
+    "method": "Mechanics::party_meter_hud",
+    "sha256": "6f1c82da816f7886314c48b0cce23257c9b6cb5eb4f47b0565152453215043ec"
+  },
+  "native_ranges": [
+    {
+      "role": "settings-mode",
+      "virtual_address": "0x1401bf28c",
+      "end_exclusive": "0x1401bf2ef",
+      "byte_count": 99,
+      "sha256": "b3dea9667838e9ca6961e7af97d2afa1d31eb9f1ee98b81ac857f4e117ddbfb4",
+      "instruction_count": 21
+    },
+    {
+      "role": "mode-title",
+      "virtual_address": "0x1401baf20",
+      "end_exclusive": "0x1401baf77",
+      "byte_count": 87,
+      "sha256": "8c274abbf0e9694c21940d50c2d83233aa0d53ea8d5312a5b31a86bc061c8e5f",
+      "instruction_count": 17
+    },
+    {
+      "role": "menu-mode-array",
+      "virtual_address": "0x1401013c9",
+      "end_exclusive": "0x1401013d3",
+      "byte_count": 10,
+      "sha256": "bcaf90bc595c22deed7737aea3cda3749984e02beecad3afb3bf7e698de50be0",
+      "instruction_count": 1
+    },
+    {
+      "role": "menu-mode-index",
+      "virtual_address": "0x140101413",
+      "end_exclusive": "0x140101423",
+      "byte_count": 16,
+      "sha256": "a5a8a8f5182609cdfae79c1de09db98ae8dfde2a9f480acd5bbb18df64333fa4",
+      "instruction_count": 2
+    },
+    {
+      "role": "menu-mode-action",
+      "virtual_address": "0x1401015fb",
+      "end_exclusive": "0x140101616",
+      "byte_count": 27,
+      "sha256": "bda576e54e6a836c73174d0f7800c430883743a770d12a38c28e3367ec3c5c47",
+      "instruction_count": 4
+    },
+    {
+      "role": "mode-write",
+      "virtual_address": "0x1401c8904",
+      "end_exclusive": "0x1401c893e",
+      "byte_count": 58,
+      "sha256": "1ee8ff116e954a1d7c5d3dd92a3c58530c8152407dc368bc0ad20cc9981f6223",
+      "instruction_count": 14
+    },
+    {
+      "role": "reset-visibility",
+      "virtual_address": "0x1401c8a28",
+      "end_exclusive": "0x1401c8a40",
+      "byte_count": 24,
+      "sha256": "2b1de35daa5b07104bc288bbc75eeb9f2bd750cec5140d238211501cd4f165ea",
+      "instruction_count": 6
+    },
+    {
+      "role": "mode-rows",
+      "virtual_address": "0x1401c9878",
+      "end_exclusive": "0x1401c9914",
+      "byte_count": 156,
+      "sha256": "498a3f7d7680f1e13a1bdb887fbfc6961eaa0ce353a81f39d91bc12a5f761c90",
+      "instruction_count": 36
+    },
+    {
+      "role": "empty-text",
+      "virtual_address": "0x1400fd691",
+      "end_exclusive": "0x1400fd745",
+      "byte_count": 180,
+      "sha256": "a88d9df26357010ed69712808a99cdc26100405127eef7c1177d8379d4547f6e",
+      "instruction_count": 45
+    },
+    {
+      "role": "elapsed-mode",
+      "virtual_address": "0x1401c9978",
+      "end_exclusive": "0x1401c999c",
+      "byte_count": 36,
+      "sha256": "f230e3944f39b09fa348fb93e5bd81258b833da85e8fe275aadf518c11c330ec",
+      "instruction_count": 9
+    },
+    {
+      "role": "elapsed-clamp",
+      "virtual_address": "0x1401c9c55",
+      "end_exclusive": "0x1401c9c6c",
+      "byte_count": 23,
+      "sha256": "11107d71849bd0bdbfb4aa3a60b188cb0c890cba8417aa774cc99d00962d4d8a",
+      "instruction_count": 3
+    },
+    {
+      "role": "current-rate",
+      "virtual_address": "0x1401c9c6c",
+      "end_exclusive": "0x1401c9cd0",
+      "byte_count": 100,
+      "sha256": "66dd8073863324d917fa939be8d2f19b7c95218bd149858e2f00d8b87cd53eb0",
+      "instruction_count": 22
+    },
+    {
+      "role": "hero-row-adapter",
+      "virtual_address": "0x1401a5180",
+      "end_exclusive": "0x1401a5f4b",
+      "byte_count": 3531,
+      "sha256": "3cb4c6ebf66ce99aea3da57bbeeb04f47f51179b35f9bcc68273b894a03929cb",
+      "instruction_count": 833
+    },
+    {
+      "role": "row-baseline-and-admission",
+      "virtual_address": "0x1401a1ed0",
+      "end_exclusive": "0x1401a2241",
+      "byte_count": 881,
+      "sha256": "e993f0cb2984edcc5788c83b335ea62c5b3384cf339347470e3232298287bcbd",
+      "instruction_count": 218
+    },
+    {
+      "role": "party-row-color",
+      "virtual_address": "0x1400fdf0e",
+      "end_exclusive": "0x1400fdff0",
+      "byte_count": 226,
+      "sha256": "88956cf653d464e1f3a2266554575b4a7de1998628126aeefbcc8cdeca0b84ef",
+      "instruction_count": 50
+    },
+    {
+      "role": "color-parse",
+      "virtual_address": "0x140275b10",
+      "end_exclusive": "0x140275fac",
+      "byte_count": 1180,
+      "sha256": "778d21e8a3b6163dfb9ddd6bde17945b9d573eeaa536ac0a084dfd2a1c2121ab",
+      "instruction_count": 332
+    },
+    {
+      "role": "RGB-byte-constructor",
+      "virtual_address": "0x144e54d30",
+      "end_exclusive": "0x144e54d65",
+      "byte_count": 53,
+      "sha256": "32e3a491bcf222436de0dda0deea014bd4b1862627f9e4bc6ba56521efc81c63",
+      "instruction_count": 13
+    },
+    {
+      "role": "RGBA-byte-constructor",
+      "virtual_address": "0x144e54d70",
+      "end_exclusive": "0x144e54da4",
+      "byte_count": 52,
+      "sha256": "7a2018f7d4163bd4bb182248e7a30a9ffce2a39d5e40266acd234845c17768d6",
+      "instruction_count": 13
+    }
+  ],
+  "data_observations": [
+    {
+      "role": "four-mode-bytes",
+      "virtual_address": "0x1461d8208",
+      "byte_count": 4,
+      "sha256": "054edec1d0211f624fed0cbca9d4f9400b0e491c43742af2c5b0abebf0c990d8"
+    },
+    {
+      "role": "four-title-targets",
+      "virtual_address": "0x1461daa44",
+      "byte_count": 16,
+      "sha256": "b95537a374726f1697307dc7482ef80c15d053618dde7c04b0cd77ce3861c578"
+    },
+    {
+      "role": "four-row-targets",
+      "virtual_address": "0x1461daa54",
+      "byte_count": 16,
+      "sha256": "c14ab2f6166877e0ef6fa18215c1b12354129e56125ee6ab3177cafa30f6fc00"
+    },
+    {
+      "role": "four-empty-targets",
+      "virtual_address": "0x1461b2020",
+      "byte_count": 16,
+      "sha256": "d3cf21b354dbfb6a04476d0301b7213e9df8ea29a2637c562709c8ad0d6ba4f2"
+    },
+    {
+      "role": "Other-spells",
+      "virtual_address": "0x1461d67f7",
+      "byte_count": 12,
+      "sha256": "a45c508b748bd3912621b3be96cd11c1ffba2ef5dfa0be0d8c42d07912122672"
+    },
+    {
+      "role": "name-format",
+      "virtual_address": "0x1461d67ef",
+      "byte_count": 8,
+      "sha256": "738d89fd7264007fa6fd6de3f6b81572bcc6091e497aec84f0bd1e80cef60cb8"
+    }
+  ],
+  "queries": [
+    {
+      "procedure": "0x1401c8e30",
+      "plan": {
+        "path": "runtime/q41-party-meter-0.121.0/plan.json",
+        "sha256": "c20b8ca4b00129afab02c014897aacd766594021647ab539feca16a5a79d08cf"
+      },
+      "journal": {
+        "path": "runtime/q41-party-meter-0.121.0/query/journal.json",
+        "sha256": "120353ea2642795c646bd3e69fbdffad23f2b71b49eee5521e72d17fd3d2abb5"
+      },
+      "result": {
+        "path": "runtime/q41-party-meter-0.121.0/query/results/d9d2fc5b1ee6073359c87868be42f86236f1d0886e8bcee929ed2f16d027c752.json",
+        "sha256": "45ab3b2a0fd4006f8f91ffb825897db6a98da6547cdb18e3addae04cab4ae3e2"
+      },
+      "raw_input": {
+        "path": "runtime/q41-party-meter-0.121.0/code.bin",
+        "sha256": "4285cf27da1e0b21ce76f37c6ad5b3109b2c2fd4a0605464bc953697ff31f1d6"
+      },
+      "slice_virtual_address": "0x1401a5180",
+      "evidence_id": "ev_3d0febd1f2afc32b05d46f86d8ed9a5740e74f92c51fef0fb95e534a6f32d44c",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "04f9529fc4f6334838374521ff6a7dc78e4ecf620c12b829bc6e7dfd194d21ce",
+      "normalized_text_sha256": "5642cd531d0de929c088c01c0207eb619ae976b410595f167b086f19310b0c43"
+    },
+    {
+      "procedure": "0x1401a5180",
+      "plan": {
+        "path": "runtime/q41-party-meter-0.121.0/plan.json",
+        "sha256": "c20b8ca4b00129afab02c014897aacd766594021647ab539feca16a5a79d08cf"
+      },
+      "journal": {
+        "path": "runtime/q41-party-meter-0.121.0/query/journal.json",
+        "sha256": "120353ea2642795c646bd3e69fbdffad23f2b71b49eee5521e72d17fd3d2abb5"
+      },
+      "result": {
+        "path": "runtime/q41-party-meter-0.121.0/query/results/dea8317d7f6736a2dafbf36ee07067501eb09afc074d085d2383f560b61c2042-20307e909dc945de.json",
+        "sha256": "137725d83734cdb6e1455427bdc1cb07b610f391a2fe64ebbd1a268d16b7d3d3"
+      },
+      "raw_input": {
+        "path": "runtime/q41-party-meter-0.121.0/code.bin",
+        "sha256": "4285cf27da1e0b21ce76f37c6ad5b3109b2c2fd4a0605464bc953697ff31f1d6"
+      },
+      "slice_virtual_address": "0x1401a5180",
+      "evidence_id": "ev_0a45034432ab4919c10a7b8d87639e2db4a39930c1d06445533bec945fec3157",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "04f9529fc4f6334838374521ff6a7dc78e4ecf620c12b829bc6e7dfd194d21ce",
+      "normalized_text_sha256": "41dadd24dc88b36f957a28b8ded511267c310ad4034c45976539395a1d30723c"
+    }
+  ],
+  "syntax": {
+    "parser": "rustfmt",
+    "parser_sha256": "98e8da71078a8b5710f1818c98da25d92de162a122bd9a6db222ca929e545468",
+    "files": [
+      "crates/azeroth-survivors-re/src/run_meter.rs",
+      "crates/azeroth-survivors-re/src/gameplay/meter.rs",
+      "crates/azeroth-survivors-re/src/gameplay/meter/settings.rs",
+      "crates/azeroth-survivors-re/src/gameplay/meter/view.rs",
+      "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs"
+    ],
+    "skip_children": true,
+    "compilation": false
+  },
+  "fixture": {
+    "settings_cases": [
+      [
+        "0x00000000",
+        0
+      ],
+      [
+        "0x3f800000",
+        1
+      ],
+      [
+        "0x40000000",
+        2
+      ],
+      [
+        "0x40400000",
+        3
+      ],
+      [
+        "0x4079999a",
+        3
+      ],
+      [
+        "0x40800000",
+        0
+      ],
+      [
+        "0xbf800000",
+        0
+      ],
+      [
+        "0x7f800000",
+        0
+      ],
+      [
+        "0x7fc00000",
+        0
+      ]
+    ],
+    "title_cases": [
+      [
+        0,
+        "Damage Done"
+      ],
+      [
+        1,
+        "Healing Done"
+      ],
+      [
+        2,
+        "Boss Damage"
+      ],
+      [
+        3,
+        "Party DPS"
+      ]
+    ],
+    "menu_actions": [
+      [
+        0,
+        "020000"
+      ],
+      [
+        1,
+        "020100"
+      ],
+      [
+        2,
+        "020200"
+      ],
+      [
+        3,
+        "020300"
+      ]
+    ],
+    "reset_visibility": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        3
+      ]
+    ],
+    "mode_writes": [
+      [
+        0,
+        0,
+        "unchanged"
+      ],
+      [
+        1,
+        0,
+        "save"
+      ],
+      [
+        1,
+        1,
+        "unchanged"
+      ],
+      [
+        2,
+        1,
+        "save"
+      ],
+      [
+        2,
+        2,
+        "unchanged"
+      ],
+      [
+        3,
+        2,
+        "save"
+      ],
+      [
+        3,
+        3,
+        "unchanged"
+      ],
+      [
+        0,
+        3,
+        "save"
+      ]
+    ],
+    "empty_text": [
+      [
+        0,
+        null,
+        "No damage yet."
+      ],
+      [
+        1,
+        null,
+        "No healing yet."
+      ],
+      [
+        2,
+        null,
+        "No boss fought yet."
+      ],
+      [
+        3,
+        null,
+        "Only in a party."
+      ],
+      [
+        3,
+        [],
+        "No damage yet."
+      ],
+      [
+        3,
+        [
+          {}
+        ],
+        "No damage yet."
+      ],
+      [
+        3,
+        true,
+        "No damage yet."
+      ]
+    ],
+    "elapsed": [
+      [
+        0,
+        10.0,
+        8.0,
+        2.0
+      ],
+      [
+        1,
+        10.0,
+        8.0,
+        2.0
+      ],
+      [
+        3,
+        10.0,
+        8.0,
+        10.0
+      ],
+      [
+        3,
+        0.5,
+        8.0,
+        1.0
+      ]
+    ],
+    "selections": [
+      [
+        0,
+        [
+          "meter"
+        ],
+        [
+          {
+            "name": "Damage"
+          }
+        ]
+      ],
+      [
+        1,
+        [
+          "healing"
+        ],
+        [
+          {
+            "name": "Healing"
+          }
+        ]
+      ],
+      [
+        2,
+        [
+          "lines"
+        ],
+        [
+          {
+            "name": "Boss"
+          }
+        ]
+      ],
+      [
+        3,
+        [],
+        [
+          {
+            "name": "Party"
+          }
+        ]
+      ]
+    ],
+    "current_rate": [
+      [
+        3,
+        10.0,
+        400.0,
+        [
+          [
+            8.0,
+            100.0,
+            200.0,
+            300.0,
+            200.0
+          ]
+        ],
+        100.0
+      ],
+      [
+        0,
+        10.0,
+        400.0,
+        [
+          [
+            8.0,
+            100.0,
+            200.0,
+            300.0,
+            200.0
+          ]
+        ],
+        150.0
+      ],
+      [
+        3,
+        10.0,
+        400.0,
+        [
+          [
+            9.5,
+            100.0,
+            200.0,
+            300.0,
+            200.0
+          ]
+        ],
+        0.0
+      ],
+      [
+        3,
+        10.0,
+        400.0,
+        [
+          [
+            8.0,
+            0.0,
+            0.0,
+            0.0,
+            600.0
+          ],
+          [
+            9.0,
+            0.0,
+            0.0,
+            0.0,
+            200.0
+          ]
+        ],
+        200.0
+      ],
+      [
+        3,
+        10.0,
+        400.0,
+        [],
+        0.0
+      ]
+    ],
+    "admission": [
+      {
+        "mode": 0,
+        "input_bits": [
+          "0000000000005440"
+        ],
+        "baseline": 60.0,
+        "admitted_totals": [
+          20.0
+        ],
+        "names_all_equal": true
+      },
+      {
+        "mode": 1,
+        "input_bits": [
+          "0000000000005440"
+        ],
+        "baseline": 60.0,
+        "admitted_totals": [
+          20.0
+        ],
+        "names_all_equal": true
+      },
+      {
+        "mode": 2,
+        "input_bits": [
+          "0000000000005440"
+        ],
+        "baseline": 60.0,
+        "admitted_totals": [
+          80.0
+        ],
+        "names_all_equal": true
+      },
+      {
+        "mode": 3,
+        "input_bits": [
+          "0000000000005440"
+        ],
+        "baseline": 60.0,
+        "admitted_totals": [
+          80.0
+        ],
+        "names_all_equal": true
+      },
+      {
+        "mode": 3,
+        "input_bits": [
+          "0000000000000000",
+          "000000000000e03f",
+          "000000000000f03f",
+          "000000000000f87f",
+          "0000000000000040"
+        ],
+        "baseline": 100.0,
+        "admitted_totals": [
+          1.0,
+          2.0
+        ],
+        "names_all_equal": true
+      },
+      {
+        "mode": 3,
+        "input_bits": [
+          "0000000000002440",
+          "0000000000003440"
+        ],
+        "baseline": 100.0,
+        "admitted_totals": [
+          10.0,
+          20.0
+        ],
+        "names_all_equal": true
+      }
+    ],
+    "party_rows": [
+      {
+        "input": {
+          "name": "Twin",
+          "color": "#69CCF0",
+          "dmg": 100.0,
+          "top": [
+            {
+              "name": "\u00c9clair",
+              "icon": "SpellIcon",
+              "dmg": 60.0
+            }
+          ]
+        },
+        "native": {
+          "name": "Twin \u00b7 \u00c9clair",
+          "icon": "SpellIcon",
+          "dmg": 100.0,
+          "proc": false,
+          "parts": [
+            {
+              "name": "\u00c9clair",
+              "icon": "SpellIcon",
+              "dmg": 60.0
+            },
+            {
+              "name": "Autres sorts",
+              "dmg": 40.0
+            }
+          ],
+          "color": "#69CCF0"
+        }
+      },
+      {
+        "input": {
+          "name": "Twin",
+          "color": "#FFFFFF",
+          "dmg": 40.0,
+          "top": []
+        },
+        "native": {
+          "name": "Twin",
+          "icon": "",
+          "dmg": 40.0,
+          "proc": false,
+          "parts": [
+            {
+              "name": "Autres sorts",
+              "dmg": 40.0
+            }
+          ],
+          "color": "#FFFFFF"
+        }
+      },
+      {
+        "input": {
+          "name": "No remainder",
+          "color": "#FF7D0A",
+          "dmg": 60.5,
+          "top": [
+            {
+              "name": "One",
+              "icon": "I",
+              "dmg": 60.0
+            }
+          ]
+        },
+        "native": {
+          "name": "No remainder \u00b7 One",
+          "icon": "I",
+          "dmg": 60.5,
+          "proc": false,
+          "parts": [
+            {
+              "name": "One",
+              "icon": "I",
+              "dmg": 60.0
+            }
+          ],
+          "color": "#FF7D0A"
+        }
+      },
+      {
+        "input": {
+          "name": "Exact remainder",
+          "color": "#FFF569",
+          "dmg": 61.0,
+          "top": [
+            {
+              "name": "One",
+              "icon": "I",
+              "dmg": 60.0
+            }
+          ]
+        },
+        "native": {
+          "name": "Exact remainder \u00b7 One",
+          "icon": "I",
+          "dmg": 61.0,
+          "proc": false,
+          "parts": [
+            {
+              "name": "One",
+              "icon": "I",
+              "dmg": 60.0
+            },
+            {
+              "name": "Autres sorts",
+              "dmg": 1.0
+            }
+          ],
+          "color": "#FFF569"
+        }
+      },
+      {
+        "input": {
+          "name": "Multiple",
+          "color": "#9482C9",
+          "dmg": 50.0,
+          "top": [
+            {
+              "name": "First",
+              "icon": "A",
+              "dmg": 30.0
+            },
+            {
+              "name": "Second",
+              "icon": "B",
+              "dmg": 20.0
+            }
+          ]
+        },
+        "native": {
+          "name": "Multiple \u00b7 First",
+          "icon": "A",
+          "dmg": 50.0,
+          "proc": false,
+          "parts": [
+            {
+              "name": "First",
+              "icon": "A",
+              "dmg": 30.0
+            },
+            {
+              "name": "Second",
+              "icon": "B",
+              "dmg": 20.0
+            }
+          ],
+          "color": "#9482C9"
+        }
+      },
+      {
+        "input": {
+          "name": "Zero",
+          "color": "#C79C6E",
+          "dmg": 0.0,
+          "top": []
+        },
+        "native": {
+          "name": "Zero",
+          "icon": "",
+          "dmg": 0.0,
+          "proc": false,
+          "parts": [],
+          "color": "#C79C6E"
+        }
+      },
+      {
+        "input": {
+          "name": "Empty name",
+          "color": "#ABD473",
+          "dmg": 1.0,
+          "top": [
+            {
+              "name": "",
+              "icon": "EmptyNamedIcon",
+              "dmg": 1.0
+            }
+          ]
+        },
+        "native": {
+          "name": "Empty name \u00b7 ",
+          "icon": "EmptyNamedIcon",
+          "dmg": 1.0,
+          "proc": false,
+          "parts": [
+            {
+              "name": "",
+              "icon": "EmptyNamedIcon",
+              "dmg": 1.0
+            }
+          ],
+          "color": "#ABD473"
+        }
+      }
+    ],
+    "colors": [
+      {
+        "input": "#F58CBA",
+        "missing": false,
+        "native_tag": 0,
+        "native_rgba_bits": [
+          "0x3f75f5f6",
+          "0x3f0c8c8d",
+          "0x3f3ababb",
+          "0x3f800000"
+        ]
+      },
+      {
+        "input": "#ABD473",
+        "missing": false,
+        "native_tag": 0,
+        "native_rgba_bits": [
+          "0x3f2babac",
+          "0x3f54d4d5",
+          "0x3ee6e6e7",
+          "0x3f800000"
+        ]
+      },
+      {
+        "input": "#FFF569",
+        "missing": false,
+        "native_tag": 0,
+        "native_rgba_bits": [
+          "0x3f800000",
+          "0x3f75f5f6",
+          "0x3ed2d2d3",
+          "0x3f800000"
+        ]
+      },
+      {
+        "input": "#FFFFFF",
+        "missing": false,
+        "native_tag": 0,
+        "native_rgba_bits": [
+          "0x3f800000",
+          "0x3f800000",
+          "0x3f800000",
+          "0x3f800000"
+        ]
+      },
+      {
+        "input": "#0070DE",
+        "missing": false,
+        "native_tag": 0,
+        "native_rgba_bits": [
+          "0x00000000",
+          "0x3ee0e0e1",
+          "0x3f5ededf",
+          "0x3f800000"
+        ]
+      },
+      {
+        "input": "#69CCF0",
+        "missing": false,
+        "native_tag": 0,
+        "native_rgba_bits": [
+          "0x3ed2d2d3",
+          "0x3f4ccccd",
+          "0x3f70f0f1",
+          "0x3f800000"
+        ]
+      },
+      {
+        "input": "#9482C9",
+        "missing": false,
+        "native_tag": 0,
+        "native_rgba_bits": [
+          "0x3f149495",
+          "0x3f028283",
+          "0x3f49c9ca",
+          "0x3f800000"
+        ]
+      },
+      {
+        "input": "#FF7D0A",
+        "missing": false,
+        "native_tag": 0,
+        "native_rgba_bits": [
+          "0x3f800000",
+          "0x3efafafb",
+          "0x3d20a0a1",
+          "0x3f800000"
+        ]
+      },
+      {
+        "input": "#C79C6E",
+        "missing": false,
+        "native_tag": 0,
+        "native_rgba_bits": [
+          "0x3f47c7c8",
+          "0x3f1c9c9d",
+          "0x3edcdcdd",
+          "0x3f800000"
+        ]
+      },
+      {
+        "input": null,
+        "missing": false,
+        "native_tag": 0,
+        "native_rgba_bits": [
+          "0x3f47ae14",
+          "0x3e800000",
+          "0x3e23d70a",
+          "0x3f800000"
+        ]
+      },
+      {
+        "input": false,
+        "missing": false,
+        "native_tag": 0,
+        "native_rgba_bits": [
+          "0x3f47ae14",
+          "0x3e800000",
+          "0x3e23d70a",
+          "0x3f800000"
+        ]
+      },
+      {
+        "input": "#GGGGGG",
+        "missing": false,
+        "native_tag": 0,
+        "native_rgba_bits": [
+          "0x3f791687",
+          "0x3f52f1aa",
+          "0x3ed4fdf4",
+          "0x3f800000"
+        ]
+      },
+      {
+        "input": "",
+        "missing": false,
+        "native_tag": 0,
+        "native_rgba_bits": [
+          "0x3f791687",
+          "0x3f52f1aa",
+          "0x3ed4fdf4",
+          "0x3f800000"
+        ]
+      },
+      {
+        "input": null,
+        "missing": true,
+        "native_tag": 0,
+        "native_rgba_bits": [
+          "0x3f47ae14",
+          "0x3e800000",
+          "0x3e23d70a",
+          "0x3f800000"
+        ]
+      }
+    ],
+    "original_instruction_steps": 6905,
+    "seams": [
+      "JSON lookup/map/value conversion and immutable clone",
+      "allocation/deallocation and byte copying/comparison",
+      "native two-string middle-dot format",
+      "localization with Other spells -> Autres sorts",
+      "persistence call receipt"
+    ],
+    "synthetic_memory": true
+  },
+  "limits": [
+    "The unchanged original x64 instructions govern data/register layout; raw-slice pseudocode omits external data/callees and ends at unknown table branches.",
+    "Source checks inspect connected text; authored Rust regressions are unrun. No compilation, client/server/game execution or original/rebuilt parity check occurred."
+  ]
+}

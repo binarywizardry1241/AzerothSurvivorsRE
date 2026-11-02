@@ -1,0 +1,981 @@
+{
+  "target": {
+    "path": "AzerothSurvivors/AzerothSurvivors-0.97.2.exe",
+    "sha256": "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589"
+  },
+  "method": "Unchanged current native slices at original VAs through REA/Ghidra; original PE data and instructions control Windows x64 argument mapping.",
+  "limitations": [
+    "Raw import uses generic GCC ABI, not the original Windows x64 ABI.",
+    "Raw slices omit callees and referenced data. Indirect magnitude/definition switches remain unresolved in Ghidra; original PE tables and assembly bind their branches.",
+    "No emulation, compilation or target execution occurred."
+  ],
+  "analyses": [
+    {
+      "name": "upgrade-magnitude",
+      "original_bytes": {
+        "file_offset": "0x54f88c0",
+        "virtual_address": "0x1454f94c0",
+        "size_bytes": 513,
+        "sha256": "0ea9cfec5954c218e08904c774f2e12459fd3603445f164b827197ee93c3e2f9",
+        "end_virtual_address_exclusive": "0x1454f96c1",
+        "boundary_source": "PE RUNTIME_FUNCTION"
+      },
+      "rea_evidence": {
+        "evidence_id": "ev_a0afdb4ffbfee1151c46d016787383686f1aeb7fcfb15a3f1a11577de5667371",
+        "subject": {
+          "name": "1454f94c0.bin",
+          "digest": {
+            "sha256": "0ea9cfec5954c218e08904c774f2e12459fd3603445f164b827197ee93c3e2f9"
+          },
+          "local_path": "runtime/player-abilities-0.97.2/1454f94c0.bin",
+          "format": "raw-binary",
+          "architecture": "x86_64"
+        },
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "analysis_profile": {
+          "provider": {
+            "id": "ghidra",
+            "name": "Ghidra",
+            "version": "12.1.4"
+          },
+          "parameters": {
+            "target_kind": "executable",
+            "target_format": "raw-binary",
+            "architecture": "x86_64",
+            "available_architectures": [
+              "x86_64"
+            ],
+            "import_mode": "ephemeral-source-immutable",
+            "annotation_policy": "atomic-function-entry-metadata-v1",
+            "load_image_observations": "source-mappings-entry-context-v2",
+            "function_body_evidence": "complete-inclusive-ranges-v1",
+            "function_references": "complete-body-and-entry-reference-manager-v2",
+            "call_relationship_coverage": "function-body-call-coverage-v5",
+            "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+            "string_inventory_evidence": "defined-data-coverage-v1",
+            "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+            "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+            "instruction_flow_evidence": "decoded-return-pcode-v1",
+            "instruction_references": "exact-address-incoming-v1",
+            "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+            "no_return_repair": "returning-imports-decoded-return-v2",
+            "process_launch": "inspected-jvm-launch-support-v1",
+            "load_image_evidence": "independent-raw-mapping-context-v4",
+            "jump_table_evidence": "typed-case-default-blocks-v1",
+            "decompiler_jump_loads": true,
+            "loader": "BinaryLoader",
+            "language_id": "x86:LE:64:default",
+            "compiler_spec_id": "gcc",
+            "language_selection": "caller-supplied-v1",
+            "entry_point": "0x1454f94c0",
+            "entry_seed": "external-entry-and-function-before-analysis-v1",
+            "analyzer_preset": "ghidra-default"
+          },
+          "digest": "a2524c0cfaf43b87870b78551b7b86a3655e3dc3a82d5f7642fbdbb988be2ea6"
+        },
+        "predicate_type": "rea.analysis",
+        "operation": "procedure_pseudo_code",
+        "parameters": {
+          "procedure": "0x1454f94c0"
+        },
+        "raw_result": {
+          "value": "\nvoid entry(undefined8 param_1,undefined8 param_2,byte param_3)\n\n{\n                    /* WARNING: Could not emulate address calculation at 0x0001454f94ce */\n                    /* WARNING: Treating indirect jump as call */\n  (*(code *)((long)*(int *)((ulong)param_3 * 4 + 0x1469ad1c0) + 0x1469ad1c0))();\n  return;\n}\n\n",
+          "limitations": []
+        },
+        "normalized_result": "\nvoid entry(undefined8 param_1,undefined8 param_2,byte param_3)\n\n{\n                    /* WARNING: Could not emulate address calculation at 0x0001454f94ce */\n                    /* WARNING: Treating indirect jump as call */\n  (*(code *)((long)*(int *)((ulong)param_3 * 4 + 0x1469ad1c0) + 0x1469ad1c0))();\n  return;\n}\n\n",
+        "confidence": "observed",
+        "authority": "shipped-artifact",
+        "environment": null,
+        "limitations": [
+          "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+          "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+          "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+          "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+          "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+          "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+          "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+          "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+          "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+          "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+        ],
+        "relationship_coverage": null,
+        "locations": [],
+        "evidence_links": []
+      }
+    },
+    {
+      "name": "learned-rarity",
+      "original_bytes": {
+        "file_offset": "0x540e5c0",
+        "virtual_address": "0x14540f1c0",
+        "size_bytes": 602,
+        "sha256": "6ffa4f4f30414321b8a5d6af33c33f7eff1217ac6c13e16b3faf3c2b18abbe82",
+        "end_virtual_address_exclusive": "0x14540f41a",
+        "boundary_source": "PE RUNTIME_FUNCTION"
+      },
+      "rea_evidence": {
+        "evidence_id": "ev_e8ef4a88a86f539d2db14d8c24be7f54f5b6d218d3d862d599f9d85ad955cc62",
+        "subject": {
+          "name": "14540f1c0.bin",
+          "digest": {
+            "sha256": "6ffa4f4f30414321b8a5d6af33c33f7eff1217ac6c13e16b3faf3c2b18abbe82"
+          },
+          "local_path": "runtime/player-abilities-0.97.2/14540f1c0.bin",
+          "format": "raw-binary",
+          "architecture": "x86_64"
+        },
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "analysis_profile": {
+          "provider": {
+            "id": "ghidra",
+            "name": "Ghidra",
+            "version": "12.1.4"
+          },
+          "parameters": {
+            "target_kind": "executable",
+            "target_format": "raw-binary",
+            "architecture": "x86_64",
+            "available_architectures": [
+              "x86_64"
+            ],
+            "import_mode": "ephemeral-source-immutable",
+            "annotation_policy": "atomic-function-entry-metadata-v1",
+            "load_image_observations": "source-mappings-entry-context-v2",
+            "function_body_evidence": "complete-inclusive-ranges-v1",
+            "function_references": "complete-body-and-entry-reference-manager-v2",
+            "call_relationship_coverage": "function-body-call-coverage-v5",
+            "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+            "string_inventory_evidence": "defined-data-coverage-v1",
+            "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+            "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+            "instruction_flow_evidence": "decoded-return-pcode-v1",
+            "instruction_references": "exact-address-incoming-v1",
+            "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+            "no_return_repair": "returning-imports-decoded-return-v2",
+            "process_launch": "inspected-jvm-launch-support-v1",
+            "load_image_evidence": "independent-raw-mapping-context-v4",
+            "jump_table_evidence": "typed-case-default-blocks-v1",
+            "decompiler_jump_loads": true,
+            "loader": "BinaryLoader",
+            "language_id": "x86:LE:64:default",
+            "compiler_spec_id": "gcc",
+            "language_selection": "caller-supplied-v1",
+            "entry_point": "0x14540f1c0",
+            "entry_seed": "external-entry-and-function-before-analysis-v1",
+            "analyzer_preset": "ghidra-default"
+          },
+          "digest": "2bd2b4a8b0dada7255aeb5a12cd2cc71379367c609673635cfe6e6e70786bed9"
+        },
+        "predicate_type": "rea.analysis",
+        "operation": "procedure_pseudo_code",
+        "parameters": {
+          "procedure": "0x14540f1c0"
+        },
+        "raw_result": {
+          "value": "\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nlong * entry(undefined8 param_1,undefined8 param_2,long *param_3,long *param_4,ulong param_5)\n\n{\n  char *pcVar1;\n  long lVar2;\n  code *pcVar3;\n  long lVar4;\n  long lVar5;\n  long lVar6;\n  long lVar7;\n  long lVar8;\n  undefined8 uVar9;\n  long lVar10;\n  undefined4 in_XMM6_Da;\n  float fVar11;\n  long local_a8;\n  long lStack_a0;\n  long local_98;\n  long local_90 [3];\n  float *local_78;\n  undefined8 local_70;\n  long *local_68;\n  undefined8 local_60;\n  float local_54 [9];\n  \n  local_54[1] = -NAN;\n  local_54[2] = -NAN;\n  if (param_5 == 0) {\n    param_4[10] = param_3[10];\n    lVar2 = param_3[9];\n    param_4[8] = param_3[8];\n    param_4[9] = lVar2;\n    lVar2 = *param_3;\n    lVar10 = param_3[1];\n    lVar4 = param_3[2];\n    lVar5 = param_3[3];\n    lVar6 = param_3[4];\n    lVar7 = param_3[5];\n    lVar8 = param_3[7];\n    param_4[6] = param_3[6];\n    param_4[7] = lVar8;\n    param_4[4] = lVar6;\n    param_4[5] = lVar7;\n    param_4[2] = lVar4;\n    param_4[3] = lVar5;\n    *param_4 = lVar2;\n    param_4[1] = lVar10;\n    param_4[0xb] = -1;\n    return param_4;\n  }\n  lVar2 = *param_3;\n  local_54[3] = (float)in_XMM6_Da;\n  if (*(char *)(lVar2 + 0x75) == '\\t') {\n    if ((0xc < *(uint *)(lVar2 + 0x68)) || ((0x10c0U >> (*(uint *)(lVar2 + 0x68) & 0x1f) & 1) == 0))\n    {\nLAB_14540f2bc:\n      if (5 < param_5) {\n        uVar9 = 0x14671cf80;\n        goto LAB_14540f408;\n      }\n      fVar11 = *(float *)(param_5 * 4 + 0x14671cf38);\n      *(float *)((long)param_3 + 0x14) =\n           (_DAT_1458eb480 - fVar11) * *(float *)((long)param_3 + 0x14);\n      func_0x000145452400(param_3,param_4,0xe,0x14671cf98);\n      local_54[0] = fVar11 * _DAT_1458eb52c;\n      local_78 = local_54;\n      local_70 = 0x14571d2e0;\n      func_0x00014570bf80();\n      local_78 = (float *)0x14671cf20;\n      local_70 = 1;\n      local_60 = 0x14671cf00;\n      local_68 = local_90;\n      func_0x000145452790();\n      if (local_90[0] != 0) {\n        func_0x0001400021d0();\n      }\n      goto LAB_14540f39d;\n    }\n  }\n  else if (*(char *)(lVar2 + 0x75) == '\\v') {\n    lVar10 = 0;\n    do {\n      if (*(long *)(lVar2 + 0x38) == lVar10) goto LAB_14540f2bc;\n      pcVar1 = (char *)(*(long *)(lVar2 + 0x30) + lVar10);\n      lVar10 = lVar10 + 1;\n    } while (*pcVar1 != '\\0');\n  }\n  else if (*(float *)(lVar2 + 0x44) <= 0.0) goto LAB_14540f2bc;\n  if (5 < param_5) {\n    uVar9 = 0x14671cfc0;\nLAB_14540f408:\n    func_0x0001458e75b3(param_3,param_4,5,param_5 - 1,uVar9);\n                    /* WARNING: Does not return */\n    pcVar3 = (code *)invalidInstructionException();\n    (*pcVar3)();\n  }\n  *(float *)(param_3 + 2) =\n       (_DAT_1458eb480 + *(float *)(param_5 * 4 + 0x14671cfa4)) * *(float *)(param_3 + 2);\n  func_0x00014540ee70();\nLAB_14540f39d:\n  param_4[0xd] = local_98;\n  param_4[0xb] = local_a8;\n  param_4[0xc] = lStack_a0;\n  lVar2 = param_3[1];\n  lVar10 = param_3[2];\n  lVar4 = param_3[3];\n  lVar5 = param_3[4];\n  lVar6 = param_3[5];\n  lVar7 = param_3[6];\n  lVar8 = param_3[7];\n  *param_4 = *param_3;\n  param_4[1] = lVar2;\n  param_4[2] = lVar10;\n  param_4[3] = lVar4;\n  param_4[4] = lVar5;\n  param_4[5] = lVar6;\n  param_4[6] = lVar7;\n  param_4[7] = lVar8;\n  lVar2 = param_3[9];\n  param_4[8] = param_3[8];\n  param_4[9] = lVar2;\n  param_4[10] = param_3[10];\n  return param_4;\n}\n\n",
+          "limitations": []
+        },
+        "normalized_result": "\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nlong * entry(undefined8 param_1,undefined8 param_2,long *param_3,long *param_4,ulong param_5)\n\n{\n  char *pcVar1;\n  long lVar2;\n  code *pcVar3;\n  long lVar4;\n  long lVar5;\n  long lVar6;\n  long lVar7;\n  long lVar8;\n  undefined8 uVar9;\n  long lVar10;\n  undefined4 in_XMM6_Da;\n  float fVar11;\n  long local_a8;\n  long lStack_a0;\n  long local_98;\n  long local_90 [3];\n  float *local_78;\n  undefined8 local_70;\n  long *local_68;\n  undefined8 local_60;\n  float local_54 [9];\n  \n  local_54[1] = -NAN;\n  local_54[2] = -NAN;\n  if (param_5 == 0) {\n    param_4[10] = param_3[10];\n    lVar2 = param_3[9];\n    param_4[8] = param_3[8];\n    param_4[9] = lVar2;\n    lVar2 = *param_3;\n    lVar10 = param_3[1];\n    lVar4 = param_3[2];\n    lVar5 = param_3[3];\n    lVar6 = param_3[4];\n    lVar7 = param_3[5];\n    lVar8 = param_3[7];\n    param_4[6] = param_3[6];\n    param_4[7] = lVar8;\n    param_4[4] = lVar6;\n    param_4[5] = lVar7;\n    param_4[2] = lVar4;\n    param_4[3] = lVar5;\n    *param_4 = lVar2;\n    param_4[1] = lVar10;\n    param_4[0xb] = -1;\n    return param_4;\n  }\n  lVar2 = *param_3;\n  local_54[3] = (float)in_XMM6_Da;\n  if (*(char *)(lVar2 + 0x75) == '\\t') {\n    if ((0xc < *(uint *)(lVar2 + 0x68)) || ((0x10c0U >> (*(uint *)(lVar2 + 0x68) & 0x1f) & 1) == 0))\n    {\nLAB_14540f2bc:\n      if (5 < param_5) {\n        uVar9 = 0x14671cf80;\n        goto LAB_14540f408;\n      }\n      fVar11 = *(float *)(param_5 * 4 + 0x14671cf38);\n      *(float *)((long)param_3 + 0x14) =\n           (_DAT_1458eb480 - fVar11) * *(float *)((long)param_3 + 0x14);\n      func_0x000145452400(param_3,param_4,0xe,0x14671cf98);\n      local_54[0] = fVar11 * _DAT_1458eb52c;\n      local_78 = local_54;\n      local_70 = 0x14571d2e0;\n      func_0x00014570bf80();\n      local_78 = (float *)0x14671cf20;\n      local_70 = 1;\n      local_60 = 0x14671cf00;\n      local_68 = local_90;\n      func_0x000145452790();\n      if (local_90[0] != 0) {\n        func_0x0001400021d0();\n      }\n      goto LAB_14540f39d;\n    }\n  }\n  else if (*(char *)(lVar2 + 0x75) == '\\v') {\n    lVar10 = 0;\n    do {\n      if (*(long *)(lVar2 + 0x38) == lVar10) goto LAB_14540f2bc;\n      pcVar1 = (char *)(*(long *)(lVar2 + 0x30) + lVar10);\n      lVar10 = lVar10 + 1;\n    } while (*pcVar1 != '\\0');\n  }\n  else if (*(float *)(lVar2 + 0x44) <= 0.0) goto LAB_14540f2bc;\n  if (5 < param_5) {\n    uVar9 = 0x14671cfc0;\nLAB_14540f408:\n    func_0x0001458e75b3(param_3,param_4,5,param_5 - 1,uVar9);\n                    /* WARNING: Does not return */\n    pcVar3 = (code *)invalidInstructionException();\n    (*pcVar3)();\n  }\n  *(float *)(param_3 + 2) =\n       (_DAT_1458eb480 + *(float *)(param_5 * 4 + 0x14671cfa4)) * *(float *)(param_3 + 2);\n  func_0x00014540ee70();\nLAB_14540f39d:\n  param_4[0xd] = local_98;\n  param_4[0xb] = local_a8;\n  param_4[0xc] = lStack_a0;\n  lVar2 = param_3[1];\n  lVar10 = param_3[2];\n  lVar4 = param_3[3];\n  lVar5 = param_3[4];\n  lVar6 = param_3[5];\n  lVar7 = param_3[6];\n  lVar8 = param_3[7];\n  *param_4 = *param_3;\n  param_4[1] = lVar2;\n  param_4[2] = lVar10;\n  param_4[3] = lVar4;\n  param_4[4] = lVar5;\n  param_4[5] = lVar6;\n  param_4[6] = lVar7;\n  param_4[7] = lVar8;\n  lVar2 = param_3[9];\n  param_4[8] = param_3[8];\n  param_4[9] = lVar2;\n  param_4[10] = param_3[10];\n  return param_4;\n}\n\n",
+        "confidence": "observed",
+        "authority": "shipped-artifact",
+        "environment": null,
+        "limitations": [
+          "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+          "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+          "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+          "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+          "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+          "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+          "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+          "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+          "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+          "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+        ],
+        "relationship_coverage": null,
+        "locations": [],
+        "evidence_links": []
+      }
+    },
+    {
+      "name": "collect-upgrade-types",
+      "original_bytes": {
+        "file_offset": "0x55286b0",
+        "virtual_address": "0x1455292b0",
+        "size_bytes": 432,
+        "sha256": "f8ea41f1395b50e0b25c43c9f4f3621fef172a15d723f70000950f859ac5eca1",
+        "end_virtual_address_exclusive": "0x145529460",
+        "boundary_source": "PE RUNTIME_FUNCTION"
+      },
+      "rea_evidence": {
+        "evidence_id": "ev_334395f32aa416c4eb6bd19a58de619e30f09df27f42f55b318399546eb78bc9",
+        "subject": {
+          "name": "1455292b0.bin",
+          "digest": {
+            "sha256": "f8ea41f1395b50e0b25c43c9f4f3621fef172a15d723f70000950f859ac5eca1"
+          },
+          "local_path": "runtime/player-abilities-0.97.2/1455292b0.bin",
+          "format": "raw-binary",
+          "architecture": "x86_64"
+        },
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "analysis_profile": {
+          "provider": {
+            "id": "ghidra",
+            "name": "Ghidra",
+            "version": "12.1.4"
+          },
+          "parameters": {
+            "target_kind": "executable",
+            "target_format": "raw-binary",
+            "architecture": "x86_64",
+            "available_architectures": [
+              "x86_64"
+            ],
+            "import_mode": "ephemeral-source-immutable",
+            "annotation_policy": "atomic-function-entry-metadata-v1",
+            "load_image_observations": "source-mappings-entry-context-v2",
+            "function_body_evidence": "complete-inclusive-ranges-v1",
+            "function_references": "complete-body-and-entry-reference-manager-v2",
+            "call_relationship_coverage": "function-body-call-coverage-v5",
+            "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+            "string_inventory_evidence": "defined-data-coverage-v1",
+            "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+            "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+            "instruction_flow_evidence": "decoded-return-pcode-v1",
+            "instruction_references": "exact-address-incoming-v1",
+            "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+            "no_return_repair": "returning-imports-decoded-return-v2",
+            "process_launch": "inspected-jvm-launch-support-v1",
+            "load_image_evidence": "independent-raw-mapping-context-v4",
+            "jump_table_evidence": "typed-case-default-blocks-v1",
+            "decompiler_jump_loads": true,
+            "loader": "BinaryLoader",
+            "language_id": "x86:LE:64:default",
+            "compiler_spec_id": "gcc",
+            "language_selection": "caller-supplied-v1",
+            "entry_point": "0x1455292b0",
+            "entry_seed": "external-entry-and-function-before-analysis-v1",
+            "analyzer_preset": "ghidra-default"
+          },
+          "digest": "f447434500e940ee547d5dff494c7bf1ee0a22d0126e150ea98fbecc96afd2b8"
+        },
+        "predicate_type": "rea.analysis",
+        "operation": "procedure_pseudo_code",
+        "parameters": {
+          "procedure": "0x1455292b0"
+        },
+        "raw_result": {
+          "value": "\nlong * entry(undefined8 param_1,undefined8 param_2,undefined8 *param_3,long *param_4)\n\n{\n  code *pcVar1;\n  char cVar2;\n  char *pcVar3;\n  long lVar4;\n  undefined8 *local_b8;\n  undefined8 *puStack_b0;\n  undefined8 *local_a8;\n  undefined8 *puStack_a0;\n  undefined8 *local_98;\n  undefined8 uStack_90;\n  undefined8 local_88;\n  undefined8 uStack_80;\n  undefined8 local_78;\n  undefined8 uStack_70;\n  long *local_68;\n  long local_60;\n  char *pcStack_58;\n  long local_50;\n  undefined8 local_48;\n  \n  local_48 = 0xfffffffffffffffe;\n  local_98 = param_3 + 8;\n  puStack_a0 = param_3 + 7;\n  local_a8 = param_3 + 5;\n  puStack_b0 = param_3 + 3;\n  local_b8 = param_3 + 2;\n  cVar2 = func_0x000145472190(param_1,param_4,&local_b8,param_3);\n  local_68 = param_4;\n  if (cVar2 == -1) {\n    *param_4 = 0;\n    param_4[1] = 1;\n    param_4[2] = 0;\n  }\n  else {\n    func_0x000140002200();\n    lVar4 = 1;\n    pcVar3 = (char *)func_0x0001400021c0();\n    if (pcVar3 == (char *)0x0) {\n      func_0x0001458e721b();\n                    /* WARNING: Does not return */\n      pcVar1 = (code *)invalidInstructionException();\n      (*pcVar1)();\n    }\n    *pcVar3 = cVar2;\n    local_60 = 8;\n    local_50 = 1;\n    local_78 = param_3[8];\n    uStack_70 = param_3[9];\n    local_b8 = (undefined8 *)*param_3;\n    puStack_b0 = (undefined8 *)param_3[1];\n    local_a8 = (undefined8 *)param_3[2];\n    puStack_a0 = (undefined8 *)param_3[3];\n    local_98 = (undefined8 *)param_3[4];\n    uStack_90 = param_3[5];\n    local_88 = param_3[6];\n    uStack_80 = param_3[7];\n    pcStack_58 = pcVar3;\n    while( true ) {\n      cVar2 = func_0x000145472190();\n      if (cVar2 == -1) break;\n      if (lVar4 == local_60) {\n        func_0x000145757d40();\n        pcVar3 = pcStack_58;\n      }\n      pcVar3[lVar4] = cVar2;\n      lVar4 = lVar4 + 1;\n      local_50 = lVar4;\n    }\n    local_68[2] = local_50;\n    *local_68 = local_60;\n    local_68[1] = (long)pcStack_58;\n  }\n  return local_68;\n}\n\n",
+          "limitations": []
+        },
+        "normalized_result": "\nlong * entry(undefined8 param_1,undefined8 param_2,undefined8 *param_3,long *param_4)\n\n{\n  code *pcVar1;\n  char cVar2;\n  char *pcVar3;\n  long lVar4;\n  undefined8 *local_b8;\n  undefined8 *puStack_b0;\n  undefined8 *local_a8;\n  undefined8 *puStack_a0;\n  undefined8 *local_98;\n  undefined8 uStack_90;\n  undefined8 local_88;\n  undefined8 uStack_80;\n  undefined8 local_78;\n  undefined8 uStack_70;\n  long *local_68;\n  long local_60;\n  char *pcStack_58;\n  long local_50;\n  undefined8 local_48;\n  \n  local_48 = 0xfffffffffffffffe;\n  local_98 = param_3 + 8;\n  puStack_a0 = param_3 + 7;\n  local_a8 = param_3 + 5;\n  puStack_b0 = param_3 + 3;\n  local_b8 = param_3 + 2;\n  cVar2 = func_0x000145472190(param_1,param_4,&local_b8,param_3);\n  local_68 = param_4;\n  if (cVar2 == -1) {\n    *param_4 = 0;\n    param_4[1] = 1;\n    param_4[2] = 0;\n  }\n  else {\n    func_0x000140002200();\n    lVar4 = 1;\n    pcVar3 = (char *)func_0x0001400021c0();\n    if (pcVar3 == (char *)0x0) {\n      func_0x0001458e721b();\n                    /* WARNING: Does not return */\n      pcVar1 = (code *)invalidInstructionException();\n      (*pcVar1)();\n    }\n    *pcVar3 = cVar2;\n    local_60 = 8;\n    local_50 = 1;\n    local_78 = param_3[8];\n    uStack_70 = param_3[9];\n    local_b8 = (undefined8 *)*param_3;\n    puStack_b0 = (undefined8 *)param_3[1];\n    local_a8 = (undefined8 *)param_3[2];\n    puStack_a0 = (undefined8 *)param_3[3];\n    local_98 = (undefined8 *)param_3[4];\n    uStack_90 = param_3[5];\n    local_88 = param_3[6];\n    uStack_80 = param_3[7];\n    pcStack_58 = pcVar3;\n    while( true ) {\n      cVar2 = func_0x000145472190();\n      if (cVar2 == -1) break;\n      if (lVar4 == local_60) {\n        func_0x000145757d40();\n        pcVar3 = pcStack_58;\n      }\n      pcVar3[lVar4] = cVar2;\n      lVar4 = lVar4 + 1;\n      local_50 = lVar4;\n    }\n    local_68[2] = local_50;\n    *local_68 = local_60;\n    local_68[1] = (long)pcStack_58;\n  }\n  return local_68;\n}\n\n",
+        "confidence": "observed",
+        "authority": "shipped-artifact",
+        "environment": null,
+        "limitations": [
+          "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+          "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+          "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+          "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+          "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+          "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+          "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+          "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+          "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+          "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+        ],
+        "relationship_coverage": null,
+        "locations": [],
+        "evidence_links": []
+      }
+    },
+    {
+      "name": "eligible-upgrade-iterator",
+      "original_bytes": {
+        "file_offset": "0x5471590",
+        "virtual_address": "0x145472190",
+        "size_bytes": 398,
+        "sha256": "9038e6765248ff13f7be0ed6b889fe1fa7a3f1e514950d868c14bac489596353",
+        "end_virtual_address_exclusive": "0x14547231e",
+        "boundary_source": "PE RUNTIME_FUNCTION"
+      },
+      "rea_evidence": {
+        "evidence_id": "ev_fcc6d83195a249301bfe55044444c7ab96e0319e79bf07d0a35c379dc39d62f7",
+        "subject": {
+          "name": "145472190.bin",
+          "digest": {
+            "sha256": "9038e6765248ff13f7be0ed6b889fe1fa7a3f1e514950d868c14bac489596353"
+          },
+          "local_path": "runtime/player-abilities-0.97.2/145472190.bin",
+          "format": "raw-binary",
+          "architecture": "x86_64"
+        },
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "analysis_profile": {
+          "provider": {
+            "id": "ghidra",
+            "name": "Ghidra",
+            "version": "12.1.4"
+          },
+          "parameters": {
+            "target_kind": "executable",
+            "target_format": "raw-binary",
+            "architecture": "x86_64",
+            "available_architectures": [
+              "x86_64"
+            ],
+            "import_mode": "ephemeral-source-immutable",
+            "annotation_policy": "atomic-function-entry-metadata-v1",
+            "load_image_observations": "source-mappings-entry-context-v2",
+            "function_body_evidence": "complete-inclusive-ranges-v1",
+            "function_references": "complete-body-and-entry-reference-manager-v2",
+            "call_relationship_coverage": "function-body-call-coverage-v5",
+            "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+            "string_inventory_evidence": "defined-data-coverage-v1",
+            "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+            "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+            "instruction_flow_evidence": "decoded-return-pcode-v1",
+            "instruction_references": "exact-address-incoming-v1",
+            "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+            "no_return_repair": "returning-imports-decoded-return-v2",
+            "process_launch": "inspected-jvm-launch-support-v1",
+            "load_image_evidence": "independent-raw-mapping-context-v4",
+            "jump_table_evidence": "typed-case-default-blocks-v1",
+            "decompiler_jump_loads": true,
+            "loader": "BinaryLoader",
+            "language_id": "x86:LE:64:default",
+            "compiler_spec_id": "gcc",
+            "language_selection": "caller-supplied-v1",
+            "entry_point": "0x145472190",
+            "entry_seed": "external-entry-and-function-before-analysis-v1",
+            "analyzer_preset": "ghidra-default"
+          },
+          "digest": "6400674c78498bd1c78c85ad9763ea21152a1986a5b1b499886dd5eb60fc7fe8"
+        },
+        "predicate_type": "rea.analysis",
+        "operation": "procedure_pseudo_code",
+        "parameters": {
+          "procedure": "0x145472190"
+        },
+        "raw_result": {
+          "value": "\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nulong entry(undefined8 param_1,undefined8 param_2,long param_3,undefined8 *param_4)\n\n{\n  byte bVar1;\n  long *plVar2;\n  undefined8 *puVar3;\n  undefined8 *puVar4;\n  long *plVar5;\n  long lVar6;\n  char cVar7;\n  ulong unaff_RBX;\n  byte *pbVar8;\n  byte *pbVar9;\n  byte *pbVar10;\n  float fVar11;\n  float fVar12;\n  float fVar13;\n  float fVar14;\n  \n  pbVar8 = (byte *)param_4[1];\n  if ((byte *)*param_4 != pbVar8) {\n    plVar2 = *(long **)(param_3 + 8);\n    puVar3 = *(undefined8 **)(param_3 + 0x10);\n    puVar4 = *(undefined8 **)(param_3 + 0x18);\n    pbVar9 = (byte *)*param_4;\n    fVar12 = _DAT_1458f8d40;\n    fVar13 = _DAT_1458ed010;\n    fVar14 = _DAT_145bcaed0;\n    do {\n      pbVar10 = pbVar9 + 1;\n      *param_4 = pbVar10;\n      bVar1 = *pbVar9;\n      unaff_RBX = (ulong)bVar1;\n      cVar7 = func_0x00014540da00();\n      if (cVar7 != '\\0') {\n        plVar5 = (long *)*plVar2;\n        if ((bVar1 == 4) || (bVar1 == 1)) {\n          lVar6 = *plVar5;\n          if ((*(uint *)(lVar6 + 0x68) < 0xd) &&\n             (((0x1300U >> (*(uint *)(lVar6 + 0x68) & 0x1f) & 1) != 0 &&\n              (*(char *)(lVar6 + 0x75) == '\\t')))) {\n            fVar11 = *(float *)(lVar6 + 0x48) * fVar12 * *(float *)((long)plVar5 + 0x14) *\n                     *(float *)((long)plVar5 + 0x3c) * *(float *)(plVar2[1] + 8);\n            if (fVar11 <= fVar13) {\n              fVar11 = fVar13;\n            }\n            if (fVar11 <= *(float *)(lVar6 + 0x58) * fVar12 * *(float *)(plVar5 + 4) *\n                          *(float *)(plVar5 + 9)) goto LAB_145472220;\n          }\n        }\n        if (bVar1 == 2) {\n          if (*(long *)*puVar4 != 0) goto LAB_145472204;\n        }\n        else if (((bVar1 != 1) || (*(char *)(*(long *)*puVar3 + 0x75) != '\\v')) ||\n                (cVar7 = func_0x00014541b790(), cVar7 != '\\0')) {\nLAB_145472204:\n          fVar11 = (float)func_0x0001454f94c0();\n          if (fVar14 <= fVar11) goto LAB_1454722fb;\n        }\n      }\nLAB_145472220:\n      pbVar9 = pbVar10;\n    } while (pbVar10 != pbVar8);\n  }\n  unaff_RBX = CONCAT71((int7)(unaff_RBX >> 8),0xff);\nLAB_1454722fb:\n  return unaff_RBX & 0xffffffff;\n}\n\n",
+          "limitations": []
+        },
+        "normalized_result": "\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nulong entry(undefined8 param_1,undefined8 param_2,long param_3,undefined8 *param_4)\n\n{\n  byte bVar1;\n  long *plVar2;\n  undefined8 *puVar3;\n  undefined8 *puVar4;\n  long *plVar5;\n  long lVar6;\n  char cVar7;\n  ulong unaff_RBX;\n  byte *pbVar8;\n  byte *pbVar9;\n  byte *pbVar10;\n  float fVar11;\n  float fVar12;\n  float fVar13;\n  float fVar14;\n  \n  pbVar8 = (byte *)param_4[1];\n  if ((byte *)*param_4 != pbVar8) {\n    plVar2 = *(long **)(param_3 + 8);\n    puVar3 = *(undefined8 **)(param_3 + 0x10);\n    puVar4 = *(undefined8 **)(param_3 + 0x18);\n    pbVar9 = (byte *)*param_4;\n    fVar12 = _DAT_1458f8d40;\n    fVar13 = _DAT_1458ed010;\n    fVar14 = _DAT_145bcaed0;\n    do {\n      pbVar10 = pbVar9 + 1;\n      *param_4 = pbVar10;\n      bVar1 = *pbVar9;\n      unaff_RBX = (ulong)bVar1;\n      cVar7 = func_0x00014540da00();\n      if (cVar7 != '\\0') {\n        plVar5 = (long *)*plVar2;\n        if ((bVar1 == 4) || (bVar1 == 1)) {\n          lVar6 = *plVar5;\n          if ((*(uint *)(lVar6 + 0x68) < 0xd) &&\n             (((0x1300U >> (*(uint *)(lVar6 + 0x68) & 0x1f) & 1) != 0 &&\n              (*(char *)(lVar6 + 0x75) == '\\t')))) {\n            fVar11 = *(float *)(lVar6 + 0x48) * fVar12 * *(float *)((long)plVar5 + 0x14) *\n                     *(float *)((long)plVar5 + 0x3c) * *(float *)(plVar2[1] + 8);\n            if (fVar11 <= fVar13) {\n              fVar11 = fVar13;\n            }\n            if (fVar11 <= *(float *)(lVar6 + 0x58) * fVar12 * *(float *)(plVar5 + 4) *\n                          *(float *)(plVar5 + 9)) goto LAB_145472220;\n          }\n        }\n        if (bVar1 == 2) {\n          if (*(long *)*puVar4 != 0) goto LAB_145472204;\n        }\n        else if (((bVar1 != 1) || (*(char *)(*(long *)*puVar3 + 0x75) != '\\v')) ||\n                (cVar7 = func_0x00014541b790(), cVar7 != '\\0')) {\nLAB_145472204:\n          fVar11 = (float)func_0x0001454f94c0();\n          if (fVar14 <= fVar11) goto LAB_1454722fb;\n        }\n      }\nLAB_145472220:\n      pbVar9 = pbVar10;\n    } while (pbVar10 != pbVar8);\n  }\n  unaff_RBX = CONCAT71((int7)(unaff_RBX >> 8),0xff);\nLAB_1454722fb:\n  return unaff_RBX & 0xffffffff;\n}\n\n",
+        "confidence": "observed",
+        "authority": "shipped-artifact",
+        "environment": null,
+        "limitations": [
+          "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+          "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+          "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+          "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+          "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+          "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+          "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+          "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+          "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+          "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+        ],
+        "relationship_coverage": null,
+        "locations": [],
+        "evidence_links": []
+      }
+    },
+    {
+      "name": "definition-upgrade-gates",
+      "original_bytes": {
+        "file_offset": "0x540ce00",
+        "virtual_address": "0x14540da00",
+        "size_bytes": 350,
+        "sha256": "800851462e8c58f2a1caa1d2ecd838afdee52ad76ab2cec0f1cd40578c56a371",
+        "end_virtual_address_exclusive": "0x14540db5e",
+        "boundary_source": "Leaf code: all return branches, followed by INT3 padding"
+      },
+      "rea_evidence": {
+        "evidence_id": "ev_dd004e0941f614d593c6a66535c370889bdfa060fa2c9987a62e4340aa0b9128",
+        "subject": {
+          "name": "14540da00.bin",
+          "digest": {
+            "sha256": "800851462e8c58f2a1caa1d2ecd838afdee52ad76ab2cec0f1cd40578c56a371"
+          },
+          "local_path": "runtime/player-abilities-0.97.2/14540da00.bin",
+          "format": "raw-binary",
+          "architecture": "x86_64"
+        },
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "analysis_profile": {
+          "provider": {
+            "id": "ghidra",
+            "name": "Ghidra",
+            "version": "12.1.4"
+          },
+          "parameters": {
+            "target_kind": "executable",
+            "target_format": "raw-binary",
+            "architecture": "x86_64",
+            "available_architectures": [
+              "x86_64"
+            ],
+            "import_mode": "ephemeral-source-immutable",
+            "annotation_policy": "atomic-function-entry-metadata-v1",
+            "load_image_observations": "source-mappings-entry-context-v2",
+            "function_body_evidence": "complete-inclusive-ranges-v1",
+            "function_references": "complete-body-and-entry-reference-manager-v2",
+            "call_relationship_coverage": "function-body-call-coverage-v5",
+            "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+            "string_inventory_evidence": "defined-data-coverage-v1",
+            "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+            "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+            "instruction_flow_evidence": "decoded-return-pcode-v1",
+            "instruction_references": "exact-address-incoming-v1",
+            "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+            "no_return_repair": "returning-imports-decoded-return-v2",
+            "process_launch": "inspected-jvm-launch-support-v1",
+            "load_image_evidence": "independent-raw-mapping-context-v4",
+            "jump_table_evidence": "typed-case-default-blocks-v1",
+            "decompiler_jump_loads": true,
+            "loader": "BinaryLoader",
+            "language_id": "x86:LE:64:default",
+            "compiler_spec_id": "gcc",
+            "language_selection": "caller-supplied-v1",
+            "entry_point": "0x14540da00",
+            "entry_seed": "external-entry-and-function-before-analysis-v1",
+            "analyzer_preset": "ghidra-default"
+          },
+          "digest": "c74aa6b5f622cce99f6af1f5e3781bb44508736398840d3bdd8d3963d7f9de05"
+        },
+        "predicate_type": "rea.analysis",
+        "operation": "procedure_pseudo_code",
+        "parameters": {
+          "procedure": "0x14540da00"
+        },
+        "raw_result": {
+          "value": "\nundefined8 entry(undefined8 param_1,undefined8 param_2,byte param_3,long param_4)\n\n{\n  byte *pbVar1;\n  undefined7 uVar3;\n  undefined8 uVar2;\n  long lVar4;\n  \n  if (*(char *)(param_4 + 0x75) != '\\v') {\n                    /* WARNING: Could not emulate address calculation at 0x00014540da52 */\n                    /* WARNING: Treating indirect jump as call */\n    uVar2 = (*(code *)((long)*(int *)((ulong)param_3 * 4 + 0x14671d188) + 0x14671d188))();\n    return uVar2;\n  }\n  lVar4 = 0;\n  do {\n    if (*(long *)(param_4 + 0x38) == lVar4) {\n      return 0;\n    }\n    pbVar1 = (byte *)(*(long *)(param_4 + 0x30) + lVar4);\n    lVar4 = lVar4 + 1;\n  } while (*pbVar1 != param_3);\n  uVar3 = (undefined7)((ulong)*(long *)(param_4 + 0x30) >> 8);\n  if (param_3 == 2) {\n    return CONCAT71(uVar3,*(int *)(param_4 + 0x54) != 0);\n  }\n  return CONCAT71(uVar3,1);\n}\n\n",
+          "limitations": []
+        },
+        "normalized_result": "\nundefined8 entry(undefined8 param_1,undefined8 param_2,byte param_3,long param_4)\n\n{\n  byte *pbVar1;\n  undefined7 uVar3;\n  undefined8 uVar2;\n  long lVar4;\n  \n  if (*(char *)(param_4 + 0x75) != '\\v') {\n                    /* WARNING: Could not emulate address calculation at 0x00014540da52 */\n                    /* WARNING: Treating indirect jump as call */\n    uVar2 = (*(code *)((long)*(int *)((ulong)param_3 * 4 + 0x14671d188) + 0x14671d188))();\n    return uVar2;\n  }\n  lVar4 = 0;\n  do {\n    if (*(long *)(param_4 + 0x38) == lVar4) {\n      return 0;\n    }\n    pbVar1 = (byte *)(*(long *)(param_4 + 0x30) + lVar4);\n    lVar4 = lVar4 + 1;\n  } while (*pbVar1 != param_3);\n  uVar3 = (undefined7)((ulong)*(long *)(param_4 + 0x30) >> 8);\n  if (param_3 == 2) {\n    return CONCAT71(uVar3,*(int *)(param_4 + 0x54) != 0);\n  }\n  return CONCAT71(uVar3,1);\n}\n\n",
+        "confidence": "observed",
+        "authority": "shipped-artifact",
+        "environment": null,
+        "limitations": [
+          "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+          "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+          "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+          "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+          "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+          "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+          "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+          "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+          "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+          "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+        ],
+        "relationship_coverage": null,
+        "locations": [],
+        "evidence_links": []
+      }
+    },
+    {
+      "name": "passive-cooldown-gate",
+      "original_bytes": {
+        "file_offset": "0x541ab90",
+        "virtual_address": "0x14541b790",
+        "size_bytes": 287,
+        "sha256": "57b0e5df6aa5fe7d79a74f444395c1083301e80e36ee9178edf9fac4211d787b",
+        "end_virtual_address_exclusive": "0x14541b8af",
+        "boundary_source": "All return branches, followed by INT3 padding"
+      },
+      "rea_evidence": {
+        "evidence_id": "ev_eab4d27544294fb75fe59693dda9cad696acdb6f5b97e492013803ddb6c387eb",
+        "subject": {
+          "name": "14541b790.bin",
+          "digest": {
+            "sha256": "57b0e5df6aa5fe7d79a74f444395c1083301e80e36ee9178edf9fac4211d787b"
+          },
+          "local_path": "runtime/player-abilities-0.97.2/14541b790.bin",
+          "format": "raw-binary",
+          "architecture": "x86_64"
+        },
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "analysis_profile": {
+          "provider": {
+            "id": "ghidra",
+            "name": "Ghidra",
+            "version": "12.1.4"
+          },
+          "parameters": {
+            "target_kind": "executable",
+            "target_format": "raw-binary",
+            "architecture": "x86_64",
+            "available_architectures": [
+              "x86_64"
+            ],
+            "import_mode": "ephemeral-source-immutable",
+            "annotation_policy": "atomic-function-entry-metadata-v1",
+            "load_image_observations": "source-mappings-entry-context-v2",
+            "function_body_evidence": "complete-inclusive-ranges-v1",
+            "function_references": "complete-body-and-entry-reference-manager-v2",
+            "call_relationship_coverage": "function-body-call-coverage-v5",
+            "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+            "string_inventory_evidence": "defined-data-coverage-v1",
+            "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+            "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+            "instruction_flow_evidence": "decoded-return-pcode-v1",
+            "instruction_references": "exact-address-incoming-v1",
+            "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+            "no_return_repair": "returning-imports-decoded-return-v2",
+            "process_launch": "inspected-jvm-launch-support-v1",
+            "load_image_evidence": "independent-raw-mapping-context-v4",
+            "jump_table_evidence": "typed-case-default-blocks-v1",
+            "decompiler_jump_loads": true,
+            "loader": "BinaryLoader",
+            "language_id": "x86:LE:64:default",
+            "compiler_spec_id": "gcc",
+            "language_selection": "caller-supplied-v1",
+            "entry_point": "0x14541b790",
+            "entry_seed": "external-entry-and-function-before-analysis-v1",
+            "analyzer_preset": "ghidra-default"
+          },
+          "digest": "cf8937abbe366c508a9c5c1720f916cad121c16e98379c95a041e6f93eb1b75b"
+        },
+        "predicate_type": "rea.analysis",
+        "operation": "procedure_pseudo_code",
+        "parameters": {
+          "procedure": "0x14541b790"
+        },
+        "raw_result": {
+          "value": "\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nbool entry(undefined8 param_1,undefined8 param_2,long param_3,long *param_4)\n\n{\n  long *plVar1;\n  long *plVar2;\n  long lVar3;\n  float fVar4;\n  float extraout_XMM0_Da;\n  \n  plVar1 = (long *)*param_4;\n  plVar2 = (long *)*plVar1;\n  lVar3 = plVar1[1];\n  if (lVar3 == 0xb) {\n    if (*(long *)((long)plVar2 + 3) == 0x657269665f656972 && *plVar2 == 0x665f656972656166) {\n      return false;\n    }\n  }\n  else if ((lVar3 == 10) && ((short)plVar2[1] == 0x6e6f && *plVar2 == 0x6974706d65646572)) {\n    fVar4 = *(float *)(plVar1 + 9) * _DAT_1458f8d40 * *(float *)((long)param_4 + 0x14) *\n            *(float *)((long)param_4 + 0x3c) * *(float *)(param_3 + 8);\n    if (fVar4 <= _DAT_1458ed010) {\n      fVar4 = _DAT_1458ed010;\n    }\n    fVar4 = (_DAT_1458f6620 * *(float *)(plVar1 + 9) * _DAT_1458f8d40) / fVar4;\n    if (_DAT_1458eb50c <= fVar4) {\n      fVar4 = _DAT_1458eb50c;\n    }\n    return fVar4 * *(float *)(param_4 + 10) < _DAT_14671d270;\n  }\n  fVar4 = *(float *)(plVar1 + 9) * _DAT_1458f8d40 * *(float *)((long)param_4 + 0x14) *\n          *(float *)((long)param_4 + 0x3c) * *(float *)(param_3 + 8);\n  if (fVar4 <= _DAT_1458ed010) {\n    fVar4 = _DAT_1458ed010;\n  }\n  func_0x00014541b8b0(param_1,param_2,lVar3,plVar2);\n  return extraout_XMM0_Da * _DAT_14671d274 < fVar4;\n}\n\n",
+          "limitations": []
+        },
+        "normalized_result": "\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nbool entry(undefined8 param_1,undefined8 param_2,long param_3,long *param_4)\n\n{\n  long *plVar1;\n  long *plVar2;\n  long lVar3;\n  float fVar4;\n  float extraout_XMM0_Da;\n  \n  plVar1 = (long *)*param_4;\n  plVar2 = (long *)*plVar1;\n  lVar3 = plVar1[1];\n  if (lVar3 == 0xb) {\n    if (*(long *)((long)plVar2 + 3) == 0x657269665f656972 && *plVar2 == 0x665f656972656166) {\n      return false;\n    }\n  }\n  else if ((lVar3 == 10) && ((short)plVar2[1] == 0x6e6f && *plVar2 == 0x6974706d65646572)) {\n    fVar4 = *(float *)(plVar1 + 9) * _DAT_1458f8d40 * *(float *)((long)param_4 + 0x14) *\n            *(float *)((long)param_4 + 0x3c) * *(float *)(param_3 + 8);\n    if (fVar4 <= _DAT_1458ed010) {\n      fVar4 = _DAT_1458ed010;\n    }\n    fVar4 = (_DAT_1458f6620 * *(float *)(plVar1 + 9) * _DAT_1458f8d40) / fVar4;\n    if (_DAT_1458eb50c <= fVar4) {\n      fVar4 = _DAT_1458eb50c;\n    }\n    return fVar4 * *(float *)(param_4 + 10) < _DAT_14671d270;\n  }\n  fVar4 = *(float *)(plVar1 + 9) * _DAT_1458f8d40 * *(float *)((long)param_4 + 0x14) *\n          *(float *)((long)param_4 + 0x3c) * *(float *)(param_3 + 8);\n  if (fVar4 <= _DAT_1458ed010) {\n    fVar4 = _DAT_1458ed010;\n  }\n  func_0x00014541b8b0(param_1,param_2,lVar3,plVar2);\n  return extraout_XMM0_Da * _DAT_14671d274 < fVar4;\n}\n\n",
+        "confidence": "observed",
+        "authority": "shipped-artifact",
+        "environment": null,
+        "limitations": [
+          "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+          "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+          "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+          "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+          "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+          "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+          "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+          "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+          "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+          "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+        ],
+        "relationship_coverage": null,
+        "locations": [],
+        "evidence_links": []
+      }
+    },
+    {
+      "name": "passive-minimum-interval",
+      "original_bytes": {
+        "file_offset": "0x541acb0",
+        "virtual_address": "0x14541b8b0",
+        "size_bytes": 276,
+        "sha256": "fff145e79f9b0eef0d7a42def2de974f76c3c8de47f2f44955958493e15218e1",
+        "end_virtual_address_exclusive": "0x14541b9c4",
+        "boundary_source": "Leaf code: all return branches, followed by INT3 padding"
+      },
+      "rea_evidence": {
+        "evidence_id": "ev_279eb666ba6bb3854141667b32eb59a25b5a899896c1beabc2949e18fe06a9f4",
+        "subject": {
+          "name": "14541b8b0.bin",
+          "digest": {
+            "sha256": "fff145e79f9b0eef0d7a42def2de974f76c3c8de47f2f44955958493e15218e1"
+          },
+          "local_path": "runtime/player-abilities-0.97.2/14541b8b0.bin",
+          "format": "raw-binary",
+          "architecture": "x86_64"
+        },
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "analysis_profile": {
+          "provider": {
+            "id": "ghidra",
+            "name": "Ghidra",
+            "version": "12.1.4"
+          },
+          "parameters": {
+            "target_kind": "executable",
+            "target_format": "raw-binary",
+            "architecture": "x86_64",
+            "available_architectures": [
+              "x86_64"
+            ],
+            "import_mode": "ephemeral-source-immutable",
+            "annotation_policy": "atomic-function-entry-metadata-v1",
+            "load_image_observations": "source-mappings-entry-context-v2",
+            "function_body_evidence": "complete-inclusive-ranges-v1",
+            "function_references": "complete-body-and-entry-reference-manager-v2",
+            "call_relationship_coverage": "function-body-call-coverage-v5",
+            "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+            "string_inventory_evidence": "defined-data-coverage-v1",
+            "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+            "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+            "instruction_flow_evidence": "decoded-return-pcode-v1",
+            "instruction_references": "exact-address-incoming-v1",
+            "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+            "no_return_repair": "returning-imports-decoded-return-v2",
+            "process_launch": "inspected-jvm-launch-support-v1",
+            "load_image_evidence": "independent-raw-mapping-context-v4",
+            "jump_table_evidence": "typed-case-default-blocks-v1",
+            "decompiler_jump_loads": true,
+            "loader": "BinaryLoader",
+            "language_id": "x86:LE:64:default",
+            "compiler_spec_id": "gcc",
+            "language_selection": "caller-supplied-v1",
+            "entry_point": "0x14541b8b0",
+            "entry_seed": "external-entry-and-function-before-analysis-v1",
+            "analyzer_preset": "ghidra-default"
+          },
+          "digest": "e47e8d3cb77e9b4101ebb800bd1a70e2d316be9dcc17682d6c644b67643d5931"
+        },
+        "predicate_type": "rea.analysis",
+        "operation": "procedure_pseudo_code",
+        "parameters": {
+          "procedure": "0x14541b8b0"
+        },
+        "raw_result": {
+          "value": "\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nundefined4 entry(undefined8 param_1,undefined8 param_2,long param_3,long *param_4)\n\n{\n  if (param_3 == 0xd) {\n    if (*(long *)((long)param_4 + 5) == 0x656d616c665f666f && *param_4 == 0x5f666f5f6c6c6163) {\n      return _DAT_1458fcc38;\n    }\n  }\n  else if (param_3 == 0xc) {\n    if ((int)param_4[1] == 0x6b72616d && *param_4 == 0x5f737265746e7568) {\n      return _DAT_1458f6624;\n    }\n  }\n  else if (param_3 == 9) {\n    if ((char)param_4[1] == 'e' && *param_4 == 0x676172646f6f6c62) {\n      return _DAT_1458f8e00;\n    }\n    if ((char)param_4[1] == 'e' && *param_4 == 0x7461665f6c616573) {\n      return _DAT_1458f6624;\n    }\n    if ((char)param_4[1] != 'e' || *param_4 != 0x7269665f6c756f73) {\n      if ((char)param_4[1] == 'l' && *param_4 == 0x6c6577746867696c) {\n        return _DAT_1458fc8ac;\n      }\n      if ((char)param_4[1] != 'h' || *param_4 != 0x70726f6d796c6f70) {\n        return 0;\n      }\n    }\n    return _DAT_1458f662c;\n  }\n  return 0;\n}\n\n",
+          "limitations": []
+        },
+        "normalized_result": "\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nundefined4 entry(undefined8 param_1,undefined8 param_2,long param_3,long *param_4)\n\n{\n  if (param_3 == 0xd) {\n    if (*(long *)((long)param_4 + 5) == 0x656d616c665f666f && *param_4 == 0x5f666f5f6c6c6163) {\n      return _DAT_1458fcc38;\n    }\n  }\n  else if (param_3 == 0xc) {\n    if ((int)param_4[1] == 0x6b72616d && *param_4 == 0x5f737265746e7568) {\n      return _DAT_1458f6624;\n    }\n  }\n  else if (param_3 == 9) {\n    if ((char)param_4[1] == 'e' && *param_4 == 0x676172646f6f6c62) {\n      return _DAT_1458f8e00;\n    }\n    if ((char)param_4[1] == 'e' && *param_4 == 0x7461665f6c616573) {\n      return _DAT_1458f6624;\n    }\n    if ((char)param_4[1] != 'e' || *param_4 != 0x7269665f6c756f73) {\n      if ((char)param_4[1] == 'l' && *param_4 == 0x6c6577746867696c) {\n        return _DAT_1458fc8ac;\n      }\n      if ((char)param_4[1] != 'h' || *param_4 != 0x70726f6d796c6f70) {\n        return 0;\n      }\n    }\n    return _DAT_1458f662c;\n  }\n  return 0;\n}\n\n",
+        "confidence": "observed",
+        "authority": "shipped-artifact",
+        "environment": null,
+        "limitations": [
+          "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+          "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+          "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+          "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+          "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+          "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+          "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+          "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+          "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+          "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+        ],
+        "relationship_coverage": null,
+        "locations": [],
+        "evidence_links": []
+      }
+    }
+  ],
+  "jump_tables": {
+    "0x1469ad1c0": {
+      "source": {
+        "file_offset": "0x69ac1c0",
+        "virtual_address": "0x1469ad1c0",
+        "size_bytes": 20,
+        "sha256": "8233cbfb6ed4049aa21ff921e08a52360dd50551646d51f6266aeba3f33368d4",
+        "raw_hex": "18c3b4fe38c4b4fe7cc3b4fe10c4b4fe51c3b4fe"
+      },
+      "targets": [
+        "0x1454f94d8",
+        "0x1454f95f8",
+        "0x1454f953c",
+        "0x1454f95d0",
+        "0x1454f9511"
+      ]
+    },
+    "0x14671d188": {
+      "source": {
+        "file_offset": "0x671c188",
+        "virtual_address": "0x14671d188",
+        "size_bytes": 20,
+        "sha256": "e12e3759c69d23d1ba02e02ef5ba273e6b132e87dcd1083c4e2c549dd58ff4f3",
+        "raw_hex": "d308cffe9709cffe4209cffe7109cffeeb08cffe"
+      },
+      "targets": [
+        "0x14540da5b",
+        "0x14540db1f",
+        "0x14540daca",
+        "0x14540daf9",
+        "0x14540da73"
+      ]
+    },
+    "0x14671d19c": {
+      "source": {
+        "file_offset": "0x671c19c",
+        "virtual_address": "0x14671d19c",
+        "size_bytes": 32,
+        "sha256": "74e4b1229236bb2a3f41e48e2c78c7409d3d8cee9e7ede4aa6a7ad44826e84d9",
+        "raw_hex": "7e09cffeae09cffeae09cffe7e09cffeae09cffeae09cffef808cffe7e09cffe"
+      },
+      "targets": [
+        "0x14540db1a",
+        "0x14540db4a",
+        "0x14540db4a",
+        "0x14540db1a",
+        "0x14540db4a",
+        "0x14540db4a",
+        "0x14540da94",
+        "0x14540db1a"
+      ]
+    },
+    "0x1469acee0": {
+      "source": {
+        "file_offset": "0x69abee0",
+        "virtual_address": "0x1469acee0",
+        "size_bytes": 20,
+        "sha256": "fb143a3851acbc88664aeaa9ef7d755032c1480171abc8f49d4c8f8911598e4d",
+        "raw_hex": "fc7bb3fe477cb3fe0f7cb3fe347cb3fe7b7bb3fe"
+      },
+      "targets": [
+        "0x1454e4adc",
+        "0x1454e4b27",
+        "0x1454e4aef",
+        "0x1454e4b14",
+        "0x1454e4a5b"
+      ]
+    }
+  },
+  "scalars": {
+    "0x1458eb480": {
+      "source": {
+        "file_offset": "0x58ea480",
+        "virtual_address": "0x1458eb480",
+        "size_bytes": 4,
+        "sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c",
+        "raw_hex": "0000803f"
+      },
+      "value": 1.0
+    },
+    "0x1458eb488": {
+      "source": {
+        "file_offset": "0x58ea488",
+        "virtual_address": "0x1458eb488",
+        "size_bytes": 4,
+        "sha256": "d99e58435243d9fef9c88273b8d553b4fba4d0baf8009d29eae74fa99e0d9f57",
+        "raw_hex": "0000003f"
+      },
+      "value": 0.5
+    },
+    "0x1458eb50c": {
+      "source": {
+        "file_offset": "0x58ea50c",
+        "virtual_address": "0x1458eb50c",
+        "size_bytes": 4,
+        "sha256": "5d96a77c55b4ac1eea2d77815396c4349292b85e3b07beaca6aff933e7ef8752",
+        "raw_hex": "cdcc4c3e"
+      },
+      "value": 0.20000000298023224
+    },
+    "0x1458ed010": {
+      "source": {
+        "file_offset": "0x58ec010",
+        "virtual_address": "0x1458ed010",
+        "size_bytes": 4,
+        "sha256": "75e253f50979177eba47b2d0805ad36038789108924514d2a761a70de057d16f",
+        "raw_hex": "0000803e"
+      },
+      "value": 0.25
+    },
+    "0x1458f6620": {
+      "source": {
+        "file_offset": "0x58f5620",
+        "virtual_address": "0x1458f6620",
+        "size_bytes": 4,
+        "sha256": "fb360f7241a770dc32cade9a1d1273c92b13bd4959b1c130931312b7fe95e63f",
+        "raw_hex": "cdcccc3d"
+      },
+      "value": 0.10000000149011612
+    },
+    "0x1458f6624": {
+      "source": {
+        "file_offset": "0x58f5624",
+        "virtual_address": "0x1458f6624",
+        "size_bytes": 4,
+        "sha256": "d88c86f15bbea365d658ad95a81d45367c465f7af6f7264fb077f01747ddc77d",
+        "raw_hex": "00000040"
+      },
+      "value": 2.0
+    },
+    "0x1458f6628": {
+      "source": {
+        "file_offset": "0x58f5628",
+        "virtual_address": "0x1458f6628",
+        "size_bytes": 4,
+        "sha256": "030a1a64b337c633d995221728d15e8b0d086cc0dcf4557205111b089b04464d",
+        "raw_hex": "cdcc4c3f"
+      },
+      "value": 0.800000011920929
+    },
+    "0x1458f662c": {
+      "source": {
+        "file_offset": "0x58f562c",
+        "virtual_address": "0x1458f662c",
+        "size_bytes": 4,
+        "sha256": "ea2845900b5856c9bf354b1aa9761b5aa6888e5ed61738fe9579ca42bc0f6054",
+        "raw_hex": "00004040"
+      },
+      "value": 3.0
+    },
+    "0x1458f8d40": {
+      "source": {
+        "file_offset": "0x58f7d40",
+        "virtual_address": "0x1458f8d40",
+        "size_bytes": 4,
+        "sha256": "55bcbd6097be4e6dbb2e3a87d63d96cb17ed13c4483b7f9a79c7cb115111b3ce",
+        "raw_hex": "3333b33f"
+      },
+      "value": 1.399999976158142
+    },
+    "0x1458f8de4": {
+      "source": {
+        "file_offset": "0x58f7de4",
+        "virtual_address": "0x1458f8de4",
+        "size_bytes": 4,
+        "sha256": "fca31f1667a6aa1bba12fca4e4ea1becd503379d80da3213af07f6cc5702828d",
+        "raw_hex": "0000a040"
+      },
+      "value": 5.0
+    },
+    "0x1458f8e00": {
+      "source": {
+        "file_offset": "0x58f7e00",
+        "virtual_address": "0x1458f8e00",
+        "size_bytes": 4,
+        "sha256": "03e3c2420f5066a5fa6e36735ed8cc4f6a251046263e1a6024f009deeee3b952",
+        "raw_hex": "00000041"
+      },
+      "value": 8.0
+    },
+    "0x1458fc8ac": {
+      "source": {
+        "file_offset": "0x58fb8ac",
+        "virtual_address": "0x1458fc8ac",
+        "size_bytes": 4,
+        "sha256": "fedcca07b1ccdacce623cb6d8afdeed0314e8508d763e228871f18d4e0ebb7c4",
+        "raw_hex": "0000c040"
+      },
+      "value": 6.0
+    },
+    "0x1458fcc38": {
+      "source": {
+        "file_offset": "0x58fbc38",
+        "virtual_address": "0x1458fcc38",
+        "size_bytes": 4,
+        "sha256": "c0e336a5f371ef22cd534e094269f2c1a9635cd080b71ffa671086832d3b60b7",
+        "raw_hex": "0000c03f"
+      },
+      "value": 1.5
+    },
+    "0x145a41854": {
+      "source": {
+        "file_offset": "0x5a40854",
+        "virtual_address": "0x145a41854",
+        "size_bytes": 4,
+        "sha256": "31b67dba7cfd6e2d7540f9c96d90a45b8f2d44956620723024d4e1beeacd4602",
+        "raw_hex": "0000003e"
+      },
+      "value": 0.125
+    },
+    "0x145bcaed0": {
+      "source": {
+        "file_offset": "0x5bc9ed0",
+        "virtual_address": "0x145bcaed0",
+        "size_bytes": 4,
+        "sha256": "1229f28c7e699bf60a4b44363dcb39610e8b7206037302d7f69ba6f80d4009e7",
+        "raw_hex": "0ad7a33b"
+      },
+      "value": 0.004999999888241291
+    },
+    "0x145c14470": {
+      "source": {
+        "file_offset": "0x5c13470",
+        "virtual_address": "0x145c14470",
+        "size_bytes": 4,
+        "sha256": "08e21eeb808e4a7f66f95c58d9fc585c31f50045de5d8828c81d7a6d97efb559",
+        "raw_hex": "0ad7233d"
+      },
+      "value": 0.03999999910593033
+    },
+    "0x14671d270": {
+      "source": {
+        "file_offset": "0x671c270",
+        "virtual_address": "0x14671d270",
+        "size_bytes": 4,
+        "sha256": "bbcd2226cdbdb69c46ad46e530e85c0a280f9ce518420f72e802815d329235d8",
+        "raw_hex": "83c04a3e"
+      },
+      "value": 0.1979999989271164
+    },
+    "0x14671d274": {
+      "source": {
+        "file_offset": "0x671c274",
+        "virtual_address": "0x14671d274",
+        "size_bytes": 4,
+        "sha256": "936d9b2b79be533be11269a05a5bdbed7c89683d241dff467de67af35b9afce4",
+        "raw_hex": "ae47813f"
+      },
+      "value": 1.0099999904632568
+    },
+    "0x1469ad098": {
+      "source": {
+        "file_offset": "0x69ac098",
+        "virtual_address": "0x1469ad098",
+        "size_bytes": 4,
+        "sha256": "62b63b02d96af87993dc5e31bd2bfd1ef752fed635f3258b65068f7091e5252e",
+        "raw_hex": "cdcc4cbe"
+      },
+      "value": -0.20000000298023224
+    }
+  },
+  "victim_damage_owner": {
+    "original": {
+      "file_offset": "0x54c22b0",
+      "virtual_address": "0x1454c2eb0",
+      "size_bytes": 13621,
+      "sha256": "fa34d349dd4e7597bc1f2da2f90bcae0cdef33ed8128f0837a0ec72110d63c49"
+    },
+    "rea_evidence_id": "ev_ba95562638ee7eaae2ea1dc88d80c5df86859a014473f69b678b229aacd357bd",
+    "reused_current_evidence": "docs/analysis/evidence/0.97.2/loot/rea-provenance.json",
+    "original_assembly": "docs/analysis/evidence/0.97.2/loot/enemy-death.asm",
+    "multiplier_span": [
+      "0x1454c2f90",
+      "0x1454c3398"
+    ],
+    "health_and_meter_span": [
+      "0x1454c33c0",
+      "0x1454c35c3"
+    ],
+    "low_health_threshold": {
+      "file_offset": "0x5909e44",
+      "virtual_address": "0x14590ae44",
+      "size_bytes": 4,
+      "sha256": "45a6d738a7607576d3fe0862200bc67b10c12d5ed74167b4d5d5a708974c0f32",
+      "raw_hex": "9a99993e"
+    },
+    "limits": "Source ports the victim multiplier/health/meter inputs; downstream packets, lifesteal, proc and death/loot order still require the real run adapter."
+  }
+}

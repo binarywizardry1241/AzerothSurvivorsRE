@@ -1,0 +1,261 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.113.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+    "size_bytes": 141932032
+  },
+  "target_process_executed": false,
+  "discovery": {
+    "zone_table": {
+      "va": "0x146fdcd48",
+      "file_offset": "0x6fdb748",
+      "byte_count": 2880,
+      "sha256": "f5fbae444d26c6011f0885815cddd710cb4e52abc2cc44648d4df65c676f3278"
+    },
+    "zone_keys": [
+      "elwynn",
+      "duskwood",
+      "wsg",
+      "ungoro",
+      "ab",
+      "feralas",
+      "arena",
+      "sm",
+      "av",
+      "brm",
+      "aq",
+      "naxx"
+    ],
+    "guardian_table": {
+      "va": "0x146fe5b88",
+      "file_offset": "0x6fe4588",
+      "byte_count": 2072,
+      "sha256": "2a4340f06f133b41ae1706aea4c6630d04b011db8436db4f9d9dc0a27a89c6df"
+    },
+    "guardian_ids": [
+      609,
+      610,
+      611,
+      709,
+      710,
+      711,
+      106,
+      107,
+      111,
+      1209,
+      1210,
+      1211,
+      1509,
+      1510,
+      1511,
+      809,
+      810,
+      811,
+      909,
+      910,
+      911,
+      1309,
+      1310,
+      1311,
+      306,
+      307,
+      311,
+      1009,
+      1010,
+      1011,
+      1109,
+      1110,
+      1111,
+      1412,
+      1413,
+      1414,
+      1415
+    ],
+    "method": "Unique literal/slice descriptor and complete ordered key/identity shapes; no historical RVAs."
+  },
+  "graph_comparison": {
+    "action_nodes": 493,
+    "boss_headers": 60,
+    "guardian_signatures": 37,
+    "relocated_pointer_nodes": [
+      2,
+      22,
+      23,
+      28,
+      30,
+      49,
+      56,
+      61,
+      77,
+      87,
+      97,
+      100,
+      113,
+      122,
+      141,
+      145,
+      157,
+      176,
+      194,
+      201,
+      205,
+      217,
+      248,
+      257,
+      266,
+      276,
+      286,
+      320,
+      327,
+      331,
+      347,
+      358,
+      364,
+      373,
+      387,
+      396,
+      423
+    ],
+    "scalar_recursive_schedule_and_source_comparison": "pass",
+    "historical_baseline": "docs/analysis/evidence/0.109.0/raid-native/catalog.json",
+    "previous_target_catalog": "docs/analysis/evidence/0.112.0/raid/catalog.json",
+    "duration_annotations": "Historical annotations only; no current duration instructions executed."
+  },
+  "queue_filter": {
+    "record": {
+      "va": "0x14594a80b",
+      "file_offset": "0x5949c0b",
+      "byte_count": 162,
+      "sha256": "d77f3afb22b9dca1f8c81b56f49450e2acde1991ed4ef2c8636a200d62df04d7"
+    },
+    "end_exclusive": "0x14594a8ad",
+    "dispatcher": "0x14591d320",
+    "dispatcher_intercepted": true,
+    "native_cases": 262,
+    "skipped_native_tags": [
+      12,
+      26
+    ],
+    "terminator": 255,
+    "assembly": "queue.asm",
+    "payload_and_queue_bytes_checked": true
+  },
+  "retained_gaze_roots": [
+    {
+      "owner_kind": "bosses",
+      "identity": 992,
+      "root_kind": "recurring",
+      "slot": 2,
+      "action_index": 179,
+      "root_record": {
+        "va": "0x146fd71f0",
+        "file_offset": "0x6fd5bf0",
+        "byte_count": 56,
+        "sha256": "8c4367e36d65ea35124f25ecadad403bcad48abffad36c2baab26c9844227dda"
+      },
+      "action_record": {
+        "va": "0x146fd71f0",
+        "file_offset": "0x6fd5bf0",
+        "byte_count": 48,
+        "sha256": "05eb9c3d7f87b8d3987a91b632b7703fabddd99fba30c7c97f03b8c7a9d3373b"
+      },
+      "native_tag": 26,
+      "words": [
+        24314,
+        1080033280,
+        1077936128,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        6656
+      ],
+      "repeat_bits": 1096810496
+    },
+    {
+      "owner_kind": "guardians",
+      "identity": 911,
+      "root_kind": "phase",
+      "slot": 0,
+      "action_index": 428,
+      "root_record": {
+        "va": "0x146fe4bc8",
+        "file_offset": "0x6fe35c8",
+        "byte_count": 72,
+        "sha256": "2e1a35de75e6415f6e2b81f6637ac4b5be6402d120e7781103baf6b6c17553f0"
+      },
+      "action_record": {
+        "va": "0x146fe4bd8",
+        "file_offset": "0x6fe35d8",
+        "byte_count": 48,
+        "sha256": "c127d19480e692c334c1d537681c1ae802e41048dc0a5d0ee558314a0300309c"
+      },
+      "native_tag": 26,
+      "words": [
+        24314,
+        1077936128,
+        1072064102,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        6656
+      ],
+      "repeat_bits": 0,
+      "threshold_bits": 1056964608,
+      "yell": "%s stares you down!"
+    }
+  ],
+  "source_review": {
+    "adapters_checked": 493,
+    "suppressed_action_indices": [
+      131,
+      179,
+      190,
+      340,
+      342,
+      354,
+      428
+    ],
+    "unrelated_generic_adapters_admitted": 140,
+    "both_live_queues_filter_before_actor_lookup": true,
+    "guardian_phase_emote_suppressed_after_latch_and_request": true,
+    "delayed_and_recursive_dispatch_unmodified": true,
+    "source_executed": false
+  },
+  "limits": [
+    "Current complete data/graph comparison, bounded source tracing and isolated original queue instructions only.",
+    "Synthetic frame/queue memory; dispatcher intercepted before actor lookup/effect production.",
+    "No Rust execution, compilation, game process, terrain, rendering or platform/runtime observation.",
+    "Retained producers/consumers and other raid dependencies keep their historical target provenance; their runtime/parity work remains open under #42/#43.",
+    "Initial suppression preserves catalog roots, timer/phase collection and direct recursive/delayed dispatch; guardian phase announcements follow the same native filter."
+  ],
+  "guardian_phase_filter": {
+    "record": {
+      "va": "0x14594810a",
+      "byte_count": 324,
+      "sha256": "5c555e4e9a78952ea9f80c14e4a591be7e136157aacc8b069a7c5b0f21153e39"
+    },
+    "eligible_continuation": "0x14594824e",
+    "suppressed_continuation": "0x145948761",
+    "native_cases": 262,
+    "skipped_native_tags": [
+      12,
+      26
+    ],
+    "phase_latch_and_full_request_preserved": true,
+    "announcement_callbacks_not_executed": true,
+    "assembly": "phase-request.asm"
+  },
+  "rea_provenance": "rea-provenance.json"
+}

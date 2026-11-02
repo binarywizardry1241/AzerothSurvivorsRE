@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.113.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+    "size_bytes": 141932032,
+    "identity_manifest": "docs/analysis/coverage/targets.json",
+    "version_provenance": "matching_embedded_updater_and_dialog_markers",
+    "runtime_data": {
+      "directory": "installed-game/Data",
+      "archives": [
+        {
+          "path": "installed-game/Data/patch-2.MPQ",
+          "size_bytes": 4690878,
+          "sha256": "366edee41642a5dda22ed90cc252b543ee375755b7e8bee81e2a6cd59fd7b286"
+        },
+        {
+          "path": "installed-game/Data/patch-3.MPQ",
+          "size_bytes": 2580491,
+          "sha256": "75c35ca5b8075197252581e301e8900143007fdf37b493ad271ae1bd39f95a29"
+        },
+        {
+          "path": "installed-game/Data/patch-4.MPQ",
+          "size_bytes": 22769233,
+          "sha256": "2e895e0e0ff6a4781d0e0aaa6ea7d32ed1fe36841e17806fe1855cb880d18865"
+        },
+        {
+          "path": "installed-game/Data/patch-5.MPQ",
+          "size_bytes": 267019039,
+          "sha256": "5008e56873718b468fa5ae1b697dcbe4f5da9ffe6c793f3ef9939dbd7716f3d8"
+        },
+        {
+          "path": "installed-game/Data/patch-6.MPQ",
+          "size_bytes": 212228,
+          "sha256": "cad6ff59b5df028a507581befb836fce07894057e15fe63d9fdc553a95b7ceb5"
+        },
+        {
+          "path": "installed-game/Data/patch-7.MPQ",
+          "size_bytes": 276649,
+          "sha256": "f5fb15b181cf01cc6b5cf2ee9948a27ecc4ba27bab9a8bec584df4381932aae6"
+        },
+        {
+          "path": "installed-game/Data/patch-8.MPQ",
+          "size_bytes": 4155417,
+          "sha256": "ae3aaa29cadb7aeba8255f5b4a8305c7cbecfe8f0d3ed9646522113d16c3e12e"
+        },
+        {
+          "path": "installed-game/Data/patch-9.MPQ",
+          "size_bytes": 5739608,
+          "sha256": "ffff8ea890bdaf91a1680543ac60106db92132bc2210105279610fa73661a524"
+        },
+        {
+          "path": "installed-game/Data/patch.MPQ",
+          "size_bytes": 1340199244,
+          "sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf"
+        }
+      ]
+    }
+  },
+  "gap_ids": [
+    41,
+    67
+  ],
+  "lead": "Q41-M03-inventory-refusal-1458646d0",
+  "native_ranges": [
+    {
+      "start": "0x1458646d0",
+      "end_exclusive": "0x1458670a2",
+      "sha256": "f5b6f0ddd41edf70b437bb69f1728aebb0f9b7e572bf5cb6323dcb90524d9894"
+    },
+    {
+      "start": "0x1458d5730",
+      "end_exclusive": "0x1458d586d",
+      "sha256": "805231ead9f62a47e46e98bfa9e630e315a78c929c02753c0c9b188a02d0ed1f"
+    }
+  ],
+  "ghidra_observations": [
+    {
+      "operation": "procedure_info",
+      "parameters": {
+        "procedure": "0x1458646d0"
+      },
+      "evidence_id": "ev_ad6a75c9018b1e5083d9e0d0a790d7030734596ebe40e491df8c52e3b9c4c42a",
+      "response_sha256": "1195966ecdbd690157ef46b7131c8209bf20070ddcb9849e611f9d11803d3967"
+    },
+    {
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x1458646d0"
+      },
+      "evidence_id": "ev_e3e8af23e9e5ef00399b2af7447d90a0b5bfa2ef030c1f8d3bab9c67447e5e01",
+      "response_sha256": "65c72b4c399ba7f1b17f0059a865d7a3ce2a8bdddec047d640a05d8046f5011e"
+    },
+    {
+      "operation": "procedure_info",
+      "parameters": {
+        "procedure": "0x1458d5730"
+      },
+      "evidence_id": "ev_f59429b77728175fe22125bf77b418ae17d2ac8efb8041fddb54b7bcb05c69ac",
+      "response_sha256": "7687f2c32d3bdfc561828b07520576ea11d9cca15b0740a24e7ca18fa793dc5f"
+    },
+    {
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x1458d5730"
+      },
+      "evidence_id": "ev_d7c2c82f3e2a22cdbe7164fcc392223efed5c1cb040078104e2e3c4ff4348351",
+      "response_sha256": "f299403f5fb10000e169d3398e3bc74ad78abe055fa3ba95c1fa2e581f0a733b"
+    }
+  ],
+  "two_byte_cases": 327680,
+  "two_byte_results_sha256": "b2514147fcbf38250b81aec81f9ff1a2b87ca57904c57c79eb056f60e89e126a",
+  "wire_cases": 2565,
+  "wire_results_sha256": "a0a709d0970ca0034f277e05ec879d47a5d2ffae9ad4f3d219f13dc60ca7c5c6",
+  "truncated_wire_cases": 1285,
+  "source_fixtures": [
+    {"opcode":266,"first":0,"second":0,"reason":21,"guid":4611686018427388160,"packet_opcode":274,"packet_hex":"150001000000000040000000000000000000"},
+    {"opcode":266,"first":0,"second":18,"reason":21,"guid":4611686018427388178,"packet_opcode":274,"packet_hex":"151201000000000040000000000000000000"},
+    {"opcode":266,"first":0,"second":19,"reason":21,"guid":0,"packet_opcode":274,"packet_hex":"150000000000000000000000000000000000"},
+    {"opcode":266,"first":0,"second":255,"reason":21,"guid":0,"packet_opcode":274,"packet_hex":"150000000000000000000000000000000000"},
+    {"opcode":266,"first":18,"second":0,"reason":21,"guid":4611686018427388160,"packet_opcode":274,"packet_hex":"150001000000000040000000000000000000"},
+    {"opcode":266,"first":18,"second":18,"reason":21,"guid":4611686018427388178,"packet_opcode":274,"packet_hex":"151201000000000040000000000000000000"},
+    {"opcode":266,"first":18,"second":19,"reason":21,"guid":0,"packet_opcode":274,"packet_hex":"150000000000000000000000000000000000"},
+    {"opcode":266,"first":18,"second":255,"reason":21,"guid":0,"packet_opcode":274,"packet_hex":"150000000000000000000000000000000000"},
+    {"opcode":266,"first":19,"second":0,"reason":21,"guid":4611686018427388160,"packet_opcode":274,"packet_hex":"150001000000000040000000000000000000"},
+    {"opcode":266,"first":19,"second":18,"reason":21,"guid":4611686018427388178,"packet_opcode":274,"packet_hex":"151201000000000040000000000000000000"},
+    {"opcode":266,"first":19,"second":19,"reason":21,"guid":0,"packet_opcode":274,"packet_hex":"150000000000000000000000000000000000"},
+    {"opcode":266,"first":19,"second":255,"reason":21,"guid":0,"packet_opcode":274,"packet_hex":"150000000000000000000000000000000000"},
+    {"opcode":266,"first":255,"second":0,"reason":21,"guid":4611686018427388160,"packet_opcode":274,"packet_hex":"150001000000000040000000000000000000"},
+    {"opcode":266,"first":255,"second":18,"reason":21,"guid":4611686018427388178,"packet_opcode":274,"packet_hex":"151201000000000040000000000000000000"},
+    {"opcode":266,"first":255,"second":19,"reason":21,"guid":0,"packet_opcode":274,"packet_hex":"150000000000000000000000000000000000"},
+    {"opcode":266,"first":255,"second":255,"reason":21,"guid":0,"packet_opcode":274,"packet_hex":"150000000000000000000000000000000000"},
+    {"opcode":267,"first":0,"second":0,"reason":21,"guid":4611686018427388160,"packet_opcode":274,"packet_hex":"150001000000000040000000000000000000"},
+    {"opcode":267,"first":0,"second":18,"reason":21,"guid":4611686018427388178,"packet_opcode":274,"packet_hex":"151201000000000040000000000000000000"},
+    {"opcode":267,"first":0,"second":19,"reason":21,"guid":0,"packet_opcode":274,"packet_hex":"150000000000000000000000000000000000"},
+    {"opcode":267,"first":0,"second":255,"reason":21,"guid":0,"packet_opcode":274,"packet_hex":"150000000000000000000000000000000000"},
+    {"opcode":267,"first":18,"second":0,"reason":21,"guid":4611686018427388160,"packet_opcode":274,"packet_hex":"150001000000000040000000000000000000"},
+    {"opcode":267,"first":18,"second":18,"reason":21,"guid":4611686018427388178,"packet_opcode":274,"packet_hex":"151201000000000040000000000000000000"},
+    {"opcode":267,"first":18,"second":19,"reason":21,"guid":0,"packet_opcode":274,"packet_hex":"150000000000000000000000000000000000"},
+    {"opcode":267,"first":18,"second":255,"reason":21,"guid":0,"packet_opcode":274,"packet_hex":"150000000000000000000000000000000000"},
+    {"opcode":267,"first":19,"second":0,"reason":21,"guid":4611686018427388160,"packet_opcode":274,"packet_hex":"150001000000000040000000000000000000"},
+    {"opcode":267,"first":19,"second":18,"reason":21,"guid":4611686018427388178,"packet_opcode":274,"packet_hex":"151201000000000040000000000000000000"},
+    {"opcode":267,"first":19,"second":19,"reason":21,"guid":0,"packet_opcode":274,"packet_hex":"150000000000000000000000000000000000"},
+    {"opcode":267,"first":19,"second":255,"reason":21,"guid":0,"packet_opcode":274,"packet_hex":"150000000000000000000000000000000000"},
+    {"opcode":267,"first":255,"second":0,"reason":21,"guid":4611686018427388160,"packet_opcode":274,"packet_hex":"150001000000000040000000000000000000"},
+    {"opcode":267,"first":255,"second":18,"reason":21,"guid":4611686018427388178,"packet_opcode":274,"packet_hex":"151201000000000040000000000000000000"},
+    {"opcode":267,"first":255,"second":19,"reason":21,"guid":0,"packet_opcode":274,"packet_hex":"150000000000000000000000000000000000"},
+    {"opcode":267,"first":255,"second":255,"reason":21,"guid":0,"packet_opcode":274,"packet_hex":"150000000000000000000000000000000000"},
+    {"opcode":268,"first":0,"second":0,"reason":21,"guid":4611686018427388160,"packet_opcode":274,"packet_hex":"150001000000000040000000000000000000"},
+    {"opcode":268,"first":0,"second":18,"reason":21,"guid":4611686018427388178,"packet_opcode":274,"packet_hex":"151201000000000040000000000000000000"},
+    {"opcode":268,"first":0,"second":19,"reason":21,"guid":0,"packet_opcode":274,"packet_hex":"150000000000000000000000000000000000"},
+    {"opcode":268,"first":0,"second":255,"reason":21,"guid":0,"packet_opcode":274,"packet_hex":"150000000000000000000000000000000000"},
+    {"opcode":268,"first":18,"second":0,"reason":21,"guid":4611686018427388160,"packet_opcode":274,"packet_hex":"150001000000000040000000000000000000"},
+    {"opcode":268,"first":18,"second":18,"reason":21,"guid":4611686018427388178,"packet_opcode":274,"packet_hex":"151201000000000040000000000000000000"},
+    {"opcode":268,"first":18,"second":19,"reason":21,"guid":0,"packet_opcode":274,"packet_hex":"150000000000000000000000000000000000"},
+    {"opcode":268,"first":18,"second":255,"reason":21,"guid":0,"packet_opcode":274,"packet_hex":"150000000000000000000000000000000000"},
+    {"opcode":268,"first":19,"second":0,"reason":21,"guid":4611686018427388160,"packet_opcode":274,"packet_hex":"150001000000000040000000000000000000"},
+    {"opcode":268,"first":19,"second":18,"reason":21,"guid":4611686018427388178,"packet_opcode":274,"packet_hex":"151201000000000040000000000000000000"},
+    {"opcode":268,"first":19,"second":19,"reason":21,"guid":0,"packet_opcode":274,"packet_hex":"150000000000000000000000000000000000"},
+    {"opcode":268,"first":19,"second":255,"reason":21,"guid":0,"packet_opcode":274,"packet_hex":"150000000000000000000000000000000000"},
+    {"opcode":268,"first":255,"second":0,"reason":21,"guid":4611686018427388160,"packet_opcode":274,"packet_hex":"150001000000000040000000000000000000"},
+    {"opcode":268,"first":255,"second":18,"reason":21,"guid":4611686018427388178,"packet_opcode":274,"packet_hex":"151201000000000040000000000000000000"},
+    {"opcode":268,"first":255,"second":19,"reason":21,"guid":0,"packet_opcode":274,"packet_hex":"150000000000000000000000000000000000"},
+    {"opcode":268,"first":255,"second":255,"reason":21,"guid":0,"packet_opcode":274,"packet_hex":"150000000000000000000000000000000000"},
+    {"opcode":269,"first":0,"second":0,"reason":21,"guid":4611686018427388160,"packet_opcode":274,"packet_hex":"150001000000000040000000000000000000"},
+    {"opcode":269,"first":0,"second":18,"reason":21,"guid":4611686018427388160,"packet_opcode":274,"packet_hex":"150001000000000040000000000000000000"},
+    {"opcode":269,"first":0,"second":19,"reason":21,"guid":4611686018427388160,"packet_opcode":274,"packet_hex":"150001000000000040000000000000000000"},
+    {"opcode":269,"first":0,"second":255,"reason":21,"guid":4611686018427388160,"packet_opcode":274,"packet_hex":"150001000000000040000000000000000000"},
+    {"opcode":269,"first":18,"second":0,"reason":21,"guid":4611686018427388178,"packet_opcode":274,"packet_hex":"151201000000000040000000000000000000"},
+    {"opcode":269,"first":18,"second":18,"reason":21,"guid":4611686018427388178,"packet_opcode":274,"packet_hex":"151201000000000040000000000000000000"},
+    {"opcode":269,"first":18,"second":19,"reason":21,"guid":4611686018427388178,"packet_opcode":274,"packet_hex":"151201000000000040000000000000000000"},
+    {"opcode":269,"first":18,"second":255,"reason":21,"guid":4611686018427388178,"packet_opcode":274,"packet_hex":"151201000000000040000000000000000000"},
+    {"opcode":269,"first":19,"second":0,"reason":21,"guid":0,"packet_opcode":274,"packet_hex":"150000000000000000000000000000000000"},
+    {"opcode":269,"first":19,"second":18,"reason":21,"guid":0,"packet_opcode":274,"packet_hex":"150000000000000000000000000000000000"},
+    {"opcode":269,"first":19,"second":19,"reason":21,"guid":0,"packet_opcode":274,"packet_hex":"150000000000000000000000000000000000"},
+    {"opcode":269,"first":19,"second":255,"reason":21,"guid":0,"packet_opcode":274,"packet_hex":"150000000000000000000000000000000000"},
+    {"opcode":269,"first":255,"second":0,"reason":21,"guid":0,"packet_opcode":274,"packet_hex":"150000000000000000000000000000000000"},
+    {"opcode":269,"first":255,"second":18,"reason":21,"guid":0,"packet_opcode":274,"packet_hex":"150000000000000000000000000000000000"},
+    {"opcode":269,"first":255,"second":19,"reason":21,"guid":0,"packet_opcode":274,"packet_hex":"150000000000000000000000000000000000"},
+    {"opcode":269,"first":255,"second":255,"reason":21,"guid":0,"packet_opcode":274,"packet_hex":"150000000000000000000000000000000000"},
+    {"opcode":273,"first":0,"second":0,"reason":24,"guid":4611686018427388160,"packet_opcode":274,"packet_hex":"180001000000000040000000000000000000"},
+    {"opcode":273,"first":0,"second":18,"reason":24,"guid":4611686018427388178,"packet_opcode":274,"packet_hex":"181201000000000040000000000000000000"},
+    {"opcode":273,"first":0,"second":19,"reason":24,"guid":0,"packet_opcode":274,"packet_hex":"180000000000000000000000000000000000"},
+    {"opcode":273,"first":0,"second":255,"reason":24,"guid":0,"packet_opcode":274,"packet_hex":"180000000000000000000000000000000000"},
+    {"opcode":273,"first":18,"second":0,"reason":24,"guid":4611686018427388160,"packet_opcode":274,"packet_hex":"180001000000000040000000000000000000"},
+    {"opcode":273,"first":18,"second":18,"reason":24,"guid":4611686018427388178,"packet_opcode":274,"packet_hex":"181201000000000040000000000000000000"},
+    {"opcode":273,"first":18,"second":19,"reason":24,"guid":0,"packet_opcode":274,"packet_hex":"180000000000000000000000000000000000"},
+    {"opcode":273,"first":18,"second":255,"reason":24,"guid":0,"packet_opcode":274,"packet_hex":"180000000000000000000000000000000000"},
+    {"opcode":273,"first":19,"second":0,"reason":24,"guid":4611686018427388160,"packet_opcode":274,"packet_hex":"180001000000000040000000000000000000"},
+    {"opcode":273,"first":19,"second":18,"reason":24,"guid":4611686018427388178,"packet_opcode":274,"packet_hex":"181201000000000040000000000000000000"},
+    {"opcode":273,"first":19,"second":19,"reason":24,"guid":0,"packet_opcode":274,"packet_hex":"180000000000000000000000000000000000"},
+    {"opcode":273,"first":19,"second":255,"reason":24,"guid":0,"packet_opcode":274,"packet_hex":"180000000000000000000000000000000000"},
+    {"opcode":273,"first":255,"second":0,"reason":24,"guid":4611686018427388160,"packet_opcode":274,"packet_hex":"180001000000000040000000000000000000"},
+    {"opcode":273,"first":255,"second":18,"reason":24,"guid":4611686018427388178,"packet_opcode":274,"packet_hex":"181201000000000040000000000000000000"},
+    {"opcode":273,"first":255,"second":19,"reason":24,"guid":0,"packet_opcode":274,"packet_hex":"180000000000000000000000000000000000"},
+    {"opcode":273,"first":255,"second":255,"reason":24,"guid":0,"packet_opcode":274,"packet_hex":"180000000000000000000000000000000000"}
+  ],
+  "source_guards": "Five actual command/wire-byte projections, AS refusal builder, presentation push and existing error/unlock consumer inspected; source not executed.",
+  "limits": [
+    "Only five selected local request branches and native refusal serializer execute with synthetic host/state; no co-op branch, server, transport or game runs.",
+    "Allocation and final sender are explicit seams; the original 18-byte body is captured before sending. No reconstructed Rust or native client parser executes.",
+    "First/second bytes are zero-filled when absent. Extra bytes, bag identity, source slot in SwapItem, destination slot in SwapInvItem and destroy count do not affect this native branch.",
+    "Source reuses the real protocol decoder and existing InventoryFailure/error/unlock handler. Authored Rust bridge, projection and decoder regressions remain uncompiled/unrun.",
+    "Actual inventory drag/destroy/lock/error timing, active/teardown scheduling, FrameXML and original/rebuilt UI parity remain unverified. Other incoming opcodes, full native protocol and global aliases stay open under41; census/selectors unchanged."
+  ]
+}

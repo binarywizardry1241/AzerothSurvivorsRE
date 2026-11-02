@@ -1,0 +1,239 @@
+{
+  "target_version": "0.115.0",
+  "target_sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+  "target_executed": false,
+  "spans": [
+    {
+      "role": "banner-registry-read",
+      "start": "0x1402b220f",
+      "end_exclusive": "0x1402b226c",
+      "file_offset": "0x2b160f",
+      "sha256": "cfd659451c13e06346accea1998847098dcd29f152cf4b4778d7b20a2886b970",
+      "assembly": "banner-registry-read.asm"
+    },
+    {
+      "role": "banner-predicate",
+      "start": "0x1402b2258",
+      "end_exclusive": "0x1402b226c",
+      "file_offset": "0x2b1658",
+      "sha256": "4dfb280e1d7fd42dfbe80d2ff8d01a58668bc29a474e92e436634699a2bae548",
+      "assembly": "banner-registry-read.asm"
+    },
+    {
+      "role": "emote-packet",
+      "start": "0x1459a9360",
+      "end_exclusive": "0x1459a96ae",
+      "file_offset": "0x59a8760",
+      "sha256": "45666e10ea9c07ee16347ae063e185c5dcf17a90016141a2a8361ee709f4be7f",
+      "assembly": "emote-packet.asm"
+    },
+    {
+      "role": "scoped-locale",
+      "start": "0x1458d6dc0",
+      "end_exclusive": "0x1458d6f35",
+      "file_offset": "0x58d61c0",
+      "sha256": "4413b0fb895f44152007004cbb2ba8da9134072e0dbfc70791dbe735fc5d654a",
+      "assembly": "scoped-locale.asm"
+    },
+    {
+      "role": "pack-producer",
+      "start": "0x14596062a",
+      "end_exclusive": "0x145960649",
+      "file_offset": "0x595fa2a",
+      "sha256": "be49cf4e00ad69f0d90db3195a7fd3f6c85dc01e04726d2b526b1d154522f15c",
+      "assembly": "pack-producer.asm"
+    },
+    {
+      "role": "wall-producer",
+      "start": "0x145960adc",
+      "end_exclusive": "0x145960afb",
+      "file_offset": "0x595fedc",
+      "sha256": "43d47b5b3131b7550457fef50d085019cdeb8871edace76089b842b64115aee2",
+      "assembly": "wall-producer.asm"
+    },
+    {
+      "role": "swarm-producer",
+      "start": "0x145960ef1",
+      "end_exclusive": "0x145960f10",
+      "file_offset": "0x59602f1",
+      "sha256": "008ab7df740688c836a3a06557a6767a57ab70285c8c55e23b107daab6a77200",
+      "assembly": "swarm-producer.asm"
+    },
+    {
+      "role": "stampede-producer",
+      "start": "0x145961330",
+      "end_exclusive": "0x14596134a",
+      "file_offset": "0x5960730",
+      "sha256": "0ebe4185b4ce7e4dcbce542ad9df7fc3762a28bf03f5a8943dfa12ac196c725a",
+      "assembly": "stampede-producer.asm"
+    },
+    {
+      "role": "wave-delivery",
+      "start": "0x14596134a",
+      "end_exclusive": "0x14596140a",
+      "file_offset": "0x596074a",
+      "sha256": "ac7b57a79db6c0c299c3b43da1542ef27ac0ee75c1fab938a86f1a6548d097c0",
+      "assembly": "wave-delivery.asm"
+    },
+    {
+      "role": "boss-entry-delivery",
+      "start": "0x14594c61c",
+      "end_exclusive": "0x14594c657",
+      "file_offset": "0x594ba1c",
+      "sha256": "92d7ee6fbbe7492a9cbb9267ce88fa146f68b9fdeb21e19e641668d75cfcb6dc",
+      "assembly": "boss-entry-delivery.asm"
+    }
+  ],
+  "cases": {
+    "native_predicate": 8,
+    "native_emote_packets": 30,
+    "native_scoped_locale": 36
+  },
+  "record_proof_sha256": "3b3150f58ef293e1d65ce42cb06fe3b6cd89362c741266ab490c418d4a3bb606",
+  "api": {
+    "path": "docs/analysis/evidence/0.115.0/embedded-api.lua",
+    "sha256": "a0066d2d6356e9f21fe4544e600def13887047a6608bb588cd6c27859b78ccc5",
+    "unchanged_function_bodies": [
+      "AZS_SetHudShown",
+      "AZS_IsHudShown",
+      "AZS_RegisterBannerHandler",
+      "AZS_UnregisterBannerHandler",
+      "AZS_ParseBanner",
+      "AZS_OnBanner"
+    ]
+  },
+  "source_contracts": {
+    "crates/benilla-app/src/local_client.rs": [
+      "script.unflushed_cvar(name)",
+      "*value = applied;"
+    ],
+    "crates/benilla-ui/src/script/cvars.rs": [
+      "pub fn unflushed_cvar",
+      "CvarWrite::FillReset { .. } => false"
+    ],
+    "crates/azeroth-survivors-re/src/gameplay/run_hud/settings.rs": [
+      "(\"banners\", \"hudBanners\")",
+      "settings.visible[index - 1] = shown(&mirror.effective)"
+    ],
+    "crates/azeroth-survivors-re/src/gameplay/notifications.rs": [
+      "settings.shown(\"banners\")",
+      "if let Some(root) = state.root { commands.entity(root).insert(visibility); }"
+    ],
+    "crates/azeroth-survivors-re/src/gameplay/client/events.rs": [
+      "SessionEvent::Chat(event.chat(",
+      "addon_banners::packet(kind,true"
+    ],
+    "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs": [
+      "source.replace(\"HUD_CVARS_LUA\", &parts)"
+    ],
+    "crates/benilla-app/src/ui_chat/frames.rs": [
+      "script.fire_event(event_name(kind), event.script_args())"
+    ],
+    "crates/benilla-ui/src/script/object.rs": [
+      "wrappers.get::<Value>(id)",
+      "wrappers.set(id, t.clone())"
+    ]
+  },
+  "banner_kinds": [
+    {
+      "address": "0x14700cda0",
+      "bytes": "95cc0047010000000400000000000000",
+      "kind": "boss"
+    },
+    {
+      "address": "0x14700cdb0",
+      "bytes": "a9cc0047010000000900000000000000",
+      "kind": "finalboss"
+    },
+    {
+      "address": "0x14700cdc0",
+      "bytes": "7ccd0047010000000800000000000000",
+      "kind": "bossdown"
+    },
+    {
+      "address": "0x14700cdd0",
+      "bytes": "84cd0047010000000800000000000000",
+      "kind": "guardian"
+    },
+    {
+      "address": "0x14700cde0",
+      "bytes": "38cc0047010000000b00000000000000",
+      "kind": "achievement"
+    },
+    {
+      "address": "0x14700cdf0",
+      "bytes": "8ccd0047010000000800000000000000",
+      "kind": "unlocked"
+    },
+    {
+      "address": "0x14700ce00",
+      "bytes": "76cd0047010000000600000000000000",
+      "kind": "magnet"
+    },
+    {
+      "address": "0x14700ce10",
+      "bytes": "bacc0047010000000500000000000000",
+      "kind": "cache"
+    },
+    {
+      "address": "0x14700ce20",
+      "bytes": "b6cc0047010000000400000000000000",
+      "kind": "rune"
+    },
+    {
+      "address": "0x14700ce30",
+      "bytes": "0fcd0047010000000600000000000000",
+      "kind": "downed"
+    },
+    {
+      "address": "0x14700ce40",
+      "bytes": "79cc0047010000000a00000000000000",
+      "kind": "frienddown"
+    },
+    {
+      "address": "0x14700ce50",
+      "bytes": "94cd0047010000000700000000000000",
+      "kind": "revived"
+    }
+  ],
+  "announcement_producers": [
+    {
+      "role": "pack",
+      "template": "A pack hunts you!",
+      "address": "0x147331344",
+      "site": "0x14596062a"
+    },
+    {
+      "role": "wall",
+      "template": "A wall of foes closes in!",
+      "address": "0x14733132b",
+      "site": "0x145960adc"
+    },
+    {
+      "role": "swarm",
+      "template": "Swarm surrounds you!",
+      "address": "0x1473312e0",
+      "site": "0x145960ef1"
+    },
+    {
+      "role": "stampede",
+      "template": "A stampede charges through!",
+      "address": "0x147331310",
+      "site": "0x145961330"
+    },
+    {
+      "role": "boss-entry",
+      "template": "%s enters the battlefield!",
+      "address": "0x147331260",
+      "site": "0x14594c61c"
+    }
+  ],
+  "case_sha256": "b681db9793e477fa53eb36a74590e0f1b6d22781e97cfdad0a2aac0e59c2f1d9",
+  "limits": [
+    "Predicate starts after trim; trim internals are a separate contract.",
+    "Allocation, memcpy and Vec growth are explicit synthetic host seams.",
+    "Scoped locale replay stubs the record parser; its formatting is separate evidence.",
+    "No actual VM/addon/Bevy schedule or rendered visibility is executed.",
+    "These contracts do not establish sustained duplicate causality or parity."
+  ]
+}

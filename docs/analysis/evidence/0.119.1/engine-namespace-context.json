@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.119.1",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c",
+    "size_bytes": 145374208
+  },
+  "source_lineage_context": {
+    "path": "docs/analysis/benilla-vendor.json",
+    "sha256": "fe63e833a2a34af9c426cc3467679bfaed304281c00d9bb2d48461515006f7f8"
+  },
+  "changed_namespace_context": [
+    {
+      "literal": "benilla_app::ui_actionmessageA",
+      "source_first": [
+        {
+          "path": "crates/benilla-app/src/ui_action/mod.rs",
+          "sha256": "39928bb1d0c5df04456eee08394c891688aa71481b5f7f150f0d3250d439fe7b"
+        }
+      ],
+      "candidate_role": "UI action feed/state/drain",
+      "classification": "supporting_generic_source_context_only_not_native_semantic_recovery",
+      "next_action": "Stop generic branch; trace only if a concrete AS interface difference emerges.",
+      "previous_literal": "benilla_app::ui_actionmessage1"
+    },
+    {
+      "literal": "benilla_assets::m2::M2ModelLoaderbenilla_assets::adt::AdtLoaderbenilla_assets::blp::BlpImageLoaderbenilla_assets::wdt::WdtIndexLoaderbenilla_assets::wmo::WmoModelLoader",
+      "source_first": [
+        {
+          "path": "crates/benilla-assets/src/m2.rs",
+          "sha256": "31df472bb01cbf59d4c88e3a2b72eb20623374fd20170bb14f8078b80bba98a1"
+        },
+        {
+          "path": "crates/benilla-assets/src/adt.rs",
+          "sha256": "fe0800ecf3356e40d2a8a6803c3f2c19d88295eacef3b0567beaa6e0c9f1cad8"
+        },
+        {
+          "path": "crates/benilla-assets/src/blp.rs",
+          "sha256": "3a969c3d73fdc1e480b80370face9997fd2eb705df0c581b503103c05dd574d7"
+        },
+        {
+          "path": "crates/benilla-assets/src/wdt.rs",
+          "sha256": "f95204e67398476b118be5940d0f6f8b035ecd9861ab1751e7ae07fb444019a1"
+        },
+        {
+          "path": "crates/benilla-assets/src/wmo.rs",
+          "sha256": "97ea91a6514ca72c7910923f35b9cdd0dc85659269ab7ca348f04181f6d7e976"
+        }
+      ],
+      "candidate_role": "shared model/terrain/image/world loaders",
+      "classification": "supporting_generic_source_context_only_not_native_semantic_recovery",
+      "next_action": "Stop generic branch; trace only if a concrete AS interface difference emerges.",
+      "previous_literal": "benilla_assets::m2::M2ModelLoaderbenilla_assets::adt::AdtLoaderbenilla_assets::blp::BlpImageLoaderbenilla_assets::wdt::WdtIndexLoaderbenilla_assets::wmo::WmoModelLoaderPd"
+    },
+    {
+      "literal": "benilla_world::terrain_stream::spawnmessageQ",
+      "source_first": [
+        {
+          "path": "crates/benilla-world/src/terrain_stream/spawn/mod.rs",
+          "sha256": "475e42c22f86bf8d7549d2df1f53cc1ed2dede58a56af0e6545be3f39da5592c"
+        }
+      ],
+      "candidate_role": "streamed model placement assembly",
+      "classification": "supporting_generic_source_context_only_not_native_semantic_recovery",
+      "next_action": "Stop generic branch; trace only if a concrete AS interface difference emerges.",
+      "previous_literal": "benilla_world::terrain_stream::spawnmessageA"
+    },
+    {
+      "literal": "benilla_world::wmo_portalmessageI",
+      "source_first": [
+        {
+          "path": "crates/benilla-world/src/wmo_portal/mod.rs",
+          "sha256": "80162a2fe2a5e486358c65432dbe99507fd959c3351dffb348a4cd7fd8da773a"
+        }
+      ],
+      "candidate_role": "shared room/portal visibility",
+      "classification": "supporting_generic_source_context_only_not_native_semantic_recovery",
+      "next_action": "Stop generic branch; trace only if a concrete AS interface difference emerges.",
+      "previous_literal": "benilla_world::wmo_portalmessage9yCF"
+    }
+  ],
+  "limits": [
+    "Changed packed regex suffixes are observations, not proof of an engine behavior change or native compiled revision.",
+    "Available generic source stops these supporting branches; no concrete additional AS dependency or ownership question established by these suffixes."
+  ],
+  "predecessor": {
+    "path": "docs/analysis/evidence/0.119.0/engine-namespace-context.json",
+    "sha256": "58c0fb1a8e0c292bd107fe074e37379fd1f761d0701455d062390aeb0de13eb6"
+  },
+  "discovery_delta": {
+    "path": "docs/analysis/evidence/0.119.1/discovery-delta.json",
+    "sha256": "1f5ca2988fca98cd9a5a3ba2aae0604437db4766791d073becdb95956aab5bd6"
+  }
+}

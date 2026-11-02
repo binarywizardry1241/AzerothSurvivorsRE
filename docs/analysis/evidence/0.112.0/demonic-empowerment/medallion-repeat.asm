@@ -1,0 +1,5 @@
+145968ace 41ff842408040000 inc dword ptr [r12 + 0x408]
+145968ad6 c685b602000001 mov byte ptr [rbp + 0x2b6], 1
+145968add 4c89e1 mov rcx, r12
+145968ae0 e84b4afcff call 0x14592d530
+145968ae5 90 nop

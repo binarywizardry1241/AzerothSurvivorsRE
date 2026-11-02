@@ -1,0 +1,63 @@
+{
+  "target": "installed-game/AzerothSurvivors.exe",
+  "output": "runtime/q41-flow-relations-0.113.2/rea-replay",
+  "init_timeout": 60,
+  "timeout": 240,
+  "environment": {
+    "REA_GHIDRA_SEED_FILE": "docs/analysis/evidence/0.113.2/q41-options-flow/probe-seeds.tsv",
+    "REA_GHIDRA_DISABLED_ANALYZERS": "Stack,Decompiler Switch Analysis,Function ID,Function Start Search,Disassemble Entry Points,Subroutine References,Data Reference,Reference,Non-Returning Functions - Discovered,Shared Return Calls,Create Address Tables,Call Convention ID,Call-Fixup Installer,Variadic Function Signature Override",
+    "REA_GHIDRA_STARTUP_TIMEOUT_MS": "600000"
+  },
+  "operations": [
+    {
+      "name": "analyze_function",
+      "arguments": {
+        "procedure": "0x1401a6770"
+      },
+      "label": "options-setter",
+      "timeout": 660
+    },
+    {
+      "name": "analyze_function",
+      "arguments": {
+        "procedure": "0x140149550"
+      },
+      "label": "format-callback"
+    },
+    {
+      "name": "resolve_containing_procedure",
+      "arguments": {
+        "address": "0x1401a6bcc"
+      },
+      "label": "missing-resource-owner"
+    },
+    {
+      "name": "inspect_native_instruction",
+      "arguments": {
+        "address": "0x1401a67d7"
+      },
+      "label": "descriptor-dispatch"
+    },
+    {
+      "name": "inspect_native_instruction",
+      "arguments": {
+        "address": "0x1401a6904"
+      },
+      "label": "callback-address"
+    },
+    {
+      "name": "inspect_native_instruction",
+      "arguments": {
+        "address": "0x1401a6bd7"
+      },
+      "label": "resource-panic-call"
+    },
+    {
+      "name": "procedure_references",
+      "arguments": {
+        "procedure": "0x140149550"
+      },
+      "label": "formatter-references"
+    }
+  ]
+}

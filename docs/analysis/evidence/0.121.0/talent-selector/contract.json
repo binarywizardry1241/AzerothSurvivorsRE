@@ -1,0 +1,1465 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "gap_ids": [
+    249
+  ],
+  "bounded_contract_system_ids": [
+    "custom-game-talents"
+  ],
+  "bounded_contract_owner_scopes": {
+    "custom-game-talents": "Exact Soul Reaping definition/raw36 identity, all-byte rank scaling and generic aggregate publication; full current combat/DoT consumers, source execution and parity remain separate."
+  },
+  "classification": "current_raw36_is_retained_Soul_Reaping_not_new_absent_gameplay",
+  "definition": {
+    "virtual_address": "0x14767d1f0",
+    "file_offset": "0x767bff0",
+    "byte_count": 160,
+    "sha256": "4af6d6e5fad5752debeefb6f783adae5e92751afe391c8e8c74ddccd0f5136df",
+    "key": "dark_pact",
+    "name": "Soul Reaping",
+    "description": "Death Coil instantly deals {v}% of your Drain Life's remaining damage on its target, without consuming it."
+  },
+  "payload": {
+    "virtual_address": "0x14767c8b8",
+    "file_offset": "0x767b6b8",
+    "byte_count": 64,
+    "sha256": "b58c58db05cbb0662289e8520c7aa6fd1c6b1d0e26bc55dd9dd818d40528e6a7",
+    "bytes_hex": "24000000cdcc4c3d0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "ranges": [
+    {
+      "virtual_address": "0x145b44670",
+      "file_offset": "0x5b43a70",
+      "byte_count": 1699,
+      "sha256": "df206bff99f3de26b5345bbc358c85683a35d1733c50d3e4d6d7c19552587c98"
+    },
+    {
+      "virtual_address": "0x145b38120",
+      "file_offset": "0x5b37520",
+      "byte_count": 544,
+      "sha256": "294672d4e01aaa5232c26fef3e0cc6f15eb6355fe3011bf77a1757415efdea9d"
+    },
+    {
+      "virtual_address": "0x1476858dc",
+      "file_offset": "0x76846dc",
+      "byte_count": 148,
+      "sha256": "3ad8a504ad034fc934e9350edea51df3f760396cab1cbc793ff7d11906bfd1d2"
+    }
+  ],
+  "constants": [
+    {
+      "register": "xmm6",
+      "virtual_address": "0x1461981a0",
+      "file_offset": "0x6196fa0",
+      "byte_count": 4,
+      "sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c",
+      "bytes_hex": "0000803f"
+    },
+    {
+      "register": "xmm7",
+      "virtual_address": "0x146198260",
+      "file_offset": "0x6197060",
+      "byte_count": 4,
+      "sha256": "ea2845900b5856c9bf354b1aa9761b5aa6888e5ed61738fe9579ca42bc0f6054",
+      "bytes_hex": "00004040"
+    },
+    {
+      "register": "xmm8",
+      "virtual_address": "0x14619886c",
+      "file_offset": "0x619766c",
+      "byte_count": 4,
+      "sha256": "270696d298cc689d8e5bd75897918aa617a25a5030ccae98017053dddd974995",
+      "bytes_hex": "00007f43"
+    },
+    {
+      "register": "xmm9",
+      "virtual_address": "0x146198230",
+      "file_offset": "0x6197030",
+      "byte_count": 4,
+      "sha256": "c68830a25204a09f8e77aada6bc5807f607cccaaa0ebb2a7122d317584478a8b",
+      "bytes_hex": "000080bf"
+    },
+    {
+      "register": "xmm10",
+      "virtual_address": "0x146198204",
+      "file_offset": "0x6197004",
+      "byte_count": 4,
+      "sha256": "d99e58435243d9fef9c88273b8d553b4fba4d0baf8009d29eae74fa99e0d9f57",
+      "bytes_hex": "0000003f"
+    }
+  ],
+  "cases": [
+    {
+      "rank": 0,
+      "coefficient_bits": "cdcc4c3d",
+      "generic_rows": 1
+    },
+    {
+      "rank": 1,
+      "coefficient_bits": "cdcc4c3d",
+      "generic_rows": 1
+    },
+    {
+      "rank": 2,
+      "coefficient_bits": "9a99993d",
+      "generic_rows": 1
+    },
+    {
+      "rank": 3,
+      "coefficient_bits": "cdcccc3d",
+      "generic_rows": 1
+    },
+    {
+      "rank": 4,
+      "coefficient_bits": "0000003e",
+      "generic_rows": 1
+    },
+    {
+      "rank": 5,
+      "coefficient_bits": "9a99193e",
+      "generic_rows": 1
+    },
+    {
+      "rank": 6,
+      "coefficient_bits": "3333333e",
+      "generic_rows": 1
+    },
+    {
+      "rank": 7,
+      "coefficient_bits": "cdcc4c3e",
+      "generic_rows": 1
+    },
+    {
+      "rank": 8,
+      "coefficient_bits": "6766663e",
+      "generic_rows": 1
+    },
+    {
+      "rank": 9,
+      "coefficient_bits": "0000803e",
+      "generic_rows": 1
+    },
+    {
+      "rank": 10,
+      "coefficient_bits": "cdcc8c3e",
+      "generic_rows": 1
+    },
+    {
+      "rank": 11,
+      "coefficient_bits": "9a99993e",
+      "generic_rows": 1
+    },
+    {
+      "rank": 12,
+      "coefficient_bits": "6766a63e",
+      "generic_rows": 1
+    },
+    {
+      "rank": 13,
+      "coefficient_bits": "3333b33e",
+      "generic_rows": 1
+    },
+    {
+      "rank": 14,
+      "coefficient_bits": "0000c03e",
+      "generic_rows": 1
+    },
+    {
+      "rank": 15,
+      "coefficient_bits": "cdcccc3e",
+      "generic_rows": 1
+    },
+    {
+      "rank": 16,
+      "coefficient_bits": "9a99d93e",
+      "generic_rows": 1
+    },
+    {
+      "rank": 17,
+      "coefficient_bits": "6766e63e",
+      "generic_rows": 1
+    },
+    {
+      "rank": 18,
+      "coefficient_bits": "3333f33e",
+      "generic_rows": 1
+    },
+    {
+      "rank": 19,
+      "coefficient_bits": "0000003f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 20,
+      "coefficient_bits": "6766063f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 21,
+      "coefficient_bits": "cdcc0c3f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 22,
+      "coefficient_bits": "3333133f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 23,
+      "coefficient_bits": "9a99193f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 24,
+      "coefficient_bits": "0000203f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 25,
+      "coefficient_bits": "6766263f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 26,
+      "coefficient_bits": "cdcc2c3f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 27,
+      "coefficient_bits": "3333333f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 28,
+      "coefficient_bits": "9a99393f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 29,
+      "coefficient_bits": "0000403f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 30,
+      "coefficient_bits": "6766463f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 31,
+      "coefficient_bits": "cdcc4c3f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 32,
+      "coefficient_bits": "3333533f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 33,
+      "coefficient_bits": "9a99593f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 34,
+      "coefficient_bits": "0000603f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 35,
+      "coefficient_bits": "6766663f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 36,
+      "coefficient_bits": "cdcc6c3f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 37,
+      "coefficient_bits": "3333733f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 38,
+      "coefficient_bits": "9a99793f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 39,
+      "coefficient_bits": "0000803f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 40,
+      "coefficient_bits": "3333833f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 41,
+      "coefficient_bits": "6766863f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 42,
+      "coefficient_bits": "9a99893f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 43,
+      "coefficient_bits": "cdcc8c3f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 44,
+      "coefficient_bits": "0000903f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 45,
+      "coefficient_bits": "3333933f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 46,
+      "coefficient_bits": "6766963f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 47,
+      "coefficient_bits": "9a99993f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 48,
+      "coefficient_bits": "cdcc9c3f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 49,
+      "coefficient_bits": "0000a03f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 50,
+      "coefficient_bits": "3333a33f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 51,
+      "coefficient_bits": "6766a63f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 52,
+      "coefficient_bits": "9a99a93f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 53,
+      "coefficient_bits": "cdccac3f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 54,
+      "coefficient_bits": "0000b03f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 55,
+      "coefficient_bits": "3333b33f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 56,
+      "coefficient_bits": "6766b63f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 57,
+      "coefficient_bits": "9a99b93f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 58,
+      "coefficient_bits": "cdccbc3f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 59,
+      "coefficient_bits": "0000c03f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 60,
+      "coefficient_bits": "3333c33f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 61,
+      "coefficient_bits": "6766c63f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 62,
+      "coefficient_bits": "9a99c93f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 63,
+      "coefficient_bits": "cdcccc3f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 64,
+      "coefficient_bits": "0000d03f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 65,
+      "coefficient_bits": "3333d33f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 66,
+      "coefficient_bits": "6766d63f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 67,
+      "coefficient_bits": "9a99d93f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 68,
+      "coefficient_bits": "cdccdc3f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 69,
+      "coefficient_bits": "0000e03f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 70,
+      "coefficient_bits": "3333e33f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 71,
+      "coefficient_bits": "6766e63f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 72,
+      "coefficient_bits": "9a99e93f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 73,
+      "coefficient_bits": "cdccec3f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 74,
+      "coefficient_bits": "0000f03f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 75,
+      "coefficient_bits": "3333f33f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 76,
+      "coefficient_bits": "6766f63f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 77,
+      "coefficient_bits": "9a99f93f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 78,
+      "coefficient_bits": "cdccfc3f",
+      "generic_rows": 1
+    },
+    {
+      "rank": 79,
+      "coefficient_bits": "00000040",
+      "generic_rows": 1
+    },
+    {
+      "rank": 80,
+      "coefficient_bits": "9a990140",
+      "generic_rows": 1
+    },
+    {
+      "rank": 81,
+      "coefficient_bits": "33330340",
+      "generic_rows": 1
+    },
+    {
+      "rank": 82,
+      "coefficient_bits": "cdcc0440",
+      "generic_rows": 1
+    },
+    {
+      "rank": 83,
+      "coefficient_bits": "67660640",
+      "generic_rows": 1
+    },
+    {
+      "rank": 84,
+      "coefficient_bits": "00000840",
+      "generic_rows": 1
+    },
+    {
+      "rank": 85,
+      "coefficient_bits": "9a990940",
+      "generic_rows": 1
+    },
+    {
+      "rank": 86,
+      "coefficient_bits": "33330b40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 87,
+      "coefficient_bits": "cdcc0c40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 88,
+      "coefficient_bits": "67660e40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 89,
+      "coefficient_bits": "00001040",
+      "generic_rows": 1
+    },
+    {
+      "rank": 90,
+      "coefficient_bits": "9a991140",
+      "generic_rows": 1
+    },
+    {
+      "rank": 91,
+      "coefficient_bits": "33331340",
+      "generic_rows": 1
+    },
+    {
+      "rank": 92,
+      "coefficient_bits": "cdcc1440",
+      "generic_rows": 1
+    },
+    {
+      "rank": 93,
+      "coefficient_bits": "67661640",
+      "generic_rows": 1
+    },
+    {
+      "rank": 94,
+      "coefficient_bits": "00001840",
+      "generic_rows": 1
+    },
+    {
+      "rank": 95,
+      "coefficient_bits": "9a991940",
+      "generic_rows": 1
+    },
+    {
+      "rank": 96,
+      "coefficient_bits": "33331b40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 97,
+      "coefficient_bits": "cdcc1c40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 98,
+      "coefficient_bits": "67661e40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 99,
+      "coefficient_bits": "00002040",
+      "generic_rows": 1
+    },
+    {
+      "rank": 100,
+      "coefficient_bits": "9a992140",
+      "generic_rows": 1
+    },
+    {
+      "rank": 101,
+      "coefficient_bits": "33332340",
+      "generic_rows": 1
+    },
+    {
+      "rank": 102,
+      "coefficient_bits": "cdcc2440",
+      "generic_rows": 1
+    },
+    {
+      "rank": 103,
+      "coefficient_bits": "67662640",
+      "generic_rows": 1
+    },
+    {
+      "rank": 104,
+      "coefficient_bits": "00002840",
+      "generic_rows": 1
+    },
+    {
+      "rank": 105,
+      "coefficient_bits": "9a992940",
+      "generic_rows": 1
+    },
+    {
+      "rank": 106,
+      "coefficient_bits": "33332b40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 107,
+      "coefficient_bits": "cdcc2c40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 108,
+      "coefficient_bits": "67662e40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 109,
+      "coefficient_bits": "00003040",
+      "generic_rows": 1
+    },
+    {
+      "rank": 110,
+      "coefficient_bits": "9a993140",
+      "generic_rows": 1
+    },
+    {
+      "rank": 111,
+      "coefficient_bits": "33333340",
+      "generic_rows": 1
+    },
+    {
+      "rank": 112,
+      "coefficient_bits": "cdcc3440",
+      "generic_rows": 1
+    },
+    {
+      "rank": 113,
+      "coefficient_bits": "67663640",
+      "generic_rows": 1
+    },
+    {
+      "rank": 114,
+      "coefficient_bits": "00003840",
+      "generic_rows": 1
+    },
+    {
+      "rank": 115,
+      "coefficient_bits": "9a993940",
+      "generic_rows": 1
+    },
+    {
+      "rank": 116,
+      "coefficient_bits": "33333b40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 117,
+      "coefficient_bits": "cdcc3c40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 118,
+      "coefficient_bits": "67663e40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 119,
+      "coefficient_bits": "00004040",
+      "generic_rows": 1
+    },
+    {
+      "rank": 120,
+      "coefficient_bits": "9a994140",
+      "generic_rows": 1
+    },
+    {
+      "rank": 121,
+      "coefficient_bits": "33334340",
+      "generic_rows": 1
+    },
+    {
+      "rank": 122,
+      "coefficient_bits": "cdcc4440",
+      "generic_rows": 1
+    },
+    {
+      "rank": 123,
+      "coefficient_bits": "67664640",
+      "generic_rows": 1
+    },
+    {
+      "rank": 124,
+      "coefficient_bits": "00004840",
+      "generic_rows": 1
+    },
+    {
+      "rank": 125,
+      "coefficient_bits": "9a994940",
+      "generic_rows": 1
+    },
+    {
+      "rank": 126,
+      "coefficient_bits": "33334b40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 127,
+      "coefficient_bits": "cdcc4c40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 128,
+      "coefficient_bits": "67664e40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 129,
+      "coefficient_bits": "00005040",
+      "generic_rows": 1
+    },
+    {
+      "rank": 130,
+      "coefficient_bits": "9a995140",
+      "generic_rows": 1
+    },
+    {
+      "rank": 131,
+      "coefficient_bits": "33335340",
+      "generic_rows": 1
+    },
+    {
+      "rank": 132,
+      "coefficient_bits": "cdcc5440",
+      "generic_rows": 1
+    },
+    {
+      "rank": 133,
+      "coefficient_bits": "67665640",
+      "generic_rows": 1
+    },
+    {
+      "rank": 134,
+      "coefficient_bits": "00005840",
+      "generic_rows": 1
+    },
+    {
+      "rank": 135,
+      "coefficient_bits": "9a995940",
+      "generic_rows": 1
+    },
+    {
+      "rank": 136,
+      "coefficient_bits": "33335b40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 137,
+      "coefficient_bits": "cdcc5c40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 138,
+      "coefficient_bits": "67665e40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 139,
+      "coefficient_bits": "00006040",
+      "generic_rows": 1
+    },
+    {
+      "rank": 140,
+      "coefficient_bits": "9a996140",
+      "generic_rows": 1
+    },
+    {
+      "rank": 141,
+      "coefficient_bits": "33336340",
+      "generic_rows": 1
+    },
+    {
+      "rank": 142,
+      "coefficient_bits": "cdcc6440",
+      "generic_rows": 1
+    },
+    {
+      "rank": 143,
+      "coefficient_bits": "67666640",
+      "generic_rows": 1
+    },
+    {
+      "rank": 144,
+      "coefficient_bits": "00006840",
+      "generic_rows": 1
+    },
+    {
+      "rank": 145,
+      "coefficient_bits": "9a996940",
+      "generic_rows": 1
+    },
+    {
+      "rank": 146,
+      "coefficient_bits": "33336b40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 147,
+      "coefficient_bits": "cdcc6c40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 148,
+      "coefficient_bits": "67666e40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 149,
+      "coefficient_bits": "00007040",
+      "generic_rows": 1
+    },
+    {
+      "rank": 150,
+      "coefficient_bits": "9a997140",
+      "generic_rows": 1
+    },
+    {
+      "rank": 151,
+      "coefficient_bits": "33337340",
+      "generic_rows": 1
+    },
+    {
+      "rank": 152,
+      "coefficient_bits": "cdcc7440",
+      "generic_rows": 1
+    },
+    {
+      "rank": 153,
+      "coefficient_bits": "67667640",
+      "generic_rows": 1
+    },
+    {
+      "rank": 154,
+      "coefficient_bits": "00007840",
+      "generic_rows": 1
+    },
+    {
+      "rank": 155,
+      "coefficient_bits": "9a997940",
+      "generic_rows": 1
+    },
+    {
+      "rank": 156,
+      "coefficient_bits": "33337b40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 157,
+      "coefficient_bits": "cdcc7c40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 158,
+      "coefficient_bits": "67667e40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 159,
+      "coefficient_bits": "00008040",
+      "generic_rows": 1
+    },
+    {
+      "rank": 160,
+      "coefficient_bits": "cdcc8040",
+      "generic_rows": 1
+    },
+    {
+      "rank": 161,
+      "coefficient_bits": "9a998140",
+      "generic_rows": 1
+    },
+    {
+      "rank": 162,
+      "coefficient_bits": "67668240",
+      "generic_rows": 1
+    },
+    {
+      "rank": 163,
+      "coefficient_bits": "33338340",
+      "generic_rows": 1
+    },
+    {
+      "rank": 164,
+      "coefficient_bits": "00008440",
+      "generic_rows": 1
+    },
+    {
+      "rank": 165,
+      "coefficient_bits": "cdcc8440",
+      "generic_rows": 1
+    },
+    {
+      "rank": 166,
+      "coefficient_bits": "9a998540",
+      "generic_rows": 1
+    },
+    {
+      "rank": 167,
+      "coefficient_bits": "67668640",
+      "generic_rows": 1
+    },
+    {
+      "rank": 168,
+      "coefficient_bits": "33338740",
+      "generic_rows": 1
+    },
+    {
+      "rank": 169,
+      "coefficient_bits": "00008840",
+      "generic_rows": 1
+    },
+    {
+      "rank": 170,
+      "coefficient_bits": "cdcc8840",
+      "generic_rows": 1
+    },
+    {
+      "rank": 171,
+      "coefficient_bits": "9a998940",
+      "generic_rows": 1
+    },
+    {
+      "rank": 172,
+      "coefficient_bits": "67668a40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 173,
+      "coefficient_bits": "33338b40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 174,
+      "coefficient_bits": "00008c40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 175,
+      "coefficient_bits": "cdcc8c40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 176,
+      "coefficient_bits": "9a998d40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 177,
+      "coefficient_bits": "67668e40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 178,
+      "coefficient_bits": "33338f40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 179,
+      "coefficient_bits": "00009040",
+      "generic_rows": 1
+    },
+    {
+      "rank": 180,
+      "coefficient_bits": "cdcc9040",
+      "generic_rows": 1
+    },
+    {
+      "rank": 181,
+      "coefficient_bits": "9a999140",
+      "generic_rows": 1
+    },
+    {
+      "rank": 182,
+      "coefficient_bits": "67669240",
+      "generic_rows": 1
+    },
+    {
+      "rank": 183,
+      "coefficient_bits": "33339340",
+      "generic_rows": 1
+    },
+    {
+      "rank": 184,
+      "coefficient_bits": "00009440",
+      "generic_rows": 1
+    },
+    {
+      "rank": 185,
+      "coefficient_bits": "cdcc9440",
+      "generic_rows": 1
+    },
+    {
+      "rank": 186,
+      "coefficient_bits": "9a999540",
+      "generic_rows": 1
+    },
+    {
+      "rank": 187,
+      "coefficient_bits": "67669640",
+      "generic_rows": 1
+    },
+    {
+      "rank": 188,
+      "coefficient_bits": "33339740",
+      "generic_rows": 1
+    },
+    {
+      "rank": 189,
+      "coefficient_bits": "00009840",
+      "generic_rows": 1
+    },
+    {
+      "rank": 190,
+      "coefficient_bits": "cdcc9840",
+      "generic_rows": 1
+    },
+    {
+      "rank": 191,
+      "coefficient_bits": "9a999940",
+      "generic_rows": 1
+    },
+    {
+      "rank": 192,
+      "coefficient_bits": "67669a40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 193,
+      "coefficient_bits": "33339b40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 194,
+      "coefficient_bits": "00009c40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 195,
+      "coefficient_bits": "cdcc9c40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 196,
+      "coefficient_bits": "9a999d40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 197,
+      "coefficient_bits": "67669e40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 198,
+      "coefficient_bits": "33339f40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 199,
+      "coefficient_bits": "0000a040",
+      "generic_rows": 1
+    },
+    {
+      "rank": 200,
+      "coefficient_bits": "cdcca040",
+      "generic_rows": 1
+    },
+    {
+      "rank": 201,
+      "coefficient_bits": "9a99a140",
+      "generic_rows": 1
+    },
+    {
+      "rank": 202,
+      "coefficient_bits": "6766a240",
+      "generic_rows": 1
+    },
+    {
+      "rank": 203,
+      "coefficient_bits": "3333a340",
+      "generic_rows": 1
+    },
+    {
+      "rank": 204,
+      "coefficient_bits": "0000a440",
+      "generic_rows": 1
+    },
+    {
+      "rank": 205,
+      "coefficient_bits": "cdcca440",
+      "generic_rows": 1
+    },
+    {
+      "rank": 206,
+      "coefficient_bits": "9a99a540",
+      "generic_rows": 1
+    },
+    {
+      "rank": 207,
+      "coefficient_bits": "6766a640",
+      "generic_rows": 1
+    },
+    {
+      "rank": 208,
+      "coefficient_bits": "3333a740",
+      "generic_rows": 1
+    },
+    {
+      "rank": 209,
+      "coefficient_bits": "0000a840",
+      "generic_rows": 1
+    },
+    {
+      "rank": 210,
+      "coefficient_bits": "cdcca840",
+      "generic_rows": 1
+    },
+    {
+      "rank": 211,
+      "coefficient_bits": "9a99a940",
+      "generic_rows": 1
+    },
+    {
+      "rank": 212,
+      "coefficient_bits": "6766aa40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 213,
+      "coefficient_bits": "3333ab40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 214,
+      "coefficient_bits": "0000ac40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 215,
+      "coefficient_bits": "cdccac40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 216,
+      "coefficient_bits": "9a99ad40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 217,
+      "coefficient_bits": "6766ae40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 218,
+      "coefficient_bits": "3333af40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 219,
+      "coefficient_bits": "0000b040",
+      "generic_rows": 1
+    },
+    {
+      "rank": 220,
+      "coefficient_bits": "cdccb040",
+      "generic_rows": 1
+    },
+    {
+      "rank": 221,
+      "coefficient_bits": "9a99b140",
+      "generic_rows": 1
+    },
+    {
+      "rank": 222,
+      "coefficient_bits": "6766b240",
+      "generic_rows": 1
+    },
+    {
+      "rank": 223,
+      "coefficient_bits": "3333b340",
+      "generic_rows": 1
+    },
+    {
+      "rank": 224,
+      "coefficient_bits": "0000b440",
+      "generic_rows": 1
+    },
+    {
+      "rank": 225,
+      "coefficient_bits": "cdccb440",
+      "generic_rows": 1
+    },
+    {
+      "rank": 226,
+      "coefficient_bits": "9a99b540",
+      "generic_rows": 1
+    },
+    {
+      "rank": 227,
+      "coefficient_bits": "6766b640",
+      "generic_rows": 1
+    },
+    {
+      "rank": 228,
+      "coefficient_bits": "3333b740",
+      "generic_rows": 1
+    },
+    {
+      "rank": 229,
+      "coefficient_bits": "0000b840",
+      "generic_rows": 1
+    },
+    {
+      "rank": 230,
+      "coefficient_bits": "cdccb840",
+      "generic_rows": 1
+    },
+    {
+      "rank": 231,
+      "coefficient_bits": "9a99b940",
+      "generic_rows": 1
+    },
+    {
+      "rank": 232,
+      "coefficient_bits": "6766ba40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 233,
+      "coefficient_bits": "3333bb40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 234,
+      "coefficient_bits": "0000bc40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 235,
+      "coefficient_bits": "cdccbc40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 236,
+      "coefficient_bits": "9a99bd40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 237,
+      "coefficient_bits": "6766be40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 238,
+      "coefficient_bits": "3333bf40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 239,
+      "coefficient_bits": "0000c040",
+      "generic_rows": 1
+    },
+    {
+      "rank": 240,
+      "coefficient_bits": "cdccc040",
+      "generic_rows": 1
+    },
+    {
+      "rank": 241,
+      "coefficient_bits": "9a99c140",
+      "generic_rows": 1
+    },
+    {
+      "rank": 242,
+      "coefficient_bits": "6766c240",
+      "generic_rows": 1
+    },
+    {
+      "rank": 243,
+      "coefficient_bits": "3333c340",
+      "generic_rows": 1
+    },
+    {
+      "rank": 244,
+      "coefficient_bits": "0000c440",
+      "generic_rows": 1
+    },
+    {
+      "rank": 245,
+      "coefficient_bits": "cdccc440",
+      "generic_rows": 1
+    },
+    {
+      "rank": 246,
+      "coefficient_bits": "9a99c540",
+      "generic_rows": 1
+    },
+    {
+      "rank": 247,
+      "coefficient_bits": "6766c640",
+      "generic_rows": 1
+    },
+    {
+      "rank": 248,
+      "coefficient_bits": "3333c740",
+      "generic_rows": 1
+    },
+    {
+      "rank": 249,
+      "coefficient_bits": "0000c840",
+      "generic_rows": 1
+    },
+    {
+      "rank": 250,
+      "coefficient_bits": "cdccc840",
+      "generic_rows": 1
+    },
+    {
+      "rank": 251,
+      "coefficient_bits": "9a99c940",
+      "generic_rows": 1
+    },
+    {
+      "rank": 252,
+      "coefficient_bits": "6766ca40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 253,
+      "coefficient_bits": "3333cb40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 254,
+      "coefficient_bits": "0000cc40",
+      "generic_rows": 1
+    },
+    {
+      "rank": 255,
+      "coefficient_bits": "cdcccc40",
+      "generic_rows": 1
+    }
+  ],
+  "original_instruction_steps": 72192,
+  "queries": [
+    {
+      "role": "rank-owner",
+      "procedure": "0x145b44670",
+      "evidence_id": "ev_fb415c97280b3f64f5767b65681a3dfbf61db6f3ef359b5a3c4d2c21fe7467f1",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "998a14aa5dcecaac89b0eb448dd181f53219bad33af50f5aaa528050eb4a6662",
+      "normalized_text_sha256": "4ec553ab4139d2a91505bd5620b73ba42ffe3f3d3e2e1307d716ca65e7575a56",
+      "plan": {
+        "path": "runtime/fixgap-0.121.0/resource-query/talent-selector/plan-v2.json",
+        "sha256": "65863119ef73c6b3d62276d910cde657077c1c90f54ff5a255952fc1208ca3b7"
+      },
+      "journal": {
+        "path": "runtime/fixgap-0.121.0/resource-query/talent-selector/query-v2/journal.json",
+        "sha256": "b7f0ee3867b9c62d2a7902a127bc978315fe6c76cba07625bbda4fa0f73bfb08"
+      },
+      "result": {
+        "path": "runtime/fixgap-0.121.0/resource-query/talent-selector/query-v2/results/d797deb1013640e6b4813643c0add27d776fbe4ebc1fda7d84d5b019df3ede2a.json",
+        "sha256": "42c3e343305334c1bd7529809d5d792449f7600db702dcf50a2dab7e98973ed5"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap-0.121.0/resource-query/talent-selector/code.bin",
+        "sha256": "df206bff99f3de26b5345bbc358c85683a35d1733c50d3e4d6d7c19552587c98"
+      },
+      "slice_virtual_address": "0x145b44670"
+    },
+    {
+      "role": "aggregate-caller",
+      "procedure": "0x145b383e0",
+      "evidence_id": "ev_728798b431a4e7bab0b173dbe0607e114b00cee1679ace999238fcebd836d954",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "389bee807dc6bfe2a0187ba14c7f07efddff6136ac5e12a139de1bb4d64cd591",
+      "normalized_text_sha256": "c67a1328d5b1d0df0b311e0eb3b912a14066d7403211852a3b5976e9c6aff66b",
+      "plan": {
+        "path": "runtime/fixgap-0.121.0/resource-query/talent-selector/caller/plan.json",
+        "sha256": "68ce9c0393643375f9ffb024168db4cb22de270928b68c72fe8e5d2e0e06bd7f"
+      },
+      "journal": {
+        "path": "runtime/fixgap-0.121.0/resource-query/talent-selector/caller/query/journal.json",
+        "sha256": "662d1f2157f1d0696827026e069f58457ec4e3c4ae6a77bfc311be91c7f3275f"
+      },
+      "result": {
+        "path": "runtime/fixgap-0.121.0/resource-query/talent-selector/caller/query/results/1a9c589c2fa95f6b3c22f01f90e20d49cbb78cf3bb80de146565ec982db3cdfb.json",
+        "sha256": "35a35ed9308c0f12b4dccf36d4518069e095751714be9bfdf78464e88f04e078"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap-0.121.0/resource-query/talent-selector/caller/code.bin",
+        "sha256": "7480188f4519e9c9238873cd667b752bc1e0a03c57a9c38f7419c95a1baa796f"
+      },
+      "slice_virtual_address": "0x145b383e0"
+    }
+  ],
+  "source_bindings": [
+    {
+      "path": "crates/azeroth-survivors-re/src/run_effects.rs",
+      "symbol": "EffectRow::talent",
+      "start_marker": "    pub fn talent(",
+      "end_marker": "    pub fn amulet(",
+      "fragment_sha256": "7043863d8e17ef0f24319e4cec75920d5309493a3e3b0c0cf8dda27711e10488"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/run_effects.rs",
+      "symbol": "Effects::rebuild",
+      "start_marker": "    pub fn rebuild(",
+      "end_marker": "    pub fn sum(",
+      "fragment_sha256": "6437fd168456fbfb4886c03df8e969605489bb67a1cd08326fa21a27e429f16e"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/soul_reaping.rs",
+      "sha256": "fd047ff97bd1fab131e316152ce621c42f3e248e0141e9eef4d961a20bc15328"
+    }
+  ],
+  "seams": [
+    "Synthetic one-entry talent vector and allocator capacity growth",
+    "Aggregate vectors have preallocated capacity; label uses borrowed sentinel"
+  ],
+  "limits": "Current rank-scaling and generic-row publication only. Retained source marker253/35 preserves semantic identity; no whole current combat/DoT consumer or parity claim. No application compilation, game, network or server execution."
+}

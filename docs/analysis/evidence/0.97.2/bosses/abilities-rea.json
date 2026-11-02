@@ -1,0 +1,903 @@
+{
+  "target_sha256": "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589",
+  "records": [
+    {
+      "evidence_id": "ev_fa9606ae85366708cca4b058de46f312617366435b2a5cccaa6a0c32ed7039b2",
+      "operation": "analyze_function",
+      "parameters": {
+        "procedure": "0x1454ccf2a"
+      },
+      "subject": {
+        "architecture": "x86_64",
+        "digest": {
+          "sha256": "7482a9bb046547c2fea01a9b6e54ce2da5fd9852834fbc46d152abb7be183e33"
+        },
+        "format": "raw-binary",
+        "local_path": "runtime/boss-abilities-0.97.2/1454ccf2a.bin",
+        "name": "1454ccf2a.bin"
+      },
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile": {
+        "digest": "73bf55321f0860c06985446f265cf4e73c2a96a7fcdaf2bfd885ed8f948befd5",
+        "parameters": {
+          "analyzer_preset": "ghidra-default",
+          "annotation_policy": "atomic-function-entry-metadata-v1",
+          "architecture": "x86_64",
+          "available_architectures": [
+            "x86_64"
+          ],
+          "call_relationship_coverage": "function-body-call-coverage-v5",
+          "compiler_spec_id": "gcc",
+          "decompiler_jump_loads": true,
+          "entry_point": "0x1454ccf2a",
+          "entry_seed": "external-entry-and-function-before-analysis-v1",
+          "function_body_evidence": "complete-inclusive-ranges-v1",
+          "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+          "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+          "function_references": "complete-body-and-entry-reference-manager-v2",
+          "import_mode": "ephemeral-source-immutable",
+          "instruction_flow_evidence": "decoded-return-pcode-v1",
+          "instruction_references": "exact-address-incoming-v1",
+          "jump_table_evidence": "typed-case-default-blocks-v1",
+          "language_id": "x86:LE:64:default",
+          "language_selection": "caller-supplied-v1",
+          "load_image_evidence": "independent-raw-mapping-context-v4",
+          "load_image_observations": "source-mappings-entry-context-v2",
+          "loader": "BinaryLoader",
+          "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+          "no_return_repair": "returning-imports-decoded-return-v2",
+          "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+          "process_launch": "inspected-jvm-launch-support-v1",
+          "string_inventory_evidence": "defined-data-coverage-v1",
+          "target_format": "raw-binary",
+          "target_kind": "executable"
+        },
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        }
+      },
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "References cover the complete Ghidra function-body AddressSet and exact entry. Dossier incoming edges omit sources owned by that function; procedure_references also retains those internal edges.",
+        "The dossier combines Ghidra FunctionManager, Listing, ReferenceManager, BasicBlockModel, and decompiler observations; provider-specific pseudocode and assembly are not cross-provider text invariants.",
+        "Resolved reference metadata identifies computed, indirect, external, call, jump, and data edges; unresolved targetless flows remain unknown, and function classifications distinguish thunks and externals.",
+        "Synthetic Ghidra entry-point references without actionable memory sources are omitted.",
+        "The Java bridge serializes one function request per Program and lets each decompilation run until it completes or the caller cancels.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+        "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+        "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+      ],
+      "relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "limitations": [
+          "Ghidra's callee inventory omits targets of 6 call reference(s) or decoded call(s) without destinations."
+        ],
+        "limited_directions": [
+          "callees"
+        ],
+        "status": "partial"
+      },
+      "pseudocode_sha256": "40e2d009a716dcc790fe77982ef012911e4db32faafeb27d73fe0dd4251a7ec5",
+      "pseudocode": "\n/* WARNING: Control flow encountered bad instruction data */\n\nvoid entry(undefined8 param_1,undefined8 param_2)\n\n{\n  undefined4 *puVar1;\n  long lVar2;\n  long lVar3;\n  bool bVar4;\n  undefined4 uVar5;\n  undefined4 uVar6;\n  undefined4 uVar7;\n  undefined4 uVar8;\n  undefined8 uVar9;\n  long unaff_RBP;\n  long lVar10;\n  undefined8 *puVar11;\n  float unaff_R14D;\n  float fVar12;\n  undefined8 in_XMM6_Qa;\n  float fVar13;\n  float in_XMM7_Da;\n  float in_XMM8_Da;\n  \n  fVar12 = (float)in_XMM6_Qa - (float)param_2;\n  fVar13 = (float)((ulong)in_XMM6_Qa >> 0x20) - (float)((ulong)param_2 >> 0x20);\n  fVar12 = SQRT(fVar13 * fVar13 + fVar12 * fVar12);\n  bVar4 = unaff_R14D < fVar12;\n  if (bVar4) {\n    puVar11 = (undefined8 *)0x8;\n    uVar9 = 0;\n  }\n  else {\n    func_0x000140002200();\n    puVar11 = (undefined8 *)func_0x0001400021c0();\n    if (puVar11 == (undefined8 *)0x0) {\n                    /* WARNING: Bad instruction - Truncating control flow here */\n      halt_baddata();\n    }\n    *puVar11 = *(undefined8 *)(*(long *)(unaff_RBP + 0x2a0) + 0x3d0);\n    uVar9 = 1;\n  }\n  *(undefined4 *)(unaff_RBP + 400) = 2;\n  *(undefined4 *)(unaff_RBP + 0x1b8) = 0;\n  *(bool *)(unaff_RBP + 0x1b0) = bVar4;\n  *(bool *)(unaff_RBP + 0x283) = bVar4;\n  *(undefined8 *)(unaff_RBP + 0x170) = uVar9;\n  *(undefined8 **)(unaff_RBP + 0x240) = puVar11;\n  func_0x00014544b1a0();\n  lVar10 = *(long *)(*(long *)(unaff_RBP + 0x2a0) + 0x548);\n  if (lVar10 == *(long *)(*(long *)(unaff_RBP + 0x2a0) + 0x538)) {\n    func_0x0001457580b0();\n  }\n  lVar2 = *(long *)(unaff_RBP + 0x2a0);\n  lVar3 = *(long *)(lVar2 + 0x540);\n  uVar5 = *(undefined4 *)(unaff_RBP + 0x1f0);\n  uVar6 = *(undefined4 *)(unaff_RBP + 500);\n  uVar7 = *(undefined4 *)(unaff_RBP + 0x1f8);\n  uVar8 = *(undefined4 *)(unaff_RBP + 0x1fc);\n  uVar9 = *(undefined8 *)(unaff_RBP + 0x208);\n  puVar11 = (undefined8 *)(lVar3 + 0x10 + lVar10 * 0x20);\n  *puVar11 = *(undefined8 *)(unaff_RBP + 0x200);\n  puVar11[1] = uVar9;\n  puVar1 = (undefined4 *)(lVar3 + lVar10 * 0x20);\n  *puVar1 = uVar5;\n  puVar1[1] = uVar6;\n  puVar1[2] = uVar7;\n  puVar1[3] = uVar8;\n  *(long *)(lVar2 + 0x548) = lVar10 + 1;\n  if (fVar12 <= unaff_R14D) {\n    *(undefined1 *)(unaff_RBP + 0x283) = 0;\n    func_0x00014548f420(uVar5,in_XMM8_Da * in_XMM7_Da);\n    func_0x0001400021d0();\n  }\n                    /* WARNING: Bad instruction - Truncating control flow here */\n  halt_baddata();\n}\n\n"
+    },
+    {
+      "evidence_id": "ev_a392356bb025d910043f9cee7dfe826fe401cd8b8131c9779ece4e40d82c2ed4",
+      "operation": "analyze_function",
+      "parameters": {
+        "procedure": "0x1454eeaa0"
+      },
+      "subject": {
+        "architecture": "x86_64",
+        "digest": {
+          "sha256": "71495806276d08650ab61513a4c57b3e01807eec6e9e8e964245a170f4a4dc35"
+        },
+        "format": "raw-binary",
+        "local_path": "runtime/boss-abilities-0.97.2/1454eeaa0.bin",
+        "name": "1454eeaa0.bin"
+      },
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile": {
+        "digest": "ed4f20a1f3f3ca994225bd617ba0b74d4aaff86feca5e27453ca5f0218b0c7a5",
+        "parameters": {
+          "analyzer_preset": "ghidra-default",
+          "annotation_policy": "atomic-function-entry-metadata-v1",
+          "architecture": "x86_64",
+          "available_architectures": [
+            "x86_64"
+          ],
+          "call_relationship_coverage": "function-body-call-coverage-v5",
+          "compiler_spec_id": "gcc",
+          "decompiler_jump_loads": true,
+          "entry_point": "0x1454eeaa0",
+          "entry_seed": "external-entry-and-function-before-analysis-v1",
+          "function_body_evidence": "complete-inclusive-ranges-v1",
+          "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+          "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+          "function_references": "complete-body-and-entry-reference-manager-v2",
+          "import_mode": "ephemeral-source-immutable",
+          "instruction_flow_evidence": "decoded-return-pcode-v1",
+          "instruction_references": "exact-address-incoming-v1",
+          "jump_table_evidence": "typed-case-default-blocks-v1",
+          "language_id": "x86:LE:64:default",
+          "language_selection": "caller-supplied-v1",
+          "load_image_evidence": "independent-raw-mapping-context-v4",
+          "load_image_observations": "source-mappings-entry-context-v2",
+          "loader": "BinaryLoader",
+          "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+          "no_return_repair": "returning-imports-decoded-return-v2",
+          "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+          "process_launch": "inspected-jvm-launch-support-v1",
+          "string_inventory_evidence": "defined-data-coverage-v1",
+          "target_format": "raw-binary",
+          "target_kind": "executable"
+        },
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        }
+      },
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "References cover the complete Ghidra function-body AddressSet and exact entry. Dossier incoming edges omit sources owned by that function; procedure_references also retains those internal edges.",
+        "The dossier combines Ghidra FunctionManager, Listing, ReferenceManager, BasicBlockModel, and decompiler observations; provider-specific pseudocode and assembly are not cross-provider text invariants.",
+        "Resolved reference metadata identifies computed, indirect, external, call, jump, and data edges; unresolved targetless flows remain unknown, and function classifications distinguish thunks and externals.",
+        "Synthetic Ghidra entry-point references without actionable memory sources are omitted.",
+        "The Java bridge serializes one function request per Program and lets each decompilation run until it completes or the caller cancels.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+        "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+        "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+      ],
+      "relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "limitations": [
+          "Ghidra's callee inventory omits targets of 17 call reference(s) or decoded call(s) without destinations."
+        ],
+        "limited_directions": [
+          "callees"
+        ],
+        "status": "partial"
+      },
+      "pseudocode_sha256": "55f9d2f5334364c2bcd4797dc93fba0ef6fc307e0233f19698c2445b9ed687b4",
+      "pseudocode": "\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nulong entry(undefined8 param_1,undefined8 param_2,undefined4 param_3,long param_4,\n           undefined4 *param_5,ulong param_6)\n\n{\n  undefined8 *puVar1;\n  undefined4 *puVar2;\n  ushort uVar3;\n  uint uVar4;\n  ulong uVar5;\n  long lVar6;\n  long lVar7;\n  ulong uVar8;\n  ulong uVar9;\n  ulong uVar10;\n  byte bVar11;\n  bool bVar12;\n  float extraout_XMM0_Da;\n  float in_XMM3_Da;\n  undefined4 in_XMM6_Da;\n  undefined4 in_XMM7_Da;\n  float fVar13;\n  uint uStack_d4;\n  undefined8 local_d0;\n  undefined8 uStack_c8;\n  undefined4 local_c0;\n  undefined4 uStack_bc;\n  undefined4 uStack_b8;\n  undefined4 uStack_b4;\n  long local_b0;\n  long local_a8;\n  undefined8 local_a0;\n  long *local_98;\n  long lStack_90;\n  undefined8 local_88;\n  ulong uStack_80;\n  undefined8 local_78;\n  undefined1 local_61;\n  undefined8 local_60;\n  undefined4 local_58;\n  undefined4 local_48;\n  \n  local_60 = 0xfffffffffffffffe;\n  uVar4 = *(int *)(param_4 + 0x904) + 1;\n  *(uint *)(param_4 + 0x904) = uVar4;\n  uVar8 = (ulong)uVar4 | 0xf100000000000000;\n  local_58 = in_XMM6_Da;\n  local_48 = in_XMM7_Da;\n  uVar5 = func_0x0001454f0710();\n  fVar13 = _DAT_1458eb480;\n  if ((uVar5 & 1) != 0) {\n    fVar13 = in_XMM3_Da / extraout_XMM0_Da;\n  }\n  local_b0 = 0;\n  local_a0 = 0;\n  uVar5 = uVar8;\n  func_0x0001455002f0();\n  lVar6 = local_b0;\n  lVar7 = local_a8;\n  if (local_b0 != 0) {\n    do {\n      param_6 = (ulong)*(ushort *)(lVar6 + 0x36);\n      uVar10 = (ulong)((uint)*(ushort *)(lVar6 + 0x36) * 2);\n      uVar9 = 0xffffffffffffffff;\n      do {\n        uVar5 = param_6;\n        if (uVar10 == 0) goto LAB_1454eeb83;\n        uVar3 = *(ushort *)(lVar6 + 0x3a + uVar9 * 2);\n        bVar11 = (uVar3 < 2) - (2 < uVar3);\n        uVar5 = uVar9 + 1;\n        uVar10 = uVar10 - 2;\n        uVar9 = uVar5;\n      } while (bVar11 == 1);\n      param_6 = (ulong)bVar11;\n      if (bVar11 == 0) {\n        *(undefined4 *)(lVar6 + 8 + uVar5 * 4) = 0x41;\n        goto LAB_1454eebcd;\n      }\nLAB_1454eeb83:\n      if (lVar7 == 0) goto LAB_1454eeb9d;\n      lVar6 = *(long *)(lVar6 + 0x50 + uVar5 * 8);\n      lVar7 = lVar7 + -1;\n    } while( true );\n  }\n  lVar6 = 0;\nLAB_1454eeb9d:\n  local_88 = 0;\n  local_78 = 2;\n  uVar9 = 0x41;\n  local_98 = &local_b0;\n  lStack_90 = lVar6;\n  uStack_80 = uVar5;\n  func_0x000145427a50();\n  uVar5 = uVar9;\nLAB_1454eebcd:\n  lVar6 = local_b0;\n  lVar7 = local_a8;\n  if (local_b0 != 0) {\n    do {\n      param_6 = (ulong)*(ushort *)(lVar6 + 0x36);\n      uVar10 = (ulong)((uint)*(ushort *)(lVar6 + 0x36) * 2);\n      uVar9 = 0xffffffffffffffff;\n      do {\n        uVar5 = param_6;\n        if (uVar10 == 0) goto LAB_1454eec23;\n        uVar3 = *(ushort *)(lVar6 + 0x3a + uVar9 * 2);\n        bVar11 = (uVar3 < 3) - (3 < uVar3);\n        uVar5 = uVar9 + 1;\n        uVar10 = uVar10 - 2;\n        uVar9 = uVar5;\n      } while (bVar11 == 1);\n      param_6 = (ulong)bVar11;\n      if (bVar11 == 0) {\n        *(undefined4 *)(lVar6 + 8 + uVar5 * 4) = param_3;\n        goto LAB_1454eec66;\n      }\nLAB_1454eec23:\n      if (lVar7 == 0) goto LAB_1454eec39;\n      lVar6 = *(long *)(lVar6 + 0x50 + uVar5 * 8);\n      lVar7 = lVar7 + -1;\n    } while( true );\n  }\n  lVar6 = 0;\nLAB_1454eec39:\n  local_88 = 0;\n  local_78 = 3;\n  local_98 = &local_b0;\n  lStack_90 = lVar6;\n  uStack_80 = uVar5;\n  func_0x000145427a50();\nLAB_1454eec66:\n  lVar6 = local_b0;\n  lVar7 = local_a8;\n  if (local_b0 != 0) {\n    do {\n      uVar9 = (ulong)((uint)*(ushort *)(lVar6 + 0x36) * 2);\n      uVar5 = 0xffffffffffffffff;\n      do {\n        param_6 = (ulong)*(ushort *)(lVar6 + 0x36);\n        if (uVar9 == 0) goto LAB_1454eecc3;\n        uVar3 = *(ushort *)(lVar6 + 0x3a + uVar5 * 2);\n        param_6 = uVar5 + 1;\n        uVar9 = uVar9 - 2;\n        uVar5 = param_6;\n      } while ((char)((uVar3 < 4) - (4 < uVar3)) == '\\x01');\n      if (uVar3 < 4 == 4 < uVar3) {\n        *(float *)(lVar6 + 8 + param_6 * 4) = fVar13;\n        goto LAB_1454eed0a;\n      }\nLAB_1454eecc3:\n      if (lVar7 == 0) goto LAB_1454eecdb;\n      lVar6 = *(long *)(lVar6 + 0x50 + param_6 * 8);\n      lVar7 = lVar7 + -1;\n    } while( true );\n  }\n  lVar6 = 0;\nLAB_1454eecdb:\n  local_88 = 0;\n  local_78 = 4;\n  local_98 = &local_b0;\n  lStack_90 = lVar6;\n  uStack_80 = param_6;\n  func_0x000145427a50();\nLAB_1454eed0a:\n  uVar5 = *(ulong *)(param_4 + 0x3d0);\n  func_0x0001455002f0();\n  lVar6 = local_b0;\n  lVar7 = local_a8;\n  if (local_b0 != 0) {\n    do {\n      param_6 = (ulong)*(ushort *)(lVar6 + 0x36);\n      uVar10 = (ulong)((uint)*(ushort *)(lVar6 + 0x36) * 2);\n      uVar9 = 0xffffffffffffffff;\n      do {\n        uVar5 = param_6;\n        if (uVar10 == 0) goto LAB_1454eed83;\n        uVar3 = *(ushort *)(lVar6 + 0x3a + uVar9 * 2);\n        bVar11 = (uVar3 < 8) - (8 < uVar3);\n        uVar5 = uVar9 + 1;\n        uVar10 = uVar10 - 2;\n        uVar9 = uVar5;\n      } while (bVar11 == 1);\n      param_6 = (ulong)bVar11;\n      if (bVar11 == 0) {\n        *(undefined4 *)(lVar6 + 8 + uVar5 * 4) = 1;\n        goto LAB_1454eedcd;\n      }\nLAB_1454eed83:\n      if (lVar7 == 0) goto LAB_1454eed9d;\n      lVar6 = *(long *)(lVar6 + 0x50 + uVar5 * 8);\n      lVar7 = lVar7 + -1;\n    } while( true );\n  }\n  lVar6 = 0;\nLAB_1454eed9d:\n  local_88 = 0;\n  local_78 = 8;\n  uVar9 = 1;\n  local_98 = &local_b0;\n  lStack_90 = lVar6;\n  uStack_80 = uVar5;\n  func_0x000145427a50();\n  uVar5 = uVar9;\nLAB_1454eedcd:\n  lVar6 = local_b0;\n  lVar7 = local_a8;\n  if (local_b0 != 0) {\n    do {\n      param_6 = (ulong)*(ushort *)(lVar6 + 0x36);\n      uVar10 = (ulong)((uint)*(ushort *)(lVar6 + 0x36) * 2);\n      uVar9 = 0xffffffffffffffff;\n      do {\n        uVar5 = param_6;\n        if (uVar10 == 0) goto LAB_1454eee23;\n        uVar3 = *(ushort *)(lVar6 + 0x3a + uVar9 * 2);\n        bVar11 = (uVar3 < 9) - (9 < uVar3);\n        uVar5 = uVar9 + 1;\n        uVar10 = uVar10 - 2;\n        uVar9 = uVar5;\n      } while (bVar11 == 1);\n      param_6 = (ulong)bVar11;\n      if (bVar11 == 0) {\n        *(undefined4 *)(lVar6 + 8 + uVar5 * 4) = param_3;\n        goto LAB_1454eee66;\n      }\nLAB_1454eee23:\n      if (lVar7 == 0) goto LAB_1454eee39;\n      lVar6 = *(long *)(lVar6 + 0x50 + uVar5 * 8);\n      lVar7 = lVar7 + -1;\n    } while( true );\n  }\n  lVar6 = 0;\nLAB_1454eee39:\n  local_88 = 0;\n  local_78 = 9;\n  local_98 = &local_b0;\n  lStack_90 = lVar6;\n  uStack_80 = uVar5;\n  func_0x000145427a50();\nLAB_1454eee66:\n  lVar6 = local_b0;\n  lVar7 = local_a8;\n  if (local_b0 != 0) {\n    do {\n      uVar9 = (ulong)((uint)*(ushort *)(lVar6 + 0x36) * 2);\n      uVar5 = 0xffffffffffffffff;\n      do {\n        param_6 = (ulong)*(ushort *)(lVar6 + 0x36);\n        if (uVar9 == 0) goto LAB_1454eeec3;\n        uVar3 = *(ushort *)(lVar6 + 0x3a + uVar5 * 2);\n        param_6 = uVar5 + 1;\n        uVar9 = uVar9 - 2;\n        uVar5 = param_6;\n      } while ((char)((uVar3 < 10) - (10 < uVar3)) == '\\x01');\n      if (uVar3 < 10 == 10 < uVar3) {\n        *(float *)(lVar6 + 8 + param_6 * 4) = in_XMM3_Da;\n        goto LAB_1454eef0a;\n      }\nLAB_1454eeec3:\n      if (lVar7 == 0) goto LAB_1454eeedb;\n      lVar6 = *(long *)(lVar6 + 0x50 + param_6 * 8);\n      lVar7 = lVar7 + -1;\n    } while( true );\n  }\n  lVar6 = 0;\nLAB_1454eeedb:\n  local_88 = 0;\n  local_78 = 10;\n  local_98 = &local_b0;\n  lStack_90 = lVar6;\n  uStack_80 = param_6;\n  func_0x000145427a50();\nLAB_1454eef0a:\n  lVar6 = local_b0;\n  lVar7 = local_a8;\n  if (local_b0 != 0) {\n    do {\n      uVar9 = (ulong)((uint)*(ushort *)(lVar6 + 0x36) * 2);\n      uVar5 = 0xffffffffffffffff;\n      do {\n        param_6 = (ulong)*(ushort *)(lVar6 + 0x36);\n        if (uVar9 == 0) goto LAB_1454eef73;\n        uVar3 = *(ushort *)(lVar6 + 0x3a + uVar5 * 2);\n        param_6 = uVar5 + 1;\n        uVar9 = uVar9 - 2;\n        uVar5 = param_6;\n      } while ((char)((uVar3 < 0xb) - (0xb < uVar3)) == '\\x01');\n      if (uVar3 < 0xb == 0xb < uVar3) {\n        *(undefined4 *)(lVar6 + 8 + param_6 * 4) = *param_5;\n        goto LAB_1454eefba;\n      }\nLAB_1454eef73:\n      if (lVar7 == 0) goto LAB_1454eef8b;\n      lVar6 = *(long *)(lVar6 + 0x50 + param_6 * 8);\n      lVar7 = lVar7 + -1;\n    } while( true );\n  }\n  lVar6 = 0;\nLAB_1454eef8b:\n  local_88 = 0;\n  local_78 = 0xb;\n  local_98 = &local_b0;\n  lStack_90 = lVar6;\n  uStack_80 = param_6;\n  func_0x000145427a50();\nLAB_1454eefba:\n  lVar6 = local_b0;\n  lVar7 = local_a8;\n  if (local_b0 != 0) {\n    do {\n      uVar9 = (ulong)((uint)*(ushort *)(lVar6 + 0x36) * 2);\n      uVar5 = 0xffffffffffffffff;\n      do {\n        param_6 = (ulong)*(ushort *)(lVar6 + 0x36);\n        if (uVar9 == 0) goto LAB_1454ef023;\n        uVar3 = *(ushort *)(lVar6 + 0x3a + uVar5 * 2);\n        param_6 = uVar5 + 1;\n        uVar9 = uVar9 - 2;\n        uVar5 = param_6;\n      } while ((char)((uVar3 < 0xc) - (0xc < uVar3)) == '\\x01');\n      if (uVar3 < 0xc == 0xc < uVar3) {\n        *(undefined4 *)(lVar6 + 8 + param_6 * 4) = param_5[1];\n        goto LAB_1454ef06a;\n      }\nLAB_1454ef023:\n      if (lVar7 == 0) goto LAB_1454ef03b;\n      lVar6 = *(long *)(lVar6 + 0x50 + param_6 * 8);\n      lVar7 = lVar7 + -1;\n    } while( true );\n  }\n  lVar6 = 0;\nLAB_1454ef03b:\n  local_88 = 0;\n  local_78 = 0xc;\n  local_98 = &local_b0;\n  lStack_90 = lVar6;\n  uStack_80 = param_6;\n  func_0x000145427a50();\nLAB_1454ef06a:\n  lVar6 = local_b0;\n  lVar7 = local_a8;\n  if (local_b0 != 0) {\n    do {\n      uVar9 = (ulong)((uint)*(ushort *)(lVar6 + 0x36) * 2);\n      uVar5 = 0xffffffffffffffff;\n      do {\n        param_6 = (ulong)*(ushort *)(lVar6 + 0x36);\n        if (uVar9 == 0) goto LAB_1454ef0d3;\n        uVar3 = *(ushort *)(lVar6 + 0x3a + uVar5 * 2);\n        param_6 = uVar5 + 1;\n        uVar9 = uVar9 - 2;\n        uVar5 = param_6;\n      } while ((char)((uVar3 < 0xd) - (0xd < uVar3)) == '\\x01');\n      if (uVar3 < 0xd == 0xd < uVar3) {\n        *(undefined4 *)(lVar6 + 8 + param_6 * 4) = param_5[2];\n        uVar5 = 0;\n        goto LAB_1454ef11a;\n      }\nLAB_1454ef0d3:\n      if (lVar7 == 0) goto LAB_1454ef0eb;\n      lVar6 = *(long *)(lVar6 + 0x50 + param_6 * 8);\n      lVar7 = lVar7 + -1;\n    } while( true );\n  }\n  lVar6 = 0;\nLAB_1454ef0eb:\n  uVar5 = (ulong)(uint)param_5[2];\n  local_88 = 0;\n  local_78 = 0xd;\n  local_98 = &local_b0;\n  lStack_90 = lVar6;\n  uStack_80 = param_6;\n  func_0x000145427a50();\nLAB_1454ef11a:\n  lVar6 = local_b0;\n  if (local_b0 == 0) {\n    lVar6 = 0;\nLAB_1454ef18d:\n    local_88 = 0;\n    local_78 = 0xe;\n    local_98 = &local_b0;\n    lStack_90 = lVar6;\n    uStack_80 = uVar5;\n    func_0x000145427a50();\nLAB_1454ef1ba:\n    local_61 = 1;\n    func_0x0001454ff870();\n    local_88 = 0;\n    uStack_80 = (ulong)uStack_d4 << 0x20;\n    local_98 = (long *)0x0;\n    lStack_90 = 1;\n    local_61 = 0;\n    func_0x0001454ffad0();\n    lVar6 = *(long *)(param_4 + 0x548);\n    if (lVar6 == *(long *)(param_4 + 0x538)) {\n      func_0x0001457580b0();\n    }\n    lVar7 = *(long *)(param_4 + 0x540);\n    puVar2 = (undefined4 *)(lVar7 + 0x10 + lVar6 * 0x20);\n    *puVar2 = local_c0;\n    puVar2[1] = uStack_bc;\n    puVar2[2] = uStack_b8;\n    puVar2[3] = uStack_b4;\n    puVar1 = (undefined8 *)(lVar7 + lVar6 * 0x20);\n    *puVar1 = local_d0;\n    puVar1[1] = uStack_c8;\n    *(long *)(param_4 + 0x548) = lVar6 + 1;\n    func_0x0001455127d0();\n    return uVar8;\n  }\n  do {\n    uVar10 = (ulong)((uint)*(ushort *)(lVar6 + 0x36) * 2);\n    uVar9 = 0xffffffffffffffff;\n    do {\n      uVar5 = (ulong)*(ushort *)(lVar6 + 0x36);\n      if (uVar10 == 0) goto LAB_1454ef173;\n      uVar3 = *(ushort *)(lVar6 + 0x3a + uVar9 * 2);\n      uVar5 = uVar9 + 1;\n      uVar10 = uVar10 - 2;\n      uVar9 = uVar5;\n    } while ((char)((uVar3 < 0xe) - (0xe < uVar3)) == '\\x01');\n    if (uVar3 < 0xe == 0xe < uVar3) {\n      *(undefined4 *)(lVar6 + 8 + uVar5 * 4) = 0;\n      goto LAB_1454ef1ba;\n    }\nLAB_1454ef173:\n    bVar12 = local_a8 == 0;\n    local_a8 = local_a8 + -1;\n    if (bVar12) goto LAB_1454ef18d;\n    lVar6 = *(long *)(lVar6 + 0x50 + uVar5 * 8);\n  } while( true );\n}\n\n"
+    },
+    {
+      "evidence_id": "ev_97a8d513dd6cbe43a58e39198aff7b66330d041f64e7ff175b50473c1d12db52",
+      "operation": "analyze_function",
+      "parameters": {
+        "procedure": "0x1454ccd0a"
+      },
+      "subject": {
+        "architecture": "x86_64",
+        "digest": {
+          "sha256": "f6122fed43bf91ec6584fb91ec24016bb0300ae3b68ba0c3fbc3854584b99e25"
+        },
+        "format": "raw-binary",
+        "local_path": "runtime/boss-abilities-0.97.2/1454ccd0a.bin",
+        "name": "1454ccd0a.bin"
+      },
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile": {
+        "digest": "e076202e8931667226fa9535baa246887d19e709953aea57fd479f56e6cd14be",
+        "parameters": {
+          "analyzer_preset": "ghidra-default",
+          "annotation_policy": "atomic-function-entry-metadata-v1",
+          "architecture": "x86_64",
+          "available_architectures": [
+            "x86_64"
+          ],
+          "call_relationship_coverage": "function-body-call-coverage-v5",
+          "compiler_spec_id": "gcc",
+          "decompiler_jump_loads": true,
+          "entry_point": "0x1454ccd0a",
+          "entry_seed": "external-entry-and-function-before-analysis-v1",
+          "function_body_evidence": "complete-inclusive-ranges-v1",
+          "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+          "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+          "function_references": "complete-body-and-entry-reference-manager-v2",
+          "import_mode": "ephemeral-source-immutable",
+          "instruction_flow_evidence": "decoded-return-pcode-v1",
+          "instruction_references": "exact-address-incoming-v1",
+          "jump_table_evidence": "typed-case-default-blocks-v1",
+          "language_id": "x86:LE:64:default",
+          "language_selection": "caller-supplied-v1",
+          "load_image_evidence": "independent-raw-mapping-context-v4",
+          "load_image_observations": "source-mappings-entry-context-v2",
+          "loader": "BinaryLoader",
+          "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+          "no_return_repair": "returning-imports-decoded-return-v2",
+          "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+          "process_launch": "inspected-jvm-launch-support-v1",
+          "string_inventory_evidence": "defined-data-coverage-v1",
+          "target_format": "raw-binary",
+          "target_kind": "executable"
+        },
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        }
+      },
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "References cover the complete Ghidra function-body AddressSet and exact entry. Dossier incoming edges omit sources owned by that function; procedure_references also retains those internal edges.",
+        "The dossier combines Ghidra FunctionManager, Listing, ReferenceManager, BasicBlockModel, and decompiler observations; provider-specific pseudocode and assembly are not cross-provider text invariants.",
+        "Resolved reference metadata identifies computed, indirect, external, call, jump, and data edges; unresolved targetless flows remain unknown, and function classifications distinguish thunks and externals.",
+        "Synthetic Ghidra entry-point references without actionable memory sources are omitted.",
+        "The Java bridge serializes one function request per Program and lets each decompilation run until it completes or the caller cancels.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+        "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+        "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+      ],
+      "relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "limitations": [
+          "Ghidra's callee inventory omits targets of 4 call reference(s) or decoded call(s) without destinations."
+        ],
+        "limited_directions": [
+          "callees"
+        ],
+        "status": "partial"
+      },
+      "pseudocode_sha256": "3157bc370f6e2a5b3a87c83486ce938481005dfa264c9496980d555b6a1ae7e0",
+      "pseudocode": "\n/* WARNING: Control flow encountered bad instruction data */\n\nvoid entry(undefined8 param_1,undefined8 param_2,undefined8 param_3,long param_4)\n\n{\n  long lVar1;\n  long lVar2;\n  float fVar3;\n  long in_RAX;\n  ulong uVar4;\n  undefined8 uVar5;\n  long lVar6;\n  long unaff_RBP;\n  long lVar7;\n  undefined8 unaff_R13;\n  undefined4 unaff_R14D;\n  undefined4 unaff_R15D;\n  undefined4 extraout_XMM0_Da;\n  undefined4 uVar8;\n  float in_XMM7_Da;\n  undefined4 in_XMM8_Da;\n  float fVar9;\n  float fVar10;\n  undefined4 uVar11;\n  undefined4 uVar12;\n  \n  uVar12 = (undefined4)((ulong)param_2 >> 0x20);\n  uVar11 = (undefined4)param_2;\n  fVar9 = *(float *)(in_RAX + 0x18);\n  fVar10 = *(float *)(in_RAX + 0x1c);\n  lVar7 = *(long *)(param_4 + 0x878);\n  uVar4 = func_0x0001454627f0();\n  uVar8 = extraout_XMM0_Da;\n  if ((uVar4 & 1) == 0) {\n    if (*(long *)(lVar7 + 0x68) == -1) {\n      uVar8 = *(undefined4 *)(lVar7 + 0x90);\n    }\n    else {\n      func_0x000145467bf0();\n      if (*(int *)(unaff_RBP + 0x1f0) == 1) {\n        uVar8 = *(undefined4 *)(unaff_RBP + 0x1fc);\n      }\n      else {\n        uVar8 = *(undefined4 *)(lVar7 + 0x90);\n      }\n    }\n  }\n  *(ulong *)(unaff_RBP + 0x1f0) = CONCAT44(uVar12,uVar11);\n  *(undefined4 *)(unaff_RBP + 0x1f8) = uVar8;\n  uVar5 = func_0x0001454eeaa0();\n  lVar7 = *(long *)(*(long *)(unaff_RBP + 0x2a0) + 0x4e8);\n  if (lVar7 == *(long *)(*(long *)(unaff_RBP + 0x2a0) + 0x4d8)) {\n    func_0x00014575b510();\n  }\n  fVar3 = *(float *)(unaff_RBP + 0x240);\n  lVar1 = *(long *)(unaff_RBP + 0x2a0);\n  lVar2 = *(long *)(lVar1 + 0x4e0);\n  lVar6 = lVar7 * 0x58;\n  *(undefined8 *)(lVar2 + lVar6) = 1;\n  *(undefined8 *)(lVar2 + 8 + lVar6) = unaff_R13;\n  *(undefined4 *)(lVar2 + 0x10 + lVar6) = unaff_R14D;\n  *(undefined8 *)(lVar2 + 0x18 + lVar6) = uVar5;\n  *(undefined4 *)(lVar2 + 0x20 + lVar6) = 0;\n  *(ulong *)(lVar2 + 0x2c + lVar6) = CONCAT44(uVar12,uVar11);\n  *(undefined4 *)(lVar2 + 0x34 + lVar6) = uVar8;\n  *(undefined4 *)(lVar2 + 0x38 + lVar6) = in_XMM8_Da;\n  *(undefined4 *)(lVar2 + 0x3c + lVar6) = unaff_R15D;\n  *(ulong *)(lVar2 + 0x40 + lVar6) = CONCAT44(uRam00000001458f8d74,fVar3);\n  *(undefined4 *)(lVar2 + 0x48 + lVar6) = 0;\n  *(float *)(lVar2 + 0x4c + lVar6) = fVar10 * in_XMM7_Da;\n  *(float *)(lVar2 + 0x50 + lVar6) = fVar9 + fVar3;\n  *(undefined1 *)(lVar2 + 0x54 + lVar6) = 0;\n  *(long *)(lVar1 + 0x4e8) = lVar7 + 1;\n                    /* WARNING: Bad instruction - Truncating control flow here */\n  halt_baddata();\n}\n\n"
+    },
+    {
+      "evidence_id": "ev_dc857bab9dbf7c909bfb14d05e9589edd9c795f88308d1c63db247eb8c5a058b",
+      "operation": "analyze_function",
+      "parameters": {
+        "procedure": "0x1454f08d0"
+      },
+      "subject": {
+        "architecture": "x86_64",
+        "digest": {
+          "sha256": "c10f1b3ff5bf0901bc8bb0c06919e561f1c6336309507c860f4bc067c45aeb01"
+        },
+        "format": "raw-binary",
+        "local_path": "runtime/boss-abilities-0.97.2/1454f08d0.bin",
+        "name": "1454f08d0.bin"
+      },
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile": {
+        "digest": "6ec76905ed55523489d92ba88627e0b0236aae38b73bcc7f9d31306247f24ff6",
+        "parameters": {
+          "analyzer_preset": "ghidra-default",
+          "annotation_policy": "atomic-function-entry-metadata-v1",
+          "architecture": "x86_64",
+          "available_architectures": [
+            "x86_64"
+          ],
+          "call_relationship_coverage": "function-body-call-coverage-v5",
+          "compiler_spec_id": "gcc",
+          "decompiler_jump_loads": true,
+          "entry_point": "0x1454f08d0",
+          "entry_seed": "external-entry-and-function-before-analysis-v1",
+          "function_body_evidence": "complete-inclusive-ranges-v1",
+          "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+          "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+          "function_references": "complete-body-and-entry-reference-manager-v2",
+          "import_mode": "ephemeral-source-immutable",
+          "instruction_flow_evidence": "decoded-return-pcode-v1",
+          "instruction_references": "exact-address-incoming-v1",
+          "jump_table_evidence": "typed-case-default-blocks-v1",
+          "language_id": "x86:LE:64:default",
+          "language_selection": "caller-supplied-v1",
+          "load_image_evidence": "independent-raw-mapping-context-v4",
+          "load_image_observations": "source-mappings-entry-context-v2",
+          "loader": "BinaryLoader",
+          "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+          "no_return_repair": "returning-imports-decoded-return-v2",
+          "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+          "process_launch": "inspected-jvm-launch-support-v1",
+          "string_inventory_evidence": "defined-data-coverage-v1",
+          "target_format": "raw-binary",
+          "target_kind": "executable"
+        },
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        }
+      },
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "References cover the complete Ghidra function-body AddressSet and exact entry. Dossier incoming edges omit sources owned by that function; procedure_references also retains those internal edges.",
+        "The dossier combines Ghidra FunctionManager, Listing, ReferenceManager, BasicBlockModel, and decompiler observations; provider-specific pseudocode and assembly are not cross-provider text invariants.",
+        "Resolved reference metadata identifies computed, indirect, external, call, jump, and data edges; unresolved targetless flows remain unknown, and function classifications distinguish thunks and externals.",
+        "Synthetic Ghidra entry-point references without actionable memory sources are omitted.",
+        "The Java bridge serializes one function request per Program and lets each decompilation run until it completes or the caller cancels.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+        "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+        "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+      ],
+      "relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "status": "complete"
+      },
+      "pseudocode_sha256": "898237f0ce2debce73b5569da5a831b9d370488ba399d929eeed5571f38272a0",
+      "pseudocode": "\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nundefined4 entry(void)\n\n{\n  int in_ECX;\n  undefined4 uVar1;\n  undefined4 uVar2;\n  \n  uVar1 = 0;\n  uVar2 = uVar1;\n  if (in_ECX < 0xe16) {\n    if (in_ECX < 0x5e6) {\n      if (in_ECX < 0x85) {\n        if (in_ECX == 0x4b) {\n          return _DAT_1458f6680;\n        }\n        if (in_ECX == 0x74) {\n          return _DAT_145933c50;\n        }\n      }\n      else {\n        if (in_ECX == 0x85) {\n          return _DAT_14593e294;\n        }\n        if (in_ECX == 0x193) {\n          return _DAT_1458f8fa0;\n        }\n        if (in_ECX == 0x2ae) {\n          return _DAT_1458f8fa0;\n        }\n      }\n    }\n    else if (in_ECX < 0xa53) {\n      if (in_ECX == 0x5e6) {\n        return _DAT_1458f6600;\n      }\n      if (in_ECX == 0x7ba) {\n        return _DAT_1458f6680;\n      }\n    }\n    else {\n      if (in_ECX == 0xa53) {\n        return _DAT_1458f6600;\n      }\n      if (in_ECX == 0xafc) {\n        return _DAT_1458f8fa0;\n      }\n      if (in_ECX == 0xbe4) {\n        return _DAT_1458f6680;\n      }\n    }\n  }\n  else if (in_ECX < 0x1b05) {\n    if (in_ECX < 0x1438) {\n      uVar2 = _DAT_1459c7a20;\n      if ((in_ECX != 0xe16) && (uVar2 = uVar1, in_ECX == 0x13fc)) {\n        return _DAT_1458f6680;\n      }\n    }\n    else {\n      if (in_ECX == 0x1438) {\n        return _DAT_1458f8fa0;\n      }\n      if (in_ECX == 0x18d1) {\n        return _DAT_14593e294;\n      }\n      if (in_ECX == 0x1a85) {\n        return _DAT_14593e294;\n      }\n    }\n  }\n  else if (in_ECX < 0x2c66) {\n    if (in_ECX == 0x1b05) {\n      return _DAT_1458f6680;\n    }\n    if (in_ECX == 0x1c65) {\n      return _DAT_1458f8fa0;\n    }\n    if (in_ECX == 0x27c5) {\n      return _DAT_145933c50;\n    }\n  }\n  else {\n    if (in_ECX == 0x5ed3) {\n      return _DAT_1459c79e8;\n    }\n    if (in_ECX == 0x4bea) {\n      return _DAT_1458f6680;\n    }\n    if (in_ECX == 0x2c66) {\n      return _DAT_14593e294;\n    }\n  }\n  return uVar2;\n}\n\n"
+    },
+    {
+      "evidence_id": "ev_1a300c46b0cd9a8293d1db1fd8f463545744dd706d342fb9346dd3af201644f2",
+      "operation": "analyze_function",
+      "parameters": {
+        "procedure": "0x14544b1a0"
+      },
+      "subject": {
+        "architecture": "x86_64",
+        "digest": {
+          "sha256": "82182b5019840d513aed8482007cee6218ab84bef0a1ea2de32a7711bb4d6a5b"
+        },
+        "format": "raw-binary",
+        "local_path": "runtime/boss-abilities-0.97.2/14544b1a0.bin",
+        "name": "14544b1a0.bin"
+      },
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile": {
+        "digest": "936fbfd26e6941a2e0f97144a74ea74b1171e1972a660e5744725fcc2a3f098b",
+        "parameters": {
+          "analyzer_preset": "ghidra-default",
+          "annotation_policy": "atomic-function-entry-metadata-v1",
+          "architecture": "x86_64",
+          "available_architectures": [
+            "x86_64"
+          ],
+          "call_relationship_coverage": "function-body-call-coverage-v5",
+          "compiler_spec_id": "gcc",
+          "decompiler_jump_loads": true,
+          "entry_point": "0x14544b1a0",
+          "entry_seed": "external-entry-and-function-before-analysis-v1",
+          "function_body_evidence": "complete-inclusive-ranges-v1",
+          "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+          "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+          "function_references": "complete-body-and-entry-reference-manager-v2",
+          "import_mode": "ephemeral-source-immutable",
+          "instruction_flow_evidence": "decoded-return-pcode-v1",
+          "instruction_references": "exact-address-incoming-v1",
+          "jump_table_evidence": "typed-case-default-blocks-v1",
+          "language_id": "x86:LE:64:default",
+          "language_selection": "caller-supplied-v1",
+          "load_image_evidence": "independent-raw-mapping-context-v4",
+          "load_image_observations": "source-mappings-entry-context-v2",
+          "loader": "BinaryLoader",
+          "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+          "no_return_repair": "returning-imports-decoded-return-v2",
+          "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+          "process_launch": "inspected-jvm-launch-support-v1",
+          "string_inventory_evidence": "defined-data-coverage-v1",
+          "target_format": "raw-binary",
+          "target_kind": "executable"
+        },
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        }
+      },
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "References cover the complete Ghidra function-body AddressSet and exact entry. Dossier incoming edges omit sources owned by that function; procedure_references also retains those internal edges.",
+        "The dossier combines Ghidra FunctionManager, Listing, ReferenceManager, BasicBlockModel, and decompiler observations; provider-specific pseudocode and assembly are not cross-provider text invariants.",
+        "Resolved reference metadata identifies computed, indirect, external, call, jump, and data edges; unresolved targetless flows remain unknown, and function classifications distinguish thunks and externals.",
+        "Synthetic Ghidra entry-point references without actionable memory sources are omitted.",
+        "The Java bridge serializes one function request per Program and lets each decompilation run until it completes or the caller cancels.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+        "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+        "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+      ],
+      "relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "limitations": [
+          "Ghidra's callee inventory omits targets of 17 call reference(s) or decoded call(s) without destinations."
+        ],
+        "limited_directions": [
+          "callees"
+        ],
+        "status": "partial"
+      },
+      "pseudocode_sha256": "3424be02e9d56211fde136e46d8557266d28d080075ae6fcc25521e319096fe2",
+      "pseudocode": "\n/* WARNING: Removing unreachable block (ram,0x00014544b623) */\n/* WARNING: Removing unreachable block (ram,0x00014544b5fb) */\n/* WARNING: Removing unreachable block (ram,0x00014544b2ec) */\n\nundefined8 * entry(void)\n\n{\n  int iVar1;\n  undefined8 uVar2;\n  code *pcVar3;\n  undefined8 uVar4;\n  undefined4 *puVar5;\n  undefined8 *in_RCX;\n  ulong uVar6;\n  long lVar7;\n  int iVar8;\n  undefined4 in_R8D;\n  long in_R9;\n  bool bVar9;\n  ulong in_stack_00000028;\n  int *in_stack_00000030;\n  int *in_stack_00000038;\n  long local_b8;\n  long local_78;\n  undefined2 uStack_50;\n  undefined6 uStack_4e;\n  undefined4 uStack_4c;\n  \n  uVar2 = _uStack_50;\n  iVar1 = *in_stack_00000038;\n  func_0x000140002200();\n  puVar5 = (undefined4 *)func_0x0001400021c0();\n  if (puVar5 != (undefined4 *)0x0) {\n    _uStack_50 = CONCAT62(uStack_4e,0x132);\n    uVar4 = _uStack_50;\n    func_0x000145509090();\n    uStack_4c = SUB84(uVar2,4);\n    func_0x000145509090();\n    *puVar5 = in_R8D;\n    *(short *)(puVar5 + 1) = ((short)iVar1 + 8) * 0x20;\n    local_78 = 6;\n    uVar6 = 0xff;\n    if (in_stack_00000028 < 0xff) {\n      uVar6 = in_stack_00000028;\n    }\n    *(char *)((long)puVar5 + 6) = (char)uVar6;\n    local_b8 = 7;\n    if (in_stack_00000028 != 0) {\n      lVar7 = 0;\n      do {\n        uVar2 = *(undefined8 *)(in_R9 + lVar7);\n        if (0x20U - local_b8 < 8) {\n          func_0x000145757d40();\n        }\n        *(undefined8 *)((long)puVar5 + local_b8) = uVar2;\n        local_b8 = local_b8 + 8;\n      } while ((lVar7 != 0x7f0) &&\n              (bVar9 = in_stack_00000028 * 8 + -8 != lVar7, lVar7 = lVar7 + 8, bVar9));\n    }\n    if (local_b8 == 0x20) {\n      func_0x0001458e7110();\n    }\n    *(undefined1 *)((long)puVar5 + local_b8) = 0;\n    lVar7 = local_b8 + 1;\n    if (*in_stack_00000030 == 0) {\n      if (0x20U - lVar7 < 2) {\n        func_0x000145757d40();\n      }\n      *(undefined2 *)((long)puVar5 + lVar7) = 2;\n      local_78 = local_b8 + 3;\n      func_0x000145509090();\n    }\n    else if (*in_stack_00000030 == 1) {\n      if (0x20U - lVar7 < 2) {\n        func_0x000145757d40();\n      }\n      *(undefined2 *)((long)puVar5 + lVar7) = 0x40;\n      func_0x0001454fa450();\n    }\n    else {\n      if (0x20U - lVar7 < 2) {\n        func_0x000145757d40();\n      }\n      *(undefined2 *)((long)puVar5 + lVar7) = 0;\n      local_78 = local_b8 + 3;\n    }\n    local_b8 = local_78;\n    if (iVar1 != 0) {\n      iVar1 = in_stack_00000038[1];\n      iVar8 = in_stack_00000038[2];\n      if (0x20U - local_78 < 4) {\n        func_0x000145757d40();\n      }\n      *(int *)((long)puVar5 + local_78) = iVar1;\n      if (0x20U - (local_78 + 4) < 4) {\n        func_0x000145757d40();\n      }\n      *(int *)((long)puVar5 + local_78 + 4) = iVar8;\n      local_b8 = local_78 + 8;\n    }\n    in_RCX[2] = local_b8;\n    in_RCX[3] = CONCAT44(uStack_4c,(int)uVar4);\n    *in_RCX = 0x20;\n    in_RCX[1] = puVar5;\n    return in_RCX;\n  }\n  func_0x0001458e721b();\n                    /* WARNING: Does not return */\n  pcVar3 = (code *)invalidInstructionException();\n  (*pcVar3)();\n}\n\n"
+    },
+    {
+      "evidence_id": "ev_dbdc7f7c0aba7fbc289a5203a4cebbfe40e8a78c6d7aab83505d77ded62dbc24",
+      "operation": "analyze_function",
+      "parameters": {
+        "procedure": "0x1454ccd44"
+      },
+      "subject": {
+        "architecture": "x86_64",
+        "digest": {
+          "sha256": "0ace66715fcc3ff865eaaa880a737c50445dec4b7a2e0fc58bc7e28fce8b01b0"
+        },
+        "format": "raw-binary",
+        "local_path": "runtime/boss-abilities-0.97.2/1454ccd44.bin",
+        "name": "1454ccd44.bin"
+      },
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile": {
+        "digest": "78b677ba467ba3b9721d5b5b31d82024c4b99b99394624a08a63968e87f65b4e",
+        "parameters": {
+          "analyzer_preset": "ghidra-default",
+          "annotation_policy": "atomic-function-entry-metadata-v1",
+          "architecture": "x86_64",
+          "available_architectures": [
+            "x86_64"
+          ],
+          "call_relationship_coverage": "function-body-call-coverage-v5",
+          "compiler_spec_id": "gcc",
+          "decompiler_jump_loads": true,
+          "entry_point": "0x1454ccd44",
+          "entry_seed": "external-entry-and-function-before-analysis-v1",
+          "function_body_evidence": "complete-inclusive-ranges-v1",
+          "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+          "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+          "function_references": "complete-body-and-entry-reference-manager-v2",
+          "import_mode": "ephemeral-source-immutable",
+          "instruction_flow_evidence": "decoded-return-pcode-v1",
+          "instruction_references": "exact-address-incoming-v1",
+          "jump_table_evidence": "typed-case-default-blocks-v1",
+          "language_id": "x86:LE:64:default",
+          "language_selection": "caller-supplied-v1",
+          "load_image_evidence": "independent-raw-mapping-context-v4",
+          "load_image_observations": "source-mappings-entry-context-v2",
+          "loader": "BinaryLoader",
+          "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+          "no_return_repair": "returning-imports-decoded-return-v2",
+          "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+          "process_launch": "inspected-jvm-launch-support-v1",
+          "string_inventory_evidence": "defined-data-coverage-v1",
+          "target_format": "raw-binary",
+          "target_kind": "executable"
+        },
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        }
+      },
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "References cover the complete Ghidra function-body AddressSet and exact entry. Dossier incoming edges omit sources owned by that function; procedure_references also retains those internal edges.",
+        "The dossier combines Ghidra FunctionManager, Listing, ReferenceManager, BasicBlockModel, and decompiler observations; provider-specific pseudocode and assembly are not cross-provider text invariants.",
+        "Resolved reference metadata identifies computed, indirect, external, call, jump, and data edges; unresolved targetless flows remain unknown, and function classifications distinguish thunks and externals.",
+        "Synthetic Ghidra entry-point references without actionable memory sources are omitted.",
+        "The Java bridge serializes one function request per Program and lets each decompilation run until it completes or the caller cancels.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+        "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+        "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+      ],
+      "relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "limitations": [
+          "Ghidra's callee inventory omits targets of 11 call reference(s) or decoded call(s) without destinations."
+        ],
+        "limited_directions": [
+          "callees"
+        ],
+        "status": "partial"
+      },
+      "pseudocode_sha256": "a097db9930722b2d4fce7e000a34f76e9e50692697c73de667bd77b9af252e67",
+      "pseudocode": "\n/* WARNING: Control flow encountered bad instruction data */\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nvoid entry(undefined8 param_1,undefined8 param_2,undefined8 param_3,long param_4)\n\n{\n  undefined4 *puVar1;\n  undefined8 *puVar2;\n  undefined8 uVar3;\n  long lVar4;\n  long lVar5;\n  undefined4 uVar6;\n  undefined4 uVar7;\n  undefined4 uVar8;\n  undefined4 uVar9;\n  undefined4 uVar10;\n  undefined4 uVar11;\n  undefined4 uVar12;\n  ulong uVar13;\n  long lVar14;\n  long unaff_RBX;\n  long unaff_RBP;\n  long lVar15;\n  ulong unaff_R12;\n  undefined8 unaff_R13;\n  undefined4 extraout_XMM0_Da;\n  float fVar16;\n  undefined4 extraout_XMM0_Da_00;\n  undefined4 extraout_XMM0_Da_01;\n  float fVar17;\n  float fVar18;\n  float fVar19;\n  float fVar20;\n  undefined8 in_XMM6_Qa;\n  float fVar21;\n  float in_XMM7_Da;\n  undefined4 uVar22;\n  float fVar23;\n  undefined4 uVar24;\n  undefined4 in_XMM11_Da;\n  float in_XMM12_Da;\n  \n  fVar21 = (float)((ulong)in_XMM6_Qa >> 0x20);\n  fVar17 = (float)in_XMM6_Qa;\n  fVar18 = (float)((ulong)param_2 >> 0x20);\n  fVar20 = (float)param_2;\n  lVar15 = *(long *)(param_4 + 0x878);\n  fVar19 = fVar18;\n  uVar13 = func_0x0001454627f0();\n  uVar22 = extraout_XMM0_Da;\n  if ((uVar13 & 1) == 0) {\n    if (*(long *)(lVar15 + 0x68) == -1) {\n      uVar22 = *(undefined4 *)(lVar15 + 0x90);\n    }\n    else {\n      func_0x000145467bf0();\n      if (*(int *)(unaff_RBP + 0x1f0) == 1) {\n        uVar22 = *(undefined4 *)(unaff_RBP + 0x1fc);\n      }\n      else {\n        uVar22 = *(undefined4 *)(lVar15 + 0x90);\n      }\n    }\n  }\n  fVar23 = fVar21;\n  if (*(long *)(*(long *)(*(long *)(unaff_RBP + 0x2a0) + 0x878) + 0x40) != -1) {\n    fVar18 = fVar19;\n    fVar16 = (float)func_0x00014545e830();\n    if (fVar16 < in_XMM12_Da) {\n      fVar19 = SQRT((fVar21 - fVar18) * (fVar21 - fVar18) + (fVar17 - fVar20) * (fVar17 - fVar20));\n      if (fVar19 <= _DAT_1458eb488) {\n        fVar19 = _DAT_1458eb488;\n      }\n      fVar19 = fVar16 - _DAT_1458eb488 / fVar19;\n      if (fVar19 <= 0.0) {\n        fVar19 = 0.0;\n      }\n      fVar16 = fVar19 * (fVar20 - fVar17) + fVar17;\n      fVar18 = fVar19 * (fVar18 - fVar21) + fVar21;\n      fVar20 = fVar16;\n    }\n    lVar15 = *(long *)(*(long *)(unaff_RBP + 0x2a0) + 0x878);\n    fVar19 = fVar18;\n    uVar13 = func_0x0001454627f0(fVar16,fVar20,fVar18);\n    uVar22 = extraout_XMM0_Da_00;\n    if ((uVar13 & 1) == 0) {\n      if (*(long *)(lVar15 + 0x68) == -1) {\n        uVar22 = *(undefined4 *)(lVar15 + 0x90);\n      }\n      else {\n        func_0x000145467bf0();\n        if (*(int *)(unaff_RBP + 0x1f0) == 1) {\n          uVar22 = *(undefined4 *)(unaff_RBP + 0x1fc);\n        }\n        else {\n          uVar22 = *(undefined4 *)(lVar15 + 0x90);\n        }\n      }\n    }\n  }\n  fVar18 = SQRT((fVar23 - fVar18) * (fVar23 - fVar18) + (fVar17 - fVar20) * (fVar17 - fVar20)) /\n           _DAT_14593e294;\n  if (fVar18 <= _DAT_145a2a5a0) {\n    fVar18 = _DAT_145a2a5a0;\n  }\n  uVar3 = *(undefined8 *)(*(long *)(unaff_RBP + 0x2a0) + 0x3d0);\n  *(undefined8 *)(unaff_RBP + 0x130) = uVar3;\n  *(undefined8 *)(unaff_RBP + 0x198) = uVar3;\n  *(undefined4 *)(unaff_RBP + 400) = 0;\n  *(undefined4 *)(unaff_RBP + 0x1b8) = 0;\n  func_0x00014544b1a0();\n  lVar15 = *(long *)(*(long *)(unaff_RBP + 0x2a0) + 0x548);\n  if (lVar15 == *(long *)(*(long *)(unaff_RBP + 0x2a0) + 0x538)) {\n    func_0x0001457580b0();\n  }\n  lVar4 = *(long *)(unaff_RBP + 0x2a0);\n  lVar5 = *(long *)(lVar4 + 0x540);\n  uVar24 = *(undefined4 *)(unaff_RBP + 0x1f0);\n  uVar6 = *(undefined4 *)(unaff_RBP + 500);\n  uVar7 = *(undefined4 *)(unaff_RBP + 0x1f8);\n  uVar8 = *(undefined4 *)(unaff_RBP + 0x1fc);\n  uVar3 = *(undefined8 *)(unaff_RBP + 0x208);\n  puVar2 = (undefined8 *)(lVar5 + 0x10 + lVar15 * 0x20);\n  *puVar2 = *(undefined8 *)(unaff_RBP + 0x200);\n  puVar2[1] = uVar3;\n  puVar1 = (undefined4 *)(lVar5 + lVar15 * 0x20);\n  *puVar1 = uVar24;\n  puVar1[1] = uVar6;\n  puVar1[2] = uVar7;\n  puVar1[3] = uVar8;\n  *(long *)(lVar4 + 0x548) = lVar15 + 1;\n  uVar13 = func_0x0001454627f0(uVar24,fVar17,fVar23);\n  uVar24 = extraout_XMM0_Da_01;\n  if ((uVar13 & 1) == 0) {\n    uVar24 = in_XMM11_Da;\n  }\n  *(int *)(*(long *)(unaff_RBP + 0x2a0) + 0x908) =\n       *(int *)(*(long *)(unaff_RBP + 0x2a0) + 0x908) + 1;\n  *(ulong *)(unaff_RBP + 0x1b8) = CONCAT44(fVar19,fVar20);\n  *(undefined4 *)(unaff_RBP + 0x1c0) = uVar22;\n  *(ulong *)(unaff_RBP + 400) = CONCAT44(fVar21,fVar17);\n  *(undefined4 *)(unaff_RBP + 0x198) = uVar24;\n  func_0x000145440d40();\n  lVar15 = *(long *)(*(long *)(unaff_RBP + 0x2a0) + 0x548);\n  if (lVar15 == *(long *)(*(long *)(unaff_RBP + 0x2a0) + 0x538)) {\n    func_0x0001457580b0();\n  }\n  lVar4 = *(long *)(unaff_RBP + 0x2a0);\n  lVar5 = *(long *)(lVar4 + 0x540);\n  uVar6 = *(undefined4 *)(unaff_RBP + 0x1f0);\n  uVar7 = *(undefined4 *)(unaff_RBP + 500);\n  uVar8 = *(undefined4 *)(unaff_RBP + 0x1f8);\n  uVar9 = *(undefined4 *)(unaff_RBP + 0x1fc);\n  uVar10 = *(undefined4 *)(unaff_RBP + 0x204);\n  uVar11 = *(undefined4 *)(unaff_RBP + 0x208);\n  uVar12 = *(undefined4 *)(unaff_RBP + 0x20c);\n  puVar1 = (undefined4 *)(lVar5 + 0x10 + lVar15 * 0x20);\n  *puVar1 = *(undefined4 *)(unaff_RBP + 0x200);\n  puVar1[1] = uVar10;\n  puVar1[2] = uVar11;\n  puVar1[3] = uVar12;\n  puVar1 = (undefined4 *)(lVar5 + lVar15 * 0x20);\n  *puVar1 = uVar6;\n  puVar1[1] = uVar7;\n  puVar1[2] = uVar8;\n  puVar1[3] = uVar9;\n  *(long *)(lVar4 + 0x548) = lVar15 + 1;\n  if (unaff_R12 < *(ulong *)(lVar4 + 0x4d0)) {\n    lVar15 = *(long *)(lVar4 + 0x4c8);\n    *(ulong *)(lVar15 + 0x10c + unaff_RBX) = CONCAT44(fVar21,fVar17);\n    *(undefined4 *)(lVar15 + 0x114 + unaff_RBX) = uVar24;\n    *(ulong *)(lVar15 + 0x118 + unaff_RBX) = CONCAT44(fVar19,fVar20);\n    *(undefined4 *)(lVar15 + 0x120 + unaff_RBX) = uVar22;\n    fVar17 = *(float *)(unaff_RBP + 0x240);\n    *(float *)(lVar15 + 0x124 + unaff_RBX) = fVar17;\n    *(float *)(lVar15 + 0x128 + unaff_RBX) = fVar18;\n    fVar17 = fVar17 + fVar18;\n    *(ulong *)(lVar15 + 300 + unaff_RBX) =\n         CONCAT44(fVar18 + fRam00000001469aa5e4,fVar17 + _DAT_1469aa5e0);\n    lVar15 = *(long *)(lVar4 + 0x4e8);\n    if (lVar15 != *(long *)(lVar4 + 0x4d8)) goto LAB_1454cdc7e;\n  }\n  else {\n    fVar17 = fVar18 + *(float *)(unaff_RBP + 0x240);\n    lVar15 = *(long *)(lVar4 + 0x4e8);\n    if (lVar15 != *(long *)(lVar4 + 0x4d8)) goto LAB_1454cdc7e;\n  }\n  func_0x00014575b510();\nLAB_1454cdc7e:\n  lVar4 = *(long *)(unaff_RBP + 0x2a0);\n  lVar5 = *(long *)(lVar4 + 0x4e0);\n  lVar14 = lVar15 * 0x58;\n  *(undefined8 *)(lVar5 + lVar14) = 1;\n  *(undefined8 *)(lVar5 + 8 + lVar14) = unaff_R13;\n  *(undefined4 *)(lVar5 + 0x10 + lVar14) = 0x18c7;\n  *(undefined8 *)(lVar5 + 0x18 + lVar14) = 0;\n  *(undefined4 *)(lVar5 + 0x20 + lVar14) = 0;\n  *(ulong *)(lVar5 + 0x2c + lVar14) = CONCAT44(fVar19,fVar20);\n  *(undefined4 *)(lVar5 + 0x34 + lVar14) = uVar22;\n  *(undefined8 *)(lVar5 + 0x38 + lVar14) = 0x40900000;\n  *(ulong *)(lVar5 + 0x40 + lVar14) =\n       CONCAT44(uRam00000001458f8d74,*(undefined4 *)(unaff_RBP + 0x240));\n  *(undefined4 *)(lVar5 + 0x48 + lVar14) = 0;\n  *(float *)(lVar5 + 0x4c + lVar14) = in_XMM7_Da + in_XMM7_Da;\n  *(float *)(lVar5 + 0x50 + lVar14) = fVar17;\n  *(undefined1 *)(lVar5 + 0x54 + lVar14) = 0;\n  *(long *)(lVar4 + 0x4e8) = lVar15 + 1;\n                    /* WARNING: Bad instruction - Truncating control flow here */\n  halt_baddata();\n}\n\n"
+    },
+    {
+      "evidence_id": "ev_ef89212e2d7db801d1bdc1ca0015e8b0854ecd60c7a4bd4f7b49a35c35b856fc",
+      "operation": "analyze_function",
+      "parameters": {
+        "procedure": "0x1454ccd73"
+      },
+      "subject": {
+        "architecture": "x86_64",
+        "digest": {
+          "sha256": "46e373f5b8b1eb91650429df3cfb94b401405ac8c7f50aa1c5645d489296b6f5"
+        },
+        "format": "raw-binary",
+        "local_path": "runtime/boss-abilities-0.97.2/1454ccd73.bin",
+        "name": "1454ccd73.bin"
+      },
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile": {
+        "digest": "5dbf90a09443bdf72a7a888a3d9189aad51d6660c9d3ce7cfc6c04db7ff4f7c4",
+        "parameters": {
+          "analyzer_preset": "ghidra-default",
+          "annotation_policy": "atomic-function-entry-metadata-v1",
+          "architecture": "x86_64",
+          "available_architectures": [
+            "x86_64"
+          ],
+          "call_relationship_coverage": "function-body-call-coverage-v5",
+          "compiler_spec_id": "gcc",
+          "decompiler_jump_loads": true,
+          "entry_point": "0x1454ccd73",
+          "entry_seed": "external-entry-and-function-before-analysis-v1",
+          "function_body_evidence": "complete-inclusive-ranges-v1",
+          "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+          "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+          "function_references": "complete-body-and-entry-reference-manager-v2",
+          "import_mode": "ephemeral-source-immutable",
+          "instruction_flow_evidence": "decoded-return-pcode-v1",
+          "instruction_references": "exact-address-incoming-v1",
+          "jump_table_evidence": "typed-case-default-blocks-v1",
+          "language_id": "x86:LE:64:default",
+          "language_selection": "caller-supplied-v1",
+          "load_image_evidence": "independent-raw-mapping-context-v4",
+          "load_image_observations": "source-mappings-entry-context-v2",
+          "loader": "BinaryLoader",
+          "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+          "no_return_repair": "returning-imports-decoded-return-v2",
+          "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+          "process_launch": "inspected-jvm-launch-support-v1",
+          "string_inventory_evidence": "defined-data-coverage-v1",
+          "target_format": "raw-binary",
+          "target_kind": "executable"
+        },
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        }
+      },
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "References cover the complete Ghidra function-body AddressSet and exact entry. Dossier incoming edges omit sources owned by that function; procedure_references also retains those internal edges.",
+        "The dossier combines Ghidra FunctionManager, Listing, ReferenceManager, BasicBlockModel, and decompiler observations; provider-specific pseudocode and assembly are not cross-provider text invariants.",
+        "Resolved reference metadata identifies computed, indirect, external, call, jump, and data edges; unresolved targetless flows remain unknown, and function classifications distinguish thunks and externals.",
+        "Synthetic Ghidra entry-point references without actionable memory sources are omitted.",
+        "The Java bridge serializes one function request per Program and lets each decompilation run until it completes or the caller cancels.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+        "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+        "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+      ],
+      "relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "limitations": [
+          "Ghidra's callee inventory omits targets of 9 call reference(s) or decoded call(s) without destinations."
+        ],
+        "limited_directions": [
+          "callees"
+        ],
+        "status": "partial"
+      },
+      "pseudocode_sha256": "b036303dc8dda5af02a6aa95f21dec6b5cc390fcaf0361827082d1800a2e440a",
+      "pseudocode": "\n/* WARNING: Control flow encountered bad instruction data */\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nvoid entry(void)\n\n{\n  undefined8 *puVar1;\n  long lVar2;\n  undefined8 uVar3;\n  undefined8 uVar4;\n  undefined8 uVar5;\n  ulong uVar6;\n  uint uVar7;\n  long unaff_RBP;\n  long lVar8;\n  long lVar9;\n  uint unaff_R15D;\n  float fVar10;\n  undefined4 extraout_XMM0_Da;\n  undefined4 uVar11;\n  float fVar12;\n  undefined8 in_XMM6_Qa;\n  float fVar13;\n  float fVar14;\n  float fVar15;\n  float fVar16;\n  \n  fVar13 = (float)((ulong)in_XMM6_Qa >> 0x20);\n  fVar12 = (float)in_XMM6_Qa;\n  func_0x00014540d290();\n  func_0x000145452400();\n  func_0x000145441160();\n  lVar9 = *(long *)(unaff_RBP + 0x2a0);\n  lVar8 = *(long *)(lVar9 + 0x548);\n  if (lVar8 == *(long *)(lVar9 + 0x538)) {\n    func_0x0001457580b0();\n  }\n  lVar2 = *(long *)(lVar9 + 0x540);\n  uVar3 = *(undefined8 *)(unaff_RBP + 0x1f0);\n  uVar4 = *(undefined8 *)(unaff_RBP + 0x1f8);\n  uVar5 = *(undefined8 *)(unaff_RBP + 0x208);\n  puVar1 = (undefined8 *)(lVar2 + 0x10 + lVar8 * 0x20);\n  *puVar1 = *(undefined8 *)(unaff_RBP + 0x200);\n  puVar1[1] = uVar5;\n  puVar1 = (undefined8 *)(lVar2 + lVar8 * 0x20);\n  *puVar1 = uVar3;\n  puVar1[1] = uVar4;\n  *(long *)(lVar9 + 0x548) = lVar8 + 1;\n  if (unaff_R15D != 0) {\n    fVar16 = (float)unaff_R15D;\n    uVar7 = 0;\n    do {\n      fVar15 = ((float)uVar7 / fVar16) * _DAT_1458ed014;\n      fVar10 = (float)func_0x000145756e31(fVar15);\n      fVar15 = (float)func_0x000145756e2b(fVar15);\n      fVar10 = fVar10 * _DAT_1459eb290 + fVar12;\n      fVar14 = fVar15 * fRam00000001459eb294 + fVar13;\n      lVar9 = *(long *)(*(long *)(unaff_RBP + 0x2a0) + 0x878);\n      uVar6 = func_0x0001454627f0(fVar15,fVar10,fVar14);\n      uVar11 = extraout_XMM0_Da;\n      if ((uVar6 & 1) == 0) {\n        if ((*(long *)(lVar9 + 0x68) == -1) ||\n           (func_0x000145467bf0(), *(int *)(unaff_RBP + 0x1f0) != 1)) {\n          uVar11 = *(undefined4 *)(lVar9 + 0x90);\n        }\n        else {\n          uVar11 = *(undefined4 *)(unaff_RBP + 0x1fc);\n        }\n      }\n      *(ulong *)(unaff_RBP + 500) = CONCAT44(fVar14,fVar10);\n      *(undefined4 *)(unaff_RBP + 0x1fc) = uVar11;\n      *(undefined4 *)(unaff_RBP + 0x1f0) = 1;\n      func_0x0001454c2040();\n      uVar7 = uVar7 + 1;\n    } while (uVar7 != unaff_R15D);\n  }\n                    /* WARNING: Bad instruction - Truncating control flow here */\n  halt_baddata();\n}\n\n"
+    },
+    {
+      "evidence_id": "ev_0a70ae3d0e617b905d6c2f350f51bb5ae4b8e1aa24ec69f957a7857ecd6145e6",
+      "operation": "analyze_function",
+      "parameters": {
+        "procedure": "0x1454ccf5e"
+      },
+      "subject": {
+        "architecture": "x86_64",
+        "digest": {
+          "sha256": "74e8699e87abfbcf3c5acafb3956d1c2ad2c23cfd50e41f17b0ffa4418a4c2fe"
+        },
+        "format": "raw-binary",
+        "local_path": "runtime/boss-abilities-0.97.2/1454ccf5e.bin",
+        "name": "1454ccf5e.bin"
+      },
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile": {
+        "digest": "a3287e9fe1617aeac532ad057d415490c6eeb35cda8a6fb1fb12ae351848d992",
+        "parameters": {
+          "analyzer_preset": "ghidra-default",
+          "annotation_policy": "atomic-function-entry-metadata-v1",
+          "architecture": "x86_64",
+          "available_architectures": [
+            "x86_64"
+          ],
+          "call_relationship_coverage": "function-body-call-coverage-v5",
+          "compiler_spec_id": "gcc",
+          "decompiler_jump_loads": true,
+          "entry_point": "0x1454ccf5e",
+          "entry_seed": "external-entry-and-function-before-analysis-v1",
+          "function_body_evidence": "complete-inclusive-ranges-v1",
+          "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+          "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+          "function_references": "complete-body-and-entry-reference-manager-v2",
+          "import_mode": "ephemeral-source-immutable",
+          "instruction_flow_evidence": "decoded-return-pcode-v1",
+          "instruction_references": "exact-address-incoming-v1",
+          "jump_table_evidence": "typed-case-default-blocks-v1",
+          "language_id": "x86:LE:64:default",
+          "language_selection": "caller-supplied-v1",
+          "load_image_evidence": "independent-raw-mapping-context-v4",
+          "load_image_observations": "source-mappings-entry-context-v2",
+          "loader": "BinaryLoader",
+          "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+          "no_return_repair": "returning-imports-decoded-return-v2",
+          "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+          "process_launch": "inspected-jvm-launch-support-v1",
+          "string_inventory_evidence": "defined-data-coverage-v1",
+          "target_format": "raw-binary",
+          "target_kind": "executable"
+        },
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        }
+      },
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "References cover the complete Ghidra function-body AddressSet and exact entry. Dossier incoming edges omit sources owned by that function; procedure_references also retains those internal edges.",
+        "The dossier combines Ghidra FunctionManager, Listing, ReferenceManager, BasicBlockModel, and decompiler observations; provider-specific pseudocode and assembly are not cross-provider text invariants.",
+        "Resolved reference metadata identifies computed, indirect, external, call, jump, and data edges; unresolved targetless flows remain unknown, and function classifications distinguish thunks and externals.",
+        "Synthetic Ghidra entry-point references without actionable memory sources are omitted.",
+        "The Java bridge serializes one function request per Program and lets each decompilation run until it completes or the caller cancels.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+        "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+        "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+      ],
+      "relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "limitations": [
+          "Ghidra's callee inventory omits targets of 15 call reference(s) or decoded call(s) without destinations."
+        ],
+        "limited_directions": [
+          "callees"
+        ],
+        "status": "partial"
+      },
+      "pseudocode_sha256": "2f8ea3b84be450b110d89a0b7c84cf7169f50882fa1d73b8235939e5156f844f",
+      "pseudocode": "\n/* WARNING: Control flow encountered bad instruction data */\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nvoid entry(undefined8 param_1,undefined8 param_2,undefined8 param_3,long param_4)\n\n{\n  undefined8 *puVar1;\n  undefined4 *puVar2;\n  float fVar3;\n  float fVar4;\n  long lVar5;\n  undefined4 uVar6;\n  undefined4 uVar7;\n  undefined8 uVar8;\n  ulong uVar9;\n  ulong uVar10;\n  long lVar11;\n  ulong uVar12;\n  uint uVar13;\n  long unaff_RBP;\n  ulong uVar14;\n  long lVar15;\n  long lVar16;\n  ulong uVar17;\n  undefined8 unaff_R13;\n  uint unaff_R14D;\n  undefined4 unaff_R15D;\n  float fVar18;\n  float fVar19;\n  undefined8 extraout_XMM0_Qa;\n  undefined8 uVar20;\n  undefined8 extraout_XMM0_Qa_00;\n  undefined8 extraout_XMM0_Qb;\n  undefined8 extraout_XMM0_Qb_00;\n  undefined4 in_XMM1_Dc;\n  undefined4 in_XMM1_Dd;\n  float fVar21;\n  undefined8 in_XMM6_Qa;\n  float fVar22;\n  float in_XMM7_Da;\n  float fVar23;\n  undefined4 uVar24;\n  undefined4 uVar25;\n  undefined1 auVar26 [16];\n  undefined1 auVar27 [16];\n  float in_XMM12_Da;\n  float in_XMM13_Da;\n  float fVar28;\n  undefined4 uVar29;\n  float in_XMM15_Da;\n  \n  fVar22 = (float)((ulong)in_XMM6_Qa >> 0x20);\n  fVar21 = (float)in_XMM6_Qa;\n  *(int *)(unaff_RBP + 0x170) = (int)param_2;\n  *(int *)(unaff_RBP + 0x174) = (int)((ulong)param_2 >> 0x20);\n  *(undefined4 *)(unaff_RBP + 0x178) = in_XMM1_Dc;\n  *(undefined4 *)(unaff_RBP + 0x17c) = in_XMM1_Dd;\n  fVar18 = (float)func_0x0001454f08d0();\n  if (fVar18 <= _DAT_1458f8de0) {\n    fVar18 = _DAT_1458f8de0;\n  }\n  *(float *)(unaff_RBP + 0x1b0) = fVar18;\n  if (unaff_R14D != 0) {\n    uVar12 = *(ulong *)(param_4 + 0x880);\n    uVar9 = *(ulong *)(param_4 + 0x888);\n    uVar14 = *(ulong *)(param_4 + 0x898);\n    uVar10 = *(ulong *)(param_4 + 0x890);\n    do {\n      lVar15 = ((uVar12 + uVar14) * 0x800000 | uVar12 + uVar14 >> 0x29) + uVar12;\n      uVar17 = uVar9 << 0x11;\n      uVar10 = uVar10 ^ uVar12;\n      uVar14 = uVar14 ^ uVar9;\n      uVar9 = uVar9 ^ uVar10;\n      uVar12 = uVar12 ^ uVar14;\n      uVar10 = uVar10 ^ uVar17;\n      uVar14 = uVar14 << 0x2d | uVar14 >> 0x13;\n    } while (in_XMM12_Da <= (float)((uint)((ulong)lVar15 >> 0x29) | 0x3f800000) + in_XMM15_Da);\n    in_XMM7_Da = in_XMM7_Da * _DAT_1458eb510;\n    lVar15 = *(long *)(unaff_RBP + 0x2a0);\n    *(ulong *)(lVar15 + 0x880) = uVar12;\n    *(ulong *)(lVar15 + 0x898) = uVar14;\n    *(ulong *)(lVar15 + 0x888) = uVar9;\n    *(ulong *)(lVar15 + 0x890) = uVar10;\n    *(float *)(unaff_RBP + 0x168) = (float)unaff_R14D;\n    lVar15 = *(long *)(lVar15 + 0x878);\n    fVar18 = (float)func_0x000145756e31();\n    fVar19 = (float)func_0x000145756e2b();\n    fVar23 = fVar18 * 0.0 + *(float *)(unaff_RBP + 0x170);\n    fVar19 = fVar19 * 0.0 + *(float *)(unaff_RBP + 0x174);\n    fVar18 = fVar19;\n    uVar12 = func_0x0001454627f0();\n    if ((uVar12 & 1) == 0) {\n      if ((*(long *)(lVar15 + 0x68) == -1) ||\n         (func_0x000145467bf0(), *(int *)(unaff_RBP + 0x1f0) != 1)) {\n        auVar26 = ZEXT416(*(uint *)(lVar15 + 0x90));\n      }\n      else {\n        auVar26 = ZEXT416(*(uint *)(unaff_RBP + 0x1fc));\n      }\n    }\n    else {\n      auVar26._8_4_ = (int)extraout_XMM0_Qb;\n      auVar26._0_8_ = extraout_XMM0_Qa;\n      auVar26._12_4_ = (int)((ulong)extraout_XMM0_Qb >> 0x20);\n    }\n    *(ulong *)(unaff_RBP + 0x194) = CONCAT44(fVar19,fVar23);\n    *(int *)(unaff_RBP + 0x19c) = auVar26._0_4_;\n    *(undefined4 *)(unaff_RBP + 400) = 1;\n    *(undefined4 *)(unaff_RBP + 0x1b8) = 0;\n    func_0x00014544b1a0();\n    lVar15 = *(long *)(*(long *)(unaff_RBP + 0x2a0) + 0x548);\n    if (lVar15 == *(long *)(*(long *)(unaff_RBP + 0x2a0) + 0x538)) {\n      func_0x0001457580b0();\n    }\n    uVar24 = auVar26._0_4_;\n    lVar16 = *(long *)(unaff_RBP + 0x2a0);\n    lVar5 = *(long *)(lVar16 + 0x540);\n    uVar20 = *(undefined8 *)(unaff_RBP + 0x1f0);\n    uVar8 = *(undefined8 *)(unaff_RBP + 0x1f8);\n    uVar29 = *(undefined4 *)(unaff_RBP + 0x204);\n    uVar6 = *(undefined4 *)(unaff_RBP + 0x208);\n    uVar7 = *(undefined4 *)(unaff_RBP + 0x20c);\n    puVar2 = (undefined4 *)(lVar5 + 0x10 + lVar15 * 0x20);\n    *puVar2 = *(undefined4 *)(unaff_RBP + 0x200);\n    puVar2[1] = uVar29;\n    puVar2[2] = uVar6;\n    puVar2[3] = uVar7;\n    puVar1 = (undefined8 *)(lVar5 + lVar15 * 0x20);\n    *puVar1 = uVar20;\n    puVar1[1] = uVar8;\n    *(long *)(lVar16 + 0x548) = lVar15 + 1;\n    lVar15 = *(long *)(lVar16 + 0x4e8);\n    if (lVar15 == *(long *)(lVar16 + 0x4d8)) {\n      func_0x00014575b510();\n      uVar24 = auVar26._0_4_;\n    }\n    fVar3 = *(float *)(unaff_RBP + 0x1b0);\n    fVar28 = *(float *)(unaff_RBP + 0x240);\n    lVar16 = *(long *)(unaff_RBP + 0x2a0);\n    lVar5 = *(long *)(lVar16 + 0x4e0);\n    lVar11 = lVar15 * 0x58;\n    *(undefined8 *)(lVar5 + lVar11) = 1;\n    *(undefined8 *)(lVar5 + 8 + lVar11) = unaff_R13;\n    *(undefined4 *)(lVar5 + 0x10 + lVar11) = 0;\n    *(undefined8 *)(lVar5 + 0x18 + lVar11) = 0;\n    *(undefined4 *)(lVar5 + 0x20 + lVar11) = 0;\n    *(ulong *)(lVar5 + 0x2c + lVar11) = CONCAT44(fVar19,fVar23);\n    *(undefined4 *)(lVar5 + 0x34 + lVar11) = uVar24;\n    *(undefined4 *)(lVar5 + 0x38 + lVar11) = 0x40200000;\n    *(undefined4 *)(lVar5 + 0x3c + lVar11) = unaff_R15D;\n    uVar29 = uRam00000001458f8d74;\n    *(ulong *)(lVar5 + 0x40 + lVar11) = CONCAT44(uRam00000001458f8d74,fVar28);\n    *(undefined4 *)(lVar5 + 0x48 + lVar11) = 0;\n    *(float *)(lVar5 + 0x4c + lVar11) = in_XMM7_Da;\n    *(float *)(lVar5 + 0x50 + lVar11) =\n         SQRT((fVar22 - fVar18) * (fVar22 - fVar18) + (fVar21 - fVar23) * (fVar21 - fVar23)) / fVar3\n         + fVar28;\n    *(undefined1 *)(lVar5 + 0x54 + lVar11) = 5;\n    *(long *)(lVar16 + 0x4e8) = lVar15 + 1;\n    if (unaff_R14D != 1) {\n      uVar13 = 1;\n      do {\n        uVar12 = *(ulong *)(lVar16 + 0x880);\n        uVar9 = *(ulong *)(lVar16 + 0x888);\n        uVar14 = *(ulong *)(lVar16 + 0x898);\n        uVar10 = *(ulong *)(lVar16 + 0x890);\n        do {\n          lVar15 = ((uVar12 + uVar14) * 0x800000 | uVar12 + uVar14 >> 0x29) + uVar12;\n          uVar17 = uVar9 << 0x11;\n          uVar10 = uVar10 ^ uVar12;\n          uVar14 = uVar14 ^ uVar9;\n          uVar9 = uVar9 ^ uVar10;\n          uVar12 = uVar12 ^ uVar14;\n          uVar10 = uVar10 ^ uVar17;\n          uVar14 = uVar14 << 0x2d | uVar14 >> 0x13;\n        } while (in_XMM12_Da <= (float)((uint)((ulong)lVar15 >> 0x29) | 0x3f800000) + in_XMM15_Da);\n        lVar15 = *(long *)(unaff_RBP + 0x2a0);\n        *(ulong *)(lVar15 + 0x880) = uVar12;\n        *(ulong *)(lVar15 + 0x898) = uVar14;\n        *(ulong *)(lVar15 + 0x888) = uVar9;\n        *(ulong *)(lVar15 + 0x890) = uVar10;\n        do {\n          lVar15 = ((uVar12 + uVar14) * 0x800000 | uVar12 + uVar14 >> 0x29) + uVar12;\n          uVar17 = uVar9 << 0x11;\n          uVar10 = uVar10 ^ uVar12;\n          uVar14 = uVar14 ^ uVar9;\n          uVar9 = uVar9 ^ uVar10;\n          uVar12 = uVar12 ^ uVar14;\n          uVar10 = uVar10 ^ uVar17;\n          uVar14 = uVar14 << 0x2d | uVar14 >> 0x13;\n          fVar18 = ((float)((uint)((ulong)lVar15 >> 0x29) | 0x3f800000) + in_XMM15_Da) *\n                   _DAT_1458eb4f8 + _DAT_1458f6624;\n        } while (in_XMM13_Da <= fVar18);\n        lVar15 = *(long *)(unaff_RBP + 0x2a0);\n        *(ulong *)(lVar15 + 0x880) = uVar12;\n        *(ulong *)(lVar15 + 0x898) = uVar14;\n        *(ulong *)(lVar15 + 0x888) = uVar9;\n        *(ulong *)(lVar15 + 0x890) = uVar10;\n        fVar19 = (float)func_0x000145756e31();\n        uVar20 = func_0x000145756e2b();\n        fVar19 = fVar18 * fVar19 + *(float *)(unaff_RBP + 0x170);\n        fVar23 = fVar18 * (float)uVar20 + *(float *)(unaff_RBP + 0x174);\n        lVar15 = *(long *)(lVar15 + 0x878);\n        fVar18 = fVar23;\n        uVar12 = func_0x0001454627f0(uVar20,fVar19,fVar23);\n        if ((uVar12 & 1) == 0) {\n          if ((*(long *)(lVar15 + 0x68) == -1) ||\n             (func_0x000145467bf0(), *(int *)(unaff_RBP + 0x1f0) != 1)) {\n            auVar27 = ZEXT416(*(uint *)(lVar15 + 0x90));\n          }\n          else {\n            auVar27 = ZEXT416(*(uint *)(unaff_RBP + 0x1fc));\n          }\n        }\n        else {\n          auVar27._8_4_ = (int)extraout_XMM0_Qb_00;\n          auVar27._0_8_ = extraout_XMM0_Qa_00;\n          auVar27._12_4_ = (int)((ulong)extraout_XMM0_Qb_00 >> 0x20);\n        }\n        *(ulong *)(unaff_RBP + 0x194) = CONCAT44(fVar23,fVar19);\n        *(int *)(unaff_RBP + 0x19c) = auVar27._0_4_;\n        *(undefined4 *)(unaff_RBP + 400) = 1;\n        *(undefined4 *)(unaff_RBP + 0x1b8) = 0;\n        func_0x00014544b1a0();\n        lVar15 = *(long *)(*(long *)(unaff_RBP + 0x2a0) + 0x548);\n        if (lVar15 == *(long *)(*(long *)(unaff_RBP + 0x2a0) + 0x538)) {\n          func_0x0001457580b0();\n        }\n        uVar25 = auVar27._0_4_;\n        lVar16 = *(long *)(unaff_RBP + 0x2a0);\n        lVar5 = *(long *)(lVar16 + 0x540);\n        uVar20 = *(undefined8 *)(unaff_RBP + 0x1f0);\n        uVar8 = *(undefined8 *)(unaff_RBP + 0x1f8);\n        uVar6 = *(undefined4 *)(unaff_RBP + 0x204);\n        uVar7 = *(undefined4 *)(unaff_RBP + 0x208);\n        uVar24 = *(undefined4 *)(unaff_RBP + 0x20c);\n        puVar2 = (undefined4 *)(lVar5 + 0x10 + lVar15 * 0x20);\n        *puVar2 = *(undefined4 *)(unaff_RBP + 0x200);\n        puVar2[1] = uVar6;\n        puVar2[2] = uVar7;\n        puVar2[3] = uVar24;\n        puVar1 = (undefined8 *)(lVar5 + lVar15 * 0x20);\n        *puVar1 = uVar20;\n        puVar1[1] = uVar8;\n        *(long *)(lVar16 + 0x548) = lVar15 + 1;\n        lVar15 = *(long *)(lVar16 + 0x4e8);\n        if (lVar15 == *(long *)(lVar16 + 0x4d8)) {\n          func_0x00014575b510();\n          uVar25 = auVar27._0_4_;\n        }\n        uVar13 = uVar13 + 1;\n        fVar3 = *(float *)(unaff_RBP + 0x1b0);\n        fVar4 = *(float *)(unaff_RBP + 0x240);\n        lVar16 = *(long *)(unaff_RBP + 0x2a0);\n        lVar5 = *(long *)(lVar16 + 0x4e0);\n        lVar11 = lVar15 * 0x58;\n        *(undefined8 *)(lVar5 + lVar11) = 1;\n        *(undefined8 *)(lVar5 + 8 + lVar11) = unaff_R13;\n        *(undefined4 *)(lVar5 + 0x10 + lVar11) = 0;\n        *(undefined8 *)(lVar5 + 0x18 + lVar11) = 0;\n        *(undefined4 *)(lVar5 + 0x20 + lVar11) = 0;\n        *(ulong *)(lVar5 + 0x2c + lVar11) = CONCAT44(fVar23,fVar19);\n        *(undefined4 *)(lVar5 + 0x34 + lVar11) = uVar25;\n        *(undefined4 *)(lVar5 + 0x38 + lVar11) = 0x40200000;\n        *(undefined4 *)(lVar5 + 0x3c + lVar11) = unaff_R15D;\n        *(ulong *)(lVar5 + 0x40 + lVar11) = CONCAT44(uVar29,fVar28);\n        *(undefined4 *)(lVar5 + 0x48 + lVar11) = 0;\n        *(float *)(lVar5 + 0x4c + lVar11) = in_XMM7_Da;\n        *(float *)(lVar5 + 0x50 + lVar11) =\n             SQRT((fVar22 - fVar18) * (fVar22 - fVar18) + (fVar21 - fVar19) * (fVar21 - fVar19)) /\n             fVar3 + fVar4;\n        *(undefined1 *)(lVar5 + 0x54 + lVar11) = 5;\n        *(long *)(lVar16 + 0x4e8) = lVar15 + 1;\n      } while (uVar13 != unaff_R14D);\n    }\n                    /* WARNING: Bad instruction - Truncating control flow here */\n    halt_baddata();\n  }\n  halt_baddata();\n}\n\n"
+    },
+    {
+      "evidence_id": "ev_7794ea172ab39e92b90dcb2245dfcf127b1bf644ca54d2531b6ce3f56879cc9d",
+      "operation": "analyze_function",
+      "parameters": {
+        "procedure": "0x1454a3caa"
+      },
+      "subject": {
+        "architecture": "x86_64",
+        "digest": {
+          "sha256": "1bed430b7fffc37e38208a6b4bb83af536e55e40a5d59a757b4d7fcc40e05326"
+        },
+        "format": "raw-binary",
+        "local_path": "runtime/boss-abilities-0.97.2/1454a3caa.bin",
+        "name": "1454a3caa.bin"
+      },
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile": {
+        "digest": "76e1d6a2fe415665ccb6e5981766b3d2551ba03326d52cb5f867fbe35c18b31c",
+        "parameters": {
+          "analyzer_preset": "ghidra-default",
+          "annotation_policy": "atomic-function-entry-metadata-v1",
+          "architecture": "x86_64",
+          "available_architectures": [
+            "x86_64"
+          ],
+          "call_relationship_coverage": "function-body-call-coverage-v5",
+          "compiler_spec_id": "gcc",
+          "decompiler_jump_loads": true,
+          "entry_point": "0x1454a3caa",
+          "entry_seed": "external-entry-and-function-before-analysis-v1",
+          "function_body_evidence": "complete-inclusive-ranges-v1",
+          "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+          "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+          "function_references": "complete-body-and-entry-reference-manager-v2",
+          "import_mode": "ephemeral-source-immutable",
+          "instruction_flow_evidence": "decoded-return-pcode-v1",
+          "instruction_references": "exact-address-incoming-v1",
+          "jump_table_evidence": "typed-case-default-blocks-v1",
+          "language_id": "x86:LE:64:default",
+          "language_selection": "caller-supplied-v1",
+          "load_image_evidence": "independent-raw-mapping-context-v4",
+          "load_image_observations": "source-mappings-entry-context-v2",
+          "loader": "BinaryLoader",
+          "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+          "no_return_repair": "returning-imports-decoded-return-v2",
+          "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+          "process_launch": "inspected-jvm-launch-support-v1",
+          "string_inventory_evidence": "defined-data-coverage-v1",
+          "target_format": "raw-binary",
+          "target_kind": "executable"
+        },
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        }
+      },
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "References cover the complete Ghidra function-body AddressSet and exact entry. Dossier incoming edges omit sources owned by that function; procedure_references also retains those internal edges.",
+        "The dossier combines Ghidra FunctionManager, Listing, ReferenceManager, BasicBlockModel, and decompiler observations; provider-specific pseudocode and assembly are not cross-provider text invariants.",
+        "Resolved reference metadata identifies computed, indirect, external, call, jump, and data edges; unresolved targetless flows remain unknown, and function classifications distinguish thunks and externals.",
+        "Synthetic Ghidra entry-point references without actionable memory sources are omitted.",
+        "The Java bridge serializes one function request per Program and lets each decompilation run until it completes or the caller cancels.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+        "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+        "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+      ],
+      "relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "limitations": [
+          "Ghidra's callee inventory omits targets of 12 call reference(s) or decoded call(s) without destinations."
+        ],
+        "limited_directions": [
+          "callees"
+        ],
+        "status": "partial"
+      },
+      "pseudocode_sha256": "3c1933bd92e60d352ff45b741dc7abe2fbad56d09ae99508a9095e872dd49cab",
+      "pseudocode": "\n/* WARNING: Control flow encountered bad instruction data */\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nvoid entry(undefined8 param_1,undefined8 param_2)\n\n{\n  undefined8 *puVar1;\n  int iVar2;\n  undefined4 uVar3;\n  long lVar4;\n  ulong uVar5;\n  ulong uVar6;\n  undefined8 uVar7;\n  undefined8 uVar8;\n  undefined8 uVar9;\n  long *plVar10;\n  long lVar11;\n  ulong uVar12;\n  long lVar13;\n  long unaff_RBP;\n  long lVar14;\n  ulong uVar15;\n  ulong uVar16;\n  ulong uVar17;\n  long lVar18;\n  float fVar19;\n  float fVar20;\n  undefined4 uVar21;\n  float fVar22;\n  float fVar23;\n  float fVar24;\n  undefined8 uVar25;\n  \n  if (*(long *)(unaff_RBP + 0x348) != 0) {\n    func_0x0001400021d0(param_1,param_2,*(long *)(unaff_RBP + 0x348) * 0x50,\n                        *(undefined8 *)(unaff_RBP + 0x340),8);\n  }\n  lVar14 = *(long *)(unaff_RBP + 0x368);\n  uVar17 = *(ulong *)(lVar14 + 0x4e8);\n  if (uVar17 != 0) {\n    fVar22 = *(float *)(lVar14 + 0x8e4);\n    *(long *)(unaff_RBP + 0x338) = lVar14 + 0x538;\n    uVar16 = 0;\n    fVar23 = _DAT_1459eb3c0;\n    do {\n      lVar18 = *(long *)(lVar14 + 0x4e0);\n      lVar13 = uVar16 * 0x58;\n      if (*(float *)(lVar18 + 0x50 + lVar13) <= fVar22) {\n        *(ulong *)(unaff_RBP + 0x348) = ~uVar16;\n        do {\n          if (uVar17 <= uVar16) {\n                    /* WARNING: Bad instruction - Truncating control flow here */\n            halt_baddata();\n          }\n          lVar14 = *(long *)(lVar18 + lVar13);\n          iVar2 = *(int *)(lVar18 + 0x10 + lVar13);\n          *(undefined8 *)(unaff_RBP + 0x358) = *(undefined8 *)(lVar18 + 0x18 + lVar13);\n          uVar25 = *(undefined8 *)(lVar18 + 0x2c + lVar13);\n          uVar3 = *(undefined4 *)(lVar18 + 0x34 + lVar13);\n          fVar24 = *(float *)(lVar18 + 0x38 + lVar13);\n          uVar21 = *(undefined4 *)(lVar18 + 0x4c + lVar13);\n          func_0x000145756dd1(uVar16,lVar14,lVar18 + lVar13 + 0x58,lVar18 + lVar13,\n                              (*(long *)(unaff_RBP + 0x348) + uVar17) * 0x58);\n          *(ulong *)(*(long *)(unaff_RBP + 0x368) + 0x4e8) = uVar17 - 1;\n          if (lVar14 != 0) {\n            if (lVar14 == 2) {\n              halt_baddata();\n            }\n            lVar14 = *(long *)(unaff_RBP + 0x368);\n            if (iVar2 != 0) {\n              *(undefined8 *)(unaff_RBP + 0x234) = uVar25;\n              *(undefined4 *)(unaff_RBP + 0x23c) = uVar3;\n              *(undefined4 *)(unaff_RBP + 0x230) = 1;\n              *(undefined4 *)(unaff_RBP + 0x210) = 0;\n              func_0x00014544b1a0();\n              lVar18 = *(long *)(lVar14 + 0x548);\n              if (lVar18 == *(long *)(lVar14 + 0x538)) {\n                func_0x0001457580b0();\n              }\n              lVar4 = *(long *)(lVar14 + 0x540);\n              uVar7 = *(undefined8 *)(unaff_RBP + 0xa0);\n              uVar8 = *(undefined8 *)(unaff_RBP + 0xa8);\n              uVar9 = *(undefined8 *)(unaff_RBP + 0xb8);\n              puVar1 = (undefined8 *)(lVar4 + 0x10 + lVar18 * 0x20);\n              *puVar1 = *(undefined8 *)(unaff_RBP + 0xb0);\n              puVar1[1] = uVar9;\n              puVar1 = (undefined8 *)(lVar4 + lVar18 * 0x20);\n              *puVar1 = uVar7;\n              puVar1[1] = uVar8;\n              *(long *)(lVar14 + 0x548) = lVar18 + 1;\n            }\n            fVar19 = (float)*(undefined8 *)(lVar14 + 1000) - (float)uVar25;\n            fVar20 = (float)((ulong)*(undefined8 *)(lVar14 + 1000) >> 0x20) -\n                     (float)((ulong)uVar25 >> 0x20);\n            fVar19 = SQRT(fVar20 * fVar20 + fVar19 * fVar19);\n            if (fVar19 <= fVar24) {\n              func_0x00014548f420(fVar19,uVar21);\n            }\n          }\n          lVar18 = *(long *)(unaff_RBP + 0x358);\n          lVar14 = *(long *)(unaff_RBP + 0x368);\n          if (lVar18 != 0) {\n            func_0x000140002200();\n            plVar10 = (long *)func_0x0001400021c0();\n            if (plVar10 == (long *)0x0) {\n                    /* WARNING: Bad instruction - Truncating control flow here */\n              halt_baddata();\n            }\n            *(long **)(unaff_RBP + 0x340) = plVar10;\n            *plVar10 = lVar18;\n            lVar18 = *(long *)(lVar14 + 0x548);\n            if (lVar18 == *(long *)(lVar14 + 0x538)) {\n              func_0x0001457580b0();\n            }\n            lVar4 = *(long *)(lVar14 + 0x540);\n            lVar11 = lVar18 * 0x20;\n            *(undefined8 *)(lVar4 + lVar11) = 0x20;\n            *(undefined8 *)(lVar4 + 8 + lVar11) = *(undefined8 *)(unaff_RBP + 0x340);\n            *(undefined8 *)(lVar4 + 0x10 + lVar11) = 8;\n            *(undefined2 *)(lVar4 + 0x18 + lVar11) = 0xaa;\n            *(long *)(lVar14 + 0x548) = lVar18 + 1;\n          }\n          uVar17 = *(ulong *)(lVar14 + 0x4e8);\n          if (uVar17 <= uVar16) {\n            halt_baddata();\n          }\n          lVar18 = *(long *)(lVar14 + 0x4e0);\n        } while (*(float *)(lVar18 + 0x50 + lVar13) <= fVar22);\n      }\n      plVar10 = (long *)(lVar18 + lVar13);\n      if (((*plVar10 == 0) && ((int)plVar10[9] != 0)) && (*(float *)(plVar10 + 8) <= fVar22)) {\n        *(int *)(plVar10 + 9) = (int)plVar10[9] + -1;\n        *(float *)(plVar10 + 8) = *(float *)(plVar10 + 8) + *(float *)((long)plVar10 + 0x44);\n        *(undefined4 *)(unaff_RBP + 0x2b8) = *(undefined4 *)((long)plVar10 + 0x34);\n        *(undefined8 *)(unaff_RBP + 0x2b0) = *(undefined8 *)((long)plVar10 + 0x2c);\n        fVar24 = *(float *)((long)plVar10 + 0x4c);\n        *(int *)(unaff_RBP + 0x2e0) = (int)plVar10[5];\n        *(long *)(unaff_RBP + 0x2d8) = plVar10[4];\n        func_0x0001454ee0d0();\n        *(undefined8 *)(unaff_RBP + 0x340) = *(undefined8 *)(unaff_RBP + 0xa0);\n        *(undefined8 *)(unaff_RBP + 0x358) = *(undefined8 *)(unaff_RBP + 0xa8);\n        if (*(long *)(unaff_RBP + 0xb0) != 0) {\n          lVar14 = *(long *)(unaff_RBP + 0xb0) << 3;\n          lVar18 = 0;\n          do {\n            lVar13 = *(long *)(unaff_RBP + 0x368);\n            uVar5 = *(ulong *)(lVar13 + 0x880);\n            uVar17 = *(ulong *)(lVar13 + 0x898) + uVar5;\n            uVar6 = *(ulong *)(lVar13 + 0x888);\n            uVar15 = *(ulong *)(lVar13 + 0x890) ^ uVar5;\n            uVar12 = *(ulong *)(lVar13 + 0x898) ^ uVar6;\n            *(ulong *)(lVar13 + 0x888) = uVar6 ^ uVar15;\n            *(ulong *)(lVar13 + 0x880) = uVar5 ^ uVar12;\n            *(ulong *)(lVar13 + 0x890) = uVar15 ^ uVar6 << 0x11;\n            *(ulong *)(lVar13 + 0x898) = uVar12 << 0x2d | uVar12 >> 0x13;\n            fVar20 = (float)(uint)((uVar17 * 0x800000 | uVar17 >> 0x29) + uVar5 >> 0x28) * fVar23;\n            fVar19 = fVar24;\n            if (fVar20 < *(float *)(lVar13 + 0x464)) {\n              fVar19 = *(float *)(lVar13 + 0x468) * fVar24;\n            }\n            func_0x0001454c2eb0(fVar20,*(float *)(lVar13 + 0x464),fVar19);\n            func_0x0001454ed630();\n            lVar18 = lVar18 + 8;\n          } while (lVar14 != lVar18);\n        }\n        if (*(long *)(unaff_RBP + 0x340) != 0) {\n          func_0x0001400021d0();\n        }\n        lVar14 = *(long *)(unaff_RBP + 0x368);\n        uVar17 = *(ulong *)(lVar14 + 0x4e8);\n      }\n      uVar16 = uVar16 + 1;\n    } while (uVar16 < uVar17);\n  }\n                    /* WARNING: Bad instruction - Truncating control flow here */\n  halt_baddata();\n}\n\n"
+    },
+    {
+      "evidence_id": "ev_49653061f6b9aca0213cc621c11c1d1cfc5197eadb9cd5d63b56a1b2840ae473",
+      "operation": "analyze_function",
+      "parameters": {
+        "procedure": "0x1454f0710"
+      },
+      "subject": {
+        "architecture": "x86_64",
+        "digest": {
+          "sha256": "16c3ba213b1a13cfc8640871c2b0789189bc6989738d262cd300cda4e58ee359"
+        },
+        "format": "raw-binary",
+        "local_path": "runtime/boss-abilities-0.97.2/1454f0710.bin",
+        "name": "1454f0710.bin"
+      },
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile": {
+        "digest": "cd7967fcb978fd6cf0cfc6e4e47a560c08e99ddca22b51dde34a9d1a5f46184f",
+        "parameters": {
+          "analyzer_preset": "ghidra-default",
+          "annotation_policy": "atomic-function-entry-metadata-v1",
+          "architecture": "x86_64",
+          "available_architectures": [
+            "x86_64"
+          ],
+          "call_relationship_coverage": "function-body-call-coverage-v5",
+          "compiler_spec_id": "gcc",
+          "decompiler_jump_loads": true,
+          "entry_point": "0x1454f0710",
+          "entry_seed": "external-entry-and-function-before-analysis-v1",
+          "function_body_evidence": "complete-inclusive-ranges-v1",
+          "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+          "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+          "function_references": "complete-body-and-entry-reference-manager-v2",
+          "import_mode": "ephemeral-source-immutable",
+          "instruction_flow_evidence": "decoded-return-pcode-v1",
+          "instruction_references": "exact-address-incoming-v1",
+          "jump_table_evidence": "typed-case-default-blocks-v1",
+          "language_id": "x86:LE:64:default",
+          "language_selection": "caller-supplied-v1",
+          "load_image_evidence": "independent-raw-mapping-context-v4",
+          "load_image_observations": "source-mappings-entry-context-v2",
+          "loader": "BinaryLoader",
+          "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+          "no_return_repair": "returning-imports-decoded-return-v2",
+          "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+          "process_launch": "inspected-jvm-launch-support-v1",
+          "string_inventory_evidence": "defined-data-coverage-v1",
+          "target_format": "raw-binary",
+          "target_kind": "executable"
+        },
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        }
+      },
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "References cover the complete Ghidra function-body AddressSet and exact entry. Dossier incoming edges omit sources owned by that function; procedure_references also retains those internal edges.",
+        "The dossier combines Ghidra FunctionManager, Listing, ReferenceManager, BasicBlockModel, and decompiler observations; provider-specific pseudocode and assembly are not cross-provider text invariants.",
+        "Resolved reference metadata identifies computed, indirect, external, call, jump, and data edges; unresolved targetless flows remain unknown, and function classifications distinguish thunks and externals.",
+        "Synthetic Ghidra entry-point references without actionable memory sources are omitted.",
+        "The Java bridge serializes one function request per Program and lets each decompilation run until it completes or the caller cancels.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+        "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+        "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+      ],
+      "relationship_coverage": {
+        "diagnostics": [
+          "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+        ],
+        "status": "complete"
+      },
+      "pseudocode_sha256": "410e3b466c3810aac9f3cc68740eab5291fe7c088e9a6b7e82bafd3077fe5f09",
+      "pseudocode": "\nundefined8 entry(void)\n\n{\n  int in_ECX;\n  \n  if (in_ECX < 0x848) {\n    if (in_ECX < 0x488) {\n      if (0x79 < in_ECX) {\n        if (in_ECX == 0x7a) {\n          return 1;\n        }\n        if (in_ECX != 0x30b) {\n          return 0;\n        }\n        return 1;\n      }\n      if (in_ECX != 10) {\n        if (in_ECX != 0x78) {\n          return 0;\n        }\n        return 1;\n      }\n    }\n    else {\n      if (in_ECX < 0x5e6) {\n        if ((in_ECX != 0x488) && (in_ECX != 0x5a9)) {\n          return 0;\n        }\n        return 1;\n      }\n      if ((in_ECX != 0x5e6) && (in_ECX != 0x690)) {\n        if (in_ECX != 0x79d) {\n          return 0;\n        }\n        return 1;\n      }\n    }\n  }\n  else if (in_ECX < 0x35f2) {\n    if (in_ECX < 0x18c7) {\n      if (in_ECX == 0x848) {\n        return 1;\n      }\n      if (in_ECX != 0x166c) {\n        return 0;\n      }\n    }\n    else if ((in_ECX != 0x18c7) && (in_ECX != 0x1fba)) {\n      if (in_ECX != 0x2b69) {\n        return 0;\n      }\n      return 1;\n    }\n  }\n  else {\n    if (in_ECX < 0x4212) {\n      if (in_ECX == 0x35f2) {\n        return 1;\n      }\n      if (in_ECX != 0x3b85) {\n        return 0;\n      }\n      return 1;\n    }\n    if (((in_ECX != 0x4212) && (in_ECX != 0x5045)) && (in_ECX != 0x67cd)) {\n      return 0;\n    }\n  }\n  return 1;\n}\n\n"
+    }
+  ]
+}

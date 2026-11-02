@@ -1,0 +1,406 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.113.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+    "size_bytes": 141932032
+  },
+  "generator": {
+    "path": "scripts/check-card-reroll-0.113.2.py",
+    "sha256": "06496ab6a26dc0a0f1369bab4963de2f49c81ba91ab920a554d50088f7fdc49f"
+  },
+  "native_label": {
+    "va": "0x145efd9a0",
+    "end_exclusive": "0x145efd9a6",
+    "byte_count": 6,
+    "sha256": "18363dbee31e6a38db3c8df982ef6fe7c703be54ee98f1a5a6109e81ab2fef8f"
+  },
+  "label_reference": {
+    "va": "0x1402a5540",
+    "end_exclusive": "0x1402a5551",
+    "byte_count": 17,
+    "sha256": "411f30dbfc382d094a2f4d7724fc6e834291674a5aad7d99dd720e9753f3fe89"
+  },
+  "choice_publication_call": {
+    "va": "0x1459660f2",
+    "end_exclusive": "0x1459660f7",
+    "byte_count": 5,
+    "sha256": "6c155eb994c8e7189acbc795b806169c0780ab7e2eb20250313556543a348441"
+  },
+  "choices_message_type": {
+    "va": "0x14730e030",
+    "end_exclusive": "0x14730e037",
+    "byte_count": 7,
+    "sha256": "39db15dcd0925b902e74583720054685d69ef2f196053cb3986ebf8761812f38"
+  },
+  "labeled_constructor": {
+    "va": "0x1402a3100",
+    "end_exclusive": "0x1402a60dc",
+    "byte_count": 12252,
+    "sha256": "e9ec236559b943e13a3f61b0bd47402baac695844bc799fb9b27f8706bab3250"
+  },
+  "controller": {
+    "va": "0x1400b4e30",
+    "end_exclusive": "0x1400b5724",
+    "byte_count": 2292,
+    "sha256": "d966e425bbdb1d86cf7a9dd38da8b72213d46bf533321a279b8a7739ebde4eb6"
+  },
+  "native_ranges": [
+    {
+      "va": "0x1402a5229",
+      "end_exclusive": "0x1402a5255",
+      "byte_count": 44,
+      "sha256": "6b273bc1400bdedc5e8527dcce1168668639330a3f0df407fe408756b8c5e0b0"
+    },
+    {
+      "va": "0x1400b54ba",
+      "end_exclusive": "0x1400b554f",
+      "byte_count": 149,
+      "sha256": "b5042ee4db12fea093cf78e6f6a9d970a2d0e864117e3d94ea406764caa4385b"
+    },
+    {
+      "va": "0x1400b5661",
+      "end_exclusive": "0x1400b567b",
+      "byte_count": 26,
+      "sha256": "19ad11c54950a134a43203b17ab67501e8ca398c2f2688eb4588bd9e72d51c1d"
+    },
+    {
+      "va": "0x1400b567b",
+      "end_exclusive": "0x1400b56e4",
+      "byte_count": 105,
+      "sha256": "379d54639bec31b51130c2400a8efaab06ef91d535ace2fc96bddb275859fe74"
+    },
+    {
+      "va": "0x1400b56e9",
+      "end_exclusive": "0x1400b5700",
+      "byte_count": 23,
+      "sha256": "46b561026a0a264708e31c83d265a1a828430f763779d5c45fb56ded8ae189ad"
+    },
+    {
+      "va": "0x1400e9fb9",
+      "end_exclusive": "0x1400e9fd6",
+      "byte_count": 29,
+      "sha256": "6c0650f46dbc0464752914d5d4d580ceb882a9cf0a76c045ce6a8ecaac60a827"
+    },
+    {
+      "va": "0x1400ea19a",
+      "end_exclusive": "0x1400ea1d4",
+      "byte_count": 58,
+      "sha256": "dcd8327977564f4907684e4e96f872f130ec6070bbbe630f62124302a5866291"
+    },
+    {
+      "va": "0x1400b38d9",
+      "end_exclusive": "0x1400b3928",
+      "byte_count": 79,
+      "sha256": "7152605eca3d5224869436dbf04f6654c1436dba9724beedf04c70df213004dc"
+    },
+    {
+      "va": "0x1400b3944",
+      "end_exclusive": "0x1400b3970",
+      "byte_count": 44,
+      "sha256": "92edbe9a4cdcd400e786978d8d0c7425e23229cc56e4963a57bbaf5e131b7b6c"
+    },
+    {
+      "va": "0x1400b3fe8",
+      "end_exclusive": "0x1400b3fef",
+      "byte_count": 7,
+      "sha256": "88a45e29020084a6df9eb52f66ccaa7f5beb4c5dd62fd4c93f4a7417706c6f97"
+    }
+  ],
+  "button_cases": 80,
+  "admission_cases": 1600,
+  "selection_cases": 30,
+  "renewal_cases": 96,
+  "executed_instruction_boundaries": 115,
+  "detailed_cases": {
+    "path": "runtime/as-ui-contracts-0.113.2/card-reroll-cases.json",
+    "sha256": "df7598a18ca7d30cfdcf0a357cbd084632166edd194069d5e1aeab911fd94fad"
+  },
+  "ghidra": {
+    "evidence_id": "ev_af80667266805f6d83e8d24f75cb5fd0c45f7a0e648022dc981a58c026229ee6",
+    "provider": {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "version": "12.1.4"
+    },
+    "analysis_profile": {
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "parameters": {
+        "target_kind": "executable",
+        "target_format": "raw-binary",
+        "architecture": "x86_64",
+        "available_architectures": [
+          "x86_64"
+        ],
+        "import_mode": "ephemeral-source-immutable",
+        "annotation_policy": "atomic-function-entry-metadata-v1",
+        "load_image_observations": "source-mappings-entry-context-v2",
+        "function_body_evidence": "complete-inclusive-ranges-v1",
+        "function_references": "complete-body-and-entry-reference-manager-v2",
+        "call_relationship_coverage": "function-body-call-coverage-v5",
+        "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+        "string_inventory_evidence": "defined-data-coverage-v1",
+        "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+        "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+        "instruction_flow_evidence": "decoded-return-pcode-v1",
+        "instruction_references": "exact-address-incoming-v1",
+        "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+        "no_return_repair": "returning-imports-decoded-return-v2",
+        "process_launch": "inspected-jvm-launch-support-v1",
+        "load_image_evidence": "independent-raw-mapping-context-v4",
+        "jump_table_evidence": "typed-case-default-blocks-v1",
+        "decompiler_jump_loads": true,
+        "loader": "BinaryLoader",
+        "language_id": "x86:LE:64:default",
+        "compiler_spec_id": "gcc",
+        "language_selection": "caller-supplied-v1",
+        "entry_point": "0x1400b4e30",
+        "entry_seed": "external-entry-and-function-before-analysis-v1",
+        "analyzer_preset": "ghidra-default",
+        "analysis_seeds": {
+          "format": "rea-ghidra-seeds-body-repair-v1",
+          "path": "runtime/as-ui-contracts-0.113.2/cards-input-controller/seeds.tsv",
+          "configured_path": "runtime/as-ui-contracts-0.113.2/cards-input-controller/seeds.tsv",
+          "sha256": "7451ef39a38f4fdb884b9a48e9c08b296c36db543b84ca24572eab5a261d343f",
+          "entries": {
+            "function": 1,
+            "code": 1,
+            "label": 0
+          }
+        }
+      },
+      "digest": "44742bcaf3cbcca4a95b2e3b95b3e138382174079b3cf32fc08a19fc72222d3e"
+    },
+    "pseudocode_sha256": "3d70320c9bc5b4f3f2c4273f86b2df34f17d31ba1e54fc08dfe86722f9822a09"
+  },
+  "related_ghidra": [
+    {
+      "role": "cards-root",
+      "owner": {
+        "va": "0x1400b37c0",
+        "end_exclusive": "0x1400b4970",
+        "byte_count": 4528,
+        "sha256": "c147501e8abaf13d3d9413693de23da278d9e3dcc8bdcc2ec41e8c1be15a0842"
+      },
+      "evidence_id": "ev_baa7164f9470d93eadf087ad9d96605e2f41c39b928913022391c6962322c2e7",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile": {
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "parameters": {
+          "target_kind": "executable",
+          "target_format": "raw-binary",
+          "architecture": "x86_64",
+          "available_architectures": [
+            "x86_64"
+          ],
+          "import_mode": "ephemeral-source-immutable",
+          "annotation_policy": "atomic-function-entry-metadata-v1",
+          "load_image_observations": "source-mappings-entry-context-v2",
+          "function_body_evidence": "complete-inclusive-ranges-v1",
+          "function_references": "complete-body-and-entry-reference-manager-v2",
+          "call_relationship_coverage": "function-body-call-coverage-v5",
+          "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+          "string_inventory_evidence": "defined-data-coverage-v1",
+          "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+          "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+          "instruction_flow_evidence": "decoded-return-pcode-v1",
+          "instruction_references": "exact-address-incoming-v1",
+          "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+          "no_return_repair": "returning-imports-decoded-return-v2",
+          "process_launch": "inspected-jvm-launch-support-v1",
+          "load_image_evidence": "independent-raw-mapping-context-v4",
+          "jump_table_evidence": "typed-case-default-blocks-v1",
+          "decompiler_jump_loads": true,
+          "loader": "BinaryLoader",
+          "language_id": "x86:LE:64:default",
+          "compiler_spec_id": "gcc",
+          "language_selection": "caller-supplied-v1",
+          "entry_point": "0x1400b37c0",
+          "entry_seed": "external-entry-and-function-before-analysis-v1",
+          "analyzer_preset": "ghidra-default",
+          "analysis_seeds": {
+            "format": "rea-ghidra-seeds-body-repair-v1",
+            "path": "runtime/as-ui-contracts-0.113.2/cards-root/seeds.tsv",
+            "configured_path": "runtime/as-ui-contracts-0.113.2/cards-root/seeds.tsv",
+            "sha256": "5ab39ac5c5d5ba1a792bf86d729560300506d3a875f78541197a1720a6887406",
+            "entries": {
+              "function": 1,
+              "code": 1,
+              "label": 0
+            }
+          }
+        },
+        "digest": "fdf2bd9eeec4d50a6d7046ba8c504aca825b4f0a4caa357c24091cdc27d1e5f7"
+      },
+      "pseudocode_sha256": "851a335337be0caf4c3cd2713dbcc2e2f5c8b940bfe3ca3c2135adbc831c0c1e"
+    },
+    {
+      "role": "screen-command-consumer",
+      "owner": {
+        "va": "0x1400e8e30",
+        "end_exclusive": "0x1400eaaf9",
+        "byte_count": 7369,
+        "sha256": "36b3f91261e0dc48c86e850f4a7f8fc5713a9a86ef66ca61f7d2e1393e28de8f"
+      },
+      "evidence_id": "ev_4a9e38a9c9503fe49f6052e6f2590020dcc4075cb52c42289eddce0c5b441824",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile": {
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "parameters": {
+          "target_kind": "executable",
+          "target_format": "raw-binary",
+          "architecture": "x86_64",
+          "available_architectures": [
+            "x86_64"
+          ],
+          "import_mode": "ephemeral-source-immutable",
+          "annotation_policy": "atomic-function-entry-metadata-v1",
+          "load_image_observations": "source-mappings-entry-context-v2",
+          "function_body_evidence": "complete-inclusive-ranges-v1",
+          "function_references": "complete-body-and-entry-reference-manager-v2",
+          "call_relationship_coverage": "function-body-call-coverage-v5",
+          "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+          "string_inventory_evidence": "defined-data-coverage-v1",
+          "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+          "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+          "instruction_flow_evidence": "decoded-return-pcode-v1",
+          "instruction_references": "exact-address-incoming-v1",
+          "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+          "no_return_repair": "returning-imports-decoded-return-v2",
+          "process_launch": "inspected-jvm-launch-support-v1",
+          "load_image_evidence": "independent-raw-mapping-context-v4",
+          "jump_table_evidence": "typed-case-default-blocks-v1",
+          "decompiler_jump_loads": true,
+          "loader": "BinaryLoader",
+          "language_id": "x86:LE:64:default",
+          "compiler_spec_id": "gcc",
+          "language_selection": "caller-supplied-v1",
+          "entry_point": "0x1400e8e30",
+          "entry_seed": "external-entry-and-function-before-analysis-v1",
+          "analyzer_preset": "ghidra-default",
+          "analysis_seeds": {
+            "format": "rea-ghidra-seeds-body-repair-v1",
+            "path": "runtime/as-ui-contracts-0.113.2/screen-command-consumer/seeds.tsv",
+            "configured_path": "runtime/as-ui-contracts-0.113.2/screen-command-consumer/seeds.tsv",
+            "sha256": "e838eee95b84643405bd857d90d37894df730f558aa456bd613994e054fb0806",
+            "entries": {
+              "function": 1,
+              "code": 1,
+              "label": 0
+            }
+          }
+        },
+        "digest": "9451f411ecc6f9eca77d1538b936f6495bf18910eef14c89d80f82ba08c8ad60"
+      },
+      "pseudocode_sha256": "c539ff3f16853c37efb753895396785c43982f71b2e7e873e3f9c37fd26a8a14"
+    },
+    {
+      "role": "generate-choices",
+      "owner": {
+        "va": "0x145965190",
+        "end_exclusive": "0x14596624e",
+        "byte_count": 4286,
+        "sha256": "b44ef77e09916f072fda85198aa1c32af1b7e20dde489f6f861fe59017cd644e"
+      },
+      "evidence_id": "ev_4e17082fd4e81468ecb405c1de12908960dcbc2cceb6bf749567196337c4a288",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile": {
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "parameters": {
+          "target_kind": "executable",
+          "target_format": "raw-binary",
+          "architecture": "x86_64",
+          "available_architectures": [
+            "x86_64"
+          ],
+          "import_mode": "ephemeral-source-immutable",
+          "annotation_policy": "atomic-function-entry-metadata-v1",
+          "load_image_observations": "source-mappings-entry-context-v2",
+          "function_body_evidence": "complete-inclusive-ranges-v1",
+          "function_references": "complete-body-and-entry-reference-manager-v2",
+          "call_relationship_coverage": "function-body-call-coverage-v5",
+          "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+          "string_inventory_evidence": "defined-data-coverage-v1",
+          "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+          "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+          "instruction_flow_evidence": "decoded-return-pcode-v1",
+          "instruction_references": "exact-address-incoming-v1",
+          "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+          "no_return_repair": "returning-imports-decoded-return-v2",
+          "process_launch": "inspected-jvm-launch-support-v1",
+          "load_image_evidence": "independent-raw-mapping-context-v4",
+          "jump_table_evidence": "typed-case-default-blocks-v1",
+          "decompiler_jump_loads": true,
+          "loader": "BinaryLoader",
+          "language_id": "x86:LE:64:default",
+          "compiler_spec_id": "gcc",
+          "language_selection": "caller-supplied-v1",
+          "entry_point": "0x145965190",
+          "entry_seed": "external-entry-and-function-before-analysis-v1",
+          "analyzer_preset": "ghidra-default",
+          "analysis_seeds": {
+            "format": "rea-ghidra-seeds-body-repair-v1",
+            "path": "runtime/as-ui-contracts-0.113.2/generate-choices/seeds.tsv",
+            "configured_path": "runtime/as-ui-contracts-0.113.2/generate-choices/seeds.tsv",
+            "sha256": "9fb47d503ca83b43a52bc69660a3001c0b799826fe7f9156d1f412265566fd9d",
+            "entries": {
+              "function": 1,
+              "code": 1,
+              "label": 0
+            }
+          }
+        },
+        "digest": "8ebcbf065928015055c0a471044628e99fb3fa9b0d13036f1e9d410b944619ef"
+      },
+      "pseudocode_sha256": "eb3492904dccee933623ff4ca6a2b0e9963bcf62da76603a06b20cf6745ea9eb"
+    }
+  ],
+  "source": {
+    "path": "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+    "sha256": "9193ce732b9b8ee285ba0489e35a96bc93d192d65a2cbd2fe552249131d5cdfa"
+  },
+  "limits": [
+    "Current labeled Reroll state fields and command3 admission only; no generic ECS resource identity/alias completeness inferred.",
+    "The fixture reaches the actual enqueue CALL but does not execute it or claim complete downstream message scheduling.",
+    "Selection collection, pre-commit reroll and final closing prefixes are replayed separately; queue consumers, row iteration and native keyboard/backend scheduling are not executed.",
+    "Choices renewal resumes after the replaced JSON drop boundary, then replays revision admission/reset and opening-clock write prefixes; packet scheduling and full hierarchy construction are not executed.",
+    "Native root defers a changed revision until any existing closing interval reaches.32 seconds. Source retains the old root through that guard; accepted transactions already ran in command order. The separate current card-delivery and card-keyboard proofs own that repair; packet timing and original/rebuilt presentation remain unverified.",
+    "Existing opening gates for select/banish/skip, terminal/pause/closing and keyboard capture are retained by source tracing.",
+    "Authored live-controls Rust regressions are not run; no compiler, Rust execution, real input/UI/game or original/rebuilt parity."
+  ],
+  "gap_ids": [
+    41
+  ],
+  "compilation_run": false,
+  "game_run": false,
+  "parity_verified": false
+}

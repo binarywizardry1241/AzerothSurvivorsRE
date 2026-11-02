@@ -1,0 +1,212 @@
+{
+  "target": {
+    "version": "0.109.0",
+    "sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0"
+  },
+  "owners": {
+    "parse": {
+      "start": "0x14590e190",
+      "end_exclusive": "0x14590e3bf",
+      "byte_count": 559,
+      "sha256": "7d84a48a8ddedf9d12143eed51b74c2da24bddfffa06e95ad916312aed0a9bb1"
+    },
+    "difficulty": {
+      "start": "0x14590e3c0",
+      "end_exclusive": "0x14590e420",
+      "byte_count": 96,
+      "sha256": "e67586aed875352f21f407edcdbe23fee2f58d74db69576a7bd8d73fa09476a1"
+    },
+    "adjust": {
+      "start": "0x14590e420",
+      "end_exclusive": "0x14590e496",
+      "byte_count": 118,
+      "sha256": "5398a144b5d60aeef7964b2fbf0f89e58ca58b41cedb608ec991c65e4bd869e1"
+    },
+    "reward": {
+      "start": "0x14590e4a0",
+      "end_exclusive": "0x14590e508",
+      "byte_count": 104,
+      "sha256": "25f5c596e1036856eccbf7757c0a78922ead8d7da78264fd558076fca4675d72"
+    },
+    "csv": {
+      "start": "0x1459c3dd0",
+      "end_exclusive": "0x1459c4445",
+      "byte_count": 1653,
+      "sha256": "fb3ffe3ec809eb337e2db57ca9aafc2d92f92e8ee19d4c126264b1e47cf1f6a7"
+    },
+    "split": {
+      "start": "0x1459c7330",
+      "end_exclusive": "0x1459c74ea",
+      "byte_count": 442,
+      "sha256": "b7f7db9bb08042bd8a8e9b14e121ee54f893b8522f6e995ee58c35cc078541ff"
+    },
+    "memchr": {
+      "start": "0x145bd5860",
+      "end_exclusive": "0x145bd5945",
+      "byte_count": 229,
+      "sha256": "8a015eaf40bf56cb62915e956f9224077543e3aeca0816e9e0091a5cb12f76be"
+    },
+    "input": {
+      "start": "0x1401cac30",
+      "end_exclusive": "0x1401cb2ab",
+      "byte_count": 1659,
+      "sha256": "402d04a1f4d91144235944cf9f36899511c411e008fb5ddc267f504c894c94af"
+    },
+    "frame": {
+      "start": "0x1401ca600",
+      "end_exclusive": "0x1401cac22",
+      "byte_count": 1570,
+      "sha256": "54c7ae5954649c0a819b163463eb9958f3a90d45172ae8c8e86b900d0ee3aa8d"
+    },
+    "canvas": {
+      "start": "0x140267da0",
+      "end_exclusive": "0x140268065",
+      "byte_count": 709,
+      "sha256": "aa6302892790cb327346c5e350a7e633658334a91b875c37868773a8bb5f06b0"
+    },
+    "page": {
+      "start": "0x140268070",
+      "end_exclusive": "0x140269117",
+      "byte_count": 4263,
+      "sha256": "4f264f3e4ea0fbd1cc1687bf75032adb5a42b1cf50464ba5409f2f39583eee7a"
+    },
+    "row-wrapper": {
+      "start": "0x1401c0e30",
+      "end_exclusive": "0x1401c10a4",
+      "byte_count": 628,
+      "sha256": "6069a36a41cf54489a253cc28e4b2b50c2eb9fc346dd4fcf5bc09922022480f2"
+    },
+    "row": {
+      "start": "0x140269200",
+      "end_exclusive": "0x140269d6e",
+      "byte_count": 2926,
+      "sha256": "2cd90122629f36532803dc67c09dc8d0122449fd2da7986ff7d22c3dce1be24a"
+    },
+    "summary": {
+      "start": "0x1401bfcc0",
+      "end_exclusive": "0x1401bff1e",
+      "byte_count": 606,
+      "sha256": "b6c64be79704e2563dc09fad87c92c47042f5a86fbb6f13d247e742adb262a5d"
+    },
+    "summary-child": {
+      "start": "0x1402678f0",
+      "end_exclusive": "0x140267d31",
+      "byte_count": 1089,
+      "sha256": "0ba7c55cfab2781adb1038c116eb660318ef2b94edb8310230033e62fe266c7b"
+    }
+  },
+  "definitions": [
+    {
+      "name": "Enemy density",
+      "description": "More of the horde, each kill worth less",
+      "weight_bits": "3d4ccccd",
+      "minimum": 100,
+      "maximum": 500,
+      "step": 25
+    },
+    {
+      "name": "Enemy health",
+      "description": "Health of the horde, elites, guardians and bosses",
+      "weight_bits": "3ecccccd",
+      "minimum": 100,
+      "maximum": 500,
+      "step": 25
+    },
+    {
+      "name": "Enemy damage",
+      "description": "How hard every enemy hits",
+      "weight_bits": "3f19999a",
+      "minimum": 100,
+      "maximum": 300,
+      "step": 10
+    },
+    {
+      "name": "Enemy speed",
+      "description": "How fast every enemy runs",
+      "weight_bits": "40000000",
+      "minimum": 100,
+      "maximum": 150,
+      "step": 5
+    }
+  ],
+  "descriptor_range": {
+    "start": "0x14720bb88",
+    "byte_count": 192,
+    "sha256": "322d5a7726d8ec9260d3a8450d32f62af01dd7f7bdfb51ee2200142e3d104ed2"
+  },
+  "ghidra": [
+    {
+      "procedure": "0x14590e190",
+      "evidence_id": "ev_d54894aa6d845ba392ca3b0e3ed3a9910fabf45fab0f906d6b8e313535567ab4",
+      "subject_sha256": "a591b687a7642430534bd66bf2f30c13f94efe129a316ec96c42560a319cdd84",
+      "analysis_profile_digest": "4cafb610307dff4b032821f25575cfe7ffe0ceace1f035945acbc36fe3cb7cfe"
+    },
+    {
+      "procedure": "0x14590e3c0",
+      "evidence_id": "ev_1f3c69e27d368ba4fef9ba0febd296e021f8bcdbba11a106cc01ebef8e9e3e55",
+      "subject_sha256": "a591b687a7642430534bd66bf2f30c13f94efe129a316ec96c42560a319cdd84",
+      "analysis_profile_digest": "4cafb610307dff4b032821f25575cfe7ffe0ceace1f035945acbc36fe3cb7cfe"
+    },
+    {
+      "procedure": "0x14590e420",
+      "evidence_id": "ev_28cd5f696948be4601244c7b5785d3503f9bf1de5c161a2c5a44a41aab6b19eb",
+      "subject_sha256": "a591b687a7642430534bd66bf2f30c13f94efe129a316ec96c42560a319cdd84",
+      "analysis_profile_digest": "4cafb610307dff4b032821f25575cfe7ffe0ceace1f035945acbc36fe3cb7cfe"
+    },
+    {
+      "procedure": "0x14590e4a0",
+      "evidence_id": "ev_d7d053524679afde96e1a33423f70dd72fd0ca7ce57d08384f6eb55c758bd782",
+      "subject_sha256": "a591b687a7642430534bd66bf2f30c13f94efe129a316ec96c42560a319cdd84",
+      "analysis_profile_digest": "4cafb610307dff4b032821f25575cfe7ffe0ceace1f035945acbc36fe3cb7cfe"
+    },
+    {
+      "procedure": "0x1401ca600",
+      "evidence_id": "ev_ec27850aa364d0bfa6772f538dcbace7bc6af6d8713b1e147c0dd73ee606a61f",
+      "subject_sha256": "befb77d3405c71be9b59217c0396492c5dca57358052c644dda8bb24f699053b",
+      "analysis_profile_digest": "4aaabb4a861a70b17cb1cba380f0ca049fed67f170d7d80e6b32baa5eaba24e6"
+    },
+    {
+      "procedure": "0x140267da0",
+      "evidence_id": "ev_3908d54c6154b6b3a4398aa72667b1fb6f723b207fd31a77ff6085e58f3a3e94",
+      "subject_sha256": "befb77d3405c71be9b59217c0396492c5dca57358052c644dda8bb24f699053b",
+      "analysis_profile_digest": "4aaabb4a861a70b17cb1cba380f0ca049fed67f170d7d80e6b32baa5eaba24e6"
+    },
+    {
+      "procedure": "0x140268070",
+      "evidence_id": "ev_dadc71716d8a6ffc414c7a2293101225301ef657335683047407dd0de3914bec",
+      "subject_sha256": "befb77d3405c71be9b59217c0396492c5dca57358052c644dda8bb24f699053b",
+      "analysis_profile_digest": "4aaabb4a861a70b17cb1cba380f0ca049fed67f170d7d80e6b32baa5eaba24e6"
+    },
+    {
+      "procedure": "0x140269200",
+      "evidence_id": "ev_754b8775d7b86060812e15d269aa6abd4b3fd45c6a16ed7ceb005ec3e05a9e3c",
+      "subject_sha256": "befb77d3405c71be9b59217c0396492c5dca57358052c644dda8bb24f699053b",
+      "analysis_profile_digest": "4aaabb4a861a70b17cb1cba380f0ca049fed67f170d7d80e6b32baa5eaba24e6"
+    },
+    {
+      "procedure": "0x1401cac30",
+      "evidence_id": "ev_5f48c82620d2a63cdc496b542f76cd3752d57760526008174369984952881d00",
+      "subject_sha256": "befb77d3405c71be9b59217c0396492c5dca57358052c644dda8bb24f699053b",
+      "analysis_profile_digest": "52bfcd4838fa6139fcf2f178b163eeb5f02f7ab9b2560218d5ac947aa8aee698"
+    }
+  ],
+  "canvas": {
+    "address": "0x145deb740",
+    "design": [
+      760,
+      560
+    ],
+    "max_scale_bits": "3fb33333"
+  },
+  "checks": {
+    "parse": 121,
+    "formulas": 625,
+    "steps": 140
+  },
+  "limits": [
+    "Unchanged native CSV split/u16 parser, normalization, sign-step/clamp, uncapped difficulty and capped reward instructions execute in Unicorn.",
+    "Allocation/free, memcpy/memcmp and RawVec growth use explicit scratch-only seams.",
+    "UI typed constructors are separately captured; full ECS input and command delivery remain static review.",
+    "No compilation, Rust tests, application, gameplay, save writes or original/rebuilt comparisons."
+  ]
+}

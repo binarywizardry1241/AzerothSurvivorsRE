@@ -1,0 +1,569 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.108.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b",
+    "size_bytes": 140203520
+  },
+  "scope": "All sixteen declared unwind entries absent from the retained 0.108.0 discovery-only full-image inventory; bounded raw code-range analysis, not global recovery.",
+  "source_discovery": {
+    "evidence_id": "ev_05a75359b1c844cdeb02cc5e0c632465c3eeba93a83782a62dcd48d5b2054403",
+    "analysis_profile_digest": "a6dac4497105714befbd8aa2427db99195c21d321f3348a1809e5e88101b24b5",
+    "missing_entry_rule": "All declared AMD64 unwind starts absent from the exact retained full-image Ghidra procedure inventory."
+  },
+  "input_range": {
+    "address": "0x145bdbd6d",
+    "file_offset": "0x5bdb16d",
+    "byte_count": 30499,
+    "sha256": "a776f1d6188e03a22d5bf58bf95c0801897179807efea6ea8c449ff8ae3681f0"
+  },
+  "seed_commitment": {
+    "sha256": "dfebdd08288801f519e41da69b62a1167d183647e0d56b566d4668fa6658be2c",
+    "function_entries": 16,
+    "code_entries": 16
+  },
+  "analysis_profile_projection": {
+    "digest": "cfc67b6a015e2b67af068a7446ab60b235e632d821271f87d9be1020a857dc2d",
+    "provider": {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "version": "12.1.4"
+    },
+    "target_format": "raw-binary",
+    "disabled_analyzers": [
+      "Function ID",
+      "Function Start Search",
+      "Create Address Tables"
+    ],
+    "limits": "Portable projection; exact local seed paths and full profile remain in retained runtime Evidence."
+  },
+  "retained_bundle": {
+    "path": "runtime/coverage/dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b/ghidra/omitted-unwind-entries/session/evidence-bundle.json",
+    "sha256": "6ac446d6d7d02a47aa8a9c847e3a4690e564716f483aef4f9aca0d979a104e7c",
+    "size_bytes": 616848
+  },
+  "reproduction": {
+    "preparation_tool": "scripts/prepare-omitted-native-entries.py",
+    "preparation_tool_sha256": "24be0b435e50685a34383134c1ee58e81c02911bff2f42ff73e4d58804091c7f",
+    "exact_range_seed_and_operation_plan_reproduced": true,
+    "additional_native_analysis_run_for_reproduction": false
+  },
+  "counts": {
+    "entries": 16,
+    "matching_declared_bodies": 16,
+    "instruction_records": 755,
+    "selected_extent_bytes": 2989,
+    "outgoing_reference_records": 151
+  },
+  "entries": [
+    {
+      "address": "0x145bdbd6d",
+      "byte_count": 565,
+      "unwind_rva": "0x72d9df8",
+      "sha256": "683281898e32198e03c9bbe9a21d648bf1173220c980c9ce54058c0754931ac5",
+      "observed_body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x145bdbfa1",
+            "start": "0x145bdbd6d"
+          }
+        ],
+        "span_bytes": 565,
+        "total_bytes": 565
+      },
+      "instruction_count": 141,
+      "ghidra_and_capstone_instruction_boundaries_equal": true,
+      "first_instruction": "0x145bdbd6d: MOV qword ptr [RSP + 0x948], R12",
+      "last_instruction": "0x145bdbf9a: MOV R12, qword ptr [RSP + 0x948]",
+      "outgoing_reference_count": 47,
+      "unresolved_calls_reported": 19,
+      "evidence_ids": {
+        "procedure_references": "ev_3c23c18f8f535eba34a043f4d35dab79697412ad66aa20e848e2eb1fb5c39ce5",
+        "read_function_instructions": "ev_537df54fde6eb1379587deb5ddbc78602871ae50a55446a558cf0df79dfd7086",
+        "procedure_info": "ev_ddd8e549ee527e4b40e4abfd2c8445c91b885a89dc5c9490d9f2ce857e8134c2"
+      }
+    },
+    {
+      "address": "0x145bdbfa2",
+      "byte_count": 38,
+      "unwind_rva": "0x72d9e0c",
+      "sha256": "24244061570cba4308f87af03b2c37caa52db3c0e05ddf5c0c0102670d8894f9",
+      "observed_body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x145bdbfc7",
+            "start": "0x145bdbfa2"
+          }
+        ],
+        "span_bytes": 38,
+        "total_bytes": 38
+      },
+      "instruction_count": 11,
+      "ghidra_and_capstone_instruction_boundaries_equal": true,
+      "first_instruction": "0x145bdbfa2: MOV RCX, qword ptr [RBP + 0x800]",
+      "last_instruction": "0x145bdbfc7: RET",
+      "outgoing_reference_count": 1,
+      "unresolved_calls_reported": 1,
+      "evidence_ids": {
+        "procedure_references": "ev_20582fcb3ddf7f8c3f8819736fa65de11d6604c2491692d510445e54877f2b1a",
+        "read_function_instructions": "ev_a19f72048e5b46dd48d845d507ac293d90225c6ea499899db3d631977f3a7b63",
+        "procedure_info": "ev_a8bff078f501874363005df63ba478e8daf5146fa9efcbb754f896e9577c5881"
+      }
+    },
+    {
+      "address": "0x145be1965",
+      "byte_count": 148,
+      "unwind_rva": "0x72d9f70",
+      "sha256": "633ef13032efd2f0c8a96d73215d3d51431375828ef751c3b7c316ced3ab022e",
+      "observed_body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x145be19f8",
+            "start": "0x145be1965"
+          }
+        ],
+        "span_bytes": 148,
+        "total_bytes": 148
+      },
+      "instruction_count": 38,
+      "ghidra_and_capstone_instruction_boundaries_equal": true,
+      "first_instruction": "0x145be1965: MOVAPS xmmword ptr [RSP], XMM6",
+      "last_instruction": "0x145be19f7: JNC 0x145be1a29",
+      "outgoing_reference_count": 4,
+      "unresolved_calls_reported": 0,
+      "evidence_ids": {
+        "read_function_instructions": "ev_41186c1e2f47d037f29fc36696d285e286c4148e421433eb084761eee8286189",
+        "procedure_info": "ev_8f6f213250d1791d010683dda2329e7fd91c00f3a595310bcaa3c419a0f2b790",
+        "procedure_references": "ev_f20a9c8b51a5434bf04cdcee3fbe4b034d5ddb3e54bd80df6e5f4b411041c7c2"
+      }
+    },
+    {
+      "address": "0x145be19f9",
+      "byte_count": 56,
+      "unwind_rva": "0x72d9f84",
+      "sha256": "42acf911f48d840137c66a1ddd5b47d81dece9971d454dca0d4598bf417f7a68",
+      "observed_body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x145be1a30",
+            "start": "0x145be19f9"
+          }
+        ],
+        "span_bytes": 56,
+        "total_bytes": 56
+      },
+      "instruction_count": 17,
+      "ghidra_and_capstone_instruction_boundaries_equal": true,
+      "first_instruction": "0x145be19f9: LEA RAX, [RDX + RCX*0x8]",
+      "last_instruction": "0x145be1a30: RET",
+      "outgoing_reference_count": 1,
+      "unresolved_calls_reported": 0,
+      "evidence_ids": {
+        "read_function_instructions": "ev_98f9ea0246af082e8f9f0b46a7e5a9463ce976f2d217e11ac113edfd0e347790",
+        "procedure_references": "ev_b031b6ae1edea37cc7d68123cd8cd7892e4a13054d3c5b680a58c8fc398f504e",
+        "procedure_info": "ev_b7ef8f5b4443670b4953c917e32f8530ee31048c4b94e89d46efeee262f02b8d"
+      }
+    },
+    {
+      "address": "0x145be1e6f",
+      "byte_count": 38,
+      "unwind_rva": "0x72da070",
+      "sha256": "8b869b59068ebae5f51ae3a6fd3cde6c2ae808da5ca005a02eab93d555835cd3",
+      "observed_body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x145be1e94",
+            "start": "0x145be1e6f"
+          }
+        ],
+        "span_bytes": 38,
+        "total_bytes": 38
+      },
+      "instruction_count": 9,
+      "ghidra_and_capstone_instruction_boundaries_equal": true,
+      "first_instruction": "0x145be1e6f: MOV qword ptr [R11 + 0x10], RBX",
+      "last_instruction": "0x145be1e93: JZ 0x145be1f09",
+      "outgoing_reference_count": 2,
+      "unresolved_calls_reported": 0,
+      "evidence_ids": {
+        "procedure_info": "ev_5c9ccccfbedaefd691f7bb082c20470f2071075bd48aeec54a8ac2c1c339a292",
+        "procedure_references": "ev_69241c6c73936f7a7b974a7ed43e49c53214a8a6e25a2f04c0e395437af797a0",
+        "read_function_instructions": "ev_c980e2d4dee03df22795201cc0f19ab714950e46b3774dd38dd25c18f6201daf"
+      }
+    },
+    {
+      "address": "0x145be1e95",
+      "byte_count": 116,
+      "unwind_rva": "0x72da08c",
+      "sha256": "1e7383599e8b9f9fe1613d129eb4897ce30ce92c1411eb33bd95526449730d96",
+      "observed_body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x145be1f08",
+            "start": "0x145be1e95"
+          }
+        ],
+        "span_bytes": 116,
+        "total_bytes": 116
+      },
+      "instruction_count": 31,
+      "ghidra_and_capstone_instruction_boundaries_equal": true,
+      "first_instruction": "0x145be1e95: MOV qword ptr [R11 + -0x28], RSI",
+      "last_instruction": "0x145be1f04: MOV R15, qword ptr [RSP + 0x60]",
+      "outgoing_reference_count": 6,
+      "unresolved_calls_reported": 0,
+      "evidence_ids": {
+        "read_function_instructions": "ev_7a4f07f8de976d0969da52a057ff66fbbc5e5f8e27c3038641d768aef1047773",
+        "procedure_info": "ev_bc129b46b645cfa318930821d3f5dda458b6aaf954b95f3c12f79056a8d9c809",
+        "procedure_references": "ev_c9b60840e69d7621ab163ff0fe82a2d1112b40e1bd974c485da1e48f666a04af"
+      }
+    },
+    {
+      "address": "0x145be1f09",
+      "byte_count": 444,
+      "unwind_rva": "0x72da0a4",
+      "sha256": "ed57f683e967ee073945e1a264d22dca3f0dd41850ace01bb8b70d84796d5914",
+      "observed_body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x145be20c4",
+            "start": "0x145be1f09"
+          }
+        ],
+        "span_bytes": 444,
+        "total_bytes": 444
+      },
+      "instruction_count": 116,
+      "ghidra_and_capstone_instruction_boundaries_equal": true,
+      "first_instruction": "0x145be1f09: ADD R14, R12",
+      "last_instruction": "0x145be20c4: RET",
+      "outgoing_reference_count": 14,
+      "unresolved_calls_reported": 0,
+      "evidence_ids": {
+        "procedure_references": "ev_273ba9239382b4fcd11314e0b8547d5b4723fbe623e013efda6e4890b02dbfc1",
+        "read_function_instructions": "ev_3308e2fa7b8ef57760c1ca36e0c3491d9deabdeaaca0414fa8d47a69f53c4366",
+        "procedure_info": "ev_e484d3d6228ed7f8334ff74ff2e506ff8221fa40e4384cc5e3595fd56e8573f4"
+      }
+    },
+    {
+      "address": "0x145be20c5",
+      "byte_count": 12,
+      "unwind_rva": "0x72da0b4",
+      "sha256": "82dd0377125bfbe9ead02b4bf8333c937f00712d693819f816313818ea97b72b",
+      "observed_body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x145be20d0",
+            "start": "0x145be20c5"
+          }
+        ],
+        "span_bytes": 12,
+        "total_bytes": 12
+      },
+      "instruction_count": 6,
+      "ghidra_and_capstone_instruction_boundaries_equal": true,
+      "first_instruction": "0x145be20c5: XOR EAX, EAX",
+      "last_instruction": "0x145be20d0: RET",
+      "outgoing_reference_count": 0,
+      "unresolved_calls_reported": 0,
+      "evidence_ids": {
+        "procedure_references": "ev_1a94229c21c7686626dbcd0727f2c9702462e1b332e2ca86a6a4156dd8cf02b9",
+        "read_function_instructions": "ev_bb3f2f292b24d84b28e9268d309192548617d9477f86e494c3d77dcc5ad5926c",
+        "procedure_info": "ev_be239ef8d1b3f40e7859ea7c3eaf1639c29436bcc4c7276cf94a618882ee8573"
+      }
+    },
+    {
+      "address": "0x145be2463",
+      "byte_count": 235,
+      "unwind_rva": "0x72da83c",
+      "sha256": "4ca50924ccde0a2c80af15b18e802faa5f05a71dd2d52e1f9aeefbb2d8b65abb",
+      "observed_body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x145be254d",
+            "start": "0x145be2463"
+          }
+        ],
+        "span_bytes": 235,
+        "total_bytes": 235
+      },
+      "instruction_count": 59,
+      "ghidra_and_capstone_instruction_boundaries_equal": true,
+      "first_instruction": "0x145be2463: MOV qword ptr [R11 + 0x10], RSI",
+      "last_instruction": "0x145be2549: MOV RSI, qword ptr [RSP + 0x78]",
+      "outgoing_reference_count": 6,
+      "unresolved_calls_reported": 0,
+      "evidence_ids": {
+        "procedure_info": "ev_1bb96997abd90b56ed806b519eb7e91138da91ecf40e1b58352dc7ee09f67d18",
+        "procedure_references": "ev_b2fa09b64267c84897042639c813cf2922ebac9717bf6c06e3e0f5e49418dadf",
+        "read_function_instructions": "ev_fdef0c32b99c2b96878dd453ba464f73195e422ebdae82c79c8ac8fe8c0a8650"
+      }
+    },
+    {
+      "address": "0x145be254e",
+      "byte_count": 260,
+      "unwind_rva": "0x72da854",
+      "sha256": "ba642e60304c3efd193b547b92cc7de0b424cb80c9eccc89416a50b9474096b1",
+      "observed_body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x145be2651",
+            "start": "0x145be254e"
+          }
+        ],
+        "span_bytes": 260,
+        "total_bytes": 260
+      },
+      "instruction_count": 60,
+      "ghidra_and_capstone_instruction_boundaries_equal": true,
+      "first_instruction": "0x145be254e: MOV RCX, RBX",
+      "last_instruction": "0x145be2651: RET",
+      "outgoing_reference_count": 10,
+      "unresolved_calls_reported": 0,
+      "evidence_ids": {
+        "read_function_instructions": "ev_178a58e17cfdc7aa072dec32cd6b8015a922e53d39c6d6c58cfc5b2f3106aaad",
+        "procedure_info": "ev_44a846eb9c7b00afc50cfe7b718faade6523a3a52ec4ce9295beab8b545289be",
+        "procedure_references": "ev_6a15b7549ec38dafa874490c8aa5d0f4604ebc82b6e2baaa5f76316839bf9776"
+      }
+    },
+    {
+      "address": "0x145be26aa",
+      "byte_count": 315,
+      "unwind_rva": "0x72da7d8",
+      "sha256": "450a639822d36eba601c83487e171c0df9f2b79a1b1e1fa567c5186f8e310272",
+      "observed_body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x145be27e4",
+            "start": "0x145be26aa"
+          }
+        ],
+        "span_bytes": 315,
+        "total_bytes": 315
+      },
+      "instruction_count": 76,
+      "ghidra_and_capstone_instruction_boundaries_equal": true,
+      "first_instruction": "0x145be26aa: MOV qword ptr [RSP + 0x80], RBP",
+      "last_instruction": "0x145be27dd: MOV RBP, qword ptr [RSP + 0x80]",
+      "outgoing_reference_count": 9,
+      "unresolved_calls_reported": 0,
+      "evidence_ids": {
+        "procedure_info": "ev_0b21ff273a3fa379b1ea0d68724129fc3d5a79f075a889e73dabf864b4ebeca0",
+        "read_function_instructions": "ev_80b7b1bce356a9cfd7013b45b9239d13e861445bbf6b09dd0e59deab105e9b34",
+        "procedure_references": "ev_87c20133d1a1ff323fe171f03b16301a2fffaf8ff83fc999b2082351a723a002"
+      }
+    },
+    {
+      "address": "0x145be27e5",
+      "byte_count": 8,
+      "unwind_rva": "0x72da7f8",
+      "sha256": "0258005ca69ed5f052438ea01d07652f1ff0e47532da4dbb08a43631f166ae55",
+      "observed_body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x145be27ec",
+            "start": "0x145be27e5"
+          }
+        ],
+        "span_bytes": 8,
+        "total_bytes": 8
+      },
+      "instruction_count": 5,
+      "ghidra_and_capstone_instruction_boundaries_equal": true,
+      "first_instruction": "0x145be27e5: ADD RSP, 0x60",
+      "last_instruction": "0x145be27ec: RET",
+      "outgoing_reference_count": 0,
+      "unresolved_calls_reported": 0,
+      "evidence_ids": {
+        "procedure_references": "ev_56dca6f1972785e9b70af4e853fa466efa88a9d82d06d67d51fa3d0ddb4c6f88",
+        "read_function_instructions": "ev_86cc0accbdb765f05c1b67e693dfeae79ae16a98432aa2c93429aadefdece0d0",
+        "procedure_info": "ev_afa92d73daa1fe8e04638215418383c9e14d03b1220536f765550fc9a3b45775"
+      }
+    },
+    {
+      "address": "0x145be301a",
+      "byte_count": 287,
+      "unwind_rva": "0x72da79c",
+      "sha256": "ac9f340f52ec457eaf4cf82fb59ec1c86877996b99b90a949d1ef5fe3f3888e5",
+      "observed_body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x145be3138",
+            "start": "0x145be301a"
+          }
+        ],
+        "span_bytes": 287,
+        "total_bytes": 287
+      },
+      "instruction_count": 75,
+      "ghidra_and_capstone_instruction_boundaries_equal": true,
+      "first_instruction": "0x145be301a: MOV qword ptr [RSP + 0x40], RBP",
+      "last_instruction": "0x145be3134: MOV RBP, qword ptr [RSP + 0x40]",
+      "outgoing_reference_count": 9,
+      "unresolved_calls_reported": 0,
+      "evidence_ids": {
+        "read_function_instructions": "ev_17f39661a957dc36e87e1fc6c015d6656d91fa7cbd8caafe2d7a751d91d53cdb",
+        "procedure_references": "ev_ab2fe3a9499696e8a9b5c498ba815d8ba068cd8f6c921a5944f83175c78f2fe9",
+        "procedure_info": "ev_d604066d69216106fb0a8ccdec1b1c0c8461e3840ba94b24baddf9b4d95554f5"
+      }
+    },
+    {
+      "address": "0x145be3139",
+      "byte_count": 11,
+      "unwind_rva": "0x72da7bc",
+      "sha256": "18003b62173daf6ec8cfc83780a234709f7179b1b1fb132e93e3b5aa84c00dd3",
+      "observed_body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x145be3143",
+            "start": "0x145be3139"
+          }
+        ],
+        "span_bytes": 11,
+        "total_bytes": 11
+      },
+      "instruction_count": 4,
+      "ghidra_and_capstone_instruction_boundaries_equal": true,
+      "first_instruction": "0x145be3139: ADD RSP, 0x28",
+      "last_instruction": "0x145be313f: JMP 0x145be3150",
+      "outgoing_reference_count": 1,
+      "unresolved_calls_reported": 0,
+      "evidence_ids": {
+        "procedure_references": "ev_2303653eaea75f7486bb39fae5a9db6e4a3e36f1a75b93cbb409c9a5a72a1c69",
+        "read_function_instructions": "ev_57b18193ea5b413abcd72a27afc8079e5522992296979fd1f72e5fe67abb7d8e",
+        "procedure_info": "ev_c9a2a9f93c0e5afa32f5109ecbf01fc01b7ea6c4a82ee9208c163c29540f7109"
+      }
+    },
+    {
+      "address": "0x145be32c8",
+      "byte_count": 455,
+      "unwind_rva": "0x72da8dc",
+      "sha256": "9f92490e353ce016e8dfa1d54e9922d541dfad6f120d03e7d80714f25ff78c54",
+      "observed_body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x145be348e",
+            "start": "0x145be32c8"
+          }
+        ],
+        "span_bytes": 455,
+        "total_bytes": 455
+      },
+      "instruction_count": 106,
+      "ghidra_and_capstone_instruction_boundaries_equal": true,
+      "first_instruction": "0x145be32c8: MOV qword ptr [R11 + 0x18], RBP",
+      "last_instruction": "0x145be348e: POP RBX",
+      "outgoing_reference_count": 41,
+      "unresolved_calls_reported": 1,
+      "evidence_ids": {
+        "procedure_references": "ev_3cf1d0bff85604f7083d3d713840d8df414eb74ae91c9b95f89ded3fc761de98",
+        "procedure_info": "ev_775ab462346925f40eaa420bec72c5d5b0245a701f2a5d1761522e586a82b8ff",
+        "read_function_instructions": "ev_e1de9f2a43d67aebd15b2b6daa3ef98922813aa5ddca8b4c99c4f818c97e487c"
+      }
+    },
+    {
+      "address": "0x145be348f",
+      "byte_count": 1,
+      "unwind_rva": "0x72da8f8",
+      "sha256": "ae3f4619b0413d70d3004b9131c3752153074e45725be13b9a148978895e359e",
+      "observed_body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x145be348f",
+            "start": "0x145be348f"
+          }
+        ],
+        "span_bytes": 1,
+        "total_bytes": 1
+      },
+      "instruction_count": 1,
+      "ghidra_and_capstone_instruction_boundaries_equal": true,
+      "first_instruction": "0x145be348f: RET",
+      "last_instruction": "0x145be348f: RET",
+      "outgoing_reference_count": 0,
+      "unresolved_calls_reported": 0,
+      "evidence_ids": {
+        "procedure_info": "ev_7194d8a43582ac88c3278a8b889f7259159308b88b7e16f7ededaf1d4b93e2a1",
+        "procedure_references": "ev_96b329343e2333de1f5d0f20bbbecbcb73bb4bc905fd35f4085cf0a6755e7ef8",
+        "read_function_instructions": "ev_9ee5a6a20410b4a742849b99818620d2802bc2fb6eced2b5001c09607b09a370"
+      }
+    }
+  ],
+  "whole_image_input": false,
+  "native_semantics_complete": false,
+  "parity_verified": false,
+  "gap_ids": [
+    41
+  ],
+  "limits": [
+    "Raw import omits PE sections, imports, unwind metadata and external reference targets; source names, external ownership, global callers and runtime reachability remain unknown.",
+    "Matching body extents and independent decoder boundaries certify bounded decoding only, not full behavior or source reconstruction.",
+    "The selected one-byte body decodes as RET and matches its one-byte declared extent; size alone is not a placeholder diagnosis.",
+    "No system or changelog claim is promoted. Full-image Ghidra/reference/indirect and current-source contract recovery remain #41."
+  ]
+}

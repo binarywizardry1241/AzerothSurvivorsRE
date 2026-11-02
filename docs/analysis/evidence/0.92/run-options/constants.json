@@ -1,0 +1,194 @@
+{
+  "date": "2026-10-16",
+  "target": "AzerothSurvivors/AzerothSurvivors.exe",
+  "sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+  "byte_count": 130888192,
+  "constants": [
+    {
+      "label": "canvas_design",
+      "va": "0x1458f3400",
+      "file_offset": "0x58f1c00",
+      "bytes_hex": "00003e4400000c44",
+      "f32": [
+        760.0,
+        560.0
+      ]
+    },
+    {
+      "label": "percent_offset",
+      "va": "0x1466da400",
+      "file_offset": "0x66d8c00",
+      "bytes_hex": "0000c8c20000c8c20000000000000000",
+      "f32": [
+        -100.0,
+        -100.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "label": "percent_divisor",
+      "va": "0x1465e23d0",
+      "file_offset": "0x65e0bd0",
+      "bytes_hex": "0000c8420000c8420000000000000000",
+      "f32": [
+        100.0,
+        100.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "label": "density_health_weights",
+      "va": "0x1466da410",
+      "file_offset": "0x66d8c10",
+      "bytes_hex": "cdcc4c3dcdcccc3e0000000000000000",
+      "f32": [
+        0.05000000074505806,
+        0.4000000059604645,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "label": "damage_speed_weights",
+      "va": "0x1466da420",
+      "file_offset": "0x66d8c20",
+      "bytes_hex": "9a99193f000000400000000000000000",
+      "f32": [
+        0.6000000238418579,
+        2.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "label": "base_reward",
+      "va": "0x1458a8420",
+      "file_offset": "0x58a6c20",
+      "bytes_hex": "0000803f",
+      "f32": [
+        1.0
+      ]
+    },
+    {
+      "label": "reward_cap",
+      "va": "0x1458a82d0",
+      "file_offset": "0x58a6ad0",
+      "bytes_hex": "00000040",
+      "f32": [
+        2.0
+      ]
+    },
+    {
+      "label": "gold_color_tag_rgba",
+      "va": "0x1458f3558",
+      "file_offset": "0x58f1d58",
+      "bytes_hex": "000000008716793faaf1523ff4fdd43e0000803f",
+      "f32": [
+        0.0,
+        0.9729999899864197,
+        0.8240000009536743,
+        0.41600000858306885,
+        1.0
+      ]
+    },
+    {
+      "label": "muted_color_tag_rgba",
+      "va": "0x1458f359c",
+      "file_offset": "0x58f1d9c",
+      "bytes_hex": "000000009a99393f5eba293f5c8f023f0000803f",
+      "f32": [
+        0.0,
+        0.7250000238418579,
+        0.6629999876022339,
+        0.5099999904632568,
+        1.0
+      ]
+    },
+    {
+      "label": "increased_difficulty_color_tag_rgba",
+      "va": "0x1458f35b8",
+      "file_offset": "0x58f1db8",
+      "bytes_hex": "000000000000803f6abcb43ed7a3703e0000803f",
+      "f32": [
+        0.0,
+        1.0,
+        0.3529999852180481,
+        0.23499999940395355,
+        1.0
+      ]
+    },
+    {
+      "label": "heading_color_tag_rgba",
+      "va": "0x1458f35cc",
+      "file_offset": "0x58f1dcc",
+      "bytes_hex": "000000000000803fe7fb693f39b4283f0000803f",
+      "f32": [
+        0.0,
+        1.0,
+        0.9139999747276306,
+        0.6589999794960022,
+        1.0
+      ]
+    },
+    {
+      "label": "increased_reward_color_tag_rgba",
+      "va": "0x1458f37a0",
+      "file_offset": "0x58f1fa0",
+      "bytes_hex": "00000000be9f9a3e0000803ff4fdd43e0000803f",
+      "f32": [
+        0.0,
+        0.3019999861717224,
+        1.0,
+        0.41600000858306885,
+        1.0
+      ]
+    },
+    {
+      "label": "body_color_tag_rgba",
+      "va": "0x1458f3a74",
+      "file_offset": "0x58f2274",
+      "bytes_hex": "00000000aaf1723f79e9663f5eba493f0000803f",
+      "f32": [
+        0.0,
+        0.9490000009536743,
+        0.9020000100135803,
+        0.7879999876022339,
+        1.0
+      ]
+    }
+  ],
+  "instructions": [
+    {
+      "path": "docs/analysis/evidence/0.92/run-options/reward_uncapped_and_capped.asm",
+      "start_va": "0x145424750",
+      "end_va_exclusive": "0x145424898",
+      "sha256": "2691ad28a56545582b8a4002280eeecd483b7161f6b7c77b916e39c0ad4017f2"
+    },
+    {
+      "path": "docs/analysis/evidence/0.92/run-options/canvas_constructor.asm",
+      "start_va": "0x140223fb0",
+      "end_va_exclusive": "0x140224275",
+      "sha256": "9e92a7183f5294a95cbc5b2279cc201ea134432094ad253247be6c01f1ae52f0"
+    },
+    {
+      "path": "docs/analysis/evidence/0.92/run-options/row_wrapper.asm",
+      "start_va": "0x1400136a0",
+      "end_va_exclusive": "0x140013914",
+      "sha256": "7ea8fc371e6b3146fbe91cc6c4cee53b5f754e34efaa136e5dd6a0b71799d3d9"
+    },
+    {
+      "path": "docs/analysis/evidence/0.92/run-options/row_value.asm",
+      "start_va": "0x140225d00",
+      "end_va_exclusive": "0x140225f7e",
+      "sha256": "95c730850966f42a96325874780360b7da19abe8dbf105a9a94403c2b0a2dc62"
+    }
+  ],
+  "lea_candidate_correction": "The adjacent one-byte key c at1458f5402 precedes Run Options at1458f5403. References to c in talent renderers are not Run Options references.",
+  "limitations": [
+    "Static extraction does not execute the target.",
+    "Color records include the Color::Srgba discriminant before four f32 channels.",
+    "See run-options-0.92-recovery.md for manually checked consumers, REA evidence and runtime scope."
+  ]
+}

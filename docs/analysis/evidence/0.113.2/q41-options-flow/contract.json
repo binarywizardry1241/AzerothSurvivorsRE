@@ -1,0 +1,847 @@
+{
+  "target": {
+    "version": "0.113.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+    "size_bytes": 141932032
+  },
+  "gap_ids": [
+    41
+  ],
+  "lead_ids": [
+    "Q41-O01",
+    "Q41-M02",
+    "Q41-F01",
+    "Q41-F02",
+    "Q41-M01",
+    "Q41-A01"
+  ],
+  "inputs": {
+    "instructions.tsv.gz": {
+      "path": "runtime/execheck-0.113.2/ghidra-comprehensive/instructions.tsv.gz",
+      "sha256": "3ba10932ccf4dbb3e1b375ac1a6d33d627735b229741c9ebcc79a07395408a95",
+      "bytes": 123436872
+    },
+    "bodies.tsv.gz": {
+      "path": "runtime/execheck-0.113.2/ghidra-comprehensive/bodies.tsv.gz",
+      "sha256": "dc808e3e10d4443dabce229e9d0724060d87bcd7547eb1cb47334e70038b8362",
+      "bytes": 4221082
+    },
+    "native-instructions.sqlite": {
+      "path": "runtime/coverage/58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb/native-instructions.sqlite",
+      "sha256": "82e9307e46c478816f881c0e197257b7094586a53f4ef58f4a93ed67a51fcd2d",
+      "bytes": 327753728
+    },
+    "diagnostic_code_input": {
+      "path": "runtime/execheck-0.113.2/ghidra-comprehensive/diagnostic-code-input.json",
+      "sha256": "2fb04d7382835f434db9fd49c3df1dc0e4c16423cee232025ce159b2fa6b0ce0",
+      "bytes": 848561
+    },
+    "guarded_table_input": {
+      "path": "runtime/execheck-0.113.2/ghidra-comprehensive/guarded-tables-input.json",
+      "sha256": "105dcbd3d05ee08a1496601137998fce7ad51de4b055e5466d5245c74c536bfa",
+      "bytes": 8284032
+    }
+  },
+  "selected_instruction_rows": {
+    "0x1401a67d7": {
+      "address": "1401a67d7",
+      "length": "2",
+      "bytes": "ffe0",
+      "flow": "COMPUTED_JUMP",
+      "ordinal": 393263,
+      "owner": "1401a6770"
+    },
+    "0x1401a6ba0": {
+      "address": "1401a6ba0",
+      "length": "7",
+      "bytes": "4c8d054174d405",
+      "flow": "FALL_THROUGH",
+      "ordinal": 393264,
+      "owner": null
+    },
+    "0x1401a6bcc": {
+      "address": "1401a6bcc",
+      "length": "7",
+      "bytes": "4c8d05fd73d405",
+      "flow": "FALL_THROUGH",
+      "ordinal": 393268,
+      "owner": null
+    },
+    "0x1401a6bd7": {
+      "address": "1401a6bd7",
+      "length": "5",
+      "bytes": "e82457cf05",
+      "flow": "UNCONDITIONAL_CALL",
+      "ordinal": 393270,
+      "owner": null
+    }
+  },
+  "selected_sites_not_observed_by_full_profile": [
+    "0x1401a6904",
+    "0x1401a6b86",
+    "0x1401a6bb2"
+  ],
+  "encoded_reference_rows": [
+    [
+      5536,
+      5370439639,
+      "ffe0",
+      "jump_indirect",
+      null,
+      0,
+      0
+    ],
+    [
+      5536,
+      5370439940,
+      "488d05452cfaff",
+      "address",
+      "0x140149550",
+      1,
+      0
+    ]
+  ],
+  "diagnostic_code_provenance": [
+    {
+      "site": "0x1401a6ba0",
+      "classification": "undecoded-exact-diagnostic-lead",
+      "diagnostic_paths": [
+        "crates/wenilla-rogue-app/src/screens/options.rs"
+      ],
+      "instruction_bytes": "4c8d054174d405"
+    },
+    {
+      "site": "0x1401a6bcc",
+      "classification": "undecoded-exact-diagnostic-lead",
+      "diagnostic_paths": [
+        "crates/wenilla-rogue-app/src/screens/options.rs"
+      ],
+      "instruction_bytes": "4c8d05fd73d405"
+    }
+  ],
+  "instruction_ranges": {
+    "descriptor-dispatch": {
+      "address": "0x1401a6770",
+      "end_exclusive": "0x1401a67d9",
+      "file_offset": "0x1a5b70",
+      "bytes": 105,
+      "sha256": "c0b85f946da46da729eabfc3c653e36e043487b0ad0e31970c9ca35827867cd4"
+    },
+    "format-argument": {
+      "address": "0x1401a68f4",
+      "end_exclusive": "0x1401a691e",
+      "file_offset": "0x1a5cf4",
+      "bytes": 42,
+      "sha256": "9b9dc41751d9a6aee00a5fab65bd1d0b562abecb0b8fa656c493b7e42f3b2b18"
+    },
+    "resource-failures": {
+      "address": "0x1401a6b86",
+      "end_exclusive": "0x1401a6bdf",
+      "file_offset": "0x1a5f86",
+      "bytes": 89,
+      "sha256": "7670ed6ec6d65316a423f1499feb978f8fb0cadffc2c2e0691ab2612bfeba5bf"
+    },
+    "descriptor-bounds": {
+      "address": "0x1401a6cc2",
+      "end_exclusive": "0x1401a6cd8",
+      "file_offset": "0x1a60c2",
+      "bytes": 22,
+      "sha256": "9e6500f02d575348fe9becdd44343627aba814c9670129027083805f34a17775"
+    },
+    "string-format-adapter": {
+      "address": "0x140149550",
+      "end_exclusive": "0x140149562",
+      "file_offset": "0x148950",
+      "bytes": 18,
+      "sha256": "50ea2952ae4e8a24ee87d16ce0939d2ba51c3c59eeb94c1176ef3f9ab6eabedc"
+    }
+  },
+  "data_ranges": {
+    "descriptors": {
+      "address": "0x145ee9fb0",
+      "end_exclusive": "0x145eede08",
+      "file_offset": "0x5ee89b0",
+      "bytes": 15960,
+      "sha256": "d9d5d01ba8b8f637d0cc856c5577319ec79b90163bb9812b974081e1c0f55d65"
+    },
+    "jump_table": {
+      "address": "0x145eef5a8",
+      "end_exclusive": "0x145eef5b8",
+      "file_offset": "0x5eedfa8",
+      "bytes": 16,
+      "sha256": "c6560c91a3d7b74c73c33f2ba48390f29e2abfe74f7f64b5482207acbafb0fe9"
+    },
+    "resource_message_prefix": {
+      "address": "0x145ee6310",
+      "end_exclusive": "0x145ee6345",
+      "file_offset": "0x5ee4d10",
+      "bytes": 53,
+      "sha256": "6494cc8bd819d8c867712811c2f65a29d835bb9c313e417a8a283398f4d470ac"
+    },
+    "resource_locations": {
+      "address": "0x145eedfd0",
+      "end_exclusive": "0x145eee000",
+      "file_offset": "0x5eec9d0",
+      "bytes": 48,
+      "sha256": "f7236a23468fcf4411676ebd3de656bbac8df816cf73fa5ef3104074fadfea2b"
+    }
+  },
+  "descriptors": [
+    [
+      0,
+      0,
+      "deselectOnClick",
+      "0x1401a67d9"
+    ],
+    [
+      1,
+      0,
+      "assistAttack",
+      "0x1401a67d9"
+    ],
+    [
+      2,
+      0,
+      "BlockTrades",
+      "0x1401a67d9"
+    ],
+    [
+      3,
+      0,
+      "autoSelfCast",
+      "0x1401a67d9"
+    ],
+    [
+      4,
+      0,
+      "autoLootDefault",
+      "0x1401a67d9"
+    ],
+    [
+      5,
+      0,
+      "mouseInvertPitch",
+      "0x1401a67d9"
+    ],
+    [
+      6,
+      0,
+      "mousespeed",
+      "0x1401a67d9"
+    ],
+    [
+      7,
+      0,
+      "autointeract",
+      "0x1401a67d9"
+    ],
+    [
+      8,
+      0,
+      "cameraSmoothStyle",
+      "0x1401a67d9"
+    ],
+    [
+      9,
+      0,
+      "cameraTerrainTilt",
+      "0x1401a67d9"
+    ],
+    [
+      10,
+      0,
+      "cameraBobbing",
+      "0x1401a67d9"
+    ],
+    [
+      11,
+      0,
+      "cameraYawSmoothSpeed",
+      "0x1401a67d9"
+    ],
+    [
+      12,
+      0,
+      "cameraWaterCollision",
+      "0x1401a67d9"
+    ],
+    [
+      13,
+      0,
+      "cameraPivot",
+      "0x1401a67d9"
+    ],
+    [
+      14,
+      0,
+      "cameraYawMoveSpeed",
+      "0x1401a67d9"
+    ],
+    [
+      15,
+      0,
+      "cameraDistanceMaxFactor",
+      "0x1401a67d9"
+    ],
+    [
+      16,
+      0,
+      "cacheOnClick",
+      "0x1401a67d9"
+    ],
+    [
+      17,
+      0,
+      "storeLevels",
+      "0x1401a67d9"
+    ],
+    [
+      18,
+      0,
+      "padInvertX",
+      "0x1401a67d9"
+    ],
+    [
+      19,
+      0,
+      "padInvertY",
+      "0x1401a67d9"
+    ],
+    [
+      20,
+      0,
+      "padLookSpeed",
+      "0x1401a67d9"
+    ],
+    [
+      21,
+      0,
+      "padZoomSpeed",
+      "0x1401a67d9"
+    ],
+    [
+      22,
+      0,
+      "padDeadZone",
+      "0x1401a67d9"
+    ],
+    [
+      23,
+      0,
+      "UberTooltips",
+      "0x1401a67d9"
+    ],
+    [
+      24,
+      0,
+      "statusBarText",
+      "0x1401a67d9"
+    ],
+    [
+      25,
+      1,
+      "SHOW_TARGET_OF_TARGET",
+      "0x1401a68f4"
+    ],
+    [
+      26,
+      1,
+      "SHOW_TARGET_OF_TARGET_STATE",
+      "0x1401a68f4"
+    ],
+    [
+      27,
+      1,
+      "QUEST_FADING_DISABLE",
+      "0x1401a68f4"
+    ],
+    [
+      28,
+      1,
+      "SHOW_BUFF_DURATIONS",
+      "0x1401a68f4"
+    ],
+    [
+      29,
+      1,
+      "AUTO_QUEST_WATCH",
+      "0x1401a68f4"
+    ],
+    [
+      30,
+      0,
+      "profanityFilter",
+      "0x1401a67d9"
+    ],
+    [
+      31,
+      0,
+      "showGameTips",
+      "0x1401a67d9"
+    ],
+    [
+      32,
+      1,
+      "SHOW_NEWBIE_TIPS",
+      "0x1401a68f4"
+    ],
+    [
+      33,
+      0,
+      "meterOnTop",
+      "0x1401a67d9"
+    ],
+    [
+      34,
+      0,
+      "hudScale",
+      "0x1401a67d9"
+    ],
+    [
+      35,
+      0,
+      "hudClock",
+      "0x1401a67d9"
+    ],
+    [
+      36,
+      0,
+      "hudBosses",
+      "0x1401a67d9"
+    ],
+    [
+      37,
+      0,
+      "hudTally",
+      "0x1401a67d9"
+    ],
+    [
+      38,
+      0,
+      "hudBuild",
+      "0x1401a67d9"
+    ],
+    [
+      39,
+      0,
+      "hudBanners",
+      "0x1401a67d9"
+    ],
+    [
+      40,
+      0,
+      "hudLoot",
+      "0x1401a67d9"
+    ],
+    [
+      41,
+      0,
+      "hudMeter",
+      "0x1401a67d9"
+    ],
+    [
+      42,
+      0,
+      "discordPresence",
+      "0x1401a67d9"
+    ],
+    [
+      43,
+      1,
+      "ALWAYS_SHOW_MULTIBARS",
+      "0x1401a68f4"
+    ],
+    [
+      44,
+      1,
+      "LOCK_ACTIONBAR",
+      "0x1401a68f4"
+    ],
+    [
+      45,
+      1,
+      "SHOW_COMBAT_TEXT",
+      "0x1401a68f4"
+    ],
+    [
+      46,
+      1,
+      "COMBAT_TEXT_FLOAT_MODE",
+      "0x1401a68f4"
+    ],
+    [
+      47,
+      1,
+      "COMBAT_TEXT_SHOW_LOW_HEALTH_MANA",
+      "0x1401a68f4"
+    ],
+    [
+      48,
+      1,
+      "COMBAT_TEXT_SHOW_AURAS",
+      "0x1401a68f4"
+    ],
+    [
+      49,
+      1,
+      "COMBAT_TEXT_SHOW_AURA_FADE",
+      "0x1401a68f4"
+    ],
+    [
+      50,
+      1,
+      "COMBAT_TEXT_SHOW_COMBAT_STATE",
+      "0x1401a68f4"
+    ],
+    [
+      51,
+      1,
+      "COMBAT_TEXT_SHOW_DODGE_PARRY_MISS",
+      "0x1401a68f4"
+    ],
+    [
+      52,
+      1,
+      "COMBAT_TEXT_SHOW_RESISTANCES",
+      "0x1401a68f4"
+    ],
+    [
+      53,
+      1,
+      "COMBAT_TEXT_SHOW_REPUTATION",
+      "0x1401a68f4"
+    ],
+    [
+      54,
+      1,
+      "COMBAT_TEXT_SHOW_REACTIVES",
+      "0x1401a68f4"
+    ],
+    [
+      55,
+      1,
+      "COMBAT_TEXT_SHOW_FRIENDLY_NAMES",
+      "0x1401a68f4"
+    ],
+    [
+      56,
+      1,
+      "COMBAT_TEXT_SHOW_COMBO_POINTS",
+      "0x1401a68f4"
+    ],
+    [
+      57,
+      1,
+      "COMBAT_TEXT_SHOW_MANA",
+      "0x1401a68f4"
+    ],
+    [
+      58,
+      1,
+      "COMBAT_TEXT_SHOW_HONOR_GAINED",
+      "0x1401a68f4"
+    ],
+    [
+      59,
+      0,
+      "CombatDamage",
+      "0x1401a67d9"
+    ],
+    [
+      60,
+      0,
+      "CombatLogPeriodicSpells",
+      "0x1401a67d9"
+    ],
+    [
+      61,
+      0,
+      "PetMeleeDamage",
+      "0x1401a67d9"
+    ],
+    [
+      62,
+      0,
+      "combatLogFile",
+      "0x1401a67d9"
+    ],
+    [
+      63,
+      0,
+      "guildMemberNotify",
+      "0x1401a67d9"
+    ],
+    [
+      64,
+      1,
+      "REMOVE_CHAT_DELAY",
+      "0x1401a68f4"
+    ],
+    [
+      65,
+      0,
+      "ChatBubbles",
+      "0x1401a67d9"
+    ],
+    [
+      66,
+      0,
+      "showLootSpam",
+      "0x1401a67d9"
+    ],
+    [
+      67,
+      0,
+      "ChatBubblesParty",
+      "0x1401a67d9"
+    ],
+    [
+      68,
+      0,
+      "spamFilter",
+      "0x1401a67d9"
+    ],
+    [
+      69,
+      2,
+      "NAMEPLATES_ON",
+      "0x1401a6842"
+    ],
+    [
+      70,
+      2,
+      "FRIENDNAMEPLATES_ON",
+      "0x1401a6842"
+    ],
+    [
+      71,
+      0,
+      "UnitNamePlayer",
+      "0x1401a67d9"
+    ],
+    [
+      72,
+      0,
+      "UnitNamePlayerGuild",
+      "0x1401a67d9"
+    ],
+    [
+      73,
+      0,
+      "UnitNamePlayerPVPTitle",
+      "0x1401a67d9"
+    ],
+    [
+      74,
+      0,
+      "UnitNameNPC",
+      "0x1401a67d9"
+    ],
+    [
+      75,
+      0,
+      "UnitNameOwn",
+      "0x1401a67d9"
+    ],
+    [
+      76,
+      0,
+      "uiScale",
+      "0x1401a67d9"
+    ],
+    [
+      77,
+      0,
+      "farclip",
+      "0x1401a67d9"
+    ],
+    [
+      78,
+      0,
+      "WorldDetail",
+      "0x1401a67d9"
+    ],
+    [
+      79,
+      0,
+      "spellEffectLevel",
+      "0x1401a67d9"
+    ],
+    [
+      80,
+      0,
+      "noSpellEffects",
+      "0x1401a67d9"
+    ],
+    [
+      81,
+      0,
+      "menuScene",
+      "0x1401a67d9"
+    ],
+    [
+      82,
+      3,
+      "gamma",
+      "0x1401a6879"
+    ],
+    [
+      83,
+      0,
+      "weatherDensity",
+      "0x1401a67d9"
+    ],
+    [
+      84,
+      0,
+      "gxWindow",
+      "0x1401a67d9"
+    ],
+    [
+      85,
+      0,
+      "gxVSync",
+      "0x1401a67d9"
+    ],
+    [
+      86,
+      0,
+      "renderScale",
+      "0x1401a67d9"
+    ],
+    [
+      87,
+      0,
+      "gxMultisample",
+      "0x1401a67d9"
+    ],
+    [
+      88,
+      0,
+      "anisotropic",
+      "0x1401a67d9"
+    ],
+    [
+      89,
+      0,
+      "trilinear",
+      "0x1401a67d9"
+    ],
+    [
+      90,
+      0,
+      "ffxGlow",
+      "0x1401a67d9"
+    ],
+    [
+      91,
+      0,
+      "ffxDeath",
+      "0x1401a67d9"
+    ],
+    [
+      92,
+      0,
+      "MasterSoundEffects",
+      "0x1401a67d9"
+    ],
+    [
+      93,
+      0,
+      "MasterVolume",
+      "0x1401a67d9"
+    ],
+    [
+      94,
+      0,
+      "SoundVolume",
+      "0x1401a67d9"
+    ],
+    [
+      95,
+      0,
+      "MusicVolume",
+      "0x1401a67d9"
+    ],
+    [
+      96,
+      0,
+      "AmbienceVolume",
+      "0x1401a67d9"
+    ],
+    [
+      97,
+      0,
+      "EnableMusic",
+      "0x1401a67d9"
+    ],
+    [
+      98,
+      0,
+      "SoundZoneMusicNoDelay",
+      "0x1401a67d9"
+    ],
+    [
+      99,
+      0,
+      "EnableAmbience",
+      "0x1401a67d9"
+    ],
+    [
+      100,
+      0,
+      "EnableErrorSpeech",
+      "0x1401a67d9"
+    ],
+    [
+      101,
+      0,
+      "EmoteSounds",
+      "0x1401a67d9"
+    ],
+    [
+      102,
+      0,
+      "SoundListenerAtCharacter",
+      "0x1401a67d9"
+    ],
+    [
+      103,
+      0,
+      "Sound_EnableSoundWhenGameIsInBG",
+      "0x1401a67d9"
+    ],
+    [
+      104,
+      0,
+      "checkAddonVersion",
+      "0x1401a67d9"
+    ]
+  ],
+  "failure_paths": [
+    {
+      "entry": "0x1401a6b86",
+      "location": "0x145eedfe8",
+      "line": 813,
+      "column": 22
+    },
+    {
+      "entry": "0x1401a6bb2",
+      "location": "0x145eedfd0",
+      "line": 806,
+      "column": 22
+    }
+  ],
+  "cases": {
+    "descriptor_dispatch_and_bounds": 107,
+    "resource_failure_arguments": 2,
+    "string_format_adapter": 7
+  },
+  "limits": [
+    "Exact selected immutable descriptor input; arbitrary memory mutation is unproved.",
+    "Resource lookup and ECS admission, generic formatting/panic backends and reconstructed Rust are not executed.",
+    "Original census ownership and residual counts are unchanged; no global alias/body closure.",
+    "No compilation, application/game launch, game-save/configuration operation or parity comparison."
+  ]
+}

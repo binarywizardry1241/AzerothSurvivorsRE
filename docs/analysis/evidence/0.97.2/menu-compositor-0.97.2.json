@@ -1,0 +1,359 @@
+{
+  "date": "2026-10-18",
+  "target_version": "0.97.2",
+  "target_path": "AzerothSurvivors/AzerothSurvivors-0.97.2.exe",
+  "target_sha256": "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589",
+  "target_executed": false,
+  "functions": [
+    {
+      "address": "0x140fa1d50",
+      "end_exclusive": "0x140fa1e2e",
+      "role": "WOW_RENDER_SCALE parsing, finite check and 0.25..4 clamp",
+      "file_offset": "0xfa1150",
+      "byte_count": 222,
+      "sha256": "471110f9a4e227992bbee6a77073b9e2166876f04534778d28e32d5f1171c2fe",
+      "rea": {
+        "evidence_id": "ev_15058c76a23e022e92ac4120e173ed88cb9dc3f011134a3f4a50d23b40f455df",
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "subject": {
+          "name": "backdrop.bin",
+          "digest": {
+            "sha256": "b7392f85b5fdde0cb3eee14eb12b3c47e0c38cc2c3766ae6ad43e9a7036c096f"
+          },
+          "local_path": "runtime/menu-compositor-0.97.2/backdrop.bin",
+          "format": "raw-binary",
+          "architecture": "x86_64"
+        },
+        "procedure": "0x140fa1d50"
+      }
+    },
+    {
+      "address": "0x140fb77e0",
+      "end_exclusive": "0x140fb7b62",
+      "role": "backdrop image creation and startup render-size math",
+      "file_offset": "0xfb6be0",
+      "byte_count": 898,
+      "sha256": "9dac092855966ffe3a1c58ecececb36b73919615bbbfdd5d30226e1a1f58ee2d",
+      "rea": {
+        "evidence_id": "ev_009284341bb4ff93d8a3dd45a723a62c720127fcaeef89ea5b44c5760dda0427",
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "subject": {
+          "name": "140fb77e0.bin",
+          "digest": {
+            "sha256": "9dac092855966ffe3a1c58ecececb36b73919615bbbfdd5d30226e1a1f58ee2d"
+          },
+          "local_path": "runtime/menu-compositor-0.97.2/140fb77e0.bin",
+          "format": "raw-binary",
+          "architecture": "x86_64"
+        },
+        "procedure": "0x140fb77e0"
+      }
+    },
+    {
+      "address": "0x140fb7bd0",
+      "end_exclusive": "0x140fb86cc",
+      "role": "resize comparison, image replacement and retired image removal",
+      "file_offset": "0xfb6fd0",
+      "byte_count": 2812,
+      "sha256": "252bc21a80fcb5c4cb4152849ff3cf9c8de3d05aa2fe816644c08c542071cfe6",
+      "rea": {
+        "evidence_id": "ev_b9fa275e220544e1b133afa83b0a6cf3fedaeb5f5963aaac2d9aae78f2b1c4d1",
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "subject": {
+          "name": "140fb7bd0.bin",
+          "digest": {
+            "sha256": "252bc21a80fcb5c4cb4152849ff3cf9c8de3d05aa2fe816644c08c542071cfe6"
+          },
+          "local_path": "runtime/menu-compositor-0.97.2/140fb7bd0.bin",
+          "format": "raw-binary",
+          "architecture": "x86_64"
+        },
+        "procedure": "0x140fb7bd0"
+      }
+    },
+    {
+      "address": "0x140fb87f0",
+      "end_exclusive": "0x140fb8fd2",
+      "role": "world image retarget, built-size scale factor and mip bias",
+      "file_offset": "0xfb7bf0",
+      "byte_count": 2018,
+      "sha256": "8c6330f6aeaa5a6e275ab7b84c2b2023af255ac3dc55949e3d641de0303a50a4",
+      "rea": {
+        "evidence_id": "ev_70a7dd6e6dff686b2539a73bc27c429031d0e788fa17006b9201c98c84ba8de8",
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "subject": {
+          "name": "140fb87f0.bin",
+          "digest": {
+            "sha256": "8c6330f6aeaa5a6e275ab7b84c2b2023af255ac3dc55949e3d641de0303a50a4"
+          },
+          "local_path": "runtime/menu-compositor-0.97.2/140fb87f0.bin",
+          "format": "raw-binary",
+          "architecture": "x86_64"
+        },
+        "procedure": "0x140fb87f0"
+      }
+    },
+    {
+      "address": "0x140fb7400",
+      "end_exclusive": "0x140fb77de",
+      "role": "first active world camera claim on UI FfxBackdrop",
+      "file_offset": "0xfb6800",
+      "byte_count": 990,
+      "sha256": "2cfe8cd7f1983735954a55251cd15bafcc1875b05a69a79628a7ba47deb93e4b",
+      "rea": {
+        "evidence_id": "ev_a8f2564c1e34d1f91f2ca6d58309c228ff2be35ab7f89f9e2acdca4f113fb41b",
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "subject": {
+          "name": "140fb7400.bin",
+          "digest": {
+            "sha256": "2cfe8cd7f1983735954a55251cd15bafcc1875b05a69a79628a7ba47deb93e4b"
+          },
+          "local_path": "runtime/menu-compositor-0.97.2/140fb7400.bin",
+          "format": "raw-binary",
+          "architecture": "x86_64"
+        },
+        "procedure": "0x140fb7400"
+      }
+    },
+    {
+      "address": "0x140fb9050",
+      "end_exclusive": "0x140fb921c",
+      "role": "case-insensitive renderScale CVar observer",
+      "file_offset": "0xfb8450",
+      "byte_count": 460,
+      "sha256": "2a8e6e3d593294af10a26f3b23493ae9450807f10bc1b33028c613800e3fb410",
+      "rea": {
+        "evidence_id": "ev_6ffe413f17281d33dccf9db8a6ddfe42ed908d2b20e6079ab6edb8bfccaffefd",
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "subject": {
+          "name": "140fb9050.bin",
+          "digest": {
+            "sha256": "2a8e6e3d593294af10a26f3b23493ae9450807f10bc1b33028c613800e3fb410"
+          },
+          "local_path": "runtime/menu-compositor-0.97.2/140fb9050.bin",
+          "format": "raw-binary",
+          "architecture": "x86_64"
+        },
+        "procedure": "0x140fb9050"
+      }
+    },
+    {
+      "address": "0x140838a90",
+      "end_exclusive": "0x14083953b",
+      "role": "world camera spawn and PerspectiveProjection constants",
+      "file_offset": "0x837e90",
+      "byte_count": 2731,
+      "sha256": "b1de1fc01370729f02bcbec0659c8357592a18b6c2e615b09abcc7ec93602858",
+      "rea": {
+        "evidence_id": "ev_01c8060f766ce8e7bdd014f5ab068bf4da113f00235cc6954d7b68d71f7f592b",
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "subject": {
+          "name": "world-camera.bin",
+          "digest": {
+            "sha256": "b1de1fc01370729f02bcbec0659c8357592a18b6c2e615b09abcc7ec93602858"
+          },
+          "local_path": "runtime/menu-compositor-0.97.2/world-camera.bin",
+          "format": "raw-binary",
+          "architecture": "x86_64"
+        },
+        "procedure": "0x140838a90"
+      }
+    },
+    {
+      "address": "0x140a43d70",
+      "end_exclusive": "0x140a43ee7",
+      "role": "player UI camera spawn",
+      "file_offset": "0xa43170",
+      "byte_count": 375,
+      "sha256": "223a8f6fcb1d8f5863a2db4587a50f37f9119462bf9873a8319203f83ef0b555",
+      "rea": {
+        "evidence_id": "ev_8e72415f33c16b5ea67a08f7758567a1985240ea35c9a632544a0cfb34b93d55",
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "subject": {
+          "name": "ui-camera.bin",
+          "digest": {
+            "sha256": "4e16bdb30cabfe689496c0a24398386fc9f1095624df3186509757b362f9c91a"
+          },
+          "local_path": "runtime/menu-compositor-0.97.2/ui-camera.bin",
+          "format": "raw-binary",
+          "architecture": "x86_64"
+        },
+        "procedure": "0x140a43d70"
+      }
+    }
+  ],
+  "constants": [
+    {
+      "address": "0x1459f7d40",
+      "role": "world projection: fov, aspect, near, far",
+      "bytes_hex": "db0f493f0000803fcdcccc3d00803b45",
+      "f32": [
+        0.7853981852531433,
+        1.0,
+        0.10000000149011612,
+        3000.0
+      ]
+    },
+    {
+      "address": "0x1458ed010",
+      "role": "minimum render scale",
+      "bytes_hex": "0000803e",
+      "f32": [
+        0.25
+      ]
+    },
+    {
+      "address": "0x1458eb4f8",
+      "role": "maximum render scale",
+      "bytes_hex": "00008040",
+      "f32": [
+        4.0
+      ]
+    },
+    {
+      "address": "0x145ad6914",
+      "role": "render axis ceiling",
+      "bytes_hex": "00000046",
+      "f32": [
+        8192.0
+      ]
+    },
+    {
+      "address": "0x1458eb480",
+      "role": "default render scale",
+      "bytes_hex": "0000803f",
+      "f32": [
+        1.0
+      ]
+    }
+  ],
+  "math_imports": [
+    {
+      "address": "0x145756e1f",
+      "bytes_hex": "ff2523161900",
+      "iat": "0x1458e8448",
+      "library": "api-ms-win-crt-math-l1-1-0.dll",
+      "function": "roundf"
+    },
+    {
+      "address": "0x145756ec1",
+      "bytes_hex": "ff25e9151900",
+      "iat": "0x1458e84b0",
+      "library": "api-ms-win-crt-math-l1-1-0.dll",
+      "function": "log2f"
+    }
+  ],
+  "shaders": [
+    {
+      "source": "crates/benilla-world/src/shaders/ffx_glow.wgsl",
+      "source_sha256": "2a17c73ebbcef5fea8b28068735105851596747772781ba6571d7c07cca7e175",
+      "source_bytes": 7349,
+      "native_bytes": 7494,
+      "file_offset": "0x5c01435",
+      "address": "0x145c02435",
+      "native_sha256": "a0d0e8fbcceae1f4b6d0aa04b135f27ab44acf1f3e9ab9d86d36d0a4671e2944",
+      "transformation": "LF to CRLF only; complete shader byte match"
+    },
+    {
+      "source": "crates/benilla-app/src/shaders/ui_gamma.wgsl",
+      "source_sha256": "2e207ba9b3835a7242312cfc3a9c25dedfa57a69ff866c1e8a718372ebff2c8f",
+      "source_bytes": 1361,
+      "native_bytes": 1390,
+      "file_offset": "0x59fc805",
+      "address": "0x1459fd805",
+      "native_sha256": "6238c683cb90d68fe2001f1d66acd92d801e941118b5bad9767f90d44c3d48c7",
+      "transformation": "LF to CRLF only; complete shader byte match"
+    },
+    {
+      "source": "crates/benilla-app/src/shaders/ui_node_gamma.wgsl",
+      "source_sha256": "d1f7500931d933181a77c7eab8264a55527bc810cb9a2dddfabeb104f99f18d6",
+      "source_bytes": 9484,
+      "native_bytes": 9730,
+      "file_offset": "0x59fcdaa",
+      "address": "0x1459fddaa",
+      "native_sha256": "1a6360f61321ee55ef359727be1156097d30e0befac39f50998afb0c83f3979f",
+      "transformation": "LF to CRLF only; complete shader byte match"
+    },
+    {
+      "source": "crates/benilla-app/src/shaders/ui_slice_gamma.wgsl",
+      "source_sha256": "b6f8f54c5402021d8179c318f343820209bb82f2db9cc525c33175030334e8ff",
+      "source_bytes": 5730,
+      "native_bytes": 5875,
+      "file_offset": "0x59ff3e3",
+      "address": "0x145a003e3",
+      "native_sha256": "99f44163e1edf155cccb6fad1157630472a4ed739e067d79459e3395e02bc2d7",
+      "transformation": "LF to CRLF only; complete shader byte match"
+    }
+  ],
+  "recovered": {
+    "render_scale_range": [
+      0.25,
+      4.0
+    ],
+    "maximum_axis": 8192,
+    "no_window_size": [
+      1280,
+      720
+    ],
+    "size_rounding": "CRT roundf; max1/min8192",
+    "target_scale": "window_factor * built_width / physical_window_width",
+    "mip_bias": "min(log2(target_scale / window_factor), 0)",
+    "world_camera": {
+      "fov_radians": 0.7853981852531433,
+      "near": 0.10000000149011612,
+      "far": 3000
+    },
+    "image": "R8Unorm render-attachment-only size carrier; shared FFX reads the world view main texture",
+    "claim": "first active WorldCamera, or None"
+  },
+  "implementation": "menu_compositor.rs plus main.rs world assets/plugins; menu_scene.rs drives residency/camera",
+  "validation": {
+    "static_only": true,
+    "shaders_matched": 4,
+    "builds": "not run",
+    "compiler_checks": "not run",
+    "tests": "not run",
+    "emulation": "not run",
+    "original_launch": "not run",
+    "rebuilt_launch": "not run",
+    "parity": "unverified"
+  },
+  "limitations": [
+    "REA raw slices use generic GCC ABI and omit external code/data; original Windows x64 instructions and PE constants control interpretation.",
+    "Native source names are analyst role bindings, not recovered Rust symbols.",
+    "Shared world terrain/model/lighting systems are reused; matching these shaders does not establish all shared engine code or visual parity.",
+    "Standalone ECS registration/scheduling, missing-data handling and render backend remain uncompiled and runtime-unverified."
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "target_sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+  "gap_id": 45,
+  "framexml_members": [
+    {
+      "member": "Interface/FrameXML/FrameXML.toc",
+      "archive": "installed-game/Data/patch.MPQ",
+      "bytes": 1730,
+      "sha256": "e41fce21d2dbe598c31999a5b7cdf410222a9e29eeea4be2fe342ee7b643b2f4"
+    },
+    {
+      "member": "Interface/FrameXML/ChatFrame.xml",
+      "archive": "installed-game/Data/patch.MPQ",
+      "bytes": 3698,
+      "sha256": "a814fb8d58ea87a1501481f14d66d729bd34f66c35954dc8667a4e839ab9fb31"
+    },
+    {
+      "member": "Interface/FrameXML/FloatingChatFrame.xml",
+      "archive": "installed-game/Data/patch.MPQ",
+      "bytes": 25287,
+      "sha256": "3da4592a37e44045de5dbf6996ac7a8483ccc042f166c3565c5d57e99fe891b5"
+    }
+  ],
+  "resource_contract": "FrameXML.toc loads ChatFrame.xml's virtual template before FloatingChatFrame.xml creates ChatFrame1/2. Boot/glue VMs do not own those in-game frames.",
+  "old_source_producer": "ui_chat::end_chat_session generated ChatFrame1:Clear() and ChatFrame2:Clear() through run_or_warn in an unordered OnExit(InWorld) callback.",
+  "source_repair": "The sole session owner resets ChatLog after close_ui_session and before installing the replacement VM. Frame contents die with the VM; no Lua frame-clear callback remains. Reload keeps its queue; aborted entry needs no frames.",
+  "interpreted_legacy_cases": 4,
+  "source_production_reset_calls": [
+    "crates/benilla-app/src/ui_script/lifecycle.rs"
+  ],
+  "existing_native_contract": "addon-bridge-0.109.0 owns current Menu/ordinary Logout response and completion ordering; check-addon-contracts-0.109.0.py rechecks that bounded contract separately.",
+  "limits": [
+    "Source-order guards and XML/resource checks do not execute or type-check Rust or the ECS schedule.",
+    "The Lua checks use explicit frame stubs and absent globals; they are not an original/rebuilt game comparison.",
+    "Historical log attribution is supported by the exact chunks and source race; the log has no stack or exact built-source proof.",
+    "Actual startup/logout/reload input, persistence, rendering and original/rebuilt parity remain unverified."
+  ]
+}

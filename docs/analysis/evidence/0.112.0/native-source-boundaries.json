@@ -1,0 +1,378 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.112.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+    "size_bytes": 140514816
+  },
+  "generator": {
+    "path": "scripts/audit-native-source-roles.py",
+    "sha256": "8e5cfb46c126d9580111c3388f3b5fb76517855e4787f6cd8aa93fa179d50726"
+  },
+  "generator_dependencies": [
+    {
+      "path": "scripts/inventory-current-target.py",
+      "sha256": "f2cf5be70267aa01865b7c34bef7eeb87898d67b5e36f0a91d20d37e3b1299c5"
+    },
+    {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+    },
+    {
+      "path": "scripts/coverage_common.py",
+      "sha256": "3aaa705f6fe366d06b59fbb1cc011bf98f28e59299e91371bd084c63b77d8eeb"
+    }
+  ],
+  "diagnostic_input": {
+    "path": "runtime/coverage/dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a/diagnostic-ownership.json",
+    "sha256": "9aa4230db380cb89c21962c876ebed68648e13e6fd30553c9fa3f30af5721ed8"
+  },
+  "historical_resource_search_keys": {
+    "path": "docs/analysis/evidence/0.109.0/native-source-boundaries.json",
+    "sha256": "a8d07bd976faacb509e6469297aca63d488a9db07fec63b490285dff54e66425"
+  },
+  "source_snapshot": {
+    "git_reference": "318bcb6344e493cb519fa0eb604677e1a0c9a623",
+    "git_tree": "f9cf52b4bdd3482ff007b008f1287a0755d5f542"
+  },
+  "counts": {
+    "missing_source_paths_in_snapshot": 11,
+    "rust-source-location": 8,
+    "event-label-literals": 2,
+    "embedded-shader-comment": 1
+  },
+  "embedded_resource_paths": [
+    {
+      "path": "crates/bevy_render/src/mesh/morph/visitors.rs",
+      "role": "embedded-shader-comment",
+      "resource_path": "crates/bevy_pbr/src/render/morph.wgsl",
+      "resource": {
+        "va": "0x1464407aa",
+        "byte_count": 2123,
+        "sha256": "fab0a8409f2f1f8e08e8a3e98e348bb0ce64a04608ece65398eb36c418392f99"
+      },
+      "file_offset": "0x643f9aa",
+      "unique_in_selected_image": true,
+      "historical_byte_commitment_used_only_as_current_content_search_key": true,
+      "historical_address_reused": false,
+      "source_revision_proven": false
+    }
+  ],
+  "missing_candidate_source_roles": [
+    {
+      "path": "crates/benilla-app/src/host_controls.rs",
+      "role": "rust-source-location",
+      "rust_location_records": [
+        {
+          "va": "0x145e930c8",
+          "byte_count": 24,
+          "sha256": "beeac21b59ed8b9003d0681bbfd44af22d90869eddb62f3ed662327fc6dd500e",
+          "source_line": 89,
+          "source_column": 15
+        }
+      ],
+      "tracing_event_labels": [
+        {
+          "va": "0x145e9a070",
+          "byte_count": 49,
+          "sha256": "5a485408dee5cda03750eed628a01ffcb94cfbb434221ff20d43dee6ac2e5c3b",
+          "source_line": 226
+        },
+        {
+          "va": "0x145e9a160",
+          "byte_count": 49,
+          "sha256": "7341986e52ef68fab61951c41e864e10bade2dcaa333d73247fe6919f4c0b942",
+          "source_line": 128
+        },
+        {
+          "va": "0x145e9a210",
+          "byte_count": 49,
+          "sha256": "65f6555eeff6b23367f3818d070326b82ab4503529552188190b01a75d5be37e",
+          "source_line": 191
+        },
+        {
+          "va": "0x145e9a2c0",
+          "byte_count": 49,
+          "sha256": "c1a60425f40eb1cb580b8f526fd80fb325b70f380f2351eb3a4a5f0f3b1ec36c",
+          "source_line": 179
+        },
+        {
+          "va": "0x145e9a370",
+          "byte_count": 49,
+          "sha256": "5ad2f5f97c3195da2681e5cbf9091f59077f59f35a775c0a4c215f8c8dc89288",
+          "source_line": 414
+        },
+        {
+          "va": "0x145e9a420",
+          "byte_count": 49,
+          "sha256": "fe9c768fa5ae786e322e00a3a5d66eb3c38f6679c6bccf0ee195b0f5e52cfa1c",
+          "source_line": 211
+        },
+        {
+          "va": "0x145e9a4d0",
+          "byte_count": 49,
+          "sha256": "12a38aae59f25c9afaa348cda7c65fd16795fc0afba9d53c4b8d1725bdeb05f7",
+          "source_line": 398
+        }
+      ]
+    },
+    {
+      "path": "crates/benilla-app/src/net/io/park_timer.rs",
+      "role": "rust-source-location",
+      "rust_location_records": [
+        {
+          "va": "0x145f575a0",
+          "byte_count": 24,
+          "sha256": "eaa6056a64a55aadb56e48dc2e61fa70fbac82f709628b2d7aadbbb1c68a1cdb",
+          "source_line": 9,
+          "source_column": 44
+        }
+      ],
+      "tracing_event_labels": []
+    },
+    {
+      "path": "crates/benilla-app/src/ui_text/engine/fallback.rs",
+      "role": "event-label-literals",
+      "rust_location_records": [],
+      "tracing_event_labels": [
+        {
+          "va": "0x145ea1b78",
+          "byte_count": 58,
+          "sha256": "de96ac2d6a66c46c294e97a09bcf57790aadffa656a2bbbeded93c95d84c3773",
+          "source_line": 80
+        },
+        {
+          "va": "0x145ea1c88",
+          "byte_count": 59,
+          "sha256": "a5d939b4721382aef77359c091641f4cfd0754cb6bc6f32d92753635673b57ac",
+          "source_line": 109
+        }
+      ]
+    },
+    {
+      "path": "crates/benilla-app/src/web_pbr_lite.rs",
+      "role": "event-label-literals",
+      "rust_location_records": [],
+      "tracing_event_labels": [
+        {
+          "va": "0x145ecd8d8",
+          "byte_count": 47,
+          "sha256": "4b98f142b1347d0d26f057e1403234966146b8630a161bd61917874939a8ac9c",
+          "source_line": 26
+        }
+      ]
+    },
+    {
+      "path": "crates/benilla-app/src/webbridge/mod.rs",
+      "role": "rust-source-location",
+      "rust_location_records": [
+        {
+          "va": "0x145f9e538",
+          "byte_count": 24,
+          "sha256": "88dc83c58604ee2b040f04f2f18628dc7e75161daf910ca10f1ca2081373581c",
+          "source_line": 284,
+          "source_column": 14
+        },
+        {
+          "va": "0x145f9e550",
+          "byte_count": 24,
+          "sha256": "87ec8d59cff7d2f795c82075f5997de255b9a070afd008c67d730d2362410df5",
+          "source_line": 285,
+          "source_column": 14
+        }
+      ],
+      "tracing_event_labels": [
+        {
+          "va": "0x145f9b768",
+          "byte_count": 49,
+          "sha256": "8a4f1c4c89a1459c543727677508063b800a6e13816dbaa7b8f1e7fea9a0f69c",
+          "source_line": 219
+        },
+        {
+          "va": "0x145f9dc60",
+          "byte_count": 49,
+          "sha256": "c8d3c5c301277426ac79e03e70873d4688f1f92d68bc0930484cb7e80c19b940",
+          "source_line": 276
+        }
+      ]
+    },
+    {
+      "path": "crates/benilla-protocol/src/transport/local.rs",
+      "role": "rust-source-location",
+      "rust_location_records": [
+        {
+          "va": "0x145f56698",
+          "byte_count": 24,
+          "sha256": "bb29c01c0aa0f0c5f27c85ca6620b7c80e7b53d732dc573e0a88f4cb1e72b03d",
+          "source_line": 88,
+          "source_column": 66
+        },
+        {
+          "va": "0x145f578e8",
+          "byte_count": 24,
+          "sha256": "55ebc295753d89661f38a47b7c6316ba608c1a33288660b50c471bcec9057708",
+          "source_line": 213,
+          "source_column": 76
+        }
+      ],
+      "tracing_event_labels": []
+    },
+    {
+      "path": "crates/benilla-protocol/src/transport/mod.rs",
+      "role": "rust-source-location",
+      "rust_location_records": [
+        {
+          "va": "0x145f565c8",
+          "byte_count": 24,
+          "sha256": "772c65cb5622420d7f1314dcc03358f53c804909c74a6f914bb548563ceb44a7",
+          "source_line": 60,
+          "source_column": 69
+        },
+        {
+          "va": "0x145f578b8",
+          "byte_count": 24,
+          "sha256": "d32279f7b554f64689f8d75aef443055f430f0599b2dbbdc971252cf2a5bf82f",
+          "source_line": 133,
+          "source_column": 76
+        },
+        {
+          "va": "0x145f57918",
+          "byte_count": 24,
+          "sha256": "b593df00fdb46876a5eacc660d12ee824375c9d8282de34176a98026d740247c",
+          "source_line": 124,
+          "source_column": 76
+        },
+        {
+          "va": "0x1472508f0",
+          "byte_count": 24,
+          "sha256": "b314c50211bccda6608f90498eb8894cae7bbc84eaa5e20d98f4e369a1d09e8c",
+          "source_line": 103,
+          "source_column": 17
+        }
+      ],
+      "tracing_event_labels": []
+    },
+    {
+      "path": "crates/benilla-protocol/src/transport/native.rs",
+      "role": "rust-source-location",
+      "rust_location_records": [
+        {
+          "va": "0x145f566e0",
+          "byte_count": 24,
+          "sha256": "a71c98d5590941432369ee568d7f176363c59f38af9a4404872d0a4e756c010d",
+          "source_line": 33,
+          "source_column": 69
+        },
+        {
+          "va": "0x145f578d0",
+          "byte_count": 24,
+          "sha256": "3cf2d9f23d04237c0d20f6da6b5e714c14995df9bcf54cc3ee19dc318705b98c",
+          "source_line": 93,
+          "source_column": 76
+        },
+        {
+          "va": "0x145f57930",
+          "byte_count": 24,
+          "sha256": "ffd598c5fd7db583c12fa31f614d0b2965585d0866b43aba6c7ddd65efe4bf09",
+          "source_line": 87,
+          "source_column": 76
+        }
+      ],
+      "tracing_event_labels": []
+    },
+    {
+      "path": "crates/benilla-ui/src/script/plain.rs",
+      "role": "rust-source-location",
+      "rust_location_records": [
+        {
+          "va": "0x146b9af98",
+          "byte_count": 24,
+          "sha256": "09138a68b15e0b78ba4fb5ec562e1e606b1f7b449c956ac7d31b72dabf06cc3f",
+          "source_line": 99,
+          "source_column": 29
+        }
+      ],
+      "tracing_event_labels": []
+    },
+    {
+      "path": "crates/benilla-world/src/rig_anim/compose_scratch.rs",
+      "role": "rust-source-location",
+      "rust_location_records": [
+        {
+          "va": "0x1460ae190",
+          "byte_count": 24,
+          "sha256": "e62d22b188d51b3e123ecf711a881e55748456b6786f8e907c1c1e7cdbf235bf",
+          "source_line": 25,
+          "source_column": 53
+        },
+        {
+          "va": "0x1460ae1a8",
+          "byte_count": 24,
+          "sha256": "0cd9c25c09a62ea23311efe82265381f87ffb2dfad06427325a25127225f7429",
+          "source_line": 27,
+          "source_column": 34
+        },
+        {
+          "va": "0x1460ae1c0",
+          "byte_count": 24,
+          "sha256": "bfb579dfefa97113fff764c5eef5f401ba8a2c49a5d8613be8413f9ece8dc634",
+          "source_line": 32,
+          "source_column": 39
+        },
+        {
+          "va": "0x1460ae1d8",
+          "byte_count": 24,
+          "sha256": "b85b2713998b8bf3141600470fbc73b1dd32155c2cd4ad880efafba4e9ebb6e9",
+          "source_line": 34,
+          "source_column": 28
+        },
+        {
+          "va": "0x1460ae1f0",
+          "byte_count": 24,
+          "sha256": "211d4a7a88364f633b53d454f2d28569d6a5882f770ff5961509f85338ef923e",
+          "source_line": 39,
+          "source_column": 34
+        },
+        {
+          "va": "0x1460ae208",
+          "byte_count": 24,
+          "sha256": "b2817afbc798f6b6385efdb04dffbc54fb99b1cd2093a4cfd69b14db3d6eac95",
+          "source_line": 45,
+          "source_column": 69
+        },
+        {
+          "va": "0x1460ae220",
+          "byte_count": 24,
+          "sha256": "79fed02c371eef60f500ffad923b1f5bd81e0fc6d36f72ba1359c103fe193aa5",
+          "source_line": 52,
+          "source_column": 24
+        },
+        {
+          "va": "0x1460ae238",
+          "byte_count": 24,
+          "sha256": "74b84e254f4ffd19d9bee620cf03ed0e820e0d3b6e8bb7d58b6d572411d100d6",
+          "source_line": 53,
+          "source_column": 31
+        }
+      ],
+      "tracing_event_labels": []
+    },
+    {
+      "path": "crates/bevy_render/src/mesh/morph/visitors.rs",
+      "role": "embedded-shader-comment",
+      "rust_location_records": [],
+      "tracing_event_labels": []
+    }
+  ],
+  "source_revision_proven": false,
+  "native_contract_match_established": false,
+  "gap_ids": [
+    41
+  ],
+  "limits": [
+    "File absence refers only to the exact selected Git tree; it does not prove public/private source availability or the compiled revision.",
+    "Current bytes independently establish path descriptor/comment roles. Historical RVAs, public repository status and source identity are not promoted.",
+    "No diagnostic lead is excluded, and no actual function body ownership or runtime behavior is inferred."
+  ]
+}

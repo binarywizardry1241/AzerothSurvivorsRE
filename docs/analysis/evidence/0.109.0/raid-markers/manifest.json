@@ -1,0 +1,564 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.109.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+    "size_bytes": 140447744
+  },
+  "reviewed_source_sha256": {
+    "crates/azeroth-survivors-re/src/raid_markers.rs": "b7eb202bfa3d4a46663c5424b776ce8837c0c224f49e17f4de53195a13a287a8",
+    "crates/azeroth-survivors-re/src/gameplay/raid_markers.rs": "6e164b992d05eff14109e86af4c1d6e7786b3cdfa6d1f1c7605cad80d942dc05",
+    "crates/azeroth-survivors-re/src/gameplay/raid_markers/geometry.rs": "f2cd70e53ae3eef09a2fab30f0dd80354bcc881eee4d2d0e4109cc005e903395",
+    "crates/benilla-world/src/decal.rs": "ec998d193a0f4bf95d860c274095c0d06661f90f3f84819043d51c8f6010f100",
+    "crates/benilla-app/src/spell/net.rs": "9c5751a629dfac3ac66dab7c76314dc360b3a4571c47365e3bfc4603c59187d9"
+  },
+  "ranges": [
+    {
+      "name": "receiver",
+      "va": "0x140165430",
+      "byte_count": 5184,
+      "file_offset": "0x164830",
+      "sha256": "76b6f7c13bc5e5e1df2cef281b3be9502193ce55af60444b9229add80240ee70",
+      "extract": "receiver.asm",
+      "extract_sha256": "09490ed706df4e4178d2964bcca3b28a2bf135444b5e64b13a726933252f85c1"
+    },
+    {
+      "name": "draw",
+      "va": "0x140164000",
+      "byte_count": 4584,
+      "file_offset": "0x163400",
+      "sha256": "c2bb1be1dcf786096741f83ac002638040737058ebb7785da967e8718b2372ce",
+      "extract": "draw.asm",
+      "extract_sha256": "2e8a6631be0cd040500bdad4eb6fbf75dd9df87a32e45a21041aa838e2e734f3"
+    },
+    {
+      "name": "paint",
+      "va": "0x14013b920",
+      "byte_count": 1222,
+      "file_offset": "0x13ad20",
+      "sha256": "874fcfdce5fcfe80162c7ad8a85931621698e8b37ddeb0de3255e20a54b07caf",
+      "extract": "paint.asm",
+      "extract_sha256": "81159746c026c1e582ea77bc669fb4a047422ea89e3e21bbb0efd003ce9546fe"
+    },
+    {
+      "name": "mask",
+      "va": "0x14013d050",
+      "byte_count": 1015,
+      "file_offset": "0x13c450",
+      "sha256": "e71f5026ffed8426d11718a4371837406ce0bdc0f8973fe3d82fd177251ff2fb",
+      "extract": "mask.asm",
+      "extract_sha256": "cb1c19820f71ba5d4ff8917badf6d63dececb8dae9e7f0ddf978bd4c676fb169"
+    },
+    {
+      "name": "wedge",
+      "va": "0x1401477f0",
+      "byte_count": 595,
+      "file_offset": "0x146bf0",
+      "sha256": "6f5833e9f83c6d0fb790813074f4f90abe748973e584eb653ffbbd032fa95345",
+      "extract": "wedge.asm",
+      "extract_sha256": "944f7ccb405e9715a94a615c26a88f537ae0b21560d04db888bcf7807c50ef51"
+    },
+    {
+      "name": "column",
+      "va": "0x140147a50",
+      "byte_count": 888,
+      "file_offset": "0x146e50",
+      "sha256": "8373c786092aa214deab108acb1aff87241bd8da03f9c5c13a2a772e15960a3d",
+      "extract": "column.asm",
+      "extract_sha256": "579ee2489524548b147e6fd30654aa71898f5c5c79a386dedd367ca4e90c6a4f"
+    },
+    {
+      "name": "clip",
+      "va": "0x140147dd0",
+      "byte_count": 1940,
+      "file_offset": "0x1471d0",
+      "sha256": "4de43e73af4613841f13faf44652bb174b9b28582e57dd1873eed354d08167a2",
+      "extract": "clip.asm",
+      "extract_sha256": "0e0922caefff9473c5ca10dccfd71672c39308d6aade60954b586b60abab0d8d"
+    },
+    {
+      "name": "cast",
+      "va": "0x1459577f0",
+      "byte_count": 176,
+      "file_offset": "0x5956bf0",
+      "sha256": "eea7d8b7ee3285b2616d7407c62602ccdd3cb34cd91bb53fc5d0ee7de3738e30",
+      "extract": "../raid-waves/cast-start.asm",
+      "extract_sha256": "7034d48735d3dc57281f82dd13e25e01361c96744261a35fe9c84209ab907bd7"
+    },
+    {
+      "name": "cast_packet",
+      "va": "0x1458c2220",
+      "byte_count": 507,
+      "file_offset": "0x58c1620",
+      "sha256": "dce92ee613c9fb0fb88223ce691c9eb70d7ab8e25c215a1da4edf194887029d0",
+      "extract": "cast_packet.asm",
+      "extract_sha256": "103a46b727d5fc0bf45ad31b650c2ae643c017914e91fa2c2cb9d7dbc61b2e11"
+    },
+    {
+      "name": "cast_consumer",
+      "va": "0x14067e670",
+      "byte_count": 2548,
+      "file_offset": "0x67da70",
+      "sha256": "8da197a7a26018633daecd1df7cc53068d1dee5e3aa7289a1d75114d544c7076",
+      "extract": "cast_consumer.asm",
+      "extract_sha256": "458144b1f858b433427596f2b7f361c02b6e70052954009fb1cc9eab5308f9e8"
+    },
+    {
+      "name": "mip_average",
+      "va": "0x1400a6800",
+      "byte_count": 427,
+      "file_offset": "0xa5c00",
+      "sha256": "090bf80a6798fe4564dcc7edca9c88b691cee79ebdf921cbe368a35456e2c50b",
+      "extract": "mip_average.asm",
+      "extract_sha256": "884aaaa4d4e048d31f72c648cbfd175e1802d7da823d69627e8143ec0efb3c52"
+    },
+    {
+      "name": "geometry",
+      "va": "0x140166bf0",
+      "byte_count": 10100,
+      "file_offset": "0x165ff0",
+      "sha256": "3225bce5790a64401451f848ee9ac7927fdfef7bac11cc3140844d933f7e7c44",
+      "extract": "geometry.asm",
+      "extract_sha256": "73bf9cc32db7bd0c6d72b305e943343a64feb1beebe3b3a9a7371b61839a7cde"
+    },
+    {
+      "name": "arc",
+      "va": "0x14013d890",
+      "byte_count": 1497,
+      "file_offset": "0x13cc90",
+      "sha256": "9f398d25c60e10f62573c0c3d9bc7e0e127c8f10556f65b3ad66410340df76e9",
+      "extract": "arc.asm",
+      "extract_sha256": "52e829b58d85d76b6075ea8331b8a77e56319c2d7dd815837450e2d032c54819"
+    },
+    {
+      "name": "project",
+      "va": "0x14013df60",
+      "byte_count": 719,
+      "file_offset": "0x13d360",
+      "sha256": "2ab9449021c37a1fdf1c7e0176162885aefef591af4e5683fbfc98b9c3806746",
+      "extract": "project.asm",
+      "extract_sha256": "30b5c1025108b97910b85178426b362ddac513b3c2afdda6fd9f31da896f8c31"
+    },
+    {
+      "name": "annulus",
+      "va": "0x14013e2a0",
+      "byte_count": 1850,
+      "file_offset": "0x13d6a0",
+      "sha256": "7e0ef21e8cef0dc4c3b89637ec57189cd4868b5f5697759b5f4581ffcb8662b2",
+      "extract": "annulus.asm",
+      "extract_sha256": "a16a1f99bb2e4432c8c2b97505314453869f5f76d662461361d9468967adcfd7"
+    },
+    {
+      "name": "terrain_project",
+      "va": "0x14008d020",
+      "byte_count": 2705,
+      "file_offset": "0x8c420",
+      "sha256": "25ef6a2c291de7b43fe3c90f2e9209eec46183e5897fc982ce34a1dc24c7e8f8",
+      "extract": "terrain_project.asm",
+      "extract_sha256": "4ae75d536dcca0c2116ff33a3aee6f751620ff0db6dace80ca1f3b42fbf64647"
+    },
+    {
+      "name": "gather_aabb",
+      "va": "0x1415ec990",
+      "byte_count": 404,
+      "file_offset": "0x15ebd90",
+      "sha256": "7072d4fff1dcb17552094cfb57487851ae6e67805a22f49dc6782343f2e8763f",
+      "extract": "gather_aabb.asm",
+      "extract_sha256": "aa77630a7efcd65cf0384d97225f3877e89cd556ab316026cdb887a3fbf1c447"
+    },
+    {
+      "name": "box_clip",
+      "va": "0x1415ed280",
+      "byte_count": 1942,
+      "file_offset": "0x15ec680",
+      "sha256": "d368a758a501713679240b500d3264f70e12f323d269123a8b7790fb2ac7e0c3",
+      "extract": "box_clip.asm",
+      "extract_sha256": "15bdd5854149da5e5533e0268b3cdf38d6104a2b7a4b1e7d429fc95deb1ef589"
+    }
+  ],
+  "checks": {
+    "mask_cases": 504,
+    "mask_max_absolute_error": 1.1808002227553516e-05,
+    "clipping_cases": 1,
+    "cast_gate_and_duration_cases": 10,
+    "self_cast_bar_gate_cases": 8,
+    "progress_cases": 144,
+    "mip_average_cases": 9,
+    "paint_cases": 60,
+    "arc_cases": 15,
+    "arc_projection_frames": 742,
+    "annulus_cases": 12,
+    "annulus_vertices": 327,
+    "box_clip_cases": 18,
+    "line_fill_cases": 14,
+    "shape_fill_cases": 70,
+    "column_cases": 6,
+    "column_vertices": 1152,
+    "native_line_projection_frames": [
+      [
+        -200.0,
+        3.0,
+        -100.0,
+        1.0,
+        -4.371138828673793e-08,
+        0.0,
+        20.0,
+        -3.0,
+        3.0,
+        -9.0,
+        9.0
+      ],
+      [
+        -197.0,
+        3.0,
+        -100.0,
+        1.0,
+        -4.371138828673793e-08,
+        0.0,
+        20.0,
+        -0.8999999761581421,
+        0.8999999761581421,
+        -9.0,
+        9.0
+      ],
+      [
+        -203.0,
+        3.0,
+        -100.0,
+        1.0,
+        -4.371138828673793e-08,
+        0.0,
+        20.0,
+        -0.8999999761581421,
+        0.8999999761581421,
+        -9.0,
+        9.0
+      ],
+      [
+        -197.0,
+        3.0,
+        -100.0,
+        -8.742277657347586e-08,
+        -1.0,
+        0.0,
+        6.0,
+        -0.8999999761581421,
+        0.8999999761581421,
+        -9.0,
+        9.0
+      ],
+      [
+        -197.0,
+        3.0,
+        -120.0,
+        -8.742277657347586e-08,
+        -1.0,
+        0.0,
+        6.0,
+        -0.8999999761581421,
+        0.8999999761581421,
+        -9.0,
+        9.0
+      ]
+    ]
+  },
+  "native_line_fills": [
+    {
+      "progress": 0.0,
+      "winding": false,
+      "bounds": [],
+      "uv_bounds": []
+    },
+    {
+      "progress": 0.0,
+      "winding": true,
+      "bounds": [],
+      "uv_bounds": []
+    },
+    {
+      "progress": 0.01,
+      "winding": false,
+      "bounds": [],
+      "uv_bounds": []
+    },
+    {
+      "progress": 0.01,
+      "winding": true,
+      "bounds": [],
+      "uv_bounds": []
+    },
+    {
+      "progress": 0.0101,
+      "winding": false,
+      "bounds": [
+        [
+          0.0,
+          0.2019999921321869,
+          -3.0,
+          3.0
+        ]
+      ],
+      "uv_bounds": [
+        [
+          0.0,
+          0.2019999921321869,
+          -3.0,
+          3.0
+        ]
+      ]
+    },
+    {
+      "progress": 0.0101,
+      "winding": true,
+      "bounds": [
+        [
+          0.0,
+          0.2019999921321869,
+          -3.0,
+          3.0
+        ],
+        [
+          0.0,
+          0.2019999921321869,
+          -3.0,
+          3.0
+        ]
+      ],
+      "uv_bounds": [
+        [
+          0.0,
+          0.2019999921321869,
+          -3.0,
+          3.0
+        ],
+        [
+          0.0,
+          0.2019999921321869,
+          -3.0,
+          3.0
+        ]
+      ]
+    },
+    {
+      "progress": 0.04,
+      "winding": false,
+      "bounds": [
+        [
+          0.0,
+          0.7999999523162842,
+          -3.0,
+          3.0
+        ]
+      ],
+      "uv_bounds": [
+        [
+          0.0,
+          0.7999999523162842,
+          -3.0,
+          3.0
+        ]
+      ]
+    },
+    {
+      "progress": 0.04,
+      "winding": true,
+      "bounds": [
+        [
+          0.0,
+          0.7999999523162842,
+          -3.0,
+          3.0
+        ],
+        [
+          0.0,
+          0.7999999523162842,
+          -3.0,
+          3.0
+        ]
+      ],
+      "uv_bounds": [
+        [
+          0.0,
+          0.7999999523162842,
+          -3.0,
+          3.0
+        ],
+        [
+          0.0,
+          0.7999999523162842,
+          -3.0,
+          3.0
+        ]
+      ]
+    },
+    {
+      "progress": 0.2,
+      "winding": false,
+      "bounds": [
+        [
+          0.0,
+          4.0,
+          -3.0,
+          3.0
+        ]
+      ],
+      "uv_bounds": [
+        [
+          0.0,
+          4.0,
+          -3.0,
+          3.0
+        ]
+      ]
+    },
+    {
+      "progress": 0.2,
+      "winding": true,
+      "bounds": [
+        [
+          0.0,
+          4.0,
+          -3.0,
+          3.0
+        ],
+        [
+          2.200000047683716,
+          4.0,
+          -3.0,
+          3.0
+        ]
+      ],
+      "uv_bounds": [
+        [
+          0.0,
+          4.0,
+          -3.0,
+          3.0
+        ],
+        [
+          2.200000047683716,
+          4.0,
+          -3.0,
+          3.0
+        ]
+      ]
+    },
+    {
+      "progress": 0.5,
+      "winding": false,
+      "bounds": [
+        [
+          0.0,
+          10.0,
+          -3.0,
+          3.0
+        ]
+      ],
+      "uv_bounds": [
+        [
+          0.0,
+          10.0,
+          -3.0,
+          3.0
+        ]
+      ]
+    },
+    {
+      "progress": 0.5,
+      "winding": true,
+      "bounds": [
+        [
+          0.0,
+          10.0,
+          -3.0,
+          3.0
+        ],
+        [
+          8.199999809265137,
+          10.0,
+          -3.0,
+          3.0
+        ]
+      ],
+      "uv_bounds": [
+        [
+          0.0,
+          10.0,
+          -3.0,
+          3.0
+        ],
+        [
+          8.199999809265137,
+          10.0,
+          -3.0,
+          3.0
+        ]
+      ]
+    },
+    {
+      "progress": 1.0,
+      "winding": false,
+      "bounds": [
+        [
+          0.0,
+          20.0,
+          -3.0,
+          3.0
+        ]
+      ],
+      "uv_bounds": [
+        [
+          0.0,
+          20.0,
+          -3.0,
+          3.0
+        ]
+      ]
+    },
+    {
+      "progress": 1.0,
+      "winding": true,
+      "bounds": [
+        [
+          0.0,
+          20.0,
+          -3.0,
+          3.0
+        ],
+        [
+          18.200000762939453,
+          20.0,
+          -3.0,
+          3.0
+        ]
+      ],
+      "uv_bounds": [
+        [
+          0.0,
+          20.0,
+          -3.0,
+          3.0
+        ],
+        [
+          18.200000762939453,
+          20.0,
+          -3.0,
+          3.0
+        ]
+      ]
+    }
+  ],
+  "method": "Unicorn executes selected EXE instructions with synthetic Win64 memory and explicit allocation/constructor/libm seams; original and rebuilt applications are not launched.",
+  "limits": [
+    "Mask comparison uses an independent scalar transcription, not compiled Rust.",
+    "Clipping checks one triangle crossing one plane, including interpolated height/UV/alpha and retained duplicate boundary vertices.",
+    "Cast checks stub the packet constructor and preallocate its queue; they do not validate network/UI delivery.",
+    "Eight self-cast gate cases stop before pending-cast clock refinement; a non-self caster is excluded by this native consumer. This does not prove absence of a separate boss UI.",
+    "Arc and annulus cases stop before mesh/image handle cache publication. Shape-fill calls use synthetic helper output; their helper algorithms are checked separately.",
+    "Box clipping uses synthetic triangles and native plane vtables; actual ECS/collider/BVH gathering and terrain availability are not executed.",
+    "Reviewed source fingerprints and text guards record tracing only; the reconstructed Rust is neither compiled nor executed.",
+    "REA/Ghidra raw-range analysis is corroborated by original PE instructions/call sites. External callees and missed jump tables are not complete native semantics.",
+    "Terrain receivers, rendering, complete cast display and original/rebuilt parity remain unverified; source is not compiled or executed."
+  ]
+}

@@ -1,0 +1,11 @@
+#!/bin/sh
+set -eu
+menu_project_root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+cd "$menu_project_root"
+export BENILLA_HOME="$menu_project_root/runtime/menu-state"
+export WOW_ROGUE_SAVE="$menu_project_root/runtime/menu-state/characters.txt"
+if [ "${WOW_DATA+x}" != x ] && [ -f "$menu_project_root/.codex/reference-game.json" ]; then
+  WOW_DATA=$(python3 -B "$menu_project_root/scripts/register-target.py" --data-path)
+  export WOW_DATA
+fi
+exec "$menu_project_root/scripts/cargo" run --profile menu -p azeroth-survivors-re -- "$@"

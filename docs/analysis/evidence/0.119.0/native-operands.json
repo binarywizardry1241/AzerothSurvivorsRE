@@ -1,0 +1,85 @@
+{
+  "target": {
+    "version": "0.119.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f",
+    "size_bytes": 145357824
+  },
+  "generator": {
+    "path": "scripts/audit-native-operands.py",
+    "sha256": "012c0af321278104720c60c373b6c966779dcf5a7c735a74c9801124f2f53293"
+  },
+  "source_census": {
+    "path": "docs/analysis/coverage/full-image-execheck-0.119.0.json",
+    "sha256": "11b33b0984b907b2e425f1f711143a6e9f8ce633691a98af8944e097986045f0"
+  },
+  "diagnostic_input": {
+    "path": "runtime/coverage/6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f/diagnostic-ownership.json",
+    "sha256": "a657c63dd26f9fd6a899b544df6ac6ad05e6fcd10a0f717459ddef4b8e2874aa"
+  },
+  "verified_instruction_count": 23291509,
+  "generator_dependencies": [
+    {
+      "path": "scripts/summarize-native-image.py",
+      "sha256": "dd5748de3b992dfd49bf0eca53dac1f8fabfb27102fda0c4815dc331c7f28e14"
+    },
+    {
+      "path": "scripts/inventory-current-target.py",
+      "sha256": "f2cf5be70267aa01865b7c34bef7eeb87898d67b5e36f0a91d20d37e3b1299c5"
+    },
+    {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+    },
+    {
+      "path": "scripts/recover-native-import-thunks.py",
+      "sha256": "65883151064e3974474ea249020d5c20a7accb2fd2cf81404b205f893c3f6909"
+    },
+    {
+      "path": "scripts/coverage_common.py",
+      "sha256": "8e076cd7c55c918ff626e5e4c7df2e2efb0a8861ed3f39844b53ccd3d4c391ce"
+    }
+  ],
+  "all_explicit_operand_domains": {
+    "base-register-dependent-memory": 7779565,
+    "explicit-static-memory-or-address": 674745,
+    "immediate-operands": 6654363,
+    "index-dependent-memory": 677387,
+    "register-operands": 21563896,
+    "segment-dependent-memory": 29368,
+    "unmapped-immediate-candidates-excluded": 3608971
+  },
+  "retained_explicit_operand_counts": {
+    "address-expression": 495264,
+    "address-expression:program-pair-absent": 495264,
+    "fixed-memory": 179481,
+    "fixed-memory:program-pair-present": 179481
+  },
+  "source_ownership": {
+    "source-owned": 666682,
+    "source-unowned": 8063
+  },
+  "inventory": {
+    "path": "runtime/coverage/6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f/ghidra/execheck-0.119.0/explicit-operands.jsonl.gz",
+    "sha256": "1dca047e976b7e57624c0ba6b5790877bbaaf4762b9e7550ab237612fce7e1cc"
+  },
+  "complete_runtime_aliases_or_source_semantics": false,
+  "limits": [
+    "All verified instruction boundaries were inspected; only operand addresses independent of incoming registers, indices and segments are enumerated. PE headers and out-of-image static addresses are retained; only immediate numeric candidates require an image mapping. Register-based addresses require additional producer/alias evidence.",
+    "Mapped immediates are numeric address candidates. An address expression alone does not establish a function entry, source owner, referenced-data type or executable flow.",
+    "Program reference presence is a source/destination pair comparison, not a comparison of reference access semantics. Initial DIR64 values are image facts, not values observed after writes."
+  ],
+  "unowned_executable_candidates": {
+    "destinations": 5794,
+    "exact_observed_instructions": 5774,
+    "observed_instruction_interiors": 0,
+    "not_observed": 20,
+    "exact_import_thunk_sources": 0
+  },
+  "import_slots_with_owned_explicit_operands": 425,
+  "diagnostic_paths_with_explicit_operands": 601,
+  "details": {
+    "path": "runtime/coverage/6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f/ghidra/execheck-0.119.0/operand-boundaries.json",
+    "sha256": "cc127cb4fa679ea2b9b408708f26c8c57d255499f2a98dc8375df8d77f214e5c"
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "version": "0.92.0",
+  "target_sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+  "shell": {
+    "constructor": "0x1401f5430",
+    "width": "100%",
+    "height": "100%",
+    "direction": "Column",
+    "padding_x_px": 40,
+    "padding_y_px": 20,
+    "row_gap_px": 14,
+    "content_row": {
+      "width": "100%",
+      "flex_grow": 1,
+      "column_gap_px": 18
+    }
+  },
+  "header": {
+    "constructor": "0x14003bc70",
+    "row": {
+      "width": "100%",
+      "column_gap_px": 14,
+      "align_items": "Center"
+    },
+    "content": "0x1401f4550",
+    "title_column": {
+      "direction": "Column",
+      "flex_grow": 1
+    },
+    "title": {
+      "locale_key": "picker.armory",
+      "font_size_px": 46,
+      "color_srgba": [
+        0.973,
+        0.824,
+        0.416,
+        1
+      ],
+      "shadow_offset_px": [
+        0,
+        3
+      ]
+    },
+    "summary": {
+      "class_name_font_size_px": 15,
+      "class_color": "class record hex color (fallback1458bafa4)",
+      "text_span": "  \u00b7  {localized armory.collected_line(n,total)}",
+      "count": "Owned IDs intersect the selected class catalog; native1453f9910."
+    },
+    "tabs": {
+      "function": "0x1400394a0",
+      "order": [
+        "Character",
+        "Collection",
+        "Drop Tables",
+        "Codex",
+        "Talents",
+        "Achievements",
+        "Rewards"
+      ],
+      "font_size_px": 16,
+      "talents_counter": "earned talent budget minus allocated ranks, saturating at0",
+      "rewards_counter": "native1454450a0 available account points",
+      "counter_format": "Append space and parenthesized decimal when positive."
+    },
+    "done": {
+      "spacer_before_px": 18,
+      "locale_key": "options.done",
+      "font_size_px": 18,
+      "selected_style": true
+    }
+  },
+  "button": {
+    "constructor": "0x14003b3f0",
+    "width": "Auto",
+    "height": "Auto",
+    "padding_x_px": 14,
+    "padding_y_px": 6,
+    "border_px": 1,
+    "radius_px": 5,
+    "align_items": "Center",
+    "justify_content": "Center",
+    "hover": {
+      "resting_selected_srgba": [
+        0.973,
+        0.824,
+        0.416,
+        1
+      ],
+      "resting_unselected_srgba": [
+        0.427,
+        0.333,
+        0.145,
+        1
+      ],
+      "active_srgba": [
+        1,
+        0.914,
+        0.659,
+        1
+      ],
+      "lift_px": 0
+    },
+    "selected": {
+      "background": "native0a1200 red gradient",
+      "text_srgba": [
+        1,
+        0.914,
+        0.659,
+        1
+      ]
+    },
+    "unselected": {
+      "background_srgba": [
+        0,
+        0,
+        0,
+        0.5
+      ],
+      "text_srgba": [
+        0.973,
+        0.824,
+        0.416,
+        1
+      ]
+    },
+    "bundle": "ChildOf+Action16+Hover44+Interaction+Node384, queued by1401ab5b0; Node begins72bytes into input bundle."
+  },
+  "implementation": {
+    "codex": "Native shell_node/body_node/build_header_row replace absolute outer body.",
+    "other_pages": "build_header compatibility wrapper still places this intrinsic header at40,20 in1600x900 design canvas; bodies remain independently provisional absolute layouts."
+  },
+  "limitations": [
+    "Latest source awaits parent integrated build20.",
+    "No new original/rebuilt UI execution/captures were performed; runtime comparisons remain pending."
+  ]
+}

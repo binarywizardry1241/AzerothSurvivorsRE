@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "gap_ids": [
+    237
+  ],
+  "queries": [
+    {
+      "procedure": "0x145ba6470",
+      "evidence_id": "ev_ded5b2af6746851c0950cf6026ffd3b8c959ad6dca261d29feb4a333b4066fcc",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "3b699d32789db85754d35d23140bbed3595d8fcc9b38c9db38dc6ec79d34ded2",
+      "normalized_text_sha256": "f9173dbb638291770683f7048afb5562be78f6a381aadfe849265d56b196684f",
+      "result": {
+        "path": "runtime/fixgap230239/feat-evaluator/query/results/b669a844077ac545eba1bdd31d0c2de176172d943d4033eb8c2f8ed1a32db203.json",
+        "sha256": "7dc7cb5fbc8b723a1147cb06521135d6945c5f496c6e9addf8142d86f05ffefb"
+      },
+      "plan": {
+        "path": "runtime/fixgap230239/feat-evaluator/plan.json",
+        "sha256": "f66ef187391444b16999c9e39c6b6dd1fec0be7f2f5c6cebf879b37cccf98d25"
+      },
+      "journal": {
+        "path": "runtime/fixgap230239/feat-evaluator/query/journal.json",
+        "sha256": "3fe489e52b2ba2c1f375c0a82f430265a8e67a6b9c1ee1bbceda4eeafe161357"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap230239/feat-evaluator/code.bin",
+        "sha256": "e3fdd5f41c808621b9864bd567ce73508c07c42238e794d7dad4f2aa3c018faa"
+      },
+      "slice_virtual_address": "0x145ba6470"
+    },
+    {
+      "procedure": "0x145b306b0",
+      "evidence_id": "ev_3eb31ceb99df35651ce80f7ff93882a3cf6fa9699131a3ed89f9c4ce8a810433",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "826767c1fb33df4fae4b4493998e3f89cbba71a0208bd7b49884337c174b82f5",
+      "normalized_text_sha256": "747079d7b0326b1a4fd2621a3c5c922affbf198a99b8a16aedb210f9aa7a3116",
+      "result": {
+        "path": "runtime/fixgap230239/feat-snapshot/query/results/48d3a88211e1393111b2f560c6d2efae966291d1a2a61765b5167b2f63b6895d.json",
+        "sha256": "bcc1ae5cbf20bdcc6776f9322ff07be45de74f8c958a7ddac9a6fe0f644da942"
+      },
+      "plan": {
+        "path": "runtime/fixgap230239/feat-snapshot/plan.json",
+        "sha256": "ea0e88d4397600730d3f921dd3264c78ee54d1af3cbcd3c524017396344458fa"
+      },
+      "journal": {
+        "path": "runtime/fixgap230239/feat-snapshot/query/journal.json",
+        "sha256": "23b2fb9492ff157000a33ae982bf63476cbdfe1904344e5e284427f0a129730f"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap230239/feat-snapshot/code.bin",
+        "sha256": "e0a23d98d4685f5e093bc6d9ea21c97112252c0649e8abd548ebfb398fc673a3"
+      },
+      "slice_virtual_address": "0x145b306b0"
+    },
+    {
+      "procedure": "0x145b90f00",
+      "evidence_id": "ev_4d6a852dfabbdee96fbbca632464d41ca9bace54b22e358c016dd538f4d76e4c",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "e74ad628437edb584299a8299925ffb24409ffd2cb7e0767bdf6a1e22f62524c",
+      "normalized_text_sha256": "f5eb561a52eb255f16feb655150b65babc467194446839113938243f862238f6",
+      "result": {
+        "path": "runtime/fixgap230239/party-condition/query/results/353c35c6339430276ce02af771729489ba368f86a90d43f4c003e7069141dc2f.json",
+        "sha256": "d656201d4a04b17a7b7189361371c38832d5b8e338242d08b85720c1f67f98aa"
+      },
+      "plan": {
+        "path": "runtime/fixgap230239/party-condition/plan.json",
+        "sha256": "db67bd5a857d29d96c5b25dd613b2523a54df624b722b6f28f1f61da1ddcad73"
+      },
+      "journal": {
+        "path": "runtime/fixgap230239/party-condition/query/journal.json",
+        "sha256": "5958df11e724471bb2520ad9b60e0906781810dbd2ccd9b36a70df12be8d47f6"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap230239/party-condition/code.bin",
+        "sha256": "6237f80b1f468d25ddd38dce512d0aeb5e0768a7a6d14555f879263878e15cd5"
+      },
+      "slice_virtual_address": "0x145b90f00"
+    }
+  ],
+  "native_ranges": [
+    {
+      "role": "run-award-evaluator",
+      "virtual_address": "0x145ba6470",
+      "file_offset": "0x5ba5870",
+      "byte_count": 3618,
+      "sha256": "e3fdd5f41c808621b9864bd567ce73508c07c42238e794d7dad4f2aa3c018faa"
+    },
+    {
+      "role": "party-condition",
+      "virtual_address": "0x145b90f00",
+      "file_offset": "0x5b90300",
+      "byte_count": 882,
+      "sha256": "6237f80b1f468d25ddd38dce512d0aeb5e0768a7a6d14555f879263878e15cd5"
+    },
+    {
+      "role": "account-snapshot-owner",
+      "virtual_address": "0x145b306b0",
+      "file_offset": "0x5b2fab0",
+      "byte_count": 652,
+      "sha256": "e0a23d98d4685f5e093bc6d9ea21c97112252c0649e8abd548ebfb398fc673a3"
+    },
+    {
+      "role": "effective-snapshot-rank",
+      "virtual_address": "0x145b0f490",
+      "file_offset": "0x5b0e890",
+      "byte_count": 184,
+      "sha256": "c004036326b46b80fb13742731bd112794f3f20389fa37ad12f046de9cc54b39"
+    }
+  ],
+  "case_count": 772,
+  "original_instruction_steps": 150381,
+  "cases_sha256": "54706ce944b95a4eeb93c94f27427ea6e8b4c2a6b99be4c5b8774d9a9beca246",
+  "source_connections": [
+    {
+      "path": "crates/azeroth-survivors-re/src/account_progression.rs",
+      "start": "impl RunSnapshot {",
+      "end": "pub fn meets_feat(",
+      "sha256": "86bf77f018a01d7c5fef8892f5c4fec41f77eda156cf9bfc52f6d72b3f96d82a"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs",
+      "start": "    pub fn feat_snapshot(",
+      "end": "    pub fn terminal_delivery(",
+      "sha256": "fa82918ffd14f0a2790bb24969667688e4ddaf1d6a1b5f68bc35324dd975b1d1"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs",
+      "start": "    pub(super) fn from_cached(",
+      "end": "    pub(super) fn summary_admitted(",
+      "sha256": "e2ff45a6d1825c5de7e0726a1c846c7bfd89b3569ac750373412cbad48b5c7d2"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs",
+      "start": "    pub(super) fn account(",
+      "end": "#[cfg(test)]",
+      "sha256": "688865f44c226c6fe5d6675ae819ac9f8b035ca1a80a29405313dc39f0f441aa"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+      "start": "fn persist_run_at(",
+      "end": "\nfn hud(",
+      "sha256": "7a7521653337aa294b1eac493ce5cca3d9d1b4868b1097b29019b9b7d5eca8d6"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/assets/run-achievements-0.121.0.json",
+      "sha256": "271954cf8d09e4fd5dc291e87ea3cafa9fafc7f4a2163164ca68f2789f1d86e0"
+    }
+  ],
+  "existing_rank_gate_keys": [
+    "feat:odds",
+    "coop:odds",
+    "coop:oldgods"
+  ],
+  "snapshot_fields": {
+    "zone": "0x80",
+    "endless_bosses": "0x98",
+    "run_marks": "0x9c",
+    "max_boss_marks": "0xa0",
+    "won": "0xa4",
+    "heroic_rank": "0xa6",
+    "max_equipment_stars": "0xa7",
+    "active_set": "0xa8"
+  },
+  "seams": [
+    "synthetic account/run/member memory",
+    "catalog constructor with separately checked interfaces",
+    "fixed locale selection",
+    "stop at the native award branch before persistence/date/notifications",
+    "snapshot owner/rank ranges are static trace evidence; snapshot production is not replayed here"
+  ],
+  "compilation": "not_run",
+  "application_executed": false,
+  "parity_verified": false
+}

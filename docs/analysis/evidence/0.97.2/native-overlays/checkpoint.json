@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-18",
+  "target_sha256": "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589",
+  "final_binary_sha256": "bdcfe39ab0b3a5b07ec36f6fc12af62593aa3e87f388e33c4ae4924d39d09387",
+  "stopped_at_user_request": true,
+  "pushed": false,
+  "regression_log": "runtime/native-client-regressions-final.log",
+  "selected_tests": 57,
+  "passed": 57,
+  "final_source_built": true,
+  "final_source_launched": false,
+  "first_runtime_capture": "runtime/native-client-first/level.png",
+  "first_runtime_status": "Rendered real Vanilla player frame, action bars and minimap; exposed missing rest-state Lua feed and uninitialized offline chat. Source fixes subsequently built/tested; final runtime screenshot not captured.",
+  "manual_ui_status": "CUA getApp timed out; no agent manual controller/camera/upgrade verification for this checkpoint. Existing local run log contains player movement, kills and level progression, not an agent-controlled parity scenario.",
+  "remaining": [
+    "Treasure purchases remain gated: equipped effect application/session delivery incomplete",
+    "Native overlay selected-card exit, replacement tooltip and ray placement incomplete",
+    "Full original/rebuilt visual/behavior parity and Windows remain unverified",
+    "Several newest host/actor fixtures not rerun after final changes"
+  ]
+}

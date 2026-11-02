@@ -1,0 +1,731 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.118.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae",
+    "size_bytes": 145356800
+  },
+  "generator": {
+    "path": "scripts/summarize-refresh-unknowns.py",
+    "sha256": "ef0ca91db3656e52daf772e52119f50cf8930535070f7b746cfbe4a4efb5cd61"
+  },
+  "classification_dependencies": [
+    {
+      "path": "scripts/native_residual_inputs.py",
+      "sha256": "c9cb3ca73516d52a63c22bd3c376088bda3470d824b6763cfe14fb0e421b994b"
+    },
+    {
+      "path": "scripts/check-native-residuals.py",
+      "sha256": "b21f4a3965351977523689334940adda6c273faf9b34cef1b8af99a371b0fd07"
+    },
+    {
+      "path": "scripts/check-independent-indirects.py",
+      "sha256": "bef14f0a9220925b875ee08278ea5239e231e322eeba8068ae6c4a116d7baead"
+    }
+  ],
+  "inputs": {
+    "native-summary": {
+      "summary": {
+        "path": "docs/analysis/coverage/native-summary.json",
+        "sha256": "5b666539ef92ed5d46493942c38a357d70b7143833e654d99d46b45eb003655e"
+      },
+      "inventory": {
+        "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/inventory.json",
+        "sha256": "2af903f93b23239a5c6dd16f0f5622be4287df2bd1c04f79d7292fcdb0840cd1",
+        "regenerate": "python3 scripts/inventory-current-target.py --write"
+      },
+      "counts": {
+        "file_bytes": 145356800,
+        "sections": 6,
+        "runtime_function_records": 357933,
+        "executable_virtual_bytes": 101950766,
+        "executable_bytes_inside_runtime_function_extents": 96704185,
+        "executable_bytes_outside_runtime_function_extents": 5246581,
+        "imports": 425,
+        "exports": 0,
+        "base_relocation_records_nonpadding": 637216,
+        "relocation_types_including_padding": {
+          "0": 1610,
+          "10": 637216
+        },
+        "diagnostic_paths": 761,
+        "custom_game_diagnostic_paths": 60,
+        "engine_or_other_crate_diagnostic_paths": 701,
+        "embedded_candidates": {
+          "game_binding_identifier": 352,
+          "lua_function_declaration": 188,
+          "lua_ui_registration": 341,
+          "module_type_namespace": 928,
+          "resource_path": 315,
+          "save_configuration_key_lead": 6,
+          "textual_id_assignment": 2,
+          "textual_numeric_id": 0
+        }
+      }
+    },
+    "diagnostic-ownership": {
+      "summary": {
+        "path": "docs/analysis/coverage/diagnostic-ownership.json",
+        "sha256": "44708d13bf98541e4ad19b1e79977c927f5eb9d5693782f15a63cbb7a5c0e1ca"
+      },
+      "inventory": {
+        "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/diagnostic-ownership.json",
+        "sha256": "70d9f8e6d0116c316189ed819222d0099ea4c9c052c05d972ec22b8943781358",
+        "regenerate": "python3 -B scripts/discover-native-ownership.py --write"
+      },
+      "counts": {
+        "candidate_unwind_extents_decoded": 6149,
+        "instructions_in_candidate_extents": 1897897,
+        "decoded_bytes_summed_across_candidate_extents": 8766463,
+        "diagnostic_paths": 761,
+        "custom_diagnostic_paths": 60,
+        "verified_instruction_references": 18078,
+        "paths_with_verified_references": 601,
+        "custom_paths_with_verified_references": 60,
+        "unverified_candidates": 0
+      }
+    },
+    "file-range-summary": {
+      "summary": {
+        "path": "docs/analysis/coverage/file-range-summary.json",
+        "sha256": "cfe4ed261ba5678cff7c46d92b3a14e3089e59c1c3dfe39cd56a0457989b2471"
+      },
+      "inventory": {
+        "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/file-ranges.json",
+        "sha256": "b28c6823ce2231d0e6e0e6a910f563cccb9bb6f28dd6a8b27a07600f145c8175"
+      },
+      "counts": {
+        "ranges": 26,
+        "partition_bytes": 145356800,
+        "overlap_bytes": 0,
+        "omitted_bytes": 0,
+        "bytes_by_structural_class": {
+          "coff_header": 20,
+          "dos_header": 64,
+          "dos_stub_unknown": 200,
+          "executable_section_semantics_unknown": 101950766,
+          "header_slack_unknown": 256,
+          "nonexecutable_section_semantics_unknown": 43403632,
+          "optional_header": 240,
+          "pe_signature": 4,
+          "raw_alignment_tail_unknown": 1378,
+          "section_table": 240
+        },
+        "semantic_recovery_status": "unknown_not_measured_by_structural_partition",
+        "data_files": 10,
+        "registered_archives": 10,
+        "unregistered_data_files": 0
+      }
+    },
+    "instruction-summary": {
+      "summary": {
+        "path": "docs/analysis/coverage/instruction-summary.json",
+        "sha256": "53cf18e1c506a524b64493cab67c55b185719471bab99875d0b1a7da5363e519"
+      },
+      "inventory": {
+        "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/native-instructions.sqlite",
+        "sha256": "c618e02149d0d9524dd50ff8f209eaeef480b1362010671a675e97896fde9423",
+        "regenerate": "python3 -B scripts/inventory-native-instructions.py --write"
+      },
+      "counts": {
+        "unwind_extents": 357933,
+        "processed_extents": 357933,
+        "pending_extents": 0,
+        "completely_decoded_extents": 357933,
+        "extents_with_undecoded_suffix": 0,
+        "linear_instruction_records": 23887602,
+        "decoded_bytes_summed": 96704185,
+        "decoded_bytes_union": 96704185,
+        "undecoded_suffix_bytes_summed": 0,
+        "executable_bytes_outside_unwind_extents": 5246581,
+        "reference_kinds": {
+          "address": 489976,
+          "call_direct": 1153243,
+          "call_indirect": 72565,
+          "jump_direct": 2030442,
+          "jump_indirect": 10373,
+          "memory": 165756
+        }
+      }
+    },
+    "unwind-complement-summary": {
+      "summary": {
+        "path": "docs/analysis/coverage/unwind-complement-summary.json",
+        "sha256": "8893eaf570e8d92d7c3d6eeeb0aa9ccd8ca9de2ab78fef166b00025285267865"
+      },
+      "inventory": {
+        "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/unwind-complement.sqlite",
+        "sha256": "40c13a5cfee25fa2e2c2fb42515cc702256af80d57eb8a6b8a64f82073de1c24",
+        "regenerate": "python3 -B scripts/inventory-unwind-complement.py --write"
+      },
+      "counts": {
+        "complement_regions": 337219,
+        "mapped_regions": 337219,
+        "executable_complement_bytes": 5246581,
+        "file_backed_bytes": 5246581,
+        "virtual_zero_fill_bytes": 0,
+        "incoming_seed_leads": 392939,
+        "unique_seed_addresses": 2844,
+        "seed_kinds": {
+          "call_direct": 377716,
+          "jump_direct": 15223
+        },
+        "decoded_instruction_records": 80530,
+        "decoded_bytes_summed": 348817,
+        "decoded_bytes_union": 348817,
+        "overlapping_decode_bytes": 0,
+        "reference_kinds": {
+          "address": 2146,
+          "call_direct": 18,
+          "jump_direct": 10781,
+          "jump_indirect": 651,
+          "memory": 1177
+        },
+        "stop_reasons": {
+          "jump_no_fallthrough": 2912,
+          "outside_file_backed_complement": 39,
+          "return": 3054,
+          "trap_or_privileged_exit": 7
+        },
+        "imported_pointer_transfer_sites": 121,
+        "imported_pointer_slots": 114
+      }
+    },
+    "ghidra-census": {
+      "summary": {
+        "path": "docs/analysis/coverage/full-image-execheck-0.118.0.json",
+        "sha256": "b38504844a93f07df5ca47c6230f32b9e3f23974a95274d0e728d5ceb264e6cd"
+      },
+      "full_summary_snapshot": {
+        "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/ghidra/execheck-0.118.0/full-summary.json",
+        "sha256": "26db42fd840fcb3694032d7b714fc4af1805648d36d33bc08981c5e6f7cfa78c"
+      },
+      "execution_artifacts": {
+        "plan.json": {
+          "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/ghidra/execheck-0.118.0/plan.json",
+          "sha256": "ad18f4af31a263daf21d29f7d1fc49c9160a7005b95403925ed910a083938936"
+        },
+        "progress.json": {
+          "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/ghidra/execheck-0.118.0/progress.json",
+          "sha256": "a24f388b07f78a0ae5ff518a266de98273bea78f819b409ca30246f9549f98e6"
+        },
+        "session-result.json": {
+          "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/ghidra/execheck-0.118.0/session-result.json",
+          "sha256": "49f9a5c563eae561b6bf1cb6a4cdb3e66e0d6eb0a9784687bb8b6fbae0760af8"
+        },
+        "instructions.tsv.gz": {
+          "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/ghidra/execheck-0.118.0/instructions.tsv.gz",
+          "sha256": "4062ded1b3087345226f2eb13decda96ecc8fd655c345453bde61d76e15627a4"
+        },
+        "bodies.tsv.gz": {
+          "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/ghidra/execheck-0.118.0/bodies.tsv.gz",
+          "sha256": "6f4468500bd7434221f984cd9bd6f9fba36626b8c92f590992055264322aab27"
+        },
+        "references.tsv.gz": {
+          "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/ghidra/execheck-0.118.0/references.tsv.gz",
+          "sha256": "968e961626cc338060d534d969e45aed6dfe5bc106a49402cd963c8f6d944555"
+        },
+        "externals.tsv.gz": {
+          "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/ghidra/execheck-0.118.0/externals.tsv.gz",
+          "sha256": "936a081fa956e8086aeb74b8e2fe0de676effc4cc263c6f2276fd8d7c806b5a5"
+        },
+        "direct-call-helpers.tsv.gz": {
+          "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/ghidra/execheck-0.118.0/direct-call-helpers.tsv.gz",
+          "sha256": "1fbfbc01279eb7b56ac62de021cf8c0b05cd95828138997da6236d41dc7cfaae"
+        }
+      },
+      "artifact_selectors": [
+        {
+          "lead_ids": [
+            "Q41-G01",
+            "Q41-U01"
+          ],
+          "artifact": {
+            "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/ghidra/execheck-0.118.0/bodies.tsv.gz",
+            "sha256": "6f4468500bd7434221f984cd9bd6f9fba36626b8c92f590992055264322aab27"
+          },
+          "selector": "all rows with external == false; start/end are inclusive",
+          "meaning": "Actual flow-body intervals in the saved Ghidra Program; source semantics unestablished"
+        },
+        {
+          "lead_ids": [
+            "Q41-G01",
+            "Q41-A01",
+            "Q41-A02"
+          ],
+          "artifact": {
+            "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/ghidra/execheck-0.118.0/references.tsv.gz",
+            "sha256": "968e961626cc338060d534d969e45aed6dfe5bc106a49402cd963c8f6d944555"
+          },
+          "selector": "all rows",
+          "meaning": "Static reference records in this Program state; runtime edges and aliases incomplete"
+        },
+        {
+          "lead_ids": [
+            "Q41-G01",
+            "Q41-U01",
+            "Q41-U03"
+          ],
+          "artifact": {
+            "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/ghidra/execheck-0.118.0/instructions.tsv.gz",
+            "sha256": "4062ded1b3087345226f2eb13decda96ecc8fd655c345453bde61d76e15627a4"
+          },
+          "selector": "all rows",
+          "meaning": "Observed instructions independently checked against selected target bytes"
+        },
+        {
+          "lead_ids": [
+            "Q41-D01",
+            "Q41-E01"
+          ],
+          "artifact": {
+            "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/ghidra/execheck-0.118.0/diagnostic-bindings.json",
+            "sha256": "626c512cbb8f398ba3725669d09943421fbd5ddf31441444105765f9bf05f9be"
+          },
+          "selector": "diagnostic_bindings[*]",
+          "meaning": "Per-path site/body-owner counts; no explicit ownerless-site or source-semantic classification"
+        },
+        {
+          "lead_ids": [
+            "Q41-U01",
+            "Q41-B01"
+          ],
+          "artifact": {
+            "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/ghidra/execheck-0.118.0/missing-declared-ranges.tsv.gz",
+            "sha256": "2786586c0fc0836a0c6f55652d3eef23924e35320bed8439d85c996f93accc2e"
+          },
+          "selector": "all rows",
+          "meaning": "Unobserved declared byte ranges; candidate kinds are not certified padding"
+        },
+        {
+          "lead_ids": [
+            "Q41-U03",
+            "Q41-B01"
+          ],
+          "artifact": {
+            "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/ghidra/execheck-0.118.0/missing-executable-ranges.tsv.gz",
+            "sha256": "af19bdc0fbbc1a6d7b7690a5a3adc11c1d372acb5730519606912e8e26805e53"
+          },
+          "selector": "all rows grouped by location and category",
+          "meaning": "Unobserved executable byte ranges; code/data/padding roles remain unproved"
+        }
+      ],
+      "seed_scope": "all",
+      "requested_seeds": 430095,
+      "counts": {
+        "instructions": 23291304,
+        "instruction_bytes": 93354240,
+        "computed_calls": 70961,
+        "computed_jumps": 142162,
+        "native_functions": 432711,
+        "body_ranges": 488718,
+        "references": 4033360,
+        "external_locations": 425,
+        "seeds_without_instructions": 0,
+        "seeds_without_functions": 0,
+        "seeded_functions_repaired": 430095
+      },
+      "all_seeded_body_operations_complete": true,
+      "diagnostic_binding_counts": {
+        "paths": 761,
+        "custom_paths": 60,
+        "paths_with_verified_diagnostic_sites": 601,
+        "paths_with_actual_native_owners": 589,
+        "verified_sites": 18078,
+        "sites_without_actual_native_owner": 1216
+      },
+      "available_inventories": [
+        "actual_ghidra_flow_body_intervals",
+        "observed_instructions_with_verified_source_bytes",
+        "static_references_in_saved_program",
+        "per_path_diagnostic_site_ownership_counts",
+        "unobserved_declared_and_executable_byte_ranges"
+      ],
+      "explicit_ownerless_site_inventory_available": false,
+      "computed_destination_classification_available": false,
+      "global_native_semantics_complete": false,
+      "global_aliasing_complete": false,
+      "parity_verified": false
+    }
+  },
+  "sqlite_selectors": [
+    {
+      "lead_id": "Q41-U01",
+      "input": "instruction-summary",
+      "selector": "SELECT * FROM extents ORDER BY ordinal",
+      "records": 357933,
+      "semantic_status": "unknown",
+      "question": "All declared ranges are linearly decoded; recover actual body boundaries, role and AS dependency/source ownership."
+    },
+    {
+      "lead_id": "Q41-U02",
+      "input": "instruction-summary",
+      "selector": "SELECT * FROM extents WHERE decoded_end < end ORDER BY ordinal",
+      "records": 0,
+      "semantic_status": "unknown",
+      "question": "Any undecoded suffix needs exact range recovery; an empty set does not establish reachable-code completeness."
+    },
+    {
+      "lead_id": "Q41-U03",
+      "input": "unwind-complement-summary",
+      "selector": "SELECT * FROM regions ORDER BY start",
+      "records": 337219,
+      "semantic_status": "unknown",
+      "question": "Classify every complement range and its non-padding/leaf/inline/data role; preserve candidate padding as unknown."
+    },
+    {
+      "lead_id": "Q41-F01",
+      "input": "instruction-summary",
+      "selector": "SELECT * FROM refs WHERE kind IN ('call_indirect','jump_indirect') ORDER BY site,kind,operand",
+      "records": 82938,
+      "semantic_status": "unknown",
+      "question": "Recover computed destinations, guards, dispatch tables and relevant aliases without guessing callees."
+    },
+    {
+      "lead_id": "Q41-F02",
+      "input": "unwind-complement-summary",
+      "selector": "SELECT * FROM refs WHERE kind IN ('call_indirect','jump_indirect') ORDER BY site,kind,operand",
+      "records": 651,
+      "semantic_status": "unknown",
+      "question": "Recover complement computed transfers separately from declared-range references."
+    },
+    {
+      "lead_id": "Q41-A01",
+      "input": "instruction-summary",
+      "selector": "SELECT * FROM refs WHERE kind NOT IN ('call_indirect','jump_indirect') ORDER BY site,kind,operand",
+      "records": 3839417,
+      "semantic_status": "unknown",
+      "question": "Classify every encoded direct/address/memory edge; locate ownerless destinations and AS producer/consumer connections."
+    },
+    {
+      "lead_id": "Q41-A02",
+      "input": "unwind-complement-summary",
+      "selector": "SELECT * FROM refs WHERE kind NOT IN ('call_indirect','jump_indirect') ORDER BY site,kind,operand",
+      "records": 14122,
+      "semantic_status": "unknown",
+      "question": "Classify complement encoded references and imported-pointer slots without promoting dynamic callee identity."
+    },
+    {
+      "lead_id": "Q41-U04",
+      "input": "unwind-complement-summary",
+      "selector": "SELECT * FROM stops ORDER BY site,reason",
+      "records": 6012,
+      "semantic_status": "unknown",
+      "question": "Resolve decoding/flow stop boundaries; retain unobserved successors and unknown code/data roles."
+    }
+  ],
+  "file_range_groups": [
+    {
+      "lead_id": "Q41-B01",
+      "selector": "ranges[lead_id == 'Q41-B01']",
+      "ranges": 1,
+      "bytes": 101950766,
+      "structural_classes": {
+        "executable_section_semantics_unknown": 1
+      }
+    },
+    {
+      "lead_id": "Q41-B02",
+      "selector": "ranges[lead_id == 'Q41-B02']",
+      "ranges": 13,
+      "bytes": 43403632,
+      "structural_classes": {
+        "nonexecutable_section_semantics_unknown": 13
+      }
+    },
+    {
+      "lead_id": "Q41-B03",
+      "selector": "ranges[lead_id == 'Q41-B03']",
+      "ranges": 5,
+      "bytes": 1378,
+      "structural_classes": {
+        "raw_alignment_tail_unknown": 5
+      }
+    },
+    {
+      "lead_id": "Q41-B05",
+      "selector": "ranges[lead_id == 'Q41-B05']",
+      "ranges": 7,
+      "bytes": 1024,
+      "structural_classes": {
+        "dos_header": 1,
+        "dos_stub_unknown": 1,
+        "pe_signature": 1,
+        "coff_header": 1,
+        "optional_header": 1,
+        "section_table": 1,
+        "header_slack_unknown": 1
+      }
+    }
+  ],
+  "file_range_partition_bytes": 145356800,
+  "data_resources": [
+    {
+      "path": "installed-game/Data/patch-2.MPQ",
+      "size_bytes": 4690878,
+      "sha256": "366edee41642a5dda22ed90cc252b543ee375755b7e8bee81e2a6cd59fd7b286",
+      "selector": "Q41-R01:installed-game/Data/patch-2.MPQ",
+      "registered_archive": true,
+      "content_inventory_status": "not_produced_by_this_inventory",
+      "semantic_status": "unknown"
+    },
+    {
+      "path": "installed-game/Data/patch-3.MPQ",
+      "size_bytes": 2580491,
+      "sha256": "75c35ca5b8075197252581e301e8900143007fdf37b493ad271ae1bd39f95a29",
+      "selector": "Q41-R01:installed-game/Data/patch-3.MPQ",
+      "registered_archive": true,
+      "content_inventory_status": "not_produced_by_this_inventory",
+      "semantic_status": "unknown"
+    },
+    {
+      "path": "installed-game/Data/patch-4.MPQ",
+      "size_bytes": 22769233,
+      "sha256": "2e895e0e0ff6a4781d0e0aaa6ea7d32ed1fe36841e17806fe1855cb880d18865",
+      "selector": "Q41-R01:installed-game/Data/patch-4.MPQ",
+      "registered_archive": true,
+      "content_inventory_status": "not_produced_by_this_inventory",
+      "semantic_status": "unknown"
+    },
+    {
+      "path": "installed-game/Data/patch-5.MPQ",
+      "size_bytes": 267019039,
+      "sha256": "5008e56873718b468fa5ae1b697dcbe4f5da9ffe6c793f3ef9939dbd7716f3d8",
+      "selector": "Q41-R01:installed-game/Data/patch-5.MPQ",
+      "registered_archive": true,
+      "content_inventory_status": "not_produced_by_this_inventory",
+      "semantic_status": "unknown"
+    },
+    {
+      "path": "installed-game/Data/patch-6.MPQ",
+      "size_bytes": 212228,
+      "sha256": "cad6ff59b5df028a507581befb836fce07894057e15fe63d9fdc553a95b7ceb5",
+      "selector": "Q41-R01:installed-game/Data/patch-6.MPQ",
+      "registered_archive": true,
+      "content_inventory_status": "not_produced_by_this_inventory",
+      "semantic_status": "unknown"
+    },
+    {
+      "path": "installed-game/Data/patch-7.MPQ",
+      "size_bytes": 276649,
+      "sha256": "f5fb15b181cf01cc6b5cf2ee9948a27ecc4ba27bab9a8bec584df4381932aae6",
+      "selector": "Q41-R01:installed-game/Data/patch-7.MPQ",
+      "registered_archive": true,
+      "content_inventory_status": "not_produced_by_this_inventory",
+      "semantic_status": "unknown"
+    },
+    {
+      "path": "installed-game/Data/patch-8.MPQ",
+      "size_bytes": 4155417,
+      "sha256": "ae3aaa29cadb7aeba8255f5b4a8305c7cbecfe8f0d3ed9646522113d16c3e12e",
+      "selector": "Q41-R01:installed-game/Data/patch-8.MPQ",
+      "registered_archive": true,
+      "content_inventory_status": "not_produced_by_this_inventory",
+      "semantic_status": "unknown"
+    },
+    {
+      "path": "installed-game/Data/patch-9.MPQ",
+      "size_bytes": 5739608,
+      "sha256": "ffff8ea890bdaf91a1680543ac60106db92132bc2210105279610fa73661a524",
+      "selector": "Q41-R01:installed-game/Data/patch-9.MPQ",
+      "registered_archive": true,
+      "content_inventory_status": "not_produced_by_this_inventory",
+      "semantic_status": "unknown"
+    },
+    {
+      "path": "installed-game/Data/patch-A.MPQ",
+      "size_bytes": 1453122,
+      "sha256": "350cde8cd0f76e5246a663eb3811f5a7b1a9c75e4e699190208c9299177b8d90",
+      "selector": "Q41-R01:installed-game/Data/patch-A.MPQ",
+      "registered_archive": true,
+      "content_inventory_status": "not_produced_by_this_inventory",
+      "semantic_status": "unknown"
+    },
+    {
+      "path": "installed-game/Data/patch.MPQ",
+      "size_bytes": 1340199244,
+      "sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf",
+      "selector": "Q41-R01:installed-game/Data/patch.MPQ",
+      "registered_archive": true,
+      "content_inventory_status": "not_produced_by_this_inventory",
+      "semantic_status": "unknown"
+    }
+  ],
+  "embedded_candidate_selectors": {
+    "module_type_namespace": {
+      "selector": "embedded_candidates.module_type_namespace[*]",
+      "records": 928
+    },
+    "game_binding_identifier": {
+      "selector": "embedded_candidates.game_binding_identifier[*]",
+      "records": 352
+    },
+    "lua_ui_registration": {
+      "selector": "embedded_candidates.lua_ui_registration[*]",
+      "records": 341
+    },
+    "textual_id_assignment": {
+      "selector": "embedded_candidates.textual_id_assignment[*]",
+      "records": 2
+    },
+    "textual_numeric_id": {
+      "selector": "embedded_candidates.textual_numeric_id[*]",
+      "records": 0
+    },
+    "save_configuration_key_lead": {
+      "selector": "embedded_candidates.save_configuration_key_lead[*]",
+      "records": 6
+    },
+    "resource_path": {
+      "selector": "embedded_candidates.resource_path[*]",
+      "records": 315
+    },
+    "lua_function_declaration": {
+      "selector": "embedded_candidates.lua_function_declaration[*]",
+      "records": 188
+    }
+  },
+  "diagnostic_selectors": {
+    "custom": {
+      "selector": "diagnostics[custom_game_crate == true]",
+      "paths": 60
+    },
+    "engine_context": {
+      "selector": "diagnostics[custom_game_crate == false]",
+      "paths": 701
+    },
+    "sites": "diagnostics[*].verified_references[*]"
+  },
+  "verified_classifications": {
+    "proofs": {
+      "native-residuals": {
+        "path": "docs/analysis/evidence/0.118.0/native-residuals.json",
+        "sha256": "69292e0dfa7b95ae08d10bacdbfc560219c7ed28877f9c2b5588f21491cb13ba"
+      }
+    },
+    "residual_artifact_selectors": {
+      "diagnostic-sites.jsonl.gz": {
+        "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/native-residuals/diagnostic-sites.jsonl.gz",
+        "sha256": "37f14e190b4c2d36a29573fcf70b4cc4fbd6ae1ff3480390639d00147e094bde",
+        "rows": 18078
+      },
+      "static-reference-roles.tsv.gz": {
+        "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/native-residuals/static-reference-roles.tsv.gz",
+        "sha256": "50e73dfe84fc2f5141250a0233e02c75f72c868ea20aec60ec05c9bf4422434e",
+        "rows": 4033360
+      },
+      "ownerless-reference-sources.tsv.gz": {
+        "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/native-residuals/ownerless-reference-sources.tsv.gz",
+        "sha256": "e2bd4760cc9dee4408738d43ef7c7bc8ff826a9f0f079444d2fd52de5b15debd",
+        "rows": 804707
+      },
+      "unowned-executable-destinations.tsv.gz": {
+        "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/native-residuals/unowned-executable-destinations.tsv.gz",
+        "sha256": "293c8c1da98ec4295051157d65b286c4ce55bde40ac4bc69da2c28bd8071c42a",
+        "rows": 4836
+      },
+      "declared-reference-roles.tsv.gz": {
+        "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/native-residuals/declared-reference-roles.tsv.gz",
+        "sha256": "c22e6be9072f754cc56e968dc72ef948f10359f4f9d3632708236620dc6b4ecf",
+        "rows": 3922355
+      },
+      "declared-indirect-sites.tsv.gz": {
+        "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/native-residuals/declared-indirect-sites.tsv.gz",
+        "sha256": "3821050b9f7a22bb067b077895a8c8568ca20ab1149ffee024ec4861c4572208",
+        "rows": 82938
+      },
+      "declared-extent-roles.tsv.gz": {
+        "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/native-residuals/declared-extent-roles.tsv.gz",
+        "sha256": "79fbc9ee984306feab99937e9be4c78bf635f4255a7cd4461f36a0555d20cf6c",
+        "rows": 357933
+      },
+      "complement-reference-roles.tsv.gz": {
+        "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/native-residuals/complement-reference-roles.tsv.gz",
+        "sha256": "0255205562baf363370ed54e8a5367a519e01f61810d76ab63510e34339fc749",
+        "rows": 14773
+      },
+      "complement-indirect-sites.tsv.gz": {
+        "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/native-residuals/complement-indirect-sites.tsv.gz",
+        "sha256": "da6945a81f8faa33ff39f83e956c86c48aceb8c926be6da84e23bdef3d7f0a13",
+        "rows": 651
+      },
+      "complement-stops.jsonl.gz": {
+        "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/native-residuals/complement-stops.jsonl.gz",
+        "sha256": "9799e9037f9ea6a4e5dffe2eb1e4e085856d6c659cf85ad1e6a1b74bd962f1c0",
+        "rows": 6012
+      },
+      "complement-region-roles.tsv.gz": {
+        "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/native-residuals/complement-region-roles.tsv.gz",
+        "sha256": "cff4bf6b21b573d4ba1eaae1f255b1fe908507e5f0cebb7a55d9b8f93015e4ca",
+        "rows": 337219
+      },
+      "ownerless-instructions.tsv.gz": {
+        "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/native-residuals/ownerless-instructions.tsv.gz",
+        "sha256": "74c99e9777a67653c9b6a069ddd9df1d5900bc0d0f4c4e288464bf584319ea76",
+        "rows": 68300
+      }
+    },
+    "residual_counts": {
+      "instruction_records": 23291304,
+      "ownerless_instruction_records": 68300,
+      "static_reference_records": 4033360,
+      "reference_records_with_ownerless_sources": 804707,
+      "distinct_unowned_executable_destinations": 4836,
+      "diagnostic_sites": {
+        "records": 18078,
+        "owned": 16862,
+        "ownerless": 1216
+      },
+      "diagnostic_contexts": {
+        "AS-custom-path:owned": 669,
+        "AS-custom-path:ownerless": 60,
+        "excluded-coop-path:owned": 100,
+        "shared-engine-or-other-path:owned": 16093,
+        "shared-engine-or-other-path:ownerless": 1156
+      },
+      "reference_roles": {
+        "COMPUTED_JUMP:executable": 17003,
+        "CONDITIONAL_JUMP:executable": 1486739,
+        "DATA:PE-headers": 1,
+        "DATA:data:.data": 2,
+        "DATA:data:.pdata": 2,
+        "DATA:data:.rdata": 357959,
+        "DATA:data:.reloc": 2,
+        "DATA:data:.rsrc": 2,
+        "DATA:executable": 433123,
+        "DATA:external-or-unencoded": 425,
+        "INDIRECTION:data:.rdata": 183,
+        "READ:PE-headers": 2,
+        "READ:data:.data": 34017,
+        "READ:data:.rdata": 144412,
+        "READ_WRITE:data:.data": 487,
+        "UNCONDITIONAL_CALL:executable": 1104150,
+        "UNCONDITIONAL_JUMP:executable": 454473,
+        "WRITE:data:.data": 378
+      },
+      "complement_stops": {
+        "jump_no_fallthrough": 2912,
+        "return": 3054,
+        "trap_or_privileged_exit": 7,
+        "outside_file_backed_complement": 39
+      }
+    },
+    "explicit_ownerless_site_inventory_available": true,
+    "computed_destination_classification_available": false,
+    "global_native_semantics_complete": false,
+    "global_aliasing_complete": false,
+    "parity_verified": false
+  },
+  "missing_semantic_inventories": [
+    "Complete AS state/type/cycle and outer-consumer meanings for classified diagnostic sites",
+    "Complete computed-destination classification and dynamic alias/type/ID inventory beyond encoded/local static observations",
+    "Complete AS source producer/consumer closure and controlled original/rebuilt comparisons"
+  ],
+  "global_native_semantics_complete": false,
+  "parity_verified": false,
+  "gap_ids": [
+    41
+  ],
+  "limits": "Selectors overlap independent passes and must not be added as disjoint coverage. Byte decoding, a zero undecoded-suffix count and structural range coverage do not establish source semantics, padding, implementation or parity. Generic engine reconstruction remains supporting context. Co-op gameplay/network/server reconstruction is in scope under #63; historical excluded classification labels retain their original collection scope and do not certify current source closure."
+}

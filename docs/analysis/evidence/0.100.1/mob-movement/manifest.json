@@ -1,0 +1,49 @@
+{
+  "target": "AzerothSurvivors/AzerothSurvivors-0.100.1.exe",
+  "target_sha256": "17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b",
+  "target_executed": false,
+  "owners": [
+    {
+      "role": "movement-dispatch",
+      "start": "0x1454de15b",
+      "end_exclusive": "0x1454de2a1",
+      "file_offset": "0x54dd55b",
+      "sha256": "a83cd55d4d895b18924613aa5205bcfb7b749da9b81c9e289fc2c616fef5e336",
+      "assembly": "movement-dispatch.asm"
+    },
+    {
+      "role": "movement-packet",
+      "start": "0x14545b540",
+      "end_exclusive": "0x14545b7dd",
+      "file_offset": "0x545a940",
+      "sha256": "3c1ef9351a09909bffb9aa1a52ce80523dd137c11a4be95e6771d41002fc005b",
+      "assembly": "movement-packet.asm"
+    }
+  ],
+  "rea": [
+    {
+      "owner": "0x1454db6c0",
+      "size": 21136,
+      "sha256": "3877aa3ac44a38ef9d6673a96b80d2e60b7463a0ec24a61401d81ffe103af461",
+      "evidence_id": "ev_6cc5f583753b5fe902e7ee649bce9afeef901ba9ece6a33501bee68b0e763b35",
+      "provider": "Ghidra 12.1.4",
+      "limitation": "Headerless function import; ABI types and external code/data are incomplete. PE instructions govern."
+    },
+    {
+      "owner": "0x14545b540",
+      "size": 669,
+      "sha256": "3c1ef9351a09909bffb9aa1a52ce80523dd137c11a4be95e6771d41002fc005b",
+      "evidence_id": "ev_526155397cf4fb1dc29d11bb5a83d57e4a4f01703383e48af8911d4f8a9c8891",
+      "provider": "Ghidra 12.1.4",
+      "limitation": "Headerless function import; ABI types and external code/data are incomplete. PE instructions govern."
+    }
+  ],
+  "duration_upper_bound": {
+    "address": "0x14590752c",
+    "bits": 1333788671
+  },
+  "limits": [
+    "Bounded caller/serializer evidence is not source execution or original/rebuilt gameplay parity.",
+    "The adapter uses client-local path continuity tokens; native global movement-counter parity is not established."
+  ]
+}

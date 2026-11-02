@@ -1,0 +1,560 @@
+{
+  "schema_version": 1,
+  "finding_id": 171,
+  "target": {
+    "version": "0.119.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f",
+    "size_bytes": 145357824
+  },
+  "native_spans": [
+    {
+      "role": "tabard-name",
+      "va": "0x145aab4a0",
+      "file_offset": "0x5aaa8a0",
+      "byte_count": 151,
+      "sha256": "29d55e4c60ec9d48d1e585632d556c1360663d8753e7f6e60c198be0a7f360d6",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.119.0/rewards-tabard-localization/tabard-name.asm",
+        "sha256": "4f974142bb5af469e02193424c07bc41906c36ac55df7749ced327ea4e486148"
+      }
+    },
+    {
+      "role": "tabard-card",
+      "va": "0x1403470a0",
+      "file_offset": "0x3464a0",
+      "byte_count": 1581,
+      "sha256": "ff80b5e4e7fc43d1d0cec53234850ac1bf8a17e8051859080d7ede30b6e85d6a",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.119.0/rewards-tabard-localization/tabard-card.asm",
+        "sha256": "e9f53fe46b1a0d938cf27bb8a6c5ea9f196887f769258f2463ffce26a787e215"
+      }
+    },
+    {
+      "role": "rewards-row-owner-0",
+      "va": "0x140203e00",
+      "file_offset": "0x203200",
+      "byte_count": 2832,
+      "sha256": "f7d14bffa56f5bb20c74ae225efdb2a3bf23d114dacf313ca0c331a136c2f773"
+    },
+    {
+      "role": "rewards-pane-0",
+      "va": "0x14034db40",
+      "file_offset": "0x34cf40",
+      "byte_count": 1299,
+      "sha256": "717c3920302d0c6c11ec3a79433f53ae87365057cebc480ccab830d80f08c759"
+    },
+    {
+      "role": "tabard-grid-caller-0",
+      "va": "0x140209d20",
+      "file_offset": "0x209120",
+      "byte_count": 1808,
+      "sha256": "9aec78661590490927bde59d7b056d3ecee1498f84be9514753c266f5139d716"
+    },
+    {
+      "role": "tabards-pane-caller-0",
+      "va": "0x14034b650",
+      "file_offset": "0x34aa50",
+      "byte_count": 1982,
+      "sha256": "4b57fdde94c50ca1710088d6e92d8fa0cf5af829302eb692610681425895d920"
+    },
+    {
+      "role": "rewards-dispatch-0",
+      "va": "0x1402073b0",
+      "file_offset": "0x2067b0",
+      "byte_count": 2255,
+      "sha256": "db2a4baae93f02d70683c7119efa1c20f6b34941db059bd3ff89ad26d281128b"
+    }
+  ],
+  "data_spans": [
+    {
+      "role": "tabard-ID-format",
+      "va": "0x1472c8640",
+      "file_offset": "0x72c7440",
+      "byte_count": 10,
+      "sha256": "01d7853ba174f9ca6100d479917d1a5daf644602fe2c920fbfab85af4604b8a7"
+    },
+    {
+      "role": "u32-ID-read-and-radix-10",
+      "va": "0x145f789ed",
+      "file_offset": "0x5f77ded",
+      "byte_count": 8,
+      "sha256": "46b5850696af5f04acb57d169a33f4a3efd97a70f50fd4adc360cee2721561e6"
+    },
+    {
+      "role": "Rewards-tabard-descriptors",
+      "va": "0x1461ada50",
+      "file_offset": "0x61ac850",
+      "byte_count": 1344,
+      "sha256": "7ecefc093f7cbfc9b3e6ba53cf5e9abb7a7ae2d2e2b4a1109df4569ab86a7581"
+    }
+  ],
+  "direct_call_edges": [
+    {
+      "site": "0x145aab4f4",
+      "callee": "0x145b29ab0"
+    },
+    {
+      "site": "0x1403473a3",
+      "callee": "0x145aab4a0"
+    },
+    {
+      "site": "0x1402048c9",
+      "callee": "0x1403470a0"
+    },
+    {
+      "site": "0x14020a3bd",
+      "callee": "0x14034db40"
+    },
+    {
+      "site": "0x14034b96f",
+      "callee": "0x140209d20"
+    },
+    {
+      "site": "0x140207af3",
+      "callee": "0x14034b650"
+    },
+    {
+      "site": "0x14034dbc6",
+      "callee": "0x140203e00"
+    },
+    {
+      "site": "0x14034dbff",
+      "callee": "0x140203e00"
+    },
+    {
+      "site": "0x14034dc38",
+      "callee": "0x140203e00"
+    },
+    {
+      "site": "0x14034dc71",
+      "callee": "0x140203e00"
+    },
+    {
+      "site": "0x14034dcaa",
+      "callee": "0x140203e00"
+    },
+    {
+      "site": "0x14034dce3",
+      "callee": "0x140203e00"
+    },
+    {
+      "site": "0x14034dd1c",
+      "callee": "0x140203e00"
+    },
+    {
+      "site": "0x14034dd55",
+      "callee": "0x140203e00"
+    },
+    {
+      "site": "0x14034dd8e",
+      "callee": "0x140203e00"
+    },
+    {
+      "site": "0x14034ddc7",
+      "callee": "0x140203e00"
+    },
+    {
+      "site": "0x14034de00",
+      "callee": "0x140203e00"
+    },
+    {
+      "site": "0x14034de39",
+      "callee": "0x140203e00"
+    },
+    {
+      "site": "0x14034de72",
+      "callee": "0x140203e00"
+    },
+    {
+      "site": "0x14034deab",
+      "callee": "0x140203e00"
+    },
+    {
+      "site": "0x14034dee4",
+      "callee": "0x140203e00"
+    },
+    {
+      "site": "0x14034df1d",
+      "callee": "0x140203e00"
+    },
+    {
+      "site": "0x14034df56",
+      "callee": "0x140203e00"
+    },
+    {
+      "site": "0x14034df8f",
+      "callee": "0x140203e00"
+    },
+    {
+      "site": "0x14034dfc8",
+      "callee": "0x140203e00"
+    },
+    {
+      "site": "0x14034e001",
+      "callee": "0x140203e00"
+    },
+    {
+      "site": "0x14034e03a",
+      "callee": "0x140203e00"
+    }
+  ],
+  "descriptors": [
+    {
+      "id": 90001,
+      "name": "Warsong Battle Tabard",
+      "key": "tabard.90001",
+      "descriptor_va": "0x1461ada50"
+    },
+    {
+      "id": 90002,
+      "name": "Silverwing Battle Tabard",
+      "key": "tabard.90002",
+      "descriptor_va": "0x1461ada90"
+    },
+    {
+      "id": 90003,
+      "name": "Arathor Battle Tabard",
+      "key": "tabard.90003",
+      "descriptor_va": "0x1461adad0"
+    },
+    {
+      "id": 90004,
+      "name": "Defilers Battle Tabard",
+      "key": "tabard.90004",
+      "descriptor_va": "0x1461adb10"
+    },
+    {
+      "id": 90005,
+      "name": "Stormpike Battle Tabard",
+      "key": "tabard.90005",
+      "descriptor_va": "0x1461adb50"
+    },
+    {
+      "id": 90006,
+      "name": "Frostwolf Battle Tabard",
+      "key": "tabard.90006",
+      "descriptor_va": "0x1461adb90"
+    },
+    {
+      "id": 90016,
+      "name": "Scarlet Crusade Tabard",
+      "key": "tabard.90016",
+      "descriptor_va": "0x1461adbd0"
+    },
+    {
+      "id": 90025,
+      "name": "Contest Winner's Tabard",
+      "key": "tabard.90025",
+      "descriptor_va": "0x1461adc10"
+    },
+    {
+      "id": 90011,
+      "name": "Stormwind Tabard",
+      "key": "tabard.90011",
+      "descriptor_va": "0x1461adc50"
+    },
+    {
+      "id": 90012,
+      "name": "Tabard of Lordaeron",
+      "key": "tabard.90012",
+      "descriptor_va": "0x1461adc90"
+    },
+    {
+      "id": 90013,
+      "name": "Tabard of Stromgarde",
+      "key": "tabard.90013",
+      "descriptor_va": "0x1461adcd0"
+    },
+    {
+      "id": 90014,
+      "name": "Tabard of Theramore",
+      "key": "tabard.90014",
+      "descriptor_va": "0x1461add10"
+    },
+    {
+      "id": 90015,
+      "name": "Tabard of Dalaran",
+      "key": "tabard.90015",
+      "descriptor_va": "0x1461add50"
+    },
+    {
+      "id": 90017,
+      "name": "Darkmoon Faire Tabard",
+      "key": "tabard.90017",
+      "descriptor_va": "0x1461add90"
+    },
+    {
+      "id": 90018,
+      "name": "Tabard of the Alliance",
+      "key": "tabard.90018",
+      "descriptor_va": "0x1461addd0"
+    },
+    {
+      "id": 90019,
+      "name": "Tabard of the Horde",
+      "key": "tabard.90019",
+      "descriptor_va": "0x1461ade10"
+    },
+    {
+      "id": 90020,
+      "name": "Tabard of the Argent Dawn",
+      "key": "tabard.90020",
+      "descriptor_va": "0x1461ade50"
+    },
+    {
+      "id": 90021,
+      "name": "Tabard of Flame",
+      "key": "tabard.90021",
+      "descriptor_va": "0x1461ade90"
+    },
+    {
+      "id": 90022,
+      "name": "Tabard of Frost",
+      "key": "tabard.90022",
+      "descriptor_va": "0x1461aded0"
+    },
+    {
+      "id": 90023,
+      "name": "Alliance Officer's Tabard",
+      "key": "tabard.90023",
+      "descriptor_va": "0x1461adf10"
+    },
+    {
+      "id": 90024,
+      "name": "Horde Officer's Tabard",
+      "key": "tabard.90024",
+      "descriptor_va": "0x1461adf50"
+    }
+  ],
+  "locales": [
+    {
+      "code": "en",
+      "payload_sha256": "e475e4cc9b0bd2db9bebaca7a1e32fd7a03872bd3c7b6677cee270360e7ede09",
+      "tabard_values_sha256": "61834bd1cd03afc0dc1353fe1e3a7bbfde7444bc0eb9f42092347d55fd52ea58"
+    },
+    {
+      "code": "pl",
+      "payload_sha256": "c2c90c85ffdac22815ae619c0fd261ce969be510dcf87d3ae89eefae7849351f",
+      "tabard_values_sha256": "3542ee3330ff741c2af3c9c6ee8e3b6240d4e1bf308d9e293dede5fc813b6a8d"
+    },
+    {
+      "code": "cs",
+      "payload_sha256": "f3826f4f1dca8dee1f40f49e30d13bc0c110f95abe363ade44cd7d8591e14a2a",
+      "tabard_values_sha256": "1165ab176e17e61baa69b44dd71d0efe31f41aa339fec9db1403130943e42bd1"
+    },
+    {
+      "code": "de",
+      "payload_sha256": "a6ffa2f5f2bf7e5c712fc586c2dab7c2699de06ff4025081db5014df8d485f5c",
+      "tabard_values_sha256": "7b5ffe6f3bbedf949fe108b4af8b94f7bb08522d6431a5fad993c05ae791549b"
+    },
+    {
+      "code": "pt",
+      "payload_sha256": "2407e97bdfd04f030f632a4c8636a35844f4ade4bddc5907fcdacbf0c8392f89",
+      "tabard_values_sha256": "1cd6a813e20958879ba468dda375eba72b4bcff029ec7264daa8017d244e89a3"
+    },
+    {
+      "code": "es",
+      "payload_sha256": "1ce956f514d3ed7a8918797516dceb9c9117bfb20219f97c36c97a5e64aa3ff8",
+      "tabard_values_sha256": "ba053ef6738cb2f040f7c8a1936c7e3b022d555e00ad9554476c96e2e2dbc83e"
+    },
+    {
+      "code": "fr",
+      "payload_sha256": "95284ef64005828a618fa68bffaee7068533497bef0799dd4ca3f9df8bc0eaf4",
+      "tabard_values_sha256": "7bb5a9377fdc935e70d0013906ef509470e01939afda30eb8f4bd86eecf22b22"
+    },
+    {
+      "code": "ro",
+      "payload_sha256": "0734ed8bb0156984b6607333f307de05b93e0859034c7e39a3f922ab67cf1fca",
+      "tabard_values_sha256": "98150703ff4e6e82e8476da2aaffee5c32316b5ffb6e344477c3e1cf1d4305e9"
+    },
+    {
+      "code": "tr",
+      "payload_sha256": "79424629deb604cc2e8b80bb58608f43fae48c9b3ca0a19abe7c7218cab98893",
+      "tabard_values_sha256": "61834bd1cd03afc0dc1353fe1e3a7bbfde7444bc0eb9f42092347d55fd52ea58"
+    },
+    {
+      "code": "ru",
+      "payload_sha256": "c7328e05bc2c2e4a56c94aa922bd00441af632e438fcee7d846c5bec5f1c4321",
+      "tabard_values_sha256": "8a9a1d7c40b410df395afcb2a8738085bc5d1f081c2dc2628f888b2592981c02"
+    },
+    {
+      "code": "uk",
+      "payload_sha256": "c26909865b0dd3de4bcefc98ca69789d39c7d8a28880018f7d6c9e42820e1579",
+      "tabard_values_sha256": "11b7a8cbb897dc9ce0251750731034fae8eee2fa5c337d715c3d4217732a345f"
+    },
+    {
+      "code": "zh",
+      "payload_sha256": "0d60d8ac40b20f299ef14dc86c607a9d14d5f8230d1d26c020489e4014374814",
+      "tabard_values_sha256": "87d10572209fc7d620304a9560f09f9ceb3dd9ba58617f827fb5da0fa23b3a61"
+    },
+    {
+      "code": "ja",
+      "payload_sha256": "c8cd3ce27182ea469c8b3c2128edbf49787cc9ba97947e3778713bcecab31c5c",
+      "tabard_values_sha256": "36d845671049803151c933ae3d5e3db1834f70f41220fe7d4e2fee707c878242"
+    },
+    {
+      "code": "ko",
+      "payload_sha256": "585b5f8951c85feca6b50358fc73f1554449a5401cce841962359e79654ddb41",
+      "tabard_values_sha256": "dc208263de49b7b6c844852b18e15aff1a11818e17bc723e7bd654d9b6c93a7b"
+    }
+  ],
+  "source": {
+    "path": "crates/azeroth-survivors-re/src/progression/rewards.rs",
+    "sha256": "6a50bd3b270e5f34591a84584e5e27ed0f5214802ea161334339e4d425301998"
+  },
+  "query_receipts": [
+    {
+      "function": "tabard-name",
+      "procedure": "0x145aab4a0",
+      "status": "completed",
+      "evidence_id": "ev_fcf1584ab7e07cb16b82e9f5fe3805ca6c4ccc08eddd01ea8bf5733f15586d7f",
+      "analysis_profile_digest": "35d83fba222a2e28cbdb0b19057da22a4eae4db7b4f06b1418d0711506cb91d4",
+      "pseudocode_sha256": "a9c5afe0683eea2e48d9ddde4dd95e66332ce6d254dcdd22aded7774a549c65b",
+      "raw_input_sha256": "29d55e4c60ec9d48d1e585632d556c1360663d8753e7f6e60c198be0a7f360d6",
+      "plan": {
+        "path": "runtime/rewards-tabard-0.119.0/tabard-name-query/plan.json",
+        "sha256": "bc0819a238197444b175068cb0c45be00e386eb9c73c1584d4a9c036e528a2dd"
+      },
+      "journal": {
+        "path": "runtime/rewards-tabard-0.119.0/tabard-name-query/journal.json",
+        "sha256": "b7e7eaa3d65330947ed9defd6256e170ac97adc34955b290f19c13349ff5025e"
+      },
+      "result": {
+        "path": "runtime/rewards-tabard-0.119.0/tabard-name-query/results/e53339fdfa3e60527120b9419ff366072604b9f91ffd34ff610aedaf2ba9c6e0.json",
+        "sha256": "db45dcbef82185a5e2403bfffaa95932c46e6f7a66b12d192175756b912641ab"
+      },
+      "pseudocode_export": {
+        "sha256": "2656f21b905ab07b9db55552ac5c0b030f1312875c0daf6327a594927b2dfe7e",
+        "normalization": "Trailing line whitespace and outer blank lines removed; one final LF. Original result hash retained separately."
+      }
+    },
+    {
+      "function": "tabard-card",
+      "procedure": "0x1403470a0",
+      "status": "completed",
+      "evidence_id": "ev_fe6ea7b56434f470cc441023ea4c09409bfacc0f37d5602793b56265e731b63b",
+      "analysis_profile_digest": "5bd04abf418926b15f539b2c060616123c9c2aae9489c742f769a40a006a109e",
+      "pseudocode_sha256": "5410fe96f08d1667c6eb6686c503958098a968e84526ea4a47e7d5d3ebecbfd5",
+      "raw_input_sha256": "ff80b5e4e7fc43d1d0cec53234850ac1bf8a17e8051859080d7ede30b6e85d6a",
+      "plan": {
+        "path": "runtime/rewards-tabard-0.119.0/tabard-card-query/plan.json",
+        "sha256": "33274f9cd8fef79e7f6f42c0ce08390562c5d065fa403c3eaed47252934858f7"
+      },
+      "journal": {
+        "path": "runtime/rewards-tabard-0.119.0/tabard-card-query/journal.json",
+        "sha256": "45743b73ba75bece1b5ba1e37abdf02322bf89a7ed4d9cd27e94b669ef6706e6"
+      },
+      "result": {
+        "path": "runtime/rewards-tabard-0.119.0/tabard-card-query/results/4514e10723b8811f9210802f88d493247487fc2f464c00440d1bad4ef0a608a0.json",
+        "sha256": "52604566a9887f7287fc564d99812218fd0296ab3ad851775a05ad64085b99ff"
+      }
+    },
+    {
+      "function": "rewards-row-owner-0",
+      "procedure": "0x140203e00",
+      "status": "completed",
+      "evidence_id": "ev_ae02c6da1f88c212c5268572e10648b1f1f114468b7283637f916c67bbca1018",
+      "analysis_profile_digest": "0a2ed359793c6f3135821fa811ebeba82fd07e6147d3dab1180e82083763eb4f",
+      "pseudocode_sha256": "f1ab2b2f7437ed966bc83794f4b48f74776cf91a9c72c21f496c0ef0dbf25ea0",
+      "raw_input_sha256": "f7d14bffa56f5bb20c74ae225efdb2a3bf23d114dacf313ca0c331a136c2f773",
+      "plan": {
+        "path": "runtime/rewards-tabard-0.119.0/rewards-row-owner-0-query/plan.json",
+        "sha256": "ce2d876871e6cc9ba476be8fb1437a8e2c5ec92a67bd85c07877d9df6f6f9b9c"
+      },
+      "journal": {
+        "path": "runtime/rewards-tabard-0.119.0/rewards-row-owner-0-query/journal.json",
+        "sha256": "93f237ad6644fc3f54243a9850efd9c0894c2cd056a3e8822cb908a345277ec7"
+      },
+      "result": {
+        "path": "runtime/rewards-tabard-0.119.0/rewards-row-owner-0-query/results/203dea28eda486824c5d58d910c6d08349183a6f585c235b2eb3baf0fa9faf1b.json",
+        "sha256": "ecc69eafe94ec3e89bf1afad6f544c73d21260a2b581f2aaf5c21c6e73dbd9d5"
+      }
+    },
+    {
+      "function": "rewards-pane-0",
+      "procedure": "0x14034db40",
+      "status": "completed",
+      "evidence_id": "ev_e7c3466962a734bde0df4825541c8ff226b36815c3bbb51d2d4848d5ccc46fed",
+      "analysis_profile_digest": "5cdeb9fbb51583aff3696c45ccf0baaaec6948566c38deefa1bddce43cb02dc0",
+      "pseudocode_sha256": "a5053178220b4cfea575c0bc09bd145d3caf36dcce2267e529f5e9460c4cd549",
+      "raw_input_sha256": "717c3920302d0c6c11ec3a79433f53ae87365057cebc480ccab830d80f08c759",
+      "plan": {
+        "path": "runtime/rewards-tabard-0.119.0/rewards-pane-0-query/plan.json",
+        "sha256": "207673c2cf5ec53292cc32eafa2214023a6d55e34be5b3893d1008947c44161b"
+      },
+      "journal": {
+        "path": "runtime/rewards-tabard-0.119.0/rewards-pane-0-query/journal.json",
+        "sha256": "6e43394751e2e93c79363c815fa2075c324a3c77b472718c73720ec4fe586f53"
+      },
+      "result": {
+        "path": "runtime/rewards-tabard-0.119.0/rewards-pane-0-query/results/411718b63f1216dca30af5c2738eb91ac5bac77bae45658dd953d6861e922586.json",
+        "sha256": "b202ed822c8937f9b537aa17bab72e6ace3fe79ed2674494f2663416cc7937f9"
+      }
+    },
+    {
+      "function": "tabard-grid-caller-0",
+      "procedure": "0x140209d20",
+      "status": "completed",
+      "evidence_id": "ev_dc1acdd4a0eb23ed99b2c59fd8e389fbd6510e77640021d1090278d5381a9cbb",
+      "analysis_profile_digest": "1bb7d96f85a5bba50fd1eb0b0e4962af4e66b83fb4034edb4ae06b8697804528",
+      "pseudocode_sha256": "4d085d4419ded7ecaaf3f6116ba30347a6091686525d2e6e52933ffdb23eda71",
+      "raw_input_sha256": "9aec78661590490927bde59d7b056d3ecee1498f84be9514753c266f5139d716",
+      "plan": {
+        "path": "runtime/rewards-tabard-0.119.0/tabard-grid-caller-0-query/plan.json",
+        "sha256": "e8f8294d78ba753a20170f9c0dc4d504491405890774a9b1e9e7531a9373fc53"
+      },
+      "journal": {
+        "path": "runtime/rewards-tabard-0.119.0/tabard-grid-caller-0-query/journal.json",
+        "sha256": "0ea8948b879eb72406742a09279ccae466633cc2282ee37a9968f0c990ec84be"
+      },
+      "result": {
+        "path": "runtime/rewards-tabard-0.119.0/tabard-grid-caller-0-query/results/4d334d0d165ad6aa0d3dd1386ef2a8c653cc7a8771474b6821aa88545efc055e.json",
+        "sha256": "68badfa1fb7bbab5b03e2a01b57348b6163e0f86b2215052f0a9ae1a02c5e7cf"
+      }
+    },
+    {
+      "function": "tabards-pane-caller-0",
+      "procedure": "0x14034b650",
+      "status": "completed",
+      "evidence_id": "ev_75fc406d4a5d8c7ef014e6dc13739bd0431bbdcd3b5685587f06fb823206636a",
+      "analysis_profile_digest": "2ab76a771097878b71ca12198c10d6273aa061f78797b1450c03c99f01f5c8be",
+      "pseudocode_sha256": "284f300bf981a0175f2f1abbe4654702ddc4a9a54e490d1e9ad9d47d68fe902b",
+      "raw_input_sha256": "4b57fdde94c50ca1710088d6e92d8fa0cf5af829302eb692610681425895d920",
+      "plan": {
+        "path": "runtime/rewards-tabard-0.119.0/tabards-pane-caller-0-query/plan.json",
+        "sha256": "2fbd65a7fb84282e052676744f0c0988e22b82bff397149744854d2563c49a3d"
+      },
+      "journal": {
+        "path": "runtime/rewards-tabard-0.119.0/tabards-pane-caller-0-query/journal.json",
+        "sha256": "06a199b09a9607455d281f94aac3cf2b5544171f90dd527311879c6f45e2d2cd"
+      },
+      "result": {
+        "path": "runtime/rewards-tabard-0.119.0/tabards-pane-caller-0-query/results/0b729ba3be5e4d85e0725ed469b71cbd12897206dc67d859144b8ec8ad50ac0e.json",
+        "sha256": "b169d6727d0af4509e076853869bd4b3efefcd730e88e60cfbe8c6f56573a629"
+      }
+    },
+    {
+      "function": "rewards-dispatch-0",
+      "procedure": "0x1402073b0",
+      "status": "completed",
+      "evidence_id": "ev_6bcbec91631854a5e90fde08b5570539fdcac22773b74d48fb6a7f4df39d6ba7",
+      "analysis_profile_digest": "011237dd4a6eaa4844c8f21eda56893eb4cb7e2cba1b9719840cab879fb1d594",
+      "pseudocode_sha256": "c70dacdeed55716e9eabb0d1d7cc91792e9992d8da419b143760e13dd9bb46ad",
+      "raw_input_sha256": "db2a4baae93f02d70683c7119efa1c20f6b34941db059bd3ff89ad26d281128b",
+      "plan": {
+        "path": "runtime/rewards-tabard-0.119.0/rewards-dispatch-0-query/plan.json",
+        "sha256": "16ea34df76200426c52a8e921761c65e8d0b20fcf2c80b223887da8269f7eba3"
+      },
+      "journal": {
+        "path": "runtime/rewards-tabard-0.119.0/rewards-dispatch-0-query/journal.json",
+        "sha256": "a9970535c753d88d2c99778fc8715ff8c36f4cca1dc3474b893ff9484173e783"
+      },
+      "result": {
+        "path": "runtime/rewards-tabard-0.119.0/rewards-dispatch-0-query/results/e0a6c693ed8762b61bbc8704b32857e5e856c2b8fc5ce96a01f248f7da594199.json",
+        "sha256": "502c4d8c99df17e700dfff0d8e87b677f13b57043e89ecb9256c13057d5b705d"
+      }
+    }
+  ],
+  "limits": "Bounded native name/card/tab-2/grid input contract and source wiring only; raw Ghidra imports omit globals/imports and infer GCC ABI. Independent PE decoding establishes Windows-x64 flow. Complete screen/input/loader behavior, compilation, execution and original/rebuilt parity are unverified."
+}

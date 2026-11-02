@@ -1,0 +1,250 @@
+{
+  "date": "2026-10-18",
+  "version": "0.97.2",
+  "target": "AzerothSurvivors/AzerothSurvivors-0.97.2.exe",
+  "target_sha256": "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589",
+  "target_executed": false,
+  "functions": [
+    {
+      "va": "0x14549d550",
+      "end_exclusive": "0x1454aaf72",
+      "file_offset": "0x549c950",
+      "byte_count": 55842,
+      "sha256": "14cd87f3990a2c0981051abf8e499d2c229717681964b36a757978a1664455e7",
+      "boundary_source": "original PE RUNTIME_FUNCTION start/end"
+    },
+    {
+      "va": "0x1454b07c0",
+      "end_exclusive": "0x1454b398a",
+      "file_offset": "0x54afbc0",
+      "byte_count": 12746,
+      "sha256": "90f53fb4c4106d393114ad12785f3f931cdc36cc6752b4d751226150c9ea0cdb",
+      "boundary_source": "original PE RUNTIME_FUNCTION start/end"
+    },
+    {
+      "va": "0x1454c2eb0",
+      "end_exclusive": "0x1454c63e5",
+      "file_offset": "0x54c22b0",
+      "byte_count": 13621,
+      "sha256": "fa34d349dd4e7597bc1f2da2f90bcae0cdef33ed8128f0837a0ec72110d63c49",
+      "boundary_source": "original PE RUNTIME_FUNCTION start/end"
+    },
+    {
+      "va": "0x1454c9510",
+      "end_exclusive": "0x1454ce7a0",
+      "file_offset": "0x54c8910",
+      "byte_count": 21136,
+      "sha256": "65114117995dbb7c0699d9f170e5b751ad863decf286531f7851646b0fe6f048",
+      "boundary_source": "original PE RUNTIME_FUNCTION start/end"
+    },
+    {
+      "va": "0x1454ef9f0",
+      "end_exclusive": "0x1454efd50",
+      "file_offset": "0x54eedf0",
+      "byte_count": 864,
+      "sha256": "966a0354388c2dc663cb1b7ac6725682670f712e563bf1d7df9dc72b6b115225",
+      "boundary_source": "original PE RUNTIME_FUNCTION start/end"
+    },
+    {
+      "va": "0x1454efdf0",
+      "end_exclusive": "0x1454eff7f",
+      "file_offset": "0x54ef1f0",
+      "byte_count": 399,
+      "sha256": "72bd7da7118bec20bec83d496d34ade541bf1ba3091b1e58b3d91a5ee6551639",
+      "boundary_source": "original PE RUNTIME_FUNCTION start/end"
+    },
+    {
+      "va": "0x14550a0a0",
+      "end_exclusive": "0x14550a1d0",
+      "file_offset": "0x55094a0",
+      "byte_count": 304,
+      "sha256": "87bc199e464842f788eb900425b12af8c169c6cc342424c32867a0cb688a8dd9",
+      "boundary_source": "explicit leaf interval ending after RET; no PE unwind entry"
+    },
+    {
+      "va": "0x14552b760",
+      "end_exclusive": "0x14552b89e",
+      "file_offset": "0x552ab60",
+      "byte_count": 318,
+      "sha256": "36c695f18c6fb47a0ced585ccf8e75969e3f7f74299b86a4a7a29a19bf6a8849",
+      "boundary_source": "original PE RUNTIME_FUNCTION start/end"
+    }
+  ],
+  "scopes": [
+    {
+      "label": "guardian-lair-selection",
+      "va": "0x1454b22ba",
+      "end_exclusive": "0x1454b237f",
+      "file_offset": "0x54b16ba",
+      "byte_count": 197,
+      "sha256": "a95a407d0c9c6b1f414a24f1a5ee42c52697e06af9e68fe872d4eab7d5ba1469",
+      "assembly": "guardian-lair-selection.asm",
+      "assembly_sha256": "3128c87887d97c25b73e67d3fb959ea3a7a16829773c0831784180120d053aca"
+    },
+    {
+      "label": "guardian-lair-placement",
+      "va": "0x1454b2ced",
+      "end_exclusive": "0x1454b37e1",
+      "file_offset": "0x54b20ed",
+      "byte_count": 2804,
+      "sha256": "8fc6bba20c0eb64b6edd168e9844c0eeb792fbca7036fc325663a0f4b5c119ef",
+      "assembly": "guardian-lair-placement.asm",
+      "assembly_sha256": "fc673bfe878f47b9fe115a4ec76dc51fc5f4793eeed099d20711b5b42b9cec53"
+    },
+    {
+      "label": "guardian-candidate-filter",
+      "va": "0x14552f2f0",
+      "end_exclusive": "0x14552f464",
+      "file_offset": "0x552e6f0",
+      "byte_count": 372,
+      "sha256": "b240ae422089259bb09963a5065b8db45016f255d667e81c71dca404d6743998",
+      "assembly": "guardian-candidate-filter.asm",
+      "assembly_sha256": "04a147139df539e2e17fcc532843f0959fba269aab9980096076972429030430"
+    },
+    {
+      "label": "guardian-ai-decision",
+      "va": "0x14550a0a0",
+      "end_exclusive": "0x14550a1d0",
+      "file_offset": "0x55094a0",
+      "byte_count": 304,
+      "sha256": "87bc199e464842f788eb900425b12af8c169c6cc342424c32867a0cb688a8dd9",
+      "assembly": "guardian-ai-decision.asm",
+      "assembly_sha256": "d62894fa7ebd2b8a00ae868bfd027605ba44ff5dcc08cb35eb0015c55aa1def1"
+    },
+    {
+      "label": "guardian-ai-timers",
+      "va": "0x1454caa55",
+      "end_exclusive": "0x1454cae7d",
+      "file_offset": "0x54c9e55",
+      "byte_count": 1064,
+      "sha256": "9f176b30b7032d4686fb94c6963d3dc67491e53b1d9c2c3c27705bfd3d358c09",
+      "assembly": "guardian-ai-timers.asm",
+      "assembly_sha256": "48a31f4a1a92670e35759989cc798201ffdd5fde5f2a026c679c9ecd8152390a"
+    },
+    {
+      "label": "guardian-ability-summons",
+      "va": "0x1454ccd73",
+      "end_exclusive": "0x1454ccf2a",
+      "file_offset": "0x54cc173",
+      "byte_count": 439,
+      "sha256": "d93b42f311059d781b31d0bac6beb4398edf47f8900cf7d6cf3ad3dedf3de770",
+      "assembly": "guardian-ability-summons.asm",
+      "assembly_sha256": "dbe6c8153c91a71e80edd5a5ec7fe2f4667093d67514a88f8721795aa062314a"
+    },
+    {
+      "label": "guardian-ability-area-strike",
+      "va": "0x1454ccf2a",
+      "end_exclusive": "0x1454ccf5e",
+      "file_offset": "0x54cc32a",
+      "byte_count": 52,
+      "sha256": "f6ef511d7fd520071e1600c280fb4d0b45ba4285564dc3ddd82f4bd4e33a6b99",
+      "assembly": "guardian-ability-area-strike.asm",
+      "assembly_sha256": "6c77b1d26a118faf6d5410cbe8947f2728d259611cd1580aff38b791cdbefbe3"
+    },
+    {
+      "label": "guardian-ability-area-damage",
+      "va": "0x1454cd09d",
+      "end_exclusive": "0x1454cd1d2",
+      "file_offset": "0x54cc49d",
+      "byte_count": 309,
+      "sha256": "b4984b2a649d83857904d833506d9af009422025514b792e2205bf83cb3dd11f",
+      "assembly": "guardian-ability-area-damage.asm",
+      "assembly_sha256": "c9c1d4b313b973b02f4be36db28c800e1bba767554dfd39c9884ce48f1b24e7f"
+    },
+    {
+      "label": "guardian-ability-charge",
+      "va": "0x1454cd7a8",
+      "end_exclusive": "0x1454cdd10",
+      "file_offset": "0x54ccba8",
+      "byte_count": 1384,
+      "sha256": "852982e4315f71906bdae1d2ad2af2f17bf0a77d8d1b550b76469efc9b04b32b",
+      "assembly": "guardian-ability-charge.asm",
+      "assembly_sha256": "d16f7eb90a9f5b2360f446761843432243a4baa9a88fd528d6ff10ffa587f7e5"
+    },
+    {
+      "label": "lair-respawn",
+      "va": "0x1454a97df",
+      "end_exclusive": "0x1454a9ddc",
+      "file_offset": "0x54a8bdf",
+      "byte_count": 1533,
+      "sha256": "bcd7e929bc39bf958f4cfbb8f6d40154e1806068dd18b36367e173a5eea5025a",
+      "assembly": "lair-respawn.asm",
+      "assembly_sha256": "58c1cc8b78951621a948cac3cf4089f4278f5a5f715bccdaf6aed7f4d1855609"
+    },
+    {
+      "label": "lair-marker",
+      "va": "0x1454a9ddc",
+      "end_exclusive": "0x1454aa103",
+      "file_offset": "0x54a91dc",
+      "byte_count": 807,
+      "sha256": "2cee512a45200fe06a3bcf860e75759f34acb534529d3eaff3e97fcf7abb7f7a",
+      "assembly": "lair-marker.asm",
+      "assembly_sha256": "38c4c40bff636bc3f8b7fce78bdef8adeabe1666b5f27700765bb6de1bd3b2b5"
+    },
+    {
+      "label": "guardian-death",
+      "va": "0x1454c422b",
+      "end_exclusive": "0x1454c44dd",
+      "file_offset": "0x54c362b",
+      "byte_count": 690,
+      "sha256": "0c8df104e9de81d16a9d2c35d223750b5b27895299b96bc79ba1c333111ff423",
+      "assembly": "guardian-death.asm",
+      "assembly_sha256": "f7c1d624d2e4ab861560c79966f720093e6c8e861df7581a58571644a8c6a9d8"
+    },
+    {
+      "label": "guardian-health",
+      "va": "0x1454ef9f0",
+      "end_exclusive": "0x1454efd50",
+      "file_offset": "0x54eedf0",
+      "byte_count": 864,
+      "sha256": "966a0354388c2dc663cb1b7ac6725682670f712e563bf1d7df9dc72b6b115225",
+      "assembly": "guardian-health.asm",
+      "assembly_sha256": "19cb96399a6813d7efc38b7abb130eb66e9b44316944627a6e4db9d2b53116b3"
+    },
+    {
+      "label": "guardian-damage",
+      "va": "0x1454efdf0",
+      "end_exclusive": "0x1454eff7f",
+      "file_offset": "0x54ef1f0",
+      "byte_count": 399,
+      "sha256": "72bd7da7118bec20bec83d496d34ade541bf1ba3091b1e58b3d91a5ee6551639",
+      "assembly": "guardian-damage.asm",
+      "assembly_sha256": "7faa4b08998aebc7fd56f2030df8e83b3a404be3d4b42b115bd897e6b44ae6ad"
+    },
+    {
+      "label": "wake-rescale",
+      "va": "0x1454cdd32",
+      "end_exclusive": "0x1454ce220",
+      "file_offset": "0x54cd132",
+      "byte_count": 1262,
+      "sha256": "5177d961992a994962550957e607a0c11036824bcfcfa7eaf13986631fe2b7e9",
+      "assembly": "wake-rescale.asm",
+      "assembly_sha256": "b7c6c475f72abe9a64945e906cf42cfcf7252e814af313e9384fd535b361e32b"
+    },
+    {
+      "label": "queued-strength",
+      "va": "0x1454aa235",
+      "end_exclusive": "0x1454aa34c",
+      "file_offset": "0x54a9635",
+      "byte_count": 279,
+      "sha256": "b535f1d49fb03d6fd5b73619f092ce348b8cea001f10fc0659374bc75fe29866",
+      "assembly": "guardian-pending-rewards.asm",
+      "assembly_sha256": "181b889b1e39eb991ee8c93504a549ea6d13dbe2b46c1f778eaf831c8501726d"
+    },
+    {
+      "label": "scheduled-magnet",
+      "va": "0x1454c16a0",
+      "end_exclusive": "0x1454c17a6",
+      "file_offset": "0x54c0aa0",
+      "byte_count": 262,
+      "sha256": "69131d27793ef75ca7dff91cfb21da88c308a98150a3e57ca724c475993019b4",
+      "assembly": "guardian-scheduled-magnet.asm",
+      "assembly_sha256": "6441a229f35f854509d6369597420f87dccfcc53a71e19f125b0c52ef313be1f"
+    }
+  ],
+  "limitations": [
+    "Static evidence is not runtime parity.",
+    "Raw function slices omit callee code/data; REA generic GCC signatures require Win64 instruction verification.",
+    "Original PE RUNTIME_FUNCTION extents bind function bytes; names are recovered roles, not source symbols."
+  ]
+}

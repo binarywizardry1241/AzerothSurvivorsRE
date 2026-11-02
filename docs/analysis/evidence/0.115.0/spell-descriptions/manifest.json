@@ -1,0 +1,482 @@
+{
+  "target_sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+  "compiled": false,
+  "target_executed": false,
+  "method": "Bounded unchanged Win64 instruction emulation with reviewed allocation/String/locale boundaries and import-name-verified roundf, ceilf and log1pf. Expressions trace original f32 instructions; unsupported calls fail closed.",
+  "inputs": {
+    "baseline": {
+      "instance_f32": {
+        "16": 1.0,
+        "20": 1.0,
+        "28": 1.0,
+        "32": 1.0,
+        "56": 1.0,
+        "60": 1.0,
+        "68": 1.0,
+        "72": 1.0,
+        "80": 1.0,
+        "76": 0.0
+      },
+      "instance_u32": {
+        "8": 1,
+        "24": 0,
+        "64": 0
+      },
+      "stats_f32": {
+        "0": 120.0,
+        "4": 1.0,
+        "8": 1.0,
+        "40": 1.0,
+        "64": 0.0,
+        "72": 0.0
+      },
+      "stats_u32": {
+        "52": 0
+      },
+      "upgrade_counts": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "modified": {
+      "instance_f32": {
+        "16": 1.46,
+        "20": 0.9,
+        "28": 1.35,
+        "32": 1.3,
+        "56": 1.1,
+        "60": 1.05,
+        "68": 1.1,
+        "72": 1.15,
+        "80": 1.2,
+        "76": 0.01
+      },
+      "instance_u32": {
+        "8": 1,
+        "24": 1,
+        "64": 1
+      },
+      "stats_f32": {
+        "0": 185.0,
+        "4": 1.25,
+        "8": 0.8,
+        "40": 1.15,
+        "64": 0.2,
+        "72": 0.1
+      },
+      "stats_u32": {
+        "52": 1
+      },
+      "upgrade_counts": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "large_area": {
+      "instance_f32": {
+        "16": 1.46,
+        "20": 0.9,
+        "28": 1.35,
+        "32": 1.3,
+        "56": 1.1,
+        "60": 1.05,
+        "68": 1.1,
+        "72": 1.15,
+        "80": 1.2,
+        "76": 0.01
+      },
+      "instance_u32": {
+        "8": 1,
+        "24": 1,
+        "64": 1
+      },
+      "stats_f32": {
+        "0": 185.0,
+        "4": 1.25,
+        "8": 0.8,
+        "40": 20.0,
+        "64": 0.2,
+        "72": 0.1
+      },
+      "stats_u32": {
+        "52": 1
+      },
+      "upgrade_counts": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "singular_overlap": {
+      "instance_f32": {
+        "16": 1.0,
+        "20": 1.0,
+        "28": 1.0,
+        "32": 3.0,
+        "56": 1.0,
+        "60": 1.0,
+        "68": 1.0,
+        "72": 1.0,
+        "80": 1.0,
+        "76": 0.0
+      },
+      "instance_u32": {
+        "8": 1,
+        "24": 0,
+        "64": 0
+      },
+      "stats_f32": {
+        "0": 120.0,
+        "4": 1.0,
+        "8": 1.0,
+        "40": 1.0,
+        "64": 0.0,
+        "72": 0.0
+      },
+      "stats_u32": {
+        "52": 0
+      },
+      "upgrade_counts": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "plural_no_overlap": {
+      "instance_f32": {
+        "16": 1.0,
+        "20": 1.0,
+        "28": 1.0,
+        "32": 1.0,
+        "56": 1.0,
+        "60": 1.0,
+        "68": 1.0,
+        "72": 1.0,
+        "80": 1.0,
+        "76": 0.0
+      },
+      "instance_u32": {
+        "8": 1,
+        "24": 0,
+        "64": 1
+      },
+      "stats_f32": {
+        "0": 120.0,
+        "4": 1.0,
+        "8": 1.0,
+        "40": 1.0,
+        "64": 0.0,
+        "72": 0.0
+      },
+      "stats_u32": {
+        "52": 0
+      },
+      "upgrade_counts": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "checks": {
+    "definitions": 113,
+    "description_scenarios": 341,
+    "numeric_comparisons": 1814,
+    "independent_modified_numeric_comparisons": 578,
+    "template_keys": 68,
+    "locale_catalogs": [
+      {
+        "path": "crates/azeroth-survivors-re/assets/locales/cs.json",
+        "sha256": "b76aaf076b8471f93962178150652ab7631dce841dbb7f99c49e92cd8fe75da4"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/assets/locales/de.json",
+        "sha256": "00269f383ebc168b2c201c2a9c4e728fe17421695a9f7eef93d5226c1a74f3f8"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/assets/locales/en.json",
+        "sha256": "17eabaf3dc46401fccdbc0645feda040393a659a66ddda264f09c6902244e5d8"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/assets/locales/es.json",
+        "sha256": "5698fe9a41cd60cf42de533d01f242692cbdb44f2c207d27ebb3e198bc007688"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/assets/locales/fr.json",
+        "sha256": "2de693bd50ca655f1dd7bc68082bea415a6781df206ce9f842f5d94e6d8eba26"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/assets/locales/ja.json",
+        "sha256": "e485903a1ed04806d9993a10bf51e649c29ad50a016eaf11f792462c5d74bffd"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/assets/locales/ko.json",
+        "sha256": "41201abb240650c37ba6148bb7a93546ccb1a58767968bff78a7bbfede8b8905"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/assets/locales/pl.json",
+        "sha256": "650aa26ba56921ca766310d09094334b40c94ed8b00fdee6894fba447f5effdf"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/assets/locales/pt.json",
+        "sha256": "13eef770272430bc9dd5ebd21609ef6060de80f9e05933d36bca0913b87bb8aa"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/assets/locales/ro.json",
+        "sha256": "851c0f4d848a533dbd112a75414822a0235e91de54a3a031fa173e67575e9cb3"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/assets/locales/ru.json",
+        "sha256": "0dab3e2fb6a3e64cbab531ce0463cb9ca19e695beb8467e6f73fdcb64e5c297a"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/assets/locales/tr.json",
+        "sha256": "8c401aadb483e705d7db00635728ef82ac13aed4fe78124dd08bc3cc47b83339"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/assets/locales/uk.json",
+        "sha256": "5b6acc8c1267275debeaeeefc647c491a1142d439dbb4583b56f0fdf079e5d5c"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/assets/locales/zh.json",
+        "sha256": "0360a2f4ebe98dd6b208339f7d015fe2bc851de0fe7b3c8957f9fa9b642464af"
+      }
+    ]
+  },
+  "historical_expression_changes": [
+    "soul_fire",
+    "demonic_empowerment"
+  ],
+  "historical_numeric_expression_changes": [
+    "bloodrage",
+    "redemption",
+    "hunters_mark",
+    "seal_fate",
+    "lightwell",
+    "call_of_flame",
+    "polymorph",
+    "searing_pain",
+    "soul_fire",
+    "demonic_empowerment"
+  ],
+  "scenarios": {
+    "baseline": {
+      "rows": 113,
+      "sha256": "a26152ea1a79cdcc367601a17d4d51db22babecaa2b3eb9923abc47e1684493c"
+    },
+    "modified": {
+      "rows": 113,
+      "sha256": "518e1b5c3ad91a2ac892a4e28e863ce5c553dd1f2321b443bb61b0246237e286"
+    },
+    "large_area": {
+      "rows": 113,
+      "sha256": "f684764dd01e18772ca79ceea9e2a6a8cb90978d25c93e285bf42a754d9df891"
+    },
+    "singular_overlap": {
+      "rows": 1,
+      "sha256": "724a79d608d09da42394f39caff0b77d34d1e441b235a48e669a366a8eda3406"
+    },
+    "plural_no_overlap": {
+      "rows": 1,
+      "sha256": "1f0446f91987ee8f8b4ea4b7aa78cf32adcae8ef65d8e5682cda00c9be3844e9"
+    }
+  },
+  "asset_sha256": "e279a10b7d7b16af92db5f384a545a6e897983d3938109ab24be29bfa60f5202",
+  "limits": [
+    "Static derived instruction evidence, not native process observations or original/rebuilt parity.",
+    "Synthetic finite inputs and named host math boundaries do not establish extreme-count/non-finite parity.",
+    "Append text, card auxiliary rows and panel integration have separate owning evidence."
+  ],
+  "ranges": [
+    {
+      "role": "primary",
+      "start": "0x14585c8e0",
+      "size": 12792,
+      "sha256": "c0d701b60966bfb5a53b6d0183e62dbfba4f985a90975b80c2b6d17327244e19",
+      "extract": "docs/analysis/evidence/0.115.0/spell-descriptions/primary.asm",
+      "extract_sha256": "ed52fb596c5c03b9f94e0b607fa758d252c00679a127e5a3338934f7e876ce4d"
+    },
+    {
+      "role": "passive",
+      "start": "0x14596c1c0",
+      "size": 6127,
+      "sha256": "822ed315d8c4887c0e01cb987a9b40288fd10b72d3e2e43c556861035e6b2756",
+      "extract": "docs/analysis/evidence/0.115.0/spell-descriptions/passive.asm",
+      "extract_sha256": "d798ef3c96c57a87d46dfdf9a9c9a27f2556698f90ca347d18e5da2b5eb763b5"
+    },
+    {
+      "role": "school",
+      "start": "0x14585c840",
+      "size": 159,
+      "sha256": "3b7fe543599c88b94bdc6ba61d0d8c2b330c9d6bf20e7612f10ea483307dfc57",
+      "extract": "docs/analysis/evidence/0.115.0/spell-descriptions/school.asm",
+      "extract_sha256": "393b48dc24e63a663ebe773a1aa054590ca90c9d52be42d3cbdaad71eaad125d"
+    },
+    {
+      "role": "damage-fragment",
+      "start": "0x14586a870",
+      "size": 333,
+      "sha256": "5dded1008a6a584896d64bfbffd26c96b5e847dc0e87a07f1f0e8fa2e61559e7",
+      "extract": "docs/analysis/evidence/0.115.0/spell-descriptions/damage-fragment.asm",
+      "extract_sha256": "af1974a95bf3d1eb71a5256fa7a674b61955c8181c934c0d5499d225e6895fb1"
+    }
+  ],
+  "canonical_references": [
+    "docs/analysis/evidence/0.115.0/coop-overlay/manifest.json",
+    "docs/analysis/evidence/0.115.0/coop-spell-text/manifest.json"
+  ],
+  "definition_table": {
+    "start": "0x146cc4580",
+    "count": 113,
+    "stride": 120,
+    "sha256": "a1819af824e96186fad799603793b27c5bab8861413bfdad99387935103e0e8c"
+  },
+  "primary_ghidra": {
+    "evidence_id": "ev_6542ba753f49f60c62ab02b8d7c5a00b1e645fea7562f506e2a1c729597707ec",
+    "analysis_profile": {
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "parameters": {
+        "target_kind": "executable",
+        "target_format": "raw-binary",
+        "architecture": "x86_64",
+        "available_architectures": [
+          "x86_64"
+        ],
+        "import_mode": "persistent-source-immutable-v1",
+        "durable_queries": {
+          "format": "rea-durable-queries-v1",
+          "static_queries_only": true,
+          "checkpoint_authority": "saved-Program-options",
+          "tooling": {
+            "scripts/rea-durable-queries.mjs": "7f75a03ace604029cbdb8cc925bb45504394f1873d689630abe81e542716b3e8",
+            "scripts/repair-rea-durable-queries.py": "c14cc28baf16e60dc8eb4c4557bc4469ec153455d31d3d378561e93847f620a4",
+            "scripts/ghidra/ReaDurableQueryPrepare.java": "4de425e7c375a1d59b964bfbf565675ef7770f13778649bd48df0aab6824c648",
+            "scripts/ghidra/ReaDurableQueryBridge.fragment.java": "cb1b2fc0c6350449526d5e91dceb75dd98676e7458856d7df9e656542a4abb86",
+            "node_modules/rea-agents/bridge/ghidra/ReaGhidraBridge.java": "9655cefb73c8f83915f6336ea6eee0cf5497b4236e57d8b42c2e76f3117b6681",
+            "node_modules/rea-agents/dist/ghidra/GhidraLauncher.js": "ce306f4e7d6a787ac2da78d9d53f013994dbe7dfe4b7eadc53d3707974f7efc7",
+            "node_modules/rea-agents/dist/ghidra/GhidraAnalysisProfile.js": "a0619504f5cfa381f0eb489881c42079346ecfde48c685aede88fe2f53d57437",
+            "node_modules/rea-agents/dist/ghidra/GhidraSessionValues.js": "d83a81a6aa933c8d3886ccf737008de64f48c7988a307a5142d02bb2e35be4ec",
+            "node_modules/rea-agents/dist/ghidra/GhidraJavaLaunch.js": "9b267c37f14faeb1cb3f01afe81fd29e445684cfef86af2150e3f56e2115ff95",
+            "node_modules/rea-agents/dist/ghidra/GhidraProviderClient.js": "ee2eb4a2fb506b6541e365c87f708b5ac5d65dfb97d645bd5b3929b3799427b9",
+            "node_modules/rea-agents/dist/cli-runtime/binary-BVOr2mgE.js": "06e032e5f5f3870bb96d2b9d60c56954f0d19c6237653894403240ae5a24ff5d",
+            "node_modules/rea-agents/dist/mcp/main-kBXHZ8S5.js": "ed23c9961768f19b78ac67aec6f384c311f55f36049101a85f2bc871ec540acc"
+          },
+          "loader_libraries": "disabled-including-ordinal-and-project-lookup",
+          "analysis": "same-profile-autoanalysis-until-saved-ready",
+          "search_checkpoint": "matching-batches-after-inventory-snapshot-v1",
+          "decompile_checkpoint": "completed-result-only-v1"
+        },
+        "annotation_policy": "atomic-function-entry-metadata-v1",
+        "load_image_observations": "source-mappings-entry-context-v2",
+        "function_body_evidence": "complete-inclusive-ranges-v1",
+        "function_references": "complete-body-and-entry-reference-manager-v2",
+        "call_relationship_coverage": "function-body-call-coverage-v5",
+        "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+        "string_inventory_evidence": "defined-data-coverage-v1",
+        "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+        "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+        "instruction_flow_evidence": "decoded-return-pcode-v1",
+        "instruction_references": "exact-address-incoming-v1",
+        "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+        "no_return_repair": "returning-imports-decoded-return-v2",
+        "process_launch": "inspected-jvm-launch-support-v1",
+        "load_image_evidence": "independent-raw-mapping-context-v4",
+        "jump_table_evidence": "typed-case-default-blocks-v1",
+        "decompiler_jump_loads": true,
+        "loader": "BinaryLoader",
+        "language_id": "x86:LE:64:default",
+        "compiler_spec_id": "gcc",
+        "language_selection": "caller-supplied-v1",
+        "entry_point": "0x14585c8e0",
+        "entry_seed": "external-entry-and-function-before-analysis-v1",
+        "analyzer_preset": "ghidra-default"
+      },
+      "digest": "81cf748b944d49c5bba61e3f8bcb18a90f16a45be5c66273caaf688f47706f06"
+    },
+    "limitation": "Raw slice analysis does not resolve data-dependent computed switches; original PE branch-table bytes and admitted instructions supply those branches."
+  },
+  "passive_ghidra": {
+    "evidence_id": "ev_e140dc4bbbb1811346e1cc61e3927255b40a42a18f53156a7444e10ddae65ed4",
+    "analysis_profile": {
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "parameters": {
+        "target_kind": "executable",
+        "target_format": "raw-binary",
+        "architecture": "x86_64",
+        "available_architectures": [
+          "x86_64"
+        ],
+        "import_mode": "persistent-source-immutable-v1",
+        "durable_queries": {
+          "format": "rea-durable-queries-v1",
+          "static_queries_only": true,
+          "checkpoint_authority": "saved-Program-options",
+          "tooling": {
+            "scripts/rea-durable-queries.mjs": "7f75a03ace604029cbdb8cc925bb45504394f1873d689630abe81e542716b3e8",
+            "scripts/repair-rea-durable-queries.py": "c14cc28baf16e60dc8eb4c4557bc4469ec153455d31d3d378561e93847f620a4",
+            "scripts/ghidra/ReaDurableQueryPrepare.java": "4de425e7c375a1d59b964bfbf565675ef7770f13778649bd48df0aab6824c648",
+            "scripts/ghidra/ReaDurableQueryBridge.fragment.java": "cb1b2fc0c6350449526d5e91dceb75dd98676e7458856d7df9e656542a4abb86",
+            "node_modules/rea-agents/bridge/ghidra/ReaGhidraBridge.java": "9655cefb73c8f83915f6336ea6eee0cf5497b4236e57d8b42c2e76f3117b6681",
+            "node_modules/rea-agents/dist/ghidra/GhidraLauncher.js": "ce306f4e7d6a787ac2da78d9d53f013994dbe7dfe4b7eadc53d3707974f7efc7",
+            "node_modules/rea-agents/dist/ghidra/GhidraAnalysisProfile.js": "a0619504f5cfa381f0eb489881c42079346ecfde48c685aede88fe2f53d57437",
+            "node_modules/rea-agents/dist/ghidra/GhidraSessionValues.js": "d83a81a6aa933c8d3886ccf737008de64f48c7988a307a5142d02bb2e35be4ec",
+            "node_modules/rea-agents/dist/ghidra/GhidraJavaLaunch.js": "9b267c37f14faeb1cb3f01afe81fd29e445684cfef86af2150e3f56e2115ff95",
+            "node_modules/rea-agents/dist/ghidra/GhidraProviderClient.js": "ee2eb4a2fb506b6541e365c87f708b5ac5d65dfb97d645bd5b3929b3799427b9",
+            "node_modules/rea-agents/dist/cli-runtime/binary-BVOr2mgE.js": "06e032e5f5f3870bb96d2b9d60c56954f0d19c6237653894403240ae5a24ff5d",
+            "node_modules/rea-agents/dist/mcp/main-kBXHZ8S5.js": "ed23c9961768f19b78ac67aec6f384c311f55f36049101a85f2bc871ec540acc"
+          },
+          "loader_libraries": "disabled-including-ordinal-and-project-lookup",
+          "analysis": "same-profile-autoanalysis-until-saved-ready",
+          "search_checkpoint": "matching-batches-after-inventory-snapshot-v1",
+          "decompile_checkpoint": "completed-result-only-v1"
+        },
+        "annotation_policy": "atomic-function-entry-metadata-v1",
+        "load_image_observations": "source-mappings-entry-context-v2",
+        "function_body_evidence": "complete-inclusive-ranges-v1",
+        "function_references": "complete-body-and-entry-reference-manager-v2",
+        "call_relationship_coverage": "function-body-call-coverage-v5",
+        "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+        "string_inventory_evidence": "defined-data-coverage-v1",
+        "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+        "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+        "instruction_flow_evidence": "decoded-return-pcode-v1",
+        "instruction_references": "exact-address-incoming-v1",
+        "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+        "no_return_repair": "returning-imports-decoded-return-v2",
+        "process_launch": "inspected-jvm-launch-support-v1",
+        "load_image_evidence": "independent-raw-mapping-context-v4",
+        "jump_table_evidence": "typed-case-default-blocks-v1",
+        "decompiler_jump_loads": true,
+        "loader": "BinaryLoader",
+        "language_id": "x86:LE:64:default",
+        "compiler_spec_id": "gcc",
+        "language_selection": "caller-supplied-v1",
+        "entry_point": "0x14596c1c0",
+        "entry_seed": "external-entry-and-function-before-analysis-v1",
+        "analyzer_preset": "ghidra-default"
+      },
+      "digest": "baf2f5202cd5ac722d3cc7e7f05e367ff9cb3765a433b3d582f4b4b70bdbf645"
+    },
+    "limitation": "Raw slice analysis does not resolve data-dependent computed switches; original PE branch-table bytes and admitted instructions supply those branches."
+  }
+}

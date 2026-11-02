@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.115.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+    "size_bytes": 142111232
+  },
+  "gap_ids": [
+    42
+  ],
+  "lead": "HAZARD01",
+  "target_process_executed": false,
+  "native_ranges": {
+    "source-gate": {
+      "va": "0x145923d40",
+      "end_exclusive": "0x145923e05",
+      "file_offset": "0x5923140",
+      "byte_count": 197,
+      "sha256": "2177a8cbf0701c841978b6e811b3bff07b68d99d360abd5838fe1d5ec27204d5"
+    },
+    "cancel-admission": {
+      "va": "0x145924020",
+      "end_exclusive": "0x145924034",
+      "file_offset": "0x5923420",
+      "byte_count": 20,
+      "sha256": "fd5fe37c4eacd997a955996b72594068dd0bf61e2be5f6ba364d3b191c63dab7"
+    },
+    "removal": {
+      "va": "0x145927064",
+      "end_exclusive": "0x145927198",
+      "file_offset": "0x5926464",
+      "byte_count": 308,
+      "sha256": "592eaaed16aef5cf3555286d0a13d39b4ca47304395295e57972d1e2a269e20e"
+    },
+    "death-write": {
+      "va": "0x145950005",
+      "end_exclusive": "0x145950018",
+      "file_offset": "0x594f405",
+      "byte_count": 19,
+      "sha256": "6e9e1de0cf22bc341d2ae466a259e19ea3f6ab8cf096308ca962bac49ce8f352"
+    },
+    "delayed-visuals": {
+      "va": "0x14592b940",
+      "end_exclusive": "0x14592babe",
+      "file_offset": "0x592ad40",
+      "byte_count": 382,
+      "sha256": "386ba6463b0a69e368fbfaa5bf003a025bdc315ff02bca8ea5e854a2e5f8e507"
+    }
+  },
+  "source_gate": {
+    "source_profiles": 375,
+    "index_boundary_profiles": 4,
+    "results_sha256": "d01cc5d79ca83d9b5ef4402181db572ce5aeeb4c76ddf60f6d5543f3ee129db6",
+    "hazard_and_actor_bytes_preserved": true,
+    "only_dead_enum_one_rejected": true,
+    "duplicate_guid_scanning_checked": true
+  },
+  "cancellation_append_profiles": 12,
+  "removal": {
+    "profiles": 252,
+    "object_removal_packet_profiles": 168,
+    "published_marker_branch_profiles": 63,
+    "final_hzend_serializer_executed": false,
+    "stable_compaction_checked": true,
+    "published_requires_exact_byte_one": true
+  },
+  "death_write_profiles": 16,
+  "delayed_visuals": {
+    "profiles": 216,
+    "results_sha256": "241a7d6b0af553c9ff6307309b07d86a4e970dd1866ed114ee271a6e34920f94",
+    "absent_dead_live_sources_share_deadline_behavior": true,
+    "nan_clock_and_deadline_retained": true,
+    "stable_queue_compaction_and_publication_checked": true,
+    "serializer_executed": false
+  },
+  "source_review": {
+    "common_gate_before_row_mutation": true,
+    "existing_live_source_port_reused": true,
+    "aftershock_object_cleanup_and_published_end_traced": true,
+    "independent_delayed_visual_queue_preserved": true,
+    "source_executed": false
+  },
+  "visited_instructions": 186,
+  "assembly": "selected-native.asm",
+  "rea_provenance": "rea-provenance.json",
+  "explicit_seams": {
+    "0x145d14607": "Reserved synthetic vector's overlapping move with exact argument checks",
+    "0x140002200": "Allocator preparation; no native OS/library body executes",
+    "0x1400021c0": "Return one reserved 32-byte synthetic packet allocation; size/alignment checked",
+    "0x1459b8330": "Capture source/spell/position and return a reserved opaque 32-byte descriptor; actual spell serializer does not execute"
+  },
+  "limits": [
+    "Only the common hazard source-admission and selected removal fragments execute with synthetic memory.",
+    "The live-source continuation stops before movement, terrain or kind-specific behavior; source enum state is checked as the original dword, rejecting only 1.",
+    "Removal executes native compaction argument setup, count update and optional opcode 0xaa object-removal descriptor construction, with memory movement/allocation seams.",
+    "The complete delayed-visual consumer executes with reserved source/output vectors; memmove and spell-packet construction are explicit seams. Current dead/missing source cases retain its independent lifetime.",
+    "The published-byte branch stops before hzend formatting; no packet serializer, actual client, terrain, original/rebuilt game or Rust implementation executes.",
+    "Static source guards establish placement/connections only. Compilation, runtime timing, presentation and original/rebuilt parity remain unverified."
+  ]
+}

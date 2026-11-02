@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-16",
+  "reference_sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+  "scope": "Disposable isolated profile; fabricated character data, no installed save read.",
+  "fixtures": [
+    {
+      "label": "native_empty",
+      "source_path": "runtime/reference-state/Saves/AzerothSurvivors 2026-10-16 06-45-02.sav",
+      "sha256": "f52fed64dd6a76c04b0408840a2a21c50cca0ce9542a71a8e6d0e00635595c56",
+      "sealed": "RSE1:gCkioigIO/3wY9ptKAlT1UalS2TqWAZ0P/M3xWTbtzxdjEfL",
+      "plaintext": "",
+      "method": "Native UI export"
+    },
+    {
+      "label": "native_normalized",
+      "source_path": "runtime/reference-state/Saves/AzerothSurvivors 2026-10-16 06-47-26.sav",
+      "sha256": "9fb2e1866c16d4cedf57d5206ab7e94821653a14592ac4d192bf4182f11d0c85",
+      "sealed": "RSE1:als+kC0LBYrhnX+CsmNRKX5lXl54kr76W6m4DrBPxYQUe893N9jz8iQz98kjfo3jI37KtdMHMCvr+i0XLuHhTqC6ANQ3aJ9NB1mKwapYkPCEZoItxrsP5xNMzdCO2CWB3i9XQWT7kGwJPhQ6LpaBuKO9y8p0pG43WXHFkIEpEbzsMLy6XtH7qcIo0hUH+omuWcxqU7DcsKriEBHoUA1MvSg2cxY6xjHpTGpzvKd+8vAh6pAspcSj",
+      "plaintext": "pick|8|7|1|elwynn|Elwynn|2,3,4,5,6|100,100,100,100\nunlock|8|3\nach|class:mage,zone:duskwood,zone:elwynn\nbeat|8|elwynn,duskwood\nhero|8|7|1|2,3,4,5,6\n",
+      "method": "Native UI export"
+    },
+    {
+      "label": "rust_imported",
+      "source_path": "runtime/reference-state/Saves/Reconstruction-rust-test.sav",
+      "sha256": "dfb8cf4b949a4c8eae6b7f293ad3a8c400661ce961a1a82fd21ed397f900756d",
+      "sealed": "RSE1:KioqKioqKioqKioqKioqKo08U05pkbqPL6obBaI5XE9jnLX6wrpfp7ffld1+y9aMZteFn/Vyqvqend+NLP/2mWbrcwfHv3PEfIl8dEdCHTIMfJlFB528keWMYtji9/Y65sVJv92q37zFPMaJGUySRju3LCRlPQMzuDbgOsdpp/nSZYA=",
+      "plaintext": "hero|8|7|1|2,3,4,5,6\nunlock|8|3\nseen|12,40\npick|1|2|0|elwynn|Changed|0,0,0,0,0|500,100,270,145\n",
+      "method": "Rust save.rs; native UI import accepted and picker values visually verified"
+    }
+  ]
+}

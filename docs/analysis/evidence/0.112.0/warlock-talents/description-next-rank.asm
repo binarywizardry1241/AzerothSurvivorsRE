@@ -1,0 +1,5 @@
+1401685bc 440fb68566020000 movzx r8d, byte ptr [rbp + 0x266]
+1401685c4 41fec0 inc r8b
+1401685c7 488d8d00020000 lea rcx, [rbp + 0x200]
+1401685ce 4889da mov rdx, rbx
+1401685d1 e81a588305 call 0x14599ddf0

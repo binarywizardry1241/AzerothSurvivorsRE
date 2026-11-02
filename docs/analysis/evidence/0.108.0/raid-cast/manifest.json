@@ -1,0 +1,99 @@
+{
+  "target_version": "0.108.0",
+  "target_sha256": "dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b",
+  "ranges": [
+    {
+      "role": "hold",
+      "va": "0x145950630",
+      "byte_count": 578,
+      "file_offset": "0x594fa30",
+      "sha256": "a23ce73be3a4d2aec2859f25b9f4d92a333376280d6200c309070a5a881b4a37",
+      "assembly": "hold.asm",
+      "assembly_sha256": "8bc7bad5963fbe499dc05f5c5a8dfcabb36499d84e7fe7220a95a6ab2b21f64e"
+    },
+    {
+      "role": "actor-hold-gate",
+      "va": "0x1459721a4",
+      "byte_count": 18,
+      "file_offset": "0x59715a4",
+      "sha256": "5b752119d9f790d602ff28f2f47a966ca5fc621866b21f899b3f580b9ba377b6",
+      "assembly": "actor-hold-gate.asm",
+      "assembly_sha256": "c3bebf28c5af8b810ed59489fd7cde643179da13877bd9a9c8b5d86e6ee2e831"
+    },
+    {
+      "role": "cast-block",
+      "va": "0x145950f4e",
+      "byte_count": 154,
+      "file_offset": "0x595034e",
+      "sha256": "4a6e01b5262bf633c824219260f7b3caddf1c7dbfd0446115aa02ad3ec940a6c",
+      "assembly": "cast-block.asm",
+      "assembly_sha256": "c603df0f5a3cc48fbcee4f4d36741774b5c1c9f653366158928a169db22bda59"
+    },
+    {
+      "role": "tag6-start",
+      "va": "0x145952759",
+      "byte_count": 198,
+      "file_offset": "0x5951b59",
+      "sha256": "969f54508f33b13dd36a0618cece9819e552c9495e993563ce09bac571ac8fe6",
+      "assembly": "tag6-start.asm",
+      "assembly_sha256": "86a28c9802cb73b882e74765d9e51221be4a7c0d68af988e82688fdaba56d1bd"
+    },
+    {
+      "role": "tag6-follow",
+      "va": "0x1459551fe",
+      "byte_count": 21,
+      "file_offset": "0x59545fe",
+      "sha256": "05dafa54c78669737dea9772b3ca56692df7091b8db7aa2bd1fd2e4174381d73",
+      "assembly": "tag6-follow.asm",
+      "assembly_sha256": "4029bb1a5a243f6dabebf5f2b6d971b19e5e9cc110c52676dce922955ab5ad47"
+    },
+    {
+      "role": "duration",
+      "va": "0x1458850a0",
+      "byte_count": 500,
+      "file_offset": "0x58844a0",
+      "sha256": "8f543c50cbd41ffbe05dca132553bd664b66e94b073fa7b9a7be918312665678",
+      "assembly": "duration.asm",
+      "assembly_sha256": "961ff030fd77c6ad26a4d2559d31df6990cfb1e56e085f9012fe920f78f062ce"
+    },
+    {
+      "role": "stop-packet",
+      "va": "0x1458bfdd0",
+      "byte_count": 329,
+      "file_offset": "0x58bf1d0",
+      "sha256": "086ed26bb5cabba15bdf87256303bc1ca0522da6c63973ef7ccf7ab1d2e588cf",
+      "assembly": "stop-packet.asm",
+      "assembly_sha256": "abe82cc03792abee45793735481db586af4110834dbea4cfeb68d1bbb6b7e7a3"
+    }
+  ],
+  "constants": [
+    {
+      "va": "0x146be14d0",
+      "byte_count": 128,
+      "file_offset": "0x6be06d0",
+      "sha256": "fb06afe1f77ba1b99f48e1e1f99b9e1a36ec53a533dce9fe594683b3fd612754"
+    },
+    {
+      "va": "0x145dd0798",
+      "byte_count": 4,
+      "file_offset": "0x5dcf998",
+      "sha256": "ffcd594324296033e35bb6b3ea4a3d6e9b3b4db169f4e1968861c5746a9bf958"
+    },
+    {
+      "va": "0x145dcd0ac",
+      "byte_count": 4,
+      "file_offset": "0x5dcc2ac",
+      "sha256": "e0fb2d87992a9fc79e7729163ad2aea5efbf14806711292c8c46e873bac1a253"
+    },
+    {
+      "va": "0x1471ef650",
+      "byte_count": 16,
+      "file_offset": "0x71ee850",
+      "sha256": "de16bf6441dc3f9818d0f25c83e46fa37f67be06a7f6dcacf09ff1b3963f2157"
+    }
+  ],
+  "limits": [
+    "No-call instruction spans use synthetic actor memory; native Rust code, terrain providers and packet constructors are not executed.",
+    "Tag6 starts creature cast presentation; complete boss cast-bar UI and original/rebuilt parity remain unverified."
+  ]
+}

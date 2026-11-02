@@ -1,0 +1,6 @@
+1401c319a: 488d4da0 lea rcx, [rbp - 0x60]
+1401c319e: b203 mov dl, 3
+1401c31a0: e8bb3affff call 0x1401b6c60
+1401c31a5: 90 nop
+1401c31a6: 84c0 test al, al
+1401c31a8: 0f84a0000000 je 0x1401c324e

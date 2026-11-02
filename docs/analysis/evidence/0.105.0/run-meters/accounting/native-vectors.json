@@ -1,0 +1,1248 @@
+{
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "application_executed": false,
+  "engine": "Unicorn 2.1.4",
+  "cases": {
+    "hit": [
+      {
+        "name": "ordinary",
+        "health_bits": 1117782016,
+        "power_bits": 1094975488,
+        "amount_bits": 1094975488,
+        "effective_bits": 4623085754984169472,
+        "remaining_bits": 1116176384,
+        "total_bits": 4628961545123004416
+      },
+      {
+        "name": "overkill",
+        "health_bits": 1080033280,
+        "power_bits": 1117782016,
+        "amount_bits": 1117782016,
+        "effective_bits": 4615063718147915776,
+        "remaining_bits": 3264806912,
+        "total_bits": 4626498639076786176
+      },
+      {
+        "name": "empty",
+        "health_bits": 0,
+        "power_bits": 1084227584,
+        "amount_bits": 1084227584,
+        "effective_bits": 0,
+        "remaining_bits": 3231711232,
+        "total_bits": 4625513476658298880
+      },
+      {
+        "name": "negative_hp",
+        "health_bits": 3225419776,
+        "power_bits": 1084227584,
+        "amount_bits": 1084227584,
+        "effective_bits": 0,
+        "remaining_bits": 3238002688,
+        "total_bits": 4625513476658298880
+      },
+      {
+        "name": "minimum",
+        "health_bits": 1090519040,
+        "power_bits": 3231711232,
+        "amount_bits": 1065353216,
+        "effective_bits": 4607182418800017408,
+        "remaining_bits": 1088421888,
+        "total_bits": 4625794951635009536
+      },
+      {
+        "name": "fraction",
+        "health_bits": 1048576000,
+        "power_bits": 1065353216,
+        "amount_bits": 1065353216,
+        "effective_bits": 4598175219545276416,
+        "remaining_bits": 3208642560,
+        "total_bits": 4625583845402476544
+      },
+      {
+        "name": "nan_power",
+        "health_bits": 1090519040,
+        "power_bits": 2143289344,
+        "amount_bits": 1065353216,
+        "effective_bits": 4607182418800017408,
+        "remaining_bits": 1088421888,
+        "total_bits": 4625794951635009536
+      }
+    ],
+    "source": [
+      {
+        "name": "pet_fallback",
+        "kind": 2,
+        "named": false,
+        "icon_present": false,
+        "proc": false,
+        "source": "Pets",
+        "icon": "Ability_Hunter_BeastCall",
+        "talent": false
+      },
+      {
+        "name": "pet_no_icon",
+        "kind": 2,
+        "named": true,
+        "icon_present": false,
+        "proc": false,
+        "source": "Pets",
+        "icon": "Ability_Hunter_BeastCall",
+        "talent": false
+      },
+      {
+        "name": "named_demon",
+        "kind": 2,
+        "named": true,
+        "icon_present": true,
+        "proc": false,
+        "source": "Imp",
+        "icon": "DemonIcon",
+        "talent": false
+      },
+      {
+        "name": "melee",
+        "kind": 0,
+        "named": false,
+        "icon_present": false,
+        "proc": false,
+        "source": "Melee",
+        "icon": "INV_Sword_04",
+        "talent": false
+      },
+      {
+        "name": "talent_fallback",
+        "kind": 3,
+        "named": false,
+        "icon_present": false,
+        "proc": false,
+        "source": "Talents",
+        "icon": "Ability_Marksmanship",
+        "talent": true
+      },
+      {
+        "name": "proc_over_spell",
+        "kind": 0,
+        "named": false,
+        "icon_present": false,
+        "proc": true,
+        "source": "Nightfall",
+        "icon": "ProcIcon",
+        "talent": true
+      },
+      {
+        "name": "reactive_proc",
+        "kind": 3,
+        "named": false,
+        "icon_present": false,
+        "proc": true,
+        "source": "Nightfall",
+        "icon": "ProcIcon",
+        "talent": true
+      },
+      {
+        "name": "periodic_proc",
+        "kind": 1,
+        "named": false,
+        "icon_present": false,
+        "proc": true,
+        "source": "Nightfall",
+        "icon": "ProcIcon",
+        "talent": true
+      }
+    ],
+    "breakdown": [
+      {
+        "name": "not_pet",
+        "kind": 0,
+        "suppressed": false,
+        "primary": "Bite",
+        "secondary": "Echo",
+        "bonus_bits": 1045220557,
+        "amount_bits": 4623648704937590784,
+        "output": []
+      },
+      {
+        "name": "suppressed",
+        "kind": 2,
+        "suppressed": true,
+        "primary": "Bite",
+        "secondary": "Echo",
+        "bonus_bits": 1045220557,
+        "amount_bits": 4623648704937590784,
+        "output": []
+      },
+      {
+        "name": "single",
+        "kind": 2,
+        "suppressed": false,
+        "primary": "Bite",
+        "secondary": null,
+        "bonus_bits": 1045220557,
+        "amount_bits": 4623648704937590784,
+        "output": [
+          {
+            "name": "Bite",
+            "total_bits": 4623648704937590784
+          }
+        ]
+      },
+      {
+        "name": "zero_bonus",
+        "kind": 2,
+        "suppressed": false,
+        "primary": "Bite",
+        "secondary": "Echo",
+        "bonus_bits": 0,
+        "amount_bits": 4623648704937590784,
+        "output": [
+          {
+            "name": "Bite",
+            "total_bits": 4623648704937590784
+          }
+        ]
+      },
+      {
+        "name": "negative_bonus",
+        "kind": 2,
+        "suppressed": false,
+        "primary": "Bite",
+        "secondary": "Echo",
+        "bonus_bits": 3192704205,
+        "amount_bits": 4623648704937590784,
+        "output": [
+          {
+            "name": "Bite",
+            "total_bits": 4623648704937590784
+          }
+        ]
+      },
+      {
+        "name": "nan_bonus",
+        "kind": 2,
+        "suppressed": false,
+        "primary": "Bite",
+        "secondary": "Echo",
+        "bonus_bits": 2143289344,
+        "amount_bits": 4623648704937590784,
+        "output": [
+          {
+            "name": "Bite",
+            "total_bits": 4623648704937590784
+          }
+        ]
+      },
+      {
+        "name": "split",
+        "kind": 2,
+        "suppressed": false,
+        "primary": "Bite",
+        "secondary": "Echo",
+        "bonus_bits": 1045220557,
+        "amount_bits": 4623648704937590784,
+        "output": [
+          {
+            "name": "Bite",
+            "total_bits": 4622405523775014685
+          },
+          {
+            "name": "Echo",
+            "total_bits": 4612155143450321806
+          }
+        ]
+      },
+      {
+        "name": "large_split",
+        "kind": 2,
+        "suppressed": false,
+        "primary": "Shadow Bolt",
+        "secondary": "Doom Bringer",
+        "bonus_bits": 1082130432,
+        "amount_bits": 4625506439783881114,
+        "output": [
+          {
+            "name": "Shadow Bolt",
+            "total_bits": 4614883574162820955
+          },
+          {
+            "name": "Doom Bringer",
+            "total_bits": 4623890773417561949
+          }
+        ]
+      },
+      {
+        "name": "empty_primary",
+        "kind": 2,
+        "suppressed": false,
+        "primary": "",
+        "secondary": "Echo",
+        "bonus_bits": 1045220557,
+        "amount_bits": 4623648704937590784,
+        "output": [
+          {
+            "name": "",
+            "total_bits": 4622405523775014685
+          },
+          {
+            "name": "Echo",
+            "total_bits": 4612155143450321806
+          }
+        ]
+      },
+      {
+        "name": "empty_secondary",
+        "kind": 2,
+        "suppressed": false,
+        "primary": "Bite",
+        "secondary": "",
+        "bonus_bits": 1045220557,
+        "amount_bits": 4623648704937590784,
+        "output": [
+          {
+            "name": "Bite",
+            "total_bits": 4622405523775014685
+          },
+          {
+            "name": "",
+            "total_bits": 4612155143450321806
+          }
+        ]
+      }
+    ],
+    "record": [
+      {
+        "name": "Bolt",
+        "icon": "First",
+        "talent": false,
+        "amount_bits": 4620693217682128896,
+        "components": [
+          {
+            "name": "Direct",
+            "total_bits": 4620693217682128896
+          }
+        ],
+        "rows": [
+          {
+            "name": "Bolt",
+            "icon": "First",
+            "talent": false,
+            "total_bits": 4620693217682128896,
+            "breakdown": [
+              {
+                "name": "Direct",
+                "total_bits": 4620693217682128896
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Bolt",
+        "icon": "Different",
+        "talent": false,
+        "amount_bits": 4611686018427387904,
+        "components": [
+          {
+            "name": "Direct",
+            "total_bits": 4607182418800017408
+          },
+          {
+            "name": "Echo",
+            "total_bits": 4607182418800017408
+          }
+        ],
+        "rows": [
+          {
+            "name": "Bolt",
+            "icon": "First",
+            "talent": false,
+            "total_bits": 4621819117588971520,
+            "breakdown": [
+              {
+                "name": "Direct",
+                "total_bits": 4621256167635550208
+              },
+              {
+                "name": "Echo",
+                "total_bits": 4607182418800017408
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Bolt",
+        "icon": "Talent",
+        "talent": true,
+        "amount_bits": 4616189618054758400,
+        "components": [
+          {
+            "name": "Echo",
+            "total_bits": 4616189618054758400
+          }
+        ],
+        "rows": [
+          {
+            "name": "Bolt",
+            "icon": "First",
+            "talent": false,
+            "total_bits": 4621819117588971520,
+            "breakdown": [
+              {
+                "name": "Direct",
+                "total_bits": 4621256167635550208
+              },
+              {
+                "name": "Echo",
+                "total_bits": 4607182418800017408
+              }
+            ]
+          },
+          {
+            "name": "Bolt",
+            "icon": "Talent",
+            "talent": true,
+            "total_bits": 4616189618054758400,
+            "breakdown": [
+              {
+                "name": "Echo",
+                "total_bits": 4616189618054758400
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Zero",
+        "icon": "ZeroIcon",
+        "talent": false,
+        "amount_bits": 0,
+        "components": [],
+        "rows": [
+          {
+            "name": "Bolt",
+            "icon": "First",
+            "talent": false,
+            "total_bits": 4621819117588971520,
+            "breakdown": [
+              {
+                "name": "Direct",
+                "total_bits": 4621256167635550208
+              },
+              {
+                "name": "Echo",
+                "total_bits": 4607182418800017408
+              }
+            ]
+          },
+          {
+            "name": "Bolt",
+            "icon": "Talent",
+            "talent": true,
+            "total_bits": 4616189618054758400,
+            "breakdown": [
+              {
+                "name": "Echo",
+                "total_bits": 4616189618054758400
+              }
+            ]
+          },
+          {
+            "name": "Zero",
+            "icon": "ZeroIcon",
+            "talent": false,
+            "total_bits": 0,
+            "breakdown": []
+          }
+        ]
+      },
+      {
+        "name": "Bolt",
+        "icon": "Ignored",
+        "talent": false,
+        "amount_bits": 4593671619917905920,
+        "components": [],
+        "rows": [
+          {
+            "name": "Bolt",
+            "icon": "First",
+            "talent": false,
+            "total_bits": 4621889486333149184,
+            "breakdown": [
+              {
+                "name": "Direct",
+                "total_bits": 4621256167635550208
+              },
+              {
+                "name": "Echo",
+                "total_bits": 4607182418800017408
+              }
+            ]
+          },
+          {
+            "name": "Bolt",
+            "icon": "Talent",
+            "talent": true,
+            "total_bits": 4616189618054758400,
+            "breakdown": [
+              {
+                "name": "Echo",
+                "total_bits": 4616189618054758400
+              }
+            ]
+          },
+          {
+            "name": "Zero",
+            "icon": "ZeroIcon",
+            "talent": false,
+            "total_bits": 0,
+            "breakdown": []
+          }
+        ]
+      },
+      {
+        "name": "Empty label",
+        "icon": "Icon",
+        "talent": false,
+        "amount_bits": 4607182418800017408,
+        "components": [
+          {
+            "name": "",
+            "total_bits": 4607182418800017408
+          }
+        ],
+        "rows": [
+          {
+            "name": "Bolt",
+            "icon": "First",
+            "talent": false,
+            "total_bits": 4621889486333149184,
+            "breakdown": [
+              {
+                "name": "Direct",
+                "total_bits": 4621256167635550208
+              },
+              {
+                "name": "Echo",
+                "total_bits": 4607182418800017408
+              }
+            ]
+          },
+          {
+            "name": "Bolt",
+            "icon": "Talent",
+            "talent": true,
+            "total_bits": 4616189618054758400,
+            "breakdown": [
+              {
+                "name": "Echo",
+                "total_bits": 4616189618054758400
+              }
+            ]
+          },
+          {
+            "name": "Zero",
+            "icon": "ZeroIcon",
+            "talent": false,
+            "total_bits": 0,
+            "breakdown": []
+          },
+          {
+            "name": "Empty label",
+            "icon": "Icon",
+            "talent": false,
+            "total_bits": 4607182418800017408,
+            "breakdown": [
+              {
+                "name": "",
+                "total_bits": 4607182418800017408
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "healing": [
+      {
+        "amount_bits": 3212836864,
+        "count": 0,
+        "total_bits": null
+      },
+      {
+        "amount_bits": 0,
+        "count": 0,
+        "total_bits": null
+      },
+      {
+        "amount_bits": 1048576000,
+        "count": 1,
+        "total_bits": 4598175219545276416
+      },
+      {
+        "amount_bits": 1099497472,
+        "count": 1,
+        "total_bits": 4625513476658298880
+      },
+      {
+        "amount_bits": 2143289344,
+        "count": 1,
+        "total_bits": 9221120237041090560
+      }
+    ],
+    "soul_link": [
+      {
+        "name": "partial",
+        "incoming_bits": 1092616192,
+        "shield_bits": 1082130432,
+        "remaining_bits": 0,
+        "count": 1,
+        "source": "Soul Link",
+        "icon": "Spell_Shadow_GatherShadows",
+        "total_bits": 4616189618054758400
+      },
+      {
+        "name": "full",
+        "incoming_bits": 1092616192,
+        "shield_bits": 1097859072,
+        "remaining_bits": 1084227584,
+        "count": 1,
+        "source": "Soul Link",
+        "icon": "Spell_Shadow_GatherShadows",
+        "total_bits": 4621819117588971520
+      },
+      {
+        "name": "empty",
+        "incoming_bits": 1092616192,
+        "shield_bits": 0,
+        "remaining_bits": 0,
+        "count": 0,
+        "source": null,
+        "icon": null,
+        "total_bits": null
+      },
+      {
+        "name": "zero_hit",
+        "incoming_bits": 0,
+        "shield_bits": 1090519040,
+        "remaining_bits": 1090519040,
+        "count": 0,
+        "source": null,
+        "icon": null,
+        "total_bits": null
+      },
+      {
+        "name": "negative",
+        "incoming_bits": 3212836864,
+        "shield_bits": 1090519040,
+        "remaining_bits": 1090519040,
+        "count": 0,
+        "source": null,
+        "icon": null,
+        "total_bits": null
+      },
+      {
+        "name": "nan",
+        "incoming_bits": 2143289344,
+        "shield_bits": 1090519040,
+        "remaining_bits": 0,
+        "count": 1,
+        "source": "Soul Link",
+        "icon": "Spell_Shadow_GatherShadows",
+        "total_bits": 4620693217682128896
+      }
+    ],
+    "absorb_order": [
+      {
+        "name": "unreserved",
+        "incoming_bits": 1090519040,
+        "total_bits": 1101004800,
+        "reserved_spell": 0,
+        "reserved_bits": 0,
+        "link_bits": 1092616192,
+        "absorbed_bits": 1090519040,
+        "credit_bits": 1090519040,
+        "remaining_total_bits": 1094713344,
+        "remaining_link_bits": 1073741824,
+        "remaining_reserved_spell": 0,
+        "remaining_reserved_bits": 3238002688
+      },
+      {
+        "name": "reserved_only",
+        "incoming_bits": 1090519040,
+        "total_bits": 1101004800,
+        "reserved_spell": 17,
+        "reserved_bits": 1094713344,
+        "link_bits": 1090519040,
+        "absorbed_bits": 1090519040,
+        "credit_bits": 0,
+        "remaining_total_bits": 1094713344,
+        "remaining_link_bits": 1090519040,
+        "remaining_reserved_spell": 17,
+        "remaining_reserved_bits": 1082130432
+      },
+      {
+        "name": "reserved_then_link",
+        "incoming_bits": 1097859072,
+        "total_bits": 1101004800,
+        "reserved_spell": 17,
+        "reserved_bits": 1094713344,
+        "link_bits": 1090519040,
+        "absorbed_bits": 1097859072,
+        "credit_bits": 1077936128,
+        "remaining_total_bits": 1084227584,
+        "remaining_link_bits": 1084227584,
+        "remaining_reserved_spell": 0,
+        "remaining_reserved_bits": 0
+      },
+      {
+        "name": "depleted",
+        "incoming_bits": 1106247680,
+        "total_bits": 1101004800,
+        "reserved_spell": 17,
+        "reserved_bits": 1094713344,
+        "link_bits": 1090519040,
+        "absorbed_bits": 1101004800,
+        "credit_bits": 1090519040,
+        "remaining_total_bits": 0,
+        "remaining_link_bits": 0,
+        "remaining_reserved_spell": 0,
+        "remaining_reserved_bits": 0
+      },
+      {
+        "name": "partial_link",
+        "incoming_bits": 1088421888,
+        "total_bits": 1101004800,
+        "reserved_spell": 17,
+        "reserved_bits": 1084227584,
+        "link_bits": 1077936128,
+        "absorbed_bits": 1088421888,
+        "credit_bits": 1073741824,
+        "remaining_total_bits": 1095761920,
+        "remaining_link_bits": 1065353216,
+        "remaining_reserved_spell": 0,
+        "remaining_reserved_bits": 0
+      },
+      {
+        "name": "other_absorb",
+        "incoming_bits": 1099956224,
+        "total_bits": 1101004800,
+        "reserved_spell": 0,
+        "reserved_bits": 0,
+        "link_bits": 1077936128,
+        "absorbed_bits": 1099956224,
+        "credit_bits": 1077936128,
+        "remaining_total_bits": 1073741824,
+        "remaining_link_bits": 0,
+        "remaining_reserved_spell": 0,
+        "remaining_reserved_bits": 3247439872
+      },
+      {
+        "name": "subset_clamp",
+        "incoming_bits": 1084227584,
+        "total_bits": 1092616192,
+        "reserved_spell": 17,
+        "reserved_bits": 1092616192,
+        "link_bits": 1090519040,
+        "absorbed_bits": 1084227584,
+        "credit_bits": 0,
+        "remaining_total_bits": 1084227584,
+        "remaining_link_bits": 1084227584,
+        "remaining_reserved_spell": 17,
+        "remaining_reserved_bits": 1084227584
+      },
+      {
+        "name": "zero",
+        "incoming_bits": 0,
+        "total_bits": 1101004800,
+        "reserved_spell": 0,
+        "reserved_bits": 0,
+        "link_bits": 1090519040,
+        "absorbed_bits": 0,
+        "credit_bits": 0,
+        "remaining_total_bits": 1101004800,
+        "remaining_link_bits": 1090519040,
+        "remaining_reserved_spell": 0,
+        "remaining_reserved_bits": 0
+      }
+    ],
+    "boss_timing": [
+      {
+        "marker": 0,
+        "start_bits": 1092616192,
+        "stop_bits": 1099956224,
+        "now_bits": 1112014848,
+        "seconds_bits": 1109393408,
+        "live": true
+      },
+      {
+        "marker": 1,
+        "start_bits": 1092616192,
+        "stop_bits": 1099956224,
+        "now_bits": 1112014848,
+        "seconds_bits": 1090519040,
+        "live": false
+      },
+      {
+        "marker": 3,
+        "start_bits": 1092616192,
+        "stop_bits": 1099956224,
+        "now_bits": 1112014848,
+        "seconds_bits": 1090519040,
+        "live": true
+      }
+    ],
+    "boss_stop": [
+      {
+        "actors": [],
+        "marker": 0,
+        "now_bits": 1120403456,
+        "prior_stop_bits": 1099431936,
+        "result_marker": 1,
+        "stop_bits": 1120403456
+      },
+      {
+        "actors": [],
+        "marker": 1,
+        "now_bits": 1120403456,
+        "prior_stop_bits": 1099431936,
+        "result_marker": 1,
+        "stop_bits": 1099431936
+      },
+      {
+        "actors": [],
+        "marker": 2,
+        "now_bits": 1120403456,
+        "prior_stop_bits": 1099431936,
+        "result_marker": 2,
+        "stop_bits": 1099431936
+      },
+      {
+        "actors": [],
+        "marker": 3,
+        "now_bits": 1120403456,
+        "prior_stop_bits": 1099431936,
+        "result_marker": 3,
+        "stop_bits": 1099431936
+      },
+      {
+        "actors": [],
+        "marker": 4,
+        "now_bits": 1120403456,
+        "prior_stop_bits": 1099431936,
+        "result_marker": 1,
+        "stop_bits": 1120403456
+      },
+      {
+        "actors": [
+          {
+            "state": 0,
+            "primary": false
+          }
+        ],
+        "marker": 0,
+        "now_bits": 1120403456,
+        "prior_stop_bits": 1099431936,
+        "result_marker": 1,
+        "stop_bits": 1120403456
+      },
+      {
+        "actors": [
+          {
+            "state": 0,
+            "primary": false
+          }
+        ],
+        "marker": 1,
+        "now_bits": 1120403456,
+        "prior_stop_bits": 1099431936,
+        "result_marker": 1,
+        "stop_bits": 1099431936
+      },
+      {
+        "actors": [
+          {
+            "state": 0,
+            "primary": false
+          }
+        ],
+        "marker": 2,
+        "now_bits": 1120403456,
+        "prior_stop_bits": 1099431936,
+        "result_marker": 2,
+        "stop_bits": 1099431936
+      },
+      {
+        "actors": [
+          {
+            "state": 0,
+            "primary": false
+          }
+        ],
+        "marker": 3,
+        "now_bits": 1120403456,
+        "prior_stop_bits": 1099431936,
+        "result_marker": 3,
+        "stop_bits": 1099431936
+      },
+      {
+        "actors": [
+          {
+            "state": 0,
+            "primary": false
+          }
+        ],
+        "marker": 4,
+        "now_bits": 1120403456,
+        "prior_stop_bits": 1099431936,
+        "result_marker": 1,
+        "stop_bits": 1120403456
+      },
+      {
+        "actors": [
+          {
+            "state": 0,
+            "primary": true
+          }
+        ],
+        "marker": 0,
+        "now_bits": 1120403456,
+        "prior_stop_bits": 1099431936,
+        "result_marker": 0,
+        "stop_bits": 1099431936
+      },
+      {
+        "actors": [
+          {
+            "state": 0,
+            "primary": true
+          }
+        ],
+        "marker": 1,
+        "now_bits": 1120403456,
+        "prior_stop_bits": 1099431936,
+        "result_marker": 1,
+        "stop_bits": 1099431936
+      },
+      {
+        "actors": [
+          {
+            "state": 0,
+            "primary": true
+          }
+        ],
+        "marker": 2,
+        "now_bits": 1120403456,
+        "prior_stop_bits": 1099431936,
+        "result_marker": 2,
+        "stop_bits": 1099431936
+      },
+      {
+        "actors": [
+          {
+            "state": 0,
+            "primary": true
+          }
+        ],
+        "marker": 3,
+        "now_bits": 1120403456,
+        "prior_stop_bits": 1099431936,
+        "result_marker": 3,
+        "stop_bits": 1099431936
+      },
+      {
+        "actors": [
+          {
+            "state": 0,
+            "primary": true
+          }
+        ],
+        "marker": 4,
+        "now_bits": 1120403456,
+        "prior_stop_bits": 1099431936,
+        "result_marker": 4,
+        "stop_bits": 1099431936
+      },
+      {
+        "actors": [
+          {
+            "state": 1,
+            "primary": true
+          }
+        ],
+        "marker": 0,
+        "now_bits": 1120403456,
+        "prior_stop_bits": 1099431936,
+        "result_marker": 1,
+        "stop_bits": 1120403456
+      },
+      {
+        "actors": [
+          {
+            "state": 1,
+            "primary": true
+          }
+        ],
+        "marker": 1,
+        "now_bits": 1120403456,
+        "prior_stop_bits": 1099431936,
+        "result_marker": 1,
+        "stop_bits": 1099431936
+      },
+      {
+        "actors": [
+          {
+            "state": 1,
+            "primary": true
+          }
+        ],
+        "marker": 2,
+        "now_bits": 1120403456,
+        "prior_stop_bits": 1099431936,
+        "result_marker": 2,
+        "stop_bits": 1099431936
+      },
+      {
+        "actors": [
+          {
+            "state": 1,
+            "primary": true
+          }
+        ],
+        "marker": 3,
+        "now_bits": 1120403456,
+        "prior_stop_bits": 1099431936,
+        "result_marker": 3,
+        "stop_bits": 1099431936
+      },
+      {
+        "actors": [
+          {
+            "state": 1,
+            "primary": true
+          }
+        ],
+        "marker": 4,
+        "now_bits": 1120403456,
+        "prior_stop_bits": 1099431936,
+        "result_marker": 1,
+        "stop_bits": 1120403456
+      },
+      {
+        "actors": [
+          {
+            "state": 1,
+            "primary": true
+          },
+          {
+            "state": 0,
+            "primary": true
+          }
+        ],
+        "marker": 0,
+        "now_bits": 1120403456,
+        "prior_stop_bits": 1099431936,
+        "result_marker": 0,
+        "stop_bits": 1099431936
+      },
+      {
+        "actors": [
+          {
+            "state": 1,
+            "primary": true
+          },
+          {
+            "state": 0,
+            "primary": true
+          }
+        ],
+        "marker": 1,
+        "now_bits": 1120403456,
+        "prior_stop_bits": 1099431936,
+        "result_marker": 1,
+        "stop_bits": 1099431936
+      },
+      {
+        "actors": [
+          {
+            "state": 1,
+            "primary": true
+          },
+          {
+            "state": 0,
+            "primary": true
+          }
+        ],
+        "marker": 2,
+        "now_bits": 1120403456,
+        "prior_stop_bits": 1099431936,
+        "result_marker": 2,
+        "stop_bits": 1099431936
+      },
+      {
+        "actors": [
+          {
+            "state": 1,
+            "primary": true
+          },
+          {
+            "state": 0,
+            "primary": true
+          }
+        ],
+        "marker": 3,
+        "now_bits": 1120403456,
+        "prior_stop_bits": 1099431936,
+        "result_marker": 3,
+        "stop_bits": 1099431936
+      },
+      {
+        "actors": [
+          {
+            "state": 1,
+            "primary": true
+          },
+          {
+            "state": 0,
+            "primary": true
+          }
+        ],
+        "marker": 4,
+        "now_bits": 1120403456,
+        "prior_stop_bits": 1099431936,
+        "result_marker": 4,
+        "stop_bits": 1099431936
+      }
+    ],
+    "definitions": [
+      {
+        "name": "global_alias",
+        "spell_id": 25912,
+        "learned": [],
+        "racial": [],
+        "source": "Holy Shock",
+        "icon": "Spell_Holy_SearingLight",
+        "talent": false
+      },
+      {
+        "name": "learned_alias",
+        "spell_id": 25912,
+        "learned": [
+          "penance"
+        ],
+        "racial": [],
+        "source": "Penance",
+        "icon": "Spell_Holy_SearingLight",
+        "talent": false
+      },
+      {
+        "name": "learned_order",
+        "spell_id": 25912,
+        "learned": [
+          "penance",
+          "holy_shock"
+        ],
+        "racial": [],
+        "source": "Penance",
+        "icon": "Spell_Holy_SearingLight",
+        "talent": false
+      },
+      {
+        "name": "racial_before_catalog",
+        "spell_id": 25912,
+        "learned": [],
+        "racial": [
+          "penance"
+        ],
+        "source": "Penance",
+        "icon": "Spell_Holy_SearingLight",
+        "talent": false
+      },
+      {
+        "name": "magma_pulse",
+        "spell_id": 8187,
+        "learned": [],
+        "racial": [],
+        "source": "Magma Totem",
+        "icon": "Spell_Fire_SelfDestruct",
+        "talent": false
+      },
+      {
+        "name": "searing_pulse",
+        "spell_id": 3606,
+        "learned": [],
+        "racial": [],
+        "source": "Searing Totem",
+        "icon": "Spell_Fire_SearingTotem",
+        "talent": false
+      }
+    ],
+    "periodic_context": [
+      {
+        "owner_kind": 0,
+        "owner_guid": 1,
+        "source_kind": 1,
+        "source_words": [
+          0,
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "owner_kind": 1,
+        "owner_guid": 0,
+        "source_kind": 1,
+        "source_words": [
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "owner_kind": 1,
+        "owner_guid": 7,
+        "source_kind": 1,
+        "source_words": [
+          1,
+          0,
+          7,
+          0
+        ]
+      },
+      {
+        "owner_kind": 1,
+        "owner_guid": 4294967299,
+        "source_kind": 1,
+        "source_words": [
+          1,
+          0,
+          3,
+          1
+        ]
+      },
+      {
+        "owner_kind": 0,
+        "owner_guid": 18446744073709551615,
+        "source_kind": 1,
+        "source_words": [
+          0,
+          0,
+          4294967295,
+          4294967295
+        ]
+      }
+    ]
+  },
+  "seams": [
+    "Original PE bytes/data mapped at their original virtual addresses.",
+    "Allocator calls use project-local emulated storage; reserve only allocates empty vectors.",
+    "memcmp compares the supplied byte strings; translation returns the English fallback.",
+    "Ability localization-key formatting returns an empty key; the missing translation retains original definition name/icon data.",
+    "Hit cases enter after admission/multiplier selection and stop before per-spell map insertion.",
+    "Boss timing covers the exact end-selection/subtraction branch; marker2 empty is separately traced in summary."
+  ],
+  "limits": [
+    "Not a Rust source test, game session, rendered or original/rebuilt comparison.",
+    "The corpus does not supply missing special-demon, Soul Link or periodic provenance producers."
+  ]
+}

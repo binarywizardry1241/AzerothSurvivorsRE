@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.127.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+    "size_bytes": 146721280
+  },
+  "gap_ids": [
+    163,
+    203
+  ],
+  "bounded_contract_system_ids": [
+    "custom-game-server-party"
+  ],
+  "bounded_contract_owner_scopes": {
+    "custom-game-server-party": "Exact protocol8/seven-byte0.127.0 Join admission and existing shared Join/server/directory fields only; no whole session or payload schema closure."
+  },
+  "query": {
+    "role": "join-admission",
+    "procedure": "0x145bd6280",
+    "evidence_id": "ev_a839c952bbc6093f6467c832ac2a32c3160d7945cffbab929079d33bfddeba6e",
+    "provider": {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "version": "12.1.4"
+    },
+    "analysis_profile_digest": "d6a101986160d8efa8693eb4512c1d72f4c9e3c3bd809f319e60582287e4d5b3",
+    "normalized_text_sha256": "7406e478a6d3e643b0f82253519f8e86f6ae925bdf06f7aa35f90eed733cfb2b",
+    "plan": {
+      "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/slices/plan-145bd6280.json",
+      "sha256": "33ab2f575f32eb363036baaae21710fa2a705a9a1d07b375afd0b31b6255ce5a"
+    },
+    "journal": {
+      "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/rea-145bd6280/journal.json",
+      "sha256": "97fbb6c2e1273d318bc219246420afb49ac70a7873213696aad1288f298cf587"
+    },
+    "result": {
+      "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/rea-145bd6280/results/1715f15178db25b788e8384446be4af1cdd73804afb0cb88dbee69a9f8b32c29.json",
+      "sha256": "2ec4fc6f40be02305773c32cd2e8a1662bf642c7c936e3d37a5c6196198a6197"
+    },
+    "raw_input": {
+      "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/slices/picker-145bd6280.bin",
+      "sha256": "6c0ba71b65e3c935e90894507cda149dcff43500c6836546a69d4410e095fe5b"
+    },
+    "slice_virtual_address": "0x145bd6280"
+  },
+  "queries": [
+    {
+      "role": "join-admission",
+      "procedure": "0x145bd6280",
+      "evidence_id": "ev_a839c952bbc6093f6467c832ac2a32c3160d7945cffbab929079d33bfddeba6e",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "d6a101986160d8efa8693eb4512c1d72f4c9e3c3bd809f319e60582287e4d5b3",
+      "normalized_text_sha256": "7406e478a6d3e643b0f82253519f8e86f6ae925bdf06f7aa35f90eed733cfb2b",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/slices/plan-145bd6280.json",
+        "sha256": "33ab2f575f32eb363036baaae21710fa2a705a9a1d07b375afd0b31b6255ce5a"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/rea-145bd6280/journal.json",
+        "sha256": "97fbb6c2e1273d318bc219246420afb49ac70a7873213696aad1288f298cf587"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/rea-145bd6280/results/1715f15178db25b788e8384446be4af1cdd73804afb0cb88dbee69a9f8b32c29.json",
+        "sha256": "2ec4fc6f40be02305773c32cd2e8a1662bf642c7c936e3d37a5c6196198a6197"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/slices/picker-145bd6280.bin",
+        "sha256": "6c0ba71b65e3c935e90894507cda149dcff43500c6836546a69d4410e095fe5b"
+      },
+      "slice_virtual_address": "0x145bd6280"
+    }
+  ],
+  "module_location_evidence": {
+    "path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/diagnostic-ownership.json",
+    "sha256": "0a31df9145a09fdf794622cca45e7cacb4d5138dad3c2f9ccfed2de4e5fb2db3"
+  },
+  "native_module_anchors": [
+    {
+      "kind": "rust_location",
+      "instruction_address": "0x145bd6d7c",
+      "target_address": "0x147082b18",
+      "runtime_function_start": "0x145bd6280",
+      "runtime_function_end": "0x145bd7094",
+      "source_line": 524,
+      "source_column": 63,
+      "path_address": "0x147082aef",
+      "instruction_bytes": "4c8d0595bd4a01",
+      "instruction": "lea r8, [rip + 0x14abd95]",
+      "owner_file_offset": "0x5bd5680",
+      "owner_byte_count": 3604,
+      "owner_sha256": "6c0ba71b65e3c935e90894507cda149dcff43500c6836546a69d4410e095fe5b"
+    },
+    {
+      "kind": "rust_location",
+      "instruction_address": "0x145bd6da7",
+      "target_address": "0x147082b30",
+      "runtime_function_start": "0x145bd6280",
+      "runtime_function_end": "0x145bd7094",
+      "source_line": 556,
+      "source_column": 68,
+      "path_address": "0x147082aef",
+      "instruction_bytes": "4c8d0582bd4a01",
+      "instruction": "lea r8, [rip + 0x14abd82]",
+      "owner_file_offset": "0x5bd5680",
+      "owner_byte_count": 3604,
+      "owner_sha256": "6c0ba71b65e3c935e90894507cda149dcff43500c6836546a69d4410e095fe5b"
+    },
+    {
+      "kind": "rust_location",
+      "instruction_address": "0x145bd7085",
+      "target_address": "0x147083e18",
+      "runtime_function_start": "0x145bd6280",
+      "runtime_function_end": "0x145bd7094",
+      "source_line": 540,
+      "source_column": 40,
+      "path_address": "0x147082aef",
+      "instruction_bytes": "4c8d058ccd4a01",
+      "instruction": "lea r8, [rip + 0x14acd8c]",
+      "owner_file_offset": "0x5bd5680",
+      "owner_byte_count": 3604,
+      "owner_sha256": "6c0ba71b65e3c935e90894507cda149dcff43500c6836546a69d4410e095fe5b"
+    },
+    {
+      "kind": "rust_location",
+      "instruction_address": "0x145bd6d44",
+      "target_address": "0x147083e38",
+      "runtime_function_start": "0x145bd6280",
+      "runtime_function_end": "0x145bd7094",
+      "source_line": 562,
+      "source_column": 40,
+      "path_address": "0x147082aef",
+      "instruction_bytes": "4c8d05edd04a01",
+      "instruction": "lea r8, [rip + 0x14ad0ed]",
+      "owner_file_offset": "0x5bd5680",
+      "owner_byte_count": 3604,
+      "owner_sha256": "6c0ba71b65e3c935e90894507cda149dcff43500c6836546a69d4410e095fe5b"
+    }
+  ],
+  "native_owner": {
+    "virtual_address": "0x145bd6280",
+    "end_exclusive": "0x145bd7094",
+    "file_offset": "0x5bd5680",
+    "byte_count": 3604,
+    "sha256": "6c0ba71b65e3c935e90894507cda149dcff43500c6836546a69d4410e095fe5b"
+  },
+  "admission_range": {
+    "virtual_address": "0x145bd651f",
+    "end_exclusive": "0x145bd6559",
+    "file_offset": "0x5bd591f",
+    "byte_count": 58,
+    "sha256": "edc34187e88d65c6a883f6e9bc775cae2f509107cd2a01c795da00e5d3ab39ec",
+    "bytes_hex": "837a38084c8d35bdd84a01bb1f0000000f859602000048837a18070f858b020000b8302e3132413302b932372e3041334a0309c10f8572020000",
+    "instructions": [
+      {
+        "address": "0x145bd651f",
+        "bytes_hex": "837a3808"
+      },
+      {
+        "address": "0x145bd6523",
+        "bytes_hex": "4c8d35bdd84a01"
+      },
+      {
+        "address": "0x145bd652a",
+        "bytes_hex": "bb1f000000"
+      },
+      {
+        "address": "0x145bd652f",
+        "bytes_hex": "0f8596020000"
+      },
+      {
+        "address": "0x145bd6535",
+        "bytes_hex": "48837a1807"
+      },
+      {
+        "address": "0x145bd653a",
+        "bytes_hex": "0f858b020000"
+      },
+      {
+        "address": "0x145bd6540",
+        "bytes_hex": "b8302e3132"
+      },
+      {
+        "address": "0x145bd6545",
+        "bytes_hex": "413302"
+      },
+      {
+        "address": "0x145bd6548",
+        "bytes_hex": "b932372e30"
+      },
+      {
+        "address": "0x145bd654d",
+        "bytes_hex": "41334a03"
+      },
+      {
+        "address": "0x145bd6551",
+        "bytes_hex": "09c1"
+      },
+      {
+        "address": "0x145bd6553",
+        "bytes_hex": "0f8572020000"
+      }
+    ],
+    "assembly": {
+      "path": "docs/analysis/evidence/0.127.0/coop-admission/exact-version.asm",
+      "sha256": "64713a9af6eff0d8b2528ba35be6155966024ac3b880feba919e0dce4458bddf"
+    }
+  },
+  "success_continuation": "0x145bd6559",
+  "version_rejection": "0x145bd67cb",
+  "required_protocol": 8,
+  "required_version": "0.127.0",
+  "required_version_byte_count": 7,
+  "source_first": {
+    "observed_source_version": "0.123.0",
+    "observed_source_protocol": 7,
+    "conclusion": "Shared source Join/admission/directory constants and fixed fixture still used0.123.0/protocol7; current native changed gate is a concrete defect required by selected joining scope."
+  },
+  "predecessor": {
+    "path": "docs/analysis/evidence/0.123.0/coop-admission/manifest.json",
+    "sha256": "c0b029698581ef887bc47f127b9e75a866c07841cc563f473d1df4469000f149"
+  },
+  "target_executed": false,
+  "parity_verified": false
+}

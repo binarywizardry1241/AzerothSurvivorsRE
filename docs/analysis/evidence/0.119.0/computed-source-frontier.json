@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.119.0",
+    "sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f",
+    "size_bytes": 145357824
+  },
+  "generator": {
+    "path": "scripts/check-q41-computed-frontier-0.119.0.py",
+    "sha256": "6511a74f5787bb2b685dc32364d4088fb23241c84f65616be17a7ed75d91ae8f"
+  },
+  "dependencies": [
+    {
+      "path": "scripts/coverage_common.py",
+      "sha256": "8e076cd7c55c918ff626e5e4c7df2e2efb0a8861ed3f39844b53ccd3d4c391ce"
+    },
+    {
+      "path": "scripts/script_sources.py",
+      "sha256": "6b0d00b50784cca57d122d4abc4f0ee34a23d226d409ff3180e668b6df78f74d"
+    },
+    {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+    },
+    {
+      "path": "scripts/classify-native-ownership.py",
+      "sha256": "17e55ad17f776f62445cc162af1fd12f68d361f7a8435429e3ab906bb8bc7381"
+    },
+    {
+      "path": "scripts/classify-as-indirect-contracts.py",
+      "sha256": "12989f1315aaad4c07d55b2dae869477244e389325f5433f82545b91866daf6a"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "docs/analysis/evidence/0.119.0/native-residuals.json",
+      "sha256": "ced6da1ac351d25a9fb40b09a13d88534665f7f891e671a331ef287b5b25e490"
+    },
+    {
+      "path": "runtime/coverage/6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f/residuals/diagnostic-sites.jsonl.gz",
+      "sha256": "79b83e62fbdc694c5dfbea42e609c8e9c70c65c3dcc88c1dd07ed943aa6084bf",
+      "rows": 18106
+    },
+    {
+      "path": "runtime/coverage/6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f/residuals/declared-indirect-sites.tsv.gz",
+      "sha256": "193e2e0d43bc51f505ed7f535f2507cf0b510e6109bea071d5d8a52a39d9f8f0",
+      "rows": 82938
+    },
+    {
+      "path": "runtime/coverage/6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f/residuals/complement-indirect-sites.tsv.gz",
+      "sha256": "2c13011524612e63d7e8e3b0b36e55292ea4ae48649642dbf42977f44000da1c",
+      "rows": 651
+    },
+    {
+      "path": "runtime/coverage/6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f/residuals/unowned-executable-destinations.tsv.gz",
+      "sha256": "3baa5f6cc8434172bfbc54a8cd45d008e87e6ea2e2f834eccea1711e6342c6ff",
+      "rows": 4836
+    },
+    {
+      "path": "runtime/coverage/6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f/residuals/static-reference-roles.tsv.gz",
+      "sha256": "68544d17d531e5696e9a421bb7a49d6d2ddaa5486b9f43636a356276c78fd0c5",
+      "rows": 4033389
+    }
+  ],
+  "as_diagnostic_context_bodies": 300,
+  "full_indirect_populations": {
+    "Q41-F01": 82938,
+    "Q41-F02": 651
+  },
+  "counts": {
+    "context_sites": 113,
+    "dispositions": {
+      "declared-loader-interface-context": 6,
+      "relative-table-expression-incoming-domain-unproved": 78,
+      "receiver-or-register-writer-identity-unproved": 29
+    },
+    "all_static_references": 4033389,
+    "contextual_static_references": 30148,
+    "unowned_executable_targets": 4836,
+    "contextual_incoming_unowned_edges": 0
+  },
+  "incoming_unowned_edges": [],
+  "artifact": {
+    "path": "runtime/q41-computed-context-0.119.0/contextual-sites.jsonl.gz",
+    "sha256": "5cd107cdeb28e807b78dd9dafb19e1ca55a8531d2ae3c8170caa64dea103e60a",
+    "rows": 113
+  },
+  "party_control_classification": {
+    "site": "0x145b740cd",
+    "body_start": "0x145b74070",
+    "body_end_exclusive": "0x145b74503",
+    "original_query": {
+      "plan": {
+        "path": "runtime/q41-computed-context-0.119.0/party-control-plan.json",
+        "sha256": "048d60fca3cd6a76e83f2a48b9378455414353c59c858a3946dcbb0b348bd415"
+      },
+      "journal": {
+        "path": "runtime/q41-computed-context-0.119.0/party-control-query/journal.json",
+        "sha256": "982f986ed55d8d6bb214c06b085b88a09eb798d62f484821b4a79c7c3243aaf9"
+      },
+      "result": {
+        "path": "runtime/q41-computed-context-0.119.0/party-control-query/results/60b85a0fbfde78ae246d83a3c87995b4c85e871bb353ca242762e4c083c3e6db.json",
+        "sha256": "15aced3615e3251bfe496cdca5e7c854daaa2b7e476de63f579eabf94d1f1abc"
+      },
+      "evidence_id": "ev_72250f836630fdabf8af85fe42c22ebb89e4daf5bb9ae9081013eb50bc37d2d7",
+      "analysis_profile_digest": "ce05dfd040f2aa77f608e08db6a7821c489d37741e9bf640980526d00e82feb3",
+      "input_sha256": "210968e3b797fbefd8f74e7f6103d07e695828ed11a1a85d00056c2078f3794f",
+      "normalized_sha256": "6a5333a927f3f156369739bb2b7b3e1633d21b1a62775f3818031b95b4a47984"
+    },
+    "query_input_sha256": "210968e3b797fbefd8f74e7f6103d07e695828ed11a1a85d00056c2078f3794f",
+    "bounded_cells": [
+      "0x145b740cf",
+      "0x145b743d8",
+      "0x145b743e5",
+      "0x145b74378",
+      "0x145b744bb",
+      "0x145b743fd",
+      "0x145b7445c",
+      "0x145b743f2",
+      "0x145b74489",
+      "0x145b743cd"
+    ],
+    "table_start": "0x1475e67bc",
+    "table_prefix_sha256": "baf657605ee288c823ddd4738cf165e46f7b9eace3b96044f33b8d9fc388a40f",
+    "source_candidate": "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs::party_control",
+    "source_method_sha256": "b0deeabb170d01177b9f32d4618dc69f21f41f98c32cf2891ed7c995163ebe95",
+    "classification": "AS party-control dispatch and remote-context wrapper; existing source handles ten selected actions.",
+    "unresolved": "No local native index bound; complete native wire/local control producer and arbitrary input aliases are not proved by this raw-range query. No new source defect identified."
+  },
+  "gap_ids": [
+    41
+  ],
+  "lead_ids": [
+    "Q41-F01",
+    "Q41-F02",
+    "Q41-A01",
+    "Q41-A02",
+    "Q41-M01"
+  ],
+  "source_defect_established": false,
+  "source_repair": "Separate current native guest Engine predicate/wire consumer repaired under #180.",
+  "generic_engine_reconstruction_authorized": false,
+  "native_semantic_frontier_complete": false,
+  "parity_verified": false,
+  "limits": [
+    "Only exact saved-Program AS Rust-Location body contexts are selected; erased, inline or ownerless AS code is not excluded from the wider queue.",
+    "A zero contextual incoming-unowned projection does not establish all AS direct/address dependency closure.",
+    "Every contextual computed site retains exact bytes/prefix and an incoming-state question; expression shape does not prove table bounds, callbacks, source semantics or missing implementation.",
+    "Declared loader interfaces remain supporting context and do not authorize generic engine recovery.",
+    "The party-control query classifies this branch and existing source correspondence; it does not admit arbitrary byte selectors or prove native full type/alias closure.",
+    "No compilation, game/client/network/server execution or original/rebuilt parity comparison."
+  ]
+}

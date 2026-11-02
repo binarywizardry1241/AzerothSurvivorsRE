@@ -1,0 +1,144 @@
+{
+  "target_sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+  "ranges": [
+    {
+      "name": "admission",
+      "address": "0x140008df0",
+      "byte_count": 198,
+      "sha256": "251c982939d27aa5092b99a8e47675a28ecb1a91133f7f679c3b9d5a5da7ce12",
+      "assembly": "admission.asm",
+      "assembly_sha256": "eb5cc138308b098ca36c6a45f2287a08ce8fd5f09850da8663fc340f2d03f17a",
+      "ghidra_evidence_id": "ev_57c681e703f053fafeffe7b89ed99c68873ee54990dbfb9ced952abfebfed19d",
+      "analysis_profile": {
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "parameters": {
+          "target_kind": "executable",
+          "target_format": "raw-binary",
+          "architecture": "x86_64",
+          "available_architectures": [
+            "x86_64"
+          ],
+          "import_mode": "ephemeral-source-immutable",
+          "annotation_policy": "atomic-function-entry-metadata-v1",
+          "load_image_observations": "source-mappings-entry-context-v2",
+          "function_body_evidence": "complete-inclusive-ranges-v1",
+          "function_references": "complete-body-and-entry-reference-manager-v2",
+          "call_relationship_coverage": "function-body-call-coverage-v5",
+          "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+          "string_inventory_evidence": "defined-data-coverage-v1",
+          "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+          "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+          "instruction_flow_evidence": "decoded-return-pcode-v1",
+          "instruction_references": "exact-address-incoming-v1",
+          "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+          "no_return_repair": "returning-imports-decoded-return-v2",
+          "process_launch": "inspected-jvm-launch-support-v1",
+          "load_image_evidence": "independent-raw-mapping-context-v4",
+          "jump_table_evidence": "typed-case-default-blocks-v1",
+          "decompiler_jump_loads": true,
+          "loader": "BinaryLoader",
+          "language_id": "x86:LE:64:default",
+          "compiler_spec_id": "gcc",
+          "language_selection": "caller-supplied-v1",
+          "entry_point": "0x140008df0",
+          "entry_seed": "external-entry-and-function-before-analysis-v1",
+          "analyzer_preset": "ghidra-default",
+          "analysis_seeds": {
+            "format": "rea-ghidra-seeds-body-repair-v1",
+            "path": "runtime/menu-pages-0.112.0/combat-option/seeds.tsv",
+            "configured_path": "runtime/menu-pages-0.112.0/combat-option/seeds.tsv",
+            "sha256": "83a4fc15d0e134fcbfcf7755a449c8cf0812ad32005e3457945760ad8a914ba6",
+            "entries": {
+              "function": 1,
+              "code": 1,
+              "label": 0
+            }
+          }
+        },
+        "digest": "ee71a78edb141a79307f56d4fbd736bd4b1f57976b3025ef4284d7cfb3d6ed97"
+      }
+    },
+    {
+      "name": "engine-setter",
+      "address": "0x14056c330",
+      "byte_count": 634,
+      "sha256": "5a0caf4253afa2594fe1af9fd217307c4275af49480aacc2ac815f13af0654cf",
+      "assembly": "engine-setter.asm",
+      "assembly_sha256": "f40700b55479d28e5a1999cfa972fa26cba3d5bd091fcffa1872031b51b4125d",
+      "ghidra_evidence_id": "ev_046fc84b1ac8f832851f70b0fc4f83cb990e82557e5b4813a50ef2fded16c388",
+      "analysis_profile": {
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "parameters": {
+          "target_kind": "executable",
+          "target_format": "raw-binary",
+          "architecture": "x86_64",
+          "available_architectures": [
+            "x86_64"
+          ],
+          "import_mode": "ephemeral-source-immutable",
+          "annotation_policy": "atomic-function-entry-metadata-v1",
+          "load_image_observations": "source-mappings-entry-context-v2",
+          "function_body_evidence": "complete-inclusive-ranges-v1",
+          "function_references": "complete-body-and-entry-reference-manager-v2",
+          "call_relationship_coverage": "function-body-call-coverage-v5",
+          "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+          "string_inventory_evidence": "defined-data-coverage-v1",
+          "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+          "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+          "instruction_flow_evidence": "decoded-return-pcode-v1",
+          "instruction_references": "exact-address-incoming-v1",
+          "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+          "no_return_repair": "returning-imports-decoded-return-v2",
+          "process_launch": "inspected-jvm-launch-support-v1",
+          "load_image_evidence": "independent-raw-mapping-context-v4",
+          "jump_table_evidence": "typed-case-default-blocks-v1",
+          "decompiler_jump_loads": true,
+          "loader": "BinaryLoader",
+          "language_id": "x86:LE:64:default",
+          "compiler_spec_id": "gcc",
+          "language_selection": "caller-supplied-v1",
+          "entry_point": "0x14056c330",
+          "entry_seed": "external-entry-and-function-before-analysis-v1",
+          "analyzer_preset": "ghidra-default",
+          "analysis_seeds": {
+            "format": "rea-ghidra-seeds-body-repair-v1",
+            "path": "runtime/menu-pages-0.112.0/combat-bridge/seeds.tsv",
+            "configured_path": "runtime/menu-pages-0.112.0/combat-bridge/seeds.tsv",
+            "sha256": "c74a58f9c587253650329effe5e07281b865eb56c6c4b28d52d45b92a0f225b1",
+            "entries": {
+              "function": 1,
+              "code": 0,
+              "label": 0
+            }
+          }
+        },
+        "digest": "db79d5fc63a5e1d464fd3bc17176e7c391a6458cfb9a37a39691c9ae4656d50c"
+      }
+    },
+    {
+      "name": "descriptor",
+      "address": "0x145dc4720",
+      "byte_count": 152,
+      "sha256": "91bd2ca40f9eef433ba22972b7073748ba65047c1730f79bfe73d5fba26000ed"
+    },
+    {
+      "name": "unicode-trim",
+      "address": "0x1400695f0",
+      "byte_count": 633,
+      "sha256": "bb5fae2ea3163d5537e1105de66e2fc69dd6522c3cb52b555f9655038eb5709d"
+    }
+  ],
+  "limits": [
+    "Raw-range Ghidra imports preserve original VAs but lack full PE globals/call metadata.",
+    "Engine setter calls active-VM dispatch; native file writer and actual scheduling remain separate unexecuted boundaries.",
+    "Analysis seed paths are project-relative; recorded provider/profile digests retain the original extraction identity."
+  ]
+}

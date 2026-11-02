@@ -1,0 +1,51 @@
+{
+  "target": {
+    "version": "0.118.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae",
+    "size_bytes": 145356800
+  },
+  "generator": {
+    "path": "scripts/recover-native-address-leads.py",
+    "sha256": "02bb39e644ffaafba19774cab098f84d5f986443f64dd98946f64db840209c9a",
+    "capstone_version": "5.0.7"
+  },
+  "source_census": {
+    "path": "docs/analysis/coverage/full-image-declared-0.118.0.json",
+    "sha256": "f7a6dac3c0c8175318495e0567eaefbbba6a082ddab2fab6dd3aebc433f94c97"
+  },
+  "operand_summary": {
+    "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/seed-inputs/address-source-operands-summary.json",
+    "sha256": "7691751c3b2513ad287f04011c5e99da49ed5716f3eb32127fed09047b87658c"
+  },
+  "generator_dependencies": [
+    {
+      "path": "scripts/summarize-native-image.py",
+      "sha256": "dd5748de3b992dfd49bf0eca53dac1f8fabfb27102fda0c4815dc331c7f28e14"
+    },
+    {
+      "path": "scripts/inventory-current-target.py",
+      "sha256": "f2cf5be70267aa01865b7c34bef7eeb87898d67b5e36f0a91d20d37e3b1299c5"
+    },
+    {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+    }
+  ],
+  "function_entry_or_incoming_flow_edges_inferred": false,
+  "counts": {
+    "addressed_executable_targets": 7963,
+    "admitted_code_only_starts": 7963,
+    "retained_existing_instruction_starts": 0,
+    "exceptions": {}
+  },
+  "limits": [
+    "Exact independently verified RIP-LEA sources and coherent target decoding establish code candidates only; a source without a native body owner remains eligible. No function entry, incoming computed edge, callback type, source semantics or runtime use is invented.",
+    "Previously verified target starts remain code-only seeds for fresh imports; prior decoding does not remove their seed provenance.",
+    "All bounded successors must decode consistently with prior established instructions. Calls are followed on their return path; computed exits preserve unresolved alias/type state."
+  ],
+  "inventory": {
+    "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/seed-inputs/address-code.json",
+    "sha256": "87dee939571c580cfeb93789b5d770d3d10fc9cf6fcd8eca15fff6f11db29dd7"
+  }
+}

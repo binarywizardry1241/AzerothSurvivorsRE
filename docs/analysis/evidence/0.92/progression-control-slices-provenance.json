@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-16",
+  "original_target": "AzerothSurvivors/AzerothSurvivors.exe",
+  "original_sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+  "original_byte_count": 130888192,
+  "derivation": "Exact unmodified contiguous function bytes; raw file offset zero mapped at original virtual address for Ghidra",
+  "artifacts": [
+    {
+      "path": "runtime/menu-recovery/slices/picker-140188ab0.bin",
+      "sha256": "94fb299b4c13d34405844b9b6da3d95edfa2442fe0a80a1f8459027830abd477",
+      "source_file_offset": "0x187eb0",
+      "source_file_end_exclusive": "0x188382",
+      "original_virtual_address": "0x140188ab0",
+      "original_virtual_end_exclusive": "0x140188f82",
+      "byte_count": 1234,
+      "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+    },
+    {
+      "path": "runtime/menu-recovery/slices/picker-140187f10.bin",
+      "sha256": "382337be337b252cf4ef983d6e3c42d135c0deeb23d9b27d282623a74d6ff809",
+      "source_file_offset": "0x187310",
+      "source_file_end_exclusive": "0x187a20",
+      "original_virtual_address": "0x140187f10",
+      "original_virtual_end_exclusive": "0x140188620",
+      "byte_count": 1808,
+      "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+    },
+    {
+      "path": "runtime/menu-recovery/slices/picker-140220870.bin",
+      "sha256": "24a3f12ce8eb1aec08b6be3f24700b810505307aba0e4c61c72bef07844780eb",
+      "source_file_offset": "0x21fc70",
+      "source_file_end_exclusive": "0x220bd7",
+      "original_virtual_address": "0x140220870",
+      "original_virtual_end_exclusive": "0x1402217d7",
+      "byte_count": 3943,
+      "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+    }
+  ],
+  "limitations": [
+    "Derived artifacts omit every byte outside each selected RUNTIME_FUNCTION body, including callee code and referenced constants/strings.",
+    "Raw x86_64 REA import uses generic GCC compiler specification; original target is Windows x64, so recovered signatures and call arguments require original instruction verification.",
+    "PE unwind records are function-boundary observations, not recovered original source names.",
+    "No original or derived binary was executed by this extraction or static analysis workflow."
+  ]
+}

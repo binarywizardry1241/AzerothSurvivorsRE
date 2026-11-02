@@ -1,0 +1,30 @@
+{
+  "target_version": "0.112.0",
+  "target_sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+  "target_executed": false,
+  "operations": [
+    {
+      "role": "stateful-consumer-branch-fragment",
+      "va": "0x145917615",
+      "end_exclusive": "0x14591b409",
+      "byte_count": 15860,
+      "input_sha256": "b6625635aa4ac5adfa028ce0f3d0abc577f59ce6c2a9d2f5587d4a274a8735b2",
+      "evidence_id": "ev_d722545bd191468baadf27a0e6ab82052fc40d287bc5be7960754c028862b2ae",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_sha256": "4b416c696562b5051372936aad04e158a8ccabb426ea37f85b3a46c20e3dd6a6",
+      "pseudocode": "consumer.pseudo.c",
+      "pseudocode_sha256": "bd325340339ab6ba926db6b438179556f4f339d29cac02f40a02794b26d0e7ce",
+      "raw_pseudocode_sha256": "69c6afe411694b1b3535417bc8c414914353750ac4fdb5a5ff7552a7b1130030",
+      "pseudocode_normalization": "outer blank lines and trailing spaces removed; raw response retained under ignored runtime"
+    }
+  ],
+  "limits": [
+    "This raw x86_64 branch import begins at a caller-evidenced interior entry, not a claimed complete native function.",
+    "Generic Ghidra compiler specification, absent external code/data and omitted successor context cause bad-data/control-flow diagnostics; exact original instructions and explicit fixture exits own the checked contracts.",
+    "Repeated queries resolve to the same imported body; retain its pseudocode once. No full-image caller or function-ownership inference is made."
+  ]
+}

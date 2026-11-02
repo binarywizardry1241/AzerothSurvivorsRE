@@ -1,0 +1,75 @@
+{
+  "target_version": "0.109.0",
+  "target_sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+  "target_executed": false,
+  "records": [
+    {
+      "role": "cone-producer",
+      "evidence_id": "ev_a478855eba811efb785c8c9a6eb70cb383f5fabc8e69d05007063998b7caa627",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "subject_sha256": "96cee90696cf4ae4284f300a860b694b2a0711caf5c5019f680fe04aa95f1867",
+      "procedure": {
+        "procedure": "0x145959bc4"
+      },
+      "pseudocode": "cone-producer.c",
+      "pseudocode_sha256": "ea8200de666cf122a704aecb7ec5acf08cb9e73212aa6d03d606066e9a957821",
+      "analysis_profile_sha256": "754e565a42e4d259787396139cfb3f77719aff37bebf45b778879a6ea9e8981b"
+    },
+    {
+      "role": "knockback-producer",
+      "evidence_id": "ev_86e169c1ee2901f15bdcc3458cfedcf0e14a5f0c3c095d9815b41991a408efb6",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "subject_sha256": "96cee90696cf4ae4284f300a860b694b2a0711caf5c5019f680fe04aa95f1867",
+      "procedure": {
+        "procedure": "0x145957f34"
+      },
+      "pseudocode": "knockback-producer.c",
+      "pseudocode_sha256": "edbded1ba2d0fca4c66e23917139dd243731c7ce61ce141dbdd447d460d56db3",
+      "analysis_profile_sha256": "754e565a42e4d259787396139cfb3f77719aff37bebf45b778879a6ea9e8981b"
+    },
+    {
+      "role": "hazard-create",
+      "evidence_id": "ev_090369d9e5be4dd04faca9ef1f953491379897e5d25d7a04af22265bb9bf94ec",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "subject_sha256": "945f3d960d1f79fcd4e2ffa417b970c89388cd48e06a0b7bf1c171fd3f7d7cda",
+      "procedure": {
+        "procedure": "0x1459575e0"
+      },
+      "pseudocode": "hazard-create.c",
+      "pseudocode_sha256": "f4fe1d8997df81aa85c652a82a5d08c9e137d5f474a17d19a64fe99bd21b102e",
+      "analysis_profile_sha256": "b5a12eab7387ecbe81bf10d89c562d89468dd53019b44bd58526532a8ae711b0"
+    },
+    {
+      "role": "knockback-packet",
+      "evidence_id": "ev_9c40d4a3ff2d55a41de8c70449aecb3795fd57afcb9ade6aa6eb2ca32103673a",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "subject_sha256": "f54e1bc7c02550bd647c84f7a1158973312ec2a107a494f168b44c52059b94f8",
+      "procedure": {
+        "procedure": "0x1458c1c70"
+      },
+      "pseudocode": "knockback-packet.c",
+      "pseudocode_sha256": "85396f0a80ff4b8265fc83039b04b1fc361a80c90658c6f881f392595364a074",
+      "analysis_profile_sha256": "2263b577c880e07cc9e54d05e34579749bb8c93bdee9952e430d23bf9546863c"
+    }
+  ],
+  "limitations": [
+    "Original-VA raw imports use generic ABI and bounded external data/calls; pseudocode is not original source.",
+    "Branch entries are analyst-supplied seeds, independently resolved from current signed-relative jump-table bytes."
+  ]
+}

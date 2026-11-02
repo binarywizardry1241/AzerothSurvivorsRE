@@ -1,0 +1,377 @@
+{
+  "target_version": "0.112.0",
+  "target_sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+  "target_executed": false,
+  "cases": {
+    "movement": 744,
+    "periodic": 492,
+    "aftershock": 493,
+    "object_admission": 612,
+    "tether": 450,
+    "gaze": 34,
+    "spawn_and_exposure": 26
+  },
+  "source_checks": {
+    "files": 3,
+    "guards": 33
+  },
+  "CRT_imports": [
+    {
+      "va": "0x145c0a42f",
+      "file_offset": "0x5c0982f",
+      "byte_count": 6,
+      "sha256": "af33c83303175e8ba4f4d646da59693a47c1b535259c12ecd601320ae561af74",
+      "iat": "0x145daa378",
+      "library": "api-ms-win-crt-math-l1-1-0.dll",
+      "function": "_hypotf"
+    },
+    {
+      "va": "0x145c0a447",
+      "file_offset": "0x5c09847",
+      "byte_count": 6,
+      "sha256": "0f3b5e8a966cb43bdc27c758873174b5f20db732fec7426bea5e738265fb2f64",
+      "iat": "0x145daa358",
+      "library": "api-ms-win-crt-math-l1-1-0.dll",
+      "function": "atan2f"
+    },
+    {
+      "va": "0x145c0a417",
+      "file_offset": "0x5c09817",
+      "byte_count": 6,
+      "sha256": "8d24977ba21f8df792efb602e50caacc1837a0828625955f0bc1b506aecb668a",
+      "iat": "0x145daa398",
+      "library": "api-ms-win-crt-math-l1-1-0.dll",
+      "function": "cosf"
+    },
+    {
+      "va": "0x145c0a411",
+      "file_offset": "0x5c09811",
+      "byte_count": 6,
+      "sha256": "7369e8d526323bd3c0d7227d0072877e9f2587e6b2c168506ecc4189b8482e9c",
+      "iat": "0x145daa3a0",
+      "library": "api-ms-win-crt-math-l1-1-0.dll",
+      "function": "sinf"
+    }
+  ],
+  "drift_threshold": {
+    "va": "0x145db1398",
+    "file_offset": "0x5db0598",
+    "byte_count": 4,
+    "sha256": "0b9d79ff0fc4d0a77ef398763bbe45c445501e826219f2b6a1aa709411ab631d",
+    "value_bits": 1028443341
+  },
+  "action_indices": {
+    "11": [
+      55,
+      69,
+      98,
+      134,
+      164,
+      169,
+      172,
+      182,
+      212,
+      216,
+      221,
+      246,
+      291,
+      302,
+      346,
+      362,
+      375,
+      432,
+      450,
+      456,
+      468,
+      478,
+      485
+    ],
+    "14": [
+      16,
+      39,
+      114,
+      142,
+      178,
+      208,
+      225,
+      252,
+      263,
+      321,
+      377
+    ],
+    "15": [
+      259,
+      314,
+      452
+    ],
+    "24": [
+      40,
+      118,
+      152,
+      173,
+      235,
+      308,
+      400,
+      472,
+      487
+    ],
+    "25": [
+      57,
+      135,
+      189,
+      339,
+      476,
+      488
+    ],
+    "26": [
+      179,
+      428
+    ],
+    "31": [
+      62,
+      313,
+      381,
+      484
+    ],
+    "33": [
+      306
+    ]
+  },
+  "canonical_input_graph": "../raid/catalog.json",
+  "visited_instruction_ranges": {
+    "movement": [
+      {
+        "va": "0x145917615",
+        "file_offset": "0x5916a15",
+        "byte_count": 491,
+        "sha256": "178820c4bea73a3c93088fe800e298cefd6e1de697cdb6ba6b2752a88ba9237c",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145917c5a",
+        "file_offset": "0x591705a",
+        "byte_count": 44,
+        "sha256": "761b632072a1ab7e10e25f8c4717720f2b3905993a71229fdab138f3d080b0e2",
+        "assembly": "selected-native.asm"
+      }
+    ],
+    "periodic": [
+      {
+        "va": "0x1459192e8",
+        "file_offset": "0x59186e8",
+        "byte_count": 124,
+        "sha256": "69a8fb72626e49f09ef96025a55030e72b488ab46fb14481cacd177b1828aab4",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145919680",
+        "file_offset": "0x5918a80",
+        "byte_count": 97,
+        "sha256": "4a96413d9ec0bb757e873202c3529975233a0f91c4cfa0443ec2708cb758a6fa",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1459197ca",
+        "file_offset": "0x5918bca",
+        "byte_count": 28,
+        "sha256": "cbf590ea9b9c7de41b7b9d47b2703b984fc198e60ef25ff0cc371c93682a78cd",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14591987f",
+        "file_offset": "0x5918c7f",
+        "byte_count": 24,
+        "sha256": "724efcfa041f5e156f8b26ca51996f4eb158d8bbea6867b6e4d6984a6960636f",
+        "assembly": "selected-native.asm"
+      }
+    ],
+    "aftershock": [
+      {
+        "va": "0x1459185b0",
+        "file_offset": "0x59179b0",
+        "byte_count": 46,
+        "sha256": "5911ab92bcd53699497aa1480ada09a3a2b0d6ab15625381df309a25d2858109",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145918ac8",
+        "file_offset": "0x5917ec8",
+        "byte_count": 63,
+        "sha256": "fe82e7c046acdc01ce86709352309c02ba168257d1569137738e3461b5b19f77",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145918b8b",
+        "file_offset": "0x5917f8b",
+        "byte_count": 129,
+        "sha256": "55d61af578f097d39ce559ab1200184f5f7aa5b21b83038e1590533ae60879f2",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145918e4a",
+        "file_offset": "0x591824a",
+        "byte_count": 26,
+        "sha256": "377c929d9858be354f68f30d1b434d2c5e2c677f5428691049179c2f1f4d21ed",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14591925c",
+        "file_offset": "0x591865c",
+        "byte_count": 140,
+        "sha256": "abb4a5afbcfabe599026fe538eab700d1485e1c09245b1531e23329259834ca6",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14591986f",
+        "file_offset": "0x5918c6f",
+        "byte_count": 40,
+        "sha256": "b1461977c76336b2a83f267018e6a5dab093d639f86d3cffeeef36a0e4a005fe",
+        "assembly": "selected-native.asm"
+      }
+    ],
+    "object-admission": [
+      {
+        "va": "0x145919cc1",
+        "file_offset": "0x59190c1",
+        "byte_count": 306,
+        "sha256": "c353d6b42f2a3c908eb84d23f57af5542fc56c08b4d4c75e05614c4de559724c",
+        "assembly": "selected-native.asm"
+      }
+    ],
+    "tether": [
+      {
+        "va": "0x145917800",
+        "file_offset": "0x5916c00",
+        "byte_count": 174,
+        "sha256": "3337f1eca69435788b46a909979796268a0a649758807c4df8a13c5aaaa3c920",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145917932",
+        "file_offset": "0x5916d32",
+        "byte_count": 30,
+        "sha256": "b20e85c7b9d4812e567191b76fd4ca64b794861851a836818eb6ffb582329964",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145919364",
+        "file_offset": "0x5918764",
+        "byte_count": 131,
+        "sha256": "473f730c89d340952b9b38b8efae7f1c7f568fb1c834af71a6125e8324379c7f",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145919468",
+        "file_offset": "0x5918868",
+        "byte_count": 65,
+        "sha256": "eeca3a774746127f0023658716d84bb75198cf8b2bcfcc0857f104e2525c7376",
+        "assembly": "selected-native.asm"
+      }
+    ],
+    "gaze": [
+      {
+        "va": "0x1459175f3",
+        "file_offset": "0x59169f3",
+        "byte_count": 34,
+        "sha256": "ec30ea08c0a93e594cf00be447368b350ed15abae3c11291b3de408f003f663b",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145917950",
+        "file_offset": "0x5916d50",
+        "byte_count": 47,
+        "sha256": "0aa52b881cda1483a511334b78bc3aa0910dedd871c54b8240767e1524a9e351",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1459179b8",
+        "file_offset": "0x5916db8",
+        "byte_count": 15,
+        "sha256": "f19bf0748ab91a0db08ffd60ea78ccd8aec0b9852d702a48ade14bc81bdc4f97",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145917ac0",
+        "file_offset": "0x5916ec0",
+        "byte_count": 41,
+        "sha256": "563f1d5f38467245bd56ec91db9ab8045961f2a3e1bd21d455106b5fdda348c4",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145917b6d",
+        "file_offset": "0x5916f6d",
+        "byte_count": 96,
+        "sha256": "f60561bba54f673561171467dcb8619a10b7bbaee04cffe0ec5426191656b758",
+        "assembly": "selected-native.asm"
+      }
+    ],
+    "spawn-exposure": [
+      {
+        "va": "0x145918cad",
+        "file_offset": "0x59180ad",
+        "byte_count": 54,
+        "sha256": "023d72864f332b7d0d01c4d75d0ed9fb9f1e862eb2d074a392e7c8962695a126",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145918d67",
+        "file_offset": "0x5918167",
+        "byte_count": 56,
+        "sha256": "8e0ecf1ff970b8899ff5f9c15cc18b7d1e94a5f1b84bee9f98eca54217ed63b7",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14591afd0",
+        "file_offset": "0x591a3d0",
+        "byte_count": 128,
+        "sha256": "85576396db696c6bb672c84488fc199cfc2ddabbb19567bba716df756ce8a24a",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14591b296",
+        "file_offset": "0x591a696",
+        "byte_count": 50,
+        "sha256": "ac0f1e428abed0fa0a0d09b03a36480a374dadc01d92b5908d77abf43457ba2f",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14591b2d0",
+        "file_offset": "0x591a6d0",
+        "byte_count": 60,
+        "sha256": "443b1ee8cd719db39c6b526c4a071ea33adaa6c2c4cb0fd42978f69b963030bd",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14591b397",
+        "file_offset": "0x591a797",
+        "byte_count": 80,
+        "sha256": "f4bdef1d6b322ec78f1cbe937a6652f94f8e77b038722ad55049d20de1d668e3",
+        "assembly": "selected-native.asm"
+      }
+    ]
+  },
+  "seams": {
+    "CRT": [
+      "0x145c0a42f hypot",
+      "0x145c0a447 atan2",
+      "0x145c0a417 cos",
+      "0x145c0a411 sin"
+    ],
+    "terrain": [
+      "0x1458a0b40 primary-height",
+      "0x1458a4d60 secondary-height"
+    ],
+    "ordered_callback_capture": [
+      "0x14593dd90 common enemy constructor",
+      "0x145915be0 common source healing",
+      "0x14592bcd0 canonical dynamic-object constructor"
+    ]
+  },
+  "limits": [
+    "Synthetic current original-byte fragments do not execute Rust or launch either game.",
+    "Current graph/producers and marker/object construction retain their canonical raid/hazard owners; this evidence certifies only selected stateful consumers.",
+    "Compiler/application, real terrain and collision, CRT equivalence, allocator/packet/renderer and original/rebuilt gameplay parity are unverified.",
+    "Enemy constructor and healing capture seams verify ordered arguments; current shared enemy construction/population and ward healing retain their own reports.",
+    "Gaze fixtures separately check arm/expiry gates and circle admission; they do not claim all shape-dispatch alternatives for unreachable noncircle gaze records."
+  ]
+}

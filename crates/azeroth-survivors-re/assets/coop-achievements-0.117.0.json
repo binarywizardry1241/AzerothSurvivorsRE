@@ -1,0 +1,455 @@
+{
+  "target_sha256": "507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293",
+  "achievements": [
+    {
+      "key": "coop:together",
+      "name": "Better Together",
+      "description": "Complete your first zone in co-op.",
+      "icon": "Spell_Holy_PrayerOfHealing02",
+      "points": 10,
+      "category": 5,
+      "kind": 21,
+      "selector": 0,
+      "target": 1,
+      "zone": null,
+      "feat_kind": null,
+      "feat_spell": null,
+      "tokens": {},
+      "unlocks": [
+        {
+          "prefix": "Reward",
+          "name": "Admiral's Hat",
+          "icon": "INV_Helmet_29"
+        }
+      ],
+      "cooperative": {
+        "type": "first_victory"
+      }
+    },
+    {
+      "key": "coop:fiveofakind",
+      "name": "Five of a Kind",
+      "description": "Complete any zone in co-op with all 5 players using the same class.",
+      "icon": "Spell_Holy_PowerInfusion",
+      "points": 25,
+      "category": 5,
+      "kind": 8,
+      "selector": 0,
+      "target": 1,
+      "zone": null,
+      "feat_kind": null,
+      "feat_spell": null,
+      "tokens": {},
+      "unlocks": [
+        {
+          "prefix": "Reward",
+          "name": "Bloodsail Admiral's Hat",
+          "icon": "INV_Helmet_66"
+        }
+      ],
+      "cooperative": {
+        "type": "victory",
+        "zone": null,
+        "no_deaths": false,
+        "max_modifiers": false,
+        "party": {
+          "kind": "same_class"
+        }
+      }
+    },
+    {
+      "key": "coop:photosynthesis",
+      "name": "Rest in Photosynthesis",
+      "description": "Defeat Kel'Thuzad in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.",
+      "icon": "Spell_Nature_Tranquility",
+      "points": 50,
+      "category": 5,
+      "kind": 9,
+      "selector": 0,
+      "target": 1,
+      "zone": null,
+      "feat_kind": null,
+      "feat_spell": null,
+      "tokens": {},
+      "unlocks": [
+        {
+          "prefix": "Companion",
+          "name": "Ancient Protector",
+          "icon": "Spell_Nature_Tranquility"
+        }
+      ],
+      "cooperative": {
+        "type": "boss",
+        "boss_id": 1494,
+        "spells": [
+          740
+        ],
+        "max_modifiers": false,
+        "party": {
+          "kind": "talent",
+          "class": 11,
+          "key": "tranquility"
+        }
+      }
+    },
+    {
+      "key": "coop:odds",
+      "name": "Against All Odds",
+      "description": "Complete any zone in co-op with all four enemy difficulty modifiers at maximum.",
+      "icon": "Spell_Holy_DivineIntervention",
+      "points": 50,
+      "category": 5,
+      "kind": 8,
+      "selector": 0,
+      "target": 1,
+      "zone": null,
+      "feat_kind": null,
+      "feat_spell": null,
+      "tokens": {},
+      "unlocks": [
+        {
+          "prefix": "Reward",
+          "name": "Contest Winner's Tabard",
+          "icon": "INV_Shirt_GuildTabard_01"
+        }
+      ],
+      "cooperative": {
+        "type": "victory",
+        "zone": null,
+        "no_deaths": false,
+        "max_modifiers": true,
+        "party": {
+          "kind": "any"
+        }
+      }
+    },
+    {
+      "key": "coop:brotherhood",
+      "name": "The Brotherhood Falls",
+      "description": "Defeat Edwin VanCleef in co-op with 5 players, all using different classes.",
+      "icon": "INV_Misc_Bandana_03",
+      "points": 25,
+      "category": 5,
+      "kind": 9,
+      "selector": 0,
+      "target": 1,
+      "zone": null,
+      "feat_kind": null,
+      "feat_spell": null,
+      "tokens": {},
+      "unlocks": [
+        {
+          "prefix": "Reward",
+          "name": "Cape of the Brotherhood",
+          "icon": "INV_Misc_Cape_08"
+        }
+      ],
+      "cooperative": {
+        "type": "boss",
+        "boss_id": 694,
+        "spells": [],
+        "max_modifiers": false,
+        "party": {
+          "kind": "different_classes"
+        }
+      }
+    },
+    {
+      "key": "coop:bump",
+      "name": "Things That Go Bump in the Night",
+      "description": "Complete Duskwood in co-op without any player dying.",
+      "icon": "Ability_Mount_BlackDireWolf",
+      "points": 25,
+      "category": 5,
+      "kind": 8,
+      "selector": 0,
+      "target": 1,
+      "zone": null,
+      "feat_kind": null,
+      "feat_spell": null,
+      "tokens": {},
+      "unlocks": [
+        {
+          "prefix": "Reward",
+          "name": "Embrace of the Lycan",
+          "icon": "Ability_Mount_WhiteDireWolf"
+        }
+      ],
+      "cooperative": {
+        "type": "victory",
+        "zone": 1,
+        "no_deaths": true,
+        "max_modifiers": false,
+        "party": {
+          "kind": "any"
+        }
+      }
+    },
+    {
+      "key": "coop:team",
+      "name": "For the Team",
+      "description": "Complete Warsong Gulch and Arathi Basin in co-op.",
+      "icon": "INV_BannerPVP_02",
+      "points": 10,
+      "category": 5,
+      "kind": 20,
+      "selector": 0,
+      "target": 1,
+      "zone": null,
+      "feat_kind": null,
+      "feat_spell": null,
+      "tokens": {},
+      "unlocks": [
+        {
+          "prefix": "Unlocks",
+          "name": "United Front",
+          "icon": "Spell_Holy_PrayerOfHealing"
+        }
+      ],
+      "cooperative": {
+        "type": "zone_history",
+        "zones": [
+          2,
+          4
+        ]
+      }
+    },
+    {
+      "key": "coop:jurassic",
+      "name": "Jurassic Pack",
+      "description": "Complete Un'Goro Crater in co-op with 5 Hunters.",
+      "icon": "Ability_Hunter_Pet_Raptor",
+      "points": 25,
+      "category": 5,
+      "kind": 8,
+      "selector": 0,
+      "target": 1,
+      "zone": null,
+      "feat_kind": null,
+      "feat_spell": null,
+      "tokens": {},
+      "unlocks": [
+        {
+          "prefix": "Unlocks",
+          "name": "White Devilsaur",
+          "icon": "Ability_Hunter_Pet_Raptor"
+        }
+      ],
+      "cooperative": {
+        "type": "victory",
+        "zone": 3,
+        "no_deaths": false,
+        "max_modifiers": false,
+        "party": {
+          "kind": "class",
+          "class": 3
+        }
+      }
+    },
+    {
+      "key": "coop:smoothie",
+      "name": "Hakkar Smoothie",
+      "description": "Defeat Hakkar in co-op with 5 Warriors, all talented into Bladestorm. Whirlwind must deliver the killing blow.",
+      "icon": "Ability_Whirlwind",
+      "points": 50,
+      "category": 5,
+      "kind": 9,
+      "selector": 0,
+      "target": 1,
+      "zone": null,
+      "feat_kind": null,
+      "feat_spell": null,
+      "tokens": {},
+      "unlocks": [
+        {
+          "prefix": "Companion",
+          "name": "Mini Herod",
+          "icon": "Ability_Whirlwind"
+        }
+      ],
+      "cooperative": {
+        "type": "boss",
+        "boss_id": 994,
+        "spells": [
+          1680
+        ],
+        "max_modifiers": false,
+        "party": {
+          "kind": "talent",
+          "class": 1,
+          "key": "bladestorm"
+        }
+      }
+    },
+    {
+      "key": "coop:holyframe",
+      "name": "Holy Frame Drops",
+      "description": "Defeat High Inquisitor Whitemane in co-op with 5 Paladins, all having Consecration as their highest-ranked spell. Consecration must deliver the killing blow.",
+      "icon": "Spell_Holy_InnerFire",
+      "points": 50,
+      "category": 5,
+      "kind": 9,
+      "selector": 0,
+      "target": 1,
+      "zone": null,
+      "feat_kind": null,
+      "feat_spell": null,
+      "tokens": {},
+      "unlocks": [
+        {
+          "prefix": "Reward",
+          "name": "Whitemane's Chapeau",
+          "icon": "INV_Helmet_12"
+        }
+      ],
+      "cooperative": {
+        "type": "boss",
+        "boss_id": 1394,
+        "spells": [
+          26573
+        ],
+        "max_modifiers": false,
+        "party": {
+          "kind": "highest_spell",
+          "class": 2,
+          "key": "consecration"
+        }
+      }
+    },
+    {
+      "key": "coop:dragonslayers",
+      "name": "Dragonslayers",
+      "description": "Defeat Azuregos and Nefarian in co-op.",
+      "icon": "INV_Misc_Head_Dragon_Blue",
+      "points": 25,
+      "category": 5,
+      "kind": 20,
+      "selector": 0,
+      "target": 1,
+      "zone": null,
+      "feat_kind": null,
+      "feat_spell": null,
+      "tokens": {},
+      "unlocks": [
+        {
+          "prefix": "Reward",
+          "name": "Cloak of the Brood Lord",
+          "icon": "INV_Misc_Cape_20"
+        }
+      ],
+      "cooperative": {
+        "type": "zone_history",
+        "zones": [
+          8,
+          9
+        ]
+      }
+    },
+    {
+      "key": "coop:totemly",
+      "name": "Totem'ly Balanced",
+      "description": "Defeat Nefarian in co-op with 5 Shamans, all having Magma Totem as their highest-ranked spell. Magma Totem must deliver the killing blow.",
+      "icon": "Spell_Fire_SelfDestruct",
+      "points": 50,
+      "category": 5,
+      "kind": 9,
+      "selector": 0,
+      "target": 1,
+      "zone": null,
+      "feat_kind": null,
+      "feat_spell": null,
+      "tokens": {},
+      "unlocks": [
+        {
+          "prefix": "Companion",
+          "name": "Mini Nefarian",
+          "icon": "INV_Misc_Head_Dragon_Black"
+        }
+      ],
+      "cooperative": {
+        "type": "boss",
+        "boss_id": 1094,
+        "spells": [
+          8190,
+          8187
+        ],
+        "max_modifiers": false,
+        "party": {
+          "kind": "highest_spell",
+          "class": 7,
+          "key": "magma_totem"
+        }
+      }
+    },
+    {
+      "key": "coop:oldgods",
+      "name": "The Old Gods Have No Friends",
+      "description": "Defeat C'Thun in co-op with all four enemy difficulty modifiers at maximum.",
+      "icon": "INV_Misc_AhnQirajTrinket_01",
+      "points": 50,
+      "category": 5,
+      "kind": 9,
+      "selector": 0,
+      "target": 1,
+      "zone": null,
+      "feat_kind": null,
+      "feat_spell": null,
+      "tokens": {},
+      "unlocks": [
+        {
+          "prefix": "Reward",
+          "name": "Cloak of the Devoured",
+          "icon": "INV_Misc_Cape_18"
+        }
+      ],
+      "cooperative": {
+        "type": "boss",
+        "boss_id": 1194,
+        "spells": [],
+        "max_modifiers": true,
+        "party": {
+          "kind": "any"
+        }
+      }
+    },
+    {
+      "key": "coop:end",
+      "name": "Together, To the End",
+      "description": "Complete every zone in co-op, across any number of runs.",
+      "icon": "INV_Misc_Head_Scourge_01",
+      "points": 50,
+      "category": 5,
+      "kind": 20,
+      "selector": 0,
+      "target": 1,
+      "zone": null,
+      "feat_kind": null,
+      "feat_spell": null,
+      "tokens": {},
+      "unlocks": [
+        {
+          "prefix": "Companion",
+          "name": "Mr. Bigglesworth",
+          "icon": "Ability_Hunter_Pet_Cat"
+        }
+      ],
+      "cooperative": {
+        "type": "zone_history",
+        "zones": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ]
+      }
+    }
+  ]
+}

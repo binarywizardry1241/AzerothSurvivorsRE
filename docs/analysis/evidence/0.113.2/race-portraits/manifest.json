@@ -1,0 +1,97 @@
+{
+  "target_sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+  "application_executed": false,
+  "rebuilt_code_executed": false,
+  "native_instructions_executed": true,
+  "code_ranges": [
+    {
+      "start": "0x145808f20",
+      "end_exclusive": "0x145808f3f",
+      "role": "race-record-getter",
+      "size_bytes": 31,
+      "sha256": "d048eede058251d2c71738da3a29dea4d13124d50a8b71b9569f8ddb46703133",
+      "assembly": "race-record-getter.asm",
+      "assembly_sha256": "1c2b3798d3d475c6e0329be40d5a956cc303e8fe9134db734fc866b7ae84d80d"
+    },
+    {
+      "start": "0x1402cbc35",
+      "end_exclusive": "0x1402cc269",
+      "role": "appearance-portrait",
+      "size_bytes": 1588,
+      "sha256": "95454d3b9d825a916e019dc5e0606fec288efc5b9b2d56730411522f2a8284fa",
+      "assembly": "appearance-portrait.asm",
+      "assembly_sha256": "4f2a793ae816f7d54564f7c197d2d69223c2f68e2e7f7916b80b7922addbc4ac"
+    },
+    {
+      "start": "0x1402cc279",
+      "end_exclusive": "0x1402cc33a",
+      "role": "appearance-bundle",
+      "size_bytes": 193,
+      "sha256": "a194ce7ee37dfee5a923db8fdf2871049d6266e3cb5491f6bbe1418d2e03cc2b",
+      "assembly": "appearance-bundle.asm",
+      "assembly_sha256": "0debb53dbc0a9dd32553fcdb4a4fda7e994548813fffca1a37dacc78d91438c8"
+    },
+    {
+      "start": "0x1402c75a0",
+      "end_exclusive": "0x1402c7917",
+      "role": "tooltip-portrait",
+      "size_bytes": 887,
+      "sha256": "6c75b57974fa9176adacf3aa74cea90de0bbe8ee364fb0ee776f1e620e6a8aa1",
+      "assembly": "tooltip-portrait.asm",
+      "assembly_sha256": "8614fc185fa5cfaee83adee963ac89ef30b7b76a37c10b6418dcf21c63377c84"
+    },
+    {
+      "start": "0x142674550",
+      "end_exclusive": "0x14267458f",
+      "role": "image-node-new",
+      "size_bytes": 63,
+      "sha256": "f3edb62bd1e03cf723540737a1260e741a6cb63fc58e54f7dfe5b80c642b7765",
+      "assembly": "image-node-new.asm",
+      "assembly_sha256": "af7fe9bc0fa1b55aef38accead2aafa764677e55be21b4251588d3c06cf77990"
+    },
+    {
+      "start": "0x145808f60",
+      "end_exclusive": "0x145808fc7",
+      "role": "ability-lookup",
+      "size_bytes": 103,
+      "sha256": "57157b8aeafa5da949790270aac9c0246aba9d98b338d48ee5f91e1890326386",
+      "assembly": "ability-lookup.asm",
+      "assembly_sha256": "63ac18ceaf553a096333a18081db02bf73987624ea8e9a8c5906fee70b92fec3"
+    }
+  ],
+  "ghidra": [
+    {
+      "role": "appearance",
+      "input_sha256": "2b6f93855148ea25e10e1ce06bb3e51a25a4ec7648e4d60529debf945247d195",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_51b08c210dc5a22848f35d5b4a40cfa7ed2663520c31d8fe6be885f1ffd803dd",
+      "analysis_profile_digest": "395dd341580888f15a3a211fd3bb7b9b5ae2499b03b9ea0f6f4dbff4107ee103",
+      "entry_point": "0x1402cafd0"
+    },
+    {
+      "role": "tooltip",
+      "input_sha256": "0761095d6a762b189ebd59fed4536a5e329747df34b0b06b5b71f3f71613589c",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_2a6c11ebde737531199b2e92e2b89b3853ff11acaa45662fb7d09b57456be0d0",
+      "analysis_profile_digest": "77451defb82a69435555111a9394433476d4f7d1a3593673c191038da6adc767",
+      "entry_point": "0x1402c75a0"
+    }
+  ],
+  "cases": {
+    "file": "cases.json",
+    "sha256": "bddaed893a10e923c1a9246f091864925b56c23bc0672057f9ed2a9081faa87f"
+  },
+  "limits": [
+    "Raw Ghidra slices omit external globals/callees; current PE data, instruction replay and jump-table reads supply the demonstrated branch behavior.",
+    "No Rust compilation, game/application launch, reconstructed UI execution, GPU filtering/layout or original/rebuilt parity comparison.",
+    "Registered archive-wide SHA records are separate from this member-level byte/hash check."
+  ]
+}

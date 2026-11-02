@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "predecessor": {
+    "path": "docs/analysis/evidence/0.120.5/computed-correspondence-frontier.json",
+    "sha256": "161fd9e2d892d75e70b90d52e99f173dc04d885622aa520133814461467f75cf"
+  },
+  "inputs": [
+    {
+      "path": "docs/analysis/evidence/0.121.0/computed-correspondence-frontier.json",
+      "sha256": "01836403f217662b6f6818e602e2411460969695f7202c18d08c505e44b15025"
+    },
+    {
+      "path": "runtime/analysis/objects/86/867afce4a92e61f5b1a6689d868161ec2c191a46800a1c5b89d832459a6a0393",
+      "sha256": "867afce4a92e61f5b1a6689d868161ec2c191a46800a1c5b89d832459a6a0393"
+    },
+    {
+      "path": "docs/analysis/evidence/0.120.2/creature-query-tables/native-check.json",
+      "sha256": "27845e3a79201ba94db2e55716148b4d6264f9b48a32bf389b5c52ea63cc82e9"
+    },
+    {
+      "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
+      "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
+    },
+    {
+      "path": "docs/analysis/evidence/0.121.0/orb-query/manifest.json",
+      "sha256": "d38a0aa392f7be1113bfe70ea49e3615982634bb07469c4f126a0503d2b996e9"
+    },
+    {
+      "path": "docs/analysis/evidence/0.121.0/orb-query/static-check.json",
+      "sha256": "9472d75e79470f0937b00a199b124dfdea47521ba80496c72ac0b5594d32a37a"
+    },
+    {
+      "path": "runtime/analysis/objects/3e/3ea0714a56dcffdcf22ea7394db54d445583c379702c28134d38b04812b30640",
+      "sha256": "3ea0714a56dcffdcf22ea7394db54d445583c379702c28134d38b04812b30640"
+    }
+  ],
+  "generic_geometry_counts": {
+    "retained_questions": 14,
+    "unique_current_geometry_candidates": 6,
+    "complete_current_AS_context_population": 45,
+    "unmapped_current_AS_context_proposals": 8,
+    "new_semantics_inferred_from_geometry": 0
+  },
+  "reviewed_changed_domain_candidates": 1,
+  "questions_with_any_current_candidate": 7,
+  "remaining_wholly_unmapped_questions": 7,
+  "semantic_or_source_implementation_reset": false,
+  "leads": {
+    "retained-table-145afa2a7": {
+      "stable_question_id": "retained-table-145afa2a7",
+      "selector": "Q41-F01:correspondence:retained-table-145afa2a7",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "historical_classification": {
+        "id": "retained-table-145afa2a7",
+        "selector": "Q41-F01:correspondence:retained-table-145afa2a7",
+        "state": "classified_within_bounded_contract",
+        "finding_ids": [
+          64,
+          65
+        ],
+        "original_question_evidence": {
+          "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+          "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
+        },
+        "classification_evidence": {
+          "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
+          "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
+        },
+        "review_id": "retained-table-145afa2a7",
+        "completion_scope": "Original finite producer/selector/consumer/source question only; whole module, arbitrary aliases, application execution and parity remain separate."
+      },
+      "predecessor_selector": "Q41-F01:correspondence:retained-table-145afa2a7",
+      "historical_native_candidate": {
+        "virtual_address": "0x146fbd7ac",
+        "end_exclusive": "0x146fbd96c",
+        "file_offset": "0x6fbc7ac",
+        "byte_count": 448,
+        "sha256": "f2619bae14da34479acdbb95f9357b88a99e9b39a94cce95be1aa08b43ab032e",
+        "dispatch_site": "0x145b12b57"
+      },
+      "historical_target": {
+        "version": "0.120.5",
+        "path": "installed-game/AzerothSurvivors.exe",
+        "sha256": "522e1c831b3b4627875a28a1030368ef9d2e7f98c5606c34cb30448d3b7d776e",
+        "size_bytes": 145498624
+      },
+      "candidate_matches_within_complete_current_AS_context_population": 0,
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_source_receipts": [
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/benilla-protocol/src/messages/parse.rs",
+          "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+        }
+      ],
+      "current_native_location": {
+        "site": "0x145b101b4",
+        "table_address": "0x147664420",
+        "native_owner": "0x145b0f580",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ]
+      },
+      "applicability": "pending_changed_domain_other_cases_producers_dependencies_and_consumers",
+      "next_static_step": "Preserve the proved changed9500-based query interface and new9612 metadata under#247. Recover current other-case/default/producer/dependency/consumer applicability against the retained finite contract; do not repeat recovered semantics from zero.",
+      "current_native_candidate": {
+        "virtual_address": "0x147664420",
+        "end_exclusive": "0x1476645e4",
+        "file_offset": "0x7663220",
+        "byte_count": 452,
+        "sha256": "aa678e2843c0f5902d7c1d9aa385106da1d8f36d747e8b12b92d8c594e900bdd",
+        "dispatch_site": "0x145b101b4"
+      },
+      "guard_kind_register_bound_and_dispatch_relative_case_vector_equal": false,
+      "current_candidate_proof": {
+        "evidence": {
+          "path": "runtime/analysis/objects/3e/3ea0714a56dcffdcf22ea7394db54d445583c379702c28134d38b04812b30640",
+          "sha256": "3ea0714a56dcffdcf22ea7394db54d445583c379702c28134d38b04812b30640"
+        },
+        "selector": [
+          "native_candidate"
+        ],
+        "location_selector": [
+          "native_location"
+        ]
+      },
+      "correspondence_basis": "Proved retained/current opcode0x60 and9500-based CreatureQuery interface; domain112→113, added9612 separately recovered under#247; generic geometry match remains false."
+    }
+  },
+  "limits": "Separate current reviewed interface correspondence supplements the unchanged generic6geometry/8unmapped result. All14questions retain pending wider native/source applicability; no runtime/parity transfer."
+}

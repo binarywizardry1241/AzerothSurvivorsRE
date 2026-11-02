@@ -1,0 +1,5295 @@
+{
+  "cleave": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Physical",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "2.1"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Strikes up to {n} enemies within {range} yd for {hit} each.{focus}",
+      "values": {
+        "n": {
+          "literal": "3"
+        },
+        "range": {
+          "literal": "7"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "66"
+            },
+            "school": {
+              "template": "Physical",
+              "values": {}
+            }
+          }
+        },
+        "focus": {
+          "template": " Bosses and elites are targeted first.",
+          "values": {}
+        }
+      }
+    }
+  },
+  "whirlwind": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Physical",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "6.3"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Hits every enemy within {r} yd of you for {hit}.",
+      "values": {
+        "r": {
+          "literal": "8"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "34"
+            },
+            "school": {
+              "template": "Physical",
+              "values": {}
+            }
+          }
+        }
+      }
+    }
+  },
+  "thunder_clap": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Physical",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "7"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "concat": [
+        {
+          "template": "Hits every enemy within {r} yd of you for {hit}.",
+          "values": {
+            "r": {
+              "literal": "10"
+            },
+            "hit": {
+              "template": "{dmg} {school} damage",
+              "values": {
+                "dmg": {
+                  "literal": "15"
+                },
+                "school": {
+                  "template": "Physical",
+                  "values": {}
+                }
+              }
+            }
+          }
+        },
+        {
+          "literal": " "
+        },
+        {
+          "template": "Slows them by {p}% for {d} sec.",
+          "values": {
+            "p": {
+              "literal": "50"
+            },
+            "d": {
+              "literal": "3"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "mortal_strike": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Physical",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "4.2"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Strikes the nearest enemy within {range} yd for {hit}.{focus}",
+      "values": {
+        "range": {
+          "literal": "7"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "191"
+            },
+            "school": {
+              "template": "Physical",
+              "values": {}
+            }
+          }
+        },
+        "focus": {
+          "template": " Bosses and elites are targeted first.",
+          "values": {}
+        }
+      }
+    }
+  },
+  "execute": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Physical",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "3.5"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Strikes {enemies} within {range} yd for {hit}, doubled to {dmg} against an enemy below 30% health. Bosses and elites are targeted first, then the most wounded below 30% health.",
+      "values": {
+        "enemies": {
+          "template": "an enemy",
+          "values": {}
+        },
+        "range": {
+          "literal": "10"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "164"
+            },
+            "school": {
+              "template": "Physical",
+              "values": {}
+            }
+          }
+        },
+        "dmg": {
+          "literal": "328"
+        }
+      }
+    }
+  },
+  "demo_shout": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Physical",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "14"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "concat": [
+        {
+          "template": "Hits every enemy within {r} yd of you for {hit}.",
+          "values": {
+            "r": {
+              "literal": "14"
+            },
+            "hit": {
+              "template": "{dmg} {school} damage",
+              "values": {
+                "dmg": {
+                  "literal": "5.6"
+                },
+                "school": {
+                  "template": "Physical",
+                  "values": {}
+                }
+              }
+            }
+          }
+        },
+        {
+          "literal": " "
+        },
+        {
+          "template": "Enemies hit deal {p}% less damage for {d} sec.",
+          "values": {
+            "p": {
+              "literal": "35"
+            },
+            "d": {
+              "literal": "6"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "battle_shout": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Physical",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "22.4"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Increases all your damage by {p}% for {dur} sec.{in_fight}",
+      "values": {
+        "p": {
+          "literal": "40"
+        },
+        "dur": {
+          "literal": "11"
+        },
+        "in_fight": {
+          "template": " Cast once enemies are within 30 yd.",
+          "values": {}
+        }
+      }
+    }
+  },
+  "bloodthirst": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Physical",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "5.6"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "concat": [
+        {
+          "template": "Strikes the nearest enemy within {range} yd for {hit}.{focus}",
+          "values": {
+            "range": {
+              "literal": "7"
+            },
+            "hit": {
+              "template": "{dmg} {school} damage",
+              "values": {
+                "dmg": {
+                  "literal": "123"
+                },
+                "school": {
+                  "template": "Physical",
+                  "values": {}
+                }
+              }
+            },
+            "focus": {
+              "template": " Bosses and elites are targeted first.",
+              "values": {}
+            }
+          }
+        },
+        {
+          "literal": " "
+        },
+        {
+          "template": "Heals you for {p}% of the damage dealt.",
+          "values": {
+            "p": {
+              "literal": "50"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "rend": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Physical",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "4.2"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Afflicts {targets} within {range} yd{whom}: {total} {school} damage over {secs} sec, in {ticks} ticks.{stack}",
+      "values": {
+        "targets": {
+          "template": "the {n} healthiest enemies",
+          "values": {
+            "n": {
+              "literal": "3"
+            }
+          }
+        },
+        "range": {
+          "literal": "8"
+        },
+        "whom": {
+          "template": " that are not already afflicted",
+          "values": {}
+        },
+        "total": {
+          "literal": "153"
+        },
+        "school": {
+          "template": "Physical",
+          "values": {}
+        },
+        "secs": {
+          "literal": "7"
+        },
+        "ticks": {
+          "literal": "7"
+        },
+        "stack": {
+          "template": " Bosses and elites are targeted first.",
+          "values": {}
+        }
+      }
+    }
+  },
+  "shield_slam": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Physical",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "8.4"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "concat": [
+        {
+          "template": "Strikes up to {n} enemies within {range} yd for {hit} each.{focus}",
+          "values": {
+            "n": {
+              "literal": "2"
+            },
+            "range": {
+              "literal": "7"
+            },
+            "hit": {
+              "template": "{dmg} {school} damage",
+              "values": {
+                "dmg": {
+                  "literal": "210"
+                },
+                "school": {
+                  "template": "Physical",
+                  "values": {}
+                }
+              }
+            },
+            "focus": {
+              "template": " Bosses and elites are targeted first.",
+              "values": {}
+            }
+          }
+        },
+        {
+          "literal": " "
+        },
+        {
+          "template": "Stuns them for {d} sec{boss}",
+          "values": {
+            "d": {
+              "literal": "1.5"
+            },
+            "boss": {
+              "template": "; bosses for a quarter as long.",
+              "values": {}
+            }
+          }
+        }
+      ]
+    }
+  },
+  "bloodrage": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Physical",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "10"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Each of your hits fills {rage} rage, at most {per_sec} a second. At 100 rage you erupt, dealing {dmg} Physical damage to every enemy within {r} yd, at most once every {iv} sec. Rage drains when you stop fighting.",
+      "values": {
+        "rage": {
+          "literal": "2"
+        },
+        "per_sec": {
+          "literal": "10"
+        },
+        "dmg": {
+          "literal": "203"
+        },
+        "r": {
+          "literal": "9"
+        },
+        "iv": {
+          "literal": "10"
+        }
+      }
+    }
+  },
+  "consecration": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Holy",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "11.2"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "{place}: every enemy within {r} yd of that spot takes {tick} {school} damage every {every} sec for {dur} sec, {total} in all.",
+      "values": {
+        "place": {
+          "template": "Marks the ground where you stand once enemies come within {r} yd",
+          "values": {
+            "r": {
+              "literal": "8"
+            }
+          }
+        },
+        "r": {
+          "literal": "8"
+        },
+        "tick": {
+          "literal": "8.4"
+        },
+        "school": {
+          "template": "Holy",
+          "values": {}
+        },
+        "every": {
+          "literal": "1"
+        },
+        "dur": {
+          "literal": "11"
+        },
+        "total": {
+          "literal": "92"
+        }
+      }
+    }
+  },
+  "exorcism": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Holy",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "4.9"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Strikes {targets} within {range} yd for {hit}.{focus}{mark}",
+      "values": {
+        "targets": {
+          "template": "the nearest enemy",
+          "values": {}
+        },
+        "range": {
+          "literal": "25"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "189"
+            },
+            "school": {
+              "template": "Holy",
+              "values": {}
+            }
+          }
+        },
+        "focus": {
+          "template": " Bosses and elites are targeted first.",
+          "values": {}
+        },
+        "mark": {
+          "concat": []
+        }
+      }
+    }
+  },
+  "hammer_of_wrath": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Holy",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "2.2"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Strikes {targets} within {range} yd for {hit}.{focus}{mark}",
+      "values": {
+        "targets": {
+          "template": "the nearest enemy",
+          "values": {}
+        },
+        "range": {
+          "literal": "28"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "93"
+            },
+            "school": {
+              "template": "Holy",
+              "values": {}
+            }
+          }
+        },
+        "focus": {
+          "template": " Bosses and elites are targeted first.",
+          "values": {}
+        },
+        "mark": {
+          "concat": []
+        }
+      }
+    }
+  },
+  "holy_shock": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Holy",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "4.2"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "concat": [
+        {
+          "template": "Fires {n} missiles at random enemies within {range} yd for {hit} each. With few enemies near, several can hit the same one.",
+          "values": {
+            "n": {
+              "literal": "2"
+            },
+            "range": {
+              "literal": "22"
+            },
+            "hit": {
+              "template": "{dmg} {school} damage",
+              "values": {
+                "dmg": {
+                  "literal": "117"
+                },
+                "school": {
+                  "template": "Holy",
+                  "values": {}
+                }
+              }
+            }
+          }
+        },
+        {
+          "literal": " "
+        },
+        {
+          "template": "Each hit heals you for {n}.",
+          "values": {
+            "n": {
+              "literal": "7.3"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "holy_wrath": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Holy",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "9.8"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Hits every enemy within {r} yd of you for {hit}.",
+      "values": {
+        "r": {
+          "literal": "12"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "39"
+            },
+            "school": {
+              "template": "Holy",
+              "values": {}
+            }
+          }
+        }
+      }
+    }
+  },
+  "judgement": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Holy",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "8.4"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Strikes {targets} within {range} yd for {hit}.{focus}{mark}",
+      "values": {
+        "targets": {
+          "template": "the nearest enemy",
+          "values": {}
+        },
+        "range": {
+          "literal": "12"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "280"
+            },
+            "school": {
+              "template": "Holy",
+              "values": {}
+            }
+          }
+        },
+        "focus": {
+          "template": " Bosses and elites are targeted first.",
+          "values": {}
+        },
+        "mark": {
+          "concat": []
+        }
+      }
+    }
+  },
+  "hammer_of_justice": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Holy",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "9.8"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "concat": [
+        {
+          "template": "Strikes {targets} within {range} yd for {hit} each.{focus}{mark}",
+          "values": {
+            "targets": {
+              "template": "the {n} nearest enemies",
+              "values": {
+                "n": {
+                  "literal": "2"
+                }
+              }
+            },
+            "range": {
+              "literal": "12"
+            },
+            "hit": {
+              "template": "{dmg} {school} damage",
+              "values": {
+                "dmg": {
+                  "literal": "77"
+                },
+                "school": {
+                  "template": "Holy",
+                  "values": {}
+                }
+              }
+            },
+            "focus": {
+              "template": " Bosses and elites are targeted first.",
+              "values": {}
+            },
+            "mark": {
+              "concat": []
+            }
+          }
+        },
+        {
+          "literal": " "
+        },
+        {
+          "template": "Stuns them for {d} sec{boss}",
+          "values": {
+            "d": {
+              "literal": "3"
+            },
+            "boss": {
+              "template": "; bosses for a quarter as long.",
+              "values": {}
+            }
+          }
+        }
+      ]
+    }
+  },
+  "holy_light": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Holy",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "16.8"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Heals you for {amount}, {share}% of your max health, {over}. Cast when you fall below 85% health.",
+      "values": {
+        "amount": {
+          "literal": "103"
+        },
+        "share": {
+          "literal": "42"
+        },
+        "over": {
+          "template": "at once",
+          "values": {}
+        }
+      }
+    }
+  },
+  "divine_shield": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Holy",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "44.8"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Makes you immune to all damage for {dur} sec. Cast when you fall below 35% health.",
+      "values": {
+        "dur": {
+          "literal": "5.6"
+        }
+      }
+    }
+  },
+  "holy_shield": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Holy",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "19.6"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "For {dur} sec, enemies that hit you in melee take {n} damage.{in_fight}",
+      "values": {
+        "dur": {
+          "literal": "14"
+        },
+        "n": {
+          "literal": "30"
+        },
+        "in_fight": {
+          "template": " Cast once enemies are within 30 yd.",
+          "values": {}
+        }
+      }
+    }
+  },
+  "redemption": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Holy",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "0.5"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Enemies you slay have a {p}% chance to burst in holy light, dealing {dmg} Holy damage to every enemy within {r} yd of the body. A burst's kills may set off one more. At most two bursts a second.",
+      "values": {
+        "p": {
+          "literal": "10"
+        },
+        "dmg": {
+          "literal": "73"
+        },
+        "r": {
+          "literal": "8"
+        }
+      }
+    }
+  },
+  "auto_shot": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Physical",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "1.5"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Strikes {targets} within {range} yd for {hit} each.{focus}{mark}",
+      "values": {
+        "targets": {
+          "template": "the {n} nearest enemies",
+          "values": {
+            "n": {
+              "literal": "2"
+            }
+          }
+        },
+        "range": {
+          "literal": "32"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "48"
+            },
+            "school": {
+              "template": "Physical",
+              "values": {}
+            }
+          }
+        },
+        "focus": {
+          "template": " Bosses and elites are targeted first.",
+          "values": {}
+        },
+        "mark": {
+          "concat": []
+        }
+      }
+    }
+  },
+  "arcane_shot": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Arcane",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "3.5"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Strikes {targets} within {range} yd for {hit}.{focus}{mark}",
+      "values": {
+        "targets": {
+          "template": "the nearest enemy",
+          "values": {}
+        },
+        "range": {
+          "literal": "32"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "96"
+            },
+            "school": {
+              "template": "Arcane",
+              "values": {}
+            }
+          }
+        },
+        "focus": {
+          "template": " Bosses and elites are targeted first.",
+          "values": {}
+        },
+        "mark": {
+          "concat": []
+        }
+      }
+    }
+  },
+  "multi_shot": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Physical",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "2.2"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Strikes {targets} within {range} yd for {hit} each.{focus}{mark}",
+      "values": {
+        "targets": {
+          "template": "the {n} nearest enemies",
+          "values": {
+            "n": {
+              "literal": "3"
+            }
+          }
+        },
+        "range": {
+          "literal": "30"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "42"
+            },
+            "school": {
+              "template": "Physical",
+              "values": {}
+            }
+          }
+        },
+        "focus": {
+          "template": " Bosses and elites are targeted first.",
+          "values": {}
+        },
+        "mark": {
+          "concat": []
+        }
+      }
+    }
+  },
+  "serpent_sting": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Nature",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "3.5"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Afflicts {targets} within {range} yd{whom}: {total} {school} damage over {secs} sec, in {ticks} ticks.{stack}",
+      "values": {
+        "targets": {
+          "template": "the {n} healthiest enemies",
+          "values": {
+            "n": {
+              "literal": "2"
+            }
+          }
+        },
+        "range": {
+          "literal": "30"
+        },
+        "whom": {
+          "template": " that are not already afflicted",
+          "values": {}
+        },
+        "total": {
+          "literal": "112"
+        },
+        "school": {
+          "template": "Nature",
+          "values": {}
+        },
+        "secs": {
+          "literal": "7"
+        },
+        "ticks": {
+          "literal": "7"
+        },
+        "stack": {
+          "template": " Bosses and elites are targeted first.",
+          "values": {}
+        }
+      }
+    }
+  },
+  "volley": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Arcane",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "11.2"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "{place}: every enemy within {r} yd of that spot takes {tick} {school} damage every {every} sec for {dur} sec, {total} in all.",
+      "values": {
+        "place": {
+          "template": "Lands on the thickest group of enemies within {range} yd",
+          "values": {
+            "range": {
+              "literal": "28"
+            }
+          }
+        },
+        "r": {
+          "literal": "8"
+        },
+        "tick": {
+          "literal": "6"
+        },
+        "school": {
+          "template": "Arcane",
+          "values": {}
+        },
+        "every": {
+          "literal": "1"
+        },
+        "dur": {
+          "literal": "8.4"
+        },
+        "total": {
+          "literal": "48"
+        }
+      }
+    }
+  },
+  "explosive_trap": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Fire",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "8.4"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Hits every enemy within {r} yd of you for {hit}.",
+      "values": {
+        "r": {
+          "literal": "9"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "24"
+            },
+            "school": {
+              "template": "Fire",
+              "values": {}
+            }
+          }
+        }
+      }
+    }
+  },
+  "concussive_shot": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Arcane",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "5.6"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "concat": [
+        {
+          "template": "Strikes {targets} within {range} yd for {hit} each.{focus}{mark}",
+          "values": {
+            "targets": {
+              "template": "the {n} nearest enemies",
+              "values": {
+                "n": {
+                  "literal": "2"
+                }
+              }
+            },
+            "range": {
+              "literal": "30"
+            },
+            "hit": {
+              "template": "{dmg} {school} damage",
+              "values": {
+                "dmg": {
+                  "literal": "24"
+                },
+                "school": {
+                  "template": "Arcane",
+                  "values": {}
+                }
+              }
+            },
+            "focus": {
+              "template": " Bosses and elites are targeted first.",
+              "values": {}
+            },
+            "mark": {
+              "concat": []
+            }
+          }
+        },
+        {
+          "literal": " "
+        },
+        {
+          "template": "Slows them by {p}% for {d} sec.",
+          "values": {
+            "p": {
+              "literal": "60"
+            },
+            "d": {
+              "literal": "4"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "aimed_shot": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Physical",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "6.3"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Strikes {targets} within {range} yd for {hit}.{focus}{mark}",
+      "values": {
+        "targets": {
+          "template": "the nearest enemy",
+          "values": {}
+        },
+        "range": {
+          "literal": "35"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "476"
+            },
+            "school": {
+              "template": "Physical",
+              "values": {}
+            }
+          }
+        },
+        "focus": {
+          "template": " Bosses and elites are targeted first.",
+          "values": {}
+        },
+        "mark": {
+          "template": " An enemy under your Hunter's Mark comes before them.",
+          "values": {}
+        }
+      }
+    }
+  },
+  "immolation_trap": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Fire",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "12.6"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "{place}: every enemy within {r} yd of that spot takes {tick} {school} damage every {every} sec for {dur} sec, {total} in all.",
+      "values": {
+        "place": {
+          "template": "Marks the ground where you stand once enemies come within {r} yd",
+          "values": {
+            "r": {
+              "literal": "7"
+            }
+          }
+        },
+        "r": {
+          "literal": "7"
+        },
+        "tick": {
+          "literal": "10"
+        },
+        "school": {
+          "template": "Fire",
+          "values": {}
+        },
+        "every": {
+          "literal": "1.9"
+        },
+        "dur": {
+          "literal": "11"
+        },
+        "total": {
+          "literal": "63"
+        }
+      }
+    }
+  },
+  "frost_trap": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Frost",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "14"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "concat": [
+        {
+          "template": "{place}: every enemy within {r} yd of that spot takes {tick} {school} damage every {every} sec for {dur} sec, {total} in all.",
+          "values": {
+            "place": {
+              "template": "Marks the ground where you stand once enemies come within {r} yd",
+              "values": {
+                "r": {
+                  "literal": "10"
+                }
+              }
+            },
+            "r": {
+              "literal": "10"
+            },
+            "tick": {
+              "literal": "3.9"
+            },
+            "school": {
+              "template": "Frost",
+              "values": {}
+            },
+            "every": {
+              "literal": "2.1"
+            },
+            "dur": {
+              "literal": "8.4"
+            },
+            "total": {
+              "literal": "15"
+            }
+          }
+        },
+        {
+          "literal": " "
+        },
+        {
+          "template": "Roots them for {d} sec{boss}",
+          "values": {
+            "d": {
+              "literal": "1.5"
+            },
+            "boss": {
+              "template": "; bosses for a quarter as long.",
+              "values": {}
+            }
+          }
+        }
+      ]
+    }
+  },
+  "hunters_mark": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Arcane",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "2"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Marks the toughest enemy within {range} yd: it takes {p}% more damage from everything. When it dies the mark explodes, dealing {dmg} Arcane damage to every enemy within {r} yd, at most once every {iv} sec, and a second later marks the next.",
+      "values": {
+        "range": {
+          "literal": "35"
+        },
+        "p": {
+          "literal": "20"
+        },
+        "dmg": {
+          "literal": "350"
+        },
+        "r": {
+          "literal": "8"
+        },
+        "iv": {
+          "literal": "2"
+        }
+      }
+    }
+  },
+  "sinister_strike": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Physical",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "1.4"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Strikes up to {n} enemies within {range} yd for {hit} each.{focus}",
+      "values": {
+        "n": {
+          "literal": "2"
+        },
+        "range": {
+          "literal": "7"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "49"
+            },
+            "school": {
+              "template": "Physical",
+              "values": {}
+            }
+          }
+        },
+        "focus": {
+          "template": " Bosses and elites are targeted first.",
+          "values": {}
+        }
+      }
+    }
+  },
+  "eviscerate": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Physical",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "4.2"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Strikes {enemies} within {range} yd for {hit}, doubled to {dmg} against an enemy below 30% health. Bosses and elites are targeted first, then the most wounded below 30% health.",
+      "values": {
+        "enemies": {
+          "template": "up to {n} enemies",
+          "values": {
+            "n": {
+              "literal": "2"
+            }
+          }
+        },
+        "range": {
+          "literal": "8"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "127"
+            },
+            "school": {
+              "template": "Physical",
+              "values": {}
+            }
+          }
+        },
+        "dmg": {
+          "literal": "255"
+        }
+      }
+    }
+  },
+  "blade_flurry": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Physical",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "3.5"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Hits every enemy within {r} yd of you for {hit}.",
+      "values": {
+        "r": {
+          "literal": "7"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "17"
+            },
+            "school": {
+              "template": "Physical",
+              "values": {}
+            }
+          }
+        }
+      }
+    }
+  },
+  "rupture": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Physical",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "4.9"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Afflicts {targets} within {range} yd{whom}: {total} {school} damage over {secs} sec, in {ticks} ticks.{stack}",
+      "values": {
+        "targets": {
+          "template": "the {n} healthiest enemies",
+          "values": {
+            "n": {
+              "literal": "2"
+            }
+          }
+        },
+        "range": {
+          "literal": "8"
+        },
+        "whom": {
+          "template": " that are not already afflicted",
+          "values": {}
+        },
+        "total": {
+          "literal": "120"
+        },
+        "school": {
+          "template": "Physical",
+          "values": {}
+        },
+        "secs": {
+          "literal": "6"
+        },
+        "ticks": {
+          "literal": "6"
+        },
+        "stack": {
+          "template": " Bosses and elites are targeted first.",
+          "values": {}
+        }
+      }
+    }
+  },
+  "kidney_shot": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Physical",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "8.4"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "concat": [
+        {
+          "template": "Strikes up to {n} enemies within {range} yd for {hit} each.{focus}",
+          "values": {
+            "n": {
+              "literal": "2"
+            },
+            "range": {
+              "literal": "7"
+            },
+            "hit": {
+              "template": "{dmg} {school} damage",
+              "values": {
+                "dmg": {
+                  "literal": "35"
+                },
+                "school": {
+                  "template": "Physical",
+                  "values": {}
+                }
+              }
+            },
+            "focus": {
+              "template": " Bosses and elites are targeted first.",
+              "values": {}
+            }
+          }
+        },
+        {
+          "literal": " "
+        },
+        {
+          "template": "Stuns them for {d} sec{boss}",
+          "values": {
+            "d": {
+              "literal": "2.5"
+            },
+            "boss": {
+              "template": "; bosses for a quarter as long.",
+              "values": {}
+            }
+          }
+        }
+      ]
+    }
+  },
+  "gouge": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Physical",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "7"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "concat": [
+        {
+          "template": "Strikes up to {n} enemies within {range} yd for {hit} each.{focus}",
+          "values": {
+            "n": {
+              "literal": "3"
+            },
+            "range": {
+              "literal": "7"
+            },
+            "hit": {
+              "template": "{dmg} {school} damage",
+              "values": {
+                "dmg": {
+                  "literal": "36"
+                },
+                "school": {
+                  "template": "Physical",
+                  "values": {}
+                }
+              }
+            },
+            "focus": {
+              "template": " Bosses and elites are targeted first.",
+              "values": {}
+            }
+          }
+        },
+        {
+          "literal": " "
+        },
+        {
+          "template": "Stuns them for {d} sec{boss}",
+          "values": {
+            "d": {
+              "literal": "1.5"
+            },
+            "boss": {
+              "template": "; bosses for a quarter as long.",
+              "values": {}
+            }
+          }
+        }
+      ]
+    }
+  },
+  "ghostly_strike": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Physical",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "5.6"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "concat": [
+        {
+          "template": "Strikes the nearest enemy within {range} yd for {hit}.{focus}",
+          "values": {
+            "range": {
+              "literal": "7"
+            },
+            "hit": {
+              "template": "{dmg} {school} damage",
+              "values": {
+                "dmg": {
+                  "literal": "64"
+                },
+                "school": {
+                  "template": "Physical",
+                  "values": {}
+                }
+              }
+            },
+            "focus": {
+              "template": " Bosses and elites are targeted first.",
+              "values": {}
+            }
+          }
+        },
+        {
+          "literal": " "
+        },
+        {
+          "template": "Shields you against {n} damage for every enemy hit, up to {max}, until it breaks.",
+          "values": {
+            "n": {
+              "literal": "15"
+            },
+            "max": {
+              "literal": "76"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "adrenaline_rush": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Physical",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "28"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Your cooldowns recover {p}% faster for {dur} sec.{in_fight}",
+      "values": {
+        "p": {
+          "literal": "60"
+        },
+        "dur": {
+          "literal": "11"
+        },
+        "in_fight": {
+          "template": " Cast once enemies are within 30 yd.",
+          "values": {}
+        }
+      }
+    }
+  },
+  "backstab": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Physical",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "2.5"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Strikes {enemies} within {range} yd for {hit}, doubled to {dmg} against an enemy below 30% health. Bosses and elites are targeted first, then the most wounded below 30% health.",
+      "values": {
+        "enemies": {
+          "template": "up to {n} enemies",
+          "values": {
+            "n": {
+              "literal": "2"
+            }
+          }
+        },
+        "range": {
+          "literal": "7"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "78"
+            },
+            "school": {
+              "template": "Physical",
+              "values": {}
+            }
+          }
+        },
+        "dmg": {
+          "literal": "155"
+        }
+      }
+    }
+  },
+  "slice_and_dice": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Physical",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "21"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Increases all your damage by {p}% for {dur} sec.{in_fight}",
+      "values": {
+        "p": {
+          "literal": "32"
+        },
+        "dur": {
+          "literal": "13"
+        },
+        "in_fight": {
+          "template": " Cast once enemies are within 30 yd.",
+          "values": {}
+        }
+      }
+    }
+  },
+  "seal_fate": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Physical",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "2.5"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Your strikes build combo points, a critical strike two, at most {per_sec} a second. At 5 points a free Eviscerate strikes {whom} within {range} yd for {dmg} Physical damage, doubled against an enemy below 30% health. Bosses and elites are targeted first, then the most wounded below 30% health.",
+      "values": {
+        "per_sec": {
+          "literal": "2"
+        },
+        "whom": {
+          "template": "an enemy",
+          "values": {}
+        },
+        "range": {
+          "literal": "8"
+        },
+        "dmg": {
+          "literal": "182"
+        }
+      }
+    }
+  },
+  "smite": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Holy",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "1.7"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Strikes {targets} within {range} yd for {hit}.{focus}{mark}",
+      "values": {
+        "targets": {
+          "template": "the nearest enemy",
+          "values": {}
+        },
+        "range": {
+          "literal": "28"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "58"
+            },
+            "school": {
+              "template": "Holy",
+              "values": {}
+            }
+          }
+        },
+        "focus": {
+          "template": " Bosses and elites are targeted first.",
+          "values": {}
+        },
+        "mark": {
+          "concat": []
+        }
+      }
+    }
+  },
+  "sw_pain": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Shadow",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "2.2"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Afflicts {targets} within {range} yd{whom}: {total} {school} damage over {secs} sec, in {ticks} ticks.{stack}",
+      "values": {
+        "targets": {
+          "template": "the {n} healthiest enemies",
+          "values": {
+            "n": {
+              "literal": "2"
+            }
+          }
+        },
+        "range": {
+          "literal": "28"
+        },
+        "whom": {
+          "template": " that are not already afflicted",
+          "values": {}
+        },
+        "total": {
+          "literal": "141"
+        },
+        "school": {
+          "template": "Shadow",
+          "values": {}
+        },
+        "secs": {
+          "literal": "8"
+        },
+        "ticks": {
+          "literal": "8"
+        },
+        "stack": {
+          "template": " Bosses and elites are targeted first.",
+          "values": {}
+        }
+      }
+    }
+  },
+  "mind_blast": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Shadow",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "5.6"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Strikes {targets} within {range} yd for {hit}.{focus}{mark}",
+      "values": {
+        "targets": {
+          "template": "the nearest enemy",
+          "values": {}
+        },
+        "range": {
+          "literal": "28"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "130"
+            },
+            "school": {
+              "template": "Shadow",
+              "values": {}
+            }
+          }
+        },
+        "focus": {
+          "template": " Bosses and elites are targeted first.",
+          "values": {}
+        },
+        "mark": {
+          "concat": []
+        }
+      }
+    }
+  },
+  "holy_nova": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Holy",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "5.6"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "concat": [
+        {
+          "template": "Hits every enemy within {r} yd of you for {hit}.",
+          "values": {
+            "r": {
+              "literal": "10"
+            },
+            "hit": {
+              "template": "{dmg} {school} damage",
+              "values": {
+                "dmg": {
+                  "literal": "19"
+                },
+                "school": {
+                  "template": "Holy",
+                  "values": {}
+                }
+              }
+            }
+          }
+        },
+        {
+          "literal": " "
+        },
+        {
+          "template": "Heals you for {n}, plus {n} for every enemy hit.",
+          "values": {
+            "n": {
+              "literal": "6.8"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "pw_shield": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Holy",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "16.8"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Absorbs the next {amount} damage you take, {share}% of your max health. Cast again once the shield breaks.",
+      "values": {
+        "amount": {
+          "literal": "76"
+        },
+        "share": {
+          "literal": "45"
+        }
+      }
+    }
+  },
+  "renew": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Holy",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "14"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Heals you for {amount}, {share}% of your max health, {over}. Cast when you fall below 85% health.",
+      "values": {
+        "amount": {
+          "literal": "86"
+        },
+        "share": {
+          "literal": "50"
+        },
+        "over": {
+          "template": "over {dur} sec",
+          "values": {
+            "dur": {
+              "literal": "14"
+            }
+          }
+        }
+      }
+    }
+  },
+  "holy_fire": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Holy",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "7"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Strikes {targets} within {range} yd for {hit}.{focus}{mark}",
+      "values": {
+        "targets": {
+          "template": "the nearest enemy",
+          "values": {}
+        },
+        "range": {
+          "literal": "28"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "224"
+            },
+            "school": {
+              "template": "Holy",
+              "values": {}
+            }
+          }
+        },
+        "focus": {
+          "template": " Bosses and elites are targeted first.",
+          "values": {}
+        },
+        "mark": {
+          "concat": []
+        }
+      }
+    }
+  },
+  "mind_flay": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Shadow",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "3.5"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "concat": [
+        {
+          "template": "Hits every enemy in a {cone} yd cone in front of you for {hit}.",
+          "values": {
+            "cone": {
+              "literal": "16"
+            },
+            "hit": {
+              "template": "{dmg} {school} damage",
+              "values": {
+                "dmg": {
+                  "literal": "37"
+                },
+                "school": {
+                  "template": "Shadow",
+                  "values": {}
+                }
+              }
+            }
+          }
+        },
+        {
+          "literal": " "
+        },
+        {
+          "template": "Slows them by {p}% for {d} sec.",
+          "values": {
+            "p": {
+              "literal": "50"
+            },
+            "d": {
+              "literal": "2"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "psychic_scream": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Shadow",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "16.8"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "concat": [
+        {
+          "template": "Hits every enemy within {r} yd of you for {hit}.",
+          "values": {
+            "r": {
+              "literal": "10"
+            },
+            "hit": {
+              "template": "{dmg} {school} damage",
+              "values": {
+                "dmg": {
+                  "literal": "7.3"
+                },
+                "school": {
+                  "template": "Shadow",
+                  "values": {}
+                }
+              }
+            }
+          }
+        },
+        {
+          "literal": " "
+        },
+        {
+          "template": "They flee for {d} sec. Bosses are unaffected.",
+          "values": {
+            "d": {
+              "literal": "3"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "devouring_plague": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Shadow",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "8.4"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "concat": [
+        {
+          "template": "Afflicts {targets} within {range} yd{whom}: {total} {school} damage over {secs} sec, in {ticks} ticks.{stack}",
+          "values": {
+            "targets": {
+              "template": "the {n} healthiest enemies",
+              "values": {
+                "n": {
+                  "literal": "3"
+                }
+              }
+            },
+            "range": {
+              "literal": "28"
+            },
+            "whom": {
+              "template": " that are not already afflicted",
+              "values": {}
+            },
+            "total": {
+              "literal": "209"
+            },
+            "school": {
+              "template": "Shadow",
+              "values": {}
+            },
+            "secs": {
+              "literal": "8"
+            },
+            "ticks": {
+              "literal": "8"
+            },
+            "stack": {
+              "template": " Bosses and elites are targeted first.",
+              "values": {}
+            }
+          }
+        },
+        {
+          "literal": " "
+        },
+        {
+          "template": "Heals you for {p}% of the damage dealt.",
+          "values": {
+            "p": {
+              "literal": "30"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "lightwell": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Holy",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "20"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "concat": [
+        {
+          "template": "Every {iv} sec, once enemies are within {near} yd, a Lightwell rises where you stand. For {dur} sec it strikes {whom} within {range} yd of it for {dmg} Holy damage every second.",
+          "values": {
+            "iv": {
+              "literal": "20"
+            },
+            "near": {
+              "literal": "25"
+            },
+            "dur": {
+              "literal": "10"
+            },
+            "whom": {
+              "template": "the nearest enemy",
+              "values": {}
+            },
+            "range": {
+              "literal": "25"
+            },
+            "dmg": {
+              "literal": "112"
+            }
+          }
+        },
+        {
+          "template": " Bosses and elites are targeted first.",
+          "values": {}
+        }
+      ]
+    }
+  },
+  "lightning_bolt": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Nature",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "2.0"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Strikes {targets} within {range} yd for {hit} each.{focus}{mark}",
+      "values": {
+        "targets": {
+          "template": "the {n} nearest enemies",
+          "values": {
+            "n": {
+              "literal": "2"
+            }
+          }
+        },
+        "range": {
+          "literal": "30"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "51"
+            },
+            "school": {
+              "template": "Nature",
+              "values": {}
+            }
+          }
+        },
+        "focus": {
+          "template": " Bosses and elites are targeted first.",
+          "values": {}
+        },
+        "mark": {
+          "concat": []
+        }
+      }
+    }
+  },
+  "chain_lightning": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Nature",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "3.4"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "concat": [
+        {
+          "template": "Strikes the nearest enemy within {range} yd for {hit}, then jumps to up to {n} more enemies within {r} yd of the last, 8% weaker with each jump.",
+          "values": {
+            "range": {
+              "literal": "28"
+            },
+            "hit": {
+              "template": "{dmg} {school} damage",
+              "values": {
+                "dmg": {
+                  "literal": "55"
+                },
+                "school": {
+                  "template": "Nature",
+                  "values": {}
+                }
+              }
+            },
+            "n": {
+              "literal": "4"
+            },
+            "r": {
+              "literal": "12"
+            }
+          }
+        },
+        {
+          "template": " Bosses and elites are targeted first.",
+          "values": {}
+        }
+      ]
+    }
+  },
+  "earth_shock": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Nature",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "4.2"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Strikes {targets} within {range} yd for {hit}.{focus}{mark}",
+      "values": {
+        "targets": {
+          "template": "the nearest enemy",
+          "values": {}
+        },
+        "range": {
+          "literal": "20"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "131"
+            },
+            "school": {
+              "template": "Nature",
+              "values": {}
+            }
+          }
+        },
+        "focus": {
+          "template": " Bosses and elites are targeted first.",
+          "values": {}
+        },
+        "mark": {
+          "concat": []
+        }
+      }
+    }
+  },
+  "flame_shock": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Fire",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "4.2"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Afflicts {targets} within {range} yd{whom}: {total} {school} damage over {secs} sec, in {ticks} ticks.{stack}",
+      "values": {
+        "targets": {
+          "template": "the {n} healthiest enemies",
+          "values": {
+            "n": {
+              "literal": "2"
+            }
+          }
+        },
+        "range": {
+          "literal": "20"
+        },
+        "whom": {
+          "template": " that are not already afflicted",
+          "values": {}
+        },
+        "total": {
+          "literal": "162"
+        },
+        "school": {
+          "template": "Fire",
+          "values": {}
+        },
+        "secs": {
+          "literal": "8"
+        },
+        "ticks": {
+          "literal": "8"
+        },
+        "stack": {
+          "template": " Bosses and elites are targeted first.",
+          "values": {}
+        }
+      }
+    }
+  },
+  "frost_shock": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Frost",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "4.9"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "concat": [
+        {
+          "template": "Strikes {targets} within {range} yd for {hit} each.{focus}{mark}",
+          "values": {
+            "targets": {
+              "template": "the {n} nearest enemies",
+              "values": {
+                "n": {
+                  "literal": "2"
+                }
+              }
+            },
+            "range": {
+              "literal": "20"
+            },
+            "hit": {
+              "template": "{dmg} {school} damage",
+              "values": {
+                "dmg": {
+                  "literal": "81"
+                },
+                "school": {
+                  "template": "Frost",
+                  "values": {}
+                }
+              }
+            },
+            "focus": {
+              "template": " Bosses and elites are targeted first.",
+              "values": {}
+            },
+            "mark": {
+              "concat": []
+            }
+          }
+        },
+        {
+          "literal": " "
+        },
+        {
+          "template": "Slows them by {p}% for {d} sec.",
+          "values": {
+            "p": {
+              "literal": "50"
+            },
+            "d": {
+              "literal": "4"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "lightning_shield": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Nature",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "21"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "For {dur} sec, enemies that hit you in melee take {n} damage.{in_fight}",
+      "values": {
+        "dur": {
+          "literal": "21"
+        },
+        "n": {
+          "literal": "20"
+        },
+        "in_fight": {
+          "template": " Cast once enemies are within 30 yd.",
+          "values": {}
+        }
+      }
+    }
+  },
+  "magma_totem": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Fire",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "16.8"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Drops a totem beside you for {dur} sec once enemies are within 25 yd. Every {every} sec it {does}.",
+      "values": {
+        "dur": {
+          "literal": "17"
+        },
+        "every": {
+          "literal": "2"
+        },
+        "does": {
+          "template": "deals {hit} to every enemy within {r} yd of it",
+          "values": {
+            "hit": {
+              "template": "{dmg} {school} damage",
+              "values": {
+                "dmg": {
+                  "literal": "34"
+                },
+                "school": {
+                  "template": "Fire",
+                  "values": {}
+                }
+              }
+            },
+            "r": {
+              "literal": "10"
+            }
+          }
+        }
+      }
+    }
+  },
+  "searing_totem": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Fire",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "14"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "concat": [
+        {
+          "template": "Drops a totem beside you for {dur} sec once enemies are within 25 yd. Every {every} sec it {does}.",
+          "values": {
+            "dur": {
+              "literal": "21"
+            },
+            "every": {
+              "literal": "1.5"
+            },
+            "does": {
+              "template": "shoots {targets} within {range} yd for {hit}",
+              "values": {
+                "targets": {
+                  "template": "the nearest enemy",
+                  "values": {}
+                },
+                "range": {
+                  "literal": "22"
+                },
+                "hit": {
+                  "template": "{dmg} {school} damage",
+                  "values": {
+                    "dmg": {
+                      "literal": "48"
+                    },
+                    "school": {
+                      "template": "Fire",
+                      "values": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "template": " Bosses and elites are targeted first.",
+          "values": {}
+        }
+      ]
+    }
+  },
+  "fire_nova": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Fire",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "7"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Hits every enemy within {r} yd of you for {hit}.",
+      "values": {
+        "r": {
+          "literal": "12"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "29"
+            },
+            "school": {
+              "template": "Fire",
+              "values": {}
+            }
+          }
+        }
+      }
+    }
+  },
+  "healing_wave": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Nature",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "16.8"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Heals you for {amount}, {share}% of your max health, {over}. Cast when you fall below 85% health.",
+      "values": {
+        "amount": {
+          "literal": "76"
+        },
+        "share": {
+          "literal": "39"
+        },
+        "over": {
+          "template": "at once",
+          "values": {}
+        }
+      }
+    }
+  },
+  "call_of_flame": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Fire",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "1.5"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Your totems explode in flame when they expire, dealing {dmg} Fire damage to every enemy within {r} yd of them, at most once every {iv} sec.",
+      "values": {
+        "dmg": {
+          "literal": "630"
+        },
+        "r": {
+          "literal": "8"
+        },
+        "iv": {
+          "literal": "1.5"
+        }
+      }
+    }
+  },
+  "fireball": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Fire",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "1.8"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Strikes {targets} within {range} yd for {hit}.{focus}{mark}",
+      "values": {
+        "targets": {
+          "template": "the nearest enemy",
+          "values": {}
+        },
+        "range": {
+          "literal": "30"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "71"
+            },
+            "school": {
+              "template": "Fire",
+              "values": {}
+            }
+          }
+        },
+        "focus": {
+          "template": " Bosses and elites are targeted first.",
+          "values": {}
+        },
+        "mark": {
+          "concat": []
+        }
+      }
+    }
+  },
+  "frostbolt": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Frost",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "2.1"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "concat": [
+        {
+          "template": "Strikes {targets} within {range} yd for {hit}.{focus}{mark}",
+          "values": {
+            "targets": {
+              "template": "the nearest enemy",
+              "values": {}
+            },
+            "range": {
+              "literal": "30"
+            },
+            "hit": {
+              "template": "{dmg} {school} damage",
+              "values": {
+                "dmg": {
+                  "literal": "51"
+                },
+                "school": {
+                  "template": "Frost",
+                  "values": {}
+                }
+              }
+            },
+            "focus": {
+              "template": " Bosses and elites are targeted first.",
+              "values": {}
+            },
+            "mark": {
+              "concat": []
+            }
+          }
+        },
+        {
+          "literal": " "
+        },
+        {
+          "template": "Slows them by {p}% for {d} sec.",
+          "values": {
+            "p": {
+              "literal": "50"
+            },
+            "d": {
+              "literal": "3"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "arcane_missiles": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Arcane",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "2.5"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Fires {n} missiles at random enemies within {range} yd for {hit} each. With few enemies near, several can hit the same one.",
+      "values": {
+        "n": {
+          "literal": "4"
+        },
+        "range": {
+          "literal": "28"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "35"
+            },
+            "school": {
+              "template": "Arcane",
+              "values": {}
+            }
+          }
+        }
+      }
+    }
+  },
+  "frost_nova": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Frost",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "9.8"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "concat": [
+        {
+          "template": "Hits every enemy within {r} yd of you for {hit}.",
+          "values": {
+            "r": {
+              "literal": "10"
+            },
+            "hit": {
+              "template": "{dmg} {school} damage",
+              "values": {
+                "dmg": {
+                  "literal": "8.6"
+                },
+                "school": {
+                  "template": "Frost",
+                  "values": {}
+                }
+              }
+            }
+          }
+        },
+        {
+          "literal": " "
+        },
+        {
+          "template": "Roots them for {d} sec{boss}",
+          "values": {
+            "d": {
+              "literal": "3"
+            },
+            "boss": {
+              "template": "; bosses for a quarter as long.",
+              "values": {}
+            }
+          }
+        }
+      ]
+    }
+  },
+  "arcane_explosion": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Arcane",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "3.5"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Hits every enemy within {r} yd of you for {hit}.",
+      "values": {
+        "r": {
+          "literal": "9"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "18"
+            },
+            "school": {
+              "template": "Arcane",
+              "values": {}
+            }
+          }
+        }
+      }
+    }
+  },
+  "blizzard": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Frost",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "11.2"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "concat": [
+        {
+          "template": "{place}: every enemy within {r} yd of that spot takes {tick} {school} damage every {every} sec for {dur} sec, {total} in all.",
+          "values": {
+            "place": {
+              "template": "Lands on the thickest group of enemies within {range} yd",
+              "values": {
+                "range": {
+                  "literal": "30"
+                }
+              }
+            },
+            "r": {
+              "literal": "9"
+            },
+            "tick": {
+              "literal": "6.1"
+            },
+            "school": {
+              "template": "Frost",
+              "values": {}
+            },
+            "every": {
+              "literal": "1"
+            },
+            "dur": {
+              "literal": "9.8"
+            },
+            "total": {
+              "literal": "61"
+            }
+          }
+        },
+        {
+          "literal": " "
+        },
+        {
+          "template": "Slows them by {p}% for {d} sec.",
+          "values": {
+            "p": {
+              "literal": "40"
+            },
+            "d": {
+              "literal": "1.5"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "flamestrike": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Fire",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "9.8"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "{place}: every enemy within {r} yd of that spot takes {tick} {school} damage every {every} sec for {dur} sec, {total} in all.",
+      "values": {
+        "place": {
+          "template": "Lands on the thickest group of enemies within {range} yd",
+          "values": {
+            "range": {
+              "literal": "30"
+            }
+          }
+        },
+        "r": {
+          "literal": "8"
+        },
+        "tick": {
+          "literal": "12"
+        },
+        "school": {
+          "template": "Fire",
+          "values": {}
+        },
+        "every": {
+          "literal": "2.1"
+        },
+        "dur": {
+          "literal": "8.4"
+        },
+        "total": {
+          "literal": "50"
+        }
+      }
+    }
+  },
+  "fire_blast": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Fire",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "4.2"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Strikes a random enemy within {range} yd for {hit}.",
+      "values": {
+        "range": {
+          "literal": "22"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "95"
+            },
+            "school": {
+              "template": "Fire",
+              "values": {}
+            }
+          }
+        }
+      }
+    }
+  },
+  "cone_of_cold": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Frost",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "5.6"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "concat": [
+        {
+          "template": "Hits every enemy in a {cone} yd cone in front of you for {hit}.",
+          "values": {
+            "cone": {
+              "literal": "12"
+            },
+            "hit": {
+              "template": "{dmg} {school} damage",
+              "values": {
+                "dmg": {
+                  "literal": "24"
+                },
+                "school": {
+                  "template": "Frost",
+                  "values": {}
+                }
+              }
+            }
+          }
+        },
+        {
+          "literal": " "
+        },
+        {
+          "template": "Slows them by {p}% for {d} sec.",
+          "values": {
+            "p": {
+              "literal": "60"
+            },
+            "d": {
+              "literal": "3"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "blast_wave": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Fire",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "11.2"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "concat": [
+        {
+          "template": "Hits every enemy within {r} yd of you for {hit}.",
+          "values": {
+            "r": {
+              "literal": "10"
+            },
+            "hit": {
+              "template": "{dmg} {school} damage",
+              "values": {
+                "dmg": {
+                  "literal": "24"
+                },
+                "school": {
+                  "template": "Fire",
+                  "values": {}
+                }
+              }
+            }
+          }
+        },
+        {
+          "literal": " "
+        },
+        {
+          "template": "Slows them by {p}% for {d} sec.",
+          "values": {
+            "p": {
+              "literal": "50"
+            },
+            "d": {
+              "literal": "3"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "pyroblast": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Fire",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "9.8"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Strikes {targets} within {range} yd for {hit}.{focus}{mark}",
+      "values": {
+        "targets": {
+          "template": "the nearest enemy",
+          "values": {}
+        },
+        "range": {
+          "literal": "35"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "531"
+            },
+            "school": {
+              "template": "Fire",
+              "values": {}
+            }
+          }
+        },
+        "focus": {
+          "template": " Bosses and elites are targeted first.",
+          "values": {}
+        },
+        "mark": {
+          "concat": []
+        }
+      }
+    }
+  },
+  "ice_barrier": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Frost",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "21"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Absorbs the next {amount} damage you take, {share}% of your max health. Cast again once the shield breaks.",
+      "values": {
+        "amount": {
+          "literal": "135"
+        },
+        "share": {
+          "literal": "63"
+        }
+      }
+    }
+  },
+  "polymorph": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Arcane",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "3"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Your spells have a {p}% chance to turn the enemy they hit into a sheep, at most one every {iv} sec and {sheep} at once. Bosses and guardians are immune. A sheep wanders harmlessly for {secs} sec, and the next hit on it pops it in an arcane burst of {pop}% of its maximum health, up to {dmg}, on every enemy within {r} yd.",
+      "values": {
+        "p": {
+          "literal": "12"
+        },
+        "iv": {
+          "literal": "3"
+        },
+        "sheep": {
+          "literal": "3"
+        },
+        "secs": {
+          "literal": "10"
+        },
+        "pop": {
+          "literal": "15"
+        },
+        "dmg": {
+          "literal": "161"
+        },
+        "r": {
+          "literal": "7"
+        }
+      }
+    }
+  },
+  "shadow_bolt": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Shadow",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "2.0"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Strikes {targets} within {range} yd for {hit}.{focus}{mark}",
+      "values": {
+        "targets": {
+          "template": "the nearest enemy",
+          "values": {}
+        },
+        "range": {
+          "literal": "30"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "48"
+            },
+            "school": {
+              "template": "Shadow",
+              "values": {}
+            }
+          }
+        },
+        "focus": {
+          "template": " Bosses and elites are targeted first.",
+          "values": {}
+        },
+        "mark": {
+          "concat": []
+        }
+      }
+    }
+  },
+  "corruption": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Shadow",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "2.0"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Afflicts {targets} within {range} yd{whom}: {total} {school} damage over {secs} sec, in {ticks} ticks.{stack}",
+      "values": {
+        "targets": {
+          "template": "the {n} healthiest enemies",
+          "values": {
+            "n": {
+              "literal": "2"
+            }
+          }
+        },
+        "range": {
+          "literal": "30"
+        },
+        "whom": {
+          "template": " that are not already afflicted",
+          "values": {}
+        },
+        "total": {
+          "literal": "122"
+        },
+        "school": {
+          "template": "Shadow",
+          "values": {}
+        },
+        "secs": {
+          "literal": "8"
+        },
+        "ticks": {
+          "literal": "8"
+        },
+        "stack": {
+          "template": " Bosses and elites are targeted first.",
+          "values": {}
+        }
+      }
+    }
+  },
+  "immolate": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Fire",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "3.5"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Afflicts {targets} within {range} yd{whom}: {total} {school} damage over {secs} sec, in {ticks} ticks.{stack}",
+      "values": {
+        "targets": {
+          "template": "the healthiest enemy",
+          "values": {}
+        },
+        "range": {
+          "literal": "30"
+        },
+        "whom": {
+          "template": " that are not already afflicted",
+          "values": {}
+        },
+        "total": {
+          "literal": "135"
+        },
+        "school": {
+          "template": "Fire",
+          "values": {}
+        },
+        "secs": {
+          "literal": "7"
+        },
+        "ticks": {
+          "literal": "7"
+        },
+        "stack": {
+          "template": " Bosses and elites are targeted first.",
+          "values": {}
+        }
+      }
+    }
+  },
+  "curse_of_agony": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Shadow",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "4.2"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Afflicts {targets} within {range} yd{whom}: {total} {school} damage over {secs} sec, in {ticks} ticks.{stack}",
+      "values": {
+        "targets": {
+          "template": "the {n} healthiest enemies",
+          "values": {
+            "n": {
+              "literal": "3"
+            }
+          }
+        },
+        "range": {
+          "literal": "30"
+        },
+        "whom": {
+          "template": " that are not already afflicted",
+          "values": {}
+        },
+        "total": {
+          "literal": "203"
+        },
+        "school": {
+          "template": "Shadow",
+          "values": {}
+        },
+        "secs": {
+          "literal": "13"
+        },
+        "ticks": {
+          "literal": "13"
+        },
+        "stack": {
+          "template": " Bosses and elites are targeted first.",
+          "values": {}
+        }
+      }
+    }
+  },
+  "rain_of_fire": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Fire",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "11.2"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "{place}: every enemy within {r} yd of that spot takes {tick} {school} damage every {every} sec for {dur} sec, {total} in all.",
+      "values": {
+        "place": {
+          "template": "Lands on the thickest group of enemies within {range} yd",
+          "values": {
+            "range": {
+              "literal": "30"
+            }
+          }
+        },
+        "r": {
+          "literal": "8"
+        },
+        "tick": {
+          "literal": "9.2"
+        },
+        "school": {
+          "template": "Fire",
+          "values": {}
+        },
+        "every": {
+          "literal": "1.9"
+        },
+        "dur": {
+          "literal": "11"
+        },
+        "total": {
+          "literal": "55"
+        }
+      }
+    }
+  },
+  "hellfire": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Fire",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "2.1"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Hits every enemy within {r} yd of you for {hit}.",
+      "values": {
+        "r": {
+          "literal": "7"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "8.4"
+            },
+            "school": {
+              "template": "Fire",
+              "values": {}
+            }
+          }
+        }
+      }
+    }
+  },
+  "death_coil": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Shadow",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "8.4"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "concat": [
+        {
+          "template": "Strikes {targets} within {range} yd for {hit}.{focus}{mark}",
+          "values": {
+            "targets": {
+              "template": "the nearest enemy",
+              "values": {}
+            },
+            "range": {
+              "literal": "25"
+            },
+            "hit": {
+              "template": "{dmg} {school} damage",
+              "values": {
+                "dmg": {
+                  "literal": "105"
+                },
+                "school": {
+                  "template": "Shadow",
+                  "values": {}
+                }
+              }
+            },
+            "focus": {
+              "template": " Bosses and elites are targeted first.",
+              "values": {}
+            },
+            "mark": {
+              "concat": []
+            }
+          }
+        },
+        {
+          "literal": " "
+        },
+        {
+          "template": "Heals you for all the damage dealt.",
+          "values": {}
+        }
+      ]
+    }
+  },
+  "searing_pain": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Fire",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "2.2"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Strikes a random enemy within {range} yd for {hit}.",
+      "values": {
+        "range": {
+          "literal": "26"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "56"
+            },
+            "school": {
+              "template": "Fire",
+              "values": {}
+            }
+          }
+        }
+      }
+    }
+  },
+  "drain_life": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Shadow",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "5.6"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "concat": [
+        {
+          "template": "Afflicts {targets} within {range} yd{whom}: {total} {school} damage over {secs} sec, in {ticks} ticks.{stack}",
+          "values": {
+            "targets": {
+              "template": "the healthiest enemy",
+              "values": {}
+            },
+            "range": {
+              "literal": "22"
+            },
+            "whom": {
+              "template": " that are not already afflicted",
+              "values": {}
+            },
+            "total": {
+              "literal": "113"
+            },
+            "school": {
+              "template": "Shadow",
+              "values": {}
+            },
+            "secs": {
+              "literal": "4"
+            },
+            "ticks": {
+              "literal": "4"
+            },
+            "stack": {
+              "template": " Bosses and elites are targeted first.",
+              "values": {}
+            }
+          }
+        },
+        {
+          "literal": " "
+        },
+        {
+          "template": "Heals you for {p}% of the damage dealt.",
+          "values": {
+            "p": {
+              "literal": "60"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "fear": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Shadow",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "8.4"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "concat": [
+        {
+          "template": "Strikes {targets} within {range} yd for {hit} each.{focus}{mark}",
+          "values": {
+            "targets": {
+              "template": "the {n} nearest enemies",
+              "values": {
+                "n": {
+                  "literal": "3"
+                }
+              }
+            },
+            "range": {
+              "literal": "20"
+            },
+            "hit": {
+              "template": "{dmg} {school} damage",
+              "values": {
+                "dmg": {
+                  "literal": "7.7"
+                },
+                "school": {
+                  "template": "Shadow",
+                  "values": {}
+                }
+              }
+            },
+            "focus": {
+              "template": " Bosses and elites are targeted first.",
+              "values": {}
+            },
+            "mark": {
+              "concat": []
+            }
+          }
+        },
+        {
+          "literal": " "
+        },
+        {
+          "template": "They flee for {d} sec. Bosses are unaffected.",
+          "values": {
+            "d": {
+              "literal": "4"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "soul_fire": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Fire",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "6"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Your kills gather soul shards, at most one every {secs} sec. At 5 shards a free Soul Fire strikes {whom} within {range} yd for {dmg} Fire damage.",
+      "values": {
+        "secs": {
+          "literal": "1.2"
+        },
+        "whom": {
+          "template": "the toughest enemy",
+          "values": {}
+        },
+        "range": {
+          "literal": "35"
+        },
+        "dmg": {
+          "literal": "840"
+        }
+      }
+    }
+  },
+  "wrath": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Nature",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "1.7"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Strikes {targets} within {range} yd for {hit} each.{focus}{mark}",
+      "values": {
+        "targets": {
+          "template": "the {n} nearest enemies",
+          "values": {
+            "n": {
+              "literal": "2"
+            }
+          }
+        },
+        "range": {
+          "literal": "30"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "52"
+            },
+            "school": {
+              "template": "Nature",
+              "values": {}
+            }
+          }
+        },
+        "focus": {
+          "template": " Bosses and elites are targeted first.",
+          "values": {}
+        },
+        "mark": {
+          "concat": []
+        }
+      }
+    }
+  },
+  "moonfire": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Arcane",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "2.5"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Afflicts {targets} within {range} yd{whom}: {total} {school} damage over {secs} sec, in {ticks} ticks.{stack}",
+      "values": {
+        "targets": {
+          "template": "the {n} healthiest enemies",
+          "values": {
+            "n": {
+              "literal": "3"
+            }
+          }
+        },
+        "range": {
+          "literal": "30"
+        },
+        "whom": {
+          "template": " that are not already afflicted",
+          "values": {}
+        },
+        "total": {
+          "literal": "140"
+        },
+        "school": {
+          "template": "Arcane",
+          "values": {}
+        },
+        "secs": {
+          "literal": "7"
+        },
+        "ticks": {
+          "literal": "7"
+        },
+        "stack": {
+          "template": " Bosses and elites are targeted first.",
+          "values": {}
+        }
+      }
+    }
+  },
+  "starfire": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Arcane",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "6.3"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Strikes {targets} within {range} yd for {hit}.{focus}{mark}",
+      "values": {
+        "targets": {
+          "template": "the nearest enemy",
+          "values": {}
+        },
+        "range": {
+          "literal": "32"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "190"
+            },
+            "school": {
+              "template": "Arcane",
+              "values": {}
+            }
+          }
+        },
+        "focus": {
+          "template": " Bosses and elites are targeted first.",
+          "values": {}
+        },
+        "mark": {
+          "concat": []
+        }
+      }
+    }
+  },
+  "hurricane": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Nature",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "12.6"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "concat": [
+        {
+          "template": "{place}: every enemy within {r} yd of that spot takes {tick} {school} damage every {every} sec for {dur} sec, {total} in all.",
+          "values": {
+            "place": {
+              "template": "Lands on the thickest group of enemies within {range} yd",
+              "values": {
+                "range": {
+                  "literal": "28"
+                }
+              }
+            },
+            "r": {
+              "literal": "10"
+            },
+            "tick": {
+              "literal": "6"
+            },
+            "school": {
+              "template": "Nature",
+              "values": {}
+            },
+            "every": {
+              "literal": "1"
+            },
+            "dur": {
+              "literal": "11"
+            },
+            "total": {
+              "literal": "66"
+            }
+          }
+        },
+        {
+          "literal": " "
+        },
+        {
+          "template": "Slows them by {p}% for {d} sec.",
+          "values": {
+            "p": {
+              "literal": "40"
+            },
+            "d": {
+              "literal": "1.5"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "insect_swarm": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Nature",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "3.5"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "concat": [
+        {
+          "template": "Afflicts {targets} within {range} yd{whom}: {total} {school} damage over {secs} sec, in {ticks} ticks.{stack}",
+          "values": {
+            "targets": {
+              "template": "the {n} healthiest enemies",
+              "values": {
+                "n": {
+                  "literal": "3"
+                }
+              }
+            },
+            "range": {
+              "literal": "28"
+            },
+            "whom": {
+              "template": " that are not already afflicted",
+              "values": {}
+            },
+            "total": {
+              "literal": "135"
+            },
+            "school": {
+              "template": "Nature",
+              "values": {}
+            },
+            "secs": {
+              "literal": "8"
+            },
+            "ticks": {
+              "literal": "8"
+            },
+            "stack": {
+              "template": " Bosses and elites are targeted first.",
+              "values": {}
+            }
+          }
+        },
+        {
+          "literal": " "
+        },
+        {
+          "template": "Enemies hit deal {p}% less damage for {d} sec.",
+          "values": {
+            "p": {
+              "literal": "15"
+            },
+            "d": {
+              "literal": "12"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "entangling_roots": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Nature",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "7"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "concat": [
+        {
+          "template": "Strikes {targets} within {range} yd for {hit} each.{focus}{mark}",
+          "values": {
+            "targets": {
+              "template": "the {n} nearest enemies",
+              "values": {
+                "n": {
+                  "literal": "3"
+                }
+              }
+            },
+            "range": {
+              "literal": "25"
+            },
+            "hit": {
+              "template": "{dmg} {school} damage",
+              "values": {
+                "dmg": {
+                  "literal": "40"
+                },
+                "school": {
+                  "template": "Nature",
+                  "values": {}
+                }
+              }
+            },
+            "focus": {
+              "template": " Bosses and elites are targeted first.",
+              "values": {}
+            },
+            "mark": {
+              "concat": []
+            }
+          }
+        },
+        {
+          "literal": " "
+        },
+        {
+          "template": "Roots them for {d} sec{boss}",
+          "values": {
+            "d": {
+              "literal": "3"
+            },
+            "boss": {
+              "template": "; bosses for a quarter as long.",
+              "values": {}
+            }
+          }
+        }
+      ]
+    }
+  },
+  "rejuvenation": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Nature",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "11.2"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Heals you for {amount}, {share}% of your max health, {over}. Cast when you fall below 85% health.",
+      "values": {
+        "amount": {
+          "literal": "86"
+        },
+        "share": {
+          "literal": "42"
+        },
+        "over": {
+          "template": "over {dur} sec",
+          "values": {
+            "dur": {
+              "literal": "17"
+            }
+          }
+        }
+      }
+    }
+  },
+  "regrowth": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Nature",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "19.6"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Heals you for {amount}, {share}% of your max health, {over}. Cast when you fall below 85% health.",
+      "values": {
+        "amount": {
+          "literal": "121"
+        },
+        "share": {
+          "literal": "59"
+        },
+        "over": {
+          "template": "at once",
+          "values": {}
+        }
+      }
+    }
+  },
+  "thorns": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Nature",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "28"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "For {dur} sec, enemies that hit you in melee take {n} damage.{in_fight}",
+      "values": {
+        "dur": {
+          "literal": "28"
+        },
+        "n": {
+          "literal": "24"
+        },
+        "in_fight": {
+          "template": " Cast once enemies are within 30 yd.",
+          "values": {}
+        }
+      }
+    }
+  },
+  "swipe": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Physical",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "4.2"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Hits every enemy within {r} yd of you for {hit}.",
+      "values": {
+        "r": {
+          "literal": "7"
+        },
+        "hit": {
+          "template": "{dmg} {school} damage",
+          "values": {
+            "dmg": {
+              "literal": "18"
+            },
+            "school": {
+              "template": "Physical",
+              "values": {}
+            }
+          }
+        }
+      }
+    }
+  },
+  "faerie_fire": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Nature",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "1.4"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Marks {whom} within {range} yd, a boss or an elite first. Your hits on a marked enemy arc {p}% of their damage, up to {dmg}, as Nature damage to the {arcs} enemies nearest it within {r} yd, at most {per_sec} times a second for each mark. When a marked enemy dies, its mark moves to one nearby.",
+      "values": {
+        "whom": {
+          "template": "the nearest enemy",
+          "values": {}
+        },
+        "range": {
+          "literal": "30"
+        },
+        "p": {
+          "literal": "80"
+        },
+        "dmg": {
+          "literal": "280"
+        },
+        "arcs": {
+          "literal": "2"
+        },
+        "r": {
+          "literal": "8"
+        },
+        "per_sec": {
+          "literal": "4"
+        }
+      }
+    }
+  },
+  "demonic_empowerment": {
+    "subtitle": {
+      "concat": [
+        {
+          "template": "Shadow",
+          "values": {}
+        },
+        {
+          "literal": " · "
+        },
+        {
+          "template": "common.cooldown_sec",
+          "values": {
+            "s": {
+              "literal": "22"
+            }
+          }
+        }
+      ]
+    },
+    "body": {
+      "template": "Your demons deal {d}% more damage for {dur} sec. Cast once enemies are within 30 yd and a demon fights for you.",
+      "values": {
+        "d": {
+          "literal": "40"
+        },
+        "dur": {
+          "literal": "11"
+        }
+      }
+    }
+  }
+}

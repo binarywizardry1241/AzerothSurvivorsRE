@@ -1,0 +1,690 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-18",
+  "scope": "Bounded native-client baseline audit; no correction implementation.",
+  "target": {
+    "path": "AzerothSurvivors/AzerothSurvivors-0.97.2.exe",
+    "version": "0.97.2",
+    "size_bytes": 133231104,
+    "sha256": "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589",
+    "image_base": "0x140000000"
+  },
+  "reviewed_source_head": "24dc9b9b15305ad9555891e2822bfe5d247f0efa",
+  "method": "Read existing retained hash-bound evidence, reverify selected original bytes, compare complete embedded UI layer texts with pinned project source, and inspect current adapter. No new REA run.",
+  "validation": {
+    "exe_hash_verified": true,
+    "selected_path_and_function_hashes_verified": true,
+    "complete_embedded_layer_matches_verified": true,
+    "code_changed": false,
+    "builds_or_compiler_tests_run": false,
+    "original_or_rebuilt_application_launched": false
+  },
+  "foundation": {
+    "repository": "https://github.com/samwhosung/benilla",
+    "pinned_revision": "7b608671a65274e0fe330da4a63f12da58162b61",
+    "exact_original_fork_revision_verified": false
+  },
+  "existing_evidence": [
+    "docs/analysis/evidence/0.97.2/game-layer-identity.json",
+    "docs/analysis/evidence/0.97.2/exe-assets.json",
+    "docs/analysis/evidence/0.97.2/menu-compositor-0.97.2.json",
+    "docs/analysis/evidence/0.97.2/game-engine-delta.json"
+  ],
+  "verified_source_path_identities": [
+    {
+      "original_path": "crates/benilla-app/src/player.rs",
+      "path_in_pinned_foundation": true,
+      "custom_game_crate": false,
+      "observed_occurrence_count": 1,
+      "first_verified_occurrence": {
+        "file_offset": "0x5ab6e18",
+        "virtual_address": "0x145ab7e18",
+        "byte_count": 32,
+        "hex": "6372617465735c62656e696c6c612d6170705c7372635c706c617965722e7273",
+        "sha256": "3f8f20a56703e5f4d5093814ebb7559cb8a574130a6be07ececd3a30530ec560"
+      }
+    },
+    {
+      "original_path": "crates/benilla-app/src/player/input.rs",
+      "path_in_pinned_foundation": true,
+      "custom_game_crate": false,
+      "observed_occurrence_count": 2,
+      "first_verified_occurrence": {
+        "file_offset": "0x5a3697e",
+        "virtual_address": "0x145a3797e",
+        "byte_count": 38,
+        "hex": "6372617465735c62656e696c6c612d6170705c7372635c706c617965725c696e7075742e7273",
+        "sha256": "d872bd0c0b46ec270ad19947b421cf85422e8efea1fd325a3c75392e851a6100"
+      }
+    },
+    {
+      "original_path": "crates/benilla-app/src/player/camera.rs",
+      "path_in_pinned_foundation": true,
+      "custom_game_crate": false,
+      "observed_occurrence_count": 3,
+      "first_verified_occurrence": {
+        "file_offset": "0x5ae34c6",
+        "virtual_address": "0x145ae44c6",
+        "byte_count": 39,
+        "hex": "6372617465735c62656e696c6c612d6170705c7372635c706c617965725c63616d6572612e7273",
+        "sha256": "c4c7eaf2c6d5ee992cd15d0f879ddb7985cd4b28eaa1abb96beda00a37bd7bec"
+      }
+    },
+    {
+      "original_path": "crates/benilla-app/src/player/setup.rs",
+      "path_in_pinned_foundation": true,
+      "custom_game_crate": false,
+      "observed_occurrence_count": 1,
+      "first_verified_occurrence": {
+        "file_offset": "0x5a0293c",
+        "virtual_address": "0x145a0393c",
+        "byte_count": 38,
+        "hex": "6372617465735c62656e696c6c612d6170705c7372635c706c617965725c73657475702e7273",
+        "sha256": "9232fadcc0785e9786e78427c575133f31680b166a0b744776300449bbedb1c7"
+      }
+    },
+    {
+      "original_path": "crates/benilla-app/src/player/movement_net.rs",
+      "path_in_pinned_foundation": true,
+      "custom_game_crate": false,
+      "observed_occurrence_count": 20,
+      "first_verified_occurrence": {
+        "file_offset": "0x5ab5e56",
+        "virtual_address": "0x145ab6e56",
+        "byte_count": 45,
+        "hex": "6372617465735c62656e696c6c612d6170705c7372635c706c617965725c6d6f76656d656e745f6e65742e7273",
+        "sha256": "1181a7f04099c45007e1ffda50a3453b4ee9dc11e0abdd36963a17e4ad694912"
+      }
+    },
+    {
+      "original_path": "crates/benilla-app/src/player/follow.rs",
+      "path_in_pinned_foundation": true,
+      "custom_game_crate": false,
+      "observed_occurrence_count": 6,
+      "first_verified_occurrence": {
+        "file_offset": "0x5b025be",
+        "virtual_address": "0x145b035be",
+        "byte_count": 39,
+        "hex": "6372617465735c62656e696c6c612d6170705c7372635c706c617965725c666f6c6c6f772e7273",
+        "sha256": "d0111d8aff20a30f7b9af9ef4b01cd918871fbc37ec36c9e30ce59566156aaa6"
+      }
+    },
+    {
+      "original_path": "crates/benilla-app/src/player/camera_saved.rs",
+      "path_in_pinned_foundation": true,
+      "custom_game_crate": false,
+      "observed_occurrence_count": 5,
+      "first_verified_occurrence": {
+        "file_offset": "0x59e2c06",
+        "virtual_address": "0x1459e3c06",
+        "byte_count": 45,
+        "hex": "6372617465735c62656e696c6c612d6170705c7372635c706c617965725c63616d6572615f73617665642e7273",
+        "sha256": "ac9d850b6c70fc77f69b35dbdd1ac27bce279af3739595355f4669171f8507c9"
+      }
+    },
+    {
+      "original_path": "crates/benilla-app/src/player/camera_view.rs",
+      "path_in_pinned_foundation": true,
+      "custom_game_crate": false,
+      "observed_occurrence_count": 1,
+      "first_verified_occurrence": {
+        "file_offset": "0x5a128e8",
+        "virtual_address": "0x145a138e8",
+        "byte_count": 44,
+        "hex": "6372617465735c62656e696c6c612d6170705c7372635c706c617965725c63616d6572615f766965772e7273",
+        "sha256": "6817bc4558235a570eaba274dd183008dcd9f1025dcbe429e59e45cf6042a1ec"
+      }
+    },
+    {
+      "original_path": "crates/benilla-app/src/ui_script/lifecycle.rs",
+      "path_in_pinned_foundation": true,
+      "custom_game_crate": false,
+      "observed_occurrence_count": 18,
+      "first_verified_occurrence": {
+        "file_offset": "0x59d77e8",
+        "virtual_address": "0x1459d87e8",
+        "byte_count": 45,
+        "hex": "6372617465735c62656e696c6c612d6170705c7372635c75695f7363726970745c6c6966656379636c652e7273",
+        "sha256": "68d6a1290f286d4c668838a907cf9caf63a6e90d6916978da0ee0a3dd415bd62"
+      }
+    },
+    {
+      "original_path": "crates/benilla-app/src/ui_script/reference_ui.rs",
+      "path_in_pinned_foundation": true,
+      "custom_game_crate": false,
+      "observed_occurrence_count": 4,
+      "first_verified_occurrence": {
+        "file_offset": "0x5a1b326",
+        "virtual_address": "0x145a1c326",
+        "byte_count": 48,
+        "hex": "6372617465735c62656e696c6c612d6170705c7372635c75695f7363726970745c7265666572656e63655f75692e7273",
+        "sha256": "6809e3bdd7b7196ef58b85aa2ebe15829a96ef20c475262cc2278ede53e51206"
+      }
+    },
+    {
+      "original_path": "crates/benilla-app/src/ui_script/manifest.rs",
+      "path_in_pinned_foundation": true,
+      "custom_game_crate": false,
+      "observed_occurrence_count": 9,
+      "first_verified_occurrence": {
+        "file_offset": "0x5a2084e",
+        "virtual_address": "0x145a2184e",
+        "byte_count": 44,
+        "hex": "6372617465735c62656e696c6c612d6170705c7372635c75695f7363726970745c6d616e69666573742e7273",
+        "sha256": "4d36bfdccd1131c7606c1fc1d338ee4f7dd54b21b9a820af214f57c479c43296"
+      }
+    },
+    {
+      "original_path": "crates/benilla-app/src/ui_action/feed.rs",
+      "path_in_pinned_foundation": true,
+      "custom_game_crate": false,
+      "observed_occurrence_count": 5,
+      "first_verified_occurrence": {
+        "file_offset": "0x5a47fb6",
+        "virtual_address": "0x145a48fb6",
+        "byte_count": 40,
+        "hex": "6372617465735c62656e696c6c612d6170705c7372635c75695f616374696f6e5c666565642e7273",
+        "sha256": "709f268767a4a39db03b2dc7590fcbc8e02885cfb5336676764c43732a17330d"
+      }
+    },
+    {
+      "original_path": "crates/benilla-ui/src/framexml.rs",
+      "path_in_pinned_foundation": true,
+      "custom_game_crate": false,
+      "observed_occurrence_count": 1,
+      "first_verified_occurrence": {
+        "file_offset": "0x66ddc40",
+        "virtual_address": "0x1466dec40",
+        "byte_count": 33,
+        "hex": "6372617465735c62656e696c6c612d75695c7372635c6672616d65786d6c2e7273",
+        "sha256": "e3af4047fc6bce1bc6f837108ac25a1b03d8b6948237007296caa150e413fab6"
+      }
+    },
+    {
+      "original_path": "crates/wenilla-rogue-app/src/screens/hud.rs",
+      "path_in_pinned_foundation": false,
+      "custom_game_crate": true,
+      "observed_occurrence_count": 1,
+      "first_verified_occurrence": {
+        "file_offset": "0x5930730",
+        "virtual_address": "0x145931730",
+        "byte_count": 43,
+        "hex": "6372617465735c77656e696c6c612d726f6775652d6170705c7372635c73637265656e735c6875642e7273",
+        "sha256": "59b92dc9ad8881b78e566402037146ae6e2c4db065ff0dad353d1b660af4cebb"
+      }
+    },
+    {
+      "original_path": "crates/wenilla-rogue-app/src/screens/hudparts.rs",
+      "path_in_pinned_foundation": false,
+      "custom_game_crate": true,
+      "observed_occurrence_count": 1,
+      "first_verified_occurrence": {
+        "file_offset": "0x592e2e3",
+        "virtual_address": "0x14592f2e3",
+        "byte_count": 48,
+        "hex": "6372617465735c77656e696c6c612d726f6775652d6170705c7372635c73637265656e735c68756470617274732e7273",
+        "sha256": "b75bb101dba0dbd42e6f66d70446f79db345bc3f48e83dd00cd6d8acec95f256"
+      }
+    },
+    {
+      "original_path": "crates/wenilla-rogue-app/src/screens/cards.rs",
+      "path_in_pinned_foundation": false,
+      "custom_game_crate": true,
+      "observed_occurrence_count": 1,
+      "first_verified_occurrence": {
+        "file_offset": "0x58fc9ec",
+        "virtual_address": "0x1458fd9ec",
+        "byte_count": 45,
+        "hex": "6372617465735c77656e696c6c612d726f6775652d6170705c7372635c73637265656e735c63617264732e7273",
+        "sha256": "a8be1d98379600d77b91f514fd82cbff38a564ebeba16d6d2ce5eb876ab8f4d3"
+      }
+    },
+    {
+      "original_path": "crates/wenilla-rogue-app/src/screens/rewards.rs",
+      "path_in_pinned_foundation": false,
+      "custom_game_crate": true,
+      "observed_occurrence_count": 1,
+      "first_verified_occurrence": {
+        "file_offset": "0x58fd56d",
+        "virtual_address": "0x1458fe56d",
+        "byte_count": 47,
+        "hex": "6372617465735c77656e696c6c612d726f6775652d6170705c7372635c73637265656e735c726577617264732e7273",
+        "sha256": "fc55b4779c4d3281eec14f828e61ef333699a32610ceb56c5889cde2ab2cdaa5"
+      }
+    }
+  ],
+  "verified_framexml_asset_paths": [
+    {
+      "text": "Interface\\FrameXML\\FrameXML.toc",
+      "normalized_archive_candidate": "interface/framexml/framexml.toc",
+      "source": {
+        "file_offset": "0x5a1a739",
+        "virtual_address": "0x145a1b739",
+        "size_bytes": 31,
+        "sha256": "52a830a6d43c12c259da417976cb9f7b63d77f162ffdb8b1bace99ffa12ce25a"
+      },
+      "evidence_kinds": [
+        "literal path-shaped bytes; boundary is a pattern candidate",
+        "exact pointer/length-bounded path"
+      ],
+      "pointer_length_descriptors": [
+        {
+          "file_offset": "0x5a1a898",
+          "virtual_address": "0x145a1b898",
+          "size_bytes": 16,
+          "sha256": "5677a8d5ac49dca0de905328cf83d33068b635a3cd42ec6f5159c8716030a24e"
+        }
+      ]
+    },
+    {
+      "text": "Interface\\FrameXML\\Bindings.xml",
+      "normalized_archive_candidate": "interface/framexml/bindings.xml",
+      "source": {
+        "file_offset": "0x5a1acc1",
+        "virtual_address": "0x145a1bcc1",
+        "size_bytes": 31,
+        "sha256": "484a31da8706f13a0bf565a5d83701e033cbe14c69f2ba37a371a597e5f5f559"
+      },
+      "evidence_kinds": [
+        "literal path-shaped bytes; boundary is a pattern candidate",
+        "exact pointer/length-bounded path"
+      ],
+      "pointer_length_descriptors": [
+        {
+          "file_offset": "0x5a1ace0",
+          "virtual_address": "0x145a1bce0",
+          "size_bytes": 16,
+          "sha256": "3a4976d31af915efa13919bfe0a065199d63610ad6e8a9e9cae6390c4a8fe2d9"
+        }
+      ]
+    }
+  ],
+  "complete_embedded_ui_layer_matches": [
+    {
+      "source_path": "crates/benilla-app/assets/ui/layer.toc",
+      "source_sha256": "88fdff12ae5f67f373d58f95aabeb3c21111e71afa4c587c3d8daa67cf5c4dc5",
+      "comparison": "Complete source bytes match native content after LF-to-CRLF newline conversion only.",
+      "native_span": {
+        "file_offset": "0x5a9f74a",
+        "end_file_offset_exclusive": "0x5a9fbda",
+        "byte_count": 1168,
+        "sha256": "92d03fe65de3232af23e24f48e0ad878e7c89ecaa2dbab3bccf71ea914357353"
+      }
+    },
+    {
+      "source_path": "crates/benilla-app/assets/ui/FrameXMLFixes.xml",
+      "source_sha256": "345e34c0745d60941af9e48ed5b3999267a415fbbc04c2bd65a07fd0fffafba1",
+      "comparison": "Complete source bytes match native content after LF-to-CRLF newline conversion only.",
+      "native_span": {
+        "file_offset": "0x5a57cd7",
+        "end_file_offset_exclusive": "0x5a585fd",
+        "byte_count": 2342,
+        "sha256": "7cf7b2fc2be135a150d39ec3612d54c2a5b479d6c2d4c4ad07836ce9a76df95e"
+      }
+    },
+    {
+      "source_path": "crates/benilla-app/assets/ui/GameMenuAdapters.xml",
+      "source_sha256": "29ce56151042cfe67695500853ad474525500bf0423513b4e1914244ee628bba",
+      "comparison": "Complete source bytes match native content after LF-to-CRLF newline conversion only.",
+      "native_span": {
+        "file_offset": "0x5a58611",
+        "end_file_offset_exclusive": "0x5a5a0b1",
+        "byte_count": 6816,
+        "sha256": "ded80a91419c5c3d0e0b9406a1e660d1472490c55fba8e5f1b57a67bfac67236"
+      }
+    },
+    {
+      "source_path": "crates/benilla-app/assets/ui/ContainerFrameAdapters.xml",
+      "source_sha256": "50b08599c18b1624d5ae771703045f07d63ca54afd09bc6f3be8caef013ea6ab",
+      "comparison": "Complete source bytes match native content after LF-to-CRLF newline conversion only.",
+      "native_span": {
+        "file_offset": "0x5a5741a",
+        "end_file_offset_exclusive": "0x5a57cc6",
+        "byte_count": 2220,
+        "sha256": "d342b1e61c22c1128e9735a0afe8dea2e10211ab406366454d6ae7dee542b336"
+      }
+    },
+    {
+      "source_path": "crates/benilla-app/assets/ui/SpellBookAdapters.xml",
+      "source_sha256": "2b3674573debb7dcb1affed668569ec6cd6a34e759447cd23b70c81722a423ea",
+      "comparison": "Complete source bytes match native content after LF-to-CRLF newline conversion only.",
+      "native_span": {
+        "file_offset": "0x5a9f386",
+        "end_file_offset_exclusive": "0x5a9f741",
+        "byte_count": 955,
+        "sha256": "b474963aa20bfbca142334bf97df942a97b65f574a2c6dc3895f6a01d64c1120"
+      }
+    }
+  ],
+  "verified_native_camera_constructor": {
+    "address": "0x140838a90",
+    "end_exclusive": "0x14083953b",
+    "role": "world camera spawn and PerspectiveProjection constants",
+    "file_offset": "0x837e90",
+    "byte_count": 2731,
+    "sha256": "b1de1fc01370729f02bcbec0659c8357592a18b6c2e615b09abcc7ec93602858",
+    "rea": {
+      "evidence_id": "ev_01c8060f766ce8e7bdd014f5ab068bf4da113f00235cc6954d7b68d71f7f592b",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "subject": {
+        "name": "world-camera.bin",
+        "digest": {
+          "sha256": "b1de1fc01370729f02bcbec0659c8357592a18b6c2e615b09abcc7ec93602858"
+        },
+        "local_path": "runtime/menu-compositor-0.97.2/world-camera.bin",
+        "format": "raw-binary",
+        "architecture": "x86_64"
+      },
+      "procedure": "0x140838a90"
+    }
+  },
+  "confirmed_current_fork_seams": [
+    {
+      "id": "engine.menu_scene",
+      "classification": "confirmed_custom_addition_current_target",
+      "original_symbol": "benilla_app::menu_scene::MenuScenePlugin",
+      "native_functions": [
+        {
+          "address": "0x1406cc240",
+          "end_exclusive": "0x1406cc312",
+          "file_offset": "0x6cb640",
+          "sha256": "aa586dc223b4dcd7d4db93c2393e0bd29645fef9fb5a7cb2d400e8d07db2afa2",
+          "byte_count": 210,
+          "role": "Shared scene mask setter"
+        },
+        {
+          "address": "0x1406cc320",
+          "end_exclusive": "0x1406cc3f0",
+          "file_offset": "0x6cb720",
+          "sha256": "192fd7a5235280d78c79bb80607af0e58ef0a6b7e4c8e6dbd5dcd1f5c23d235e",
+          "byte_count": 208,
+          "role": "Shared scene active getter"
+        },
+        {
+          "address": "0x1406cc3f0",
+          "end_exclusive": "0x1406cc51d",
+          "file_offset": "0x6cb7f0",
+          "sha256": "e94b11187126775e86d1b9bcb187ba5069fb7129dfa74042e5f59ae24b00590f",
+          "byte_count": 301,
+          "role": "Shared 40-byte scene request setter"
+        },
+        {
+          "address": "0x1406cc520",
+          "end_exclusive": "0x1406cc5fe",
+          "file_offset": "0x6cb920",
+          "sha256": "13e22d16966c4a34efaafda4b01467e5de43b1530e6e7aff0322c0068975c393",
+          "byte_count": 222,
+          "role": "Shared scene renderable getter: active and not masked"
+        },
+        {
+          "address": "0x1406cc600",
+          "end_exclusive": "0x1406cc6db",
+          "file_offset": "0x6cba00",
+          "sha256": "d33765994e02a1cef4c532e908c3c2c1d436d85b8a8f775ba3b5c4570dba0e12",
+          "byte_count": 219,
+          "role": "Shared scene ready getter: active and ready"
+        },
+        {
+          "address": "0x1406cc6e0",
+          "end_exclusive": "0x1406cc7ab",
+          "file_offset": "0x6cbae0",
+          "sha256": "9ecec60a9ed35507a68a2653f30af4850f629eb19ecc93270d110cea16ba1dd3",
+          "byte_count": 203,
+          "role": "Shared scene request-present getter"
+        },
+        {
+          "address": "0x1406d3050",
+          "end_exclusive": "0x1406d32ce",
+          "file_offset": "0x6d2450",
+          "sha256": "ac8547a00592e1ea540b3ab4abcf5b53b745c38b40e1520c767e88f30e6b4990",
+          "byte_count": 638,
+          "role": "MenuScenePlugin build and two system registration descriptors",
+          "rea_evidence_id": "ev_e6df01aa1987de5f2ca7c201f459655e44e9ef7625317e8c1d41c4a1dda08901"
+        },
+        {
+          "address": "0x14070eb40",
+          "end_exclusive": "0x14070f544",
+          "file_offset": "0x70df40",
+          "sha256": "c9e86f10cda1488fbfe65a2894c825194faf7f6a7c61a59124cb788da5a4d2dd",
+          "byte_count": 2564,
+          "role": "Scene camera and terrain lift",
+          "rea_evidence_id": "ev_d7bfb95d127175184c5ac2399e1590384ee538bb4e5034e045844510aa3f1a5a"
+        },
+        {
+          "address": "0x14070f550",
+          "end_exclusive": "0x14070f75c",
+          "file_offset": "0x70e950",
+          "sha256": "a00142c3e640c449bc3cdb9c00b73d93a6a3fa957e11ef3d67fbaba984415ed9",
+          "byte_count": 524,
+          "role": "Scene stabilization, map selection, ready latch",
+          "rea_evidence_id": "ev_9976a844d3ed5d73000960cd1ce710dc92b69c76f18d25088a12a04a11a7f0c6"
+        },
+        {
+          "address": "0x1407470b0",
+          "end_exclusive": "0x1407472a8",
+          "file_offset": "0x7464b0",
+          "sha256": "d910a17277427af2c972d5981e9e3422856bb748fb14b71d9d1558cc4f93bab5",
+          "byte_count": 504,
+          "role": "Scene stabilizer resource registration"
+        },
+        {
+          "address": "0x140747390",
+          "end_exclusive": "0x1407475e3",
+          "file_offset": "0x746790",
+          "sha256": "6511e37c7ab20df83c22aade20ea5fe8399b0e725bebd2616c2c3b5281e2edb3",
+          "byte_count": 595,
+          "role": "Scene stabilizer runtime resource tuple"
+        }
+      ]
+    },
+    {
+      "id": "engine.char_select.world_live",
+      "classification": "confirmed_custom_modification_current_target",
+      "original_symbol": "WorldLive publisher: ordinary world OR active menu scene",
+      "native_functions": [
+        {
+          "address": "0x140963de0",
+          "end_exclusive": "0x140963fa1",
+          "file_offset": "0x9631e0",
+          "sha256": "cee8400a4c4a64a07412f63f5c87b964a511705340006c82cb015d9413158cf5",
+          "byte_count": 449,
+          "role": "WorldLive adapter: ordinary world or menu scene active",
+          "rea_evidence_id": "ev_7e223bb6e8582a6292ce2ca154dbd3b1110f9ddadbeea1254c9cd22f9822d54d"
+        },
+        {
+          "address": "0x140963bd0",
+          "end_exclusive": "0x140963d6a",
+          "file_offset": "0x962fd0",
+          "sha256": "a28d8dbb2fe474423ae5ca30f0d2d4a7ddfc6619fbbfa5a80adec61459d34395",
+          "byte_count": 410,
+          "role": "WorldLive adapter resource registration shares application state TypeID"
+        }
+      ]
+    },
+    {
+      "id": "engine.player.menu_camera_gate",
+      "classification": "confirmed_custom_modification_current_target",
+      "original_symbol": "World camera gate",
+      "native_functions": [
+        {
+          "address": "0x1408395f0",
+          "end_exclusive": "0x1408397a4",
+          "file_offset": "0x8389f0",
+          "sha256": "0c04c5c26b9ac4d97dffcd714a5491d568ffa872ab557eb5826ebaab7ec830ac",
+          "byte_count": 436,
+          "role": "Camera visibility adapter and renderable menu scene helper",
+          "rea_evidence_id": "ev_4b4c8c665087a798eee3b94dfc46b1e049556f957addea8a871f2d32625ca9f2"
+        }
+      ]
+    },
+    {
+      "id": "engine.char_select.preview_suppression",
+      "classification": "confirmed_custom_modification_current_target",
+      "original_symbol": "Character-select preview feed menu-request early return",
+      "native_functions": [
+        {
+          "address": "0x140fbf8a0",
+          "end_exclusive": "0x140fc03af",
+          "file_offset": "0xfbeca0",
+          "sha256": "a0a5b7652a633ef7729735a1abe407c45d6a6fd48f7043ea90c56c1a9d4a0e1e",
+          "byte_count": 2831,
+          "role": "Menu request suppresses stock character-select preview feed",
+          "rea_evidence_id": "ev_209cfd50239ce05adb97c448c920eedbcf2487673f373ee9d7835d3cdb9c67be"
+        },
+        {
+          "address": "0x140fe0160",
+          "end_exclusive": "0x140fe0355",
+          "file_offset": "0xfdf560",
+          "sha256": "18dfb301eb387e1e2e418fbe969be34a7dfcef898143fd9c4169ce63991f6128",
+          "byte_count": 501,
+          "role": "Character-select preview system resource registration"
+        },
+        {
+          "address": "0x140fe0440",
+          "end_exclusive": "0x140fe0641",
+          "file_offset": "0xfdf840",
+          "sha256": "6dbf09e203911e80f86f778aa88b8c4a1057a6294673e8c361ebaecaf33d2038",
+          "byte_count": 513,
+          "role": "Character-select preview system runtime resource tuple"
+        },
+        {
+          "address": "0x140cf52c0",
+          "end_exclusive": "0x140cf55b0",
+          "file_offset": "0xcf46c0",
+          "sha256": "6bc2eb4acc37aab694c9d052044e677343e6d4680ff6ab2966a7c8785e7ec8ea",
+          "byte_count": 752,
+          "role": "Character-select preview resource registration size 0xbc and alignment 4"
+        }
+      ]
+    }
+  ],
+  "unresolved_fork_seams": [
+    {
+      "id": "engine.view.menu_request_gate",
+      "classification": "confirmed_custom_behavior_owner_unresolved",
+      "original_symbol": "Request-present view-lane gate",
+      "native_functions": [
+        {
+          "address": "0x14093f540",
+          "end_exclusive": "0x14093f6c3",
+          "file_offset": "0x93e940",
+          "sha256": "3749afd57ff52c81a25ddba6de0c15bda3036412b7af4d01f243b7d77b0d3ca2",
+          "byte_count": 387,
+          "role": "Request-present view-lane gate"
+        }
+      ]
+    },
+    {
+      "id": "engine.hero_preview",
+      "classification": "target_only_module_current_presence_behavior_not_revalidated",
+      "original_symbol": "benilla_app::hero_preview::HeroPreviewPlugin",
+      "native_functions": []
+    },
+    {
+      "id": "engine.world_hold",
+      "classification": "target_only_module_current_presence_behavior_unrecovered",
+      "original_symbol": "benilla_app::spell_override::WorldHoldPlugin",
+      "native_functions": []
+    },
+    {
+      "id": "engine.host_controls",
+      "original_symbol": "benilla_app::host_controls::TouchDrivePlugin",
+      "classification": "Current-target module/type presence; complete desktop/mobile input behavior and custom boundary unresolved.",
+      "existing_evidence": "docs/analysis/evidence/0.97.2/game-engine-delta.json"
+    }
+  ],
+  "existing_source_owners": [
+    {
+      "path": "crates/benilla-app/src/player.rs",
+      "line": 1,
+      "owner": "Inherited character/camera/input plugin; right-drag turning, left-drag orbit, both-button forward, zoom and follow."
+    },
+    {
+      "path": "crates/benilla-app/src/player/input.rs",
+      "line": 175,
+      "owner": "A/D normally turn and strafe during mouselook; Q/E strafe; forward follows body facing."
+    },
+    {
+      "path": "crates/benilla-app/src/player/camera_zoom.rs",
+      "line": 6,
+      "owner": "Zoom/cvar/scroll owner; source notes its starting15 differs from original WoW5.55."
+    },
+    {
+      "path": "crates/benilla-app/src/player/wire_in.rs",
+      "line": 326,
+      "owner": "Public take-control camera reset: body yaw, saved pitch or-.45; not yet separately current-target behavior-bound."
+    },
+    {
+      "path": "crates/benilla-app/src/game_plugins.rs",
+      "line": 125,
+      "owner": "Composes PlayerPlugin, PlayerUiPlugin, UiScriptPlugin, UiUnitPlugin and UiActionPlugin."
+    },
+    {
+      "path": "crates/benilla-app/src/ui_script/reference_ui.rs",
+      "line": 32,
+      "owner": "Reads actual MPQ FrameXML.toc and Bindings.xml."
+    },
+    {
+      "path": "crates/benilla-app/src/ui_script/manifest.rs",
+      "line": 298,
+      "owner": "Core FrameXML then Benilla layer then third-party addons."
+    },
+    {
+      "path": "crates/benilla-app/src/ui_script/lifecycle.rs",
+      "line": 381,
+      "owner": "Fresh in-game UI VM on world entry; player/unit/XP/cvar/binding seeds before file load."
+    }
+  ],
+  "current_adapter_mismatches": [
+    {
+      "path": "crates/azeroth-survivors-re/src/main.rs",
+      "sha256_at_review": "2a12e7f09cea3e200881e21b3cd40110234c6f9faf20caac8bf97128a293ea85",
+      "owner": "plugin assembly",
+      "finding": "Registers world/render and reconstruction plugins rather than the full inherited player/FrameXML client stack."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+      "sha256_at_review": "5039769c2eaab61db290d01592f3f0252f34497a0fc22ac020cbbb812157cbce",
+      "owner": "input and hud",
+      "finding": "Hardcodes screen-relative WASD/arrow motion; constructs Bevy health/XP/icons and modal choices."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/world.rs",
+      "sha256_at_review": "4523741552a11bc9d74cbb91d75cb17d6243ef8f27999c08e09b1f57a6fabba2",
+      "owner": "publish_view",
+      "finding": "Overwrites world camera from fixed offset and target height every frame; simple ground/ray movement bridge bypasses native capsule/controller."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/choices.rs",
+      "sha256_at_review": "c755e8c973d4c8afea6da161efc96eb5782de149bf10efac2f9ec19a82db085e",
+      "owner": "generate_level_choices",
+      "finding": "Recovers offer sampling, rarity and bundles; English labels and generic modal layout are not native card-screen presentation."
+    }
+  ],
+  "user_required_screen_fidelity": {
+    "movement_and_camera": "Normal Vanilla-style inherited controller and camera behavior; fixed camera and screen-relative replacement are not an accepted reconstruction.",
+    "base_interface": "Vanilla FrameXML action bars and unit frames through the existing engine UI stack.",
+    "level_up_choices": "Must match selected EXE presentation as well as recovered offer-generation/application rules.",
+    "treasure_choices": "Must match selected EXE presentation and actual reward lifecycle. Generic FrameXML and level-offer rules do not establish these screens.",
+    "native_custom_presentation_owners": [
+      "crates/wenilla-rogue-app/src/screens/hud.rs",
+      "crates/wenilla-rogue-app/src/screens/hudparts.rs",
+      "crates/wenilla-rogue-app/src/screens/cards.rs",
+      "crates/wenilla-rogue-app/src/screens/rewards.rs"
+    ],
+    "exact_custom_screen_presentation_recovered": false,
+    "correction_implemented": false
+  },
+  "limitations": [
+    "Path/type presence establishes compiled ownership leads, not complete inherited native-function equivalence or proof a branch is exercised.",
+    "Embedded full-text matches establish those UI layer assets, not the entire engine fork or all runtime call routing.",
+    "The supplied MPQ FrameXML defines stock frames; PlayerFrame and ActionButton definitions need not be EXE string literals.",
+    "Camera constructor defaults do not determine final take-control pose, dynamic mouselook/follow, saved-view behavior or collision policy.",
+    "The original fork and matching PDB remain unavailable; public source is a strong reuse baseline but exact changes require bounded target checks.",
+    "No full runtime parity, native screen parity or implemented controller/UI correction is claimed."
+  ]
+}

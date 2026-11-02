@@ -1,0 +1,1133 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.113.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+    "size_bytes": 141932032
+  },
+  "gap_ids": [
+    41
+  ],
+  "derivation": "Existing inventory selection only; no Ghidra analysis, independent decoding, target execution or source compilation.",
+  "address_model": {
+    "image_base": "0x140000000",
+    "PE_section_intervals": "RVA [start,end); section raw offsets are file offsets",
+    "TSV_range_addresses": "preferred VAs in bare hexadecimal, end_exclusive except bodies.tsv.gz.end is inclusive",
+    "SQLite_addresses": "preferred VA integers; extents/regions/instructions end is exclusive",
+    "owner_lookup": "Nonexternal bodies.tsv.gz inclusive [start,end], unique disjoint range containing site; null when absent. See scripts/summarize-native-image.py::owner_lookup."
+  },
+  "selector_output_encoding": "SHA-256 of UTF-8 JSONL arrays; json.dumps(array,ensure_ascii=False,separators=(comma,colon)) plus LF for each projected row, no header. SQLite values preserve integer/null/string types; CSV values preserve strings. Empty selections hash zero bytes.",
+  "inputs": {
+    "native-summary": {
+      "path": "docs/analysis/coverage/native-summary.json",
+      "sha256": "abd3f9a132c37427a8b298789af0f0d9f05b60f3c299590da2c0c8ff62a51543",
+      "bytes": 3450
+    },
+    "instruction-summary": {
+      "path": "docs/analysis/coverage/instruction-summary.json",
+      "sha256": "2ed3eb27ac227ad854dd98ffc8641893349a81c52a8d3f43bf927890a24f90b1",
+      "bytes": 2724
+    },
+    "unwind-complement-summary": {
+      "path": "docs/analysis/coverage/unwind-complement-summary.json",
+      "sha256": "e40eccb3900e5425d817205cdd773653791fee7dbbd0d7b8696de5f4dd105925",
+      "bytes": 3722
+    },
+    "full-image-census": {
+      "path": "docs/analysis/coverage/full-image-execheck.json",
+      "sha256": "ebae5060940521069357ab552e63b0fded96efdecc7b9372692a03d3bb058252",
+      "bytes": 15202
+    },
+    "seeded-census": {
+      "path": "docs/analysis/coverage/seeded-census.json",
+      "sha256": "455ed7d5d586fac0cf5816bb6dae4cae828d2720ab7d45ae1311350136fae447",
+      "bytes": 125693
+    },
+    "inventory.json": {
+      "path": "runtime/coverage/58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb/inventory.json",
+      "sha256": "b3753d3045ed2a4589ad518a437d1aacaaed92d8368ad16969ab33b3a2ce5bb2",
+      "bytes": 78421285
+    },
+    "diagnostic-ownership.json": {
+      "path": "runtime/coverage/58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb/diagnostic-ownership.json",
+      "sha256": "0c8766b1daa9f615053bdbc05f4d01c27e719d461a8e02fbeb2a666b48e3f190",
+      "bytes": 12801050
+    },
+    "native-instructions.sqlite": {
+      "path": "runtime/coverage/58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb/native-instructions.sqlite",
+      "sha256": "82e9307e46c478816f881c0e197257b7094586a53f4ef58f4a93ed67a51fcd2d",
+      "bytes": 327753728
+    },
+    "unwind-complement.sqlite": {
+      "path": "runtime/coverage/58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb/unwind-complement.sqlite",
+      "sha256": "5ced9760078309f09f63e372ec2185cf40e3c623d46f1255bd987366a2271460",
+      "bytes": 66252800
+    },
+    "instructions.tsv.gz": {
+      "path": "runtime/execheck-0.113.2/ghidra-comprehensive/instructions.tsv.gz",
+      "sha256": "3ba10932ccf4dbb3e1b375ac1a6d33d627735b229741c9ebcc79a07395408a95",
+      "bytes": 123436872
+    },
+    "bodies.tsv.gz": {
+      "path": "runtime/execheck-0.113.2/ghidra-comprehensive/bodies.tsv.gz",
+      "sha256": "dc808e3e10d4443dabce229e9d0724060d87bcd7547eb1cb47334e70038b8362",
+      "bytes": 4221082
+    },
+    "references.tsv.gz": {
+      "path": "runtime/execheck-0.113.2/ghidra-comprehensive/references.tsv.gz",
+      "sha256": "2975e8ccd5269f6ce1e926e92b6a8c73bcb2c58778c9f8d0f9a9785b073b11f1",
+      "bytes": 23033468
+    },
+    "externals.tsv.gz": {
+      "path": "runtime/execheck-0.113.2/ghidra-comprehensive/externals.tsv.gz",
+      "sha256": "86f1f2a76666cc9fe54be65f93d649d971557bdb7227001666831c2ee8757c9d",
+      "bytes": 4259
+    },
+    "starts.tsv": {
+      "path": "runtime/execheck-0.113.2/ghidra-comprehensive/starts.tsv",
+      "sha256": "29648d3ca53ecbe8f92da45c8ea601533db1d2262a35906f55d7781aa4007580",
+      "bytes": 4217040
+    },
+    "direct-call-helper-final-owners.tsv.gz": {
+      "path": "runtime/execheck-0.113.2/ghidra-comprehensive/direct-call-helper-final-owners.tsv.gz",
+      "sha256": "25ff1652e8a7d64e65b3e5854fc8c4c7310f4413b83243295b5af507094721ad",
+      "bytes": 12550
+    },
+    "missing-executable-ranges.tsv.gz": {
+      "path": "runtime/execheck-0.113.2/ghidra-comprehensive/missing-executable-ranges.tsv.gz",
+      "sha256": "ba4a557d6b23548a495220de44978d051ce0729a2417b77f5398de468de4edd1",
+      "bytes": 4211639
+    },
+    "missing-declared-ranges.tsv.gz": {
+      "path": "runtime/execheck-0.113.2/ghidra-comprehensive/missing-declared-ranges.tsv.gz",
+      "sha256": "b323a56e7a613e9b6626d80bb3a5120faae97a2abba841be1b76e1a78e0631e4",
+      "bytes": 785843
+    },
+    "diagnostic-bindings.json": {
+      "path": "runtime/execheck-0.113.2/ghidra-comprehensive/diagnostic-bindings.json",
+      "sha256": "c57d30b5042a6c15bf1a54f10207f7edaf6038378e28c463608225bd6b398a51",
+      "bytes": 230700
+    },
+    "progress.json": {
+      "path": "runtime/execheck-0.113.2/ghidra-comprehensive/progress.json",
+      "sha256": "4e348a20ec90301b4624cfb0809505247587fbe3a19cba2eee0d0e678cda5c34",
+      "bytes": 1817
+    },
+    "plan.json": {
+      "path": "runtime/execheck-0.113.2/ghidra-comprehensive/plan.json",
+      "sha256": "f583f0e2d42bb5dd6204119adbe5713e5654205d1ce86a6d58713de514f9d0d4",
+      "bytes": 5214
+    },
+    "session-result.json": {
+      "path": "runtime/execheck-0.113.2/ghidra-comprehensive/session-result.json",
+      "sha256": "16afbfc2a172b06936f578f149e09e6e54e47331d5e2a8687f1c277eb731bcc9",
+      "bytes": 2779
+    },
+    "guarded_table_input": {
+      "path": "runtime/execheck-0.113.2/ghidra-comprehensive/guarded-tables-input.json",
+      "sha256": "105dcbd3d05ee08a1496601137998fce7ad51de4b055e5466d5245c74c536bfa",
+      "bytes": 8284032
+    },
+    "diagnostic_code_input": {
+      "path": "runtime/execheck-0.113.2/ghidra-comprehensive/diagnostic-code-input.json",
+      "sha256": "2fb04d7382835f434db9fd49c3df1dc0e4c16423cee232025ce159b2fa6b0ce0",
+      "bytes": 848561
+    },
+    "import_thunk_input": {
+      "path": "runtime/execheck-0.113.2/ghidra-comprehensive/import-thunks-input.json",
+      "sha256": "4bc03be3a143882b38f1733e0826a779ddaa769e31ef030ed8c8583204b6a2a6",
+      "bytes": 2349
+    },
+    "unwind_handler_input": {
+      "path": "runtime/execheck-0.113.2/ghidra-comprehensive/unwind-handlers-input.json",
+      "sha256": "8047ce92249913db73ddd527227007592094f0ad43b6708bcad6575f02f3537d",
+      "bytes": 22745348
+    },
+    "address_code_input": {
+      "path": "runtime/execheck-0.113.2/ghidra-comprehensive/address-code-input.json",
+      "sha256": "451d4ebc7a15d4207ac9ecbe97e2c28bc3cd010a954ed0213dcf112365ff1a5b",
+      "bytes": 12264646
+    }
+  },
+  "profiles": {
+    "full_image": {
+      "format": "rea-whole-image-native-census-address-code-v6",
+      "address_code_leads_sha256": "451d4ebc7a15d4207ac9ecbe97e2c28bc3cd010a954ed0213dcf112365ff1a5b",
+      "guarded_jump_tables_sha256": "105dcbd3d05ee08a1496601137998fce7ad51de4b055e5466d5245c74c536bfa",
+      "diagnostic_code_leads_sha256": "2fb04d7382835f434db9fd49c3df1dc0e4c16423cee232025ce159b2fa6b0ce0",
+      "target_sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+      "script_sha256": "7ebbeeb8165f01226b7f51acd40278c153790ecbc1590338c142fca9ef4cfeba",
+      "starts_sha256": "29648d3ca53ecbe8f92da45c8ea601533db1d2262a35906f55d7781aa4007580",
+      "auto_analysis": false,
+      "installed_reference_import": "read-only-in-place",
+      "heap": "6G",
+      "ghidra_version": "12.1.4"
+    },
+    "full_image_digest": "7e0f8fd7ebf982e5f87fcc2200bf770dcb5097c33c78668e7dcb4225c569ff0c",
+    "selected_diagnostic_owner": {
+      "name": "full-image-diagnostic-owner-repaired",
+      "digest": "20376f200a3fe4b860eeba0aa2e7b217d020a0c49b9dee0b6724e606d1754075",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "disabled_analyzers": [
+        "Stack",
+        "Decompiler Switch Analysis",
+        "Function ID",
+        "Function Start Search",
+        "Disassemble Entry Points",
+        "Subroutine References",
+        "Data Reference",
+        "Reference",
+        "Non-Returning Functions - Discovered",
+        "Shared Return Calls",
+        "Create Address Tables",
+        "Call Convention ID"
+      ],
+      "seed_format": "rea-ghidra-seeds-body-repair-v1",
+      "seed_sha256": "93d306a227195fac00ef3cb71c17be7ebb0942ffe9136cbee1a1155264ad9e5b",
+      "tooling": {
+        "node_modules/rea-agents/bridge/ghidra/ReaGhidraApplySeeds.java": "05ede878b71ce37d70e351bec45cce879680bba6b3f5e187ebcd2bd56319eace",
+        "node_modules/rea-agents/dist/ghidra/GhidraAnalysisSeeds.js": "4a0593dbae11d28fd418855857f6708d33fd8db93d3ec547e438454200e77450",
+        "node_modules/rea-agents/dist/cli-runtime/binary-BVOr2mgE.js": "b4f8e8733d9b85e643a23c433af5d1aa714c6053c9b4a06f4ee10538c28c62b5",
+        "node_modules/rea-agents/dist/mcp/main-kBXHZ8S5.js": "12559a5f729d1e77fb4609f9133e5abcc85b94f6ee722bdb09dbe622dbf878e9"
+      }
+    }
+  },
+  "selectors": {
+    "Q41-U01": {
+      "inputs": [
+        "missing-executable-ranges.tsv.gz"
+      ],
+      "selector": "CSV rows where location == 'declared'",
+      "projection": [
+        "start",
+        "end_exclusive",
+        "byte_count",
+        "location",
+        "category",
+        "sha256"
+      ],
+      "order": "source file row order",
+      "records": 54975,
+      "output_sha256": "779bc81c239105a96029cb0c339810063d5d34e2c54d37bcf033c516a80520e8",
+      "bytes_by_candidate_kind": {
+        "NOP-CC-instruction-candidate": 365310,
+        "mixed-unclassified": 4849350,
+        "uniform-CC-candidate": 2,
+        "uniform-NOP-candidate": 4541
+      },
+      "section": ".text",
+      "bytes": 5219203,
+      "record_groups": {
+        "NOP-CC-instruction-candidate": 42828,
+        "mixed-unclassified": 8395,
+        "uniform-CC-candidate": 2,
+        "uniform-NOP-candidate": 3750
+      }
+    },
+    "Q41-U02": {
+      "inputs": [
+        "missing-executable-ranges.tsv.gz"
+      ],
+      "selector": "CSV rows where location == 'outside-declared'",
+      "projection": [
+        "start",
+        "end_exclusive",
+        "byte_count",
+        "location",
+        "category",
+        "sha256"
+      ],
+      "order": "source file row order",
+      "records": 407558,
+      "output_sha256": "2c06fd3033249997f5b57262ae7076537b8bef4c3ec1e6883eb928b2976d1a99",
+      "bytes_by_candidate_kind": {
+        "NOP-CC-instruction-candidate": 1582124,
+        "mixed-unclassified": 143455,
+        "uniform-CC-candidate": 1522707,
+        "uniform-NOP-candidate": 12519
+      },
+      "section": ".text",
+      "bytes": 3260805,
+      "record_groups": {
+        "NOP-CC-instruction-candidate": 184404,
+        "mixed-unclassified": 1539,
+        "uniform-CC-candidate": 210668,
+        "uniform-NOP-candidate": 10947
+      }
+    },
+    "Q41-U03-suffix": {
+      "inputs": [
+        "native-instructions.sqlite"
+      ],
+      "selector": "SELECT ordinal,start,end,file_offset,sha256,decoded_end,instructions FROM extents WHERE decoded_end < end ORDER BY ordinal",
+      "projection": [
+        "ordinal",
+        "start_preferred_VA",
+        "end_exclusive_preferred_VA",
+        "file_offset",
+        "range_sha256",
+        "decoded_end_preferred_VA",
+        "instruction_count"
+      ],
+      "order": "SQL ORDER BY ordinal",
+      "records": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "processed_extents": 350352,
+      "expected_extents": 350352,
+      "pending_extents": 0
+    },
+    "Q41-F02-call": {
+      "inputs": [
+        "native-instructions.sqlite"
+      ],
+      "selector": "SELECT extent,site,bytes,kind,target,operand,access FROM refs WHERE kind='call_indirect' ORDER BY extent,site,operand,kind,target",
+      "projection": "all SELECT columns, SQLite types (addresses are preferred VA integers; target is encoded VA/pointer-slot string or null)",
+      "order": "SQL ORDER BY as written",
+      "records": 72276,
+      "output_sha256": "51647a1883fcdebae232c4efefcbfa240097393dfa90e29d4faf70cd29175ef1"
+    },
+    "Q41-F02-jump": {
+      "inputs": [
+        "native-instructions.sqlite"
+      ],
+      "selector": "SELECT extent,site,bytes,kind,target,operand,access FROM refs WHERE kind='jump_indirect' ORDER BY extent,site,operand,kind,target",
+      "projection": "all SELECT columns, SQLite types (addresses are preferred VA integers; target is encoded VA/pointer-slot string or null)",
+      "order": "SQL ORDER BY as written",
+      "records": 10292,
+      "output_sha256": "9442e66acdbeb64591f94dfb9788d03b514f37dfdac4102c1fda4730b0258a5b"
+    },
+    "Q41-A01-linear": {
+      "inputs": [
+        "native-instructions.sqlite"
+      ],
+      "selector": "SELECT extent,site,bytes,kind,target,operand,access FROM refs WHERE kind='address' ORDER BY extent,site,operand,kind,target",
+      "projection": "all SELECT columns, SQLite types (addresses are preferred VA integers; target is encoded VA/pointer-slot string or null)",
+      "order": "SQL ORDER BY as written",
+      "records": 482738,
+      "output_sha256": "4044c07090822fb3170093181bcb6cb1850fa50c0c92cbd031eebfd709433d1e"
+    },
+    "Q41-F02-complement": {
+      "inputs": [
+        "unwind-complement.sqlite"
+      ],
+      "selector": "SELECT site,kind,target,operand,access FROM refs WHERE kind='jump_indirect' ORDER BY site,operand,kind,target",
+      "projection": "all SELECT columns, SQLite types (addresses are preferred VA integers; target is encoded VA/pointer-slot string or null)",
+      "order": "SQL ORDER BY as written",
+      "records": 647,
+      "output_sha256": "de719095702907441c0ededf7dc3503654cccc8824d63a47f64d072f5e8ba9b3"
+    },
+    "Q41-A01-complement": {
+      "inputs": [
+        "unwind-complement.sqlite"
+      ],
+      "selector": "SELECT site,kind,target,operand,access FROM refs WHERE kind='address' ORDER BY site,operand,kind,target",
+      "projection": "all SELECT columns, SQLite types (addresses are preferred VA integers; target is encoded VA/pointer-slot string or null)",
+      "order": "SQL ORDER BY as written",
+      "records": 1396,
+      "output_sha256": "2fd1632be2a78fb8f06cb08b584d9ad8cb8c5da4548ad4b15b399ad16cded538"
+    },
+    "Q41-U04": {
+      "inputs": [
+        "unwind-complement.sqlite"
+      ],
+      "selector": "For each regions row ordered by start, subtract the union of [site,end) from instructions; retain each residual [start,end) with the regions.category. Never subtract a padding candidate.",
+      "projection": [
+        "start_preferred_VA_integer",
+        "end_exclusive_preferred_VA_integer",
+        "original_region_category"
+      ],
+      "order": "regions.start ascending; residual start ascending",
+      "records": 332690,
+      "output_sha256": "474b11cf3ae27d248b26fc470919022f37d2505436cf98714cd2c76baada231f",
+      "bytes_by_candidate_kind": {
+        "mixed_or_other": 2302030,
+        "uniform_cc_candidate": 925331,
+        "uniform_nop_candidate": 10931,
+        "x86_padding_sequence_candidate": 1581450
+      },
+      "section": ".text",
+      "bytes": 4819742,
+      "record_groups": {
+        "mixed_or_other": 22615,
+        "uniform_cc_candidate": 114926,
+        "uniform_nop_candidate": 10833,
+        "x86_padding_sequence_candidate": 184316
+      }
+    },
+    "Q41-S01-complement": {
+      "inputs": [
+        "unwind-complement.sqlite"
+      ],
+      "selector": "SELECT site,end,bytes,mnemonic,operands FROM instructions ORDER BY site",
+      "projection": "all SELECT columns (preferred VA integers)",
+      "order": "SQL ORDER BY site",
+      "records": 71073,
+      "output_sha256": "b60113058c715fa9e936d20918979f7fe6eb6fd1c746879fc3942bb1f68e0535",
+      "bytes": 307096
+    },
+    "Q41-F01-call": {
+      "inputs": [
+        "instructions.tsv.gz",
+        "bodies.tsv.gz"
+      ],
+      "selector": "CSV rows whose flow is in ['COMPUTED_CALL', 'COMPUTED_CALL_TERMINATOR']",
+      "projection": [
+        "address",
+        "length",
+        "bytes",
+        "flow",
+        "actual_native_owner_preferred_VA_or_null"
+      ],
+      "order": "source file row order",
+      "records": 70681,
+      "output_sha256": "dd32b7d6ed8e271a659f411ea10bfa3bf24c362540ccda6e88b8a9e9906fc484",
+      "bytes": 300804,
+      "record_groups": {
+        "COMPUTED_CALL": 70678,
+        "COMPUTED_CALL_TERMINATOR": 3
+      }
+    },
+    "Q41-F01-jump": {
+      "inputs": [
+        "instructions.tsv.gz",
+        "bodies.tsv.gz"
+      ],
+      "selector": "CSV rows whose flow is in ['COMPUTED_JUMP']",
+      "projection": [
+        "address",
+        "length",
+        "bytes",
+        "flow",
+        "actual_native_owner_preferred_VA_or_null"
+      ],
+      "order": "source file row order",
+      "records": 140058,
+      "output_sha256": "63b8851bb12524620f187c88ab276ff2dc5f975d170d31ea69e3ce8d123e43cc",
+      "bytes": 285450,
+      "record_groups": {
+        "COMPUTED_JUMP": 140058
+      }
+    },
+    "Q41-O01": {
+      "inputs": [
+        "instructions.tsv.gz",
+        "bodies.tsv.gz"
+      ],
+      "selector": "CSV rows where owner(address) is null",
+      "projection": [
+        "address",
+        "length",
+        "bytes",
+        "flow",
+        "actual_native_owner_preferred_VA_or_null"
+      ],
+      "order": "source file row order",
+      "records": 73479,
+      "output_sha256": "03647da4823548444601e834fbcb38153976224a305e65753474e3d15a0892f6",
+      "bytes": 346639,
+      "record_groups": {
+        "COMPUTED_CALL": 302,
+        "COMPUTED_JUMP": 324,
+        "CONDITIONAL_JUMP": 6020,
+        "FALL_THROUGH": 55195,
+        "TERMINATOR": 3367,
+        "UNCONDITIONAL_CALL": 5151,
+        "UNCONDITIONAL_JUMP": 3120
+      }
+    },
+    "Q41-F01-jump-with-applied-guard": {
+      "inputs": [
+        "instructions.tsv.gz",
+        "bodies.tsv.gz",
+        "guarded_table_input"
+      ],
+      "selector": "CSV rows whose flow == COMPUTED_JUMP and integer address is in the distinct guarded_table_input tables[].site set",
+      "projection": [
+        "address",
+        "length",
+        "bytes",
+        "flow",
+        "actual_native_owner_preferred_VA_or_null"
+      ],
+      "order": "source file row order",
+      "records": 2532,
+      "output_sha256": "78eac1f4eff975b098f3ca33a63bd2330366c3690c602e554bd8022c6aec1894",
+      "bytes": 5453,
+      "record_groups": {
+        "COMPUTED_JUMP": 2532
+      }
+    },
+    "Q41-F01-jump-without-applied-guard": {
+      "inputs": [
+        "instructions.tsv.gz",
+        "bodies.tsv.gz",
+        "guarded_table_input"
+      ],
+      "selector": "CSV rows whose flow == COMPUTED_JUMP and integer address is not in the distinct guarded_table_input tables[].site set",
+      "projection": [
+        "address",
+        "length",
+        "bytes",
+        "flow",
+        "actual_native_owner_preferred_VA_or_null"
+      ],
+      "order": "source file row order",
+      "records": 137526,
+      "output_sha256": "cbde71eb0d5446cc740bd7d784c4fd73e1a05980b7c55f3e968a0906a5e94bbe",
+      "bytes": 279997,
+      "record_groups": {
+        "COMPUTED_JUMP": 137526
+      }
+    },
+    "Q41-O02": {
+      "inputs": [
+        "references.tsv.gz",
+        "bodies.tsv.gz"
+      ],
+      "selector": "owner(from) is null",
+      "projection": [
+        "from",
+        "to",
+        "type",
+        "operand",
+        "primary",
+        "source"
+      ],
+      "order": "source file row order",
+      "records": 789223,
+      "output_sha256": "e124dbc17e21e42d0d09fd2e489c33c9d505928baf864c98aa6ef7bc8e0847eb",
+      "record_groups": {
+        "CONDITIONAL_JUMP": 6020,
+        "DATA": 774519,
+        "INDIRECTION": 3,
+        "READ": 408,
+        "READ_WRITE": 2,
+        "UNCONDITIONAL_CALL": 5151,
+        "UNCONDITIONAL_JUMP": 3120
+      }
+    },
+    "Q41-D01": {
+      "inputs": [
+        "references.tsv.gz",
+        "bodies.tsv.gz"
+      ],
+      "selector": "to has default address space and owner(to) is null",
+      "projection": [
+        "from",
+        "to",
+        "type",
+        "operand",
+        "primary",
+        "source"
+      ],
+      "order": "source file row order",
+      "records": 531765,
+      "output_sha256": "187661820f34c3ed91e117c76be568640f9f808dd2f649be300246f452824a84",
+      "record_groups": {
+        "CONDITIONAL_JUMP": 5874,
+        "DATA": 350387,
+        "INDIRECTION": 186,
+        "READ": 173767,
+        "READ_WRITE": 418,
+        "UNCONDITIONAL_JUMP": 758,
+        "WRITE": 375
+      }
+    },
+    "Q41-D02": {
+      "inputs": [
+        "references.tsv.gz",
+        "bodies.tsv.gz"
+      ],
+      "selector": "to has default address space and owner(to) is null and type in ('READ','WRITE','READ_WRITE')",
+      "projection": [
+        "from",
+        "to",
+        "type",
+        "operand",
+        "primary",
+        "source"
+      ],
+      "order": "source file row order",
+      "records": 174560,
+      "output_sha256": "9219ca60adc5e4a5a78c287a77adf0ed1e99eb1954e02980bbb5ed00fdecd946",
+      "distinct_targets": 50209,
+      "reader_pairs": 143010,
+      "writer_pairs": 569,
+      "record_groups": {
+        "READ": 173767,
+        "READ_WRITE": 418,
+        "WRITE": 375
+      }
+    },
+    "Q41-A02": {
+      "inputs": [
+        "inventory.json",
+        "bodies.tsv.gz"
+      ],
+      "selector": "pe.base_relocation_records.records where kind == 10 and encoded_u64 lies in executable section virtual extent",
+      "projection": [
+        "slot_preferred_VA_integer",
+        "encoded_target_preferred_VA_integer",
+        "slot_section",
+        "actual_target_owner_preferred_VA_or_null"
+      ],
+      "order": "slot preferred VA ascending",
+      "records": 524805,
+      "output_sha256": "620f06db8beeb45593530f158186d0272567bb85c3b6f39faab0da09df589a69",
+      "distinct_encoded_targets": 135406,
+      "distinct_targets_without_observed_body": 0,
+      "record_groups": {
+        "body-interior": 34,
+        "entry": 524771
+      }
+    },
+    "Q41-D03": {
+      "inputs": [
+        "inventory.json"
+      ],
+      "selector": "Every embedded_candidates[kind] row; no sample, semantic or current-source filter",
+      "projection": [
+        "kind",
+        "file_offset",
+        "virtual_address",
+        "byte_count",
+        "sha256",
+        "literal"
+      ],
+      "order": "kind lexicographic; existing array order within kind",
+      "records": 2095,
+      "output_sha256": "b8a443ab86e9e42529f50541a70749f1aad51c827174315ed9369f0ee59ccd34",
+      "zero_candidate_classes": [
+        "textual_numeric_id"
+      ],
+      "bytes": 83836,
+      "record_groups": {
+        "game_binding_identifier": 343,
+        "lua_function_declaration": 185,
+        "lua_ui_registration": 336,
+        "module_type_namespace": 921,
+        "resource_path": 303,
+        "save_configuration_key_lead": 5,
+        "textual_id_assignment": 2
+      }
+    },
+    "Q41-C01": {
+      "inputs": [
+        "diagnostic-ownership.json",
+        "bodies.tsv.gz"
+      ],
+      "selector": "verified_references where owner(instruction_address) is null and custom_game_crate and system_id not in excluded_ids",
+      "projection": [
+        "path",
+        "system_id",
+        "instruction_address",
+        "target_address",
+        "runtime_function_start",
+        "runtime_function_end",
+        "instruction_bytes",
+        "actual_native_owner_preferred_VA_or_null"
+      ],
+      "order": "diagnostic path lexicographic; verified_references source-array order",
+      "records": 57,
+      "output_sha256": "4cc990b09011c4545a16293886f935509a6fb9735e225ac5aaa0c2524fc61aad",
+      "paths": 13,
+      "record_groups": {
+        "crates/wenilla-rogue-app/src/screens/armory.rs": 5,
+        "crates/wenilla-rogue-app/src/screens/markers.rs": 1,
+        "crates/wenilla-rogue-app/src/screens/options.rs": 9,
+        "crates/wenilla-rogue-app/src/screens/rewards.rs": 3,
+        "crates/wenilla-rogue/src/content.rs": 14,
+        "crates/wenilla-rogue/src/fonts.rs": 1,
+        "crates/wenilla-rogue/src/game/abilities.rs": 7,
+        "crates/wenilla-rogue/src/game/auras.rs": 2,
+        "crates/wenilla-rogue/src/game/enemy.rs": 7,
+        "crates/wenilla-rogue/src/game/hazards.rs": 2,
+        "crates/wenilla-rogue/src/game/talents.rs": 1,
+        "crates/wenilla-rogue/src/game/upgrades.rs": 1,
+        "crates/wenilla-rogue/src/nav.rs": 4
+      }
+    },
+    "Q41-C02": {
+      "inputs": [
+        "diagnostic-ownership.json",
+        "bodies.tsv.gz"
+      ],
+      "selector": "verified_references where owner(instruction_address) is null and not custom_game_crate",
+      "projection": [
+        "path",
+        "system_id",
+        "instruction_address",
+        "target_address",
+        "runtime_function_start",
+        "runtime_function_end",
+        "instruction_bytes",
+        "actual_native_owner_preferred_VA_or_null"
+      ],
+      "order": "diagnostic path lexicographic; verified_references source-array order",
+      "records": 1696,
+      "output_sha256": "2e9b6b689e64eb475d298b795ebdbcdce3452533a0438ce6b85f47bf89b91e02",
+      "paths": 53,
+      "record_groups": {
+        "crates/benilla-app/src/creature_anim/driver/mode.rs": 1,
+        "crates/benilla-app/src/entities/chain_beam.rs": 2,
+        "crates/benilla-app/src/net/io.rs": 24,
+        "crates/benilla-app/src/net/io/park_timer.rs": 2,
+        "crates/benilla-app/src/player/camera_view.rs": 4,
+        "crates/benilla-app/src/spell/inflight.rs": 1,
+        "crates/benilla-app/src/ui_guild/mod.rs": 1,
+        "crates/benilla-app/src/ui_mail/net.rs": 1,
+        "crates/benilla-app/src/ui_script/extract/text.rs": 1,
+        "crates/benilla-app/src/ui_script/glue_mgr.rs": 5,
+        "crates/benilla-app/src/ui_script/lifecycle.rs": 9,
+        "crates/benilla-app/src/ui_social/query.rs": 1,
+        "crates/benilla-app/src/ui_text/markup.rs": 1,
+        "crates/benilla-assets/src/adt.rs": 6,
+        "crates/benilla-assets/src/blp.rs": 8,
+        "crates/benilla-assets/src/lib.rs": 12,
+        "crates/benilla-assets/src/m2.rs": 8,
+        "crates/benilla-assets/src/model/pose.rs": 6,
+        "crates/benilla-assets/src/wdt.rs": 2,
+        "crates/benilla-assets/src/wmo.rs": 2,
+        "crates/benilla-formats/src/models/wmo/group.rs": 6,
+        "crates/benilla-lua/src/compile.rs": 2,
+        "crates/benilla-lua/src/heap.rs": 3,
+        "crates/benilla-lua/src/lex.rs": 1,
+        "crates/benilla-lua/src/table.rs": 31,
+        "crates/benilla-lua/src/vm.rs": 40,
+        "crates/benilla-mlua/src/lib.rs": 1158,
+        "crates/benilla-protocol/src/auth.rs": 32,
+        "crates/benilla-protocol/src/lib.rs": 11,
+        "crates/benilla-protocol/src/messages/items.rs": 1,
+        "crates/benilla-protocol/src/transport/local.rs": 4,
+        "crates/benilla-protocol/src/transport/mod.rs": 6,
+        "crates/benilla-protocol/src/transport/native.rs": 6,
+        "crates/benilla-protocol/src/world/mod.rs": 2,
+        "crates/benilla-protocol/src/world/reader.rs": 2,
+        "crates/benilla-protocol/src/world/session.rs": 16,
+        "crates/benilla-ui/src/loader/mod.rs": 6,
+        "crates/benilla-ui/src/markup.rs": 1,
+        "crates/benilla-ui/src/script/addon.rs": 1,
+        "crates/benilla-ui/src/script/backdrop.rs": 1,
+        "crates/benilla-ui/src/script/channel.rs": 1,
+        "crates/benilla-ui/src/script/cvars.rs": 1,
+        "crates/benilla-ui/src/script/editbox.rs": 1,
+        "crates/benilla-ui/src/script/glue_core.rs": 3,
+        "crates/benilla-ui/src/script/mod.rs": 2,
+        "crates/benilla-ui/src/script/mouseover.rs": 1,
+        "crates/benilla-ui/src/script/plain.rs": 1,
+        "crates/benilla-ui/src/script/simplehtml/mod.rs": 1,
+        "crates/benilla-ui/src/script/stdlib.rs": 10,
+        "crates/benilla-ui/src/script/texel.rs": 2,
+        "crates/benilla-ui/src/script/tick.rs": 243,
+        "crates/benilla-ui/src/script/unit/resolve.rs": 2,
+        "crates/benilla-ui/src/script/video_pairs.rs": 1
+      }
+    },
+    "Q41-C03": {
+      "inputs": [
+        "diagnostic-ownership.json",
+        "bodies.tsv.gz"
+      ],
+      "selector": "verified_references where owner(instruction_address) is null and system_id in excluded_ids",
+      "projection": [
+        "path",
+        "system_id",
+        "instruction_address",
+        "target_address",
+        "runtime_function_start",
+        "runtime_function_end",
+        "instruction_bytes",
+        "actual_native_owner_preferred_VA_or_null"
+      ],
+      "order": "diagnostic path lexicographic; verified_references source-array order",
+      "records": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "paths": 0
+    },
+    "Q41-C04": {
+      "inputs": [
+        "diagnostic-ownership.json"
+      ],
+      "selector": "diagnostics where verified_references == []",
+      "projection": [
+        "path",
+        "system_id",
+        "custom_game_crate",
+        "occurrences"
+      ],
+      "order": "diagnostic path lexicographic",
+      "records": 161,
+      "output_sha256": "a9e8d3075bc30aab4ee06e84eda4536e9fc5a28705f479dc2a060b4483d1d540"
+    },
+    "Q41-P01": {
+      "inputs": [
+        "seeded-census"
+      ],
+      "selector": "For each mapping.retained_observations artifact, observations.outgoing.normalized_result.unresolved_calls; join source address to outgoing.references and current owner(target_address)",
+      "projection": [
+        "path",
+        "selected_owner",
+        "source_address",
+        "reason",
+        "observed_target_address_or_null",
+        "current_target_owner_or_null"
+      ],
+      "order": "mapping array order; unresolved_calls array order",
+      "records": 245,
+      "output_sha256": "9a38a7f209d056fbdf53dfc8ef1ad885c5c40ad84d39a1ebd11cd843a735700f",
+      "current_target_classification": {
+        "no-static-target-owner": 1,
+        "now-has-observed-target-owner": 244
+      },
+      "procedure_artifact_manifest_sha256": "c264cec5b8136278c8fd90795d45295656844d8c4cb76a1f98300c96d02da558"
+    },
+    "Q41-A03": {
+      "inputs": [
+        "inventory.json"
+      ],
+      "selector": "pe.base_relocation_records.records where kind != 10 or encoded_u64 is outside executable section virtual extents",
+      "projection": [
+        "site_RVA_integer",
+        "kind_integer",
+        "encoded_u64_integer_or_null"
+      ],
+      "order": "source records order",
+      "records": 109224,
+      "output_sha256": "a91b2f3c8a93dd61925ec6f0d85e1de18964a377dfefa5d8911291dc56813d34"
+    },
+    "Q41-E01": {
+      "inputs": [
+        "inventory.json"
+      ],
+      "selector": "each pe.imports library function in IAT order",
+      "projection": [
+        "library",
+        "symbol",
+        "IAT_slot_preferred_VA_integer"
+      ],
+      "order": "pe.imports array order, then function index",
+      "records": 425,
+      "output_sha256": "1b6e5ada07f444fe3769e82bbf61c079c612c603d1a36def6fd1ce21a490ef72"
+    },
+    "Q41-S01-linear": {
+      "inputs": [
+        "native-instructions.sqlite"
+      ],
+      "selector": "SELECT ordinal,start,end,file_offset,sha256,decoded_end,instructions FROM extents ORDER BY ordinal",
+      "projection": [
+        "ordinal",
+        "start_preferred_VA_integer",
+        "end_exclusive_preferred_VA_integer",
+        "file_offset_integer",
+        "range_sha256",
+        "decoded_end_preferred_VA_integer",
+        "instructions_integer"
+      ],
+      "order": "SQL ORDER BY ordinal",
+      "records": 350352,
+      "output_sha256": "a557acf813729a16277c52844c2e4854787f5ee1369a17d9a8290e09a34d9480",
+      "decoded_instruction_records": 23264391,
+      "decoded_bytes": 94075592
+    },
+    "Q41-S01-full": {
+      "inputs": [
+        "instructions.tsv.gz"
+      ],
+      "selector": "Identity selection of all records, with original compressed inventory bytes as output",
+      "projection": "Original gzip artifact bytes, including TSV header; no recompression",
+      "order": "Source file row order",
+      "records": 22663778,
+      "decoded_bytes": 90722422,
+      "output_sha256": "3ba10932ccf4dbb3e1b375ac1a6d33d627735b229741c9ebcc79a07395408a95"
+    }
+  },
+  "diagnostic_ownerless_path_partition": [
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/armory.rs",
+      "system_id": "custom-app-screens-armory",
+      "custom_game_crate": true,
+      "unowned_verified_sites": 5
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/markers.rs",
+      "system_id": "custom-app-screens-markers",
+      "custom_game_crate": true,
+      "unowned_verified_sites": 1
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/options.rs",
+      "system_id": "custom-app-screens-options",
+      "custom_game_crate": true,
+      "unowned_verified_sites": 9
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/rewards.rs",
+      "system_id": "custom-app-screens-rewards",
+      "custom_game_crate": true,
+      "unowned_verified_sites": 3
+    },
+    {
+      "path": "crates/wenilla-rogue/src/content.rs",
+      "system_id": "custom-game-content",
+      "custom_game_crate": true,
+      "unowned_verified_sites": 14
+    },
+    {
+      "path": "crates/wenilla-rogue/src/fonts.rs",
+      "system_id": "custom-game-fonts",
+      "custom_game_crate": true,
+      "unowned_verified_sites": 1
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/abilities.rs",
+      "system_id": "custom-game-game-abilities",
+      "custom_game_crate": true,
+      "unowned_verified_sites": 7
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/auras.rs",
+      "system_id": "custom-game-game-auras",
+      "custom_game_crate": true,
+      "unowned_verified_sites": 2
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/enemy.rs",
+      "system_id": "custom-game-game-enemy",
+      "custom_game_crate": true,
+      "unowned_verified_sites": 7
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/hazards.rs",
+      "system_id": "custom-game-hazards",
+      "custom_game_crate": true,
+      "unowned_verified_sites": 2
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/talents.rs",
+      "system_id": "custom-game-game-talents",
+      "custom_game_crate": true,
+      "unowned_verified_sites": 1
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/upgrades.rs",
+      "system_id": "custom-game-game-upgrades",
+      "custom_game_crate": true,
+      "unowned_verified_sites": 1
+    },
+    {
+      "path": "crates/wenilla-rogue/src/nav.rs",
+      "system_id": "custom-game-nav",
+      "custom_game_crate": true,
+      "unowned_verified_sites": 4
+    }
+  ],
+  "excluded_logic_system_ids": [
+    "custom-game-coop-route",
+    "custom-game-coop-tcp",
+    "custom-game-game-party",
+    "custom-game-server-party"
+  ],
+  "selected_procedure_inputs_source": "docs/analysis/coverage/seeded-census.json mappings[].retained_observations; Q41-P01 verifies all59 artifact SHA-256 values and records an ordered manifest digest.",
+  "completed_operations": {
+    "declared_starts": 350352,
+    "decoded_declared_entries": 350352,
+    "repaired_declared_bodies": 350352,
+    "linear_processed_extents": 350352,
+    "linear_pending_extents": 0,
+    "linear_undecoded_suffix_extents": 0,
+    "streaming_stage": "completed",
+    "selected_owner_queue": {
+      "procedures": 59,
+      "completed": 59,
+      "pending": 0,
+      "failed": 0,
+      "in_progress": 0
+    }
+  },
+  "unavailable_exact_outputs": [
+    {
+      "id": "Q41-M03",
+      "output": "complete current semantic/source and dynamic alias/producer-consumer residual classifier over observed code/data",
+      "current_status": {
+        "global_native_semantics_complete": false,
+        "global_references_complete": false,
+        "native_source_ownership_complete": false
+      },
+      "producer": "scripts/classify-native-ownership.py plus current system evidence crosswalk; historical/source membership does not supply semantic proof",
+      "count": null
+    }
+  ],
+  "limits": [
+    "Selectors preserve overlapping pass views; records/bytes from different selectors must not be added as unique unknowns.",
+    "No unknown lead becomes resolved through grouping, body ownership, a path name or a source correspondence.",
+    "Engine and co-op classification applies to diagnostic context only; it is not a whole-function semantic attribution.",
+    "No source build/runtime/parity claim is made."
+  ],
+  "expanded_input_commitments": {
+    "guarded_table_input": {
+      "artifact": {
+        "path": "runtime/execheck-0.113.2/ghidra-comprehensive/guarded-tables-input.json",
+        "sha256": "105dcbd3d05ee08a1496601137998fce7ad51de4b055e5466d5245c74c536bfa",
+        "bytes": 8284032
+      },
+      "plan_key": "jump_tables",
+      "plan_commitment": {
+        "path": "runtime/execheck-0.113.2/ghidra-comprehensive/guarded-tables-input.json",
+        "sha256": "105dcbd3d05ee08a1496601137998fce7ad51de4b055e5466d5245c74c536bfa",
+        "summary": "runtime/execheck-0.113.2/ghidra-comprehensive/jump-tables-input-summary.json",
+        "summary_sha256": "d84cc5d4fe2269fa2f393a2fe0cdb677c5327bfa405a737db4cdb8278e83cb34",
+        "selected_summary": "runtime/execheck-0.113.2/proofs/guarded-jump-tables-summary.json"
+      }
+    },
+    "diagnostic_code_input": {
+      "artifact": {
+        "path": "runtime/execheck-0.113.2/ghidra-comprehensive/diagnostic-code-input.json",
+        "sha256": "2fb04d7382835f434db9fd49c3df1dc0e4c16423cee232025ce159b2fa6b0ce0",
+        "bytes": 848561
+      },
+      "plan_key": "diagnostic_leads",
+      "plan_commitment": {
+        "path": "runtime/execheck-0.113.2/ghidra-comprehensive/diagnostic-code-input.json",
+        "sha256": "2fb04d7382835f434db9fd49c3df1dc0e4c16423cee232025ce159b2fa6b0ce0"
+      }
+    },
+    "import_thunk_input": {
+      "artifact": {
+        "path": "runtime/execheck-0.113.2/ghidra-comprehensive/import-thunks-input.json",
+        "sha256": "4bc03be3a143882b38f1733e0826a779ddaa769e31ef030ed8c8583204b6a2a6",
+        "bytes": 2349
+      },
+      "plan_key": "import_thunks",
+      "plan_commitment": {
+        "path": "runtime/execheck-0.113.2/ghidra-comprehensive/import-thunks-input.json",
+        "sha256": "4bc03be3a143882b38f1733e0826a779ddaa769e31ef030ed8c8583204b6a2a6",
+        "summary": "runtime/execheck-0.113.2/ghidra-comprehensive/import-thunks-input-summary.json",
+        "summary_sha256": "76dfa0b0a32fe7de93ce596aa61a4e6e7c0cb0b699b99f806155393b0105d0b4"
+      }
+    },
+    "unwind_handler_input": {
+      "artifact": {
+        "path": "runtime/execheck-0.113.2/ghidra-comprehensive/unwind-handlers-input.json",
+        "sha256": "8047ce92249913db73ddd527227007592094f0ad43b6708bcad6575f02f3537d",
+        "bytes": 22745348
+      },
+      "plan_key": "unwind_handlers",
+      "plan_commitment": {
+        "path": "runtime/execheck-0.113.2/ghidra-comprehensive/unwind-handlers-input.json",
+        "sha256": "8047ce92249913db73ddd527227007592094f0ad43b6708bcad6575f02f3537d",
+        "summary": "runtime/execheck-0.113.2/ghidra-comprehensive/unwind-handlers-input-summary.json",
+        "summary_sha256": "15ceb5dedaf395a2ddf2ffc515e8394db371570abee4d90b282f239a1a04a5df"
+      }
+    },
+    "address_code_input": {
+      "artifact": {
+        "path": "runtime/execheck-0.113.2/ghidra-comprehensive/address-code-input.json",
+        "sha256": "451d4ebc7a15d4207ac9ecbe97e2c28bc3cd010a954ed0213dcf112365ff1a5b",
+        "bytes": 12264646
+      },
+      "plan_key": "address_leads",
+      "plan_commitment": {
+        "path": "runtime/execheck-0.113.2/ghidra-comprehensive/address-code-input.json",
+        "sha256": "451d4ebc7a15d4207ac9ecbe97e2c28bc3cd010a954ed0213dcf112365ff1a5b",
+        "summary": "runtime/execheck-0.113.2/ghidra-comprehensive/address-code-input-summary.json",
+        "summary_sha256": "88cf0b840f76686230e25fc8d15e3175830d98e76c9eefd35851df3312e45ae2"
+      }
+    }
+  },
+  "original_plan_commitments": {
+    "seed_scope": "all",
+    "seed_count": 421704,
+    "declared_start_count": 350352,
+    "starts": "runtime/execheck-0.113.2/ghidra-comprehensive/starts.tsv",
+    "starts_sha256": "29648d3ca53ecbe8f92da45c8ea601533db1d2262a35906f55d7781aa4007580",
+    "complement_inventory": {
+      "path": "runtime/coverage/58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb/unwind-complement.sqlite",
+      "sha256": "5ced9760078309f09f63e372ec2185cf40e3c623d46f1255bd987366a2271460",
+      "seeds": 2674
+    },
+    "pointer_selection": {
+      "body_summary": "docs/analysis/coverage/full-image-census.json",
+      "body_summary_sha256": "672f5b0dd6356acdb8d901a05f0a8b3e219dc0809b71b52123a9090c43c4cd0e",
+      "body_inventory": "runtime/coverage/58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb/ghidra/full-image-streaming/bodies.tsv.gz",
+      "body_inventory_sha256": "d1bd277bf20dfeb156eaf3690b6a434b381034bb439344ac2b6c1bc03d3e442f",
+      "distinct_executable_pointer_targets": 135406,
+      "targets_without_observed_bodies": 71177,
+      "target_source_semantics_established": false
+    },
+    "script_sha256": "7ebbeeb8165f01226b7f51acd40278c153790ecbc1590338c142fca9ef4cfeba",
+    "tooling": {
+      "scripts/ghidra/ReaNativeCensus.java": "7ebbeeb8165f01226b7f51acd40278c153790ecbc1590338c142fca9ef4cfeba",
+      "scripts/census-native-image.py": "9ec5516139b7c40c7f9bd666d6dce2f61b7e77d34e0516a40d47f2049861b7cb",
+      "scripts/rea-native-census.mjs": "75e31bae32f20842db0e32378ed3821c573ff8864c9638cd7b29dc9b443a6437",
+      "scripts/repair-rea-native-census.py": "a97a4095dffb58b81c927049d139b79c8c98fe6ca3520b600c1103b39b815cde",
+      "scripts/repair-rea-reference-input.py": "29da663b1a71a8d6258bfb1c2b8d3117bac3e39c9299bfa35681f85a28db2502",
+      "node_modules/rea-agents/dist/ghidra/GhidraLauncher.js": "a47d3c13d71e6ea4c66ee3a1ed826c58a00cb4a023db54b3f582119d136a2983",
+      "node_modules/rea-agents/dist/ghidra/GhidraTargetSnapshot.js": "6e726143fad91cb487cf0455beca03751da8004034cf6680ab5cb842eca679b6",
+      "scripts/recover-native-address-leads.py": "02bb39e644ffaafba19774cab098f84d5f986443f64dd98946f64db840209c9a",
+      "scripts/recover-native-import-thunks.py": "65883151064e3974474ea249020d5c20a7accb2fd2cf81404b205f893c3f6909",
+      "scripts/recover-native-unwind-handlers.py": "b4b7084a113a5314e584e73c6d487cc43da0b5c031ed23d7a4f44e12f441f907"
+    }
+  },
+  "available_exact_outputs": [
+    {
+      "id": "Q41-M01",
+      "output": "expanded current guarded-switch proof/admission queue",
+      "current_input": {
+        "path": "runtime/execheck-0.113.2/ghidra-comprehensive/guarded-tables-input.json",
+        "sha256": "105dcbd3d05ee08a1496601137998fce7ad51de4b055e5466d5245c74c536bfa"
+      },
+      "producer": "scripts/recover-native-jump-tables.py / scripts/recover-native-declared-dispatch.py / scripts/recover-custom-native-dispatch.py; current bounded input selection required",
+      "count": null,
+      "status": "available_for_bounded_classification",
+      "semantic_recovery": "unverified",
+      "current_census_profile_digest": "7e0f8fd7ebf982e5f87fcc2200bf770dcb5097c33c78668e7dcb4225c569ff0c"
+    },
+    {
+      "id": "Q41-M02",
+      "output": "expanded current complement/address-taken/metadata/import-thunk/diagnostic-code seed queue and resulting current Ghidra bodies",
+      "current_inputs": {
+        "address_code_input": {
+          "path": "runtime/execheck-0.113.2/ghidra-comprehensive/address-code-input.json",
+          "sha256": "451d4ebc7a15d4207ac9ecbe97e2c28bc3cd010a954ed0213dcf112365ff1a5b"
+        },
+        "import_thunk_input": {
+          "path": "runtime/execheck-0.113.2/ghidra-comprehensive/import-thunks-input.json",
+          "sha256": "4bc03be3a143882b38f1733e0826a779ddaa769e31ef030ed8c8583204b6a2a6"
+        },
+        "unwind_handler_input": {
+          "path": "runtime/execheck-0.113.2/ghidra-comprehensive/unwind-handlers-input.json",
+          "sha256": "8047ce92249913db73ddd527227007592094f0ad43b6708bcad6575f02f3537d"
+        },
+        "diagnostic_code_input": {
+          "path": "runtime/execheck-0.113.2/ghidra-comprehensive/diagnostic-code-input.json",
+          "sha256": "2fb04d7382835f434db9fd49c3df1dc0e4c16423cee232025ce159b2fa6b0ce0"
+        }
+      },
+      "producer": "scripts/recover-native-address-leads.py, recover-native-unwind-handlers.py, recover-native-import-thunks.py, prepare-native-diagnostic-leads.py and census-native-image.py; source inventories retained",
+      "count": null,
+      "status": "available_for_bounded_classification",
+      "semantic_recovery": "unverified",
+      "current_census_profile_digest": "7e0f8fd7ebf982e5f87fcc2200bf770dcb5097c33c78668e7dcb4225c569ff0c"
+    }
+  ],
+  "guarded_jump_partition": {
+    "base_selector": "Q41-F01-jump",
+    "guarded_table_records": 2532,
+    "distinct_applied_table_sites": 2532,
+    "partition_records": {
+      "Q41-F01-jump-with-applied-guard": 2532,
+      "Q41-F01-jump-without-applied-guard": 137526
+    },
+    "expected_site_exceptions": [],
+    "limits": "The base selector is every computed-jump opcode record, not a count of wholly unresolved sites. Applied table proof retains its guarded/fallthrough and unknown-incoming-context limits; table membership does not establish all runtime targets or semantic/source closure."
+  },
+  "generator": {
+    "path": "scripts/summarize-unknown-recovery-0.113.2.py",
+    "sha256": "89f40091216d064464298476a8234c72a43f9693e45e2352518daa7ae202b3d4"
+  }
+}

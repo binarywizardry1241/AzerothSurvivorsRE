@@ -1,0 +1,320 @@
+{
+  "date": "2026-10-18",
+  "target_version": "0.97.2",
+  "target_sha256": "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589",
+  "target_executed": false,
+  "functions": [
+    {
+      "address": "0x1406cc240",
+      "end_exclusive": "0x1406cc312",
+      "file_offset": "0x6cb640",
+      "sha256": "aa586dc223b4dcd7d4db93c2393e0bd29645fef9fb5a7cb2d400e8d07db2afa2",
+      "byte_count": 210,
+      "role": "Shared scene mask setter"
+    },
+    {
+      "address": "0x1406cc320",
+      "end_exclusive": "0x1406cc3f0",
+      "file_offset": "0x6cb720",
+      "sha256": "192fd7a5235280d78c79bb80607af0e58ef0a6b7e4c8e6dbd5dcd1f5c23d235e",
+      "byte_count": 208,
+      "role": "Shared scene active getter"
+    },
+    {
+      "address": "0x1406cc3f0",
+      "end_exclusive": "0x1406cc51d",
+      "file_offset": "0x6cb7f0",
+      "sha256": "e94b11187126775e86d1b9bcb187ba5069fb7129dfa74042e5f59ae24b00590f",
+      "byte_count": 301,
+      "role": "Shared 40-byte scene request setter"
+    },
+    {
+      "address": "0x1406cc520",
+      "end_exclusive": "0x1406cc5fe",
+      "file_offset": "0x6cb920",
+      "sha256": "13e22d16966c4a34efaafda4b01467e5de43b1530e6e7aff0322c0068975c393",
+      "byte_count": 222,
+      "role": "Shared scene renderable getter: active and not masked"
+    },
+    {
+      "address": "0x1406cc600",
+      "end_exclusive": "0x1406cc6db",
+      "file_offset": "0x6cba00",
+      "sha256": "d33765994e02a1cef4c532e908c3c2c1d436d85b8a8f775ba3b5c4570dba0e12",
+      "byte_count": 219,
+      "role": "Shared scene ready getter: active and ready"
+    },
+    {
+      "address": "0x1406cc6e0",
+      "end_exclusive": "0x1406cc7ab",
+      "file_offset": "0x6cbae0",
+      "sha256": "9ecec60a9ed35507a68a2653f30af4850f629eb19ecc93270d110cea16ba1dd3",
+      "byte_count": 203,
+      "role": "Shared scene request-present getter"
+    },
+    {
+      "address": "0x1406d3050",
+      "end_exclusive": "0x1406d32ce",
+      "file_offset": "0x6d2450",
+      "sha256": "ac8547a00592e1ea540b3ab4abcf5b53b745c38b40e1520c767e88f30e6b4990",
+      "byte_count": 638,
+      "role": "MenuScenePlugin build and two system registration descriptors",
+      "rea_evidence_id": "ev_e6df01aa1987de5f2ca7c201f459655e44e9ef7625317e8c1d41c4a1dda08901"
+    },
+    {
+      "address": "0x14070eb40",
+      "end_exclusive": "0x14070f544",
+      "file_offset": "0x70df40",
+      "sha256": "c9e86f10cda1488fbfe65a2894c825194faf7f6a7c61a59124cb788da5a4d2dd",
+      "byte_count": 2564,
+      "role": "Scene camera and terrain lift",
+      "rea_evidence_id": "ev_d7bfb95d127175184c5ac2399e1590384ee538bb4e5034e045844510aa3f1a5a"
+    },
+    {
+      "address": "0x141716030",
+      "end_exclusive": "0x14171604d",
+      "file_offset": "0x1715430",
+      "sha256": "a0055c7548c23c50fd8e350e1dcb73db2df2d7a9e7465b907d545c44c066a38e",
+      "byte_count": 29,
+      "role": "Terrain height query wrapper initializes absent tile cache"
+    },
+    {
+      "address": "0x141716050",
+      "end_exclusive": "0x141716304",
+      "file_offset": "0x1715450",
+      "sha256": "417bddeb3f4496c12b7540ab66fca5a2fb18aa9b6949dc86d9d83284e66ac1b2",
+      "byte_count": 692,
+      "role": "Cached terrain height query from streamed ADT chunks",
+      "rea_evidence_id": "ev_6a1c561680dd18ece25fa26ce45fdcd102c155e226c293a82c19c6f0c60780e1"
+    },
+    {
+      "address": "0x14070f550",
+      "end_exclusive": "0x14070f75c",
+      "file_offset": "0x70e950",
+      "sha256": "a00142c3e640c449bc3cdb9c00b73d93a6a3fa957e11ef3d67fbaba984415ed9",
+      "byte_count": 524,
+      "role": "Scene stabilization, map selection, ready latch",
+      "rea_evidence_id": "ev_9976a844d3ed5d73000960cd1ce710dc92b69c76f18d25088a12a04a11a7f0c6"
+    },
+    {
+      "address": "0x1407470b0",
+      "end_exclusive": "0x1407472a8",
+      "file_offset": "0x7464b0",
+      "sha256": "d910a17277427af2c972d5981e9e3422856bb748fb14b71d9d1558cc4f93bab5",
+      "byte_count": 504,
+      "role": "Scene stabilizer resource registration"
+    },
+    {
+      "address": "0x140747390",
+      "end_exclusive": "0x1407475e3",
+      "file_offset": "0x746790",
+      "sha256": "6511e37c7ab20df83c22aade20ea5fe8399b0e725bebd2616c2c3b5281e2edb3",
+      "byte_count": 595,
+      "role": "Scene stabilizer runtime resource tuple"
+    },
+    {
+      "address": "0x140963de0",
+      "end_exclusive": "0x140963fa1",
+      "file_offset": "0x9631e0",
+      "sha256": "cee8400a4c4a64a07412f63f5c87b964a511705340006c82cb015d9413158cf5",
+      "byte_count": 449,
+      "role": "WorldLive adapter: ordinary world or menu scene active",
+      "rea_evidence_id": "ev_7e223bb6e8582a6292ce2ca154dbd3b1110f9ddadbeea1254c9cd22f9822d54d"
+    },
+    {
+      "address": "0x140963bd0",
+      "end_exclusive": "0x140963d6a",
+      "file_offset": "0x962fd0",
+      "sha256": "a28d8dbb2fe474423ae5ca30f0d2d4a7ddfc6619fbbfa5a80adec61459d34395",
+      "byte_count": 410,
+      "role": "WorldLive adapter resource registration shares application state TypeID"
+    },
+    {
+      "address": "0x1408395f0",
+      "end_exclusive": "0x1408397a4",
+      "file_offset": "0x8389f0",
+      "sha256": "0c04c5c26b9ac4d97dffcd714a5491d568ffa872ab557eb5826ebaab7ec830ac",
+      "byte_count": 436,
+      "role": "Camera visibility adapter and renderable menu scene helper",
+      "rea_evidence_id": "ev_4b4c8c665087a798eee3b94dfc46b1e049556f957addea8a871f2d32625ca9f2"
+    },
+    {
+      "address": "0x14093f540",
+      "end_exclusive": "0x14093f6c3",
+      "file_offset": "0x93e940",
+      "sha256": "3749afd57ff52c81a25ddba6de0c15bda3036412b7af4d01f243b7d77b0d3ca2",
+      "byte_count": 387,
+      "role": "Request-present view-lane gate"
+    },
+    {
+      "address": "0x1400a9e60",
+      "end_exclusive": "0x1400aa536",
+      "file_offset": "0xa9260",
+      "sha256": "f030115c9df84e0607b3bed1fd03cfdf3dca20c7328cb4fcfc56b095761d3929",
+      "byte_count": 1750,
+      "role": "Backdrop publisher resource registration"
+    },
+    {
+      "address": "0x1400aa700",
+      "end_exclusive": "0x1400aabc7",
+      "file_offset": "0xa9b00",
+      "sha256": "31682cbd3213f07d46701db86d42de9ee8a7585895f9735fc32162829fdf6c30",
+      "byte_count": 1223,
+      "role": "Backdrop publisher runtime resource tuple"
+    },
+    {
+      "address": "0x140099b40",
+      "end_exclusive": "0x14009abc0",
+      "file_offset": "0x98f40",
+      "sha256": "a458c92be6254ca3769e2d819208caaa92e563c9f17ae1541e55d65b2436ba08",
+      "byte_count": 4224,
+      "role": "Picker actions open the armory umbrella at resource +0x72",
+      "rea_evidence_id": "ev_1d89c1d2e6c599ece25f84ccb1faad1844651675850fff72209192e98641a3ad"
+    },
+    {
+      "address": "0x140069df0",
+      "end_exclusive": "0x14006a052",
+      "file_offset": "0x691f0",
+      "sha256": "ccee4a31c34a9778055269ee6e6558d877d7dc0d0d7c4cd6b965046c834cc3a6",
+      "byte_count": 610,
+      "role": "Escape closes the armory umbrella at resource +0x72"
+    },
+    {
+      "address": "0x1403a1cc0",
+      "end_exclusive": "0x1403a23c8",
+      "file_offset": "0x3a10c0",
+      "sha256": "f998330bd34716433737cbfbb0651408cc2c27c1daf698bb9e3968c2e19ce571",
+      "byte_count": 1800,
+      "role": "Armory visibility consumes resource +0x72",
+      "rea_evidence_id": "ev_a1ce3a502e6d47362e817e273cd7fe154f2dcea752d8a1c880b6256c9f457a4a"
+    },
+    {
+      "address": "0x1403a32d0",
+      "end_exclusive": "0x1403a3f5f",
+      "file_offset": "0x3a26d0",
+      "sha256": "18d86082b3c17aefefc243daabcb9f7d4f3a0ba11902085eb6bcf5efb93fab1d",
+      "byte_count": 3215,
+      "role": "Armory close/tab actions write resource +0x72",
+      "rea_evidence_id": "ev_2e5267493ec738025f3c5a42e9449d333d608d53ad0ea1a4d7190e8b25ab92ce"
+    },
+    {
+      "address": "0x1403ace80",
+      "end_exclusive": "0x1403ad18b",
+      "file_offset": "0x3ac280",
+      "sha256": "93169c81e77751ea497da4c65ba75992a2d8584c8f24493e6110f359b874125f",
+      "byte_count": 779,
+      "role": "Armory visibility registration binds shared mask resource TypeID"
+    },
+    {
+      "address": "0x1403ad2b0",
+      "end_exclusive": "0x1403ad56b",
+      "file_offset": "0x3ac6b0",
+      "sha256": "2351292f6552543afc967a18e6928ea62692816fa91577bbba2537c060002cc4",
+      "byte_count": 699,
+      "role": "Armory visibility runtime resource tuple"
+    },
+    {
+      "address": "0x140fbf8a0",
+      "end_exclusive": "0x140fc03af",
+      "file_offset": "0xfbeca0",
+      "sha256": "a0a5b7652a633ef7729735a1abe407c45d6a6fd48f7043ea90c56c1a9d4a0e1e",
+      "byte_count": 2831,
+      "role": "Menu request suppresses stock character-select preview feed",
+      "rea_evidence_id": "ev_209cfd50239ce05adb97c448c920eedbcf2487673f373ee9d7835d3cdb9c67be"
+    },
+    {
+      "address": "0x140fe0160",
+      "end_exclusive": "0x140fe0355",
+      "file_offset": "0xfdf560",
+      "sha256": "18dfb301eb387e1e2e418fbe969be34a7dfcef898143fd9c4169ce63991f6128",
+      "byte_count": 501,
+      "role": "Character-select preview system resource registration"
+    },
+    {
+      "address": "0x140fe0440",
+      "end_exclusive": "0x140fe0641",
+      "file_offset": "0xfdf840",
+      "sha256": "6dbf09e203911e80f86f778aa88b8c4a1057a6294673e8c361ebaecaf33d2038",
+      "byte_count": 513,
+      "role": "Character-select preview system runtime resource tuple"
+    },
+    {
+      "address": "0x140cf52c0",
+      "end_exclusive": "0x140cf55b0",
+      "file_offset": "0xcf46c0",
+      "sha256": "6bc2eb4acc37aab694c9d052044e677343e6d4680ff6ab2966a7c8785e7ec8ea",
+      "byte_count": 752,
+      "role": "Character-select preview resource registration size 0xbc and alignment 4"
+    }
+  ],
+  "request_layout": {
+    "tag": 0,
+    "map": 4,
+    "zone": 8,
+    "eye": 12,
+    "target": 24,
+    "clearance": 36,
+    "bytes": 40
+  },
+  "global_lanes": {
+    "request": "0x14799f51c",
+    "mask": "0x14799f544",
+    "active": "0x14799f545",
+    "ready": "0x14799f546"
+  },
+  "stabilization": {
+    "identity": [
+      "map",
+      "zone"
+    ],
+    "new_identity_frames": 0,
+    "active_at_unchanged_frames": 3,
+    "ready_at_unchanged_frames": 18,
+    "counter": "saturating u32",
+    "application_state_tag_required": 1,
+    "ready_requires": [
+      "focus_resident",
+      "scene_ready",
+      "colliders_pending=0",
+      "merge_pending=0",
+      "gx_pending=0"
+    ],
+    "ready_latched_until_identity_change": true
+  },
+  "application_state": {
+    "type_id_address": "0x145ab05d0",
+    "scene_system_slot": "0x10",
+    "world_live_system_slot": "0x8",
+    "ordinary_world_tag": 3,
+    "menu_scene_tag": 1,
+    "reconstruction": "Standalone menu stays in the native tag1 route; gameplay excluded"
+  },
+  "mask_resource": {
+    "type_id_address": "0x1458f9bb8",
+    "type_id_bytes": "1b93c1cac923fd5b7ffc08f7c0a5045a",
+    "publisher_state_slot": "0x138",
+    "armory_state_slot": "0x40",
+    "field_offset": "0x72",
+    "meaning": "Armory umbrella open, across all tabs",
+    "reconstruction": "MenuState.page != Page::Picker"
+  },
+  "camera": {
+    "terrain_clearance": "max(ground + clearance - eye.z, 0), else 0",
+    "smoothing": "lift += (wanted-lift) * min(2*delta_seconds, 1)",
+    "lift_applied_to": "eye.z only; target unchanged",
+    "world_camera_gate": "active and not masked"
+  },
+  "stock_character_preview": {
+    "type_id_address": "0x145ab1b80",
+    "type_id_bytes": "da96659844906cb1465ebe5cf01c3abe",
+    "bytes": 188,
+    "request_branch": "Sets trailing option tag +0xb8 to 2, returns before roster look feed",
+    "lighting_override_recovered": false
+  },
+  "validation": {
+    "source_only": true,
+    "builds": "not run",
+    "compiler_checks": "not run",
+    "runtime": "not run"
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "reviewed_date": "2026-10-18",
+  "selected_target": "0.100.1",
+  "selection_basis": "The installed update identifies as 0.100.1; its embedded version and SHA-256 establish this reference identity.",
+  "current_target": {
+    "version": "0.100.1",
+    "path": "AzerothSurvivors/AzerothSurvivors-0.100.1.exe",
+    "size_bytes": 133565952,
+    "sha256": "17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b",
+    "format": "PE32+",
+    "architecture": "x86_64",
+    "image_base": "0x140000000",
+    "identity_status": "Verified SHA-256, PE32+ AMD64 header, three embedded picker/updater version markers and REA PE resources; not executed.",
+    "version_basis": "Three exact ASCII 0.100.1 markers in picker/version-label and updater contexts. No exact ASCII 0.100.0, 0.99.0, 0.98.0 or 0.97.2 markers."
+  },
+  "copy": {
+    "source": "installed-game/AzerothSurvivors.exe",
+    "project_path": "AzerothSurvivors/AzerothSurvivors-0.100.1.exe",
+    "size_bytes": 133565952,
+    "sha256": "17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b",
+    "external_source_written": false,
+    "source_stable_during_read": true,
+    "target_executed": false,
+    "asset_refresh": "Not requested; only the EXE was copied. Previous versioned references are preserved."
+  },
+  "preserved_references": [
+    {
+      "version": "0.97.2",
+      "path": "AzerothSurvivors/AzerothSurvivors-0.97.2.exe",
+      "size_bytes": 133231104,
+      "sha256": "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589",
+      "role": "Historical reference preserved; existing evidence and extraction scripts remain bound to this version."
+    },
+    {
+      "version": "0.92.0",
+      "path": "AzerothSurvivors/AzerothSurvivors.exe",
+      "size_bytes": 130888192,
+      "sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+      "role": "Historical reference preserved; existing evidence and extraction scripts remain bound to this version."
+    },
+    {
+      "version": "0.91.4",
+      "path": "AzerothSurvivors/AzerothSurvivors-0.91.4.exe",
+      "size_bytes": 130840064,
+      "sha256": "719da61487e0ffaf6491a1ca65410a6666028e83271f059692ad46bc4d8af150",
+      "role": "Historical reference preserved; existing evidence and extraction scripts remain bound to this version."
+    }
+  ],
+  "rea": {
+    "operation": "inspect_pe_resources",
+    "evidence_id": "ev_646cc69691038e85806fe04b798f842f6cf2928033277276f756360dce7c7363",
+    "path": "docs/analysis/evidence/0.100.1/pe-resources.json",
+    "command": "./scripts/rea inspect-pe-resources \"$PWD/AzerothSurvivors/AzerothSurvivors-0.100.1.exe\" --max-file-bytes 268435456 --format json",
+    "scope": "Portable read-only PE resource/identity inspection; no Ghidra database, native decompilation or target execution."
+  },
+  "version_marker_search": [
+    {
+      "exact_ascii_term": "0.100.1",
+      "occurrence_count": 3,
+      "locations": [
+        {
+          "file_offset": "0x593c930",
+          "virtual_address": "0x14593d530",
+          "context_file_offset": "0x593c900",
+          "context_sha256": "7ee75fd3404e12bea197e062824a245431cb7b0b18e9fc973748b26c510cd8a8",
+          "context_hex": "2e00000000000000090200000e0000009cd09345010000002e0000000000000038010000200000003930336338393264302e3130302e310030d593450100000007000000000000000176c0022028c0012900256d70713a2f2f696e746572666163652f676c7565732f6c6f6164696e6773637265656e732fc0042e626c700000000000000000000000246cabd7af00000000000000000000b3d7ab6c2400000000000000000000000000000000001c7c",
+          "context_printable": "...................E............8... ...903c892d0.100.1.0..E.............v.. (..).%mpq://interface/glues/loadingscreens/...blp...........$l................l$..................|"
+        },
+        {
+          "file_offset": "0x5946408",
+          "virtual_address": "0x145947008",
+          "context_file_offset": "0x59463d8",
+          "context_sha256": "b10ffca8bcee71af2c03a3e079403792f596b7c5fd5a56e6e31abe913ff182d4",
+          "context_hex": "756c6c727565616c7365000000000000000000000000000000000000000000000100000000000000a0051e4001000000302e3130302e311e7570646174653a20757020746f2064617465202873697465206861732076c002290a00097570646174653a2076c012206973206f75742028746869732069732076c002290a00187570646174653a20636f756c64206e6f7420636865636b20c0023a20c0010a00087570646174653a20c00c206973206d69",
+          "context_printable": "ullruealse.................................@....0.100.1.update: up to date (site has v..)...update: v.. is out (this is v..)...update: could not check ..: .....update: .. is mi"
+        },
+        {
+          "file_offset": "0x5948749",
+          "virtual_address": "0x145949349",
+          "context_file_offset": "0x5948719",
+          "context_sha256": "0bdd2a8a3dc994be1eb6c842e81feefca59f0a913f4be8516c9cb2191684fbc4",
+          "context_hex": "6e7d204d42c5200000700100000000607b00400100000018000000000000000800000000000000e0200040010000006e302e3130302e3141206e65772076657273696f6e206973206f7574214e65772067616d652064617461000000000000aaf1723f79e9663f5eba493f0000803f7b73697a657d20646f776e6c6f616420c2b7207468652067616d65207265737461727473207768656e20697420697320646f6e6573697a65446f776e6c6f616420",
+          "context_printable": "n} MB. ..p.....`{.@..................... .@....n0.100.1A new version is out!New game data........r?y.f?^.I?...?{size} download .. the game restarts when it is donesizeDownload "
+        }
+      ]
+    },
+    {
+      "exact_ascii_term": "0.100.0",
+      "occurrence_count": 0,
+      "locations": []
+    },
+    {
+      "exact_ascii_term": "0.99.0",
+      "occurrence_count": 0,
+      "locations": []
+    },
+    {
+      "exact_ascii_term": "0.98.0",
+      "occurrence_count": 0,
+      "locations": []
+    },
+    {
+      "exact_ascii_term": "0.97.2",
+      "occurrence_count": 0,
+      "locations": []
+    }
+  ],
+  "changelog": {
+    "path": "docs/CHANGELOG.md",
+    "sha256": "04717f2371f7bcacc92b2c9a8b4afb7d0bb44f1ad4f9037c6f99d83a027e6ea7",
+    "historical_source_path": "changelog_2026-10-15_1.json",
+    "historical_source_sha256": "4dac00d8739524db791199e8f78a53e9ba1abbc17e1c041b5eefb3da8dd17e56",
+    "version_sections": 150,
+    "new_supplied_versions": [
+      "0.98.0",
+      "0.99.0",
+      "0.100.0"
+    ],
+    "latest_supplied_version": "0.100.0",
+    "selected_binary_release_notes": "No 0.100.1 notes supplied; no section invented.",
+    "authority": "User-supplied original-game release notes; not observed behavior or reconstruction implementation claims."
+  },
+  "implementation_baseline": {
+    "package_version": "0.100.1",
+    "reconstruction_target": "0.100.1",
+    "menu_source_origin": "0.92.0",
+    "existing_recovered_source_version": "0.97.2",
+    "source_logic_changed": false,
+    "package_version_changed": true,
+    "parity_with_selected_target": "Not established; existing 0.97.2 recovery and older 0.92 source/catalog provenance remain unchanged and require 0.100.1 revalidation."
+  },
+  "limitations": [
+    "Only the installed EXE was read/copied; installed saves, MPQs, DLLs and fonts were not inspected or refreshed.",
+    "The initially requested 0.100.0 label was absent; the copied latest installed build is exactly 0.100.1.",
+    "No native decompilation, build, compiler check, application test, original/rebuilt game launch or parity comparison was run.",
+    "New release claims are recovery leads; no new gameplay, UI, save, localization or addon behavior was implemented.",
+    "The existing 57-test checkpoint remains tied to its earlier source and binary, not this target.",
+    "All EXEs remain local and ignored; only metadata, curated textual evidence and documentation are delivered to existing PR #2. GitHub remains private and Actions disabled."
+  ]
+}

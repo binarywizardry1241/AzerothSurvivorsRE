@@ -1,0 +1,181 @@
+{
+  "target_sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+  "provider": {
+    "id": "ghidra",
+    "name": "Ghidra",
+    "version": "12.1.4"
+  },
+  "analysis_profile_digest": "afbd3f2658916f4da79d74c46c6660f901bc74c0aeb86e336bb343487bab6e0d",
+  "input_mode": "Installed full PE read directly through configured reference input; selected function entry plus exact12 table/four panic code-only starts; no invented function entries for cases.",
+  "seed_file": "probe-seeds.tsv",
+  "seed_sha256": "0c68ee0ab45da7aada858a8920645e5fe95fce121a3e43cdade29c9963fdcb5f",
+  "probe_plan": "probe-plan.json",
+  "probe_plan_sha256": "15368a8c569428b2eecc0272e69d5a60e2134bdb83cc4260a5567a15b2ccce99",
+  "executed_plan_sha256": "96dd93eb3b6431c95e4dad2c1ef2be6a5f329b453b7596fdd2a38bddd23bc11a",
+  "function_body": {
+    "available": true,
+    "provenance": "ghidra-function-body-address-set",
+    "ranges": [
+      {
+        "start": "0x140147060",
+        "end": "0x140147187"
+      },
+      {
+        "start": "0x1401471c9",
+        "end": "0x1401471dd"
+      },
+      {
+        "start": "0x1401471e0",
+        "end": "0x1401472fc"
+      },
+      {
+        "start": "0x140147300",
+        "end": "0x140147343"
+      },
+      {
+        "start": "0x140147350",
+        "end": "0x140147453"
+      },
+      {
+        "start": "0x140147460",
+        "end": "0x1401474a3"
+      },
+      {
+        "start": "0x1401474b0",
+        "end": "0x1401474be"
+      },
+      {
+        "start": "0x1401474c0",
+        "end": "0x140147527"
+      },
+      {
+        "start": "0x140147b63",
+        "end": "0x140147b76"
+      }
+    ],
+    "total_bytes": 1137,
+    "span_bytes": 2839,
+    "non_contiguous": true,
+    "contains_entry": true
+  },
+  "records": [
+    {
+      "evidence_id": "ev_40a49d59ac6a2a4a78f68fd9ac2009a1e06ea9c9a3dee5dca8ad717f4f59108f",
+      "operation": "analyze_function",
+      "parameters": {
+        "procedure": "0x140147060"
+      },
+      "procedure": "0x140147060",
+      "pseudocode_limit": "Could not recover jumptable at0x140147526; too many branches; treated indirect jump as call."
+    },
+    {
+      "evidence_id": "ev_0c327e9dbb056dcde10a29fa6e00b619c0ed072e03cc9286922b51c0d6ff3f41",
+      "operation": "resolve_containing_procedure",
+      "parameters": {
+        "address": "0x140147b9d"
+      },
+      "query_address": "0x140147b9d",
+      "found": false,
+      "reason": "not_in_procedure"
+    },
+    {
+      "evidence_id": "ev_6e6ad43b9a6bca0e719e677779cb3d7a40083b3295af29a5d028bdf991fcb9bd",
+      "operation": "inspect_native_instruction",
+      "parameters": {
+        "address": "0x140147892"
+      },
+      "address": "0x140147892",
+      "bytes": "0f8305030000",
+      "length": 6,
+      "mnemonic": "JNC",
+      "raw_disassembly": "JNC 0x140147b9d",
+      "flow": {
+        "kind": "jump",
+        "conditional": true,
+        "computed": false,
+        "direct_destinations": [
+          "0x140147b9d"
+        ],
+        "classification_evidence": [
+          {
+            "source": "ghidra-listing-flow-type",
+            "value": "CONDITIONAL_JUMP"
+          }
+        ]
+      },
+      "references": [
+        {
+          "target_address": "0x140147b9d",
+          "type": "CONDITIONAL_JUMP",
+          "call": false,
+          "jump": true,
+          "indirect": false,
+          "computed": false,
+          "operand_index": 0,
+          "source_address": "0x140147892",
+          "data": false,
+          "read": false,
+          "write": false,
+          "primary": true,
+          "provenance": "ghidra-reference-manager",
+          "source": "default"
+        }
+      ]
+    },
+    {
+      "evidence_id": "ev_0599be0e0b03fa20821fd04b3bfab07c636265db50578e90518772aa9d8823f8",
+      "operation": "inspect_native_instruction",
+      "parameters": {
+        "address": "0x140147ba9"
+      },
+      "address": "0x140147ba9",
+      "bytes": "e87545d505",
+      "length": 5,
+      "mnemonic": "CALL",
+      "raw_disassembly": "CALL 0x145e9c123",
+      "flow": {
+        "kind": "call",
+        "conditional": false,
+        "computed": false,
+        "direct_destinations": [
+          "0x145e9c123"
+        ],
+        "classification_evidence": [
+          {
+            "source": "ghidra-listing-flow-type",
+            "value": "UNCONDITIONAL_CALL"
+          }
+        ]
+      },
+      "references": [
+        {
+          "target_address": "0x145e9c123",
+          "type": "UNCONDITIONAL_CALL",
+          "call": true,
+          "jump": false,
+          "indirect": false,
+          "computed": false,
+          "operand_index": 0,
+          "source_address": "0x140147ba9",
+          "data": false,
+          "read": false,
+          "write": false,
+          "primary": true,
+          "provenance": "ghidra-reference-manager",
+          "source": "default"
+        }
+      ]
+    }
+  ],
+  "raw_import_cross_check": {
+    "evidence_id": "ev_dfc17ad5fdc4cd035613b2721b271c32e624a6e83fe9b976aaabc1a04fed3331",
+    "subject_sha256": "83526ab7625e064e82c2a45eb0ec0bb6ed4b7461a04399ad21e8fd89e84994b4",
+    "analysis_profile_digest": "dd435cd968c8b42acc505fdc846f9e6a9ebcc313db886f99c6969ac5139eeb08",
+    "found": false
+  },
+  "limits": [
+    "FunctionManager still does not own the selected panic or table case; seeded code-only decoding does not supply the missing computed incoming edges.",
+    "Selected action ownership follows exact table-lane/direct-branch proof and original-instruction replay separately; this is not a replacement current census.",
+    "Automatic analyzers are bounded/disabled as in probe-plan.json; absent caller/reference observations do not establish program-wide absence."
+  ]
+}

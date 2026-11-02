@@ -1,0 +1,74 @@
+{
+  "target_version": "0.113.2",
+  "target_sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+  "observations": [
+    {
+      "owner": "0x1410330a0",
+      "meaning": "Chat-event-name pointer and length lookup; checked independently against original instructions and PE data.",
+      "evidence_id": "ev_f02e85a7d5dca6b209b5d19c4fa1252790bfc61a4e40c12fe51adb1e31d3e3c9",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "5ea99221114a10b5c9a62714b800c17237ea37d1521a0ba0ec272129ef3359fa",
+      "raw_import_sha256": "4b73663f5ddf9a5eb69409793d6f3cda472ba6b80312f48344071a1fa3975177",
+      "pseudocode_sha256": "257719eb93cd252a2111f0583d75c2218286ed149cb8ed1ff05b25fbc74544ef",
+      "raw_import_binding": {
+        "base": "0x140c2d830",
+        "size_bytes": 4216973,
+        "padding": "zero",
+        "segments": [
+          {
+            "start": "0x140c2d830",
+            "end_exclusive": "0x140c2d92e",
+            "sha256": "b60c97f06852f2587a325a71bd9fde0765734c1605c6f3ca10b2425ea0232973"
+          },
+          {
+            "start": "0x140f20620",
+            "end_exclusive": "0x140f23c66",
+            "sha256": "0341e3a3c3d964dc116f079bc639ce282f0dddeb62f7366a8bbe9eaf339092d6"
+          },
+          {
+            "start": "0x1410330a0",
+            "end_exclusive": "0x1410330bd",
+            "sha256": "3fa6d904c8138e7cde09006f931a2e6da2243d0482353fc54a897e9e625bad64"
+          }
+        ]
+      },
+      "limits": [
+        "Caller-selected exact raw ranges; omitted external/global context and generic Ghidra ABI types.",
+        "The raw import omits the lookup tables; the independent instruction replay maps their exact selected-PE bytes."
+      ]
+    },
+    {
+      "owner": "0x140c2d970",
+      "meaning": "Chat composition/routing owner: script_args, event_name and publication call at 140c2da3a..140c2da61.",
+      "evidence_id": "ev_37732dba4ec1bddb85af41ebe01aad2a9093e4e075db648c36126f64f2c3e5fd",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "178136fe91faa5cb802879a5817fa32fead4b8d0b1499f34888938273a6a2e34",
+      "raw_import_sha256": "ac950e88addfd18e7a63965e085fcbeac648434908b4f94654115648c085fc46",
+      "pseudocode_sha256": "87b91258394fa3315f36ccf790347f752fd931ef33f9d444ae920979aa8c7dd9",
+      "raw_import_binding": {
+        "base": "0x140c2d970",
+        "size_bytes": 3742,
+        "padding": "zero",
+        "segments": [
+          {
+            "start": "0x140c2d970",
+            "end_exclusive": "0x140c2e80e",
+            "sha256": "ac950e88addfd18e7a63965e085fcbeac648434908b4f94654115648c085fc46"
+          }
+        ]
+      },
+      "limits": [
+        "Caller-selected exact raw ranges; omitted external/global context and generic Ghidra ABI types.",
+        "The publication owner has an unresolved switch in this raw import; only the independently decoded publication excerpt is retained, not a completeness claim."
+      ]
+    }
+  ]
+}

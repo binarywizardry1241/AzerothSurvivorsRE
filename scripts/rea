@@ -1,0 +1,84 @@
+#!/bin/sh
+set -eu
+
+rea_project_root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+cd "$rea_project_root"
+
+# A linked worktree must not silently import another gigabyte-scale copy of the
+# project analysis. This guard runs before runtime directories or providers exist.
+python3 -B - "$rea_project_root" <<'PY'
+from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(sys.argv[1]) / "scripts"))
+from shared_analysis import require_primary_checkout
+try:
+    require_primary_checkout(Path(sys.argv[1]))
+except ValueError as error:
+    raise SystemExit(str(error))
+PY
+
+case "${1-}" in
+  setup|update|uninstall|--update)
+    printf '%s\n' 'Use the project installation instructions in docs/REA.md. REA maintenance commands can modify user-level folders.' >&2
+    exit 2
+    ;;
+esac
+if [ "${1-}" = mcp ] && [ "$#" -ne 1 ]; then
+  printf '%s\n' 'The MCP registration is managed in this project .codex/config.toml. Use ./scripts/rea mcp only to start the server.' >&2
+  exit 2
+fi
+
+if [ -n "${REA_NODE_BINARY-}" ]; then
+  rea_node=$REA_NODE_BINARY
+elif [ -x "$HOME/.nvm/versions/node/v22.22.3/bin/node" ]; then
+  rea_node="$HOME/.nvm/versions/node/v22.22.3/bin/node"
+else
+  rea_node=$(command -v node)
+fi
+
+"$rea_node" -e 'const [major, minor] = process.versions.node.split(".").map(Number); if (!((major === 22 && minor >= 19) || (major === 24 && minor >= 11) || major >= 26)) { console.error("REA needs Node 22.19+, 24.11+, or 26+. Set REA_NODE_BINARY to a supported installed node executable."); process.exit(1); }'
+
+if [ ! -f node_modules/rea-agents/scripts/rea.mjs ]; then
+  printf '%s\n' 'REA is not installed. Run npm ci --ignore-scripts using the Node version in .nvmrc.' >&2
+  exit 1
+fi
+python3 -B scripts/repair-rea-reference-input.py --check
+python3 -B scripts/repair-rea-durable-queries.py --check
+export REA_REFERENCE_GAME_CONFIG="$rea_project_root/.codex/reference-game.json"
+export REA_DURABLE_QUERY_ROOT="${REA_DURABLE_QUERY_ROOT:-$rea_project_root/runtime/ghidra-queries}"
+
+export PATH="$(dirname -- "$rea_node"):$PATH"
+export TMPDIR="$rea_project_root/runtime/tmp"
+export XDG_CACHE_HOME="$rea_project_root/runtime/cache"
+export XDG_CONFIG_HOME="$rea_project_root/runtime/config"
+export XDG_DATA_HOME="$rea_project_root/runtime/data"
+export XDG_STATE_HOME="$rea_project_root/runtime/state"
+export XDG_RUNTIME_DIR="$rea_project_root/runtime/run"
+export PLAYWRIGHT_BROWSERS_PATH="$rea_project_root/runtime/browsers"
+export REA_CUTTER_BRIDGE_DIR="$rea_project_root/runtime/cutter-bridge"
+export GHIDRA_INSTALL_DIR="$rea_project_root/.tools/ghidra/ghidra_12.1.4_PUBLIC"
+# HotSpot performance data otherwise uses a shared system temporary directory.
+export JAVA_TOOL_OPTIONS=-XX:-UsePerfData
+# Hopper's macOS provider hardcodes /tmp; keep it unavailable under our workspace rule.
+export HOPPER_LAUNCHER_PATH="$rea_project_root/runtime/unconfigured-hopper"
+
+if [ -n "${REA_JAVA_HOME-}" ]; then
+  export JAVA_HOME=$REA_JAVA_HOME
+elif [ -d /Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home ]; then
+  export JAVA_HOME=/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home
+fi
+
+mkdir -p "$TMPDIR" "$XDG_CACHE_HOME" "$XDG_CONFIG_HOME" "$XDG_DATA_HOME" "$XDG_STATE_HOME" "$XDG_RUNTIME_DIR" "$PLAYWRIGHT_BROWSERS_PATH" "$REA_CUTTER_BRIDGE_DIR"
+chmod 700 "$TMPDIR" "$XDG_RUNTIME_DIR"
+
+if [ "${1-}" = query ]; then
+  shift
+  exec python3 -B "$rea_project_root/scripts/rea-batch.py" "$@"
+fi
+
+if [ "${1-}" = census-native-image ]; then
+  shift
+  exec "$rea_node" "$rea_project_root/scripts/rea-native-census.mjs" "$@"
+fi
+
+exec "$rea_node" "$rea_project_root/node_modules/rea-agents/scripts/rea.mjs" "$@"

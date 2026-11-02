@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "scope": "static analysis tooling recovery on synthetic bytes; no game/runtime/parity claim",
+  "fixture": {
+    "sha256": "8b3b3170b8209967605fb3ca2360a1fdb053aa8d3c420996096db1cc38e675ef",
+    "size_bytes": 65536,
+    "construction": "4096 x86_64 functions: b8 + little-endian uint32(42+i) + c3 + ten cc bytes; 16-byte stride",
+    "base_address": "0x1000",
+    "seeds_sha256": "eac3f40e771e471edb1c1e617dadfed6e7500f2faebb2f0b7d43470ab595f2df",
+    "function_count": 4096,
+    "seed_format": "hex(0x1000 + i*16) TAB function NEWLINE"
+  },
+  "provider": {
+    "id": "ghidra",
+    "version": "12.1.4",
+    "profile_digest": "0b175ed64a7d4c6cc8c9c95d65641bb748c834e15bfd30b80e65a62db9e204e5",
+    "saved_program_revision": 1,
+    "static_queries_only": true,
+    "native_tooling": {
+      "scripts/rea-durable-queries.mjs": "7f75a03ace604029cbdb8cc925bb45504394f1873d689630abe81e542716b3e8",
+      "scripts/repair-rea-durable-queries.py": "c14cc28baf16e60dc8eb4c4557bc4469ec153455d31d3d378561e93847f620a4",
+      "scripts/ghidra/ReaDurableQueryPrepare.java": "4de425e7c375a1d59b964bfbf565675ef7770f13778649bd48df0aab6824c648",
+      "scripts/ghidra/ReaDurableQueryBridge.fragment.java": "cb1b2fc0c6350449526d5e91dceb75dd98676e7458856d7df9e656542a4abb86",
+      "node_modules/rea-agents/bridge/ghidra/ReaGhidraBridge.java": "9655cefb73c8f83915f6336ea6eee0cf5497b4236e57d8b42c2e76f3117b6681",
+      "node_modules/rea-agents/dist/ghidra/GhidraLauncher.js": "ce306f4e7d6a787ac2da78d9d53f013994dbe7dfe4b7eadc53d3707974f7efc7",
+      "node_modules/rea-agents/dist/ghidra/GhidraAnalysisProfile.js": "a0619504f5cfa381f0eb489881c42079346ecfde48c685aede88fe2f53d57437",
+      "node_modules/rea-agents/dist/ghidra/GhidraSessionValues.js": "d83a81a6aa933c8d3886ccf737008de64f48c7988a307a5142d02bb2e35be4ec",
+      "node_modules/rea-agents/dist/ghidra/GhidraJavaLaunch.js": "9b267c37f14faeb1cb3f01afe81fd29e445684cfef86af2150e3f56e2115ff95",
+      "node_modules/rea-agents/dist/ghidra/GhidraProviderClient.js": "ee2eb4a2fb506b6541e365c87f708b5ac5d65dfb97d645bd5b3929b3799427b9",
+      "node_modules/rea-agents/dist/cli-runtime/binary-BVOr2mgE.js": "06e032e5f5f3870bb96d2b9d60c56954f0d19c6237653894403240ae5a24ff5d",
+      "node_modules/rea-agents/dist/mcp/main-kBXHZ8S5.js": "ed23c9961768f19b78ac67aec6f384c311f55f36049101a85f2bc871ec540acc"
+    }
+  },
+  "runner_tooling": {
+    "scripts/rea-batch.py": "093fe31a2cf4b388fd6e405b01c41e3e23b0965f1eb15ad4e6a4f44c3e2bbdd9",
+    "scripts/rea": "100aca6677907d7bf2e432a53e61cae733f1fa76cba78d17cff7a577c97369ea",
+    "scripts/repair-rea-reference-input.py": "29da663b1a71a8d6258bfb1c2b8d3117bac3e39c9299bfa35681f85a28db2502",
+    "scripts/repair-rea-durable-queries.py": "c14cc28baf16e60dc8eb4c4557bc4469ec153455d31d3d378561e93847f620a4",
+    "scripts/rea-durable-queries.mjs": "7f75a03ace604029cbdb8cc925bb45504394f1873d689630abe81e542716b3e8",
+    "scripts/ghidra/ReaDurableQueryPrepare.java": "4de425e7c375a1d59b964bfbf565675ef7770f13778649bd48df0aab6824c648",
+    "scripts/ghidra/ReaDurableQueryBridge.fragment.java": "cb1b2fc0c6350449526d5e91dceb75dd98676e7458856d7df9e656542a4abb86",
+    "node_modules/rea-agents/bridge/ghidra/ReaGhidraBridge.java": "9655cefb73c8f83915f6336ea6eee0cf5497b4236e57d8b42c2e76f3117b6681",
+    "node_modules/rea-agents/dist/ghidra/GhidraLauncher.js": "ce306f4e7d6a787ac2da78d9d53f013994dbe7dfe4b7eadc53d3707974f7efc7",
+    "node_modules/rea-agents/dist/ghidra/GhidraJavaLaunch.js": "9b267c37f14faeb1cb3f01afe81fd29e445684cfef86af2150e3f56e2115ff95",
+    "node_modules/rea-agents/dist/ghidra/GhidraAnalysisProfile.js": "a0619504f5cfa381f0eb489881c42079346ecfde48c685aede88fe2f53d57437",
+    "node_modules/rea-agents/dist/ghidra/GhidraProviderClient.js": "ee2eb4a2fb506b6541e365c87f708b5ac5d65dfb97d645bd5b3929b3799427b9",
+    "node_modules/rea-agents/dist/ghidra/GhidraSessionValues.js": "d83a81a6aa933c8d3886ccf737008de64f48c7988a307a5142d02bb2e35be4ec",
+    "node_modules/rea-agents/dist/cli-runtime/binary-BVOr2mgE.js": "06e032e5f5f3870bb96d2b9d60c56954f0d19c6237653894403240ae5a24ff5d",
+    "node_modules/rea-agents/dist/mcp/main-kBXHZ8S5.js": "ed23c9961768f19b78ac67aec6f384c311f55f36049101a85f2bc871ec540acc"
+  },
+  "forced_timeout": {
+    "deadline_seconds": 30,
+    "interruption": "SIGSTOP of token-owned, target/profile/command-verified test JVM after committed batch",
+    "saved_before": 1024,
+    "completed_after": 4096,
+    "inventory_count": 4096,
+    "inventory_sha256": "131464acfdccd2d73b8dc9c01c44a74a2796fbe9c67dae9cb4476e1409481e8b",
+    "saved_batch_commitments": [
+      {
+        "file": "batch-1024.json",
+        "sha256": "aea2319b473dcf382c62ab5647f46a2f475c189a7d9e1399afa8d6fa6cf5252c"
+      }
+    ],
+    "saved_batch_bytes_and_mtimes_unchanged": true,
+    "operation_attempts": {
+      "procedure_info": 1,
+      "search_procedures": 2,
+      "search_strings": 1,
+      "procedure_pseudo_code": 1
+    },
+    "completed_run_journal_sha256": "7ad5ef7ea2610076e0504a5ccb7ad262b2445df36568ad31b044c20c0723480b",
+    "original_results": {
+      "procedure_info": "413b0a09fbbc562fd3625314401923d93a7888c3ffb86fcca1d3df4562bed400",
+      "search_procedures": "ccc077de6d527bd76d38d4c54cbdc14d9f93cafbd6c9455fe8dbda36dc89c845",
+      "search_strings": "2f1bd33eb2642abeeaf73c6aab67db984ad3a3ff34ddb951deddd033d347aa83",
+      "procedure_pseudo_code": "a57998fd1a8f7412d68a8320922889f238942746859b573a74c99176f5e384c2"
+    },
+    "result": "completed automatically on second search attempt"
+  },
+  "completed_plan_resume": {
+    "exit_code": 0,
+    "all_native_producers_skipped": true,
+    "attempt_counts_unchanged": true,
+    "evidence_bundle": "new per-attempt file; previous bundles retained"
+  },
+  "missing_bootstrap_recovery": {
+    "bootstrap_regenerated": true,
+    "imports_before": 1,
+    "imports_after": 1,
+    "autoanalysis_repeated": false,
+    "seeds_reapplied": false,
+    "native_result_bytes_and_mtimes_unchanged": true,
+    "program_revision_unchanged": true
+  },
+  "decompilation": {
+    "function": "0x1000",
+    "normalized_result": "undefined8 entry(void) { return 0x2a; }",
+    "completed_result_reused": true,
+    "mid_function_resume_claimed": false
+  },
+  "regressions": {
+    "fake_mcp": 33,
+    "provider_python": 8,
+    "provider_node": 8,
+    "census_reporting": 24,
+    "census_resume": 12,
+    "seeded_census": 6,
+    "reference_input_node": 1,
+    "all_passed": true
+  },
+  "coverage_accounting": {
+    "status": "consistent_with_open_work",
+    "errors": 0,
+    "open_work_warnings": 64
+  },
+  "limits": [
+    "Initial inventory construction, a native analyzer task and one decompilation are atomic; unfinished units retry.",
+    "A query deadline must cover saved-Program startup; the deliberately short 10-second test exhausted its three attempts and retained failure/checkpoint state.",
+    "Checks establish tooling behavior on a synthetic fixture; no application compilation, game launch, target semantics or parity validation."
+  ],
+  "local_evidence": {
+    "forced_timeout": "runtime/rea-query-recovery-smoke/interrupted-v4-proof.json",
+    "reopen": "runtime/rea-query-recovery-smoke/reopen-proof.json",
+    "attempts": "runtime/rea-query-recovery-smoke/final-interrupted-v4/attempts",
+    "completed_resume": "runtime/rea-query-recovery-smoke/final-resume-v4.log",
+    "coverage": "runtime/rea-query-recovery-smoke/coverage-check-final.txt"
+  }
+}

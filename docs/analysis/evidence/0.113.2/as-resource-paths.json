@@ -1,0 +1,332 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.113.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+    "size_bytes": 141932032
+  },
+  "gap_ids": [
+    41
+  ],
+  "leads": [
+    "Q41-R01",
+    "Q41-D03"
+  ],
+  "original_candidate_count": 303,
+  "original_candidate_proof": {
+    "path": "docs/analysis/evidence/0.113.2/mpq-member-coverage.json",
+    "sha256": "0914216987e56e63d551428e0eefcb0e913a43ac54f8867a707ffbadfa128ab7"
+  },
+  "selected_candidates": [
+    {
+      "selector": "Q41-D03:resource_path:0",
+      "original_file_offset": "0x5ee6088",
+      "original_status": "basename_candidates_require_native_path_producer",
+      "complete_uri": "mpq://interface/paperdollinfoframe/ui-character-skills-bar.blp",
+      "full_uri_location": {
+        "file_offset": "0x5ee6084",
+        "virtual_address": "0x145ee7684",
+        "size_bytes": 62,
+        "sha256": "c5a7eab701a10a03683c72f882606078eb4244b5dc7322a483059df472201430"
+      }
+    },
+    {
+      "selector": "Q41-D03:resource_path:1",
+      "original_file_offset": "0x5efc790",
+      "original_status": "basename_candidates_require_native_path_producer",
+      "complete_uri": "mpq://interface/glues/charactercreate/ui-charactercreate-races.blp",
+      "full_uri_location": {
+        "file_offset": "0x5efc78c",
+        "virtual_address": "0x145efdd8c",
+        "size_bytes": 66,
+        "sha256": "4022814ecd132cb0fdaa2ef6b0c112a7523c194d096a7fdf6d44fae58bdad563"
+      }
+    },
+    {
+      "selector": "Q41-D03:resource_path:2",
+      "original_file_offset": "0x5efe190",
+      "original_status": "basename_candidates_require_native_path_producer",
+      "complete_uri": "mpq://interface/glues/common/glue-rightarrow-button-up.blp",
+      "full_uri_location": {
+        "file_offset": "0x5efe18c",
+        "virtual_address": "0x145eff78c",
+        "size_bytes": 58,
+        "sha256": "daabb25722c78d0955dc909d0b2118e539a0cefada0dfd792b8eff7716274b52"
+      }
+    },
+    {
+      "selector": "Q41-D03:resource_path:3",
+      "original_file_offset": "0x5efe23f",
+      "original_status": "basename_candidates_require_native_path_producer",
+      "complete_uri": "mpq://interface/buttons/ui-rotationright-button-up.blp",
+      "full_uri_location": {
+        "file_offset": "0x5efe23b",
+        "virtual_address": "0x145eff83b",
+        "size_bytes": 54,
+        "sha256": "e3d3fa910530ba59d3c0e23cc9acc0c2376b297123e6a994d4f0979d099f426e"
+      }
+    },
+    {
+      "selector": "Q41-D03:resource_path:4",
+      "original_file_offset": "0x5eff93c",
+      "original_status": "basename_candidates_require_native_path_producer",
+      "complete_uri": "mpq://interface/dialogframe/ui-dialogbox-gold-dragon.blp",
+      "full_uri_location": {
+        "file_offset": "0x5eff938",
+        "virtual_address": "0x145f00f38",
+        "size_bytes": 56,
+        "sha256": "b8e4ec90327f0152523fb3a41fd648219ef776645cf9fb56d653186796488cc2"
+      }
+    },
+    {
+      "selector": "Q41-D03:resource_path:5",
+      "original_file_offset": "0x5f00167",
+      "original_status": "basename_candidates_require_native_path_producer",
+      "complete_uri": "mpq://interface/minimap/minimap-trackingborder.blp",
+      "full_uri_location": {
+        "file_offset": "0x5f00163",
+        "virtual_address": "0x145f01763",
+        "size_bytes": 50,
+        "sha256": "035234ba78cfa1d5edfb6eeeb7ed6f635a3aa9ee741c2c0c23f321c83f2f93f2"
+      }
+    }
+  ],
+  "native_spans": [
+    {
+      "role": "bar",
+      "start": "0x14019aad9",
+      "end_exclusive": "0x14019ab5a",
+      "sha256": "dc6a5f58d3b544c8721bfd687e6ac89d28c32370cbeef917baab9cfcfd10587e",
+      "first_asset_interface": "0x140159a10"
+    },
+    {
+      "role": "dragon",
+      "start": "0x1402894f5",
+      "end_exclusive": "0x140289585",
+      "sha256": "762100ddafdeec4c77bf83664195f13db8e759beb52ff70d133e5838ed08d145",
+      "first_asset_interface": "0x140159a10"
+    },
+    {
+      "role": "feature",
+      "start": "0x14030554c",
+      "end_exclusive": "0x1403055bd",
+      "sha256": "35c4a3ce2048d3861bb2d29986c3441c0b1cf20ab3352b7ec8c8efb8bd36604d",
+      "first_asset_interface": "0x140159a10"
+    },
+    {
+      "role": "rotation",
+      "start": "0x1402ca8d4",
+      "end_exclusive": "0x1402ca964",
+      "sha256": "7823f700a3480f29c588f4785162fbbe59c494fea3bbef100cbeb573e79bbcfb",
+      "first_asset_interface": "0x140159a10"
+    }
+  ],
+  "native_cases": [
+    {
+      "kind": "bar",
+      "index": 0,
+      "uri": "mpq://interface/paperdollinfoframe/ui-character-skills-bar.blp"
+    },
+    {
+      "kind": "dragon",
+      "index": 0,
+      "uri": "mpq://interface/dialogframe/ui-dialogbox-gold-dragon.blp"
+    },
+    {
+      "kind": "feature",
+      "index": 0,
+      "uri": "mpq://interface/glues/common/glue-leftarrow-button-up.blp"
+    },
+    {
+      "kind": "feature",
+      "index": 1,
+      "uri": "mpq://interface/glues/common/glue-rightarrow-button-up.blp"
+    },
+    {
+      "kind": "rotation",
+      "index": 0,
+      "uri": "mpq://interface/buttons/ui-rotationleft-button-up.blp"
+    },
+    {
+      "kind": "rotation",
+      "index": 1,
+      "uri": "mpq://interface/buttons/ui-rotationright-button-up.blp"
+    },
+    {
+      "kind": "rotation",
+      "index": 2,
+      "result": "bounds_before_asset_interface"
+    },
+    {
+      "kind": "rotation",
+      "index": 18446744073709551615,
+      "result": "bounds_before_asset_interface"
+    }
+  ],
+  "ghidra_observations": [
+    {
+      "operation": "procedure_info",
+      "parameters": {
+        "procedure": "0x14019a5e0"
+      },
+      "evidence_id": "ev_929b953ecf27b2f072ea121f86562052d8de6cfbac6207b8e794bebd92c9d35c",
+      "response_sha256": "e4291aaf59e768ed729ea243e463af2d540ec9099ed43ad8d8b75ee57ffd2058"
+    },
+    {
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x14019a5e0"
+      },
+      "evidence_id": "ev_b09fc4c826721d63b82cd422b49ae48e8871f1b618ccd22fcfb98d93e86c5433",
+      "response_sha256": "d57b1b7bb55a4dc6ec2dbd99f5c0dc0d0dec3632006478e6520346645279491a"
+    },
+    {
+      "operation": "procedure_info",
+      "parameters": {
+        "procedure": "0x140305380"
+      },
+      "evidence_id": "ev_457f726f331bc3c2a8d1a8b896e1f067656d7fee77efaf94c7cc6bf361252113",
+      "response_sha256": "7bfd665b21104a9de7da65fa1de44620f5e201dc19e49339f97c1975fade1a49"
+    },
+    {
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x140305380"
+      },
+      "evidence_id": "ev_d21acf352800125bcf8fe580334acdf87a81beaa07140f78637ace96958f5ea0",
+      "response_sha256": "a6a85410d73128d70f88bed8b4cb72faf1d8b1e92d7577f35ae270ee14e0d1da"
+    },
+    {
+      "operation": "procedure_info",
+      "parameters": {
+        "procedure": "0x1402c9640"
+      },
+      "evidence_id": "ev_c376ae3f7b1af72c5ef21fd5298256904003732a74fe55904458b8dd42be42ba",
+      "response_sha256": "2f1d1ae5767381a6aec6769e696af9ed6b99f367d03e9ff0693c9f1aa29dde32"
+    },
+    {
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x1402c9640"
+      },
+      "evidence_id": "ev_4c9d63a44d5b041f57766b3f3ddaf55552d8615935cdc75150a1da9ff2721865",
+      "response_sha256": "67c564db851cdb58466053f9e04bc59311d5f37851353508240a630b14ab3865"
+    },
+    {
+      "operation": "procedure_info",
+      "parameters": {
+        "procedure": "0x140289270"
+      },
+      "evidence_id": "ev_eea0cd70008639a1b9f7711bb17f8fdbdac793074c105637e91d12328f5b7325",
+      "response_sha256": "6ccbccd98ed427a14dfc1784d8a50a6634de7e5dd71751cabeb1131c3ffc0225"
+    },
+    {
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x140289270"
+      },
+      "evidence_id": "ev_695056fc27a4af38e8be74751a4b3a59c683be72229f54b0fa41a2f45d390c81",
+      "response_sha256": "4a0b6bef6779981124a8b3bfc77d4a6e6a1044aa39eca4216be84c449e79615c"
+    }
+  ],
+  "reused_proofs": [
+    {
+      "path": "docs/analysis/evidence/0.113.2/race-portraits/manifest.json",
+      "sha256": "5c12b8d3e0b38edfb1ff70d6e2d3a088685577f45bf5301c949a5a712830189d"
+    },
+    {
+      "path": "docs/analysis/evidence/0.113.2/meter-minimap/manifest.json",
+      "sha256": "52f08530f946f49ed36a55345d0fedf0f795ab01f60836b5c1cf742411f7fdab"
+    }
+  ],
+  "assets": [
+    {
+      "uri": "mpq://interface/buttons/ui-rotationleft-button-up.blp",
+      "member": "interface\\buttons\\ui-rotationleft-button-up.blp",
+      "archive": "installed-game/Data/patch.MPQ",
+      "size_bytes": 2564,
+      "sha256": "67f5386eeb8d60deec729bf0a81026b2f8de64760c5cc8ac8b2e744c0843e748",
+      "width": 32,
+      "height": 32
+    },
+    {
+      "uri": "mpq://interface/buttons/ui-rotationright-button-up.blp",
+      "member": "interface\\buttons\\ui-rotationright-button-up.blp",
+      "archive": "installed-game/Data/patch.MPQ",
+      "size_bytes": 2564,
+      "sha256": "bbdddb51961b5225d54641e0655bb130b70de07a4273f37caca9f95ea33415bc",
+      "width": 32,
+      "height": 32
+    },
+    {
+      "uri": "mpq://interface/dialogframe/ui-dialogbox-gold-dragon.blp",
+      "member": "interface\\dialogframe\\ui-dialogbox-gold-dragon.blp",
+      "archive": "installed-game/Data/patch.MPQ",
+      "size_bytes": 23044,
+      "sha256": "e3f13a9bf130ac58d1271c0e3a1a91bf1b901293d4f3f122b4964fb236f1f29a",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "uri": "mpq://interface/glues/charactercreate/ui-charactercreate-races.blp",
+      "member": "interface\\glues\\charactercreate\\ui-charactercreate-races.blp",
+      "archive": "installed-game/Data/patch.MPQ",
+      "size_bytes": 88580,
+      "sha256": "d2d36f83715364b6bee51ec54ff82cf2dec27458902408312a7446382982820d",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "uri": "mpq://interface/glues/common/glue-leftarrow-button-up.blp",
+      "member": "interface\\glues\\common\\glue-leftarrow-button-up.blp",
+      "archive": "installed-game/Data/patch.MPQ",
+      "size_bytes": 2564,
+      "sha256": "ae544a1f2288200ac1648bce4c37913d3eb7ba198a4dac213c6c4eb80050d60e",
+      "width": 32,
+      "height": 32
+    },
+    {
+      "uri": "mpq://interface/glues/common/glue-rightarrow-button-up.blp",
+      "member": "interface\\glues\\common\\glue-rightarrow-button-up.blp",
+      "archive": "installed-game/Data/patch.MPQ",
+      "size_bytes": 2564,
+      "sha256": "dc66a2f2bb5c048e2ed2e8e690578feb5137f015ad2c2d6aa65f9bfd3c68f8c7",
+      "width": 32,
+      "height": 32
+    },
+    {
+      "uri": "mpq://interface/minimap/minimap-trackingborder.blp",
+      "member": "interface\\minimap\\minimap-trackingborder.blp",
+      "archive": "installed-game/Data/patch.MPQ",
+      "size_bytes": 6660,
+      "sha256": "863708bbe6e1b2b7f6fb82385457eba32dc59cba62c90cebf0d2f3ebc29407ac",
+      "width": 64,
+      "height": 64
+    },
+    {
+      "uri": "mpq://interface/paperdollinfoframe/ui-character-skills-bar.blp",
+      "member": "interface\\paperdollinfoframe\\ui-character-skills-bar.blp",
+      "archive": "installed-game/Data/patch.MPQ",
+      "size_bytes": 6652,
+      "sha256": "c1c86eeb7752da1c04f3b259ce79b8f9ca68bc70908964924336effbda0f2720",
+      "width": 256,
+      "height": 32
+    }
+  ],
+  "source_hashes": {
+    "crates/azeroth-survivors-re/src/assets.rs": "741c2ca54ecc038aed282244ffb1739d247088e64d8b263babe9057ed459873c",
+    "crates/azeroth-survivors-re/src/armory.rs": "b3f527961efcac9f02d182b2724dfec31b7543ecd7b965c58dd99f44fddb96d7",
+    "crates/azeroth-survivors-re/src/progression.rs": "8a87010d932ab54bfb3c38d663463896a72904a35ec2d730c0b5248d15929660",
+    "crates/azeroth-survivors-re/src/progression/achievements_sidebar.rs": "6ffd7bd64a1d5a6f9569ace0a77bc03f1b1d84ae013be159da6ea07a77bfa484",
+    "crates/azeroth-survivors-re/src/gameplay/meter.rs": "9e7c38d5649d153c5964bf6d1888dcc274030b2a981215d70cf47b914793b420",
+    "crates/benilla-formats/src/chain.rs": "3f44e391645132c4ed97373b4bf4d8251ca170211a01da0725470f4364b518e2"
+  },
+  "limits": [
+    "Four new AS URI producer slices execute with synthetic frame/allocator/copy seams; stop at the first asset interface. Two current race/meter proofs are reused without duplicate extracts.",
+    "Feature cases cover indices0/1 only; no arbitrary-index safety claim. Rotation additionally observes unsigned rejection for2/u64max. Full widget/action/layout/loader contracts do not execute.",
+    "Eight available BLP2 members have full content hashes and header dimensions; texture codecs, first/all mip pixels, color/filtering and actual rendered appearance are not validated here.",
+    "Original six partial-string selectors/statuses and all303 resource candidates remain unchanged. These URI classifications do not resolve the other297 candidates, all AS resources or native mount/locale/dynamic alias equivalence.",
+    "No source omission is established for these eight paths. Existing AS load/handle consumers and benilla MPQ chain are reused; no generic engine reconstruction, compilation, Rust/client/game execution, binary asset export or original/rebuilt parity."
+  ]
+}

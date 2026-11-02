@@ -1,0 +1,404 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.112.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+    "size_bytes": 140514816
+  },
+  "fresh_census": {
+    "path": "docs/analysis/evidence/0.112.0/execheck-native-census.json",
+    "sha256": "02b8799208fac7fd5d39fa62f549e1d3ca3455f0df86282cbb79288f1d720a06"
+  },
+  "fresh_launch_plan": {
+    "path": "runtime/execheck-0.112.0-20261023/ghidra-comprehensive/plan.json",
+    "sha256": "0dda6c63dfc27cd4b594330e22e6785022364cccc94faa6159246727f9e1a762"
+  },
+  "fresh_launch_tooling": {
+    "scripts/ghidra/ReaNativeCensus.java": "7ebbeeb8165f01226b7f51acd40278c153790ecbc1590338c142fca9ef4cfeba",
+    "scripts/census-native-image.py": "9ec5516139b7c40c7f9bd666d6dce2f61b7e77d34e0516a40d47f2049861b7cb",
+    "scripts/rea-native-census.mjs": "75e31bae32f20842db0e32378ed3821c573ff8864c9638cd7b29dc9b443a6437",
+    "scripts/repair-rea-native-census.py": "a97a4095dffb58b81c927049d139b79c8c98fe6ca3520b600c1103b39b815cde",
+    "scripts/repair-rea-reference-input.py": "29da663b1a71a8d6258bfb1c2b8d3117bac3e39c9299bfa35681f85a28db2502",
+    "node_modules/rea-agents/dist/ghidra/GhidraLauncher.js": "a47d3c13d71e6ea4c66ee3a1ed826c58a00cb4a023db54b3f582119d136a2983",
+    "node_modules/rea-agents/dist/ghidra/GhidraTargetSnapshot.js": "6e726143fad91cb487cf0455beca03751da8004034cf6680ab5cb842eca679b6",
+    "scripts/recover-native-import-thunks.py": "65883151064e3974474ea249020d5c20a7accb2fd2cf81404b205f893c3f6909",
+    "scripts/recover-native-unwind-handlers.py": "b4b7084a113a5314e584e73c6d487cc43da0b5c031ed23d7a4f44e12f441f907"
+  },
+  "initial_supporting_census": {
+    "path": "docs/analysis/evidence/0.112.0/full-native-census.json",
+    "sha256": "3a9ae6d44cf527de82e0a22cfbfa679e71aac5e6d473eb458665ad286bd3ee66",
+    "plan": {
+      "path": "runtime/fixgap41-0.112.0/ghidra-full-declared-address/plan.json",
+      "sha256": "1d6634d575a66c2d20df1e0532df477c270db26352a1742fc50519774b7b020b"
+    }
+  },
+  "original_census_execution_tooling": {
+    "scripts/ghidra/ReaNativeCensus.java": "7ebbeeb8165f01226b7f51acd40278c153790ecbc1590338c142fca9ef4cfeba",
+    "scripts/census-native-image.py": "9ec5516139b7c40c7f9bd666d6dce2f61b7e77d34e0516a40d47f2049861b7cb",
+    "scripts/rea-native-census.mjs": "75e31bae32f20842db0e32378ed3821c573ff8864c9638cd7b29dc9b443a6437",
+    "scripts/repair-rea-native-census.py": "a97a4095dffb58b81c927049d139b79c8c98fe6ca3520b600c1103b39b815cde",
+    "scripts/repair-rea-reference-input.py": "29da663b1a71a8d6258bfb1c2b8d3117bac3e39c9299bfa35681f85a28db2502",
+    "node_modules/rea-agents/dist/ghidra/GhidraLauncher.js": "a47d3c13d71e6ea4c66ee3a1ed826c58a00cb4a023db54b3f582119d136a2983",
+    "node_modules/rea-agents/dist/ghidra/GhidraTargetSnapshot.js": "6e726143fad91cb487cf0455beca03751da8004034cf6680ab5cb842eca679b6"
+  },
+  "current_launch_tooling_witness": {
+    "scripts/ghidra/ReaNativeCensus.java": "7ebbeeb8165f01226b7f51acd40278c153790ecbc1590338c142fca9ef4cfeba",
+    "scripts/census-native-image.py": "9ec5516139b7c40c7f9bd666d6dce2f61b7e77d34e0516a40d47f2049861b7cb",
+    "scripts/rea-native-census.mjs": "75e31bae32f20842db0e32378ed3821c573ff8864c9638cd7b29dc9b443a6437",
+    "scripts/repair-rea-native-census.py": "a97a4095dffb58b81c927049d139b79c8c98fe6ca3520b600c1103b39b815cde",
+    "scripts/repair-rea-reference-input.py": "29da663b1a71a8d6258bfb1c2b8d3117bac3e39c9299bfa35681f85a28db2502",
+    "node_modules/rea-agents/dist/ghidra/GhidraLauncher.js": "a47d3c13d71e6ea4c66ee3a1ed826c58a00cb4a023db54b3f582119d136a2983",
+    "node_modules/rea-agents/dist/ghidra/GhidraTargetSnapshot.js": "6e726143fad91cb487cf0455beca03751da8004034cf6680ab5cb842eca679b6"
+  },
+  "original_producer_input_reviews": [
+    {
+      "path": "runtime/fixgap41-0.112.0/ghidra-full-declared-address/jump-tables-input-summary.json",
+      "sha256": "d178e72889715c780d9c12c1954142d7c5b7d3ec4b6f3b2b1845fbcda8ffc553",
+      "target": {
+        "version": "0.112.0",
+        "path": "installed-game/AzerothSurvivors.exe",
+        "sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+        "size_bytes": 140514816
+      },
+      "original_producer": {
+        "path": "scripts/merge-native-dispatch-proofs.py",
+        "sha256": "8d68b0e4de88f2a2b4444c58a345d0f596261914a8c762796d1d8229d9171430",
+        "capstone_version": "5.0.7"
+      },
+      "original_producer_current_bytes_match": true,
+      "commitments": [
+        {
+          "role": "generator_dependencies",
+          "path": "scripts/native_dispatch_validation.py",
+          "sha256": "8efeb3a3489eb45d6aae7e63f260d0be1418b94d85853d30b33cf9d3cf50a24a",
+          "current_bytes_match": true
+        },
+        {
+          "role": "generator_dependencies",
+          "path": "scripts/recover-native-jump-tables.py",
+          "sha256": "e334caee6931e56e9aa4b81a40fbec0a1137223c30acd946fe3538bdf6074a46",
+          "current_bytes_match": true
+        },
+        {
+          "role": "generator_dependencies",
+          "path": "scripts/summarize-native-image.py",
+          "sha256": "5e0873407d07276ca6642677f63848d737244411cbad672aa83f4657dbf128b5",
+          "current_bytes_match": true
+        },
+        {
+          "role": "generator_dependencies",
+          "path": "scripts/recover-native-address-leads.py",
+          "sha256": "02bb39e644ffaafba19774cab098f84d5f986443f64dd98946f64db840209c9a",
+          "current_bytes_match": true
+        },
+        {
+          "role": "generator_dependencies",
+          "path": "scripts/recover-custom-static-producers.py",
+          "sha256": "cceb2100fac774c78bfde521f2739c823fc9926b03b67a29c3f1c150cae6ec6c",
+          "current_bytes_match": true
+        },
+        {
+          "role": "generator_dependencies",
+          "path": "scripts/classify-native-ownership.py",
+          "sha256": "517909d86860aabfb56b1276d4c390b4ae76f98b018fc89cbac1fc9f09650b2b",
+          "current_bytes_match": true
+        },
+        {
+          "role": "generator_dependencies",
+          "path": "scripts/native_scalar_aliases.py",
+          "sha256": "d262801367fbfd316920a73f051f744edc1cd5126913a591288c93c08abba335",
+          "current_bytes_match": true
+        },
+        {
+          "role": "generator_dependencies",
+          "path": "scripts/inventory-current-target.py",
+          "sha256": "f2cf5be70267aa01865b7c34bef7eeb87898d67b5e36f0a91d20d37e3b1299c5",
+          "current_bytes_match": true
+        },
+        {
+          "role": "generator_dependencies",
+          "path": "scripts/inventory-executable.py",
+          "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09",
+          "current_bytes_match": true
+        },
+        {
+          "role": "generator_dependencies",
+          "path": "scripts/coverage_common.py",
+          "sha256": "3aaa705f6fe366d06b59fbb1cc011bf98f28e59299e91371bd084c63b77d8eeb",
+          "current_bytes_match": true
+        },
+        {
+          "role": "inputs",
+          "path": "docs/analysis/evidence/0.112.0/full-dispatch-round3-census.json",
+          "sha256": "f16c76b45e3be0323a5e4c9d67ac261c4589619091463f29880b83d507daa689",
+          "current_bytes_match": true
+        },
+        {
+          "role": "inputs",
+          "path": "runtime/fixgap41-0.112.0/guarded-jump-tables-summary.json",
+          "sha256": "651a66d3dfd11560be8e364f6d64c7b33a5d4e6592f2abdedbb8422de4725863",
+          "current_bytes_match": true
+        },
+        {
+          "role": "inputs",
+          "path": "runtime/fixgap41-0.112.0/guarded-jump-tables.json",
+          "sha256": "20f12fcda4ec6f0653e5eef8e0a32a007b00f002341ed43e4b9727bbf8787003",
+          "current_bytes_match": true
+        },
+        {
+          "role": "inputs",
+          "path": "runtime/fixgap41-0.112.0/static-producer-tables-v3/guarded-jump-tables-summary.json",
+          "sha256": "d833b0cb6adc1289232c2ae0cc6a37deb15720b5205099e6c6ceb8f2ef463bcb",
+          "current_bytes_match": true
+        },
+        {
+          "role": "inputs",
+          "path": "runtime/fixgap41-0.112.0/static-producer-tables-v3/guarded-jump-tables.json",
+          "sha256": "7ca6082258628321c5e77196e017dda18cc37d4a4e1717f7cce6772d21d0a28e",
+          "current_bytes_match": true
+        },
+        {
+          "role": "inputs",
+          "path": "runtime/fixgap41-0.112.0/full-image-round3-tables-summary.json",
+          "sha256": "05399c2502beeb62663c12c34e07512d3a418c19f77967088817d7809ea21893",
+          "current_bytes_match": true
+        },
+        {
+          "role": "inputs",
+          "path": "runtime/fixgap41-0.112.0/full-image-round3-tables.json",
+          "sha256": "13e66efee16c6a9fff80ed2faed74f90bd49d5a7b66b17ceb873a265300ebfb0",
+          "current_bytes_match": true
+        },
+        {
+          "role": "inputs",
+          "path": "runtime/fixgap41-0.112.0/all-declared-table-proposals-current/guarded-jump-tables-summary.json",
+          "sha256": "bf0b4b45f9fd9a4c62c53f30d575bb44f33ef985c15e2f2933308ddd809ebdce",
+          "current_bytes_match": true
+        },
+        {
+          "role": "inputs",
+          "path": "runtime/fixgap41-0.112.0/all-declared-table-proposals-current/guarded-jump-tables.json",
+          "sha256": "648465441fc6d34af05aa15d0f86fad37a232c29983cdd13d11f2464a61ad71c",
+          "current_bytes_match": true
+        },
+        {
+          "role": "inventory",
+          "path": "runtime/fixgap41-0.112.0/all-declared-tables-current-roles/guarded-jump-tables.json",
+          "sha256": "ceef5c8ffd37dfe7150e491dc6013d1431515e609434f9ebccb1f422a1fc943c",
+          "current_bytes_match": true
+        },
+        {
+          "role": "coherent_case_input",
+          "path": "runtime/fixgap41-0.112.0/all-declared-tables-current-roles/coherent-case-boundaries.json",
+          "sha256": "b415eaa0983794bea1dd27a7af1b43ca2eb9ece8c742e85c02054d4aee6e7156",
+          "current_bytes_match": true
+        },
+        {
+          "role": "linear_boundary_input",
+          "path": "runtime/fixgap41-0.112.0/all-declared-tables-current-roles/linear-boundaries.json",
+          "sha256": "1f3a046526cf022d45553a44d17416ebd33bb712521260b950abd9670df9dfc8",
+          "current_bytes_match": true
+        }
+      ]
+    },
+    {
+      "path": "runtime/fixgap41-0.112.0/ghidra-full-declared-address/diagnostic-code-input.json",
+      "sha256": "94c36353e636be5322889d02433b0cc091518f8bf1ce835235c87f57384d7a37",
+      "target": {
+        "version": "0.112.0",
+        "path": "installed-game/AzerothSurvivors.exe",
+        "sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+        "size_bytes": 140514816
+      },
+      "original_producer": {
+        "path": "scripts/merge-native-address-code-leads.py",
+        "sha256": "8195d98be5066cc64985db2227e2cc1e1865648d17cc7f7803400420cd40c795",
+        "capstone_version": "5.0.7"
+      },
+      "original_producer_current_bytes_match": true,
+      "commitments": [
+        {
+          "role": "generator_dependencies",
+          "path": "scripts/native_dispatch_validation.py",
+          "sha256": "8efeb3a3489eb45d6aae7e63f260d0be1418b94d85853d30b33cf9d3cf50a24a",
+          "current_bytes_match": true
+        },
+        {
+          "role": "generator_dependencies",
+          "path": "scripts/recover-native-address-leads.py",
+          "sha256": "02bb39e644ffaafba19774cab098f84d5f986443f64dd98946f64db840209c9a",
+          "current_bytes_match": true
+        },
+        {
+          "role": "generator_dependencies",
+          "path": "scripts/merge-native-dispatch-proofs.py",
+          "sha256": "8d68b0e4de88f2a2b4444c58a345d0f596261914a8c762796d1d8229d9171430",
+          "current_bytes_match": true
+        },
+        {
+          "role": "generator_dependencies",
+          "path": "scripts/inventory-current-target.py",
+          "sha256": "f2cf5be70267aa01865b7c34bef7eeb87898d67b5e36f0a91d20d37e3b1299c5",
+          "current_bytes_match": true
+        },
+        {
+          "role": "generator_dependencies",
+          "path": "scripts/inventory-executable.py",
+          "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09",
+          "current_bytes_match": true
+        },
+        {
+          "role": "generator_dependencies",
+          "path": "scripts/coverage_common.py",
+          "sha256": "3aaa705f6fe366d06b59fbb1cc011bf98f28e59299e91371bd084c63b77d8eeb",
+          "current_bytes_match": true
+        },
+        {
+          "role": "inputs",
+          "path": "docs/analysis/evidence/0.112.0/full-dispatch-round3-census.json",
+          "sha256": "f16c76b45e3be0323a5e4c9d67ac261c4589619091463f29880b83d507daa689",
+          "current_bytes_match": true
+        },
+        {
+          "role": "inputs",
+          "path": "runtime/fixgap41-0.112.0/all-declared-tables-current-roles/guarded-jump-tables-summary.json",
+          "sha256": "d178e72889715c780d9c12c1954142d7c5b7d3ec4b6f3b2b1845fbcda8ffc553",
+          "current_bytes_match": true
+        },
+        {
+          "role": "inputs",
+          "path": "runtime/fixgap41-0.112.0/all-declared-code-leads-current-roles.json",
+          "sha256": "bc2df645ab114d5787075fdffb1cacd46b5675c6d0d774431ad8d75929275ef9",
+          "current_bytes_match": true
+        },
+        {
+          "role": "inputs",
+          "path": "runtime/fixgap41-0.112.0/address-code-leads-round2-summary.json",
+          "sha256": "6f6cafb66abf0d61b357a0c23ac12ec147ef5b2b0f029e5da25dd6b7bb57381a",
+          "current_bytes_match": true
+        },
+        {
+          "role": "inputs",
+          "path": "runtime/fixgap41-0.112.0/all-declared-tables-current-roles/guarded-jump-tables.json",
+          "sha256": "ceef5c8ffd37dfe7150e491dc6013d1431515e609434f9ebccb1f422a1fc943c",
+          "current_bytes_match": true
+        },
+        {
+          "role": "inputs",
+          "path": "runtime/fixgap41-0.112.0/address-code-leads-round2.json",
+          "sha256": "86e9469cda9d9aa494237abfa4eb17b45dc24d2a596de99ed4dabaaffbdecc5a",
+          "current_bytes_match": true
+        },
+        {
+          "role": "inputs",
+          "path": "runtime/fixgap41-0.112.0/all-declared-tables-current-roles/coherent-case-boundaries.json",
+          "sha256": "b415eaa0983794bea1dd27a7af1b43ca2eb9ece8c742e85c02054d4aee6e7156",
+          "current_bytes_match": true
+        },
+        {
+          "role": "source_census",
+          "path": "docs/analysis/evidence/0.112.0/full-dispatch-round3-census.json",
+          "sha256": "f16c76b45e3be0323a5e4c9d67ac261c4589619091463f29880b83d507daa689",
+          "current_bytes_match": true
+        }
+      ]
+    }
+  ],
+  "new_current_inputs": [
+    {
+      "target": {
+        "version": "0.112.0",
+        "path": "installed-game/AzerothSurvivors.exe",
+        "sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+        "size_bytes": 140514816
+      },
+      "generator": {
+        "path": "scripts/recover-native-import-thunks.py",
+        "sha256": "65883151064e3974474ea249020d5c20a7accb2fd2cf81404b205f893c3f6909"
+      },
+      "source_census": {
+        "path": "docs/analysis/evidence/0.112.0/full-native-census.json",
+        "sha256": "3a9ae6d44cf527de82e0a22cfbfa679e71aac5e6d473eb458665ad286bd3ee66"
+      },
+      "counts": {
+        "exact_source_instructions": 3,
+        "distinct_import_thunk_entries": 2,
+        "entries_without_actual_native_owner": 2
+      },
+      "inventory": {
+        "path": "runtime/execheck-0.112.0-20261023/inputs/import-thunks.json",
+        "sha256": "988041b6ea6eb9a45d98beab19552d63e072867cb32c7be2eb816cd11fca8a10"
+      }
+    },
+    {
+      "target": {
+        "version": "0.112.0",
+        "path": "installed-game/AzerothSurvivors.exe",
+        "sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+        "size_bytes": 140514816
+      },
+      "generator": {
+        "path": "scripts/recover-native-unwind-handlers.py",
+        "sha256": "b4b7084a113a5314e584e73c6d487cc43da0b5c031ed23d7a4f44e12f441f907"
+      },
+      "source_census": {
+        "path": "docs/analysis/evidence/0.112.0/full-native-census.json",
+        "sha256": "3a9ae6d44cf527de82e0a22cfbfa679e71aac5e6d473eb458665ad286bd3ee66"
+      },
+      "counts": {
+        "distinct_unwind_records": 271468,
+        "handler_metadata_records": 72754,
+        "chain_records": 16,
+        "distinct_handler_entries": 15,
+        "distinct_directory_and_handler_entries": 28,
+        "entries_without_actual_native_owner": 14
+      },
+      "inventory": {
+        "path": "runtime/execheck-0.112.0-20261023/inputs/unwind-handlers.json",
+        "sha256": "0d5b85a89390b6f5fdf4eee9227ae57a4dec07635d69fbf711be2950d8b20e6e"
+      }
+    }
+  ],
+  "combined_code_address_boundary_replay": {
+    "path": "runtime/execheck-0.112.0-20261023/inputs/combined-code-leads-replayed.json",
+    "sha256": "94c36353e636be5322889d02433b0cc091518f8bf1ce835235c87f57384d7a37",
+    "exact_original_input_bytes_reproduced": true,
+    "all_5964_address_roots_readmitted_against_original_current_table_and_code_context": true
+  },
+  "guarded_encoding_verification": {
+    "path": "runtime/execheck-0.112.0-20261023/inputs/guarded-tables-verification.json",
+    "sha256": "c761a67f177d799124438a43f0e3c165ceb303cf8046511fd595057f9f320535"
+  },
+  "code_only_roots": {
+    "count": 34871,
+    "roles": {
+      "address-taken-code-target": 5964,
+      "custom-diagnostic-reference": 102,
+      "engine-diagnostic-reference": 1691,
+      "guarded-relative-case-target": 23402,
+      "independently-decoded-bounded-switch-source": 3713
+    },
+    "function_entry_or_incoming_flow_edges_inferred": false
+  },
+  "fresh_function_entry_count": 418268,
+  "new_function_entry_starts": 18,
+  "applied_tables_and_edges": {
+    "guarded_tables": 3713,
+    "guarded_table_edges": 23920,
+    "additional_code_seed_targets": 34869,
+    "guarded_flow_edges_applied": 23920,
+    "additional_code_seeds_without_instructions": 0
+  },
+  "limits": [
+    "Reused producer/tool/input commitments retain their original observation and profile identity; fresh launch tooling is recorded separately.",
+    "The combined code-only inventory revalidates address roots against current table/instruction boundaries. It does not infer function entries or incoming flow.",
+    "Import LEAs and PE entry metadata are statically verified; runtime import binding, exception semantics, source behavior and parity remain unverified.",
+    "Full input inventories and databases remain ignored under runtime; this record does not require those original-game inputs to build the reconstruction."
+  ],
+  "native_semantics_complete": false,
+  "parity_verified": false,
+  "gap_ids": [
+    41
+  ]
+}

@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.120.2",
+    "sha256": "80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c",
+    "size_bytes": 145484288
+  },
+  "scope": "Guest reconnection flag and sample-cache lifetime across local Leave and service Joined/Closed.",
+  "native_ranges": [
+    {
+      "role": "guest-constructor-caches",
+      "start": "0x145b21850",
+      "end_exclusive": "0x145b21ae6",
+      "file_offset": "0x5b20c50",
+      "byte_count": 662,
+      "sha256": "adb176a2e72e9f68bd285ea9a21bb33920a3d40da47fed90567b4919a971dcf1",
+      "instruction_count": 137,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/service-peer-flags/lifetime-guest-constructor-caches.asm",
+        "sha256": "04ea2eaf4282f5fb477b1425daf9af0256076f6c3f45ccbd58821f79910005a1"
+      }
+    },
+    {
+      "role": "guest-close-role",
+      "start": "0x145b226b0",
+      "end_exclusive": "0x145b227b3",
+      "file_offset": "0x5b21ab0",
+      "byte_count": 259,
+      "sha256": "ceefa0e2cc1526917555582c727e300d8da0530834b91dbd40a8d1484d6e08a2",
+      "instruction_count": 65,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/service-peer-flags/lifetime-guest-close-role.asm",
+        "sha256": "43279432eacfe48e35e47eab6082140965266afd9344f141d127a174b4a8c930"
+      }
+    },
+    {
+      "role": "service-status",
+      "start": "0x145b22c10",
+      "end_exclusive": "0x145b22fc9",
+      "file_offset": "0x5b22010",
+      "byte_count": 953,
+      "sha256": "8f8d99c141e8748cbe146cb4eaf3f8c853bb6dc0e1b31ecd38e180f6fc826891",
+      "instruction_count": 229,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/service-peer-flags/lifetime-service-status.asm",
+        "sha256": "8042a3d75b1a3c89adba5135d7c05af33aa60397f842d5d8ad2232d524c8ce7f"
+      }
+    },
+    {
+      "role": "guest-handle-close",
+      "start": "0x145c053b0",
+      "end_exclusive": "0x145c05518",
+      "file_offset": "0x5c047b0",
+      "byte_count": 360,
+      "sha256": "6c9f73588d7cd498150c3b476dc7d891106d7875920663f88220d80b29a731ed",
+      "instruction_count": 92,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/service-peer-flags/lifetime-guest-handle-close.asm",
+        "sha256": "bb8e36437fe088992999d6d8027f8f0a7e94bfb8dd462d315de91275c3bd0aa3"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "procedure": "0x145b226b0",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_c497e642f28f43ce7d4dad87995a5d0df02e36fb056f43382eae2df88448247a",
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/lifetime-query/plan.json",
+        "sha256": "1d49716a60b912d3f53ee44612305ba6712ceff773ff4807b7fdd4a62a145438"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/lifetime-query/journal.json",
+        "sha256": "442882109876fadc8b09d83b4e516d2cfa93c48bc1cb73a46fe3bff147636968"
+      },
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/lifetime-query/results/2658bc7db2cf4e0252b239363688a4f9cf67a2c6bb33ef35fd75062561e1aafd-bb040b20c67bdab5.json",
+        "sha256": "7dd55442eaf388c30bc456987f00aad1ad9f7d0f092c3bb542630a356c2d6a19"
+      },
+      "normalized_sha256": "4a84720d85a4819c33fed49288d2422abe108ab08558ee33a1e9c92df2401269",
+      "analysis_profile_digest": "fc3e4aadec7c36cf0a891504717dd24993d7efa7d710a15eefe26462a4e31e16"
+    },
+    {
+      "procedure": "0x145b21850",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_be8f75e5771b3fbc75bcdcbfe102b2441b71a320e59c6ecc09a1a0d453a6a80c",
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/lifetime-query/plan.json",
+        "sha256": "1d49716a60b912d3f53ee44612305ba6712ceff773ff4807b7fdd4a62a145438"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/lifetime-query/journal.json",
+        "sha256": "442882109876fadc8b09d83b4e516d2cfa93c48bc1cb73a46fe3bff147636968"
+      },
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/lifetime-query/results/30fd4a252f5ccf15745956c796107c3285d83fb06114fa62617d3c5afdf5d238.json",
+        "sha256": "22598d135d516f09829d21920934d5175f2d278165487c16aef6f512aaae9eec"
+      },
+      "normalized_sha256": "c761a1c3715953845f698142ca32bd9d866c59fc37d48b837c1d93a999f8e0a4",
+      "analysis_profile_digest": "fc3e4aadec7c36cf0a891504717dd24993d7efa7d710a15eefe26462a4e31e16"
+    },
+    {
+      "procedure": "0x145b22c10",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_a743ab70af5d10c75dceac33093cbcad1effbc732bf7faeaa2d4b2f22110c477",
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/lifetime-query/plan.json",
+        "sha256": "1d49716a60b912d3f53ee44612305ba6712ceff773ff4807b7fdd4a62a145438"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/lifetime-query/journal.json",
+        "sha256": "442882109876fadc8b09d83b4e516d2cfa93c48bc1cb73a46fe3bff147636968"
+      },
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/lifetime-query/results/eed9ca75b3e2a44460f563d5acdafcfc5439a141646f2ddf8dc5e809276b0ccb-2c0a57d01c85dcf0.json",
+        "sha256": "a3b8fd70d2c18c53e96bbe010127b2642396ba81faae169a119a4555fca43fef"
+      },
+      "normalized_sha256": "66e06d98a17f38e1a40d39ec2012e1530e40ea52b15cd488d510fda0fd86fc7c",
+      "analysis_profile_digest": "fc3e4aadec7c36cf0a891504717dd24993d7efa7d710a15eefe26462a4e31e16"
+    },
+    {
+      "procedure": "0x145c053b0",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_9278e16f8d451389f4ca3a50b987b0b61f81426185eef5076b47adafd5ac55a2",
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/lifetime-close-query/plan.json",
+        "sha256": "2418c1ca9586b04be1700e48487b20c23ebcfca5df2e21d0b33e86a3d61e123b"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/lifetime-close-query/journal.json",
+        "sha256": "344901cb03ec78dc60d51ea27c4491abd134f700b7474fb042f0e23b6a5b1c24"
+      },
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/lifetime-close-query/results/d3587b0d1785ca3ef2f3bcb6262b3a0bad0a8be8ac4ee0c494627b9eec1c52df.json",
+        "sha256": "93a2f35ee7e63420cdd75ba950cc014c936544588a3c6efa049d602dd5e40cde"
+      },
+      "normalized_sha256": "096e163f0b47a44d71ef71c51b8adc1bc67749c7ae69afb55879c3e46fd010e6",
+      "analysis_profile_digest": "e96a1335f6024fd1c52a0356507e93fbfb187bed33a74ddb554cb2e1dd2560a9"
+    }
+  ],
+  "guest_vtable": {
+    "virtual_address": "0x1472ef598",
+    "file_offset": "0x72ee398",
+    "byte_count": 72,
+    "sha256": "410b0b7ba10467c4a7118af3b145ddce57e53fa65ac54e8f57cadbc3e60fa9c9",
+    "qwords": [
+      "0x145aff830",
+      "0x10",
+      "0x8",
+      "0x145c05230",
+      "0x145c050e0",
+      "0x145c05590",
+      "0x145c053b0",
+      "0x145c05020",
+      "0x145c04f50"
+    ],
+    "close_slot_offset": "0x30",
+    "close_target": "0x145c053b0"
+  },
+  "canonical_service_pump": {
+    "procedure": "0x145bf6e00",
+    "operation": "procedure_pseudo_code",
+    "evidence_id": "ev_de2422c8bae9bce1a0b169da8c542426b2b7926bd9b81ebf79b446af73cf6b67",
+    "plan": {
+      "path": "runtime/0.120.2/relay-review/caller-query/plan.json",
+      "sha256": "049ff6c4c4d6a67288cd2e54d8109d9e12e420772c4208fc857279c8c331a7df"
+    },
+    "journal": {
+      "path": "runtime/0.120.2/relay-review/caller-query/journal.json",
+      "sha256": "315f8ef85ea3a03a2b1b41370000257a820753bf73f3673a7007ec0df6be7a01"
+    },
+    "result": {
+      "path": "runtime/0.120.2/relay-review/caller-query/results/909e3ecf0d1d39ff6e82e577b7790ff4e77f439782f093b57fe226974f983703.json",
+      "sha256": "d3d931af7563656d2855092cc4989e6e91b52339a12de1290da2449f49637df5"
+    },
+    "normalized_sha256": "ec480f582d27663bcd6eb0d3cf0c77017a076e098f4f3d557ec0c8eac2225a33",
+    "analysis_profile_digest": "9ca4338f6591fa92006a9bdbe2cfd629f2e0ed29e56d586cb0c92b143bc5b1b4"
+  },
+  "contracts": {
+    "guest_constructor": "145b21850 clears xmm0 at145b21a8b and stores sixteen zero bytes at Game+0xfdc at145b21a96, covering cached host reconnecting+0xfea and local relay retry+0xfeb. It retains the service Arc flags.",
+    "guest_close": "145b226b0 moves the role to Off and invokes guest vtable slot0x30=145c053b0. That method disables only the particular guest handle, sends Leave to the primary and selected secondary, removes/closes the secondary, and never clears service active-guest+0x1e0 or guest-reconnecting+0x1e2 (Arc+0x1f8/+0x1fa).",
+    "service_activeguest": "Canonical current145bf6e00 case2 (Joined) sets service+0x1e0=1; case7 (Closed27) clears it. Controls31/32 for peer0 copy this retained service byte or zero into+0x1e2, including while no active Game guest handle exists. Local Leave is distinct from Closed27.",
+    "source_requirement": "Retain active-guest and guest-reconnecting with the service wrapper/Arc across Session replacement. New Joined keeps the existing service reconnecting flag but starts fresh false sample caches. Selected relay reset clears the reconnecting flag; new service construction begins a new flag lifetime.",
+    "status": "145b22c10 publishes role/state/size/code JSON; it changes neither service flags nor sampled reconnection caches."
+  },
+  "limits": [
+    "This lifecycleproof reuses existing current servicepump result rather than repeating its decompilation.",
+    "Original functionbytes and current table bind handle.close selection; Ghidra pseudocode is recovered analysis, not original source.",
+    "Constructor proof is a source/static lifecyclecontract; no compilation, game, client, service, network or server execution occurred."
+  ]
+}

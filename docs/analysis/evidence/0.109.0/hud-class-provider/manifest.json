@@ -1,0 +1,242 @@
+{
+  "target": {
+    "version": "0.109.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+    "size_bytes": 140447744,
+    "identity_manifest": "docs/analysis/target-refresh-0.109.0.json",
+    "version_provenance": "matching_embedded_updater_and_dialog_markers",
+    "runtime_data": {
+      "directory": "installed-game/Data",
+      "archives": [
+        {
+          "path": "installed-game/Data/patch-2.MPQ",
+          "size_bytes": 4690878,
+          "sha256": "366edee41642a5dda22ed90cc252b543ee375755b7e8bee81e2a6cd59fd7b286"
+        },
+        {
+          "path": "installed-game/Data/patch-3.MPQ",
+          "size_bytes": 2580491,
+          "sha256": "75c35ca5b8075197252581e301e8900143007fdf37b493ad271ae1bd39f95a29"
+        },
+        {
+          "path": "installed-game/Data/patch-4.MPQ",
+          "size_bytes": 22769233,
+          "sha256": "2e895e0e0ff6a4781d0e0aaa6ea7d32ed1fe36841e17806fe1855cb880d18865"
+        },
+        {
+          "path": "installed-game/Data/patch-5.MPQ",
+          "size_bytes": 267019039,
+          "sha256": "5008e56873718b468fa5ae1b697dcbe4f5da9ffe6c793f3ef9939dbd7716f3d8"
+        },
+        {
+          "path": "installed-game/Data/patch-6.MPQ",
+          "size_bytes": 212228,
+          "sha256": "cad6ff59b5df028a507581befb836fce07894057e15fe63d9fdc553a95b7ceb5"
+        },
+        {
+          "path": "installed-game/Data/patch-7.MPQ",
+          "size_bytes": 276649,
+          "sha256": "f5fb15b181cf01cc6b5cf2ee9948a27ecc4ba27bab9a8bec584df4381932aae6"
+        },
+        {
+          "path": "installed-game/Data/patch-8.MPQ",
+          "size_bytes": 4155417,
+          "sha256": "ae3aaa29cadb7aeba8255f5b4a8305c7cbecfe8f0d3ed9646522113d16c3e12e"
+        },
+        {
+          "path": "installed-game/Data/patch.MPQ",
+          "size_bytes": 1340199244,
+          "sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf"
+        }
+      ]
+    }
+  },
+  "ranges": [
+    {
+      "role": "initialize",
+      "start": "0x14029c080",
+      "end_exclusive": "0x14029c4a5",
+      "file_offset": "0x29b480",
+      "byte_count": 1061,
+      "sha256": "44eac8c9abc97723993e3bb2dbce292711aebf5d2a2c6ae60178ca257dd4be64",
+      "assembly": "initialize.asm",
+      "assembly_sha256": "49fec87c54f09c7ae53942fa3c2181091904e2b50216f5c2276d3777d60957b7",
+      "pseudocode": "initialize.c",
+      "pseudocode_sha256": "fa4e0d97a3060ba1bdd60e2cb54f453f4329e8e74774ed88ee33e6dbaf7972a1"
+    },
+    {
+      "role": "run",
+      "start": "0x14029c710",
+      "end_exclusive": "0x14029ccff",
+      "file_offset": "0x29bb10",
+      "byte_count": 1519,
+      "sha256": "7fbd5f47f9df29acc5dfa41431ab905bea5b8c14ec0cf38d22e40db5c2ce59be",
+      "assembly": "run.asm",
+      "assembly_sha256": "5805525185ed5143eeb9c393f4d14687638706911956991ff286188c3e3c459d",
+      "pseudocode": "run.c",
+      "pseudocode_sha256": "c9335f290a35ed7546bb23737db835b9294873f8954ebf240f0304410214fc1b"
+    },
+    {
+      "role": "run-unsafe",
+      "start": "0x1403db290",
+      "end_exclusive": "0x1403db967",
+      "file_offset": "0x3da690",
+      "byte_count": 1751,
+      "sha256": "8b4afd78d63e51a4b91421d1c24edc850c6c04f77e672604cb4da4c9377bf74e",
+      "assembly": "run-unsafe.asm",
+      "assembly_sha256": "fa807219a378012cdde7f825cde62024ed290e4d31fb8140a45ec50973f6c18c",
+      "pseudocode": "run-unsafe.c",
+      "pseudocode_sha256": "f336c1f1d7932158d088e0785bbabf46678e2aa2475f66ab73d43ca2223fedeb"
+    },
+    {
+      "role": "argument-six-load",
+      "start": "0x14028e715",
+      "end_exclusive": "0x14028e73a",
+      "file_offset": "0x28db15",
+      "byte_count": 37,
+      "sha256": "07f47fd9d16858fa55334aba9f5828e0b9d9f7a270f5f6065da686f4ff966867",
+      "assembly": "class-forwarding.asm",
+      "assembly_sha256": "645ca4f9e3d50b94d55cef90c1133efa47aa26e4186c62cd37dfc07810a705dd"
+    },
+    {
+      "role": "pick-pointer",
+      "start": "0x14028e81a",
+      "end_exclusive": "0x14028e81e",
+      "file_offset": "0x28dc1a",
+      "byte_count": 4,
+      "sha256": "6b1a3b6dd42dc408be46eb883130498b017f8190fa0cba7e140257f721aad31c",
+      "assembly": "class-forwarding.asm",
+      "assembly_sha256": "645ca4f9e3d50b94d55cef90c1133efa47aa26e4186c62cd37dfc07810a705dd"
+    },
+    {
+      "role": "class-byte",
+      "start": "0x14028ea00",
+      "end_exclusive": "0x14028ea0a",
+      "file_offset": "0x28de00",
+      "byte_count": 10,
+      "sha256": "f93fa37a051125e711b307ff57727e40b0682e7e3308ced7c113b79fe5eeec49",
+      "assembly": "class-forwarding.asm",
+      "assembly_sha256": "645ca4f9e3d50b94d55cef90c1133efa47aa26e4186c62cd37dfc07810a705dd"
+    },
+    {
+      "role": "closure-class",
+      "start": "0x14028ec59",
+      "end_exclusive": "0x14028ec76",
+      "file_offset": "0x28e059",
+      "byte_count": 29,
+      "sha256": "484b7680b42472c0938372861a33cee108fe8ce39b1874bc1e3c0be2a0b0c600",
+      "assembly": "class-forwarding.asm",
+      "assembly_sha256": "645ca4f9e3d50b94d55cef90c1133efa47aa26e4186c62cd37dfc07810a705dd"
+    },
+    {
+      "role": "constructor-argument",
+      "start": "0x14020cd44",
+      "end_exclusive": "0x14020cd47",
+      "file_offset": "0x20c144",
+      "byte_count": 3,
+      "sha256": "cab9bae0411fe5d3fca935886cf60c6bc75b91f7751b18865f2e564b342577ae",
+      "assembly": "class-forwarding.asm",
+      "assembly_sha256": "645ca4f9e3d50b94d55cef90c1133efa47aa26e4186c62cd37dfc07810a705dd"
+    },
+    {
+      "role": "constructor-retain",
+      "start": "0x14020d15e",
+      "end_exclusive": "0x14020d165",
+      "file_offset": "0x20c55e",
+      "byte_count": 7,
+      "sha256": "cbbe202972e4444e40fd7d97735fa31b15b09bc2464e856f2e819d38ed613531",
+      "assembly": "class-forwarding.asm",
+      "assembly_sha256": "645ca4f9e3d50b94d55cef90c1133efa47aa26e4186c62cd37dfc07810a705dd"
+    },
+    {
+      "role": "constructor-class-pointer",
+      "start": "0x14020e9ff",
+      "end_exclusive": "0x14020ea0e",
+      "file_offset": "0x20ddff",
+      "byte_count": 15,
+      "sha256": "bf76d8512f9865d9588966d4a59baeb47d245b49ecc199aa9ef1a85ed662f819",
+      "assembly": "class-forwarding.asm",
+      "assembly_sha256": "645ca4f9e3d50b94d55cef90c1133efa47aa26e4186c62cd37dfc07810a705dd"
+    },
+    {
+      "role": "constructor-class-call",
+      "start": "0x14020efc3",
+      "end_exclusive": "0x14020efcc",
+      "file_offset": "0x20e3c3",
+      "byte_count": 9,
+      "sha256": "3fec86f81247fdc6e8754f98498d450f491985f48bcc46d893e19be4453bd206",
+      "assembly": "class-forwarding.asm",
+      "assembly_sha256": "645ca4f9e3d50b94d55cef90c1133efa47aa26e4186c62cd37dfc07810a705dd"
+    },
+    {
+      "role": "pick-descriptor-layout",
+      "start": "0x145d9df68",
+      "end_exclusive": "0x145d9df80",
+      "file_offset": "0x5d9cf68",
+      "byte_count": 24,
+      "sha256": "3abb5e694a523fa78d028175f110aa68bf72b78585e7982141eb7db8d83785e1",
+      "expected_hex": "c09200400100000040000000000000000800000000000000"
+    },
+    {
+      "role": "system-vtable",
+      "start": "0x145df20a0",
+      "end_exclusive": "0x145df20f8",
+      "file_offset": "0x5df10a0",
+      "byte_count": 88,
+      "sha256": "77d49d4f2fc22349615497d5db5efe454c36b297791cf4eb5dbbfe7e386ca502",
+      "expected_hex": "10232a400100000000232a4001000000f0222a400100000010c729400100000070b93d400100000090b23d400100000020cd29400100000060cd294001000000b0cd29400100000070b23d400100000080c0294001000000"
+    }
+  ],
+  "ghidra": [
+    {
+      "procedure": "0x14029c080",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "0b102aa3faaaeb2f1e723d2afde5d567ca1b65d372c72c54f0c22c62d5e54785",
+      "carrier_sha256": "732b410682ba709d2e101545ff5869bac2d32af35946af288f2e86094eb10c5b",
+      "raw_import_base": "0x14029c080",
+      "limits": "Raw carrier uses a generic ABI; original Win64 instructions govern registers, stack arguments and fields."
+    },
+    {
+      "procedure": "0x14029c710",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "0b102aa3faaaeb2f1e723d2afde5d567ca1b65d372c72c54f0c22c62d5e54785",
+      "carrier_sha256": "732b410682ba709d2e101545ff5869bac2d32af35946af288f2e86094eb10c5b",
+      "raw_import_base": "0x14029c080",
+      "limits": "Raw carrier uses a generic ABI; original Win64 instructions govern registers, stack arguments and fields."
+    },
+    {
+      "procedure": "0x1403db290",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "0b102aa3faaaeb2f1e723d2afde5d567ca1b65d372c72c54f0c22c62d5e54785",
+      "carrier_sha256": "732b410682ba709d2e101545ff5869bac2d32af35946af288f2e86094eb10c5b",
+      "raw_import_base": "0x14029c080",
+      "limits": "Raw carrier uses a generic ABI; original Win64 instructions govern registers, stack arguments and fields."
+    }
+  ],
+  "frontend_pick_typeid": "069ad40b469b67b8d24e086565767c39",
+  "binding": "Frontend Pick registered in SystemState+b98; sixth Win64 argument reaches Pick+38 and the stored HUD class atlas.",
+  "canonical_dependencies": [
+    "docs/analysis/evidence/0.109.0/run-hud/manifest.json",
+    "docs/analysis/account-command-owners-0.109.0.md",
+    "docs/analysis/evidence/0.109.0/account-commands/frontend-pick-binding.json"
+  ],
+  "limits": [
+    "Selected registration/resource/argument forwarding only; complete generic ECS/runtime scheduling remains unverified.",
+    "No reconstruction compiler, Rust test or game executed."
+  ],
+  "frontend_pick_binding": "docs/analysis/evidence/0.109.0/account-commands/frontend-pick-binding.json",
+  "frontend_pick_binding_sha256": "1779c91f55f0f67d676c3aa799b394f3dfda576c6574b0f3d7210ca61b80cb9f"
+}

@@ -1,0 +1,56 @@
+{
+  "target_sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+  "ranges": [
+    {
+      "start": "0x145876df5",
+      "end": "0x145876f5d",
+      "sha256": "389e92cbd99c2b2f33551e0689852837c750a3c9d15849842594779f386ae672",
+      "file_offset": "0x58761f5"
+    },
+    {
+      "start": "0x1458770fc",
+      "end": "0x1458771d6",
+      "sha256": "f0c2e73d207f8fc50ea076eec1cb03799a023014436ccd3ae2db039b8bd78c49",
+      "file_offset": "0x58764fc"
+    },
+    {
+      "start": "0x1458854a8",
+      "end": "0x145885893",
+      "sha256": "68689b3d25e0938bb31d7f152b23ca8a76ba29986f510aa8c0d97982dc39c41d",
+      "file_offset": "0x58848a8"
+    },
+    {
+      "start": "0x14588cd83",
+      "end": "0x14588d028",
+      "sha256": "5455d2050610f7ee29b25ae88f1826022683308fcefa09a91264f856436e97a3",
+      "file_offset": "0x588c183"
+    },
+    {
+      "start": "0x14584d410",
+      "end": "0x14584d55a",
+      "sha256": "9a3bb6d8751bdd14a995a25156d1cbf6fc3b7d7fd8e765bde2c4ef6b98a355de",
+      "file_offset": "0x584c810"
+    },
+    {
+      "start": "0x14587d6d9",
+      "end": "0x14587d718",
+      "sha256": "7485c8902fa3258395b3f1c3c76ae5594c724855c87a6ec9f7ea25fd2118e226",
+      "file_offset": "0x587cad9"
+    }
+  ],
+  "cases": [
+    {"kind": "constructor","empty_slots": 20,"poll_clock": 0.0,"target": 0,"seams": ["copy-storage"]},
+    {"kind": "successful-new-game-login","empty_slots": 20,"poll_clock": 42.0,"target": 0,"stats_allocation_retained": true,"seams": ["free-storage","free-storage","free-storage","free-storage","free-storage","free-storage","free-storage","free-storage","free-storage","free-storage","free-storage","free-storage","free-storage","free-storage","free-storage","free-storage","free-storage","free-storage","free-storage"]},
+    {"kind": "successful-new-game-again","empty_slots": 20,"poll_clock": 42.0,"target": 0,"stats_allocation_retained": true,"seams": ["free-storage","free-storage","free-storage","free-storage","free-storage","free-storage","free-storage","free-storage","free-storage","free-storage","free-storage","free-storage","free-storage","free-storage","free-storage","free-storage","free-storage","free-storage","free-storage","copy-storage"]},
+    {"kind": "poll-gate-before-game-absent-branch","input": 0.0,"poll_advanced": false,"stored_clock": 0.0},
+    {"kind": "poll-gate-before-game-absent-branch","input": 0.199,"poll_advanced": false,"stored_clock": 0.0},
+    {"kind": "poll-gate-before-game-absent-branch","input": 0.2,"poll_advanced": true,"stored_clock": 0.2},
+    {"kind": "poll-gate-before-game-absent-branch","input": 0.25,"poll_advanced": true,"stored_clock": 0.25},
+    {"kind": "poll-gate-before-game-absent-branch","input": "nan","poll_advanced": false,"stored_clock": 0.0}
+  ],
+  "limits": [
+    "Isolated original-instruction replay only, no game/build/runtime/parity evidence.",
+    "Allocation/free and byte copy have explicit storage seams; current 19-string helper executes original bytes.",
+    "Reset slices begin only after admitted successful Game creation; Game creation itself, requests, menu/ReloadUI dispatch and world/client execution are not replayed."
+  ]
+}

@@ -1,0 +1,166 @@
+{
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "native_range": [
+    "0x1458eded0",
+    "0x1458ee06c"
+  ],
+  "native_sha256": "55b5164bffc4ef365a92a9a3eb3510b8b8219bd3d5eb96cd29f8c331b76010b2",
+  "cases": [
+    {
+      "name": "null_table",
+      "rows": [],
+      "null_table": true,
+      "selected_index": null,
+      "native_output_hex": "0000000000000000000000000000000000000000"
+    },
+    {
+      "name": "empty_table",
+      "rows": [],
+      "null_table": false,
+      "selected_index": null,
+      "native_output_hex": "0000000000000000000000000000000000000000"
+    },
+    {
+      "name": "exact_area_before_geometry",
+      "rows": [
+        [
+          0,
+          999,
+          500.0,
+          -2000.0,
+          -8000.0,
+          -11000.0
+        ],
+        [
+          0,
+          12,
+          4.0,
+          3.0,
+          2.0,
+          1.0
+        ],
+        [
+          0,
+          888,
+          -500.0,
+          -1000.0,
+          -9000.0,
+          -10000.0
+        ]
+      ],
+      "null_table": false,
+      "selected_index": 1,
+      "native_output_hex": "010000000000804000004040000000400000803f"
+    },
+    {
+      "name": "smallest_containing",
+      "rows": [
+        [
+          0,
+          999,
+          500.0,
+          -2000.0,
+          -8000.0,
+          -11000.0
+        ],
+        [
+          0,
+          888,
+          -500.0,
+          -1000.0,
+          -9000.0,
+          -10000.0
+        ]
+      ],
+      "null_table": false,
+      "selected_index": 1,
+      "native_output_hex": "010000000000fac300007ac400a00cc600401cc6"
+    },
+    {
+      "name": "keep_first_equal_area",
+      "rows": [
+        [
+          0,
+          888,
+          -500.0,
+          -1000.0,
+          -9000.0,
+          -10000.0
+        ],
+        [
+          0,
+          777,
+          -500.0,
+          -1000.0,
+          -9000.0,
+          -10000.0
+        ]
+      ],
+      "null_table": false,
+      "selected_index": 0,
+      "native_output_hex": "010000000000fac300007ac400a00cc600401cc6"
+    },
+    {
+      "name": "wrong_map",
+      "rows": [
+        [
+          1,
+          888,
+          -500.0,
+          -1000.0,
+          -9000.0,
+          -10000.0
+        ]
+      ],
+      "null_table": false,
+      "selected_index": null,
+      "native_output_hex": "0000000000000000000000000000000000000000"
+    },
+    {
+      "name": "outside",
+      "rows": [
+        [
+          0,
+          888,
+          100.0,
+          0.0,
+          200.0,
+          0.0
+        ]
+      ],
+      "null_table": false,
+      "selected_index": null,
+      "native_output_hex": "0000000000000000000000000000000000000000"
+    },
+    {
+      "name": "exact_first_duplicate",
+      "rows": [
+        [
+          0,
+          12,
+          4.0,
+          3.0,
+          2.0,
+          1.0
+        ],
+        [
+          0,
+          12,
+          40.0,
+          30.0,
+          20.0,
+          10.0
+        ]
+      ],
+      "null_table": false,
+      "selected_index": 0,
+      "native_output_hex": "010000000000804000004040000000400000803f"
+    }
+  ],
+  "seams": [
+    "Zone-key lookup is intercepted and selects native zone index0.",
+    "DBC lookup supplies the explicitly listed24-byte records.",
+    "All other instructions are unchanged native map-selector bytes; unknown calls abort.",
+    "No reconstructed code, game process or MPQ loader executes."
+  ]
+}

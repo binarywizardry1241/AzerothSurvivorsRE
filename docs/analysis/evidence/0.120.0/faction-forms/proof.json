@@ -1,0 +1,88 @@
+{
+  "target": {
+    "version": "0.120.0",
+    "sha256": "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08"
+  },
+  "gap_ids": [
+    190,
+    41
+  ],
+  "native_manifest": "docs/analysis/evidence/0.120.0/race-unlocks/manifest.json",
+  "native_roles": [
+    "faction-form-selector",
+    "alliance-cat-return"
+  ],
+  "body_tables": {
+    "va": "0x1475f7a04",
+    "file_offset": "0x75f6404",
+    "byte_count": 56,
+    "sha256": "f321ff305d73f8ab1e5c67ff3877c063b741d0afeece0f6c89131d90dd73bd6f",
+    "female": [
+      52,
+      54,
+      56,
+      58,
+      60,
+      1564,
+      1479
+    ],
+    "male": [
+      51,
+      53,
+      55,
+      57,
+      59,
+      1563,
+      1478
+    ]
+  },
+  "vectors_sha256": "e00c6d5d952ed73e2de5c5831898e101b016c2bfc28cee05b61b36418d50aeb2",
+  "source_sha256": "1ed64b3fae7720fe7b5ac2e253dbeaaf242598b2259ba2428c699ddd6e3b27ed",
+  "source_connections": [
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+      "fragments": [
+        "native_race: hero.race,"
+      ],
+      "fragment_sha256": "4a0f81a6f98ff084c2daeec7ac285e506dd8db91c34d63de479aa846060fd39a"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
+      "fragments": [
+        "run_effects::forms::display_override(&self.effect_state.equipped.rows, self.stats.native_race)"
+      ],
+      "fragment_sha256": "72fe114dbf920fcd3661994ac5fa14d974f1fd22797136d36a2109ef6cc43835"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/client.rs",
+      "fragments": [
+        "let current_display = game.player_form_display().unwrap_or(display_id);",
+        "fields: ObjectFields::from_pairs(&[(131, current_display)])",
+        "state.player_display = None;"
+      ],
+      "fragment_sha256": "cb42f95bb73eb7455fbe853f79ed01d6fa80cd4d487baebb14e888fe55cdbb15"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+      "fragments": [
+        "let mut fields = local_player_fields(player);",
+        "131,\n        game.player_form_display().unwrap_or(player.display_id),"
+      ],
+      "fragment_sha256": "d5f4850b5a6e7508281e2ec4da8316d7d5702fe9ecac4eb414fd552a1e67ad53"
+    },
+    {
+      "path": "crates/benilla-app/src/local_client/player.rs",
+      "fragments": [
+        "(131, player.display_id),\n        (132, player.display_id),"
+      ],
+      "fragment_sha256": "a14ae291b162cbfda336fe989181311216d1cbcb83116489e9d15067c63e7c89"
+    }
+  ],
+  "native_cases": 14336,
+  "source_projection_cases": 3584,
+  "limits": [
+    "Explicit composed effect rows, race/sex registers and descriptor-map insertion seam.",
+    "Source selector projection and connection fragments do not execute Rust or the client.",
+    "No compilation, game/network/server/model/animation/rendering or parity validation."
+  ]
+}

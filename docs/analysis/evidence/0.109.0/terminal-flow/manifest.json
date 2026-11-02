@@ -1,0 +1,351 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.109.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+    "size_bytes": 140447744
+  },
+  "method": "Current EXE diagnostic/TypeId and instruction-reference discovery, original PE instruction decoding, scoped REA/Ghidra12.1.4 raw-function imports and bounded Unicorn replay.",
+  "ranges": [
+    {
+      "start": "0x140287980",
+      "end_exclusive": "0x140288ebf",
+      "sha256": "3cb0db9c9b16aec41067079dfdc578e0645c48a50ec9c0af4a51630e8c585608",
+      "role": "screen",
+      "file_offset": "0x286d80",
+      "byte_count": 5439,
+      "assembly": "screen.asm",
+      "assembly_sha256": "7e3d7d11ba28879a5c17aded4483e3637f31307329dac243845a6d6f216de0f1",
+      "rea_evidence_id": "ev_f19e3a5167d3cb0bd275a109a0d7bf64c7214db816512c43f97f1e630e527aad",
+      "analysis_profile_digest": "3f2c14660c5dcd3638816ab98aa445feff64e63bb7b39c14b2310b4ff1f7d7b7",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "raw_import_sha256": "3cb0db9c9b16aec41067079dfdc578e0645c48a50ec9c0af4a51630e8c585608",
+      "assembly_windows": [
+        {
+          "start": "0x140288940",
+          "end_exclusive": "0x140288ebf"
+        }
+      ],
+      "complete_pseudocode_sha256": "35c792f8c4aeea59cdafdf8aa3e5729c4de1fd2cf038a26a8f6d7fc151222156",
+      "pseudocode_excerpt": "screen-excerpts.c",
+      "pseudocode_excerpt_sha256": "3e660b4e5f96947984ba812c4171241d473226a1bb19d3a7a85e91df22e28718",
+      "pseudocode_excerpt_lines": [
+        {
+          "start": 785,
+          "end_exclusive": 831
+        }
+      ]
+    },
+    {
+      "start": "0x140203a30",
+      "end_exclusive": "0x140205c4a",
+      "sha256": "5ae50dd940b676c3d5f418fbcec2bf721d295c1dcd146529652802d037a9d37c",
+      "role": "content",
+      "file_offset": "0x202e30",
+      "byte_count": 8730,
+      "assembly": "content.asm",
+      "assembly_sha256": "e39c24ef81ed9ae679a3454450f5b2a672c35800577f3f5c315a75edec3c084e",
+      "rea_evidence_id": "ev_b37f0676e23a7276c73f71305dbdf2a86e35b3f402ccb7e519bada2570f64b9d",
+      "analysis_profile_digest": "c290742edcee8de48dbafeafb82fd5c37e9a576388bf60860d0336d5afc2e791",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "raw_import_sha256": "5ae50dd940b676c3d5f418fbcec2bf721d295c1dcd146529652802d037a9d37c",
+      "assembly_windows": [
+        {
+          "start": "0x140203a30",
+          "end_exclusive": "0x140205c4a"
+        }
+      ],
+      "complete_pseudocode_sha256": "7b614f871c6617729f1a57dc2ba5e8a0d4b2e2271aa568995cbef34e5ed0b72a",
+      "pseudocode_excerpt": "content-excerpts.c",
+      "pseudocode_excerpt_sha256": "9db8a0c76941715e85c20add22d1d28bc36fb6c4e80875cf6f674c8ef1b23924",
+      "pseudocode_excerpt_lines": [
+        {
+          "start": 1566,
+          "end_exclusive": 1607
+        },
+        {
+          "start": 1695,
+          "end_exclusive": 1718
+        }
+      ],
+      "disabled_analyzers": "Call Convention ID"
+    },
+    {
+      "start": "0x140287210",
+      "end_exclusive": "0x140287922",
+      "sha256": "f2538edc0b83896c2d8b7f0b4e85859289667cf4b7b310c63dc6c47794e6db6a",
+      "role": "input",
+      "file_offset": "0x286610",
+      "byte_count": 1810,
+      "assembly": "input.asm",
+      "assembly_sha256": "d276b2a250f4761a7e026bcfacad1830d3fdfe9216bcf5f0dabb3fee43b1c870",
+      "rea_evidence_id": "ev_8dc0c12ad0180c95765d556f4ad0331a626b521e7d6b1e2b34427d5f75c7d120",
+      "analysis_profile_digest": "a890a3e8421b73bf7987448834ffd768c24c413636ca8e31cf18513126fbfbd1",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "raw_import_sha256": "f2538edc0b83896c2d8b7f0b4e85859289667cf4b7b310c63dc6c47794e6db6a",
+      "assembly_windows": [
+        {
+          "start": "0x14028781e",
+          "end_exclusive": "0x140287900"
+        }
+      ],
+      "complete_pseudocode_sha256": "550b6d8f3caed03b7f89253856c43ba441d94b03c4fe57a2044441bb0ca143e9",
+      "pseudocode_excerpt": "input-excerpts.c",
+      "pseudocode_excerpt_sha256": "08bc666a6bfbb739fd2b252ff298a4aa73406bb95f12c34fde769d9938d1d101",
+      "pseudocode_excerpt_lines": [
+        {
+          "start": 217,
+          "end_exclusive": 247
+        }
+      ]
+    },
+    {
+      "start": "0x1402a0060",
+      "end_exclusive": "0x1402a04f1",
+      "sha256": "19013586739b0d4b8def0bc8f34aa4654d41f82cca816078757196c4426d4d41",
+      "role": "terminal-registration",
+      "file_offset": "0x29f460",
+      "byte_count": 1169,
+      "assembly": "terminal-registration.asm",
+      "assembly_sha256": "0b8456c3fedd1494a635998c6c08d56d6c854b253b90ea6f81113e5d33bb8f67",
+      "rea_evidence_id": "ev_302e3a9d0a0286ca06ce5b27d2d7cf0c43762e2000c356fd24e8fe2169b3a109",
+      "analysis_profile_digest": "6e4a35383b6bfe9241afac1ea591d59061b96138146c33a68836a20997473bbd",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "raw_import_sha256": "19013586739b0d4b8def0bc8f34aa4654d41f82cca816078757196c4426d4d41",
+      "assembly_windows": [
+        {
+          "start": "0x1402a029e",
+          "end_exclusive": "0x1402a030d"
+        },
+        {
+          "start": "0x1402a045c",
+          "end_exclusive": "0x1402a04f1"
+        }
+      ],
+      "complete_pseudocode_sha256": "cb38cb50aba339da08c668580a1da54322ac2d2ca7987b732e438b3034243049",
+      "pseudocode_excerpt": "terminal-registration-excerpts.c",
+      "pseudocode_excerpt_sha256": "f6827fca7a3a4d190e2643eb610352c3682ae03229e6fd5eee3f77ad14b83804",
+      "pseudocode_excerpt_lines": [
+        {
+          "start": 230,
+          "end_exclusive": 290
+        }
+      ]
+    },
+    {
+      "start": "0x1403a8d80",
+      "end_exclusive": "0x1403a90a8",
+      "sha256": "3099f8902dd309a6967d42fcbaf78d10690a34f1b9306b5eaab878ea41038e8f",
+      "role": "action-query",
+      "file_offset": "0x3a8180",
+      "byte_count": 808,
+      "assembly": "action-query.asm",
+      "assembly_sha256": "380281a392540b5d721acdb6767a36e27ccc6548f78ad5093bd35401ebd134c7",
+      "assembly_windows": [
+        {
+          "start": "0x1403a8d80",
+          "end_exclusive": "0x1403a90a8"
+        }
+      ]
+    },
+    {
+      "start": "0x14591d6b0",
+      "end_exclusive": "0x14591d819",
+      "sha256": "8de8af0d780c7827e92a82cad3626a7d1bd8d06999c466612cdafc9b92a7e9e3",
+      "role": "endless",
+      "file_offset": "0x591cab0",
+      "byte_count": 361,
+      "assembly": "endless.asm",
+      "assembly_sha256": "7657bdfec907ae9a6d6fbb06e1c9757e48719a9a2ef77bde542c3f9ac8d904e4",
+      "assembly_windows": [
+        {
+          "start": "0x14591d6b0",
+          "end_exclusive": "0x14591d819"
+        }
+      ]
+    },
+    {
+      "start": "0x14594b330",
+      "end_exclusive": "0x14594b448",
+      "sha256": "bb51df3cd4524231f726b909c56181d517ff7ca1349e0cbaf64c345988e63da6",
+      "role": "end-run",
+      "file_offset": "0x594a730",
+      "byte_count": 280,
+      "assembly": "end-run.asm",
+      "assembly_sha256": "b43839223949559c08189cfe189934d2fdc0a05d00dff7cd0d4adc8257d5f4aa",
+      "assembly_windows": [
+        {
+          "start": "0x14594b330",
+          "end_exclusive": "0x14594b448"
+        }
+      ]
+    },
+    {
+      "start": "0x1458bb9f0",
+      "end_exclusive": "0x1458bd2a8",
+      "sha256": "466f10e666db5354fb7b6481ca2f322ab1739a05fa0fca64fdcceb20f25f4895",
+      "role": "dispatcher",
+      "file_offset": "0x58badf0",
+      "byte_count": 6328,
+      "assembly": "dispatcher.asm",
+      "assembly_sha256": "ba9bb1005960997371ad73611a7c4ffa4ee476622c1bd51671da6f3ec6398a31",
+      "rea_evidence_id": "ev_cdbf8f33bba150ac60d1a972d4e4cd304b958492919c1053220a7be37fb1aa94",
+      "analysis_profile_digest": "20e8050b8e85f50e8d8c02f1c3fab28f6238606469384093729a3d7b1ddb5181",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "raw_import_sha256": "466f10e666db5354fb7b6481ca2f322ab1739a05fa0fca64fdcceb20f25f4895",
+      "assembly_windows": [
+        {
+          "start": "0x1458bba1c",
+          "end_exclusive": "0x1458bba3f"
+        },
+        {
+          "start": "0x1458bbc5e",
+          "end_exclusive": "0x1458bbce2"
+        },
+        {
+          "start": "0x1458bc1a0",
+          "end_exclusive": "0x1458bc23d"
+        },
+        {
+          "start": "0x1458bc4af",
+          "end_exclusive": "0x1458bc4e1"
+        },
+        {
+          "start": "0x1458bca22",
+          "end_exclusive": "0x1458bca8a"
+        },
+        {
+          "start": "0x1458bcbd8",
+          "end_exclusive": "0x1458bcbe9"
+        },
+        {
+          "start": "0x1458bd064",
+          "end_exclusive": "0x1458bd1eb"
+        }
+      ],
+      "complete_pseudocode_sha256": "34bbc69aecaec1234c398752edf89bd2e9a45f7dd5319413d5edb64bbf920f8b",
+      "disabled_analyzers": "Call Convention ID"
+    },
+    {
+      "start": "0x1458b8300",
+      "end_exclusive": "0x1458b8566",
+      "sha256": "5d9efc04b811b2f3c67178ece9137e87e4659aed9f1ae7a37b9e8d341fae706a",
+      "role": "menu-return",
+      "file_offset": "0x58b7700",
+      "byte_count": 614,
+      "assembly": "menu-return.asm",
+      "assembly_sha256": "e557907f11557204f57335b6cb4b1b475a84c37a2400ca64f6cc6c0190414928",
+      "assembly_windows": [
+        {
+          "start": "0x1458b8300",
+          "end_exclusive": "0x1458b8566"
+        }
+      ]
+    },
+    {
+      "start": "0x1402b77c0",
+      "end_exclusive": "0x1402b7c16",
+      "sha256": "0d65ca232ba2e36e64351042a4d0233eaa6edf0baafe79eb568490d3dfd16020",
+      "role": "end-action-registration",
+      "file_offset": "0x2b6bc0",
+      "byte_count": 1110,
+      "assembly": "end-action-registration.asm",
+      "assembly_sha256": "4027f0ef1dc6190bdeea15fa65b432df49e8f957b801b331cf249f6a6af0a8c2",
+      "assembly_windows": [
+        {
+          "start": "0x1402b7a1c",
+          "end_exclusive": "0x1402b7b10"
+        }
+      ]
+    },
+    {
+      "start": "0x1402a7cf0",
+      "end_exclusive": "0x1402a8146",
+      "sha256": "f6f54bd94725cd3052630032966380920ac79466f1c46809ff06e6e7662897a4",
+      "role": "interaction-registration",
+      "file_offset": "0x2a70f0",
+      "byte_count": 1110,
+      "assembly": "interaction-registration.asm",
+      "assembly_sha256": "3bead752718638739366c4d73718997ce9f1a3dc77b2938015ac89ec629011dd",
+      "assembly_windows": [
+        {
+          "start": "0x1402a7f4c",
+          "end_exclusive": "0x1402a8040"
+        }
+      ]
+    }
+  ],
+  "command_mapping": {
+    "table": "0x145df2800",
+    "actions": {
+      "Again": 6,
+      "Endless": 8,
+      "Menu": 9
+    },
+    "dispatcher_table": "0x146bedd3c",
+    "dispatcher": "0x1458bb9f0",
+    "destinations": {
+      "6": "0x1458bbc5e",
+      "8": "0x1458bc1a0",
+      "9": "0x1458bc4c6",
+      "10": "0x1458bc4af"
+    }
+  },
+  "component_ownership": {
+    "end_action_typeid": "3b7868c71c6f4f64e25ea32f3b354e93",
+    "interaction_typeid": "fa4b97b45afe582358501e3a717a5faa",
+    "end_action_getter": "0x1402b77c0",
+    "query": "0x1403a8d80",
+    "query_getters": [
+      "0x1402a7cf0",
+      "0x1402b77c0",
+      "0x1402b31d0"
+    ],
+    "interaction_getter": "0x1402a7cf0",
+    "border_getter": "0x1402a87d0",
+    "shadow_getter": "0x1402ab940",
+    "specialized_border_queries": [
+      "0x1403a2370",
+      "0x1403a2a50",
+      "0x1403aa7c0"
+    ],
+    "additional_shadow_query": "0x14039fa00",
+    "typed_end_action_clone": "0x1400ed9a0"
+  },
+  "source_refs": [
+    "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
+    "crates/azeroth-survivors-re/src/gameplay/terminal_view.rs",
+    "crates/azeroth-survivors-re/src/menu_state.rs",
+    "crates/azeroth-survivors-re/src/gameplay/mod.rs"
+  ],
+  "limitations": [
+    "Raw Ghidra imports use a generic x86_64 ABI and omit external data/callees; original Windows register/field/call instructions establish the reported contracts.",
+    "Native replay substitutes only declared zone/roundf and allocator-free seams; it executes neither Rust source nor native external callees, OS, network, graphics or games.",
+    "Source replacement construction is asynchronous: pending action order is retained until the Game option resolves, without asserting native thread, packet/ack or inter-frame timing parity.",
+    "The direct typed query/registration census is bounded; arbitrary raw ComponentId, computed/global hooks, indirect painters and full native/source instruction ownership remain gap41.",
+    "Compilation, input/rendering/DPI/device and original/rebuilt parity remain unverified.",
+    "Only exact selected assembly windows and decompiler line excerpts are curated; full owner hashes and REA identities remain recorded. Complete raw responses and binaries stay ignored and are reproducible from the selected input."
+  ],
+  "shared_account_manifest": "../run-account/manifest.json"
+}

@@ -1,0 +1,87 @@
+{
+  "date": "2026-10-18",
+  "target_version": "0.97.2",
+  "target_sha256": "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589",
+  "current_work_mode": "source-code buildup and static REA only; compiles are not required now",
+  "authority": "Source-recovery checkpoint; compilation and runtime checks are recorded separately",
+  "final_source_compile_status": "NOT RUN after final source edits; explicitly excluded until user resumes",
+  "final_source_test_status": "Authored tests retained; NOT RUN against final source",
+  "application_build_status": "NOT REQUIRED; no successful final application build claimed",
+  "game_launch_status": "NOT RUN",
+  "push_status": "NOT REQUESTED / NOT RUN; menu-parity no-push rule remains",
+  "pre_stop_attempts": [
+    {
+      "log": "runtime/guardians-0.97.2/source-unit-tests.log",
+      "result": "Failed: concurrently generated mob_loot_catalog.rs missing"
+    },
+    {
+      "log": "runtime/guardians-0.97.2/source-unit-tests-final.log",
+      "result": "12 passed, 1 failed; f32 threshold test expectation subsequently corrected; final additions not rerun"
+    },
+    {
+      "log": "runtime/guardians-0.97.2/source-integration-tests.log",
+      "result": "Did not complete guardian test execution; unrelated concurrently edited background.rs Vec3/[f32;3] compile errors"
+    }
+  ],
+  "native_instruction_fixtures": {
+    "generated_before_compilation_stop": true,
+    "total_cases": 358,
+    "scalar_curve_rescale": 306,
+    "state_and_timers": 36,
+    "lifecycle_and_rng": 16,
+    "limits": [
+      "Bounded emulation with explicit helper/zone/curve/powf seams; no original/rebuilt OS process or game execution.",
+      "Native output cases are not final Rust test-pass claims.",
+      "Windows CRT math and trigonometry parity remain unverified."
+    ]
+  },
+  "files": [
+    {
+      "path": "crates/azeroth-survivors-re/src/guardians/addon.rs",
+      "sha256": "ecbc37f824aa2317d5979c4f6df3fbe31ae3f378a2ab33ea69b5be5aa33b6f61"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/guardians/ai.rs",
+      "sha256": "464aaa5e15d5dabd86ce95609b21b0e94b18e11be75c925747ed825f7e6c011e"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/guardians/catalog.rs",
+      "sha256": "e8ebd6414213d0f5bfb6ff9a30113363dca2f8568c4b592c530ecf3599e4d3ae"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/guardians/mod.rs",
+      "sha256": "973c3183fc1e101db17d2797425f4844aaa537f864c672347c6be9d4fe2ac055"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/guardians/placement.rs",
+      "sha256": "64f3aa2c188dbcc3d3b0d9d7f52f3a00a7f8629c8e5b225ee2f198d090c845bd"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/guardians/rewards.rs",
+      "sha256": "938f1a62a0643610244acfda210d162c10a719f4e641133e74c94aa64e6d8fd0"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/guardians/scaling.rs",
+      "sha256": "bfdc16467f569bf7d07871ec14bc9b94822a9acc021b4cfd8e5535e40de48151"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/tests/fixtures/guardian-ai-native.json",
+      "sha256": "5b946e4bf52b84f49adcdb797dafa136875b5817a3d218d4482935cacdaf9069"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/tests/fixtures/guardian-lifecycle-native.json",
+      "sha256": "25a139524310fc7a56401e05b59e532191e09d36ba2f0a622edbdc08e0e0eb3c"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/tests/fixtures/guardians-native.json",
+      "sha256": "4f51ddee4f9aaab8eb880d38b41ad880e45abdaaa149de2a7dc5cad10b95628a"
+    }
+  ],
+  "remaining": [
+    "Real actor/world/terrain/navigation and spell/network adapters",
+    "Shared rewards, choice, inventory and save/account owners",
+    "Complete native addon unit selection, serialization/delivery/VM scheduling",
+    "Final source compilation/testing when explicitly resumed",
+    "Rendered/runtime and Windows parity"
+  ]
+}

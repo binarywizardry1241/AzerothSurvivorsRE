@@ -1,0 +1,47 @@
+{
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "method": "Unchanged selected-PE StreamWatch::feed instructions in Unicorn",
+  "seams": [
+    "Playback state/position, frame delta and monotonic poll times are controlled inputs.",
+    "Instant::duration_since subtracts supplied integer seconds/nanoseconds.",
+    "Logging is disabled after recording the native loss verdict; no decoder, device or game process runs.",
+    "The healthy delayed-poll case reproduces a native diagnostic false positive, not audible loss."
+  ],
+  "cases": [
+    {
+      "name": "healthy_regular_poll",
+      "polls": 182,
+      "native_warning_count": 0,
+      "warnings": [],
+      "actual_playback_loss": 0.0
+    },
+    {
+      "name": "healthy_poll_delayed_400ms",
+      "polls": 182,
+      "native_warning_count": 1,
+      "warnings": [
+        {
+          "counted": 1.0000000000000016,
+          "advanced": 0.5999999999999979,
+          "span": 0.6,
+          "lost": 0.4000000000000037
+        }
+      ],
+      "actual_playback_loss": 0.0
+    },
+    {
+      "name": "real_playback_freeze_1200ms",
+      "polls": 3,
+      "native_warning_count": 1,
+      "warnings": [
+        {
+          "counted": 1.4,
+          "advanced": 0.19999999999999998,
+          "span": 1.4,
+          "lost": 1.2
+        }
+      ],
+      "actual_playback_loss": 1.2
+    }
+  ]
+}

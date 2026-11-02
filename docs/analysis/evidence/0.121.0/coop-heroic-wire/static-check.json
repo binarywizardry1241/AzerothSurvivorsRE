@@ -1,0 +1,73 @@
+{
+  "wire_fixtures": [
+    {
+      "kind": "hero",
+      "rich": false,
+      "wire_hex": "0400008000000000000100000041080100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000c000000000000000000000000000000660700000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000"
+    },
+    {
+      "kind": "hero",
+      "rich": true,
+      "wire_hex": "040000800000000000010000004108010000000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f00000010000000110000001200000013000000ffffffff00000000b2040000ffffffff00000000b5040000ffffffff00000000b8040000ffffffff00000000bb040000ffffffff00000000be040000ffffffff00000000c1040000ffffffff000102030405060708090a0b0c0d0e0f10111203000000e9030000ffea03000028e9030000000c000000000102030405ff05040302016c07000003000000782c7900000000000000000000000000000000000000000000000000000000000000000000000000000100000000"
+    },
+    {
+      "kind": "state",
+      "wire_hex": "0f0000803f02010300000001040000000500000006000000070000000800000005110000000000c03f00000040040600080000000000000000000000000000000000"
+    },
+    {
+      "kind": "state-party",
+      "wire_hex": "0f0000803f02010300000001040000000500000006000000070000000800000005110000000000c03f00000040040600080000000000000000000000000000000001010000000844332211fe064d0000000100000000"
+    },
+    {
+      "kind": "marks-pity",
+      "marks_bits": 0,
+      "wire_hex": "140000000003000000110000001200000011000000"
+    },
+    {
+      "kind": "marks-pity",
+      "marks_bits": 1065353216,
+      "wire_hex": "140000803f03000000110000001200000011000000"
+    },
+    {
+      "kind": "marks-pity",
+      "marks_bits": 2143294004,
+      "wire_hex": "143412c07f03000000110000001200000011000000"
+    },
+    {
+      "kind": "marks-pity",
+      "marks_bits": 2147483648,
+      "wire_hex": "140000008003000000110000001200000011000000"
+    }
+  ],
+  "admission_cases": 6048,
+  "item_collector_cases": 16,
+  "pity_count_clamp_cases": 256,
+  "party_active_set_cases": 36,
+  "party_heroic_gate_cases": 256,
+  "state_scalar_cases": 81,
+  "private_reward_rank_cases": 1536,
+  "whole_private_swap_cases": 4,
+  "mark_scalar_projection_cases": 4,
+  "tester_game_rank_argument_cases": 1,
+  "host_admission_metadata_rank_cases": 1536,
+  "admission_sha256": "0018380c5becd2d2bbfad5706672f26e32d744649b5155de241f9f86b9a38968",
+  "original_instruction_steps": 78108,
+  "boss_counter_domain": "shared-world",
+  "private_swap_instructions": 733,
+  "private_swap_game_accesses_checked": 366,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "decoded_instructions": 2929,
+  "source_connections_checked": true,
+  "compiled": false,
+  "target_executed": false,
+  "seams": [
+    "Typed append writers collect bytes; allocator/file/network/UI code does not run.",
+    "Admission starts after the effective host rank helper with synthetic Hero fields."
+  ],
+  "parity": "unverified"
+}

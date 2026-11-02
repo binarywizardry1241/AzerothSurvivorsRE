@@ -1,0 +1,97 @@
+{
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "native_observations": [
+    {
+      "role": "expiry",
+      "virtual_address": "0x145949470",
+      "end_exclusive": "0x14594980a",
+      "file_offset": "0x5948870",
+      "byte_count": 922,
+      "sha256": "726c61ff4ab6aaa960474478404edca74f85491714d1cb712d048ab20d82e23e",
+      "assembly": "expiry.asm",
+      "rea_evidence_id": "ev_6ff02bd5a0b1395480d6c18b4ee3979044c213371fe1c4e4b31a1c51b9ae240d",
+      "provider": "Ghidra 12.1.4",
+      "analysis_profile_digest": "7546622883c0bb654e6e98f133810a59a3cf434061de8a83350296f056a53332",
+      "pseudocode": "expiry.ghidra.c",
+      "text_sha256": {
+        "expiry.asm": "7e6481bdf65e90597d39d0c450586e89cf8700196fc19893ec5449777dd53937",
+        "expiry.ghidra.c": "73f6411542bcc5a3db790e02e7e55cf40e7d09606b327d9565cbdb401e16bea4"
+      }
+    },
+    {
+      "role": "remove",
+      "virtual_address": "0x145926f60",
+      "end_exclusive": "0x14592700e",
+      "file_offset": "0x5926360",
+      "byte_count": 174,
+      "sha256": "24d8f96a993cd5b0111a127a39dd4ed001af445345a67efa1eb6942405177097",
+      "assembly": "remove.asm",
+      "text_sha256": {
+        "remove.asm": "0f511a28628f2a63f943e9659a124283463133cbf239d2a9af31535437952af3"
+      }
+    },
+    {
+      "role": "vector-remove",
+      "virtual_address": "0x145997da0",
+      "end_exclusive": "0x145997eda",
+      "file_offset": "0x59971a0",
+      "byte_count": 314,
+      "sha256": "a0ba93938502310e929b88a777f5d48475f7dc4bc85476afc5ec70018323c7d5",
+      "assembly": "vector-remove.asm",
+      "text_sha256": {
+        "vector-remove.asm": "aa2db56be3fb1b8592dc8f0b56a18a4cb9739fe16e830a73ba9d7052d928cc53"
+      }
+    },
+    {
+      "role": "begin-passive",
+      "virtual_address": "0x145946220",
+      "end_exclusive": "0x145946559",
+      "file_offset": "0x5945620",
+      "byte_count": 825,
+      "sha256": "8db0a6a83814bc54d32dd88f0b0c7883ce606b4c30a34ae4f8854080eaa23fd3",
+      "assembly": "begin-passive.asm",
+      "rea_evidence_id": "ev_f0b5106ed573f12a4e90e60add436e36e9c602571cd0e833219bdd66f070538e",
+      "provider": "Ghidra 12.1.4",
+      "analysis_profile_digest": "d3cb6196c5dde2596eddbe912783c519cfcdc2a048bec9407dfeb0eaf52fa7b6",
+      "pseudocode": "begin-passive.ghidra.c",
+      "text_sha256": {
+        "begin-passive.asm": "d9c9fc6a9a2a98e4c31e033208382e071692c11400d1efe191d4dd3ef01b1e3b",
+        "begin-passive.ghidra.c": "682a6df2e0f7ed8629c243d8ce8b8373dec0ec1f6d1dadad49525020b8482474"
+      }
+    },
+    {
+      "role": "multi-hit",
+      "virtual_address": "0x145945c10",
+      "end_exclusive": "0x145946089",
+      "file_offset": "0x5945010",
+      "byte_count": 1145,
+      "sha256": "fdbd960bb97c427c84cf11c014f285b69a26a173608d6fa19f3cd08ea8fa63b4",
+      "assembly": "multi-hit.asm",
+      "rea_evidence_id": "ev_2cc9e83ef4090fc5eb483ab41d327c8dc06404673f42c3c24e320d25acb4e94b",
+      "provider": "Ghidra 12.1.4",
+      "analysis_profile_digest": "6eadab4482a6c3cf1423b798b4624525a12efb8273106030a3b1e0e671e489c8",
+      "pseudocode": "multi-hit.ghidra.c",
+      "text_sha256": {
+        "multi-hit.asm": "e27e8b3d126c074c98d078c8682cc6ac3eb832c76f567a5ef2f5e2dbf17a4e49",
+        "multi-hit.ghidra.c": "dc95a3584a1cc6ee831eb7f033e3977464cda2dc78ab12b1203fdf11d8b2fee4"
+      }
+    },
+    {
+      "role": "deadline-expiry",
+      "virtual_address": "0x14590b27a",
+      "end_exclusive": "0x14590b36a",
+      "file_offset": "0x590a67a",
+      "byte_count": 240,
+      "sha256": "c32fd46150f058120f1124793984c5e31e7fc026e0a16a908cdfc676f63bbe91",
+      "assembly": "deadline-expiry.asm",
+      "text_sha256": {
+        "deadline-expiry.asm": "328ef820089cf5cf9dc7da89785a2bc328748bd715962cdfffd1253fb751d772"
+      }
+    }
+  ],
+  "cap_extract": "../game-mode-audit/native-manifest.json#totem-kind-cap-branch",
+  "limits": [
+    "Ghidra imports unchanged headerless x86-64 function slices. Its raw importer uses a GCC ABI; Windows registers, unmapped external data and external jump tables require PE instruction tracing.",
+    "Static recovery and instruction vectors do not establish compiled source, gameplay or presentation parity."
+  ]
+}

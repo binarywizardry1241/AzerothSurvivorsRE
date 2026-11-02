@@ -1,0 +1,170 @@
+{
+  "target_sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+  "ranges": {
+    "export-clock": {
+      "start": "0x145002900",
+      "end_exclusive": "0x145002944",
+      "sha256": "259f36948195719812cfac2539669966311b4870ea62f76afa1f3aec22333d06"
+    },
+    "export-account": {
+      "start": "0x145836bb0",
+      "end_exclusive": "0x145836c40",
+      "sha256": "babb7ad0cbc3703385c661bbc7a3f34da3ffc43d726738caee51b4c94e0f00f6"
+    },
+    "ordinary-write": {
+      "start": "0x145831e10",
+      "end_exclusive": "0x1458324fa",
+      "sha256": "aebb1d4489d105bec732ffb0609c1a3903faa6cc8e417f6d4afc528a5c88b958"
+    },
+    "backup-clock": {
+      "start": "0x145832209",
+      "end_exclusive": "0x145832246",
+      "sha256": "e12f719edf135c8e68b2e40529d99040071655f1e2e6615c12829a70433c6993"
+    },
+    "utc-calendar": {
+      "start": "0x145837500",
+      "end_exclusive": "0x145837792",
+      "sha256": "48be199e8e654f6b91606bf78839050b117ca4cacaf210c43205e0b5f2c463e5"
+    },
+    "export-input": {
+      "start": "0x1400ab984",
+      "end_exclusive": "0x1400aba00",
+      "sha256": "3e63b780ef0200e6fa499994245ce805aa525005da8b128e18cbd254f210e971"
+    },
+    "import-account": {
+      "start": "0x145836cb0",
+      "end_exclusive": "0x145836e33",
+      "sha256": "8cf3a357f099a2adb2e0900b4321bf053c82ec5b227105cb1ce436f4bb890c74"
+    },
+    "parse": {
+      "start": "0x145829cf0",
+      "end_exclusive": "0x145829f1f",
+      "sha256": "324b76bcdb55acfbb7983c0c7e9c05625d1773c9053192ab6abd2016cbb60843"
+    },
+    "csv": {
+      "start": "0x1459ce220",
+      "end_exclusive": "0x1459ce895",
+      "sha256": "1fc3e403e5da2f578487ace873b846c1be22acc7cf8bc78dbc104a92cc922d89"
+    },
+    "split": {
+      "start": "0x1459d1fe0",
+      "end_exclusive": "0x1459d219a",
+      "sha256": "6e4b835bc62a6dadce34f7c9cdbfbb1f8f24e21faf5ad6e382a2e2bb33eda8dd"
+    },
+    "memchr": {
+      "start": "0x145cefd80",
+      "end_exclusive": "0x145cefe65",
+      "sha256": "8a015eaf40bf56cb62915e956f9224077543e3aeca0816e9e0091a5cb12f76be"
+    },
+    "difficulty": {
+      "start": "0x145829f20",
+      "end_exclusive": "0x145829f80",
+      "sha256": "bf99351e88ade87622ed3e202934f508e1cb295ee475b864c9278ce2309dad26"
+    },
+    "adjust": {
+      "start": "0x145829f80",
+      "end_exclusive": "0x145829ff6",
+      "sha256": "b0cbf3316af8ea32c3dd233a364777822453a62156aa46cd4b6ca9d8f9bf2480"
+    },
+    "reward": {
+      "start": "0x14582a000",
+      "end_exclusive": "0x14582a068",
+      "sha256": "3bf587e8dc5cd52b29b09050594150c8ab493f92bbadfee12f3a8ea91f1de067"
+    }
+  },
+  "descriptors": [
+    {
+      "title": "Enemy density",
+      "description": "More of the horde, each kill worth less",
+      "minimum": 100,
+      "maximum": 500,
+      "step": 25,
+      "weight_bits": "3d4ccccd"
+    },
+    {
+      "title": "Enemy health",
+      "description": "Health of the horde, elites, guardians and bosses",
+      "minimum": 100,
+      "maximum": 500,
+      "step": 25,
+      "weight_bits": "3ecccccd"
+    },
+    {
+      "title": "Enemy damage",
+      "description": "How hard every enemy hits",
+      "minimum": 100,
+      "maximum": 300,
+      "step": 10,
+      "weight_bits": "3f19999a"
+    },
+    {
+      "title": "Enemy speed",
+      "description": "How fast every enemy runs",
+      "minimum": 100,
+      "maximum": 150,
+      "step": 5,
+      "weight_bits": "40000000"
+    }
+  ],
+  "descriptor_range": {
+    "start": "0x146ccb850",
+    "byte_count": 192,
+    "sha256": "6d3a919ed785444837c7497fb8d065d35e54cd76e4576b468618575ad8c86210"
+  },
+  "fixture": {
+    "path": "docs/analysis/evidence/0.109.0/runmods/native-vectors.json",
+    "sha256": "8fb2a82f8976d19b1dc8e195c89037cb559b569a3b00487211af61af8b04a3d5"
+  },
+  "clocks": [
+    {
+      "duration_failed": false,
+      "seconds": 0,
+      "result": 0
+    },
+    {
+      "duration_failed": false,
+      "seconds": 1,
+      "result": 1
+    },
+    {
+      "duration_failed": false,
+      "seconds": 1700000000,
+      "result": 1700000000
+    },
+    {
+      "duration_failed": false,
+      "seconds": 18446744073709551615,
+      "result": 18446744073709551615
+    },
+    {
+      "duration_failed": true,
+      "seconds": 0,
+      "result": 0
+    },
+    {
+      "duration_failed": true,
+      "seconds": 1700000000,
+      "result": 0
+    },
+    {
+      "duration_failed": true,
+      "seconds": 18446744073709551615,
+      "result": 0
+    }
+  ],
+  "checks": {
+    "clock": 7,
+    "backup_clock": 7,
+    "calendar": 20,
+    "parse": 121,
+    "descriptors": 4,
+    "formulas": 625,
+    "steps": 140
+  },
+  "limits": [
+    "Clock/duration APIs are synthetic host seams; only native Result selection executes.",
+    "Allocation/free, memcmp and RawVec growth use explicit scratch-only seams for CSV parsing; UTC formatting is a field-capture seam.",
+    "Page layout, complete Save schema/envelope and filesystem timing are not replayed here.",
+    "No OS clock/file mutation, compilation, application or original/rebuilt comparison."
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "target": {
+    "version": "0.109.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+    "size_bytes": 140447744
+  },
+  "owners": [
+    {
+      "role": "fit",
+      "start": "0x14018f300",
+      "end_exclusive": "0x14018f75e",
+      "sha256": "0622403a9cace940e483cf7a04244dd0540f839b43e82a70c3d316b2413e4b42",
+      "evidence_id": "ev_fd4fbbe2b4226b79144ef577804af83f6640e26b28a2287f99b416ce902ac1e0",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "1afd46343e95b9c0e2abcb1cb6f233472127cf388582976b6285757e5d9c6fe6"
+    },
+    {
+      "role": "scale",
+      "start": "0x140190700",
+      "end_exclusive": "0x140191126",
+      "sha256": "c3a2aa693fdbb0e685e58b071a0a1a8df3f80caee790f003eab645734329df1b",
+      "evidence_id": "ev_ae1bd0a6fbd588bec21b80b901347fddbc32ffb7f2223815520b71aae8742363",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "90c803e0db0a6ae7a5b0646360ca4c0f124d930de7a11c85668a35dd042cb050"
+    }
+  ],
+  "ranges": [
+    {
+      "role": "fit",
+      "start": "0x14018f60f",
+      "end_exclusive": "0x14018f6ae",
+      "sha256": "c08a64dc8d6dc8ab8edce81b7bd4c6588afcf8f88a2eab7b4ad531561a073298",
+      "assembly": "fit.asm",
+      "assembly_sha256": "2fbc1e85b92c2efe7792d6648d795700ffa2ac7c7b16d17faa28364af57dc75e"
+    },
+    {
+      "role": "target-fit",
+      "start": "0x140190c4a",
+      "end_exclusive": "0x140190ce1",
+      "sha256": "0150877950fd6b58dabc677f09a2d66099514396a3f1df24f4dde943ca2bdd08",
+      "assembly": "target-fit.asm",
+      "assembly_sha256": "e9cd63830252fd01181fad0002caea68bf38d823edaaab70cfbd1487dcf28983"
+    },
+    {
+      "role": "camera-product",
+      "start": "0x140190f84",
+      "end_exclusive": "0x140190faf",
+      "sha256": "b7899f11992116bd5ee24b6bf94529efc6265d8f4f53ff21ee2ab82c323ca026",
+      "assembly": "camera-product.asm",
+      "assembly_sha256": "af84f1df0b7c6f6f399ec36a4b333c539444cd6f43c539447901dd5c9a26d925"
+    }
+  ],
+  "limits": "Current Canvas-present arithmetic only; window/query/camera membership is supplied. Other scale modes, global scheduling, renderer/DPI/runtime and original/rebuilt parity are unverified."
+}

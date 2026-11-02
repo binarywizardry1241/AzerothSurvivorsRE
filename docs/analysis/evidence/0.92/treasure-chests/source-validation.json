@@ -1,0 +1,91 @@
+{
+  "date": "2026-10-18",
+  "target_version": "0.92.0",
+  "target_sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+  "scope": "Recovered normal-run chest source component; no live gameplay engine or menu world-entry integration.",
+  "source_files": [
+    {
+      "path": "crates/azeroth-survivors-re/src/lib.rs",
+      "sha256": "2e7c78ea71b6f1c73f7c3011950a0ae3c948624356097663feb6e9ffab5c823d"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/treasure_chests/mod.rs",
+      "sha256": "4407615ea2e354024783e67736015a2f617423951737c070ab63aa19abfacf82"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/treasure_chests/catalog.rs",
+      "sha256": "28274fc260c46621d3fac1e5cf9098505108024e09e41cc446e434ba815c79b9"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/tests/treasure_chests.rs",
+      "sha256": "127f41595dba959c7edea906cd4b4b00c3a4f705881f1106669539d4eff66c27"
+    },
+    {
+      "path": "scripts/recover-treasure-chests.py",
+      "sha256": "56d528162ceb1b1bb03a55c6019788f3bd4def35cb6202edd7f96f11029f3a20"
+    },
+    {
+      "path": "scripts/recover-treasure-chest-fixtures.py",
+      "sha256": "077532f41dfb9cf90060a7c1324c3798cf1f2996b8c3fb49d00226e5eb8b932f"
+    }
+  ],
+  "native_oracle": {
+    "path": "crates/azeroth-survivors-re/tests/fixtures/treasure-chests-native.json",
+    "sha256": "2d6644c3764f6b6779d10cada5a6580434303f07b9ba90a17b4ca6f629f955d1",
+    "reproduction_script": "scripts/recover-treasure-chest-fixtures.py",
+    "reproduction": "PASS; identical fixture SHA256",
+    "case_counts": {
+      "clock_cases": 3,
+      "timer_cases": 7,
+      "range_rng_cases": 6,
+      "eviction_cases": 6,
+      "price_cases": 8
+    },
+    "rng_outputs": 36,
+    "limits": [
+      "Only named instruction ranges execute. The already-mapped PE supplies original constants and SSE comparison masks.",
+      "Clock fixtures inject state/delta at the active-state gate; deferred initialization and full tick are excluded.",
+      "Timer does not exercise real placement or creation. Eviction does not exercise native removal effects or append.",
+      "Price scope ends after affordability and gold/next-price writes; purchase counters/UI/message/removal are excluded.",
+      "RNG state is injected. Full run seeding/shared consumers and trigonometry are excluded.",
+      "These are bounded native-code oracle fixtures, not original-game or rendered/rebuilt parity verification."
+    ]
+  },
+  "validation": [
+    {
+      "command": "./scripts/cargo test --profile menu --locked --offline -p azeroth-survivors-re --test treasure_chests",
+      "exit_code": 0,
+      "result": "18 passed, 0 failed",
+      "compile_seconds": 4.49,
+      "test_seconds": 0.0,
+      "log": "runtime/treasure-chest-implementation/tests-final.log"
+    },
+    {
+      "command": "./scripts/cargo build --profile menu --locked --offline -p azeroth-survivors-re --lib --bin AzerothSurvivorsRE",
+      "exit_code": 0,
+      "result": "library and application compiled; Mach-O arm64 application",
+      "seconds": 0.3,
+      "log": "runtime/treasure-chest-implementation/build.log"
+    }
+  ],
+  "initial_failure": "First17-test run:16passed/1failed because test grid covered only positiveXY despite random negative samples. Fixed fixture origin/size to cover full circle; production placement did not change for that fix.",
+  "review_correction": "Final original-instruction review verified timer stage does not independently recheck live run state after purchases. Added ActiveTick from clock entry and a same-frame regression; final18tests pass.",
+  "warnings": [
+    "Existing binary emitted17unused-code warnings.",
+    "block0.1.6 future-incompatibility notice remains."
+  ],
+  "not_run": [
+    "original game process",
+    "rebuilt game process",
+    "live terrain/entity/lootUI/addon adapter",
+    "installed-save operations",
+    "network adapters",
+    "Windows build",
+    "GitHub push"
+  ],
+  "limits": [
+    "The30oraclecases validate named instruction scopes with declaredstubs; they do not establish livegameplay parity.",
+    "Trigonometry/hypot CRT cross-platform bit parity unverified.",
+    "Default-disabled extra pickup mode enable/batch not implemented."
+  ]
+}

@@ -1,0 +1,643 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.113.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+    "size_bytes": 141932032,
+    "identity_manifest": "docs/analysis/coverage/targets.json",
+    "version_provenance": "matching_embedded_updater_and_dialog_markers",
+    "runtime_data": {
+      "directory": "installed-game/Data",
+      "archives": [
+        {
+          "path": "installed-game/Data/patch-2.MPQ",
+          "size_bytes": 4690878,
+          "sha256": "366edee41642a5dda22ed90cc252b543ee375755b7e8bee81e2a6cd59fd7b286"
+        },
+        {
+          "path": "installed-game/Data/patch-3.MPQ",
+          "size_bytes": 2580491,
+          "sha256": "75c35ca5b8075197252581e301e8900143007fdf37b493ad271ae1bd39f95a29"
+        },
+        {
+          "path": "installed-game/Data/patch-4.MPQ",
+          "size_bytes": 22769233,
+          "sha256": "2e895e0e0ff6a4781d0e0aaa6ea7d32ed1fe36841e17806fe1855cb880d18865"
+        },
+        {
+          "path": "installed-game/Data/patch-5.MPQ",
+          "size_bytes": 267019039,
+          "sha256": "5008e56873718b468fa5ae1b697dcbe4f5da9ffe6c793f3ef9939dbd7716f3d8"
+        },
+        {
+          "path": "installed-game/Data/patch-6.MPQ",
+          "size_bytes": 212228,
+          "sha256": "cad6ff59b5df028a507581befb836fce07894057e15fe63d9fdc553a95b7ceb5"
+        },
+        {
+          "path": "installed-game/Data/patch-7.MPQ",
+          "size_bytes": 276649,
+          "sha256": "f5fb15b181cf01cc6b5cf2ee9948a27ecc4ba27bab9a8bec584df4381932aae6"
+        },
+        {
+          "path": "installed-game/Data/patch-8.MPQ",
+          "size_bytes": 4155417,
+          "sha256": "ae3aaa29cadb7aeba8255f5b4a8305c7cbecfe8f0d3ed9646522113d16c3e12e"
+        },
+        {
+          "path": "installed-game/Data/patch-9.MPQ",
+          "size_bytes": 5739608,
+          "sha256": "ffff8ea890bdaf91a1680543ac60106db92132bc2210105279610fa73661a524"
+        },
+        {
+          "path": "installed-game/Data/patch.MPQ",
+          "size_bytes": 1340199244,
+          "sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf"
+        }
+      ]
+    }
+  },
+  "gap_ids": [
+    41,
+    68
+  ],
+  "lead": "Q41-M03-name-query-1458646d0",
+  "native_spans": [
+    {
+      "start": "0x1458646d0",
+      "end_exclusive": "0x1458670a2",
+      "sha256": "f5b6f0ddd41edf70b437bb69f1728aebb0f9b7e572bf5cb6323dcb90524d9894"
+    },
+    {
+      "start": "0x1458d4300",
+      "end_exclusive": "0x1458d459c",
+      "sha256": "e17a738cc57724fee0c26cc31bc03dab7fa92b4303aed0c646bc4ea895255cef"
+    }
+  ],
+  "ghidra_observations": [
+    {
+      "operation": "procedure_info",
+      "parameters": {
+        "procedure": "0x1458646d0"
+      },
+      "evidence_id": "ev_b2b31d84e216b43c4dea23afa8a0ff1d351be5391862c05b199e649a77770600",
+      "response_sha256": "459170170ef599165d096eb33b212e32645c1e2726d7b97a232254e403ade85c"
+    },
+    {
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x1458646d0"
+      },
+      "evidence_id": "ev_bbfe3b7745be6e230b822f0914e3b0ba8501a484f37fdaf20712440fc4ad557c",
+      "response_sha256": "56a5650dc50220f0339e7568050a791df71437d060425f9553ab55e8bff46a38"
+    },
+    {
+      "operation": "procedure_info",
+      "parameters": {
+        "procedure": "0x1458630e0"
+      },
+      "evidence_id": "ev_ef3af27e137a807c81e11c38676df6aa638154e5fa9ad14448a49771e5080ddc",
+      "response_sha256": "db7f4bae00779183323b958be0bb3677f7eb131136b2c165f93b65112d6dce1d"
+    },
+    {
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x1458630e0"
+      },
+      "evidence_id": "ev_3c57e7f5dc8db29dc1b2b673aa32f702f2ae32067586fe1b134182ce6dd5da81",
+      "response_sha256": "b8e6352574004dd93996d52097f145f08dda0d919016937085f56146997a817a"
+    },
+    {
+      "operation": "procedure_info",
+      "parameters": {
+        "procedure": "0x1458d4300"
+      },
+      "evidence_id": "ev_a5c72ddfe9a42e5401f79183bb953fd7d53902963f610c06e1f1e9fb222663a0",
+      "response_sha256": "be75d79415887f349b8a74935375a58fd4e7b7adf5ca49171c5f0d86ca834e2f"
+    },
+    {
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x1458d4300"
+      },
+      "evidence_id": "ev_3e43a8c4cc93f2a6721b33ba61a4a50513dc6e8a96058f6897204f09469d78ac",
+      "response_sha256": "a1db014f30593b460d72d71c90c93a16bc03dc77fb9f3960e0bcb68a4d0cbf2c"
+    },
+    {
+      "operation": "procedure_info",
+      "parameters": {
+        "procedure": "0x1458ca2f0"
+      },
+      "evidence_id": "ev_2fa70378662f798fad387c69ee0b275d04ee32012d9c52d82b2c1ef4c5dc18b8",
+      "response_sha256": "f6ce588f587b5b9fb6cec3b5e48894806af058f8531501a3b8d9ebe5c2cceed6"
+    },
+    {
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x1458ca2f0"
+      },
+      "evidence_id": "ev_284afdb04ae914e2a0fefecd8b489314496bc74dfcc71c259afdafabb25dd7c6",
+      "response_sha256": "33e0931bd59b7f477a37059ce1a52319172d959da9bcc09ca0dc9999c2be1ccb"
+    },
+    {
+      "operation": "procedure_info",
+      "parameters": {
+        "procedure": "0x1458ded90"
+      },
+      "evidence_id": "ev_49bd7123ee0b16dc380d4061040b50ceb6160fe0f01a3e6efff22439a32be46c",
+      "response_sha256": "f7d8af63282b50445369d9ef807f490ade5deecfd33fac176dab773bad81e559"
+    },
+    {
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x1458ded90"
+      },
+      "evidence_id": "ev_b8358a5a14ef70ecc809adf935804992f46c3a7c4d53b56501f775a58ceb67af",
+      "response_sha256": "36a626a3d34aa853c592185323d6ba14ebce1a42ffdeb68a7f142b1071d7b1af"
+    },
+    {
+      "operation": "procedure_info",
+      "parameters": {
+        "procedure": "0x1458dd920"
+      },
+      "evidence_id": "ev_bf072153330e60e753d82b91ea8ab563647f48da594e54b4dff1028f06075555",
+      "response_sha256": "da0aefd1e0f2b8bea927a18f8b3db759e0209a882323f739eb2ff2f377ae66c0"
+    },
+    {
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x1458dd920"
+      },
+      "evidence_id": "ev_05a95922fcdaa0a747645d0a4cda31db122a6f294fc3fa73f64a355018a77194",
+      "response_sha256": "ab37a26fe70898c9c7cd9519ed25be770f6789bfd7868627193b28f6787429a1"
+    }
+  ],
+  "native_cases": 2236,
+  "result_sha256": "4dcb5ff6eb65b514c23d15156315b7a95c0bc43ec9c19f1a6764db5baef4ea7a",
+  "fixtures": [
+    {
+      "guid": 0,
+      "name": "",
+      "race": 4,
+      "sex": 1,
+      "class": 8,
+      "opcode": 81,
+      "packet_hex": "00000000000000000000040000000100000008000000",
+      "decoded": {
+        "guid": 0,
+        "name": "",
+        "race": 4,
+        "gender": 1,
+        "class": 8
+      }
+    },
+    {
+      "guid": 0,
+      "name": "Tester",
+      "race": 4,
+      "sex": 1,
+      "class": 8,
+      "opcode": 81,
+      "packet_hex": "00000000000000005465737465720000040000000100000008000000",
+      "decoded": {
+        "guid": 0,
+        "name": "Tester",
+        "race": 4,
+        "gender": 1,
+        "class": 8
+      }
+    },
+    {
+      "guid": 0,
+      "name": "龍é",
+      "race": 4,
+      "sex": 1,
+      "class": 8,
+      "opcode": 81,
+      "packet_hex": "0000000000000000e9be8dc3a90000040000000100000008000000",
+      "decoded": {
+        "guid": 0,
+        "name": "龍é",
+        "race": 4,
+        "gender": 1,
+        "class": 8
+      }
+    },
+    {
+      "guid": 0,
+      "name": "AAAAAAAAAAAAAAAAAAAAAAAA",
+      "race": 4,
+      "sex": 1,
+      "class": 8,
+      "opcode": 81,
+      "packet_hex": "00000000000000004141414141414141414141414141414141414141414141410000040000000100000008000000",
+      "decoded": {
+        "guid": 0,
+        "name": "AAAAAAAAAAAAAAAAAAAAAAAA",
+        "race": 4,
+        "gender": 1,
+        "class": 8
+      }
+    },
+    {
+      "guid": 0,
+      "name": "AAAAAAAAAAAAAAAAAAAAAAAAA",
+      "race": 4,
+      "sex": 1,
+      "class": 8,
+      "opcode": 81,
+      "packet_hex": "0000000000000000414141414141414141414141414141414141414141414141410000040000000100000008000000",
+      "decoded": {
+        "guid": 0,
+        "name": "AAAAAAAAAAAAAAAAAAAAAAAAA",
+        "race": 4,
+        "gender": 1,
+        "class": 8
+      }
+    },
+    {
+      "guid": 0,
+      "name": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "race": 4,
+      "sex": 1,
+      "class": 8,
+      "opcode": 81,
+      "packet_hex": "0000000000000000414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141410000040000000100000008000000",
+      "decoded": {
+        "guid": 0,
+        "name": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "race": 4,
+        "gender": 1,
+        "class": 8
+      }
+    },
+    {
+      "guid": 0,
+      "name": "abc\u0000def",
+      "race": 4,
+      "sex": 1,
+      "class": 8,
+      "opcode": 81,
+      "packet_hex": "0000000000000000616263006465660000040000000100000008000000",
+      "decoded": {
+        "guid": 0,
+        "name": "abc",
+        "race": 1024,
+        "gender": 256,
+        "class": 2048
+      }
+    },
+    {
+      "guid": 1,
+      "name": "",
+      "race": 4,
+      "sex": 1,
+      "class": 8,
+      "opcode": 81,
+      "packet_hex": "01000000000000000000040000000100000008000000",
+      "decoded": {
+        "guid": 1,
+        "name": "",
+        "race": 4,
+        "gender": 1,
+        "class": 8
+      }
+    },
+    {
+      "guid": 1,
+      "name": "Tester",
+      "race": 4,
+      "sex": 1,
+      "class": 8,
+      "opcode": 81,
+      "packet_hex": "01000000000000005465737465720000040000000100000008000000",
+      "decoded": {
+        "guid": 1,
+        "name": "Tester",
+        "race": 4,
+        "gender": 1,
+        "class": 8
+      }
+    },
+    {
+      "guid": 1,
+      "name": "龍é",
+      "race": 4,
+      "sex": 1,
+      "class": 8,
+      "opcode": 81,
+      "packet_hex": "0100000000000000e9be8dc3a90000040000000100000008000000",
+      "decoded": {
+        "guid": 1,
+        "name": "龍é",
+        "race": 4,
+        "gender": 1,
+        "class": 8
+      }
+    },
+    {
+      "guid": 1,
+      "name": "AAAAAAAAAAAAAAAAAAAAAAAA",
+      "race": 4,
+      "sex": 1,
+      "class": 8,
+      "opcode": 81,
+      "packet_hex": "01000000000000004141414141414141414141414141414141414141414141410000040000000100000008000000",
+      "decoded": {
+        "guid": 1,
+        "name": "AAAAAAAAAAAAAAAAAAAAAAAA",
+        "race": 4,
+        "gender": 1,
+        "class": 8
+      }
+    },
+    {
+      "guid": 1,
+      "name": "AAAAAAAAAAAAAAAAAAAAAAAAA",
+      "race": 4,
+      "sex": 1,
+      "class": 8,
+      "opcode": 81,
+      "packet_hex": "0100000000000000414141414141414141414141414141414141414141414141410000040000000100000008000000",
+      "decoded": {
+        "guid": 1,
+        "name": "AAAAAAAAAAAAAAAAAAAAAAAAA",
+        "race": 4,
+        "gender": 1,
+        "class": 8
+      }
+    },
+    {
+      "guid": 1,
+      "name": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "race": 4,
+      "sex": 1,
+      "class": 8,
+      "opcode": 81,
+      "packet_hex": "0100000000000000414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141410000040000000100000008000000",
+      "decoded": {
+        "guid": 1,
+        "name": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "race": 4,
+        "gender": 1,
+        "class": 8
+      }
+    },
+    {
+      "guid": 1,
+      "name": "abc\u0000def",
+      "race": 4,
+      "sex": 1,
+      "class": 8,
+      "opcode": 81,
+      "packet_hex": "0100000000000000616263006465660000040000000100000008000000",
+      "decoded": {
+        "guid": 1,
+        "name": "abc",
+        "race": 1024,
+        "gender": 256,
+        "class": 2048
+      }
+    },
+    {
+      "guid": 9223372036854775808,
+      "name": "",
+      "race": 4,
+      "sex": 1,
+      "class": 8,
+      "opcode": 81,
+      "packet_hex": "00000000000000800000040000000100000008000000",
+      "decoded": {
+        "guid": 9223372036854775808,
+        "name": "",
+        "race": 4,
+        "gender": 1,
+        "class": 8
+      }
+    },
+    {
+      "guid": 9223372036854775808,
+      "name": "Tester",
+      "race": 4,
+      "sex": 1,
+      "class": 8,
+      "opcode": 81,
+      "packet_hex": "00000000000000805465737465720000040000000100000008000000",
+      "decoded": {
+        "guid": 9223372036854775808,
+        "name": "Tester",
+        "race": 4,
+        "gender": 1,
+        "class": 8
+      }
+    },
+    {
+      "guid": 9223372036854775808,
+      "name": "龍é",
+      "race": 4,
+      "sex": 1,
+      "class": 8,
+      "opcode": 81,
+      "packet_hex": "0000000000000080e9be8dc3a90000040000000100000008000000",
+      "decoded": {
+        "guid": 9223372036854775808,
+        "name": "龍é",
+        "race": 4,
+        "gender": 1,
+        "class": 8
+      }
+    },
+    {
+      "guid": 9223372036854775808,
+      "name": "AAAAAAAAAAAAAAAAAAAAAAAA",
+      "race": 4,
+      "sex": 1,
+      "class": 8,
+      "opcode": 81,
+      "packet_hex": "00000000000000804141414141414141414141414141414141414141414141410000040000000100000008000000",
+      "decoded": {
+        "guid": 9223372036854775808,
+        "name": "AAAAAAAAAAAAAAAAAAAAAAAA",
+        "race": 4,
+        "gender": 1,
+        "class": 8
+      }
+    },
+    {
+      "guid": 9223372036854775808,
+      "name": "AAAAAAAAAAAAAAAAAAAAAAAAA",
+      "race": 4,
+      "sex": 1,
+      "class": 8,
+      "opcode": 81,
+      "packet_hex": "0000000000000080414141414141414141414141414141414141414141414141410000040000000100000008000000",
+      "decoded": {
+        "guid": 9223372036854775808,
+        "name": "AAAAAAAAAAAAAAAAAAAAAAAAA",
+        "race": 4,
+        "gender": 1,
+        "class": 8
+      }
+    },
+    {
+      "guid": 9223372036854775808,
+      "name": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "race": 4,
+      "sex": 1,
+      "class": 8,
+      "opcode": 81,
+      "packet_hex": "0000000000000080414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141410000040000000100000008000000",
+      "decoded": {
+        "guid": 9223372036854775808,
+        "name": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "race": 4,
+        "gender": 1,
+        "class": 8
+      }
+    },
+    {
+      "guid": 9223372036854775808,
+      "name": "abc\u0000def",
+      "race": 4,
+      "sex": 1,
+      "class": 8,
+      "opcode": 81,
+      "packet_hex": "0000000000000080616263006465660000040000000100000008000000",
+      "decoded": {
+        "guid": 9223372036854775808,
+        "name": "abc",
+        "race": 1024,
+        "gender": 256,
+        "class": 2048
+      }
+    },
+    {
+      "guid": 18446744073709551615,
+      "name": "",
+      "race": 4,
+      "sex": 1,
+      "class": 8,
+      "opcode": 81,
+      "packet_hex": "ffffffffffffffff0000040000000100000008000000",
+      "decoded": {
+        "guid": 18446744073709551615,
+        "name": "",
+        "race": 4,
+        "gender": 1,
+        "class": 8
+      }
+    },
+    {
+      "guid": 18446744073709551615,
+      "name": "Tester",
+      "race": 4,
+      "sex": 1,
+      "class": 8,
+      "opcode": 81,
+      "packet_hex": "ffffffffffffffff5465737465720000040000000100000008000000",
+      "decoded": {
+        "guid": 18446744073709551615,
+        "name": "Tester",
+        "race": 4,
+        "gender": 1,
+        "class": 8
+      }
+    },
+    {
+      "guid": 18446744073709551615,
+      "name": "龍é",
+      "race": 4,
+      "sex": 1,
+      "class": 8,
+      "opcode": 81,
+      "packet_hex": "ffffffffffffffffe9be8dc3a90000040000000100000008000000",
+      "decoded": {
+        "guid": 18446744073709551615,
+        "name": "龍é",
+        "race": 4,
+        "gender": 1,
+        "class": 8
+      }
+    },
+    {
+      "guid": 18446744073709551615,
+      "name": "AAAAAAAAAAAAAAAAAAAAAAAA",
+      "race": 4,
+      "sex": 1,
+      "class": 8,
+      "opcode": 81,
+      "packet_hex": "ffffffffffffffff4141414141414141414141414141414141414141414141410000040000000100000008000000",
+      "decoded": {
+        "guid": 18446744073709551615,
+        "name": "AAAAAAAAAAAAAAAAAAAAAAAA",
+        "race": 4,
+        "gender": 1,
+        "class": 8
+      }
+    },
+    {
+      "guid": 18446744073709551615,
+      "name": "AAAAAAAAAAAAAAAAAAAAAAAAA",
+      "race": 4,
+      "sex": 1,
+      "class": 8,
+      "opcode": 81,
+      "packet_hex": "ffffffffffffffff414141414141414141414141414141414141414141414141410000040000000100000008000000",
+      "decoded": {
+        "guid": 18446744073709551615,
+        "name": "AAAAAAAAAAAAAAAAAAAAAAAAA",
+        "race": 4,
+        "gender": 1,
+        "class": 8
+      }
+    },
+    {
+      "guid": 18446744073709551615,
+      "name": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "race": 4,
+      "sex": 1,
+      "class": 8,
+      "opcode": 81,
+      "packet_hex": "ffffffffffffffff414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141410000040000000100000008000000",
+      "decoded": {
+        "guid": 18446744073709551615,
+        "name": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "race": 4,
+        "gender": 1,
+        "class": 8
+      }
+    },
+    {
+      "guid": 18446744073709551615,
+      "name": "abc\u0000def",
+      "race": 4,
+      "sex": 1,
+      "class": 8,
+      "opcode": 81,
+      "packet_hex": "ffffffffffffffff616263006465660000040000000100000008000000",
+      "decoded": {
+        "guid": 18446744073709551615,
+        "name": "abc",
+        "race": 1024,
+        "gender": 256,
+        "class": 2048
+      }
+    }
+  ],
+  "source_hashes": {
+    "crates/benilla-app/src/local_client/requests.rs": "aa7e60881b6cd6683007ac6da2829d3800922dfa4a1b98f4f16bee897ee4392a",
+    "crates/azeroth-survivors-re/src/gameplay/mod.rs": "9193ce732b9b8ee285ba0489e35a96bc93d192d65a2cbd2fe552249131d5cdfa",
+    "crates/azeroth-survivors-re/src/gameplay/client/name_queries.rs": "1eec874b41bf85686ee373cd4bd19fda85a6c594480542adfa04fea596c9e167",
+    "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs": "1187fb4f4ddf60ef12c1c3ef6ae6c4739b5561e0a89632cd66fef04ec0a1ea3d",
+    "crates/benilla-protocol/src/messages/parse.rs": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346",
+    "crates/benilla-protocol/src/events/decode.rs": "af2015df4a69a79eb1222806a1904345581556fe7e566bc78f8cd11072cfc2c1"
+  },
+  "limits": [
+    "Local flag0 only; nonlocal lookup/party code is excluded and never entered.",
+    "Synthetic character wrapper; allocation/growth/memcpy/sender intercepted. No Rust, OS, client/cache/VM, game or network execution.",
+    "Wire projections are Python expectations; authored Rust regressions use the actual packet decoder but remain uncompiled/unrun.",
+    "Bounded fallback echoes every requested GUID and uses the retained character independently of optional Game presence. Arbitrary mutation, aliases/scheduling and original/rebuilt parity remain unverified.",
+    "Original census and Q41 selector counts remain unchanged."
+  ]
+}

@@ -1,0 +1,412 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.123.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
+    "size_bytes": 146228736
+  },
+  "target_executed": false,
+  "gap_ids": [
+    17,
+    133,
+    263
+  ],
+  "bounded_contract_system_ids": [
+    "custom-app-update"
+  ],
+  "bounded_contract_owner_scopes": {
+    "custom-app-update": "Current updater PartReader per-part offset, request Range/206/non206 prefix-discard boundary, premature EOF, Interrupted/NotFound classification, eight-failure retry budget, capped backoff and positive-read progress reset. HTTP/TLS implementation, whole updater, server/runtime and parity remain outside scope."
+  },
+  "queries": [
+    {
+      "procedure": "0x14005df10",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/release-0.123.0/update-resume/download/input.bin",
+        "sha256": "246ebbf225b5874df0d5ba1d19d4cbe2885b40ab02269a1a34bd0a3ede6164d4"
+      },
+      "slice_virtual_address": "0x14005df10",
+      "plan": {
+        "path": "runtime/analysis/tasks/release-0.123.0/update-resume/download/plan.json",
+        "sha256": "c1cabe7eeaf5e996f501e0f3dcf0bc0a66b693f71a1322671fedeaf9cad10be5"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/release-0.123.0/update-resume/download/query/journal.json",
+        "sha256": "19401b2a64fbb9e69f8515ebd47fd43544d4e04b9a918377b7fefc2393b33ea1"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/release-0.123.0/update-resume/download/query/results/2a21dd1fa1af416019a71784cde4b0dee574ac940e6e89863218e9e51a49d4bf.json",
+        "sha256": "e617cc6a7e360e5daa99aacb0618d797da653a870a8b1006f272c08bef8eeb8c"
+      },
+      "evidence_id": "ev_b4aff36f9f2bd6284269bb6708cd2e81353e12df03865079cd838ef7856abf39",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "bf1b0ea40f99e723c6d68a10f095dfb9dd37390e1a2dee404f2b9b051636ddc8",
+      "normalized_sha256": "14abadaa56ae0a38163f076e076ecfe382ba05b6986044fe818a84fcdd2770e6",
+      "role": "metadata-download-plan",
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.123.0/update-resume/metadata-download-plan.c",
+        "sha256": "14abadaa56ae0a38163f076e076ecfe382ba05b6986044fe818a84fcdd2770e6"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
+        "raw_sha256": "246ebbf225b5874df0d5ba1d19d4cbe2885b40ab02269a1a34bd0a3ede6164d4",
+        "virtual_address": "0x14005df10",
+        "file_offset": "0x5d310",
+        "byte_count": 1459,
+        "result": "runtime/analysis/tasks/release-0.123.0/update-resume/download/query/results/2a21dd1fa1af416019a71784cde4b0dee574ac940e6e89863218e9e51a49d4bf.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "procedure": "0x1400aecc0",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/release-0.123.0/update-resume/reader/input.bin",
+        "sha256": "7e673140cab54961ef4788d029b500c29327d869702ba3d538722253cffecd9d"
+      },
+      "slice_virtual_address": "0x1400aecc0",
+      "plan": {
+        "path": "runtime/analysis/tasks/release-0.123.0/update-resume/reader/plan.json",
+        "sha256": "8133a203d63ad4cc20d35662077056cb56504b4aa0462ab4aabbb63c1da07a58"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/release-0.123.0/update-resume/reader/query/journal.json",
+        "sha256": "775ff9c25425bf1b96bf23594432b021ff374e403df16c3f2c5b25d2e54995f6"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/release-0.123.0/update-resume/reader/query/results/c4ae7be172e5e72137b6709c955bf03228dd6c74007e955758318201f66c2b66.json",
+        "sha256": "bac1957e638d71c28bb278e50f3c981dc7e1e96d9622e3a82dd74f2533464f3e"
+      },
+      "evidence_id": "ev_48ef6d3d8fd7663ab313015db1e0663478dff14a81dac092ecc1aa8e6ed4660f",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "65b4bb902d05ed460a1599f66742112a7ee6b14e1987d2017d45ab74f15a51fb",
+      "normalized_sha256": "a05fa69f77559904605520b5fb45c001f9eb77a5382346654ea6d9af9e899a64",
+      "role": "metadata-patch-iterator",
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.123.0/update-resume/metadata-patch-iterator.c",
+        "sha256": "a05fa69f77559904605520b5fb45c001f9eb77a5382346654ea6d9af9e899a64"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
+        "raw_sha256": "7e673140cab54961ef4788d029b500c29327d869702ba3d538722253cffecd9d",
+        "virtual_address": "0x1400aecc0",
+        "file_offset": "0xae0c0",
+        "byte_count": 1633,
+        "result": "runtime/analysis/tasks/release-0.123.0/update-resume/reader/query/results/c4ae7be172e5e72137b6709c955bf03228dd6c74007e955758318201f66c2b66.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "procedure": "0x140061b50",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/release-0.123.0/update-resume/part-reader/input.bin",
+        "sha256": "b980e717b85f43c6e64d6af7b9bbcab22bb8a45fa3dd522fc05a9a761c49e2a1"
+      },
+      "slice_virtual_address": "0x140061b50",
+      "plan": {
+        "path": "runtime/analysis/tasks/release-0.123.0/update-resume/part-reader/plan.json",
+        "sha256": "3b1178d7ba96354d476465048c6af9f071641b832690c9a0d5c5431c38d95190"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/release-0.123.0/update-resume/part-reader/query/journal.json",
+        "sha256": "10df426006edac744050edc9c0edae7cbb2b77126a830c4a4704c5a91d11197f"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/release-0.123.0/update-resume/part-reader/query/results/ccbfd8c0d47aabf9ec782fe620e8f3926b8053b4099b94dc1d9712720e81d815.json",
+        "sha256": "cfffc4191c9c91efc4708057be81d40201e0175bf534c5b8f7a2d119dd2fbaa0"
+      },
+      "evidence_id": "ev_d9cb683d19e411643e2fa5b4d56c1ae1ac68caa13a696829414b7bb884fb7e0c",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "a111fcaa50f0660e851930c330b1c25c0a80bdd8a0d8377dae1636954473de6f",
+      "normalized_sha256": "3b9b5293c248e22521d23bf63b2de8eee08338c7b60ee31d4d792e734cb955eb",
+      "role": "resumable-part-reader",
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.123.0/update-resume/resumable-part-reader.c",
+        "sha256": "3b9b5293c248e22521d23bf63b2de8eee08338c7b60ee31d4d792e734cb955eb"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
+        "raw_sha256": "b980e717b85f43c6e64d6af7b9bbcab22bb8a45fa3dd522fc05a9a761c49e2a1",
+        "virtual_address": "0x140061b50",
+        "file_offset": "0x60f50",
+        "byte_count": 2610,
+        "result": "runtime/analysis/tasks/release-0.123.0/update-resume/part-reader/query/results/ccbfd8c0d47aabf9ec782fe620e8f3926b8053b4099b94dc1d9712720e81d815.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "procedure": "0x1402131e0",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/release-0.123.0/update-resume/prefix-discard/input.bin",
+        "sha256": "6169016a2612192ba35a15432ad0f0d925777c2dc7ac3d9550bca46e5a2f6fa5"
+      },
+      "slice_virtual_address": "0x1402131e0",
+      "plan": {
+        "path": "runtime/analysis/tasks/release-0.123.0/update-resume/prefix-discard/plan.json",
+        "sha256": "9c4f382c4abed5e4473c1f764a0a16e3a44d1e9ab7ef9d7d2ebe2e81d784dbc0"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/release-0.123.0/update-resume/prefix-discard/query/journal.json",
+        "sha256": "01a6e83db67bf34fa572a94a33136be582228dfb60cf648e6656ed6b33a77eb9"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/release-0.123.0/update-resume/prefix-discard/query/results/bdb5416aebcf084e4893d2b2d598de416119f874eea499f980f3d8c28e009f67.json",
+        "sha256": "298e247150b374e3ddcc832e756bda36ae21b1a7d56974b828c6756673337caa"
+      },
+      "evidence_id": "ev_e4274454f858e510bab484889cd957f073547af000f0877811287080ab88bb73",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "d7a37629cbf77d0d2e2b40f8b75eab931f01321afcc6f312fcf69e69d4147e3a",
+      "normalized_sha256": "ff1aa69df26b1202560e9df9a64c1eda730e573d2a058ac0905b7b5e20e229cd",
+      "role": "generic-prefix-discard-interface",
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.123.0/update-resume/generic-prefix-discard-interface.c",
+        "sha256": "ff1aa69df26b1202560e9df9a64c1eda730e573d2a058ac0905b7b5e20e229cd"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
+        "raw_sha256": "6169016a2612192ba35a15432ad0f0d925777c2dc7ac3d9550bca46e5a2f6fa5",
+        "virtual_address": "0x1402131e0",
+        "file_offset": "0x2125e0",
+        "byte_count": 695,
+        "result": "runtime/analysis/tasks/release-0.123.0/update-resume/prefix-discard/query/results/bdb5416aebcf084e4893d2b2d598de416119f874eea499f980f3d8c28e009f67.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    }
+  ],
+  "native_ranges": [
+    {
+      "role": "metadata-download-plan",
+      "virtual_address": "0x14005df10",
+      "file_offset": "0x5d310",
+      "byte_count": 1459,
+      "sha256": "246ebbf225b5874df0d5ba1d19d4cbe2885b40ab02269a1a34bd0a3ede6164d4",
+      "bytes_hex": "55415741565657534881ecb8040000488dac248000000048c78530040000feffffff4c89c34889d74889ce4c8db5b80200004c89f1e84694410048c785200300000a000000c785280300000000000048c785300300001e000000c78538030000000000004c8d0536b615064c8dbdb801000041b9160000004c89f94c89f2e8fd9241004c89f9e8959641004889851004000048899518040000488d8db8010000488d95100400004989f84989d9e85e8d410090488d8db8020000488d95b8010000e89aca4100904c8bb5b8020000488d95c0020000488d8db000000041b808010000e85470fa054983fefe0f85fb0000004c8d75a8488d95b000000041b8080100004c89f1e83170fa05904c89f1e89dea4100904989d0488d8dc80300004889c2e8badd0000900fb685c80300003cff0f84180100008b8dc90300008b95cc0300008995bc010000898db9010000488b8dd00300000f1085d80300000f1185c80100008885b801000048898dc0010000488b8510040000f048ff08750d488d8d10040000e81765410090488b8518040000f048ff08750d488d8d18040000e8cd62410090488d0dcbb315064c8d85b8010000ba07000000e804f5c702904885c07507488b055f0256088038030f85d9010000488b50184885d20f891501000031c9e865fc140690e9c5030000488d8dc0020000488d95b000000041b808010000e8366ffa054c89b5b8020000e8df40faffb910010000ba08000000e89040faff4885c00f84a10000004889c7488d95b802000041b8100100004889c1e8fa6efa0548897e08488d05ecb31506eb35488bbdd00300004889bdb8020000e88f40faffb908000000ba08000000e84040faff4885c0746a48893848894608488d053db315064889461048c706ffffffff488b8510040000f048ff08750d488d8d10040000e8f963410090488b8518040000f048ff080f853c010000488d8d18040000e8ab614100e92b010000b908000000ba10010000e858fb140690e9d2020000b908000000ba08000000e843fb140690e9bd020000488995f80300000f84aa0000004c8b7010e8e63ffaffba010000004c8bbdf80300004c89f9e8923ffaff4c89fab901000000488985000400004885c00f84abfeffff488b8d000400004989d04c89f2e8f36dfa0590488d0d46b215064c8d85b8010000ba05000000e85ff3c702904885c07507488b05ba005608b90100000048898d080400008038030f85cf000000488b5018488995200400004885d279754531ff4c89f9488b9520040000e8a6fa140690e90602000048c785f00300000100000048c785e803000000000000c6852f04000001488d0daeb11506ba19000000e887a4f70590488946084889561048c706ffffffff488d8db8010000e8ab86feff4889f04881c4b80400005b5f5e415e415f5dc374484c8b7010e8dd3efaff41bf01000000ba01000000488b8d20040000e8863efaff488985080400004885c00f845cffffff488b8d080400004c89f24c8b8520040000e8eb6cfa05eb0b48c78520040000000000004531f64989d8eb054939d87734b12f4889fae83c25f805904883f80175234989d04839da73e242803c072f75db4d8d70014939de730b42803c37bf0f8ef5000000488d8db8020000488d95b80100004989f84d89f1e8a9f5ffff90488b95b8020000488b85c0020000488b8dc80200004883faff74704c8b85000300004c8946780f1085d00200000f108de00200000f1095f00200000f1156680f114e580f1146484c8b85f80300004c89064c8b8d000400004c894e084c8946104c8b85200400004c8946184c8b8d080400004c894e204c894628488956304889463848894e40e9a6feffff4889460848894e1048c706ffffffff4883bd2004000000741941b801000000488b8d08040000488b9520040000e84b3dfaff41b801000000488b8d00040000488b95f8030000e8323dfaffe956feffff488d054eb1150648894424204889f94889da4531c04d89f1e8b0fa1406900f0b",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.123.0/update-resume/metadata-download-plan.asm",
+        "sha256": "3e2a8f37eb018bf7f9e3bc03ed6cca6cc29fb39a63a64af55c387fcdbbe60b4c"
+      },
+      "instruction_count": 309
+    },
+    {
+      "role": "metadata-patch-iterator",
+      "virtual_address": "0x1400aecc0",
+      "file_offset": "0xae0c0",
+      "byte_count": 1633,
+      "sha256": "7e673140cab54961ef4788d029b500c29327d869702ba3d538722253cffecd9d",
+      "bytes_hex": "5541574156415541545657534881ecf8010000488dac248000000066440f7f9d6001000066440f7f955001000066440f7f8d4001000066440f7f8530010000660f7fbd20010000660f7fb51001000048c78508010000feffffff48898dd80000004c8b22488b4208488985000100004939c40f84150500004889d7488b4220488985f0000000488db5a0000000488b5a104c8b7218660f6f35a3931006660f6f3dab93100666440f6f05b293100666440f6f0dd992100666440f6f15e092100666440f6f1de79210064d8d7c24204c893f4d89f0eb0f662e0f1f8400000000004d39f0773bb12f4889dae8111bf3054883f801752b4989d04c39f273e342803c032f75dc4d8d48014d39f1731642803c0bbf7f0fe92c0500000f1f80000000004531c9488d4dc04c89e24989d8e87eebfaff488b45c04c8b65c84c8b6dd04883f8ff0f84c8030000488d55d8488b4a3048894e30f30f6f02f30f6f4a10f30f6f5220f30f7f5620f30f7f4e10f30f7f06488985880000004c89a5900000004c89ad980000004d85ed0f88590200000f84710200004c89bde80000004d89e7e89d33f5ff41bc01000000ba010000004c89e9e84a33f5ff4885c00f847a040000488985f80000004889c14c89fa4d89e8e8b761f5054983fd08731631c0488b8df8000000e9f80000000f1f8400000000004983fd20730e31c0488b8df8000000e9840000004c89e848b9e0ffffffffffff7f4821c831d2488b8df80000000f1f00f30f6f0411f30f6f4c1110660f6fd066410ffcd1660f6fd966410ffcd9660f6fe266410fdae2660f74e266410fdbe3660f6fd366410fdad2660f74d366410fdbd3660febe0660febd1f30f7f2411f30f7f5411104883c2204839d075a34c39e8747e41f6c51874584889c24c89e849b8f8ffffffffffff7f4c21c00f1f440000f30f7e0411660f6fc8660ffcce660f6fd1660fded7660f74d166410fdfd0660febd0660fd614114883c2084839d075d04c39e8742b66662e0f1f840000000000440fb60401418d50bf80fa1a0f92c2c0e2054408c288140148ffc04939c575e04983fd0b0f85f20000008b01ba7061746331d00fb7510481f2682d000009c20f85d700000042817c29fc2e6d70710f85c80000000fb641068d50d080fa0a720c24df04bf3c190f87b00000004c89ea4c8ba5880000004c8bbd900000004c8bad980000000f10060f104e100f1056200f2945100f294d200f295530488b46304889454041b801000000e88231f5ff4983fcff0f8445020000488b454048898580000000660f6f4510660f6f4d20660f6f5530660f7f5570660f7f4d60660f7f45504983fcfe0f8531020000488b85e80000004989c4483b85000100000f85e7fcffffe9a60100004531e44c89e1488b95f8000000e8a2ec0f06900f0b4c89ad00010000eb134c89ad00010000b801000000488985f8000000488d8588000000488945c0488d05f62ff5ff488945c8488d155cd01006488d4da84c8d45c0e89e8cf20590488d4da8e8b495f205904989c44989d5488b95000100004885d2741241b801000000488b8df8000000e89f30f5ff488b95880000004885d27412488b8d9000000041b801000000e88130f5ff488b95a00000004885d27412488b8da800000041b801000000e86330f5ff488b9dc0000000488bb5c80000004885f674324c8d7308eb13662e0f1f8400000000004983c62048ffce7419498b56f84885d274ee498b0e41b801000000e82030f5ffebde488b95b80000004885d2741248c1e20541b8080000004889d9e80030f5ff488bb5f0000000488b06488985f80000004885c074604c89ade00000004c89a5e8000000488b460848898500010000488b004885c0740a488b8df8000000ffd090488b8500010000488b50084885d2488bb5f00000004c8ba5e80000004c8bade000000074104c8b4010488b8df8000000e88a2ff5ff4c89264c896e08488b85d800000048c700ffffffff0f28b5100100000f28bd20010000440f288530010000440f288d40010000440f289550010000440f289d600100004881c4f80100005b5f5e415c415d415e415f5dc3488bb5f00000004d89fc488b06488985f80000004885c00f852cffffffeb8a488b8580000000488b8dd8000000488941484889c80f2845500f284d600f2855700f1151380f1149280f1141184c89214c8979084c896910e962ffffff4c89adf8000000e9a5fdffff488d05eca2100648894424204889d94c89f24531c0e851ec0f060f0b",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.123.0/update-resume/metadata-patch-iterator.asm",
+        "sha256": "430fefc930e83ac5204487d87b5f7a989f3d4e6af97aab0f59bc382d368bcd11"
+      },
+      "instruction_count": 362
+    },
+    {
+      "role": "resumable-part-reader",
+      "virtual_address": "0x140061b50",
+      "file_offset": "0x60f50",
+      "byte_count": 2610,
+      "sha256": "b980e717b85f43c6e64d6af7b9bbcab22bb8a45fa3dd522fc05a9a761c49e2a1",
+      "bytes_hex": "5541574156415541545657534881ec58040000488dac2480000000660f29b5c003000048c785b8030000feffffff4c8985600300004889d34889cf488d4158488985680300004c8dadc0000000488db5d00100004c8d354187150648898d90030000eb0c48c74748000000000f1f40004c8b47284d85c074574c8b7f384c8b6740488b4f484885c90f8484000000488b47504889da4c8b8560030000ff5018488995a8030000a8010f84920300004c8ba5a80300004589e74183e7034b6304be4c01f0ffe066662e0f1f840000000000488b4710483b47180f84c1070000488d482048894f104c8b40084c8b78180f1040104c8947280f11473048c74740000000004531e4488b4f484885c90f857cffffff4c8b4f304c89a570030000488d8df00200004889fae8a45041004d85e40f845b010000488b8550030000488985300200000f1085400300000f2985200200000f1085300300000f2985100200000f1085f00200000f108d000300000f1095100300000f109d200300000f299d000200000f2995f00100000f298de00100000f2985d0010000488d8570030000488985e0020000488d05448af805488985e80200004c89e9488d15fb7215064c8d85e0020000e88760f70590488b85c0000000488985a8030000488b8dc8000000488b85d0000000488944242848898da003000048894c242041b9050000004c89e94889f24c8d05b9721506e8118c4100900f1085c00000000f108dd00000000f1095e00000000f109df00000000f2985f00200000f298d000300000f2995100300000f299d200300000f1085000100000f2985300300000f1085100100000f298540030000488b852001000048898550030000488b95a80300004885d2741241b801000000488b8da0030000e8f003faff488b8550030000488985300200000f2885400300000f2985200200000f2885300300000f2985100200000f2885f00200000f288d00030000660f289510030000660f289d20030000660f299d00020000660f2995f00100000f298de00100000f2985d00100004c89e94889f2e81f8c41004883bdc0000000fe0f8569010000660f10b5c800000041b8f8000000488d4dc8488d95d8000000e8ce31fa05660f1175b80fb7bdb8000000488d4db8e82eac4100488985a0030000488985c0000000488995a8030000488995c80000004d85e40f84f50100000fb7c73dce000000488bbd900300000f84e70100004889f14c89e84989dd488985d0010000488b8570030000488985d8010000488985e0010000488d9587030000e8e3121b00904889d3a801751748399d7003000048bb03000000250000000f8689040000488b85c0000000488985a8030000488b85c8000000488985a0030000488b004885c0740a488b8da8030000ffd090488b8da8030000488b85a0030000488b50084885d24989dc0f84c80100004c8b4010e85f02faff4589e74183e7034b6304be4c01f04c89eb4c8dadc0000000ffe00f1f4400004d39fc4c8bbda8030000736e4d85ff756941b82b000000b125488d1568701506e89b6af4054989c44589e74183e7034b6304be4c01f0ffe041b8100100004889f14c89eae87230fa054883bdd0010000ff0f84950000000fb785d80200003dad010000b900000000ba290000000f44ca3df40100000f43caeb744d85ff0f85e403000048c7472800000000488b4748488985a80300004885c00f8485fbffff488b4750488985a0030000488b004885c0740a488b8da8030000ffd090488b85a0030000488b50084885d2488bbd900300000f844dfbffff4c8b4010488b8da8030000e85901faffe938fbffffb1294889f2e81ada41004989c44589e74183e7034b6304be4c01f0ffe0410fb64424103c230f84ed000000e93f010000488bbd900300004883bda0030000000f843dfbffff488b4748488985880300004885c07444488b475048898578030000488b004885c0740a488b8d88030000ffd090488b8578030000488b50084885d2488bbd9003000074104c8b4010488b8d88030000e8bb00faff488b8da003000048894f48488b85a803000048894750e9b2faffff4589e74183e7034b6304be4c01f04c89eb4c8dadc0000000ffe0660f1f440000410fb644241f3c23743ae98c000000904c89a598030000c685b703000001e87de8f705904c89e148c1e920488b40084c89a598030000c685b703000001ffd0903c237557418d47fe83f8020f821ffaffff4d85ff0f8416faffff498d4424ff488985d8010000c685d0010000034c89a598030000c685b703000000488d8dd8010000e85985f80590e9e3f9ffff0f1f004c89e048c1e8203c2374a94c89a5c0000000488b4748488985a00300004885c04c89a5a80300007444488b475048898588030000488b004885c0740a488b8da0030000ffd090488b8588030000488b50084885d2488bbd9003000074104c8b4010488b8da0030000e883fff9ff48c74748000000008b4758ffc08947584c8bbdc000000083f8080f87780100004489f883e003488d0d82801506486304814801c8ffe0450fb67f104584ff753fe94c010000e859e7f7059049c1ef204489f9ff5008904189c74584ff7521e92e01000049c1ef204584ff7513e920010000450fb67f1f4584ff0f84120100004c89add0010000488d058667f805488985d8010000488b8568030000488985e0010000488d055a75f805488985e8010000488d0d9876150648898df0010000488985f8010000488d0d877615064889f2e84feef50590488b85680300000fb608b80100000048d3e04883f814b914000000480f43c14889c131d2e8f502f60590488b85c000000089c183e1038d51fe83fa02488b95a80300000f8255f8ffff4885c90f844cf8ffff48ffc8488985d8010000c685d00100000348899598030000c685b703000000488d8dd8010000e89183f80590e91bf8ffff488b85c0000000488985a0030000488b85c8000000488985a80300004c89eb4c8dadc00000004883bda0030000000f85e8fcffffe920f8ffff4c8bbdc0000000b801000000e9750100004531ffe96b010000c747580000000048837f280074044c017f40488b7f20488b1f4c01fb48891f488d4f304c89bd98030000c685b703000000e853c9f4059066480f6ec0660f6205255d1506660f5c052d5d1506660f28c8660f15c8f20f58c80f57c0f20f2ac2f20f5e05225d1506f20f58c1660f2e051e5d1506730af20f107710e9860000004889d8482b471866480f6ec8660f620dd65c1506660f5c0dde5c1506660f28d1660f15d1f20f58d1f20f5ed0f20f104710f20f100de15c1506f20f59c8f20f101ddd5c1506f20f59daf20f58d9660f57f6f20fc2f000660f54d6660f55f3660f56f2660f1377104c89bd98030000c685b703000000e840c7f405904889473089573848895f18488b7720488b5728488d8df00100004c89bd98030000c685b703000000e86204000090488b470848899dd8010000488985e0010000f20f11b5e801000048c785d0010000020000004c89bd98030000c685b703000000488d95d00100004889f1e86f47ffff9031c04c89fa0f28b5c00300004881c4580400005b5f5e415c415d415e415f5dc3",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.123.0/update-resume/resumable-part-reader.asm",
+        "sha256": "46b8ddda7f0b512ac88a0080b43270f873f1342f50910b4d80dc90ade6e57e8e"
+      },
+      "instruction_count": 542
+    },
+    {
+      "role": "generic-prefix-discard-interface",
+      "virtual_address": "0x1402131e0",
+      "file_offset": "0x2125e0",
+      "byte_count": 695,
+      "sha256": "6169016a2612192ba35a15432ad0f0d925777c2dc7ac3d9550bca46e5a2f6fa5",
+      "bytes_hex": "554157415641554154565753b888200000e8ea12df054829c4488dac248000000048c78500200000feffffff4889ce488d45a0488985d01f000048c785d81f00000020000048c785e01f000000000000c685e81f000000488b01488985f01f00004c8b7110488d3ddc99ff0548c785a81f0000000000004d85f6753831dbe9e5010000666666662e0f1f8400000000004c89f848c1e8204883f82bb9ff0000000f43c13c230f85e50100004d85f60f84ad0100004c8ba5d81f0000488b9de01f00004929dc4d29f476664889f74c8badd01f00004901dd80bde81f0000004c89adb01f00004c89b5b81f000048c785c01f000000000000c685c81f0000007470c685c81f000001488b85f01f0000488b08488b4008488d95b01f0000ff50484989c7488bb5c01f0000e9840000006690488b85f01f0000488b08488b4008488d95d01f0000ff50484989c74901de488b9de01f00004929de4c8976104c89bda01f00004d85ff7575e9fe0000000f1f00488b85f01f0000488b08488b4008488d95b01f0000ff50484989c7488bb5c01f000080bdc81f00000074174d01f54c89e931d24d89e0e8d21cdf05c685e81f0000014801f348899de01f00004929f64889fe4c897710488d3d7b98ff054c89bda01f00004d85ff0f848e0000004489f883e003486304874801f8ffe041807f10230f84b4feffffe9940000000f1f4000c685ff1f000001e804d6dc05904c89f948c1e920488b4010c685ff1f000001ffd09084c00f8581feffffeb640f1f400041807f1f23755949ffcf4c89bdb81f0000c685b01f000003c685ff1f000000488d8db81f0000e8f572dd0590e94afeffff488b9de01f00004531f64885db743c48019da81f000048c785e01f0000000000004d85f60f8529feffffe9ecfdffffb8010000004c89fa4881c4882000005b5f5e415c415d415e415f5dc331c04c8bbda81f0000ebde",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.123.0/update-resume/generic-prefix-discard-interface.asm",
+        "sha256": "a492b8fcda6efe817a6ce42eabb5b5b5805b8a7ea64b8745d9f3f2d78648db8f"
+      },
+      "instruction_count": 157
+    },
+    {
+      "role": "io-kind-debug-indexed-consumer",
+      "virtual_address": "0x145feb5c0",
+      "file_offset": "0x5fea9c0",
+      "byte_count": 45,
+      "sha256": "5ee6087c2d704cb159a2f378e93d9c8c72f98b2ebdfa24cfe0ed801a20605563",
+      "bytes_hex": "0fb601c1e003488d0d037376014c8b0408488d0d50747601488b0408488b0a488b52084c8b4a184889c249ffe1",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.123.0/update-resume/io-kind-debug-indexed-consumer.asm",
+        "sha256": "f46148976bf2b482f3e74edf161ab277010986bc8bb20e952184c89a1ca74f82"
+      },
+      "instruction_count": 11
+    }
+  ],
+  "native_data": [
+    {
+      "role": "io-kind-dispatch",
+      "virtual_address": "0x1461ba2ec",
+      "file_offset": "0x61b8cec",
+      "byte_count": 16,
+      "sha256": "2500233a59a8779c1c71466a5639e681d6d32a1c687db18b8704b33734ee32e8",
+      "bytes_hex": "ad7deaf9647eeaf9747eeaf9f47eeaf9"
+    },
+    {
+      "role": "retry-kind-dispatch",
+      "virtual_address": "0x1461ba2fc",
+      "file_offset": "0x61b8cfc",
+      "byte_count": 16,
+      "sha256": "c9ce4608da8aa46710e4471770a562830580a4a0668871ae2a31ec058f00ad5c",
+      "bytes_hex": "877feaf9c27feaf9967feaf9b47feaf9"
+    },
+    {
+      "role": "discard-io-kind-dispatch",
+      "virtual_address": "0x14620cc28",
+      "file_offset": "0x620b628",
+      "byte_count": 16,
+      "sha256": "0cad1b35dcd3650b9e330696fc5b8ccb48351d375aa66a9a6b17dd32e73065b0",
+      "bytes_hex": "a46700fae86700fab86700fa486600fa"
+    },
+    {
+      "role": "io-kind-debug-table",
+      "virtual_address": "0x1477528d0",
+      "file_offset": "0x77512d0",
+      "byte_count": 688,
+      "sha256": "6e1890c7c742f48df22b5c4ecf06b5233fe8320c6695c1be383a1b1a213079cb",
+      "bytes_hex": "0800000000000000100000000000000011000000000000000f000000000000000f00000000000000120000000000000011000000000000000c00000000000000090000000000000010000000000000000b000000000000000a000000000000000d000000000000000a000000000000000d000000000000000c00000000000000110000000000000012000000000000000e0000000000000016000000000000000c000000000000000b00000000000000080000000000000009000000000000000b000000000000000b000000000000000d000000000000000c000000000000000c00000000000000120000000000000008000000000000000e000000000000000c000000000000000f0000000000000013000000000000000b000000000000000b000000000000000d000000000000000b000000000000000a00000000000000100000000000000005000000000000000d0000000000000000237547010000000823754701000000182375470100000029237547010000003823754701000000472375470100000059237547010000006a2375470100000076237547010000007f237547010000008f237547010000009a23754701000000a423754701000000b123754701000000bb23754701000000c823754701000000d423754701000000e523754701000000f72375470100000005247547010000001b24754701000000272475470100000032247547010000003a2475470100000043247547010000004e247547010000005924754701000000662475470100000072247547010000007e2475470100000090247547010000009824754701000000a624754701000000b224754701000000c124754701000000d424754701000000df24754701000000ea24754701000000f72475470100000002257547010000000c257547010000001c257547010000002125754701000000"
+    },
+    {
+      "role": "range-format",
+      "virtual_address": "0x1461b9008",
+      "file_offset": "0x61b7a08",
+      "byte_count": 11,
+      "sha256": "5b006e79fbaebd195cf1c44f10e0a9d459e597b1b7a7bb4a7841f6a24e46700e",
+      "bytes_hex": "0662797465733dc0012d00"
+    },
+    {
+      "role": "range-header",
+      "virtual_address": "0x1461b9013",
+      "file_offset": "0x61b7a13",
+      "byte_count": 5,
+      "sha256": "5de74a81b192304c10bf7b8cf50e863a19e8ae4c38a4d5c5116359db0deed29f",
+      "bytes_hex": "52616e6765"
+    },
+    {
+      "role": "premature-eof-message",
+      "virtual_address": "0x1461b9018",
+      "file_offset": "0x61b7a18",
+      "byte_count": 43,
+      "sha256": "42d70f5fd4f00b4f6cea8f3684265cd4ebbb496ff7157c28465f656131449d6d",
+      "bytes_hex": "74686520636f6e6e656374696f6e20636c6f736564206265666f7265207468652070617274277320656e64"
+    }
+  ],
+  "source_witnesses": [
+    {
+      "path": "crates/azeroth-survivors-re/src/update_parts.rs",
+      "sha256": "c66d97819cea568fd25394137be25ee1c383edb405a8a75bbd9efec97dba3b84"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/update_worker.rs",
+      "sha256": "eddb04f30d982127859bc9ac2af7def1a0c00d0c2fe7a8c19e9a225fbc3cea26"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/update.rs",
+      "sha256": "aba8841bc606a7b2eada0f0de5d23cdfa19c9ed234636334a9e369fd954bb791"
+    }
+  ],
+  "source_observation": {
+    "status": "source_static_resume_connected_runtime_unverified",
+    "part_reader": "Retains active index, declared length, offset and consecutive failure budget. Interrupted preserves reader/budget; other errors drop response, increment failures, wait up to eight times and reopen same part. Positive reads reset failures and advance offset/progress; early EOF retries. Non206 responses replay the offset without publishing it.",
+    "transport_adapter": "NativeParts supplies declared part sizes and offset-aware Range requests, marks206 responses, converts HTTP429/>=500 and transport errors toOther, other status failures toNotFound, logs and sleeps on recoverable failures. Existing gzip/decoded length/hash/staging path consumes resumed body; stage cleanup retains terminal errors.",
+    "source_refs": [
+      "crates/azeroth-survivors-re/src/update_parts.rs",
+      "crates/azeroth-survivors-re/src/update_worker.rs",
+      "crates/azeroth-survivors-re/src/update.rs"
+    ],
+    "limits": "No persistent cross-process resume is introduced; HTTP/filesystem/application execution and parity remain unverified."
+  },
+  "native_observations": {
+    "reader_fields": {
+      "0x10": "next part pointer, advances by0x20 before first request",
+      "0x18": "end pointer",
+      "0x20": "shared compressed-body progress context",
+      "0x28/0x30": "active part URL slice",
+      "0x38": "declared current part length",
+      "0x40": "bytes already returned for current part",
+      "0x48/0x50": "optional current Read trait object",
+      "0x58": "consecutive nonInterrupted failure count"
+    },
+    "resume_request": "At nonzero offset, format bytes=<offset>- and set Range. HTTP206 accepts response directly. Other responses pass through bounded prefix discard; short prefix returns UnexpectedEof.",
+    "retry": "Interrupted loops without discarding current reader or consuming failure budget. Other errors discard current reader, increment budget, fail after8 or immediately for NotFound. Remaining kinds log and wait min(1<<failures,20) seconds before reopening same part. Request errors map429 and statuses>=500 toOther; other HTTP statuses toNotFound; transport errors toOther.",
+    "read": "Positive read resets failure count and adds bytes to current offset and shared progress. Zero before declared part end isUnexpectedEof; completed EOF advances to next part. Prefix replay is discarded before updater progress accounting.",
+    "persistence_limit": "State lives in the current reader; no durable cross-process download-resume claim."
+  },
+  "validation": {
+    "query_subjects": "4 exact current PE raw slices verified",
+    "checker": "python3 -B scripts/check-update-resume-0.123.0.py --python-path runtime/tests/query-python-deps --python-path runtime/armory-recovery/python-libs",
+    "synthetic_original_instruction_cases": 52,
+    "application_compilation": "not_run",
+    "HTTP_filesystem_server_execution": "not_run",
+    "parity": "unverified",
+    "fixture_boundaries": {
+      "retry_budget": 10,
+      "Interrupted_and_NotFound_branches": 12,
+      "capped_backoff_duration": 8,
+      "positive_read_offset_progress_reset": 3,
+      "bounded_prefix_discard_read_interface": 5,
+      "HTTP_status_conversion": 9,
+      "premature_EOF_admission": 5
+    },
+    "source_syntax_paths": 3,
+    "authored_Rust_regressions": "uncompiled_unrun"
+  },
+  "limits": [
+    "Ghidra raw-slice pseudocode cannot resolve outside jump-table memory; both actual four-way table entries and target instructions are separately bound and inspected.",
+    "Generic HTTP/Read/stack-probe/clock/wait helpers stop at their required interfaces. No complete transport or platform fidelity claim.",
+    "Synthetic instruction fixtures mock Read/stack probing; they do not execute the application, contact a service or establish updater operation/parity."
+  ],
+  "prior_source_observation": {
+    "source_witnesses": [
+      {
+        "path": "crates/azeroth-survivors-re/src/update_parts.rs",
+        "sha256": "b66c24f6ff01239418b034d4f4aaa4642e68b03ec59ba83fbfc2fae3f1ab3054"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/update_worker.rs",
+        "sha256": "aa9f5c62822a3f50488863c04b4bd919aafea447c31f109bdff2f619a47d718b"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/update.rs",
+        "sha256": "aba8841bc606a7b2eada0f0de5d23cdfa19c9ed234636334a9e369fd954bb791"
+      }
+    ],
+    "observation": {
+      "status": "missing_resume_connection",
+      "part_reader": "Read returns current-reader error immediately through ?. No per-part byte offset or retained part size, no retry count and no reopen path.",
+      "transport_adapter": "PartHost::open_part takes only index. NativeParts::open_part sends GET without Range. Outer stage removes attempted staging files and publishes Failed when download returns Err.",
+      "candidate_source_refs": [
+        "crates/azeroth-survivors-re/src/update_parts.rs",
+        "crates/azeroth-survivors-re/src/update_worker.rs",
+        "crates/azeroth-survivors-re/src/update.rs"
+      ],
+      "next_static_step": "Implement recovered retrying current-part reader and offset-aware native HTTP adapter, retaining compressed response progress and existing outer gzip/hash/install pipeline. Test caller failure/cleanup boundary separately; do not invent persisted-across-process download state."
+    }
+  }
+}

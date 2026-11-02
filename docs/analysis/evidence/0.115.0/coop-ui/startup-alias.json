@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.115.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+    "size_bytes": 142111232
+  },
+  "target_executed": false,
+  "functions": [
+    {
+      "role": "resource-drop",
+      "start": "0x14008bde0",
+      "end_exclusive": "0x14008bfc5",
+      "file_offset": "0x8b1e0",
+      "sha256": "1664dca5e0063b651f82a4ffed7bd70ade2759c9a7c5282642375bee69651364",
+      "assembly": "0x14008bde0.asm",
+      "assembly_sha256": "521e10f0826f993418f9b10c835a1968d084f13fe742226812c168c1bc4caf8e"
+    },
+    {
+      "role": "typed-resource-id",
+      "start": "0x1401570a0",
+      "end_exclusive": "0x140157393",
+      "file_offset": "0x1564a0",
+      "sha256": "fe7de3d1d0755eb5cd5daa1a121b6a5e57626a7f6641f23eb94ddc985e03c580",
+      "assembly": "0x1401570a0.asm",
+      "assembly_sha256": "b1721b321c5ba7a87a2765768bef511e6c25f71d87bf893bb7167c08eef55aa1"
+    },
+    {
+      "role": "input-system-initializer",
+      "start": "0x140225c80",
+      "end_exclusive": "0x140225f17",
+      "file_offset": "0x225080",
+      "sha256": "d7ffd06f6167eb898a53868c5b721ad74c469bc211c95ecb29dd7521120e3916",
+      "assembly": "0x140225c80.asm",
+      "assembly_sha256": "eb1e0ec6b45127d4ec98a44212410ed04fd2839c262ed78429261f8675b53a07"
+    },
+    {
+      "role": "input-system-run",
+      "start": "0x140226040",
+      "end_exclusive": "0x140226373",
+      "file_offset": "0x225440",
+      "sha256": "5d55aa086b84883731ba43ef905175491ccf2eb3b40ac613da3a9be314164096",
+      "assembly": "0x140226040.asm",
+      "assembly_sha256": "6fa563343a7ab2c8ef2a1ebc7365eb9daa3e91f127e0190e83d330b36bb9e5c3"
+    }
+  ],
+  "data": [
+    {
+      "start": "0x145f01550",
+      "byte_count": 16,
+      "file_offset": "0x5f00150",
+      "sha256": "055a15225b840f214ac84a73d5cf0ca4e034c718245b7a66809d6b220188bc8f",
+      "bytes_hex": "aa4a6456dd3acaad6f74b1c9b788e2ec"
+    },
+    {
+      "start": "0x145f0fba8",
+      "byte_count": 16,
+      "file_offset": "0x5f0e7a8",
+      "sha256": "055a15225b840f214ac84a73d5cf0ca4e034c718245b7a66809d6b220188bc8f",
+      "bytes_hex": "aa4a6456dd3acaad6f74b1c9b788e2ec"
+    },
+    {
+      "start": "0x145f12fd8",
+      "byte_count": 64,
+      "file_offset": "0x5f11bd8",
+      "sha256": "15d3e4a3fb8340b0a10ec78d54d570c4c2a3216585d4e48439b60bfb021d69e4",
+      "bytes_hex": "406022400100000010dc1c400100000070d71c40010000008063224001000000b063224001000000e06322400100000050d71c4001000000805c224001000000"
+    }
+  ],
+  "typeid_hex": "aa4a6456dd3acaad6f74b1c9b788e2ec",
+  "binding": [
+    {
+      "site": "0x14020b70d",
+      "operation": "Startup copies the TypeID from 0x145f0fba8 into the descriptor; alignment 8, size 0x138 and drop function 0x14008bde0 follow at 0x14020b71d..0x14020b73a."
+    },
+    {
+      "site": "0x14020b7dc..0x14020b8dd",
+      "operation": "Empty-state stores use local base RBP+0x2b0: list capacity/pointer/length 0/8/0 at +0x60/+0x68/+0x70, absent zone at +0x108, and zeroed +0x120..+0x12f and +0x12d..+0x134. Filters are off, visibility is public, tab is zero and capacity is zero."
+    },
+    {
+      "site": "0x145f12fd8..0x145f13018",
+      "operation": "One current FunctionSystem vtable contains run function 0x140226040 and state initializer 0x140225c80."
+    },
+    {
+      "site": "0x140225d3f..0x140225d53",
+      "operation": "The initializer passes TypeID 0x145f01550 to 0x1401570a0 and retains the returned resource ID in RBX. Both 16-byte TypeID payloads match."
+    },
+    {
+      "site": "0x1401570a0..0x140157393",
+      "operation": "The passed TypeID selects the registered resource ID; the absent branch registers the same size 0x138, alignment 8 and drop function 0x14008bde0, then returns its ID."
+    },
+    {
+      "site": "0x140225dc4..0x140225e26",
+      "operation": "The initializer carries RBX to R14 and stores the selected resource ID into tupleState+0x138."
+    },
+    {
+      "site": "0x14022609e..0x140226289",
+      "operation": "The run function loads tupleState+0x138, resolves its resource storage record and data+0x10, builds the first ResMut record at RSP+0x50, and passes its address in R8 to 0x14021a1c0."
+    },
+    {
+      "site": "0x14021a1ff",
+      "operation": "The input handler loads R15=[R8]; UI toggles and cycling access +0x12e/+0x12f/+0x130/+0x108, and capacity uses +0x133 on this same resource."
+    }
+  ],
+  "drop_contract": "The registered destructor frees String slots at +0/+0x18/+0x30/+0x48, the public list at +0x60/+0x68/+0x70 using 0xf0-byte rows, Option<String> at +0x108/+0x110, the roster at +0x78/+0x80 using 0x70-byte rows, then Strings at +0x90/+0xa8/+0xc0/+0xd8/+0xf0. This independently confirms ownership; it does not infer another constructor.",
+  "checks": {
+    "script": "scripts/check-coop-ui-0.115.0.py",
+    "startup_layout_cases": 257,
+    "host_capacity_cases": 256
+  },
+  "limits": "Static byte/data/control-flow binding and bounded producer captures. Actual ECS insertion, runtime refresh/discovery/lifecycle, rendering and original/rebuilt parity are unverified; no hosting/joining/network behavior is implemented."
+}

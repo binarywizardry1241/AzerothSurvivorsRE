@@ -1,0 +1,138 @@
+{
+  "target_sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+  "ranges": [
+    {
+      "role": "picker-equipment-icon",
+      "start": "0x1402dcbf0",
+      "end_exclusive": "0x1402dd37a",
+      "sha256": "820dead937da2137b3c7bfbc275b1ae5f8cd2ad462ab63b6dae4dcecf05555c7",
+      "rea_evidence_id": "ev_0c3a31f0d3aa086817dd7743402bbdd5e25cfbbaad1f789276e2ec95e53685e8",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "930853f3131aac5c7dd4914d8edd6bea6b7a1f3a51110c28455afc849acc923e",
+      "selected_intervals": [
+        {
+          "start": "0x1402dcd68",
+          "end_exclusive": "0x1402dcde4",
+          "sha256": "26c29a2522e05986eea07157e539b4f2e55670a32218ab38d2b2d3b675551bfc",
+          "assembly": [
+            "1402dcd68: mov rax, qword ptr [rbp + 0x630]",
+            "1402dcd6f: mov ecx, dword ptr [rax + r14*4]",
+            "1402dcd73: mov rax, qword ptr [rbp + 0x638]",
+            "1402dcd7a: movzx edx, byte ptr [rax + 0x39]",
+            "1402dcd7e: call 0x145827bf0",
+            "1402dcd83: lea rcx, [rbp + 0x520]",
+            "1402dcd8a: mov edx, eax",
+            "1402dcd8c: call 0x145825570",
+            "1402dcd91: mov rax, qword ptr [rbp + 0x520]",
+            "1402dcd98: mov qword ptr [rbp + 0x648], rax",
+            "1402dcd9f: cmp rax, -1",
+            "1402dcda3: mov qword ptr [rbp + 0x640], r12",
+            "1402dcdaa: je 0x1402dce2b",
+            "1402dcdac: mov ecx, dword ptr [rbp + 0x574]",
+            "1402dcdb2: call 0x1458270a0",
+            "1402dcdb7: nop ",
+            "1402dcdb8: mov rdi, qword ptr [rbp + 0x650]",
+            "1402dcdbf: mov r9, rdx",
+            "1402dcdc2: test rax, rax",
+            "1402dcdc5: mov r8, rax",
+            "1402dcdc8: mov ecx, 1",
+            "1402dcdcd: cmove r8, rcx",
+            "1402dcdd1: cmove r9, rax",
+            "1402dcdd5: lea rcx, [rbp + 0x240]",
+            "1402dcddc: mov rdx, rdi",
+            "1402dcddf: call 0x1400de550"
+          ]
+        },
+        {
+          "start": "0x1402dce2b",
+          "end_exclusive": "0x1402dcebe",
+          "sha256": "36469139034fc452f136eeeb3971ae33916b59917e6fff6ff12bca62eb38f1c6",
+          "assembly": [
+            "1402dce2b: mov eax, 6",
+            "1402dce30: lea rcx, [rip + 0x5bfaa8f]",
+            "1402dce37: cmp r15b, 0x10",
+            "1402dce3b: ja 0x1402dce53",
+            "1402dce3d: lea rax, [rip + 0x5c25f24]",
+            "1402dce44: mov rcx, qword ptr [rax + r14*8]",
+            "1402dce48: lea rax, [rip + 0x5c25fa1]",
+            "1402dce4f: mov rax, qword ptr [rax + r14*8]",
+            "1402dce53: mov qword ptr [rbp + 0x1b8], rcx",
+            "1402dce5a: mov qword ptr [rbp + 0x1c0], rax",
+            "1402dce61: lea rax, [rbp + 0x1b8]",
+            "1402dce68: mov qword ptr [rbp - 0x50], rax",
+            "1402dce6c: lea rax, [rip - 0x2dadb3]",
+            "1402dce73: mov qword ptr [rbp - 0x48], rax",
+            "1402dce77: lea rcx, [rbp + 0x240]",
+            "1402dce7e: lea rdx, [rip + 0x5bfaa47]",
+            "1402dce85: lea r8, [rbp - 0x50]",
+            "1402dce89: call 0x145ccc6e0",
+            "1402dce8e: nop ",
+            "1402dce8f: mov rdi, qword ptr [rbp + 0x650]",
+            "1402dce96: lea rax, [rip + 0x5c0566b]",
+            "1402dce9d: mov qword ptr [rsp + 0x20], rax",
+            "1402dcea2: mov r9d, 1",
+            "1402dcea8: lea rcx, [rbp + 0x610]",
+            "1402dceaf: mov rdx, rdi",
+            "1402dceb2: lea r8, [rbp + 0x240]",
+            "1402dceb9: call 0x140159a10"
+          ]
+        }
+      ]
+    },
+    {
+      "role": "item-icon-loader",
+      "start": "0x1458270a0",
+      "end_exclusive": "0x145827578",
+      "sha256": "eb25c7aa5615b877ff15e19bf642e5e9da3ac97b2abd6c210724cd8e5c16c7ec",
+      "rea_evidence_id": "ev_c9ae2716f11a67c3bdf3b606a30cd9af9dfe09b97b3bda3d0462649ba119d0b5",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "fa618be8dfc2261ed6d90ae0448b51b1199658e149b6fe1e7f76e8f2d69c7895",
+      "selected_intervals": [
+        {
+          "start": "0x14582712a",
+          "end_exclusive": "0x145827151",
+          "sha256": "0b2719ba195802840453ed38da942d29d35a455babd2456968de3dbfb7d39a73",
+          "assembly": [
+            "14582712a: movq qword ptr [rbp + 0x38], mm0",
+            "14582712e: mov qword ptr [rbp + 0x30], rdi",
+            "145827132: lea r8, [rip + 0x17dd757]",
+            "145827139: lea rcx, [rbp - 0x58]",
+            "14582713d: lea rdx, [rbp + 0x30]",
+            "145827141: mov r9d, 0x21",
+            "145827147: call 0x145bb7630",
+            "14582714c: nop ",
+            "14582714d: mov r15, qword ptr [rbp - 0x58]"
+          ]
+        }
+      ]
+    }
+  ],
+  "calls": [
+    {
+      "site": "0x1402dcdb2",
+      "target": "0x1458270a0"
+    },
+    {
+      "site": "0x1402dcddf",
+      "target": "0x1400de550"
+    }
+  ],
+  "dbc_literal": {
+    "instruction": "0x145827132",
+    "address": "0x147004890",
+    "value": "DBFilesClient\\ItemDisplayInfo.dbc"
+  },
+  "limits": [
+    "REA/Ghidra raw function imports omit external data/callees; Windows x64 arguments are interpreted from original instructions, not decompiler parameter names.",
+    "Picker output has an unresolved rarity-color computed branch; icon lookup before it and empty-slot branch are independently instruction-bound.",
+    "No target, reconstructed Rust, renderer or OS callback execution."
+  ]
+}

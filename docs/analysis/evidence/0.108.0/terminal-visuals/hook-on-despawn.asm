@@ -1,0 +1,12 @@
+144e30f60 4883ec28 sub rsp, 0x28
+144e30f64 4883792000 cmp qword ptr [rcx + 0x20], 0
+144e30f69 750c jne 0x144e30f77
+144e30f6b 48895120 mov qword ptr [rcx + 0x20], rdx
+144e30f6f 4889c8 mov rax, rcx
+144e30f72 4883c428 add rsp, 0x28
+144e30f76 c3 ret
+144e30f77 488d0d5ab0d001 lea rcx, [rip + 0x1d0b05a]
+144e30f7e 4c8d057bb0d001 lea r8, [rip + 0x1d0b07b]
+144e30f85 ba28000000 mov edx, 0x28
+144e30f8a e82128f600 call 0x145d937b0
+144e30f8f 0f0b ud2

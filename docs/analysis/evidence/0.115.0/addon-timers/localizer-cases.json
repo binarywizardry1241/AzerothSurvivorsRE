@@ -1,0 +1,23 @@
+{
+  "target_sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+  "native": {
+    "start": "0x1458dff90",
+    "end": "0x1458e020a",
+    "sha256": "94fab64f11af52f5ac8c7f50e76a9c8cf84cbe45d1aafb1fc89c2b4f8567ef9c"
+  },
+  "cases": [
+    {"english": ["Mortal Wounds","English"],"selected": ["Mortal Wounds","Translated"],"index": 1,"override": null,"expected": "Translated","actual": "Translated","seams": ["byte-compare","hash-zero-singleton"]},
+    {"english": ["Mortal Wounds","English"],"selected": null,"index": 1,"override": null,"expected": "English","actual": "English","seams": ["byte-compare","hash-zero-singleton"]},
+    {"english": null,"selected": null,"index": 1,"override": null,"expected": null,"actual": null,"seams": []},
+    {"english": ["Mortal Wounds","English"],"selected": ["Mortal Wounds",""],"index": 1,"override": null,"expected": "","actual": "","seams": ["byte-compare","hash-zero-singleton"]},
+    {"english": ["Mortal Wounds",""],"selected": ["Other","Irrelevant"],"index": 1,"override": null,"expected": "","actual": "","seams": ["byte-compare","hash-zero-singleton"]},
+    {"english": ["Mortal Wounds","English"],"selected": ["Other","Irrelevant"],"index": 1,"override": null,"expected": "English","actual": "English","seams": ["byte-compare","hash-zero-singleton"]},
+    {"english": ["Mortal Wounds","English"],"selected": ["Mortal Wounds","Translated"],"index": 0,"override": 1,"expected": "Translated","actual": "Translated","seams": ["byte-compare","hash-zero-singleton"]},
+    {"english": ["Mortal Wounds","English"],"selected": ["Mortal Wounds","Translated"],"index": 1,"override": 0,"expected": "English","actual": "English","seams": ["byte-compare","hash-zero-singleton"]}
+  ],
+  "limits": [
+    "Original native lookup instructions run in isolated Unicorn only; not game/runtime/parity evidence.",
+    "Synthetic singleton maps and retained original code; hash and byte compare are explicit host seams.",
+    "No locale loading/selection/persistence/rebuild scheduling is executed."
+  ]
+}

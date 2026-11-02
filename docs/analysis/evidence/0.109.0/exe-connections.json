@@ -1,0 +1,2496 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.109.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+    "size_bytes": 140447744
+  },
+  "generator": {
+    "path": "scripts/audit-exe-connections.py",
+    "sha256": "a4a1671c52faf6b2dcad9a6b603f5a4a2a3f678a2def52bac5140fed308581af"
+  },
+  "generator_dependencies": [
+    {
+      "path": "scripts/coverage_common.py",
+      "sha256": "3aaa705f6fe366d06b59fbb1cc011bf98f28e59299e91371bd084c63b77d8eeb"
+    },
+    {
+      "path": "scripts/revalidate-historical-native-ranges.py",
+      "sha256": "ad768594fb344c8c17256a087968c3addbcbe988aaf5702b248fddc320d85ae2"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "docs/analysis/coverage/systems.json",
+      "sha256": "0820974e049ba7190d1cb5b0aace9cc3b96d37af2033a292a6f5134cddfe4444"
+    },
+    {
+      "path": "docs/analysis/coverage/native-summary.json",
+      "sha256": "e1f4dc1727f2697ec9f3adccdc1301d5052d5d30ac7d15fc618a603bfd7eabfa"
+    },
+    {
+      "path": "docs/analysis/coverage/native-image-current.json",
+      "sha256": "687e4cf5fa8f6fd9b874367728e734f7b06dda4c873ece46b0d00d68294fc3c3"
+    },
+    {
+      "path": "docs/analysis/coverage/native-ownership-classification.json",
+      "sha256": "d9fc05d09ddcf8704ded52f9e467a02ccab1a6755d3452771f583786f0e786af"
+    },
+    {
+      "path": "docs/analysis/coverage/historical-range-revalidation.json",
+      "sha256": "484a9945e2f7936a634a8abd0dd0a202a6a4c6117dda0beec0851e8033eeaa42"
+    },
+    {
+      "path": "docs/analysis/evidence/0.109.0/native-custom-coverage.json",
+      "sha256": "b81608958c2cc28bb1aa81933016acf3954c8ed7487e8d611cfb3a3b918c7b1d"
+    },
+    {
+      "path": "docs/analysis/coverage/changelog.json",
+      "sha256": "edb8416e46db19c2f5027e915341c959b3bafbaa1b3e20bddecbf826f7b76a78"
+    }
+  ],
+  "counts": {
+    "custom_system_rows": 53,
+    "with_registered_current_evidence": 53,
+    "without_registered_current_evidence": 0,
+    "with_registered_current_bounded_contract": 39,
+    "without_registered_current_bounded_contract": 14,
+    "without_source_correspondence": 0,
+    "ownerless_native_location_references": 94,
+    "paths_with_ownerless_native_location_references": 13,
+    "retained_evidence_json_documents": 843,
+    "evidence_document_identity_roles": {
+      "current": 137,
+      "historical": 650,
+      "requires_owning_manifest_or_review": 56
+    },
+    "directly_embedded_assets": 114,
+    "embedded_asset_provenance": {
+      "current": 12,
+      "historical": 60,
+      "not_declared_in_asset": 42
+    },
+    "historical_range_commitments": 9614,
+    "historical_range_results": {
+      "ambiguous-exact-bytes-at-least-two-locations": 3008,
+      "canonical-preimage-bytes-hash-verified": 6688,
+      "canonical-preimage-bytes-unavailable": 2926,
+      "documents-admitted-by-exact-owning-manifest-hash": 2,
+      "documents-with-explicit-target-identity": 781,
+      "documents-without-explicit-target-or-exact-manifest-binding": 46,
+      "exact-bytes-not-found": 3115,
+      "historical-documents-with-range-commitments": 436,
+      "historical-documents-without-supported-range-commitments": 215,
+      "historical-location-not-revalidated": 9612,
+      "preimage:assembly-byte-columns": 144,
+      "preimage:committed-native-range-artifact": 1,
+      "preimage:contiguous-addressed-json-spans": 33,
+      "preimage:explicit-json-bytes": 4,
+      "preimage:explicit-json-bytes_hex": 119,
+      "preimage:explicit-json-hex": 3985,
+      "preimage:explicit-json-native_record_hex": 21,
+      "preimage:explicit-json-payload": 240,
+      "preimage:explicit-json-raw_hex": 1613,
+      "preimage:literal-json-utf8": 170,
+      "preimage:little-endian-enemy-u32-words": 7,
+      "preimage:little-endian-i32-relative-entries": 2,
+      "preimage:little-endian-notification-14Q": 1,
+      "preimage:little-endian-pvp-6Q": 1,
+      "preimage:little-endian-pvp-6f": 2,
+      "preimage:little-endian-pvp-f": 2,
+      "preimage:little-endian-u32-bit-words": 9,
+      "preimage:little-endian-upgrade-I": 1,
+      "preimage:little-endian-upgrade-f": 4,
+      "preimage:native-range-artifact-with-added-terminal-LF": 1,
+      "preimage:ordered-verbatim-64-byte-effects": 319,
+      "preimage:verbatim-notification-constant-bytes": 9,
+      "same-offset-byte-match": 2,
+      "selected-target-documents-excluded-from-historical-audit": 132,
+      "unique-exact-byte-range": 565,
+      "unique-match:executable-without-complete-body-owner": 9,
+      "unique-match:non-executable-data-or-headers": 545,
+      "unique-match:whole-native-body-range": 11
+    }
+  },
+  "systems": [
+    {
+      "id": "custom-app-lib",
+      "original_path": "crates/wenilla-rogue-app/src/lib.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/main.rs",
+        "crates/azeroth-survivors-re/src/menu.rs",
+        "crates/azeroth-survivors-re/src/menu_state.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+        "crates/azeroth-survivors-re/src/stock_frontend.rs",
+        "crates/azeroth-survivors-re/src/startup.rs"
+      ],
+      "gap_ids": [
+        9,
+        17,
+        41
+      ],
+      "location_reference_count": 2,
+      "location_body_owners": [
+        "0x14000e5d0"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/account-command-owners-0.109.0.md",
+        "docs/analysis/evidence/0.109.0/account-command-helpers/manifest.json",
+        "docs/analysis/evidence/0.109.0/account-commands/frontend-pick-binding.json",
+        "docs/analysis/evidence/0.109.0/account-commands/manifest.json",
+        "docs/analysis/login-roster-0.109.0.md",
+        "docs/analysis/menu-audio-0.109.0.md",
+        "docs/analysis/menu-fidelity-0.109.0.md",
+        "docs/analysis/menu-pages-0.109.0.md",
+        "docs/analysis/save-backup-0.109.0.md",
+        "docs/analysis/save-envelope-0.109.0.md",
+        "docs/analysis/save-load-0.109.0.md",
+        "docs/analysis/save-schema-0.109.0.md",
+        "docs/analysis/updater-0.109.0.md"
+      ]
+    },
+    {
+      "id": "custom-app-screens-armory",
+      "original_path": "crates/wenilla-rogue-app/src/screens/armory.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/armory.rs",
+        "crates/azeroth-survivors-re/src/save/gear.rs",
+        "crates/azeroth-survivors-re/src/preview.rs",
+        "crates/azeroth-survivors-re/src/menu_scene.rs",
+        "crates/azeroth-survivors-re/src/native_dbc.rs",
+        "crates/azeroth-survivors-re/src/menu_state/backend.rs"
+      ],
+      "gap_ids": [
+        4,
+        17,
+        41
+      ],
+      "location_reference_count": 29,
+      "location_body_owners": [
+        "0x14013c9a0",
+        "0x140142300",
+        "0x140145970",
+        "0x140146d50",
+        "0x14015fcf0",
+        "0x1401605c0",
+        "0x1401630f0",
+        "0x14022b380",
+        "0x140230940",
+        "0x140231870",
+        "0x140233370",
+        "0x140235c20",
+        "0x140239c60",
+        "0x14023af50"
+      ],
+      "ownerless_location_sites": [
+        "0x140078572",
+        "0x14016271d",
+        "0x140162730",
+        "0x14016270a",
+        "0x1401626f7"
+      ],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/armory-pages-0.109.0.md",
+        "docs/analysis/hero-preview-0.109.0.md",
+        "docs/analysis/save-gear-0.109.0.md",
+        "docs/analysis/save-schema-0.109.0.md"
+      ]
+    },
+    {
+      "id": "custom-app-screens-backdrop",
+      "original_path": "crates/wenilla-rogue-app/src/screens/backdrop.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/background.rs",
+        "crates/azeroth-survivors-re/src/menu_scene.rs",
+        "crates/azeroth-survivors-re/src/menu_scene/residency.rs",
+        "crates/azeroth-survivors-re/src/menu_compositor.rs"
+      ],
+      "gap_ids": [
+        17,
+        39,
+        41
+      ],
+      "location_reference_count": 2,
+      "location_body_owners": [
+        "0x14007cd50"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/menu-audio-0.109.0.md",
+        "docs/analysis/menu-fidelity-0.109.0.md"
+      ]
+    },
+    {
+      "id": "custom-app-screens-cards",
+      "original_path": "crates/wenilla-rogue-app/src/screens/cards.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/native_overlays.rs",
+        "crates/azeroth-survivors-re/src/gameplay/native_overlays/tooltip.rs",
+        "crates/azeroth-survivors-re/src/gameplay/native_overlay_payload.rs"
+      ],
+      "gap_ids": [
+        2,
+        18,
+        41
+      ],
+      "location_reference_count": 12,
+      "location_body_owners": [
+        "0x1400f9400",
+        "0x1400ffee0",
+        "0x1401129d0"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_refs": []
+    },
+    {
+      "id": "custom-app-screens-codex",
+      "original_path": "crates/wenilla-rogue-app/src/screens/codex.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/codex.rs",
+        "crates/azeroth-survivors-re/src/catalog.rs",
+        "crates/azeroth-survivors-re/assets/codex-0.105.0.json",
+        "crates/azeroth-survivors-re/assets/codex-locales-0.105.0.json"
+      ],
+      "gap_ids": [
+        17,
+        34,
+        41
+      ],
+      "location_reference_count": 38,
+      "location_body_owners": [
+        "0x14000ca50",
+        "0x140048760",
+        "0x1400a24c0",
+        "0x1400be1f0",
+        "0x1400f15d0",
+        "0x1400f1d80",
+        "0x1400f2a40",
+        "0x1400f5a60",
+        "0x14013ad00",
+        "0x14021eaf0",
+        "0x140364530",
+        "0x140364670",
+        "0x140365a00"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/armory-pages-0.109.0.md",
+        "docs/analysis/codex-0.109.0.md"
+      ]
+    },
+    {
+      "id": "custom-app-screens-discord",
+      "original_path": "crates/wenilla-rogue-app/src/screens/discord.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/community_icon.rs",
+        "crates/azeroth-survivors-re/src/menu.rs",
+        "crates/azeroth-survivors-re/src/picker.rs"
+      ],
+      "gap_ids": [
+        17,
+        41
+      ],
+      "location_reference_count": 10,
+      "location_body_owners": [
+        "0x140067fc0",
+        "0x14006b460",
+        "0x14007b510"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/discord-presence-0.109.0.md",
+        "docs/analysis/discord-transport-0.109.0.md",
+        "docs/analysis/menu-utilities-0.109.0.md"
+      ]
+    },
+    {
+      "id": "custom-app-screens-hud",
+      "original_path": "crates/wenilla-rogue-app/src/screens/hud.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/run_hud/mod.rs",
+        "crates/azeroth-survivors-re/src/gameplay/run_hud/view.rs",
+        "crates/azeroth-survivors-re/src/gameplay/run_hud/controls.rs",
+        "crates/azeroth-survivors-re/src/gameplay/run_hud/pause.rs",
+        "crates/azeroth-survivors-re/src/gameplay/stored_hud.rs",
+        "crates/azeroth-survivors-re/src/native_bindings.rs",
+        "crates/azeroth-survivors-re/src/gameplay/run_hud/loot.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/addon_lists.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/events.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/framexml_hud.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client.rs",
+        "crates/benilla-app/src/local_client/extension.rs",
+        "crates/benilla-app/src/ui_script/addons.rs",
+        "crates/benilla-app/src/ui_script/manifest.rs",
+        "crates/benilla-app/src/ui_script/lifecycle.rs"
+      ],
+      "gap_ids": [
+        7,
+        21,
+        33,
+        41
+      ],
+      "location_reference_count": 21,
+      "location_body_owners": [
+        "0x140287980",
+        "0x1402892c0",
+        "0x14028a610",
+        "0x14028bce0",
+        "0x14028e670",
+        "0x140291520"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/evidence/0.109.0/hud-class-provider/manifest.json",
+        "docs/analysis/evidence/0.109.0/hud-ready/manifest.json",
+        "docs/analysis/hud-class-provider-0.109.0.md",
+        "docs/analysis/hud-ready-0.109.0.md",
+        "docs/analysis/run-hud-0.109.0.md"
+      ]
+    },
+    {
+      "id": "custom-app-screens-hudparts",
+      "original_path": "crates/wenilla-rogue-app/src/screens/hudparts.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/run_hud/layout.rs",
+        "crates/azeroth-survivors-re/src/gameplay/run_hud/settings.rs",
+        "crates/azeroth-survivors-re/src/gameplay/run_hud/view.rs",
+        "crates/azeroth-survivors-re/src/gameplay/stored_hud.rs",
+        "crates/azeroth-survivors-re/src/gameplay/run_hud/loot.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/addon_lists.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/events.rs"
+      ],
+      "gap_ids": [
+        7,
+        33,
+        41
+      ],
+      "location_reference_count": 3,
+      "location_body_owners": [
+        "0x14007d0b0"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/evidence/0.109.0/hud-class-provider/manifest.json",
+        "docs/analysis/evidence/0.109.0/hud-ready/manifest.json",
+        "docs/analysis/hud-class-provider-0.109.0.md",
+        "docs/analysis/hud-ready-0.109.0.md",
+        "docs/analysis/run-hud-0.109.0.md"
+      ]
+    },
+    {
+      "id": "custom-app-screens-language",
+      "original_path": "crates/wenilla-rogue-app/src/screens/language.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/localization.rs",
+        "crates/azeroth-survivors-re/src/menu_fonts.rs",
+        "crates/azeroth-survivors-re/src/menu.rs",
+        "scripts/recover-localization-0.107.0.py",
+        "crates/azeroth-survivors-re/assets/locales/cs.json",
+        "crates/azeroth-survivors-re/assets/locales/de.json",
+        "crates/azeroth-survivors-re/assets/locales/en.json",
+        "crates/azeroth-survivors-re/assets/locales/es.json",
+        "crates/azeroth-survivors-re/assets/locales/fr.json",
+        "crates/azeroth-survivors-re/assets/locales/ja.json",
+        "crates/azeroth-survivors-re/assets/locales/ko.json",
+        "crates/azeroth-survivors-re/assets/locales/pl.json",
+        "crates/azeroth-survivors-re/assets/locales/pt.json",
+        "crates/azeroth-survivors-re/assets/locales/ro.json",
+        "crates/azeroth-survivors-re/assets/locales/ru.json",
+        "crates/azeroth-survivors-re/assets/locales/tr.json",
+        "crates/azeroth-survivors-re/assets/locales/uk.json",
+        "crates/azeroth-survivors-re/assets/locales/zh.json",
+        "crates/azeroth-survivors-re/src/localization/catalogs.rs",
+        "scripts/recover-localization-0.108.0.py",
+        "scripts/recover-locale-overrides-0.108.0.py",
+        "scripts/recover-locale-parser-0.108.0.py"
+      ],
+      "gap_ids": [
+        17,
+        41
+      ],
+      "location_reference_count": 3,
+      "location_body_owners": [
+        "0x14002f3c0"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/locale-catalogs-0.109.0.md",
+        "docs/analysis/localization-0.109.0.md",
+        "docs/analysis/menu-fonts-0.109.0.md",
+        "docs/analysis/menu-utilities-0.109.0.md"
+      ]
+    },
+    {
+      "id": "custom-app-screens-meter",
+      "original_path": "crates/wenilla-rogue-app/src/screens/meter.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/meter.rs",
+        "crates/azeroth-survivors-re/src/gameplay/meter/view.rs",
+        "crates/azeroth-survivors-re/src/gameplay/meter/settings.rs",
+        "crates/azeroth-survivors-re/src/run_meter.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/demons.rs"
+      ],
+      "gap_ids": [
+        8,
+        24,
+        41
+      ],
+      "location_reference_count": 13,
+      "location_body_owners": [
+        "0x1400c7070",
+        "0x1400c8380",
+        "0x1400cc150",
+        "0x1400cd0e0",
+        "0x1400cd8b0"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_refs": []
+    },
+    {
+      "id": "custom-app-screens-mod",
+      "original_path": "crates/wenilla-rogue-app/src/screens/mod.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/menu.rs",
+        "crates/azeroth-survivors-re/src/hover.rs",
+        "crates/azeroth-survivors-re/src/canvas.rs",
+        "crates/azeroth-survivors-re/src/scrollbar.rs",
+        "crates/azeroth-survivors-re/src/tooltip.rs",
+        "crates/azeroth-survivors-re/src/gameplay/terminal_view.rs",
+        "crates/azeroth-survivors-re/src/native_input/mod.rs",
+        "crates/azeroth-survivors-re/src/native_input/focus.rs"
+      ],
+      "gap_ids": [
+        9,
+        17,
+        22,
+        23,
+        41
+      ],
+      "location_reference_count": 16,
+      "location_body_owners": [
+        "0x140186ac0",
+        "0x14018e450",
+        "0x14018f760",
+        "0x14018ff90",
+        "0x1401903b0",
+        "0x140191130",
+        "0x140194db0"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/account-command-owners-0.109.0.md",
+        "docs/analysis/achievements-menu-0.109.0.md",
+        "docs/analysis/evidence/0.109.0/account-command-helpers/manifest.json",
+        "docs/analysis/evidence/0.109.0/account-commands/frontend-pick-binding.json",
+        "docs/analysis/evidence/0.109.0/account-commands/manifest.json",
+        "docs/analysis/login-roster-0.109.0.md",
+        "docs/analysis/menu-fidelity-0.109.0.md",
+        "docs/analysis/menu-pages-0.109.0.md",
+        "docs/analysis/save-backup-0.109.0.md",
+        "docs/analysis/save-envelope-0.109.0.md",
+        "docs/analysis/save-load-0.109.0.md",
+        "docs/analysis/save-schema-0.109.0.md"
+      ]
+    },
+    {
+      "id": "custom-app-screens-options",
+      "original_path": "crates/wenilla-rogue-app/src/screens/options.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/options.rs",
+        "crates/azeroth-survivors-re/src/options_config.rs",
+        "crates/azeroth-survivors-re/src/background.rs",
+        "crates/azeroth-survivors-re/src/gameplay/run_hud/settings.rs",
+        "crates/azeroth-survivors-re/assets/options.json",
+        "crates/benilla-app/src/local_client.rs",
+        "crates/benilla-app/src/local_client/extension.rs",
+        "crates/benilla-app/src/cvars/mod.rs",
+        "scripts/recover-options-0.105.0.py",
+        "crates/azeroth-survivors-re/src/native_input/mod.rs",
+        "crates/azeroth-survivors-re/src/native_input/focus.rs",
+        "crates/benilla-app/src/local_client/device.rs",
+        "crates/azeroth-survivors-re/src/options_globals.rs",
+        "crates/azeroth-survivors-re/src/addons.rs",
+        "crates/benilla-app/src/local_state.rs",
+        "crates/benilla-app/src/ui_script/addons.rs",
+        "scripts/recover-options-lifecycle-0.105.0.py",
+        "crates/azeroth-survivors-re/src/native_bindings.rs",
+        "scripts/recover-options-0.109.0.py",
+        "crates/benilla-app/src/bindings.rs",
+        "crates/benilla-app/src/bindings/chord.rs",
+        "crates/benilla-app/src/bindings/layout.rs",
+        "crates/benilla-app/src/ui_script/input.rs",
+        "crates/azeroth-survivors-re/src/menu_state/backend.rs"
+      ],
+      "gap_ids": [
+        17,
+        21,
+        22,
+        23,
+        33,
+        41
+      ],
+      "location_reference_count": 25,
+      "location_body_owners": [
+        "0x14001b9a0",
+        "0x14001bec0",
+        "0x14001d920",
+        "0x14001eb10",
+        "0x1400263a0",
+        "0x140026ae0",
+        "0x140027ba0"
+      ],
+      "ownerless_location_sites": [
+        "0x14001dd7c",
+        "0x14001dd50",
+        "0x14001e8d1",
+        "0x1400296cd",
+        "0x140029952",
+        "0x140029f8b",
+        "0x14002999c",
+        "0x14002e193",
+        "0x14002dec0"
+      ],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/account-command-owners-0.109.0.md",
+        "docs/analysis/addons-metadata-0.109.0.md",
+        "docs/analysis/evidence/0.109.0/in-run-bindings/manifest.json",
+        "docs/analysis/evidence/0.109.0/options/manifest.json",
+        "docs/analysis/import-restore-0.109.0.md",
+        "docs/analysis/in-run-bindings-0.109.0.md",
+        "docs/analysis/options-0.109.0.md",
+        "docs/analysis/options-values-0.109.0.md",
+        "docs/analysis/saves-browser-0.109.0.md"
+      ]
+    },
+    {
+      "id": "custom-app-screens-pad",
+      "original_path": "crates/wenilla-rogue-app/src/screens/pad.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/native_input/mod.rs",
+        "crates/azeroth-survivors-re/src/native_input/focus.rs",
+        "crates/azeroth-survivors-re/src/native_input/policy.rs",
+        "crates/benilla-app/src/local_client/device.rs",
+        "crates/benilla-app/src/bindings.rs",
+        "crates/benilla-app/src/player/controller.rs",
+        "crates/benilla-app/src/ui_script/input.rs",
+        "scripts/recover-input-0.105.0.py"
+      ],
+      "gap_ids": [
+        21,
+        22,
+        41
+      ],
+      "location_reference_count": 3,
+      "location_body_owners": [
+        "0x1401bab10",
+        "0x1401c3670",
+        "0x1401c59f0"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/evidence/0.109.0/pad/manifest.json",
+        "docs/analysis/pad-0.109.0.md"
+      ]
+    },
+    {
+      "id": "custom-app-screens-picker",
+      "original_path": "crates/wenilla-rogue-app/src/screens/picker.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/picker.rs",
+        "crates/azeroth-survivors-re/src/menu.rs",
+        "crates/azeroth-survivors-re/src/menu_state.rs",
+        "crates/azeroth-survivors-re/src/save.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mod.rs"
+      ],
+      "gap_ids": [
+        9,
+        15,
+        17,
+        41
+      ],
+      "location_reference_count": 14,
+      "location_body_owners": [
+        "0x140074b60",
+        "0x14007a180",
+        "0x14024bbc0",
+        "0x14024dba0"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/account-command-owners-0.109.0.md",
+        "docs/analysis/evidence/0.109.0/picker-name/manifest.json",
+        "docs/analysis/hero-preview-0.109.0.md",
+        "docs/analysis/import-restore-0.109.0.md",
+        "docs/analysis/menu-fidelity-0.109.0.md",
+        "docs/analysis/menu-utilities-0.109.0.md",
+        "docs/analysis/picker-name-0.109.0.md",
+        "docs/analysis/save-schema-0.109.0.md"
+      ]
+    },
+    {
+      "id": "custom-app-screens-rewards",
+      "original_path": "crates/wenilla-rogue-app/src/screens/rewards.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/progression.rs",
+        "crates/azeroth-survivors-re/src/progression/rewards.rs",
+        "crates/azeroth-survivors-re/src/save/appearance.rs"
+      ],
+      "gap_ids": [
+        3,
+        14,
+        17,
+        27,
+        41
+      ],
+      "location_reference_count": 2,
+      "location_body_owners": [],
+      "ownerless_location_sites": [
+        "0x140117549",
+        "0x14011755f"
+      ],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/evidence/0.109.0/rewards-menu/manifest.json",
+        "docs/analysis/rewards-menu-0.109.0.md"
+      ]
+    },
+    {
+      "id": "custom-app-screens-runmods",
+      "original_path": "crates/wenilla-rogue-app/src/screens/runmods.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/run_options.rs",
+        "crates/azeroth-survivors-re/src/run_mods.rs",
+        "crates/azeroth-survivors-re/src/options_config.rs"
+      ],
+      "gap_ids": [
+        17,
+        34,
+        41
+      ],
+      "location_reference_count": 4,
+      "location_body_owners": [
+        "0x1401ca600"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/run-options-0.109.0.md",
+        "docs/analysis/runmods-consumers-0.109.0.md",
+        "docs/analysis/runmods-scaling-0.109.0.md"
+      ]
+    },
+    {
+      "id": "custom-app-screens-talents",
+      "original_path": "crates/wenilla-rogue-app/src/screens/talents.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/talents.rs",
+        "crates/azeroth-survivors-re/src/save/talents.rs",
+        "crates/azeroth-survivors-re/src/menu_state.rs",
+        "crates/azeroth-survivors-re/src/menu_state/backend.rs"
+      ],
+      "gap_ids": [
+        12,
+        16,
+        17,
+        34,
+        41
+      ],
+      "location_reference_count": 2,
+      "location_body_owners": [
+        "0x140108580",
+        "0x140269d70"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/save-schema-0.109.0.md",
+        "docs/analysis/talents-page-0.109.0.md",
+        "docs/analysis/talents-save-0.109.0.md"
+      ]
+    },
+    {
+      "id": "custom-app-screens-talentview",
+      "original_path": "crates/wenilla-rogue-app/src/screens/talentview.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/talent_view.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/talent_view.rs",
+        "crates/azeroth-survivors-re/src/talents.rs",
+        "crates/azeroth-survivors-re/src/native_input/focus.rs"
+      ],
+      "gap_ids": [
+        10,
+        12,
+        22,
+        23,
+        41
+      ],
+      "location_reference_count": 6,
+      "location_body_owners": [
+        "0x140110f40",
+        "0x140111e50"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_refs": []
+    },
+    {
+      "id": "custom-app-screens-touch",
+      "original_path": "crates/wenilla-rogue-app/src/screens/touch.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/native_input/mod.rs",
+        "crates/azeroth-survivors-re/src/native_input/policy.rs",
+        "crates/azeroth-survivors-re/src/native_input/touch_view.rs",
+        "crates/benilla-app/src/local_client/device.rs",
+        "crates/benilla-app/src/player/controller.rs",
+        "crates/benilla-app/src/ui_script/input.rs",
+        "scripts/recover-input-0.105.0.py"
+      ],
+      "gap_ids": [
+        23,
+        41
+      ],
+      "location_reference_count": 5,
+      "location_body_owners": [
+        "0x14013ed50",
+        "0x14015dae0",
+        "0x14015e660"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_refs": []
+    },
+    {
+      "id": "custom-app-screens-update",
+      "original_path": "crates/wenilla-rogue-app/src/screens/update.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/update_ui.rs",
+        "crates/azeroth-survivors-re/src/update.rs"
+      ],
+      "gap_ids": [
+        17,
+        41
+      ],
+      "location_reference_count": 6,
+      "location_body_owners": [
+        "0x1401c6520",
+        "0x1401c78d0"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/updater-0.109.0.md"
+      ]
+    },
+    {
+      "id": "custom-app-screens-xinput",
+      "original_path": "crates/wenilla-rogue-app/src/screens/xinput.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/native_input/acquisition.rs",
+        "crates/azeroth-survivors-re/src/native_input/mod.rs",
+        "crates/azeroth-survivors-re/src/main.rs",
+        "scripts/check-xinput-0.109.0.py"
+      ],
+      "gap_ids": [
+        22,
+        41
+      ],
+      "location_reference_count": 1,
+      "location_body_owners": [
+        "0x14037d9d0"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/evidence/0.109.0/pad/manifest.json",
+        "docs/analysis/evidence/0.109.0/xinput/manifest.json",
+        "docs/analysis/input-0.109.0.md",
+        "docs/analysis/pad-0.109.0.md"
+      ]
+    },
+    {
+      "id": "custom-app-update",
+      "original_path": "crates/wenilla-rogue-app/src/update.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/update.rs",
+        "crates/azeroth-survivors-re/src/update_check.rs",
+        "crates/azeroth-survivors-re/src/update_data.rs",
+        "crates/azeroth-survivors-re/src/update_install.rs",
+        "crates/azeroth-survivors-re/src/update_parts.rs",
+        "crates/azeroth-survivors-re/src/update_worker.rs"
+      ],
+      "gap_ids": [
+        17,
+        41
+      ],
+      "location_reference_count": 3,
+      "location_body_owners": [
+        "0x14012a810",
+        "0x140183f60",
+        "0x140184c90"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/updater-0.109.0.md"
+      ]
+    },
+    {
+      "id": "custom-game-achievements",
+      "original_path": "crates/wenilla-rogue/src/achievements.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/account_progression.rs",
+        "crates/azeroth-survivors-re/src/progression.rs",
+        "crates/azeroth-survivors-re/src/save/achievements.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/kill_feats.rs",
+        "crates/azeroth-survivors-re/src/gameplay/notifications.rs"
+      ],
+      "gap_ids": [
+        19,
+        26,
+        27,
+        34,
+        41
+      ],
+      "location_reference_count": 3,
+      "location_body_owners": [
+        "0x1458dc5f0",
+        "0x1458dccb0"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/achievements-menu-0.109.0.md",
+        "docs/analysis/evidence/0.109.0/achievements-menu/catalog.json"
+      ]
+    },
+    {
+      "id": "custom-game-appearance",
+      "original_path": "crates/wenilla-rogue/src/appearance.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/preview.rs",
+        "crates/azeroth-survivors-re/src/preview/framing.rs",
+        "crates/azeroth-survivors-re/src/hero_name.rs",
+        "crates/azeroth-survivors-re/src/save/appearance.rs",
+        "crates/azeroth-survivors-re/src/armory.rs",
+        "crates/azeroth-survivors-re/src/run_effects/forms.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client.rs"
+      ],
+      "gap_ids": [
+        17,
+        25,
+        34,
+        41
+      ],
+      "location_reference_count": 2,
+      "location_body_owners": [
+        "0x1459a21a0"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/armory-pages-0.109.0.md",
+        "docs/analysis/hero-preview-0.109.0.md",
+        "docs/analysis/save-gear-0.109.0.md",
+        "docs/analysis/save-schema-0.109.0.md"
+      ]
+    },
+    {
+      "id": "custom-game-bindings",
+      "original_path": "crates/wenilla-rogue/src/bindings.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/events.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/talent_view.rs",
+        "crates/benilla-app/src/bindings.rs",
+        "crates/azeroth-survivors-re/src/native_input/mod.rs",
+        "crates/benilla-app/src/local_client/device.rs",
+        "crates/azeroth-survivors-re/src/native_bindings.rs",
+        "crates/benilla-app/src/local_client/extension.rs",
+        "crates/benilla-app/src/ui_script/lifecycle.rs",
+        "crates/benilla-app/src/ui_script/manifest.rs",
+        "crates/azeroth-survivors-re/src/options.rs",
+        "crates/benilla-app/src/bindings/chord.rs",
+        "crates/benilla-app/src/bindings/layout.rs",
+        "crates/benilla-app/src/ui_script/input.rs",
+        "crates/benilla-ui/src/script/mod.rs"
+      ],
+      "gap_ids": [
+        10,
+        21,
+        22,
+        23,
+        41
+      ],
+      "location_reference_count": 1,
+      "location_body_owners": [
+        "0x1459134a0"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/evidence/0.109.0/in-run-bindings/manifest.json",
+        "docs/analysis/in-run-bindings-0.109.0.md"
+      ]
+    },
+    {
+      "id": "custom-game-content",
+      "original_path": "crates/wenilla-rogue/src/content.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/catalog.rs",
+        "crates/azeroth-survivors-re/src/enemies/catalog.rs",
+        "crates/azeroth-survivors-re/src/bosses/catalog.rs",
+        "crates/azeroth-survivors-re/src/guardians/catalog.rs",
+        "crates/azeroth-survivors-re/src/treasure_chests/catalog.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
+        "crates/azeroth-survivors-re/src/loot_rewards/catalog.rs",
+        "crates/azeroth-survivors-re/src/bosses/scaling.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/visual_scale.rs"
+      ],
+      "gap_ids": [
+        29,
+        32,
+        34,
+        41
+      ],
+      "location_reference_count": 46,
+      "location_body_owners": [
+        "0x14588d7b0",
+        "0x1458998b0",
+        "0x145899aa0",
+        "0x1458d0840",
+        "0x1458d3df0",
+        "0x145911a90",
+        "0x14591b7c0",
+        "0x145925f00",
+        "0x14592d7e0",
+        "0x14592f370",
+        "0x1459458d0",
+        "0x1459656f0",
+        "0x14596c160",
+        "0x14598b4a0",
+        "0x14598c660",
+        "0x14598d2b0",
+        "0x14598e800",
+        "0x1459cb390",
+        "0x1459d2ff0",
+        "0x1459d6ff0",
+        "0x1459d74d0",
+        "0x1459d7760",
+        "0x1459d7d40",
+        "0x1459ed9c0",
+        "0x1459ede80"
+      ],
+      "ownerless_location_sites": [
+        "0x14596aff5",
+        "0x14596b031",
+        "0x14596b06d",
+        "0x14596b0a9",
+        "0x14596b0e5",
+        "0x14596b11e",
+        "0x14599577b",
+        "0x14599affc",
+        "0x1459d4f1a",
+        "0x1459d4f54",
+        "0x1459d4f8e",
+        "0x1459d4fc5",
+        "0x1459daba3",
+        "0x1459dabd2",
+        "0x1459dac34",
+        "0x1459dac63"
+      ],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_refs": []
+    },
+    {
+      "id": "custom-game-dbc",
+      "original_path": "crates/wenilla-rogue/src/dbc.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/native_dbc.rs",
+        "crates/azeroth-survivors-re/src/armory.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/addon_lists.rs",
+        "crates/azeroth-survivors-re/assets/native-dbc-display-ids-0.105.0.json"
+      ],
+      "gap_ids": [
+        41
+      ],
+      "location_reference_count": 8,
+      "location_body_owners": [
+        "0x1458e8f40",
+        "0x1459a7c60",
+        "0x1459d0db0",
+        "0x1459ee180"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_refs": []
+    },
+    {
+      "id": "custom-game-driver",
+      "original_path": "crates/wenilla-rogue/src/driver.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+        "crates/azeroth-survivors-re/src/menu_state.rs",
+        "crates/benilla-app/src/local_client.rs",
+        "crates/benilla-app/src/local_client/requests.rs",
+        "crates/benilla-app/src/local_client/stock_frontend.rs",
+        "crates/benilla-app/src/glue_session/roster.rs",
+        "crates/azeroth-survivors-re/src/startup.rs",
+        "crates/azeroth-survivors-re/src/run_seed.rs",
+        "crates/azeroth-survivors-re/src/hero_name.rs",
+        "crates/azeroth-survivors-re/src/menu_state/backend.rs"
+      ],
+      "gap_ids": [
+        9,
+        17,
+        41
+      ],
+      "location_reference_count": 1,
+      "location_body_owners": [
+        "0x1458eea30"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/account-command-owners-0.109.0.md",
+        "docs/analysis/evidence/0.109.0/account-command-helpers/manifest.json",
+        "docs/analysis/evidence/0.109.0/account-commands/frontend-pick-binding.json",
+        "docs/analysis/evidence/0.109.0/account-commands/manifest.json",
+        "docs/analysis/import-restore-0.109.0.md",
+        "docs/analysis/login-roster-0.109.0.md",
+        "docs/analysis/menu-pages-0.109.0.md",
+        "docs/analysis/save-backup-0.109.0.md",
+        "docs/analysis/save-envelope-0.109.0.md",
+        "docs/analysis/save-load-0.109.0.md",
+        "docs/analysis/save-schema-0.109.0.md"
+      ]
+    },
+    {
+      "id": "custom-game-fonts",
+      "original_path": "crates/wenilla-rogue/src/fonts.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/menu_fonts.rs",
+        "crates/azeroth-survivors-re/src/font_patch.rs",
+        "crates/azeroth-survivors-re/src/assets.rs"
+      ],
+      "gap_ids": [
+        2,
+        17,
+        39,
+        41
+      ],
+      "location_reference_count": 16,
+      "location_body_owners": [
+        "0x1458f15c0",
+        "0x1458f8460",
+        "0x1458f8cd0",
+        "0x1458fc880",
+        "0x14599ec30"
+      ],
+      "ownerless_location_sites": [
+        "0x1458fb6fb"
+      ],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/menu-fonts-0.109.0.md"
+      ]
+    },
+    {
+      "id": "custom-game-game-abilities",
+      "original_path": "crates/wenilla-rogue/src/game/abilities.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/player_abilities/mod.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/attacks.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/totems.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/totem_passives.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/passives.rs"
+      ],
+      "gap_ids": [
+        13,
+        16,
+        19,
+        24,
+        32,
+        34,
+        41
+      ],
+      "location_reference_count": 22,
+      "location_body_owners": [
+        "0x14592f370",
+        "0x1459cb520"
+      ],
+      "ownerless_location_sites": [
+        "0x145960dbf",
+        "0x14595f53b",
+        "0x1459a111a",
+        "0x1459a112c",
+        "0x1459a1147",
+        "0x1459a1135",
+        "0x1459a1123",
+        "0x1459a1111",
+        "0x1459a10ff",
+        "0x1459a1108",
+        "0x1459a113e"
+      ],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/ability-definitions-0.109.0.md",
+        "docs/analysis/evidence/0.109.0/ability-definitions.json"
+      ]
+    },
+    {
+      "id": "custom-game-game-addon",
+      "original_path": "crates/wenilla-rogue/src/game/addon.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/addon_feed.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/addon_lists.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/addon_scalars.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/addon_lists.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/addon_scalars.rs",
+        "crates/azeroth-survivors-re/src/guardians/addon.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/addon_banners.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/events.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/pickups.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/guardians.rs",
+        "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
+        "crates/azeroth-survivors-re/src/gameplay/notifications.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client.rs",
+        "scripts/check-addon-snapshot-0.109.0.py",
+        "scripts/check-addon-lifecycle-0.109.0.py",
+        "scripts/check-addon-contracts-0.109.0.py",
+        "scripts/check-addon-banners-0.109.0.py",
+        "crates/azeroth-survivors-re/src/gameplay/mod.rs"
+      ],
+      "gap_ids": [
+        11,
+        21,
+        24,
+        31,
+        33,
+        41
+      ],
+      "location_reference_count": 1,
+      "location_body_owners": [
+        "0x1459cfaf0"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/addon-bridge-0.109.0.md",
+        "docs/analysis/evidence/0.109.0/addon-bridge/banners/manifest.json",
+        "docs/analysis/evidence/0.109.0/addon-bridge/banners/native-cases.json",
+        "docs/analysis/evidence/0.109.0/addon-bridge/banners/rea.json",
+        "docs/analysis/evidence/0.109.0/addon-bridge/lifecycle-cases.json",
+        "docs/analysis/evidence/0.109.0/addon-bridge/lifecycle-rea.json",
+        "docs/analysis/evidence/0.109.0/addon-bridge/manifest.json",
+        "docs/analysis/evidence/0.109.0/addon-bridge/producer-cases.json",
+        "docs/analysis/evidence/0.109.0/addon-bridge/producer-fields.json",
+        "docs/analysis/evidence/0.109.0/addon-bridge/producer-rea.json",
+        "docs/analysis/evidence/0.109.0/addon-bridge/rea.json"
+      ]
+    },
+    {
+      "id": "custom-game-game-auras",
+      "original_path": "crates/wenilla-rogue/src/game/auras.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/run_effects/player_auras.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/events.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
+        "crates/benilla-app/src/local_client/events.rs",
+        "crates/azeroth-survivors-re/src/run_effects/forms.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client.rs"
+      ],
+      "gap_ids": [
+        19,
+        25,
+        31,
+        32,
+        33,
+        41
+      ],
+      "location_reference_count": 1,
+      "location_body_owners": [
+        "0x14591b8f0"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_refs": []
+    },
+    {
+      "id": "custom-game-game-companions",
+      "original_path": "crates/wenilla-rogue/src/game/companions.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/run_effects/loot_companions.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/loot_companions.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client.rs",
+        "crates/azeroth-survivors-re/src/gameplay/world.rs",
+        "crates/azeroth-survivors-re/src/run_effects/pets.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/demons.rs"
+      ],
+      "gap_ids": [
+        14,
+        27,
+        31,
+        41,
+        25
+      ],
+      "location_reference_count": 18,
+      "location_body_owners": [
+        "0x14592f370",
+        "0x14596cae0",
+        "0x14596cea0",
+        "0x14596d0e0"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_refs": []
+    },
+    {
+      "id": "custom-game-game-demons",
+      "original_path": "crates/wenilla-rogue/src/game/demons.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/run_effects/demons.rs",
+        "crates/azeroth-survivors-re/src/run_effects/demon_effects.rs",
+        "crates/azeroth-survivors-re/src/run_effects/demon_spells.rs",
+        "crates/azeroth-survivors-re/src/run_effects/demon_talents.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/demons.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/demon_lifecycle.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/demon_spells.rs",
+        "crates/azeroth-survivors-re/src/run_effects/pets.rs",
+        "crates/azeroth-survivors-re/src/run_effects/milestones.rs",
+        "crates/azeroth-survivors-re/src/native_counter.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/terminal_movement.rs"
+      ],
+      "gap_ids": [
+        8,
+        12,
+        24,
+        41,
+        25,
+        9
+      ],
+      "location_reference_count": 23,
+      "location_body_owners": [
+        "0x14592f370",
+        "0x145989870",
+        "0x14598a160",
+        "0x14598b4a0",
+        "0x14598b8a0",
+        "0x14598c0c0",
+        "0x14598c660",
+        "0x14598d2b0",
+        "0x14598de70",
+        "0x14598e0a0",
+        "0x14598e250",
+        "0x14598e800"
+      ],
+      "ownerless_location_sites": [
+        "0x14596b143"
+      ],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/evidence/0.109.0/terminal-order/manifest.json",
+        "docs/analysis/terminal-order-0.109.0.md"
+      ]
+    },
+    {
+      "id": "custom-game-game-enemy",
+      "original_path": "crates/wenilla-rogue/src/game/enemy.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/enemies/ai.rs",
+        "crates/azeroth-survivors-re/src/enemies/spawning.rs",
+        "crates/azeroth-survivors-re/src/enemies/waves.rs",
+        "crates/azeroth-survivors-re/src/enemies/relocation.rs",
+        "crates/azeroth-survivors-re/src/bosses/ai.rs",
+        "crates/azeroth-survivors-re/src/bosses/abilities.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs",
+        "crates/azeroth-survivors-re/src/gameplay/visuals.rs",
+        "crates/azeroth-survivors-re/src/bosses/scaling.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/announcements.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/showcase.rs",
+        "crates/azeroth-survivors-re/src/bosses/minion_phases.rs",
+        "crates/azeroth-survivors-re/src/guardians/catalog.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_areas.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_area_catalog.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_shapes.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/guardians.rs",
+        "crates/azeroth-survivors-re/src/native_counter.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/terminal_movement.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_lines.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_actions.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_pools.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_bombs.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_towers.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_shields.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_warnings.rs",
+        "crates/azeroth-survivors-re/src/bosses/mod.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/raid_hits.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/player_mover.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/events.rs",
+        "crates/azeroth-survivors-re/src/guardians/signature_catalog.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/damage.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_extra.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_native_catalog.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_sequence_areas.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_sequences.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_transforms.rs",
+        "crates/azeroth-survivors-re/src/guardians/signatures.rs",
+        "crates/azeroth-survivors-re/tests/boss_ai.rs",
+        "crates/azeroth-survivors-re/tests/enemy_ai.rs",
+        "crates/azeroth-survivors-re/tests/enemy_relocation.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/attacks.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/demon_bounce.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/demon_lifecycle.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/demon_spells.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/demons.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/milestones.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/passives.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/pets.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/wards.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_wards.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/actor_frame.rs"
+      ],
+      "gap_ids": [
+        1,
+        28,
+        29,
+        32,
+        34,
+        41,
+        25,
+        42,
+        9
+      ],
+      "location_reference_count": 29,
+      "location_body_owners": [
+        "0x14590d560",
+        "0x14590db40",
+        "0x14592f370",
+        "0x14596d6c0",
+        "0x14596d8d0",
+        "0x145970560",
+        "0x145971490",
+        "0x145977e10",
+        "0x145980200",
+        "0x1459c2d60",
+        "0x1459caa50"
+      ],
+      "ownerless_location_sites": [
+        "0x14593f2fa",
+        "0x14593f30c",
+        "0x14593f4df",
+        "0x14593f495",
+        "0x14597d377",
+        "0x14597d446",
+        "0x14597d2a5"
+      ],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/actor-frame-order-0.109.0.md",
+        "docs/analysis/boss-inputs-0.109.0.md",
+        "docs/analysis/evidence/0.109.0/actor-frame-order/manifest.json",
+        "docs/analysis/evidence/0.109.0/boss-inputs/manifest.json",
+        "docs/analysis/evidence/0.109.0/guardian-signatures/catalog.json",
+        "docs/analysis/evidence/0.109.0/guardian-signatures/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-actions/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-bombs/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-lines/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-native/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-pools/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-sequences/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-shields/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-towers/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-volley/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-volley/rea.json",
+        "docs/analysis/evidence/0.109.0/raid-wards/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-warnings/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-waves/manifest.json",
+        "docs/analysis/evidence/0.109.0/terminal-order/manifest.json",
+        "docs/analysis/guardian-signatures-0.109.0.md",
+        "docs/analysis/raid-actions-0.109.0.md",
+        "docs/analysis/raid-bombs-0.109.0.md",
+        "docs/analysis/raid-lines-0.109.0.md",
+        "docs/analysis/raid-markers-0.109.0.md",
+        "docs/analysis/raid-native-0.109.0.md",
+        "docs/analysis/raid-pools-0.109.0.md",
+        "docs/analysis/raid-sequences-0.109.0.md",
+        "docs/analysis/raid-shields-0.109.0.md",
+        "docs/analysis/raid-towers-0.109.0.md",
+        "docs/analysis/raid-volleys-0.109.0.md",
+        "docs/analysis/raid-wards-0.109.0.md",
+        "docs/analysis/raid-warnings-0.109.0.md",
+        "docs/analysis/raid-waves-0.109.0.md",
+        "docs/analysis/terminal-order-0.109.0.md",
+        "scripts/check-actor-frame-order-0.109.0.py"
+      ]
+    },
+    {
+      "id": "custom-game-game-guardians",
+      "original_path": "crates/wenilla-rogue/src/game/guardians.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/guardians/mod.rs",
+        "crates/azeroth-survivors-re/src/guardians/ai.rs",
+        "crates/azeroth-survivors-re/src/guardians/placement.rs",
+        "crates/azeroth-survivors-re/src/guardians/rewards.rs",
+        "crates/azeroth-survivors-re/src/guardians/addon.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/guardians.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/announcements.rs",
+        "crates/azeroth-survivors-re/src/guardians/signatures.rs",
+        "crates/azeroth-survivors-re/src/guardians/signature_catalog.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs",
+        "crates/azeroth-survivors-re/src/native_counter.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/terminal_movement.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_lines.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_actions.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_pools.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_bombs.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_towers.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_shields.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_warnings.rs",
+        "crates/azeroth-survivors-re/src/bosses/ai.rs",
+        "crates/azeroth-survivors-re/src/bosses/abilities.rs",
+        "crates/azeroth-survivors-re/src/bosses/minion_phases.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_area_catalog.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_areas.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_shapes.rs",
+        "crates/azeroth-survivors-re/src/bosses/mod.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/raid_hits.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/player_mover.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/events.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/damage.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_extra.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_native_catalog.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_sequence_areas.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_sequences.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_transforms.rs",
+        "crates/azeroth-survivors-re/src/enemies/ai.rs",
+        "crates/azeroth-survivors-re/tests/boss_ai.rs",
+        "crates/azeroth-survivors-re/tests/enemy_ai.rs",
+        "crates/azeroth-survivors-re/tests/enemy_relocation.rs",
+        "crates/azeroth-survivors-re/src/gameplay/visuals.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/attacks.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/demon_bounce.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/demon_lifecycle.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/demon_spells.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/demons.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/milestones.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/passives.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/pets.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/showcase.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/wards.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_wards.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/actor_frame.rs"
+      ],
+      "gap_ids": [
+        1,
+        11,
+        19,
+        29,
+        34,
+        41,
+        25,
+        28,
+        9,
+        42
+      ],
+      "location_reference_count": 14,
+      "location_body_owners": [
+        "0x14592f370",
+        "0x1459458d0",
+        "0x14599c1f0",
+        "0x14599c5f0"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/actor-frame-order-0.109.0.md",
+        "docs/analysis/addon-bridge-0.109.0.md",
+        "docs/analysis/boss-inputs-0.109.0.md",
+        "docs/analysis/evidence/0.109.0/actor-frame-order/manifest.json",
+        "docs/analysis/evidence/0.109.0/boss-inputs/manifest.json",
+        "docs/analysis/evidence/0.109.0/guardian-signatures/catalog.json",
+        "docs/analysis/evidence/0.109.0/guardian-signatures/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-actions/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-bombs/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-lines/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-native/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-pools/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-sequences/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-shields/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-towers/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-volley/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-volley/rea.json",
+        "docs/analysis/evidence/0.109.0/raid-wards/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-warnings/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-waves/manifest.json",
+        "docs/analysis/evidence/0.109.0/terminal-order/manifest.json",
+        "docs/analysis/guardian-signatures-0.109.0.md",
+        "docs/analysis/raid-actions-0.109.0.md",
+        "docs/analysis/raid-bombs-0.109.0.md",
+        "docs/analysis/raid-lines-0.109.0.md",
+        "docs/analysis/raid-markers-0.109.0.md",
+        "docs/analysis/raid-native-0.109.0.md",
+        "docs/analysis/raid-pools-0.109.0.md",
+        "docs/analysis/raid-sequences-0.109.0.md",
+        "docs/analysis/raid-shields-0.109.0.md",
+        "docs/analysis/raid-towers-0.109.0.md",
+        "docs/analysis/raid-volleys-0.109.0.md",
+        "docs/analysis/raid-wards-0.109.0.md",
+        "docs/analysis/raid-warnings-0.109.0.md",
+        "docs/analysis/raid-waves-0.109.0.md",
+        "docs/analysis/terminal-order-0.109.0.md",
+        "scripts/check-actor-frame-order-0.109.0.py"
+      ]
+    },
+    {
+      "id": "custom-game-game-mod",
+      "original_path": "crates/wenilla-rogue/src/game/mod.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/completion.rs",
+        "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
+        "crates/azeroth-survivors-re/src/gameplay/world.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/totems.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/totem_passives.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/passives.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/showcase.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/demons.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/choices.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/treasure.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/terminal_movement.rs",
+        "crates/azeroth-survivors-re/src/native_counter.rs"
+      ],
+      "gap_ids": [
+        9,
+        13,
+        19,
+        21,
+        25,
+        28,
+        30,
+        31,
+        33,
+        34,
+        41
+      ],
+      "location_reference_count": 13,
+      "location_body_owners": [
+        "0x1459169f0",
+        "0x14591e470",
+        "0x145924270",
+        "0x14592f370",
+        "0x14599c780"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/account-command-owners-0.109.0.md",
+        "docs/analysis/evidence/0.109.0/account-command-helpers/manifest.json",
+        "docs/analysis/evidence/0.109.0/account-commands/frontend-pick-binding.json",
+        "docs/analysis/evidence/0.109.0/account-commands/manifest.json",
+        "docs/analysis/evidence/0.109.0/terminal-order/manifest.json",
+        "docs/analysis/login-roster-0.109.0.md",
+        "docs/analysis/save-backup-0.109.0.md",
+        "docs/analysis/save-envelope-0.109.0.md",
+        "docs/analysis/save-load-0.109.0.md",
+        "docs/analysis/save-schema-0.109.0.md",
+        "docs/analysis/terminal-order-0.109.0.md"
+      ]
+    },
+    {
+      "id": "custom-game-game-procs",
+      "original_path": "crates/wenilla-rogue/src/game/procs.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/run_effects.rs",
+        "crates/azeroth-survivors-re/src/run_effects/actions.rs",
+        "crates/azeroth-survivors-re/src/run_effects/conditions.rs",
+        "crates/azeroth-survivors-re/src/run_effects/healing.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/totems.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/totem_passives.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/passives.rs"
+      ],
+      "gap_ids": [
+        13,
+        16,
+        19,
+        24,
+        31,
+        34,
+        41
+      ],
+      "location_reference_count": 3,
+      "location_body_owners": [
+        "0x14592f370",
+        "0x145985fe0"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_refs": []
+    },
+    {
+      "id": "custom-game-game-talents",
+      "original_path": "crates/wenilla-rogue/src/game/talents.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/run_effects.rs",
+        "crates/azeroth-survivors-re/src/run_effects/milestones.rs",
+        "crates/azeroth-survivors-re/src/run_effects/demon_talents.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/milestones.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/passives.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/totems.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/totem_passives.rs"
+      ],
+      "gap_ids": [
+        12,
+        13,
+        16,
+        19,
+        24,
+        34,
+        41
+      ],
+      "location_reference_count": 15,
+      "location_body_owners": [
+        "0x14592f370",
+        "0x14596c3c0"
+      ],
+      "ownerless_location_sites": [
+        "0x14596b134"
+      ],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_refs": []
+    },
+    {
+      "id": "custom-game-game-upgrades",
+      "original_path": "crates/wenilla-rogue/src/game/upgrades.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/loot_rewards.rs",
+        "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/upgrades.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/choices.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/choice_controls.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/treasure.rs"
+      ],
+      "gap_ids": [
+        2,
+        13,
+        18,
+        21,
+        24,
+        34,
+        41
+      ],
+      "location_reference_count": 12,
+      "location_body_owners": [
+        "0x14588ded0",
+        "0x14598efd0",
+        "0x145996ae0",
+        "0x1459cf920",
+        "0x1459ed3f0"
+      ],
+      "ownerless_location_sites": [
+        "0x145995798"
+      ],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_refs": []
+    },
+    {
+      "id": "custom-game-gear",
+      "original_path": "crates/wenilla-rogue/src/gear.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/save/gear.rs",
+        "crates/azeroth-survivors-re/src/mob_loot.rs",
+        "crates/azeroth-survivors-re/src/mob_loot_catalog.rs",
+        "crates/azeroth-survivors-re/src/armory.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs"
+      ],
+      "gap_ids": [
+        4,
+        17,
+        19,
+        34,
+        41
+      ],
+      "location_reference_count": 15,
+      "location_body_owners": [
+        "0x1458ad720",
+        "0x1458b2580",
+        "0x1459a3680",
+        "0x1459a3e80",
+        "0x1459a4ba0",
+        "0x1459bb070",
+        "0x1459d0740",
+        "0x1459d12e0",
+        "0x1459d1520",
+        "0x1459d1760"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/armory-pages-0.109.0.md",
+        "docs/analysis/runmods-consumers-0.109.0.md",
+        "docs/analysis/save-gear-0.109.0.md"
+      ]
+    },
+    {
+      "id": "custom-game-i18n",
+      "original_path": "crates/wenilla-rogue/src/i18n.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/localization.rs",
+        "crates/azeroth-survivors-re/src/catalog.rs",
+        "crates/azeroth-survivors-re/src/menu_fonts.rs",
+        "scripts/recover-localization-0.107.0.py",
+        "crates/azeroth-survivors-re/assets/locales/cs.json",
+        "crates/azeroth-survivors-re/assets/locales/de.json",
+        "crates/azeroth-survivors-re/assets/locales/en.json",
+        "crates/azeroth-survivors-re/assets/locales/es.json",
+        "crates/azeroth-survivors-re/assets/locales/fr.json",
+        "crates/azeroth-survivors-re/assets/locales/ja.json",
+        "crates/azeroth-survivors-re/assets/locales/ko.json",
+        "crates/azeroth-survivors-re/assets/locales/pl.json",
+        "crates/azeroth-survivors-re/assets/locales/pt.json",
+        "crates/azeroth-survivors-re/assets/locales/ro.json",
+        "crates/azeroth-survivors-re/assets/locales/ru.json",
+        "crates/azeroth-survivors-re/assets/locales/tr.json",
+        "crates/azeroth-survivors-re/assets/locales/uk.json",
+        "crates/azeroth-survivors-re/assets/locales/zh.json",
+        "crates/azeroth-survivors-re/src/localization/catalogs.rs",
+        "scripts/recover-localization-0.108.0.py",
+        "scripts/recover-locale-overrides-0.108.0.py",
+        "scripts/recover-locale-parser-0.108.0.py"
+      ],
+      "gap_ids": [
+        17,
+        41
+      ],
+      "location_reference_count": 6,
+      "location_body_owners": [
+        "0x1458ec500",
+        "0x1458ec8b0"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/locale-catalogs-0.109.0.md",
+        "docs/analysis/localization-0.109.0.md",
+        "docs/analysis/menu-utilities-0.109.0.md"
+      ]
+    },
+    {
+      "id": "custom-game-jewelry",
+      "original_path": "crates/wenilla-rogue/src/jewelry.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/loot_rewards.rs",
+        "crates/azeroth-survivors-re/src/loot_rewards/catalog.rs",
+        "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+        "crates/azeroth-survivors-re/src/loot_rewards/prose.rs",
+        "crates/azeroth-survivors-re/src/run_effects.rs"
+      ],
+      "gap_ids": [
+        18,
+        19,
+        34,
+        41
+      ],
+      "location_reference_count": 2,
+      "location_body_owners": [
+        "0x145897a70",
+        "0x1459d2ff0"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_refs": []
+    },
+    {
+      "id": "custom-game-mods",
+      "original_path": "crates/wenilla-rogue/src/mods.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/run_mods.rs",
+        "crates/azeroth-survivors-re/src/run_options.rs",
+        "crates/azeroth-survivors-re/src/enemies/scaling.rs",
+        "crates/azeroth-survivors-re/src/bosses/scaling.rs",
+        "crates/azeroth-survivors-re/src/guardians/scaling.rs",
+        "crates/azeroth-survivors-re/src/mob_loot.rs",
+        "crates/azeroth-survivors-re/src/run_progression.rs"
+      ],
+      "gap_ids": [
+        17,
+        19,
+        34,
+        41
+      ],
+      "location_reference_count": 2,
+      "location_body_owners": [
+        "0x1401c0e30",
+        "0x14590e420"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/run-options-0.109.0.md",
+        "docs/analysis/runmods-consumers-0.109.0.md",
+        "docs/analysis/runmods-scaling-0.109.0.md"
+      ]
+    },
+    {
+      "id": "custom-game-nav",
+      "original_path": "crates/wenilla-rogue/src/nav.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/floor_recovery/navigation.rs",
+        "crates/azeroth-survivors-re/src/floor_recovery/placement.rs",
+        "crates/azeroth-survivors-re/src/gameplay/world/native_floor.rs",
+        "crates/azeroth-survivors-re/src/gameplay/world/ground.rs"
+      ],
+      "gap_ids": [
+        1,
+        38,
+        41
+      ],
+      "location_reference_count": 64,
+      "location_body_owners": [
+        "0x1458d13e0",
+        "0x1458d17b0",
+        "0x1458d1d70",
+        "0x1458d2570",
+        "0x1458d2980",
+        "0x1458d3df0",
+        "0x1458d7780",
+        "0x1458d83b0",
+        "0x1458d8680",
+        "0x1458d8a20",
+        "0x1458d9700",
+        "0x1458d98e0",
+        "0x1458d99e0",
+        "0x1458d9fd0",
+        "0x1459458d0",
+        "0x14596fcd0",
+        "0x145971000",
+        "0x145980d50",
+        "0x1459b87e0",
+        "0x1459d0460"
+      ],
+      "ownerless_location_sites": [
+        "0x14593f2a3",
+        "0x14593f2b5",
+        "0x14593f2c7",
+        "0x14593f2d9"
+      ],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_refs": []
+    },
+    {
+      "id": "custom-game-proto",
+      "original_path": "crates/wenilla-rogue/src/proto.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/client.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/events.rs",
+        "crates/benilla-app/src/local_client/requests.rs",
+        "crates/benilla-app/src/local_client/events.rs",
+        "crates/benilla-app/src/local_client/movement.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/spell_scales.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/announcements.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/player_mover.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_warnings.rs"
+      ],
+      "gap_ids": [
+        9,
+        11,
+        28,
+        29,
+        31,
+        32,
+        41,
+        33
+      ],
+      "location_reference_count": 2,
+      "location_body_owners": [
+        "0x1458c0170",
+        "0x1458cf2e0"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/addon-bridge-0.109.0.md",
+        "docs/analysis/evidence/0.109.0/raid-actions/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-lines/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-warnings/manifest.json",
+        "docs/analysis/raid-actions-0.109.0.md",
+        "docs/analysis/raid-lines-0.109.0.md",
+        "docs/analysis/raid-warnings-0.109.0.md"
+      ]
+    },
+    {
+      "id": "custom-game-realmd",
+      "original_path": "crates/wenilla-rogue/src/realmd.rs",
+      "source_refs": [
+        "crates/benilla-app/src/ui_script/glue_mgr.rs",
+        "crates/benilla-app/src/local_client.rs",
+        "crates/azeroth-survivors-re/src/stock_frontend.rs",
+        "crates/benilla-app/src/local_client/stock_frontend.rs",
+        "crates/benilla-app/src/glue_session/roster.rs",
+        "crates/azeroth-survivors-re/src/save.rs",
+        "crates/azeroth-survivors-re/src/menu_state.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+        "crates/azeroth-survivors-re/src/startup.rs"
+      ],
+      "gap_ids": [
+        9,
+        41
+      ],
+      "location_reference_count": 2,
+      "location_body_owners": [
+        "0x1458f1730"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/account-command-owners-0.109.0.md",
+        "docs/analysis/evidence/0.109.0/account-command-helpers/manifest.json",
+        "docs/analysis/evidence/0.109.0/account-commands/frontend-pick-binding.json",
+        "docs/analysis/evidence/0.109.0/account-commands/manifest.json",
+        "docs/analysis/login-roster-0.109.0.md",
+        "docs/analysis/save-backup-0.109.0.md",
+        "docs/analysis/save-envelope-0.109.0.md",
+        "docs/analysis/save-load-0.109.0.md",
+        "docs/analysis/save-schema-0.109.0.md"
+      ]
+    },
+    {
+      "id": "custom-game-save",
+      "original_path": "crates/wenilla-rogue/src/save.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/save.rs",
+        "crates/azeroth-survivors-re/src/save/backup.rs",
+        "crates/azeroth-survivors-re/src/save/gear.rs",
+        "crates/azeroth-survivors-re/src/save/talents.rs",
+        "crates/azeroth-survivors-re/src/save/appearance.rs",
+        "crates/azeroth-survivors-re/src/save/progress.rs",
+        "crates/azeroth-survivors-re/src/save/achievements.rs",
+        "crates/azeroth-survivors-re/src/save_browser.rs",
+        "crates/azeroth-survivors-re/src/menu_state.rs",
+        "crates/azeroth-survivors-re/src/hero_name.rs",
+        "crates/azeroth-survivors-re/src/menu_state/backend.rs",
+        "crates/azeroth-survivors-re/src/save/schema.rs"
+      ],
+      "gap_ids": [
+        12,
+        15,
+        17,
+        19,
+        37,
+        41,
+        9
+      ],
+      "location_reference_count": 18,
+      "location_body_owners": [
+        "0x14589baf0",
+        "0x14589bdc0",
+        "0x14589c630",
+        "0x14589d1b0",
+        "0x14589df20",
+        "0x14589e380",
+        "0x1458a4340",
+        "0x1458a7960",
+        "0x1458a7b80"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/account-command-owners-0.109.0.md",
+        "docs/analysis/evidence/0.109.0/account-command-helpers/manifest.json",
+        "docs/analysis/evidence/0.109.0/account-commands/frontend-pick-binding.json",
+        "docs/analysis/evidence/0.109.0/account-commands/manifest.json",
+        "docs/analysis/import-restore-0.109.0.md",
+        "docs/analysis/login-roster-0.109.0.md",
+        "docs/analysis/save-backup-0.109.0.md",
+        "docs/analysis/save-envelope-0.109.0.md",
+        "docs/analysis/save-gear-0.109.0.md",
+        "docs/analysis/save-load-0.109.0.md",
+        "docs/analysis/save-schema-0.109.0.md",
+        "docs/analysis/saves-browser-0.109.0.md",
+        "docs/analysis/talents-save-0.109.0.md"
+      ]
+    },
+    {
+      "id": "custom-game-server",
+      "original_path": "crates/wenilla-rogue/src/server.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client.rs",
+        "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
+        "crates/benilla-app/src/local_client.rs",
+        "crates/azeroth-survivors-re/src/startup.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/terminal_movement.rs",
+        "crates/azeroth-survivors-re/src/native_counter.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
+        "crates/azeroth-survivors-re/src/gameplay/terminal_view.rs"
+      ],
+      "gap_ids": [
+        9,
+        19,
+        21,
+        28,
+        41
+      ],
+      "location_reference_count": 12,
+      "location_body_owners": [
+        "0x1458ad5e0",
+        "0x1458ad720",
+        "0x1458b2580",
+        "0x1458b8300",
+        "0x1458beac0",
+        "0x1459ca650"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/account-command-owners-0.109.0.md",
+        "docs/analysis/evidence/0.109.0/account-command-helpers/manifest.json",
+        "docs/analysis/evidence/0.109.0/account-commands/frontend-pick-binding.json",
+        "docs/analysis/evidence/0.109.0/account-commands/manifest.json",
+        "docs/analysis/evidence/0.109.0/terminal-order/manifest.json",
+        "docs/analysis/login-roster-0.109.0.md",
+        "docs/analysis/save-backup-0.109.0.md",
+        "docs/analysis/save-envelope-0.109.0.md",
+        "docs/analysis/save-load-0.109.0.md",
+        "docs/analysis/save-schema-0.109.0.md",
+        "docs/analysis/terminal-order-0.109.0.md"
+      ]
+    },
+    {
+      "id": "custom-game-talents",
+      "original_path": "crates/wenilla-rogue/src/talents.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/talents.rs",
+        "crates/azeroth-survivors-re/src/save/talents.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/upgrades.rs",
+        "crates/azeroth-survivors-re/src/run_effects/demon_talents.rs",
+        "crates/azeroth-survivors-re/src/menu_state/backend.rs"
+      ],
+      "gap_ids": [
+        12,
+        16,
+        19,
+        24,
+        34,
+        41
+      ],
+      "location_reference_count": 2,
+      "location_body_owners": [
+        "0x14590eaf0",
+        "0x145910430"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/account-command-owners-0.109.0.md",
+        "docs/analysis/talents-page-0.109.0.md",
+        "docs/analysis/talents-save-0.109.0.md"
+      ]
+    },
+    {
+      "id": "custom-game-terrain",
+      "original_path": "crates/wenilla-rogue/src/terrain.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/floor_recovery.rs",
+        "crates/azeroth-survivors-re/src/floor_recovery/map.rs",
+        "crates/azeroth-survivors-re/src/floor_recovery/cache.rs",
+        "crates/azeroth-survivors-re/src/floor_recovery/placement.rs",
+        "crates/azeroth-survivors-re/src/gameplay/world/native_floor.rs",
+        "crates/azeroth-survivors-re/src/gameplay/world/ground.rs"
+      ],
+      "gap_ids": [
+        1,
+        30,
+        32,
+        38,
+        39,
+        41
+      ],
+      "location_reference_count": 26,
+      "location_body_owners": [
+        "0x1458d11f0",
+        "0x1458d3540",
+        "0x1458d3df0",
+        "0x1458d6f90",
+        "0x1458da440",
+        "0x1458da5d0",
+        "0x1458dc180"
+      ],
+      "ownerless_location_sites": [],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": false,
+      "current_bounded_contract_refs": []
+    },
+    {
+      "id": "custom-app-screens-markers",
+      "original_path": "crates/wenilla-rogue-app/src/screens/markers.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/raid_markers.rs",
+        "crates/azeroth-survivors-re/src/gameplay/raid_markers.rs",
+        "crates/azeroth-survivors-re/src/gameplay/raid_markers/geometry.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/events.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+        "crates/azeroth-survivors-re/src/lib.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_areas.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_area_catalog.rs",
+        "crates/azeroth-survivors-re/src/bosses/cast_presentation.rs",
+        "crates/azeroth-survivors-re/src/bosses/ai.rs",
+        "crates/azeroth-survivors-re/src/bosses/abilities.rs",
+        "crates/azeroth-survivors-re/src/enemies/ai.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_shapes.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/guardians.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_lines.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_actions.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_pools.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_bombs.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_towers.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_shields.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_warnings.rs",
+        "crates/azeroth-survivors-re/src/bosses/minion_phases.rs",
+        "crates/azeroth-survivors-re/src/bosses/mod.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/raid_hits.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/announcements.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/player_mover.rs",
+        "crates/azeroth-survivors-re/src/guardians/signature_catalog.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/damage.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_extra.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_native_catalog.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_sequence_areas.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_sequences.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_transforms.rs",
+        "crates/azeroth-survivors-re/src/guardians/signatures.rs",
+        "crates/azeroth-survivors-re/src/native_counter.rs",
+        "crates/azeroth-survivors-re/tests/boss_ai.rs",
+        "crates/azeroth-survivors-re/tests/enemy_ai.rs",
+        "crates/azeroth-survivors-re/tests/enemy_relocation.rs",
+        "crates/azeroth-survivors-re/src/gameplay/visuals.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/attacks.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/demon_bounce.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/demon_lifecycle.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/demon_spells.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/demons.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/milestones.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/passives.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/pets.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/showcase.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/terminal_movement.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/wards.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_wards.rs",
+        "crates/benilla-world/src/decal.rs",
+        "crates/benilla-app/src/spell/net.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/actor_frame.rs"
+      ],
+      "gap_ids": [
+        41,
+        42,
+        43
+      ],
+      "location_reference_count": 10,
+      "location_body_owners": [
+        "0x1400a6800",
+        "0x14013d890",
+        "0x14013df60",
+        "0x14013e2a0",
+        "0x140147dd0"
+      ],
+      "ownerless_location_sites": [
+        "0x140169282"
+      ],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/actor-frame-order-0.109.0.md",
+        "docs/analysis/boss-inputs-0.109.0.md",
+        "docs/analysis/evidence/0.109.0/actor-frame-order/manifest.json",
+        "docs/analysis/evidence/0.109.0/boss-inputs/manifest.json",
+        "docs/analysis/evidence/0.109.0/guardian-signatures/catalog.json",
+        "docs/analysis/evidence/0.109.0/guardian-signatures/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-actions/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-bombs/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-lines/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-markers/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-markers/rea-records.json",
+        "docs/analysis/evidence/0.109.0/raid-native/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-pools/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-sequences/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-shields/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-towers/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-volley/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-volley/rea.json",
+        "docs/analysis/evidence/0.109.0/raid-wards/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-warnings/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-waves/manifest.json",
+        "docs/analysis/guardian-signatures-0.109.0.md",
+        "docs/analysis/raid-actions-0.109.0.md",
+        "docs/analysis/raid-bombs-0.109.0.md",
+        "docs/analysis/raid-lines-0.109.0.md",
+        "docs/analysis/raid-markers-0.109.0.md",
+        "docs/analysis/raid-native-0.109.0.md",
+        "docs/analysis/raid-pools-0.109.0.md",
+        "docs/analysis/raid-sequences-0.109.0.md",
+        "docs/analysis/raid-shields-0.109.0.md",
+        "docs/analysis/raid-towers-0.109.0.md",
+        "docs/analysis/raid-volleys-0.109.0.md",
+        "docs/analysis/raid-wards-0.109.0.md",
+        "docs/analysis/raid-warnings-0.109.0.md",
+        "docs/analysis/raid-waves-0.109.0.md",
+        "scripts/check-actor-frame-order-0.109.0.py"
+      ]
+    },
+    {
+      "id": "custom-game-hazards",
+      "original_path": "crates/wenilla-rogue/src/game/hazards.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/bosses/raid_areas.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_area_catalog.rs",
+        "crates/azeroth-survivors-re/src/bosses/cast_presentation.rs",
+        "crates/azeroth-survivors-re/src/bosses/ai.rs",
+        "crates/azeroth-survivors-re/src/bosses/abilities.rs",
+        "crates/azeroth-survivors-re/src/enemies/ai.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_shapes.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/guardians.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_lines.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_actions.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_pools.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_bombs.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_towers.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_shields.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_warnings.rs",
+        "crates/azeroth-survivors-re/src/bosses/minion_phases.rs",
+        "crates/azeroth-survivors-re/src/bosses/mod.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/raid_hits.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/announcements.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/player_mover.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/events.rs",
+        "crates/azeroth-survivors-re/src/guardians/signature_catalog.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/damage.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_extra.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_native_catalog.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_sequence_areas.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_sequences.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_transforms.rs",
+        "crates/azeroth-survivors-re/src/guardians/signatures.rs",
+        "crates/azeroth-survivors-re/src/native_counter.rs",
+        "crates/azeroth-survivors-re/tests/boss_ai.rs",
+        "crates/azeroth-survivors-re/tests/enemy_ai.rs",
+        "crates/azeroth-survivors-re/tests/enemy_relocation.rs",
+        "crates/azeroth-survivors-re/src/gameplay/visuals.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/attacks.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/demon_bounce.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/demon_lifecycle.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/demon_spells.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/demons.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/milestones.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/passives.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/pets.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/showcase.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/terminal_movement.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/wards.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_wards.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/actor_frame.rs"
+      ],
+      "gap_ids": [
+        41,
+        42,
+        43
+      ],
+      "location_reference_count": 47,
+      "location_body_owners": [
+        "0x14592f370",
+        "0x14594e610",
+        "0x1459578e0",
+        "0x1459c2f40"
+      ],
+      "ownerless_location_sites": [
+        "0x1459538f8",
+        "0x1459539ea",
+        "0x14595cc09",
+        "0x1459594fe",
+        "0x14595cc5b",
+        "0x14595cb72",
+        "0x14595cc2b",
+        "0x14595cbed",
+        "0x14595cc4a",
+        "0x14595cbcb",
+        "0x14595cbdc",
+        "0x14595cceb",
+        "0x14595cafd",
+        "0x14595cbba",
+        "0x14595ccda",
+        "0x14595cc6f",
+        "0x14595cc95",
+        "0x14595cd18",
+        "0x14595cc1a",
+        "0x14595cb2c",
+        "0x14595cc84",
+        "0x14595ccf9",
+        "0x14595cd34",
+        "0x14595ccaa",
+        "0x14595cd0a",
+        "0x14595cb43",
+        "0x14595cbfb",
+        "0x14595cb15",
+        "0x14595cba9",
+        "0x14595ccc9",
+        "0x14595cd26",
+        "0x14595cb5b",
+        "0x14595cb8a",
+        "0x14595ccbb",
+        "0x14595cc3c"
+      ],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_refs": [
+        "docs/analysis/actor-frame-order-0.109.0.md",
+        "docs/analysis/boss-inputs-0.109.0.md",
+        "docs/analysis/evidence/0.109.0/actor-frame-order/manifest.json",
+        "docs/analysis/evidence/0.109.0/boss-inputs/manifest.json",
+        "docs/analysis/evidence/0.109.0/guardian-signatures/catalog.json",
+        "docs/analysis/evidence/0.109.0/guardian-signatures/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-actions/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-bombs/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-lines/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-native/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-pools/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-sequences/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-shields/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-towers/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-volley/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-volley/rea.json",
+        "docs/analysis/evidence/0.109.0/raid-wards/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-warnings/manifest.json",
+        "docs/analysis/evidence/0.109.0/raid-waves/manifest.json",
+        "docs/analysis/guardian-signatures-0.109.0.md",
+        "docs/analysis/raid-actions-0.109.0.md",
+        "docs/analysis/raid-bombs-0.109.0.md",
+        "docs/analysis/raid-lines-0.109.0.md",
+        "docs/analysis/raid-markers-0.109.0.md",
+        "docs/analysis/raid-native-0.109.0.md",
+        "docs/analysis/raid-pools-0.109.0.md",
+        "docs/analysis/raid-sequences-0.109.0.md",
+        "docs/analysis/raid-shields-0.109.0.md",
+        "docs/analysis/raid-towers-0.109.0.md",
+        "docs/analysis/raid-volleys-0.109.0.md",
+        "docs/analysis/raid-wards-0.109.0.md",
+        "docs/analysis/raid-warnings-0.109.0.md",
+        "docs/analysis/raid-waves-0.109.0.md",
+        "scripts/check-actor-frame-order-0.109.0.py"
+      ]
+    }
+  ],
+  "limits": [
+    "All registered custom paths are crosswalked; filename-free systems can remain undiscovered.",
+    "Current evidence membership does not certify that every contract, address, type, producer, consumer or dependency is recovered.",
+    "A missing directly registered current reference is an evidence-review lead, not proof of missing source or changed native behavior.",
+    "Ownerless Location sites include failure blocks; they are not automatically callable entries or missing gameplay systems.",
+    "Asset provenance does not determine current semantic validity. Current contracts may deliberately translate historical representations.",
+    "Document identity is read from explicit metadata; owning-manifest bindings are checked separately in historical range accounting.",
+    "Static addresses describe the preferred PE image. Live memory, ASLR, dynamic aliases and computed targets require separate evidence.",
+    "No compilation, reconstructed source execution, game launch or original/rebuilt parity comparison occurs."
+  ],
+  "whole_system_semantics_verified": false,
+  "parity_verified": false,
+  "inventory": {
+    "path": "runtime/coverage/76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0/exe-connections.json",
+    "sha256": "d14c955ea0edc373723568e58a17af1f466c44739eb1f8bda465dbaf93470c2e"
+  }
+}

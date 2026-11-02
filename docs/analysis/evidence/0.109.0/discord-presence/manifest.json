@@ -1,0 +1,106 @@
+{
+  "target": {
+    "version": "0.109.0",
+    "sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0"
+  },
+  "owners": {
+    "activity": {
+      "start": "0x14006b460",
+      "end_exclusive": "0x14006e9bf",
+      "byte_count": 13663,
+      "sha256": "06ca7be7bf60701e79917d8620417c98a3fc2bbc6f739cd70bc80e10e3ee8f15"
+    },
+    "publisher": {
+      "start": "0x14007b510",
+      "end_exclusive": "0x14007bea2",
+      "byte_count": 2450,
+      "sha256": "b224a3f4783cd2d55b48912394b286d0de2f3e85535c2747cd020d12563bb8d5"
+    },
+    "value-equality": {
+      "start": "0x14007de60",
+      "end_exclusive": "0x14007e3eb",
+      "byte_count": 1419,
+      "sha256": "e7536a6bbea778c636bb8445c687257cd46056c5fbd71de7f5b1a5db3df3ea2a"
+    },
+    "game-definition": {
+      "start": "0x145928330",
+      "end_exclusive": "0x14592affd",
+      "byte_count": 11469,
+      "sha256": "10140f029db04bf44c8d2664984217e2f4f9a54df1673bb5e8529efe67b62da7"
+    },
+    "meter-definition": {
+      "start": "0x14599cb60",
+      "end_exclusive": "0x14599db10",
+      "byte_count": 4016,
+      "sha256": "9ec1ece25c82f59998e7fa9bb584bef114f7f99a8c74aed75707e0db4dbd3062"
+    },
+    "json-f32": {
+      "start": "0x1458e6790",
+      "end_exclusive": "0x1458e6878",
+      "byte_count": 232,
+      "sha256": "9dd70b19d30e667b0a72a6f692e944b12957bd2d1f9af27d5b117513edb06f4a"
+    },
+    "json-number": {
+      "start": "0x1458edff0",
+      "end_exclusive": "0x1458ee116",
+      "byte_count": 294,
+      "sha256": "c3d2719dd2df0b6454d2045932e26c402b214f36ba7fa981eec111b9ef1362ed"
+    }
+  },
+  "ghidra": [
+    {
+      "procedure": "0x14006b460",
+      "evidence_id": "ev_a198bd576269f457918a4897163dcfd4325dc6dd2508123d2e8ccc839eb1c7d0",
+      "analysis_profile_digest": "e24df920cd8889fa9d8c36d5f14facd4e08aeaf978aba242f21eb27b08932c1d",
+      "subject_sha256": "7275cb5c29a8feacbd6137d5d765e1409095710599599073e31bf8c104615a1a"
+    },
+    {
+      "procedure": "0x14007de60",
+      "evidence_id": "ev_c44503c7d6c9c85cba6b700bb87f409ee053246960395ecfd0ab8bc0d4470e07",
+      "analysis_profile_digest": "e24df920cd8889fa9d8c36d5f14facd4e08aeaf978aba242f21eb27b08932c1d",
+      "subject_sha256": "7275cb5c29a8feacbd6137d5d765e1409095710599599073e31bf8c104615a1a"
+    },
+    {
+      "procedure": "0x14007b510",
+      "evidence_id": "ev_11b57896b79429939e1df3e0009560aa25e4e9defc81b95baa35432178671bbd",
+      "analysis_profile_digest": "e24df920cd8889fa9d8c36d5f14facd4e08aeaf978aba242f21eb27b08932c1d",
+      "subject_sha256": "7275cb5c29a8feacbd6137d5d765e1409095710599599073e31bf8c104615a1a"
+    },
+    {
+      "procedure": "0x145928330",
+      "evidence_id": "ev_b9d85178984c4f125b80d604f114dd2e7b514b439a4b18f88ec455c90870ec6e",
+      "analysis_profile_digest": "09e77908d32cbfa68c399fa10801d4b7dc4194c5a799a41b718acad22f273930",
+      "subject_sha256": "10140f029db04bf44c8d2664984217e2f4f9a54df1673bb5e8529efe67b62da7"
+    },
+    {
+      "procedure": "0x14599cb60",
+      "evidence_id": "ev_3294749b905378c74643c76768cc0a76a9d8df7900f3c3c00252cf5eeb876c04",
+      "analysis_profile_digest": "9542d954728914daaa1bb59bbb9224fa8c0c54e4f5b0491da27e19567a65c9ec",
+      "subject_sha256": "9ec1ece25c82f59998e7fa9bb584bef114f7f99a8c74aed75707e0db4dbd3062"
+    },
+    {
+      "procedure": "0x1458e6790",
+      "evidence_id": "ev_e34d042be62914ca6d2d24dd0c8080bf4f5f940800c7bdd7ab910623aa2506ea",
+      "analysis_profile_digest": "7a7c4e4558192954c712dc2a453a51d56fe5ebb9ebda3577344753913f402fb7",
+      "subject_sha256": "9dd70b19d30e667b0a72a6f692e944b12957bd2d1f9af27d5b117513edb06f4a"
+    }
+  ],
+  "native_activity_cases": 139,
+  "native_number_cases": 10,
+  "shared_evidence": [
+    "docs/analysis/evidence/0.109.0/discord-transport/manifest.json",
+    "docs/analysis/evidence/0.109.0/locale-catalogs.json",
+    "docs/analysis/evidence/0.109.0/menu-fidelity/manifest.json",
+    "docs/analysis/evidence/0.109.0/options-values/manifest.json"
+  ],
+  "seams": [
+    "Original activity and number-format owner instructions execute unchanged in Unicorn.",
+    "Heap allocation/free, memcpy/memcmp and String growth use scratch-only host seams.",
+    "serde_json lookup/mut-index/BTreeMap insertion/clone use explicit 32-byte Value storage seams.",
+    "Translation and argument substitution use retained current catalogs; Rust formatting descriptors decode borrowed/owned strings, integer and precision-controlled float arguments.",
+    "Class/race by-ID leaves execute; localized descriptor lookup and zone name resolution use current source catalog seams.",
+    "SystemTime returns the fixed case epoch; duration conversion returns it unchanged.",
+    "Publisher ECS lookup/channel/thread scheduling, live game JSON construction and shared meter sorting are reviewed statically, not executed in this fixture.",
+    "No compilation, Rust tests, application/device launch, IPC server, Discord client or original/rebuilt gameplay comparison."
+  ]
+}

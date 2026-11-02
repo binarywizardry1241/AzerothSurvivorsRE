@@ -1,0 +1,253 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.117.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293",
+    "size_bytes": 145283072
+  },
+  "method": "Curated source-first frontier and exact current Capstone static-reference selection; no native query or semantic ownership promotion.",
+  "inputs": [
+    {
+      "path": "runtime/coverage/507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293/inventory.json",
+      "sha256": "72a9c9dfa22e962133692962dc1ea0b9541fc58e8c18aacf0c021aed1ca53e96"
+    },
+    {
+      "path": "docs/analysis/coverage/instruction-summary.json",
+      "sha256": "d0fab8fe27163ac19bc31ea894f74f2454e79ecd6c343a25cf51fb94ae44736c"
+    },
+    {
+      "path": "runtime/coverage/507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293/native-instructions.sqlite",
+      "sha256": "53a7c635ce221638cec5a3482211ca2537d36ac637ec428bdf43bbc920d9cc97"
+    }
+  ],
+  "leads": {
+    "Q41-I01:resource_path:0": {
+      "selector": "Q41-I01:resource_path:0",
+      "finding_id": 103,
+      "title": "Progression-bar resource producer/handle/consumer",
+      "native_candidate": {
+        "file_offset": "0x619c0f8",
+        "virtual_address": "0x14619d6f8",
+        "byte_count": 58,
+        "sha256": "082aa7d5e50ddd68ebd07c2b473016275da05f5ed832f5b3b3958db6e7a133ff",
+        "literal": "//interface/paperdollinfoframe/ui-character-skills-bar.blp"
+      },
+      "encoded_incoming": [
+        {
+          "site": "0x140264196",
+          "kind": "memory",
+          "target": "0x14619d722"
+        },
+        {
+          "site": "0x1402641a1",
+          "kind": "memory",
+          "target": "0x14619d714"
+        },
+        {
+          "site": "0x1402641ac",
+          "kind": "memory",
+          "target": "0x14619d704"
+        }
+      ],
+      "native_reference_input": {
+        "summary": {
+          "path": "docs/analysis/coverage/instruction-summary.json",
+          "sha256": "d0fab8fe27163ac19bc31ea894f74f2454e79ecd6c343a25cf51fb94ae44736c"
+        },
+        "database": {
+          "path": "runtime/coverage/507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293/native-instructions.sqlite",
+          "sha256": "53a7c635ce221638cec5a3482211ca2537d36ac637ec428bdf43bbc920d9cc97"
+        }
+      },
+      "selection": {
+        "query": "SELECT site,kind,target FROM refs WHERE target >= ? AND target < ? ORDER BY rowid",
+        "parameters": [
+          "0x14619d6f8",
+          "0x14619d732"
+        ],
+        "integer_range_filter": [
+          "0x14619d6f8",
+          "0x14619d732"
+        ]
+      },
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/progression.rs",
+            "sha256": "d77945255d145f06fd3e9bc8b91b5b2489da363799874a4ced0b7a90e50ab2f0"
+          }
+        ],
+        "candidate_owner": "progression::load_art -> Art.progress_bar -> bar_flow",
+        "conclusion": "The existing image-loader and progression-bar source were inspected. Native reads of current URI bytes are data/connection leads; no current handle-to-bar source equivalence is established."
+      },
+      "ownership": "unknown",
+      "state": "pending",
+      "semantic_status": "structural_reference_and_source_frontier_only",
+      "next_action": "Trace the exact current URI reads through their producer, asset handle and live progression-bar consumer; stop at the existing benilla image-loading interface.",
+      "native_behavior_recovered": false,
+      "runtime_or_parity_verified": false,
+      "observed_complete_URI": {
+        "text": "mpq://interface/paperdollinfoframe/ui-character-skills-bar.blp",
+        "file_offset": "0x619c0f4",
+        "virtual_address": "0x14619d6f4",
+        "byte_count": 62,
+        "sha256": "c5a7eab701a10a03683c72f882606078eb4244b5dc7322a483059df472201430"
+      },
+      "native_candidate_input": {
+        "path": "runtime/coverage/507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293/inventory.json",
+        "sha256": "72a9c9dfa22e962133692962dc1ea0b9541fc58e8c18aacf0c021aed1ca53e96"
+      }
+    },
+    "Q41-I01:resource_path:4": {
+      "selector": "Q41-I01:resource_path:4",
+      "finding_id": 104,
+      "title": "Achievement dragon resource producer/handle/consumer",
+      "native_candidate": {
+        "file_offset": "0x61ab0ac",
+        "virtual_address": "0x1461ac6ac",
+        "byte_count": 52,
+        "sha256": "b830e8f8fc013dba14537c551c1de484229f48187f5b68c8e6a7f8748aa4cb41",
+        "literal": "//interface/dialogframe/ui-dialogbox-gold-dragon.blp"
+      },
+      "encoded_incoming": [
+        {
+          "site": "0x1402dfdb2",
+          "kind": "memory",
+          "target": "0x1461ac6c8"
+        },
+        {
+          "site": "0x1402dfdbd",
+          "kind": "memory",
+          "target": "0x1461ac6b8"
+        }
+      ],
+      "native_reference_input": {
+        "summary": {
+          "path": "docs/analysis/coverage/instruction-summary.json",
+          "sha256": "d0fab8fe27163ac19bc31ea894f74f2454e79ecd6c343a25cf51fb94ae44736c"
+        },
+        "database": {
+          "path": "runtime/coverage/507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293/native-instructions.sqlite",
+          "sha256": "53a7c635ce221638cec5a3482211ca2537d36ac637ec428bdf43bbc920d9cc97"
+        }
+      },
+      "selection": {
+        "query": "SELECT site,kind,target FROM refs WHERE target >= ? AND target < ? ORDER BY rowid",
+        "parameters": [
+          "0x1461ac6ac",
+          "0x1461ac6e0"
+        ],
+        "integer_range_filter": [
+          "0x1461ac6ac",
+          "0x1461ac6e0"
+        ]
+      },
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/progression.rs",
+            "sha256": "d77945255d145f06fd3e9bc8b91b5b2489da363799874a4ced0b7a90e50ab2f0"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/progression/achievements_sidebar.rs",
+            "sha256": "6ffd7bd64a1d5a6f9569ace0a77bc03f1b1d84ae013be159da6ea07a77bfa484"
+          }
+        ],
+        "candidate_owner": "progression::load_art -> Art.dragon -> achievements_sidebar::draw",
+        "conclusion": "The current source already loads dragon art and consumes it in the sidebar. Current encoded reads do not establish the native handle or source mapping."
+      },
+      "ownership": "unknown",
+      "state": "pending",
+      "semantic_status": "structural_reference_and_source_frontier_only",
+      "next_action": "Trace this exact URI and its native image handle to the actual achievements sidebar draw; retain source/native ownership uncertainty and separate rendering/parity proof.",
+      "native_behavior_recovered": false,
+      "runtime_or_parity_verified": false,
+      "observed_complete_URI": {
+        "text": "mpq://interface/dialogframe/ui-dialogbox-gold-dragon.blp",
+        "file_offset": "0x61ab0a8",
+        "virtual_address": "0x1461ac6a8",
+        "byte_count": 56,
+        "sha256": "b8e4ec90327f0152523fb3a41fd648219ef776645cf9fb56d653186796488cc2"
+      },
+      "native_candidate_input": {
+        "path": "runtime/coverage/507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293/inventory.json",
+        "sha256": "72a9c9dfa22e962133692962dc1ea0b9541fc58e8c18aacf0c021aed1ca53e96"
+      }
+    },
+    "Q41-I01:save_configuration_key_lead:5": {
+      "selector": "Q41-I01:save_configuration_key_lead:5",
+      "finding_id": 98,
+      "title": "Renewed talentxp literal producer/domain/consumer",
+      "native_candidate": {
+        "file_offset": "0x72d8fae",
+        "virtual_address": "0x1472da5ae",
+        "byte_count": 8,
+        "sha256": "df2e83d09d41bbf9646ed0053916488219e9e8d367374deaf55c9a8a6a659891",
+        "literal": "talentxp"
+      },
+      "encoded_incoming": [
+        {
+          "site": "0x145b1013d",
+          "kind": "address",
+          "target": "0x1472da5ae"
+        }
+      ],
+      "native_reference_input": {
+        "summary": {
+          "path": "docs/analysis/coverage/instruction-summary.json",
+          "sha256": "d0fab8fe27163ac19bc31ea894f74f2454e79ecd6c343a25cf51fb94ae44736c"
+        },
+        "database": {
+          "path": "runtime/coverage/507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293/native-instructions.sqlite",
+          "sha256": "53a7c635ce221638cec5a3482211ca2537d36ac637ec428bdf43bbc920d9cc97"
+        }
+      },
+      "selection": {
+        "query": "SELECT site,kind,target FROM refs WHERE target >= ? AND target < ? ORDER BY rowid",
+        "parameters": [
+          "0x1472da5ae",
+          "0x1472da5b6"
+        ],
+        "integer_range_filter": [
+          "0x1472da5ae",
+          "0x1472da5b6"
+        ]
+      },
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/talent_context.rs",
+            "sha256": "399575f233dab0e519dc932cba9720416097bcff06294c4148d32e470012ef83"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/events.rs",
+            "sha256": "62d354c586bd60ea01573d92597cf0a48b0fcc6e08e0a5ae17aa5248c3d34191"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
+            "sha256": "3ecc881df19515afd3593e49e691d8b942feee94dc89f59497d1fdb35b9f2016"
+          }
+        ],
+        "candidate_owner": "talent_context::Context::accept/request/Snapshot::read; gameplay::client::events::receive_coop -> terminal::queue_talent",
+        "conclusion": "Existing source preserves the complete talentxp Value in an active context and parses the terminal snapshot. Its historical native contract does not establish the role of this new current data occurrence."
+      },
+      "ownership": "unknown",
+      "state": "pending",
+      "semantic_status": "structural_reference_and_source_frontier_only",
+      "next_action": "Trace this exact data literal and encoded address-forming site through request production, dispatch, queued Value and terminal consumers. Revalidate the actual current schema; do not infer save format or numeric semantics from spelling.",
+      "native_behavior_recovered": false,
+      "runtime_or_parity_verified": false,
+      "native_candidate_input": {
+        "path": "runtime/coverage/507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293/inventory.json",
+        "sha256": "72a9c9dfa22e962133692962dc1ea0b9541fc58e8c18aacf0c021aed1ca53e96"
+      }
+    }
+  },
+  "limits": [
+    "Each finding attribution is exact-selector navigation, not a bounded behavior review.",
+    "Encoded address formation and fixed-memory reads do not prove native request schemas, state, handles, dynamic consumers or source equivalence.",
+    "Current Ghidra body/reference edges are retained independently by the final data-classifier graph; no historical native body owner is assigned here.",
+    "No compilation, native query, application/server execution or original/rebuilt parity comparison."
+  ]
+}

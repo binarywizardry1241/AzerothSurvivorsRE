@@ -1,0 +1,107 @@
+{
+  "target": {
+    "version": "0.109.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+    "size_bytes": 140447744
+  },
+  "method": "Finite read-only producer and encoded-flow audit of independently verified current PE instructions; no inferred table lengths, forced bodies, compilation or execution.",
+  "producer_audit": {
+    "census": {
+      "path": "docs/analysis/coverage/full-image-addresses.json",
+      "sha256": "39e80e96e09f8c5d4631b9ad094d934dd59ea795260b27dfb1ad15c90434c144"
+    },
+    "generator": {
+      "path": "scripts/audit-native-dispatch.py",
+      "sha256": "be13ef587b806b4a5e1a8d4bf96297baf4df8d58b356fdcd003e6643623a45cb"
+    },
+    "operand_counts": {
+      "register": 11005,
+      "fixed-or-rip-memory": 184,
+      "memory-with-base-field": 131,
+      "memory-with-index": 1
+    },
+    "register_producer_counts": {
+      "add-produced-register": 8105,
+      "memory-load-base-field": 2836,
+      "producer-mov": 40,
+      "no-producer-in-contiguous-fallthrough-region": 13,
+      "memory-load-fixed-or-rip": 2,
+      "producer-lea": 9
+    },
+    "inventory": {
+      "path": "runtime/coverage/76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0/ghidra/full-image-streaming-addresses-v2/dispatch-boundaries.json",
+      "sha256": "91b9edc2a40fed3f9bfd0cecdd58a38b98b0f65261aa8e46e7d930c8ccf47f51"
+    }
+  },
+  "direct_unowned_flow": {
+    "census": {
+      "path": "docs/analysis/coverage/full-image-addresses.json",
+      "sha256": "39e80e96e09f8c5d4631b9ad094d934dd59ea795260b27dfb1ad15c90434c144"
+    },
+    "counts": {
+      "destinations": 5295,
+      "exact_instructions": 5295,
+      "interior_conflicts": 0,
+      "undecoded": 0
+    },
+    "reference_kinds": {
+      "UNCONDITIONAL_JUMP": 802,
+      "CONDITIONAL_JUMP": 6045
+    },
+    "incoming_edges_from_actual_native_owners": 0,
+    "incoming_edges_without_actual_native_owners": 6847,
+    "inventory": {
+      "path": "runtime/coverage/76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0/ghidra/full-image-streaming-addresses-v2/dispatch-boundaries.json",
+      "sha256": "91b9edc2a40fed3f9bfd0cecdd58a38b98b0f65261aa8e46e7d930c8ccf47f51"
+    }
+  },
+  "indexed_offset_dispatch": {
+    "site": "0x143eafaf2",
+    "code": {
+      "va": "0x143eafad0",
+      "file_offset": "0x3eaeed0",
+      "byte_count": 39,
+      "sha256": "d2da33059f73716cae164a0d0a45fb0349943889ea599aee1ac80d9b847dfac8"
+    },
+    "offset_table": {
+      "va": "0x1467e40b8",
+      "file_offset": "0x67e30b8",
+      "byte_count": 920,
+      "sha256": "4c1eb583cb14844ddd095951ee1cbeac9b73daf1a2457ca2759d447fdb05401f"
+    },
+    "selector_proof": "Input is one byte; SUB AL, 0x1a sets carry. MOVZX preserves carry. EDX starts 13; CMOVAE replaces it with zero-extended AL only when original byte >= 26. MOVZX EAX,DL therefore permits exactly 0..229. No 14-variant input contract is established.",
+    "permitted_selectors": 230,
+    "encoded_slot_partition": {
+      "executable-target": 14,
+      "nonexecutable-target": 211,
+      "unmapped-or-nonfile-slot": 5
+    },
+    "executable_candidates_without_actual_native_owner": 0,
+    "inventory": {
+      "path": "runtime/fixgap-41-42/indexed-offset-dispatch.json",
+      "sha256": "3bc87db6bae5f4a39ac56305f0f8f85e03f3dcbbd9bc6cf50b34058840a4b23a"
+    },
+    "inferred_fourteen_case_bound": false
+  },
+  "limits": [
+    "The producer sweep uses observed contiguous fallthrough regions; incoming computed/callback aliases and type invariants remain separate contracts.",
+    "All 5,295 unowned encoded direct-jump destinations are exact decoded instructions; all 6,847 incoming references originate in other unowned blocks. This is observed graph accounting, not proof of global reachability or complete Survivors behavior.",
+    "The 14 executable indexed-slot values are candidates within a 230-value encoded input domain. No successor set is promoted from plausible pointers or missing compiler enum invariants.",
+    "The audited generic limits are retained as supporting evidence; AS-specific mechanisms and missing source connections remain under their owning gaps."
+  ],
+  "scope": "Supporting observed machine-code boundary accounting. Generic engine/compiler/platform attribution is not a required Azeroth Survivors reconstruction queue.",
+  "immutable_register_dispatch": {
+    "generator": {
+      "path": "scripts/audit-native-constant-dispatch.py",
+      "sha256": "1872ed1a289c3df5ecaa17eff178f64c4a49e12075cb61ca2e09bc450e3fd57e",
+      "capstone_version": "5.0.7"
+    },
+    "counts": {},
+    "inventory": {
+      "path": "runtime/coverage/76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0/ghidra/full-image-streaming-addresses-v2/constant-register-dispatch.json",
+      "sha256": "ae4a1d479947f9de8730801c5ee26e415484d4e91a776c8d83ba61df076b8eaa"
+    },
+    "interpretation": "No immutable literal/LEA register CALL/JMP target chain was admitted by this exact observed-block audit. Initial memory-slot and vtable candidates remain separate."
+  }
+}

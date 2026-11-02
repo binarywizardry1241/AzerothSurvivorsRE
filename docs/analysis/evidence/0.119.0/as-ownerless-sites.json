@@ -1,0 +1,3035 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.119.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f",
+    "size_bytes": 145357824
+  },
+  "generator": {
+    "path": "scripts/classify-as-ownerless-sites-0.119.0.py",
+    "sha256": "302a2950a299b2e905776c5ab64b5117829997aa3726e37af7f1f11156c124a2"
+  },
+  "inputs": [
+    {
+      "path": "docs/analysis/evidence/0.119.0/native-residuals.json",
+      "sha256": "ced6da1ac351d25a9fb40b09a13d88534665f7f891e671a331ef287b5b25e490"
+    },
+    {
+      "path": "runtime/coverage/6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f/residuals/diagnostic-sites.jsonl.gz",
+      "sha256": "79b83e62fbdc694c5dfbea42e609c8e9c70c65c3dcc88c1dd07ed943aa6084bf",
+      "rows": 18106
+    },
+    {
+      "path": "runtime/coverage/6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f/residuals/ownerless-instructions.tsv.gz",
+      "sha256": "5a0cbcde2407417e41187e8aed2d449742a5b6a7d18071347bc56c77c1b205d2",
+      "rows": 68300
+    }
+  ],
+  "selector": "diagnostic-sites.jsonl.gz: context == 'AS-custom-path' and actual_body_owner == null",
+  "lead_ids": [
+    "Q41-D01",
+    "Q41-G01",
+    "Q41-U01"
+  ],
+  "gap_ids": [
+    41
+  ],
+  "counts": {
+    "sites": 60,
+    "declared_extents": 20,
+    "roles": {
+      "terminal-failure-location": 53,
+      "location-forwarded-to-returning-removal": 2,
+      "adjacent-token-not-filename-use": 5
+    }
+  },
+  "declared_extents": [
+    {
+      "start": "0x140146260",
+      "end_exclusive": "0x1401472f1",
+      "file_offset": "0x145660",
+      "sha256": "8bfb4395a217850ca5367b4fb9b0d1308fcef707297446a00775d4dc5b1bd328"
+    },
+    {
+      "start": "0x14014d570",
+      "end_exclusive": "0x14014fcf4",
+      "file_offset": "0x14c970",
+      "sha256": "d770205aa0cc76513462858f2f6f8eecac1b09581be38e1b0d80d97d373220cf"
+    },
+    {
+      "start": "0x1402204d0",
+      "end_exclusive": "0x1402213bb",
+      "file_offset": "0x21f8d0",
+      "sha256": "a9a3ecd6f0f34eb47347345611561b73e6c5a0083c30d9232ad2d4901338a9db"
+    },
+    {
+      "start": "0x140248f10",
+      "end_exclusive": "0x140249a74",
+      "file_offset": "0x248310",
+      "sha256": "98ba383c103aa2ea39b84d69a5b7baf3814484ff5760fb7c8ba59ab349cc74a7"
+    },
+    {
+      "start": "0x1402700b0",
+      "end_exclusive": "0x140270618",
+      "file_offset": "0x26f4b0",
+      "sha256": "323ab210978687162e86f51ce2b4ef3041ddc15e4916604ca665e6ef153b0101"
+    },
+    {
+      "start": "0x140270d30",
+      "end_exclusive": "0x14027117b",
+      "file_offset": "0x270130",
+      "sha256": "c76f30f6133cfbe7eccff35b8120f44230113006d16d9b9ed40db7ff5bc9ee08"
+    },
+    {
+      "start": "0x140277c40",
+      "end_exclusive": "0x14027a3fd",
+      "file_offset": "0x277040",
+      "sha256": "dc552793709322c9940df8003cf4938b70cf68e86150aca9a5cb4bacce4a31bb"
+    },
+    {
+      "start": "0x14027d450",
+      "end_exclusive": "0x14027ea6e",
+      "file_offset": "0x27c850",
+      "sha256": "c28972795fa670dd5a4266e5ed66358cd1579b17409506dfbc497d3aeacce87d"
+    },
+    {
+      "start": "0x145a76310",
+      "end_exclusive": "0x145a78f6c",
+      "file_offset": "0x5a75710",
+      "sha256": "baff890d0df9dfde19a0f734c09b9431c25ffdfcd1585835982fb460f244cbea"
+    },
+    {
+      "start": "0x145ad6ab0",
+      "end_exclusive": "0x145ad6cb1",
+      "file_offset": "0x5ad5eb0",
+      "sha256": "b8d1a831ebdb541e8a2cfd63edff83a60abc408985cd8130137bddf87e658697"
+    },
+    {
+      "start": "0x145baa630",
+      "end_exclusive": "0x145baf9e8",
+      "file_offset": "0x5ba9a30",
+      "sha256": "3f601341e752f306bb6894d58b110f4934c2f85cb7fc0177e35d6119481da6ea"
+    },
+    {
+      "start": "0x145bb8e90",
+      "end_exclusive": "0x145bbc623",
+      "file_offset": "0x5bb8290",
+      "sha256": "5a89e5147b8149084cc81355a1fc445e17d1dedee48c7b325ae86a3e4f34f13f"
+    },
+    {
+      "start": "0x145bcae20",
+      "end_exclusive": "0x145bcea3c",
+      "file_offset": "0x5bca220",
+      "sha256": "493877e21e237c1c8ae4e180a1324a66f3b8f846f8e18326f1f44bcc5982f657"
+    },
+    {
+      "start": "0x145bdc840",
+      "end_exclusive": "0x145be227d",
+      "file_offset": "0x5bdbc40",
+      "sha256": "47474b3cc9397cc97a2e5349f31139a37985f3cf6b66e91ec65f472deb109dae"
+    },
+    {
+      "start": "0x145be6ae0",
+      "end_exclusive": "0x145be9620",
+      "file_offset": "0x5be5ee0",
+      "sha256": "fd5563b9fb4e0d1a2f67136c3f5833ecc0d2fa58f4e9e576c87d4d43a871a459"
+    },
+    {
+      "start": "0x145c00d20",
+      "end_exclusive": "0x145c029b9",
+      "file_offset": "0x5c00120",
+      "sha256": "60aac623e3b396ad90786bdd48a22cdbe6d4a54bbc94522dbb8be552ea6def54"
+    },
+    {
+      "start": "0x145c06110",
+      "end_exclusive": "0x145c081fc",
+      "file_offset": "0x5c05510",
+      "sha256": "cbb3efd22c072c668ddc4537feb2694bbb252491086328025c005eaa87db1b69"
+    },
+    {
+      "start": "0x145c14660",
+      "end_exclusive": "0x145c14a5e",
+      "file_offset": "0x5c13a60",
+      "sha256": "7a94e5bae11cd1fc30ef4fc1401db53ba48ab68941680e93ef1be4300b5ae16f"
+    },
+    {
+      "start": "0x145c151f0",
+      "end_exclusive": "0x145c17037",
+      "file_offset": "0x5c145f0",
+      "sha256": "1d5d49328030b569c44b88b1fb04be849c329449e2c681d1a13953af004d0968"
+    },
+    {
+      "start": "0x145c1afe0",
+      "end_exclusive": "0x145c1dead",
+      "file_offset": "0x5c1a3e0",
+      "sha256": "460cdd34b5d2c964c9f903d37086883b15aca71e9e7e32689a74f572708fd785"
+    }
+  ],
+  "sites": [
+    {
+      "site": "0x1401472bd",
+      "original_path": "crates/wenilla-rogue-app/src/screens/armory.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x140146260",
+      "first_call": {
+        "site": "0x1401472c9",
+        "target": "0x14613b553"
+      },
+      "local_route_sites": [
+        "0x1401472bd",
+        "0x1401472c4",
+        "0x1401472c9"
+      ],
+      "local_route_bytes_sha256": "0791ba3c796f2ea26525d0faa4bfc0270ce301e458baa782a6f11d03a30aa816",
+      "location": {
+        "start": "0x14619a358",
+        "end_exclusive": "0x14619a370",
+        "file_offset": "0x6199158",
+        "sha256": "ca01c899ff7c9dbda67b6f8d44e6b1ff1c922514a7f79b678399e44e0a6c9974",
+        "line": 170,
+        "column": 38
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x14014fc12",
+      "original_path": "crates/wenilla-rogue-app/src/screens/markers.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x14014d570",
+      "first_call": {
+        "site": "0x14014fc1e",
+        "target": "0x14613b470"
+      },
+      "local_route_sites": [
+        "0x14014fc12",
+        "0x14014fc19",
+        "0x14014fc1e"
+      ],
+      "local_route_bytes_sha256": "27e382163515ae087bd85cd8dba15a0ad93c1d1f3c547827bea7ea3184c21c1b",
+      "location": {
+        "start": "0x14617e798",
+        "end_exclusive": "0x14617e7b0",
+        "file_offset": "0x617d598",
+        "sha256": "d1267bd96ed15e42544957844e7737c7e89e08941514d93008f0f8db99de7d4f",
+        "line": 289,
+        "column": 15
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x140221383",
+      "original_path": "crates/wenilla-rogue-app/src/screens/rewards.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x1402204d0",
+      "first_call": {
+        "site": "0x140221391",
+        "target": "0x14613b730"
+      },
+      "local_route_sites": [
+        "0x140221383",
+        "0x14022138a",
+        "0x140221391"
+      ],
+      "local_route_bytes_sha256": "dfdf05973565a4c250db93cf6bbb5e8280140ea47ad2c100a3ca47598d482733",
+      "location": {
+        "start": "0x146198530",
+        "end_exclusive": "0x146198548",
+        "file_offset": "0x6197330",
+        "sha256": "69ccaea8eef73dc776151df398831dc5d0531c62ab543f53acc3660ef2ccfc24",
+        "line": 988,
+        "column": 38
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x140221399",
+      "original_path": "crates/wenilla-rogue-app/src/screens/rewards.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x1402204d0",
+      "first_call": {
+        "site": "0x1402213a5",
+        "target": "0x14613b553"
+      },
+      "local_route_sites": [
+        "0x140221399",
+        "0x1402213a0",
+        "0x1402213a5"
+      ],
+      "local_route_bytes_sha256": "c9e39a921338c6581aa968fc6bf183b4910e43c543297b52623b5b782ecd7469",
+      "location": {
+        "start": "0x146198548",
+        "end_exclusive": "0x146198560",
+        "file_offset": "0x6197348",
+        "sha256": "893db08ea0b13142da685a745bf299f18febc69730a85cb81a40ecc01811eda1",
+        "line": 1010,
+        "column": 17
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x1402213ac",
+      "original_path": "crates/wenilla-rogue-app/src/screens/rewards.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x1402204d0",
+      "first_call": {
+        "site": "0x1402213b3",
+        "target": "0x14613b553"
+      },
+      "local_route_sites": [
+        "0x1402213ac",
+        "0x1402213b3"
+      ],
+      "local_route_bytes_sha256": "dc392f6f81e6f0b78322c8f89997eaa5185b73ab49940aca4b74037edbfda0ee",
+      "location": {
+        "start": "0x146198560",
+        "end_exclusive": "0x146198578",
+        "file_offset": "0x6197360",
+        "sha256": "ffccd25da46ed8a54c1c6ba9261a2a4efd13d2b4b2151c7d388a8aade3192863",
+        "line": 1035,
+        "column": 22
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x140249a27",
+      "original_path": "crates/wenilla-rogue-app/src/screens/armory.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x140248f10",
+      "first_call": {
+        "site": "0x140249a33",
+        "target": "0x14613b553"
+      },
+      "local_route_sites": [
+        "0x140249a27",
+        "0x140249a2e",
+        "0x140249a33"
+      ],
+      "local_route_bytes_sha256": "23952af8479f7bc8c6534420034196047915631a52a2aab2b04ab1edad27bfbb",
+      "location": {
+        "start": "0x14619aab8",
+        "end_exclusive": "0x14619aad0",
+        "file_offset": "0x61998b8",
+        "sha256": "efd2a1b551f0e1e188860c5ef197b1c8216c35724351794541f74617c353a6af",
+        "line": 1883,
+        "column": 17
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x140249a3a",
+      "original_path": "crates/wenilla-rogue-app/src/screens/armory.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x140248f10",
+      "first_call": {
+        "site": "0x140249a46",
+        "target": "0x14613b553"
+      },
+      "local_route_sites": [
+        "0x140249a3a",
+        "0x140249a41",
+        "0x140249a46"
+      ],
+      "local_route_bytes_sha256": "2aa88cc58f42f2ac9d1aebf1c71ac2b69cd1d0b32535e12fdd4d935dc7269fa9",
+      "location": {
+        "start": "0x14619aaa0",
+        "end_exclusive": "0x14619aab8",
+        "file_offset": "0x61998a0",
+        "sha256": "57175f2c591690a0c72a316446b37549566beb909ba36b8aeee45ab98358ad66",
+        "line": 1879,
+        "column": 17
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x140249a4d",
+      "original_path": "crates/wenilla-rogue-app/src/screens/armory.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x140248f10",
+      "first_call": {
+        "site": "0x140249a59",
+        "target": "0x14613b553"
+      },
+      "local_route_sites": [
+        "0x140249a4d",
+        "0x140249a54",
+        "0x140249a59"
+      ],
+      "local_route_bytes_sha256": "94c42d87ece63f689235d54ef8948d52d41334f36218f7d9fe514f4e017ca419",
+      "location": {
+        "start": "0x14619aa70",
+        "end_exclusive": "0x14619aa88",
+        "file_offset": "0x6199870",
+        "sha256": "ca148c2b146d4c58e4badb5dff8dee46554452df02342f5903d58963962153a4",
+        "line": 1869,
+        "column": 28
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x140249a60",
+      "original_path": "crates/wenilla-rogue-app/src/screens/armory.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x140248f10",
+      "first_call": {
+        "site": "0x140249a6c",
+        "target": "0x14613b553"
+      },
+      "local_route_sites": [
+        "0x140249a60",
+        "0x140249a67",
+        "0x140249a6c"
+      ],
+      "local_route_bytes_sha256": "6d6900f96fbbadadd7f73769ed94dc3e7145b59b9616c6e5956850de0d265354",
+      "location": {
+        "start": "0x14619aa88",
+        "end_exclusive": "0x14619aaa0",
+        "file_offset": "0x6199888",
+        "sha256": "7de9fd09c1a6b366bc8bdd39e4dae45a51729e76899a687ca0569545018370c9",
+        "line": 1874,
+        "column": 21
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x1402704e0",
+      "original_path": "crates/wenilla-rogue-app/src/screens/options.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x1402700b0",
+      "first_call": {
+        "site": "0x1402704eb",
+        "target": "0x14613b730"
+      },
+      "local_route_sites": [
+        "0x1402704e0",
+        "0x1402704e7",
+        "0x1402704eb"
+      ],
+      "local_route_bytes_sha256": "6732ebb5edf2acd9a7e64c8dbcce3a01d02f76203809d7c9870895d4e37bdded",
+      "location": {
+        "start": "0x1461a4038",
+        "end_exclusive": "0x1461a4050",
+        "file_offset": "0x61a2e38",
+        "sha256": "95942aeff2c68da9e76ce7ce108aba0394c359389d12b8fc60117b7d3faac64b",
+        "line": 813,
+        "column": 22
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x14027050c",
+      "original_path": "crates/wenilla-rogue-app/src/screens/options.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x1402700b0",
+      "first_call": {
+        "site": "0x140270517",
+        "target": "0x14613b730"
+      },
+      "local_route_sites": [
+        "0x14027050c",
+        "0x140270513",
+        "0x140270517"
+      ],
+      "local_route_bytes_sha256": "c403a297c3cc86cfdd3c98a112e21e840ae12c4d84284037c67143cbe43cb827",
+      "location": {
+        "start": "0x1461a4020",
+        "end_exclusive": "0x1461a4038",
+        "file_offset": "0x61a2e20",
+        "sha256": "5f72fd10e76db75f3eabdf3a5ff0fae9efbe9d445fcf0070dd6f238b12cebd47",
+        "line": 806,
+        "column": 22
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x140271061",
+      "original_path": "crates/wenilla-rogue-app/src/screens/options.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x140270d30",
+      "first_call": {
+        "site": "0x14027106b",
+        "target": "0x14613b553"
+      },
+      "local_route_sites": [
+        "0x140271061",
+        "0x140271068",
+        "0x14027106b"
+      ],
+      "local_route_bytes_sha256": "2205a1046afe8254c8843acbb871e6ed974ab3c1d68d2248c75dae27085a52a2",
+      "location": {
+        "start": "0x1461a4150",
+        "end_exclusive": "0x1461a4168",
+        "file_offset": "0x61a2f50",
+        "sha256": "68776edb5b3661416496f4e3ff33f2d04a3fe060b056c5c49bbe6059b9fa1885",
+        "line": 839,
+        "column": 46
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x140279a89",
+      "original_path": "crates/wenilla-rogue-app/src/screens/options.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x140277c40",
+      "first_call": {
+        "site": "0x140279a97",
+        "target": "0x14613b730"
+      },
+      "local_route_sites": [
+        "0x140279a89",
+        "0x140279a90",
+        "0x140279a97"
+      ],
+      "local_route_bytes_sha256": "8959bac52668b2856db2116894c647179377661d8ed445f9a60a0e453c815d63",
+      "location": {
+        "start": "0x1461a3f80",
+        "end_exclusive": "0x1461a3f98",
+        "file_offset": "0x61a2d80",
+        "sha256": "f54e998c8b9d1ca61779663e4fae51a0b7a5ba415358f5799327d8f34ded34f0",
+        "line": 685,
+        "column": 23
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x140279d12",
+      "original_path": "crates/wenilla-rogue-app/src/screens/options.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x140277c40",
+      "first_call": {
+        "site": "0x140279d20",
+        "target": "0x14613b730"
+      },
+      "local_route_sites": [
+        "0x140279d12",
+        "0x140279d19",
+        "0x140279d20"
+      ],
+      "local_route_bytes_sha256": "bb65eefb99e57f7ff58b92d69f04154d1b316dbb6eef7172cb66791222be1ea3",
+      "location": {
+        "start": "0x1461a3f98",
+        "end_exclusive": "0x1461a3fb0",
+        "file_offset": "0x61a2d98",
+        "sha256": "491571497080d19d36c6dc512d9f10c65ad0f9b8cdad08c3aa42c5b855d658f4",
+        "line": 690,
+        "column": 31
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x140279d5c",
+      "original_path": "crates/wenilla-rogue-app/src/screens/options.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x140277c40",
+      "first_call": {
+        "site": "0x140279d6a",
+        "target": "0x14613b730"
+      },
+      "local_route_sites": [
+        "0x140279d5c",
+        "0x140279d63",
+        "0x140279d6a"
+      ],
+      "local_route_bytes_sha256": "33bef03217e8b47e643b05829439730e40401ef61c913013e9c1ad768a3fa142",
+      "location": {
+        "start": "0x1461a3fe8",
+        "end_exclusive": "0x1461a4000",
+        "file_offset": "0x61a2de8",
+        "sha256": "012ae018f437c2c2b5eb07a6c4beda1a3ecfdef4e1f4c8d67bc57a1b8cc4a308",
+        "line": 697,
+        "column": 23
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x14027a2f5",
+      "original_path": "crates/wenilla-rogue-app/src/screens/options.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x140277c40",
+      "first_call": {
+        "site": "0x14027a303",
+        "target": "0x14613b730"
+      },
+      "local_route_sites": [
+        "0x14027a2f5",
+        "0x14027a2fc",
+        "0x14027a303"
+      ],
+      "local_route_bytes_sha256": "c9e2ff8c244cd01301d186df0ab96788b020c210461f94bcbc12759d65e76c33",
+      "location": {
+        "start": "0x1461a3fb0",
+        "end_exclusive": "0x1461a3fc8",
+        "file_offset": "0x61a2db0",
+        "sha256": "f76705e45aac72dcc7e5075ac78a059fbbd184ac25e5e912cf174927a378c415",
+        "line": 692,
+        "column": 32
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x14027e760",
+      "original_path": "crates/wenilla-rogue-app/src/screens/options.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x14027d450",
+      "first_call": {
+        "site": "0x14027e767",
+        "target": "0x1400d4480"
+      },
+      "local_route_sites": [
+        "0x14027e760",
+        "0x14027e767"
+      ],
+      "local_route_bytes_sha256": "7ca4c1ce93584c4540ac2366985959e0bdb9cefd9aa970d7b2d93cc85244a500",
+      "location": {
+        "start": "0x1461a4088",
+        "end_exclusive": "0x1461a40a0",
+        "file_offset": "0x61a2e88",
+        "sha256": "b7b1403869882a0f51e2601ca2849fe260d46e16bfaf0fcde4577836bdea945e",
+        "line": 1822,
+        "column": 38
+      },
+      "role": "location-forwarded-to-returning-removal",
+      "row_width": 8
+    },
+    {
+      "site": "0x14027ea33",
+      "original_path": "crates/wenilla-rogue-app/src/screens/options.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x14027d450",
+      "first_call": {
+        "site": "0x14027ea42",
+        "target": "0x14613b553"
+      },
+      "local_route_sites": [
+        "0x14027ea33",
+        "0x14027ea3a",
+        "0x14027ea3f",
+        "0x14027ea42"
+      ],
+      "local_route_bytes_sha256": "c8a86d1fffa311655d1103c33e665ed41235e1b58291672178241272e6b528be",
+      "location": {
+        "start": "0x1461a4070",
+        "end_exclusive": "0x1461a4088",
+        "file_offset": "0x61a2e70",
+        "sha256": "818cdfb7e1700631e54e164164922af968cf1a4f595f6e278e19cff0bb488bf4",
+        "line": 1807,
+        "column": 42
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145a78f53",
+      "original_path": "crates/wenilla-rogue/src/fonts.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145a76310",
+      "first_call": {
+        "site": "0x145a78f64",
+        "target": "0x14613b553"
+      },
+      "local_route_sites": [
+        "0x145a78f53",
+        "0x145a78f5a",
+        "0x145a78f61",
+        "0x145a78f64"
+      ],
+      "local_route_bytes_sha256": "43fd42e5a3145e7f1046b5d6c6df862e82aca99d85b7aef6a1809adb5a3ab904",
+      "location": {
+        "start": "0x146f59770",
+        "end_exclusive": "0x146f59788",
+        "file_offset": "0x6f58570",
+        "sha256": "2a58752aae8cc8344d20d1d32796cdb3677e4f89b2de0c53ec7d4d1e9453679a",
+        "line": 288,
+        "column": 26
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145ad6c74",
+      "original_path": "crates/wenilla-rogue/src/game/abilities.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145ad6ab0",
+      "first_call": {
+        "site": "0x145ad6caa",
+        "target": "0x14613b553"
+      },
+      "local_route_sites": [
+        "0x145ad6c74",
+        "0x145ad6c7b",
+        "0x145ad6c9f",
+        "0x145ad6ca4",
+        "0x145ad6ca7",
+        "0x145ad6caa"
+      ],
+      "local_route_bytes_sha256": "a8ee23e4c0fcf3882c6aa681029a7ee4d2c46b1f134e7c10c36531205fa229c7",
+      "location": {
+        "start": "0x1472d02a8",
+        "end_exclusive": "0x1472d02c0",
+        "file_offset": "0x72cf0a8",
+        "sha256": "44c2edc3d3fef35145cb1d8308262f274a5d4fc15b748ef559be963dc2a3b2bb",
+        "line": 193,
+        "column": 17
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145ad6c7d",
+      "original_path": "crates/wenilla-rogue/src/game/abilities.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145ad6ab0",
+      "first_call": {
+        "site": "0x145ad6caa",
+        "target": "0x14613b553"
+      },
+      "local_route_sites": [
+        "0x145ad6c7d",
+        "0x145ad6c84",
+        "0x145ad6c9f",
+        "0x145ad6ca4",
+        "0x145ad6ca7",
+        "0x145ad6caa"
+      ],
+      "local_route_bytes_sha256": "f6eef0741e69346ff168eb17ce79ca1574409503805f01166456fe6965d9b12e",
+      "location": {
+        "start": "0x1472d0308",
+        "end_exclusive": "0x1472d0320",
+        "file_offset": "0x72cf108",
+        "sha256": "72c9572f148f7e4d6ae9176b765d403474a8c4d7dcef1b1931eb9632c0922d7a",
+        "line": 199,
+        "column": 17
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145ad6c86",
+      "original_path": "crates/wenilla-rogue/src/game/abilities.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145ad6ab0",
+      "first_call": {
+        "site": "0x145ad6caa",
+        "target": "0x14613b553"
+      },
+      "local_route_sites": [
+        "0x145ad6c86",
+        "0x145ad6c8d",
+        "0x145ad6c9f",
+        "0x145ad6ca4",
+        "0x145ad6ca7",
+        "0x145ad6caa"
+      ],
+      "local_route_bytes_sha256": "f9ae3c57b71e04450b6d84575bcd9732455834e1bebe31dac82a6c378290ba59",
+      "location": {
+        "start": "0x1472d02d8",
+        "end_exclusive": "0x1472d02f0",
+        "file_offset": "0x72cf0d8",
+        "sha256": "949d2f9897171033b6011b8942be964c3dc792c7b5d89b7d422b432ccd70e28a",
+        "line": 196,
+        "column": 17
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145ad6c8f",
+      "original_path": "crates/wenilla-rogue/src/game/abilities.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145ad6ab0",
+      "first_call": {
+        "site": "0x145ad6caa",
+        "target": "0x14613b553"
+      },
+      "local_route_sites": [
+        "0x145ad6c8f",
+        "0x145ad6c96",
+        "0x145ad6c9f",
+        "0x145ad6ca4",
+        "0x145ad6ca7",
+        "0x145ad6caa"
+      ],
+      "local_route_bytes_sha256": "a6c544beb90921e49215f27f4d2eaf557927038f89b8a47d98c1b0ac5fab9ae3",
+      "location": {
+        "start": "0x1472d0248",
+        "end_exclusive": "0x1472d0260",
+        "file_offset": "0x72cf048",
+        "sha256": "46841cc57fd29e6acb0d84d14b872121a28ce92d9d8d0b25b9a360efebcdcde4",
+        "line": 184,
+        "column": 29
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145ad6c98",
+      "original_path": "crates/wenilla-rogue/src/game/abilities.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145ad6ab0",
+      "first_call": {
+        "site": "0x145ad6caa",
+        "target": "0x14613b553"
+      },
+      "local_route_sites": [
+        "0x145ad6c98",
+        "0x145ad6c9f",
+        "0x145ad6ca4",
+        "0x145ad6ca7",
+        "0x145ad6caa"
+      ],
+      "local_route_bytes_sha256": "a43c7eca97bd04fd33d827eb3d8772780f6efe699b46add71ae15570bf66e313",
+      "location": {
+        "start": "0x1472d0278",
+        "end_exclusive": "0x1472d0290",
+        "file_offset": "0x72cf078",
+        "sha256": "32cb06c22ecf26963ad3971d8f3e64710fe3bbdbde179176625a15219f65d00e",
+        "line": 186,
+        "column": 17
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145baf68b",
+      "original_path": "crates/wenilla-rogue/src/game/hazards.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145baa630",
+      "first_call": {
+        "site": "0x145baf692",
+        "target": "0x14613b553"
+      },
+      "local_route_sites": [
+        "0x145baf68b",
+        "0x145baf692"
+      ],
+      "local_route_bytes_sha256": "fcea5a6cf07b04b436303538258dfe26ba4a925d36f17d8ed0cbf1daa95d80e3",
+      "location": {
+        "start": "0x1475e4658",
+        "end_exclusive": "0x1475e4670",
+        "file_offset": "0x75e3458",
+        "sha256": "cba12271ed28ea17225c1fcafc36c5b4bf9c92ecc62dfe9e560b9e54a3a41c0e",
+        "line": 549,
+        "column": 38
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145baf77d",
+      "original_path": "crates/wenilla-rogue/src/game/hazards.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145baa630",
+      "first_call": {
+        "site": "0x145baf787",
+        "target": "0x14613b553"
+      },
+      "local_route_sites": [
+        "0x145baf77d",
+        "0x145baf784",
+        "0x145baf787"
+      ],
+      "local_route_bytes_sha256": "ddd0f050f1aba5a5cb32fe55d335ef10243eac973c7a4850b0bf1fe578061362",
+      "location": {
+        "start": "0x1475e46a0",
+        "end_exclusive": "0x1475e46b8",
+        "file_offset": "0x75e34a0",
+        "sha256": "dcc9091cd6544909e42d2d008fde20c6a67decf15a7876db6920df23cc2f9c77",
+        "line": 1333,
+        "column": 34
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145bbb1f8",
+      "original_path": "crates/wenilla-rogue/src/game/abilities.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145bb8e90",
+      "first_call": {
+        "site": "0x145bbb20a",
+        "target": "0x145c26170"
+      },
+      "local_route_sites": [
+        "0x145bbb1f8",
+        "0x145bbb1ff",
+        "0x145bbb203",
+        "0x145bbb207",
+        "0x145bbb20a"
+      ],
+      "local_route_bytes_sha256": "7d53400cf3c48074361d4693054399f5b5f30ee74597caf5d19ced1f64df12ad",
+      "location": {
+        "start": "0x1475e4be8",
+        "end_exclusive": "0x1475e4c00",
+        "file_offset": "0x75e39e8",
+        "sha256": "b006fac70098d1a73f62fbaa5a082e0ec3bdc0dcc6c4deb42ecd1e5300d7a442",
+        "line": 1007,
+        "column": 45
+      },
+      "role": "location-forwarded-to-returning-removal",
+      "row_width": 120
+    },
+    {
+      "site": "0x145bbc3f8",
+      "original_path": "crates/wenilla-rogue/src/game/abilities.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145bb8e90",
+      "first_call": {
+        "site": "0x145bbc3ff",
+        "target": "0x14613b4b0"
+      },
+      "local_route_sites": [
+        "0x145bbc3f8",
+        "0x145bbc3ff"
+      ],
+      "local_route_bytes_sha256": "6f9eba485293d8197e1e49ed2f9d8010dfefc919e71460f2d1d620b344295d1d",
+      "location": {
+        "start": "0x1475e4bd0",
+        "end_exclusive": "0x1475e4be8",
+        "file_offset": "0x75e39d0",
+        "sha256": "d77e2983bd9a8d879f8d000aa344440401ef5bf0d7224cf5b95f53d32ad52ed4",
+        "line": 777,
+        "column": 61
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145bce8f1",
+      "original_path": "crates/wenilla-rogue/src/content.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145bcae20",
+      "first_call": {
+        "site": "0x145bce8ff",
+        "target": "0x14613b730"
+      },
+      "local_route_sites": [
+        "0x145bce8f1",
+        "0x145bce8f8",
+        "0x145bce8ff"
+      ],
+      "local_route_bytes_sha256": "e49957912f7b936746f22a3ee2c6df956262a46d452e8d31a99053437d0146ef",
+      "location": {
+        "start": "0x14729e800",
+        "end_exclusive": "0x14729e818",
+        "file_offset": "0x729d600",
+        "sha256": "dd468b0746d72b4d839c196032f5649967ae9271c30684b603e809bc8725e072",
+        "line": 796,
+        "column": 28
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145bce92d",
+      "original_path": "crates/wenilla-rogue/src/content.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145bcae20",
+      "first_call": {
+        "site": "0x145bce93b",
+        "target": "0x14613b730"
+      },
+      "local_route_sites": [
+        "0x145bce92d",
+        "0x145bce934",
+        "0x145bce93b"
+      ],
+      "local_route_bytes_sha256": "8cf0bf68b81b59e0a3a5439340ddeb76e02b5d5edd3aab1b1b11137a7ee6fd53",
+      "location": {
+        "start": "0x14729e800",
+        "end_exclusive": "0x14729e818",
+        "file_offset": "0x729d600",
+        "sha256": "dd468b0746d72b4d839c196032f5649967ae9271c30684b603e809bc8725e072",
+        "line": 796,
+        "column": 28
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145bce969",
+      "original_path": "crates/wenilla-rogue/src/content.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145bcae20",
+      "first_call": {
+        "site": "0x145bce977",
+        "target": "0x14613b730"
+      },
+      "local_route_sites": [
+        "0x145bce969",
+        "0x145bce970",
+        "0x145bce977"
+      ],
+      "local_route_bytes_sha256": "77eab58d7673b0cf4c58e16f8224f6e03ad17f021866d4bba15f9155437da6d5",
+      "location": {
+        "start": "0x14729e800",
+        "end_exclusive": "0x14729e818",
+        "file_offset": "0x729d600",
+        "sha256": "dd468b0746d72b4d839c196032f5649967ae9271c30684b603e809bc8725e072",
+        "line": 796,
+        "column": 28
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145bce9a5",
+      "original_path": "crates/wenilla-rogue/src/content.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145bcae20",
+      "first_call": {
+        "site": "0x145bce9b3",
+        "target": "0x14613b730"
+      },
+      "local_route_sites": [
+        "0x145bce9a5",
+        "0x145bce9ac",
+        "0x145bce9b3"
+      ],
+      "local_route_bytes_sha256": "23ce2566fd4181f207072ba56d7b9ec2326eb838b20ac7bfbee7e0fc267cb14f",
+      "location": {
+        "start": "0x14729e800",
+        "end_exclusive": "0x14729e818",
+        "file_offset": "0x729d600",
+        "sha256": "dd468b0746d72b4d839c196032f5649967ae9271c30684b603e809bc8725e072",
+        "line": 796,
+        "column": 28
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145bce9de",
+      "original_path": "crates/wenilla-rogue/src/content.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145bcae20",
+      "first_call": {
+        "site": "0x145bce9ec",
+        "target": "0x14613b730"
+      },
+      "local_route_sites": [
+        "0x145bce9de",
+        "0x145bce9e5",
+        "0x145bce9ec"
+      ],
+      "local_route_bytes_sha256": "71ff2fedfe1a79da33d95a1520f4e9a190778867fb8da96a7ec0a12990106ebd",
+      "location": {
+        "start": "0x14729e800",
+        "end_exclusive": "0x14729e818",
+        "file_offset": "0x729d600",
+        "sha256": "dd468b0746d72b4d839c196032f5649967ae9271c30684b603e809bc8725e072",
+        "line": 796,
+        "column": 28
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145bcea17",
+      "original_path": "crates/wenilla-rogue/src/content.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145bcae20",
+      "first_call": {
+        "site": "0x145bcea25",
+        "target": "0x14613b730"
+      },
+      "local_route_sites": [
+        "0x145bcea17",
+        "0x145bcea1e",
+        "0x145bcea25"
+      ],
+      "local_route_bytes_sha256": "85af34dfe7a6d6000c8194505bdab16a59698b190a857f5ab1ac2b2ef50f9e6e",
+      "location": {
+        "start": "0x14729e800",
+        "end_exclusive": "0x14729e818",
+        "file_offset": "0x729d600",
+        "sha256": "dd468b0746d72b4d839c196032f5649967ae9271c30684b603e809bc8725e072",
+        "line": 796,
+        "column": 28
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145bcea2d",
+      "original_path": "crates/wenilla-rogue/src/game/talents.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145bcae20",
+      "first_call": {
+        "site": "0x145bcea34",
+        "target": "0x14613b553"
+      },
+      "local_route_sites": [
+        "0x145bcea2d",
+        "0x145bcea34"
+      ],
+      "local_route_bytes_sha256": "8736f10c72b22c4422077ef824b91050b5df201119a121a80e005e3afc87f0e3",
+      "location": {
+        "start": "0x1475e4d78",
+        "end_exclusive": "0x1475e4d90",
+        "file_offset": "0x75e3b78",
+        "sha256": "777994a01fdbec99ad05c81100e0be2cdcc0a011de2e11f56bd0358ac6c5727a",
+        "line": 900,
+        "column": 39
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145be20ae",
+      "original_path": "crates/wenilla-rogue/src/game/enemy.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145bdc840",
+      "first_call": {
+        "site": "0x145be20b8",
+        "target": "0x14613b553"
+      },
+      "local_route_sites": [
+        "0x145be20ae",
+        "0x145be20b5",
+        "0x145be20b8"
+      ],
+      "local_route_bytes_sha256": "71e817de2461b6285c9719fa664a13289095e4c02a71c3250f4e21392f478377",
+      "location": {
+        "start": "0x1475e51f8",
+        "end_exclusive": "0x1475e5210",
+        "file_offset": "0x75e3ff8",
+        "sha256": "fa0f3a4402950f71f78b50d626cc5fadb2335cb0bbae9f6591fa7b7d337e02c4",
+        "line": 1526,
+        "column": 42
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145be21fe",
+      "original_path": "crates/wenilla-rogue/src/game/enemy.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145bdc840",
+      "first_call": {
+        "site": "0x145be2208",
+        "target": "0x14613b553"
+      },
+      "local_route_sites": [
+        "0x145be21fe",
+        "0x145be2205",
+        "0x145be2208"
+      ],
+      "local_route_bytes_sha256": "1bd6b997a502f44a45f3ab3c4f9ed257e7b195b99db127a4ce1318605db9c9a4",
+      "location": {
+        "start": "0x1475e51c8",
+        "end_exclusive": "0x1475e51e0",
+        "file_offset": "0x75e3fc8",
+        "sha256": "93064610483e91595c1ea2d4e63321f1573455316848466cc438cdff94a2d0e0",
+        "line": 1516,
+        "column": 51
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145be226b",
+      "original_path": "crates/wenilla-rogue/src/game/enemy.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145bdc840",
+      "first_call": {
+        "site": "0x145be2275",
+        "target": "0x14613b553"
+      },
+      "local_route_sites": [
+        "0x145be226b",
+        "0x145be2272",
+        "0x145be2275"
+      ],
+      "local_route_bytes_sha256": "052bc6e16babe59bd16c40133e2d06cfe033cddca21b2d31cd4594423020c191",
+      "location": {
+        "start": "0x1475e51e0",
+        "end_exclusive": "0x1475e51f8",
+        "file_offset": "0x75e3fe0",
+        "sha256": "057fbaed855ab093c1527b4760739ccbe0d12a81dbe3624d1f0fd5d9dc7d3dea",
+        "line": 1518,
+        "column": 41
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145be9552",
+      "original_path": "crates/wenilla-rogue/src/nav.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145be6ae0",
+      "first_call": {
+        "site": "0x145be9559",
+        "target": "0x14613b553"
+      },
+      "local_route_sites": [
+        "0x145be9552",
+        "0x145be9559"
+      ],
+      "local_route_bytes_sha256": "670e0523dbf1ec60337b908e7f5629b8f18f831d048c5ed6ea90ff55a32a9a70",
+      "location": {
+        "start": "0x1475d88c0",
+        "end_exclusive": "0x1475d88d8",
+        "file_offset": "0x75d76c0",
+        "sha256": "7f7442ca498ef9d87d4a05bf229df874f98575f04327b52b3d4380ae14aa3b49",
+        "line": 198,
+        "column": 53
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145be9564",
+      "original_path": "crates/wenilla-rogue/src/nav.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145be6ae0",
+      "first_call": {
+        "site": "0x145be956b",
+        "target": "0x14613b553"
+      },
+      "local_route_sites": [
+        "0x145be9564",
+        "0x145be956b"
+      ],
+      "local_route_bytes_sha256": "a83e1ac105c109ace78a29e932ebf3958f446bb67dd5f57c2f302d9420e28f13",
+      "location": {
+        "start": "0x1475d88c0",
+        "end_exclusive": "0x1475d88d8",
+        "file_offset": "0x75d76c0",
+        "sha256": "7f7442ca498ef9d87d4a05bf229df874f98575f04327b52b3d4380ae14aa3b49",
+        "line": 198,
+        "column": 53
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145be9576",
+      "original_path": "crates/wenilla-rogue/src/nav.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145be6ae0",
+      "first_call": {
+        "site": "0x145be957d",
+        "target": "0x14613b553"
+      },
+      "local_route_sites": [
+        "0x145be9576",
+        "0x145be957d"
+      ],
+      "local_route_bytes_sha256": "f321b3591447d8581fb7d459827b34cf620488353794163e6489756c39e5536e",
+      "location": {
+        "start": "0x1475d9a58",
+        "end_exclusive": "0x1475d9a70",
+        "file_offset": "0x75d8858",
+        "sha256": "a849e81129357c8a57a4092173c40179bce2c86d065b37bebbf8d3b91e778fd6",
+        "line": 327,
+        "column": 27
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145be9588",
+      "original_path": "crates/wenilla-rogue/src/nav.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145be6ae0",
+      "first_call": {
+        "site": "0x145be958f",
+        "target": "0x14613b553"
+      },
+      "local_route_sites": [
+        "0x145be9588",
+        "0x145be958f"
+      ],
+      "local_route_bytes_sha256": "f1a9510ba1f71942137734b96804d49f8f8acbb4a35fd01e83c0c42f312f2ada",
+      "location": {
+        "start": "0x1475d9a58",
+        "end_exclusive": "0x1475d9a70",
+        "file_offset": "0x75d8858",
+        "sha256": "a849e81129357c8a57a4092173c40179bce2c86d065b37bebbf8d3b91e778fd6",
+        "line": 327,
+        "column": 27
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145be959a",
+      "original_path": "crates/wenilla-rogue/src/game/enemy.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145be6ae0",
+      "first_call": {
+        "site": "0x145be95a4",
+        "target": "0x14613b553"
+      },
+      "local_route_sites": [
+        "0x145be959a",
+        "0x145be95a1",
+        "0x145be95a4"
+      ],
+      "local_route_bytes_sha256": "1087cd86c31ad959df31709f81d4919b366830756cfa65358cd43762fa620035",
+      "location": {
+        "start": "0x1472c5128",
+        "end_exclusive": "0x1472c5140",
+        "file_offset": "0x72c3f28",
+        "sha256": "60860e8d1aead078799edf6dc7c8fc041a022b3bf6d3411e55cb3a10ef30d5f5",
+        "line": 1153,
+        "column": 40
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145be95ac",
+      "original_path": "crates/wenilla-rogue/src/game/enemy.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145be6ae0",
+      "first_call": {
+        "site": "0x145be95ba",
+        "target": "0x14613b553"
+      },
+      "local_route_sites": [
+        "0x145be95ac",
+        "0x145be95b3",
+        "0x145be95b6",
+        "0x145be95ba"
+      ],
+      "local_route_bytes_sha256": "76237121214eb482ffb4ab2737504459086408b2de568523f262e599a8e07bf3",
+      "location": {
+        "start": "0x1472c5140",
+        "end_exclusive": "0x1472c5158",
+        "file_offset": "0x72c3f40",
+        "sha256": "e9407fb4a66956c339d406c85cb6b4aa88b3bb2a211f08fb56069eb9d35a9e3d",
+        "line": 1153,
+        "column": 71
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145be95fe",
+      "original_path": "crates/wenilla-rogue/src/game/enemy.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145be6ae0",
+      "first_call": {
+        "site": "0x145be9605",
+        "target": "0x14613b553"
+      },
+      "local_route_sites": [
+        "0x145be95fe",
+        "0x145be9605"
+      ],
+      "local_route_bytes_sha256": "8ab31350c6ad4cc9f17de5811d8a079ec329181d971779141d38104299f4b33f",
+      "location": {
+        "start": "0x1475e51b0",
+        "end_exclusive": "0x1475e51c8",
+        "file_offset": "0x75e3fb0",
+        "sha256": "bcfe56a0bbaa09a664fa994484a0766c559b9e213b41f31914ef92107ff5bba3",
+        "line": 1220,
+        "column": 36
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145be960d",
+      "original_path": "crates/wenilla-rogue/src/game/enemy.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145be6ae0",
+      "first_call": {
+        "site": "0x145be9618",
+        "target": "0x14613b553"
+      },
+      "local_route_sites": [
+        "0x145be960d",
+        "0x145be9614",
+        "0x145be9618"
+      ],
+      "local_route_bytes_sha256": "ff3cd7a8dfb7ca18ed5ad2372c83edcaa58500c36c2450e4e0184264f2772732",
+      "location": {
+        "start": "0x1475e5150",
+        "end_exclusive": "0x1475e5168",
+        "file_offset": "0x75e3f50",
+        "sha256": "ac6065846f8cf85aab86d2d44e0627a994d35da48827cd953dc6db5e4a584e52",
+        "line": 1167,
+        "column": 29
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145c01222",
+      "original_path": "crates/wenilla-rogue/src/game/auras.rs",
+      "original_kind": "path_literal",
+      "original_body_owner": null,
+      "declared_extent": "0x145c00d20",
+      "first_call": {
+        "site": "0x145c01275",
+        "target": "0x145b29e90"
+      },
+      "local_route_sites": [
+        "0x145c01222",
+        "0x145c01229",
+        "0x145c01230",
+        "0x145c0123b",
+        "0x145c0123f",
+        "0x145c01246",
+        "0x145c0124d",
+        "0x145c01254",
+        "0x145c0125b",
+        "0x145c01264",
+        "0x145c0126b",
+        "0x145c01272",
+        "0x145c01275"
+      ],
+      "local_route_bytes_sha256": "7cbde53f3d8f48823f869322e9c6e950e58b427aa39626474a110b7501a27187",
+      "role": "adjacent-token-not-filename-use",
+      "token": {
+        "start": "0x1475e3c78",
+        "end_exclusive": "0x1475e3c7d",
+        "file_offset": "0x75e2a78",
+        "sha256": "8f4a0aaa62c4ceef88578b1b674070e6b8d9405b80729d5c7af2f353543b2f89",
+        "text": "spell",
+        "explicit_length": 5,
+        "pointer_distance_before_filename": 5
+      },
+      "length_store": {
+        "start": "0x145c01230",
+        "end_exclusive": "0x145c0123b",
+        "file_offset": "0x5c00630",
+        "sha256": "aaf1942bed230fb61e5b612eb43066e9a764dc658a41c124af5a2049e989e9bf"
+      }
+    },
+    {
+      "site": "0x145c0176f",
+      "original_path": "crates/wenilla-rogue/src/game/auras.rs",
+      "original_kind": "path_literal",
+      "original_body_owner": null,
+      "declared_extent": "0x145c00d20",
+      "first_call": {
+        "site": "0x145c017fd",
+        "target": "0x145b29e90"
+      },
+      "local_route_sites": [
+        "0x145c0176f",
+        "0x145c01776",
+        "0x145c0177d",
+        "0x145c01788",
+        "0x145c0178f",
+        "0x145c01796",
+        "0x145c0179d",
+        "0x145c017a4",
+        "0x145c017ab",
+        "0x145c017b2",
+        "0x145c017bd",
+        "0x145c017c4",
+        "0x145c017cb",
+        "0x145c017d2",
+        "0x145c017d9",
+        "0x145c017e0",
+        "0x145c017e9",
+        "0x145c017f0",
+        "0x145c017f7",
+        "0x145c017fa",
+        "0x145c017fd"
+      ],
+      "local_route_bytes_sha256": "3018f8a573169a4d7e4f565c926db9664d872da98eb86c24122ce1e213cf4039",
+      "role": "adjacent-token-not-filename-use",
+      "token": {
+        "start": "0x1475e3c78",
+        "end_exclusive": "0x1475e3c7d",
+        "file_offset": "0x75e2a78",
+        "sha256": "8f4a0aaa62c4ceef88578b1b674070e6b8d9405b80729d5c7af2f353543b2f89",
+        "text": "spell",
+        "explicit_length": 5,
+        "pointer_distance_before_filename": 5
+      },
+      "length_store": {
+        "start": "0x145c0177d",
+        "end_exclusive": "0x145c01788",
+        "file_offset": "0x5c00b7d",
+        "sha256": "aaf1942bed230fb61e5b612eb43066e9a764dc658a41c124af5a2049e989e9bf"
+      }
+    },
+    {
+      "site": "0x145c0297b",
+      "original_path": "crates/wenilla-rogue/src/content.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145c00d20",
+      "first_call": {
+        "site": "0x145c02989",
+        "target": "0x14613b730"
+      },
+      "local_route_sites": [
+        "0x145c0297b",
+        "0x145c02982",
+        "0x145c02989"
+      ],
+      "local_route_bytes_sha256": "f9d31e3935d968a98346172062e4acef9c5ebd355b68fae2389d84c78cc64214",
+      "location": {
+        "start": "0x14729e800",
+        "end_exclusive": "0x14729e818",
+        "file_offset": "0x729d600",
+        "sha256": "dd468b0746d72b4d839c196032f5649967ae9271c30684b603e809bc8725e072",
+        "line": 796,
+        "column": 28
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145c02998",
+      "original_path": "crates/wenilla-rogue/src/game/upgrades.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145c00d20",
+      "first_call": {
+        "site": "0x145c0299f",
+        "target": "0x14613b553"
+      },
+      "local_route_sites": [
+        "0x145c02998",
+        "0x145c0299f"
+      ],
+      "local_route_bytes_sha256": "5a01531f03992ce09346e7a3ccf99cb0e8435d7695051f5892d65896009295fa",
+      "location": {
+        "start": "0x1475e6358",
+        "end_exclusive": "0x1475e6370",
+        "file_offset": "0x75e5158",
+        "sha256": "a0965aee10b5ce6b50e515c06e074e6d2c61b9f0f94431f3b9be6c7a25be501c",
+        "line": 348,
+        "column": 47
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145c081d4",
+      "original_path": "crates/wenilla-rogue/src/content.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145c06110",
+      "first_call": {
+        "site": "0x145c081e2",
+        "target": "0x14613b730"
+      },
+      "local_route_sites": [
+        "0x145c081d4",
+        "0x145c081db",
+        "0x145c081e2"
+      ],
+      "local_route_bytes_sha256": "8a618ce929f5a249a0fd9bb7a656eb8876833cc817b89c35b4164e590c9a4944",
+      "location": {
+        "start": "0x14729e800",
+        "end_exclusive": "0x14729e818",
+        "file_offset": "0x729d600",
+        "sha256": "dd468b0746d72b4d839c196032f5649967ae9271c30684b603e809bc8725e072",
+        "line": 796,
+        "column": 28
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145c147e4",
+      "original_path": "crates/wenilla-rogue/src/i18n.rs",
+      "original_kind": "path_literal",
+      "original_body_owner": null,
+      "declared_extent": "0x145c14660",
+      "first_call": {
+        "site": "0x145c14820",
+        "target": "0x145b29e90"
+      },
+      "local_route_sites": [
+        "0x145c147e4",
+        "0x145c147eb",
+        "0x145c147ef",
+        "0x145c147f7",
+        "0x145c147fa",
+        "0x145c147fe",
+        "0x145c14805",
+        "0x145c14809",
+        "0x145c14812",
+        "0x145c14816",
+        "0x145c14819",
+        "0x145c1481c",
+        "0x145c14820"
+      ],
+      "local_route_bytes_sha256": "f2f3c2c11469b74b998f06bd823573bc5244789e0da7d3df68658840a4fa27b3",
+      "role": "adjacent-token-not-filename-use",
+      "token": {
+        "start": "0x1475e7108",
+        "end_exclusive": "0x1475e7109",
+        "file_offset": "0x75e5f08",
+        "sha256": "148de9c5a7a44d19e56cd9ae1a554bf67847afb0c58f6e12fa29ac7ddfca9940",
+        "text": "p",
+        "explicit_length": 1,
+        "pointer_distance_before_filename": 1
+      },
+      "length_store": {
+        "start": "0x145c147ef",
+        "end_exclusive": "0x145c147f7",
+        "file_offset": "0x5c13bef",
+        "sha256": "5b345bf1265929922d2298b9d56746352688210a8f8ed17805e35e0b6b8cb51e"
+      }
+    },
+    {
+      "site": "0x145c1491a",
+      "original_path": "crates/wenilla-rogue/src/i18n.rs",
+      "original_kind": "path_literal",
+      "original_body_owner": null,
+      "declared_extent": "0x145c14660",
+      "first_call": {
+        "site": "0x145c14956",
+        "target": "0x145b29e90"
+      },
+      "local_route_sites": [
+        "0x145c1491a",
+        "0x145c14921",
+        "0x145c14925",
+        "0x145c1492d",
+        "0x145c14930",
+        "0x145c14934",
+        "0x145c1493b",
+        "0x145c1493f",
+        "0x145c14948",
+        "0x145c1494c",
+        "0x145c1494f",
+        "0x145c14952",
+        "0x145c14956"
+      ],
+      "local_route_bytes_sha256": "a6d3baf35d8f9e3166d1b0866f8e58839d2b244ceef3d72dbb1264bf7e14ddc5",
+      "role": "adjacent-token-not-filename-use",
+      "token": {
+        "start": "0x1475e7108",
+        "end_exclusive": "0x1475e7109",
+        "file_offset": "0x75e5f08",
+        "sha256": "148de9c5a7a44d19e56cd9ae1a554bf67847afb0c58f6e12fa29ac7ddfca9940",
+        "text": "p",
+        "explicit_length": 1,
+        "pointer_distance_before_filename": 1
+      },
+      "length_store": {
+        "start": "0x145c14925",
+        "end_exclusive": "0x145c1492d",
+        "file_offset": "0x5c13d25",
+        "sha256": "5b345bf1265929922d2298b9d56746352688210a8f8ed17805e35e0b6b8cb51e"
+      }
+    },
+    {
+      "site": "0x145c149c0",
+      "original_path": "crates/wenilla-rogue/src/i18n.rs",
+      "original_kind": "path_literal",
+      "original_body_owner": null,
+      "declared_extent": "0x145c14660",
+      "first_call": {
+        "site": "0x145c149fc",
+        "target": "0x145b29e90"
+      },
+      "local_route_sites": [
+        "0x145c149c0",
+        "0x145c149c7",
+        "0x145c149cb",
+        "0x145c149d3",
+        "0x145c149d6",
+        "0x145c149da",
+        "0x145c149e1",
+        "0x145c149e5",
+        "0x145c149ee",
+        "0x145c149f2",
+        "0x145c149f5",
+        "0x145c149f8",
+        "0x145c149fc"
+      ],
+      "local_route_bytes_sha256": "06da591ba6ab73fe4c8e7a1f29f4cd978a570780784d7174d0e5b33e96dff632",
+      "role": "adjacent-token-not-filename-use",
+      "token": {
+        "start": "0x1475e7108",
+        "end_exclusive": "0x1475e7109",
+        "file_offset": "0x75e5f08",
+        "sha256": "148de9c5a7a44d19e56cd9ae1a554bf67847afb0c58f6e12fa29ac7ddfca9940",
+        "text": "p",
+        "explicit_length": 1,
+        "pointer_distance_before_filename": 1
+      },
+      "length_store": {
+        "start": "0x145c149cb",
+        "end_exclusive": "0x145c149d3",
+        "file_offset": "0x5c13dcb",
+        "sha256": "5b345bf1265929922d2298b9d56746352688210a8f8ed17805e35e0b6b8cb51e"
+      }
+    },
+    {
+      "site": "0x145c16f6a",
+      "original_path": "crates/wenilla-rogue/src/content.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145c151f0",
+      "first_call": {
+        "site": "0x145c16f75",
+        "target": "0x14613b730"
+      },
+      "local_route_sites": [
+        "0x145c16f6a",
+        "0x145c16f71",
+        "0x145c16f75"
+      ],
+      "local_route_bytes_sha256": "7904e129e941d3625193609e3d79fa5daebcc04d6145ea156349eee023efb36b",
+      "location": {
+        "start": "0x14729e800",
+        "end_exclusive": "0x14729e818",
+        "file_offset": "0x729d600",
+        "sha256": "dd468b0746d72b4d839c196032f5649967ae9271c30684b603e809bc8725e072",
+        "line": 796,
+        "column": 28
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145c16fa4",
+      "original_path": "crates/wenilla-rogue/src/content.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145c151f0",
+      "first_call": {
+        "site": "0x145c16faf",
+        "target": "0x14613b730"
+      },
+      "local_route_sites": [
+        "0x145c16fa4",
+        "0x145c16fab",
+        "0x145c16faf"
+      ],
+      "local_route_bytes_sha256": "e5667a2863ffa3c7ef423645ca83f078aba52b5dd99e4be3be94d05ee6fbda05",
+      "location": {
+        "start": "0x14729e800",
+        "end_exclusive": "0x14729e818",
+        "file_offset": "0x729d600",
+        "sha256": "dd468b0746d72b4d839c196032f5649967ae9271c30684b603e809bc8725e072",
+        "line": 796,
+        "column": 28
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145c16fdb",
+      "original_path": "crates/wenilla-rogue/src/content.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145c151f0",
+      "first_call": {
+        "site": "0x145c16fe6",
+        "target": "0x14613b730"
+      },
+      "local_route_sites": [
+        "0x145c16fdb",
+        "0x145c16fe2",
+        "0x145c16fe6"
+      ],
+      "local_route_bytes_sha256": "bc9c15aab0ea3e6e2061932619e5db36c976de5848b25048d74f3d9212868144",
+      "location": {
+        "start": "0x14729e800",
+        "end_exclusive": "0x14729e818",
+        "file_offset": "0x729d600",
+        "sha256": "dd468b0746d72b4d839c196032f5649967ae9271c30684b603e809bc8725e072",
+        "line": 796,
+        "column": 28
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145c1dd25",
+      "original_path": "crates/wenilla-rogue/src/content.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145c1afe0",
+      "first_call": {
+        "site": "0x145c1dd30",
+        "target": "0x14613b730"
+      },
+      "local_route_sites": [
+        "0x145c1dd25",
+        "0x145c1dd2c",
+        "0x145c1dd30"
+      ],
+      "local_route_bytes_sha256": "9a7c4b6612eb3cadd864ce2dd6f05105deafb00a6f59781d64e512b3e155733f",
+      "location": {
+        "start": "0x14729e800",
+        "end_exclusive": "0x14729e818",
+        "file_offset": "0x729d600",
+        "sha256": "dd468b0746d72b4d839c196032f5649967ae9271c30684b603e809bc8725e072",
+        "line": 796,
+        "column": 28
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145c1dd55",
+      "original_path": "crates/wenilla-rogue/src/content.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145c1afe0",
+      "first_call": {
+        "site": "0x145c1dd60",
+        "target": "0x14613b730"
+      },
+      "local_route_sites": [
+        "0x145c1dd55",
+        "0x145c1dd5c",
+        "0x145c1dd60"
+      ],
+      "local_route_bytes_sha256": "30ce04974219ca0d3ca1d3519247143c7c0818d72162c0bc5bcac4183b30c798",
+      "location": {
+        "start": "0x14729e800",
+        "end_exclusive": "0x14729e818",
+        "file_offset": "0x729d600",
+        "sha256": "dd468b0746d72b4d839c196032f5649967ae9271c30684b603e809bc8725e072",
+        "line": 796,
+        "column": 28
+      },
+      "role": "terminal-failure-location"
+    },
+    {
+      "site": "0x145c1ddb8",
+      "original_path": "crates/wenilla-rogue/src/content.rs",
+      "original_kind": "rust_location",
+      "original_body_owner": null,
+      "declared_extent": "0x145c1afe0",
+      "first_call": {
+        "site": "0x145c1ddc3",
+        "target": "0x14613b730"
+      },
+      "local_route_sites": [
+        "0x145c1ddb8",
+        "0x145c1ddbf",
+        "0x145c1ddc3"
+      ],
+      "local_route_bytes_sha256": "cd40bc5c4d5c9b336a9580d4553e109f5bf63fd350cba5e5fa0c116555daeee0",
+      "location": {
+        "start": "0x14729e800",
+        "end_exclusive": "0x14729e818",
+        "file_offset": "0x729d600",
+        "sha256": "dd468b0746d72b4d839c196032f5649967ae9271c30684b603e809bc8725e072",
+        "line": 796,
+        "column": 28
+      },
+      "role": "terminal-failure-location"
+    }
+  ],
+  "failure_helpers": [
+    {
+      "start": "0x14613b470",
+      "end_exclusive": "0x14613b4a7",
+      "file_offset": "0x613a870",
+      "sha256": "a0466e0f615e8c9de1ff1ee6301bde82b1cbd29fec156d46b5f700ebc8b2d31c",
+      "role": "call-then-terminal-trap",
+      "callees": [
+        {
+          "site": "0x14613b4a0",
+          "target": "0x14613b730"
+        }
+      ]
+    },
+    {
+      "start": "0x14613b4b0",
+      "end_exclusive": "0x14613b4d0",
+      "file_offset": "0x613a8b0",
+      "sha256": "fdb59eebed53e11ca5c6f38be7ab4dd6f9e1ef4ae7473d477f2c184b3f74fe10",
+      "role": "call-then-terminal-trap",
+      "callees": [
+        {
+          "site": "0x14613b4c9",
+          "target": "0x14613b710"
+        }
+      ]
+    },
+    {
+      "start": "0x14613b553",
+      "end_exclusive": "0x14613b593",
+      "file_offset": "0x613a953",
+      "sha256": "0d428c10ef3cd1258e8ec42ad7dfd71086e4c0f06b51d20113535c8f79521b36",
+      "role": "call-then-terminal-trap",
+      "callees": [
+        {
+          "site": "0x14613b58c",
+          "target": "0x14613b730"
+        }
+      ]
+    },
+    {
+      "start": "0x14613b730",
+      "end_exclusive": "0x14613b75f",
+      "file_offset": "0x613ab30",
+      "sha256": "71a1cbf6aa9b08f49acbea182a712f54fa0be9438d8df5e16913f6679dab2f2d",
+      "role": "call-then-terminal-trap",
+      "callees": [
+        {
+          "site": "0x14613b758",
+          "target": "0x145f3da20"
+        }
+      ]
+    }
+  ],
+  "helper_spans": [
+    {
+      "start": "0x1400d4480",
+      "end_exclusive": "0x1400d44db",
+      "file_offset": "0xd3880",
+      "sha256": "5b0eb2f2288d4adf97a4221652205bc2c5b37045e85a423d32c6db4cbde8aef2",
+      "role": "returning-vector-removal",
+      "row_width": 8,
+      "first_word_nonzero_guard": false
+    },
+    {
+      "start": "0x145c26170",
+      "end_exclusive": "0x145c26280",
+      "file_offset": "0x5c25570",
+      "sha256": "a7786933dfcaf8e9c2a30ec235cb038d0aaaab6f5d2da044e1f6be9beeffb49e",
+      "role": "returning-vector-removal",
+      "row_width": 120,
+      "first_word_nonzero_guard": true
+    }
+  ],
+  "queries": [
+    {
+      "name": "percent-key-formatter",
+      "plan": {
+        "path": "runtime/q41-native-ownership-0.119.0/percent-key-formatter-plan.json",
+        "sha256": "42f27af5fd1d764bb9d2a24526fa77bd340feb746d954671df0d4a01bb7de55b"
+      },
+      "journal": {
+        "path": "runtime/q41-native-ownership-0.119.0/percent-key-formatter-query/journal.json",
+        "sha256": "cb59a4a4b9de54eddee26379dbe99dd3d6270f82d2766be5b073e7e2a5464f4a"
+      },
+      "results": [
+        {
+          "path": "runtime/q41-native-ownership-0.119.0/percent-key-formatter-query/results/89c92d1523effbdb76058496ab207d92c4508dcbdc4547e9c728637b68c3aeb1.json",
+          "sha256": "499cf55668a8256ea8e4912eece9ffaa60e346ba9d9aafe4c9371efecb517c35",
+          "operation": "procedure_pseudo_code",
+          "evidence_id": "ev_76b14c02dedebbee06c999eea080b3c218c93832dc13c712f4242d5bdea153ee",
+          "profile_digest": "b3753078dbd66acc0075616d2052264ebbd0e044dd217b5f7fd540c9c62bda57"
+        },
+        {
+          "path": "runtime/q41-native-ownership-0.119.0/percent-key-formatter-query/results/f8321e189c9e146381b831b97ade3bca850fda5479108ba7212fed8cda8d7a12.json",
+          "sha256": "44063651468ed167d618ce5d5360d5d599ad53e0947ab27c214a3a15c04da325",
+          "operation": "read_function_instructions",
+          "evidence_id": "ev_2cb633d3720a5f4d0bc46864a5e879a83ae2db9e9458dfcdace51fe5a14dae4a",
+          "profile_digest": "b3753078dbd66acc0075616d2052264ebbd0e044dd217b5f7fd540c9c62bda57"
+        }
+      ]
+    },
+    {
+      "name": "option-remove-eight-byte-row",
+      "plan": {
+        "path": "runtime/q41-native-ownership-0.119.0/option-remove-eight-byte-row-plan.json",
+        "sha256": "86ddfed5171387bb54d65f6a665592de35bc3c842e39bf1f464803ba33f9de97"
+      },
+      "journal": {
+        "path": "runtime/q41-native-ownership-0.119.0/option-remove-eight-byte-row-query/journal.json",
+        "sha256": "81ff22813b757c5f1f712692b8f7bb32addfad135835bceb9ae9448bf92f6c67"
+      },
+      "results": [
+        {
+          "path": "runtime/q41-native-ownership-0.119.0/option-remove-eight-byte-row-query/results/818cf0f358752ecd20855325617b2028033a5352d954906db16fd9dc32f7da12.json",
+          "sha256": "e6caa6b89f985dff313e368c1f4733868625cd1725765f85a751b55862062c7e",
+          "operation": "procedure_pseudo_code",
+          "evidence_id": "ev_3452c3d93bf9e1cbb82a178b0e3ad1863b4ee90f2ffd2605d4bdd16f33202e61",
+          "profile_digest": "c80533b13599c47c08e9d968616a1ece4ed017daf850cd5120382696c059ac89"
+        },
+        {
+          "path": "runtime/q41-native-ownership-0.119.0/option-remove-eight-byte-row-query/results/eb5500e33dbed381a37ced047772915823b71c0a4a2dacfab8f44538a3d587c5.json",
+          "sha256": "4ecaa29ea93b7d434bc03d3b7523a73ad54f1f25dcd9695289ef790e7a7a8090",
+          "operation": "read_function_instructions",
+          "evidence_id": "ev_cef6f96e194fd3fa56c47aab28604ea0252da212f1a28f991707784fe759a9f6",
+          "profile_digest": "c80533b13599c47c08e9d968616a1ece4ed017daf850cd5120382696c059ac89"
+        }
+      ]
+    },
+    {
+      "name": "ability-remove-120-byte-row",
+      "plan": {
+        "path": "runtime/q41-native-ownership-0.119.0/ability-remove-120-byte-row-plan.json",
+        "sha256": "d5f56bc4a19b0215a27bee824e3ad8e611a4d6e13e64f8efdf4f1be39d72f7a3"
+      },
+      "journal": {
+        "path": "runtime/q41-native-ownership-0.119.0/ability-remove-120-byte-row-query/journal.json",
+        "sha256": "68d50d22f5372da3dd7cd938fe2d43821104b8a60feca41c4dc00fd4d9c007b7"
+      },
+      "results": [
+        {
+          "path": "runtime/q41-native-ownership-0.119.0/ability-remove-120-byte-row-query/results/11caf21b7e403962e0ff01461a1b16f344da54bbadae64ecc9360a64f5e5fdb8.json",
+          "sha256": "bc93c92fbebe23a55cae8d1cdd2e8255f558a9bae346d76cb8f23c97737518ff",
+          "operation": "procedure_pseudo_code",
+          "evidence_id": "ev_9deb015afac92bc70dda42bfd17d8d665a3001e1c46870e55ec66ef1cfde4ceb",
+          "profile_digest": "decd0fd763403f92fec3215b32e4810a2d91b2b5db3e96cd0f76716771b44b1a"
+        },
+        {
+          "path": "runtime/q41-native-ownership-0.119.0/ability-remove-120-byte-row-query/results/a79935ab0993ce6640e82f3ae51164c4d0c792a25f9a480ffceb39fc7853e4fa.json",
+          "sha256": "93b39e97aa613071a88f9cb6dce96ba09941833c1d67d4ca8bd24add1c62e23e",
+          "operation": "read_function_instructions",
+          "evidence_id": "ev_8b2b85054eb3cf1e3c1c0decbff9b86848fe1d920805334712187fc107f65f88",
+          "profile_digest": "decd0fd763403f92fec3215b32e4810a2d91b2b5db3e96cd0f76716771b44b1a"
+        }
+      ]
+    },
+    {
+      "name": "card-payload",
+      "plan": {
+        "path": "runtime/q41-native-ownership-0.119.0/card-payload-plan.json",
+        "sha256": "c1e75fdb6e572b602d00636c154341cfebd13b75494c834b3d39df8c952c1625"
+      },
+      "journal": {
+        "path": "runtime/q41-native-ownership-0.119.0/card-payload-query/journal.json",
+        "sha256": "144961e4ed6289e278f38434b92d2f575619fdc3d2774608acc086c69595ab06"
+      },
+      "results": [
+        {
+          "path": "runtime/q41-native-ownership-0.119.0/card-payload-query/results/bb1f65441b7932d02b34d4ac78ebe800694ec3742d0f6086087e7eacb3aafe7b.json",
+          "sha256": "c03d487d198007bcb10a421049cd79f363336ffb0e57bfa34a4870f30a897abe",
+          "operation": "procedure_pseudo_code",
+          "evidence_id": "ev_6b16bc44c0616eae25b6ac138873d21ce2df4f8aebc0b239105119cc2f1a3b23",
+          "profile_digest": "78f208d06098c14e401a27cc59457660ad83fe1130492408574a89261c90ed44"
+        }
+      ]
+    }
+  ],
+  "reused_ability_owner": {
+    "manifest": {
+      "path": "docs/analysis/evidence/0.119.0/druid-release/manifest.json",
+      "sha256": "6fa463451a64cda4a0cf7d91a9f0194af0a4969800adf02ee6ef1714b7e2fcc6"
+    },
+    "query": {
+      "role": "ability-cast",
+      "procedure": "0x145bb8e90",
+      "plan": "runtime/execheck-0.119.0-druid/full-pe-plan.json",
+      "plan_sha256": "4bd95beaee2cdc004d6ec8d8f4513750834c63a0489d082c99fc16b0261d7054",
+      "journal": "runtime/execheck-0.119.0-druid/full-pe-query/journal.json",
+      "journal_sha256": "7b33d560e688bfc574015d3e4f107a9d616f10cf4be4501f9028abd65f7c7857",
+      "result": "runtime/execheck-0.119.0-druid/full-pe-query/results/a0b63a2acf54d5747051b7e074a8fe25924b6367266c4e9aa62d62f34b8094ab.json",
+      "result_sha256": "edba3170b88a6c28b5ca733f90d1a4c4533f130174d0b3ab70eb909790da7294",
+      "evidence_id": "ev_85e587972a94884b5225aefb8c5bf8103cbe5a78ba9dea3e041e2bbdf4474a93",
+      "profile_digest": "78f208d06098c14e401a27cc59457660ad83fe1130492408574a89261c90ed44",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "normalized_sha256": "b4b26911df240018166310c21be92d07c84ace0e3740a564280b7bcae7975630",
+      "seed_inputs": {
+        "runtime/execheck-0.119.0-druid/seeds.tsv": "edb35f4f0923829fefb7d6a71e8a70dbf01e767d4f504d5b538eed6149386c6e"
+      },
+      "original_tooling": {
+        "scripts/rea-batch.py": "093fe31a2cf4b388fd6e405b01c41e3e23b0965f1eb15ad4e6a4f44c3e2bbdd9",
+        "scripts/rea": "100aca6677907d7bf2e432a53e61cae733f1fa76cba78d17cff7a577c97369ea",
+        "scripts/repair-rea-reference-input.py": "29da663b1a71a8d6258bfb1c2b8d3117bac3e39c9299bfa35681f85a28db2502",
+        "scripts/repair-rea-durable-queries.py": "c14cc28baf16e60dc8eb4c4557bc4469ec153455d31d3d378561e93847f620a4",
+        "scripts/rea-durable-queries.mjs": "7f75a03ace604029cbdb8cc925bb45504394f1873d689630abe81e542716b3e8",
+        "scripts/ghidra/ReaDurableQueryPrepare.java": "4de425e7c375a1d59b964bfbf565675ef7770f13778649bd48df0aab6824c648",
+        "scripts/ghidra/ReaDurableQueryBridge.fragment.java": "cb1b2fc0c6350449526d5e91dceb75dd98676e7458856d7df9e656542a4abb86",
+        "node_modules/rea-agents/bridge/ghidra/ReaGhidraBridge.java": "9655cefb73c8f83915f6336ea6eee0cf5497b4236e57d8b42c2e76f3117b6681",
+        "node_modules/rea-agents/dist/ghidra/GhidraLauncher.js": "ce306f4e7d6a787ac2da78d9d53f013994dbe7dfe4b7eadc53d3707974f7efc7",
+        "node_modules/rea-agents/dist/ghidra/GhidraJavaLaunch.js": "9b267c37f14faeb1cb3f01afe81fd29e445684cfef86af2150e3f56e2115ff95",
+        "node_modules/rea-agents/dist/ghidra/GhidraAnalysisProfile.js": "a0619504f5cfa381f0eb489881c42079346ecfde48c685aede88fe2f53d57437",
+        "node_modules/rea-agents/dist/ghidra/GhidraProviderClient.js": "ee2eb4a2fb506b6541e365c87f708b5ac5d65dfb97d645bd5b3929b3799427b9",
+        "node_modules/rea-agents/dist/ghidra/GhidraSessionValues.js": "d83a81a6aa933c8d3886ccf737008de64f48c7988a307a5142d02bb2e35be4ec",
+        "node_modules/rea-agents/dist/cli-runtime/binary-BVOr2mgE.js": "06e032e5f5f3870bb96d2b9d60c56954f0d19c6237653894403240ae5a24ff5d",
+        "node_modules/rea-agents/dist/mcp/main-kBXHZ8S5.js": "ed23c9961768f19b78ac67aec6f384c311f55f36049101a85f2bc871ec540acc"
+      },
+      "target_executed": false
+    }
+  },
+  "source_receipts": [
+    {
+      "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/totems.rs",
+      "sha256": "62cdd7a12c88170b47616d9b6024405a7388c6a641c83caca850d0ad07b3d29e"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
+      "sha256": "7967298cd9195029428ad1aad1b4ade1973ee38f2aa198fc0dacd06f346e38b9"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/native_overlay_payload.rs",
+      "sha256": "2f3442d3010d3b58025bdfca2c3dc935fedff7acaa904cb7a72628bbda2f1be4"
+    }
+  ],
+  "as_location_extent_frontier": {
+    "selector": "All ownerless-instructions.tsv.gz rows inside declared extents containing a genuine AS Rust Location, including cooperative source paths",
+    "selection_is_module_ownership": false,
+    "context_extents": 291,
+    "selected_instructions": 788,
+    "selected_extents": 19,
+    "runs": [
+      {
+        "start": "0x1401472bd",
+        "end_exclusive": "0x1401472d0",
+        "file_offset": "0x1466bd",
+        "sha256": "c30ffee44a49e28e7ae78848d13a1b97ea11bb627d51c51f6f3dacda28d8edf2",
+        "declared_extent": "0x140146260",
+        "instructions": 4,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x1401472c9",
+            "target": "0x14613b553"
+          }
+        ]
+      },
+      {
+        "start": "0x14014fc12",
+        "end_exclusive": "0x14014fc29",
+        "file_offset": "0x14f012",
+        "sha256": "e563d8dbbf59ca5d5dededa7f5978f75ac487eb796fc327e868861ae9ed7fae6",
+        "declared_extent": "0x14014d570",
+        "instructions": 5,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x14014fc1e",
+            "target": "0x14613b470"
+          }
+        ]
+      },
+      {
+        "start": "0x140221383",
+        "end_exclusive": "0x1402213bb",
+        "file_offset": "0x220783",
+        "sha256": "2dc9d13805808ff9067a148124776c23f54f68bf93cdf9859e781128b80c292c",
+        "declared_extent": "0x1402204d0",
+        "instructions": 13,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x140221391",
+            "target": "0x14613b730"
+          },
+          {
+            "site": "0x1402213a5",
+            "target": "0x14613b553"
+          },
+          {
+            "site": "0x1402213b3",
+            "target": "0x14613b553"
+          }
+        ]
+      },
+      {
+        "start": "0x140249a27",
+        "end_exclusive": "0x140249a74",
+        "file_offset": "0x248e27",
+        "sha256": "0e908de75a8ae12da6fe0aa490bc22a2344dd63e2ddb2624fdd4a84769a57488",
+        "declared_extent": "0x140248f10",
+        "instructions": 17,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x140249a33",
+            "target": "0x14613b553"
+          },
+          {
+            "site": "0x140249a46",
+            "target": "0x14613b553"
+          },
+          {
+            "site": "0x140249a59",
+            "target": "0x14613b553"
+          },
+          {
+            "site": "0x140249a6c",
+            "target": "0x14613b553"
+          }
+        ]
+      },
+      {
+        "start": "0x1402704e0",
+        "end_exclusive": "0x1402704f2",
+        "file_offset": "0x26f8e0",
+        "sha256": "d8dfc1154c6415ec23384f46bdd41ee9a2fcea2f48fe64cbc5cdfffabab99d9a",
+        "declared_extent": "0x1402700b0",
+        "instructions": 4,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x1402704eb",
+            "target": "0x14613b730"
+          }
+        ]
+      },
+      {
+        "start": "0x14027050c",
+        "end_exclusive": "0x14027051f",
+        "file_offset": "0x26f90c",
+        "sha256": "fa7e812625323ab2a61da712af9ae8f275f2c3a96ce020af383d91f1e6c462d8",
+        "declared_extent": "0x1402700b0",
+        "instructions": 5,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x140270517",
+            "target": "0x14613b730"
+          }
+        ]
+      },
+      {
+        "start": "0x140271061",
+        "end_exclusive": "0x140271072",
+        "file_offset": "0x270461",
+        "sha256": "02c6ee8ef745d92a5cf9a54a357872c4da32d95ea05b5c3bcca394a01721c1f8",
+        "declared_extent": "0x140270d30",
+        "instructions": 4,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x14027106b",
+            "target": "0x14613b553"
+          }
+        ]
+      },
+      {
+        "start": "0x140279a89",
+        "end_exclusive": "0x140279aa2",
+        "file_offset": "0x278e89",
+        "sha256": "3b4cd7411fdc40dff701757d5a17af637cf3d074212f0049e8fbeac46ce6a058",
+        "declared_extent": "0x140277c40",
+        "instructions": 5,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x140279a97",
+            "target": "0x14613b730"
+          }
+        ]
+      },
+      {
+        "start": "0x140279d12",
+        "end_exclusive": "0x140279d2b",
+        "file_offset": "0x279112",
+        "sha256": "41952b632d403c685cee5faf23a3927d3db5fd3d17d585f2bfb721895e52058e",
+        "declared_extent": "0x140277c40",
+        "instructions": 5,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x140279d20",
+            "target": "0x14613b730"
+          }
+        ]
+      },
+      {
+        "start": "0x140279d5c",
+        "end_exclusive": "0x140279d75",
+        "file_offset": "0x27915c",
+        "sha256": "8a3ae53d1cbd1dc15439bc93a7348237d0763a96002bd0519add449446b3ff3e",
+        "declared_extent": "0x140277c40",
+        "instructions": 5,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x140279d6a",
+            "target": "0x14613b730"
+          }
+        ]
+      },
+      {
+        "start": "0x14027a2f5",
+        "end_exclusive": "0x14027a30e",
+        "file_offset": "0x2796f5",
+        "sha256": "ca82bfef35b23d3405c63425878c2d09eb79441fb42d251e9a0371e38b9854a1",
+        "declared_extent": "0x140277c40",
+        "instructions": 5,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x14027a303",
+            "target": "0x14613b730"
+          }
+        ]
+      },
+      {
+        "start": "0x14027e596",
+        "end_exclusive": "0x14027e5a8",
+        "file_offset": "0x27d996",
+        "sha256": "97ffefe8d2669a7ee30f59350e135d02197ec7c40618b55c290ea2b8265ebb30",
+        "declared_extent": "0x14027d450",
+        "instructions": 4,
+        "role": "options-writeback-and-returning-removal-context",
+        "direct_calls": []
+      },
+      {
+        "start": "0x14027e760",
+        "end_exclusive": "0x14027e771",
+        "file_offset": "0x27db60",
+        "sha256": "d2d2fa8d155bb16d672a06390545744dd3aee8f50383c97ebdceed0fd3542e70",
+        "declared_extent": "0x14027d450",
+        "instructions": 3,
+        "role": "options-writeback-and-returning-removal-context",
+        "direct_calls": [
+          {
+            "site": "0x14027e767",
+            "target": "0x1400d4480"
+          }
+        ]
+      },
+      {
+        "start": "0x14027ea33",
+        "end_exclusive": "0x14027ea49",
+        "file_offset": "0x27de33",
+        "sha256": "6df69852bcb3caad48d7d29523c25a0d90141a763f52ce87e37e5c699ce35907",
+        "declared_extent": "0x14027d450",
+        "instructions": 5,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x14027ea42",
+            "target": "0x14613b553"
+          }
+        ]
+      },
+      {
+        "start": "0x145a78f53",
+        "end_exclusive": "0x145a78f6a",
+        "file_offset": "0x5a78353",
+        "sha256": "48649536f1f16e7f2ebd7f27a3ce857b6ee34df27d0355ec75f1d01f806c30f3",
+        "declared_extent": "0x145a76310",
+        "instructions": 5,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x145a78f64",
+            "target": "0x14613b553"
+          }
+        ]
+      },
+      {
+        "start": "0x145ad6c74",
+        "end_exclusive": "0x145ad6cb1",
+        "file_offset": "0x5ad6074",
+        "sha256": "5afe8d1e4ceb9a1faea66430ea5b310d066265ac689a28acf30b6ed69d0ae568",
+        "declared_extent": "0x145ad6ab0",
+        "instructions": 14,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x145ad6caa",
+            "target": "0x14613b553"
+          }
+        ]
+      },
+      {
+        "start": "0x145baf68b",
+        "end_exclusive": "0x145baf69d",
+        "file_offset": "0x5baea8b",
+        "sha256": "9f9ff5dc91c1940df7a2eb2f356bebeade1bae59c691c6dcdf69405a5985ade2",
+        "declared_extent": "0x145baa630",
+        "instructions": 4,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x145baf692",
+            "target": "0x14613b553"
+          }
+        ]
+      },
+      {
+        "start": "0x145baf77d",
+        "end_exclusive": "0x145baf78e",
+        "file_offset": "0x5baeb7d",
+        "sha256": "2d7c57c2c1bf447875166eccd3d4b38e797f043aa63b40e41dab40a47015f326",
+        "declared_extent": "0x145baa630",
+        "instructions": 4,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x145baf787",
+            "target": "0x14613b553"
+          }
+        ]
+      },
+      {
+        "start": "0x145bbb1f8",
+        "end_exclusive": "0x145bbb649",
+        "file_offset": "0x5bba5f8",
+        "sha256": "18b2fa23173d078ae976f6394ee22e5cd850eb2f3a8c38ea99c414e6be02c3cc",
+        "declared_extent": "0x145bb8e90",
+        "instructions": 227,
+        "role": "totem-cap-create-and-owned-value-cleanup-context",
+        "direct_calls": [
+          {
+            "site": "0x145bbb20a",
+            "target": "0x145c26170"
+          },
+          {
+            "site": "0x145bbb23d",
+            "target": "0x145bf3300"
+          },
+          {
+            "site": "0x145bbb248",
+            "target": "0x145bc24f0"
+          },
+          {
+            "site": "0x145bbb2da",
+            "target": "0x145a74ac0"
+          },
+          {
+            "site": "0x145bbb2f1",
+            "target": "0x145a74ac0"
+          },
+          {
+            "site": "0x145bbb308",
+            "target": "0x145a74ac0"
+          },
+          {
+            "site": "0x145bbb31f",
+            "target": "0x145a74ac0"
+          },
+          {
+            "site": "0x145bbb336",
+            "target": "0x145a74ac0"
+          },
+          {
+            "site": "0x145bbb34d",
+            "target": "0x145a74ac0"
+          },
+          {
+            "site": "0x145bbb364",
+            "target": "0x145a74ac0"
+          },
+          {
+            "site": "0x145bbb37c",
+            "target": "0x145a74ac0"
+          },
+          {
+            "site": "0x145bbb394",
+            "target": "0x145a74ac0"
+          },
+          {
+            "site": "0x145bbb3af",
+            "target": "0x145a74ac0"
+          },
+          {
+            "site": "0x145bbb3ca",
+            "target": "0x145a74ac0"
+          },
+          {
+            "site": "0x145bbb3de",
+            "target": "0x145a74ac0"
+          },
+          {
+            "site": "0x145bbb3f2",
+            "target": "0x145a74ac0"
+          },
+          {
+            "site": "0x145bbb409",
+            "target": "0x145a74ac0"
+          },
+          {
+            "site": "0x145bbb420",
+            "target": "0x145a74ac0"
+          },
+          {
+            "site": "0x145bbb437",
+            "target": "0x145a74ac0"
+          },
+          {
+            "site": "0x145bbb44b",
+            "target": "0x145a74ac0"
+          },
+          {
+            "site": "0x145bbb462",
+            "target": "0x145a74ac0"
+          },
+          {
+            "site": "0x145bbb4bd",
+            "target": "0x145b5a600"
+          },
+          {
+            "site": "0x145bbb4e8",
+            "target": "0x145b5add0"
+          },
+          {
+            "site": "0x145bbb505",
+            "target": "0x145f94930"
+          },
+          {
+            "site": "0x145bbb557",
+            "target": "0x145a729b0"
+          },
+          {
+            "site": "0x145bbb5ad",
+            "target": "0x145fc46c0"
+          }
+        ]
+      },
+      {
+        "start": "0x145bbbfc0",
+        "end_exclusive": "0x145bbc024",
+        "file_offset": "0x5bbb3c0",
+        "sha256": "0a2c20e029713841f557ecfabbc1c3d06d5b9fc8f8baaefef448aefde938cfff",
+        "declared_extent": "0x145bb8e90",
+        "instructions": 21,
+        "role": "totem-cap-create-and-owned-value-cleanup-context",
+        "direct_calls": []
+      },
+      {
+        "start": "0x145bbc3f8",
+        "end_exclusive": "0x145bbc407",
+        "file_offset": "0x5bbb7f8",
+        "sha256": "c7d7c2711c3da12361cf291917ba8b55ce198a8d076e69abb3e3bb4bdb63fcb0",
+        "declared_extent": "0x145bb8e90",
+        "instructions": 4,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x145bbc3ff",
+            "target": "0x14613b4b0"
+          }
+        ]
+      },
+      {
+        "start": "0x145bce8f1",
+        "end_exclusive": "0x145bce90a",
+        "file_offset": "0x5bcdcf1",
+        "sha256": "2c92469075e29dac8876cdb4e58a259d26f77b7dd71eb34d80fcbf039c10d5df",
+        "declared_extent": "0x145bcae20",
+        "instructions": 5,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x145bce8ff",
+            "target": "0x14613b730"
+          }
+        ]
+      },
+      {
+        "start": "0x145bce92d",
+        "end_exclusive": "0x145bce946",
+        "file_offset": "0x5bcdd2d",
+        "sha256": "a2211e8dce406f42e79a45caec8a928efda6d069f0622b35f536ce313c7c667f",
+        "declared_extent": "0x145bcae20",
+        "instructions": 5,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x145bce93b",
+            "target": "0x14613b730"
+          }
+        ]
+      },
+      {
+        "start": "0x145bce969",
+        "end_exclusive": "0x145bce982",
+        "file_offset": "0x5bcdd69",
+        "sha256": "9877ad33b4be0b8de66e2247354b4778db07450785f420eb9a36633b3fa65b08",
+        "declared_extent": "0x145bcae20",
+        "instructions": 5,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x145bce977",
+            "target": "0x14613b730"
+          }
+        ]
+      },
+      {
+        "start": "0x145bce9a5",
+        "end_exclusive": "0x145bce9bb",
+        "file_offset": "0x5bcdda5",
+        "sha256": "38c53ba1399808e33b1f6eb46ef415b62c77e22d97cf7eb4c12d5c04a5aad513",
+        "declared_extent": "0x145bcae20",
+        "instructions": 5,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x145bce9b3",
+            "target": "0x14613b730"
+          }
+        ]
+      },
+      {
+        "start": "0x145bce9de",
+        "end_exclusive": "0x145bce9f4",
+        "file_offset": "0x5bcddde",
+        "sha256": "aac323d9d60a91e039250ca91121b33ae217cc41289c707e8e77962945c25981",
+        "declared_extent": "0x145bcae20",
+        "instructions": 5,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x145bce9ec",
+            "target": "0x14613b730"
+          }
+        ]
+      },
+      {
+        "start": "0x145bcea17",
+        "end_exclusive": "0x145bcea3c",
+        "file_offset": "0x5bcde17",
+        "sha256": "6dce8926d8c17e843c86b93db92125c65b0c4cdfd645a8bab77a2a7e5cda315d",
+        "declared_extent": "0x145bcae20",
+        "instructions": 9,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x145bcea25",
+            "target": "0x14613b730"
+          },
+          {
+            "site": "0x145bcea34",
+            "target": "0x14613b553"
+          }
+        ]
+      },
+      {
+        "start": "0x145be20ae",
+        "end_exclusive": "0x145be20c3",
+        "file_offset": "0x5be14ae",
+        "sha256": "14d2f863ef81f5d766a28798d4b2a60b71dd0aa5a2f3b07c3bbb8a6779b87f34",
+        "declared_extent": "0x145bdc840",
+        "instructions": 5,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x145be20b8",
+            "target": "0x14613b553"
+          }
+        ]
+      },
+      {
+        "start": "0x145be21fe",
+        "end_exclusive": "0x145be2210",
+        "file_offset": "0x5be15fe",
+        "sha256": "0bba86ed9a6e717afc00d75e2a01d7fc382cf6cfb04404163d5a9003cfd1e112",
+        "declared_extent": "0x145bdc840",
+        "instructions": 5,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x145be2208",
+            "target": "0x14613b553"
+          }
+        ]
+      },
+      {
+        "start": "0x145be226b",
+        "end_exclusive": "0x145be227b",
+        "file_offset": "0x5be166b",
+        "sha256": "a67f2bf155cd2eb052323297e1e0368cfd9517ce47ba000167682304d22b4d07",
+        "declared_extent": "0x145bdc840",
+        "instructions": 4,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x145be2275",
+            "target": "0x14613b553"
+          }
+        ]
+      },
+      {
+        "start": "0x145be9552",
+        "end_exclusive": "0x145be95c2",
+        "file_offset": "0x5be8952",
+        "sha256": "d42dbb37d8bc8511bdb4b6f79279ac155265e268ee5e1b51ea5f1e9c7191611f",
+        "declared_extent": "0x145be6ae0",
+        "instructions": 27,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x145be9559",
+            "target": "0x14613b553"
+          },
+          {
+            "site": "0x145be956b",
+            "target": "0x14613b553"
+          },
+          {
+            "site": "0x145be957d",
+            "target": "0x14613b553"
+          },
+          {
+            "site": "0x145be958f",
+            "target": "0x14613b553"
+          },
+          {
+            "site": "0x145be95a4",
+            "target": "0x14613b553"
+          },
+          {
+            "site": "0x145be95ba",
+            "target": "0x14613b553"
+          }
+        ]
+      },
+      {
+        "start": "0x145be95fe",
+        "end_exclusive": "0x145be961e",
+        "file_offset": "0x5be89fe",
+        "sha256": "3c33643948cb0bd999777d67b76d4f42882d0ff789c843365e238184b74eecb6",
+        "declared_extent": "0x145be6ae0",
+        "instructions": 8,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x145be9605",
+            "target": "0x14613b553"
+          },
+          {
+            "site": "0x145be9618",
+            "target": "0x14613b553"
+          }
+        ]
+      },
+      {
+        "start": "0x145c01222",
+        "end_exclusive": "0x145c01325",
+        "file_offset": "0x5c00622",
+        "sha256": "303fa65406f63668ebd8fcd79c6f0435b6d02855029d604db63542c530605564",
+        "declared_extent": "0x145c00d20",
+        "instructions": 50,
+        "role": "upgrade-card-payload-and-owned-value-cleanup-context",
+        "direct_calls": [
+          {
+            "site": "0x145c01275",
+            "target": "0x145b29e90"
+          },
+          {
+            "site": "0x145c012a7",
+            "target": "0x145f66f30"
+          },
+          {
+            "site": "0x145c012c2",
+            "target": "0x145b29ab0"
+          },
+          {
+            "site": "0x145c012ee",
+            "target": "0x1400021d0"
+          },
+          {
+            "site": "0x145c0131a",
+            "target": "0x14613b1bb"
+          }
+        ]
+      },
+      {
+        "start": "0x145c0176f",
+        "end_exclusive": "0x145c018b2",
+        "file_offset": "0x5c00b6f",
+        "sha256": "84af988e8600fc7fb2cfd94aa5dec260e7e4e8af5e76840216f6ff47ad3a7f8d",
+        "declared_extent": "0x145c00d20",
+        "instructions": 59,
+        "role": "upgrade-card-payload-and-owned-value-cleanup-context",
+        "direct_calls": [
+          {
+            "site": "0x145c017fd",
+            "target": "0x145b29e90"
+          },
+          {
+            "site": "0x145c01837",
+            "target": "0x145f66f30"
+          },
+          {
+            "site": "0x145c0185a",
+            "target": "0x145b29ab0"
+          },
+          {
+            "site": "0x145c0187f",
+            "target": "0x1400021d0"
+          },
+          {
+            "site": "0x145c018a7",
+            "target": "0x14613b1bb"
+          }
+        ]
+      },
+      {
+        "start": "0x145c01b8a",
+        "end_exclusive": "0x145c01c1f",
+        "file_offset": "0x5c00f8a",
+        "sha256": "f0978e93872cd134dfbcef817a97bb5652f74338402fc79da679276ee644db52",
+        "declared_extent": "0x145c00d20",
+        "instructions": 31,
+        "role": "upgrade-card-payload-and-owned-value-cleanup-context",
+        "direct_calls": [
+          {
+            "site": "0x145c01b97",
+            "target": "0x140002200"
+          },
+          {
+            "site": "0x145c01ba9",
+            "target": "0x1400021c0"
+          },
+          {
+            "site": "0x145c01bce",
+            "target": "0x145f941db"
+          },
+          {
+            "site": "0x145c01be5",
+            "target": "0x140002200"
+          },
+          {
+            "site": "0x145c01bf7",
+            "target": "0x1400021c0"
+          },
+          {
+            "site": "0x145c01c15",
+            "target": "0x145f941db"
+          }
+        ]
+      },
+      {
+        "start": "0x145c01da4",
+        "end_exclusive": "0x145c01f42",
+        "file_offset": "0x5c011a4",
+        "sha256": "1081a771ed0c8b9ac0438413f4825560b7bb1b3f4e918a14c54a9c52dc3696bc",
+        "declared_extent": "0x145c00d20",
+        "instructions": 84,
+        "role": "upgrade-card-payload-and-owned-value-cleanup-context",
+        "direct_calls": [
+          {
+            "site": "0x145c01ddd",
+            "target": "0x145ac16c0"
+          },
+          {
+            "site": "0x145c01e1b",
+            "target": "0x14613b1bb"
+          },
+          {
+            "site": "0x145c01e3e",
+            "target": "0x140002200"
+          },
+          {
+            "site": "0x145c01e51",
+            "target": "0x1400021c0"
+          },
+          {
+            "site": "0x145c01e67",
+            "target": "0x145f941db"
+          },
+          {
+            "site": "0x145c01ed6",
+            "target": "0x14613b1bb"
+          },
+          {
+            "site": "0x145c01f01",
+            "target": "0x140002200"
+          },
+          {
+            "site": "0x145c01f14",
+            "target": "0x1400021c0"
+          },
+          {
+            "site": "0x145c01f2a",
+            "target": "0x145f941db"
+          }
+        ]
+      },
+      {
+        "start": "0x145c02269",
+        "end_exclusive": "0x145c02391",
+        "file_offset": "0x5c01669",
+        "sha256": "d129b58231ab1654d3aa2aee5d0225bfb033acdaeeb8d61e3f5d9ac3b58c249c",
+        "declared_extent": "0x145c00d20",
+        "instructions": 54,
+        "role": "upgrade-card-payload-and-owned-value-cleanup-context",
+        "direct_calls": []
+      },
+      {
+        "start": "0x145c028c2",
+        "end_exclusive": "0x145c02903",
+        "file_offset": "0x5c01cc2",
+        "sha256": "26d15ab904509f7ee428740cfd1f5a83f1e5984c05f4d7f0bd9683737f5c9425",
+        "declared_extent": "0x145c00d20",
+        "instructions": 18,
+        "role": "upgrade-card-payload-and-owned-value-cleanup-context",
+        "direct_calls": [
+          {
+            "site": "0x145c028e0",
+            "target": "0x145b76ca0"
+          }
+        ]
+      },
+      {
+        "start": "0x145c0297b",
+        "end_exclusive": "0x145c02991",
+        "file_offset": "0x5c01d7b",
+        "sha256": "02b21b59996aa99b65575de4ca4173fd8deac7c710e777781d4b47ad01bd81dc",
+        "declared_extent": "0x145c00d20",
+        "instructions": 5,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x145c02989",
+            "target": "0x14613b730"
+          }
+        ]
+      },
+      {
+        "start": "0x145c02998",
+        "end_exclusive": "0x145c029a7",
+        "file_offset": "0x5c01d98",
+        "sha256": "88492bfa11068081f40e2af822c289a7bf84cfd9f0aec0596962cec8a9bd8b8c",
+        "declared_extent": "0x145c00d20",
+        "instructions": 4,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x145c0299f",
+            "target": "0x14613b553"
+          }
+        ]
+      },
+      {
+        "start": "0x145c029b7",
+        "end_exclusive": "0x145c029b9",
+        "file_offset": "0x5c01db7",
+        "sha256": "54468dbf4fa476a33fda462613e3906e78c91c71147953fd83a2a92b2fcc2e32",
+        "declared_extent": "0x145c00d20",
+        "instructions": 1,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": []
+      },
+      {
+        "start": "0x145c081d4",
+        "end_exclusive": "0x145c081ea",
+        "file_offset": "0x5c075d4",
+        "sha256": "831d222873e91ca17ac5c6f871b1164304bd870e79a1e50fd7c397fc666e8953",
+        "declared_extent": "0x145c06110",
+        "instructions": 5,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x145c081e2",
+            "target": "0x14613b730"
+          }
+        ]
+      },
+      {
+        "start": "0x145c081fa",
+        "end_exclusive": "0x145c081fc",
+        "file_offset": "0x5c075fa",
+        "sha256": "54468dbf4fa476a33fda462613e3906e78c91c71147953fd83a2a92b2fcc2e32",
+        "declared_extent": "0x145c06110",
+        "instructions": 1,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": []
+      },
+      {
+        "start": "0x145c16f6a",
+        "end_exclusive": "0x145c16f80",
+        "file_offset": "0x5c1636a",
+        "sha256": "3de16d9113ef619e46c1c340ca5dfbbe74bc4e8fb6d0a62c4b151945bc691514",
+        "declared_extent": "0x145c151f0",
+        "instructions": 5,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x145c16f75",
+            "target": "0x14613b730"
+          }
+        ]
+      },
+      {
+        "start": "0x145c16fa4",
+        "end_exclusive": "0x145c16fb7",
+        "file_offset": "0x5c163a4",
+        "sha256": "4b401942435eb8197d22d0986a994dc33313e6bdb9bb79a0107a0305c16abb8c",
+        "declared_extent": "0x145c151f0",
+        "instructions": 5,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x145c16faf",
+            "target": "0x14613b730"
+          }
+        ]
+      },
+      {
+        "start": "0x145c16fdb",
+        "end_exclusive": "0x145c16fee",
+        "file_offset": "0x5c163db",
+        "sha256": "c353f34c171e58f293f2bcf78c160cbee2494acfe736666d62966ccbe5c1be03",
+        "declared_extent": "0x145c151f0",
+        "instructions": 5,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x145c16fe6",
+            "target": "0x14613b730"
+          }
+        ]
+      },
+      {
+        "start": "0x145c1dd25",
+        "end_exclusive": "0x145c1dd3b",
+        "file_offset": "0x5c1d125",
+        "sha256": "482b88745a12993f4063293ff1195a480527ffc9fb423ab42d672ddff59cd6c9",
+        "declared_extent": "0x145c1afe0",
+        "instructions": 5,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x145c1dd30",
+            "target": "0x14613b730"
+          }
+        ]
+      },
+      {
+        "start": "0x145c1dd55",
+        "end_exclusive": "0x145c1dd6b",
+        "file_offset": "0x5c1d155",
+        "sha256": "661d40d7591d1c15f54463035fb6c4b9ab0fce3ba0915baaff471bb8fe276e9e",
+        "declared_extent": "0x145c1afe0",
+        "instructions": 5,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x145c1dd60",
+            "target": "0x14613b730"
+          }
+        ]
+      },
+      {
+        "start": "0x145c1ddb8",
+        "end_exclusive": "0x145c1ddce",
+        "file_offset": "0x5c1d1b8",
+        "sha256": "fc030dc3ff7028f974fb0a7c44f9e94b06a807c8b2d845b7e7641fa7677da7f5",
+        "declared_extent": "0x145c1afe0",
+        "instructions": 5,
+        "role": "failure-route-or-terminal-trap-context",
+        "direct_calls": [
+          {
+            "site": "0x145c1ddc3",
+            "target": "0x14613b730"
+          }
+        ]
+      }
+    ],
+    "instructions_by_context_role": {
+      "failure-route-or-terminal-trap-context": 237,
+      "options-writeback-and-returning-removal-context": 7,
+      "totem-cap-create-and-owned-value-cleanup-context": 248,
+      "upgrade-card-payload-and-owned-value-cleanup-context": 296
+    }
+  },
+  "scope": "Complete selected 60-site population; original Ghidra body ownership is preserved.",
+  "limits": [
+    "Local routes and descriptors classify diagnostic roles, not whole native functions or gameplay.",
+    "Failure wrappers are compiler/library context, not new AS implementations.",
+    "Raw-slice pseudocode has unresolved external symbols/ABI; the percent helper retains an unresolved indirect dispatch.",
+    "Filename adjacency, a Location and declared extent do not establish source ownership or missing behavior.",
+    "No generic engine reconstruction, compilation, game/network/server execution or parity comparison."
+  ]
+}

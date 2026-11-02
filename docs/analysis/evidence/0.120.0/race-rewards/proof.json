@@ -1,0 +1,136 @@
+{
+  "target_sha256": "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08",
+  "native_ranges": [
+    {
+      "role": "race-toggle",
+      "va": "0x1401b740b",
+      "end_exclusive": "0x1401b74a8",
+      "file_offset": "0x1b680b",
+      "sha256": "e6c068ead1be2bbcac8bc4d1ccf6d7b64176169d9f853fc352c75c4e73962fa7",
+      "instructions": 31,
+      "assembly": "docs/analysis/evidence/0.120.0/race-rewards/race-toggle.asm"
+    },
+    {
+      "role": "race-toggle-assignment",
+      "va": "0x1401b782d",
+      "end_exclusive": "0x1401b78ff",
+      "file_offset": "0x1b6c2d",
+      "sha256": "db794a535f7191faf61e85e9d6985c37a830a6231fc4688ffd4b327b3521f988",
+      "instructions": 39,
+      "assembly": "docs/analysis/evidence/0.120.0/race-rewards/race-toggle-assignment.asm"
+    },
+    {
+      "role": "remote-hero-domain-and-pick",
+      "va": "0x145aa97a0",
+      "end_exclusive": "0x145aa98fd",
+      "file_offset": "0x5aa8ba0",
+      "sha256": "8ef90a2744c8af1fbf902662d96081c378a26049fe22e790c07db36cedadb7c8",
+      "instructions": 64,
+      "assembly": "docs/analysis/evidence/0.120.0/race-rewards/remote-hero-domain-and-pick.asm"
+    },
+    {
+      "role": "unopened-class-labels",
+      "va": "0x14011dd50",
+      "end_exclusive": "0x14011dfb9",
+      "file_offset": "0x11d150",
+      "sha256": "34686586dfde1bafcb96bf3928ab3e6c72be5bb4c755a9205b0735d3df9920a2",
+      "instructions": 155,
+      "assembly": "docs/analysis/evidence/0.120.0/race-rewards/unopened-class-labels.asm"
+    },
+    {
+      "role": "race-card-body",
+      "va": "0x14032a0d0",
+      "end_exclusive": "0x14032ad00",
+      "file_offset": "0x3294d0",
+      "sha256": "30fdb375ed5a122129bd0293c7902d1e182ab9ae68943fe76b6a4c1b8eaadf9a",
+      "instructions": 514,
+      "assembly": "docs/analysis/evidence/0.120.0/race-rewards/race-card-body.asm"
+    }
+  ],
+  "retained_native_ranges": "docs/analysis/evidence/0.120.0/race-unlocks/manifest.json",
+  "cases": {
+    "card": 20,
+    "race_validation": 2563,
+    "spending": 27,
+    "remote_admission": 3584
+  },
+  "vector_sha256": "707b952977614fb5d61b48b526a562f197d482b1cbfb9df11e220aa0b0665a09",
+  "limits": [
+    "Original bounded instruction execution with synthetic memory; no reconstructed code execution.",
+    "Card formatting/translation/allocation seams; validator stops before shared spending and achievements.",
+    "Admission tests only class/race/name-length gate after GUID gate; deeper normalization/transport remain separate.",
+    "Native toggle/assignment and UI constructors reviewed statically, not executed. Runtime/rendering/parity unverified."
+  ],
+  "queries": [
+    {
+      "procedure": "0x140345db0",
+      "evidence_id": "ev_953709f4688853c30db49d7b6cf192eafe707801151941d4a2f8d3ea6015bf2d",
+      "profile": "06262b06abe45173e59c789812058e6061b5206870259300b5b81aa27e9de8fb",
+      "subject_sha256": "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08",
+      "result": {
+        "path": "runtime/fixgap-188/card-query/results/4a33bf05a0630026d00cf8f8a67bab4b80b5564d4fcba656db2dc788977dcfed.json",
+        "sha256": "e6338470bcd33cdc88b45f331fd8e71dfdcb5d58a78a102ae71909903f62f972"
+      },
+      "journal": {
+        "path": "runtime/fixgap-188/card-query/journal.json",
+        "sha256": "e60330137a27b6d73c3f46c6e22284fa73d299230952ce9c7c2bc73f1309cb2d"
+      }
+    },
+    {
+      "procedure": "0x14032a0d0",
+      "evidence_id": "ev_5ffd6cef8372a27a92db697179d04018207d2831473cf49789efc65c89b211ba",
+      "profile": "06262b06abe45173e59c789812058e6061b5206870259300b5b81aa27e9de8fb",
+      "subject_sha256": "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08",
+      "result": {
+        "path": "runtime/fixgap-188/card-query/results/8bd9c45e480b10ffb1fe9e152cc7e56c233c70452a6a6d787fe4a1bf39847dfd.json",
+        "sha256": "154105ea683a042415a91fe634560bbc5897278f0c06947005dfb3feec4ddae4"
+      },
+      "journal": {
+        "path": "runtime/fixgap-188/card-query/journal.json",
+        "sha256": "e60330137a27b6d73c3f46c6e22284fa73d299230952ce9c7c2bc73f1309cb2d"
+      }
+    },
+    {
+      "procedure": "0x14011dd50",
+      "evidence_id": "ev_07114375b41f3edf839ecfffa932732bd2b2d55b441e3d8283b580860719e3bd",
+      "profile": "06262b06abe45173e59c789812058e6061b5206870259300b5b81aa27e9de8fb",
+      "subject_sha256": "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08",
+      "result": {
+        "path": "runtime/fixgap-188/card-input-query/results/0edad72480ad3857f83ed1a56e36880238eb02556c96d52bf29e745fc6bf36e5.json",
+        "sha256": "73ead0d40f1825b80ee516fa4881dc721f2eb17d3b8ad712f8a87ae13abd4f05"
+      },
+      "journal": {
+        "path": "runtime/fixgap-188/card-input-query/journal.json",
+        "sha256": "730070aee43d611fd907897acc8348e561bbafe5a3e538c02114590717ef1b85"
+      }
+    },
+    {
+      "procedure": "0x1400a5de0",
+      "evidence_id": "ev_a7e00e749d27906f772d205ae6a1bf34423c202ca52c323ba0f3fbb9798a9c77",
+      "profile": "06262b06abe45173e59c789812058e6061b5206870259300b5b81aa27e9de8fb",
+      "subject_sha256": "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08",
+      "result": {
+        "path": "runtime/fixgap-188/card-input-query/results/fc6377c1eece95e84a4935ad542fe5be740d8bbeba5d97c03122b288f688ab32.json",
+        "sha256": "7b1dc4e7d72c36504e6db8ee6c5e42595d64c136f164b3e128a4360e5f11a067"
+      },
+      "journal": {
+        "path": "runtime/fixgap-188/card-input-query/journal.json",
+        "sha256": "730070aee43d611fd907897acc8348e561bbafe5a3e538c02114590717ef1b85"
+      }
+    },
+    {
+      "procedure": "0x145aa97a0",
+      "evidence_id": "ev_cbff9d5c9c17b868e8da86ba71ca01f4d0a3b133b10f60cb94ef31284eef77a9",
+      "profile": "1e63a8318ecb7b55ce36502f05f667b1235cac707bfdf07a7f513b584bab9316",
+      "subject_sha256": "d383ed96d51ad2073e93ba76b46da5bebb63b1b741ba6200f88fc4cb74dda874",
+      "result": {
+        "path": "runtime/fixgap-188/remote-hero-query/results/3ebf2e79d55268ad1ac6a53a4084f10ef837977b86a9858680e6b9ea302f6593.json",
+        "sha256": "37623b239f683778dacdc6e75a5b2a327f1780c23681e89791fe6d34df724136"
+      },
+      "journal": {
+        "path": "runtime/fixgap-188/remote-hero-query/journal.json",
+        "sha256": "f01b9cbbafe5e73b50c2fc2467b29789876f2d309ffd57487a4032707b21ca73"
+      }
+    }
+  ]
+}

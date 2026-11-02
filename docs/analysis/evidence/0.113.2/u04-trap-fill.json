@@ -1,0 +1,460 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.113.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+    "size_bytes": 141932032
+  },
+  "lead_id": "Q41-U04",
+  "classification_id": "Q41-U04-trap-fill-145807d86",
+  "gap_ids": [
+    41
+  ],
+  "queue_input": {
+    "path": "docs/analysis/evidence/0.113.2/unknown-recovery.json",
+    "sha256": "d4148a7bcd2feb746bdd36dd5c88dfbe804b5f608edeafe16792841405ac342b"
+  },
+  "selector": {
+    "inputs": [
+      "unwind-complement.sqlite"
+    ],
+    "selector": "For each regions row ordered by start, subtract the union of [site,end) from instructions; retain each residual [start,end) with the regions.category. Never subtract a padding candidate.",
+    "projection": [
+      "start_preferred_VA_integer",
+      "end_exclusive_preferred_VA_integer",
+      "original_region_category"
+    ],
+    "order": "regions.start ascending; residual start ascending",
+    "records": 332690,
+    "output_sha256": "474b11cf3ae27d248b26fc470919022f37d2505436cf98714cd2c76baada231f",
+    "bytes_by_candidate_kind": {
+      "mixed_or_other": 2302030,
+      "uniform_cc_candidate": 925331,
+      "uniform_nop_candidate": 10931,
+      "x86_padding_sequence_candidate": 1581450
+    },
+    "section": ".text",
+    "bytes": 4819742,
+    "record_groups": {
+      "mixed_or_other": 22615,
+      "uniform_cc_candidate": 114926,
+      "uniform_nop_candidate": 10833,
+      "x86_padding_sequence_candidate": 184316
+    }
+  },
+  "interval": {
+    "section": ".text",
+    "start_preferred_va": "0x145807d86",
+    "end_exclusive_preferred_va": "0x145807d90",
+    "rva_start": "0x5807d86",
+    "file_offset": "0x5807186",
+    "bytes_hex": "cccccccccccccccccccc",
+    "sha256": "22e52bba61da8ad6732be550205a10b89a1bb3b0ea491be07de9294f0eb6f045",
+    "original_parent_category": "mixed_or_other"
+  },
+  "classification": "supporting_inter_function_trap_fill_pattern",
+  "classification_confidence": "inferred",
+  "AS_contract_established": false,
+  "dynamic_unreachability_proven": false,
+  "census_bytes_removed": 0,
+  "inputs": [
+    {
+      "path": "docs/analysis/coverage/full-image-execheck.json",
+      "sha256": "ebae5060940521069357ab552e63b0fded96efdecc7b9372692a03d3bb058252"
+    },
+    {
+      "path": "runtime/coverage/58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb/inventory.json",
+      "sha256": "b3753d3045ed2a4589ad518a437d1aacaaed92d8368ad16969ab33b3a2ce5bb2"
+    },
+    {
+      "path": "runtime/coverage/58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb/unwind-complement.sqlite",
+      "sha256": "5ced9760078309f09f63e372ec2185cf40e3c623d46f1255bd987366a2271460"
+    },
+    {
+      "path": "runtime/execheck-0.113.2/ghidra-comprehensive/bodies.tsv.gz",
+      "sha256": "dc808e3e10d4443dabce229e9d0724060d87bcd7547eb1cb47334e70038b8362"
+    },
+    {
+      "path": "runtime/execheck-0.113.2/ghidra-comprehensive/references.tsv.gz",
+      "sha256": "2975e8ccd5269f6ce1e926e92b6a8c73bcb2c58778c9f8d0f9a9785b073b11f1"
+    }
+  ],
+  "static_reference_records_examined": 3919777,
+  "observed_references_into_interval": 0,
+  "neighbor_body_ranges_inclusive": [
+    [
+      "145807d40",
+      "145807d40",
+      "145807d85"
+    ],
+    [
+      "145807d90",
+      "145807d90",
+      "145807d94"
+    ]
+  ],
+  "rea": {
+    "provider": {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "version": "12.1.4"
+    },
+    "original_profile_digest": "b161c5d179870f5eab9f2817b937bfdd2cc21be4da2ae32f1e742705a0910cfa",
+    "disabled_analyzers": [
+      "Stack",
+      "Decompiler Switch Analysis",
+      "Function ID",
+      "Function Start Search",
+      "Disassemble Entry Points",
+      "Subroutine References",
+      "Data Reference",
+      "Reference",
+      "Non-Returning Functions - Discovered",
+      "Shared Return Calls",
+      "Create Address Tables",
+      "Call Convention ID"
+    ],
+    "seed_input": {
+      "path": "runtime/fixgap-u04-0.113.2/seeds.tsv",
+      "sha256": "633e0de4763bb81eacb9227a05f56e6b2cf599dfce1872cfda80a4f020f74b66"
+    },
+    "seed_rows": [
+      "0x145807d40\tfunction",
+      "0x145807d40\tcode",
+      "0x145807d90\tfunction",
+      "0x145807d90\tcode",
+      "0x145807da0\tfunction",
+      "0x145807da0\tcode"
+    ],
+    "plan": {
+      "path": "runtime/fixgap-u04-0.113.2/rea-bounded/plan.json",
+      "sha256": "8a9f18a314f9b4022e16f242df43a22f8afc4aa2c6aef959cce201b28d5677eb"
+    },
+    "observations": [
+      {
+        "artifact": {
+          "path": "runtime/fixgap-u04-0.113.2/rea-bounded/003-boundary-bytes.json",
+          "sha256": "e693eecea5590e44818190e467e44a1d8e0c10acf70f5fbbd0f0ab0733c73e1e"
+        },
+        "evidence_id": "ev_b66a1f47ef9ee2122413a07579f6dcc4ab47f284b850489c8643432049819c99",
+        "operation": "read_bytes",
+        "parameters": {
+          "address": "0x145807d84",
+          "length": 44
+        },
+        "result": {
+          "complete": true,
+          "matched_installed_file_context": true
+        }
+      },
+      {
+        "artifact": {
+          "path": "runtime/fixgap-u04-0.113.2/rea-bounded/004-preceding-body.json",
+          "sha256": "f42b738a9b8c06b54bb17a0b612634a29cb25411429ac469b204c2f1d88c011c"
+        },
+        "evidence_id": "ev_cfec5a923553e11280ec7e40152bc704c02aec7be5246303527856342f2bf7a0",
+        "operation": "procedure_info",
+        "parameters": {
+          "procedure": "0x145807d40"
+        },
+        "result": {
+          "name": "FUN_145807d40",
+          "entrypoint": "0x145807d40",
+          "basicblock_count": 3,
+          "length": 70,
+          "signature": "undefined FUN_145807d40()",
+          "locals": [],
+          "classification": {
+            "external": false,
+            "thunk": false,
+            "thunk_target": null,
+            "provenance": "ghidra-function-manager"
+          },
+          "body": {
+            "available": true,
+            "provenance": "ghidra-function-body-address-set",
+            "ranges": [
+              {
+                "start": "0x145807d40",
+                "end": "0x145807d85"
+              }
+            ],
+            "total_bytes": 70,
+            "span_bytes": 70,
+            "non_contiguous": false,
+            "contains_entry": true
+          }
+        }
+      },
+      {
+        "artifact": {
+          "path": "runtime/fixgap-u04-0.113.2/rea-bounded/005-following-thunk.json",
+          "sha256": "fef876ea7ca6ba3c90bfbc7f11dde2c522f76d14f76bf20657cdb6d0f8e5293d"
+        },
+        "evidence_id": "ev_016d6f789d618e71af74c42fb41315cff827eda10da241d37cb418b80db2cc7f",
+        "operation": "procedure_info",
+        "parameters": {
+          "procedure": "0x145807d90"
+        },
+        "result": {
+          "name": "thunk_FUN_145bb9b80",
+          "entrypoint": "0x145807d90",
+          "basicblock_count": 1,
+          "length": 5,
+          "signature": "undefined thunk_FUN_145bb9b80()",
+          "locals": [],
+          "classification": {
+            "external": false,
+            "thunk": true,
+            "thunk_target": "0x145bb9b80",
+            "provenance": "ghidra-function-manager"
+          },
+          "body": {
+            "available": true,
+            "provenance": "ghidra-function-body-address-set",
+            "ranges": [
+              {
+                "start": "0x145807d90",
+                "end": "0x145807d94"
+              }
+            ],
+            "total_bytes": 5,
+            "span_bytes": 5,
+            "non_contiguous": false,
+            "contains_entry": true
+          }
+        }
+      },
+      {
+        "artifact": {
+          "path": "runtime/fixgap-u04-0.113.2/rea-bounded/006-residual-start-owner.json",
+          "sha256": "bd2ce53fdaa55d0adc75e4b00824b0ee4747b1dffed9fe881bd84097f58aaf38"
+        },
+        "evidence_id": "ev_18b74b726710b6af1d9fd65f5949028ce6b7e87cd2baa6b5112f56dff28af53d",
+        "operation": "resolve_containing_procedure",
+        "parameters": {
+          "address": "0x145807d86"
+        },
+        "result": {
+          "query_address": "0x145807d86",
+          "found": false,
+          "procedure": null,
+          "reason": "not_in_procedure"
+        }
+      },
+      {
+        "artifact": {
+          "path": "runtime/fixgap-u04-0.113.2/rea-bounded/007-residual-last-owner.json",
+          "sha256": "f35b2cf2c5952bb910d31b67308ca4e2b1c24eb3802c484c262851fc31f336a4"
+        },
+        "evidence_id": "ev_05c0447b57c90600b85454c2ad7d23f8f5b28f8a1156d3e21eb8073fe2e78c98",
+        "operation": "resolve_containing_procedure",
+        "parameters": {
+          "address": "0x145807d8f"
+        },
+        "result": {
+          "query_address": "0x145807d8f",
+          "found": false,
+          "procedure": null,
+          "reason": "not_in_procedure"
+        }
+      },
+      {
+        "artifact": {
+          "path": "runtime/fixgap-u04-0.113.2/rea-bounded/008-predecessor-return.json",
+          "sha256": "c9f1e4e3aaa906cc4a4994fcc9246e50f5bf145d0ec5eee02a5ed35a1748ac0a"
+        },
+        "evidence_id": "ev_728e2b71ea818bf9808f7ac287de09c25cf81dd7b79d8b52aabbcf793907767a",
+        "operation": "inspect_native_instruction",
+        "parameters": {
+          "address": "0x145807d85"
+        },
+        "result": {
+          "address": "0x145807d85",
+          "status": "decoded",
+          "procedure": "0x145807d40",
+          "mnemonic": "RET",
+          "flow": {
+            "kind": "return",
+            "conditional": false,
+            "computed": false,
+            "direct_destinations": [],
+            "classification_evidence": [
+              {
+                "source": "ghidra-listing-flow-type",
+                "value": "TERMINATOR"
+              },
+              {
+                "source": "ghidra-instruction-pcode",
+                "value": "RETURN"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "artifact": {
+          "path": "runtime/fixgap-u04-0.113.2/rea-bounded/009-successor-jump.json",
+          "sha256": "7241d6bb13c361d1183590df3d56322a19c51acca048c0e54a7be8584417e1f2"
+        },
+        "evidence_id": "ev_a8e40086700d1bbd789b657737ae413910077182100c87414ca8ec271a5c9d93",
+        "operation": "inspect_native_instruction",
+        "parameters": {
+          "address": "0x145807d90"
+        },
+        "result": {
+          "address": "0x145807d90",
+          "status": "decoded",
+          "procedure": "0x145807d90",
+          "mnemonic": "JMP",
+          "flow": {
+            "kind": "jump",
+            "conditional": false,
+            "computed": false,
+            "direct_destinations": [
+              "0x145bb9b80"
+            ],
+            "classification_evidence": [
+              {
+                "source": "ghidra-listing-flow-type",
+                "value": "UNCONDITIONAL_JUMP"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "artifact": {
+          "path": "runtime/fixgap-u04-0.113.2/rea-bounded/010-residual-xrefs-145807d86.json",
+          "sha256": "085434f42446a270658b9768a043ee754eae35650972eb0910c0fd7150e65d56"
+        },
+        "evidence_id": "ev_cbc761bdcded19f5e8e94d6f738f4fcc676584ad0a39dd74e0827dc78dc73e2e",
+        "operation": "xrefs",
+        "parameters": {
+          "address": "0x145807d86"
+        },
+        "result": []
+      },
+      {
+        "artifact": {
+          "path": "runtime/fixgap-u04-0.113.2/rea-bounded/011-residual-xrefs-145807d87.json",
+          "sha256": "06b3bfcbcdb35f9ab22169c4e047fd5afc0341e7409377be000868ebb37ceefc"
+        },
+        "evidence_id": "ev_1ec436ba405b13adf11c539f6c07cbbabc171b763df921cffa05c4111c407089",
+        "operation": "xrefs",
+        "parameters": {
+          "address": "0x145807d87"
+        },
+        "result": []
+      },
+      {
+        "artifact": {
+          "path": "runtime/fixgap-u04-0.113.2/rea-bounded/012-residual-xrefs-145807d88.json",
+          "sha256": "6eddaa59fcd9d74169716e3184c0696cd2d4e55327f8f358df61355e5aa05b99"
+        },
+        "evidence_id": "ev_16a5c1179a0a83bc5b3277a1491917d7ad550e5ec5ec7ae531ab65f369aed427",
+        "operation": "xrefs",
+        "parameters": {
+          "address": "0x145807d88"
+        },
+        "result": []
+      },
+      {
+        "artifact": {
+          "path": "runtime/fixgap-u04-0.113.2/rea-bounded/013-residual-xrefs-145807d89.json",
+          "sha256": "e710d82b902067a844427827bb900701b6629bcdfc59fe3f35278de9795db9b1"
+        },
+        "evidence_id": "ev_100e2058fdc1abaee5a394630720815ed7cf41688f66b7af41dd97ae3ff5a65e",
+        "operation": "xrefs",
+        "parameters": {
+          "address": "0x145807d89"
+        },
+        "result": []
+      },
+      {
+        "artifact": {
+          "path": "runtime/fixgap-u04-0.113.2/rea-bounded/014-residual-xrefs-145807d8a.json",
+          "sha256": "e6628347ee65a74be7ea127de49ab22b96afc5e9c520909d1f42515fd84fa83d"
+        },
+        "evidence_id": "ev_7dbd2b50e9c2f54e6817515dc1bed0540018c7a13feb4b92d4fa04c6a120e1c1",
+        "operation": "xrefs",
+        "parameters": {
+          "address": "0x145807d8a"
+        },
+        "result": []
+      },
+      {
+        "artifact": {
+          "path": "runtime/fixgap-u04-0.113.2/rea-bounded/015-residual-xrefs-145807d8b.json",
+          "sha256": "a2139289f7384b9320d9bf1bc2061f4f6f199043f95f6092690c60961d3f641c"
+        },
+        "evidence_id": "ev_e78be4cdfc53d7839d1f2aa519b98f218655c8da7ba3a9be5d3b40e471e81d47",
+        "operation": "xrefs",
+        "parameters": {
+          "address": "0x145807d8b"
+        },
+        "result": []
+      },
+      {
+        "artifact": {
+          "path": "runtime/fixgap-u04-0.113.2/rea-bounded/016-residual-xrefs-145807d8c.json",
+          "sha256": "2c854e2737a8a0c6e87503ba0b1923fe90c2acf35353479983778b604f6f8ced"
+        },
+        "evidence_id": "ev_90c6a9929701ee4cd60a76133c7d7d6d7104c0a1753350be284909140c9cf21c",
+        "operation": "xrefs",
+        "parameters": {
+          "address": "0x145807d8c"
+        },
+        "result": []
+      },
+      {
+        "artifact": {
+          "path": "runtime/fixgap-u04-0.113.2/rea-bounded/017-residual-xrefs-145807d8d.json",
+          "sha256": "c45600ea539f7ea276a4fd0bd967b6cd792009beb76f954f00474480ebef515c"
+        },
+        "evidence_id": "ev_946a7e1b0145c41c2b2604123c3e9f06677e56f6c1d905f883cf78b1b960a0a8",
+        "operation": "xrefs",
+        "parameters": {
+          "address": "0x145807d8d"
+        },
+        "result": []
+      },
+      {
+        "artifact": {
+          "path": "runtime/fixgap-u04-0.113.2/rea-bounded/018-residual-xrefs-145807d8e.json",
+          "sha256": "ebad99b791bb3aa19308e7764f622030e8377da12416819aa3514976376618db"
+        },
+        "evidence_id": "ev_89354d886f00d8783b512bc440e2500fc88e00c92425b1fbd5dc4f913baa8b9d",
+        "operation": "xrefs",
+        "parameters": {
+          "address": "0x145807d8e"
+        },
+        "result": []
+      },
+      {
+        "artifact": {
+          "path": "runtime/fixgap-u04-0.113.2/rea-bounded/019-residual-xrefs-145807d8f.json",
+          "sha256": "3e69c29cf7119e149e42e156475f1b3370665a4e0b3703a6e33043a40b6872ee"
+        },
+        "evidence_id": "ev_918ebec0d2d44745a6e7a5587c7c96ab2140cd49c75800f82c3a9d0e4de29ceb",
+        "operation": "xrefs",
+        "parameters": {
+          "address": "0x145807d8f"
+        },
+        "result": []
+      }
+    ]
+  },
+  "limits": [
+    "INT3 is executable; absent observed references do not rule out dynamic/computed entry.",
+    "Fresh xrefs cover the three-entry seeded Program with reference analyzers disabled; the separately hash-verified full census supplies the broader observed-reference inventory.",
+    "The adjacent fonts.rs correspondence does not establish ownership or a live AS font contract for these bytes.",
+    "Only this exact interval is classified. The parent selector, candidate categories and all residual counts remain unchanged.",
+    "No reconstructed source change, compilation, game execution or original/rebuilt parity claim."
+  ],
+  "generator": {
+    "path": "scripts/check-u04-trap-fill-0.113.2.py",
+    "sha256": "e6a7b96c4c599e8f90bf746cc10544dcb585f7717fb7ee394a580c9616170048"
+  }
+}

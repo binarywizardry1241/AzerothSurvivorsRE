@@ -1,0 +1,543 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.109.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+    "size_bytes": 140447744
+  },
+  "method": "Fresh complete REA/Ghidra replay with exact existing seed/proof inputs, independent installed-byte/instruction verification, whole-file discovery, historical range rescan and existing current-target static contracts. No compilation or game launch.",
+  "canonical_census": {
+    "path": "docs/analysis/coverage/full-image-addresses.json",
+    "sha256": "39e80e96e09f8c5d4631b9ad094d934dd59ea795260b27dfb1ad15c90434c144"
+  },
+  "fresh_census": {
+    "summary": {
+      "path": "runtime/execheck-2026-10-22/fresh-native-summary.json",
+      "sha256": "9745eacaf53d354fec4ffcc605b574e210301d22809c884d2b318c25050d8f7d"
+    },
+    "plan": {
+      "path": "runtime/coverage/76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0/ghidra/execheck-full-image-2026-10-22/plan.json",
+      "sha256": "fe4fb6323df5254e9130d6c6ef39a9af1f1e84832e3448fef61a2a6121bd64b8"
+    },
+    "progress": {
+      "path": "runtime/coverage/76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0/ghidra/execheck-full-image-2026-10-22/progress.json",
+      "sha256": "0d235354d679cf30ed1baea940c3ad88ebf01963fedc04360c41a0fef6a18ab3"
+    },
+    "session_result": {
+      "path": "runtime/coverage/76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0/ghidra/execheck-full-image-2026-10-22/session-result.json",
+      "sha256": "48e5f07d3745a340caf4f81a0bfff646ca0862dea7d25f0558c40aace384fd70"
+    },
+    "counts": {
+      "instructions": 22422439,
+      "instruction_bytes": 89704052,
+      "computed_calls": 70252,
+      "computed_jumps": 139218,
+      "native_functions": 420596,
+      "body_ranges": 473935,
+      "references": 3882708,
+      "external_locations": 420,
+      "seeds_without_instructions": 0,
+      "seeds_without_functions": 0,
+      "seeded_functions_repaired": 420417
+    },
+    "all_five_export_sha256_match_canonical": true,
+    "counts_match_canonical": true,
+    "verified_instruction_records": 22422439,
+    "exact_installed_bytes_verified": true,
+    "additional_code_starts": 28831,
+    "executable_residual": {
+      "mapped_bytes": 98142894,
+      "observed_instruction_union_bytes": 89704052,
+      "unobserved_bytes": 8438842,
+      "unobserved_declared_bytes": 5292799,
+      "unobserved_outside_declared_bytes": 3146043,
+      "unobserved_ranges": 457874,
+      "unobserved_bytes_by_location_and_candidate_kind": {
+        "declared:NOP-CC-instruction-candidate": 361659,
+        "declared:mixed-unclassified": 4926648,
+        "declared:uniform-CC-candidate": 2,
+        "declared:uniform-NOP-candidate": 4490,
+        "outside-declared:NOP-CC-instruction-candidate": 1565932,
+        "outside-declared:mixed-unclassified": 51334,
+        "outside-declared:uniform-CC-candidate": 1516334,
+        "outside-declared:uniform-NOP-candidate": 12443
+      },
+      "range_inventory": {
+        "path": "runtime/coverage/76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0/ghidra/execheck-full-image-2026-10-22/missing-executable-ranges.tsv.gz",
+        "sha256": "57edd2f7b614d86fa5564f7db3f8027d17119c7230ded04076c8437cda4639bc"
+      }
+    }
+  },
+  "whole_file_inventory": {
+    "path": "docs/analysis/coverage/native-summary.json",
+    "sha256": "e1f4dc1727f2697ec9f3adccdc1301d5052d5d30ac7d15fc618a603bfd7eabfa"
+  },
+  "diagnostic_ownership": {
+    "path": "docs/analysis/coverage/diagnostic-ownership.json",
+    "sha256": "6fd3881b7a55e183ec38ba9b141102f17a6bb6cf4eda4e40043439b680a278d0"
+  },
+  "declared_instruction_inventory": {
+    "path": "docs/analysis/coverage/instruction-summary.json",
+    "sha256": "4ee3000f7e63d352bd51c08963c5b0d4949c24ab8aec5d7670197b9c75af48fb"
+  },
+  "unwind_complement": {
+    "path": "docs/analysis/coverage/unwind-complement-summary.json",
+    "sha256": "9521a6da2b304ea976f5d19e8a5ebdc974742506bd0f1bd25016ac01b98c11aa"
+  },
+  "historical_range_rescan": {
+    "result": {
+      "path": "runtime/execheck-historical-rescan.json",
+      "sha256": "635e8ae68648e654f8912b5689c6e087ec75bd07fcbced0f67e4a0c641c8c131"
+    },
+    "counts_match_canonical": true
+  },
+  "existing_static_contracts": {
+    "passed": 63,
+    "failed": 0,
+    "checks": [
+      {
+        "path": "scripts/check-account-command-helpers-0.109.0.py",
+        "sha256": "c73c45a95e2bfe4bb09f4ea8fccbc6a8fd1e9755744e0370e15c6885e78b85c9",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-account-commands-0.109.0.py",
+        "sha256": "4bdb13a860ef25c0617fac78e3b7f4a54a07429ea217e318878f45c910ec70d7",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-achievements-catalog-0.109.0.py",
+        "sha256": "ca7bdad3ff46c1fa99717c400b234560b213225e9539d427418912cc98afc723",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-achievements-layout-0.109.0.py",
+        "sha256": "b07d5725ca6ac2741c307a02446c73e2f7eec9488c97d77d92fb03c1919041a1",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-actor-frame-order-0.109.0.py",
+        "sha256": "0c200a02f7b665dab38543c7d54d537c2b0aff544d320b4fe622d9462f4432ff",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-addon-banners-0.109.0.py",
+        "sha256": "3360936c010715e14eb55d84df041a489583354d49fd4f81f24dad62ab8c7f0e",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-addon-contracts-0.109.0.py",
+        "sha256": "7fe3fb18f0ed4c768c16775275352b79dcadcfa8e4ff7a0262858221bce3f7a4",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-addon-lifecycle-0.109.0.py",
+        "sha256": "b0953a87e2beb3ed46c0a27bfd3b408d631559e6c9d1559a3f8209edef003b62",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-addon-snapshot-0.109.0.py",
+        "sha256": "8c8db80f398bdd1338a9c7b77c99f0588679f0292e37e543e9fc9f76777e37dc",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-armory-catalog-0.109.0.py",
+        "sha256": "efef85317534c8451472b4fd5cb21f6db990be3c4922df3f08229543c2cec15c",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-armory-input-0.109.0.py",
+        "sha256": "d85ebae99ec360301859bd9b6e0c37570c227775de7891acd504578f3f529c88",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-armory-race-tip-0.109.0.py",
+        "sha256": "2b517d2ed15b9ff924c7b3248e9ea906e62eaaf20a92a5624b5f002fed19e75e",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-armory-text-0.109.0.py",
+        "sha256": "dc86584441262a59ac8efac6aafe76eb48c6c7337a1cea9b50c8b522505f8971",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-boss-inputs-0.109.0.py",
+        "sha256": "a29317355e7310dd0c8c5670c74b9f331836acb9dce346811da1eba08e7b6c7f",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-camera-room-0.109.0.py",
+        "sha256": "b20a44a58176ef27a13266d7a944c07011dd14f577b1ebd19cd0c58a316909d1",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-codex-layout-0.109.0.py",
+        "sha256": "140e76f5f4746e2488936295252381cbd2e21b21ef79f145065828f66e776870",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-codex-quality-0.109.0.py",
+        "sha256": "76e9cf5c56385bc2dc31dba315c59302f3cc5bfc815550901979835a9bcebfe1",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-codex-tile-0.109.0.py",
+        "sha256": "f18030a87c01fff9072a6b156acde9fafdc2a6deede6bf4af381b0fc7b78f6cf",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-discord-transport-0.109.0.py",
+        "sha256": "c0a1e922fb62ebe91b1112d5821383766d8edb7685d936073568c3975cd3b9f5",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-frontend-pick-binding-0.109.0.py",
+        "sha256": "bc5eae3e0472017c9b30494e0d66b29777b1528c798ffc5cdbe50ec002b054a0",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-hero-preview-0.109.0.py",
+        "sha256": "e28ae4fb575be36d03e5700344b01e6118c43c7c2208153126f6fe09b750c422",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-hud-class-provider-0.109.0.py",
+        "sha256": "92420f2808da461f4654ef1fc2d72bffab2f3c58e5f62d41f521c53c25b53794",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-import-restore-0.109.0.py",
+        "sha256": "b547160aa70ee47171c9da5ac3062c9f6a6cc30cd9d7620f88e2b0aa38ffa58e",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-in-run-bindings-0.109.0.py",
+        "sha256": "9a00c2841eb15e23ab8acee5351df20dca94dcb45ab3d03e79aecb30a0bdef3a",
+        "arguments": [
+          "--check"
+        ],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-login-roster-0.109.0.py",
+        "sha256": "cb67a7b8c81e8e6ffa499ed9bc2356aed5567811fffcdad5aed948ce34699d87",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-loot-race-0.109.0.py",
+        "sha256": "5dbe5a1f551bf3dcc955240d75c0e27becd3a3a9d483ae3c60552e8424353fa7",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-menu-appearance-0.109.0.py",
+        "sha256": "86f5ba08477f6e06c3245ef332623dc0e202bed0771bb8a4d543e711c107609b",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-menu-fidelity-0.109.0.py",
+        "sha256": "e4127b96a2b1fa7ff473eabff21e114df98a232fe942c432df93ece26a5dce2d",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-menu-utilities-0.109.0.py",
+        "sha256": "fb758cb48e6aaeb2777bec1fffcf0a02106a90e3d5c8ee38b9523e5962c2a643",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-overlay-canvas-0.109.0.py",
+        "sha256": "62f127e740ab021e317c4facd7cfe0b38207319ede074deafd1f3aedddaa3e54",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-picker-name-0.109.0.py",
+        "sha256": "5fc1d35b837b46a46248bb2777c2a41e6684c8e221e40de7d21945c4f27b62de",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-raid-bombs-0.109.0.py",
+        "sha256": "dcc59ce251f6a757fb213b30c11a5c121a6796e043b3818ce21ce910a14da57c",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-raid-lines-0.109.0.py",
+        "sha256": "26877af40f9589ce9fe4755fa84d2f3fb766ca102772e402a334699464abd2e8",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-raid-markers-0.109.0.py",
+        "sha256": "4ad50b1d395240a8c29bf8b4f1585e3d1dc70c07d995852d78bf8efac5998611",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-raid-native-0.109.0.py",
+        "sha256": "1cea0109a97cb5894c24029dc6a84f0f7fcb48e4fc21b0beb437a3c975256590",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-raid-pools-0.109.0.py",
+        "sha256": "48344751dd2d57e58689f745555963e8d565e0f407f137ea8493afb13f6746d3",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-raid-sequences-0.109.0.py",
+        "sha256": "462f6cf8a1e859f033de6431c8afcd3d5d63cfa483a66490e791d8d65913bc23",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-raid-shields-0.109.0.py",
+        "sha256": "34fada0189dfe809eadee9c7ec4a893feb07854d3d624cc25af67e1c0c8d639c",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-raid-towers-0.109.0.py",
+        "sha256": "8bc9be083834789dfc70e05c3624461fe23f82fb6b7c8a684d55b09141fbee52",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-raid-volleys-0.109.0.py",
+        "sha256": "ab42fa841010738428d991416e3bcedaceccdb04cf492927f3a4167a6c9e1010",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-raid-wards-0.109.0.py",
+        "sha256": "5e62869a57d5fb676e9591f5f396bdadb1118d3a1970879680f1db0439eedf3b",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-raid-waves-0.109.0.py",
+        "sha256": "c45eefc5388c9bd22f6e8e14f4c4b7538695bd4792cf149894c9bba39a676f33",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-rewards-data-0.109.0.py",
+        "sha256": "011428367a4b7b9b751d80d8e99a23b2b514b4b2493f52fc6b83a817d6b65619",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-rewards-input-0.109.0.py",
+        "sha256": "7663a9d9918e8a370f7b13539024ac836b6e1f2854a5b39bda73012fbd496554",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-run-account-0.109.0.py",
+        "sha256": "e1393c5f14b42801698cd87f3171b78ebec96d7de613b8156ab3923e7b9268ed",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-run-seed-0.109.0.py",
+        "sha256": "38fd7629049a521d3834c0a334b587ff022ae8826ddc833486bf635a6356b596",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-runmods-consumers-0.109.0.py",
+        "sha256": "a1c874f4b0096d470d9df52658344a3c56246f2c7030e02ccfd64250ef88df1a",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-runmods-density-0.109.0.py",
+        "sha256": "dd649c4d33336a98853ecfb85e35b7d332ed5291f824f2a7a7c594a602cdb0cf",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-runmods-guardians-0.109.0.py",
+        "sha256": "808851c2ce686495b17398b99d92c7508bbbd19e66adcf698852669a63733b89",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-runmods-layout-0.109.0.py",
+        "sha256": "f65bb11f4f7714cfa3240e96578f779f9b7b4f11fed6afe858e405b4a6ce217f",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-runmods-ordinary-0.109.0.py",
+        "sha256": "eabf32fc3ff2c76db185fdd88f2732c319fd135e9f36008fb330e63af2344d9b",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-save-backup-0.109.0.py",
+        "sha256": "d49a6fa3067900e57f7f60f18017054c7ecc0c124425baed171ba8b481f8acd6",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-save-envelope-0.109.0.py",
+        "sha256": "3aec9e3e84db61291a61e4eb0d50623c8aba9a0c54297a65f290e6193fd2f816",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-save-gear-0.109.0.py",
+        "sha256": "fcdeb38e62a3a54cc761bb1adc48a163cef80eb0a99f224b1321575928954057",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-save-load-0.109.0.py",
+        "sha256": "161f5c552b659dd5b372a09fe70029aaf61c08f4f267169321514c2b5e7500db",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-save-schema-0.109.0.py",
+        "sha256": "be886870c9f8171c56e5b061f970d032806a442e45e5ca4b6315e16db2e1b2f3",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-saves-browser-0.109.0.py",
+        "sha256": "851bd931ea15a313faadc219c3e3e4301ea71e953b116b1eefa2901bfdad467a",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-stock-lifecycle-0.109.0.py",
+        "sha256": "b99c0146d676987021a37f21ff8bb85a7a61dae562973b31639e2706c4c262ce",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-talents-menu-0.109.0.py",
+        "sha256": "47921494fa80a2bf65d5047109d9d9366f4f9a9153411a2ad835b38d47a50c49",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-terminal-flow-0.109.0.py",
+        "sha256": "445d7accdb2ef97f08e9c701132047638f05fbe7476ea7ec17e96e4146c5cab1",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-terminal-layout-0.109.0.py",
+        "sha256": "2cefef7e4f7b18bed9dac77ff7fe38facda61c13cb27facb5fc74a581c64f085",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-terminal-order-0.109.0.py",
+        "sha256": "b9499a0cd2d8508b2274339b67defcba547dc66ab6de4f1c476c895371627d17",
+        "arguments": [],
+        "exit_code": 0
+      },
+      {
+        "path": "scripts/check-terminal-projection-0.109.0.py",
+        "sha256": "f8c3360924a8e0d5e27170c6cc77992521f680f5ab899a821d42d896c7963e75",
+        "arguments": [],
+        "exit_code": 0
+      }
+    ]
+  },
+  "additional_ability_data_proof": {
+    "path": "docs/analysis/evidence/0.109.0/ability-definitions.json",
+    "sha256": "62d5045520067427d5ca64a4fd35dec6d638a312659bcdc81c8d7a341014c9a1"
+  },
+  "retained_reconstruction_observation": {
+    "scope": "Historical reconstructed application only. Not an original-EXE observation or reproduction on latest source.",
+    "log": {
+      "path": "runtime/optimized-2026-10-21/game.log",
+      "sha256": "0829603730726b24b5f72718476a5582e0b9da3176561405b8ef1048ad365802"
+    },
+    "build_record": {
+      "path": "runtime/optimized-2026-10-21/build-settings.json",
+      "sha256": "bdbcfeb025e01fd4bae7606ea287456c4f832dfec28c3e1a6053ddf013da1fac"
+    },
+    "binary_sha256": "9c8edfb0268b8f781346c61e176f869423eb4b4cddd44512ba570e0244567132",
+    "exact_built_source_snapshot_independently_established": false,
+    "findings": [
+      {
+        "gap_id": 44,
+        "log_lines": [
+          71,
+          72,
+          73,
+          74
+        ],
+        "observation": "Four minimap tile asset paths report Path not found",
+        "paths": [
+          "textures/Minimap/f7a3bdcacfa0acb8e4a526dfc1afdaaa.blp",
+          "textures/Minimap/6cc087b26eab6f8a75d13e678903d4d5.blp",
+          "textures/Minimap/1357b2221b80394db7cf75ea7c4b1f6c.blp",
+          "textures/Minimap/a4bb42226fce2f0e8eb247caa86479b5.blp"
+        ]
+      },
+      {
+        "gap_id": 45,
+        "log_lines": [
+          75,
+          76
+        ],
+        "observation": "Two Lua chunks attempt to index nil ChatFrame1 / ChatFrame2 globals"
+      },
+      {
+        "gap_id": 46,
+        "log_lines": [
+          77
+        ],
+        "observation": "A deferred ECS command targets an already despawned entity; command name is unavailable"
+      }
+    ],
+    "current_source_reproduction": false,
+    "root_causes_established": false
+  },
+  "limits": [
+    "Full-file inventories and this complete seeded Ghidra pass do not establish all dynamic aliases, computed targets, filename-free mechanics or complete native semantics.",
+    "8,438,842 executable mapped bytes remain outside this Ghidra instruction union; padding classifications are candidates, not proof of noncode.",
+    "Existing bounded native checks do not execute or type-check reconstructed Rust and do not establish application, input, rendering, persistence or platform parity.",
+    "Historical code/data contracts retain their original identity until separately rebound, even when exact selected bytes are found."
+  ],
+  "compilation_run": false,
+  "game_launched": false,
+  "live_memory_observed": false,
+  "parity_verified": false
+}

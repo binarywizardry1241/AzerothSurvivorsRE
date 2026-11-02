@@ -1,0 +1,846 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-18",
+  "target_version": "0.97.2",
+  "target_sha256": "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589",
+  "scope": "Conservative audited source mappings; full or partial; not a completion/parity audit. Current working-source snapshot includes tracked edits; concurrent untracked menu-scene source is excluded. Other mappings may exist beyond this bounded audit.",
+  "entries": [
+    {
+      "va": "0x140072320",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/scrollbar.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/home-screen-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/home-native.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Shared wheel-message consumption, logical clamping and named-list cache; query/schedule equivalence remains incomplete."
+    },
+    {
+      "va": "0x14008e6b0",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/menu.rs",
+        "crates/azeroth-survivors-re/src/picker.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/home-screen-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/home-native.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Class tile wrapper correspondence, including its icon/caption child policy; wrapper internals are not a completed-function claim."
+    },
+    {
+      "va": "0x140091c00",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/menu.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/menu-actions-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/catalog-actions-native.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "URL process invocation and failure logging, including native Windows explorer command; platform execution is unverified."
+    },
+    {
+      "va": "0x140096af0",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/picker.rs",
+        "crates/azeroth-survivors-re/src/menu_state.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/menu-zone-scroll-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/catalog-zone-scroll-native.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Selected-card visibility adjustment from logical top-edge/viewport overflow; native scheduling remains unverified."
+    },
+    {
+      "va": "0x140097180",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/menu.rs",
+        "crates/azeroth-survivors-re/src/picker.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/home-screen-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/home-native.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Window-anchored home control row placement and layering."
+    },
+    {
+      "va": "0x140099b40",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/menu.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/menu-actions-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/catalog-actions-native.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Support/Discord/language/options/quit dispatcher arms; full dispatcher-state lifecycle remains incomplete."
+    },
+    {
+      "va": "0x14009ad90",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/background.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/main-menu-background-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/menu-background-0.97.2.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Ember position and alpha update arithmetic."
+    },
+    {
+      "va": "0x14009b220",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/picker.rs",
+        "crates/azeroth-survivors-re/src/menu_state.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/menu-zone-scroll-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/catalog-zone-scroll-native.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Pending selected-card adjustment producer tied to recovered Pick/entering/Save changes; additional native routes remain partial."
+    },
+    {
+      "va": "0x14009d4d0",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/background.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/main-menu-background-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/menu-background-0.97.2.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Selected-zone orbit request, loading-image and black-cover fade arithmetic."
+    },
+    {
+      "va": "0x14009df40",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/background.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/main-menu-background-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/menu-background-0.97.2.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "menuScene default, environment override and enabling gate."
+    },
+    {
+      "va": "0x1400c8500",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/localization.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/menu-localization-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/locales-native.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Language popover pane border/radius/gradient/shadow values; shared pane function coverage is partial."
+    },
+    {
+      "va": "0x1401caa50",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/menu_fonts.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/menu-localization-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/locales-native.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Active CJK font registration cache and retention across locale changes."
+    },
+    {
+      "va": "0x1401cb990",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/localization.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/menu-localization-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/locales-native.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Language choice row styling, padding, text and selected colors."
+    },
+    {
+      "va": "0x1401d8610",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/menu.rs",
+        "crates/azeroth-survivors-re/src/localization.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/menu-localization-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/locales-native.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Language visibility wrapper and full-window popup layering."
+    },
+    {
+      "va": "0x1401d8cb0",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/menu_fonts.rs",
+        "crates/azeroth-survivors-re/src/assets.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/menu-localization-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/locales-native.json",
+        "docs/analysis/evidence/0.97.2/asset-native.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Startup registration of the three autonym subsets."
+    },
+    {
+      "va": "0x1401d8e20",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/localization.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/menu-localization-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/locales-native.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Language choice close/compare/write and menu-refresh behavior; native scheduling is not certified."
+    },
+    {
+      "va": "0x140241ed0",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/menu.rs",
+        "crates/azeroth-survivors-re/src/picker.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/home-screen-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/home-native.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Class-pane grid, stat-card and spell-icon layout values."
+    },
+    {
+      "va": "0x140244c40",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/picker.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/menu-localization-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/locales-class-label-native.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Class icon/caption child layout, including twelve-pixel left-justified no-wrap text; broader constructor is partial."
+    },
+    {
+      "va": "0x140245750",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/menu.rs",
+        "crates/azeroth-survivors-re/src/picker.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/home-screen-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/home-native.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Five home utility controls, order, padding, sizes and labels."
+    },
+    {
+      "va": "0x1402472a0",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/background.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/main-menu-background-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/menu-background-0.97.2.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Loading picture gradients, bounds and ember construction values."
+    },
+    {
+      "va": "0x140249100",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/menu.rs",
+        "crates/azeroth-survivors-re/src/picker.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/home-screen-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/home-native.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Footer version and credit layout values and selected footer actions."
+    },
+    {
+      "va": "0x14024a960",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/menu.rs",
+        "crates/azeroth-survivors-re/src/picker.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/home-screen-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/home-native.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Title and tab-row layout values."
+    },
+    {
+      "va": "0x14024b870",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/menu.rs",
+        "crates/azeroth-survivors-re/src/picker.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/home-screen-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/home-native.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Bounded zone-list layout and selected/unselected card presentation."
+    },
+    {
+      "va": "0x14024d6d0",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/menu.rs",
+        "crates/azeroth-survivors-re/src/picker.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/home-screen-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/home-native.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Picker shell layout, heading/pane/footer arrangement."
+    },
+    {
+      "va": "0x1402707e0",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/localization.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/menu-localization-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/locales-native.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Thirteen-choice bounded language popover construction and scrolling lane."
+    },
+    {
+      "va": "0x14070eb40",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/background.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/main-menu-background-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/menu-background-0.97.2.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Camera eye/target terrain-clearance arithmetic only; full engine system is not mapped."
+    },
+    {
+      "va": "0x145412bb0",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/loot_rewards.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/treasure-loot-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/loot/manifest.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Jewelry pick increment, growth and cap arithmetic leaf."
+    },
+    {
+      "va": "0x1454139e0",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/loot_rewards.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/treasure-loot-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/loot/manifest.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Amulet empowerment preview multiplier leaf behavior."
+    },
+    {
+      "va": "0x14541d7f0",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/menu_state.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/menu-actions-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/catalog-actions-native.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Selected-zone clamp to the last currently unlocked zone."
+    },
+    {
+      "va": "0x145427250",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/menu_state.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/menu-actions-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/catalog-actions-native.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Per-class unlock lookup and clamp to one through twelve zones leaf."
+    },
+    {
+      "va": "0x145451160",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/mob_loot.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/treasure-loot-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/loot/manifest.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Run-option equipment reward multiplier leaf."
+    },
+    {
+      "va": "0x145452650",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/localization.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/menu-localization-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/locales-native.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Code-to-locale index selection and English fallback portions only; invalid setter paths are not completely mapped."
+    },
+    {
+      "va": "0x145452d80",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/localization.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/menu-localization-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/locales-native.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Saved-language/environment precedence and normalized locale-prefix loading."
+    },
+    {
+      "va": "0x145453e30",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/localization.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/menu-localization-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/locales-native.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Selected-language code persistence; full native directory-owner chain remains incomplete."
+    },
+    {
+      "va": "0x1454589f0",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/mob_loot.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/treasure-loot-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/loot/manifest.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Class/zone/boss equipment-candidate mapping and probabilities."
+    },
+    {
+      "va": "0x14549bb90",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/enemies/spawning.rs",
+        "crates/azeroth-survivors-re/src/enemies/waves.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/enemy-scaling-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/enemies/initialization-native.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Fresh Game ordinary budget, suppression, patterned-wave and roaming-elite timer defaults only."
+    },
+    {
+      "va": "0x14549d550",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/guardians/mod.rs",
+        "crates/azeroth-survivors-re/src/guardians/rewards.rs",
+        "crates/azeroth-survivors-re/src/enemies/spawning.rs",
+        "crates/azeroth-survivors-re/src/enemies/waves.rs",
+        "crates/azeroth-survivors-re/src/enemies/relocation.rs",
+        "crates/azeroth-survivors-re/src/treasure_chests/mod.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/guardians-0.97.2.md",
+        "docs/analysis/enemy-spawning-0.97.2.md",
+        "docs/analysis/treasure-loot-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/guardians/manifest.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Selected guardian respawn/reward, enemy spawn/wave/relocation and chest-timer tick branches only; the complete Game tick is not reconstructed."
+    },
+    {
+      "va": "0x1454b07c0",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/guardians/placement.rs",
+        "crates/azeroth-survivors-re/src/guardians/mod.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/guardians-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/guardians/manifest.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Four guardian lair initialization and terrain-aware home placement branches only."
+    },
+    {
+      "va": "0x1454beef0",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/enemies/spawning.rs",
+        "crates/azeroth-survivors-re/src/enemies/waves.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/enemy-spawning-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/enemies/spawning-manifest.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Weighted enemy roulette selection with first-candidate fallback."
+    },
+    {
+      "va": "0x1454c17b0",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/enemies/spawning.rs",
+        "crates/azeroth-survivors-re/src/enemies/waves.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/enemy-spawning-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/enemies/spawning-manifest.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Movement-biased terrain/path-aware ordinary spawn placement."
+    },
+    {
+      "va": "0x1454c2040",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/enemies/scaling.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/enemy-scaling-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/enemies/scaling-evidence.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Ordinary actor constructor cap/stat/GUID/RNG/default arithmetic with required engine adapters."
+    },
+    {
+      "va": "0x1454c2a20",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/enemies/spawning.rs",
+        "crates/azeroth-survivors-re/src/enemies/waves.rs",
+        "crates/azeroth-survivors-re/src/treasure_chests/mod.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/enemy-spawning-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/enemies/spawning-manifest.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Twelve regular radial placement attempts and final fallback; shared chest placement also maps to treasure_chests/mod.rs."
+    },
+    {
+      "va": "0x1454c2eb0",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/mob_loot.rs",
+        "crates/azeroth-survivors-re/src/guardians/rewards.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/treasure-loot-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/loot/manifest.json",
+        "docs/analysis/guardians-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/guardians/manifest.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Ordinary/flagged-mob death rewards and permanent boss-item roll branches; guardian death branches also map to guardians/rewards.rs."
+    },
+    {
+      "va": "0x1454c9510",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/guardians/ai.rs",
+        "crates/azeroth-survivors-re/src/guardians/scaling.rs",
+        "crates/azeroth-survivors-re/src/enemies/ai.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/guardians-0.97.2.md",
+        "docs/analysis/enemies-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/guardians/manifest.json",
+        "docs/analysis/evidence/0.97.2/enemies/ai-native.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Ordinary actor movement/attack/cast/fear/escape and guardian-specific state/ability branches; shared effects and full primary-boss behavior remain incomplete."
+    },
+    {
+      "va": "0x1454d1b70",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/enemies/spawning.rs",
+        "crates/azeroth-survivors-re/src/enemies/waves.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/enemy-spawning-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/enemies/spawning-manifest.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Shared patterned-wave point validity checks against zone, terrain, collision and path inputs."
+    },
+    {
+      "va": "0x1454e1d00",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/loot_rewards.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/treasure-loot-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/loot/manifest.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Cache candidate eligibility/weights, seed sampling and rarity arithmetic; full generated effect/card pipeline remains incomplete."
+    },
+    {
+      "va": "0x1454e40a0",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/loot_rewards.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/treasure-loot-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/loot/manifest.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Jewelry/Soulstone inventory application and amulet replacement/empowerment branches only."
+    },
+    {
+      "va": "0x1454ef9f0",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/guardians/scaling.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/guardians-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/guardians/manifest.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Guardian maximum-health scaling and boss-health-curve combination."
+    },
+    {
+      "va": "0x1454efdf0",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/guardians/scaling.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/guardians-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/guardians/manifest.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Guardian damage scaling arithmetic."
+    },
+    {
+      "va": "0x1454f0830",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/enemies/scaling.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/enemy-scaling-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/enemies/scaling-evidence.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Nonzero-flag health polynomial leaf."
+    },
+    {
+      "va": "0x1454f0880",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/enemies/scaling.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/enemy-scaling-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/enemies/scaling-evidence.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Zero-flag health polynomial leaf."
+    },
+    {
+      "va": "0x1454f9a40",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/mob_loot.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/treasure-loot-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/loot/manifest.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Native bounded unsigned-integer RNG range sampler."
+    },
+    {
+      "va": "0x1455049a0",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/menu_fonts.rs",
+        "crates/azeroth-survivors-re/src/assets.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/menu-localization-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/locales-native.json",
+        "docs/analysis/evidence/0.97.2/asset-native.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Selected SC/JP/KR font path and fallback-family selection; optional user data replaces embedded font supply."
+    },
+    {
+      "va": "0x145504c10",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/font_patch.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/menu-localization-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/locales-native.json",
+        "docs/analysis/evidence/0.97.2/locales-font-tables.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "TrueType augmentation for recovered composite accents, mirrors and donor aliases."
+    },
+    {
+      "va": "0x1455084b0",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/menu_fonts.rs",
+        "crates/azeroth-survivors-re/src/assets.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/menu-localization-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/locales-native.json",
+        "docs/analysis/evidence/0.97.2/asset-native.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Base font registration paths and transform-selection behavior."
+    },
+    {
+      "va": "0x145509c20",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/background.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/main-menu-background-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/menu-background-0.97.2.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Zone-specific orbit profile selection leaf."
+    },
+    {
+      "va": "0x14550a0a0",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/guardians/ai.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/guardians-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/guardians/manifest.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Guardian wake/leash/reset decisions leaf; external actor effects require adapters."
+    },
+    {
+      "va": "0x1455287e0",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/mob_loot.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/treasure-loot-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/loot/manifest.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Round-robin armor-slot distribution across same-tier nonfinal bosses."
+    },
+    {
+      "va": "0x145529990",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/enemies/spawning.rs",
+        "crates/azeroth-survivors-re/src/enemies/waves.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/enemy-spawning-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/enemies/spawning-manifest.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Uniform index selection used by elite/wave paths."
+    },
+    {
+      "va": "0x14552b760",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/guardians/scaling.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/guardians-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/guardians/manifest.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "First-five-boss health-curve knot collection and interpolation inputs."
+    },
+    {
+      "va": "0x14552cb40",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/mob_loot.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/treasure-loot-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/loot/manifest.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Same-tier nonfinal-boss collection used by equipment pools."
+    },
+    {
+      "va": "0x14552ef30",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/enemies/spawning.rs",
+        "crates/azeroth-survivors-re/src/enemies/waves.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/enemy-spawning-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/enemies/spawning-manifest.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Time-admitted ordinary enemy definition collection."
+    },
+    {
+      "va": "0x14552f110",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/enemies/spawning.rs",
+        "crates/azeroth-survivors-re/src/enemies/waves.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/enemy-spawning-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/enemies/spawning-manifest.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Time-admitted roaming elite definition collection."
+    },
+    {
+      "va": "0x14552f4d0",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/enemies/spawning.rs",
+        "crates/azeroth-survivors-re/src/enemies/waves.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/enemy-spawning-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/enemies/spawning-manifest.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Ordinary enemy pool filtered for patterned-wave use."
+    },
+    {
+      "va": "0x145531cb0",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/enemies/relocation.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/enemies-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/enemies/relocation-manifest.json",
+        "docs/analysis/evidence/0.97.2/enemies/relocation-native.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "At-most-four distant enemy GUID collection using native eligibility and interpolated XY position."
+    },
+    {
+      "va": "0x145536a90",
+      "source_paths": [
+        "crates/azeroth-survivors-re/src/enemies/spawning.rs",
+        "crates/azeroth-survivors-re/src/enemies/waves.rs"
+      ],
+      "evidence_paths": [
+        "docs/analysis/enemy-spawning-0.97.2.md",
+        "docs/analysis/evidence/0.97.2/enemies/spawning-manifest.json"
+      ],
+      "coverage": "partial_or_complete_not_audited",
+      "summary": "Ordinary definition selection weights from age and spawn cost."
+    }
+  ]
+}

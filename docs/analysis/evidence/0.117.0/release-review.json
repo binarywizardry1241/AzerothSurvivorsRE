@@ -1,0 +1,2227 @@
+{
+  "schema": "as-release-review-v1",
+  "target": {
+    "version": "0.117.0",
+    "sha256": "507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293",
+    "size": 145283072,
+    "image_base": "0x140000000"
+  },
+  "release_items": [
+    {
+      "finding_id": 108,
+      "release": "0.116.0",
+      "item_ordinal": 1,
+      "text": "Engine update: the game client the run plays in is brought up to date. In co-op, buffs from your friends now show this game's numbers.",
+      "status": "pending_clause_and_runtime_parity_proof"
+    },
+    {
+      "finding_id": 109,
+      "release": "0.116.0",
+      "item_ordinal": 2,
+      "text": "Under-the-hood engine improvements from the client the game is built on.",
+      "status": "pending_clause_and_runtime_parity_proof"
+    },
+    {
+      "finding_id": 110,
+      "release": "0.116.0",
+      "item_ordinal": 3,
+      "text": "In co-op, buffs from your friends show Azeroth Survivors' numbers instead of the original game's: a warrior's Battle Shout, a druid's Rejuvenation or Dire Bear Form, and the rest, on you and on the party frames.",
+      "status": "pending_clause_and_runtime_parity_proof"
+    },
+    {
+      "finding_id": 111,
+      "release": "0.116.0",
+      "item_ordinal": 4,
+      "text": "Boss attack markers on the ground now always show on top of spell effects: a Frost Trap, a Consecration, a Hurricane no longer hides where the next attack lands.",
+      "status": "pending_clause_and_runtime_parity_proof"
+    },
+    {
+      "finding_id": 112,
+      "release": "0.116.0",
+      "item_ordinal": 5,
+      "text": "The Discord button and the site's Discord link now open our new invite, discord.gg/azerothsurvivors.",
+      "status": "client_source_static_repaired_website_and_runtime_unverified"
+    },
+    {
+      "finding_id": 113,
+      "release": "0.117.0",
+      "item_ordinal": 1,
+      "text": "Co-op achievements: 14 new feats for parties, earned by everyone in the party. They bring hats, cloaks, a tabard, four companions, a co-op luck perk and a White Devilsaur for hunters.",
+      "status": "pending_clause_and_runtime_parity_proof"
+    },
+    {
+      "finding_id": 114,
+      "release": "0.117.0",
+      "item_ordinal": 2,
+      "text": "New Co-op achievements tab, 14 achievements done with friends: Better Together, Five of a Kind, Rest in Photosynthesis, Against All Odds, The Brotherhood Falls, Things That Go Bump in the Night, For the Team, Jurassic Pack, Hakkar Smoothie, Holy Frame Drops, Dragonslayers, Totem'ly Balanced, The Old Gods Have No Friends and Together, To the End. Every player in the party earns them, whoever lands the killing blow.",
+      "status": "pending_clause_and_runtime_parity_proof",
+      "related_findings": [
+        157
+      ]
+    },
+    {
+      "finding_id": 115,
+      "release": "0.117.0",
+      "item_ordinal": 3,
+      "text": "Zones beaten in co-op are remembered across runs, for the achievements that ask for several (For the Team, Dragonslayers, Together, To the End).",
+      "status": "pending_clause_and_runtime_parity_proof"
+    },
+    {
+      "finding_id": 116,
+      "release": "0.117.0",
+      "item_ordinal": 4,
+      "text": "New looks from them: the Admiral's Hat, Bloodsail Admiral's Hat, Embrace of the Lycan and Whitemane's Chapeau for your head; the Cape of the Brotherhood, Cloak of the Brood Lord and Cloak of the Devoured for your back; and the Contest Winner's Tabard.",
+      "status": "pending_clause_and_runtime_parity_proof",
+      "related_findings": [
+        156
+      ]
+    },
+    {
+      "finding_id": 117,
+      "release": "0.117.0",
+      "item_ordinal": 5,
+      "text": "New companions: Ancient Protector, Mini Herod, Mini Nefarian and Mr. Bigglesworth.",
+      "status": "pending_clause_and_runtime_parity_proof"
+    },
+    {
+      "finding_id": 118,
+      "release": "0.117.0",
+      "item_ordinal": 6,
+      "text": "United Front (from For the Team): +10% luck in every co-op run, for good.",
+      "status": "pending_clause_and_runtime_parity_proof"
+    },
+    {
+      "finding_id": 119,
+      "release": "0.117.0",
+      "item_ordinal": 7,
+      "text": "White Devilsaur (from Jurassic Pack): a new switch at the bottom right of the hunter's Beast Mastery tree, free of points. On, one White Devilsaur fights for you in place of Tame Beast's wolf and Bestial Wrath's raptor, dealing what the two would.",
+      "status": "pending_clause_and_runtime_parity_proof"
+    },
+    {
+      "finding_id": 120,
+      "release": "0.117.0",
+      "item_ordinal": 8,
+      "text": "The armory's look list scrolls when a slot has many looks, instead of running off the bottom of the pane.",
+      "status": "pending_clause_and_runtime_parity_proof"
+    },
+    {
+      "finding_id": 121,
+      "release": "0.117.0",
+      "item_ordinal": 9,
+      "text": "notes: thanks **@DK Waiting Room** for achievements, if they suck d you can yell at him",
+      "status": "informational_acknowledgement_no_executable_obligation"
+    }
+  ],
+  "source_receipts": [
+    {
+      "path": "crates/azeroth-survivors-re/src/progression.rs",
+      "sha256": "d77945255d145f06fd3e9bc8b91b5b2489da363799874a4ced0b7a90e50ab2f0"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/account_progression.rs",
+      "sha256": "32f8f6403012f1b417008021130e09bbd13e13f8577892071e640c31a467cf57"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/save/schema.rs",
+      "sha256": "69b0b647beaae6deb88361dbef883aaee676651e4a5e1882ab59dfbb414df26d"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/save/progress.rs",
+      "sha256": "0872cc06fd14446ff7bd2b822790ce9e5de7a9d2d4f41762ea9d2315c83c97de"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/run_effects/loot_companions.rs",
+      "sha256": "168ba4add4229ea4ccfd53a42ce6533177ad7635ea889fb0b9f085cecd3324de"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/run_effects/pets.rs",
+      "sha256": "5eb6a5dbf6c4dc67d93524a45ce18d2a99562c5ede2f5c22a8fe5a7372e49de4"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/talents.rs",
+      "sha256": "e1fd43d537ebad33743db7544535441ce338159cff1e6127a2cb719f3df4d37f"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/armory.rs",
+      "sha256": "faa4b437e075e9306a8aab33c95853748764c53189814438868b4233b6722968"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/menu.rs",
+      "sha256": "79ef862f816a38ddefab9af1f25b10c8f6a1866e30f14762fa115ed068298fc0"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/raid_markers.rs",
+      "sha256": "6e164b992d05eff14109e86af4c1d6e7786b3cdfa6d1f1c7605cad80d942dc05"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/assets/rewards-catalogs-0.112.0.json",
+      "sha256": "bcb57d4d8b8cd2e61ecbb846510ed30d48c1ad0b50bab5acefc945dfb727641d"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/assets/armory-cosmetics-0.112.0.json",
+      "sha256": "c762d05823204bd6f41b85f2ffb0cd68251e562dfc1bc2bb65c92bfd7977ebb8"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs",
+      "sha256": "19ab0dad3d099a0ced9ea3684b5ac705235471c56051629e632a693021efa17e"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+      "sha256": "0ddcc62c352b2f03d137af581c5ece61eabc6c1c2a4b67e6092fe57ffbb72271"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/run_progression.rs",
+      "sha256": "77136e061279328ceceb87967f4e907246b200df4b663d499b16682462ed4d09"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/coop_overlay.rs",
+      "sha256": "30b262753026937f339657d12ccadf5ea19eac26d20e5cadef99ee2bfc2475ff"
+    },
+    {
+      "path": "crates/benilla-app/src/local_client/spell_descriptions.rs",
+      "sha256": "7036e2199f7cfde398b8fca23f1b39c90bcd5db1c31381adc9127738f95b6b26"
+    },
+    {
+      "path": "crates/benilla-ui/src/script/tooltip_aura.rs",
+      "sha256": "f4ed2d61d1f36aacecd5579c69616729672bd9ef99bd5dc5822b77b749ca7e2e"
+    }
+  ],
+  "source_counts": {
+    "achievements": 84,
+    "achievement_points": 1775,
+    "categories": 5,
+    "companions": 22,
+    "cosmetics": 7,
+    "tabards": 20
+  },
+  "achievement_text": [
+    {
+      "name": {
+        "text": "Better Together",
+        "va": "0x1475c6690",
+        "end_exclusive": "0x1475c669f",
+        "file_offset": "0x75c5090",
+        "byte_count": 15,
+        "sha256": "67477198278ce58a349e8819ecc42d3e1e862ac638f502c0e166d553fca54384"
+      },
+      "description": {
+        "text": "Complete your first zone in co-op.",
+        "va": "0x1475c669f",
+        "end_exclusive": "0x1475c66c1",
+        "file_offset": "0x75c509f",
+        "byte_count": 34,
+        "sha256": "9b57cf5761a8753df35d9f6f9ed9fd17f17fc8dbdf39c5a0bf2961f6c30af838"
+      },
+      "key": {
+        "text": "coop:together",
+        "va": "0x1475c66c1",
+        "end_exclusive": "0x1475c66ce",
+        "file_offset": "0x75c50c1",
+        "byte_count": 13,
+        "sha256": "796c2ac7d980eea7964239ba9aefbbec6f91fd5194c1a8b8f601defcb7246ebc"
+      }
+    },
+    {
+      "name": {
+        "text": "Five of a Kind",
+        "va": "0x1475c66ea",
+        "end_exclusive": "0x1475c66f8",
+        "file_offset": "0x75c50ea",
+        "byte_count": 14,
+        "sha256": "356aa5d216f9e109301d128407fd9e4289d0ed2a4481bee44d974b00fbfb476f"
+      },
+      "description": {
+        "text": "Complete any zone in co-op with all 5 players using the same class.",
+        "va": "0x1475c66f8",
+        "end_exclusive": "0x1475c673b",
+        "file_offset": "0x75c50f8",
+        "byte_count": 67,
+        "sha256": "2bfda9319ef701e998a11edec7f353acc090284626b1a79376eb47e01f4ca093"
+      },
+      "key": {
+        "text": "coop:fiveofakind",
+        "va": "0x1475c673b",
+        "end_exclusive": "0x1475c674b",
+        "file_offset": "0x75c513b",
+        "byte_count": 16,
+        "sha256": "2b279fcc9e546a27312005bf72b9464ea427897f4e2d6353f2d14da9b955fd92"
+      }
+    },
+    {
+      "name": {
+        "text": "Rest in Photosynthesis",
+        "va": "0x1475c6763",
+        "end_exclusive": "0x1475c6779",
+        "file_offset": "0x75c5163",
+        "byte_count": 22,
+        "sha256": "ec1a5bbc55f9cb668d1a455201aad1e53ea6c6fd0702fb65c4d46734338d28b6"
+      },
+      "description": {
+        "text": "Defeat Kel'Thuzad in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.",
+        "va": "0x1475c6779",
+        "end_exclusive": "0x1475c67ec",
+        "file_offset": "0x75c5179",
+        "byte_count": 115,
+        "sha256": "d876b1bb023d16b5f4efe93b57f44e542c80fe6353f1984c9718802a144b00b9"
+      },
+      "key": {
+        "text": "coop:photosynthesis",
+        "va": "0x1475c67fc",
+        "end_exclusive": "0x1475c680f",
+        "file_offset": "0x75c51fc",
+        "byte_count": 19,
+        "sha256": "23a92416851643e942e3e6798c0c22af1c4c0d9dfb1dd4295abf317da0e37250"
+      }
+    },
+    {
+      "name": {
+        "text": "Against All Odds",
+        "va": "0x1475c6827",
+        "end_exclusive": "0x1475c6837",
+        "file_offset": "0x75c5227",
+        "byte_count": 16,
+        "sha256": "a7c83cd5ae6f0ab226d6df2c136bddf1df3414d4049382d2b7a8105ead93068b"
+      },
+      "description": {
+        "text": "Complete any zone in co-op with all four enemy difficulty modifiers at maximum.",
+        "va": "0x1475c6837",
+        "end_exclusive": "0x1475c6886",
+        "file_offset": "0x75c5237",
+        "byte_count": 79,
+        "sha256": "9b5b9e7ff552ae0cf131d5ee84a5691fd1e4890c6232ab18958f2278dedccaac"
+      },
+      "key": {
+        "text": "coop:odds",
+        "va": "0x1475c6886",
+        "end_exclusive": "0x1475c688f",
+        "file_offset": "0x75c5286",
+        "byte_count": 9,
+        "sha256": "75c8dadd359aa49c80038c2a0ec430908ed95443c9a141f1a8205a0829e45e3c"
+      }
+    },
+    {
+      "name": {
+        "text": "The Brotherhood Falls",
+        "va": "0x1475c68ac",
+        "end_exclusive": "0x1475c68c1",
+        "file_offset": "0x75c52ac",
+        "byte_count": 21,
+        "sha256": "76271d77dc9522734c392390f931ccf3602fe953d9f74c90fdcf13c1fc1c5a9e"
+      },
+      "description": {
+        "text": "Defeat Edwin VanCleef in co-op with 5 players, all using different classes.",
+        "va": "0x1475c68c1",
+        "end_exclusive": "0x1475c690c",
+        "file_offset": "0x75c52c1",
+        "byte_count": 75,
+        "sha256": "37736da23f6b02638cc2fde8f5bf0b633182be10fd905273d01a6ebed7a4ed4a"
+      },
+      "key": {
+        "text": "coop:brotherhood",
+        "va": "0x1475c690c",
+        "end_exclusive": "0x1475c691c",
+        "file_offset": "0x75c530c",
+        "byte_count": 16,
+        "sha256": "7202f718c54e0dae7fa75ec42c9329303e7a47231b15c2721337a0f8eda512b9"
+      }
+    },
+    {
+      "name": {
+        "text": "Things That Go Bump in the Night",
+        "va": "0x1475c692f",
+        "end_exclusive": "0x1475c694f",
+        "file_offset": "0x75c532f",
+        "byte_count": 32,
+        "sha256": "2027b3f3f12598320a2d377ffd86e0bd20aed48b6ef9834a99124e50bc22acad"
+      },
+      "description": {
+        "text": "Complete Duskwood in co-op without any player dying.",
+        "va": "0x1475c694f",
+        "end_exclusive": "0x1475c6983",
+        "file_offset": "0x75c534f",
+        "byte_count": 52,
+        "sha256": "2737eb7dee491101422f00e8d93665e37d576a26cc98813b0505ea9ce2ee2544"
+      },
+      "key": {
+        "text": "coop:bump",
+        "va": "0x1475c698b",
+        "end_exclusive": "0x1475c6994",
+        "file_offset": "0x75c538b",
+        "byte_count": 9,
+        "sha256": "bbd4c481ffbd2da0530aed14cd843fb55d0419027c8bf85a4e28b71c4e0b6c7a"
+      }
+    },
+    {
+      "name": {
+        "text": "For the Team",
+        "va": "0x1475c69af",
+        "end_exclusive": "0x1475c69bb",
+        "file_offset": "0x75c53af",
+        "byte_count": 12,
+        "sha256": "4de03924afac17f1be0bd4abb1866eef1016aea1de76dca6b6b936c811569fea"
+      },
+      "description": {
+        "text": "Complete Warsong Gulch and Arathi Basin in co-op.",
+        "va": "0x1475c69bb",
+        "end_exclusive": "0x1475c69ec",
+        "file_offset": "0x75c53bb",
+        "byte_count": 49,
+        "sha256": "171736fc134c3e32c2e2a88b3b2fdf6018c9b1d4418ee7d6a0fe63b35c35c0ac"
+      },
+      "key": {
+        "text": "coop:team",
+        "va": "0x1475c6a18",
+        "end_exclusive": "0x1475c6a21",
+        "file_offset": "0x75c5418",
+        "byte_count": 9,
+        "sha256": "d62294e4ea58f02cb196516fc4e434e8235e13c5f711b2d356be26f721f4c28e"
+      }
+    },
+    {
+      "name": {
+        "text": "Jurassic Pack",
+        "va": "0x1475c6a31",
+        "end_exclusive": "0x1475c6a3e",
+        "file_offset": "0x75c5431",
+        "byte_count": 13,
+        "sha256": "fcf264f784c65672e951c8da9dbf7010ad5a8317785c73a24e5c00c3651e5b6a"
+      },
+      "description": {
+        "text": "Complete Un'Goro Crater in co-op with 5 Hunters.",
+        "va": "0x1475c6a3e",
+        "end_exclusive": "0x1475c6a6e",
+        "file_offset": "0x75c543e",
+        "byte_count": 48,
+        "sha256": "633586b37f844d7f7c83bad15432f0fbcf2fc4209357c5c648a502a6982ddb73"
+      },
+      "key": {
+        "text": "coop:jurassic",
+        "va": "0x1475c6a74",
+        "end_exclusive": "0x1475c6a81",
+        "file_offset": "0x75c5474",
+        "byte_count": 13,
+        "sha256": "c6c81a1b90d09820288573914377534c72596699a35e39117ef86091e4462ce1"
+      }
+    },
+    {
+      "name": {
+        "text": "Hakkar Smoothie",
+        "va": "0x1475c6a9a",
+        "end_exclusive": "0x1475c6aa9",
+        "file_offset": "0x75c549a",
+        "byte_count": 15,
+        "sha256": "8ec96029f7a2c0ee29a8c0dc45cdef2dbef78e3cd8d4372f3d3bc970a900ff0f"
+      },
+      "description": {
+        "text": "Defeat Hakkar in co-op with 5 Warriors, all talented into Bladestorm. Whirlwind must deliver the killing blow.",
+        "va": "0x1475c6aa9",
+        "end_exclusive": "0x1475c6b17",
+        "file_offset": "0x75c54a9",
+        "byte_count": 110,
+        "sha256": "a9a92bbf864e3a4a2fa126a81ae3ae5f5d43a6b1d6707d20292cf2aa1ae91b6d"
+      },
+      "key": {
+        "text": "coop:smoothie",
+        "va": "0x1475c6b28",
+        "end_exclusive": "0x1475c6b35",
+        "file_offset": "0x75c5528",
+        "byte_count": 13,
+        "sha256": "14b790e0b05676d5d854309e8bebf878fe96871bbb23f33bbaff1aa4272a7865"
+      }
+    },
+    {
+      "name": {
+        "text": "Holy Frame Drops",
+        "va": "0x1475c6b46",
+        "end_exclusive": "0x1475c6b56",
+        "file_offset": "0x75c5546",
+        "byte_count": 16,
+        "sha256": "8e4081078a2ef02b2ff4a979c8f1b6091ebba7bf6cecd48894cb039650102952"
+      },
+      "description": {
+        "text": "Defeat High Inquisitor Whitemane in co-op with 5 Paladins, all having Consecration as their highest-ranked spell. Consecration must deliver the killing blow.",
+        "va": "0x1475c6b56",
+        "end_exclusive": "0x1475c6bf3",
+        "file_offset": "0x75c5556",
+        "byte_count": 157,
+        "sha256": "2bfff6525f6332e2624fb0d22292d1a88b15543e6e95c1d16c82086764472f1c"
+      },
+      "key": {
+        "text": "coop:holyframe",
+        "va": "0x1475c6c04",
+        "end_exclusive": "0x1475c6c12",
+        "file_offset": "0x75c5604",
+        "byte_count": 14,
+        "sha256": "b88c33ce09ddb004fde766eb502f874811c54b42db542c9692a35f46b6e8b3de"
+      }
+    },
+    {
+      "name": {
+        "text": "Dragonslayers",
+        "va": "0x1475c6c26",
+        "end_exclusive": "0x1475c6c33",
+        "file_offset": "0x75c5626",
+        "byte_count": 13,
+        "sha256": "c48c16b30fee484f1666692d7d801df336ed319f182d5d9dafe694386bcde0cd"
+      },
+      "description": {
+        "text": "Defeat Azuregos and Nefarian in co-op.",
+        "va": "0x1475c6c33",
+        "end_exclusive": "0x1475c6c59",
+        "file_offset": "0x75c5633",
+        "byte_count": 38,
+        "sha256": "8fdd83447f5f7ee97dd789bc91cfdee7aa73faa0b1c26c91a510928d5e42cde2"
+      },
+      "key": {
+        "text": "coop:dragonslayers",
+        "va": "0x1475c6c80",
+        "end_exclusive": "0x1475c6c92",
+        "file_offset": "0x75c5680",
+        "byte_count": 18,
+        "sha256": "6c4781f1b3b653c948b1e6f31f9aa0994c1a0d4f9ceeb9ba7ecb67d01f72eab8"
+      }
+    },
+    {
+      "name": {
+        "text": "Totem'ly Balanced",
+        "va": "0x1475c6cab",
+        "end_exclusive": "0x1475c6cbc",
+        "file_offset": "0x75c56ab",
+        "byte_count": 17,
+        "sha256": "be098cee0621112e52fe8edecc00fbc7ee974aa5ab6dba6bf5ab847e0ef5e443"
+      },
+      "description": {
+        "text": "Defeat Nefarian in co-op with 5 Shamans, all having Magma Totem as their highest-ranked spell. Magma Totem must deliver the killing blow.",
+        "va": "0x1475c6cbc",
+        "end_exclusive": "0x1475c6d45",
+        "file_offset": "0x75c56bc",
+        "byte_count": 137,
+        "sha256": "5536e506846d93dbdd7699e1d1108001e4a5a49dea55ec1c42b4e29673658cd7"
+      },
+      "key": {
+        "text": "coop:totemly",
+        "va": "0x1475c6d58",
+        "end_exclusive": "0x1475c6d64",
+        "file_offset": "0x75c5758",
+        "byte_count": 12,
+        "sha256": "5d5751ccdd0065a37f2983d9493685bdd597360364a4a883347c943b988e1f53"
+      }
+    },
+    {
+      "name": {
+        "text": "The Old Gods Have No Friends",
+        "va": "0x1475c6d7b",
+        "end_exclusive": "0x1475c6d97",
+        "file_offset": "0x75c577b",
+        "byte_count": 28,
+        "sha256": "adaa589188e25774a46363e4a9ec8932c6f5b52f2fe656d71753b3956e7cc601"
+      },
+      "description": {
+        "text": "Defeat C'Thun in co-op with all four enemy difficulty modifiers at maximum.",
+        "va": "0x1475c6d97",
+        "end_exclusive": "0x1475c6de2",
+        "file_offset": "0x75c5797",
+        "byte_count": 75,
+        "sha256": "0c1d4026b48e0c8f30d4c9c7076dc379ade15c368ccf9b78d62a6d7c43a776fd"
+      },
+      "key": {
+        "text": "coop:oldgods",
+        "va": "0x1475c6de2",
+        "end_exclusive": "0x1475c6dee",
+        "file_offset": "0x75c57e2",
+        "byte_count": 12,
+        "sha256": "b2b3d4480f4dc0f2adb3a52d658bca6180be3e23aa5875a47aae8677061e5576"
+      }
+    },
+    {
+      "name": {
+        "text": "Together, To the End",
+        "va": "0x1475c6e09",
+        "end_exclusive": "0x1475c6e1d",
+        "file_offset": "0x75c5809",
+        "byte_count": 20,
+        "sha256": "1d90b9a36ce415d3a08ae75bfd1339f1bae2b9f49b742c6560a3f26015223543"
+      },
+      "description": {
+        "text": "Complete every zone in co-op, across any number of runs.",
+        "va": "0x1475c6e1d",
+        "end_exclusive": "0x1475c6e55",
+        "file_offset": "0x75c581d",
+        "byte_count": 56,
+        "sha256": "be1b9463507a2f146c02c704f5f7260e6fb6708cbade22f4761f7cc0c2952731"
+      },
+      "key": {
+        "text": "coop:end",
+        "va": "0x1475c6e55",
+        "end_exclusive": "0x1475c6e5d",
+        "file_offset": "0x75c5855",
+        "byte_count": 8,
+        "sha256": "06efa1db1b3add239608b3f9cceea901eebc98572bad73c2c16d907a0ef59c2e"
+      }
+    }
+  ],
+  "cosmetics": [
+    {
+      "id": 90108,
+      "name": "Admiral's Hat",
+      "icon": "INV_Helmet_29",
+      "achievement": "coop:together",
+      "display_id": 18872,
+      "inventory_type": 1,
+      "slot": 0,
+      "records": [
+        {
+          "va": "0x1461a97b8",
+          "end_exclusive": "0x1461a97f8",
+          "file_offset": "0x61a81b8",
+          "byte_count": 64,
+          "sha256": "6e54699d509d20fff9b91a68811482894132a2302b1fdda347198d768580383e"
+        },
+        {
+          "va": "0x1472c95e0",
+          "end_exclusive": "0x1472c9620",
+          "file_offset": "0x72c7fe0",
+          "byte_count": 64,
+          "sha256": "00f21505ef1c5c9c5eeb671449209e88e45a36e664ed0e7e220a5a9c9cebd62f"
+        },
+        {
+          "va": "0x1475caf80",
+          "end_exclusive": "0x1475cafc0",
+          "file_offset": "0x75c9980",
+          "byte_count": 64,
+          "sha256": "1cfd33171a1e60bc986d2a287bf6d22a97dc809a9089d549ddff29813b3368a5"
+        }
+      ]
+    },
+    {
+      "id": 90109,
+      "name": "Bloodsail Admiral's Hat",
+      "icon": "INV_Helmet_66",
+      "achievement": "coop:fiveofakind",
+      "display_id": 35174,
+      "inventory_type": 1,
+      "slot": 0,
+      "records": [
+        {
+          "va": "0x1461a97f8",
+          "end_exclusive": "0x1461a9838",
+          "file_offset": "0x61a81f8",
+          "byte_count": 64,
+          "sha256": "b2b731906bc1229959df5f980064528a8d05b2aaec026e362bed67d9ccc12453"
+        },
+        {
+          "va": "0x1472c9620",
+          "end_exclusive": "0x1472c9660",
+          "file_offset": "0x72c8020",
+          "byte_count": 64,
+          "sha256": "f91020b68a06da978805bc82e5cad46686648d9763a01f476125931e2e1b7406"
+        },
+        {
+          "va": "0x1475cafc0",
+          "end_exclusive": "0x1475cb000",
+          "file_offset": "0x75c99c0",
+          "byte_count": 64,
+          "sha256": "06aef6ebc35ea91c091858bba548d81e886bf8b3196c6f51b4b295d53d9e3d36"
+        }
+      ]
+    },
+    {
+      "id": 90110,
+      "name": "Cape of the Brotherhood",
+      "icon": "INV_Misc_Cape_08",
+      "achievement": "coop:brotherhood",
+      "display_id": 22998,
+      "inventory_type": 16,
+      "slot": 14,
+      "records": [
+        {
+          "va": "0x1461a9838",
+          "end_exclusive": "0x1461a9878",
+          "file_offset": "0x61a8238",
+          "byte_count": 64,
+          "sha256": "c5ccb63b74f016d391856bcf6788e625692f727689f4e7805b6c97b64b2206b0"
+        },
+        {
+          "va": "0x1472c9660",
+          "end_exclusive": "0x1472c96a0",
+          "file_offset": "0x72c8060",
+          "byte_count": 64,
+          "sha256": "934077dfffbe4f30bba1a74079bd04f4518033e0724e3015946644f0a3127522"
+        },
+        {
+          "va": "0x1475cb000",
+          "end_exclusive": "0x1475cb040",
+          "file_offset": "0x75c9a00",
+          "byte_count": 64,
+          "sha256": "6ae283a91e362909248026c79a1797fd1f6562414d3051c2939c2854821a0156"
+        }
+      ]
+    },
+    {
+      "id": 90111,
+      "name": "Embrace of the Lycan",
+      "icon": "Ability_Mount_WhiteDireWolf",
+      "achievement": "coop:bump",
+      "display_id": 18392,
+      "inventory_type": 1,
+      "slot": 0,
+      "records": [
+        {
+          "va": "0x1461a9878",
+          "end_exclusive": "0x1461a98b8",
+          "file_offset": "0x61a8278",
+          "byte_count": 64,
+          "sha256": "4cb0dc2a4c5b3a3aa90ec4524ff5266dc1720906a9ea6b7b99162498719e8e86"
+        },
+        {
+          "va": "0x1472c96a0",
+          "end_exclusive": "0x1472c96e0",
+          "file_offset": "0x72c80a0",
+          "byte_count": 64,
+          "sha256": "7651e9492f05e34ac469f77a46ec167ff18b38c572497c21c5405fe10cba13f8"
+        },
+        {
+          "va": "0x1475cb040",
+          "end_exclusive": "0x1475cb080",
+          "file_offset": "0x75c9a40",
+          "byte_count": 64,
+          "sha256": "01e46096063c27b99289d65e6d9bec16689a5b3baf966fdcfba5273fcbb5c2e8"
+        }
+      ]
+    },
+    {
+      "id": 90112,
+      "name": "Whitemane's Chapeau",
+      "icon": "INV_Helmet_12",
+      "achievement": "coop:holyframe",
+      "display_id": 16224,
+      "inventory_type": 1,
+      "slot": 0,
+      "records": [
+        {
+          "va": "0x1461a98b8",
+          "end_exclusive": "0x1461a98f8",
+          "file_offset": "0x61a82b8",
+          "byte_count": 64,
+          "sha256": "280bf0f77351c8ff766ab60929507beee4a4f666215ea75d600de8fc29532b4e"
+        },
+        {
+          "va": "0x1472c96e0",
+          "end_exclusive": "0x1472c9720",
+          "file_offset": "0x72c80e0",
+          "byte_count": 64,
+          "sha256": "8cb7304cb996060fbf758c56c79b2e8ce6ed637be800c86b75a251b5e519935d"
+        },
+        {
+          "va": "0x1475cb080",
+          "end_exclusive": "0x1475cb0c0",
+          "file_offset": "0x75c9a80",
+          "byte_count": 64,
+          "sha256": "206d33b2b5922e3b989c6b097f7b1e7415db75ed2fe825b3cbca7a26a51025f4"
+        }
+      ]
+    },
+    {
+      "id": 90113,
+      "name": "Cloak of the Brood Lord",
+      "icon": "INV_Misc_Cape_20",
+      "achievement": "coop:dragonslayers",
+      "display_id": 28891,
+      "inventory_type": 16,
+      "slot": 14,
+      "records": [
+        {
+          "va": "0x1461a98f8",
+          "end_exclusive": "0x1461a9938",
+          "file_offset": "0x61a82f8",
+          "byte_count": 64,
+          "sha256": "e4b8e21d49aafa1f2bbf8a8d4a9a042718f57eb354d0e41619d69749f0486766"
+        },
+        {
+          "va": "0x1472c9720",
+          "end_exclusive": "0x1472c9760",
+          "file_offset": "0x72c8120",
+          "byte_count": 64,
+          "sha256": "6e04aa83803fdebae677ae6458685fa036c7c645768253853e381697f9d1d1e3"
+        },
+        {
+          "va": "0x1475cb0c0",
+          "end_exclusive": "0x1475cb100",
+          "file_offset": "0x75c9ac0",
+          "byte_count": 64,
+          "sha256": "ca30514100d8cd9295848f47b4e27d9a861359eb0047b84c074bdef59effad54"
+        }
+      ]
+    },
+    {
+      "id": 90114,
+      "name": "Cloak of the Devoured",
+      "icon": "INV_Misc_Cape_18",
+      "achievement": "coop:oldgods",
+      "display_id": 35139,
+      "inventory_type": 16,
+      "slot": 14,
+      "records": [
+        {
+          "va": "0x1461a9938",
+          "end_exclusive": "0x1461a9978",
+          "file_offset": "0x61a8338",
+          "byte_count": 64,
+          "sha256": "a6df9900c6f222ca6d8ed7d448b947db1c495147ed2f3fa213309a989d8fb65e"
+        },
+        {
+          "va": "0x1472c9760",
+          "end_exclusive": "0x1472c97a0",
+          "file_offset": "0x72c8160",
+          "byte_count": 64,
+          "sha256": "9e00bfd6fe3887d5ee2ccdf9e1c62ed51cdf5368fe97ddee1a07542d51da9640"
+        },
+        {
+          "va": "0x1475cb100",
+          "end_exclusive": "0x1475cb140",
+          "file_offset": "0x75c9b00",
+          "byte_count": 64,
+          "sha256": "da8160745d693748a5e246e9f267d5f11479dfc52a475293f1ec0704d61df0dc"
+        }
+      ]
+    }
+  ],
+  "tabard": {
+    "id": 90025,
+    "name": "Contest Winner's Tabard",
+    "icon": "INV_Shirt_GuildTabard_01",
+    "gate": "coop:odds",
+    "display_id": 31676,
+    "cost": 0,
+    "records": [
+      {
+        "va": "0x1461adc60",
+        "end_exclusive": "0x1461adca0",
+        "file_offset": "0x61ac660",
+        "byte_count": 64,
+        "sha256": "57f2c63ef9ff870f81865c9112c99d11c9acf3477c3d65d3319fe6a737b29cf3"
+      },
+      {
+        "va": "0x1472c8e20",
+        "end_exclusive": "0x1472c8e60",
+        "file_offset": "0x72c7820",
+        "byte_count": 64,
+        "sha256": "7be308d19c5066608e17a1c323ed9ab3cc1b8d2c20ed01eb289fc937988635a0"
+      },
+      {
+        "va": "0x1475c99f0",
+        "end_exclusive": "0x1475c9a30",
+        "file_offset": "0x75c83f0",
+        "byte_count": 64,
+        "sha256": "50969078a285a9b7ecd241e520f2649d6a9b50433f88aafef3e6f2eb6f6fd29b"
+      }
+    ]
+  },
+  "companions": [
+    {
+      "key": "ancient_protector",
+      "name": "Ancient Protector",
+      "model": "Creature\\AncientProtector\\",
+      "icon": "Spell_Nature_Tranquility",
+      "achievement": "coop:photosynthesis",
+      "display_id": 2429,
+      "scale": 0.17000000178813934,
+      "creature_id": 9623,
+      "records": [
+        {
+          "va": "0x1461aaa18",
+          "end_exclusive": "0x1461aaa78",
+          "file_offset": "0x61a9418",
+          "byte_count": 96,
+          "sha256": "bfce40fd7f4d18524d3898615d3170f96e19ae2da63245a3537a1c029c5e4a52"
+        },
+        {
+          "va": "0x1472d0a38",
+          "end_exclusive": "0x1472d0a98",
+          "file_offset": "0x72cf438",
+          "byte_count": 96,
+          "sha256": "2632a9d0953658b30a3f4bedffd0243c99bdb072b64c47acd0a8207acb9d2f61"
+        },
+        {
+          "va": "0x1475caa78",
+          "end_exclusive": "0x1475caad8",
+          "file_offset": "0x75c9478",
+          "byte_count": 96,
+          "sha256": "dfe5084a501ceb79bf7bf6b3ef3250b78f8fbd29ab77af13a4aea4f5b04863da"
+        },
+        {
+          "va": "0x1475d6848",
+          "end_exclusive": "0x1475d68a8",
+          "file_offset": "0x75d5248",
+          "byte_count": 96,
+          "sha256": "308ee80738cd3067da99a2af0ff36b8bc7cfd85178bbd4b3f4e2034204bf6d6c"
+        }
+      ]
+    },
+    {
+      "key": "herod",
+      "name": "Mini Herod",
+      "model": "Character\\Human\\Male\\",
+      "icon": "Ability_Whirlwind",
+      "achievement": "coop:smoothie",
+      "display_id": 2041,
+      "scale": 0.5,
+      "creature_id": 9624,
+      "records": [
+        {
+          "va": "0x1461aaa78",
+          "end_exclusive": "0x1461aaad8",
+          "file_offset": "0x61a9478",
+          "byte_count": 96,
+          "sha256": "e217d3c6cd7b3bb957fb3fd69dbca3eae377b1dccea3b656bc85c21b2b274b56"
+        },
+        {
+          "va": "0x1472d0a98",
+          "end_exclusive": "0x1472d0af8",
+          "file_offset": "0x72cf498",
+          "byte_count": 96,
+          "sha256": "0ccff1486c94bf653bfad40fc7c62ee39ff876502c16f185bb80b51cc5ff46b1"
+        },
+        {
+          "va": "0x1475caad8",
+          "end_exclusive": "0x1475cab38",
+          "file_offset": "0x75c94d8",
+          "byte_count": 96,
+          "sha256": "78fb65acd224ff4414fec2a63d9fb8d74bdc29cda8fb0f065ac56b57cfb663fc"
+        },
+        {
+          "va": "0x1475d68a8",
+          "end_exclusive": "0x1475d6908",
+          "file_offset": "0x75d52a8",
+          "byte_count": 96,
+          "sha256": "ed44972d3a07dd3cf717f7cdbe8b908b522a5ee2a69d45f52c435ecdb57befff"
+        }
+      ]
+    },
+    {
+      "key": "nefarian",
+      "name": "Mini Nefarian",
+      "model": "Creature\\Dragon\\",
+      "icon": "INV_Misc_Head_Dragon_Black",
+      "achievement": "coop:totemly",
+      "display_id": 11380,
+      "scale": 0.06499999761581421,
+      "creature_id": 9625,
+      "records": [
+        {
+          "va": "0x1461aaad8",
+          "end_exclusive": "0x1461aab38",
+          "file_offset": "0x61a94d8",
+          "byte_count": 96,
+          "sha256": "2c7650a9ef9598ea9ef911d94a7ab85b109f7648916dbb4e5dd1d3a825adf817"
+        },
+        {
+          "va": "0x1472d0af8",
+          "end_exclusive": "0x1472d0b58",
+          "file_offset": "0x72cf4f8",
+          "byte_count": 96,
+          "sha256": "1fbce317e8edcb6a6112026ae1ae681a965de05c5b6ececb540363a6775ed879"
+        },
+        {
+          "va": "0x1475cab38",
+          "end_exclusive": "0x1475cab98",
+          "file_offset": "0x75c9538",
+          "byte_count": 96,
+          "sha256": "924c7f56b5dfb5a9860a6a0727dfb79a863b329bcc62d4057dc600204ea9a069"
+        },
+        {
+          "va": "0x1475d6908",
+          "end_exclusive": "0x1475d6968",
+          "file_offset": "0x75d5308",
+          "byte_count": 96,
+          "sha256": "245ff485c7b9ec9496d89694227db76d10351ea77911991f204eb8734c1c2f21"
+        }
+      ]
+    },
+    {
+      "key": "bigglesworth",
+      "name": "Mr. Bigglesworth",
+      "model": "Creature\\Cat\\",
+      "icon": "Ability_Hunter_Pet_Cat",
+      "achievement": "coop:end",
+      "display_id": 16622,
+      "scale": 1.0,
+      "creature_id": 9626,
+      "records": [
+        {
+          "va": "0x1461aab38",
+          "end_exclusive": "0x1461aab98",
+          "file_offset": "0x61a9538",
+          "byte_count": 96,
+          "sha256": "bae493d9d4e4ff33e9e24c37a56c10472374fb1e9759c3925114d2f5ab567e11"
+        },
+        {
+          "va": "0x1472d0b58",
+          "end_exclusive": "0x1472d0bb8",
+          "file_offset": "0x72cf558",
+          "byte_count": 96,
+          "sha256": "247f33838b0d0a0af17a8e1990c4f408ba980d088a45196ebe490c7f7733ad8c"
+        },
+        {
+          "va": "0x1475cab98",
+          "end_exclusive": "0x1475cabf8",
+          "file_offset": "0x75c9598",
+          "byte_count": 96,
+          "sha256": "f8b4061dab0cfd4f8e0909edad64d763736cbde13173d10d08b1c58660238d16"
+        },
+        {
+          "va": "0x1475d6968",
+          "end_exclusive": "0x1475d69c8",
+          "file_offset": "0x75d5368",
+          "byte_count": 96,
+          "sha256": "3d80d406281809b7eb94e02246e1bd506d6315efe1ae203bc826175091999079"
+        }
+      ]
+    }
+  ],
+  "literals": [
+    {
+      "text": "coopbeat|",
+      "va": "0x1472ce88c",
+      "end_exclusive": "0x1472ce895",
+      "file_offset": "0x72cd28c",
+      "byte_count": 9,
+      "sha256": "98d9a6b05a4d4fdc6381c91f2dbad58f78106b21caaa77fb8ab3899f9fa95f7b"
+    },
+    {
+      "text": "white_devilsaur",
+      "va": "0x14617ba50",
+      "end_exclusive": "0x14617ba5f",
+      "file_offset": "0x617a450",
+      "byte_count": 15,
+      "sha256": "d922ef4a8b12dfb93e8a5a1ecbec20d8ab1c516b519add8678cd4f9eca8fdac2"
+    },
+    {
+      "text": "white_devilsaur",
+      "va": "0x1472a5210",
+      "end_exclusive": "0x1472a521f",
+      "file_offset": "0x72a3c10",
+      "byte_count": 15,
+      "sha256": "d922ef4a8b12dfb93e8a5a1ecbec20d8ab1c516b519add8678cd4f9eca8fdac2"
+    },
+    {
+      "text": "White Devilsaur",
+      "va": "0x1472c3000",
+      "end_exclusive": "0x1472c300f",
+      "file_offset": "0x72c1a00",
+      "byte_count": 15,
+      "sha256": "c3060ca362e7e4e7c678401c768faaa8289e2e9c7b2d7a055737c420242c934f"
+    },
+    {
+      "text": "United Front",
+      "va": "0x1475cb140",
+      "end_exclusive": "0x1475cb14c",
+      "file_offset": "0x75c9b40",
+      "byte_count": 12,
+      "sha256": "0f8033c9f00c9ce579802375ada60718657709f52b1f3c4ebee4bd52dd9cd5df"
+    },
+    {
+      "text": "armory-looks",
+      "va": "0x1461aae78",
+      "end_exclusive": "0x1461aae84",
+      "file_offset": "0x61a9878",
+      "byte_count": 12,
+      "sha256": "c05aaeff590a912d8cf9fad112fc8f1d8235419aa63a479955c938bef2bc60d3"
+    },
+    {
+      "text": "https://discord.gg/azerothsurvivors",
+      "va": "0x14617eef4",
+      "end_exclusive": "0x14617ef17",
+      "file_offset": "0x617d8f4",
+      "byte_count": 35,
+      "sha256": "45cd944c9649c4c73a829460aa855d86bb98fad2a8925bb60c83cb5be1382088"
+    }
+  ],
+  "native_leads": {
+    "target_sha256": "507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293",
+    "query_ranges": {
+      "coop-achievement-descriptors": [
+        "0x1475c6690",
+        "0x1475c6e80"
+      ],
+      "United Front": [
+        "0x1475cb140",
+        "0x1475cb14c"
+      ],
+      "White Devilsaur UI": [
+        "0x14617ba50",
+        "0x14617be80"
+      ],
+      "white_devilsaur talent": [
+        "0x1472a5210",
+        "0x1472a5220"
+      ],
+      "White Devilsaur pet": [
+        "0x1472c2fb0",
+        "0x1472c300f"
+      ],
+      "new Discord": [
+        "0x14617eef4",
+        "0x14617ef16"
+      ],
+      "coopbeat save": [
+        "0x1472ce88c",
+        "0x1472ce895"
+      ]
+    },
+    "rip_relative_lea_matches": [
+      {
+        "kind": "White Devilsaur UI",
+        "site": "0x140013256",
+        "target": "0x14617be70",
+        "owner": "0x140013130",
+        "end": "0x140013269",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea r9, [rip + 0x6168c13]"
+      },
+      {
+        "kind": "White Devilsaur UI",
+        "site": "0x140020a58",
+        "target": "0x14617be70",
+        "owner": "0x140020860",
+        "end": "0x140020aa3",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea r9, [rip + 0x615b411]"
+      },
+      {
+        "kind": "White Devilsaur UI",
+        "site": "0x14010b168",
+        "target": "0x14617bd14",
+        "owner": "0x14010ae80",
+        "end": "0x14010cb9d",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x6070ba5]"
+      },
+      {
+        "kind": "White Devilsaur UI",
+        "site": "0x14010b41c",
+        "target": "0x14617bb21",
+        "owner": "0x14010ae80",
+        "end": "0x14010cb9d",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x60706fe]"
+      },
+      {
+        "kind": "White Devilsaur UI",
+        "site": "0x14010b497",
+        "target": "0x14617ba5f",
+        "owner": "0x14010ae80",
+        "end": "0x14010cb9d",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x60705c1]"
+      },
+      {
+        "kind": "White Devilsaur UI",
+        "site": "0x14010b500",
+        "target": "0x14617bbe8",
+        "owner": "0x14010ae80",
+        "end": "0x14010cb9d",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x60706e1]"
+      },
+      {
+        "kind": "White Devilsaur UI",
+        "site": "0x14010b514",
+        "target": "0x14617bc28",
+        "owner": "0x14010ae80",
+        "end": "0x14010cb9d",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x607070d]"
+      },
+      {
+        "kind": "White Devilsaur UI",
+        "site": "0x14010b532",
+        "target": "0x14617bc08",
+        "owner": "0x14010ae80",
+        "end": "0x14010cb9d",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x60706cf]"
+      },
+      {
+        "kind": "White Devilsaur UI",
+        "site": "0x14010b53d",
+        "target": "0x14617bc2c",
+        "owner": "0x14010ae80",
+        "end": "0x14010cb9d",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x60706e8]"
+      },
+      {
+        "kind": "White Devilsaur UI",
+        "site": "0x14010b8a1",
+        "target": "0x14617bc2e",
+        "owner": "0x14010ae80",
+        "end": "0x14010cb9d",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x6070386]"
+      },
+      {
+        "kind": "White Devilsaur UI",
+        "site": "0x14010b920",
+        "target": "0x14617bc32",
+        "owner": "0x14010ae80",
+        "end": "0x14010cb9d",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x607030b]"
+      },
+      {
+        "kind": "White Devilsaur UI",
+        "site": "0x14010b955",
+        "target": "0x14617bc50",
+        "owner": "0x14010ae80",
+        "end": "0x14010cb9d",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x60702f4]"
+      },
+      {
+        "kind": "White Devilsaur UI",
+        "site": "0x14010b99a",
+        "target": "0x14617bc70",
+        "owner": "0x14010ae80",
+        "end": "0x14010cb9d",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x60702cf]"
+      },
+      {
+        "kind": "White Devilsaur UI",
+        "site": "0x14010b9de",
+        "target": "0x14617bc90",
+        "owner": "0x14010ae80",
+        "end": "0x14010cb9d",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x60702ab]"
+      },
+      {
+        "kind": "White Devilsaur UI",
+        "site": "0x14010ba0c",
+        "target": "0x14617bc50",
+        "owner": "0x14010ae80",
+        "end": "0x14010cb9d",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x607023d]"
+      },
+      {
+        "kind": "White Devilsaur UI",
+        "site": "0x14010bbb8",
+        "target": "0x14617bcb0",
+        "owner": "0x14010ae80",
+        "end": "0x14010cb9d",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x60700f1]"
+      },
+      {
+        "kind": "White Devilsaur UI",
+        "site": "0x14010beee",
+        "target": "0x14617bcc8",
+        "owner": "0x14010ae80",
+        "end": "0x14010cb9d",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x606fdd3]"
+      },
+      {
+        "kind": "White Devilsaur UI",
+        "site": "0x14010bfa5",
+        "target": "0x14617bd21",
+        "owner": "0x14010ae80",
+        "end": "0x14010cb9d",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x606fd75]"
+      },
+      {
+        "kind": "White Devilsaur UI",
+        "site": "0x14010c13e",
+        "target": "0x14617bd40",
+        "owner": "0x14010ae80",
+        "end": "0x14010cb9d",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x606fbfb]"
+      },
+      {
+        "kind": "White Devilsaur UI",
+        "site": "0x14010c738",
+        "target": "0x14617bcd2",
+        "owner": "0x14010ae80",
+        "end": "0x14010cb9d",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x606f593]"
+      },
+      {
+        "kind": "White Devilsaur UI",
+        "site": "0x14010cb87",
+        "target": "0x14617bbd0",
+        "owner": "0x14010ae80",
+        "end": "0x14010cb9d",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea r8, [rip + 0x606f042]"
+      },
+      {
+        "kind": "White Devilsaur UI",
+        "site": "0x14010d16a",
+        "target": "0x14617bb82",
+        "owner": "0x14010ce70",
+        "end": "0x14010d5e1",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea r8, [rip + 0x606ea11]"
+      },
+      {
+        "kind": "White Devilsaur UI",
+        "site": "0x14010d464",
+        "target": "0x14617ba50",
+        "owner": "0x14010ce70",
+        "end": "0x14010d5e1",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x606e5e5]"
+      },
+      {
+        "kind": "White Devilsaur UI",
+        "site": "0x14011a888",
+        "target": "0x14617ba50",
+        "owner": "0x14011a2b0",
+        "end": "0x14011ab3f",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x60611c1]"
+      },
+      {
+        "kind": "new Discord",
+        "site": "0x140146bb1",
+        "target": "0x14617eef4",
+        "owner": "0x140146180",
+        "end": "0x140147211",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x603833c]"
+      },
+      {
+        "kind": "White Devilsaur pet",
+        "site": "0x145a85a5f",
+        "target": "0x1472c2fb0",
+        "owner": "0x145a85a20",
+        "end": "0x145a85b74",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x183d54a]"
+      },
+      {
+        "kind": "United Front",
+        "site": "0x145ac4f4e",
+        "target": "0x1475cb140",
+        "owner": "0x145ac4e00",
+        "end": "0x145ac505b",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1b061eb]"
+      },
+      {
+        "kind": "White Devilsaur pet",
+        "site": "0x145afb525",
+        "target": "0x1472c2fc0",
+        "owner": "0x145af93e0",
+        "end": "0x145afc03c",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x17c7a94]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b3bcca",
+        "target": "0x1475c6a18",
+        "owner": "0x145b3b570",
+        "end": "0x145b3be19",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rdx, [rip + 0x1a8ad47]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b3bd0d",
+        "target": "0x1475c6a18",
+        "owner": "0x145b3b570",
+        "end": "0x145b3be19",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rdx, [rip + 0x1a8ad04]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b42a75",
+        "target": "0x1475c6b35",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x1a840b9]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b42e61",
+        "target": "0x1475c688f",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a83a27]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b4311d",
+        "target": "0x1475c6dee",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a83cca]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b4335d",
+        "target": "0x1475c6a81",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a8371d]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b4443d",
+        "target": "0x1475c6690",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x1a8224c]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b44488",
+        "target": "0x1475c669f",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x1a82210]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b444d3",
+        "target": "0x1475c66ea",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x1a82210]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b4451e",
+        "target": "0x1475c66f8",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x1a821d3]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b44569",
+        "target": "0x1475c6763",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x1a821f3]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b445b4",
+        "target": "0x1475c6779",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x1a821be]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b445ff",
+        "target": "0x1475c6827",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x1a82221]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b4464a",
+        "target": "0x1475c6837",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x1a821e6]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b44695",
+        "target": "0x1475c68ac",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x1a82210]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b446e0",
+        "target": "0x1475c68c1",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x1a821da]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b4472b",
+        "target": "0x1475c692f",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x1a821fd]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b44776",
+        "target": "0x1475c694f",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x1a821d2]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b447c1",
+        "target": "0x1475c69af",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x1a821e7]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b4480c",
+        "target": "0x1475c69bb",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x1a821a8]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b44857",
+        "target": "0x1475c6a31",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x1a821d3]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b448a2",
+        "target": "0x1475c6a3e",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x1a82195]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b448ed",
+        "target": "0x1475c6a9a",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x1a821a6]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b44938",
+        "target": "0x1475c6aa9",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x1a8216a]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b44983",
+        "target": "0x1475c6b46",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x1a821bc]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b449ce",
+        "target": "0x1475c6b56",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x1a82181]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b44a19",
+        "target": "0x1475c6c26",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x1a82206]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b44a64",
+        "target": "0x1475c6c33",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x1a821c8]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b44aaf",
+        "target": "0x1475c6cab",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x1a821f5]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b44afa",
+        "target": "0x1475c6cbc",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rsi, [rip + 0x1a821bb]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b44b33",
+        "target": "0x1475c6d7b",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rcx, [rip + 0x1a82241]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b44b7e",
+        "target": "0x1475c6d97",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea r15, [rip + 0x1a82212]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b44bb7",
+        "target": "0x1475c6e09",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea r13, [rip + 0x1a8224b]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b44bd2",
+        "target": "0x1475c6e1d",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rdi, [rip + 0x1a82244]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b44c18",
+        "target": "0x1475c66c1",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a81aa2]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b44c57",
+        "target": "0x1475c66ce",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a81a70]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b44c75",
+        "target": "0x1475c673b",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a81abf]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b44cb7",
+        "target": "0x1475c674b",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a81a8d]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b44d05",
+        "target": "0x1475c67fc",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a81af0]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b44d56",
+        "target": "0x1475c680f",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a81ab2]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b44d91",
+        "target": "0x1475c67f8",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a81a60]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b44db5",
+        "target": "0x1475c67ec",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a81a30]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b44dd5",
+        "target": "0x1475c6886",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a81aaa]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b44e26",
+        "target": "0x1475c688f",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a81a62]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b44e74",
+        "target": "0x1475c690c",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a81a91]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b44ec5",
+        "target": "0x1475c691c",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a81a50]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b44f21",
+        "target": "0x1475c698b",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a81a63]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b44f72",
+        "target": "0x1475c6994",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a81a1b]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b44faa",
+        "target": "0x1475c6983",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a819d2]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b44fce",
+        "target": "0x1475c6a18",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a81a43]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b4501f",
+        "target": "0x1475c6a21",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a819fb]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b45049",
+        "target": "0x1475c69f8",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a819a8]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b45062",
+        "target": "0x1475c6a74",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a81a0b]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b450b3",
+        "target": "0x1475c6a81",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a819c7]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b450eb",
+        "target": "0x1475c6a6e",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a8197c]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b45116",
+        "target": "0x1475c6b28",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a81a0b]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b45167",
+        "target": "0x1475c6b35",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a819c7]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b451a2",
+        "target": "0x1475c6b24",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a8197b]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b451c6",
+        "target": "0x1475c6b17",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a8194a]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b451e6",
+        "target": "0x1475c6c04",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a81a17]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b45237",
+        "target": "0x1475c6c12",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a819d4]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b45272",
+        "target": "0x1475c6c00",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a81987]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b45296",
+        "target": "0x1475c6bf3",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a81956]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b452b6",
+        "target": "0x1475c6c80",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a819c3]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b45307",
+        "target": "0x1475c6c92",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a81984]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b45331",
+        "target": "0x1475c6c60",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a81928]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b4534a",
+        "target": "0x1475c6d58",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a81a07]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b45394",
+        "target": "0x1475c6d64",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a819c9]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b453cf",
+        "target": "0x1475c6d50",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a8197a]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b453f3",
+        "target": "0x1475c6d45",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a8194b]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b45413",
+        "target": "0x1475c6de2",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a819c8]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b4545d",
+        "target": "0x1475c6dee",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a8198a]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b454b9",
+        "target": "0x1475c6e55",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a81995]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b454ee",
+        "target": "0x1475c6e5d",
+        "owner": "0x145b3f980",
+        "end": "0x145b45d51",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a81968]"
+      },
+      {
+        "kind": "United Front",
+        "site": "0x145b4a835",
+        "target": "0x1475cb140",
+        "owner": "0x145b4a810",
+        "end": "0x145b4a9ef",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea r12, [rip + 0x1a80904]"
+      },
+      {
+        "kind": "White Devilsaur pet",
+        "site": "0x145b4a860",
+        "target": "0x1472c3000",
+        "owner": "0x145b4a810",
+        "end": "0x145b4a9ef",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea r12, [rip + 0x1778799]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b4a8be",
+        "target": "0x1475c6a18",
+        "owner": "0x145b4a810",
+        "end": "0x145b4a9ef",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea r8, [rip + 0x1a7c153]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b4a8fb",
+        "target": "0x1475c6a74",
+        "owner": "0x145b4a810",
+        "end": "0x145b4a9ef",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea r8, [rip + 0x1a7c172]"
+      },
+      {
+        "kind": "coop-achievement-descriptors",
+        "site": "0x145b4a926",
+        "target": "0x1475c6a81",
+        "owner": "0x145b4a810",
+        "end": "0x145b4a9ef",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a7c154]"
+      },
+      {
+        "kind": "United Front",
+        "site": "0x145b4a97e",
+        "target": "0x1475cb140",
+        "owner": "0x145b4a810",
+        "end": "0x145b4a9ef",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rax, [rip + 0x1a807bb]"
+      },
+      {
+        "kind": "White Devilsaur pet",
+        "site": "0x145bc0649",
+        "target": "0x1472c2fc0",
+        "owner": "0x145bc0230",
+        "end": "0x145bc1300",
+        "decoded_from_unwind_start": true,
+        "instruction": "lea rdi, [rip + 0x1702970]"
+      }
+    ],
+    "inline_literal_owners": [
+      {
+        "kind": "inline coopbeat literal",
+        "site": "0x145c0e72a",
+        "owner": "0x145c0e650",
+        "end": "0x145c0e8ae"
+      }
+    ],
+    "limits": [
+      "Only selected RIP-relative LEA forms were searched; no complete direct/indirect reference closure.",
+      "Declared owner association requires decode from the selected unwind start; undecoded candidates remain explicit."
+    ]
+  },
+  "query_receipts": [
+    {
+      "extract": {
+        "label": "coopbeat-parser",
+        "va": "0x145c0e650",
+        "end_exclusive": "0x145c0e8ae",
+        "file_offset": "0x5c0da50",
+        "size": 606,
+        "sha256": "ad075fb5cb5d4509bcf2d965ffba2ddf49b5b77d13088b49c51a934e013067e1",
+        "path": "runtime/0.117.0/release-review/coopbeat-parser.bin",
+        "plan": "runtime/0.117.0/release-review/coopbeat-parser-plan.json"
+      },
+      "plan_path": "runtime/0.117.0/release-review/coopbeat-parser-plan.json",
+      "plan_sha256": "f9fc43f0cfeca1621773a227c0badca62567b498046808685da1ac6816c8b8b8",
+      "result_path": "runtime/0.117.0/release-review/coopbeat-parser-query/results/edc6dbcbcb7a40006f93635a37be260ea733854dfcf39d26fd2e64a18ec2a450.json",
+      "result_sha256": "5c31e8cec0e559ea53e3894df4f015af8da14280262a45aabf0f17f8dd6ca33e",
+      "evidence_id": "ev_a727c48e5c987953d0ce5eb004151696709d26cb1a5f9b7f1b3c0d29be3cc53c",
+      "analysis_profile_digest": "d3d30b730e26ac48a39983cb5fa63b97000ed308b2b2d2732a33e5b942bd29c6",
+      "normalized_pseudocode_sha256": "34f4f20aa73445cfd858db09082c4d0cb2274659772aa0bf775d417c1f2356f8",
+      "analysis_scope": "raw-slice; data/callers/external callees and ABI unresolved"
+    },
+    {
+      "extract": {
+        "label": "united-front-text",
+        "va": "0x145ac4e00",
+        "end_exclusive": "0x145ac505b",
+        "file_offset": "0x5ac4200",
+        "size": 603,
+        "sha256": "94dabb04b6b9e4763a690b6121d54866aa266cc0b3134f1c90052de3f1b42e6d",
+        "path": "runtime/0.117.0/release-review/united-front-text.bin",
+        "plan": "runtime/0.117.0/release-review/united-front-text-plan.json"
+      },
+      "plan_path": "runtime/0.117.0/release-review/united-front-text-plan.json",
+      "plan_sha256": "51f7dec05d0677d218722dcb5514211dc27232e74bacd8fe1f786132902ff5b0",
+      "result_path": "runtime/0.117.0/release-review/united-front-text-query/results/04f6545231c629cd782ca7b49069023b13b2ce9c97166ac8547d35af897e99f5.json",
+      "result_sha256": "5937905ef72816d882e1060bb0d82a19f634d50036e4978acaec9033d1ec13b3",
+      "evidence_id": "ev_fc0c73c1423a5521b163da46d1a001f0f540107bd8c334bb87a6c2dec41e9b5c",
+      "analysis_profile_digest": "91278510462eaba7ee6e468b1418fd8a030db89cf00b46cd72e506b6330db944",
+      "normalized_pseudocode_sha256": "8648747652eea678437046b236ab15c658a01070a96697e1694472722cc659b8",
+      "analysis_scope": "raw-slice; data/callers/external callees and ABI unresolved"
+    }
+  ],
+  "checks": {
+    "target_sha256_verified": true,
+    "all_declared_cosmetic_copies_agree": true,
+    "all_declared_companion_copies_agree": true,
+    "all_declared_tabard_copies_agree": true,
+    "all_14_achievement_name_description_key_spans_match": true
+  },
+  "limits": [
+    "English achievement text is recovered as data; its conditions are not inferred to be the executable predicates.",
+    "Record layouts were rechecked with complete pointer/length and scalar fields against the bytes; live descriptor consumer semantics and all table populations remain pending.",
+    "Selected LEAs decode from their current unwind starts; bounded scanning is not whole-image graph/reference closure.",
+    "Raw Ghidra slices omit full PE/data/callers/callees and use caller-supplied architecture/address with generic ABI; pseudocode is supporting context.",
+    "Source review and byte verification run no original or rebuilt application and no compiling tests.",
+    "The supplied site Discord change is not an inspected website deployment; no site assets were authorized as reference input."
+  ],
+  "discord_invite_repair": {
+    "finding_id": 112,
+    "source_change": {
+      "path": "crates/azeroth-survivors-re/src/menu.rs",
+      "prior_sha256": "5083d0a8ad364b3ac54f4354fa316a2739b7dc26006143c3e5398fa250d63375",
+      "sha256": "79ef862f816a38ddefab9af1f25b10c8f6a1866e30f14762fa115ed068298fc0",
+      "removed": "https://discord.gg/UzxaZuSAk",
+      "added": "https://discord.gg/azerothsurvivors"
+    },
+    "action_tag": 12,
+    "dispatch": {
+      "va": "0x1401467d4",
+      "end_exclusive": "0x1401467e7",
+      "file_offset": "0x145bd4",
+      "byte_count": 19,
+      "sha256": "dfe33cfba3664b9aa22f29f4f997df28e09b095c399bc1508f75d331644a71a1"
+    },
+    "table_base": "0x146180e60",
+    "table_entry": {
+      "va": "0x146180e90",
+      "end_exclusive": "0x146180e94",
+      "file_offset": "0x617f890",
+      "byte_count": 4,
+      "sha256": "fdd64f41562ebc27144f2369655cdbd8648da473683db95f1ba055b945821733"
+    },
+    "community_branch": {
+      "va": "0x140146bac",
+      "end_exclusive": "0x140146bbd",
+      "file_offset": "0x145fac",
+      "byte_count": 17,
+      "sha256": "1069fa15bb6529737bf85a14a6a92589f7d2ac0942869b8c48d6895a1a0e7ef5"
+    },
+    "shared_call": {
+      "va": "0x140146c65",
+      "end_exclusive": "0x140146c6a",
+      "file_offset": "0x146065",
+      "byte_count": 5,
+      "sha256": "a253004ec0c56744de40a510185593421b226cc24d1a0cff4a0b9eb9d58b058f"
+    },
+    "helper_setup": {
+      "va": "0x14013fc6e",
+      "end_exclusive": "0x14013fcb8",
+      "file_offset": "0x13f06e",
+      "byte_count": 74,
+      "sha256": "c80c58c697d848e2e720ea191f82f6198aae74620e6901628e909c22ccc94e7c"
+    },
+    "opener_command": {
+      "va": "0x14617f55d",
+      "end_exclusive": "0x14617f565",
+      "file_offset": "0x617df5d",
+      "byte_count": 8,
+      "sha256": "1c467339c960a107ab9ee5ff63b38009797416c964f988b224710773cc38796a",
+      "text": "explorer"
+    },
+    "destination_literal_index": 6,
+    "query_receipts": [
+      {
+        "extract": {
+          "va": "0x140146180",
+          "end_exclusive": "0x140147211",
+          "file_offset": "0x145580",
+          "sha256": "e7b3a364b4e59a3e92105b9c7a29e00948b890e4f92305b7f0fed45c8bb35041",
+          "size": 4241,
+          "label": "discord-menu-actions",
+          "path": "runtime/0.117.0/discord-invite/menu-actions.bin"
+        },
+        "plan_path": "runtime/0.117.0/discord-invite/menu-actions-plan.json",
+        "plan_sha256": "e8caaeb76c7decc032f45e2280cab0952eda75a096de6dffbdd41070b16510b9",
+        "result_path": "runtime/0.117.0/discord-invite/menu-actions-query/results/7a8452ac5a3cedef06eb140fb0bc39c606d4cc371aa74d8fd121969fbdfa335e.json",
+        "result_sha256": "6f3c46d27e200dfe490682e09830babb226311c7be63ed65cc68a66d7f5b0979",
+        "evidence_id": "ev_b5b305db04a2814366e303c2ceded93925a79d57b543eeab42c214f0634e9134",
+        "analysis_profile_digest": "b7bff729d98dcda39079e9e14f7f0a60e43506844d4f9d7801d44ad8ea609751",
+        "normalized_pseudocode_sha256": "1890b08818a975beffc4d4c65b5237e7d2656491820b6d3ef36dc3e470a0f59f",
+        "analysis_scope": "raw-slice; omitted data/table/external callees and inferred ABI are checked only at the selected original-PE instruction boundaries"
+      },
+      {
+        "extract": {
+          "va": "0x14013fc50",
+          "end_exclusive": "0x14013fe2d",
+          "file_offset": "0x13f050",
+          "sha256": "293094455f3ba2760cc92389f85e1c5476b6ef6d1527be38272799f4f1efbbcd",
+          "size": 477,
+          "label": "discord-url-opener",
+          "path": "runtime/0.117.0/discord-invite/url-opener.bin"
+        },
+        "plan_path": "runtime/0.117.0/discord-invite/url-opener-plan.json",
+        "plan_sha256": "82a338767ba573e9e30b28f5a5363cfd58c2589f3eb639a40c974d6a823a555e",
+        "result_path": "runtime/0.117.0/discord-invite/url-opener-query/results/d4e5f1faab6206fa9db2f289144ef24534694fade6c1e7bda15af1817bd4970b.json",
+        "result_sha256": "77ee32c891e66bbedf1efce0187197c6ef00918da34be8f4a4106d8ea78dd9a0",
+        "evidence_id": "ev_02416f08ce8b4485621110bf9f53f6c538b8db7e038f7461e56035d56fc286d2",
+        "analysis_profile_digest": "3f430fd198427c28e040fe1b49fa2b0864cfa98ef9cc8fc1c2e57f2cafc6b5cb",
+        "normalized_pseudocode_sha256": "d92abaee1a4ad9f4f9cdf2bca29b16282808390ab9d6838f5363245fe4974a7b",
+        "analysis_scope": "raw-slice; omitted data/table/external callees and inferred ABI are checked only at the selected original-PE instruction boundaries"
+      }
+    ],
+    "limits": [
+      "Only the client Community action destination and shared URL-helper argument boundary are recovered and source-connected.",
+      "Raw Ghidra omits the menu jump table and guesses the ABI; original-PE instructions and signed table entry establish action 12, RCX destination and EDX length.",
+      "The external website source/deployment is unavailable here; no website link was changed or verified.",
+      "No URL opener, game, server, compilation or original/rebuilt comparison was executed."
+    ]
+  }
+}

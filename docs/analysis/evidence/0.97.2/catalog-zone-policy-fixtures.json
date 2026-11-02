@@ -1,0 +1,1755 @@
+{
+  "artifact": {
+    "path": "AzerothSurvivors/AzerothSurvivors-0.97.2.exe",
+    "size_bytes": 133231104,
+    "sha256": "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589"
+  },
+  "method": "Unchanged native x86_64 instructions in bounded Unicorn; unknown external calls abort; no OS/process/file/network calls reachable.",
+  "emulator": {
+    "name": "Unicorn",
+    "version": "2.1.4"
+  },
+  "native_bodies": [
+    {
+      "virtual_address": "0x145427250",
+      "end_virtual_address_exclusive": "0x145427297",
+      "file_offset": "0x5426650",
+      "length_bytes": 71,
+      "raw_hex": "488b4120488b492848c1e1044531c0904c39c1742c4d8d4810423814004d89c875ee4a8b4408f84883f80cb90c000000480f42c84885c0b801000000480f45c1c3b801000000c3",
+      "sha256": "e734956e40de4e6177354476fc0ca951307a7973db4cee638a034f5480f8acd6"
+    },
+    {
+      "virtual_address": "0x14541d7f0",
+      "end_virtual_address_exclusive": "0x14541d987",
+      "file_offset": "0x541cbf0",
+      "length_bytes": 407,
+      "raw_hex": "554157415641545657534883ec30488d6c243048c745f8feffffff4d89c44889d34889ce450fb67038498b7820498b50284889f9e8f70fffff488b4b20488b532848c1e2044531c00f1f8400000000004c39c274374d8d4810463834014d89c875ee4e8b4409f84983f80c41b90c0000004d0f42c84d85c041b8010000004d0f45c14c39c07314e9af00000041b8010000004c39c00f82a000000031c04531c04c39c2742b4d8d4810463834014d89c875ee4a8b4c09f84885c974124883f90cb80c000000480f42c148ffc8eb0231c04869c0f0000000488d0d6a8b2f014c8b7c0808488b5c0810e82349befaba010000004889d9e8d648befa4885c00f84800000004989c64889c14c89fa4989d8e8d9943300498b5424184885d2740e41b8010000004889f9e8b448befa49895c24184d8974242049895c2428410f100424498b442410498b4c2418498b5424204d8b442428410f104c24300f114e30488956204c8946284889461048894e180f11064889f04883c4305b5f5e415c415e415f5dc34c8965f0b9010000004889dae897984c00900f0b",
+      "sha256": "7e580bced199029fdf46f8f8c349abcb84f615f8bbd2e52f5f20912134e23e31"
+    }
+  ],
+  "count_checks": 81,
+  "selection_checks": 216,
+  "external_stub_calls": {
+    "0x14540e820": 216,
+    "0x140002200": 78,
+    "0x1400021c0": 78,
+    "0x145756ddd": 78,
+    "0x1400021d0": 78
+  },
+  "external_stubs": {
+    "0x14540e820": "Return caller-selected existing zone index; key lookup is outside this fixture's boundary.",
+    "0x140002200": "Allocator diagnostic/no-op",
+    "0x1400021c0": "Return bounded in-memory allocation",
+    "0x1400021d0": "No-op deallocation of fixture memory",
+    "0x145756ddd": "Bounded memcpy"
+  },
+  "limits": [
+    "Selected-zone lookup is deliberately stubbed; every supplied index selects an existing native row.",
+    "Fixtures exercise the count and replacement policy only; save parsing, migration and rendered interaction are outside the boundary."
+  ],
+  "count_cases": [
+    {
+      "class_id": 1,
+      "stored_unlock": null,
+      "native_open_zones": 1
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 0,
+      "native_open_zones": 1
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 1,
+      "native_open_zones": 1
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 9,
+      "native_open_zones": 9
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 10,
+      "native_open_zones": 10
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 11,
+      "native_open_zones": 11
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 12,
+      "native_open_zones": 12
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 13,
+      "native_open_zones": 12
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 18446744073709551615,
+      "native_open_zones": 12
+    },
+    {
+      "class_id": 2,
+      "stored_unlock": null,
+      "native_open_zones": 1
+    },
+    {
+      "class_id": 2,
+      "stored_unlock": 0,
+      "native_open_zones": 1
+    },
+    {
+      "class_id": 2,
+      "stored_unlock": 1,
+      "native_open_zones": 1
+    },
+    {
+      "class_id": 2,
+      "stored_unlock": 9,
+      "native_open_zones": 9
+    },
+    {
+      "class_id": 2,
+      "stored_unlock": 10,
+      "native_open_zones": 10
+    },
+    {
+      "class_id": 2,
+      "stored_unlock": 11,
+      "native_open_zones": 11
+    },
+    {
+      "class_id": 2,
+      "stored_unlock": 12,
+      "native_open_zones": 12
+    },
+    {
+      "class_id": 2,
+      "stored_unlock": 13,
+      "native_open_zones": 12
+    },
+    {
+      "class_id": 2,
+      "stored_unlock": 18446744073709551615,
+      "native_open_zones": 12
+    },
+    {
+      "class_id": 3,
+      "stored_unlock": null,
+      "native_open_zones": 1
+    },
+    {
+      "class_id": 3,
+      "stored_unlock": 0,
+      "native_open_zones": 1
+    },
+    {
+      "class_id": 3,
+      "stored_unlock": 1,
+      "native_open_zones": 1
+    },
+    {
+      "class_id": 3,
+      "stored_unlock": 9,
+      "native_open_zones": 9
+    },
+    {
+      "class_id": 3,
+      "stored_unlock": 10,
+      "native_open_zones": 10
+    },
+    {
+      "class_id": 3,
+      "stored_unlock": 11,
+      "native_open_zones": 11
+    },
+    {
+      "class_id": 3,
+      "stored_unlock": 12,
+      "native_open_zones": 12
+    },
+    {
+      "class_id": 3,
+      "stored_unlock": 13,
+      "native_open_zones": 12
+    },
+    {
+      "class_id": 3,
+      "stored_unlock": 18446744073709551615,
+      "native_open_zones": 12
+    },
+    {
+      "class_id": 4,
+      "stored_unlock": null,
+      "native_open_zones": 1
+    },
+    {
+      "class_id": 4,
+      "stored_unlock": 0,
+      "native_open_zones": 1
+    },
+    {
+      "class_id": 4,
+      "stored_unlock": 1,
+      "native_open_zones": 1
+    },
+    {
+      "class_id": 4,
+      "stored_unlock": 9,
+      "native_open_zones": 9
+    },
+    {
+      "class_id": 4,
+      "stored_unlock": 10,
+      "native_open_zones": 10
+    },
+    {
+      "class_id": 4,
+      "stored_unlock": 11,
+      "native_open_zones": 11
+    },
+    {
+      "class_id": 4,
+      "stored_unlock": 12,
+      "native_open_zones": 12
+    },
+    {
+      "class_id": 4,
+      "stored_unlock": 13,
+      "native_open_zones": 12
+    },
+    {
+      "class_id": 4,
+      "stored_unlock": 18446744073709551615,
+      "native_open_zones": 12
+    },
+    {
+      "class_id": 5,
+      "stored_unlock": null,
+      "native_open_zones": 1
+    },
+    {
+      "class_id": 5,
+      "stored_unlock": 0,
+      "native_open_zones": 1
+    },
+    {
+      "class_id": 5,
+      "stored_unlock": 1,
+      "native_open_zones": 1
+    },
+    {
+      "class_id": 5,
+      "stored_unlock": 9,
+      "native_open_zones": 9
+    },
+    {
+      "class_id": 5,
+      "stored_unlock": 10,
+      "native_open_zones": 10
+    },
+    {
+      "class_id": 5,
+      "stored_unlock": 11,
+      "native_open_zones": 11
+    },
+    {
+      "class_id": 5,
+      "stored_unlock": 12,
+      "native_open_zones": 12
+    },
+    {
+      "class_id": 5,
+      "stored_unlock": 13,
+      "native_open_zones": 12
+    },
+    {
+      "class_id": 5,
+      "stored_unlock": 18446744073709551615,
+      "native_open_zones": 12
+    },
+    {
+      "class_id": 7,
+      "stored_unlock": null,
+      "native_open_zones": 1
+    },
+    {
+      "class_id": 7,
+      "stored_unlock": 0,
+      "native_open_zones": 1
+    },
+    {
+      "class_id": 7,
+      "stored_unlock": 1,
+      "native_open_zones": 1
+    },
+    {
+      "class_id": 7,
+      "stored_unlock": 9,
+      "native_open_zones": 9
+    },
+    {
+      "class_id": 7,
+      "stored_unlock": 10,
+      "native_open_zones": 10
+    },
+    {
+      "class_id": 7,
+      "stored_unlock": 11,
+      "native_open_zones": 11
+    },
+    {
+      "class_id": 7,
+      "stored_unlock": 12,
+      "native_open_zones": 12
+    },
+    {
+      "class_id": 7,
+      "stored_unlock": 13,
+      "native_open_zones": 12
+    },
+    {
+      "class_id": 7,
+      "stored_unlock": 18446744073709551615,
+      "native_open_zones": 12
+    },
+    {
+      "class_id": 8,
+      "stored_unlock": null,
+      "native_open_zones": 1
+    },
+    {
+      "class_id": 8,
+      "stored_unlock": 0,
+      "native_open_zones": 1
+    },
+    {
+      "class_id": 8,
+      "stored_unlock": 1,
+      "native_open_zones": 1
+    },
+    {
+      "class_id": 8,
+      "stored_unlock": 9,
+      "native_open_zones": 9
+    },
+    {
+      "class_id": 8,
+      "stored_unlock": 10,
+      "native_open_zones": 10
+    },
+    {
+      "class_id": 8,
+      "stored_unlock": 11,
+      "native_open_zones": 11
+    },
+    {
+      "class_id": 8,
+      "stored_unlock": 12,
+      "native_open_zones": 12
+    },
+    {
+      "class_id": 8,
+      "stored_unlock": 13,
+      "native_open_zones": 12
+    },
+    {
+      "class_id": 8,
+      "stored_unlock": 18446744073709551615,
+      "native_open_zones": 12
+    },
+    {
+      "class_id": 9,
+      "stored_unlock": null,
+      "native_open_zones": 1
+    },
+    {
+      "class_id": 9,
+      "stored_unlock": 0,
+      "native_open_zones": 1
+    },
+    {
+      "class_id": 9,
+      "stored_unlock": 1,
+      "native_open_zones": 1
+    },
+    {
+      "class_id": 9,
+      "stored_unlock": 9,
+      "native_open_zones": 9
+    },
+    {
+      "class_id": 9,
+      "stored_unlock": 10,
+      "native_open_zones": 10
+    },
+    {
+      "class_id": 9,
+      "stored_unlock": 11,
+      "native_open_zones": 11
+    },
+    {
+      "class_id": 9,
+      "stored_unlock": 12,
+      "native_open_zones": 12
+    },
+    {
+      "class_id": 9,
+      "stored_unlock": 13,
+      "native_open_zones": 12
+    },
+    {
+      "class_id": 9,
+      "stored_unlock": 18446744073709551615,
+      "native_open_zones": 12
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": null,
+      "native_open_zones": 1
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 0,
+      "native_open_zones": 1
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 1,
+      "native_open_zones": 1
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 9,
+      "native_open_zones": 9
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 10,
+      "native_open_zones": 10
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 11,
+      "native_open_zones": 11
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 12,
+      "native_open_zones": 12
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 13,
+      "native_open_zones": 12
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 18446744073709551615,
+      "native_open_zones": 12
+    }
+  ],
+  "selection_cases": [
+    {
+      "class_id": 1,
+      "stored_unlock": null,
+      "input_zone_index": 0,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": null,
+      "input_zone_index": 1,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": null,
+      "input_zone_index": 2,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": null,
+      "input_zone_index": 3,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": null,
+      "input_zone_index": 4,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": null,
+      "input_zone_index": 5,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": null,
+      "input_zone_index": 6,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": null,
+      "input_zone_index": 7,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": null,
+      "input_zone_index": 8,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": null,
+      "input_zone_index": 9,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": null,
+      "input_zone_index": 10,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": null,
+      "input_zone_index": 11,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 0,
+      "input_zone_index": 0,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 0,
+      "input_zone_index": 1,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 0,
+      "input_zone_index": 2,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 0,
+      "input_zone_index": 3,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 0,
+      "input_zone_index": 4,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 0,
+      "input_zone_index": 5,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 0,
+      "input_zone_index": 6,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 0,
+      "input_zone_index": 7,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 0,
+      "input_zone_index": 8,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 0,
+      "input_zone_index": 9,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 0,
+      "input_zone_index": 10,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 0,
+      "input_zone_index": 11,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 1,
+      "input_zone_index": 0,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 1,
+      "input_zone_index": 1,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 1,
+      "input_zone_index": 2,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 1,
+      "input_zone_index": 3,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 1,
+      "input_zone_index": 4,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 1,
+      "input_zone_index": 5,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 1,
+      "input_zone_index": 6,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 1,
+      "input_zone_index": 7,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 1,
+      "input_zone_index": 8,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 1,
+      "input_zone_index": 9,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 1,
+      "input_zone_index": 10,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 1,
+      "input_zone_index": 11,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 9,
+      "input_zone_index": 0,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 9,
+      "input_zone_index": 1,
+      "native_zone_key": "duskwood"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 9,
+      "input_zone_index": 2,
+      "native_zone_key": "wsg"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 9,
+      "input_zone_index": 3,
+      "native_zone_key": "ungoro"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 9,
+      "input_zone_index": 4,
+      "native_zone_key": "ab"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 9,
+      "input_zone_index": 5,
+      "native_zone_key": "feralas"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 9,
+      "input_zone_index": 6,
+      "native_zone_key": "arena"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 9,
+      "input_zone_index": 7,
+      "native_zone_key": "sm"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 9,
+      "input_zone_index": 8,
+      "native_zone_key": "av"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 9,
+      "input_zone_index": 9,
+      "native_zone_key": "av"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 9,
+      "input_zone_index": 10,
+      "native_zone_key": "av"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 9,
+      "input_zone_index": 11,
+      "native_zone_key": "av"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 10,
+      "input_zone_index": 0,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 10,
+      "input_zone_index": 1,
+      "native_zone_key": "duskwood"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 10,
+      "input_zone_index": 2,
+      "native_zone_key": "wsg"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 10,
+      "input_zone_index": 3,
+      "native_zone_key": "ungoro"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 10,
+      "input_zone_index": 4,
+      "native_zone_key": "ab"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 10,
+      "input_zone_index": 5,
+      "native_zone_key": "feralas"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 10,
+      "input_zone_index": 6,
+      "native_zone_key": "arena"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 10,
+      "input_zone_index": 7,
+      "native_zone_key": "sm"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 10,
+      "input_zone_index": 8,
+      "native_zone_key": "av"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 10,
+      "input_zone_index": 9,
+      "native_zone_key": "brm"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 10,
+      "input_zone_index": 10,
+      "native_zone_key": "brm"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 10,
+      "input_zone_index": 11,
+      "native_zone_key": "brm"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 11,
+      "input_zone_index": 0,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 11,
+      "input_zone_index": 1,
+      "native_zone_key": "duskwood"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 11,
+      "input_zone_index": 2,
+      "native_zone_key": "wsg"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 11,
+      "input_zone_index": 3,
+      "native_zone_key": "ungoro"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 11,
+      "input_zone_index": 4,
+      "native_zone_key": "ab"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 11,
+      "input_zone_index": 5,
+      "native_zone_key": "feralas"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 11,
+      "input_zone_index": 6,
+      "native_zone_key": "arena"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 11,
+      "input_zone_index": 7,
+      "native_zone_key": "sm"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 11,
+      "input_zone_index": 8,
+      "native_zone_key": "av"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 11,
+      "input_zone_index": 9,
+      "native_zone_key": "brm"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 11,
+      "input_zone_index": 10,
+      "native_zone_key": "aq"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 11,
+      "input_zone_index": 11,
+      "native_zone_key": "aq"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 12,
+      "input_zone_index": 0,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 12,
+      "input_zone_index": 1,
+      "native_zone_key": "duskwood"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 12,
+      "input_zone_index": 2,
+      "native_zone_key": "wsg"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 12,
+      "input_zone_index": 3,
+      "native_zone_key": "ungoro"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 12,
+      "input_zone_index": 4,
+      "native_zone_key": "ab"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 12,
+      "input_zone_index": 5,
+      "native_zone_key": "feralas"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 12,
+      "input_zone_index": 6,
+      "native_zone_key": "arena"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 12,
+      "input_zone_index": 7,
+      "native_zone_key": "sm"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 12,
+      "input_zone_index": 8,
+      "native_zone_key": "av"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 12,
+      "input_zone_index": 9,
+      "native_zone_key": "brm"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 12,
+      "input_zone_index": 10,
+      "native_zone_key": "aq"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 12,
+      "input_zone_index": 11,
+      "native_zone_key": "naxx"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 13,
+      "input_zone_index": 0,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 13,
+      "input_zone_index": 1,
+      "native_zone_key": "duskwood"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 13,
+      "input_zone_index": 2,
+      "native_zone_key": "wsg"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 13,
+      "input_zone_index": 3,
+      "native_zone_key": "ungoro"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 13,
+      "input_zone_index": 4,
+      "native_zone_key": "ab"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 13,
+      "input_zone_index": 5,
+      "native_zone_key": "feralas"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 13,
+      "input_zone_index": 6,
+      "native_zone_key": "arena"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 13,
+      "input_zone_index": 7,
+      "native_zone_key": "sm"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 13,
+      "input_zone_index": 8,
+      "native_zone_key": "av"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 13,
+      "input_zone_index": 9,
+      "native_zone_key": "brm"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 13,
+      "input_zone_index": 10,
+      "native_zone_key": "aq"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 13,
+      "input_zone_index": 11,
+      "native_zone_key": "naxx"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 18446744073709551615,
+      "input_zone_index": 0,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 18446744073709551615,
+      "input_zone_index": 1,
+      "native_zone_key": "duskwood"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 18446744073709551615,
+      "input_zone_index": 2,
+      "native_zone_key": "wsg"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 18446744073709551615,
+      "input_zone_index": 3,
+      "native_zone_key": "ungoro"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 18446744073709551615,
+      "input_zone_index": 4,
+      "native_zone_key": "ab"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 18446744073709551615,
+      "input_zone_index": 5,
+      "native_zone_key": "feralas"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 18446744073709551615,
+      "input_zone_index": 6,
+      "native_zone_key": "arena"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 18446744073709551615,
+      "input_zone_index": 7,
+      "native_zone_key": "sm"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 18446744073709551615,
+      "input_zone_index": 8,
+      "native_zone_key": "av"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 18446744073709551615,
+      "input_zone_index": 9,
+      "native_zone_key": "brm"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 18446744073709551615,
+      "input_zone_index": 10,
+      "native_zone_key": "aq"
+    },
+    {
+      "class_id": 1,
+      "stored_unlock": 18446744073709551615,
+      "input_zone_index": 11,
+      "native_zone_key": "naxx"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": null,
+      "input_zone_index": 0,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": null,
+      "input_zone_index": 1,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": null,
+      "input_zone_index": 2,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": null,
+      "input_zone_index": 3,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": null,
+      "input_zone_index": 4,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": null,
+      "input_zone_index": 5,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": null,
+      "input_zone_index": 6,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": null,
+      "input_zone_index": 7,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": null,
+      "input_zone_index": 8,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": null,
+      "input_zone_index": 9,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": null,
+      "input_zone_index": 10,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": null,
+      "input_zone_index": 11,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 0,
+      "input_zone_index": 0,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 0,
+      "input_zone_index": 1,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 0,
+      "input_zone_index": 2,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 0,
+      "input_zone_index": 3,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 0,
+      "input_zone_index": 4,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 0,
+      "input_zone_index": 5,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 0,
+      "input_zone_index": 6,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 0,
+      "input_zone_index": 7,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 0,
+      "input_zone_index": 8,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 0,
+      "input_zone_index": 9,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 0,
+      "input_zone_index": 10,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 0,
+      "input_zone_index": 11,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 1,
+      "input_zone_index": 0,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 1,
+      "input_zone_index": 1,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 1,
+      "input_zone_index": 2,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 1,
+      "input_zone_index": 3,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 1,
+      "input_zone_index": 4,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 1,
+      "input_zone_index": 5,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 1,
+      "input_zone_index": 6,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 1,
+      "input_zone_index": 7,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 1,
+      "input_zone_index": 8,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 1,
+      "input_zone_index": 9,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 1,
+      "input_zone_index": 10,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 1,
+      "input_zone_index": 11,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 9,
+      "input_zone_index": 0,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 9,
+      "input_zone_index": 1,
+      "native_zone_key": "duskwood"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 9,
+      "input_zone_index": 2,
+      "native_zone_key": "wsg"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 9,
+      "input_zone_index": 3,
+      "native_zone_key": "ungoro"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 9,
+      "input_zone_index": 4,
+      "native_zone_key": "ab"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 9,
+      "input_zone_index": 5,
+      "native_zone_key": "feralas"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 9,
+      "input_zone_index": 6,
+      "native_zone_key": "arena"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 9,
+      "input_zone_index": 7,
+      "native_zone_key": "sm"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 9,
+      "input_zone_index": 8,
+      "native_zone_key": "av"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 9,
+      "input_zone_index": 9,
+      "native_zone_key": "av"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 9,
+      "input_zone_index": 10,
+      "native_zone_key": "av"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 9,
+      "input_zone_index": 11,
+      "native_zone_key": "av"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 10,
+      "input_zone_index": 0,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 10,
+      "input_zone_index": 1,
+      "native_zone_key": "duskwood"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 10,
+      "input_zone_index": 2,
+      "native_zone_key": "wsg"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 10,
+      "input_zone_index": 3,
+      "native_zone_key": "ungoro"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 10,
+      "input_zone_index": 4,
+      "native_zone_key": "ab"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 10,
+      "input_zone_index": 5,
+      "native_zone_key": "feralas"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 10,
+      "input_zone_index": 6,
+      "native_zone_key": "arena"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 10,
+      "input_zone_index": 7,
+      "native_zone_key": "sm"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 10,
+      "input_zone_index": 8,
+      "native_zone_key": "av"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 10,
+      "input_zone_index": 9,
+      "native_zone_key": "brm"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 10,
+      "input_zone_index": 10,
+      "native_zone_key": "brm"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 10,
+      "input_zone_index": 11,
+      "native_zone_key": "brm"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 11,
+      "input_zone_index": 0,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 11,
+      "input_zone_index": 1,
+      "native_zone_key": "duskwood"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 11,
+      "input_zone_index": 2,
+      "native_zone_key": "wsg"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 11,
+      "input_zone_index": 3,
+      "native_zone_key": "ungoro"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 11,
+      "input_zone_index": 4,
+      "native_zone_key": "ab"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 11,
+      "input_zone_index": 5,
+      "native_zone_key": "feralas"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 11,
+      "input_zone_index": 6,
+      "native_zone_key": "arena"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 11,
+      "input_zone_index": 7,
+      "native_zone_key": "sm"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 11,
+      "input_zone_index": 8,
+      "native_zone_key": "av"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 11,
+      "input_zone_index": 9,
+      "native_zone_key": "brm"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 11,
+      "input_zone_index": 10,
+      "native_zone_key": "aq"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 11,
+      "input_zone_index": 11,
+      "native_zone_key": "aq"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 12,
+      "input_zone_index": 0,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 12,
+      "input_zone_index": 1,
+      "native_zone_key": "duskwood"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 12,
+      "input_zone_index": 2,
+      "native_zone_key": "wsg"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 12,
+      "input_zone_index": 3,
+      "native_zone_key": "ungoro"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 12,
+      "input_zone_index": 4,
+      "native_zone_key": "ab"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 12,
+      "input_zone_index": 5,
+      "native_zone_key": "feralas"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 12,
+      "input_zone_index": 6,
+      "native_zone_key": "arena"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 12,
+      "input_zone_index": 7,
+      "native_zone_key": "sm"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 12,
+      "input_zone_index": 8,
+      "native_zone_key": "av"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 12,
+      "input_zone_index": 9,
+      "native_zone_key": "brm"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 12,
+      "input_zone_index": 10,
+      "native_zone_key": "aq"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 12,
+      "input_zone_index": 11,
+      "native_zone_key": "naxx"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 13,
+      "input_zone_index": 0,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 13,
+      "input_zone_index": 1,
+      "native_zone_key": "duskwood"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 13,
+      "input_zone_index": 2,
+      "native_zone_key": "wsg"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 13,
+      "input_zone_index": 3,
+      "native_zone_key": "ungoro"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 13,
+      "input_zone_index": 4,
+      "native_zone_key": "ab"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 13,
+      "input_zone_index": 5,
+      "native_zone_key": "feralas"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 13,
+      "input_zone_index": 6,
+      "native_zone_key": "arena"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 13,
+      "input_zone_index": 7,
+      "native_zone_key": "sm"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 13,
+      "input_zone_index": 8,
+      "native_zone_key": "av"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 13,
+      "input_zone_index": 9,
+      "native_zone_key": "brm"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 13,
+      "input_zone_index": 10,
+      "native_zone_key": "aq"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 13,
+      "input_zone_index": 11,
+      "native_zone_key": "naxx"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 18446744073709551615,
+      "input_zone_index": 0,
+      "native_zone_key": "elwynn"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 18446744073709551615,
+      "input_zone_index": 1,
+      "native_zone_key": "duskwood"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 18446744073709551615,
+      "input_zone_index": 2,
+      "native_zone_key": "wsg"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 18446744073709551615,
+      "input_zone_index": 3,
+      "native_zone_key": "ungoro"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 18446744073709551615,
+      "input_zone_index": 4,
+      "native_zone_key": "ab"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 18446744073709551615,
+      "input_zone_index": 5,
+      "native_zone_key": "feralas"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 18446744073709551615,
+      "input_zone_index": 6,
+      "native_zone_key": "arena"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 18446744073709551615,
+      "input_zone_index": 7,
+      "native_zone_key": "sm"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 18446744073709551615,
+      "input_zone_index": 8,
+      "native_zone_key": "av"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 18446744073709551615,
+      "input_zone_index": 9,
+      "native_zone_key": "brm"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 18446744073709551615,
+      "input_zone_index": 10,
+      "native_zone_key": "aq"
+    },
+    {
+      "class_id": 11,
+      "stored_unlock": 18446744073709551615,
+      "input_zone_index": 11,
+      "native_zone_key": "naxx"
+    }
+  ]
+}

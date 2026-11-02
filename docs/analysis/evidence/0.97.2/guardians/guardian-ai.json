@@ -1,0 +1,115 @@
+{
+  "date": "2026-10-18",
+  "target_version": "0.97.2",
+  "target_sha256": "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589",
+  "target_path": "AzerothSurvivors/AzerothSurvivors-0.97.2.exe",
+  "process_executed": false,
+  "evidence": [
+    {
+      "role": "Run initialization, candidate selection and four lair placements",
+      "function_va": "0x1454b07c0",
+      "end_exclusive": "0x1454b398a",
+      "function_bytes_sha256": "90f53fb4c4106d393114ad12785f3f931cdc36cc6752b4d751226150c9ea0cdb",
+      "rea_evidence_id": "ev_e6f30ed60ac4cc6f9c3c6dea58abc8cc11d4f27c396aaed4d6801d2aba98d9df"
+    },
+    {
+      "role": "Actor update, guardian state consumer and three ability consumers",
+      "function_va": "0x1454c9510",
+      "end_exclusive": "0x1454ce7a0",
+      "function_bytes_sha256": "65114117995dbb7c0699d9f170e5b751ad863decf286531f7851646b0fe6f048",
+      "rea_evidence_id": "ev_fec0ab5d5ba261d965364f92a8f153a10d9eeb80bde3e3d7c21caff632e529a5"
+    },
+    {
+      "role": "Guardian wake, player-to-lair leash and reset decision",
+      "function_va": "0x14550a0a0",
+      "end_exclusive": "0x14550a1d0",
+      "function_bytes_sha256": "87bc199e464842f788eb900425b12af8c169c6cc342424c32867a0cb688a8dd9",
+      "rea_evidence_id": "ev_d76d79c6e0238cfabd16fe5b7d83f38e5827cbd05e6c20538f0f19872531f81b"
+    }
+  ],
+  "abi": {
+    "state_helper": "Win64 RCX=actor, RDX=lair position, R8=player position, XMM3=run clock; return AL in 0..3.",
+    "decompiler_limit": "Raw slices use a generic analysis ABI; inferred GCC parameter lists are not authoritative. The shared actor function contains indirect jumps whose arms were recovered from instructions and original jump-table words."
+  },
+  "placement": {
+    "source": "0x1454b22ba..0x1454b237f, 0x1454b2ced..0x1454b37e1, filter 0x14552f2f0..0x14552f464",
+    "run_gate": "Lairs are initialized only when the native Game+0x958 flag is zero; no user-facing flag name is asserted here.",
+    "candidate_indices": "Zone 11 uses its explicit zone+0x48/+0x50 list. Other zones select enemies in original table order when byte+0x4c equals 1 and f32+0x48 is finite. An empty candidate list skips lairs.",
+    "count": 4,
+    "selection": "For slot i, enemy=candidates[i % candidate_count]. This stage does not use RNG.",
+    "initial_respawn_seconds": 20.0,
+    "explicit_points": "Use a matching slot key in zone+0x38/+0x40, stride 16. Its Z is ADT, then WMO, then world fallback height.",
+    "angle": "(zone+0xd4 + f32(0x3f490fdb)) + (i * f32(0x40c90fdb)) * 0.25; XY uses cosf/sinf.",
+    "radius": "The optional radius at zone+4 when zone byte+0 is nonzero; otherwise zone+0xd8.",
+    "fractions_in_order": [0.7, 0.62, 0.54, 0.46, 0.38],
+    "candidate_checks": "Reject any blocked cell sampled at candidate XY plus each integer XY offset -2 through +2 inclusive. Missing grid and out-of-grid samples are unblocked. Require an ADT height and abs(candidate_z - resolved_center_z) < 30.",
+    "fallback": "After all five candidates fail, accept half-radius XY without repeating those checks; resolve Z through ADT, WMO, then world fallback."
+  },
+  "state": {
+    "source": "0x14550a0a0..0x14550a1cf; caller 0x1454caa55..0x1454cad35",
+    "actor_guardian_option": "Actor+0x40 is Option<guardian state> using the timer Vec capacity -1 niche. Some has timer pointer+0x48/length+0x50, lair slot+0x58 and awake byte+0x60.",
+    "current_position": "If actor movement duration+0x128 <= 0, use destination+0x118; otherwise interpolate start+0x10c to destination using clamp((clock-started_at+0x124)/duration, 0..1). State distances ignore Z.",
+    "lair_lookup_fallback": "If actor lair index is outside Game+0x590, caller substitutes current actor position as home.",
+    "sleeping_to_awake": "Current HP below maximum, or both current-to-home distance <= 3 and current-to-player distance <= 20. Sets awake byte and returns 1.",
+    "sleeping": "Otherwise returns 0. Caller waits for its existing path to finish, then returns home only when farther than 2 XY units from home. Guardian ability timers do not advance here.",
+    "awake": "Returns 3 while player-to-home distance <= 97.5. Guardian distance from the player is not the leash test.",
+    "reset": "When already awake and player-to-home distance > 97.5, clear awake, restore HP to max, set periodic-effect vector length+0x10 to zero, and zero actor+0x98/+0x9c. Return 2. Caller installs a path home, sets next move time to arrival, cancels cast+0x70, and skips combat. Guardian ability timer values are retained.",
+    "wake_scaling": "Return1 queues a GUID whose consumer recomputes current-time guardian health/damage. HP maximum only increases, preserving clamped health fraction; damage never decreases. Owning scope: wake-rescale.asm."
+  },
+  "abilities": {
+    "table_va": "0x1469aab94",
+    "stride": 28,
+    "initial_remaining_seconds": [4.5, 3.5, 8.0],
+    "repeat_remaining_seconds": [9.0, 7.0, 16.0],
+    "timer_semantics": "After ordinary actor gates and guardian state results1/3, subtract delta seconds once; an ordered value <=0 emits one ability in slot order and resets to the repeat value. Overshoot is discarded. NaN timer comparisons skip emission.",
+    "low_health_repeat": "When f32(max_hp * f32(0.3)) > hp, multiply repeat cooldowns by f32(0.7). Exact30/100 is below the f32 multiplication result30.000002. Initial cooldowns are not multiplied retroactively.",
+    "charge": {
+      "native_discriminant": 4,
+      "spell_id": 100,
+      "repeat_seconds": 9.0,
+      "target": "Player XY with terrain-resolved Z; clip ray collision with half-unit backoff, then resolve endpoint terrain again.",
+      "duration": "max(XY distance / 24, 1.1)",
+      "next_move_at": "clock + duration + 0.2",
+      "attack_delay": "duration + 0.3 (remaining duration, not absolute clock)",
+      "followup": "Queue spell6343 centered at final endpoint, radius4.5, damage2*effective actor damage at arrival. Player range is checked when the deferred event resolves."
+    },
+    "area_strike": {
+      "native_discriminant": 3,
+      "spell_id": 6343,
+      "radius": 8.0,
+      "damage_multiplier": 1.4,
+      "repeat_seconds": 7.0,
+      "behavior": "Display the area spell and apply immediate player damage only if the current player is within radius8 in XY."
+    },
+    "summon_minions": {
+      "native_discriminant": 2,
+      "count": 4,
+      "radius": 5.0,
+      "repeat_seconds": 16.0,
+      "yell": "Minions, to me!",
+      "enemy_indices_in_slot_order": [0, 0, 1, 0],
+      "behavior": "Before the adds, emit the yell from the guardian GUID. Add i uses angle i/4*TAU around guardian XY and ordinary enemy spawn; resolve each Z through ADT, WMO, then fallback."
+    }
+  },
+  "implemented_source": [
+    "crates/azeroth-survivors-re/src/guardians/placement.rs",
+    "crates/azeroth-survivors-re/src/guardians/ai.rs"
+  ],
+  "bounded_native_validation": {
+    "script": "scripts/recover-guardian-ai-fixtures.py",
+    "fixture": "crates/azeroth-survivors-re/tests/fixtures/guardian-ai-native.json",
+    "fixture_sha256": "5b946e4bf52b84f49adcdb797dafa136875b5817a3d218d4482935cacdaf9069",
+    "executed_before_user_source_only_instruction": true,
+    "decision_cases": 18,
+    "timer_cases": 18,
+    "method": "Original unchanged x86-64 helper and timer instructions in bounded Unicorn. Any external instructions/calls are rejected. No game/process or OS execution.",
+    "source_comparison_test": "Authored against the fixture; not run after final source additions."
+  },
+  "remaining": [
+    "Bind these rules to real entity, terrain/collision, movement/network and spell systems; source ports explicitly require those adapters.",
+    "Shared actor dead, stun, path, cast, aura and melee processing precedes these unique guardian behaviors and is not reconstructed by this module.",
+    "Original versus rebuilt live guardian behavior and visual/audio parity are unverified; the menu-only application has no playable world loop.",
+    "Cosf/sinf are original Windows CRT calls; cross-platform bit identity of transcendental results is not claimed.",
+    "Final source compilation, compiling tests and runtime checks were not run."
+  ]
+}

@@ -1,0 +1,14 @@
+0x140111c70: ba02000000 mov edx, 2
+0x140111c75: 488d0d03fadd05 lea rcx, [rip + 0x5ddfa03]
+0x140111c7c: 4c8d85a0000000 lea r8, [rbp + 0xa0]
+0x140111c83: e8184d9602 call 0x142a769a0
+0x140111c88: 90 nop
+0x140111c89: 4885c0 test rax, rax
+0x140111c8c: 7503 jne 0x140111c91
+0x140111c8e: 4c89f0 mov rax, r14
+0x140111c91: 803804 cmp byte ptr [rax], 4
+0x140111c94: 0f857f010000 jne 0x140111e19
+0x140111c9a: 488b5010 mov rdx, qword ptr [rax + 0x10]
+0x140111c9e: 4c8b4018 mov r8, qword ptr [rax + 0x18]
+0x140111ca2: 49c1e005 shl r8, 5
+0x140111ca6: 4901d0 add r8, rdx

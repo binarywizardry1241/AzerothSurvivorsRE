@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.119.1",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c",
+    "size_bytes": 145374208
+  },
+  "gap_ids": [
+    41
+  ],
+  "lead_ids": [
+    "Q41-R01",
+    "Q41-D03"
+  ],
+  "generator": {
+    "path": "scripts/inventory-current-mpq-members.py",
+    "sha256": "f3e67f161e3d4c6eb93df4140c4f3fafba6aaf14da8846d73163c5b060e833ca"
+  },
+  "parser": {
+    "path": "scripts/check-minimap-lifecycle.py",
+    "sha256": "e933ce82e4fc51ba9ba0a90b45f4ac81819efae55edad6a4992aa6e78e51457c"
+  },
+  "source_chain": {
+    "path": "crates/benilla-formats/src/chain.rs",
+    "sha256": "3f44e391645132c4ed97373b4bf4d8251ca170211a01da0725470f4364b518e2"
+  },
+  "native_resource_candidate_input": {
+    "path": "runtime/coverage/b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c/inventory.json",
+    "sha256": "445bd9adf658e55f5171d95d01d460762151fb659bda2cab5fa3ec0503875361",
+    "regenerate": "python3 scripts/inventory-current-target.py --write"
+  },
+  "archives": [
+    {
+      "path": "installed-game/Data/patch.MPQ",
+      "sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf",
+      "size_bytes": 1340199244,
+      "hash_table_sha256": "0dd0aebe137b60f20de7f41652f5a0699082c9f68be91acf08b6ed2eb494a8be",
+      "block_table_sha256": "6f3f590c301c01361bc503ab8a2c80308c60471be69144aaa2ec7e1be47b8705",
+      "listfile_sha256": "72c679f4e4188973165a53ca0eb364470ef5affce86398c2808d5acc83d6d28f",
+      "listed_names": 27587,
+      "active_hash_slots": 27587,
+      "opaque_hash_slots": [],
+      "blocks_without_active_hash": [],
+      "source_priority": 0
+    },
+    {
+      "path": "installed-game/Data/patch-2.MPQ",
+      "sha256": "366edee41642a5dda22ed90cc252b543ee375755b7e8bee81e2a6cd59fd7b286",
+      "size_bytes": 4690878,
+      "hash_table_sha256": "51e3bd6a3dc6be62134eed28190d7d0f672d056a98266eb868c990836910022f",
+      "block_table_sha256": "74e9b7e58abc99a4e3b57c1ab30584d697b3d9c208633a82d314de8bdf61c815",
+      "listfile_sha256": "7f5131e52f9873d7b34e315fd5bd656c2d866f74a72fb72a8b247c572efc3b46",
+      "listed_names": 120,
+      "active_hash_slots": 120,
+      "opaque_hash_slots": [],
+      "blocks_without_active_hash": [],
+      "source_priority": 1
+    },
+    {
+      "path": "installed-game/Data/patch-3.MPQ",
+      "sha256": "75c35ca5b8075197252581e301e8900143007fdf37b493ad271ae1bd39f95a29",
+      "size_bytes": 2580491,
+      "hash_table_sha256": "ceb5fbabb0c8e4cf5b38bd0ec43ea0c00a1270ddc61a4fdb19cdc5f8643181c7",
+      "block_table_sha256": "84b834593ef82f88e4d8ff19927eaaecd7bb36341653dc2bcf6fbebedc63f795",
+      "listfile_sha256": "d27c80cfd30007d9bb1931816f015713d3be8637112a5dbc4bdf1aaf8df4a920",
+      "listed_names": 10,
+      "active_hash_slots": 10,
+      "opaque_hash_slots": [],
+      "blocks_without_active_hash": [],
+      "source_priority": 2
+    },
+    {
+      "path": "installed-game/Data/patch-4.MPQ",
+      "sha256": "2e895e0e0ff6a4781d0e0aaa6ea7d32ed1fe36841e17806fe1855cb880d18865",
+      "size_bytes": 22769233,
+      "hash_table_sha256": "6d49a2b6960c7e59b3825c768243c0c6011771a0930ed5f96df26b25b25f7022",
+      "block_table_sha256": "8331c5cdda379f6b6ddfcc24c1cafb9eb3d6aa7df084581059126b5bf6b7c28a",
+      "listfile_sha256": "443e2cc279a7dc02cf7d7939970df59e9a18c96771686157fa4883ff42e0d524",
+      "listed_names": 19,
+      "active_hash_slots": 19,
+      "opaque_hash_slots": [],
+      "blocks_without_active_hash": [],
+      "source_priority": 3
+    },
+    {
+      "path": "installed-game/Data/patch-5.MPQ",
+      "sha256": "5008e56873718b468fa5ae1b697dcbe4f5da9ffe6c793f3ef9939dbd7716f3d8",
+      "size_bytes": 267019039,
+      "hash_table_sha256": "d57cb7464731d7eca48a282c4cda110adf8b8bbf43b0ce2f6e1a6f59cbda1129",
+      "block_table_sha256": "a3a9fb987167f1c460d12c43f0886544565ac7fa1813bd53ba6a0aadbbd3829e",
+      "listfile_sha256": "9f2b8e88141b66a93b85504ac14024bb7f1ac2bed51bdf831c5b283c6e5cbfe6",
+      "listed_names": 1855,
+      "active_hash_slots": 1855,
+      "opaque_hash_slots": [],
+      "blocks_without_active_hash": [],
+      "source_priority": 4
+    },
+    {
+      "path": "installed-game/Data/patch-6.MPQ",
+      "sha256": "cad6ff59b5df028a507581befb836fce07894057e15fe63d9fdc553a95b7ceb5",
+      "size_bytes": 212228,
+      "hash_table_sha256": "83ba4c8a6cf100b7b19ee012cc7c0fb91732f7e58405d803df52aaeb8d2946e0",
+      "block_table_sha256": "f736aca54717c4cca78f2b60ac1b58e0f2836152bf080a9e412bd5be212edc63",
+      "listfile_sha256": "bd7b96cd2167989877f974346a3e2926ad2ffcaca8b0d52349e977de147b297f",
+      "listed_names": 4,
+      "active_hash_slots": 4,
+      "opaque_hash_slots": [],
+      "blocks_without_active_hash": [],
+      "source_priority": 5
+    },
+    {
+      "path": "installed-game/Data/patch-7.MPQ",
+      "sha256": "f5fb15b181cf01cc6b5cf2ee9948a27ecc4ba27bab9a8bec584df4381932aae6",
+      "size_bytes": 276649,
+      "hash_table_sha256": "91f8df7727c38c4e9fa628f5f99bff3fcefb8395ed42b41d8f3b79cd94296581",
+      "block_table_sha256": "4dacc1ca7190ced0dd5683cfdf16f6343ef9d15385a318ecc78d1651ee99628a",
+      "listfile_sha256": "1f993d569b6df481afbc30aeff87f062732dfa2fd3219f844d8e614d2cb128ba",
+      "listed_names": 6,
+      "active_hash_slots": 6,
+      "opaque_hash_slots": [],
+      "blocks_without_active_hash": [],
+      "source_priority": 6
+    },
+    {
+      "path": "installed-game/Data/patch-8.MPQ",
+      "sha256": "ae3aaa29cadb7aeba8255f5b4a8305c7cbecfe8f0d3ed9646522113d16c3e12e",
+      "size_bytes": 4155417,
+      "hash_table_sha256": "af9017a0791e9054a8655a38433ef5e2f392df24225afd6e391964c6c23f66e5",
+      "block_table_sha256": "83d2544eadd593c1e6c7aaf65c2d91798c9e1dc8f6da07a856337af51e9d2799",
+      "listfile_sha256": "81485791c522422d91a67c403c8d6cda8bee6b99303cad6a0698e4c2f9eafcc9",
+      "listed_names": 23,
+      "active_hash_slots": 23,
+      "opaque_hash_slots": [],
+      "blocks_without_active_hash": [],
+      "source_priority": 7
+    },
+    {
+      "path": "installed-game/Data/patch-9.MPQ",
+      "sha256": "ffff8ea890bdaf91a1680543ac60106db92132bc2210105279610fa73661a524",
+      "size_bytes": 5739608,
+      "hash_table_sha256": "7cfdc2d40114816d6e2ed10a81096a3252f582efd103e0ed573ce41df934e843",
+      "block_table_sha256": "6c4c3b6b1daec88317e967157bde4fe265d888915d36e12dec879f1272da63e6",
+      "listfile_sha256": "a4e953786ff1e4d33573bb61885deb4033bd930396d293d8091ce79d18283117",
+      "listed_names": 56,
+      "active_hash_slots": 56,
+      "opaque_hash_slots": [],
+      "blocks_without_active_hash": [],
+      "source_priority": 8
+    },
+    {
+      "path": "installed-game/Data/patch-A.MPQ",
+      "sha256": "350cde8cd0f76e5246a663eb3811f5a7b1a9c75e4e699190208c9299177b8d90",
+      "size_bytes": 1453122,
+      "hash_table_sha256": "cf426dbc8664d985b2a28b39612a4f86e6a2e5b6782b03327805d271443e53aa",
+      "block_table_sha256": "aa771f7cbc7c4fbf96e01924181e25734cd63951e5e43e2d2acfd1b44015fea4",
+      "listfile_sha256": "9945d6625b2836332d80ec961662813fa0e5a0a2f66768942de314e1c3653e07",
+      "listed_names": 19,
+      "active_hash_slots": 19,
+      "opaque_hash_slots": [],
+      "blocks_without_active_hash": [],
+      "source_priority": 9
+    }
+  ],
+  "outputs": {
+    "members.jsonl": {
+      "path": "runtime/coverage/b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c/mpq-members/members.jsonl",
+      "sha256": "43825a3b28d5fe1782f0785fe9898051869a0e18007ec773365d5ba54ce81d69",
+      "records": 29699,
+      "bytes": 9773605
+    },
+    "source-overrides.jsonl": {
+      "path": "runtime/coverage/b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c/mpq-members/source-overrides.jsonl",
+      "sha256": "48f6bf6bff97416a5853aa1dfaaad6211016d803e4283dae02b4406d89f2d976",
+      "records": 29690,
+      "bytes": 4651374
+    },
+    "resource-leads.jsonl": {
+      "path": "runtime/coverage/b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c/mpq-members/resource-leads.jsonl",
+      "sha256": "321ee5238e44be80174e59f9d5ac1059420a065b1dbe7b38539d89a1b29fdbfd",
+      "records": 315,
+      "bytes": 114693
+    }
+  },
+  "counts": {
+    "archives": 10,
+    "active_hash_slots": 29699,
+    "unique_names": 29690,
+    "opaque_hash_slots": 0,
+    "blocks_without_active_hash": 0,
+    "resource_path_candidates": 315
+  },
+  "limits": [
+    "Only listfiles and MPQ tables read; assets remain in installed archives.",
+    "Source priority is not target-specific mount/locale/resource proof.",
+    "Native consumers, schemas and IDs remain open; no compilation, execution or parity."
+  ]
+}

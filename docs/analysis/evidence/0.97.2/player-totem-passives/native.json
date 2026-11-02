@@ -1,0 +1,297 @@
+{
+  "version": "0.97.2",
+  "target": {
+    "path": "AzerothSurvivors/AzerothSurvivors-0.97.2.exe",
+    "sha256": "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589"
+  },
+  "method": "Unchanged current native slices through REA/Ghidra and original PE disassembly/data.",
+  "analyses": [
+    {
+      "native": {
+        "address": "0x1454d43d0",
+        "end_exclusive": "0x1454d4849",
+        "file_offset": "0x54d37d0",
+        "size": 1145,
+        "sha256": "c1761d8f33afa1372a4588fbe0964697243cf0ec9b934983202284468b7b9342"
+      },
+      "boundary": "PE RUNTIME_FUNCTION",
+      "rea_evidence_id": "ev_7172c1a90dfe447ceac15d46ab684ffe46850761cd094a02b4824b156ec840b9",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "pseudocode": "1454d43d0.ghidra.c",
+      "assembly": "1454d43d0.asm"
+    },
+    {
+      "native": {
+        "address": "0x1454d49e0",
+        "end_exclusive": "0x1454d4cfd",
+        "file_offset": "0x54d3de0",
+        "size": 797,
+        "sha256": "35573ad864d3bc3c5f9258c08b00af1bc0aa8c46b98440b94f08abe4d038f58c"
+      },
+      "boundary": "PE RUNTIME_FUNCTION",
+      "rea_evidence_id": "ev_a01795b522da4d050723702751596026fee46b487af12373527b71792c42e0c1",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "pseudocode": "1454d49e0.ghidra.c",
+      "assembly": "1454d49e0.asm"
+    },
+    {
+      "native": {
+        "address": "0x1455321e0",
+        "end_exclusive": "0x1455323ac",
+        "file_offset": "0x55315e0",
+        "size": 460,
+        "sha256": "1a88f92d4314b9e554ebfeb57ba6a512c0381262d9d7872c70ada15aa3ceb6c6"
+      },
+      "boundary": "PE RUNTIME_FUNCTION",
+      "rea_evidence_id": "ev_b06966a9985e627eaabcf2999f589afc4e12b90c05e07ba163f8e784157dbe62",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "pseudocode": "1455321e0.ghidra.c",
+      "assembly": "1455321e0.asm"
+    }
+  ],
+  "ranges": [
+    {
+      "native": {
+        "address": "0x1454a422c",
+        "end_exclusive": "0x1454a46a0",
+        "file_offset": "0x54a362c",
+        "size": 1140,
+        "sha256": "b804a1369e47988041031db945cc9e52d0723bbbe26e8df69d5f4b5ff755d487"
+      },
+      "owner": "0x14549d550",
+      "assembly": "call-of-flame-expiry.asm",
+      "reused_ghidra_evidence_id": "ev_c5c9cc29e1e6e39c77e71ac55fc8abbce607fd9cb931b6b010eee7b8f4720299",
+      "reused_manifest": "../player-abilities/behavior-native.json"
+    },
+    {
+      "native": {
+        "address": "0x1454a46c0",
+        "end_exclusive": "0x1454a4c10",
+        "file_offset": "0x54a3ac0",
+        "size": 1360,
+        "sha256": "55dbd85992c563b1282a4e66f2b2a4edfc0ad58e5e8eb6e001e3b0d81a64e228"
+      },
+      "owner": "0x14549d550",
+      "assembly": "prepulse-heal.asm",
+      "reused_ghidra_evidence_id": "ev_c5c9cc29e1e6e39c77e71ac55fc8abbce607fd9cb931b6b010eee7b8f4720299",
+      "reused_manifest": "../player-abilities/behavior-native.json"
+    },
+    {
+      "native": {
+        "address": "0x14549f01c",
+        "end_exclusive": "0x14549f02a",
+        "file_offset": "0x549e41c",
+        "size": 14,
+        "sha256": "33761de328897b2515cf63e5f4b60cace22527298a75af0da1a55f00a25f2d80"
+      },
+      "owner": "0x14549d550",
+      "assembly": "maximum-health-pointer.asm",
+      "reused_ghidra_evidence_id": "ev_c5c9cc29e1e6e39c77e71ac55fc8abbce607fd9cb931b6b010eee7b8f4720299",
+      "reused_manifest": "../player-abilities/behavior-native.json"
+    }
+  ],
+  "scalars": {
+    "0x1459eb2d0": {
+      "native": {
+        "address": "0x1459eb2d0",
+        "end_exclusive": "0x1459eb2d4",
+        "file_offset": "0x59ea2d0",
+        "size": 4,
+        "sha256": "abc4c4e7eee2ce04c6be04358adf5b3d0958255a80f712a8b6d4f4fdda588276"
+      },
+      "raw_hex": "ffff7fff",
+      "bits": "0xff7fffff",
+      "float_value": "-3.4028234663852886e+38"
+    },
+    "0x1458eb480": {
+      "native": {
+        "address": "0x1458eb480",
+        "end_exclusive": "0x1458eb484",
+        "file_offset": "0x58ea480",
+        "size": 4,
+        "sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c"
+      },
+      "raw_hex": "0000803f",
+      "bits": "0x3f800000",
+      "float_value": "1.0"
+    },
+    "0x1458f667c": {
+      "native": {
+        "address": "0x1458f667c",
+        "end_exclusive": "0x1458f6680",
+        "file_offset": "0x58f567c",
+        "size": 4,
+        "sha256": "6d58692645c9d1cfaf13541cbd258f86193ef63c2f1d38f6bbca9617372d7bd6"
+      },
+      "raw_hex": "00000080",
+      "bits": "0x80000000",
+      "float_value": "-0.0"
+    },
+    "0x1458f8d40": {
+      "native": {
+        "address": "0x1458f8d40",
+        "end_exclusive": "0x1458f8d44",
+        "file_offset": "0x58f7d40",
+        "size": 4,
+        "sha256": "55bcbd6097be4e6dbb2e3a87d63d96cb17ed13c4483b7f9a79c7cb115111b3ce"
+      },
+      "raw_hex": "3333b33f",
+      "bits": "0x3fb33333",
+      "float_value": "1.399999976158142"
+    },
+    "0x1458ed010": {
+      "native": {
+        "address": "0x1458ed010",
+        "end_exclusive": "0x1458ed014",
+        "file_offset": "0x58ec010",
+        "size": 4,
+        "sha256": "75e253f50979177eba47b2d0805ad36038789108924514d2a761a70de057d16f"
+      },
+      "raw_hex": "0000803e",
+      "bits": "0x3e800000",
+      "float_value": "0.25"
+    },
+    "0x1458f6620": {
+      "native": {
+        "address": "0x1458f6620",
+        "end_exclusive": "0x1458f6624",
+        "file_offset": "0x58f5620",
+        "size": 4,
+        "sha256": "fb360f7241a770dc32cade9a1d1273c92b13bd4959b1c130931312b7fe95e63f"
+      },
+      "raw_hex": "cdcccc3d",
+      "bits": "0x3dcccccd",
+      "float_value": "0.10000000149011612"
+    },
+    "0x145bfc414": {
+      "native": {
+        "address": "0x145bfc414",
+        "end_exclusive": "0x145bfc418",
+        "file_offset": "0x5bfb414",
+        "size": 4,
+        "sha256": "4acaf7a70ab216e9be31d0bad8c8ec720947257cf0104db6dcadf3cf2caa3782"
+      },
+      "raw_hex": "00008c42",
+      "bits": "0x428c0000",
+      "float_value": "70.0"
+    },
+    "0x14698ebd0": {
+      "native": {
+        "address": "0x14698ebd0",
+        "end_exclusive": "0x14698ebd4",
+        "file_offset": "0x698dbd0",
+        "size": 4,
+        "sha256": "bb4b4a241c9e08a79934f717b17b417cab46c4fd56f5610709fa8b71dbc14a21"
+      },
+      "raw_hex": "00008cc2",
+      "bits": "0xc28c0000",
+      "float_value": "-70.0"
+    },
+    "0x1458f8de0": {
+      "native": {
+        "address": "0x1458f8de0",
+        "end_exclusive": "0x1458f8de4",
+        "file_offset": "0x58f7de0",
+        "size": 4,
+        "sha256": "80c8a717ccd70c8809eb78e6a9591c003e11c721fe0ccaf62fd592abda1a5593"
+      },
+      "raw_hex": "00002041",
+      "bits": "0x41200000",
+      "float_value": "10.0"
+    },
+    "0x1459eb3c0": {
+      "native": {
+        "address": "0x1459eb3c0",
+        "end_exclusive": "0x1459eb3c4",
+        "file_offset": "0x59ea3c0",
+        "size": 4,
+        "sha256": "e1bafb2cf816c22554f4d73ec269c4ee7e32f663787ad6737a68118a2ea13201"
+      },
+      "raw_hex": "00008033",
+      "bits": "0x33800000",
+      "float_value": "5.960464477539063e-08"
+    },
+    "0x1458eb51c": {
+      "native": {
+        "address": "0x1458eb51c",
+        "end_exclusive": "0x1458eb520",
+        "file_offset": "0x58ea51c",
+        "size": 4,
+        "sha256": "2a25271875e056e323462f5d609558c140e993d0d331e6bfbfd211949974594c"
+      },
+      "raw_hex": "ffff7f4f",
+      "bits": "0x4f7fffff",
+      "float_value": "4294967040.0"
+    },
+    "0x145930f10": {
+      "native": {
+        "address": "0x145930f10",
+        "end_exclusive": "0x145930f14",
+        "file_offset": "0x592ff10",
+        "size": 4,
+        "sha256": "07883481b5c147464597d44401db095d88c2a6b049fbbcd7b278de98a5ceeb71"
+      },
+      "raw_hex": "00007a44",
+      "bits": "0x447a0000",
+      "float_value": "1000.0"
+    }
+  },
+  "strings": [
+    {
+      "native": {
+        "address": "0x14671d78c",
+        "end_exclusive": "0x14671d796",
+        "file_offset": "0x671c78c",
+        "size": 10,
+        "sha256": "67f5637deccf0cbafd971e40f36e6fbaec532df37a4ba0e699c773365938cb84"
+      },
+      "text": "redemption"
+    },
+    {
+      "native": {
+        "address": "0x14671d796",
+        "end_exclusive": "0x14671d7a1",
+        "file_offset": "0x671c796",
+        "size": 11,
+        "sha256": "62cce833ad8350688320ce7d0bfc0518a1fac027e1b7eae51f9b183271e65660"
+      },
+      "text": "faerie_fire"
+    },
+    {
+      "native": {
+        "address": "0x1469aafd0",
+        "end_exclusive": "0x1469aafd5",
+        "file_offset": "0x69a9fd0",
+        "size": 5,
+        "sha256": "e27f3a289ceb40df47966cc234b40f8df07ef8d0ec4718e2ecf9e7c022cb0f34"
+      },
+      "text": "Leech"
+    },
+    {
+      "native": {
+        "address": "0x1469aafd5",
+        "end_exclusive": "0x1469aafed",
+        "file_offset": "0x69a9fd5",
+        "size": 24,
+        "sha256": "9ae2ccfd718e22f77b55af65526c76aaa55f41628a994c8774fbaa9bed902c20"
+      },
+      "text": "Spell_Shadow_LifeDrain02"
+    }
+  ],
+  "limitations": [
+    "Raw Ghidra signature inference is generic x64; original Win64 registers/stack bind arguments.",
+    "Static source reconstruction only; no compiler checks, tests, emulation or application launches."
+  ]
+}

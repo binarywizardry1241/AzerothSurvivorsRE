@@ -1,0 +1,386 @@
+{
+  "schema": "as-relay-load-0.123.0-v1",
+  "target": {
+    "version": "0.123.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
+    "size_bytes": 146228736
+  },
+  "gap_ids": [
+    198,
+    210,
+    211,
+    212,
+    257
+  ],
+  "target_executed": false,
+  "raw_input": {
+    "path": "runtime/analysis/tasks/release-0.123.0/pick-smooth/input.bin",
+    "sha256": "005952d9760501945dac724bcc01d38ddb24b28dd30a0b114e5393a80362929c"
+  },
+  "slice_virtual_address": "0x145bd7010",
+  "queries": [
+    {
+      "procedure": "0x145bdc810",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-257-0.123.0/relay-plan.json",
+        "sha256": "2546b6cd55582fb708b55062f7200eda53965e00a54a24a9ed9cbe96e417a5ac"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-257-0.123.0/relay-query/journal.json",
+        "sha256": "018c8f61f310afccbe9fa004b8764e805ff086ae56bac40eac616c0fe9d2c588"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-257-0.123.0/relay-query/results/1d9a21d38dcce68385d6901f9030b4371bbe314e66a579bfc17cf741ba0a85c0.json",
+        "sha256": "9f79a8dda3ceb9a9900663ba800e5465344427285157f4957bcde7d0f94cd7a7"
+      },
+      "evidence_id": "ev_2f6679014bcd3542565cf67e21e5ae7b7b90b63dc7760b69e43563b0cd3f84b5",
+      "normalized_sha256": "eafd5ecbb2b50bb015efde4dd3ea6ca147a8256ad9da34cbc0df9e2b3ac320de",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/release-0.123.0/pick-smooth/input.bin",
+        "sha256": "005952d9760501945dac724bcc01d38ddb24b28dd30a0b114e5393a80362929c"
+      },
+      "slice_virtual_address": "0x145bd7010",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "a16068975d8a0fbee5db96a89f071b937aadbfb7d9e8d6fce7254202bc51b6d5",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
+        "raw_sha256": "005952d9760501945dac724bcc01d38ddb24b28dd30a0b114e5393a80362929c",
+        "virtual_address": "0x145bd7010",
+        "file_offset": "0x5bd6410",
+        "byte_count": 42276,
+        "result": "runtime/analysis/tasks/fixgap-257-0.123.0/relay-query/results/1d9a21d38dcce68385d6901f9030b4371bbe314e66a579bfc17cf741ba0a85c0.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "procedure": "0x145bdd020",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-257-0.123.0/relay-plan.json",
+        "sha256": "2546b6cd55582fb708b55062f7200eda53965e00a54a24a9ed9cbe96e417a5ac"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-257-0.123.0/relay-query/journal.json",
+        "sha256": "018c8f61f310afccbe9fa004b8764e805ff086ae56bac40eac616c0fe9d2c588"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-257-0.123.0/relay-query/results/9ed90a6bde2c5a6b2d64dcf9232205720112adeb3249dea492733ed1e48a596e-7e52eb8fc45b5acb.json",
+        "sha256": "c5a4582b5cea4f634ecf53b01fc601f4de476cf15e9d421da9c8fcb511221cba"
+      },
+      "evidence_id": "ev_ce49bcd4b0ffe10637f0282daa2b62f249153a2d2e0336c7ec5d088e1e258238",
+      "normalized_sha256": "bcef2c0683ebce4f5ca908a9ae9c138621983e111d074cf49ae70b6d1e6f99f4",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/release-0.123.0/pick-smooth/input.bin",
+        "sha256": "005952d9760501945dac724bcc01d38ddb24b28dd30a0b114e5393a80362929c"
+      },
+      "slice_virtual_address": "0x145bd7010",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "a16068975d8a0fbee5db96a89f071b937aadbfb7d9e8d6fce7254202bc51b6d5",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
+        "raw_sha256": "005952d9760501945dac724bcc01d38ddb24b28dd30a0b114e5393a80362929c",
+        "virtual_address": "0x145bd7010",
+        "file_offset": "0x5bd6410",
+        "byte_count": 42276,
+        "result": "runtime/analysis/objects/c5/c5a4582b5cea4f634ecf53b01fc601f4de476cf15e9d421da9c8fcb511221cba",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "procedure": "0x145bdd7f0",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-257-0.123.0/relay-plan.json",
+        "sha256": "2546b6cd55582fb708b55062f7200eda53965e00a54a24a9ed9cbe96e417a5ac"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-257-0.123.0/relay-query/journal.json",
+        "sha256": "018c8f61f310afccbe9fa004b8764e805ff086ae56bac40eac616c0fe9d2c588"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-257-0.123.0/relay-query/results/f59ce9bd19dd42528270f0e7e1e87acc94afd0e3c71b4d49879468d5b5209151-42e6c03a69485eb3.json",
+        "sha256": "479ba3b2323c55962b7a22923afdad4efec05d7fa17c748bbcc48f69772ee342"
+      },
+      "evidence_id": "ev_8112b295e8e3ed491e2195dd3b4b44335febae9e6914d617dba1b09d6abd168c",
+      "normalized_sha256": "785c9395715f0327b5b93543def2e0a472908d44960c85be51554b23144db8cc",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/release-0.123.0/pick-smooth/input.bin",
+        "sha256": "005952d9760501945dac724bcc01d38ddb24b28dd30a0b114e5393a80362929c"
+      },
+      "slice_virtual_address": "0x145bd7010",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "a16068975d8a0fbee5db96a89f071b937aadbfb7d9e8d6fce7254202bc51b6d5",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
+        "raw_sha256": "005952d9760501945dac724bcc01d38ddb24b28dd30a0b114e5393a80362929c",
+        "virtual_address": "0x145bd7010",
+        "file_offset": "0x5bd6410",
+        "byte_count": 42276,
+        "result": "runtime/analysis/objects/47/479ba3b2323c55962b7a22923afdad4efec05d7fa17c748bbcc48f69772ee342",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "procedure": "0x145bd7b80",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-257-0.123.0/pump-plan.json",
+        "sha256": "6c03a07ddea222527b47c320a8e51874a54ce4ec2bf4770490c1684610d0f9c5"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-257-0.123.0/pump-query/journal.json",
+        "sha256": "a37c51205048fc822d39e96894dc0d0e102acd1c8e10966127a1110ccc76d873"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-257-0.123.0/pump-query/results/b4078ca3af1a66fd57279c456d897444379ee4bc9b446a0984843a636e70a8b6.json",
+        "sha256": "97b0ae9e046420a8fe2286649c045538a4ebd5ec7b500b50c08a8a73d71957a3"
+      },
+      "evidence_id": "ev_4dbaefb01db2647eb7b086e752f8475a5d5e06bdb0049f7433c6af8b4e9f36d9",
+      "normalized_sha256": "6f271e8453f9b6584496a20837861eea905329477867aa40f6e69d9d5f149f5e",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/release-0.123.0/pick-smooth/input.bin",
+        "sha256": "005952d9760501945dac724bcc01d38ddb24b28dd30a0b114e5393a80362929c"
+      },
+      "slice_virtual_address": "0x145bd7010",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "a16068975d8a0fbee5db96a89f071b937aadbfb7d9e8d6fce7254202bc51b6d5",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
+        "raw_sha256": "005952d9760501945dac724bcc01d38ddb24b28dd30a0b114e5393a80362929c",
+        "virtual_address": "0x145bd7010",
+        "file_offset": "0x5bd6410",
+        "byte_count": 42276,
+        "result": "runtime/analysis/tasks/fixgap-257-0.123.0/pump-query/results/b4078ca3af1a66fd57279c456d897444379ee4bc9b446a0984843a636e70a8b6.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    }
+  ],
+  "native_owners": [
+    {
+      "role": "service-pump",
+      "virtual_address": "0x145bd7b80",
+      "end_exclusive": "0x145bdabf2",
+      "file_offset": "0x5bd6f80",
+      "byte_count": 12402,
+      "sha256": "69686c2b338eb755f1556bf57460c970563950c0180948a1a1c73379fc0d1f3b",
+      "instruction_count": 2540
+    },
+    {
+      "role": "receiver",
+      "virtual_address": "0x145bdc810",
+      "end_exclusive": "0x145bdcfc3",
+      "file_offset": "0x5bdbc10",
+      "byte_count": 1971,
+      "sha256": "10216933e6ab4b17d8ac61fce01b5a54cbb05929c6ac26251b39a89fbc1e59db",
+      "instruction_count": 491
+    },
+    {
+      "role": "sender",
+      "virtual_address": "0x145bdd020",
+      "end_exclusive": "0x145bdd615",
+      "file_offset": "0x5bdc420",
+      "byte_count": 1525,
+      "sha256": "3966a13cff8e4927b02ec73e77fe4d2cca517dd08efb6158048bb2b7ed816cd3",
+      "instruction_count": 333
+    },
+    {
+      "role": "queue",
+      "virtual_address": "0x145bdd7f0",
+      "end_exclusive": "0x145bddd77",
+      "file_offset": "0x5bdcbf0",
+      "byte_count": 1415,
+      "sha256": "d23a0480df9927bc656c70d8ab8de9541fe32d74e0ab50ad92c8c1d8ce234310",
+      "instruction_count": 358
+    }
+  ],
+  "native_ranges": [
+    {
+      "role": "data-next",
+      "virtual_address": "0x145bdcb99",
+      "end_exclusive": "0x145bdcbad",
+      "file_offset": "0x5bdbf99",
+      "byte_count": 20,
+      "sha256": "aec7b4550c073ef84b307931a8a204802813d4cff3ac38cb250b2cc36ca0c8f7",
+      "instruction_count": 5
+    },
+    {
+      "role": "data-forward-gap",
+      "virtual_address": "0x145bdcd7c",
+      "end_exclusive": "0x145bdcd91",
+      "file_offset": "0x5bdc17c",
+      "byte_count": 21,
+      "sha256": "ae85f1b58ad7b87da2c547f47e5b317cf84c86ab947870e10d83c2c7c4fc187d",
+      "instruction_count": 4
+    },
+    {
+      "role": "ack-clamp",
+      "virtual_address": "0x145bdcaa9",
+      "end_exclusive": "0x145bdcab8",
+      "file_offset": "0x5bdbea9",
+      "byte_count": 15,
+      "sha256": "f44ce6ac4d86643499532f920317b0838df7e6f05b5ae788b25bbde94e82faf5",
+      "instruction_count": 4
+    },
+    {
+      "role": "ack-drain-cursors",
+      "virtual_address": "0x145bdcb49",
+      "end_exclusive": "0x145bdcb72",
+      "file_offset": "0x5bdbf49",
+      "byte_count": 41,
+      "sha256": "329dbbc597ba506fb96e9f709062e9d93be078caba8e1e250fc20a15aea518d6",
+      "instruction_count": 10
+    },
+    {
+      "role": "control-replay-reset",
+      "virtual_address": "0x145bdcde2",
+      "end_exclusive": "0x145bdcdfb",
+      "file_offset": "0x5bdc1e2",
+      "byte_count": 25,
+      "sha256": "267ac717c2cd74858a3983cad9d0adca89f63d3532e81b482f90c6508781532c",
+      "instruction_count": 4
+    },
+    {
+      "role": "replay-budget-gate",
+      "virtual_address": "0x145bdd1d0",
+      "end_exclusive": "0x145bdd1f1",
+      "file_offset": "0x5bdc5d0",
+      "byte_count": 33,
+      "sha256": "dddd5b24f63ba39843fbdd2f2cc84b63048c0ef1b3dfa7803077e8ce2f6b65c2",
+      "instruction_count": 8
+    },
+    {
+      "role": "replay-budget-charge",
+      "virtual_address": "0x145bdd214",
+      "end_exclusive": "0x145bdd22e",
+      "file_offset": "0x5bdc614",
+      "byte_count": 26,
+      "sha256": "1243ab763c9126b31247a16db110ff28621e54ef276a8330dec5c6b649caab6e",
+      "instruction_count": 6
+    },
+    {
+      "role": "pending-limit",
+      "virtual_address": "0x145bdda04",
+      "end_exclusive": "0x145bdda12",
+      "file_offset": "0x5bdce04",
+      "byte_count": 14,
+      "sha256": "e62baebc893ecae4c39de2830a1ed38a679504a5f93d7778ac679127ff8453e7",
+      "instruction_count": 2
+    },
+    {
+      "role": "ack-clock-input",
+      "virtual_address": "0x145bda809",
+      "end_exclusive": "0x145bda819",
+      "file_offset": "0x5bd9c09",
+      "byte_count": 16,
+      "sha256": "65f75df0e169418b972b343c3a47b6dc8714f29c6fa49147564f38bbe07e3929",
+      "instruction_count": 3
+    },
+    {
+      "role": "ack-control-constants",
+      "virtual_address": "0x145bda85a",
+      "end_exclusive": "0x145bda874",
+      "file_offset": "0x5bd9c5a",
+      "byte_count": 26,
+      "sha256": "a1fb75e4503a6d461b151cad0a6526c831f282480ad24acc1df2d4301686277c",
+      "instruction_count": 3
+    },
+    {
+      "role": "control-clock-gate",
+      "virtual_address": "0x145bda949",
+      "end_exclusive": "0x145bda985",
+      "file_offset": "0x5bd9d49",
+      "byte_count": 60,
+      "sha256": "1459b13bd6dbaecc49c3849a8de107751e6aeb2fa53f7737ca9b759b47d9a539",
+      "instruction_count": 18
+    },
+    {
+      "role": "ack-new-progress",
+      "virtual_address": "0x145bda985",
+      "end_exclusive": "0x145bda9a1",
+      "file_offset": "0x5bd9d85",
+      "byte_count": 28,
+      "sha256": "399625978e36c236b111f67522f711feb474188774bfd9823c8fa7b6651fa47f",
+      "instruction_count": 6
+    },
+    {
+      "role": "ack-clock-reset",
+      "virtual_address": "0x145bdaa35",
+      "end_exclusive": "0x145bdaa5f",
+      "file_offset": "0x5bd9e35",
+      "byte_count": 42,
+      "sha256": "d347056908c6637115fd17fc6ca8e1a369ef825429340723a431ffca666bfcc2",
+      "instruction_count": 8
+    }
+  ],
+  "assembly": {
+    "path": "docs/analysis/evidence/0.123.0/relay-load/selected-contracts.asm",
+    "sha256": "1a27aee65d428ea09a4a93aae41aa58f0e04650552cafd9423302e2784883ebf"
+  },
+  "native_data": [
+    {
+      "role": "ack-seconds",
+      "virtual_address": "0x1461b227c",
+      "file_offset": "0x61b0c7c",
+      "byte_count": 4,
+      "sha256": "d88c86f15bbea365d658ad95a81d45367c465f7af6f7264fb077f01747ddc77d",
+      "encoding": "f32",
+      "value": 2.0
+    },
+    {
+      "role": "control-seconds",
+      "virtual_address": "0x1461b2380",
+      "file_offset": "0x61b0d80",
+      "byte_count": 4,
+      "sha256": "ea2845900b5856c9bf354b1aa9761b5aa6888e5ed61738fe9579ca42bc0f6054",
+      "encoding": "f32",
+      "value": 3.0
+    },
+    {
+      "role": "nanoseconds",
+      "virtual_address": "0x146257270",
+      "file_offset": "0x6255c70",
+      "byte_count": 4,
+      "sha256": "87de9f551024f5990e80638703a56b1d54327e7097342f37f26a819e7825f272",
+      "encoding": "f32",
+      "value": 1000000000.0
+    },
+    {
+      "role": "replay-rate",
+      "virtual_address": "0x1476a0f80",
+      "file_offset": "0x769f980",
+      "byte_count": 8,
+      "sha256": "8e5176c3cfe43188316c8764523c729bf4e47fef95ebd5dbb7d6c3fae6dd9a70",
+      "encoding": "f64",
+      "value": 1572864.0
+    }
+  ],
+  "source_bindings": [
+    {
+      "path": "crates/azeroth-survivors-re/src/coop/relay.rs",
+      "sha256": "7f3b7a5ca63f6389bc490e2f7d71b758be399613b9984695cb9e4d9b186447e8"
+    }
+  ],
+  "limits": [
+    "Original client instructions and source/static checks only; no client, server, socket or game execution.",
+    "External directory/relay service scheduler, deployment and cross-version capacity are not supplied by this client contract.",
+    "Ghidra raw subject omits outside callees/data; exact original instructions and independently verified constants own selected branches."
+  ]
+}

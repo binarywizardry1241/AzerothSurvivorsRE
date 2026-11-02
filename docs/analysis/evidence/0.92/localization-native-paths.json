@@ -1,0 +1,147 @@
+{
+  "date": "2026-10-16",
+  "artifact_sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+  "records": [
+    {
+      "address": "0x14022a2a0",
+      "role": "Language popover Node/style construction",
+      "evidence_id": "ev_66fc7db6c3264d40c10444423d5778fad12908b408ae91f7236639a7369a4eb7",
+      "runtime_bundle": "runtime/menu-recovery/rea-14022a2a0/evidence-bundle.json",
+      "limits": [
+        "Exact PE function slice; original referenced data is read independently; GCC raw import signatures are not the native Win64 ABI."
+      ]
+    },
+    {
+      "address": "0x140075040",
+      "role": "Choice input; skip current-language write; persist then refresh menus",
+      "evidence_id": "ev_e83f348719b436078d031e59705a7e71b3bad343d469cb572bacc42e68675069",
+      "runtime_bundle": "runtime/menu-recovery/rea-140075040/evidence-bundle.json",
+      "limits": [
+        "Exact PE function slice; original referenced data is read independently; GCC raw import signatures are not the native Win64 ABI."
+      ]
+    },
+    {
+      "address": "0x14541f9f0",
+      "role": "Saved language + LC_ALL / LC_MESSAGES / LANG default selection",
+      "evidence_id": "ev_303aacee0e04d3b483b4777391b16ddbe9a2c9bdb061bdc6ad4e8df27470e7a0",
+      "runtime_bundle": "runtime/menu-recovery/rea-14541f9f0/evidence-bundle.json",
+      "limits": [
+        "Exact PE function slice; original referenced data is read independently; GCC raw import signatures are not the native Win64 ABI."
+      ]
+    },
+    {
+      "address": "0x145420a10",
+      "role": "Set active language and write two-letter code via native file helper",
+      "evidence_id": "ev_985967ad29bf901a63382096e6495c588ea15cf55e388daa10b80fc1545d4193",
+      "runtime_bundle": "runtime/menu-recovery/rea-145420a10/evidence-bundle.json",
+      "limits": [
+        "Exact PE function slice; original referenced data is read independently; GCC raw import signatures are not the native Win64 ABI."
+      ]
+    }
+  ],
+  "popover": {
+    "position": "absolute, unscaled window lane",
+    "right": 16,
+    "top": 58,
+    "min_width": 200,
+    "padding": [
+      8,
+      8,
+      8,
+      8
+    ],
+    "row_gap": 4,
+    "border": 1,
+    "radius": 10,
+    "title": {
+      "key": "picker.language",
+      "font_size": 12,
+      "margin_left_right_top_bottom": [
+        6,
+        0,
+        2,
+        4
+      ],
+      "rgb": [
+        0.725,
+        0.663,
+        0.51
+      ]
+    },
+    "choices": {
+      "font_size": 17,
+      "padding_horizontal_vertical": [
+        14,
+        6
+      ],
+      "border": 1,
+      "radius": 4,
+      "selected_background": [
+        0.35,
+        0.1,
+        0.06,
+        0.8
+      ],
+      "normal_background": [
+        0,
+        0,
+        0,
+        0.4
+      ],
+      "selected_border": [
+        0.973,
+        0.824,
+        0.416,
+        1
+      ],
+      "normal_border": [
+        0.169,
+        0.129,
+        0.071,
+        1
+      ],
+      "selected_text": [
+        1,
+        0.914,
+        0.659,
+        1
+      ],
+      "normal_text": [
+        0.949,
+        0.902,
+        0.788,
+        1
+      ]
+    }
+  },
+  "persistence": {
+    "file": "BENILLA_HOME/language.txt",
+    "payload": "exact two-letter code, no newline",
+    "native_runtime_observed": [
+      "Polski selection translated picker immediately and closed popover; language.txt bytes pl",
+      "English restored and file bytes en"
+    ],
+    "fallback_order": [
+      "saved valid supported code",
+      "LC_ALL",
+      "LC_MESSAGES",
+      "LANG",
+      "en"
+    ],
+    "env_normalization": "lowercase prefix before first hyphen, period or underscore"
+  },
+  "explicit_content_bindings": {
+    "classes": "class.{key}.name/blurb and ability.{key}.name/desc",
+    "races": "race.{key}.name/line1/line2/optional line3",
+    "zones": "zone.{key}.name/subtitle/blurb",
+    "enemies": "embedded enemy record +32 u32 ID -> enemy.{id}",
+    "bosses": "embedded boss record +48 u32 ID -> boss.{id}.name",
+    "picker": "native picker.* and common.male/female keys; token expansion preserves player names"
+  },
+  "limits": [
+    "Other-screen hardcoded English strings are not automatically translated.",
+    "CJK/Russian/Turkish font coverage and all ten rebuilt runtime layouts require validation.",
+    "External custom locale JSON override semantics are not implemented.",
+    "Native hover/pressed transition handler and large-window popup anchoring still require rebuilt comparison."
+  ]
+}

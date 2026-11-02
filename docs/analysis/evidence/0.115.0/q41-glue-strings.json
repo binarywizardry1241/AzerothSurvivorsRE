@@ -1,0 +1,855 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.115.0",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
+  },
+  "gap_ids": [
+    41,
+    107
+  ],
+  "lead_ids": [
+    "Q41-B02",
+    "Q41-I01:resource_path:208"
+  ],
+  "generator": {
+    "path": "scripts/check-q41-glue-strings-0.115.0.py",
+    "sha256": "31d549772f2f3b2abf48c542616952e60ebe97186710c65eec716860eb746465"
+  },
+  "queries": [
+    {
+      "role": "core-file read/transform/publication",
+      "start": "0x14585a400",
+      "end_exclusive": "0x14585a51b",
+      "sha256": "c5dfe6f2d5a2bc936ddd070e5dcd99aa78e019f243aec27aef3a996b568b0d27",
+      "evidence_id": "ev_811779c485cdbc377381187fb7ae4bddfdfd15cde51c3fb5a8209cffa075bbf0",
+      "profile": "24a83bceea65b2cc8d0e1636131f05b652b21ba1b968df496bc9c2596a945c41",
+      "plan": {
+        "path": "runtime/q41-data-contracts-0.115.0/glue-strings/plan.json",
+        "sha256": "bd4d2704e84e50bbbdccb12782f8dabb2683074d736c210cc2b13fd31fda7c34"
+      },
+      "journal": {
+        "path": "runtime/q41-data-contracts-0.115.0/glue-strings/rea/journal.json",
+        "sha256": "d70e03790b8a0fbbf30469d2ad44207cd5075ad1a40afbf702dc7097f55c9782"
+      },
+      "result": {
+        "path": "runtime/q41-data-contracts-0.115.0/glue-strings/rea/results/e2373b2c10d27823c3780d9d5915460376b45e6f91d19ebe5ffa4245a90996cf.json",
+        "sha256": "8e4330781346503be8b0e10cd543dd64a2df58afe59ae5e710bd6d5e04578e46"
+      }
+    },
+    {
+      "role": "complete AS constructor",
+      "start": "0x145859140",
+      "end_exclusive": "0x145859f25",
+      "sha256": "0fd21dec5b8af278f89fcb7d1a27f9405859bdc38df4acfd0e863922b79feda9",
+      "evidence_id": "ev_9741b9ddb5d7950e8bcfb0f145cd0bc69c7895bb379af8a3bd79b4e300ba5560",
+      "profile": "ac5b30cef850ea38214d9efc864c34ba17e77f819ef5ed74a7f9e0ba6e9f7b62",
+      "plan": {
+        "path": "runtime/q41-data-contracts-0.115.0/glue-transform/plan.json",
+        "sha256": "30dbba0922326470bb58736fad0bf6e4a44ebc1aa83a8dac9bca3987c3a7e243"
+      },
+      "journal": {
+        "path": "runtime/q41-data-contracts-0.115.0/glue-transform/rea/journal.json",
+        "sha256": "c423504f11f08a1a93e21c4b776ea448520f6d0c4ea7092779abb6397b21479f"
+      },
+      "result": {
+        "path": "runtime/q41-data-contracts-0.115.0/glue-transform/rea/results/b3081b8213a72e04c85c3ccb48bc3f774a9698e5c0f20d54d2bca1c54727527c.json",
+        "sha256": "72982938c8ee052c54d29828eea3caf8676ab6db0fe2d88db8069266f56df075"
+      }
+    },
+    {
+      "role": "ASCII-lowercase race-key producer",
+      "start": "0x145808540",
+      "end_exclusive": "0x145808769",
+      "sha256": "6bf121afcf953e70bb4cc948ac40ebf304c014b927c78a53bde70645cab5a11d",
+      "evidence_id": "ev_d211b27821e84e2dea8e33487ed74740ea84d87a22e4e3074babcc0356e8a0bf",
+      "profile": "70fa2dc914e589d075d6241774f6bcc0c69bb9dbbedc184378224b75aa492b95",
+      "plan": {
+        "path": "runtime/q41-data-contracts-0.115.0/glue-race-lines/plan.json",
+        "sha256": "0333ff8186ea9e53eabb91d3e42144aef96f77c2fd2bec6ca2427f7c6abec7b4"
+      },
+      "journal": {
+        "path": "runtime/q41-data-contracts-0.115.0/glue-race-lines/rea/journal.json",
+        "sha256": "a9456eeb68686352ce078ce888bc31bc013d54e5e0591bd0a762c01bcf2e46f6"
+      },
+      "result": {
+        "path": "runtime/q41-data-contracts-0.115.0/glue-race-lines/rea/results/9ebd713a3096150c2cedc6b67dbb8d9dc0e087cb12c4f7de26f9175a1c4dc31f.json",
+        "sha256": "abcc90e5be744b20d4b01dbd3d343835579463bf79dca4cd9633719e99ffddf6"
+      }
+    },
+    {
+      "role": "single-character/two-byte replacement helper",
+      "start": "0x14584e9d0",
+      "end_exclusive": "0x14584ebe7",
+      "sha256": "d4e267327cfe05b7bc48ebaed482756a72a6350788c081a89d303e4e5085bcb0",
+      "evidence_id": "ev_e0b3fb876f62462f3a88acd64866f23da4c67477a50565a6b134c64b1c1c6441",
+      "profile": "bd7a3434524b16f764374dd1eb4997567f1b2bab9d6cc5564fa9fbfc8223423d",
+      "plan": {
+        "path": "runtime/q41-data-contracts-0.115.0/glue-race-localize/plan.json",
+        "sha256": "12d865744583c2bfbcfa0ef0cba58a6803a266f8dc51bba4ca08afe91d1bbc35"
+      },
+      "journal": {
+        "path": "runtime/q41-data-contracts-0.115.0/glue-race-localize/rea/journal.json",
+        "sha256": "92b12ac2002e3e1b82444bc82d95197a1e5627cb2c6daa3dafc9c1d126dc4cbe"
+      },
+      "result": {
+        "path": "runtime/q41-data-contracts-0.115.0/glue-race-localize/rea/results/32757ec0516431e619b452c67c1c2cb539460a72a924c50d5fd6504f053ba1de.json",
+        "sha256": "4dccdf6514a7af6f02702c68d4a3a011847ac479058e5d9948b8967b2142b456"
+      }
+    },
+    {
+      "role": "three-pass Lua-value escaping",
+      "start": "0x145858680",
+      "end_exclusive": "0x14585872e",
+      "sha256": "63402760d88dadf313d16b0414ca1a622731d98ec8379cb42fdef1e1e43527e6",
+      "evidence_id": "ev_5eefa0d0214ee2aacc3481277cf94064fba032d91ba9335385e759c0ee56b6e4",
+      "profile": "546660222fc425716cec7045bdd091461840077fc698ac06362a5f7f45a43f83",
+      "plan": {
+        "path": "runtime/q41-data-contracts-0.115.0/glue-quote/plan.json",
+        "sha256": "f0092ab61c60f52f7657c5b592c9e7ee0ea316ee7efffb1c9f29e81dceeb3f4b"
+      },
+      "journal": {
+        "path": "runtime/q41-data-contracts-0.115.0/glue-quote/rea/journal.json",
+        "sha256": "e187cfc09ab8ecfa1ebd235f2aaeb9d16b31e75cf014c6f0d65a668504ef7cf2"
+      },
+      "result": {
+        "path": "runtime/q41-data-contracts-0.115.0/glue-quote/rea/results/e71ce2061c4095ad3d4eb0e8658fed641419f5b53e4c5fe714c33adac5619c40.json",
+        "sha256": "9387bbd6aebf186c083d5228689be87f8761c8d66e93a57f54290239c452adee"
+      }
+    },
+    {
+      "role": "locale/profile preparation before client creation",
+      "start": "0x145815e90",
+      "end_exclusive": "0x145815fde",
+      "sha256": "b4711985088514399cffdb76f3fc4f7e511d0dad9e3de79418bc28def92e39eb",
+      "evidence_id": "ev_b1d6b57933174a56cd69f9caf5b812a78f6b93e9dcbb0884783587731a6d78e2",
+      "profile": "8499989667738df1061d18f51541c701f7c26769f97d1efb9a50e11e8e9d173f",
+      "plan": {
+        "path": "runtime/q41-data-contracts-0.115.0/glue-update/plan.json",
+        "sha256": "d7a8fabfbe84f7b1dea3514f82506c47fa00194784db6aba999c42aae9991294"
+      },
+      "journal": {
+        "path": "runtime/q41-data-contracts-0.115.0/glue-update/rea/journal.json",
+        "sha256": "c7847bb182c970745664598f8a2ec13c05aeb96bbf902fcf447be9a100864a1a"
+      },
+      "result": {
+        "path": "runtime/q41-data-contracts-0.115.0/glue-update/rea/results/19120f593499d1a04b1a35cba5e5379e480adf3f221097d8becd58ec49db03d0.json",
+        "sha256": "c7c3e7eb9e03d542266385f716254b0f3a8a0ab872c179934df52574fcc4f615"
+      }
+    },
+    {
+      "role": "race-line iterator allocation/collection",
+      "start": "0x1459d5a90",
+      "end_exclusive": "0x1459d5b5a",
+      "sha256": "e3c688e12fd6b6fa0b2729aaa0f5e67ec3b26d0d33954f3b3dc98e63ca3ea959",
+      "evidence_id": "ev_7052b35ecae169c0a45e4d0593dc360e277408e1a72b9ab89a2f5fd03b761875",
+      "profile": "ca2e36e1bdfa088e80bcd84cf10d77639a7b48dfb6628f8de736395fca0dc331",
+      "plan": {
+        "path": "runtime/q41-data-contracts-0.115.0/glue-race-lookup/plan.json",
+        "sha256": "dba68bcf14088dff7cf8c4783ebf578353f0682686870ad0532c70069836b42c"
+      },
+      "journal": {
+        "path": "runtime/q41-data-contracts-0.115.0/glue-race-lookup/rea/journal.json",
+        "sha256": "5bcd7165f1e4e7046f39b5024ac4de032321a83e2ff62f8a0379bf35660715eb"
+      },
+      "result": {
+        "path": "runtime/q41-data-contracts-0.115.0/glue-race-lookup/rea/results/ffa200ba28e834c3498723b11ec262e4b413010935ab43563ba7f23c3602a37d.json",
+        "sha256": "161bf4706477f2b34e95f193a8b7b15cd1b5a065e94fc4ecc3ed4dce376982b9"
+      }
+    },
+    {
+      "role": "race.lineN key, prefix removal and localized/fallback line",
+      "start": "0x1459de220",
+      "end_exclusive": "0x1459de3fc",
+      "sha256": "f83ffbe6e2e7518e57669ecad04eecf8b6f561412c3c08674a0cb7231be3ea08",
+      "evidence_id": "ev_f22481f7da9a8560483cf4d702c6103a6a802a259af5ac7529fd7291c4a9feae",
+      "profile": "c47d8d3085c8fc1493d8fd7f457479c3a29214cce970fe2de707fb17d5ab957d",
+      "plan": {
+        "path": "runtime/q41-data-contracts-0.115.0/glue-race-collect/plan.json",
+        "sha256": "a9519bf2a2c177e73cb69b471008c9fe2521b0fd5f72ee4f4a0b198e5b7993b5"
+      },
+      "journal": {
+        "path": "runtime/q41-data-contracts-0.115.0/glue-race-collect/rea/journal.json",
+        "sha256": "97e6cd1a1b2afa1ad8fcaf57ae7a1a87d6b51473ac56ad38c2b6c1be0c73690c"
+      },
+      "result": {
+        "path": "runtime/q41-data-contracts-0.115.0/glue-race-collect/rea/results/12811ceb8c3e1d189739fa0166921d4cb332f84ce77d20e7dc137e123d90b32c.json",
+        "sha256": "e20826ca3238954b417f9f74736966e89102ef229300dfc2c78b5e5cf8746263"
+      }
+    },
+    {
+      "role": "trimmed ABILITY_INFO_ line removal",
+      "start": "0x14583b470",
+      "end_exclusive": "0x14583b621",
+      "sha256": "d4f57b493bac48c7acdfc01c7429a33016722247780601faabaa4a54144f2154",
+      "evidence_id": "ev_0b6c74edb36df0ec3998a6982107455f9e72082020cb852e37e4e9e81d80a79f",
+      "profile": "4db4b7ceff8b5cd15f869ebc81f56fad22ca121a3b626c638ae6acfab3f36e35",
+      "plan": {
+        "path": "runtime/q41-data-contracts-0.115.0/glue-strip/plan.json",
+        "sha256": "71d702c86d91e03328f2448f8107d50fe8cbfd4a1e98d0e11ab235144ca77268"
+      },
+      "journal": {
+        "path": "runtime/q41-data-contracts-0.115.0/glue-strip/rea/journal.json",
+        "sha256": "b2e7288f95273168890c8d1d7e2e0a27aad11585251e70bd14621b71e577d34e"
+      },
+      "result": {
+        "path": "runtime/q41-data-contracts-0.115.0/glue-strip/rea/results/8467e954029d46888226c2a4e0d8f3e722a81b73a67171abdc8772853efc4a60.json",
+        "sha256": "dd4fca87ab0c89e858467e542a2ae557d49f21a1388f51ac71f9af4f48aa7057"
+      }
+    }
+  ],
+  "assembly": {
+    "path": "docs/analysis/evidence/0.115.0/q41-glue-strings.asm",
+    "sha256": "38d4ce661f14863de04f01b3520feefff49799415f61be041044fde3dbc8bc82"
+  },
+  "data": {
+    "races": [
+      {
+        "record": "0x146cc1ec8",
+        "key": "human",
+        "uppercase": "HUMAN",
+        "lines": [
+          "- Perception: every 30 sec, +15% damage for 10 sec",
+          "- The Human Spirit: +10% experience",
+          "- Diplomacy: +20% gold"
+        ],
+        "sha256": "b90990448dfa92f306089c16acf109dbfc8cf3bb4b9bf090c200e8e71b4dec4f"
+      },
+      {
+        "record": "0x146cc1f20",
+        "key": "orc",
+        "uppercase": "ORC",
+        "lines": [
+          "- Blood Fury: every 40 sec, +35% damage for 12 sec",
+          "- Hardiness: +10% max health"
+        ],
+        "sha256": "c76a427aa2eea8d0cb3ee769cc223a7b4f25c690630813cd28a589db02ef7acd"
+      },
+      {
+        "record": "0x146cc1f78",
+        "key": "dwarf",
+        "uppercase": "DWARF",
+        "lines": [
+          "- Stoneform: every 45 sec, a shield absorbing 30% of max health",
+          "- Gun Specialization: +6% damage",
+          "- Treasure Finding: +30% pickup range"
+        ],
+        "sha256": "f98163934809b09926a3b404dd170975faba09b69bc781f85becf9fb4e7f45c9"
+      },
+      {
+        "record": "0x146cc1fd0",
+        "key": "nightelf",
+        "uppercase": "NIGHTELF",
+        "lines": [
+          "- Shadowmeld: near death, 3 sec of immunity (75 sec cooldown)",
+          "- Quickness: +8% movement speed",
+          "- Nature Resistance: +5% damage reduction"
+        ],
+        "sha256": "53d41ff18bca7232f9d2b4f503d9e6729738c14d3551e1f45a46038f4ff8d326"
+      },
+      {
+        "record": "0x146cc2028",
+        "key": "scourge",
+        "uppercase": "SCOURGE",
+        "lines": [
+          "- Will of the Forsaken: near death, 4 sec of immunity (60 sec cooldown)",
+          "- Cannibalize: every kill heals 1 health",
+          "- Shadow Resistance: +4% damage reduction"
+        ],
+        "sha256": "2bb7d6453e910dd9697263fc2a87c5bdb3276d7c883119f7d713c688c1b0eac1"
+      },
+      {
+        "record": "0x146cc2080",
+        "key": "tauren",
+        "uppercase": "TAUREN",
+        "lines": [
+          "- War Stomp: every 15 sec, stuns nearby enemies for 2 sec",
+          "- Endurance: +15% max health"
+        ],
+        "sha256": "ff2047128ea27931a0c7e12b56f839056ee3bf5c0c5636cac3f5558f5afde760"
+      },
+      {
+        "record": "0x146cc20d8",
+        "key": "gnome",
+        "uppercase": "GNOME",
+        "lines": [
+          "- Escape Artist: every 20 sec, roots nearby enemies for 2 sec",
+          "- Expansive Mind: -8% cooldowns",
+          "- Engineering Specialization: +20% luck"
+        ],
+        "sha256": "5cd5970149df70979ed1d20e1c1f8b14b3e7658dd6f23ef897eb24a647adf205"
+      },
+      {
+        "record": "0x146cc2130",
+        "key": "troll",
+        "uppercase": "TROLL",
+        "lines": [
+          "- Berserking: every 35 sec, cooldowns recover 30% faster for 10 sec",
+          "- Regeneration: +1.5 health per second",
+          "- Throwing Specialization: +3% critical strike"
+        ],
+        "sha256": "e206f32f65e8cd853a83f14c3864ca28159dd0e01bddc102f01d62062c76f37a"
+      }
+    ],
+    "classes": [
+      {
+        "record": "0x146cc3058",
+        "key": "warrior",
+        "uppercase": "WARRIOR",
+        "blurb": "Unstoppable in the thick of it. Huge health, cleaving swings, and every kill feeds the fury.",
+        "ability": "cleave",
+        "ability_name": "Cleave",
+        "health": 230.0,
+        "sha256": "516403f5592a88a06e13f2479260060393509eb3161e00b37ffb1566f38e9ec5"
+      },
+      {
+        "record": "0x146cc30e8",
+        "key": "paladin",
+        "uppercase": "PALADIN",
+        "blurb": "Holy ground and righteous hammers. Heals himself, shrugs off death once in a while.",
+        "ability": "consecration",
+        "ability_name": "Consecration",
+        "health": 245.0,
+        "sha256": "d926e3e74d6f9eb18d73075a8d90e8d56d2f599e661b0f7ee8ed1944e62f49b5"
+      },
+      {
+        "record": "0x146cc3178",
+        "key": "hunter",
+        "uppercase": "HUNTER",
+        "blurb": "Death from range. Arrows, traps and volleys, as long as you keep your distance.",
+        "ability": "auto_shot",
+        "ability_name": "Auto Shot",
+        "health": 240.0,
+        "sha256": "c4b02c6ced18a94127261e43ec85110a193ac3103b9fec2e948c0d91ee6f74cf"
+      },
+      {
+        "record": "0x146cc3208",
+        "key": "rogue",
+        "uppercase": "ROGUE",
+        "blurb": "Fast, fragile and lethal. The quickest hero, with crits that delete elites.",
+        "ability": "sinister_strike",
+        "ability_name": "Sinister Strike",
+        "health": 190.0,
+        "sha256": "55c8d294c6e0d73a76a27a834c751ba4f25a6499aafd4744d023a034101d340d"
+      },
+      {
+        "record": "0x146cc3298",
+        "key": "priest",
+        "uppercase": "PRIEST",
+        "blurb": "Light and Shadow. Shields and heals keep you alive while pain spreads through the horde.",
+        "ability": "smite",
+        "ability_name": "Smite",
+        "health": 170.0,
+        "sha256": "ba8ccd8583a6885846e45bc69869bf2806a8c3dea2dc6d2da238886571f8917a"
+      },
+      {
+        "record": "0x146cc3328",
+        "key": "shaman",
+        "uppercase": "SHAMAN",
+        "blurb": "Storms that jump from foe to foe, and totems that fight beside you.",
+        "ability": "lightning_bolt",
+        "ability_name": "Lightning Bolt",
+        "health": 195.0,
+        "sha256": "fe23074c9cabb17683484f5929547d5b7593542c00cb701debbe363aa3f29fa0"
+      },
+      {
+        "record": "0x146cc33b8",
+        "key": "mage",
+        "uppercase": "MAGE",
+        "blurb": "The glass cannon. The biggest area damage in Azeroth, and nothing to hide behind.",
+        "ability": "fireball",
+        "ability_name": "Fireball",
+        "health": 215.0,
+        "sha256": "f6ef78513eac374c197b5550d3b3effb65997c7496f9b83caa19ddf28c687b17"
+      },
+      {
+        "record": "0x146cc3448",
+        "key": "warlock",
+        "uppercase": "WARLOCK",
+        "blurb": "Curses and fire. Damage over time stacks up on everything that chases you.",
+        "ability": "shadow_bolt",
+        "ability_name": "Shadow Bolt",
+        "health": 165.0,
+        "sha256": "a23fd53eafea5cd646c04e588a47c0538f40b80294a7ec1987df48a351a92d25"
+      },
+      {
+        "record": "0x146cc34d8",
+        "key": "druid",
+        "uppercase": "DRUID",
+        "blurb": "Moon, storm and growth. Roots, hurricanes and the steadiest self-healing.",
+        "ability": "wrath",
+        "ability_name": "Wrath",
+        "health": 205.0,
+        "sha256": "0c99fa54a260dc541ae3c2270f883adaa8e4c78910a2b064adf27eddf46a1c47"
+      }
+    ],
+    "realm_globals": [
+      [
+        "SERVER_SELECTION",
+        "Choose a Zone"
+      ],
+      [
+        "REALM_NAME",
+        "Zone"
+      ],
+      [
+        "CHANGE_REALM",
+        "Change Zone"
+      ],
+      [
+        "REALM_LIST_IN_PROGRESS",
+        "Gathering the zones"
+      ],
+      [
+        "REALM_LIST_SUCCESS",
+        "Zones found"
+      ]
+    ],
+    "menu": {
+      "path": "crates/azeroth-survivors-re/assets/menu.json",
+      "sha256": "8206d03870b234952945ed57af33bf6a76e748ac0a6387b0c2f2dbe6bb1994d3"
+    },
+    "race_rows": 22,
+    "class_rows": 9,
+    "prefix": "ABILITY_INFO_",
+    "header": "\n-- Azeroth Survivors\n",
+    "class_template": "{blurb} Starts with {spell}; every level offers three of its spells. {hp} health."
+  },
+  "native_escaping_cases": [
+    {
+      "input": "",
+      "output": "",
+      "calls": [
+        [
+          92,
+          "5c5c"
+        ],
+        [
+          34,
+          "5c22"
+        ],
+        [
+          10,
+          "5c6e"
+        ]
+      ]
+    },
+    {
+      "input": "plain",
+      "output": "plain",
+      "calls": [
+        [
+          92,
+          "5c5c"
+        ],
+        [
+          34,
+          "5c22"
+        ],
+        [
+          10,
+          "5c6e"
+        ]
+      ]
+    },
+    {
+      "input": "\"",
+      "output": "\\\"",
+      "calls": [
+        [
+          92,
+          "5c5c"
+        ],
+        [
+          34,
+          "5c22"
+        ],
+        [
+          10,
+          "5c6e"
+        ]
+      ]
+    },
+    {
+      "input": "\\",
+      "output": "\\\\",
+      "calls": [
+        [
+          92,
+          "5c5c"
+        ],
+        [
+          34,
+          "5c22"
+        ],
+        [
+          10,
+          "5c6e"
+        ]
+      ]
+    },
+    {
+      "input": "\n",
+      "output": "\\n",
+      "calls": [
+        [
+          92,
+          "5c5c"
+        ],
+        [
+          34,
+          "5c22"
+        ],
+        [
+          10,
+          "5c6e"
+        ]
+      ]
+    },
+    {
+      "input": "\\\"\n",
+      "output": "\\\\\\\"\\n",
+      "calls": [
+        [
+          92,
+          "5c5c"
+        ],
+        [
+          34,
+          "5c22"
+        ],
+        [
+          10,
+          "5c6e"
+        ]
+      ]
+    },
+    {
+      "input": "\u00e9\ud83d\ude42",
+      "output": "\u00e9\ud83d\ude42",
+      "calls": [
+        [
+          92,
+          "5c5c"
+        ],
+        [
+          34,
+          "5c22"
+        ],
+        [
+          10,
+          "5c6e"
+        ]
+      ]
+    },
+    {
+      "input": "aaaaaaaaaaaaaaaaa",
+      "output": "aaaaaaaaaaaaaaaaa",
+      "calls": [
+        [
+          92,
+          "5c5c"
+        ],
+        [
+          34,
+          "5c22"
+        ],
+        [
+          10,
+          "5c6e"
+        ]
+      ]
+    },
+    {
+      "input": "line\nnext",
+      "output": "line\\nnext",
+      "calls": [
+        [
+          92,
+          "5c5c"
+        ],
+        [
+          34,
+          "5c22"
+        ],
+        [
+          10,
+          "5c6e"
+        ]
+      ]
+    },
+    {
+      "input": "slashes\\\\and\"quotes\"",
+      "output": "slashes\\\\\\\\and\\\"quotes\\\"",
+      "calls": [
+        [
+          92,
+          "5c5c"
+        ],
+        [
+          34,
+          "5c22"
+        ],
+        [
+          10,
+          "5c6e"
+        ]
+      ]
+    },
+    {
+      "input": "\r\t\u0000",
+      "output": "\r\t\u0000",
+      "calls": [
+        [
+          92,
+          "5c5c"
+        ],
+        [
+          34,
+          "5c22"
+        ],
+        [
+          10,
+          "5c6e"
+        ]
+      ]
+    },
+    {
+      "input": "{spell}{hp}",
+      "output": "{spell}{hp}",
+      "calls": [
+        [
+          92,
+          "5c5c"
+        ],
+        [
+          34,
+          "5c22"
+        ],
+        [
+          10,
+          "5c6e"
+        ]
+      ]
+    }
+  ],
+  "core_input": {
+    "archive": {
+      "path": "installed-game/Data/patch.MPQ",
+      "size_bytes": 1340199244,
+      "sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf"
+    },
+    "member": "Interface\\GlueXML\\GlueStrings.lua",
+    "bytes": 33563,
+    "sha256": "31649e4bdc176607d18ebd8f82847a32f8385699511a125780e102ab5001e04c",
+    "valid_utf8": true,
+    "stock_racial_rows": 32,
+    "reader": {
+      "path": "scripts/check-minimap-lifecycle.py",
+      "sha256": "e933ce82e4fc51ba9ba0a90b45f4ac81819efae55edad6a4992aa6e78e51457c"
+    }
+  },
+  "locales": [
+    {
+      "path": "crates/azeroth-survivors-re/assets/locales/cs.json",
+      "sha256": "b76aaf076b8471f93962178150652ab7631dce841dbb7f99c49e92cd8fe75da4"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/assets/locales/de.json",
+      "sha256": "00269f383ebc168b2c201c2a9c4e728fe17421695a9f7eef93d5226c1a74f3f8"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/assets/locales/en.json",
+      "sha256": "17eabaf3dc46401fccdbc0645feda040393a659a66ddda264f09c6902244e5d8"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/assets/locales/es.json",
+      "sha256": "5698fe9a41cd60cf42de533d01f242692cbdb44f2c207d27ebb3e198bc007688"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/assets/locales/fr.json",
+      "sha256": "2de693bd50ca655f1dd7bc68082bea415a6781df206ce9f842f5d94e6d8eba26"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/assets/locales/ja.json",
+      "sha256": "e485903a1ed04806d9993a10bf51e649c29ad50a016eaf11f792462c5d74bffd"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/assets/locales/ko.json",
+      "sha256": "41201abb240650c37ba6148bb7a93546ccb1a58767968bff78a7bbfede8b8905"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/assets/locales/pl.json",
+      "sha256": "650aa26ba56921ca766310d09094334b40c94ed8b00fdee6894fba447f5effdf"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/assets/locales/pt.json",
+      "sha256": "13eef770272430bc9dd5ebd21609ef6060de80f9e05933d36bca0913b87bb8aa"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/assets/locales/ro.json",
+      "sha256": "851c0f4d848a533dbd112a75414822a0235e91de54a3a031fa173e67575e9cb3"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/assets/locales/ru.json",
+      "sha256": "0dab3e2fb6a3e64cbab531ce0463cb9ca19e695beb8467e6f73fdcb64e5c297a"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/assets/locales/tr.json",
+      "sha256": "8c401aadb483e705d7db00635728ef82ac13aed4fe78124dd08bc3cc47b83339"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/assets/locales/uk.json",
+      "sha256": "5b6acc8c1267275debeaeeefc647c491a1142d439dbb4583b56f0fdf079e5d5c"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/assets/locales/zh.json",
+      "sha256": "0360a2f4ebe98dd6b208339f7d015fe2bc851de0fe7b3c8957f9fa9b642464af"
+    }
+  ],
+  "lua_fixtures": [
+    {
+      "code": "cs",
+      "assignments": 36,
+      "assertions": 37,
+      "source_sha256": "afb1ffffdc2ad881546819db87cddbc78b9fb99e470db3f1efa071f4b5b9f61b"
+    },
+    {
+      "code": "de",
+      "assignments": 36,
+      "assertions": 37,
+      "source_sha256": "9834e06ae409388a34bcdead692321124548ccf0d4cbb2a58fb0b10365cba2bf"
+    },
+    {
+      "code": "en",
+      "assignments": 36,
+      "assertions": 37,
+      "source_sha256": "91cd88e8108ce51af6f69c89dc7db204af09d0765be1f405572a308a521a7e2e"
+    },
+    {
+      "code": "es",
+      "assignments": 36,
+      "assertions": 37,
+      "source_sha256": "45680c513f46bb16fe67085f6134a27d9589cf08bc30c51d249a31e087065498"
+    },
+    {
+      "code": "fr",
+      "assignments": 36,
+      "assertions": 37,
+      "source_sha256": "8901c6c1f22592689ce0f8d8563e6a211899f320534b2a050d35078982c33b30"
+    },
+    {
+      "code": "ja",
+      "assignments": 36,
+      "assertions": 37,
+      "source_sha256": "5000ac83dbfe29fb3150a518ff70625432a7bae468a916911bd5c882a26087d9"
+    },
+    {
+      "code": "ko",
+      "assignments": 36,
+      "assertions": 37,
+      "source_sha256": "0b5c078794160aa63e42e37631492b41f286077d659d2a43586a668ba4599be2"
+    },
+    {
+      "code": "pl",
+      "assignments": 36,
+      "assertions": 37,
+      "source_sha256": "1c5eb5d5998f9c0cd16135c33e0880ad580820908897b053434c2ba73bf2b0d4"
+    },
+    {
+      "code": "pt",
+      "assignments": 36,
+      "assertions": 37,
+      "source_sha256": "80e105ae0120b25f1cd9f790e4f5027151c4aa21468457eccb6e8b5db6204c96"
+    },
+    {
+      "code": "ro",
+      "assignments": 36,
+      "assertions": 37,
+      "source_sha256": "c50f35a242ea16f52bdfeb32aba90203edd74100a47f5cc773a69094de44bf83"
+    },
+    {
+      "code": "ru",
+      "assignments": 36,
+      "assertions": 37,
+      "source_sha256": "9a5af40c4c255c4c8c2aa74fc359956e8fbce71fc9db8277c063c0db7aa95551"
+    },
+    {
+      "code": "tr",
+      "assignments": 36,
+      "assertions": 37,
+      "source_sha256": "6534a4444f660c23cf36b7428af29668cdb3634e90d50c970ffd653c241bf4a8"
+    },
+    {
+      "code": "uk",
+      "assignments": 36,
+      "assertions": 37,
+      "source_sha256": "fff9dc51e34c77f72f547bb5a02ce9705abfd2b753634311405f1a431fd00bca"
+    },
+    {
+      "code": "zh",
+      "assignments": 36,
+      "assertions": 37,
+      "source_sha256": "d49cda072c7ddc227def5856769be8fa1974f1308c1b0b13ccbad4ee39a3be66"
+    }
+  ],
+  "source_files": [
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/client/glue_strings.rs",
+      "sha256": "67eceaad44ecc3cf1ee880533f10ce31fc5e2f69ad9a99c2cb3d9456c5d8ee8b"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/client.rs",
+      "sha256": "09a4f4ff1eed057a8e66f65f7946caa3da4faef7db1a4064f1577bbd46117260"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/client/coop_feed.rs",
+      "sha256": "a3f07be3a3bd27c0d012778bfedcb440249784a096f0f17941b0b76f8cc116b7"
+    },
+    {
+      "path": "crates/benilla-app/src/local_client/extension.rs",
+      "sha256": "3485799fd73405ee482f7ad8805e626798754fbc8e1abb83ecb76ed28068eaf4"
+    },
+    {
+      "path": "crates/benilla-app/src/local_client.rs",
+      "sha256": "e7f7cd49c44a1f4874d8c126153b1eb3e372f64c0e68d32a6a2be237ff60d485"
+    },
+    {
+      "path": "crates/benilla-app/src/ui_script/addons.rs",
+      "sha256": "eb8b773979dc5e97bb17c6ff0c7f8ef96ee90354e3e8191c175dc1dd1d6c8a24"
+    },
+    {
+      "path": "crates/benilla-app/src/ui_script/glue.rs",
+      "sha256": "0317500b2d5943253a3f6717edc5dbcde20cb810d1a88c2776c2646741fcc51b"
+    },
+    {
+      "path": "crates/benilla-app/src/ui_script/lifecycle.rs",
+      "sha256": "9f8efd9c7680b1b7d9e0c83f3b3787558aa4e1aa3ccd86a726da81d21269d7f1"
+    },
+    {
+      "path": "crates/benilla-app/src/ui_script/mod.rs",
+      "sha256": "786a425b587a4ccf40a7ff6a5475ef04f28a6a47a603fc0951ee53fdad690cfb"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/main.rs",
+      "sha256": "68d7f223610adee032bb6a478ca9f9b9a1903d777bb2fb7fc18d9b94ed87b0bc"
+    }
+  ],
+  "source_checks": {
+    "exact native row families, formatting and line filter": true,
+    "source uses the native escaping order for all three output families": true,
+    "initial current catalog payload registered before Startup": true,
+    "both host and guest locale generations refresh future core transforms": true,
+    "resource owns cloneable payload and capture-free callback": true,
+    "read failure precedes transformation and ordinary named chunk load": true,
+    "glue installs transformations before its first core load": true,
+    "replacement glue loads and pre-update ordering retain first-stage refresh": true
+  },
+  "limits": [
+    "Nine bounded raw-function Ghidra queries omit external tables/callees; current image bytes and complete selected data tables bind the recovered inputs. The escaping wrapper has a raw-import no-return warning at external free; exact original assembly and bounded native replay govern those return paths.",
+    "Twelve escaping probes execute only original wrapper instructions with replacement/allocation/free seams; Lua fixture generation is an independent recovered-contract model, not Rust execution.",
+    "Fourteen emitted-Lua fixtures verify current locale data/format and removed stock rows; filesystem mutation, actual ECS/VM/core-provider lifecycles, live locale switching and presentation do not execute.",
+    "The actual selected core member is verified UTF-8. Malformed/non-UTF-8 replacement core inputs and their wider native conversion behavior are outside the selected proof.",
+    "No compilation, authored Rust-test execution, application/game/network execution, rendering or original/rebuilt parity."
+  ]
+}

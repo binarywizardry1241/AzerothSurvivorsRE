@@ -1,0 +1,212 @@
+{
+  "target": "AzerothSurvivors/AzerothSurvivors-0.105.0.exe",
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "canonical_catalog": "crates/azeroth-survivors-re/assets/addon-zones-0.105.0.json",
+  "ranges": [
+    {
+      "role": "realm-constructor",
+      "virtual_address": "0x1459b1260",
+      "end_exclusive": "0x1459b1448",
+      "file_offset": "0x59b0660",
+      "byte_count": 488,
+      "sha256": "f9889ab62998890667d96118455a6e0c5a23c9f5c5f48a5d8164d9d922e3ac30",
+      "assembly": "realm-constructor.asm"
+    },
+    {
+      "role": "realm-count-and-port",
+      "virtual_address": "0x1458967e6",
+      "end_exclusive": "0x1458968f9",
+      "file_offset": "0x5895be6",
+      "byte_count": 275,
+      "sha256": "6892f78f813b0da73e75b49ea465ee95fb23a619f6d9c4d5d9d85c5ac759d991",
+      "assembly": "realm-count-and-port.asm"
+    },
+    {
+      "role": "realm-list-call",
+      "virtual_address": "0x145896a82",
+      "end_exclusive": "0x145896b23",
+      "file_offset": "0x5895e82",
+      "byte_count": 161,
+      "sha256": "e45de30a379e2f3fc2be78c0cafa98645bfbe9effc62f931d4fb9d76b7df483a",
+      "assembly": "realm-list-call.asm"
+    },
+    {
+      "role": "realm-sender",
+      "virtual_address": "0x14596250c",
+      "end_exclusive": "0x145962871",
+      "file_offset": "0x596190c",
+      "byte_count": 869,
+      "sha256": "af32476a704e411847d5ce7921035433b73c795f8a330ec91a03984f16008b35",
+      "assembly": "realm-sender.asm"
+    },
+    {
+      "role": "realm-sender-footer",
+      "virtual_address": "0x145962c70",
+      "end_exclusive": "0x145962d3e",
+      "file_offset": "0x5962070",
+      "byte_count": 206,
+      "sha256": "769fe39caaefd38231d398d143acbc3fa3d4f18a78f254acb3eabfb8cdec3028",
+      "assembly": "realm-sender-footer.asm"
+    }
+  ],
+  "rea": [
+    {
+      "role": "realm-constructor",
+      "provider": "ghidra",
+      "virtual_address": "0x1459b1260",
+      "byte_count": 488,
+      "sha256": "f9889ab62998890667d96118455a6e0c5a23c9f5c5f48a5d8164d9d922e3ac30",
+      "evidence_id": "ev_76da8c076af8032ebe5999a300c9cf178c890999f10fa6b1bab57b3e8b3c4342"
+    },
+    {
+      "role": "auth-service",
+      "provider": "ghidra",
+      "virtual_address": "0x1459623b0",
+      "byte_count": 10370,
+      "sha256": "27e1535e98f41b38e06bfd08f4a6eb1bd45e4b594735d4e2ae0daa37d07797fd",
+      "evidence_id": "ev_01407946dd48e46837c3d5792f53acb6ed14200a58fb1d06a83b946214940a69"
+    }
+  ],
+  "realms": [
+    {
+      "zone_key": "elwynn",
+      "name": "Elwynn Forest",
+      "address": "azeroth.local:8085",
+      "population_f32": 0.6723999977111816,
+      "population_bits": "68222c3f",
+      "realm_type": 1,
+      "flags": 0,
+      "category": 1,
+      "id": 1
+    },
+    {
+      "zone_key": "duskwood",
+      "name": "Duskwood",
+      "address": "azeroth.local:8086",
+      "population_f32": 0.9409000277519226,
+      "population_bits": "d3de703f",
+      "realm_type": 1,
+      "flags": 0,
+      "category": 1,
+      "id": 2
+    },
+    {
+      "zone_key": "wsg",
+      "name": "Warsong Gulch",
+      "address": "azeroth.local:8087",
+      "population_f32": 1.368899941444397,
+      "population_bits": "1d38af3f",
+      "realm_type": 1,
+      "flags": 0,
+      "category": 1,
+      "id": 3
+    },
+    {
+      "zone_key": "ungoro",
+      "name": "Un'Goro Crater",
+      "address": "azeroth.local:8088",
+      "population_f32": 1.7424001693725586,
+      "population_bits": "f806df3f",
+      "realm_type": 1,
+      "flags": 0,
+      "category": 1,
+      "id": 4
+    },
+    {
+      "zone_key": "ab",
+      "name": "Arathi Basin",
+      "address": "azeroth.local:8089",
+      "population_f32": 2.25,
+      "population_bits": "00001040",
+      "realm_type": 1,
+      "flags": 0,
+      "category": 1,
+      "id": 5
+    },
+    {
+      "zone_key": "feralas",
+      "name": "Feralas",
+      "address": "azeroth.local:8090",
+      "population_f32": 4.202499866485596,
+      "population_bits": "e17a8640",
+      "realm_type": 1,
+      "flags": 0,
+      "category": 1,
+      "id": 6
+    },
+    {
+      "zone_key": "arena",
+      "name": "Gurubashi Arena",
+      "address": "azeroth.local:8091",
+      "population_f32": 8.702500343322754,
+      "population_bits": "713d0b41",
+      "realm_type": 1,
+      "flags": 0,
+      "category": 1,
+      "id": 7
+    },
+    {
+      "zone_key": "sm",
+      "name": "Scarlet Monastery",
+      "address": "azeroth.local:8092",
+      "population_f32": 5.428899765014648,
+      "population_bits": "8cb9ad40",
+      "realm_type": 1,
+      "flags": 0,
+      "category": 1,
+      "id": 8
+    },
+    {
+      "zone_key": "av",
+      "name": "Alterac Valley",
+      "address": "azeroth.local:8093",
+      "population_f32": 8.702500343322754,
+      "population_bits": "713d0b41",
+      "realm_type": 1,
+      "flags": 0,
+      "category": 1,
+      "id": 9
+    },
+    {
+      "zone_key": "brm",
+      "name": "Blackrock Mountain",
+      "address": "azeroth.local:8094",
+      "population_f32": 17.139598846435547,
+      "population_bits": "e61d8941",
+      "realm_type": 1,
+      "flags": 0,
+      "category": 1,
+      "id": 10
+    },
+    {
+      "zone_key": "aq",
+      "name": "Gates of Ahn'Qiraj",
+      "address": "azeroth.local:8095",
+      "population_f32": 10.627599716186523,
+      "population_bits": "a60a2a41",
+      "realm_type": 1,
+      "flags": 0,
+      "category": 1,
+      "id": 11
+    },
+    {
+      "zone_key": "naxx",
+      "name": "Naxxramas",
+      "address": "azeroth.local:8096",
+      "population_f32": 39.0625,
+      "population_bits": "00401c42",
+      "realm_type": 1,
+      "flags": 0,
+      "category": 1,
+      "id": 12
+    }
+  ],
+  "characters": "Every realm receives min(native roster projection length,255), captured when local auth connection is created.",
+  "world_zone_selection": "u16 accepted port minus8085 saturates below zero, then index>=12 selects zero; selected zone key is copied to connection+98/+a0.",
+  "checks": "Selected EXE hash, exact current instruction operands, all12 canonical zone names/keys/f32 difficulties and derived realm bindings.",
+  "limits": [
+    "Source catalog and native static contracts checked; source compilation and runtime behavior remain unverified.",
+    "Fresh Ghidra raw slices omit external callees/data and use generic compiler types. Selected PE instructions corroborate constants and data flow.",
+    "No target or rebuilt application was executed; no original/rebuilt parity comparison."
+  ]
+}

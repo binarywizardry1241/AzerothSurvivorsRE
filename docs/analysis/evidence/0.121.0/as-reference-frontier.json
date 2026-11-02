@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "gap_ids": [
+    41
+  ],
+  "lead_ids": [
+    "Q41-F01",
+    "Q41-F02",
+    "Q41-A01",
+    "Q41-A02",
+    "Q41-M01"
+  ],
+  "generator": {
+    "path": "scripts/classify-q41-as-references-0.121.0.py",
+    "sha256": "422a2026b052f0e8a12907a9ce1dfa979b09f18eb373571ddd87bf9a06e68e44"
+  },
+  "dependencies": [
+    {
+      "path": "scripts/coverage_common.py",
+      "sha256": "aec38237b60b6982f17e0e93c6f6ba111100956fb389d44b397dbd5a6bdb1903"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "docs/analysis/coverage/full-image-execheck-0.121.0.json",
+      "sha256": "76e27cb956a7a75142fbdc71bb3808fe1c7885c5f0f72f88fe5d846dc4b9c17f"
+    },
+    {
+      "path": "docs/analysis/evidence/0.121.0/native-residuals.json",
+      "sha256": "73c79b074893b375a612adf34ea53ed19dd389bbf514df69fbd4dbeacad40d69"
+    },
+    {
+      "path": "docs/analysis/coverage/native-ownership-classification.json",
+      "sha256": "fcd6719ad5b784546369fd66577da75daa2f3503624de67ade9ff21e8cd169f7"
+    },
+    {
+      "path": "docs/analysis/evidence/0.121.0/native-operands.json",
+      "sha256": "34bcc5ef07183c52bdba4a7e4c4f14691f67a05ce2e1d51c969165c9142e2229"
+    },
+    {
+      "path": "docs/analysis/evidence/0.121.0/switch-context-source-review.json",
+      "sha256": "0c693c1e8167a15b9158d58843131ebecabfb8b5674ec3bffd7df3d79c9c1b6d"
+    },
+    {
+      "path": "docs/analysis/evidence/0.121.0/computed-correspondence-frontier.json",
+      "sha256": "01836403f217662b6f6818e602e2411460969695f7202c18d08c505e44b15025"
+    }
+  ],
+  "native_exports": [
+    {
+      "path": "runtime/analysis/census/22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150/66afdbf901bbbb80dbbf99d9bfc318b653ab871011851892a3d125424d1fb8db/bodies.tsv.gz",
+      "sha256": "7b93546c4d261fd46c3df4b74f74d167bde340d128ac5fdac4d5f1c287800a58"
+    },
+    {
+      "path": "runtime/analysis/census/22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150/66afdbf901bbbb80dbbf99d9bfc318b653ab871011851892a3d125424d1fb8db/references.tsv.gz",
+      "sha256": "64bf6cfd152d2e8a0ae4959122b8db4e6512fe11e063a3e2868dc51b6b5845d6"
+    }
+  ],
+  "full_indirect_populations": {
+    "Q41-F01": {
+      "complete_records": 83068,
+      "actual_AS_context_records": 125
+    },
+    "Q41-F02": {
+      "complete_records": 651,
+      "actual_AS_context_records": 0
+    }
+  },
+  "independent_F01_F02_and_actual_opcode_context_sets_equal": true,
+  "method": "Complete saved diagnostic association (both path_literal and rust_location) actual-body and declared-extent joins, with narrower rust_location counts and per-site contexts separately retained; exact Ghidra inclusive body ends are converted to half-open intervals. All static references and explicit operands are considered; no sampling or native mutation.",
+  "counts": {
+    "actual_AS_context_body_owners": 315,
+    "declared_AS_context_extent_owners": 327,
+    "actual_AS_rust_location_body_owners": 291,
+    "declared_AS_rust_location_extent_owners": 302,
+    "complete_static_reference_records": 4046360,
+    "AS_context_static_references_by_type": {
+      "COMPUTED_JUMP": 243,
+      "CONDITIONAL_JUMP": 14693,
+      "READ": 3477,
+      "READ_WRITE": 10,
+      "UNCONDITIONAL_CALL": 9205,
+      "UNCONDITIONAL_JUMP": 5146,
+      "WRITE": 1
+    },
+    "all_unowned_executable_destinations": 8048,
+    "AS_context_static_references_to_unowned_executable_destinations": 0,
+    "AS_context_explicit_operands_by_kind_region": {
+      "address-expression:.data": 6,
+      "address-expression:.rdata": 3186,
+      "address-expression:.text": 372,
+      "fixed-memory:.data": 224,
+      "fixed-memory:.rdata": 3264
+    },
+    "AS_context_operands_to_unowned_executable_destinations": 0,
+    "indirect_site_assessments": {
+      "declared_extent_context_only_not_actual_AS_body": 13,
+      "known_platform_import_interface": 5,
+      "retained_table_review_no_new_semantics_from_site": 45,
+      "specific_pointer_or_guard_contract_unresolved": 75
+    },
+    "actual_AS_context_indirect_kinds": {
+      "call": 43,
+      "jump": 82
+    }
+  },
+  "AS_context_static_references_to_unowned_executable_destinations": [],
+  "AS_context_operands_to_unowned_executable_destinations": [],
+  "retained_questions": [
+    {
+      "id": "retained-table-1403076a2",
+      "historical_classification": "classified_within_bounded_contract",
+      "current_applicability": "pending_current_producer_dependency_consumer_contract_revalidation",
+      "fixgap_eligibility": "excluded_proof_only_current_applicability",
+      "source_or_semantics_reset": false
+    },
+    {
+      "id": "retained-table-145afa2a7",
+      "historical_classification": "classified_within_bounded_contract",
+      "current_applicability": "pending_unmapped_or_ambiguous_current_geometry_candidate",
+      "fixgap_eligibility": "excluded_proof_only_current_applicability",
+      "source_or_semantics_reset": false
+    },
+    {
+      "id": "retained-table-145afb3fb",
+      "historical_classification": "classified_within_bounded_contract",
+      "current_applicability": "pending_unmapped_or_ambiguous_current_geometry_candidate",
+      "fixgap_eligibility": "excluded_proof_only_current_applicability",
+      "source_or_semantics_reset": false
+    },
+    {
+      "id": "retained-table-145afb49a",
+      "historical_classification": "classified_within_bounded_contract",
+      "current_applicability": "pending_current_producer_dependency_consumer_contract_revalidation",
+      "fixgap_eligibility": "excluded_proof_only_current_applicability",
+      "source_or_semantics_reset": false
+    },
+    {
+      "id": "retained-table-145afb64e",
+      "historical_classification": "classified_within_bounded_contract",
+      "current_applicability": "pending_unmapped_or_ambiguous_current_geometry_candidate",
+      "fixgap_eligibility": "excluded_proof_only_current_applicability",
+      "source_or_semantics_reset": false
+    },
+    {
+      "id": "retained-table-145afb798",
+      "historical_classification": "classified_within_bounded_contract",
+      "current_applicability": "pending_unmapped_or_ambiguous_current_geometry_candidate",
+      "fixgap_eligibility": "excluded_proof_only_current_applicability",
+      "source_or_semantics_reset": false
+    },
+    {
+      "id": "retained-table-145afb7c1",
+      "historical_classification": "classified_within_bounded_contract",
+      "current_applicability": "pending_unmapped_or_ambiguous_current_geometry_candidate",
+      "fixgap_eligibility": "excluded_proof_only_current_applicability",
+      "source_or_semantics_reset": false
+    },
+    {
+      "id": "retained-table-145afb7ed",
+      "historical_classification": "classified_within_bounded_contract",
+      "current_applicability": "pending_unmapped_or_ambiguous_current_geometry_candidate",
+      "fixgap_eligibility": "excluded_proof_only_current_applicability",
+      "source_or_semantics_reset": false
+    },
+    {
+      "id": "retained-table-145afbad2",
+      "historical_classification": "classified_within_bounded_contract",
+      "current_applicability": "pending_current_producer_dependency_consumer_contract_revalidation",
+      "fixgap_eligibility": "excluded_proof_only_current_applicability",
+      "source_or_semantics_reset": false
+    },
+    {
+      "id": "retained-table-145afbb29",
+      "historical_classification": "classified_within_bounded_contract",
+      "current_applicability": "pending_current_producer_dependency_consumer_contract_revalidation",
+      "fixgap_eligibility": "excluded_proof_only_current_applicability",
+      "source_or_semantics_reset": false
+    },
+    {
+      "id": "retained-table-145afbb66",
+      "historical_classification": "classified_within_bounded_contract",
+      "current_applicability": "pending_current_producer_dependency_consumer_contract_revalidation",
+      "fixgap_eligibility": "excluded_proof_only_current_applicability",
+      "source_or_semantics_reset": false
+    },
+    {
+      "id": "retained-table-145afbb92",
+      "historical_classification": "classified_within_bounded_contract",
+      "current_applicability": "pending_unmapped_or_ambiguous_current_geometry_candidate",
+      "fixgap_eligibility": "excluded_proof_only_current_applicability",
+      "source_or_semantics_reset": false
+    },
+    {
+      "id": "retained-table-145afbe39",
+      "historical_classification": "classified_within_bounded_contract",
+      "current_applicability": "pending_unmapped_or_ambiguous_current_geometry_candidate",
+      "fixgap_eligibility": "excluded_proof_only_current_applicability",
+      "source_or_semantics_reset": false
+    },
+    {
+      "id": "retained-table-145afbed3",
+      "historical_classification": "classified_within_bounded_contract",
+      "current_applicability": "pending_current_producer_dependency_consumer_contract_revalidation",
+      "fixgap_eligibility": "excluded_proof_only_current_applicability",
+      "source_or_semantics_reset": false
+    }
+  ],
+  "limits": [
+    "Diagnostic association is navigation, not semantic AS ownership or complete call reachability.",
+    "Zero contextual edges in these complete saved populations cannot rule out indirect, incoming, address-taken or dynamically constructed references.",
+    "Existing finite metadata recovery and source are retained; newer-target applicability alone is excluded from fixgap repair choices.",
+    "Unresolved call/jump values remain exact recovery questions, not a count of missing implementations. No source execution, compilation, game/server operation or parity validation."
+  ],
+  "indirect_site_artifact": {
+    "path": "runtime/fixgap41-dispatch/contextual-reference-sites.jsonl.gz",
+    "sha256": "f9842794b70ae9475fa96d87dd0ffec270d01b2cd597b0ea9cfaefa8df4c861d",
+    "rows": 138
+  }
+}

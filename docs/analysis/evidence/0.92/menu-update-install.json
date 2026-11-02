@@ -1,0 +1,227 @@
+{
+  "date": "2026-10-16",
+  "target_sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+  "native_functions": [
+    {
+      "address": "0x140113bf0",
+      "end": "0x14011404e",
+      "byte_sha256": "9888dd01af4cc8069e09c5d66a45947f955eefeb43e45c66f9716497353e97c4",
+      "role": "Available/Failed guard; exact filename recheck; Downloading2; worker spawn",
+      "rea_evidence_id": "ev_1cd5341d0c7a5b35b45957689d4c13145433a4a5e0f4cc5b7dbcad42869d5a50"
+    },
+    {
+      "address": "0x1400ef950",
+      "end": "0x1400efb18",
+      "byte_sha256": "9b89b165e0f738271c29e60bda51aa8e461eedca01bd32cc365a28af2af3026a",
+      "role": "FnOnce thread entry; calls worker0e8d80",
+      "rea_evidence_id": "ev_af0522aecae7b5d1fd34ed2051d820c1849646297036a4c0eada82ed14feafd6"
+    },
+    {
+      "address": "0x1400e8d80",
+      "end": "0x1400e9523",
+      "byte_sha256": "6bc7226c1a7962370378ac94c58834ac730261e40c15194b66b53da18ebde599",
+      "role": "Patch/executable staging order, failure cleanup, Failed4/Ready3 publication",
+      "rea_evidence_id": "ev_46419078ecefb7e76d4f771f4615f59e98c7127fd069d2e34f3fa4788156fdb4"
+    },
+    {
+      "address": "0x140119320",
+      "end": "0x140119b90",
+      "byte_sha256": "8a8de45be0c2c079bd42881d91d9016636bb01f5f4db8728b3653ceacb742147",
+      "role": "Stream gzip decoding, buffered staged file, SHA256 and decompressed size check",
+      "rea_evidence_id": "ev_77a6ef52fbeb0c8aa73ddfadb7f4b6104bab845bb21f82b63f60c9bb8670ac8a"
+    },
+    {
+      "address": "0x14012b670",
+      "end": "0x14012ba49",
+      "byte_sha256": "b618fef45d452224d7851969736ee701dda7be8f6c2e936c7c14f930742062f7",
+      "role": "Sequential part HTTP reader, wire-byte progress and rate smoothing",
+      "rea_evidence_id": "ev_4cdf869d9543a5b38a269a40a9eb3f0985686fb719459ccf34ed311020d16b34"
+    },
+    {
+      "address": "0x140161480",
+      "end": "0x1401619e0",
+      "byte_sha256": "6ec1e92601def9e4be4622704c5450129ef47da2138193666733391715aacc77",
+      "role": "gzip reader constructor through155200 header parser",
+      "rea_evidence_id": "ev_d5fb2456a50c50e39eb58e2bfb5e3aa302d925d1a2d63f07c341b52c2ab72d37"
+    },
+    {
+      "address": "0x1401670c0",
+      "end": "0x14016780e",
+      "byte_sha256": "6ea55b181e5ce17f6f912500322982018d6f25604d88303780768424cef869ca",
+      "role": "gzip read dispatch; scoped decompiler external jump-table limitation",
+      "rea_evidence_id": "ev_cf5f5984c21f2c2266a18463502f8dc5a2577b7a741f50ec103e736e4f7a554d"
+    },
+    {
+      "address": "0x140113110",
+      "end": "0x14011384c",
+      "byte_sha256": "bb9c595ce66bf1c5714c2bfe59ec0a172625b02630201eb437f985e0c93c358f",
+      "role": "Patch replacement, EXE backup/replacement/rollback and respawn",
+      "rea_evidence_id": "ev_1601ae4bee694834a372dcc15f0887b83330a78cb48caccd5819f39311bb145d"
+    },
+    {
+      "address": "0x14001c280",
+      "end": "0x14001c46a",
+      "byte_sha256": "d789882702a8d7c128f7fa3e298be9800a3dc214ea594ae2c2d69ff05c90edfb",
+      "role": "Ready3 1.2s timer; apply; localized failure or AppExit success",
+      "rea_evidence_id": "ev_a6515db242a403fcc0dd76749cb22e987aa4116e5a531f3b146b466baeb2237c"
+    },
+    {
+      "address": "0x1456a6570",
+      "end": "0x1456a6874",
+      "byte_sha256": "eebdf02a1a0c073266ffa83660ca2a6ecdf306565ff908ad44537758aefaa00d",
+      "role": "OpenOptions flags, CreateFileW and truncate-existing behavior",
+      "rea_evidence_id": "ev_51f9e85fbc71c509b0b8bd4afaa1a72f43b9230d141925f05e56a3b4735f8928"
+    }
+  ],
+  "imported_primitives": [
+    {
+      "iat": "0x1458a5048",
+      "library": "KERNEL32.dll",
+      "name": "MoveFileExW"
+    },
+    {
+      "iat": "0x1458a5178",
+      "library": "KERNEL32.dll",
+      "name": "DeleteFileW"
+    },
+    {
+      "iat": "0x1458a5a98",
+      "library": "kernel32.dll",
+      "name": "CloseHandle"
+    },
+    {
+      "iat": "0x1458a5a88",
+      "library": "kernel32.dll",
+      "name": "CreateFileW"
+    },
+    {
+      "iat": "0x1458a5050",
+      "library": "KERNEL32.dll",
+      "name": "SetFileInformationByHandle"
+    }
+  ],
+  "action_start": {
+    "owner": "0x140113bf0",
+    "accepted_states": [
+      1,
+      4
+    ],
+    "guard": "Re-query exact eligible shipped executable before Downloading2 or worker creation",
+    "progress": "done=0; total=sum executable part sizes plus every pending patch part size; rate=0",
+    "thread_name": "rogue-update"
+  },
+  "stages": {
+    "owner": "0x1400e8d80",
+    "order": "Every pending patch in plan order, then optional executable",
+    "data_directory": "current_exe.parent().unwrap_or(Path::new('.')).join('Data')",
+    "patch": "Data.join(format!('{name}.update'))",
+    "executable": "current_exe.with_extension('update')",
+    "failure": "Record stage before attempting its download. On error remove every attempted stage, ignoring cleanup errors, publish Failed4 with original plan+error.",
+    "success": "Publish Ready3 with retained plan; no replacement performed on this worker thread"
+  },
+  "gzip": {
+    "library": "flate2-1.1.9",
+    "variant": "Public read::GzDecoder; private32KiB BufReader into bufread::GzDecoder (single member)",
+    "primary_source": "runtime/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/flate2-1.1.9/src/gz/bufread.rs",
+    "primary_source_sha256": "f8620d184d9590a695a3219bb17227b906aab0e588e444d90402e5b1e430f5a9",
+    "public_read_source_sha256": "6cbb895787e3058eec59e01ab3fc959d77c338d76972a21b65947945e3a3fc3a",
+    "private_buffer_source_sha256": "2d6a59330e8f838eb6474d19104f21cb98236125c189f36bdff75a069a4cea8f",
+    "input_route": "1193e5 allocates0x8000;11943b\u2013119459 builds BufReader before161480. Public read::GzDecoder::new builds that same private32KiB buffer then bufread::GzDecoder.",
+    "backend": "Target byte paths include miniz_oxide-0.8.9 at file0x6ad9025; same dependency already in source lock.",
+    "constructor": "0x140161929 writes multi byte+0xf0=false",
+    "trailer": "0x140167400\u201316741a compares CRC32 and ISIZE;167420 sees multi=false and branches167570 to End",
+    "table": {
+      "address": "0x1458e9e08",
+      "targets": [
+        "0x140167180",
+        "0x14016728a",
+        "0x14016739f",
+        "0x1401676cd",
+        "0x1401677d0"
+      ]
+    },
+    "branch": {
+      "start": "0x140167180",
+      "end": "0x14016780e",
+      "sha256": "8a62d0005332ee5e9af4c649ebed1b128e68de91bd89d7ab691e04122d2fdf45",
+      "boundary": "Explicit original interval within1670c0; not a standalone original function",
+      "rea_evidence_id": "ev_f2b2c6d10fd50ec1a0c2e684db9fc3913ca0eabf1db0c4a2fd3e67ec4504ea05"
+    }
+  },
+  "open_options": {
+    "owner": "0x140119469",
+    "wrapper": "0x1456afd70 \u21921456a68b0 \u21921456a6570",
+    "fields": {
+      "write_at25": true,
+      "truncate_at27": true,
+      "create_at28": true,
+      "read_at24": false,
+      "append_at26": false,
+      "create_new_at29": false
+    },
+    "windows": "CreateFileW GENERIC_WRITE0x40000000/share7/OPEN_ALWAYS4; if existing and truncate, SetFileInformationByHandle FileEndOfFileInfo5 with length0, plus std fallback",
+    "source_equivalent": "OpenOptions::new().write(true).create(true).truncate(true).open(path)"
+  },
+  "download": {
+    "owner": "0x140119320",
+    "reader": "0x14012b670",
+    "gzip_constructor": "0x140161480",
+    "header": "0x140155200 checks1f8b and method8 at1554ca/1554d4/1554de",
+    "agent": "ureq2.12.1 connect10s/read30s/User-Agent AzerothSurvivors/0.2.0",
+    "parts": "Sequential GET; finish current response before next. Wire-byte progress before payload gzip decode.",
+    "decoded_read_buffer": 65536,
+    "writer_buffer": 8192,
+    "gzip_input_buffer": 32768,
+    "verification": "SHA256(lowercase hex) and decoded byte count equal download.sha256/download.size; failure message the download is damaged (checksum mismatch)",
+    "retry": "No application retry loop observed in the part/download owners; ureq internals remain separate",
+    "rate": {
+      "sample_minimum_seconds": 0.25,
+      "old_weight": 0.7,
+      "new_weight": 0.3
+    }
+  },
+  "apply": {
+    "owner": "0x140113110",
+    "guard_order": [
+      "Exact eligible current executable",
+      "Retained state must be Ready3; otherwise nothing downloaded"
+    ],
+    "patches": "For each: ignore remove(destination) result, then rename(stage,destination); propagate rename failure and stop. Already-applied earlier patches remain.",
+    "executable": [
+      "ignore remove(current_exe.with_extension('old')) result",
+      "rename(current_exe,old); on failure stop",
+      "rename(update,current_exe); on failure attempt rename(old,current_exe), ignore rollback error, return original replacement error"
+    ],
+    "spawn": "Command(current_exe) with original argument tail after argv0; propagate spawn failure without rolling back applied files. Drop child handles; no wait branch observed.",
+    "shell": "No shell/update script is constructed by this owner; direct rename helpers resolve to MoveFileExW and removal to DeleteFileW.",
+    "delay": {
+      "owner": "0x14001c280",
+      "seconds": 1.2000000476837158,
+      "behavior": "Entering Ready3 sets elapsed+1.2; leaving Ready clears; at deadline invoke apply; success emits AppExit::Success; failure localizes Could not put the update in place: {error} and publishes Failed4"
+    }
+  },
+  "implementation": {
+    "module": "crates/azeroth-survivors-re/src/update_install.rs",
+    "linked_to_app": true,
+    "scope": "Path/apply/cleanup/Ready/stream/part helpers connected in source26 through update_worker.rs native-gated filesystem/HTTP/process adapters. No real adapter executed; compilation and all five connected memory-only fixtures passed in build26.",
+    "tests": "crates/azeroth-survivors-re/tests/update_install.rs",
+    "result": "All18/18 installer fixtures passed Cargo25:6 earlier apply/cleanup/timer,6 stream and6 part-reader cases. Locked offline build14.34s;test compile7.54s;105 harness cases with overlap passed (41 binary,15 native-save,6 config,1 run-modifier,10 save-browser,14 updater,18 installer). Logs runtime/menu-recovery/menu-{build,tests}-25-save-events-talents-progress.log. All injected backends read/write memory; no requests, actual file replacement or process launch.",
+    "stream_fixtures": [
+      "Every two-part split, one-byte and empty parts; empty payload",
+      "CRC and ISIZE corruption produce native flate2 InvalidInput error",
+      "Decoded size/SHA mismatch and no decoder-side case normalization",
+      "Only first gzip member decoded, even if second is corrupt",
+      "65538-byte independent zlib fixture crosses64KiB output read and8KiB writer capacities",
+      "Input/write/flush errors precede manifest verification"
+    ],
+    "sha256": "Five closed native4ae320 vectors pass; see update-sha256-native-checks.json. Source helper reuses pinned ring0.17.14 standard SHA256; does not assert native updater crate identity.",
+    "part_reader": "menu-update-parts.json binds lazy/short/empty/error semantics, shared wrapping counters, exact clock sampling and per-positive-read publication. Six source fixtures PASS25;10 closed native arithmetic checks and3 native I/O-kind lookups passed. Kind0x29 is target Other; source26 NativeParts supplies io::Error::other conversion as code, without live execution.",
+    "source26_validation": "Build26 final --locked --offline PASS in11.08s (menu-build-26-final.log); preceding combined build PASS in29.09s. All169 focused harness cases with overlap PASS:74 binary,19 native-save,6 config,1 run-modifier,14 save-browser,37 updater,18 installer; test compilation12.95s (menu-tests-26-menu-bridges.log). The five connected memory-only fixtures passed within those harnesses. No live adapter, app, metadata/HTTP request, download, staging/replacement/install or process launch was executed."
+  },
+  "limitations": [
+    "Source26 connects updater helpers to the app through native-gated worker/transport/file/process adapters as code; no real adapter was executed.",
+    "Data-manifest schema and local selection four fixtures passed22. Metadata/combined plan/UI pipeline compiled and injected sequence fixtures passed23 (15.47s;64 harness cases); source26 connects the real installer adapters as code, compiled with fixtures passing in build26; no live execution.",
+    "1670c0 scoped Ghidra output stops at external jump dispatch. Original table/branch bytes plus exact flate2 primary source bind single-member/trailer semantics; target runtime decoding has not been replayed.",
+    "No reference/rebuilt installer execution or update download occurred."
+  ]
+}

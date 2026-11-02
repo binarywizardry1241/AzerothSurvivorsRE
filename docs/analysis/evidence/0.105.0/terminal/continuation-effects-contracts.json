@@ -1,0 +1,95 @@
+{
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "unroot": {
+    "owner": "0x1458aa3b0..0x1458aa49b",
+    "opcode": 234,
+    "wire_body": [
+      "packed u64 player GUID",
+      "u32 little-endian sequence"
+    ],
+    "packed_guid": "u8 mask; one nonzero byte per set bit in low-to-high GUID byte order; helper1458b6c70..1458b6e85",
+    "caller": "1458f0168..1458f01c1 reads Game460 and Game548, queues packet then Game548 wrapping increment",
+    "source_owner": "Mechanics.player_mover owns Game548 independently of the actor movement counter; accepted continuation emits RunEvent::PlayerMover and drains it before the Endless notice."
+  },
+  "endless_notice": {
+    "owner": "0x1458a9500..0x1458a97d9",
+    "opcode": 150,
+    "chat_type": 90,
+    "wire_body": [
+      "u8(0x5a)",
+      "u32LE(0) language",
+      "u32LE(title byte_length+1)",
+      "title UTF8 bytes",
+      "NUL",
+      "u64LE(0) target GUID",
+      "u32LE(body byte_length+1)",
+      "body UTF8 bytes",
+      "NUL",
+      "u8(0) chat tag"
+    ],
+    "title": "Endless",
+    "body": "The onslaught never ends...",
+    "localization": "Both title and body separately resolve through1458da590; fallback exact literals146e78edc len7 and146e78ee3 len27.",
+    "source_mapping": {
+      "type": "benilla_protocol::messages::ChatMessage",
+      "chat_type": "CHAT_MSG_RAID_BOSS_EMOTE (0x5a)",
+      "language": 0,
+      "sender_guid": 0,
+      "target_guid": 0,
+      "sender_name": "Some(localized title)",
+      "channel": null,
+      "text": "localized body",
+      "chat_tag": 0
+    },
+    "delivery": "same Game packet queue after unroot; use existing inbound SessionEvent::Chat/engine chat handling",
+    "limits": [
+      "Current native producer and exact bytes recovered.",
+      "Current compiled EXE chat-consumer implementation was not newly recovered; source parser/type support was inspected.",
+      "Custom Notifications::toast is a different path and is not the matching producer."
+    ]
+  },
+  "counter": {
+    "width": "u32 wrapping",
+    "initial_value": 1,
+    "constructor": "145900230 assembles Game at RBP+30;1459009a9..9b3 writes qword0x100000000 at RBP+574, placing value1 at Game548;14590157b..158f copies0xa78 bytes to result.",
+    "initialization_limit": "Constructor invokes1458f96f0 before output copy; that helper may increment Game548 for a changed run speed, so externally observed initial sequence need not remain1.",
+    "writers": [
+      {
+        "operation": "report-driven player relocation",
+        "read": "1458f9376",
+        "increment": "1458f937d..9381",
+        "serializer": "1458b57d0"
+      },
+      {
+        "operation": "run speed change",
+        "read": "1458fa105",
+        "increment": "1458fa10d..111",
+        "serializer": "1458ad310"
+      },
+      {
+        "operation": "optional sink-test tick relocation (see sink-test-contracts.json)",
+        "read": "145902402",
+        "increment": "145902409..40d",
+        "serializer": "1458b57d0"
+      },
+      {
+        "operation": "victory root",
+        "read": "14590feb0",
+        "increment_after_queue": "14590ff0f",
+        "serializer": "1458a9970"
+      },
+      {
+        "operation": "endless unroot",
+        "read": "1458f016f",
+        "increment_after_queue": "1458f01c1",
+        "serializer": "1458aa3b0"
+      }
+    ],
+    "source_limit": "Source is connected but uncompiled. Historical floor-coordinate admission and optional disabled sink-test injection are not revalidated gameplay parity.",
+    "source_owner": "gameplay/mechanics/player_mover.rs::PlayerMover; ordinary speed, report teleport, victory root and Endless unroot share one wrapping sequence."
+  },
+  "validation": [
+    "Hash-bound static original PE inspection and Ghidra through ./scripts/rea only.",
+    "No source compilation, app build, game launch or live packet/UI comparison."
+  ]
+}

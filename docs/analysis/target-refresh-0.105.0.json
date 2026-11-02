@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "reviewed_date": "2026-10-20",
+  "selected_target": "0.105.0",
+  "current_target": {
+    "version": "0.105.0",
+    "path": "AzerothSurvivors/AzerothSurvivors-0.105.0.exe",
+    "size_bytes": 139892736,
+    "sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+    "format": "PE32+",
+    "architecture": "x86_64",
+    "image_base": "0x140000000",
+    "identity_status": "SHA-256, PE32+ AMD64 header, three embedded version markers and REA static PE resource inspection verified; target not executed."
+  },
+  "copy_verification": {
+    "exe_sha256_matches_source": true,
+    "exe_source_stable_during_read": true,
+    "mpq_count": 8,
+    "mpq_total_bytes": 1641903179,
+    "all_mpq_sha256_match_source": true,
+    "all_mpq_sources_stable_during_copy": true,
+    "source_installation_modified": false
+  },
+  "removed_game_references": [
+    {
+      "path": "AzerothSurvivors/AzerothSurvivors.exe",
+      "size_bytes": 130888192,
+      "sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2"
+    },
+    {
+      "path": "AzerothSurvivors/AzerothSurvivors-0.97.2.exe",
+      "size_bytes": 133231104,
+      "sha256": "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589"
+    },
+    {
+      "path": "AzerothSurvivors/AzerothSurvivors-0.91.4.exe",
+      "size_bytes": 130840064,
+      "sha256": "719da61487e0ffaf6491a1ca65410a6666028e83271f059692ad46bc4d8af150"
+    },
+    {
+      "path": "AzerothSurvivors/AzerothSurvivors-0.100.1.exe",
+      "size_bytes": 133565952,
+      "sha256": "17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b"
+    }
+  ],
+  "removed_mpq_paths": [
+    "AzerothSurvivors/Data/patch.MPQ",
+    "AzerothSurvivors/Data/patch-4.MPQ",
+    "AzerothSurvivors/Data/patch-5.MPQ",
+    "AzerothSurvivors/Data/patch-6.MPQ",
+    "AzerothSurvivors/Data/patch-2.MPQ",
+    "AzerothSurvivors/Data/patch-3.MPQ"
+  ],
+  "runtime_data": {
+    "directory": "AzerothSurvivors/Data",
+    "selection": "Existing scripts/run-menu WOW_DATA default; direct launches accept --data-dir or WOW_DATA.",
+    "archives": [
+      {
+        "path": "AzerothSurvivors/Data/patch-2.MPQ",
+        "size_bytes": 4690878,
+        "sha256": "366edee41642a5dda22ed90cc252b543ee375755b7e8bee81e2a6cd59fd7b286"
+      },
+      {
+        "path": "AzerothSurvivors/Data/patch-3.MPQ",
+        "size_bytes": 2580491,
+        "sha256": "75c35ca5b8075197252581e301e8900143007fdf37b493ad271ae1bd39f95a29"
+      },
+      {
+        "path": "AzerothSurvivors/Data/patch-4.MPQ",
+        "size_bytes": 22769233,
+        "sha256": "2e895e0e0ff6a4781d0e0aaa6ea7d32ed1fe36841e17806fe1855cb880d18865"
+      },
+      {
+        "path": "AzerothSurvivors/Data/patch-5.MPQ",
+        "size_bytes": 267019039,
+        "sha256": "5008e56873718b468fa5ae1b697dcbe4f5da9ffe6c793f3ef9939dbd7716f3d8"
+      },
+      {
+        "path": "AzerothSurvivors/Data/patch-6.MPQ",
+        "size_bytes": 212228,
+        "sha256": "cad6ff59b5df028a507581befb836fce07894057e15fe63d9fdc553a95b7ceb5"
+      },
+      {
+        "path": "AzerothSurvivors/Data/patch-7.MPQ",
+        "size_bytes": 276649,
+        "sha256": "f5fb15b181cf01cc6b5cf2ee9948a27ecc4ba27bab9a8bec584df4381932aae6"
+      },
+      {
+        "path": "AzerothSurvivors/Data/patch-8.MPQ",
+        "size_bytes": 4155417,
+        "sha256": "ae3aaa29cadb7aeba8255f5b4a8305c7cbecfe8f0d3ed9646522113d16c3e12e"
+      },
+      {
+        "path": "AzerothSurvivors/Data/patch.MPQ",
+        "size_bytes": 1340199244,
+        "sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf"
+      }
+    ]
+  },
+  "rea": {
+    "operation": "inspect_pe_resources",
+    "provider": "rea-pe-resources",
+    "evidence_id": "ev_0a54b743d0a398bb0f1913eb4fcc0e8f5391ab7ede0ffb3078dfe31fcc499300",
+    "path": "docs/analysis/evidence/0.105.0/pe-resources.json",
+    "command": "./scripts/rea inspect-pe-resources \"$PWD/AzerothSurvivors/AzerothSurvivors-0.105.0.exe\" --max-file-bytes 268435456 --format json",
+    "scope": "Static target-free PE resource inventory; no Ghidra decompilation or target execution."
+  },
+  "version_markers": [
+    {
+      "file_offset": "0x5d97f58",
+      "context_file_offset": "0x5d97f28",
+      "context_sha256": "700f3dba86d6096a297fd8d7c91f6332e8697e118278546c504b04000e629f2e",
+      "context_hex": "2e00000000000000090200000e0000004087d945010000002e0000000000000038010000200000006331633461313638302e3130352e3000588dd9450100000007000000000000000176c0022028c0012900256d70713a2f2f696e746572666163652f676c7565732f6c6f6164696e6773637265656e732fc0042e626c700000000000000000000000246cabd7af00000000000000000000b3d7ab6c24000000",
+      "context_printable": "................@..E............8... ...c1c4a1680.105.0.X..E.............v.. (..).%mpq://interface/glues/loadingscreens/...blp...........$l................l$...",
+      "virtual_address": "0x145d98d58"
+    },
+    {
+      "file_offset": "0x5d9b471",
+      "context_file_offset": "0x5d9b441",
+      "context_sha256": "b34c26854f38ad09e30d48276f930807a9ebda5e51dedc7b5a8d8ce16351d2e1",
+      "context_hex": "6e7d204d42c520000070010000000030cf00400100000018000000000000000800000000000000e0200040010000006e302e3130352e3041206e65772076657273696f6e206973206f7574214e65772067616d652064617461000000000000aaf1723f79e9663f5eba493f0000803f7b73697a657d20646f776e6c6f616420c2b7207468652067616d65207265737461727473207768656e2069742069732064",
+      "context_printable": "n} MB. ..p.....0..@..................... .@....n0.105.0A new version is out!New game data........r?y.f?^.I?...?{size} download .. the game restarts when it is d",
+      "virtual_address": "0x145d9c271"
+    },
+    {
+      "file_offset": "0x5dbdbc0",
+      "context_file_offset": "0x5dbdb90",
+      "context_sha256": "a01395f7e48d2f856c6998e862a94fd7a5a9586b2f5b533af9db5967bcb8b28b",
+      "context_hex": "6573736f72756c6c727565616c73650000000000000000000000000000000000010000000000000000f2024001000000302e3130352e301e7570646174653a20757020746f2064617465202873697465206861732076c002290a00097570646174653a2076c012206973206f75742028746869732069732076c002290a00187570646174653a20636f756c64206e6f7420636865636b20c0023a20c0010a0008",
+      "context_printable": "essorullruealse............................@....0.105.0.update: up to date (site has v..)...update: v.. is out (this is v..)...update: could not check ..: .....",
+      "virtual_address": "0x145dbe9c0"
+    }
+  ],
+  "changelog": {
+    "path": "docs/CHANGELOG.md",
+    "latest_supplied_version": "0.105.0",
+    "new_supplied_versions": [
+      "0.101.0",
+      "0.102.0",
+      "0.102.1",
+      "0.102.2",
+      "0.102.3",
+      "0.103.0",
+      "0.103.1",
+      "0.104.0",
+      "0.105.0"
+    ],
+    "historical_source_path": "changelog_2026-10-15_1.json",
+    "historical_source_sha256": "4dac00d8739524db791199e8f78a53e9ba1abbc17e1c041b5eefb3da8dd17e56",
+    "authority": "User-supplied release notes; recovery leads, not verified reconstructed behavior."
+  },
+  "implementation_baseline": {
+    "package_version": "0.105.0",
+    "reconstruction_target": "0.105.0",
+    "recovered_source_provenance": [
+      "0.100.1",
+      "0.97.2",
+      "0.92.0",
+      "0.91.4"
+    ],
+    "source_logic_changed": false,
+    "menu_footer_source": "crates/azeroth-survivors-re/assets/menu-identity-0.100.1.json",
+    "parity_with_selected_target": "Not established. Existing behavior, catalogs, layouts, RVAs and fixtures remain bound to their original target hashes until revalidated."
+  },
+  "limitations": [
+    "The EXE and MPQs remain local and ignored; neither is included in source delivery.",
+    "Earlier game EXEs were removed. Historical reports and textual evidence remain; their extraction scripts require the exact former input and must not be redirected to this EXE without revalidation.",
+    "Ghidra bundled executables remain installed tool components, not game reference targets.",
+    "Other installed assets, saves, configuration, DLLs and fonts were not refreshed.",
+    "No compilation, builds, compile-based tests, game launches, archive-content compatibility checks or original/rebuilt parity comparisons were performed.",
+    "Historical MPQ floor/navigation caches and captures are not validation of the refreshed patch chain."
+  ]
+}

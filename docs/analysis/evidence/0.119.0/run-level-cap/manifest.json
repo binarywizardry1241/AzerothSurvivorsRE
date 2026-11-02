@@ -1,0 +1,302 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.119.0",
+    "sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f",
+    "size_bytes": 145357824
+  },
+  "gap_ids": [
+    41,
+    181
+  ],
+  "lead_ids": [
+    "Q41-I01:resource_path:219",
+    "Q41-B02",
+    "Q41-R01"
+  ],
+  "generator": {
+    "path": "scripts/check-run-level-cap-0.119.0.py",
+    "sha256": "a192d24a5afc38aeb54d1f1c56a2648b8c7a6ca6ee1ed75131004e7d99aa6401"
+  },
+  "native_spans": [
+    {
+      "role": "patcher",
+      "start": "0x145b44190",
+      "end_exclusive": "0x145b443c1",
+      "sha256": "404a548cb1b8ad0a64836e2d903621256b31edb6a035f0519a6438777d28a680",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.119.0/run-level-cap/patcher.asm",
+        "sha256": "d2295fa75e6d39d9974da35c581abf04a06d5cfe9a38a5a40a64a825bd802421"
+      },
+      "instructions": 144
+    },
+    {
+      "role": "bootstrap",
+      "start": "0x145aa8a20",
+      "end_exclusive": "0x145aa8b5b",
+      "sha256": "b32d6a3063902fa42ab59a92144e50bd541e1a1748c7b097fdaa4cfd1d95cc45",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.119.0/run-level-cap/bootstrap.asm",
+        "sha256": "029e42333f52d10678eb6d039b913e05eb931c19687d042dca2afea68fca0334"
+      },
+      "instructions": 88
+    }
+  ],
+  "queries": [
+    {
+      "evidence_id": "ev_3415fc0d8be630a82b25a9a193553fb33b628f88d8e1226ccb60c3e6445bfb92",
+      "profile": "aec27ded3057c7ec9f3f6e7d79d91320cc9ad77211a19689e51b0f7f7d19c3c9",
+      "result": {
+        "path": "runtime/q41-embedded-resources-0.119.0/reputation-query/results/91fc7ef8ee71ce790565826e996951fe401489e171cf2ac946f27859aeb884e1.json",
+        "sha256": "ab3d976553cd5b4f6ce8030cdbdaabae118f8c27f1b3ad25fcaf97290e05db1e"
+      },
+      "journal": {
+        "path": "runtime/q41-embedded-resources-0.119.0/reputation-query/journal.json",
+        "sha256": "6d9d98b497d8f062ef8251d6459e0665ab1c6c07bb5e03ad9c9c6c22da1d8e11"
+      },
+      "plan": {
+        "path": "runtime/q41-embedded-resources-0.119.0/reputation-plan.json",
+        "sha256": "f6ff925340ae71c3ca46bad3f3a9d8a79c7acc83c4a6b8a36fa8ac43fe516b10"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.119.0/run-level-cap/reputation.c",
+        "sha256": "78cc5abcb133286261f55aff05348b65fa32a904280fe1c29238cc4e41425c9a"
+      }
+    },
+    {
+      "evidence_id": "ev_4b9d5db36165a16a0f6095cfbe516cb0e32d9d734953b5338cef3e9e1f0c62a1",
+      "profile": "8325bc301eedc9a0d35db5780ef2d7108c22e01539c9408c6fd29032e7b84d4c",
+      "result": {
+        "path": "runtime/q41-embedded-resources-0.119.0/bootstrap-query/results/736c9dfbf7d29b6d268810136f277479c29ea818cdaa29700ac681d6bfab59f9.json",
+        "sha256": "bf406d694e33df018eee6e1139d0a81a8ee1a0331273a9acb61becab5f47a74e"
+      },
+      "journal": {
+        "path": "runtime/q41-embedded-resources-0.119.0/bootstrap-query/journal.json",
+        "sha256": "b37b588833c941a35a8b1c5250af8cf43fc82c446f4bb217d2482ff751f6f6b4"
+      },
+      "plan": {
+        "path": "runtime/q41-embedded-resources-0.119.0/bootstrap-plan.json",
+        "sha256": "1b6d879af2bf145b92f4d487017de9ad33f64972eeafc394f037025fdafab4fd"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.119.0/run-level-cap/bootstrap.c",
+        "sha256": "dac83e11581d8f2d0cfbf1f0e915f1703ce1518695cdac4dffd73f99a805cb75"
+      }
+    }
+  ],
+  "template": {
+    "va": "0x1475dace8",
+    "byte_count": 83,
+    "sha256": "28378aedd12151b022bc3a9f6f9857164de88adb563decfda4d1a11329faefc1"
+  },
+  "cap": {
+    "va": "0x1475dace4",
+    "type": "u32",
+    "value": 99
+  },
+  "suffix": {
+    "path": "docs/analysis/evidence/0.119.0/run-level-cap.lua",
+    "sha256": "c031b79791f57329ff4848eaf4a20c91617e9afa485ee2423328949e05f8c572"
+  },
+  "reused_formatter": {
+    "path": "docs/analysis/evidence/0.119.0/rewards-tabard-localization/contracts.json",
+    "sha256": "2025d22159f5da91c5e6a4dec8d4aea0e84c7a71c4da9352e83d9f631d0e9e27"
+  },
+  "native_instruction_cases": [
+    {
+      "mode": "available",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "publications": 1,
+      "edges": [
+        "0x145dfbcc0",
+        "0x145e6c240",
+        "0x145e6d460",
+        "0x145f64930",
+        "0x145f66f30",
+        "0x145e6fd70",
+        "0x1400021d0"
+      ]
+    },
+    {
+      "mode": "root-unavailable",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "publications": 0,
+      "edges": [
+        "0x145dfbcc0"
+      ]
+    },
+    {
+      "mode": "chain-unavailable",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "publications": 0,
+      "edges": [
+        "0x145dfbcc0",
+        "0x145e6c240",
+        "0x145f36a30",
+        "0x1400021d0"
+      ]
+    },
+    {
+      "mode": "file-unavailable",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "publications": 0,
+      "edges": [
+        "0x145dfbcc0",
+        "0x145e6c240",
+        "0x145e6d460",
+        "0x145f503f0",
+        "0x145f36a30",
+        "0x1400021d0"
+      ]
+    },
+    {
+      "mode": "available",
+      "original_sha256": "af3e92b3858eb244e3c6eea45775a0b126462d919c7ed426231157125f224b37",
+      "publications": 1,
+      "edges": [
+        "0x145dfbcc0",
+        "0x145e6c240",
+        "0x145e6d460",
+        "0x145f64930",
+        "0x145f66f30",
+        "0x145e6fd70",
+        "0x1400021d0",
+        "0x1400021d0"
+      ]
+    },
+    {
+      "mode": "root-unavailable",
+      "original_sha256": "af3e92b3858eb244e3c6eea45775a0b126462d919c7ed426231157125f224b37",
+      "publications": 0,
+      "edges": [
+        "0x145dfbcc0"
+      ]
+    },
+    {
+      "mode": "chain-unavailable",
+      "original_sha256": "af3e92b3858eb244e3c6eea45775a0b126462d919c7ed426231157125f224b37",
+      "publications": 0,
+      "edges": [
+        "0x145dfbcc0",
+        "0x145e6c240",
+        "0x145f36a30",
+        "0x1400021d0"
+      ]
+    },
+    {
+      "mode": "file-unavailable",
+      "original_sha256": "af3e92b3858eb244e3c6eea45775a0b126462d919c7ed426231157125f224b37",
+      "publications": 0,
+      "edges": [
+        "0x145dfbcc0",
+        "0x145e6c240",
+        "0x145e6d460",
+        "0x145f503f0",
+        "0x145f36a30",
+        "0x1400021d0"
+      ]
+    },
+    {
+      "mode": "available",
+      "original_sha256": "44592abe6956134ffb2d35e44bcadd3e0c1b768a42585b226149882effaa6f49",
+      "publications": 1,
+      "edges": [
+        "0x145dfbcc0",
+        "0x145e6c240",
+        "0x145e6d460",
+        "0x145f64930",
+        "0x145f66f30",
+        "0x145e6fd70",
+        "0x1400021d0",
+        "0x1400021d0"
+      ]
+    },
+    {
+      "mode": "root-unavailable",
+      "original_sha256": "44592abe6956134ffb2d35e44bcadd3e0c1b768a42585b226149882effaa6f49",
+      "publications": 0,
+      "edges": [
+        "0x145dfbcc0"
+      ]
+    },
+    {
+      "mode": "chain-unavailable",
+      "original_sha256": "44592abe6956134ffb2d35e44bcadd3e0c1b768a42585b226149882effaa6f49",
+      "publications": 0,
+      "edges": [
+        "0x145dfbcc0",
+        "0x145e6c240",
+        "0x145f36a30",
+        "0x1400021d0"
+      ]
+    },
+    {
+      "mode": "file-unavailable",
+      "original_sha256": "44592abe6956134ffb2d35e44bcadd3e0c1b768a42585b226149882effaa6f49",
+      "publications": 0,
+      "edges": [
+        "0x145dfbcc0",
+        "0x145e6c240",
+        "0x145e6d460",
+        "0x145f503f0",
+        "0x145f36a30",
+        "0x1400021d0"
+      ]
+    }
+  ],
+  "stock_resources": [
+    {
+      "archive": "installed-game/Data/patch.MPQ",
+      "archive_sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf",
+      "path": "Interface\\FrameXML\\ReputationFrame.lua",
+      "bytes": 9129,
+      "sha256": "6850fe3f526fee33970f8d78c4ea264d6235f0ab9a24e86a161f45dbb1e2e328"
+    },
+    {
+      "archive": "installed-game/Data/patch.MPQ",
+      "archive_sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf",
+      "path": "Interface\\FrameXML\\FrameXML.toc",
+      "bytes": 1730,
+      "sha256": "e41fce21d2dbe598c31999a5b7cdf410222a9e29eeea4be2fe342ee7b643b2f4"
+    },
+    {
+      "archive": "installed-game/Data/patch.MPQ",
+      "archive_sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf",
+      "path": "Interface\\FrameXML\\ReputationFrame.xml",
+      "bytes": 32518,
+      "sha256": "c4d4830e8aaa42f8f5c7915a698345b9ff6185eddad75643113b1a9294843975"
+    }
+  ],
+  "interpreted_lua": {
+    "harness": {
+      "path": "scripts/check-run-level-cap.lua",
+      "sha256": "b1736f5941a010732c89cb0d67e271bf5866f25a05aa44cbdd671ff704270009"
+    },
+    "assertions": 400,
+    "fresh_vms": 2
+  },
+  "source": [
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/client/framexml_hud.rs",
+      "sha256": "a1fdb0747bd63f1a077450ad3f5cf379b4ff3ac7e5f01f17345e8f41b1bf3821"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/client.rs",
+      "sha256": "3d7652d9b09712eb55706aee1c58f7309126895ec4202b7657ffe52110d85d94"
+    },
+    {
+      "path": "crates/benilla-app/src/ui_script/manifest.rs",
+      "sha256": "212e464618ed2a7e058775600d9b76b72a653d1acf5978433671601bf98b50b6"
+    },
+    {
+      "path": "crates/benilla-app/src/ui_script/lifecycle.rs",
+      "sha256": "7151de08640c19babc2a1b24c3dfbb5153a2ba8a45681d920248529fdc434c38"
+    }
+  ],
+  "limits": [
+    "Full original patcher instructions run only in synthetic memory; filesystem/chain, UTF-8, shared formatting/allocation, diagnostics and publication are explicit seams.",
+    "Original stock Lua consumers run in standalone mocked-widget VMs; no compiled Rust, real core loader, addons, game/client/server/network execution or rendering occurs.",
+    "The current integer formatter input prefix is reused without duplicating its canonical evidence or reconstructing the surrounding generic engine.",
+    "This repair affects the client UI cap only; it does not change gameplay progression or establish whole-image recovery or original/rebuilt parity."
+  ]
+}

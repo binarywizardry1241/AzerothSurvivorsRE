@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.123.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
+    "size_bytes": 146228736
+  },
+  "target_executed": false,
+  "gap_ids": [
+    283
+  ],
+  "bounded_contract_system_ids": [
+    "custom-game-game-mod",
+    "custom-game-driver"
+  ],
+  "bounded_contract_owner_scopes": {
+    "custom-game-driver": "Existing current local driver clear gate excludes guest mode2 and its local restriction, without a party-size/choice gate. The selected prelude/postclear branches supplement the parent final-boss clear proof only.",
+    "custom-game-game-mod": "Solo and cooperative local final-boss victory projection uses the existing completion phase before pending choices permit terminal completion. Accepted guest won remains authoritative. Named local source/static contract only."
+  },
+  "parent_manifest": {
+    "path": "docs/analysis/evidence/0.123.0/coop-clear/manifest.json",
+    "sha256": "0428e397f2e5d4bf7c3a8a5592e72914e12872f46fa1cecd1f750cef4de60ba0"
+  },
+  "parent_checker": {
+    "path": "scripts/check-coop-clear-0.123.0.py",
+    "sha256": "a7e08ffbe1568d811ad1190d3ed7fa9535c101c147db5c40ec8180dc9c7b9d65"
+  },
+  "parent_native_range_roles": [
+    "driver-clear-gate",
+    "final-boss-phase-write",
+    "live-snapshot-phase-input",
+    "live-snapshot-phase-output",
+    "clear-admission"
+  ],
+  "parent_query_count": 6,
+  "driver_query_manifest": {
+    "path": "docs/analysis/evidence/0.123.0/coop-smoothing/manifest.json",
+    "sha256": "51e0adc79ce548204e317c1a8e4a73918dbe04af3f98e5c4e5d4793d5e6e95cb"
+  },
+  "driver_query_role": "host-clock-owner",
+  "native_ranges": [
+    {
+      "role": "driver-mode-and-active-phase",
+      "virtual_address": "0x145c1077f",
+      "file_offset": "0x5c0fb7f",
+      "byte_count": 47,
+      "bytes_hex": "837e10020f849e0800000fb686620d00000fb68430670d000089c180e10680f904750c38860e1b00000f8562070000",
+      "sha256": "af81f8e31081254ad4c96c8382a32587abd9013f1e244320d2c7d6e4abd5a65d",
+      "assembly": "docs/analysis/evidence/0.123.0/solo-clear/driver-mode-and-active-phase.asm"
+    },
+    {
+      "role": "driver-clear-call-before-party-branch",
+      "virtual_address": "0x145c107c0",
+      "file_offset": "0x5c0fbc0",
+      "byte_count": 55,
+      "bytes_hex": "0fb696640300004c8b86e00200004c8b8ee80200004889f1e8e38801004889f1e83b70010048837e10020f843708000080be620d000001",
+      "sha256": "80a3e73803e745076a71d6c8c2dadc0897bcac872e93e454af735c4e01412af6",
+      "assembly": "docs/analysis/evidence/0.123.0/solo-clear/driver-clear-call-before-party-branch.asm"
+    }
+  ],
+  "instruction_guards": [
+    {
+      "address": "0x145c1077f",
+      "instruction": [
+        "cmp",
+        "dword ptr [rsi + 0x10], 2"
+      ]
+    },
+    {
+      "address": "0x145c10783",
+      "instruction": [
+        "je",
+        "0x145c11027"
+      ]
+    },
+    {
+      "address": "0x145c10789",
+      "instruction": [
+        "movzx",
+        "eax, byte ptr [rsi + 0xd62]"
+      ]
+    },
+    {
+      "address": "0x145c10790",
+      "instruction": [
+        "movzx",
+        "eax, byte ptr [rax + rsi + 0xd67]"
+      ]
+    },
+    {
+      "address": "0x145c107a0",
+      "instruction": [
+        "jne",
+        "0x145c107ae"
+      ]
+    },
+    {
+      "address": "0x145c107d8",
+      "instruction": [
+        "call",
+        "0x145c290c0"
+      ]
+    },
+    {
+      "address": "0x145c107e0",
+      "instruction": [
+        "call",
+        "0x145c27820"
+      ]
+    },
+    {
+      "address": "0x145c107f0",
+      "instruction": [
+        "cmp",
+        "byte ptr [rsi + 0xd62], 1"
+      ]
+    }
+  ],
+  "source_bindings": [
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs",
+      "sha256": "7f809a894064cc8dfda74fd5b455ec6f75c94e160e8aca6f08f6fb63105a1fed"
+    }
+  ],
+  "generator": {
+    "path": "scripts/check-solo-clear-0.123.0.py",
+    "sha256": "50ba098f5fbef51a1738cc01b4cdc28f81d7cb5365af388866e2619098421e3a"
+  },
+  "contracts": {
+    "driver": "Current145c1077f excludes guest mode2; nonterminal Playing1/Choosing2 both reach the canonical parent phase/restriction gate at145c107ae. Call145c27820 precedes the party branch145c107f0. No party admission gate precedes this selected local clear path.",
+    "phase": "Parent current death producer sets Game+ba8 phase1 at final-boss death, and the live snapshot copies its low byte+c1 regardless of the party flag. The accepted guest projection remains separate.",
+    "source": "Mechanics::victory_reached reads the existing completion phase for solo as well as cooperative local runs, retaining the accepted guest override and completed/endless latch. Existing native_state and persist_run_at consumers now observe the solo clear during a pending choice without delivering terminal summary XP/counts."
+  },
+  "validation": {
+    "original_instruction_cases": 48,
+    "cases_axes": "mode0/1/2 × party0/1 × run_phasePlaying1/Choosing2 × final_phase0/1 × local_restriction0/1",
+    "authored_uncompiled_regressions": 2,
+    "compilation_run": false,
+    "runtime_verified": false,
+    "parity_verified": false,
+    "command": "python3 -B scripts/check-solo-clear-0.123.0.py --python-path runtime/tests/query-python-deps --python-path runtime/armory-recovery/python-libs",
+    "result": "passed",
+    "original_instruction_steps": 384,
+    "parent_instructions_verified": 546,
+    "additional_instructions_verified": 20,
+    "retained_query_subjects_verified": 7,
+    "rust_syntax_paths": 5
+  },
+  "limits": [
+    "All native queries are retained current subjects: six from the parent clear proof and one existing full-driver query from the smoothing proof. No new native analysis was launched.",
+    "Only two additional compact driver ranges are extracted; parent canonical extracts are reused rather than copied. No whole-driver/party semantic completeness is claimed.",
+    "Original instruction fixtures use synthetic wrapper memory and stop before account calls. Rust regressions are authored, uncompiled and unrun. Actual client/game/network/server/filesystem save and original/rebuilt parity remain unverified."
+  ]
+}

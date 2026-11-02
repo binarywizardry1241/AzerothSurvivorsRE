@@ -1,0 +1,3795 @@
+{
+  "target_version": "0.112.0",
+  "target_sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+  "target_executed": false,
+  "cases": {
+    "descriptors": {
+      "cases": 192,
+      "snapshots_sha256": "ac1025f438996d7024d58e2f340da56ada10ce3b770128a041ca9b9d47d595c1"
+    },
+    "population": {
+      "cases": 12,
+      "snapshots_sha256": "4ca866c9b8943275fe55eb8dd18211179e7ce2ece7d7d796f51f5aeabc833462"
+    },
+    "positions": {
+      "cases": 1440,
+      "snapshots_sha256": "d382a03a706e3546c6946a8f4fc144cbf344ffbc8fdd00f4d1f2dcb065240806"
+    },
+    "merge_order": {
+      "cases": 12,
+      "snapshots_sha256": "55b7e3c2c8a4f336c5478d74425c0edd5e9d295298513c24288994a5dd8e661a"
+    },
+    "primary_composition": {
+      "cases": 240,
+      "snapshots_sha256": "dab9d5c9ec3b02f325cf0895ed108d6dda3697351577ec3e2ed88a4505d70f42"
+    },
+    "guardian_composition": {
+      "cases": 144,
+      "snapshots_sha256": "7b0842c3be5595ae1da028d9696756838f6cafe743f4d3afba266ce78ef7898f"
+    },
+    "radial_boundaries": {
+      "cases": 48,
+      "snapshots_sha256": "a2e1e4b0913edccea544a0dc348d4685d49e8253045b618efd5a88b059ca7ca6"
+    }
+  },
+  "source_checks": {
+    "files": 8,
+    "token_guards": 44,
+    "structural_checks": [
+      "merge before final height/counter/publication; publication before logical append",
+      "old independent gold-facing adapter removed"
+    ],
+    "engine_interface": "existing ObjectCreate/ObjectValues/ObjectDestroyed and movement events; no engine implementation changed"
+  },
+  "current_PE_exception_owners": {
+    "reward-pickup": {
+      "va": "0x145944310",
+      "file_offset": "0x5943710",
+      "byte_count": 4415,
+      "sha256": "8ed30568f47dfe37488d5743b29124625309b4a63ad7b6fd001a60fe9e93ced0"
+    },
+    "reward-object": {
+      "va": "0x14594f020",
+      "file_offset": "0x594e420",
+      "byte_count": 2861,
+      "sha256": "d6560bf858147d3e8791f688739c4bd2482c93594bdb4db47cfddf76622182eb"
+    },
+    "guardian-magnet": {
+      "va": "0x14593d3f0",
+      "file_offset": "0x593c7f0",
+      "byte_count": 262,
+      "sha256": "b47e3794cd79eb356ebb6e2abc2b06c5118ba27b28e753441ea514818316c8f8"
+    }
+  },
+  "selector": {
+    "table": {
+      "va": "0x146c0c650",
+      "file_offset": "0x6c0b850",
+      "byte_count": 28,
+      "sha256": "741eb3a45e0b7e442e07bb9d67859ca106378e1b2f97bccb6f7fd6ddd6935f71"
+    },
+    "slots": [
+      "0x14594442e",
+      "0x145945160",
+      "0x14594445c",
+      "0x14594514a",
+      "0x145945176",
+      "0x145945134",
+      "0x14594518c"
+    ],
+    "context": "AS enum kinds0..6; selected creation kinds0/1/3/4/5/6; kind2 remains existing cache owner. No arbitrary-input selector guard is inferred."
+  },
+  "call_boundaries": {
+    "reward-profiles": {
+      "intercepted_seams": [
+        "0x145898dc0",
+        "0x1458a0b40",
+        "0x1458c09b0",
+        "0x1458c0f20",
+        "0x1458c1180",
+        "0x1458c19b0",
+        "0x1458de1f0",
+        "0x1459c3ba0",
+        "0x145c0a411",
+        "0x145c0a417",
+        "0x145c0a42f",
+        "0x145c0d930"
+      ],
+      "observed_calls": [
+        {
+          "instruction": {
+            "va": "0x14594436f",
+            "file_offset": "0x594376f",
+            "byte_count": 5,
+            "sha256": "15e7cd59bb950110982ac1937f19e175b6f84d9dc9602aa82f16a25be1d11e69"
+          },
+          "target": "0x145898dc0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x1459443a1",
+            "file_offset": "0x59437a1",
+            "byte_count": 5,
+            "sha256": "27e75801eff947f6946c474de5581784ccf64f86c5a204dc7c9e89c8c6724718"
+          },
+          "target": "0x145c0a42f",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x1459447cb",
+            "file_offset": "0x5943bcb",
+            "byte_count": 5,
+            "sha256": "07aff0de3522da7b47b2d4f3162862a7bfb3c28e07ddf5f30456fb951e57a861"
+          },
+          "target": "0x1458a0b40",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944825",
+            "file_offset": "0x5943c25",
+            "byte_count": 5,
+            "sha256": "14c766a373245dc94d0266473994c110bac5e2c0a64abb364915618b4dc43095"
+          },
+          "target": "0x1458c19b0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x1459448c5",
+            "file_offset": "0x5943cc5",
+            "byte_count": 5,
+            "sha256": "8de5177995d02f9ff5c9adb08a9fabfc54510c61c82d14ad9d8ab4209d8a6703"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944965",
+            "file_offset": "0x5943d65",
+            "byte_count": 5,
+            "sha256": "c3883c746b004f72cb4edc74397a714da1cde7132862bd3dde13f38c1fbdd1a0"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944a02",
+            "file_offset": "0x5943e02",
+            "byte_count": 5,
+            "sha256": "99716c996247a58533a70f9a8b27e05fe9ddbf1e1ee812cd1e47dc3f0db3d22b"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944aa5",
+            "file_offset": "0x5943ea5",
+            "byte_count": 5,
+            "sha256": "d39d6db943e69b66006e0c5694cf9753ee6c579bbf668f4791358a99da6c3023"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944b45",
+            "file_offset": "0x5943f45",
+            "byte_count": 5,
+            "sha256": "2daa584b1f81b4667c105543704c36d33bfafff83859e24018c3cad4e644ef6f"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944be5",
+            "file_offset": "0x5943fe5",
+            "byte_count": 5,
+            "sha256": "a3b6680c8aae2564674dc5ba74e5dbacecf2e598a9f919b77681b344cd6ebf7b"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944c85",
+            "file_offset": "0x5944085",
+            "byte_count": 5,
+            "sha256": "bdc805de2401cf6637aed081dd1606e5db0b3b03f287deb5a920b80690f33347"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944d25",
+            "file_offset": "0x5944125",
+            "byte_count": 5,
+            "sha256": "3f13dd05fc53e445d16e99de41c1ac79b2246dda4842560fa502df2614407615"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944dc8",
+            "file_offset": "0x59441c8",
+            "byte_count": 5,
+            "sha256": "02a7dab647386309fb1b77104c999ab118a159e0be0bab23ad7b11255ce6f66f"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944e78",
+            "file_offset": "0x5944278",
+            "byte_count": 5,
+            "sha256": "3ab8da470c0ddaaa49b088ffa2018cda6d33704e3b755bd77943390e688deafd"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944f21",
+            "file_offset": "0x5944321",
+            "byte_count": 5,
+            "sha256": "ba2183bbd089385b42a933fd7d4c11414d6dd945d8449272072d9ec433048cd0"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944fc1",
+            "file_offset": "0x59443c1",
+            "byte_count": 5,
+            "sha256": "840e6d5004211f1631281b781ed902155df7c97f73c10ab3092ed8dddf4f9d8d"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145945025",
+            "file_offset": "0x5944425",
+            "byte_count": 5,
+            "sha256": "280094b529abe83f9ba10c0bcd218b3ad5e91e009cba25960fc099213b136e10"
+          },
+          "target": "0x1458c09b0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594504a",
+            "file_offset": "0x594444a",
+            "byte_count": 5,
+            "sha256": "5cf674aa436656c59885aecf3de70766de08b8c341fa80dc7a7ff9934453ff50"
+          },
+          "target": "0x1458c1180",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594512a",
+            "file_offset": "0x594452a",
+            "byte_count": 5,
+            "sha256": "ea236a8eb9fcab49ed0e2a7405c2b1ca675ba18e2dd04810f845199bcc8927c8"
+          },
+          "target": "0x1459c3ba0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x1459451c4",
+            "file_offset": "0x59445c4",
+            "byte_count": 5,
+            "sha256": "47dd60df969dca34bebeef61d0f7090d5d75e33df9e5a5b945e014e7c1a97b74"
+          },
+          "target": "0x1458a0b40",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594522b",
+            "file_offset": "0x594462b",
+            "byte_count": 5,
+            "sha256": "1d7a066a51559e0e4aebbfe422b286cd7622719fe23f6ecfb91c23813382db60"
+          },
+          "target": "0x14594f020",
+          "role": "byte-executed AS helper"
+        },
+        {
+          "instruction": {
+            "va": "0x145945320",
+            "file_offset": "0x5944720",
+            "byte_count": 5,
+            "sha256": "07a8b80a0dd88482e28c50d3e28b9c21b58ed91c0e4b4e6041b98c2c7bef3569"
+          },
+          "target": "0x14594f020",
+          "role": "byte-executed AS helper"
+        },
+        {
+          "instruction": {
+            "va": "0x14594533d",
+            "file_offset": "0x594473d",
+            "byte_count": 5,
+            "sha256": "c9bc83367b602f9c84a46aa14abf4cf92897c0bb848a319a8fb3b61324b13cbe"
+          },
+          "target": "0x145c0d930",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f14d",
+            "file_offset": "0x594e54d",
+            "byte_count": 5,
+            "sha256": "72f8fb5151d8c37d873a331bd092b6e078ef2bb65e1a0ff9d4aca8d74c5564d8"
+          },
+          "target": "0x1458c19b0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f1f7",
+            "file_offset": "0x594e5f7",
+            "byte_count": 5,
+            "sha256": "7d05d7bf1d8236d97a10bdb4f33b05ea0555159668433fd43426506942172dc4"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f290",
+            "file_offset": "0x594e690",
+            "byte_count": 5,
+            "sha256": "234951ec0038a8375d26e35b3884fd24ef94e4ab9353a22077f4d2156482f288"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f334",
+            "file_offset": "0x594e734",
+            "byte_count": 5,
+            "sha256": "0b4be997f96f3f78aad1d24b8c6c68462168f439a363769e75f9a403b6399f5b"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f3d0",
+            "file_offset": "0x594e7d0",
+            "byte_count": 5,
+            "sha256": "2060138d9ba1f76666c1137bda37ec1fd06ed2560b659c18c86a6b60ee8b3ad1"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f470",
+            "file_offset": "0x594e870",
+            "byte_count": 5,
+            "sha256": "8918331d5dc285677c03deeff4d34c981be7a154d139a29adc41ad4758d4732f"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f48c",
+            "file_offset": "0x594e88c",
+            "byte_count": 5,
+            "sha256": "fc5fb62cceb019c5c5017dc0dc3e55ed5a6e92fe153704437e236e4925fbc9d2"
+          },
+          "target": "0x145c0a411",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f534",
+            "file_offset": "0x594e934",
+            "byte_count": 5,
+            "sha256": "14b7202a13514c6ea75e75a4309451b84c5493dbb270f446d5c34512eb2469cd"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f53d",
+            "file_offset": "0x594e93d",
+            "byte_count": 5,
+            "sha256": "ef29cf60ca7ad48bc2f0d394613dd5878e5d0cb444b4b1688addbb3fbe58a278"
+          },
+          "target": "0x145c0a417",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f5e4",
+            "file_offset": "0x594e9e4",
+            "byte_count": 5,
+            "sha256": "2822ea632f9fe4fea679fbd0da6a58ad3f00c107fdf43d650a1e681d624f2653"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f687",
+            "file_offset": "0x594ea87",
+            "byte_count": 5,
+            "sha256": "2fe8c29e77669958eb21f0cc0f0a63b17e49b7af8322d1b933ab6b9a52e78d55"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f734",
+            "file_offset": "0x594eb34",
+            "byte_count": 5,
+            "sha256": "437270b271122c9c2d4df3780b57a7129e673f28bc3fec0d4d0396640324b864"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f7e4",
+            "file_offset": "0x594ebe4",
+            "byte_count": 5,
+            "sha256": "b0e2c687e387fac67462a20ead299e9415459cc027a35df08fb86ff05649d49e"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f894",
+            "file_offset": "0x594ec94",
+            "byte_count": 5,
+            "sha256": "1941744d6590cc493026759f785f612c635026d75b941ac6df1f239d0d95e6ac"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f934",
+            "file_offset": "0x594ed34",
+            "byte_count": 5,
+            "sha256": "98c02031d3e12a7106761be954ae429ddb7c6615e8ef57168bdf0020b8386b6b"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f9d7",
+            "file_offset": "0x594edd7",
+            "byte_count": 5,
+            "sha256": "f3e36ffcbe5f87f402d7f1e20a3ebb470b9799c5807c91e58ecb21e16b931482"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594fa74",
+            "file_offset": "0x594ee74",
+            "byte_count": 5,
+            "sha256": "defcf6dde994e6911ec57ef2e0a6741bee75ddbae4b73724d7aa39fb8eb6196a"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594fab5",
+            "file_offset": "0x594eeb5",
+            "byte_count": 5,
+            "sha256": "f8fc3cc9010466833f1aadcfbb2b19a7e1d1f5f235987df240ced00506a7c85e"
+          },
+          "target": "0x1458c0f20",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594fad9",
+            "file_offset": "0x594eed9",
+            "byte_count": 5,
+            "sha256": "b8ac2217ef01e3b8f2a3348dbfc82e4597bfa33f7f215d44267eae345eb2f1a6"
+          },
+          "target": "0x1458c1180",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594fb29",
+            "file_offset": "0x594ef29",
+            "byte_count": 5,
+            "sha256": "5579d75c6185c0ee45d7b921a217424217aef23ad59bfc62cef2f734dbcf9822"
+          },
+          "target": "0x1459c3ba0",
+          "role": "intercepted seam"
+        }
+      ]
+    },
+    "xp-cap": {
+      "intercepted_seams": [
+        "0x145898dc0",
+        "0x1458a0b40",
+        "0x1458c09b0",
+        "0x1458c1180",
+        "0x1458c19b0",
+        "0x1458de1f0",
+        "0x1459c3ba0",
+        "0x145c0a42f"
+      ],
+      "observed_calls": [
+        {
+          "instruction": {
+            "va": "0x14594436f",
+            "file_offset": "0x594376f",
+            "byte_count": 5,
+            "sha256": "15e7cd59bb950110982ac1937f19e175b6f84d9dc9602aa82f16a25be1d11e69"
+          },
+          "target": "0x145898dc0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x1459443a1",
+            "file_offset": "0x59437a1",
+            "byte_count": 5,
+            "sha256": "27e75801eff947f6946c474de5581784ccf64f86c5a204dc7c9e89c8c6724718"
+          },
+          "target": "0x145c0a42f",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x1459447cb",
+            "file_offset": "0x5943bcb",
+            "byte_count": 5,
+            "sha256": "07aff0de3522da7b47b2d4f3162862a7bfb3c28e07ddf5f30456fb951e57a861"
+          },
+          "target": "0x1458a0b40",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944825",
+            "file_offset": "0x5943c25",
+            "byte_count": 5,
+            "sha256": "14c766a373245dc94d0266473994c110bac5e2c0a64abb364915618b4dc43095"
+          },
+          "target": "0x1458c19b0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x1459448c5",
+            "file_offset": "0x5943cc5",
+            "byte_count": 5,
+            "sha256": "8de5177995d02f9ff5c9adb08a9fabfc54510c61c82d14ad9d8ab4209d8a6703"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944965",
+            "file_offset": "0x5943d65",
+            "byte_count": 5,
+            "sha256": "c3883c746b004f72cb4edc74397a714da1cde7132862bd3dde13f38c1fbdd1a0"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944a02",
+            "file_offset": "0x5943e02",
+            "byte_count": 5,
+            "sha256": "99716c996247a58533a70f9a8b27e05fe9ddbf1e1ee812cd1e47dc3f0db3d22b"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944aa5",
+            "file_offset": "0x5943ea5",
+            "byte_count": 5,
+            "sha256": "d39d6db943e69b66006e0c5694cf9753ee6c579bbf668f4791358a99da6c3023"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944b45",
+            "file_offset": "0x5943f45",
+            "byte_count": 5,
+            "sha256": "2daa584b1f81b4667c105543704c36d33bfafff83859e24018c3cad4e644ef6f"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944be5",
+            "file_offset": "0x5943fe5",
+            "byte_count": 5,
+            "sha256": "a3b6680c8aae2564674dc5ba74e5dbacecf2e598a9f919b77681b344cd6ebf7b"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944c85",
+            "file_offset": "0x5944085",
+            "byte_count": 5,
+            "sha256": "bdc805de2401cf6637aed081dd1606e5db0b3b03f287deb5a920b80690f33347"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944d25",
+            "file_offset": "0x5944125",
+            "byte_count": 5,
+            "sha256": "3f13dd05fc53e445d16e99de41c1ac79b2246dda4842560fa502df2614407615"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944dc8",
+            "file_offset": "0x59441c8",
+            "byte_count": 5,
+            "sha256": "02a7dab647386309fb1b77104c999ab118a159e0be0bab23ad7b11255ce6f66f"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944e78",
+            "file_offset": "0x5944278",
+            "byte_count": 5,
+            "sha256": "3ab8da470c0ddaaa49b088ffa2018cda6d33704e3b755bd77943390e688deafd"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944f21",
+            "file_offset": "0x5944321",
+            "byte_count": 5,
+            "sha256": "ba2183bbd089385b42a933fd7d4c11414d6dd945d8449272072d9ec433048cd0"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944fc1",
+            "file_offset": "0x59443c1",
+            "byte_count": 5,
+            "sha256": "840e6d5004211f1631281b781ed902155df7c97f73c10ab3092ed8dddf4f9d8d"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145945025",
+            "file_offset": "0x5944425",
+            "byte_count": 5,
+            "sha256": "280094b529abe83f9ba10c0bcd218b3ad5e91e009cba25960fc099213b136e10"
+          },
+          "target": "0x1458c09b0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594504a",
+            "file_offset": "0x594444a",
+            "byte_count": 5,
+            "sha256": "5cf674aa436656c59885aecf3de70766de08b8c341fa80dc7a7ff9934453ff50"
+          },
+          "target": "0x1458c1180",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594512a",
+            "file_offset": "0x594452a",
+            "byte_count": 5,
+            "sha256": "ea236a8eb9fcab49ed0e2a7405c2b1ca675ba18e2dd04810f845199bcc8927c8"
+          },
+          "target": "0x1459c3ba0",
+          "role": "intercepted seam"
+        }
+      ]
+    },
+    "reward-position": {
+      "intercepted_seams": [
+        "0x145898dc0",
+        "0x1458a0b40",
+        "0x1458a4d60",
+        "0x1458c09b0",
+        "0x1458c0f20",
+        "0x1458c1180",
+        "0x1458c19b0",
+        "0x1458de1f0",
+        "0x1459c3ba0",
+        "0x145c0a411",
+        "0x145c0a417",
+        "0x145c0a42f",
+        "0x145c0d930"
+      ],
+      "observed_calls": [
+        {
+          "instruction": {
+            "va": "0x14594436f",
+            "file_offset": "0x594376f",
+            "byte_count": 5,
+            "sha256": "15e7cd59bb950110982ac1937f19e175b6f84d9dc9602aa82f16a25be1d11e69"
+          },
+          "target": "0x145898dc0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x1459443a1",
+            "file_offset": "0x59437a1",
+            "byte_count": 5,
+            "sha256": "27e75801eff947f6946c474de5581784ccf64f86c5a204dc7c9e89c8c6724718"
+          },
+          "target": "0x145c0a42f",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x1459443ec",
+            "file_offset": "0x59437ec",
+            "byte_count": 5,
+            "sha256": "9e6c5afbf0b80b8679cef0c7361fd96fcfabc7d4fe8966f65683ee2e4278f17c"
+          },
+          "target": "0x1458a0b40",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594440d",
+            "file_offset": "0x594380d",
+            "byte_count": 5,
+            "sha256": "bc1cd138e70542c67e1438b1922b90bb1339764c0f15be59963d23801e519153"
+          },
+          "target": "0x1458a4d60",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x1459447cb",
+            "file_offset": "0x5943bcb",
+            "byte_count": 5,
+            "sha256": "07aff0de3522da7b47b2d4f3162862a7bfb3c28e07ddf5f30456fb951e57a861"
+          },
+          "target": "0x1458a0b40",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x1459447ef",
+            "file_offset": "0x5943bef",
+            "byte_count": 5,
+            "sha256": "6ada920bfab59a71fbd489c93e0260378909faa006d71b6284d5cf3a03d46482"
+          },
+          "target": "0x1458a4d60",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944825",
+            "file_offset": "0x5943c25",
+            "byte_count": 5,
+            "sha256": "14c766a373245dc94d0266473994c110bac5e2c0a64abb364915618b4dc43095"
+          },
+          "target": "0x1458c19b0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x1459448c5",
+            "file_offset": "0x5943cc5",
+            "byte_count": 5,
+            "sha256": "8de5177995d02f9ff5c9adb08a9fabfc54510c61c82d14ad9d8ab4209d8a6703"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944965",
+            "file_offset": "0x5943d65",
+            "byte_count": 5,
+            "sha256": "c3883c746b004f72cb4edc74397a714da1cde7132862bd3dde13f38c1fbdd1a0"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944a02",
+            "file_offset": "0x5943e02",
+            "byte_count": 5,
+            "sha256": "99716c996247a58533a70f9a8b27e05fe9ddbf1e1ee812cd1e47dc3f0db3d22b"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944aa5",
+            "file_offset": "0x5943ea5",
+            "byte_count": 5,
+            "sha256": "d39d6db943e69b66006e0c5694cf9753ee6c579bbf668f4791358a99da6c3023"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944b45",
+            "file_offset": "0x5943f45",
+            "byte_count": 5,
+            "sha256": "2daa584b1f81b4667c105543704c36d33bfafff83859e24018c3cad4e644ef6f"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944be5",
+            "file_offset": "0x5943fe5",
+            "byte_count": 5,
+            "sha256": "a3b6680c8aae2564674dc5ba74e5dbacecf2e598a9f919b77681b344cd6ebf7b"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944c85",
+            "file_offset": "0x5944085",
+            "byte_count": 5,
+            "sha256": "bdc805de2401cf6637aed081dd1606e5db0b3b03f287deb5a920b80690f33347"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944d25",
+            "file_offset": "0x5944125",
+            "byte_count": 5,
+            "sha256": "3f13dd05fc53e445d16e99de41c1ac79b2246dda4842560fa502df2614407615"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944dc8",
+            "file_offset": "0x59441c8",
+            "byte_count": 5,
+            "sha256": "02a7dab647386309fb1b77104c999ab118a159e0be0bab23ad7b11255ce6f66f"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944e78",
+            "file_offset": "0x5944278",
+            "byte_count": 5,
+            "sha256": "3ab8da470c0ddaaa49b088ffa2018cda6d33704e3b755bd77943390e688deafd"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944f21",
+            "file_offset": "0x5944321",
+            "byte_count": 5,
+            "sha256": "ba2183bbd089385b42a933fd7d4c11414d6dd945d8449272072d9ec433048cd0"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944fc1",
+            "file_offset": "0x59443c1",
+            "byte_count": 5,
+            "sha256": "840e6d5004211f1631281b781ed902155df7c97f73c10ab3092ed8dddf4f9d8d"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145945025",
+            "file_offset": "0x5944425",
+            "byte_count": 5,
+            "sha256": "280094b529abe83f9ba10c0bcd218b3ad5e91e009cba25960fc099213b136e10"
+          },
+          "target": "0x1458c09b0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594504a",
+            "file_offset": "0x594444a",
+            "byte_count": 5,
+            "sha256": "5cf674aa436656c59885aecf3de70766de08b8c341fa80dc7a7ff9934453ff50"
+          },
+          "target": "0x1458c1180",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594512a",
+            "file_offset": "0x594452a",
+            "byte_count": 5,
+            "sha256": "ea236a8eb9fcab49ed0e2a7405c2b1ca675ba18e2dd04810f845199bcc8927c8"
+          },
+          "target": "0x1459c3ba0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x1459451c4",
+            "file_offset": "0x59445c4",
+            "byte_count": 5,
+            "sha256": "47dd60df969dca34bebeef61d0f7090d5d75e33df9e5a5b945e014e7c1a97b74"
+          },
+          "target": "0x1458a0b40",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x1459451e8",
+            "file_offset": "0x59445e8",
+            "byte_count": 5,
+            "sha256": "2f38181ddaa5a59594ae5420b476c96378aaa7759d7a74775df2ea4b1cb4866b"
+          },
+          "target": "0x1458a4d60",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594522b",
+            "file_offset": "0x594462b",
+            "byte_count": 5,
+            "sha256": "1d7a066a51559e0e4aebbfe422b286cd7622719fe23f6ecfb91c23813382db60"
+          },
+          "target": "0x14594f020",
+          "role": "byte-executed AS helper"
+        },
+        {
+          "instruction": {
+            "va": "0x145945320",
+            "file_offset": "0x5944720",
+            "byte_count": 5,
+            "sha256": "07a8b80a0dd88482e28c50d3e28b9c21b58ed91c0e4b4e6041b98c2c7bef3569"
+          },
+          "target": "0x14594f020",
+          "role": "byte-executed AS helper"
+        },
+        {
+          "instruction": {
+            "va": "0x14594533d",
+            "file_offset": "0x594473d",
+            "byte_count": 5,
+            "sha256": "c9bc83367b602f9c84a46aa14abf4cf92897c0bb848a319a8fb3b61324b13cbe"
+          },
+          "target": "0x145c0d930",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f14d",
+            "file_offset": "0x594e54d",
+            "byte_count": 5,
+            "sha256": "72f8fb5151d8c37d873a331bd092b6e078ef2bb65e1a0ff9d4aca8d74c5564d8"
+          },
+          "target": "0x1458c19b0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f1f7",
+            "file_offset": "0x594e5f7",
+            "byte_count": 5,
+            "sha256": "7d05d7bf1d8236d97a10bdb4f33b05ea0555159668433fd43426506942172dc4"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f290",
+            "file_offset": "0x594e690",
+            "byte_count": 5,
+            "sha256": "234951ec0038a8375d26e35b3884fd24ef94e4ab9353a22077f4d2156482f288"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f334",
+            "file_offset": "0x594e734",
+            "byte_count": 5,
+            "sha256": "0b4be997f96f3f78aad1d24b8c6c68462168f439a363769e75f9a403b6399f5b"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f3d0",
+            "file_offset": "0x594e7d0",
+            "byte_count": 5,
+            "sha256": "2060138d9ba1f76666c1137bda37ec1fd06ed2560b659c18c86a6b60ee8b3ad1"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f470",
+            "file_offset": "0x594e870",
+            "byte_count": 5,
+            "sha256": "8918331d5dc285677c03deeff4d34c981be7a154d139a29adc41ad4758d4732f"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f48c",
+            "file_offset": "0x594e88c",
+            "byte_count": 5,
+            "sha256": "fc5fb62cceb019c5c5017dc0dc3e55ed5a6e92fe153704437e236e4925fbc9d2"
+          },
+          "target": "0x145c0a411",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f534",
+            "file_offset": "0x594e934",
+            "byte_count": 5,
+            "sha256": "14b7202a13514c6ea75e75a4309451b84c5493dbb270f446d5c34512eb2469cd"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f53d",
+            "file_offset": "0x594e93d",
+            "byte_count": 5,
+            "sha256": "ef29cf60ca7ad48bc2f0d394613dd5878e5d0cb444b4b1688addbb3fbe58a278"
+          },
+          "target": "0x145c0a417",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f5e4",
+            "file_offset": "0x594e9e4",
+            "byte_count": 5,
+            "sha256": "2822ea632f9fe4fea679fbd0da6a58ad3f00c107fdf43d650a1e681d624f2653"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f687",
+            "file_offset": "0x594ea87",
+            "byte_count": 5,
+            "sha256": "2fe8c29e77669958eb21f0cc0f0a63b17e49b7af8322d1b933ab6b9a52e78d55"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f734",
+            "file_offset": "0x594eb34",
+            "byte_count": 5,
+            "sha256": "437270b271122c9c2d4df3780b57a7129e673f28bc3fec0d4d0396640324b864"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f7e4",
+            "file_offset": "0x594ebe4",
+            "byte_count": 5,
+            "sha256": "b0e2c687e387fac67462a20ead299e9415459cc027a35df08fb86ff05649d49e"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f894",
+            "file_offset": "0x594ec94",
+            "byte_count": 5,
+            "sha256": "1941744d6590cc493026759f785f612c635026d75b941ac6df1f239d0d95e6ac"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f934",
+            "file_offset": "0x594ed34",
+            "byte_count": 5,
+            "sha256": "98c02031d3e12a7106761be954ae429ddb7c6615e8ef57168bdf0020b8386b6b"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f9d7",
+            "file_offset": "0x594edd7",
+            "byte_count": 5,
+            "sha256": "f3e36ffcbe5f87f402d7f1e20a3ebb470b9799c5807c91e58ecb21e16b931482"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594fa74",
+            "file_offset": "0x594ee74",
+            "byte_count": 5,
+            "sha256": "defcf6dde994e6911ec57ef2e0a6741bee75ddbae4b73724d7aa39fb8eb6196a"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594fab5",
+            "file_offset": "0x594eeb5",
+            "byte_count": 5,
+            "sha256": "f8fc3cc9010466833f1aadcfbb2b19a7e1d1f5f235987df240ced00506a7c85e"
+          },
+          "target": "0x1458c0f20",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594fad9",
+            "file_offset": "0x594eed9",
+            "byte_count": 5,
+            "sha256": "b8ac2217ef01e3b8f2a3348dbfc82e4597bfa33f7f215d44267eae345eb2f1a6"
+          },
+          "target": "0x1458c1180",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594fb29",
+            "file_offset": "0x594ef29",
+            "byte_count": 5,
+            "sha256": "5579d75c6185c0ee45d7b921a217424217aef23ad59bfc62cef2f734dbcf9822"
+          },
+          "target": "0x1459c3ba0",
+          "role": "intercepted seam"
+        }
+      ]
+    },
+    "xp-merge-order": {
+      "intercepted_seams": [
+        "0x145898dc0",
+        "0x1458a0b40",
+        "0x145c0a42f"
+      ],
+      "observed_calls": [
+        {
+          "instruction": {
+            "va": "0x14594436f",
+            "file_offset": "0x594376f",
+            "byte_count": 5,
+            "sha256": "15e7cd59bb950110982ac1937f19e175b6f84d9dc9602aa82f16a25be1d11e69"
+          },
+          "target": "0x145898dc0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x1459443a1",
+            "file_offset": "0x59437a1",
+            "byte_count": 5,
+            "sha256": "27e75801eff947f6946c474de5581784ccf64f86c5a204dc7c9e89c8c6724718"
+          },
+          "target": "0x145c0a42f",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x1459443ec",
+            "file_offset": "0x59437ec",
+            "byte_count": 5,
+            "sha256": "9e6c5afbf0b80b8679cef0c7361fd96fcfabc7d4fe8966f65683ee2e4278f17c"
+          },
+          "target": "0x1458a0b40",
+          "role": "intercepted seam"
+        }
+      ]
+    },
+    "primary-reward-composition": {
+      "intercepted_seams": [
+        "0x1400021c0",
+        "0x1400021d0",
+        "0x140002200",
+        "0x145897de0",
+        "0x145898dc0",
+        "0x1458a0b40",
+        "0x1458c09b0",
+        "0x1458c0f20",
+        "0x1458c1180",
+        "0x1458c19b0",
+        "0x1458c3bf0",
+        "0x1458c4010",
+        "0x1458de1f0",
+        "0x145912fa0",
+        "0x14598c950",
+        "0x14598ddd0",
+        "0x1459c3ba0",
+        "0x1459c73f0",
+        "0x145c0a411",
+        "0x145c0a417",
+        "0x145c0a42f",
+        "0x145c0d470",
+        "0x145c0d930",
+        "0x145c0d9a0"
+      ],
+      "observed_calls": [
+        {
+          "instruction": {
+            "va": "0x145940672",
+            "file_offset": "0x593fa72",
+            "byte_count": 5,
+            "sha256": "ad4ec0c97ee73ee460f21c5d1e84e25b03fd3894b6d8ea54cec3ba891701d1a1"
+          },
+          "target": "0x145897de0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145940699",
+            "file_offset": "0x593fa99",
+            "byte_count": 5,
+            "sha256": "84d9943c5cff1f0065a19f994d220589055c4ade47db8d8c4b0ff5e0acbd28a8"
+          },
+          "target": "0x14598ddd0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x1459406cf",
+            "file_offset": "0x593facf",
+            "byte_count": 5,
+            "sha256": "f66229e093f0d8e416840c27273ad2556fac2321dcb9f58df1bab45fdfeef6b4"
+          },
+          "target": "0x1458c4010",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594072b",
+            "file_offset": "0x593fb2b",
+            "byte_count": 5,
+            "sha256": "53fb7fa6d75af2e8e998df5515bb2c70a3583d3012a86e90b575c7c66f515d77"
+          },
+          "target": "0x145897de0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145940745",
+            "file_offset": "0x593fb45",
+            "byte_count": 5,
+            "sha256": "7d8d91d1b9f070cb3611f19cbefe1a2ab568600ae5cc3e2f3746e3e511b91f03"
+          },
+          "target": "0x14598c950",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594075c",
+            "file_offset": "0x593fb5c",
+            "byte_count": 5,
+            "sha256": "5ca84db862cdcf97ee92591d7e8a27609ed18cfa3a16cd6bac58724f700898d4"
+          },
+          "target": "0x145912fa0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145940786",
+            "file_offset": "0x593fb86",
+            "byte_count": 5,
+            "sha256": "a8b444a8757e909bfdd59b281ef6906c25b6f51facb2e2a9909e5f2181a412c5"
+          },
+          "target": "0x145944310",
+          "role": "byte-executed AS helper"
+        },
+        {
+          "instruction": {
+            "va": "0x1459407df",
+            "file_offset": "0x593fbdf",
+            "byte_count": 5,
+            "sha256": "93bcff902e17dae2d2592d73949a08367de28b0ed94820a34bccdaaf26ae7703"
+          },
+          "target": "0x145944310",
+          "role": "byte-executed AS helper"
+        },
+        {
+          "instruction": {
+            "va": "0x14594081a",
+            "file_offset": "0x593fc1a",
+            "byte_count": 5,
+            "sha256": "8c5532294c2c9f65231fd52766a5abbdcec4a74112df811391e2d00e07392a0c"
+          },
+          "target": "0x1459c73f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594084e",
+            "file_offset": "0x593fc4e",
+            "byte_count": 5,
+            "sha256": "396e76db7a99d2ca912ab86f6da1c4e011c7a6aaa7bc227440cb8fc064c14f7f"
+          },
+          "target": "0x145944310",
+          "role": "byte-executed AS helper"
+        },
+        {
+          "instruction": {
+            "va": "0x14594086f",
+            "file_offset": "0x593fc6f",
+            "byte_count": 5,
+            "sha256": "fc5163c8d62405e15b2777ab5560e648d1a33504dbef8757c46f1b6015fdbf80"
+          },
+          "target": "0x145898dc0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x1459409b5",
+            "file_offset": "0x593fdb5",
+            "byte_count": 5,
+            "sha256": "72a93d6938c4056ee5f50c04907751d19fa402f3e23fd3074d30ae2f81b5f18b"
+          },
+          "target": "0x145898dc0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x1459409cb",
+            "file_offset": "0x593fdcb",
+            "byte_count": 5,
+            "sha256": "77181d2eda40b813f49f1683516cdbb3bac1fff64dfc2769985e14155638de14"
+          },
+          "target": "0x14599d7a0",
+          "role": "byte-executed AS helper"
+        },
+        {
+          "instruction": {
+            "va": "0x1459409ef",
+            "file_offset": "0x593fdef",
+            "byte_count": 5,
+            "sha256": "355bc1c9d1ba67777be440b70674bdcb3d7e9aea8c8548bf4ea56216a1403b42"
+          },
+          "target": "0x145994a20",
+          "role": "byte-executed AS helper"
+        },
+        {
+          "instruction": {
+            "va": "0x145940b32",
+            "file_offset": "0x593ff32",
+            "byte_count": 5,
+            "sha256": "a56fd60bd70801de275326e47e24d9019d736f269f34036d9f0c453f3b0189b8"
+          },
+          "target": "0x1400021d0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145940b41",
+            "file_offset": "0x593ff41",
+            "byte_count": 5,
+            "sha256": "6ec3f23de76b0a6f894b042d05fd480d88daaf42bed07768cb2e61afb7e053fe"
+          },
+          "target": "0x14594eb50",
+          "role": "byte-executed AS helper"
+        },
+        {
+          "instruction": {
+            "va": "0x14594436f",
+            "file_offset": "0x594376f",
+            "byte_count": 5,
+            "sha256": "15e7cd59bb950110982ac1937f19e175b6f84d9dc9602aa82f16a25be1d11e69"
+          },
+          "target": "0x145898dc0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x1459443a1",
+            "file_offset": "0x59437a1",
+            "byte_count": 5,
+            "sha256": "27e75801eff947f6946c474de5581784ccf64f86c5a204dc7c9e89c8c6724718"
+          },
+          "target": "0x145c0a42f",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x1459447cb",
+            "file_offset": "0x5943bcb",
+            "byte_count": 5,
+            "sha256": "07aff0de3522da7b47b2d4f3162862a7bfb3c28e07ddf5f30456fb951e57a861"
+          },
+          "target": "0x1458a0b40",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944825",
+            "file_offset": "0x5943c25",
+            "byte_count": 5,
+            "sha256": "14c766a373245dc94d0266473994c110bac5e2c0a64abb364915618b4dc43095"
+          },
+          "target": "0x1458c19b0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x1459448c5",
+            "file_offset": "0x5943cc5",
+            "byte_count": 5,
+            "sha256": "8de5177995d02f9ff5c9adb08a9fabfc54510c61c82d14ad9d8ab4209d8a6703"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944965",
+            "file_offset": "0x5943d65",
+            "byte_count": 5,
+            "sha256": "c3883c746b004f72cb4edc74397a714da1cde7132862bd3dde13f38c1fbdd1a0"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944a02",
+            "file_offset": "0x5943e02",
+            "byte_count": 5,
+            "sha256": "99716c996247a58533a70f9a8b27e05fe9ddbf1e1ee812cd1e47dc3f0db3d22b"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944aa5",
+            "file_offset": "0x5943ea5",
+            "byte_count": 5,
+            "sha256": "d39d6db943e69b66006e0c5694cf9753ee6c579bbf668f4791358a99da6c3023"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944b45",
+            "file_offset": "0x5943f45",
+            "byte_count": 5,
+            "sha256": "2daa584b1f81b4667c105543704c36d33bfafff83859e24018c3cad4e644ef6f"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944be5",
+            "file_offset": "0x5943fe5",
+            "byte_count": 5,
+            "sha256": "a3b6680c8aae2564674dc5ba74e5dbacecf2e598a9f919b77681b344cd6ebf7b"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944c85",
+            "file_offset": "0x5944085",
+            "byte_count": 5,
+            "sha256": "bdc805de2401cf6637aed081dd1606e5db0b3b03f287deb5a920b80690f33347"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944d25",
+            "file_offset": "0x5944125",
+            "byte_count": 5,
+            "sha256": "3f13dd05fc53e445d16e99de41c1ac79b2246dda4842560fa502df2614407615"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944dc8",
+            "file_offset": "0x59441c8",
+            "byte_count": 5,
+            "sha256": "02a7dab647386309fb1b77104c999ab118a159e0be0bab23ad7b11255ce6f66f"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944e78",
+            "file_offset": "0x5944278",
+            "byte_count": 5,
+            "sha256": "3ab8da470c0ddaaa49b088ffa2018cda6d33704e3b755bd77943390e688deafd"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944f21",
+            "file_offset": "0x5944321",
+            "byte_count": 5,
+            "sha256": "ba2183bbd089385b42a933fd7d4c11414d6dd945d8449272072d9ec433048cd0"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145944fc1",
+            "file_offset": "0x59443c1",
+            "byte_count": 5,
+            "sha256": "840e6d5004211f1631281b781ed902155df7c97f73c10ab3092ed8dddf4f9d8d"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145945025",
+            "file_offset": "0x5944425",
+            "byte_count": 5,
+            "sha256": "280094b529abe83f9ba10c0bcd218b3ad5e91e009cba25960fc099213b136e10"
+          },
+          "target": "0x1458c09b0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594504a",
+            "file_offset": "0x594444a",
+            "byte_count": 5,
+            "sha256": "5cf674aa436656c59885aecf3de70766de08b8c341fa80dc7a7ff9934453ff50"
+          },
+          "target": "0x1458c1180",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594512a",
+            "file_offset": "0x594452a",
+            "byte_count": 5,
+            "sha256": "ea236a8eb9fcab49ed0e2a7405c2b1ca675ba18e2dd04810f845199bcc8927c8"
+          },
+          "target": "0x1459c3ba0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x1459451c4",
+            "file_offset": "0x59445c4",
+            "byte_count": 5,
+            "sha256": "47dd60df969dca34bebeef61d0f7090d5d75e33df9e5a5b945e014e7c1a97b74"
+          },
+          "target": "0x1458a0b40",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594522b",
+            "file_offset": "0x594462b",
+            "byte_count": 5,
+            "sha256": "1d7a066a51559e0e4aebbfe422b286cd7622719fe23f6ecfb91c23813382db60"
+          },
+          "target": "0x14594f020",
+          "role": "byte-executed AS helper"
+        },
+        {
+          "instruction": {
+            "va": "0x145945320",
+            "file_offset": "0x5944720",
+            "byte_count": 5,
+            "sha256": "07a8b80a0dd88482e28c50d3e28b9c21b58ed91c0e4b4e6041b98c2c7bef3569"
+          },
+          "target": "0x14594f020",
+          "role": "byte-executed AS helper"
+        },
+        {
+          "instruction": {
+            "va": "0x14594533d",
+            "file_offset": "0x594473d",
+            "byte_count": 5,
+            "sha256": "c9bc83367b602f9c84a46aa14abf4cf92897c0bb848a319a8fb3b61324b13cbe"
+          },
+          "target": "0x145c0d930",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594ec92",
+            "file_offset": "0x594e092",
+            "byte_count": 5,
+            "sha256": "73112d21bb4cd99219cad0f592114619a1f4f7704f011c279dbeb7661bbe0ffc"
+          },
+          "target": "0x145c0d9a0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594edac",
+            "file_offset": "0x594e1ac",
+            "byte_count": 5,
+            "sha256": "b76b99ce28b56c431ac353a2b011fd4153c4adcdbe8c70c9bb749e8b62461165"
+          },
+          "target": "0x1458c3bf0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594edf3",
+            "file_offset": "0x594e1f3",
+            "byte_count": 5,
+            "sha256": "7bc8bc33c62762d545d919ae58097edc4e1150e392bd8d8c7dc101144ade0774"
+          },
+          "target": "0x1400021d0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f14d",
+            "file_offset": "0x594e54d",
+            "byte_count": 5,
+            "sha256": "72f8fb5151d8c37d873a331bd092b6e078ef2bb65e1a0ff9d4aca8d74c5564d8"
+          },
+          "target": "0x1458c19b0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f1f7",
+            "file_offset": "0x594e5f7",
+            "byte_count": 5,
+            "sha256": "7d05d7bf1d8236d97a10bdb4f33b05ea0555159668433fd43426506942172dc4"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f290",
+            "file_offset": "0x594e690",
+            "byte_count": 5,
+            "sha256": "234951ec0038a8375d26e35b3884fd24ef94e4ab9353a22077f4d2156482f288"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f334",
+            "file_offset": "0x594e734",
+            "byte_count": 5,
+            "sha256": "0b4be997f96f3f78aad1d24b8c6c68462168f439a363769e75f9a403b6399f5b"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f3d0",
+            "file_offset": "0x594e7d0",
+            "byte_count": 5,
+            "sha256": "2060138d9ba1f76666c1137bda37ec1fd06ed2560b659c18c86a6b60ee8b3ad1"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f470",
+            "file_offset": "0x594e870",
+            "byte_count": 5,
+            "sha256": "8918331d5dc285677c03deeff4d34c981be7a154d139a29adc41ad4758d4732f"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f48c",
+            "file_offset": "0x594e88c",
+            "byte_count": 5,
+            "sha256": "fc5fb62cceb019c5c5017dc0dc3e55ed5a6e92fe153704437e236e4925fbc9d2"
+          },
+          "target": "0x145c0a411",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f534",
+            "file_offset": "0x594e934",
+            "byte_count": 5,
+            "sha256": "14b7202a13514c6ea75e75a4309451b84c5493dbb270f446d5c34512eb2469cd"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f53d",
+            "file_offset": "0x594e93d",
+            "byte_count": 5,
+            "sha256": "ef29cf60ca7ad48bc2f0d394613dd5878e5d0cb444b4b1688addbb3fbe58a278"
+          },
+          "target": "0x145c0a417",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f5e4",
+            "file_offset": "0x594e9e4",
+            "byte_count": 5,
+            "sha256": "2822ea632f9fe4fea679fbd0da6a58ad3f00c107fdf43d650a1e681d624f2653"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f687",
+            "file_offset": "0x594ea87",
+            "byte_count": 5,
+            "sha256": "2fe8c29e77669958eb21f0cc0f0a63b17e49b7af8322d1b933ab6b9a52e78d55"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f734",
+            "file_offset": "0x594eb34",
+            "byte_count": 5,
+            "sha256": "437270b271122c9c2d4df3780b57a7129e673f28bc3fec0d4d0396640324b864"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f7e4",
+            "file_offset": "0x594ebe4",
+            "byte_count": 5,
+            "sha256": "b0e2c687e387fac67462a20ead299e9415459cc027a35df08fb86ff05649d49e"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f894",
+            "file_offset": "0x594ec94",
+            "byte_count": 5,
+            "sha256": "1941744d6590cc493026759f785f612c635026d75b941ac6df1f239d0d95e6ac"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f934",
+            "file_offset": "0x594ed34",
+            "byte_count": 5,
+            "sha256": "98c02031d3e12a7106761be954ae429ddb7c6615e8ef57168bdf0020b8386b6b"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f9d7",
+            "file_offset": "0x594edd7",
+            "byte_count": 5,
+            "sha256": "f3e36ffcbe5f87f402d7f1e20a3ebb470b9799c5807c91e58ecb21e16b931482"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594fa74",
+            "file_offset": "0x594ee74",
+            "byte_count": 5,
+            "sha256": "defcf6dde994e6911ec57ef2e0a6741bee75ddbae4b73724d7aa39fb8eb6196a"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594fab5",
+            "file_offset": "0x594eeb5",
+            "byte_count": 5,
+            "sha256": "f8fc3cc9010466833f1aadcfbb2b19a7e1d1f5f235987df240ced00506a7c85e"
+          },
+          "target": "0x1458c0f20",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594fad9",
+            "file_offset": "0x594eed9",
+            "byte_count": 5,
+            "sha256": "b8ac2217ef01e3b8f2a3348dbfc82e4597bfa33f7f215d44267eae345eb2f1a6"
+          },
+          "target": "0x1458c1180",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594fb29",
+            "file_offset": "0x594ef29",
+            "byte_count": 5,
+            "sha256": "5579d75c6185c0ee45d7b921a217424217aef23ad59bfc62cef2f734dbcf9822"
+          },
+          "target": "0x1459c3ba0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145994b39",
+            "file_offset": "0x5993f39",
+            "byte_count": 5,
+            "sha256": "f801d49cf187657b03e0dd6134fee8a9c4691779e9261d39fba5fe33ad89d460"
+          },
+          "target": "0x1459cf4a0",
+          "role": "byte-executed AS helper"
+        },
+        {
+          "instruction": {
+            "va": "0x145994bc6",
+            "file_offset": "0x5993fc6",
+            "byte_count": 5,
+            "sha256": "b347cb2aba285dc82d37060b23ebd2b48f7eadb43c2e0f0904651e48e9baba0f"
+          },
+          "target": "0x1459ca770",
+          "role": "byte-executed AS helper"
+        },
+        {
+          "instruction": {
+            "va": "0x145994c50",
+            "file_offset": "0x5994050",
+            "byte_count": 5,
+            "sha256": "1cc45c010332a948da93a3ddd06dc748da0dcc29f57c15acfd8bb01df803328c"
+          },
+          "target": "0x1400021d0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145994c62",
+            "file_offset": "0x5994062",
+            "byte_count": 5,
+            "sha256": "aadeb8b0f67e21f8cda639c5d7e1eb54fd72246f86d2c65def134fd1b0c59011"
+          },
+          "target": "0x140002200",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x145994c74",
+            "file_offset": "0x5994074",
+            "byte_count": 5,
+            "sha256": "18bce35b2e18b6d980680347192649e1629255d0f49e6c816e1fa5a468d0a989"
+          },
+          "target": "0x1400021c0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x1459ca831",
+            "file_offset": "0x59c9c31",
+            "byte_count": 5,
+            "sha256": "3a2d6961536c3a8e0fdbdefd4c5fae3450ae2fb8e946512e51f024f2ca297313"
+          },
+          "target": "0x140002200",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x1459ca840",
+            "file_offset": "0x59c9c40",
+            "byte_count": 5,
+            "sha256": "0269bfe17a23e8e33b579939e63f8e12af294d748ca6e66899423107c06da5c3"
+          },
+          "target": "0x1400021c0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x1459cf679",
+            "file_offset": "0x59cea79",
+            "byte_count": 5,
+            "sha256": "6221f9e90c455dd133acbf8295296824b8c4ba1208218a81d1c1b5ae86c7c0f7"
+          },
+          "target": "0x140002200",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x1459cf688",
+            "file_offset": "0x59cea88",
+            "byte_count": 5,
+            "sha256": "3510ca3fe643f69925cedf3ef44bbbeede8749b04ee2a24dfc4c6e3aea1e3b5f"
+          },
+          "target": "0x1400021c0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x1459cf856",
+            "file_offset": "0x59cec56",
+            "byte_count": 5,
+            "sha256": "cb14ad39f9568279f12dcd1e60411fa5352a93773c3f6cdb0c76f2e5ebf0e9ce"
+          },
+          "target": "0x145c0d470",
+          "role": "intercepted seam"
+        }
+      ]
+    },
+    "guardian-reward-composition": {
+      "intercepted_seams": [
+        "0x145898dc0",
+        "0x1458a0b40",
+        "0x1458c0f20",
+        "0x1458c1180",
+        "0x1458c19b0",
+        "0x1458de1f0",
+        "0x1459c3ba0",
+        "0x145c0a3ed",
+        "0x145c0a411",
+        "0x145c0a417",
+        "0x145c0a42f",
+        "0x145c0d930"
+      ],
+      "observed_calls": [
+        {
+          "instruction": {
+            "va": "0x14593d4b4",
+            "file_offset": "0x593c8b4",
+            "byte_count": 5,
+            "sha256": "4946d65074dfe79eb74feefe8a2b326c990c13783b69132f0971ed4c00fd1c5a"
+          },
+          "target": "0x145c0a3ed",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14593d4e8",
+            "file_offset": "0x593c8e8",
+            "byte_count": 5,
+            "sha256": "a6153e728cd6e3224890dd94a3d4eb8cabba91c63e6376b4773dcf68a0757475"
+          },
+          "target": "0x145944310",
+          "role": "byte-executed AS helper"
+        },
+        {
+          "instruction": {
+            "va": "0x14594436f",
+            "file_offset": "0x594376f",
+            "byte_count": 5,
+            "sha256": "15e7cd59bb950110982ac1937f19e175b6f84d9dc9602aa82f16a25be1d11e69"
+          },
+          "target": "0x145898dc0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x1459443a1",
+            "file_offset": "0x59437a1",
+            "byte_count": 5,
+            "sha256": "27e75801eff947f6946c474de5581784ccf64f86c5a204dc7c9e89c8c6724718"
+          },
+          "target": "0x145c0a42f",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x1459451c4",
+            "file_offset": "0x59445c4",
+            "byte_count": 5,
+            "sha256": "47dd60df969dca34bebeef61d0f7090d5d75e33df9e5a5b945e014e7c1a97b74"
+          },
+          "target": "0x1458a0b40",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594522b",
+            "file_offset": "0x594462b",
+            "byte_count": 5,
+            "sha256": "1d7a066a51559e0e4aebbfe422b286cd7622719fe23f6ecfb91c23813382db60"
+          },
+          "target": "0x14594f020",
+          "role": "byte-executed AS helper"
+        },
+        {
+          "instruction": {
+            "va": "0x145945320",
+            "file_offset": "0x5944720",
+            "byte_count": 5,
+            "sha256": "07a8b80a0dd88482e28c50d3e28b9c21b58ed91c0e4b4e6041b98c2c7bef3569"
+          },
+          "target": "0x14594f020",
+          "role": "byte-executed AS helper"
+        },
+        {
+          "instruction": {
+            "va": "0x14594533d",
+            "file_offset": "0x594473d",
+            "byte_count": 5,
+            "sha256": "c9bc83367b602f9c84a46aa14abf4cf92897c0bb848a319a8fb3b61324b13cbe"
+          },
+          "target": "0x145c0d930",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f14d",
+            "file_offset": "0x594e54d",
+            "byte_count": 5,
+            "sha256": "72f8fb5151d8c37d873a331bd092b6e078ef2bb65e1a0ff9d4aca8d74c5564d8"
+          },
+          "target": "0x1458c19b0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f1f7",
+            "file_offset": "0x594e5f7",
+            "byte_count": 5,
+            "sha256": "7d05d7bf1d8236d97a10bdb4f33b05ea0555159668433fd43426506942172dc4"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f290",
+            "file_offset": "0x594e690",
+            "byte_count": 5,
+            "sha256": "234951ec0038a8375d26e35b3884fd24ef94e4ab9353a22077f4d2156482f288"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f334",
+            "file_offset": "0x594e734",
+            "byte_count": 5,
+            "sha256": "0b4be997f96f3f78aad1d24b8c6c68462168f439a363769e75f9a403b6399f5b"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f3d0",
+            "file_offset": "0x594e7d0",
+            "byte_count": 5,
+            "sha256": "2060138d9ba1f76666c1137bda37ec1fd06ed2560b659c18c86a6b60ee8b3ad1"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f470",
+            "file_offset": "0x594e870",
+            "byte_count": 5,
+            "sha256": "8918331d5dc285677c03deeff4d34c981be7a154d139a29adc41ad4758d4732f"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f48c",
+            "file_offset": "0x594e88c",
+            "byte_count": 5,
+            "sha256": "fc5fb62cceb019c5c5017dc0dc3e55ed5a6e92fe153704437e236e4925fbc9d2"
+          },
+          "target": "0x145c0a411",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f534",
+            "file_offset": "0x594e934",
+            "byte_count": 5,
+            "sha256": "14b7202a13514c6ea75e75a4309451b84c5493dbb270f446d5c34512eb2469cd"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f53d",
+            "file_offset": "0x594e93d",
+            "byte_count": 5,
+            "sha256": "ef29cf60ca7ad48bc2f0d394613dd5878e5d0cb444b4b1688addbb3fbe58a278"
+          },
+          "target": "0x145c0a417",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f5e4",
+            "file_offset": "0x594e9e4",
+            "byte_count": 5,
+            "sha256": "2822ea632f9fe4fea679fbd0da6a58ad3f00c107fdf43d650a1e681d624f2653"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f687",
+            "file_offset": "0x594ea87",
+            "byte_count": 5,
+            "sha256": "2fe8c29e77669958eb21f0cc0f0a63b17e49b7af8322d1b933ab6b9a52e78d55"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f734",
+            "file_offset": "0x594eb34",
+            "byte_count": 5,
+            "sha256": "437270b271122c9c2d4df3780b57a7129e673f28bc3fec0d4d0396640324b864"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f7e4",
+            "file_offset": "0x594ebe4",
+            "byte_count": 5,
+            "sha256": "b0e2c687e387fac67462a20ead299e9415459cc027a35df08fb86ff05649d49e"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f894",
+            "file_offset": "0x594ec94",
+            "byte_count": 5,
+            "sha256": "1941744d6590cc493026759f785f612c635026d75b941ac6df1f239d0d95e6ac"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f934",
+            "file_offset": "0x594ed34",
+            "byte_count": 5,
+            "sha256": "98c02031d3e12a7106761be954ae429ddb7c6615e8ef57168bdf0020b8386b6b"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594f9d7",
+            "file_offset": "0x594edd7",
+            "byte_count": 5,
+            "sha256": "f3e36ffcbe5f87f402d7f1e20a3ebb470b9799c5807c91e58ecb21e16b931482"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594fa74",
+            "file_offset": "0x594ee74",
+            "byte_count": 5,
+            "sha256": "defcf6dde994e6911ec57ef2e0a6741bee75ddbae4b73724d7aa39fb8eb6196a"
+          },
+          "target": "0x1458de1f0",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594fab5",
+            "file_offset": "0x594eeb5",
+            "byte_count": 5,
+            "sha256": "f8fc3cc9010466833f1aadcfbb2b19a7e1d1f5f235987df240ced00506a7c85e"
+          },
+          "target": "0x1458c0f20",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594fad9",
+            "file_offset": "0x594eed9",
+            "byte_count": 5,
+            "sha256": "b8ac2217ef01e3b8f2a3348dbfc82e4597bfa33f7f215d44267eae345eb2f1a6"
+          },
+          "target": "0x1458c1180",
+          "role": "intercepted seam"
+        },
+        {
+          "instruction": {
+            "va": "0x14594fb29",
+            "file_offset": "0x594ef29",
+            "byte_count": 5,
+            "sha256": "5579d75c6185c0ee45d7b921a217424217aef23ad59bfc62cef2f734dbcf9822"
+          },
+          "target": "0x1459c3ba0",
+          "role": "intercepted seam"
+        }
+      ]
+    }
+  },
+  "rea_dependencies": [
+    "../raid-boss-lifecycle/rea-provenance.json",
+    "../raid-guardian-lifecycle/rea-provenance.json"
+  ],
+  "visited_instruction_ranges": {
+    "reward-profiles": [
+      {
+        "va": "0x145944310",
+        "file_offset": "0x5943710",
+        "byte_count": 180,
+        "sha256": "8debb213c60caf86b04467efba0ca148d2c458abee22e14dd737bc3b9d186b63",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944415",
+        "file_offset": "0x5943815",
+        "byte_count": 41,
+        "sha256": "83e5a25296d7c9f173e13471d8e2e7daebd58fc53af3b7c7f88163c9419b3a39",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1459446e9",
+        "file_offset": "0x5943ae9",
+        "byte_count": 82,
+        "sha256": "ca16dcf7a6cd97ea4743be5fcbeb2cda6fcc2c4aa0084bc3a7db15081ca96a58",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1459447a8",
+        "file_offset": "0x5943ba8",
+        "byte_count": 49,
+        "sha256": "2d7b9ff679204023cc162e08f6d7262dcf641b1a16e0e8dff8d9b3af2b6636e4",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944809",
+        "file_offset": "0x5943c09",
+        "byte_count": 43,
+        "sha256": "ba3b124917ede1a051574c0660ac535def91b04fcde9341b7e73ed39cfc3be61",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944896",
+        "file_offset": "0x5943c96",
+        "byte_count": 62,
+        "sha256": "2b8a0dd7f8aa14fc93f6dd7e4b2dcc8417be11e69ec5aa7f86be50654d5affa1",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944936",
+        "file_offset": "0x5943d36",
+        "byte_count": 62,
+        "sha256": "083a00ea5b4df662acc04c7382b40b3e67b0a843fa9ff5b3dafe84239358a1fc",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1459449d4",
+        "file_offset": "0x5943dd4",
+        "byte_count": 61,
+        "sha256": "650fa0f24be6bea01b2f635e26716a138e8ac95de236ce756b12d4b16dcffc71",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944a76",
+        "file_offset": "0x5943e76",
+        "byte_count": 62,
+        "sha256": "59f17297a0da256e0b58c78061620a6b1c99af0371648eda30964d32f48e15f5",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944b16",
+        "file_offset": "0x5943f16",
+        "byte_count": 62,
+        "sha256": "0a207858285248b624bcadaec163c849f781205a9e02f63bb6bbbfd325c30738",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944bb6",
+        "file_offset": "0x5943fb6",
+        "byte_count": 62,
+        "sha256": "cb85ab0245a4d7bf676077e8746e9488ce2fc97b5d9782969248d2115b1bb1f8",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944c56",
+        "file_offset": "0x5944056",
+        "byte_count": 62,
+        "sha256": "97db57a0ab54da93d4fddbf4c969929bbf2c6fc5038c4c6d44d13f92c6c4a46b",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944cf6",
+        "file_offset": "0x59440f6",
+        "byte_count": 62,
+        "sha256": "3034e486287da4bff3c68468efa2b62eb8cad7d0bedbdf506428d3b170ba5926",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944d99",
+        "file_offset": "0x5944199",
+        "byte_count": 62,
+        "sha256": "7e1dbf03f5f5d5ecdd9b85b2508c22115d3b0c45cb66e0ec04f5b07da699c126",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944e49",
+        "file_offset": "0x5944249",
+        "byte_count": 62,
+        "sha256": "221a47bbc8579d0cb1bfb660ef080ddab3a63859f6c07faf3477ca42a8c66b73",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944ef5",
+        "file_offset": "0x59442f5",
+        "byte_count": 59,
+        "sha256": "815d91143fd3b60c9b4c4e88cf588cdd90aadbb8db558e5f446f30de0440091d",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944f95",
+        "file_offset": "0x5944395",
+        "byte_count": 203,
+        "sha256": "0a279c4291742e7971ed772b447be8f5bb7268eb5b3f3f4a57f29d4896e551db",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594506d",
+        "file_offset": "0x594446d",
+        "byte_count": 66,
+        "sha256": "006c4f1124e6fd5fc851fc456a991c2e608e343dc27fd7c8f9c9871d92f78754",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1459450c3",
+        "file_offset": "0x59444c3",
+        "byte_count": 223,
+        "sha256": "1062369a56cdc5686be583b05b8d648c4aaffd311e1b81b92e082525506dc754",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1459451ad",
+        "file_offset": "0x59445ad",
+        "byte_count": 37,
+        "sha256": "64b1a7b44572f3a53684832c7ab3c2890f7aebff7c2ea790a6d3bd23d0799e58",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145945202",
+        "file_offset": "0x5944602",
+        "byte_count": 194,
+        "sha256": "338fae947ca4f639a8ead30f3a1f45f003f8d9b97d17122ee581d090e0f6ff18",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1459452d0",
+        "file_offset": "0x59446d0",
+        "byte_count": 216,
+        "sha256": "76bb081a22b8f62b4868e9600f5370e4ffcfbe7f9fd63201080a622946e6088e",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1459453b5",
+        "file_offset": "0x59447b5",
+        "byte_count": 141,
+        "sha256": "55df8b538797b48ad692ec9fe3b0da4e37774e80a96ac2da6574d964764072e0",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f020",
+        "file_offset": "0x594e420",
+        "byte_count": 316,
+        "sha256": "09705a3b982a78e4b12dd75a0d8c8f903a7921ee331d9d4393bdd5a46fdc72a7",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f1cb",
+        "file_offset": "0x594e5cb",
+        "byte_count": 59,
+        "sha256": "1334f48a6bb3d2bdeb3f675eece0a6b721e0e20bce630ea10ca8694580525ba2",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f267",
+        "file_offset": "0x594e667",
+        "byte_count": 56,
+        "sha256": "64d90b7a9739af53ca12d56b44d3dc3f0e29e8e70bc45899f825d8db372c13c0",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f309",
+        "file_offset": "0x594e709",
+        "byte_count": 58,
+        "sha256": "49a16da54a677084d9f198897d0bb2cdba31ac369a46b63a14b3ab641ff0319b",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f3a7",
+        "file_offset": "0x594e7a7",
+        "byte_count": 56,
+        "sha256": "c38e2aa972f420046ae490a0eba762af919566dca4915d0e27b5c52eff11b9fb",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f447",
+        "file_offset": "0x594e847",
+        "byte_count": 83,
+        "sha256": "501c815cc2a7436090f64e1cc178a8544223a3ca9b1f8c1ff779a467409b0d75",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f509",
+        "file_offset": "0x594e909",
+        "byte_count": 66,
+        "sha256": "c6c4ae6c731bba06adc1bbdc9644557559eb3bee775c4e82c287fc1a8cba7fe8",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f5b9",
+        "file_offset": "0x594e9b9",
+        "byte_count": 58,
+        "sha256": "5bd55761ae6857ad69c8d525f58ba93b49d359796a36c077e8d0503c9a29d95a",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f65b",
+        "file_offset": "0x594ea5b",
+        "byte_count": 63,
+        "sha256": "50beb464db9fe30bb10cd0a894fd6f234ec4527b460c3142756ac4b8691d5892",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f709",
+        "file_offset": "0x594eb09",
+        "byte_count": 63,
+        "sha256": "4578667a59e00b4ac65d79d0fb4f6e138da7d8aff2903e4ed218cc7dd7efe37a",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f7b9",
+        "file_offset": "0x594ebb9",
+        "byte_count": 63,
+        "sha256": "61e7b1eb6786df14412d73526af684593fca915a45eacde41f2dea92dd577c2e",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f869",
+        "file_offset": "0x594ec69",
+        "byte_count": 58,
+        "sha256": "72b48bec0a3c1312ba707f1abf1762c876a2f985a3039b555cb6ae499fc55b16",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f909",
+        "file_offset": "0x594ed09",
+        "byte_count": 58,
+        "sha256": "96020daada6771e7164bf567462649cb745742f6bc88d1f8f3273f0b9ec93951",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f9ab",
+        "file_offset": "0x594edab",
+        "byte_count": 59,
+        "sha256": "290e37bf79bd471911bbbb368db9b1eec94560830dad8ff5920b6ba727f5ed78",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594fa4a",
+        "file_offset": "0x594ee4a",
+        "byte_count": 165,
+        "sha256": "c3b5425b226076afc6b73b33300bf8e714c282de1492b140eea55821f39224bb",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594fafc",
+        "file_offset": "0x594eefc",
+        "byte_count": 81,
+        "sha256": "e92892fe33205e25f3d5b16e102d8015582aa9a0115f1ace44f4bafc7944c01e",
+        "assembly": "selected-native.asm"
+      }
+    ],
+    "xp-cap": [
+      {
+        "va": "0x145944310",
+        "file_offset": "0x5943710",
+        "byte_count": 180,
+        "sha256": "8debb213c60caf86b04467efba0ca148d2c458abee22e14dd737bc3b9d186b63",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944415",
+        "file_offset": "0x5943815",
+        "byte_count": 71,
+        "sha256": "168ed4531fcf76bdf53c39652f78a6a3f551fe0d3fde9a0f620543a21ff2b7d2",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944615",
+        "file_offset": "0x5943a15",
+        "byte_count": 128,
+        "sha256": "5412e9a7ab82c4108f0605bb90453ca85838d28d453ac67e89df008fe60e76d5",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1459446a9",
+        "file_offset": "0x5943aa9",
+        "byte_count": 146,
+        "sha256": "93d7ed9318fadcf8274350def18502b6541203d62b9fc1316255c78b256fe773",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944740",
+        "file_offset": "0x5943b40",
+        "byte_count": 99,
+        "sha256": "29f2f63c08893885629d812ebea24b6e51d9bfaa33ffb5efcb71fdb979099031",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1459447b1",
+        "file_offset": "0x5943bb1",
+        "byte_count": 40,
+        "sha256": "d26719b1c0e2ca984138197870cab775378f037b1a8e8e4d6442c7151759355e",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944809",
+        "file_offset": "0x5943c09",
+        "byte_count": 43,
+        "sha256": "ba3b124917ede1a051574c0660ac535def91b04fcde9341b7e73ed39cfc3be61",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944896",
+        "file_offset": "0x5943c96",
+        "byte_count": 62,
+        "sha256": "2b8a0dd7f8aa14fc93f6dd7e4b2dcc8417be11e69ec5aa7f86be50654d5affa1",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944936",
+        "file_offset": "0x5943d36",
+        "byte_count": 62,
+        "sha256": "083a00ea5b4df662acc04c7382b40b3e67b0a843fa9ff5b3dafe84239358a1fc",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1459449d4",
+        "file_offset": "0x5943dd4",
+        "byte_count": 61,
+        "sha256": "650fa0f24be6bea01b2f635e26716a138e8ac95de236ce756b12d4b16dcffc71",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944a76",
+        "file_offset": "0x5943e76",
+        "byte_count": 62,
+        "sha256": "59f17297a0da256e0b58c78061620a6b1c99af0371648eda30964d32f48e15f5",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944b16",
+        "file_offset": "0x5943f16",
+        "byte_count": 62,
+        "sha256": "0a207858285248b624bcadaec163c849f781205a9e02f63bb6bbbfd325c30738",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944bb6",
+        "file_offset": "0x5943fb6",
+        "byte_count": 62,
+        "sha256": "cb85ab0245a4d7bf676077e8746e9488ce2fc97b5d9782969248d2115b1bb1f8",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944c56",
+        "file_offset": "0x5944056",
+        "byte_count": 62,
+        "sha256": "97db57a0ab54da93d4fddbf4c969929bbf2c6fc5038c4c6d44d13f92c6c4a46b",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944cf6",
+        "file_offset": "0x59440f6",
+        "byte_count": 62,
+        "sha256": "3034e486287da4bff3c68468efa2b62eb8cad7d0bedbdf506428d3b170ba5926",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944d99",
+        "file_offset": "0x5944199",
+        "byte_count": 62,
+        "sha256": "7e1dbf03f5f5d5ecdd9b85b2508c22115d3b0c45cb66e0ec04f5b07da699c126",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944e49",
+        "file_offset": "0x5944249",
+        "byte_count": 62,
+        "sha256": "221a47bbc8579d0cb1bfb660ef080ddab3a63859f6c07faf3477ca42a8c66b73",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944ef5",
+        "file_offset": "0x59442f5",
+        "byte_count": 59,
+        "sha256": "815d91143fd3b60c9b4c4e88cf588cdd90aadbb8db558e5f446f30de0440091d",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944f95",
+        "file_offset": "0x5944395",
+        "byte_count": 203,
+        "sha256": "0a279c4291742e7971ed772b447be8f5bb7268eb5b3f3f4a57f29d4896e551db",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594506d",
+        "file_offset": "0x594446d",
+        "byte_count": 66,
+        "sha256": "006c4f1124e6fd5fc851fc456a991c2e608e343dc27fd7c8f9c9871d92f78754",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1459450c3",
+        "file_offset": "0x59444c3",
+        "byte_count": 113,
+        "sha256": "326d76d6114418060988d03591fa296df51a5bea43cfdda0bc89453e61755a3c",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145945410",
+        "file_offset": "0x5944810",
+        "byte_count": 63,
+        "sha256": "507c4ed209f03116e38ac5ee6283719f04d5e0bf7159f82a0929c5164fb34a4d",
+        "assembly": "selected-native.asm"
+      }
+    ],
+    "reward-position": [
+      {
+        "va": "0x145944310",
+        "file_offset": "0x5943710",
+        "byte_count": 302,
+        "sha256": "37c0e3f98bfe068f42844924d6870598d09d66c0b462685d3a7eb2b99237adab",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1459446e9",
+        "file_offset": "0x5943ae9",
+        "byte_count": 65,
+        "sha256": "fe68e2951ebd97d0c806abec5c28e43778c52eea3fe48ff9882c8a6554220fb5",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1459447a8",
+        "file_offset": "0x5943ba8",
+        "byte_count": 140,
+        "sha256": "f2e7160a5e62a6f11a812af8dd758f346f13a5f2834af53f2f3076d220dc1d0f",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944896",
+        "file_offset": "0x5943c96",
+        "byte_count": 62,
+        "sha256": "2b8a0dd7f8aa14fc93f6dd7e4b2dcc8417be11e69ec5aa7f86be50654d5affa1",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944936",
+        "file_offset": "0x5943d36",
+        "byte_count": 62,
+        "sha256": "083a00ea5b4df662acc04c7382b40b3e67b0a843fa9ff5b3dafe84239358a1fc",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1459449d4",
+        "file_offset": "0x5943dd4",
+        "byte_count": 61,
+        "sha256": "650fa0f24be6bea01b2f635e26716a138e8ac95de236ce756b12d4b16dcffc71",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944a76",
+        "file_offset": "0x5943e76",
+        "byte_count": 62,
+        "sha256": "59f17297a0da256e0b58c78061620a6b1c99af0371648eda30964d32f48e15f5",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944b16",
+        "file_offset": "0x5943f16",
+        "byte_count": 62,
+        "sha256": "0a207858285248b624bcadaec163c849f781205a9e02f63bb6bbbfd325c30738",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944bb6",
+        "file_offset": "0x5943fb6",
+        "byte_count": 62,
+        "sha256": "cb85ab0245a4d7bf676077e8746e9488ce2fc97b5d9782969248d2115b1bb1f8",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944c56",
+        "file_offset": "0x5944056",
+        "byte_count": 62,
+        "sha256": "97db57a0ab54da93d4fddbf4c969929bbf2c6fc5038c4c6d44d13f92c6c4a46b",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944cf6",
+        "file_offset": "0x59440f6",
+        "byte_count": 62,
+        "sha256": "3034e486287da4bff3c68468efa2b62eb8cad7d0bedbdf506428d3b170ba5926",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944d99",
+        "file_offset": "0x5944199",
+        "byte_count": 62,
+        "sha256": "7e1dbf03f5f5d5ecdd9b85b2508c22115d3b0c45cb66e0ec04f5b07da699c126",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944e49",
+        "file_offset": "0x5944249",
+        "byte_count": 62,
+        "sha256": "221a47bbc8579d0cb1bfb660ef080ddab3a63859f6c07faf3477ca42a8c66b73",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944ef5",
+        "file_offset": "0x59442f5",
+        "byte_count": 59,
+        "sha256": "815d91143fd3b60c9b4c4e88cf588cdd90aadbb8db558e5f446f30de0440091d",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944f95",
+        "file_offset": "0x5944395",
+        "byte_count": 203,
+        "sha256": "0a279c4291742e7971ed772b447be8f5bb7268eb5b3f3f4a57f29d4896e551db",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594506d",
+        "file_offset": "0x594446d",
+        "byte_count": 66,
+        "sha256": "006c4f1124e6fd5fc851fc456a991c2e608e343dc27fd7c8f9c9871d92f78754",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1459450c3",
+        "file_offset": "0x59444c3",
+        "byte_count": 223,
+        "sha256": "1062369a56cdc5686be583b05b8d648c4aaffd311e1b81b92e082525506dc754",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1459451ad",
+        "file_offset": "0x59445ad",
+        "byte_count": 279,
+        "sha256": "399e1f46039e153a0876dfd7be446dee5a6f5324776729dbc419bc7fe23ac103",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1459452d0",
+        "file_offset": "0x59446d0",
+        "byte_count": 216,
+        "sha256": "76bb081a22b8f62b4868e9600f5370e4ffcfbe7f9fd63201080a622946e6088e",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1459453b5",
+        "file_offset": "0x59447b5",
+        "byte_count": 141,
+        "sha256": "55df8b538797b48ad692ec9fe3b0da4e37774e80a96ac2da6574d964764072e0",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f020",
+        "file_offset": "0x594e420",
+        "byte_count": 316,
+        "sha256": "09705a3b982a78e4b12dd75a0d8c8f903a7921ee331d9d4393bdd5a46fdc72a7",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f1cb",
+        "file_offset": "0x594e5cb",
+        "byte_count": 59,
+        "sha256": "1334f48a6bb3d2bdeb3f675eece0a6b721e0e20bce630ea10ca8694580525ba2",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f267",
+        "file_offset": "0x594e667",
+        "byte_count": 56,
+        "sha256": "64d90b7a9739af53ca12d56b44d3dc3f0e29e8e70bc45899f825d8db372c13c0",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f309",
+        "file_offset": "0x594e709",
+        "byte_count": 58,
+        "sha256": "49a16da54a677084d9f198897d0bb2cdba31ac369a46b63a14b3ab641ff0319b",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f3a7",
+        "file_offset": "0x594e7a7",
+        "byte_count": 56,
+        "sha256": "c38e2aa972f420046ae490a0eba762af919566dca4915d0e27b5c52eff11b9fb",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f447",
+        "file_offset": "0x594e847",
+        "byte_count": 83,
+        "sha256": "501c815cc2a7436090f64e1cc178a8544223a3ca9b1f8c1ff779a467409b0d75",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f509",
+        "file_offset": "0x594e909",
+        "byte_count": 66,
+        "sha256": "c6c4ae6c731bba06adc1bbdc9644557559eb3bee775c4e82c287fc1a8cba7fe8",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f5b9",
+        "file_offset": "0x594e9b9",
+        "byte_count": 58,
+        "sha256": "5bd55761ae6857ad69c8d525f58ba93b49d359796a36c077e8d0503c9a29d95a",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f65b",
+        "file_offset": "0x594ea5b",
+        "byte_count": 63,
+        "sha256": "50beb464db9fe30bb10cd0a894fd6f234ec4527b460c3142756ac4b8691d5892",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f709",
+        "file_offset": "0x594eb09",
+        "byte_count": 63,
+        "sha256": "4578667a59e00b4ac65d79d0fb4f6e138da7d8aff2903e4ed218cc7dd7efe37a",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f7b9",
+        "file_offset": "0x594ebb9",
+        "byte_count": 63,
+        "sha256": "61e7b1eb6786df14412d73526af684593fca915a45eacde41f2dea92dd577c2e",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f869",
+        "file_offset": "0x594ec69",
+        "byte_count": 58,
+        "sha256": "72b48bec0a3c1312ba707f1abf1762c876a2f985a3039b555cb6ae499fc55b16",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f909",
+        "file_offset": "0x594ed09",
+        "byte_count": 58,
+        "sha256": "96020daada6771e7164bf567462649cb745742f6bc88d1f8f3273f0b9ec93951",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f9ab",
+        "file_offset": "0x594edab",
+        "byte_count": 59,
+        "sha256": "290e37bf79bd471911bbbb368db9b1eec94560830dad8ff5920b6ba727f5ed78",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594fa4a",
+        "file_offset": "0x594ee4a",
+        "byte_count": 165,
+        "sha256": "c3b5425b226076afc6b73b33300bf8e714c282de1492b140eea55821f39224bb",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594fafc",
+        "file_offset": "0x594eefc",
+        "byte_count": 81,
+        "sha256": "e92892fe33205e25f3d5b16e102d8015582aa9a0115f1ace44f4bafc7944c01e",
+        "assembly": "selected-native.asm"
+      }
+    ],
+    "xp-merge-order": [
+      {
+        "va": "0x145944310",
+        "file_offset": "0x5943710",
+        "byte_count": 229,
+        "sha256": "b1bd8290d9978a662147b39caaf8a2ccf66b3a98d4c426291a0ab1791d60c784",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944412",
+        "file_offset": "0x5943812",
+        "byte_count": 63,
+        "sha256": "7afe49800da8f2cb3530a7b8c25f871bc597ea5599905d6b380464352fb72a23",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944615",
+        "file_offset": "0x5943a15",
+        "byte_count": 128,
+        "sha256": "5412e9a7ab82c4108f0605bb90453ca85838d28d453ac67e89df008fe60e76d5",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1459446a9",
+        "file_offset": "0x5943aa9",
+        "byte_count": 64,
+        "sha256": "6ce612f03fede6807f28110f55019f50cc941a3ff21367fb9318287b8aad163a",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944740",
+        "file_offset": "0x5943b40",
+        "byte_count": 104,
+        "sha256": "5040b173a1bc064f964dee45d085178458ff78c089078fc9bda979f8ed4cd3e8",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145945410",
+        "file_offset": "0x5944810",
+        "byte_count": 63,
+        "sha256": "507c4ed209f03116e38ac5ee6283719f04d5e0bf7159f82a0929c5164fb34a4d",
+        "assembly": "selected-native.asm"
+      }
+    ],
+    "primary-reward-composition": [
+      {
+        "va": "0x14593fec0",
+        "file_offset": "0x593f2c0",
+        "byte_count": 9,
+        "sha256": "b9542deae80924b7c2fe186209f3fc5c14787ba718c568fd2bc5bc777e337ff8",
+        "assembly": "../raid-lifecycles/selected-native.asm"
+      },
+      {
+        "va": "0x14594040e",
+        "file_offset": "0x593f80e",
+        "byte_count": 3,
+        "sha256": "9d0cc8e4eff8ad01b73d81e5cdcfd2084a64c63f96519e4d355e004f152c44aa",
+        "assembly": "../raid-lifecycles/selected-native.asm"
+      },
+      {
+        "va": "0x145940411",
+        "file_offset": "0x593f811",
+        "byte_count": 72,
+        "sha256": "fee07c485d1ea1b5f93dc349df550794cab9a4936b3ea1ff0cc03710cc62ca84",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x145940636",
+        "file_offset": "0x593fa36",
+        "byte_count": 175,
+        "sha256": "dd4566a59d4a26b61b4334f55111bd08d9d6bc14ff0e5707166c6749aba3c1cc",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x1459406f2",
+        "file_offset": "0x593faf2",
+        "byte_count": 489,
+        "sha256": "91bf64bfd12124f7e5804578bf4ffdd3e1df5de1bcf861f5fda091dcec9c48a1",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x145940943",
+        "file_offset": "0x593fd43",
+        "byte_count": 21,
+        "sha256": "6a4ad0fbcb35b82555f4b5fe7a07a00005dca0d9f8ec18261ea451f30f27b0aa",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x1459409a4",
+        "file_offset": "0x593fda4",
+        "byte_count": 355,
+        "sha256": "4217633f561796e243dffff89f3eb38e6d1f3826cbc2296cae48e0699e2fcebc",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x145940b15",
+        "file_offset": "0x593ff15",
+        "byte_count": 106,
+        "sha256": "c90d4f3fc4ad3ccdf08e96145ebc42584b94b1ebe53b73b70dc6859458dc51b6",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x145944310",
+        "file_offset": "0x5943710",
+        "byte_count": 180,
+        "sha256": "8debb213c60caf86b04467efba0ca148d2c458abee22e14dd737bc3b9d186b63",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944415",
+        "file_offset": "0x5943815",
+        "byte_count": 60,
+        "sha256": "fd1328a8e67f2b6f0d2e19faafc3d14639eb097fa2eda135da2573d5cfb27091",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944615",
+        "file_offset": "0x5943a15",
+        "byte_count": 128,
+        "sha256": "5412e9a7ab82c4108f0605bb90453ca85838d28d453ac67e89df008fe60e76d5",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1459446a9",
+        "file_offset": "0x5943aa9",
+        "byte_count": 129,
+        "sha256": "5f1ae3671d279a99ffe78e52e368fb095271a1165a4c050c7e7bf9d5151a9b38",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944740",
+        "file_offset": "0x5943b40",
+        "byte_count": 153,
+        "sha256": "70203b789055dd755fc41317289a1f89649c477abe1863e93a23755e1c7c7ccb",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944809",
+        "file_offset": "0x5943c09",
+        "byte_count": 43,
+        "sha256": "ba3b124917ede1a051574c0660ac535def91b04fcde9341b7e73ed39cfc3be61",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944896",
+        "file_offset": "0x5943c96",
+        "byte_count": 62,
+        "sha256": "2b8a0dd7f8aa14fc93f6dd7e4b2dcc8417be11e69ec5aa7f86be50654d5affa1",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944936",
+        "file_offset": "0x5943d36",
+        "byte_count": 62,
+        "sha256": "083a00ea5b4df662acc04c7382b40b3e67b0a843fa9ff5b3dafe84239358a1fc",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1459449d4",
+        "file_offset": "0x5943dd4",
+        "byte_count": 61,
+        "sha256": "650fa0f24be6bea01b2f635e26716a138e8ac95de236ce756b12d4b16dcffc71",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944a76",
+        "file_offset": "0x5943e76",
+        "byte_count": 62,
+        "sha256": "59f17297a0da256e0b58c78061620a6b1c99af0371648eda30964d32f48e15f5",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944b16",
+        "file_offset": "0x5943f16",
+        "byte_count": 62,
+        "sha256": "0a207858285248b624bcadaec163c849f781205a9e02f63bb6bbbfd325c30738",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944bb6",
+        "file_offset": "0x5943fb6",
+        "byte_count": 62,
+        "sha256": "cb85ab0245a4d7bf676077e8746e9488ce2fc97b5d9782969248d2115b1bb1f8",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944c56",
+        "file_offset": "0x5944056",
+        "byte_count": 62,
+        "sha256": "97db57a0ab54da93d4fddbf4c969929bbf2c6fc5038c4c6d44d13f92c6c4a46b",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944cf6",
+        "file_offset": "0x59440f6",
+        "byte_count": 62,
+        "sha256": "3034e486287da4bff3c68468efa2b62eb8cad7d0bedbdf506428d3b170ba5926",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944d99",
+        "file_offset": "0x5944199",
+        "byte_count": 62,
+        "sha256": "7e1dbf03f5f5d5ecdd9b85b2508c22115d3b0c45cb66e0ec04f5b07da699c126",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944e49",
+        "file_offset": "0x5944249",
+        "byte_count": 62,
+        "sha256": "221a47bbc8579d0cb1bfb660ef080ddab3a63859f6c07faf3477ca42a8c66b73",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944ef5",
+        "file_offset": "0x59442f5",
+        "byte_count": 59,
+        "sha256": "815d91143fd3b60c9b4c4e88cf588cdd90aadbb8db558e5f446f30de0440091d",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944f95",
+        "file_offset": "0x5944395",
+        "byte_count": 203,
+        "sha256": "0a279c4291742e7971ed772b447be8f5bb7268eb5b3f3f4a57f29d4896e551db",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594506d",
+        "file_offset": "0x594446d",
+        "byte_count": 66,
+        "sha256": "006c4f1124e6fd5fc851fc456a991c2e608e343dc27fd7c8f9c9871d92f78754",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1459450c3",
+        "file_offset": "0x59444c3",
+        "byte_count": 113,
+        "sha256": "326d76d6114418060988d03591fa296df51a5bea43cfdda0bc89453e61755a3c",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145945160",
+        "file_offset": "0x5944560",
+        "byte_count": 22,
+        "sha256": "34cd9702abd93f5c10083df2329965fc526684d0f146adc0dcf4cd4c62226c58",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594518c",
+        "file_offset": "0x594458c",
+        "byte_count": 22,
+        "sha256": "51c5d91a8bcc0fc8e46e390258d22cdef54a0123bd18e4e23cc955aa74a707b8",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1459451ad",
+        "file_offset": "0x59445ad",
+        "byte_count": 37,
+        "sha256": "64b1a7b44572f3a53684832c7ab3c2890f7aebff7c2ea790a6d3bd23d0799e58",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145945202",
+        "file_offset": "0x5944602",
+        "byte_count": 194,
+        "sha256": "338fae947ca4f639a8ead30f3a1f45f003f8d9b97d17122ee581d090e0f6ff18",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1459452d0",
+        "file_offset": "0x59446d0",
+        "byte_count": 216,
+        "sha256": "76bb081a22b8f62b4868e9600f5370e4ffcfbe7f9fd63201080a622946e6088e",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1459453b5",
+        "file_offset": "0x59447b5",
+        "byte_count": 154,
+        "sha256": "18c8744f7a3a0b8af02eb47ebbb26d7cc22a0b4593312beee5c8e839a7f90722",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594eb50",
+        "file_offset": "0x594df50",
+        "byte_count": 442,
+        "sha256": "a1bba3331e6a915f2b02511ede439e7b5993dce3c4084d00ec11a5b56d2df69a",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x14594ed10",
+        "file_offset": "0x594e110",
+        "byte_count": 182,
+        "sha256": "139a48656ae40a2e3370b839309ab4186a369a235873a1a7b8a82288361a066c",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x14594edd8",
+        "file_offset": "0x594e1d8",
+        "byte_count": 86,
+        "sha256": "0b71f0d0cc4bdba351cb78c7dd5df1720a19e1742eaeba04b22556b29402a6ef",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x14594f020",
+        "file_offset": "0x594e420",
+        "byte_count": 316,
+        "sha256": "09705a3b982a78e4b12dd75a0d8c8f903a7921ee331d9d4393bdd5a46fdc72a7",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f1cb",
+        "file_offset": "0x594e5cb",
+        "byte_count": 59,
+        "sha256": "1334f48a6bb3d2bdeb3f675eece0a6b721e0e20bce630ea10ca8694580525ba2",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f267",
+        "file_offset": "0x594e667",
+        "byte_count": 56,
+        "sha256": "64d90b7a9739af53ca12d56b44d3dc3f0e29e8e70bc45899f825d8db372c13c0",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f309",
+        "file_offset": "0x594e709",
+        "byte_count": 58,
+        "sha256": "49a16da54a677084d9f198897d0bb2cdba31ac369a46b63a14b3ab641ff0319b",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f3a7",
+        "file_offset": "0x594e7a7",
+        "byte_count": 56,
+        "sha256": "c38e2aa972f420046ae490a0eba762af919566dca4915d0e27b5c52eff11b9fb",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f447",
+        "file_offset": "0x594e847",
+        "byte_count": 83,
+        "sha256": "501c815cc2a7436090f64e1cc178a8544223a3ca9b1f8c1ff779a467409b0d75",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f509",
+        "file_offset": "0x594e909",
+        "byte_count": 66,
+        "sha256": "c6c4ae6c731bba06adc1bbdc9644557559eb3bee775c4e82c287fc1a8cba7fe8",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f5b9",
+        "file_offset": "0x594e9b9",
+        "byte_count": 58,
+        "sha256": "5bd55761ae6857ad69c8d525f58ba93b49d359796a36c077e8d0503c9a29d95a",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f65b",
+        "file_offset": "0x594ea5b",
+        "byte_count": 63,
+        "sha256": "50beb464db9fe30bb10cd0a894fd6f234ec4527b460c3142756ac4b8691d5892",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f709",
+        "file_offset": "0x594eb09",
+        "byte_count": 63,
+        "sha256": "4578667a59e00b4ac65d79d0fb4f6e138da7d8aff2903e4ed218cc7dd7efe37a",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f7b9",
+        "file_offset": "0x594ebb9",
+        "byte_count": 63,
+        "sha256": "61e7b1eb6786df14412d73526af684593fca915a45eacde41f2dea92dd577c2e",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f869",
+        "file_offset": "0x594ec69",
+        "byte_count": 58,
+        "sha256": "72b48bec0a3c1312ba707f1abf1762c876a2f985a3039b555cb6ae499fc55b16",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f909",
+        "file_offset": "0x594ed09",
+        "byte_count": 58,
+        "sha256": "96020daada6771e7164bf567462649cb745742f6bc88d1f8f3273f0b9ec93951",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f9ab",
+        "file_offset": "0x594edab",
+        "byte_count": 59,
+        "sha256": "290e37bf79bd471911bbbb368db9b1eec94560830dad8ff5920b6ba727f5ed78",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594fa4a",
+        "file_offset": "0x594ee4a",
+        "byte_count": 165,
+        "sha256": "c3b5425b226076afc6b73b33300bf8e714c282de1492b140eea55821f39224bb",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594fafc",
+        "file_offset": "0x594eefc",
+        "byte_count": 81,
+        "sha256": "e92892fe33205e25f3d5b16e102d8015582aa9a0115f1ace44f4bafc7944c01e",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145994a20",
+        "file_offset": "0x5993e20",
+        "byte_count": 189,
+        "sha256": "80cc61dcb6ec273e92f66d6ab6f21db15665897363de566c3eeface4a6c2ef1b",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x145994af9",
+        "file_offset": "0x5993ef9",
+        "byte_count": 107,
+        "sha256": "a30366049907f5e6440513d6582761a1b1b4c7906fa63e8651f6c6b3b8fc3f73",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x145994b70",
+        "file_offset": "0x5993f70",
+        "byte_count": 111,
+        "sha256": "2d8000f166e37c61e312cc38f4f4d5933bb1d8bea2fc75de96259c408b3b562b",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x145994be2",
+        "file_offset": "0x5993fe2",
+        "byte_count": 51,
+        "sha256": "5a13408465646514d311c5824560aeb4965a235e84648ef1b6172e21810d91f9",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x145994c46",
+        "file_offset": "0x5994046",
+        "byte_count": 116,
+        "sha256": "a1e73db4ade8624611373db00b19d4931176f8c190f75544976463cc4a8a18f4",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x145994d78",
+        "file_offset": "0x5994178",
+        "byte_count": 86,
+        "sha256": "c933bf28df01bdd4da4dc6b17c06e8361d25211d02f7c0382087092c71975e4f",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x14599d7a0",
+        "file_offset": "0x599cba0",
+        "byte_count": 104,
+        "sha256": "777771d0fdf63e26787cea6804734308109625693001d1f2c0c2a2ef3ffb775d",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x1459ca770",
+        "file_offset": "0x59c9b70",
+        "byte_count": 68,
+        "sha256": "86fba7ad43c8a29ab8c71d3fada9ab340f644d562853952488739b7c3bc33cc0",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x1459ca7d4",
+        "file_offset": "0x59c9bd4",
+        "byte_count": 200,
+        "sha256": "9dd3d9cb54a6677402cdf4b1d6b0c773e70e2c0052e03f5756a2792c36fe888e",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x1459ca8b5",
+        "file_offset": "0x59c9cb5",
+        "byte_count": 55,
+        "sha256": "d89dae30c0b7a0da118b1b6c4d927efd7d5b3414b502bd0fe392c6e62557f8b6",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x1459ca97a",
+        "file_offset": "0x59c9d7a",
+        "byte_count": 46,
+        "sha256": "1ea56915f0e7fac3a0f76d7effb849e4fd1f27f33b192e2ee7efa2fe4284821f",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x1459cf4a0",
+        "file_offset": "0x59ce8a0",
+        "byte_count": 155,
+        "sha256": "4ae753986b5d16e5e38f904c85fa64af9370da6e90da915fb5a395fb1e92ac3d",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x1459cf540",
+        "file_offset": "0x59ce940",
+        "byte_count": 8,
+        "sha256": "ad78a4f1ae9a71c402de8dc099b43219817ba22711f5186965743d4ce3366c7b",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x1459cf565",
+        "file_offset": "0x59ce965",
+        "byte_count": 13,
+        "sha256": "a826681ebd11a14c1104cc278dd36d538c6940c1db30c98e33379d3f3a5e31aa",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x1459cf580",
+        "file_offset": "0x59ce980",
+        "byte_count": 68,
+        "sha256": "e1034e8d323231cc2bccda4a69ef7657f19b64dc4f459ef77fec43abb2bd27c6",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x1459cf5d0",
+        "file_offset": "0x59ce9d0",
+        "byte_count": 58,
+        "sha256": "b2aa283650c9824116f762d777f594f033058bfd7354dc92f1ffe142231ed379",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x1459cf66b",
+        "file_offset": "0x59cea6b",
+        "byte_count": 125,
+        "sha256": "4e2c170cc6564ac0c7865150bd6a3bbc2a4905a89b601947b57424e4b4ae065f",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x1459cf6f0",
+        "file_offset": "0x59ceaf0",
+        "byte_count": 90,
+        "sha256": "48f21089ae44958e7e90195bc58c870e64a93c4aca394926683658616ff5d18a",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x1459cf750",
+        "file_offset": "0x59ceb50",
+        "byte_count": 29,
+        "sha256": "f8f5021d43aa5b75f6cf71bd6bf829fe75d61ac6fa938ecbb007d21febf9afd5",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x1459cf770",
+        "file_offset": "0x59ceb70",
+        "byte_count": 45,
+        "sha256": "da3b3ba1a4c17a01101ed57faefbab975a78f254c6be707874295fc8ece98360",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x1459cf7a0",
+        "file_offset": "0x59ceba0",
+        "byte_count": 28,
+        "sha256": "8992cdac2dc1625929278e201432d7f9715f92f325a6cdf085cba3df18af3651",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x1459cf7c0",
+        "file_offset": "0x59cebc0",
+        "byte_count": 12,
+        "sha256": "f08b0a56d5cdbe14fef89937ad6d4c7a4b48b00d9cab0e5f3e4972c17fc1a4fa",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x1459cf820",
+        "file_offset": "0x59cec20",
+        "byte_count": 73,
+        "sha256": "64c712b3ffc8157c9a1d1980c0fad78891d963b1f8ae478b6210fc9832a65d95",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x1459cf874",
+        "file_offset": "0x59cec74",
+        "byte_count": 21,
+        "sha256": "5430bfcc077d98f122792c2a4042772179a500e32662dd0e1b8235c733f7c474",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x1459cf8b3",
+        "file_offset": "0x59cecb3",
+        "byte_count": 20,
+        "sha256": "f23b065088a4608b4caace23d06c79f72bc3b8d85244e688e81a0a6c4b6e11c5",
+        "assembly": "../raid-boss-lifecycle/selected-native.asm"
+      }
+    ],
+    "guardian-reward-composition": [
+      {
+        "va": "0x14593d3f0",
+        "file_offset": "0x593c7f0",
+        "byte_count": 262,
+        "sha256": "b47e3794cd79eb356ebb6e2abc2b06c5118ba27b28e753441ea514818316c8f8",
+        "assembly": "../raid-guardian-lifecycle/selected-native.asm"
+      },
+      {
+        "va": "0x145944310",
+        "file_offset": "0x5943710",
+        "byte_count": 180,
+        "sha256": "8debb213c60caf86b04467efba0ca148d2c458abee22e14dd737bc3b9d186b63",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145944415",
+        "file_offset": "0x5943815",
+        "byte_count": 25,
+        "sha256": "ea9d628a83d9d92b046e73fab193f57d7bdc7c1cd14faeea5d5d7a5b6f390f51",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145945160",
+        "file_offset": "0x5944560",
+        "byte_count": 22,
+        "sha256": "34cd9702abd93f5c10083df2329965fc526684d0f146adc0dcf4cd4c62226c58",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594518c",
+        "file_offset": "0x594458c",
+        "byte_count": 22,
+        "sha256": "51c5d91a8bcc0fc8e46e390258d22cdef54a0123bd18e4e23cc955aa74a707b8",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1459451ad",
+        "file_offset": "0x59445ad",
+        "byte_count": 37,
+        "sha256": "64b1a7b44572f3a53684832c7ab3c2890f7aebff7c2ea790a6d3bd23d0799e58",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145945202",
+        "file_offset": "0x5944602",
+        "byte_count": 194,
+        "sha256": "338fae947ca4f639a8ead30f3a1f45f003f8d9b97d17122ee581d090e0f6ff18",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1459452d0",
+        "file_offset": "0x59446d0",
+        "byte_count": 216,
+        "sha256": "76bb081a22b8f62b4868e9600f5370e4ffcfbe7f9fd63201080a622946e6088e",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1459453b5",
+        "file_offset": "0x59447b5",
+        "byte_count": 141,
+        "sha256": "55df8b538797b48ad692ec9fe3b0da4e37774e80a96ac2da6574d964764072e0",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f020",
+        "file_offset": "0x594e420",
+        "byte_count": 316,
+        "sha256": "09705a3b982a78e4b12dd75a0d8c8f903a7921ee331d9d4393bdd5a46fdc72a7",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f1cb",
+        "file_offset": "0x594e5cb",
+        "byte_count": 59,
+        "sha256": "1334f48a6bb3d2bdeb3f675eece0a6b721e0e20bce630ea10ca8694580525ba2",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f267",
+        "file_offset": "0x594e667",
+        "byte_count": 56,
+        "sha256": "64d90b7a9739af53ca12d56b44d3dc3f0e29e8e70bc45899f825d8db372c13c0",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f309",
+        "file_offset": "0x594e709",
+        "byte_count": 58,
+        "sha256": "49a16da54a677084d9f198897d0bb2cdba31ac369a46b63a14b3ab641ff0319b",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f3a7",
+        "file_offset": "0x594e7a7",
+        "byte_count": 56,
+        "sha256": "c38e2aa972f420046ae490a0eba762af919566dca4915d0e27b5c52eff11b9fb",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f447",
+        "file_offset": "0x594e847",
+        "byte_count": 83,
+        "sha256": "501c815cc2a7436090f64e1cc178a8544223a3ca9b1f8c1ff779a467409b0d75",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f509",
+        "file_offset": "0x594e909",
+        "byte_count": 66,
+        "sha256": "c6c4ae6c731bba06adc1bbdc9644557559eb3bee775c4e82c287fc1a8cba7fe8",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f5b9",
+        "file_offset": "0x594e9b9",
+        "byte_count": 58,
+        "sha256": "5bd55761ae6857ad69c8d525f58ba93b49d359796a36c077e8d0503c9a29d95a",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f65b",
+        "file_offset": "0x594ea5b",
+        "byte_count": 63,
+        "sha256": "50beb464db9fe30bb10cd0a894fd6f234ec4527b460c3142756ac4b8691d5892",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f709",
+        "file_offset": "0x594eb09",
+        "byte_count": 63,
+        "sha256": "4578667a59e00b4ac65d79d0fb4f6e138da7d8aff2903e4ed218cc7dd7efe37a",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f7b9",
+        "file_offset": "0x594ebb9",
+        "byte_count": 63,
+        "sha256": "61e7b1eb6786df14412d73526af684593fca915a45eacde41f2dea92dd577c2e",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f869",
+        "file_offset": "0x594ec69",
+        "byte_count": 58,
+        "sha256": "72b48bec0a3c1312ba707f1abf1762c876a2f985a3039b555cb6ae499fc55b16",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f909",
+        "file_offset": "0x594ed09",
+        "byte_count": 58,
+        "sha256": "96020daada6771e7164bf567462649cb745742f6bc88d1f8f3273f0b9ec93951",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594f9ab",
+        "file_offset": "0x594edab",
+        "byte_count": 59,
+        "sha256": "290e37bf79bd471911bbbb368db9b1eec94560830dad8ff5920b6ba727f5ed78",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594fa4a",
+        "file_offset": "0x594ee4a",
+        "byte_count": 165,
+        "sha256": "c3b5425b226076afc6b73b33300bf8e714c282de1492b140eea55821f39224bb",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x14594fafc",
+        "file_offset": "0x594eefc",
+        "byte_count": 81,
+        "sha256": "e92892fe33205e25f3d5b16e102d8015582aa9a0115f1ace44f4bafc7944c01e",
+        "assembly": "selected-native.asm"
+      }
+    ],
+    "reward-radius-boundaries": [
+      {
+        "va": "0x1459443a6",
+        "file_offset": "0x59437a6",
+        "byte_count": 30,
+        "sha256": "ef8f199bf35d4f8fabc6d953f40c703e7a364b6bc318eec495e4c9eff4408be7",
+        "assembly": "selected-native.asm"
+      }
+    ]
+  },
+  "retained_new_instruction_rows": 922,
+  "reused_instruction_rows": 955,
+  "canonical_assembly_dependencies": [
+    "../raid-boss-lifecycle/selected-native.asm",
+    "../raid-guardian-lifecycle/selected-native.asm",
+    "../raid-lifecycles/selected-native.asm"
+  ],
+  "limits": [
+    "Original instructions execute in synthetic CPU fixtures only; no Rust compilation, compiling tests or game process.",
+    "AS creator/object descriptors, counters, RNG, normalization and XP merge consumers execute; field-map storage, packet serialization, localization, allocation/copy and terrain answers remain explicit existing engine ports.",
+    "CRT hypot/sin/cos outputs use controlled host responses; native CRT implementation and MPQ terrain parity are unverified.",
+    "The primary composition executes actual pickup/object providers, gear provider/rolls and XP attraction; notice/name publishing and magnet-vector removal remain named seams. Guardian composition starts with actual gold creation then executes its existing current magnet helper.",
+    "Existing cache kind2, collection rewards/XP/stat providers and complete game presentation are not certified by this bounded death-output proof. Source/behavior correspondence is statically traced and awaits permitted Rust/runtime comparison."
+  ]
+}

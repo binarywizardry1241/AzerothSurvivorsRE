@@ -1,0 +1,74 @@
+{
+  "target_version": "0.113.2",
+  "target_sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+  "target_executed": false,
+  "native_cases": 48,
+  "assembly": {
+    "va": "0x14594ad5c",
+    "file_offset": "0x594a15c",
+    "byte_count": 483,
+    "sha256": "bbdafad40074404b4cdfa524e711917f00c2099e55e24f15911fe6a77e0bec9e"
+  },
+  "ghidra_range": {
+    "va": "0x14594ad5c",
+    "file_offset": "0x594a15c",
+    "byte_count": 130,
+    "sha256": "e284785bd35233af50c673c470bf84a5bfe9fcb8f8239939bdb688d6ac3f2e1e"
+  },
+  "ceilf_thunk": {
+    "va": "0x145cf99f7",
+    "file_offset": "0x5cf8df7",
+    "byte_count": 6,
+    "sha256": "864f3f196d9a19fb4f55331ee200b592032044e5e2e43e09a0844c126352ec20"
+  },
+  "threshold_load": {
+    "va": "0x145949a41",
+    "file_offset": "0x5948e41",
+    "byte_count": 9,
+    "sha256": "e6c3ad99fa35c9f810acfaae7ba0645f61c3dd54b897d7ac29193a38677bce81"
+  },
+  "threshold_constant": {
+    "va": "0x145ed69d4",
+    "file_offset": "0x5ed53d4",
+    "byte_count": 4,
+    "sha256": "2a25271875e056e323462f5d609558c140e993d0d331e6bfbfd211949974594c"
+  },
+  "zero_simd": {
+    "va": "0x14594abb5",
+    "file_offset": "0x5949fb5",
+    "byte_count": 3,
+    "sha256": "16e0c14e5e528b300f9314743220a07b957d07cfe8a4abe5bcf17f57f25b7414"
+  },
+  "zero_integer": {
+    "va": "0x14594ac00",
+    "file_offset": "0x594a000",
+    "byte_count": 2,
+    "sha256": "2e2f89076640f42236c01bdc8663b50e0001b061170a88fd2ae0a99e0c7b1675"
+  },
+  "source_trace": "actual local merge edges -> FieldNotice::Unit -> updated unit snapshots -> existing watcher gate and GUID token fan-out; absent VM drops notices",
+  "guardian_yell": {
+    "va": "0x14730d06e",
+    "file_offset": "0x730ba6e",
+    "byte_count": 24,
+    "sha256": "e1658d5d58ff273e71f1d82ec53dd258491fe59558f5a6c3a35518b3bf1048fa"
+  },
+  "provider": {
+    "id": "ghidra",
+    "name": "Ghidra",
+    "version": "12.1.4"
+  },
+  "evidence_id": "ev_c3eade8889af8baa24672c8321497172357a0248f97f81e63469e9d636079dd7",
+  "analysis_profile_sha256": "a224ee5caf182f0569e88d4bcc6e54d1b0fd108055e44906561a84e5ffbb34ef",
+  "pseudocode_sha256": "9248a68d84e00694380ee71dc1f8c6a47eaa2bee652f88194945cad01b610cf1",
+  "seams": [
+    "ceilf return supplied by host math",
+    "descriptor-map insert captures field/value",
+    "incoming actor and stack supplied by fixture; SIMD threshold read from verified current producer/constant"
+  ],
+  "limits": [
+    "Raw Ghidra import begins inside the guardian engagement owner and stops before its continuation; bad-data halt is that boundary, not a native instruction.",
+    "Assembly retains current field-map, packet-queue continuation and following guardian yell; the fixture executes only the selected vital conversion block.",
+    "Existing benilla field watcher/token/FrameXML implementation is reused; this is not engine reconstruction or proof of complete native ownership.",
+    "Rust regression is authored, unrun. Compilation, actual game/addon cadence, ReloadUI interaction and original/rebuilt visual/latency parity remain unverified."
+  ]
+}

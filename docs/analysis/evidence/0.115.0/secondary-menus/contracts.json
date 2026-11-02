@@ -1,0 +1,694 @@
+{
+  "generator": {
+    "path": "scripts/check-secondary-menus-0.115.0.py",
+    "sha256": "e10b49095d1f3a36a0caf7f816a21ecd1b58d0f74feab983b4e30ff0283ac777"
+  },
+  "native_manifest_sha256": "04559a3d068dd185391852d04429903d313b83b2d431f66765af37b45bdf4dd1",
+  "target": {
+    "version": "0.115.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+    "size_bytes": 142111232
+  },
+  "application_executed": false,
+  "rebuilt_code_executed": false,
+  "native_navigation_instructions_executed": true,
+  "talent_records": 355,
+  "talent_trees": 27,
+  "talent_metadata_sha256": "19a4700d816cbb2508d984e89ad8a98974e304af8f224d6c2ce263ec60a050aa",
+  "reward_records": {
+    "perks": 13,
+    "companions": 22,
+    "tabards": 20,
+    "cosmetics": 7
+  },
+  "table_copies": [
+    {
+      "kind": "perks",
+      "address": "0x145f26fb8",
+      "records": 13,
+      "sha256": "757f7608c5def9fe6078204c7ae6abdb867c11b918e22712ae703e55f0b4d668"
+    },
+    {
+      "kind": "perks",
+      "address": "0x147034700",
+      "records": 13,
+      "sha256": "757f7608c5def9fe6078204c7ae6abdb867c11b918e22712ae703e55f0b4d668"
+    },
+    {
+      "kind": "companions",
+      "address": "0x145f25670",
+      "records": 22,
+      "sha256": "0dc2fd1b5b12fa51ae3f67882fb21bbfdcb85ea83d17a4140ad299f1bfccb246"
+    },
+    {
+      "kind": "companions",
+      "address": "0x146ccd3e0",
+      "records": 22,
+      "sha256": "0dc2fd1b5b12fa51ae3f67882fb21bbfdcb85ea83d17a4140ad299f1bfccb246"
+    },
+    {
+      "kind": "companions",
+      "address": "0x14703aac8",
+      "records": 22,
+      "sha256": "0dc2fd1b5b12fa51ae3f67882fb21bbfdcb85ea83d17a4140ad299f1bfccb246"
+    },
+    {
+      "kind": "companions",
+      "address": "0x14733a878",
+      "records": 22,
+      "sha256": "0dc2fd1b5b12fa51ae3f67882fb21bbfdcb85ea83d17a4140ad299f1bfccb246"
+    },
+    {
+      "kind": "tabards",
+      "address": "0x145f28dc0",
+      "records": 20,
+      "sha256": "270bd3babd39f9cd1d21748c5edbb6943683108cfe43ce535e330165b15c8b5d"
+    },
+    {
+      "kind": "tabards",
+      "address": "0x147036f40",
+      "records": 20,
+      "sha256": "270bd3babd39f9cd1d21748c5edbb6943683108cfe43ce535e330165b15c8b5d"
+    },
+    {
+      "kind": "cosmetics",
+      "address": "0x145f24ef0",
+      "records": 7,
+      "sha256": "0bfb9d295d8ceb12314ceb8d863c8eb574b4f528239c9ee8b4dc768d235689b5"
+    },
+    {
+      "kind": "cosmetics",
+      "address": "0x147037518",
+      "records": 7,
+      "sha256": "0bfb9d295d8ceb12314ceb8d863c8eb574b4f528239c9ee8b4dc768d235689b5"
+    }
+  ],
+  "codex_class_membership": 103,
+  "codex_fixed_metadata": 39,
+  "codex_entries": 142,
+  "codex_metadata_sha256": "d7d27a76b55e28dec8f6dfb785292ea95bd9b069b4a45eef84559b77f5afe03a",
+  "navigation_cases": 336,
+  "navigation_sha256": "8377052c655546b5ca805b4530f67b0be4f3fb515e43366a3bf27be244b35d6f",
+  "navigation_instruction_addresses": 93,
+  "navigation_seams": [
+    "0x1458c1ce0",
+    "0x1458d2020",
+    "0x145d14601"
+  ],
+  "assets": {
+    "talents-menu-0.109.0.json": "96dfcd134b66cfe13af1f88ac09e3f914f3b1c1e72b38e0404125fa6393b7d93",
+    "warlock-talents-0.112.0.json": "765d0cc1a036d3452475fcdbf1532f6b8da0051409c26dbc4af6574c3ab3b010",
+    "warrior-talents-0.112.0.json": "712ad254137e60dbb763bd2ba4f12089b228e2a9645b76b384e19e4bc0bc5d8c",
+    "rewards-catalogs-0.112.0.json": "bcb57d4d8b8cd2e61ecbb846510ed30d48c1ad0b50bab5acefc945dfb727641d",
+    "armory-cosmetics-0.112.0.json": "c762d05823204bd6f41b85f2ffb0cd68251e562dfc1bc2bb65c92bfd7977ebb8",
+    "codex-0.105.0.json": "380f9304a54f01fc1f19c8a523464ffd690c85625fb490a9fc8ed9728693806c",
+    "jewelry-codex-0.112.0.json": "6c1abab90c968fe6391f5533a1413a7a5535058f1aa0c08035777cef94f4b843",
+    "menu.json": "8206d03870b234952945ed57af33bf6a76e748ac0a6387b0c2f2dbe6bb1994d3"
+  },
+  "source_guards": {
+    "crates/azeroth-survivors-re/src/armory_cosmetics.rs": [
+      "assets/armory-cosmetics-0.112.0.json"
+    ],
+    "crates/azeroth-survivors-re/src/save/talents.rs": [
+      "talents-menu-0.109.0.json",
+      "warlock-talents-0.112.0.json",
+      "warrior-talents-0.112.0.json"
+    ],
+    "crates/azeroth-survivors-re/src/talents.rs": [
+      "crate::scrollbar::kept_list(body, \"talent-details\", 9.",
+      "self.supremacy_description"
+    ],
+    "crates/azeroth-survivors-re/src/progression/rewards.rs": [
+      "\"rewards-companion-looks\"",
+      "\"rewards-appearances\""
+    ],
+    "crates/azeroth-survivors-re/src/armory.rs": [
+      "\"armory-equipment\"",
+      "view.selected = gear.worn(class, slot);",
+      "view.selected = Some(id);"
+    ],
+    "crates/azeroth-survivors-re/src/progression.rs": [
+      "destination != Page::Rewards && edited",
+      "menu.dialog = Some(Dialog::RewardsChanges(destination));"
+    ],
+    "crates/azeroth-survivors-re/src/codex.rs": [
+      "\"../assets/codex-0.105.0.json\"",
+      "catalog.entries.insert(at, delta.entry);"
+    ]
+  },
+  "ranges": [
+    {
+      "role": "navigation",
+      "address": "0x14023ec90",
+      "byte_count": 494,
+      "sha256": "25af2596b4cccea1fff39fe90b372bbd78c26c4d869553fcd7d5c7382ae3e11d"
+    },
+    {
+      "role": "cosmetics",
+      "address": "0x145f24ef0",
+      "byte_count": 448,
+      "sha256": "549abccf37446a8385d66d312b4afc3940094b5bddd6619262eef70a5bac05f2"
+    },
+    {
+      "role": "companions",
+      "address": "0x145f25670",
+      "byte_count": 2112,
+      "sha256": "a6194e5543d981dbe50935cc811bde39d1b690c67e19f0b2cd5c2a3dc3ed5745"
+    },
+    {
+      "role": "perk-costs",
+      "address": "0x145f265d4",
+      "byte_count": 12,
+      "sha256": "19b8907710563717e74ed5ec0643bac34c969c81f53e5e019dde2262ece5c1ed"
+    },
+    {
+      "role": "perk-descriptions",
+      "address": "0x145f26648",
+      "byte_count": 48,
+      "sha256": "823dc8d85cfd07114bbbbe100fb2857bf568615bdb578a25f6296b3c7f36d317"
+    },
+    {
+      "role": "perk-costs",
+      "address": "0x145f266a8",
+      "byte_count": 12,
+      "sha256": "b6151f24ce0bb2d4ace3cf34ddec7ae7e8ca97de13c2df5d21a353763ff7ccce"
+    },
+    {
+      "role": "perk-descriptions",
+      "address": "0x145f26750",
+      "byte_count": 48,
+      "sha256": "b4fb51a8fc96227fb5a7605ad08572637a97f7635760b65185fc8f298dae8631"
+    },
+    {
+      "role": "perk-costs",
+      "address": "0x145f267a0",
+      "byte_count": 4,
+      "sha256": "972b8373b897c65c4f631c6bdf2443d0d817a88f224b54d8e593fdcf32488d60"
+    },
+    {
+      "role": "perk-descriptions",
+      "address": "0x145f267d0",
+      "byte_count": 16,
+      "sha256": "b45cb8c6fb6ea88775fd90e08ea45a523d3b2779b86a3b82bf3f37d5ea91dca3"
+    },
+    {
+      "role": "perk-costs",
+      "address": "0x145f26804",
+      "byte_count": 4,
+      "sha256": "4f5e1d312b4d1bb8ccaf069c18cddeca414ae78160fb3c793ffc730eef4e4f17"
+    },
+    {
+      "role": "perk-descriptions",
+      "address": "0x145f26840",
+      "byte_count": 16,
+      "sha256": "14c4060479ed5aa5c570512cbb8edf22af13821b7d95fa35779a908ee314ab16"
+    },
+    {
+      "role": "perk-costs",
+      "address": "0x145f26888",
+      "byte_count": 8,
+      "sha256": "c699d448f762237e9cdf6d01815a261fbc25c5f61551568b50b2c4953f861740"
+    },
+    {
+      "role": "perk-descriptions",
+      "address": "0x145f26918",
+      "byte_count": 32,
+      "sha256": "52bd90b7f7892658819c3d722726de87e4ea1db8acb341ad8cba4cb5d8578b46"
+    },
+    {
+      "role": "perk-descriptions",
+      "address": "0x145f269b8",
+      "byte_count": 32,
+      "sha256": "fd808192082fe27501d809133a1f7e7d70861828efc0f4507b58d335cfc49ae2"
+    },
+    {
+      "role": "perk-costs",
+      "address": "0x145f269f4",
+      "byte_count": 4,
+      "sha256": "85dd751867e3155c7f2e23e8446546906f5bf617d4d985ed474822613764d69e"
+    },
+    {
+      "role": "perk-descriptions",
+      "address": "0x145f26ae8",
+      "byte_count": 16,
+      "sha256": "7af3a1f0d67935316f309230a965a8f6076e9199eb680b60c1f54f1a0c4924f3"
+    },
+    {
+      "role": "perk-descriptions",
+      "address": "0x145f26be0",
+      "byte_count": 48,
+      "sha256": "86cbfb2b1dac4bacf508b85c68f3b79141f260cda00c7374ea640632d68c0359"
+    },
+    {
+      "role": "perk-descriptions",
+      "address": "0x145f26cf0",
+      "byte_count": 48,
+      "sha256": "7dadc75b558ac57e7898605c44e0a4a11ac9a350284ebd036ec41c9ac0b845ce"
+    },
+    {
+      "role": "perk-descriptions",
+      "address": "0x145f26dc8",
+      "byte_count": 16,
+      "sha256": "35829585122dc12a07dc5e055c44141ece976de10d118a4527842afc9e6d0a96"
+    },
+    {
+      "role": "perk-descriptions",
+      "address": "0x145f26e88",
+      "byte_count": 16,
+      "sha256": "0e5c1ad966a6262e11e4cac868c9ec0353b4708d51a763e62476b432503d4fad"
+    },
+    {
+      "role": "perk-descriptions",
+      "address": "0x145f26f28",
+      "byte_count": 16,
+      "sha256": "dccea95b113596802e8c7ffd7c09d0e9f8f2d9e2cc00db38c73c8dcac704aca3"
+    },
+    {
+      "role": "perk-costs",
+      "address": "0x145f26f50",
+      "byte_count": 4,
+      "sha256": "5a667734987b65ef5c4d07bf176148504bcf8378a5a1a0e23a7fa2c1121cc143"
+    },
+    {
+      "role": "perk-descriptions",
+      "address": "0x145f26f98",
+      "byte_count": 16,
+      "sha256": "38292fdcd2b8c58902dd9293bdb6cb5208762a47450c725e6f3007397cdb9e12"
+    },
+    {
+      "role": "perks",
+      "address": "0x145f26fb8",
+      "byte_count": 1560,
+      "sha256": "0da63bd95445273db90e160f8feda2a3b530f69b4d56f323a5281b6bb30944b8"
+    },
+    {
+      "role": "tabards",
+      "address": "0x145f28dc0",
+      "byte_count": 1280,
+      "sha256": "3d98e91f38d1d5705ccfdf997ba441c69ca852844626816bd65995f786f96ae8"
+    },
+    {
+      "role": "class-pool-keys",
+      "address": "0x146cc2200",
+      "byte_count": 176,
+      "sha256": "1592273ea221131b210214815e4e6f85817a6900c9505f79ad18e09cf84aafd7"
+    },
+    {
+      "role": "class-pool-keys",
+      "address": "0x146cc23b0",
+      "byte_count": 176,
+      "sha256": "9535f368350bf41b89b9f8d94f2dfc0398a55e0336d53087d96d7fd45909d1ea"
+    },
+    {
+      "role": "class-pool-keys",
+      "address": "0x146cc2558",
+      "byte_count": 176,
+      "sha256": "c8b3d7f731a6d5627d9df29ff35b5527e56d75218a851d83c646149613a39b9a"
+    },
+    {
+      "role": "class-pool-keys",
+      "address": "0x146cc26f8",
+      "byte_count": 176,
+      "sha256": "43b30c1538a1c0ebe09ba8bed8ee5c81fa5f6579b2300a80439b813cdd9d437a"
+    },
+    {
+      "role": "class-pool-keys",
+      "address": "0x146cc2878",
+      "byte_count": 176,
+      "sha256": "34019403708c7463e809338f5269ddfff21cc876ea8c359d4fd99b33bd1a6bb7"
+    },
+    {
+      "role": "class-pool-keys",
+      "address": "0x146cc2a28",
+      "byte_count": 176,
+      "sha256": "810fe2f334484cc2275da0bdcf19948c9abe82768ca5214358b975fc20fcb345"
+    },
+    {
+      "role": "class-pool-keys",
+      "address": "0x146cc2bd0",
+      "byte_count": 208,
+      "sha256": "46f60952441b2daa052b28d4d3ed81948fadb924765c647505e7815182b3b31a"
+    },
+    {
+      "role": "class-pool-keys",
+      "address": "0x146cc2d90",
+      "byte_count": 192,
+      "sha256": "b60eb176ddec98712fb1448c01f1dcdf49b8ab41135a72893a60ae36b22813fd"
+    },
+    {
+      "role": "class-pool-keys",
+      "address": "0x146cc2f30",
+      "byte_count": 192,
+      "sha256": "152d7c92d6002de950cf827e8de1b5ee2103a7507985a4d743f6442478e362b1"
+    },
+    {
+      "role": "class-pools",
+      "address": "0x146cc3058",
+      "byte_count": 1296,
+      "sha256": "26f41f22a5a717d3d4c1237ae5ebb7f542caa7303115275dc28b91ba23eb577c"
+    },
+    {
+      "role": "companions",
+      "address": "0x146ccd3e0",
+      "byte_count": 2112,
+      "sha256": "2633e5bb209a21cd060c41b3be90aeb6fd4bd2c110cbae21d7b26098669e1b82"
+    },
+    {
+      "role": "codex-jewelry",
+      "address": "0x147005690",
+      "byte_count": 1656,
+      "sha256": "6ec2fe6c8a968a7e3c459f2e7bf4f1ec7b2b938f31da9974e212ec8ae08d1e25"
+    },
+    {
+      "role": "codex-amulets",
+      "address": "0x1470068f0",
+      "byte_count": 1280,
+      "sha256": "d939d6fd228b5e4e4c2358a3ef48f98ca2ce91f8f4a2bb67c7813806b76e1fdc"
+    },
+    {
+      "role": "talent-records",
+      "address": "0x14700de80",
+      "byte_count": 2080,
+      "sha256": "1f2fa84fbd18ddbaf2e18d3534f5211194654b067e2f40e60e3edcfd39e3837b"
+    },
+    {
+      "role": "talent-records",
+      "address": "0x14700f050",
+      "byte_count": 2080,
+      "sha256": "636902156b4da109b282aefeff9d570bf89da57c916ecc0a7d7b604d96405a34"
+    },
+    {
+      "role": "talent-records",
+      "address": "0x147010550",
+      "byte_count": 2240,
+      "sha256": "7d004c14c43255a565ec38d8e8684cfbe638f12ee072af2ba072cc753a68d6af"
+    },
+    {
+      "role": "talent-records",
+      "address": "0x147011610",
+      "byte_count": 2080,
+      "sha256": "7b011b9d21668e4de5d9b08c1bb42b94ef2dbc60e71ab6654f861048200aa3d2"
+    },
+    {
+      "role": "talent-records",
+      "address": "0x147012ba0",
+      "byte_count": 2240,
+      "sha256": "1a10d5d716f0de698476c44529bd704696a4e30ce252bb81fb8b301105096677"
+    },
+    {
+      "role": "talent-records",
+      "address": "0x147013cc0",
+      "byte_count": 2080,
+      "sha256": "0b7b41ec84a5fc10fb702f87816bb21230dd0ce456bbaa8ff5f8f0d3fe4ab28b"
+    },
+    {
+      "role": "talent-records",
+      "address": "0x147014b88",
+      "byte_count": 2080,
+      "sha256": "40f9a5893984596bf4483d6a7a0f2566b9660664bd6305cdf8be477a841eec50"
+    },
+    {
+      "role": "talent-records",
+      "address": "0x147015c18",
+      "byte_count": 2080,
+      "sha256": "22b8e610a819df4edd0c667f529c704fe0793ef76d898574b66a9c33d20b970b"
+    },
+    {
+      "role": "talent-records",
+      "address": "0x147016c10",
+      "byte_count": 2080,
+      "sha256": "85dc0055d648b050c987b1e89434b9ef8523b1042339046a30d37875921bf561"
+    },
+    {
+      "role": "talent-records",
+      "address": "0x147017b38",
+      "byte_count": 2080,
+      "sha256": "bf9da8f55e9ddc07d9a3eb7e9bb68c4af7e72d45193d0e9ca9eacfd796cd53b3"
+    },
+    {
+      "role": "talent-records",
+      "address": "0x147018a60",
+      "byte_count": 2080,
+      "sha256": "dc741bab2de64d82921387c374c314bdf5ace8c87e892ae82a36100730667658"
+    },
+    {
+      "role": "talent-records",
+      "address": "0x1470199e0",
+      "byte_count": 2080,
+      "sha256": "fcbdc3342b7b993f3b3228be3f2131c69a4143f000f5b441f077a934a3259399"
+    },
+    {
+      "role": "talent-records",
+      "address": "0x14701a908",
+      "byte_count": 2080,
+      "sha256": "4901c19996dd3590f5d8b8a396c97269cfa2c2ba266f6081fd60a9f0a9de3984"
+    },
+    {
+      "role": "talent-records",
+      "address": "0x14701b838",
+      "byte_count": 2080,
+      "sha256": "1cea86aa55c025d4898329ce8863db09c711b1a53a47b468d9f6fb2542168a0e"
+    },
+    {
+      "role": "talent-records",
+      "address": "0x14701c998",
+      "byte_count": 2080,
+      "sha256": "e0ae609611944612621cc058708c80f2c3944a4f13ba6298d9bd20bbbe78af6c"
+    },
+    {
+      "role": "talent-records",
+      "address": "0x14701dae0",
+      "byte_count": 2080,
+      "sha256": "94d6bff9b48f95687b0dd6b2b7f8a44d96caa493a331398cc14cf055f2068386"
+    },
+    {
+      "role": "talent-records",
+      "address": "0x14701ea08",
+      "byte_count": 2080,
+      "sha256": "f9895c359b43b5a55f798513f42d10b21ee9deddd0a8e22eb96047270796d86d"
+    },
+    {
+      "role": "talent-records",
+      "address": "0x14701f920",
+      "byte_count": 2080,
+      "sha256": "9462cb44a39a04eb1c530ab2bc4a217d1f1720035bcb3cf4781a186c133b8475"
+    },
+    {
+      "role": "talent-records",
+      "address": "0x147020970",
+      "byte_count": 2080,
+      "sha256": "5e64f35d9cd895e8bba57bfb4647e917bc18c38050580923a1e8cc0da6edf790"
+    },
+    {
+      "role": "talent-records",
+      "address": "0x147021960",
+      "byte_count": 2080,
+      "sha256": "7a741550c791f8c7c365765c382ec4956033a69451b93e67d3e98fb9676c7eb7"
+    },
+    {
+      "role": "talent-records",
+      "address": "0x147022910",
+      "byte_count": 2080,
+      "sha256": "1ea4515dd5872d7b35c66354ed9f6d66c876dcac99b73bdcbdf954f669f17879"
+    },
+    {
+      "role": "talent-records",
+      "address": "0x147023b60",
+      "byte_count": 2080,
+      "sha256": "46a64fcb276137c41142ae057d5cc1de1287a1a95d5faedafd2b2c2258cd1ead"
+    },
+    {
+      "role": "talent-records",
+      "address": "0x147025308",
+      "byte_count": 2240,
+      "sha256": "93e38027a108d2113e035532a622bec202698327983cfa259db4a112546331aa"
+    },
+    {
+      "role": "talent-records",
+      "address": "0x147026430",
+      "byte_count": 2080,
+      "sha256": "c1a55693d58005803b19ce03ea0038ad92db67cd6cad0552e1ca05ba953ed4b7"
+    },
+    {
+      "role": "talent-records",
+      "address": "0x1470273a8",
+      "byte_count": 2080,
+      "sha256": "8544952c53b7c505ef1c00d7029fc199e46f9cf1f723579df253eb4a1f2bd755"
+    },
+    {
+      "role": "talent-records",
+      "address": "0x147028850",
+      "byte_count": 2240,
+      "sha256": "218792ac0562648581282df1ff241277da07e226ece40781634d8e91087bf178"
+    },
+    {
+      "role": "talent-records",
+      "address": "0x1470297a8",
+      "byte_count": 2080,
+      "sha256": "c1687528d48bc3bc830e6f76811a22d70992d1ba1ee2d82e5663df7783a1d187"
+    },
+    {
+      "role": "talent-index",
+      "address": "0x147029fc8",
+      "byte_count": 1800,
+      "sha256": "e40464107c01d5374413f48c9e4dcf94760554321682b6fb2c07e1a5b8d6e062"
+    },
+    {
+      "role": "perk-costs",
+      "address": "0x147033d00",
+      "byte_count": 12,
+      "sha256": "19b8907710563717e74ed5ec0643bac34c969c81f53e5e019dde2262ece5c1ed"
+    },
+    {
+      "role": "perk-descriptions",
+      "address": "0x147033d70",
+      "byte_count": 48,
+      "sha256": "9e77affd361cc3554b62a15ec8d217cd2f7bdea180993293ad3f46d117f5d430"
+    },
+    {
+      "role": "perk-costs",
+      "address": "0x147033dd0",
+      "byte_count": 12,
+      "sha256": "b6151f24ce0bb2d4ace3cf34ddec7ae7e8ca97de13c2df5d21a353763ff7ccce"
+    },
+    {
+      "role": "perk-descriptions",
+      "address": "0x147033e78",
+      "byte_count": 48,
+      "sha256": "ebd9f25e05b8b1c4135dba712b607fa8b92c42e14109dd957bbce4c7a25e182a"
+    },
+    {
+      "role": "perk-costs",
+      "address": "0x147033ecc",
+      "byte_count": 4,
+      "sha256": "972b8373b897c65c4f631c6bdf2443d0d817a88f224b54d8e593fdcf32488d60"
+    },
+    {
+      "role": "perk-descriptions",
+      "address": "0x147033f00",
+      "byte_count": 16,
+      "sha256": "1ec223e5759918647e7b07f9c64dfe8f5554258c6e1ccc0c58fbf802636a9633"
+    },
+    {
+      "role": "perk-costs",
+      "address": "0x147033f40",
+      "byte_count": 4,
+      "sha256": "4f5e1d312b4d1bb8ccaf069c18cddeca414ae78160fb3c793ffc730eef4e4f17"
+    },
+    {
+      "role": "perk-descriptions",
+      "address": "0x147033f78",
+      "byte_count": 16,
+      "sha256": "96e95c96d0906525d4bf8a4e455db69ec79b3e7765303e13e3866b1abd530645"
+    },
+    {
+      "role": "perk-costs",
+      "address": "0x147033fc0",
+      "byte_count": 8,
+      "sha256": "c699d448f762237e9cdf6d01815a261fbc25c5f61551568b50b2c4953f861740"
+    },
+    {
+      "role": "perk-descriptions",
+      "address": "0x147034050",
+      "byte_count": 32,
+      "sha256": "1b8d5e22c676a1addc82f185f57e33f3915ac48cbd4c0ca375d0bffede110e08"
+    },
+    {
+      "role": "perk-descriptions",
+      "address": "0x1470340f8",
+      "byte_count": 32,
+      "sha256": "894e45291526e790360c66b332b0293fc8a4cf045590af8aeca8ae8115ba0e50"
+    },
+    {
+      "role": "perk-costs",
+      "address": "0x147034140",
+      "byte_count": 4,
+      "sha256": "85dd751867e3155c7f2e23e8446546906f5bf617d4d985ed474822613764d69e"
+    },
+    {
+      "role": "perk-descriptions",
+      "address": "0x147034238",
+      "byte_count": 16,
+      "sha256": "7d874f2ad9821ad1224f270cdc717cd93f6437c0fc0e79a7e520e862a388f3cb"
+    },
+    {
+      "role": "perk-descriptions",
+      "address": "0x147034330",
+      "byte_count": 48,
+      "sha256": "79be427e145dcee7e48efaf2df7aa6fda74bca1f7db968068235ee2b37fe9a0c"
+    },
+    {
+      "role": "perk-descriptions",
+      "address": "0x147034440",
+      "byte_count": 48,
+      "sha256": "9b5efb1467cde6daae8c3b724659c5bd5cefc62111f0b2468dc408bc3a663da4"
+    },
+    {
+      "role": "perk-descriptions",
+      "address": "0x147034518",
+      "byte_count": 16,
+      "sha256": "fdf6247ee76408d5717a2e1f6bb434a062b001966429f142bc8f61f98df65c0d"
+    },
+    {
+      "role": "perk-descriptions",
+      "address": "0x1470345d8",
+      "byte_count": 16,
+      "sha256": "7cd1d3e42eab08555763ee3f7030b76b632d7a89cc598497e378aa33a34583ae"
+    },
+    {
+      "role": "perk-descriptions",
+      "address": "0x147034678",
+      "byte_count": 16,
+      "sha256": "72ae5567825139d3847f65ded5ca0ea4e9c8c08f16db4c1663655285391a653b"
+    },
+    {
+      "role": "perk-costs",
+      "address": "0x147034698",
+      "byte_count": 4,
+      "sha256": "5a667734987b65ef5c4d07bf176148504bcf8378a5a1a0e23a7fa2c1121cc143"
+    },
+    {
+      "role": "perk-descriptions",
+      "address": "0x1470346e0",
+      "byte_count": 16,
+      "sha256": "5bf91b48a04a1ef08387b0bcdb98837712ca4185976b3c876b2d0f45125a0b2c"
+    },
+    {
+      "role": "perks",
+      "address": "0x147034700",
+      "byte_count": 1560,
+      "sha256": "5fa6a0ee6c021338f1259ab1659e265d0768f3dd54ac04eacde7fc68f069f54c"
+    },
+    {
+      "role": "tabards",
+      "address": "0x147036f40",
+      "byte_count": 1280,
+      "sha256": "ec936d9172537716e72f3273e926620bfd4c70a2dcff48f1c3e8bca7e9154b4c"
+    },
+    {
+      "role": "cosmetics",
+      "address": "0x147037518",
+      "byte_count": 448,
+      "sha256": "16da8eff27cde44eb0167c5d2b36a801672afb355c2bb2a59b319edac38fca63"
+    },
+    {
+      "role": "companions",
+      "address": "0x14703aac8",
+      "byte_count": 2112,
+      "sha256": "3f85c374c3da9a5c2741d53613fa8b91e83daf0893f96d56b343d32beb99e41b"
+    },
+    {
+      "role": "companions",
+      "address": "0x14733a878",
+      "byte_count": 2112,
+      "sha256": "bc44e586a732c6cca5413248974e5ce9c3cb8c83473434f80e3eca27a24bbcaf"
+    }
+  ],
+  "limits": [
+    "Catalog comparisons verify the stated fields, not all effects/rank-formatting/achievement-grant logic.",
+    "Navigation executes complete original instructions with account/drop getters, free and byte equality seams; ECS/action membership and actual UI/filesystem are not run.",
+    "Historical layout bodies whose shapes differ are not promoted to current equivalence; a changed shape alone is not a source defect.",
+    "No compilation, Rust regression, application, input/rendering or original/rebuilt comparison."
+  ]
+}

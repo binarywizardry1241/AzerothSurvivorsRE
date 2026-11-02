@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "gap_ids": [
+    238
+  ],
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "query": {
+    "procedure": "0x140272730",
+    "evidence_id": "ev_0b14694bf31ce4a8f41ff0137f40070909c6c35a4d38a80a9479739bffd4067b",
+    "provider": {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "version": "12.1.4"
+    },
+    "analysis_profile_digest": "96a289c7443ddec089fd532737ad8e6a705a352505a9f75ad418a7907a69d0a4",
+    "normalized_text_sha256": "3438ae0826c21b9d3aadb15bcee002851101d4772bb33c069eadf8be4f8a03ff",
+    "plan": {
+      "path": "runtime/fixgap-238-239-0.121.0/heroic-admission/plan.json",
+      "sha256": "df58f01b9fc1b489e30a566e80014955b9bd522fc3e04425e228b93e5d040871"
+    },
+    "journal": {
+      "path": "runtime/fixgap-238-239-0.121.0/heroic-admission/query/journal.json",
+      "sha256": "719169b0d06aa174d6f3c4ff3d84722ee3ab0335fff7570d06f12a141305b64e"
+    },
+    "result": {
+      "path": "runtime/fixgap-238-239-0.121.0/heroic-admission/query/results/5499be63195b31b1dbc421bd8b115b3e7ce8216ce4ae93f8aa6f0327c0961cfe.json",
+      "sha256": "3209e50a9ab98082c4f83e99dd71eb4c73acc9c979a62f5d052a660e6ebac0c5"
+    },
+    "raw_input": {
+      "path": "runtime/fixgap-238-239-0.121.0/heroic-admission/code.bin",
+      "sha256": "665e252192d8c60e9aeb14c38633d10a957ffb06e673297b98c562d030aeda08"
+    },
+    "slice_virtual_address": "0x140272730"
+  },
+  "rank_clamp": {
+    "virtual_address": "0x145ac00a0",
+    "file_offset": "0x5abf4a0",
+    "bytes_hex": "0fb6c980f905b8050000000f42c1c3",
+    "sha256": "e46a52a17ec83002d69abcd29fb926b904df29018abd575d17b26c67dd54efaa"
+  },
+  "scope": "Only locked reason parse and local status sentence; host rank/wire/admission/private mark and clear transfer still require separate native recovery.",
+  "target_executed": false,
+  "limits": [
+    "The supplied zone lookup and localization label boundaries are not reconstructed in this proof.",
+    "No client/server/network/game execution or compilation; actual parity unverified."
+  ]
+}

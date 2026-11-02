@@ -1,0 +1,118 @@
+{
+  "target": {
+    "version": "0.127.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+    "size_bytes": 146721280,
+    "identity_manifest": "docs/analysis/coverage/targets.json",
+    "version_provenance": "matching_embedded_updater_and_independent_version_witness",
+    "runtime_data": {
+      "directory": "installed-game/Data",
+      "archives": [
+        {
+          "path": "installed-game/Data/patch-2.MPQ",
+          "size_bytes": 4690878,
+          "sha256": "366edee41642a5dda22ed90cc252b543ee375755b7e8bee81e2a6cd59fd7b286"
+        },
+        {
+          "path": "installed-game/Data/patch-3.MPQ",
+          "size_bytes": 2580491,
+          "sha256": "75c35ca5b8075197252581e301e8900143007fdf37b493ad271ae1bd39f95a29"
+        },
+        {
+          "path": "installed-game/Data/patch-4.MPQ",
+          "size_bytes": 22769233,
+          "sha256": "2e895e0e0ff6a4781d0e0aaa6ea7d32ed1fe36841e17806fe1855cb880d18865"
+        },
+        {
+          "path": "installed-game/Data/patch-5.MPQ",
+          "size_bytes": 267019039,
+          "sha256": "5008e56873718b468fa5ae1b697dcbe4f5da9ffe6c793f3ef9939dbd7716f3d8"
+        },
+        {
+          "path": "installed-game/Data/patch-6.MPQ",
+          "size_bytes": 212228,
+          "sha256": "cad6ff59b5df028a507581befb836fce07894057e15fe63d9fdc553a95b7ceb5"
+        },
+        {
+          "path": "installed-game/Data/patch-7.MPQ",
+          "size_bytes": 276649,
+          "sha256": "f5fb15b181cf01cc6b5cf2ee9948a27ecc4ba27bab9a8bec584df4381932aae6"
+        },
+        {
+          "path": "installed-game/Data/patch-8.MPQ",
+          "size_bytes": 4155417,
+          "sha256": "ae3aaa29cadb7aeba8255f5b4a8305c7cbecfe8f0d3ed9646522113d16c3e12e"
+        },
+        {
+          "path": "installed-game/Data/patch-9.MPQ",
+          "size_bytes": 5739608,
+          "sha256": "ffff8ea890bdaf91a1680543ac60106db92132bc2210105279610fa73661a524"
+        },
+        {
+          "path": "installed-game/Data/patch-A.MPQ",
+          "size_bytes": 1453122,
+          "sha256": "350cde8cd0f76e5246a663eb3811f5a7b1a9c75e4e699190208c9299177b8d90"
+        },
+        {
+          "path": "installed-game/Data/patch-B.MPQ",
+          "size_bytes": 2935,
+          "sha256": "e9d074b012078efc1c1c8c729bf94d28b1d213d5fcb721dc4370a142f98834bd"
+        },
+        {
+          "path": "installed-game/Data/patch.MPQ",
+          "size_bytes": 1340199244,
+          "sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf"
+        }
+      ]
+    }
+  },
+  "entry": "0x145c62b09",
+  "stop": "0x145c62f46",
+  "limit": 30,
+  "stride": 120,
+  "guid_offset": 88,
+  "position_offset": 96,
+  "game_vector_offset": 1600,
+  "definition_stack_offset": 336,
+  "game_stack_offset": 344,
+  "seams": {
+    "memcmp": "0x146061721",
+    "memmove": "0x146061727",
+    "expiry": "0x145c85830",
+    "destroy": "0x145c6bd30"
+  },
+  "ranges": [
+    {
+      "start": "0x145c62b09",
+      "end_exclusive": "0x145c62c50",
+      "file_offset": "0x5c61f09",
+      "sha256": "6eec8df35cfd4a7b4baac6198e614aacfae71001a9d8f5a793eff73a1f2795f5"
+    },
+    {
+      "start": "0x145ceb3c0",
+      "end_exclusive": "0x145ceb4cf",
+      "file_offset": "0x5cea7c0",
+      "sha256": "2bc9654c65183f479b2074dcad4849cd1e80606d4c4ee3018cbb9e97b4fdb613"
+    },
+    {
+      "start": "0x145c62f3f",
+      "end_exclusive": "0x145c62f46",
+      "file_offset": "0x5c6233f",
+      "sha256": "905e55975bcdc0a2414a392609cb260cab038fdf17f2220422831cac0a8d3bc7"
+    }
+  ],
+  "vectors": "docs/analysis/evidence/0.127.0/totem-cap/native-vectors.json",
+  "shared_dispatch": {
+    "query": "runtime/analysis/tasks/fixgap-288-292-0.127.0/cast-dispatch/rea/results/997379911fd24f86832b37b93f09d81af84b62604eefab267aea9a1843967130.json",
+    "query_sha256": "dbc9f26f22d991322cdc35190e9022bfca83022e7e29c595506250ab21027f73",
+    "evidence_id": "ev_d8debff6d8ab0fc25d143912052129e5cd85f36aa34d6ac85ad5b5a99bdecfa2",
+    "slice_sha256": "36d25579841a6886e80ee0218e4cec1e636ba4f9e851728a67585760bea0a5f6",
+    "limits": "Raw pseudocode stops at its first unmapped jump table; cap arms are independently traced original instructions."
+  },
+  "cap_arm_query": {
+    "path": "runtime/analysis/tasks/fixgap-288-292-0.127.0/cast-dispatch/self-buff-rea/results/23dbc4f81211ac13ceef45cbf0e25faaa160423d3da4bc56e8e0ebea65f94c60-62b4023b156e1b79.json",
+    "sha256": "bf1a6809e43ec84c268efc4b832b75d77567267b77ed22f279623dba1d012c13",
+    "evidence_id": "ev_9b7824393aee9e2dd42eedbe722b3dda75ec4afecb3d162d643fbe760ff102d0"
+  }
+}

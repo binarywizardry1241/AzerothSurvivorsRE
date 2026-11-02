@@ -1,0 +1,864 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "gap_ids": [
+    219
+  ],
+  "native_ranges": [
+    {
+      "role": "healing",
+      "virtual_address": "0x145bd10e0",
+      "end_exclusive": "0x145bd138f",
+      "file_offset": "0x5bd04e0",
+      "byte_count": 687,
+      "sha256": "5162f289237d049c10f8adbfc6e22145e9c580331bfeeef31bd1cb6ffe959a40",
+      "instruction_count": 162,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/healing.asm",
+        "sha256": "5093a412dd2b8cee8ad04c37973e20bacadf54094bc332fe0efd4c99ce647eb5"
+      }
+    },
+    {
+      "role": "guardian-stats",
+      "virtual_address": "0x145c4e9e0",
+      "end_exclusive": "0x145c4f08f",
+      "file_offset": "0x5c4dde0",
+      "byte_count": 1711,
+      "sha256": "6e2c62bc30bab5a4c41157bcccabd403d1e575b0198a10571599d42c212d64b0",
+      "instruction_count": 383,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/guardian-stats.asm",
+        "sha256": "4c631a81957b7edfa60c458f3abf79118091feea5b3bd67122e989cbaa7de76e"
+      }
+    },
+    {
+      "role": "batch-healing",
+      "virtual_address": "0x145bcb438",
+      "end_exclusive": "0x145bcb794",
+      "file_offset": "0x5bca838",
+      "byte_count": 860,
+      "sha256": "91076399871dbf95b09a14514e2e3b5c691d1a750a4f34a9b0d05f160764c78c",
+      "instruction_count": 183,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/batch-healing.asm",
+        "sha256": "3f2b81217d6531be476e895c5ab441818ba82be94b3ad350e9bc2063efb18f48"
+      }
+    },
+    {
+      "role": "last-hit-clock",
+      "virtual_address": "0x145bcdde8",
+      "end_exclusive": "0x145bcddf6",
+      "file_offset": "0x5bcd1e8",
+      "byte_count": 14,
+      "sha256": "321466a4c7068d9b98e464b760b2c17a933939ee27daccafba635173c91d08f4",
+      "instruction_count": 2,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/last-hit-clock.asm",
+        "sha256": "5c6f3a4e32855a1de764980089db03782a7a5344b263a5574747ea209e6984e8"
+      }
+    },
+    {
+      "role": "last-hit-damage",
+      "virtual_address": "0x145bce5cc",
+      "end_exclusive": "0x145bce5f5",
+      "file_offset": "0x5bcd9cc",
+      "byte_count": 41,
+      "sha256": "a1893be14dc59547c4b2310ab07a9451de8758dc6fe89953a5d0724bbd499ce8",
+      "instruction_count": 6,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/last-hit-damage.asm",
+        "sha256": "3e6b52065627661c01f86f3c0c1b15be06b1d3f8c2811e3a5fb8378f65eb9307"
+      }
+    },
+    {
+      "role": "leech",
+      "virtual_address": "0x145bfee64",
+      "end_exclusive": "0x145bfeeb4",
+      "file_offset": "0x5bfe264",
+      "byte_count": 80,
+      "sha256": "30738ddf3fc60cab5ac14e1b0a615798347e0e1990cc7f529b4c9b1d84254236",
+      "instruction_count": 16,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/leech.asm",
+        "sha256": "78b04271b63932f9f1d8b80407554893e12bcb2699db86e14af0c84dbc81e08e"
+      }
+    },
+    {
+      "role": "totem-healing",
+      "virtual_address": "0x145bffd11",
+      "end_exclusive": "0x145bffd5c",
+      "file_offset": "0x5bff111",
+      "byte_count": 75,
+      "sha256": "2681621103cc65a7faff0117f5b548c6c05af4a2457268dd397eaf8531882ccd",
+      "instruction_count": 17,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/totem-healing.asm",
+        "sha256": "3f10876cd4baa9485291b90521db334fd39a8597e04ac243a22f26e5ca1abd52"
+      }
+    },
+    {
+      "role": "secondary-healing",
+      "virtual_address": "0x145c000fb",
+      "end_exclusive": "0x145c00147",
+      "file_offset": "0x5bff4fb",
+      "byte_count": 76,
+      "sha256": "f3343b037c7a9aeb61f951a0334064edb66116abce3360fd7f0e867f206ee73e",
+      "instruction_count": 16,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/secondary-healing.asm",
+        "sha256": "674933e205d16948ad74243eb9997aefbf05beba034aa2d0ef75a2fefb748846"
+      }
+    },
+    {
+      "role": "restoration",
+      "virtual_address": "0x145c2f36d",
+      "end_exclusive": "0x145c2f3c1",
+      "file_offset": "0x5c2e76d",
+      "byte_count": 84,
+      "sha256": "a7af0752cdf0679060fb6b063bf46c93745a46a8bbff15d5f249c6d1fd4c5656",
+      "instruction_count": 18,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/restoration.asm",
+        "sha256": "2973da15391a1ad6d2a683016a6b2981f37beb69f94513253a672ffcdb182bf4"
+      }
+    },
+    {
+      "role": "voidwalker-healing",
+      "virtual_address": "0x145c3a0ef",
+      "end_exclusive": "0x145c3a147",
+      "file_offset": "0x5c394ef",
+      "byte_count": 88,
+      "sha256": "46c148596a26ec9be0f7ffefa6d4b2ec797b71d7131de73962e5ead7a61a5fb2",
+      "instruction_count": 18,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/voidwalker-healing.asm",
+        "sha256": "3fe9f5943790e7e36a7eb039013f16620ca99c0213234a14c1ae05ca3594b488"
+      }
+    },
+    {
+      "role": "party-healing",
+      "virtual_address": "0x145c2142b",
+      "end_exclusive": "0x145c21489",
+      "file_offset": "0x5c2082b",
+      "byte_count": 94,
+      "sha256": "90bab89b5092ec1cfd14b3810e407f8089d70cd773e903140b4c2e4dd9efb0e6",
+      "instruction_count": 20,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/party-healing.asm",
+        "sha256": "1f4b50f6d465ffb5e821b455ec1a2e5498e7ecb15942ac88564f5120aaaf0580"
+      }
+    },
+    {
+      "role": "revive-health",
+      "virtual_address": "0x145bc4f2d",
+      "end_exclusive": "0x145bc4f59",
+      "file_offset": "0x5bc432d",
+      "byte_count": 44,
+      "sha256": "b9a63738ad6e85db82f80d83ff65a30ad237daac8e8852ab6e4c660b6167bf5c",
+      "instruction_count": 8,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/revive-health.asm",
+        "sha256": "953728541901415081b631a64eb19348e35e72962e2a1182388c3771cbe97798"
+      }
+    },
+    {
+      "role": "revive-time",
+      "virtual_address": "0x145bbc30d",
+      "end_exclusive": "0x145bbc345",
+      "file_offset": "0x5bbb70d",
+      "byte_count": 56,
+      "sha256": "d134efbfbb2590411479382cccb4e2b85146fc65aca89d21d789c10038d00461",
+      "instruction_count": 12,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/revive-time.asm",
+        "sha256": "fa012f6a8a5cd5d092a8a7e03a8c11168ee5bf7c0a9a975465e9c6e8fab147bb"
+      }
+    },
+    {
+      "role": "revive-progress",
+      "virtual_address": "0x145bb880a",
+      "end_exclusive": "0x145bb8835",
+      "file_offset": "0x5bb7c0a",
+      "byte_count": 43,
+      "sha256": "712baa2d86147bbfbbdda56edc0c0bb87536804377cd3dc97781038779d21679",
+      "instruction_count": 9,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/revive-progress.asm",
+        "sha256": "8cbeac0f316d79cd62d4a1e01d982512b00ed177b0d0306868c928a421eb9412"
+      }
+    },
+    {
+      "role": "guardian-respawn",
+      "virtual_address": "0x145c17cce",
+      "end_exclusive": "0x145c17d3c",
+      "file_offset": "0x5c170ce",
+      "byte_count": 110,
+      "sha256": "06ed4429bea45eee1a34fbfc09914cccea6d603c2b9b7d5cd834eea80d2697e1",
+      "instruction_count": 17,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/guardian-respawn.asm",
+        "sha256": "646057e642b3d49440c52163e4363c8814235da218044baa9f0f2bd557b93031"
+      }
+    },
+    {
+      "role": "boss-rank",
+      "virtual_address": "0x145c1d012",
+      "end_exclusive": "0x145c1d029",
+      "file_offset": "0x5c1c412",
+      "byte_count": 23,
+      "sha256": "e56daa51365b701f124f31cad89c51458321bc9cbe7a32838eca680998e35847",
+      "instruction_count": 5,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/boss-rank.asm",
+        "sha256": "ae8892c82fb2e068a1e36c4a0a5015bcf07af2e6223e3f430a55718f99f5b7e2"
+      }
+    },
+    {
+      "role": "boss-cooldowns",
+      "virtual_address": "0x145c1d57a",
+      "end_exclusive": "0x145c1d5a8",
+      "file_offset": "0x5c1c97a",
+      "byte_count": 46,
+      "sha256": "b32a2acc03d737aa11e0c88c9207bbffd22e8310427cff28dc2fc8d8b2bbc897",
+      "instruction_count": 8,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/boss-cooldowns.asm",
+        "sha256": "833c7f46e06b6fc39c7522554d03ff1fe442006427a6231f99af48e9ea857d40"
+      }
+    },
+    {
+      "role": "boss-repeat",
+      "virtual_address": "0x145c20017",
+      "end_exclusive": "0x145c2003f",
+      "file_offset": "0x5c1f417",
+      "byte_count": 40,
+      "sha256": "95e1faec6e9de994e5245335246a59f453fc85e056c73f2aa4432ba6efe043f9",
+      "instruction_count": 8,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/boss-repeat.asm",
+        "sha256": "b9d5b868a61932dc94e3d53d0c2c6bbea15ceedc17066e63cb74ea5747c6b799"
+      }
+    },
+    {
+      "role": "phase-admission",
+      "virtual_address": "0x145c1f38f",
+      "end_exclusive": "0x145c1f3cc",
+      "file_offset": "0x5c1e78f",
+      "byte_count": 61,
+      "sha256": "c76d5c99f3425a36db563633226261c936b2e6b80b64648aee141bafdcc673f2",
+      "instruction_count": 14,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/phase-admission.asm",
+        "sha256": "ac82c1961a53de28a655a67e677271562d5f4f795a606ad402e5462d0f8f0d60"
+      }
+    },
+    {
+      "role": "queued-admission",
+      "virtual_address": "0x145c21a12",
+      "end_exclusive": "0x145c21a34",
+      "file_offset": "0x5c20e12",
+      "byte_count": 34,
+      "sha256": "e41b8a51304c2ead6d8ba3deb5a6506b2d82cb1fc0873ad5d86b34fbc4860b19",
+      "instruction_count": 11,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/queued-admission.asm",
+        "sha256": "e54e51894530a9724bb72174b5e3076c344525229ac14c7187ae8af5f41b9e9f"
+      }
+    },
+    {
+      "role": "warning",
+      "virtual_address": "0x145bf1f80",
+      "end_exclusive": "0x145bf21ac",
+      "file_offset": "0x5bf1380",
+      "byte_count": 556,
+      "sha256": "87a7faaded1f921461ec0dcd050815570704839e1c8c39c56ce85e2a633c76e8",
+      "instruction_count": 111,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/warning.asm",
+        "sha256": "730ef170284f54173c26ba9eab2f7ced29020558d1f12895f5267e8ef1a7761b"
+      }
+    },
+    {
+      "role": "cache-cost",
+      "virtual_address": "0x145c2f060",
+      "end_exclusive": "0x145c2f0ad",
+      "file_offset": "0x5c2e460",
+      "byte_count": 77,
+      "sha256": "756e0a82a38348dcb7005e1030ff40a263499f5a19efd6433359add38a16c77c",
+      "instruction_count": 17,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/cache-cost.asm",
+        "sha256": "08c8852cda7a58cdcd206166694ae4c23155f9c763f266d47028513e51a9b171"
+      }
+    },
+    {
+      "role": "hazard-factor-default",
+      "virtual_address": "0x145be9d85",
+      "end_exclusive": "0x145be9d95",
+      "file_offset": "0x5be9185",
+      "byte_count": 16,
+      "sha256": "337838b0675590be43e90dc82905973f5722cd60a7ca2a9b8c0b75291747f926",
+      "instruction_count": 2,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/hazard-factor-default.asm",
+        "sha256": "de6a1713fbdc5516283ee659757a50296769411fd960f9cd5360ca5a7708a8c5"
+      }
+    },
+    {
+      "role": "hazard-damage",
+      "virtual_address": "0x145bed763",
+      "end_exclusive": "0x145bed7e7",
+      "file_offset": "0x5becb63",
+      "byte_count": 132,
+      "sha256": "d02cc7b9763cd46d30e461f89c1746dda927467a7b2de1eb60e920f75abee451",
+      "instruction_count": 26,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/hazard-damage.asm",
+        "sha256": "9ae6948e5088317e76a20207dd462167fb939be7e75c4dba0cf7772fe01a1e69"
+      }
+    },
+    {
+      "role": "lean-rank",
+      "virtual_address": "0x145bdcbd9",
+      "end_exclusive": "0x145bdcbed",
+      "file_offset": "0x5bdbfd9",
+      "byte_count": 20,
+      "sha256": "875844c4ae6231c2623c2d8fd0bf943ff3973c08f4250698ef4977b42e26727e",
+      "instruction_count": 4,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/lean-rank.asm",
+        "sha256": "c047f3acd44cdb647720d67128b23afbbba26fc28330b8c872c9f127b8eac29d"
+      }
+    },
+    {
+      "role": "cache-initial",
+      "virtual_address": "0x145bdcc95",
+      "end_exclusive": "0x145bdccab",
+      "file_offset": "0x5bdc095",
+      "byte_count": 22,
+      "sha256": "c24a44c41b28c3c780a09a9627253711f2a4aa9c094f8bb47ebca952c04609ba",
+      "instruction_count": 5,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/cache-initial.asm",
+        "sha256": "61bb3c7fc0da77eff354b0800f5e647d2613f768ff647be87da098c61f8ffd4c"
+      }
+    },
+    {
+      "role": "cache-commit",
+      "virtual_address": "0x145bdd6d6",
+      "end_exclusive": "0x145bdd6e2",
+      "file_offset": "0x5bdcad6",
+      "byte_count": 12,
+      "sha256": "6716fcb665bd798487e4b05ac35b083051b0da72b52a029e8395f5a8e4f57f54",
+      "instruction_count": 2,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/cache-commit.asm",
+        "sha256": "8de2186c4ba2f0ce328cbc0bfa63348d4f96be82356953b950d5a7f9c4ea4f3e"
+      }
+    },
+    {
+      "role": "reroll-initial",
+      "virtual_address": "0x145bdcf30",
+      "end_exclusive": "0x145bdcf59",
+      "file_offset": "0x5bdc330",
+      "byte_count": 41,
+      "sha256": "6c5bfb935ec1a50e290bb614336e3c26a4f8de2cb1d28161f52464e078774475",
+      "instruction_count": 7,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/reroll-initial.asm",
+        "sha256": "8a4c2c1d82acf2e37dd105df5503c0d5c3547b5e43ab01b9062730aaecb3155a"
+      }
+    },
+    {
+      "role": "reroll-commit",
+      "virtual_address": "0x145bdd348",
+      "end_exclusive": "0x145bdd34e",
+      "file_offset": "0x5bdc748",
+      "byte_count": 6,
+      "sha256": "597d01c49ce423559c8c330027d718d29b2f8b7a20ab44b3c7ee95d696a26213",
+      "instruction_count": 1,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/reroll-commit.asm",
+        "sha256": "c2047bfd6e19a2860df93b6e2151fcdb28e0376a4b3cdc6f79ac8c7aab36ab1d"
+      }
+    },
+    {
+      "role": "elite-pair",
+      "virtual_address": "0x145c2a016",
+      "end_exclusive": "0x145c2a112",
+      "file_offset": "0x5c29416",
+      "byte_count": 252,
+      "sha256": "6dfd5e1e340686c9f86348af4fb7bb111d65447542c2216e1b5e3530f7bb735b",
+      "instruction_count": 48,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/elite-pair.asm",
+        "sha256": "67d62436e2501bab2ade0453608e3e7851ef09c99927d9294497886c287f3828"
+      }
+    },
+    {
+      "role": "council",
+      "virtual_address": "0x145c2bad7",
+      "end_exclusive": "0x145c2bb77",
+      "file_offset": "0x5c2aed7",
+      "byte_count": 160,
+      "sha256": "a3c0a2e0ccc3ed2ee7d1f7e388867d6d941a07c7ef9ed83a7a2cb4139243c11c",
+      "instruction_count": 34,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/council.asm",
+        "sha256": "50f578380ae460cdbf9fc68a6ceccaba5545896ec498be092684af599b08c68d"
+      }
+    },
+    {
+      "role": "council-health-input",
+      "virtual_address": "0x145c27635",
+      "end_exclusive": "0x145c2763e",
+      "file_offset": "0x5c26a35",
+      "byte_count": 9,
+      "sha256": "edb3e807bbe9950ff8e09a8233198c6098409390a97296c70ce8f15ea60867e6",
+      "instruction_count": 3,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/council-health-input.asm",
+        "sha256": "f44c8ae52bd53c32732aec33bdf8f97f8033ffbdcc875e2482848f40996235f7"
+      }
+    },
+    {
+      "role": "council-health-scale",
+      "virtual_address": "0x145c27a0a",
+      "end_exclusive": "0x145c27a2b",
+      "file_offset": "0x5c26e0a",
+      "byte_count": 33,
+      "sha256": "8a73e97b1260540a0924097a792c03c8a2f8d9f027c01360a5d4b9a8fd922760",
+      "instruction_count": 7,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-twists/council-health-scale.asm",
+        "sha256": "fe2aa7d2a99a6184d875c99af0a1099e1c91e6d96a2f01f9118cc7ae67bef457"
+      }
+    }
+  ],
+  "native_data": [
+    {
+      "role": "healing-factor",
+      "virtual_address": "0x14768f420",
+      "byte_count": 8,
+      "sha256": "b09540ff36f486fafd91acb451c6d92cc0c31ab1e9f4379a9342bc0cc88df1a6",
+      "values_bits": [
+        1065353216,
+        1056964608
+      ]
+    },
+    {
+      "role": "revive-health-share",
+      "virtual_address": "0x14768f400",
+      "byte_count": 8,
+      "sha256": "ec28977f8ae3699dbbef0f2ac7d063534caf2290da0861331cbbafb82500cd9c",
+      "values_bits": [
+        1056964608,
+        1050253722
+      ]
+    },
+    {
+      "role": "revive-seconds",
+      "virtual_address": "0x14730e500",
+      "byte_count": 8,
+      "sha256": "16dc15478071efa6609c67c5430da995581f942d55c1840fa39d06d2ad7dfcdc",
+      "values_bits": [
+        1086324736,
+        1091567616
+      ]
+    },
+    {
+      "role": "guardian-health-per-kill",
+      "virtual_address": "0x14768f850",
+      "byte_count": 8,
+      "sha256": "58992109ecacacfaade8762e0a95b2b2e76282427354784ed2c840438ef9d0e5",
+      "values_bits": [
+        1048576000,
+        1051931443
+      ]
+    },
+    {
+      "role": "guardian-damage-per-kill",
+      "virtual_address": "0x14768f860",
+      "byte_count": 8,
+      "sha256": "64db6fc5ef44daeb2df26b5df8dafbdccc8e4f76c22c707fb8740c95553f06c7",
+      "values_bits": [
+        1028443341,
+        1032805417
+      ]
+    },
+    {
+      "role": "guardian-respawn-seconds",
+      "virtual_address": "0x14768f700",
+      "byte_count": 8,
+      "sha256": "4881ab83f2ad8ab0c5f305698977930964c6d3650a029d8dea93ca0795d8d59b",
+      "values_bits": [
+        1127481344,
+        1125515264
+      ]
+    },
+    {
+      "role": "boss-repeat-factors",
+      "virtual_address": "0x14768f730",
+      "byte_count": 16,
+      "sha256": "989815957d506ca8518426f57c42e1909b77cfb2fd2a2852eb556cd9bf7a7c0e",
+      "values_bits": [
+        1065353216,
+        1061997773,
+        1060320051,
+        1058642330
+      ]
+    },
+    {
+      "role": "warning-factor",
+      "virtual_address": "0x14768f580",
+      "byte_count": 8,
+      "sha256": "75b5c9e91944e453a4683ec5bd52790c0f506af611f9b938f75a4837e86788c0",
+      "values_bits": [
+        1062836634,
+        1065353216
+      ]
+    },
+    {
+      "role": "cache-cost-increment",
+      "virtual_address": "0x14768f7e0",
+      "byte_count": 8,
+      "sha256": "3527a96baac80f45f9a8da49bf68558f1f7d9d3c606dd44da498eefe1076d75d",
+      "values_bits": [
+        1084227584,
+        1086849024
+      ]
+    },
+    {
+      "role": "hazard-factor",
+      "virtual_address": "0x14768f560",
+      "byte_count": 8,
+      "sha256": "2fd848aa90e817e10e20985de4e8ac6a09b0fe70623d6b952e46800be6b025b9",
+      "values_bits": [
+        1073741824,
+        1077936128
+      ]
+    },
+    {
+      "role": "elite-pair-offset",
+      "virtual_address": "0x14768f780",
+      "byte_count": 16,
+      "sha256": "6a2e63987562ed9db46129a32d76a316127c4b84be7ed7ccea1d94bf70c2e0b0",
+      "values_bits": [
+        1075838976,
+        1065353216,
+        0,
+        0
+      ]
+    },
+    {
+      "role": "council-health-factor",
+      "virtual_address": "0x1461988cc",
+      "byte_count": 4,
+      "sha256": "8e215ece122cf70ebe3556a0318fa6c395d1766375c3edc080967e4a09592401",
+      "values_bits": [
+        1058642330
+      ]
+    },
+    {
+      "role": "voidwalker-heal",
+      "virtual_address": "0x14768f808",
+      "byte_count": 8,
+      "sha256": "fdcdd09119c8c062d64f629743c7e570517fa0893398174b612d2fc7450a5f27",
+      "values_bits": [
+        1075838976,
+        1067450368
+      ]
+    }
+  ],
+  "queries": [
+    {
+      "family": "healing",
+      "evidence_id": "ev_dd4146a6096a183894fdb5d407b418c83b4dbc169e1ae4fb8537507cec1e3116",
+      "procedure": "0x145bd10e0",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "957782f11e438f74384de2b1079dcaa2e6d6cc4dab21975cf705e950f549a61c",
+      "slice_virtual_address": "0x145bd10e0",
+      "raw_input": {
+        "path": "runtime/fixgap219/twists/healing/code.bin",
+        "sha256": "5162f289237d049c10f8adbfc6e22145e9c580331bfeeef31bd1cb6ffe959a40"
+      },
+      "normalized_text_sha256": "16ab18b33e93c28bc7b378b9659eeffd8d4375ea20132cfb054323a9afbb43dc",
+      "result": {
+        "path": "runtime/fixgap219/twists/healing/query/results/4a414eab3ce5e9418f6fc2489452850e86c6771db93a539d2d40e53998188454.json",
+        "sha256": "c1b20a2a8548cb10638d24a77a2fd57b35236350eb6919c6acfedaf407bf5b0b"
+      },
+      "plan": {
+        "path": "runtime/fixgap219/twists/healing/plan.json",
+        "sha256": "be3e09d0a1903203c563f24c1610d6a51b4280e8ff93f3d4a2246ef1ff983a00"
+      },
+      "journal": {
+        "path": "runtime/fixgap219/twists/healing/query/journal.json",
+        "sha256": "453aa070716b764b8287c8dcb616c05c3d8c27aaaf4f39d95520fa4549cd72d4"
+      }
+    },
+    {
+      "family": "guardian-stats",
+      "evidence_id": "ev_5d83353f951114ddfed9c60b3279ecbebb4fe6a1f7e1d43b22ccefc3cc518e37",
+      "procedure": "0x145c4e9e0",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "c4059d86932cfdc93b27928b6f66f4ed15a8eaf67d5ac0d5d2254196294f915c",
+      "slice_virtual_address": "0x145c4e9e0",
+      "raw_input": {
+        "path": "runtime/fixgap219/twists/guardian-stats/code.bin",
+        "sha256": "6e2c62bc30bab5a4c41157bcccabd403d1e575b0198a10571599d42c212d64b0"
+      },
+      "normalized_text_sha256": "70793c38cbc257123ec4727c001d510cb90308cf76b0d6f27ad21a137dd4c0a6",
+      "result": {
+        "path": "runtime/fixgap219/twists/guardian-stats/query/results/0f8168471896386d6a03dc52550e996bb9f6871393f012280681a77a0039a0b2.json",
+        "sha256": "17882359cf3316012193f2f1324c13117ebdcd7ec9ecd00c122c98947345d36f"
+      },
+      "plan": {
+        "path": "runtime/fixgap219/twists/guardian-stats/plan.json",
+        "sha256": "77bd986f373d75dd0356850629eda0ce38dfc75e34874b75eea8fa252643fee4"
+      },
+      "journal": {
+        "path": "runtime/fixgap219/twists/guardian-stats/query/journal.json",
+        "sha256": "648833100740c66e040c851905f2a2306a3823110eaf371f3a46d8d985d5fc8c"
+      }
+    },
+    {
+      "family": "guardian-stats",
+      "evidence_id": "ev_165b2e69269ade180db16275adaa10f5694bed60c59950ee828c55b5030ff778",
+      "procedure": "0x145c4eed0",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "c4059d86932cfdc93b27928b6f66f4ed15a8eaf67d5ac0d5d2254196294f915c",
+      "slice_virtual_address": "0x145c4e9e0",
+      "raw_input": {
+        "path": "runtime/fixgap219/twists/guardian-stats/code.bin",
+        "sha256": "6e2c62bc30bab5a4c41157bcccabd403d1e575b0198a10571599d42c212d64b0"
+      },
+      "normalized_text_sha256": "42fd53bb0d906f33b6850be593b2f0bd1fce1fd3e5e962661e37c83266ea8f20",
+      "result": {
+        "path": "runtime/fixgap219/twists/guardian-stats/query/results/fcda7262efbfec3e77781bb392d0eb949ca1557711bb9edc6b0e50188055d6e0-b48c5e26406e14bd.json",
+        "sha256": "fe4d951547f7f0bedc8f72c4a15b2f7357de761f26eb5509203435ed6c2f6f47"
+      },
+      "plan": {
+        "path": "runtime/fixgap219/twists/guardian-stats/plan.json",
+        "sha256": "77bd986f373d75dd0356850629eda0ce38dfc75e34874b75eea8fa252643fee4"
+      },
+      "journal": {
+        "path": "runtime/fixgap219/twists/guardian-stats/query/journal.json",
+        "sha256": "648833100740c66e040c851905f2a2306a3823110eaf371f3a46d8d985d5fc8c"
+      }
+    },
+    {
+      "family": "warning",
+      "evidence_id": "ev_36698c2df9733eb990887a5f0d80e812f5457280de6d57c74b557f4aa7b80389",
+      "procedure": "0x145bf1f80",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "2df6fb8e4a7fff54486fedc1380391928cbfdacad7d390a9a27ecf8c2b09a19d",
+      "slice_virtual_address": "0x145bf1f80",
+      "raw_input": {
+        "path": "runtime/fixgap219/twists/warning/code.bin",
+        "sha256": "87a7faaded1f921461ec0dcd050815570704839e1c8c39c56ce85e2a633c76e8"
+      },
+      "normalized_text_sha256": "0dd2a4b129a91841149f6a7f44d9e20cfeaecb93695fb2b502d52908185b33d6",
+      "result": {
+        "path": "runtime/fixgap219/twists/warning/query/results/9af5af29f7093c0ba65950394a4a26395ba3ed44d58e2c57793593f34d49ea67-ef81bf18b50a6e19.json",
+        "sha256": "01c41f03c8286235c05c6b7c41c0470279452a2721bdf583b5db466f82cdd5ee"
+      },
+      "plan": {
+        "path": "runtime/fixgap219/twists/warning/plan.json",
+        "sha256": "33a8954783f71037fa3db6633dc04e9509be98097a3f4449c52510885911abaa"
+      },
+      "journal": {
+        "path": "runtime/fixgap219/twists/warning/query/journal.json",
+        "sha256": "116498d4cb70f7214a15515ddaf9f07600e79be8b49e9e79871701642fe4dcc9"
+      }
+    },
+    {
+      "family": "gold",
+      "evidence_id": "ev_606b9db548242f9054db937a5f1d3aa37e620ca4070df2217c82023b527ead50",
+      "procedure": "0x145c2f020",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "f2951d43f6f7e44c9bc1627ee080cf9d929231ae8c27916882c83c468dcb85ca",
+      "slice_virtual_address": "0x145c2f020",
+      "raw_input": {
+        "path": "runtime/fixgap219/twists/gold/code.bin",
+        "sha256": "b24275623e0d4bc881805f96c4822755364d21c568d21edc9f60854c42d7fd45"
+      },
+      "normalized_text_sha256": "07b7bb4a4c8f368cd46b3da10fb2aa955960e2d5f11ca40d2b361534205ca7ad",
+      "result": {
+        "path": "runtime/fixgap219/twists/gold/query/results/4421e83d4ce9553ee49aa295e16e70934179b6132d40cea03f2f345cc74aa9ee-49ee7ba30c0b824d.json",
+        "sha256": "f238cf08df85a87b62f398ffa20a25581d40a2c9b24d31468c05921dd99634a3"
+      },
+      "plan": {
+        "path": "runtime/fixgap219/twists/gold/plan.json",
+        "sha256": "004bcd214357a87224029b51bc2f997ebe3a2b63959c93bc9861c51d7441aabe"
+      },
+      "journal": {
+        "path": "runtime/fixgap219/twists/gold/query/journal.json",
+        "sha256": "298cbc94b47fcba8db885cb65bdeb29e427e9b71c67abdf81caf47dd08a67bd0"
+      }
+    },
+    {
+      "family": "configuration",
+      "evidence_id": "ev_47a02f379438dab8f787bdcfe0cf54a97034fa3920b53235c808c25e6ef8c9c2",
+      "procedure": "0x145bdcb10",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "16f914ced920e235724b3618580f01b46b80a013852b39749cf3d97212da0d6f",
+      "slice_virtual_address": "0x145bdcb10",
+      "raw_input": {
+        "path": "runtime/execheck-0.121.0/heroic-native/caller/code.bin",
+        "sha256": "457b507def5d350c7fed3e53bb8636cc1d0e38ec342d2000c413bf24b242b9b2"
+      },
+      "normalized_text_sha256": "ac67fb18d1375d7b93821a2c6c93fe5b1b52b9e0f63479354e63c39490d912cf",
+      "result": {
+        "path": "runtime/fixgap219/constructor/query/results/d369d9b5632f8583bb842214d0584498be87f9c0dacd42fc3aeba2175b2b8acc.json",
+        "sha256": "d09a3d87613e0258f751ff4475254d363bd64ff6c48e8b14cfedc0f7726d4752"
+      },
+      "plan": {
+        "path": "runtime/fixgap219/constructor/plan.json",
+        "sha256": "6c1122104395f1251465b6075bdbbacee11261dcd737ec9c79e49a0eb5ce9cb2"
+      },
+      "journal": {
+        "path": "runtime/fixgap219/constructor/query/journal.json",
+        "sha256": "c6f0b61de448d292fb824b24e42d8b0913397bdbbc8025ff7a5549e2070e5bfc"
+      }
+    },
+    {
+      "family": "shared-spawning",
+      "evidence_id": "ev_2e1f2fa6ecfbbda8775a87276aa3ba9673dc3ddab98f9d77637b6d998d94ad2e",
+      "procedure": "0x145c28900",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "2169ee589838b5535b8ad8e940b395779328ed1779efb6dce40a3f77665b5115",
+      "slice_virtual_address": "0x145c28900",
+      "raw_input": {
+        "path": "runtime/fixgap220229/affixes/code.bin",
+        "sha256": "7eab487e12f4855a1aad03d5f168d9a52f48dbf7ab96a97106ec01b2f2caef9a"
+      },
+      "normalized_text_sha256": "6359ac68e46039b51f1fb8ee3b58a74758a0bc93acd3edb5728df20d941187c9",
+      "result": {
+        "path": "runtime/fixgap220229/affixes/query-fixed/results/b8fb8732e81f70974f06553f356b0d665ac8ca65aa34d5066259c81f14284348.json",
+        "sha256": "56b0683796a8881b256546cc643cf9c5b11bcd974415161dbbbf70d1170677b3"
+      },
+      "plan": {
+        "path": "runtime/fixgap220229/affixes/plan-fixed.json",
+        "sha256": "b811b2d832513ae9571ea06b503351cf6803c3d41ab1fa6ae8bd0c0391fa2c78"
+      },
+      "journal": {
+        "path": "runtime/fixgap220229/affixes/query-fixed/journal.json",
+        "sha256": "54d41815e6ca510dee804d6367b66a9e34a526ef50cfdee928b6d4d33b4b68d2"
+      }
+    },
+    {
+      "family": "shared-dispatch",
+      "evidence_id": "ev_71ecaa6a1773eef1b7c505cdb436770a54629f425cc787610aa3d43615263725",
+      "procedure": "0x145bf29c0",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "0671066730108b28436c4866f39ffd751cc75d166210526b6a3064b891f0cdce",
+      "slice_virtual_address": "0x145bf29c0",
+      "raw_input": {
+        "path": "runtime/fixgap225-0.121.0/dispatcher.bin",
+        "sha256": "8280602aef293516c0e693e45a51315b373ab9c773d7a56c3f6c409831f8f01b"
+      },
+      "normalized_text_sha256": "2c32f7b583bbfeae039160b179a5354b62953816e1d30931cc382af70aaba80e",
+      "result": {
+        "path": "runtime/fixgap225-0.121.0/query/results/1151c6c45ca35aa0fe26a831147f3ec20db31d9ac188f00bae9fb39f0d68067a.json",
+        "sha256": "ecf3d55f9803e5f943ac75090f3dcd35f91ddd0fbad0be0729e64ebe2cd64c01"
+      },
+      "plan": {
+        "path": "runtime/fixgap225-0.121.0/plan.json",
+        "sha256": "b5d82baca16705e22b28cb203b00862baf4bb711e4db77e97ab407ca24185e2d"
+      },
+      "journal": {
+        "path": "runtime/fixgap225-0.121.0/query/journal.json",
+        "sha256": "988ac55c6e7b236a0f7018360119b6b66c47c533ab63ec8d7e07eff571d68e6c"
+      }
+    }
+  ],
+  "target_executed": false,
+  "limits": "Original-instruction synthetic CPU fixtures only. Allocation, zone lookup, health-knot collection, powf and publication are declared seams. No reconstructed code, compiler, game, socket or server executes; runtime and parity remain unverified.",
+  "static_validation": {
+    "healing": {
+      "cases": 400,
+      "sha256": "08f5110d27b5c1f0415dbdf513f312dd7fb2dcd519aa9af501f2a06425ff671e"
+    },
+    "scalars": {
+      "warning_cases": 32,
+      "rank_cooldown_cases": 8,
+      "sha256": "620eec9f5c14643c4346e28f88db0cddf717e49fe56ce5424a1b87594d3ad093"
+    },
+    "guardians": {
+      "pairs": 168,
+      "sha256": "fda9286e8fb0933106d370852b8a4371e049003c22f7f8e4cb86e0a6e5fc3ea0",
+      "seams": "Selected zone index, two supplied health knots and explicit powf result; party mode is disabled."
+    },
+    "lifecycle": {
+      "revive_health": 8,
+      "revive_time": 40,
+      "guardian_respawn": 24,
+      "phase_admission": 264,
+      "queued_admission": 264,
+      "hazard_damage": 48
+    },
+    "warning_constructor": {
+      "cases": 192,
+      "sha256": "177fe181db7c2a56d2a4953545a9c562cdfe088ffb9bd37f814c639f073644bd",
+      "seams": "Primary/secondary terrain answers and successful vector growth only; every constructor instruction executes."
+    },
+    "purse": {
+      "cases": 88,
+      "sha256": "81831a600b4a1c0733bbefd603f6d773ab774c32ceb4e23c1ab3af493bad8712"
+    },
+    "elite_pairs": {
+      "cases": 48,
+      "sha256": "07d2f3fd978b4ad3b7a6e8238087145642a2c2124e23bbba07286c259aab3ddf",
+      "seam": "Second enemy creator only; GUID search, position interpolation and offset run as original instructions."
+    },
+    "council": {
+      "cases": 96,
+      "health_factor_cases": 3,
+      "sha256": "41bdb040a12707502251dcecac2ed5b1b03bf0daa650d736f14cc8fb3a14bfcb",
+      "seam": "Boss creator only; full rank/final-bit gate and RNG rejection transitions execute."
+    },
+    "batch_healing": {
+      "cases": 224,
+      "timestamp_producer_cases": 1,
+      "sha256": "7448a551924804fd1099f112514831057efeeb84eaccc6c697c7f79ad46cc6ec",
+      "seams": "Field/meter publication, label lookup, ceil and vector disposal only; calm gate, HP/absorb/pool and per-spell credit instructions execute."
+    }
+  }
+}

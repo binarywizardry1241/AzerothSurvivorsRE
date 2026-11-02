@@ -1,0 +1,7 @@
+# Empty TSV columns and literal VM output spaces are part of the upstream fixtures.
+/reference/*.tsv whitespace=-blank-at-eol
+/crates/benilla-ui/tests/*.golden whitespace=-blank-at-eol
+# Canonical decompiler exports preserve the exact normalized provider result.
+/docs/analysis/evidence/**/*.c whitespace=-blank-at-eol,-blank-at-eof
+/docs/analysis/evidence/**/*.asm whitespace=-blank-at-eol,-blank-at-eof
+/docs/analysis/evidence/*/sanguine-native.txt whitespace=-blank-at-eol,-blank-at-eof

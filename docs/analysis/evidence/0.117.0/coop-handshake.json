@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.117.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293",
+    "size_bytes": 145283072,
+    "identity_manifest": "docs/analysis/coverage/targets.json",
+    "version_provenance": "matching_embedded_updater_and_independent_version_witness",
+    "runtime_data": {
+      "directory": "installed-game/Data",
+      "archives": [
+        {
+          "path": "installed-game/Data/patch-2.MPQ",
+          "size_bytes": 4690878,
+          "sha256": "366edee41642a5dda22ed90cc252b543ee375755b7e8bee81e2a6cd59fd7b286"
+        },
+        {
+          "path": "installed-game/Data/patch-3.MPQ",
+          "size_bytes": 2580491,
+          "sha256": "75c35ca5b8075197252581e301e8900143007fdf37b493ad271ae1bd39f95a29"
+        },
+        {
+          "path": "installed-game/Data/patch-4.MPQ",
+          "size_bytes": 22769233,
+          "sha256": "2e895e0e0ff6a4781d0e0aaa6ea7d32ed1fe36841e17806fe1855cb880d18865"
+        },
+        {
+          "path": "installed-game/Data/patch-5.MPQ",
+          "size_bytes": 267019039,
+          "sha256": "5008e56873718b468fa5ae1b697dcbe4f5da9ffe6c793f3ef9939dbd7716f3d8"
+        },
+        {
+          "path": "installed-game/Data/patch-6.MPQ",
+          "size_bytes": 212228,
+          "sha256": "cad6ff59b5df028a507581befb836fce07894057e15fe63d9fdc553a95b7ceb5"
+        },
+        {
+          "path": "installed-game/Data/patch-7.MPQ",
+          "size_bytes": 276649,
+          "sha256": "f5fb15b181cf01cc6b5cf2ee9948a27ecc4ba27bab9a8bec584df4381932aae6"
+        },
+        {
+          "path": "installed-game/Data/patch-8.MPQ",
+          "size_bytes": 4155417,
+          "sha256": "ae3aaa29cadb7aeba8255f5b4a8305c7cbecfe8f0d3ed9646522113d16c3e12e"
+        },
+        {
+          "path": "installed-game/Data/patch-9.MPQ",
+          "size_bytes": 5739608,
+          "sha256": "ffff8ea890bdaf91a1680543ac60106db92132bc2210105279610fa73661a524"
+        },
+        {
+          "path": "installed-game/Data/patch-A.MPQ",
+          "size_bytes": 1453122,
+          "sha256": "350cde8cd0f76e5246a663eb3811f5a7b1a9c75e4e699190208c9299177b8d90"
+        },
+        {
+          "path": "installed-game/Data/patch.MPQ",
+          "size_bytes": 1340199244,
+          "sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf"
+        }
+      ]
+    }
+  },
+  "gap_ids": [
+    163
+  ],
+  "protocol": 5,
+  "version_bytes": "0.117.0",
+  "native_ranges": [
+    {
+      "label": "host party message owner",
+      "va": "0x145b1b040",
+      "file_offset": "0x5b1a440",
+      "byte_count": 3053,
+      "sha256": "fb5c4f52a3754d2a13378320252a798688c4893cc6dd0832ceb3df7bc2a02414"
+    },
+    {
+      "label": "protocol/version comparisons",
+      "va": "0x145b1b2ee",
+      "file_offset": "0x5b1a6ee",
+      "byte_count": 58,
+      "sha256": "65252b8a3a06d5285bc47c5090ce02d3e1823f39a6edb9157886d2d87d76f25d"
+    },
+    {
+      "label": "Hero luck serialization",
+      "va": "0x145ab01a7",
+      "file_offset": "0x5aaf5a7",
+      "byte_count": 50,
+      "sha256": "e9fdd4b0f10323a9534383f43c4a1d406a888f193b0056670e2e34262fe42f40"
+    }
+  ],
+  "query_receipts": [
+    {
+      "path": "runtime/0.117.0/coop-package/party-admission-query/results/0c1c1af48b998105710e1a195ebde3fa7dea8f3c8c83edc12146c1f9c25c1fb2.json",
+      "sha256": "917c4f972be242e7a3f4b5057759f631dade914e158d74fe5f4e19b3bd1091b1"
+    }
+  ],
+  "limits": [
+    "Admission replay stops before password/capacity/service operations.",
+    "Hero float source producer/consumer is separately owned by #118.",
+    "Compilation/client/server/network/parity unverified."
+  ]
+}

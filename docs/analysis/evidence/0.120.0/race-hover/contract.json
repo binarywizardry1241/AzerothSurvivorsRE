@@ -1,0 +1,100 @@
+{
+  "target": {
+    "version": "0.120.0",
+    "sha256": "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08",
+    "size_bytes": 145447424
+  },
+  "native_ranges": [
+    {
+      "role": "restricted-race-tip",
+      "start": "0x1402f97e9",
+      "end_exclusive": "0x1402f99c7",
+      "sha256": "e127cd7c34ba0220c5c42627384d26f39034b6136c43be37991357ccd5e8caf8",
+      "assembly": "docs/analysis/evidence/0.120.0/race-unlocks/restricted-race-tip.asm"
+    },
+    {
+      "role": "localized-footer-publication",
+      "start": "0x1402f99c7",
+      "end_exclusive": "0x1402f9b3c",
+      "sha256": "2057979d41d04bcd33eb7b2fa494a99a82afc1b654a2451454e63efcc265caef",
+      "assembly": "docs/analysis/evidence/0.120.0/race-hover/footer-publication.asm"
+    },
+    {
+      "role": "hover-table-row",
+      "start": "0x14024c7d2",
+      "end_exclusive": "0x14024c82f",
+      "sha256": "5e69669a790f0f4e882ce74d10ac5b3da31465b162425592fdd4a6880a8a2255",
+      "assembly": "docs/analysis/evidence/0.120.0/race-hover/hover-table-row.asm"
+    },
+    {
+      "role": "hover-sparse-row",
+      "start": "0x14024c91c",
+      "end_exclusive": "0x14024c981",
+      "sha256": "2bfd4d0374dd67c7e4ed75447510fcd51336990a8ae5bcd405a09f39e6639fef",
+      "assembly": "docs/analysis/evidence/0.120.0/race-hover/hover-sparse-row.asm"
+    },
+    {
+      "role": "hover-race-descriptor",
+      "start": "0x14024d01c",
+      "end_exclusive": "0x14024d028",
+      "sha256": "6c2ce67e4ec6e3abfa141cdf91116b93bc6396d1a186382920f4037a5d2f84ab",
+      "assembly": "docs/analysis/evidence/0.120.0/race-hover/hover-race-descriptor.asm"
+    },
+    {
+      "role": "hover-tip-arguments",
+      "start": "0x14024d3a6",
+      "end_exclusive": "0x14024d3d4",
+      "sha256": "5a6ef8bdf57518e8bf3209119ffc7a9c0aaea059902747e015a3e6852dcbe2ae",
+      "assembly": "docs/analysis/evidence/0.120.0/race-hover/hover-tip-arguments.asm"
+    }
+  ],
+  "hint_literal": {
+    "role": "race-tip-hint",
+    "file_offset": "0x61b753a",
+    "va": "0x1461b8b3a",
+    "byte_count": 55,
+    "sha256": "b3ffc1bd66bc58f1c68f707798a6ff110ce76af3dbb4deb6f160e7d5c00de01d",
+    "text": "Open it to every class on the Rewards tab, under Races."
+  },
+  "parent_evidence": "docs/analysis/evidence/0.120.0/race-unlocks/manifest.json",
+  "limits": [
+    "Original-byte instruction replay with explicit services and widget seams; no Rust execution, rendering or parity."
+  ],
+  "queries": [
+    {
+      "role": "race-hover-consumer",
+      "procedure": "0x14024c5b0",
+      "native_input": {
+        "start": "0x14024c5b0",
+        "end_exclusive": "0x14024d462",
+        "sha256": "a6f381add2940d31fb2ef82cd57893a883219453a8701dd6e0325fb2dd10a479"
+      },
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_3a2e3d223ee3ab7606b196b1c2b94edb57d90eb07a3ceff888e9a63a4870157a",
+      "analysis_profile_digest": "42b2f0b0286d455c0dea5accfd0dce7ec1b84d70eebf823fae7bb46cdd70f428",
+      "plan": {
+        "path": "runtime/gap191/hover-callback-plan.json",
+        "sha256": "866e3ce6fa2f600d28f2780477d007253e28e6de6291f240d26d5ee4e96c5ea3"
+      },
+      "journal": {
+        "path": "runtime/gap191/hover-callback-query/journal.json",
+        "sha256": "3eaf914075d36784f26cc7ea4f7f47dcd5bcd7a5f71c8ca6b91114663597ac06"
+      },
+      "result": {
+        "path": "runtime/gap191/hover-callback-query/results/41ca47a2dc84fae4905c40a9b1588c5153333dd22bd20b65a6238d78a670aa14.json",
+        "sha256": "7f339208bc0bf8c48ea901040aa4ff2e3c92b6fa9dc0cb7370e185b66a3f3047"
+      },
+      "normalized_result_sha256": "8c327d2378ddf138e05d67208ce3d5abe0783f7bd8356774a90e0a6333d1664d"
+    }
+  ],
+  "picker_contract": "docs/analysis/evidence/0.120.0/race-picker/manifest.json",
+  "consumer_contract": [
+    "Typed query rows are two bytes: allowed at +0, race at +1. Both table and sparse paths preserve that pair.",
+    "Descriptor lookup consumes row +1; RaceTip arguments +0x18 preserve the selected row pointer and +0x20 preserve Save.",
+    "RaceTip reads byte 0 of that pointer and bypasses both footer lines when nonzero; account union/membership is its producer."
+  ]
+}

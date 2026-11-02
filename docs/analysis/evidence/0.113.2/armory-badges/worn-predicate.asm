@@ -1,0 +1,28 @@
+0000000140131a10: test edx, edx
+0000000140131a12: je 0x140131a7f
+0000000140131a14: movdqu xmm0, xmmword ptr [rcx + 0xc8]
+0000000140131a1c: movdqu xmm1, xmmword ptr [rcx + 0xd8]
+0000000140131a24: movdqu xmm2, xmmword ptr [rcx + 0xe8]
+0000000140131a2c: movdqu xmm3, xmmword ptr [rcx + 0xf8]
+0000000140131a34: movd xmm4, edx
+0000000140131a38: pshufd xmm4, xmm4, 0
+0000000140131a3d: pcmpeqd xmm3, xmm4
+0000000140131a41: pcmpeqd xmm2, xmm4
+0000000140131a45: packssdw xmm2, xmm3
+0000000140131a49: pcmpeqd xmm1, xmm4
+0000000140131a4d: pcmpeqd xmm0, xmm4
+0000000140131a51: packssdw xmm0, xmm1
+0000000140131a55: packsswb xmm0, xmm2
+0000000140131a59: pmovmskb r8d, xmm0
+0000000140131a5e: mov al, 1
+0000000140131a60: test r8d, r8d
+0000000140131a63: jne 0x140131a7e
+0000000140131a65: cmp dword ptr [rcx + 0x108], edx
+0000000140131a6b: je 0x140131a7e
+0000000140131a6d: cmp dword ptr [rcx + 0x10c], edx
+0000000140131a73: je 0x140131a7e
+0000000140131a75: cmp dword ptr [rcx + 0x110], edx
+0000000140131a7b: sete al
+0000000140131a7e: ret
+0000000140131a7f: xor eax, eax
+0000000140131a81: ret

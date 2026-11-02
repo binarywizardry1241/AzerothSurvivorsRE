@@ -1,0 +1,17 @@
+[package]
+name = "asset-recovery"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Project-local, read-only MPQ inventory and safe asset extraction"
+
+[lints]
+workspace = true
+
+[dependencies]
+anyhow.workspace = true
+benilla-formats = { path = "../benilla-formats", default-features = false }
+benilla-mpq = { path = "../benilla-mpq" }
+ring = "=0.17.14"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"

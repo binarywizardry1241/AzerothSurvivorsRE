@@ -1,0 +1,162 @@
+{
+  "target_sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+  "provider": {
+    "id": "ghidra",
+    "version": "12.1.4"
+  },
+  "raw_subject_sha256": "61d09d1ae17ffd6f7ebcba7cf70f0ceabea9d981a49e6d8b4ea3e8a1af24a593",
+  "owners": [
+    {
+      "role": "poll",
+      "va": "0x1458ad720",
+      "end": "0x1458b07e5",
+      "file_offset": "0x58acb20",
+      "size": 12485,
+      "sha256": "c78da57aa01c45dd9b636839e44a0b5209bf8859f141475232013946252bfede",
+      "evidence_id": "ev_1bb1c2bdb14934599141bfbba198a7fb1df64742b26df7a390a3811aafa5395d"
+    },
+    {
+      "role": "packet",
+      "va": "0x1458c35d0",
+      "end": "0x1458c3811",
+      "file_offset": "0x58c29d0",
+      "size": 577,
+      "sha256": "b38fd611b080409660c72d1ed07d30eef0bf6afffb46d25bbe655fb383021dc6",
+      "evidence_id": "ev_2400351b195c7db15749db4314739dee0f9521886557842687b7f1ce2b08e968",
+      "pseudocode": "\n/* WARNING: Removing unreachable block (ram,0x0001458c37a7) */\n\nundefined4 *\nFUN_1458c35d0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined4 *param_4,\n             undefined8 param_5,undefined8 param_6)\n\n{\n  code *pcVar1;\n  undefined4 *puVar2;\n  long lVar3;\n  long lVar4;\n  undefined4 in_stack_00000028;\n  undefined4 in_stack_00000030;\n  undefined4 local_d0 [2];\n  undefined4 uStack_c8;\n  undefined8 local_c0;\n  undefined8 local_b8;\n  long local_b0 [2];\n  ulong local_a0;\n  undefined4 local_98;\n  undefined4 uStack_94;\n  undefined4 uStack_90;\n  undefined4 uStack_8c;\n  long local_88;\n  undefined8 local_80;\n  long local_78;\n  undefined1 *puStack_70;\n  long local_68;\n  undefined2 local_60;\n  undefined4 local_5e;\n  undefined2 local_5a;\n  undefined8 local_58;\n  undefined8 uStack_50;\n  undefined4 *local_48;\n  undefined8 local_40;\n  undefined8 local_38;\n  \n  local_38 = 0xfffffffffffffffe;\n  local_d0[0] = in_stack_00000028;\n  uStack_c8 = in_stack_00000030;\n  local_58 = &local_c0;\n  uStack_50 = (undefined1 *)0x1400020c0;\n  local_48 = local_d0;\n  local_40 = 0x1400020c0;\n  local_c0 = param_5;\n  local_b8 = param_6;\n  func_0x000145bcce30(param_3,param_4,0x146bec360,local_b0,&local_58);\n  func_0x000140002200();\n  puStack_70 = (undefined1 *)func_0x0001400021c0();\n  if (puStack_70 == (undefined1 *)0x0) {\n    func_0x000145d992bb();\n                    /* WARNING: Does not return */\n    pcVar1 = (code *)invalidInstructionException();\n    (*pcVar1)();\n  }\n  *puStack_70 = 6;\n  *(undefined4 *)(puStack_70 + 1) = 0xffffffff;\n  *(undefined8 *)(puStack_70 + 5) = param_3;\n  local_60 = 0x96;\n  local_78 = 0x20;\n  *(int *)(puStack_70 + 0xd) = (int)local_a0 + 1;\n  puVar2 = (undefined4 *)0x11;\n  local_40 = CONCAT26(local_5a,CONCAT42(local_5e,0x96));\n  local_58 = (undefined8 *)0x20;\n  local_68 = (long)puVar2;\n  uStack_50 = puStack_70;\n  local_48 = puVar2;\n  if (local_a0 < 0x10) {\n    lVar4 = local_78;\n    if (local_a0 == 0) goto LAB_1458c3705;\n  }\n  else {\n    func_0x000145bfa970();\n  }\n  puVar2 = local_48;\n  lVar4 = (long)local_58;\n  func_0x000145bfa0e7();\nLAB_1458c3705:\n  lVar3 = (long)puVar2 + local_a0;\n  if (lVar3 == lVar4) {\n    local_48 = (undefined4 *)lVar3;\n    func_0x000145d991b0();\n  }\n  uStack_50[lVar3] = 0;\n  lVar4 = lVar3 + 1;\n  local_98 = (undefined4)local_58;\n  uStack_94 = local_58._4_4_;\n  uStack_90 = (undefined4)uStack_50;\n  uStack_8c = uStack_50._4_4_;\n  local_80 = local_40;\n  local_48 = (undefined4 *)lVar4;\n  if ((undefined8 *)lVar4 == local_58) {\n    local_88 = lVar4;\n    func_0x000145d991b0();\n  }\n  *(undefined1 *)(CONCAT44(uStack_8c,uStack_90) + lVar4) = 0;\n  local_88 = lVar3 + 2;\n  *param_4 = local_98;\n  param_4[1] = uStack_94;\n  param_4[2] = uStack_90;\n  param_4[3] = uStack_8c;\n  *(long *)(param_4 + 4) = local_88;\n  *(undefined8 *)(param_4 + 6) = local_80;\n  if (local_b0[0] != 0) {\n    func_0x0001400021d0();\n  }\n  return param_4;\n}\n\n"
+    },
+    {
+      "role": "stats",
+      "va": "0x14591d8a0",
+      "end": "0x14591e470",
+      "file_offset": "0x591cca0",
+      "size": 3024,
+      "sha256": "1e81efd9d4610e04e45fd40387b70b8538abebf23e5a59f9446ff0dc6c457176",
+      "evidence_id": "ev_b306e1a34ae23315f576aa1055b8f034b1ebd27d746f82ef0bd98c66298ea5d4"
+    },
+    {
+      "role": "zone",
+      "va": "0x145918690",
+      "end": "0x145919033",
+      "file_offset": "0x5917a90",
+      "size": 2467,
+      "sha256": "ecad788af478ebc4e1221bb9091f36479967dd0a159046ccd77bbad19009f52b",
+      "evidence_id": "ev_edfd9be9500988b9e78edb9788b08d64a6cf249efd5aee1a05b7bc039660a9a4"
+    },
+    {
+      "role": "run",
+      "va": "0x145917730",
+      "end": "0x14591850d",
+      "file_offset": "0x5916b30",
+      "size": 3549,
+      "sha256": "a6881008950685aea2768954af92de11f263aa3be464e288172dec454fc1a171",
+      "evidence_id": "ev_ea179082b2e3166cfee742e4135d50415b3aed68658327e26ddef8c6f9320c37",
+      "pseudocode": "\n/* WARNING: Removing unreachable block (ram,0x000145918475) */\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nundefined8 FUN_145917730(undefined8 param_1,undefined8 param_2,long param_3,undefined8 param_4)\n\n{\n  long lVar1;\n  ulong uVar2;\n  long lVar3;\n  ulong uVar4;\n  double *pdVar5;\n  ulong uVar6;\n  long lVar7;\n  double dVar8;\n  float fVar9;\n  undefined1 auVar10 [16];\n  long local_488;\n  long local_1a8;\n  float local_198;\n  \n  uVar2 = *(ulong *)(param_3 + 0x9d0);\n  if (uVar2 < 5) {\n    lVar1 = func_0x00014588d0d0(param_3,uVar2,*(undefined8 *)(param_3 + 0x298),\n                                *(undefined8 *)(param_3 + 0x290));\n    lVar1 = *(long *)(lVar1 * 0xf0 + 0x146bde418) + uVar2 * 0x68;\n  }\n  else {\n    lVar1 = 0;\n  }\n  lVar7 = *(long *)(param_3 + 0x560);\n  uVar2 = *(ulong *)(param_3 + 0x568);\n  if (uVar2 != 0) {\n    lVar3 = uVar2 * 0x1d8 + lVar7;\n    do {\n      while (*(int *)(lVar7 + 0xb0) != 0) {\n        lVar7 = lVar7 + 0x1d8;\n        if (lVar7 == lVar3) goto LAB_145917919;\n      }\n      lVar7 = lVar7 + 0x1d8;\n    } while (lVar7 != lVar3);\nLAB_145917919:\n    if (uVar2 != 1) {\n      uVar4 = 0;\n      do {\n        uVar4 = uVar4 + 2;\n      } while ((uVar2 & 0xfffffffffffffffe) != uVar4);\n    }\n  }\n  uVar4 = *(ulong *)(param_3 + 0x670);\n  if (uVar4 != 0) {\n    if (3 < uVar4) {\n      uVar6 = 0;\n      do {\n        uVar6 = uVar6 + 4;\n      } while ((uVar4 & 0xfffffffffffffffc) != uVar6);\n      if ((uVar4 & 3) == 0) goto LAB_145917a5d;\n    }\n    lVar7 = 0;\n    do {\n      lVar7 = lVar7 + 0x28;\n    } while ((ulong)(((uint)uVar4 & 3) << 3) * 5 != lVar7);\n  }\nLAB_145917a5d:\n  if ((uVar2 != 0) && (uVar2 != 1)) {\n    uVar4 = 0;\n    do {\n      uVar4 = uVar4 + 2;\n    } while ((uVar2 & 0xfffffffffffffffe) != uVar4);\n  }\n  uVar2 = *(ulong *)(param_3 + 0x6b8);\n  if (uVar2 == 0) goto LAB_145917be7;\n  dVar8 = _DAT_145dd8330;\n  if (uVar2 < 4) {\n    uVar4 = 0;\nLAB_145917bb2:\n    lVar7 = 0;\n    do {\n      dVar8 = dVar8 + *(double *)(*(long *)(param_3 + 0x6b0) + uVar4 * 0x50 + 0x40 + lVar7);\n      lVar7 = lVar7 + 0x50;\n    } while ((ulong)(((uint)uVar2 & 3) << 4) * 5 != lVar7);\n  }\n  else {\n    pdVar5 = (double *)(*(long *)(param_3 + 0x6b0) + 0x130);\n    uVar4 = 0;\n    do {\n      dVar8 = dVar8 + pdVar5[-0x1e] + pdVar5[-0x14] + pdVar5[-10] + *pdVar5;\n      uVar4 = uVar4 + 4;\n      pdVar5 = pdVar5 + 0x28;\n    } while ((uVar2 & 0xfffffffffffffffc) != uVar4);\n    if ((uVar2 & 3) != 0) goto LAB_145917bb2;\n  }\n  func_0x000145bfa14d(dVar8);\nLAB_145917be7:\n  func_0x00014588d0d0();\n  FUN_1459839a0();\n  fVar9 = (float)(*(int *)(param_3 + 0x4d8) + -1 + (uint)(*(int *)(param_3 + 0x4d8) == 0));\n  func_0x000145bfa10b(_DAT_145dd2e38 * fVar9 * fVar9 + _DAT_145d9d4c8 * fVar9 + _DAT_145dccf20);\n  if (lVar1 != 0) {\n    func_0x000145bcce30();\n    lVar1 = *(long *)(lVar1 + 8);\n    auVar10 = FUN_1458ec500();\n    lVar7 = auVar10._8_8_;\n    if (local_488 != 0) {\n      func_0x0001400021d0();\n    }\n    if (auVar10._0_8_ == 0) {\n      lVar7 = lVar1;\n    }\n    if (lVar7 != 0) {\n      func_0x000145bfa970();\n    }\n    func_0x0001459d7af0();\n  }\n  func_0x000145bfa14d(*(undefined8 *)(param_3 + 0x710));\n  if (local_1a8 != 0) {\n    func_0x000145bfa10b(local_198 * _DAT_145d9d2d0);\n  }\n  func_0x000145bfa129();\n  func_0x000145bcce30();\n  return param_4;\n}\n\n"
+    },
+    {
+      "role": "bosses",
+      "va": "0x14591b210",
+      "end": "0x14591b383",
+      "file_offset": "0x591a610",
+      "size": 371,
+      "sha256": "3047d66b7a7364eee2d2ae87f76f80e7d43c7dfe168b4ef30c07df1052084d2f",
+      "evidence_id": "ev_5532bdb87a7dd63305079536b5aeefcba57366052e9dde9a07b0c5f431d3e992"
+    },
+    {
+      "role": "units",
+      "va": "0x145919b40",
+      "end": "0x145919ccf",
+      "file_offset": "0x5918f40",
+      "size": 399,
+      "sha256": "b56b33446e73537145932bfdd44245e3c28414a7f5f03d7970e391a13b4180bc",
+      "evidence_id": "ev_1537200c519c610bd9b307f597bd2c91588b9918fa56958c30dfc6b03ffc7d54"
+    },
+    {
+      "role": "debuffs",
+      "va": "0x14591a430",
+      "end": "0x14591adb9",
+      "file_offset": "0x5919830",
+      "size": 2441,
+      "sha256": "bbe98b9ca04aa10b31d5df623f9a28ebf19ea36a71409867744cc1508cb04b69",
+      "evidence_id": "ev_e77558a73e7db69a8cff92b99272b51e64a922be1d28a0eab3248ad08f7e4791"
+    },
+    {
+      "role": "target",
+      "va": "0x145919fe0",
+      "end": "0x14591a3a8",
+      "file_offset": "0x59193e0",
+      "size": 968,
+      "sha256": "4c1c18bad7ecb1aed4b1b9a915999e740bbd1165f17b4f793720c7edeae1c9f3",
+      "evidence_id": "ev_c030fe17005e9854977df45dd117fe4292f10fc936bd93b02394aa7013127a31"
+    },
+    {
+      "role": "spells",
+      "va": "0x145919eb0",
+      "end": "0x145919faf",
+      "file_offset": "0x59192b0",
+      "size": 255,
+      "sha256": "1e58ee7b6914e81b513755495fe4ed9873eba32f3041117a07ce9ac3456dfbeb",
+      "evidence_id": "ev_d307ea6965fbc9f4957f970edf48c5ef513cef5e5d807bc76d82aaf0c0d962fd"
+    },
+    {
+      "role": "buffs",
+      "va": "0x145919580",
+      "end": "0x14591966f",
+      "file_offset": "0x5918980",
+      "size": 239,
+      "sha256": "c45850bb6609450b2d0fe93691dc97795200bf5e4981980c234cf75b02a6ae73",
+      "evidence_id": "ev_08d3e963e11e9765b97c3d41cce264ac1282aaa08970ba954bb190dd0da058af"
+    },
+    {
+      "role": "meters",
+      "va": "0x1459a79a0",
+      "end": "0x1459a7bba",
+      "file_offset": "0x59a6da0",
+      "size": 538,
+      "sha256": "4236eed567e072d966c2ae1d03dae2e196ca0c24d5854b3582fd2aa16e840d9a",
+      "evidence_id": "ev_ef3ddbac43a76f88dd882a47b5e3f0ab341ff6f3941b8c2fec18ad5507cb9e9a"
+    },
+    {
+      "role": "chests",
+      "va": "0x145919d70",
+      "end": "0x145919e72",
+      "file_offset": "0x5919170",
+      "size": 258,
+      "sha256": "ba9055c0e1b0d13bc2cca94843f4169c3cc3b715c69d93734e16049ddfd559e4",
+      "evidence_id": "ev_644a265c0bf92c85cd7898e592721ae9636bb6354a3d18dcc8378cb037d36f2f"
+    },
+    {
+      "role": "lairs",
+      "va": "0x1459196a0",
+      "end": "0x1459197e4",
+      "file_offset": "0x5918aa0",
+      "size": 324,
+      "sha256": "03c1b902a164833e92068ae5e5ee565c185e04067133a9e756cdf2df5dfa1b7d",
+      "evidence_id": "ev_b61bead523cdd08c1c08afb35a4a9cefe759f6434fdd0a80f646e59c4e5669bc"
+    },
+    {
+      "role": "taken",
+      "va": "0x145919820",
+      "end": "0x145919a64",
+      "file_offset": "0x5918c20",
+      "size": 580,
+      "sha256": "68a80175d480353fd92b1b975354213e23ceddb9519bc35b05c1d07deeaaf4df",
+      "evidence_id": "ev_59001792259563ef1a371891fe10e25426cd36a8cbc5dd76e1fe796b75aee02f"
+    },
+    {
+      "role": "end",
+      "va": "0x145916c10",
+      "end": "0x14591736b",
+      "file_offset": "0x5916010",
+      "size": 1883,
+      "sha256": "7c616bd661dd9691eb5d1fdd246de365f4bc023123d47eaad0fba42c8b78ad3c",
+      "evidence_id": "ev_e4131d15c5f29efce2e8633ad67e3ffb95e7329fc596b2f0cc17021b2bc1aec3"
+    }
+  ],
+  "limits": [
+    "Native bytes are mapped from the selected installed EXE through the listed file offsets; sparse-carrier gaps are zero and not asserted to be target bytes.",
+    "Raw import uses generic GCC ABI inference; Win64 original instructions, not inferred parameter names, determine calling convention and fields.",
+    "Other producer owners were located and decompiled, but their complete producer/state/dependency equivalence is not asserted.",
+    "Complete bulk REA response/protocol data remains ignored under runtime; only selected pseudocode is retained."
+  ]
+}

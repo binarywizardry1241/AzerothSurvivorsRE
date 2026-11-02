@@ -1,0 +1,63 @@
+{
+  "target_version": "0.112.0",
+  "target_sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+  "operations": [
+    {
+      "operation": "procedure_pseudo_code",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "va": "0x1459073c5",
+      "byte_count": 1121,
+      "input_sha256": "e7a0069e42ecfa478db821103e2ab14b22e39e207fae279bbbd2b7ae72ebff09",
+      "pseudocode": "marker-fragment.pseudo.c",
+      "pseudocode_sha256": "5ef296ef802c08b050194e1298fb6ae9a7e6f22d6b08f315978f1f11774e6b97",
+      "evidence_id": "ev_a0d2a94d479b6b748456d0f134116fdfdef0488c6a140b038891211fad23c5ed",
+      "raw_import": true,
+      "language_id": "x86:LE:64:default",
+      "compiler_spec_id": "gcc",
+      "analyzer_preset": "ghidra-default+disabled:Stack,Decompiler Switch Analysis,Function ID,Function Start Search,Disassemble Entry Points,Subroutine References,Data Reference,Reference,Non-Returning Functions - Discovered,Shared Return Calls,Create Address Tables",
+      "limits": [
+        "This is a bounded fragment inside the current active-tick PE owner, not an independent source function. Generic gcc ABI types, incoming registers and external constants/calls remain unresolved.",
+        "Branches to the excluded completion stage appear as halt_baddata in the raw import. Instruction fixtures use the installed bytes and explicit completion stop; decompiler recovery does not establish branch execution."
+      ],
+      "raw_pseudocode_sha256": "090b2d12be9fa40183fb95ca15174214caf1fcf1ccd72b31a38e2e2133e553a9",
+      "pseudocode_normalization": "outer blank lines and trailing whitespace removed; raw response retained under ignored runtime"
+    },
+    {
+      "operation": "procedure_pseudo_code",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "va": "0x14005ca50",
+      "byte_count": 2562,
+      "input_sha256": "f703c6e6698d18e38c9222e9eebf076666a3870289df0f39d75a0ff4b6538ca6",
+      "pseudocode": "flag-input-excerpt.pseudo.c",
+      "pseudocode_sha256": "e980205b52761ac3e91b32c97e2685df54cb3f2101dd49aabe792f46b11b81c9",
+      "evidence_id": "ev_8a6e7fb1163aa2f9ad0b68f4a2a4264359d9951ecfe0c5f0b8290221120d141f",
+      "raw_import": true,
+      "language_id": "x86:LE:64:default",
+      "compiler_spec_id": "gcc",
+      "analyzer_preset": "ghidra-default+disabled:Stack,Decompiler Switch Analysis,Function ID,Function Start Search,Disassemble Entry Points,Subroutine References,Data Reference,Reference,Non-Returning Functions - Discovered,Shared Return Calls,Create Address Tables",
+      "excerpt_line_ranges": [
+        [
+          42,
+          57
+        ],
+        [
+          146,
+          170
+        ]
+      ],
+      "full_normalized_result_sha256": "d3b4f9da108b60f44f2e6b31e93f7c60f9497a064e66c552f2b376705d840aaa",
+      "full_normalized_line_count": 552,
+      "limits": [
+        "Current raw owner identifies the CVar registration/read/change route. Generic ABI types and external helper names are unresolved; original-instruction profiles bind actual Win64 register arguments, name bytes, trim, emitted kind and consumer field."
+      ]
+    }
+  ]
+}

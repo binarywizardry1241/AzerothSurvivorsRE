@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-16",
+  "original_target": "AzerothSurvivors/AzerothSurvivors.exe",
+  "original_sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+  "original_byte_count": 130888192,
+  "derivation": "Exact unmodified contiguous function bytes; raw file offset zero mapped at original virtual address for Ghidra",
+  "artifacts": [
+    {
+      "path": "runtime/menu-recovery/slices/picker-140073190.bin",
+      "sha256": "08600b2d28257c96ad6a4a4ca2af3e3a309250f266570d8b49b8b3463c21d723",
+      "source_file_offset": "0x72590",
+      "source_file_end_exclusive": "0x73624",
+      "original_virtual_address": "0x140073190",
+      "original_virtual_end_exclusive": "0x140074224",
+      "byte_count": 4244,
+      "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+    },
+    {
+      "path": "runtime/menu-recovery/slices/picker-1400aa760.bin",
+      "sha256": "3704bd8fb05033eae3b92b8a56126a16f8a67464a15f78ece7c7fcbf126321a1",
+      "source_file_offset": "0xa9b60",
+      "source_file_end_exclusive": "0xaa16e",
+      "original_virtual_address": "0x1400aa760",
+      "original_virtual_end_exclusive": "0x1400aad6e",
+      "byte_count": 1550,
+      "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+    },
+    {
+      "path": "runtime/menu-recovery/slices/picker-1400b0220.bin",
+      "sha256": "df8dc4bd1667f30ab2cae981c058dd0b99e49b9c73ea0e6aecba5efb6afe7508",
+      "source_file_offset": "0xaf620",
+      "source_file_end_exclusive": "0xafb7f",
+      "original_virtual_address": "0x1400b0220",
+      "original_virtual_end_exclusive": "0x1400b077f",
+      "byte_count": 1375,
+      "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+    },
+    {
+      "path": "runtime/menu-recovery/slices/picker-1400b07e0.bin",
+      "sha256": "6eff579bfb0dea5caf15ed88b841f6b7094c3718191af467ef78fac194a7cf4b",
+      "source_file_offset": "0xafbe0",
+      "source_file_end_exclusive": "0xb0310",
+      "original_virtual_address": "0x1400b07e0",
+      "original_virtual_end_exclusive": "0x1400b0f10",
+      "byte_count": 1840,
+      "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+    },
+    {
+      "path": "runtime/menu-recovery/slices/picker-140058f80.bin",
+      "sha256": "f35dcb78602d5923574093dfb9ee8b3151c8294ebf4cfa069de212f301541e41",
+      "source_file_offset": "0x58380",
+      "source_file_end_exclusive": "0x58673",
+      "original_virtual_address": "0x140058f80",
+      "original_virtual_end_exclusive": "0x140059273",
+      "byte_count": 755,
+      "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+    }
+  ],
+  "limitations": [
+    "Derived artifacts omit every byte outside each selected RUNTIME_FUNCTION body, including callee code and referenced constants/strings.",
+    "Raw x86_64 REA import uses generic GCC compiler specification; original target is Windows x64, so recovered signatures and call arguments require original instruction verification.",
+    "PE unwind records are function-boundary observations, not recovered original source names.",
+    "No original or derived binary was executed by this extraction or static analysis workflow."
+  ]
+}

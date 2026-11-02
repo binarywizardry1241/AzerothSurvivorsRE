@@ -1,0 +1,101 @@
+{
+  "target": {
+    "version": "0.127.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+    "size_bytes": 146721280
+  },
+  "generator": {
+    "path": "scripts/audit-native-dispatch.py",
+    "sha256": "08b1fe1e65f0e12e6f9745c8e1939c2b54b2f08662511c7ca6de3826056493a0"
+  },
+  "instruction_facts": {
+    "schema_version": 1,
+    "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+    "contract_sha256": "852edf5248065869d76a4c514b35b26846c23d532bcc9fd4ec2cfc10754fb12c",
+    "contract": {
+      "schema": 1,
+      "decoder": "Capstone",
+      "architecture": 3,
+      "mode": 8,
+      "detail": true,
+      "implementation": {
+        "python_binding_sha256": "6f8a27fe069aa89a46974e189b5365d56eb5e02c2fd581d2fbfad7fbba51549f",
+        "native_library_sha256": "016084c6e70d929249a2abb22f1afda95095294e6cd70f509964ffc54006bf94",
+        "python_version": "5.0.7",
+        "native_version": [
+          5,
+          0,
+          1280
+        ]
+      },
+      "helper_sha256": "557bb3caaa431454f58f85061cd3f40694bcbe40167ffbbf4604e9e4a4b3c0c5"
+    },
+    "instruction_stream_sha256": "10d460bb4da75bbc5630d248cb996c6a19f685f046a8a9566c3772241ff243dd",
+    "instructions": 254856,
+    "scope": "requested-instruction-boundaries",
+    "current_source_bytes_verified": true,
+    "ownership_or_program_flow_cached": false
+  },
+  "generator_dependencies": [
+    {
+      "path": "scripts/instruction_facts.py",
+      "sha256": "557bb3caaa431454f58f85061cd3f40694bcbe40167ffbbf4604e9e4a4b3c0c5"
+    }
+  ],
+  "source_census": {
+    "path": "docs/analysis/coverage/full-image-execheck-0.127.0.json",
+    "sha256": "b4ceaa4e01be2febed5c096d300c38c4baebaa8aedddf883604cd85e689e4c25"
+  },
+  "computed_jump_operands": {
+    "register": 11347,
+    "fixed-or-rip-memory": 184,
+    "memory-with-base-field": 131,
+    "memory-with-index": 1
+  },
+  "register_producer_shapes": {
+    "add-produced-register": 8385,
+    "memory-load-base-field": 2921,
+    "no-producer-in-contiguous-fallthrough-region": 13,
+    "producer-mov": 17,
+    "memory-load-fixed-or-rip": 2,
+    "producer-lea": 9
+  },
+  "unowned_direct_flow_counts": {
+    "destinations": 5796,
+    "exact_instructions": 5796,
+    "interior_conflicts": 0,
+    "undecoded": 0
+  },
+  "unowned_direct_reference_kinds": {
+    "UNCONDITIONAL_JUMP": 1271,
+    "CONDITIONAL_JUMP": 6452
+  },
+  "incoming_source_body_ownership": {
+    "False": 7723
+  },
+  "limits": [
+    "Last-producer shapes in observed contiguous fallthrough regions are candidates, not complete aliases, type invariants, table bounds or runtime dispatch.",
+    "Encoded jumps into unowned code do not establish source function ownership; all incoming source owners and actual instruction boundaries are retained."
+  ],
+  "producer_records_inventory": {
+    "records": 11663,
+    "artifact": {
+      "path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/pipeline/1cfe85a0d48b5149/derived/dispatch-boundaries.json",
+      "sha256": "7f028b84198edd092995c4390fa309198cbcabdb0d447ba998b0565f0f682390"
+    },
+    "selector": "producer_records[*]"
+  },
+  "unowned_direct_destinations_inventory": {
+    "records": 5796,
+    "artifact": {
+      "path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/pipeline/1cfe85a0d48b5149/derived/dispatch-boundaries.json",
+      "sha256": "7f028b84198edd092995c4390fa309198cbcabdb0d447ba998b0565f0f682390"
+    },
+    "selector": "unowned_direct_destinations[*]"
+  },
+  "retained_full_derivative": {
+    "path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/pipeline/1cfe85a0d48b5149/derived/dispatch-boundaries.json",
+    "sha256": "7f028b84198edd092995c4390fa309198cbcabdb0d447ba998b0565f0f682390"
+  }
+}

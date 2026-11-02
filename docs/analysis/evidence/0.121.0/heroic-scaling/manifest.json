@@ -1,0 +1,167 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "gap_ids": [
+    219
+  ],
+  "descriptor_reference": {
+    "path": "docs/analysis/evidence/0.121.0/heroic-source.json",
+    "role": "heroic-five-descriptors",
+    "sha256": "78f5b865d195740b548734810ddff84ba7e7070405fdd2aeaeeb0280928aed23"
+  },
+  "native_ranges": [
+    {
+      "role": "ordinary-health",
+      "virtual_address": "0x145c14eb3",
+      "byte_count": 45,
+      "sha256": "9865f9bae024d1b4bf8a55eddea53ef1d8418a89794137c3956b9b32e69c722c",
+      "instruction_count": 12,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-scaling/ordinary-health.asm",
+        "sha256": "efc6db2c0b0c8ae0e3daa19ccb586c2e6623f306078e890ca55754134b6416f6"
+      }
+    },
+    {
+      "role": "ordinary-damage",
+      "virtual_address": "0x145c150c5",
+      "byte_count": 23,
+      "sha256": "be5a07c96b9f57f6371b4814d0d96744e22363f1e78e19797cb14adf93eab7c8",
+      "instruction_count": 5,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-scaling/ordinary-damage.asm",
+        "sha256": "46a148c1cd1067bdef9300f8daadebf993d99eb60b38ba3517f45198e85b938e"
+      }
+    },
+    {
+      "role": "ordinary-packed-stats",
+      "virtual_address": "0x145c15176",
+      "byte_count": 19,
+      "sha256": "3905988f2fd0f6e9da24b8a7d6b8c9747f13aa3d34c4eee34874f873078bc967",
+      "instruction_count": 4,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-scaling/ordinary-packed-stats.asm",
+        "sha256": "0ee5f448c5ebb8bd8b02ffa948ea06e8d863d3f21209472b6c90adaebe906b56"
+      }
+    },
+    {
+      "role": "boss-rank",
+      "virtual_address": "0x145c27846",
+      "byte_count": 64,
+      "sha256": "575ad8584dff7344dbb9534789668bc76787c56ce6ba28b8b87c7df455cb49cc",
+      "instruction_count": 15,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-scaling/boss-rank.asm",
+        "sha256": "18f62862b1bca5f47dc8f4d0787f114eed8db4dec882e51ccf5bc0f419e5faf2"
+      }
+    },
+    {
+      "role": "boss-health",
+      "virtual_address": "0x145c27a0a",
+      "byte_count": 33,
+      "sha256": "8a73e97b1260540a0924097a792c03c8a2f8d9f027c01360a5d4b9a8fd922760",
+      "instruction_count": 7,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-scaling/boss-health.asm",
+        "sha256": "fe2aa7d2a99a6184d875c99af0a1099e1c91e6d96a2f01f9118cc7ae67bef457"
+      }
+    },
+    {
+      "role": "boss-damage",
+      "virtual_address": "0x145c27c9d",
+      "byte_count": 59,
+      "sha256": "a41ce033b6770749a516528af4352da6734207defd9929526e18c8dc68cb262c",
+      "instruction_count": 12,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-scaling/boss-damage.asm",
+        "sha256": "117a0e37902d5336a221d5b48d9574a2fefbdbed85cfaadcae18404fa3bc61e1"
+      }
+    }
+  ],
+  "native_data": {
+    "0x1461981a0": {
+      "byte_count": 16,
+      "sha256": "f71173f1c9e6269b2aeab637a5bcc0decc88a6098077cf1698bca8c2af76c7a0"
+    },
+    "0x14768f6d0": {
+      "byte_count": 16,
+      "sha256": "6495e9d20709e4f564393253fe7c81c32cae1c666c51151b739ccad692b146ad"
+    },
+    "0x14768f754": {
+      "byte_count": 16,
+      "sha256": "a68ffccb57fa694d21a61c20376e815aeaea45b2aaf141eb0b45a022457a3760"
+    }
+  },
+  "queries": [
+    {
+      "procedure": "0x145c14ae0",
+      "evidence_id": "ev_899aea11550b6d573da168b6754ae32d773465f353deddd41d83efcda0557ddc",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "486355bc8d2ec713e0e45eff9b526959ee2d2ff293cf8450e0cace35afe70133",
+      "slice_virtual_address": "0x145c14ae0",
+      "raw_input": {
+        "path": "runtime/fixgap-238-239-0.121.0/ordinary-constructor/code.bin",
+        "sha256": "d80de06771a0eaf4ece3b0bb8adf4f829c4ae5a741569ad413335bb3a599c50e"
+      },
+      "plan": {
+        "path": "runtime/fixgap-238-239-0.121.0/ordinary-constructor/plan.json",
+        "sha256": "b5c2282f4a05ca8f4336914f2e4db4a15f06df62f9dc487e6f80afbc9b299f69"
+      },
+      "journal": {
+        "path": "runtime/fixgap-238-239-0.121.0/ordinary-constructor/query/journal.json",
+        "sha256": "3e634b9038a998f624f20fc0aebcd2c3f1a691a979077ee1fd9ff826ee31dc20"
+      },
+      "result": {
+        "path": "runtime/fixgap-238-239-0.121.0/ordinary-constructor/query/results/df63dff2d8931ff1dbaf01fc624cd82a14a5e72c33d1def0a942e38284c5ba2d.json",
+        "sha256": "3485d752ec6db44ccd4b8e3b120a92e2f45671214047532e6d86242d4d3d9f38"
+      }
+    },
+    {
+      "procedure": "0x145c275f0",
+      "evidence_id": "ev_9812469fda74c4f56e2d482340231d620e541e04c3388af89433d5b955a8b5f6",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "70f981ba4a6dcc0fae883f16ba1c3c44f61c066caa5261784f640d31a4e832ee",
+      "slice_virtual_address": "0x145c275f0",
+      "raw_input": {
+        "path": "runtime/fixgap219/scaling/boss/code.bin",
+        "sha256": "5b2c8832dc19c3f54799fe696e30bd22ed73a1bdcea39ae910e2666aab80a08e"
+      },
+      "plan": {
+        "path": "runtime/fixgap219/scaling/boss/plan-fixed.json",
+        "sha256": "defc873b2e3ab601b24cef63676583619a2df8b7550457ec3ecdf1439900d61c"
+      },
+      "journal": {
+        "path": "runtime/fixgap219/scaling/boss/query-fixed/journal.json",
+        "sha256": "48e10503600ed468b43fd14c01802b462d181743ce128580de25e261a738cac4"
+      },
+      "result": {
+        "path": "runtime/fixgap219/scaling/boss/query-fixed/results/9fa427c3dc13d8c1dff2d3f495d8241b5a224def615d0a7205dbbfe36cefe3c8.json",
+        "sha256": "56e3957e77341638dbbbd4b848a937b8e6ce8d5f7672196f64fad91e35f0841b"
+      }
+    }
+  ],
+  "static_cases": 64,
+  "cases_sha256": "9af3aaa979e346b3ed13f39f3d9045215da126871cb9ae74f640e13f317d68e2",
+  "source_refs": [
+    "crates/azeroth-survivors-re/src/enemies/scaling.rs",
+    "crates/azeroth-survivors-re/src/bosses/scaling.rs",
+    "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs"
+  ],
+  "limits": "Replay current Heroic stat consumers with explicit constructor-prefix seams.\n\nNo compilation, game, engine, socket or server runs. Curves, powf, actor storage\nand party health have independent owners; this checks rank selection and the\noriginal final stat arithmetic with synthetic finite inputs.\n",
+  "target_executed": false,
+  "runtime_validation": "not_run",
+  "parity": "unverified"
+}

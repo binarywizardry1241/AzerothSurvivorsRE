@@ -1,0 +1,963 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.115.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+    "size_bytes": 142111232
+  },
+  "target_executed": false,
+  "functions": [
+    {
+      "role": "party-context",
+      "start": "0x1458e8b60",
+      "file_offset": "0x58e7f60",
+      "byte_count": 1013,
+      "sha256": "dfc5012742b1695266065f692e8b4ddc220229d08da9d1e4ce989a950feb89f3"
+    },
+    {
+      "role": "party-update",
+      "start": "0x1458f74f0",
+      "file_offset": "0x58f68f0",
+      "byte_count": 15868,
+      "sha256": "9273f90eb910ad16c4fbbc0327ac7f278950a74e9fc5d09c883f20d28c6887d4"
+    },
+    {
+      "role": "party-meter",
+      "start": "0x1458f48a0",
+      "file_offset": "0x58f3ca0",
+      "byte_count": 834,
+      "sha256": "592ee6d0928c38d39042cd6ec899ad4c0631f49d6d8c2209497e0bb8a36fd9c4"
+    },
+    {
+      "role": "meter-format",
+      "start": "0x1459e5520",
+      "file_offset": "0x59e4920",
+      "byte_count": 1022,
+      "sha256": "7717d46f8ab2d660178774cd698790b2a0407bdecc7088f4c9c40104a8bd66c3"
+    },
+    {
+      "role": "revive-format",
+      "start": "0x1458f5310",
+      "file_offset": "0x58f4710",
+      "byte_count": 1341,
+      "sha256": "5e1edd538787b3e786e2e3e8156942057fc5731ded91a511f18afff32836d796"
+    },
+    {
+      "role": "revive-helpers",
+      "start": "0x1459cc920",
+      "file_offset": "0x59cbd20",
+      "byte_count": 454,
+      "sha256": "ed83bcc938e086df66c268f52deae39cb17d9c70b5b028762f12561ae819fc3f"
+    },
+    {
+      "role": "revive-helper-names",
+      "start": "0x1459c2890",
+      "file_offset": "0x59c1c90",
+      "byte_count": 470,
+      "sha256": "828832da2ed6ad2628da7dab3f7192129f45fa1b7b6c247dbee3381db3e9dad4"
+    },
+    {
+      "role": "revive-completion",
+      "start": "0x1459001c0",
+      "file_offset": "0x58ff5c0",
+      "byte_count": 1290,
+      "sha256": "1f7c05691852eed7d0ef759983298001eb016fbcaa7346cd045f58bc142a86f5"
+    },
+    {
+      "role": "party-snapshot",
+      "start": "0x1458ff450",
+      "file_offset": "0x58fe850",
+      "byte_count": 829,
+      "sha256": "c81e630c2e613875ba883e622b1f550722c6a1fac0fd31b7952be25a5f0eade6"
+    },
+    {
+      "role": "owner-flush",
+      "start": "0x145901040",
+      "file_offset": "0x5900440",
+      "byte_count": 351,
+      "sha256": "ddf3cb1a897181d9c11260eb0336c5d576c12d9e7f90c1bc41e329904fc7a9e1"
+    },
+    {
+      "role": "hero-removal-scaling",
+      "start": "0x1459011a0",
+      "file_offset": "0x59005a0",
+      "byte_count": 2153,
+      "sha256": "f6da0533f1caaa6ef09b861121862d4acd97b544ce95fa210efd3b4573dac44f"
+    },
+    {
+      "role": "target-selection.asm",
+      "start": "0x1458f75b5",
+      "file_offset": "0x58f69b5",
+      "byte_count": 730,
+      "sha256": "bdc8ba2fbff856199f2466edfd0948a8ddbc55792427de4344e8699ffd557f08"
+    },
+    {
+      "role": "revive-clock.asm",
+      "start": "0x1458f8886",
+      "file_offset": "0x58f7c86",
+      "byte_count": 735,
+      "sha256": "9b5de69541c1e0b32ff15b0a05b6cfbdaa36dfbd42a2506972bf709ffffdb531"
+    },
+    {
+      "role": "party-context.asm",
+      "start": "0x1458e8c5a",
+      "file_offset": "0x58e805a",
+      "byte_count": 652,
+      "sha256": "c83cd4c65fd60a3bfca10ffb99e5e66007f2027cc31f2f808bb25d39e3900b06"
+    },
+    {
+      "role": "sanitize",
+      "start": "0x1459e6cb0",
+      "file_offset": "0x59e60b0",
+      "byte_count": 588,
+      "sha256": "026251c7532636e32d57306c358ef1f9c292fc389c5fdf204ce993880df78d75"
+    },
+    {
+      "role": "damage-sort",
+      "start": "0x1458a24b0",
+      "file_offset": "0x58a18b0",
+      "byte_count": 196,
+      "sha256": "d73fa37fce762af3d4067ff5eac68044f283e38a4b9474faf803f8f55cf1c737"
+    },
+    {
+      "role": "damage-large-sort",
+      "start": "0x1458b2440",
+      "file_offset": "0x58b1840",
+      "byte_count": 319,
+      "sha256": "c37e5f29b7b5ba2e10197bf9459e17cffe15729192b478ea43577984ce473243"
+    },
+    {
+      "role": "remote-hero-admission",
+      "start": "0x145900890",
+      "file_offset": "0x58ffc90",
+      "byte_count": 658,
+      "sha256": "91368da5b1b82f1c9b34bf3e6e62d204fbc69ca2f2bca2a2329bfe0b07a4892a"
+    },
+    {
+      "role": "party-meter-capture-gate",
+      "start": "0x1458fa9b4",
+      "file_offset": "0x58f9db4",
+      "byte_count": 57,
+      "sha256": "d7cd5f07fb79d025857b573fb8aca9ed3b7cf3ad2896e062e903c9acf66cc906"
+    },
+    {
+      "role": "hero-state-swap",
+      "start": "0x145920ed0",
+      "file_offset": "0x59202d0",
+      "byte_count": 4905,
+      "sha256": "03c2da13e60f22a82fe000aa5eb526ddc2c8e5c9e6ec20be014ef22732ac2dc6"
+    },
+    {
+      "role": "shared-experience",
+      "start": "0x1458daa10",
+      "file_offset": "0x58d9e10",
+      "byte_count": 674,
+      "sha256": "b1bda21f694f309b9e27c63926127ad69e5fff57293d93176198dd1b1d387b3e"
+    },
+    {
+      "role": "collect-gold",
+      "start": "0x145920470",
+      "file_offset": "0x591f870",
+      "byte_count": 337,
+      "sha256": "adf7597704a537e0bbee3b029aa865b3428e5ee554e1ad49d925db73db759562"
+    },
+    {
+      "role": "hero-completion",
+      "start": "0x1459202c0",
+      "file_offset": "0x591f6c0",
+      "byte_count": 292,
+      "sha256": "9e28fde534d0eb34a84728cb595b405e528c7f680ee94fecbc01f6bf036a5ee1"
+    },
+    {
+      "role": "shared-boss-equipment",
+      "start": "0x14594b8f0",
+      "file_offset": "0x594acf0",
+      "byte_count": 674,
+      "sha256": "96feba4f8ab8ae8e96b3ec7d888570cb782ab870798304faa1e37a178844b752"
+    },
+    {
+      "role": "hazard-source-admission",
+      "start": "0x145923166",
+      "file_offset": "0x5922566",
+      "byte_count": 121,
+      "sha256": "7a980dca5225368beba509a1e09dfc97d4f91c1e2527a8a8d851ecf41bce341d"
+    },
+    {
+      "role": "hazard-area-admission",
+      "start": "0x145923e75",
+      "file_offset": "0x5923275",
+      "byte_count": 69,
+      "sha256": "83ca316ae038d7f6f5ba98bb1a339b977c6d8106069b88f0289b0cb32b447e11"
+    },
+    {
+      "role": "world-scheduling",
+      "start": "0x1458f90b2",
+      "file_offset": "0x58f84b2",
+      "byte_count": 205,
+      "sha256": "472d1b164e8818701023563c22d6af6447a88e641cc4b3166c240560df6d3e8e"
+    },
+    {
+      "role": "shared-reward-queues",
+      "start": "0x1458f9e48",
+      "file_offset": "0x58f9248",
+      "byte_count": 2924,
+      "sha256": "e2c268af7aa6505b376a94c54e79dbfb5d08679bd314fdda10b061e736c33230"
+    },
+    {
+      "role": "cooperative-pause-gate",
+      "start": "0x14591a310",
+      "file_offset": "0x5919710",
+      "byte_count": 350,
+      "sha256": "a14babf20fdac6de5f1fa00157fbfba4798c18ae0327ccf844ccbc387d76de00"
+    },
+    {
+      "role": "shared-terminal-fold",
+      "start": "0x1458f9b71",
+      "file_offset": "0x58f8f71",
+      "byte_count": 179,
+      "sha256": "f0e3381f939533c9c2dc4d0e1f34a336bddfa5dea5cc5eaa6ac2881c3b5f903c"
+    },
+    {
+      "role": "hud-json",
+      "start": "0x14590f0f0",
+      "file_offset": "0x590e4f0",
+      "byte_count": 18950,
+      "sha256": "76dab5dc60c60f3f995b888e4567e9872b154fcda272ff80bd7c9e356f6a7441"
+    },
+    {
+      "role": "hud-meter-json",
+      "start": "0x145983f40",
+      "file_offset": "0x5983340",
+      "byte_count": 4016,
+      "sha256": "fa5fe090de72a637b111e9f2bd84d1a567c8c87c713ccbd199a037eea9ae8107"
+    },
+    {
+      "role": "cooperative-endless",
+      "start": "0x1458feff0",
+      "file_offset": "0x58fe3f0",
+      "byte_count": 735,
+      "sha256": "ed62ab5efedb82f1d2a66ce75e4e6b7da12723d6c0f010bfae00c0648b812f3a"
+    },
+    {
+      "role": "hero-endless",
+      "start": "0x145903b80",
+      "file_offset": "0x5902f80",
+      "byte_count": 376,
+      "sha256": "aceccf251f4ec8c3cd3938988e33e3ae4b2e87b15ecf3794d4085774d17baf69"
+    },
+    {
+      "role": "disconnect-health-rescale.asm",
+      "start": "0x145901216",
+      "file_offset": "0x5900616",
+      "byte_count": 115,
+      "sha256": "7f2ed29e207dece41f623a98aeb4fce86406688f53a98b24a8668db205d53250"
+    },
+    {
+      "role": "disconnect-health-rescale.asm",
+      "start": "0x1459015e8",
+      "file_offset": "0x59009e8",
+      "byte_count": 451,
+      "sha256": "b47f7499e6f0bc3907366778c6276040fddbbd44ab81fa26879190675712868f"
+    },
+    {
+      "role": "disconnect-health-rescale.asm",
+      "start": "0x1459017c6",
+      "file_offset": "0x5900bc6",
+      "byte_count": 87,
+      "sha256": "79c3f1c1fe667df11403ffe3303d347ad271dfbdadd89992a7c3ba9bbe56eea4"
+    },
+    {
+      "role": "initial-party-health.asm",
+      "start": "0x14594e36a",
+      "file_offset": "0x594d76a",
+      "byte_count": 121,
+      "sha256": "ed4eaba092a01f05d1e98329a5009b146bb68e83e761f15b39065715d22307fa"
+    },
+    {
+      "role": "initial-party-health.asm",
+      "start": "0x14594e52a",
+      "file_offset": "0x594d92a",
+      "byte_count": 37,
+      "sha256": "099adcd9507f39559b0feb216fbfcf02847c3218d030c962e7a945caa6a0d366"
+    },
+    {
+      "role": "initial-party-health.asm",
+      "start": "0x14594be6c",
+      "file_offset": "0x594b26c",
+      "byte_count": 59,
+      "sha256": "9388356684b1a43efdaf52a068eaede3f0cf01fdf9bb1be00027c8be2dba5acd"
+    },
+    {
+      "role": "initial-party-health.asm",
+      "start": "0x14594bfa5",
+      "file_offset": "0x594b3a5",
+      "byte_count": 112,
+      "sha256": "1fc77c6a3c581487ad34bb9e572487660c5a5661d3b63b2471e4d0138fbd046b"
+    },
+    {
+      "role": "initial-party-health.asm",
+      "start": "0x145983718",
+      "file_offset": "0x5982b18",
+      "byte_count": 108,
+      "sha256": "80e21c07bfa517adf1f986e4c6283c630dce93caa695ee9ca1628a62410470e8"
+    },
+    {
+      "role": "initial-party-health.asm",
+      "start": "0x145983846",
+      "file_offset": "0x5982c46",
+      "byte_count": 13,
+      "sha256": "2a099c4ee55929e66d0964012e3df38bcf65a68f76482e8a74ddca05c3d54ac1"
+    },
+    {
+      "role": "ward-membership.asm",
+      "start": "0x145922c50",
+      "file_offset": "0x5922050",
+      "byte_count": 742,
+      "sha256": "f31ecaad072d0f7362e759d23cca4bb22dc054d486f142033a8640d7e339413b"
+    },
+    {
+      "role": "ward-membership.asm",
+      "start": "0x14592f599",
+      "file_offset": "0x592e999",
+      "byte_count": 154,
+      "sha256": "946689986a55a8c0fd5f1eda066197158fe0c12eaada6866885c5544a5ed2ef4"
+    },
+    {
+      "role": "ward-membership.asm",
+      "start": "0x14592f6c8",
+      "file_offset": "0x592eac8",
+      "byte_count": 69,
+      "sha256": "eeba532f0f6b04b7f9a4852b6b91407be4ad010e058ec48134c715fa591da682"
+    },
+    {
+      "role": "health-field-ceil-import",
+      "start": "0x145d1465b",
+      "file_offset": "0x5d13a5b",
+      "byte_count": 6,
+      "sha256": "d93ee1f05e4b7e34609ad452e8641eacf2dcab6d431c554034e56244cb8c42c8"
+    }
+  ],
+  "data_ranges": [
+    {
+      "start": "0x145edffc0",
+      "file_offset": "0x5edebc0",
+      "byte_count": 4,
+      "sha256": "fedcca07b1ccdacce623cb6d8afdeed0314e8508d763e228871f18d4e0ebb7c4"
+    },
+    {
+      "start": "0x145edfeb0",
+      "file_offset": "0x5edeab0",
+      "byte_count": 4,
+      "sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c"
+    },
+    {
+      "start": "0x145f6dad8",
+      "file_offset": "0x5f6c6d8",
+      "byte_count": 4,
+      "sha256": "7b5162138ba6d8ae67efbf14d2266a9b11a531bf8e8b090e4bb2586f8f87a52e"
+    },
+    {
+      "start": "0x145f0f9c4",
+      "file_offset": "0x5f0e5c4",
+      "byte_count": 4,
+      "sha256": "2f0d6f3d65a7e28c4223e4389106e46f1e9010a2bd724d35f9794cb8a86d7c68"
+    },
+    {
+      "start": "0x145ee037c",
+      "file_offset": "0x5edef7c",
+      "byte_count": 4,
+      "sha256": "d99e58435243d9fef9c88273b8d553b4fba4d0baf8009d29eae74fa99e0d9f57"
+    },
+    {
+      "start": "0x145ee02b0",
+      "file_offset": "0x5edeeb0",
+      "byte_count": 4,
+      "sha256": "d88c86f15bbea365d658ad95a81d45367c465f7af6f7264fb077f01747ddc77d"
+    },
+    {
+      "start": "0x14733bef8",
+      "file_offset": "0x733aaf8",
+      "byte_count": 80,
+      "sha256": "aa09bdcbf9d30d92fa8bf0407fbc509fec3498271902a348ffbd3b305e344078"
+    },
+    {
+      "start": "0x145ee0378",
+      "file_offset": "0x5edef78",
+      "byte_count": 4,
+      "sha256": "8e215ece122cf70ebe3556a0318fa6c395d1766375c3edc080967e4a09592401"
+    },
+    {
+      "start": "0x14703cad0",
+      "file_offset": "0x703b6d0",
+      "byte_count": 8,
+      "sha256": "23a8c2d2b7be4c480adf45b98b1a08d6bdc87c2ff4d7e51715b941d6af6e5e42"
+    },
+    {
+      "role": "party-hud-class-switch",
+      "start": "0x1473328f0",
+      "file_offset": "0x73314f0",
+      "byte_count": 80,
+      "sha256": "aa09bdcbf9d30d92fa8bf0407fbc509fec3498271902a348ffbd3b305e344078"
+    },
+    {
+      "role": "party-hud-class-descriptor",
+      "start": "0x146cc3068",
+      "file_offset": "0x6cc1c68",
+      "byte_count": 80,
+      "sha256": "0ddfad7160aed1d1373264024f2c8241e38d3ab526abd2e8f18f16161392b1f8"
+    },
+    {
+      "role": "party-hud-class-color",
+      "start": "0x146cc22b0",
+      "file_offset": "0x6cc0eb0",
+      "byte_count": 7,
+      "sha256": "d189a6ae98fef68deb2473c34ec51a17cfa860ae85720619d57fd838006b244d"
+    },
+    {
+      "role": "party-hud-class-descriptor",
+      "start": "0x146cc30f8",
+      "file_offset": "0x6cc1cf8",
+      "byte_count": 80,
+      "sha256": "054771adc6f1226938790912db7f68c303ba169f218ea98958b999cf36a9bedb"
+    },
+    {
+      "role": "party-hud-class-color",
+      "start": "0x146cc2460",
+      "file_offset": "0x6cc1060",
+      "byte_count": 7,
+      "sha256": "72463a6f5578b11f49a6927c2511691ec0cd8516c50476a5569b98b8f165077b"
+    },
+    {
+      "role": "party-hud-class-descriptor",
+      "start": "0x146cc3188",
+      "file_offset": "0x6cc1d88",
+      "byte_count": 80,
+      "sha256": "bbec142716d8c75066fa3176ab0786e62a34b2e9a9dc7a07ce178df27c52c13f"
+    },
+    {
+      "role": "party-hud-class-color",
+      "start": "0x146cc2608",
+      "file_offset": "0x6cc1208",
+      "byte_count": 7,
+      "sha256": "5617b7cc50b8fa90afb93874bea3c8dec436a036b4964a3ef2202566a59a0c89"
+    },
+    {
+      "role": "party-hud-class-descriptor",
+      "start": "0x146cc3218",
+      "file_offset": "0x6cc1e18",
+      "byte_count": 80,
+      "sha256": "22124ebcc75106a4b427cb569653a70fb2a9d5041a8f1da8b1e79d3cc20d48bf"
+    },
+    {
+      "role": "party-hud-class-color",
+      "start": "0x146cc27a8",
+      "file_offset": "0x6cc13a8",
+      "byte_count": 7,
+      "sha256": "b326e4c8d71166bd21d86166a9bdc27a52244f22dc890cf9d81263fc66cc5269"
+    },
+    {
+      "role": "party-hud-class-descriptor",
+      "start": "0x146cc32a8",
+      "file_offset": "0x6cc1ea8",
+      "byte_count": 80,
+      "sha256": "086d3a7e9f44bc59de2213bbc8cbadf3dda8dba4751cd2603e42c5949b99134f"
+    },
+    {
+      "role": "party-hud-class-color",
+      "start": "0x146cc2928",
+      "file_offset": "0x6cc1528",
+      "byte_count": 7,
+      "sha256": "07ee686b3ce29f11070f5edcd6f0da03659e67becfba76650c1c6b5ac079847a"
+    },
+    {
+      "role": "party-hud-class-descriptor",
+      "start": "0x146cc3338",
+      "file_offset": "0x6cc1f38",
+      "byte_count": 80,
+      "sha256": "7f59c5a10612e56f7cb85457cd2b95ddf70391ec401a81864e67921089db6047"
+    },
+    {
+      "role": "party-hud-class-color",
+      "start": "0x146cc2ad8",
+      "file_offset": "0x6cc16d8",
+      "byte_count": 7,
+      "sha256": "088058adb35d611d2ae41329fcb73aded39a14ffdc1c978abe3fe59700234328"
+    },
+    {
+      "role": "party-hud-class-descriptor",
+      "start": "0x146cc33c8",
+      "file_offset": "0x6cc1fc8",
+      "byte_count": 80,
+      "sha256": "83a7108abd05b0ab71a3c9d147c29cc864e85b758184ac3b2c003e1a47f12fb6"
+    },
+    {
+      "role": "party-hud-class-color",
+      "start": "0x146cc2ca0",
+      "file_offset": "0x6cc18a0",
+      "byte_count": 7,
+      "sha256": "052b3a40e9195aa28f1af1a4b07cad77517f391472f89418b9963d660bea220f"
+    },
+    {
+      "role": "party-hud-class-descriptor",
+      "start": "0x146cc3458",
+      "file_offset": "0x6cc2058",
+      "byte_count": 80,
+      "sha256": "fc199fdcc67bd20f53b0225cf97df23a9913d6db49188e512e226c819a75471e"
+    },
+    {
+      "role": "party-hud-class-color",
+      "start": "0x146cc2e50",
+      "file_offset": "0x6cc1a50",
+      "byte_count": 7,
+      "sha256": "128123eea921b3917466c455d342500cd6a98604954509c1b8d95d5d9255af9e"
+    },
+    {
+      "role": "party-hud-class-descriptor",
+      "start": "0x146cc34e8",
+      "file_offset": "0x6cc20e8",
+      "byte_count": 80,
+      "sha256": "f6b72cd7a35f9ab9102515413412c8223171f717b5af98c69724b7e5d11f71d5"
+    },
+    {
+      "role": "party-hud-class-color",
+      "start": "0x146cc2ff0",
+      "file_offset": "0x6cc1bf0",
+      "byte_count": 7,
+      "sha256": "46d91e0f7ea7b9b548c7d2f48c52360647fb174f3324b898191492b31d4e65e4"
+    },
+    {
+      "role": "native-round-import-address",
+      "start": "0x145eb8358",
+      "file_offset": "0x5eb6f58",
+      "byte_count": 8,
+      "sha256": "99c3355ebd0b6be2417b95a6673a4099a36ec477acc637d800983c87854e27e1"
+    },
+    {
+      "role": "native-round-import-name",
+      "start": "0x1481ca9e0",
+      "file_offset": "0x81c95e0",
+      "byte_count": 8,
+      "sha256": "25f2040e9cf07e0287d87a500e33264cfd671157272904f7586df74188adfb31"
+    },
+    {
+      "role": "party-health-factors",
+      "start": "0x14732f2b0",
+      "file_offset": "0x732deb0",
+      "byte_count": 16,
+      "sha256": "5a6bcf19fb9becdf28fe17b14c91cced5680beef08c2f6c3ba02d0c00a934854"
+    },
+    {
+      "role": "party-health-factors",
+      "start": "0x145fbe524",
+      "file_offset": "0x5fbd124",
+      "byte_count": 4,
+      "sha256": "0f2f3591427956b004ca17393783192e0f81858c06bb5496aa2cea004f1ee863"
+    },
+    {
+      "role": "party-health-factors",
+      "start": "0x145ef0474",
+      "file_offset": "0x5eef074",
+      "byte_count": 4,
+      "sha256": "d388666e2351caf97e32db79dd5efdff3de2d4073eff49ef61edc7d7fd6a6250"
+    },
+    {
+      "role": "party-health-factors",
+      "start": "0x145ef04d0",
+      "file_offset": "0x5eef0d0",
+      "byte_count": 4,
+      "sha256": "ffcd594324296033e35bb6b3ea4a3d6e9b3b4db169f4e1968861c5746a9bf958"
+    }
+  ],
+  "ghidra": [
+    {
+      "role": "party-context",
+      "evidence_id": "ev_a8b86b685b025d5c02761df196b3c21992776e8eebd8bd23fae1d0c819a3618d",
+      "raw_input_sha256": "dfc5012742b1695266065f692e8b4ddc220229d08da9d1e4ce989a950feb89f3",
+      "profile_digest": "c60c165ccb663016d6fc5b4665e433af1a93b1785a597e6d7d84a6a6c7861566",
+      "journal_ref": "runtime/coop-game-party-0.115.0/rea-0x1458e8b60/journal.json",
+      "query_plan_sha256": "a889c0226de14977c3ec75cca9b8aec08478d95da781d983cf0f695da716cead",
+      "retained_result": {
+        "path": "runtime/coop-game-party-0.115.0/rea-0x1458e8b60/results/84bb4a45bfb9bc65037cd8c1a9dc0f0c159d23ba3ca7be40d96ac771f69a270a.json",
+        "sha256": "f3448e4fd9ab7b225905a8a9631f121544fcb58eee681a1d2da9ab40e0397faa"
+      }
+    },
+    {
+      "role": "party-update",
+      "evidence_id": "ev_ac5cc60cb6b2a8c67e261c9f5f362dc111d8add667c67af4a5f665534cc7a251",
+      "raw_input_sha256": "9273f90eb910ad16c4fbbc0327ac7f278950a74e9fc5d09c883f20d28c6887d4",
+      "profile_digest": "6f4a8da8c205f7a677fdb1a30d2f2f1c037c9c746ef509547fa603112527943f",
+      "journal_ref": "runtime/coop-game-party-0.115.0/rea-0x1458f74f0/journal.json",
+      "query_plan_sha256": "d1a3c7189695d4d0b4138cd647727410d12da3c9d11218d4511d231047d87492",
+      "retained_result": {
+        "path": "runtime/coop-game-party-0.115.0/rea-0x1458f74f0/results/2789fd84f2bde62b0375b0531e14d4f40b705167df6af777725f364b055f19e1.json",
+        "sha256": "1b6d6f3d6f5daf3577f0317dfeb491a96fd9a96be85463a11e8ea80f7b552a02"
+      }
+    },
+    {
+      "role": "meter-format",
+      "evidence_id": "ev_a4f871dfd73fb79dc902667bc06711c887e384289191704da33900d93bc26566",
+      "raw_input_sha256": "7717d46f8ab2d660178774cd698790b2a0407bdecc7088f4c9c40104a8bd66c3",
+      "profile_digest": "c690637e11ea71c36f3e1e4683cc5f5155acd02c7d29b115ecb41aafe4c50b51",
+      "journal_ref": "runtime/coop-game-party-0.115.0/rea-0x1459e5520/journal.json",
+      "query_plan_sha256": "025d09858b881c837e732509f54d1b5e3d5192d402d8e3db8dfe0120a0736d28",
+      "retained_result": {
+        "path": "runtime/coop-game-party-0.115.0/rea-0x1459e5520/results/e093fce9df8f9c65151d1631d2d3e215c0ec7155b286f1ae87677869777a2e99.json",
+        "sha256": "bfcdf2eb7301ccd06050427c74f374076a1e80e81d02f8fbc3897318c0d623d2"
+      }
+    },
+    {
+      "role": "revive-format",
+      "evidence_id": "ev_80672f98b2b1bd9c8bd6441f7c46cec8962205710ebd1b88686e0ac73916c62a",
+      "raw_input_sha256": "5e1edd538787b3e786e2e3e8156942057fc5731ded91a511f18afff32836d796",
+      "profile_digest": "63db4f21cfaf34cc2ecc978ed3dc34717dc343e846255b73413d7eb472dce4c7",
+      "journal_ref": "runtime/coop-game-party-0.115.0/rea-0x1458f5310/journal.json",
+      "query_plan_sha256": "0a12d9c5fcde8dc03f3e7dbe1eda71fa444d945ef7bf4654ecb057989c7de85c",
+      "retained_result": {
+        "path": "runtime/coop-game-party-0.115.0/rea-0x1458f5310/results/77620ccb59d7e596f0745d4b0f97bbab882f8f400cfc505d3efd71e2176228f0.json",
+        "sha256": "3d5052ce35cd262d59f84cf2eab8495cab0953b808bc0635a2ed11dc5e1554ae"
+      }
+    },
+    {
+      "role": "revive-helpers",
+      "evidence_id": "ev_5a46f170bbc77920af505e32f4043504c8d6d6539eb8dc8b9c3d1b7faf1af555",
+      "raw_input_sha256": "ed83bcc938e086df66c268f52deae39cb17d9c70b5b028762f12561ae819fc3f",
+      "profile_digest": "6da49591e595df4092a2cfe1b6d755db8958c5a36ed4fb345f23bbd4d86fdd6c",
+      "journal_ref": "runtime/coop-game-party-0.115.0/rea-0x1459cc920/journal.json",
+      "query_plan_sha256": "0bb7113fbfac22411cbd15d6daa4c349cb829071288cde54b81863e3e1c3e38f",
+      "retained_result": {
+        "path": "runtime/coop-game-party-0.115.0/rea-0x1459cc920/results/d790433955d929ff7029df5085584ecca1bc96b6fde90d5a8843515c2a20d53e.json",
+        "sha256": "31290df52ba32ce8132a27cfc4082ab4dca59cb58048e18d70e780f514ef6d88"
+      }
+    },
+    {
+      "role": "revive-helper-names",
+      "evidence_id": "ev_6874e234a41fea91c0d5210ba2c1050bed96547590f68ebb7f916cd97a6dace7",
+      "raw_input_sha256": "828832da2ed6ad2628da7dab3f7192129f45fa1b7b6c247dbee3381db3e9dad4",
+      "profile_digest": "624f394f5a5458746c8f2416cc37dbdec365d499fd542cf551ee4888c174b8a3",
+      "journal_ref": "runtime/coop-game-party-0.115.0/rea-0x1459c2890/journal.json",
+      "query_plan_sha256": "2efb8ec5bbdf31fbd6c19218e3cd97c4a91e613a06551e9c6e488aa57518687c",
+      "retained_result": {
+        "path": "runtime/coop-game-party-0.115.0/rea-0x1459c2890/results/bb41cd7b0578488fc8de3f93077d483b6cb444e1e5f8adfcdce62d9139733504.json",
+        "sha256": "2aead9d27ae528972b1bb5fef56bbaee994031a5551c4c7c9207722e1e2e7f27"
+      }
+    },
+    {
+      "role": "revive-completion",
+      "evidence_id": "ev_6031eeaff61cf9960694767caae95f035ec01f070eeedc06aec919ae81120026",
+      "raw_input_sha256": "1f7c05691852eed7d0ef759983298001eb016fbcaa7346cd045f58bc142a86f5",
+      "profile_digest": "7c55de61daabfe81ed7a210984f8d4ea431db6bc0cb47d18708863b968cd92b5",
+      "journal_ref": "runtime/coop-game-party-0.115.0/rea-0x1459001c0/journal.json",
+      "query_plan_sha256": "3532b87cd7b98aaaa694b4de09ef61b232c01b1a1cb48446b5d563e3e8787970",
+      "retained_result": {
+        "path": "runtime/coop-game-party-0.115.0/rea-0x1459001c0/results/4372272540108294dab3adb02a67a970ee997504800c53ff57877d42edbcda36.json",
+        "sha256": "8c4a0021be6b9fbecc7abfbd1ef96ce1989f8356aa8073c58df848a673604dab"
+      }
+    },
+    {
+      "role": "party-snapshot",
+      "evidence_id": "ev_3536e7aeca6ac10c5d52516d2bb4fc25e8ea4a18493f9900d322adaf52707690",
+      "raw_input_sha256": "c81e630c2e613875ba883e622b1f550722c6a1fac0fd31b7952be25a5f0eade6",
+      "profile_digest": "00f95aadc877b34bd82daf641f4d886bb8fdd1328cd42ec5553ccb92252691c3",
+      "journal_ref": "runtime/coop-game-party-0.115.0/rea-0x1458ff450/journal.json",
+      "query_plan_sha256": "cfaac7ab16c89b08536a4ccf605e0afd76a99a4747f14ed1e0e69852b1d9348c",
+      "retained_result": {
+        "path": "runtime/coop-game-party-0.115.0/rea-0x1458ff450/results/dc4a7fd478db2653cdfc3ad6063a620be4ceb7b9eaa2280628724072b3036008.json",
+        "sha256": "fdae457fd5e4da4025508a02cb5627673241b60df35c5cf14a0e41effee12bf2"
+      }
+    },
+    {
+      "role": "owner-flush",
+      "evidence_id": "ev_ca1e60a82a5c18f63e7c842abb9b05722a80b3e41f9d0da81b27fd21660df7ce",
+      "raw_input_sha256": "ddf3cb1a897181d9c11260eb0336c5d576c12d9e7f90c1bc41e329904fc7a9e1",
+      "profile_digest": "23d81887643515c41dec13a9560427d3a3f9987f6bca3c8203a7883198e8e16a",
+      "journal_ref": "runtime/coop-game-party-0.115.0/rea-0x145901040/journal.json",
+      "query_plan_sha256": "abdc669b1f9158bac0146642abe1d3e3fa414127085885eb48291bdc1526e6bc",
+      "retained_result": {
+        "path": "runtime/coop-game-party-0.115.0/rea-0x145901040/results/6b4d344d740f52c8acef14f09ce252eeb7c51b804b35aeba97d70a2f4119028d.json",
+        "sha256": "5ae2bd0dbb3559aa9a619ba703cea7961597d51c0ad02a7eac562e5a15c3fec4"
+      }
+    },
+    {
+      "role": "hero-removal-scaling",
+      "evidence_id": "ev_838481093c1d8f3ce8aa55647117815c4e6dfd8c68598eae84662b4b25639295",
+      "raw_input_sha256": "f6da0533f1caaa6ef09b861121862d4acd97b544ce95fa210efd3b4573dac44f",
+      "profile_digest": "7ab1ba3a942ce33e9ab674a990e8ca2af52ed09d1131784369120da8ec7fdbcc",
+      "journal_ref": "runtime/coop-game-party-0.115.0/rea-0x1459011a0/journal.json",
+      "query_plan_sha256": "9b00aa146c90eb463091c6f610c4dce4a2c24d44c9c8695647dbd6cd0b4ab810",
+      "retained_result": {
+        "path": "runtime/coop-game-party-0.115.0/rea-0x1459011a0/results/a1d7296db3f724138c83e11dc756706294afc6a42d003083f43d57011c179bfb.json",
+        "sha256": "c29acbe805763714dd3a9e7485e84cb9e1bf4e4e16bcb10495afa60709cf9d93"
+      }
+    },
+    {
+      "role": "sanitize",
+      "evidence_id": "ev_f31f3e26efb5cc9b03498da8ec3ef0633839f85307efce08941ce966b20e1f16",
+      "raw_input_sha256": "026251c7532636e32d57306c358ef1f9c292fc389c5fdf204ce993880df78d75",
+      "profile_digest": "fbdd6f9bf2a31dfa8e12c7aa74db86009e6531e1e3763122ab7d896ad527b1b3",
+      "journal_ref": "runtime/coop-game-party-0.115.0/rea-0x1459e6cb0/journal.json",
+      "query_plan_sha256": "5037ecb0b32869e1a16a6ca7d1eb3eae6944e0d7968769c163286f49ed1c0f9d",
+      "retained_result": {
+        "path": "runtime/coop-game-party-0.115.0/rea-0x1459e6cb0/results/5b20e8dd9aacfffef201eb05307481ee643f9a768016b74377ea94a76e3b1b70.json",
+        "sha256": "86552f793e4dd487639baa045acad11ae0938bdce0600e2594f95d526b91e284"
+      }
+    },
+    {
+      "role": "damage-sort",
+      "evidence_id": "ev_5d048869d47d03136a31c68e188865bf98e4890800d920fff20915779aaf3304",
+      "raw_input_sha256": "d73fa37fce762af3d4067ff5eac68044f283e38a4b9474faf803f8f55cf1c737",
+      "profile_digest": "0e0000ae7d6d3fa360dc520c3b774309a3b945da4ac635a3686b911402434510",
+      "journal_ref": "runtime/coop-game-party-0.115.0/rea-0x1458a24b0/journal.json",
+      "query_plan_sha256": "a6de318b51e9cce097dfc2abace240a3ec76ed9785f68bbb64daf6ddc8ee166c",
+      "retained_result": {
+        "path": "runtime/coop-game-party-0.115.0/rea-0x1458a24b0/results/ce74f602ea4678662bcbb561ca6a97d78ed2d20c7e7ad706ce1e35415ec3a9d2.json",
+        "sha256": "b555110412cfad52d1d8831a9f76ba201f0892c30124c461ed47281daa9bc05c"
+      }
+    },
+    {
+      "role": "damage-large-sort",
+      "evidence_id": "ev_4c18867c7f27abaa83d27523ed98deb4bf1537117ea8b253b3c39540ea06efa8",
+      "raw_input_sha256": "c37e5f29b7b5ba2e10197bf9459e17cffe15729192b478ea43577984ce473243",
+      "profile_digest": "98f26c4cb5e94b259cf0892efba54c81c6f7656027559c6fbf0d06a184e48f76",
+      "journal_ref": "runtime/coop-game-party-0.115.0/rea-0x1458b2440/journal.json",
+      "query_plan_sha256": "7f253b927e16cd22cfdb6e75f1806fc9bee0c145e809027f2741b65b86b9348f",
+      "retained_result": {
+        "path": "runtime/coop-game-party-0.115.0/rea-0x1458b2440/results/0f53c9e8c4f4b5c9acbfa1280378af087094fe2e413552bccd34a848c8c116bc.json",
+        "sha256": "4ad0d8438b6c9bee1601d6624730c1116bdb3d0317d6b0dd496940028ee29b8b"
+      }
+    },
+    {
+      "role": "remote-hero-admission",
+      "evidence_id": "ev_5bfb0585ea9dfd44d2c31528e05fc6d06fb639c0251adddbd2ff3a9c841ad5d7",
+      "raw_input_sha256": "91368da5b1b82f1c9b34bf3e6e62d204fbc69ca2f2bca2a2329bfe0b07a4892a",
+      "profile_digest": "114d2c4c85f0985a21a8eda46f607ebe9595d69bc6e5dcab288675167b1ba899",
+      "journal_ref": "runtime/coop-game-party-0.115.0/rea-0x145900890/journal.json",
+      "query_plan_sha256": "60b98c51f25d44ead52c9a37cc7723f68e3df6f5d26d131250a7fa996233a065",
+      "retained_result": {
+        "path": "runtime/coop-game-party-0.115.0/rea-0x145900890/results/17f40882d03ee5c081746650100f6bbdad91c2d9bcafb5c6ff6104393aadef80.json",
+        "sha256": "0115ead3172f2bae2f47ecc31b28d979bf24e861b7828a99ea94e7a3e419fa1a"
+      }
+    },
+    {
+      "role": "hero-state-swap",
+      "evidence_id": "ev_dd921288c905bed16bfad9806f0fd4117d07841b62da15bb2d76bb2994cc57c1",
+      "raw_input_sha256": "03c2da13e60f22a82fe000aa5eb526ddc2c8e5c9e6ec20be014ef22732ac2dc6",
+      "profile_digest": "e0af9cd98bf7d0a37c58eb4b58e564abcc54eae3af476b47f8825d9816447396",
+      "journal_ref": "runtime/coop-game-party-0.115.0/rea-0x145920ed0/journal.json",
+      "query_plan_sha256": "900576c3237fcd66f3c22da4a79aa857a9047c8d253d33cf05b862c848d41346",
+      "retained_result": {
+        "path": "runtime/coop-game-party-0.115.0/rea-0x145920ed0/results/84eadc23f3b48deb71de012e138344edd83636e0e7e41ee1f2ba6147e1079a99.json",
+        "sha256": "5ca7d8340ae1fb091cf84889bc33eb678627b3c2f66fda368b813652128ed7d3"
+      }
+    },
+    {
+      "role": "shared-experience",
+      "evidence_id": "ev_496c08775bdda798842c7e3c4cc548fa8e5f2f6ff3bd97c4b7ee2f7f87f05d4e",
+      "raw_input_sha256": "b1bda21f694f309b9e27c63926127ad69e5fff57293d93176198dd1b1d387b3e",
+      "profile_digest": "f1f92a0c27ba8cfc7335d7320e7cc3cc16a8910a88e4ec85ccff61e7d5c790f1",
+      "journal_ref": "runtime/coop-game-party-0.115.0/rea-0x1458daa10/journal.json",
+      "query_plan_sha256": "785c766c15686ad9d8f527a3f4391a8ba6608a4780acd2df793afad479824969",
+      "retained_result": {
+        "path": "runtime/coop-game-party-0.115.0/rea-0x1458daa10/results/1e4efd75f60f9b9201ff927ae7b46d9c242f740dd6d1ee40e3176509fb5e20ce.json",
+        "sha256": "d1327c26bd5245bca7a7e3b4c55d0eed4bd163dd3d8a8c5daad5ed4af1bbb021"
+      }
+    },
+    {
+      "role": "collect-gold",
+      "evidence_id": "ev_7eb8e17b35c52611243006f9f13ddd71aae04f94ebd19a73d1f207a5e1cc73a2",
+      "raw_input_sha256": "adf7597704a537e0bbee3b029aa865b3428e5ee554e1ad49d925db73db759562",
+      "profile_digest": "82705984bc7a72779e0c8ffd7beb9dda3ebf38c6f0973a2bff6e8a349a0e6d50",
+      "journal_ref": "runtime/coop-game-party-0.115.0/rea-0x145920470/journal.json",
+      "query_plan_sha256": "d70d4893e299ce38d12e9ee96832bd2a43715cd609cb0c63ef1b1ddd7da3fdad",
+      "retained_result": {
+        "path": "runtime/coop-game-party-0.115.0/rea-0x145920470/results/cc1e61a5ea2dd57c3eb4f7e8282a8f6d8a8028275615c79b9cecfd90935ab44e.json",
+        "sha256": "1ece08bb525d4fc4459135bbeaec0fbb600df9e6ae18b3e59e2668171a7df175"
+      }
+    },
+    {
+      "role": "hero-completion",
+      "evidence_id": "ev_f2cb56418900e3dc3802513a327b77e1482acded41c176f55e120f45da3ff7cf",
+      "raw_input_sha256": "9e28fde534d0eb34a84728cb595b405e528c7f680ee94fecbc01f6bf036a5ee1",
+      "profile_digest": "2c0a913a19418d08319c5f44c4268b829949a4f0f8055bae80dcc326603ae82c",
+      "journal_ref": "runtime/coop-game-party-0.115.0/rea-0x1459202c0/journal.json",
+      "query_plan_sha256": "c248ddaa4d89a1a6c88154e03ac3171ef25b8ff6d7f39ca8652c2016ac072641",
+      "retained_result": {
+        "path": "runtime/coop-game-party-0.115.0/rea-0x1459202c0/results/71cf1eaee9ae22404ebf14d7a786ba6b0a52631d5fcaebad7b4da1ddd96415b3.json",
+        "sha256": "c8ba4e3e9a730c89b76807e5676a740dab797901c49e7383ca169fd82d35aba4"
+      }
+    },
+    {
+      "role": "shared-boss-equipment",
+      "evidence_id": "ev_a0cb5b890aa7211f98176453d15b27aa15703e9e3dfbc40c4ae11881f9839141",
+      "raw_input_sha256": "96feba4f8ab8ae8e96b3ec7d888570cb782ab870798304faa1e37a178844b752",
+      "profile_digest": "062304feb4bb0e127346de6fada3391eda948e3e594b670bd8638037623a0346",
+      "journal_ref": "runtime/coop-game-party-0.115.0/rea-0x14594b8f0/journal.json",
+      "query_plan_sha256": "04af9fbfa66e6b9e539df40614ff75487b7bb3d22c1029997a1f3e6885f92a72",
+      "retained_result": {
+        "path": "runtime/coop-game-party-0.115.0/rea-0x14594b8f0/results/78cd53e64893be8995eb4ca65923fc6d0e939d1ea07020468b8d9df491657814.json",
+        "sha256": "40bdfb96f47b5270081ce6ee7b5f1c034e49c34a120dc83b881f4e836ba2e28e"
+      }
+    },
+    {
+      "role": "cooperative-pause-gate",
+      "evidence_id": "ev_92ab004321eb0087b8d4371a878a09502e04c85b0156f0b752d31601497bbe25",
+      "raw_input_sha256": "a14babf20fdac6de5f1fa00157fbfba4798c18ae0327ccf844ccbc387d76de00",
+      "profile_digest": "2c39eab2a0254f6c37f42f3975f31ebd89800a71bde1ab2235ae058a2882c8d7",
+      "journal_ref": "runtime/coop-game-party-0.115.0/rea-0x14591a310/journal.json",
+      "query_plan_sha256": "fcbb5c18433c669393570b8fd4dcb8a1f4864074941bbf1672d8229a2716b016",
+      "retained_result": {
+        "path": "runtime/coop-game-party-0.115.0/rea-0x14591a310/results/5862ea8102c66d1b5ec9c652dc4b16b33ec18ada645b792c8ea77cddb616710a.json",
+        "sha256": "ad99f978d3770cda5ee68ef19f87f21b6d715660be29b81b7d9be176e5f5e692"
+      }
+    },
+    {
+      "role": "hud-json",
+      "evidence_id": "ev_ec213b467820c4ba137e14510fe5f56e8768628e29630709f959c83291763025",
+      "raw_input_sha256": "76dab5dc60c60f3f995b888e4567e9872b154fcda272ff80bd7c9e356f6a7441",
+      "profile_digest": "d38c75382539764f67ea01a67597acf749bb18be7c902164e453f1736ad64f5f",
+      "journal_ref": "runtime/coop-game-party-0.115.0/rea-0x14590f0f0/journal.json",
+      "query_plan_sha256": "47589ef419a62bb46c81d4e0f371cbc60e771f5627e78574f39f08fc611f410e",
+      "retained_result": {
+        "path": "runtime/coop-game-party-0.115.0/rea-0x14590f0f0/results/1ad630068fdd8be636897a1a37c12286ed69939a63f33ed0589ee2e88302237a.json",
+        "sha256": "44d169ed80d6139d370782df7ce30511f9c46a43a7ba3de9dd55284f23af81ed"
+      }
+    },
+    {
+      "role": "hud-meter-json",
+      "evidence_id": "ev_999d80e57039e4d930a9f40777e76da937b64bc8578cfcace695869be5b5d318",
+      "raw_input_sha256": "fa5fe090de72a637b111e9f2bd84d1a567c8c87c713ccbd199a037eea9ae8107",
+      "profile_digest": "6dc906648c80b6a23ea71def80cfecf73d6ea7b16350425f351b5c5d24ec71a0",
+      "journal_ref": "runtime/coop-game-party-0.115.0/rea-0x145983f40/journal.json",
+      "query_plan_sha256": "f2a99db3877ff2fcb55188655dc559bf1486f44b7ee9b406214d98336e5c0faf",
+      "retained_result": {
+        "path": "runtime/coop-game-party-0.115.0/rea-0x145983f40/results/66e4f205d0e584d105a0b095e6a3a00d82eb6e8d91edc745e31c508c1379be5e.json",
+        "sha256": "0db2484b8e074a92a256668c892b868af03461b512f91a8211b9f90990c21921"
+      }
+    },
+    {
+      "role": "cooperative-endless",
+      "evidence_id": "ev_15e8211ab2726dfe552c8b7c20ecae9d76fc1bc38fb3a18a8b9c90d85d4ecf77",
+      "raw_input_sha256": "ed62ab5efedb82f1d2a66ce75e4e6b7da12723d6c0f010bfae00c0648b812f3a",
+      "profile_digest": "b37c0b3895c81ef7ac13f568bbca2a5cf4b27941ad2b82f62d56e0697ddbbc29",
+      "journal_ref": "runtime/coop-game-party-0.115.0/rea-0x1458feff0/journal.json",
+      "query_plan_sha256": "b483a96118a593f5838d3c9065bc200d977ff7b13f1db2ce1e573e4e77ee5bd5",
+      "retained_result": {
+        "path": "runtime/coop-game-party-0.115.0/rea-0x1458feff0/results/e5439ff1a5c3cb85729f6b5ecc75df00328e8223ec7796dc0bc9cbe5fcfb9895.json",
+        "sha256": "5185fa15f536524c79d4a5a7bb8cb58eb98068bf74641c2dd49c9003fca439c1"
+      }
+    },
+    {
+      "role": "hero-endless",
+      "evidence_id": "ev_69805fab3bfa20b353eef3bb39df7a766faf0658ceabd34dc6af46a06f8943f7",
+      "raw_input_sha256": "aceccf251f4ec8c3cd3938988e33e3ae4b2e87b15ecf3794d4085774d17baf69",
+      "profile_digest": "3d3b493e18b2a30ea9fdc2a4a80846ed3cc5dde81a64a21560aedb45fe7337f6",
+      "journal_ref": "runtime/coop-game-party-0.115.0/rea-0x145903b80/journal.json",
+      "query_plan_sha256": "40a5f1a0a80ada92e183d1c181246aba219d6352006237dce4fadc41483afa45",
+      "retained_result": {
+        "path": "runtime/coop-game-party-0.115.0/rea-0x145903b80/results/a460e25ea03101459a2243e303e4b7977cd6fe40d1244f6221c8acabb69bfbc6.json",
+        "sha256": "c2737a4c2f31101d477ab00d8309b58c0ceae0be8d01566205ffb0b36ad63337"
+      }
+    },
+    {
+      "role": "ward-health-membership",
+      "evidence_id": "ev_b5ef5b178f597b538b9860484b5900705a1a2148c3a6ec7af8a5a27f1b57aaba",
+      "raw_input_sha256": "f31ecaad072d0f7362e759d23cca4bb22dc054d486f142033a8640d7e339413b",
+      "profile_digest": "c2bba06fa39f37b3eee493f66941c47e9eb1111b84c6f8d83637cd29525b4759",
+      "journal_ref": "runtime/coop-game-party-0.115.0/rea-0x145922c50/journal.json",
+      "query_plan_sha256": "f22467af19d0ae5e163479aad47c36f3ce0ca4f1f340f7874ecd3bc8990606ae",
+      "retained_result": {
+        "path": "runtime/coop-game-party-0.115.0/rea-0x145922c50/results/ef92bdf7823a167b3b106ae9080f369085f48f1a0f1de03b1eeee8adabc0f56c.json",
+        "sha256": "7b5cfc3749558c5baed30a1dc08d24ef627a140433d0feeaef26a005ed614e34"
+      }
+    },
+    {
+      "role": "ordinary-party-health",
+      "evidence_id": "ev_bf6702b21a46ab0e059fa7ba4c766799f9a85c8900a15e36f347443ed785c163",
+      "raw_input_sha256": "0ba2818d6c138868c76dd1382a4261568eaff32bccb8c6f2893e1b910b3c24a3",
+      "profile_digest": "a0acc44ece6f8e27e657638240747991380ce7966482cb7699a96853493bf9ae",
+      "journal_ref": "runtime/coop-game-party-0.115.0/rea-0x14594df00/journal.json",
+      "query_plan_sha256": "799636a55240d57b9a33393bde66211a04e87256faebc10e86b59d826ebc03e9",
+      "retained_result": {
+        "path": "runtime/coop-game-party-0.115.0/rea-0x14594df00/results/c8d6db71a15a95bb754fa7762130c5d37f2e96c25907475890ef98565c583c21.json",
+        "sha256": "daf6c64e339c4c95dc35a9a4370629d9dd8e50feb86985fe5f2f412c8c82100c"
+      }
+    },
+    {
+      "role": "boss-party-health",
+      "evidence_id": "ev_046bb5ffe51b22c049a0e3bd9fa000e691bf03a76ce90087d6d9175ad7488785",
+      "raw_input_sha256": "509a38a4d133117786fe7512ee190b0843f867f7ff5a6f01542505a2a9d515e6",
+      "profile_digest": "933b434507dcc8b8711ac7eae2a2c38966341ad110e8532b3afa2e2db4788dd1",
+      "journal_ref": "runtime/coop-game-party-0.115.0/rea-0x14594bc00/journal.json",
+      "query_plan_sha256": "e3baf17489b004c6ee6d1c5ae97f2383a55b666fa1494da2e3e81cc48db9e83b",
+      "retained_result": {
+        "path": "runtime/coop-game-party-0.115.0/rea-0x14594bc00/results/9f8b04bc18a9ff25a5cd0d0a52698c2bfa12931d02cc96f9e3f9d481c34eba95.json",
+        "sha256": "7dca44eca446aee3cb634891c83d8786fe6ec4d86f34da7e16d5b9bff59ab88b"
+      }
+    },
+    {
+      "role": "guardian-party-health",
+      "evidence_id": "ev_e65880400cdae74e138c698825d6786375747ae3b3bd948c663cd9819ba4eae7",
+      "raw_input_sha256": "e5267c292bf216cd8609e2a7f595c73795687d78b79ac357695ac55a0313af41",
+      "profile_digest": "56b38bf866fe495c938f0dc7a932136a20dad401a8ce5c5ee331a9339c12c429",
+      "journal_ref": "runtime/coop-game-party-0.115.0/rea-0x145983510/journal.json",
+      "query_plan_sha256": "209d29292fa95327b1270e722f71e6f29a5f93485f35820156fddec164362608",
+      "retained_result": {
+        "path": "runtime/coop-game-party-0.115.0/rea-0x145983510/results/d8689adf7787c1a12f3e5fa4db33fce7c6ddf12ca597ca338b6850286dd1df5e.json",
+        "sha256": "01f64c0eff2405b09e90dbb68f629843b781183ccaec5224e9a2c656a8bfe0eb"
+      }
+    }
+  ],
+  "extracts": {
+    "meter-format.c": "6ecbd4cf0c862d2e8e63d5ef9eab71deaaa7b3f30d96d22d3c3861e8822521c8",
+    "revive-format.c": "4819531b0dfd284928ad47db4985cb0186c0fd8c2f9e19c833d385e2dd66f185",
+    "revive-helpers.c": "2e925e19b46dd52511f39072099004b3866831e9a6260b6b68e5274bceeb15d0",
+    "revive-helper-names.c": "ad1100165f5036a894107ba43958059713194eb3751697cd0dca28166f4be6c4",
+    "revive-completion.c": "81932d7f35021f60bf4187347f0a11e9202fe8e06c191fd25573ca593c587603",
+    "target-selection.asm": "cd97cc4f11169e6bd5d153fb06a5430f8cc62b424f501f3b07dc662f2c1e5fce",
+    "revive-clock.asm": "b2c69260b626acafee58438f79fcc41e2bd3e0b5097a4e3369ef00b55cf0f364",
+    "party-context.asm": "190931e300427e9f432f63e3c4fb98de472b8d49dd2c4160acc8a7f7a3d875e6",
+    "sanitize.c": "3e944f5b42d3109999cb963219d5e82ee91151c148d19ec51f43c4f0278d2630",
+    "damage-sort.c": "d6350a181e8888ffb68dc7738965ff9571c836ce9902a9a43064466a13b872ea",
+    "damage-large-sort.c": "bb9b43062e91cee4153fc39cf712f6286f39166be2d102a7e30a0c64c2485a4d",
+    "remote-hero-admission.c": "6a1254504f9d8efe518817a1f2306ff6939cbd6f51e130df8a8d63f7d8c12dfc",
+    "party-meter-capture-gate.asm": "d7cee9b8910755bddb5ffdb2233adc977c17659d65f0ee6e121748ebff0666db",
+    "hero-state-swap.asm": "9a1260374a7d4182f44229307a373484173c140b7876714d39bf473e7d1f1421",
+    "shared-experience.c": "118d4e328b94e323b4a0fc8a8ef87c899fa35c2e3fcc8d22b46021b48b7e2886",
+    "collect-gold.asm": "13b2f5d9a5da638984e0dbe279a44f48024a9623db56709000e269bd825aacd1",
+    "hero-completion.c": "11e26a92031b403b32e43a768ea397cdbcbc90e0bbdcf7c0465fe66ddccc79e9",
+    "shared-boss-equipment.c": "d760e32a5a523fad259a0d306e43dd61cf23cd9754cc31160f1507fc4aa1fe59",
+    "hazard-source-admission.asm": "8fbfcf4190ddf6fecf948294b5268ac1781a6ff37503d1c77874a9a5dbae76e5",
+    "hazard-area-admission.asm": "37987e41f2c9f7e6157429872ba6593edd973c5af342433b03ba349ac79fecfe",
+    "world-scheduling.asm": "fd9d0c5ac2dac93948f2ad3d9ac6e7b5f434a5de70969809c5afe04e83ddae75",
+    "shared-reward-queues.asm": "448aebb243711efbb2071cd95559b820500bbc23c132811cd515bb069ae39364",
+    "cooperative-pause-gate.asm": "df5879d3eddbe220d861f94dfe6557df4d563484d729fa204ef52ffa5514c2ad",
+    "shared-terminal-fold.asm": "921d1cbc766975d05a99b1b45d19530b55d4ab2bed9a0ea76f973a78313e87e8",
+    "hud-json.asm": "94c67b9912ed7c361d5aaf5fa7695907ccdfbd1f7d7466f66cb306c9a1d9f4eb",
+    "hud-meter-json.asm": "e4dfd1df13c40753e08b36d2890199d7da5cef874045dc820e13234fc5846ccf",
+    "cooperative-endless.asm": "4e9bf266442092f1c88b91f29b9e555a2582775582164c818c8fce2fdb3cb6cd",
+    "hero-endless.asm": "4ae9b3deac687e7be373a4ea2f0bf318152708092518c51ce10780c212999c48",
+    "hud-class-colors.json": "b1537fa8e35349effc6be095ead61627c31cc614ad3288845a9f83cf5bf9ccb1",
+    "disconnect-health-rescale.asm": "ab9c0b1191d557386560db9942c473657e6d233c49082e28e1cd4eb7f560f9ae",
+    "initial-party-health.asm": "8ceae24986604727f813dbb68b77d8e02403c8b37b5a765d86021c8813e947e7",
+    "ward-membership.asm": "6d4a63d8ec6f5be55dfec5215ebc69f14b8205eaa6fc89a6b0005d642d8c8e9d"
+  },
+  "limits": [
+    "Raw-range Ghidra omits external bodies/data; original PE instructions and checked constants govern contracts.",
+    "Native replay uses allocator fixture seams; compilation, live game/network/rendering and original/rebuilt parity unverified."
+  ],
+  "external_evidence": {
+    "passive_cooldown_and_amulet_text": "docs/analysis/evidence/0.115.0/coop-overlay/manifest.json",
+    "final_stat_cooldown": "docs/analysis/evidence/0.115.0/addon-timers/manifest.json",
+    "run_metadata": "docs/analysis/evidence/0.115.0/coop-replication/manifest.json"
+  },
+  "native_round_import": {
+    "thunk": "0x145d14667",
+    "iat": "0x145eb8358",
+    "name": "round"
+  },
+  "native_ceil_import": {
+    "thunk": "0x145d1465b",
+    "iat": "0x145eb8368",
+    "name": "ceilf"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.127.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+    "size_bytes": 146721280
+  },
+  "generator": {
+    "path": "scripts/inventory-native-instructions.py",
+    "sha256": "f5b2670a63284390306dcfff4ce16f86c05660b309a0391d299bdce314bdcb82",
+    "decoder": "Capstone",
+    "decoder_version": "5.0.7",
+    "parser_sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+  },
+  "inventory": {
+    "path": "runtime/analysis/inventories/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/native-instructions-93dd4f13459f1b9b.sqlite",
+    "sha256": "dafb0cb8a6f657d2ab1774ad7109f755a115bc569fccb4dc34eff123e83c855b",
+    "regenerate": "python3 -B scripts/inventory-native-instructions.py --write"
+  },
+  "counts": {
+    "unwind_extents": 359575,
+    "processed_extents": 359575,
+    "pending_extents": 0,
+    "completely_decoded_extents": 359575,
+    "extents_with_undecoded_suffix": 0,
+    "linear_instruction_records": 24065472,
+    "decoded_bytes_summed": 97522563,
+    "decoded_bytes_union": 97522563,
+    "undecoded_suffix_bytes_summed": 0,
+    "executable_bytes_outside_unwind_extents": 5271003,
+    "reference_kinds": {
+      "address": 491813,
+      "call_direct": 1160798,
+      "call_indirect": 72705,
+      "jump_direct": 2046763,
+      "jump_indirect": 10406,
+      "memory": 168430
+    }
+  },
+  "declared_extent_pass_complete": true,
+  "native_semantics_complete": false,
+  "parity_verified": false,
+  "gap_ids": [
+    41
+  ],
+  "limits": [
+    "Linear instructions start only at declared AMD64 unwind entries; extents are candidates, not semantic function ownership or proof that decoded bytes execute.",
+    "Decoding stops at the first invalid/truncated instruction without skip-data recovery. Every remaining suffix and executable region outside declared extents stays explicit.",
+    "Only immediate call/jump targets and statically addressed RIP-relative or absolute memory operands are retained. Address formation is separate from reads/writes; computed memory accesses and dispatch remain unresolved.",
+    "An indirect call's static memory address is a pointer slot, never its resolved callee. Register targets, aliases, runtime pointers, data types and ID meanings remain unknown.",
+    "Counts summed across unwind extents may overlap. Union byte counts remove overlaps but do not measure reachable code, native semantic recovery or reconstruction percentage.",
+    "No system/claim recovery, source implementation, runtime validation or original/rebuilt parity is certified. Full-image REA/Ghidra analysis remains independently required under #41."
+  ]
+}

@@ -1,0 +1,685 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.115.0",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
+  },
+  "gap_ids": [
+    41,
+    105,
+    106,
+    107
+  ],
+  "lead_ids": [
+    "Q41-B02",
+    "Q41-I01"
+  ],
+  "generator": {
+    "path": "scripts/check-q41-embedded-containers-0.115.0.py",
+    "sha256": "fda8d7241826fef3f2f7567905d9a8ab2f5cd6ab5d07e34b4cbad68d3596c722"
+  },
+  "classification_proof": {
+    "path": "docs/analysis/evidence/0.115.0/data-classification/manifest.json",
+    "sha256": "4efd1224c62c0bed8014a18724644d9a32db7ed393533e802636136dca4d6bef"
+  },
+  "dependencies": [
+    {
+      "path": "scripts/coverage_common.py",
+      "sha256": "8e076cd7c55c918ff626e5e4c7df2e2efb0a8861ed3f39844b53ccd3d4c391ce"
+    },
+    {
+      "path": "scripts/script_sources.py",
+      "sha256": "6b0d00b50784cca57d122d4abc4f0ee34a23d226d409ff3180e668b6df78f74d"
+    },
+    {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+    }
+  ],
+  "input": {
+    "path": "runtime/q41-data-0.115.0/embedded-classification.jsonl",
+    "sha256": "ae88c94d9b22e9af62d746768d93b74553e58ddbdb826bffb4b0e52b6c47c82a",
+    "records": 2110,
+    "bytes": 4239348
+  },
+  "all_rows": {
+    "categories": {
+      "module_type_namespace": 922,
+      "game_binding_identifier": 352,
+      "lua_ui_registration": 336,
+      "resource_path": 306,
+      "lua_function_declaration": 187,
+      "save_configuration_key_lead": 5,
+      "textual_id_assignment": 2
+    },
+    "exact_image_bytes_verified": 2110,
+    "replay_sha256": "f823f82f7ff2ea24eb87fa97266f93f0dc766d11bae2de1d0903041e031f06c1"
+  },
+  "B02_reused_boundaries": {
+    "ranges": 13,
+    "bytes": 42795556,
+    "all_range_bytes_verified": true,
+    "DIR64_records_in_owning_classification": 634018,
+    "semantic_closure": false
+  },
+  "include_scan": {
+    "root": "crates/azeroth-survivors-re/src",
+    "rust_files": 291,
+    "rust_path_set_sha256": "caf2e9735c2004fa4a6145646c88d3d633a39f4be357696038a87a46f44901e1",
+    "literal_and_concat_env_directives": 206,
+    "directive_set_sha256": "6c21e8e0b9f6bc6cfe9a03414d31c24fd58ed755efb31b2c03dd7f44aea07d00",
+    "containers": [
+      {
+        "source": {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs",
+          "sha256": "20943a79bdef384c5ada65a37a700b0d3f525ad9300f6de6fb9a536bd6381a08"
+        },
+        "payload": {
+          "path": "docs/analysis/evidence/0.115.0/embedded-api.lua",
+          "sha256": "a0066d2d6356e9f21fe4544e600def13887047a6608bb588cd6c27859b78ccc5"
+        },
+        "matched_rows": 283,
+        "selectors": {
+          "game_binding_identifier": [
+            [
+              2,
+              2
+            ],
+            [
+              5,
+              194
+            ],
+            [
+              264,
+              265
+            ],
+            [
+              272,
+              272
+            ],
+            [
+              317,
+              317
+            ],
+            [
+              334,
+              334
+            ],
+            [
+              348,
+              349
+            ]
+          ],
+          "lua_function_declaration": [
+            [
+              123,
+              156
+            ]
+          ],
+          "lua_ui_registration": [
+            [
+              0,
+              3
+            ],
+            [
+              8,
+              13
+            ],
+            [
+              15,
+              17
+            ],
+            [
+              29,
+              30
+            ],
+            [
+              303,
+              303
+            ],
+            [
+              306,
+              335
+            ]
+          ],
+          "resource_path": [
+            [
+              41,
+              41
+            ],
+            [
+              99,
+              99
+            ],
+            [
+              204,
+              205
+            ],
+            [
+              207,
+              207
+            ]
+          ]
+        }
+      },
+      {
+        "source": {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs",
+          "sha256": "20943a79bdef384c5ada65a37a700b0d3f525ad9300f6de6fb9a536bd6381a08"
+        },
+        "payload": {
+          "path": "docs/analysis/evidence/0.105.0/addon-bridge/native-stats-parser.lua",
+          "sha256": "5e45c0c6c1ac1c852c7fba520ca6dfffad4c1ad55569baff1626771cd6fc2d5e"
+        },
+        "matched_rows": 5,
+        "selectors": {
+          "game_binding_identifier": [
+            [
+              190,
+              190
+            ],
+            [
+              192,
+              192
+            ],
+            [
+              265,
+              265
+            ],
+            [
+              349,
+              349
+            ]
+          ],
+          "lua_function_declaration": [
+            [
+              176,
+              176
+            ]
+          ]
+        }
+      },
+      {
+        "source": {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/framexml_hud.rs",
+          "sha256": "587f300b6abd425703d51409b7699a2e8db8f2f71836f146ad577ec9785ffbec"
+        },
+        "payload": {
+          "path": "docs/analysis/evidence/0.108.0/hud-framexml/world-state-patch.lua",
+          "sha256": "3b5ff88881d8b8c733440604d0f34ee29a6f7628e435a5c136d71cc02b2daa88"
+        },
+        "matched_rows": 129,
+        "selectors": {
+          "game_binding_identifier": [
+            [
+              1,
+              1
+            ],
+            [
+              197,
+              259
+            ],
+            [
+              262,
+              263
+            ]
+          ],
+          "lua_function_declaration": [
+            [
+              158,
+              173
+            ],
+            [
+              175,
+              175
+            ]
+          ],
+          "lua_ui_registration": [
+            [
+              0,
+              3
+            ],
+            [
+              8,
+              13
+            ],
+            [
+              15,
+              17
+            ],
+            [
+              29,
+              30
+            ],
+            [
+              303,
+              303
+            ],
+            [
+              306,
+              335
+            ]
+          ]
+        }
+      },
+      {
+        "source": {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/framexml_hud.rs",
+          "sha256": "587f300b6abd425703d51409b7699a2e8db8f2f71836f146ad577ec9785ffbec"
+        },
+        "payload": {
+          "path": "docs/analysis/evidence/0.115.0/death-popup.lua",
+          "sha256": "be597819bb5d27a5909b0c8f70890a0eba72e5351c3fe908fa4aba8230c2c247"
+        },
+        "matched_rows": 3,
+        "selectors": {
+          "game_binding_identifier": [
+            [
+              195,
+              196
+            ]
+          ],
+          "lua_function_declaration": [
+            [
+              157,
+              157
+            ]
+          ]
+        }
+      },
+      {
+        "source": {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/raid_targets.rs",
+          "sha256": "9df005f8fa330111ae4343260c11ba876ba07d1f8f7c2e4104936a6d49bdebe3"
+        },
+        "payload": {
+          "path": "docs/analysis/evidence/0.115.0/raid-targets/popup.lua",
+          "sha256": "aaa7e325170aa8d3e35274b691b51bf04dc9fd642bf183cedd0909b1e62639a9"
+        },
+        "matched_rows": 3,
+        "selectors": {
+          "game_binding_identifier": [
+            [
+              260,
+              261
+            ]
+          ],
+          "lua_function_declaration": [
+            [
+              174,
+              174
+            ]
+          ]
+        }
+      },
+      {
+        "source": {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/run_stats.rs",
+          "sha256": "0d5fe8045b161195cfbb5ab22f3a7f93835a4a9a0dfd26f5d714dd3459c7223d"
+        },
+        "payload": {
+          "path": "docs/analysis/evidence/0.105.0/run-stats/character-pane.lua",
+          "sha256": "5ae575eb7b036b413f2eb7a33c93dec1af8488b532fde3acd19b2bcccf1f151e"
+        },
+        "matched_rows": 393,
+        "selectors": {
+          "game_binding_identifier": [
+            [
+              190,
+              192
+            ],
+            [
+              264,
+              351
+            ]
+          ],
+          "lua_function_declaration": [
+            [
+              176,
+              186
+            ]
+          ],
+          "lua_ui_registration": [
+            [
+              0,
+              3
+            ],
+            [
+              8,
+              13
+            ],
+            [
+              15,
+              17
+            ],
+            [
+              19,
+              19
+            ],
+            [
+              21,
+              21
+            ],
+            [
+              26,
+              26
+            ],
+            [
+              28,
+              30
+            ],
+            [
+              37,
+              66
+            ],
+            [
+              69,
+              70
+            ],
+            [
+              73,
+              75
+            ],
+            [
+              78,
+              247
+            ],
+            [
+              250,
+              271
+            ],
+            [
+              276,
+              277
+            ],
+            [
+              281,
+              284
+            ],
+            [
+              287,
+              289
+            ],
+            [
+              294,
+              296
+            ],
+            [
+              302,
+              303
+            ],
+            [
+              305,
+              335
+            ]
+          ]
+        }
+      },
+      {
+        "source": {
+          "path": "crates/azeroth-survivors-re/src/native_bindings.rs",
+          "sha256": "6106d990e9e69a371e5f007a31417f7d4a0c1a5bdb660b3ceb639b75b77b90ad"
+        },
+        "payload": {
+          "path": "crates/azeroth-survivors-re/assets/stored-level-bindings-0.105.0.xml",
+          "sha256": "082246c47314e76211348199025363f2855d329d0db48141041bf53a8b037f42"
+        },
+        "matched_rows": 2,
+        "selectors": {
+          "game_binding_identifier": [
+            [
+              95,
+              95
+            ],
+            [
+              194,
+              194
+            ]
+          ]
+        }
+      }
+    ]
+  },
+  "included_rows": {
+    "count": 709,
+    "original_classifications": {
+      "source_literal_connection_native_schema_or_consumer_unresolved": 307,
+      "current_AS_addon_API_script_container": 228,
+      "embedded_lead_schema_or_consumer_unresolved": 173,
+      "existing_engine_source_literal_context_native_consumer_unresolved": 1
+    }
+  },
+  "original_unknown": {
+    "count": 281,
+    "categories": {
+      "resource_path": 107,
+      "lua_function_declaration": 28,
+      "game_binding_identifier": 146
+    }
+  },
+  "original_unknown_included": {
+    "count": 173,
+    "categories": {
+      "game_binding_identifier": 146,
+      "lua_function_declaration": 27
+    },
+    "selectors": {
+      "game_binding_identifier": [
+        [
+          195,
+          196
+        ],
+        [
+          201,
+          263
+        ],
+        [
+          266,
+          271
+        ],
+        [
+          273,
+          316
+        ],
+        [
+          318,
+          333
+        ],
+        [
+          335,
+          347
+        ],
+        [
+          350,
+          351
+        ]
+      ],
+      "lua_function_declaration": [
+        [
+          157,
+          158
+        ],
+        [
+          160,
+          162
+        ],
+        [
+          165,
+          186
+        ]
+      ]
+    }
+  },
+  "original_unknown_without_included": {
+    "count": 108,
+    "selectors": {
+      "lua_function_declaration": [
+        [
+          107,
+          107
+        ]
+      ],
+      "resource_path": [
+        [
+          0,
+          6
+        ],
+        [
+          15,
+          15
+        ],
+        [
+          27,
+          27
+        ],
+        [
+          32,
+          32
+        ],
+        [
+          43,
+          43
+        ],
+        [
+          74,
+          74
+        ],
+        [
+          188,
+          188
+        ],
+        [
+          193,
+          197
+        ],
+        [
+          208,
+          211
+        ],
+        [
+          214,
+          285
+        ],
+        [
+          287,
+          287
+        ],
+        [
+          291,
+          293
+        ],
+        [
+          295,
+          296
+        ],
+        [
+          299,
+          305
+        ]
+      ]
+    }
+  },
+  "separate_recovered_AS_core_contracts": [
+    {
+      "selector": "Q41-I01:resource_path:208",
+      "gap_id": 107,
+      "proof": {
+        "path": "docs/analysis/evidence/0.115.0/q41-glue-strings.json",
+        "sha256": "93a3f25920d610acde47264878dd12ac8e48b06c762b4e4f4395851004546a74"
+      }
+    },
+    {
+      "selector": "Q41-I01:resource_path:211",
+      "gap_id": 106,
+      "proof": {
+        "path": "docs/analysis/evidence/0.115.0/q41-death-popup.json",
+        "sha256": "315a4d77a7579bdc7ac2abf2cbf7113c3b1fab199b5f90624a6700a3f672aff4"
+      }
+    }
+  ],
+  "remaining_without_these_connections": {
+    "count": 106,
+    "categories": {
+      "resource_path": 105,
+      "lua_function_declaration": 1
+    },
+    "selectors": {
+      "lua_function_declaration": [
+        [
+          107,
+          107
+        ]
+      ],
+      "resource_path": [
+        [
+          0,
+          6
+        ],
+        [
+          15,
+          15
+        ],
+        [
+          27,
+          27
+        ],
+        [
+          32,
+          32
+        ],
+        [
+          43,
+          43
+        ],
+        [
+          74,
+          74
+        ],
+        [
+          188,
+          188
+        ],
+        [
+          193,
+          197
+        ],
+        [
+          209,
+          210
+        ],
+        [
+          214,
+          285
+        ],
+        [
+          287,
+          287
+        ],
+        [
+          291,
+          293
+        ],
+        [
+          295,
+          296
+        ],
+        [
+          299,
+          305
+        ]
+      ]
+    },
+    "generic_Lua_diagnostic": {
+      "selector": "Q41-I01:lua_function_declaration:107",
+      "literal": "function argument("
+    }
+  },
+  "limits": [
+    "All 2110 rows are replayed; occurrence in immutable included text establishes a source container only, not native callback/schema/producer/consumer or runtime closure.",
+    "Current literal include_str and concat/env forms are exhaustively checked in the AS Rust source tree. This is textual inspection, not Rust macro expansion or execution.",
+    "Old canonical files keep original provenance. Inclusion does not revalidate their complete native behavior or every literal; owning current proofs govern recovered contracts.",
+    "The two resource contracts reuse separate target-bound proofs; this checker does not duplicate their recovery or execute their source implementations.",
+    "The 105 remaining resource leads are not all classified as engine or fully traced. Existing AS resource connections, artwork and generic engine leads remain distinct from demonstrated defects; #103/#104 proof-only revalidation is excluded.",
+    "B02 byte boundaries retain mixed schemas, aliases/types and unknown AS consumers; no global semantic closure, compilation, application/game/network execution or parity is claimed."
+  ]
+}

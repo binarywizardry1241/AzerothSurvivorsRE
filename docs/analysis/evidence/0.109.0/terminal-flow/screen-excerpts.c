@@ -1,0 +1,45 @@
+/* Ghidra raw owner 0x140287980: original decompiler lines 785..830. */
+    local_2d0 = _DAT_145df13f8;
+    uStack_2c8 = uRam0000000145df1400;
+    local_2b0 = _DAT_145d9d270;
+    uStack_2ac = uRam0000000145d9d274;
+    uStack_2a8 = uRam0000000145d9d278;
+    uStack_2a4 = uRam0000000145d9d27c;
+    local_2a0 = 1;
+    local_29c = 0;
+    local_294 = 1;
+    local_290 = 0;
+    local_288 = 0x3f800000;
+    local_284 = 0;
+    local_27e = 0;
+    local_282 = 0x10000;
+    local_278 = 0;
+    local_27c = 0x10000;
+    local_276 = 0x100;
+    local_26c = 0;
+    local_274 = 0;
+    local_268 = 0;
+    uStack_260 = 0;
+    local_258 = 0x19643f0ccccd;
+    local_210 = 10;
+    local_240 = _DAT_145df04f0;
+    local_250 = 2;
+    local_49 = 1;
+    func_0x0001401f4150();
+    local_3a0 = &local_540;
+    puStack_390 = &local_520;
+    local_398 = &local_500;
+    local_3a8 = &local_4e0;
+    local_3d0 = &local_240;
+    local_3c8 = &local_588;
+    local_3c0 = &local_4a;
+    plStack_3b0 = &local_208;
+    local_3e8 = (ulong *)local_220;
+    pauStack_3e0 = pauStack_218;
+    local_3d8 = (ulong *)local_210;
+    local_49 = 0;
+    local_3b8 = lVar10;
+    func_0x000140203a30();
+  }
+  return;
+}

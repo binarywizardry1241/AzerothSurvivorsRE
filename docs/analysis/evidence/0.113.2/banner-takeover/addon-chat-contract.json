@@ -1,0 +1,396 @@
+{
+  "addon_folder": "-DragonflightReloaded",
+  "addon_version": "3.2.32-survivors",
+  "inspection": "Read-only installed addon docs/source; no addon execution or validation.",
+  "files": [
+    {
+      "path": "-DragonflightReloaded.toc",
+      "sha256": "64b45f5ce378c5a6f52fcf7fcef313af03b4d795a8ee13609313020956843ac4"
+    },
+    {
+      "path": "docs/RUN-BANNERS.md",
+      "sha256": "a74b21bd6959f12eea41ecfbb4da96295b00b2b5b767ceab7e02939c984dcb77"
+    },
+    {
+      "path": "modules/ui/banners.lua",
+      "sha256": "035f76d93c98544f21b6c8ed9d1cdaa25181648835bc6ac5df98c7660a674d4f"
+    },
+    {
+      "path": "modules/chat/chat.lua",
+      "sha256": "57c18e85189f5547e8c181f70a4edd21d98bbeaaf700a22cc1c46352ecdb1bb4"
+    },
+    {
+      "path": "modules/chat/capture.lua",
+      "sha256": "b2190bcf64ca25055374f0ad521a2fab5930a62984951ac65eac8c7421d8875f"
+    },
+    {
+      "path": "core/hud.lua",
+      "sha256": "9c969c70ed13712cba695749c6f27d8af5c8f8772cc903215ea6f197c9a695ab"
+    },
+    {
+      "path": "core/core.lua",
+      "sha256": "3dc4b1b82c6142564c42d74785c33e5d94d8f1b0c06431c7947a912a834998b8"
+    }
+  ],
+  "routes": [
+    {
+      "input": "CHAT_MSG_RAID_BOSS_EMOTE",
+      "selection": "Entire event category, including pack, wall, formation, elite, lair and unknown notices.",
+      "legacy": "RaidBossEmoteFrame.AddMessage wrapper redirects the already formatted body.",
+      "chat": "CleanerChat RedirectChat suppresses the regular-chat copy only while the legacy hook still owns AddMessage."
+    },
+    {
+      "input": "CHAT_MSG_RAID_BOSS_EMOTE with raw boss-entry or guardian-slain template",
+      "selection": "Exact native template, including catalog translations; not approximate text or time proximity.",
+      "legacy": "Suppress the companion; AZSBANNER supplies the official banner."
+    },
+    {
+      "input": "CHAT_MSG_SYSTEM or direct chat write",
+      "selection": "Exact localized DoT-stack template with a numeric n.",
+      "chat": "Redirect the received display call; other system chat remains chat."
+    },
+    {
+      "input": "UIErrorsFrame.AddMessage",
+      "selection": "Text matches an accepted visible or queued official banner.",
+      "legacy": "Delay one update for pairing; suppress matching companions and forward unmatched errors."
+    },
+    {
+      "input": "CHAT_MSG_ADDON with AZSBANNER prefix",
+      "selection": "Official parsed banner and distinct native id.",
+      "legacy": "Future callbacks independently of hudBanners; duplicate native ids ignored by addon."
+    },
+    {
+      "input": "CHAT_MSG_MONSTER_YELL or RaidWarningFrame",
+      "selection": "Outside the legacy banner rewrite.",
+      "legacy": "Do not conflate with the raid-boss-emote category."
+    }
+  ],
+  "deduplication": "FirstDelivery counts each source frame within the GetTime broadcast bucket; repeats on one frame remain distinct. Legacy hook passes this or owner as the source.",
+  "source_anchors": [
+    {
+      "path": "modules/ui/banners.lua",
+      "tokens": [
+        "function banners.RedirectChat",
+        "local function RedirectLegacy",
+        "ReceiveLegacy, this or owner, text, event, arg2, arg1",
+        "local function RedirectErrors"
+      ]
+    },
+    {
+      "path": "modules/chat/chat.lua",
+      "tokens": [
+        "local oldEvent = native:GetScript(\"OnEvent\")",
+        "state.eventContext = currentEvent",
+        "if oldEvent then oldEvent() end"
+      ]
+    },
+    {
+      "path": "modules/chat/capture.lua",
+      "tokens": [
+        "local function FirstDelivery",
+        "if count <= delivery.maximum then return false end"
+      ]
+    }
+  ],
+  "limits": [
+    "Docs and source establish what the addon expects; they do not establish that its initialization or hooks succeeded during the reported duplicate.",
+    "No installed addon, game input, save or configuration was changed."
+  ],
+  "framexml": {
+    "target_sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+    "archive": "installed-game/Data/patch.MPQ",
+    "hash_basis": "SHA-256 of exact decompressed member bytes.",
+    "members": [
+      {
+        "member": "Interface\\FrameXML\\FrameXML.toc",
+        "sha256": "e41fce21d2dbe598c31999a5b7cdf410222a9e29eeea4be2fe342ee7b643b2f4",
+        "observations": [
+          {
+            "kind": "core_toc_entry",
+            "source_lines": [
+              {
+                "line": 48,
+                "text": "ChatFrame.xml"
+              }
+            ],
+            "entry": "ChatFrame.xml",
+            "occurrences": 1
+          },
+          {
+            "kind": "core_toc_entry",
+            "source_lines": [
+              {
+                "line": 49,
+                "text": "FloatingChatFrame.xml"
+              }
+            ],
+            "entry": "FloatingChatFrame.xml",
+            "occurrences": 1
+          },
+          {
+            "kind": "core_toc_entry",
+            "source_lines": [
+              {
+                "line": 91,
+                "text": "RaidWarning.xml"
+              }
+            ],
+            "entry": "RaidWarning.xml",
+            "occurrences": 1
+          }
+        ]
+      },
+      {
+        "member": "Interface\\FrameXML\\ChatFrame.lua",
+        "sha256": "f224ac3ec8805da02a8e1b8f70bb19fe956fc8c2b451a3692afc17c28f715f9d",
+        "observations": [
+          {
+            "kind": "legacy_raid_boss_delivery",
+            "canonical_extract": "framexml-contract.json",
+            "line": 1457
+          },
+          {
+            "kind": "ordinary_chat_delivery",
+            "source_lines": [
+              {
+                "line": 1467,
+                "text": "\t\t\tthis:AddMessage(body, info.r, info.g, info.b, info.id);"
+              }
+            ],
+            "needle": "this:AddMessage(body"
+          }
+        ]
+      },
+      {
+        "member": "Interface\\FrameXML\\ChatFrame.xml",
+        "sha256": "a814fb8d58ea87a1501481f14d66d729bd34f66c35954dc8667a4e839ab9fb31",
+        "observations": [
+          {
+            "kind": "virtual_chat_template",
+            "source_lines": [
+              {
+                "line": 4,
+                "text": "\t<ScrollingMessageFrame name=\"ChatFrameTemplate\" frameStrata=\"BACKGROUND\" toplevel=\"true\" displayDuration=\"120.0\" maxLines=\"128\" hidden=\"true\" virtual=\"true\">"
+              },
+              {
+                "line": 9,
+                "text": "\t\t\t<OnEvent>"
+              },
+              {
+                "line": 10,
+                "text": "\t\t\t\tChatFrame_OnEvent(event);"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "member": "Interface\\FrameXML\\FloatingChatFrame.xml",
+        "sha256": "3da4592a37e44045de5dbf6996ac7a8483ccc042f166c3565c5d57e99fe891b5",
+        "observations": [
+          {
+            "kind": "singleton_chat_frame",
+            "source_lines": [
+              {
+                "line": 685,
+                "text": "\t<ScrollingMessageFrame name=\"ChatFrame1\" hidden=\"false\" inherits=\"FloatingChatFrameTemplate\" id=\"1\">"
+              }
+            ],
+            "frame": "ChatFrame1",
+            "occurrences": 1
+          },
+          {
+            "kind": "singleton_chat_frame",
+            "source_lines": [
+              {
+                "line": 822,
+                "text": "\t<ScrollingMessageFrame name=\"ChatFrame2\" inherits=\"FloatingChatFrameTemplate\" id=\"2\"/>"
+              }
+            ],
+            "frame": "ChatFrame2",
+            "occurrences": 1
+          },
+          {
+            "kind": "singleton_chat_frame",
+            "source_lines": [
+              {
+                "line": 824,
+                "text": "\t<ScrollingMessageFrame name=\"ChatFrame3\" inherits=\"FloatingChatFrameTemplate\" id=\"3\"/>"
+              }
+            ],
+            "frame": "ChatFrame3",
+            "occurrences": 1
+          },
+          {
+            "kind": "singleton_chat_frame",
+            "source_lines": [
+              {
+                "line": 826,
+                "text": "\t<ScrollingMessageFrame name=\"ChatFrame4\" inherits=\"FloatingChatFrameTemplate\" id=\"4\"/>"
+              }
+            ],
+            "frame": "ChatFrame4",
+            "occurrences": 1
+          },
+          {
+            "kind": "singleton_chat_frame",
+            "source_lines": [
+              {
+                "line": 828,
+                "text": "\t<ScrollingMessageFrame name=\"ChatFrame5\" inherits=\"FloatingChatFrameTemplate\" id=\"5\"/>"
+              }
+            ],
+            "frame": "ChatFrame5",
+            "occurrences": 1
+          },
+          {
+            "kind": "singleton_chat_frame",
+            "source_lines": [
+              {
+                "line": 830,
+                "text": "\t<ScrollingMessageFrame name=\"ChatFrame6\" inherits=\"FloatingChatFrameTemplate\" id=\"6\"/>"
+              }
+            ],
+            "frame": "ChatFrame6",
+            "occurrences": 1
+          },
+          {
+            "kind": "singleton_chat_frame",
+            "source_lines": [
+              {
+                "line": 832,
+                "text": "\t<ScrollingMessageFrame name=\"ChatFrame7\" inherits=\"FloatingChatFrameTemplate\" id=\"7\"/>"
+              }
+            ],
+            "frame": "ChatFrame7",
+            "occurrences": 1
+          },
+          {
+            "kind": "chat_event_body",
+            "source_lines": [
+              {
+                "line": 677,
+                "text": "\t\t\t<OnEvent>"
+              },
+              {
+                "line": 678,
+                "text": "\t\t\t\tChatFrame_OnEvent(event);"
+              },
+              {
+                "line": 679,
+                "text": "\t\t\t\tFloatingChatFrame_OnEvent(event);"
+              },
+              {
+                "line": 680,
+                "text": "\t\t\t</OnEvent>"
+              }
+            ]
+          },
+          {
+            "kind": "chat_event_body",
+            "source_lines": [
+              {
+                "line": 705,
+                "text": "\t\t\t<OnEvent>"
+              },
+              {
+                "line": 706,
+                "text": "\t\t\t\tChatFrame_OnEvent(event);"
+              },
+              {
+                "line": 707,
+                "text": "\t\t\t\tFloatingChatFrame_OnEvent(event);"
+              },
+              {
+                "line": 708,
+                "text": "\t\t\t</OnEvent>"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "member": "Interface\\FrameXML\\FloatingChatFrame.lua",
+        "sha256": "bcd07daf93ff1f5fe7c879e43e99cb9abad4759eced9791d3347ecf9b8fe498f",
+        "observations": [
+          {
+            "kind": "bounded_hook_assignment_absence",
+            "scope": {
+              "first_line": 1,
+              "last_line": 1464
+            },
+            "checks": [
+              {
+                "check": "SetScript call",
+                "pattern": "\\bSetScript\\s*\\(",
+                "matching_lines": []
+              },
+              {
+                "check": "AddMessage field assignment",
+                "pattern": "\\bAddMessage\\s*=",
+                "matching_lines": []
+              },
+              {
+                "check": "CreateFrame call",
+                "pattern": "\\bCreateFrame\\s*\\(",
+                "matching_lines": []
+              }
+            ],
+            "limitation": "Literal source scan only; it does not exclude dynamically computed field writes elsewhere or prove runtime activation."
+          },
+          {
+            "kind": "update_chat_windows_existing_frame",
+            "source_lines": [
+              {
+                "line": 34,
+                "text": "function FloatingChatFrame_OnEvent(event)"
+              },
+              {
+                "line": 35,
+                "text": "\tif ( event == \"UPDATE_CHAT_WINDOWS\" ) then"
+              },
+              {
+                "line": 36,
+                "text": "\t\tFloatingChatFrame_Update(this:GetID(), 1);"
+              },
+              {
+                "line": 37,
+                "text": "\t\tthis.isInitialized = 1;"
+              },
+              {
+                "line": 38,
+                "text": "\tend"
+              },
+              {
+                "line": 39,
+                "text": "end"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "member": "Interface\\FrameXML\\RaidWarning.xml",
+        "sha256": "9e5cba537a3cc0cf91b447ae30d60efe066abba3285b52f7b518c19094241860",
+        "observations": [
+          {
+            "kind": "legacy_raid_boss_message_frame",
+            "source_lines": [
+              {
+                "line": 25,
+                "text": "\t<MessageFrame name=\"RaidBossEmoteFrame\" insertMode=\"TOP\" parent=\"UIParent\" frameStrata=\"HIGH\" toplevel=\"true\">"
+              }
+            ],
+            "occurrences": 1
+          }
+        ]
+      }
+    ],
+    "limits": [
+      "The EXE hash binds the selected recovery target; these observations are shipped resource source, not native executable call-path evidence.",
+      "Singleton counts are bounded to the named member and TOC; they do not prove global runtime instance counts.",
+      "Absence scans are literal checks of the entire named Lua member only, not proof that no other source can change a hook.",
+      "This evidence does not establish successful addon initialization, active takeover, actual duplicate delivery or rendered behavior."
+    ]
+  }
+}

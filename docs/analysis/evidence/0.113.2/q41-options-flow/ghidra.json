@@ -1,0 +1,228 @@
+{
+  "observations": [
+    {
+      "operation": "analyze_function",
+      "parameters": {
+        "procedure": "0x1401a6770"
+      },
+      "evidence_id": "ev_f73a22d7c4ad6c6ec7babf5753c6115fb6a37ffad96cf7d8c62d1d40df068a4e",
+      "target_sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+      "result_procedure": {
+        "address": "0x1401a6770",
+        "name": "FUN_1401a6770",
+        "classification": {
+          "external": false,
+          "thunk": false,
+          "thunk_target": null,
+          "provenance": "ghidra-function-manager"
+        },
+        "body": {
+          "available": true,
+          "provenance": "ghidra-function-body-address-set",
+          "ranges": [
+            {
+              "start": "0x1401a6770",
+              "end": "0x1401a67d8"
+            },
+            {
+              "start": "0x1401a6cc2",
+              "end": "0x1401a6cd7"
+            }
+          ],
+          "total_bytes": 127,
+          "span_bytes": 1384,
+          "non_contiguous": true,
+          "contains_entry": true
+        },
+        "signature": "undefined FUN_1401a6770()",
+        "locals": []
+      },
+      "result_found": null,
+      "source_artifact": "runtime/q41-flow-relations-0.113.2/rea/003-options-setter.json",
+      "source_sha256": "2e64b9ba21d149726af5cb6ced61e794d048603fb7915be83f78b118261fccb0",
+      "analysis_profile_digest": "854ae533548b3b7d58aa7531494d862e9c85b7945a4b086c224f21928b6fdd29"
+    },
+    {
+      "operation": "analyze_function",
+      "parameters": {
+        "procedure": "0x140149550"
+      },
+      "evidence_id": "ev_7aba24ec8244def7eca40e237eb42084feeb18767150dc4ae00e1b2fcf2236b4",
+      "target_sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+      "result_procedure": {
+        "address": "0x140149550",
+        "name": "FUN_140149550",
+        "classification": {
+          "external": false,
+          "thunk": false,
+          "thunk_target": null,
+          "provenance": "ghidra-function-manager"
+        },
+        "body": {
+          "available": true,
+          "provenance": "ghidra-function-body-address-set",
+          "ranges": [
+            {
+              "start": "0x140149550",
+              "end": "0x140149561"
+            }
+          ],
+          "total_bytes": 18,
+          "span_bytes": 18,
+          "non_contiguous": false,
+          "contains_entry": true
+        },
+        "signature": "undefined FUN_140149550()",
+        "locals": []
+      },
+      "result_found": null,
+      "source_artifact": "runtime/q41-flow-relations-0.113.2/rea/004-format-callback.json",
+      "source_sha256": "3ed04077923e058659b0bcdeff1fca60a3359152bf48acbed6005a11730fb977",
+      "analysis_profile_digest": "854ae533548b3b7d58aa7531494d862e9c85b7945a4b086c224f21928b6fdd29"
+    },
+    {
+      "operation": "resolve_containing_procedure",
+      "parameters": {
+        "address": "0x1401a6bcc"
+      },
+      "evidence_id": "ev_7053dff4b48fd2eb25723c6aae81cd6a804aad3ee56e2bc8512a460ec092ea14",
+      "target_sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+      "result_procedure": null,
+      "result_found": false,
+      "source_artifact": "runtime/q41-flow-relations-0.113.2/rea/005-missing-resource-owner.json",
+      "source_sha256": "9d4224b218212b70d7c5a5593be87c8fb68bd12b777884be9f3ef82c56fea004",
+      "analysis_profile_digest": "854ae533548b3b7d58aa7531494d862e9c85b7945a4b086c224f21928b6fdd29"
+    },
+    {
+      "operation": "inspect_native_instruction",
+      "parameters": {
+        "address": "0x1401a67d7"
+      },
+      "evidence_id": "ev_5628af311220bb79434f9a4ec975d4ab8c107a97020378fe4afd0e3cf86ba3c2",
+      "target_sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+      "result_procedure": "0x1401a6770",
+      "result_found": null,
+      "source_artifact": "runtime/q41-flow-relations-0.113.2/rea/006-descriptor-dispatch.json",
+      "source_sha256": "8444ee8ce082d50cce059fe0a41b073edd31257c841a457e69fe7c0050d30f4c",
+      "analysis_profile_digest": "854ae533548b3b7d58aa7531494d862e9c85b7945a4b086c224f21928b6fdd29"
+    },
+    {
+      "operation": "inspect_native_instruction",
+      "parameters": {
+        "address": "0x1401a6904"
+      },
+      "evidence_id": "ev_5257cdf6ad0439721952c37ece29d3bed971c865c16276f4af93427147f45bcb",
+      "target_sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+      "result_procedure": null,
+      "result_found": null,
+      "source_artifact": "runtime/q41-flow-relations-0.113.2/rea/007-callback-address.json",
+      "source_sha256": "5669a442939639ff2296134488e0fb219f0a54aa64ff8c0571e1e2665594b649",
+      "analysis_profile_digest": "854ae533548b3b7d58aa7531494d862e9c85b7945a4b086c224f21928b6fdd29"
+    },
+    {
+      "operation": "inspect_native_instruction",
+      "parameters": {
+        "address": "0x1401a6bd7"
+      },
+      "evidence_id": "ev_c04b4e0098d2f66dd204bead0f7aa181adcbd122eb4dfe1703f1e5b38955dbee",
+      "target_sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+      "result_procedure": null,
+      "result_found": null,
+      "source_artifact": "runtime/q41-flow-relations-0.113.2/rea/008-resource-panic-call.json",
+      "source_sha256": "5a42e2f471530966dc8359727d66048b4d8919e5b29d9351592739494c85402a",
+      "analysis_profile_digest": "854ae533548b3b7d58aa7531494d862e9c85b7945a4b086c224f21928b6fdd29"
+    },
+    {
+      "operation": "procedure_references",
+      "parameters": {
+        "procedure": "0x140149550",
+        "direction": "outgoing"
+      },
+      "evidence_id": "ev_f8689b899cd9e38854dd010c317f4a4ba4e960a6a023975ceeeaae32c9c771f6",
+      "target_sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+      "result_procedure": {
+        "address": "0x140149550",
+        "name": "FUN_140149550",
+        "classification": {
+          "external": false,
+          "thunk": false,
+          "thunk_target": null,
+          "provenance": "ghidra-function-manager"
+        },
+        "body": {
+          "available": true,
+          "provenance": "ghidra-function-body-address-set",
+          "ranges": [
+            {
+              "start": "0x140149550",
+              "end": "0x140149561"
+            }
+          ],
+          "total_bytes": 18,
+          "span_bytes": 18,
+          "non_contiguous": false,
+          "contains_entry": true
+        }
+      },
+      "result_found": null,
+      "source_artifact": "runtime/q41-flow-relations-0.113.2/rea/009-formatter-references.json",
+      "source_sha256": "ec3e2d55bc6417dbac5d669cf90255b0f824b036964f9a87c18d91c556b49fd2",
+      "analysis_profile_digest": "854ae533548b3b7d58aa7531494d862e9c85b7945a4b086c224f21928b6fdd29"
+    }
+  ],
+  "probe_seed_sha256": "1eeea8e1b7bb96a01eaa80393bb4bca0dcc96cd6641d31b1f633685b41e6e5e2",
+  "original_probe_plan_sha256": "05ed08497f953e32c5eb9a28cc052ab6c7ae6753403a473f082c79431e247392",
+  "replay_note": "The portable replay plan selects the curated identical seed bytes. Different paths/profiles may yield new Evidence IDs; these observations retain their original profile and IDs.",
+  "profiles": {
+    "854ae533548b3b7d58aa7531494d862e9c85b7945a4b086c224f21928b6fdd29": {
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "seed_format": "rea-ghidra-seeds-body-repair-v1",
+      "seed_sha256": "1eeea8e1b7bb96a01eaa80393bb4bca0dcc96cd6641d31b1f633685b41e6e5e2",
+      "seed_counts": {
+        "function": 2,
+        "code": 10,
+        "label": 0
+      },
+      "disabled_analyzers": [
+        "Stack",
+        "Decompiler Switch Analysis",
+        "Function ID",
+        "Function Start Search",
+        "Disassemble Entry Points",
+        "Subroutine References",
+        "Data Reference",
+        "Reference",
+        "Non-Returning Functions - Discovered",
+        "Shared Return Calls",
+        "Create Address Tables",
+        "Call Convention ID",
+        "Call-Fixup Installer",
+        "Variadic Function Signature Override"
+      ],
+      "profile_parameters_retained_in_original_response": true
+    }
+  },
+  "provider_limitations": [
+    "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+    "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+    "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+    "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+    "References cover the complete Ghidra function-body AddressSet and exact entry. Dossier incoming edges omit sources owned by that function; procedure_references also retains those internal edges.",
+    "The dossier combines Ghidra FunctionManager, Listing, ReferenceManager, BasicBlockModel, and decompiler observations; provider-specific pseudocode and assembly are not cross-provider text invariants.",
+    "Resolved reference metadata identifies computed, indirect, external, call, jump, and data edges; unresolved targetless flows remain unknown, and function classifications distinguish thunks and externals.",
+    "Synthetic Ghidra entry-point references without actionable memory sources are omitted.",
+    "The Java bridge serializes one function request per Program and lets each decompilation run until it completes or the caller cancels.",
+    "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+    "Ghidra analysis was seeded before auto-analysis from runtime/q41-flow-relations-0.113.2/seeds.tsv (sha256 1eeea8e1b7bb96a01eaa80393bb4bca0dcc96cd6641d31b1f633685b41e6e5e2: 2 function, 10 code, 0 label entries). Seeded functions, code and names are caller assertions, not Ghidra discoveries.",
+    "Seed outcome: 1 functions created, 1 already present, 0 failed; 10 code seeds decoded, 0 failed; 0 labels applied, 0 failed; 0 seeds outside initialized memory.",
+    "The target references PDB benilla_rogue.pdb (GUID aaf000c3-15a9-4eaa-b7e0-7863bf03c45c, age (hex) 1, signature unknown, version RSDS); Ghidra reports load state unknown. Original names and types may be missing; an empty name search does not prove a procedure is absent. Use list_procedures and address-based analysis to inspect recovered functions. REA does not admit a caller-selected PDB companion.",
+    "An exact external entry resolves to its observed function identity even when its body is empty. This does not establish mapped executable bytes or containment of nearby external addresses.",
+    "References cover the complete Ghidra function-body AddressSet and exact entry, including instruction-interior destinations and embedded-data sources; an enclosing address span does not establish function ownership.",
+    "Reference kinds are direct Ghidra ReferenceManager observations; unresolved computed flows without a target are absent and remain unknown."
+  ],
+  "portable_path_normalization": "Project root prefixes in the displayed provider-limitations text are omitted. Original responses, profile identities and source artifact digests remain unchanged."
+}

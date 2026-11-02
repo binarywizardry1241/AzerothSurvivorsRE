@@ -1,0 +1,63 @@
+# macOS metadata
+.DS_Store
+._*
+.Spotlight-V100/
+.Trashes/
+
+# Local secrets (commit sanitized examples instead)
+.env
+.env.*
+!.env.example
+
+# Machine-specific optional REA registration (portable example is tracked)
+/.codex/config.toml
+/.codex/reference-game.json
+
+# Reinstallable dependencies and local runtime caches
+node_modules/
+.cache/
+.tools/
+runtime/
+
+# Python helper bytecode
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Disposable captures, logs, downloads, and updater payloads
+/captures/
+/screenshots/
+/downloads/
+/coverage/
+*.log
+*.update
+
+# Local game copy (keep binaries, assets, and saves out of Git)
+/AzerothSurvivors/
+
+# Source-only game repository: users provide their own runtime MPQ data.
+*.[mM][pP][qQ]
+*.[eE][xX][eE]
+*.[dD][lL][lL]
+*.[pP][dD][bB]
+*.o
+*.obj
+*.a
+*.lib
+*.dylib
+*.so
+*.so.*
+*.rlib
+*.rmeta
+*.exp
+*.ilk
+*.profraw
+*.profdata
+*.dSYM/
+*.app/
+/target/
+/crates/*/target/
+/build/
+/dist/

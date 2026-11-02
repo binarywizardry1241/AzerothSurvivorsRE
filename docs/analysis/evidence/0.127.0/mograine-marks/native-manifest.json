@@ -1,0 +1,876 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.127.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+    "size_bytes": 146721280
+  },
+  "gap_ids": [
+    294
+  ],
+  "target_executed": false,
+  "queries": [
+    {
+      "role": "shared-hazard-tick",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-294-0.127.0/dispatch/rea-145c50640/plan.json",
+        "sha256": "04382d59b2f78fa989d845a01384a01bd1e67f708c4c53aaf335971d0c4c3eea"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-294-0.127.0/dispatch/rea-145c50640/journal.json",
+        "sha256": "f863a83ce07afaf45a35a30b16e3150207e6e19cef2c9eb9db9abeba6b9755d4"
+      },
+      "evidence_bundle": {
+        "path": "runtime/analysis/tasks/fixgap-294-0.127.0/dispatch/rea-145c50640/attempts/0001/evidence-bundle.json",
+        "sha256": "4ff0025acba4150e95b3c2e4dc887a8e07d3b28606474f20752c5b3698590a5d"
+      },
+      "evidence_id": "ev_88fe5b66c1933c9c904da24f48a9d9e842b29c58eb8a2c92f05873d6537b23de",
+      "operation": "analyze_function",
+      "parameters": {
+        "procedure": "0x145c50640"
+      },
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "limits": [
+        "Raw import omits external code/data and uses generic ABI; original instructions govern argument interpretation."
+      ],
+      "result_status": "analysis_completed_export_retained",
+      "transport_note": "Full analyze_function response exceeded10MiB; completed Evidence was exported intact.",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-294-0.127.0/dispatch/slices/picker-145c50640.bin",
+        "sha256": "cad7e7f90f644fa132885c3b4cdcf0018b80063af40fb583544cd266338dfb89",
+        "format": "raw-binary",
+        "architecture": "x86_64"
+      }
+    },
+    {
+      "role": "action-dispatch-prefix",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-294-0.127.0/hazards/slices/plan-145c5a780.json",
+        "sha256": "ff02a6bf7a9ea8e441c0452a479053598e2ef6bc6199b7706b355e48f4433352"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-294-0.127.0/hazards/rea-145c5a780/journal.json",
+        "sha256": "30c7c30ef3a2c77525c591d535a36d8bf7b8eb4935903afbfa30951997e258b9"
+      },
+      "evidence_bundle": {
+        "path": "runtime/analysis/tasks/fixgap-294-0.127.0/hazards/rea-145c5a780/attempts/0002/evidence-bundle.json",
+        "sha256": "940ad959447addd8d2270e6edb45a9d0be3112387878063f2b4308a1ca241f08"
+      },
+      "evidence_id": "ev_1349a833d030f80204d36dfd1582e77137c4c7767405ad4aa1a759afb118532d",
+      "operation": "analyze_function",
+      "parameters": {
+        "procedure": "0x145c5a780"
+      },
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "limits": [
+        "Raw import omits external code/data and uses generic ABI; original instructions govern argument interpretation."
+      ],
+      "result_status": "completed",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-294-0.127.0/hazards/slices/picker-145c5a780.bin",
+        "sha256": "60cd9489a2081ac3af2a19965eb563100c7032f35465bad480f80d107ff5bdae"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-294-0.127.0/hazards/rea-145c5a780/results/d435bd54df98ad8934ba8fa3cf35be7cfba605796596c5f14c59ab45c7bac880.json",
+        "sha256": "c7b037fea1297c50bd9927e4039d918230d8748e4fdc7a9fe624c15a71225399"
+      },
+      "procedure": "0x145c5a780",
+      "slice_virtual_address": "0x145c5a780",
+      "analysis_profile_digest": "c539602d3fd6a59e35c515e0403105d3fcfa700e6809c884fc4bc2cee6d6282d",
+      "raw_subject": {
+        "format": "raw-binary",
+        "architecture": "x86_64"
+      }
+    },
+    {
+      "role": "mark-producer",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-294-0.127.0/mark-producer/slices/plan-145c5da28.json",
+        "sha256": "a390db749f31c1e90e7d7d2f44f176f0aeb1eb6b38ee7c692b16f4bc94dd1f1c"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-294-0.127.0/mark-producer/rea-145c5da28/journal.json",
+        "sha256": "39ffaa050d9d1db670d62d90406ae7f72245a0fd66edebfb520f7aeeccd0b807"
+      },
+      "evidence_bundle": {
+        "path": "runtime/analysis/tasks/fixgap-294-0.127.0/mark-producer/rea-145c5da28/attempts/0001/evidence-bundle.json",
+        "sha256": "aa720d550893aa46c729cedb5d0b3cec0c4bcfd5ced4eb754c419f00eedad507"
+      },
+      "evidence_id": "ev_80d752445413b288b75a2da7fbe9d9f20c5b8b40c429bf6a17877b993ad93486",
+      "operation": "analyze_function",
+      "parameters": {
+        "procedure": "0x145c5da28"
+      },
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "limits": [
+        "Raw import omits external code/data and uses generic ABI; original instructions govern argument interpretation."
+      ],
+      "result_status": "completed",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-294-0.127.0/mark-producer/slices/picker-145c5da28.bin",
+        "sha256": "3735f7aa00b5f4cd3a7e660fe78518ad02feec37397867365a85efd0089d5b0d"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-294-0.127.0/mark-producer/rea-145c5da28/results/4ac537fbcebc43ffd2e99c1e0a2a9356aa6f9c671edb81e02f733d1de3782230.json",
+        "sha256": "dcd840947f6d1939eb4e89ee470fc129c496303a7f3e50ba11497334c31f9ee8"
+      },
+      "procedure": "0x145c5da28",
+      "slice_virtual_address": "0x145c5da28",
+      "analysis_profile_digest": "cbe7a676a120666b8dfa1ce3329e29090bfd271bab717ddf0bc2add1cf02c70e",
+      "raw_subject": {
+        "format": "raw-binary",
+        "architecture": "x86_64"
+      }
+    }
+  ],
+  "native_ranges": [
+    {
+      "role": "hazard-position",
+      "virtual_address": "0x145c51257",
+      "end_exclusive": "0x145c515d4",
+      "file_offset": "0x5c50657",
+      "byte_count": 893,
+      "sha256": "67d7a4359b6e590c77889fe5f34d00cce2b9bc19829d9b6d728b61ffdbaa591e",
+      "bytes_hex": "488bbb180c0000488d4f10f2440f10a320050000f3410f16f4f3440f109b28050000410f28cc0f28d6e85bcff4ffa8017406440f28d8eb3348837f68ff742c4883c768488d8d200200004889fa410f28d40f28dee81027f5ff83bd20020000017509f3440f109d2c020000440f13a528010000f3440f119d30010000488bbb180c000048837f40ff0f84a80000004883c740f2440f10ab20050000f3440f1093280500008bb33c0d000089f0c0e004c0f8070fbae60214000f57fff7c6001000000f855a01000089f180e10189f3c0e306c0fb0700cb89d908c10f8441010000440fbef00f57c0f3410f2ac60fbec30f57c9f30f2ac84c8bbd90020000f3450f108f2c050000e801044100f3410f108fa8050000f30f5f0d4d1b5e004584f60f84b3000000440f28c184db0f89b4000000e9b3000000f2440f10ab20050000f3440f1093280500008bb33c0d000089f0c0e004c0f8070fbae60214000f57f6f7c6001000000f85ce01000089f180e10189f3c0e306c0fb0700cb89d908c10f84b50100000fbef80f57c0f30f2ac70fbec30f57c9f30f2ac84c8bb590020000f3410f10be2c050000e85f034100f3410f108ea8050000f30f5f0dab1a5e004084ff0f842c010000440f28c184db0f892d010000e92c010000f3440f1005f076600084db7804440f28c1f3440f58c8f7c6000100007409f3440f10053aa26200410f28c1e80a0341000f28f8f3410f59f8410f28c1e8e1024100f3410f59c00f14f8488bb590020000f30f1086c00c0000f30f5c86400d0000450f57c9f3410f58c10f57c9f30f5fc8f3440f1005181a5e00410f28c0f30f5dc1f30f12c00f59c7440f58e866440f7ee2660f7ef048c1e0204809c266450f7ee8f3410f16c5660f7ec048c1e0204909c04889f9e8186ef4ff410f2ec00f83d7000000410f28cc410f5ccd0f59c9f30f16d1f30f58d10f57c9f30f51caf30f1015101c5e00f30f5fcaf30f5ed1f30f5cc2f3410f5fc1450f5cecf30f12c8410f59cd410f58ccf3450f5cd3f3440f59d0f3450f58d3440f28e9eb7ff3440f1005d575600084db7804440f28c1f30f58f8f7c6000100007409f3440f100520a162000f28c7e8f10141000f28f0f3410f59f00f28c7e8c9014100f3410f59c00f14f0488bb590020000f30f1086c00c0000f30f5c86400d00000f57c9f30f58c1f30f5fc8f30f100506195e00f30f5dc1f30f12c00f59c6440f58e8440f136d08f3440f115510",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/mograine-marks/hazard-position.asm",
+        "sha256": "10e4906f8881729c772bfbae409ccf4d600e938b4b79460fc90db04863d1a3ba"
+      },
+      "instruction_count": 195,
+      "query_role": "shared-hazard-tick",
+      "boundary_source": "explicit original VA interval; leaf function boundary is not proven by unwind metadata"
+    },
+    {
+      "role": "accepted-follow-center",
+      "virtual_address": "0x145c51b68",
+      "end_exclusive": "0x145c51b88",
+      "file_offset": "0x5c50f68",
+      "byte_count": 32,
+      "sha256": "9436fee2ed6930111ca7d3e92b8aec5cd575797d110a1d83b2d76ba12552ee52",
+      "bytes_hex": "f3410f104f580f2ec876158b853001000041894748488b852801000049894740",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/mograine-marks/accepted-follow-center.asm",
+        "sha256": "d35e24d8d5a60c258057f633f615ded7cd86144f26fd221cc59eff014b44c0fe"
+      },
+      "instruction_count": 7,
+      "query_role": "shared-hazard-tick",
+      "boundary_source": "explicit original VA interval; leaf function boundary is not proven by unwind metadata"
+    },
+    {
+      "role": "periodic-circle-dual-admission",
+      "virtual_address": "0x145c539f4",
+      "end_exclusive": "0x145c53a6f",
+      "file_offset": "0x5c52df4",
+      "byte_count": 123,
+      "sha256": "d055c060b34a7703ab2b1ed235fd820d1cdba7313301409b896f94f631ee217b",
+      "bytes_hex": "418b4748488d952c020000894208498b4740488902f3450f10574c498b450048898520020000418b4508898528020000f3440f119538020000488d8d20020000410f28d24c8d8d28010000e81c24f2ff84c00f8456020000488d8d20020000488d952c020000410f28d24c8d4d08e8f923f2ff84c00f8433020000",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/mograine-marks/periodic-circle-dual-admission.asm",
+        "sha256": "38c38331fae7bd6ac93833b185f22370d90f83966907e56988fa71a0147cd72f"
+      },
+      "instruction_count": 24,
+      "query_role": "shared-hazard-tick",
+      "boundary_source": "explicit original VA interval; leaf function boundary is not proven by unwind metadata"
+    },
+    {
+      "role": "aftershock-dual-admission",
+      "virtual_address": "0x145c53aaf",
+      "end_exclusive": "0x145c53b2a",
+      "file_offset": "0x5c52eaf",
+      "byte_count": 123,
+      "sha256": "b4b0d0d93137363e677a5e842570aabc4b733efd4ec9f29c4e578ab411f533ab",
+      "bytes_hex": "418b4748488d952c020000894208498b4740488902f3450f10574c498b450048898520020000418b4508898528020000f3440f119538020000488d8d20020000410f28d24c8d8d28010000e86123f2ff84c00f849b010000488d8d20020000488d952c020000410f28d24c8d4d08e83e23f2ff84c00f8478010000",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/mograine-marks/aftershock-dual-admission.asm",
+        "sha256": "c2c88be22435ca57000be37085b97813b68dac866200cf908c26b0cfd8c5c7bf"
+      },
+      "instruction_count": 24,
+      "query_role": "shared-hazard-tick",
+      "boundary_source": "explicit original VA interval; leaf function boundary is not proven by unwind metadata"
+    },
+    {
+      "role": "mark-producer",
+      "virtual_address": "0x145c5da28",
+      "end_exclusive": "0x145c5dbb8",
+      "file_offset": "0x5c5ce28",
+      "byte_count": 400,
+      "sha256": "3735f7aa00b5f4cd3a7e660fe78518ad02feec37397867365a85efd0089d5b0d",
+      "bytes_hex": "8b198b7904f3440f104908f30f10790cf30f104110f3440f105114f3440f106118f3440f10691c450f28c1f3440f5e0594db5e00f3440f5805bf565d0031c080be6f030000000f94c0488d0dc8037801410f28c8f30f5e0c810f28d0f30f5fd10f28f2f30fc2f2030f28ce0f55ca0f54f00f56f14889f1488b95b80100004189d80f28dee80fc4ffff31c00f57c0440f2ee0762a410f28c7f30f58c6f3440f58e0f3440f59adc0010000f3440f116540f3440f116d44897d48b80200000089453cf3440f118d24010000c7852001000000000000f30f1085c0010000f3410f59c2488d453c4889442448f30f11442440895c2438f30f11742430f3440f115c2420c7442428000000004c8d85200100004889f1488b95b80100000f289df0000000e842c1ffff488b96f00500004839d00f83e5270000f3410f58ff488b8ee805000048c1e007f30f10440154f3410f5cc00f28cff30f5dc80f28c1f30fc2c1030f28d00f55d10f54c70f56c20f28c8f3410f5fcf0f28d1f30fc2d1030f54c20f55d10f56d0f30f11540158e961ccffff",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/mograine-marks/mark-producer.asm",
+        "sha256": "ee771f9d07b55beb426eff3f323d137dba189539491102c0fc721969b3983bc4"
+      },
+      "instruction_count": 84,
+      "query_role": "mark-producer",
+      "boundary_source": "explicit original VA interval; leaf function boundary is not proven by unwind metadata"
+    },
+    {
+      "role": "constructor-deadline",
+      "virtual_address": "0x145c59db1",
+      "end_exclusive": "0x145c59dcb",
+      "file_offset": "0x5c591b1",
+      "byte_count": 26,
+      "sha256": "0ec385cb25a7265a1b97c5a3e6e6aea83566b9c9ab605bc42ce83e1536f0b83b",
+      "bytes_hex": "31c04584ff0f94c0488d0d80407801f3440f591c81f3450f58d9",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/mograine-marks/constructor-deadline.asm",
+        "sha256": "e219b3cb5ce0bb64f71d83d9a7a3636fdbda1c57b9a02646379ea330a068b121"
+      },
+      "instruction_count": 6,
+      "census_instruction_rows": [
+        {
+          "address": "145c59db1",
+          "length": "2",
+          "bytes": "31c0",
+          "flow": "FALL_THROUGH"
+        },
+        {
+          "address": "145c59db3",
+          "length": "3",
+          "bytes": "4584ff",
+          "flow": "FALL_THROUGH"
+        },
+        {
+          "address": "145c59db6",
+          "length": "3",
+          "bytes": "0f94c0",
+          "flow": "FALL_THROUGH"
+        },
+        {
+          "address": "145c59db9",
+          "length": "7",
+          "bytes": "488d0d80407801",
+          "flow": "FALL_THROUGH"
+        },
+        {
+          "address": "145c59dc0",
+          "length": "6",
+          "bytes": "f3440f591c81",
+          "flow": "FALL_THROUGH"
+        },
+        {
+          "address": "145c59dc6",
+          "length": "5",
+          "bytes": "f3450f58d9",
+          "flow": "FALL_THROUGH"
+        }
+      ],
+      "boundary_source": "Exact current Ghidra census instruction boundaries inside constructor145c59c90..145c59ebc; not a standalone function."
+    },
+    {
+      "role": "shape-helper",
+      "virtual_address": "0x145b75e60",
+      "end_exclusive": "0x145b75fd2",
+      "file_offset": "0x5b75260",
+      "byte_count": 370,
+      "sha256": "30c20e5ad417b0cc53ef542c6a0513c8da19bce68e07d9fe2acf842f9f692010",
+      "bytes_hex": "564883ec60440f294c2450440f294424400f297c24300f297424200f28fa4889cef2410f1031f20f10020f5cf0f3440f16c60f28c6410f28c8e8ddb84e008b06f3440f104e04488d0d33b84f01486304814801c8ffe0440f2ec8e9f40000000f28c7e8a2b84e00440f28c00f28c7e87eb84e00410f28d00f14d00f59d6f30f16caf30f58ca31c00f57d20f2eca0f82c3000000440f2ec90f82b9000000f30f104e08410f14c00f59c6f30f16d0f30f5cd00f541558d26b00f30f590d04d26b000f2ecae98b000000410f2ec17779b001f30f100decd16b000f2ec87779f3440f104e08410f28c00f28cee814b84e00f30f5cc7f30f5805a1d16b00f30f10352d2b6d000f28cee822b84e00f30f58f00f57c90f28d0f30fc2d1010f54f20f55d00f56d6f30f58150d317e000f5415ded16b00f3440f590d89d16b00440f2ecaeb12410f2ec1730431c0eb0bf30f104e080f2ec80f93c00f287424200f287c2430440f28442440440f284c24504883c4605ec3",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/mograine-marks/shape-helper.asm",
+        "sha256": "5aa626c38a0777df81c8084efed13ead852fd07f125cf1dab3c20d950a251643"
+      },
+      "instruction_count": 89,
+      "boundary_source": "Exact parent-EXE case/function interval; current Ghidra prefix/table/callers establish interface, omitted case instructions are independently decoded and checked by bounded original-byte replay.",
+      "decoder": "Existing installed Capstone5 binding; no provider process or new extraction tool."
+    },
+    {
+      "role": "ordinary-admission",
+      "virtual_address": "0x145c527be",
+      "end_exclusive": "0x145c52acd",
+      "file_offset": "0x5c51bbe",
+      "byte_count": 783,
+      "sha256": "dc8a83b00a0d2ee0a8f070bf6c65a089da0da3c968a68da59ca5375d2857bf3d",
+      "bytes_hex": "4d8d6f3041807f7d000f85c7110000f30f10851c020000410f2e47540f82b4110000498d7f40f2450f107f40f3450f106f4c418b7730f3450f104734f3410f104738f30f118568020000450f5ce7f3450f16f4410f28c4410f28cee85def4000488d0d97ef7801486304b14801c8ffe0440f2ec00f827b0200000f288500020000410f5cc7f30f16c8e82fef4000440f2ec00f93c0418b4f10488d156eef780148630c8a4801d1ffe1f3440f118558020000410f28c5e8f0ee4000440f28f0410f28c5e8cbee4000410f28d60f14d0410f59d4f30f16caf30f58ca31c00f57d20f2eca0f820e020000f30f1095580200000f2ed10f82fd010000440f28e8450f14ee450f59e5f3410f16ccf3410f5ccc0f54cef30f109568020000f30f59d70f2ed10f82cd010000f30f119568020000440f28a500020000450f5ce7f3450f16fc440f28c0410f28c4410f28cfe86bee4000410f28c0f3450f59f4f3410f59c7f3410f58c631c00f57c90f2ec10f8284010000f30f108d580200000f2ec8f30f108d680200000f826b010000450f59e5f3410f16c4f3410f5cc40f54c60f2ec80f93c0418b4f10488d1560ee780148630c8a4801d1ffe1f3440f118558020000410f2ec00f872b0100000f2ef8775f410f28c6410f28cce8c9ed4000f3410f5cc5f30f580555075e00410f28c9e8dded40000f28c8f3410f58c90f28d00f57dbf30fc2d3010f54ca0f55d00f56d1f30f5815c46670000f54d6f30f108568020000f30f59c70f2ec20f82c7000000440f28a500020000450f5ce7f3450f16f4410f28c4410f28cee871ed40000f2e85580200000f879c000000b0010f2ef80f8793000000410f28c6410f28cce834ed4000f3410f5cc5f30f5805c0065e00410f28c9e848ed40000f28c8f3410f58c90f28d00f57dbf30fc2d3010f54ca0f55d00f56d1f30f58152f6670000f54d6f30f108568020000f30f59c70f2ec20f93c0eb3531c0410f2ec0722df30f108d680200000f2ec872200f288500020000410f5cc7f30f16c8e8d2ec4000410f2ec00f839c00000031c0418b4f10488d150ced780148630c8a4801d1ffe184c0746d",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/mograine-marks/ordinary-admission.asm",
+        "sha256": "16482dd29943005a2b343bd4224e770a1bea5074e30af2a25473384df7697502"
+      },
+      "instruction_count": 173,
+      "boundary_source": "Exact parent-EXE case/function interval; current Ghidra prefix/table/callers establish interface, omitted case instructions are independently decoded and checked by bounded original-byte replay.",
+      "decoder": "Existing installed Capstone5 binding; no provider process or new extraction tool."
+    },
+    {
+      "role": "donut-upper-bound",
+      "virtual_address": "0x145c52b4f",
+      "end_exclusive": "0x145c52b71",
+      "file_offset": "0x5c51f4f",
+      "byte_count": 34,
+      "sha256": "d60279c7b46f721bd356faeb58d3e544250238765db2afa7f08a46f55c7c49c5",
+      "bytes_hex": "f30f108d680200000f2ec80f93c0418b4f10488d1564ec780148630c8a4801d1ffe1",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/mograine-marks/donut-upper-bound.asm",
+        "sha256": "958d3f9af379d2df1688919551e7d3d93ec6555c99a1ddfb0197e6c9e1711407"
+      },
+      "instruction_count": 8,
+      "boundary_source": "Exact parent-EXE case/function interval; current Ghidra prefix/table/callers establish interface, omitted case instructions are independently decoded and checked by bounded original-byte replay.",
+      "decoder": "Existing installed Capstone5 binding; no provider process or new extraction tool."
+    },
+    {
+      "role": "crystal-admission",
+      "virtual_address": "0x145c52e88",
+      "end_exclusive": "0x145c52efb",
+      "file_offset": "0x5c52288",
+      "byte_count": 115,
+      "sha256": "5aedc481b85e097b6916b9bbd6691516edf656e38414db423dd86110aadcb2ab",
+      "bytes_hex": "f3450f1057148b47088985280200004c89e94989fd488b0748898520020000f3410f10574c488d95200200004c8d8d28010000e8a02ff2ff84c07537418b4508898528020000498b450048898520020000f3410f10574c498d4f30488d95200200004c8d4d08e86d2ff2ff84c00f84b6000000",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/mograine-marks/crystal-admission.asm",
+        "sha256": "b6112eff5d281b41dfe5f1b312079e5cd3a43b8cb46920f2f8cfdcd0f4ca6f7d"
+      },
+      "instruction_count": 24,
+      "boundary_source": "Exact parent-EXE case/function interval; current Ghidra prefix/table/callers establish interface, omitted case instructions are independently decoded and checked by bounded original-byte replay.",
+      "decoder": "Existing installed Capstone5 binding; no provider process or new extraction tool."
+    },
+    {
+      "role": "gaze-admission",
+      "virtual_address": "0x145c51f2c",
+      "end_exclusive": "0x145c51f3b",
+      "file_offset": "0x5c5132c",
+      "byte_count": 15,
+      "sha256": "9256601847e6bebf97028722a8e9f69c208ac9692d7d45a077fe50baeed55f10",
+      "bytes_hex": "440f2ec00f82e9000000e97d020000",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/mograine-marks/gaze-admission.asm",
+        "sha256": "75e9f1dd73fa846345022a5b072f83a72884432cd45108aa308ce147cb7e16d9"
+      },
+      "instruction_count": 3,
+      "boundary_source": "Exact parent-EXE case/function interval; current Ghidra prefix/table/callers establish interface, omitted case instructions are independently decoded and checked by bounded original-byte replay.",
+      "decoder": "Existing installed Capstone5 binding; no provider process or new extraction tool."
+    },
+    {
+      "role": "occupancy-admission",
+      "virtual_address": "0x145c525dd",
+      "end_exclusive": "0x145c525ec",
+      "file_offset": "0x5c519dd",
+      "byte_count": 15,
+      "sha256": "45da54dc29135c2a48c9958cbc9c4c4c225e3e9ea7753c81e66f73bcc8a2c468",
+      "bytes_hex": "440f2ec00f83f7000000e9d2010000",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/mograine-marks/occupancy-admission.asm",
+        "sha256": "73090aa85f5cf169dea09ce72f125c380bcb206da49a5e9e210cb56340159450"
+      },
+      "instruction_count": 3,
+      "boundary_source": "Exact parent-EXE case/function interval; current Ghidra prefix/table/callers establish interface, omitted case instructions are independently decoded and checked by bounded original-byte replay.",
+      "decoder": "Existing installed Capstone5 binding; no provider process or new extraction tool."
+    },
+    {
+      "role": "tower-accepted-position",
+      "virtual_address": "0x145c53ffe",
+      "end_exclusive": "0x145c5403a",
+      "file_offset": "0x5c533fe",
+      "byte_count": 60,
+      "sha256": "8fc2b559e67243209dcdc3599397aac5bc64cc7d2af3dfa9148f95f3dbb0242c",
+      "bytes_hex": "450f28e2f3460f5c643e404e8d2c3e450f28c3f3460f5c443e44410f28c4410f28c8e856d74000428b443e30f3420f104c3e34486304834801d8ffe0",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/mograine-marks/tower-accepted-position.asm",
+        "sha256": "289dc4cc99384d56e9a1886dfad8ae3f1a3dab9b0a87a60d9697787c8b8219a7"
+      },
+      "instruction_count": 13,
+      "boundary_source": "Exact parent-EXE case/function interval; current Ghidra prefix/table/callers establish interface, omitted case instructions are independently decoded and checked by bounded original-byte replay.",
+      "decoder": "Existing installed Capstone5 binding; no provider process or new extraction tool."
+    },
+    {
+      "role": "tower-circle-admission",
+      "virtual_address": "0x145c53fd0",
+      "end_exclusive": "0x145c53fe6",
+      "file_offset": "0x5c533d0",
+      "byte_count": 22,
+      "sha256": "cf17035cc5fc4b51a7975fc1d174651f26b19a4c3196ed1e7db9a06bc2d2efbd",
+      "bytes_hex": "0f2ec80f83370100004883c7084939fe0f843a010000",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/mograine-marks/tower-circle-admission.asm",
+        "sha256": "77088d577a33a78566fc254842022089087951ba8fd2b108624ce05009b9a3f0"
+      },
+      "instruction_count": 5,
+      "boundary_source": "Exact parent-EXE case/function interval; current Ghidra prefix/table/callers establish interface, omitted case instructions are independently decoded and checked by bounded original-byte replay.",
+      "decoder": "Existing installed Capstone5 binding; no provider process or new extraction tool."
+    },
+    {
+      "role": "common-duration",
+      "virtual_address": "0x145af1fb0",
+      "end_exclusive": "0x145af21e0",
+      "file_offset": "0x5af13b0",
+      "byte_count": 560,
+      "sha256": "9e96327f8aab3433a5921891767eef7fb972dde1a5975f44c171055b92c80525",
+      "bytes_hex": "4883ec380f297424200fb6412d2c030fb6c0ba1d0000000f43d00f57c00fb6c2488d1585225501486304824801d0ffe00f287424204883c438c3f30f10410c0f287424204883c438c3f30f1041080f287424204883c438c3f30f1041100f287424204883c438c3f30f1005390078000f287424204883c438c38b4114eb4bf30f10410cf30f5841100f287424204883c438c3f30f1005260378000f287424204883c438c38b41040f57c0f3480f2ac0f30f590539aa7500f30f5841100f287424204883c438c38b41040f57c0f3480f2ac0f30f594110f30f58410c0f287424204883c438c3f30f1041040f287424204883c438c3f30f104108f30f58050f0e74000f287424204883c438c3f30f104104f30f58055c1074000f287424204883c438c3f30f10054a1074000f287424204883c438c3f30f104108f30f5e05ff947500f30f104910f30f5805261074000f28d1f30f5fd00f28c2f30fc2c2030f28d80f55da0f54c10f56c30f287424204883c438c38b41080f57c0f3480f2ac0f30f594114f30f5841100f287424204883c438c3f30f104110f30f5905d50f7400f30f5805690d74000f287424204883c438c3488b51084885d20f8472feffff48ffca488d045248c1e0044803014885d2782c0f57f6f3480f2af2eb3a8b410c0f57c0f3480f2ac0f30f5905320f7400f30f5841180f287424204883c438c34989d049d1e883e2014c09c20f57f6f3480f2af2f30f58f6f30f5971104889c1e8defdfffff30f58c60f287424204883c438c3",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/mograine-marks/common-duration.asm",
+        "sha256": "580b37ada014d9f2176f18d7e154b18eafad43810ac89675b15aa9a210030ec5"
+      },
+      "instruction_count": 140,
+      "boundary_source": "Exact parent-EXE native/interface interval; current dispatcher/callee relationship is established, selected helper bytes independently decoded and replayed without a provider launch."
+    },
+    {
+      "role": "common-ai-block",
+      "virtual_address": "0x145c5ab67",
+      "end_exclusive": "0x145c5ac11",
+      "file_offset": "0x5c59f67",
+      "byte_count": 170,
+      "sha256": "368593274978c6f148698294638760b58009a4346dc6025b66154cc2d347345e",
+      "bytes_hex": "e84474e9ff488b96c0050000488b8d600100004839d10f8330570000f3410f58c7f30f580554855d00488b8eb80500004a8d04314a837c3118ff7425f30f1048480f28d1f30f5fd00f28daf30fc2da030f28e30f55e20f54d90f56dcf30f11584848837858ff4889f90f84dcfefffff30f1088a00000000f28d1f30f5fd00f28c2f30fc2c2030f28d80f55da0f54c10f56c3f30f1180a0000000488d05e06b7801486314984801c2ffe2",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/mograine-marks/common-ai-block.asm",
+        "sha256": "e0b132b3b7f87494a869f5e3b37e431775d5c5933846a29d9ae6095c041f9241"
+      },
+      "instruction_count": 38,
+      "boundary_source": "Exact parent-EXE native/interface interval; current dispatcher/callee relationship is established, selected helper bytes independently decoded and replayed without a provider launch."
+    },
+    {
+      "role": "cast-presentation",
+      "virtual_address": "0x145c59ec0",
+      "end_exclusive": "0x145c59f70",
+      "file_offset": "0x5c592c0",
+      "byte_count": 176,
+      "sha256": "e201270e5dcea0db7480efc579ad0a4713751d4dee233e3eb1dd18a31f946065",
+      "bytes_hex": "5556574883ec60488d6c246048c745f8feffffff4585c00f848b0000004889cef30f591d74ed5f00f3480f2cc331c90f57c00f2ed80f43c80f2e1df52c5f0041b9ffffffff440f46c9c745c802000000488d45c84889442420488d4dd8e82ebee9ff488bbe80060000483bbe70060000750d488d8e70060000e8a27f400090488b86780600004889f948c1e1050f1045d80f104de80f114c08100f11040848ffc74889be800600004883c4605f5e5dc3",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/mograine-marks/cast-presentation.asm",
+        "sha256": "3ea9d7632c6e115931a1cd3650077565ecc22d34137403a6a0a1125c3cd2fc25"
+      },
+      "instruction_count": 43,
+      "boundary_source": "Exact parent-EXE native/interface interval; current dispatcher/callee relationship is established, selected helper bytes independently decoded and replayed without a provider launch."
+    },
+    {
+      "role": "geometry-caller-constants",
+      "virtual_address": "0x145c51763",
+      "end_exclusive": "0x145c5177b",
+      "file_offset": "0x5c50b63",
+      "byte_count": 24,
+      "sha256": "26a90cec0792e878742d4c3c4fb088109663839c374e02dd176a500c734cf37f",
+      "bytes_hex": "0f2835061a5e00f30f103db2195e00f3440f100d15735f00",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/mograine-marks/geometry-caller-constants.asm",
+        "sha256": "1b969e6d0fb1beefd7f29b4ad759c6f034d9fc722580289b53adf690b3e3b200"
+      },
+      "instruction_count": 3,
+      "boundary_source": "Exact parent-EXE native/interface interval; current dispatcher/callee relationship is established, selected helper bytes independently decoded and replayed without a provider launch."
+    }
+  ],
+  "native_data": [
+    {
+      "role": "escape-run-speed",
+      "virtual_address": "0x14624b5f0",
+      "file_offset": "0x6249bf0",
+      "byte_count": 4,
+      "sha256": "ee0a6628f97214b7ef5d15c54388ea478862369e517aa4ef4593aea18c3ff618",
+      "bytes_hex": "0000e040",
+      "f32": [
+        7.0
+      ]
+    },
+    {
+      "role": "escape-margin",
+      "virtual_address": "0x146233124",
+      "file_offset": "0x6231724",
+      "byte_count": 4,
+      "sha256": "d99e58435243d9fef9c88273b8d553b4fba4d0baf8009d29eae74fa99e0d9f57",
+      "bytes_hex": "0000003f",
+      "f32": [
+        0.5
+      ]
+    },
+    {
+      "role": "heroic-warning-factor",
+      "virtual_address": "0x1473dde40",
+      "file_offset": "0x73dc440",
+      "byte_count": 8,
+      "sha256": "75b5c9e91944e453a4683ec5bd52790c0f506af611f9b938f75a4837e86788c0",
+      "bytes_hex": "9a99593f0000803f",
+      "f32": [
+        0.8500000238418579,
+        1.0
+      ]
+    },
+    {
+      "role": "minimum-speed-and-lag-limit",
+      "virtual_address": "0x146232ec0",
+      "file_offset": "0x62314c0",
+      "byte_count": 4,
+      "sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c",
+      "bytes_hex": "0000803f",
+      "f32": [
+        1.0
+      ]
+    },
+    {
+      "role": "backward-speed",
+      "virtual_address": "0x146258b28",
+      "file_offset": "0x6257128",
+      "byte_count": 4,
+      "sha256": "47ad7819472c9c1bad2049d6c87fb5de3458c633c491a88376df0802cca2901a",
+      "bytes_hex": "00009040",
+      "f32": [
+        4.5
+      ]
+    },
+    {
+      "role": "walk-speed",
+      "virtual_address": "0x14627b690",
+      "file_offset": "0x6279c90",
+      "byte_count": 4,
+      "sha256": "072e3304b03423a4767d28c5fed09f81d5190ff60a3d078c6c1350eeb8bee28b",
+      "bytes_hex": "00002040",
+      "f32": [
+        2.5
+      ]
+    },
+    {
+      "role": "shape-helper-table",
+      "virtual_address": "0x1470716e0",
+      "file_offset": "0x706fce0",
+      "byte_count": 16,
+      "sha256": "a75037750493e418c6c46b71bff9e6c853f0b58f0736787b286bf9f4b4887f2f",
+      "bytes_hex": "d647b0fec148b0fedf47b0fe4848b0fe",
+      "signed_relative_targets": [
+        "0x145b75eb6",
+        "0x145b75fa1",
+        "0x145b75ebf",
+        "0x145b75f28"
+      ]
+    },
+    {
+      "role": "ordinary-shape-table",
+      "virtual_address": "0x1473e17bc",
+      "file_offset": "0x73dfdbc",
+      "byte_count": 16,
+      "sha256": "b2d2e7cbd72f454b3b0fe7d203835081ae6210ad8897da62dcd4f1a4f3c30fad",
+      "bytes_hex": "721087fec41287feab1087feb91187fe",
+      "signed_relative_targets": [
+        "0x145c5282e",
+        "0x145c52a80",
+        "0x145c52867",
+        "0x145c52975"
+      ]
+    },
+    {
+      "role": "ordinary-kind-table",
+      "virtual_address": "0x1473e17cc",
+      "file_offset": "0x73dfdcc",
+      "byte_count": 28,
+      "sha256": "3c49b5e7d12f8f91804a01ddd6f4c43ac569de82ee846d5c780d5b902f939f00",
+      "bytes_hex": "fd1287fea51387fed01487fe011587fe331487febc1687fe8f1987fe",
+      "signed_relative_targets": [
+        "0x145c52ac9",
+        "0x145c52b71",
+        "0x145c52c9c",
+        "0x145c52ccd",
+        "0x145c52bff",
+        "0x145c52e88",
+        "0x145c5315b"
+      ]
+    },
+    {
+      "role": "grouped-soak-shape-table",
+      "virtual_address": "0x1473e1760",
+      "file_offset": "0x73dfd60",
+      "byte_count": 16,
+      "sha256": "254b2e9f5f3162f81b0086e996050684f0a5c76d47ecdcbcdce0bf07e4d9a0ca",
+      "bytes_hex": "702887feda2887fef02887fe402987fe",
+      "signed_relative_targets": [
+        "0x145c53fd0",
+        "0x145c5403a",
+        "0x145c54050",
+        "0x145c540a0"
+      ]
+    },
+    {
+      "role": "gaze-shape-table",
+      "virtual_address": "0x1473e179c",
+      "file_offset": "0x73dfd9c",
+      "byte_count": 16,
+      "sha256": "68be2d45e201079b1a14ff68d45568528aa5b6a54e4454c69136970a44aeec20",
+      "bytes_hex": "900787fe6e0887fe9f0787feff0787fe",
+      "signed_relative_targets": [
+        "0x145c51f2c",
+        "0x145c5200a",
+        "0x145c51f3b",
+        "0x145c51f9b"
+      ]
+    },
+    {
+      "role": "occupancy-shape-table",
+      "virtual_address": "0x1473e17ac",
+      "file_offset": "0x73dfdac",
+      "byte_count": 16,
+      "sha256": "1517f0f37c5caf84d88a530e54c3945ac3356aa18a9d8c7905b7952794431652",
+      "bytes_hex": "310e87fe190f87fe400e87feaa0e87fe",
+      "signed_relative_targets": [
+        "0x145c525dd",
+        "0x145c526c5",
+        "0x145c525ec",
+        "0x145c52656"
+      ]
+    },
+    {
+      "role": "geometry-constant-0x146233170",
+      "virtual_address": "0x146233170",
+      "file_offset": "0x6231770",
+      "byte_count": 16,
+      "sha256": "c66856d3622ef1af1acca8762554ca873b9ea946fc38967d2d42caba297dc8d7",
+      "bytes_hex": "ffffff7fffffff7fffffff7fffffff7f"
+    },
+    {
+      "role": "geometry-constant-0x1462330fc",
+      "virtual_address": "0x1462330fc",
+      "file_offset": "0x62316fc",
+      "byte_count": 4,
+      "sha256": "3a1d8964b4fe305b5d25d90b8ba168d95e559961da4a9b22df4558cc257e7e11",
+      "bytes_hex": "db0f4940",
+      "f32": [
+        3.1415927410125732
+      ]
+    },
+    {
+      "role": "geometry-constant-0x146248a90",
+      "virtual_address": "0x146248a90",
+      "file_offset": "0x6247090",
+      "byte_count": 4,
+      "sha256": "12d85026b5109a3119231704608d5991a63d8d397d2867a9fc522305810ddb76",
+      "bytes_hex": "db0fc940",
+      "f32": [
+        6.2831854820251465
+      ]
+    },
+    {
+      "role": "geometry-constant-0x146359098",
+      "virtual_address": "0x146359098",
+      "file_offset": "0x6357698",
+      "byte_count": 4,
+      "sha256": "85552af8a6135cf71f7059eae5fcace95c1ac333fb8d0d862b59ead80eeaa35a",
+      "bytes_hex": "db0f49c0",
+      "f32": [
+        -3.1415927410125732
+      ]
+    },
+    {
+      "role": "common-duration-table",
+      "virtual_address": "0x14704425c",
+      "file_offset": "0x704285c",
+      "byte_count": 128,
+      "sha256": "969c549dae4ee613b6931cd5101cf42cfb6c9c75e03b30e6d2fee3a7c51e03aa",
+      "bytes_hex": "8eddaafe84ddaafe84ddaafebbddaafee6ddaafe8eddaafe8eddaafef8ddaafe88deaafeacddaafe8eddaafe48deaafed2ddaafe8eddaafec7deaafe05dfaafebbddaafe5fdeaafe76deaafe84ddaafe84ddaafee6deaafe9dddaafe39deaafe1adeaafe9dddaafecdddaafe9dddaafe2fdfaafe84ddaafeacddaafe84ddaafe",
+      "signed_relative_targets": [
+        "0x145af1fea",
+        "0x145af1fe0",
+        "0x145af1fe0",
+        "0x145af2017",
+        "0x145af2042",
+        "0x145af1fea",
+        "0x145af1fea",
+        "0x145af2054",
+        "0x145af20e4",
+        "0x145af2008",
+        "0x145af1fea",
+        "0x145af20a4",
+        "0x145af202e",
+        "0x145af1fea",
+        "0x145af2123",
+        "0x145af2161",
+        "0x145af2017",
+        "0x145af20bb",
+        "0x145af20d2",
+        "0x145af1fe0",
+        "0x145af1fe0",
+        "0x145af2142",
+        "0x145af1ff9",
+        "0x145af2095",
+        "0x145af2076",
+        "0x145af1ff9",
+        "0x145af2029",
+        "0x145af1ff9",
+        "0x145af218b",
+        "0x145af1fe0",
+        "0x145af2008",
+        "0x145af1fe0"
+      ]
+    },
+    {
+      "role": "duration-presentation-constant-0x146272058",
+      "virtual_address": "0x146272058",
+      "file_offset": "0x6270658",
+      "byte_count": 4,
+      "sha256": "ffcd594324296033e35bb6b3ea4a3d6e9b3b4db169f4e1968861c5746a9bf958",
+      "bytes_hex": "6666a63f",
+      "f32": [
+        1.2999999523162842
+      ]
+    },
+    {
+      "role": "duration-presentation-constant-0x146272370",
+      "virtual_address": "0x146272370",
+      "file_offset": "0x6270970",
+      "byte_count": 4,
+      "sha256": "7976acfbc3de10e4e4720f1fe68a3621615536679ef373fd7d6df906c8c86dc4",
+      "bytes_hex": "cdcccc3f",
+      "f32": [
+        1.600000023841858
+      ]
+    },
+    {
+      "role": "duration-presentation-constant-0x14624caa0",
+      "virtual_address": "0x14624caa0",
+      "file_offset": "0x624b0a0",
+      "byte_count": 4,
+      "sha256": "c1fe02afdb071158fc0a6fbae7297ea436048f2942b13332de3985be052e24a1",
+      "bytes_hex": "3333b33e",
+      "f32": [
+        0.3499999940395355
+      ]
+    },
+    {
+      "role": "duration-presentation-constant-0x1462330d0",
+      "virtual_address": "0x1462330d0",
+      "file_offset": "0x62316d0",
+      "byte_count": 4,
+      "sha256": "3b0cceff10d321540d633801b1591941e49800808d09b0a9221e9b8b7d69eaa7",
+      "bytes_hex": "6666e63e",
+      "f32": [
+        0.44999998807907104
+      ]
+    },
+    {
+      "role": "duration-presentation-constant-0x1462330e4",
+      "virtual_address": "0x1462330e4",
+      "file_offset": "0x62316e4",
+      "byte_count": 4,
+      "sha256": "e0fb2d87992a9fc79e7729163ad2aea5efbf14806711292c8c46e873bac1a253",
+      "bytes_hex": "cdcccc3e",
+      "f32": [
+        0.4000000059604645
+      ]
+    },
+    {
+      "role": "duration-presentation-constant-0x146258c5c",
+      "virtual_address": "0x146258c5c",
+      "file_offset": "0x625725c",
+      "byte_count": 4,
+      "sha256": "07883481b5c147464597d44401db095d88c2a6b049fbbcd7b278de98a5ceeb71",
+      "bytes_hex": "00007a44",
+      "f32": [
+        1000.0
+      ]
+    },
+    {
+      "role": "duration-presentation-constant-0x14624cbf4",
+      "virtual_address": "0x14624cbf4",
+      "file_offset": "0x624b1f4",
+      "byte_count": 4,
+      "sha256": "2a25271875e056e323462f5d609558c140e993d0d331e6bfbfd211949974594c",
+      "bytes_hex": "ffff7f4f",
+      "f32": [
+        4294967040.0
+      ]
+    }
+  ],
+  "source_data": "docs/analysis/evidence/0.127.0/mograine-marks/data-records.json",
+  "contracts": {
+    "mark_timing": "escape=radius/7+.5; adjustedWindup=max(payloadWindup,escape/warningFactor); followUntil=max(now,min(now+track,actualEnd-escape))",
+    "tracking_position": "Grounded accepted pose, independent of hit projection.",
+    "hazard_hit_position": "Current live selected-hero pose (BossCombat.player, not an archived report pose) is projected by retained report facing/intent/run-speed*clamp((now-reportClock)+0,0,1); optional collision clips with.5-yardmargin; no windup lead or zone clamp.",
+    "periodic_admission": "The accepted and projected points must both pass the same shape predicate.",
+    "ordinary_admission": "Circle, donut, line and cone shapes require accepted AND projected containment before ordinary damage/initial Aftershock admission.",
+    "crystal_admission": "Exposure admits accepted OR projected containment; rejected accepted calls projected before deciding.",
+    "unchanged_control_domains": "Gaze leaving-area trigger, tether break/geometry, marker occupancy and grouped tower soak membership use accepted coordinates.",
+    "common_ai_block": "Native11duration=max(payloadWindup,radius/7+.5); native18duration=lastChildDuration+(count-1)*spacing, or0whenempty. Common pre-dispatch block takesmax(previousDeadline,(now+duration)+.4), independent of rank adjustment in native11 cast/constructor.",
+    "cast_presentation": "145c59ec0 only constructs/enqueues nonzero-spell presentation after convertingseconds toboundedmilliseconds; no actor AI-block/hold write is made."
+  },
+  "unresolved": [],
+  "limits": [
+    "All Ghidra raw-slice targets omit globals/callees and use generic ABI; original instructions and target constants govern argument interpretation.",
+    "No application compilation, game/client/network/server execution or original/rebuilt parity comparison.",
+    "The current Ghidra raw query and census omitted indirect shape-case blocks; those exact parent-EXE instructions are independently decoded/replayed without claiming a new Ghidra observation."
+  ],
+  "census_source": {
+    "summary": {
+      "path": "docs/analysis/coverage/full-image-execheck-0.127.0.json",
+      "sha256": "b4ceaa4e01be2febed5c096d300c38c4baebaa8aedddf883604cd85e689e4c25"
+    },
+    "instructions": {
+      "path": "runtime/analysis/census/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/42680c2ae461bcdfe7cd797c66fb2737a9beeb67e7b7959cdd10d6d0405f6a8e/instructions.tsv.gz",
+      "sha256": "2b87be3b87615e6074a421eed43b81058eeadbf27f54710ae4e23556f9c8a3be",
+      "bytes": 128158593
+    },
+    "selected_instruction_boundaries_verified_against_original_pe": true,
+    "view": "Existing Capstone binding renders the retained exact instruction bytes; no Ghidra producer rerun."
+  },
+  "crt_imports": [
+    {
+      "virtual_address": "0x14606177b",
+      "file_offset": "0x6060b7b",
+      "byte_count": 6,
+      "bytes_hex": "ff25e78b1a00",
+      "sha256": "ffefba8968b5805f2ed860fd8974103bd34586b70ce7ce0c7055fb88812084c5",
+      "iat": "0x14620a368",
+      "library": "api-ms-win-crt-math-l1-1-0.dll",
+      "function": "_hypotf"
+    },
+    {
+      "virtual_address": "0x146061763",
+      "file_offset": "0x6060b63",
+      "byte_count": 6,
+      "bytes_hex": "ff25278c1a00",
+      "sha256": "0deb9cdfdcb0f9853e53422048a48d12cb35c0e95df9f3a578ed41faf362ce64",
+      "iat": "0x14620a390",
+      "library": "api-ms-win-crt-math-l1-1-0.dll",
+      "function": "atan2f"
+    },
+    {
+      "virtual_address": "0x146061769",
+      "file_offset": "0x6060b69",
+      "byte_count": 6,
+      "bytes_hex": "ff25118c1a00",
+      "sha256": "e29531690183dd717ab066383d9edf376007243b7a71140bc7aff424b8b1bbb4",
+      "iat": "0x14620a380",
+      "library": "api-ms-win-crt-math-l1-1-0.dll",
+      "function": "cosf"
+    },
+    {
+      "virtual_address": "0x146061751",
+      "file_offset": "0x6060b51",
+      "byte_count": 6,
+      "bytes_hex": "ff25518c1a00",
+      "sha256": "5a6ea124c815b8bdc76af9543d64ac0eb26e7f9d0b40b295a0f41bf09b5145ef",
+      "iat": "0x14620a3a8",
+      "library": "api-ms-win-crt-math-l1-1-0.dll",
+      "function": "sinf"
+    },
+    {
+      "virtual_address": "0x14606178d",
+      "file_offset": "0x6060b8d",
+      "byte_count": 6,
+      "bytes_hex": "ff25bd8b1a00",
+      "sha256": "e300f3a74f20b23b390165c7e500ebbfa49d35144847b5865b629d7bf3801bd7",
+      "iat": "0x14620a350",
+      "library": "api-ms-win-crt-math-l1-1-0.dll",
+      "function": "fmodf"
+    }
+  ],
+  "static_validation": {
+    "command": "python3 -B scripts/check-release-raid.py --marks --python-libs runtime/camera-recovery-0.105.0/python-libs --python-libs runtime/armory-recovery/python-libs",
+    "checker": {
+      "path": "scripts/check-release-raid.py",
+      "sha256": "112cff4fff8041eff716650659e270fcf3e75ea3519a6946c99aec1c0640d04b"
+    },
+    "result": {
+      "path": "docs/analysis/evidence/0.127.0/mograine-marks/static-check.json",
+      "sha256": "1ac8afc6f36e1fcccd59d6297066b03a5ab4f713f54132bb6db6615adebe4aae"
+    },
+    "isolated_native_cases": 5977,
+    "compilation": "not_run",
+    "game_or_client_execution": "not_run",
+    "parity": "unverified"
+  }
+}

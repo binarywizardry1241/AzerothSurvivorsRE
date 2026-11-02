@@ -1,0 +1,129 @@
+{
+  "target": "AzerothSurvivors/AzerothSurvivors-0.105.0.exe",
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "method": "REA/Ghidra12.1.4 raw x86_64 slices at original VA, corroborated with original-PE instructions and literals.",
+  "assembly": "return-routing.asm",
+  "spans": [
+    {
+      "role": "glue-environment-switch",
+      "start": "0x14000175f",
+      "end_exclusive": "0x14000179f",
+      "file_offset": "0xb5f",
+      "byte_count": 64,
+      "sha256": "1e225215843299cf5ee06c486332614ffdac4ecb19dd4b6cc7c9ac3fd865beeb"
+    },
+    {
+      "role": "default-startup-mode",
+      "start": "0x14001003f",
+      "end_exclusive": "0x14001009f",
+      "file_offset": "0xf43f",
+      "byte_count": 96,
+      "sha256": "dd675283c84da77289474af4efe81619e06b60abe55c1b501dafe4659e3b570f"
+    },
+    {
+      "role": "custom-mode-niche-flag",
+      "start": "0x14000fbe1",
+      "end_exclusive": "0x14000fbe7",
+      "file_offset": "0xefe1",
+      "byte_count": 6,
+      "sha256": "55be5bb6da6bc25d873c404d07d18c898f215285f9df54bf2c1e6556c3aaec79"
+    },
+    {
+      "role": "mode-closure-store",
+      "start": "0x14000fc92",
+      "end_exclusive": "0x14000fc98",
+      "file_offset": "0xf092",
+      "byte_count": 6,
+      "sha256": "77afb2a2e3f62165d67b20888ed5305ddbda58c12e719dd067a6f28e19f03c70"
+    },
+    {
+      "role": "mode-closure-callback",
+      "start": "0x14000f9e5",
+      "end_exclusive": "0x14000fa1e",
+      "file_offset": "0xede5",
+      "byte_count": 57,
+      "sha256": "e10f11721bca979eb08ace9e9b1e982d6c6f4ff9bf7a32881d4b1f2a37574b7a"
+    },
+    {
+      "role": "frontend-mode-load",
+      "start": "0x14004004a",
+      "end_exclusive": "0x14004004f",
+      "file_offset": "0x3f44a",
+      "byte_count": 5,
+      "sha256": "6aa1cd0fc6d35f20e02465a2c2dd44770af6c1c0bbaf611198c4045f3682ff82"
+    },
+    {
+      "role": "frontend-mode-resource-fields",
+      "start": "0x140040322",
+      "end_exclusive": "0x14004034d",
+      "file_offset": "0x3f722",
+      "byte_count": 43,
+      "sha256": "04c6592e1b1597597e6e99a2bc19c1b9d5aa29127e3b362772bb9be1596a1e4e"
+    },
+    {
+      "role": "terminal-return-label",
+      "start": "0x1401b1087",
+      "end_exclusive": "0x1401b10c4",
+      "file_offset": "0x1b0487",
+      "byte_count": 61,
+      "sha256": "21e614515fe6acb4daec03004271952c0f29eec5d5100ae9ad12990180ad6cdd"
+    },
+    {
+      "role": "menu-command-dispatch",
+      "start": "0x1458a5376",
+      "end_exclusive": "0x1458a5391",
+      "file_offset": "0x58a4776",
+      "byte_count": 27,
+      "sha256": "9dc4d02754718bd89d069a8368ad311e8cdb79eb90b99b5f14919e448f0af07d"
+    },
+    {
+      "role": "menu-return-owner",
+      "start": "0x1458a1370",
+      "end_exclusive": "0x1458a15d6",
+      "file_offset": "0x58a0770",
+      "byte_count": 614,
+      "sha256": "c8f82841f2b160956e93c7a3fb32efdea3eeb34768132f65da33180290e12379"
+    }
+  ],
+  "ghidra": [
+    {
+      "role": "command-dispatch",
+      "evidence_id": "ev_0f435ebefbce34a87372866f6b8b3c6b990c8c5a2972e36581f1e11c276f2b79",
+      "raw_import_sha256": "ea8d4a6bbd7b126ac8a6f4dc6b12ba9f6e29327ac2cb6a3c264ce5cb2eb4be6d",
+      "profile_digest": "1428c5dd27703a2e82bb33d97e3128ba5afd27a2b9e5927f792986420aabb633"
+    },
+    {
+      "role": "return-command",
+      "evidence_id": "ev_32c5ce2a19e2ace28eadb7c5ff79aee76125b41eb6b098be5fa332a594d99a18",
+      "raw_import_sha256": "c8f82841f2b160956e93c7a3fb32efdea3eeb34768132f65da33180290e12379",
+      "profile_digest": "702acf7dc9e0755386e5144afaede3bd9849e232919c643190500bb312fc5945"
+    },
+    {
+      "role": "startup-mode",
+      "evidence_id": "ev_ec30028ebce0c8437118e9074a5fa195ff6e7df971aec4bcdf58fbe60f52ca50",
+      "raw_import_sha256": "2b8b1e69b75d65e80a2616886edd6a00081e82834106dbab9acd05799c91e504",
+      "profile_digest": "61fd78e149df26b52aa5e4754707f70c393be453fb4a318283889376e3ecf35a"
+    }
+  ],
+  "checks": {
+    "script": "scripts/recover-terminal-return-0.105.0.py",
+    "vectors": 15,
+    "evidence": "return-routing-vectors.json"
+  },
+  "contract": {
+    "custom_frontend": "Startup with no explicit hero/zone and WOW_ROGUE_GLUE other than exact1 uses the custom picker; resource+c carries that process mode into terminal return label.",
+    "menu_command": 9,
+    "again_command": 6,
+    "menu_owner": "0x1458a1370",
+    "packet_opcode": "0x4d SMSG_LOGOUT_COMPLETE",
+    "frontend_event": {
+      "type": "logout"
+    },
+    "source_destination": "LocalClientSession::logout -> ClientState::CharSelect; LocalClientMode still owns/suppresses both stock glue frontends."
+  },
+  "limitations": [
+    "No source compilation, game execution or original/rebuilt comparison.",
+    "Raw slices use a generic x86_64 ABI and lack whole-program data/types; original-PE assembly corroborates arguments and literals.",
+    "Default custom Main Menu is proven correct. Ordinary WOW_ROGUE_GLUE stock startup, saved roster and backend actions remain unimplemented in the embedding."
+  ]
+}

@@ -1,0 +1,547 @@
+{
+  "schema": "revive-choice-native-v1",
+  "target": {
+    "version": "0.119.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f",
+    "size_bytes": 145357824
+  },
+  "gap_ids": [
+    168,
+    179
+  ],
+  "target_executed": false,
+  "method": "Reuse original current full-PE Ghidra party update; durable current Ghidra consumer/wrapper queries; independently decoded exact current instruction spans.",
+  "native_owners": [
+    {
+      "start": "0x145b7d080",
+      "end_exclusive": "0x145b81575",
+      "byte_count": 17653,
+      "sha256": "8d28fce8bb1a329d9de090f005b8ea621be003dd29c5b3f2ec2ef09531876b2d"
+    },
+    {
+      "start": "0x145b23740",
+      "end_exclusive": "0x145b2393b",
+      "byte_count": 507,
+      "sha256": "9f77f16757e1603e3e677c63543f3e36014b2bdf668175f102fd2dec2cb3ddd9"
+    },
+    {
+      "start": "0x145c33920",
+      "end_exclusive": "0x145c33ae6",
+      "byte_count": 454,
+      "sha256": "47db5fe6256926738a528824dd78af0fc2410a4af1b97966bcc952eed9fa0fa2"
+    },
+    {
+      "start": "0x145b87560",
+      "end_exclusive": "0x145b87a87",
+      "byte_count": 1319,
+      "sha256": "588d063d223f8a9bb9e23d88f438cc6d10557be20ae88603b66be1c446719820"
+    },
+    {
+      "start": "0x145b96730",
+      "end_exclusive": "0x145b9b136",
+      "byte_count": 18950,
+      "sha256": "479615dba5d43bbccb290e066ec14cb8c23eb0ee0ac381df7408396691016a49"
+    },
+    {
+      "start": "0x145b7aea0",
+      "end_exclusive": "0x145b7b3dd",
+      "byte_count": 1341,
+      "sha256": "e06da9e003e07fd3045d480a2efcabcfbabebf6058237a200b0a31baa9eccd67"
+    },
+    {
+      "start": "0x145b215b0",
+      "end_exclusive": "0x145b217d2",
+      "byte_count": 546,
+      "sha256": "1e885ef68659f9805465e0a663a3069205d855b8304c809c2efa443ab4a6cea9"
+    },
+    {
+      "start": "0x145b71740",
+      "end_exclusive": "0x145b71b4b",
+      "byte_count": 1035,
+      "sha256": "74c89ae4b96a416acd75dc2bc9ee8cd882669ea2e744717bedcb0bc6c15e6456"
+    }
+  ],
+  "native_spans": [
+    {
+      "role": "local-helper-flags",
+      "start": "0x145b7e69d",
+      "end_exclusive": "0x145b7e709",
+      "file_offset": "0x5b7da9d",
+      "byte_count": 108,
+      "sha256": "7d74965226c1d555d0a7a7283a0d9a70d7ff86f6b2e22b093532da57e8a35d97",
+      "instruction_count": 23,
+      "gap_ids": [
+        168
+      ]
+    },
+    {
+      "role": "remote-helper-flags",
+      "start": "0x145b2387f",
+      "end_exclusive": "0x145b238d7",
+      "file_offset": "0x5b22c7f",
+      "byte_count": 88,
+      "sha256": "5647843283ead7f5ea546aa11623d53615079ea1d9ff7f88cb8944a4cf6ef9b1",
+      "instruction_count": 23,
+      "gap_ids": [
+        168
+      ]
+    },
+    {
+      "role": "nearby-helper-first",
+      "start": "0x145c33988",
+      "end_exclusive": "0x145c339be",
+      "file_offset": "0x5c32d88",
+      "byte_count": 54,
+      "sha256": "12e0af4794126537451b53f3cc60f3fb05c3728f2b5d6fa7435499c1b9bdd2e3",
+      "instruction_count": 15,
+      "gap_ids": [
+        168
+      ]
+    },
+    {
+      "role": "nearby-helper-later",
+      "start": "0x145c33a1c",
+      "end_exclusive": "0x145c33a46",
+      "file_offset": "0x5c32e1c",
+      "byte_count": 42,
+      "sha256": "2dc2a1b19e1dc731fd74e422190c79a6fe3395859ba42bbe305cef35b18f6a43",
+      "instruction_count": 12,
+      "gap_ids": [
+        168
+      ]
+    },
+    {
+      "role": "nearby-radius-load",
+      "start": "0x145c33964",
+      "end_exclusive": "0x145c3396c",
+      "file_offset": "0x5c32d64",
+      "byte_count": 8,
+      "sha256": "8522642461e3f0a065bb1d11b43ce29c1613baba39a611fcf00f4930529a9b5c",
+      "instruction_count": 1,
+      "gap_ids": [
+        168
+      ]
+    },
+    {
+      "role": "down-finished-admission",
+      "start": "0x145b7e957",
+      "end_exclusive": "0x145b7e975",
+      "file_offset": "0x5b7dd57",
+      "byte_count": 30,
+      "sha256": "4d84aaa5cb3e01017a9a80d70a2c839fc9277d9b3032d75bcfb8056295648a59",
+      "instruction_count": 4,
+      "gap_ids": [
+        168
+      ]
+    },
+    {
+      "role": "nearby-collector-call",
+      "start": "0x145b7e98a",
+      "end_exclusive": "0x145b7e9f7",
+      "file_offset": "0x5b7dd8a",
+      "byte_count": 109,
+      "sha256": "56844c8c64ab7ad8adb09390c0e4132cd90092e6c10cfbb7048ed1b1f28d1e50",
+      "instruction_count": 17,
+      "gap_ids": [
+        168
+      ]
+    },
+    {
+      "role": "three-way-timer",
+      "start": "0x145b7e9f7",
+      "end_exclusive": "0x145b7eacb",
+      "file_offset": "0x5b7ddf7",
+      "byte_count": 212,
+      "sha256": "c49b10b829535ed0b3e8f2bcc0c4cf87f1bf109f6fdf9d5f6e4ca6a7116346f6",
+      "instruction_count": 38,
+      "gap_ids": [
+        168
+      ]
+    },
+    {
+      "role": "interaction-rows",
+      "start": "0x145b7eacb",
+      "end_exclusive": "0x145b7ec91",
+      "file_offset": "0x5b7decb",
+      "byte_count": 454,
+      "sha256": "7ba120eef358edfd5cab00a73ef620cb0bb83ad600714d31fef324f548e291f1",
+      "instruction_count": 89,
+      "gap_ids": [
+        168
+      ]
+    },
+    {
+      "role": "chooser-hold-completion",
+      "start": "0x145b7ec91",
+      "end_exclusive": "0x145b7ecc2",
+      "file_offset": "0x5b7e091",
+      "byte_count": 49,
+      "sha256": "5d340c999417886f7bee44b34fd296fced7ae055d6eef3894bf6daebccf8c432",
+      "instruction_count": 8,
+      "gap_ids": [
+        168
+      ]
+    },
+    {
+      "role": "revive-completion",
+      "start": "0x145b87560",
+      "end_exclusive": "0x145b87a87",
+      "file_offset": "0x5b86960",
+      "byte_count": 1319,
+      "sha256": "588d063d223f8a9bb9e23d88f438cc6d10557be20ae88603b66be1c446719820",
+      "instruction_count": 289,
+      "gap_ids": [
+        168
+      ]
+    },
+    {
+      "role": "remote-snapshot-caller",
+      "start": "0x145b7e800",
+      "end_exclusive": "0x145b7e85a",
+      "file_offset": "0x5b7dc00",
+      "byte_count": 90,
+      "sha256": "49185eceec9ab7d4197805b95745ae2e346cad53a77e473294aa4f5deda834c1",
+      "instruction_count": 18,
+      "gap_ids": [
+        168
+      ]
+    },
+    {
+      "role": "hud-revive-gates-value",
+      "start": "0x145b995d7",
+      "end_exclusive": "0x145b9962e",
+      "file_offset": "0x5b989d7",
+      "byte_count": 87,
+      "sha256": "70305e2890b8a9d57cdbb8fa089a2754985e5e5583e9e8cbb301b59cf6ba3fdd",
+      "instruction_count": 17,
+      "gap_ids": [
+        179
+      ]
+    },
+    {
+      "role": "hud-revive-key-consumer",
+      "start": "0x145b99651",
+      "end_exclusive": "0x145b99678",
+      "file_offset": "0x5b98a51",
+      "byte_count": 39,
+      "sha256": "03bd02aa4f316611b36a2fdab1550bf7f5325ac147d676cdf6a45a473c3ad943",
+      "instruction_count": 7,
+      "gap_ids": [
+        179
+      ]
+    },
+    {
+      "role": "addon-revive-gates-value",
+      "start": "0x145b7aec6",
+      "end_exclusive": "0x145b7af2a",
+      "file_offset": "0x5b7a2c6",
+      "byte_count": 100,
+      "sha256": "de34ddf9d2d2f798409c19be95b18f236b9f735bda5083ae67714318c4b25f88",
+      "instruction_count": 17,
+      "gap_ids": [
+        168
+      ]
+    },
+    {
+      "role": "remote-recipient-remove-swap-hud",
+      "start": "0x145b71740",
+      "end_exclusive": "0x145b71b4b",
+      "file_offset": "0x5b70b40",
+      "byte_count": 1035,
+      "sha256": "74c89ae4b96a416acd75dc2bc9ee8cd882669ea2e744717bedcb0bc6c15e6456",
+      "instruction_count": 207,
+      "gap_ids": [
+        179
+      ]
+    },
+    {
+      "role": "localized-recipient-hud-call",
+      "start": "0x145b216e0",
+      "end_exclusive": "0x145b21731",
+      "file_offset": "0x5b20ae0",
+      "byte_count": 81,
+      "sha256": "0a2849bfe16b24530b42c29a0a1e7093b8b39b81f5bc6d7de2ab0b059605ecf8",
+      "instruction_count": 20,
+      "gap_ids": [
+        179
+      ]
+    },
+    {
+      "role": "recipient-revive-timer-swap",
+      "start": "0x145ba985a",
+      "end_exclusive": "0x145ba9876",
+      "file_offset": "0x5ba8c5a",
+      "byte_count": 28,
+      "sha256": "a118eb81d0d52e9c4a48aa161802647364be54a3ed3e84fe7b81306a79208a9b",
+      "instruction_count": 4,
+      "gap_ids": [
+        179
+      ]
+    }
+  ],
+  "constants": [
+    {
+      "start": "0x146163b94",
+      "file_offset": "0x6162994",
+      "byte_count": 4,
+      "bytes_hex": "0000803f",
+      "sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c"
+    },
+    {
+      "start": "0x146163e20",
+      "file_offset": "0x6162c20",
+      "byte_count": 4,
+      "bytes_hex": "0000c040",
+      "sha256": "fedcca07b1ccdacce623cb6d8afdeed0314e8508d763e228871f18d4e0ebb7c4"
+    },
+    {
+      "start": "0x1461640b8",
+      "file_offset": "0x6162eb8",
+      "byte_count": 4,
+      "bytes_hex": "0000003f",
+      "sha256": "d99e58435243d9fef9c88273b8d553b4fba4d0baf8009d29eae74fa99e0d9f57"
+    },
+    {
+      "start": "0x146181194",
+      "file_offset": "0x617ff94",
+      "byte_count": 4,
+      "bytes_hex": "ffff7f4f",
+      "sha256": "2a25271875e056e323462f5d609558c140e993d0d331e6bfbfd211949974594c"
+    },
+    {
+      "start": "0x146234a18",
+      "file_offset": "0x6233818",
+      "byte_count": 4,
+      "bytes_hex": "0000c841",
+      "sha256": "7b5162138ba6d8ae67efbf14d2266a9b11a531bf8e8b090e4bb2586f8f87a52e"
+    }
+  ],
+  "assembly": {
+    "path": "docs/analysis/evidence/0.119.0/revive-choice/selected-native.asm",
+    "sha256": "f7e40bf2fc147696707fc60e0a53fc310bd3f55afc735c676ae28b058f107b1e"
+  },
+  "query_groups": [
+    {
+      "id": "reused-party",
+      "plan": "runtime/execheck-0.119.0-druid/consumers-plan.json",
+      "plan_sha256": "debe61876216a0e22ef74b69cddc303e2f342fe2ce4c3bca23e0244906cf4147",
+      "journal": "runtime/execheck-0.119.0-druid/consumers-query/journal.json",
+      "journal_sha256": "18ebf952481abdd798b8e90042f08037bc0d2c2e8a45549ce25a8a329a5598ac",
+      "seed_inputs": {
+        "runtime/execheck-0.119.0-druid/consumer-seeds.tsv": "8fe7b348791a2699f0fe7b0059d4afae4696ff87772989c6c0437710e032980f"
+      },
+      "original_tooling": {
+        "scripts/rea-batch.py": "093fe31a2cf4b388fd6e405b01c41e3e23b0965f1eb15ad4e6a4f44c3e2bbdd9",
+        "scripts/rea": "100aca6677907d7bf2e432a53e61cae733f1fa76cba78d17cff7a577c97369ea",
+        "scripts/repair-rea-reference-input.py": "29da663b1a71a8d6258bfb1c2b8d3117bac3e39c9299bfa35681f85a28db2502",
+        "scripts/repair-rea-durable-queries.py": "c14cc28baf16e60dc8eb4c4557bc4469ec153455d31d3d378561e93847f620a4",
+        "scripts/rea-durable-queries.mjs": "7f75a03ace604029cbdb8cc925bb45504394f1873d689630abe81e542716b3e8",
+        "scripts/ghidra/ReaDurableQueryPrepare.java": "4de425e7c375a1d59b964bfbf565675ef7770f13778649bd48df0aab6824c648",
+        "scripts/ghidra/ReaDurableQueryBridge.fragment.java": "cb1b2fc0c6350449526d5e91dceb75dd98676e7458856d7df9e656542a4abb86",
+        "node_modules/rea-agents/bridge/ghidra/ReaGhidraBridge.java": "9655cefb73c8f83915f6336ea6eee0cf5497b4236e57d8b42c2e76f3117b6681",
+        "node_modules/rea-agents/dist/ghidra/GhidraLauncher.js": "ce306f4e7d6a787ac2da78d9d53f013994dbe7dfe4b7eadc53d3707974f7efc7",
+        "node_modules/rea-agents/dist/ghidra/GhidraJavaLaunch.js": "9b267c37f14faeb1cb3f01afe81fd29e445684cfef86af2150e3f56e2115ff95",
+        "node_modules/rea-agents/dist/ghidra/GhidraAnalysisProfile.js": "a0619504f5cfa381f0eb489881c42079346ecfde48c685aede88fe2f53d57437",
+        "node_modules/rea-agents/dist/ghidra/GhidraProviderClient.js": "ee2eb4a2fb506b6541e365c87f708b5ac5d65dfb97d645bd5b3929b3799427b9",
+        "node_modules/rea-agents/dist/ghidra/GhidraSessionValues.js": "d83a81a6aa933c8d3886ccf737008de64f48c7988a307a5142d02bb2e35be4ec",
+        "node_modules/rea-agents/dist/cli-runtime/binary-BVOr2mgE.js": "06e032e5f5f3870bb96d2b9d60c56954f0d19c6237653894403240ae5a24ff5d",
+        "node_modules/rea-agents/dist/mcp/main-kBXHZ8S5.js": "ed23c9961768f19b78ac67aec6f384c311f55f36049101a85f2bc871ec540acc"
+      }
+    },
+    {
+      "id": "revive-consumers",
+      "plan": "runtime/revive-choice-0.119.0/current-plan.json",
+      "plan_sha256": "bb72c04aaa9efdd7008eb314a5977f4bc52939b3dd14f4fc959cfa74f11b0d8b",
+      "journal": "runtime/revive-choice-0.119.0/current-query/journal.json",
+      "journal_sha256": "ea0dd2c4fb7f0f93ae54f3377256102996bac814114dbc4b0a6c4034eaa0c52b",
+      "seed_inputs": {
+        "runtime/execheck-0.119.0-druid/consumer-seeds.tsv": "8fe7b348791a2699f0fe7b0059d4afae4696ff87772989c6c0437710e032980f"
+      },
+      "original_tooling": {
+        "scripts/rea-batch.py": "093fe31a2cf4b388fd6e405b01c41e3e23b0965f1eb15ad4e6a4f44c3e2bbdd9",
+        "scripts/rea": "100aca6677907d7bf2e432a53e61cae733f1fa76cba78d17cff7a577c97369ea",
+        "scripts/repair-rea-reference-input.py": "29da663b1a71a8d6258bfb1c2b8d3117bac3e39c9299bfa35681f85a28db2502",
+        "scripts/repair-rea-durable-queries.py": "c14cc28baf16e60dc8eb4c4557bc4469ec153455d31d3d378561e93847f620a4",
+        "scripts/rea-durable-queries.mjs": "7f75a03ace604029cbdb8cc925bb45504394f1873d689630abe81e542716b3e8",
+        "scripts/ghidra/ReaDurableQueryPrepare.java": "4de425e7c375a1d59b964bfbf565675ef7770f13778649bd48df0aab6824c648",
+        "scripts/ghidra/ReaDurableQueryBridge.fragment.java": "cb1b2fc0c6350449526d5e91dceb75dd98676e7458856d7df9e656542a4abb86",
+        "node_modules/rea-agents/bridge/ghidra/ReaGhidraBridge.java": "9655cefb73c8f83915f6336ea6eee0cf5497b4236e57d8b42c2e76f3117b6681",
+        "node_modules/rea-agents/dist/ghidra/GhidraLauncher.js": "ce306f4e7d6a787ac2da78d9d53f013994dbe7dfe4b7eadc53d3707974f7efc7",
+        "node_modules/rea-agents/dist/ghidra/GhidraJavaLaunch.js": "9b267c37f14faeb1cb3f01afe81fd29e445684cfef86af2150e3f56e2115ff95",
+        "node_modules/rea-agents/dist/ghidra/GhidraAnalysisProfile.js": "a0619504f5cfa381f0eb489881c42079346ecfde48c685aede88fe2f53d57437",
+        "node_modules/rea-agents/dist/ghidra/GhidraProviderClient.js": "ee2eb4a2fb506b6541e365c87f708b5ac5d65dfb97d645bd5b3929b3799427b9",
+        "node_modules/rea-agents/dist/ghidra/GhidraSessionValues.js": "d83a81a6aa933c8d3886ccf737008de64f48c7988a307a5142d02bb2e35be4ec",
+        "node_modules/rea-agents/dist/cli-runtime/binary-BVOr2mgE.js": "06e032e5f5f3870bb96d2b9d60c56954f0d19c6237653894403240ae5a24ff5d",
+        "node_modules/rea-agents/dist/mcp/main-kBXHZ8S5.js": "ed23c9961768f19b78ac67aec6f384c311f55f36049101a85f2bc871ec540acc"
+      }
+    },
+    {
+      "id": "recipient-wrappers",
+      "plan": "runtime/revive-choice-0.119.0/recipient-plan.json",
+      "plan_sha256": "58eae6e3a7b228c92ee1692191fcfcd1e09635ea181b2c4ea7e1579687db54f5",
+      "journal": "runtime/revive-choice-0.119.0/recipient-query/journal.json",
+      "journal_sha256": "37258f6d94e152c39ba3d8b4e75c6249a750d6e5b56f1b4829b3b6865ddcfc68",
+      "seed_inputs": {
+        "runtime/execheck-0.119.0-druid/consumer-seeds.tsv": "8fe7b348791a2699f0fe7b0059d4afae4696ff87772989c6c0437710e032980f"
+      },
+      "original_tooling": {
+        "scripts/rea-batch.py": "093fe31a2cf4b388fd6e405b01c41e3e23b0965f1eb15ad4e6a4f44c3e2bbdd9",
+        "scripts/rea": "100aca6677907d7bf2e432a53e61cae733f1fa76cba78d17cff7a577c97369ea",
+        "scripts/repair-rea-reference-input.py": "29da663b1a71a8d6258bfb1c2b8d3117bac3e39c9299bfa35681f85a28db2502",
+        "scripts/repair-rea-durable-queries.py": "c14cc28baf16e60dc8eb4c4557bc4469ec153455d31d3d378561e93847f620a4",
+        "scripts/rea-durable-queries.mjs": "7f75a03ace604029cbdb8cc925bb45504394f1873d689630abe81e542716b3e8",
+        "scripts/ghidra/ReaDurableQueryPrepare.java": "4de425e7c375a1d59b964bfbf565675ef7770f13778649bd48df0aab6824c648",
+        "scripts/ghidra/ReaDurableQueryBridge.fragment.java": "cb1b2fc0c6350449526d5e91dceb75dd98676e7458856d7df9e656542a4abb86",
+        "node_modules/rea-agents/bridge/ghidra/ReaGhidraBridge.java": "9655cefb73c8f83915f6336ea6eee0cf5497b4236e57d8b42c2e76f3117b6681",
+        "node_modules/rea-agents/dist/ghidra/GhidraLauncher.js": "ce306f4e7d6a787ac2da78d9d53f013994dbe7dfe4b7eadc53d3707974f7efc7",
+        "node_modules/rea-agents/dist/ghidra/GhidraJavaLaunch.js": "9b267c37f14faeb1cb3f01afe81fd29e445684cfef86af2150e3f56e2115ff95",
+        "node_modules/rea-agents/dist/ghidra/GhidraAnalysisProfile.js": "a0619504f5cfa381f0eb489881c42079346ecfde48c685aede88fe2f53d57437",
+        "node_modules/rea-agents/dist/ghidra/GhidraProviderClient.js": "ee2eb4a2fb506b6541e365c87f708b5ac5d65dfb97d645bd5b3929b3799427b9",
+        "node_modules/rea-agents/dist/ghidra/GhidraSessionValues.js": "d83a81a6aa933c8d3886ccf737008de64f48c7988a307a5142d02bb2e35be4ec",
+        "node_modules/rea-agents/dist/cli-runtime/binary-BVOr2mgE.js": "06e032e5f5f3870bb96d2b9d60c56954f0d19c6237653894403240ae5a24ff5d",
+        "node_modules/rea-agents/dist/mcp/main-kBXHZ8S5.js": "ed23c9961768f19b78ac67aec6f384c311f55f36049101a85f2bc871ec540acc"
+      }
+    },
+    {
+      "id": "recipient-field-swap",
+      "plan": "runtime/revive-choice-0.119.0/swap-raw-plan.json",
+      "plan_sha256": "f5a8e4e5438ff20e8958fbb9145444ea511e37bd5fb2dff2998c1b24b790725e",
+      "journal": "runtime/revive-choice-0.119.0/swap-raw-query/journal.json",
+      "journal_sha256": "ab4d3cdd271a6322dff70bd950249a887cf49bec17d109852626b025968de3e7",
+      "seed_inputs": {},
+      "original_tooling": {
+        "scripts/rea-batch.py": "093fe31a2cf4b388fd6e405b01c41e3e23b0965f1eb15ad4e6a4f44c3e2bbdd9",
+        "scripts/rea": "100aca6677907d7bf2e432a53e61cae733f1fa76cba78d17cff7a577c97369ea",
+        "scripts/repair-rea-reference-input.py": "29da663b1a71a8d6258bfb1c2b8d3117bac3e39c9299bfa35681f85a28db2502",
+        "scripts/repair-rea-durable-queries.py": "c14cc28baf16e60dc8eb4c4557bc4469ec153455d31d3d378561e93847f620a4",
+        "scripts/rea-durable-queries.mjs": "7f75a03ace604029cbdb8cc925bb45504394f1873d689630abe81e542716b3e8",
+        "scripts/ghidra/ReaDurableQueryPrepare.java": "4de425e7c375a1d59b964bfbf565675ef7770f13778649bd48df0aab6824c648",
+        "scripts/ghidra/ReaDurableQueryBridge.fragment.java": "cb1b2fc0c6350449526d5e91dceb75dd98676e7458856d7df9e656542a4abb86",
+        "node_modules/rea-agents/bridge/ghidra/ReaGhidraBridge.java": "9655cefb73c8f83915f6336ea6eee0cf5497b4236e57d8b42c2e76f3117b6681",
+        "node_modules/rea-agents/dist/ghidra/GhidraLauncher.js": "ce306f4e7d6a787ac2da78d9d53f013994dbe7dfe4b7eadc53d3707974f7efc7",
+        "node_modules/rea-agents/dist/ghidra/GhidraJavaLaunch.js": "9b267c37f14faeb1cb3f01afe81fd29e445684cfef86af2150e3f56e2115ff95",
+        "node_modules/rea-agents/dist/ghidra/GhidraAnalysisProfile.js": "a0619504f5cfa381f0eb489881c42079346ecfde48c685aede88fe2f53d57437",
+        "node_modules/rea-agents/dist/ghidra/GhidraProviderClient.js": "ee2eb4a2fb506b6541e365c87f708b5ac5d65dfb97d645bd5b3929b3799427b9",
+        "node_modules/rea-agents/dist/ghidra/GhidraSessionValues.js": "d83a81a6aa933c8d3886ccf737008de64f48c7988a307a5142d02bb2e35be4ec",
+        "node_modules/rea-agents/dist/cli-runtime/binary-BVOr2mgE.js": "06e032e5f5f3870bb96d2b9d60c56954f0d19c6237653894403240ae5a24ff5d",
+        "node_modules/rea-agents/dist/mcp/main-kBXHZ8S5.js": "ed23c9961768f19b78ac67aec6f384c311f55f36049101a85f2bc871ec540acc"
+      },
+      "input_range": {
+        "path": "runtime/revive-choice-0.119.0/recipient-field-swap.bin",
+        "start": "0x145ba8530",
+        "file_offset": "0x5ba7930",
+        "byte_count": 4961,
+        "sha256": "5d44f29af4d22b5894cabee2b56fec90fcc4ce1cd6accc9503d519e6f2a3f451"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "group": "reused-party",
+      "procedure": "0x145b7d080",
+      "result": "runtime/execheck-0.119.0-druid/consumers-query/results/e8edcea5601b29b806b5f3eaf39e50e2fddd390deb28eabf51a69e1df3e55d32.json",
+      "result_sha256": "b94a60dab28853f2c8dcbd8734f1f78cd91627941a9eced2943265e17246dc03",
+      "evidence_id": "ev_11c4f21e7ca4aebacb55c83c8a011f022c23e5e81c520b02afe8c80345cce014",
+      "profile_digest": "0880c5b620124b8c710c9ed84286c3d6560646770cb098d518e2ad10f66ac2ff",
+      "normalized_sha256": "b2392f935d42374843a715da104b81081665920034926c911ffc2e97c1395a61"
+    },
+    {
+      "group": "revive-consumers",
+      "procedure": "0x145c33920",
+      "result": "runtime/revive-choice-0.119.0/current-query/results/3c04f3be88b16bff7f1de4012e15487cfc1a96904f5f95ef23b2f3df43fb5ec8.json",
+      "result_sha256": "98e8b1ad56ad4d6dee69e286e41cd62c0505018656da136647c5f6c7b479036d",
+      "evidence_id": "ev_1b796598a1236a28c8b91afe6ed0b87b43c8e1b081e360f69ea35ce67fd948db",
+      "profile_digest": "0880c5b620124b8c710c9ed84286c3d6560646770cb098d518e2ad10f66ac2ff",
+      "normalized_sha256": "44d7aba44c6f57d00e67484071af375b2bf2e4ff22b577e17aa4bb44ff83d098"
+    },
+    {
+      "group": "revive-consumers",
+      "procedure": "0x145b23740",
+      "result": "runtime/revive-choice-0.119.0/current-query/results/f591adc45278a5e01d3ded220bf826e646f8a7273e0898763c35a1dc9c3e9de8.json",
+      "result_sha256": "73ae93412c6675bca6e624e00537b8f988ad54f2fe37ad5e11596cc6bb1b8b4d",
+      "evidence_id": "ev_4c53e33e325e86f930e1f6fe2c661c69d16dcfc98dcf4f47f06fd3ef1afcca96",
+      "profile_digest": "0880c5b620124b8c710c9ed84286c3d6560646770cb098d518e2ad10f66ac2ff",
+      "normalized_sha256": "a5f29d5a182548dde335030b9387d2ca267cf290640ff281e15f183d9646a9b6"
+    },
+    {
+      "group": "revive-consumers",
+      "procedure": "0x145b87560",
+      "result": "runtime/revive-choice-0.119.0/current-query/results/939d2fef034af34e0d57157a9a654f42673d2fced2dd96c8cae91d425323bed8.json",
+      "result_sha256": "25ee45ce112e3344126ad59d0104b8c2d06629bdd38b06e96cf1cdbd6047d1b9",
+      "evidence_id": "ev_392793740732a3157dc8d9c7bb5086658e80db1bc321dcddaccd016df865b6df",
+      "profile_digest": "0880c5b620124b8c710c9ed84286c3d6560646770cb098d518e2ad10f66ac2ff",
+      "normalized_sha256": "2b65f23feb05c402c2fe1f041d11908779c4a2322974f552f9d86c7b9f6a9137"
+    },
+    {
+      "group": "revive-consumers",
+      "procedure": "0x145b96730",
+      "result": "runtime/revive-choice-0.119.0/current-query/results/085c5f784cc21da5aabdbcb9f9769024d07ba9a86d044db5fcf9c60a4f98f2eb.json",
+      "result_sha256": "e24cc7fc76e87b79886a5b81c1a7c813ddac9ac4f237687a68c3bcbca73e278a",
+      "evidence_id": "ev_9af62dff7148594c1ad77abbb9e954d4380bf57f2966f1aa1404eb25589c685a",
+      "profile_digest": "0880c5b620124b8c710c9ed84286c3d6560646770cb098d518e2ad10f66ac2ff",
+      "normalized_sha256": "e2421765c16925f5088f92c3cd2bb5f5e2b8074bca1f24f53ddb822368adfe3a"
+    },
+    {
+      "group": "revive-consumers",
+      "procedure": "0x145b7aea0",
+      "result": "runtime/revive-choice-0.119.0/current-query/results/0a998dc060d14bd942ca3ab47ef0ff061dff935445d13d0cdd7cf0bbafa422bd.json",
+      "result_sha256": "dc69cecf2cd308bdedc7510628983d997c229bc3aec43ef69984d0a72e1f89e5",
+      "evidence_id": "ev_ec68c26492e6c5314991fdd49eab319809f99beddaccebfeea3bcd776b19d89e",
+      "profile_digest": "0880c5b620124b8c710c9ed84286c3d6560646770cb098d518e2ad10f66ac2ff",
+      "normalized_sha256": "96b95cb046b11b75c1c4ae07f1e4bc862dafad057a37854ad7b8a010c17b316f"
+    },
+    {
+      "group": "recipient-wrappers",
+      "procedure": "0x145b215b0",
+      "result": "runtime/revive-choice-0.119.0/recipient-query/results/92f2c75b8e14f53ffbfd61913181951c922a07945ad5d6acc06ca7a31a7d77d0.json",
+      "result_sha256": "00e4bd1f094f224bc360a2d04c85fc8a9c86c80ac4eb8f38ead27d66cb679bb9",
+      "evidence_id": "ev_f93ab8fc3705948dcf9f6985d3a34ff7d59d60bde309dcd23add386d6ed87ef3",
+      "profile_digest": "0880c5b620124b8c710c9ed84286c3d6560646770cb098d518e2ad10f66ac2ff",
+      "normalized_sha256": "ca6903a0a3edc1310b7bd003b8ed9c94fbaf1e2fa142acefd3c6b3573c95f83d"
+    },
+    {
+      "group": "recipient-wrappers",
+      "procedure": "0x145b71740",
+      "result": "runtime/revive-choice-0.119.0/recipient-query/results/ae4563ad68ab84d2fd06de1efeacded7eb9703a97ab5ec0ad27ec10799e20ce9.json",
+      "result_sha256": "74d78c1620746c9e96fe2bf8bfcbc6ff79bf6336dddfd98c09b27a0416906965",
+      "evidence_id": "ev_c9d7ff406d05c08b0e9dd41bb2e1734dbccd0240eb18624f45867763659f0fdf",
+      "profile_digest": "0880c5b620124b8c710c9ed84286c3d6560646770cb098d518e2ad10f66ac2ff",
+      "normalized_sha256": "56fe07022eb08f31a34562a4f464e7b01b1abef76d2e889d093c0f7037f6072f"
+    },
+    {
+      "group": "recipient-field-swap",
+      "procedure": "0x145ba8530",
+      "result": "runtime/revive-choice-0.119.0/swap-raw-query/results/92134b8f0bb01554e1758fddcf70e64cae5f0d8f11d31a184e9026f54110267c.json",
+      "result_sha256": "2c1b2c57aefd67cdb98002eb262d3ed493c7d6626789329561a8c4161a3ffaf6",
+      "evidence_id": "ev_8fa2ead663425141ea6dfda41b8e67ff154d0c5667a3dcc67000047972e4c0b2",
+      "profile_digest": "75bc9cc47bef2f8ff8cf88c9cce12b1792224158f9e541085d449364c6643f7c",
+      "normalized_sha256": "7cea5eb79ffba8631dd8967f010c63502ac49f326673a130d5b5f9af43b25150"
+    }
+  ],
+  "source_receipts": [
+    {
+      "path": "crates/azeroth-survivors-re/src/coop/game_party.rs",
+      "sha256": "c649a5a7abe25cfd148bdda341d184dbd94dc46bc9aafe6544a3087f16a56fdd",
+      "scope": "#168 timer/snapshot and authored regression source only; no compile/run claim"
+    }
+  ],
+  "limits": [
+    "Ghidra inferred types/ABI and undeclared or indirect callers remain uncertain.",
+    "Instruction replays use scratch memory and explicit boundaries, not a running game or server.",
+    "Native #179 HUD instructions are retained alongside #168 to avoid duplicate extracts; #179 source validation is separate.",
+    "Compilation, actual network/game/UI/addon behavior and original/rebuilt parity are unverified."
+  ],
+  "native_leaves": [
+    {
+      "role": "recipient-field-swap",
+      "start": "0x145ba8530",
+      "end_exclusive": "0x145ba9891",
+      "file_offset": "0x5ba7930",
+      "byte_count": 4961,
+      "sha256": "5d44f29af4d22b5894cabee2b56fec90fcc4ce1cd6accc9503d519e6f2a3f451",
+      "boundary": "Current direct calls select the entry; complete independent linear decoding reaches RET. This leaf has no PE unwind declaration.",
+      "instruction_count": 723
+    }
+  ]
+}

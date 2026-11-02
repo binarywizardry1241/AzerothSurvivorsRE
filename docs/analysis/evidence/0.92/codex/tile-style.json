@@ -1,0 +1,85 @@
+{
+  "version": "0.92.0",
+  "target_sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+  "constructor": "0x140320f80",
+  "typed_bundle": {
+    "type_name_address": "0x145903890",
+    "type_name": "(ChildOf, (codex::Entry, Interaction, picker::Hover, Node, BorderColor, BackgroundColor, ImageNode, BoxShadow, UiTransform))",
+    "component_offsets": {
+      "ChildOf": 0,
+      "codex::Entry": 8,
+      "Node": 32,
+      "BoxShadow": 416,
+      "ImageNode": 440,
+      "BorderColor": 576,
+      "picker::Hover": 656,
+      "BackgroundColor": 700,
+      "Interaction": 720,
+      "UiTransform": 724
+    },
+    "offset_proof": "0x1402b7db7..0x1402b7e6e writes component pointers in tuple type order; shared picker::Hover layout is44 bytes."
+  },
+  "quality": {
+    "rings_and_trinkets": "seen highest quality; zero when unseen",
+    "shared_amulets": "fixed quality from native80-byte record+0x40",
+    "legendary_amulets": 4,
+    "proof": "0x14031e950..0x14031ea05"
+  },
+  "hover": {
+    "resting": "Selected PAPER(1,.914,.659,1); otherwise known darker rarity border, unknown EDGE(.169,.129,.071,1).",
+    "active": "Known brighter rarity color; unknown GOLD(.690,.541,.227,1). Selected tiles use the same active rule.",
+    "lift_px": 2,
+    "proof": "0x1403211ea..0x1403211f6 stores active color;0x1403217a8..0x14032181e stores resting/active/lift; shared140125150 applies hover border and optional transform."
+  },
+  "shadow": {
+    "selected": {
+      "color_linear_rgba": [
+        0.973,
+        0.824,
+        0.416,
+        0.8
+      ],
+      "x_offset_px": 0,
+      "y_offset_px": 0,
+      "spread_px": 2,
+      "blur_px": 14
+    },
+    "known_unselected": {
+      "color_linear_rgba": "brighter native rarity RGB with alpha.25",
+      "x_offset_px": 0,
+      "y_offset_px": 0,
+      "spread_px": 0,
+      "blur_px": 6
+    },
+    "unknown_unselected": {
+      "color_linear_rgba": [
+        0,
+        0,
+        0,
+        0.85
+      ],
+      "x_offset_px": 0,
+      "y_offset_px": 0,
+      "spread_px": 0,
+      "blur_px": 6
+    },
+    "proof": "0x14032160b..0x1403216db; caller converts raw sRGB floats through144c4bc10 then stores Color tag1 before shadow allocation14261e4f0."
+  },
+  "image": {
+    "placement": "ImageNode is a component of the same bordered/radius6 Node, not a separate square image child.",
+    "known_tint": "LinearRgba white",
+    "unknown_tint": "Srgba(.16,.15,.15,1)",
+    "mode": "Auto; no rect/atlas/flip override",
+    "proof": "ImageNode+56 color from14032152c..14032154a; parent bundle offsets and literal/default stores."
+  },
+  "detail_tile": {
+    "size": 48,
+    "interactive": true,
+    "constructor_call": "0x1401ddeab calls140320f80 without any interaction-disabled argument.",
+    "selected": "The selected Entry is supplied to the same constructor; compare native Entry with current selection, including Details tile."
+  },
+  "limitations": [
+    "Implementation compiled in parent build20; subsequent build21 passed54 focused harness cases. Rendered/input parity comparison remains pending.",
+    "Reference/rebuilt visual and input comparisons pending; no application was launched for this recovery."
+  ]
+}

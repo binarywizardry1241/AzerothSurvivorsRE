@@ -1,0 +1,865 @@
+{
+  "version": "0.92.0",
+  "target_sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+  "method": "Bounded unchanged native SoundConfig callback, f32 parser and lexical pre-parser. Expected output is read from native-written field bytes; no source clamp/boolean formula is used.",
+  "native_ranges": [
+    {
+      "start": "0x1408fd770",
+      "end_exclusive": "0x1408fdd63",
+      "sha256": "b29086007c8546796e3d4661af56a39feb59dde4eb8b18392a97821e58532c06"
+    },
+    {
+      "start": "0x1456d8bf0",
+      "end_exclusive": "0x1456d90b3",
+      "sha256": "7f17f238e41ec93a1c66e14a6d2a269211c3454f9692e94653ea5d5dfb1868e9"
+    },
+    {
+      "start": "0x1456d3f10",
+      "end_exclusive": "0x1456d43d9",
+      "sha256": "087ba9ac077121e895885ddf431dbaac42b06e14c269d4ac214ff27b6c737f90"
+    }
+  ],
+  "stubs": [
+    "ASCII-only trim for declared fixture inputs",
+    "Emulator heap allocation/no-op deallocation",
+    "memcpy"
+  ],
+  "external_calls": {
+    "0x14010afd0": 82,
+    "0x140002200": 82,
+    "0x1400021c0": 82,
+    "0x1457149fd": 82,
+    "0x1400021d0": 82
+  },
+  "field_map": [
+    {
+      "key": "MasterVolume",
+      "field": "master",
+      "offset": 0,
+      "kind": "f32"
+    },
+    {
+      "key": "SoundVolume",
+      "field": "sfx",
+      "offset": 4,
+      "kind": "f32"
+    },
+    {
+      "key": "MusicVolume",
+      "field": "music",
+      "offset": 8,
+      "kind": "f32"
+    },
+    {
+      "key": "AmbienceVolume",
+      "field": "ambience",
+      "offset": 12,
+      "kind": "f32"
+    },
+    {
+      "key": "MasterSoundEffects",
+      "field": "enabled",
+      "offset": 16,
+      "kind": "bool"
+    },
+    {
+      "key": "EnableMusic",
+      "field": "music_enabled",
+      "offset": 18,
+      "kind": "bool"
+    },
+    {
+      "key": "EnableAmbience",
+      "field": "ambience_enabled",
+      "offset": 19,
+      "kind": "bool"
+    },
+    {
+      "key": "EnableErrorSpeech",
+      "field": "error_speech",
+      "offset": 20,
+      "kind": "bool"
+    },
+    {
+      "key": "Sound_EnableSoundWhenGameIsInBG",
+      "field": "background_sound",
+      "offset": 21,
+      "kind": "bool"
+    },
+    {
+      "key": "SoundReverb",
+      "field": "reverb",
+      "offset": 22,
+      "kind": "bool"
+    },
+    {
+      "key": "SoundOutputLimiter",
+      "field": "limiter",
+      "offset": 25,
+      "kind": "bool"
+    },
+    {
+      "key": "SoundListenerAtCharacter",
+      "field": "listener_at_character",
+      "offset": 26,
+      "kind": "bool"
+    },
+    {
+      "key": "EmoteSounds",
+      "field": "emote_sounds",
+      "offset": 27,
+      "kind": "bool"
+    },
+    {
+      "key": "SoundZoneMusicNoDelay",
+      "field": "zone_music_no_delay",
+      "offset": 28,
+      "kind": "bool"
+    }
+  ],
+  "cases": [
+    {
+      "key": "MasterVolume",
+      "input": "-2",
+      "field": "master",
+      "offset": 0,
+      "kind": "f32",
+      "native_value": "0.0",
+      "native_bits_le": "00000000"
+    },
+    {
+      "key": "MasterVolume",
+      "input": "0",
+      "field": "master",
+      "offset": 0,
+      "kind": "f32",
+      "native_value": "0.0",
+      "native_bits_le": "00000000"
+    },
+    {
+      "key": "MasterVolume",
+      "input": "0.25",
+      "field": "master",
+      "offset": 0,
+      "kind": "f32",
+      "native_value": "0.25",
+      "native_bits_le": "0000803e"
+    },
+    {
+      "key": "MasterVolume",
+      "input": "1",
+      "field": "master",
+      "offset": 0,
+      "kind": "f32",
+      "native_value": "1.0",
+      "native_bits_le": "0000803f"
+    },
+    {
+      "key": "MasterVolume",
+      "input": "2",
+      "field": "master",
+      "offset": 0,
+      "kind": "f32",
+      "native_value": "1.0",
+      "native_bits_le": "0000803f"
+    },
+    {
+      "key": "MasterVolume",
+      "input": "NaN",
+      "field": "master",
+      "offset": 0,
+      "kind": "f32",
+      "native_value": "nan",
+      "native_bits_le": "0000c07f"
+    },
+    {
+      "key": "MasterVolume",
+      "input": "bad",
+      "field": "master",
+      "offset": 0,
+      "kind": "f32",
+      "native_value": "0.0",
+      "native_bits_le": "00000000"
+    },
+    {
+      "key": "MasterVolume",
+      "input": "  .5 \n",
+      "field": "master",
+      "offset": 0,
+      "kind": "f32",
+      "native_value": "0.5",
+      "native_bits_le": "0000003f"
+    },
+    {
+      "key": "SoundVolume",
+      "input": "-2",
+      "field": "sfx",
+      "offset": 4,
+      "kind": "f32",
+      "native_value": "0.0",
+      "native_bits_le": "00000000"
+    },
+    {
+      "key": "SoundVolume",
+      "input": "0",
+      "field": "sfx",
+      "offset": 4,
+      "kind": "f32",
+      "native_value": "0.0",
+      "native_bits_le": "00000000"
+    },
+    {
+      "key": "SoundVolume",
+      "input": "0.25",
+      "field": "sfx",
+      "offset": 4,
+      "kind": "f32",
+      "native_value": "0.25",
+      "native_bits_le": "0000803e"
+    },
+    {
+      "key": "SoundVolume",
+      "input": "1",
+      "field": "sfx",
+      "offset": 4,
+      "kind": "f32",
+      "native_value": "1.0",
+      "native_bits_le": "0000803f"
+    },
+    {
+      "key": "SoundVolume",
+      "input": "2",
+      "field": "sfx",
+      "offset": 4,
+      "kind": "f32",
+      "native_value": "1.0",
+      "native_bits_le": "0000803f"
+    },
+    {
+      "key": "SoundVolume",
+      "input": "NaN",
+      "field": "sfx",
+      "offset": 4,
+      "kind": "f32",
+      "native_value": "nan",
+      "native_bits_le": "0000c07f"
+    },
+    {
+      "key": "SoundVolume",
+      "input": "bad",
+      "field": "sfx",
+      "offset": 4,
+      "kind": "f32",
+      "native_value": "0.0",
+      "native_bits_le": "00000000"
+    },
+    {
+      "key": "SoundVolume",
+      "input": "  .5 \n",
+      "field": "sfx",
+      "offset": 4,
+      "kind": "f32",
+      "native_value": "0.5",
+      "native_bits_le": "0000003f"
+    },
+    {
+      "key": "MusicVolume",
+      "input": "-2",
+      "field": "music",
+      "offset": 8,
+      "kind": "f32",
+      "native_value": "0.0",
+      "native_bits_le": "00000000"
+    },
+    {
+      "key": "MusicVolume",
+      "input": "0",
+      "field": "music",
+      "offset": 8,
+      "kind": "f32",
+      "native_value": "0.0",
+      "native_bits_le": "00000000"
+    },
+    {
+      "key": "MusicVolume",
+      "input": "0.25",
+      "field": "music",
+      "offset": 8,
+      "kind": "f32",
+      "native_value": "0.25",
+      "native_bits_le": "0000803e"
+    },
+    {
+      "key": "MusicVolume",
+      "input": "1",
+      "field": "music",
+      "offset": 8,
+      "kind": "f32",
+      "native_value": "1.0",
+      "native_bits_le": "0000803f"
+    },
+    {
+      "key": "MusicVolume",
+      "input": "2",
+      "field": "music",
+      "offset": 8,
+      "kind": "f32",
+      "native_value": "1.0",
+      "native_bits_le": "0000803f"
+    },
+    {
+      "key": "MusicVolume",
+      "input": "NaN",
+      "field": "music",
+      "offset": 8,
+      "kind": "f32",
+      "native_value": "nan",
+      "native_bits_le": "0000c07f"
+    },
+    {
+      "key": "MusicVolume",
+      "input": "bad",
+      "field": "music",
+      "offset": 8,
+      "kind": "f32",
+      "native_value": "0.0",
+      "native_bits_le": "00000000"
+    },
+    {
+      "key": "MusicVolume",
+      "input": "  .5 \n",
+      "field": "music",
+      "offset": 8,
+      "kind": "f32",
+      "native_value": "0.5",
+      "native_bits_le": "0000003f"
+    },
+    {
+      "key": "AmbienceVolume",
+      "input": "-2",
+      "field": "ambience",
+      "offset": 12,
+      "kind": "f32",
+      "native_value": "0.0",
+      "native_bits_le": "00000000"
+    },
+    {
+      "key": "AmbienceVolume",
+      "input": "0",
+      "field": "ambience",
+      "offset": 12,
+      "kind": "f32",
+      "native_value": "0.0",
+      "native_bits_le": "00000000"
+    },
+    {
+      "key": "AmbienceVolume",
+      "input": "0.25",
+      "field": "ambience",
+      "offset": 12,
+      "kind": "f32",
+      "native_value": "0.25",
+      "native_bits_le": "0000803e"
+    },
+    {
+      "key": "AmbienceVolume",
+      "input": "1",
+      "field": "ambience",
+      "offset": 12,
+      "kind": "f32",
+      "native_value": "1.0",
+      "native_bits_le": "0000803f"
+    },
+    {
+      "key": "AmbienceVolume",
+      "input": "2",
+      "field": "ambience",
+      "offset": 12,
+      "kind": "f32",
+      "native_value": "1.0",
+      "native_bits_le": "0000803f"
+    },
+    {
+      "key": "AmbienceVolume",
+      "input": "NaN",
+      "field": "ambience",
+      "offset": 12,
+      "kind": "f32",
+      "native_value": "nan",
+      "native_bits_le": "0000c07f"
+    },
+    {
+      "key": "AmbienceVolume",
+      "input": "bad",
+      "field": "ambience",
+      "offset": 12,
+      "kind": "f32",
+      "native_value": "0.0",
+      "native_bits_le": "00000000"
+    },
+    {
+      "key": "AmbienceVolume",
+      "input": "  .5 \n",
+      "field": "ambience",
+      "offset": 12,
+      "kind": "f32",
+      "native_value": "0.5",
+      "native_bits_le": "0000003f"
+    },
+    {
+      "key": "MasterSoundEffects",
+      "input": "-2",
+      "field": "enabled",
+      "offset": 16,
+      "kind": "bool",
+      "native_value": true,
+      "native_bits_le": "01"
+    },
+    {
+      "key": "MasterSoundEffects",
+      "input": "0",
+      "field": "enabled",
+      "offset": 16,
+      "kind": "bool",
+      "native_value": false,
+      "native_bits_le": "00"
+    },
+    {
+      "key": "MasterSoundEffects",
+      "input": "2",
+      "field": "enabled",
+      "offset": 16,
+      "kind": "bool",
+      "native_value": true,
+      "native_bits_le": "01"
+    },
+    {
+      "key": "MasterSoundEffects",
+      "input": "NaN",
+      "field": "enabled",
+      "offset": 16,
+      "kind": "bool",
+      "native_value": true,
+      "native_bits_le": "01"
+    },
+    {
+      "key": "MasterSoundEffects",
+      "input": "bad",
+      "field": "enabled",
+      "offset": 16,
+      "kind": "bool",
+      "native_value": false,
+      "native_bits_le": "00"
+    },
+    {
+      "key": "EnableMusic",
+      "input": "-2",
+      "field": "music_enabled",
+      "offset": 18,
+      "kind": "bool",
+      "native_value": true,
+      "native_bits_le": "01"
+    },
+    {
+      "key": "EnableMusic",
+      "input": "0",
+      "field": "music_enabled",
+      "offset": 18,
+      "kind": "bool",
+      "native_value": false,
+      "native_bits_le": "00"
+    },
+    {
+      "key": "EnableMusic",
+      "input": "2",
+      "field": "music_enabled",
+      "offset": 18,
+      "kind": "bool",
+      "native_value": true,
+      "native_bits_le": "01"
+    },
+    {
+      "key": "EnableMusic",
+      "input": "NaN",
+      "field": "music_enabled",
+      "offset": 18,
+      "kind": "bool",
+      "native_value": true,
+      "native_bits_le": "01"
+    },
+    {
+      "key": "EnableMusic",
+      "input": "bad",
+      "field": "music_enabled",
+      "offset": 18,
+      "kind": "bool",
+      "native_value": false,
+      "native_bits_le": "00"
+    },
+    {
+      "key": "EnableAmbience",
+      "input": "-2",
+      "field": "ambience_enabled",
+      "offset": 19,
+      "kind": "bool",
+      "native_value": true,
+      "native_bits_le": "01"
+    },
+    {
+      "key": "EnableAmbience",
+      "input": "0",
+      "field": "ambience_enabled",
+      "offset": 19,
+      "kind": "bool",
+      "native_value": false,
+      "native_bits_le": "00"
+    },
+    {
+      "key": "EnableAmbience",
+      "input": "2",
+      "field": "ambience_enabled",
+      "offset": 19,
+      "kind": "bool",
+      "native_value": true,
+      "native_bits_le": "01"
+    },
+    {
+      "key": "EnableAmbience",
+      "input": "NaN",
+      "field": "ambience_enabled",
+      "offset": 19,
+      "kind": "bool",
+      "native_value": true,
+      "native_bits_le": "01"
+    },
+    {
+      "key": "EnableAmbience",
+      "input": "bad",
+      "field": "ambience_enabled",
+      "offset": 19,
+      "kind": "bool",
+      "native_value": false,
+      "native_bits_le": "00"
+    },
+    {
+      "key": "EnableErrorSpeech",
+      "input": "-2",
+      "field": "error_speech",
+      "offset": 20,
+      "kind": "bool",
+      "native_value": true,
+      "native_bits_le": "01"
+    },
+    {
+      "key": "EnableErrorSpeech",
+      "input": "0",
+      "field": "error_speech",
+      "offset": 20,
+      "kind": "bool",
+      "native_value": false,
+      "native_bits_le": "00"
+    },
+    {
+      "key": "EnableErrorSpeech",
+      "input": "2",
+      "field": "error_speech",
+      "offset": 20,
+      "kind": "bool",
+      "native_value": true,
+      "native_bits_le": "01"
+    },
+    {
+      "key": "EnableErrorSpeech",
+      "input": "NaN",
+      "field": "error_speech",
+      "offset": 20,
+      "kind": "bool",
+      "native_value": true,
+      "native_bits_le": "01"
+    },
+    {
+      "key": "EnableErrorSpeech",
+      "input": "bad",
+      "field": "error_speech",
+      "offset": 20,
+      "kind": "bool",
+      "native_value": false,
+      "native_bits_le": "00"
+    },
+    {
+      "key": "Sound_EnableSoundWhenGameIsInBG",
+      "input": "-2",
+      "field": "background_sound",
+      "offset": 21,
+      "kind": "bool",
+      "native_value": true,
+      "native_bits_le": "01"
+    },
+    {
+      "key": "Sound_EnableSoundWhenGameIsInBG",
+      "input": "0",
+      "field": "background_sound",
+      "offset": 21,
+      "kind": "bool",
+      "native_value": false,
+      "native_bits_le": "00"
+    },
+    {
+      "key": "Sound_EnableSoundWhenGameIsInBG",
+      "input": "2",
+      "field": "background_sound",
+      "offset": 21,
+      "kind": "bool",
+      "native_value": true,
+      "native_bits_le": "01"
+    },
+    {
+      "key": "Sound_EnableSoundWhenGameIsInBG",
+      "input": "NaN",
+      "field": "background_sound",
+      "offset": 21,
+      "kind": "bool",
+      "native_value": true,
+      "native_bits_le": "01"
+    },
+    {
+      "key": "Sound_EnableSoundWhenGameIsInBG",
+      "input": "bad",
+      "field": "background_sound",
+      "offset": 21,
+      "kind": "bool",
+      "native_value": false,
+      "native_bits_le": "00"
+    },
+    {
+      "key": "SoundReverb",
+      "input": "-2",
+      "field": "reverb",
+      "offset": 22,
+      "kind": "bool",
+      "native_value": true,
+      "native_bits_le": "01"
+    },
+    {
+      "key": "SoundReverb",
+      "input": "0",
+      "field": "reverb",
+      "offset": 22,
+      "kind": "bool",
+      "native_value": false,
+      "native_bits_le": "00"
+    },
+    {
+      "key": "SoundReverb",
+      "input": "2",
+      "field": "reverb",
+      "offset": 22,
+      "kind": "bool",
+      "native_value": true,
+      "native_bits_le": "01"
+    },
+    {
+      "key": "SoundReverb",
+      "input": "NaN",
+      "field": "reverb",
+      "offset": 22,
+      "kind": "bool",
+      "native_value": true,
+      "native_bits_le": "01"
+    },
+    {
+      "key": "SoundReverb",
+      "input": "bad",
+      "field": "reverb",
+      "offset": 22,
+      "kind": "bool",
+      "native_value": false,
+      "native_bits_le": "00"
+    },
+    {
+      "key": "SoundOutputLimiter",
+      "input": "-2",
+      "field": "limiter",
+      "offset": 25,
+      "kind": "bool",
+      "native_value": true,
+      "native_bits_le": "01"
+    },
+    {
+      "key": "SoundOutputLimiter",
+      "input": "0",
+      "field": "limiter",
+      "offset": 25,
+      "kind": "bool",
+      "native_value": false,
+      "native_bits_le": "00"
+    },
+    {
+      "key": "SoundOutputLimiter",
+      "input": "2",
+      "field": "limiter",
+      "offset": 25,
+      "kind": "bool",
+      "native_value": true,
+      "native_bits_le": "01"
+    },
+    {
+      "key": "SoundOutputLimiter",
+      "input": "NaN",
+      "field": "limiter",
+      "offset": 25,
+      "kind": "bool",
+      "native_value": true,
+      "native_bits_le": "01"
+    },
+    {
+      "key": "SoundOutputLimiter",
+      "input": "bad",
+      "field": "limiter",
+      "offset": 25,
+      "kind": "bool",
+      "native_value": false,
+      "native_bits_le": "00"
+    },
+    {
+      "key": "SoundListenerAtCharacter",
+      "input": "-2",
+      "field": "listener_at_character",
+      "offset": 26,
+      "kind": "bool",
+      "native_value": true,
+      "native_bits_le": "01"
+    },
+    {
+      "key": "SoundListenerAtCharacter",
+      "input": "0",
+      "field": "listener_at_character",
+      "offset": 26,
+      "kind": "bool",
+      "native_value": false,
+      "native_bits_le": "00"
+    },
+    {
+      "key": "SoundListenerAtCharacter",
+      "input": "2",
+      "field": "listener_at_character",
+      "offset": 26,
+      "kind": "bool",
+      "native_value": true,
+      "native_bits_le": "01"
+    },
+    {
+      "key": "SoundListenerAtCharacter",
+      "input": "NaN",
+      "field": "listener_at_character",
+      "offset": 26,
+      "kind": "bool",
+      "native_value": true,
+      "native_bits_le": "01"
+    },
+    {
+      "key": "SoundListenerAtCharacter",
+      "input": "bad",
+      "field": "listener_at_character",
+      "offset": 26,
+      "kind": "bool",
+      "native_value": false,
+      "native_bits_le": "00"
+    },
+    {
+      "key": "EmoteSounds",
+      "input": "-2",
+      "field": "emote_sounds",
+      "offset": 27,
+      "kind": "bool",
+      "native_value": true,
+      "native_bits_le": "01"
+    },
+    {
+      "key": "EmoteSounds",
+      "input": "0",
+      "field": "emote_sounds",
+      "offset": 27,
+      "kind": "bool",
+      "native_value": false,
+      "native_bits_le": "00"
+    },
+    {
+      "key": "EmoteSounds",
+      "input": "2",
+      "field": "emote_sounds",
+      "offset": 27,
+      "kind": "bool",
+      "native_value": true,
+      "native_bits_le": "01"
+    },
+    {
+      "key": "EmoteSounds",
+      "input": "NaN",
+      "field": "emote_sounds",
+      "offset": 27,
+      "kind": "bool",
+      "native_value": true,
+      "native_bits_le": "01"
+    },
+    {
+      "key": "EmoteSounds",
+      "input": "bad",
+      "field": "emote_sounds",
+      "offset": 27,
+      "kind": "bool",
+      "native_value": false,
+      "native_bits_le": "00"
+    },
+    {
+      "key": "SoundZoneMusicNoDelay",
+      "input": "-2",
+      "field": "zone_music_no_delay",
+      "offset": 28,
+      "kind": "bool",
+      "native_value": true,
+      "native_bits_le": "01"
+    },
+    {
+      "key": "SoundZoneMusicNoDelay",
+      "input": "0",
+      "field": "zone_music_no_delay",
+      "offset": 28,
+      "kind": "bool",
+      "native_value": false,
+      "native_bits_le": "00"
+    },
+    {
+      "key": "SoundZoneMusicNoDelay",
+      "input": "2",
+      "field": "zone_music_no_delay",
+      "offset": 28,
+      "kind": "bool",
+      "native_value": true,
+      "native_bits_le": "01"
+    },
+    {
+      "key": "SoundZoneMusicNoDelay",
+      "input": "NaN",
+      "field": "zone_music_no_delay",
+      "offset": 28,
+      "kind": "bool",
+      "native_value": true,
+      "native_bits_le": "01"
+    },
+    {
+      "key": "SoundZoneMusicNoDelay",
+      "input": "bad",
+      "field": "zone_music_no_delay",
+      "offset": 28,
+      "kind": "bool",
+      "native_value": false,
+      "native_bits_le": "00"
+    }
+  ],
+  "limits": [
+    "No audio device, decoder, application or OS/files/network call is executed inside emulation.",
+    "This is event-callback behavior. Native startup CVar registry validation is a separate stage and may reject invalid/NaN loaded settings before the callback.",
+    "Master/focus mixer policies require their separately recovered functions; callback values alone do not prove playback."
+  ]
+}

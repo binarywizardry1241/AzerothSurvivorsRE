@@ -1,0 +1,164 @@
+{
+  "artifact": "AzerothSurvivors/AzerothSurvivors.exe",
+  "artifact_sha256": "719da61487e0ffaf6491a1ca65410a6666028e83271f059692ad46bc4d8af150",
+  "working_directory": "checkout root",
+  "target_executed": false,
+  "tool_version": "Apple LLVM version 17.0.0\n  Optimized build.\n\n\n  Registered Targets:\n    aarch64    - AArch64 (little endian)\n    aarch64_32 - AArch64 (little endian ILP32)\n    aarch64_be - AArch64 (big endian)\n    arm        - ARM\n    arm64      - ARM64 (little endian)\n    arm64_32   - ARM64 (little endian ILP32)\n    armeb      - ARM (big endian)\n    thumb      - Thumb\n    thumbeb    - Thumb (big endian)\n    x86        - 32-bit X86: Pentium-Pro and above\n    x86-64     - 64-bit X86: EM64T and AMD64",
+  "caveat": "Caller excerpts can begin/end inside an instruction. Native semantics require dataflow and REA verification.",
+  "outputs": [
+    {
+      "path": "docs/analysis/evidence/ability-key-definition-lookup.asm",
+      "invocation": [
+        "objdump",
+        "-d",
+        "--start-address=0x1453e37e0",
+        "--stop-address=0x1453e3877",
+        "AzerothSurvivors/AzerothSurvivors.exe"
+      ],
+      "start_address": "0x1453e37e0",
+      "end_address_exclusive": "0x1453e3877",
+      "size_bytes": 2684,
+      "sha256": "dec560b741377a3283baa688ccdc162cb48e58de57fdc68b0894889156781f94"
+    },
+    {
+      "path": "docs/analysis/evidence/ability-runtime-record-construction.asm",
+      "invocation": [
+        "objdump",
+        "-d",
+        "--start-address=0x1454e74d1",
+        "--stop-address=0x1454e75e7",
+        "AzerothSurvivors/AzerothSurvivors.exe"
+      ],
+      "start_address": "0x1454e74d1",
+      "end_address_exclusive": "0x1454e75e7",
+      "size_bytes": 4048,
+      "sha256": "0a8d1ab7c041ad80bbf9831493bf29421c8daf7af1233979325d2f80dbad022e"
+    },
+    {
+      "path": "docs/analysis/evidence/ability-cooldown-constant-setup.asm",
+      "invocation": [
+        "objdump",
+        "-d",
+        "--start-address=0x1454713e0",
+        "--stop-address=0x145471449",
+        "AzerothSurvivors/AzerothSurvivors.exe"
+      ],
+      "start_address": "0x1454713e0",
+      "end_address_exclusive": "0x145471449",
+      "size_bytes": 1132,
+      "sha256": "7bab29d02cf95e3266d8db25525d6c4c0dbe38392e68ff702186ceebf1f83ab0"
+    },
+    {
+      "path": "docs/analysis/evidence/ability-cooldown-countdown.asm",
+      "invocation": [
+        "objdump",
+        "-d",
+        "--start-address=0x145471476",
+        "--stop-address=0x1454714cd",
+        "AzerothSurvivors/AzerothSurvivors.exe"
+      ],
+      "start_address": "0x145471476",
+      "end_address_exclusive": "0x1454714cd",
+      "size_bytes": 1137,
+      "sha256": "aa7600815d8a00766f6a734b056900b04d2423105e36e24e93f0c174e753e349"
+    },
+    {
+      "path": "docs/analysis/evidence/ability-cast-gate-and-call.asm",
+      "invocation": [
+        "objdump",
+        "-d",
+        "--start-address=0x145471700",
+        "--stop-address=0x1454717ef",
+        "AzerothSurvivors/AzerothSurvivors.exe"
+      ],
+      "start_address": "0x145471700",
+      "end_address_exclusive": "0x1454717ef",
+      "size_bytes": 3006,
+      "sha256": "7ca8db41dff5daa04ac3335695e4e20a602c6c10daee708c2f0e074acfafed95"
+    },
+    {
+      "path": "docs/analysis/evidence/ability-cooldown-interval.asm",
+      "invocation": [
+        "objdump",
+        "-d",
+        "--start-address=0x145471b0a",
+        "--stop-address=0x145471ba2",
+        "AzerothSurvivors/AzerothSurvivors.exe"
+      ],
+      "start_address": "0x145471b0a",
+      "end_address_exclusive": "0x145471ba2",
+      "size_bytes": 2133,
+      "sha256": "06e52a79f97c76e2ff601bb392a1efc36ff7a9988e2ba6579d02277dc997bb6b"
+    },
+    {
+      "path": "docs/analysis/evidence/ability-failed-cast-retry.asm",
+      "invocation": [
+        "objdump",
+        "-d",
+        "--start-address=0x145471ce5",
+        "--stop-address=0x145471cf1",
+        "AzerothSurvivors/AzerothSurvivors.exe"
+      ],
+      "start_address": "0x145471ce5",
+      "end_address_exclusive": "0x145471cf1",
+      "size_bytes": 284,
+      "sha256": "1de5d24c6f5f112f2ef4236c88de54c5db0df256d93e9e4ab970584f6733b107"
+    },
+    {
+      "path": "docs/analysis/evidence/ability-effect-value-calculation.asm",
+      "invocation": [
+        "objdump",
+        "-d",
+        "--start-address=0x1454b7714",
+        "--stop-address=0x1454b78c9",
+        "AzerothSurvivors/AzerothSurvivors.exe"
+      ],
+      "start_address": "0x1454b7714",
+      "end_address_exclusive": "0x1454b78c9",
+      "size_bytes": 5929,
+      "sha256": "89ad9844bd1aaddc436e871af9a475e0337d06fea4321d0c3249083f136baf49"
+    },
+    {
+      "path": "docs/analysis/evidence/ability-damage-hit-consumer.asm",
+      "invocation": [
+        "objdump",
+        "-d",
+        "--start-address=0x1454b7df8",
+        "--stop-address=0x1454b7e53",
+        "AzerothSurvivors/AzerothSurvivors.exe"
+      ],
+      "start_address": "0x1454b7df8",
+      "end_address_exclusive": "0x1454b7e53",
+      "size_bytes": 1486,
+      "sha256": "9e835bc3786a83e65d7c0e3d0fa173cfab7da921385e00492d1abfa0386f6b4f"
+    }
+  ],
+  "guardian_math_import_thunk": {
+    "address": "0x14570b233",
+    "bytes": "ff25cf011900",
+    "iat_address": "0x14589b408",
+    "library": "api-ms-win-crt-math-l1-1-0.dll",
+    "imported_function": "powf"
+  },
+  "observed_float_constants": [
+    {
+      "address": "0x1458a0b54",
+      "value": 1.399999976158142
+    },
+    {
+      "address": "0x14589f888",
+      "value": 0.25
+    }
+  ],
+  "definition_table": {
+    "address": "0x1466cab30",
+    "stride_bytes": 120,
+    "record_count": 111,
+    "native_lookup_byte_limit": "0x3408"
+  },
+  "interpretation": {
+    "cooldown": "Definition+72 supplies a scaled cast interval; runtime row+36 counts down by tick delta, is set to infinity before cast and updated on success; failed casts use0.2 retry.",
+    "effect_power": "Definition+68 feeds scaled effect power in0x1454b76a0; an attack branch passes the derived float to actor hit/death handler0x145493450.",
+    "limits": "Effect power is not universal damage for every ability. Full rank, rarity, school, talent and targeting semantics remain unresolved."
+  }
+}

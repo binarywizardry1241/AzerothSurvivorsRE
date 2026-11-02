@@ -1,0 +1,126 @@
+{
+  "target": "AzerothSurvivors/AzerothSurvivors-0.97.2.exe",
+  "version": "0.97.2",
+  "sha256": "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589",
+  "target_size": 133231104,
+  "image_base": "0x140000000",
+  "method": "REA/Ghidra exact native slices plus original Win64 instructions and PE pointer reads",
+  "target_executed": false,
+  "emulation_run": false,
+  "source_compiled": false,
+  "tests_run": false,
+  "procedures": [
+    {
+      "label": "input",
+      "start_va": "0x1403a32d0",
+      "stop_va_exclusive": "0x1403a3f5f",
+      "file_offset": "0x3a26d0",
+      "native_size": 3215,
+      "native_sha256": "18d86082b3c17aefefc243daabcb9f7d4f3a0ba11902085eb6bcf5efb93fab1d",
+      "assembly": "docs/analysis/evidence/0.97.2/appearance-0.97.2-1403a32d0.asm",
+      "assembly_sha256": "7accb1d288e1da42f92b2ae6da0ff218436e2eea9ddb63dcd0e7976bcf521393",
+      "ghidra": {
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "evidence_id": "ev_e49756d6e107f2f982882d8e2245ea3fcb35014bdd12b5d690db4444a59eeacf",
+        "subject_sha256": "18d86082b3c17aefefc243daabcb9f7d4f3a0ba11902085eb6bcf5efb93fab1d",
+        "c_sha256": "ae099bfef3ef4c2f3af21e8b7f6dff4119c37dd729464ea2c87266c88c94960e",
+        "error": null
+      }
+    },
+    {
+      "label": "feature-cycle",
+      "start_va": "0x145500c50",
+      "stop_va_exclusive": "0x145500d24",
+      "file_offset": "0x5500050",
+      "native_size": 212,
+      "native_sha256": "e01d28a47c22a5b78732615e7ea4c3f4e0c347fcbee2fd9725189a389b1ea1ed",
+      "assembly": "docs/analysis/evidence/0.97.2/appearance-0.97.2-145500c50.asm",
+      "assembly_sha256": "4506222df452f9d7ec3c3a7955b78b16ec11aa2d3f0b020491ae867968e694bd",
+      "ghidra": {
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "evidence_id": "ev_a8651ec4e4cb05cbb3cc52745e4088f220a5b2e117b14babd9d58378037fade2",
+        "subject_sha256": "e01d28a47c22a5b78732615e7ea4c3f4e0c347fcbee2fd9725189a389b1ea1ed",
+        "c_sha256": "d545a9f26b8c1f9b3fbea3de9138d0063ad9f82cdc266271b7ae6d604741109a",
+        "error": null
+      }
+    },
+    {
+      "label": "clamp",
+      "start_va": "0x145500d30",
+      "stop_va_exclusive": "0x145500e7e",
+      "file_offset": "0x5500130",
+      "native_size": 334,
+      "native_sha256": "6410f98fe5d330346a55d9eb51a2e6ce94850cc2b2666709442bbff55520d689",
+      "assembly": "docs/analysis/evidence/0.97.2/appearance-0.97.2-145500d30.asm",
+      "assembly_sha256": "a2dbe280df2a6686c45221c7a39f59b3c92fc17c8f44878e6cb5aca881051524",
+      "ghidra": {
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "evidence_id": "ev_bae3ddf898c2f06bc443328313d806ad31c4802f1f507d000607940e93fb7da1",
+        "subject_sha256": "6410f98fe5d330346a55d9eb51a2e6ce94850cc2b2666709442bbff55520d689",
+        "c_sha256": "a294cae97833c7da241565dd61a22204e17b210e82d909c7fca0058590f7b3b7",
+        "error": null
+      }
+    },
+    {
+      "label": "randomize",
+      "start_va": "0x145501240",
+      "stop_va_exclusive": "0x1455013f5",
+      "file_offset": "0x5500640",
+      "native_size": 437,
+      "native_sha256": "010c96f11bf35f05ad684d0fedf445bab81af21993391d40120ac932fe1b990b",
+      "assembly": "docs/analysis/evidence/0.97.2/appearance-0.97.2-145501240.asm",
+      "assembly_sha256": "e98dcadc0383807249f199f34ff73da6efc81b0f334cce1605e5033c84a54b35",
+      "ghidra": {
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "evidence_id": "ev_30c896874dcfcc8a7e2ab38de6e732158c4e2059e1d57886839db948f175af09",
+        "subject_sha256": "010c96f11bf35f05ad684d0fedf445bab81af21993391d40120ac932fe1b990b",
+        "c_sha256": "cc0b1a013c04d1d6ae87f14b1e20a11c47b8879b9bd9fde0e2cd87074de11cd8",
+        "error": null
+      }
+    },
+    {
+      "label": "range-lookup",
+      "start_va": "0x145625c70",
+      "stop_va_exclusive": "0x145625d74",
+      "file_offset": "0x5625070",
+      "native_size": 260,
+      "native_sha256": "231b66f604b10db9c9d413e63e0226ea7b65396f8b502e80a625378e5800a5f6",
+      "assembly": "docs/analysis/evidence/0.97.2/appearance-0.97.2-145625c70.asm",
+      "assembly_sha256": "dda92852966fbabe0b6d1c40e495f5ae9227f568f9c2a61719083a36ac7fd1ca"
+    }
+  ],
+  "feature_order": [
+    "skin",
+    "face",
+    "hair_style",
+    "hair_color",
+    "facial_hair"
+  ],
+  "clamp": "cache absent or pair absent: preserve; otherwise feature[i]=min(feature[i],count[i].saturating_sub(1))",
+  "cycle": "clamp all; selected=(selected+i8delta).rem_euclid(max(count,1)); missing count uses1",
+  "race_sex_actions": "preserve existing features, set race/sex, clamp, issue full-Pick command11 even on repeated value",
+  "random": "fresh clock nanos/fallback7 XORgolden constant, five xorshift13/7/17 steps modulo max(count,1)",
+  "class_selection": "saved per-class hero restored; fresh class retains sex, chooses eligible same-faction race, clears all5features",
+  "cache_fill_persistence": "no save emission established from cache fill; source installation does not persist",
+  "limitations": [
+    "Loaded MPQ/DBC choice-count production is not independently reconstructed in this report.",
+    "Native renderer/face/hair asset parity and live random-clock comparisons are unverified.",
+    "Global cache and post-asset-load system scheduling are source integration, not runtime-validated parity."
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "target": "AzerothSurvivors/AzerothSurvivors-0.105.0.exe",
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "ranges": [
+    {
+      "role": "controller-poll",
+      "start": "0x140092ab0",
+      "end_exclusive": "0x140093741",
+      "file_offset": "0x91eb0",
+      "byte_count": 3217,
+      "sha256": "93e298301879bd39cfe85e81bb3e25b76931a763603bca3ac94d85ff274e3e66",
+      "pseudocode": "controller-poll.c",
+      "pseudocode_sha256": "160a255229ca9277066682c225275a3e99338b2c69ddae32e444c7b979512113",
+      "rea_evidence_id": "ev_57fe1f9685d63ac3ae5a31bddad77d44b49b92d0657a4f324875cc8d1f30c746",
+      "provider": "ghidra",
+      "analysis_profile_digest": "f474ef0e2984d5088bbd04d06efd498977dcd0dfd337a4bf277a1f8d14c3ee3c"
+    },
+    {
+      "role": "axis-publication",
+      "start": "0x140078230",
+      "end_exclusive": "0x140078367",
+      "file_offset": "0x77630",
+      "byte_count": 311,
+      "sha256": "5293063031bdaba7a982cfb9148988ec314f38b31b0941502f4db4beb7f0b551",
+      "pseudocode": "axis-publication.c",
+      "pseudocode_sha256": "a22038bbf631cd5f6c02a862ff69fc09a8f19c5a281450cf90ed289149e6e311",
+      "rea_evidence_id": "ev_6bada9536759c53a51cd9d0360709606277ac5e48410461db6eec468410e0412",
+      "provider": "ghidra",
+      "analysis_profile_digest": "1908f7fc567dedec1112f97ce7235fa9065c5bc15ece4a3f2a3612dfbb10c9a1"
+    }
+  ],
+  "button_mask_to_bevy_tag": [
+    [
+      1,
+      15
+    ],
+    [
+      2,
+      16
+    ],
+    [
+      4,
+      17
+    ],
+    [
+      8,
+      18
+    ],
+    [
+      16,
+      11
+    ],
+    [
+      32,
+      10
+    ],
+    [
+      64,
+      13
+    ],
+    [
+      128,
+      14
+    ],
+    [
+      256,
+      6
+    ],
+    [
+      512,
+      8
+    ],
+    [
+      4096,
+      0
+    ],
+    [
+      8192,
+      1
+    ],
+    [
+      16384,
+      3
+    ],
+    [
+      32768,
+      2
+    ]
+  ],
+  "canonical_prior_identity": "docs/analysis/evidence/0.105.0/game-mode-audit/native-manifest.json:controller-poll",
+  "source_owners": [
+    "crates/azeroth-survivors-re/src/native_input/mod.rs",
+    "crates/benilla-app/src/local_client/device.rs",
+    "crates/benilla-app/src/player/controller.rs"
+  ],
+  "limitations": [
+    "Ghidra raw slices omit global data and external callees and use generic x86-64 ABI. Original PE instructions bind Windows arguments, offsets and constants.",
+    "Bounded instruction replay covers conversion and slot admission only; it does not execute XInputGetState, DLL loading, ECS allocation, event delivery or an actual device.",
+    "The reconstruction uses Bevy device acquisition. Exact Windows raw slot identity, trigger/default filtering, reconnect timing and platform backend equivalence are not established.",
+    "No compilation, compiling tests, game launch, hardware-input check or original/rebuilt comparison."
+  ]
+}

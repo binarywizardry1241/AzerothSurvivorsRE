@@ -1,0 +1,82 @@
+{
+  "target": {
+    "version": "0.109.0",
+    "sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0"
+  },
+  "ranges": [
+    {
+      "role": "entry-modifier-copy",
+      "start": "0x14592dc47",
+      "end_exclusive": "0x14592dc59",
+      "byte_count": 18,
+      "sha256": "f0dc00147afcc5d5a17d7114c8e014e54c6f76626462ebd55e4cdc211dd19653",
+      "assembly": "entry-modifier-copy.asm",
+      "assembly_sha256": "e44a8fba5e28586428905fd9c3ff694bd850f0a8659e498e4ae2697a520c9a05"
+    },
+    {
+      "role": "independent-difficulty",
+      "start": "0x14592e5d2",
+      "end_exclusive": "0x14592e6a3",
+      "byte_count": 209,
+      "sha256": "7feba20c18a42884cd2916a335ff32925cbce385f8d323c62c64d8186a1a6685",
+      "assembly": "independent-difficulty.asm",
+      "assembly_sha256": "ad31aef737dd0bc9d0ceff081758e70e430f35fe0f08c19a67831853c2399980"
+    },
+    {
+      "role": "stat-refresh",
+      "start": "0x145926c90",
+      "end_exclusive": "0x145927d2b",
+      "byte_count": 4251,
+      "sha256": "4be95236c6a73c4b6d4af797f40c8095739ce2d1f3dbc0307c32c76cfbd7de4e",
+      "assembly": "stat-refresh.asm",
+      "assembly_sha256": "d6b21942463b3c7dc620e24591658eca9d133fa18d2a2e998f2d70562faa6497"
+    },
+    {
+      "role": "gear-factor-call",
+      "start": "0x145973090",
+      "end_exclusive": "0x1459730a7",
+      "byte_count": 23,
+      "sha256": "0105daa7efe0a30d721b13957747b0290ec129b67b06f280054f75cc5a56518f",
+      "assembly": "gear-factor-call.asm",
+      "assembly_sha256": "142685c757b5ca8f592bfc12cbd91852b71a1f66e33c460116b545eb659d923d"
+    }
+  ],
+  "ghidra": [
+    {
+      "procedure": "0x14592d7e0",
+      "evidence_id": "ev_3ae7ce4d422fdb15efce468036bd4995f9bd12ce76d04feb529d36944d731d7d",
+      "subject_sha256": "08108531c14d3c290d06c037b4efac473aca2110e4a70da9d85a6a19a36fad29",
+      "analysis_profile_digest": "7ca4f3ebeca226f05632c4f4ac06a2f679bf10877f5d7a334676920e3d3c877f",
+      "normalized_result_sha256": "d1c358a2f34e02eab5734d20fd00c69af1bcba6d68e543e858ee6b9c4dea8fe6"
+    },
+    {
+      "procedure": "0x145926c90",
+      "evidence_id": "ev_e784ebb7274f3f7f60e702328546b62c4b42676693ab863577b69bd5b1a57b38",
+      "subject_sha256": "4be95236c6a73c4b6d4af797f40c8095739ce2d1f3dbc0307c32c76cfbd7de4e",
+      "analysis_profile_digest": "202ef96320140558c53c6d4945bdc0b76e06f67146dcc261410f5ecae4b18b29",
+      "normalized_result_sha256": "ac07c41edf86dfadc5a43c30d36c81b3963ff879935a12eaf46a2d9f7c6108bd"
+    }
+  ],
+  "canonical_factory": "../run-seed/manifest.json#run-factory",
+  "canonical_constructor": "../run-seed/manifest.json#game-constructor",
+  "canonical_final_copy": "../run-seed/game-constructor.asm",
+  "canonical_reward": "../runmods/reward.asm",
+  "canonical_xp": "../run-account/manifest.json",
+  "seams": [
+    "0x1458c54c0",
+    "0x1458d9620",
+    "0x145bfa0e7",
+    "0x145bfa141"
+  ],
+  "checks": {
+    "constructor_paths": 420,
+    "gear_factors": 625
+  },
+  "limits": [
+    "Constructor entry-header copy and independent-field initialization execute as three original instruction intervals around declared scratch state. The entire actual stat-refresh body executes between initialization and final Game copy. This does not execute the complete new-game factory/constructor.",
+    "Property-tree insertion and event formatting use explicit output-only seams; native ceilf uses host math.ceil and memory copy uses scratch buffers. No substituted helper receives Game+aa8.",
+    "420 paths watch writes to the independent difficulty field and retain all four modifier words; this does not certify every stat-refresh output.",
+    "625 gear-factor calls execute the real current caller plus unchanged capped reward helper; generic loot candidate/RNG/admission is outside these calls.",
+    "No compiler, Rust execution, original or reconstructed game, live filesystem, packets, graphics or gameplay parity."
+  ]
+}

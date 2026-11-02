@@ -1,0 +1,597 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.123.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
+    "size_bytes": 146228736
+  },
+  "scope": "Initial source-first discovery assessment: complete added literal candidate membership and new/returning AS diagnostics. Subsequent bounded native/source joins are separate and supersede the initial counterpart status only within their scopes.",
+  "inputs": {
+    "current_inventory": {
+      "path": "runtime/coverage/de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be/inventory.json",
+      "sha256": "abb57d8e07bb60558187aba925983548b42c5584acdaae436151a7e2ed709c91",
+      "regenerate": "python3 scripts/inventory-current-target.py --write"
+    },
+    "diagnostic_inventory": {
+      "path": "runtime/coverage/de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be/diagnostic-ownership.json",
+      "sha256": "d8658f923a39b979c28ffef90cf5925b2a5030bb3b2897b4c921b80cf0fb66f0",
+      "regenerate": "python3 -B scripts/discover-native-ownership.py --write"
+    },
+    "discovery_delta": {
+      "path": "docs/analysis/evidence/0.123.0/discovery-delta.json",
+      "sha256": "8c01b81fa524bca8e9c5cfe42d4a40dc9e032f5f4edfbb70f4face9783506991"
+    },
+    "predecessor_native_summary_git": "c4e053c7:docs/analysis/coverage/native-summary.json",
+    "inspected_sources": {
+      "crates/azeroth-survivors-re/src/main.rs": "aeeef02c16e331f1da8a88c1f60e820b21b93c5a275495d49cbc5debda88640d",
+      "crates/azeroth-survivors-re/src/discord.rs": "100938447339765dfc47f1971326809b393ebab693a04c17453513de8b93759b",
+      "crates/azeroth-survivors-re/src/preview.rs": "2ef1aa3c7f39748f16235df7f3ed7c9079b3ebf2bf9b3431e9c61bb122cbf4bc",
+      "crates/azeroth-survivors-re/src/armory.rs": "007abd05e9e7881e7c5e75711ec94a15a2a4b432f34c1d9073ee544e0991aac1",
+      "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap/creature_sound.rs": "90ad4ba5baeda108967b0c2992d3ce74d137f8472b6dfdada3bc787ccdd9eea8",
+      "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs": "4a74b4b1fe4cb3ce8c7fa097425ffd7658b28fe506f1e0fb4b783fbaed9a3b24",
+      "crates/azeroth-survivors-re/src/gameplay/mechanics/choices.rs": "c2a12e106e8c8e4aae41dffb333dca866b402a6fe2243a265f2c34ec92ddcf96",
+      "crates/azeroth-survivors-re/src/coop/client_state.rs": "3909bef4130416a4caa5ff3ce878b7c210feecc76611ec6a023c3323c6cdada0",
+      "crates/azeroth-survivors-re/src/coop/engine_packets.rs": "8b72bef3c1a245265c6dde0f25e6b15e1e2aefb37e02e1ce32717761d4a97414",
+      "crates/azeroth-survivors-re/src/gameplay/client/coop_feed.rs": "a3f07be3a3bd27c0d012778bfedcb440249784a096f0f17941b0b76f8cc116b7",
+      "crates/benilla-app/src/net/motion/remote.rs": "c9847e04aad1e9812641a95c9c17ac78e832a958022dbb0cc87cabd2778c3604",
+      "crates/benilla-app/src/net/motion/spline.rs": "8f8baf575edda35fb61f55eae13e5017d323ddbee41aaf56e6306232fc8d135f",
+      "crates/benilla-app/src/local_client/extension.rs": "f65efa0153381e60b1c69bc812e06671977467d1fe03eff24a2393ffc2967bf3",
+      "crates/benilla-app/src/sound/output/mod.rs": "8698b7eadc0aa189ea302baf944407000097591a7fa975b75150989f9756455f",
+      "crates/benilla-app/src/sound/creature.rs": "45f354321320776d7594970797e34af1b47c962a9a7cc355cb504d936f347023",
+      "crates/benilla-app/src/portrait/hero_booth.rs": "d04cc6a4fefca83d5afc13d4948360edde6a0714bc6c933bc2e9fdabaf7f5f72",
+      "crates/benilla-app/src/world_backdrop.rs": "b3352b672a41e9005714c00e1a61d47e3d5b208d7b081bee7faee65c56c5ac37",
+      "crates/benilla-app/src/player/controller.rs": "768bffb6e82a3221d95d9d721b8dc4f6a42be72a337608a4f7d9c699854f2ef8",
+      "crates/benilla-app/src/sound/mod.rs": "2d9749e709c46bda0fa7e3dc04e131cd00fdadb4a6d4e1d7fdaefb0b474e0342",
+      "crates/benilla-app/src/loading_screen.rs": "57dbaddc9f3b91e0d149f638f08d3d3fcef0d84c121ae2eb40a839ee09db71bc",
+      "crates/benilla-formats/src/loading_screen.rs": "c61fbcfbc891e4d4f0ab456639a11ead5fc9af5f27641438b77377b808ec5011",
+      "crates/benilla-formats/src/creature_sound.rs": "66f81b25542b3bb141046d18d97c2bddf60d4a8376bad1592eef22be31a9e024",
+      "crates/benilla-assets/src/m2.rs": "31df472bb01cbf59d4c88e3a2b72eb20623374fd20170bb14f8078b80bba98a1",
+      "crates/benilla-assets/src/world_assets/mod.rs": "60f4d8fb540eda650a9f2dfa843561cfcfcc88e1560d882847e22351975702e7",
+      "crates/benilla-world/src/terrain_stream.rs": "7408e0af9843378b798f0746e5f04085c84fdbbe2e2b7760911f55153e5b2111",
+      "crates/benilla-world/src/wmo_portal/mod.rs": "80162a2fe2a5e486358c65432dbe99507fd959c3351dffb348a4cd7fd8da773a",
+      "crates/benilla-app/src/ui_script/glue_mgr.rs": "bb7669979254698fc4dd136100225360396a06aa45b734bd309ba156cfe91b81",
+      "crates/azeroth-survivors-re/src/stock_frontend.rs": "ad2850ddc60ec6b765b150710a3ccb4339bac9ece411c54e754fd941d41796d3",
+      "crates/benilla-app/src/glue_session/roster.rs": "cd117c94af17af02875aefe49b7c9cc754afdf87f2610dac43a4ebe39f66749c",
+      "crates/azeroth-survivors-re/src/coop/replication.rs": "88c73522eb8f9c955ab2ceb669fca4f857841bd585d87c4c6b6d355b75ee4f37"
+    }
+  },
+  "counts": {
+    "current_AS_diagnostic_modules": 66,
+    "new_AS_modules": 2,
+    "returning_AS_modules": 1,
+    "added_namespace_candidates": 9,
+    "added_resource_candidates": 3,
+    "reviewed_added_candidates": 12
+  },
+  "new_AS_modules": [
+    {
+      "stable_system_id": "custom-game-coop-pick",
+      "original_path": "crates/wenilla-rogue/src/coop/pick.rs",
+      "source_finding_ids": [
+        272
+      ],
+      "bounded_contract_finding_ids": [
+        274
+      ],
+      "native_evidence": {
+        "path": "crates/wenilla-rogue/src/coop/pick.rs",
+        "custom_game_crate": true,
+        "system_id": "custom-game-coop-pick",
+        "diagnostic_occurrences": [
+          {
+            "file_offset": "0x76a0440",
+            "virtual_address": "0x1476a1a40",
+            "byte_count": 37,
+            "sha256": "3173a0390815ff3702108f9af5ea188ce9228aefd3a568be3978d7655915f1b2"
+          }
+        ],
+        "location_records": [
+          {
+            "location_address": "0x1476a1a68",
+            "path_address": "0x1476a1a40",
+            "source_line": 62,
+            "source_column": 10
+          }
+        ],
+        "verified_references": [
+          {
+            "kind": "rust_location",
+            "instruction_address": "0x145bd71bb",
+            "target_address": "0x1476a1a68",
+            "runtime_function_start": "0x145bd7010",
+            "runtime_function_end": "0x145bd7494",
+            "source_line": 62,
+            "source_column": 10,
+            "path_address": "0x1476a1a40",
+            "instruction_bytes": "488d05a6a8ac01",
+            "instruction": "lea rax, [rip + 0x1aca8a6]",
+            "owner_file_offset": "0x5bd6410",
+            "owner_byte_count": 1156,
+            "owner_sha256": "07089126d51f13b7a4a3b92bcf0bea64bcff30cbe97460b6f2e7974eb0ba6304"
+          }
+        ],
+        "unverified_candidates": [],
+        "candidate_native_owners": [
+          "0x145bd7010"
+        ],
+        "native_source_semantics_established": false
+      },
+      "candidate_source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/choices.rs",
+        "crates/azeroth-survivors-re/src/coop/replication.rs"
+      ],
+      "source_correspondence": "pending_actual_contract_join",
+      "current_bounded_contract": "not_registered",
+      "next_static_step": "Inspect exact Location owner, trace incoming field/packet/state producers and consumers through existing source seams. Recover the AS-specific contract before assigning source ownership or implementing changes."
+    },
+    {
+      "stable_system_id": "custom-game-coop-smooth",
+      "original_path": "crates/wenilla-rogue/src/coop/smooth.rs",
+      "source_finding_ids": [
+        273
+      ],
+      "bounded_contract_finding_ids": [
+        275
+      ],
+      "native_evidence": {
+        "path": "crates/wenilla-rogue/src/coop/smooth.rs",
+        "custom_game_crate": true,
+        "system_id": "custom-game-coop-smooth",
+        "diagnostic_occurrences": [
+          {
+            "file_offset": "0x76a0388",
+            "virtual_address": "0x1476a1988",
+            "byte_count": 39,
+            "sha256": "53f08128e0bf9077cc7bdd4786bc71fd07ca5348cd5220c24e54669b621f4bb4"
+          }
+        ],
+        "location_records": [
+          {
+            "location_address": "0x1476a19b0",
+            "path_address": "0x1476a1988",
+            "source_line": 228,
+            "source_column": 17
+          },
+          {
+            "location_address": "0x1476a19c8",
+            "path_address": "0x1476a1988",
+            "source_line": 227,
+            "source_column": 17
+          }
+        ],
+        "verified_references": [
+          {
+            "kind": "rust_location",
+            "instruction_address": "0x145be151c",
+            "target_address": "0x1476a19b0",
+            "runtime_function_start": "0x145be0a60",
+            "runtime_function_end": "0x145be1534",
+            "source_line": 228,
+            "source_column": 17,
+            "path_address": "0x1476a1988",
+            "instruction_bytes": "4c8d0d8d04ac01",
+            "instruction": "lea r9, [rip + 0x1ac048d]",
+            "owner_file_offset": "0x5bdfe60",
+            "owner_byte_count": 2772,
+            "owner_sha256": "4ffdb809a232f8606e7501fddcc625de22146137f6adc76561be683b78be49a1"
+          },
+          {
+            "kind": "rust_location",
+            "instruction_address": "0x145be1500",
+            "target_address": "0x1476a19c8",
+            "runtime_function_start": "0x145be0a60",
+            "runtime_function_end": "0x145be1534",
+            "source_line": 227,
+            "source_column": 17,
+            "path_address": "0x1476a1988",
+            "instruction_bytes": "4c8d0dc104ac01",
+            "instruction": "lea r9, [rip + 0x1ac04c1]",
+            "owner_file_offset": "0x5bdfe60",
+            "owner_byte_count": 2772,
+            "owner_sha256": "4ffdb809a232f8606e7501fddcc625de22146137f6adc76561be683b78be49a1"
+          }
+        ],
+        "unverified_candidates": [],
+        "candidate_native_owners": [
+          "0x145be0a60"
+        ],
+        "native_source_semantics_established": false
+      },
+      "candidate_source_refs": [
+        "crates/azeroth-survivors-re/src/coop/client_state.rs",
+        "crates/azeroth-survivors-re/src/coop/engine_packets.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/coop_feed.rs",
+        "crates/benilla-app/src/net/motion/remote.rs"
+      ],
+      "source_correspondence": "pending_actual_contract_join",
+      "current_bounded_contract": "not_registered",
+      "next_static_step": "Inspect exact Location owner, trace incoming field/packet/state producers and consumers through existing source seams. Recover the AS-specific contract before assigning source ownership or implementing changes."
+    }
+  ],
+  "returning_diagnostic_context": {
+    "stable_system_id": "custom-game-realmd",
+    "original_path": "crates/wenilla-rogue/src/realmd.rs",
+    "native_evidence": {
+      "path": "crates/wenilla-rogue/src/realmd.rs",
+      "custom_game_crate": true,
+      "system_id": "custom-game-realmd",
+      "diagnostic_occurrences": [
+        {
+          "file_offset": "0x6fcb690",
+          "virtual_address": "0x146fccc90",
+          "byte_count": 34,
+          "sha256": "ee6bb63195ef3bad89fd9357fb45f7980629811e152d791d2f424f12e8b0ffc4"
+        }
+      ],
+      "location_records": [
+        {
+          "location_address": "0x146fcccd8",
+          "path_address": "0x146fccc90",
+          "source_line": 128,
+          "source_column": 88
+        },
+        {
+          "location_address": "0x146fcccf0",
+          "path_address": "0x146fccc90",
+          "source_line": 130,
+          "source_column": 60
+        }
+      ],
+      "verified_references": [
+        {
+          "kind": "rust_location",
+          "instruction_address": "0x145aa6b7b",
+          "target_address": "0x146fcccd8",
+          "runtime_function_start": "0x145aa4380",
+          "runtime_function_end": "0x145aa6c12",
+          "source_line": 128,
+          "source_column": 88,
+          "path_address": "0x146fccc90",
+          "instruction_bytes": "488d0556615201",
+          "instruction": "lea rax, [rip + 0x1526156]",
+          "owner_file_offset": "0x5aa3780",
+          "owner_byte_count": 10386,
+          "owner_sha256": "8ee9312356ae87329332cb1e62c4d9a39d032ab0a5d43e300a3245d3e4719f0f"
+        },
+        {
+          "kind": "rust_location",
+          "instruction_address": "0x145aa6bb5",
+          "target_address": "0x146fcccf0",
+          "runtime_function_start": "0x145aa4380",
+          "runtime_function_end": "0x145aa6c12",
+          "source_line": 130,
+          "source_column": 60,
+          "path_address": "0x146fccc90",
+          "instruction_bytes": "488d0534615201",
+          "instruction": "lea rax, [rip + 0x1526134]",
+          "owner_file_offset": "0x5aa3780",
+          "owner_byte_count": 10386,
+          "owner_sha256": "8ee9312356ae87329332cb1e62c4d9a39d032ab0a5d43e300a3245d3e4719f0f"
+        }
+      ],
+      "unverified_candidates": [],
+      "candidate_native_owners": [
+        "0x145aa4380"
+      ],
+      "native_source_semantics_established": false
+    },
+    "retained_finding_ids": [
+      94
+    ],
+    "source_refs": [
+      "crates/benilla-app/src/ui_script/glue_mgr.rs",
+      "crates/azeroth-survivors-re/src/stock_frontend.rs",
+      "crates/benilla-app/src/glue_session/roster.rs"
+    ],
+    "assessment": "Returning diagnostic navigation, not lost source implementation or a new issue. Reconcile existing #94 current applicability through login/roster/character state consumers."
+  },
+  "changed_candidate_context": [
+    {
+      "selector": "Q41-I01:module_type_namespace:2",
+      "category": "module_type_namespace",
+      "candidate": {
+        "file_offset": "0x61b8748",
+        "virtual_address": "0x1461b9d48",
+        "byte_count": 95,
+        "sha256": "fb1f5151fb70cbf79d058a0ee307e6565820bfa9fc4b0576a9ebe96caee0b418",
+        "literal": "benilla_app::menu_scene::MenuScenePluginbenilla_app::spell_override::WorldHoldPlugindescription"
+      },
+      "classification": "source_interface_context_not_new_AS_behavior",
+      "source_refs": [
+        "crates/benilla-app/src/world_backdrop.rs",
+        "crates/benilla-app/src/sound/mod.rs"
+      ],
+      "assessment": "Generic menu-world composition and loading world-hold role; exact native type/call boundaries remain unproved.",
+      "next_static_step": "Stop at established source role unless a concrete AS dependency or override requires bounded native producer/consumer trace. Native compiled revision and behavioral equivalence remain unproved."
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:3",
+      "category": "module_type_namespace",
+      "candidate": {
+        "file_offset": "0x61bbb26",
+        "virtual_address": "0x1461bd126",
+        "byte_count": 43,
+        "sha256": "8fd12eb860785354c5f37367d4470cbb72960eaf72e40559556cd85ca29751fe",
+        "literal": "wenilla_rogue_app::screens::discordmessageI"
+      },
+      "classification": "source_interface_context_not_new_AS_behavior",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/discord.rs"
+      ],
+      "assessment": "Existing AS Discord presence publisher; packed message suffix alone is not a new behavior.",
+      "next_static_step": "Stop at established source role unless a concrete AS dependency or override requires bounded native producer/consumer trace. Native compiled revision and behavioral equivalence remain unproved."
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:5",
+      "category": "module_type_namespace",
+      "candidate": {
+        "file_offset": "0x61c19a8",
+        "virtual_address": "0x1461c2fa8",
+        "byte_count": 44,
+        "sha256": "55555b57ff7913e2bca78945552d8be8123aa0cd80c45485795a027007d08f5a",
+        "literal": "benilla_app::hero_preview::HeroPreviewPlugin"
+      },
+      "classification": "source_interface_context_not_new_AS_behavior",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/preview.rs",
+        "crates/benilla-app/src/portrait/hero_booth.rs"
+      ],
+      "assessment": "Existing hero preview/portrait interface; native compiled revision and relevant field correspondence remain separate.",
+      "next_static_step": "Stop at established source role unless a concrete AS dependency or override requires bounded native producer/consumer trace. Native compiled revision and behavioral equivalence remain unproved."
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:7",
+      "category": "module_type_namespace",
+      "candidate": {
+        "file_offset": "0x6201c10",
+        "virtual_address": "0x146203210",
+        "byte_count": 41,
+        "sha256": "4d8b33b0290568539a0687737888cf547a5862930490724870194ec6c4027f17",
+        "literal": "wenilla_rogue_app::screens::ScreensPlugin"
+      },
+      "classification": "source_interface_context_not_new_AS_behavior",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/main.rs"
+      ],
+      "assessment": "Existing application composition/menu navigation; changed packed name boundaries do not establish new gameplay.",
+      "next_static_step": "Stop at established source role unless a concrete AS dependency or override requires bounded native producer/consumer trace. Native compiled revision and behavioral equivalence remain unproved."
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:9",
+      "category": "module_type_namespace",
+      "candidate": {
+        "file_offset": "0x62153c8",
+        "virtual_address": "0x1462169c8",
+        "byte_count": 55,
+        "sha256": "4195e8fcff4c412f2b375927816eb4c10b1e71d4a6737586507c4d9911ee67b9",
+        "literal": "benilla_app::host_controls::TouchDrivePlugindescription"
+      },
+      "classification": "source_interface_context_not_new_AS_behavior",
+      "source_refs": [
+        "crates/benilla-app/src/player/controller.rs"
+      ],
+      "assessment": "Generic host input/touch-control navigation; no exact local type match or independent AS override proved.",
+      "next_static_step": "Stop at established source role unless a concrete AS dependency or override requires bounded native producer/consumer trace. Native compiled revision and behavioral equivalence remain unproved."
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:452",
+      "category": "module_type_namespace",
+      "candidate": {
+        "file_offset": "0x63cbddf",
+        "virtual_address": "0x1463cd3df",
+        "byte_count": 41,
+        "sha256": "ea2ebcbb4ef2425bb0d23c5514e95191bfd121f384aa1df80fd287656faed744",
+        "literal": "benilla_app::sound::output::devicemessage"
+      },
+      "classification": "source_interface_context_not_new_AS_behavior",
+      "source_refs": [
+        "crates/benilla-app/src/sound/output/mod.rs"
+      ],
+      "assessment": "Established output-device backend; packed suffix changes do not establish AS audio policy.",
+      "next_static_step": "Stop at established source role unless a concrete AS dependency or override requires bounded native producer/consumer trace. Native compiled revision and behavioral equivalence remain unproved."
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:855",
+      "category": "module_type_namespace",
+      "candidate": {
+        "file_offset": "0x64aa120",
+        "virtual_address": "0x1464ab720",
+        "byte_count": 33,
+        "sha256": "52b7975b701a3fbf7347b4a12ba282fa80f2c358f4599c4204cab27e4d6ae859",
+        "literal": "benilla_world::wmo_portalmessage9"
+      },
+      "classification": "source_interface_context_not_new_AS_behavior",
+      "source_refs": [
+        "crates/benilla-world/src/wmo_portal/mod.rs"
+      ],
+      "assessment": "Established generic portal/interior visibility interface; no changed AS contract proved.",
+      "next_static_step": "Stop at established source role unless a concrete AS dependency or override requires bounded native producer/consumer trace. Native compiled revision and behavioral equivalence remain unproved."
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:874",
+      "category": "module_type_namespace",
+      "candidate": {
+        "file_offset": "0x64bb4ed",
+        "virtual_address": "0x1464bcaed",
+        "byte_count": 43,
+        "sha256": "6727cc85ea114a25b845eaa90b4519b5c35cd75cc36a42d8be8483776e75f527",
+        "literal": "benilla_world::terrain_stream::spawnmessage"
+      },
+      "classification": "source_interface_context_not_new_AS_behavior",
+      "source_refs": [
+        "crates/benilla-world/src/terrain_stream.rs"
+      ],
+      "assessment": "Established generic terrain streaming interface; no changed AS contract proved.",
+      "next_static_step": "Stop at established source role unless a concrete AS dependency or override requires bounded native producer/consumer trace. Native compiled revision and behavioral equivalence remain unproved."
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:937",
+      "category": "module_type_namespace",
+      "candidate": {
+        "file_offset": "0x6619df0",
+        "virtual_address": "0x14661b3f0",
+        "byte_count": 169,
+        "sha256": "8b0697fb5a5ad5df670b3b313b0884c70eebb21491c6e6c8337be86c3a5ea186",
+        "literal": "benilla_assets::m2::M2ModelLoaderbenilla_assets::adt::AdtLoaderbenilla_assets::blp::BlpImageLoaderbenilla_assets::wdt::WdtIndexLoaderbenilla_assets::wmo::WmoModelLoaderp"
+      },
+      "classification": "source_interface_context_not_new_AS_behavior",
+      "source_refs": [
+        "crates/benilla-assets/src/m2.rs",
+        "crates/benilla-assets/src/world_assets/mod.rs"
+      ],
+      "assessment": "Established generic MPQ/model/terrain/texture asset pipeline; packed suffix is not a proved AS resource change.",
+      "next_static_step": "Stop at established source role unless a concrete AS dependency or override requires bounded native producer/consumer trace. Native compiled revision and behavioral equivalence remain unproved."
+    },
+    {
+      "selector": "Q41-I01:resource_path:3",
+      "category": "resource_path",
+      "candidate": {
+        "file_offset": "0x620ea56",
+        "virtual_address": "0x146210056",
+        "byte_count": 50,
+        "sha256": "e7064cdc9314e8a6cdd9762a2b176fd789465f9bfdd30203ec45a8dc4d32090d",
+        "literal": "//interface/buttons/ui-rotationright-button-up.blp"
+      },
+      "classification": "source_interface_context_not_new_AS_behavior",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/armory.rs"
+      ],
+      "assessment": "Existing armory turn-right MPQ texture consumer. Exact descriptor selects full mpq URL, not regex-leading // path.",
+      "next_static_step": "Stop at established source role unless a concrete AS dependency or override requires bounded native producer/consumer trace. Native compiled revision and behavioral equivalence remain unproved."
+    },
+    {
+      "selector": "Q41-I01:resource_path:225",
+      "category": "resource_path",
+      "candidate": {
+        "file_offset": "0x76b0c5f",
+        "virtual_address": "0x1476b225f",
+        "byte_count": 66,
+        "sha256": "68ad73431bba665cab9270a959f3c4b9a494c7c0b80b47ff248db3ccc7f7ed45",
+        "literal": "FrontSpell_Holy_PrayerOfHealingDBFilesClient\\CreatureSoundData.dbc"
+      },
+      "classification": "source_interface_context_not_new_AS_behavior",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap/creature_sound.rs",
+        "crates/benilla-app/src/local_client/extension.rs",
+        "crates/benilla-formats/src/creature_sound.rs"
+      ],
+      "assessment": "Packed candidate includes adjacent spell/art text. Exact descriptor selects only CreatureSoundData.dbc. Existing AS death-sound patch remains #175 current applicability; native producer dependencies are not revalidated by this string.",
+      "next_static_step": "Stop at established source role unless a concrete AS dependency or override requires bounded native producer/consumer trace. Native compiled revision and behavioral equivalence remain unproved."
+    },
+    {
+      "selector": "Q41-I01:resource_path:263",
+      "category": "resource_path",
+      "candidate": {
+        "file_offset": "0x772a328",
+        "virtual_address": "0x14772b928",
+        "byte_count": 32,
+        "sha256": "a1c7693d9f9b53703b91d5a56a47da22929945d7d0f97df07292846811594dbf",
+        "literal": "DBFilesClient\\LoadingScreens.dbc"
+      },
+      "classification": "source_interface_context_not_new_AS_behavior",
+      "source_refs": [
+        "crates/benilla-formats/src/loading_screen.rs",
+        "crates/benilla-app/src/loading_screen.rs"
+      ],
+      "assessment": "Established generic loading screen catalog and cover lifecycle; exact path descriptor retained; no new AS behavior proved.",
+      "next_static_step": "Stop at established source role unless a concrete AS dependency or override requires bounded native producer/consumer trace. Native compiled revision and behavioral equivalence remain unproved."
+    }
+  ],
+  "exact_path_descriptors": [
+    {
+      "text": "mpq://interface/buttons/ui-rotationright-button-up.blp",
+      "payload": {
+        "file_offset": "0x620ea52",
+        "virtual_address": "0x146210052",
+        "byte_count": 54,
+        "sha256": "e3d3fa910530ba59d3c0e23cc9acc0c2376b297123e6a994d4f0979d099f426e"
+      },
+      "descriptor": {
+        "file_offset": "0x620ea98",
+        "virtual_address": "0x146210098",
+        "byte_count": 16,
+        "sha256": "5dbfa044ad2c7dfb6fce2724a325a910ee198018a9c3ab34ac270d6efd6fd593"
+      },
+      "descriptor_hex": "52002146010000003600000000000000"
+    },
+    {
+      "text": "DBFilesClient\\LoadingScreens.dbc",
+      "payload": {
+        "file_offset": "0x772a328",
+        "virtual_address": "0x14772b928",
+        "byte_count": 32,
+        "sha256": "a1c7693d9f9b53703b91d5a56a47da22929945d7d0f97df07292846811594dbf"
+      },
+      "descriptor": {
+        "file_offset": "0x772a348",
+        "virtual_address": "0x14772b948",
+        "byte_count": 16,
+        "sha256": "7b09a17100a3bd993f8899c8ef1fe047f71b05f5c883b4b68297546cb782ed62"
+      },
+      "descriptor_hex": "28b97247010000002000000000000000"
+    },
+    {
+      "text": "DBFilesClient\\CreatureSoundData.dbc",
+      "payload": {
+        "file_offset": "0x76b0c7e",
+        "virtual_address": "0x1476b227e",
+        "byte_count": 35,
+        "sha256": "2d2a7db5996efaa1597f4932df9226550bde02ce00e4213beecb26fa2368da5a"
+      },
+      "descriptor": {
+        "file_offset": "0x76b0ca8",
+        "virtual_address": "0x1476b22a8",
+        "byte_count": 16,
+        "sha256": "80d1f9a187d85f63b62138251afc26d710cb34c212a966944cdcb8cd55c49652"
+      },
+      "descriptor_hex": "7e226b47010000002300000000000000"
+    }
+  ],
+  "unchanged_candidate_categories": [
+    "game_binding_identifier",
+    "lua_ui_registration",
+    "textual_id_assignment",
+    "textual_numeric_id",
+    "save_configuration_key_lead",
+    "lua_function_declaration"
+  ],
+  "embedded_API": {
+    "file_offset": "0x731fdb8",
+    "virtual_address": "0x1473213b8",
+    "byte_count": 16665,
+    "sha256": "a0066d2d6356e9f21fe4544e600def13887047a6608bb588cd6c27859b78ccc5",
+    "canonical_extract": "docs/analysis/evidence/0.123.0/embedded-api.lua",
+    "boundary": "Exact start comment through final event-handler registration; adjacent packed constants excluded.",
+    "native_dependencies_revalidated": false
+  },
+  "validation": {
+    "source_review": "bounded_actual_source_inspection",
+    "native_decompilation": "not_performed_by_this_review",
+    "application_compilation": "not_run",
+    "game_client_server_execution": "not_run",
+    "parity": "unverified"
+  },
+  "limits": "String/descriptor membership and available source establish navigation/interface roles only. Native dependencies, actual dispatch/state changes and equivalence require separate current-target contracts. No gameplay repair.",
+  "subsequent_native_source_review": {
+    "manifest": "docs/analysis/evidence/0.123.0/pick-smooth/manifest.json",
+    "pick_module": {
+      "stable_system_id": "custom-game-coop-pick",
+      "partial_source_counterpart": "Existing receive_choices payload parser is now partially connected; offer identity/ack integration remains #272. Initial source-first pending status above is retained as chronology, not current source absence.",
+      "gap_ids": [
+        272,
+        274
+      ]
+    },
+    "smooth_module": {
+      "stable_system_id": "custom-game-coop-smooth",
+      "partial_source_counterpart": "AS smoothing wrapper remains absent; shared motion source is supporting engine context only. Bounded current contract is separately registered under #275.",
+      "gap_ids": [
+        273,
+        275
+      ]
+    },
+    "limits": "Bounded registration does not establish complete module implementation, execution or parity."
+  }
+}

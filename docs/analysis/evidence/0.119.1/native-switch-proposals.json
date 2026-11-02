@@ -1,0 +1,429 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.119.1",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c",
+    "size_bytes": 145374208
+  },
+  "gap_ids": [
+    17,
+    41,
+    63,
+    64,
+    65,
+    73
+  ],
+  "lead_ids": [
+    "Q41-F01"
+  ],
+  "inputs": [
+    {
+      "path": "runtime/coverage/b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c/native-final/jump-proposal-review.json",
+      "sha256": "254b426f9893ad91e8e5bd00df3e164f2261542059949eab07b3e3fd98561bef"
+    },
+    {
+      "path": "runtime/coverage/b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c/native-final/rechecked-jump-tables.json",
+      "sha256": "8937bc6276acbd253310d6050eb3516ed692fd68d1a54e31d3c1f9d4f2e6c9e2"
+    },
+    {
+      "path": "docs/analysis/coverage/native-jump-tables.json",
+      "sha256": "2ee945d110571ff004a26b99b25a0339e57d2476d03878d059fb253521660285"
+    },
+    {
+      "path": "docs/analysis/evidence/0.119.1/guarded-creature-query-correspondence.json",
+      "sha256": "e011795c712a62c2686ac618188f970246baaf3bd3261bc614b75d7c43fca51c"
+    },
+    {
+      "path": "runtime/q41-computed-context-0.119.0/contextual-sites.jsonl.gz",
+      "sha256": "5cd107cdeb28e807b78dd9dafb19e1ca55a8531d2ae3c8170caa64dea103e60a"
+    }
+  ],
+  "selected_census": {
+    "path": "docs/analysis/coverage/full-image-execheck-0.119.1.json",
+    "sha256": "610591688d5cab3a03111117f16f2b50082220deb432d0bf42189f9f9bac2889"
+  },
+  "counts": {
+    "applied_tables": 2574,
+    "proposed_tables": 3673,
+    "added_tables": 1099,
+    "changed_case_vectors": 0,
+    "distinct_proposed_target_addresses": 6803,
+    "exact_target_starts": 581,
+    "targets_in_instruction_interiors": 0,
+    "undecoded_targets": 6222,
+    "tables_with_as_owner_context": 14,
+    "tables_with_as_extent_context": 14
+  },
+  "applied_tables": 2574,
+  "proposal_tables": 3673,
+  "proposal_edges_applied": false,
+  "sites": [
+    {
+      "site": "0x140307692",
+      "table_address": "0x1461b1720",
+      "native_owner": "0x140304560",
+      "proposal_selector": "runtime/coverage/b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c/native-final/rechecked-jump-tables.json:tables[site=0x140307692]",
+      "applied_in_selected_census": false,
+      "owning_gap_ids": [
+        17,
+        41,
+        73
+      ],
+      "lead_id": "Q41-F01",
+      "owning_receipt": "codex_correspondence",
+      "receipt_selector": null,
+      "status": "current guarded domain admitted; per-case producer/consumer/source applicability pending"
+    },
+    {
+      "site": "0x145afc9a7",
+      "table_address": "0x1472df660",
+      "native_owner": "0x145afbcd0",
+      "proposal_selector": "runtime/coverage/b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c/native-final/rechecked-jump-tables.json:tables[site=0x145afc9a7]",
+      "applied_in_selected_census": false,
+      "owning_gap_ids": [
+        41,
+        63,
+        64,
+        65
+      ],
+      "lead_id": "Q41-F01",
+      "owning_receipt": {
+        "path": "docs/analysis/evidence/0.119.1/guarded-creature-query-correspondence.json",
+        "sha256": "e011795c712a62c2686ac618188f970246baaf3bd3261bc614b75d7c43fca51c"
+      },
+      "receipt_selector": "sites[site=0x145afc9a7]",
+      "status": "current guarded domain admitted; per-case producer/consumer/source applicability pending"
+    },
+    {
+      "site": "0x145afdae2",
+      "table_address": "0x1472df820",
+      "native_owner": "0x145afbcd0",
+      "proposal_selector": "runtime/coverage/b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c/native-final/rechecked-jump-tables.json:tables[site=0x145afdae2]",
+      "applied_in_selected_census": false,
+      "owning_gap_ids": [
+        41,
+        63,
+        64,
+        65
+      ],
+      "lead_id": "Q41-F01",
+      "owning_receipt": {
+        "path": "docs/analysis/evidence/0.119.1/guarded-creature-query-correspondence.json",
+        "sha256": "e011795c712a62c2686ac618188f970246baaf3bd3261bc614b75d7c43fca51c"
+      },
+      "receipt_selector": "sites[site=0x145afdae2]",
+      "status": "current guarded domain admitted; per-case producer/consumer/source applicability pending"
+    },
+    {
+      "site": "0x145afdb81",
+      "table_address": "0x1472df998",
+      "native_owner": "0x145afbcd0",
+      "proposal_selector": "runtime/coverage/b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c/native-final/rechecked-jump-tables.json:tables[site=0x145afdb81]",
+      "applied_in_selected_census": false,
+      "owning_gap_ids": [
+        41,
+        63,
+        64,
+        65
+      ],
+      "lead_id": "Q41-F01",
+      "owning_receipt": {
+        "path": "docs/analysis/evidence/0.119.1/guarded-creature-query-correspondence.json",
+        "sha256": "e011795c712a62c2686ac618188f970246baaf3bd3261bc614b75d7c43fca51c"
+      },
+      "receipt_selector": "sites[site=0x145afdb81]",
+      "status": "current guarded domain admitted; per-case producer/consumer/source applicability pending"
+    },
+    {
+      "site": "0x145afdd35",
+      "table_address": "0x1472dfb6c",
+      "native_owner": "0x145afbcd0",
+      "proposal_selector": "runtime/coverage/b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c/native-final/rechecked-jump-tables.json:tables[site=0x145afdd35]",
+      "applied_in_selected_census": false,
+      "owning_gap_ids": [
+        41,
+        63,
+        64,
+        65
+      ],
+      "lead_id": "Q41-F01",
+      "owning_receipt": {
+        "path": "docs/analysis/evidence/0.119.1/guarded-creature-query-correspondence.json",
+        "sha256": "e011795c712a62c2686ac618188f970246baaf3bd3261bc614b75d7c43fca51c"
+      },
+      "receipt_selector": "sites[site=0x145afdd35]",
+      "status": "current guarded domain admitted; per-case producer/consumer/source applicability pending"
+    },
+    {
+      "site": "0x145afde7f",
+      "table_address": "0x1472dfd00",
+      "native_owner": "0x145afbcd0",
+      "proposal_selector": "runtime/coverage/b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c/native-final/rechecked-jump-tables.json:tables[site=0x145afde7f]",
+      "applied_in_selected_census": false,
+      "owning_gap_ids": [
+        41,
+        63,
+        64,
+        65
+      ],
+      "lead_id": "Q41-F01",
+      "owning_receipt": {
+        "path": "docs/analysis/evidence/0.119.1/guarded-creature-query-correspondence.json",
+        "sha256": "e011795c712a62c2686ac618188f970246baaf3bd3261bc614b75d7c43fca51c"
+      },
+      "receipt_selector": "sites[site=0x145afde7f]",
+      "status": "current guarded domain admitted; per-case producer/consumer/source applicability pending"
+    },
+    {
+      "site": "0x145afdea8",
+      "table_address": "0x1472df9f0",
+      "native_owner": "0x145afbcd0",
+      "proposal_selector": "runtime/coverage/b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c/native-final/rechecked-jump-tables.json:tables[site=0x145afdea8]",
+      "applied_in_selected_census": false,
+      "owning_gap_ids": [
+        41,
+        63,
+        64,
+        65
+      ],
+      "lead_id": "Q41-F01",
+      "owning_receipt": {
+        "path": "docs/analysis/evidence/0.119.1/guarded-creature-query-correspondence.json",
+        "sha256": "e011795c712a62c2686ac618188f970246baaf3bd3261bc614b75d7c43fca51c"
+      },
+      "receipt_selector": "sites[site=0x145afdea8]",
+      "status": "current guarded domain admitted; per-case producer/consumer/source applicability pending"
+    },
+    {
+      "site": "0x145afded4",
+      "table_address": "0x1472dfe7c",
+      "native_owner": "0x145afbcd0",
+      "proposal_selector": "runtime/coverage/b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c/native-final/rechecked-jump-tables.json:tables[site=0x145afded4]",
+      "applied_in_selected_census": false,
+      "owning_gap_ids": [
+        41,
+        63,
+        64,
+        65
+      ],
+      "lead_id": "Q41-F01",
+      "owning_receipt": {
+        "path": "docs/analysis/evidence/0.119.1/guarded-creature-query-correspondence.json",
+        "sha256": "e011795c712a62c2686ac618188f970246baaf3bd3261bc614b75d7c43fca51c"
+      },
+      "receipt_selector": "sites[site=0x145afded4]",
+      "status": "current guarded domain admitted; per-case producer/consumer/source applicability pending"
+    },
+    {
+      "site": "0x145afe1cf",
+      "table_address": "0x1472dfed4",
+      "native_owner": "0x145afbcd0",
+      "proposal_selector": "runtime/coverage/b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c/native-final/rechecked-jump-tables.json:tables[site=0x145afe1cf]",
+      "applied_in_selected_census": false,
+      "owning_gap_ids": [
+        41,
+        63,
+        64,
+        65
+      ],
+      "lead_id": "Q41-F01",
+      "owning_receipt": {
+        "path": "docs/analysis/evidence/0.119.1/guarded-creature-query-correspondence.json",
+        "sha256": "e011795c712a62c2686ac618188f970246baaf3bd3261bc614b75d7c43fca51c"
+      },
+      "receipt_selector": "sites[site=0x145afe1cf]",
+      "status": "current guarded domain admitted; per-case producer/consumer/source applicability pending"
+    },
+    {
+      "site": "0x145afe1f7",
+      "table_address": "0x1472e01e0",
+      "native_owner": "0x145afbcd0",
+      "proposal_selector": "runtime/coverage/b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c/native-final/rechecked-jump-tables.json:tables[site=0x145afe1f7]",
+      "applied_in_selected_census": false,
+      "owning_gap_ids": [
+        41,
+        63,
+        64,
+        65
+      ],
+      "lead_id": "Q41-F01",
+      "owning_receipt": {
+        "path": "docs/analysis/evidence/0.119.1/guarded-creature-query-correspondence.json",
+        "sha256": "e011795c712a62c2686ac618188f970246baaf3bd3261bc614b75d7c43fca51c"
+      },
+      "receipt_selector": "sites[site=0x145afe1f7]",
+      "status": "current guarded domain admitted; per-case producer/consumer/source applicability pending"
+    },
+    {
+      "site": "0x145afe234",
+      "table_address": "0x1472dfeac",
+      "native_owner": "0x145afbcd0",
+      "proposal_selector": "runtime/coverage/b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c/native-final/rechecked-jump-tables.json:tables[site=0x145afe234]",
+      "applied_in_selected_census": false,
+      "owning_gap_ids": [
+        41,
+        63,
+        64,
+        65
+      ],
+      "lead_id": "Q41-F01",
+      "owning_receipt": {
+        "path": "docs/analysis/evidence/0.119.1/guarded-creature-query-correspondence.json",
+        "sha256": "e011795c712a62c2686ac618188f970246baaf3bd3261bc614b75d7c43fca51c"
+      },
+      "receipt_selector": "sites[site=0x145afe234]",
+      "status": "current guarded domain admitted; per-case producer/consumer/source applicability pending"
+    },
+    {
+      "site": "0x145afe260",
+      "table_address": "0x1472e035c",
+      "native_owner": "0x145afbcd0",
+      "proposal_selector": "runtime/coverage/b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c/native-final/rechecked-jump-tables.json:tables[site=0x145afe260]",
+      "applied_in_selected_census": false,
+      "owning_gap_ids": [
+        41,
+        63,
+        64,
+        65
+      ],
+      "lead_id": "Q41-F01",
+      "owning_receipt": {
+        "path": "docs/analysis/evidence/0.119.1/guarded-creature-query-correspondence.json",
+        "sha256": "e011795c712a62c2686ac618188f970246baaf3bd3261bc614b75d7c43fca51c"
+      },
+      "receipt_selector": "sites[site=0x145afe260]",
+      "status": "current guarded domain admitted; per-case producer/consumer/source applicability pending"
+    },
+    {
+      "site": "0x145afe507",
+      "table_address": "0x1472e04d4",
+      "native_owner": "0x145afbcd0",
+      "proposal_selector": "runtime/coverage/b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c/native-final/rechecked-jump-tables.json:tables[site=0x145afe507]",
+      "applied_in_selected_census": false,
+      "owning_gap_ids": [
+        41,
+        63,
+        64,
+        65
+      ],
+      "lead_id": "Q41-F01",
+      "owning_receipt": {
+        "path": "docs/analysis/evidence/0.119.1/guarded-creature-query-correspondence.json",
+        "sha256": "e011795c712a62c2686ac618188f970246baaf3bd3261bc614b75d7c43fca51c"
+      },
+      "receipt_selector": "sites[site=0x145afe507]",
+      "status": "current guarded domain admitted; per-case producer/consumer/source applicability pending"
+    },
+    {
+      "site": "0x145afe5a1",
+      "table_address": "0x1472e0370",
+      "native_owner": "0x145afbcd0",
+      "proposal_selector": "runtime/coverage/b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c/native-final/rechecked-jump-tables.json:tables[site=0x145afe5a1]",
+      "applied_in_selected_census": false,
+      "owning_gap_ids": [
+        41,
+        63,
+        64,
+        65
+      ],
+      "lead_id": "Q41-F01",
+      "owning_receipt": {
+        "path": "docs/analysis/evidence/0.119.1/guarded-creature-query-correspondence.json",
+        "sha256": "e011795c712a62c2686ac618188f970246baaf3bd3261bc614b75d7c43fca51c"
+      },
+      "receipt_selector": "sites[site=0x145afe5a1]",
+      "status": "current guarded domain admitted; per-case producer/consumer/source applicability pending"
+    }
+  ],
+  "codex_correspondence": {
+    "target": {
+      "version": "0.119.1",
+      "path": "installed-game/AzerothSurvivors.exe",
+      "sha256": "b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c",
+      "size_bytes": 145374208
+    },
+    "source_first": [
+      {
+        "path": "crates/azeroth-survivors-re/src/codex.rs",
+        "sha256": "159f37324f1a79bf99479b65df1b96f38bb9163dbbf4bde1e0400ea58bdd9043"
+      }
+    ],
+    "source_interface": "CodexCatalog::embedded, CodexText::embedded and rebuild through existing native-derived catalog/text, selected entry and Details consumers; exact native incoming object-field discriminant/producer remains unproved.",
+    "historical": {
+      "target": {
+        "version": "0.119.0",
+        "sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f",
+        "size_bytes": 145357824
+      },
+      "selector": "runtime/q41-computed-context-0.119.0/contextual-sites.jsonl.gz:site=0x1403076a2",
+      "body": "0x140304570",
+      "prefix": {
+        "va": "0x140307653",
+        "byte_count": 81,
+        "sha256": "7e8e622aeeb4e6b8accb000ac6290571f4570bcfad189c5ddc0e5ac480ceb0b3"
+      }
+    },
+    "current": {
+      "target": {
+        "version": "0.119.1",
+        "path": "installed-game/AzerothSurvivors.exe",
+        "sha256": "b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c",
+        "size_bytes": 145374208
+      },
+      "site": "0x140307692",
+      "body": "0x140304560",
+      "prefix": {
+        "va": "0x140307643",
+        "byte_count": 81,
+        "sha256": "d9dd976f01199b44877e70b96ac5eac4a8024d7aff2ed3cf9171e0ac848f0691"
+      },
+      "table": {
+        "site": "0x140307692",
+        "guard": "0x14030767a",
+        "selector_register": "rax",
+        "guard_kind": "ja",
+        "guard_bound": 19,
+        "selector_alias_proof": null,
+        "selector_minimum": 0,
+        "selector_maximum": 19,
+        "table_address": "0x1461b1720",
+        "relative_base": "0x1461b1720",
+        "file_offset": "0x61b0720",
+        "byte_count": 80,
+        "sha256": "c1b10d57e8f29c76f03ff6432a0ad1b9de4308aba057a9fd90f6ae17000af7dc",
+        "unique_targets": 5,
+        "guarded_fallthrough_cases_complete": true,
+        "all_possible_incoming_contexts_or_type_invariants_complete": false
+      }
+    },
+    "comparison": {
+      "instruction_pairs": 17,
+      "normalized_equal_pairs": 16,
+      "normalization": "Register/width/memory form and scalar immediates retained; RIP displacement and shifted relative branch destinations normalized. Direct call destination change remains separately pending.",
+      "unvalidated_call": {
+        "historical_site": "0x14030766b",
+        "historical_target": "0x145b29a00",
+        "current_site": "0x14030765b",
+        "current_target": "0x145b2ccd0"
+      },
+      "detailed_result": {
+        "path": "runtime/coverage/b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c/native-final/codex-table-correspondence.json",
+        "sha256": "1a96fbe8d95e16cde50c495b288e42b3234b45b3d64d40c2cff2062893a8e6ab"
+      }
+    },
+    "current_contract_applicability": "pending; structural candidate correspondence is not a complete data/producer/caller/source contract",
+    "next_static_step": "Trace the current object field+0x44 producer and moved call, prove admitted selector payloads/table destinations and join selected Details/growth consumer to existing Codex source. Reuse #17/#73 and Q41-F01; do not infer a new behavior/source defect."
+  },
+  "creature_query_correspondence": {
+    "path": "docs/analysis/evidence/0.119.1/guarded-creature-query-correspondence.json",
+    "sha256": "e011795c712a62c2686ac618188f970246baaf3bd3261bc614b75d7c43fca51c"
+  },
+  "limits": [
+    "All 1,099 added proposals remain separate from the exact 2,574 applied-table snapshot. No existing applied case vector changed.",
+    "The added tables have 6,803 distinct destinations: 581 exact selected instruction starts, 6,222 undecoded and zero interior conflicts. These are case destinations, not function/source entries.",
+    "Fourteen AS-context proposals map retained Q41-F01 questions; thirteen CreatureQuery entry/payload tables remain #64/#65 and one Codex discriminant remains #17/#73. Candidate old/new mappings do not transfer complete semantic, runtime or parity proof.",
+    "The other 1,085 added tables retain exact residual selectors; absence of diagnostic AS context is not proof of generic ownership. Larger candidate counts do not authorize broad engine reconstruction or another generic full-image pass.",
+    "No new gameplay source defect, compilation, application/client/network/server execution or original/rebuilt parity is established."
+  ]
+}

@@ -1,0 +1,559 @@
+{
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "ranges": [
+    {
+      "virtual_address": "0x145ab6a50",
+      "file_offset": "0x5ab5e50",
+      "byte_count": 972,
+      "sha256": "3d3d43899af997a54618ffc418e5cc93ae46137271bae111b14e0129efa708d6",
+      "instruction_count": 260
+    },
+    {
+      "virtual_address": "0x145cace10",
+      "file_offset": "0x5cac210",
+      "byte_count": 185,
+      "sha256": "6c4e96940f2c0273f5fc4ff82044d5c83baa1de969a416597a6c4160ac5b1d01",
+      "instruction_count": 56
+    }
+  ],
+  "token_cases": [
+    {
+      "token": "101000:1",
+      "cap": 5,
+      "expected": [
+        101000,
+        1
+      ]
+    },
+    {
+      "token": "101000:5",
+      "cap": 5,
+      "expected": [
+        101000,
+        5
+      ]
+    },
+    {
+      "token": "101000:6",
+      "cap": 5,
+      "expected": [
+        101000,
+        5
+      ]
+    },
+    {
+      "token": "101000:255",
+      "cap": 5,
+      "expected": [
+        101000,
+        5
+      ]
+    },
+    {
+      "token": "101000:256",
+      "cap": 5,
+      "expected": null
+    },
+    {
+      "token": "101000:0",
+      "cap": 5,
+      "expected": null
+    },
+    {
+      "token": "101000:0001",
+      "cap": 5,
+      "expected": [
+        101000,
+        1
+      ]
+    },
+    {
+      "token": "+101000:+2",
+      "cap": 5,
+      "expected": [
+        101000,
+        2
+      ]
+    },
+    {
+      "token": "101000:-1",
+      "cap": 5,
+      "expected": null
+    },
+    {
+      "token": "-101000:2",
+      "cap": 5,
+      "expected": null
+    },
+    {
+      "token": "101000:",
+      "cap": 5,
+      "expected": null
+    },
+    {
+      "token": ":1",
+      "cap": 5,
+      "expected": null
+    },
+    {
+      "token": "101000",
+      "cap": 5,
+      "expected": null
+    },
+    {
+      "token": "101000:1:2",
+      "cap": 5,
+      "expected": null
+    },
+    {
+      "token": "101000 :1",
+      "cap": 5,
+      "expected": null
+    },
+    {
+      "token": " 101000:1",
+      "cap": 5,
+      "expected": null
+    },
+    {
+      "token": "101000: 1",
+      "cap": 5,
+      "expected": null
+    },
+    {
+      "token": "1:2",
+      "cap": 5,
+      "expected": null
+    },
+    {
+      "token": "4294967295:2",
+      "cap": 5,
+      "expected": null
+    },
+    {
+      "token": "4294967296:2",
+      "cap": 5,
+      "expected": null
+    },
+    {
+      "token": "101010:3",
+      "cap": 5,
+      "expected": [
+        101010,
+        3
+      ]
+    },
+    {
+      "token": "104960:5",
+      "cap": 5,
+      "expected": [
+        104960,
+        5
+      ]
+    },
+    {
+      "token": "101000:1",
+      "cap": 255,
+      "expected": [
+        101000,
+        1
+      ]
+    },
+    {
+      "token": "101000:5",
+      "cap": 255,
+      "expected": [
+        101000,
+        5
+      ]
+    },
+    {
+      "token": "101000:6",
+      "cap": 255,
+      "expected": [
+        101000,
+        6
+      ]
+    },
+    {
+      "token": "101000:255",
+      "cap": 255,
+      "expected": [
+        101000,
+        255
+      ]
+    },
+    {
+      "token": "101000:256",
+      "cap": 255,
+      "expected": null
+    },
+    {
+      "token": "101000:0",
+      "cap": 255,
+      "expected": null
+    },
+    {
+      "token": "101000:0001",
+      "cap": 255,
+      "expected": [
+        101000,
+        1
+      ]
+    },
+    {
+      "token": "+101000:+2",
+      "cap": 255,
+      "expected": [
+        101000,
+        2
+      ]
+    },
+    {
+      "token": "101000:-1",
+      "cap": 255,
+      "expected": null
+    },
+    {
+      "token": "-101000:2",
+      "cap": 255,
+      "expected": null
+    },
+    {
+      "token": "101000:",
+      "cap": 255,
+      "expected": null
+    },
+    {
+      "token": ":1",
+      "cap": 255,
+      "expected": null
+    },
+    {
+      "token": "101000",
+      "cap": 255,
+      "expected": null
+    },
+    {
+      "token": "101000:1:2",
+      "cap": 255,
+      "expected": null
+    },
+    {
+      "token": "101000 :1",
+      "cap": 255,
+      "expected": null
+    },
+    {
+      "token": " 101000:1",
+      "cap": 255,
+      "expected": null
+    },
+    {
+      "token": "101000: 1",
+      "cap": 255,
+      "expected": null
+    },
+    {
+      "token": "1:2",
+      "cap": 255,
+      "expected": null
+    },
+    {
+      "token": "4294967295:2",
+      "cap": 255,
+      "expected": null
+    },
+    {
+      "token": "4294967296:2",
+      "cap": 255,
+      "expected": null
+    },
+    {
+      "token": "101010:3",
+      "cap": 255,
+      "expected": [
+        101010,
+        3
+      ]
+    },
+    {
+      "token": "104960:5",
+      "cap": 255,
+      "expected": [
+        104960,
+        5
+      ]
+    }
+  ],
+  "tuple_sort_cases": [
+    {
+      "input": [
+        [
+          101010,
+          5
+        ],
+        [
+          101000,
+          4
+        ],
+        [
+          101010,
+          1
+        ],
+        [
+          101000,
+          2
+        ]
+      ],
+      "sorted": [
+        [
+          101000,
+          2
+        ],
+        [
+          101000,
+          4
+        ],
+        [
+          101010,
+          1
+        ],
+        [
+          101010,
+          5
+        ]
+      ]
+    },
+    {
+      "input": [
+        [
+          101000,
+          2
+        ],
+        [
+          101000,
+          5
+        ],
+        [
+          101000,
+          1
+        ]
+      ],
+      "sorted": [
+        [
+          101000,
+          1
+        ],
+        [
+          101000,
+          2
+        ],
+        [
+          101000,
+          5
+        ]
+      ]
+    },
+    {
+      "input": [
+        [
+          104960,
+          5
+        ],
+        [
+          101010,
+          1
+        ],
+        [
+          101000,
+          1
+        ]
+      ],
+      "sorted": [
+        [
+          101000,
+          1
+        ],
+        [
+          101010,
+          1
+        ],
+        [
+          104960,
+          5
+        ]
+      ]
+    }
+  ],
+  "original_instruction_steps": 6440,
+  "result": "passed",
+  "limits": "Synthetic delimiter and descriptor seams; native application, reconstructed Rust and file I/O are not executed.",
+  "schema_version": 1,
+  "gap_ids": [
+    227,
+    228,
+    229
+  ],
+  "queries": [
+    {
+      "role": "gear-records-0x145ab6a50",
+      "procedure": "0x145ab6a50",
+      "evidence_id": "ev_c3c5b241e558236383c5cb38320272e46b4ac30dc3083b93a4f1fbb7ca26fcd9",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "736cc2b2fcca01886159a58902ebf785497a6920dfa1fe6c6da6b67e236d39d3",
+      "normalized_text_sha256": "561621e87f11c34c62ef8b20dde7f9849af3077fcf49baea9b7c7b8fb9943dca",
+      "plan": {
+        "path": "runtime/fixgap-220-229/gear/token-parser/plan.json",
+        "sha256": "9f0b64943dfe75d5d768fb698ebc7189807821b7ae8ab4b31a9c18fa67997882"
+      },
+      "journal": {
+        "path": "runtime/fixgap-220-229/gear/token-parser/query/journal.json",
+        "sha256": "1a66bd60ab40cb6e0dc6779bf4509da60fe59bb3fc0e1c6ed400c8057e052ff6"
+      },
+      "result": {
+        "path": "runtime/fixgap-220-229/gear/token-parser/query/results/7ad598e52eb6642ac60b54e2b30c68c2d638b57275701fdd5acf07539f53d40e.json",
+        "sha256": "a86305159047ed37212eac7aae78c269848c1bf5f663ac0f50e59bc930796899"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap-220-229/gear/token-parser/code.bin",
+        "sha256": "3d3d43899af997a54618ffc418e5cc93ae46137271bae111b14e0129efa708d6"
+      },
+      "slice_virtual_address": "0x145ab6a50"
+    },
+    {
+      "role": "gear-records-0x145aa6a10",
+      "procedure": "0x145aa6a10",
+      "evidence_id": "ev_62216b5f19a86dacf2fb97961712c9d5829832652fb91cf65feac19d5d5c1ae7",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "c31c6cf6ffea8cc4e0ab9ec2637fd26bb206d139d333ef210da60b4742000ede",
+      "normalized_text_sha256": "bed3a308b3c669381995ac11b81fe4590831cd180e8f569548fd515c8fcc1e0b",
+      "plan": {
+        "path": "runtime/fixgap220229/heroic/save/plan-v2.json",
+        "sha256": "403d4433c403175f68147dc97622d63af53d35c5d866f82380fe1249ca2c21dd"
+      },
+      "journal": {
+        "path": "runtime/fixgap220229/heroic/save/query-v2/journal.json",
+        "sha256": "9e62d6d8e6cb8c5a6ff1be875865321c5addbd1e4ccaafe83c7f2dbde60cca89"
+      },
+      "result": {
+        "path": "runtime/fixgap220229/heroic/save/query-v2/results/76677863f891c0fdcb9570a937b6051a6c47588cdc405ee099e475fb5799fdc4-7a7adca276bf137c.json",
+        "sha256": "3f82565313ae358a53cf2813e51c539c5210d81bd5cb4de737b509af8b421829"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap220229/heroic/save/code.bin",
+        "sha256": "ec411846fa38b9b0457fc1ccfdde4cd791ee60734940d1918e05c6d508aa1976"
+      },
+      "slice_virtual_address": "0x145aa6a10"
+    },
+    {
+      "role": "gear-records-0x145aaf840",
+      "procedure": "0x145aaf840",
+      "evidence_id": "ev_766c2b76a438d6a72d95c1dc7187bb03cb0555543f6dcac85d3fbc78fb09d6d4",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "c31c6cf6ffea8cc4e0ab9ec2637fd26bb206d139d333ef210da60b4742000ede",
+      "normalized_text_sha256": "4b46ce69e7367e533ef9a9619a4f01b4255d1302e120b658e404cd88d58bb221",
+      "plan": {
+        "path": "runtime/fixgap220229/heroic/save/plan-v2.json",
+        "sha256": "403d4433c403175f68147dc97622d63af53d35c5d866f82380fe1249ca2c21dd"
+      },
+      "journal": {
+        "path": "runtime/fixgap220229/heroic/save/query-v2/journal.json",
+        "sha256": "9e62d6d8e6cb8c5a6ff1be875865321c5addbd1e4ccaafe83c7f2dbde60cca89"
+      },
+      "result": {
+        "path": "runtime/fixgap220229/heroic/save/query-v2/results/736d7aaf424b077616510f3277fc0c9219a3a0d1c0ff218cd9a6d23f6146ef34-88fe2fe154f08d06.json",
+        "sha256": "27723acc9b02582938035f838096ff3c8ff06726ad62e9afd2d0189904562702"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap220229/heroic/save/code.bin",
+        "sha256": "ec411846fa38b9b0457fc1ccfdde4cd791ee60734940d1918e05c6d508aa1976"
+      },
+      "slice_virtual_address": "0x145aa6a10"
+    },
+    {
+      "role": "marks-recipient",
+      "procedure": "0x145b0e8d0",
+      "evidence_id": "ev_7b10828736978ffa8f552209abd361741b1218287f521133807f33de5fd8212a",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "4b89e7991bafe11c37bad7f33d0dfc1db5f34a400b0e26863aab91ff8f281093",
+      "normalized_text_sha256": "57f2e5cf2e4cf1e205625c45afb4b9f08d339c19695c56af723cff35bcbddf68",
+      "plan": {
+        "path": "runtime/fixgap-220-229/gear/receiver/plan.json",
+        "sha256": "7223b9178390ee932f4b88c64814f8bf267a612a657b0249da7c41ab257ef4e2"
+      },
+      "journal": {
+        "path": "runtime/fixgap-220-229/gear/receiver/query/journal.json",
+        "sha256": "169b5e034152cdb17d6b354040f3ef91915db509bd400f932de8dcdd551b9fda"
+      },
+      "result": {
+        "path": "runtime/fixgap-220-229/gear/receiver/query/results/54fd1960fffeac34d9390c2f2211ad7e1b1795a6d4e69c2f760a79f22235dfe4-4c15c8631830e340.json",
+        "sha256": "680000800ff6f58b900df0f56b4c63c95680bbbd42a8a6a7d940fd9220108bec"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap-220-229/gear/receiver/code.bin",
+        "sha256": "632cd65faeeab64ff3246e2958de72b6506a4c3ca3dc54d7db028419b9d3c00c"
+      },
+      "slice_virtual_address": "0x145b0e8d0"
+    },
+    {
+      "role": "star-key-canonicalization",
+      "procedure": "0x145aa4ea0",
+      "evidence_id": "ev_4500fd1fea0c555305dccfe6fbb8ec0cbec0657e6d98b782d7bfe263c3d3cbe8",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "15b5aa08b59682c57143f53fb4a6f6e4a2c48c22c032871a2f7883d8379ded5f",
+      "normalized_text_sha256": "0366fbde61bd3799a07b066fd81a818c80f37ad2865a9ae690c9616bced14a13",
+      "plan": {
+        "path": "runtime/fixgap-220-229/gear/purchase-methods/plan.json",
+        "sha256": "0e8ae1c7ca2283ea29f1e0e75d807d7c38a8ee0c37f4fac87b73d488238fce9e"
+      },
+      "journal": {
+        "path": "runtime/fixgap-220-229/gear/purchase-methods/query/journal.json",
+        "sha256": "5518895cb8a640f14304dc0ebefd406680895e6fbc290999c47c4bb2457d80fe"
+      },
+      "result": {
+        "path": "runtime/fixgap-220-229/gear/purchase-methods/query/results/09745471b72c067d28f966cf9f5bad49b06aa1b5e385de1bad0c29a86620562c.json",
+        "sha256": "407ab3b4d6642dfe2b97b4592e8744bb30d5538f4c5157846102e902c0f056e8"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap-220-229/gear/purchase-methods/code.bin",
+        "sha256": "8d30e54f358ddde3be5707c89c271ed28ebea58d5c7c70da9f1e14c49f73fe76"
+      },
+      "slice_virtual_address": "0x145aa4ea0"
+    }
+  ],
+  "source_bindings": [
+    {
+      "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+      "sha256": "1a4763bd87dff2211054f1601ccbafb120e9d32d40b80f2015d3382c5fc4b901"
+    }
+  ],
+  "source_contract": "Save normalization and gear rewrites retain class marks in tenths, stars and pity. Valid class mask0xBBE; marks last class row wins and moves to end; rank tokens u32:u8 with nonzero count, synthetic gear descriptor and caps5/255; tuples sort ascending and deduplicate by item ID, retaining minimum count.",
+  "runtime_validation": "not_run",
+  "parity": "unverified"
+}

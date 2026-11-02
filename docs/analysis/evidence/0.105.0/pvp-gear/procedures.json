@@ -1,0 +1,91 @@
+{
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "procedures": [
+    {
+      "role": "item-reader",
+      "start": "0x1458bd6f0",
+      "end_exclusive": "0x1458be735",
+      "file_offset": "0x58bcaf0",
+      "byte_count": 4165,
+      "sha256": "92159a3a1377c61b5eead7620df4aa8fa43653958e39be52ed9498a3a90a8398",
+      "assembly": "item-reader.asm"
+    },
+    {
+      "role": "drop-owner",
+      "start": "0x1458bbdc0",
+      "end_exclusive": "0x1458bc16e",
+      "file_offset": "0x58bb1c0",
+      "byte_count": 942,
+      "sha256": "19ac24e18bc9c96d22e0c83d00d3fff38713c44029f42ebef38f3e94e0a9b097",
+      "assembly": "drop-owner.asm"
+    },
+    {
+      "role": "outfit-faction",
+      "start": "0x1458bd260",
+      "end_exclusive": "0x1458bd5f4",
+      "file_offset": "0x58bc660",
+      "byte_count": 916,
+      "sha256": "b09bb40c93ed0afe4ad5ec33269c78d29bcffae1a6a1dd428d430a4be8d8663f",
+      "assembly": "outfit-faction.asm"
+    },
+    {
+      "role": "flavor",
+      "start": "0x1458bb9e0",
+      "end_exclusive": "0x1458bbd11",
+      "file_offset": "0x58bade0",
+      "byte_count": 817,
+      "sha256": "f04afaf5266a79ab3c4f9723b327b6b9845290c4b68b765e4da5bfe285396e01",
+      "assembly": "flavor.asm"
+    },
+    {
+      "role": "collection",
+      "start": "0x1401df3e0",
+      "end_exclusive": "0x1401e1218",
+      "file_offset": "0x1de7e0",
+      "byte_count": 7736,
+      "sha256": "a133ee2657b73a3333e0502996bc2be9e11c80f05926273c8c7ec5e6461ecfef",
+      "assembly": "collection.asm"
+    },
+    {
+      "role": "armor-scaling",
+      "start": "0x1459b3920",
+      "end_exclusive": "0x1459b3b11",
+      "file_offset": "0x59b2d20",
+      "byte_count": 497,
+      "sha256": "32a709c3138a810bcb4e3a2cc036e26593b2c64c4c33c1e9bddf311ba7b3764d",
+      "assembly": "armor-scaling.asm"
+    },
+    {
+      "role": "weapon-scaling",
+      "start": "0x1459b3b60",
+      "end_exclusive": "0x1459b3d51",
+      "file_offset": "0x59b2f60",
+      "byte_count": 497,
+      "sha256": "debd3c2ffea1dde4aa4389fe0437995c9b46c7c08b7a13a1177edad04f6d59a2",
+      "assembly": "weapon-scaling.asm"
+    },
+    {
+      "role": "extra-scaling",
+      "start": "0x1459b3da0",
+      "end_exclusive": "0x1459b3f91",
+      "file_offset": "0x59b31a0",
+      "byte_count": 497,
+      "sha256": "7adaf16778399ddd06d1ea6174c558bc9b4bf78904860d2302499550146a2f71",
+      "assembly": "extra-scaling.asm"
+    },
+    {
+      "role": "equipment-effects",
+      "start": "0x1458beb10",
+      "end_exclusive": "0x1458bef29",
+      "file_offset": "0x58bdf10",
+      "byte_count": 1049,
+      "sha256": "c71eca67fe0c771ecab1475ca3c32b83180c8212e49d6d5d31f27f240f3b4af0",
+      "assembly": "equipment-effects.asm"
+    }
+  ],
+  "limitations": [
+    "Analyst-selected native raw slices keep original addresses.",
+    "Ghidra raw-slice imports, external data and indirect relation discovery are incomplete.",
+    "Scaling validation separately executes the original PE code and real jump/data tables."
+  ]
+}

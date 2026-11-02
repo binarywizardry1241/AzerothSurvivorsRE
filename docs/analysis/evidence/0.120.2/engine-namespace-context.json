@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.120.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c",
+    "size_bytes": 145484288
+  },
+  "source_lineage_context": {
+    "path": "docs/analysis/benilla-vendor.json",
+    "sha256": "fe63e833a2a34af9c426cc3467679bfaed304281c00d9bb2d48461515006f7f8"
+  },
+  "predecessor": {
+    "path": "docs/analysis/evidence/0.120.0/engine-namespace-context.json",
+    "sha256": "f6fe5a7622816717bdf7ea79f09f7e617dca5b47bcc1b9180a44bd4cc81223d6"
+  },
+  "discovery_delta": {
+    "path": "docs/analysis/evidence/0.120.2/discovery-delta.json",
+    "sha256": "f3eabfd93e0968c520056cd7b3d8de2ed7d73a543ac5252025340e6556b7b09d"
+  },
+  "changed_namespace_context": [
+    {
+      "selector": "Q41-I01:module_type_namespace:3",
+      "native_candidate": {
+        "file_offset": "0x61977b6",
+        "virtual_address": "0x1461989b6",
+        "byte_count": 44,
+        "sha256": "7f54179632ac2be433dee2055219ee77e70b01ee0d57d3cecbf83ed5af084152",
+        "literal": "benilla_app::host_controls::TouchDrivePlugin"
+      },
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/native_input/mod.rs",
+          "sha256": "60b81b89deb99ec397f51c462a8af37773fc14a23273169948affd76c73e01a8"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/native_input/touch_view.rs",
+          "sha256": "a637dcac918c6aed2a292da2e07536ac1dea3bbbaf909210a402fe0b7f70a8cb"
+        },
+        {
+          "path": "crates/benilla-app/src/player/controller.rs",
+          "sha256": "768bffb6e82a3221d95d9d721b8dc4f6a42be72a337608a4f7d9c699854f2ef8"
+        }
+      ],
+      "classification": "retained_interface_packed_literal_boundary_or_suffix_observation",
+      "conclusion": "Existing source owners establish the bounded menu/preview/control, Discord or WMO interface; changed regex concatenation or suffix is not proof of changed native behavior. TouchDrive is retained as an input-adapter candidate, not an exact upstream identity.",
+      "next_action": "Stop the generic branch. Reopen only for a concrete changed AS interface or the corresponding existing issue; compiled revision and behavior remain unproved."
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:206",
+      "native_candidate": {
+        "file_offset": "0x61b0b08",
+        "virtual_address": "0x1461b1d08",
+        "byte_count": 85,
+        "sha256": "b85e4398d0f72603fa7575192d0b7698243bfd8eb80e73d82c4a3e0369f543b3",
+        "literal": "benilla_app::menu_scene::MenuScenePluginbenilla_app::hero_preview::HeroPreviewPluginC"
+      },
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/menu_scene.rs",
+          "sha256": "6ce7227abdf6ad8c2161116527fe5a46ba6d29df42ccc0f4f63a7629aa236a8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/preview.rs",
+          "sha256": "27b9a78e85398e040337846d306d21fdfc8384b892b207b9ea4e4abd40f8ace0"
+        },
+        {
+          "path": "crates/benilla-app/src/portrait/hero_booth.rs",
+          "sha256": "abf5d4720c801a00adc73a41416ce6e318c10c76fe5796ea40f21fc88e5ffdba"
+        }
+      ],
+      "classification": "retained_interface_packed_literal_boundary_or_suffix_observation",
+      "conclusion": "Existing source owners establish the bounded menu/preview/control, Discord or WMO interface; changed regex concatenation or suffix is not proof of changed native behavior. TouchDrive is retained as an input-adapter candidate, not an exact upstream identity.",
+      "next_action": "Stop the generic branch. Reopen only for a concrete changed AS interface or the corresponding existing issue; compiled revision and behavior remain unproved."
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:820",
+      "native_candidate": {
+        "file_offset": "0x6433020",
+        "virtual_address": "0x146434220",
+        "byte_count": 36,
+        "sha256": "b8ebffb046875d7faa425cf527d984ac9242f7c47e36b7feff07612472564d1b",
+        "literal": "benilla_world::wmo_portalmessage9BCF"
+      },
+      "source_first": [
+        {
+          "path": "crates/benilla-world/src/wmo_portal/mod.rs",
+          "sha256": "80162a2fe2a5e486358c65432dbe99507fd959c3351dffb348a4cd7fd8da773a"
+        }
+      ],
+      "classification": "retained_interface_packed_literal_boundary_or_suffix_observation",
+      "conclusion": "Existing source owners establish the bounded menu/preview/control, Discord or WMO interface; changed regex concatenation or suffix is not proof of changed native behavior. TouchDrive is retained as an input-adapter candidate, not an exact upstream identity.",
+      "next_action": "Stop the generic branch. Reopen only for a concrete changed AS interface or the corresponding existing issue; compiled revision and behavior remain unproved."
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:2",
+      "native_candidate": {
+        "file_offset": "0x6184e26",
+        "virtual_address": "0x146186026",
+        "byte_count": 43,
+        "sha256": "8fd12eb860785354c5f37367d4470cbb72960eaf72e40559556cd85ca29751fe",
+        "literal": "wenilla_rogue_app::screens::discordmessageI"
+      },
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/discord.rs",
+          "sha256": "100938447339765dfc47f1971326809b393ebab693a04c17453513de8b93759b"
+        }
+      ],
+      "classification": "retained_interface_packed_literal_boundary_or_suffix_observation",
+      "conclusion": "Existing source owners establish the bounded menu/preview/control, Discord or WMO interface; changed regex concatenation or suffix is not proof of changed native behavior. TouchDrive is retained as an input-adapter candidate, not an exact upstream identity.",
+      "next_action": "Stop the generic branch. Reopen only for a concrete changed AS interface or the corresponding existing issue; compiled revision and behavior remain unproved."
+    }
+  ],
+  "resource_context": [
+    {
+      "selector": "Q41-I01:resource_path:290",
+      "native_candidate": {
+        "file_offset": "0x7677d60",
+        "virtual_address": "0x147678f60",
+        "byte_count": 32,
+        "sha256": "ed3f26a7ab559a5db0f41da784e7b22d89a6bb5b12ad9468814c209e379ec3bc",
+        "literal": "DBFilesClient\\PetPersonality.dbc"
+      },
+      "source_first": [
+        {
+          "path": "crates/benilla-formats/src/pet_stats.rs",
+          "sha256": "19d3213304a5bf25801e2d6058ae07a7593d3e4b852fff4cf54987c0f5c5fee6"
+        },
+        {
+          "path": "crates/benilla-app/src/ui_pet_stats.rs",
+          "sha256": "1de5513b7c50564d026249bd8b9085e9bae83b59c6b37ebc8193b31873f8da91"
+        },
+        {
+          "path": "crates/benilla-ui/src/script/pet.rs",
+          "sha256": "8bd5546338e9f546809bf0087a988ec03a4c348323f84e6b3dc35caeddb928c7"
+        }
+      ],
+      "classification": "established_generic_pet_stat_resource_interface",
+      "conclusion": "The existing PetPersonality DBC schema/loader, PetStatTables snapshot owner and pet Lua consumers explain this resource boundary. Historical inventories already retain this path; current literal appearance does not prove a new AS feature or missing implementation.",
+      "next_action": "Stop at the existing resource/parser/pet-stat interface. Recover a current native caller only if a concrete AS dependency requires it; no engine reimplementation is implied."
+    }
+  ],
+  "removed_packed_resource_candidate": {
+    "literal": "FrontSpell_Holy_PrayerOfHealingDBFilesClient\\CreatureSoundData.dbc",
+    "finding_ids": [
+      182
+    ],
+    "classification": "packed_boundary_observation_not_resource_removal",
+    "next_action": "Retain existing CreatureSoundData bootstrap/source repair and rebind its bounded native producer/consumer if selected; the removed concatenated regex match alone proves no changed behavior."
+  },
+  "limits": "Source-first role classification only. No decompilation, compilation, game/server execution, current native equivalence or parity proof is supplied by this document."
+}

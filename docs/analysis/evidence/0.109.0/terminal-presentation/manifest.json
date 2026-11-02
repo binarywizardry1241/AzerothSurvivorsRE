@@ -1,0 +1,648 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.109.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+    "size_bytes": 140447744
+  },
+  "method": "Current full-PE caller/literal/field discovery and declared-extent instruction decoding; fresh scoped REA/Ghidra raw imports where recorded; bounded original-instruction replay with explicit seams.",
+  "ranges": [
+    {
+      "start": "0x140203a30",
+      "end_exclusive": "0x140205c4a",
+      "sha256": "5ae50dd940b676c3d5f418fbcec2bf721d295c1dcd146529652802d037a9d37c",
+      "role": "content",
+      "file_offset": "0x202e30",
+      "byte_count": 8730,
+      "assembly": "../terminal-flow/content.asm",
+      "assembly_sha256": "e39c24ef81ed9ae679a3454450f5b2a672c35800577f3f5c315a75edec3c084e",
+      "rea_evidence_id": "ev_b37f0676e23a7276c73f71305dbdf2a86e35b3f402ccb7e519bada2570f64b9d",
+      "analysis_profile_digest": "c290742edcee8de48dbafeafb82fd5c37e9a576388bf60860d0336d5afc2e791",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "raw_import_sha256": "5ae50dd940b676c3d5f418fbcec2bf721d295c1dcd146529652802d037a9d37c",
+      "assembly_windows": [
+        {
+          "start": "0x140203a30",
+          "end_exclusive": "0x140205c4a"
+        }
+      ],
+      "complete_pseudocode_sha256": "7b614f871c6617729f1a57dc2ba5e8a0d4b2e2271aa568995cbef34e5ed0b72a",
+      "pseudocode_excerpt": "../terminal-flow/content-excerpts.c",
+      "pseudocode_excerpt_sha256": "9db8a0c76941715e85c20add22d1d28bc36fb6c4e80875cf6f674c8ef1b23924",
+      "pseudocode_excerpt_lines": [
+        {
+          "start": 1566,
+          "end_exclusive": 1607
+        },
+        {
+          "start": 1695,
+          "end_exclusive": 1718
+        }
+      ],
+      "disabled_analyzers": "Call Convention ID",
+      "canonical_owner_manifest": "../terminal-flow/manifest.json"
+    },
+    {
+      "start": "0x140287980",
+      "end_exclusive": "0x140288ebf",
+      "sha256": "3cb0db9c9b16aec41067079dfdc578e0645c48a50ec9c0af4a51630e8c585608",
+      "role": "screen",
+      "file_offset": "0x286d80",
+      "byte_count": 5439,
+      "assembly": "../terminal-flow/screen.asm",
+      "assembly_sha256": "7e3d7d11ba28879a5c17aded4483e3637f31307329dac243845a6d6f216de0f1",
+      "rea_evidence_id": "ev_f19e3a5167d3cb0bd275a109a0d7bf64c7214db816512c43f97f1e630e527aad",
+      "analysis_profile_digest": "3f2c14660c5dcd3638816ab98aa445feff64e63bb7b39c14b2310b4ff1f7d7b7",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "raw_import_sha256": "3cb0db9c9b16aec41067079dfdc578e0645c48a50ec9c0af4a51630e8c585608",
+      "assembly_windows": [
+        {
+          "start": "0x140288940",
+          "end_exclusive": "0x140288ebf"
+        }
+      ],
+      "complete_pseudocode_sha256": "35c792f8c4aeea59cdafdf8aa3e5729c4de1fd2cf038a26a8f6d7fc151222156",
+      "pseudocode_excerpt": "../terminal-flow/screen-excerpts.c",
+      "pseudocode_excerpt_sha256": "3e660b4e5f96947984ba812c4171241d473226a1bb19d3a7a85e91df22e28718",
+      "pseudocode_excerpt_lines": [
+        {
+          "start": 785,
+          "end_exclusive": 831
+        }
+      ],
+      "canonical_owner_manifest": "../terminal-flow/manifest.json"
+    },
+    {
+      "start": "0x1400c4070",
+      "end_exclusive": "0x1400c475f",
+      "sha256": "52c717ff5d9969c5173db3a5bba5b93ea530b48f07e232d0eda7ee659aa8fea5",
+      "role": "xp-parser",
+      "file_offset": "0xc3470",
+      "byte_count": 1775,
+      "assembly": "xp-parser.asm",
+      "assembly_sha256": "c2c7914b327660a60fc6eedb4403909924dce5bab232d02572b264723fc34205",
+      "assembly_windows": [
+        {
+          "start": "0x1400c40a9",
+          "end_exclusive": "0x1400c4240"
+        },
+        {
+          "start": "0x1400c4342",
+          "end_exclusive": "0x1400c44b1"
+        },
+        {
+          "start": "0x1400c4513",
+          "end_exclusive": "0x1400c475f"
+        }
+      ],
+      "rea_evidence_id": "ev_78328853cc83b9680a353219761a442ff82b2e9a2bf726f718e79af80ae1f4f5",
+      "analysis_profile_digest": "e6cb8105067f3f39114238c546fa3c8737c059f8643c9d2ebf22952a779f505a",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "raw_import_sha256": "52c717ff5d9969c5173db3a5bba5b93ea530b48f07e232d0eda7ee659aa8fea5",
+      "complete_pseudocode_sha256": "cb9a871100f189f80e4310702bab9e917bb9f303ac409338953a913f7253cd7f",
+      "pseudocode_excerpt": "xp-parser-excerpts.c",
+      "pseudocode_excerpt_sha256": "96aac58d0b06ca1d84e97e14a6c86be6b05a1a5a433252b876db10b4abe44240",
+      "pseudocode_excerpt_lines": [
+        {
+          "start": 24,
+          "end_exclusive": 138
+        },
+        {
+          "start": 173,
+          "end_exclusive": 198
+        }
+      ]
+    },
+    {
+      "start": "0x140253f10",
+      "end_exclusive": "0x140255c58",
+      "sha256": "dabc8995d4ccefc693190fa074f28328bf7c8f4d1b139c78456c83b35e1463d2",
+      "role": "xp-content",
+      "file_offset": "0x253310",
+      "byte_count": 7496,
+      "assembly": "xp-content.asm",
+      "assembly_sha256": "6917b74da89744d9335af4369e16409fd8aa97caa2f1864321cdc54e4689659b",
+      "assembly_windows": [
+        {
+          "start": "0x140253fbc",
+          "end_exclusive": "0x14025416b"
+        },
+        {
+          "start": "0x14025457a",
+          "end_exclusive": "0x1402546ef"
+        },
+        {
+          "start": "0x140254c45",
+          "end_exclusive": "0x140254eae"
+        }
+      ],
+      "rea_evidence_id": "ev_628141c2b7bdb48d84392e6ee9ca1f54f17cda2a819bacc096cc85108433515b",
+      "analysis_profile_digest": "6cf7a6b7254f8609bf40d1b798791f60486b4d4988af7fc75ac0345b71e66317",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "raw_import_sha256": "dabc8995d4ccefc693190fa074f28328bf7c8f4d1b139c78456c83b35e1463d2",
+      "complete_pseudocode_sha256": "dc8c7100d6cd67381a09bde9c2d6cb7d0a24e8109a8a3ddba0d3aeb2291de9d7"
+    },
+    {
+      "start": "0x1400ceb20",
+      "end_exclusive": "0x1400d0460",
+      "sha256": "bfeccd2f6808fab019b524c1296677cb9d781217541d3cf0471ee9d58b28a92e",
+      "role": "xp-update",
+      "file_offset": "0xcdf20",
+      "byte_count": 6464,
+      "assembly": "xp-update.asm",
+      "assembly_sha256": "aaed8e884898423723699e2055a680b97ab44f6fd03811c41ddffa8088894516",
+      "assembly_windows": [
+        {
+          "start": "0x1400cedcb",
+          "end_exclusive": "0x1400ceeae"
+        },
+        {
+          "start": "0x1400cf10e",
+          "end_exclusive": "0x1400cf369"
+        },
+        {
+          "start": "0x1400cf872",
+          "end_exclusive": "0x1400cf8ff"
+        },
+        {
+          "start": "0x1400cfba7",
+          "end_exclusive": "0x1400cfbc4"
+        },
+        {
+          "start": "0x1400cfc2b",
+          "end_exclusive": "0x1400cfcb4"
+        },
+        {
+          "start": "0x1400cfe94",
+          "end_exclusive": "0x1400cfeda"
+        },
+        {
+          "start": "0x1400cff14",
+          "end_exclusive": "0x1400cff3c"
+        },
+        {
+          "start": "0x1400cff9d",
+          "end_exclusive": "0x1400cffc9"
+        },
+        {
+          "start": "0x1400d01b1",
+          "end_exclusive": "0x1400d0203"
+        },
+        {
+          "start": "0x1400d03c5",
+          "end_exclusive": "0x1400d03ec"
+        }
+      ],
+      "rea_evidence_id": "ev_05d1ca472729c67f835cbacd9e942d7c05ad7a4f778f832134d315925cf8fbb4",
+      "analysis_profile_digest": "c3b090c41ea80bc0c902f84b9ace6937fc4aa2e82148c440c7dc5ba4aeea90bb",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "raw_import_sha256": "bfeccd2f6808fab019b524c1296677cb9d781217541d3cf0471ee9d58b28a92e",
+      "complete_pseudocode_sha256": "7f0eaa431c02083bf3083123a50f5cc4a2cd827c33953e43ad72bd7754cb5636",
+      "pseudocode_excerpt": "xp-update-excerpts.c",
+      "pseudocode_excerpt_sha256": "363e69aca6955bd1f1a35f88e3d94d9ec722df4a1e001cfaff42c4385ec1c311",
+      "pseudocode_excerpt_lines": [
+        {
+          "start": 448,
+          "end_exclusive": 555
+        },
+        {
+          "start": 675,
+          "end_exclusive": 708
+        },
+        {
+          "start": 788,
+          "end_exclusive": 800
+        },
+        {
+          "start": 849,
+          "end_exclusive": 887
+        },
+        {
+          "start": 1007,
+          "end_exclusive": 1023
+        }
+      ]
+    },
+    {
+      "start": "0x1400a3b50",
+      "end_exclusive": "0x1400a3d02",
+      "sha256": "d7ceebcc78f9f677e47a4ebc6d43684fa9c129a0b59b68d4ce520e1970dffb37",
+      "role": "xp-parts",
+      "file_offset": "0xa2f50",
+      "byte_count": 434,
+      "assembly": "xp-parts.asm",
+      "assembly_sha256": "2b838b40dd3c605372368d88e5b78df16af4518070a004a0f1568c96a4a89444",
+      "assembly_windows": [
+        {
+          "start": "0x1400a3b7e",
+          "end_exclusive": "0x1400a3b9c"
+        },
+        {
+          "start": "0x1400a3c20",
+          "end_exclusive": "0x1400a3ca5"
+        }
+      ],
+      "rea_evidence_id": "ev_25a2772e37e9edb4a02da1e08a7f8ae9da3c9a22296073cf2dff0583f07a2c99",
+      "analysis_profile_digest": "7c6ccbdb807e5e50b78e5dc47034abe7764bef87d04a2fd41ae9720d9c69914a",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "raw_import_sha256": "d7ceebcc78f9f677e47a4ebc6d43684fa9c129a0b59b68d4ce520e1970dffb37",
+      "complete_pseudocode_sha256": "b62d8f530ebaa30933426a1b4982176aef71759454f87b3fcbac126f9ad613b0"
+    },
+    {
+      "start": "0x14012a2e0",
+      "end_exclusive": "0x14012a4ca",
+      "sha256": "8912f30387dacfaf10c21918a823a77ccf70bc81b702414609d79671d53c7ddb",
+      "role": "xp-parts-iterator",
+      "file_offset": "0x1296e0",
+      "byte_count": 490,
+      "assembly": "xp-parts-iterator.asm",
+      "assembly_sha256": "e27a0d74b47b081c3f3da8d7b65e6e74f4644ec7c6c07b15e3413b4420dbc6a7",
+      "assembly_windows": [
+        {
+          "start": "0x14012a310",
+          "end_exclusive": "0x14012a470"
+        },
+        {
+          "start": "0x14012a4a1",
+          "end_exclusive": "0x14012a4b2"
+        }
+      ],
+      "rea_evidence_id": "ev_45a670f4000fc83c38dd24eee169de2a645c9555c9c2d1c7509563cc5b2c3193",
+      "analysis_profile_digest": "3542941b9596e2f146f4cd6ec48dda9c9505398956f6a7812b5c675e5489deeb",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "raw_import_sha256": "8912f30387dacfaf10c21918a823a77ccf70bc81b702414609d79671d53c7ddb",
+      "complete_pseudocode_sha256": "9f511394fed2cfcc2bf2d468c12049c2463ad6edb28a6c277f24293f7c128a92",
+      "pseudocode_excerpt": "xp-parts-iterator-excerpts.c",
+      "pseudocode_excerpt_sha256": "bcb89179da23b405c616c6dfff13b909749e91c5b9977561dc9205a62b00af48",
+      "pseudocode_excerpt_lines": [
+        {
+          "start": 30,
+          "end_exclusive": 120
+        }
+      ]
+    },
+    {
+      "start": "0x14589cea0",
+      "end_exclusive": "0x14589d032",
+      "sha256": "38bf03f1251ed9b14a451900de08abc8e66886a3a1408c2f23cdbfa78ef00095",
+      "role": "xp-grant",
+      "file_offset": "0x589c2a0",
+      "byte_count": 402,
+      "assembly": "xp-grant.asm",
+      "assembly_sha256": "1fd2c40914cfef35f40c10cde2aee462e2c7e2820ea859e692eadd2a3a77e316",
+      "assembly_windows": [
+        {
+          "start": "0x14589cea0",
+          "end_exclusive": "0x14589d032"
+        }
+      ],
+      "rea_evidence_id": "ev_8681227cfaff49fe35006ec89d2a7172e21957eec950eb1c7cfda387cc04e223",
+      "analysis_profile_digest": "24a63a7e0b8a35af1637532f84e76759d5c7c7548cf09be73169c37adc65ae13",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "raw_import_sha256": "38bf03f1251ed9b14a451900de08abc8e66886a3a1408c2f23cdbfa78ef00095",
+      "complete_pseudocode_sha256": "eff14386b604996c71f7143fec0efcf123cb31f648a84c6e47b38828daab6abc"
+    },
+    {
+      "start": "0x140285760",
+      "end_exclusive": "0x140285c47",
+      "sha256": "9419de46e4c0747773e9cb6e56546a5e9891d9f5c0c41f3df37ee57a2fb83017",
+      "role": "loot-list",
+      "file_offset": "0x284b60",
+      "byte_count": 1255,
+      "assembly": "loot-list.asm",
+      "assembly_sha256": "885225af47ebb32bd594377f974cf05dd4b8eb7be6b2287b92d9621d089b9829",
+      "assembly_windows": [
+        {
+          "start": "0x140285760",
+          "end_exclusive": "0x140285c47"
+        }
+      ]
+    },
+    {
+      "start": "0x14020c180",
+      "end_exclusive": "0x14020cbfb",
+      "sha256": "70437333652d0c62bb9b0128483492606606c7147e97691c8a4ac4fe4279aecd",
+      "role": "loot-content",
+      "file_offset": "0x20b580",
+      "byte_count": 2683,
+      "assembly": "loot-content.asm",
+      "assembly_sha256": "e28ad675fc47884776dfb2d5bd2b54d61e1bbf095b23c4ddc045b5e476b7d094",
+      "assembly_windows": [
+        {
+          "start": "0x14020c287",
+          "end_exclusive": "0x14020c75b"
+        }
+      ],
+      "rea_evidence_id": "ev_3fc4c0d53a30222aba4668672847f22c625976efd8c1578bce98245884118720",
+      "analysis_profile_digest": "a013d5d3d939226c23473c8a34ab1d8195ed187a8ebd3a31c59ae4da7efc1094",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "raw_import_sha256": "70437333652d0c62bb9b0128483492606606c7147e97691c8a4ac4fe4279aecd",
+      "complete_pseudocode_sha256": "20cc87642c1bf5f66ac2400c9a97a9786ded0047cbe8277a2a55f8abe8c4f097"
+    },
+    {
+      "start": "0x140285c50",
+      "end_exclusive": "0x140285fd3",
+      "sha256": "f57af8a7df01ad99c6114196e8fdeb9ecb3a617a09029168d3819ff02d383d4e",
+      "role": "number-format",
+      "file_offset": "0x285050",
+      "byte_count": 899,
+      "assembly": "number-format.asm",
+      "assembly_sha256": "b4aaa81e824771633dc5219649e93bf93b23ef97138336cd36676ef742a8a17e",
+      "assembly_windows": [
+        {
+          "start": "0x140285c50",
+          "end_exclusive": "0x140285fd3"
+        }
+      ]
+    },
+    {
+      "start": "0x14594bf30",
+      "end_exclusive": "0x14594c415",
+      "sha256": "37ed3787df2ab28c71087837eb61412f7808566607ca377a3d4b425fc29dc2d4",
+      "role": "end-payload",
+      "file_offset": "0x594b330",
+      "byte_count": 1253,
+      "assembly": "end-payload.asm",
+      "assembly_sha256": "020454ec3917be5ba2d8050a6e6e3b56ce9365f3391a3f985e8d0b41ba6a0925",
+      "assembly_windows": [
+        {
+          "start": "0x14594bf30",
+          "end_exclusive": "0x14594c415"
+        }
+      ],
+      "rea_evidence_id": "ev_50b5c06d3e48e359ff197e9c1f797401b5cc6f11c7f9dc4017d93c63913267c7",
+      "analysis_profile_digest": "ec29edd4b9f4cf5b108993b3ed84554291450baa4b540112bcb04f5f93eb9696",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "raw_import_sha256": "37ed3787df2ab28c71087837eb61412f7808566607ca377a3d4b425fc29dc2d4",
+      "complete_pseudocode_sha256": "d249b3b25b2773c0d96f0189b5941910e2a41eb6701bea4cf3fa99ff9ee3e3e6",
+      "pseudocode_excerpt": "end-payload-excerpts.c",
+      "pseudocode_excerpt_sha256": "94ebb9614a9825dc9d514c4ce325363bef590573448e1974f965c1e6d4b9be2c",
+      "pseudocode_excerpt_lines": [
+        {
+          "start": 16,
+          "end_exclusive": 52
+        }
+      ]
+    },
+    {
+      "start": "0x145971490",
+      "end_exclusive": "0x145974c42",
+      "sha256": "29c32ff65f4aa42df84d97147aa342e238726999f826d39da3daa794cca251b9",
+      "role": "damage-producer",
+      "file_offset": "0x5970890",
+      "byte_count": 14258,
+      "assembly": "damage-producer.asm",
+      "assembly_sha256": "667bbef583af3e7daf4306473ff6835beb5110c172f18fb00b65894909c00aa5",
+      "assembly_windows": [
+        {
+          "start": "0x145971a85",
+          "end_exclusive": "0x145971afd"
+        },
+        {
+          "start": "0x145971b4e",
+          "end_exclusive": "0x145971b98"
+        }
+      ]
+    },
+    {
+      "start": "0x1459208d0",
+      "end_exclusive": "0x145921ecc",
+      "sha256": "cf732e875c629245c7ea2522a9b72259cf8c7c2d79863e1900f2859c791e1b6e",
+      "role": "taken-producer",
+      "file_offset": "0x591fcd0",
+      "byte_count": 5628,
+      "assembly": "taken-producer.asm",
+      "assembly_sha256": "8fb9c6ac9e5afce34062c97e4751e2e48faca17eda6f08eb390a94b1e4e3aecc",
+      "assembly_windows": [
+        {
+          "start": "0x145920ce0",
+          "end_exclusive": "0x145920d33"
+        }
+      ]
+    },
+    {
+      "start": "0x1401de7c0",
+      "end_exclusive": "0x1401de997",
+      "sha256": "1aa595cc62fcc5d3c945d8ff74cccdbdf4acf16fa45e3ffd5a0fc34c3092f0b6",
+      "role": "canvas-queue",
+      "file_offset": "0x1ddbc0",
+      "byte_count": 471,
+      "assembly": "canvas-queue.asm",
+      "assembly_sha256": "46688c20de46381feee1eff0c98fa2218daef2a51c4e56bde1ee94f4c6fe6ca4",
+      "assembly_windows": [
+        {
+          "start": "0x1401de7c0",
+          "end_exclusive": "0x1401de997"
+        }
+      ]
+    },
+    {
+      "start": "0x1402789b0",
+      "end_exclusive": "0x140278a27",
+      "sha256": "3bc7cf0e7fa9d955d2e9b87edda8d801691831de88bda50357f5212f1b9ef8fc",
+      "role": "canvas-apply",
+      "file_offset": "0x277db0",
+      "byte_count": 119,
+      "assembly": "canvas-apply.asm",
+      "assembly_sha256": "0382e92282458d28946041d76a2de233068f19b75340be2eddafec537d896f6b",
+      "assembly_windows": [
+        {
+          "start": "0x1402789b0",
+          "end_exclusive": "0x140278a27"
+        }
+      ]
+    },
+    {
+      "start": "0x14014a330",
+      "end_exclusive": "0x14014a493",
+      "sha256": "7bf3f71895f840d55ada4c7a2ccde5bbe14274ce3fd2647aabba78dd905af7e9",
+      "role": "canvas-insert",
+      "file_offset": "0x149730",
+      "byte_count": 355,
+      "assembly": "canvas-insert.asm",
+      "assembly_sha256": "5feae9e5d36378dea028ef106cb0b3c178a6591629d603a7d961a0533ca7eeaa",
+      "assembly_windows": [
+        {
+          "start": "0x14014a330",
+          "end_exclusive": "0x14014a493"
+        }
+      ]
+    },
+    {
+      "start": "0x1402d9c80",
+      "end_exclusive": "0x1402da3b0",
+      "sha256": "926f95a83ddc6613101967145a310672bc50c23e53310e476e573cfea04eac9c",
+      "role": "canvas-components",
+      "file_offset": "0x2d9080",
+      "byte_count": 1840,
+      "assembly": "canvas-components.asm",
+      "assembly_sha256": "91dfbb503d1c33476b6ecac9ea27bcac5938e2db74c8a29134cda2e510d6e659",
+      "assembly_windows": [
+        {
+          "start": "0x1402d9f20",
+          "end_exclusive": "0x1402da010"
+        }
+      ]
+    },
+    {
+      "start": "0x14033f360",
+      "end_exclusive": "0x14033f639",
+      "sha256": "41c31dcb7c36c5b9ca1867ace7b11c128db0238e6da3d55c2e719278a726c110",
+      "role": "canvas-registration",
+      "file_offset": "0x33e760",
+      "byte_count": 729,
+      "assembly": "canvas-registration.asm",
+      "assembly_sha256": "68e2552275c58166bc89fa06097cd243c9135877b2e7d7b203fc5bfbf17870b7",
+      "assembly_windows": [
+        {
+          "start": "0x14033f438",
+          "end_exclusive": "0x14033f4d7"
+        }
+      ]
+    },
+    {
+      "start": "0x1458b8620",
+      "end_exclusive": "0x1458ba0d9",
+      "sha256": "1cd0f37176dfe5ab6fb1fe41cd5f3dc798c1c002f4fe35a794a175892328f56c",
+      "role": "summary",
+      "file_offset": "0x58b7a20",
+      "byte_count": 6841,
+      "assembly": "../run-account/summary.asm",
+      "assembly_sha256": "61aaa294cbe4a12927744b04da8a622d7f79373c72ea866c994502bb0aa3b108",
+      "rea_evidence_id": "ev_cc070956acaa293d885387de96931085aed4983b5e34c6b2f788cb67cba8bd6c",
+      "analysis_profile_digest": "ea27464f1d31776012a42623219334a333d34dadc2aeff581798c6eb85ca2174",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "raw_import_sha256": "1cd0f37176dfe5ab6fb1fe41cd5f3dc798c1c002f4fe35a794a175892328f56c",
+      "assembly_windows": [
+        {
+          "start": "0x1458b8684",
+          "end_exclusive": "0x1458b89c0"
+        },
+        {
+          "start": "0x1458b8a65",
+          "end_exclusive": "0x1458b8b96"
+        },
+        {
+          "start": "0x1458b8ba0",
+          "end_exclusive": "0x1458b8c00"
+        },
+        {
+          "start": "0x1458b9091",
+          "end_exclusive": "0x1458b9122"
+        },
+        {
+          "start": "0x1458b96cf",
+          "end_exclusive": "0x1458b98a0"
+        },
+        {
+          "start": "0x1458b9ec9",
+          "end_exclusive": "0x1458b9f7a"
+        }
+      ],
+      "complete_pseudocode_sha256": "0461c40e73d9ec68566577c544fa11055fc08c40dcf2cf4377b3cf4ea4730b42",
+      "pseudocode_excerpt": "../run-account/summary-excerpts.c",
+      "pseudocode_excerpt_sha256": "924194c2e458193b39ededd95b3c2f71f65cd6631fd107bbaa1ebdf3c74592a0",
+      "pseudocode_excerpt_lines": [
+        {
+          "start": 145,
+          "end_exclusive": 269
+        },
+        {
+          "start": 318,
+          "end_exclusive": 338
+        },
+        {
+          "start": 605,
+          "end_exclusive": 687
+        },
+        {
+          "start": 831,
+          "end_exclusive": 879
+        }
+      ],
+      "canonical_owner_manifest": "../run-account/manifest.json"
+    },
+    {
+      "role": "equipment-delivery",
+      "start": "0x1458ae35c",
+      "end_exclusive": "0x1458ae67b",
+      "file_offset": "0x58ad75c",
+      "byte_count": 799,
+      "sha256": "b1cf7f0a1622d101f1f18795be041658e1a4918649c9e217b73ef4ee95ceb646",
+      "assembly": "equipment-delivery.asm",
+      "assembly_sha256": "93164b24d961aee1ecc56bdd7eff6f4efc8126ff2e452670cdfbbe4f3dd9b221",
+      "owning_function": {
+        "start": "0x1458ad720",
+        "end_exclusive": "0x1458b07e5"
+      },
+      "rea_parent_evidence_id": "ev_3658003e92ff58beb432f12f7a6f755c82cb8c968d70df45f0ecdc1ef1865915"
+    },
+    {
+      "role": "canvas-tuple-type-name",
+      "start": "0x145df4923",
+      "end_exclusive": "0x145df49a3",
+      "file_offset": "0x5df3923",
+      "byte_count": 128,
+      "sha256": "29fa13aea960ffe04cda70ec22e3430f56ef74cf60a1097d7ea57b096e9d4a26",
+      "utf8": "(bevy_ecs::hierarchy::ChildOf, (wenilla_rogue_app::screens::Canvas, bevy_ui::ui_node::Node, bevy_ui::ui_transform::UiTransform))"
+    }
+  ],
+  "source_refs": [
+    "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
+    "crates/azeroth-survivors-re/src/gameplay/terminal_view.rs",
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs"
+  ],
+  "limitations": [
+    "Raw Ghidra generic ABI omits external callees/data. Windows register/call/field instructions and selected original literals establish each contract.",
+    "Canonical terminal root/content and account summary extracts are referenced in place; full raw owner bodies/databases stay ignored.",
+    "The effective-damage predecessor through health mutation is canonical in ../raid-wards/common-hit.asm; only its subsequent interpolation/meter window is added here.",
+    "Synthetic JSON lookup, memcpy and roundf seams are stated by the individual checkers. No native external systems, source compiler, game or renderer executes.",
+    "Current native tuple is positively identified as ChildOf(Canvas,Node,UiTransform), establishing applicability of common Canvas-present fit branch. Arbitrary dynamic/global component mutation remains outside the direct typed census.",
+    "Rendering, locale/font/resource readiness, device/DPI/input scheduling, worker/network timing and original/rebuilt gameplay/visual parity remain unverified."
+  ]
+}

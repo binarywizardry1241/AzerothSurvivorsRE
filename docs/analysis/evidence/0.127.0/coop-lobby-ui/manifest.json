@@ -1,0 +1,2202 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.127.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+    "size_bytes": 146721280
+  },
+  "functions": [
+    {
+      "role": "coop-chat-panel",
+      "start": "0x1402bd230",
+      "end_exclusive": "0x1402be1bd",
+      "file_offset": "0x2bc630",
+      "byte_count": 3981,
+      "sha256": "8375f5ba1b14565b95263c18308a5e3768b7d4cb2ac59facec3bb50a2ef501af",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-panel.asm",
+        "sha256": "a0c7188868cec13844339c4d534974d4f2b536421a07a9c7ceee1c02d7677d6c"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-panel.c",
+        "sha256": "19a2e7efccf46ecf0efd431f006271f124474618f44ea2e1fd4af21b83dead81"
+      }
+    },
+    {
+      "role": "coop-chat-rebuild",
+      "start": "0x1402e4490",
+      "end_exclusive": "0x1402e542a",
+      "file_offset": "0x2e3890",
+      "byte_count": 3994,
+      "sha256": "6253578f9565903abaac6ab0e8a93f9d9d434c662a43a82602e1965854dc33a7",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-rebuild.asm",
+        "sha256": "2be0576d7dfb688ef09257b1adca2ccf5446e478486577a87f849131cfc1fcee"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-rebuild.c",
+        "sha256": "38c4bb869ce0383b91de3256be702e6287a7d9122c436676c5121297f1f2852e"
+      }
+    },
+    {
+      "role": "coop-chat-row",
+      "start": "0x1402c08e0",
+      "end_exclusive": "0x1402c10e7",
+      "file_offset": "0x2bfce0",
+      "byte_count": 2055,
+      "sha256": "cfd58c0b7df00a9c41f475396518868ad9da686a7b939034d812ab64dde0310f",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-row.asm",
+        "sha256": "d73bfb740c1a4dcbd9dded3e271c1404dc9261431c7412d6d67638ed5d6aaf13"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-row.c",
+        "sha256": "608ff056dc18bd489bc842a533c38e41001ce22008b8fe3886e7acc60e63ff72"
+      }
+    },
+    {
+      "role": "coop-chat-update",
+      "start": "0x1402e5540",
+      "end_exclusive": "0x1402e6127",
+      "file_offset": "0x2e4940",
+      "byte_count": 3047,
+      "sha256": "bdcee5e07185338650a443ce33c6441834aedccf3c1c67362de1066944af2697",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-update.asm",
+        "sha256": "0b9dfa745bf23579e0ee6b149556d5f9746e462b5b6190e3ba6dd9711c16b54c"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-update.c",
+        "sha256": "dcb4f8b30d2f2ed4f7dde3136ac995840168e297ca337910fc4e069f86ffa373"
+      }
+    },
+    {
+      "role": "coop-events",
+      "start": "0x1402e12e0",
+      "end_exclusive": "0x1402e2e45",
+      "file_offset": "0x2e06e0",
+      "byte_count": 7013,
+      "sha256": "0e7332f0f05b664876607491ff0ada180585e884220a865c9fb396ca006bed78",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-events.asm",
+        "sha256": "defd563530c827605e3be0aa3c0f138f8b885667473d6fc11a24e15578bf85a5"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-events.c",
+        "sha256": "277744d0bd190bdc443c7905cf186296c0213f8e180549cdeb522576f5697d5a"
+      }
+    },
+    {
+      "role": "coop-input",
+      "start": "0x1402deba0",
+      "end_exclusive": "0x1402df1e1",
+      "file_offset": "0x2ddfa0",
+      "byte_count": 1601,
+      "sha256": "b3971d9fab8a078794e7507e00a3aafd96824b38717657b3ee0013c9fbc4988a",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-input.asm",
+        "sha256": "0c0d7656c8f579f327652601f9c44c4c26fcc8f492cb5c1d1d1c1a8fc645f48e"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-input.c",
+        "sha256": "97ccf4835d1fca4ee29783e1be7c1176eb0e5a53d0bff500ae5ffab7b8999309"
+      }
+    },
+    {
+      "role": "coop-modal-builder",
+      "start": "0x14033bd80",
+      "end_exclusive": "0x14033cf46",
+      "file_offset": "0x33b180",
+      "byte_count": 4550,
+      "sha256": "0e2e5dbaf0e9aec3a84e9a7440b5c88c4c2a7c53d0d487fdf28b9b10e72dcedd",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-modal-builder.asm",
+        "sha256": "78e2cee7dd1badc2e4caf3cfc5788a6c2b78dcf27b201ad962648da72a009209"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-modal-builder.c",
+        "sha256": "49cd22564513a3a164728918687e288b437e072dadc0f6ee9f981239314233eb"
+      }
+    },
+    {
+      "role": "coop-row-helper",
+      "start": "0x1402af200",
+      "end_exclusive": "0x1402af325",
+      "file_offset": "0x2ae600",
+      "byte_count": 293,
+      "sha256": "45dfd2db992a7038c31936c81d06b52409ebd9e92dabefa3a9d3369db65bd3ac",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-row-helper.asm",
+        "sha256": "1a76c976a05dff6237bf0f01c2c0c0185d7d658a4cd3e3eda38c1177877c50bb"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-row-helper.c",
+        "sha256": "e8c38cadf611ac3239db14c8079d2bfb9c2bd5c8e106559b413242687876fdc3"
+      }
+    },
+    {
+      "role": "coop-chat-widget",
+      "contract": "chat title, empty state and retained scroll list",
+      "start": "0x140335bb0",
+      "end_exclusive": "0x140336d5f",
+      "file_offset": "0x334fb0",
+      "byte_count": 4527,
+      "sha256": "79daaa698742cce6271ca4e2a0d8f9c216699545c5623c11b74ce7f1bc420d98",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-widget.asm",
+        "sha256": "5e83c215e44af63a38808e687444a4c037d14130c13397d8b1d429e385611aeb"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-widget.c",
+        "sha256": "db655f2a41384b41d6ae02748b9edbbd022a60ebf5cf3723cfd411a49840a854"
+      }
+    },
+    {
+      "role": "coop-chat-input-widget",
+      "contract": "chat draft display, counter and Send control",
+      "start": "0x14033cf50",
+      "end_exclusive": "0x14033dcda",
+      "file_offset": "0x33c350",
+      "byte_count": 3466,
+      "sha256": "c4fe949a585d60018755bc359dbdbc370d365576095015610897ea5431d91872",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-input-widget.asm",
+        "sha256": "ab7519c795023c078b043e3e732bfae8717f412e73dc52230bfe40ae30086457"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-input-widget.c",
+        "sha256": "6ff571d1b00d06b8525037189ab4615c82df77268357f6a017fb52947c4f5913"
+      }
+    },
+    {
+      "role": "coop-ui-actions",
+      "contract": "field, Send and member kick dispatch",
+      "start": "0x1402df790",
+      "end_exclusive": "0x1402e0c13",
+      "file_offset": "0x2deb90",
+      "byte_count": 5251,
+      "sha256": "9aae8f42926ab808b1ebe045d59acfbeeddf9fd138e3ab5c40cbdb2563ff967c",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-ui-actions.asm",
+        "sha256": "01b0a596b75b0628624d530499814ef046cb27f78398bc11ab2f3af7a8c155ec"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-ui-actions.c",
+        "sha256": "43cb6dc097ecbd1cdb59ecf2ed6653df4a7cdc0bd88e0ee36609a3aeacf6a441"
+      }
+    },
+    {
+      "role": "coop-staff-animation",
+      "contract": "active-field keyboard and shared IME focus request; role is historical query label",
+      "start": "0x1402e36d0",
+      "end_exclusive": "0x1402e43ec",
+      "file_offset": "0x2e2ad0",
+      "byte_count": 3356,
+      "sha256": "6a398e789fe1909e72b9b1fa49a1f89ac443b6a56e13169f8f6d2ca292d61166",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-staff-animation.asm",
+        "sha256": "f570635aeca5bfdd2d939b0b65d25e9f7e1cc5e477c6ea599e510fb23c1ba5f5"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-staff-animation.c",
+        "sha256": "ce35c08b5f7ad9700a845b78d106d617484d35b73303ab6ad3eef56a0b52c22e"
+      }
+    },
+    {
+      "role": "coop-chat-send",
+      "contract": "take/clear chat draft and nonempty submission",
+      "start": "0x1402b9760",
+      "end_exclusive": "0x1402b9844",
+      "file_offset": "0x2b8b60",
+      "byte_count": 228,
+      "sha256": "f887d07474bba29fee2ac9564849cb0a3db5e61709a0af17f6e8d5673d5b6961",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-send.asm",
+        "sha256": "1903cda1a0437f91b2ae10c98e11c1d91324374a474c53f3ebd4b4a95bac5148"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-send.c",
+        "sha256": "e75968668d580486181007dc914641a81e0382e62089aeefe0b2f151875d5450"
+      }
+    },
+    {
+      "role": "coop-member-content",
+      "contract": "member icons, labels, ping, country and host-action predicate",
+      "start": "0x14033a290",
+      "end_exclusive": "0x14033bc85",
+      "file_offset": "0x339690",
+      "byte_count": 6645,
+      "sha256": "24767b087e8c8c46277310b34dea257b47877b219251105b6ef3db580989a566",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-member-content.asm",
+        "sha256": "b79fab12484a849722f8f49f1abe61fa35213d527a99d7fe40362e7133d67f23"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-member-content.c",
+        "sha256": "96d6f26caeff86019a413fae34b33542186379e45749dde58952a486a6a00f1c"
+      }
+    },
+    {
+      "role": "coop-chat-badge",
+      "contract": "party code/member count and unread caption",
+      "start": "0x1402df1f0",
+      "end_exclusive": "0x1402df692",
+      "file_offset": "0x2de5f0",
+      "byte_count": 1186,
+      "sha256": "a91c0d0d92cc62d82c6018e3511cf98b2d52f68dd180ff30fc4ecb728787432d",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-badge.asm",
+        "sha256": "3dfc0a132ac6797b7c182d0b1ef48873a12c8e3bfaa3738e4cfdadfafffbe2e9"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-badge.c",
+        "sha256": "0872f401983ddfc50ce7d5ac0d9c6af20bb265f5d577fd52cf43e896790ab03e"
+      }
+    },
+    {
+      "role": "coop-ping-display",
+      "contract": "RTT formatting and thresholds",
+      "start": "0x1402c25f0",
+      "end_exclusive": "0x1402c2ac4",
+      "file_offset": "0x2c19f0",
+      "byte_count": 1236,
+      "sha256": "279198d4475a6bf3c0cfcf6763bed07d04c42b3e8220dcb15150ec621a5d5b96",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-ping-display.asm",
+        "sha256": "d4be3c4a90d562a9cff93c7e926256a6f0dfe0264c2fac59d06c6a1b01cd0a3b"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-ping-display.c",
+        "sha256": "302aaf223837a85c932272de0d38ce0ec2c432ddda80012f7df470d3e3eb659f"
+      }
+    },
+    {
+      "role": "coop-chat-line-content",
+      "contract": "class icon and chat name/message fonts",
+      "start": "0x14033eb50",
+      "end_exclusive": "0x14033f46b",
+      "file_offset": "0x33df50",
+      "byte_count": 2331,
+      "sha256": "2bbf4dbf8fef228af027504216c8ae9dd78ddb3605a15d8f28773a26d64be6a8",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-line-content.asm",
+        "sha256": "114bd4e56a3f4cc91d4d5689d60a6e427a5520f2fb4bf7b68e725ab131b6891d"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-line-content.c",
+        "sha256": "32c8a71b2219a3fd947a3227b1e68747b1116fcc20009e5d8eab496cf0bc3761"
+      }
+    },
+    {
+      "role": "coop-entry-predicate",
+      "contract": "host waits until two received members",
+      "start": "0x1402af0d0",
+      "end_exclusive": "0x1402af158",
+      "file_offset": "0x2ae4d0",
+      "byte_count": 136,
+      "sha256": "49ae3083c8d79a7e32738882a5485fe2c5c243ef030f670ee69fe0788e208391",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-entry-predicate.asm",
+        "sha256": "6e822346187b3b9db18b47500f95aebb5d2766d844d81c39b9d46005f4661af4"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-entry-predicate.c",
+        "sha256": "9fd7cf3664c9da4e0ec06763c7a9a3efa97d8edce39000097f75b4bfeef0020c"
+      }
+    },
+    {
+      "role": "coop-chat-list",
+      "contract": "received-capacity member roster and54px slots; historical query label",
+      "start": "0x1402bf680",
+      "end_exclusive": "0x1402c0267",
+      "file_offset": "0x2bea80",
+      "byte_count": 3047,
+      "sha256": "ac9163a7e40eb3147bcc1e7177754c156437b74a6769bcbc38cb1eb88b166d87",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-list.asm",
+        "sha256": "5c694f345c2a0bdb4c7d1a887cdd08dbe8fbac5e8f0c0ea316dd1363a30218f8"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-list.c",
+        "sha256": "72d3b5891cc37b8b973c295a13ec7aa3fbcf675b8e0376c9545eb98a87e6e43a"
+      }
+    },
+    {
+      "role": "party-body-layout",
+      "start": "0x1402bbf60",
+      "end_exclusive": "0x1402bc4ca",
+      "file_offset": "0x2bb360",
+      "byte_count": 1386,
+      "sha256": "ec84e30681fbece631f5dcef185f83b4155b3173c31daebd62502c38a4b28993",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/party-body-layout.asm",
+        "sha256": "f2cef0852bef44b1a1c4e860a9afc84688af2c89941b8e1aaa0c1830bb290b92"
+      },
+      "proof": "original-instruction Node capture; no Ghidra query required"
+    },
+    {
+      "role": "party-members-layout",
+      "start": "0x140338a30",
+      "end_exclusive": "0x140338d39",
+      "file_offset": "0x337e30",
+      "byte_count": 777,
+      "sha256": "427f845439a5f9c441e34c124e40261394d17558e7b4227778568a8009db19bb",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/party-members-layout.asm",
+        "sha256": "582178b283f2d4e33842aa8221bed60b883edcac533a7055f1665928513613de"
+      },
+      "proof": "original-instruction Node capture; no Ghidra query required"
+    },
+    {
+      "role": "coop-chat-entry",
+      "contract": "chat panel Node/gradient/border",
+      "start": "0x1402b9d10",
+      "end_exclusive": "0x1402ba151",
+      "file_offset": "0x2b9110",
+      "byte_count": 1089,
+      "sha256": "e621848e2507d4fbc262875193f6c24e17c886fc304f0b8f8b3bcd26efabf99d",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-entry.asm",
+        "sha256": "d49ad2928c1b9c381707a8c71c64df91f4276ec5c81d2f158013495833d7e001"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-entry.c",
+        "sha256": "7436bab27f945b341f0efcfd37438c2d3f45d102a74ce776c8325e3371bbe5dd"
+      }
+    },
+    {
+      "role": "coop-staff-name",
+      "contract": "member staff-name wrapper",
+      "start": "0x1402b8eb0",
+      "end_exclusive": "0x1402b917b",
+      "file_offset": "0x2b82b0",
+      "byte_count": 715,
+      "sha256": "2e5b5e7bda59612c7b2007d535387e18d6cb9d0cba23a29acd428de0e4f853ec",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-staff-name.asm",
+        "sha256": "2ac861c514646436f4201bbce04d057f7f5cd38c6df99ef645034a8c749b1d41"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-staff-name.c",
+        "sha256": "f071c536c8e2a4670ffcb0b1a8e51a8c634d74c8fd3c905daace6e59005c60a9"
+      }
+    },
+    {
+      "role": "coop-staff-widget",
+      "contract": "layered staff name and title constructor",
+      "start": "0x140334b70",
+      "end_exclusive": "0x140335210",
+      "file_offset": "0x333f70",
+      "byte_count": 1696,
+      "sha256": "3aa3cf4a4c7560fcec10f18cf42d9a4e622491c94d93ab7ec83ca0de1fbaf56b",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-staff-widget.asm",
+        "sha256": "95bdde31e025109b4a30ff6950cf70cdfa6476b3aca07f59cfb6c205816a253e"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-staff-widget.c",
+        "sha256": "5bf6e0d315e8c8da6ddfeb806142fb444defb81e757ba97f3b8a94d0fdf3a739"
+      }
+    },
+    {
+      "role": "coop-staff-component",
+      "contract": "entity command emitted for staff chat name; payload is entity+bool, wider update semantics pending",
+      "start": "0x1403c2f30",
+      "end_exclusive": "0x1403c2f6a",
+      "file_offset": "0x3c2330",
+      "byte_count": 58,
+      "sha256": "be69974b26a3d7df7b7ccc13f6420aff5989441a003eae2f180e2cda09064df6",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-staff-component.asm",
+        "sha256": "b9f380e1ad0fafe463cf95bff30a7fdd7d3aa960c11289fca25f00b6d617d657"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-staff-component.c",
+        "sha256": "a59e74f7cf9816135ab9ca83ed7f51c10de66287c001555d1d10f714c240a4a3"
+      }
+    },
+    {
+      "role": "staff-update-owner",
+      "start": "0x1402de390",
+      "end_exclusive": "0x1402de723",
+      "file_offset": "0x2dd790",
+      "byte_count": 915,
+      "sha256": "68d2f3c9c9e32d461286635d9f7d9fed2235cd06731b78b8ddce8bf668d7c24a",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/staff-update-owner.asm",
+        "sha256": "5f4f0128101a554dbb92ebe33abd27bc1fb9f124996e1e505196a410793141f7"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/staff-update-owner.c",
+        "sha256": "1ae49c2907d157239a0cc44b4b6ff83e1ea11340b341778377561d039e42b4ce"
+      }
+    },
+    {
+      "role": "staff-title-producer",
+      "start": "0x145b903b0",
+      "end_exclusive": "0x145b910a2",
+      "file_offset": "0x5b8f7b0",
+      "byte_count": 3314,
+      "sha256": "c0f6bc59b3dbe389f86c18345b413cdd8a7115eb12076593649d3d4090b298a7",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/staff-title-producer.asm",
+        "sha256": "650ca3e5ba3d0d44a9970bdfa669f543a480eb5a5263fa7d60f105e6eefade54"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/staff-title-producer.c",
+        "sha256": "0367eb8e467968b83bed93b32d97959865a89a04d67ea01cdb0deae98f8de974"
+      }
+    },
+    {
+      "role": "staff-title-validation",
+      "start": "0x145b05cc0",
+      "end_exclusive": "0x145b05fd5",
+      "file_offset": "0x5b050c0",
+      "byte_count": 789,
+      "sha256": "bacae12fb59aafb8638e09a461f86a42eba77eacc7aa379fb21b5e7738aa4d7a",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/staff-title-validation.asm",
+        "sha256": "62e9bd6cf16cf40508c328ba4d87509476ed554cb478c36cbdd794876b430292"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/staff-title-validation.c",
+        "sha256": "95f3aa1e4357c1436ca5c016628e2cd02f266ec79ca728a3bc52750f3f900c21"
+      }
+    },
+    {
+      "role": "staff-title-sanitizer",
+      "start": "0x145b46990",
+      "end_exclusive": "0x145b46c04",
+      "file_offset": "0x5b45d90",
+      "byte_count": 628,
+      "sha256": "f64972ff3874c1874d66ac748ba031aad5f57c892c468afe0d7bb6432d1093fc",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/staff-title-sanitizer.asm",
+        "sha256": "a8dc11589dc193880e87f04c07ff9beb5d07dbddd190adc8f55cc39e5ac10b6a"
+      }
+    },
+    {
+      "role": "staff-title-message",
+      "start": "0x145ec09c0",
+      "end_exclusive": "0x145ec0b89",
+      "file_offset": "0x5ebfdc0",
+      "byte_count": 457,
+      "sha256": "d1976126062cc7965f6ef7234a44836c3a7745288c95b2ebe4d348fbbb699e8e",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/staff-title-message.asm",
+        "sha256": "103893ab4acc17b5a8d53d9adc4cea5a5dc1f248190482165393de61307f80a6"
+      }
+    },
+    {
+      "role": "staff-signature-parser",
+      "start": "0x145d3d590",
+      "end_exclusive": "0x145d3d5e9",
+      "file_offset": "0x5d3c990",
+      "byte_count": 89,
+      "sha256": "73375779cb8d9b8e0b62a30e852d99f9c2aee2f5bd3551a59208ac8d12f0b08e",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/staff-signature-parser.asm",
+        "sha256": "60019e07c82d3facd7cdab5ad8883e12384a0cd5346c3df970f50edba3637e0f"
+      }
+    },
+    {
+      "role": "staff-strict-signature-interface",
+      "start": "0x145d2c330",
+      "end_exclusive": "0x145d2c670",
+      "file_offset": "0x5d2b730",
+      "byte_count": 832,
+      "sha256": "27051c8d19012c37dbbe5d4f55660568ca3d9af2da6651d2b5c2f407ca53ab3b",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/staff-strict-signature-interface.asm",
+        "sha256": "2652071083e433d41ca9f1d44c18e08ed1b4cc8e6ec77753ea2499bdef7e9070"
+      }
+    },
+    {
+      "role": "staff-json-title-parser",
+      "start": "0x1400c5cc0",
+      "end_exclusive": "0x1400c63ce",
+      "file_offset": "0xc50c0",
+      "byte_count": 1806,
+      "sha256": "0d0d832c3a12d5454a05b3a3d486b4c016208b5bfffd1620b142fce4e9128649",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/staff-json-title-parser.asm",
+        "sha256": "dde9866f74cf5f2fa4b3dc6a015f046792fb7ae3c5c73c44105b23b93f1a87be"
+      }
+    },
+    {
+      "role": "staff-component-insert",
+      "start": "0x140177bd0",
+      "end_exclusive": "0x140177d96",
+      "file_offset": "0x176fd0",
+      "byte_count": 454,
+      "sha256": "b043abb35c5059c459971321f40a866a11fb347156d0e383f5c3dea8899577dd",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/staff-component-insert.asm",
+        "sha256": "cf80f699bf64350e7582335b820893381c447c3fe3ac0e4353b7e7bb814e7d4f"
+      }
+    },
+    {
+      "role": "staff-marker-bundle-type",
+      "start": "0x14002cc20",
+      "end_exclusive": "0x14002cede",
+      "file_offset": "0x2c020",
+      "byte_count": 702,
+      "sha256": "b7a8aedce2b8717d4af65eca8a08e5a7eed341724a003a7d1b393cf6b0300775",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/staff-marker-bundle-type.asm",
+        "sha256": "2ad6d0ff007b88f04d858adbc2cb7462dc2045b9bc87b87b11a653bb9ddc1230"
+      }
+    },
+    {
+      "role": "staff-marker-registration",
+      "start": "0x1402c6340",
+      "end_exclusive": "0x1402c6730",
+      "file_offset": "0x2c5740",
+      "byte_count": 1008,
+      "sha256": "7b57cd2dcd02ad0b5b1c8ef8363d36615eb078bbf5431aa82662977cd2bf2a8d",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/staff-marker-registration.asm",
+        "sha256": "c2a9f2a501e41564f2dd0f17e46eab15f73f2fde2cadab9362ecca8b86f50bcb"
+      }
+    },
+    {
+      "role": "staff-marker-query-registration",
+      "start": "0x1403deb60",
+      "end_exclusive": "0x1403defab",
+      "file_offset": "0x3ddf60",
+      "byte_count": 1099,
+      "sha256": "3ef954c2981250837707dc3fd0acfdf3467670d72ad13e6b24570a29ec741dbd",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/staff-marker-query-registration.asm",
+        "sha256": "1b1cb999174eda64d4aaaeb4549d370d037d214b6012643b2d4a3a0aaa5d75fa"
+      }
+    },
+    {
+      "role": "staff-query-init",
+      "start": "0x14048dbb0",
+      "end_exclusive": "0x14048de9a",
+      "file_offset": "0x48cfb0",
+      "byte_count": 746,
+      "sha256": "be4346008ab7652742b942bf42ec18427ba43e2be9d7f4d0b2519b8eec1bceff",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/staff-query-init.asm",
+        "sha256": "39534cfd49aa093f79c8f7bc491a18a1e8be6e2263e5c921de256514f493cacb"
+      }
+    },
+    {
+      "role": "staff-system-init",
+      "start": "0x1402ebf90",
+      "end_exclusive": "0x1402ec0df",
+      "file_offset": "0x2eb390",
+      "byte_count": 335,
+      "sha256": "5427a50c083f74db34d0b5067a3af53f548079aebf3dbf8d09c02139cfef3f7c",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/staff-system-init.asm",
+        "sha256": "def93b658135952210de58efe27f6e1b528fee28cc892ed1f0a907a396a57ad3"
+      }
+    },
+    {
+      "role": "staff-system-run",
+      "start": "0x1402ec110",
+      "end_exclusive": "0x1402ec29c",
+      "file_offset": "0x2eb510",
+      "byte_count": 396,
+      "sha256": "4630c880761bb49d57e80a7a46e034f53765243796fc18aecfb1cc9c610d30ae",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/staff-system-run.asm",
+        "sha256": "d72d86e464ea69824f92b7a4870b5887c1e74b0d96adeb193e570483d15905d0"
+      }
+    },
+    {
+      "role": "staff-time-from-reflect",
+      "start": "0x142038990",
+      "end_exclusive": "0x142038ce6",
+      "file_offset": "0x2037d90",
+      "byte_count": 854,
+      "sha256": "9e8f3a6e220f11025f2d1d34c09682eda14777937c914cb16bdd0512f738a37e",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/staff-time-from-reflect.asm",
+        "sha256": "dc8f1a04a7f8c169489a9e8f4bff7834fe492eb2f3ef76e356c63000fabaf381"
+      }
+    },
+    {
+      "role": "staff-time-resource-init",
+      "start": "0x14022c680",
+      "end_exclusive": "0x14022c9a4",
+      "file_offset": "0x22ba80",
+      "byte_count": 804,
+      "sha256": "39daec85139feeacee9968adedbee8a9d9effa318876cc0be615d9972ed74595",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/staff-time-resource-init.asm",
+        "sha256": "2bd0e40b8a781f7bad85faaeb10b79c4b7d60333188fc3e4d010005d21f2adc7"
+      }
+    },
+    {
+      "role": "staff-clock-filetime",
+      "start": "0x14600efe0",
+      "end_exclusive": "0x14600f008",
+      "file_offset": "0x600e3e0",
+      "byte_count": 40,
+      "sha256": "b74200eb6138a1406e67097cc780b96646771d2f3375635e5d783e144524f702",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/staff-clock-filetime.asm",
+        "sha256": "dceeca46ce770ee7967e5f04583560330e09795574b0f1708d196e3d8e611cd7"
+      }
+    },
+    {
+      "role": "staff-clock-unix-seconds",
+      "start": "0x14600ef90",
+      "end_exclusive": "0x14600efe0",
+      "file_offset": "0x600e390",
+      "byte_count": 80,
+      "sha256": "74c4b5f3c24180710ce944ae7e8c692d973443e29f8f40165cfc0f56879b60f5",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/staff-clock-unix-seconds.asm",
+        "sha256": "59b33cf743984c592b63684bf3648ec7b0a51f902ca600e49aebe01bd4b133bc"
+      },
+      "boundary": "observed leaf entry, contiguous original bytes through ret; no separate unwind extent"
+    },
+    {
+      "role": "staff-color-mix-entry",
+      "start": "0x144eaabf0",
+      "end_exclusive": "0x144eaac52",
+      "file_offset": "0x4ea9ff0",
+      "byte_count": 98,
+      "sha256": "cc72dfabfc3068cb5d3047bd0df543125f6659df423415aeeedbb55e7ae7ddf1",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/staff-color-mix-entry.asm",
+        "sha256": "7041c73e0b82d1a658a1ee343ed65981314e910e10c1ed526a429942072df965"
+      },
+      "boundary": "selected original instruction span; other Color variants outside this AS input"
+    },
+    {
+      "role": "staff-color-mix-return",
+      "start": "0x144eaae68",
+      "end_exclusive": "0x144eaaea9",
+      "file_offset": "0x4eaa268",
+      "byte_count": 65,
+      "sha256": "94d43db96f4a56bdc74ef82549c4e26070208ca0fde6aaeba14f09ae60504408",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/staff-color-mix-return.asm",
+        "sha256": "b3b9576a5fab7db64eb46757cde1bb23018bd6175a51ef3eb2d9c4c94aca9ae1"
+      },
+      "boundary": "selected original instruction span; other Color variants outside this AS input"
+    },
+    {
+      "role": "staff-profile-wire-reader",
+      "start": "0x145ec3070",
+      "end_exclusive": "0x145ec3247",
+      "file_offset": "0x5ec2470",
+      "byte_count": 471,
+      "sha256": "8b5098a1172b234918f282004a923dfbe54a8d0a4b0688696b4e25a68cc775c0",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/staff-profile-wire-reader.asm",
+        "sha256": "810cdf029f03d02a2cfe2f39a853e387fed6078302119b1adf941d2fdbb40c43"
+      }
+    },
+    {
+      "role": "staff-color-mix-srgba",
+      "start": "0x144eaac52",
+      "end_exclusive": "0x144eaac64",
+      "file_offset": "0x4eaa052",
+      "byte_count": 18,
+      "sha256": "7d076faf48daa6d265d90c5922daef512e604aa87ac3dae8a6ae805df918cf32",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/staff-color-mix-srgba.asm",
+        "sha256": "4ebd4876fb2567e5776ce9243902422cd11c3fc4aa3687d289d9600579921ef9"
+      }
+    },
+    {
+      "role": "staff-color-mix-componentwise",
+      "start": "0x144eaad7e",
+      "end_exclusive": "0x144eaad99",
+      "file_offset": "0x4eaa17e",
+      "byte_count": 27,
+      "sha256": "db9d202e0929bf29552eecf3d44c4a16bc12f62fffa904c36ccec47d9fc397b4",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/staff-color-mix-componentwise.asm",
+        "sha256": "035b9ac72c960a05b576d023bdaf16e06fa7236bf4333e4ed7b12a6a8bc35391"
+      }
+    },
+    {
+      "role": "staff-srgba-identity",
+      "start": "0x144eabb30",
+      "end_exclusive": "0x144eabb81",
+      "file_offset": "0x4eaaf30",
+      "byte_count": 81,
+      "sha256": "0906505842ce1052dc1e93e212c6fac74ccdd60a9e6e3179648ba9ebf9fdc932",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/staff-srgba-identity.asm",
+        "sha256": "2d9f51ffd6caa4c6bd98a562ef62145e725fa47505cde11c205421afc91aa572"
+      }
+    },
+    {
+      "role": "staff-srgba-return",
+      "start": "0x144eac25b",
+      "end_exclusive": "0x144eac2a6",
+      "file_offset": "0x4eab65b",
+      "byte_count": 75,
+      "sha256": "a5e6ecd91e0cf8825f2b4fcb266976d54f4cda20eaacf6e70841896d63f386c0",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/staff-srgba-return.asm",
+        "sha256": "f9216de7ebc339c5c8e5804517f4ccb6949d3d30e5713090e3e8c72d3e9e05ac"
+      }
+    }
+  ],
+  "data_ranges": [
+    {
+      "role": "modal-dimensions",
+      "start": "0x1462777e0",
+      "file_offset": "0x6275de0",
+      "byte_count": 12,
+      "sha256": "80f99a7c1edab56a9546361d5bcbcfb1348e0a15ccfe14bb48cf68d1fb76909d",
+      "hex": "00004d4400008c4400002a44"
+    },
+    {
+      "role": "bottom-follow-threshold",
+      "start": "0x1462777ec",
+      "file_offset": "0x6275dec",
+      "byte_count": 4,
+      "sha256": "5031fa242fd547c30fa03d904895dca3907d31ae023427dfe3fea0d7dc1e4a99",
+      "hex": "000080c0"
+    },
+    {
+      "role": "chat-row-gap",
+      "start": "0x146233134",
+      "file_offset": "0x6231734",
+      "byte_count": 4,
+      "sha256": "ea2845900b5856c9bf354b1aa9761b5aa6888e5ed61738fe9579ca42bc0f6054",
+      "hex": "00004040"
+    },
+    {
+      "role": "incoming-event-dispatch",
+      "start": "0x14627aa18",
+      "file_offset": "0x6279018",
+      "byte_count": 20,
+      "sha256": "d5bedd92a29e7286d6861b6fbf7199ce3f2a5bf5b27efa44a1ca9cb7d8336afe",
+      "hex": "b96a06fa4e6b06fa286a06fa076a06fadf6b06fa"
+    },
+    {
+      "role": "chat-json-field-names",
+      "start": "0x14627898e",
+      "file_offset": "0x6276f8e",
+      "byte_count": 15,
+      "sha256": "5539b33d546fba9b0bd3c846fafcdc9d6fd9da9062a3f7f7d44116e4707bc2bd",
+      "hex": "6e616d65636c617373496474657874"
+    },
+    {
+      "role": "join-leave-templates",
+      "start": "0x1462789ba",
+      "file_offset": "0x6276fba",
+      "byte_count": 46,
+      "sha256": "f49bb06854034eaf89a986d357b835f9406b1bd8fce8661a325d10f1906d8570",
+      "hex": "7b6e616d657d206c656674207468652070617274792e7b6e616d657d206a6f696e6564207468652070617274792e"
+    },
+    {
+      "role": "chat-class-icon18",
+      "start": "0x14625b650",
+      "file_offset": "0x6259c50",
+      "byte_count": 16,
+      "sha256": "fdb86dbbb6a58978d5da4651c1e03803daebcca77d5bce3c7f95699fea5fc0bd",
+      "hex": "01000000000090410100000000009041"
+    },
+    {
+      "role": "member-class-icon38",
+      "start": "0x14627ade0",
+      "file_offset": "0x62793e0",
+      "byte_count": 16,
+      "sha256": "874e9d3b78b17f1cba5dc959af879f4d10b38088a3f46482a293eb97ce06a678",
+      "hex": "01000000000018420100000000001842"
+    },
+    {
+      "role": "unread-badge-templates",
+      "start": "0x1462782b8",
+      "file_offset": "0x62768b8",
+      "byte_count": 138,
+      "sha256": "8e8f38441341da7d53f114946a83825ca6f5c1a1d6b073398e278ef0e726ca5f",
+      "hex": "506c6179207769746820667269656e647350617274793a207b6e7d2f35000000000000000000000008000000000000000800000000000000106e0446010000006e5061727479207b636f64657d3a207b6e7d2f3500000000e0c005400100000018000000000000000800000000000000e020004001000000636f64657b6e7d206e6577c00420c2b720c0"
+    },
+    {
+      "role": "chat-header-labels",
+      "start": "0x14627dbcf",
+      "file_offset": "0x627c1cf",
+      "byte_count": 195,
+      "sha256": "4d20f291945faaf7cc8c03567cfdfa9f5eb22ec857e538954a7facf6d0225550",
+      "hex": "50617274792063686174556e74696c207468652072756e20626567696e73000000000000009a99393f5eba293f5c8f023fcdcc0c3f4e6f206d65737361676573207965742e205361792068656c6c6f20746f20796f757220706172747921636f6f702d636861744c6f62627920636f646554686520706172747927732072756e436f2d6f7053617920736f6d657468696e672e2e2e2028456e7465722903e280a6c000c0017c0053656e64000000000000010000000000000001000000000000000000"
+    },
+    {
+      "role": "ping-green",
+      "start": "0x146279134",
+      "file_offset": "0x6277734",
+      "byte_count": 20,
+      "sha256": "1fbfc6f29367c93738a07115d9ed92986a647b32681006d86b42db5153d6041b",
+      "hex": "00000000be9f9a3e0000803ff4fdd43e0000803f"
+    },
+    {
+      "role": "ping-gold",
+      "start": "0x1462786a4",
+      "file_offset": "0x6276ca4",
+      "byte_count": 20,
+      "sha256": "a92a10f99f6e525a84ab42fe1f285b0f5cb09ef805f853bebe867dfd2c133487",
+      "hex": "000000008716793faaf1523ff4fdd43e0000803f"
+    },
+    {
+      "role": "ping-red",
+      "start": "0x146278948",
+      "file_offset": "0x6276f48",
+      "byte_count": 20,
+      "sha256": "bf8e43a6c90b6c92c874ae40ece2ed058ed2d455021fdbe093209688d78bcdd1",
+      "hex": "000000000000803f6abcb43ed7a3703e0000803f"
+    },
+    {
+      "role": "ping-unavailable",
+      "start": "0x146279118",
+      "file_offset": "0x6277718",
+      "byte_count": 20,
+      "sha256": "921ea1d5aefc942f347e75142c68935800d38a5d30d4c28612b811ec8790aa3c",
+      "hex": "000000009a99393f5eba293f5c8f023fcdcc0c3f"
+    },
+    {
+      "role": "member-staff-color",
+      "start": "0x1462788ec",
+      "file_offset": "0x6276eec",
+      "byte_count": 20,
+      "sha256": "d1d5336b527d6d1751d6080a7c7cea487f51c1c51aeae9c25b7f157dbb431b66",
+      "hex": "00000000295c0f3f713d8a3e48e17a3f0000803f"
+    },
+    {
+      "role": "action-dispatch",
+      "start": "0x14627a9d4",
+      "file_offset": "0x6278fd4",
+      "byte_count": 68,
+      "sha256": "74a8dd5e970839b2ddd8813ec02b1d8444df14606e1c2efdc6c35f76316fcffc",
+      "hex": "8e5106fa935706fac65306fa3a5706fa605206fac25706fa875906fa6b5706fada5906fa9e5306faac5906fa325206fa8c5206fafc5806fa085206fa1c5706fae15106fa"
+    },
+    {
+      "role": "member-class-race-gap",
+      "start": "0x1462330f0",
+      "file_offset": "0x62316f0",
+      "byte_count": 4,
+      "sha256": "fedcca07b1ccdacce623cb6d8afdeed0314e8508d763e228871f18d4e0ebb7c4",
+      "hex": "0000c040"
+    },
+    {
+      "role": "chat-own-background",
+      "start": "0x146278f68",
+      "file_offset": "0x6277568",
+      "byte_count": 20,
+      "sha256": "26953e274b0b1c94da58e4e246445e31dcacdbe0010abdd035d595f6671838bf",
+      "hex": "000000008716793faaf1523ff4fdd43e295c8f3d"
+    },
+    {
+      "role": "chat-name-format",
+      "start": "0x14627fb91",
+      "file_offset": "0x627e191",
+      "byte_count": 5,
+      "sha256": "80092aaeaedfa1750b1dc8399e3aedad77558f03dee11550398ed90125ccee6c",
+      "hex": "c0023a2000"
+    },
+    {
+      "role": "staff-name-type-name",
+      "start": "0x146233a77",
+      "file_offset": "0x6232077",
+      "byte_count": 43,
+      "sha256": "810a2c9a2db5ee35cbd325864e77ddd95fe52b2e141b03b9e8f0d8dee477a64e",
+      "hex": "77656e696c6c615f726f6775655f6170703a3a73637265656e733a3a636f6f703a3a53746166664e616d65"
+    },
+    {
+      "role": "staff-name-type-id-bundle",
+      "start": "0x146231af0",
+      "file_offset": "0x62300f0",
+      "byte_count": 16,
+      "sha256": "3fea8a96d5f444f9bbfcef6872f99cfe7c9b3e3319e93cb73ef303e1ceaf23d0",
+      "hex": "4ff13f6bc929cce5746c966b1326302e"
+    },
+    {
+      "role": "staff-name-type-id-register",
+      "start": "0x146272e38",
+      "file_offset": "0x6271438",
+      "byte_count": 16,
+      "sha256": "3fea8a96d5f444f9bbfcef6872f99cfe7c9b3e3319e93cb73ef303e1ceaf23d0",
+      "hex": "4ff13f6bc929cce5746c966b1326302e"
+    },
+    {
+      "role": "staff-name-type-id-query",
+      "start": "0x146282210",
+      "file_offset": "0x6280810",
+      "byte_count": 16,
+      "sha256": "3fea8a96d5f444f9bbfcef6872f99cfe7c9b3e3319e93cb73ef303e1ceaf23d0",
+      "hex": "4ff13f6bc929cce5746c966b1326302e"
+    },
+    {
+      "role": "staff-system-vtable",
+      "start": "0x1462798a8",
+      "file_offset": "0x6277ea8",
+      "byte_count": 128,
+      "sha256": "d95720bc8f3bd64994beddbbb2ac4464d81ec735196853b517621b0acea79544",
+      "hex": "d06014400100000070301540010000006030154001000000503015400100000010c12e400100000020300a4001000000402e0a4001000000a0c22e4001000000d0c22e400100000000c32e4001000000d0230a400100000090bf2e400100000070b2134001000000b0d208400100000050b213400100000060b2134001000000"
+    },
+    {
+      "role": "staff-text-color-low",
+      "start": "0x1462788ec",
+      "file_offset": "0x6276eec",
+      "byte_count": 20,
+      "sha256": "d1d5336b527d6d1751d6080a7c7cea487f51c1c51aeae9c25b7f157dbb431b66",
+      "hex": "00000000295c0f3f713d8a3e48e17a3f0000803f"
+    },
+    {
+      "role": "staff-text-color-high",
+      "start": "0x146278900",
+      "file_offset": "0x6276f00",
+      "byte_count": 20,
+      "sha256": "fe0c32140184f2273bacfc4a9e78f268d523d565da4a85e8f93fd8774ce7f764",
+      "hex": "00000000f6285c3fc3f5283f0000803f0000803f"
+    },
+    {
+      "role": "staff-pulse-speed",
+      "start": "0x14624fc2c",
+      "file_offset": "0x624e22c",
+      "byte_count": 4,
+      "sha256": "a80b09d482b17e803f735394dd5d356ded23108c569d2946dd574c6bddeff4db",
+      "hex": "cdcc4c40"
+    },
+    {
+      "role": "staff-entity-phase",
+      "start": "0x1462330e8",
+      "file_offset": "0x62316e8",
+      "byte_count": 4,
+      "sha256": "8e215ece122cf70ebe3556a0318fa6c395d1766375c3edc080967e4a09592401",
+      "hex": "9a99193f"
+    },
+    {
+      "role": "staff-pulse-half",
+      "start": "0x146233124",
+      "file_offset": "0x6231724",
+      "byte_count": 4,
+      "sha256": "d99e58435243d9fef9c88273b8d553b4fba4d0baf8009d29eae74fa99e0d9f57",
+      "hex": "0000003f"
+    },
+    {
+      "role": "staff-color-equality-table",
+      "start": "0x14627a9ac",
+      "file_offset": "0x6278fac",
+      "byte_count": 40,
+      "sha256": "4a6c5cb7816d959fce4da7b768d51da6c89d37952218619f37d44f1cf5462efa",
+      "hex": "aa3c06faaa3c06faaa3c06faaa3c06faaa3c06faaa3c06faaa3c06faaa3c06faaa3c06faaa3c06fa"
+    },
+    {
+      "role": "staff-vouch-public-key",
+      "start": "0x147043c68",
+      "file_offset": "0x7042268",
+      "byte_count": 32,
+      "sha256": "0cb16345d0c3ab6e33c336849e9b853387521493b5bc20a9579b4a9e4822f7e3",
+      "hex": "bc6a6dd554756700632f16e24ddbbdd3ecbe16f30ee96466242b2ccdfcccfc0e"
+    },
+    {
+      "role": "staff-vouch-message-domain",
+      "start": "0x147793378",
+      "file_offset": "0x7791978",
+      "byte_count": 22,
+      "sha256": "474765bfa4f53b818360c9dcc2b22a33e67038c98e75ae0cc9b5cc558df7d2d0",
+      "hex": "617a65726f74682d636f6f7020766f75636820763100"
+    },
+    {
+      "role": "staff-json-title-key",
+      "start": "0x14624947f",
+      "file_offset": "0x6247a7f",
+      "byte_count": 5,
+      "sha256": "aaf2320646108059a87ab5017a86aee454f5378ed95003dbb2e12f4ca5266e0e",
+      "hex": "7469746c65"
+    },
+    {
+      "role": "staff-json-title-output-key",
+      "start": "0x14707d0f0",
+      "file_offset": "0x707b6f0",
+      "byte_count": 5,
+      "sha256": "aaf2320646108059a87ab5017a86aee454f5378ed95003dbb2e12f4ca5266e0e",
+      "hex": "7469746c65"
+    },
+    {
+      "role": "staff-time-field-names",
+      "start": "0x1465b7d20",
+      "file_offset": "0x65b6320",
+      "byte_count": 141,
+      "sha256": "ae8d3774f252a6f0d36aa8c20e9a2e6b26db70d2445d4f934c4157fdc9d46971",
+      "hex": "636f6e74657874777261705f706572696f6464656c746164656c74615f7365637364656c74615f736563735f663634656c6170736564656c61707365645f73656373656c61707365645f736563735f663634656c61707365645f77726170706564656c61707365645f736563735f77726170706564656c61707365645f736563735f777261707065645f663634"
+    },
+    {
+      "role": "staff-time-resource-type-id",
+      "start": "0x146248ac0",
+      "file_offset": "0x62470c0",
+      "byte_count": 16,
+      "sha256": "77b562d324fb66bf7e16d9406f7dd69ee5dfaae9578d8acd114b7440b9f17af6",
+      "hex": "2797fda84b9426b8c07616cdaa723ec3"
+    },
+    {
+      "role": "staff-color-mix-table",
+      "start": "0x146f47c2c",
+      "file_offset": "0x6f4622c",
+      "byte_count": 40,
+      "sha256": "d475f931afebb6c3f5f3405204f48d2ecd353f332ccc30eeec5650e3f08448cf",
+      "hex": "2630f6fd3631f6fd5930f6fd6830f6fd3830f6fd4531f6fd6d31f6fd2731f6fd7c31f6fd4730f6fd"
+    },
+    {
+      "role": "staff-srgba-conversion-table",
+      "start": "0x146f48d18",
+      "file_offset": "0x6f47318",
+      "byte_count": 40,
+      "sha256": "d8aef4c5966e87c4c80011c58cda1d537da6789e23c49a05221cb9589291c9a0",
+      "hex": "5e2ef6fdc931f6fde72ff6fd0031f6fd692ef6fd4232f6fd5232f6fdb931f6fdb232f6fd012ff6fd"
+    }
+  ],
+  "queries": [
+    {
+      "evidence_id": "ev_c2c1741fc66f5237e586713e256394e00815f4b36d4f8e538956e4e3f7821f54",
+      "procedure": "0x1402bd230",
+      "slice_virtual_address": "0x1402bd230",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "e2b5ddf075d6f5e47f63e4e7a9474b13cd964fd97b09d52eb6b559751b2b6c6c",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-panel/plan.json",
+        "sha256": "05251934cd07ae5bd0922b4d03b928abcdbc598f861799e6a9c2cb22076ff6c0"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-panel/rea/journal.json",
+        "sha256": "0ed1f02d054b85a47cceb9fc51a572cf83552f6b4eb347fe96b6dfd392ae8737"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-panel/rea/results/54873e10c64c0872dff1da2b10a785a8945572d81a10ef8093bf9db08fcb87d5.json",
+        "sha256": "05a8ca5ace275438a23c999ac82095663ad49868b9212e4467adbdc6b18119c9"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-panel/body.bin",
+        "sha256": "8375f5ba1b14565b95263c18308a5e3768b7d4cb2ac59facec3bb50a2ef501af"
+      },
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-panel.c",
+        "sha256": "19a2e7efccf46ecf0efd431f006271f124474618f44ea2e1fd4af21b83dead81"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "8375f5ba1b14565b95263c18308a5e3768b7d4cb2ac59facec3bb50a2ef501af",
+        "virtual_address": "0x1402bd230",
+        "file_offset": "0x2bc630",
+        "byte_count": 3981,
+        "result": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-panel/rea/results/54873e10c64c0872dff1da2b10a785a8945572d81a10ef8093bf9db08fcb87d5.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "evidence_id": "ev_833e838cc8a6bad972787f05e49f47e53eee96f2e5881776c517fb85e02a5e7d",
+      "procedure": "0x1402e4490",
+      "slice_virtual_address": "0x1402e4490",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "6e31fbb05b3572b688abde9b8c419b83ded6809d78164717e250f68cb7c0e739",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-rebuild/plan.json",
+        "sha256": "608fd3badab9a7ad847854311093d19d1f3956518687e79dbad394232869a8ad"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-rebuild/rea/journal.json",
+        "sha256": "6166d2584a846ec4e892575fc02db014ca127d910e9d9c5c99b25b944e357aa0"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-rebuild/rea/results/4c2a9e698b6dc3442c58702a6f107440b2c9e8dd63d38bed7abdc571bcbe731b.json",
+        "sha256": "8ec85966d7a11fb4dcb0bfa4ac15a4fd40a172d27db549f816a7049ab537737e"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-rebuild/body.bin",
+        "sha256": "6253578f9565903abaac6ab0e8a93f9d9d434c662a43a82602e1965854dc33a7"
+      },
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-rebuild.c",
+        "sha256": "38c4bb869ce0383b91de3256be702e6287a7d9122c436676c5121297f1f2852e"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "6253578f9565903abaac6ab0e8a93f9d9d434c662a43a82602e1965854dc33a7",
+        "virtual_address": "0x1402e4490",
+        "file_offset": "0x2e3890",
+        "byte_count": 3994,
+        "result": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-rebuild/rea/results/4c2a9e698b6dc3442c58702a6f107440b2c9e8dd63d38bed7abdc571bcbe731b.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "evidence_id": "ev_395353e9032fcfb707d15dd28696bb9717e8ee33f61d2b62f47f0b45c7d1e83f",
+      "procedure": "0x1402c08e0",
+      "slice_virtual_address": "0x1402c08e0",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "b066b1eb9336c2341f1fd0c983ca35ad11e05eb057bcd6f8ddcb4b75e0ca645d",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-row/plan.json",
+        "sha256": "0d5380d85c049f55373143036743ee13c128accf2ac16256675e4cf0dd7e967e"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-row/rea/journal.json",
+        "sha256": "66d4aae773fb947f05b87c74b0c10e8b4af7984c4d89b8059b361f9c44ed3baa"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-row/rea/results/81903c51ff304b7bae46906a4d099d9ebca9a2f1da7215bda05aeaea1d93b4c9.json",
+        "sha256": "b313be8334968c12688c7d873c6620b4d480fb68af2371fc97acf2f283f925bc"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-row/body.bin",
+        "sha256": "cfd58c0b7df00a9c41f475396518868ad9da686a7b939034d812ab64dde0310f"
+      },
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-row.c",
+        "sha256": "608ff056dc18bd489bc842a533c38e41001ce22008b8fe3886e7acc60e63ff72"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "cfd58c0b7df00a9c41f475396518868ad9da686a7b939034d812ab64dde0310f",
+        "virtual_address": "0x1402c08e0",
+        "file_offset": "0x2bfce0",
+        "byte_count": 2055,
+        "result": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-row/rea/results/81903c51ff304b7bae46906a4d099d9ebca9a2f1da7215bda05aeaea1d93b4c9.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "evidence_id": "ev_b935ddacdfb3dbd25ca497227edeb43a1d857789ccbcb61946693a0a91fbf058",
+      "procedure": "0x1402e5540",
+      "slice_virtual_address": "0x1402e5540",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "e68c1ddb246c009216540285032f081337fca94c252c82a3bbfbcf7558bafe6c",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-update/plan.json",
+        "sha256": "1f0a55f06c5fdc3ed874f323de66bba219173e00e22f0ff4b1035ab23ea3c8ac"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-update/rea/journal.json",
+        "sha256": "a2dd891f493fca144c4f88e742322d68bf0ec2e8995707b803f43b44abd014aa"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-update/rea/results/753ba3fbd1587feba0048ddd936a5ce398731f00672c4edcf195686b5483d42f.json",
+        "sha256": "450ba5c5829a46bafea6c756031e554508eb274ea67d37b77324bcc7a9b774e2"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-update/body.bin",
+        "sha256": "bdcee5e07185338650a443ce33c6441834aedccf3c1c67362de1066944af2697"
+      },
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-update.c",
+        "sha256": "dcb4f8b30d2f2ed4f7dde3136ac995840168e297ca337910fc4e069f86ffa373"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "bdcee5e07185338650a443ce33c6441834aedccf3c1c67362de1066944af2697",
+        "virtual_address": "0x1402e5540",
+        "file_offset": "0x2e4940",
+        "byte_count": 3047,
+        "result": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-update/rea/results/753ba3fbd1587feba0048ddd936a5ce398731f00672c4edcf195686b5483d42f.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "evidence_id": "ev_349cb7309ddb47abc05faf77a7573092264d4701ca3fb1536ab0106aebfb5df4",
+      "procedure": "0x1402e12e0",
+      "slice_virtual_address": "0x1402e12e0",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "b2c26b7d5a62aa6d02acbc03931367d67a742dbc6ba7e6ea86af68d82da2cbe4",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-events/plan.json",
+        "sha256": "f5de943792276eab63d6106b53445e9d2637e5d8686de6ae13dae46dfcdb4f45"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-events/rea/journal.json",
+        "sha256": "ac98832fc63eb9afe9a4ef032a3da3e7d7b5ae5bb19d965b6c5d100e8be538a7"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-events/rea/results/84546ae092648005aa1ca5b6e0e0963fc1bc2438908b5eaf9cfd8d9a28b1575b.json",
+        "sha256": "e6a28d79800481e4d23251d1d52c85e3eee550966f8ca659e275a9326ee239cc"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-events/body.bin",
+        "sha256": "0e7332f0f05b664876607491ff0ada180585e884220a865c9fb396ca006bed78"
+      },
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-events.c",
+        "sha256": "277744d0bd190bdc443c7905cf186296c0213f8e180549cdeb522576f5697d5a"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "0e7332f0f05b664876607491ff0ada180585e884220a865c9fb396ca006bed78",
+        "virtual_address": "0x1402e12e0",
+        "file_offset": "0x2e06e0",
+        "byte_count": 7013,
+        "result": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-events/rea/results/84546ae092648005aa1ca5b6e0e0963fc1bc2438908b5eaf9cfd8d9a28b1575b.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "evidence_id": "ev_b4622a6225d2cfb5634a6e87319d56fb49ef18e76186a32d5ff54f40fba90b7c",
+      "procedure": "0x1402deba0",
+      "slice_virtual_address": "0x1402deba0",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "b0db4dd422786363afb7447e738a259d7eb147ec86896755cf96cb4decf88dc6",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-input/plan.json",
+        "sha256": "08189c751d9d408909f31f734afc09f5e061b4199adcfbb2ee2620bbf29c58a9"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-input/rea/journal.json",
+        "sha256": "3fd4f9bb27b61ab3ca9e9ef2923e1beb453ee92f05025fb447529116024291c8"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-input/rea/results/2718c572a66a132e4d08ada994c0a3d2e982f4d2fc52ccf09c37d1ce7fc3080a.json",
+        "sha256": "509e52b9d6a8aa858acc227a96db616a30f55d0112b4af492b371e1c15df2680"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-input/body.bin",
+        "sha256": "b3971d9fab8a078794e7507e00a3aafd96824b38717657b3ee0013c9fbc4988a"
+      },
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-input.c",
+        "sha256": "97ccf4835d1fca4ee29783e1be7c1176eb0e5a53d0bff500ae5ffab7b8999309"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "b3971d9fab8a078794e7507e00a3aafd96824b38717657b3ee0013c9fbc4988a",
+        "virtual_address": "0x1402deba0",
+        "file_offset": "0x2ddfa0",
+        "byte_count": 1601,
+        "result": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-input/rea/results/2718c572a66a132e4d08ada994c0a3d2e982f4d2fc52ccf09c37d1ce7fc3080a.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "evidence_id": "ev_b5f74ff5b6c2ecb6d81a21fd076717386dca9db5507397dac67a4189f9691b65",
+      "procedure": "0x14033bd80",
+      "slice_virtual_address": "0x14033bd80",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "d7e9249460f8f4134e27b2de6a428009fd99df4d5c989ae383c7b79d687ea2d0",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-modal-builder/plan.json",
+        "sha256": "91a5ace29af9db2a9a2783fc14ae2d81124e8d2bece0bc29e42e03b4549a8431"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-modal-builder/rea/journal.json",
+        "sha256": "0627a59558455cf07a8ee9155fbc6df50739cf1cae739ee29c3c00e99f024c6b"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-modal-builder/rea/results/ca57ad3a481600b64385e741196253e71ca0b7f89de305e36d2273ff002a8273.json",
+        "sha256": "c7f26ea7b47a69c896f59cc0520275560390f9371fac638a170bc6c2248e7690"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-modal-builder/body.bin",
+        "sha256": "0e2e5dbaf0e9aec3a84e9a7440b5c88c4c2a7c53d0d487fdf28b9b10e72dcedd"
+      },
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-modal-builder.c",
+        "sha256": "49cd22564513a3a164728918687e288b437e072dadc0f6ee9f981239314233eb"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "0e2e5dbaf0e9aec3a84e9a7440b5c88c4c2a7c53d0d487fdf28b9b10e72dcedd",
+        "virtual_address": "0x14033bd80",
+        "file_offset": "0x33b180",
+        "byte_count": 4550,
+        "result": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-modal-builder/rea/results/ca57ad3a481600b64385e741196253e71ca0b7f89de305e36d2273ff002a8273.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "evidence_id": "ev_db2d3e0930abc39e0836a39b522a86363bcb15ab11dface6c0fe8cac27bcc2fc",
+      "procedure": "0x1402af200",
+      "slice_virtual_address": "0x1402af200",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "d3ac699a279a8304cd364bbf345c49c31952c5c2d062e18129f44ad5dd30fabb",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-row-helper/plan.json",
+        "sha256": "a19033fe831b240bf3353c1412678b2f4f3e28ca6a520e427c3de69f1e5ee3d9"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-row-helper/rea/journal.json",
+        "sha256": "db0d2a28085a6ee80bb56a062404bd47433f2a8b30b13c761f2b1e7aaa642141"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-row-helper/rea/results/26603318fe6e39d63fcaaef718bd7bcc010a2e2a7eda05ece5ba09fe0c487d4e.json",
+        "sha256": "4c022e5cca50e8b495a683c26a7a02cbe52dc783f185099a320fd3df145f94e5"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-row-helper/body.bin",
+        "sha256": "45dfd2db992a7038c31936c81d06b52409ebd9e92dabefa3a9d3369db65bd3ac"
+      },
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-row-helper.c",
+        "sha256": "e8c38cadf611ac3239db14c8079d2bfb9c2bd5c8e106559b413242687876fdc3"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "45dfd2db992a7038c31936c81d06b52409ebd9e92dabefa3a9d3369db65bd3ac",
+        "virtual_address": "0x1402af200",
+        "file_offset": "0x2ae600",
+        "byte_count": 293,
+        "result": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-row-helper/rea/results/26603318fe6e39d63fcaaef718bd7bcc010a2e2a7eda05ece5ba09fe0c487d4e.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "evidence_id": "ev_d539d288c2f139e54407c37c0d056054fa6fc58fef152e2d788ca9d37d3cd917",
+      "procedure": "0x140335bb0",
+      "slice_virtual_address": "0x140335bb0",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "c99b459fe50ea397bad3bdee06fe0fd4756a86eebe60544e2eb772f347dc485f",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-widget/plan.json",
+        "sha256": "361d21b19a65dcbc12a53e27f1f58b67887387c51e0bca9ccaf527254b03316b"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-widget/rea/journal.json",
+        "sha256": "a791a8dd5ca92c7868e2433512880f7e7a85b3a5b01d7a9545441c56b159a49d"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-widget/rea/results/292be9121b1efe870ed28cb0b774930061354ecd3dd9c46bcf3983bc1bac20cf-eb4162866108c260.json",
+        "sha256": "d7e26a332e22254ec52a49cb4cd79be3b3a71de2910f1f9cddbd9a7ce8bcc486"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-widget/body.bin",
+        "sha256": "79daaa698742cce6271ca4e2a0d8f9c216699545c5623c11b74ce7f1bc420d98"
+      },
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-widget.c",
+        "sha256": "db655f2a41384b41d6ae02748b9edbbd022a60ebf5cf3723cfd411a49840a854"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "79daaa698742cce6271ca4e2a0d8f9c216699545c5623c11b74ce7f1bc420d98",
+        "virtual_address": "0x140335bb0",
+        "file_offset": "0x334fb0",
+        "byte_count": 4527,
+        "result": "runtime/analysis/objects/d7/d7e26a332e22254ec52a49cb4cd79be3b3a71de2910f1f9cddbd9a7ce8bcc486",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "evidence_id": "ev_8b9996200a86668956f6eb05e1d76d0275a252ae756df337efde090745832720",
+      "procedure": "0x14033cf50",
+      "slice_virtual_address": "0x14033cf50",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "5747aeed2afd6752076e939438f06b90a894ea8aba0433b67956d0defc3e4094",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-input-widget/plan.json",
+        "sha256": "8f4ea9deb888f3a4d5858b31fd59d5d6308ff93a691daa690f37a10b264beb57"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-input-widget/rea/journal.json",
+        "sha256": "39e653c2bcea078bb5bab383a817044861156a88d4e043586e18bf61e1d54a00"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-input-widget/rea/results/dd707604c11522cbe93d248c1e1ca082eedc6eefe707de75d742c61335c61287-00313e8a8f252cb7.json",
+        "sha256": "34e84b8482b5e604e890ce419bb437d3a92216929db3e985aff7b8414a98ed62"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-input-widget/body.bin",
+        "sha256": "c4fe949a585d60018755bc359dbdbc370d365576095015610897ea5431d91872"
+      },
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-input-widget.c",
+        "sha256": "6ff571d1b00d06b8525037189ab4615c82df77268357f6a017fb52947c4f5913"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "c4fe949a585d60018755bc359dbdbc370d365576095015610897ea5431d91872",
+        "virtual_address": "0x14033cf50",
+        "file_offset": "0x33c350",
+        "byte_count": 3466,
+        "result": "runtime/analysis/objects/34/34e84b8482b5e604e890ce419bb437d3a92216929db3e985aff7b8414a98ed62",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "evidence_id": "ev_00b385d268ba2a89b1cb705404571a8292e00ca6b12738ee23bb8e4e40979c5b",
+      "procedure": "0x1402df790",
+      "slice_virtual_address": "0x1402df790",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "169548a307c3a5331fd06f2624884e78a2e6200ef321a1a8189b84f6a394dfda",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-ui-actions/plan.json",
+        "sha256": "8c91f13a2afc0c89143ca65dbe1402a96fbf92fcd6985a98e755efe8506ff199"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-ui-actions/rea/journal.json",
+        "sha256": "ee91e73123512881827a71ae31f5e850ab8f9495353841b5b7ad983777b41774"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-ui-actions/rea/results/c40d1f85c778ddbbc2c036dc2d1651e4a44c5fdbe111cfe86c51f8643e6cf9ba-921e10734e5b9005.json",
+        "sha256": "9cc24b5a4078f198bbc15eef06e6b9ce24730cd343338fc7610a7ec394317581"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-ui-actions/body.bin",
+        "sha256": "9aae8f42926ab808b1ebe045d59acfbeeddf9fd138e3ab5c40cbdb2563ff967c"
+      },
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-ui-actions.c",
+        "sha256": "43cb6dc097ecbd1cdb59ecf2ed6653df4a7cdc0bd88e0ee36609a3aeacf6a441"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "9aae8f42926ab808b1ebe045d59acfbeeddf9fd138e3ab5c40cbdb2563ff967c",
+        "virtual_address": "0x1402df790",
+        "file_offset": "0x2deb90",
+        "byte_count": 5251,
+        "result": "runtime/analysis/objects/9c/9cc24b5a4078f198bbc15eef06e6b9ce24730cd343338fc7610a7ec394317581",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "evidence_id": "ev_48c7359292bec4b27c29ff7897d6f6341696faad16bd131ed70ccae85820fb57",
+      "procedure": "0x1402e36d0",
+      "slice_virtual_address": "0x1402e36d0",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "f626cbcc8a54bcba3e5f8de9145ab63ad1e69bcdea63b03dc40eba1a8a40a268",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-staff-animation/plan.json",
+        "sha256": "53a3eebe00199d60e836657e4ca107161748749005b5dde9754c029edbf3aae4"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-staff-animation/rea/journal.json",
+        "sha256": "a33d53e8842b7ba043437f245687a2e7475f45813baab4ae867f9186c84a61b4"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-staff-animation/rea/results/51a8e9a863b341c84cb00b5dc2b07a06971f87d45cbe128249e24e57ab596656-dbc7f9bf8951e5b3.json",
+        "sha256": "b34dc8c126e5bc70d58c1c6718f5d02b82f138ebf19119d77d8106c5eaaf30ff"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-staff-animation/body.bin",
+        "sha256": "6a398e789fe1909e72b9b1fa49a1f89ac443b6a56e13169f8f6d2ca292d61166"
+      },
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-staff-animation.c",
+        "sha256": "ce35c08b5f7ad9700a845b78d106d617484d35b73303ab6ad3eef56a0b52c22e"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "6a398e789fe1909e72b9b1fa49a1f89ac443b6a56e13169f8f6d2ca292d61166",
+        "virtual_address": "0x1402e36d0",
+        "file_offset": "0x2e2ad0",
+        "byte_count": 3356,
+        "result": "runtime/analysis/objects/b3/b34dc8c126e5bc70d58c1c6718f5d02b82f138ebf19119d77d8106c5eaaf30ff",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "evidence_id": "ev_42f99887f22bb98a0d80cab1e61844ae3bc8b72d8ba2de92c7d84558325b5009",
+      "procedure": "0x1402b9760",
+      "slice_virtual_address": "0x1402b9760",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "5b7c4771e033ac84fce7fe3e3423ee7a98b20b62dd19059077c03f6eadcec183",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-send/plan.json",
+        "sha256": "2bef70e3e2be425348bd90e6609d957dc5815c3cb506bb0257754b58548bd71c"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-send/rea/journal.json",
+        "sha256": "7c4b1003a3c5a87064af7cc30d80146fb5a4ae4a3c94419311f11954f83d482e"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-send/rea/results/670099825a5e8a402bce79493e431ace6002abc3525baad1e1df380a2b8cd849-3fd36dbe314cdea5.json",
+        "sha256": "e1e3779a2972f9703b81013da91147eaf9be4c2f21911b6ad740a1cbf3284fd6"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-send/body.bin",
+        "sha256": "f887d07474bba29fee2ac9564849cb0a3db5e61709a0af17f6e8d5673d5b6961"
+      },
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-send.c",
+        "sha256": "e75968668d580486181007dc914641a81e0382e62089aeefe0b2f151875d5450"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "f887d07474bba29fee2ac9564849cb0a3db5e61709a0af17f6e8d5673d5b6961",
+        "virtual_address": "0x1402b9760",
+        "file_offset": "0x2b8b60",
+        "byte_count": 228,
+        "result": "runtime/analysis/objects/e1/e1e3779a2972f9703b81013da91147eaf9be4c2f21911b6ad740a1cbf3284fd6",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "evidence_id": "ev_b51f04da47e6492a8ccce8f7e6ee2052bfd27144c1f4a0250cb338731001c2c4",
+      "procedure": "0x14033a290",
+      "slice_virtual_address": "0x14033a290",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "b66f10e77e608ae9de15ffbdb5409a329e460019161efecb43270e1fe62d4adb",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-member-content/plan.json",
+        "sha256": "4c8bc0c85799dff5a865d7e31666e2978004e388b3a4adf2c18a8e9cf58f6e90"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-member-content/rea/journal.json",
+        "sha256": "89850f08773d62bdae6f9fbcdfa549c49b4c0a7902f97f69d0898aa55418c22c"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-member-content/rea/results/fbce21509fcb351f9eec4da3d191d29c97708656324e2ceffaf265dbc9901283-0b951664e9ed12c6.json",
+        "sha256": "ec6d85c56c1210ba0003b04c5b0c75c70759a4565870b498df39584392562483"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-member-content/body.bin",
+        "sha256": "24767b087e8c8c46277310b34dea257b47877b219251105b6ef3db580989a566"
+      },
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-member-content.c",
+        "sha256": "96d6f26caeff86019a413fae34b33542186379e45749dde58952a486a6a00f1c"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "24767b087e8c8c46277310b34dea257b47877b219251105b6ef3db580989a566",
+        "virtual_address": "0x14033a290",
+        "file_offset": "0x339690",
+        "byte_count": 6645,
+        "result": "runtime/analysis/objects/ec/ec6d85c56c1210ba0003b04c5b0c75c70759a4565870b498df39584392562483",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "evidence_id": "ev_7a261ffc682afaabb0a649692d104588beed76b8c848b13b6f2c1749553dd44a",
+      "procedure": "0x1402df1f0",
+      "slice_virtual_address": "0x1402df1f0",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "c29232ce741ac0a468421a30ac47cbea710b6f040e1fd39f46d93a8042797e47",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-badge/plan.json",
+        "sha256": "3de482b04ec29bac018b49f33d3c8927550a654c901624a040bd531c05dc50a4"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-badge/rea/journal.json",
+        "sha256": "13fe3db4ed7b0b55ca7b8a2e65f4abe86ae9c27d1813568bee5218f5b69805e0"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-badge/rea/results/0c34be115eeb32e81afe645636f96c984a1c1fd253b22e22eeab3e2e939aa2a8-8aa7c35e163c5ca7.json",
+        "sha256": "8e94dc2cd887ca5251bd743a49b1806af3b2d56b8e181c043419905a2952fc6f"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-badge/body.bin",
+        "sha256": "a91c0d0d92cc62d82c6018e3511cf98b2d52f68dd180ff30fc4ecb728787432d"
+      },
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-badge.c",
+        "sha256": "0872f401983ddfc50ce7d5ac0d9c6af20bb265f5d577fd52cf43e896790ab03e"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "a91c0d0d92cc62d82c6018e3511cf98b2d52f68dd180ff30fc4ecb728787432d",
+        "virtual_address": "0x1402df1f0",
+        "file_offset": "0x2de5f0",
+        "byte_count": 1186,
+        "result": "runtime/analysis/objects/8e/8e94dc2cd887ca5251bd743a49b1806af3b2d56b8e181c043419905a2952fc6f",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "evidence_id": "ev_c727c51cbc95b4d6509eff37e4f295e30c00586fbee64e9f0ad97662862dd4b0",
+      "procedure": "0x1402c25f0",
+      "slice_virtual_address": "0x1402c25f0",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "075c05da24dd4255452a6b6f3306664071f3ceac2014d483b1776bea2c6aaff0",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-ping-display/plan.json",
+        "sha256": "64d393c5e97c28caba490e39f4fc484660cdfd7ea106e2de76ccda0920ecaf73"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-ping-display/rea/journal.json",
+        "sha256": "781ad8c24b9772abb2fa55e9a674f83796541e7bf44925149868e22912840ee3"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-ping-display/rea/results/d804b254a15d553f5076aa222417cf2aa7ad16d5a72d997970059b1816139fb5-828c75f52cc417a4.json",
+        "sha256": "c9174151406c5257df71117a09f76d21e32871d4890227f685a1420124d834ae"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-ping-display/body.bin",
+        "sha256": "279198d4475a6bf3c0cfcf6763bed07d04c42b3e8220dcb15150ec621a5d5b96"
+      },
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-ping-display.c",
+        "sha256": "302aaf223837a85c932272de0d38ce0ec2c432ddda80012f7df470d3e3eb659f"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "279198d4475a6bf3c0cfcf6763bed07d04c42b3e8220dcb15150ec621a5d5b96",
+        "virtual_address": "0x1402c25f0",
+        "file_offset": "0x2c19f0",
+        "byte_count": 1236,
+        "result": "runtime/analysis/objects/c9/c9174151406c5257df71117a09f76d21e32871d4890227f685a1420124d834ae",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "evidence_id": "ev_64a214d5b7a8194a9d538364592fac5753097b1165d96d944261a79877b5d68f",
+      "procedure": "0x14033eb50",
+      "slice_virtual_address": "0x14033eb50",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "35783c1fe93e8d4e8fc45ff71b5304b69316407c2e7f20cb5194ddfbd5761d7d",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-line-content/plan.json",
+        "sha256": "27f82ede2bf8b4e2b6d65c256258542055e2a7e135fd9d3cd0a4da73d3a59857"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-line-content/rea/journal.json",
+        "sha256": "29eba9b6ad2081322e58c5a04b5e0dc8a307e919caf3b772430f53cd5d32fb3c"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-line-content/rea/results/88851e77737d189116ef338e748f731410989e8abe51f30313f25f78c590521a-d995a217f32013fa.json",
+        "sha256": "314e561f4aa8cf33da74f2f9ff8deddac4f174f8da2fa3de3fbec12dbc3f3d93"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-line-content/body.bin",
+        "sha256": "2bbf4dbf8fef228af027504216c8ae9dd78ddb3605a15d8f28773a26d64be6a8"
+      },
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-line-content.c",
+        "sha256": "32c8a71b2219a3fd947a3227b1e68747b1116fcc20009e5d8eab496cf0bc3761"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "2bbf4dbf8fef228af027504216c8ae9dd78ddb3605a15d8f28773a26d64be6a8",
+        "virtual_address": "0x14033eb50",
+        "file_offset": "0x33df50",
+        "byte_count": 2331,
+        "result": "runtime/analysis/objects/31/314e561f4aa8cf33da74f2f9ff8deddac4f174f8da2fa3de3fbec12dbc3f3d93",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "evidence_id": "ev_8af95079f15214bff04b83ed39662e56dc45d05d7b8cf1a9212cde0f3c563947",
+      "procedure": "0x1402af0d0",
+      "slice_virtual_address": "0x1402af0d0",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "ffc241b029ff9be21ada2e43516582dd81190267dd3df13ae1230512f7e30bdf",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-entry-predicate/plan.json",
+        "sha256": "6599cfc4c80e08ea23112e838a1e83c8939ee76d09bcb205c4f14efb435c73e8"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-entry-predicate/rea/journal.json",
+        "sha256": "c90b7c5c4e85b6ca41a61906e396a499f8c4a9e73f2bd63430d47cf02f468131"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-entry-predicate/rea/results/d8bfd789c9c553a0cb58636ade7cf6d908a07b3737ffee5c2212527659cf57be-42df88846d7a5720.json",
+        "sha256": "e33f4776325a719a1facd1aebc2bf153c6d64c1671737b4f65b3b925632ed8f2"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-entry-predicate/body.bin",
+        "sha256": "49ae3083c8d79a7e32738882a5485fe2c5c243ef030f670ee69fe0788e208391"
+      },
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-entry-predicate.c",
+        "sha256": "9fd7cf3664c9da4e0ec06763c7a9a3efa97d8edce39000097f75b4bfeef0020c"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "49ae3083c8d79a7e32738882a5485fe2c5c243ef030f670ee69fe0788e208391",
+        "virtual_address": "0x1402af0d0",
+        "file_offset": "0x2ae4d0",
+        "byte_count": 136,
+        "result": "runtime/analysis/objects/e3/e33f4776325a719a1facd1aebc2bf153c6d64c1671737b4f65b3b925632ed8f2",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "evidence_id": "ev_eb9eaa323bbc91d09051c040a9a65f8161904a276e416082e4b2db8731999ed4",
+      "procedure": "0x1402bf680",
+      "slice_virtual_address": "0x1402bf680",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "61aa71e3773827f30ffd1030249e40d04233ea0eb54e02eeb21cb34c31b44fd8",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-list/plan.json",
+        "sha256": "55ac4bd068cf6340d992874649137d094cc8cad704622ee93eca00bf000e6f61"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-list/rea/journal.json",
+        "sha256": "dcf90a4c2f4c214b0147405159516163e9613651ce300ba8e18c0cc18f56768a"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-list/rea/results/3fdc8d0758fe7cbd3d88befd99f062cac0a3c099aecdacf93aa3ff22d0d70354-b47812e7dc699c15.json",
+        "sha256": "bb4b4e5320d805897e96536cbbbd604dd6677e584100d2a34bb75bdc2ff1c7fc"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-list/body.bin",
+        "sha256": "ac9163a7e40eb3147bcc1e7177754c156437b74a6769bcbc38cb1eb88b166d87"
+      },
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-list.c",
+        "sha256": "72d3b5891cc37b8b973c295a13ec7aa3fbcf675b8e0376c9545eb98a87e6e43a"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "ac9163a7e40eb3147bcc1e7177754c156437b74a6769bcbc38cb1eb88b166d87",
+        "virtual_address": "0x1402bf680",
+        "file_offset": "0x2bea80",
+        "byte_count": 3047,
+        "result": "runtime/analysis/objects/bb/bb4b4e5320d805897e96536cbbbd604dd6677e584100d2a34bb75bdc2ff1c7fc",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "evidence_id": "ev_dea79f81b1d4b9d55c274453e2150d32ea3ba7ec8d274b467c45df6787b7346b",
+      "procedure": "0x1402b9d10",
+      "slice_virtual_address": "0x1402b9d10",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "230eba4d5f6e81bb30296b96ade76398966881fa684149367d67d5de08c8ae1d",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-entry/plan.json",
+        "sha256": "031d0284017d6a919d704b03f2ee2f1e7cde1d042186676b3686aa868caa2b75"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-entry/rea/journal.json",
+        "sha256": "4a3bd8e73f707dbde85103dfd9cf6046a6172d703a654014700ca55211c4bb1f"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-entry/rea/results/f2f37e6252c1784b8243b6c49f522165b9bc085c167155d5a12491baf3ff6a43-4e5999ffb9dcf618.json",
+        "sha256": "639e9bf942305ac88b09d1f416e54629c4629bbe9df494170491afb885dea911"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-chat-entry/body.bin",
+        "sha256": "e621848e2507d4fbc262875193f6c24e17c886fc304f0b8f8b3bcd26efabf99d"
+      },
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-chat-entry.c",
+        "sha256": "7436bab27f945b341f0efcfd37438c2d3f45d102a74ce776c8325e3371bbe5dd"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "e621848e2507d4fbc262875193f6c24e17c886fc304f0b8f8b3bcd26efabf99d",
+        "virtual_address": "0x1402b9d10",
+        "file_offset": "0x2b9110",
+        "byte_count": 1089,
+        "result": "runtime/analysis/objects/63/639e9bf942305ac88b09d1f416e54629c4629bbe9df494170491afb885dea911",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "evidence_id": "ev_4dd94ca588f48ae035f6d5dd5532310226b1c24d72230820fad790b97bd27c00",
+      "procedure": "0x1402b8eb0",
+      "slice_virtual_address": "0x1402b8eb0",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "ea059c8ea417d952026200c95a52c9a4d2b0927f3d2ff1df1017763fcd05d499",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-staff-name/plan.json",
+        "sha256": "3dfc5ec054cdb87894828b38e52f8fde80b5923982fb0013427c5998545b841d"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-staff-name/rea/journal.json",
+        "sha256": "ca4fa50f0a7af7b1589212f31c2dfbd3566466da5d6e9775f8a7149b8d5eda8d"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-staff-name/rea/results/f3024b23d8e3f66500b4dc53bae23dff7a85e0ffdb9f657827c790f1d2e5b5b4-a0f559847338390d.json",
+        "sha256": "f6e0fc78991451ea506e1ea55870a2760e2d0f55be24f8085a159602542a225a"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-staff-name/body.bin",
+        "sha256": "2e5b5e7bda59612c7b2007d535387e18d6cb9d0cba23a29acd428de0e4f853ec"
+      },
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-staff-name.c",
+        "sha256": "f071c536c8e2a4670ffcb0b1a8e51a8c634d74c8fd3c905daace6e59005c60a9"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "2e5b5e7bda59612c7b2007d535387e18d6cb9d0cba23a29acd428de0e4f853ec",
+        "virtual_address": "0x1402b8eb0",
+        "file_offset": "0x2b82b0",
+        "byte_count": 715,
+        "result": "runtime/analysis/objects/f6/f6e0fc78991451ea506e1ea55870a2760e2d0f55be24f8085a159602542a225a",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "evidence_id": "ev_8a5b53fb0f4324130bf3b7ecd5e1ef3493dac993ffc21b3113fbb218103c3a18",
+      "procedure": "0x140334b70",
+      "slice_virtual_address": "0x140334b70",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "db0bb47e2f519f45e9af1e7de96e83df6e87c8fa8f0037238b3a1095f1e80d41",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-staff-widget/plan.json",
+        "sha256": "e59c36066515236128f4831dda8f4314250682ccc128f42d92178e4b6820a8c9"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-staff-widget/rea/journal.json",
+        "sha256": "e6a38cd5b4c80955025e1b45e375b070f0ffbbd733b313c90759e63579c0539f"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-staff-widget/rea/results/813d82b23e216c9b88269df8dd5bd122027dc68efeb591f2bc05ae347803ce92-609f9d9a1f07c034.json",
+        "sha256": "484b5f64f7a29ddafc26ef445a1c66f20687f2dc621726d7caaa81c87443fb24"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-staff-widget/body.bin",
+        "sha256": "3aa3cf4a4c7560fcec10f18cf42d9a4e622491c94d93ab7ec83ca0de1fbaf56b"
+      },
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-staff-widget.c",
+        "sha256": "5bf6e0d315e8c8da6ddfeb806142fb444defb81e757ba97f3b8a94d0fdf3a739"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "3aa3cf4a4c7560fcec10f18cf42d9a4e622491c94d93ab7ec83ca0de1fbaf56b",
+        "virtual_address": "0x140334b70",
+        "file_offset": "0x333f70",
+        "byte_count": 1696,
+        "result": "runtime/analysis/objects/48/484b5f64f7a29ddafc26ef445a1c66f20687f2dc621726d7caaa81c87443fb24",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "evidence_id": "ev_6630f3eea75cd6e7f954e28dd70cde13a2af186af317deb354f8ac3c5f97b983",
+      "procedure": "0x1403c2f30",
+      "slice_virtual_address": "0x1403c2f30",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "301674c5b68c5b78d9ecebc0679566065c287ee96d49a2148e27e7c29799f748",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-staff-component/plan.json",
+        "sha256": "221dfe27322816bea54db761ab2cf656ad010a0b6972c5a62864355ee8bbad0f"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-staff-component/rea/journal.json",
+        "sha256": "b098e64a2e707774cfca82dd241fb9df3600dd3f28ebd60cbbd904a5c5fe3b77"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-staff-component/rea/results/7e484629aaaf750ba04848ea4c5f53cec667fe1a92c8aafffe481785d037506f-334c17aa0e56d40d.json",
+        "sha256": "e608ffeec66c0e376f42fa87d9a1dadbdd133a9afe6ab7a1df2adf7ba7fb6dcf"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-staff-component/body.bin",
+        "sha256": "be69974b26a3d7df7b7ccc13f6420aff5989441a003eae2f180e2cda09064df6"
+      },
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-staff-component.c",
+        "sha256": "a59e74f7cf9816135ab9ca83ed7f51c10de66287c001555d1d10f714c240a4a3"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "be69974b26a3d7df7b7ccc13f6420aff5989441a003eae2f180e2cda09064df6",
+        "virtual_address": "0x1403c2f30",
+        "file_offset": "0x3c2330",
+        "byte_count": 58,
+        "result": "runtime/analysis/objects/e6/e608ffeec66c0e376f42fa87d9a1dadbdd133a9afe6ab7a1df2adf7ba7fb6dcf",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "evidence_id": "ev_18c58f303bbe8adbb12f45be96d5818b9cb54056f45561d86b2469a6453ee4c3",
+      "procedure": "0x1402de390",
+      "slice_virtual_address": "0x1402de390",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "10a2c675c73bb0767028a8f29a308c2947c8ffcb5d4f308f0ca8f6e2904594f3",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/staff-update-consumer/slices/plan-1402de390.json",
+        "sha256": "8857043c44f893cf59f81ac0eea62ecf17a4da8334b45ce1f60d7a4b8e50f87c"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/staff-update-consumer/query-final/journal.json",
+        "sha256": "b02a073fd96bdc04eac774bf17d81d2e1e0c244351403c2272a31868beb7ff76"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/staff-update-consumer/query-final/results/e19471d5d53788068980ac6e8125aeb2cdd60d34e1c9fd362506219dd281eead-2a317b107deafbe6.json",
+        "sha256": "30e13506f5064019e6059c9b1879fbdc7f5ddaf02f89be50712cb63b4a5b6213"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/staff-update-consumer/slices/picker-1402de390.bin",
+        "sha256": "68d2f3c9c9e32d461286635d9f7d9fed2235cd06731b78b8ddce8bf668d7c24a"
+      },
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/staff-update-owner.c",
+        "sha256": "1ae49c2907d157239a0cc44b4b6ff83e1ea11340b341778377561d039e42b4ce"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "68d2f3c9c9e32d461286635d9f7d9fed2235cd06731b78b8ddce8bf668d7c24a",
+        "virtual_address": "0x1402de390",
+        "file_offset": "0x2dd790",
+        "byte_count": 915,
+        "result": "runtime/analysis/objects/30/30e13506f5064019e6059c9b1879fbdc7f5ddaf02f89be50712cb63b4a5b6213",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "evidence_id": "ev_ba3511378bff2926d2544856ba50181005abcb35ac00bcc4f98814dc912daac3",
+      "procedure": "0x145b903b0",
+      "slice_virtual_address": "0x145b903b0",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "3cecfdb68a4a9cec46f1eb622fac88d277f2d242d21bd07846b580475ed45363",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/staff-title-producer/slices/plan-145b903b0.json",
+        "sha256": "88e76e74e0bd00cb5ead65e6af12189f8f518b09a1f0ce113d674d7a83ede5ed"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/staff-title-producer/query-final/journal.json",
+        "sha256": "23263825801a92425db3262cd4386f034fb744f182246370054e82863f11c7c0"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/staff-title-producer/query-final/results/fc0f3d7a608d90aaed6911841a06d8ccc47e02deacac15f8357973abf3fc3b5b-fe071cb7f095e266.json",
+        "sha256": "67cc8fc34ae1f987a1fe94e37c5a94fd1718c659fe745d6ac4a18dc83c5583c9"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/staff-title-producer/slices/picker-145b903b0.bin",
+        "sha256": "c0f6bc59b3dbe389f86c18345b413cdd8a7115eb12076593649d3d4090b298a7"
+      },
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/staff-title-producer.c",
+        "sha256": "0367eb8e467968b83bed93b32d97959865a89a04d67ea01cdb0deae98f8de974"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "c0f6bc59b3dbe389f86c18345b413cdd8a7115eb12076593649d3d4090b298a7",
+        "virtual_address": "0x145b903b0",
+        "file_offset": "0x5b8f7b0",
+        "byte_count": 3314,
+        "result": "runtime/analysis/objects/67/67cc8fc34ae1f987a1fe94e37c5a94fd1718c659fe745d6ac4a18dc83c5583c9",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "evidence_id": "ev_4b290d8c2a43ef04742c3d724977c47ddf601d975e051aae68dc64e47ada3e59",
+      "procedure": "0x145b05cc0",
+      "slice_virtual_address": "0x145b05cc0",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "448a250f9662e436c223dcd000095dc603dd947fbc77469dab88a0969cf559e2",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/staff-title-field/slices/plan-145b05cc0.json",
+        "sha256": "48f4a86facea85f03df54c8822797e9e37c3c2dca8afddaeb5fe44cfbb7433d5"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/staff-title-field/query-final/journal.json",
+        "sha256": "d13f81d946700bbe59456d29e75e929ec9c89b5d75953df19152c306cd4ec635"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/staff-title-field/query-final/results/47737f9fe6dbbbf624d18f7d6df158a6eeea636180e3737a43a31ac37e2fdab9-82be26100cde2214.json",
+        "sha256": "b5ad99d465970b770810d868a6ecc19cedb63241dae53fffc76a3cb2ead050c9"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/staff-title-field/slices/picker-145b05cc0.bin",
+        "sha256": "bacae12fb59aafb8638e09a461f86a42eba77eacc7aa379fb21b5e7738aa4d7a"
+      },
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/staff-title-validation.c",
+        "sha256": "95f3aa1e4357c1436ca5c016628e2cd02f266ec79ca728a3bc52750f3f900c21"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "bacae12fb59aafb8638e09a461f86a42eba77eacc7aa379fb21b5e7738aa4d7a",
+        "virtual_address": "0x145b05cc0",
+        "file_offset": "0x5b050c0",
+        "byte_count": 789,
+        "result": "runtime/analysis/objects/b5/b5ad99d465970b770810d868a6ecc19cedb63241dae53fffc76a3cb2ead050c9",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    }
+  ],
+  "gap_ids": [
+    291
+  ],
+  "target_executed": false,
+  "source_execution": "not_run",
+  "compilation": "not_run",
+  "parity": "unverified",
+  "limits": [
+    "Exact selected native owners and static original instruction/data proof; no application, network or rendering execution.",
+    "Raw functions omit callees and external switch tables. Dispatch table bytes supply only explicitly reviewed branches; inferred Ghidra signatures are not authoritative types.",
+    "Transport sender/decoder/latency and wider row/style contracts remain separately owned until their independent recovery is complete.",
+    "Only current hash-bound static source contracts. No target/client/server was executed and no build or parity claimed.",
+    "staff-title-validation.c omits native success branches after an external error-cleanup helper; original assembly145b05ed0..145b05fd0 is the authority for validation success, preimage and display sanitizer.",
+    "staff-update-owner.c cannot recover the equality jump table; all ten current table entries target the original same comparison path.",
+    "Standard cryptographic internals are existing-library interfaces, not an AS crypto reconstruction.",
+    "Host/Join service context writes are owned by the existing coop-dispatch proof; do not duplicate that assembly."
+  ],
+  "staff_contract": {
+    "marker": {
+      "type_name": "wenilla_rogue_app::screens::coop::StaffName",
+      "type_id_u64_hex": [
+        "e5cc29c96b3ff14f",
+        "2e3026136b966c74"
+      ],
+      "payload": "unit marker, not a color; entity command carries entity_u64 and flag byte"
+    },
+    "update": {
+      "as_owner": "0x1402de390",
+      "system_init": "0x1402ebf90",
+      "system_run": "0x1402ec110",
+      "query_init": "0x14048dbb0",
+      "filter": "StaffName",
+      "mutated": "TextColor",
+      "time_lane": "unwrapped elapsed_secs f32 at Time<()>+0x5c",
+      "entity_phase": "unchanged loaded entity_u64 % 7, matching Bevy0.18.1 Entity.to_bits",
+      "factor": "sinf((entity.to_bits()%7) as f32 * 0.6f32 + time.elapsed_secs()*3.2f32)*0.5f32+0.5f32",
+      "low_srgba": [
+        0.56,
+        0.27,
+        0.98,
+        1.0
+      ],
+      "high_srgba": [
+        0.86,
+        0.66,
+        1.0,
+        1.0
+      ],
+      "mix": "low*(1-factor)+high*factor, same variant; write component/changeTick only when tag/float equality differs"
+    },
+    "title": {
+      "producer": "0x145b903b0",
+      "validator": "0x145b05cc0",
+      "input": "NativeRosterProfile.bytes_30",
+      "signature": "NativeRosterProfile.bytes_48: raw bytes, not lossy String or encoded signature",
+      "gates": [
+        "expected context nonempty",
+        "profile.bytes_00 == current service Host/Join code bytes",
+        "profile.value_60 == roster row hero_identity/worldGUID",
+        "profile.bytes_18 == roster row.name bytes",
+        "profile.value_68 > current UNIX seconds, equality rejected",
+        "profile.bytes_30 nonempty",
+        "row identity appears exactly once in current roster",
+        "valid strict Ed25519 signature with fixed public key"
+      ],
+      "context_selection": "retained service handle and optional Host/Join code present -> code; otherwise emptycontext which validator rejects",
+      "context_owner": "docs/analysis/evidence/0.127.0/coop-dispatch/manifest.json",
+      "display": "decode title String as Unicode scalars, omit U+0000..001F and U+007F..009F, then take24 accepted scalars",
+      "ui_parser": "0x1400c5cc0 title key -> DTO String+48/+50/+58 consumed by14033a290",
+      "clock": "GetSystemTimePreciseAsFileTime minus FILETIME_UNIX_EPOCH divided10000000, seconds floor; preepoch fallback0",
+      "public_key_hex": "bc6a6dd554756700632f16e24ddbbdd3ecbe16f30ee96466242b2ccdfcccfc0e",
+      "signature_length": 64,
+      "signed_message": "b\"azeroth-coop vouch v1\\0\" + bytes_00 without NUL + NUL + bytes_18 without NUL + NUL + bytes_30 without NUL + NUL + u64LE(value_60) + u64LE(value_68)"
+    },
+    "source_defect": "replication.rs decode_message currently UTF8lossy-normalizes profile.bytes_48; native145ec3070 reads it as arbitrary bytes and signature parser consumes raw64 unchanged",
+    "limits": [
+      "Native decompile of validator removes the success branch; original assembly is authoritative.",
+      "No application/server/network execution or compiled validation.",
+      "Use existing strict Ed25519 implementation; generic cryptographic internals are not reconstructed."
+    ]
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "target": {
+    "version": "0.112.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+    "size_bytes": 140514816,
+    "identity_manifest": "docs/analysis/coverage/targets.json",
+    "version_provenance": "matching_embedded_updater_and_dialog_markers",
+    "runtime_data": {
+      "directory": "installed-game/Data",
+      "archives": [
+        {
+          "path": "installed-game/Data/patch-2.MPQ",
+          "size_bytes": 4690878,
+          "sha256": "366edee41642a5dda22ed90cc252b543ee375755b7e8bee81e2a6cd59fd7b286"
+        },
+        {
+          "path": "installed-game/Data/patch-3.MPQ",
+          "size_bytes": 2580491,
+          "sha256": "75c35ca5b8075197252581e301e8900143007fdf37b493ad271ae1bd39f95a29"
+        },
+        {
+          "path": "installed-game/Data/patch-4.MPQ",
+          "size_bytes": 22769233,
+          "sha256": "2e895e0e0ff6a4781d0e0aaa6ea7d32ed1fe36841e17806fe1855cb880d18865"
+        },
+        {
+          "path": "installed-game/Data/patch-5.MPQ",
+          "size_bytes": 267019039,
+          "sha256": "5008e56873718b468fa5ae1b697dcbe4f5da9ffe6c793f3ef9939dbd7716f3d8"
+        },
+        {
+          "path": "installed-game/Data/patch-6.MPQ",
+          "size_bytes": 212228,
+          "sha256": "cad6ff59b5df028a507581befb836fce07894057e15fe63d9fdc553a95b7ceb5"
+        },
+        {
+          "path": "installed-game/Data/patch-7.MPQ",
+          "size_bytes": 276649,
+          "sha256": "f5fb15b181cf01cc6b5cf2ee9948a27ecc4ba27bab9a8bec584df4381932aae6"
+        },
+        {
+          "path": "installed-game/Data/patch-8.MPQ",
+          "size_bytes": 4155417,
+          "sha256": "ae3aaa29cadb7aeba8255f5b4a8305c7cbecfe8f0d3ed9646522113d16c3e12e"
+        },
+        {
+          "path": "installed-game/Data/patch-9.MPQ",
+          "size_bytes": 5739608,
+          "sha256": "ffff8ea890bdaf91a1680543ac60106db92132bc2210105279610fa73661a524"
+        },
+        {
+          "path": "installed-game/Data/patch.MPQ",
+          "size_bytes": 1340199244,
+          "sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf"
+        }
+      ]
+    }
+  },
+  "ranges": [
+    {
+      "role": "poll",
+      "address": "0x14031d0a0",
+      "end_exclusive": "0x14031dd31",
+      "file_offset": "0x31c4a0",
+      "byte_count": 3217,
+      "sha256": "536f7be83de93437231fdc3e0d7030bdc69d55ae361a9feefbbebf7429a1eaf1",
+      "assembly": "poll.asm",
+      "assembly_sha256": "26dad74a8ef621ac067903edf132cffe68a43d0582891f91f98aa32c7e34176b",
+      "rea_evidence_id": "ev_a822d23e8594f7759a597ffa2bbcf9897d3cf1533f8755467ad7f36e6d59759f",
+      "analysis_profile_digest": "a1f15747f52b1bb4d5e7b57618d939d86582e171552410c2a334da0416620244",
+      "raw_input_sha256": "536f7be83de93437231fdc3e0d7030bdc69d55ae361a9feefbbebf7429a1eaf1"
+    },
+    {
+      "role": "axis",
+      "address": "0x140300240",
+      "end_exclusive": "0x140300377",
+      "file_offset": "0x2ff640",
+      "byte_count": 311,
+      "sha256": "b4f906da3af5b29ee7403052a891e8ae9c5ddf15fc9e938635569533fa45d88a",
+      "assembly": "axis.asm",
+      "assembly_sha256": "96996a35e096db79601910d68633beabf371f0dd074be8e45a9e276b93ba1734",
+      "rea_evidence_id": "ev_acd8c11899983cf74665cda81bcbf924adeade713c77ac4cc780d14ab51b3964",
+      "analysis_profile_digest": "307a19d5b7d43b2636fbdb05c185271deb4459331b889b9fb3201aa64595a77c",
+      "raw_input_sha256": "b4f906da3af5b29ee7403052a891e8ae9c5ddf15fc9e938635569533fa45d88a"
+    },
+    {
+      "role": "backend",
+      "address": "0x140305f10",
+      "end_exclusive": "0x14030611e",
+      "file_offset": "0x305310",
+      "byte_count": 526,
+      "sha256": "71775bad326343097a35e867da66f766740ac5aadafea7f34ccf4ec0cbce88fe",
+      "assembly": "backend.asm",
+      "assembly_sha256": "8af71c55cec4de20f1080096bfe46aad14d34a4de09e13199357dc81ea92b42b",
+      "rea_evidence_id": "ev_51482301c83e681598a0b9117abdbb62f5ad839301105380ffd54fcb28bede50",
+      "analysis_profile_digest": "2fcfb84b546a236f6eb61598fce64f6e50b2121458a2b080328555bfdd132908",
+      "raw_input_sha256": "71775bad326343097a35e867da66f766740ac5aadafea7f34ccf4ec0cbce88fe"
+    },
+    {
+      "role": "loader",
+      "address": "0x1403058d0",
+      "end_exclusive": "0x140305e82",
+      "file_offset": "0x304cd0",
+      "byte_count": 1458,
+      "sha256": "cacf7bca02b29ae5103053ffb770d161570248ded2fd0f8f9577a0be1f2e26c4",
+      "assembly": "loader.asm",
+      "assembly_sha256": "0b7d351c044a7d8ba9bad4eef20ed87f4b4e5814e34f0deeb4569895be89941f",
+      "rea_evidence_id": "ev_aa614649e8de760aad87e7bbae1b0d4d2100840a8e16b3c5ba9711b24285b2ee",
+      "analysis_profile_digest": "66dcbd629dbb19879cce72f19ac505af7d090a7302bb07334e88f3a751a8a5b7",
+      "raw_input_sha256": "cacf7bca02b29ae5103053ffb770d161570248ded2fd0f8f9577a0be1f2e26c4"
+    },
+    {
+      "role": "registration",
+      "address": "0x1401b6e3d",
+      "end_exclusive": "0x1401b6e75",
+      "file_offset": "0x1b623d",
+      "byte_count": 56,
+      "sha256": "0a3fde798dbaa861a5ec51ae76b32e07170ef7a777e31f2f211cb9faf9ce0963",
+      "assembly": "registration.asm",
+      "assembly_sha256": "90238353a5e67f6385b70c1ff638d3ca364423ba4a3010235f9c5d67a3012eb0"
+    }
+  ],
+  "button_mask_to_bevy_tag": [
+    [
+      1,
+      15
+    ],
+    [
+      2,
+      16
+    ],
+    [
+      4,
+      17
+    ],
+    [
+      8,
+      18
+    ],
+    [
+      16,
+      11
+    ],
+    [
+      32,
+      10
+    ],
+    [
+      64,
+      13
+    ],
+    [
+      128,
+      14
+    ],
+    [
+      256,
+      6
+    ],
+    [
+      512,
+      8
+    ],
+    [
+      4096,
+      0
+    ],
+    [
+      8192,
+      1
+    ],
+    [
+      16384,
+      3
+    ],
+    [
+      32768,
+      2
+    ]
+  ],
+  "axis_tags": [
+    0,
+    1,
+    3,
+    4
+  ],
+  "counts": {
+    "signed_axis_cases": 65536,
+    "trigger_cases": 256,
+    "backend_cases": 20,
+    "loader_cases": 64,
+    "complete_poll_cases": 918
+  },
+  "seams": [
+    "XInputGetState outcome/raw bytes",
+    "Commands entity allocation",
+    "String formatting and cloning",
+    "Environment and Win32 module/symbol lookup",
+    "ECS/event consumption, device/platform and Rust source execution do not run"
+  ],
+  "compilation_run": false,
+  "target_executed": false,
+  "parity_verified": false
+}

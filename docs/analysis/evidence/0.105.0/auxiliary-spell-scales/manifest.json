@@ -1,0 +1,59 @@
+{
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "target_process_launched": false,
+  "spans": [
+    {
+      "role": "timed26-collector",
+      "start": "0x14599e640",
+      "end_exclusive": "0x14599e793",
+      "sha256": "2f3ca837680ad8b270259ca2aa5912b094eb065e6c6a654b3be5f27d983569dd",
+      "assembly": "timed26-collector.asm",
+      "assembly_sha256": "f683c5d2b29df78ee278bd688802802c6bf621cae1da5134b180c4ffe27f6599"
+    },
+    {
+      "role": "refresh-neutral-instance",
+      "start": "0x14592853b",
+      "end_exclusive": "0x1459285c1",
+      "sha256": "e8917bfbaa4d95b83bb0e3f85616ff8ffcbad63d82da78a68284dc8814046938",
+      "assembly": "refresh-neutral-instance.asm",
+      "assembly_sha256": "bf010759b60e0d3f409032d71d24348acd050395d0d2635a68a8768b3fc9c533"
+    },
+    {
+      "role": "refresh-publish-instance",
+      "start": "0x145928460",
+      "end_exclusive": "0x1459284cf",
+      "sha256": "b368bfcaea6c0de451f3aae475fed9405547be746f48bb71fea05bb449f0ce3e",
+      "assembly": "refresh-publish-instance.asm",
+      "assembly_sha256": "217e36b4ee49ad53cdb455f1676865ba7d265f7945294cbcb8506bc40a60af93"
+    },
+    {
+      "role": "refresh-auxiliary-modifiers",
+      "start": "0x1459286e8",
+      "end_exclusive": "0x145928751",
+      "sha256": "b378abfc223219518a5feb43896703a6ed37bbca74864d6d5a3d5ec3fe4cace0",
+      "assembly": "refresh-auxiliary-modifiers.asm",
+      "assembly_sha256": "284cc12bf1ad1916d0932dd01ebe517139d7b590b753b6babc85897e3ca81532"
+    },
+    {
+      "role": "timed-instance-consumer",
+      "start": "0x145903bc6",
+      "end_exclusive": "0x145903e65",
+      "sha256": "d7bbe60ea0581900bc7b850baa87448814f7b6ff2fb3956dc55572d1cc038cbd",
+      "assembly": "timed-instance-consumer.asm",
+      "assembly_sha256": "115896cbe10d098119b340a1287896fc8ce4242ca11f44ab2dab109503d36678"
+    }
+  ],
+  "refresh_analysis": {
+    "start": "0x145927dc0",
+    "end_exclusive": "0x145928908",
+    "sha256": "71c21bf37f74030169b3097864c30077996ff9c0fa961581c2ae1cb55c3984d9",
+    "pseudocode": "refresh.ghidra.c",
+    "pseudocode_sha256": "2b5da79a486660f6160391dd403dba3c0e1a121e41aa22d30ff9e57dd99391c5",
+    "evidence_id": "ev_cfcebfbbf3ee48bf9e0d7348e8d7668310a5a499719b32e912f6973480a9180f"
+  },
+  "canonical_table_manifest": "docs/analysis/evidence/0.105.0/spell-presentation/manifest.json",
+  "limits": [
+    "Bounded table replay covers auxiliary order/stride/area and first recognized ID wins, not complete Game refresh execution.",
+    "Attached-kit membership/mode are owned by the separate attached-spell-scales manifest; builds and rendered parity remain open."
+  ]
+}

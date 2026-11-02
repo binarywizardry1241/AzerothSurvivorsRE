@@ -1,0 +1,48 @@
+{
+  "version": "0.112.0",
+  "target_sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+  "owners": [
+    {
+      "role": "follower-move",
+      "start": "0x145939bf0",
+      "end_exclusive": "0x145939eed",
+      "file_offset": "0x5938ff0",
+      "byte_count": 765,
+      "sha256": "64e368945d89fd215508c8a94fc51498767d2559008ff62269d905421461e120",
+      "assembly": "follower-move.asm"
+    },
+    {
+      "role": "monster-move-packet",
+      "start": "0x1458c3bf0",
+      "end_exclusive": "0x1458c3e8d",
+      "file_offset": "0x58c2ff0",
+      "byte_count": 669,
+      "sha256": "8f067f5ad4bbbb6ab04db805dd824bf40365a75c99433ecb7aa67a7540e10558",
+      "assembly": "monster-move-packet.asm"
+    }
+  ],
+  "text_sha256": {
+    "follower-move.asm": "f0c268ede8655ff485022eed9c3252c96763dd16ca00a0cafac3b1a40552910c",
+    "monster-move-packet.asm": "6036146f62137f85ba4db04b41d1c1b002c7967078909e78a86e772f27086019",
+    "follower-move.c": "a3287a5305f8c79cbdef06f9af1560a166a02dee37c72f28e04e13f1cb558243"
+  },
+  "ghidra": {
+    "provider": "Ghidra 12.1.4",
+    "evidence_id": "ev_d92396f6fcf482557ec71c16ef80c034044922d042e5c5418f851949f1d63fb8",
+    "import_sha256": "64e368945d89fd215508c8a94fc51498767d2559008ff62269d905421461e120",
+    "limitations": "Raw import omits external helpers and globals; current Win64 assembly and replay own floating returns and ABI."
+  },
+  "seams": [
+    "Movement supplies controlled primary/secondary terrain results and records queries. Terrain mesh/loading/collision internals are not executed.",
+    "Movement records the packet helper arguments; the separate packet replay executes its framing instructions.",
+    "Packet replay substitutes allocation/vector growth, packed GUID and XYZ append helpers; duration, serial, opcode, facing, flags and point count execute natively."
+  ],
+  "source": [
+    "gameplay/mechanics/demons.rs::move_demon",
+    "run_effects/pet_tick.rs::PetMotion",
+    "gameplay/client/events.rs::pet_move"
+  ],
+  "limitations": [
+    "Static 0.112.0 boundary recovery, not MPQ terrain navigation, packet playback, game execution or parity validation."
+  ]
+}

@@ -1,0 +1,334 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.112.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+    "size_bytes": 140514816
+  },
+  "generator": {
+    "path": "scripts/check-choice-contracts-0.112.0.py",
+    "sha256": "97d84dcf8f550db74a9bf517b0c48ee1a3d5e45f2814154983bf83ad45c41a49"
+  },
+  "canonical_producer_contracts": "docs/analysis/evidence/0.112.0/native-producer-contracts.json",
+  "focused_ghidra_observations": {
+    "path": "docs/analysis/evidence/0.112.0/choice-contracts-ghidra.json",
+    "sha256": "7a501f29003168f00ab352a493d52999467481d4faecde3c9a5b3dc9c2e3637e"
+  },
+  "descriptor_table": {
+    "va": "0x146bf5eb0",
+    "end_exclusive": "0x146bf93a8",
+    "byte_count": 13560,
+    "sha256": "5024b1bb850af4c469fa8402529a8bed1defb46d08925f923724d290aa9d7790"
+  },
+  "descriptors": 113,
+  "descriptor_upgrade_domain": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "encoded_direct_callers": [
+    {
+      "site": "0x1458965c0",
+      "target": "0x145993420",
+      "declared_extent": {
+        "va": "0x145896530",
+        "end_exclusive": "0x145896704",
+        "byte_count": 468,
+        "sha256": "e853132fec3ed1ddd4941f82173ebebc40697d92f066354de1caba9c7a0786b7"
+      },
+      "instruction_sha256": "c07ffafdc974b99c5df61740d9002570e6dde0c5cdb02c0c18ccf7606ee2375c",
+      "actual_ghidra_body_owner_inferred": false
+    },
+    {
+      "site": "0x14595d10e",
+      "target": "0x1459cb2a0",
+      "declared_extent": {
+        "va": "0x14595ca60",
+        "end_exclusive": "0x14595db15",
+        "byte_count": 4277,
+        "sha256": "8dea3473345159fb50fa2065fca4ffe1774dacedeebcfe44615e63dcc2a68d4f"
+      },
+      "instruction_sha256": "8bd1d87022cedb0493d8d79a19ba5195460f5d23ec130e91271da1d607c5cf49",
+      "actual_ghidra_body_owner_inferred": false
+    },
+    {
+      "site": "0x14595d69a",
+      "target": "0x145961590",
+      "declared_extent": {
+        "va": "0x14595ca60",
+        "end_exclusive": "0x14595db15",
+        "byte_count": 4277,
+        "sha256": "8dea3473345159fb50fa2065fca4ffe1774dacedeebcfe44615e63dcc2a68d4f"
+      },
+      "instruction_sha256": "bf872ce0bd0e8374f7d60decebf2f4d59611434c3c42166556e900837a1e4bdd",
+      "actual_ghidra_body_owner_inferred": false
+    },
+    {
+      "site": "0x145961e62",
+      "target": "0x1459cb2a0",
+      "declared_extent": {
+        "va": "0x145961590",
+        "end_exclusive": "0x145963229",
+        "byte_count": 7321,
+        "sha256": "590579fffc462cabd6559c84a910cfc2585622680ab7f21d0e3258713c6a6cd2"
+      },
+      "instruction_sha256": "868b3ad05f41a36e9d99fda8fc02885cc73e7c5da25eb7dc3359e39d891d946b",
+      "actual_ghidra_body_owner_inferred": false
+    },
+    {
+      "site": "0x145961ef3",
+      "target": "0x1459d8300",
+      "declared_extent": {
+        "va": "0x145961590",
+        "end_exclusive": "0x145963229",
+        "byte_count": 7321,
+        "sha256": "590579fffc462cabd6559c84a910cfc2585622680ab7f21d0e3258713c6a6cd2"
+      },
+      "instruction_sha256": "cbb23f9168bd6de06b9d5a7d99a9b736d6a5429dd2d986393b2e285a564c4713",
+      "actual_ghidra_body_owner_inferred": false
+    },
+    {
+      "site": "0x145965288",
+      "target": "0x145961590",
+      "declared_extent": {
+        "va": "0x145964550",
+        "end_exclusive": "0x145965a20",
+        "byte_count": 5328,
+        "sha256": "01ba2078e8f6108d21d7840c1df56dde9d7b867a5c21310deb9294707807fac4"
+      },
+      "instruction_sha256": "9c775ce3eaf110004a7ea41c9c053291d7d5665111ce3b0cf4a07e036c5869a9",
+      "actual_ghidra_body_owner_inferred": false
+    },
+    {
+      "site": "0x14596568c",
+      "target": "0x145961590",
+      "declared_extent": {
+        "va": "0x145964550",
+        "end_exclusive": "0x145965a20",
+        "byte_count": 5328,
+        "sha256": "01ba2078e8f6108d21d7840c1df56dde9d7b867a5c21310deb9294707807fac4"
+      },
+      "instruction_sha256": "4e6b566ef125a69ceda02cec3d4421a72b05d128b33e3c307eb2a2de8da3b775",
+      "actual_ghidra_body_owner_inferred": false
+    },
+    {
+      "site": "0x1459657fb",
+      "target": "0x145961590",
+      "declared_extent": {
+        "va": "0x145964550",
+        "end_exclusive": "0x145965a20",
+        "byte_count": 5328,
+        "sha256": "01ba2078e8f6108d21d7840c1df56dde9d7b867a5c21310deb9294707807fac4"
+      },
+      "instruction_sha256": "34bac5f1aa2d71758b2ecd18c239e7b355add62cce78dfcfa79fea07c9a15074",
+      "actual_ghidra_body_owner_inferred": false
+    },
+    {
+      "site": "0x145965901",
+      "target": "0x145961590",
+      "declared_extent": {
+        "va": "0x145964550",
+        "end_exclusive": "0x145965a20",
+        "byte_count": 5328,
+        "sha256": "01ba2078e8f6108d21d7840c1df56dde9d7b867a5c21310deb9294707807fac4"
+      },
+      "instruction_sha256": "ce7960e6d05b44b401ddde80c2c5c34a0b55556f7ee5f43a9c13843278edf3fd",
+      "actual_ghidra_body_owner_inferred": false
+    },
+    {
+      "site": "0x14596748a",
+      "target": "0x145993420",
+      "declared_extent": {
+        "va": "0x145966a60",
+        "end_exclusive": "0x145968b5e",
+        "byte_count": 8446,
+        "sha256": "01fd4912202c797e93562e27cbedd8385e2585bf0f2b54d3b00a149fcf9bcb3a"
+      },
+      "instruction_sha256": "1c16d895ae47e1849e0d5cf3d8bebded88dc93310ee4df5486e2677700668403",
+      "actual_ghidra_body_owner_inferred": false
+    },
+    {
+      "site": "0x1459d83ac",
+      "target": "0x1459f4900",
+      "declared_extent": {
+        "va": "0x1459d8300",
+        "end_exclusive": "0x1459d83d1",
+        "byte_count": 209,
+        "sha256": "e0a336a21f60ce5a58b22d7ba9bfabd3e78c371c7cfd96f42f2b339d9fac1e4f"
+      },
+      "instruction_sha256": "cadb42e163f02ae22a0b2f30b1d116d12e129fa852dd61d6d5f913e393390e4a",
+      "actual_ghidra_body_owner_inferred": false
+    },
+    {
+      "site": "0x1459ec285",
+      "target": "0x1459cb2a0",
+      "declared_extent": {
+        "va": "0x1459ebfd0",
+        "end_exclusive": "0x1459ec4ac",
+        "byte_count": 1244,
+        "sha256": "8111d6af1e831ea0f435af586eca94f4be8da0b1b69ab9b419b6ad23de83ca30"
+      },
+      "instruction_sha256": "5917940485d35680818450e88dd62e1c12fe503894b8d2c6aeba980c4247f968",
+      "actual_ghidra_body_owner_inferred": false
+    },
+    {
+      "site": "0x1459ec32f",
+      "target": "0x1459cb2a0",
+      "declared_extent": {
+        "va": "0x1459ebfd0",
+        "end_exclusive": "0x1459ec4ac",
+        "byte_count": 1244,
+        "sha256": "8111d6af1e831ea0f435af586eca94f4be8da0b1b69ab9b419b6ad23de83ca30"
+      },
+      "instruction_sha256": "a192db63bca877a9ce7b10c85cd277da83ac29ff67852f8e70988bf1b95ce247",
+      "actual_ghidra_body_owner_inferred": false
+    },
+    {
+      "site": "0x1459ec39b",
+      "target": "0x145961590",
+      "declared_extent": {
+        "va": "0x1459ebfd0",
+        "end_exclusive": "0x1459ec4ac",
+        "byte_count": 1244,
+        "sha256": "8111d6af1e831ea0f435af586eca94f4be8da0b1b69ab9b419b6ad23de83ca30"
+      },
+      "instruction_sha256": "bbad9aefa1aa59e82bbbe7595de83763f65fd702d759a007b66b16ba69d19955",
+      "actual_ghidra_body_owner_inferred": false
+    },
+    {
+      "site": "0x1459f49d2",
+      "target": "0x145993420",
+      "declared_extent": {
+        "va": "0x1459f4900",
+        "end_exclusive": "0x1459f4cfe",
+        "byte_count": 1022,
+        "sha256": "e6f6d4398366c9491e5307cb15e3cf5d729314bba613049bd3d5f855f1423eba"
+      },
+      "instruction_sha256": "da32d3c0736bb62ab295ff5df7a897129cfdafb45fec049a2904b89dd4f0f56f",
+      "actual_ghidra_body_owner_inferred": false
+    }
+  ],
+  "rejected_encoded_candidates": [],
+  "new_call_facts_beyond_observed_ghidra_references": [
+    "0x145961e62",
+    "0x145961ef3",
+    "0x14596748a"
+  ],
+  "native_results": {
+    "collector": {
+      "cases": 1130,
+      "output_sha256": "e968d4137883b437784f37e46bb29a50d38925038364dee5f9ba2459572a26e6",
+      "ordered_filter_of_current_descriptor_slice": true
+    },
+    "constructor_to_accept_prefix": {
+      "cases": 2275,
+      "output_sha256": "bc9a51d9e32daab94b4d05fdac7bb8abedc77d3181ea5a11a20fc1ec9139de2f",
+      "full_constructor_executed": true,
+      "full_accept_executed": false
+    },
+    "accept_magnitude_call_prefix": {
+      "cases": 1650,
+      "output_sha256": "0ce111cbf61d7e62d4a690deb7984e97912adc00b2ecdbb66584c7069a36d5a1"
+    },
+    "fixture_seams": [
+      "0x1400021c0",
+      "0x1400021d0",
+      "0x140002200",
+      "0x14598ddd0",
+      "0x145bb40a0",
+      "0x145c0a3db",
+      "0x145c0a3e1",
+      "0x145c0a3e7",
+      "0x145c0a41d",
+      "0x145c0a441",
+      "0x145c0a465"
+    ]
+  },
+  "source": {
+    "files": [
+      {
+        "path": "crates/azeroth-survivors-re/src/player_abilities/upgrades.rs",
+        "sha256": "c8461806f42e5cc1d8f7fa13f5f1429b21b9bfcdbc8590f362b61c8738f4c56e"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/player_abilities/behavior.rs",
+        "sha256": "e08cc7aa85d37b403f639ac4a05e5b142411815bdd48b69ad023ee45cf502bba"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/choices.rs",
+        "sha256": "c8e749a50c7e927170fe51a8211f67eeeb94f0fe1968fd18327457a5a4676203"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/gameplay/native_overlay_payload.rs",
+        "sha256": "baa2161f6867654a32e7860f0ad26588801bfdeb8d5eedf4c2af814541671b32"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/run_effects/actions.rs",
+        "sha256": "ae50a6cf09d5feb94e787f109d3f7b986e550e8acb7ace17b0c14349691b7284"
+      }
+    ],
+    "ordinary_upgrade_tags": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "upgrade_count_lanes": 5,
+    "obsolete_haste_variant_and_prose_removed": true,
+    "runtime_instance_is_serialized": false
+  },
+  "native_fixture": {
+    "path": "scripts/native_talent_fixture_0_112.py",
+    "sha256": "fd1a3c2e98f4da91ef6d2496c5615b464d82b10032b59508040eb4ef2f1f93bd"
+  },
+  "fixture_import_bindings": [
+    {
+      "name": "ceilf",
+      "library": "api-ms-win-crt-math-l1-1-0.dll",
+      "iat": "0x145daa360",
+      "thunk": {
+        "va": "0x145c0a441",
+        "end_exclusive": "0x145c0a447",
+        "byte_count": 6,
+        "sha256": "d4675cb0767e648d62305128f4339a1941d9d8af513474628dd24e95d3317e4a"
+      }
+    },
+    {
+      "name": "powf",
+      "library": "api-ms-win-crt-math-l1-1-0.dll",
+      "iat": "0x145daa330",
+      "thunk": {
+        "va": "0x145c0a465",
+        "end_exclusive": "0x145c0a46b",
+        "byte_count": 6,
+        "sha256": "1861c818667b4be632c2cc0bb3e8d32351d013a387a5a28c5a444177fece8439"
+      }
+    }
+  ],
+  "detailed_cases": {
+    "path": "runtime/choice-contracts-0.112.0/native-cases.json",
+    "sha256": "a39767e73b2a76d036e8fd2af7a26e68af19317701700f54166445a6a8435045"
+  },
+  "unresolved_contracts": [
+    "Game+0x330 learned-instance definition-pointer ancestry for arbitrary current run state is not universally proved by descriptor fixtures.",
+    "Constructor and accept domains are checked for complete current constructor scenarios; every possible mutable Game+0x650 Vec alias/mutation is not proved.",
+    "The selected closure/Vec/caller evidence does not create native Ghidra body ownership or globally admit unguarded computed dispatch."
+  ],
+  "limits": [
+    "All113 immutable descriptor slices match source; collector fixtures cover two explicit states and five rarities, not all floating-point or run state.",
+    "Native constructor executes fully for current ordinary inputs and three concrete reward payloads; accept executes only its gate/dispatch and magnitude-call prefixes.",
+    "Accept magnitude-call cases supply the native loop register/frame context and descriptor bytes; they do not execute full accept or prove arbitrary live choice-pointer ancestry.",
+    "Allocator/C-memory/English fallback use existing explicit seams. Finite prose ceilf uses host ceil; amulet powf is supplied only at exponent0, using its exact identity.",
+    "No compiler, reconstructed Rust execution, gameplay, UI rendering or original/rebuilt parity."
+  ],
+  "gap_ids": [
+    41
+  ],
+  "compilation_run": false,
+  "game_run": false,
+  "parity_verified": false
+}

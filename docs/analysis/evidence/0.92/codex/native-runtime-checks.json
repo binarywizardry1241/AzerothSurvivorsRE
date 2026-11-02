@@ -1,0 +1,37 @@
+{
+  "target_sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+  "capture_scope": "isolated project-local ReferenceQA app; active save restored empty after checks",
+  "fixture_plaintext": "pick|1|1|0|elwynn|Ulira|0,0,0,0,0|100,100,100,100\nseen|legendary:cleave=4,legendary:whirlwind=4,accuria=4,mark_of_fordring=0\n",
+  "native_observations": [
+    {
+      "capture": "runtime/reference-captures/codex-default.png",
+      "observation": "No selected entry; Details contains the two native explanatory paragraphs;0/140."
+    },
+    {
+      "capture": "runtime/reference-captures/codex-unseen-legendary.png",
+      "observation": "Clicking undiscovered legendary selects it but hides its item name and bonuses; spell subtitle remains visible."
+    },
+    {
+      "capture": "runtime/reference-captures/codex-unseen-ring.png",
+      "observation": "Undiscovered ring selected; Ring \u00b7 Damage remains visible; no bonuses shown."
+    },
+    {
+      "capture": "runtime/reference-captures/codex-seen-cleave.png",
+      "observation": "Cleave four targets,50%damage,80%burn/bleed over6sec; spellbadge remains visible."
+    },
+    {
+      "capture": "runtime/reference-captures/codex-seen-whirlwind.png",
+      "observation": "Whirlwind60%area,35%damage,1.5secstun."
+    },
+    {
+      "capture": "runtime/reference-captures/codex-seen-ring.png",
+      "observation": "Accuria five rarity rows:26/36/46/61/82%damage; SEEN UP TO LEGENDARY."
+    },
+    {
+      "capture": "runtime/reference-captures/codex-seen-amulet.png",
+      "observation": "CommonMarkofFordring15%damage; genericempowermentnote; total4/140."
+    }
+  ],
+  "implemented": "CodexPlugin,140entries,seen parser,read-only selection/details/counts; parent build16 pending",
+  "remaining": "Flexible grid/card constraints, heading lines, precise icon shadows/crop, hover/pressed behavior, selected-entry lifecycle and non-English composed effect text require exact reconstruction and rebuilt comparison."
+}

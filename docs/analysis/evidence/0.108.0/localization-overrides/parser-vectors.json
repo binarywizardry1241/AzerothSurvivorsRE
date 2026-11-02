@@ -1,0 +1,322 @@
+{
+  "target_sha256": "dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b",
+  "target_process_launched": false,
+  "native_ranges": {
+    "parser": {
+      "start": "0x1458e6a10",
+      "end_exclusive": "0x1458e70ae",
+      "file_offset": "0x58e5e10",
+      "sha256": "2c1eb83a1dae225bfaa0505e4761b3a0326e4cb569e179c626e2398b7384c3ec"
+    },
+    "string": {
+      "start": "0x1458e2970",
+      "end_exclusive": "0x1458e31ae",
+      "file_offset": "0x58e1d70",
+      "sha256": "1a0ef7cc8845d8324118d79e114bd96b2d8bed6c7d09b2783f53525ce6c4de1e"
+    },
+    "expect": {
+      "start": "0x1458e2760",
+      "end_exclusive": "0x1458e292e",
+      "file_offset": "0x58e1b60",
+      "sha256": "5e89443d64f396aeb729f564ecdbd8b8b4cf0393a6470d85dc4b1345beeef91b"
+    },
+    "hex": {
+      "start": "0x1458e22b0",
+      "end_exclusive": "0x1458e2754",
+      "file_offset": "0x58e16b0",
+      "sha256": "b03af351fcf9b7188fa4a6b9ed8de37579e26510a4311273e301c4c5b11391e8"
+    }
+  },
+  "instruction_count": 35330,
+  "cases": [
+    {
+      "input": "{}",
+      "entries": {}
+    },
+    {
+      "input": " \t\r\n{ \"a\" : \"b\" } ",
+      "entries": {
+        "a": "b"
+      }
+    },
+    {
+      "input": "{\"\":\"\",\"a\":\"\"}",
+      "entries": {
+        "": "",
+        "a": ""
+      }
+    },
+    {
+      "input": "{\"a\":\"first\",\"a\":\"last\"}",
+      "entries": {
+        "a": "last"
+      }
+    },
+    {
+      "input": "{\"_comment\":\"ignored\",\"a\":\"b\"}",
+      "entries": {
+        "a": "b"
+      }
+    },
+    {
+      "input": "{\"_comment\":\"ignored\"}",
+      "entries": {}
+    },
+    {
+      "input": "{\"\\u005fmeta\":\"ignored\"}",
+      "entries": {}
+    },
+    {
+      "input": "﻿﻿{\"a\":\"b\"}",
+      "entries": {
+        "a": "b"
+      }
+    },
+    {
+      "input": "{} trailing input",
+      "entries": {}
+    },
+    {
+      "input": "{\"a\":\"b\"} trailing input",
+      "entries": {
+        "a": "b"
+      }
+    },
+    {
+      "input": "{\"a\":\"é日本語🌍\"}",
+      "entries": {
+        "a": "é日本語🌍"
+      }
+    },
+    {
+      "input": "{\"a\":\"raw\n\t\u0000control\"}",
+      "entries": {
+        "a": "raw\n\t\u0000control"
+      }
+    },
+    {
+      "input": "{\"a\":\"\\\"\\\\\\/\\b\\f\\n\\r\\t\"}",
+      "entries": {
+        "a": "\"\\/\b\f\n\r\t"
+      }
+    },
+    {
+      "input": "{\"a\":\"\\u00e9\\u20AC\"}",
+      "entries": {
+        "a": "é€"
+      }
+    },
+    {
+      "input": "{\"a\":\"\\uD83D\\uDE00\"}",
+      "entries": {
+        "a": "😀"
+      }
+    },
+    {
+      "input": "{\"a\":\"\\uD800\"}",
+      "entries": {
+        "a": "�"
+      }
+    },
+    {
+      "input": "{\"a\":\"\\uDC00\"}",
+      "entries": {
+        "a": "�"
+      }
+    },
+    {
+      "input": "{\"a\":\"\\uD800\\u0041\"}",
+      "entries": {
+        "a": "𐁁"
+      }
+    },
+    {
+      "input": "{\"a\":\"\\uDBFF\\uFFFF\"}",
+      "entries": {
+        "a": "􏿿"
+      }
+    },
+    {
+      "input": "{\"a\":\"\\u+041\"}",
+      "entries": {
+        "a": "A"
+      }
+    },
+    {
+      "input": "",
+      "error": "line 1: expected {"
+    },
+    {
+      "input": " ",
+      "error": "line 1: expected {"
+    },
+    {
+      "input": "[]",
+      "error": "line 1: expected {"
+    },
+    {
+      "input": "{",
+      "error": "line 1: expected \""
+    },
+    {
+      "input": "{\"a\"",
+      "error": "line 1: expected :"
+    },
+    {
+      "input": "{\"a\":",
+      "error": "line 1: expected \""
+    },
+    {
+      "input": "{\"a\":\"b\"",
+      "error": "line 1: expected , or }"
+    },
+    {
+      "input": "{\"a\":\"b\",}",
+      "error": "line 1: expected \""
+    },
+    {
+      "input": "{\"a\":1}",
+      "error": "line 1: expected \""
+    },
+    {
+      "input": "{\"a\":true}",
+      "error": "line 1: expected \""
+    },
+    {
+      "input": "{\"a\":null}",
+      "error": "line 1: expected \""
+    },
+    {
+      "input": "{\"a\":{}}",
+      "error": "line 1: expected \""
+    },
+    {
+      "input": "{\"_comment\":1}",
+      "error": "line 1: expected \""
+    },
+    {
+      "input": "{\"a\":\"b\" \"c\":\"d\"}",
+      "error": "line 1: expected , or }"
+    },
+    {
+      "input": " ﻿{}",
+      "error": "line 1: expected {"
+    },
+    {
+      "input": "{\"a\":\"\\q\"}",
+      "error": "line 1: bad escape"
+    },
+    {
+      "input": "{\"a\":\"\\uZ123\"}",
+      "error": "line 1: bad \\u escape"
+    },
+    {
+      "input": "{\"a\":\"\\u12\"}",
+      "error": "line 1: bad \\u escape"
+    },
+    {
+      "input": "{\"a\":\"\\uD800\\uZZZZ\"}",
+      "error": "line 1: bad \\u escape"
+    },
+    {
+      "input": "{\"a\":\"\\",
+      "error": "line 1: bad escape"
+    },
+    {
+      "input": "{\n\"a\": \"b\",\n\"bad\": false}",
+      "error": "line 3: expected \""
+    },
+    {
+      "input": "{\n\"a\"\n\"b\"}",
+      "error": "line 3: expected :"
+    },
+    {
+      "input": "\u000b{}",
+      "error": "line 1: expected {"
+    },
+    {
+      "input": " {}",
+      "error": "line 1: expected {"
+    },
+    {
+      "input": "{\"a\":\"b\",\n}",
+      "error": "line 2: expected \""
+    },
+    {
+      "input": "{\"",
+      "error": "line 1: unterminated string"
+    },
+    {
+      "input": "{\"x",
+      "error": "line 1: unterminated string"
+    },
+    {
+      "input": "{\"x\"",
+      "error": "line 1: expected :"
+    },
+    {
+      "input": "{\"x\":",
+      "error": "line 1: expected \""
+    },
+    {
+      "input": "{\"x\":\"",
+      "error": "line 1: unterminated string"
+    },
+    {
+      "input": "{\"x\":\"\\",
+      "error": "line 1: bad escape"
+    },
+    {
+      "input": "{\"x\":\"\\u",
+      "error": "line 1: bad \\u escape"
+    },
+    {
+      "input": "{\"x\":\"\\uD",
+      "error": "line 1: bad \\u escape"
+    },
+    {
+      "input": "{\"x\":\"\\uD8",
+      "error": "line 1: bad \\u escape"
+    },
+    {
+      "input": "{\"x\":\"\\uD83",
+      "error": "line 1: bad \\u escape"
+    },
+    {
+      "input": "{\"x\":\"\\uD83D",
+      "error": "line 1: unterminated string"
+    },
+    {
+      "input": "{\"x\":\"\\uD83D\\",
+      "error": "line 1: bad escape"
+    },
+    {
+      "input": "{\"x\":\"\\uD83D\\u",
+      "error": "line 1: bad \\u escape"
+    },
+    {
+      "input": "{\"x\":\"\\uD83D\\uD",
+      "error": "line 1: bad \\u escape"
+    },
+    {
+      "input": "{\"x\":\"\\uD83D\\uDE",
+      "error": "line 1: bad \\u escape"
+    },
+    {
+      "input": "{\"x\":\"\\uD83D\\uDE0",
+      "error": "line 1: bad \\u escape"
+    },
+    {
+      "input": "{\"x\":\"\\uD83D\\uDE00",
+      "error": "line 1: unterminated string"
+    },
+    {
+      "input": "{\"x\":\"\\uD83D\\uDE00\"",
+      "error": "line 1: expected , or }"
+    }
+  ],
+  "limits": [
+    "Original parser/string/expect/hex instructions with allocator, vector, copy, UTF-8 validation and formatting seams.",
+    "No file IO, rebuilt Rust, game, renderer or original/rebuilt parity executes."
+  ]
+}

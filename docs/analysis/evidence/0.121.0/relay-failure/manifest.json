@@ -1,0 +1,253 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960,
+    "identity_manifest": "docs/analysis/coverage/targets.json",
+    "version_provenance": "matching_embedded_updater_and_independent_version_witness",
+    "runtime_data": {
+      "directory": "installed-game/Data",
+      "archives": [
+        {
+          "path": "installed-game/Data/patch-2.MPQ",
+          "size_bytes": 4690878,
+          "sha256": "366edee41642a5dda22ed90cc252b543ee375755b7e8bee81e2a6cd59fd7b286"
+        },
+        {
+          "path": "installed-game/Data/patch-3.MPQ",
+          "size_bytes": 2580491,
+          "sha256": "75c35ca5b8075197252581e301e8900143007fdf37b493ad271ae1bd39f95a29"
+        },
+        {
+          "path": "installed-game/Data/patch-4.MPQ",
+          "size_bytes": 22769233,
+          "sha256": "2e895e0e0ff6a4781d0e0aaa6ea7d32ed1fe36841e17806fe1855cb880d18865"
+        },
+        {
+          "path": "installed-game/Data/patch-5.MPQ",
+          "size_bytes": 267019039,
+          "sha256": "5008e56873718b468fa5ae1b697dcbe4f5da9ffe6c793f3ef9939dbd7716f3d8"
+        },
+        {
+          "path": "installed-game/Data/patch-6.MPQ",
+          "size_bytes": 212228,
+          "sha256": "cad6ff59b5df028a507581befb836fce07894057e15fe63d9fdc553a95b7ceb5"
+        },
+        {
+          "path": "installed-game/Data/patch-7.MPQ",
+          "size_bytes": 276649,
+          "sha256": "f5fb15b181cf01cc6b5cf2ee9948a27ecc4ba27bab9a8bec584df4381932aae6"
+        },
+        {
+          "path": "installed-game/Data/patch-8.MPQ",
+          "size_bytes": 4155417,
+          "sha256": "ae3aaa29cadb7aeba8255f5b4a8305c7cbecfe8f0d3ed9646522113d16c3e12e"
+        },
+        {
+          "path": "installed-game/Data/patch-9.MPQ",
+          "size_bytes": 5739608,
+          "sha256": "ffff8ea890bdaf91a1680543ac60106db92132bc2210105279610fa73661a524"
+        },
+        {
+          "path": "installed-game/Data/patch-A.MPQ",
+          "size_bytes": 1453122,
+          "sha256": "350cde8cd0f76e5246a663eb3811f5a7b1a9c75e4e699190208c9299177b8d90"
+        },
+        {
+          "path": "installed-game/Data/patch-B.MPQ",
+          "size_bytes": 2935,
+          "sha256": "e9d074b012078efc1c1c8c729bf94d28b1d213d5fcb721dc4370a142f98834bd"
+        },
+        {
+          "path": "installed-game/Data/patch.MPQ",
+          "size_bytes": 1340199244,
+          "sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf"
+        }
+      ]
+    }
+  },
+  "gap_ids": [
+    216
+  ],
+  "target_executed": false,
+  "bounded_contract_system_ids": [
+    "custom-game-coop-relay",
+    "custom-app-screens-coop"
+  ],
+  "bounded_contract_owner_scopes": {
+    "custom-game-coop-relay": "Selected-relay initial failure predicate through service producers/shared owner and guest getter.",
+    "custom-app-screens-coop": "Guest liveness/failure getter to exact relay-unreachable versus host-left reason and connected source terminal ordering. Locale values/lookup are separately owned by #217."
+  },
+  "native_ranges": [
+    {
+      "role": "guest-failure-getter",
+      "virtual_address": "0x145c64be0",
+      "end_exclusive": "0x145c64ca0",
+      "file_offset": "0x5c63fe0",
+      "byte_count": 192,
+      "sha256": "b0988a1ff7fbd0f786371578806b5f722ff927e6a7a128725e2f1e3fcb878fb8",
+      "bytes_hex": "56574883ec28488b31b10131c0f00fb04e107537488b3d7d1f9602488b0748d1e04885c0753031c90fb6461148837e78ff743880be5901000000742f0fb68658010000340184c97428eb38488d4e10e82cdb5200ebbee8b5e8520089c180f1010fb6461148837e78ff75c831c084c9751248b9ffffffffffffff7f488b174885ca752831c9864e1080f90274074883c4285f5ec34883c6104889f189c6e89edb520089f04883c4285f5ec389c7e85ee8520089c189f884c975c9c6461101ebc3",
+      "instruction_count": 65,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/relay-failure/guest-failure-getter.asm",
+        "sha256": "eebd384a72fb145650eee29b7ad6ad66934140d0185c1a37c688aebde679891e"
+      }
+    },
+    {
+      "role": "guest-pump-base",
+      "virtual_address": "0x145c64e77",
+      "end_exclusive": "0x145c64e88",
+      "file_offset": "0x5c64277",
+      "byte_count": 17,
+      "sha256": "9ef95f4180a61a6b1be0b21aa52c65e6113740350b8c578e9ed97fbef3f56b67",
+      "bytes_hex": "0fb64311488d4b1848895df0e8a820ffff",
+      "instruction_count": 4,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/relay-failure/guest-pump-base.asm",
+        "sha256": "30478c98611509d9b3e7bc065253d4ec505adb8cb843fb31ce84d991df88deac"
+      }
+    },
+    {
+      "role": "guest-terminal-reason",
+      "virtual_address": "0x145b15efc",
+      "end_exclusive": "0x145b15f40",
+      "file_offset": "0x5b152fc",
+      "byte_count": 68,
+      "sha256": "1b96d1df4165fc9a4ce29d279aab4c22731afe7e6f55e4a2bdad621c91c237d5",
+      "bytes_hex": "488b8f88100000488b8790100000ff502884c00f8535010000488b8f88100000488b8790100000ff504884c00f84860c0000488d154ed5b40141b821000000e9810c0000",
+      "instruction_count": 13,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/relay-failure/guest-terminal-reason.asm",
+        "sha256": "aeffc1b94e7a34192528fb044357d580fdf559649d29fae53220d61fbc2126f4"
+      }
+    },
+    {
+      "role": "guest-terminal-hostleft",
+      "virtual_address": "0x145b16bb4",
+      "end_exclusive": "0x145b16bc9",
+      "file_offset": "0x5b15fb4",
+      "byte_count": 21,
+      "sha256": "c63dc752a0e00dacf2127505fd80f2505b1d06493424264d224b2cbe691f03f3",
+      "bytes_hex": "488d1535cab40141b80d0000004889f9e837bc0100",
+      "instruction_count": 4,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/relay-failure/guest-terminal-hostleft.asm",
+        "sha256": "3bfe59a5b9bdc95c57b6fdc1111fdb469a6390400d68abdc8f650438f59ff98a"
+      }
+    },
+    {
+      "role": "admission-failure-producers",
+      "virtual_address": "0x145c572f7",
+      "end_exclusive": "0x145c573a1",
+      "file_offset": "0x5c566f7",
+      "byte_count": 170,
+      "sha256": "959e1990accf1ba9fa6fcae00fdcec562d706c9ee78db955abe7f3fd0e6da4bd",
+      "bytes_hex": "4c8bb5e000000080fb010f859a00000048833fff0f849000000048b803000000000000804939c67569488b85200300008a9840010000c6804101000001488b8830010000488b8038010000488b4030c6853603000001c6853503000001c6853403000001c6853303000001c6853203000001c6853103000001ffd09084db742a488d8de0000000e86db3ffff90e94b1b0000488b8520030000c6804001000001c78028010000ffffffff",
+      "instruction_count": 31,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/relay-failure/admission-failure-producers.asm",
+        "sha256": "7034b52e9e562db5845dc39cd4267a0993ecdcc0001a697e1e46bbdfca13ac8a"
+      }
+    }
+  ],
+  "native_data": [
+    {
+      "role": "guest-vtable",
+      "virtual_address": "0x1476634f0",
+      "file_offset": "0x76622f0",
+      "byte_count": 80,
+      "sha256": "1efb9bb171aacf59db18e567a25ae32e68f25212e1b34d36fb2b0e4deb71bab2",
+      "bytes_hex": "e0b9b0450100000010000000000000000800000000000000804fc64501000000304ec64501000000e052c645010000000051c64501000000704dc64501000000a04cc64501000000e04bc64501000000"
+    },
+    {
+      "role": "relay-unreachable-reason",
+      "virtual_address": "0x147663483",
+      "file_offset": "0x7662283",
+      "byte_count": 33,
+      "sha256": "221e79c8100e89bc57c23777e80f1904fa22b225adfaf119bf9fe4e9d1637c0e",
+      "bytes_hex": "74686520636f2d6f702072656c61792063616e6e6f742062652072656163686564"
+    },
+    {
+      "role": "host-left-reason",
+      "virtual_address": "0x1476635f0",
+      "file_offset": "0x76623f0",
+      "byte_count": 13,
+      "sha256": "fbf107249d20edd49b9088d5f21cf34fc35f7a5aa33685830b63811069cf7a65",
+      "bytes_hex": "74686520686f7374206c656674"
+    }
+  ],
+  "queries": [
+    {
+      "role": "relay-145c64e30",
+      "procedure": "0x145c64e30",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_bba7bd70a8ffd8c917c357a47ba4d938cf7add355cf7bf7749b9aa3c49250247",
+      "normalized_text_sha256": "cc7dd2a8ff7bcaf4ba39ca5d36d7416ee9848bd0d61ba68e479f6bf0c2e3c257",
+      "analysis_profile_digest": "476c21f4151fb0c6211f8851342c515221d5d5a0266561e2673cf5e99d623647",
+      "plan": {
+        "path": "runtime/fixgap-214-217-0.121.0/relay/plan.json",
+        "sha256": "42b4e8012b385e8a210537567a6701b03f8e5f44f7c14bcd7c4dee4ff16ca267"
+      },
+      "journal": {
+        "path": "runtime/fixgap-214-217-0.121.0/relay/query/journal.json",
+        "sha256": "90cb299a4b02ecca3813c2b9c8c8b376bbce1bac622ed62377883e588fbefc2b"
+      },
+      "result": {
+        "path": "runtime/fixgap-214-217-0.121.0/relay/query/results/aa149a37fa8229dd8a3d2949928f1e61c9f65b20e4b8e00342b136128c14e9bf-2fdb5a9125dcd016.json",
+        "sha256": "f3a579562bbf149ded51f0f1b4e2ce76003a07347967bfbed0942b7f32ff54d0"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap-214-217-0.121.0/relay/code.bin",
+        "sha256": "761eaf4a1f3815f0dcaf763bdf2fb539d1350757af68217917c4a0efbc80f5e2"
+      },
+      "slice_virtual_address": "0x145c56b50"
+    },
+    {
+      "role": "relay-145c64be0",
+      "procedure": "0x145c64be0",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_b8713283789fa3b137d133b9b5550e3eb2de09b0e8cf51111e9b939783629486",
+      "normalized_text_sha256": "6e3c88a534418825d9feabb5aad550cf6d8ff2c7e04040838459718eeaf63991",
+      "analysis_profile_digest": "476c21f4151fb0c6211f8851342c515221d5d5a0266561e2673cf5e99d623647",
+      "plan": {
+        "path": "runtime/fixgap-214-217-0.121.0/relay/plan-contracts.json",
+        "sha256": "0a1e8e7d4d8fde3f06490e27bcaa2affa761f3716383e2077817c12bc07eb15b"
+      },
+      "journal": {
+        "path": "runtime/fixgap-214-217-0.121.0/relay/query-contracts/journal.json",
+        "sha256": "eebdb00c05294928ea6988bb8f5d44ff54d745d02f3b26a6337e60278cadf55c"
+      },
+      "result": {
+        "path": "runtime/fixgap-214-217-0.121.0/relay/query-contracts/results/1102848695375e3e790aa2bb2ca97cfa1d532cee06154c7b55ea4addaa8a5c30.json",
+        "sha256": "8f5f85fa7020d69a0bc0fdf85fd1d59d4f5ed5d523d93a5cbd7cd6a9e7e533c3"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap-214-217-0.121.0/relay/code.bin",
+        "sha256": "761eaf4a1f3815f0dcaf763bdf2fb539d1350757af68217917c4a0efbc80f5e2"
+      },
+      "slice_virtual_address": "0x145c56b50"
+    }
+  ],
+  "source_refs": [
+    "crates/azeroth-survivors-re/src/coop/relay_lifetime.rs",
+    "crates/azeroth-survivors-re/src/coop/session.rs",
+    "crates/azeroth-survivors-re/src/coop_directory.rs",
+    "crates/azeroth-survivors-re/src/coop_runtime.rs"
+  ],
+  "limits": [
+    "Eight getter and sixteen getter-to-frame cases use synthetic memory, an uncontended/unpoisoned mutex and a liveness/terminal-transition interface seam. No native OS code runs.",
+    "Current exact retained instructions/table establish this bounded failure provenance only, not the complete frame/service/transport implementation.",
+    "No compilation, authored Rust regression execution, actual client/game/network/server operation, rendering or original/rebuilt parity."
+  ],
+  "state_producer_evidence": "docs/analysis/evidence/0.121.0/relay-policy/manifest.json"
+}

@@ -1,0 +1,84 @@
+{
+  "target_version": "0.112.5",
+  "target_sha256": "445e9de90f1a0e9be18d4e99e59eb170f4d253ac0440b970cdd0d0b3562dfd36",
+  "target_executed": false,
+  "provider": "Ghidra 12.1.4",
+  "functions": [
+    {
+      "role": "raise",
+      "address": "0x14093fd70",
+      "end_exclusive": "0x14093fec8",
+      "file_offset": 9695600,
+      "sha256": "f667a64b1cf6437a3d09b41153858cd2732300a5ca6034623ce5b4ce388f98c0",
+      "evidence_id": "ev_c2f025094906946b5013321c260bdf06d3a6d6bc4b778a29586203c350ee5395",
+      "analysis_profile_digest": "9f95185307c0edefb8d15ad32486f49643fe3209917df0af9cd611147cfb096b",
+      "extracts": {
+        "c": "0f0616c4eac52ede900ae9f6cbfdff7b8d7d131e806b24360165c17a0903fdc7",
+        "asm": "a8ca13e18b391ca553eb362f215fe9e87dce6cbbcf56f3fcf47dbd5faa1b2d25"
+      }
+    },
+    {
+      "role": "drive",
+      "address": "0x140971f30",
+      "end_exclusive": "0x140973905",
+      "file_offset": 9900848,
+      "sha256": "6ae8410e76e87731a77cdba6c3ad57f14e9808b07dafe852972986fe3721b079",
+      "evidence_id": "ev_adec237d6ddb4aaa60d8810799e6a1c44d6c488bba79fa199b896a76c6498a35",
+      "analysis_profile_digest": "b9f8533d6e0eb554c9f997473f2b3568169d0c254e8d8f15aa6010e95a1fae33",
+      "extracts": {
+        "c": "c1911053866329469f94e9545bf722b3d5aeaa74547b4e6dfde9b2502397ec64",
+        "asm": "6ad56b2749975bdc2cca59a51e21e09cd11385d12c6bba2a8de964d5c47c6efd"
+      }
+    },
+    {
+      "role": "setup",
+      "address": "0x1409739e0",
+      "end_exclusive": "0x1409758b5",
+      "file_offset": 9907680,
+      "sha256": "6569f6aac72dea6b3b19f1856a92382004241acb3954110b4583b7f0de125df4",
+      "evidence_id": "ev_7eae8c5f55324af02030f063ea7640e95c4eaac17c4a38e98129d85b2b0b0ad1",
+      "analysis_profile_digest": "b9f8533d6e0eb554c9f997473f2b3568169d0c254e8d8f15aa6010e95a1fae33",
+      "extracts": {}
+    },
+    {
+      "role": "map-loading-id",
+      "address": "0x145aa75a0",
+      "end_exclusive": "0x145aa7677",
+      "file_offset": 95054240,
+      "sha256": "d79b6cc6d663fb66c920998e6f36ae1e62181112596f7a2ca85b058c0aac81dd",
+      "evidence_id": "ev_b31c5195e48b903326a0218ad7eb5588bffdcb87a3af470f72a1eb3f411e1ec1",
+      "analysis_profile_digest": "cae2a5101f93b58cd5207de6935e87bfc2bddbf5dab4121747b7796f5ffbd895",
+      "extracts": {
+        "c": "ce3a150bc56088f34ba7f5c8a474d0b953db00065ab27df69c90018e399a8265",
+        "asm": "2217565081cefe13fa2cfdf777b75702c7aed9435f8566311a87a91b15b6f4b4"
+      }
+    },
+    {
+      "role": "loading-path",
+      "address": "0x145a8d820",
+      "end_exclusive": "0x145a8d8f3",
+      "file_offset": 94948384,
+      "sha256": "477369316df5c1a1bccbf5ae19b7a01324b1bc3ebcedb1f1cf1801a2b6e38d31",
+      "evidence_id": "ev_5bf1777f1836defeab00f6d8fe55efbb19f8d2bb941716968326decefdcb46f8",
+      "analysis_profile_digest": "cae2a5101f93b58cd5207de6935e87bfc2bddbf5dab4121747b7796f5ffbd895",
+      "extracts": {
+        "c": "4c609784a5cd17f860b79d97481ad42399f3ff7eddcbba3ae3ed9b783a06a1fe",
+        "asm": "3c7081624e6b9b37f1dbd031d7aa37121ed438cdaf3ef3ededd5ca9f8eaa5ed9"
+      }
+    }
+  ],
+  "replay": {
+    "readiness_cases": 3072,
+    "readiness_sha256": "9158b93ed0f88f10613d8db93238deeb8896cc221222a36163ab1751223633b6",
+    "progress_cases": 864,
+    "progress_sha256": "70853bc39b46622a73e33338c1c207229590f17bef879054d7378c1326442475",
+    "limits": [
+      "Original scalar instructions with explicit component storage, clock and pipeline/UI state seams; not ECS/runtime execution.",
+      "UI counters are native input seams. The existing synchronous source loader exposes only pending/completed, not intermediate file counts."
+    ]
+  },
+  "limitations": [
+    "Raw imports use generic GCC ABI; interpretation follows original Windows registers and PE instructions.",
+    "Bounded loading-cover contracts only; no global engine, source execution, artwork/rendering, timing/audio or original/rebuilt parity claim."
+  ]
+}

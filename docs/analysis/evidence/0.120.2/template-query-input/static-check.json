@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.120.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c",
+    "size_bytes": 145484288
+  },
+  "finding_ids": [
+    41,
+    64,
+    65,
+    201
+  ],
+  "native_owner": {
+    "virtual_address": "0x145b01eb0",
+    "end_exclusive": "0x145b04a8a",
+    "file_offset": "0x5b012b0",
+    "byte_count": 11226,
+    "sha256": "d72b12528b42424e518ddb5dd06beb5fe1e05aaf3d7b9afed7d541e58ac67075"
+  },
+  "readers": {
+    "0x56": {
+      "stop": "0x145b02908",
+      "output_register": "RDI"
+    },
+    "0x5e": {
+      "stop": "0x145b02ac8",
+      "output_register": "R14"
+    },
+    "0x60": {
+      "stop": "0x145b02b69",
+      "output_register": "R14"
+    }
+  },
+  "original_instruction_cases": 19923,
+  "distinct_payloads": 6641,
+  "original_instructions_executed": 931734,
+  "distinct_executed_instructions": 103,
+  "result_sha256": "1ca5098e65a1267ddedadead309b456fcd490a373c110a08d2783ba272629408",
+  "source": {
+    "helper_sha256": "f2f5ddebd05a95f1f62ed6c451057f8e8227e869b4d26b4e708636a0a74b93e3",
+    "routes": {
+      "CREATURE_QUERY": "992457a6eabd661a26a3cb86ba643d7ba24c451b46c099cf5be164a7a4f93f6e",
+      "GAMEOBJECT_QUERY": "c0c5ecc94f8984c511c44b7608797e9bd38558efb5aa4cb9788d8588ea472f7d",
+      "ITEM_QUERY_SINGLE": "fde514a6c420633b67a5d9811d7d6977dacf66fc67380c5d55f593b8cd619b2e"
+    }
+  },
+  "query_evidence_id": "ev_36d5d4f05f8280bac7805ea9943ccbd40f0780f4b8f09d5dcffac13f937a8bcb",
+  "generator": {
+    "path": "scripts/check-template-query-input-0.120.2.py",
+    "sha256": "d16695786be8f3f5d2a02cc80229e63e34983cc6ee9bcf5f703a0386fab0b6f5"
+  },
+  "dependencies": [
+    {
+      "path": "scripts/equipment_native.py",
+      "sha256": "67f4dbd290445b7a466ed90b8a06741719326a7a225e6144da214380d825c6c2"
+    },
+    {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+    },
+    {
+      "path": "scripts/coverage_common.py",
+      "sha256": "aec38237b60b6982f17e0e93c6f6ba111100956fb389d44b397dbd5a6bdb1903"
+    },
+    {
+      "path": "scripts/script_sources.py",
+      "sha256": "bc4cdf0f6c4a0805b7052d06c28acc48e644484d08decb79a97168cec6458cfa"
+    }
+  ],
+  "emulator": {
+    "name": "Unicorn",
+    "version": "2.1.4"
+  },
+  "limits": [
+    "Original opcode dispatch and bounded prefix readers only; no catalog or network execution.",
+    "Source guards do not execute or compile Rust. Authored Rust regression is unrun.",
+    "No client/server/game execution or original/rebuilt parity comparison."
+  ]
+}

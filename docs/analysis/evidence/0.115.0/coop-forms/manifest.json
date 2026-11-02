@@ -1,0 +1,474 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.115.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+    "size_bytes": 142111232
+  },
+  "target_executed": false,
+  "functions": [
+    {
+      "role": "request-helper",
+      "start": "0x14020f670",
+      "end_exclusive": "0x14020f91f",
+      "file_offset": "0x20ea70",
+      "sha256": "25b6b88ab154a35890e708a4cfe96fe953a2abf09384cb908c9e3c6c93f93100"
+    },
+    {
+      "role": "normalize-code",
+      "start": "0x145b79680",
+      "end_exclusive": "0x145b79a92",
+      "file_offset": "0x5b78a80",
+      "sha256": "95031877016c439b224b37a6043dcf4e879c115b0a2db076af80ed251af3a61f"
+    },
+    {
+      "start": "0x1402107e0",
+      "end_exclusive": "0x140211173",
+      "file_offset": "0x20fbe0",
+      "sha256": "e6e284ec3c74c4866b69d65e25c5626b5bfd5405d226f305ad9ee88e2260b810",
+      "role": "form-host",
+      "artifact": "0x1402107e0.asm"
+    },
+    {
+      "start": "0x140211270",
+      "end_exclusive": "0x14021178d",
+      "file_offset": "0x210670",
+      "sha256": "2e8035f4010774d94d6d8766b1575c82496997814edf0151a5f60becdbda990b",
+      "role": "form-code",
+      "artifact": "0x140211270.asm"
+    },
+    {
+      "start": "0x14020cb50",
+      "end_exclusive": "0x14020d017",
+      "file_offset": "0x20bf50",
+      "sha256": "4fc5c1c405feafa82fd964b4bf5d2167aba9a6e9e0bb5c2938b079afc8b99a69",
+      "role": "form-field",
+      "artifact": "0x14020cb50.asm"
+    },
+    {
+      "start": "0x14021ca40",
+      "end_exclusive": "0x14021d26d",
+      "file_offset": "0x21be40",
+      "sha256": "af45f5f356144cb964dc5fdc2f051a4b6934dc58d72650e1324e32b2b3d69b45",
+      "role": "form-keyboard",
+      "artifact": "0x14021ca40.asm"
+    },
+    {
+      "start": "0x1402ee800",
+      "end_exclusive": "0x1402ef1c7",
+      "file_offset": "0x2edc00",
+      "sha256": "afb19016b504f2ac7a29592e93f98407b23d810c6228b1658e6286ab8fc23bec",
+      "role": "form-field-layout",
+      "artifact": "0x1402ee800.asm"
+    },
+    {
+      "start": "0x1402f17e0",
+      "end_exclusive": "0x1402f292d",
+      "file_offset": "0x2f0be0",
+      "sha256": "e419ac87defcc0ed7dd3ea7cebdfef297b4416aa75ba93d9b9c589ba55ee883e",
+      "role": "form-modal",
+      "artifact": "0x1402f17e0.asm"
+    },
+    {
+      "start": "0x1402ef2c0",
+      "end_exclusive": "0x1402ef5f7",
+      "file_offset": "0x2ee6c0",
+      "sha256": "153c2f3fcc4dec9ff6ffadb5ed6f09060cdcf1047c7d159633decdb9e804619f",
+      "role": "form-party-header",
+      "artifact": "0x1402ef2c0.asm"
+    },
+    {
+      "start": "0x14020e930",
+      "end_exclusive": "0x14020f5a9",
+      "file_offset": "0x20dd30",
+      "sha256": "234e7e15a27a32f65122d43bf8eccad73c2ccdc1bfb7afba56dd095117c1eaa7",
+      "role": "form-status",
+      "artifact": "0x14020e930.asm"
+    },
+    {
+      "start": "0x1458095e0",
+      "end_exclusive": "0x145809709",
+      "file_offset": "0x58089e0",
+      "byte_count": 297,
+      "sha256": "7cc2a8493fcc4129603aed6595fb21676d3868ac3b5496a601d2dacd0b1cf910",
+      "role": "form-zone-key",
+      "canonical_manifest": "docs/analysis/evidence/0.115.0/coop-directory-response/manifest.json",
+      "canonical_artifact": "docs/analysis/evidence/0.115.0/coop-directory-response/1458095e0.asm"
+    },
+    {
+      "start": "0x145809710",
+      "end_exclusive": "0x14580972f",
+      "file_offset": "0x5808b10",
+      "sha256": "a1717ad65f6be87c1e583f8232e3e85a5f5dcc100733a39c20221f6b4e8e8b0c",
+      "role": "form-zone-parse",
+      "artifact": "0x145809710.asm"
+    },
+    {
+      "start": "0x145809010",
+      "end_exclusive": "0x1458090a8",
+      "file_offset": "0x5808410",
+      "sha256": "7f6ad37ef75329cfab51e6995a3c36cd2c13238039b0a42a99eca48cbcdbad19",
+      "role": "form-zone-name",
+      "artifact": "0x145809010.asm"
+    },
+    {
+      "role": "form-party-header-container",
+      "start": "0x14020d0d0",
+      "end_exclusive": "0x14020dbc2",
+      "file_offset": "0x20c4d0",
+      "sha256": "c7fc129542e322ed3541faddbc013ea65881959c432ac516570306b20b0c6865",
+      "artifact": "0x14020d0d0.asm"
+    }
+  ],
+  "ghidra": [
+    {
+      "role": "request-helper",
+      "evidence_id": "ev_1e30ec0b592d9fb3137bd1a3ce8b2ad20d956cdd3bf65f9f2d1fc353ae246891",
+      "input_sha256": "25b6b88ab154a35890e708a4cfe96fe953a2abf09384cb908c9e3c6c93f93100",
+      "profile_digest": "86c8b8c8d06b41d9db03403cc8dfc3586e3d12963d66d5e89807e75b35335df4",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "journal_ref": "runtime/gap100/query-0x14020f670/journal.json",
+      "query_plan_sha256": "292774c9009991ee83d035ebc222ddcb54d1f4e9f925bb198db2a92d8bb4381c",
+      "retained_result": {
+        "path": "runtime/gap100/query-0x14020f670/results/e385c77786da6c2abf082b66f8ac3ebe940a7595649c80e751ae9193f3ce5976.json",
+        "sha256": "5fad24cad421cc913b522d692deabb21e773cf37dd670ea0017a75bd345c7867"
+      }
+    },
+    {
+      "role": "normalize-code",
+      "evidence_id": "ev_28ff64cb3bec082bda6b7b3f8f48e29d4d5ba9485973abcb67292c55ffcd373e",
+      "input_sha256": "95031877016c439b224b37a6043dcf4e879c115b0a2db076af80ed251af3a61f",
+      "profile_digest": "5a317f6baff91e21afd08c67a9ed8958bd5bbb2c7b1a7af6383b738ef717fdba",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "journal_ref": "runtime/gap100/query-0x145b79680/journal.json",
+      "query_plan_sha256": "27fca76a7362d3ca74d00f7cdb2444eac60c492441ac2320cb58d49a36dafda5",
+      "retained_result": {
+        "path": "runtime/gap100/query-0x145b79680/results/25fd94fd7bc3762aea9eb4ad05a114e6e8320688e6d37079a86a7a8709b6ec29.json",
+        "sha256": "4d3e7acf78fe2b4c00dc082ca43010a1e7903d916332d32c697b9854a243794c"
+      }
+    },
+    {
+      "role": "form-host",
+      "evidence_id": "ev_570a2e80c99fe4daf804841dd9c9751b54af2807f1334a0ae5988e00915f176f",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "input_sha256": "e6e284ec3c74c4866b69d65e25c5626b5bfd5405d226f305ad9ee88e2260b810",
+      "profile_digest": "2ed04c29ca94c0c6f870f5e16d926efe8b2ee53b4e72f159d7bcc617c2d80371",
+      "query_plan_sha256": "f478b79bc9443bd240ac8612a18bb40aa91f0127c3fad94a95a5e48efda5967d",
+      "journal_ref": "runtime/gap100/fields/host-query/journal.json",
+      "retained_result": {
+        "path": "runtime/gap100/fields/host-query/results/6e5776d81b6a414e34c6db0a58bf176eb2bfbcb12084ff2e57933fad5fb84c2b.json",
+        "sha256": "b7117dadc1c1f7995c91a3e817a7559d9bba32340e1bcb1dc3af06f404bfa019"
+      }
+    },
+    {
+      "role": "form-code",
+      "evidence_id": "ev_d42c8f93a6831665c1bd2c732a4fc16697117485ed1c01cc391b3e95aadf606e",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "input_sha256": "2e8035f4010774d94d6d8766b1575c82496997814edf0151a5f60becdbda990b",
+      "profile_digest": "03a09e38d71f7d0c0c8f808fcdf21d58e8f4423e27043fd450a3f385da2023c1",
+      "query_plan_sha256": "e75d6821bfda5ddc1a7f3da3685a0dd1dd1ffdb6e55234151a11390c63ff33f0",
+      "journal_ref": "runtime/gap100/fields/code-query/journal.json",
+      "retained_result": {
+        "path": "runtime/gap100/fields/code-query/results/17c7c777982c1995021e0ec851f91e4a0aec1b9eb2e7c6cd581b340ad1ff2c52.json",
+        "sha256": "b196e6c1525035c8fb62b03a5fd7eafee7e8baaaee458ec84c1d87796ef5f298"
+      }
+    },
+    {
+      "role": "form-field",
+      "evidence_id": "ev_40310065432cd446a95cf65879d5a8ef8735eb549cddf5395a51101484c178d0",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "input_sha256": "4fc5c1c405feafa82fd964b4bf5d2167aba9a6e9e0bb5c2938b079afc8b99a69",
+      "profile_digest": "6980ecfdeb7cd69ffd7c9fb925d8bf1bd60bbfdfb4a8ff3d3ba24e85ec6df13f",
+      "query_plan_sha256": "d587453d7679a92c2d8ffb45dd1d227b2af23c8b25b9b4c8bb32f788bcabb2eb",
+      "journal_ref": "runtime/gap100/fields/field-query/journal.json",
+      "retained_result": {
+        "path": "runtime/gap100/fields/field-query/results/a0d620c8be835e8f11ca1b35bb3e1cf1e0e9a588e35dce5476d64f2c7da5f0fb.json",
+        "sha256": "ee63e5e87e0857ddc6ef9f2a8b1269e62c9bd15b1ee9812bac2b411f0f8adc55"
+      }
+    },
+    {
+      "role": "form-keyboard",
+      "evidence_id": "ev_d485893e4af6f40bc2304ef11e394da9eb6f9be62c6d6d69d4de6091ecfcfd27",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "input_sha256": "af45f5f356144cb964dc5fdc2f051a4b6934dc58d72650e1324e32b2b3d69b45",
+      "profile_digest": "7942dcc9088e2ea79b99259a8f27a087333181fc25ebab7708c629dea71adff9",
+      "query_plan_sha256": "304799cbb3be9b0d8901c9bf3d2463524c174e9273161c1714eacc890aa938bb",
+      "journal_ref": "runtime/gap100/fields/keyboard-query/journal.json",
+      "retained_result": {
+        "path": "runtime/gap100/fields/keyboard-query/results/e768fdd8ec253428d0e6a127eab4acbed9362cfe1e33124b87f8b129e162ace5.json",
+        "sha256": "5c59b5524a4d80ea0a03b410e4dc7a7ba723792957675d82f59866bdfef79818"
+      }
+    },
+    {
+      "role": "form-field-layout",
+      "evidence_id": "ev_7dc529d9c00c561d14d1a80bd46acb5d087b788ce540c24c378c2ecf4e0331fe",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "input_sha256": "afb19016b504f2ac7a29592e93f98407b23d810c6228b1658e6286ab8fc23bec",
+      "profile_digest": "c02556ad6b7f5d30506cd3ca2e5219b61a5a44030f659923fcfb64f4ade00078",
+      "query_plan_sha256": "1de6f413f1f8773ecf73056c9dedcdb5dcad7d3e736c0cfdfc4dac3074c116fd",
+      "journal_ref": "runtime/gap100/fields/field-layout-query/journal.json",
+      "retained_result": {
+        "path": "runtime/gap100/fields/field-layout-query/results/7bee72dd902a765c5617d5e7f04d440695f0d9559753d307de599f05b6f98885.json",
+        "sha256": "43e7ec1a21e2f272082699c17df948782c2d0874601eb43e9962aeb177a6bce9"
+      }
+    },
+    {
+      "role": "form-modal",
+      "evidence_id": "ev_b2643196749f3863249d1abd02a1c6da8adb6bd17681624303600046ff97c7a2",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "input_sha256": "e419ac87defcc0ed7dd3ea7cebdfef297b4416aa75ba93d9b9c589ba55ee883e",
+      "profile_digest": "b03b4a0a0f72efacb2f4e6a0565115f6cab2318bb9ad831c66f3115846c3a88d",
+      "query_plan_sha256": "53ce823c2c80c519701bf0f8ac0d8ccc8534fb44603662610202b46903c6b424",
+      "journal_ref": "runtime/gap100/fields/modal-query/journal.json",
+      "retained_result": {
+        "path": "runtime/gap100/fields/modal-query/results/a67b7183f53939c0d71f4ce09d35083a52c700af2b45d8e12891f5a3a55ae819.json",
+        "sha256": "57b3ceaf4ec6d00055a05c4705260b566fc080c1b58c4cae2c3402df1c51936a"
+      }
+    },
+    {
+      "role": "form-party-header",
+      "evidence_id": "ev_553c33222d5211996869756ddae6621ed0b4367ce56867c1faae413cf80fa475",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "input_sha256": "153c2f3fcc4dec9ff6ffadb5ed6f09060cdcf1047c7d159633decdb9e804619f",
+      "profile_digest": "3332704a5e2f75254ef5dafbc17b569f18a281f06e43f532052e5710a8051e33",
+      "query_plan_sha256": "b4fc0453accbf2fdabb9897785aedf0346172720f97866d1e620b704210cebb8",
+      "journal_ref": "runtime/gap100/fields/party-header-query/journal.json",
+      "retained_result": {
+        "path": "runtime/gap100/fields/party-header-query/results/0f0bc7265c07dd591b07f28c43ac0f2b836a33422a86655a2c66ce3e7ff46af3.json",
+        "sha256": "58d9895e63a6eace712b823611068d2feac820fde21c39dfe0addc0cdc71b729"
+      }
+    },
+    {
+      "role": "form-status",
+      "evidence_id": "ev_062a595acf3896aa3aafb26c5ac7c91f51c03b045309bedca5e5a3e79a05a2ce",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "input_sha256": "234e7e15a27a32f65122d43bf8eccad73c2ccdc1bfb7afba56dd095117c1eaa7",
+      "profile_digest": "14b4e2bbcb14fcef8da7390c7eb9d04a31e2a0a65f47658879fe68e4c20cde8c",
+      "query_plan_sha256": "0be6e7b6120f15a5d1389c735e6034f399bcf6f9d7530f1f0a9186f970df5953",
+      "journal_ref": "runtime/gap100/fields/status-query/journal.json",
+      "retained_result": {
+        "path": "runtime/gap100/fields/status-query/results/ad56844fc4cff5f8ba0422d1a0688c774210d4d83b297cfb226b79584595084f.json",
+        "sha256": "530e22850e1786eb98d352e081f163ff69c901e94dd2380923a6b0efb87a1423"
+      }
+    },
+    {
+      "role": "form-zone-key",
+      "evidence_id": "ev_fe9a6f561769ba8f0e02316093e306bfef03cd631123a9d5c03633818c039f12",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "input_sha256": "9a17b36f70f65dbd37975f86828bdc7cf79319bc0d6997809d309a13cda3a07a",
+      "profile_digest": "2a054208414658526e2e15582ecc6abb3c642c2efe0314acfad8531439308ea4",
+      "query_plan_sha256": "5cb01a52c3759f3925b4cf5d6772e858817fa596ec89fc4ac34f5e19bcb7b181",
+      "journal_ref": "runtime/gap100/fields/zone-key-query/journal.json",
+      "retained_result": {
+        "path": "runtime/gap100/fields/zone-key-query/results/8ad223389e56ccd8085ae61bda6b9ce575a42dc60f826dcfa20b0b268c28f2c4.json",
+        "sha256": "07657fb1a58662345f2623417edfa41f166e7d0dc6ef93fcea5e56d22ca18775"
+      },
+      "raw_range_start": "0x1458095e0",
+      "raw_range_end_exclusive": "0x145809710",
+      "trailing_int3_bytes": 7
+    },
+    {
+      "role": "form-zone-parse",
+      "evidence_id": "ev_a575efc260f8d857d263e70a9ee71332792fb05693859c0ea2272b89b94bef97",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "input_sha256": "a1717ad65f6be87c1e583f8232e3e85a5f5dcc100733a39c20221f6b4e8e8b0c",
+      "profile_digest": "39d914480b3bf00f92a4626499b3a163a480cbaf19cb5897e6734245a52a9c5f",
+      "query_plan_sha256": "dde7fd751a15338cd5a3c5ddad3620bf407e0f7b29e60c3ae33bb1ed2e15d2bb",
+      "journal_ref": "runtime/gap100/fields/zone-parse-query/journal.json",
+      "retained_result": {
+        "path": "runtime/gap100/fields/zone-parse-query/results/020027768434ef782d927b3c23470d18f3a2b80f92db75c15bd8641b301fa8a0.json",
+        "sha256": "e91237ea75024dca4d30bdd4673184de94759a20b11a8177335cfa08f5d1ec20"
+      }
+    },
+    {
+      "role": "form-zone-name",
+      "evidence_id": "ev_36af5872b812197668670fda57f2703fac74695cb641a30683326ad63611681c",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "input_sha256": "7f6ad37ef75329cfab51e6995a3c36cd2c13238039b0a42a99eca48cbcdbad19",
+      "profile_digest": "751c05dc53983e35307c808bffd6e8bd6cb12aadf796436c46e4fa745c0c017f",
+      "query_plan_sha256": "b9f37af2b5a67f5e09fa619bdca8008fde600ed45013566b5fa210b72e9a77d1",
+      "journal_ref": "runtime/gap100/fields/zone-name-query/journal.json",
+      "retained_result": {
+        "path": "runtime/gap100/fields/zone-name-query/results/d045ea610a59e1981a4af3f47728511c387f7ee445a774b1522c96f0bf576c1a.json",
+        "sha256": "9d0f63954db12118b07c2cea5cebdd99d73c69a8d4c539cf2817ebdf2ca7ae2d"
+      }
+    },
+    {
+      "role": "form-party-header-container",
+      "evidence_id": "ev_27a557ced9943bd4e3ec3e7d7db807e9bfd035d829d34edeffc37d0d25ff5772",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "input_sha256": "c7fc129542e322ed3541faddbc013ea65881959c432ac516570306b20b0c6865",
+      "profile_digest": "e6c81748072665009cda245d1b80c3bdd4bc921812b3a9da210f2ec600824942",
+      "query_plan_sha256": "04a2e68826426e5eed5223efddec25ac4dd176ca78d02a4c7071dbdf713b889f",
+      "journal_ref": "runtime/gap100/fields/party-header-container-query/journal.json",
+      "retained_result": {
+        "path": "runtime/gap100/fields/party-header-container-query/results/d8414910933c29f02fee569b5ca3e0b00019c323f2ae54af8b64d6debb828a78.json",
+        "sha256": "c096dfa2799f9d3de15ec1e54d4af655e85d9feaf6b21c720c9c53c98c06e8e0"
+      }
+    }
+  ],
+  "extracts": {
+    "0x14020f670.asm": "c54857125f285b2ab210961f0edec4f29590dcc7af60237cadcffa8bf866c721",
+    "input-forms.asm": "fb89e7e6eb4b5caa4efb09f1c02e7f2bc9ad8bc4f88810a50aebd539b9e91e4a",
+    "0x145b79680.c": "eec8c6e27a0e53f854951dc827917b404567cd3e02b80d6b65b787769dce7849",
+    "0x145b79680.asm": "1c692b8b15b1c99e1e425697854c269e0fe10e8cadda87e26a26d750429d316a",
+    "0x14020f670.c": "6942388ab56f1b154402c2b2fedf4372105a1f2b3ff96d1067f8c88f33f3e9a0",
+    "0x1402107e0.asm": "3e06db0ff1b9c06c5e90fdc6e944cd751368093f505d1cbff3bd6691b2e87635",
+    "0x1402107e0.c": "e17cb406b85f6de4e048183f4eb273e423f05db185717171a7b37ad78328982c",
+    "0x140211270.asm": "c2670f26722298b29078a66a098d83e75d6b55ca6f9a07a18c97e9c69d306c97",
+    "0x140211270.c": "aee4f921dec236abb0c39518c57f697c2d8acfd5a5fcfb5a3b23eb96cb621ed0",
+    "0x14020cb50.asm": "7ee0945e9004b298681bc0e0a969d60657fc4ea44e72a378a33054b2523c943c",
+    "0x14020cb50.c": "7779412e89a62a166d89c0470457581b65b1f311a3534c8525b8a9209971b5db",
+    "0x14021ca40.asm": "ac6b44189a67b5aba5cd89f12843237999bab2021730069474b5ee11a790b1d3",
+    "0x14021ca40.c": "c8fc99f6b24d146879367e414bbe22dbeba6cfb7bfc5d54e1ba3e59bcdf1bc97",
+    "0x1402ee800.asm": "c180fd51e51855e2b2a834a2a2e301a2c2b5a842e5fa61217218db1ae887aa58",
+    "0x1402ee800.c": "c59d4fd16958dbd5eaf54c5005f0587dca09d628f81b51fcfa25c4109dd5e076",
+    "0x1402f17e0.asm": "5ec9692cce6b64ce1875c8a41d7c900dce7c16e3f3d13e73524fb15af687c57c",
+    "0x1402f17e0.c": "597e28071543079ee12f09afc6c5d2031d4c8be029666cd35b17d7d078ec23bf",
+    "0x1402ef2c0.asm": "31f3b53364ddb627cc5612fa56d9e2ca636ff9012d0ef6cfc2e3e69b6cebdaa4",
+    "0x1402ef2c0.c": "c5c0f5cc7f529ad05cd3642c6883db3eb2a139d0f2f0b50af41c33d0dfc04e4e",
+    "0x14020e930.asm": "a5bb10ac349786d573060fb594251ce2a21e0afef0782cdd7b2de04f06db586f",
+    "0x14020e930.c": "55f368d6ae325d32eb89a2387f9e5dfb5fc6c110359123cd12209f9751795e4f",
+    "0x145809710.asm": "24e410d55603dd2d03878564321687d0a441b5b3a8c0e2ce9105fa5f47c8b65e",
+    "0x145809710.c": "1c06fa24f6f1014a1ffb86219fc6bced41b79237eba3ba5c9c2869cbca59f587",
+    "0x145809010.asm": "e7c189076fb87ae76d534409fc09f45c462b030e672d2970de16a79e9f944932",
+    "0x145809010.c": "82c4125827c6ba40892913303593583b5db288127e1f896523ed0257a733df17",
+    "field-layout.json": "a62ff83cc9b51e68967ca39587c3d54d1fbe8089c5a43feec0da77e739d18b29",
+    "party-header-layout.json": "f331ea17fa200bbd45c5636e03a100d19624c24ef2492f38179f05608a321b37",
+    "zone-fields.json": "fb86af827f6ccd37f22d946533f12d8f3d50af07a8cbdb57f0ddf2062012b2c4",
+    "0x14020d0d0.asm": "7b06bd56eab5f3336dbb7efc1cc09a9e273e7160c882db0de70c87e34d0669b7",
+    "0x14020d0d0.c": "76a133a0ab2572779741341954254e100cf9ff102ffc37a682c2d59770195fd8"
+  },
+  "data_ranges": [
+    {
+      "start": "0x145f1452c",
+      "file_offset": "0x5f1312c",
+      "byte_count": 56,
+      "sha256": "2a5ac9055d29cd6986b51fc9d20336f60cb96da0a681ca7e31a9fabf3b6c5982",
+      "bytes_hex": "ad6130fa706330fa846230fa3d6330fa026230fa876330fa1c6530fa5b6330fa5b6630fa466230fa426630fae46130fa286230faad6330fa"
+    },
+    {
+      "role": "form-focus-and-logical-key-dispatch",
+      "start": "0x145f14588",
+      "file_offset": "0x5f13188",
+      "byte_count": 604,
+      "sha256": "efeeb1e9f6df93afe0022b987be0e498b9949baebb3acaf732f2c7307cfcd403",
+      "bytes_hex": "688630fac58630fa458730fa038730fa248730fae28630fa1b8930fa508630fa508630fa508630fa508630fa508630fa508630fa508630fa508630fa508630fa508630fa508630fa508630fa508630fa508630fa508630fa508630fa628730fafb8b30faad8730fa508630fa508630fa508630fa508630fa508630fa508630fa508630fa508630fab58830fa148730fadc8530fadc8530fadc8530fadc8530fadc8530fadc8530fadc8530fadc8530fadc8530fadc8530fadc8530fadc8530fadc8530fadc8530fadc8530fadc8530faee8630fa328730fadc8530fadc8530fadc8530fadc8530fadc8530fadc8530fadc8530fadc8530fadc8530fa288730fae28630fa688530fa688530fa688530fa688530fa688530fa688530fa688530fa688530fa688530fa688530fa688530fa688530fa688530fa688530fa688530fa688530fa7a8630fa1a8730fa398730fa688530fa688530fa688530fa688530fa688530fa688530fa688530fa688530fa108730faf28530faf48430faf48430faf48430faf48430faf48430faf48430faf48430faf48430faf48430faf48430faf48430faf48430faf48430faf48430faf48430faf48430fa068630fabe8630fa828630faf48430faf48430faf48430faf48430faf48430faf48430faf48430faf48430faf08630fad48630fa808430fa808430fa808430fa808430fa808430fa808430fa808430fa808430fa808430fa808430fa808430fa808430fa808430fa808430fa808430fa808430fa928530fa438630fa838630fa808430fa808430fa808430fa808430fa808430fa808430fa808430fa808430fa398630fa"
+    },
+    {
+      "role": "form-reason-length-dispatch",
+      "start": "0x145f14444",
+      "file_offset": "0x5f13044",
+      "byte_count": 144,
+      "sha256": "b665b9a054ec92b1498afd230d62e99b3f04f7de240e9d8ea2616866fb4e5319",
+      "bytes_hex": "5ca52ffadfa72ffa3ab12ffa22a72ffa0ca92ffa54a92ffa3ab12ffa55a72ffa3ab12ffa1aa82ffa5fa82ffa3ab12ffadda92ffa3ab12ffa9ca92ffa3ab12ffa6aa62ffa9aa72ffadda62ffa3ab12ffa3ab12ffa3ab12ffa36a62ffa3ab12ffa3ab12ffaa4a82ffa3ab12ffa3ab12ffa3ab12ffa3ab12ffa3ab12ffa3ab12ffa3ab12ffa3ab12ffa3ab12ffad8a82ffa"
+    },
+    {
+      "role": "form-phase-length-dispatch",
+      "start": "0x145f144d4",
+      "file_offset": "0x5f130d4",
+      "byte_count": 28,
+      "sha256": "2307334cddd6fc71950617a24e6c3d8f0acb91e327abcd69433b58b5c984c51c",
+      "bytes_hex": "1caa2ffa97aa2ffa37aa2ffac2ab2ffac2ab2ffa50ab2ffa9eab2ffa"
+    },
+    {
+      "role": "zone-key-length-dispatch",
+      "start": "0x146cca80c",
+      "file_offset": "0x6cc940c",
+      "byte_count": 28,
+      "sha256": "9572e455c5aad3152cf7daf7165e42dcc51eaf760e525d9512a7c79a2cfc75ee",
+      "bytes_hex": "f2edb3fe86eeb3fe5ceeb3fe6eeeb3fe24eeb3feb4eeb3fecdeeb3fe"
+    }
+  ],
+  "limits": [
+    "Raw-range Ghidra omits external bodies/data and cannot recover omitted jump tables by itself.",
+    "Native instruction replay uses explicit allocation, string-cloning, trim and queue seams; it does not execute reconstructed Rust, a game or any service.",
+    "Compilation, input/network/rendered execution and original/rebuilt parity remain unverified.",
+    "Headerless Ghidra imports omit external code/data and switch-table destinations; original PE instructions/data and bounded replay supply those selected contracts.",
+    "Keyboard replay starts after ECS acquisition and stops before the next event; it does not execute the actual ECS queue/reader or a Bevy keyboard source. Unicode counts, reserve, and submit helpers are explicit seams.",
+    "Status replay has explicit English lookup, allocation, formatting, and zone-display seams. Native zone-key selector executes original instructions; whole locale/runtime execution remains unverified.",
+    "Node captures bind selected geometry only; the engine child builders, renderer, fonts, input timing and layout execution remain unverified.",
+    "No compilation, Rust regression execution, service connection, sockets, application/game launch or original/rebuilt comparison ran.",
+    "zone-key raw query range retains seven trailing INT3 bytes beyond the last observed return; it is not a declared unwind extent."
+  ],
+  "input_owner_ref": "docs/analysis/evidence/0.115.0/coop-ui/manifest.json#functions[role=input]",
+  "external_extracts": [
+    {
+      "path": "docs/analysis/evidence/0.115.0/coop-directory-response/1458095e0.asm",
+      "sha256": "3229c4c7e554356a989a87a4930b80a8b6f8373bec2e5d4881d1ca8eb2e09e93"
+    },
+    {
+      "path": "docs/analysis/evidence/0.115.0/coop-directory-response/1458095e0.c",
+      "sha256": "fb17448cbe8cc5df2cabb0110b71dd939e1e0eac4ad9e504767bfd1a4493e1bc"
+    }
+  ],
+  "form_field_checks": {
+    "keyboard_editing_cases": 495,
+    "keyboard_admission_cases": 144,
+    "phase_and_reason_cases": 312,
+    "node_captures": 5,
+    "zone_key_name_records": 12,
+    "checker": "scripts/check-coop-form-fields-0.115.0.py"
+  },
+  "manifest_refs": [
+    "docs/analysis/evidence/0.115.0/coop-forms/requests.json",
+    "docs/analysis/evidence/0.115.0/coop-forms/lifecycle.json"
+  ]
+}

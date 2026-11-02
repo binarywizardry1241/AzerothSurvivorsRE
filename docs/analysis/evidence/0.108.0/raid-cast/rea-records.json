@@ -1,0 +1,216 @@
+[
+  {
+    "evidence_id": "ev_16f57ededadf103be91606e78b3074a16685a34ace0359196f9e11a929b64242",
+    "subject": {
+      "name": "hold.bin",
+      "digest": {
+        "sha256": "a23ce73be3a4d2aec2859f25b9f4d92a333376280d6200c309070a5a881b4a37"
+      },
+      "format": "raw-binary",
+      "architecture": "x86_64"
+    },
+    "provider": {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "version": "12.1.4"
+    },
+    "parameters": {
+      "procedure": "0x145950630"
+    },
+    "limitations": [
+      "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+      "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+      "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+      "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+      "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+      "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+      "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+      "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+      "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+      "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+    ],
+    "relationship_coverage": null,
+    "analysis_profile": {
+      "digest": "6211551c9ad518e9be2956adb54f88a021ce2f9346132e208fdacd0e57d1994d",
+      "compiler_spec_id": "gcc",
+      "entry_point": "0x145950630",
+      "analysis_options": {
+        "disabled_analyzers": [
+          "Stack",
+          "Decompiler Switch Analysis",
+          "Function ID",
+          "Function Start Search",
+          "Disassemble Entry Points",
+          "Subroutine References",
+          "Data Reference",
+          "Reference",
+          "Non-Returning Functions - Discovered",
+          "Shared Return Calls",
+          "Create Address Tables"
+        ]
+      }
+    }
+  },
+  {
+    "evidence_id": "ev_f2713c6bfa104e9cb8a7e3df7ff7e10b40a4a5ca2373e7a7696e5c1fbee45601",
+    "subject": {
+      "name": "dispatch.bin",
+      "digest": {
+        "sha256": "95bba6ade1fb988fac4d1ac7062477c82e529519facac5e4be35713dafad10e2"
+      },
+      "format": "raw-binary",
+      "architecture": "x86_64"
+    },
+    "provider": {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "version": "12.1.4"
+    },
+    "parameters": {
+      "procedure": "0x145952759"
+    },
+    "limitations": [
+      "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+      "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+      "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+      "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+      "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+      "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+      "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+      "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+      "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+      "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences.",
+      "Ghidra analysis was seeded before auto-analysis from runtime/cast-presentation-0.108.0/tag6-seed.tsv (sha256 1e454c6f5b235aee4f5645f07de287ab853998749f836d7059732f9602a4764c: 1 function, 1 code, 0 label entries). Seeded functions, code and names are caller assertions, not Ghidra discoveries.",
+      "Seed outcome: 1 functions created, 0 already present, 0 failed; 1 code seeds decoded, 0 failed; 0 labels applied, 0 failed; 0 seeds outside initialized memory."
+    ],
+    "relationship_coverage": null,
+    "analysis_profile": {
+      "digest": "aa97adb09c6af2caa792645415ddfb7a45ea4066aada6ca8cb1fc1d84f0d282e",
+      "compiler_spec_id": "gcc",
+      "entry_point": "0x145950bf0",
+      "analysis_options": {
+        "disabled_analyzers": [
+          "Stack",
+          "Decompiler Switch Analysis",
+          "Function ID",
+          "Function Start Search",
+          "Disassemble Entry Points",
+          "Subroutine References",
+          "Data Reference",
+          "Reference",
+          "Non-Returning Functions - Discovered",
+          "Shared Return Calls",
+          "Create Address Tables"
+        ]
+      }
+    }
+  },
+  {
+    "evidence_id": "ev_ebb94ac7ebe2905b28cda34139e5b25ff9f0af2d8fc3316ff4dc930807bead93",
+    "subject": {
+      "name": "cast-duration.bin",
+      "digest": {
+        "sha256": "8f543c50cbd41ffbe05dca132553bd664b66e94b073fa7b9a7be918312665678"
+      },
+      "format": "raw-binary",
+      "architecture": "x86_64"
+    },
+    "provider": {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "version": "12.1.4"
+    },
+    "parameters": {
+      "procedure": "0x1458850da"
+    },
+    "limitations": [
+      "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+      "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+      "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+      "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+      "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+      "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+      "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+      "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+      "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+      "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences.",
+      "Ghidra analysis was seeded before auto-analysis from runtime/cast-presentation-0.108.0/duration-seed.tsv (sha256 24f52b18e17e430a815e1826cb365c73c848cdf63cba97ab247425dcf510c8ec: 2 function, 2 code, 0 label entries). Seeded functions, code and names are caller assertions, not Ghidra discoveries.",
+      "Seed outcome: 2 functions created, 0 already present, 0 failed; 2 code seeds decoded, 0 failed; 0 labels applied, 0 failed; 0 seeds outside initialized memory."
+    ],
+    "relationship_coverage": null,
+    "analysis_profile": {
+      "digest": "5c9d93cdcbf8a868e83cb19e344fa4a7eeb656cc94cca2515c061bca57dd2191",
+      "compiler_spec_id": "gcc",
+      "entry_point": "0x1458850a0",
+      "analysis_options": {
+        "disabled_analyzers": [
+          "Stack",
+          "Decompiler Switch Analysis",
+          "Function ID",
+          "Function Start Search",
+          "Disassemble Entry Points",
+          "Subroutine References",
+          "Data Reference",
+          "Reference",
+          "Non-Returning Functions - Discovered",
+          "Shared Return Calls",
+          "Create Address Tables"
+        ]
+      }
+    }
+  },
+  {
+    "evidence_id": "ev_dcd1215ed7e41676a93dfec7f3fd033e4a17e40689df03a48ed06d96ecdbb644",
+    "subject": {
+      "name": "cast-duration.bin",
+      "digest": {
+        "sha256": "8f543c50cbd41ffbe05dca132553bd664b66e94b073fa7b9a7be918312665678"
+      },
+      "format": "raw-binary",
+      "architecture": "x86_64"
+    },
+    "provider": {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "version": "12.1.4"
+    },
+    "parameters": {
+      "procedure": "0x145885107"
+    },
+    "limitations": [
+      "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+      "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+      "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+      "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+      "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+      "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+      "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+      "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+      "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+      "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences.",
+      "Ghidra analysis was seeded before auto-analysis from runtime/cast-presentation-0.108.0/duration-seed.tsv (sha256 24f52b18e17e430a815e1826cb365c73c848cdf63cba97ab247425dcf510c8ec: 2 function, 2 code, 0 label entries). Seeded functions, code and names are caller assertions, not Ghidra discoveries.",
+      "Seed outcome: 2 functions created, 0 already present, 0 failed; 2 code seeds decoded, 0 failed; 0 labels applied, 0 failed; 0 seeds outside initialized memory."
+    ],
+    "relationship_coverage": null,
+    "analysis_profile": {
+      "digest": "5c9d93cdcbf8a868e83cb19e344fa4a7eeb656cc94cca2515c061bca57dd2191",
+      "compiler_spec_id": "gcc",
+      "entry_point": "0x1458850a0",
+      "analysis_options": {
+        "disabled_analyzers": [
+          "Stack",
+          "Decompiler Switch Analysis",
+          "Function ID",
+          "Function Start Search",
+          "Disassemble Entry Points",
+          "Subroutine References",
+          "Data Reference",
+          "Reference",
+          "Non-Returning Functions - Discovered",
+          "Shared Return Calls",
+          "Create Address Tables"
+        ]
+      }
+    }
+  }
+]

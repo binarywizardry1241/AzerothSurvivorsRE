@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.115.0",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
+  },
+  "gap_ids": [
+    41,
+    106
+  ],
+  "lead_ids": [
+    "Q41-I01:game_binding_identifier:195",
+    "Q41-I01:game_binding_identifier:196",
+    "Q41-I01:lua_function_declaration:157",
+    "Q41-I01:resource_path:211"
+  ],
+  "generator": {
+    "path": "scripts/check-q41-death-popup-0.115.0.py",
+    "sha256": "a4a5aaac517280dfdff3023cf355bbbcc8f281fe66dbc113272c1777a5cbb3f1"
+  },
+  "native_owner": {
+    "start": "0x145995680",
+    "end_exclusive": "0x1459958a1",
+    "sha256": "dea490c1c032962cf464b20fa908bc0697bec919ac2f20b2c357b8636be5abe1",
+    "assembly": {
+      "path": "docs/analysis/evidence/0.115.0/death-popup-bootstrap.asm",
+      "sha256": "8a937cca1565de355bd636c2938841ab98b0d5f579a877f9cbeeefaebebbf4fa"
+    },
+    "instructions": 140
+  },
+  "lua": {
+    "path": "docs/analysis/evidence/0.115.0/death-popup.lua",
+    "sha256": "be597819bb5d27a5909b0c8f70890a0eba72e5351c3fe908fa4aba8230c2c247",
+    "start": "0x1473339ac",
+    "bytes": 271
+  },
+  "compact_format_prefix": {
+    "start": "0x1473339a8",
+    "bytes": "c0800f01"
+  },
+  "path": {
+    "start": "0x147333abc",
+    "bytes": 34,
+    "value": "Interface\\FrameXML\\StaticPopup.lua"
+  },
+  "interface_sites": [
+    {
+      "site": "0x1459956ea",
+      "bytes": "4c8d05cbe39901",
+      "decoded": "lea r8, [rip + 0x199e3cb]"
+    },
+    {
+      "site": "0x1459956f9",
+      "bytes": "41b922000000",
+      "decoded": "mov r9d, 0x22"
+    },
+    {
+      "site": "0x1459956ff",
+      "bytes": "e80ccc2300",
+      "decoded": "call 0x145bd2310"
+    },
+    {
+      "site": "0x145995741",
+      "bytes": "488d45d0",
+      "decoded": "lea rax, [rbp - 0x30]"
+    },
+    {
+      "site": "0x145995754",
+      "bytes": "488d154de29901",
+      "decoded": "lea rdx, [rip + 0x199e24d]"
+    },
+    {
+      "site": "0x145995763",
+      "bytes": "e8e81b3500",
+      "decoded": "call 0x145ce7350"
+    },
+    {
+      "site": "0x145995791",
+      "bytes": "488d0d24e39901",
+      "decoded": "lea rcx, [rip + 0x199e324]"
+    },
+    {
+      "site": "0x14599579c",
+      "bytes": "ba22000000",
+      "decoded": "mov edx, 0x22"
+    },
+    {
+      "site": "0x1459957a1",
+      "bytes": "e8caf82300",
+      "decoded": "call 0x145bd5070"
+    }
+  ],
+  "ghidra": {
+    "evidence_id": "ev_756c973ee804597afbc37dce58d4d18caa11806e81d3beab23e9726eb18b6024",
+    "profile": "735ca9f2b06b5a399f0da65ddd724a6e38065874267aaaa41343c8aa222a2372",
+    "result": {
+      "path": "runtime/q41-data-contracts-0.115.0/static-popup/rea/results/1ed5ef1c6fbc92469d5d2f7f93d9ec5a39ae1cbe286f0c5469dee536e2b46c37.json",
+      "sha256": "93a9464bb1dd21548b4f04ab1036cee5e5c4f4f1112446efe8a532730a8e3ea6"
+    },
+    "journal": {
+      "path": "runtime/q41-data-contracts-0.115.0/static-popup/rea/journal.json",
+      "sha256": "460eeb0b9d203e0d57c0d3473d441d601115da7b57195c54fdc8788a5882c181"
+    },
+    "plan": {
+      "path": "runtime/q41-data-contracts-0.115.0/static-popup/plan.json",
+      "sha256": "03fa536d61571d8708d85c6535d84e756406b5080443fbf77124c98d84711963"
+    },
+    "seed": {
+      "path": "runtime/q41-data-contracts-0.115.0/static-popup/seeds.tsv",
+      "sha256": "8900fe89a51746ef8dd41930625235de4478244b39053eca92b37eff34025a94"
+    }
+  },
+  "source": {
+    "path": "crates/azeroth-survivors-re/src/gameplay/client/framexml_hud.rs",
+    "sha256": "587f300b6abd425703d51409b7699a2e8db8f2f71836f146ad577ec9785ffbec"
+  },
+  "interpreted_lua": {
+    "harness": {
+      "path": "scripts/check-q41-death-popup.lua",
+      "sha256": "a413996d980264135595c019410cf51fc5be066c60b58cfe5feab6aee0273bb0"
+    },
+    "cases": 52,
+    "vm_generations": 2
+  },
+  "limits": [
+    "Bounded raw-function Ghidra recovery omits shared filesystem, formatting and core-publication callee bodies; their current interfaces are reused from existing core-patch recovery.",
+    "Only the exact recovered Lua executes with a stock-popup seam. The original application, Rust source, core loader, actual death/revive lifecycle and game inputs do not execute.",
+    "No compilation, application/game/network execution, rendered verification or original/rebuilt parity comparison."
+  ]
+}

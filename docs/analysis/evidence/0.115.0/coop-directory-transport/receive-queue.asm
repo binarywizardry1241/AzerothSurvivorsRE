@@ -1,0 +1,33 @@
+0x14586d9a0: push rsi
+0x14586d9a1: sub rsp, 0x40
+0x14586d9a5: mov rsi, rcx
+0x14586d9a8: mov rax, qword ptr [rdx + 0x10]
+0x14586d9ac: mov rdx, qword ptr [rdx + 0x18]
+0x14586d9b0: lea rcx, [rsp + 0x28]
+0x14586d9b5: test rax, rax
+0x14586d9b8: je 0x14586d9e6
+0x14586d9ba: cmp eax, 1
+0x14586d9bd: jne 0x14586da03
+0x14586d9bf: call 0x144a93440
+0x14586d9c4: cmp qword ptr [rsp + 0x28], -1
+0x14586d9ca: je 0x14586d9f3
+0x14586d9cc: mov rax, qword ptr [rsp + 0x38]
+0x14586d9d1: mov qword ptr [rsi + 0x10], rax
+0x14586d9d5: movups xmm0, xmmword ptr [rsp + 0x28]
+0x14586d9da: movups xmmword ptr [rsi], xmm0
+0x14586d9dd: mov rax, rsi
+0x14586d9e0: add rsp, 0x40
+0x14586d9e4: pop rsi
+0x14586d9e5: ret
+0x14586d9e6: call 0x1459a8ca0
+0x14586d9eb: cmp qword ptr [rsp + 0x28], -1
+0x14586d9f1: jne 0x14586d9cc
+0x14586d9f3: mov qword ptr [rsi], 0xffffffffffffffff
+0x14586d9fa: mov rax, rsi
+0x14586d9fd: add rsp, 0x40
+0x14586da01: pop rsi
+0x14586da02: ret
+0x14586da03: call 0x1459a8130
+0x14586da08: cmp qword ptr [rsp + 0x28], -1
+0x14586da0e: jne 0x14586d9cc
+0x14586da10: jmp 0x14586d9f3

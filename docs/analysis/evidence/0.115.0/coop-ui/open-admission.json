@@ -1,0 +1,154 @@
+{
+  "target": {
+    "version": "0.115.0",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
+  },
+  "functions": [
+    {
+      "start": "0x1401003f0",
+      "end_exclusive": "0x1401007e5",
+      "file_offset": "0xff7f0",
+      "sha256": "fccacc98ad458de30c818a50b910feeac20aefaedee6fade66c7e5f3077d92d2",
+      "artifact": "open-picker.asm",
+      "slices": [
+        {
+          "start": "0x140100738",
+          "end_exclusive": "0x1401007d6",
+          "sha256": "d420b37c74836065c6189245ca475b9e9ed3607ca3b00d2998614ce922949f7d"
+        }
+      ]
+    },
+    {
+      "start": "0x14011afb0",
+      "end_exclusive": "0x14011b546",
+      "file_offset": "0x11a3b0",
+      "sha256": "2b54466bb75256a394442366dbab584c1ad682be9b24bb5675485229387aca41",
+      "artifact": "open-initialize.asm",
+      "slices": [
+        {
+          "start": "0x14011b314",
+          "end_exclusive": "0x14011b32f",
+          "sha256": "0ec93674ff4bec02ce25bf22175ff7af01ff2a48c6b6dfa7bebc7d20d25c9d22"
+        },
+        {
+          "start": "0x14011b477",
+          "end_exclusive": "0x14011b485",
+          "sha256": "cac483a5a10fcbd20b77db187b31ad1565a6e3771120e63d6939558e8d33abed"
+        }
+      ]
+    },
+    {
+      "start": "0x14011b850",
+      "end_exclusive": "0x14011c081",
+      "file_offset": "0x11ac50",
+      "sha256": "3cc0cb714e6a1b79177d1301925878d056be637fddbbe20376b387cbb0e3da6f",
+      "artifact": "open-run.asm",
+      "slices": [
+        {
+          "start": "0x14011bb0c",
+          "end_exclusive": "0x14011bb73",
+          "sha256": "9b6d89abd4b595afe1d0e6209e29a3ce95cd046a62838518e4ee13ed37cec20c"
+        },
+        {
+          "start": "0x14011be2d",
+          "end_exclusive": "0x14011be45",
+          "sha256": "8eb0e7ccc67583b6075fbcbd65c8489fa97283ba494ba3b3900ee854153b3cd4"
+        },
+        {
+          "start": "0x14011bf13",
+          "end_exclusive": "0x14011bf1b",
+          "sha256": "a1ed7f75adf13b55c307816f3000c27d5f847fb428adae2e26906effd89bef6a"
+        },
+        {
+          "start": "0x14011bf61",
+          "end_exclusive": "0x14011bf66",
+          "sha256": "79f3793d5e1b13378d2c5806a7e85572ecb8b9885c481ccd977cc15123e19540"
+        },
+        {
+          "start": "0x14011bf84",
+          "end_exclusive": "0x14011bf89",
+          "sha256": "1f364c279b23634a468541901a510e762e7d833d7ecd9207fbe7d6a02ed68dda"
+        }
+      ]
+    },
+    {
+      "start": "0x14010bc00",
+      "end_exclusive": "0x14010cc91",
+      "file_offset": "0x10b000",
+      "sha256": "81ded5f2d270d5f8c29dd88ae162f3357f2a08571d1cc16ff2d4bb97dc6f5fe8",
+      "artifact": "open-admit.asm",
+      "slices": [
+        {
+          "start": "0x14010bc00",
+          "end_exclusive": "0x14010bc34",
+          "sha256": "d449a1d6d0a010be935eac40c207127a6954e2b79c34d49fc78d0d86e23eeae2"
+        },
+        {
+          "start": "0x14010bd75",
+          "end_exclusive": "0x14010bd8e",
+          "sha256": "7c19883f99ea7afd28ae3cbaa63928ebe2754a76f17a01ed067fee8b5f64b26f"
+        },
+        {
+          "start": "0x14010c254",
+          "end_exclusive": "0x14010c267",
+          "sha256": "d64f5a810be732556c162fc56f534d998a6d1109d98133148d8c0697f46a873e"
+        },
+        {
+          "start": "0x14010c8f5",
+          "end_exclusive": "0x14010c911",
+          "sha256": "2924724bf13488b59713b9487f43d4d1d8b67c5b19048bd2ea3132a723b24199"
+        }
+      ]
+    }
+  ],
+  "data_ranges": [
+    {
+      "start": "0x145ef2648",
+      "file_offset": "0x5ef1248",
+      "byte_count": 64,
+      "sha256": "c171fc6acd99f0de964367575ef2a41a8bbf8bb60c4a3d40ed83257a1d29a608",
+      "bytes_hex": "50b811400100000050f61c4001000000c0ec1c400100000080a4114001000000b0a411400100000090c0114001000000a0ec1c4001000000b0af114001000000"
+    },
+    {
+      "start": "0x145ef3560",
+      "file_offset": "0x5ef2160",
+      "byte_count": 4,
+      "sha256": "161d9088d1543b28e4dccba316780f4428a9eb57f16cad2873e7eb445975c169",
+      "bytes_hex": "bd9321fa"
+    }
+  ],
+  "coop_type_id": {
+    "start": "0x145f01550",
+    "bytes_hex": "aa4a6456dd3acaad6f74b1c9b788e2ec",
+    "canonical_binding": "startup-alias.json; generic getter 0x1401570a0"
+  },
+  "binding": [
+    "Picker builder 0x1401003f0 stores Action discriminant 10 at 0x140100738, then invokes the Coop label closure at 0x1401007d1.",
+    "FunctionSystem vtable 0x145ef2648 has run 0x14011b850 at +0 and initializer 0x14011afb0 at +56.",
+    "Initializer 0x14011b314 loads Coop TypeID 0x145f01550; call 0x14011b322 uses canonical resource getter 0x1401570a0. Return ID is saved at frame+0x120 then tupleState+0x170 at 0x14011b477..0x14011b485.",
+    "Run 0x14011bb0c resolves tupleState+0x170 to resource data+0x10, stores it at stack+0x208, then builds ResMut at stack+0x168. Its pointer goes to caller stack+0x48 at 0x14011bf61; call 0x14011bf84 enters handler 0x14010bc00.",
+    "Handler entry pushes 64 bytes, allocates 0x2e8 and sets RBP=RSP+0x80; its RBP+0x2f8 equals caller stack+0x48. R11 receives this ResMut, data pointer becomes frame-0x28, change tick pointer frame-0x20, current tick frame+0x170.",
+    "Dispatch 0x14010c254 reads the Action byte; signed relative table base 0x145ef3538 cell 10 at 0x145ef3560 leads to 0x14010c8f5.",
+    "OPEN 0x14010c8f5..0x14010c911 copies the current change tick and writes only Coop+0x12c=1, then jumps to the input loop at 0x14010be70. No service call or state reset occurs in this branch."
+  ],
+  "contract": {
+    "action": 10,
+    "dispatch_table": "0x145ef3538",
+    "dispatch_cell": "0x145ef3560",
+    "open_branch": "0x14010c8f5",
+    "stop": "0x14010be70",
+    "state_size": 312,
+    "state_write": {
+      "offset": "0x12c",
+      "value": 1
+    },
+    "retained": "Every other state byte, including optional zone, filters, PRIVATE, tab, capacity and revision."
+  },
+  "checks": {
+    "script": "scripts/check-coop-ui-0.115.0.py",
+    "function": "check_open_admission",
+    "cases": 256,
+    "method": "Execute admitted Action 10 dispatch plus OPEN branch for every whole-record byte prefill; compare all 312 state bytes and change tick; reject calls."
+  },
+  "limits": "Static pointer/type binding plus bounded native instruction replay. Input acquisition/gates, full ECS scheduling, rendering, services and original/rebuilt parity are not executed."
+}

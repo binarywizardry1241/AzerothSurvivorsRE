@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "gap_ids": [
+    237
+  ],
+  "queries": [
+    {
+      "role": "account-progress-evaluator",
+      "procedure": "0x145ba4260",
+      "slice_virtual_address": "0x145ba4260",
+      "evidence_id": "ev_7ef29fd78882b789ef815547429e321acd1cf5a70316d890d54696f42e1d0c7a",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "245a6e56bb2db7ae05b480fff59ff14c73eaba49e226bec02aee480f69342482",
+      "normalized_text_sha256": "af56274e8e332ed63840b334590bccb74c1a313321e593a4b946e44e719b4d0f",
+      "plan": {
+        "path": "runtime/fixgap-237-evaluator/plan.json",
+        "sha256": "fd76d7d830c156d996eb73c663df5dce13a836e45939b6bd8238f0bfbf22144d"
+      },
+      "journal": {
+        "path": "runtime/fixgap-237-evaluator/query/journal.json",
+        "sha256": "b505ae46bd4c95ceafc65d4f08d5096f523e541a92731f2291b823dfccae9532"
+      },
+      "result": {
+        "path": "runtime/fixgap-237-evaluator/query/results/cafcd7f08942ac36172c65e56e7f1257a271f2e61e9d77f34274b5ee3ae65440.json",
+        "sha256": "d43b5c41af29932ade0ef009249e717e95d060a107d75bc7449916ba6db1e34e"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap-237-evaluator/code.bin",
+        "sha256": "5f79c0cbdc08616e62bf3587057eec998a1abf486ce34d04e5b5d33163eb9b60"
+      }
+    }
+  ],
+  "native_ranges": [
+    {
+      "start": "0x145ba3940",
+      "end": "0x145ba425a",
+      "sha256": "715b2b2d7d063e7e2fdbdf0facecdee851e7b7938e5f1e6a4799cd75d7b96180"
+    },
+    {
+      "start": "0x145ba4260",
+      "end": "0x145ba62f6",
+      "sha256": "5f79c0cbdc08616e62bf3587057eec998a1abf486ce34d04e5b5d33163eb9b60"
+    },
+    {
+      "start": "0x145c7abb0",
+      "end": "0x145c7ad1b",
+      "sha256": "cd734a60aeaf9c6ec4583533e4b0ba3864d3a10fe88274998d743a6d03d053ed"
+    },
+    {
+      "start": "0x145c8cbf0",
+      "end": "0x145c8cd3b",
+      "sha256": "a5d7bc41dd715097ea8bd28882b2115955a2c61e1450023be47312aee4a61b9c"
+    },
+    {
+      "start": "0x145c92230",
+      "end": "0x145c92409",
+      "sha256": "5bb7735e111a0ca1ea15ab052e6497feea517066879fb8cf89190c12b6d28c78"
+    },
+    {
+      "start": "0x145c97d30",
+      "end": "0x145c97dd5",
+      "sha256": "3c2d551877f7ba69104c58ab40438749a72619ca85c21c37e44a7db388562821"
+    },
+    {
+      "start": "0x145c97de0",
+      "end": "0x145c97fc5",
+      "sha256": "9efde74f6a658cda28104e2cd3e52077c3109ed49f9b2affc44b93453ff690a5"
+    }
+  ],
+  "native_data": [
+    {
+      "role": "dispatch-table",
+      "virtual_address": "0x14768f28c",
+      "file_offset": "0x768e08c",
+      "byte_count": 88,
+      "sha256": "ce99d27cca1878a13565644778e4c2aa2396e91ad91f9e7029b3c52aa40db172"
+    },
+    {
+      "role": "class-descriptors",
+      "virtual_address": "0x146fc05a0",
+      "file_offset": "0x6fbf3a0",
+      "byte_count": 1296,
+      "sha256": "ed2243683b986af4a62a8fbcb5ebac5ecab6dabd1f892ea96a98bd99357ca063"
+    },
+    {
+      "role": "remaining-set-tiers",
+      "virtual_address": "0x1476878c8",
+      "file_offset": "0x76866c8",
+      "byte_count": 40,
+      "sha256": "0e435f520cd0037a4b35f85bbe9f22d60f050e72dd140af1e588cc72460dfb78"
+    }
+  ],
+  "replay": {
+    "states": 36,
+    "cases": 522,
+    "original_instruction_steps": 2471673,
+    "case_sha256": "70778e48b7588c3b7074298aa8281e951a8e8b4ff7be040cacca2d06f8788f6c",
+    "synthetic_seams": [
+      "Save/Definition/owned/star/hbeat memory",
+      "successful allocation/Vec growth/free"
+    ],
+    "application_executed": false
+  },
+  "source_bindings": [
+    {
+      "path": "crates/azeroth-survivors-re/src/account_progression.rs",
+      "start": "pub const CLASSES:",
+      "end": "#[derive(Deserialize)]",
+      "sha256": "69da9292faf4fa54a4e277a561c8f0bc31d948dee965a84c0541dfa1f0e39d22"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/account_progression.rs",
+      "start": "#[derive(Default, Deserialize)]\n#[serde(default)]\npub struct Account",
+      "end": "fn talent_points(",
+      "sha256": "ae1347282af431ffba583a43de7bd58ecaa023361b44f86873d09bc1cc200fc1"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/progression.rs",
+      "start": "fn achievement_inputs(",
+      "end": "/// Current0.112.0 1459b6410;",
+      "sha256": "2a688a7d76d1e08237eb68b6482a3d0d55cfdadf5d9a333056217e04eb20e286"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/save/heroic.rs",
+      "start": "    pub fn heroic_clears(",
+      "end": "    /// Current typed clear value,",
+      "sha256": "e2093876092a25d0be58f775664a06702e597fce55b75e32b360059d979748d8"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/assets/account-achievements-0.121.0.json",
+      "sha256": "9e9712a5e824681f45b032fd42d35a54ee11e7fbea7c9a9dee69404a87ff2034"
+    },
+    {
+      "path": "docs/analysis/evidence/0.121.0/achievement-progress-cases.json",
+      "sha256": "b54667dbc3c180db1ad468c817752cd6a9cacda1051feb8df701725afe35c340"
+    }
+  ],
+  "application_executed": false
+}

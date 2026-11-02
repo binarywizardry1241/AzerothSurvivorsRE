@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.127.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+    "size_bytes": 146721280
+  },
+  "gap_ids": [
+    239
+  ],
+  "target_executed": false,
+  "native_ranges": [
+    {"role":"health-factor","virtual_address":"0x145c09d38","file_offset":"0x5c09138","byte_count":116,"sha256":"e77e5b53b7850508d16b52c071850e8c8a88f3d401cd086988251581a57bae9a","bytes_hex":"31c983f8030f92c1488b86880c000048ffc8780a0f57c0f3480f2ac0eb184889c248d1ea83e0014809d00f57c0f3480f2ac0f30f58c0488d0593c14701f30f59048831c04883be580a0000000f94c0f30f12c00f5905ce3d7d010f580537916200488d0dd03d7d01f30f100c81f30f12f90f59f8","assembly":"docs/analysis/evidence/0.127.0/coop-scaling/health-factor.asm","assembly_sha256":"95e342dac67a4d7d20658073341b07e9961eb968eca9223f26afef8dd574945b"},
+    {"role":"density-factor","virtual_address":"0x145c475e0","file_offset":"0x5c469e0","byte_count":83,"sha256":"ab42b0599a09f919db316d3043840129001e14c439d60510acc12e888d61daa3","bytes_hex":"31c983f8030f92c1498b8424880c000048ffc8780a0f57c0f3480f2ac0eb184889c248d1ea83e0014809d00f57c0f3480f2ac0f30f58c0488d05eae84301f30f590488f30f5905e5e84301f30f58058db85e00","assembly":"docs/analysis/evidence/0.127.0/coop-scaling/density-factor.asm","assembly_sha256":"a6aca9ce3fa0230948e5c87af7f0aaa9f6b1520be7d800c444a74d32f3ba367d"},
+    {"role":"incoming-damage-factor","virtual_address":"0x145c123d8","file_offset":"0x5c117d8","byte_count":105,"sha256":"d050be476482719a91beb9c83ed722d463c6fd31277690b06f9e80d34369a1f4","bytes_hex":"31c983f8030f92c1498b85880c000048ffc87807f3480f2ac0eb154889c248d1ea83e0014809d0f3480f2ac0f30f58c0488d05f93a4701f30f590488f30f590564b77c01f30f58059c0a620031c04983bd580a0000000f94c0488d0d38b77c01f30f590481f30f59f8","assembly":"docs/analysis/evidence/0.127.0/coop-scaling/incoming-damage-factor.asm","assembly_sha256":"76d3c268b5249c501f87025472056acb8c4bcf79b83eaff42336bd871434e357"},
+    {"role":"ordinary-health","virtual_address":"0x145c31628","file_offset":"0x5c30a28","byte_count":117,"sha256":"f9015f11f43e550a4525df365265a84c0c6b989348d111efead05e89883cf550","bytes_hex":"31c983f8030f92c1488b86880c000048ffc878140f57c0f3480f2ac0eb22f30f100572186000eb4d4889c248d1ea83e0014809d00f57c0f3480f2ac0f30f58c0488d0599484501f30f590488f30f590590c67a01f30f58053c18600031c04883be580a0000000f94c0488d0dd8c47a01f30f590481","assembly":"docs/analysis/evidence/0.127.0/coop-scaling/ordinary-health.asm","assembly_sha256":"bac8a386b9c83f788920f87cfe208ab7e8eeb20898ea6f296e2e53aa55fbbeb8"},
+    {"role":"private-reward","virtual_address":"0x145be27f3","file_offset":"0x5be1bf3","byte_count":94,"sha256":"630d92a383260dd7569253a4cf436f9271cfa442e892644fb0e0bfd45e21ae21","bytes_hex":"31c983f8030f92c1488b83880c000048ffc87811f3480f2ac0eb1ff30f100daa066500eb394889c248d1ea83e0014809d0f3480f2ac0f30f58c0488d05d4364a01f30f590488f30f5905cf364a01f30f100d77066500f30f58c1f30f5ec8","assembly":"docs/analysis/evidence/0.127.0/coop-scaling/private-reward.asm","assembly_sha256":"291d9891857b9c1ea08f41d0751722c399cd1aac9b324222e55a3163c9d54c8e"},
+    {"role":"live-cap","virtual_address":"0x145c3138c","file_offset":"0x5c3078c","byte_count":84,"sha256":"fca1ec1ee64a58aff2178f9b567be393a93026a18d456b2cf73c121ccc1b4d11","bytes_hex":"31c983f8030f92c1488b86880c000048ffc87807f3480f2ac0eb154889c248d1ea83e0014809d0f3480f2ac0f30f58c0488d05454b4501f30f590488f30f5905404b4501f30f5805e81a6000f30f590530496800","assembly":"docs/analysis/evidence/0.127.0/coop-scaling/live-cap.asm","assembly_sha256":"0fdcc0f2b4389654ea0c8e88e1a8987c3c9a57898937f7350fd8977d697f049d"},
+    {"role":"boss-health","virtual_address":"0x145c450ef","file_offset":"0x5c444ef","byte_count":55,"sha256":"66a3cddb54f7e0314fc28f9d272a8e625bd5c0ded2c976ea1b655209d9b0307f","bytes_hex":"4c8d05120e4401f3410f591490f30f59159c8c7901f30f5815b4dd5e0031d24883be580a0000000f94c24c8d05508a7901f3410f591490","assembly":"docs/analysis/evidence/0.127.0/coop-scaling/boss-health.asm","assembly_sha256":"9be59e5dec91f40d6a9c423ef50f1b4997e1343d042e8e37bd25066db731be98"},
+    {"role":"guardian-health","virtual_address":"0x145c9dcf4","file_offset":"0x5c9d0f4","byte_count":107,"sha256":"24fbe8ac3cd8f37c91f7826bbebed046c14d63a216348e8ed43709aa0a1fc0d3","bytes_hex":"31c983f8030f92c1488b86880c000048ffc8780a0f57fff3480f2af8eb184889c248d1ea83e0014809d00f57fff3480f2af8f30f58ff488d05d7813e01f30f593c88f30f593d62007401f30f583d7a51590031c04883be580a0000000f94c0488d0d16fe7301f30f593c81","assembly":"docs/analysis/evidence/0.127.0/coop-scaling/guardian-health.asm","assembly_sha256":"bd2c16ca901cf2d9828d4bcc99f1d7f927f25df433776a549c4417ce6c481bc8"},
+    {"role":"party-presence-guard","virtual_address":"0x145c31684","file_offset":"0x5c30a84","byte_count":25,"sha256":"1f52a26051ab4b9ea19c6be9a4e323ab1f042010326d59befc29248af842c8cd","bytes_hex":"31c04883be580a0000000f94c0488d0dd8c47a01f30f590481","assembly":"docs/analysis/evidence/0.127.0/coop-scaling/party-presence-guard.asm","assembly_sha256":"88451f323297ded935d5b0ce42f56bd9a6ad6cadd8d66beba2de83890a4af9c5"}
+  ],
+  "native_data": [
+    {"role":"zone-and-density-table","virtual_address":"0x147085f08","file_offset":"0x7084508","byte_count":12,"sha256":"807dae52a0793e9537ef2645598015b45163540a90f980c3ea6a1b4b8b48c292","bytes_hex":"0000803f3333333f77be9f3e"},
+    {"role":"health-lanes","virtual_address":"0x1473ddb60","file_offset":"0x73dc160","byte_count":16,"sha256":"f964d3e6c358a960556e413afa3cf8c7bc226083b084a6394664e68c79d64867","bytes_hex":"ec51383fb81e853f0000000000000000"},
+    {"role":"party-presence-table","virtual_address":"0x1473ddb70","file_offset":"0x73dc170","byte_count":8,"sha256":"34db36159ac8537f260567b07ceba9fe783f38007e222699c07b6c8b939ea3c9","bytes_hex":"cdcc4c3f0000803f"},
+    {"role":"incoming-coefficient","virtual_address":"0x1473ddb80","file_offset":"0x73dc180","byte_count":4,"sha256":"38ccb04361dafe0353bdf5197b00647d443cb8377cdc6bd1337e51db8060f942","bytes_hex":"6f12833d"},
+    {"role":"ordinary-health-coefficient","virtual_address":"0x1473ddd0c","file_offset":"0x73dc30c","byte_count":4,"sha256":"788515dc204d67dcfe611bcc5f1ab403e2c262c096d3f66764d23c1eebf27be7","bytes_hex":"ec51383f"},
+    {"role":"special-health-coefficient","virtual_address":"0x1473ddda0","file_offset":"0x73dc3a0","byte_count":4,"sha256":"0e783e028b37fe7d32ac66b3dd5205cb555d3f5d87ff568ee39e3f690159857f","bytes_hex":"b81e853f"},
+    {"role":"scalar-one","virtual_address":"0x146232ec0","file_offset":"0x62314c0","byte_count":4,"sha256":"e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c","bytes_hex":"0000803f"},
+    {"role":"packed-one","virtual_address":"0x146232ed0","file_offset":"0x62314d0","byte_count":16,"sha256":"dc66877cfe7b630e6eff03e32b7143fa563e33e3c1f15f740b33ddc67c8a09bb","bytes_hex":"0000803f0000803f0000000000000000"},
+    {"role":"population-base","virtual_address":"0x1462b5d10","file_offset":"0x62b4310","byte_count":4,"sha256":"0c05e73c2748cbfd2e38c0afaf9cb594f78e14fefa3c24190ebc121d45dbee4f","bytes_hex":"00004842"}
+  ],
+  "queries": [
+    {"role":"current-spawning-and-density","procedure":"0x145c46070","evidence_id":"ev_c19b3acf1885b265e50ebbd6e899e5138acd69fbcfa5b632ed4f672bcb27f547","provider":{"id":"ghidra","name":"Ghidra","version":"12.1.4"},"analysis_profile_digest":"2442a2f42667e363e350c1a706ea7f2e5119f76cba772f9e8b691a7cafa1c200","normalized_text_sha256":"b30e77568594ca475d41ffd0314135ed889acc56af0a060d6976722033286a9b","slice_virtual_address":"0x145c46070","plan":{"path":"runtime/caster-navigation-0.127.0/145c46070/plan.json","sha256":"928e8a1b36a65e1288df229e620f337f41d0fe566507a2a22f3fb7584c5c5793"},"journal":{"path":"runtime/caster-navigation-0.127.0/145c46070/rea/journal.json","sha256":"5305fe668fb08d74394b4fd8b59a3d3e32d77a30460122e0b82542a3166112c2"},"result":{"path":"runtime/caster-navigation-0.127.0/145c46070/rea/results/a71f9f5f31d9728c9dfffb3a90001a76a36de8e269fbbb33e5ef32ce25211657.json","sha256":"32206662163163dc6ed970ab3765d5a131aa93565c7b310506f35cd2a2bf92ce"},"raw_input":{"path":"runtime/caster-navigation-0.127.0/145c46070/body.bin","sha256":"0112809d9c210b9155e8c92fe52434fe776d6a39dfcc77f23cd3ab43d57f0b9f"}}
+  ],
+  "contract": {
+    "live_count": "Game+c88, actual non-down heroes clamped at one",
+    "party_presence": "Game+a58, stored other-hero vector length; independent of live count",
+    "zone": "Native zone lookup, first three use0.7",
+    "density": "f32(extra*0.312+1)",
+    "health": "f32(f32(extra*[0.72,1.04]+1)*(party_present?0.8:1))",
+    "incoming": "f32(f32(extra*0.064+1)*(party_present?0.8:1))",
+    "reward": "f32(1/density)"
+  },
+  "limits": [
+    "Static native/source evidence only; no compilation, game, client/network/server execution or parity.",
+    "Zone helper and existing live-count producer are explicit replay seams."
+  ]
+}

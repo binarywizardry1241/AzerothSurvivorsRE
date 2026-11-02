@@ -1,0 +1,281 @@
+{
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "range": {
+    "virtual_address": "0x145c135f0",
+    "file_offset": "0x5c129f0",
+    "byte_count": 1231,
+    "sha256": "1214ff47e42f8a0a6fcbe0487e258cb80598bd406741efaa6a785def5584da50",
+    "instruction_count": 292
+  },
+  "case_count": 2304,
+  "case_digest": "f9c359dfc222d1dcf6f783b45e110a457727eabcc5bfedada22756c8a6691f5e",
+  "native_instruction_steps": 852122,
+  "result": "passed",
+  "limits": "Zone lookup/candidate collection/allocation seams for boss rolls; complete original private swap executes without seams. No application, Rust, game, network or server executes.",
+  "schema_version": 1,
+  "gap_ids": [
+    227,
+    228
+  ],
+  "queries": [
+    {
+      "role": "boss-roll",
+      "procedure": "0x145c135f0",
+      "evidence_id": "ev_afd19bba6cf4b7a6aeb2e902e13d4f691bbc2212e6ad05ba4f3102a9531edab0",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "9d9e3882a52dde0dfa3671ea4a914e0a9ee57220b25b9bf178de95906e291a84",
+      "normalized_text_sha256": "2fcc591cc0325e6d730eff9e739f9767bb1b914ecc77336c3ea87dbd14b25e42",
+      "plan": {
+        "path": "runtime/fixgap-220-229/gear/boss-roll/plan.json",
+        "sha256": "9f1830eafae4275509ad294f79045ce70f00dd3eccfc4731ae60434df516126e"
+      },
+      "journal": {
+        "path": "runtime/fixgap-220-229/gear/boss-roll/query/journal.json",
+        "sha256": "98590f3f8e96a3d18b99ce16f1bca56fce3a8f130cb69d49a14f7eeccca7b56e"
+      },
+      "result": {
+        "path": "runtime/fixgap-220-229/gear/boss-roll/query/results/4145fe72629f9536147051837931ca49ecae82363dc9f8341e5bb9ae825225f1.json",
+        "sha256": "3e683e28720bfda53a48857717f90681d9b932076729b29899965dfdae026289"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap-220-229/gear/boss-roll/code.bin",
+        "sha256": "1214ff47e42f8a0a6fcbe0487e258cb80598bd406741efaa6a785def5584da50"
+      },
+      "slice_virtual_address": "0x145c135f0"
+    },
+    {
+      "role": "boss-candidates",
+      "procedure": "0x145aff7d0",
+      "evidence_id": "ev_a00cd12368303528a103e53128d397f4be5082c31558f550c5cfae723729955c",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "4b08c4bc53fcb8baf71e7c0fd61073950f9d560aa32e4892b4c3809e10caf54e",
+      "normalized_text_sha256": "0f48c7417afe4d815378e12055637afc292dc8b91b16888b1166e2465ba76e95",
+      "plan": {
+        "path": "runtime/fixgap-220-229/gear/boss-candidates/plan.json",
+        "sha256": "07823c2fbf32fad66dbec8aebad76154e44700eddcaa363d21895f28086cbde6"
+      },
+      "journal": {
+        "path": "runtime/fixgap-220-229/gear/boss-candidates/query/journal.json",
+        "sha256": "a14e938517afc7416428a73ea3b81f010acb5cec1114087692ac960c32f5ce9d"
+      },
+      "result": {
+        "path": "runtime/fixgap-220-229/gear/boss-candidates/query/results/622c6a90da882afc88ac660131e7c48e72e8a9d7ff25857fe5ffc11854086e1a.json",
+        "sha256": "b190f53973726346a70895b64433343415b8bab5cea1c920d4cf82ce0f1c6fe0"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap-220-229/gear/boss-candidates/code.bin",
+        "sha256": "57a81613e5f83549a0609a29ead355c2e4b7490058c2f409d525b2a5606b1472"
+      },
+      "slice_virtual_address": "0x145aff7d0"
+    },
+    {
+      "role": "success-recipient",
+      "procedure": "0x145b0cb70",
+      "evidence_id": "ev_7fed51d2c330dffed179fc92d5429fe1e367543b7b203334f096eecf94790f61",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "b77d9e57668d6ad12c18498dada43fe37114958b44296684f3b05c1ce04d3f1a",
+      "normalized_text_sha256": "81de04cfe1809bcb8295ce74d082652b1efd611a899c899b6fc33e8751bf075e",
+      "plan": {
+        "path": "runtime/fixgap-220-229/gear/success-recipient/plan.json",
+        "sha256": "0f07547150bb6b38e0b06b952ff232383591db5fa6fed1e8a4c600a6b6e1b3f8"
+      },
+      "journal": {
+        "path": "runtime/fixgap-220-229/gear/success-recipient/query/journal.json",
+        "sha256": "1f803257546edf52476097c3199f39f6bf6f46e57ba41e28abbe1802c7415016"
+      },
+      "result": {
+        "path": "runtime/fixgap-220-229/gear/success-recipient/query/results/44a8833da4bd2cd8252499904ff80f88af93688d3d604d3066c2c313e25602c2.json",
+        "sha256": "15cbdea49526cb4141712e474718a0040865288197aee3129b7f085cdf9ff4ff"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap-220-229/gear/success-recipient/code.bin",
+        "sha256": "6acac06f2ccbff49cf67f7f88389afdbe81f37c76256a082bc2a3607d34bf96f"
+      },
+      "slice_virtual_address": "0x145b0cb70"
+    },
+    {
+      "role": "receiver",
+      "procedure": "0x145b0e8d0",
+      "evidence_id": "ev_7b10828736978ffa8f552209abd361741b1218287f521133807f33de5fd8212a",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "4b89e7991bafe11c37bad7f33d0dfc1db5f34a400b0e26863aab91ff8f281093",
+      "normalized_text_sha256": "57f2e5cf2e4cf1e205625c45afb4b9f08d339c19695c56af723cff35bcbddf68",
+      "plan": {
+        "path": "runtime/fixgap-220-229/gear/receiver/plan.json",
+        "sha256": "7223b9178390ee932f4b88c64814f8bf267a612a657b0249da7c41ab257ef4e2"
+      },
+      "journal": {
+        "path": "runtime/fixgap-220-229/gear/receiver/query/journal.json",
+        "sha256": "169b5e034152cdb17d6b354040f3ef91915db509bd400f932de8dcdd551b9fda"
+      },
+      "result": {
+        "path": "runtime/fixgap-220-229/gear/receiver/query/results/54fd1960fffeac34d9390c2f2211ad7e1b1795a6d4e69c2f760a79f22235dfe4-4c15c8631830e340.json",
+        "sha256": "680000800ff6f58b900df0f56b4c63c95680bbbd42a8a6a7d940fd9220108bec"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap-220-229/gear/receiver/code.bin",
+        "sha256": "632cd65faeeab64ff3246e2958de72b6506a4c3ca3dc54d7db028419b9d3c00c"
+      },
+      "slice_virtual_address": "0x145b0e8d0"
+    },
+    {
+      "role": "equipment-grant",
+      "procedure": "0x145aaf300",
+      "evidence_id": "ev_64ae823841618db16783d9809c66aa7b6a41d8d47e71189a219b127cdbf633ea",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "aa2f0df0f3e0709f961b8d281228f044957181a41aecfd63e2b147cae91223f4",
+      "normalized_text_sha256": "978b24fcc185461edd8f8cbaa8446007a31ab76dc5c1b724074aed9aeb462ea7",
+      "plan": {
+        "path": "runtime/fixgap-220-229/gear/equipment-grant/plan.json",
+        "sha256": "e097ed3d6f0f444d9a70ce6423e8bc94b8966329cb4a6a7e51d38cfa68127fe7"
+      },
+      "journal": {
+        "path": "runtime/fixgap-220-229/gear/equipment-grant/query/journal.json",
+        "sha256": "aac9a1992241cb4f5064fdc3094e52d8033ab311b4c5ed4dc3b04dd77acf9c3c"
+      },
+      "result": {
+        "path": "runtime/fixgap-220-229/gear/equipment-grant/query/results/8fafcf6246c3fced9d047282cb622407aa26aaf84ecbf6338b25195dc959df55.json",
+        "sha256": "092eda59400b1d5eb3cfe384787f8c4dcb91e3ac0b00f3b3e0cb792cdc8d62b0"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap-220-229/gear/equipment-grant/code.bin",
+        "sha256": "2cdc1ec1529542cf9c7f98f3d2f1759b69beef1f7d21035d73d54480f067d932"
+      },
+      "slice_virtual_address": "0x145aaf300"
+    },
+    {
+      "role": "party-swap",
+      "procedure": "0x145be6f10",
+      "evidence_id": "ev_8d4d85623a3d23f101cc31d981c59dace896884e8dbadd6e3a8eb9ed533a0710",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "930ea8eeec863b1a52b6a6134d3797119a7c3e379440afce93cd036ba33d5fba",
+      "normalized_text_sha256": "50568be5472bab6083568b4ab7a65c151c094edff4de35881292936e0725dc8b",
+      "plan": {
+        "path": "runtime/fixgap-220-229/gear/party-swap/plan.json",
+        "sha256": "7ca22ee729dcb8b3e4128eecd4c2385f535af8a6451bc83788f4ad2c653e7071"
+      },
+      "journal": {
+        "path": "runtime/fixgap-220-229/gear/party-swap/query/journal.json",
+        "sha256": "61d6b38c22403482a5fae8cc47cc7d6abb5bc6606c41704527798110dbac2a73"
+      },
+      "result": {
+        "path": "runtime/fixgap-220-229/gear/party-swap/query/results/9889eb227f0d434937a44513d1d93f71531da15c9046390dea031e27b689c798.json",
+        "sha256": "01edd8ebdb91ebf30e7a1600f232e41168d79ff84454e444a92c7517a5138b8e"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap-220-229/gear/party-swap/code.bin",
+        "sha256": "1ec507d61ad885e3031179fc41c3fd9b2863db821e9bc217be9f6184864e3068"
+      },
+      "slice_virtual_address": "0x145be6f10"
+    },
+    {
+      "role": "party-rewards",
+      "procedure": "0x145bba990",
+      "evidence_id": "ev_fd04de7b9434b3848df65842024d71b33e3916e9f82bbe2b75ea2abaac20a747",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "2525bb83bfbafdfc99258fae10cb38e1416835e360be30bf1aa0e4de03d7d550",
+      "normalized_text_sha256": "12dd61e2b58f3d8b452fb6ebd8cbdad17ff26e63432d641706c08cd86f4debcf",
+      "plan": {
+        "path": "runtime/fixgap-220-229/gear/party-rewards/plan.json",
+        "sha256": "559fcbf6331842c159e7ca98eefb6b5c36deee1ac87dd955b7217aabd3f6caf5"
+      },
+      "journal": {
+        "path": "runtime/fixgap-220-229/gear/party-rewards/query/journal.json",
+        "sha256": "f1f70c7a5eb3f15992c9f3552f1fb10c6db383007c4eb55467f650d0766ae3b7"
+      },
+      "result": {
+        "path": "runtime/fixgap-220-229/gear/party-rewards/query/results/235dd93f343c73ac76cf5b48f030dd18aa72617943ad7d34f70f925eaa599d3d.json",
+        "sha256": "4e6d3023e0f7096ac89487607d0583434a68605b9e3cd651b19476ed112560e7"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap-220-229/gear/party-rewards/code.bin",
+        "sha256": "8948159d406c497bc4a94b766b92b1ecc3d3b461f213ecf8d55f975c39ba8b6a"
+      },
+      "slice_virtual_address": "0x145bba990"
+    }
+  ],
+  "source_bindings": [
+    {
+      "path": "crates/azeroth-survivors-re/src/mob_loot.rs",
+      "sha256": "cc07e1accc8a33e8196fe97dbcfeeef21c6eb8f62dc929e815fe15863a56eeb2"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/save/gear_rewards.rs",
+      "sha256": "b25d3646e64aabcf37ad359717fa74053edaf22b3bfb59b654196a5b531f7fdd"
+    }
+  ],
+  "source_contract": "Current boss marks, Heroic drop multiplier, private piece pity/success/miss queues, saved miss increment/success reset, duplicate conversion, saturating class/cumulative tenths, shared cd8 counter and native remote distribution against current shared phase/counter. Dedicated source files are hash-bound; live adapters and receipt chat are traced in the owning report.",
+  "runtime_validation": "not_run",
+  "parity": "unverified",
+  "data_ranges": [
+    {
+      "virtual_address": "0x14765c370",
+      "file_offset": "0x765b170",
+      "byte_count": 40,
+      "sha256": "ce0857a22698c76260cbeb3989e89ec650712868d45a2f497cf87bac127dcc1a"
+    },
+    {
+      "virtual_address": "0x14765c3f8",
+      "file_offset": "0x765b1f8",
+      "byte_count": 12,
+      "sha256": "bb0d47fe2b12ec1752b05ac36ae2633f142c000fda06175243643e4bdd894c5e"
+    },
+    {
+      "virtual_address": "0x147662c68",
+      "file_offset": "0x7661a68",
+      "byte_count": 34,
+      "sha256": "d72352911f130fff0528f84fd14036f1160edd7704916108fdee454987948674"
+    },
+    {
+      "virtual_address": "0x147662cc0",
+      "file_offset": "0x7661ac0",
+      "byte_count": 70,
+      "sha256": "86c533458d03a405f497826698a633d13f220abb6bde5b131f757563bc7845b2"
+    }
+  ],
+  "shared_state_swap_cases": 2,
+  "swap_range": {
+    "virtual_address": "0x145be6f10",
+    "file_offset": "0x5be6310",
+    "byte_count": 5031,
+    "sha256": "1ec507d61ad885e3031179fc41c3fd9b2863db821e9bc217be9f6184864e3068",
+    "instruction_count": 733
+  },
+  "lifecycle_evidence": {
+    "path": "docs/analysis/evidence/0.121.0/reward-endless-lifecycle.json",
+    "sha256": "d5ea5a3f907a30d2207437ba7a8ec52af4b044bed86d0ca533166a6d5a310f89"
+  }
+}

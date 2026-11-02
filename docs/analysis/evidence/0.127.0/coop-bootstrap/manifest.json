@@ -1,0 +1,277 @@
+{
+  "schema_version": 1,
+  "scope_id": "current-player-login-sync",
+  "target": {
+    "version": "0.127.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+    "size_bytes": 146721280
+  },
+  "gap_ids": [
+    203
+  ],
+  "scope": "Actual guest Sync producer, host admission and initial Engine7 publication before synchronized state; reliable replay remains canonical #198.",
+  "ranges": [
+    {
+      "role": "player-login-dispatch",
+      "start": "0x145bc27f9",
+      "end_exclusive": "0x145bc2814",
+      "file_offset": "0x5bc1bf9",
+      "byte_count": 27,
+      "sha256": "4170cbe69390e33356315084c402baea3eb58801d64de9f54a5f472c48275575",
+      "instruction_count": 8
+    },
+    {
+      "role": "guest-sync-producer",
+      "start": "0x145bc298e",
+      "end_exclusive": "0x145bc2a68",
+      "file_offset": "0x5bc1d8e",
+      "byte_count": 218,
+      "sha256": "ac885fdd403ad25cc64520688b608d777c7ed25fe807310aff6aaa8b93ec0c9b",
+      "instruction_count": 37
+    },
+    {
+      "role": "host-bootstrap-callback",
+      "start": "0x145bd31f0",
+      "end_exclusive": "0x145bd3690",
+      "file_offset": "0x5bd25f0",
+      "byte_count": 1184,
+      "sha256": "3886dbb91d8c5f3974dc10f5021687764136bc25f66f1c7c5463bba7da76d773",
+      "instruction_count": 248
+    },
+    {
+      "role": "sync-serializer",
+      "start": "0x145d15b7d",
+      "end_exclusive": "0x145d15b8e",
+      "file_offset": "0x5d14f7d",
+      "byte_count": 17,
+      "sha256": "b295d80679e96d69c0cdd4f59caf79d8026bb276a813bb761805b13e40c8b7c7",
+      "instruction_count": 5
+    }
+  ],
+  "assembly": {
+    "path": "docs/analysis/evidence/0.127.0/coop-bootstrap/selected.asm",
+    "sha256": "ee87d24eba4b776ecbdcb6253dbcf77e38264df3a3def4354347c1262720a936"
+  },
+  "queries": [
+    {
+      "procedure": "0x145bd31f0",
+      "slice_virtual_address": "0x145bd31f0",
+      "evidence_id": "ev_645937ef5280f1c4bdca09a9b4ca9f444c7926f86e89eac94b866a0785eb13ba",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "a386e5350f10abfcffd9185688ac3c2ea80db54f4d03b000e70eec76dfcae26b",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-198-203-0.127.0/bootstrap/slices/plan-145bd31f0.json",
+        "sha256": "dc0172bafc43376d106b1ba33f444670e94b436fa9ae6fc008b8a6fd4dfc6d8d"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-198-203-0.127.0/bootstrap/rea-145bd31f0/journal.json",
+        "sha256": "a9062b063d6175f5d1a65c899a5de4b65ad5eb97284fb8271295656916e11a47"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-198-203-0.127.0/bootstrap/rea-145bd31f0/results/c6dc89547d5ae888b7e131977cd61506418cd75f630c588a46682e423f6ba5ed-f83a03092f26450e.json",
+        "sha256": "79412adc82473b950729eb0eb7d9d3105a1bdf17106474c490550b3d7f6901c0"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-198-203-0.127.0/bootstrap/slices/picker-145bd31f0.bin",
+        "sha256": "3886dbb91d8c5f3974dc10f5021687764136bc25f66f1c7c5463bba7da76d773"
+      }
+    },
+    {
+      "procedure": "0x145bc298e",
+      "slice_virtual_address": "0x145bc298e",
+      "evidence_id": "ev_e0dedd84b9564c9bf9027d9dd7f16929b8c94b5bb90226adb4ea4cd2a3a7f312",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "bcc2f474a80d842acfe6efa122e66534b4ee27101f4a7222f3c89e837567e599",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-198-203-0.127.0/sync-request/slices/plan-145bc298e.json",
+        "sha256": "18dba71b9a622d05e020c828b19088068aa2423bdf303277a23ac5f788e3c116"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-198-203-0.127.0/sync-request/query-final-tools/journal.json",
+        "sha256": "aa73d605b6abcaa875fefc5bcc31d1de01994231a53f077d6974231c865ff76c"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-198-203-0.127.0/sync-request/query-final-tools/results/120dcb5f12fa40fc365d302b1befaf2c443211b54d2ddc995947ffb6a3a341e1-8ca7d88ac95c6605.json",
+        "sha256": "122ed6c0ad900bc66cef9db554f690ad88d8ee96f2940bb8879e8e00115163e8"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-198-203-0.127.0/sync-request/slices/picker-145bc298e.bin",
+        "sha256": "ac885fdd403ad25cc64520688b608d777c7ed25fe807310aff6aaa8b93ec0c9b"
+      }
+    },
+    {
+      "role": "frame",
+      "procedure": "0x145bb29f0",
+      "slice_virtual_address": "0x145bb29f0",
+      "evidence_id": "ev_871a39ab227c2266accd1a8ff4492b7a459692297a10dbee42b5ddd1c9a89eb3",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "5a4334324ff1d6bdf0aeaf9a44ae4ae5ac0241992f1a56ade5a6d22a41ad46ef",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/slices/plan-145bb29f0.json",
+        "sha256": "92e6f0cd80a5180622bfcbaa5313b961e224d7cc532d844cdd3797a0095ce628"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/rea-145bb29f0/journal.json",
+        "sha256": "3d92beddc0ee45690e3ab9362d218e9f3bdc74f346e92f0411e2f1c6f98d581a"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/rea-145bb29f0/results/433346ba21423f054811a125f75e167bbdda0768f5cd5a97434b5402c01e47c4.json",
+        "sha256": "4ece71095c33f48f0bb8cd36f8403cf73223d2b31760cc5fd1b6538379085cde"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/slices/picker-145bb29f0.bin",
+        "sha256": "332147aa07e399d36b92ae9a4ca36f4d8bcf9943eba0adfcdc75be4569fe184d"
+      },
+      "normalized_text_sha256": "108cded2be46056e7fa37e9dd44657cd56466465a4011c288c0a9c4be729343c",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "332147aa07e399d36b92ae9a4ca36f4d8bcf9943eba0adfcdc75be4569fe184d",
+        "virtual_address": "0x145bb29f0",
+        "file_offset": "0x5bb1df0",
+        "byte_count": 33394,
+        "result": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/rea-145bb29f0/results/433346ba21423f054811a125f75e167bbdda0768f5cd5a97434b5402c01e47c4.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "role": "handler",
+      "procedure": "0x145bd6280",
+      "slice_virtual_address": "0x145bd6280",
+      "evidence_id": "ev_a839c952bbc6093f6467c832ac2a32c3160d7945cffbab929079d33bfddeba6e",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "d6a101986160d8efa8693eb4512c1d72f4c9e3c3bd809f319e60582287e4d5b3",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/slices/plan-145bd6280.json",
+        "sha256": "33ab2f575f32eb363036baaae21710fa2a705a9a1d07b375afd0b31b6255ce5a"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/rea-145bd6280/journal.json",
+        "sha256": "97fbb6c2e1273d318bc219246420afb49ac70a7873213696aad1288f298cf587"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/rea-145bd6280/results/1715f15178db25b788e8384446be4af1cdd73804afb0cb88dbee69a9f8b32c29.json",
+        "sha256": "2ec4fc6f40be02305773c32cd2e8a1662bf642c7c936e3d37a5c6196198a6197"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/slices/picker-145bd6280.bin",
+        "sha256": "6c0ba71b65e3c935e90894507cda149dcff43500c6836546a69d4410e095fe5b"
+      },
+      "normalized_text_sha256": "7406e478a6d3e643b0f82253519f8e86f6ae925bdf06f7aa35f90eed733cfb2b",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "6c0ba71b65e3c935e90894507cda149dcff43500c6836546a69d4410e095fe5b",
+        "virtual_address": "0x145bd6280",
+        "file_offset": "0x5bd5680",
+        "byte_count": 3604,
+        "result": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/rea-145bd6280/results/1715f15178db25b788e8384446be4af1cdd73804afb0cb88dbee69a9f8b32c29.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "role": "serializer",
+      "procedure": "0x145d14a90",
+      "slice_virtual_address": "0x145d14a90",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_97bbe28004b41c53b881825dffea09105ed6ea3266838774c3c2587e1ea3be8f",
+      "analysis_profile_digest": "541fd90b010b66664b5f1c4e3915bd0a715988cf860b42796dc7b7b41228ff93",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/serializer/plan.json",
+        "sha256": "c34d7305b50e878cc04be8e92a1a482ddfde70f18f246196f04279e892e778c1"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/serializer/rea/journal.json",
+        "sha256": "55c48485e0e67b102f726a54053a1efd6d3319545cefd1ffa9592d29567e2b7c"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/serializer/rea/results/63277a1bd7723663d55760932149ca3e217d923077fa21547186f8bee832e3ed.json",
+        "sha256": "a700462c95880001e54de00c2fa55a4316a7211191ba1bc4fec5f131945668a4"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/serializer/body.bin",
+        "sha256": "ea3d6084623730a98ecd9ba9b18930c44bc7cfa3ac67d8cf3cef32b4375cd706"
+      },
+      "normalized_sha256": "031f118696e380fa0401799e116693d10bb922ac4face9e2e22c9dcf1b13778b",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "ea3d6084623730a98ecd9ba9b18930c44bc7cfa3ac67d8cf3cef32b4375cd706",
+        "virtual_address": "0x145d14a90",
+        "file_offset": "0x5d13e90",
+        "byte_count": 5708,
+        "result": "runtime/analysis/tasks/fixgap-101-0.127.0/serializer/rea/results/63277a1bd7723663d55760932149ca3e217d923077fa21547186f8bee832e3ed.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    }
+  ],
+  "dispatch_ranges": [
+    {
+      "role": "decoded-enum-prefix",
+      "start": "0x145bd6280",
+      "byte_count": 608,
+      "sha256": "713bc84b0dd7b40b341bb9f4ed6fc72a7a91b82b4d82dc57eda38555d174e9d8",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/decoded-enum-prefix.asm",
+        "sha256": "be3ac97e2972beebc809714a19ad4bda9b31814cc5a818786c326b9da95d187c"
+      }
+    },
+    {
+      "role": "decoded-enum-arms",
+      "start": "0x145bd68b8",
+      "byte_count": 623,
+      "sha256": "3a5a90c1c5708966cf55236a9ed4eb37ab37bb96bcd8cc036e438f3c74723caa",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/decoded-enum-arms.asm",
+        "sha256": "d016a49d0d70bfb9ec5ea780b32449154a18ef10ad12db7a2a7485bd9e62d7cc"
+      }
+    }
+  ],
+  "relay_manifest": {
+    "path": "docs/analysis/evidence/0.127.0/relay-load/manifest.json",
+    "sha256": "5dfeddd3c24484feb842ec3fd7c390151988fe3dfe0cc07fb87187a60c29cf4f"
+  },
+  "contracts": {
+    "player_login_opcode": 61,
+    "opcode_domain_start": 54,
+    "opcode_domain_cases": 8,
+    "opcode_table": "0x147085c1c",
+    "sync_descriptor": "0x1470835a0",
+    "sync_variant": 5,
+    "sync_wire_tag": 6,
+    "engine_variant": 6,
+    "engine_wire_tag": 7,
+    "assigned_variant": 1,
+    "joined_offset": "0x4e4",
+    "synchronized_offset": "0x4e5",
+    "client_stride": "0x4e8",
+    "app_present_world_excluded_variant": 2,
+    "app_variant_type_name": "unestablished; raw gate retained without generic engine reconstruction"
+  },
+  "limits": [
+    "Selected source/bootstrap interface only. Existing snapshot packet/resource contracts retain historical provenance unless independently current.",
+    "Application-level ACK/retry/timeout is not inferred; ordinary-loss replay/ACK/control/timeout policy is independently current under #198.",
+    "No compilation, game/client/server/network execution or original/rebuilt parity."
+  ]
+}

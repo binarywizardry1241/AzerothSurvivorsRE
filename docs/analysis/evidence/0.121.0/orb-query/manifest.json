@@ -1,0 +1,254 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "gap_ids": [
+    247
+  ],
+  "related_gap_ids": [
+    64,
+    65,
+    201,
+    224
+  ],
+  "bounded_contract_system_ids": [
+    "custom-game-server-party"
+  ],
+  "bounded_contract_owner_scopes": {
+    "custom-game-server-party": "Opcode0x60/entry9612 guarded path, descriptor identity/name/display and object-key name lookup with raw fallback/non-null empty handling through metadata-constructor arguments; full wire, outer party admission/lifecycle, rendering, combat and parity remain outside scope."
+  },
+  "inputs": [
+    {
+      "path": "docs/analysis/coverage/full-image-execheck-0.121.0.json",
+      "sha256": "76e27cb956a7a75142fbdc71bb3808fe1c7885c5f0f72f88fe5d846dc4b9c17f"
+    },
+    {
+      "path": "docs/analysis/coverage/native-jump-tables-rechecked-0.121.0.json",
+      "sha256": "53e256ff559a18d31e180ecdf2da9779c918e174364ac0e8680f95537055b1e1"
+    },
+    {
+      "path": "scripts/check-explosive-orb-query-0.121.0.py",
+      "sha256": "f4f5f656c5183a5113ca67c8971d056b9264e3f62f208c5db0c154db59a47c88"
+    },
+    {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+    },
+    {
+      "path": "scripts/discovery_native_subject.py",
+      "sha256": "e0bedb2d826d136b6b4c1bfb51b970160c2c42875b713fb1d2814ac360090a6a"
+    }
+  ],
+  "historical_provenance": {
+    "finite_creature_query_contract": {
+      "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
+      "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
+    },
+    "previous_112_cell_table": {
+      "evidence": {
+        "path": "docs/analysis/evidence/0.120.5/computed-correspondence-frontier.json",
+        "sha256": "161fd9e2d892d75e70b90d52e99f173dc04d885622aa520133814461467f75cf"
+      },
+      "selector": [
+        "leads",
+        "retained-table-145afa2a7"
+      ],
+      "historical_native_dispatch": "0x145b12b57",
+      "preserved_source_9612": [
+        "",
+        "",
+        8,
+        10990
+      ]
+    },
+    "limits": "Prior empty-name/type8/display10990 row and original finite-query repair retain their historical target; no old RVA is used as current."
+  },
+  "native_ranges": [
+    {
+      "role": "opcode-selector",
+      "virtual_address": "0x145b0f61e",
+      "file_offset": "0x5b0ea1e",
+      "byte_count": 28,
+      "sha256": "40a7a51fca93d5dbd410e76d76db0a993fcd27b55c2d57e15fbdd8f56a56b684",
+      "bytes_hex": "8d48b583f9150f8707010000488d15c74cb50148630c8a4801d1ffe1",
+      "instruction_count": 7
+    },
+    {
+      "role": "entry-prefix-gate",
+      "virtual_address": "0x145b0f862",
+      "file_offset": "0x5b0ec62",
+      "byte_count": 32,
+      "sha256": "86c460af0795908de9f9a85074cbc93ffe14728d36a784820cef8c4018e536e6",
+      "bytes_hex": "31c04d85e40f8478040000410fb60e4983fc010f85ea08000031d2e90b090000",
+      "instruction_count": 8
+    },
+    {
+      "role": "entry-selector",
+      "virtual_address": "0x145b10165",
+      "file_offset": "0x5b0f565",
+      "byte_count": 81,
+      "sha256": "0f82a9aef3070f003382488f1cb756a809a87ebb25f5005816f1d0d34b496376",
+      "bytes_hex": "410fb65601c1e2084983fc03721a410fb64602c1e0104983fc03740c450fb6460341c1e0184409c009d0440fb6f14109c6418d86e4daffff83f8700f872c0e0000488d0d7342b501486304814801c8ffe0",
+      "instruction_count": 21
+    },
+    {
+      "role": "orb-case",
+      "virtual_address": "0x145b1142e",
+      "file_offset": "0x5b1082e",
+      "byte_count": 15,
+      "sha256": "2501071c536f83de776fece6c2769e6eb48597be67c475ad5515c01765ef729f",
+      "bytes_hex": "4989dc4c89eb4c8d3d85f84a01eb58",
+      "instruction_count": 4
+    },
+    {
+      "role": "metadata-constructor-consumer",
+      "virtual_address": "0x145b11495",
+      "file_offset": "0x5b10895",
+      "byte_count": 83,
+      "sha256": "30052a2be6d3f8af94c4e56189b0a0c23c072c42d33037bbb7e4f6fb033248fe",
+      "bytes_hex": "4c89f9e8737cf8ff4989d5458b4714b90100000041b90a0000004531d231d24885c00f84850c00004489442440448954243844894c2430488954242848894c2420488d4dd04489f24989c04d89e9e838470700",
+      "instruction_count": 20
+    },
+    {
+      "role": "object-name-getter",
+      "virtual_address": "0x145a99110",
+      "file_offset": "0x5a98510",
+      "byte_count": 151,
+      "sha256": "e403574e5083989987c7a50778f723cc167f4ffb6b6f229e974e9a41821fb2b7",
+      "bytes_hex": "5541565657534883ec60488d6c246048c745f8feffffff4889cf488d4110488945c8488d05e7725300488945d0488d159c905101488d4dd84c8d45c8e81f585200488b4de0488b55e8488b37488b5f0848894df0e8f71d0500904889c7488b45d84885c0741841b801000000488b4df04989d64889c2e8459056fa4c89f24885ff480f45f7480f44d34889f04883c4605b5f5e415e5dc3",
+      "instruction_count": 45
+    }
+  ],
+  "native_data": [
+    {
+      "role": "opcode-table",
+      "virtual_address": "0x1476642f8",
+      "file_offset": "0x76630f8",
+      "byte_count": 88,
+      "sha256": "27d83347c77a455f404fd89342aa8458022a2da8a20142f9ce4b0390d8fabc83",
+      "bytes_hex": "42b34afea1b64afea1b64afea1b64afea1b64afe0ab54afea1b64afea1b64afea1b64afea1b64afea1b64afe2ab54afea1b64afea1b64afea1b64afea1b64afea1b64afea1b64afea1b64afe4ab54afea1b64afe6ab54afe"
+    },
+    {
+      "role": "entry-table",
+      "virtual_address": "0x147664420",
+      "file_offset": "0x7663220",
+      "byte_count": 452,
+      "sha256": "aa678e2843c0f5902d7c1d9aa385106da1d8f36d747e8b12b92d8c594e900bdd",
+      "bytes_hex": "96bd4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afe50cf4afedecf4afe2cd04afecccf4afe3bd04afebacf4afe4ad04afeffcf4afef0cf4afe59d04afea8cf4afe1dd04afe68d04afe0ed04afe"
+    },
+    {
+      "role": "orb-descriptor",
+      "virtual_address": "0x146fc0cc0",
+      "file_offset": "0x6fbfac0",
+      "byte_count": 32,
+      "sha256": "b445e413e5ffd7db9c3c390ccebfc26708064c957978df14e1890356d1b83f4c",
+      "bytes_hex": "2f0bfc46010000000d000000000000008c250000ef3e00006666663f00000000"
+    },
+    {
+      "role": "orb-raw-name",
+      "virtual_address": "0x146fc0b2f",
+      "file_offset": "0x6fbf92f",
+      "byte_count": 13,
+      "sha256": "7bd829fbc3f07bdea38fecac032788ea57d1af2e99d51b591fdfabacade41c33",
+      "bytes_hex": "4578706c6f73697665204f7262"
+    },
+    {
+      "role": "name-key-format-program",
+      "virtual_address": "0x146fb21e0",
+      "file_offset": "0x6fb0fe0",
+      "byte_count": 16,
+      "sha256": "d8e0a26606d10614b944a0d96a9febc12f2ee23faaaa2b3e94369865237d7ebe",
+      "bytes_hex": "076f626a6563742ec0052e6e616d6500"
+    }
+  ],
+  "queries": [
+    {
+      "role": "object-name-getter",
+      "procedure": "0x145a99110",
+      "evidence_id": "ev_5106906750914693838235e5403186501f3b97be6daa89fa69f15cd740eb3eb9",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "b39d1910454a1a7c63f1f67bdee986cc8d85201b4fcb20bdcd4a676d41fc743e",
+      "normalized_text_sha256": "7e2f950b20bc49e2facfa6cb23dcbd94aa622066b2df74dd22e7f3f452c2670f",
+      "plan": {
+        "path": "runtime/execheck-0.121.0/orb-query/plan.json",
+        "sha256": "d79564387e5cd2e9b059a94c45abbad6a8abb391759d9bf4c2d46019c7ebafd4"
+      },
+      "journal": {
+        "path": "runtime/execheck-0.121.0/orb-query/query/journal.json",
+        "sha256": "6d7b1ba1563bfbbb60ed2cfc84a989b5e4d461c27ec93a48948f5eb07eb18291"
+      },
+      "result": {
+        "path": "runtime/execheck-0.121.0/orb-query/query/results/961ccbdabd9ac5d4f3fa8643e69add37f722cfc2c89b0b210081fc90ed73b41f.json",
+        "sha256": "7547d1f671f78045cbcfb113deda6bd4cbca3f93bd5812d847db230507115c75"
+      },
+      "raw_input": {
+        "path": "runtime/execheck-0.121.0/orb-query/code.bin",
+        "sha256": "e403574e5083989987c7a50778f723cc167f4ffb6b6f229e974e9a41821fb2b7"
+      },
+      "slice_virtual_address": "0x145a99110"
+    }
+  ],
+  "source_bindings": [
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+      "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+      "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+      "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+    },
+    {
+      "path": "crates/benilla-protocol/src/messages/parse.rs",
+      "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+    }
+  ],
+  "recovered_contract": {
+    "opcode": 96,
+    "entry": 9612,
+    "selector_base": 9500,
+    "selector_index": 112,
+    "selector_cells": 113,
+    "case_target": "0x145b1142e",
+    "descriptor": "0x146fc0cc0",
+    "raw_name": "Explosive Orb",
+    "localized_key_inputs": "object.<descriptor u32+0x10>.name; packed formatter and integer-format callback are explicit library interfaces",
+    "display_id": 16111,
+    "metadata_constructor_inputs": {
+      "empty_subname_pointer": 1,
+      "empty_subname_length": 0,
+      "creature_type": 10,
+      "rank": 0,
+      "display_id": 16111
+    },
+    "lookup_failure": "Null lookup result uses raw descriptor pointer/length; a non-null empty translation remains selected.",
+    "source_difference": "SPECIALS currently returns an empty name, type8 and display10990 for9612. Existing opcode/request/query/serializer/parser consumers are reused as source seams."
+  },
+  "descriptor_only_observations": {
+    "offset_0x18_float_bits": "0x3f666666",
+    "float_value": 0.9,
+    "consumer_proved": false
+  },
+  "pending": [
+    "Recover/apply the exact current9612 localization payload/source key and replace query metadata through the existing source owner in a selected repair.",
+    "Current constructor serializer/wire output and other newly affected CreatureQuery cells need their own correspondence; this fixture stops at constructor145b85c20.",
+    "Empty payload/default/unmatched-entry paths, actual lookup-map ownership and generic formatter/allocation internals remain outside this bounded proof.",
+    "Five-direct-hit/AoE immunity/spawn timing/combat effects belong independently to#224."
+  ],
+  "static_validation": "Original byte/Capstone admission, one durable151-byte raw Ghidra query, eight name-getter and24 dispatch-to-constructor instruction cases with declared library seams; no reconstructed Rust execution.",
+  "target_executed": false,
+  "runtime_validation": "not_run",
+  "parity": "unverified",
+  "limits": "Ghidra raw slice omits external formatting/lookup/free bodies and data; compiler-decompiled argument types are navigation only. Original register/instruction/data bytes govern. Key formatting, optional locale results and deallocation are synthetic seams; metadata constructor is a stop. The0.9 descriptor field has no recovered scale consumer. No compilation, game/client/network/server operation or original/rebuilt comparison."
+}

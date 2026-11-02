@@ -1,0 +1,97 @@
+{
+  "target_sha256": "e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048",
+  "input_fixtures": [
+    {
+      "path": "docs/analysis/evidence/0.105.0/power-scaling/weapon/native-fixtures.json",
+      "sha256": "9d17e6619e81952be0ed6072efc3e07c9e7300052c2167cf9944354ca4aba3cc"
+    },
+    {
+      "path": "docs/analysis/evidence/0.105.0/power-scaling/pet-tick/native-tick.json",
+      "sha256": "4c3c4a1224742c7e768d04e7d7b5cb05a16bdff734d8cc87e26ad422196fea4e"
+    },
+    {
+      "path": "docs/analysis/evidence/0.105.0/power-scaling/pet-power/native-power.json",
+      "sha256": "c903f13779d772c5374b140b6521ce586c1cc07069537ffb69f866a0789ab11a"
+    }
+  ],
+  "ranges": [
+    {
+      "role": "pet-tick",
+      "va": "0x145929f40",
+      "byte_count": 16808,
+      "file_offset": "0x5929340",
+      "sha256": "fdd71c0e40cda8afc4d14e621798c5a2ee2a3855766c9b3c1927ffb8b9502430",
+      "assembly": "pet-tick.asm"
+    },
+    {
+      "role": "movement",
+      "va": "0x1459348e0",
+      "byte_count": 765,
+      "file_offset": "0x5933ce0",
+      "sha256": "c7c97b52bc520f1d69b4a1d1ea919f46be48696031ca7032eb21de93cde4b4ca",
+      "assembly": "movement.asm"
+    },
+    {
+      "role": "cooldown",
+      "va": "0x145954780",
+      "byte_count": 579,
+      "file_offset": "0x5953b80",
+      "sha256": "054d9fd3def6c0872cbec4833538cb22b1a4bb664677e06f575c2ce5359c08eb",
+      "assembly": "cooldown.asm"
+    },
+    {
+      "role": "target-query",
+      "va": "0x1459261a0",
+      "byte_count": 1411,
+      "file_offset": "0x59255a0",
+      "sha256": "4a5e17dac7541ad85da304107db811452004f0525bd094cbc35abe43a6ae9f0e",
+      "assembly": "target-query.asm"
+    },
+    {
+      "role": "expired-pet-cleanup",
+      "va": "0x145927fa0",
+      "byte_count": 399,
+      "file_offset": "0x59273a0",
+      "sha256": "1100d7d859fded4e4eb0f5167f9b57b345bbc15b49aa246bab796890d50e5343",
+      "assembly": "expired-pet-cleanup.asm"
+    },
+    {
+      "role": "creation",
+      "va": "0x145929010",
+      "byte_count": 3394,
+      "file_offset": "0x5928410",
+      "sha256": "270cc205ff8b950a6f21e54610d21a8408fe1f877d53011dfb345f45c2b3133b",
+      "assembly": "creation.asm"
+    },
+    {
+      "role": "weapon-stage",
+      "va": "0x1458f7312",
+      "byte_count": 777,
+      "file_offset": "0x58f6712",
+      "sha256": "069ae97aa3d1836368e6300e1f5a1e8a2f0fca9d24f80be646a9daed3c0b1d8c",
+      "assembly": "weapon-stage.asm"
+    },
+    {
+      "role": "weapon-no-target",
+      "va": "0x1458f84ab",
+      "byte_count": 38,
+      "file_offset": "0x58f78ab",
+      "sha256": "232f0e073d7e80ed1b0b3465b34970b2d768378d7bc7a3e691d6230e8f40ad6e",
+      "assembly": "weapon-no-target.asm"
+    },
+    {
+      "role": "pending-gate",
+      "va": "0x1458fb585",
+      "byte_count": 350,
+      "file_offset": "0x58fa985",
+      "sha256": "ec4c2ebe345433415e0ac50d8d8e8017ff9a0e4c0e7f4b41f4f99ebb77e54bce",
+      "assembly": "pending-gate.asm"
+    }
+  ],
+  "native_case_count": 736,
+  "limits": [
+    "Pet controls use supplied ordered target queries, movement and period seams; separate power cases supply critical samples. Weapon cases execute current RNG with packet/hit seams.",
+    "Impact cases execute travel and pending-row stores. Pending gates execute prepared captured contexts and intercept final hit/status calls; arbitrary proc/context lifecycles are not executed.",
+    "No Rust execution, compilation, MPQ/client/game/platform or parity check."
+  ]
+}

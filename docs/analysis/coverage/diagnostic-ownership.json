@@ -1,0 +1,553 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.127.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+    "size_bytes": 146721280
+  },
+  "generator": {
+    "path": "scripts/discover-native-ownership.py",
+    "sha256": "150f61537792770ef4225cb237074f168c2f55537f56fe06ddf2a50f5110e830",
+    "candidate_parser_path": "scripts/inventory-executable.py",
+    "candidate_parser_sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09",
+    "decoder": "Capstone",
+    "decoder_version": "5.0.7"
+  },
+  "inventory": {
+    "path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/diagnostic-ownership.json",
+    "sha256": "0a31df9145a09fdf794622cca45e7cacb4d5138dad3c2f9ccfed2de4e5fb2db3",
+    "regenerate": "python3 -B scripts/discover-native-ownership.py --write"
+  },
+  "counts": {
+    "candidate_unwind_extents_decoded": 6222,
+    "instructions_in_candidate_extents": 1940579,
+    "decoded_bytes_summed_across_candidate_extents": 8967830,
+    "diagnostic_paths": 771,
+    "custom_diagnostic_paths": 69,
+    "verified_instruction_references": 18158,
+    "paths_with_verified_references": 611,
+    "custom_paths_with_verified_references": 69,
+    "unverified_candidates": 0
+  },
+  "custom_diagnostics": [
+    {
+      "path": "crates/wenilla-rogue-app/src/legacy_config.rs",
+      "system_id": "custom-app-legacy-config",
+      "verified_instruction_references": 1,
+      "candidate_native_owner_count": 1,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/lib.rs",
+      "system_id": "custom-app-lib",
+      "verified_instruction_references": 2,
+      "candidate_native_owner_count": 1,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/armory.rs",
+      "system_id": "custom-app-screens-armory",
+      "verified_instruction_references": 35,
+      "candidate_native_owner_count": 18,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/backdrop.rs",
+      "system_id": "custom-app-screens-backdrop",
+      "verified_instruction_references": 2,
+      "candidate_native_owner_count": 1,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/cards.rs",
+      "system_id": "custom-app-screens-cards",
+      "verified_instruction_references": 20,
+      "candidate_native_owner_count": 7,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/codex.rs",
+      "system_id": "custom-app-screens-codex",
+      "verified_instruction_references": 40,
+      "candidate_native_owner_count": 15,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/coop.rs",
+      "system_id": "custom-app-screens-coop",
+      "verified_instruction_references": 8,
+      "candidate_native_owner_count": 4,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/discord.rs",
+      "system_id": "custom-app-screens-discord",
+      "verified_instruction_references": 12,
+      "candidate_native_owner_count": 4,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/hud.rs",
+      "system_id": "custom-app-screens-hud",
+      "verified_instruction_references": 22,
+      "candidate_native_owner_count": 7,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/hudparts.rs",
+      "system_id": "custom-app-screens-hudparts",
+      "verified_instruction_references": 4,
+      "candidate_native_owner_count": 1,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/ime.rs",
+      "system_id": "custom-app-screens-ime",
+      "verified_instruction_references": 3,
+      "candidate_native_owner_count": 2,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/language.rs",
+      "system_id": "custom-app-screens-language",
+      "verified_instruction_references": 3,
+      "candidate_native_owner_count": 1,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/markers.rs",
+      "system_id": "custom-app-screens-markers",
+      "verified_instruction_references": 10,
+      "candidate_native_owner_count": 6,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/meter.rs",
+      "system_id": "custom-app-screens-meter",
+      "verified_instruction_references": 33,
+      "candidate_native_owner_count": 15,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/mod.rs",
+      "system_id": "custom-app-screens-mod",
+      "verified_instruction_references": 25,
+      "candidate_native_owner_count": 11,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/ontop.rs",
+      "system_id": "custom-app-screens-ontop",
+      "verified_instruction_references": 4,
+      "candidate_native_owner_count": 3,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/options.rs",
+      "system_id": "custom-app-screens-options",
+      "verified_instruction_references": 25,
+      "candidate_native_owner_count": 9,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/pad.rs",
+      "system_id": "custom-app-screens-pad",
+      "verified_instruction_references": 3,
+      "candidate_native_owner_count": 3,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/picker.rs",
+      "system_id": "custom-app-screens-picker",
+      "verified_instruction_references": 14,
+      "candidate_native_owner_count": 4,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/rewards.rs",
+      "system_id": "custom-app-screens-rewards",
+      "verified_instruction_references": 4,
+      "candidate_native_owner_count": 2,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/runmods.rs",
+      "system_id": "custom-app-screens-runmods",
+      "verified_instruction_references": 4,
+      "candidate_native_owner_count": 1,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/talents.rs",
+      "system_id": "custom-app-screens-talents",
+      "verified_instruction_references": 2,
+      "candidate_native_owner_count": 2,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/talentview.rs",
+      "system_id": "custom-app-screens-talentview",
+      "verified_instruction_references": 10,
+      "candidate_native_owner_count": 3,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/touch.rs",
+      "system_id": "custom-app-screens-touch",
+      "verified_instruction_references": 5,
+      "candidate_native_owner_count": 3,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/update.rs",
+      "system_id": "custom-app-screens-update",
+      "verified_instruction_references": 6,
+      "candidate_native_owner_count": 2,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/xinput.rs",
+      "system_id": "custom-app-screens-xinput",
+      "verified_instruction_references": 1,
+      "candidate_native_owner_count": 1,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/update.rs",
+      "system_id": "custom-app-update",
+      "verified_instruction_references": 2,
+      "candidate_native_owner_count": 2,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/achievements.rs",
+      "system_id": "custom-game-achievements",
+      "verified_instruction_references": 3,
+      "candidate_native_owner_count": 2,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/appearance.rs",
+      "system_id": "custom-game-appearance",
+      "verified_instruction_references": 4,
+      "candidate_native_owner_count": 2,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/banners.rs",
+      "system_id": "custom-game-banners",
+      "verified_instruction_references": 1,
+      "candidate_native_owner_count": 1,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/bindings.rs",
+      "system_id": "custom-game-bindings",
+      "verified_instruction_references": 1,
+      "candidate_native_owner_count": 1,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/content.rs",
+      "system_id": "custom-game-content",
+      "verified_instruction_references": 48,
+      "candidate_native_owner_count": 32,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/coop/pick.rs",
+      "system_id": "custom-game-coop-pick",
+      "verified_instruction_references": 1,
+      "candidate_native_owner_count": 1,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/coop/relay.rs",
+      "system_id": "custom-game-coop-relay",
+      "verified_instruction_references": 2,
+      "candidate_native_owner_count": 2,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/coop/route.rs",
+      "system_id": "custom-game-coop-route",
+      "verified_instruction_references": 2,
+      "candidate_native_owner_count": 1,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/coop/smooth.rs",
+      "system_id": "custom-game-coop-smooth",
+      "verified_instruction_references": 2,
+      "candidate_native_owner_count": 1,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/coop/tcp.rs",
+      "system_id": "custom-game-coop-tcp",
+      "verified_instruction_references": 1,
+      "candidate_native_owner_count": 1,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/coop/trust.rs",
+      "system_id": "custom-game-coop-trust",
+      "verified_instruction_references": 1,
+      "candidate_native_owner_count": 1,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/dbc.rs",
+      "system_id": "custom-game-dbc",
+      "verified_instruction_references": 8,
+      "candidate_native_owner_count": 4,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/driver.rs",
+      "system_id": "custom-game-driver",
+      "verified_instruction_references": 1,
+      "candidate_native_owner_count": 1,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/fonts.rs",
+      "system_id": "custom-game-fonts",
+      "verified_instruction_references": 16,
+      "candidate_native_owner_count": 5,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/abilities.rs",
+      "system_id": "custom-game-game-abilities",
+      "verified_instruction_references": 21,
+      "candidate_native_owner_count": 6,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/addon.rs",
+      "system_id": "custom-game-game-addon",
+      "verified_instruction_references": 1,
+      "candidate_native_owner_count": 1,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/affixes.rs",
+      "system_id": "custom-game-game-affixes",
+      "verified_instruction_references": 1,
+      "candidate_native_owner_count": 1,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/auras.rs",
+      "system_id": "custom-game-game-auras",
+      "verified_instruction_references": 6,
+      "candidate_native_owner_count": 3,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/companions.rs",
+      "system_id": "custom-game-game-companions",
+      "verified_instruction_references": 18,
+      "candidate_native_owner_count": 4,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/demons.rs",
+      "system_id": "custom-game-game-demons",
+      "verified_instruction_references": 28,
+      "candidate_native_owner_count": 13,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/enemy.rs",
+      "system_id": "custom-game-game-enemy",
+      "verified_instruction_references": 40,
+      "candidate_native_owner_count": 14,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/guardians.rs",
+      "system_id": "custom-game-game-guardians",
+      "verified_instruction_references": 16,
+      "candidate_native_owner_count": 6,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/hazards.rs",
+      "system_id": "custom-game-hazards",
+      "verified_instruction_references": 46,
+      "candidate_native_owner_count": 4,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/mod.rs",
+      "system_id": "custom-game-game-mod",
+      "verified_instruction_references": 16,
+      "candidate_native_owner_count": 7,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/party.rs",
+      "system_id": "custom-game-game-party",
+      "verified_instruction_references": 58,
+      "candidate_native_owner_count": 27,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/procs.rs",
+      "system_id": "custom-game-game-procs",
+      "verified_instruction_references": 2,
+      "candidate_native_owner_count": 2,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/talents.rs",
+      "system_id": "custom-game-game-talents",
+      "verified_instruction_references": 31,
+      "candidate_native_owner_count": 14,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/upgrades.rs",
+      "system_id": "custom-game-game-upgrades",
+      "verified_instruction_references": 11,
+      "candidate_native_owner_count": 6,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/gear.rs",
+      "system_id": "custom-game-gear",
+      "verified_instruction_references": 18,
+      "candidate_native_owner_count": 12,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/heroic.rs",
+      "system_id": "custom-game-heroic",
+      "verified_instruction_references": 2,
+      "candidate_native_owner_count": 2,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/i18n.rs",
+      "system_id": "custom-game-i18n",
+      "verified_instruction_references": 18,
+      "candidate_native_owner_count": 8,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/jewelry.rs",
+      "system_id": "custom-game-jewelry",
+      "verified_instruction_references": 3,
+      "candidate_native_owner_count": 3,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/nav.rs",
+      "system_id": "custom-game-nav",
+      "verified_instruction_references": 61,
+      "candidate_native_owner_count": 18,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/proto.rs",
+      "system_id": "custom-game-proto",
+      "verified_instruction_references": 2,
+      "candidate_native_owner_count": 2,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/realmd.rs",
+      "system_id": "custom-game-realmd",
+      "verified_instruction_references": 2,
+      "candidate_native_owner_count": 1,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/save.rs",
+      "system_id": "custom-game-save",
+      "verified_instruction_references": 19,
+      "candidate_native_owner_count": 10,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/server.rs",
+      "system_id": "custom-game-server",
+      "verified_instruction_references": 16,
+      "candidate_native_owner_count": 8,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/server/party.rs",
+      "system_id": "custom-game-server-party",
+      "verified_instruction_references": 26,
+      "candidate_native_owner_count": 13,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/sets.rs",
+      "system_id": "custom-game-sets",
+      "verified_instruction_references": 7,
+      "candidate_native_owner_count": 6,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/smsg.rs",
+      "system_id": "custom-game-smsg",
+      "verified_instruction_references": 5,
+      "candidate_native_owner_count": 2,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/talents.rs",
+      "system_id": "custom-game-talents",
+      "verified_instruction_references": 5,
+      "candidate_native_owner_count": 3,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/terrain.rs",
+      "system_id": "custom-game-terrain",
+      "verified_instruction_references": 28,
+      "candidate_native_owner_count": 7,
+      "unverified_byte_candidates": 0
+    }
+  ],
+  "engine_paths_with_verified_references": 542,
+  "limits": [
+    "LEA candidates are decoded from declared unwind starts; undiscovered leaf, inline and dynamically generated code remain unknown.",
+    "A decoded linear instruction is not proof its block executes. Extent byte totals may overlap and are not whole-image instruction coverage.",
+    "Diagnostic references associate a body with a diagnostic path, not its complete source owner, behavior, call graph or reconstruction status.",
+    "Only selected RIP-relative LEA forms and native Rust Location records are searched; immediate, indirect, global and other instruction/data-reference forms remain open.",
+    "Current systems provide source ownership questions; no whole-system, individual changelog claim, runtime or parity status is promoted by this pass."
+  ],
+  "native_source_ownership_complete": false,
+  "parity_verified": false,
+  "source_mapping_projection": {
+    "format": "diagnostic-source-map-projection-v1",
+    "generator": {
+      "path": "scripts/discover-native-ownership.py",
+      "sha256": "0cfff625453c85627d1f11fb35292b590c9a8cdbb497b59424cf23da56633ea5"
+    },
+    "source_mapping": {
+      "path": "docs/analysis/coverage/systems.json",
+      "sha256": "97d11fd15c90c4e2076ba13fba6ae00bab023a83d1fdc4410cfd6eb10cb3fa1f"
+    },
+    "native_execution_sources": [
+      {
+        "path": "scripts/discover-native-ownership.py",
+        "sha256": "150f61537792770ef4225cb237074f168c2f55537f56fe06ddf2a50f5110e830",
+        "git_commit": "909d9c1c550f9740b33a9046dc9006c91da5bc5d"
+      },
+      {
+        "path": "scripts/inventory-executable.py",
+        "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09",
+        "git_commit": "8fb4953bd131edc47531bf84785b4ec4cb51e3da"
+      }
+    ],
+    "native_fact_sha256": "e5598400988f1271f21409f9bd6bd93ca57eb73c8452da32f90c7a027c376838",
+    "scope": "Current system IDs/custom membership only; frozen native payload and original producer remain unchanged. No source or semantic proof is promoted."
+  }
+}

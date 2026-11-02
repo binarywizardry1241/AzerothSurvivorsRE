@@ -1,0 +1,4 @@
+14028d2c1 488d55b0 lea rdx, [rbp - 0x50]
+14028d2c5 41b814000000 mov r8d, 0x14
+14028d2cb 488b8d10010000 mov rcx, qword ptr [rbp + 0x110]
+14028d2d2 e8c96c9405 call 0x145bd3fa0

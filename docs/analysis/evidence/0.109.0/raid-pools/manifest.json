@@ -1,0 +1,117 @@
+{
+  "target_version": "0.109.0",
+  "target_sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+  "target_executed": false,
+  "records": [
+    {
+      "boss_id": 394,
+      "native_slot": 2,
+      "native_tag": 28,
+      "words": [
+        10,
+        1095761920,
+        1073741824,
+        1086324736,
+        1056964608
+      ],
+      "repeat_bits": 1098907648,
+      "record": {
+        "va": "0x146bda878",
+        "file_offset": "0x6bd9878",
+        "byte_count": 56,
+        "sha256": "76179301f49aba89d02ec17d6ffad350ac617d940ef8453ed2641d8f5186d36d"
+      }
+    },
+    {
+      "guardian_id": 111,
+      "phase_index": 0,
+      "native_tag": 28,
+      "words": [
+        5740,
+        1094713344,
+        1073741824,
+        1084227584,
+        1053609165
+      ],
+      "repeat_bits": 0,
+      "canonical_record": "docs/analysis/evidence/0.109.0/guardian-signatures/catalog.json#/rows/8/phases/0/record"
+    },
+    {
+      "guardian_id": 1011,
+      "phase_index": 0,
+      "native_tag": 28,
+      "words": [
+        19695,
+        1094713344,
+        1073741824,
+        1084227584,
+        1053609165
+      ],
+      "repeat_bits": 0,
+      "canonical_record": "docs/analysis/evidence/0.109.0/guardian-signatures/catalog.json#/rows/29/phases/0/record"
+    }
+  ],
+  "ranges": [
+    {
+      "role": "producer",
+      "va": "0x145958d26",
+      "file_offset": "0x5958126",
+      "byte_count": 202,
+      "sha256": "8acd440071043487e467351ca41456504cc5528a849d90a2962f44bc6d76f23a",
+      "assembly": "producer.asm"
+    },
+    {
+      "role": "activation",
+      "va": "0x14595072e",
+      "file_offset": "0x594fb2e",
+      "byte_count": 38,
+      "sha256": "9890a4812114661c680f5b6f64e3e6418bf27cb47f3d54d5c85a487decfb65fa",
+      "assembly": "activation.asm"
+    },
+    {
+      "role": "periodic-deadlines",
+      "va": "0x145951438",
+      "file_offset": "0x5950838",
+      "byte_count": 46,
+      "sha256": "c4e20e7313085f51a6e9dc7ed0cc3ac0ea2a165791ecd1fc297da7ff91dbf275",
+      "assembly": "periodic-deadlines.asm"
+    },
+    {
+      "role": "pool-tick-hit",
+      "va": "0x14595190a",
+      "file_offset": "0x5950d0a",
+      "byte_count": 44,
+      "sha256": "0da100297df00762bcbcba222f155ee89337e16b09423d369a6a59c37ed29a21",
+      "assembly": "pool-tick-hit.asm"
+    },
+    {
+      "role": "marker-kind",
+      "va": "0x1459526a0",
+      "file_offset": "0x5951aa0",
+      "byte_count": 29,
+      "sha256": "1414f2adbfb9dba3a73a511c03567b150d0be13363365c353347c112ca602cb3",
+      "assembly": "marker-kind.asm"
+    },
+    {
+      "role": "marker-lifetime",
+      "va": "0x14595268c",
+      "file_offset": "0x5951a8c",
+      "byte_count": 20,
+      "sha256": "9cc2ba18463c457085e3109422995e1e745a9fe2ab6970572e172f09bda1cca1",
+      "assembly": "marker-lifetime.asm"
+    }
+  ],
+  "native_producer_activation_duration_cases": 33,
+  "native_periodic_cases": 36,
+  "native_marker_cases": 2,
+  "rea_evidence": "ev_a993fbe2198c91f4176eef7f72f9b57408ceafcc3ae704cb2c59ab21d13f0f9a",
+  "canonical_shared_evidence": [
+    "docs/analysis/evidence/0.109.0/raid-lines/manifest.json",
+    "docs/analysis/evidence/0.109.0/raid-waves/manifest.json"
+  ],
+  "limitations": [
+    "Unicorn executes original instructions with synthetic state and intercepted cast calls; no game or reconstructed Rust executes.",
+    "Terrain, shared allocation, localization/warning and engine presentation have separate owners and explicit fixture boundaries.",
+    "Compilation, gameplay, rendering and original/rebuilt parity remain unverified."
+  ]
+}

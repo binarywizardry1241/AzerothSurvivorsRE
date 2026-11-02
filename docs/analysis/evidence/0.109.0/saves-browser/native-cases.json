@@ -1,0 +1,726 @@
+{
+  "target_sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+  "cases": [
+    {
+      "kind": "escape-priority",
+      "pending_capture": -1,
+      "options_open": false,
+      "destination": "0x14019025b"
+    },
+    {
+      "kind": "escape-priority",
+      "pending_capture": -1,
+      "options_open": true,
+      "destination": "0x140190243"
+    },
+    {
+      "kind": "escape-priority",
+      "pending_capture": 0,
+      "options_open": false,
+      "destination": "0x14019021f"
+    },
+    {
+      "kind": "escape-priority",
+      "pending_capture": 0,
+      "options_open": true,
+      "destination": "0x14019021f"
+    },
+    {
+      "kind": "escape-priority",
+      "pending_capture": 7,
+      "options_open": false,
+      "destination": "0x14019021f"
+    },
+    {
+      "kind": "escape-priority",
+      "pending_capture": 7,
+      "options_open": true,
+      "destination": "0x14019021f"
+    },
+    {
+      "kind": "close-content",
+      "capture": -1,
+      "pending_import": -1,
+      "calls": [
+        "0x140007c10"
+      ]
+    },
+    {
+      "kind": "close-content",
+      "capture": -1,
+      "pending_import": 0,
+      "calls": [
+        "0x1400021d0",
+        "0x140007c10"
+      ]
+    },
+    {
+      "kind": "close-content",
+      "capture": -1,
+      "pending_import": 9,
+      "calls": [
+        "0x1400021d0",
+        "0x1400021d0",
+        "0x140007c10"
+      ]
+    },
+    {
+      "kind": "close-content",
+      "capture": 0,
+      "pending_import": -1,
+      "calls": [
+        "0x140007c10"
+      ]
+    },
+    {
+      "kind": "close-content",
+      "capture": 0,
+      "pending_import": 0,
+      "calls": [
+        "0x1400021d0",
+        "0x140007c10"
+      ]
+    },
+    {
+      "kind": "close-content",
+      "capture": 0,
+      "pending_import": 9,
+      "calls": [
+        "0x1400021d0",
+        "0x1400021d0",
+        "0x140007c10"
+      ]
+    },
+    {
+      "kind": "close-content",
+      "capture": 5,
+      "pending_import": -1,
+      "calls": [
+        "0x1400021d0",
+        "0x140007c10"
+      ]
+    },
+    {
+      "kind": "close-content",
+      "capture": 5,
+      "pending_import": 0,
+      "calls": [
+        "0x1400021d0",
+        "0x1400021d0",
+        "0x140007c10"
+      ]
+    },
+    {
+      "kind": "close-content",
+      "capture": 5,
+      "pending_import": 9,
+      "calls": [
+        "0x1400021d0",
+        "0x1400021d0",
+        "0x1400021d0",
+        "0x140007c10"
+      ]
+    },
+    {
+      "kind": "data-directory-policy",
+      "environment": {},
+      "parent_fixture": null,
+      "probes": [
+        "WOW_ROGUE_SAVE",
+        "APPDATA",
+        "XDG_DATA_HOME",
+        "HOME"
+      ],
+      "joins": [],
+      "missing": true
+    },
+    {
+      "kind": "data-directory-policy",
+      "environment": {
+        "APPDATA": "account"
+      },
+      "parent_fixture": null,
+      "probes": [
+        "WOW_ROGUE_SAVE",
+        "APPDATA"
+      ],
+      "joins": [
+        "wenilla-rogue"
+      ],
+      "missing": false
+    },
+    {
+      "kind": "data-directory-policy",
+      "environment": {
+        "XDG_DATA_HOME": "data"
+      },
+      "parent_fixture": null,
+      "probes": [
+        "WOW_ROGUE_SAVE",
+        "APPDATA",
+        "XDG_DATA_HOME"
+      ],
+      "joins": [
+        "wenilla-rogue"
+      ],
+      "missing": false
+    },
+    {
+      "kind": "data-directory-policy",
+      "environment": {
+        "HOME": "home"
+      },
+      "parent_fixture": null,
+      "probes": [
+        "WOW_ROGUE_SAVE",
+        "APPDATA",
+        "XDG_DATA_HOME",
+        "HOME"
+      ],
+      "joins": [
+        ".local",
+        "share",
+        "wenilla-rogue"
+      ],
+      "missing": false
+    },
+    {
+      "kind": "data-directory-policy",
+      "environment": {
+        "APPDATA": "",
+        "XDG_DATA_HOME": "ignored"
+      },
+      "parent_fixture": null,
+      "probes": [
+        "WOW_ROGUE_SAVE",
+        "APPDATA"
+      ],
+      "joins": [
+        "wenilla-rogue"
+      ],
+      "missing": false
+    },
+    {
+      "kind": "data-directory-policy",
+      "environment": {
+        "XDG_DATA_HOME": "",
+        "HOME": "ignored"
+      },
+      "parent_fixture": null,
+      "probes": [
+        "WOW_ROGUE_SAVE",
+        "APPDATA",
+        "XDG_DATA_HOME"
+      ],
+      "joins": [
+        "wenilla-rogue"
+      ],
+      "missing": false
+    },
+    {
+      "kind": "data-directory-policy",
+      "environment": {
+        "HOME": ""
+      },
+      "parent_fixture": null,
+      "probes": [
+        "WOW_ROGUE_SAVE",
+        "APPDATA",
+        "XDG_DATA_HOME",
+        "HOME"
+      ],
+      "joins": [
+        ".local",
+        "share",
+        "wenilla-rogue"
+      ],
+      "missing": false
+    },
+    {
+      "kind": "data-directory-policy",
+      "environment": {
+        "WOW_ROGUE_SAVE": "folder/characters.txt",
+        "APPDATA": "ignored"
+      },
+      "parent_fixture": "folder",
+      "probes": [
+        "WOW_ROGUE_SAVE"
+      ],
+      "joins": [],
+      "missing": false
+    },
+    {
+      "kind": "data-directory-policy",
+      "environment": {
+        "WOW_ROGUE_SAVE": "characters.txt",
+        "HOME": "ignored"
+      },
+      "parent_fixture": "",
+      "probes": [
+        "WOW_ROGUE_SAVE"
+      ],
+      "joins": [],
+      "missing": false
+    },
+    {
+      "kind": "data-directory-policy",
+      "environment": {
+        "WOW_ROGUE_SAVE": "",
+        "APPDATA": "ignored"
+      },
+      "parent_fixture": null,
+      "probes": [
+        "WOW_ROGUE_SAVE"
+      ],
+      "joins": [],
+      "missing": true
+    },
+    {
+      "kind": "data-directory-policy",
+      "environment": {
+        "WOW_ROGUE_SAVE": "/",
+        "APPDATA": "ignored"
+      },
+      "parent_fixture": null,
+      "probes": [
+        "WOW_ROGUE_SAVE"
+      ],
+      "joins": [],
+      "missing": true
+    },
+    {
+      "kind": "data-directory-policy",
+      "environment": {
+        "APPDATA": "account",
+        "XDG_DATA_HOME": "ignored",
+        "HOME": "ignored"
+      },
+      "parent_fixture": null,
+      "probes": [
+        "WOW_ROGUE_SAVE",
+        "APPDATA"
+      ],
+      "joins": [
+        "wenilla-rogue"
+      ],
+      "missing": false
+    },
+    {
+      "kind": "extension",
+      "extension": null,
+      "accepted": false
+    },
+    {
+      "kind": "extension",
+      "extension": "",
+      "accepted": false
+    },
+    {
+      "kind": "extension",
+      "extension": "sav",
+      "accepted": true
+    },
+    {
+      "kind": "extension",
+      "extension": "SAV",
+      "accepted": true
+    },
+    {
+      "kind": "extension",
+      "extension": "SaV",
+      "accepted": true
+    },
+    {
+      "kind": "extension",
+      "extension": "sAv",
+      "accepted": true
+    },
+    {
+      "kind": "extension",
+      "extension": "sAV",
+      "accepted": true
+    },
+    {
+      "kind": "extension",
+      "extension": "SAv",
+      "accepted": true
+    },
+    {
+      "kind": "extension",
+      "extension": "SA v",
+      "accepted": false
+    },
+    {
+      "kind": "extension",
+      "extension": "saV",
+      "accepted": true
+    },
+    {
+      "kind": "extension",
+      "extension": "s",
+      "accepted": false
+    },
+    {
+      "kind": "extension",
+      "extension": "sa",
+      "accepted": false
+    },
+    {
+      "kind": "extension",
+      "extension": "save",
+      "accepted": false
+    },
+    {
+      "kind": "extension",
+      "extension": "savx",
+      "accepted": false
+    },
+    {
+      "kind": "extension",
+      "extension": ".sav",
+      "accepted": false
+    },
+    {
+      "kind": "extension",
+      "extension": "s\u00e4v",
+      "accepted": false
+    },
+    {
+      "kind": "extension",
+      "extension": "txt",
+      "accepted": false
+    },
+    {
+      "kind": "ordering",
+      "first": "z.sav",
+      "second": "A.sav",
+      "first_time": null,
+      "second_time": null,
+      "order": [
+        1,
+        0
+      ]
+    },
+    {
+      "kind": "ordering",
+      "first": "A.sav",
+      "second": "z.sav",
+      "first_time": null,
+      "second_time": null,
+      "order": [
+        0,
+        1
+      ]
+    },
+    {
+      "kind": "ordering",
+      "first": "a.sav",
+      "second": "A.sav",
+      "first_time": null,
+      "second_time": null,
+      "order": [
+        1,
+        0
+      ]
+    },
+    {
+      "kind": "ordering",
+      "first": "a.sav",
+      "second": "a.sav",
+      "first_time": null,
+      "second_time": null,
+      "order": [
+        0,
+        1
+      ]
+    },
+    {
+      "kind": "ordering",
+      "first": "a.sav",
+      "second": "aa.sav",
+      "first_time": null,
+      "second_time": null,
+      "order": [
+        0,
+        1
+      ]
+    },
+    {
+      "kind": "ordering",
+      "first": "z.sav",
+      "second": "A.sav",
+      "first_time": null,
+      "second_time": 10,
+      "order": [
+        1,
+        0
+      ]
+    },
+    {
+      "kind": "ordering",
+      "first": "A.sav",
+      "second": "z.sav",
+      "first_time": null,
+      "second_time": 10,
+      "order": [
+        1,
+        0
+      ]
+    },
+    {
+      "kind": "ordering",
+      "first": "a.sav",
+      "second": "A.sav",
+      "first_time": null,
+      "second_time": 10,
+      "order": [
+        1,
+        0
+      ]
+    },
+    {
+      "kind": "ordering",
+      "first": "a.sav",
+      "second": "a.sav",
+      "first_time": null,
+      "second_time": 10,
+      "order": [
+        1,
+        0
+      ]
+    },
+    {
+      "kind": "ordering",
+      "first": "a.sav",
+      "second": "aa.sav",
+      "first_time": null,
+      "second_time": 10,
+      "order": [
+        1,
+        0
+      ]
+    },
+    {
+      "kind": "ordering",
+      "first": "z.sav",
+      "second": "A.sav",
+      "first_time": 10,
+      "second_time": null,
+      "order": [
+        0,
+        1
+      ]
+    },
+    {
+      "kind": "ordering",
+      "first": "A.sav",
+      "second": "z.sav",
+      "first_time": 10,
+      "second_time": null,
+      "order": [
+        0,
+        1
+      ]
+    },
+    {
+      "kind": "ordering",
+      "first": "a.sav",
+      "second": "A.sav",
+      "first_time": 10,
+      "second_time": null,
+      "order": [
+        0,
+        1
+      ]
+    },
+    {
+      "kind": "ordering",
+      "first": "a.sav",
+      "second": "a.sav",
+      "first_time": 10,
+      "second_time": null,
+      "order": [
+        0,
+        1
+      ]
+    },
+    {
+      "kind": "ordering",
+      "first": "a.sav",
+      "second": "aa.sav",
+      "first_time": 10,
+      "second_time": null,
+      "order": [
+        0,
+        1
+      ]
+    },
+    {
+      "kind": "ordering",
+      "first": "z.sav",
+      "second": "A.sav",
+      "first_time": 10,
+      "second_time": 20,
+      "order": [
+        1,
+        0
+      ]
+    },
+    {
+      "kind": "ordering",
+      "first": "A.sav",
+      "second": "z.sav",
+      "first_time": 10,
+      "second_time": 20,
+      "order": [
+        1,
+        0
+      ]
+    },
+    {
+      "kind": "ordering",
+      "first": "a.sav",
+      "second": "A.sav",
+      "first_time": 10,
+      "second_time": 20,
+      "order": [
+        1,
+        0
+      ]
+    },
+    {
+      "kind": "ordering",
+      "first": "a.sav",
+      "second": "a.sav",
+      "first_time": 10,
+      "second_time": 20,
+      "order": [
+        1,
+        0
+      ]
+    },
+    {
+      "kind": "ordering",
+      "first": "a.sav",
+      "second": "aa.sav",
+      "first_time": 10,
+      "second_time": 20,
+      "order": [
+        1,
+        0
+      ]
+    },
+    {
+      "kind": "ordering",
+      "first": "z.sav",
+      "second": "A.sav",
+      "first_time": 20,
+      "second_time": 10,
+      "order": [
+        0,
+        1
+      ]
+    },
+    {
+      "kind": "ordering",
+      "first": "A.sav",
+      "second": "z.sav",
+      "first_time": 20,
+      "second_time": 10,
+      "order": [
+        0,
+        1
+      ]
+    },
+    {
+      "kind": "ordering",
+      "first": "a.sav",
+      "second": "A.sav",
+      "first_time": 20,
+      "second_time": 10,
+      "order": [
+        0,
+        1
+      ]
+    },
+    {
+      "kind": "ordering",
+      "first": "a.sav",
+      "second": "a.sav",
+      "first_time": 20,
+      "second_time": 10,
+      "order": [
+        0,
+        1
+      ]
+    },
+    {
+      "kind": "ordering",
+      "first": "a.sav",
+      "second": "aa.sav",
+      "first_time": 20,
+      "second_time": 10,
+      "order": [
+        0,
+        1
+      ]
+    },
+    {
+      "kind": "ordering",
+      "first": "z.sav",
+      "second": "A.sav",
+      "first_time": 10,
+      "second_time": 10,
+      "order": [
+        1,
+        0
+      ]
+    },
+    {
+      "kind": "ordering",
+      "first": "A.sav",
+      "second": "z.sav",
+      "first_time": 10,
+      "second_time": 10,
+      "order": [
+        0,
+        1
+      ]
+    },
+    {
+      "kind": "ordering",
+      "first": "a.sav",
+      "second": "A.sav",
+      "first_time": 10,
+      "second_time": 10,
+      "order": [
+        1,
+        0
+      ]
+    },
+    {
+      "kind": "ordering",
+      "first": "a.sav",
+      "second": "a.sav",
+      "first_time": 10,
+      "second_time": 10,
+      "order": [
+        0,
+        1
+      ]
+    },
+    {
+      "kind": "ordering",
+      "first": "a.sav",
+      "second": "aa.sav",
+      "first_time": 10,
+      "second_time": 10,
+      "order": [
+        0,
+        1
+      ]
+    }
+  ],
+  "case_count": 74,
+  "method": "Unchanged native instructions with recorded disposal/release, environment/path and memcmp seams; no game or filesystem execution."
+}

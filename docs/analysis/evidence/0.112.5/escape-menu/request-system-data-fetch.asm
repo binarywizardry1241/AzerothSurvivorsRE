@@ -1,0 +1,15 @@
+14009a613	488b4608	mov	rax, qword ptr [rsi + 8]
+14009a617	493b8018020000	cmp	rax, qword ptr [r8 + 0x218]
+14009a61e	0f838e060000	jae	0x14009acb2
+14009a624	4989c9	mov	r9, rcx
+14009a627	498b8810020000	mov	rcx, qword ptr [r8 + 0x210]
+14009a62e	488b04c1	mov	rax, qword ptr [rcx + rax*8]
+14009a632	4885c0	test	rax, rax
+14009a635	0f8477060000	je	0x14009acb2
+14009a63b	4d8bb0e0010000	mov	r14, qword ptr [r8 + 0x1e0]
+14009a642	48f7d0	not	rax
+14009a645	486bc038	imul	rax, rax, 0x38
+14009a649	41807c063000	cmp	byte ptr [r14 + rax + 0x30], 0
+14009a64f	0f845d060000	je	0x14009acb2
+14009a655	4901c6	add	r14, rax
+14009a658	4d8b6610	mov	r12, qword ptr [r14 + 0x10]

@@ -1,0 +1,357 @@
+{
+  "schema": "as-fresh-party-0.123.0-v1",
+  "target": {
+    "version": "0.123.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
+    "size_bytes": 146228736
+  },
+  "gap_ids": [
+    207,
+    208
+  ],
+  "target_executed": false,
+  "queries": [
+    {
+      "procedure": "0x145bd7b80",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-257-0.123.0/pump-plan.json",
+        "sha256": "6c03a07ddea222527b47c320a8e51874a54ce4ec2bf4770490c1684610d0f9c5"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-257-0.123.0/pump-query/journal.json",
+        "sha256": "a37c51205048fc822d39e96894dc0d0e102acd1c8e10966127a1110ccc76d873"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-257-0.123.0/pump-query/results/b4078ca3af1a66fd57279c456d897444379ee4bc9b446a0984843a636e70a8b6.json",
+        "sha256": "97b0ae9e046420a8fe2286649c045538a4ebd5ec7b500b50c08a8a73d71957a3"
+      },
+      "evidence_id": "ev_4dbaefb01db2647eb7b086e752f8475a5d5e06bdb0049f7433c6af8b4e9f36d9",
+      "normalized_sha256": "6f271e8453f9b6584496a20837861eea905329477867aa40f6e69d9d5f149f5e",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/release-0.123.0/pick-smooth/input.bin",
+        "sha256": "005952d9760501945dac724bcc01d38ddb24b28dd30a0b114e5393a80362929c"
+      },
+      "slice_virtual_address": "0x145bd7010",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "a16068975d8a0fbee5db96a89f071b937aadbfb7d9e8d6fce7254202bc51b6d5",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
+        "raw_sha256": "005952d9760501945dac724bcc01d38ddb24b28dd30a0b114e5393a80362929c",
+        "virtual_address": "0x145bd7010",
+        "file_offset": "0x5bd6410",
+        "byte_count": 42276,
+        "result": "runtime/analysis/tasks/fixgap-257-0.123.0/pump-query/results/b4078ca3af1a66fd57279c456d897444379ee4bc9b446a0984843a636e70a8b6.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "procedure": "0x145be0190",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-208-0.123.0/inner-reset-plan.json",
+        "sha256": "bad9ff7b8ab3fd23cde05eca7db4c2a11dae7ae37b7611d0026b5fbd94a453f6"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-208-0.123.0/inner-reset-query/journal.json",
+        "sha256": "11676e912572116e046e9e7cb81a1b3a4bb6aec6d843bb777a44393e0b7de8de"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-208-0.123.0/inner-reset-query/results/dea86707f5fd002b6ee4aab55526a656270863320864e73c296ebd5bd32e46ad.json",
+        "sha256": "4b379e2dc0dc7609c00a31857f3441be3294c394ad257bb82b3662a0b606a512"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/release-0.123.0/pick-smooth/input.bin",
+        "sha256": "005952d9760501945dac724bcc01d38ddb24b28dd30a0b114e5393a80362929c"
+      },
+      "slice_virtual_address": "0x145bd7010",
+      "evidence_id": "ev_ff7896638002871dcfae39b46036778ac0e70df797bbaa2c6a213da923900cc3",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "a16068975d8a0fbee5db96a89f071b937aadbfb7d9e8d6fce7254202bc51b6d5",
+      "normalized_sha256": "604ddf7c5792e23b3e42eb89ce102e8221f0ff65a3d66fba9eb01e58cf65cae6",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
+        "raw_sha256": "005952d9760501945dac724bcc01d38ddb24b28dd30a0b114e5393a80362929c",
+        "virtual_address": "0x145bd7010",
+        "file_offset": "0x5bd6410",
+        "byte_count": 42276,
+        "result": "runtime/analysis/tasks/fixgap-208-0.123.0/inner-reset-query/results/dea86707f5fd002b6ee4aab55526a656270863320864e73c296ebd5bd32e46ad.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "procedure": "0x145ccc2f0",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-208-0.123.0/guest-deque-plan.json",
+        "sha256": "b36ce9560d3d7190e653d1da14ce4a38e2f4258e98523a87fd8b77c66ca2b62b"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-208-0.123.0/guest-deque-query/journal.json",
+        "sha256": "cd25e65e23ca654e8fef23225513af64c6674456eae4635829fd1a9f6fae3a60"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-208-0.123.0/guest-deque-query/results/80a31629a23b813db538d53802e6ca8d6b48ef05a98e30fbf162a80c210e4820.json",
+        "sha256": "b64adb950f20032f17e9d57d61c5ff6f836476379c539f1f23b51a797f60a912"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-208-0.123.0/guest-deque.bin",
+        "sha256": "4f91188d802a29e982a7be50e545b42590138b1a19909e49dad87164051859f3"
+      },
+      "slice_virtual_address": "0x145ccc2f0",
+      "evidence_id": "ev_a4103faac0922e783d2343035382f508d29ecc6db7666f7e8940b8fd036aadd0",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "08427a47a0b49944d5e1e8446a986804b499f96ca6f719d9704a1b68f438bd04",
+      "normalized_sha256": "188ec5a5e5acc29fbb158b92389a50ab313f5a053118ba8cbe24da87e085bffb",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
+        "raw_sha256": "4f91188d802a29e982a7be50e545b42590138b1a19909e49dad87164051859f3",
+        "virtual_address": "0x145ccc2f0",
+        "file_offset": "0x5ccb6f0",
+        "byte_count": 344,
+        "result": "runtime/analysis/tasks/fixgap-208-0.123.0/guest-deque-query/results/80a31629a23b813db538d53802e6ca8d6b48ef05a98e30fbf162a80c210e4820.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    }
+  ],
+  "native_owners": [
+    {
+      "role": "service-pump",
+      "virtual_address": "0x145bd7b80",
+      "end_exclusive": "0x145bdabf2",
+      "file_offset": "0x5bd6f80",
+      "byte_count": 12402,
+      "sha256": "69686c2b338eb755f1556bf57460c970563950c0180948a1a1c73379fc0d1f3b",
+      "instruction_count": 2540
+    },
+    {
+      "role": "inner-map-clear",
+      "virtual_address": "0x145be0190",
+      "end_exclusive": "0x145be039f",
+      "file_offset": "0x5bdf590",
+      "byte_count": 527,
+      "sha256": "b693d2a9919f429eb32719ffad77c461afe4d64e4a32237b1846f43d83417b82",
+      "instruction_count": 136
+    },
+    {
+      "role": "guest-deque-truncate",
+      "virtual_address": "0x145ccc2f0",
+      "end_exclusive": "0x145ccc448",
+      "file_offset": "0x5ccb6f0",
+      "byte_count": 344,
+      "sha256": "4f91188d802a29e982a7be50e545b42590138b1a19909e49dad87164051859f3",
+      "instruction_count": 98
+    },
+    {
+      "role": "wire-parser",
+      "virtual_address": "0x145e65370",
+      "end_exclusive": "0x145e66124",
+      "file_offset": "0x5e64770",
+      "byte_count": 3508,
+      "sha256": "731563b9c063f238f7e8860f62fe66d53e5550b27de7dcf5a5f3cbf2dd61f947",
+      "instruction_count": 754
+    }
+  ],
+  "native_ranges": [
+    {
+      "role": "service-field-bindings",
+      "virtual_address": "0x145bd7db6",
+      "end_exclusive": "0x145bd7df0",
+      "file_offset": "0x5bd71b6",
+      "byte_count": 58,
+      "sha256": "a8f2754e82e898ee06b9890c627e574075138522a3e5abfcc6d51136e8236d50",
+      "instruction_count": 10
+    },
+    {
+      "role": "service-dispatch",
+      "virtual_address": "0x145bd7ff4",
+      "end_exclusive": "0x145bd802a",
+      "file_offset": "0x5bd73f4",
+      "byte_count": 54,
+      "sha256": "820fc60222ee37e790b1f3955c1975f916cf3be5576cae19605bdff767692e9b",
+      "instruction_count": 12
+    },
+    {
+      "role": "hosted-reset",
+      "virtual_address": "0x145bd8229",
+      "end_exclusive": "0x145bd8286",
+      "file_offset": "0x5bd7629",
+      "byte_count": 93,
+      "sha256": "40eef8acc7731878ead2def9416acac427871356a724e3b2c6081e114e9df7b6",
+      "instruction_count": 15
+    },
+    {
+      "role": "joined-reset",
+      "virtual_address": "0x145bd80ff",
+      "end_exclusive": "0x145bd8163",
+      "file_offset": "0x5bd74ff",
+      "byte_count": 100,
+      "sha256": "83dcfb6ea3e3df4ccdb89d8e18fe9ef8d3c5c52db447c1dc91d43716fc674679",
+      "instruction_count": 16
+    },
+    {
+      "role": "closed-reset",
+      "virtual_address": "0x145bd82fa",
+      "end_exclusive": "0x145bd83b8",
+      "file_offset": "0x5bd76fa",
+      "byte_count": 190,
+      "sha256": "d0be13f95c7315bb43a56ed7cb9237d94c2507faa2146619d030b351eed4889c",
+      "instruction_count": 36
+    },
+    {
+      "role": "inner-map-clear",
+      "virtual_address": "0x145be0190",
+      "end_exclusive": "0x145be039f",
+      "file_offset": "0x5bdf590",
+      "byte_count": 527,
+      "sha256": "b693d2a9919f429eb32719ffad77c461afe4d64e4a32237b1846f43d83417b82",
+      "instruction_count": 136
+    },
+    {
+      "role": "guest-deque-truncate",
+      "virtual_address": "0x145ccc2f0",
+      "end_exclusive": "0x145ccc448",
+      "file_offset": "0x5ccb6f0",
+      "byte_count": 344,
+      "sha256": "4f91188d802a29e982a7be50e545b42590138b1a19909e49dad87164051859f3",
+      "instruction_count": 98
+    },
+    {
+      "role": "wire-parser-dispatch",
+      "virtual_address": "0x145e653b2",
+      "end_exclusive": "0x145e653dd",
+      "file_offset": "0x5e647b2",
+      "byte_count": 43,
+      "sha256": "c5626f283bd196c45eead280d1b354732913622f5615f8e5f268740d6a1c959b",
+      "instruction_count": 11
+    },
+    {
+      "role": "wire-hosted-discriminant",
+      "virtual_address": "0x145e655b1",
+      "end_exclusive": "0x145e655e0",
+      "file_offset": "0x5e649b1",
+      "byte_count": 47,
+      "sha256": "0d176be8196047b388331a8c6e50b920e7510d545054b9fb4761af2c562aec07",
+      "instruction_count": 9
+    },
+    {
+      "role": "wire-joined-discriminant",
+      "virtual_address": "0x145e65524",
+      "end_exclusive": "0x145e65553",
+      "file_offset": "0x5e64924",
+      "byte_count": 47,
+      "sha256": "ba639603225bb2918896fe358b6b3356be45307b2a031a52db10bc9ff4310566",
+      "instruction_count": 9
+    },
+    {
+      "role": "wire-closed-discriminant",
+      "virtual_address": "0x145e65582",
+      "end_exclusive": "0x145e655b1",
+      "file_offset": "0x5e64982",
+      "byte_count": 47,
+      "sha256": "1015bff798e63cdb3c3c73d964521311fadd293c9304197c4f77b4f4e1108809",
+      "instruction_count": 9
+    }
+  ],
+  "dispatch_tables": [
+    {
+      "role": "service",
+      "virtual_address": "0x1476a1e9c",
+      "file_offset": "0x76a089c",
+      "byte_count": 48,
+      "sha256": "6c52ce533c44a960b86a273e6070f85fd51ce9521f2dca1eaf668158c891a06d",
+      "destinations": [
+        "0x145bd8229",
+        "0x145bd80ff",
+        "0x145bd8690",
+        "0x145bd87b6",
+        "0x145bd88d8",
+        "0x145bd81b5",
+        "0x145bd82fa",
+        "0x145bd96c0",
+        "0x145bd8690",
+        "0x145bd8495",
+        "0x145bd802a",
+        "0x145bd802a"
+      ]
+    },
+    {
+      "role": "wire",
+      "virtual_address": "0x14772a3bc",
+      "file_offset": "0x7728dbc",
+      "byte_count": 52,
+      "sha256": "62741d62c9b341eeb764beb183ba5d369daa9283ffd2e7be7175818c6b7d5af4",
+      "destinations": [
+        "0x145e653dd",
+        "0x145e655b1",
+        "0x145e65524",
+        "0x145e65553",
+        "0x145e65451",
+        "0x145e655e0",
+        "0x145e65603",
+        "0x145e65582",
+        "0x145e656d2",
+        "0x145e65491",
+        "0x145e6562b",
+        "0x145e6542e",
+        "0x145e65471"
+      ]
+    }
+  ],
+  "assembly": {
+    "path": "docs/analysis/evidence/0.123.0/fresh-party/selected-contracts.asm",
+    "sha256": "bcea9f67f27a7a11016af059a45e9943a275a0831d59d9530293346f0ea63437"
+  },
+  "source_requirements": {
+    "crates/azeroth-survivors-re/src/coop/relay.rs": [
+      "pub(super) fn fresh_party(&mut self) { self.peers.clear(); self.outgoing.clear(); }"
+    ],
+    "crates/azeroth-survivors-re/src/coop/session.rs": [
+      "if joined { guest.active = true; } protocol.lock().unwrap().fresh_party(); guest.received.clear(); guest.fatal = false; guest.reconnecting = false;",
+      "pub fn service_party_ended(protocol: &RelayProtocol) { protocol.lock().unwrap().fresh_party(); }"
+    ],
+    "crates/azeroth-survivors-re/src/coop_directory.rs": [
+      "DirectoryResponse::Text { tag: 21, text } => {",
+      "DirectoryResponse::Text { tag: 22, text } => { drain_service_relay(&mut service);",
+      "DirectoryResponse::Text { tag: 27, text } => { drain_service_relay(&mut service);",
+      "fn prior_control_reply_reaches_the_worker_before_fresh_party_or_closed_retirement()"
+    ]
+  },
+  "limits": [
+    "Native original-byte and isolated-container checks only; no application, client, server or transport execution.",
+    "Allocator deallocation and memset are synthetic seams; supplied container metadata is valid fixture input, not recovered allocator implementation.",
+    "The raw Ghidra subjects omit outside callees/type and table memory. Exact original instructions and table bytes govern selected reset dispatch.",
+    "Host endpoint map/backlog, active-byte retention on Hosted, service transport and credit/ACK clocks are not cleared by these native resets."
+  ],
+  "ordering_dependency": {
+    "manifest": {
+      "path": "docs/analysis/evidence/0.123.0/relay-load/manifest.json",
+      "sha256": "00b8fa6dd9fa904766ab54ced45815cc931b3116fbf412b6c8c3b436fb9d7e6c"
+    },
+    "receiver_procedure": "0x145bdc810",
+    "send_procedure": "0x145bd7aa0",
+    "send_call_site": "0x145bdce1f",
+    "control_reply_range": {
+      "virtual_address": "0x145bdcdfb",
+      "end_exclusive": "0x145bdce25",
+      "file_offset": "0x5bdc1fb",
+      "byte_count": 42,
+      "sha256": "94c5f7e2a48a8492d6d6b94e84284e4173c129364e9944135722f4bc9548259c",
+      "instruction_count": 12
+    },
+    "contract": "Receiver immediately sends a response-true control packet for a response-false request before returning to later service events. Source deferred output must reach the selected worker before Hosted21/Joined22/Closed27 retire its rows or secondary."
+  }
+}

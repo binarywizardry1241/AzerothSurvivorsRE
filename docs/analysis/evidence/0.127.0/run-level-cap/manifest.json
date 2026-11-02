@@ -1,0 +1,1102 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.127.0",
+    "sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+    "size_bytes": 146721280
+  },
+  "gap_ids": [
+    296
+  ],
+  "generator": {
+    "path": "scripts/check-run-level-cap.py",
+    "sha256": "3ff8ac5e628aa60581dae95256ad4a8b68499ce5ec0fa6cb40d0fb9419393ced"
+  },
+  "native_spans": [
+    {
+      "role": "patcher",
+      "start": "0x145ba54d0",
+      "end_exclusive": "0x145ba5701",
+      "sha256": "01f46f79f60a934f461e1050c38ddbe773c94f03bab6ee34fd72854efe3f9c72",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/run-level-cap/patcher.asm",
+        "sha256": "d07522ba5b93a964e92aa7bbf15a511d2bafa60d5854f5ffa0a0a0bca2ba9a10"
+      }
+    },
+    {
+      "role": "xp",
+      "start": "0x145c2b460",
+      "end_exclusive": "0x145c2bf76",
+      "sha256": "eea0d274df602f9345a12f8fad2a03c1968a324db705f6d8c3468738e96e18ac",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/run-level-cap/xp.asm",
+        "sha256": "e4aa40f7017dcad6a86833096240bde02a84d07cbe80c72f3e867b9034cea131"
+      }
+    },
+    {
+      "role": "recipient",
+      "start": "0x145b528d0",
+      "end_exclusive": "0x145b5300c",
+      "sha256": "84170fba9ca5ac76e5fafbe44c0d5d9c671d0b6056d8167c1c9141f90a3d0c90",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/run-level-cap/recipient.asm",
+        "sha256": "c60d668111a67461519be974f87d26004b091b49f4e46d26b6a60c6b2990c067"
+      }
+    },
+    {
+      "role": "choices",
+      "start": "0x145c8e970",
+      "end_exclusive": "0x145c8fa34",
+      "sha256": "9e987276d92049b6014df7ee2cb5f73e9480d7e28c830725c607a57074198c56",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/run-level-cap/choices.asm",
+        "sha256": "53d7cee4699ee5d280e22e999919d53d54b73760b1568642b66d4c6d09c58140"
+      }
+    },
+    {
+      "role": "bootstrap",
+      "start": "0x145b98130",
+      "end_exclusive": "0x145b9826b",
+      "sha256": "9d02bf58abc5ab849d5376828f7aae08b99d33eabf024aa5557b396a1bdc2996",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/run-level-cap/bootstrap.asm",
+        "sha256": "ec6f6cae33ebc5ac0c2b74cdd9e660e389f1024c41c720774fd439f86e3dc295"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "role": "patcher",
+      "evidence_id": "ev_c928bd7bae0cfda7c4c5c21f22f089bc6db19bdbb7a865c8fd48fe92bcf7e35d",
+      "profile": "724bfbafd247ed69ff33bfee5e7f42a0a1b36098174a27d36802c834213d9bec",
+      "result": {
+        "path": "runtime/level-cap-0.127.0/rea-145ba54d0/results/5e410d9b0ddaedf7e36fd22d64c59f4633ae2268d8c8f1bf8e46f7004ec1687d.json",
+        "sha256": "ce0efe66ef33459a8d40ab53e0940091cd6c37c191eebd4340f3dcfa01c8b91c"
+      },
+      "journal": {
+        "path": "runtime/level-cap-0.127.0/rea-145ba54d0/journal.json",
+        "sha256": "b248969f4644875c26de9ae4528512639a5137239bba1edc20c007e946d09223"
+      },
+      "plan": {
+        "path": "runtime/level-cap-0.127.0/rea-145ba54d0/plan.json",
+        "sha256": "ea86b4528b6d29b623c772ba5e3d1b61779268c3dc1461a77acc47bf6e76828c"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/run-level-cap/patcher.c",
+        "sha256": "aead8cf2766d995b52e42cc7c5076ef1bc11a393528b7de15fa355be020d5a14"
+      }
+    },
+    {
+      "role": "xp",
+      "evidence_id": "ev_13a89e194f76995d395b8f530af7ddab52fccebaa93ad89aad9316e1e80a9139",
+      "profile": "343818a4d0fbbe7cac12df68152be916c1e86727433127e9832b5e10363b9283",
+      "result": {
+        "path": "runtime/level-cap-0.127.0/rea-145c2b460/results/42ad5da44161c4a3f6c6cf3601c54e6d305edc8f877f69fc1f12e2c5bb2ccff8.json",
+        "sha256": "201fbac2220f8cc172822857454ef4b71a49f26a6a95fdf1fa86dd002c962b1c"
+      },
+      "journal": {
+        "path": "runtime/level-cap-0.127.0/rea-145c2b460/journal.json",
+        "sha256": "09acf07e7f9c2417de2f47180cd95d0d710174ac96eb1fd55e5ddae5b597142c"
+      },
+      "plan": {
+        "path": "runtime/level-cap-0.127.0/rea-145c2b460/plan.json",
+        "sha256": "bd1a2c7e85cfe8982a34837743dcf87f83a942d9dd4c637db21c2c9396d216e5"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/run-level-cap/xp.c",
+        "sha256": "8aab367df1702f9b1ff7ca6327d447682f767c6250493e32d0625fed4eac2837"
+      }
+    },
+    {
+      "role": "recipient",
+      "evidence_id": "ev_db08b0d263b59a72e73fd75bea59520c6e616b8ef5ff27a5278d7eea285300f8",
+      "profile": "aea8fa7d259d6fabca939ad5af10bff404261ea0b6eab24bd2dc4e3c91a2efe9",
+      "result": {
+        "path": "runtime/level-cap-0.127.0/validation/rea-145b528d0/results/193541c392b4f9b7e84b57e55895d9174c96672570496fb6efa8f8b2489b6bdc.json",
+        "sha256": "6d94bc5164d67599e729c84f13c2f0f0b4a39b4a2b7b096601649258b334b1e7"
+      },
+      "journal": {
+        "path": "runtime/level-cap-0.127.0/validation/rea-145b528d0/journal.json",
+        "sha256": "00aabf7ed081967ac71b554e0908b8ce3770d6706279967c8b3356c080f4db24"
+      },
+      "plan": {
+        "path": "runtime/level-cap-0.127.0/validation/rea-145b528d0/plan.json",
+        "sha256": "b5fc2e1530aeb1da57ebcb23a43e5476697219d67c73e597efd86b76d4152bcc"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.127.0/run-level-cap/recipient.c",
+        "sha256": "85b1d25a567a43bb79719f2b198077b2677bbc260e53db4c41bf22f5d6f89842"
+      }
+    }
+  ],
+  "cap": {
+    "va": "0x14707f7d4",
+    "value": 120
+  },
+  "template": {
+    "va": "0x14707f7d8",
+    "bytes": 83,
+    "sha256": "28378aedd12151b022bc3a9f6f9857164de88adb563decfda4d1a11329faefc1"
+  },
+  "suffix": {
+    "path": "docs/analysis/evidence/0.127.0/run-level-cap.lua",
+    "sha256": "9a0c6210c8ee97ffac93691cb420d074f2deac8fc9f48eedcde32f1f4a39c557"
+  },
+  "patch_cases": [
+    {
+      "mode": "available",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "publications": 1,
+      "edges": [
+        "0x145ec8320",
+        "0x145f3f790",
+        "0x145f409b0",
+        "0x146031e70",
+        "0x146034470",
+        "0x145f432c0",
+        "0x1400021d0"
+      ]
+    },
+    {
+      "mode": "root-unavailable",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "publications": 0,
+      "edges": [
+        "0x145ec8320"
+      ]
+    },
+    {
+      "mode": "chain-unavailable",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "publications": 0,
+      "edges": [
+        "0x145ec8320",
+        "0x145f3f790",
+        "0x146003f70",
+        "0x1400021d0"
+      ]
+    },
+    {
+      "mode": "file-unavailable",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "publications": 0,
+      "edges": [
+        "0x145ec8320",
+        "0x145f3f790",
+        "0x145f409b0",
+        "0x14601d930",
+        "0x146003f70",
+        "0x1400021d0"
+      ]
+    },
+    {
+      "mode": "available",
+      "original_sha256": "af3e92b3858eb244e3c6eea45775a0b126462d919c7ed426231157125f224b37",
+      "publications": 1,
+      "edges": [
+        "0x145ec8320",
+        "0x145f3f790",
+        "0x145f409b0",
+        "0x146031e70",
+        "0x146034470",
+        "0x145f432c0",
+        "0x1400021d0",
+        "0x1400021d0"
+      ]
+    },
+    {
+      "mode": "root-unavailable",
+      "original_sha256": "af3e92b3858eb244e3c6eea45775a0b126462d919c7ed426231157125f224b37",
+      "publications": 0,
+      "edges": [
+        "0x145ec8320"
+      ]
+    },
+    {
+      "mode": "chain-unavailable",
+      "original_sha256": "af3e92b3858eb244e3c6eea45775a0b126462d919c7ed426231157125f224b37",
+      "publications": 0,
+      "edges": [
+        "0x145ec8320",
+        "0x145f3f790",
+        "0x146003f70",
+        "0x1400021d0"
+      ]
+    },
+    {
+      "mode": "file-unavailable",
+      "original_sha256": "af3e92b3858eb244e3c6eea45775a0b126462d919c7ed426231157125f224b37",
+      "publications": 0,
+      "edges": [
+        "0x145ec8320",
+        "0x145f3f790",
+        "0x145f409b0",
+        "0x14601d930",
+        "0x146003f70",
+        "0x1400021d0"
+      ]
+    },
+    {
+      "mode": "available",
+      "original_sha256": "44592abe6956134ffb2d35e44bcadd3e0c1b768a42585b226149882effaa6f49",
+      "publications": 1,
+      "edges": [
+        "0x145ec8320",
+        "0x145f3f790",
+        "0x145f409b0",
+        "0x146031e70",
+        "0x146034470",
+        "0x145f432c0",
+        "0x1400021d0",
+        "0x1400021d0"
+      ]
+    },
+    {
+      "mode": "root-unavailable",
+      "original_sha256": "44592abe6956134ffb2d35e44bcadd3e0c1b768a42585b226149882effaa6f49",
+      "publications": 0,
+      "edges": [
+        "0x145ec8320"
+      ]
+    },
+    {
+      "mode": "chain-unavailable",
+      "original_sha256": "44592abe6956134ffb2d35e44bcadd3e0c1b768a42585b226149882effaa6f49",
+      "publications": 0,
+      "edges": [
+        "0x145ec8320",
+        "0x145f3f790",
+        "0x146003f70",
+        "0x1400021d0"
+      ]
+    },
+    {
+      "mode": "file-unavailable",
+      "original_sha256": "44592abe6956134ffb2d35e44bcadd3e0c1b768a42585b226149882effaa6f49",
+      "publications": 0,
+      "edges": [
+        "0x145ec8320",
+        "0x145f3f790",
+        "0x145f409b0",
+        "0x14601d930",
+        "0x146003f70",
+        "0x1400021d0"
+      ]
+    }
+  ],
+  "xp_cases": [
+    {
+      "level": 1,
+      "xp": 0,
+      "amount": 0,
+      "result": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "level": 1,
+      "xp": 0,
+      "amount": 4,
+      "result": [
+        1,
+        4,
+        0
+      ]
+    },
+    {
+      "level": 1,
+      "xp": 0,
+      "amount": 5,
+      "result": [
+        2,
+        0,
+        1
+      ]
+    },
+    {
+      "level": 1,
+      "xp": 0,
+      "amount": 6,
+      "result": [
+        2,
+        1,
+        1
+      ]
+    },
+    {
+      "level": 1,
+      "xp": 0,
+      "amount": 4294967295,
+      "result": [
+        120,
+        4294744494,
+        119
+      ]
+    },
+    {
+      "level": 1,
+      "xp": 4294967295,
+      "amount": 1,
+      "result": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "level": 98,
+      "xp": 0,
+      "amount": 0,
+      "result": [
+        98,
+        0,
+        0
+      ]
+    },
+    {
+      "level": 98,
+      "xp": 0,
+      "amount": 3685,
+      "result": [
+        98,
+        3685,
+        0
+      ]
+    },
+    {
+      "level": 98,
+      "xp": 0,
+      "amount": 3686,
+      "result": [
+        99,
+        0,
+        1
+      ]
+    },
+    {
+      "level": 98,
+      "xp": 0,
+      "amount": 3687,
+      "result": [
+        99,
+        1,
+        1
+      ]
+    },
+    {
+      "level": 98,
+      "xp": 0,
+      "amount": 4294967295,
+      "result": [
+        120,
+        4294868434,
+        22
+      ]
+    },
+    {
+      "level": 98,
+      "xp": 4294967295,
+      "amount": 1,
+      "result": [
+        98,
+        0,
+        0
+      ]
+    },
+    {
+      "level": 99,
+      "xp": 0,
+      "amount": 0,
+      "result": [
+        99,
+        0,
+        0
+      ]
+    },
+    {
+      "level": 99,
+      "xp": 0,
+      "amount": 3757,
+      "result": [
+        99,
+        3757,
+        0
+      ]
+    },
+    {
+      "level": 99,
+      "xp": 0,
+      "amount": 3758,
+      "result": [
+        100,
+        0,
+        1
+      ]
+    },
+    {
+      "level": 99,
+      "xp": 0,
+      "amount": 3759,
+      "result": [
+        100,
+        1,
+        1
+      ]
+    },
+    {
+      "level": 99,
+      "xp": 0,
+      "amount": 4294967295,
+      "result": [
+        120,
+        4294872120,
+        21
+      ]
+    },
+    {
+      "level": 99,
+      "xp": 4294967295,
+      "amount": 1,
+      "result": [
+        99,
+        0,
+        0
+      ]
+    },
+    {
+      "level": 100,
+      "xp": 0,
+      "amount": 0,
+      "result": [
+        100,
+        0,
+        0
+      ]
+    },
+    {
+      "level": 100,
+      "xp": 0,
+      "amount": 3830,
+      "result": [
+        100,
+        3830,
+        0
+      ]
+    },
+    {
+      "level": 100,
+      "xp": 0,
+      "amount": 3831,
+      "result": [
+        101,
+        0,
+        1
+      ]
+    },
+    {
+      "level": 100,
+      "xp": 0,
+      "amount": 3832,
+      "result": [
+        101,
+        1,
+        1
+      ]
+    },
+    {
+      "level": 100,
+      "xp": 0,
+      "amount": 4294967295,
+      "result": [
+        120,
+        4294875878,
+        20
+      ]
+    },
+    {
+      "level": 100,
+      "xp": 4294967295,
+      "amount": 1,
+      "result": [
+        100,
+        0,
+        0
+      ]
+    },
+    {
+      "level": 118,
+      "xp": 0,
+      "amount": 0,
+      "result": [
+        118,
+        0,
+        0
+      ]
+    },
+    {
+      "level": 118,
+      "xp": 0,
+      "amount": 5263,
+      "result": [
+        118,
+        5263,
+        0
+      ]
+    },
+    {
+      "level": 118,
+      "xp": 0,
+      "amount": 5264,
+      "result": [
+        119,
+        0,
+        1
+      ]
+    },
+    {
+      "level": 118,
+      "xp": 0,
+      "amount": 5265,
+      "result": [
+        119,
+        1,
+        1
+      ]
+    },
+    {
+      "level": 118,
+      "xp": 0,
+      "amount": 4294967295,
+      "result": [
+        120,
+        4294956681,
+        2
+      ]
+    },
+    {
+      "level": 118,
+      "xp": 4294967295,
+      "amount": 1,
+      "result": [
+        118,
+        0,
+        0
+      ]
+    },
+    {
+      "level": 119,
+      "xp": 0,
+      "amount": 0,
+      "result": [
+        119,
+        0,
+        0
+      ]
+    },
+    {
+      "level": 119,
+      "xp": 0,
+      "amount": 5349,
+      "result": [
+        119,
+        5349,
+        0
+      ]
+    },
+    {
+      "level": 119,
+      "xp": 0,
+      "amount": 5350,
+      "result": [
+        120,
+        0,
+        1
+      ]
+    },
+    {
+      "level": 119,
+      "xp": 0,
+      "amount": 5351,
+      "result": [
+        120,
+        1,
+        1
+      ]
+    },
+    {
+      "level": 119,
+      "xp": 0,
+      "amount": 4294967295,
+      "result": [
+        120,
+        4294961945,
+        1
+      ]
+    },
+    {
+      "level": 119,
+      "xp": 4294967295,
+      "amount": 1,
+      "result": [
+        119,
+        0,
+        0
+      ]
+    },
+    {
+      "level": 120,
+      "xp": 0,
+      "amount": 0,
+      "result": [
+        120,
+        0,
+        0
+      ]
+    },
+    {
+      "level": 120,
+      "xp": 0,
+      "amount": 5436,
+      "result": [
+        120,
+        5436,
+        0
+      ]
+    },
+    {
+      "level": 120,
+      "xp": 0,
+      "amount": 5437,
+      "result": [
+        120,
+        5437,
+        0
+      ]
+    },
+    {
+      "level": 120,
+      "xp": 0,
+      "amount": 5438,
+      "result": [
+        120,
+        5438,
+        0
+      ]
+    },
+    {
+      "level": 120,
+      "xp": 0,
+      "amount": 4294967295,
+      "result": [
+        120,
+        4294967295,
+        0
+      ]
+    },
+    {
+      "level": 120,
+      "xp": 4294967295,
+      "amount": 1,
+      "result": [
+        120,
+        0,
+        0
+      ]
+    },
+    {
+      "level": 121,
+      "xp": 0,
+      "amount": 0,
+      "result": [
+        121,
+        0,
+        0
+      ]
+    },
+    {
+      "level": 121,
+      "xp": 0,
+      "amount": 5524,
+      "result": [
+        121,
+        5524,
+        0
+      ]
+    },
+    {
+      "level": 121,
+      "xp": 0,
+      "amount": 5525,
+      "result": [
+        121,
+        5525,
+        0
+      ]
+    },
+    {
+      "level": 121,
+      "xp": 0,
+      "amount": 5526,
+      "result": [
+        121,
+        5526,
+        0
+      ]
+    },
+    {
+      "level": 121,
+      "xp": 0,
+      "amount": 4294967295,
+      "result": [
+        121,
+        4294967295,
+        0
+      ]
+    },
+    {
+      "level": 121,
+      "xp": 4294967295,
+      "amount": 1,
+      "result": [
+        121,
+        0,
+        0
+      ]
+    }
+  ],
+  "recipient_cases": [
+    {
+      "level": 0,
+      "result": 0
+    },
+    {
+      "level": 98,
+      "result": 98
+    },
+    {
+      "level": 99,
+      "result": 99
+    },
+    {
+      "level": 100,
+      "result": 100
+    },
+    {
+      "level": 119,
+      "result": 119
+    },
+    {
+      "level": 120,
+      "result": 120
+    },
+    {
+      "level": 121,
+      "result": 120
+    },
+    {
+      "level": 4294967295,
+      "result": 120
+    }
+  ],
+  "choice_admission_cases": [
+    {
+      "level": 99,
+      "pending": 0,
+      "store": 0,
+      "spend": 0,
+      "admitted": 0
+    },
+    {
+      "level": 99,
+      "pending": 0,
+      "store": 1,
+      "spend": 0,
+      "admitted": 0
+    },
+    {
+      "level": 99,
+      "pending": 0,
+      "store": 1,
+      "spend": 1,
+      "admitted": 0
+    },
+    {
+      "level": 99,
+      "pending": 2,
+      "store": 0,
+      "spend": 0,
+      "admitted": 1
+    },
+    {
+      "level": 99,
+      "pending": 2,
+      "store": 1,
+      "spend": 0,
+      "admitted": 0
+    },
+    {
+      "level": 99,
+      "pending": 2,
+      "store": 1,
+      "spend": 1,
+      "admitted": 1
+    },
+    {
+      "level": 119,
+      "pending": 0,
+      "store": 0,
+      "spend": 0,
+      "admitted": 0
+    },
+    {
+      "level": 119,
+      "pending": 0,
+      "store": 1,
+      "spend": 0,
+      "admitted": 0
+    },
+    {
+      "level": 119,
+      "pending": 0,
+      "store": 1,
+      "spend": 1,
+      "admitted": 0
+    },
+    {
+      "level": 119,
+      "pending": 2,
+      "store": 0,
+      "spend": 0,
+      "admitted": 1
+    },
+    {
+      "level": 119,
+      "pending": 2,
+      "store": 1,
+      "spend": 0,
+      "admitted": 0
+    },
+    {
+      "level": 119,
+      "pending": 2,
+      "store": 1,
+      "spend": 1,
+      "admitted": 1
+    },
+    {
+      "level": 120,
+      "pending": 0,
+      "store": 0,
+      "spend": 0,
+      "admitted": 0
+    },
+    {
+      "level": 120,
+      "pending": 0,
+      "store": 1,
+      "spend": 0,
+      "admitted": 0
+    },
+    {
+      "level": 120,
+      "pending": 0,
+      "store": 1,
+      "spend": 1,
+      "admitted": 0
+    },
+    {
+      "level": 120,
+      "pending": 2,
+      "store": 0,
+      "spend": 0,
+      "admitted": 1
+    },
+    {
+      "level": 120,
+      "pending": 2,
+      "store": 1,
+      "spend": 0,
+      "admitted": 0
+    },
+    {
+      "level": 120,
+      "pending": 2,
+      "store": 1,
+      "spend": 1,
+      "admitted": 1
+    }
+  ],
+  "choice_inventory": {
+    "census": {
+      "path": "docs/analysis/coverage/full-image-declared-0.127.0.json",
+      "sha256": "8af5c79de249390572033632c765abb975b513c02f15b093b4ecf29de2fc6822"
+    },
+    "bodies": {
+      "path": "runtime/analysis/census/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/896d292af1bb685d8bd3cf4f1194b967ea1fdb2f1e50b586d26203fd1f4b2b17/bodies.tsv.gz",
+      "sha256": "baf569df09ddf7b1e5c4bc649db1b3c8697e39a24b6f8d9cd01d14d0c40aaf4d"
+    },
+    "rows": [
+      [
+        "145c8e970",
+        "FUN_145c8e970",
+        "145c8e970",
+        "145c8ec06",
+        "false"
+      ],
+      [
+        "145c8e970",
+        "FUN_145c8e970",
+        "145c8ec10",
+        "145c8ec34",
+        "false"
+      ],
+      [
+        "145c8e970",
+        "FUN_145c8e970",
+        "145c8ec40",
+        "145c8eca9",
+        "false"
+      ],
+      [
+        "145c8e970",
+        "FUN_145c8e970",
+        "145c8ecb0",
+        "145c8ed27",
+        "false"
+      ],
+      [
+        "145c8e970",
+        "FUN_145c8e970",
+        "145c8ed30",
+        "145c8ed5c",
+        "false"
+      ],
+      [
+        "145c8e970",
+        "FUN_145c8e970",
+        "145c8ed60",
+        "145c8ed88",
+        "false"
+      ],
+      [
+        "145c8e970",
+        "FUN_145c8e970",
+        "145c8ed90",
+        "145c8ee0b",
+        "false"
+      ],
+      [
+        "145c8e970",
+        "FUN_145c8e970",
+        "145c8ee10",
+        "145c8ee27",
+        "false"
+      ],
+      [
+        "145c8e970",
+        "FUN_145c8e970",
+        "145c8ee30",
+        "145c8ee7a",
+        "false"
+      ],
+      [
+        "145c8e970",
+        "FUN_145c8e970",
+        "145c8ee80",
+        "145c8eeb6",
+        "false"
+      ],
+      [
+        "145c8e970",
+        "FUN_145c8e970",
+        "145c8eec0",
+        "145c8ef41",
+        "false"
+      ],
+      [
+        "145c8e970",
+        "FUN_145c8e970",
+        "145c8ef50",
+        "145c8f0e0",
+        "false"
+      ],
+      [
+        "145c8e970",
+        "FUN_145c8e970",
+        "145c8f0f0",
+        "145c8f152",
+        "false"
+      ],
+      [
+        "145c8e970",
+        "FUN_145c8e970",
+        "145c8f160",
+        "145c8f20b",
+        "false"
+      ],
+      [
+        "145c8e970",
+        "FUN_145c8e970",
+        "145c8f210",
+        "145c8f35c",
+        "false"
+      ],
+      [
+        "145c8e970",
+        "FUN_145c8e970",
+        "145c8f360",
+        "145c8f70c",
+        "false"
+      ],
+      [
+        "145c8e970",
+        "FUN_145c8e970",
+        "145c8f710",
+        "145c8f7ba",
+        "false"
+      ],
+      [
+        "145c8e970",
+        "FUN_145c8e970",
+        "145c8f7c0",
+        "145c8fa33",
+        "false"
+      ]
+    ],
+    "role": "retained current Ghidra flow body; original-byte branch/argument review, no fresh query"
+  },
+  "stock_resources": [
+    {
+      "archive": "installed-game/Data/patch.MPQ",
+      "path": "Interface\\FrameXML\\ReputationFrame.lua",
+      "bytes": 9129,
+      "sha256": "6850fe3f526fee33970f8d78c4ea264d6235f0ab9a24e86a161f45dbb1e2e328"
+    },
+    {
+      "archive": "installed-game/Data/patch.MPQ",
+      "path": "Interface\\FrameXML\\FrameXML.toc",
+      "bytes": 1730,
+      "sha256": "e41fce21d2dbe598c31999a5b7cdf410222a9e29eeea4be2fe342ee7b643b2f4"
+    },
+    {
+      "archive": "installed-game/Data/patch.MPQ",
+      "path": "Interface\\FrameXML\\ReputationFrame.xml",
+      "bytes": 32518,
+      "sha256": "c4d4830e8aaa42f8f5c7915a698345b9ff6185eddad75643113b1a9294843975"
+    }
+  ],
+  "lua_assertions": 568,
+  "lua_harness": {
+    "path": "scripts/check-run-level-cap.lua",
+    "sha256": "dae36549a8fe0b465f154330e291a4c84ced930e97be896b17855ac5f8447c88"
+  },
+  "limits": [
+    "XP probes execute native addition, threshold, cap and earned-level writes; roundf and per-level presentation/stat/heal side effects are explicit seams.",
+    "Recipient probes execute the cap load/unsigned clamp/output store; intervening instructions are checked to preserve EAX. Full validation is not emulated.",
+    "Choice admission probes execute the current pending/phase/store/spend gate and verify mode0+pause arguments; card construction is a seam. Retained current Ghidra body/original assembly establishes final publication without another level gate.",
+    "Raw-function Ghidra pseudocode can omit paths after unknown non-returning helpers; original assembly owns the recipient cap proof.",
+    "Stock Lua executes in two standalone mocked-widget VMs; Rust regressions are authored but unrun. No application compilation, game/client/server execution or parity validation."
+  ]
+}

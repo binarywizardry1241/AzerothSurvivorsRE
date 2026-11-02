@@ -1,0 +1,47 @@
+{
+  "target_version": "0.109.0",
+  "target_sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+  "owners": [
+    {
+      "role": "active-load",
+      "start": "0x14589d550",
+      "end": "0x14589dd93",
+      "sha256": "6db0d95aa0b3b6939b2cb0f77a16da2ea0dc0aa1785467538b9dd5a5ddebffd9",
+      "assembly": "active-load.asm",
+      "assembly_sha256": "43e05ba94e1b2c3f8be0b70be5e36a40a2057fa3ee8c9dbef5cc305a3997f8bf"
+    },
+    {
+      "role": "unreadable-slot",
+      "start": "0x14589b9d0",
+      "end": "0x14589baae",
+      "sha256": "9314fe6facfe32b62d3a28a9b0cfe43871b0f4b95b20f3d456e7062d3256cbb7",
+      "assembly": "unreadable-slot.asm",
+      "assembly_sha256": "e0907c19ff1d3ebeb0414dc2208d863e4b7c7b22aa22b97e438309001f007c5a"
+    },
+    {
+      "role": "prefix-trim",
+      "start": "0x14115ace0",
+      "end": "0x14115ae3d",
+      "sha256": "529b87148ada465120d6b4e5cd76ea2a79acfc39ebdd17fae1d615afab3d7180",
+      "assembly": "prefix-trim.asm",
+      "assembly_sha256": "17d3507bd24b84398e86b4268509e19bfd237b8f7ea84b2ba1e37cd02d225491"
+    }
+  ],
+  "pseudocode": "active-load.c",
+  "pseudocode_sha256": "fea9897f614e0ce270b5951c01150b48cd9ee0b7f11ac3bc7ded9799596554e7",
+  "rea": {
+    "evidence_id": "ev_7588338fa96805294a2d333140ea5beb0d8f96196b306abe5d32dc43fbcca0f0",
+    "provider": {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "version": "12.1.4"
+    },
+    "analysis_profile_digest": "e478fee7794c72503b6bdc90f771f8ae4b84c5ab376cc0354019b6b6a7c4c2a3",
+    "subject_sha256": "6db0d95aa0b3b6939b2cb0f77a16da2ea0dc0aa1785467538b9dd5a5ddebffd9"
+  },
+  "limits": [
+    "Actual loader, unreadable-slot selection, prefix trim, generic formatting and typed parser/serializer instructions execute.",
+    "Active/auxiliary reads, auxiliary writes, diagnostics and the separately verified envelope-open result are explicit seams.",
+    "No native clock/filesystem or application calls execute. Raw-carrier Ghidra ABI is provisional; original Win64 instructions govern."
+  ]
+}

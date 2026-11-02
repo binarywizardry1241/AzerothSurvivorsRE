@@ -1,0 +1,92 @@
+{
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "source_static_checked": true,
+  "compilation": "not_run",
+  "runtime_validation": "not_run",
+  "parity": "unverified",
+  "native": {
+    "interner_cases": [
+      {
+        "utf8_hex": "",
+        "id": 15728640
+      },
+      {
+        "utf8_hex": "73657420666f7572",
+        "id": 15728641
+      },
+      {
+        "utf8_hex": "736574206569676874",
+        "id": 15728642
+      },
+      {
+        "utf8_hex": "6974656d20656666656374",
+        "id": 15728643
+      },
+      {
+        "utf8_hex": "73657420666f7572",
+        "id": 15728641
+      },
+      {
+        "utf8_hex": "610062",
+        "id": 15728644
+      },
+      {
+        "utf8_hex": "c3a9",
+        "id": 15728645
+      },
+      {
+        "utf8_hex": "65cc81",
+        "id": 15728646
+      },
+      {
+        "utf8_hex": "e697a5e69cace8aa9e",
+        "id": 15728647
+      },
+      {
+        "utf8_hex": "f09f9982",
+        "id": 15728648
+      },
+      {
+        "utf8_hex": "",
+        "id": 15728640
+      },
+      {
+        "utf8_hex": "736574206569676874",
+        "id": 15728642
+      },
+      {
+        "utf8_hex": "7461696c00",
+        "id": 15728649
+      }
+    ],
+    "missing_lookup_cases": [
+      0,
+      15728639,
+      15728650,
+      4294967295
+    ],
+    "isolated_registry_cases": 2,
+    "instruction_steps": 2394,
+    "seam_calls": {
+      "0x145fec430": 3,
+      "0x145fbee30": 14,
+      "0x140002200": 9,
+      "0x1400021c0": 9,
+      "0x145febc1b": 9,
+      "0x145febc27": 5
+    },
+    "guest_carrier_recovered": false,
+    "limits": "Uncontended/nonpoisoned registry only; allocation, byte comparison/copy, vector growth and String cloning are seams. This executes no Rust/client/network/server."
+  },
+  "routing": {
+    "cases": 280,
+    "instruction_steps": 1610,
+    "case_sha256": "4e5a1a23993c0de467e5881f08ee677d44fb9d8586ce04af8df87f231564bffb",
+    "limits": "Original routing predicate only; no serializer, socket, lifecycle sender or local request handler executes."
+  }
+}

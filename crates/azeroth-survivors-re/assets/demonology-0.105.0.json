@@ -1,0 +1,245 @@
+{
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "talents": [
+    {
+      "key": "demonic_familiar",
+      "name": "Demonic Familiar",
+      "icon": "Spell_Shadow_SummonImp",
+      "description": "An Imp fights at your side for good, its Firebolts {v}% stronger. Each one also strikes every enemy burning with your Immolate.",
+      "row": 0,
+      "column": 1,
+      "max_rank": 5,
+      "prerequisite": null,
+      "numeric_values": [
+        "4",
+        "8",
+        "12",
+        "16",
+        "20"
+      ],
+      "milestone": false
+    },
+    {
+      "key": "demonic_embrace",
+      "name": "Demonic Embrace",
+      "icon": "Spell_Shadow_Metamorphosis",
+      "description": "Increases your maximum health by {v}%. Your Voidwalkers deal 1% more damage for every 1% of bonus health you have.",
+      "row": 0,
+      "column": 2,
+      "max_rank": 5,
+      "prerequisite": null,
+      "numeric_values": [
+        "4",
+        "8",
+        "12",
+        "16",
+        "20"
+      ],
+      "milestone": false
+    },
+    {
+      "key": "fel_stamina",
+      "name": "Fel Stamina",
+      "icon": "Spell_Shadow_AntiShadow",
+      "description": "Reduces all damage taken by {v}%. Your Voidwalkers deal 2% more damage for every 1% damage reduction you have.",
+      "row": 1,
+      "column": 0,
+      "max_rank": 3,
+      "prerequisite": null,
+      "numeric_values": [
+        "2.5",
+        "5",
+        "7.5"
+      ],
+      "milestone": false
+    },
+    {
+      "key": "unholy_power",
+      "name": "Unholy Power",
+      "icon": "Spell_Shadow_ShadowWordDominate",
+      "description": "Your demons deal {v}% more damage.",
+      "row": 1,
+      "column": 3,
+      "max_rank": 5,
+      "prerequisite": null,
+      "numeric_values": [
+        "5",
+        "10",
+        "15",
+        "20",
+        "25"
+      ],
+      "milestone": false
+    },
+    {
+      "key": "soul_devourer",
+      "name": "Soul Devourer",
+      "icon": "Spell_Shadow_SummonFelHunter",
+      "description": "Milestone. A Felhunter fights at your side for good. It bites 2 enemies, tears harder into those suffering your Curse of Agony, and deals {v}% more damage for every 1% health its target is missing. At rank 3, its bites on enemies below 25% health let your Curse of Agony crit them for 5 sec. Rules out Soul Link.",
+      "row": 2,
+      "column": 0,
+      "max_rank": 3,
+      "prerequisite": "demonic_familiar",
+      "numeric_values": [
+        "0.8",
+        "1.5",
+        "3"
+      ],
+      "milestone": true
+    },
+    {
+      "key": "soul_link",
+      "name": "Soul Link",
+      "icon": "Spell_Shadow_GatherShadows",
+      "description": "Milestone. A Voidwalker fights at your side for good. It strikes 2 enemies, heals you for 2.5 health on each kill, and grows with your health and damage reduction. Its blows shield you for {v}% of their damage, all your Voidwalkers together up to 25% of your maximum health. Rules out Soul Devourer.",
+      "row": 2,
+      "column": 2,
+      "max_rank": 3,
+      "prerequisite": "demonic_familiar",
+      "numeric_values": [
+        "5",
+        "10",
+        "15"
+      ],
+      "milestone": true
+    },
+    {
+      "key": "felfire_training",
+      "name": "Demonic Echoes",
+      "icon": "Spell_Shadow_Possession",
+      "description": "Your demons' attacks have a {v}% chance to strike again for full damage: a bolt, a swing or a pulse of Hellfire, never a summon. Your demons have no echo but this one.",
+      "row": 2,
+      "column": 3,
+      "max_rank": 3,
+      "prerequisite": null,
+      "numeric_values": [
+        "5",
+        "10",
+        "15"
+      ],
+      "milestone": false
+    },
+    {
+      "key": "master_demonologist",
+      "name": "Master Demonologist",
+      "icon": "Spell_Shadow_ShadowPact",
+      "description": "Increases all damage by {v}%, and your demons' critical strike chance by as much.",
+      "row": 3,
+      "column": 3,
+      "max_rank": 3,
+      "prerequisite": null,
+      "numeric_values": [
+        "3",
+        "6",
+        "9"
+      ],
+      "milestone": false
+    },
+    {
+      "key": "legion_gate",
+      "name": "Legion Gate",
+      "icon": "Spell_Shadow_RitualOfSacrifice",
+      "description": "Milestone. Every 12 sec a gate tears open and up to 3 demons step through for 20 sec: Imps, Succubi, and Felhunters or Voidwalkers, as your companion is. Up to 2 more of your companion's kind and 10 lesser demons in all at once, your own counted. Succubi stun what carries your Corruption around them.",
+      "row": 4,
+      "column": 1,
+      "max_rank": 1,
+      "prerequisite": "soul_devourer",
+      "numeric_values": [
+        null
+      ],
+      "milestone": true
+    },
+    {
+      "key": "demonic_supremacy",
+      "name": "Demonic Supremacy",
+      "icon": "Spell_Shadow_CurseOfAchimonde",
+      "description": "You can no longer summon Imps, Felhunters, Voidwalkers or Succubi: your Demonic Familiar, Soul Devourer, Soul Link and Legion Gate bring no demons while you have it. Your Infernal and Doomguard, if you have their talents, stay for good instead, one of each, and deal {v}% more damage.",
+      "row": 4,
+      "column": 3,
+      "max_rank": 1,
+      "prerequisite": null,
+      "numeric_values": [
+        "25"
+      ],
+      "milestone": false
+    },
+    {
+      "key": "summon_infernal",
+      "name": "Summon Infernal",
+      "icon": "Spell_Shadow_SummonInfernal",
+      "description": "Each damaging spell you cast has a 5% chance to bring an Infernal crashing down among your foes for 15 sec, if none is out. It stuns what it lands on, and burns all around it with your Hellfire (its ranks, talents and pace, and your area) at {v}% of its power.",
+      "row": 5,
+      "column": 0,
+      "max_rank": 3,
+      "prerequisite": null,
+      "numeric_values": [
+        "100",
+        "120",
+        "140"
+      ],
+      "milestone": false
+    },
+    {
+      "key": "summon_doomguard",
+      "name": "Summon Doomguard",
+      "icon": "Spell_Shadow_AntiMagicShell",
+      "description": "Each damaging spell you cast has a 5% chance to summon a Doomguard for 15 sec, if none is out. It hurls your Shadow Bolt (its ranks and talents, Shadow Cleave too, as fast as you do) at bosses and elites first, at {v}% of its power. Doom Bringer: each bolt in a row on the same boss or elite hits it 20% harder, up to 200% more.",
+      "row": 5,
+      "column": 3,
+      "max_rank": 3,
+      "prerequisite": null,
+      "numeric_values": [
+        "100",
+        "120",
+        "140"
+      ],
+      "milestone": false
+    },
+    {
+      "key": "pact_of_the_annihilan",
+      "name": "Pact of the Annihilan",
+      "icon": "Spell_Shadow_UnholyStrength",
+      "description": "Capstone. Each damaging spell you cast has a {v}% chance to summon a Pit Lord for 12 sec, sure by the 10th. It hurls Felseeker, a far stronger Searing Pain that grows with your Searing Pain's ranks. Once every 40 sec at most, and never sooner than 7.5 sec after it leaves. Rules out Butcher.",
+      "row": 6,
+      "column": 0,
+      "max_rank": 1,
+      "prerequisite": "legion_gate",
+      "numeric_values": [
+        "10"
+      ],
+      "milestone": false
+    },
+    {
+      "key": "butcher",
+      "name": "Butcher",
+      "icon": "Ability_Warrior_Cleave",
+      "description": "Capstone. Each damaging spell you cast has a {v}% chance to summon a Felguard for 20 sec, sure by the 10th. Its swings cleave every enemy around its target, wider with your area, and every third swing deals 200% damage. It attacks faster by your cooldown reduction, and 35% faster against a target below 30% health. Each swing gives you 0.2 Soul Shards, at most 2 a second. It goes for the weakest boss or elite near you first. Once every 40 sec at most, and never sooner than 7.5 sec after it leaves. Rules out Pact of the Annihilan.",
+      "row": 6,
+      "column": 2,
+      "max_rank": 1,
+      "prerequisite": "legion_gate",
+      "numeric_values": [
+        "10"
+      ],
+      "milestone": false
+    }
+  ],
+  "scorched_earth": {
+    "key": "aftermath",
+    "name": "Scorched Earth",
+    "icon": "Spell_Fire_Immolation",
+    "description": "Your Hellfire deals {v}% more damage, and each enemy each of its pulses burns has a {v}% chance to be slowed by 40% for 3 sec. Your Infernal's Hellfire too.",
+    "row": 1,
+    "column": 2,
+    "max_rank": 5,
+    "prerequisite": null,
+    "numeric_values": [
+      "5",
+      "10",
+      "15",
+      "20",
+      "25"
+    ],
+    "milestone": false
+  }
+}

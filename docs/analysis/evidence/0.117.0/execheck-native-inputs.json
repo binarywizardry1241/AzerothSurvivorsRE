@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "kind": "fresh-current-native-input-witness",
+  "target": {
+    "version": "0.117.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293",
+    "size_bytes": 145283072
+  },
+  "declared_census": {
+    "path": "docs/analysis/coverage/full-image-declared-0.117.0.json",
+    "sha256": "5b6efa11c653184fd5aea3ae471100053d0a74b5ebf775eb33ba8681c1a2f258"
+  },
+  "expanded_plan": {
+    "path": "runtime/coverage/507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293/ghidra/execheck-2026-10-25/plan.json",
+    "sha256": "1f24c4ca1481cbfc6358b1af8b48513a8efdd4488f1dbe4918c17bba567b6c09"
+  },
+  "requested_entry_seeds": 430099,
+  "pointer_selection": {
+    "body_summary": "docs/analysis/coverage/full-image-census.json",
+    "body_summary_sha256": "5b6efa11c653184fd5aea3ae471100053d0a74b5ebf775eb33ba8681c1a2f258",
+    "body_inventory": "runtime/coverage/507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293/ghidra/declared/bodies.tsv.gz",
+    "body_inventory_sha256": "f140acb0b929ebdf9ad291f0442edeccc1aa2360c18278dcf332077bb1287985",
+    "distinct_executable_pointer_targets": 136724,
+    "targets_without_observed_bodies": 71975,
+    "target_source_semantics_established": false
+  },
+  "original_input_producers": {
+    "guarded_switch": {
+      "summary": {
+        "path": "runtime/coverage/507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293/ghidra/execheck-2026-10-25/jump-tables-input-summary.json",
+        "sha256": "e4ed172b89ba4bd53ead4c5a3eb40163b027eedbc600a724f34c9aafc7495af5"
+      },
+      "producer_generator": {
+        "path": "scripts/recover-native-jump-tables.py",
+        "sha256": "e334caee6931e56e9aa4b81a40fbec0a1137223c30acd946fe3538bdf6074a46",
+        "capstone_version": "5.0.7"
+      },
+      "source_census": {
+        "path": "docs/analysis/coverage/full-image-declared-0.117.0.json",
+        "sha256": "5b6efa11c653184fd5aea3ae471100053d0a74b5ebf775eb33ba8681c1a2f258"
+      },
+      "inventory": {
+        "path": "runtime/coverage/507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293/seed-proofs/declared/guarded-jump-tables.json",
+        "sha256": "43d9dca52bc8f6d7cf1202eae6dda0d45999e377ab5b307296e5c35d060f71ab"
+      }
+    },
+    "address_code": {
+      "summary": {
+        "path": "runtime/coverage/507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293/ghidra/execheck-2026-10-25/address-code-input-summary.json",
+        "sha256": "0c2694e67cdf92ab489f6c5b8333d8e876a26894f487f10479801265ae9bfea8"
+      },
+      "producer_generator": {
+        "path": "scripts/recover-native-address-leads.py",
+        "sha256": "02bb39e644ffaafba19774cab098f84d5f986443f64dd98946f64db840209c9a",
+        "capstone_version": "5.0.7"
+      },
+      "source_census": {
+        "path": "docs/analysis/coverage/full-image-declared-0.117.0.json",
+        "sha256": "5b6efa11c653184fd5aea3ae471100053d0a74b5ebf775eb33ba8681c1a2f258"
+      },
+      "inventory": {
+        "path": "runtime/coverage/507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293/seed-proofs/declared/address-code-leads.json",
+        "sha256": "2fd234b5d321d8da95bae08184e05d847828d151969f3537be70e25c9d80e91b"
+      }
+    },
+    "import_thunks": {
+      "summary": {
+        "path": "runtime/coverage/507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293/ghidra/execheck-2026-10-25/import-thunks-input-summary.json",
+        "sha256": "d1b3efb2d630a5f864bbd940b28a8359a1e625f3fd8cd94cb62a3a604ca5f9bd"
+      },
+      "producer_generator": {
+        "path": "scripts/recover-native-import-thunks.py",
+        "sha256": "65883151064e3974474ea249020d5c20a7accb2fd2cf81404b205f893c3f6909"
+      },
+      "source_census": {
+        "path": "docs/analysis/coverage/full-image-declared-0.117.0.json",
+        "sha256": "5b6efa11c653184fd5aea3ae471100053d0a74b5ebf775eb33ba8681c1a2f258"
+      },
+      "inventory": {
+        "path": "runtime/coverage/507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293/seed-proofs/declared/import-thunks.json",
+        "sha256": "13c28dd1859185859d72d77ca6ec82330cf6d56ae46b03234fe61867af6cc6fe"
+      }
+    },
+    "unwind_entries": {
+      "summary": {
+        "path": "runtime/coverage/507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293/ghidra/execheck-2026-10-25/unwind-handlers-input-summary.json",
+        "sha256": "3369baec47170a1fa0de1a372735a2025ce4bf69f0e051edbf38d2e438725615"
+      },
+      "producer_generator": {
+        "path": "scripts/recover-native-unwind-handlers.py",
+        "sha256": "b4b7084a113a5314e584e73c6d487cc43da0b5c031ed23d7a4f44e12f441f907"
+      },
+      "source_census": {
+        "path": "docs/analysis/coverage/full-image-declared-0.117.0.json",
+        "sha256": "5b6efa11c653184fd5aea3ae471100053d0a74b5ebf775eb33ba8681c1a2f258"
+      },
+      "inventory": {
+        "path": "runtime/coverage/507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293/seed-proofs/declared/unwind-handlers.json",
+        "sha256": "485dcbeee36bf2a22a671799fed127c23b2c44a6c08f2f2341669aec3d6da002"
+      }
+    },
+    "diagnostic_code": {
+      "inventory": {
+        "path": "runtime/coverage/507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293/ghidra/execheck-2026-10-25/diagnostic-code-input.json",
+        "sha256": "d9a56c522a18401faaaef6a14609dde718871001a97b4cb3d601fe31f61933c0"
+      },
+      "producer_generator": {
+        "path": "scripts/prepare-native-diagnostic-leads.py",
+        "sha256": "c037b70d058ecb87447fd91c780bb44afdb1a722cb2248a0a0b82d629c4e8f44"
+      },
+      "source_census": {
+        "path": "docs/analysis/coverage/full-image-declared-0.117.0.json",
+        "sha256": "5b6efa11c653184fd5aea3ae471100053d0a74b5ebf775eb33ba8681c1a2f258"
+      },
+      "code_only_seeds": 1348
+    }
+  },
+  "current_launch_tooling": {
+    "scripts/ghidra/ReaNativeCensus.java": "d91f77b533a723c6c8ab128b4d55c9aa0d94abc6f3f6e6ae8e54c46f1a045b09",
+    "scripts/census-native-image.py": "e3cfacf62eb4a49efc06562e3211a1aad2032f889c64ffe1ebb711c4efcf5a51",
+    "scripts/rea-native-census.mjs": "234161bf645f2473bfdebea16c9753f2955b7f945236604193536f968670edc4",
+    "scripts/repair-rea-native-census.py": "fc49ad9a0473addac7cb30851c4c6583042474bbd47055c77c842157fe190163",
+    "scripts/repair-rea-reference-input.py": "29da663b1a71a8d6258bfb1c2b8d3117bac3e39c9299bfa35681f85a28db2502",
+    "node_modules/rea-agents/dist/ghidra/GhidraLauncher.js": "ce306f4e7d6a787ac2da78d9d53f013994dbe7dfe4b7eadc53d3707974f7efc7",
+    "node_modules/rea-agents/dist/ghidra/GhidraTargetSnapshot.js": "6e726143fad91cb487cf0455beca03751da8004034cf6680ab5cb842eca679b6",
+    "scripts/recover-native-address-leads.py": "02bb39e644ffaafba19774cab098f84d5f986443f64dd98946f64db840209c9a",
+    "scripts/recover-native-import-thunks.py": "65883151064e3974474ea249020d5c20a7accb2fd2cf81404b205f893c3f6909",
+    "scripts/recover-native-unwind-handlers.py": "b4b7084a113a5314e584e73c6d487cc43da0b5c031ed23d7a4f44e12f441f907"
+  },
+  "source_semantics_complete": false,
+  "parity_verified": false,
+  "expanded_census": {
+    "path": "docs/analysis/coverage/full-image-execheck-0.117.0.json",
+    "sha256": "cc5ea0d857fb21cda8db8332975ddd618d25897bc629d73cdda336ef0f3e2413"
+  },
+  "expanded_profile_digest": "bd9a7d70910ed280042ca055021da73e7bfbb1b2d9bf49d8f0b22b872f9c3976",
+  "applied_jump_summary": {
+    "path": "docs/analysis/coverage/native-jump-tables.json",
+    "sha256": "e4ed172b89ba4bd53ead4c5a3eb40163b027eedbc600a724f34c9aafc7495af5"
+  },
+  "applied_guarded_edge_digest": "f80cdc945d988a16c94b6a96f02af8f475f9d671840d84a75abbdd1eb58a3241",
+  "all_required_fresh_inputs_verified": true
+}

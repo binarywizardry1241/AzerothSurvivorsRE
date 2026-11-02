@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.113.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+    "size_bytes": 141932032
+  },
+  "inventory": {
+    "path": "runtime/coverage/58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb/inventory.json",
+    "sha256": "b3753d3045ed2a4589ad518a437d1aacaaed92d8368ad16969ab33b3a2ce5bb2",
+    "regenerate": "python3 scripts/inventory-current-target.py --write"
+  },
+  "counts": {
+    "file_bytes": 141932032,
+    "sections": 6,
+    "runtime_function_records": 350352,
+    "executable_virtual_bytes": 99202430,
+    "executable_bytes_inside_runtime_function_extents": 94075592,
+    "executable_bytes_outside_runtime_function_extents": 5126838,
+    "imports": 425,
+    "exports": 0,
+    "base_relocation_records_nonpadding": 634029,
+    "relocation_types_including_padding": {
+      "0": 1603,
+      "10": 634029
+    },
+    "diagnostic_paths": 730,
+    "custom_game_diagnostic_paths": 59,
+    "engine_or_other_crate_diagnostic_paths": 671,
+    "embedded_candidates": {
+      "game_binding_identifier": 343,
+      "lua_function_declaration": 185,
+      "lua_ui_registration": 336,
+      "module_type_namespace": 921,
+      "resource_path": 303,
+      "save_configuration_key_lead": 5,
+      "textual_id_assignment": 2,
+      "textual_numeric_id": 0
+    }
+  },
+  "methods": [
+    "PE32+ headers/sections/imports/exports/debug/AMD64 unwind and base-relocation directories",
+    "whole-file diagnostic/source, module/type, game-binding, Lua/UI, save/configuration, textual numeric ID and resource-path byte candidates"
+  ],
+  "native_analysis": {
+    "status": "separate_resumable_census_required",
+    "command": "python3 scripts/census-current-target.py --run --limit 10",
+    "progress_path": "runtime/coverage/58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb/ghidra/full-image-bounded-analysis/progress.json",
+    "pipeline_sample_command": "python3 scripts/census-current-target.py --run --sample --limit 1",
+    "pipeline_sample_progress_path": "runtime/coverage/58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb/ghidra/sample-first-unwind-extent/progress.json",
+    "decoded_instruction_coverage": "unknown_until_provider_records_are_present",
+    "all_native_semantics_or_reference_edges_recovered": false
+  },
+  "residual_unknowns": [
+    "Whole-file census describes supplied bytes and declared PE records, not all runtime memory states or complete systems.",
+    "AMD64 .pdata records are unwind extents; leaf routines, inline code, merged/shared bodies and noncode cannot be assigned complete source ownership from them.",
+    "PE base relocations identify declared fixup sites; DIR64 values are encoded address candidates, not decoded instructions, global readers/writers or complete xrefs.",
+    "Diagnostic paths, namespaces, IDs, script and configuration patterns are nonexhaustive byte leads. Matches can occur in data or instruction bytes and need native/source review.",
+    "All numeric values/IDs, globals, indirect dispatch, Lua/configuration formats and function semantics remain unclassified unless linked to reviewed native evidence.",
+    "No compilation, target execution, gameplay, visual/UX comparison or old/new executable diff occurs here."
+  ],
+  "ownership_complete": false,
+  "reconstruction_complete": false,
+  "parity_verified": false
+}

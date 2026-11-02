@@ -1,0 +1,106 @@
+{
+  "date": "2026-10-16",
+  "original_target": "AzerothSurvivors/AzerothSurvivors.exe",
+  "original_sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+  "original_byte_count": 130888192,
+  "derivation": "Exact unmodified contiguous function bytes; raw file offset zero mapped at original virtual address for Ghidra",
+  "artifacts": [
+    {
+      "path": "runtime/menu-recovery/slices/picker-1408d0c20.bin",
+      "sha256": "6ff69ec690aad2428447854bb6e396cca29916368c78af25d874182a37dd186e",
+      "source_file_offset": "0x8d0020",
+      "source_file_end_exclusive": "0x8d04b9",
+      "original_virtual_address": "0x1408d0c20",
+      "original_virtual_end_exclusive": "0x1408d10b9",
+      "byte_count": 1177,
+      "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+    },
+    {
+      "path": "runtime/menu-recovery/slices/picker-140e88250.bin",
+      "sha256": "af9b37ac175a50ea50aea895ec3d04bfa6f0146def9f05df3b82bc1d1b4baf77",
+      "source_file_offset": "0xe87650",
+      "source_file_end_exclusive": "0xe8a056",
+      "original_virtual_address": "0x140e88250",
+      "original_virtual_end_exclusive": "0x140e8ac56",
+      "byte_count": 10758,
+      "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+    },
+    {
+      "path": "runtime/menu-recovery/slices/picker-140c937d0.bin",
+      "sha256": "6297a8ef3ef0dcbf46c4240ee79e245cc7fc81bd8addbf8c4dc380772f7bfc84",
+      "source_file_offset": "0xc92bd0",
+      "source_file_end_exclusive": "0xc9415b",
+      "original_virtual_address": "0x140c937d0",
+      "original_virtual_end_exclusive": "0x140c94d5b",
+      "byte_count": 5515,
+      "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+    },
+    {
+      "path": "runtime/menu-recovery/slices/picker-140c92130.bin",
+      "sha256": "f327661b534badbc698bff332d70721420b437f5cfa9660acce9dac35190bfb8",
+      "source_file_offset": "0xc91530",
+      "source_file_end_exclusive": "0xc92317",
+      "original_virtual_address": "0x140c92130",
+      "original_virtual_end_exclusive": "0x140c92f17",
+      "byte_count": 3559,
+      "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+    },
+    {
+      "path": "runtime/menu-recovery/slices/picker-140c90460.bin",
+      "sha256": "693243d2e228159368fbf40a8fcbecc27ed79e68e2da4216a380ee2d9255b884",
+      "source_file_offset": "0xc8f860",
+      "source_file_end_exclusive": "0xc90556",
+      "original_virtual_address": "0x140c90460",
+      "original_virtual_end_exclusive": "0x140c91156",
+      "byte_count": 3318,
+      "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+    },
+    {
+      "path": "runtime/menu-recovery/slices/picker-140e8d6c0.bin",
+      "sha256": "943fa1d3b69d7d52c86c820decec4f07e533c13e2273ba20a36776e9cb63f0c5",
+      "source_file_offset": "0xe8cac0",
+      "source_file_end_exclusive": "0xe8cbb4",
+      "original_virtual_address": "0x140e8d6c0",
+      "original_virtual_end_exclusive": "0x140e8d7b4",
+      "byte_count": 244,
+      "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+    },
+    {
+      "path": "runtime/menu-recovery/slices/picker-140e8d800.bin",
+      "sha256": "a46cd7be2232f5bc46a1d2a6ed1004214f1c07df3ba76557f6695c128cc25ee5",
+      "source_file_offset": "0xe8cc00",
+      "source_file_end_exclusive": "0xe8cce8",
+      "original_virtual_address": "0x140e8d800",
+      "original_virtual_end_exclusive": "0x140e8d8e8",
+      "byte_count": 232,
+      "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+    },
+    {
+      "path": "runtime/menu-recovery/slices/picker-140c8f030.bin",
+      "sha256": "98fa3aaed5cfce8cab21776a2772f0a4c935eb2a1c357c4c1876dd180f646198",
+      "source_file_offset": "0xc8e430",
+      "source_file_end_exclusive": "0xc8ec10",
+      "original_virtual_address": "0x140c8f030",
+      "original_virtual_end_exclusive": "0x140c8f810",
+      "byte_count": 2016,
+      "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+    },
+    {
+      "path": "runtime/menu-recovery/slices/picker-140c8b1f0.bin",
+      "sha256": "821ddb269bf0eaaaf9b2bac761181db24191ef22cd15bbd1596734decccf8fbf",
+      "source_file_offset": "0xc8a5f0",
+      "source_file_end_exclusive": "0xc8a786",
+      "original_virtual_address": "0x140c8b1f0",
+      "original_virtual_end_exclusive": "0x140c8b386",
+      "byte_count": 406,
+      "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+    }
+  ],
+  "limitations": [
+    "Derived artifacts omit every byte outside each selected RUNTIME_FUNCTION body, including callee code and referenced constants/strings.",
+    "Raw x86_64 REA import uses generic GCC compiler specification; original target is Windows x64, so recovered signatures and call arguments require original instruction verification.",
+    "PE unwind records are function-boundary observations, not recovered original source names.",
+    "No original or derived binary was executed by this extraction or static analysis workflow.",
+    "Generic TOML dispatcher scopes omit external jump tables; the LocalConfig visitor140c8f030 and original PE instructions/literals supply the type-specific field behavior. Cleanup140c8b1f0 is retained only as a followed false semantic lead."
+  ]
+}

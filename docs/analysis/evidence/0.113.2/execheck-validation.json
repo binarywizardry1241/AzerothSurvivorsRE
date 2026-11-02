@@ -1,0 +1,511 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.113.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+    "size_bytes": 141932032
+  },
+  "scope": "Inspected current-target, non-compiling static native/source contract checker replays. Each owning report retains its contract bounds; no whole-system semantic certification.",
+  "invocations": 61,
+  "distinct_checkers": 59,
+  "python_libraries": [
+    "runtime/camera-recovery-0.105.0/python-libs",
+    "runtime/armory-recovery/python-libs"
+  ],
+  "checks": [
+    {
+      "command": "python3 -B scripts/check-addon-tga-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-addon-tga-0.113.2.py",
+        "sha256": "cf69e943a1a4658133223bbbaf2144171bfa45613280c838a0f3454cf4d23e49"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-addon-tga-0.113.2.py --atlas runtime/menu-state/AddOns/-DragonflightReloaded/media/tex/chat/cleaner_coins.tga",
+      "checker": {
+        "path": "scripts/check-addon-tga-0.113.2.py",
+        "sha256": "cf69e943a1a4658133223bbbaf2144171bfa45613280c838a0f3454cf4d23e49"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-armory-badges-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-armory-badges-0.113.2.py",
+        "sha256": "1ce9152fbc5e3f291f72c2dfff3738a883e74c1743993a12f16a3c2bc527775c"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-as-delayed-visuals-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-as-delayed-visuals-0.113.2.py",
+        "sha256": "353b361104f8457738c0ae489fb66538c4378159410bab6cd503614341e119ef"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-as-state-collections-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-as-state-collections-0.113.2.py",
+        "sha256": "a785e85f9580ed4a6c6c4b5300d4ceec0759a9a7339566fd2f7bb380b0bb41b4"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-as-state-contracts-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-as-state-contracts-0.113.2.py",
+        "sha256": "bc2e3d721c1244e45457ab22318b9f935b3764605dfc23d04bfc4921467520fe"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-as-state-step-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-as-state-step-0.113.2.py",
+        "sha256": "7feaed2302639e6b21b00f775fdc3dfaa297a0b9ed1829e48ad8d04cdae2f96c"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-banner-chat-routing-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-banner-chat-routing-0.113.2.py",
+        "sha256": "989103c93e6a278b9304d925e66341d6453093ba68eb4ee5366db1bd19e14751"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-banner-takeover-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-banner-takeover-0.113.2.py",
+        "sha256": "d4672cfc77f15a5393b606998cc6712c1489d1591c134e1c205a7cc63baa209b"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-cache-lifecycle-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-cache-lifecycle-0.113.2.py",
+        "sha256": "fa31fac16cf3277c4f31d209aa908ad15736d1f06a0b296ff3a04bfb954f6e3e"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-card-delivery-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-card-delivery-0.113.2.py",
+        "sha256": "486dbb568ba45937104d1af87ece4c1b23dd4c8443334ace3114c8b81dc8c004"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-card-keyboard-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-card-keyboard-0.113.2.py",
+        "sha256": "8fce22daa03d4000504cf1739df53688d75040ebcc04fa4a96893c221d609c77"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-card-reroll-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-card-reroll-0.113.2.py",
+        "sha256": "06496ab6a26dc0a0f1369bab4963de2f49c81ba91ab920a554d50088f7fdc49f"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-coop-ui.py",
+      "checker": {
+        "path": "scripts/check-coop-ui.py",
+        "sha256": "b914aef2b58d471d1f673ed4ffcc718e9990c32d6db0940ceebc9c8f58dbec8e"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-equipped-inventory-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-equipped-inventory-0.113.2.py",
+        "sha256": "6e54961d092558767462ce4649a25a53d8da8ee6350d917fa8c13039405696f1"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-equipped-inventory-prose-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-equipped-inventory-prose-0.113.2.py",
+        "sha256": "970eb5ca12b09af12023f4fad02fcc46cc250c98dd307d74172ceeb01bef6efe"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-equipped-inventory-text-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-equipped-inventory-text-0.113.2.py",
+        "sha256": "c362e33400807e178db27bf1e48285e87dcb08855f63bccc67e51c42438f52de"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-ground-contracts-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-ground-contracts-0.113.2.py",
+        "sha256": "c34d7ccfc19a6447497b7f2a1077909cbad4add3316b5a09be8b4cd41da98ddc"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-ground-handoff-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-ground-handoff-0.113.2.py",
+        "sha256": "9ab28853b400df6819d53c731742c7e77ee5ee223bd5fe6e0018e8de4d125efe"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-guardian-choices-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-guardian-choices-0.113.2.py",
+        "sha256": "738c0fe246d5e035ef0390a1be7ddc09564cbfd95eefd2c8ca080d53aa2b63f1"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-guardian-field-events.py",
+      "checker": {
+        "path": "scripts/check-guardian-field-events.py",
+        "sha256": "f1c8c192c72786213217d65e22c9c2b31cd9d325a2e708bbac05dddf61761d08"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-guardian-target-health.py",
+      "checker": {
+        "path": "scripts/check-guardian-target-health.py",
+        "sha256": "84714d841e0bdbf5b9ca9a2cea41ad2c98c89b7e2dbc445ee013ae17c618e035"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-horn-offers-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-horn-offers-0.113.2.py",
+        "sha256": "53cd6cf9b766caa791728616b807c9774ccd9ceb5f1d483792c698d8e6d3c3f8"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-jewelry-texture-admission.py",
+      "checker": {
+        "path": "scripts/check-jewelry-texture-admission.py",
+        "sha256": "33b433b1074d8d7f35a5e22af57b84192ba1502625a7d9f94b73d63adf7a65bb"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-jewelry-texture-admission.py --addon-root runtime/menu-state/AddOns/-DragonflightReloaded",
+      "checker": {
+        "path": "scripts/check-jewelry-texture-admission.py",
+        "sha256": "33b433b1074d8d7f35a5e22af57b84192ba1502625a7d9f94b73d63adf7a65bb"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-legacy-config.py",
+      "checker": {
+        "path": "scripts/check-legacy-config.py",
+        "sha256": "7d01d57297da2598964435187fdb4d4e6c9663c5c557685ceba982439ece42d6"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-meter-minimap-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-meter-minimap-0.113.2.py",
+        "sha256": "deebe6d7da86b79bddbeea929e0d8f694d2bfdd39e3551a4fdb09cc9bc110751"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-picker-equipment-art-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-picker-equipment-art-0.113.2.py",
+        "sha256": "7ee58cb7a1431d036c98ce88ce28b6c23b4e6841d965374d0e378b92e4ba45e5"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-q41-c01-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-q41-c01-0.113.2.py",
+        "sha256": "b8356b0553ddd27d9bcc7104a5114fc10e6db79555a85ed6d450911f7719f6d1"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-q41-c01-upgrade-constructor-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-q41-c01-upgrade-constructor-0.113.2.py",
+        "sha256": "6b7ff7375da755ade4237d16b8dfb2fb32b284753f6abdeb9c20f64044178390"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-q41-data-bindings-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-q41-data-bindings-0.113.2.py",
+        "sha256": "8bc6ea34cfd6d5f5398e6b9073fc661e5eacbcf62f0b03a410d0e34e8f39ba9c"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-q41-m01-jewelry-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-q41-m01-jewelry-0.113.2.py",
+        "sha256": "1a6f016c97f35527fde200734deff62aacfd142bbd2a7b4f669d888bad4635e8"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-q41-options-flow-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-q41-options-flow-0.113.2.py",
+        "sha256": "b178718a7569dd6680be3e589489c7dbd820eab04566151f94085b5545979432"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-q41-p01-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-q41-p01-0.113.2.py",
+        "sha256": "d4d62b498aa09880b686767984fca90c72bfbafa8f8b00c5ef841cef3ea4c489"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-q41-p01-aura-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-q41-p01-aura-0.113.2.py",
+        "sha256": "4066255af23669c6a94f64691f99419133305053fa85824f7d49ceccfabf561c"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-q41-pointer-relations-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-q41-pointer-relations-0.113.2.py",
+        "sha256": "1e5ac25ff9a3d3a12b0e44b3a95bef9da988caa293c96ebca3a8fc5c797ac25f"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-q41-u01-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-q41-u01-0.113.2.py",
+        "sha256": "1acce2aab784f4ebe6134eca5a14402544b2b81e74dd2051de2fe551d28ff7eb"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-race-portraits-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-race-portraits-0.113.2.py",
+        "sha256": "f26a924e2bcdab298c56fd106094022986e00047116b5101f27dfb3b3c752e62"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-raid-gaze-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-raid-gaze-0.113.2.py",
+        "sha256": "9b580c4e2cd9efeb9ecc2f62748bb00bf2df0a7efbcd291e58056b38f648da84"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-reward-controls-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-reward-controls-0.113.2.py",
+        "sha256": "ac017a64ca53a6b1203f989cf35a1fc1f5158e21d4806cca494888982e79adef"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-u04-trap-fill-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-u04-trap-fill-0.113.2.py",
+        "sha256": "e6a7b96c4c599e8f90bf746cc10544dcb585f7717fb7ee394a580c9616170048"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/recover-entry-ui-progress-0.113.2.py --check",
+      "checker": {
+        "path": "scripts/recover-entry-ui-progress-0.113.2.py",
+        "sha256": "bc9b1822a811bd592b7d62b6a1703d51c5eb5bad65280f4cde9bc184af6d95be"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-as-resource-paths-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-as-resource-paths-0.113.2.py",
+        "sha256": "842b59625fa75e0d23ce3d8c92cdcfd88f1d7e50d7e15f16af1454cb6defc0bc"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-clock-queries-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-clock-queries-0.113.2.py",
+        "sha256": "b5b67eaf00daf4325111f7f804337811ead6e59ab112d403df7c5afb9305cede"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-creature-queries-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-creature-queries-0.113.2.py",
+        "sha256": "557575a600fb58d4a9830141db433e2dfba95146ee1601ca3d08f38b45bf92e2"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-font-inputs-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-font-inputs-0.113.2.py",
+        "sha256": "7ad16428ce5286394afad9520334707fc3999d18b7a1d223b8188a58e87119cf"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-inventory-refusals-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-inventory-refusals-0.113.2.py",
+        "sha256": "346bad575f187ba5c20eb2197105abc899c1761b9627d0b1ecc9effbbdad7eb2"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-local-dispatch-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-local-dispatch-0.113.2.py",
+        "sha256": "2292919d738469211076b52f1dcf43fd285092acee2f47e393301f4a313b624d"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-movement-entry-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-movement-entry-0.113.2.py",
+        "sha256": "b7671de92230f1667ba9ef4d9133d7eab9932055f004bc38e54d475ac771e0b3"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-name-queries-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-name-queries-0.113.2.py",
+        "sha256": "e88842394dce384451749957c1e5961420bfc1917ff6354f9f9e7e4142528b3c"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-q41-address-leaves-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-q41-address-leaves-0.113.2.py",
+        "sha256": "9f11bde27e3dd05aac70481fdebffb1664f25af702f48723798568b31c1bbc4b"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-q41-call-interfaces-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-q41-call-interfaces-0.113.2.py",
+        "sha256": "38a0eac36824ca52d540657d367f493f8f73ee37b0752e68a80fccba4a355328"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-q41-computed-flows-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-q41-computed-flows-0.113.2.py",
+        "sha256": "8c41f0e1d1e6390681fd70f1b462fcf28b3bcc1ef89d027bd6f6e6be0c46c10c"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-q41-custom-diagnostics-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-q41-custom-diagnostics-0.113.2.py",
+        "sha256": "f84c9a7c28071c3683a1adacfd5e02a40d434cde4da9c8758fbd3a72f6dfb296"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-q41-pe-layout-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-q41-pe-layout-0.113.2.py",
+        "sha256": "d72bd68e06152fa5c6efb0011a7f50d496f899b20878cc0c3d9cadd3ad9a6989"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-q41-range-encodings-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-q41-range-encodings-0.113.2.py",
+        "sha256": "ec8850a0c0ac501084976499680bede0b3ece6165328bf07e721a48e148ea0d8"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-q41-save-key-leads-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-q41-save-key-leads-0.113.2.py",
+        "sha256": "5ab430b129eca21d6b509032a76645137f6c1557f2fad40fde17f9fec048cd56"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-request-lifetimes-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-request-lifetimes-0.113.2.py",
+        "sha256": "ccaee2a5f331e99782b49784423cca4607da87d0bb4f60b50f6fb328c195a4d0"
+      },
+      "result": "passed",
+      "invocation": "Imported checker main with default arguments; wrapper only retains candidate proof text on assertion failure."
+    },
+    {
+      "command": "python3 -B scripts/check-template-queries-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-template-queries-0.113.2.py",
+        "sha256": "2c67422a8a9ea711b288d7ed04a2274ae05707d60953031d4ba9f9fd0914f7e8"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/check-zone-key-guardian-damage-0.113.2.py",
+      "checker": {
+        "path": "scripts/check-zone-key-guardian-damage-0.113.2.py",
+        "sha256": "8655974dd161b12e82ed23c594fcf27365bfe9a8abe8b48f91aa0c01f569a7ba"
+      },
+      "result": "passed"
+    },
+    {
+      "command": "python3 -B scripts/recover-locale-catalogs-0.113.2.py",
+      "checker": {
+        "path": "scripts/recover-locale-catalogs-0.113.2.py",
+        "sha256": "663938484b0ada4b11c9bbbff350fe61054f1a5aa75fdcf1e4efd86db6e440e8"
+      },
+      "result": "passed"
+    }
+  ],
+  "compilation_run": false,
+  "reconstructed_source_execution_run": false,
+  "game_launch_run": false,
+  "original_rebuilt_comparison_run": false
+}

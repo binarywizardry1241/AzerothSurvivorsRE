@@ -1,0 +1,1635 @@
+{
+  "target_sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+  "cases": [
+    {
+      "label": "echoes-key-and-removed-knowledge",
+      "input": "talent|9|50000|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3,demonic_knowledge:3\nspec|9|2|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3,demonic_knowledge:3|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3,soul_link:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3,soul_devourer:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1\n",
+      "output": "talent|9|50000|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3\nspec|9|2|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_link:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_devourer:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1\n",
+      "live": [
+        [
+          "demonic_familiar",
+          5
+        ],
+        [
+          "demonic_embrace",
+          5
+        ],
+        [
+          "fel_stamina",
+          3
+        ],
+        [
+          "unholy_power",
+          5
+        ],
+        [
+          "felfire_training",
+          3
+        ]
+      ],
+      "specs": [
+        [
+          [
+            "demonic_familiar",
+            5
+          ],
+          [
+            "demonic_embrace",
+            5
+          ],
+          [
+            "fel_stamina",
+            3
+          ],
+          [
+            "unholy_power",
+            5
+          ],
+          [
+            "felfire_training",
+            3
+          ]
+        ],
+        [
+          [
+            "demonic_familiar",
+            5
+          ],
+          [
+            "demonic_embrace",
+            5
+          ],
+          [
+            "fel_stamina",
+            3
+          ],
+          [
+            "unholy_power",
+            5
+          ],
+          [
+            "soul_link",
+            3
+          ],
+          [
+            "felfire_training",
+            3
+          ],
+          [
+            "master_demonologist",
+            3
+          ],
+          [
+            "legion_gate",
+            1
+          ],
+          [
+            "demonic_supremacy",
+            1
+          ]
+        ],
+        [
+          [
+            "demonic_familiar",
+            5
+          ],
+          [
+            "demonic_embrace",
+            5
+          ],
+          [
+            "fel_stamina",
+            3
+          ],
+          [
+            "unholy_power",
+            5
+          ],
+          [
+            "felfire_training",
+            3
+          ]
+        ]
+      ],
+      "switched_slot": 0,
+      "switched_output": "talent|9|50000|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3\nspec|9|0|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_link:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3\n",
+      "class_id": 9
+    },
+    {
+      "label": "link-exclusive-branch",
+      "input": "talent|9|50000|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3,soul_link:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1\nspec|9|2|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3,soul_link:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3,soul_link:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3,soul_devourer:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1\n",
+      "output": "talent|9|50000|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_link:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1\nspec|9|2|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_link:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_link:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_devourer:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1\n",
+      "live": [
+        [
+          "demonic_familiar",
+          5
+        ],
+        [
+          "demonic_embrace",
+          5
+        ],
+        [
+          "fel_stamina",
+          3
+        ],
+        [
+          "unholy_power",
+          5
+        ],
+        [
+          "soul_link",
+          3
+        ],
+        [
+          "felfire_training",
+          3
+        ],
+        [
+          "master_demonologist",
+          3
+        ],
+        [
+          "legion_gate",
+          1
+        ],
+        [
+          "demonic_supremacy",
+          1
+        ]
+      ],
+      "specs": [
+        [
+          [
+            "demonic_familiar",
+            5
+          ],
+          [
+            "demonic_embrace",
+            5
+          ],
+          [
+            "fel_stamina",
+            3
+          ],
+          [
+            "unholy_power",
+            5
+          ],
+          [
+            "soul_link",
+            3
+          ],
+          [
+            "felfire_training",
+            3
+          ],
+          [
+            "master_demonologist",
+            3
+          ],
+          [
+            "legion_gate",
+            1
+          ],
+          [
+            "demonic_supremacy",
+            1
+          ]
+        ],
+        [
+          [
+            "demonic_familiar",
+            5
+          ],
+          [
+            "demonic_embrace",
+            5
+          ],
+          [
+            "fel_stamina",
+            3
+          ],
+          [
+            "unholy_power",
+            5
+          ],
+          [
+            "soul_link",
+            3
+          ],
+          [
+            "felfire_training",
+            3
+          ],
+          [
+            "master_demonologist",
+            3
+          ],
+          [
+            "legion_gate",
+            1
+          ],
+          [
+            "demonic_supremacy",
+            1
+          ]
+        ],
+        [
+          [
+            "demonic_familiar",
+            5
+          ],
+          [
+            "demonic_embrace",
+            5
+          ],
+          [
+            "fel_stamina",
+            3
+          ],
+          [
+            "unholy_power",
+            5
+          ],
+          [
+            "soul_link",
+            3
+          ],
+          [
+            "felfire_training",
+            3
+          ],
+          [
+            "master_demonologist",
+            3
+          ],
+          [
+            "legion_gate",
+            1
+          ],
+          [
+            "demonic_supremacy",
+            1
+          ]
+        ]
+      ],
+      "switched_slot": 0,
+      "switched_output": "talent|9|50000|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_link:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1\nspec|9|0|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_link:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_link:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_link:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1\n",
+      "class_id": 9
+    },
+    {
+      "label": "devourer-exclusive-branch",
+      "input": "talent|9|50000|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3,soul_devourer:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1\nspec|9|2|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3,soul_devourer:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3,soul_link:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3,soul_devourer:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1\n",
+      "output": "talent|9|50000|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_devourer:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1\nspec|9|2|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_devourer:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_link:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_devourer:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1\n",
+      "live": [
+        [
+          "demonic_familiar",
+          5
+        ],
+        [
+          "demonic_embrace",
+          5
+        ],
+        [
+          "fel_stamina",
+          3
+        ],
+        [
+          "unholy_power",
+          5
+        ],
+        [
+          "soul_devourer",
+          3
+        ],
+        [
+          "felfire_training",
+          3
+        ],
+        [
+          "master_demonologist",
+          3
+        ],
+        [
+          "legion_gate",
+          1
+        ],
+        [
+          "demonic_supremacy",
+          1
+        ]
+      ],
+      "specs": [
+        [
+          [
+            "demonic_familiar",
+            5
+          ],
+          [
+            "demonic_embrace",
+            5
+          ],
+          [
+            "fel_stamina",
+            3
+          ],
+          [
+            "unholy_power",
+            5
+          ],
+          [
+            "soul_devourer",
+            3
+          ],
+          [
+            "felfire_training",
+            3
+          ],
+          [
+            "master_demonologist",
+            3
+          ],
+          [
+            "legion_gate",
+            1
+          ],
+          [
+            "demonic_supremacy",
+            1
+          ]
+        ],
+        [
+          [
+            "demonic_familiar",
+            5
+          ],
+          [
+            "demonic_embrace",
+            5
+          ],
+          [
+            "fel_stamina",
+            3
+          ],
+          [
+            "unholy_power",
+            5
+          ],
+          [
+            "soul_link",
+            3
+          ],
+          [
+            "felfire_training",
+            3
+          ],
+          [
+            "master_demonologist",
+            3
+          ],
+          [
+            "legion_gate",
+            1
+          ],
+          [
+            "demonic_supremacy",
+            1
+          ]
+        ],
+        [
+          [
+            "demonic_familiar",
+            5
+          ],
+          [
+            "demonic_embrace",
+            5
+          ],
+          [
+            "fel_stamina",
+            3
+          ],
+          [
+            "unholy_power",
+            5
+          ],
+          [
+            "soul_devourer",
+            3
+          ],
+          [
+            "felfire_training",
+            3
+          ],
+          [
+            "master_demonologist",
+            3
+          ],
+          [
+            "legion_gate",
+            1
+          ],
+          [
+            "demonic_supremacy",
+            1
+          ]
+        ]
+      ],
+      "switched_slot": 0,
+      "switched_output": "talent|9|50000|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_devourer:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1\nspec|9|0|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_devourer:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_link:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_devourer:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1\n",
+      "class_id": 9
+    },
+    {
+      "label": "both-branches-imported",
+      "input": "talent|9|50000|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_link:3,soul_devourer:3\nspec|9|2|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_link:3,soul_devourer:3|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3,soul_link:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3,soul_devourer:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1\n",
+      "output": "talent|9|50000|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_devourer:3\nspec|9|2|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_devourer:3|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_link:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_devourer:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1\n",
+      "live": [
+        [
+          "demonic_familiar",
+          5
+        ],
+        [
+          "demonic_embrace",
+          5
+        ],
+        [
+          "fel_stamina",
+          3
+        ],
+        [
+          "unholy_power",
+          5
+        ],
+        [
+          "soul_devourer",
+          3
+        ]
+      ],
+      "specs": [
+        [
+          [
+            "demonic_familiar",
+            5
+          ],
+          [
+            "demonic_embrace",
+            5
+          ],
+          [
+            "fel_stamina",
+            3
+          ],
+          [
+            "unholy_power",
+            5
+          ],
+          [
+            "soul_devourer",
+            3
+          ]
+        ],
+        [
+          [
+            "demonic_familiar",
+            5
+          ],
+          [
+            "demonic_embrace",
+            5
+          ],
+          [
+            "fel_stamina",
+            3
+          ],
+          [
+            "unholy_power",
+            5
+          ],
+          [
+            "soul_link",
+            3
+          ],
+          [
+            "felfire_training",
+            3
+          ],
+          [
+            "master_demonologist",
+            3
+          ],
+          [
+            "legion_gate",
+            1
+          ],
+          [
+            "demonic_supremacy",
+            1
+          ]
+        ],
+        [
+          [
+            "demonic_familiar",
+            5
+          ],
+          [
+            "demonic_embrace",
+            5
+          ],
+          [
+            "fel_stamina",
+            3
+          ],
+          [
+            "unholy_power",
+            5
+          ],
+          [
+            "soul_devourer",
+            3
+          ]
+        ]
+      ],
+      "switched_slot": 0,
+      "switched_output": "talent|9|50000|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_devourer:3\nspec|9|0|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_devourer:3|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_link:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_devourer:3\n",
+      "class_id": 9
+    },
+    {
+      "label": "duplicate-overrank-echoes",
+      "input": "talent|9|50000|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:255,felfire_training:255\nspec|9|2|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:255,felfire_training:255|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3,soul_link:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3,soul_devourer:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1\n",
+      "output": "talent|9|50000|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3\nspec|9|2|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_link:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_devourer:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1\n",
+      "live": [
+        [
+          "demonic_familiar",
+          5
+        ],
+        [
+          "demonic_embrace",
+          5
+        ],
+        [
+          "fel_stamina",
+          3
+        ],
+        [
+          "unholy_power",
+          5
+        ],
+        [
+          "felfire_training",
+          3
+        ]
+      ],
+      "specs": [
+        [
+          [
+            "demonic_familiar",
+            5
+          ],
+          [
+            "demonic_embrace",
+            5
+          ],
+          [
+            "fel_stamina",
+            3
+          ],
+          [
+            "unholy_power",
+            5
+          ],
+          [
+            "felfire_training",
+            3
+          ]
+        ],
+        [
+          [
+            "demonic_familiar",
+            5
+          ],
+          [
+            "demonic_embrace",
+            5
+          ],
+          [
+            "fel_stamina",
+            3
+          ],
+          [
+            "unholy_power",
+            5
+          ],
+          [
+            "soul_link",
+            3
+          ],
+          [
+            "felfire_training",
+            3
+          ],
+          [
+            "master_demonologist",
+            3
+          ],
+          [
+            "legion_gate",
+            1
+          ],
+          [
+            "demonic_supremacy",
+            1
+          ]
+        ],
+        [
+          [
+            "demonic_familiar",
+            5
+          ],
+          [
+            "demonic_embrace",
+            5
+          ],
+          [
+            "fel_stamina",
+            3
+          ],
+          [
+            "unholy_power",
+            5
+          ],
+          [
+            "felfire_training",
+            3
+          ]
+        ]
+      ],
+      "switched_slot": 0,
+      "switched_output": "talent|9|50000|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3\nspec|9|0|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_link:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3\n",
+      "class_id": 9
+    },
+    {
+      "label": "missing-legion-prerequisite",
+      "input": "talent|9|50000|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,legion_gate:1\nspec|9|2|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,legion_gate:1|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3,soul_link:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3,soul_devourer:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1\n",
+      "output": "talent|9|50000|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5\nspec|9|2|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_link:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_devourer:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1\n",
+      "live": [
+        [
+          "demonic_familiar",
+          5
+        ],
+        [
+          "demonic_embrace",
+          5
+        ],
+        [
+          "fel_stamina",
+          3
+        ],
+        [
+          "unholy_power",
+          5
+        ]
+      ],
+      "specs": [
+        [
+          [
+            "demonic_familiar",
+            5
+          ],
+          [
+            "demonic_embrace",
+            5
+          ],
+          [
+            "fel_stamina",
+            3
+          ],
+          [
+            "unholy_power",
+            5
+          ]
+        ],
+        [
+          [
+            "demonic_familiar",
+            5
+          ],
+          [
+            "demonic_embrace",
+            5
+          ],
+          [
+            "fel_stamina",
+            3
+          ],
+          [
+            "unholy_power",
+            5
+          ],
+          [
+            "soul_link",
+            3
+          ],
+          [
+            "felfire_training",
+            3
+          ],
+          [
+            "master_demonologist",
+            3
+          ],
+          [
+            "legion_gate",
+            1
+          ],
+          [
+            "demonic_supremacy",
+            1
+          ]
+        ],
+        [
+          [
+            "demonic_familiar",
+            5
+          ],
+          [
+            "demonic_embrace",
+            5
+          ],
+          [
+            "fel_stamina",
+            3
+          ],
+          [
+            "unholy_power",
+            5
+          ]
+        ]
+      ],
+      "switched_slot": 0,
+      "switched_output": "talent|9|50000|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5\nspec|9|0|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_link:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5\n",
+      "class_id": 9
+    },
+    {
+      "label": "insufficient-supremacy-row-spending",
+      "input": "talent|9|50000|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,demonic_supremacy:1\nspec|9|2|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,demonic_supremacy:1|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3,soul_link:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3,soul_devourer:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1\n",
+      "output": "talent|9|50000|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5\nspec|9|2|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_link:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_devourer:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1\n",
+      "live": [
+        [
+          "demonic_familiar",
+          5
+        ],
+        [
+          "demonic_embrace",
+          5
+        ],
+        [
+          "fel_stamina",
+          3
+        ],
+        [
+          "unholy_power",
+          5
+        ]
+      ],
+      "specs": [
+        [
+          [
+            "demonic_familiar",
+            5
+          ],
+          [
+            "demonic_embrace",
+            5
+          ],
+          [
+            "fel_stamina",
+            3
+          ],
+          [
+            "unholy_power",
+            5
+          ]
+        ],
+        [
+          [
+            "demonic_familiar",
+            5
+          ],
+          [
+            "demonic_embrace",
+            5
+          ],
+          [
+            "fel_stamina",
+            3
+          ],
+          [
+            "unholy_power",
+            5
+          ],
+          [
+            "soul_link",
+            3
+          ],
+          [
+            "felfire_training",
+            3
+          ],
+          [
+            "master_demonologist",
+            3
+          ],
+          [
+            "legion_gate",
+            1
+          ],
+          [
+            "demonic_supremacy",
+            1
+          ]
+        ],
+        [
+          [
+            "demonic_familiar",
+            5
+          ],
+          [
+            "demonic_embrace",
+            5
+          ],
+          [
+            "fel_stamina",
+            3
+          ],
+          [
+            "unholy_power",
+            5
+          ]
+        ]
+      ],
+      "switched_slot": 0,
+      "switched_output": "talent|9|50000|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5\nspec|9|0|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_link:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5\n",
+      "class_id": 9
+    },
+    {
+      "label": "scorched-earth-key",
+      "input": "talent|9|50000|cataclysm:5,imp_shadow_bolt:5,aftermath:5\nspec|9|2|cataclysm:5,imp_shadow_bolt:5,aftermath:5|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3,soul_link:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3,soul_devourer:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1\n",
+      "output": "talent|9|50000|imp_shadow_bolt:5,cataclysm:5,aftermath:5\nspec|9|2|imp_shadow_bolt:5,cataclysm:5,aftermath:5|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_link:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_devourer:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1\n",
+      "live": [
+        [
+          "imp_shadow_bolt",
+          5
+        ],
+        [
+          "cataclysm",
+          5
+        ],
+        [
+          "aftermath",
+          5
+        ]
+      ],
+      "specs": [
+        [
+          [
+            "imp_shadow_bolt",
+            5
+          ],
+          [
+            "cataclysm",
+            5
+          ],
+          [
+            "aftermath",
+            5
+          ]
+        ],
+        [
+          [
+            "demonic_familiar",
+            5
+          ],
+          [
+            "demonic_embrace",
+            5
+          ],
+          [
+            "fel_stamina",
+            3
+          ],
+          [
+            "unholy_power",
+            5
+          ],
+          [
+            "soul_link",
+            3
+          ],
+          [
+            "felfire_training",
+            3
+          ],
+          [
+            "master_demonologist",
+            3
+          ],
+          [
+            "legion_gate",
+            1
+          ],
+          [
+            "demonic_supremacy",
+            1
+          ]
+        ],
+        [
+          [
+            "imp_shadow_bolt",
+            5
+          ],
+          [
+            "cataclysm",
+            5
+          ],
+          [
+            "aftermath",
+            5
+          ]
+        ]
+      ],
+      "switched_slot": 0,
+      "switched_output": "talent|9|50000|imp_shadow_bolt:5,cataclysm:5,aftermath:5\nspec|9|0|imp_shadow_bolt:5,cataclysm:5,aftermath:5|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,soul_link:3,felfire_training:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1|imp_shadow_bolt:5,cataclysm:5,aftermath:5\n",
+      "class_id": 9
+    },
+    {
+      "label": "low-budget-import",
+      "input": "talent|9|80|demonic_familiar:255,demonic_embrace:255\nspec|9|2|demonic_familiar:255,demonic_embrace:255|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3,soul_link:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1|demonic_familiar:5,demonic_embrace:5,fel_stamina:3,unholy_power:5,felfire_training:3,soul_devourer:3,master_demonologist:3,legion_gate:1,demonic_supremacy:1\n",
+      "output": "talent|9|80|demonic_familiar:1\nspec|9|2|demonic_familiar:1|demonic_familiar:1|demonic_familiar:1\n",
+      "live": [
+        [
+          "demonic_familiar",
+          1
+        ]
+      ],
+      "specs": [
+        [
+          [
+            "demonic_familiar",
+            1
+          ]
+        ],
+        [
+          [
+            "demonic_familiar",
+            1
+          ]
+        ],
+        [
+          [
+            "demonic_familiar",
+            1
+          ]
+        ]
+      ],
+      "switched_slot": 0,
+      "switched_output": "talent|9|80|demonic_familiar:1\nspec|9|0|demonic_familiar:1|demonic_familiar:1|demonic_familiar:1\n",
+      "class_id": 9
+    },
+    {
+      "label": "warrior-imp_heroic-rank-0",
+      "class_id": 1,
+      "input": "talent|1|50000|imp_heroic:0\nspec|1|2|imp_heroic:0|imp_heroic:0|imp_heroic:0\n",
+      "output": "talent|1|50000|\nspec|1|2|||\n",
+      "live": [],
+      "specs": [
+        [],
+        [],
+        []
+      ],
+      "switched_slot": 0,
+      "switched_output": "talent|1|50000|\nspec|1|0|||\n"
+    },
+    {
+      "label": "warrior-imp_heroic-rank-1",
+      "class_id": 1,
+      "input": "talent|1|50000|imp_heroic:1\nspec|1|2|imp_heroic:1|imp_heroic:1|imp_heroic:1\n",
+      "output": "talent|1|50000|imp_heroic:1\nspec|1|2|imp_heroic:1|imp_heroic:1|imp_heroic:1\n",
+      "live": [
+        [
+          "imp_heroic",
+          1
+        ]
+      ],
+      "specs": [
+        [
+          [
+            "imp_heroic",
+            1
+          ]
+        ],
+        [
+          [
+            "imp_heroic",
+            1
+          ]
+        ],
+        [
+          [
+            "imp_heroic",
+            1
+          ]
+        ]
+      ],
+      "switched_slot": 0,
+      "switched_output": "talent|1|50000|imp_heroic:1\nspec|1|0|imp_heroic:1|imp_heroic:1|imp_heroic:1\n"
+    },
+    {
+      "label": "warrior-imp_heroic-rank-2",
+      "class_id": 1,
+      "input": "talent|1|50000|imp_heroic:2\nspec|1|2|imp_heroic:2|imp_heroic:2|imp_heroic:2\n",
+      "output": "talent|1|50000|imp_heroic:2\nspec|1|2|imp_heroic:2|imp_heroic:2|imp_heroic:2\n",
+      "live": [
+        [
+          "imp_heroic",
+          2
+        ]
+      ],
+      "specs": [
+        [
+          [
+            "imp_heroic",
+            2
+          ]
+        ],
+        [
+          [
+            "imp_heroic",
+            2
+          ]
+        ],
+        [
+          [
+            "imp_heroic",
+            2
+          ]
+        ]
+      ],
+      "switched_slot": 0,
+      "switched_output": "talent|1|50000|imp_heroic:2\nspec|1|0|imp_heroic:2|imp_heroic:2|imp_heroic:2\n"
+    },
+    {
+      "label": "warrior-imp_heroic-rank-3",
+      "class_id": 1,
+      "input": "talent|1|50000|imp_heroic:3\nspec|1|2|imp_heroic:3|imp_heroic:3|imp_heroic:3\n",
+      "output": "talent|1|50000|imp_heroic:3\nspec|1|2|imp_heroic:3|imp_heroic:3|imp_heroic:3\n",
+      "live": [
+        [
+          "imp_heroic",
+          3
+        ]
+      ],
+      "specs": [
+        [
+          [
+            "imp_heroic",
+            3
+          ]
+        ],
+        [
+          [
+            "imp_heroic",
+            3
+          ]
+        ],
+        [
+          [
+            "imp_heroic",
+            3
+          ]
+        ]
+      ],
+      "switched_slot": 0,
+      "switched_output": "talent|1|50000|imp_heroic:3\nspec|1|0|imp_heroic:3|imp_heroic:3|imp_heroic:3\n"
+    },
+    {
+      "label": "warrior-imp_heroic-rank-4",
+      "class_id": 1,
+      "input": "talent|1|50000|imp_heroic:4\nspec|1|2|imp_heroic:4|imp_heroic:4|imp_heroic:4\n",
+      "output": "talent|1|50000|imp_heroic:4\nspec|1|2|imp_heroic:4|imp_heroic:4|imp_heroic:4\n",
+      "live": [
+        [
+          "imp_heroic",
+          4
+        ]
+      ],
+      "specs": [
+        [
+          [
+            "imp_heroic",
+            4
+          ]
+        ],
+        [
+          [
+            "imp_heroic",
+            4
+          ]
+        ],
+        [
+          [
+            "imp_heroic",
+            4
+          ]
+        ]
+      ],
+      "switched_slot": 0,
+      "switched_output": "talent|1|50000|imp_heroic:4\nspec|1|0|imp_heroic:4|imp_heroic:4|imp_heroic:4\n"
+    },
+    {
+      "label": "warrior-imp_heroic-rank-5",
+      "class_id": 1,
+      "input": "talent|1|50000|imp_heroic:5\nspec|1|2|imp_heroic:5|imp_heroic:5|imp_heroic:5\n",
+      "output": "talent|1|50000|imp_heroic:5\nspec|1|2|imp_heroic:5|imp_heroic:5|imp_heroic:5\n",
+      "live": [
+        [
+          "imp_heroic",
+          5
+        ]
+      ],
+      "specs": [
+        [
+          [
+            "imp_heroic",
+            5
+          ]
+        ],
+        [
+          [
+            "imp_heroic",
+            5
+          ]
+        ],
+        [
+          [
+            "imp_heroic",
+            5
+          ]
+        ]
+      ],
+      "switched_slot": 0,
+      "switched_output": "talent|1|50000|imp_heroic:5\nspec|1|0|imp_heroic:5|imp_heroic:5|imp_heroic:5\n"
+    },
+    {
+      "label": "warrior-imp_heroic-rank-6",
+      "class_id": 1,
+      "input": "talent|1|50000|imp_heroic:6\nspec|1|2|imp_heroic:6|imp_heroic:6|imp_heroic:6\n",
+      "output": "talent|1|50000|imp_heroic:5\nspec|1|2|imp_heroic:5|imp_heroic:5|imp_heroic:5\n",
+      "live": [
+        [
+          "imp_heroic",
+          5
+        ]
+      ],
+      "specs": [
+        [
+          [
+            "imp_heroic",
+            5
+          ]
+        ],
+        [
+          [
+            "imp_heroic",
+            5
+          ]
+        ],
+        [
+          [
+            "imp_heroic",
+            5
+          ]
+        ]
+      ],
+      "switched_slot": 0,
+      "switched_output": "talent|1|50000|imp_heroic:5\nspec|1|0|imp_heroic:5|imp_heroic:5|imp_heroic:5\n"
+    },
+    {
+      "label": "warrior-imp_heroic-rank-255",
+      "class_id": 1,
+      "input": "talent|1|50000|imp_heroic:255\nspec|1|2|imp_heroic:255|imp_heroic:255|imp_heroic:255\n",
+      "output": "talent|1|50000|imp_heroic:5\nspec|1|2|imp_heroic:5|imp_heroic:5|imp_heroic:5\n",
+      "live": [
+        [
+          "imp_heroic",
+          5
+        ]
+      ],
+      "specs": [
+        [
+          [
+            "imp_heroic",
+            5
+          ]
+        ],
+        [
+          [
+            "imp_heroic",
+            5
+          ]
+        ],
+        [
+          [
+            "imp_heroic",
+            5
+          ]
+        ]
+      ],
+      "switched_slot": 0,
+      "switched_output": "talent|1|50000|imp_heroic:5\nspec|1|0|imp_heroic:5|imp_heroic:5|imp_heroic:5\n"
+    },
+    {
+      "label": "warrior-unbridled_wrath-rank-0",
+      "class_id": 1,
+      "input": "talent|1|50000|cruelty:5,unbridled_wrath:0\nspec|1|2|cruelty:5,unbridled_wrath:0|cruelty:5,unbridled_wrath:0|cruelty:5,unbridled_wrath:0\n",
+      "output": "talent|1|50000|cruelty:5\nspec|1|2|cruelty:5|cruelty:5|cruelty:5\n",
+      "live": [
+        [
+          "cruelty",
+          5
+        ]
+      ],
+      "specs": [
+        [
+          [
+            "cruelty",
+            5
+          ]
+        ],
+        [
+          [
+            "cruelty",
+            5
+          ]
+        ],
+        [
+          [
+            "cruelty",
+            5
+          ]
+        ]
+      ],
+      "switched_slot": 0,
+      "switched_output": "talent|1|50000|cruelty:5\nspec|1|0|cruelty:5|cruelty:5|cruelty:5\n"
+    },
+    {
+      "label": "warrior-unbridled_wrath-rank-1",
+      "class_id": 1,
+      "input": "talent|1|50000|cruelty:5,unbridled_wrath:1\nspec|1|2|cruelty:5,unbridled_wrath:1|cruelty:5,unbridled_wrath:1|cruelty:5,unbridled_wrath:1\n",
+      "output": "talent|1|50000|cruelty:5,unbridled_wrath:1\nspec|1|2|cruelty:5,unbridled_wrath:1|cruelty:5,unbridled_wrath:1|cruelty:5,unbridled_wrath:1\n",
+      "live": [
+        [
+          "cruelty",
+          5
+        ],
+        [
+          "unbridled_wrath",
+          1
+        ]
+      ],
+      "specs": [
+        [
+          [
+            "cruelty",
+            5
+          ],
+          [
+            "unbridled_wrath",
+            1
+          ]
+        ],
+        [
+          [
+            "cruelty",
+            5
+          ],
+          [
+            "unbridled_wrath",
+            1
+          ]
+        ],
+        [
+          [
+            "cruelty",
+            5
+          ],
+          [
+            "unbridled_wrath",
+            1
+          ]
+        ]
+      ],
+      "switched_slot": 0,
+      "switched_output": "talent|1|50000|cruelty:5,unbridled_wrath:1\nspec|1|0|cruelty:5,unbridled_wrath:1|cruelty:5,unbridled_wrath:1|cruelty:5,unbridled_wrath:1\n"
+    },
+    {
+      "label": "warrior-unbridled_wrath-rank-2",
+      "class_id": 1,
+      "input": "talent|1|50000|cruelty:5,unbridled_wrath:2\nspec|1|2|cruelty:5,unbridled_wrath:2|cruelty:5,unbridled_wrath:2|cruelty:5,unbridled_wrath:2\n",
+      "output": "talent|1|50000|cruelty:5,unbridled_wrath:2\nspec|1|2|cruelty:5,unbridled_wrath:2|cruelty:5,unbridled_wrath:2|cruelty:5,unbridled_wrath:2\n",
+      "live": [
+        [
+          "cruelty",
+          5
+        ],
+        [
+          "unbridled_wrath",
+          2
+        ]
+      ],
+      "specs": [
+        [
+          [
+            "cruelty",
+            5
+          ],
+          [
+            "unbridled_wrath",
+            2
+          ]
+        ],
+        [
+          [
+            "cruelty",
+            5
+          ],
+          [
+            "unbridled_wrath",
+            2
+          ]
+        ],
+        [
+          [
+            "cruelty",
+            5
+          ],
+          [
+            "unbridled_wrath",
+            2
+          ]
+        ]
+      ],
+      "switched_slot": 0,
+      "switched_output": "talent|1|50000|cruelty:5,unbridled_wrath:2\nspec|1|0|cruelty:5,unbridled_wrath:2|cruelty:5,unbridled_wrath:2|cruelty:5,unbridled_wrath:2\n"
+    },
+    {
+      "label": "warrior-unbridled_wrath-rank-3",
+      "class_id": 1,
+      "input": "talent|1|50000|cruelty:5,unbridled_wrath:3\nspec|1|2|cruelty:5,unbridled_wrath:3|cruelty:5,unbridled_wrath:3|cruelty:5,unbridled_wrath:3\n",
+      "output": "talent|1|50000|cruelty:5,unbridled_wrath:3\nspec|1|2|cruelty:5,unbridled_wrath:3|cruelty:5,unbridled_wrath:3|cruelty:5,unbridled_wrath:3\n",
+      "live": [
+        [
+          "cruelty",
+          5
+        ],
+        [
+          "unbridled_wrath",
+          3
+        ]
+      ],
+      "specs": [
+        [
+          [
+            "cruelty",
+            5
+          ],
+          [
+            "unbridled_wrath",
+            3
+          ]
+        ],
+        [
+          [
+            "cruelty",
+            5
+          ],
+          [
+            "unbridled_wrath",
+            3
+          ]
+        ],
+        [
+          [
+            "cruelty",
+            5
+          ],
+          [
+            "unbridled_wrath",
+            3
+          ]
+        ]
+      ],
+      "switched_slot": 0,
+      "switched_output": "talent|1|50000|cruelty:5,unbridled_wrath:3\nspec|1|0|cruelty:5,unbridled_wrath:3|cruelty:5,unbridled_wrath:3|cruelty:5,unbridled_wrath:3\n"
+    },
+    {
+      "label": "warrior-unbridled_wrath-rank-4",
+      "class_id": 1,
+      "input": "talent|1|50000|cruelty:5,unbridled_wrath:4\nspec|1|2|cruelty:5,unbridled_wrath:4|cruelty:5,unbridled_wrath:4|cruelty:5,unbridled_wrath:4\n",
+      "output": "talent|1|50000|cruelty:5,unbridled_wrath:4\nspec|1|2|cruelty:5,unbridled_wrath:4|cruelty:5,unbridled_wrath:4|cruelty:5,unbridled_wrath:4\n",
+      "live": [
+        [
+          "cruelty",
+          5
+        ],
+        [
+          "unbridled_wrath",
+          4
+        ]
+      ],
+      "specs": [
+        [
+          [
+            "cruelty",
+            5
+          ],
+          [
+            "unbridled_wrath",
+            4
+          ]
+        ],
+        [
+          [
+            "cruelty",
+            5
+          ],
+          [
+            "unbridled_wrath",
+            4
+          ]
+        ],
+        [
+          [
+            "cruelty",
+            5
+          ],
+          [
+            "unbridled_wrath",
+            4
+          ]
+        ]
+      ],
+      "switched_slot": 0,
+      "switched_output": "talent|1|50000|cruelty:5,unbridled_wrath:4\nspec|1|0|cruelty:5,unbridled_wrath:4|cruelty:5,unbridled_wrath:4|cruelty:5,unbridled_wrath:4\n"
+    },
+    {
+      "label": "warrior-unbridled_wrath-rank-5",
+      "class_id": 1,
+      "input": "talent|1|50000|cruelty:5,unbridled_wrath:5\nspec|1|2|cruelty:5,unbridled_wrath:5|cruelty:5,unbridled_wrath:5|cruelty:5,unbridled_wrath:5\n",
+      "output": "talent|1|50000|cruelty:5,unbridled_wrath:5\nspec|1|2|cruelty:5,unbridled_wrath:5|cruelty:5,unbridled_wrath:5|cruelty:5,unbridled_wrath:5\n",
+      "live": [
+        [
+          "cruelty",
+          5
+        ],
+        [
+          "unbridled_wrath",
+          5
+        ]
+      ],
+      "specs": [
+        [
+          [
+            "cruelty",
+            5
+          ],
+          [
+            "unbridled_wrath",
+            5
+          ]
+        ],
+        [
+          [
+            "cruelty",
+            5
+          ],
+          [
+            "unbridled_wrath",
+            5
+          ]
+        ],
+        [
+          [
+            "cruelty",
+            5
+          ],
+          [
+            "unbridled_wrath",
+            5
+          ]
+        ]
+      ],
+      "switched_slot": 0,
+      "switched_output": "talent|1|50000|cruelty:5,unbridled_wrath:5\nspec|1|0|cruelty:5,unbridled_wrath:5|cruelty:5,unbridled_wrath:5|cruelty:5,unbridled_wrath:5\n"
+    },
+    {
+      "label": "warrior-unbridled_wrath-rank-6",
+      "class_id": 1,
+      "input": "talent|1|50000|cruelty:5,unbridled_wrath:6\nspec|1|2|cruelty:5,unbridled_wrath:6|cruelty:5,unbridled_wrath:6|cruelty:5,unbridled_wrath:6\n",
+      "output": "talent|1|50000|cruelty:5,unbridled_wrath:5\nspec|1|2|cruelty:5,unbridled_wrath:5|cruelty:5,unbridled_wrath:5|cruelty:5,unbridled_wrath:5\n",
+      "live": [
+        [
+          "cruelty",
+          5
+        ],
+        [
+          "unbridled_wrath",
+          5
+        ]
+      ],
+      "specs": [
+        [
+          [
+            "cruelty",
+            5
+          ],
+          [
+            "unbridled_wrath",
+            5
+          ]
+        ],
+        [
+          [
+            "cruelty",
+            5
+          ],
+          [
+            "unbridled_wrath",
+            5
+          ]
+        ],
+        [
+          [
+            "cruelty",
+            5
+          ],
+          [
+            "unbridled_wrath",
+            5
+          ]
+        ]
+      ],
+      "switched_slot": 0,
+      "switched_output": "talent|1|50000|cruelty:5,unbridled_wrath:5\nspec|1|0|cruelty:5,unbridled_wrath:5|cruelty:5,unbridled_wrath:5|cruelty:5,unbridled_wrath:5\n"
+    },
+    {
+      "label": "warrior-unbridled_wrath-rank-255",
+      "class_id": 1,
+      "input": "talent|1|50000|cruelty:5,unbridled_wrath:255\nspec|1|2|cruelty:5,unbridled_wrath:255|cruelty:5,unbridled_wrath:255|cruelty:5,unbridled_wrath:255\n",
+      "output": "talent|1|50000|cruelty:5,unbridled_wrath:5\nspec|1|2|cruelty:5,unbridled_wrath:5|cruelty:5,unbridled_wrath:5|cruelty:5,unbridled_wrath:5\n",
+      "live": [
+        [
+          "cruelty",
+          5
+        ],
+        [
+          "unbridled_wrath",
+          5
+        ]
+      ],
+      "specs": [
+        [
+          [
+            "cruelty",
+            5
+          ],
+          [
+            "unbridled_wrath",
+            5
+          ]
+        ],
+        [
+          [
+            "cruelty",
+            5
+          ],
+          [
+            "unbridled_wrath",
+            5
+          ]
+        ],
+        [
+          [
+            "cruelty",
+            5
+          ],
+          [
+            "unbridled_wrath",
+            5
+          ]
+        ]
+      ],
+      "switched_slot": 0,
+      "switched_output": "talent|1|50000|cruelty:5,unbridled_wrath:5\nspec|1|0|cruelty:5,unbridled_wrath:5|cruelty:5,unbridled_wrath:5|cruelty:5,unbridled_wrath:5\n"
+    }
+  ]
+}

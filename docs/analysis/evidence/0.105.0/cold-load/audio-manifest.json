@@ -1,0 +1,52 @@
+{
+  "target": "AzerothSurvivors/AzerothSurvivors-0.105.0.exe",
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "target_process_launched": false,
+  "owners": [
+    {
+      "role": "audio-watch",
+      "start": "0x140abbd60",
+      "end_exclusive": "0x140abc282",
+      "file_offset": "0xabb160",
+      "sha256": "dd4031afa2b3a4fe12d09918ad1de39b5dc7742febf37a2406c9327c17cf6b15",
+      "assembly": "audio-watch.asm",
+      "evidence_id": "ev_26ff057904dbb95a3d8f0ddce6ecddfd1c6e29ec56b63565eaaf307571c61bcb",
+      "pseudocode": "audio-watch.c",
+      "provider": "Ghidra 12.1.4",
+      "limitation": "Headerless slice: ABI and external data require original-PE instructions."
+    }
+  ],
+  "constants": [
+    {
+      "role": "watch-window",
+      "address": "0x145d9ddb0",
+      "file_offset": "0x5d9cfb0",
+      "byte_count": 8,
+      "sha256": "6c3c396ed6b5c36dcae172271f462051b1266b851e92df3deea8ac65478fd712",
+      "value": 1.0
+    },
+    {
+      "role": "minimum-loss",
+      "address": "0x145f4eb40",
+      "file_offset": "0x5f4dd40",
+      "byte_count": 8,
+      "sha256": "45d2b662d9d490ae9b932759c910b26b9a874065de620f4ac0a3a23a65e40b8c",
+      "value": 0.1
+    },
+    {
+      "role": "startup-wait",
+      "address": "0x145f4eb48",
+      "file_offset": "0x5f4dd48",
+      "byte_count": 8,
+      "sha256": "161f4c0b1a18a0501127332c387e782b5acc10c6c7a9f7e494c1e3394c49bad5",
+      "value": 3.0
+    }
+  ],
+  "validation": {
+    "native_cases": 3
+  },
+  "limits": [
+    "The source diagnostic deliberately corrects this native meter defect; it does not alter playback.",
+    "No compilation, source-test execution, MPQ load, application launch or listening comparison."
+  ]
+}

@@ -1,0 +1,1266 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.120.4",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "7e3e3f9558de1d87e615592c7b5d83f00de393ac8efa4e67d8f9b634ed07d6bf",
+    "size_bytes": 145489408
+  },
+  "predecessor": {
+    "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+    "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
+  },
+  "inputs": [
+    {
+      "path": "runtime/coverage/80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c/native-final/rechecked-jump-tables.json",
+      "sha256": "d470f1821d286b780078bb19c68f347de964b337b11e644a1c1900c4932110e3"
+    },
+    {
+      "path": "runtime/coverage/7e3e3f9558de1d87e615592c7b5d83f00de393ac8efa4e67d8f9b634ed07d6bf/native-final/guarded-proposals.json",
+      "sha256": "86529031dc876947038ddcd1b6e21064f5df3d32ec10fdaac1c14564c79effe6"
+    },
+    {
+      "path": "docs/analysis/evidence/0.120.4/native-switch-proposal-review.json",
+      "sha256": "809412b0703e14abdbe512cc118aa02bc7faee041b2f6df38121ac2d9d7a816a"
+    },
+    {
+      "path": "docs/analysis/evidence/0.120.2/as-discovery-reviews.json",
+      "sha256": "320787cbaeb76f961ee6a18e7040708ad6540be3f204329802c073be80399488"
+    }
+  ],
+  "method": "Match each retained .2 AS-context table to exactly one complete current AS-context proposal using guard kind,selector register,bound and full dispatch-relative successor vector; independently bind current table bytes to the selected PE.",
+  "leads": {
+    "retained-table-1403076a2": {
+      "stable_question_id": "retained-table-1403076a2",
+      "selector": "Q41-F01:correspondence:retained-table-1403076a2",
+      "finding_ids": [
+        17,
+        73
+      ],
+      "predecessor_selector": "Q41-F01:correspondence:retained-table-1403076a2",
+      "historical_classification": {
+        "id": "retained-table-1403076a2",
+        "selector": "Q41-F01:correspondence:retained-table-1403076a2",
+        "state": "classified_within_bounded_contract",
+        "finding_ids": [
+          17,
+          73
+        ],
+        "original_question_evidence": {
+          "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+          "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
+        },
+        "classification_evidence": {
+          "path": "docs/analysis/evidence/0.120.2/codex-growth-dispatch/manifest.json",
+          "sha256": "970ae1af4357eb1914698bca238b48ba1bf772656075c35c75f318494c323c53"
+        },
+        "review_id": "retained-table-1403076a2",
+        "completion_scope": "Original finite producer/selector/consumer/source question only; whole module, arbitrary aliases, application execution and parity remain separate."
+      },
+      "historical_native_candidate": {
+        "virtual_address": "0x1461c32f0",
+        "end_exclusive": "0x1461c3340",
+        "file_offset": "0x61c20f0",
+        "byte_count": 80,
+        "sha256": "7cff6029be1592505a7bc3848a35d1540b41291523d7ccf3a0b082614aa95ffb",
+        "dispatch_site": "0x1402e1b12",
+        "bounded_role": "Retained Codex or CreatureQuery/Engine-command table candidate; selector/payload producer and actual source correspondence pending."
+      },
+      "current_native_candidate": {
+        "virtual_address": "0x1461c4330",
+        "end_exclusive": "0x1461c4380",
+        "file_offset": "0x61c3330",
+        "byte_count": 80,
+        "sha256": "0de50dab91005a1cc936205f508f777be16e966de0f719a6b1db9bcecfd9247f",
+        "dispatch_site": "0x1402e1b02"
+      },
+      "current_native_location": {
+        "site": "0x1402e1b02",
+        "table_address": "0x1461c4330",
+        "native_owner": "0x1402de9d0",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue-app/src/screens/codex.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue-app/src/screens/codex.rs"
+        ],
+        "all_targets_exact_instructions": false
+      },
+      "current_table_selector": [
+        "tables",
+        44
+      ],
+      "current_source_receipts": [
+        {
+          "path": "crates/azeroth-survivors-re/src/codex.rs",
+          "sha256": "159f37324f1a79bf99479b65df1b96f38bb9163dbbf4bde1e0400ea58bdd9043"
+        }
+      ],
+      "guard_kind_register_bound_and_dispatch_relative_case_vector_equal": true,
+      "normalization_sha256": "244038d24fc27a327e49a3bedfbabc64adbd31484ed08c9f954f28de7fbd600e",
+      "candidate_matches_within_complete_current_AS_context_population": 1,
+      "applicability": "pending_current_producer_dependency_consumer_contract_revalidation",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "next_static_step": "Map the current guarded Codex input/type/field producer and live Details formatter/source consumer to the retained jewelry-growth contract; geometry alone does not revalidate dependencies."
+    },
+    "retained-table-145afa2a7": {
+      "stable_question_id": "retained-table-145afa2a7",
+      "selector": "Q41-F01:correspondence:retained-table-145afa2a7",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "predecessor_selector": "Q41-F01:correspondence:retained-table-145afa2a7",
+      "historical_classification": {
+        "id": "retained-table-145afa2a7",
+        "selector": "Q41-F01:correspondence:retained-table-145afa2a7",
+        "state": "classified_within_bounded_contract",
+        "finding_ids": [
+          64,
+          65
+        ],
+        "original_question_evidence": {
+          "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+          "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
+        },
+        "classification_evidence": {
+          "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
+          "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
+        },
+        "review_id": "retained-table-145afa2a7",
+        "completion_scope": "Original finite producer/selector/consumer/source question only; whole module, arbitrary aliases, application execution and parity remain separate."
+      },
+      "historical_native_candidate": {
+        "virtual_address": "0x1472f042c",
+        "end_exclusive": "0x1472f05ec",
+        "file_offset": "0x72ef22c",
+        "byte_count": 448,
+        "sha256": "1b40167bc914c2b5f99a9dbec62ce5d59101f69bf8b24ddcf5b35bb0f52a5019",
+        "dispatch_site": "0x145b02b87",
+        "bounded_role": "Retained Codex or CreatureQuery/Engine-command table candidate; selector/payload producer and actual source correspondence pending."
+      },
+      "current_native_candidate": {
+        "virtual_address": "0x1472f25dc",
+        "end_exclusive": "0x1472f279c",
+        "file_offset": "0x72f15dc",
+        "byte_count": 448,
+        "sha256": "2bcb5388b3957d71981db785b8b0983e78d0caf51939583672cf837864017177",
+        "dispatch_site": "0x145b03ae7"
+      },
+      "current_native_location": {
+        "site": "0x145b03ae7",
+        "table_address": "0x1472f25dc",
+        "native_owner": "0x145b02e10",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "all_targets_exact_instructions": false
+      },
+      "current_table_selector": [
+        "tables",
+        3355
+      ],
+      "current_source_receipts": [
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/benilla-protocol/src/messages/parse.rs",
+          "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+        }
+      ],
+      "guard_kind_register_bound_and_dispatch_relative_case_vector_equal": true,
+      "normalization_sha256": "1ab83bc4571cd805e3f960a7e044caea896c0c56ef5493a264f62bab48f978bc",
+      "candidate_matches_within_complete_current_AS_context_population": 1,
+      "applicability": "pending_current_producer_dependency_consumer_contract_revalidation",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "next_static_step": "Map the current CreatureQuery entry/selector producer, finite metadata cells and reply/source consumer to the retained classified contract; preserve recovered schemas/source and verify only changed or unresolved dependencies."
+    },
+    "retained-table-145afb3fb": {
+      "stable_question_id": "retained-table-145afb3fb",
+      "selector": "Q41-F01:correspondence:retained-table-145afb3fb",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "predecessor_selector": "Q41-F01:correspondence:retained-table-145afb3fb",
+      "historical_classification": {
+        "id": "retained-table-145afb3fb",
+        "selector": "Q41-F01:correspondence:retained-table-145afb3fb",
+        "state": "classified_within_bounded_contract",
+        "finding_ids": [
+          64,
+          65
+        ],
+        "original_question_evidence": {
+          "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+          "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
+        },
+        "classification_evidence": {
+          "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
+          "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
+        },
+        "review_id": "retained-table-145afb3fb",
+        "completion_scope": "Original finite producer/selector/consumer/source question only; whole module, arbitrary aliases, application execution and parity remain separate."
+      },
+      "historical_native_candidate": {
+        "virtual_address": "0x1472f05ec",
+        "end_exclusive": "0x1472f0764",
+        "file_offset": "0x72ef3ec",
+        "byte_count": 376,
+        "sha256": "609be650470be9f58575cfaddfe43ddf4ad64f2900f753ae13a2bdca26001a6f",
+        "dispatch_site": "0x145b03cc2",
+        "bounded_role": "Retained Codex or CreatureQuery/Engine-command table candidate; selector/payload producer and actual source correspondence pending."
+      },
+      "current_native_candidate": {
+        "virtual_address": "0x1472f279c",
+        "end_exclusive": "0x1472f2914",
+        "file_offset": "0x72f179c",
+        "byte_count": 376,
+        "sha256": "ec8d731715087245e3b47f666c6928445f1db123e790414eafc67a78c66b6f0c",
+        "dispatch_site": "0x145b04c22"
+      },
+      "current_native_location": {
+        "site": "0x145b04c22",
+        "table_address": "0x1472f279c",
+        "native_owner": "0x145b02e10",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "all_targets_exact_instructions": false
+      },
+      "current_table_selector": [
+        "tables",
+        3356
+      ],
+      "current_source_receipts": [
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/benilla-protocol/src/messages/parse.rs",
+          "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+        }
+      ],
+      "guard_kind_register_bound_and_dispatch_relative_case_vector_equal": true,
+      "normalization_sha256": "87331ff5f841db24144ba116d574e7ae8e5e9830c3086c48eb13ee09baa92445",
+      "candidate_matches_within_complete_current_AS_context_population": 1,
+      "applicability": "pending_current_producer_dependency_consumer_contract_revalidation",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "next_static_step": "Map the current CreatureQuery entry/selector producer, finite metadata cells and reply/source consumer to the retained classified contract; preserve recovered schemas/source and verify only changed or unresolved dependencies."
+    },
+    "retained-table-145afb49a": {
+      "stable_question_id": "retained-table-145afb49a",
+      "selector": "Q41-F01:correspondence:retained-table-145afb49a",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "predecessor_selector": "Q41-F01:correspondence:retained-table-145afb49a",
+      "historical_classification": {
+        "id": "retained-table-145afb49a",
+        "selector": "Q41-F01:correspondence:retained-table-145afb49a",
+        "state": "classified_within_bounded_contract",
+        "finding_ids": [
+          64,
+          65
+        ],
+        "original_question_evidence": {
+          "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+          "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
+        },
+        "classification_evidence": {
+          "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
+          "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
+        },
+        "review_id": "retained-table-145afb49a",
+        "completion_scope": "Original finite producer/selector/consumer/source question only; whole module, arbitrary aliases, application execution and parity remain separate."
+      },
+      "historical_native_candidate": {
+        "virtual_address": "0x1472f0764",
+        "end_exclusive": "0x1472f07bc",
+        "file_offset": "0x72ef564",
+        "byte_count": 88,
+        "sha256": "a8ed02ad754760f426fbd9c49e4e0d3b40c831ad3cf42e081fee254cc46ddff8",
+        "dispatch_site": "0x145b03d61",
+        "bounded_role": "Retained Codex or CreatureQuery/Engine-command table candidate; selector/payload producer and actual source correspondence pending."
+      },
+      "current_native_candidate": {
+        "virtual_address": "0x1472f2914",
+        "end_exclusive": "0x1472f296c",
+        "file_offset": "0x72f1914",
+        "byte_count": 88,
+        "sha256": "8f744bccc82eec72015b8068a2730d60aa95e4b0f77086e7034250f0fa477f75",
+        "dispatch_site": "0x145b04cc1"
+      },
+      "current_native_location": {
+        "site": "0x145b04cc1",
+        "table_address": "0x1472f2914",
+        "native_owner": "0x145b02e10",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "all_targets_exact_instructions": false
+      },
+      "current_table_selector": [
+        "tables",
+        3357
+      ],
+      "current_source_receipts": [
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/benilla-protocol/src/messages/parse.rs",
+          "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+        }
+      ],
+      "guard_kind_register_bound_and_dispatch_relative_case_vector_equal": true,
+      "normalization_sha256": "3b5d616ddd3ba21501f5b09f049947da03784ef4c04ecefb75d226a614c2fe4e",
+      "candidate_matches_within_complete_current_AS_context_population": 1,
+      "applicability": "pending_current_producer_dependency_consumer_contract_revalidation",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "next_static_step": "Map the current CreatureQuery entry/selector producer, finite metadata cells and reply/source consumer to the retained classified contract; preserve recovered schemas/source and verify only changed or unresolved dependencies."
+    },
+    "retained-table-145afb64e": {
+      "stable_question_id": "retained-table-145afb64e",
+      "selector": "Q41-F01:correspondence:retained-table-145afb64e",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "predecessor_selector": "Q41-F01:correspondence:retained-table-145afb64e",
+      "historical_classification": {
+        "id": "retained-table-145afb64e",
+        "selector": "Q41-F01:correspondence:retained-table-145afb64e",
+        "state": "classified_within_bounded_contract",
+        "finding_ids": [
+          64,
+          65
+        ],
+        "original_question_evidence": {
+          "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+          "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
+        },
+        "classification_evidence": {
+          "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
+          "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
+        },
+        "review_id": "retained-table-145afb64e",
+        "completion_scope": "Original finite producer/selector/consumer/source question only; whole module, arbitrary aliases, application execution and parity remain separate."
+      },
+      "historical_native_candidate": {
+        "virtual_address": "0x1472f0938",
+        "end_exclusive": "0x1472f0acc",
+        "file_offset": "0x72ef738",
+        "byte_count": 404,
+        "sha256": "233875193ca2df458b08d196d1daf4d073e60e039d2b959482571e13610947f6",
+        "dispatch_site": "0x145b03f15",
+        "bounded_role": "Retained Codex or CreatureQuery/Engine-command table candidate; selector/payload producer and actual source correspondence pending."
+      },
+      "current_native_candidate": {
+        "virtual_address": "0x1472f2ae8",
+        "end_exclusive": "0x1472f2c7c",
+        "file_offset": "0x72f1ae8",
+        "byte_count": 404,
+        "sha256": "c36916dfcc316b4eef75ca85636febfe68bc62b3cb151cf5a420a470315674bc",
+        "dispatch_site": "0x145b04e75"
+      },
+      "current_native_location": {
+        "site": "0x145b04e75",
+        "table_address": "0x1472f2ae8",
+        "native_owner": "0x145b02e10",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "all_targets_exact_instructions": false
+      },
+      "current_table_selector": [
+        "tables",
+        3358
+      ],
+      "current_source_receipts": [
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/benilla-protocol/src/messages/parse.rs",
+          "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+        }
+      ],
+      "guard_kind_register_bound_and_dispatch_relative_case_vector_equal": true,
+      "normalization_sha256": "98d878bcc73abde803d6d27d0f007cfb70a466ff0e3b7af6e47e02f372bf6370",
+      "candidate_matches_within_complete_current_AS_context_population": 1,
+      "applicability": "pending_current_producer_dependency_consumer_contract_revalidation",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "next_static_step": "Map the current CreatureQuery entry/selector producer, finite metadata cells and reply/source consumer to the retained classified contract; preserve recovered schemas/source and verify only changed or unresolved dependencies."
+    },
+    "retained-table-145afb798": {
+      "stable_question_id": "retained-table-145afb798",
+      "selector": "Q41-F01:correspondence:retained-table-145afb798",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "predecessor_selector": "Q41-F01:correspondence:retained-table-145afb798",
+      "historical_classification": {
+        "id": "retained-table-145afb798",
+        "selector": "Q41-F01:correspondence:retained-table-145afb798",
+        "state": "classified_within_bounded_contract",
+        "finding_ids": [
+          64,
+          65
+        ],
+        "original_question_evidence": {
+          "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+          "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
+        },
+        "classification_evidence": {
+          "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
+          "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
+        },
+        "review_id": "retained-table-145afb798",
+        "completion_scope": "Original finite producer/selector/consumer/source question only; whole module, arbitrary aliases, application execution and parity remain separate."
+      },
+      "historical_native_candidate": {
+        "virtual_address": "0x1472f0acc",
+        "end_exclusive": "0x1472f0c48",
+        "file_offset": "0x72ef8cc",
+        "byte_count": 380,
+        "sha256": "ac352c80a44241408ba1383ba59550fd04f6efb7634997f9f00f9c39e30dff31",
+        "dispatch_site": "0x145b0405f",
+        "bounded_role": "Retained Codex or CreatureQuery/Engine-command table candidate; selector/payload producer and actual source correspondence pending."
+      },
+      "current_native_candidate": {
+        "virtual_address": "0x1472f2c7c",
+        "end_exclusive": "0x1472f2df8",
+        "file_offset": "0x72f1c7c",
+        "byte_count": 380,
+        "sha256": "f7b38426516815159af9226f3ad6e472cf94943215c7a7d11e5e55c1e5fe59ef",
+        "dispatch_site": "0x145b04fbf"
+      },
+      "current_native_location": {
+        "site": "0x145b04fbf",
+        "table_address": "0x1472f2c7c",
+        "native_owner": "0x145b02e10",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "all_targets_exact_instructions": false
+      },
+      "current_table_selector": [
+        "tables",
+        3359
+      ],
+      "current_source_receipts": [
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/benilla-protocol/src/messages/parse.rs",
+          "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+        }
+      ],
+      "guard_kind_register_bound_and_dispatch_relative_case_vector_equal": true,
+      "normalization_sha256": "eb7f37388be2a81a75bbdb0b734d01a78f7edf61efa5f6ee473164768a18bf52",
+      "candidate_matches_within_complete_current_AS_context_population": 1,
+      "applicability": "pending_current_producer_dependency_consumer_contract_revalidation",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "next_static_step": "Map the current CreatureQuery entry/selector producer, finite metadata cells and reply/source consumer to the retained classified contract; preserve recovered schemas/source and verify only changed or unresolved dependencies."
+    },
+    "retained-table-145afb7c1": {
+      "stable_question_id": "retained-table-145afb7c1",
+      "selector": "Q41-F01:correspondence:retained-table-145afb7c1",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "predecessor_selector": "Q41-F01:correspondence:retained-table-145afb7c1",
+      "historical_classification": {
+        "id": "retained-table-145afb7c1",
+        "selector": "Q41-F01:correspondence:retained-table-145afb7c1",
+        "state": "classified_within_bounded_contract",
+        "finding_ids": [
+          64,
+          65
+        ],
+        "original_question_evidence": {
+          "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+          "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
+        },
+        "classification_evidence": {
+          "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
+          "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
+        },
+        "review_id": "retained-table-145afb7c1",
+        "completion_scope": "Original finite producer/selector/consumer/source question only; whole module, arbitrary aliases, application execution and parity remain separate."
+      },
+      "historical_native_candidate": {
+        "virtual_address": "0x1472f07bc",
+        "end_exclusive": "0x1472f0938",
+        "file_offset": "0x72ef5bc",
+        "byte_count": 380,
+        "sha256": "815cab0747645e3118b41d7240782fda618fd6666c09a972d28e62c33f4b17c6",
+        "dispatch_site": "0x145b04088",
+        "bounded_role": "Retained Codex or CreatureQuery/Engine-command table candidate; selector/payload producer and actual source correspondence pending."
+      },
+      "current_native_candidate": {
+        "virtual_address": "0x1472f296c",
+        "end_exclusive": "0x1472f2ae8",
+        "file_offset": "0x72f196c",
+        "byte_count": 380,
+        "sha256": "fb0a1d96baac97ca5edae41c7f42d89ff725c5c5b8334360ed5d80b7f178f045",
+        "dispatch_site": "0x145b04fe8"
+      },
+      "current_native_location": {
+        "site": "0x145b04fe8",
+        "table_address": "0x1472f296c",
+        "native_owner": "0x145b02e10",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "all_targets_exact_instructions": false
+      },
+      "current_table_selector": [
+        "tables",
+        3360
+      ],
+      "current_source_receipts": [
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/benilla-protocol/src/messages/parse.rs",
+          "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+        }
+      ],
+      "guard_kind_register_bound_and_dispatch_relative_case_vector_equal": true,
+      "normalization_sha256": "759f564d8a52d85a260d42b628ba7c856ad0e1b1eca7252a76b326a3726098d9",
+      "candidate_matches_within_complete_current_AS_context_population": 1,
+      "applicability": "pending_current_producer_dependency_consumer_contract_revalidation",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "next_static_step": "Map the current CreatureQuery entry/selector producer, finite metadata cells and reply/source consumer to the retained classified contract; preserve recovered schemas/source and verify only changed or unresolved dependencies."
+    },
+    "retained-table-145afb7ed": {
+      "stable_question_id": "retained-table-145afb7ed",
+      "selector": "Q41-F01:correspondence:retained-table-145afb7ed",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "predecessor_selector": "Q41-F01:correspondence:retained-table-145afb7ed",
+      "historical_classification": {
+        "id": "retained-table-145afb7ed",
+        "selector": "Q41-F01:correspondence:retained-table-145afb7ed",
+        "state": "classified_within_bounded_contract",
+        "finding_ids": [
+          64,
+          65
+        ],
+        "original_question_evidence": {
+          "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+          "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
+        },
+        "classification_evidence": {
+          "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
+          "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
+        },
+        "review_id": "retained-table-145afb7ed",
+        "completion_scope": "Original finite producer/selector/consumer/source question only; whole module, arbitrary aliases, application execution and parity remain separate."
+      },
+      "historical_native_candidate": {
+        "virtual_address": "0x1472f0c48",
+        "end_exclusive": "0x1472f0c78",
+        "file_offset": "0x72efa48",
+        "byte_count": 48,
+        "sha256": "160cd68ab639df8a17ed207f8e90bd568b28da68e416ad0e9c650344c88a3d1e",
+        "dispatch_site": "0x145b040b4",
+        "bounded_role": "Retained Codex or CreatureQuery/Engine-command table candidate; selector/payload producer and actual source correspondence pending."
+      },
+      "current_native_candidate": {
+        "virtual_address": "0x1472f2df8",
+        "end_exclusive": "0x1472f2e28",
+        "file_offset": "0x72f1df8",
+        "byte_count": 48,
+        "sha256": "f71873f5dc435051ca478b66fa0eda32fb4bd7467498d5b364a8605e2643d894",
+        "dispatch_site": "0x145b05014"
+      },
+      "current_native_location": {
+        "site": "0x145b05014",
+        "table_address": "0x1472f2df8",
+        "native_owner": "0x145b02e10",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "all_targets_exact_instructions": false
+      },
+      "current_table_selector": [
+        "tables",
+        3361
+      ],
+      "current_source_receipts": [
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/benilla-protocol/src/messages/parse.rs",
+          "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+        }
+      ],
+      "guard_kind_register_bound_and_dispatch_relative_case_vector_equal": true,
+      "normalization_sha256": "5ef8ca6f5768772c6aa0b9bdec34502b794de3e5a098d2d6b4263d82c180b645",
+      "candidate_matches_within_complete_current_AS_context_population": 1,
+      "applicability": "pending_current_producer_dependency_consumer_contract_revalidation",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "next_static_step": "Map the current CreatureQuery entry/selector producer, finite metadata cells and reply/source consumer to the retained classified contract; preserve recovered schemas/source and verify only changed or unresolved dependencies."
+    },
+    "retained-table-145afbad2": {
+      "stable_question_id": "retained-table-145afbad2",
+      "selector": "Q41-F01:correspondence:retained-table-145afbad2",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "predecessor_selector": "Q41-F01:correspondence:retained-table-145afbad2",
+      "historical_classification": {
+        "id": "retained-table-145afbad2",
+        "selector": "Q41-F01:correspondence:retained-table-145afbad2",
+        "state": "classified_within_bounded_contract",
+        "finding_ids": [
+          64,
+          65
+        ],
+        "original_question_evidence": {
+          "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+          "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
+        },
+        "classification_evidence": {
+          "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
+          "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
+        },
+        "review_id": "retained-table-145afbad2",
+        "completion_scope": "Original finite producer/selector/consumer/source question only; whole module, arbitrary aliases, application execution and parity remain separate."
+      },
+      "historical_native_candidate": {
+        "virtual_address": "0x1472f0ca0",
+        "end_exclusive": "0x1472f0fac",
+        "file_offset": "0x72efaa0",
+        "byte_count": 780,
+        "sha256": "7a51903cbb4aa25e3237a0e8a6d6f58f81538ae8b00895475972b9f073f41302",
+        "dispatch_site": "0x145b043af",
+        "bounded_role": "Retained Codex or CreatureQuery/Engine-command table candidate; selector/payload producer and actual source correspondence pending."
+      },
+      "current_native_candidate": {
+        "virtual_address": "0x1472f2e50",
+        "end_exclusive": "0x1472f315c",
+        "file_offset": "0x72f1e50",
+        "byte_count": 780,
+        "sha256": "bdc7304bfa1bbfc2f00e58775f1bb6b88e29f6e323ea9138d68a86e6bf8c00b3",
+        "dispatch_site": "0x145b0530f"
+      },
+      "current_native_location": {
+        "site": "0x145b0530f",
+        "table_address": "0x1472f2e50",
+        "native_owner": "0x145b02e10",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "all_targets_exact_instructions": false
+      },
+      "current_table_selector": [
+        "tables",
+        3362
+      ],
+      "current_source_receipts": [
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/benilla-protocol/src/messages/parse.rs",
+          "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+        }
+      ],
+      "guard_kind_register_bound_and_dispatch_relative_case_vector_equal": true,
+      "normalization_sha256": "350576cb340d29fe803872a795c7c17bb47fd16462d782b01fa2368693eb067c",
+      "candidate_matches_within_complete_current_AS_context_population": 1,
+      "applicability": "pending_current_producer_dependency_consumer_contract_revalidation",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "next_static_step": "Map the current CreatureQuery entry/selector producer, finite metadata cells and reply/source consumer to the retained classified contract; preserve recovered schemas/source and verify only changed or unresolved dependencies."
+    },
+    "retained-table-145afbb29": {
+      "stable_question_id": "retained-table-145afbb29",
+      "selector": "Q41-F01:correspondence:retained-table-145afbb29",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "predecessor_selector": "Q41-F01:correspondence:retained-table-145afbb29",
+      "historical_classification": {
+        "id": "retained-table-145afbb29",
+        "selector": "Q41-F01:correspondence:retained-table-145afbb29",
+        "state": "classified_within_bounded_contract",
+        "finding_ids": [
+          64,
+          65
+        ],
+        "original_question_evidence": {
+          "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+          "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
+        },
+        "classification_evidence": {
+          "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
+          "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
+        },
+        "review_id": "retained-table-145afbb29",
+        "completion_scope": "Original finite producer/selector/consumer/source question only; whole module, arbitrary aliases, application execution and parity remain separate."
+      },
+      "historical_native_candidate": {
+        "virtual_address": "0x1472f0fac",
+        "end_exclusive": "0x1472f1128",
+        "file_offset": "0x72efdac",
+        "byte_count": 380,
+        "sha256": "1be6271924a53e6d042df419eb35704b5aaba78db4267d190bcdd0846b462ce8",
+        "dispatch_site": "0x145b043d7",
+        "bounded_role": "Retained Codex or CreatureQuery/Engine-command table candidate; selector/payload producer and actual source correspondence pending."
+      },
+      "current_native_candidate": {
+        "virtual_address": "0x1472f315c",
+        "end_exclusive": "0x1472f32d8",
+        "file_offset": "0x72f215c",
+        "byte_count": 380,
+        "sha256": "0005e5e6155ab58190412d45120c394c0093315b698694ce3619e345cd91e3a4",
+        "dispatch_site": "0x145b05337"
+      },
+      "current_native_location": {
+        "site": "0x145b05337",
+        "table_address": "0x1472f315c",
+        "native_owner": "0x145b02e10",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "all_targets_exact_instructions": false
+      },
+      "current_table_selector": [
+        "tables",
+        3363
+      ],
+      "current_source_receipts": [
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/benilla-protocol/src/messages/parse.rs",
+          "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+        }
+      ],
+      "guard_kind_register_bound_and_dispatch_relative_case_vector_equal": true,
+      "normalization_sha256": "3b174021779216e4eff10202f384a58228b111299cf9afa6f9a29164bfcd98e9",
+      "candidate_matches_within_complete_current_AS_context_population": 1,
+      "applicability": "pending_current_producer_dependency_consumer_contract_revalidation",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "next_static_step": "Map the current CreatureQuery entry/selector producer, finite metadata cells and reply/source consumer to the retained classified contract; preserve recovered schemas/source and verify only changed or unresolved dependencies."
+    },
+    "retained-table-145afbb66": {
+      "stable_question_id": "retained-table-145afbb66",
+      "selector": "Q41-F01:correspondence:retained-table-145afbb66",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "predecessor_selector": "Q41-F01:correspondence:retained-table-145afbb66",
+      "historical_classification": {
+        "id": "retained-table-145afbb66",
+        "selector": "Q41-F01:correspondence:retained-table-145afbb66",
+        "state": "classified_within_bounded_contract",
+        "finding_ids": [
+          64,
+          65
+        ],
+        "original_question_evidence": {
+          "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+          "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
+        },
+        "classification_evidence": {
+          "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
+          "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
+        },
+        "review_id": "retained-table-145afbb66",
+        "completion_scope": "Original finite producer/selector/consumer/source question only; whole module, arbitrary aliases, application execution and parity remain separate."
+      },
+      "historical_native_candidate": {
+        "virtual_address": "0x1472f0c78",
+        "end_exclusive": "0x1472f0ca0",
+        "file_offset": "0x72efa78",
+        "byte_count": 40,
+        "sha256": "39e7653c0267b4eb15401982a9dcd1faf694c3b011c11b8db15698692107cae1",
+        "dispatch_site": "0x145b04414",
+        "bounded_role": "Retained Codex or CreatureQuery/Engine-command table candidate; selector/payload producer and actual source correspondence pending."
+      },
+      "current_native_candidate": {
+        "virtual_address": "0x1472f2e28",
+        "end_exclusive": "0x1472f2e50",
+        "file_offset": "0x72f1e28",
+        "byte_count": 40,
+        "sha256": "e25f190cbb7ccbe5924f5b1f05f7087dcd2261964aa76a8fc9cb0da54fe664eb",
+        "dispatch_site": "0x145b05374"
+      },
+      "current_native_location": {
+        "site": "0x145b05374",
+        "table_address": "0x1472f2e28",
+        "native_owner": "0x145b02e10",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "all_targets_exact_instructions": false
+      },
+      "current_table_selector": [
+        "tables",
+        3364
+      ],
+      "current_source_receipts": [
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/benilla-protocol/src/messages/parse.rs",
+          "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+        }
+      ],
+      "guard_kind_register_bound_and_dispatch_relative_case_vector_equal": true,
+      "normalization_sha256": "e8a1974fd3059101439e8eec718a43708a7f7fed3daf43752b410de068143373",
+      "candidate_matches_within_complete_current_AS_context_population": 1,
+      "applicability": "pending_current_producer_dependency_consumer_contract_revalidation",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "next_static_step": "Map the current CreatureQuery entry/selector producer, finite metadata cells and reply/source consumer to the retained classified contract; preserve recovered schemas/source and verify only changed or unresolved dependencies."
+    },
+    "retained-table-145afbb92": {
+      "stable_question_id": "retained-table-145afbb92",
+      "selector": "Q41-F01:correspondence:retained-table-145afbb92",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "predecessor_selector": "Q41-F01:correspondence:retained-table-145afbb92",
+      "historical_classification": {
+        "id": "retained-table-145afbb92",
+        "selector": "Q41-F01:correspondence:retained-table-145afbb92",
+        "state": "classified_within_bounded_contract",
+        "finding_ids": [
+          64,
+          65
+        ],
+        "original_question_evidence": {
+          "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+          "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
+        },
+        "classification_evidence": {
+          "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
+          "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
+        },
+        "review_id": "retained-table-145afbb92",
+        "completion_scope": "Original finite producer/selector/consumer/source question only; whole module, arbitrary aliases, application execution and parity remain separate."
+      },
+      "historical_native_candidate": {
+        "virtual_address": "0x1472f1128",
+        "end_exclusive": "0x1472f113c",
+        "file_offset": "0x72eff28",
+        "byte_count": 20,
+        "sha256": "12334324f4f2ae9a28f09ede378e37888769d582a729b3510e443d2209f6c172",
+        "dispatch_site": "0x145b04440",
+        "bounded_role": "Retained Codex or CreatureQuery/Engine-command table candidate; selector/payload producer and actual source correspondence pending."
+      },
+      "current_native_candidate": {
+        "virtual_address": "0x1472f32d8",
+        "end_exclusive": "0x1472f32ec",
+        "file_offset": "0x72f22d8",
+        "byte_count": 20,
+        "sha256": "e61f8d4a16b477db2aa6a6c2df86f57204601ebcbeb437767079b82c652a63ac",
+        "dispatch_site": "0x145b053a0"
+      },
+      "current_native_location": {
+        "site": "0x145b053a0",
+        "table_address": "0x1472f32d8",
+        "native_owner": "0x145b02e10",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "all_targets_exact_instructions": false
+      },
+      "current_table_selector": [
+        "tables",
+        3365
+      ],
+      "current_source_receipts": [
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/benilla-protocol/src/messages/parse.rs",
+          "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+        }
+      ],
+      "guard_kind_register_bound_and_dispatch_relative_case_vector_equal": true,
+      "normalization_sha256": "ee8e386c08106c97d7888ee21880d5c1453bd2abf1998993e7a9ea8a6302ceaa",
+      "candidate_matches_within_complete_current_AS_context_population": 1,
+      "applicability": "pending_current_producer_dependency_consumer_contract_revalidation",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "next_static_step": "Map the current CreatureQuery entry/selector producer, finite metadata cells and reply/source consumer to the retained classified contract; preserve recovered schemas/source and verify only changed or unresolved dependencies."
+    },
+    "retained-table-145afbe39": {
+      "stable_question_id": "retained-table-145afbe39",
+      "selector": "Q41-F01:correspondence:retained-table-145afbe39",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "predecessor_selector": "Q41-F01:correspondence:retained-table-145afbe39",
+      "historical_classification": {
+        "id": "retained-table-145afbe39",
+        "selector": "Q41-F01:correspondence:retained-table-145afbe39",
+        "state": "classified_within_bounded_contract",
+        "finding_ids": [
+          64,
+          65
+        ],
+        "original_question_evidence": {
+          "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+          "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
+        },
+        "classification_evidence": {
+          "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
+          "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
+        },
+        "review_id": "retained-table-145afbe39",
+        "completion_scope": "Original finite producer/selector/consumer/source question only; whole module, arbitrary aliases, application execution and parity remain separate."
+      },
+      "historical_native_candidate": {
+        "virtual_address": "0x1472f12a0",
+        "end_exclusive": "0x1472f1a5c",
+        "file_offset": "0x72f00a0",
+        "byte_count": 1980,
+        "sha256": "5391e9f54e47edae823ed6c3b1b40a8e5410aeb1b2b06c475a0ab1f3e3438f8c",
+        "dispatch_site": "0x145b046e7",
+        "bounded_role": "Retained Codex or CreatureQuery/Engine-command table candidate; selector/payload producer and actual source correspondence pending."
+      },
+      "current_native_candidate": {
+        "virtual_address": "0x1472f3450",
+        "end_exclusive": "0x1472f3c0c",
+        "file_offset": "0x72f2450",
+        "byte_count": 1980,
+        "sha256": "654792b6dcc78fac291f7906aba85415b13e0161e39a492de10d3ddea7e660ce",
+        "dispatch_site": "0x145b05647"
+      },
+      "current_native_location": {
+        "site": "0x145b05647",
+        "table_address": "0x1472f3450",
+        "native_owner": "0x145b02e10",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "all_targets_exact_instructions": false
+      },
+      "current_table_selector": [
+        "tables",
+        3366
+      ],
+      "current_source_receipts": [
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/benilla-protocol/src/messages/parse.rs",
+          "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+        }
+      ],
+      "guard_kind_register_bound_and_dispatch_relative_case_vector_equal": true,
+      "normalization_sha256": "65aed20c66da3e260088e2c0f0a39cc172c9fefd09242a35cb2c0dd9e530d8ab",
+      "candidate_matches_within_complete_current_AS_context_population": 1,
+      "applicability": "pending_current_producer_dependency_consumer_contract_revalidation",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "next_static_step": "Map the current CreatureQuery entry/selector producer, finite metadata cells and reply/source consumer to the retained classified contract; preserve recovered schemas/source and verify only changed or unresolved dependencies."
+    },
+    "retained-table-145afbed3": {
+      "stable_question_id": "retained-table-145afbed3",
+      "selector": "Q41-F01:correspondence:retained-table-145afbed3",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "predecessor_selector": "Q41-F01:correspondence:retained-table-145afbed3",
+      "historical_classification": {
+        "id": "retained-table-145afbed3",
+        "selector": "Q41-F01:correspondence:retained-table-145afbed3",
+        "state": "classified_within_bounded_contract",
+        "finding_ids": [
+          64,
+          65
+        ],
+        "original_question_evidence": {
+          "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+          "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
+        },
+        "classification_evidence": {
+          "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
+          "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
+        },
+        "review_id": "retained-table-145afbed3",
+        "completion_scope": "Original finite producer/selector/consumer/source question only; whole module, arbitrary aliases, application execution and parity remain separate."
+      },
+      "historical_native_candidate": {
+        "virtual_address": "0x1472f113c",
+        "end_exclusive": "0x1472f12a0",
+        "file_offset": "0x72eff3c",
+        "byte_count": 356,
+        "sha256": "450eedcef75ee7225b60d586c6bee3dc6db76d069610a78edd50a7433cd6a306",
+        "dispatch_site": "0x145b04781",
+        "bounded_role": "Retained Codex or CreatureQuery/Engine-command table candidate; selector/payload producer and actual source correspondence pending."
+      },
+      "current_native_candidate": {
+        "virtual_address": "0x1472f32ec",
+        "end_exclusive": "0x1472f3450",
+        "file_offset": "0x72f22ec",
+        "byte_count": 356,
+        "sha256": "8e1b15c208c3c10ba3f74270d6d1e24250ca5a778d5ecc218c3128023a633564",
+        "dispatch_site": "0x145b056e1"
+      },
+      "current_native_location": {
+        "site": "0x145b056e1",
+        "table_address": "0x1472f32ec",
+        "native_owner": "0x145b02e10",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "all_targets_exact_instructions": false
+      },
+      "current_table_selector": [
+        "tables",
+        3367
+      ],
+      "current_source_receipts": [
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/benilla-protocol/src/messages/parse.rs",
+          "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+        }
+      ],
+      "guard_kind_register_bound_and_dispatch_relative_case_vector_equal": true,
+      "normalization_sha256": "295ac8eb2d357b46ee7d06e7df6a668e620b72bfe844c5ae3e2a190b43b69f60",
+      "candidate_matches_within_complete_current_AS_context_population": 1,
+      "applicability": "pending_current_producer_dependency_consumer_contract_revalidation",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "next_static_step": "Map the current CreatureQuery entry/selector producer, finite metadata cells and reply/source consumer to the retained classified contract; preserve recovered schemas/source and verify only changed or unresolved dependencies."
+    }
+  },
+  "counts": {
+    "retained_questions": 14,
+    "unique_current_geometry_candidates": 14,
+    "unmapped_current_AS_context_proposals": 0,
+    "new_semantics_inferred_from_geometry": 0
+  },
+  "semantic_or_source_implementation_reset": false,
+  "current_native_behavioral_equivalence_established": false,
+  "parity_verified": false,
+  "limits": [
+    "The current14AS-context proposals map to the already classified Codex1/CreatureQuery13 questions. No independently new AS question is established by shifted addresses or unapplied edges.",
+    "Original classifications,query results and source repairs remain recovered under their actual .2 provenance. Current producer/state/consumer applicability is a separate pending layer.",
+    "Proposed successors remain unapplied. Full incoming/type/alias conditions and instruction-boundary closure are not proved by geometry or matching table cells."
+  ]
+}

@@ -1,0 +1,391 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.120.4",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "7e3e3f9558de1d87e615592c7b5d83f00de393ac8efa4e67d8f9b634ed07d6bf",
+    "size_bytes": 145489408
+  },
+  "predecessor": {
+    "path": "docs/analysis/evidence/0.120.2/as-discovery-frontier.json",
+    "sha256": "95b9f75f7fe2097000b403eac28587d1cef7c147c6e1a7ebc5ea88d3f8c5237c"
+  },
+  "method": "Exact retained candidate literal/hash correspondence followed by complete range-filtered declared and complement Capstone reference lookup; no behavioral or pointer-alias inference.",
+  "inputs": [
+    {
+      "path": "runtime/coverage/7e3e3f9558de1d87e615592c7b5d83f00de393ac8efa4e67d8f9b634ed07d6bf/inventory.json",
+      "sha256": "2a2574bd4eaced4da3befb8a1c403457b6cdfd65c8018221d988a322856d95d1",
+      "regenerate": "python3 scripts/inventory-current-target.py --write"
+    },
+    {
+      "path": "docs/analysis/coverage/instruction-summary.json",
+      "sha256": "9aeb2fadfda90cc47928d6f09a17358481651206fdaeffc906297f009aecc61e"
+    },
+    {
+      "path": "docs/analysis/coverage/unwind-complement-summary.json",
+      "sha256": "a1e89e30333ea299d5eb43ef8d75ca85e458cc252d68463dcc54b04f738680bc"
+    },
+    {
+      "path": "runtime/analysis/inventories/7e3e3f9558de1d87e615592c7b5d83f00de393ac8efa4e67d8f9b634ed07d6bf/native-instructions-1deaee73e32a03aa.sqlite",
+      "sha256": "77619c7e745fe6743634142cdccb3c368d3f1382aa4a43de46811db160f3a7a8",
+      "regenerate": "python3 -B scripts/inventory-native-instructions.py --write"
+    },
+    {
+      "path": "runtime/coverage/7e3e3f9558de1d87e615592c7b5d83f00de393ac8efa4e67d8f9b634ed07d6bf/unwind-complement.sqlite",
+      "sha256": "f7cec46a7259b8c5cdc810eea1ec00c43b75ff70ff98fbfe272d75c7b2d06761",
+      "regenerate": "python3 -B scripts/inventory-unwind-complement.py --write"
+    }
+  ],
+  "leads": {
+    "Q41-I01:resource_path:0": {
+      "selector": "Q41-I01:resource_path:0",
+      "finding_id": 103,
+      "title": "Progression-bar resource producer/handle/consumer",
+      "native_candidate": {
+        "file_offset": "0x617c578",
+        "virtual_address": "0x14617d578",
+        "byte_count": 58,
+        "sha256": "082aa7d5e50ddd68ebd07c2b473016275da05f5ed832f5b3b3958db6e7a133ff",
+        "literal": "//interface/paperdollinfoframe/ui-character-skills-bar.blp"
+      },
+      "encoded_reference_state": "complete_selected_declared_and_complement_reference_join",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/progression.rs",
+            "sha256": "3e9ede8b8540c87d29673847e908e615be21b64c70248063c0c8e8263755ba26"
+          }
+        ],
+        "candidate_owner": "progression::load_art -> Art.progress_bar -> bar_flow",
+        "conclusion": "Existing source counterpart inspected and retained. Exact current literal bytes and encoded references are mapped; native input/dispatch/state/consumer/lifetime applicability remains separately pending. Prior semantic/source recovery persists."
+      },
+      "ownership": "unresolved_current_native_producer_handle_schema_and_consumer",
+      "applicability": "literal_candidate_mapped_dependency_source_applicability_pending",
+      "predecessor_selector": "Q41-I01:resource_path:0",
+      "previous_native_candidate": {
+        "file_offset": "0x617b378",
+        "virtual_address": "0x14617c578",
+        "byte_count": 58,
+        "sha256": "082aa7d5e50ddd68ebd07c2b473016275da05f5ed832f5b3b3958db6e7a133ff",
+        "literal": "//interface/paperdollinfoframe/ui-character-skills-bar.blp"
+      },
+      "next_action": "Trace exact current URI reads through producer, asset handle and live progression-bar consumer; stop at existing image-loading interface.",
+      "encoded_incoming_by_inventory": {
+        "instruction-summary": [
+          {
+            "site": "0x140032226",
+            "kind": "memory",
+            "target": "0x14617d5a2"
+          },
+          {
+            "site": "0x140032231",
+            "kind": "memory",
+            "target": "0x14617d594"
+          },
+          {
+            "site": "0x14003223c",
+            "kind": "memory",
+            "target": "0x14617d584"
+          }
+        ],
+        "unwind-complement-summary": []
+      },
+      "native_reference_inputs": {
+        "instruction-summary": {
+          "summary": {
+            "path": "docs/analysis/coverage/instruction-summary.json",
+            "sha256": "9aeb2fadfda90cc47928d6f09a17358481651206fdaeffc906297f009aecc61e"
+          },
+          "inventory": {
+            "path": "runtime/analysis/inventories/7e3e3f9558de1d87e615592c7b5d83f00de393ac8efa4e67d8f9b634ed07d6bf/native-instructions-1deaee73e32a03aa.sqlite",
+            "sha256": "77619c7e745fe6743634142cdccb3c368d3f1382aa4a43de46811db160f3a7a8",
+            "regenerate": "python3 -B scripts/inventory-native-instructions.py --write"
+          }
+        },
+        "unwind-complement-summary": {
+          "summary": {
+            "path": "docs/analysis/coverage/unwind-complement-summary.json",
+            "sha256": "a1e89e30333ea299d5eb43ef8d75ca85e458cc252d68463dcc54b04f738680bc"
+          },
+          "inventory": {
+            "path": "runtime/coverage/7e3e3f9558de1d87e615592c7b5d83f00de393ac8efa4e67d8f9b634ed07d6bf/unwind-complement.sqlite",
+            "sha256": "f7cec46a7259b8c5cdc810eea1ec00c43b75ff70ff98fbfe272d75c7b2d06761",
+            "regenerate": "python3 -B scripts/inventory-unwind-complement.py --write"
+          }
+        }
+      },
+      "selection": {
+        "query": "SELECT site,kind,target FROM refs WHERE target >= ? AND target < ? ORDER BY rowid",
+        "parameters": [
+          "0x14617d578",
+          "0x14617d5b2"
+        ],
+        "integer_range_filter": [
+          "0x14617d578",
+          "0x14617d5b2"
+        ]
+      }
+    },
+    "Q41-I01:resource_path:4": {
+      "selector": "Q41-I01:resource_path:4",
+      "finding_id": 104,
+      "title": "Achievement dragon resource producer/handle/consumer",
+      "native_candidate": {
+        "file_offset": "0x61c1334",
+        "virtual_address": "0x1461c2334",
+        "byte_count": 52,
+        "sha256": "b830e8f8fc013dba14537c551c1de484229f48187f5b68c8e6a7f8748aa4cb41",
+        "literal": "//interface/dialogframe/ui-dialogbox-gold-dragon.blp"
+      },
+      "encoded_reference_state": "complete_selected_declared_and_complement_reference_join",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/progression.rs",
+            "sha256": "3e9ede8b8540c87d29673847e908e615be21b64c70248063c0c8e8263755ba26"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/progression/achievements_sidebar.rs",
+            "sha256": "6ffd7bd64a1d5a6f9569ace0a77bc03f1b1d84ae013be159da6ea07a77bfa484"
+          }
+        ],
+        "candidate_owner": "progression::load_art -> Art.dragon -> achievements_sidebar::draw",
+        "conclusion": "Existing source counterpart inspected and retained. Exact current literal bytes and encoded references are mapped; native input/dispatch/state/consumer/lifetime applicability remains separately pending. Prior semantic/source recovery persists."
+      },
+      "ownership": "unresolved_current_native_producer_handle_schema_and_consumer",
+      "applicability": "literal_candidate_mapped_dependency_source_applicability_pending",
+      "predecessor_selector": "Q41-I01:resource_path:4",
+      "previous_native_candidate": {
+        "file_offset": "0x61c00f4",
+        "virtual_address": "0x1461c12f4",
+        "byte_count": 52,
+        "sha256": "b830e8f8fc013dba14537c551c1de484229f48187f5b68c8e6a7f8748aa4cb41",
+        "literal": "//interface/dialogframe/ui-dialogbox-gold-dragon.blp"
+      },
+      "next_action": "Trace exact URI and native handle to sidebar draw; preserve separate rendering/parity evidence.",
+      "encoded_incoming_by_inventory": {
+        "instruction-summary": [
+          {
+            "site": "0x1402ba2d2",
+            "kind": "memory",
+            "target": "0x1461c2350"
+          },
+          {
+            "site": "0x1402ba2dd",
+            "kind": "memory",
+            "target": "0x1461c2340"
+          }
+        ],
+        "unwind-complement-summary": []
+      },
+      "native_reference_inputs": {
+        "instruction-summary": {
+          "summary": {
+            "path": "docs/analysis/coverage/instruction-summary.json",
+            "sha256": "9aeb2fadfda90cc47928d6f09a17358481651206fdaeffc906297f009aecc61e"
+          },
+          "inventory": {
+            "path": "runtime/analysis/inventories/7e3e3f9558de1d87e615592c7b5d83f00de393ac8efa4e67d8f9b634ed07d6bf/native-instructions-1deaee73e32a03aa.sqlite",
+            "sha256": "77619c7e745fe6743634142cdccb3c368d3f1382aa4a43de46811db160f3a7a8",
+            "regenerate": "python3 -B scripts/inventory-native-instructions.py --write"
+          }
+        },
+        "unwind-complement-summary": {
+          "summary": {
+            "path": "docs/analysis/coverage/unwind-complement-summary.json",
+            "sha256": "a1e89e30333ea299d5eb43ef8d75ca85e458cc252d68463dcc54b04f738680bc"
+          },
+          "inventory": {
+            "path": "runtime/coverage/7e3e3f9558de1d87e615592c7b5d83f00de393ac8efa4e67d8f9b634ed07d6bf/unwind-complement.sqlite",
+            "sha256": "f7cec46a7259b8c5cdc810eea1ec00c43b75ff70ff98fbfe272d75c7b2d06761",
+            "regenerate": "python3 -B scripts/inventory-unwind-complement.py --write"
+          }
+        }
+      },
+      "selection": {
+        "query": "SELECT site,kind,target FROM refs WHERE target >= ? AND target < ? ORDER BY rowid",
+        "parameters": [
+          "0x1461c2334",
+          "0x1461c2368"
+        ],
+        "integer_range_filter": [
+          "0x1461c2334",
+          "0x1461c2368"
+        ]
+      }
+    },
+    "Q41-I01:save_configuration_key_lead:5": {
+      "selector": "Q41-I01:save_configuration_key_lead:5",
+      "finding_id": 98,
+      "title": "Renewed talentxp literal producer/domain/consumer",
+      "native_candidate": {
+        "file_offset": "0x72f0476",
+        "virtual_address": "0x1472f1476",
+        "byte_count": 8,
+        "sha256": "df2e83d09d41bbf9646ed0053916488219e9e8d367374deaf55c9a8a6a659891",
+        "literal": "talentxp"
+      },
+      "encoded_reference_state": "complete_selected_declared_and_complement_reference_join",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/talent_context.rs",
+            "sha256": "399575f233dab0e519dc932cba9720416097bcff06294c4148d32e470012ef83"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/events.rs",
+            "sha256": "fa6cb11ff736eab8a2fea55bee6f49a3732f3dc5e964235e48acec72bd83b2f9"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
+            "sha256": "a548e80cc141ab031677a72300044fc781198ae028e35c21e5b33c3941861bae"
+          }
+        ],
+        "candidate_owner": "talent_context::Context::accept/request/Snapshot::read; gameplay::client::events::receive_coop -> terminal::queue_talent",
+        "conclusion": "Existing source counterpart inspected and retained. Exact current literal bytes and encoded references are mapped; native input/dispatch/state/consumer/lifetime applicability remains separately pending. Prior semantic/source recovery persists."
+      },
+      "ownership": "unresolved_current_native_producer_handle_schema_and_consumer",
+      "applicability": "literal_candidate_mapped_dependency_source_applicability_pending",
+      "predecessor_selector": "Q41-I01:save_configuration_key_lead:5",
+      "previous_native_candidate": {
+        "file_offset": "0x72ee01e",
+        "virtual_address": "0x1472ef21e",
+        "byte_count": 8,
+        "sha256": "df2e83d09d41bbf9646ed0053916488219e9e8d367374deaf55c9a8a6a659891",
+        "literal": "talentxp"
+      },
+      "next_action": "Trace exact literal/address site through request production, dispatch, queued Value and terminal/save consumers; do not infer save format or numeric semantics from spelling.",
+      "encoded_incoming_by_inventory": {
+        "instruction-summary": [
+          {
+            "site": "0x145b1ad7d",
+            "kind": "address",
+            "target": "0x1472f1476"
+          }
+        ],
+        "unwind-complement-summary": []
+      },
+      "native_reference_inputs": {
+        "instruction-summary": {
+          "summary": {
+            "path": "docs/analysis/coverage/instruction-summary.json",
+            "sha256": "9aeb2fadfda90cc47928d6f09a17358481651206fdaeffc906297f009aecc61e"
+          },
+          "inventory": {
+            "path": "runtime/analysis/inventories/7e3e3f9558de1d87e615592c7b5d83f00de393ac8efa4e67d8f9b634ed07d6bf/native-instructions-1deaee73e32a03aa.sqlite",
+            "sha256": "77619c7e745fe6743634142cdccb3c368d3f1382aa4a43de46811db160f3a7a8",
+            "regenerate": "python3 -B scripts/inventory-native-instructions.py --write"
+          }
+        },
+        "unwind-complement-summary": {
+          "summary": {
+            "path": "docs/analysis/coverage/unwind-complement-summary.json",
+            "sha256": "a1e89e30333ea299d5eb43ef8d75ca85e458cc252d68463dcc54b04f738680bc"
+          },
+          "inventory": {
+            "path": "runtime/coverage/7e3e3f9558de1d87e615592c7b5d83f00de393ac8efa4e67d8f9b634ed07d6bf/unwind-complement.sqlite",
+            "sha256": "f7cec46a7259b8c5cdc810eea1ec00c43b75ff70ff98fbfe272d75c7b2d06761",
+            "regenerate": "python3 -B scripts/inventory-unwind-complement.py --write"
+          }
+        }
+      },
+      "selection": {
+        "query": "SELECT site,kind,target FROM refs WHERE target >= ? AND target < ? ORDER BY rowid",
+        "parameters": [
+          "0x1472f1476",
+          "0x1472f147e"
+        ],
+        "integer_range_filter": [
+          "0x1472f1476",
+          "0x1472f147e"
+        ]
+      }
+    },
+    "Q41-I01:save_configuration_key_lead:0": {
+      "selector": "Q41-I01:save_configuration_key_lead:0",
+      "finding_id": 98,
+      "title": "Current talentxp request discriminator/context consumer",
+      "native_candidate": {
+        "file_offset": "0x278d97",
+        "virtual_address": "0x140279997",
+        "byte_count": 8,
+        "sha256": "df2e83d09d41bbf9646ed0053916488219e9e8d367374deaf55c9a8a6a659891",
+        "literal": "talentxp"
+      },
+      "encoded_reference_state": "complete_selected_declared_and_complement_reference_join",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/talent_context.rs",
+            "sha256": "399575f233dab0e519dc932cba9720416097bcff06294c4148d32e470012ef83"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/events.rs",
+            "sha256": "fa6cb11ff736eab8a2fea55bee6f49a3732f3dc5e964235e48acec72bd83b2f9"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
+            "sha256": "a548e80cc141ab031677a72300044fc781198ae028e35c21e5b33c3941861bae"
+          }
+        ],
+        "candidate_owner": "talent_context::Context::accept -> TerminalState pending request drain",
+        "conclusion": "Existing source counterpart inspected and retained. Exact current literal bytes and encoded references are mapped; native input/dispatch/state/consumer/lifetime applicability remains separately pending. Prior semantic/source recovery persists."
+      },
+      "ownership": "unresolved_current_native_producer_handle_schema_and_consumer",
+      "applicability": "literal_candidate_mapped_dependency_source_applicability_pending",
+      "predecessor_selector": "Q41-I01:save_configuration_key_lead:0",
+      "previous_native_candidate": {
+        "file_offset": "0x278da7",
+        "virtual_address": "0x1402799a7",
+        "byte_count": 8,
+        "sha256": "df2e83d09d41bbf9646ed0053916488219e9e8d367374deaf55c9a8a6a659891",
+        "literal": "talentxp"
+      },
+      "next_action": "Apply exact current guarded tables in full-PE Ghidra and recover incoming resource/context lifecycle, record type/drop/map interfaces and terminal projection; retain historical talent-XP source repair separately.",
+      "encoded_incoming_by_inventory": {
+        "instruction-summary": [],
+        "unwind-complement-summary": []
+      },
+      "native_reference_inputs": {
+        "instruction-summary": {
+          "summary": {
+            "path": "docs/analysis/coverage/instruction-summary.json",
+            "sha256": "9aeb2fadfda90cc47928d6f09a17358481651206fdaeffc906297f009aecc61e"
+          },
+          "inventory": {
+            "path": "runtime/analysis/inventories/7e3e3f9558de1d87e615592c7b5d83f00de393ac8efa4e67d8f9b634ed07d6bf/native-instructions-1deaee73e32a03aa.sqlite",
+            "sha256": "77619c7e745fe6743634142cdccb3c368d3f1382aa4a43de46811db160f3a7a8",
+            "regenerate": "python3 -B scripts/inventory-native-instructions.py --write"
+          }
+        },
+        "unwind-complement-summary": {
+          "summary": {
+            "path": "docs/analysis/coverage/unwind-complement-summary.json",
+            "sha256": "a1e89e30333ea299d5eb43ef8d75ca85e458cc252d68463dcc54b04f738680bc"
+          },
+          "inventory": {
+            "path": "runtime/coverage/7e3e3f9558de1d87e615592c7b5d83f00de393ac8efa4e67d8f9b634ed07d6bf/unwind-complement.sqlite",
+            "sha256": "f7cec46a7259b8c5cdc810eea1ec00c43b75ff70ff98fbfe272d75c7b2d06761",
+            "regenerate": "python3 -B scripts/inventory-unwind-complement.py --write"
+          }
+        }
+      },
+      "selection": {
+        "query": "SELECT site,kind,target FROM refs WHERE target >= ? AND target < ? ORDER BY rowid",
+        "parameters": [
+          "0x140279997",
+          "0x14027999f"
+        ],
+        "integer_range_filter": [
+          "0x140279997",
+          "0x14027999f"
+        ]
+      }
+    }
+  },
+  "limits": [
+    "Static encoded references remain distinct from current semantic recovery and observed runtime calls.",
+    "The executable talentxp byte pattern is an instruction immediate candidate, not a proved current tag/domain.",
+    "Source receipts preserve historical recovery and source repairs; current native dependencies remain pending."
+  ]
+}

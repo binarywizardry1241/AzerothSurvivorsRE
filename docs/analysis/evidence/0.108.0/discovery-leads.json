@@ -1,0 +1,515 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.108.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b",
+    "size_bytes": 140203520
+  },
+  "inventory": {
+    "path": "runtime/coverage/dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b/inventory.json",
+    "sha256": "c0f578553ef2e49a7ece124dc612c9718f9ca00d12cd5cf205ec661fdfd0f1e9"
+  },
+  "comparison_target_sha256": "92eaef3bc806144860ca838660286c02b66f9d7bbee0771f1f07a628209e9f7a",
+  "comparison_use": "Retained full-file inventory only; no older RVA/layout is reused.",
+  "candidate_class_review": [
+    {
+      "category": "module_type_namespace",
+      "occurrences": 903,
+      "unique_literals": 642,
+      "added_literals": [
+        "benilla_app::menu_scene::MenuScenePluginbenilla_app::hero_preview::HeroPreviewPluginbenilla_app::host_controls::TouchDrivePlugin",
+        "benilla_app::ui_text::enginemessage",
+        "wenilla_rogue_app::screens::markers::MarkersPlugindescription",
+        "wenilla_rogue_app::window::GameWindowPluginwenilla_rogue_app::screens::ScreensPlugin"
+      ],
+      "removed_literals": [
+        "benilla_app::hero_preview::HeroPreviewPluginbenilla_app::host_controls::TouchDrivePlugin",
+        "benilla_app::menu_scene::MenuScenePlugin",
+        "benilla_app::ui_text::enginemessageI",
+        "wenilla_rogue_app::screens::markers::MarkersPlugin",
+        "wenilla_rogue_app::window::GameWindowPluginwenilla_rogue_app::screens::ScreensPluginD"
+      ],
+      "interpretation": "Encoded discovery leads only; packed Rust literals may concatenate names and resource paths. No native/source semantics inferred."
+    },
+    {
+      "category": "game_binding_identifier",
+      "occurrences": 315,
+      "unique_literals": 102,
+      "added_literals": [
+        "AZS_BANNER",
+        "AZS_BANNERS",
+        "AZS_BANNERS_KEPT",
+        "AZS_BANNER_HANDLERS",
+        "AZS_BANNER_UPDATED",
+        "AZS_FitPlayerName",
+        "AZS_HiddenBar",
+        "AZS_MAIN_BAR_HEIGHT",
+        "AZS_MAIN_BAR_ROWS",
+        "AZS_MAIN_BAR_SLICES",
+        "AZS_MAIN_BAR_WIDTH",
+        "AZS_MAX_LEVEL_BAR_ROWS",
+        "AZS_MAX_LEVEL_BAR_SLICES",
+        "AZS_MainBar_Slice",
+        "AZS_MainBar_Slices",
+        "AZS_MainBar_UpdateXPText",
+        "AZS_NameFit",
+        "AZS_OnBanner",
+        "AZS_PLAYER_NAME_FONT",
+        "AZS_PLAYER_NAME_SIZE",
+        "AZS_ParseBanner",
+        "AZS_RacialRim",
+        "AZS_RegisterBannerHandler",
+        "AZS_UnregisterBannerHandler",
+        "AZS_XPText",
+        "AZS_XP_BAR_INSET",
+        "AZS_XP_BAR_Y"
+      ],
+      "removed_literals": [],
+      "interpretation": "Encoded discovery leads only; packed Rust literals may concatenate names and resource paths. No native/source semantics inferred."
+    },
+    {
+      "category": "lua_ui_registration",
+      "occurrences": 336,
+      "unique_literals": 8,
+      "added_literals": [],
+      "removed_literals": [],
+      "interpretation": "Encoded discovery leads only; packed Rust literals may concatenate names and resource paths. No native/source semantics inferred."
+    },
+    {
+      "category": "textual_id_assignment",
+      "occurrences": 2,
+      "unique_literals": 1,
+      "added_literals": [],
+      "removed_literals": [],
+      "interpretation": "Encoded discovery leads only; packed Rust literals may concatenate names and resource paths. No native/source semantics inferred."
+    },
+    {
+      "category": "textual_numeric_id",
+      "occurrences": 0,
+      "unique_literals": 0,
+      "added_literals": [],
+      "removed_literals": [],
+      "interpretation": "Encoded discovery leads only; packed Rust literals may concatenate names and resource paths. No native/source semantics inferred."
+    },
+    {
+      "category": "save_configuration_key_lead",
+      "occurrences": 4,
+      "unique_literals": 3,
+      "added_literals": [],
+      "removed_literals": [],
+      "interpretation": "Encoded discovery leads only; packed Rust literals may concatenate names and resource paths. No native/source semantics inferred."
+    },
+    {
+      "category": "resource_path",
+      "occurrences": 300,
+      "unique_literals": 197,
+      "added_literals": [
+        "DBFilesClient\\CreatureSoundData.dbc",
+        "SpellShapeshiftForm.dbcSpellShapeshiftFormSpellShapeshiftForm.dbc"
+      ],
+      "removed_literals": [
+        "DBFilesClient\\CreatureFamily.dbc",
+        "DBFilesClient\\EmotesTextData.dbc",
+        "DBFilesClient\\PetPersonality.dbc",
+        "SpellDispelType.dbcSpellDispelType.dbc",
+        "characters.backup-atDBFilesClient\\CreatureSoundData.dbc"
+      ],
+      "interpretation": "Encoded discovery leads only; packed Rust literals may concatenate names and resource paths. No native/source semantics inferred."
+    },
+    {
+      "category": "lua_function_declaration",
+      "occurrences": 179,
+      "unique_literals": 172,
+      "added_literals": [
+        "function AZS_FitPlayerName(",
+        "function AZS_MainBar_Slice(",
+        "function AZS_MainBar_Slices(",
+        "function AZS_MainBar_UpdateXPText(",
+        "function AZS_OnBanner(",
+        "function AZS_ParseBanner(",
+        "function AZS_RegisterBannerHandler(",
+        "function AZS_UnregisterBannerHandler(",
+        "function ActionBar_PageDown(",
+        "function ActionBar_PageUp(",
+        "function MainMenuBar_UpdateKeyRing(",
+        "function TalentMicroButton_OnEvent("
+      ],
+      "removed_literals": [],
+      "interpretation": "Encoded discovery leads only; packed Rust literals may concatenate names and resource paths. No native/source semantics inferred."
+    }
+  ],
+  "diagnostic_membership": {
+    "added": [],
+    "removed": []
+  },
+  "locales": [
+    {
+      "code": "en",
+      "keys": 2773,
+      "range": {
+        "file_offset": "0x6bea4da",
+        "virtual_address": "0x146beb2da",
+        "byte_count": 189474,
+        "sha256": "c587f9ea33249ffa80b4b173a22d7e07f9f330b643490363c21a82045e8ceae8"
+      },
+      "source_path": "crates/azeroth-survivors-re/assets/locales/en.json",
+      "source_provenance": "0.107.0",
+      "added_keys": [],
+      "removed_keys": [],
+      "changed_values": []
+    },
+    {
+      "code": "pl",
+      "keys": 2683,
+      "range": {
+        "file_offset": "0x6c18906",
+        "virtual_address": "0x146c19706",
+        "byte_count": 187421,
+        "sha256": "b9411442ffa3c6c59cf148e7938f30f3bb051b8959dad067ebb29409937afb74"
+      },
+      "source_path": "crates/azeroth-survivors-re/assets/locales/pl.json",
+      "source_provenance": "0.107.0",
+      "added_keys": [],
+      "removed_keys": [],
+      "changed_values": []
+    },
+    {
+      "code": "cs",
+      "keys": 2683,
+      "range": {
+        "file_offset": "0x6c46530",
+        "virtual_address": "0x146c47330",
+        "byte_count": 187563,
+        "sha256": "ad75c5ce4aef17d9c2b79456afb5acf480a377556adda43da03a066af1ef094b"
+      },
+      "source_path": "crates/azeroth-survivors-re/assets/locales/cs.json",
+      "source_provenance": "0.107.0",
+      "added_keys": [],
+      "removed_keys": [],
+      "changed_values": []
+    },
+    {
+      "code": "de",
+      "keys": 2683,
+      "range": {
+        "file_offset": "0x6c741e6",
+        "virtual_address": "0x146c74fe6",
+        "byte_count": 192784,
+        "sha256": "43cd84cdbb6eb91a2dccccdea6a7a9b53aad3aa72944ec06baaedf9c1e11136d"
+      },
+      "source_path": "crates/azeroth-survivors-re/assets/locales/de.json",
+      "source_provenance": "0.107.0",
+      "added_keys": [],
+      "removed_keys": [],
+      "changed_values": []
+    },
+    {
+      "code": "pt",
+      "keys": 2683,
+      "range": {
+        "file_offset": "0x6ca330d",
+        "virtual_address": "0x146ca410d",
+        "byte_count": 186810,
+        "sha256": "6d087a41005b149da38d33f76ed439a1773df71ef40d3b9d390abfbb74218fc7"
+      },
+      "source_path": "crates/azeroth-survivors-re/assets/locales/pt.json",
+      "source_provenance": "0.107.0",
+      "added_keys": [],
+      "removed_keys": [],
+      "changed_values": []
+    },
+    {
+      "code": "es",
+      "keys": 2683,
+      "range": {
+        "file_offset": "0x6cd0cd3",
+        "virtual_address": "0x146cd1ad3",
+        "byte_count": 192638,
+        "sha256": "abeeb04b8ef7a99d590db6ec2202b1ba2dba6ddfb1843519eff3e6fa1d50a356"
+      },
+      "source_path": "crates/azeroth-survivors-re/assets/locales/es.json",
+      "source_provenance": "0.107.0",
+      "added_keys": [],
+      "removed_keys": [],
+      "changed_values": []
+    },
+    {
+      "code": "fr",
+      "keys": 2683,
+      "range": {
+        "file_offset": "0x6cffd5e",
+        "virtual_address": "0x146d00b5e",
+        "byte_count": 196442,
+        "sha256": "591e22a06313b2a8928381b15ff43ee709cc6e8e4d0ef8165697205c5a0b5540"
+      },
+      "source_path": "crates/azeroth-survivors-re/assets/locales/fr.json",
+      "source_provenance": "0.107.0",
+      "added_keys": [],
+      "removed_keys": [],
+      "changed_values": []
+    },
+    {
+      "code": "ro",
+      "keys": 2683,
+      "range": {
+        "file_offset": "0x6d2fcc4",
+        "virtual_address": "0x146d30ac4",
+        "byte_count": 192781,
+        "sha256": "d7209ef89c67b96c07c7f0a0babc6ccfc5d7a09a6b053d64b9336cf4fa0d320f"
+      },
+      "source_path": "crates/azeroth-survivors-re/assets/locales/ro.json",
+      "source_provenance": "0.107.0",
+      "added_keys": [],
+      "removed_keys": [],
+      "changed_values": []
+    },
+    {
+      "code": "tr",
+      "keys": 2683,
+      "range": {
+        "file_offset": "0x6d5eddd",
+        "virtual_address": "0x146d5fbdd",
+        "byte_count": 185587,
+        "sha256": "e2aeb57bd6eee549bfdfec93691b18e2abefeabf0744c0cad67a6d01a23397c2"
+      },
+      "source_path": "crates/azeroth-survivors-re/assets/locales/tr.json",
+      "source_provenance": "0.107.0",
+      "added_keys": [],
+      "removed_keys": [],
+      "changed_values": []
+    },
+    {
+      "code": "ru",
+      "keys": 2683,
+      "range": {
+        "file_offset": "0x6d8c2e2",
+        "virtual_address": "0x146d8d0e2",
+        "byte_count": 253431,
+        "sha256": "842c7b878bc75aaaa3373d9eb7e84e49e91baee051d1e6589e06cf85937c0a2b"
+      },
+      "source_path": "crates/azeroth-survivors-re/assets/locales/ru.json",
+      "source_provenance": "0.107.0",
+      "added_keys": [],
+      "removed_keys": [],
+      "changed_values": []
+    },
+    {
+      "code": "uk",
+      "keys": 2683,
+      "range": {
+        "file_offset": "0x6dca0f1",
+        "virtual_address": "0x146dcaef1",
+        "byte_count": 247100,
+        "sha256": "ebfa262c6612ab18e14b205c5eb8dd277c60893f34ceb3802f3e64333110679c"
+      },
+      "source_path": "crates/azeroth-survivors-re/assets/locales/uk.json",
+      "source_provenance": "0.107.0",
+      "added_keys": [],
+      "removed_keys": [],
+      "changed_values": []
+    },
+    {
+      "code": "zh",
+      "keys": 2683,
+      "range": {
+        "file_offset": "0x6e0663d",
+        "virtual_address": "0x146e0743d",
+        "byte_count": 174848,
+        "sha256": "cacfaf8073c02e378f05a13951d5d828b883d9256668c1f745568c45f3a743e9"
+      },
+      "source_path": "crates/azeroth-survivors-re/assets/locales/zh.json",
+      "source_provenance": "0.107.0",
+      "added_keys": [],
+      "removed_keys": [],
+      "changed_values": []
+    },
+    {
+      "code": "ja",
+      "keys": 2683,
+      "range": {
+        "file_offset": "0x6e3114a",
+        "virtual_address": "0x146e31f4a",
+        "byte_count": 210252,
+        "sha256": "b845c973d2d4e5d876cfbc3213cd8804dc3e2ec17ee46b90ac26217d68c071c8"
+      },
+      "source_path": "crates/azeroth-survivors-re/assets/locales/ja.json",
+      "source_provenance": "0.107.0",
+      "added_keys": [],
+      "removed_keys": [],
+      "changed_values": []
+    },
+    {
+      "code": "ko",
+      "keys": 2683,
+      "range": {
+        "file_offset": "0x6e646a3",
+        "virtual_address": "0x146e654a3",
+        "byte_count": 196518,
+        "sha256": "b46d6f9106147354bfa0e769ae29490a4d6b10eb7ed2f21f53b3dcb89ac41c38"
+      },
+      "source_path": "crates/azeroth-survivors-re/assets/locales/ko.json",
+      "source_provenance": "0.107.0",
+      "added_keys": [],
+      "removed_keys": [],
+      "changed_values": []
+    }
+  ],
+  "embedded_addon_api": {
+    "path": "docs/analysis/evidence/0.108.0/addon-api.lua",
+    "range": {
+      "file_offset": "0x71eb0cc",
+      "virtual_address": "0x1471ebecc",
+      "byte_count": 12028,
+      "sha256": "d97cae2cb64675a2b61c2651db6dd6af30bdd18f416bd6d8ab156f955826abf8"
+    },
+    "matches_historical_source": false,
+    "added_function_declarations": [
+      "AZS_OnBanner",
+      "AZS_ParseBanner",
+      "AZS_RegisterBannerHandler",
+      "AZS_UnregisterBannerHandler"
+    ],
+    "gap_ids": [
+      11,
+      41
+    ],
+    "native_producer_and_live_consumer_revalidation": "pending"
+  },
+  "pe_resources": {
+    "leaf_count": 8,
+    "leaves": [
+      {
+        "tree": [
+          3,
+          1,
+          1033
+        ],
+        "range": {
+          "file_offset": "0x8446bc0",
+          "virtual_address": "0x14844c1c0",
+          "byte_count": 1014,
+          "sha256": "f92513efc2dd9493af9d66c0cf34ff639ab324e54277b2d8528dbc40564323bc"
+        },
+        "codepage": 0
+      },
+      {
+        "tree": [
+          3,
+          2,
+          1033
+        ],
+        "range": {
+          "file_offset": "0x8446fb8",
+          "virtual_address": "0x14844c5b8",
+          "byte_count": 1988,
+          "sha256": "6277b932549279ac89f4cd564a22773003c6b80f6523954de8621a5b4363e96c"
+        },
+        "codepage": 0
+      },
+      {
+        "tree": [
+          3,
+          3,
+          1033
+        ],
+        "range": {
+          "file_offset": "0x8447780",
+          "virtual_address": "0x14844cd80",
+          "byte_count": 3285,
+          "sha256": "243f562506637dbfcbb3d507d6bc93a54346b659faa5565105dd431fe7d87a71"
+        },
+        "codepage": 0
+      },
+      {
+        "tree": [
+          3,
+          4,
+          1033
+        ],
+        "range": {
+          "file_offset": "0x8448458",
+          "virtual_address": "0x14844da58",
+          "byte_count": 6587,
+          "sha256": "d4d95edb2253da52c75291dfcba1c81faa009e237d4fc1224f7e3dffc3c5ab0f"
+        },
+        "codepage": 0
+      },
+      {
+        "tree": [
+          3,
+          5,
+          1033
+        ],
+        "range": {
+          "file_offset": "0x8449e18",
+          "virtual_address": "0x14844f418",
+          "byte_count": 11069,
+          "sha256": "14c0318d32dc73b9007c571435b569c4449cce4606b6d699640719171abc7dc6"
+        },
+        "codepage": 0
+      },
+      {
+        "tree": [
+          3,
+          6,
+          1033
+        ],
+        "range": {
+          "file_offset": "0x844c958",
+          "virtual_address": "0x148451f58",
+          "byte_count": 39578,
+          "sha256": "c3260d84c6ba641d27a345f0d8589aea3250cc19df5906756656b2a48f008c24"
+        },
+        "codepage": 0
+      },
+      {
+        "tree": [
+          3,
+          7,
+          1033
+        ],
+        "range": {
+          "file_offset": "0x84563f8",
+          "virtual_address": "0x14845b9f8",
+          "byte_count": 146585,
+          "sha256": "857f9d4c979feee0f9cf056896bf91f3609dff4fc821f5a24d67f3bbd86beecd"
+        },
+        "codepage": 0
+      },
+      {
+        "tree": [
+          14,
+          1,
+          1033
+        ],
+        "range": {
+          "file_offset": "0x847a098",
+          "virtual_address": "0x14847f698",
+          "byte_count": 104,
+          "sha256": "6d981423b5a70886ee47bc24203ced1e3759880c27edd922eeb6e0af4716e634"
+        },
+        "codepage": 0
+      }
+    ]
+  },
+  "new_lead_ownership": [
+    {
+      "gap_ids": [
+        7,
+        11,
+        41
+      ],
+      "systems": [
+        "custom-game-game-addon",
+        "custom-app-screens-hud",
+        "engine-selected-target-deltas"
+      ],
+      "description": "Added AZS_BANNER parsing/history/handlers and main-bar slicing, XP text and player-name fitting; recover native publishers/FrameXML consumers and target-specific contracts before implementation claims."
+    }
+  ],
+  "release_notes_supplied_through": "0.107.0",
+  "selected_target_release_claims_invented": false,
+  "native_source_semantics_established": false,
+  "parity_verified": false
+}

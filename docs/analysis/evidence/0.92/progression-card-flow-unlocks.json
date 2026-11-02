@@ -1,0 +1,428 @@
+{
+  "date": "2026-10-16",
+  "target_sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+  "method": "REA/Ghidra exact function slices, original PE constants, and bounded Unicorn execution of the three native unlock iterator/filter functions with an explicit reviewed allocation/memcpy/locale-fallback stub allowlist. No original process or UI launch.",
+  "evidence_ids": {
+    "0x145444710": "ev_25a4db22f426305153469c3b454e14fdd9f0247c73ad28de3b75b1020f4ab41c",
+    "0x1454dd850": "ev_3897b2b93c723ade4a65178fde4ea19ae9ab27b7f40e6bd615301228b5f078f6",
+    "0x1454ebd30": "ev_d1bd313187fd0b21655044542ae3ecb4507ba6482c0494df1e1124829ffb10ad",
+    "0x14016e440": "ev_d1b43b6be7e7da25aeb9407aaa869ed7b4516562643e347fb29ec47662487cdd",
+    "0x140172650": "ev_b852f5f91cf87aa94ab22fca4fa5e4a237345c4a4b32408e1bb9ffd00b127a00",
+    "0x14016fe30": "ev_f099210c39564b6b308e85c66b926336a82821a1fbf2104eacef5c0ec3cdd995",
+    "0x1401bf750": "ev_3c30f6d9c23ee3d84242c2e7162f3d2c4c4fb6092a3f516bada3db38a39a7088",
+    "0x1401bcf50": "ev_fd7fabd47bda2ff0c5b6a5c1dae6f8a90a0b7dbfd09cbd769ece6d6fe8dfa409",
+    "0x14016f950": "ev_345c95306f7529c61317eb0e35e39c743645b06c77e69d8bdd5d9d9fced34208",
+    "0x140172a40": "ev_e4e9e65a4d8801af18efe2fce34c9d2ae188c97a8572c5fc4377725dc94c3cde",
+    "0x140170460": "ev_70098b62fc487ceb0d0e01b88c0fefab3922e59f957273ca85db50797f6e9152",
+    "0x1401c13a0": "ev_dfa47ceeb9d9fc303725fcd1dfc84243a81463960e3100e66edd76881e16ade3",
+    "0x1401c17a0": "ev_83514988cb0d069139829f682b78ea5c8b05fea3b36da328a3e271411c8e3e67",
+    "0x140174450": "ev_220480f660769dbef90f4eb5afc030cf98b56a100df88ff3aa58ab3d35cbaee7"
+  },
+  "unlocks": {
+    "constructor": "0x145444710",
+    "collector": "0x1454dd850",
+    "filter": "0x1454ebd30",
+    "order": [
+      "matching perks",
+      "matching free tabards",
+      "matching companion appearances"
+    ],
+    "perk_filter": "Exclude a perk whose prerequisite has the same achievement gate.",
+    "free_tabard_gate": "Tabard.zone is already the full achievement key, including zone:.",
+    "comparison": {
+      "achievement_count": 66,
+      "exact_native_vectors_matching_generated_catalog": 66,
+      "mismatch_count": 0
+    },
+    "native_vectors": {
+      "zone:elwynn": [
+        {
+          "prefix": "Unlocks",
+          "name": "Banish",
+          "icon": "Spell_Shadow_Teleport"
+        }
+      ],
+      "zone:duskwood": [
+        {
+          "prefix": "Unlocks",
+          "name": "Skip",
+          "icon": "INV_Misc_Coin_02"
+        },
+        {
+          "prefix": "Companion",
+          "name": "Snowshoe Rabbit",
+          "icon": "INV_Box_PetCarrier_01"
+        }
+      ],
+      "zone:wsg": [
+        {
+          "prefix": "Unlocks",
+          "name": "Veteran's Lessons",
+          "icon": "INV_Misc_Book_11"
+        },
+        {
+          "prefix": "Reward",
+          "name": "Warsong Battle Tabard",
+          "icon": "INV_Shirt_GuildTabard_01"
+        },
+        {
+          "prefix": "Reward",
+          "name": "Silverwing Battle Tabard",
+          "icon": "INV_Shirt_GuildTabard_01"
+        },
+        {
+          "prefix": "Companion",
+          "name": "Crimson Macaw",
+          "icon": "Ability_Hunter_Pet_Owl"
+        }
+      ],
+      "zone:ab": [
+        {
+          "prefix": "Reward",
+          "name": "Arathor Battle Tabard",
+          "icon": "INV_Shirt_GuildTabard_01"
+        },
+        {
+          "prefix": "Reward",
+          "name": "Defilers Battle Tabard",
+          "icon": "INV_Shirt_GuildTabard_01"
+        },
+        {
+          "prefix": "Companion",
+          "name": "Great Horned Owl",
+          "icon": "Ability_Hunter_Pet_Owl"
+        }
+      ],
+      "zone:feralas": [
+        {
+          "prefix": "Companion",
+          "name": "Tree Frog",
+          "icon": "Ability_Hunter_Pet_Turtle"
+        }
+      ],
+      "zone:arena": [
+        {
+          "prefix": "Companion",
+          "name": "Black Kingsnake",
+          "icon": "Ability_Hunter_Pet_WindSerpent"
+        }
+      ],
+      "zone:av": [
+        {
+          "prefix": "Reward",
+          "name": "Stormpike Battle Tabard",
+          "icon": "INV_Shirt_GuildTabard_01"
+        },
+        {
+          "prefix": "Reward",
+          "name": "Frostwolf Battle Tabard",
+          "icon": "INV_Shirt_GuildTabard_01"
+        },
+        {
+          "prefix": "Companion",
+          "name": "Sprite Darter",
+          "icon": "Ability_Hunter_Pet_WindSerpent"
+        }
+      ],
+      "zone:brm": [
+        {
+          "prefix": "Companion",
+          "name": "Black Whelpling",
+          "icon": "INV_Misc_Head_Dragon_Black"
+        }
+      ],
+      "zone:aq": [
+        {
+          "prefix": "Companion",
+          "name": "Zergling",
+          "icon": "Ability_Hunter_Pet_Scorpid"
+        }
+      ],
+      "zone9:elwynn": [],
+      "zone9:duskwood": [],
+      "zone9:wsg": [],
+      "zone9:ab": [],
+      "zone9:feralas": [],
+      "zone9:arena": [],
+      "zone9:av": [],
+      "zone9:brm": [],
+      "zone9:aq": [],
+      "class:warrior": [],
+      "class:paladin": [],
+      "class:hunter": [],
+      "class:rogue": [],
+      "class:priest": [],
+      "class:shaman": [],
+      "class:mage": [],
+      "class:warlock": [],
+      "class:druid": [],
+      "classlast:warrior": [],
+      "classlast:paladin": [],
+      "classlast:hunter": [],
+      "classlast:rogue": [],
+      "classlast:priest": [],
+      "classlast:shaman": [],
+      "classlast:mage": [],
+      "classlast:warlock": [],
+      "classlast:druid": [],
+      "talents:1": [],
+      "talents:9": [],
+      "pieces:25": [
+        {
+          "prefix": "Unlocks",
+          "name": "Keen Eye",
+          "icon": "INV_Misc_Spyglass_02"
+        }
+      ],
+      "pieces:100": [],
+      "pieces:250": [],
+      "pieces:all": [],
+      "legendaryset": [],
+      "codex:50": [],
+      "codex:100": [],
+      "feat:kills2500": [
+        {
+          "prefix": "Unlocks",
+          "name": "Opening Hand",
+          "icon": "INV_Misc_Book_09"
+        }
+      ],
+      "feat:kills6000": [],
+      "feat:lairs": [],
+      "feat:endless25": [],
+      "feat:endless30": [],
+      "feat:endless40": [
+        {
+          "prefix": "Companion",
+          "name": "Panda Cub",
+          "icon": "Ability_Hunter_Pet_Bear"
+        }
+      ],
+      "feat:bare": [],
+      "feat:thrifty": [],
+      "feat:odds": [],
+      "count:kills10k": [],
+      "count:kills100k": [
+        {
+          "prefix": "Companion",
+          "name": "Undercity Cockroach",
+          "icon": "Ability_Hunter_Pet_Crab"
+        }
+      ],
+      "count:kills1m": [],
+      "count:gold5k": [
+        {
+          "prefix": "Unlocks",
+          "name": "Companion",
+          "icon": "INV_Box_PetCarrier_01"
+        }
+      ],
+      "count:gold50k": [
+        {
+          "prefix": "Unlocks",
+          "name": "Second Companion",
+          "icon": "INV_Box_PetCarrier_01"
+        }
+      ],
+      "count:guardians100": [],
+      "count:guardians500": [],
+      "count:bosses100": [],
+      "count:caches100": [],
+      "count:runs10": [
+        {
+          "prefix": "Unlocks",
+          "name": "Second Thoughts",
+          "icon": "Spell_Nature_TimeStop"
+        }
+      ],
+      "count:runs100": [
+        {
+          "prefix": "Companion",
+          "name": "Westfall Chicken",
+          "icon": "INV_Box_PetCarrier_01"
+        }
+      ],
+      "count:wins50": []
+    }
+  },
+  "card": {
+    "wrapper_function": "0x14016f950",
+    "minimum_height": 76,
+    "padding": [
+      10,
+      8
+    ],
+    "border": 1,
+    "radius": 7,
+    "column_gap": 12,
+    "icon_function": "0x14016e440",
+    "icon_size": [
+      50,
+      50
+    ],
+    "icon_border": 2,
+    "icon_radius": 6,
+    "earned_shadow": {
+      "linear_rgba": [
+        0.973,
+        0.824,
+        0.416,
+        0.5
+      ],
+      "x": 0,
+      "y": 0,
+      "spread": 1,
+      "blur": 10
+    },
+    "locked_shadow": {
+      "linear_rgba": [
+        0,
+        0,
+        0,
+        0.85
+      ],
+      "x": 0,
+      "y": 2,
+      "spread": 0,
+      "blur": 4
+    },
+    "content_row_gap": 3,
+    "unlock_row": {
+      "margin_top": 1,
+      "column_gap": 6,
+      "icon_size": [
+        16,
+        16
+      ],
+      "icon_border": 1,
+      "icon_radius": 2,
+      "locked_icon_srgba": [
+        0.45,
+        0.45,
+        0.45,
+        1
+      ],
+      "earned_text_srgba": [
+        0.45,
+        0.95,
+        0.5,
+        1
+      ],
+      "locked_text_srgba": [
+        0.42,
+        0.52,
+        0.42,
+        1
+      ]
+    },
+    "partial_row": {
+      "margin_top": 2,
+      "column_gap": 8,
+      "bar_height": 9,
+      "count_font_size": 11,
+      "count_formatter": "0x140172650 comma groups of three"
+    },
+    "badge": {
+      "function": "0x14016fe30",
+      "child_function": "0x1401bf750",
+      "width": 44,
+      "height": 44,
+      "border": 2,
+      "radius": "f32::MAX",
+      "radial_position": {
+        "anchor": "center",
+        "x_percent": -15,
+        "y_percent": -20
+      },
+      "radial_shape": "FarthestCorner",
+      "gradient_stop_positions": [
+        "0%",
+        "70%"
+      ],
+      "earned_linear_rgba": [
+        [
+          0.95,
+          0.75,
+          0.32,
+          1
+        ],
+        [
+          0.48,
+          0.3,
+          0.07,
+          1
+        ]
+      ],
+      "locked_linear_rgba": [
+        [
+          0.14,
+          0.13,
+          0.12,
+          1
+        ],
+        [
+          0.05,
+          0.05,
+          0.05,
+          1
+        ]
+      ],
+      "text_font_size": 16,
+      "locked_text_srgba": [
+        0.55,
+        0.52,
+        0.46,
+        1
+      ],
+      "column_width": 74,
+      "column_gap": 4
+    }
+  },
+  "summary_flow": {
+    "parent_function": "0x140170460",
+    "right_panel_padding": [
+      18,
+      12
+    ],
+    "right_panel_row_gap": 10,
+    "summary_function": "0x140172a40",
+    "card_grid_columns": 2,
+    "card_grid_gap": [
+      10,
+      8
+    ],
+    "category_progress_grid_gap": [
+      18,
+      10
+    ],
+    "small_heading_function": "0x1401c13a0",
+    "small_heading_font_size": 11,
+    "small_heading_margin_top": 4,
+    "small_heading_column_gap": 8,
+    "small_heading_color": [
+      0.69,
+      0.541,
+      0.227,
+      1
+    ],
+    "rule_color": [
+      0.69,
+      0.541,
+      0.227,
+      0.5
+    ]
+  },
+  "validation": {
+    "generated_catalog_compared_against_native_unlock_vectors": "PASS all 66",
+    "source_formatting": "rustfmt PASS",
+    "integrated_build": "Parent build20 PASS (8m33s)",
+    "rebuilt_visual_comparison": "NOT RUN for this source-recovery checkpoint",
+    "new_free_tabard_fixture_test": "PASS in parent18binary-tests harness; all18binary and3config tests passed"
+  },
+  "remaining": [
+    "Native scrollbar update/drag/wheel consumers",
+    "Rewards companion/tabard intrinsic flow and hover",
+    "Shared intrinsic Armory shell integration for Progression/Talents",
+    "Rebuilt comparison of current checkpoint"
+  ]
+}

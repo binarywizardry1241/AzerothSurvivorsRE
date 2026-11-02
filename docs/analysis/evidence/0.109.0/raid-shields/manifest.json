@@ -1,0 +1,131 @@
+{
+  "target_version": "0.109.0",
+  "target_sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+  "target_executed": false,
+  "records": [
+    {
+      "boss_id": 1193,
+      "native_slot": 0,
+      "phase": false,
+      "index": 0,
+      "native_tag": 23,
+      "spell": 25176,
+      "duration_bits": 1101004800,
+      "repeat_bits": 1106247680,
+      "record": {
+        "va": "0x146bdca08",
+        "file_offset": "0x6bdba08",
+        "byte_count": 56,
+        "sha256": "653efa912a250520b8ea59c8a19e83e25b741264f22ad3417816455b6435cb5e"
+      },
+      "native_record_hex": "586200000000a041000000000000000000000000000000000000000000000000000000000000000000000000001700000000f04100000000"
+    },
+    {
+      "guardian_id": 811,
+      "variant": 0,
+      "native_slot": 1,
+      "index": 1,
+      "native_tag": 23,
+      "spell": 22812,
+      "duration_bits": 1082130432,
+      "repeat_bits": 1098907648,
+      "canonical_native_record": "docs/analysis/evidence/0.109.0/guardian-signatures/catalog.json#/rows/17/variants/0/1/record"
+    },
+    {
+      "guardian_id": 1311,
+      "phase_index": 0,
+      "index": 2,
+      "native_tag": 23,
+      "spell": 642,
+      "duration_bits": 1082130432,
+      "repeat_bits": 0,
+      "canonical_native_record": "docs/analysis/evidence/0.109.0/guardian-signatures/catalog.json#/rows/23/phases/0/record"
+    },
+    {
+      "guardian_id": 1110,
+      "variant": 1,
+      "native_slot": 1,
+      "index": 3,
+      "native_tag": 23,
+      "spell": 20619,
+      "duration_bits": 1082130432,
+      "repeat_bits": 1097859072,
+      "canonical_native_record": "docs/analysis/evidence/0.109.0/guardian-signatures/catalog.json#/rows/31/variants/1/1/record"
+    },
+    {
+      "guardian_id": 1412,
+      "phase_index": 0,
+      "index": 4,
+      "native_tag": 23,
+      "spell": 642,
+      "duration_bits": 1082130432,
+      "repeat_bits": 0,
+      "canonical_native_record": "docs/analysis/evidence/0.109.0/guardian-signatures/catalog.json#/rows/33/phases/0/record"
+    }
+  ],
+  "ranges": [
+    {
+      "role": "producer",
+      "va": "0x145959aa1",
+      "file_offset": "0x5958ea1",
+      "byte_count": 291,
+      "sha256": "9672e0dffc0bdfe71e3fbc093f232679709ad0ff430a835ac625f5fc3d333f45",
+      "assembly": "producer.asm",
+      "end_exclusive": "0x145959bc4"
+    },
+    {
+      "role": "deferred37-remove",
+      "va": "0x14594ea43",
+      "file_offset": "0x594de43",
+      "byte_count": 56,
+      "sha256": "0cc1eb36aa03cdf1f36f0dfd4d5ca51ff2f65aac75bd3d607543ba925f93f53a",
+      "assembly": "deferred37-remove.asm",
+      "end_exclusive": "0x14594ea7b"
+    },
+    {
+      "role": "damage-factor",
+      "va": "0x145971998",
+      "file_offset": "0x5970d98",
+      "byte_count": 107,
+      "sha256": "cdfd58867f097736da34edb92d2624461c7ea845310345d0a0a687c857b7b52f",
+      "assembly": "damage-factor.asm",
+      "end_exclusive": "0x145971a03"
+    },
+    {
+      "role": "damage-product",
+      "va": "0x145971a45",
+      "file_offset": "0x5970e45",
+      "byte_count": 19,
+      "sha256": "f2322f55428a77ee918331b9a0ea1fcb570971291e6a9677fc752d2f0a837eeb",
+      "assembly": "damage-product.asm",
+      "end_exclusive": "0x145971a58"
+    },
+    {
+      "role": "aura-helper",
+      "va": "0x145980540",
+      "file_offset": "0x597f940",
+      "byte_count": 1822,
+      "sha256": "10decf6e8b9113116a387710df92ae23586b3e9774696db28b508eebe9c06a79",
+      "assembly": "aura-helper.asm",
+      "end_exclusive": "0x145980c5e"
+    },
+    {
+      "role": "aura-applications",
+      "va": "0x14590d560",
+      "file_offset": "0x590c960",
+      "byte_count": 930,
+      "sha256": "9cbffc66f7fd9018a25aa9efd38eac179cb3ebb4e6b23cdfb6cad22660d8cbf7",
+      "assembly": "aura-applications.asm",
+      "end_exclusive": "0x14590d902"
+    }
+  ],
+  "native_cases": 198,
+  "canonical_reset": "docs/analysis/evidence/0.109.0/guardian-signatures/decision.asm",
+  "canonical_exposure": "docs/analysis/evidence/0.109.0/raid-native/crystal-exposure.asm",
+  "canonical_wards": "docs/analysis/evidence/0.109.0/raid-wards/manifest.json",
+  "limits": [
+    "Exposure is native33 kind5 crystal resolution; the earlier native38 label was incorrect. Connected native22 ward defenses/lifecycle retain their separate current evidence owner.",
+    "Aura map/packet allocation and global source ownership remain external seams.",
+    "Synthetic original instructions only; no compilation, game process or original/rebuilt parity."
+  ]
+}

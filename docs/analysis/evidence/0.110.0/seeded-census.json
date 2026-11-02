@@ -1,0 +1,2727 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.110.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048",
+    "size_bytes": 140523520
+  },
+  "profile": {
+    "name": "full-image-diagnostic-owner-repaired",
+    "digest": "aeed51f51bcfa92a68c9159fd231eb3c3a5f70b87e2252dd0eeebb8a6718f39d",
+    "provider": {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "version": "12.1.4"
+    },
+    "disabled_analyzers": [
+      "Stack",
+      "Decompiler Switch Analysis",
+      "Function ID",
+      "Function Start Search",
+      "Disassemble Entry Points",
+      "Subroutine References",
+      "Data Reference",
+      "Reference",
+      "Non-Returning Functions - Discovered",
+      "Shared Return Calls",
+      "Create Address Tables",
+      "Call Convention ID"
+    ],
+    "seed_format": "rea-ghidra-seeds-body-repair-v1",
+    "seed_sha256": "922ec8c9ba38a4e7d3795ab712dd50fa4436bf3f475b2bca57a691096b323102",
+    "tooling": {
+      "node_modules/rea-agents/bridge/ghidra/ReaGhidraApplySeeds.java": "05ede878b71ce37d70e351bec45cce879680bba6b3f5e187ebcd2bd56319eace",
+      "node_modules/rea-agents/dist/ghidra/GhidraAnalysisSeeds.js": "4a0593dbae11d28fd418855857f6708d33fd8db93d3ec547e438454200e77450",
+      "node_modules/rea-agents/dist/cli-runtime/binary-BVOr2mgE.js": "b4f8e8733d9b85e643a23c433af5d1aa714c6053c9b4a06f4ee10538c28c62b5",
+      "node_modules/rea-agents/dist/mcp/main-kBXHZ8S5.js": "12559a5f729d1e77fb4609f9133e5abcc85b94f6ee722bdb09dbe622dbf878e9"
+    }
+  },
+  "generator": {
+    "scripts/summarize-seeded-census.py": "064630fe753f4bf17cf8ae3d02d8c00b985fbf3888f13099f80131ac857866f1",
+    "scripts/census-current-target.py": "b7662858bb4aa5fd3e1def76d45b7ebebcc603411a8012b92bd2988d2965387e",
+    "scripts/repair-rea-seeded-bodies.py": "0b52ef7e33040a90fe4efa426f99d3df384c68e2d4f2d8a164d10e2a9297959e",
+    "scripts/prepare-native-census-selection.py": "b13f082f32682b4a7080b76bcf47872c2aee7cac0153f42e50fcb52673b823ba"
+  },
+  "independent_decoder": {
+    "name": "Capstone",
+    "version": "5.0.7"
+  },
+  "counts": {
+    "selected_paths": 53,
+    "unique_owners": 53,
+    "completed_query_sets": 53,
+    "owners_with_instructions": 53,
+    "instruction_records": 12101,
+    "body_bytes_summed": 57469,
+    "matching_declared_bodies": 32,
+    "diagnostic_instructions_observed": 53,
+    "independent_linear_boundary_matches": 53,
+    "outgoing_references": 2536,
+    "incoming_references": 1238,
+    "reported_unresolved_calls": 192
+  },
+  "reference_kinds": {
+    "outgoing": {
+      "COMPUTED_CALL": 1,
+      "CONDITIONAL_JUMP": 909,
+      "DATA": 415,
+      "PARAM": 43,
+      "READ": 286,
+      "UNCONDITIONAL_CALL": 619,
+      "UNCONDITIONAL_JUMP": 261,
+      "WRITE": 2
+    },
+    "incoming": {
+      "CONDITIONAL_JUMP": 909,
+      "DATA": 53,
+      "UNCONDITIONAL_CALL": 16,
+      "UNCONDITIONAL_JUMP": 260
+    }
+  },
+  "unresolved_call_reasons": {
+    "A call destination has no known containing Ghidra procedure": 191,
+    "Instruction decoder identifies a call but ReferenceManager supplies no call destination": 1
+  },
+  "mappings": [
+    {
+      "path": "crates/wenilla-rogue-app/src/lib.rs",
+      "address": "0x14000be50",
+      "declared_extent": {
+        "start": "0x14000be50",
+        "end": "0x14000bec6",
+        "file_offset": "0xb250",
+        "byte_count": 119,
+        "sha256": "df1d9d2a3346377cc152fb658dd7c8d29c7a13098b69d54678381a75cdaa8469"
+      },
+      "body_relation": "matches-declared-extent",
+      "diagnostic_instruction": "0x14000be8a",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x14000be50",
+          "end": "0x14000bec6",
+          "file_offset": "0xb250",
+          "byte_count": 119,
+          "sha256": "df1d9d2a3346377cc152fb658dd7c8d29c7a13098b69d54678381a75cdaa8469",
+          "independently_decoded_bytes": 119
+        }
+      ],
+      "body_bytes": 119,
+      "instruction_records": 38,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 7,
+      "incoming_references": 2,
+      "reported_unresolved_calls": 0,
+      "evidence_ids": {
+        "instructions": "ev_4bc5a05846d6053ee56c3266aca48046d142af43fe27cfe615cda2ca458cb70f",
+        "outgoing": "ev_4940cc2a5b159a53a6f93087c9ab16acb6a162ae5a8f5628554769bf2400f749",
+        "incoming": "ev_c1bb00d8bc90a7aae84273563e5404ec2df49924a47c7c886481e5e781c284da",
+        "info": "ev_dd4f95bd7234f0f0cda17b8fb61157c883ae4eb23f55d0a86ad97730f78cf081"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x14000be50.json",
+        "sha256": "7d8cc0153f8fbc21d77563b86ec983beeb4d335d1ed8f355dcf335ee2a336376"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/armory.rs",
+      "address": "0x1400fa380",
+      "declared_extent": {
+        "start": "0x1400fa380",
+        "end": "0x1400fa621",
+        "file_offset": "0xf9780",
+        "byte_count": 674,
+        "sha256": "c594af762fbad1af14d6c721f591c58894c0c7001e06571d35dfd21049139ee6"
+      },
+      "body_relation": "matches-declared-extent",
+      "diagnostic_instruction": "0x1400fa60f",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x1400fa380",
+          "end": "0x1400fa621",
+          "file_offset": "0xf9780",
+          "byte_count": 674,
+          "sha256": "c594af762fbad1af14d6c721f591c58894c0c7001e06571d35dfd21049139ee6",
+          "independently_decoded_bytes": 674
+        }
+      ],
+      "body_bytes": 674,
+      "instruction_records": 103,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 19,
+      "incoming_references": 2,
+      "reported_unresolved_calls": 1,
+      "evidence_ids": {
+        "instructions": "ev_c80935b7c17513db8cc65a71540726fc2a87805e851e6df4494e2cff61cd1b60",
+        "outgoing": "ev_260dac466ee660035783d0f06a7034dd2a43c4ec09d58df2df3137b8c1869915",
+        "incoming": "ev_e241a0cd87cd66eb93452b675989375ac333a2bff143e24ca9a417248f5e3cfd",
+        "info": "ev_e8cae63cce0ec640f0f9ae81858740631be15ed9bac6a1405687477f9f75215f"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1400fa380.json",
+        "sha256": "1c8863f8f9a7914eaf2cc276bb647000d3fea196d2135839688cfa1e291b8ed5"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/backdrop.rs",
+      "address": "0x14005c900",
+      "declared_extent": {
+        "start": "0x14005c900",
+        "end": "0x14005cc13",
+        "file_offset": "0x5bd00",
+        "byte_count": 788,
+        "sha256": "e3dd1e67d8d7f77608df417e30394d29835681f8491ab25979152166f07b4221"
+      },
+      "body_relation": "matches-declared-extent",
+      "diagnostic_instruction": "0x14005cb8f",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x14005c900",
+          "end": "0x14005cc13",
+          "file_offset": "0x5bd00",
+          "byte_count": 788,
+          "sha256": "e3dd1e67d8d7f77608df417e30394d29835681f8491ab25979152166f07b4221",
+          "independently_decoded_bytes": 788
+        }
+      ],
+      "body_bytes": 788,
+      "instruction_records": 190,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 46,
+      "incoming_references": 26,
+      "reported_unresolved_calls": 1,
+      "evidence_ids": {
+        "instructions": "ev_9a9887156fd35a291f2ca8111bd58fa41abadaf3bcb555388d9e8ca2f97b5796",
+        "outgoing": "ev_a07c0a4c8f90914222fccc3a06250daa98145f6d07e4dc9c38c3246593d0cd6f",
+        "incoming": "ev_1aeb887c81db377249243d27995e178706878329a1d944fd6d096ec9468cab87",
+        "info": "ev_c2344d76c167c6e5d2bb8de2158633f719981f42033b04bba0ffdcef8435bc22"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x14005c900.json",
+        "sha256": "9c20b0b12a58779f2fc97361516f7f8d854f5f45bc022d28a1a60c7446d839d7"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/cards.rs",
+      "address": "0x140080a10",
+      "declared_extent": {
+        "start": "0x140080a10",
+        "end": "0x140080bec",
+        "file_offset": "0x7fe10",
+        "byte_count": 477,
+        "sha256": "ddebb39844bce3c4859cab5ce2ad8fef46421201f8c0721d695c267b464387be"
+      },
+      "body_relation": "matches-declared-extent",
+      "diagnostic_instruction": "0x140080a50",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x140080a10",
+          "end": "0x140080bec",
+          "file_offset": "0x7fe10",
+          "byte_count": 477,
+          "sha256": "ddebb39844bce3c4859cab5ce2ad8fef46421201f8c0721d695c267b464387be",
+          "independently_decoded_bytes": 477
+        }
+      ],
+      "body_bytes": 477,
+      "instruction_records": 128,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 38,
+      "incoming_references": 19,
+      "reported_unresolved_calls": 4,
+      "evidence_ids": {
+        "instructions": "ev_41b477b4f7fe4cda2a9d7568f3060e17b1b19f1d2a63a26d507f4e67a9284cb2",
+        "outgoing": "ev_654a6aa637b1b09bc70816af22a2ba6c40b8b04eba7cd07e97f18b7b83ce183e",
+        "incoming": "ev_1b779aaad63bccddd9c4031112c07184586b5770ed755e6fd5e3174c95a7af9d",
+        "info": "ev_171a083a7b42f7e10f888e5761b9e60789eb69cf26185a355841e76c900b4200"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x140080a10.json",
+        "sha256": "e243c271277a1de407a156dc4b8206a98c873ed43fd72790a348d75b2f26891c"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/codex.rs",
+      "address": "0x140300230",
+      "declared_extent": {
+        "start": "0x140300230",
+        "end": "0x1403002e4",
+        "file_offset": "0x2ff630",
+        "byte_count": 181,
+        "sha256": "b119c7a902e2387567b352d4442a785b12467a995a55c8070b7fa6037e0690c2"
+      },
+      "body_relation": "matches-declared-extent",
+      "diagnostic_instruction": "0x1403002d7",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x140300230",
+          "end": "0x1403002e4",
+          "file_offset": "0x2ff630",
+          "byte_count": 181,
+          "sha256": "b119c7a902e2387567b352d4442a785b12467a995a55c8070b7fa6037e0690c2",
+          "independently_decoded_bytes": 181
+        }
+      ],
+      "body_bytes": 181,
+      "instruction_records": 54,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 13,
+      "incoming_references": 5,
+      "reported_unresolved_calls": 1,
+      "evidence_ids": {
+        "instructions": "ev_85ae5f8ebe8df5cd44c8fb833d71b09e993161c17e85ba9672bae7988e259354",
+        "outgoing": "ev_7df3ad4e154dcb68a82ee11f781c59eac6914553ae7e38a5153f0310a94f0c61",
+        "incoming": "ev_887580698be20f4a09a8b1dc97c266a901ec3715ab0f947facd5ff7fc70286f6",
+        "info": "ev_87fe6a495a93ca961517c41c5196efa274831875ff4fb42af15b8272a73f5dc1"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x140300230.json",
+        "sha256": "69a30f02f7c3104830c99a3c23c7d6b291b61053d86c292a0a4b0ea7fbfb9aee"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/discord.rs",
+      "address": "0x14005b0c0",
+      "declared_extent": {
+        "start": "0x14005b0c0",
+        "end": "0x14005ba51",
+        "file_offset": "0x5a4c0",
+        "byte_count": 2450,
+        "sha256": "2b46fa486e84ca30214f85a4967df2c11f88ee294b5647f5de2e9d505e096cf6"
+      },
+      "body_relation": "differs-from-declared-extent",
+      "diagnostic_instruction": "0x14005b25f",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x14005b0c0",
+          "end": "0x14005b816",
+          "file_offset": "0x5a4c0",
+          "byte_count": 1879,
+          "sha256": "d3d89fce0a0cacf9139f88c199f6efcbd1edb8fa101858d895844b30c8f79b8d",
+          "independently_decoded_bytes": 1879
+        },
+        {
+          "start": "0x14005b823",
+          "end": "0x14005b87b",
+          "file_offset": "0x5ac23",
+          "byte_count": 89,
+          "sha256": "754942f8bc658c32a01491f52e73acecf5adc4abf1cd01e2d7500a534c8e303f",
+          "independently_decoded_bytes": 89
+        },
+        {
+          "start": "0x14005b8ff",
+          "end": "0x14005b942",
+          "file_offset": "0x5acff",
+          "byte_count": 68,
+          "sha256": "b68fe7ad68bce561793c4e4e299e0d43e1fb75f24f9f7fca03f5311998abaee2",
+          "independently_decoded_bytes": 68
+        },
+        {
+          "start": "0x14005b9a9",
+          "end": "0x14005ba22",
+          "file_offset": "0x5ada9",
+          "byte_count": 122,
+          "sha256": "d4962f0b525df71d6e23d9365aabd3595f541cf4c123dbd06516dd61d2cf2af5",
+          "independently_decoded_bytes": 122
+        },
+        {
+          "start": "0x14005ba40",
+          "end": "0x14005ba51",
+          "file_offset": "0x5ae40",
+          "byte_count": 18,
+          "sha256": "9a0fdb0577766dd76fa11de7276eb114c28c759a004366cc3e34ca96e9d7b57b",
+          "independently_decoded_bytes": 18
+        }
+      ],
+      "body_bytes": 2176,
+      "instruction_records": 495,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 125,
+      "incoming_references": 66,
+      "reported_unresolved_calls": 4,
+      "evidence_ids": {
+        "instructions": "ev_129d1e9254b934da24a68cca1732e11f179448d58be571e5e65dc246743128c8",
+        "outgoing": "ev_737ac21708d658f09c8a6a1fdf85047c8db1fa8004dc249c295bae7c4ac173ac",
+        "incoming": "ev_20887f5f19751c6f99cdc04fc0df8f65de20adb3e38e6866bcf40a1385484b07",
+        "info": "ev_6a2b23a980a5cc8c588f2db2a24647629db0764d2cb103d804a8a60b551c380f"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x14005b0c0.json",
+        "sha256": "17930febd5ed4667915a7b4b002f2275031b36736105d4caec4aeedbdc306029"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/hud.rs",
+      "address": "0x1400d2550",
+      "declared_extent": {
+        "start": "0x1400d2550",
+        "end": "0x1400d2efa",
+        "file_offset": "0xd1950",
+        "byte_count": 2475,
+        "sha256": "cc634a550cf39fc15f37f221140b786f25951cee0b1942ddcac1fdbb89aeb623"
+      },
+      "body_relation": "differs-from-declared-extent",
+      "diagnostic_instruction": "0x1400d2880",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x1400d2550",
+          "end": "0x1400d26a5",
+          "file_offset": "0xd1950",
+          "byte_count": 342,
+          "sha256": "3524f96e9758561a6bb9cb811839a9edb33fdac7cbf2ccd6a33da65bb03b942c",
+          "independently_decoded_bytes": 342
+        },
+        {
+          "start": "0x1400d26b0",
+          "end": "0x1400d2efa",
+          "file_offset": "0xd1ab0",
+          "byte_count": 2123,
+          "sha256": "0474dba3e037e59fa0be1e47189c0832e0735e3ba24d25b62bc90023ed3f7bbd",
+          "independently_decoded_bytes": 2123
+        }
+      ],
+      "body_bytes": 2465,
+      "instruction_records": 466,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 95,
+      "incoming_references": 52,
+      "reported_unresolved_calls": 2,
+      "evidence_ids": {
+        "instructions": "ev_939b0a23e17b844fdc46c80ec19d2395f5776368ec1ce2be85e63c69953dd9fe",
+        "outgoing": "ev_e6fc2510cd85c072fbc08c8bde57a57860a7979a9aea7afb5622584a410f2ce0",
+        "incoming": "ev_e0b5fb27058324756096780f976837914ea235be314011fd2fe290312fef0a47",
+        "info": "ev_cb55339def53c61d9de7d66b35508b236b43a965607784b865fbb20936786086"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1400d2550.json",
+        "sha256": "4fd8ca208810fdb74e98db8805f2c1cda26a8526f4ed3b935d86709cf01331b7"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/hudparts.rs",
+      "address": "0x14005cc60",
+      "declared_extent": {
+        "start": "0x14005cc60",
+        "end": "0x14005d661",
+        "file_offset": "0x5c060",
+        "byte_count": 2562,
+        "sha256": "a7f109c12104c1d059f6faf38832448783b2ac7119ba8343d3ee7fa336f31a7f"
+      },
+      "body_relation": "matches-declared-extent",
+      "diagnostic_instruction": "0x14005d5f2",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x14005cc60",
+          "end": "0x14005d661",
+          "file_offset": "0x5c060",
+          "byte_count": 2562,
+          "sha256": "a7f109c12104c1d059f6faf38832448783b2ac7119ba8343d3ee7fa336f31a7f",
+          "independently_decoded_bytes": 2562
+        }
+      ],
+      "body_bytes": 2562,
+      "instruction_records": 577,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 151,
+      "incoming_references": 68,
+      "reported_unresolved_calls": 9,
+      "evidence_ids": {
+        "instructions": "ev_19a5b48aff8956a72e6c77c022edc821baeb0050d9b521110c84a7edc9656a6d",
+        "outgoing": "ev_6ea7a3752aa4c2297e9415cd1c44c8d5eb08bb078dd8f578b621ec9eadf773bc",
+        "incoming": "ev_7b84d12c1fb2bf0ef1328ba97ca13856e0e0c9228034253a1753d37ed329eeb9",
+        "info": "ev_0bd9585777e4cb3a7c36f3d394fda57944120f2b2bb886cf6a6b04f6666ec29f"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x14005cc60.json",
+        "sha256": "0c9a6b7909c5ece0c98e6fbc1e680e06393c47e7445056125f31eb83afe09bdd"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/language.rs",
+      "address": "0x1401463b0",
+      "declared_extent": {
+        "start": "0x1401463b0",
+        "end": "0x140146a49",
+        "file_offset": "0x1457b0",
+        "byte_count": 1690,
+        "sha256": "cb89da3784c3de807bcee66ffb6053a4e32adaa82d5d76b25922d7ed42c7b8f8"
+      },
+      "body_relation": "differs-from-declared-extent",
+      "diagnostic_instruction": "0x140146645",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x1401463b0",
+          "end": "0x1401465a8",
+          "file_offset": "0x1457b0",
+          "byte_count": 505,
+          "sha256": "f9c54853dcbe5651f7ca54632bcaa2517c2b0cdd369d413b811a55661650aae2",
+          "independently_decoded_bytes": 505
+        },
+        {
+          "start": "0x1401465b0",
+          "end": "0x14014668b",
+          "file_offset": "0x1459b0",
+          "byte_count": 220,
+          "sha256": "8dfa8c42bedc6390c1420f156d80b520f5025f3c76e7dfbc35ede328da105421",
+          "independently_decoded_bytes": 220
+        },
+        {
+          "start": "0x140146690",
+          "end": "0x140146a49",
+          "file_offset": "0x145a90",
+          "byte_count": 954,
+          "sha256": "5d83e91cd07094754cabae908259fed90722ce987565e93eb81378a6253bea38",
+          "independently_decoded_bytes": 954
+        }
+      ],
+      "body_bytes": 1679,
+      "instruction_records": 299,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 56,
+      "incoming_references": 33,
+      "reported_unresolved_calls": 1,
+      "evidence_ids": {
+        "instructions": "ev_ebb04e2a8c2300d621244ef51d886c68c2371a8aeea4e46febf6342a487c1a3c",
+        "outgoing": "ev_cab1778c2cab913ca9fa3586d0d1165d7f043628cab9e7fcb6bbeaf2a2ac2600",
+        "incoming": "ev_b0fdf8768a992a3a57b1e0151d250f90019bcadadf4e8cc9ce6532a4bb9279a0",
+        "info": "ev_bbf967edc5a46fc59736fda54435a31d4b4084097011d2dea415ea14e7fbfb41"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1401463b0.json",
+        "sha256": "205bdfb90abffe0950d6ab05fa2cbb9d2d97a499e9cf95577fae62dcf217aa2f"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/markers.rs",
+      "address": "0x140086480",
+      "declared_extent": {
+        "start": "0x140086480",
+        "end": "0x14008662a",
+        "file_offset": "0x85880",
+        "byte_count": 427,
+        "sha256": "66b5668e8a61a69cca147267baaa31c85a7b87603f7929e26c13c4f6f35a6176"
+      },
+      "body_relation": "matches-declared-extent",
+      "diagnostic_instruction": "0x1400865ea",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x140086480",
+          "end": "0x14008662a",
+          "file_offset": "0x85880",
+          "byte_count": 427,
+          "sha256": "66b5668e8a61a69cca147267baaa31c85a7b87603f7929e26c13c4f6f35a6176",
+          "independently_decoded_bytes": 427
+        }
+      ],
+      "body_bytes": 427,
+      "instruction_records": 124,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 27,
+      "incoming_references": 19,
+      "reported_unresolved_calls": 0,
+      "evidence_ids": {
+        "instructions": "ev_10131d9d66ac8906f00be5a3d6e3a627072e79dae6ce971b830d64678b13369d",
+        "outgoing": "ev_04a831b5f79156f3d9a4548b4676daab340467461b6f2ba53b5050aa94c4fca2",
+        "incoming": "ev_55b78b22a9779be87927a8d599dcd085f9361400e0517184ae8b227e37b3098b",
+        "info": "ev_22a6d623362d8c6b4ba3aaa14c85929dfd642ee343086de2dd4e796205385f05"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x140086480.json",
+        "sha256": "8fcb0216cd30893a8047d9914667a0ab692b3edd2faa92078c9335c649f8c54e"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/meter.rs",
+      "address": "0x1400a62d0",
+      "declared_extent": {
+        "start": "0x1400a62d0",
+        "end": "0x1400a6415",
+        "file_offset": "0xa56d0",
+        "byte_count": 326,
+        "sha256": "bba6ac601a3dba3ac849ebdbfa2142dd30356e3c8e16d3f112913fb293d30582"
+      },
+      "body_relation": "matches-declared-extent",
+      "diagnostic_instruction": "0x1400a6403",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x1400a62d0",
+          "end": "0x1400a6415",
+          "file_offset": "0xa56d0",
+          "byte_count": 326,
+          "sha256": "bba6ac601a3dba3ac849ebdbfa2142dd30356e3c8e16d3f112913fb293d30582",
+          "independently_decoded_bytes": 326
+        }
+      ],
+      "body_bytes": 326,
+      "instruction_records": 77,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 17,
+      "incoming_references": 10,
+      "reported_unresolved_calls": 0,
+      "evidence_ids": {
+        "instructions": "ev_dac05acfb905ecefed1878cfc730ab39468fefc391a3672676330d72eb8bc64a",
+        "outgoing": "ev_35a8bcdf12d8aa7c2015f338fa2ab15f9ad0ccf5d848aa7ed0e2d07236607b58",
+        "incoming": "ev_9f9c8d8ed85597f023420b610f53a4af7de0e6f7cb441537c62d66a3bd47ea91",
+        "info": "ev_d57b379239179e563ea88772d14a75034160875042a13bf3cc2b40af9a390049"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1400a62d0.json",
+        "sha256": "831410091f9245eb7cc1fb9995400b9f4cbbe0dd22d37a3190ae092495602e97"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/mod.rs",
+      "address": "0x1400073a0",
+      "declared_extent": {
+        "start": "0x1400073a0",
+        "end": "0x14000745a",
+        "file_offset": "0x67a0",
+        "byte_count": 187,
+        "sha256": "f3b93bd15bac506a45414cca989fa10cabbd7222258a32f7eef3db87ff892c9e"
+      },
+      "body_relation": "matches-declared-extent",
+      "diagnostic_instruction": "0x14000743d",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x1400073a0",
+          "end": "0x14000745a",
+          "file_offset": "0x67a0",
+          "byte_count": 187,
+          "sha256": "f3b93bd15bac506a45414cca989fa10cabbd7222258a32f7eef3db87ff892c9e",
+          "independently_decoded_bytes": 187
+        }
+      ],
+      "body_bytes": 187,
+      "instruction_records": 50,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 14,
+      "incoming_references": 7,
+      "reported_unresolved_calls": 2,
+      "evidence_ids": {
+        "instructions": "ev_56d218215aeab5667dcf7f466cc3cde789cc5f436ec6a8d199622dc7c41fe48e",
+        "outgoing": "ev_aaf45a47323d1bfde828161611dd71cd09901693e8b04a03f968b4c4540ffcee",
+        "incoming": "ev_9a2e2f80c21f715778b6ece9f6a2cd8bd94b67a0f4d692eb46ad2ef5ff41fd87",
+        "info": "ev_bcc01b53cda94f57459b4b5b01940c347e93e560314790105b5c94cedb5022f8"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1400073a0.json",
+        "sha256": "e00ed77fb07f327e91331d42ff90adc4a4b5adea6740d0725992cc10e57735c0"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/options.rs",
+      "address": "0x140132f90",
+      "declared_extent": {
+        "start": "0x140132f90",
+        "end": "0x1401330ed",
+        "file_offset": "0x132390",
+        "byte_count": 350,
+        "sha256": "918ae88a417830a19a2343b49b0cf4a5574f2c4ebb2ee05942270e91368900b6"
+      },
+      "body_relation": "matches-declared-extent",
+      "diagnostic_instruction": "0x1401330d3",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x140132f90",
+          "end": "0x1401330ed",
+          "file_offset": "0x132390",
+          "byte_count": 350,
+          "sha256": "918ae88a417830a19a2343b49b0cf4a5574f2c4ebb2ee05942270e91368900b6",
+          "independently_decoded_bytes": 350
+        }
+      ],
+      "body_bytes": 350,
+      "instruction_records": 88,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 19,
+      "incoming_references": 11,
+      "reported_unresolved_calls": 0,
+      "evidence_ids": {
+        "instructions": "ev_e0981070379222957685aa4cca1b588551d36d7f89d9d7d7d337d8f323a2b8be",
+        "outgoing": "ev_bf691a3c8fa6a7cd03c4ec60bf0a654ef1cae192317b4680c7b3faf415bed46e",
+        "incoming": "ev_c68c28d5d87caa903e0f597b7b02a31346ced15d919ac87c3c35fe74fc026970",
+        "info": "ev_31d2e13cf1ee02686d5fcc195af0b96330b718779bab815847618104f7568fab"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x140132f90.json",
+        "sha256": "82225e3a5a3a80295630b8438716678a1f422db154761a20d46fa08661b84f80"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/pad.rs",
+      "address": "0x1401c6920",
+      "declared_extent": {
+        "start": "0x1401c6920",
+        "end": "0x1401c6c50",
+        "file_offset": "0x1c5d20",
+        "byte_count": 817,
+        "sha256": "553ae6ff1dafdadc691b91d68a69d87828179f152f0e6b8d6d413101dd3034bf"
+      },
+      "body_relation": "matches-declared-extent",
+      "diagnostic_instruction": "0x1401c6c2c",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x1401c6920",
+          "end": "0x1401c6c50",
+          "file_offset": "0x1c5d20",
+          "byte_count": 817,
+          "sha256": "553ae6ff1dafdadc691b91d68a69d87828179f152f0e6b8d6d413101dd3034bf",
+          "independently_decoded_bytes": 817
+        }
+      ],
+      "body_bytes": 817,
+      "instruction_records": 119,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 18,
+      "incoming_references": 1,
+      "reported_unresolved_calls": 2,
+      "evidence_ids": {
+        "instructions": "ev_e27fc968aa35252b000c6331f7083be52b29cb29dc92c348308abe1efdfa3a7d",
+        "outgoing": "ev_4d5cf728498e10a006fd191fd55903b19457ec3f03c7047367cbf9eebcb1bebd",
+        "incoming": "ev_f67a35c8a4ed05dbb54a9b83dfb623ea64a94d2a8eaf7abb93f89987e561b0bd",
+        "info": "ev_b9b2b690130332b1016251f3fd487ad50d0b6b30d085e1a6d9777edf2f666259"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1401c6920.json",
+        "sha256": "ef31356452563da89221f2a9c16628e0a8552a3c23cd3f30c1439b1ae192797d"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/picker.rs",
+      "address": "0x1402a1610",
+      "declared_extent": {
+        "start": "0x1402a1610",
+        "end": "0x1402a1d99",
+        "file_offset": "0x2a0a10",
+        "byte_count": 1930,
+        "sha256": "f56fff213157c8c17086f4646d2eba47702f76b8c4cf51ba8f1f3c90f36fb90e"
+      },
+      "body_relation": "differs-from-declared-extent",
+      "diagnostic_instruction": "0x1402a1d84",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x1402a1610",
+          "end": "0x1402a1834",
+          "file_offset": "0x2a0a10",
+          "byte_count": 549,
+          "sha256": "adfe52b2997b411c36ad15671605e346f98540763afb42bf2899ef8f035a144b",
+          "independently_decoded_bytes": 549
+        },
+        {
+          "start": "0x1402a184b",
+          "end": "0x1402a18f9",
+          "file_offset": "0x2a0c4b",
+          "byte_count": 175,
+          "sha256": "e40dfc021186bb977af7bc277eebb169f02f4992c12a2d34700c5d13de05bd90",
+          "independently_decoded_bytes": 175
+        },
+        {
+          "start": "0x1402a1944",
+          "end": "0x1402a1d99",
+          "file_offset": "0x2a0d44",
+          "byte_count": 1110,
+          "sha256": "da407192252932a64bfc827e53582eab4a4f6b94e9cc1ab7335023c7986ba833",
+          "independently_decoded_bytes": 1110
+        }
+      ],
+      "body_bytes": 1834,
+      "instruction_records": 297,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 62,
+      "incoming_references": 13,
+      "reported_unresolved_calls": 7,
+      "evidence_ids": {
+        "instructions": "ev_06425ce7766bd80f2097dac62dbb566c3b49a7abe4ac46c5d4d7ec9473e4dc52",
+        "outgoing": "ev_414c05275150488a0f53689556dd0fa1fc8a9fe6a392b1dc21bd8e085e1e54a9",
+        "incoming": "ev_57f6e7f014dcbea6ac6b9e6300cf9d8016044419957bd299a292bbf7ab795455",
+        "info": "ev_ab367d803ac81e6e46b25a63ea15ff507ae8c6331ceeca507f17d4b89fd0efa7"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1402a1610.json",
+        "sha256": "274a955103f2192020ff8213af3443c6595e221ad3885eebbee64aafa493654e"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/rewards.rs",
+      "address": "0x1402b4bd0",
+      "declared_extent": {
+        "start": "0x1402b4bd0",
+        "end": "0x1402b5472",
+        "file_offset": "0x2b3fd0",
+        "byte_count": 2211,
+        "sha256": "efc772d06ddbf8e5fe13be6812215234dc5da59e3cce287b48c2012c2cd7928c"
+      },
+      "body_relation": "differs-from-declared-extent",
+      "diagnostic_instruction": "0x1402b545c",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x1402b4bd0",
+          "end": "0x1402b4fa5",
+          "file_offset": "0x2b3fd0",
+          "byte_count": 982,
+          "sha256": "a0502332d3282351688f5eee43a178d53aca49aaa3b49607609b409975732bab",
+          "independently_decoded_bytes": 982
+        },
+        {
+          "start": "0x1402b4fb0",
+          "end": "0x1402b531b",
+          "file_offset": "0x2b43b0",
+          "byte_count": 876,
+          "sha256": "c5f02fe38db21f92450eb1f0d3a553559e0aeff3e1c5d45b44cc91530d254e24",
+          "independently_decoded_bytes": 876
+        },
+        {
+          "start": "0x1402b5320",
+          "end": "0x1402b535c",
+          "file_offset": "0x2b4720",
+          "byte_count": 61,
+          "sha256": "2e5f1553f48678e385ad0b496a3a3984376eb39ee490f95e47839fbf945716b3",
+          "independently_decoded_bytes": 61
+        },
+        {
+          "start": "0x1402b5360",
+          "end": "0x1402b5472",
+          "file_offset": "0x2b4760",
+          "byte_count": 275,
+          "sha256": "baa2694f0bdd1d8eb14e49406d2305c4378ee51c2231b6615d8a9a067cd5e6de",
+          "independently_decoded_bytes": 275
+        }
+      ],
+      "body_bytes": 2194,
+      "instruction_records": 367,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 71,
+      "incoming_references": 15,
+      "reported_unresolved_calls": 3,
+      "evidence_ids": {
+        "instructions": "ev_fc879e230ff13543a72a16d3069dcc55c039cef2062f97c69672f6130894b650",
+        "outgoing": "ev_d110938009f51cb4147a43d2499d226733326734362857b5d8cbc7cd7fc6f72e",
+        "incoming": "ev_3971bb533b1f802ce27e42fd6fdaec036bbb19a08ee5215c37811bd0f07fddee",
+        "info": "ev_d673dd7fadc94eeae7a59573dcf5c7c3a0a1e315e4316f8f14b92185501a8657"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1402b4bd0.json",
+        "sha256": "9b5bcf7ad7186302b452429dc9dcc1e453b41789488ae7c3bd0c4d05b5a4b90b"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/runmods.rs",
+      "address": "0x1401cd9f0",
+      "declared_extent": {
+        "start": "0x1401cd9f0",
+        "end": "0x1401ce011",
+        "file_offset": "0x1ccdf0",
+        "byte_count": 1570,
+        "sha256": "6e7121bf5e929b7f8ffa14c544577c6c662b34885afcfcf7785969e9809f2378"
+      },
+      "body_relation": "differs-from-declared-extent",
+      "diagnostic_instruction": "0x1401cdba1",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x1401cd9f0",
+          "end": "0x1401cdb11",
+          "file_offset": "0x1ccdf0",
+          "byte_count": 290,
+          "sha256": "41191b39e11687d24b0f1bb47fdad2c39f9f406cee72c617c52e886982b8d12e",
+          "independently_decoded_bytes": 290
+        },
+        {
+          "start": "0x1401cdb20",
+          "end": "0x1401cdbb6",
+          "file_offset": "0x1ccf20",
+          "byte_count": 151,
+          "sha256": "d7857fba973ff444699370ce22f773d6936331b6e01c8c837ed60823d5fa039a",
+          "independently_decoded_bytes": 151
+        },
+        {
+          "start": "0x1401cdbc0",
+          "end": "0x1401cdc95",
+          "file_offset": "0x1ccfc0",
+          "byte_count": 214,
+          "sha256": "bf25343c424239d9b08778031e8794e3a67a5180bb52bc16e03658a9239e5aea",
+          "independently_decoded_bytes": 214
+        },
+        {
+          "start": "0x1401cdca0",
+          "end": "0x1401ce011",
+          "file_offset": "0x1cd0a0",
+          "byte_count": 882,
+          "sha256": "377893275f9f0a3b00130caec67d22e3e325d3e7ee00f8ecef654f67af9469ad",
+          "independently_decoded_bytes": 882
+        }
+      ],
+      "body_bytes": 1537,
+      "instruction_records": 283,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 57,
+      "incoming_references": 34,
+      "reported_unresolved_calls": 0,
+      "evidence_ids": {
+        "instructions": "ev_17fff2175e5a7b6cf492290b780bd04b03481939b4fb8346b9e33343859a0ee4",
+        "outgoing": "ev_fe4386be968c7747bf6e4cac795ec32938ec6c3825af8616c725d28279cdf592",
+        "incoming": "ev_34334a2d66464a49d99ef1df839e6cf2324843b9eb2d6d7c80b98be3cf22655b",
+        "info": "ev_62ae2d17cf2168fba8170afe13873dce6db50421e252effa21e3c1e551e1b12a"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1401cd9f0.json",
+        "sha256": "4e7d5a4785e4c61fe0209b3f9a5ad44a10e09fddd4aea5c8b83bbf7d768a1426"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/talents.rs",
+      "address": "0x1402be790",
+      "declared_extent": {
+        "start": "0x1402be790",
+        "end": "0x1402bf2fd",
+        "file_offset": "0x2bdb90",
+        "byte_count": 2926,
+        "sha256": "00b06e9272d5cf29e78f0d3b147468c6f35e386e9377979011bfb8135990fdec"
+      },
+      "body_relation": "matches-declared-extent",
+      "diagnostic_instruction": "0x1402bee8d",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x1402be790",
+          "end": "0x1402bf2fd",
+          "file_offset": "0x2bdb90",
+          "byte_count": 2926,
+          "sha256": "00b06e9272d5cf29e78f0d3b147468c6f35e386e9377979011bfb8135990fdec",
+          "independently_decoded_bytes": 2926
+        }
+      ],
+      "body_bytes": 2926,
+      "instruction_records": 435,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 78,
+      "incoming_references": 16,
+      "reported_unresolved_calls": 4,
+      "evidence_ids": {
+        "instructions": "ev_acd8541f59207d20b3f2c426637246f15f00c74d47ee52342f5df014f4aa81a2",
+        "outgoing": "ev_15322ff6250146929c08bf37e31f8ef10f534046f3f00b96de7281f7d517037c",
+        "incoming": "ev_92e77f74ac5841e9aab241d52860ee8e6052981ed86d99480abb0faa8c12bca3",
+        "info": "ev_5cec8f533ca37301cdd2d337128660bad612f15d15300f62f922c034da957a78"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1402be790.json",
+        "sha256": "bf3096b99a5ebcb803084c03a1b4dd3e7770f8b4a3234dddc05bc14a37b98ba5"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/talentview.rs",
+      "address": "0x140189680",
+      "declared_extent": {
+        "start": "0x140189680",
+        "end": "0x1401899e0",
+        "file_offset": "0x188a80",
+        "byte_count": 865,
+        "sha256": "5801d35a85615ed58529fb9a0b8d51aad2edb9571bf2206126925c43112dc877"
+      },
+      "body_relation": "matches-declared-extent",
+      "diagnostic_instruction": "0x1401898e7",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x140189680",
+          "end": "0x1401899e0",
+          "file_offset": "0x188a80",
+          "byte_count": 865,
+          "sha256": "5801d35a85615ed58529fb9a0b8d51aad2edb9571bf2206126925c43112dc877",
+          "independently_decoded_bytes": 865
+        }
+      ],
+      "body_bytes": 865,
+      "instruction_records": 199,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 50,
+      "incoming_references": 31,
+      "reported_unresolved_calls": 4,
+      "evidence_ids": {
+        "instructions": "ev_daf70fd8518d0b953c75822b8b16f9a09d76ab8fd4c470ba061aadbbf1c83fd3",
+        "outgoing": "ev_033e30252747495280e8267820e28d385d73b2c45fd1ad3d41f6627504242d05",
+        "incoming": "ev_2b1a902c9410e2122095b133f7360b6737a2202aa90bc274a2c41bf41d144113",
+        "info": "ev_1dc5f3f15fe32a63fb11a34416bd669a325db761b62e36b8f05d65570b1aba97"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x140189680.json",
+        "sha256": "9cf10c818c87ea0c0f5b2d2145735390c6eb946c9c29724c5f6cdeb1716f7c53"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/touch.rs",
+      "address": "0x1400fe1f0",
+      "declared_extent": {
+        "start": "0x1400fe1f0",
+        "end": "0x1400fe387",
+        "file_offset": "0xfd5f0",
+        "byte_count": 408,
+        "sha256": "3a76cd619c80bad0b2f8162dd11c16b005a0cf1b21b8fd759275a86ac2187a2b"
+      },
+      "body_relation": "matches-declared-extent",
+      "diagnostic_instruction": "0x1400fe375",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x1400fe1f0",
+          "end": "0x1400fe387",
+          "file_offset": "0xfd5f0",
+          "byte_count": 408,
+          "sha256": "3a76cd619c80bad0b2f8162dd11c16b005a0cf1b21b8fd759275a86ac2187a2b",
+          "independently_decoded_bytes": 408
+        }
+      ],
+      "body_bytes": 408,
+      "instruction_records": 99,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 21,
+      "incoming_references": 13,
+      "reported_unresolved_calls": 0,
+      "evidence_ids": {
+        "instructions": "ev_975d4ce033d3fbb79375e06ddff7e175eba80177d778dca433df5cee933fb315",
+        "outgoing": "ev_55c1a7dd4516bbe02dc8ca465f2a873be62ddb4b7683c58e002f40a7a177c786",
+        "incoming": "ev_481bc2abc1d6001512812e36f336a684d9b74c42c8536840ec1383abb94bf860",
+        "info": "ev_81c343aa327065ef73790f3f95c8fa8a11057e1ec005aaf4c766b42ef4f9cb47"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1400fe1f0.json",
+        "sha256": "b848269d6341b3ce9a7f62cd51e1bb069aaea58345fda17989920013d7f81fd4"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/update.rs",
+      "address": "0x1401cacc0",
+      "declared_extent": {
+        "start": "0x1401cacc0",
+        "end": "0x1401cb286",
+        "file_offset": "0x1ca0c0",
+        "byte_count": 1479,
+        "sha256": "89158c96e0e5b5cfe061c481d95da44cfb8703dc9d0403d617f748fa7c70f599"
+      },
+      "body_relation": "differs-from-declared-extent",
+      "diagnostic_instruction": "0x1401caea8",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x1401cacc0",
+          "end": "0x1401cae45",
+          "file_offset": "0x1ca0c0",
+          "byte_count": 390,
+          "sha256": "296bbdd26f2d2e97788fa68155d7d0a1dd7284dda66114ce4c75c403aba06f04",
+          "independently_decoded_bytes": 390
+        },
+        {
+          "start": "0x1401cae50",
+          "end": "0x1401cb286",
+          "file_offset": "0x1ca250",
+          "byte_count": 1079,
+          "sha256": "acf866ea98f71ebb70561e6f2d5bdc4ba0a5bd3818ccdbb23f66d0e35fd43dd2",
+          "independently_decoded_bytes": 1079
+        }
+      ],
+      "body_bytes": 1469,
+      "instruction_records": 276,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 51,
+      "incoming_references": 30,
+      "reported_unresolved_calls": 0,
+      "evidence_ids": {
+        "instructions": "ev_824885a2ff5ad16d25ab6d4ab77f7a2a38537730a19c4e05586e5d03b709274f",
+        "outgoing": "ev_ff75c2c989e0a82dfd6bfc1a1fe23c3461aa697a1eb210c3dc579467f2e86144",
+        "incoming": "ev_0f7efa9bd831a59828bfd5b382d9c78d8c3ba1e213689cefc2b3f707caa2b1a8",
+        "info": "ev_b43905e2c8e27df39308c3a5a80146a885e725b261d285b3f84f8c9ef7bc1302"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1401cacc0.json",
+        "sha256": "21a4342458a80068a3bcad064bc660968e46bf04e308eb1f2babd97309ff1a06"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/xinput.rs",
+      "address": "0x14031b060",
+      "declared_extent": {
+        "start": "0x14031b060",
+        "end": "0x14031bcf0",
+        "file_offset": "0x31a460",
+        "byte_count": 3217,
+        "sha256": "a15defd28ca39f18de6998cfed150d6a6d6bfa03d09c28e0fa81daf967f95ce7"
+      },
+      "body_relation": "differs-from-declared-extent",
+      "diagnostic_instruction": "0x14031b4b1",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x14031b060",
+          "end": "0x14031b214",
+          "file_offset": "0x31a460",
+          "byte_count": 437,
+          "sha256": "f1082353baef3d71341e8b8f0516e69fbca3b7ef1ac6997795402430cdae3340",
+          "independently_decoded_bytes": 437
+        },
+        {
+          "start": "0x14031b220",
+          "end": "0x14031b2f9",
+          "file_offset": "0x31a620",
+          "byte_count": 218,
+          "sha256": "89b0aa5bf1b15bb4deaefdcdb30d0cd195921e8ced602f2c7b4304930302b2aa",
+          "independently_decoded_bytes": 218
+        },
+        {
+          "start": "0x14031b300",
+          "end": "0x14031b30b",
+          "file_offset": "0x31a700",
+          "byte_count": 12,
+          "sha256": "e93eeed91a9248c1c71494fab56133636daacd5a502126e948a2279d7c03aa7a",
+          "independently_decoded_bytes": 12
+        },
+        {
+          "start": "0x14031b310",
+          "end": "0x14031b431",
+          "file_offset": "0x31a710",
+          "byte_count": 290,
+          "sha256": "c1bff2b0d48603b671001ed579ff1aced58c58374bce0a41392bfcc833d9a825",
+          "independently_decoded_bytes": 290
+        },
+        {
+          "start": "0x14031b440",
+          "end": "0x14031b5a9",
+          "file_offset": "0x31a840",
+          "byte_count": 362,
+          "sha256": "cebf9405d78d8b2180504228311de10795d5854e73a0226291544f5b925e0e89",
+          "independently_decoded_bytes": 362
+        },
+        {
+          "start": "0x14031b5b0",
+          "end": "0x14031b8da",
+          "file_offset": "0x31a9b0",
+          "byte_count": 811,
+          "sha256": "5b4824526e42cc3b125f3e25673c033094a1f45300d20a4ede219a406f687161",
+          "independently_decoded_bytes": 811
+        },
+        {
+          "start": "0x14031b8e0",
+          "end": "0x14031bcf0",
+          "file_offset": "0x31ace0",
+          "byte_count": 1041,
+          "sha256": "ce218a731047e6c0a4a63ecc66a67358905d2bf025911f33ea28c6abc209b079",
+          "independently_decoded_bytes": 1041
+        }
+      ],
+      "body_bytes": 3171,
+      "instruction_records": 637,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 76,
+      "incoming_references": 49,
+      "reported_unresolved_calls": 1,
+      "evidence_ids": {
+        "instructions": "ev_b57c4d653039e853e016ebf17cd66e15ef493ad139f09c9cac7c19d437a6a4ef",
+        "outgoing": "ev_6a5baefb9b3d40c321ba82ce0d21b056d3793e7735aca3cd953963846398b204",
+        "incoming": "ev_3799bcd0172decee0e4b2399fcf21b50dc5bd79286dbd7ec904dff04c6ac860a",
+        "info": "ev_7db5a5aa3c7e321ce178734e12a039f60150e656c99281610710df5651b6ab9b"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x14031b060.json",
+        "sha256": "01a819cb68a7ea4c2c44c2bc7ec6d175e2ad233128783310736657e66acb9881"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/update.rs",
+      "address": "0x140011d60",
+      "declared_extent": {
+        "start": "0x140011d60",
+        "end": "0x140012312",
+        "file_offset": "0x11160",
+        "byte_count": 1459,
+        "sha256": "8e3e77884129322201a252704b2fc1614446f82698a886cbebc1ffc821c4e00b"
+      },
+      "body_relation": "matches-declared-extent",
+      "diagnostic_instruction": "0x1400122f3",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x140011d60",
+          "end": "0x140012312",
+          "file_offset": "0x11160",
+          "byte_count": 1459,
+          "sha256": "8e3e77884129322201a252704b2fc1614446f82698a886cbebc1ffc821c4e00b",
+          "independently_decoded_bytes": 1459
+        }
+      ],
+      "body_bytes": 1459,
+      "instruction_records": 309,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 92,
+      "incoming_references": 37,
+      "reported_unresolved_calls": 16,
+      "evidence_ids": {
+        "instructions": "ev_b74db6c4bbf39853ae7dc530e8f92638adbd67d7a517f1a88ab9fb0d83b64ac7",
+        "outgoing": "ev_ea106c2c2dab25491084dbc59ab1688896475f57dc9b64252ee4f6f2ad7d52dd",
+        "incoming": "ev_d0e003cf7aadd9d2025d6635ec1caba44550cb1d5fae6e1d7a445a00f22fa70a",
+        "info": "ev_794689572b564af31634b26a23226d91e1409eafdd33b44b6e8d5c9fc103cd1d"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x140011d60.json",
+        "sha256": "1082b23b4abc44c8692d2b425c79b61559fcead58039d4110b0ccef35c7aeff3"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue/src/achievements.rs",
+      "address": "0x1459a88f0",
+      "declared_extent": {
+        "start": "0x1459a88f0",
+        "end": "0x1459a8f0f",
+        "file_offset": "0x59a7cf0",
+        "byte_count": 1568,
+        "sha256": "977a16bb569b5bf646ff8e652b0f3480c39c39a086dfa609c67a1a8c469a9724"
+      },
+      "body_relation": "matches-declared-extent",
+      "diagnostic_instruction": "0x1459a8efd",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x1459a88f0",
+          "end": "0x1459a8f0f",
+          "file_offset": "0x59a7cf0",
+          "byte_count": 1568,
+          "sha256": "977a16bb569b5bf646ff8e652b0f3480c39c39a086dfa609c67a1a8c469a9724",
+          "independently_decoded_bytes": 1568
+        }
+      ],
+      "body_bytes": 1568,
+      "instruction_records": 317,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 72,
+      "incoming_references": 2,
+      "reported_unresolved_calls": 0,
+      "evidence_ids": {
+        "instructions": "ev_2b33b87be0e4e045f1ff05433f60f6ca3c1102923fa299384bfd69118f251592",
+        "outgoing": "ev_c8703b8211dbd70e5d61231e0ab8fa7edca676b98dee05a6aa33d69793e01d2b",
+        "incoming": "ev_168b494745a2a5403e481234869501e9e0bfbaf2a03d07dd9ca22353a399d6f9",
+        "info": "ev_9a5a3dd05d8ecf42dc65f26028c746b17cfa9104ae4501514af7709d8f19f86d"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1459a88f0.json",
+        "sha256": "10fdef4a9afdd20beacdb2f7da28738446479faab2445227c8686933bb485ddd"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue/src/appearance.rs",
+      "address": "0x14596ccc0",
+      "declared_extent": {
+        "start": "0x14596ccc0",
+        "end": "0x14596cd93",
+        "file_offset": "0x596c0c0",
+        "byte_count": 212,
+        "sha256": "17ca5f3d9cc78bd4296325894b7c0bd20028d2cfa70b64aaebaf73a81a65b271"
+      },
+      "body_relation": "matches-declared-extent",
+      "diagnostic_instruction": "0x14596cd68",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x14596ccc0",
+          "end": "0x14596cd93",
+          "file_offset": "0x596c0c0",
+          "byte_count": 212,
+          "sha256": "17ca5f3d9cc78bd4296325894b7c0bd20028d2cfa70b64aaebaf73a81a65b271",
+          "independently_decoded_bytes": 212
+        }
+      ],
+      "body_bytes": 212,
+      "instruction_records": 64,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 12,
+      "incoming_references": 6,
+      "reported_unresolved_calls": 0,
+      "evidence_ids": {
+        "instructions": "ev_8d509d1c7112f377cc000d906120befee90c846c2e4bed47d3ef867d4c6378af",
+        "outgoing": "ev_800c8ad0950389ec86fff1e403285922d7e85befc60b954d573dd8cdffd26cd5",
+        "incoming": "ev_b547c52a51edd8de0855ba7f9f5cb34c6cdec6ca38a06077d3e1ef988c0d163f",
+        "info": "ev_f6d2beb37d2ea5c46042c3a265d0c303cd8a58dec814a065d568003bd1c0c228"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x14596ccc0.json",
+        "sha256": "0e0dcdef4a6e658ac909b77c9c6faa7b14e1101a9f5a8e7c310ccf8abae590b1"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue/src/bindings.rs",
+      "address": "0x14599e4c0",
+      "declared_extent": {
+        "start": "0x14599e4c0",
+        "end": "0x14599ea6a",
+        "file_offset": "0x599d8c0",
+        "byte_count": 1451,
+        "sha256": "915281730525b72dba83c9f11802b3789a2b629e99234acca5ed92b17437c0f2"
+      },
+      "body_relation": "differs-from-declared-extent",
+      "diagnostic_instruction": "0x14599ea4b",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x14599e4c0",
+          "end": "0x14599e5d3",
+          "file_offset": "0x599d8c0",
+          "byte_count": 276,
+          "sha256": "f8e1d7a43872c0f16d596b7e1aba9134985507be37ed20e40662e10b95644301",
+          "independently_decoded_bytes": 276
+        },
+        {
+          "start": "0x14599e5e0",
+          "end": "0x14599e640",
+          "file_offset": "0x599d9e0",
+          "byte_count": 97,
+          "sha256": "12c8ce77991f6a5879221c3c962ae323aed30e590c25fa4ff8762c657f410f65",
+          "independently_decoded_bytes": 97
+        },
+        {
+          "start": "0x14599e650",
+          "end": "0x14599ea6a",
+          "file_offset": "0x599da50",
+          "byte_count": 1051,
+          "sha256": "1f2a5802538e2c022928e12197d7080b6f9d5dc4da3b81d45e8da0b5d9534a84",
+          "independently_decoded_bytes": 1051
+        }
+      ],
+      "body_bytes": 1424,
+      "instruction_records": 374,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 144,
+      "incoming_references": 77,
+      "reported_unresolved_calls": 4,
+      "evidence_ids": {
+        "instructions": "ev_cd383bcb355556640ce79fd94566e17a8b0babb56a7df08edf8001802613de3c",
+        "outgoing": "ev_d939c657636828df15855269fa8b9e04c6b002a48bbf956cbc402e6387f27c27",
+        "incoming": "ev_423aa3295f7d776e6bb94094e1b441fdfb531a451f71a2e5e071a6a23419a8fc",
+        "info": "ev_9fb26a8b0859a7b6a8c68e322c8acb9def1a3b5f628358ef11d642d0cdc894b9"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x14599e4c0.json",
+        "sha256": "340f2a40eba55d35dd3ecc067eb960dc44c0a7e82afd995f449c51569811080d"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue/src/content.rs",
+      "address": "0x1458946a0",
+      "declared_extent": {
+        "start": "0x1458946a0",
+        "end": "0x145894736",
+        "file_offset": "0x5893aa0",
+        "byte_count": 151,
+        "sha256": "4ef62b07be9e3abdf847536344ad1c66c762af24f4d26b0c20b6da29e3cb46f2"
+      },
+      "body_relation": "differs-from-declared-extent",
+      "diagnostic_instruction": "0x145894724",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x1458946a0",
+          "end": "0x1458946c4",
+          "file_offset": "0x5893aa0",
+          "byte_count": 37,
+          "sha256": "78e9b3c6f5f5360295a304a9b9c52f33cb7ba373bd70a7ed8d9947fa906527fa",
+          "independently_decoded_bytes": 37
+        },
+        {
+          "start": "0x1458946d0",
+          "end": "0x145894736",
+          "file_offset": "0x5893ad0",
+          "byte_count": 103,
+          "sha256": "13365d3e12c43abf6be5e0665c72cb60453ac9345e7c0b52169413d1e4c6b7e5",
+          "independently_decoded_bytes": 103
+        }
+      ],
+      "body_bytes": 140,
+      "instruction_records": 40,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 21,
+      "incoming_references": 5,
+      "reported_unresolved_calls": 1,
+      "evidence_ids": {
+        "instructions": "ev_811f35e8478d1b80ee24cc98120792dc4ad8378c1229cd4de379d4ff70d5e12d",
+        "outgoing": "ev_49ee7979e1185e33273841b7423579e611db09c59404d3215f79e8fdb4a013ad",
+        "incoming": "ev_99b0cd19e7f89d3b3a1a13c934988c6bd7d42990ef9c670c594f1ccaddc5b0e8",
+        "info": "ev_e80308867db985615439aff5146d78cb0790b6bf09cc5d04847d5b9265068f15"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1458946a0.json",
+        "sha256": "f2cb3a785cd1b98efeaa79fe5b76f16e9d14496912b07dfd2f217fa584d53801"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue/src/dbc.rs",
+      "address": "0x145891830",
+      "declared_extent": {
+        "start": "0x145891830",
+        "end": "0x145891909",
+        "file_offset": "0x5890c30",
+        "byte_count": 218,
+        "sha256": "42b7db7a476688ca38dff1cc0de878338c280a44eee566a629d0432b76c5458a"
+      },
+      "body_relation": "matches-declared-extent",
+      "diagnostic_instruction": "0x1458918d6",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x145891830",
+          "end": "0x145891909",
+          "file_offset": "0x5890c30",
+          "byte_count": 218,
+          "sha256": "42b7db7a476688ca38dff1cc0de878338c280a44eee566a629d0432b76c5458a",
+          "independently_decoded_bytes": 218
+        }
+      ],
+      "body_bytes": 218,
+      "instruction_records": 59,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 15,
+      "incoming_references": 10,
+      "reported_unresolved_calls": 0,
+      "evidence_ids": {
+        "instructions": "ev_2302fd36bffdeccea3efa09c2c67b3e7edcf8ee108b4805b9d30e2ae140294cd",
+        "outgoing": "ev_3de91a97a9003bf13656e2d1e5307a3e582c0fe849f28cbb1571917fe8302162",
+        "incoming": "ev_ef93cf3694e4ef9a0c6b40fcb12400ff84969f769dfa8197cd25484a50d4fdfd",
+        "info": "ev_b2604692ce31f75a30b10702656cd2cf1222ba4ff6e1ea26c37d53bdadab4865"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x145891830.json",
+        "sha256": "a7b2a6a955cbf8f14a0be8b19867b1aa0d43fac94f95beb5f04460ca89758fb4"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue/src/driver.rs",
+      "address": "0x14598ae70",
+      "declared_extent": {
+        "start": "0x14598ae70",
+        "end": "0x14598afc4",
+        "file_offset": "0x598a270",
+        "byte_count": 341,
+        "sha256": "d1640c4b2f08cac1edf7e519fce36075dd6beedc8dd167e031cd29dede2c3a63"
+      },
+      "body_relation": "matches-declared-extent",
+      "diagnostic_instruction": "0x14598af9a",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x14598ae70",
+          "end": "0x14598afc4",
+          "file_offset": "0x598a270",
+          "byte_count": 341,
+          "sha256": "d1640c4b2f08cac1edf7e519fce36075dd6beedc8dd167e031cd29dede2c3a63",
+          "independently_decoded_bytes": 341
+        }
+      ],
+      "body_bytes": 341,
+      "instruction_records": 79,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 19,
+      "incoming_references": 6,
+      "reported_unresolved_calls": 2,
+      "evidence_ids": {
+        "instructions": "ev_c9ec81f967698690cf5bdc6f835d50982d9a18ffb83a54091f937e2018b4bef4",
+        "outgoing": "ev_fcf39faede6576317854602ac980707d19b208fd8b7c710b7933724d850c787f",
+        "incoming": "ev_738bb79862c540cba233d1be93155f55fbc7e3c003448b23547a6d48139b4f9a",
+        "info": "ev_044e8d754e3453631df80aa1b6d90ddce47d57f7ac0b3abcf979c5fd90fb4a91"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x14598ae70.json",
+        "sha256": "e07d0e8d318cf396c2d24df9f9d29e5d9da071acf0421b1d78269b45770af3fe"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue/src/fonts.rs",
+      "address": "0x145968280",
+      "declared_extent": {
+        "start": "0x145968280",
+        "end": "0x1459682d5",
+        "file_offset": "0x5967680",
+        "byte_count": 86,
+        "sha256": "69efdc74ad34e728a5d496879d6547b194b200dae06f18fe36b6144dbd050afe"
+      },
+      "body_relation": "matches-declared-extent",
+      "diagnostic_instruction": "0x1459682b1",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x145968280",
+          "end": "0x1459682d5",
+          "file_offset": "0x5967680",
+          "byte_count": 86,
+          "sha256": "69efdc74ad34e728a5d496879d6547b194b200dae06f18fe36b6144dbd050afe",
+          "independently_decoded_bytes": 86
+        }
+      ],
+      "body_bytes": 86,
+      "instruction_records": 23,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 7,
+      "incoming_references": 3,
+      "reported_unresolved_calls": 0,
+      "evidence_ids": {
+        "instructions": "ev_c6ab1c69d265495b518f001ccacf60405154bb23a254355ba60bcd6b592d5616",
+        "outgoing": "ev_5df491e7dde07de9d536d46ef05bbef306eb6dba91700e55712858d4aaa50215",
+        "incoming": "ev_fd6e6b2ecb1cd1f6596de15c26a314c6ee22697d415f8d24d986075a7b5e3cdd",
+        "info": "ev_de3a5afa8cb273e396d1ce95e3da717a620d3c22add2bda3566d340c74dcb2c9"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x145968280.json",
+        "sha256": "64786595a98d75a57f735ae8494920a4642a7cb9ae94689b7c3016c17bdee1ae"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/abilities.rs",
+      "address": "0x1459e4090",
+      "declared_extent": {
+        "start": "0x1459e4090",
+        "end": "0x1459e41c4",
+        "file_offset": "0x59e3490",
+        "byte_count": 309,
+        "sha256": "00f88a142fbd57cc1e788640ceded13cd7a3fd36d91975e7be18bd6397980a0b"
+      },
+      "body_relation": "differs-from-declared-extent",
+      "diagnostic_instruction": "0x1459e41b6",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x1459e4090",
+          "end": "0x1459e4139",
+          "file_offset": "0x59e3490",
+          "byte_count": 170,
+          "sha256": "120ea25c440414983b691e5a4562a882ca785b9f22d8ae0bb0ddae2bf344dfd1",
+          "independently_decoded_bytes": 170
+        },
+        {
+          "start": "0x1459e4140",
+          "end": "0x1459e41c4",
+          "file_offset": "0x59e3540",
+          "byte_count": 133,
+          "sha256": "35c26847155fc5ad59879a1106a2a351d1d2b5ad57ab4006a090c6675a3a20e8",
+          "independently_decoded_bytes": 133
+        }
+      ],
+      "body_bytes": 303,
+      "instruction_records": 96,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 17,
+      "incoming_references": 11,
+      "reported_unresolved_calls": 2,
+      "evidence_ids": {
+        "instructions": "ev_c4e324458522d407f6297a806ebf99c9d34bf9463c85294bc000a4a5cd1bdf2f",
+        "outgoing": "ev_b314d99e3ccd0445257d2fbadac8cff13b463a10986f42cb6655e66c77a0fbb2",
+        "incoming": "ev_099189a2e763a533215d52972218da9442dbe4026452157ba674e97fd07c5b7d",
+        "info": "ev_cd40583674773726c7a996f07605579a0136fd49c34ce81888be364e9db3402d"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1459e4090.json",
+        "sha256": "a7a4817290bd19e6a2273621451f83b0f4468ae7072317af7638bd0cc038ae49"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/addon.rs",
+      "address": "0x1459ec220",
+      "declared_extent": {
+        "start": "0x1459ec220",
+        "end": "0x1459ec73e",
+        "file_offset": "0x59eb620",
+        "byte_count": 1311,
+        "sha256": "d9733bbb9ca3376d4f8e671f08da23f99c1d2fb79fece86a1a0879e35caaa296"
+      },
+      "body_relation": "differs-from-declared-extent",
+      "diagnostic_instruction": "0x1459ec729",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x1459ec220",
+          "end": "0x1459ec2d2",
+          "file_offset": "0x59eb620",
+          "byte_count": 179,
+          "sha256": "d9f4aaa621cab0f4694839d62234bbcdb6f68e7e18e14f84ee64e759bd2f5125",
+          "independently_decoded_bytes": 179
+        },
+        {
+          "start": "0x1459ec2e0",
+          "end": "0x1459ec358",
+          "file_offset": "0x59eb6e0",
+          "byte_count": 121,
+          "sha256": "eb042b104f2f694f55ef208c11a3a34a68771c5648517d3b08a896d63c97661b",
+          "independently_decoded_bytes": 121
+        },
+        {
+          "start": "0x1459ec360",
+          "end": "0x1459ec3b6",
+          "file_offset": "0x59eb760",
+          "byte_count": 87,
+          "sha256": "390e88ce91f33d62dbd9e8642c4e2345f5387b13ac79a687eaab68de655d91c4",
+          "independently_decoded_bytes": 87
+        },
+        {
+          "start": "0x1459ec3c0",
+          "end": "0x1459ec5ae",
+          "file_offset": "0x59eb7c0",
+          "byte_count": 495,
+          "sha256": "8e1ec2260b6bf3e331bf7e06ea1b6d1303687b5d21e87e2f54fbc8003fd2e8b2",
+          "independently_decoded_bytes": 495
+        },
+        {
+          "start": "0x1459ec5b0",
+          "end": "0x1459ec73e",
+          "file_offset": "0x59eb9b0",
+          "byte_count": 399,
+          "sha256": "a55d2634785885dad1ea79cc01de4063ae992c519256e4c1e737977309c5dc26",
+          "independently_decoded_bytes": 399
+        }
+      ],
+      "body_bytes": 1281,
+      "instruction_records": 282,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 69,
+      "incoming_references": 23,
+      "reported_unresolved_calls": 3,
+      "evidence_ids": {
+        "instructions": "ev_42e48cbcc41281ddedfda60a0abe12080506058e4eefff2833abeb32e4a48270",
+        "outgoing": "ev_18a5c6e1acad341c9acfe23dea14ab01639c49d17337992edfc2a9a2d074e267",
+        "incoming": "ev_d106420cb1ca3719d193472a04f2513508f317dba31a31307c61d1fbdebed4fc",
+        "info": "ev_d9c67f574bdb15405df1be23e73650d775f7f4899c42d3653bf41303317d78d7"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1459ec220.json",
+        "sha256": "f7bafce6726d2d42b0bae26508790f124c7e39c88ebe0502bc382241651d381b"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/auras.rs",
+      "address": "0x1458e26d0",
+      "declared_extent": {
+        "start": "0x1458e26d0",
+        "end": "0x1458e3bd5",
+        "file_offset": "0x58e1ad0",
+        "byte_count": 5382,
+        "sha256": "6eb8c93a773914d4e4018afb53413ec22fed0e7d5dfce98f32ad289c4418a761"
+      },
+      "body_relation": "differs-from-declared-extent",
+      "diagnostic_instruction": "0x1458e351b",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x1458e26d0",
+          "end": "0x1458e2857",
+          "file_offset": "0x58e1ad0",
+          "byte_count": 392,
+          "sha256": "ebe2e9f15d6dbb21f6b57990fdaed1fb19b4c9cb518fd241a75f01ea0c97b5a8",
+          "independently_decoded_bytes": 392
+        },
+        {
+          "start": "0x1458e2860",
+          "end": "0x1458e28cd",
+          "file_offset": "0x58e1c60",
+          "byte_count": 110,
+          "sha256": "7993bc22f18a5728e85a14a869452587d13e6231b07756d22f1f1b87484f4920",
+          "independently_decoded_bytes": 110
+        },
+        {
+          "start": "0x1458e28d0",
+          "end": "0x1458e2fde",
+          "file_offset": "0x58e1cd0",
+          "byte_count": 1807,
+          "sha256": "20c11dd758c89bfb90acbea2462b4d5155a46129b5b151857516caed2b5ee0ef",
+          "independently_decoded_bytes": 1807
+        },
+        {
+          "start": "0x1458e3381",
+          "end": "0x1458e39c3",
+          "file_offset": "0x58e2781",
+          "byte_count": 1603,
+          "sha256": "f58448ea6f915588f947820b1d80c0497081cf3cb8a31d5bbd71cb84996360c9",
+          "independently_decoded_bytes": 1603
+        },
+        {
+          "start": "0x1458e39dc",
+          "end": "0x1458e3b9c",
+          "file_offset": "0x58e2ddc",
+          "byte_count": 449,
+          "sha256": "6654991044528914e2973d88f8ece005804f1332c83b1566bbfd37a52db1d575",
+          "independently_decoded_bytes": 449
+        },
+        {
+          "start": "0x1458e3bab",
+          "end": "0x1458e3bd5",
+          "file_offset": "0x58e2fab",
+          "byte_count": 43,
+          "sha256": "72be60c4951bc06409b0838b2053fda1881ad55ad95b2e35b9fb79f4558f4b29",
+          "independently_decoded_bytes": 43
+        }
+      ],
+      "body_bytes": 4404,
+      "instruction_records": 927,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 211,
+      "incoming_references": 99,
+      "reported_unresolved_calls": 43,
+      "evidence_ids": {
+        "instructions": "ev_8ceead8aef5db895d5895fa272a1373fb6931e8dcd8929a57814014a09a68a9f",
+        "outgoing": "ev_ba37edf1a754b129f4385661e943433a412f82c4080eec2c7feeeaa65f346499",
+        "incoming": "ev_9f7482cbd3c5dadbf7c9cbf596792e020ee2fb50f169cdf6330c9869069a116e",
+        "info": "ev_7fa9624485bd7036c8ffcc7b3556e622f477d120303e18afce81d66823dfa8fb"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1458e26d0.json",
+        "sha256": "901408ba62f5cacf9f6e823f11479ea6e70d8517fff2add7c2774043096cd805"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/companions.rs",
+      "address": "0x1459353e0",
+      "declared_extent": {
+        "start": "0x1459353e0",
+        "end": "0x1459355ba",
+        "file_offset": "0x59347e0",
+        "byte_count": 475,
+        "sha256": "db114509f656f579471fc0112855a0e186d58694972ad898c7966cd7b7e7416b"
+      },
+      "body_relation": "differs-from-declared-extent",
+      "diagnostic_instruction": "0x145935598",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x1459353e0",
+          "end": "0x1459354aa",
+          "file_offset": "0x59347e0",
+          "byte_count": 203,
+          "sha256": "16d078c3a6438a466d6a76d1c090637d85e71c2887149e41986b7dbc3fea3179",
+          "independently_decoded_bytes": 203
+        },
+        {
+          "start": "0x1459354b0",
+          "end": "0x145935514",
+          "file_offset": "0x59348b0",
+          "byte_count": 101,
+          "sha256": "0f76f9cb73d75a8779316e80890afaf812ad72e6bce0c8d33271fe1b03ede6bb",
+          "independently_decoded_bytes": 101
+        },
+        {
+          "start": "0x145935520",
+          "end": "0x1459355ba",
+          "file_offset": "0x5934920",
+          "byte_count": 155,
+          "sha256": "5f952b89b2aa04468a76494f8a2ab62f95c5d0ec39306c739794fde1acb986e7",
+          "independently_decoded_bytes": 155
+        }
+      ],
+      "body_bytes": 459,
+      "instruction_records": 115,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 21,
+      "incoming_references": 12,
+      "reported_unresolved_calls": 1,
+      "evidence_ids": {
+        "instructions": "ev_c1ba4980a2140a48e00797f6df39738647044b07ee475abb555bf9d12facbb7a",
+        "outgoing": "ev_be5cc1b9ef1dc8369767a69dda4b8aa59d65043200f0f905c00e5102bd38ccd8",
+        "incoming": "ev_e166f1fda21ee6669a763ed26cb74c844d42aa2228facedd4e16b84cf31884b5",
+        "info": "ev_cc638d50ec3139bdd66a3233719602c0a1ad8a04a2aa3a8be363a334086c13c5"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1459353e0.json",
+        "sha256": "9787a72a3e53cbbfff48c928b7522ed1934c32069a7acaa0212bb4989aad69a1"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/demons.rs",
+      "address": "0x1459ed4e0",
+      "declared_extent": {
+        "start": "0x1459ed4e0",
+        "end": "0x1459ed617",
+        "file_offset": "0x59ec8e0",
+        "byte_count": 312,
+        "sha256": "be95bada2ac160570211531f1bb509459e62766002b3ba2539f664c041dc7d0d"
+      },
+      "body_relation": "matches-declared-extent",
+      "diagnostic_instruction": "0x1459ed603",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x1459ed4e0",
+          "end": "0x1459ed617",
+          "file_offset": "0x59ec8e0",
+          "byte_count": 312,
+          "sha256": "be95bada2ac160570211531f1bb509459e62766002b3ba2539f664c041dc7d0d",
+          "independently_decoded_bytes": 312
+        }
+      ],
+      "body_bytes": 312,
+      "instruction_records": 90,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 11,
+      "incoming_references": 7,
+      "reported_unresolved_calls": 0,
+      "evidence_ids": {
+        "instructions": "ev_b68e73c6104e55787c295f000d575276032e0cc8c6f3e134eef069d08361eac6",
+        "outgoing": "ev_7cb45a7e2573f7b5fd49491dc2c69c20a2a8c2a6787f55efe40397c687ba6fff",
+        "incoming": "ev_0670f0c6789a08feff20ce73dc2c1d580443745ad56059e1f9c846106644b78d",
+        "info": "ev_2549e8bb8a943187831ed5178097b58e634c60abc1de227d6e2cd9f2ffd78e4a"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1459ed4e0.json",
+        "sha256": "e07ecb0840b433dc0345a5d5e387c7ffb3808f5f8b5a50eb5d3b87340c54e5e1"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/enemy.rs",
+      "address": "0x1459e35c0",
+      "declared_extent": {
+        "start": "0x1459e35c0",
+        "end": "0x1459e36de",
+        "file_offset": "0x59e29c0",
+        "byte_count": 287,
+        "sha256": "fb8e918d27ccfa806291f7f9314c1ef875b83be3a5a784840670eb8c3ca04d02"
+      },
+      "body_relation": "matches-declared-extent",
+      "diagnostic_instruction": "0x1459e36c1",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x1459e35c0",
+          "end": "0x1459e36de",
+          "file_offset": "0x59e29c0",
+          "byte_count": 287,
+          "sha256": "fb8e918d27ccfa806291f7f9314c1ef875b83be3a5a784840670eb8c3ca04d02",
+          "independently_decoded_bytes": 287
+        }
+      ],
+      "body_bytes": 287,
+      "instruction_records": 78,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 13,
+      "incoming_references": 6,
+      "reported_unresolved_calls": 2,
+      "evidence_ids": {
+        "instructions": "ev_01c481686c46033ca1a1b265f2a5bf17b1e42c8ccb4f903ec29fc98052fd59d0",
+        "outgoing": "ev_ea2726ebc7d176eaa6f5355de579ea0a1e3509403a1d5564da0f25d63b9c9035",
+        "incoming": "ev_71064a6611ab0f62659f222592bc09dcfc7a903152f74fc3ad58537eeef7f04a",
+        "info": "ev_118c07ae40b7935537acfd370022d65145427bed08cbfc148a24565f2b8d5f82"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1459e35c0.json",
+        "sha256": "7ec201864a3893eefee52e26e57cb811442957fce5ec02984d3b7e1a503768d8"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/guardians.rs",
+      "address": "0x145965770",
+      "declared_extent": {
+        "start": "0x145965770",
+        "end": "0x1459658fe",
+        "file_offset": "0x5964b70",
+        "byte_count": 399,
+        "sha256": "e9add88845a4e1a182ceac5ef2bb515569425f109e9153a2604a0ea3049b6e88"
+      },
+      "body_relation": "matches-declared-extent",
+      "diagnostic_instruction": "0x1459658ee",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x145965770",
+          "end": "0x1459658fe",
+          "file_offset": "0x5964b70",
+          "byte_count": 399,
+          "sha256": "e9add88845a4e1a182ceac5ef2bb515569425f109e9153a2604a0ea3049b6e88",
+          "independently_decoded_bytes": 399
+        }
+      ],
+      "body_bytes": 399,
+      "instruction_records": 79,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 20,
+      "incoming_references": 4,
+      "reported_unresolved_calls": 2,
+      "evidence_ids": {
+        "instructions": "ev_980bba49262884158fefa872a118e69640a30d2bd434539a690bba706a554934",
+        "outgoing": "ev_7f4a44ca830e7cbf76dee0bba8c797f6c2b097ad75127a9565ce7372f92d4569",
+        "incoming": "ev_c9fdb2664f8a04420d726d42e1d6a95ac15ffb1d741d1596347de96a62ebfd21",
+        "info": "ev_98bad48e156d6c9e3fda173d46181a5935edaf1781bb0593334bb6a24a736aa6"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x145965770.json",
+        "sha256": "aca8c2bb7531ff6b674186c503d75543495e78bfafa333114892c9e2056177fc"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/hazards.rs",
+      "address": "0x1459db1e0",
+      "declared_extent": {
+        "start": "0x1459db1e0",
+        "end": "0x1459db39d",
+        "file_offset": "0x59da5e0",
+        "byte_count": 446,
+        "sha256": "8fb361a73e1e77e693556791059041ecd3196cef9f16ff2c7611ec4b915d4872"
+      },
+      "body_relation": "differs-from-declared-extent",
+      "diagnostic_instruction": "0x1459db370",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x1459db1e0",
+          "end": "0x1459db22b",
+          "file_offset": "0x59da5e0",
+          "byte_count": 76,
+          "sha256": "9eef525ed48ef3fe9f00292926e134580937a25a44d20f264bc5fa0c483fcac3",
+          "independently_decoded_bytes": 76
+        },
+        {
+          "start": "0x1459db230",
+          "end": "0x1459db2be",
+          "file_offset": "0x59da630",
+          "byte_count": 143,
+          "sha256": "cbdb0c8d8360cb6372bc4178a429b6374f46b2c938c565841e143c077d100c9a",
+          "independently_decoded_bytes": 143
+        },
+        {
+          "start": "0x1459db2c0",
+          "end": "0x1459db39d",
+          "file_offset": "0x59da6c0",
+          "byte_count": 222,
+          "sha256": "e83c45c526b5fb5e827863ad4fbd70fb42fbc2ffd6cb40840601936348300f44",
+          "independently_decoded_bytes": 222
+        }
+      ],
+      "body_bytes": 441,
+      "instruction_records": 119,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 24,
+      "incoming_references": 17,
+      "reported_unresolved_calls": 2,
+      "evidence_ids": {
+        "instructions": "ev_1de008ed2e952438ce76f3f3992674b1064a7fd508f613ac1aee88616dbf25e3",
+        "outgoing": "ev_bc52005dec0bd9413870b44231c2e5d048c3dfcec77cb7a6d3786459680ca0b9",
+        "incoming": "ev_81a747e3c9c56a9ac9f4cdbff9f1d9a3d0d8655e05fee4ccde5f470700b01d78",
+        "info": "ev_958f2193cf5fe57369a81e2c4b5f35edb8d5a448e5143563ce7fa65bae7a7a1a"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1459db1e0.json",
+        "sha256": "e79b6d79d1f0fd53907465b8633f0bc40329b84b3b99889064c1aeb08670512d"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/mod.rs",
+      "address": "0x1458dd5e0",
+      "declared_extent": {
+        "start": "0x1458dd5e0",
+        "end": "0x1458dd7af",
+        "file_offset": "0x58dc9e0",
+        "byte_count": 464,
+        "sha256": "5ace815e814234d24d070c8032b8d039c3e8bac78c6031a246e0f93aff5082ac"
+      },
+      "body_relation": "matches-declared-extent",
+      "diagnostic_instruction": "0x1458dd73c",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x1458dd5e0",
+          "end": "0x1458dd7af",
+          "file_offset": "0x58dc9e0",
+          "byte_count": 464,
+          "sha256": "5ace815e814234d24d070c8032b8d039c3e8bac78c6031a246e0f93aff5082ac",
+          "independently_decoded_bytes": 464
+        }
+      ],
+      "body_bytes": 464,
+      "instruction_records": 132,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 22,
+      "incoming_references": 9,
+      "reported_unresolved_calls": 0,
+      "evidence_ids": {
+        "instructions": "ev_f763b15c6455b750eb83dc34ce6ad997b4eefdc73855cf3f8ee0b1f46fc6501a",
+        "outgoing": "ev_eb70e9cd46f51fde7a930bdc2e2dadd63dd109b2485ce15cbec7d7ade9119c76",
+        "incoming": "ev_2b5a01b0e3f6323503193ee25d022c19567e7311fe93cd057ecb38320dde2a49",
+        "info": "ev_0430eccef6276045616ff0e8415150482e9eb34423817731b7b2447373294910"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1458dd5e0.json",
+        "sha256": "7645d96388f72e851b4ce6f71437c05e9e7d81906a45f18a154db0e6c171b9f5"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/procs.rs",
+      "address": "0x14594e540",
+      "declared_extent": {
+        "start": "0x14594e540",
+        "end": "0x14594eb41",
+        "file_offset": "0x594d940",
+        "byte_count": 1538,
+        "sha256": "ccc8187cb7a3f1c6f832310f1e5c45a31e7314ada0dcbdb67b6d6d8fa2ee07c6"
+      },
+      "body_relation": "differs-from-declared-extent",
+      "diagnostic_instruction": "0x14594eb12",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x14594e540",
+          "end": "0x14594e5dc",
+          "file_offset": "0x594d940",
+          "byte_count": 157,
+          "sha256": "1da04dd78bb719032b830ab7d2693f00f00c3e1b72f40317808fc7f17b0c81b2",
+          "independently_decoded_bytes": 157
+        },
+        {
+          "start": "0x14594e5e0",
+          "end": "0x14594e644",
+          "file_offset": "0x594d9e0",
+          "byte_count": 101,
+          "sha256": "59e327741880d7030a86eb00ea0c256a04175fd84a5a5ee803ee51ebcf52ba44",
+          "independently_decoded_bytes": 101
+        },
+        {
+          "start": "0x14594e650",
+          "end": "0x14594e97b",
+          "file_offset": "0x594da50",
+          "byte_count": 812,
+          "sha256": "9e84b67fa8cef8469224cbc9a0e064ba9edcb900cfbd28478aa8d9339e8df510",
+          "independently_decoded_bytes": 812
+        },
+        {
+          "start": "0x14594e980",
+          "end": "0x14594eb41",
+          "file_offset": "0x594dd80",
+          "byte_count": 450,
+          "sha256": "06805946013943a65da08c5ede21b2a32bf696a6fbd8d1e80c769c19cbe264f3",
+          "independently_decoded_bytes": 450
+        }
+      ],
+      "body_bytes": 1520,
+      "instruction_records": 333,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 47,
+      "incoming_references": 32,
+      "reported_unresolved_calls": 1,
+      "evidence_ids": {
+        "instructions": "ev_955c69471f715a7ba6f8c950cfa7669299df7cbcbed6c6f726dfc79c196014d8",
+        "outgoing": "ev_e8cd92d19bcc953dc8b9711c5b63d16b4d6b2241205c770ab1ee469fe8a79cbc",
+        "incoming": "ev_c4061ec30d80f32c555d33ddc2be595871820834fb9e2f23cf0ac26ba7e80bb8",
+        "info": "ev_b30c6bc2e006ab38d869cc2d5b2c525a915b014b7ad8753d4fefbce771e591a2"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x14594e540.json",
+        "sha256": "4989f03e98a8ef730a25c0a8fc769e189f4f4e9f5d5b4e40283c9b7e816ba8cb"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/talents.rs",
+      "address": "0x1459348e0",
+      "declared_extent": {
+        "start": "0x1459348e0",
+        "end": "0x145934bdc",
+        "file_offset": "0x5933ce0",
+        "byte_count": 765,
+        "sha256": "c7c97b52bc520f1d69b4a1d1ea919f46be48696031ca7032eb21de93cde4b4ca"
+      },
+      "body_relation": "matches-declared-extent",
+      "diagnostic_instruction": "0x145934bbb",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x1459348e0",
+          "end": "0x145934bdc",
+          "file_offset": "0x5933ce0",
+          "byte_count": 765,
+          "sha256": "c7c97b52bc520f1d69b4a1d1ea919f46be48696031ca7032eb21de93cde4b4ca",
+          "independently_decoded_bytes": 765
+        }
+      ],
+      "body_bytes": 765,
+      "instruction_records": 173,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 25,
+      "incoming_references": 13,
+      "reported_unresolved_calls": 0,
+      "evidence_ids": {
+        "instructions": "ev_de7a22aaf287b27360b1559688bd49d42951e5d60b69fd49ed806a798c0c98b6",
+        "outgoing": "ev_2372577aff22ad96e2d2382d4a922119a37e82a7935f82bf3e6ac43357536d18",
+        "incoming": "ev_7f93c238c1721bd2d63370067afb29fb674e4cb4449259d1a198f62d9ea258f5",
+        "info": "ev_ee5e1199ff700f2445d2691ea1228fb16ce0f44ddbb3490ca9fdf618a72c6403"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1459348e0.json",
+        "sha256": "cbaca31c22ea21b68a30278897466c02adff27e2184ef84d7828b9ed54d920d2"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/upgrades.rs",
+      "address": "0x1459ec050",
+      "declared_extent": {
+        "start": "0x1459ec050",
+        "end": "0x1459ec1d2",
+        "file_offset": "0x59eb450",
+        "byte_count": 387,
+        "sha256": "6d2b4d4020c0b9369559c61b6a6062d7a051afdd81911354f72d8bf342ce3f77"
+      },
+      "body_relation": "matches-declared-extent",
+      "diagnostic_instruction": "0x1459ec1bc",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x1459ec050",
+          "end": "0x1459ec1d2",
+          "file_offset": "0x59eb450",
+          "byte_count": 387,
+          "sha256": "6d2b4d4020c0b9369559c61b6a6062d7a051afdd81911354f72d8bf342ce3f77",
+          "independently_decoded_bytes": 387
+        }
+      ],
+      "body_bytes": 387,
+      "instruction_records": 100,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 15,
+      "incoming_references": 4,
+      "reported_unresolved_calls": 0,
+      "evidence_ids": {
+        "instructions": "ev_f2e7ccbcf09d85d2def44b22edf4a3c8c204cb6796995bfe3f4dc63fc99d45d2",
+        "outgoing": "ev_2eb0d399a34faa2032cc289dc1b59646173742b4c6ed46a047f4316c2d879d2a",
+        "incoming": "ev_6f5d6d2b78eea80c0986961d35556db897a6c4d68fe6ce430364c433a132e3fb",
+        "info": "ev_623d2c53bde337dfe440712ea3891626cf1e77ec2d7fb33b730199c119b70ca1"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1459ec050.json",
+        "sha256": "4ec2eda8be5b533944a1e79c8db569005bd13b73a5da46890598ff57e13e7b0d"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue/src/gear.rs",
+      "address": "0x1459ece70",
+      "declared_extent": {
+        "start": "0x1459ece70",
+        "end": "0x1459ecf1b",
+        "file_offset": "0x59ec270",
+        "byte_count": 172,
+        "sha256": "739d233a3623321bea8cf2000e445530dd3228a904c62736b606415b1180c965"
+      },
+      "body_relation": "matches-declared-extent",
+      "diagnostic_instruction": "0x1459ecef0",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x1459ece70",
+          "end": "0x1459ecf1b",
+          "file_offset": "0x59ec270",
+          "byte_count": 172,
+          "sha256": "739d233a3623321bea8cf2000e445530dd3228a904c62736b606415b1180c965",
+          "independently_decoded_bytes": 172
+        }
+      ],
+      "body_bytes": 172,
+      "instruction_records": 51,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 9,
+      "incoming_references": 7,
+      "reported_unresolved_calls": 0,
+      "evidence_ids": {
+        "instructions": "ev_bddfb3d0c253a3f752fc8295237146aff4f20096ef2a880dafe5d5fad4093d22",
+        "outgoing": "ev_c417188000f066f094fc05b5d78896d2544854b31fe90941cf606edaf87017a8",
+        "incoming": "ev_02edf738d3a3a9f9397b6cacf8797717bdfa0aa977f31cd3e8e5b27d9c1335c1",
+        "info": "ev_761ceb19da9b2b7ee0a66f3c0e174e345e549eac5232e80f2e6ba9d87fecf647"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1459ece70.json",
+        "sha256": "0ec457e7686b2b015171bd55fed098aa1c43a76ed8ee15580d2cc5a6100fc948"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue/src/i18n.rs",
+      "address": "0x145985260",
+      "declared_extent": {
+        "start": "0x145985260",
+        "end": "0x145985410",
+        "file_offset": "0x5984660",
+        "byte_count": 433,
+        "sha256": "e48a17ce35de765200405aa4c3ace27e4fb4d54cd854014b2e8a108be3eebb07"
+      },
+      "body_relation": "differs-from-declared-extent",
+      "diagnostic_instruction": "0x14598539d",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x145985260",
+          "end": "0x1459852f7",
+          "file_offset": "0x5984660",
+          "byte_count": 152,
+          "sha256": "85eefa689df47dedabc3562b19ec2056cf80d5a166c3222002558baf49be5b85",
+          "independently_decoded_bytes": 152
+        },
+        {
+          "start": "0x145985300",
+          "end": "0x145985410",
+          "file_offset": "0x5984700",
+          "byte_count": 273,
+          "sha256": "8b03e61ace9988bab49c558442b15253b43e93bf220c7611e75447553e0a8e3d",
+          "independently_decoded_bytes": 273
+        }
+      ],
+      "body_bytes": 425,
+      "instruction_records": 110,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 23,
+      "incoming_references": 15,
+      "reported_unresolved_calls": 0,
+      "evidence_ids": {
+        "instructions": "ev_f32410eff3142b675bdc0552c2b712b940fdcf6f1f10764809e883e621065809",
+        "outgoing": "ev_913edca7f9cedc32d37d3b017d399c8c212f01f72ba38d243345f28b190e3035",
+        "incoming": "ev_3ac15eb2464e62dc401d532e4e745b71c5a020b50ba0ad0e746c046affb21fed",
+        "info": "ev_b2da9a46d9e83391dc565d2366e9511e0a51844674568d1d9aad83d90885d9ea"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x145985260.json",
+        "sha256": "7df409b67dfbdcb1d15180b68ac14858a1eda8555d41d2a68cc3e54fee383072"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue/src/jewelry.rs",
+      "address": "0x1458a3580",
+      "declared_extent": {
+        "start": "0x1458a3580",
+        "end": "0x1458a37e4",
+        "file_offset": "0x58a2980",
+        "byte_count": 613,
+        "sha256": "195f325db9711cc4512b1de8656483e657d5d3b8e882c51f5829533f322b399a"
+      },
+      "body_relation": "differs-from-declared-extent",
+      "diagnostic_instruction": "0x1458a37cd",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x1458a3580",
+          "end": "0x1458a35ec",
+          "file_offset": "0x58a2980",
+          "byte_count": 109,
+          "sha256": "b3939bd1ba41c95457dbc2ab82f976e2b4ad44acd07fdf8ccff61507e137fa61",
+          "independently_decoded_bytes": 109
+        },
+        {
+          "start": "0x1458a35f0",
+          "end": "0x1458a364c",
+          "file_offset": "0x58a29f0",
+          "byte_count": 93,
+          "sha256": "183babcd7a22c387e0269b90306542ec39f1add57b0b7620029f7155cacac7dc",
+          "independently_decoded_bytes": 93
+        },
+        {
+          "start": "0x1458a3650",
+          "end": "0x1458a3673",
+          "file_offset": "0x58a2a50",
+          "byte_count": 36,
+          "sha256": "cb0cd9b44c2df97dbac641385d243aaba3eeb777f9b5ef6531f4857235f2bef3",
+          "independently_decoded_bytes": 36
+        },
+        {
+          "start": "0x1458a3680",
+          "end": "0x1458a36aa",
+          "file_offset": "0x58a2a80",
+          "byte_count": 43,
+          "sha256": "a9f43f08210bd8932ccaf1623707cf96ec109cf65e68236e231bd0ad0187afec",
+          "independently_decoded_bytes": 43
+        },
+        {
+          "start": "0x1458a36b0",
+          "end": "0x1458a37e4",
+          "file_offset": "0x58a2ab0",
+          "byte_count": 309,
+          "sha256": "96e2e6dab9b681bc54ddf8bba2aa1e40dc978d3f0caa843c5bc4ac2a8c16ea33",
+          "independently_decoded_bytes": 309
+        }
+      ],
+      "body_bytes": 590,
+      "instruction_records": 168,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 37,
+      "incoming_references": 31,
+      "reported_unresolved_calls": 1,
+      "evidence_ids": {
+        "instructions": "ev_31b3e199e34fb3a719fd085694b648ea107f96fdd9f07f90afe711c92290a277",
+        "outgoing": "ev_ef82132d66b8537a9c75cc4e946937a1503f0f589f65a793de40c9dbef990e29",
+        "incoming": "ev_4e414fde3c44ed0e5e55a084048ad05a9cb90edd0d66f2d7984b8b2daa97e6de",
+        "info": "ev_8108e0acd58fd924d85889902d9c9a3776913e1466e4b01993b52336ee92241c"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1458a3580.json",
+        "sha256": "708e00530a115f917c48bc8691a4047e219020767fb987daf6a208c670fc0ad3"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue/src/mods.rs",
+      "address": "0x1459987d0",
+      "declared_extent": {
+        "start": "0x1459987d0",
+        "end": "0x145998845",
+        "file_offset": "0x5997bd0",
+        "byte_count": 118,
+        "sha256": "2c679c7f9d0faff803e0c9c32fe0bd6c51591455ae29cefe5ae490144aa4cc97"
+      },
+      "body_relation": "matches-declared-extent",
+      "diagnostic_instruction": "0x145998830",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x1459987d0",
+          "end": "0x145998845",
+          "file_offset": "0x5997bd0",
+          "byte_count": 118,
+          "sha256": "2c679c7f9d0faff803e0c9c32fe0bd6c51591455ae29cefe5ae490144aa4cc97",
+          "independently_decoded_bytes": 118
+        }
+      ],
+      "body_bytes": 118,
+      "instruction_records": 29,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 6,
+      "incoming_references": 2,
+      "reported_unresolved_calls": 0,
+      "evidence_ids": {
+        "instructions": "ev_5a1359ded5892c4caa8d22b544bdbddf1b0f51208d937a79cb648abdc9bea97b",
+        "outgoing": "ev_81ab94b1bb60750671b5120116b292772580ba15c5a0e42493893962452d5677",
+        "incoming": "ev_2bc510bd068636b75f32d2d22c33c4a12b19ba5fa83bd28ad097597b3121fe23",
+        "info": "ev_ca49dc59a5b195096883679b1a2d14f40237a5c85d0beed142c6fefe0f2b274d"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1459987d0.json",
+        "sha256": "6572f71d9b48190d7e91a7cf0a1859626f4e3e72e05369f4aa7820d68dc548ec"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue/src/nav.rs",
+      "address": "0x1459a7b90",
+      "declared_extent": {
+        "start": "0x1459a7b90",
+        "end": "0x1459a7c87",
+        "file_offset": "0x59a6f90",
+        "byte_count": 248,
+        "sha256": "3f6b8a0097b0d681f371c7600a66d92dadcd976fd9330a0eaf9ee573f502814f"
+      },
+      "body_relation": "matches-declared-extent",
+      "diagnostic_instruction": "0x1459a7c77",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x1459a7b90",
+          "end": "0x1459a7c87",
+          "file_offset": "0x59a6f90",
+          "byte_count": 248,
+          "sha256": "3f6b8a0097b0d681f371c7600a66d92dadcd976fd9330a0eaf9ee573f502814f",
+          "independently_decoded_bytes": 248
+        }
+      ],
+      "body_bytes": 248,
+      "instruction_records": 68,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 8,
+      "incoming_references": 5,
+      "reported_unresolved_calls": 0,
+      "evidence_ids": {
+        "instructions": "ev_f542c0a6f04c933f8a86e4f5c24313c3a7a76efdc7aa0a9026f0fcca32790571",
+        "outgoing": "ev_1d9d4db38b0fd64a78d4127e621319aedce2beeeed4d7db632d5aea850cb5ef6",
+        "incoming": "ev_1b54c9908fe4c36fbd74bf083b753f1b5efca964ae05d13ac6086915a38f78ee",
+        "info": "ev_2ba86ea93d538bd13f60ffa2e541ed8dbe310c6afb046d114b8dafba0940663a"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1459a7b90.json",
+        "sha256": "6216f71ce80e70adebe839816bbad6da6a2830b8bf7a350dcc6ef2383b4e9c51"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue/src/proto.rs",
+      "address": "0x1458cb5d0",
+      "declared_extent": {
+        "start": "0x1458cb5d0",
+        "end": "0x1458cb7e4",
+        "file_offset": "0x58ca9d0",
+        "byte_count": 533,
+        "sha256": "ca9b4d027f22e606032db10fedc68ec81b8df702a2324d39a45fdffb472141f8"
+      },
+      "body_relation": "matches-declared-extent",
+      "diagnostic_instruction": "0x1458cb7d1",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x1458cb5d0",
+          "end": "0x1458cb7e4",
+          "file_offset": "0x58ca9d0",
+          "byte_count": 533,
+          "sha256": "ca9b4d027f22e606032db10fedc68ec81b8df702a2324d39a45fdffb472141f8",
+          "independently_decoded_bytes": 533
+        }
+      ],
+      "body_bytes": 533,
+      "instruction_records": 160,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 35,
+      "incoming_references": 37,
+      "reported_unresolved_calls": 0,
+      "evidence_ids": {
+        "instructions": "ev_4c667ce9b0a525ca7bd610f99ea10257e2634eb4849d2d36acbbdd908886cd81",
+        "outgoing": "ev_2c56365ec015bec304f22f08965ff2e282fe1dc20598ad64009225a5ddb54ed2",
+        "incoming": "ev_0ff27dfbbbb28d0272921095fcaeaefc36f10f7dfa163090fe22f90cc36618f4",
+        "info": "ev_846d2758141a546ca65304b05b670257f1cc11d1cc3138615c310f40e65f76f3"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1458cb5d0.json",
+        "sha256": "cf0272be43154f909b18a159ae9e596e01a9922f35e71c48857bd925267b979c"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue/src/realmd.rs",
+      "address": "0x1459683f0",
+      "declared_extent": {
+        "start": "0x1459683f0",
+        "end": "0x14596ac71",
+        "file_offset": "0x59677f0",
+        "byte_count": 10370,
+        "sha256": "4067ad53569fc253159082679d5cfbf04e049d0db6846db59996e59ef5baec3f"
+      },
+      "body_relation": "differs-from-declared-extent",
+      "diagnostic_instruction": "0x14596abdb",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x1459683f0",
+          "end": "0x1459685e0",
+          "file_offset": "0x59677f0",
+          "byte_count": 497,
+          "sha256": "e4c7b421f59692c454fec8eb938b8a162c7345968c66b01e715353b539cde495",
+          "independently_decoded_bytes": 497
+        },
+        {
+          "start": "0x1459685f0",
+          "end": "0x1459688b0",
+          "file_offset": "0x59679f0",
+          "byte_count": 705,
+          "sha256": "a3d71ab0f1a6277baa83a8d13920d811810d4c4558c161ada4b85bff6dbf9cdb",
+          "independently_decoded_bytes": 705
+        },
+        {
+          "start": "0x1459688c0",
+          "end": "0x145968990",
+          "file_offset": "0x5967cc0",
+          "byte_count": 209,
+          "sha256": "f5cb212b69962ae8d03f9bc1bf8f11de4d5df22cd9dbeafafdb88c62cbc2f8cd",
+          "independently_decoded_bytes": 209
+        },
+        {
+          "start": "0x1459689a0",
+          "end": "0x145968bd6",
+          "file_offset": "0x5967da0",
+          "byte_count": 567,
+          "sha256": "778bc241904a5e4977bcec5be203cb4dce23ee5f8161efd731ec8ffcb69ae581",
+          "independently_decoded_bytes": 567
+        },
+        {
+          "start": "0x145968be0",
+          "end": "0x145968c94",
+          "file_offset": "0x5967fe0",
+          "byte_count": 181,
+          "sha256": "0156b909e4040fa6aebb075a958acf8a2f66b0e343f1c895999e88fb654afca0",
+          "independently_decoded_bytes": 181
+        },
+        {
+          "start": "0x145968ca0",
+          "end": "0x145968ca7",
+          "file_offset": "0x59680a0",
+          "byte_count": 8,
+          "sha256": "efaadd4341ec0534b3dc70fdf43aea75acf7c293c17b1f69a06e8d828009ba06",
+          "independently_decoded_bytes": 8
+        },
+        {
+          "start": "0x145968cb0",
+          "end": "0x1459697eb",
+          "file_offset": "0x59680b0",
+          "byte_count": 2876,
+          "sha256": "cea9effa18f9233a3f4322694d4a18b2bd7fd6deae61a0aa5b2c5e083d5f8ab6",
+          "independently_decoded_bytes": 2876
+        },
+        {
+          "start": "0x1459697f0",
+          "end": "0x14596a23e",
+          "file_offset": "0x5968bf0",
+          "byte_count": 2639,
+          "sha256": "3b36455c425d2dc59701f99094e6c93e061d032ad5f6e1d31a4378b3402341a4",
+          "independently_decoded_bytes": 2639
+        },
+        {
+          "start": "0x14596a240",
+          "end": "0x14596a343",
+          "file_offset": "0x5969640",
+          "byte_count": 260,
+          "sha256": "a440a03e22ca306303622b90b829d3b6ee7d36cf5b0cd1a2af8b779a2c28f343",
+          "independently_decoded_bytes": 260
+        },
+        {
+          "start": "0x14596a350",
+          "end": "0x14596a3d0",
+          "file_offset": "0x5969750",
+          "byte_count": 129,
+          "sha256": "3db4f9d53ead5997009ac45d9a37ce549e7abb3dbe516588d3f2ab40aaa43769",
+          "independently_decoded_bytes": 129
+        },
+        {
+          "start": "0x14596a3e0",
+          "end": "0x14596a529",
+          "file_offset": "0x59697e0",
+          "byte_count": 330,
+          "sha256": "951017b4ecf583ddd0f2d4ba6d4db35f317febeb9f1c84119534312e1a9b41fa",
+          "independently_decoded_bytes": 330
+        },
+        {
+          "start": "0x14596a530",
+          "end": "0x14596aa82",
+          "file_offset": "0x5969930",
+          "byte_count": 1363,
+          "sha256": "6954d7f898b7fcd79cc1d9da9e2cad14ab4a9703e5606ccf303a1d53ccd083d1",
+          "independently_decoded_bytes": 1363
+        },
+        {
+          "start": "0x14596aa90",
+          "end": "0x14596ac71",
+          "file_offset": "0x5969e90",
+          "byte_count": 482,
+          "sha256": "556f09ef0b2c616e36dd976cab5c1113f32e4eb9ef0f8b7a58aaada5c0776d55",
+          "independently_decoded_bytes": 482
+        }
+      ],
+      "body_bytes": 10246,
+      "instruction_records": 2033,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 371,
+      "incoming_references": 195,
+      "reported_unresolved_calls": 62,
+      "evidence_ids": {
+        "instructions": "ev_92735fb9b53eac4edd60819d4eba1d162f0e00d0d2eabe4b1c7678dd62e8662d",
+        "outgoing": "ev_2c50642d1c9ed4d1448498526cb543c67c608af19f4c709794ecc8b9839ea220",
+        "incoming": "ev_585e3d6a9ddc54e4128b0de5ebd31d4012fb2f863b5d3ab40f65c6cc9c56ebc9",
+        "info": "ev_6c78e18e589a9433c5c38c87122aff2e9890347757726e86385f2bd5863fcff0"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1459683f0.json",
+        "sha256": "c153695ecdb39e795ddf4cef7971012e0152ba60ffb6368b795aa7ad2aa686b9"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue/src/save.rs",
+      "address": "0x1458cf2f0",
+      "declared_extent": {
+        "start": "0x1458cf2f0",
+        "end": "0x1458cf3e6",
+        "file_offset": "0x58ce6f0",
+        "byte_count": 247,
+        "sha256": "df615ba0fb9b64ef4465333813424445450b3fc78a9a553b5cc05aa8246b2512"
+      },
+      "body_relation": "matches-declared-extent",
+      "diagnostic_instruction": "0x1458cf3d6",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x1458cf2f0",
+          "end": "0x1458cf3e6",
+          "file_offset": "0x58ce6f0",
+          "byte_count": 247,
+          "sha256": "df615ba0fb9b64ef4465333813424445450b3fc78a9a553b5cc05aa8246b2512",
+          "independently_decoded_bytes": 247
+        }
+      ],
+      "body_bytes": 247,
+      "instruction_records": 80,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 10,
+      "incoming_references": 8,
+      "reported_unresolved_calls": 2,
+      "evidence_ids": {
+        "instructions": "ev_8b7f6d78350bba7d030a9bfad555b2c85dfa01b5634d04cfaa6e1d9fa11ed05f",
+        "outgoing": "ev_b90321083336cc73e302bbe7e3c47ef6904dcd3750436738ff33b59fb76db291",
+        "incoming": "ev_f271300af1250ecfba340fcd8f6123444ce8e6571050eb876cfa305e40e028b3",
+        "info": "ev_46e4dd76d1747aa0392d10d936ec33887a48150e96e44d29cda007c35bf20c1e"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1458cf2f0.json",
+        "sha256": "cb36f2c6f357de1a58115382aece998965a003f4d73844696d534b46c53f9bd5"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue/src/server.rs",
+      "address": "0x1458bb490",
+      "declared_extent": {
+        "start": "0x1458bb490",
+        "end": "0x1458bb523",
+        "file_offset": "0x58ba890",
+        "byte_count": 148,
+        "sha256": "e5a5cd4fa578464b27225fc2e208cc1d76d642c190cf3175c654e650c29e9a43"
+      },
+      "body_relation": "matches-declared-extent",
+      "diagnostic_instruction": "0x1458bb510",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x1458bb490",
+          "end": "0x1458bb523",
+          "file_offset": "0x58ba890",
+          "byte_count": 148,
+          "sha256": "e5a5cd4fa578464b27225fc2e208cc1d76d642c190cf3175c654e650c29e9a43",
+          "independently_decoded_bytes": 148
+        }
+      ],
+      "body_bytes": 148,
+      "instruction_records": 33,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 8,
+      "incoming_references": 3,
+      "reported_unresolved_calls": 1,
+      "evidence_ids": {
+        "instructions": "ev_41966273421b0ee91a690744052dd27f4e81db70e500779cf9863b5e17ac30c0",
+        "outgoing": "ev_871a3272514a0b069de88ee355c20f36f04027a68fb6d68e7c495bd539f5b726",
+        "incoming": "ev_baac203de814debf463ca22d4a5d267b9152bc0f8d1bbd4f6cd8535b563d6f21",
+        "info": "ev_a078fe4917e7a150a6d6afa9e733b84e621fd945e249368e6fe4862c89767468"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1458bb490.json",
+        "sha256": "b543812553d97c6431e49ac7db06414865f470da142ef7ca1233947b6c0c8633"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue/src/talents.rs",
+      "address": "0x14599abe0",
+      "declared_extent": {
+        "start": "0x14599abe0",
+        "end": "0x14599ad26",
+        "file_offset": "0x5999fe0",
+        "byte_count": 327,
+        "sha256": "348573f801d50336da236a8a5d4e6f5b418639b72511f0703f90c92208af8b42"
+      },
+      "body_relation": "differs-from-declared-extent",
+      "diagnostic_instruction": "0x14599ad14",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x14599abe0",
+          "end": "0x14599ac3e",
+          "file_offset": "0x5999fe0",
+          "byte_count": 95,
+          "sha256": "a4866214a30134b164dd20c07a6d5ca5e85a4266de7ea17278c002c3fdce3d16",
+          "independently_decoded_bytes": 95
+        },
+        {
+          "start": "0x14599ac40",
+          "end": "0x14599ac6a",
+          "file_offset": "0x599a040",
+          "byte_count": 43,
+          "sha256": "bbfe8483a35457bdc67ad41333295bd92dbc9fd63bca53a3849c50d03a5e98d0",
+          "independently_decoded_bytes": 43
+        },
+        {
+          "start": "0x14599ac70",
+          "end": "0x14599acc9",
+          "file_offset": "0x599a070",
+          "byte_count": 90,
+          "sha256": "e0e4f6a8449801ac4cf19574f43aeed4b63b7e123465583d441cedf9077127a0",
+          "independently_decoded_bytes": 90
+        },
+        {
+          "start": "0x14599acd0",
+          "end": "0x14599ad26",
+          "file_offset": "0x599a0d0",
+          "byte_count": 87,
+          "sha256": "5cc05829dd8147191c2ff002a0f244d6d48db6ea2a818019109fafa2c51aa61a",
+          "independently_decoded_bytes": 87
+        }
+      ],
+      "body_bytes": 315,
+      "instruction_records": 94,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 20,
+      "incoming_references": 16,
+      "reported_unresolved_calls": 1,
+      "evidence_ids": {
+        "instructions": "ev_0affac14eb49a37de19f5eeebcfc29cce25e874f8d0e4b3d12bf42852424d42f",
+        "outgoing": "ev_d329145299a8d86b3b3008b893cf6fd558adc3eff9610b28d5539ab929c198af",
+        "incoming": "ev_0aa53d8541534b1d504b8a7629e4dfeebcec168643f80ddac9b359930246c27d",
+        "info": "ev_e661f04213ce04a0dc6b99461219942ca9bb47a9e9f15bc5c67204a7e59ecdc3"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x14599abe0.json",
+        "sha256": "fa0d7b11b13788720c9327a6ba5f86a64597de6a4a2d2b9c43c32b35cc5fae93"
+      }
+    },
+    {
+      "path": "crates/wenilla-rogue/src/terrain.rs",
+      "address": "0x145897ef0",
+      "declared_extent": {
+        "start": "0x145897ef0",
+        "end": "0x145898043",
+        "file_offset": "0x58972f0",
+        "byte_count": 340,
+        "sha256": "e0eb3950866684ff7d8f48ebdfe74ddc9510e6da23e0a0c78a39744d0ca95cbf"
+      },
+      "body_relation": "differs-from-declared-extent",
+      "diagnostic_instruction": "0x145898008",
+      "diagnostic_instruction_observed": true,
+      "ranges": [
+        {
+          "start": "0x145897ef0",
+          "end": "0x145897fb0",
+          "file_offset": "0x58972f0",
+          "byte_count": 193,
+          "sha256": "180b7bb2ea2f7385639f0b2593753ce3f67002e729fbc449ffb4251f497389e5",
+          "independently_decoded_bytes": 193
+        },
+        {
+          "start": "0x145897fc0",
+          "end": "0x145898043",
+          "file_offset": "0x58973c0",
+          "byte_count": 132,
+          "sha256": "78b3cd3c01301d7cc8a0cd881ea1bc36745f970712c4c2270db164832eeca2f6",
+          "independently_decoded_bytes": 132
+        }
+      ],
+      "body_bytes": 325,
+      "instruction_records": 85,
+      "independent_linear_boundaries_match": true,
+      "outgoing_references": 21,
+      "incoming_references": 14,
+      "reported_unresolved_calls": 0,
+      "evidence_ids": {
+        "instructions": "ev_22f9909322849f05c53e7b3a74fdd69aece51940cb6e21b4c30a964c0494fc18",
+        "outgoing": "ev_7def8bf01ffeb4f740411f8b93de4ed234af5b51373bdee44605e95980475096",
+        "incoming": "ev_48588f5e9d669985940adfc49e3326667dfe666361ee4ff7c1d4a13391b70a18",
+        "info": "ev_f5b3396de9c80c7640a30189b2a71e8e089fa38758d06caf6e9f9dc3d28bbe5e"
+      },
+      "retained_observations": {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/ghidra/full-image-diagnostic-owner-repaired/procedures/0x145897ef0.json",
+        "sha256": "aceba7607e51f0c62102ce25be25e6678d5ce02eb22f2bf899d46ad2797d80b2"
+      }
+    }
+  ],
+  "whole_image_input": true,
+  "global_native_semantics_complete": false,
+  "global_references_complete": false,
+  "native_source_ownership_complete": false,
+  "parity_verified": false,
+  "gap_ids": [
+    41
+  ],
+  "limits": [
+    "All custom diagnostic paths select one minimum declared owner each; all other functions, engine/platform ownership and semantic contracts remain open.",
+    "Ghidra bodies follow decoded control flow; differences from unwind extents and missing diagnostic instructions are explicit, never forced to match.",
+    "Unseeded callers, indirect targets, address tables, calling conventions and disabled reference analyzers limit relationships. A zero unresolved-call observation does not prove completeness.",
+    "Independent boundaries and exact body/declared-range hashes check selected bytes, not reachability, gameplay/source behavior or original/rebuilt parity.",
+    "No application compilation, game execution, rendering or runtime validation."
+  ]
+}

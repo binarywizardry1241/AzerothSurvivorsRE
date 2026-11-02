@@ -1,0 +1,402 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.119.1",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c",
+    "size_bytes": 145374208
+  },
+  "gap_ids": [
+    163,
+    183,
+    184,
+    185,
+    186
+  ],
+  "target_executed": false,
+  "method": "Current whole-PE durable Ghidra queries, independent original-byte Capstone decoding, source-first interfaces and bounded original-instruction liveness fixtures.",
+  "ranges": [
+    {
+      "role": "service-pump",
+      "start": "0x145aad8b0",
+      "end_exclusive": "0x145aae881",
+      "file_offset": "0x5aaccb0",
+      "byte_count": 4049,
+      "sha256": "a1faec1a9cabc1b2f7133398fbe296ff950a8c357e4d63aa57cd4da60907462a",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.119.1/coop-disconnect/service-pump.asm",
+        "sha256": "e6af2e92eeb9103480b557645ac79801b3516e1c8eb97addcb2465386dc3d0e6"
+      }
+    },
+    {
+      "role": "selected-relay-closed",
+      "start": "0x145ab5130",
+      "end_exclusive": "0x145ab520a",
+      "file_offset": "0x5ab4530",
+      "byte_count": 218,
+      "sha256": "5c0ff1d6755d495c37d0e800916375ebbb4d4fa9d28bf950c64e80823ca6f4fb",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.119.1/coop-disconnect/selected-relay-closed.asm",
+        "sha256": "81bf0e3a1805a67622065fa6f20b92215d8cd66d64c41c5084e0e93b47530036"
+      }
+    },
+    {
+      "role": "selected-relay-alive",
+      "start": "0x145ab5240",
+      "end_exclusive": "0x145ab531a",
+      "file_offset": "0x5ab4640",
+      "byte_count": 218,
+      "sha256": "7fef3349cb53cb1d3f9e0916c2b9d8c5e8b919631b77db874e357fac46c29bb8",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.119.1/coop-disconnect/selected-relay-alive.asm",
+        "sha256": "b4e2bb3890917d3a7717508528953166ecf29944a173cc8cefda3c08817f56a7"
+      }
+    },
+    {
+      "role": "run-retention-gates",
+      "start": "0x145b01174",
+      "end_exclusive": "0x145b012dd",
+      "file_offset": "0x5b00574",
+      "byte_count": 361,
+      "sha256": "668c687dc0785e0f9bd4202449651b7ca4733639b603ce99e7385d1fcdb9cc38",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.119.1/coop-disconnect/run-retention-gates.asm",
+        "sha256": "8082bc3ad4eabddd48827ff97063f6a914a7dd72bf2a19a8c3f5f27b4566d185"
+      }
+    },
+    {
+      "role": "dead-peer-removal-call",
+      "start": "0x145b01d9f",
+      "end_exclusive": "0x145b01dc1",
+      "file_offset": "0x5b0119f",
+      "byte_count": 34,
+      "sha256": "cbc3446801486a93ed7e6e7f353c0a74d33c2df66a7cec5e459b0b7aeabeb356",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.119.1/coop-disconnect/dead-peer-removal-call.asm",
+        "sha256": "f779440f50dac5787aa9dc28aa852237f48c74b4b30ae689cfb7eee3d4bde3b2"
+      }
+    },
+    {
+      "role": "explicit-peer-close-call",
+      "start": "0x145b02728",
+      "end_exclusive": "0x145b02784",
+      "file_offset": "0x5b01b28",
+      "byte_count": 92,
+      "sha256": "bb9553b0194ea356afa81d43eeaa1e993a1a09b51b03636b969315bc320676c9",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.119.1/coop-disconnect/explicit-peer-close-call.asm",
+        "sha256": "915a92dc3202371b07b16e07865f37f4002687a6df02c3b2630c8a0192ad3179"
+      }
+    },
+    {
+      "role": "server-peer-removal",
+      "start": "0x145b1e7d0",
+      "end_exclusive": "0x145b1e91c",
+      "file_offset": "0x5b1dbd0",
+      "byte_count": 332,
+      "sha256": "32c2030f44539e93cdc74717ca305c88efdcfac90589e36adbcdde33142211c9",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.119.1/coop-disconnect/server-peer-removal.asm",
+        "sha256": "ebfdd907d8d012005629dc2a56c045e73d35d6f532036cfe652fbed903bd998d"
+      }
+    },
+    {
+      "role": "guest-engine-admission-port",
+      "start": "0x145b1f470",
+      "end_exclusive": "0x145b1f4ec",
+      "file_offset": "0x5b1e870",
+      "byte_count": 124,
+      "sha256": "7642f7084015040d4ad1ce4ba0fe91d0527a40ba893f8ca53f4c62a3bc21947c",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.119.1/coop-disconnect/guest-engine-admission-port.asm",
+        "sha256": "f9378472af99d51bebac0eee7bdef890c04aa0c92623a2e60fe67a19b37b4949"
+      }
+    },
+    {
+      "role": "guest-trust-delivery",
+      "start": "0x145b1fbf8",
+      "end_exclusive": "0x145b1fc6a",
+      "file_offset": "0x5b1eff8",
+      "byte_count": 114,
+      "sha256": "f192166bb5d7b1e758e567863e34e6a248beebb371ac38cc96d8e567179919ec",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.119.1/coop-disconnect/guest-trust-delivery.asm",
+        "sha256": "1ceee256e67f213e9d6bb83e588d5047ecc6c4f0b40b095c188de8df4237bc62"
+      }
+    },
+    {
+      "role": "engine-packet-trust",
+      "start": "0x145ae46c0",
+      "end_exclusive": "0x145ae4f23",
+      "file_offset": "0x5ae3ac0",
+      "byte_count": 2147,
+      "sha256": "a51bccc203266b44a063f1c238a4b5c15931a4686630dec18e413e7e5085f66a",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.119.1/coop-disconnect/engine-packet-trust.asm",
+        "sha256": "67709685be6fb57f680978bdf5d5d080d3a0ef777a9374a19e6a10b7d99b9f4d"
+      }
+    },
+    {
+      "role": "exact-version-admission",
+      "start": "0x145b1d9de",
+      "end_exclusive": "0x145b1da18",
+      "file_offset": "0x5b1cdde",
+      "byte_count": 58,
+      "sha256": "9ada85d710a08eec28f5a47cc2bc4fb30c05f034fdae696e353ff6e7c0283953",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.119.1/coop-disconnect/exact-version-admission.asm",
+        "sha256": "d763a0e653c703a21f7dc951be69bfa26d2ce31cbae8705072168bb25c745c21"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "procedure": "0x145aad8b0",
+      "evidence_id": "ev_826a6e03410a33cf0c9b504571ea95a618f4ce1177d520defe0b9b55f492f9c6",
+      "analysis_profile_digest": "353c7ddeeb509da9388749e0b11be034526a8119da52a952fbfdb3bf48746ef0",
+      "result": {
+        "path": "runtime/coop-disconnect-0.119.1/lifecycle-query/results/411e5e7efdd100c08e6bccb35c8ab6bfff16cdb92bd3440e4b459835394026d8.json",
+        "sha256": "093f48ee8422a80d32596fe340d329530d17a5abf271b110184bd0dffd1358d3"
+      },
+      "plan": {
+        "path": "runtime/coop-disconnect-0.119.1/lifecycle-query/plan.json",
+        "sha256": "1500e3bb298f9c48614088ec73bc10d7fddbbb685f0f9b740107386a92fbb7b0"
+      },
+      "journal": {
+        "path": "runtime/coop-disconnect-0.119.1/lifecycle-query/journal.json",
+        "sha256": "fb377968bf88cfe36ce2c2f1002d40ea847a07d6252a7f50cc15264da32137f3"
+      },
+      "normalized_text_sha256": "7429899dfd281deae9b80c25ef26669ba8ee888ddc81413f2ede519bb9a33aa8"
+    },
+    {
+      "procedure": "0x145ab5130",
+      "evidence_id": "ev_e87aea48d00d7c44aaf96e6fade581ea583cec32eebc95107168fb065f444442",
+      "analysis_profile_digest": "353c7ddeeb509da9388749e0b11be034526a8119da52a952fbfdb3bf48746ef0",
+      "result": {
+        "path": "runtime/coop-disconnect-0.119.1/lifecycle-query/results/8b89365c8b4f0ac84b5919f223ad68221783dfcffc481e67d2932c5d20d6f53f.json",
+        "sha256": "aedf5a839345c22be8da0025a5afc5c9451785215bd5c58d077a314e4c6d2468"
+      },
+      "plan": {
+        "path": "runtime/coop-disconnect-0.119.1/lifecycle-query/plan.json",
+        "sha256": "1500e3bb298f9c48614088ec73bc10d7fddbbb685f0f9b740107386a92fbb7b0"
+      },
+      "journal": {
+        "path": "runtime/coop-disconnect-0.119.1/lifecycle-query/journal.json",
+        "sha256": "fb377968bf88cfe36ce2c2f1002d40ea847a07d6252a7f50cc15264da32137f3"
+      },
+      "normalized_text_sha256": "4e9447b986f3803c4248281e9c1f6bd01591ebd9b1b6bdc2990627c762fad275"
+    },
+    {
+      "procedure": "0x145ab5240",
+      "evidence_id": "ev_e61e5136fa222e65c1b6eb5e3e0ef8c1379378831036740fb2d7922f26ccc8bf",
+      "analysis_profile_digest": "353c7ddeeb509da9388749e0b11be034526a8119da52a952fbfdb3bf48746ef0",
+      "result": {
+        "path": "runtime/coop-disconnect-0.119.1/lifecycle-query/results/21622174d891482c0ae78b12a74e97fb9d1ca502486092271100178b0663d4ce.json",
+        "sha256": "135ff166fd7660a5a9952421e928aefa4b5875f70491750f6d5b7b06bc5c633b"
+      },
+      "plan": {
+        "path": "runtime/coop-disconnect-0.119.1/lifecycle-query/plan.json",
+        "sha256": "1500e3bb298f9c48614088ec73bc10d7fddbbb685f0f9b740107386a92fbb7b0"
+      },
+      "journal": {
+        "path": "runtime/coop-disconnect-0.119.1/lifecycle-query/journal.json",
+        "sha256": "fb377968bf88cfe36ce2c2f1002d40ea847a07d6252a7f50cc15264da32137f3"
+      },
+      "normalized_text_sha256": "c25df7307c169e55ac3c900bba0a5aa87988906871bb3347b66174a8d6a6a3b6"
+    },
+    {
+      "procedure": "0x145abf1d0",
+      "evidence_id": "ev_da37db7818284b98639089198476840198d47fdf2fb403674ac999e315424bc3",
+      "analysis_profile_digest": "353c7ddeeb509da9388749e0b11be034526a8119da52a952fbfdb3bf48746ef0",
+      "result": {
+        "path": "runtime/coop-disconnect-0.119.1/lifecycle-query/results/553628d7b0dbd7b1085a0c6d3dcdfea81846f72aa4f7edc4278cf584958c0404.json",
+        "sha256": "853a59b6c490cbad832a587fe0b45a97ff70cc34578d70c8905bb19d8c9a4b2b"
+      },
+      "plan": {
+        "path": "runtime/coop-disconnect-0.119.1/lifecycle-query/plan.json",
+        "sha256": "1500e3bb298f9c48614088ec73bc10d7fddbbb685f0f9b740107386a92fbb7b0"
+      },
+      "journal": {
+        "path": "runtime/coop-disconnect-0.119.1/lifecycle-query/journal.json",
+        "sha256": "fb377968bf88cfe36ce2c2f1002d40ea847a07d6252a7f50cc15264da32137f3"
+      },
+      "normalized_text_sha256": "1d90ddf20fdc4ab800aa7122396cbb125e6be991f31cfbb72f8c7000be8797e7"
+    },
+    {
+      "procedure": "0x145ae46c0",
+      "evidence_id": "ev_f0834a3d8b3123c9e7e9e02a176ba134c8a8678fbc76fa6cc53dcb53d61dad7c",
+      "analysis_profile_digest": "353c7ddeeb509da9388749e0b11be034526a8119da52a952fbfdb3bf48746ef0",
+      "result": {
+        "path": "runtime/coop-disconnect-0.119.1/lifecycle-query/results/de8cc1b12819b145f5eff7f11ac14d2ad89e7af77d6e62500d84273cad6cf990.json",
+        "sha256": "2c83301f09a4fa91199565a46483f60d01f0f0c595de7339d9fb4430de8ddd7d"
+      },
+      "plan": {
+        "path": "runtime/coop-disconnect-0.119.1/lifecycle-query/plan.json",
+        "sha256": "1500e3bb298f9c48614088ec73bc10d7fddbbb685f0f9b740107386a92fbb7b0"
+      },
+      "journal": {
+        "path": "runtime/coop-disconnect-0.119.1/lifecycle-query/journal.json",
+        "sha256": "fb377968bf88cfe36ce2c2f1002d40ea847a07d6252a7f50cc15264da32137f3"
+      },
+      "normalized_text_sha256": "8a2cdfc69022d7d5efaa61625003d0cc55d9b3a6d58bca6f3303f206403f8cd7"
+    },
+    {
+      "procedure": "0x145b1e960",
+      "evidence_id": "ev_c31a372fb9a6b8bf11b7f2f395627e8b21f53630998c512134b49e93912e4a83",
+      "analysis_profile_digest": "353c7ddeeb509da9388749e0b11be034526a8119da52a952fbfdb3bf48746ef0",
+      "result": {
+        "path": "runtime/coop-disconnect-0.119.1/consumer-query/results/80cf3aa0c5ad555c88acde8e01e72bc523f8ef1052772e9a886fa51a89bb189a.json",
+        "sha256": "ff9f0a13bea3d3a3ff4a371cdda8faab37b9df1ff73349a7dcae000a0af993d1"
+      },
+      "plan": {
+        "path": "runtime/coop-disconnect-0.119.1/consumer-query/plan.json",
+        "sha256": "f464b371a93e6d4ea17fe0cf13eb8795bc7f8e6474e26643209bc2dced2db613"
+      },
+      "journal": {
+        "path": "runtime/coop-disconnect-0.119.1/consumer-query/journal.json",
+        "sha256": "524ac0b46656f504e2c1ef41cf214cd6168d62e4d0cf29ee80ffb70acbdb7abf"
+      },
+      "normalized_text_sha256": "e06131c49f241ddbe13885e19019a5514cca6d95bff53039b3be11eeb19237a4"
+    },
+    {
+      "procedure": "0x145affa60",
+      "evidence_id": "ev_a585261b055da350337ed5542d618afd8bb9856f8facbdf20f39d2bca1e55f88",
+      "analysis_profile_digest": "353c7ddeeb509da9388749e0b11be034526a8119da52a952fbfdb3bf48746ef0",
+      "result": {
+        "path": "runtime/coop-disconnect-0.119.1/consumer-query/results/fab023986902a12254c688f38da3719a46f28603b005ac8ac0c20f7a2ed56be9.json",
+        "sha256": "8643dbdc9bcc215def6016c4510aba3aec76fbbb722cb410dc731ae3c69e57d2"
+      },
+      "plan": {
+        "path": "runtime/coop-disconnect-0.119.1/consumer-query/plan.json",
+        "sha256": "f464b371a93e6d4ea17fe0cf13eb8795bc7f8e6474e26643209bc2dced2db613"
+      },
+      "journal": {
+        "path": "runtime/coop-disconnect-0.119.1/consumer-query/journal.json",
+        "sha256": "524ac0b46656f504e2c1ef41cf214cd6168d62e4d0cf29ee80ffb70acbdb7abf"
+      },
+      "normalized_text_sha256": "e17ca49b1c8806c3c1cbd8815e8e700c4ff0b5521b3188a81a245e0c5b9d6c66"
+    },
+    {
+      "procedure": "0x145b1e7d0",
+      "evidence_id": "ev_e8835729efc93cb03357f797c9b744971534569cfc782eabc816c09a3177efd1",
+      "analysis_profile_digest": "353c7ddeeb509da9388749e0b11be034526a8119da52a952fbfdb3bf48746ef0",
+      "result": {
+        "path": "runtime/coop-disconnect-0.119.1/departure-query/results/9afbd30f2e80d7496ba0a5767201e017b7f95f8af5365fa6b59dda9451f5363b.json",
+        "sha256": "8b024ba21bc6020e534df265c963f1c696c19dbe5e55f78218ddf316aa6608b6"
+      },
+      "plan": {
+        "path": "runtime/coop-disconnect-0.119.1/departure-query/plan.json",
+        "sha256": "7e27e2b74ccecab8a58c17486db888d62545b0cc369ebce5d16eb6c32c5a911f"
+      },
+      "journal": {
+        "path": "runtime/coop-disconnect-0.119.1/departure-query/journal.json",
+        "sha256": "fbc0566b70de4fd5b6321223f43c8ffd2d0e2936caf3e913794d7162c9cc0a84"
+      },
+      "normalized_text_sha256": "7084e15fae1b82575dbbf92da42dc8ae04c658b736b5869bb2776e6de0b85d7b"
+    },
+    {
+      "procedure": "0x145b1d730",
+      "evidence_id": "ev_ab5fe57414becfcf5724ce38f23f2e05e2cdb8c1842fffc13ed789e4f61fcdb5",
+      "analysis_profile_digest": "353c7ddeeb509da9388749e0b11be034526a8119da52a952fbfdb3bf48746ef0",
+      "result": {
+        "path": "runtime/coop-disconnect-0.119.1/admission-query/results/b6f3e587172744d8fde49266aaeea584ba2325726c1821c81f1a4dabe3b6d961.json",
+        "sha256": "e9616eb6a99f276f3363dd91314064b9c15f03d056a498f6f2a642f240694ec5"
+      },
+      "plan": {
+        "path": "runtime/coop-disconnect-0.119.1/admission-query/plan.json",
+        "sha256": "7ce608c55b5a4643ddb4a25e3fb5b247ff70a8ed7c8e910c54243318314f4444"
+      },
+      "journal": {
+        "path": "runtime/coop-disconnect-0.119.1/admission-query/journal.json",
+        "sha256": "f9b509677ef136bd47d24c70b6f19dffd3224d0b4bafed6d8fa93845dedfd66a"
+      },
+      "normalized_text_sha256": "1a5e6955f81d2e207809883fb62096a31f6b0a2d00e034a79eafeb8a174e1c33"
+    }
+  ],
+  "data_ranges": [
+    {
+      "role": "bounded-chat-kind-table",
+      "start": "0x1472dda84",
+      "end_exclusive": "0x1472ddaa8",
+      "file_offset": "0x72dca84",
+      "byte_count": 36,
+      "sha256": "745a567d4b1fa5be213ef5939fe74366df9b7fafa9d7647a918b4ac0bc7bbfbb",
+      "bytes_hex": "a96c80fea96c80fe816e80fe816e80fe816e80fea96c80fe226e80fe816e80fe326e80fe",
+      "targets": [
+        "0x145ae472d",
+        "0x145ae472d",
+        "0x145ae4905",
+        "0x145ae4905",
+        "0x145ae4905",
+        "0x145ae472d",
+        "0x145ae48a6",
+        "0x145ae4905",
+        "0x145ae48b6"
+      ],
+      "guard": "opcode0x96, payload>=5, first byte<=8"
+    }
+  ],
+  "source_slices": [
+    {
+      "path": "crates/azeroth-survivors-re/src/coop_directory.rs",
+      "start_marker": "fn transport_closed(",
+      "end_marker": "fn initialize_identity(",
+      "sha256": "ed904d0c24d3c0a6ea63ae46d1cd4ffa2a49ff2893269c30487b489e4a7ab246",
+      "observation": "Primary closure drops secondary and calls service_lost; host transport loss is published immediately."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop/session.rs",
+      "start_marker": "    pub fn service_lost(",
+      "end_marker": "    pub fn take_service_commands(",
+      "sha256": "73e55fd338e43b26c3cc000458a78a024994395de62bc2a0b73006aa9541c6a6",
+      "observation": "service_alive and all relay endpoint liveness are cleared."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop/session.rs",
+      "start_marker": "    pub fn connected(",
+      "end_marker": "    pub fn tick(",
+      "sha256": "6c0268a42a35c01f4a86266c3fe8caba126de4074840378fd1047a71735bcc00",
+      "observation": "All service relay connected paths require service_alive."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+      "start_marker": "    fn guest_engine_packet(",
+      "end_marker": "    pub(crate) fn leave(",
+      "sha256": "d296773753c59f3d6b0eb64beb60277da001e5f2e39801e6a384c9813846a4b9",
+      "observation": "Accepted Engine opcode/body is unchanged; no trust transform."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop/client_state.rs",
+      "start_marker": "pub fn sanitize_text(",
+      "end_marker": "/// Tag12",
+      "sha256": "473c30c86829cf70918db2cbc885a869b5863145d1385eae77f1f60f39c94334",
+      "observation": "Separate tag11 resource sanitizer escapes four introducers; no Engine rewrite."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+      "start_marker": "pub const GAME_VERSION:",
+      "end_marker": "pub const MAX_PARTY_SIZE:",
+      "sha256": "d229c21ed8269497aedf1614c581b204fed7e6f89425ea698269daa43c55bbbd",
+      "observation": "Protocol5 matches; GAME_VERSION0.119.0 differs from current exact0.119.1 admission."
+    }
+  ],
+  "liveness_replay": {
+    "path": "docs/analysis/evidence/0.119.1/coop-disconnect/liveness-check.json",
+    "sha256": "d1a2cc4f9b37a2c45793dd10eef291f884edae5821754471dcce5a7ccae41918"
+  },
+  "replay_tool": {
+    "path": "docs/analysis/evidence/0.119.1/coop-disconnect/check-liveness.py",
+    "sha256": "cb8e52e6ff465f671ba8da89358500d491e30caf4afce08f173d7379b567e656"
+  },
+  "bounded_contract_system_ids": [
+    "custom-game-coop-trust",
+    "custom-game-server-party"
+  ],
+  "limits": [
+    "Original-instruction liveness replay uses a synthetic unpoisoned/uncontended mutex and transport-state callback seam.",
+    "Pseudocode retains type propagation/PIC warnings; exact assembly and bounded table bytes control observations.",
+    "No application compilation, compiling test, client/game/network/server run or controlled original/rebuilt comparison.",
+    "Correspondence is scoped to these contracts; no whole-module equivalence/parity.",
+    "Trust name/chat transform recovered in bounded scope; live reconstructed guest Engine consumer lacks it."
+  ]
+}

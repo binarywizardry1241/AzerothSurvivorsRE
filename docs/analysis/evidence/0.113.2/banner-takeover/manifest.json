@@ -1,0 +1,91 @@
+{
+  "target_version": "0.113.2",
+  "target_sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+  "target_executed": false,
+  "spans": [
+    {
+      "role": "banner-registry-read",
+      "start": "0x1404034ae",
+      "end_exclusive": "0x14040350b",
+      "file_offset": 4204718,
+      "sha256": "58784ef66a581e4970ad3ced2b74f78410ef9ba4732481c8021e495cc9841647",
+      "assembly": "banner-registry-read.asm"
+    },
+    {
+      "role": "banner-predicate",
+      "start": "0x1404034f7",
+      "end_exclusive": "0x14040350b",
+      "file_offset": 4204791,
+      "sha256": "4dfb280e1d7fd42dfbe80d2ff8d01a58668bc29a474e92e436634699a2bae548",
+      "assembly": "banner-registry-read.asm"
+    },
+    {
+      "role": "emote-packet",
+      "start": "0x1458c8a40",
+      "end_exclusive": "0x1458c8d8e",
+      "file_offset": 93093440,
+      "sha256": "6cad7d92192abae69115de57fd79dba5894a97373f110c03be03b13df0f49f00",
+      "assembly": "emote-packet.asm"
+    },
+    {
+      "role": "pack-publication",
+      "start": "0x14595154a",
+      "end_exclusive": "0x145951569",
+      "file_offset": 93653322,
+      "sha256": "a19f30ba384cbaab462ca1890c72fa45a053d5215b72d58c15d9b49f31accc3a",
+      "assembly": "pack-publication.asm"
+    },
+    {
+      "role": "wall-publication",
+      "start": "0x1459519fc",
+      "end_exclusive": "0x145951a1b",
+      "file_offset": 93654524,
+      "sha256": "740786676948d23b7594267b69f23ae78caff881788be2f0b8dab9063ad10b0c",
+      "assembly": "wall-publication.asm"
+    },
+    {
+      "role": "formation-delivery",
+      "start": "0x145952308",
+      "end_exclusive": "0x145952371",
+      "file_offset": 93656840,
+      "sha256": "25e32d23487c830cd66ebe45a49b85ce3876d3fef7c76b031fe0f771f4d27fbc",
+      "assembly": "formation-delivery.asm"
+    },
+    {
+      "role": "boss-entry-delivery",
+      "start": "0x14593d35c",
+      "end_exclusive": "0x14593d397",
+      "file_offset": 93570908,
+      "sha256": "f9ec0021f1975ec5e691f1394b05a4fca9707e8de815f05928979fef10265cb1",
+      "assembly": "boss-entry-delivery.asm"
+    }
+  ],
+  "api": {
+    "path": "docs/analysis/evidence/0.113.0/party-api/embedded-api.lua",
+    "sha256": "cc4bf0fc06b88830668bde8c605cf1a5cdb8251809a38539d888b1f80e559b86"
+  },
+  "cases": {
+    "native_predicate": 8,
+    "native_emote_packets": 30
+  },
+  "case_sha256": "b94da8486df6fde53268f2f8950b9efd29ca32b92091bc15076cf365e256be44",
+  "source_contracts": [
+    "crates/benilla-app/src/local_client.rs",
+    "crates/benilla-ui/src/script/cvars.rs",
+    "crates/azeroth-survivors-re/src/gameplay/run_hud/settings.rs",
+    "crates/azeroth-survivors-re/src/gameplay/notifications.rs",
+    "crates/azeroth-survivors-re/src/gameplay/client/events.rs",
+    "crates/benilla-app/src/ui_chat/frames.rs",
+    "crates/benilla-ui/src/script/object.rs"
+  ],
+  "attachments": {
+    "rea.json": "b3867b316b6c7171661ee2a3ef710ac7e4971f0fbb17d8a0efb8f10d53893d8e",
+    "framexml-contract.json": "a63e3cc6b7799e1d99ad66bf24b7b80460ee29a6f2fe575ae2b3f8d52f2dcac6"
+  },
+  "limits": [
+    "Synthetic native inputs; allocation, memcpy and Vec growth are host seams.",
+    "The Boolean replay starts after the shared trim call; trim-helper internals are outside this proof.",
+    "Source guards do not execute Rust, the actual FrameXML VM, Bevy schedules or a game.",
+    "Accepted CVar snapshot timing is repaired; reported persistent legacy/custom duplication causality and rendered parity remain unverified."
+  ]
+}

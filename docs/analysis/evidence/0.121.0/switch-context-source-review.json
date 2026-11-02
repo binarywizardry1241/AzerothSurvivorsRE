@@ -1,0 +1,2867 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "inputs": [
+    {
+      "path": "docs/analysis/evidence/0.121.0/computed-correspondence-frontier.json",
+      "sha256": "01836403f217662b6f6818e602e2411460969695f7202c18d08c505e44b15025"
+    },
+    {
+      "path": "runtime/analysis/objects/86/867afce4a92e61f5b1a6689d868161ec2c191a46800a1c5b89d832459a6a0393",
+      "sha256": "867afce4a92e61f5b1a6689d868161ec2c191a46800a1c5b89d832459a6a0393"
+    }
+  ],
+  "population_counts": {
+    "current_AS_context_tables": 45,
+    "current_applied_AS_context_tables": 31,
+    "current_proposal_only_AS_context_tables": 14,
+    "predecessor_AS_context_tables": 44,
+    "predecessor_applied_AS_context_tables": 30,
+    "current_unique_predecessor_AS_geometry_candidate": 22,
+    "current_ambiguous_predecessor_AS_geometry_candidates": 0,
+    "current_without_predecessor_AS_geometry_candidate": 23,
+    "current_without_any_predecessor_proposed_geometry_candidate": 22,
+    "predecessor_AS_tables_without_current_AS_geometry_candidate": 23,
+    "new_semantics_or_behavioral_equivalence_inferred": 0
+  },
+  "records": [
+    {
+      "selector": "AS-context-table:0x140067a68",
+      "native_candidate": {
+        "virtual_address": "0x1461a8c70",
+        "end_exclusive": "0x1461a8cd0",
+        "file_offset": "0x61a7a70",
+        "byte_count": 96,
+        "sha256": "9aef8692bbb42cb18e42e6e9b42c1525be3dcc2c5aa5e26883adcd73c229415f",
+        "dispatch_site": "0x140067a68"
+      },
+      "location": {
+        "site": "0x140067a68",
+        "table_address": "0x1461a8c70",
+        "native_owner": "0x140066d60",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue-app/src/screens/mod.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue-app/src/screens/mod.rs"
+        ]
+      },
+      "current_table_applied": true,
+      "predecessor_AS_geometry_candidates": [
+        "0x14027d288"
+      ],
+      "current_context_system_ids": [
+        "custom-app-screens-mod"
+      ],
+      "related_finding_ids": [],
+      "classification": "retained_guard_geometry_candidate_current_semantics_pending",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/menu.rs",
+          "sha256": "79ef862f816a38ddefab9af1f25b10c8f6a1866e30f14762fa115ed068298fc0"
+        }
+      ],
+      "conclusion": "Exact complete guard geometry supplies navigation only; retained source, classifications and historical recovery remain preserved. Current producer/state/dependency/consumer applicability remains pending.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false,
+      "related_existing_module_findings": [
+        9,
+        17,
+        22,
+        23,
+        41,
+        98,
+        128
+      ]
+    },
+    {
+      "selector": "AS-context-table:0x1400f9df2",
+      "native_candidate": {
+        "virtual_address": "0x1461b1f3c",
+        "end_exclusive": "0x1461b1f80",
+        "file_offset": "0x61b0d3c",
+        "byte_count": 68,
+        "sha256": "6af82ca6baeca938cc4a8b377bad1b7fdb19ffc2ec16c276110d674d6b0dbbc5",
+        "dispatch_site": "0x1400f9df2"
+      },
+      "location": {
+        "site": "0x1400f9df2",
+        "table_address": "0x1461b1f3c",
+        "native_owner": "0x1400f7380",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue-app/src/screens/codex.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue-app/src/screens/codex.rs"
+        ]
+      },
+      "current_table_applied": true,
+      "predecessor_AS_geometry_candidates": [
+        "0x1402e0d02"
+      ],
+      "current_context_system_ids": [
+        "custom-app-screens-codex"
+      ],
+      "related_finding_ids": [],
+      "classification": "retained_guard_geometry_candidate_current_semantics_pending",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/codex.rs",
+          "sha256": "159f37324f1a79bf99479b65df1b96f38bb9163dbbf4bde1e0400ea58bdd9043"
+        }
+      ],
+      "conclusion": "Exact complete guard geometry supplies navigation only; retained source, classifications and historical recovery remain preserved. Current producer/state/dependency/consumer applicability remains pending.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false,
+      "related_existing_module_findings": [
+        17,
+        34,
+        41,
+        73
+      ]
+    },
+    {
+      "selector": "AS-context-table:0x1400fa40a",
+      "native_candidate": {
+        "virtual_address": "0x1461b1fd0",
+        "end_exclusive": "0x1461b2020",
+        "file_offset": "0x61b0dd0",
+        "byte_count": 80,
+        "sha256": "9727eddad00ea60c77293b48aa5d22df4dabe71c795051a4acf1ce0e4d2f62c8",
+        "dispatch_site": "0x1400fa40a"
+      },
+      "location": {
+        "site": "0x1400fa40a",
+        "table_address": "0x1461b1fd0",
+        "native_owner": "0x1400f7380",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue-app/src/screens/codex.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue-app/src/screens/codex.rs"
+        ]
+      },
+      "current_table_applied": true,
+      "predecessor_AS_geometry_candidates": [
+        "0x1402e131a"
+      ],
+      "current_context_system_ids": [
+        "custom-app-screens-codex"
+      ],
+      "related_finding_ids": [],
+      "classification": "retained_guard_geometry_candidate_current_semantics_pending",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/codex.rs",
+          "sha256": "159f37324f1a79bf99479b65df1b96f38bb9163dbbf4bde1e0400ea58bdd9043"
+        }
+      ],
+      "conclusion": "Exact complete guard geometry supplies navigation only; retained source, classifications and historical recovery remain preserved. Current producer/state/dependency/consumer applicability remains pending.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false,
+      "related_existing_module_findings": [
+        17,
+        34,
+        41,
+        73
+      ]
+    },
+    {
+      "selector": "AS-context-table:0x1400fa4b2",
+      "native_candidate": {
+        "virtual_address": "0x1461b1f80",
+        "end_exclusive": "0x1461b1fd0",
+        "file_offset": "0x61b0d80",
+        "byte_count": 80,
+        "sha256": "dee78d40d5fb9f986cd8531f55fed994956a66616a7c75d84ce7487d3adf749b",
+        "dispatch_site": "0x1400fa4b2"
+      },
+      "location": {
+        "site": "0x1400fa4b2",
+        "table_address": "0x1461b1f80",
+        "native_owner": "0x1400f7380",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue-app/src/screens/codex.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue-app/src/screens/codex.rs"
+        ]
+      },
+      "current_table_applied": false,
+      "predecessor_AS_geometry_candidates": [
+        "0x1402e13c2"
+      ],
+      "current_context_system_ids": [
+        "custom-app-screens-codex"
+      ],
+      "related_finding_ids": [],
+      "classification": "retained_guard_geometry_candidate_current_semantics_pending",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/codex.rs",
+          "sha256": "159f37324f1a79bf99479b65df1b96f38bb9163dbbf4bde1e0400ea58bdd9043"
+        }
+      ],
+      "conclusion": "Exact complete guard geometry supplies navigation only; retained source, classifications and historical recovery remain preserved. Current producer/state/dependency/consumer applicability remains pending.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false,
+      "related_existing_module_findings": [
+        17,
+        34,
+        41,
+        73
+      ]
+    },
+    {
+      "selector": "AS-context-table:0x14010654b",
+      "native_candidate": {
+        "virtual_address": "0x1461b2050",
+        "end_exclusive": "0x1461b2064",
+        "file_offset": "0x61b0e50",
+        "byte_count": 20,
+        "sha256": "2875ff9d9958cc154d5e254ba7c61559921f6ddea2800a2050f6deed45845253",
+        "dispatch_site": "0x14010654b"
+      },
+      "location": {
+        "site": "0x14010654b",
+        "table_address": "0x1461b2050",
+        "native_owner": "0x140103710",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue-app/src/screens/armory.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue-app/src/screens/armory.rs"
+        ]
+      },
+      "current_table_applied": true,
+      "predecessor_AS_geometry_candidates": [
+        "0x1402ed5eb"
+      ],
+      "current_context_system_ids": [
+        "custom-app-screens-armory"
+      ],
+      "related_finding_ids": [],
+      "classification": "retained_guard_geometry_candidate_current_semantics_pending",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/armory.rs",
+          "sha256": "354b98c8949f3f8c3ef7f4b7e32f3b87c33c6c9eff766fba84a06e3965edfb63"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+          "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+        }
+      ],
+      "conclusion": "Exact complete guard geometry supplies navigation only; retained source, classifications and historical recovery remain preserved. Current producer/state/dependency/consumer applicability remains pending.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false,
+      "related_existing_module_findings": [
+        4,
+        17,
+        41,
+        50,
+        51,
+        52,
+        116,
+        117,
+        120,
+        123,
+        156,
+        159,
+        188,
+        191
+      ]
+    },
+    {
+      "selector": "AS-context-table:0x140109b49",
+      "native_candidate": {
+        "virtual_address": "0x1461b2064",
+        "end_exclusive": "0x1461b2078",
+        "file_offset": "0x61b0e64",
+        "byte_count": 20,
+        "sha256": "5a8d5ddbb338b675b93dd2f42bcd8bc5bf26d1fc44b653deabd56c6024da4b7f",
+        "dispatch_site": "0x140109b49"
+      },
+      "location": {
+        "site": "0x140109b49",
+        "table_address": "0x1461b2064",
+        "native_owner": "0x1401098c0",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue-app/src/screens/armory.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue-app/src/screens/armory.rs"
+        ]
+      },
+      "current_table_applied": true,
+      "predecessor_AS_geometry_candidates": [
+        "0x1402ed5eb"
+      ],
+      "current_context_system_ids": [
+        "custom-app-screens-armory"
+      ],
+      "related_finding_ids": [],
+      "classification": "retained_guard_geometry_candidate_current_semantics_pending",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/armory.rs",
+          "sha256": "354b98c8949f3f8c3ef7f4b7e32f3b87c33c6c9eff766fba84a06e3965edfb63"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+          "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+        }
+      ],
+      "conclusion": "Exact complete guard geometry supplies navigation only; retained source, classifications and historical recovery remain preserved. Current producer/state/dependency/consumer applicability remains pending.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false,
+      "related_existing_module_findings": [
+        4,
+        17,
+        41,
+        50,
+        51,
+        52,
+        116,
+        117,
+        120,
+        123,
+        156,
+        159,
+        188,
+        191
+      ]
+    },
+    {
+      "selector": "AS-context-table:0x14011291d",
+      "native_candidate": {
+        "virtual_address": "0x1461b2078",
+        "end_exclusive": "0x1461b208c",
+        "file_offset": "0x61b0e78",
+        "byte_count": 20,
+        "sha256": "5e493b0cd0e21182bbb052fe8399c60e73f90f7587cf2d475cd3fc25ba3a23dd",
+        "dispatch_site": "0x14011291d"
+      },
+      "location": {
+        "site": "0x14011291d",
+        "table_address": "0x1461b2078",
+        "native_owner": "0x1401117b0",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue-app/src/screens/armory.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue-app/src/screens/armory.rs"
+        ]
+      },
+      "current_table_applied": true,
+      "predecessor_AS_geometry_candidates": [
+        "0x1402f619f"
+      ],
+      "current_context_system_ids": [
+        "custom-app-screens-armory"
+      ],
+      "related_finding_ids": [],
+      "classification": "retained_guard_geometry_candidate_current_semantics_pending",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/armory.rs",
+          "sha256": "354b98c8949f3f8c3ef7f4b7e32f3b87c33c6c9eff766fba84a06e3965edfb63"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+          "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+        }
+      ],
+      "conclusion": "Exact complete guard geometry supplies navigation only; retained source, classifications and historical recovery remain preserved. Current producer/state/dependency/consumer applicability remains pending.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false,
+      "related_existing_module_findings": [
+        4,
+        17,
+        41,
+        50,
+        51,
+        52,
+        116,
+        117,
+        120,
+        123,
+        156,
+        159,
+        188,
+        191
+      ]
+    },
+    {
+      "selector": "AS-context-table:0x140117430",
+      "native_candidate": {
+        "virtual_address": "0x1461b20b8",
+        "end_exclusive": "0x1461b20cc",
+        "file_offset": "0x61b0eb8",
+        "byte_count": 20,
+        "sha256": "3e2f93780c8ea91cc6d59805ee99fb569e6da4df1bac08b485317336762b966b",
+        "dispatch_site": "0x140117430"
+      },
+      "location": {
+        "site": "0x140117430",
+        "table_address": "0x1461b20b8",
+        "native_owner": "0x140117340",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue-app/src/screens/armory.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue-app/src/screens/armory.rs"
+        ]
+      },
+      "current_table_applied": true,
+      "predecessor_AS_geometry_candidates": [],
+      "current_context_system_ids": [
+        "custom-app-screens-armory"
+      ],
+      "related_finding_ids": [
+        116
+      ],
+      "classification": "current_dependency_correspondence_pending_not_new_behavior_from_geometry",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/armory.rs",
+          "sha256": "354b98c8949f3f8c3ef7f4b7e32f3b87c33c6c9eff766fba84a06e3965edfb63"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+          "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+        }
+      ],
+      "conclusion": "Existing armory/catalog/effect/tooltip source is retained. Current numeric/string dispatch geometry differs from prior tables; no independent action, field meaning or source omission is proved by the change. Current bounded contract/source dependencies remain pending under the existing module applicability question.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false
+    },
+    {
+      "selector": "AS-context-table:0x140117fb1",
+      "native_candidate": {
+        "virtual_address": "0x1461b20cc",
+        "end_exclusive": "0x1461b20e0",
+        "file_offset": "0x61b0ecc",
+        "byte_count": 20,
+        "sha256": "d99ffad44b2bb2f3a1a675d10bce0c0cc8b14b1d2db3ee87d98a810e72268a85",
+        "dispatch_site": "0x140117fb1"
+      },
+      "location": {
+        "site": "0x140117fb1",
+        "table_address": "0x1461b20cc",
+        "native_owner": "0x140117340",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue-app/src/screens/armory.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue-app/src/screens/armory.rs"
+        ]
+      },
+      "current_table_applied": true,
+      "predecessor_AS_geometry_candidates": [],
+      "current_context_system_ids": [
+        "custom-app-screens-armory"
+      ],
+      "related_finding_ids": [
+        116
+      ],
+      "classification": "current_dependency_correspondence_pending_not_new_behavior_from_geometry",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/armory.rs",
+          "sha256": "354b98c8949f3f8c3ef7f4b7e32f3b87c33c6c9eff766fba84a06e3965edfb63"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+          "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+        }
+      ],
+      "conclusion": "Existing armory/catalog/effect/tooltip source is retained. Current numeric/string dispatch geometry differs from prior tables; no independent action, field meaning or source omission is proved by the change. Current bounded contract/source dependencies remain pending under the existing module applicability question.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false
+    },
+    {
+      "selector": "AS-context-table:0x14011b06c",
+      "native_candidate": {
+        "virtual_address": "0x1461b20e0",
+        "end_exclusive": "0x1461b20f0",
+        "file_offset": "0x61b0ee0",
+        "byte_count": 16,
+        "sha256": "885f5d274015f1b56d7e0181e51156ce36adf177175f74ad5451c961a5b6cc0d",
+        "dispatch_site": "0x14011b06c"
+      },
+      "location": {
+        "site": "0x14011b06c",
+        "table_address": "0x1461b20e0",
+        "native_owner": "0x14011a0b0",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue-app/src/screens/armory.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue-app/src/screens/armory.rs"
+        ]
+      },
+      "current_table_applied": true,
+      "predecessor_AS_geometry_candidates": [],
+      "current_context_system_ids": [
+        "custom-app-screens-armory"
+      ],
+      "related_finding_ids": [
+        116
+      ],
+      "classification": "current_dependency_correspondence_pending_not_new_behavior_from_geometry",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/armory.rs",
+          "sha256": "354b98c8949f3f8c3ef7f4b7e32f3b87c33c6c9eff766fba84a06e3965edfb63"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+          "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+        }
+      ],
+      "conclusion": "Existing armory/catalog/effect/tooltip source is retained. Current numeric/string dispatch geometry differs from prior tables; no independent action, field meaning or source omission is proved by the change. Current bounded contract/source dependencies remain pending under the existing module applicability question.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false
+    },
+    {
+      "selector": "AS-context-table:0x14012ddf3",
+      "native_candidate": {
+        "virtual_address": "0x1461b20f0",
+        "end_exclusive": "0x1461b2104",
+        "file_offset": "0x61b0ef0",
+        "byte_count": 20,
+        "sha256": "c9576e18a09324b4d753d292a05041644d60265cb8cc5ce7eca89e76a3a1cb71",
+        "dispatch_site": "0x14012ddf3"
+      },
+      "location": {
+        "site": "0x14012ddf3",
+        "table_address": "0x1461b20f0",
+        "native_owner": "0x14012dbd0",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue-app/src/screens/picker.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue-app/src/screens/picker.rs"
+        ]
+      },
+      "current_table_applied": true,
+      "predecessor_AS_geometry_candidates": [
+        "0x14030e4a3"
+      ],
+      "current_context_system_ids": [
+        "custom-app-screens-picker"
+      ],
+      "related_finding_ids": [],
+      "classification": "retained_guard_geometry_candidate_current_semantics_pending",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/picker.rs",
+          "sha256": "8c08c269fda881414cf2c5a4e64bf8e38250c7584477d5e5555e41f37990d0b4"
+        }
+      ],
+      "conclusion": "Exact complete guard geometry supplies navigation only; retained source, classifications and historical recovery remain preserved. Current producer/state/dependency/consumer applicability remains pending.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false,
+      "related_existing_module_findings": [
+        9,
+        15,
+        17,
+        41,
+        52,
+        63,
+        77
+      ]
+    },
+    {
+      "selector": "AS-context-table:0x145aa794c",
+      "native_candidate": {
+        "virtual_address": "0x146fc916c",
+        "end_exclusive": "0x146fc9188",
+        "file_offset": "0x6fc7f6c",
+        "byte_count": 28,
+        "sha256": "9f307b1dc2b369f3250df085173e3ae16ee12d9770af88ce85eb14e7dabee905",
+        "dispatch_site": "0x145aa794c"
+      },
+      "location": {
+        "site": "0x145aa794c",
+        "table_address": "0x146fc916c",
+        "native_owner": "0x145aa6a10",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/save.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/save.rs"
+        ]
+      },
+      "current_table_applied": true,
+      "predecessor_AS_geometry_candidates": [],
+      "current_context_system_ids": [
+        "custom-game-save"
+      ],
+      "related_finding_ids": [
+        146
+      ],
+      "classification": "current_dependency_correspondence_pending_not_new_behavior_from_geometry",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/save.rs",
+          "sha256": "b1c9e74cf57881980eee8f5201676895b0d1eae49445a0bd3b3fec3250ec06d4"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+          "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/progress.rs",
+          "sha256": "0872cc06fd14446ff7bd2b822790ce9e5de7a9d2d4f41762ea9d2315c83c97de"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/schema.rs",
+          "sha256": "7553d811ed38eef82563d90faed277379e05b00b7445658cc4f85ad0932e2855"
+        }
+      ],
+      "conclusion": "Existing typed save parser/serializer and gear/progression families are retained. Length-conditioned dispatch geometry differs; no new save record or removed behavior is inferred. Recover actual field keys, producers and consumers against the existing save contract.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false
+    },
+    {
+      "selector": "AS-context-table:0x145aa9547",
+      "native_candidate": {
+        "virtual_address": "0x146fc9188",
+        "end_exclusive": "0x146fc91a0",
+        "file_offset": "0x6fc7f88",
+        "byte_count": 24,
+        "sha256": "07a37ceb3311b52b6f77dd15db60b1b282d55232e2859e8cda82e0430f6615d9",
+        "dispatch_site": "0x145aa9547"
+      },
+      "location": {
+        "site": "0x145aa9547",
+        "table_address": "0x146fc9188",
+        "native_owner": "0x145aa6a10",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/save.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/save.rs"
+        ]
+      },
+      "current_table_applied": true,
+      "predecessor_AS_geometry_candidates": [],
+      "current_context_system_ids": [
+        "custom-game-save"
+      ],
+      "related_finding_ids": [
+        146
+      ],
+      "classification": "current_dependency_correspondence_pending_not_new_behavior_from_geometry",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/save.rs",
+          "sha256": "b1c9e74cf57881980eee8f5201676895b0d1eae49445a0bd3b3fec3250ec06d4"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+          "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/progress.rs",
+          "sha256": "0872cc06fd14446ff7bd2b822790ce9e5de7a9d2d4f41762ea9d2315c83c97de"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/schema.rs",
+          "sha256": "7553d811ed38eef82563d90faed277379e05b00b7445658cc4f85ad0932e2855"
+        }
+      ],
+      "conclusion": "Existing typed save parser/serializer and gear/progression families are retained. Length-conditioned dispatch geometry differs; no new save record or removed behavior is inferred. Recover actual field keys, producers and consumers against the existing save contract.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false
+    },
+    {
+      "selector": "AS-context-table:0x145b00c93",
+      "native_candidate": {
+        "virtual_address": "0x147662664",
+        "end_exclusive": "0x147662684",
+        "file_offset": "0x7661464",
+        "byte_count": 32,
+        "sha256": "fedbc8048f8a50ff0e95a2d5293f32c49cf4fd3241587342b3227efc020df768",
+        "dispatch_site": "0x145b00c93"
+      },
+      "location": {
+        "site": "0x145b00c93",
+        "table_address": "0x147662664",
+        "native_owner": "0x145b00c50",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/gear.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/gear.rs"
+        ]
+      },
+      "current_table_applied": true,
+      "predecessor_AS_geometry_candidates": [
+        "0x145b04a13"
+      ],
+      "current_context_system_ids": [
+        "custom-game-gear"
+      ],
+      "related_finding_ids": [],
+      "classification": "retained_guard_geometry_candidate_current_semantics_pending",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+          "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+        }
+      ],
+      "conclusion": "Exact complete guard geometry supplies navigation only; retained source, classifications and historical recovery remain preserved. Current producer/state/dependency/consumer applicability remains pending.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false,
+      "related_existing_module_findings": [
+        4,
+        17,
+        19,
+        34,
+        41,
+        55,
+        92,
+        116,
+        161,
+        162,
+        192,
+        193
+      ]
+    },
+    {
+      "selector": "AS-context-table:0x145b019b6",
+      "native_candidate": {
+        "virtual_address": "0x147662950",
+        "end_exclusive": "0x147662b18",
+        "file_offset": "0x7661750",
+        "byte_count": 456,
+        "sha256": "ab760a502ddc732715b163d5380fb0299af64a73370314dd960b9aa3e1b1748b",
+        "dispatch_site": "0x145b019b6"
+      },
+      "location": {
+        "site": "0x145b019b6",
+        "table_address": "0x147662950",
+        "native_owner": "0x145b01970",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/gear.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/gear.rs"
+        ]
+      },
+      "current_table_applied": true,
+      "predecessor_AS_geometry_candidates": [
+        "0x145b05736"
+      ],
+      "current_context_system_ids": [
+        "custom-game-gear"
+      ],
+      "related_finding_ids": [],
+      "classification": "retained_guard_geometry_candidate_current_semantics_pending",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+          "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+        }
+      ],
+      "conclusion": "Exact complete guard geometry supplies navigation only; retained source, classifications and historical recovery remain preserved. Current producer/state/dependency/consumer applicability remains pending.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false,
+      "related_existing_module_findings": [
+        4,
+        17,
+        19,
+        34,
+        41,
+        55,
+        92,
+        116,
+        161,
+        162,
+        192,
+        193
+      ]
+    },
+    {
+      "selector": "AS-context-table:0x145b0273c",
+      "native_candidate": {
+        "virtual_address": "0x147662b18",
+        "end_exclusive": "0x147662b34",
+        "file_offset": "0x7661918",
+        "byte_count": 28,
+        "sha256": "b29d4286ed139546e3013cbb8b790d4ac2168dc9ed11f0caafa833abaafd792b",
+        "dispatch_site": "0x145b0273c"
+      },
+      "location": {
+        "site": "0x145b0273c",
+        "table_address": "0x147662b18",
+        "native_owner": "0x145b01970",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/gear.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/gear.rs"
+        ]
+      },
+      "current_table_applied": true,
+      "predecessor_AS_geometry_candidates": [
+        "0x145b064bc"
+      ],
+      "current_context_system_ids": [
+        "custom-game-gear"
+      ],
+      "related_finding_ids": [],
+      "classification": "retained_guard_geometry_candidate_current_semantics_pending",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+          "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+        }
+      ],
+      "conclusion": "Exact complete guard geometry supplies navigation only; retained source, classifications and historical recovery remain preserved. Current producer/state/dependency/consumer applicability remains pending.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false,
+      "related_existing_module_findings": [
+        4,
+        17,
+        19,
+        34,
+        41,
+        55,
+        92,
+        116,
+        161,
+        162,
+        192,
+        193
+      ]
+    },
+    {
+      "selector": "AS-context-table:0x145b0f5fe",
+      "native_candidate": {
+        "virtual_address": "0x147664350",
+        "end_exclusive": "0x147664420",
+        "file_offset": "0x7663150",
+        "byte_count": 208,
+        "sha256": "c122d760e97686d92916bddade997b33476481b5e92e967d64f5009ed13ac778",
+        "dispatch_site": "0x145b0f5fe"
+      },
+      "location": {
+        "site": "0x145b0f5fe",
+        "table_address": "0x147664350",
+        "native_owner": "0x145b0f580",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ]
+      },
+      "current_table_applied": true,
+      "predecessor_AS_geometry_candidates": [],
+      "current_context_system_ids": [
+        "custom-game-gear",
+        "custom-game-server-party"
+      ],
+      "related_finding_ids": [
+        64,
+        65,
+        201
+      ],
+      "classification": "current_dependency_correspondence_pending_not_new_behavior_from_geometry",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+          "sha256": "64da67ef3e6a3f5db24de38a8e9364da10b1ae785eaa166f63268c507d148cb6"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+          "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+        }
+      ],
+      "conclusion": "This table remains within the current shared command/query body. The source opcode/entry reader and finite metadata consumers retain their prior contracts. Compiler geometry differs; only#247 establishes a selected changed entry. Recover current dispatch/field applicability before changing source.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false
+    },
+    {
+      "selector": "AS-context-table:0x145b0f638",
+      "native_candidate": {
+        "virtual_address": "0x1476642f8",
+        "end_exclusive": "0x147664350",
+        "file_offset": "0x76630f8",
+        "byte_count": 88,
+        "sha256": "27d83347c77a455f404fd89342aa8458022a2da8a20142f9ce4b0390d8fabc83",
+        "dispatch_site": "0x145b0f638"
+      },
+      "location": {
+        "site": "0x145b0f638",
+        "table_address": "0x1476642f8",
+        "native_owner": "0x145b0f580",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ]
+      },
+      "current_table_applied": true,
+      "predecessor_AS_geometry_candidates": [],
+      "current_context_system_ids": [
+        "custom-game-gear",
+        "custom-game-server-party"
+      ],
+      "related_finding_ids": [
+        64,
+        65,
+        201
+      ],
+      "classification": "current_dependency_correspondence_pending_not_new_behavior_from_geometry",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+          "sha256": "64da67ef3e6a3f5db24de38a8e9364da10b1ae785eaa166f63268c507d148cb6"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+          "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+        }
+      ],
+      "conclusion": "This table remains within the current shared command/query body. The source opcode/entry reader and finite metadata consumers retain their prior contracts. Compiler geometry differs; only#247 establishes a selected changed entry. Recover current dispatch/field applicability before changing source.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false
+    },
+    {
+      "selector": "AS-context-table:0x145b101b4",
+      "native_candidate": {
+        "virtual_address": "0x147664420",
+        "end_exclusive": "0x1476645e4",
+        "file_offset": "0x7663220",
+        "byte_count": 452,
+        "sha256": "aa678e2843c0f5902d7c1d9aa385106da1d8f36d747e8b12b92d8c594e900bdd",
+        "dispatch_site": "0x145b101b4"
+      },
+      "location": {
+        "site": "0x145b101b4",
+        "table_address": "0x147664420",
+        "native_owner": "0x145b0f580",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ]
+      },
+      "current_table_applied": false,
+      "predecessor_AS_geometry_candidates": [],
+      "current_context_system_ids": [
+        "custom-game-gear",
+        "custom-game-server-party"
+      ],
+      "related_finding_ids": [
+        64,
+        65,
+        247
+      ],
+      "classification": "changed_entry_domain_and_new9612_metadata_proof",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+          "sha256": "64da67ef3e6a3f5db24de38a8e9364da10b1ae785eaa166f63268c507d148cb6"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+          "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+        }
+      ],
+      "conclusion": "Current opcode0x60/entry9612 uses added index112 of113cells, proved under#247. Existing first CreatureQuery question identity retained; no wider table/current-template equivalence is inferred.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false
+    },
+    {
+      "selector": "AS-context-table:0x145b1169b",
+      "native_candidate": {
+        "virtual_address": "0x1476645e4",
+        "end_exclusive": "0x14766475c",
+        "file_offset": "0x76633e4",
+        "byte_count": 376,
+        "sha256": "9623907f0e29b57a5cb3b4461136225bc393c15f8ed55b623e1391e355c33cf3",
+        "dispatch_site": "0x145b1169b"
+      },
+      "location": {
+        "site": "0x145b1169b",
+        "table_address": "0x1476645e4",
+        "native_owner": "0x145b0f580",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ]
+      },
+      "current_table_applied": false,
+      "predecessor_AS_geometry_candidates": [],
+      "current_context_system_ids": [
+        "custom-game-gear",
+        "custom-game-server-party"
+      ],
+      "related_finding_ids": [
+        64,
+        65,
+        201
+      ],
+      "classification": "current_dependency_correspondence_pending_not_new_behavior_from_geometry",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+          "sha256": "64da67ef3e6a3f5db24de38a8e9364da10b1ae785eaa166f63268c507d148cb6"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+          "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+        }
+      ],
+      "conclusion": "This table remains within the current shared command/query body. The source opcode/entry reader and finite metadata consumers retain their prior contracts. Compiler geometry differs; only#247 establishes a selected changed entry. Recover current dispatch/field applicability before changing source.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false
+    },
+    {
+      "selector": "AS-context-table:0x145b1171e",
+      "native_candidate": {
+        "virtual_address": "0x14766475c",
+        "end_exclusive": "0x1476647b4",
+        "file_offset": "0x766355c",
+        "byte_count": 88,
+        "sha256": "522e9e7c672d04f392139daf6363f96847a40a57992d686deb14824ad8b22f14",
+        "dispatch_site": "0x145b1171e"
+      },
+      "location": {
+        "site": "0x145b1171e",
+        "table_address": "0x14766475c",
+        "native_owner": "0x145b0f580",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ]
+      },
+      "current_table_applied": false,
+      "predecessor_AS_geometry_candidates": [
+        "0x145b13d31"
+      ],
+      "current_context_system_ids": [
+        "custom-game-gear",
+        "custom-game-server-party"
+      ],
+      "related_finding_ids": [],
+      "classification": "retained_guard_geometry_candidate_current_semantics_pending",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+          "sha256": "64da67ef3e6a3f5db24de38a8e9364da10b1ae785eaa166f63268c507d148cb6"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+          "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+        }
+      ],
+      "conclusion": "Exact complete guard geometry supplies navigation only; retained source, classifications and historical recovery remain preserved. Current producer/state/dependency/consumer applicability remains pending.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false,
+      "related_existing_module_findings": [
+        4,
+        17,
+        19,
+        34,
+        41,
+        55,
+        63,
+        64,
+        65,
+        92,
+        101,
+        116,
+        118,
+        154,
+        157,
+        161,
+        162,
+        163,
+        164,
+        166,
+        180,
+        183,
+        184,
+        185,
+        186,
+        188,
+        192,
+        193,
+        201,
+        204,
+        209,
+        247
+      ]
+    },
+    {
+      "selector": "AS-context-table:0x145b118d2",
+      "native_candidate": {
+        "virtual_address": "0x147664930",
+        "end_exclusive": "0x147664ac4",
+        "file_offset": "0x7663730",
+        "byte_count": 404,
+        "sha256": "bff69e62fdf35ddde67ff0f9ddeaac47a4bac85d4a74309656c5cb107c70aa05",
+        "dispatch_site": "0x145b118d2"
+      },
+      "location": {
+        "site": "0x145b118d2",
+        "table_address": "0x147664930",
+        "native_owner": "0x145b0f580",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ]
+      },
+      "current_table_applied": false,
+      "predecessor_AS_geometry_candidates": [],
+      "current_context_system_ids": [
+        "custom-game-gear",
+        "custom-game-server-party"
+      ],
+      "related_finding_ids": [
+        64,
+        65,
+        201
+      ],
+      "classification": "current_dependency_correspondence_pending_not_new_behavior_from_geometry",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+          "sha256": "64da67ef3e6a3f5db24de38a8e9364da10b1ae785eaa166f63268c507d148cb6"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+          "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+        }
+      ],
+      "conclusion": "This table remains within the current shared command/query body. The source opcode/entry reader and finite metadata consumers retain their prior contracts. Compiler geometry differs; only#247 establishes a selected changed entry. Recover current dispatch/field applicability before changing source.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false
+    },
+    {
+      "selector": "AS-context-table:0x145b11a1c",
+      "native_candidate": {
+        "virtual_address": "0x147664ac4",
+        "end_exclusive": "0x147664c40",
+        "file_offset": "0x76638c4",
+        "byte_count": 380,
+        "sha256": "f5763af21e9d60b1917ab79ca97aefec7af28f28acc46bd2a67c115daa4c5c03",
+        "dispatch_site": "0x145b11a1c"
+      },
+      "location": {
+        "site": "0x145b11a1c",
+        "table_address": "0x147664ac4",
+        "native_owner": "0x145b0f580",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ]
+      },
+      "current_table_applied": false,
+      "predecessor_AS_geometry_candidates": [],
+      "current_context_system_ids": [
+        "custom-game-gear",
+        "custom-game-server-party"
+      ],
+      "related_finding_ids": [
+        64,
+        65,
+        201
+      ],
+      "classification": "current_dependency_correspondence_pending_not_new_behavior_from_geometry",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+          "sha256": "64da67ef3e6a3f5db24de38a8e9364da10b1ae785eaa166f63268c507d148cb6"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+          "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+        }
+      ],
+      "conclusion": "This table remains within the current shared command/query body. The source opcode/entry reader and finite metadata consumers retain their prior contracts. Compiler geometry differs; only#247 establishes a selected changed entry. Recover current dispatch/field applicability before changing source.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false
+    },
+    {
+      "selector": "AS-context-table:0x145b11a45",
+      "native_candidate": {
+        "virtual_address": "0x1476647b4",
+        "end_exclusive": "0x147664930",
+        "file_offset": "0x76635b4",
+        "byte_count": 380,
+        "sha256": "4703afb6ff9c5b0acc3235221ff0f13f1035563b39bce5ec7fb08ec150da2a6f",
+        "dispatch_site": "0x145b11a45"
+      },
+      "location": {
+        "site": "0x145b11a45",
+        "table_address": "0x1476647b4",
+        "native_owner": "0x145b0f580",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ]
+      },
+      "current_table_applied": false,
+      "predecessor_AS_geometry_candidates": [],
+      "current_context_system_ids": [
+        "custom-game-gear",
+        "custom-game-server-party"
+      ],
+      "related_finding_ids": [
+        64,
+        65,
+        201
+      ],
+      "classification": "current_dependency_correspondence_pending_not_new_behavior_from_geometry",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+          "sha256": "64da67ef3e6a3f5db24de38a8e9364da10b1ae785eaa166f63268c507d148cb6"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+          "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+        }
+      ],
+      "conclusion": "This table remains within the current shared command/query body. The source opcode/entry reader and finite metadata consumers retain their prior contracts. Compiler geometry differs; only#247 establishes a selected changed entry. Recover current dispatch/field applicability before changing source.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false
+    },
+    {
+      "selector": "AS-context-table:0x145b11a71",
+      "native_candidate": {
+        "virtual_address": "0x147664c40",
+        "end_exclusive": "0x147664c70",
+        "file_offset": "0x7663a40",
+        "byte_count": 48,
+        "sha256": "d3b9df5c3b1197b74568473c37869ce40dcec4834d613a86d075a3515d866608",
+        "dispatch_site": "0x145b11a71"
+      },
+      "location": {
+        "site": "0x145b11a71",
+        "table_address": "0x147664c40",
+        "native_owner": "0x145b0f580",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ]
+      },
+      "current_table_applied": false,
+      "predecessor_AS_geometry_candidates": [],
+      "current_context_system_ids": [
+        "custom-game-gear",
+        "custom-game-server-party"
+      ],
+      "related_finding_ids": [
+        64,
+        65,
+        201
+      ],
+      "classification": "current_dependency_correspondence_pending_not_new_behavior_from_geometry",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+          "sha256": "64da67ef3e6a3f5db24de38a8e9364da10b1ae785eaa166f63268c507d148cb6"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+          "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+        }
+      ],
+      "conclusion": "This table remains within the current shared command/query body. The source opcode/entry reader and finite metadata consumers retain their prior contracts. Compiler geometry differs; only#247 establishes a selected changed entry. Recover current dispatch/field applicability before changing source.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false
+    },
+    {
+      "selector": "AS-context-table:0x145b11d6c",
+      "native_candidate": {
+        "virtual_address": "0x147664c98",
+        "end_exclusive": "0x147664fa4",
+        "file_offset": "0x7663a98",
+        "byte_count": 780,
+        "sha256": "06766776f885a8796d61a477c128a714a58dec61d074e7a6e216b2b9f0245508",
+        "dispatch_site": "0x145b11d6c"
+      },
+      "location": {
+        "site": "0x145b11d6c",
+        "table_address": "0x147664c98",
+        "native_owner": "0x145b0f580",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ]
+      },
+      "current_table_applied": false,
+      "predecessor_AS_geometry_candidates": [
+        "0x145b1437f"
+      ],
+      "current_context_system_ids": [
+        "custom-game-gear",
+        "custom-game-server-party"
+      ],
+      "related_finding_ids": [],
+      "classification": "retained_guard_geometry_candidate_current_semantics_pending",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+          "sha256": "64da67ef3e6a3f5db24de38a8e9364da10b1ae785eaa166f63268c507d148cb6"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+          "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+        }
+      ],
+      "conclusion": "Exact complete guard geometry supplies navigation only; retained source, classifications and historical recovery remain preserved. Current producer/state/dependency/consumer applicability remains pending.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false,
+      "related_existing_module_findings": [
+        4,
+        17,
+        19,
+        34,
+        41,
+        55,
+        63,
+        64,
+        65,
+        92,
+        101,
+        116,
+        118,
+        154,
+        157,
+        161,
+        162,
+        163,
+        164,
+        166,
+        180,
+        183,
+        184,
+        185,
+        186,
+        188,
+        192,
+        193,
+        201,
+        204,
+        209,
+        247
+      ]
+    },
+    {
+      "selector": "AS-context-table:0x145b11d94",
+      "native_candidate": {
+        "virtual_address": "0x147664fa4",
+        "end_exclusive": "0x147665120",
+        "file_offset": "0x7663da4",
+        "byte_count": 380,
+        "sha256": "b887814bb6327afabf706f0dc4d500e57aa338efb5bc0c968b6ab94f00af9a15",
+        "dispatch_site": "0x145b11d94"
+      },
+      "location": {
+        "site": "0x145b11d94",
+        "table_address": "0x147664fa4",
+        "native_owner": "0x145b0f580",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ]
+      },
+      "current_table_applied": false,
+      "predecessor_AS_geometry_candidates": [
+        "0x145b143a7"
+      ],
+      "current_context_system_ids": [
+        "custom-game-gear",
+        "custom-game-server-party"
+      ],
+      "related_finding_ids": [],
+      "classification": "retained_guard_geometry_candidate_current_semantics_pending",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+          "sha256": "64da67ef3e6a3f5db24de38a8e9364da10b1ae785eaa166f63268c507d148cb6"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+          "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+        }
+      ],
+      "conclusion": "Exact complete guard geometry supplies navigation only; retained source, classifications and historical recovery remain preserved. Current producer/state/dependency/consumer applicability remains pending.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false,
+      "related_existing_module_findings": [
+        4,
+        17,
+        19,
+        34,
+        41,
+        55,
+        63,
+        64,
+        65,
+        92,
+        101,
+        116,
+        118,
+        154,
+        157,
+        161,
+        162,
+        163,
+        164,
+        166,
+        180,
+        183,
+        184,
+        185,
+        186,
+        188,
+        192,
+        193,
+        201,
+        204,
+        209,
+        247
+      ]
+    },
+    {
+      "selector": "AS-context-table:0x145b11dd1",
+      "native_candidate": {
+        "virtual_address": "0x147664c70",
+        "end_exclusive": "0x147664c98",
+        "file_offset": "0x7663a70",
+        "byte_count": 40,
+        "sha256": "9eea56b10b3cc0d240fa3072c697d3af7b30485de6b1471ec336d481a8bfa750",
+        "dispatch_site": "0x145b11dd1"
+      },
+      "location": {
+        "site": "0x145b11dd1",
+        "table_address": "0x147664c70",
+        "native_owner": "0x145b0f580",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ]
+      },
+      "current_table_applied": false,
+      "predecessor_AS_geometry_candidates": [
+        "0x145b143e4"
+      ],
+      "current_context_system_ids": [
+        "custom-game-gear",
+        "custom-game-server-party"
+      ],
+      "related_finding_ids": [],
+      "classification": "retained_guard_geometry_candidate_current_semantics_pending",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+          "sha256": "64da67ef3e6a3f5db24de38a8e9364da10b1ae785eaa166f63268c507d148cb6"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+          "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+        }
+      ],
+      "conclusion": "Exact complete guard geometry supplies navigation only; retained source, classifications and historical recovery remain preserved. Current producer/state/dependency/consumer applicability remains pending.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false,
+      "related_existing_module_findings": [
+        4,
+        17,
+        19,
+        34,
+        41,
+        55,
+        63,
+        64,
+        65,
+        92,
+        101,
+        116,
+        118,
+        154,
+        157,
+        161,
+        162,
+        163,
+        164,
+        166,
+        180,
+        183,
+        184,
+        185,
+        186,
+        188,
+        192,
+        193,
+        201,
+        204,
+        209,
+        247
+      ]
+    },
+    {
+      "selector": "AS-context-table:0x145b11dfd",
+      "native_candidate": {
+        "virtual_address": "0x147665120",
+        "end_exclusive": "0x147665134",
+        "file_offset": "0x7663f20",
+        "byte_count": 20,
+        "sha256": "0179c3cd5736f42181fc5b6b77e3a42c59678b399d3785c8755f5f07c8d786f9",
+        "dispatch_site": "0x145b11dfd"
+      },
+      "location": {
+        "site": "0x145b11dfd",
+        "table_address": "0x147665120",
+        "native_owner": "0x145b0f580",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ]
+      },
+      "current_table_applied": false,
+      "predecessor_AS_geometry_candidates": [],
+      "current_context_system_ids": [
+        "custom-game-gear",
+        "custom-game-server-party"
+      ],
+      "related_finding_ids": [
+        64,
+        65,
+        201
+      ],
+      "classification": "current_dependency_correspondence_pending_not_new_behavior_from_geometry",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+          "sha256": "64da67ef3e6a3f5db24de38a8e9364da10b1ae785eaa166f63268c507d148cb6"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+          "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+        }
+      ],
+      "conclusion": "This table remains within the current shared command/query body. The source opcode/entry reader and finite metadata consumers retain their prior contracts. Compiler geometry differs; only#247 establishes a selected changed entry. Recover current dispatch/field applicability before changing source.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false
+    },
+    {
+      "selector": "AS-context-table:0x145b120a0",
+      "native_candidate": {
+        "virtual_address": "0x147665298",
+        "end_exclusive": "0x147665a54",
+        "file_offset": "0x7664098",
+        "byte_count": 1980,
+        "sha256": "a092ac77a0f5bd6c8099e510ecde5c28eb31482d0817f1854272338bf28d45b9",
+        "dispatch_site": "0x145b120a0"
+      },
+      "location": {
+        "site": "0x145b120a0",
+        "table_address": "0x147665298",
+        "native_owner": "0x145b0f580",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ]
+      },
+      "current_table_applied": false,
+      "predecessor_AS_geometry_candidates": [],
+      "current_context_system_ids": [
+        "custom-game-gear",
+        "custom-game-server-party"
+      ],
+      "related_finding_ids": [
+        64,
+        65,
+        201
+      ],
+      "classification": "current_dependency_correspondence_pending_not_new_behavior_from_geometry",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+          "sha256": "64da67ef3e6a3f5db24de38a8e9364da10b1ae785eaa166f63268c507d148cb6"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+          "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+        }
+      ],
+      "conclusion": "This table remains within the current shared command/query body. The source opcode/entry reader and finite metadata consumers retain their prior contracts. Compiler geometry differs; only#247 establishes a selected changed entry. Recover current dispatch/field applicability before changing source.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false
+    },
+    {
+      "selector": "AS-context-table:0x145b12134",
+      "native_candidate": {
+        "virtual_address": "0x147665134",
+        "end_exclusive": "0x147665298",
+        "file_offset": "0x7663f34",
+        "byte_count": 356,
+        "sha256": "f9b86639749352ee96b4da2353e693e4073525802c73e51d957925e0a7f17048",
+        "dispatch_site": "0x145b12134"
+      },
+      "location": {
+        "site": "0x145b12134",
+        "table_address": "0x147665134",
+        "native_owner": "0x145b0f580",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/gear.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ]
+      },
+      "current_table_applied": false,
+      "predecessor_AS_geometry_candidates": [
+        "0x145b14751"
+      ],
+      "current_context_system_ids": [
+        "custom-game-gear",
+        "custom-game-server-party"
+      ],
+      "related_finding_ids": [],
+      "classification": "retained_guard_geometry_candidate_current_semantics_pending",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+          "sha256": "64da67ef3e6a3f5db24de38a8e9364da10b1ae785eaa166f63268c507d148cb6"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+          "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+        }
+      ],
+      "conclusion": "Exact complete guard geometry supplies navigation only; retained source, classifications and historical recovery remain preserved. Current producer/state/dependency/consumer applicability remains pending.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false,
+      "related_existing_module_findings": [
+        4,
+        17,
+        19,
+        34,
+        41,
+        55,
+        63,
+        64,
+        65,
+        92,
+        101,
+        116,
+        118,
+        154,
+        157,
+        161,
+        162,
+        163,
+        164,
+        166,
+        180,
+        183,
+        184,
+        185,
+        186,
+        188,
+        192,
+        193,
+        201,
+        204,
+        209,
+        247
+      ]
+    },
+    {
+      "selector": "AS-context-table:0x145b16dd6",
+      "native_candidate": {
+        "virtual_address": "0x147665aa4",
+        "end_exclusive": "0x147665ab8",
+        "file_offset": "0x76648a4",
+        "byte_count": 20,
+        "sha256": "9efd4334b81d3cc9cb2f7f0bb844600dcb180578f7ebdb88de79e2576cf33988",
+        "dispatch_site": "0x145b16dd6"
+      },
+      "location": {
+        "site": "0x145b16dd6",
+        "table_address": "0x147665aa4",
+        "native_owner": "0x145b13630",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/server.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/server.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ]
+      },
+      "current_table_applied": true,
+      "predecessor_AS_geometry_candidates": [],
+      "current_context_system_ids": [
+        "custom-game-server",
+        "custom-game-server-party"
+      ],
+      "related_finding_ids": [
+        154,
+        163
+      ],
+      "classification": "current_dependency_correspondence_pending_not_new_behavior_from_geometry",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+          "sha256": "64da67ef3e6a3f5db24de38a8e9364da10b1ae785eaa166f63268c507d148cb6"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+          "sha256": "f353664b50e04426b421f05c5ea77386a0c6facb8280a2ed6803a18352539680"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+          "sha256": "6674edb92ef13d2962539aae9d123e766dcdd3942a4096efbeaa8bf57f0958fd"
+        }
+      ],
+      "conclusion": "Existing party admission/lifecycle/state source and prior contracts remain retained. Current dispatch/status geometry differences require input/state/dependency applicability review; no additional admission behavior is inferred from context or geometry.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false
+    },
+    {
+      "selector": "AS-context-table:0x145b21f82",
+      "native_candidate": {
+        "virtual_address": "0x147665ab8",
+        "end_exclusive": "0x147665ad8",
+        "file_offset": "0x76648b8",
+        "byte_count": 32,
+        "sha256": "602cc64707ad010b54b4a4c12fd5ed6ab6786ae3701f9d830a3c8be2cec6673b",
+        "dispatch_site": "0x145b21f82"
+      },
+      "location": {
+        "site": "0x145b21f82",
+        "table_address": "0x147665ab8",
+        "native_owner": "0x145b21eb0",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/server.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/server.rs",
+          "crates/wenilla-rogue/src/server/party.rs"
+        ]
+      },
+      "current_table_applied": true,
+      "predecessor_AS_geometry_candidates": [
+        "0x145b23452"
+      ],
+      "current_context_system_ids": [
+        "custom-game-server",
+        "custom-game-server-party"
+      ],
+      "related_finding_ids": [],
+      "classification": "retained_guard_geometry_candidate_current_semantics_pending",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+          "sha256": "64da67ef3e6a3f5db24de38a8e9364da10b1ae785eaa166f63268c507d148cb6"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+          "sha256": "f353664b50e04426b421f05c5ea77386a0c6facb8280a2ed6803a18352539680"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+          "sha256": "6674edb92ef13d2962539aae9d123e766dcdd3942a4096efbeaa8bf57f0958fd"
+        }
+      ],
+      "conclusion": "Exact complete guard geometry supplies navigation only; retained source, classifications and historical recovery remain preserved. Current producer/state/dependency/consumer applicability remains pending.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false,
+      "related_existing_module_findings": [
+        9,
+        19,
+        21,
+        28,
+        38,
+        41,
+        63,
+        64,
+        65,
+        68,
+        69,
+        70,
+        71,
+        98,
+        101,
+        118,
+        147,
+        154,
+        157,
+        163,
+        164,
+        166,
+        180,
+        183,
+        184,
+        185,
+        186,
+        188,
+        192,
+        193,
+        201,
+        204,
+        209,
+        247
+      ]
+    },
+    {
+      "selector": "AS-context-table:0x145b34f01",
+      "native_candidate": {
+        "virtual_address": "0x147665c28",
+        "end_exclusive": "0x147665c60",
+        "file_offset": "0x7664a28",
+        "byte_count": 56,
+        "sha256": "3cefdb8b1fceb88e2fb8b5873d644bca49d5ba4bf8f49d93d6238547c228b5de",
+        "dispatch_site": "0x145b34f01"
+      },
+      "location": {
+        "site": "0x145b34f01",
+        "table_address": "0x147665c28",
+        "native_owner": "0x145b34e30",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/server/party.rs"
+        ]
+      },
+      "current_table_applied": true,
+      "predecessor_AS_geometry_candidates": [],
+      "current_context_system_ids": [
+        "custom-game-server-party"
+      ],
+      "related_finding_ids": [
+        154,
+        163
+      ],
+      "classification": "current_dependency_correspondence_pending_not_new_behavior_from_geometry",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+          "sha256": "64da67ef3e6a3f5db24de38a8e9364da10b1ae785eaa166f63268c507d148cb6"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        }
+      ],
+      "conclusion": "Existing party admission/lifecycle/state source and prior contracts remain retained. Current dispatch/status geometry differences require input/state/dependency applicability review; no additional admission behavior is inferred from context or geometry.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false
+    },
+    {
+      "selector": "AS-context-table:0x145b3531a",
+      "native_candidate": {
+        "virtual_address": "0x147665bd8",
+        "end_exclusive": "0x147665c28",
+        "file_offset": "0x76649d8",
+        "byte_count": 80,
+        "sha256": "dd219ac457d13abddeae37a01d744eb5720739bd98ee683e2aabb961f07a8b97",
+        "dispatch_site": "0x145b3531a"
+      },
+      "location": {
+        "site": "0x145b3531a",
+        "table_address": "0x147665bd8",
+        "native_owner": "0x145b34e30",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/server/party.rs"
+        ]
+      },
+      "current_table_applied": true,
+      "predecessor_AS_geometry_candidates": [],
+      "current_context_system_ids": [
+        "custom-game-server-party"
+      ],
+      "related_finding_ids": [
+        154,
+        163
+      ],
+      "classification": "current_dependency_correspondence_pending_not_new_behavior_from_geometry",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+          "sha256": "64da67ef3e6a3f5db24de38a8e9364da10b1ae785eaa166f63268c507d148cb6"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        }
+      ],
+      "conclusion": "Existing party admission/lifecycle/state source and prior contracts remain retained. Current dispatch/status geometry differences require input/state/dependency applicability review; no additional admission behavior is inferred from context or geometry.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false
+    },
+    {
+      "selector": "AS-context-table:0x145b3554a",
+      "native_candidate": {
+        "virtual_address": "0x147665cb0",
+        "end_exclusive": "0x147665d00",
+        "file_offset": "0x7664ab0",
+        "byte_count": 80,
+        "sha256": "8e2ad5c54a672cf0f53f2155e65fa5fbf2e63ac407d30640bf1bacf452fd2217",
+        "dispatch_site": "0x145b3554a"
+      },
+      "location": {
+        "site": "0x145b3554a",
+        "table_address": "0x147665cb0",
+        "native_owner": "0x145b34e30",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/server/party.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/server/party.rs"
+        ]
+      },
+      "current_table_applied": true,
+      "predecessor_AS_geometry_candidates": [],
+      "current_context_system_ids": [
+        "custom-game-server-party"
+      ],
+      "related_finding_ids": [
+        154,
+        163
+      ],
+      "classification": "current_dependency_correspondence_pending_not_new_behavior_from_geometry",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+          "sha256": "64da67ef3e6a3f5db24de38a8e9364da10b1ae785eaa166f63268c507d148cb6"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+          "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+        }
+      ],
+      "conclusion": "Existing party admission/lifecycle/state source and prior contracts remain retained. Current dispatch/status geometry differences require input/state/dependency applicability review; no additional admission behavior is inferred from context or geometry.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false
+    },
+    {
+      "selector": "AS-context-table:0x145b4495a",
+      "native_candidate": {
+        "virtual_address": "0x1476858dc",
+        "end_exclusive": "0x147685970",
+        "file_offset": "0x76846dc",
+        "byte_count": 148,
+        "sha256": "3ad8a504ad034fc934e9350edea51df3f760396cab1cbc793ff7d11906bfd1d2",
+        "dispatch_site": "0x145b4495a"
+      },
+      "location": {
+        "site": "0x145b4495a",
+        "table_address": "0x1476858dc",
+        "native_owner": "0x145b44670",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/talents.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/talents.rs"
+        ]
+      },
+      "current_table_applied": true,
+      "predecessor_AS_geometry_candidates": [],
+      "current_context_system_ids": [
+        "custom-game-talents"
+      ],
+      "related_finding_ids": [
+        249
+      ],
+      "classification": "new37_cell_selector_domain_classification_question",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/run_effects.rs",
+          "sha256": "1483ce01470d539ee9d2ff804469614f02a1a1fa67b5dcd32167a4a233c1181a"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/talents.rs",
+          "sha256": "808ef0a4fcfbf52edf901646e8d5405f05420421be8ee4fca891bb7fde8279e1"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/talents.rs",
+          "sha256": "b51db12ac83b406a72d935b546fdcd4ea2ec28eb72b08cbac5fb71928d063451"
+        }
+      ],
+      "conclusion": "Current domain0..36 extends old0..35; recordbyte0 supplies EDI and cell36 reaches bounded float arithmetic. Meaning, tag correspondence and source/output consumers remain unknown under#249; no full-module contract is registered.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false
+    },
+    {
+      "selector": "AS-context-table:0x145b49fe1",
+      "native_candidate": {
+        "virtual_address": "0x1476859f8",
+        "end_exclusive": "0x147685a0c",
+        "file_offset": "0x76847f8",
+        "byte_count": 20,
+        "sha256": "fa2090f19b6ee455ae00397a322b94d8c700eb73cb0dc374a913f181b1a02534",
+        "dispatch_site": "0x145b49fe1"
+      },
+      "location": {
+        "site": "0x145b49fe1",
+        "table_address": "0x1476859f8",
+        "native_owner": "0x145b49ef0",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/coop/route.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/coop/route.rs"
+        ]
+      },
+      "current_table_applied": true,
+      "predecessor_AS_geometry_candidates": [],
+      "current_context_system_ids": [
+        "custom-game-coop-route"
+      ],
+      "related_finding_ids": [
+        151
+      ],
+      "classification": "current_dependency_correspondence_pending_not_new_behavior_from_geometry",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/coop/route.rs",
+          "sha256": "24a51dc6a38725b48ef2dc0eb1d1d6fda1df7f7916f3075e3ca35903cb532955"
+        }
+      ],
+      "conclusion": "Current length-conditioned string route includes the exact hz comparison, with existing forward_to_peers source owning hazard/banner event projection. Full current route cases, state and delivery dependencies remain pending; source is not reset.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false
+    },
+    {
+      "selector": "AS-context-table:0x145b4b6fa",
+      "native_candidate": {
+        "virtual_address": "0x1476861c8",
+        "end_exclusive": "0x1476861ec",
+        "file_offset": "0x7684fc8",
+        "byte_count": 36,
+        "sha256": "b8e5d52ecbf0b2a382009d8684ee51860b752c0d83d4117efa7abab97b0ec870",
+        "dispatch_site": "0x145b4b6fa"
+      },
+      "location": {
+        "site": "0x145b4b6fa",
+        "table_address": "0x1476861c8",
+        "native_owner": "0x145b4b690",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/coop/trust.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/coop/trust.rs"
+        ]
+      },
+      "current_table_applied": true,
+      "predecessor_AS_geometry_candidates": [
+        "0x145ab9d7a"
+      ],
+      "current_context_system_ids": [
+        "custom-game-coop-trust"
+      ],
+      "related_finding_ids": [],
+      "classification": "retained_guard_geometry_candidate_current_semantics_pending",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+          "sha256": "f353664b50e04426b421f05c5ea77386a0c6facb8280a2ed6803a18352539680"
+        }
+      ],
+      "conclusion": "Exact complete guard geometry supplies navigation only; retained source, classifications and historical recovery remain preserved. Current producer/state/dependency/consumer applicability remains pending.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false,
+      "related_existing_module_findings": [
+        41,
+        63,
+        186
+      ]
+    },
+    {
+      "selector": "AS-context-table:0x145bf2c98",
+      "native_candidate": {
+        "virtual_address": "0x147692f84",
+        "end_exclusive": "0x147693004",
+        "file_offset": "0x7691d84",
+        "byte_count": 128,
+        "sha256": "1f4e44c26f4696b4c0cc8c35c7505cef1975a2352990df46bfffec43b780b778",
+        "dispatch_site": "0x145bf2c98"
+      },
+      "location": {
+        "site": "0x145bf2c98",
+        "table_address": "0x147692f84",
+        "native_owner": "0x145bf29c0",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/game/hazards.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/game/hazards.rs"
+        ]
+      },
+      "current_table_applied": true,
+      "predecessor_AS_geometry_candidates": [],
+      "current_context_system_ids": [
+        "custom-game-hazards"
+      ],
+      "related_finding_ids": [
+        149
+      ],
+      "classification": "current_dependency_correspondence_pending_not_new_behavior_from_geometry",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/bosses/raid_areas.rs",
+          "sha256": "7922993ffbc79fa589d370b8e2efa7475468aea6c2eff3bcff6ae1a4f33936a7"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/bosses/raid_lines.rs",
+          "sha256": "06245514dc5b011ecf367391930cd8868e4f479dfe30ac1c80c29f1349ac7dc2"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/bosses/raid_shapes.rs",
+          "sha256": "d3ceb2dccd9504df0e7a2e6b1a43c6b0130852731024965ce3d3fd0291fe5e7f"
+        }
+      ],
+      "conclusion": "Existing raid area/shape/line/tower source and prior contracts remain retained. The guarded31-domain shape has different compiled successor geometry; current hazard input/consumer applicability remains pending, without inventing a new hazard.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false
+    },
+    {
+      "selector": "AS-context-table:0x145c10216",
+      "native_candidate": {
+        "virtual_address": "0x147693330",
+        "end_exclusive": "0x14769334c",
+        "file_offset": "0x7692130",
+        "byte_count": 28,
+        "sha256": "edb35777da49225264648f836c699594552c172f3de6ced019253e1e33be946a",
+        "dispatch_site": "0x145c10216"
+      },
+      "location": {
+        "site": "0x145c10216",
+        "table_address": "0x147693330",
+        "native_owner": "0x145c101e0",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/content.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/content.rs"
+        ]
+      },
+      "current_table_applied": true,
+      "predecessor_AS_geometry_candidates": [
+        "0x145bd7156"
+      ],
+      "current_context_system_ids": [
+        "custom-game-content"
+      ],
+      "related_finding_ids": [],
+      "classification": "retained_guard_geometry_candidate_current_semantics_pending",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/catalog.rs",
+          "sha256": "971817c6611760c6f92aa82ce787b622d370ba2061e7045e7b6942d3c06d5a23"
+        }
+      ],
+      "conclusion": "Exact complete guard geometry supplies navigation only; retained source, classifications and historical recovery remain preserved. Current producer/state/dependency/consumer applicability remains pending.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false,
+      "related_existing_module_findings": [
+        29,
+        32,
+        34,
+        41,
+        64,
+        65,
+        85
+      ]
+    },
+    {
+      "selector": "AS-context-table:0x145c3f742",
+      "native_candidate": {
+        "virtual_address": "0x147693498",
+        "end_exclusive": "0x1476934b4",
+        "file_offset": "0x7692298",
+        "byte_count": 28,
+        "sha256": "4bf0a1bd1738f9865422dbf3b06a369fb08172959607982048622fc663e61815",
+        "dispatch_site": "0x145c3f742"
+      },
+      "location": {
+        "site": "0x145c3f742",
+        "table_address": "0x147693498",
+        "native_owner": "0x145c3f450",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/game/demons.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/game/demons.rs"
+        ]
+      },
+      "current_table_applied": true,
+      "predecessor_AS_geometry_candidates": [
+        "0x145c032e2"
+      ],
+      "current_context_system_ids": [
+        "custom-game-game-demons"
+      ],
+      "related_finding_ids": [],
+      "classification": "retained_guard_geometry_candidate_current_semantics_pending",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/run_effects/demons.rs",
+          "sha256": "8ecb35545d7a5dd18c2d7912d47f563e7d98400f6ce2d72b0be2e0850f2cbcc9"
+        }
+      ],
+      "conclusion": "Exact complete guard geometry supplies navigation only; retained source, classifications and historical recovery remain preserved. Current producer/state/dependency/consumer applicability remains pending.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false,
+      "related_existing_module_findings": [
+        8,
+        9,
+        12,
+        24,
+        25,
+        41,
+        138
+      ]
+    },
+    {
+      "selector": "AS-context-table:0x145c3f7c6",
+      "native_candidate": {
+        "virtual_address": "0x1476934b4",
+        "end_exclusive": "0x1476934d0",
+        "file_offset": "0x76922b4",
+        "byte_count": 28,
+        "sha256": "4afc01bd1f16c42e3eafb658697f1389f14ed21d3c5ea05c4b716838a31eafb3",
+        "dispatch_site": "0x145c3f7c6"
+      },
+      "location": {
+        "site": "0x145c3f7c6",
+        "table_address": "0x1476934b4",
+        "native_owner": "0x145c3f450",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/game/demons.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/game/demons.rs"
+        ]
+      },
+      "current_table_applied": true,
+      "predecessor_AS_geometry_candidates": [
+        "0x145c03366"
+      ],
+      "current_context_system_ids": [
+        "custom-game-game-demons"
+      ],
+      "related_finding_ids": [],
+      "classification": "retained_guard_geometry_candidate_current_semantics_pending",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/run_effects/demons.rs",
+          "sha256": "8ecb35545d7a5dd18c2d7912d47f563e7d98400f6ce2d72b0be2e0850f2cbcc9"
+        }
+      ],
+      "conclusion": "Exact complete guard geometry supplies navigation only; retained source, classifications and historical recovery remain preserved. Current producer/state/dependency/consumer applicability remains pending.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false,
+      "related_existing_module_findings": [
+        8,
+        9,
+        12,
+        24,
+        25,
+        41,
+        138
+      ]
+    },
+    {
+      "selector": "AS-context-table:0x145c987a2",
+      "native_candidate": {
+        "virtual_address": "0x147696c28",
+        "end_exclusive": "0x147696c7c",
+        "file_offset": "0x7695a28",
+        "byte_count": 84,
+        "sha256": "f6b77063829ebc842e38f6726b94a4cb9065da5d7362f2827a9630d7ba03d36c",
+        "dispatch_site": "0x145c987a2"
+      },
+      "location": {
+        "site": "0x145c987a2",
+        "table_address": "0x147696c28",
+        "native_owner": "0x145c98480",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/content.rs",
+          "crates/wenilla-rogue/src/i18n.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/content.rs",
+          "crates/wenilla-rogue/src/i18n.rs"
+        ]
+      },
+      "current_table_applied": true,
+      "predecessor_AS_geometry_candidates": [
+        "0x145c22cd2"
+      ],
+      "current_context_system_ids": [
+        "custom-game-content",
+        "custom-game-i18n"
+      ],
+      "related_finding_ids": [],
+      "classification": "retained_guard_geometry_candidate_current_semantics_pending",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/catalog.rs",
+          "sha256": "971817c6611760c6f92aa82ce787b622d370ba2061e7045e7b6942d3c06d5a23"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/localization.rs",
+          "sha256": "55297efb429366d09d6023b8b1fceff38de02957eefe4711583f63d915e1c80d"
+        }
+      ],
+      "conclusion": "Exact complete guard geometry supplies navigation only; retained source, classifications and historical recovery remain preserved. Current producer/state/dependency/consumer applicability remains pending.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false,
+      "related_existing_module_findings": [
+        17,
+        29,
+        32,
+        34,
+        41,
+        64,
+        65,
+        85,
+        101,
+        107,
+        142,
+        158,
+        161,
+        162,
+        165,
+        167,
+        169,
+        170,
+        171,
+        172
+      ]
+    },
+    {
+      "selector": "AS-context-table:0x145ca2378",
+      "native_candidate": {
+        "virtual_address": "0x147698c88",
+        "end_exclusive": "0x147698ca4",
+        "file_offset": "0x7697a88",
+        "byte_count": 28,
+        "sha256": "da39232e17a2ede053ff19f1052c5b3ae467defd74369a323afe643bc465b419",
+        "dispatch_site": "0x145ca2378"
+      },
+      "location": {
+        "site": "0x145ca2378",
+        "table_address": "0x147698c88",
+        "native_owner": "0x145ca2170",
+        "as_owner_diagnostic_contexts": [
+          "crates/wenilla-rogue/src/sets.rs"
+        ],
+        "as_declared_extent_contexts": [
+          "crates/wenilla-rogue/src/sets.rs"
+        ]
+      },
+      "current_table_applied": true,
+      "predecessor_AS_geometry_candidates": [],
+      "current_context_system_ids": [
+        "custom-game-sets"
+      ],
+      "related_finding_ids": [
+        229,
+        242,
+        245
+      ],
+      "classification": "classified_zone_key_lookup_interface_downstream_set_consumer_pending",
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/armory.rs",
+          "sha256": "354b98c8949f3f8c3ef7f4b7e32f3b87c33c6c9eff766fba84a06e3965edfb63"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/progress.rs",
+          "sha256": "0872cc06fd14446ff7bd2b822790ce9e5de7a9d2d4f41762ea9d2315c83c97de"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/zones.rs",
+          "sha256": "28b1267834660d083f5501381dcc807458aaab09bc7984993fa118b409c6f84e"
+        }
+      ],
+      "conclusion": "Guard selects on string length2..8 and compares12 actual zone keys before joining zone descriptors. This supplies the set-zone interface lead under#229; downstream star/unlock producer and saved-state consumer remain pending. An identical geometry at historical generic table145b62658 is not behavioral correspondence.",
+      "semantic_recovery_reset": false,
+      "source_implementation_reset": false,
+      "current_behavioral_equivalence_established": false
+    }
+  ],
+  "sets_zone_lookup": {
+    "finding_ids": [
+      229,
+      242,
+      245
+    ],
+    "dispatch": "0x145ca2378",
+    "selector": "u64[r12+0x70]-2",
+    "source_string_pointer": "u64[r12+0x68]",
+    "current_zone_keys": [
+      {
+        "key": "ab",
+        "virtual_address": "0x146fb60c1",
+        "file_offset": "0x6fb4ec1",
+        "byte_count": 2,
+        "sha256": "fb8e20fc2e4c3f248c60c39bd652f3c1347298bb977b8b4d5903b85055620603"
+      },
+      {
+        "key": "sm",
+        "virtual_address": "0x146fb8d60",
+        "file_offset": "0x6fb7b60",
+        "byte_count": 2,
+        "sha256": "5af308bec132bd499660594a6c127c57f910a25c18968eb4f9b976f48df8cb49"
+      },
+      {
+        "key": "av",
+        "virtual_address": "0x146fb9e1a",
+        "file_offset": "0x6fb8c1a",
+        "byte_count": 2,
+        "sha256": "27a26bca625b223971909dd88fc93faeb050dc5b34d91c0871661740dcfb9d18"
+      },
+      {
+        "key": "aq",
+        "virtual_address": "0x146fbbfe7",
+        "file_offset": "0x6fbade7",
+        "byte_count": 2,
+        "sha256": "dd9603a19faa94218b85c812130ac7635385fb33a1acf69a7b4e10415d49d3b4"
+      },
+      {
+        "key": "wsg",
+        "virtual_address": "0x146fb4446",
+        "file_offset": "0x6fb3246",
+        "byte_count": 3,
+        "sha256": "b013a6190fa53a04a750b8166ce07961ae18e6cd7f042236eb2b486a8954fb25"
+      },
+      {
+        "key": "brm",
+        "virtual_address": "0x146fbace9",
+        "file_offset": "0x6fb9ae9",
+        "byte_count": 3,
+        "sha256": "e9229390f16d4bebb4aa3bde70eb96c9d7a1bf57688010f7b45ae91374b78092"
+      },
+      {
+        "key": "elwynn",
+        "virtual_address": "0x146fb2578",
+        "file_offset": "0x6fb1378",
+        "byte_count": 6,
+        "sha256": "b775868beeab571ba5190ce13d5f9e8d25e03dbe2d095b6d96a4d32b9b228565"
+      },
+      {
+        "key": "ungoro",
+        "virtual_address": "0x146fb5267",
+        "file_offset": "0x6fb4067",
+        "byte_count": 6,
+        "sha256": "ab1a1800d90441e986f91ff5294ed8a6649b69d348a818feb27b1c2ef72bf5e7"
+      },
+      {
+        "key": "duskwood",
+        "virtual_address": "0x146fb35fb",
+        "file_offset": "0x6fb23fb",
+        "byte_count": 8,
+        "sha256": "0c5bec5568d1de6af022174bea3e8dde29400af800fa0740d7b57cb9507f3a09"
+      },
+      {
+        "key": "feralas",
+        "virtual_address": "0x146fb6f08",
+        "file_offset": "0x6fb5d08",
+        "byte_count": 7,
+        "sha256": "a6216c770c55e299a0df834f54bdb4d8670db360aa39597e62312d1547c3064a"
+      },
+      {
+        "key": "arena",
+        "virtual_address": "0x146fb7e26",
+        "file_offset": "0x6fb6c26",
+        "byte_count": 5,
+        "sha256": "572e31f55b6ac1b13fd5f5665d44bef1e3474ccf39b983428d4d8c4493d041c5"
+      },
+      {
+        "key": "naxx",
+        "virtual_address": "0x146fbce7a",
+        "file_offset": "0x6fbbc7a",
+        "byte_count": 4,
+        "sha256": "7a8062887f39abdb1e053d1bc82e2ed2b27f57364b7ba3e4abe4d66b83f61f84"
+      }
+    ],
+    "limits": "Only exact length/byte comparison and zone-interface classification; downstream set/progression meaning and source/behavioral equivalence remain pending."
+  },
+  "new_distinct_findings": [
+    {
+      "id": 247,
+      "evidence": {
+        "path": "docs/analysis/evidence/0.121.0/orb-query/manifest.json",
+        "sha256": "d38a0aa392f7be1113bfe70ea49e3615982634bb07469c4f126a0503d2b996e9"
+      }
+    },
+    {
+      "id": 249,
+      "evidence": {
+        "path": "docs/analysis/evidence/0.121.0/talent-selector-36.json",
+        "sha256": "9acd814dc4946d7996dd843b0d6a812f7a5bf4b4f29c2d3b59fb1d6c355e51e1"
+      }
+    }
+  ],
+  "limits": "All45 current AS-context tables, including31 applied, receive an explicit source/context assessment; this is not a complete AS semantic inventory or table-ownership proof.23 unmatched geometries are pending correspondence, not23new behaviors. Only the separately bound247 and249 leads establish distinct changed recovery questions. Existing14stable identities/classifications/source remain preserved. No compilation, game/client/network/server execution or parity comparison.",
+  "additional_reviewed_changed_domain_correspondence": {
+    "path": "docs/analysis/evidence/0.121.0/reviewed-switch-correspondence.json",
+    "sha256": "15d16c2d4dee6c1e482d38390d1f64254dd37ff0c1f086417d42fafbaa3c4db1"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "target_sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+  "owners": [
+    {
+      "start": "0x1458dde70",
+      "end": "0x1458de005",
+      "file_offset": "0x58dd270",
+      "sha256": "1bd56d97315e7479d46e6a51e649c2d36f5337e6858c13a7d62d425ce0e14a9b",
+      "role": "talent-metadata",
+      "evidence_id": "ev_4768c4376d38bc0cda89584c89702b4b49aa60051806968f03b37dd1240783c1",
+      "analysis_profile": "a831b0aed5ad9c0231acc8422f98cc57202851d85b69f4a50a8340e303f695c8",
+      "pseudocode": "talent-metadata.c",
+      "pseudocode_sha256": "eb1b96bc476ded94feae1f88ed011d9d50791ef2b0b90edcd31d3959722c211b"
+    },
+    {
+      "start": "0x1458ddbb0",
+      "end": "0x1458dddd0",
+      "file_offset": "0x58dcfb0",
+      "sha256": "2a2e5265c114202c1873619928cf854e2c8ab52ddca200125d64e8a7c825bb70",
+      "role": "effect-metadata-append",
+      "evidence_id": "ev_9ba2a040f2de7e6639db859362d0d14c9f1a181e6534352a98e55f209593f4e5",
+      "analysis_profile": "a831b0aed5ad9c0231acc8422f98cc57202851d85b69f4a50a8340e303f695c8",
+      "pseudocode": "effect-metadata-append.c",
+      "pseudocode_sha256": "ed5d34416ee0bbb397ed2e4249988bd7bd41610c73ec4de5ee572ad4469a02be"
+    },
+    {
+      "start": "0x14593c720",
+      "end": "0x14593d2e4",
+      "file_offset": "0x593bb20",
+      "sha256": "44eb4e0bd3aafea84bafee9501b40a6d62cf3a1cd3c3c98c2ce34ddd06150cce",
+      "role": "effect-rebuild",
+      "evidence_id": "ev_fb25149ea401d84d94f1b362ab20769869a2d58f25f859f5a23b216dee311806",
+      "analysis_profile": "a831b0aed5ad9c0231acc8422f98cc57202851d85b69f4a50a8340e303f695c8",
+      "pseudocode": "effect-rebuild.c",
+      "pseudocode_sha256": "ee8ba2353aa9d252f97677b7725c0f29c5999e11feb37ba453303b4576784b41"
+    },
+    {
+      "start": "0x1458dff90",
+      "end": "0x1458e020a",
+      "file_offset": "0x58df390",
+      "sha256": "94fab64f11af52f5ac8c7f50e76a9c8cf84cbe45d1aafb1fc89c2b4f8567ef9c",
+      "role": "literal-name-lookup",
+      "evidence_id": "ev_7417ff965c9a97112810b42c50d2f9dfbf04ccc92dd861811bd77c18fc1d69fa",
+      "analysis_profile": "a831b0aed5ad9c0231acc8422f98cc57202851d85b69f4a50a8340e303f695c8",
+      "pseudocode": "literal-name-lookup.c",
+      "pseudocode_sha256": "be1d71db43970a0c8b9eae6439a9cfffc482c3fceb56f46227b81597fce6f7a5"
+    },
+    {
+      "start": "0x1459e6cb0",
+      "end": "0x1459e6efc",
+      "file_offset": "0x59e60b0",
+      "sha256": "026251c7532636e32d57306c358ef1f9c292fc389c5fdf204ce993880df78d75",
+      "role": "wire-name-cleaner",
+      "evidence_id": "ev_6a083e27be49d4b5fec84404a4daf82d5b4aa0359c83c2ce906333dbd845ffd3",
+      "analysis_profile": "a831b0aed5ad9c0231acc8422f98cc57202851d85b69f4a50a8340e303f695c8",
+      "pseudocode": "wire-name-cleaner.c",
+      "pseudocode_sha256": "68a2ab882ad431e195e58d6311ff578e7045c29c1abd7b2f6205b0a093d20735"
+    },
+    {
+      "start": "0x1458f48a0",
+      "end": "0x1458f4be2",
+      "file_offset": "0x58f3ca0",
+      "sha256": "592ee6d0928c38d39042cd6ec899ad4c0631f49d6d8c2209497e0bb8a36fd9c4",
+      "role": "empty-solo-party-meter",
+      "evidence_id": "ev_937075be7fc459723510a54c90789615bec288ab96616bda0bfc9979db4b2dc6",
+      "raw_slice_subject_sha256": "592ee6d0928c38d39042cd6ec899ad4c0631f49d6d8c2209497e0bb8a36fd9c4",
+      "pseudocode": "solo-party-meter.c",
+      "pseudocode_sha256": "8ec4a4e083aac2b6e89ba1507b2c2337787e845275eeab23f17a7fd0992b9ee3"
+    }
+  ],
+  "assembly": {
+    "path": "metadata-native.asm",
+    "sha256": "50067544a2335a3c0f43fe9e29bed5dbec2414ac4b9e354dbfc7e335b4338d28"
+  },
+  "shared_snapshot_evidence": "docs/analysis/evidence/0.115.0/revive-addon/manifest.json",
+  "proofs": [
+    "native-cases.json",
+    "metadata.json",
+    "cache-cases.json",
+    "localizer-cases.json",
+    "cooldown-input-cases.json",
+    "generated-name-cases.json",
+    "cooldown-base-cases.json"
+  ],
+  "scope": "Local timer producer/metadata, exact current API and ordinary solo addon transport; cooperative state/backend excluded.",
+  "limits": [
+    "Original lookup/metadata/rebuild evidence is static Ghidra plus byte-checked instructions; source execution and native parity are unverified.",
+    "Solo party producer raw Ghidra infers approximate ABI/types; original instructions and zero-row vector semantics govern.",
+    "Current cache constructor/login/reset branches and poll gate replay in isolation; full action switch, actual Game construction, Menu/ReloadUI/client lifecycles are not executed.",
+    "Language lookup and generated-name construction preserve exact key/fallback contracts for the stable local locale; actual locale/VM changes and rendering are not exercised."
+  ],
+  "instruction_recovered_owners": [
+    {
+      "start": "0x14590d030",
+      "end": "0x14590dfe9",
+      "sha256": "7181b1e8af2cd9f29276ab1e98284e0a685cf295d768d7d9f5f3e8b49e8b9510",
+      "role": "raw-racial-and-aura-recovery",
+      "assembly": "metadata-native.asm"
+    }
+  ],
+  "text_normalization": "Canonical textual extracts strip trailing whitespace and retain one final newline; original REA results/journals stay in ignored runtime."
+}

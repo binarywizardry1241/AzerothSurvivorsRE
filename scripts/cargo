@@ -1,0 +1,30 @@
+#!/bin/sh
+set -eu
+
+rust_project_root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+cd "$rust_project_root"
+case "$(uname -s):$(uname -m)" in
+  Darwin:arm64) rust_host=aarch64-apple-darwin ;;
+  Darwin:x86_64) rust_host=x86_64-apple-darwin ;;
+  Linux:aarch64) rust_host=aarch64-unknown-linux-gnu ;;
+  Linux:x86_64) rust_host=x86_64-unknown-linux-gnu ;;
+  *) printf '%s\n' 'Unsupported Rust host.' >&2; exit 1 ;;
+esac
+rust_toolchain="$rust_project_root/.tools/rust/1.98.1-$rust_host"
+if [ ! -x "$rust_toolchain/bin/cargo" ]; then
+  printf '%s\n' 'Install the project toolchain with: python3 scripts/install-rust.py' >&2
+  exit 1
+fi
+export CARGO_HOME="$rust_project_root/runtime/cargo"
+export RUSTUP_HOME="$rust_project_root/.tools/rust/rustup"
+export TMPDIR="$rust_project_root/runtime/tmp"
+export XDG_CACHE_HOME="$rust_project_root/runtime/cache"
+export CARGO_TARGET_DIR="$rust_project_root/runtime/cargo-target"
+export SCCACHE_DIR="$rust_project_root/runtime/cache/sccache"
+export CCACHE_DIR="$rust_project_root/runtime/cache/ccache"
+export CLANG_MODULE_CACHE_PATH="$rust_project_root/runtime/cache/clang-modules"
+export RUSTC="$rust_toolchain/bin/rustc"
+export RUSTDOC="$rust_toolchain/bin/rustdoc"
+export PATH="$rust_toolchain/bin:$PATH"
+mkdir -p "$CARGO_HOME" "$RUSTUP_HOME" "$TMPDIR" "$XDG_CACHE_HOME" "$CARGO_TARGET_DIR" "$SCCACHE_DIR" "$CCACHE_DIR" "$CLANG_MODULE_CACHE_PATH"
+exec "$rust_toolchain/bin/cargo" "$@"

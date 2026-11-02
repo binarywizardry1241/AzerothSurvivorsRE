@@ -1,0 +1,57 @@
+{
+  "target_version": "0.105.0",
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "target_process_launched": false,
+  "selected_data": "docs/analysis/evidence/0.105.0/game-mode-audit/selected-data.json",
+  "scopes": [
+    {
+      "role": "conversion",
+      "address": "0x14592b5e3",
+      "byte_count": 249,
+      "sha256": "f8ffb42ae78a2a4f8e248b850bcafa3ed90b50c286b7699000224266b09508bd",
+      "assembly": "docs/analysis/evidence/0.105.0/class-rules/conversion.asm",
+      "assembly_sha256": "502897bf5969c46a95ebefcb8aec23dc0b0a33d778968a218657974f8aa06005",
+      "pseudocode": "docs/analysis/evidence/0.105.0/class-rules/conversion.ghidra.c",
+      "pseudocode_sha256": "0538539c00e93c003401fbfd0a10a8c7d7604a5a2fc7903c79a46dd852aac2b6",
+      "rea_evidence_id": "ev_75dd631e94c3255d3fff43ce3b2fd31a0ac0dbfa4aa8d132a3159bde645878bc",
+      "provider": "Ghidra 12.1.4",
+      "limitation": "Headerless branch import; branches outside the selected byte range are unresolved; assembly and bounded replay determine Win64 state and external targets."
+    },
+    {
+      "role": "condition-shared",
+      "address": "0x145929aa0",
+      "byte_count": 262,
+      "sha256": "44850450713ca049fd8f600c1710989db8da5e2fbe6ed3d10fcb9fa14da261f9",
+      "assembly": "docs/analysis/evidence/0.105.0/power-scaling/zero-spell/condition.asm",
+      "assembly_sha256": "72dfd72b7c4f70fbdd2dd46aca78a11ffe76157c3cc770b41e42c98fc8ebd474"
+    },
+    {
+      "role": "school-selector-shared",
+      "address": "0x14592e820",
+      "byte_count": 597,
+      "sha256": "6bb2bc8fa16f27cb0a92b1b17490cabb43d30ed075c8d86517036c1b2873aca9",
+      "assembly": "docs/analysis/evidence/0.105.0/power-scaling/zero-spell/selector.asm",
+      "assembly_sha256": "90a61b9028c6923e28f206c28a43f030d5e19911ff6641a6397b6bf162dba533",
+      "pseudocode": "docs/analysis/evidence/0.105.0/power-scaling/zero-spell/selector.ghidra.c",
+      "pseudocode_sha256": "987fe65296cac7ee4efaf60b698314a05fcb1b8adeab788e4d9455889df7a781",
+      "rea_evidence_id": "ev_a22cea94c60000e3ad5c0de610ff236c0264822cbe07feae763b953dd71065ba"
+    },
+    {
+      "role": "startup-replacement-shared",
+      "address": "0x145900230",
+      "byte_count": 5369,
+      "sha256": "e6098f8425efc2411ffe9e38c692a9a829f20fa857ce7c92ac78bbc9b90e9fff",
+      "assembly": "docs/analysis/evidence/0.105.0/power-scaling/weapon/game-constructor.asm",
+      "assembly_sha256": "bb62f9af074e82e41acd95bf6a0df20e8bf3c33f0daa480c39669bea2904c9cc",
+      "pseudocode": "docs/analysis/evidence/0.105.0/power-scaling/weapon/game-constructor.ghidra.c",
+      "pseudocode_sha256": "33b6a3cb75f788e825730fb51af901ece26e157d8960424511f866c8a327d235",
+      "rea_evidence_id": "ev_0c0b8f66fe12919aa79fa32a75d3d8604beb8ef370117c7461205e229946cc24"
+    }
+  ],
+  "limits": [
+    "Original-instruction replay is static evidence, not original/rebuilt runtime parity.",
+    "Startup replay stops after publishing its single key and before downstream learning.",
+    "Condition replay executes only condition0 and school3 selector paths.",
+    "Conversion replay stops before actor-hit dispatch and does not execute damage processing."
+  ]
+}

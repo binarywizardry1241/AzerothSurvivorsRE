@@ -1,0 +1,385 @@
+{
+  "target": {
+    "version": "0.113.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
+  },
+  "lead": "Q41-P01",
+  "gap": 41,
+  "system_id": "custom-app-screens-xinput",
+  "classification": "AS_windows_acquisition_to_external_XInputGetState_boundary",
+  "selected_call": {
+    "address": "0x1400b718f",
+    "bytes": "41ff1424",
+    "operand": "qword ptr [r12]",
+    "slot_offset": 0,
+    "selected_owner": "0x1400b6eb0",
+    "ReferenceManager_target": null,
+    "runtime_callee_address": null
+  },
+  "selector_inputs": [
+    {
+      "path": "docs/analysis/evidence/0.113.2/unknown-recovery.json",
+      "sha256": "d4148a7bcd2feb746bdd36dd5c88dfbe804b5f608edeafe16792841405ac342b"
+    },
+    {
+      "path": "docs/analysis/coverage/seeded-census.json",
+      "sha256": "455ed7d5d586fac0cf5816bb6dae4cae828d2720ab7d45ae1311350136fae447"
+    },
+    {
+      "path": "runtime/coverage/58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb/ghidra/full-image-diagnostic-owner-repaired/procedures/0x1400b6eb0.json",
+      "sha256": "69714a91f133d957d394b6ba07c732fe7d31ea4763d4161e324647a875103669"
+    }
+  ],
+  "original_unresolved_evidence_id": "ev_370e1e2ffe3885b0d0cc7fcf5c826bad4018fbedfaf2fc4132a87c564c55f0d3",
+  "ranges": [
+    {
+      "role": "poll",
+      "start": "0x1400b6eb0",
+      "end_exclusive": "0x1400b7b41",
+      "file_offset": "0xb62b0",
+      "size": 3217,
+      "sha256": "03f106733443b869743bffeba9d9d3775ed218706f491ab60b3600dc5f3c9ef4"
+    },
+    {
+      "role": "loader",
+      "start": "0x1400a7ea0",
+      "end_exclusive": "0x1400a855c",
+      "file_offset": "0xa72a0",
+      "size": 1724,
+      "sha256": "572a57fb0c886b139a754166310b2e93429e1eaaff672cb02e266e2ed147c0b7"
+    }
+  ],
+  "actual_body_ranges_inclusive": {
+    "poll": [
+      {
+        "start": "0x1400b6eb0",
+        "end": "0x1400b7064"
+      },
+      {
+        "start": "0x1400b7070",
+        "end": "0x1400b7149"
+      },
+      {
+        "start": "0x1400b7150",
+        "end": "0x1400b715b"
+      },
+      {
+        "start": "0x1400b7160",
+        "end": "0x1400b7281"
+      },
+      {
+        "start": "0x1400b7290",
+        "end": "0x1400b73f9"
+      },
+      {
+        "start": "0x1400b7400",
+        "end": "0x1400b772a"
+      },
+      {
+        "start": "0x1400b7730",
+        "end": "0x1400b7b40"
+      }
+    ],
+    "loader": [
+      {
+        "start": "0x1400a7ea0",
+        "end": "0x1400a855b"
+      }
+    ]
+  },
+  "critical_instructions": [
+    {
+      "address": "0x1400a7f42",
+      "bytes": "4889c7",
+      "assembly": "mov rdi, rax"
+    },
+    {
+      "address": "0x1400a83c8",
+      "bytes": "48897da0",
+      "assembly": "mov qword ptr [rbp - 0x60], rdi"
+    },
+    {
+      "address": "0x1400a83cc",
+      "bytes": "c745a800000000",
+      "assembly": "mov dword ptr [rbp - 0x58], 0"
+    },
+    {
+      "address": "0x1400a83d3",
+      "bytes": "c745c000000000",
+      "assembly": "mov dword ptr [rbp - 0x40], 0"
+    },
+    {
+      "address": "0x1400a83da",
+      "bytes": "c745d800000000",
+      "assembly": "mov dword ptr [rbp - 0x28], 0"
+    },
+    {
+      "address": "0x1400a83e1",
+      "bytes": "c745f000000000",
+      "assembly": "mov dword ptr [rbp - 0x10], 0"
+    },
+    {
+      "address": "0x1400a83e8",
+      "bytes": "c7450800000000",
+      "assembly": "mov dword ptr [rbp + 8], 0"
+    },
+    {
+      "address": "0x1400b6f48",
+      "bytes": "410f1000",
+      "assembly": "movups xmm0, xmmword ptr [r8]"
+    },
+    {
+      "address": "0x1400b6f55",
+      "bytes": "0f1145c8",
+      "assembly": "movups xmmword ptr [rbp - 0x38], xmm0"
+    },
+    {
+      "address": "0x1400b6fb6",
+      "bytes": "4c8b65c8",
+      "assembly": "mov r12, qword ptr [rbp - 0x38]"
+    },
+    {
+      "address": "0x1400b7055",
+      "bytes": "4c89a508010000",
+      "assembly": "mov qword ptr [rbp + 0x108], r12"
+    },
+    {
+      "address": "0x1400b7180",
+      "bytes": "440f298520010000",
+      "assembly": "movaps xmmword ptr [rbp + 0x120], xmm8"
+    },
+    {
+      "address": "0x1400b7188",
+      "bytes": "488d9520010000",
+      "assembly": "lea rdx, [rbp + 0x120]"
+    },
+    {
+      "address": "0x1400b718f",
+      "bytes": "41ff1424",
+      "assembly": "call qword ptr [r12]"
+    },
+    {
+      "address": "0x1400b71d7",
+      "bytes": "85c0",
+      "assembly": "test eax, eax"
+    },
+    {
+      "address": "0x1400b7290",
+      "bytes": "85c0",
+      "assembly": "test eax, eax"
+    },
+    {
+      "address": "0x1400b75f0",
+      "bytes": "4c8ba508010000",
+      "assembly": "mov r12, qword ptr [rbp + 0x108]"
+    },
+    {
+      "address": "0x1400b786f",
+      "bytes": "4c8ba508010000",
+      "assembly": "mov r12, qword ptr [rbp + 0x108]"
+    }
+  ],
+  "local_flow": {
+    "reached_instruction_count": 637,
+    "reached_instruction_bytes": 3171,
+    "reached_abstract_state_count": 638,
+    "call_reaching_R12_and_saved_slot": [
+      [
+        "resource",
+        "resource"
+      ]
+    ],
+    "R12_definition_addresses": [
+      "0x1400b6fb6",
+      "0x1400b72f3",
+      "0x1400b748c",
+      "0x1400b75f0",
+      "0x1400b7770",
+      "0x1400b77e0",
+      "0x1400b786f",
+      "0x1400b7b37"
+    ]
+  },
+  "loader_sequence": [
+    {
+      "library": "xinput1_4.dll",
+      "library_address": "0x145eccf03",
+      "symbol_address": "0x145eccf2f",
+      "load_call": "0x1400a7ecc",
+      "lookup_call": "0x1400a7ee1"
+    },
+    {
+      "library": "xinput1_3.dll",
+      "library_address": "0x145eccf11",
+      "symbol_address": "0x145eccf2f",
+      "load_call": "0x1400a7ef3",
+      "lookup_call": "0x1400a7f08"
+    },
+    {
+      "library": "xinput9_1_0.dll",
+      "library_address": "0x145eccf1f",
+      "symbol_address": "0x145eccf2f",
+      "load_call": "0x1400a7f1a",
+      "lookup_call": "0x1400a7f33"
+    }
+  ],
+  "source": {
+    "path": "crates/azeroth-survivors-re/src/native_input/acquisition.rs",
+    "sha256": "62305e4bdb3a3b11c34ae097ba44d995e143dfe55b9eb42f2f0756c6ef0c0e29"
+  },
+  "source_change_required": false,
+  "rea": {
+    "plan": {
+      "path": "runtime/q41-p01-0.113.2/rea.plan.json",
+      "sha256": "a4a38fce16f1199e0d86929f77c9c63f4e2328290b1980fdc59a1e8a73798f24"
+    },
+    "seeds": {
+      "path": "runtime/q41-p01-0.113.2/seeds.tsv",
+      "sha256": "318114f829cebcc36113eb48ba0bd90de8e5505562bfdb3389532a79515b5a99"
+    },
+    "seed_rows": [
+      "0x1400b6eb0\tfunction",
+      "0x1400b6eb0\tcode",
+      "0x1400a7ea0\tfunction",
+      "0x1400a7ea0\tcode"
+    ],
+    "disabled_analyzers": [
+      "Stack",
+      "Decompiler Switch Analysis",
+      "Function ID",
+      "Function Start Search",
+      "Disassemble Entry Points",
+      "Subroutine References",
+      "Data Reference",
+      "Reference",
+      "Non-Returning Functions - Discovered",
+      "Shared Return Calls",
+      "Create Address Tables",
+      "Call Convention ID"
+    ],
+    "observations": [
+      {
+        "artifact": {
+          "path": "runtime/q41-p01-0.113.2/rea-bounded/003-selected-call.json",
+          "sha256": "242661e2d13e06e25b8780b4e5ee15aba00023dcfbf6bee92eda00decad9972c"
+        },
+        "evidence_id": "ev_604154a7b61f334c5ca2911337684905848a18e6e58712eada0a60a3b77eb6f2",
+        "operation": "inspect_native_instruction",
+        "parameters": {
+          "address": "0x1400b718f"
+        },
+        "profile_digest": "16eff9b154c2dfb58c4c9a32c0d8c45bd25ea85610978aeba9d29c0550550d22"
+      },
+      {
+        "artifact": {
+          "path": "runtime/q41-p01-0.113.2/rea-bounded/004-poll-body.json",
+          "sha256": "9454809b7b5a133e6fb46d3ece9ebb275937c7b0e9f06228e3a692a343830945"
+        },
+        "evidence_id": "ev_773fc84ebe224d8d674daa17f23e9b5d9f892f7adb5e95c4bfdf2896badc804a",
+        "operation": "procedure_info",
+        "parameters": {
+          "procedure": "0x1400b6eb0"
+        },
+        "profile_digest": "16eff9b154c2dfb58c4c9a32c0d8c45bd25ea85610978aeba9d29c0550550d22"
+      },
+      {
+        "artifact": {
+          "path": "runtime/q41-p01-0.113.2/rea-bounded/005-poll-pseudocode.json",
+          "sha256": "b0b93fea254ec744d6ec840ec0b1de67577355f8a3008b9522a2f28f5d383737"
+        },
+        "evidence_id": "ev_f59678b9a6ad139038a3730a2ad0b72ae401b6ca7ddcaecff54afd58841d1279",
+        "operation": "procedure_pseudo_code",
+        "parameters": {
+          "procedure": "0x1400b6eb0"
+        },
+        "profile_digest": "16eff9b154c2dfb58c4c9a32c0d8c45bd25ea85610978aeba9d29c0550550d22"
+      },
+      {
+        "artifact": {
+          "path": "runtime/q41-p01-0.113.2/rea-bounded/006-poll-instructions.json",
+          "sha256": "b8e071d4a034cde86d0af5a38c2ca7926cde118cf9339b0ad2ef1936d6bcafe6"
+        },
+        "evidence_id": "ev_495fb46ebc73555d1b3ec528d2e9355e8820fc75f2c75e750141c8f9636adeb1",
+        "operation": "read_function_instructions",
+        "parameters": {
+          "procedure": "0x1400b6eb0"
+        },
+        "profile_digest": "16eff9b154c2dfb58c4c9a32c0d8c45bd25ea85610978aeba9d29c0550550d22"
+      },
+      {
+        "artifact": {
+          "path": "runtime/q41-p01-0.113.2/rea-bounded/007-poll-outgoing.json",
+          "sha256": "eb6842ca25d8a1ec81c552b373f8f80a12aad533dab2174fbeb8f73d1124a44f"
+        },
+        "evidence_id": "ev_e7cb2f9b91e33e2b3cd0a79f5da267278c4252823ac9ddbefcb72101d045c04e",
+        "operation": "procedure_references",
+        "parameters": {
+          "procedure": "0x1400b6eb0",
+          "direction": "outgoing"
+        },
+        "profile_digest": "16eff9b154c2dfb58c4c9a32c0d8c45bd25ea85610978aeba9d29c0550550d22"
+      },
+      {
+        "artifact": {
+          "path": "runtime/q41-p01-0.113.2/rea-bounded/008-loader-body.json",
+          "sha256": "30ccaf1e63174a96905de586b6b39a766b029446b440b0539e5c3c2ca352b6e6"
+        },
+        "evidence_id": "ev_aacd550f726e73fa076247848c00c650da11429db71dfad562bf339ac1035de7",
+        "operation": "procedure_info",
+        "parameters": {
+          "procedure": "0x1400a7ea0"
+        },
+        "profile_digest": "16eff9b154c2dfb58c4c9a32c0d8c45bd25ea85610978aeba9d29c0550550d22"
+      },
+      {
+        "artifact": {
+          "path": "runtime/q41-p01-0.113.2/rea-bounded/009-loader-pseudocode.json",
+          "sha256": "6afe1ac5dc94974cb99307c63739b136308c4ce5d945691b8536d2d194f30d10"
+        },
+        "evidence_id": "ev_64c0a656e7e1469330020b0f5e39fcb19a1eacce93ae156a874d645c6dedf320",
+        "operation": "procedure_pseudo_code",
+        "parameters": {
+          "procedure": "0x1400a7ea0"
+        },
+        "profile_digest": "16eff9b154c2dfb58c4c9a32c0d8c45bd25ea85610978aeba9d29c0550550d22"
+      },
+      {
+        "artifact": {
+          "path": "runtime/q41-p01-0.113.2/rea-bounded/010-loader-instructions.json",
+          "sha256": "d4852a7eeafdd881bbe90e4029cfae340317bd2a11efc6dd6f4b718236d08519"
+        },
+        "evidence_id": "ev_5ca92cd047b1a2f1f6a87d386530751d55c387cba779f7d2ebe4a7800a114227",
+        "operation": "read_function_instructions",
+        "parameters": {
+          "procedure": "0x1400a7ea0"
+        },
+        "profile_digest": "16eff9b154c2dfb58c4c9a32c0d8c45bd25ea85610978aeba9d29c0550550d22"
+      },
+      {
+        "artifact": {
+          "path": "runtime/q41-p01-0.113.2/rea-bounded/011-loader-literals.json",
+          "sha256": "0a2218d6c029d2dab486fe31c39bf50a0233bea35e7055744ff25735aea9d8be"
+        },
+        "evidence_id": "ev_f843d7ce6c4bc0194eb96ba4ebf672ff1b605c6435fbf688871de62210b77b15",
+        "operation": "read_bytes",
+        "parameters": {
+          "address": "0x145eccf03",
+          "length": 58
+        },
+        "profile_digest": "16eff9b154c2dfb58c4c9a32c0d8c45bd25ea85610978aeba9d29c0550550d22"
+      }
+    ]
+  },
+  "limits": [
+    "The exact external XInputGetState runtime address is loader-dependent and has no native-image body owner.",
+    "The typed resource/source correspondence is bounded to the selected loader and poll; whole ECS type registry and arbitrary aliases are not proved.",
+    "The local flow assumes Win64 nonvolatile-register preservation and no arbitrary external mutation of the saved stack slot.",
+    "The disabled-analysis Ghidra profile is bounded and does not establish caller/reference completeness.",
+    "No compilation, Rust test, game, device, platform or parity comparison ran."
+  ],
+  "generator": {
+    "path": "scripts/check-q41-p01-0.113.2.py",
+    "sha256": "d4d62b498aa09880b686767984fca90c72bfbafa8f8b00c5ef841cef3ea4c489"
+  }
+}

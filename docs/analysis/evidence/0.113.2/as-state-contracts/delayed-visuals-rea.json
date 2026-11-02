@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.113.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+    "size_bytes": 141932032
+  },
+  "provider": {
+    "id": "ghidra",
+    "name": "Ghidra",
+    "version": "12.1.4"
+  },
+  "evidence_id": "ev_db8c0410b68d973f888adec5780b71834911382242fe3ea9aad55ea277328397",
+  "analysis_profile_digest": "6709a89c8c2f397af5ecfaf3944e5c697a04d1416549fbd270471c0f85568d3c",
+  "raw_import_sha256": "a54100371a8c38dc8b8314ace641998c8c1014c9c2e92a5b59ab41980d701f28",
+  "runtime_response": "runtime/as-state-contracts-0.113.2/delayed-visuals-rea/003-procedure_pseudo_code.json",
+  "runtime_response_sha256": "47a800d889b7af2d77e7beafb4a00c3ec03acaebca550c9a249f28846ec1c94b",
+  "decompiler_diagnostics": [
+    "/* WARNING: Does not return */"
+  ],
+  "artifacts": {
+    "delayed-visuals.json": "b4df240344b8281eea58d3e2116839696264d65369abec211e000e84201fc028",
+    "delayed-visuals.asm": "d74d9988186b97ec7bc854574e70078837e07ef7d837364763fe4fe928aa82ab"
+  },
+  "limits": [
+    "Original-VA raw import; exact Win64 instructions own the queue layout and UCOMISS/JB semantics.",
+    "Decompiler floating-point comparisons alone do not identify the unordered branch; native instruction execution does.",
+    "No compiler, game/client process or original/rebuilt parity check ran."
+  ]
+}

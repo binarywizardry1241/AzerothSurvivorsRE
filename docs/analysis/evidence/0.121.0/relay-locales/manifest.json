@@ -1,0 +1,312 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960,
+    "identity_manifest": "docs/analysis/coverage/targets.json",
+    "version_provenance": "matching_embedded_updater_and_independent_version_witness",
+    "runtime_data": {
+      "directory": "installed-game/Data",
+      "archives": [
+        {
+          "path": "installed-game/Data/patch-2.MPQ",
+          "size_bytes": 4690878,
+          "sha256": "366edee41642a5dda22ed90cc252b543ee375755b7e8bee81e2a6cd59fd7b286"
+        },
+        {
+          "path": "installed-game/Data/patch-3.MPQ",
+          "size_bytes": 2580491,
+          "sha256": "75c35ca5b8075197252581e301e8900143007fdf37b493ad271ae1bd39f95a29"
+        },
+        {
+          "path": "installed-game/Data/patch-4.MPQ",
+          "size_bytes": 22769233,
+          "sha256": "2e895e0e0ff6a4781d0e0aaa6ea7d32ed1fe36841e17806fe1855cb880d18865"
+        },
+        {
+          "path": "installed-game/Data/patch-5.MPQ",
+          "size_bytes": 267019039,
+          "sha256": "5008e56873718b468fa5ae1b697dcbe4f5da9ffe6c793f3ef9939dbd7716f3d8"
+        },
+        {
+          "path": "installed-game/Data/patch-6.MPQ",
+          "size_bytes": 212228,
+          "sha256": "cad6ff59b5df028a507581befb836fce07894057e15fe63d9fdc553a95b7ceb5"
+        },
+        {
+          "path": "installed-game/Data/patch-7.MPQ",
+          "size_bytes": 276649,
+          "sha256": "f5fb15b181cf01cc6b5cf2ee9948a27ecc4ba27bab9a8bec584df4381932aae6"
+        },
+        {
+          "path": "installed-game/Data/patch-8.MPQ",
+          "size_bytes": 4155417,
+          "sha256": "ae3aaa29cadb7aeba8255f5b4a8305c7cbecfe8f0d3ed9646522113d16c3e12e"
+        },
+        {
+          "path": "installed-game/Data/patch-9.MPQ",
+          "size_bytes": 5739608,
+          "sha256": "ffff8ea890bdaf91a1680543ac60106db92132bc2210105279610fa73661a524"
+        },
+        {
+          "path": "installed-game/Data/patch-A.MPQ",
+          "size_bytes": 1453122,
+          "sha256": "350cde8cd0f76e5246a663eb3811f5a7b1a9c75e4e699190208c9299177b8d90"
+        },
+        {
+          "path": "installed-game/Data/patch-B.MPQ",
+          "size_bytes": 2935,
+          "sha256": "e9d074b012078efc1c1c8c729bf94d28b1d213d5fcb721dc4370a142f98834bd"
+        },
+        {
+          "path": "installed-game/Data/patch.MPQ",
+          "size_bytes": 1340199244,
+          "sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf"
+        }
+      ]
+    }
+  },
+  "gap_ids": [
+    217
+  ],
+  "target_executed": false,
+  "bounded_contract_system_ids": [
+    "custom-app-screens-coop",
+    "custom-app-screens-language"
+  ],
+  "bounded_contract_owner_scopes": {
+    "custom-app-screens-coop": "Guest terminal relay/host-left reason selection and exact recognized-key localization branch through the existing source consumer.",
+    "custom-app-screens-language": "Exactly fourteen descriptor-bound translations of relay-unreachable; wider locale/menu data remain separately owned."
+  },
+  "native_ranges": [
+    {
+      "role": "ui-reason-localize-key",
+      "virtual_address": "0x1402728c2",
+      "end_exclusive": "0x1402728fc",
+      "file_offset": "0x271cc2",
+      "byte_count": 58,
+      "sha256": "283284d8007724de3a2d7ad3d324e72e86cf4ab7ed9519cfe0939e5a3a589e71",
+      "bytes_hex": "4889d6488d15da83f70541bf2100000041b8210000004c89f1e84793d7054889f285c00f8554040000488d0db483f705ba21000000e9bf040000",
+      "instruction_count": 12,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/relay-locales/ui-reason-localize-key.asm",
+        "sha256": "642a3f6236f4156db4309532405a2ad14afccfcbbfab9e508fabe1cd17a6926f"
+      }
+    },
+    {
+      "role": "ui-localization-call",
+      "virtual_address": "0x140272dbb",
+      "end_exclusive": "0x140272dc6",
+      "file_offset": "0x2721bb",
+      "byte_count": 11,
+      "sha256": "abe43adcb504a89d731ee8335c64b50fbbd712c13c0b44e5c4050f3f83f8fcb7",
+      "bytes_hex": "e8f08087054989c64989d7",
+      "instruction_count": 3,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/relay-locales/ui-localization-call.asm",
+        "sha256": "e2014e7912f979da3eac34cc6d20f5eb8b5d814f9156352c096bed631e9093c2"
+      }
+    }
+  ],
+  "native_data": [
+    {
+      "role": "ui-reason-dispatch",
+      "virtual_address": "0x1461ece68",
+      "file_offset": "0x61ebc68",
+      "byte_count": 144,
+      "sha256": "b829707cfeb6421b65b27c91e4825f25b927caec12928fca435b5b8d50164ce2",
+      "bytes_hex": "355908fa785c08fab65c08fabe5c08fa2d5c08fa0a5b08fab65c08fa9d5b08fab65c08faf45c08fa3c5d08fab65c08fa405e08fab65c08faf85d08fab65c08fa945a08fae55b08fa555b08fab65c08fa5a5a08fab65c08fa845d08fab65c08fab65c08fabe5d08fab65c08fab65c08fab65c08fab65c08fab65c08fab65c08fab65c08fab65c08fab65c08fab25e08fa"
+    },
+    {
+      "role": "ui-relay-key",
+      "virtual_address": "0x1461eaca6",
+      "file_offset": "0x61e9aa6",
+      "byte_count": 33,
+      "sha256": "221e79c8100e89bc57c23777e80f1904fa22b225adfaf119bf9fe4e9d1637c0e",
+      "bytes_hex": "74686520636f2d6f702072656c61792063616e6e6f742062652072656163686564"
+    }
+  ],
+  "queries": [
+    {
+      "role": "ui-140272730",
+      "procedure": "0x140272730",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_03eedc52f22c781c136d80c0afceff4c2134b7211b91eb6cc05b7d989e9bd6aa",
+      "normalized_text_sha256": "3438ae0826c21b9d3aadb15bcee002851101d4772bb33c069eadf8be4f8a03ff",
+      "analysis_profile_digest": "2634bf6ee7fc6cc054956c8f478f75712dc4cd2322dfca165559da3f9e825f53",
+      "plan": {
+        "path": "runtime/fixgap-214-217-0.121.0/ui/plan.json",
+        "sha256": "e3b31da9025c6820298a15203007ca39dcc92c68e5ac3148ec6a82ba232bdc43"
+      },
+      "journal": {
+        "path": "runtime/fixgap-214-217-0.121.0/ui/query/journal.json",
+        "sha256": "b9e33015dd8e78d08b245930d420495db942840240d0b2a20daa0333d6c8f9b1"
+      },
+      "result": {
+        "path": "runtime/fixgap-214-217-0.121.0/ui/query/results/5499be63195b31b1dbc421bd8b115b3e7ce8216ce4ae93f8aa6f0327c0961cfe.json",
+        "sha256": "34db545d40699185871ad779467ad87a26483e35b17742a8a667c5de400f9878"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap-214-217-0.121.0/ui/code.bin",
+        "sha256": "665e252192d8c60e9aeb14c38633d10a957ffb06e673297b98c562d030aeda08"
+      },
+      "slice_virtual_address": "0x140272730"
+    }
+  ],
+  "locales": [
+    {
+      "code": "en",
+      "record_virtual_address": "0x14765af88",
+      "payload_virtual_address": "0x14730ebc6",
+      "file_offset": "0x730d9c6",
+      "byte_count": 218698,
+      "sha256": "f08badc9a4e32e45cfb5ca6f4c83a64f8e929b5fb7a996e48af1a917611ec52e",
+      "keys": 3187,
+      "relay_unreachable": "the co-op relay cannot be reached"
+    },
+    {
+      "code": "pl",
+      "record_virtual_address": "0x14765afc0",
+      "payload_virtual_address": "0x147344218",
+      "file_offset": "0x7343018",
+      "byte_count": 233283,
+      "sha256": "96805a9996ed0218cbe224082c7d5a7e0a7fbe4b9d5083735e5db67f38b34c1f",
+      "keys": 3187,
+      "relay_unreachable": "nie można połączyć się z przekaźnikiem co-op"
+    },
+    {
+      "code": "cs",
+      "record_virtual_address": "0x14765aff8",
+      "payload_virtual_address": "0x14737d166",
+      "file_offset": "0x737bf66",
+      "byte_count": 233516,
+      "sha256": "ce9f479399ebad9d8b12e8d9b867875321432bec5738a04d24288fa4476930ca",
+      "keys": 3187,
+      "relay_unreachable": "relé kooperace nelze kontaktovat"
+    },
+    {
+      "code": "de",
+      "record_virtual_address": "0x14765b030",
+      "payload_virtual_address": "0x1473b619b",
+      "file_offset": "0x73b4f9b",
+      "byte_count": 238919,
+      "sha256": "f30628c2784f06f9bf744b14b9877b7fb5447a7d37aac3de70d04e9abb5d17d7",
+      "keys": 3187,
+      "relay_unreachable": "das Koop-Relais ist nicht erreichbar"
+    },
+    {
+      "code": "pt",
+      "record_virtual_address": "0x14765b068",
+      "payload_virtual_address": "0x1473f06f7",
+      "file_offset": "0x73ef4f7",
+      "byte_count": 231495,
+      "sha256": "4782e6a64f5dae435cd90a3353b0dde303238dbfc8d031d40999837cbf797677",
+      "keys": 3187,
+      "relay_unreachable": "não é possível conectar ao relé cooperativo"
+    },
+    {
+      "code": "es",
+      "record_virtual_address": "0x14765b0a0",
+      "payload_virtual_address": "0x147428f48",
+      "file_offset": "0x7427d48",
+      "byte_count": 238623,
+      "sha256": "fcd8bf3da101c791ccda4e1a0b18116fdb6eac0a6bcd0d7a8585c1ce5e04771f",
+      "keys": 3187,
+      "relay_unreachable": "no se puede conectar con el relé cooperativo"
+    },
+    {
+      "code": "fr",
+      "record_virtual_address": "0x14765b0d8",
+      "payload_virtual_address": "0x147463372",
+      "file_offset": "0x7462172",
+      "byte_count": 243312,
+      "sha256": "9bbda5c6c74bf73d8f6f7331f9939183432c92f7ae069708a2d66b370e6362e9",
+      "keys": 3187,
+      "relay_unreachable": "le relais coop est injoignable"
+    },
+    {
+      "code": "ro",
+      "record_virtual_address": "0x14765b110",
+      "payload_virtual_address": "0x14749e9ec",
+      "file_offset": "0x749d7ec",
+      "byte_count": 239018,
+      "sha256": "5de9ec10e7a6aef377f01fa953c531010780ec63d3556d5a55d93ec6ac4defea",
+      "keys": 3187,
+      "relay_unreachable": "releul co-op nu poate fi contactat"
+    },
+    {
+      "code": "tr",
+      "record_virtual_address": "0x14765b148",
+      "payload_virtual_address": "0x1474d8fa0",
+      "file_offset": "0x74d7da0",
+      "byte_count": 231276,
+      "sha256": "e2f197362a5eb1542b2e373815b6140f7a13893b85f2709558a429b07441f4ab",
+      "keys": 3187,
+      "relay_unreachable": "ortak oyun aktarıcısına ulaşılamıyor"
+    },
+    {
+      "code": "ru",
+      "record_virtual_address": "0x14765b180",
+      "payload_virtual_address": "0x14751171c",
+      "file_offset": "0x751051c",
+      "byte_count": 316116,
+      "sha256": "8770bc1db9a46e459f9c4efa48e34772a4a8b8711133099316376c6534c7e914",
+      "keys": 3187,
+      "relay_unreachable": "не удаётся связаться с кооперативным ретранслятором"
+    },
+    {
+      "code": "uk",
+      "record_virtual_address": "0x14765b1b8",
+      "payload_virtual_address": "0x14755ea06",
+      "file_offset": "0x755d806",
+      "byte_count": 308315,
+      "sha256": "bcd98d92bd68ee3735e2357e76f45601ddb3cc6317e395741c3410182c07c6f9",
+      "keys": 3187,
+      "relay_unreachable": "не вдається з'єднатися з кооперативним ретранслятором"
+    },
+    {
+      "code": "zh",
+      "record_virtual_address": "0x14765b1f0",
+      "payload_virtual_address": "0x1475a9e6f",
+      "file_offset": "0x75a8c6f",
+      "byte_count": 217276,
+      "sha256": "219e447912e8dde17c059e127eddbcb1c7c3b530e166227dc7536c7d1422ed6d",
+      "keys": 3187,
+      "relay_unreachable": "无法连接合作中继服务器"
+    },
+    {
+      "code": "ja",
+      "record_virtual_address": "0x14765b228",
+      "payload_virtual_address": "0x1475def36",
+      "file_offset": "0x75ddd36",
+      "byte_count": 262662,
+      "sha256": "c5c464d8b33893c63c5c9d6ee8c3442287252cfddcf33e613fdb3ada18de91e5",
+      "keys": 3187,
+      "relay_unreachable": "協力プレイの中継サーバーに接続できません"
+    },
+    {
+      "code": "ko",
+      "record_virtual_address": "0x14765b260",
+      "payload_virtual_address": "0x14761f147",
+      "file_offset": "0x761df47",
+      "byte_count": 245312,
+      "sha256": "c6f632db65dfe9391a682c668c711314a42f7e1b8c34a0f4eeb0620826895c30",
+      "keys": 3187,
+      "relay_unreachable": "협동 중계 서버에 연결할 수 없습니다"
+    }
+  ],
+  "source_refs": [
+    "crates/azeroth-survivors-re/src/coop_forms.rs",
+    "crates/azeroth-survivors-re/src/coop_ui.rs"
+  ],
+  "limits": [
+    "Current exact key, length-dispatch, localization call and fourteen descriptor/payload translations only. Raw Ghidra omits external tables/bodies; original bytes and separately read dispatch data bind the branch.",
+    "No compilation, actual locale/UI/input/font/render execution, client/game/server/network operation or original/rebuilt parity."
+  ]
+}

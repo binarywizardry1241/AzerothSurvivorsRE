@@ -1,0 +1,803 @@
+{
+  "target_sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+  "method": "Unchanged x86-64 PE instruction bytes executed in Unicorn; native f32 SSE instructions determine outputs. No host calls, original process launch, network, file operations, terrain or UI execution.",
+  "native_ranges": [
+    {
+      "scope": "clock",
+      "start": "0x145474237",
+      "end_exclusive": "0x14547425c",
+      "sha256": "2d9f748493f8578279582695baff4bb78c89878e863f044b3011f32ed4dc2d50"
+    },
+    {
+      "scope": "timer",
+      "start": "0x1454800e3",
+      "end_exclusive": "0x14548021f",
+      "sha256": "694bfdfecd09ffd03f4bdc8e4316a77f0603f9a9c2cdefd2299a21886ae83128"
+    },
+    {
+      "scope": "range_rng",
+      "start": "0x1454d71c0",
+      "end_exclusive": "0x1454d733a",
+      "sha256": "f4d009ba3bfbfdd4eea545cd41d50e7896d4967ce17da4a1775b3910e188b550"
+    },
+    {
+      "scope": "eviction",
+      "start": "0x14549d44f",
+      "end_exclusive": "0x14549d605",
+      "sha256": "ab5821fb1e1f0fcc09de9cf6221fde6d8bbdc952b54b67d782b8e697a0dea5f3"
+    },
+    {
+      "scope": "eviction",
+      "start": "0x14549e162",
+      "end_exclusive": "0x14549e16d",
+      "sha256": "3d1d7061088ad0b3610b384273b49158f4b1e8b8aaf3cf8da14ea03cdecd47c4"
+    },
+    {
+      "scope": "price",
+      "start": "0x1454a81a0",
+      "end_exclusive": "0x1454a8221",
+      "sha256": "25e80d7b64618708918c990e0ad5081067ee2c4cc0d1d997a78c4b7d895c486f"
+    }
+  ],
+  "stubs": {
+    "timer_placement": "Records exact supplied min/max bits; returns without calculating position or altering RNG.",
+    "timer_creation": "Records kind only; does not alter pickups.",
+    "eviction_removal": "Records selected index only; execution stops before terrain/creation."
+  },
+  "clock_cases": [
+    {
+      "state": 0,
+      "clock_bits": 1114505216,
+      "delta_bits": 1056964608,
+      "output_clock_bits": 1114505216
+    },
+    {
+      "state": 1,
+      "clock_bits": 1114505216,
+      "delta_bits": 1056964608,
+      "output_clock_bits": 1114636288
+    },
+    {
+      "state": 3,
+      "clock_bits": 1114505216,
+      "delta_bits": 1056964608,
+      "output_clock_bits": 1114505216
+    }
+  ],
+  "timer_cases": [
+    {
+      "label": "just_before_first",
+      "clock_bits": 1114636287,
+      "next_bits": 1114636288,
+      "pickup_kinds": [
+        2,
+        2
+      ],
+      "output_next_bits": 1114636288,
+      "native_events": []
+    },
+    {
+      "label": "first_due",
+      "clock_bits": 1114636288,
+      "next_bits": 1114636288,
+      "pickup_kinds": [
+        2,
+        2
+      ],
+      "output_next_bits": 1124204544,
+      "native_events": [
+        {
+          "call": "placement",
+          "min_bits": 1099956224,
+          "max_bits": 1112014848
+        },
+        {
+          "call": "creation",
+          "kind": 2
+        }
+      ]
+    },
+    {
+      "label": "skip_three",
+      "clock_bits": 1114636288,
+      "next_bits": 1114636288,
+      "pickup_kinds": [
+        2,
+        2,
+        2
+      ],
+      "output_next_bits": 1124204544,
+      "native_events": []
+    },
+    {
+      "label": "skip_five_mixed_vector_tail",
+      "clock_bits": 1124204544,
+      "next_bits": 1124204544,
+      "pickup_kinds": [
+        0,
+        2,
+        2,
+        6,
+        2,
+        2,
+        2
+      ],
+      "output_next_bits": 1128792064,
+      "native_events": []
+    },
+    {
+      "label": "simd_mixed_two_chests",
+      "clock_bits": 1114636288,
+      "next_bits": 1114636288,
+      "pickup_kinds": [
+        2,
+        0,
+        6,
+        2
+      ],
+      "output_next_bits": 1124204544,
+      "native_events": [
+        {
+          "call": "placement",
+          "min_bits": 1099956224,
+          "max_bits": 1112014848
+        },
+        {
+          "call": "creation",
+          "kind": 2
+        }
+      ]
+    },
+    {
+      "label": "late_tick_no_catchup",
+      "clock_bits": 1140461568,
+      "next_bits": 1114636288,
+      "pickup_kinds": [],
+      "output_next_bits": 1141803008,
+      "native_events": [
+        {
+          "call": "placement",
+          "min_bits": 1099956224,
+          "max_bits": 1112014848
+        },
+        {
+          "call": "creation",
+          "kind": 2
+        }
+      ]
+    },
+    {
+      "label": "large_f32_clock",
+      "clock_bits": 1266679808,
+      "next_bits": 1266679808,
+      "pickup_kinds": [
+        2
+      ],
+      "output_next_bits": 1266679843,
+      "native_events": [
+        {
+          "call": "placement",
+          "min_bits": 1099956224,
+          "max_bits": 1112014848
+        },
+        {
+          "call": "creation",
+          "kind": 2
+        }
+      ]
+    }
+  ],
+  "range_rng_cases": [
+    {
+      "label": "small_seed_radius",
+      "initial_state": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "min_bits": 1099956224,
+      "max_bits": 1112014848,
+      "draws": [
+        {
+          "value_bits": 1099956224,
+          "state": [
+            7,
+            0,
+            262146,
+            211106232532992
+          ]
+        },
+        {
+          "value_bits": 1099956224,
+          "state": [
+            211106232532999,
+            262149,
+            262149,
+            402653184
+          ]
+        },
+        {
+          "value_bits": 1099959488,
+          "state": [
+            211106635448322,
+            211106232532999,
+            211140593188866,
+            9223547958715220736
+          ]
+        },
+        {
+          "value_bits": 1099959490,
+          "state": [
+            9223547959118136069,
+            211140995579911,
+            9223372071617429504,
+            27285480756215808
+          ]
+        },
+        {
+          "value_bits": 1107822929,
+          "state": [
+            9250551998855381762,
+            105553519575810,
+            9228034086416548613,
+            4611932360672346753
+          ]
+        },
+        {
+          "value_bits": 1108161739,
+          "state": [
+            13862097262714618497,
+            31630836743406341,
+            13866636029399924743,
+            6931154176001016769
+          ]
+        }
+      ]
+    },
+    {
+      "label": "small_seed_angle",
+      "initial_state": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "min_bits": 0,
+      "max_bits": 1086918619,
+      "draws": [
+        {
+          "value_bits": 0,
+          "state": [
+            7,
+            0,
+            262146,
+            211106232532992
+          ]
+        },
+        {
+          "value_bits": 0,
+          "state": [
+            211106232532999,
+            262149,
+            262149,
+            402653184
+          ]
+        },
+        {
+          "value_bits": 983578787,
+          "state": [
+            211106635448322,
+            211106232532999,
+            211140593188866,
+            9223547958715220736
+          ]
+        },
+        {
+          "value_bits": 983585220,
+          "state": [
+            9223547959118136069,
+            211140995579911,
+            9223372071617429504,
+            27285480756215808
+          ]
+        },
+        {
+          "value_bits": 1078537504,
+          "state": [
+            9250551998855381762,
+            105553519575810,
+            9228034086416548613,
+            4611932360672346753
+          ]
+        },
+        {
+          "value_bits": 1079601907,
+          "state": [
+            13862097262714618497,
+            31630836743406341,
+            13866636029399924743,
+            6931154176001016769
+          ]
+        }
+      ]
+    },
+    {
+      "label": "all_high_radius",
+      "initial_state": [
+        18446744073709551615,
+        18446744073709551615,
+        18446744073709551615,
+        18446744073709551615
+      ],
+      "min_bits": 1099956224,
+      "max_bits": 1112014848,
+      "draws": [
+        {
+          "value_bits": 1112014847,
+          "state": [
+            18446744073709551615,
+            18446744073709551615,
+            18446744073709420544,
+            0
+          ]
+        },
+        {
+          "value_bits": 1112014847,
+          "state": [
+            0,
+            18446744073709420544,
+            18446744073709551615,
+            18446744073709551615
+          ]
+        },
+        {
+          "value_bits": 1112014847,
+          "state": [
+            131071,
+            131071,
+            17179869183,
+            4611650834055299072
+          ]
+        },
+        {
+          "value_bits": 1099956224,
+          "state": [
+            4611650834055299072,
+            17179869183,
+            0,
+            4611659630081212416
+          ]
+        },
+        {
+          "value_bits": 1104149984,
+          "state": [
+            8778980261887,
+            4611650851235168255,
+            4609469402985660416,
+            18446717685380120703
+          ]
+        },
+        {
+          "value_bits": 1111949379,
+          "state": [
+            13835058055298908287,
+            2243003787640832,
+            18446717668317724671,
+            1148444293275287648
+          ]
+        }
+      ]
+    },
+    {
+      "label": "mixed_seed_radius",
+      "initial_state": [
+        81985529216486895,
+        18364758544493064720,
+        9833440827789222417,
+        1234605616436508552
+      ],
+      "min_bits": 1099956224,
+      "max_bits": 1112014848,
+      "draws": [
+        {
+          "value_bits": 1105662670,
+          "state": [
+            17212138457273043063,
+            8613303245920329198,
+            18186889458408288254,
+            5238563776126223462
+          ]
+        },
+        {
+          "value_bits": 1104976822,
+          "state": [
+            15124856588838294015,
+            7291779196583262823,
+            2444457034481756041,
+            16947335563378863454
+          ]
+        },
+        {
+          "value_bits": 1103953604,
+          "state": [
+            6910445432703928006,
+            10753372006624660497,
+            14203594067989608054,
+            16350091673225500940
+          ]
+        },
+        {
+          "value_bits": 1100018864,
+          "state": [
+            2898702564522087387,
+            1134976181052538017,
+            15510424549097631920,
+            8260638537052043898
+          ]
+        },
+        {
+          "value_bits": 1111685328,
+          "state": [
+            6150178447643874560,
+            17346287682036588490,
+            9430487283752903531,
+            4096991072461597401
+          ]
+        },
+        {
+          "value_bits": 1108044975,
+          "state": [
+            11329044165285699603,
+            2827244826363947425,
+            2232104820450899563,
+            7972067383405858352
+          ]
+        }
+      ]
+    },
+    {
+      "label": "last_word_only",
+      "initial_state": [
+        0,
+        0,
+        0,
+        9223372036854775808
+      ],
+      "min_bits": 1099956224,
+      "max_bits": 1112014848,
+      "draws": [
+        {
+          "value_bits": 1099956224,
+          "state": [
+            9223372036854775808,
+            0,
+            0,
+            17592186044416
+          ]
+        },
+        {
+          "value_bits": 1107820544,
+          "state": [
+            9223389629040820224,
+            9223372036854775808,
+            9223372036854775808,
+            33554432
+          ]
+        },
+        {
+          "value_bits": 1107820680,
+          "state": [
+            17592219598848,
+            9223389629040820224,
+            17592186044416,
+            17592186044480
+          ]
+        },
+        {
+          "value_bits": 1099956496,
+          "state": [
+            9223389629074374720,
+            9223389629074374656,
+            2305843009247248384,
+            2269391999729664
+          ]
+        },
+        {
+          "value_bits": 1107820680,
+          "state": [
+            2269391999729728,
+            2305843009247248448,
+            9223394027087331392,
+            17596481011776
+          ]
+        },
+        {
+          "value_bits": 1099991056,
+          "state": [
+            2308094813355900992,
+            11531471243962220608,
+            9225623836676849664,
+            4398080073792
+          ]
+        }
+      ]
+    },
+    {
+      "label": "adjacent_f32_range_rejection",
+      "initial_state": [
+        18446744073709551615,
+        18446744073709551615,
+        18446744073709551615,
+        18446744073709551615
+      ],
+      "min_bits": 1065353216,
+      "max_bits": 1065353217,
+      "draws": [
+        {
+          "value_bits": 1065353216,
+          "state": [
+            4611650834055299072,
+            17179869183,
+            0,
+            4611659630081212416
+          ]
+        },
+        {
+          "value_bits": 1065353216,
+          "state": [
+            8778980261887,
+            4611650851235168255,
+            4609469402985660416,
+            18446717685380120703
+          ]
+        },
+        {
+          "value_bits": 1065353216,
+          "state": [
+            18157420800179597432,
+            3461016298551386208,
+            3458797509856337951,
+            14555908317365956711
+          ]
+        },
+        {
+          "value_bits": 1065353216,
+          "state": [
+            4037477625407976421,
+            3747021544474173464,
+            14341580248353497095,
+            3782813684617171997
+          ]
+        },
+        {
+          "value_bits": 1065353216,
+          "state": [
+            14265264308461906939,
+            4327037574135703544,
+            14482487676337640450,
+            397301594216860956
+          ]
+        },
+        {
+          "value_bits": 1065353216,
+          "state": [
+            4159249602361281025,
+            14796372936225951204,
+            5561002939618536195,
+            4322478397239766648
+          ]
+        }
+      ]
+    }
+  ],
+  "eviction_cases": [
+    {
+      "label": "below_cap",
+      "pickup_kinds": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "creation_time_bits": [
+        0,
+        1065353216,
+        1073741824,
+        1077936128
+      ],
+      "native_events": []
+    },
+    {
+      "label": "five_equal_keeps_first",
+      "pickup_kinds": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "creation_time_bits": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "native_events": [
+        {
+          "call": "removal",
+          "index": 0
+        }
+      ]
+    },
+    {
+      "label": "oldest_in_middle",
+      "pickup_kinds": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "creation_time_bits": [
+        1101004800,
+        1092616192,
+        0,
+        1106247680,
+        1109393408
+      ],
+      "native_events": [
+        {
+          "call": "removal",
+          "index": 2
+        }
+      ]
+    },
+    {
+      "label": "mixed_vector_filters_kinds",
+      "pickup_kinds": [
+        0,
+        2,
+        6,
+        2,
+        2,
+        0,
+        2,
+        2
+      ],
+      "creation_time_bits": [
+        3267756032,
+        1082130432,
+        3267887104,
+        1077936128,
+        1073741824,
+        3268018176,
+        1065353216,
+        0
+      ],
+      "native_events": [
+        {
+          "call": "removal",
+          "index": 7
+        }
+      ]
+    },
+    {
+      "label": "above_cap_removes_one",
+      "pickup_kinds": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "creation_time_bits": [
+        1084227584,
+        1082130432,
+        1077936128,
+        1073741824,
+        1065353216,
+        0,
+        1086324736
+      ],
+      "native_events": [
+        {
+          "call": "removal",
+          "index": 5
+        }
+      ]
+    },
+    {
+      "label": "signed_zero_total_order",
+      "pickup_kinds": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "creation_time_bits": [
+        0,
+        2147483648,
+        1065353216,
+        1073741824,
+        1077936128
+      ],
+      "native_events": [
+        {
+          "call": "removal",
+          "index": 1
+        }
+      ]
+    }
+  ],
+  "price_cases": [
+    {
+      "price": 0,
+      "gold": 0,
+      "affordable": true,
+      "output_gold": 0,
+      "output_price": 5
+    },
+    {
+      "price": 20,
+      "gold": 20,
+      "affordable": true,
+      "output_gold": 0,
+      "output_price": 31
+    },
+    {
+      "price": 31,
+      "gold": 100,
+      "affordable": true,
+      "output_gold": 69,
+      "output_price": 45
+    },
+    {
+      "price": 16777215,
+      "gold": 4294967295,
+      "affordable": true,
+      "output_gold": 4278190080,
+      "output_price": 21810384
+    },
+    {
+      "price": 16777216,
+      "gold": 4294967295,
+      "affordable": true,
+      "output_gold": 4278190079,
+      "output_price": 21810384
+    },
+    {
+      "price": 3303820000,
+      "gold": 4294967295,
+      "affordable": true,
+      "output_gold": 991147295,
+      "output_price": 4294965760
+    },
+    {
+      "price": 4294967295,
+      "gold": 4294967295,
+      "affordable": true,
+      "output_gold": 0,
+      "output_price": 4294967295
+    },
+    {
+      "price": 20,
+      "gold": 19,
+      "affordable": false,
+      "output_gold": 19,
+      "output_price": 20
+    }
+  ],
+  "limits": [
+    "Only named instruction ranges execute. The already-mapped PE supplies original constants and SSE comparison masks.",
+    "Clock fixtures inject state/delta at the active-state gate; deferred initialization and full tick are excluded.",
+    "Timer does not exercise real placement or creation. Eviction does not exercise native removal effects or append.",
+    "Price scope ends after affordability and gold/next-price writes; purchase counters/UI/message/removal are excluded.",
+    "RNG state is injected. Full run seeding/shared consumers and trigonometry are excluded.",
+    "These are bounded native-code oracle fixtures, not original-game or rendered/rebuilt parity verification."
+  ]
+}

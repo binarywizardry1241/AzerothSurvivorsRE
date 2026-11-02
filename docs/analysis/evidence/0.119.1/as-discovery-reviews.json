@@ -1,0 +1,1340 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.119.1",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c",
+    "size_bytes": 145374208
+  },
+  "reviews": [
+    {
+      "id": "selected-party-relay-closed",
+      "selector": "COOP1191:relay-closed:0x145ab5130-0x145ab520a",
+      "finding_ids": [
+        184
+      ],
+      "ownership": "as_specific",
+      "conclusion": "Current closed-state helper inspects only the optional selected secondary transport and its state callback. Reconstructed primary service loss still destroys that relay ownership.",
+      "next_action": "Repair the selected primary-versus-secondary lifetime separation through existing owners; preserve absent/closed relay and explicit Leave boundaries.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/coop_directory.rs",
+            "sha256": "fb5f685c4f7ec2701814adee3ecf0a1d06c2811211e6037fed5093792ababd77"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/coop/session.rs",
+            "sha256": "88a841754f5fe1cc988d388bf885beb02a74d8f53028dacc836a097426d7d13c"
+          }
+        ],
+        "conclusion": "Current closed-state helper inspects only the optional selected secondary transport and its state callback. Reconstructed primary service loss still destroys that relay ownership. Existing source interfaces were inspected before the bounded current native review; generic dependencies stop at these interfaces."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.1/coop-disconnect/manifest.json",
+        "sha256": "b11326a77b2aab2a8c4611894e4fff5ff6cabea367b3ccfc379a683b34a87422"
+      },
+      "query": {
+        "selector": [
+          "queries",
+          1
+        ],
+        "sha256": "d7620630310a8aaeeaa032186a5c8e44d8e0f4d40f89795ef54d1fadb74c85d7"
+      },
+      "results": [
+        {
+          "path": "runtime/coop-disconnect-0.119.1/lifecycle-query/results/8b89365c8b4f0ac84b5919f223ad68221783dfcffc481e67d2932c5d20d6f53f.json",
+          "sha256": "aedf5a839345c22be8da0025a5afc5c9451785215bd5c58d077a314e4c6d2468"
+        }
+      ],
+      "source_connection_state": "source_difference_identified"
+    },
+    {
+      "id": "selected-party-relay-alive",
+      "selector": "COOP1191:relay-alive:0x145ab5240-0x145ab531a",
+      "finding_ids": [
+        184
+      ],
+      "ownership": "as_specific",
+      "conclusion": "Current selected-secondary liveness excludes unrelated primary lobby state. Reconstructed Session::connected requires service_alive on service relay paths.",
+      "next_action": "Connect the recovered selected party transport gate while preserving actual transport failure and roster/menu service boundaries.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/coop_directory.rs",
+            "sha256": "fb5f685c4f7ec2701814adee3ecf0a1d06c2811211e6037fed5093792ababd77"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/coop/session.rs",
+            "sha256": "88a841754f5fe1cc988d388bf885beb02a74d8f53028dacc836a097426d7d13c"
+          }
+        ],
+        "conclusion": "Current selected-secondary liveness excludes unrelated primary lobby state. Reconstructed Session::connected requires service_alive on service relay paths. Existing source interfaces were inspected before the bounded current native review; generic dependencies stop at these interfaces."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.1/coop-disconnect/manifest.json",
+        "sha256": "b11326a77b2aab2a8c4611894e4fff5ff6cabea367b3ccfc379a683b34a87422"
+      },
+      "query": {
+        "selector": [
+          "queries",
+          2
+        ],
+        "sha256": "8f1508d61795fb7e2d6269287838cf67525eb34117e1bdbf4d2dc4e83db9e84e"
+      },
+      "results": [
+        {
+          "path": "runtime/coop-disconnect-0.119.1/lifecycle-query/results/21622174d891482c0ae78b12a74e97fb9d1ca502486092271100178b0663d4ce.json",
+          "sha256": "135ff166fd7660a5a9952421e928aefa4b5875f70491750f6d5b7b06bc5c633b"
+        }
+      ],
+      "source_connection_state": "source_difference_identified"
+    },
+    {
+      "id": "party-run-lobby-failure-continuation",
+      "selector": "COOP1191:run-retention:0x145b01174-0x145b012dd",
+      "finding_ids": [
+        183,
+        184
+      ],
+      "ownership": "as_specific",
+      "conclusion": "Current frame keeps an admitted party on primary lobby failure while its selected relay is live. Actual transport_closed(false) drops both workers, calls service_lost and exposes host transport loss.",
+      "next_action": "Repair this exact source coupling using the existing service/session/run owners; validate actual disconnect/rejoin and parity separately.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/coop_directory.rs",
+            "sha256": "fb5f685c4f7ec2701814adee3ecf0a1d06c2811211e6037fed5093792ababd77"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+            "sha256": "2e628ee8f24a2c67d9e650d5feb266e352da05e663167f13bb9629af9385cb9f"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/coop/session.rs",
+            "sha256": "88a841754f5fe1cc988d388bf885beb02a74d8f53028dacc836a097426d7d13c"
+          }
+        ],
+        "conclusion": "Current frame keeps an admitted party on primary lobby failure while its selected relay is live. Actual transport_closed(false) drops both workers, calls service_lost and exposes host transport loss. Existing source interfaces were inspected before the bounded current native review; generic dependencies stop at these interfaces."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.1/coop-disconnect/manifest.json",
+        "sha256": "b11326a77b2aab2a8c4611894e4fff5ff6cabea367b3ccfc379a683b34a87422"
+      },
+      "query": {
+        "selector": [
+          "queries",
+          6
+        ],
+        "sha256": "6665b95684bac7e42ed307a2e6872c2c63419c2595874b78daa0d507bff03a45"
+      },
+      "results": [
+        {
+          "path": "runtime/coop-disconnect-0.119.1/consumer-query/results/fab023986902a12254c688f38da3719a46f28603b005ac8ac0c20f7a2ed56be9.json",
+          "sha256": "8643dbdc9bcc215def6016c4510aba3aec76fbbb722cb410dc731ae3c69e57d2"
+        }
+      ],
+      "source_connection_state": "source_difference_identified"
+    },
+    {
+      "id": "real-peer-departure-removal",
+      "selector": "COOP1191:real-peer-removal:0x145b1e7d0-0x145b1e91c",
+      "finding_ids": [
+        185
+      ],
+      "ownership": "as_specific",
+      "conclusion": "Current host removal deletes only the selected connection, invokes hero abandonment and republishes roster. Existing Session::tick, PartyServer::disconnect and membership consumer preserve these interface owners; no new concrete defect identified in this bounded branch.",
+      "next_action": "Rebind deeper hero/health/projection dependencies separately; actual transport timing/delivery and full original/rebuilt behavior remain unverified.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/coop/session.rs",
+            "sha256": "88a841754f5fe1cc988d388bf885beb02a74d8f53028dacc836a097426d7d13c"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+            "sha256": "1b9e3b210196256c3bb04fc83726318602e7c53167b9e591e8b4880b3109fb39"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+            "sha256": "2e628ee8f24a2c67d9e650d5feb266e352da05e663167f13bb9629af9385cb9f"
+          }
+        ],
+        "conclusion": "Current host removal deletes only the selected connection, invokes hero abandonment and republishes roster. Existing Session::tick, PartyServer::disconnect and membership consumer preserve these interface owners; no new concrete defect identified in this bounded branch. Existing source interfaces were inspected before the bounded current native review; generic dependencies stop at these interfaces."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.1/coop-disconnect/manifest.json",
+        "sha256": "b11326a77b2aab2a8c4611894e4fff5ff6cabea367b3ccfc379a683b34a87422"
+      },
+      "query": {
+        "selector": [
+          "queries",
+          7
+        ],
+        "sha256": "aae46ae6e0b0c5f03e54c647a6136a854796f222926c86e94e62357fc8b6146b"
+      },
+      "results": [
+        {
+          "path": "runtime/coop-disconnect-0.119.1/departure-query/results/9afbd30f2e80d7496ba0a5767201e017b7f95f8af5365fa6b59dda9451f5363b.json",
+          "sha256": "8b024ba21bc6020e534df265c963f1c696c19dbe5e55f78218ddf316aa6608b6"
+        }
+      ],
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "guest-engine-trust-transform",
+      "selector": "COOP1191:trust-transform:0x145ae46c0-0x145ae4f23",
+      "finding_ids": [
+        186
+      ],
+      "ownership": "as_specific",
+      "conclusion": "Current trust owner rewrites bounded0x51name and0x96chat fields through exact guards/table and malformed-input fallbacks. Actual guest_engine_packet preserves admitted payload; tag11 sanitize_text is a separate resource consumer.",
+      "next_action": "Recover any remaining helper edges and implement the bounded transform at the guest Engine boundary in a selected repair, preserving malformed fallbacks and suffixes.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+            "sha256": "2e628ee8f24a2c67d9e650d5feb266e352da05e663167f13bb9629af9385cb9f"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/coop/client_state.rs",
+            "sha256": "cb9436e7c150a075de95c9935c4eafe09add48c9e5fdc5d99f28e14436bb2c1a"
+          },
+          {
+            "path": "crates/benilla-protocol/src/messages/parse.rs",
+            "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+          },
+          {
+            "path": "crates/benilla-protocol/src/messages/chat.rs",
+            "sha256": "6706fefff93bc556163990de7edc2cd688b6641c62adafc37a8ad1851c44e61b"
+          }
+        ],
+        "conclusion": "Current trust owner rewrites bounded0x51name and0x96chat fields through exact guards/table and malformed-input fallbacks. Actual guest_engine_packet preserves admitted payload; tag11 sanitize_text is a separate resource consumer. Existing source interfaces were inspected before the bounded current native review; generic dependencies stop at these interfaces."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.1/coop-disconnect/manifest.json",
+        "sha256": "b11326a77b2aab2a8c4611894e4fff5ff6cabea367b3ccfc379a683b34a87422"
+      },
+      "query": {
+        "selector": [
+          "queries",
+          4
+        ],
+        "sha256": "773ebd89e20975d05d794a8fc19b9e76d8464480fc54d708d4a988c2c49212c7"
+      },
+      "results": [
+        {
+          "path": "runtime/coop-disconnect-0.119.1/lifecycle-query/results/de8cc1b12819b145f5eff7f11ac14d2ad89e7af77d6e62500d84273cad6cf990.json",
+          "sha256": "2c83301f09a4fa91199565a46483f60d01f0f0c595de7339d9fb4430de8ddd7d"
+        }
+      ],
+      "source_connection_state": "source_difference_identified"
+    },
+    {
+      "id": "guest-engine-trust-delivery",
+      "selector": "COOP1191:trust-delivery:0x145b1fbf8-0x145b1fc6a",
+      "finding_ids": [
+        186
+      ],
+      "ownership": "as_specific",
+      "conclusion": "Current guest receive branch reaches trust after mode/sync/opcode-length/active-port admission and before delivery. Source reaches observe and LocalWireEvents with unchanged payload.",
+      "next_action": "Place the separately recovered trust transform at this actual post-admission/pre-delivery source boundary; do not replace the existing Engine protocol parser.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+            "sha256": "2e628ee8f24a2c67d9e650d5feb266e352da05e663167f13bb9629af9385cb9f"
+          }
+        ],
+        "conclusion": "Current guest receive branch reaches trust after mode/sync/opcode-length/active-port admission and before delivery. Source reaches observe and LocalWireEvents with unchanged payload. Existing source interfaces were inspected before the bounded current native review; generic dependencies stop at these interfaces."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.1/coop-disconnect/manifest.json",
+        "sha256": "b11326a77b2aab2a8c4611894e4fff5ff6cabea367b3ccfc379a683b34a87422"
+      },
+      "query": {
+        "selector": [
+          "queries",
+          5
+        ],
+        "sha256": "61e8ff29397304b681f38d14a68b00033c75e31d83fd0d3972008e77a37ed23b"
+      },
+      "results": [
+        {
+          "path": "runtime/coop-disconnect-0.119.1/consumer-query/results/80cf3aa0c5ad555c88acde8e01e72bc523f8ef1052772e9a886fa51a89bb189a.json",
+          "sha256": "ff9f0a13bea3d3a3ff4a371cdda8faab37b9df1ff73349a7dcae000a0af993d1"
+        }
+      ],
+      "source_connection_state": "source_difference_identified"
+    },
+    {
+      "id": "current-party-admission",
+      "selector": "COOPADMISSION01:protocol-version:0x145b1d9de-0x145b1da18",
+      "finding_ids": [
+        163
+      ],
+      "ownership": "as_specific",
+      "conclusion": "Current admission requires protocol5, length7 and exact0.119.1 bytes. Shared outgoing/incoming GAME_VERSION source remains0.119.0.",
+      "next_action": "Update the exact shared admission/outgoing constant and fixed fixture in a selected repair; broader packet/session/lifecycle contracts remain distinct.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+            "sha256": "1b9e3b210196256c3bb04fc83726318602e7c53167b9e591e8b4880b3109fb39"
+          }
+        ],
+        "conclusion": "Current admission requires protocol5, length7 and exact0.119.1 bytes. Shared outgoing/incoming GAME_VERSION source remains0.119.0. Existing source interfaces were inspected before the bounded current native review; generic dependencies stop at these interfaces."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.1/coop-disconnect/manifest.json",
+        "sha256": "b11326a77b2aab2a8c4611894e4fff5ff6cabea367b3ccfc379a683b34a87422"
+      },
+      "query": {
+        "selector": [
+          "queries",
+          8
+        ],
+        "sha256": "41f4e0c1010b75768acc360ebbf1034ec91d4380f6e00f5ebdc8629f7e28875c"
+      },
+      "results": [
+        {
+          "path": "runtime/coop-disconnect-0.119.1/admission-query/results/b6f3e587172744d8fde49266aaeea584ba2325726c1821c81f1a4dabe3b6d961.json",
+          "sha256": "e9616eb6a99f276f3363dd91314064b9c15f03d056a498f6f2a642f240694ec5"
+        }
+      ],
+      "source_connection_state": "source_difference_identified"
+    },
+    {
+      "id": "creature-query-table-role",
+      "selector": "Q41-F01:CreatureQuery-table-role:13selected-sites",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "ownership": "as_specific",
+      "conclusion": "All13 selected guards are current opcode0x60 CreatureQuery template-entry dispatch inside the shared incoming Engine opcode handler. Mixed gear/server-party diagnostics do not assign every region to gear or to a new party behavior. Existing CreatureQuery source interfaces are retained; complete per-case payload/template/locale/source applicability stays pending under the14individual table questions.",
+      "next_action": "Use the current guarded cells and saved owner to close exact admitted entry/payload producers and individual case destinations; join native name/subname/type/rank/display and locale inputs to actual creature source tables/consumers. Reuse #64/#65; retain Q41-F01 producer/type/alias and missing destination proof. This is unrelated to #101 guest text-registry insertion/carrier.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+            "sha256": "c3435c8c4b5bdb0d36339c62c9a74aab3a02b00d3ee77260e5b4b8d45a2d64c0"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+            "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+            "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+          },
+          {
+            "path": "crates/benilla-protocol/src/messages/parse.rs",
+            "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+          }
+        ],
+        "conclusion": "Candidate/current interface: coop_commands::apply CMSG_CREATURE_QUERY -> client::creature_queries::creature_query/query_with -> shared guardian enemy/boss catalogs and SPECIALS -> query_packets::decode/benilla CreatureName cache and existing events. Scope is the13explicit selected table regions, not the whole mixed native owner."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.1/guarded-creature-query-correspondence.json",
+        "sha256": "e011795c712a62c2686ac618188f970246baaf3bd3261bc614b75d7c43fca51c"
+      },
+      "query": {
+        "selector": [
+          "query"
+        ],
+        "sha256": "35f4ab584e68f800a30ca9656ddd4beed184792af618b88b0c398ed2297ab535"
+      },
+      "results": [
+        {
+          "path": "runtime/coop-disconnect-0.119.1/guarded-owner-query/results/ca4ecec39d2867859c957f11dd6cedc996491adad33aab1baed08feb03a683d8.json",
+          "sha256": "d842ef2ce97ca84a35d34726ee59b2d0843aab4055c2bd4e55e20b45598f5bf5"
+        }
+      ],
+      "source_connection_state": "partial_interface_connected"
+    }
+  ],
+  "finding_bindings": [
+    {
+      "id": "current-frontier-103-0",
+      "selectors": [
+        "Q41-I01:resource_path:0"
+      ],
+      "finding_ids": [
+        103
+      ],
+      "conclusion": "Existing source counterpart inspected and retained; current exact literal and encoded-reference mapping is established, while its native input/dispatch/state/consumer and lifetime applicability remains pending. Existing image-loader/progression-bar source was inspected. Current URI reads are structural data/connection leads; no current handle-to-bar equivalence is established. Exact finding attribution only; native producer/consumer equivalence remains pending.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.1/as-discovery-frontier.json",
+        "sha256": "d34b4057c53b6f359e10053899ac7d67d6bfb81a0310ee94a97b6fbbbe6cbfca"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "Q41-I01:resource_path:0"
+        ],
+        "sha256": "6ff2434f6bafeca5b0b04ec971a9c12354726a779169f774b2f632165e6190d1"
+      }
+    },
+    {
+      "id": "current-frontier-104-1",
+      "selectors": [
+        "Q41-I01:resource_path:4"
+      ],
+      "finding_ids": [
+        104
+      ],
+      "conclusion": "Existing source counterpart inspected and retained; current exact literal and encoded-reference mapping is established, while its native input/dispatch/state/consumer and lifetime applicability remains pending. Existing source loads dragon art and consumes it in the sidebar. Current reads do not prove native handle/source equivalence. Exact finding attribution only; native producer/consumer equivalence remains pending.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.1/as-discovery-frontier.json",
+        "sha256": "d34b4057c53b6f359e10053899ac7d67d6bfb81a0310ee94a97b6fbbbe6cbfca"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "Q41-I01:resource_path:4"
+        ],
+        "sha256": "565c33fc998cea8e5f43ebf80a7d1d90a530f43c07481e39dd0e9f8ee2e4a8cf"
+      }
+    },
+    {
+      "id": "current-frontier-98-2",
+      "selectors": [
+        "Q41-I01:save_configuration_key_lead:5"
+      ],
+      "finding_ids": [
+        98
+      ],
+      "conclusion": "Existing source counterpart inspected and retained; current exact literal and encoded-reference mapping is established, while its native input/dispatch/state/consumer and lifetime applicability remains pending. Existing source preserves a talentxp Value in active context and parses terminal snapshots. Historical contract does not prove this current occurrence's producer/schema/lifetime. Exact finding attribution only; native producer/consumer equivalence remains pending.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.1/as-discovery-frontier.json",
+        "sha256": "d34b4057c53b6f359e10053899ac7d67d6bfb81a0310ee94a97b6fbbbe6cbfca"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "Q41-I01:save_configuration_key_lead:5"
+        ],
+        "sha256": "ea7c02291ebcd2ed824aec11a9acc8eb49000521164034f0745d99b2b201f3e6"
+      }
+    },
+    {
+      "id": "current-frontier-98-3",
+      "selectors": [
+        "Q41-I01:save_configuration_key_lead:0"
+      ],
+      "finding_ids": [
+        98
+      ],
+      "conclusion": "Existing source counterpart inspected and retained; current exact literal and encoded-reference mapping is established, while its native input/dispatch/state/consumer and lifetime applicability remains pending. Context::accept admits an active talentxp Value, retains it and wrapping-increments revision; terminal capture/drain supplies its existing UI consumer. This current executable immediate remains a candidate native boundary; guard/dispatch/context lifecycle is not revalidated by these byte/reference observations. Exact finding attribution only; native producer/consumer equivalence remains pending.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.1/as-discovery-frontier.json",
+        "sha256": "d34b4057c53b6f359e10053899ac7d67d6bfb81a0310ee94a97b6fbbbe6cbfca"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "Q41-I01:save_configuration_key_lead:0"
+        ],
+        "sha256": "88e97c81581096fe879f1270ca0aa759e4079daa4d12fec0ec84d6da65a09e87"
+      }
+    }
+  ],
+  "pending_native_leads": [
+    {
+      "id": "item-registry-native-candidate",
+      "selector": "Q41-ITEMTEXT01:owner:0x145b5fbb0-0x145b5fdb2",
+      "finding_ids": [
+        101
+      ],
+      "conclusion": "Current interner signature/unwind/RIP/reference population identifies candidate correspondence. Prior ordinary decoder recovery is retained; full current dependency applicability and an alternative guest text producer/carrier remain pending.",
+      "next_action": "First establish current applicability of the retained interner/query/receive/decoder/lookup contracts through their relevant dependency edges. Continue only a concrete alternative guest registry producer/carrier or computed/mutable writer lead; do not repeat the ordinary decoder absent an affected dependency, or invent packet/ID-remap/reset/merge policy.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs",
+            "sha256": "75fc8e61dd32a2091daecfa07447dc454964418f4f821ed63e6bc12951ca7825"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+            "sha256": "2e628ee8f24a2c67d9e650d5feb266e352da05e663167f13bb9629af9385cb9f"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+            "sha256": "c3435c8c4b5bdb0d36339c62c9a74aab3a02b00d3ee77260e5b4b8d45a2d64c0"
+          },
+          {
+            "path": "crates/benilla-app/src/local_client/item_descriptions.rs",
+            "sha256": "810ab16efca38ee468d36ab9c1e75df4fef76b4261931aeba97cf8300848a19b"
+          }
+        ],
+        "conclusion": "Existing persistent synthetic IDs and LocalItemDescriptions tooltip publication are retained. 0.119.0 already recovers ordinary decoder/query/receive/cache and observed reserve aliases; no concrete alternative guest registry writer/carrier is established. This current signature/RIP mapping is candidate correspondence, not renewed semantic closure."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.1/item-registry-frontier.json",
+        "sha256": "f166e2ce218fe6536b4a342a5314321eeb9657ab29911e6443155ff35dfb7bb4"
+      },
+      "proof": {
+        "selector": [
+          "native_candidate"
+        ],
+        "sha256": "fede585840441fb287fbfe572ea135d12cb9e67d943ac6e25e5cd7a4c4bf9b9d"
+      },
+      "inputs": [
+        {
+          "path": "runtime/coverage/b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c/native-instructions.sqlite",
+          "sha256": "3cf26dc4d17f5806e46f4bad9f8e36f40e38124fff661f55556766eba01a7766"
+        },
+        {
+          "path": "runtime/coverage/b3b5d86b06b95fd24f66697c023c196bac9687673905dcf03c000b31cc8d073c/unwind-complement.sqlite",
+          "sha256": "b5a19fe627d5e7fd15993e4f1d751756936069ee682e11657bc6b2f434f48549"
+        }
+      ]
+    },
+    {
+      "id": "retained-table-1403076a2",
+      "selector": "Q41-F01:site=0x140307692",
+      "finding_ids": [
+        17,
+        73
+      ],
+      "conclusion": "Current bounded table/role correspondence retains prior selector runtime/q41-computed-context-0.119.0/contextual-sites.jsonl.gz:site=0x1403076a2. Complete current producer/discriminator/case/source applicability remains pending; no new behavior or source defect inferred.",
+      "next_action": "Trace the current object field+0x44 producer and moved call, prove admitted selector payloads/table destinations and join selected Details/growth consumer to existing Codex source. Reuse #17/#73 and Q41-F01; do not infer a new behavior/source defect.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/codex.rs",
+            "sha256": "159f37324f1a79bf99479b65df1b96f38bb9163dbbf4bde1e0400ea58bdd9043"
+          }
+        ],
+        "conclusion": "Existing Codex catalog/text/rebuild owner is retained; byte-prefix/discriminant candidate correspondence leaves moved call, field+0x44 producer, destinations and source applicability pending."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.1/computed-correspondence-frontier.json",
+        "sha256": "99029fd361f74a078d305016a4113079a194c6969a405501d9cd22363e7c970c"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "0x140307692",
+          "native_candidate"
+        ],
+        "sha256": "6466d7eae48021479a503766196f5b9e91b493e3c71e7d2f54437a0bae278d26"
+      },
+      "inputs": [
+        {
+          "path": "docs/analysis/evidence/0.119.1/native-switch-proposals.json",
+          "sha256": "e3eb0a52391faa7be9aac08e89839b6b5488d81cf59346261d2af38b86971021"
+        },
+        {
+          "path": "docs/analysis/evidence/0.119.1/guarded-creature-query-correspondence.json",
+          "sha256": "e011795c712a62c2686ac618188f970246baaf3bd3261bc614b75d7c43fca51c"
+        },
+        {
+          "path": "docs/analysis/coverage/full-image-execheck-0.119.1.json",
+          "sha256": "610591688d5cab3a03111117f16f2b50082220deb432d0bf42189f9f9bac2889"
+        },
+        {
+          "path": "runtime/q41-computed-context-0.119.0/contextual-sites.jsonl.gz",
+          "sha256": "5cd107cdeb28e807b78dd9dafb19e1ca55a8531d2ae3c8170caa64dea103e60a"
+        }
+      ]
+    },
+    {
+      "id": "retained-table-145afa2a7",
+      "selector": "Q41-F01:site=0x145afc9a7",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "conclusion": "Current bounded table/role correspondence retains prior selector runtime/q41-computed-context-0.119.0/contextual-sites.jsonl.gz:site=0x145afa2a7. Complete current producer/discriminator/case/source applicability remains pending; no new behavior or source defect inferred.",
+      "next_action": "Use the current guarded cells and saved owner to close exact admitted entry/payload producers and individual case destinations; join native name/subname/type/rank/display and locale inputs to actual creature source tables/consumers. Reuse #64/#65; retain Q41-F01 producer/type/alias and missing destination proof. This is unrelated to #101 guest text-registry insertion/carrier.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+            "sha256": "c3435c8c4b5bdb0d36339c62c9a74aab3a02b00d3ee77260e5b4b8d45a2d64c0"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+            "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+            "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+          },
+          {
+            "path": "crates/benilla-protocol/src/messages/parse.rs",
+            "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+          }
+        ],
+        "conclusion": "Candidate/current interface: coop_commands::apply CMSG_CREATURE_QUERY -> client::creature_queries::creature_query/query_with -> shared guardian enemy/boss catalogs and SPECIALS -> query_packets::decode/benilla CreatureName cache and existing events. Mixed gear/server-party diagnostics do not establish whole-function ownership. Per-case/schema/source correspondence remains pending."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.1/computed-correspondence-frontier.json",
+        "sha256": "99029fd361f74a078d305016a4113079a194c6969a405501d9cd22363e7c970c"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "0x145afc9a7",
+          "native_candidate"
+        ],
+        "sha256": "9a581bda2e35b4abc57950011cad42d87df0f8213d9f9797b9236b0b5202fd3f"
+      },
+      "inputs": [
+        {
+          "path": "docs/analysis/evidence/0.119.1/native-switch-proposals.json",
+          "sha256": "e3eb0a52391faa7be9aac08e89839b6b5488d81cf59346261d2af38b86971021"
+        },
+        {
+          "path": "docs/analysis/evidence/0.119.1/guarded-creature-query-correspondence.json",
+          "sha256": "e011795c712a62c2686ac618188f970246baaf3bd3261bc614b75d7c43fca51c"
+        },
+        {
+          "path": "docs/analysis/coverage/full-image-execheck-0.119.1.json",
+          "sha256": "610591688d5cab3a03111117f16f2b50082220deb432d0bf42189f9f9bac2889"
+        },
+        {
+          "path": "runtime/q41-computed-context-0.119.0/contextual-sites.jsonl.gz",
+          "sha256": "5cd107cdeb28e807b78dd9dafb19e1ca55a8531d2ae3c8170caa64dea103e60a"
+        }
+      ]
+    },
+    {
+      "id": "retained-table-145afb3fb",
+      "selector": "Q41-F01:site=0x145afdae2",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "conclusion": "Current bounded table/role correspondence retains prior selector runtime/q41-computed-context-0.119.0/contextual-sites.jsonl.gz:site=0x145afb3fb. Complete current producer/discriminator/case/source applicability remains pending; no new behavior or source defect inferred.",
+      "next_action": "Use the current guarded cells and saved owner to close exact admitted entry/payload producers and individual case destinations; join native name/subname/type/rank/display and locale inputs to actual creature source tables/consumers. Reuse #64/#65; retain Q41-F01 producer/type/alias and missing destination proof. This is unrelated to #101 guest text-registry insertion/carrier.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+            "sha256": "c3435c8c4b5bdb0d36339c62c9a74aab3a02b00d3ee77260e5b4b8d45a2d64c0"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+            "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+            "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+          },
+          {
+            "path": "crates/benilla-protocol/src/messages/parse.rs",
+            "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+          }
+        ],
+        "conclusion": "Candidate/current interface: coop_commands::apply CMSG_CREATURE_QUERY -> client::creature_queries::creature_query/query_with -> shared guardian enemy/boss catalogs and SPECIALS -> query_packets::decode/benilla CreatureName cache and existing events. Mixed gear/server-party diagnostics do not establish whole-function ownership. Per-case/schema/source correspondence remains pending."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.1/computed-correspondence-frontier.json",
+        "sha256": "99029fd361f74a078d305016a4113079a194c6969a405501d9cd22363e7c970c"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "0x145afdae2",
+          "native_candidate"
+        ],
+        "sha256": "f982d8adfb0a763e1041cd3ab9a1c57fee958fa016b2ad8b662e12a44c6816b4"
+      },
+      "inputs": [
+        {
+          "path": "docs/analysis/evidence/0.119.1/native-switch-proposals.json",
+          "sha256": "e3eb0a52391faa7be9aac08e89839b6b5488d81cf59346261d2af38b86971021"
+        },
+        {
+          "path": "docs/analysis/evidence/0.119.1/guarded-creature-query-correspondence.json",
+          "sha256": "e011795c712a62c2686ac618188f970246baaf3bd3261bc614b75d7c43fca51c"
+        },
+        {
+          "path": "docs/analysis/coverage/full-image-execheck-0.119.1.json",
+          "sha256": "610591688d5cab3a03111117f16f2b50082220deb432d0bf42189f9f9bac2889"
+        },
+        {
+          "path": "runtime/q41-computed-context-0.119.0/contextual-sites.jsonl.gz",
+          "sha256": "5cd107cdeb28e807b78dd9dafb19e1ca55a8531d2ae3c8170caa64dea103e60a"
+        }
+      ]
+    },
+    {
+      "id": "retained-table-145afb49a",
+      "selector": "Q41-F01:site=0x145afdb81",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "conclusion": "Current bounded table/role correspondence retains prior selector runtime/q41-computed-context-0.119.0/contextual-sites.jsonl.gz:site=0x145afb49a. Complete current producer/discriminator/case/source applicability remains pending; no new behavior or source defect inferred.",
+      "next_action": "Use the current guarded cells and saved owner to close exact admitted entry/payload producers and individual case destinations; join native name/subname/type/rank/display and locale inputs to actual creature source tables/consumers. Reuse #64/#65; retain Q41-F01 producer/type/alias and missing destination proof. This is unrelated to #101 guest text-registry insertion/carrier.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+            "sha256": "c3435c8c4b5bdb0d36339c62c9a74aab3a02b00d3ee77260e5b4b8d45a2d64c0"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+            "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+            "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+          },
+          {
+            "path": "crates/benilla-protocol/src/messages/parse.rs",
+            "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+          }
+        ],
+        "conclusion": "Candidate/current interface: coop_commands::apply CMSG_CREATURE_QUERY -> client::creature_queries::creature_query/query_with -> shared guardian enemy/boss catalogs and SPECIALS -> query_packets::decode/benilla CreatureName cache and existing events. Mixed gear/server-party diagnostics do not establish whole-function ownership. Per-case/schema/source correspondence remains pending."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.1/computed-correspondence-frontier.json",
+        "sha256": "99029fd361f74a078d305016a4113079a194c6969a405501d9cd22363e7c970c"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "0x145afdb81",
+          "native_candidate"
+        ],
+        "sha256": "98d4a138192ad7078bbc2313d65bb04306f77c8f6067640fc18541f2c4bfb749"
+      },
+      "inputs": [
+        {
+          "path": "docs/analysis/evidence/0.119.1/native-switch-proposals.json",
+          "sha256": "e3eb0a52391faa7be9aac08e89839b6b5488d81cf59346261d2af38b86971021"
+        },
+        {
+          "path": "docs/analysis/evidence/0.119.1/guarded-creature-query-correspondence.json",
+          "sha256": "e011795c712a62c2686ac618188f970246baaf3bd3261bc614b75d7c43fca51c"
+        },
+        {
+          "path": "docs/analysis/coverage/full-image-execheck-0.119.1.json",
+          "sha256": "610591688d5cab3a03111117f16f2b50082220deb432d0bf42189f9f9bac2889"
+        },
+        {
+          "path": "runtime/q41-computed-context-0.119.0/contextual-sites.jsonl.gz",
+          "sha256": "5cd107cdeb28e807b78dd9dafb19e1ca55a8531d2ae3c8170caa64dea103e60a"
+        }
+      ]
+    },
+    {
+      "id": "retained-table-145afb64e",
+      "selector": "Q41-F01:site=0x145afdd35",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "conclusion": "Current bounded table/role correspondence retains prior selector runtime/q41-computed-context-0.119.0/contextual-sites.jsonl.gz:site=0x145afb64e. Complete current producer/discriminator/case/source applicability remains pending; no new behavior or source defect inferred.",
+      "next_action": "Use the current guarded cells and saved owner to close exact admitted entry/payload producers and individual case destinations; join native name/subname/type/rank/display and locale inputs to actual creature source tables/consumers. Reuse #64/#65; retain Q41-F01 producer/type/alias and missing destination proof. This is unrelated to #101 guest text-registry insertion/carrier.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+            "sha256": "c3435c8c4b5bdb0d36339c62c9a74aab3a02b00d3ee77260e5b4b8d45a2d64c0"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+            "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+            "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+          },
+          {
+            "path": "crates/benilla-protocol/src/messages/parse.rs",
+            "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+          }
+        ],
+        "conclusion": "Candidate/current interface: coop_commands::apply CMSG_CREATURE_QUERY -> client::creature_queries::creature_query/query_with -> shared guardian enemy/boss catalogs and SPECIALS -> query_packets::decode/benilla CreatureName cache and existing events. Mixed gear/server-party diagnostics do not establish whole-function ownership. Per-case/schema/source correspondence remains pending."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.1/computed-correspondence-frontier.json",
+        "sha256": "99029fd361f74a078d305016a4113079a194c6969a405501d9cd22363e7c970c"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "0x145afdd35",
+          "native_candidate"
+        ],
+        "sha256": "bf6bbc25044918c9526ad18db877063f0135382da9dc31230530b334d0f8ad04"
+      },
+      "inputs": [
+        {
+          "path": "docs/analysis/evidence/0.119.1/native-switch-proposals.json",
+          "sha256": "e3eb0a52391faa7be9aac08e89839b6b5488d81cf59346261d2af38b86971021"
+        },
+        {
+          "path": "docs/analysis/evidence/0.119.1/guarded-creature-query-correspondence.json",
+          "sha256": "e011795c712a62c2686ac618188f970246baaf3bd3261bc614b75d7c43fca51c"
+        },
+        {
+          "path": "docs/analysis/coverage/full-image-execheck-0.119.1.json",
+          "sha256": "610591688d5cab3a03111117f16f2b50082220deb432d0bf42189f9f9bac2889"
+        },
+        {
+          "path": "runtime/q41-computed-context-0.119.0/contextual-sites.jsonl.gz",
+          "sha256": "5cd107cdeb28e807b78dd9dafb19e1ca55a8531d2ae3c8170caa64dea103e60a"
+        }
+      ]
+    },
+    {
+      "id": "retained-table-145afb798",
+      "selector": "Q41-F01:site=0x145afde7f",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "conclusion": "Current bounded table/role correspondence retains prior selector runtime/q41-computed-context-0.119.0/contextual-sites.jsonl.gz:site=0x145afb798. Complete current producer/discriminator/case/source applicability remains pending; no new behavior or source defect inferred.",
+      "next_action": "Use the current guarded cells and saved owner to close exact admitted entry/payload producers and individual case destinations; join native name/subname/type/rank/display and locale inputs to actual creature source tables/consumers. Reuse #64/#65; retain Q41-F01 producer/type/alias and missing destination proof. This is unrelated to #101 guest text-registry insertion/carrier.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+            "sha256": "c3435c8c4b5bdb0d36339c62c9a74aab3a02b00d3ee77260e5b4b8d45a2d64c0"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+            "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+            "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+          },
+          {
+            "path": "crates/benilla-protocol/src/messages/parse.rs",
+            "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+          }
+        ],
+        "conclusion": "Candidate/current interface: coop_commands::apply CMSG_CREATURE_QUERY -> client::creature_queries::creature_query/query_with -> shared guardian enemy/boss catalogs and SPECIALS -> query_packets::decode/benilla CreatureName cache and existing events. Mixed gear/server-party diagnostics do not establish whole-function ownership. Per-case/schema/source correspondence remains pending."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.1/computed-correspondence-frontier.json",
+        "sha256": "99029fd361f74a078d305016a4113079a194c6969a405501d9cd22363e7c970c"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "0x145afde7f",
+          "native_candidate"
+        ],
+        "sha256": "0ccd2a0e857064364bda8f370bf19d73616c87f044f042c7bd2faa25aaa097a9"
+      },
+      "inputs": [
+        {
+          "path": "docs/analysis/evidence/0.119.1/native-switch-proposals.json",
+          "sha256": "e3eb0a52391faa7be9aac08e89839b6b5488d81cf59346261d2af38b86971021"
+        },
+        {
+          "path": "docs/analysis/evidence/0.119.1/guarded-creature-query-correspondence.json",
+          "sha256": "e011795c712a62c2686ac618188f970246baaf3bd3261bc614b75d7c43fca51c"
+        },
+        {
+          "path": "docs/analysis/coverage/full-image-execheck-0.119.1.json",
+          "sha256": "610591688d5cab3a03111117f16f2b50082220deb432d0bf42189f9f9bac2889"
+        },
+        {
+          "path": "runtime/q41-computed-context-0.119.0/contextual-sites.jsonl.gz",
+          "sha256": "5cd107cdeb28e807b78dd9dafb19e1ca55a8531d2ae3c8170caa64dea103e60a"
+        }
+      ]
+    },
+    {
+      "id": "retained-table-145afb7c1",
+      "selector": "Q41-F01:site=0x145afdea8",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "conclusion": "Current bounded table/role correspondence retains prior selector runtime/q41-computed-context-0.119.0/contextual-sites.jsonl.gz:site=0x145afb7c1. Complete current producer/discriminator/case/source applicability remains pending; no new behavior or source defect inferred.",
+      "next_action": "Use the current guarded cells and saved owner to close exact admitted entry/payload producers and individual case destinations; join native name/subname/type/rank/display and locale inputs to actual creature source tables/consumers. Reuse #64/#65; retain Q41-F01 producer/type/alias and missing destination proof. This is unrelated to #101 guest text-registry insertion/carrier.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+            "sha256": "c3435c8c4b5bdb0d36339c62c9a74aab3a02b00d3ee77260e5b4b8d45a2d64c0"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+            "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+            "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+          },
+          {
+            "path": "crates/benilla-protocol/src/messages/parse.rs",
+            "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+          }
+        ],
+        "conclusion": "Candidate/current interface: coop_commands::apply CMSG_CREATURE_QUERY -> client::creature_queries::creature_query/query_with -> shared guardian enemy/boss catalogs and SPECIALS -> query_packets::decode/benilla CreatureName cache and existing events. Mixed gear/server-party diagnostics do not establish whole-function ownership. Per-case/schema/source correspondence remains pending."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.1/computed-correspondence-frontier.json",
+        "sha256": "99029fd361f74a078d305016a4113079a194c6969a405501d9cd22363e7c970c"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "0x145afdea8",
+          "native_candidate"
+        ],
+        "sha256": "35db010f5a72b1ef4571e0f445c247e8cb1f2279aec349658fc7d8682c7d520f"
+      },
+      "inputs": [
+        {
+          "path": "docs/analysis/evidence/0.119.1/native-switch-proposals.json",
+          "sha256": "e3eb0a52391faa7be9aac08e89839b6b5488d81cf59346261d2af38b86971021"
+        },
+        {
+          "path": "docs/analysis/evidence/0.119.1/guarded-creature-query-correspondence.json",
+          "sha256": "e011795c712a62c2686ac618188f970246baaf3bd3261bc614b75d7c43fca51c"
+        },
+        {
+          "path": "docs/analysis/coverage/full-image-execheck-0.119.1.json",
+          "sha256": "610591688d5cab3a03111117f16f2b50082220deb432d0bf42189f9f9bac2889"
+        },
+        {
+          "path": "runtime/q41-computed-context-0.119.0/contextual-sites.jsonl.gz",
+          "sha256": "5cd107cdeb28e807b78dd9dafb19e1ca55a8531d2ae3c8170caa64dea103e60a"
+        }
+      ]
+    },
+    {
+      "id": "retained-table-145afb7ed",
+      "selector": "Q41-F01:site=0x145afded4",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "conclusion": "Current bounded table/role correspondence retains prior selector runtime/q41-computed-context-0.119.0/contextual-sites.jsonl.gz:site=0x145afb7ed. Complete current producer/discriminator/case/source applicability remains pending; no new behavior or source defect inferred.",
+      "next_action": "Use the current guarded cells and saved owner to close exact admitted entry/payload producers and individual case destinations; join native name/subname/type/rank/display and locale inputs to actual creature source tables/consumers. Reuse #64/#65; retain Q41-F01 producer/type/alias and missing destination proof. This is unrelated to #101 guest text-registry insertion/carrier.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+            "sha256": "c3435c8c4b5bdb0d36339c62c9a74aab3a02b00d3ee77260e5b4b8d45a2d64c0"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+            "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+            "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+          },
+          {
+            "path": "crates/benilla-protocol/src/messages/parse.rs",
+            "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+          }
+        ],
+        "conclusion": "Candidate/current interface: coop_commands::apply CMSG_CREATURE_QUERY -> client::creature_queries::creature_query/query_with -> shared guardian enemy/boss catalogs and SPECIALS -> query_packets::decode/benilla CreatureName cache and existing events. Mixed gear/server-party diagnostics do not establish whole-function ownership. Per-case/schema/source correspondence remains pending."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.1/computed-correspondence-frontier.json",
+        "sha256": "99029fd361f74a078d305016a4113079a194c6969a405501d9cd22363e7c970c"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "0x145afded4",
+          "native_candidate"
+        ],
+        "sha256": "d6cacf16a6c5d046213d8e17e88b5a0d8a649185da0790d1df9927620f8f7ad6"
+      },
+      "inputs": [
+        {
+          "path": "docs/analysis/evidence/0.119.1/native-switch-proposals.json",
+          "sha256": "e3eb0a52391faa7be9aac08e89839b6b5488d81cf59346261d2af38b86971021"
+        },
+        {
+          "path": "docs/analysis/evidence/0.119.1/guarded-creature-query-correspondence.json",
+          "sha256": "e011795c712a62c2686ac618188f970246baaf3bd3261bc614b75d7c43fca51c"
+        },
+        {
+          "path": "docs/analysis/coverage/full-image-execheck-0.119.1.json",
+          "sha256": "610591688d5cab3a03111117f16f2b50082220deb432d0bf42189f9f9bac2889"
+        },
+        {
+          "path": "runtime/q41-computed-context-0.119.0/contextual-sites.jsonl.gz",
+          "sha256": "5cd107cdeb28e807b78dd9dafb19e1ca55a8531d2ae3c8170caa64dea103e60a"
+        }
+      ]
+    },
+    {
+      "id": "retained-table-145afbad2",
+      "selector": "Q41-F01:site=0x145afe1cf",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "conclusion": "Current bounded table/role correspondence retains prior selector runtime/q41-computed-context-0.119.0/contextual-sites.jsonl.gz:site=0x145afbad2. Complete current producer/discriminator/case/source applicability remains pending; no new behavior or source defect inferred.",
+      "next_action": "Use the current guarded cells and saved owner to close exact admitted entry/payload producers and individual case destinations; join native name/subname/type/rank/display and locale inputs to actual creature source tables/consumers. Reuse #64/#65; retain Q41-F01 producer/type/alias and missing destination proof. This is unrelated to #101 guest text-registry insertion/carrier.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+            "sha256": "c3435c8c4b5bdb0d36339c62c9a74aab3a02b00d3ee77260e5b4b8d45a2d64c0"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+            "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+            "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+          },
+          {
+            "path": "crates/benilla-protocol/src/messages/parse.rs",
+            "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+          }
+        ],
+        "conclusion": "Candidate/current interface: coop_commands::apply CMSG_CREATURE_QUERY -> client::creature_queries::creature_query/query_with -> shared guardian enemy/boss catalogs and SPECIALS -> query_packets::decode/benilla CreatureName cache and existing events. Mixed gear/server-party diagnostics do not establish whole-function ownership. Per-case/schema/source correspondence remains pending."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.1/computed-correspondence-frontier.json",
+        "sha256": "99029fd361f74a078d305016a4113079a194c6969a405501d9cd22363e7c970c"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "0x145afe1cf",
+          "native_candidate"
+        ],
+        "sha256": "a7c48e36157130593bb560310be3683f9c7ad2414cdbc997feb2caf1a40376d2"
+      },
+      "inputs": [
+        {
+          "path": "docs/analysis/evidence/0.119.1/native-switch-proposals.json",
+          "sha256": "e3eb0a52391faa7be9aac08e89839b6b5488d81cf59346261d2af38b86971021"
+        },
+        {
+          "path": "docs/analysis/evidence/0.119.1/guarded-creature-query-correspondence.json",
+          "sha256": "e011795c712a62c2686ac618188f970246baaf3bd3261bc614b75d7c43fca51c"
+        },
+        {
+          "path": "docs/analysis/coverage/full-image-execheck-0.119.1.json",
+          "sha256": "610591688d5cab3a03111117f16f2b50082220deb432d0bf42189f9f9bac2889"
+        },
+        {
+          "path": "runtime/q41-computed-context-0.119.0/contextual-sites.jsonl.gz",
+          "sha256": "5cd107cdeb28e807b78dd9dafb19e1ca55a8531d2ae3c8170caa64dea103e60a"
+        }
+      ]
+    },
+    {
+      "id": "retained-table-145afbb29",
+      "selector": "Q41-F01:site=0x145afe1f7",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "conclusion": "Current bounded table/role correspondence retains prior selector runtime/q41-computed-context-0.119.0/contextual-sites.jsonl.gz:site=0x145afbb29. Complete current producer/discriminator/case/source applicability remains pending; no new behavior or source defect inferred.",
+      "next_action": "Use the current guarded cells and saved owner to close exact admitted entry/payload producers and individual case destinations; join native name/subname/type/rank/display and locale inputs to actual creature source tables/consumers. Reuse #64/#65; retain Q41-F01 producer/type/alias and missing destination proof. This is unrelated to #101 guest text-registry insertion/carrier.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+            "sha256": "c3435c8c4b5bdb0d36339c62c9a74aab3a02b00d3ee77260e5b4b8d45a2d64c0"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+            "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+            "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+          },
+          {
+            "path": "crates/benilla-protocol/src/messages/parse.rs",
+            "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+          }
+        ],
+        "conclusion": "Candidate/current interface: coop_commands::apply CMSG_CREATURE_QUERY -> client::creature_queries::creature_query/query_with -> shared guardian enemy/boss catalogs and SPECIALS -> query_packets::decode/benilla CreatureName cache and existing events. Mixed gear/server-party diagnostics do not establish whole-function ownership. Per-case/schema/source correspondence remains pending."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.1/computed-correspondence-frontier.json",
+        "sha256": "99029fd361f74a078d305016a4113079a194c6969a405501d9cd22363e7c970c"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "0x145afe1f7",
+          "native_candidate"
+        ],
+        "sha256": "749678e049432c71cad6f41c57f093be76782dbccc858d698347e83a7c164bbd"
+      },
+      "inputs": [
+        {
+          "path": "docs/analysis/evidence/0.119.1/native-switch-proposals.json",
+          "sha256": "e3eb0a52391faa7be9aac08e89839b6b5488d81cf59346261d2af38b86971021"
+        },
+        {
+          "path": "docs/analysis/evidence/0.119.1/guarded-creature-query-correspondence.json",
+          "sha256": "e011795c712a62c2686ac618188f970246baaf3bd3261bc614b75d7c43fca51c"
+        },
+        {
+          "path": "docs/analysis/coverage/full-image-execheck-0.119.1.json",
+          "sha256": "610591688d5cab3a03111117f16f2b50082220deb432d0bf42189f9f9bac2889"
+        },
+        {
+          "path": "runtime/q41-computed-context-0.119.0/contextual-sites.jsonl.gz",
+          "sha256": "5cd107cdeb28e807b78dd9dafb19e1ca55a8531d2ae3c8170caa64dea103e60a"
+        }
+      ]
+    },
+    {
+      "id": "retained-table-145afbb66",
+      "selector": "Q41-F01:site=0x145afe234",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "conclusion": "Current bounded table/role correspondence retains prior selector runtime/q41-computed-context-0.119.0/contextual-sites.jsonl.gz:site=0x145afbb66. Complete current producer/discriminator/case/source applicability remains pending; no new behavior or source defect inferred.",
+      "next_action": "Use the current guarded cells and saved owner to close exact admitted entry/payload producers and individual case destinations; join native name/subname/type/rank/display and locale inputs to actual creature source tables/consumers. Reuse #64/#65; retain Q41-F01 producer/type/alias and missing destination proof. This is unrelated to #101 guest text-registry insertion/carrier.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+            "sha256": "c3435c8c4b5bdb0d36339c62c9a74aab3a02b00d3ee77260e5b4b8d45a2d64c0"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+            "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+            "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+          },
+          {
+            "path": "crates/benilla-protocol/src/messages/parse.rs",
+            "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+          }
+        ],
+        "conclusion": "Candidate/current interface: coop_commands::apply CMSG_CREATURE_QUERY -> client::creature_queries::creature_query/query_with -> shared guardian enemy/boss catalogs and SPECIALS -> query_packets::decode/benilla CreatureName cache and existing events. Mixed gear/server-party diagnostics do not establish whole-function ownership. Per-case/schema/source correspondence remains pending."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.1/computed-correspondence-frontier.json",
+        "sha256": "99029fd361f74a078d305016a4113079a194c6969a405501d9cd22363e7c970c"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "0x145afe234",
+          "native_candidate"
+        ],
+        "sha256": "05be4406087fc103655d3469bbc616095065d2111c81038abc3573f6e72101cf"
+      },
+      "inputs": [
+        {
+          "path": "docs/analysis/evidence/0.119.1/native-switch-proposals.json",
+          "sha256": "e3eb0a52391faa7be9aac08e89839b6b5488d81cf59346261d2af38b86971021"
+        },
+        {
+          "path": "docs/analysis/evidence/0.119.1/guarded-creature-query-correspondence.json",
+          "sha256": "e011795c712a62c2686ac618188f970246baaf3bd3261bc614b75d7c43fca51c"
+        },
+        {
+          "path": "docs/analysis/coverage/full-image-execheck-0.119.1.json",
+          "sha256": "610591688d5cab3a03111117f16f2b50082220deb432d0bf42189f9f9bac2889"
+        },
+        {
+          "path": "runtime/q41-computed-context-0.119.0/contextual-sites.jsonl.gz",
+          "sha256": "5cd107cdeb28e807b78dd9dafb19e1ca55a8531d2ae3c8170caa64dea103e60a"
+        }
+      ]
+    },
+    {
+      "id": "retained-table-145afbb92",
+      "selector": "Q41-F01:site=0x145afe260",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "conclusion": "Current bounded table/role correspondence retains prior selector runtime/q41-computed-context-0.119.0/contextual-sites.jsonl.gz:site=0x145afbb92. Complete current producer/discriminator/case/source applicability remains pending; no new behavior or source defect inferred.",
+      "next_action": "Use the current guarded cells and saved owner to close exact admitted entry/payload producers and individual case destinations; join native name/subname/type/rank/display and locale inputs to actual creature source tables/consumers. Reuse #64/#65; retain Q41-F01 producer/type/alias and missing destination proof. This is unrelated to #101 guest text-registry insertion/carrier.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+            "sha256": "c3435c8c4b5bdb0d36339c62c9a74aab3a02b00d3ee77260e5b4b8d45a2d64c0"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+            "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+            "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+          },
+          {
+            "path": "crates/benilla-protocol/src/messages/parse.rs",
+            "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+          }
+        ],
+        "conclusion": "Candidate/current interface: coop_commands::apply CMSG_CREATURE_QUERY -> client::creature_queries::creature_query/query_with -> shared guardian enemy/boss catalogs and SPECIALS -> query_packets::decode/benilla CreatureName cache and existing events. Mixed gear/server-party diagnostics do not establish whole-function ownership. Per-case/schema/source correspondence remains pending."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.1/computed-correspondence-frontier.json",
+        "sha256": "99029fd361f74a078d305016a4113079a194c6969a405501d9cd22363e7c970c"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "0x145afe260",
+          "native_candidate"
+        ],
+        "sha256": "809a2b2f62d69c1a900a325cdd79fdf3b1cb0e3751d1ede5566f67fc66ffff03"
+      },
+      "inputs": [
+        {
+          "path": "docs/analysis/evidence/0.119.1/native-switch-proposals.json",
+          "sha256": "e3eb0a52391faa7be9aac08e89839b6b5488d81cf59346261d2af38b86971021"
+        },
+        {
+          "path": "docs/analysis/evidence/0.119.1/guarded-creature-query-correspondence.json",
+          "sha256": "e011795c712a62c2686ac618188f970246baaf3bd3261bc614b75d7c43fca51c"
+        },
+        {
+          "path": "docs/analysis/coverage/full-image-execheck-0.119.1.json",
+          "sha256": "610591688d5cab3a03111117f16f2b50082220deb432d0bf42189f9f9bac2889"
+        },
+        {
+          "path": "runtime/q41-computed-context-0.119.0/contextual-sites.jsonl.gz",
+          "sha256": "5cd107cdeb28e807b78dd9dafb19e1ca55a8531d2ae3c8170caa64dea103e60a"
+        }
+      ]
+    },
+    {
+      "id": "retained-table-145afbe39",
+      "selector": "Q41-F01:site=0x145afe507",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "conclusion": "Current bounded table/role correspondence retains prior selector runtime/q41-computed-context-0.119.0/contextual-sites.jsonl.gz:site=0x145afbe39. Complete current producer/discriminator/case/source applicability remains pending; no new behavior or source defect inferred.",
+      "next_action": "Use the current guarded cells and saved owner to close exact admitted entry/payload producers and individual case destinations; join native name/subname/type/rank/display and locale inputs to actual creature source tables/consumers. Reuse #64/#65; retain Q41-F01 producer/type/alias and missing destination proof. This is unrelated to #101 guest text-registry insertion/carrier.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+            "sha256": "c3435c8c4b5bdb0d36339c62c9a74aab3a02b00d3ee77260e5b4b8d45a2d64c0"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+            "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+            "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+          },
+          {
+            "path": "crates/benilla-protocol/src/messages/parse.rs",
+            "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+          }
+        ],
+        "conclusion": "Candidate/current interface: coop_commands::apply CMSG_CREATURE_QUERY -> client::creature_queries::creature_query/query_with -> shared guardian enemy/boss catalogs and SPECIALS -> query_packets::decode/benilla CreatureName cache and existing events. Mixed gear/server-party diagnostics do not establish whole-function ownership. Per-case/schema/source correspondence remains pending."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.1/computed-correspondence-frontier.json",
+        "sha256": "99029fd361f74a078d305016a4113079a194c6969a405501d9cd22363e7c970c"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "0x145afe507",
+          "native_candidate"
+        ],
+        "sha256": "8dc74bddc2c09e9266b455fa2aeca4d0c32440de6f5c631d22bcb9e4031fefbc"
+      },
+      "inputs": [
+        {
+          "path": "docs/analysis/evidence/0.119.1/native-switch-proposals.json",
+          "sha256": "e3eb0a52391faa7be9aac08e89839b6b5488d81cf59346261d2af38b86971021"
+        },
+        {
+          "path": "docs/analysis/evidence/0.119.1/guarded-creature-query-correspondence.json",
+          "sha256": "e011795c712a62c2686ac618188f970246baaf3bd3261bc614b75d7c43fca51c"
+        },
+        {
+          "path": "docs/analysis/coverage/full-image-execheck-0.119.1.json",
+          "sha256": "610591688d5cab3a03111117f16f2b50082220deb432d0bf42189f9f9bac2889"
+        },
+        {
+          "path": "runtime/q41-computed-context-0.119.0/contextual-sites.jsonl.gz",
+          "sha256": "5cd107cdeb28e807b78dd9dafb19e1ca55a8531d2ae3c8170caa64dea103e60a"
+        }
+      ]
+    },
+    {
+      "id": "retained-table-145afbed3",
+      "selector": "Q41-F01:site=0x145afe5a1",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "conclusion": "Current bounded table/role correspondence retains prior selector runtime/q41-computed-context-0.119.0/contextual-sites.jsonl.gz:site=0x145afbed3. Complete current producer/discriminator/case/source applicability remains pending; no new behavior or source defect inferred.",
+      "next_action": "Use the current guarded cells and saved owner to close exact admitted entry/payload producers and individual case destinations; join native name/subname/type/rank/display and locale inputs to actual creature source tables/consumers. Reuse #64/#65; retain Q41-F01 producer/type/alias and missing destination proof. This is unrelated to #101 guest text-registry insertion/carrier.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+            "sha256": "c3435c8c4b5bdb0d36339c62c9a74aab3a02b00d3ee77260e5b4b8d45a2d64c0"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+            "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+            "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+          },
+          {
+            "path": "crates/benilla-protocol/src/messages/parse.rs",
+            "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+          }
+        ],
+        "conclusion": "Candidate/current interface: coop_commands::apply CMSG_CREATURE_QUERY -> client::creature_queries::creature_query/query_with -> shared guardian enemy/boss catalogs and SPECIALS -> query_packets::decode/benilla CreatureName cache and existing events. Mixed gear/server-party diagnostics do not establish whole-function ownership. Per-case/schema/source correspondence remains pending."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.1/computed-correspondence-frontier.json",
+        "sha256": "99029fd361f74a078d305016a4113079a194c6969a405501d9cd22363e7c970c"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "0x145afe5a1",
+          "native_candidate"
+        ],
+        "sha256": "7668bb627e722ffcc6188ad473b8ab2cac9673ca930af7fa221b6dd2e71c0d1e"
+      },
+      "inputs": [
+        {
+          "path": "docs/analysis/evidence/0.119.1/native-switch-proposals.json",
+          "sha256": "e3eb0a52391faa7be9aac08e89839b6b5488d81cf59346261d2af38b86971021"
+        },
+        {
+          "path": "docs/analysis/evidence/0.119.1/guarded-creature-query-correspondence.json",
+          "sha256": "e011795c712a62c2686ac618188f970246baaf3bd3261bc614b75d7c43fca51c"
+        },
+        {
+          "path": "docs/analysis/coverage/full-image-execheck-0.119.1.json",
+          "sha256": "610591688d5cab3a03111117f16f2b50082220deb432d0bf42189f9f9bac2889"
+        },
+        {
+          "path": "runtime/q41-computed-context-0.119.0/contextual-sites.jsonl.gz",
+          "sha256": "5cd107cdeb28e807b78dd9dafb19e1ca55a8531d2ae3c8170caa64dea103e60a"
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Current exact candidate/reference/source observations retain issue identities and pending semantic applicability.",
+    "Prior0.119.0 source repairs and completed native classifications remain retained; see incremental-correspondence.json. Current target linkage never transfers runtime/parity."
+  ]
+}

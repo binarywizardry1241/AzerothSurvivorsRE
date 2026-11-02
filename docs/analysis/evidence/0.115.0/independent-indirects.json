@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.115.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+    "size_bytes": 142111232
+  },
+  "generator": {
+    "path": "scripts/classify-independent-indirects.py",
+    "sha256": "87dedafa4c030eb76f8ae4e3919bc0418c9c04dde45f8d1df44322ca6d19f99c",
+    "capstone_version": "5.0.7"
+  },
+  "dependencies": [
+    {
+      "path": "scripts/coverage_common.py",
+      "sha256": "8e076cd7c55c918ff626e5e4c7df2e2efb0a8861ed3f39844b53ccd3d4c391ce"
+    },
+    {
+      "path": "scripts/derived_gzip.py",
+      "sha256": "27f82ab71c755614d19f72257d09100a721534dc45a2aa017e6062cc2429cdd5"
+    },
+    {
+      "path": "scripts/summarize-native-image.py",
+      "sha256": "dd5748de3b992dfd49bf0eca53dac1f8fabfb27102fda0c4815dc331c7f28e14"
+    },
+    {
+      "path": "scripts/inventory-current-target.py",
+      "sha256": "f2cf5be70267aa01865b7c34bef7eeb87898d67b5e36f0a91d20d37e3b1299c5"
+    },
+    {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "docs/analysis/coverage/full-image-census.json",
+      "sha256": "8918323779f56759fada5da333abf290c4323393bab739a8e202b0e9737c95fd"
+    },
+    {
+      "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/full-image-durable/bodies.tsv.gz",
+      "sha256": "98b29cee6dab4cba31326645be1e6b7b49abe20fd1177b2614e875ba4cb4ea49"
+    },
+    {
+      "path": "runtime/q41-ownership-0.115.0/ownership-summary-final.json",
+      "sha256": "fdd81876f7180886409d1c212762858691f0a5ce214827e3c5d8079478a87be5"
+    },
+    {
+      "path": "scripts/classify-native-ownership.py",
+      "sha256": "17e55ad17f776f62445cc162af1fd12f68d361f7a8435429e3ab906bb8bc7381"
+    },
+    {
+      "path": "runtime/q41-ownership-0.115.0/ownership-final/indirect-ownership.jsonl.gz",
+      "sha256": "6189bdd846f32de2fbe9f9fac66fd49c64f2a98cdb5b4b7d52fde6127120ddbf"
+    },
+    {
+      "path": "runtime/q41-ownership-0.115.0/residual-summary-v2.json",
+      "sha256": "1baba8b003ef9eeb7854e0ff5f698649bf67f409c90302007220816bf0df92a2"
+    },
+    {
+      "path": "docs/analysis/coverage/instruction-summary.json",
+      "sha256": "ac293f5274832f7ea5adf49a2bca84285c006ddf47ba89cb862dafe4f0b738ef"
+    },
+    {
+      "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/native-instructions.sqlite",
+      "sha256": "984e341b1702fd801b9d5b63326590a0eafd110a72aff5d2facdab0076dc433e"
+    },
+    {
+      "path": "runtime/q41-ownership-0.115.0/residuals-v2/declared-indirect-sites.tsv.gz",
+      "sha256": "9a139128656518f0c463d4ac114ddb52db812536746860a884742a9d3fb82ee3"
+    },
+    {
+      "path": "docs/analysis/coverage/unwind-complement-summary.json",
+      "sha256": "7bf6b3a4d0bb4c96f7e6c8eb44648d35c7d5bdf40028e32b956b03434908dc38"
+    },
+    {
+      "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/unwind-complement.sqlite",
+      "sha256": "9941f1f0ccd3723345195e0a011136b414b8a3597586baed8467666f200f9a65"
+    },
+    {
+      "path": "runtime/q41-ownership-0.115.0/residuals-v2/complement-indirect-sites.tsv.gz",
+      "sha256": "9ec7564c75de9b94eaa292e9fb0f10d9ce0465572eeb08dbf2bff404281ee8f7"
+    }
+  ],
+  "independent_inputs": {
+    "Q41-F01": {
+      "summary": {
+        "path": "docs/analysis/coverage/instruction-summary.json",
+        "sha256": "ac293f5274832f7ea5adf49a2bca84285c006ddf47ba89cb862dafe4f0b738ef"
+      },
+      "inventory": {
+        "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/native-instructions.sqlite",
+        "sha256": "984e341b1702fd801b9d5b63326590a0eafd110a72aff5d2facdab0076dc433e"
+      },
+      "expected_records": 82636,
+      "residual_artifact": {
+        "path": "runtime/q41-ownership-0.115.0/residuals-v2/declared-indirect-sites.tsv.gz",
+        "sha256": "9a139128656518f0c463d4ac114ddb52db812536746860a884742a9d3fb82ee3",
+        "rows": 82636
+      }
+    },
+    "Q41-F02": {
+      "summary": {
+        "path": "docs/analysis/coverage/unwind-complement-summary.json",
+        "sha256": "7bf6b3a4d0bb4c96f7e6c8eb44648d35c7d5bdf40028e32b956b03434908dc38"
+      },
+      "inventory": {
+        "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/unwind-complement.sqlite",
+        "sha256": "9941f1f0ccd3723345195e0a011136b414b8a3597586baed8467666f200f9a65"
+      },
+      "expected_records": 648,
+      "residual_artifact": {
+        "path": "runtime/q41-ownership-0.115.0/residuals-v2/complement-indirect-sites.tsv.gz",
+        "sha256": "9ec7564c75de9b94eaa292e9fb0f10d9ce0465572eeb08dbf2bff404281ee8f7",
+        "rows": 648
+      }
+    }
+  },
+  "source_census": {
+    "path": "docs/analysis/coverage/full-image-census.json",
+    "sha256": "8918323779f56759fada5da333abf290c4323393bab739a8e202b0e9737c95fd"
+  },
+  "ghidra_ownership": {
+    "path": "runtime/q41-ownership-0.115.0/ownership-summary-final.json",
+    "sha256": "fdd81876f7180886409d1c212762858691f0a5ce214827e3c5d8079478a87be5"
+  },
+  "residual_summary": {
+    "path": "runtime/q41-ownership-0.115.0/residual-summary-v2.json",
+    "sha256": "1baba8b003ef9eeb7854e0ff5f698649bf67f409c90302007220816bf0df92a2"
+  },
+  "artifact": {
+    "path": "runtime/q41-ownership-0.115.0/independent-indirects-final/independent-indirect-operands.jsonl.gz",
+    "sha256": "8f275b0d5df3acb5f3a0e7391ce61090654623415e6b838c1501b972c2c39bda",
+    "rows": 83284
+  },
+  "counts": {
+    "binding:declared-import-slot": 1557,
+    "binding:dynamic-address-state-required": 81717,
+    "binding:fixed-slot-without-declared-pointer-binding": 6,
+    "binding:relocation-backed-image-pointer": 4,
+    "body:absent": 8022,
+    "body:present": 75262,
+    "ghidra:absent": 8022,
+    "ghidra:present": 75262,
+    "kind:call_indirect": 72316,
+    "kind:jump_indirect": 10968,
+    "operand:fixed-relative-memory": 1567,
+    "operand:indexed-memory": 16,
+    "operand:register": 36065,
+    "operand:register-relative-memory": 45636,
+    "records": 83284
+  },
+  "per_lead": {
+    "Q41-F01": {
+      "binding:declared-import-slot": 1437,
+      "binding:dynamic-address-state-required": 81189,
+      "binding:fixed-slot-without-declared-pointer-binding": 6,
+      "binding:relocation-backed-image-pointer": 4,
+      "body:absent": 7986,
+      "body:present": 74650,
+      "ghidra:absent": 7986,
+      "ghidra:present": 74650,
+      "kind:call_indirect": 72316,
+      "kind:jump_indirect": 10320,
+      "operand:fixed-relative-memory": 1447,
+      "operand:indexed-memory": 15,
+      "operand:register": 35575,
+      "operand:register-relative-memory": 45599,
+      "records": 82636
+    },
+    "Q41-F02": {
+      "binding:declared-import-slot": 120,
+      "binding:dynamic-address-state-required": 528,
+      "body:absent": 36,
+      "body:present": 612,
+      "ghidra:absent": 36,
+      "ghidra:present": 612,
+      "kind:jump_indirect": 648,
+      "operand:fixed-relative-memory": 120,
+      "operand:indexed-memory": 1,
+      "operand:register": 490,
+      "operand:register-relative-memory": 37,
+      "records": 648
+    }
+  },
+  "exact_selected_sites_classified": true,
+  "computed_runtime_targets_complete": false,
+  "source_semantics_complete": false,
+  "global_aliasing_complete": false,
+  "parity_verified": false,
+  "gap_ids": [
+    41
+  ],
+  "lead_ids": [
+    "Q41-F01",
+    "Q41-F02"
+  ],
+  "limits": [
+    "Every exact independent indirect selector row is retained, including sites absent from Ghidra bodies.",
+    "An encoded slot/import or initial relocation word is a static image/loader declaration, not an observed callee or runtime alias.",
+    "No straight-line state propagation is attempted for independent sites; registers, indexed/segment addresses, incoming edges, table types and runtime dispatch remain unknown.",
+    "Spatial body/path context does not establish AS mechanics, generic subsystem semantics or source equivalence. No native analysis session, application compilation or game execution."
+  ]
+}

@@ -1,0 +1,306 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.110.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048",
+    "size_bytes": 140523520
+  },
+  "scope": "Static whole-image EXE/evidence/source-connection audit; independent instruction verification is separate from semantic reconstruction.",
+  "identity_resources": "docs/analysis/target-refresh-0.110.0.json",
+  "scans": [
+    {
+      "path": "docs/analysis/coverage/native-summary.json",
+      "sha256": "5de1a3e3f90ed9136af1314505666ad8e7375ae7fd02499fdf88aacec586c5dd"
+    },
+    {
+      "path": "docs/analysis/coverage/diagnostic-ownership.json",
+      "sha256": "835600e7591cf449994a22923c42a625ee641b1d3058ac898b1b5a7dcad9da80"
+    },
+    {
+      "path": "docs/analysis/coverage/instruction-summary.json",
+      "sha256": "b976b20881c8c5b0fb2705c6c468fd7a90f82205ee9185259e2940ae2ca9df84"
+    },
+    {
+      "path": "docs/analysis/coverage/unwind-complement-summary.json",
+      "sha256": "4a3de1a84384241971cd5ee88da8ff3dc89c4187d94b84a03f69ddb85c16868d"
+    },
+    {
+      "path": "docs/analysis/evidence/0.110.0/execheck-census.json",
+      "sha256": "f5690a7fc555d7917d0dece987ed0dc642b671466a6c5c43d142ebb103d0a81c"
+    },
+    {
+      "path": "docs/analysis/evidence/0.110.0/native-custom-coverage.json",
+      "sha256": "5e09482195de0c81f066334939c7bdf8e3792187424c9208aee3df43de9ec8ff"
+    },
+    {
+      "path": "docs/analysis/evidence/0.110.0/execheck-contract-leads.json",
+      "sha256": "48b7dd279737698025837186e2fbcb2c9c379efa9d13ccc4ba6da24ff2d27427"
+    }
+  ],
+  "fresh_native_pass": {
+    "function_starts": 418184,
+    "additional_code_starts": 29355,
+    "instructions_independently_verified": 22455629,
+    "source_bytes_independently_verified": 89873547,
+    "applied_guarded_tables": 3370,
+    "applied_guarded_edges": 21820,
+    "all_requested_starts_decoded": true,
+    "all_direct_call_helper_final_owners_present": true,
+    "unobserved_executable_bytes": 8314387,
+    "unobserved_mixed_bytes": 4854557,
+    "historical_atomic_selection_replaced": false
+  },
+  "proof_preparation": {
+    "source_census": {
+      "path": "docs/analysis/evidence/0.110.0/integrated-census.json",
+      "sha256": "7fff6bcdf86bd6863e98b681098ec57a9536bfa9201c02c82fa16ee90bdd29c8"
+    },
+    "operand_summary": {
+      "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/execheck-inputs/native-operand-boundaries.json",
+      "sha256": "334a2b3b147cfc2cf5277fc5b9f0c28cf04e72b14615c2f1820fbef697917ff6"
+    },
+    "verified_instructions": 21983926,
+    "explicit_operands": 637488,
+    "inputs": [
+      {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/execheck-inputs/native-jump-tables.json",
+        "sha256": "b11b64737378edbd1922e4879e513e8e1a1081da18c224f549faf009900d5d7a"
+      },
+      {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/execheck-inputs/diagnostic-code-leads.json",
+        "sha256": "a2efe386074bc2285df303d62266677c819d089d9d8d7c85ccc730f9ef9b732d"
+      },
+      {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/execheck-inputs/native-import-thunks.json",
+        "sha256": "24d1a7b156c52cff333d5be64d717592c07985a752f54433d3e7e45970741932"
+      },
+      {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/execheck-inputs/native-unwind-handlers.json",
+        "sha256": "8ec977de7cc40b92c8a786443452e9125807d375805e3e7a6db213fd8e641737"
+      },
+      {
+        "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/execheck-inputs/native-address-code-leads.json",
+        "sha256": "2ec46b54108ea0e6e63fe7645cdbb8328fd38ebe9d1c343a2502dca04ed728d2"
+      }
+    ],
+    "post_expansion_semantic_classification_complete": false
+  },
+  "pe_resources": {
+    "evidence_id": "ev_f39553328234f51a4e09c6da6455caa4ba13985f8ae30b64cd1747a7782efcf6",
+    "provider": {
+      "id": "rea-pe-resources",
+      "name": "REA PE resource parser",
+      "version": "1"
+    },
+    "retained_result": {
+      "path": "runtime/coverage/e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048/execheck-pe-resources.json",
+      "sha256": "2ddbd6cbfd2e41ce0df661647713c5e75b3a747d96e146b8b5fc04df45b0510b"
+    },
+    "directory": {
+      "rva": 139038720,
+      "location": {
+        "offset": 139020288,
+        "bytes": 210688
+      },
+      "data_directory_location": {
+        "offset": 416,
+        "bytes": 8
+      }
+    },
+    "coverage": {
+      "status": "complete",
+      "examined_entries": 18,
+      "resources": 8
+    },
+    "resources": [
+      {
+        "type": 3,
+        "name": 1,
+        "language": 1033,
+        "payload": {
+          "rva": 139039168,
+          "location": {
+            "offset": 139020736,
+            "bytes": 1014
+          },
+          "sha256": "f92513efc2dd9493af9d66c0cf34ff639ab324e54277b2d8528dbc40564323bc"
+        }
+      },
+      {
+        "type": 3,
+        "name": 2,
+        "language": 1033,
+        "payload": {
+          "rva": 139040184,
+          "location": {
+            "offset": 139021752,
+            "bytes": 1988
+          },
+          "sha256": "6277b932549279ac89f4cd564a22773003c6b80f6523954de8621a5b4363e96c"
+        }
+      },
+      {
+        "type": 3,
+        "name": 3,
+        "language": 1033,
+        "payload": {
+          "rva": 139042176,
+          "location": {
+            "offset": 139023744,
+            "bytes": 3285
+          },
+          "sha256": "243f562506637dbfcbb3d507d6bc93a54346b659faa5565105dd431fe7d87a71"
+        }
+      },
+      {
+        "type": 3,
+        "name": 4,
+        "language": 1033,
+        "payload": {
+          "rva": 139045464,
+          "location": {
+            "offset": 139027032,
+            "bytes": 6587
+          },
+          "sha256": "d4d95edb2253da52c75291dfcba1c81faa009e237d4fc1224f7e3dffc3c5ab0f"
+        }
+      },
+      {
+        "type": 3,
+        "name": 5,
+        "language": 1033,
+        "payload": {
+          "rva": 139052056,
+          "location": {
+            "offset": 139033624,
+            "bytes": 11069
+          },
+          "sha256": "14c0318d32dc73b9007c571435b569c4449cce4606b6d699640719171abc7dc6"
+        }
+      },
+      {
+        "type": 3,
+        "name": 6,
+        "language": 1033,
+        "payload": {
+          "rva": 139063128,
+          "location": {
+            "offset": 139044696,
+            "bytes": 39578
+          },
+          "sha256": "c3260d84c6ba641d27a345f0d8589aea3250cc19df5906756656b2a48f008c24"
+        }
+      },
+      {
+        "type": 3,
+        "name": 7,
+        "language": 1033,
+        "payload": {
+          "rva": 139102712,
+          "location": {
+            "offset": 139084280,
+            "bytes": 146585
+          },
+          "sha256": "857f9d4c979feee0f9cf056896bf91f3609dff4fc821f5a24d67f3bbd86beecd"
+        }
+      },
+      {
+        "type": 14,
+        "name": 1,
+        "language": 1033,
+        "payload": {
+          "rva": 139249304,
+          "location": {
+            "offset": 139230872,
+            "bytes": 104
+          },
+          "sha256": "6d981423b5a70886ee47bc24203ced1e3759880c27edd922eeb6e0af4716e634"
+        }
+      }
+    ],
+    "icon_group_size_references_match": true,
+    "images_or_runtime_loading_verified": false
+  },
+  "volatile_metadata": {
+    "record": {
+      "path": "runtime/coverage/execheck-volatile-metadata.json",
+      "sha256": "06fd2d686af6cb43ffb0b2eb53db62e14012da163ef2504d02cc3a9afb2db0c0"
+    },
+    "access_annotations": 13,
+    "range_annotations": 5,
+    "function_entries_proved": 0,
+    "native_windows_version_compatibility_verified": false
+  },
+  "contract_replays": [
+    {
+      "command": "python3 -B scripts/check-ground-navigation-0.110.0.py",
+      "native_cases": 164,
+      "boundary_shapes": 12
+    },
+    {
+      "command": "python3 -B scripts/check-ordinary-pets-0.110.0.py",
+      "native_cases": 736,
+      "descriptors": 5,
+      "grant_arrays": 5
+    },
+    {
+      "command": "python3 -B scripts/check-demon-cooldown-lead-0.110.0.py",
+      "native_cases": 8,
+      "instruction_addresses": 34,
+      "scope": "Synthetic special1/5 helper branch only; complete live producer/cadence remains unrecovered."
+    }
+  ],
+  "noncompiling_tool_regressions": {
+    "proof_helpers": 23,
+    "connection_partition_history": 33,
+    "compiling_tests_run": false
+  },
+  "source_review": {
+    "system_rows": 54,
+    "custom_paths": 53,
+    "existing_source_references": 666,
+    "anchors_reviewed": 138,
+    "line_anchors_corrected": 69,
+    "bounded_current_contract_systems": 6,
+    "systems_without_bounded_current_contract_links": 47,
+    "whole_systems_certified": 0
+  },
+  "retained_rendering_observation": {
+    "gap_ids": [
+      39
+    ],
+    "log": "runtime/optimized-2026-10-21/game.log",
+    "sha256": "0829603730726b24b5f72718476a5582e0b9da3176561405b8ef1048ad365802",
+    "line": 40,
+    "logical_px": 140,
+    "device_px": 280,
+    "raster_cap": 256,
+    "fresh_reproduction": false,
+    "producing_widget_known": false,
+    "original_exe_difference_established": false
+  },
+  "connection_map": "docs/analysis/coverage/exe-connections.json",
+  "required_final_checks": [
+    "python3 -B scripts/revalidate-historical-native-ranges.py --census-summary docs/analysis/evidence/0.110.0/execheck-census.json --write",
+    "python3 -B scripts/audit-exe-connections.py --write",
+    "python3 -B scripts/audit-exe-connections.py",
+    "python3 -B scripts/test-exe-connections.py",
+    "python3 -B scripts/register-target.py --check",
+    "python3 -B scripts/check-reconstruction-coverage.py"
+  ],
+  "gap_ids": [
+    11,
+    12,
+    17,
+    24,
+    39,
+    41
+  ],
+  "new_gap_ids": [],
+  "target_process_executed": false,
+  "reconstructed_source_executed": false,
+  "compilation": "not_run",
+  "runtime_validation": "unverified",
+  "parity_verified": false
+}

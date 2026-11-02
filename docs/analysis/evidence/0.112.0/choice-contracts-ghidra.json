@@ -1,0 +1,41 @@
+{
+  "target_sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+  "observations": [
+    {
+      "role": "collector",
+      "va": "0x1459cb2a0",
+      "byte_count": 431,
+      "sha256": "d0540efa748c2dc55d02f5258424d1a2dcb38987239561045a29edd1677ccb17",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "rea_evidence_id": "ev_43cddcf1e506f1d11bef54ebe4a6c3dbe11a09ea33bad9aeb112dad108892eee",
+      "analysis_profile_sha256": "1d471bd600984f90bdbfcdad950a221a2fe0d58b1f5155b6d3769946018754f9",
+      "pseudocode_sha256": "fad3c8e03d6adb55890560baf44a755c1619ea9b1c315d730c982e6c2bb764ec",
+      "limits": [
+        "Raw import carries only this selected range at its native address. External callees, calling convention and original struct types are not recovered by this import.",
+        "The collector allocation-failure UD2 is printed as bad instruction by the generic raw decompiler; current live byte/call claims come from independent decoding and bounded replay."
+      ]
+    },
+    {
+      "role": "prose-adapter",
+      "va": "0x1459d8300",
+      "byte_count": 209,
+      "sha256": "e0a336a21f60ce5a58b22d7ba9bfabd3e78c371c7cfd96f42f2b339d9fac1e4f",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "rea_evidence_id": "ev_17b2c592622ccf7f693f204af7de9eac5923e9a83da50223ac5e8b7168c70d66",
+      "analysis_profile_sha256": "eb97364b502d37e4233f3770bf314a8946295641f0d8d6ef16b328b5666d096d",
+      "pseudocode_sha256": "781eae6741c25de7ad921f8d8b8ba9fcb346a195a49a597ee27f10bcdfa99ae7",
+      "limits": [
+        "Raw import carries only this selected range at its native address. External callees, calling convention and original struct types are not recovered by this import.",
+        "The collector allocation-failure UD2 is printed as bad instruction by the generic raw decompiler; current live byte/call claims come from independent decoding and bounded replay."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "target_sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+  "canonical_startup": "../talents-menu/ui-manifest.json#hover-plugin",
+  "canonical_startup_assembly": "../talents-menu/hover-plugin.asm",
+  "canonical_restore": "../import-restore/manifest.json#restore",
+  "startup_owner": {
+    "start": "0x140064930",
+    "end_exclusive": "0x140065f67",
+    "sha256": "edcf84b265bbd5b21638bc215b5d1cd4b2b63eeeebdca628283903eafadc206f"
+  },
+  "restore": {
+    "callsite": "0x14006495e",
+    "callee": "0x140062330",
+    "output": "[rbp+0x2b0]",
+    "byte_count": 64
+  },
+  "resource": {
+    "typeid": "069ad40b469b67b8d24e086565767c39",
+    "layout_bytes": 64,
+    "registration": "0x140064c43..0x140064d06",
+    "descriptors": [
+      {
+        "address": "0x145d9d780",
+        "byte_count": 16,
+        "bytes": "069ad40b469b67b8d24e086565767c39",
+        "sha256": "67b3ed1c47875a990a0b309d2b24f53f667dc2c52aab8b8df2477a2fca733264"
+      },
+      {
+        "address": "0x145d9df58",
+        "byte_count": 16,
+        "bytes": "069ad40b469b67b8d24e086565767c39",
+        "sha256": "67b3ed1c47875a990a0b309d2b24f53f667dc2c52aab8b8df2477a2fca733264"
+      },
+      {
+        "address": "0x145dcd3c0",
+        "byte_count": 16,
+        "bytes": "069ad40b469b67b8d24e086565767c39",
+        "sha256": "67b3ed1c47875a990a0b309d2b24f53f667dc2c52aab8b8df2477a2fca733264"
+      }
+    ]
+  },
+  "code_windows": [
+    {
+      "role": "restore-call",
+      "start": "0x140064957",
+      "end_exclusive": "0x140064963",
+      "sha256": "2e825f9b3d89537f301f1a7e6427e44eefda16eb09bc28078e92c7a2491cb596"
+    },
+    {
+      "role": "typeid-lookup",
+      "start": "0x1400649ab",
+      "end_exclusive": "0x1400649d7",
+      "sha256": "4e44e81558aa08e3b35183b28396817f619b83a63700fa179bdfa3f1da45877b"
+    },
+    {
+      "role": "resource-layout",
+      "start": "0x140064ba2",
+      "end_exclusive": "0x140064bd3",
+      "sha256": "155adbda7cc8e70c80d4523bee723d9ecaae626bddfb51f47f97d607c8eb343c"
+    },
+    {
+      "role": "restored-pick-insertion",
+      "start": "0x140064c43",
+      "end_exclusive": "0x140064d06",
+      "sha256": "2d16c4183db64787ca1f0f745b297061e8641f9f3b785b1b18f90b7885aa3e24"
+    }
+  ],
+  "limits": [
+    "Static native startup dataflow and TypeID equality; no game, ECS resource insertion or Rust execution.",
+    "Full startup/restore extracts are retained by their canonical owners; this file contains only bindings and hashes."
+  ]
+}

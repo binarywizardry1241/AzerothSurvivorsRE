@@ -1,0 +1,110 @@
+{
+  "artifact": "AzerothSurvivors/AzerothSurvivors.exe",
+  "artifact_sha256": "719da61487e0ffaf6491a1ca65410a6666028e83271f059692ad46bc4d8af150",
+  "working_directory": "checkout root",
+  "target_executed": false,
+  "tool_version": "Apple LLVM version 17.0.0\n  Optimized build.\n\n\n  Registered Targets:\n    aarch64    - AArch64 (little endian)\n    aarch64_32 - AArch64 (little endian ILP32)\n    aarch64_be - AArch64 (big endian)\n    arm        - ARM\n    arm64      - ARM64 (little endian)\n    arm64_32   - ARM64 (little endian ILP32)\n    armeb      - ARM (big endian)\n    thumb      - Thumb\n    thumbeb    - Thumb (big endian)\n    x86        - 32-bit X86: Pentium-Pro and above\n    x86-64     - 64-bit X86: EM64T and AMD64",
+  "caveat": "Caller excerpts can begin/end inside an instruction. Native semantics require dataflow and REA verification.",
+  "outputs": [
+    {
+      "path": "docs/analysis/evidence/boss-clock-phase-update.asm",
+      "invocation": [
+        "objdump",
+        "-d",
+        "--start-address=0x145470654",
+        "--stop-address=0x1454706b1",
+        "AzerothSurvivors/AzerothSurvivors.exe"
+      ],
+      "start_address": "0x145470654",
+      "end_address_exclusive": "0x1454706b1",
+      "size_bytes": 1225,
+      "sha256": "16ec3d0d621d87c13d3e72e66c53cf3c05988a1337093ec798d9b0f86cf8ac58"
+    },
+    {
+      "path": "docs/analysis/evidence/boss-clock-minutes-zone-selection.asm",
+      "invocation": [
+        "objdump",
+        "-d",
+        "--start-address=0x14547967a",
+        "--stop-address=0x145479753",
+        "AzerothSurvivors/AzerothSurvivors.exe"
+      ],
+      "start_address": "0x14547967a",
+      "end_address_exclusive": "0x145479753",
+      "size_bytes": 2851,
+      "sha256": "a1932ca0d72bb19de433716a26d46966c757b1259fb5685a7a586d1c5696f147"
+    },
+    {
+      "path": "docs/analysis/evidence/boss-schedule-due-threshold.asm",
+      "invocation": [
+        "objdump",
+        "-d",
+        "--start-address=0x14547a22b",
+        "--stop-address=0x14547a284",
+        "AzerothSurvivors/AzerothSurvivors.exe"
+      ],
+      "start_address": "0x14547a22b",
+      "end_address_exclusive": "0x14547a284",
+      "size_bytes": 1193,
+      "sha256": "efa34b39cfaf9ffc24701fc9d0966b26d2e1a407ab2da1de2669529632cbd969"
+    },
+    {
+      "path": "docs/analysis/evidence/boss-schedule-post-cursor-gate.asm",
+      "invocation": [
+        "objdump",
+        "-d",
+        "--start-address=0x14547b8a8",
+        "--stop-address=0x14547b8d8",
+        "AzerothSurvivors/AzerothSurvivors.exe"
+      ],
+      "start_address": "0x14547b8a8",
+      "end_address_exclusive": "0x14547b8d8",
+      "size_bytes": 590,
+      "sha256": "a24b226b6d61ff2ba01c0e73d06f5f6adf558c74c1eb5ebada3736136edbc516"
+    },
+    {
+      "path": "docs/analysis/evidence/boss-spawn-helper.asm",
+      "invocation": [
+        "objdump",
+        "-d",
+        "--start-address=0x14548f900",
+        "--stop-address=0x14549042b",
+        "AzerothSurvivors/AzerothSurvivors.exe"
+      ],
+      "start_address": "0x14548f900",
+      "end_address_exclusive": "0x14549042b",
+      "size_bytes": 37139,
+      "sha256": "c72e6d37e1f5ab555269974d420a401b195382f00e27008c6fd6b3d765ae55bf"
+    }
+  ],
+  "guardian_math_import_thunk": {
+    "address": "0x14570b233",
+    "bytes": "ff25cf011900",
+    "iat_address": "0x14589b408",
+    "library": "api-ms-win-crt-math-l1-1-0.dll",
+    "imported_function": "powf"
+  },
+  "observed_float_constants": [
+    {
+      "address": "0x1458d9830",
+      "value": 60.0
+    },
+    {
+      "address": "0x146aa4c70",
+      "value": 5.75
+    },
+    {
+      "address": "0x146aa4c74",
+      "value": 1.2200000286102295
+    },
+    {
+      "address": "0x146aa4c90",
+      "value": 1.0959999561309814
+    }
+  ],
+  "interpretation": {
+    "timing": "Core divides state+0x8cc by 60, compares against boss row+64 using 88-byte stride, increments cursor and calls boss-spawn helper when due.",
+    "health": "Spawn helper scales boss row+68 and initializes actor-record fields+0xf0/+0xf4 to the result; current/max health naming is supported by caller ratio-preserving rescale evidence.",
+    "limits": "Static observations; no runtime execution. State-field names, phase enum names, all spawn gates and other modifiers are not fully recovered."
+  }
+}

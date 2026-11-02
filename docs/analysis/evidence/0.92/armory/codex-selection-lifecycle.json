@@ -1,0 +1,46 @@
+{
+  "version": "0.92.0",
+  "target_sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+  "selection": {
+    "offset": 0,
+    "size": 24,
+    "none_tag": -1,
+    "proof": "Codex constructor321bfb stores R9 into grid/detail closure; Details1dd40a loads it and tests its first qword for None; the same selection reference is passed to item constructor320f80."
+  },
+  "ui_actions": {
+    "function": "0x140045520",
+    "jump_table": "0x1458b49a0",
+    "dispatch": "Act tag>=2 dispatches tag-2, tags<2 index8.",
+    "close": {
+      "tag": 2,
+      "address": "0x1400459fa",
+      "writes": "Only open=false at state+0x72, besides ECS change tick.",
+      "selection": "Preserved."
+    },
+    "tab": {
+      "tag": 3,
+      "address": "0x140045d4d",
+      "writes": "open=true at+0x72, selected tab at+0x76; Drop Tables(tab2) optionally updates drop-zone at+0x50 from selected gear.",
+      "selection": "Preserved."
+    }
+  },
+  "picker_open": {
+    "address": "0x140126a2f..0x140126a76",
+    "writes": "open=true, tab0, clear gear focus at+0x70 and gear selection flag+0x48.",
+    "selection": "Preserved."
+  },
+  "separate_command_opener": {
+    "function": "0x140031d80",
+    "scope": "String-driven armory opener, not the GUI tab action.",
+    "codex": "Selects last discovered native ring by reverse table search, or None if none discovered.",
+    "implementation": "Not applied to GUI navigation; command input is a separate menu-scope recovery route."
+  },
+  "source": {
+    "CodexState": "Initial None, retained across GUI tab/Done/reopen; matches these recovered paths.",
+    "changes": "No new lifecycle mutation needed."
+  },
+  "limitations": [
+    "These paths do not establish every import/language-change/process-restart state transition.",
+    "UI playback was intentionally not repeated; evidence is hash-bound native instructions."
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "ranges": [
+    {
+      "role": "common-melee",
+      "start": "0x14594c4e0",
+      "end_exclusive": "0x14594cce9",
+      "file_offset": "0x594b8e0",
+      "sha256": "69e4df7f87b08808692cbb00fe8c05f18f7e95c7aa015c4645673dfc11c712bf",
+      "text_sha256": {}
+    },
+    {
+      "role": "imp-firebolt",
+      "start": "0x145950ce0",
+      "end_exclusive": "0x145950e84",
+      "file_offset": "0x59500e0",
+      "sha256": "64073c7d7952ff4796f43c11284dcfca603fa73fc9bc6b3512a1438faf8c41cf",
+      "text_sha256": {}
+    },
+    {
+      "role": "target-jump-table",
+      "start": "0x146e7b754",
+      "end_exclusive": "0x146e7b778",
+      "file_offset": "0x6e7a954",
+      "sha256": "b1ab5f6785431cd6f08f94b325e94f5c2f876a941379601f78ab2734f3a0b623",
+      "text_sha256": {}
+    },
+    {
+      "role": "bounce-launch-admission",
+      "start": "0x14590a63e",
+      "end_exclusive": "0x14590a648",
+      "file_offset": "0x5909a3e",
+      "sha256": "1dfbcd4dac8f4ed63c8d54b6a34ed0ba21fca08136312a246926218401bb76bd",
+      "assembly": "bounce-launch-admission.asm",
+      "text_sha256": {
+        "bounce-launch-admission.asm": "23b833e645192778dcfb93bb41655a49272e92b2383e7efbe4819a3f960b9964"
+      }
+    },
+    {
+      "role": "bounce-after-impact",
+      "start": "0x14590a838",
+      "end_exclusive": "0x14590acc6",
+      "file_offset": "0x5909c38",
+      "sha256": "3d2b1ae610417fd7fce6b2b7c7c1e21ff7692b42c87cd81279b61dedf438b2d0",
+      "assembly": "bounce-after-impact.asm",
+      "text_sha256": {
+        "bounce-after-impact.asm": "40e8129fd5dbac54e197555627fdc42adb94859e1db3769a4a6ecce39e0f0b24"
+      }
+    },
+    {
+      "role": "bounce-selector",
+      "start": "0x14594f150",
+      "end_exclusive": "0x14594f2ad",
+      "file_offset": "0x594e550",
+      "sha256": "c69801e78895a4115f1a340a76e4dcf21390a7632a2ceb046617f88a76ba374c",
+      "assembly": "bounce-selector.asm",
+      "pseudocode": "bounce-selector.ghidra.c",
+      "evidence_id": "ev_2d8b0b859186889a9b6c1748f8438cced2bf70af8658e13975c741a2514894f6",
+      "provider": "Ghidra12.1.4",
+      "text_sha256": {
+        "bounce-selector.asm": "1994a4e7f4030f2ae60baf2612ac75b9990617acb9888f79252053a01d076a03",
+        "bounce-selector.ghidra.c": "e29d0b8b3eee719c3bac70f0bf0e1b2faaee7e9141c89d7e22f166873c33aefd"
+      }
+    },
+    {
+      "role": "spell-visual-batch",
+      "start": "0x145950ab0",
+      "end_exclusive": "0x145950c36",
+      "file_offset": "0x594feb0",
+      "sha256": "bcb3bd4da538e45c9e35152573482548e0e92b64cd2c3d7d714318ce2f7f54fa",
+      "assembly": "spell-visual-batch.asm",
+      "text_sha256": {
+        "spell-visual-batch.asm": "7df30e7a89649aeab9c480b1f66518563eb104fd9e2c99646774daba41956964"
+      }
+    }
+  ],
+  "shared_owners": [
+    "../power-scaling/pet-tick/helpers-manifest.json",
+    "../game-mode-audit/native-manifest.json"
+  ],
+  "limits": [
+    "Immutable selected PE instructions; static analysis and bounded instruction execution only.",
+    "Ghidra raw-slice pseudocode has inferred ABI and unmapped external data; original Win64 instructions control interpretation.",
+    "No game process or compilation was run."
+  ]
+}

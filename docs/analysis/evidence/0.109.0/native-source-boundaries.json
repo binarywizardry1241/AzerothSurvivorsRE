@@ -1,0 +1,393 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.109.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+    "size_bytes": 140447744
+  },
+  "vendored_revision": "66b73cd6d46b29c0b2c17d05947ac277e374b217",
+  "public_benilla": {
+    "repository": "samwhosung/benilla",
+    "head": "85ba44b4d5dc413cc8ede1632c342ad38f4b97c5",
+    "commit_date": "2026-10-21T21:52:46Z",
+    "tree": "219997884d063408f6c58c521d6ecef6439c32c2",
+    "tree_entries": 2343,
+    "tree_truncated": false,
+    "exact_missing_paths_present": [],
+    "reachable_path_history": {
+      "crates/benilla-app/src/host_controls.rs": 0,
+      "crates/benilla-app/src/net/io/park_timer.rs": 0,
+      "crates/benilla-app/src/ui_text/engine/fallback.rs": 0,
+      "crates/benilla-app/src/web_pbr_lite.rs": 0,
+      "crates/benilla-app/src/webbridge/mod.rs": 0,
+      "crates/benilla-protocol/src/transport/local.rs": 0,
+      "crates/benilla-protocol/src/transport/mod.rs": 0,
+      "crates/benilla-protocol/src/transport/native.rs": 0,
+      "crates/benilla-ui/src/script/plain.rs": 0,
+      "crates/benilla-world/src/rig_anim/compose_scratch.rs": 0
+    },
+    "commits_since_vendor": 18,
+    "changed_file_records": 591,
+    "github_reported_renames": [],
+    "archive_name_content_search_matches": [],
+    "basename_collisions": [
+      "crates/benilla-app/src/sound/output/fallback.rs",
+      "crates/benilla-ui/src/script/messageframe/plain.rs"
+    ],
+    "adjacent_source_without_identity_proof": [
+      "crates/benilla-world/src/rig_anim/compose.rs",
+      "crates/benilla-app/src/net/io.rs"
+    ]
+  },
+  "bevy_dependency": {
+    "manifest": "head-files/Cargo.toml",
+    "lock": "head-files/Cargo.lock",
+    "packages": [
+      {
+        "name": "bevy",
+        "version": "0.18.1",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "checksum": "1fd310426290cec560221f9750c2f4484be4a8eeea7de3483c423329b465c40e"
+      },
+      {
+        "name": "bevy_mesh",
+        "version": "0.18.1",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "checksum": "288f590c8173d4cca3cae5f2ba579accd5ed1a35dd3fab338f427eb39d55f05e"
+      },
+      {
+        "name": "bevy_render",
+        "version": "0.18.1",
+        "source": "registry+https://github.com/rust-lang/crates.io-index",
+        "checksum": "243523e33fe5dfcebc4240b1eb2fc16e855c5d4c0ea6a8393910740956770f44"
+      }
+    ],
+    "repository": "bevyengine/bevy",
+    "tag": "v0.18.1",
+    "commit": "f667c282dad2c1419afb5836ded22a3ec263970e",
+    "tree": "f667c282dad2c1419afb5836ded22a3ec263970e",
+    "tree_entries": 3130,
+    "tree_truncated": false,
+    "exact_path": "crates/bevy_render/src/mesh/morph/visitors.rs",
+    "exact_path_present": false,
+    "exact_contents_route_status": 404,
+    "reachable_exact_path_history_matches": 0,
+    "current_morph_source": "crates/bevy_mesh/src/morph.rs",
+    "fetched_source": "bevy-0.18.1-morph.rs",
+    "path_evidence_role": "confirmed-embedded-resource-comment",
+    "missing_compiled_source_inferred": false,
+    "embedded_registry_version_lead": "0.18.1; registry-path literals identify a dependency version lead, not the complete compiled source revision"
+  },
+  "source_revision_proven": false,
+  "native_contract_match_established": false,
+  "gap_ids": [
+    41
+  ],
+  "audit": {
+    "path": "runtime/fixgap-41-42/public-source/public-source-audit.json",
+    "sha256": "83f818419adf9e1f182d1ee7698666f9a91ea16ea6c4204bfebf05a1d49c6d6e"
+  },
+  "selected_external_inputs": [
+    {
+      "path": "runtime/fixgap-41-42/public-source/benilla-tree.json",
+      "sha256": "69297a8aabe1bd5f25af56f12993aea1553f906298e2fda062aeff8ff48ec804"
+    },
+    {
+      "path": "runtime/fixgap-41-42/public-source/benilla-path-history.json",
+      "sha256": "67d866e4761813b914ed80b3d0afa61309cef0ad76f4b07b247afeda9036533b"
+    },
+    {
+      "path": "runtime/fixgap-41-42/public-source/benilla-commit-file-changes.json",
+      "sha256": "947e33b86d64aa375546e7256620c2f7eafa831575474a51b3bb076db2f58120"
+    },
+    {
+      "path": "runtime/fixgap-41-42/public-source/benilla-head.tar.gz",
+      "sha256": "86c25130694029e98972f435ce6685945c15bdeaf0db395f23bb27dcc9d34970"
+    },
+    {
+      "path": "runtime/fixgap-41-42/public-source/bevy-tree.json",
+      "sha256": "03ff4ff35acea78c2641450c0e3a9fdd9ffe8f9c1d549e096ab14d861c81e940"
+    },
+    {
+      "path": "runtime/fixgap-41-42/public-source/bevy-path-history.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "runtime/fixgap-41-42/public-source/head-files/Cargo.lock",
+      "sha256": "a498571953c3128212e56c8b036cae58c9397d5f804397c008c49bc0772a6387"
+    },
+    {
+      "path": "runtime/fixgap-41-42/public-source/bevy-0.18.1-morph.rs",
+      "sha256": "ec6a051ed318a52c4e772e60bc9e66071f9a4636fe5bd7f8baae75b8938636ae"
+    }
+  ],
+  "limits": [
+    "Bounded public HEAD/tag and their reachable exact-path history only; not every branch, fork, private source or other dependency revision.",
+    "No exact missing source or GitHub-reported rename found. Basename/architectural neighbors are not source identity or native semantic proof.",
+    "The visitors.rs path occurs solely inside the exact matched embedded morph.wgsl comment; it is not evidence of missing compiled visitors.rs source. Both inspected Bevy revisions share these shader bytes, so a unique compiled revision remains unproved.",
+    "Read-only source attribution audit. No vendored source change, application compilation, game execution or native semantic promotion."
+  ],
+  "embedded_resource_paths": [
+    {
+      "path": "crates/bevy_render/src/mesh/morph/visitors.rs",
+      "role": "embedded-shader-comment",
+      "resource_path": "crates/bevy_pbr/src/render/morph.wgsl",
+      "resource": {
+        "va": "0x14642ed6a",
+        "byte_count": 2123,
+        "sha256": "fab0a8409f2f1f8e08e8a3e98e348bb0ce64a04608ece65398eb36c418392f99"
+      },
+      "file_offset": "0x642dd6a",
+      "unique_in_selected_image": true,
+      "public_candidates": [
+        {
+          "url": "https://raw.githubusercontent.com/bevyengine/bevy/f667c282dad2c1419afb5836ded22a3ec263970e/crates/bevy_pbr/src/render/morph.wgsl",
+          "sha256": "fab0a8409f2f1f8e08e8a3e98e348bb0ce64a04608ece65398eb36c418392f99",
+          "byte_count": 2123
+        },
+        {
+          "url": "https://raw.githubusercontent.com/bevyengine/bevy/v0.17.0/crates/bevy_pbr/src/render/morph.wgsl",
+          "sha256": "fab0a8409f2f1f8e08e8a3e98e348bb0ce64a04608ece65398eb36c418392f99",
+          "byte_count": 2123
+        }
+      ],
+      "source_revision_proven": false
+    }
+  ],
+  "missing_candidate_source_roles": [
+    {
+      "path": "crates/benilla-app/src/host_controls.rs",
+      "role": "rust-source-location",
+      "rust_location_records": [
+        {
+          "va": "0x145ea84b8",
+          "byte_count": 24,
+          "sha256": "dbface972650ee6914b9f8065fd85996a6dc20d6654c36e375cb853483f78425",
+          "source_line": 89,
+          "source_column": 15
+        }
+      ]
+    },
+    {
+      "path": "crates/benilla-app/src/net/io/park_timer.rs",
+      "role": "rust-source-location",
+      "rust_location_records": [
+        {
+          "va": "0x145e8dd68",
+          "byte_count": 24,
+          "sha256": "efa5acdb367a8559d3673c17e9285bfc62f4b8f612b22a5085e23f29d025e8ed",
+          "source_line": 9,
+          "source_column": 44
+        }
+      ]
+    },
+    {
+      "path": "crates/benilla-app/src/ui_text/engine/fallback.rs",
+      "role": "tracing-event-metadata-literals",
+      "tracing_event_labels": [
+        {
+          "va": "0x145eb5f80",
+          "byte_count": 58,
+          "sha256": "de96ac2d6a66c46c294e97a09bcf57790aadffa656a2bbbeded93c95d84c3773"
+        },
+        {
+          "va": "0x145eb6090",
+          "byte_count": 59,
+          "sha256": "a5d939b4721382aef77359c091641f4cfd0754cb6bc6f32d92753635673b57ac"
+        }
+      ]
+    },
+    {
+      "path": "crates/benilla-app/src/web_pbr_lite.rs",
+      "role": "tracing-event-metadata-literals",
+      "tracing_event_labels": [
+        {
+          "va": "0x145ef0cc8",
+          "byte_count": 47,
+          "sha256": "4b98f142b1347d0d26f057e1403234966146b8630a161bd61917874939a8ac9c"
+        }
+      ]
+    },
+    {
+      "path": "crates/benilla-app/src/webbridge/mod.rs",
+      "role": "rust-source-location",
+      "rust_location_records": [
+        {
+          "va": "0x145febae0",
+          "byte_count": 24,
+          "sha256": "95edd424a5f87b98a1044499f1fc6b4ba8bef99a4d90dafcb152297c888fc370",
+          "source_line": 284,
+          "source_column": 14
+        },
+        {
+          "va": "0x145febaf8",
+          "byte_count": 24,
+          "sha256": "daa6a75d6fbcc16ac7e1e5c22c5d193e78f43d27122688867bb36b12ebae2f39",
+          "source_line": 285,
+          "source_column": 14
+        }
+      ]
+    },
+    {
+      "path": "crates/benilla-protocol/src/transport/local.rs",
+      "role": "rust-source-location",
+      "rust_location_records": [
+        {
+          "va": "0x145e8cdf8",
+          "byte_count": 24,
+          "sha256": "75999a90e0843cf6aa2a4735f41a19e191b6cbaba8c47fe1b9bbdd68a601b6c0",
+          "source_line": 88,
+          "source_column": 66
+        },
+        {
+          "va": "0x145e8e0b0",
+          "byte_count": 24,
+          "sha256": "fe9534702ad8e4b66d3321b49ca960840c563313cfb6509599e2045ff8d3e6c5",
+          "source_line": 213,
+          "source_column": 76
+        }
+      ]
+    },
+    {
+      "path": "crates/benilla-protocol/src/transport/mod.rs",
+      "role": "rust-source-location",
+      "rust_location_records": [
+        {
+          "va": "0x145e8cd28",
+          "byte_count": 24,
+          "sha256": "7f3b7357a5be54d13e74526c5aed506008b60c37edc850cbe02a93a2f483541e",
+          "source_line": 60,
+          "source_column": 69
+        },
+        {
+          "va": "0x145e8e080",
+          "byte_count": 24,
+          "sha256": "8438e2a1d8274e1864f07245553c4fed55864d5807b7644858b912113e990a88",
+          "source_line": 133,
+          "source_column": 76
+        },
+        {
+          "va": "0x145e8e0e0",
+          "byte_count": 24,
+          "sha256": "d9c957e5f60c75730132202724a93bc1dd7f5feac491a42dbbb6e640e1389edc",
+          "source_line": 124,
+          "source_column": 76
+        },
+        {
+          "va": "0x14723b730",
+          "byte_count": 24,
+          "sha256": "445a2a6529b1b902cea74d0bca3b14c030049a4cfb5b597205d000b96aaa8b82",
+          "source_line": 103,
+          "source_column": 17
+        }
+      ]
+    },
+    {
+      "path": "crates/benilla-protocol/src/transport/native.rs",
+      "role": "rust-source-location",
+      "rust_location_records": [
+        {
+          "va": "0x145e8ce40",
+          "byte_count": 24,
+          "sha256": "ccb997b045091777ff0730a3b5c27b7268ceedf3d459263ae381aa3d97986c3e",
+          "source_line": 33,
+          "source_column": 69
+        },
+        {
+          "va": "0x145e8e098",
+          "byte_count": 24,
+          "sha256": "ff71108385405e98cd665c1932c577ff2a914903a36bd81d98adacbfb4ce101c",
+          "source_line": 93,
+          "source_column": 76
+        },
+        {
+          "va": "0x145e8e0f8",
+          "byte_count": 24,
+          "sha256": "30e58cd193de325301257e987d6f7df4a8a8d5161888119ffdc1062d7aabbe65",
+          "source_line": 87,
+          "source_column": 76
+        }
+      ]
+    },
+    {
+      "path": "crates/benilla-ui/src/script/plain.rs",
+      "role": "rust-source-location",
+      "rust_location_records": [
+        {
+          "va": "0x146b9cd98",
+          "byte_count": 24,
+          "sha256": "8cca7305c3634c2d32f1b23ba2ed08315a6f173045aa6094e284f4adbc58beec",
+          "source_line": 99,
+          "source_column": 29
+        }
+      ]
+    },
+    {
+      "path": "crates/benilla-world/src/rig_anim/compose_scratch.rs",
+      "role": "rust-source-location",
+      "rust_location_records": [
+        {
+          "va": "0x1460aa4d0",
+          "byte_count": 24,
+          "sha256": "7bdb40fd0824eb4c3512c1d6301e1c3276789bfc7d41bfd48dddb98b971eaa73",
+          "source_line": 25,
+          "source_column": 53
+        },
+        {
+          "va": "0x1460aa4e8",
+          "byte_count": 24,
+          "sha256": "e49fa877a544537378f76f07e2a95ff725c8e368330dfdfea4cac1a7510cf8de",
+          "source_line": 27,
+          "source_column": 34
+        },
+        {
+          "va": "0x1460aa500",
+          "byte_count": 24,
+          "sha256": "933189cdfc2db78366743330d045b552fa61247bdee67c90c45ef7589a74c302",
+          "source_line": 32,
+          "source_column": 39
+        },
+        {
+          "va": "0x1460aa518",
+          "byte_count": 24,
+          "sha256": "91c124a182325854c7a800f616e350c63ca33f8e3274295518eaf52ab528f07a",
+          "source_line": 34,
+          "source_column": 28
+        },
+        {
+          "va": "0x1460aa530",
+          "byte_count": 24,
+          "sha256": "89bbc962c062d92b6a8fb3bd349790e6dc138959837872f4da43f9653881612e",
+          "source_line": 39,
+          "source_column": 34
+        },
+        {
+          "va": "0x1460aa548",
+          "byte_count": 24,
+          "sha256": "72ed57814dad61b10654662c244b44b7bb3f14dc993b28b77a9a509c8fd4d8f0",
+          "source_line": 45,
+          "source_column": 69
+        },
+        {
+          "va": "0x1460aa560",
+          "byte_count": 24,
+          "sha256": "6a9590346b3eacb1c01739046f76c44d0a49a7464ca9bc3dc2fd3daaa00c30aa",
+          "source_line": 52,
+          "source_column": 24
+        },
+        {
+          "va": "0x1460aa578",
+          "byte_count": 24,
+          "sha256": "eaeeb11bece623c18420c1d3071a90383a923902b3008e1f5fc061ed5dd74a17",
+          "source_line": 53,
+          "source_column": 31
+        }
+      ]
+    }
+  ],
+  "source_role_audit": {
+    "path": "runtime/fixgap-41-42/source-route-extension/source-role-extension-proof.json",
+    "sha256": "791643af0f318e45bbc5d96e4dfcb4a1745a97bea004aba458a19f88673e00d2"
+  }
+}

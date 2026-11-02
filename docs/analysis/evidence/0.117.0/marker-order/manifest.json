@@ -1,0 +1,335 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.117.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293",
+    "size_bytes": 145283072
+  },
+  "gap_ids": [
+    111,
+    96,
+    41
+  ],
+  "system_ids": [
+    "custom-app-screens-markers"
+  ],
+  "owners": [
+    {
+      "role": "paint",
+      "start": "0x1401371a0",
+      "end_exclusive": "0x140137666",
+      "sha256": "a633beaaebdfb63f8bf1adddbb7eca68ce42e590706eb2549eb76f2be77584a7",
+      "file_offset": "0x1365a0"
+    },
+    {
+      "role": "draw",
+      "start": "0x14014a830",
+      "end_exclusive": "0x14014ba18",
+      "sha256": "55316fc1b145ea0da7c8e7750f66f67e0ff39a91a3d411390a113c23496ec440",
+      "file_offset": "0x149c30"
+    },
+    {
+      "role": "ground_fx",
+      "start": "0x14179dbd0",
+      "end_exclusive": "0x14179f9f1",
+      "sha256": "b29abc47dc3cf994608b81b52c4fa8c9fc7d21ec059f51c632157e227c2180a8",
+      "file_offset": "0x179cfd0"
+    }
+  ],
+  "ranges": [
+    {
+      "name": "paint-dispatch",
+      "start": "0x1401371f4",
+      "end_exclusive": "0x14013721c",
+      "file_offset": "0x1365f4",
+      "sha256": "483c88702436cf109fd0376fcb192c077e27ec6c8444800d9da5110b65f929c3",
+      "extract": "paint-dispatch.asm",
+      "extract_sha256": "7c2d309794aca2a554c43e3c7059512604fee0fa569fe5dfba28c88adb122303"
+    },
+    {
+      "name": "paint-draw-state",
+      "start": "0x140137436",
+      "end_exclusive": "0x140137548",
+      "file_offset": "0x136836",
+      "sha256": "393300e3aa8012205e7dfd8c4d188617a2e7401e6723ff144072c0683b636b22",
+      "extract": "paint-draw-state.asm",
+      "extract_sha256": "097259cd707142da8223ffcc1858d0fcfeb66c90f56e615f85e7d3c35e8a50f2"
+    },
+    {
+      "name": "paint-submit",
+      "start": "0x1401375c5",
+      "end_exclusive": "0x1401375f5",
+      "file_offset": "0x1369c5",
+      "sha256": "77fd85cbc783a4787d7f6fed989a8df1fcb337caefd2639056f299d04b47bf74",
+      "extract": "paint-submit.asm",
+      "extract_sha256": "e28164fc81a56ceacdb573843ac5bc97836e9aeb9608afbc0044f6ab407436a7"
+    },
+    {
+      "name": "draw-layer-order",
+      "start": "0x14014af2f",
+      "end_exclusive": "0x14014afe0",
+      "file_offset": "0x14a32f",
+      "sha256": "a29c82e1ff316efe72251b3d492eee6c1daa398daf890bee13d6de281f0ce105",
+      "extract": "draw-layer-order.asm",
+      "extract_sha256": "485482a4ca52270fa6fc1dd17f428d63bca005fe3d151fab0c3bd1862d0fbb93"
+    },
+    {
+      "name": "tower-draw-state",
+      "start": "0x14014b857",
+      "end_exclusive": "0x14014b92d",
+      "file_offset": "0x14ac57",
+      "sha256": "435823334ba9c6a4ab3b3a6e0cc09111e4226817f30abc79102b27c587d8f06b",
+      "extract": "tower-draw-state.asm",
+      "extract_sha256": "43fe9173102a2098461190c36bde4cff188a206755eb3b963cd28308481cdcd8"
+    },
+    {
+      "name": "shared-submit",
+      "start": "0x141807840",
+      "end_exclusive": "0x141807889",
+      "file_offset": "0x1806c40",
+      "sha256": "e40c2c278be4e7c1f9af84073d564fddc08a088930668471a627f163fce9dd0b",
+      "extract": "shared-submit.asm",
+      "extract_sha256": "7a2d509dd81141bbe19144c67ca2b05cc32b694ed2a31d6d33746d67c6d61c6e"
+    },
+    {
+      "name": "shared-commit",
+      "start": "0x141807670",
+      "end_exclusive": "0x1418077cf",
+      "file_offset": "0x1806a70",
+      "sha256": "6434dadd9bf51e607e7075bbb4b7fa43f33f063d7f4ade7d7553005f2cf2f109",
+      "extract": "shared-commit.asm",
+      "extract_sha256": "7c44ada4522320a5fdeab570c4648d2405396ae70b9ef6958dfec2b94903b1d1"
+    },
+    {
+      "name": "ground-fx-draw-state",
+      "start": "0x14179f87e",
+      "end_exclusive": "0x14179f8d1",
+      "file_offset": "0x179ec7e",
+      "sha256": "a2f1a820513a76367bd1a28a9e6175579fbd56d98e90276e25ea117d22a2e8f9",
+      "extract": "ground-fx-draw-state.asm",
+      "extract_sha256": "dc0e6a42446982da7537fdfe2b49724146395349e412d146086b70908a560097"
+    }
+  ],
+  "style_dispatch": {
+    "address": "0x146180df4",
+    "hex": "2864fbf93b65fbf9a664fbf9ee64fbf95464fbf99165fbf9",
+    "sha256": "4d1b83a8dcd639f2a842686cbe0d8b042fdc82c005d395761056b43d43bb100b",
+    "targets": [
+      "0x14013721c",
+      "0x14013732f",
+      "0x14013729a",
+      "0x1401372e2",
+      "0x140137248",
+      "0x140137385"
+    ]
+  },
+  "queries": [
+    {
+      "operation": "procedure_pseudo_code",
+      "procedure": "0x14014a830",
+      "evidence_id": "ev_829695479e3e9a1c22960d8560e1661b5f955e53947014342737848f23f36b0e",
+      "subject_sha256": "55316fc1b145ea0da7c8e7750f66f67e0ff39a91a3d411390a113c23496ec440",
+      "analysis_profile_digest": "7672e87e3e0ac24ca1877926d2dfb49a9c0a5d2454275e0d76b4bfc703078952",
+      "result": {
+        "path": "runtime/0.117.0/marker-order/draw-query/results/ce63bcdfd73bebe8d72ae1cd5dce22b69b39e2dbe85bd76be6ce8ecf989ab586.json",
+        "sha256": "b4016fc18398dfa84dd3df6b26277742b11c294e49824b823c30b7aff71b11b1"
+      },
+      "plan": {
+        "path": "runtime/0.117.0/marker-order/draw-query/plan.json",
+        "sha256": "764b17399e784a680c352d4653abe3ffeb033c5d76c2881a7c8c0790e4b08fff"
+      }
+    },
+    {
+      "operation": "procedure_pseudo_code",
+      "procedure": "0x1401371a0",
+      "evidence_id": "ev_dc8a9005162fabcb19bb1c8fb5e15166be829b93e9120c4382178a9823b4572e",
+      "subject_sha256": "a633beaaebdfb63f8bf1adddbb7eca68ce42e590706eb2549eb76f2be77584a7",
+      "analysis_profile_digest": "8742d57b73f873d3ce5df8ec7e8787bbd2889e1c46f5e245123410049034c119",
+      "result": {
+        "path": "runtime/0.117.0/marker-order/paint-query/results/fd0faff85103a8e628eea396b065e4019078f51b45074b6347c85ce1b87a4c67.json",
+        "sha256": "d030ac75877add12c471b0f30c68136b3e2b9c767b0b14b7ea2b7cb1bb04832a"
+      },
+      "plan": {
+        "path": "runtime/0.117.0/marker-order/paint-query/plan.json",
+        "sha256": "2f37b53fefb1b0955a8349075ca309149a91c74c5f4e565c8d4749deb0a895ce"
+      }
+    },
+    {
+      "operation": "procedure_pseudo_code",
+      "procedure": "0x141807840",
+      "evidence_id": "ev_1f4b31b38fc8a5048cba8e95a3792000adae37914eef4d779ceadde9ad996967",
+      "subject_sha256": "34a3b1b6942bd2f211942d51bcc8ed7e392ae66e21c9c4ded0bc3a9da340b256",
+      "analysis_profile_digest": "75e7132fdd15ea526397f2cc2009ffc9b86f1d7185cb2f1250935f3c298eee9e",
+      "result": {
+        "path": "runtime/0.117.0/marker-order-shared/stream-wrappers-query/results/0efd0e31a817f5555b116af8b2a7ece8ce75bb93c23dbe5e601117fc0e73f69d.json",
+        "sha256": "692579809de5778e3ebf048018588d4f6dbb53051aba82d939580d0f9a9a884e"
+      },
+      "plan": {
+        "path": "runtime/0.117.0/marker-order-shared/stream-wrappers-query/plan.json",
+        "sha256": "b978ff935a095760d122f2bb8befb181f5096f61f4d187ce07071acd39fa95b1"
+      }
+    },
+    {
+      "operation": "read_function_instructions",
+      "procedure": "0x141807840",
+      "evidence_id": "ev_6b0eef742bf72fd132477bd2ad680849c4ef2a340392b0a38b4acf31c92b6a88",
+      "subject_sha256": "34a3b1b6942bd2f211942d51bcc8ed7e392ae66e21c9c4ded0bc3a9da340b256",
+      "analysis_profile_digest": "75e7132fdd15ea526397f2cc2009ffc9b86f1d7185cb2f1250935f3c298eee9e",
+      "result": {
+        "path": "runtime/0.117.0/marker-order-shared/stream-wrappers-query/results/6ab3461cac4bf35911a6380f017ea1e73e6fafacdb9249437b3b4a63722a9225.json",
+        "sha256": "e38d9af96e53c842b4aa885a28b7933f3099561787b9b16d1e068183e4ff4171"
+      },
+      "plan": {
+        "path": "runtime/0.117.0/marker-order-shared/stream-wrappers-query/plan.json",
+        "sha256": "b978ff935a095760d122f2bb8befb181f5096f61f4d187ce07071acd39fa95b1"
+      }
+    },
+    {
+      "operation": "procedure_pseudo_code",
+      "procedure": "0x141807670",
+      "evidence_id": "ev_a3a352bf126c87e4d1545b7de925fb04c2fcaa200282b4e05317b3a3010453c0",
+      "subject_sha256": "6434dadd9bf51e607e7075bbb4b7fa43f33f063d7f4ade7d7553005f2cf2f109",
+      "analysis_profile_digest": "930da7794af9151a48dbad6623c44e1f1f839c065c3afe990740787f02f90c21",
+      "result": {
+        "path": "runtime/0.117.0/marker-order-shared/submit-core-query/results/bc749bb7cd66216fd4598c51f33d7cf7ed5f7b3b2d8e4f5f66cccd99a1bad707.json",
+        "sha256": "6086fcaa91e4c43155dead75c638f531d93eb019ecccb45f427c73cd20675bd3"
+      },
+      "plan": {
+        "path": "runtime/0.117.0/marker-order-shared/submit-core-query/plan.json",
+        "sha256": "63df2666e94fe9b10c7b84eb83963dd3fdbe97ae7bcd869a5385f4d1faffa5de"
+      }
+    },
+    {
+      "operation": "read_function_instructions",
+      "procedure": "0x141807670",
+      "evidence_id": "ev_1848c5e8ffca46ed04287c186b305f952ff86f133d461a743a7a8ceafa520fd3",
+      "subject_sha256": "6434dadd9bf51e607e7075bbb4b7fa43f33f063d7f4ade7d7553005f2cf2f109",
+      "analysis_profile_digest": "930da7794af9151a48dbad6623c44e1f1f839c065c3afe990740787f02f90c21",
+      "result": {
+        "path": "runtime/0.117.0/marker-order-shared/submit-core-query/results/d45d03f95493414bdf93aef47a4cc89668cd02e2e30c3da681859d53ce4cf385.json",
+        "sha256": "94cbcb6aafdb6c2a754c1bc5202844a5aa0627cd42b36f2ddaf3255bbf5f96b1"
+      },
+      "plan": {
+        "path": "runtime/0.117.0/marker-order-shared/submit-core-query/plan.json",
+        "sha256": "63df2666e94fe9b10c7b84eb83963dd3fdbe97ae7bcd869a5385f4d1faffa5de"
+      }
+    },
+    {
+      "operation": "procedure_pseudo_code",
+      "procedure": "0x14179dbd0",
+      "evidence_id": "ev_12a4fbb13bc0c0d6745e1af8832ef848b72b2e8d080858f613d3cc8fe3a82672",
+      "subject_sha256": "b29abc47dc3cf994608b81b52c4fa8c9fc7d21ec059f51c632157e227c2180a8",
+      "analysis_profile_digest": "f99b6b0d678fd6e34edd0ef05e099dc353bd4d79b22fe7ed0dab937aa5f990e9",
+      "result": {
+        "path": "runtime/0.117.0/marker-order-shared/ground-fx-update-query/results/1fcfdc611d4178272e69823be483413ea9fab64b289f68c53a4e65306b84baff.json",
+        "sha256": "adf524594b7abcb001095c1f301f793e476abf40ed2195e413278d9d617f8132"
+      },
+      "plan": {
+        "path": "runtime/0.117.0/marker-order-shared/ground-fx-update-query/plan.json",
+        "sha256": "151a70395c3dbbe1a28e9e80a2d34e988f36b51a3f6a626d8c5f5a99d4d543ab"
+      }
+    },
+    {
+      "operation": "read_function_instructions",
+      "procedure": "0x14179dbd0",
+      "evidence_id": "ev_f3a76b418316e3634cf997fe9d466edd852b147395181c83c167c735acf6cfbb",
+      "subject_sha256": "b29abc47dc3cf994608b81b52c4fa8c9fc7d21ec059f51c632157e227c2180a8",
+      "analysis_profile_digest": "f99b6b0d678fd6e34edd0ef05e099dc353bd4d79b22fe7ed0dab937aa5f990e9",
+      "result": {
+        "path": "runtime/0.117.0/marker-order-shared/ground-fx-update-query/results/9137e99256caccf45886bbe3e4176577961f01460f0a78e71579fff71fbd6dd3.json",
+        "sha256": "0657380daaf78fc34824d9ace880a3d8d8c4226983d20f3d701e9689b49da0ce"
+      },
+      "plan": {
+        "path": "runtime/0.117.0/marker-order-shared/ground-fx-update-query/plan.json",
+        "sha256": "151a70395c3dbbe1a28e9e80a2d34e988f36b51a3f6a626d8c5f5a99d4d543ab"
+      }
+    }
+  ],
+  "contract": {
+    "ground_sort_bias": 11692.0,
+    "ground_raster_bias": 32768,
+    "spell_ground_sort_bias": 8192.0,
+    "spell_ground_raster_bias": 32768,
+    "tower_sort_bias": 8192.0,
+    "tower_raster_bias": 0,
+    "slope": 0.0,
+    "following_flag_bytes": "000000",
+    "shared_commit": "0x141807670",
+    "spec_offsets": {
+      "sort_f32": "0x78",
+      "raster_i32": "0x7c",
+      "slope_f32": "0x80"
+    }
+  },
+  "checks": {
+    "tools": {
+      "capstone": "5.0.7",
+      "unicorn": "2.1.4"
+    },
+    "paint_profiles": 720,
+    "captured_submissions": 192,
+    "skipped_profiles": 600,
+    "empty_geometry_profiles": 360,
+    "per_style": {
+      "0": {
+        "profiles": 120,
+        "submissions": 24
+      },
+      "1": {
+        "profiles": 120,
+        "submissions": 48
+      },
+      "2": {
+        "profiles": 120,
+        "submissions": 24
+      },
+      "3": {
+        "profiles": 120,
+        "submissions": 48
+      },
+      "4": {
+        "profiles": 120,
+        "submissions": 24
+      },
+      "5": {
+        "profiles": 120,
+        "submissions": 24
+      }
+    },
+    "tower_constructor_profiles": 9,
+    "captured_ground_order": 11692.0,
+    "captured_ground_raster_bias": 32768,
+    "captured_tower_order": 8192.0,
+    "captured_tower_raster_bias": 0,
+    "equal_anchor_order_delta": 3500.0,
+    "captured_ground_and_tower_slope": 0.0,
+    "captured_ground_and_tower_zero_flags": [
+      0,
+      0,
+      0
+    ],
+    "native_ground_fx_order": 8192.0,
+    "native_ground_fx_raster_bias": 32768
+  },
+  "reviewed_source_sha256": {
+    "crates/azeroth-survivors-re/src/gameplay/raid_markers.rs": "ac6ac63aaa6f4243491f4f748727bfa996e31628d7668268ebc6a5ca10b845a2",
+    "crates/benilla-world/src/particles/buffer.rs": "26b7e59445bc7ed8da3c803bee89fc223d5b13908084e0925ff04058883d2d66",
+    "crates/benilla-world/src/particles/render.rs": "a7fe1acf2478ec9191f99a1130439c323fba6ab86908b1eeffddaf4f7dc6e1ec",
+    "crates/benilla-world/src/sky_order.rs": "2a18cc059e4bfca8364ecedf19d3706593b42199d2ed94e299f9afd7835db8de",
+    "crates/benilla-world/src/ground_fx.rs": "3d7969f6bbbf768a74c27ee0469d903195d5682430d2085e3e700fb53f3091be"
+  },
+  "limits": [
+    "Only exact paint instructions and a bounded separate tower constructor slice execute in Unicorn.",
+    "Preallocated synthetic memo, marker, vertex and effect-stream memory; allocation paths are forbidden.",
+    "The sole external paint callee is captured at shared submission 0x141807840, without executing it.",
+    "No Python transcription of native color/paint arithmetic; the checker asserts admission and invariant draw fields.",
+    "Source field/consumer guards and equal-anchor ordering do not execute reconstructed Rust or certify all camera/terrain/blending behavior.",
+    "No compilation, game/server/GPU operation, original-game launch or original/rebuilt parity comparison.",
+    "Ghidra raw group entry cannot resolve the external style jump table; complete style/submission instructions are established by installed-image replay.",
+    "Current native producers/field transfer and retained source sorting law are distinct evidence; full native renderer and rendered parity are unverified."
+  ],
+  "compilation": "not_run",
+  "runtime_validation": "not_run",
+  "parity": "unverified"
+}

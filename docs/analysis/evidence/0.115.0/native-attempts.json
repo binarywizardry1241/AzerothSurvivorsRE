@@ -1,0 +1,200 @@
+{
+  "target": {
+    "version": "0.115.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+    "size_bytes": 142111232
+  },
+  "attempts": [
+    {
+      "profile": "default-Ghidra-string-search",
+      "status": "failed",
+      "whole_image_input": true,
+      "startup_timeout_seconds": 330,
+      "operation": "search_strings",
+      "analysis_profile_digest": "59e0d37bce87c1b8ccb70c6062be2383648a35642f5a6c85b1db0939164d5e55",
+      "failure": "Default whole-PE auto-analysis startup deadline elapsed; no search result or native semantic recovery.",
+      "next_action": "Use bounded structural identity descriptors for discovery; diagnose/alter provider profile before retrying a deep string query."
+    },
+    {
+      "profile": "full-image-no-address-tables",
+      "status": "failed",
+      "whole_image_input": true,
+      "startup_timeout_seconds": 180,
+      "queue": {
+        "procedures": 0,
+        "completed": 0,
+        "pending": 0,
+        "failed": 0,
+        "in_progress": 0
+      },
+      "observations": {
+        "procedures_with_decoded_instructions": 0,
+        "procedures_queried_without_decoded_instructions": 0,
+        "procedures_with_unknown_instruction_counts": 0,
+        "instruction_records": 0,
+        "outgoing_reference_edges": 0,
+        "incoming_reference_edges": 0,
+        "unresolved_call_sites": 0,
+        "decoded_instruction_byte_coverage": null,
+        "procedures_with_one_byte_bodies": 0,
+        "procedures_with_unknown_body_extents": 0,
+        "global_reader_writer_classification_complete": false
+      },
+      "analysis_environment": {
+        "REA_GHIDRA_STARTUP_TIMEOUT_MS": "180000",
+        "REA_GHIDRA_DISABLED_ANALYZERS": "Stack,Decompiler Switch Analysis,Function ID,Function Start Search,Disassemble Entry Points,Subroutine References,Data Reference,Reference,Non-Returning Functions - Discovered,Shared Return Calls,Create Address Tables",
+        "GHIDRA_HEADLESS_MAXMEM": "2G"
+      },
+      "analysis_profile": null,
+      "failure": "Ghidra startup deadline elapsed before a complete procedure/body/reference inventory was available.",
+      "progress": {
+        "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/full-image-no-address-tables/progress.json",
+        "sha256": "e71d917690bd01f2919756a1e78f8052bf75fc9841a569848f62efc8287137d1"
+      },
+      "next_action": "Inspect startup/analyzer stage and use a changed, explicitly bounded profile before retry; do not repeat this unchanged timeout."
+    },
+    {
+      "profile": "full-image-diagnostic-owner-repaired",
+      "status": "failed",
+      "whole_image_input": true,
+      "startup_timeout_seconds": 180,
+      "queue": {
+        "procedures": 60,
+        "completed": 0,
+        "pending": 59,
+        "failed": 1,
+        "in_progress": 0
+      },
+      "observations": {
+        "procedures_with_decoded_instructions": 0,
+        "procedures_queried_without_decoded_instructions": 0,
+        "procedures_with_unknown_instruction_counts": 0,
+        "instruction_records": 0,
+        "outgoing_reference_edges": 0,
+        "incoming_reference_edges": 0,
+        "unresolved_call_sites": 0,
+        "decoded_instruction_byte_coverage": null,
+        "procedures_with_one_byte_bodies": 0,
+        "procedures_with_unknown_body_extents": 0,
+        "global_reader_writer_classification_complete": false
+      },
+      "analysis_environment": {
+        "REA_GHIDRA_STARTUP_TIMEOUT_MS": "180000",
+        "REA_GHIDRA_DISABLED_ANALYZERS": "Stack,Decompiler Switch Analysis,Function ID,Function Start Search,Disassemble Entry Points,Subroutine References,Data Reference,Reference,Non-Returning Functions - Discovered,Shared Return Calls,Create Address Tables,Call Convention ID",
+        "GHIDRA_HEADLESS_MAXMEM": "2G",
+        "REA_GHIDRA_SEED_FILE": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/full-image-diagnostic-owner-repaired/seeds.tsv"
+      },
+      "analysis_profile": null,
+      "failure": "Ghidra startup deadline elapsed before a complete procedure/body/reference inventory was available.",
+      "progress": {
+        "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/full-image-diagnostic-owner-repaired/progress.json",
+        "sha256": "c8224723bef8c6f33b362a2fcd9ee1642d6b19829b1dcd72c23ff77fd621fc2a"
+      },
+      "next_action": "Inspect startup/analyzer stage and use a changed, explicitly bounded profile before retry; do not repeat this unchanged timeout."
+    },
+    {
+      "profile": "full-image-streaming-declared",
+      "status": "failed",
+      "whole_image_input": true,
+      "startup_timeout_seconds": 600,
+      "requested_entry_seeds": 350712,
+      "seed_scope": "declared",
+      "parameters": {
+        "format": "rea-whole-image-native-census-v1",
+        "address_code_leads_sha256": null,
+        "guarded_jump_tables_sha256": null,
+        "diagnostic_code_leads_sha256": null,
+        "target_sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+        "script_sha256": "7ebbeeb8165f01226b7f51acd40278c153790ecbc1590338c142fca9ef4cfeba",
+        "starts_sha256": "a6ed5c4d853586a58298007f33b8a23b0a780bf0a86915950c2b5662edaf8c91",
+        "auto_analysis": false,
+        "installed_reference_import": "read-only-in-place",
+        "heap": "6G",
+        "ghidra_version": "12.1.4"
+      },
+      "analysis_profile_digest": "99893e6fc5ecc13d092c8bd5689f3d01baa34727bf270a95cf8f47691dc37faa",
+      "failure": "The 600-second REA startup deadline killed productive postscript analysis after 274432 of 350712 declared seeds. The disposable read-only project was deleted, so external progress counters could not resume the Program.",
+      "plan": {
+        "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/full-image-streaming/plan.json",
+        "sha256": "3270a9e7d037186f8e63df221a9bd0b7f2755ddb3699313a38fab19a1c4f94e1"
+      },
+      "starts": {
+        "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/full-image-streaming/starts.tsv",
+        "sha256": "a6ed5c4d853586a58298007f33b8a23b0a780bf0a86915950c2b5662edaf8c91"
+      },
+      "result": {
+        "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/full-image-streaming/session-result.json",
+        "sha256": "e8c6fcc3c6f5055a8d9cf5efa1b9846f05c983c2fadb44ef67a2efab5141fdde"
+      },
+      "next_action": "Superseded by the persistent Program/checkpoint runner; retain this failed profile as historical evidence and use the saved durable plan for retries.",
+      "last_observed_decode_cursor": 274432,
+      "last_observed_progress": {
+        "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/full-image-streaming/progress.json",
+        "sha256": "dce88fcbfbfd6a559083f2d060c436bb05060bd0358dd2656a5cab6b326a4427"
+      }
+    },
+    {
+      "profile": "full-image-durable-declared",
+      "status": "completed_independently_verified",
+      "whole_image_input": true,
+      "seed_scope": "declared",
+      "requested_entry_seeds": 350712,
+      "all_seeded_body_operations_complete": true,
+      "parameters": {
+        "format": "rea-whole-image-native-census-v1",
+        "persistence_format": "ghidra-program-checkpoint-v1",
+        "address_code_leads_sha256": null,
+        "guarded_jump_tables_sha256": null,
+        "diagnostic_code_leads_sha256": null,
+        "target_sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+        "script_sha256": "d91f77b533a723c6c8ab128b4d55c9aa0d94abc6f3f6e6ae8e54c46f1a045b09",
+        "starts_sha256": "a6ed5c4d853586a58298007f33b8a23b0a780bf0a86915950c2b5662edaf8c91",
+        "auto_analysis": false,
+        "installed_reference_import": "read-only-in-place",
+        "heap": "6G",
+        "ghidra_version": "12.1.4",
+        "loader_options": [
+          "-loader-loadLibraries",
+          "false",
+          "-loader-libraryLoadDepth",
+          "0",
+          "-loader-ordinalLookup",
+          "false",
+          "-loader-linkExistingProjectLibraries",
+          "false"
+        ],
+        "execution": "persistent-headless-process",
+        "checkpoint_authority": "saved-Program-options"
+      },
+      "analysis_profile_digest": "dcdb60b2ecbb77992bbea14c45047fb842d666b78022d8c89c02409897b8f8ad",
+      "census_summary": {
+        "path": "docs/analysis/coverage/full-image-census.json",
+        "sha256": "8918323779f56759fada5da333abf290c4323393bab739a8e202b0e9737c95fd"
+      },
+      "counts": {
+        "instructions": 21869183,
+        "instruction_bytes": 87271206,
+        "computed_calls": 67824,
+        "computed_jumps": 134835,
+        "native_functions": 353069,
+        "body_ranges": 409650,
+        "references": 3766641,
+        "external_locations": 425,
+        "seeds_without_instructions": 0,
+        "seeds_without_functions": 0,
+        "seeded_functions_repaired": 350712
+      },
+      "independent_source_bytes_and_boundaries_verified": true,
+      "persistent_resume_proof": "docs/analysis/evidence/0.115.0/census-resume.json",
+      "remaining": "Exact unobserved-byte ranges and per-path diagnostic-owner counts retained; explicit ownerless/computed-destination classification, dynamic alias/type/ID, source closure and parity remain #41."
+    }
+  ],
+  "bounded_supporting_evidence": "docs/analysis/evidence/0.115.0/banners-owner.json",
+  "global_native_semantics_complete": false,
+  "parity_verified": false,
+  "gap_ids": [
+    41
+  ],
+  "durable_resume_evidence": "docs/analysis/evidence/0.115.0/census-resume.json"
+}

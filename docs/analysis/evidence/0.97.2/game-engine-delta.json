@@ -1,0 +1,1200 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-18",
+  "purpose": "Independent static audit of current-target custom changes in inherited engine crates, beyond the49 rogue source-path leads.",
+  "target": {
+    "path": "AzerothSurvivors/AzerothSurvivors-0.97.2.exe",
+    "version": "0.97.2",
+    "size_bytes": 133231104,
+    "sha256": "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589",
+    "image_base": "0x140000000",
+    "executed": false
+  },
+  "baseline": {
+    "repository": "https://github.com/samwhosung/benilla",
+    "revision": "7b608671a65274e0fe330da4a63f12da58162b61",
+    "vendor_manifest": "docs/analysis/benilla-vendor.json",
+    "exact_original_fork_revision_proven": false,
+    "comparison_unit": "Pinned vendor filenames and selected behavior/text seams; no whole-fork binary diff is claimed."
+  },
+  "scan": {
+    "method": "Read and SHA-256-check all original bytes; regex ASCII crates[\\/]crate[\\/]src[\\/]path.rs; normalize separators; compare exact upstream_path values.",
+    "unique_embedded_source_paths": 669,
+    "paths_present_in_pinned_vendor": 610,
+    "paths_absent_from_pinned_vendor": 59,
+    "rogue_crate_path_leads": 49,
+    "absent_engine_candidate_paths": 9,
+    "absent_dependency_paths_excluded": 1,
+    "limits": [
+      "Diagnostic filenames and type names omit files/functions lacking surviving diagnostics or emitted type names.",
+      "Filename overlap does not establish unchanged behavior. Filename absence does not establish Azeroth-specific ownership.",
+      "All original byte hashes/ranges here are fresh static checks of0.97.2, while historical evidence remains version-bound."
+    ]
+  },
+  "custom_additions_and_changes": [
+    {
+      "id": "engine.menu_scene",
+      "classification": "confirmed_custom_addition_current_target",
+      "original_symbol": "benilla_app::menu_scene::MenuScenePlugin",
+      "original_source_path": null,
+      "symbol_evidence": [
+        {
+          "file_offset": "0x58f5147",
+          "end_file_offset_exclusive": "0x58f516f",
+          "byte_count": 40,
+          "sha256": "fc0cb2d4b2e9d9a9bc1c4a62180cc6d77873f465642e55614342196ce25c1a9c",
+          "rva": "0x58f6147",
+          "va": "0x1458f6147",
+          "section": ".rdata",
+          "context": {
+            "file_offset": "0x58f5107",
+            "end_file_offset_exclusive": "0x58f51cf",
+            "byte_count": 200,
+            "sha256": "5b084ce6858bcc522b89d6238241fd8dc63f86aab40d49844fb5ad66247babab",
+            "rva": "0x58f6107",
+            "va": "0x1458f6107",
+            "section": ".rdata",
+            "printable": "rceMissingLabel.. ..E....O.......k...$...bevy_gilrs::GilrsPluginbenilla_app::menu_scene::MenuScenePluginbenilla_app::hero_preview::HeroPreviewPluginbenilla_app::host_controls::TouchDrivePlugin........"
+          }
+        }
+      ],
+      "baseline_comparison": {
+        "present_in_pinned_vendor": false,
+        "scope": "Module name and plugin absent from tracked snapshot; current native plugin/calls establish custom menu-scene behavior."
+      },
+      "behavior_obligations": [
+        "Shared request/mask/active/ready API",
+        "Map/zone stabilization and map activation",
+        "Residency readiness latch",
+        "Menu camera terrain clearance and transform",
+        "Typed system/resource registration and application-state gate"
+      ],
+      "native_functions": [
+        {
+          "address": "0x1406cc240",
+          "end_exclusive": "0x1406cc312",
+          "file_offset": "0x6cb640",
+          "sha256": "aa586dc223b4dcd7d4db93c2393e0bd29645fef9fb5a7cb2d400e8d07db2afa2",
+          "byte_count": 210,
+          "role": "Shared scene mask setter"
+        },
+        {
+          "address": "0x1406cc320",
+          "end_exclusive": "0x1406cc3f0",
+          "file_offset": "0x6cb720",
+          "sha256": "192fd7a5235280d78c79bb80607af0e58ef0a6b7e4c8e6dbd5dcd1f5c23d235e",
+          "byte_count": 208,
+          "role": "Shared scene active getter"
+        },
+        {
+          "address": "0x1406cc3f0",
+          "end_exclusive": "0x1406cc51d",
+          "file_offset": "0x6cb7f0",
+          "sha256": "e94b11187126775e86d1b9bcb187ba5069fb7129dfa74042e5f59ae24b00590f",
+          "byte_count": 301,
+          "role": "Shared 40-byte scene request setter"
+        },
+        {
+          "address": "0x1406cc520",
+          "end_exclusive": "0x1406cc5fe",
+          "file_offset": "0x6cb920",
+          "sha256": "13e22d16966c4a34efaafda4b01467e5de43b1530e6e7aff0322c0068975c393",
+          "byte_count": 222,
+          "role": "Shared scene renderable getter: active and not masked"
+        },
+        {
+          "address": "0x1406cc600",
+          "end_exclusive": "0x1406cc6db",
+          "file_offset": "0x6cba00",
+          "sha256": "d33765994e02a1cef4c532e908c3c2c1d436d85b8a8f775ba3b5c4570dba0e12",
+          "byte_count": 219,
+          "role": "Shared scene ready getter: active and ready"
+        },
+        {
+          "address": "0x1406cc6e0",
+          "end_exclusive": "0x1406cc7ab",
+          "file_offset": "0x6cbae0",
+          "sha256": "9ecec60a9ed35507a68a2653f30af4850f629eb19ecc93270d110cea16ba1dd3",
+          "byte_count": 203,
+          "role": "Shared scene request-present getter"
+        },
+        {
+          "address": "0x1406d3050",
+          "end_exclusive": "0x1406d32ce",
+          "file_offset": "0x6d2450",
+          "sha256": "ac8547a00592e1ea540b3ab4abcf5b53b745c38b40e1520c767e88f30e6b4990",
+          "byte_count": 638,
+          "role": "MenuScenePlugin build and two system registration descriptors",
+          "rea_evidence_id": "ev_e6df01aa1987de5f2ca7c201f459655e44e9ef7625317e8c1d41c4a1dda08901"
+        },
+        {
+          "address": "0x14070eb40",
+          "end_exclusive": "0x14070f544",
+          "file_offset": "0x70df40",
+          "sha256": "c9e86f10cda1488fbfe65a2894c825194faf7f6a7c61a59124cb788da5a4d2dd",
+          "byte_count": 2564,
+          "role": "Scene camera and terrain lift",
+          "rea_evidence_id": "ev_d7bfb95d127175184c5ac2399e1590384ee538bb4e5034e045844510aa3f1a5a"
+        },
+        {
+          "address": "0x14070f550",
+          "end_exclusive": "0x14070f75c",
+          "file_offset": "0x70e950",
+          "sha256": "a00142c3e640c449bc3cdb9c00b73d93a6a3fa957e11ef3d67fbaba984415ed9",
+          "byte_count": 524,
+          "role": "Scene stabilization, map selection, ready latch",
+          "rea_evidence_id": "ev_9976a844d3ed5d73000960cd1ce710dc92b69c76f18d25088a12a04a11a7f0c6"
+        },
+        {
+          "address": "0x1407470b0",
+          "end_exclusive": "0x1407472a8",
+          "file_offset": "0x7464b0",
+          "sha256": "d910a17277427af2c972d5981e9e3422856bb748fb14b71d9d1558cc4f93bab5",
+          "byte_count": 504,
+          "role": "Scene stabilizer resource registration"
+        },
+        {
+          "address": "0x140747390",
+          "end_exclusive": "0x1407475e3",
+          "file_offset": "0x746790",
+          "sha256": "6511e37c7ab20df83c22aade20ea5fe8399b0e725bebd2616c2c3b5281e2edb3",
+          "byte_count": 595,
+          "role": "Scene stabilizer runtime resource tuple"
+        }
+      ],
+      "reconstruction": {
+        "status": "current_target_source_partial",
+        "source_files": [
+          "crates/azeroth-survivors-re/src/menu_scene.rs",
+          "crates/azeroth-survivors-re/src/menu_scene/residency.rs",
+          "crates/azeroth-survivors-re/src/background.rs"
+        ],
+        "limits": [
+          "Standalone menu fixes the menu state rather than recreating the full original application-state route.",
+          "ECS scheduling, renderer and full behavior parity remain unverified."
+        ]
+      },
+      "current_evidence": [
+        "docs/analysis/evidence/0.97.2/menu-scene-0.97.2.json",
+        "docs/analysis/menu-scene-0.97.2.md"
+      ],
+      "compilation": "not_run_current_source_only_mode",
+      "parity": "unverified"
+    },
+    {
+      "id": "engine.char_select.world_live",
+      "classification": "confirmed_custom_modification_current_target",
+      "original_symbol": "WorldLive publisher: ordinary world OR active menu scene",
+      "original_source_path": "crates/benilla-app/src/char_select/mod.rs",
+      "baseline_comparison": {
+        "present_in_pinned_vendor": true,
+        "source_anchor": "publish_world_live",
+        "baseline_logic": "WorldLive is true only for ClientState::InWorld.",
+        "current_native_delta": "Also true while the stabilized custom menu scene is active."
+      },
+      "native_functions": [
+        {
+          "address": "0x140963de0",
+          "end_exclusive": "0x140963fa1",
+          "file_offset": "0x9631e0",
+          "sha256": "cee8400a4c4a64a07412f63f5c87b964a511705340006c82cb015d9413158cf5",
+          "byte_count": 449,
+          "role": "WorldLive adapter: ordinary world or menu scene active",
+          "rea_evidence_id": "ev_7e223bb6e8582a6292ce2ca154dbd3b1110f9ddadbeea1254c9cd22f9822d54d"
+        },
+        {
+          "address": "0x140963bd0",
+          "end_exclusive": "0x140963d6a",
+          "file_offset": "0x962fd0",
+          "sha256": "a28d8dbb2fe474423ae5ca30f0d2d4a7ddfc6619fbbfa5a80adec61459d34395",
+          "byte_count": 410,
+          "role": "WorldLive adapter resource registration shares application state TypeID"
+        }
+      ],
+      "reconstruction": {
+        "status": "current_target_source_partial",
+        "source_files": [
+          "crates/azeroth-survivors-re/src/menu_scene.rs"
+        ],
+        "source_anchor": "prepare",
+        "limits": [
+          "Reconstructs the active-menu term only; gameplay/ordinary-world state is outside current implementation."
+        ]
+      },
+      "current_evidence": [
+        "docs/analysis/evidence/0.97.2/menu-scene-0.97.2.json",
+        "docs/analysis/menu-scene-0.97.2.md"
+      ],
+      "compilation": "not_run_current_source_only_mode",
+      "parity": "unverified"
+    },
+    {
+      "id": "engine.player.menu_camera_gate",
+      "classification": "confirmed_custom_modification_current_target",
+      "original_symbol": "World camera gate",
+      "original_source_path": "crates/benilla-app/src/player/setup.rs",
+      "baseline_comparison": {
+        "present_in_pinned_vendor": true,
+        "source_anchor": "gate_world_camera",
+        "baseline_logic": "World/incoming loading-cover camera condition; no menu-scene API.",
+        "current_native_delta": "Calls active-and-unmasked scene helper before writing Camera.is_active."
+      },
+      "native_functions": [
+        {
+          "address": "0x1408395f0",
+          "end_exclusive": "0x1408397a4",
+          "file_offset": "0x8389f0",
+          "sha256": "0c04c5c26b9ac4d97dffcd714a5491d568ffa872ab557eb5826ebaab7ec830ac",
+          "byte_count": 436,
+          "role": "Camera visibility adapter and renderable menu scene helper",
+          "rea_evidence_id": "ev_4b4c8c665087a798eee3b94dfc46b1e049556f957addea8a871f2d32625ca9f2"
+        }
+      ],
+      "reconstruction": {
+        "status": "current_target_source_partial",
+        "source_files": [
+          "crates/azeroth-survivors-re/src/menu_compositor.rs"
+        ],
+        "source_anchor": "gate_world_camera",
+        "limits": [
+          "Standalone menu camera path only; complete inherited function equivalence is not certified."
+        ]
+      },
+      "current_evidence": [
+        "docs/analysis/evidence/0.97.2/menu-scene-0.97.2.json",
+        "docs/analysis/menu-scene-0.97.2.md"
+      ],
+      "compilation": "not_run_current_source_only_mode",
+      "parity": "unverified"
+    },
+    {
+      "id": "engine.char_select.preview_suppression",
+      "classification": "confirmed_custom_modification_current_target",
+      "original_symbol": "Character-select preview feed menu-request early return",
+      "original_source_path": "crates/benilla-app/src/char_select/refresh.rs",
+      "baseline_comparison": {
+        "present_in_pinned_vendor": true,
+        "source_anchor": "feed_glue_preview",
+        "baseline_logic": "Feeds selected roster look and scene into GluePreview without a menu request check.",
+        "current_native_delta": "Request-present branch writes absent look tag at +0xb8 and returns before roster feed."
+      },
+      "native_functions": [
+        {
+          "address": "0x140fbf8a0",
+          "end_exclusive": "0x140fc03af",
+          "file_offset": "0xfbeca0",
+          "sha256": "a0a5b7652a633ef7729735a1abe407c45d6a6fd48f7043ea90c56c1a9d4a0e1e",
+          "byte_count": 2831,
+          "role": "Menu request suppresses stock character-select preview feed",
+          "rea_evidence_id": "ev_209cfd50239ce05adb97c448c920eedbcf2487673f373ee9d7835d3cdb9c67be"
+        },
+        {
+          "address": "0x140fe0160",
+          "end_exclusive": "0x140fe0355",
+          "file_offset": "0xfdf560",
+          "sha256": "18dfb301eb387e1e2e418fbe969be34a7dfcef898143fd9c4169ce63991f6128",
+          "byte_count": 501,
+          "role": "Character-select preview system resource registration"
+        },
+        {
+          "address": "0x140fe0440",
+          "end_exclusive": "0x140fe0641",
+          "file_offset": "0xfdf840",
+          "sha256": "6dbf09e203911e80f86f778aa88b8c4a1057a6294673e8c361ebaecaf33d2038",
+          "byte_count": 513,
+          "role": "Character-select preview system runtime resource tuple"
+        },
+        {
+          "address": "0x140cf52c0",
+          "end_exclusive": "0x140cf55b0",
+          "file_offset": "0xcf46c0",
+          "sha256": "6bc2eb4acc37aab694c9d052044e677343e6d4680ff6ab2966a7c8785e7ec8ea",
+          "byte_count": 752,
+          "role": "Character-select preview resource registration size 0xbc and alignment 4"
+        }
+      ],
+      "reconstruction": {
+        "status": "no_direct_current_target_reconstruction",
+        "source_files": [],
+        "limits": [
+          "Standalone menu does not install stock roster-preview feeder; that architectural isolation does not reconstruct this complete native function.",
+          "Current native preview-resource layout differs from pinned upstream; no lighting-mode behavior is inferred."
+        ]
+      },
+      "current_evidence": [
+        "docs/analysis/evidence/0.97.2/menu-scene-0.97.2.json",
+        "docs/analysis/menu-scene-0.97.2.md"
+      ],
+      "compilation": "not_run_current_source_only_mode",
+      "parity": "unverified"
+    },
+    {
+      "id": "engine.view.menu_request_gate",
+      "classification": "confirmed_custom_behavior_owner_unresolved",
+      "original_symbol": "Request-present view-lane gate",
+      "original_source_path": null,
+      "native_functions": [
+        {
+          "address": "0x14093f540",
+          "end_exclusive": "0x14093f6c3",
+          "file_offset": "0x93e940",
+          "sha256": "3749afd57ff52c81a25ddba6de0c15bda3036412b7af4d01f243b7d77b0d3ca2",
+          "byte_count": 387,
+          "role": "Request-present view-lane gate"
+        }
+      ],
+      "baseline_comparison": {
+        "present_in_pinned_vendor": null,
+        "scope": "Current menu-request helper use is observed, but owning Rust module and exact upstream counterpart have not been established."
+      },
+      "reconstruction": {
+        "status": "unresolved_not_counted_as_reconstructed",
+        "source_files": [],
+        "limits": [
+          "Writes a view lane, not Camera.is_active; no invented meaning assigned."
+        ]
+      },
+      "current_evidence": [
+        "docs/analysis/evidence/0.97.2/menu-scene-0.97.2.json",
+        "docs/analysis/menu-scene-0.97.2.md"
+      ],
+      "compilation": "not_run_current_source_only_mode",
+      "parity": "unverified"
+    },
+    {
+      "id": "engine.hero_preview",
+      "classification": "target_only_module_current_presence_behavior_not_revalidated",
+      "original_symbol": "benilla_app::hero_preview::HeroPreviewPlugin",
+      "original_source_path": null,
+      "symbol_evidence": [
+        {
+          "file_offset": "0x58f516f",
+          "end_file_offset_exclusive": "0x58f519b",
+          "byte_count": 44,
+          "sha256": "55555b57ff7913e2bca78945552d8be8123aa0cd80c45485795a027007d08f5a",
+          "rva": "0x58f616f",
+          "va": "0x1458f616f",
+          "section": ".rdata",
+          "context": {
+            "file_offset": "0x58f512f",
+            "end_file_offset_exclusive": "0x58f51fb",
+            "byte_count": 204,
+            "sha256": "871e1f61c79db6e8f472a16f52df37785c875afc83f39c98822b086e5f5fa327",
+            "rva": "0x58f612f",
+            "va": "0x1458f612f",
+            "section": ".rdata",
+            "printable": ".bevy_gilrs::GilrsPluginbenilla_app::menu_scene::MenuScenePluginbenilla_app::hero_preview::HeroPreviewPluginbenilla_app::host_controls::TouchDrivePlugin.............................................\"......"
+          }
+        }
+      ],
+      "baseline_comparison": {
+        "present_in_pinned_vendor": false,
+        "scope": "No hero_preview module/plugin in pinned upstream; current symbol establishes retained module presence only."
+      },
+      "reconstruction": {
+        "status": "historical_0_92_source_not_current_target_revalidated",
+        "source_files": [
+          "crates/azeroth-survivors-re/src/preview.rs"
+        ],
+        "historical_evidence": [
+          "docs/analysis/main-menu-preview.md",
+          "docs/analysis/evidence/0.92/canvas-preview-native-paths.json"
+        ],
+        "limits": [
+          "Current0.97.2 renderer/bridge behavior has not been independently mapped here.",
+          "Historical0.92 RVAs and behavior are excluded from current native-function totals."
+        ]
+      },
+      "native_functions": [],
+      "current_evidence": [
+        "docs/analysis/evidence/0.97.2/menu-scene-0.97.2.json",
+        "docs/analysis/menu-scene-0.97.2.md"
+      ],
+      "compilation": "not_run_current_source_only_mode",
+      "parity": "unverified"
+    },
+    {
+      "id": "engine.world_hold",
+      "classification": "target_only_module_current_presence_behavior_unrecovered",
+      "original_symbol": "benilla_app::spell_override::WorldHoldPlugin",
+      "original_source_path": null,
+      "symbol_evidence": [
+        {
+          "file_offset": "0x58f7b38",
+          "end_file_offset_exclusive": "0x58f7b64",
+          "byte_count": 44,
+          "sha256": "9d4f69daf0ac7a132d87ff95643600e18beacd4d02f7b647d7f62a34ccc7608a",
+          "rva": "0x58f8b38",
+          "va": "0x1458f8b38",
+          "section": ".rdata",
+          "context": {
+            "file_offset": "0x58f7af8",
+            "end_file_offset_exclusive": "0x58f7bc4",
+            "byte_count": 204,
+            "sha256": "89b6073ec5ee7d0eb41541a8569eb115781778c09993f223a959cf0b715344c7",
+            "rva": "0x58f8af8",
+            "va": "0x1458f8af8",
+            "section": ".rdata",
+            "printable": ".....l`Z.........V....(%.....:..\"..G....M..0..)#..P..Dfk..n...O.benilla_app::spell_override::WorldHoldPluginwenilla_rogue_app::screens::ScreensPlugin...@t.E....Ft.E....St.E....Zt.E........................"
+          }
+        }
+      ],
+      "baseline_comparison": {
+        "present_in_pinned_vendor": false,
+        "scope": "spell_override module/plugin absent from pinned upstream; current symbol does not explain its behavior."
+      },
+      "reconstruction": {
+        "status": "unrecovered",
+        "source_files": [],
+        "limits": [
+          "No function ranges or recovered WorldHold semantics supplied by existing0.97.2 owning reports."
+        ]
+      },
+      "native_functions": [],
+      "compilation": "not_run_current_source_only_mode",
+      "parity": "unverified"
+    }
+  ],
+  "candidate_engine_deltas": [
+    {
+      "id": "crates/benilla-app/src/host_controls.rs",
+      "classification": "candidate_engine_delta_not_admitted_to_custom_denominator",
+      "original_source_path": "crates/benilla-app/src/host_controls.rs",
+      "source_path_evidence": [
+        {
+          "file_offset": "0x59d9232",
+          "end_file_offset_exclusive": "0x59d9259",
+          "byte_count": 39,
+          "sha256": "4cf54addee6e77c746c944bc8dc09c4eded4cea151c7a8963b83aee76bada3a4",
+          "rva": "0x59da232",
+          "va": "0x1459da232",
+          "section": ".rdata",
+          "embedded_text": "crates\\benilla-app\\src\\host_controls.rs"
+        },
+        {
+          "file_offset": "0x59e0ace",
+          "end_file_offset_exclusive": "0x59e0af5",
+          "byte_count": 39,
+          "sha256": "4cf54addee6e77c746c944bc8dc09c4eded4cea151c7a8963b83aee76bada3a4",
+          "rva": "0x59e1ace",
+          "va": "0x1459e1ace",
+          "section": ".rdata",
+          "embedded_text": "crates\\benilla-app\\src\\host_controls.rs"
+        },
+        {
+          "file_offset": "0x59e0b13",
+          "end_file_offset_exclusive": "0x59e0b3a",
+          "byte_count": 39,
+          "sha256": "4cf54addee6e77c746c944bc8dc09c4eded4cea151c7a8963b83aee76bada3a4",
+          "rva": "0x59e1b13",
+          "va": "0x1459e1b13",
+          "section": ".rdata",
+          "embedded_text": "crates\\benilla-app\\src\\host_controls.rs"
+        },
+        {
+          "file_offset": "0x59e0bbe",
+          "end_file_offset_exclusive": "0x59e0be5",
+          "byte_count": 39,
+          "sha256": "4cf54addee6e77c746c944bc8dc09c4eded4cea151c7a8963b83aee76bada3a4",
+          "rva": "0x59e1bbe",
+          "va": "0x1459e1bbe",
+          "section": ".rdata",
+          "embedded_text": "crates\\benilla-app\\src\\host_controls.rs"
+        },
+        {
+          "file_offset": "0x59e0c6e",
+          "end_file_offset_exclusive": "0x59e0c95",
+          "byte_count": 39,
+          "sha256": "4cf54addee6e77c746c944bc8dc09c4eded4cea151c7a8963b83aee76bada3a4",
+          "rva": "0x59e1c6e",
+          "va": "0x1459e1c6e",
+          "section": ".rdata",
+          "embedded_text": "crates\\benilla-app\\src\\host_controls.rs"
+        },
+        {
+          "file_offset": "0x59e0d1e",
+          "end_file_offset_exclusive": "0x59e0d45",
+          "byte_count": 39,
+          "sha256": "4cf54addee6e77c746c944bc8dc09c4eded4cea151c7a8963b83aee76bada3a4",
+          "rva": "0x59e1d1e",
+          "va": "0x1459e1d1e",
+          "section": ".rdata",
+          "embedded_text": "crates\\benilla-app\\src\\host_controls.rs"
+        }
+      ],
+      "present_in_pinned_vendor": false,
+      "interpretation": "TouchDrivePlugin symbol and event paths observed. Input/platform extension is present relative to snapshot; game-specific ownership and complete behavior not established.",
+      "reconstruction": {
+        "status": "unclassified_current_target_code_not_recovered",
+        "source_files": []
+      },
+      "native_function_count": null,
+      "symbol_evidence": [
+        {
+          "file_offset": "0x58f519b",
+          "end_file_offset_exclusive": "0x58f51c7",
+          "byte_count": 44,
+          "sha256": "7f54179632ac2be433dee2055219ee77e70b01ee0d57d3cecbf83ed5af084152",
+          "rva": "0x58f619b",
+          "va": "0x1458f619b",
+          "section": ".rdata",
+          "context": {
+            "file_offset": "0x58f515b",
+            "end_file_offset_exclusive": "0x58f5227",
+            "byte_count": 204,
+            "sha256": "2bb8869c07aac51a86f9e54478c3cdbf4724ec8355540dbacc9e762e6e0a60dc",
+            "rva": "0x58f615b",
+            "va": "0x1458f615b",
+            "section": ".rdata",
+            "printable": "ene::MenuScenePluginbenilla_app::hero_preview::HeroPreviewPluginbenilla_app::host_controls::TouchDrivePlugin.............................................\".................................................."
+          }
+        }
+      ]
+    },
+    {
+      "id": "crates/benilla-app/src/web_pbr_lite.rs",
+      "classification": "candidate_engine_delta_not_admitted_to_custom_denominator",
+      "original_source_path": "crates/benilla-app/src/web_pbr_lite.rs",
+      "source_path_evidence": [
+        {
+          "file_offset": "0x59e09e6",
+          "end_file_offset_exclusive": "0x59e0a0c",
+          "byte_count": 38,
+          "sha256": "01e8225a7af261fad43e575344097cdfe2dd881d9a5248d1a336a66908064dea",
+          "rva": "0x59e19e6",
+          "va": "0x1459e19e6",
+          "section": ".rdata",
+          "embedded_text": "crates\\benilla-app\\src\\web_pbr_lite.rs"
+        },
+        {
+          "file_offset": "0x59e0a28",
+          "end_file_offset_exclusive": "0x59e0a4e",
+          "byte_count": 38,
+          "sha256": "01e8225a7af261fad43e575344097cdfe2dd881d9a5248d1a336a66908064dea",
+          "rva": "0x59e1a28",
+          "va": "0x1459e1a28",
+          "section": ".rdata",
+          "embedded_text": "crates\\benilla-app\\src\\web_pbr_lite.rs"
+        }
+      ],
+      "present_in_pinned_vendor": false,
+      "interpretation": "Platform/rendering path absent from snapshot. Could be generic upstream/fork drift; no game-specific code binding.",
+      "reconstruction": {
+        "status": "unclassified_current_target_code_not_recovered",
+        "source_files": []
+      },
+      "native_function_count": null
+    },
+    {
+      "id": "crates/benilla-app/src/ui_text/engine/fallback.rs",
+      "classification": "candidate_engine_delta_not_admitted_to_custom_denominator",
+      "original_source_path": "crates/benilla-app/src/ui_text/engine/fallback.rs",
+      "source_path_evidence": [
+        {
+          "file_offset": "0x5a38bce",
+          "end_file_offset_exclusive": "0x5a38bff",
+          "byte_count": 49,
+          "sha256": "66ec36a2fd18277c13a6031d0967ce3777c980ff7733b4af3c214685de838359",
+          "rva": "0x5a39bce",
+          "va": "0x145a39bce",
+          "section": ".rdata",
+          "embedded_text": "crates\\benilla-app\\src\\ui_text\\engine\\fallback.rs"
+        },
+        {
+          "file_offset": "0x5a38c28",
+          "end_file_offset_exclusive": "0x5a38c59",
+          "byte_count": 49,
+          "sha256": "66ec36a2fd18277c13a6031d0967ce3777c980ff7733b4af3c214685de838359",
+          "rva": "0x5a39c28",
+          "va": "0x145a39c28",
+          "section": ".rdata",
+          "embedded_text": "crates\\benilla-app\\src\\ui_text\\engine\\fallback.rs"
+        },
+        {
+          "file_offset": "0x5a38cde",
+          "end_file_offset_exclusive": "0x5a38d0f",
+          "byte_count": 49,
+          "sha256": "66ec36a2fd18277c13a6031d0967ce3777c980ff7733b4af3c214685de838359",
+          "rva": "0x5a39cde",
+          "va": "0x145a39cde",
+          "section": ".rdata",
+          "embedded_text": "crates\\benilla-app\\src\\ui_text\\engine\\fallback.rs"
+        }
+      ],
+      "present_in_pinned_vendor": false,
+      "interpretation": "Text-engine fallback source path absent from snapshot. Generic engine drift until code comparison proves a custom-game requirement.",
+      "reconstruction": {
+        "status": "unclassified_current_target_code_not_recovered",
+        "source_files": []
+      },
+      "native_function_count": null
+    },
+    {
+      "id": "crates/benilla-protocol/src/transport/mod.rs",
+      "classification": "candidate_engine_delta_not_admitted_to_custom_denominator",
+      "original_source_path": "crates/benilla-protocol/src/transport/mod.rs",
+      "source_path_evidence": [
+        {
+          "file_offset": "0x5ae8a40",
+          "end_file_offset_exclusive": "0x5ae8a6c",
+          "byte_count": 44,
+          "sha256": "220147b870938a86e5b7510b2b1d39c20a991394ad05b429e2e480942c34fdbb",
+          "rva": "0x5ae9a40",
+          "va": "0x145ae9a40",
+          "section": ".rdata",
+          "embedded_text": "crates\\benilla-protocol\\src\\transport\\mod.rs"
+        }
+      ],
+      "present_in_pinned_vendor": false,
+      "interpretation": "Transport layer absent from snapshot; local/native architecture is a strong integration lead, not recovered custom behavior.",
+      "reconstruction": {
+        "status": "unclassified_current_target_code_not_recovered",
+        "source_files": []
+      },
+      "native_function_count": null
+    },
+    {
+      "id": "crates/benilla-protocol/src/transport/local.rs",
+      "classification": "candidate_engine_delta_not_admitted_to_custom_denominator",
+      "original_source_path": "crates/benilla-protocol/src/transport/local.rs",
+      "source_path_evidence": [
+        {
+          "file_offset": "0x5ae8c15",
+          "end_file_offset_exclusive": "0x5ae8c43",
+          "byte_count": 46,
+          "sha256": "02e43d1e9c07e0026edf4793d1ad6ec133775d81c70e24b03e9721516929ed5a",
+          "rva": "0x5ae9c15",
+          "va": "0x145ae9c15",
+          "section": ".rdata",
+          "embedded_text": "crates\\benilla-protocol\\src\\transport\\local.rs"
+        }
+      ],
+      "present_in_pinned_vendor": false,
+      "interpretation": "Local transport is a candidate simulation/client seam; filename alone does not establish protocol behavior or original game ownership.",
+      "reconstruction": {
+        "status": "unclassified_current_target_code_not_recovered",
+        "source_files": []
+      },
+      "native_function_count": null
+    },
+    {
+      "id": "crates/benilla-protocol/src/transport/native.rs",
+      "classification": "candidate_engine_delta_not_admitted_to_custom_denominator",
+      "original_source_path": "crates/benilla-protocol/src/transport/native.rs",
+      "source_path_evidence": [
+        {
+          "file_offset": "0x5ae8c60",
+          "end_file_offset_exclusive": "0x5ae8c8f",
+          "byte_count": 47,
+          "sha256": "ab8b2f87e6b702e192a0060b78c8f615d116385b50d2e5e95af01540cc21dc41",
+          "rva": "0x5ae9c60",
+          "va": "0x145ae9c60",
+          "section": ".rdata",
+          "embedded_text": "crates\\benilla-protocol\\src\\transport\\native.rs"
+        }
+      ],
+      "present_in_pinned_vendor": false,
+      "interpretation": "Native transport sibling is a candidate integration change; no current code ownership proof.",
+      "reconstruction": {
+        "status": "unclassified_current_target_code_not_recovered",
+        "source_files": []
+      },
+      "native_function_count": null
+    },
+    {
+      "id": "crates/benilla-app/src/webbridge/mod.rs",
+      "classification": "candidate_engine_delta_not_admitted_to_custom_denominator",
+      "original_source_path": "crates/benilla-app/src/webbridge/mod.rs",
+      "source_path_evidence": [
+        {
+          "file_offset": "0x5b01cb6",
+          "end_file_offset_exclusive": "0x5b01cdd",
+          "byte_count": 39,
+          "sha256": "e82b8b6913c73ed2ff990dd6555a00d942983afda24b67fdba88d94c7e623241",
+          "rva": "0x5b02cb6",
+          "va": "0x145b02cb6",
+          "section": ".rdata",
+          "embedded_text": "crates\\benilla-app\\src\\webbridge\\mod.rs"
+        },
+        {
+          "file_offset": "0x5b01cf7",
+          "end_file_offset_exclusive": "0x5b01d1e",
+          "byte_count": 39,
+          "sha256": "e82b8b6913c73ed2ff990dd6555a00d942983afda24b67fdba88d94c7e623241",
+          "rva": "0x5b02cf7",
+          "va": "0x145b02cf7",
+          "section": ".rdata",
+          "embedded_text": "crates\\benilla-app\\src\\webbridge\\mod.rs"
+        },
+        {
+          "file_offset": "0x5b033fe",
+          "end_file_offset_exclusive": "0x5b03425",
+          "byte_count": 39,
+          "sha256": "e82b8b6913c73ed2ff990dd6555a00d942983afda24b67fdba88d94c7e623241",
+          "rva": "0x5b043fe",
+          "va": "0x145b043fe",
+          "section": ".rdata",
+          "embedded_text": "crates\\benilla-app\\src\\webbridge\\mod.rs"
+        },
+        {
+          "file_offset": "0x5b0d379",
+          "end_file_offset_exclusive": "0x5b0d3a0",
+          "byte_count": 39,
+          "sha256": "e82b8b6913c73ed2ff990dd6555a00d942983afda24b67fdba88d94c7e623241",
+          "rva": "0x5b0e379",
+          "va": "0x145b0e379",
+          "section": ".rdata",
+          "embedded_text": "crates\\benilla-app\\src\\webbridge\\mod.rs"
+        }
+      ],
+      "present_in_pinned_vendor": false,
+      "interpretation": "WebBridgePlugin symbol and paths observed; may be generic platform support and is not automatically game-specific.",
+      "reconstruction": {
+        "status": "unclassified_current_target_code_not_recovered",
+        "source_files": []
+      },
+      "native_function_count": null,
+      "symbol_evidence": [
+        {
+          "file_offset": "0x5b4ffbe",
+          "end_file_offset_exclusive": "0x5b4ffe5",
+          "byte_count": 39,
+          "sha256": "06e10843d5fbf9efb3393697852577888f08122112a2ef255a8bfb49c9188378",
+          "rva": "0x5b50fbe",
+          "va": "0x145b50fbe",
+          "section": ".rdata",
+          "context": {
+            "file_offset": "0x5b4ff7e",
+            "end_file_offset_exclusive": "0x5b50045",
+            "byte_count": 199,
+            "sha256": "cc90c7e663d926fb068fced7a484cd2387d6a52cd19f95d61b4733c5a7c50bee",
+            "rva": "0x5b50f7e",
+            "va": "0x145b50f7e",
+            "section": ".rdata",
+            "printable": ":ui_tabard::TabardUiPluginbenilla_app::ui_talent::UiTalentPluginbenilla_app::webbridge::WebBridgePlugin..............................A...............................A....@..A........................."
+          }
+        }
+      ]
+    },
+    {
+      "id": "crates/benilla-world/src/rig_anim/compose_scratch.rs",
+      "classification": "candidate_engine_delta_not_admitted_to_custom_denominator",
+      "original_source_path": "crates/benilla-world/src/rig_anim/compose_scratch.rs",
+      "source_path_evidence": [
+        {
+          "file_offset": "0x5bf90a7",
+          "end_file_offset_exclusive": "0x5bf90db",
+          "byte_count": 52,
+          "sha256": "aa939b57e414e012c8cd85322b6acd31917e8bd85b5bcccab6e6da2e3870fb0e",
+          "rva": "0x5bfa0a7",
+          "va": "0x145bfa0a7",
+          "section": ".rdata",
+          "embedded_text": "crates\\benilla-world\\src\\rig_anim\\compose_scratch.rs"
+        }
+      ],
+      "present_in_pinned_vendor": false,
+      "interpretation": "Animation scratch implementation absent from snapshot; generic engine revision drift is plausible.",
+      "reconstruction": {
+        "status": "unclassified_current_target_code_not_recovered",
+        "source_files": []
+      },
+      "native_function_count": null
+    },
+    {
+      "id": "crates/benilla-ui/src/script/plain.rs",
+      "classification": "candidate_engine_delta_not_admitted_to_custom_denominator",
+      "original_source_path": "crates/benilla-ui/src/script/plain.rs",
+      "source_path_evidence": [
+        {
+          "file_offset": "0x66c350f",
+          "end_file_offset_exclusive": "0x66c3534",
+          "byte_count": 37,
+          "sha256": "0eef1ddff2180a47ccf152f6070949d022f0c2d4ac62c076c54a234b552dd3f2",
+          "rva": "0x66c450f",
+          "va": "0x1466c450f",
+          "section": ".rdata",
+          "embedded_text": "crates\\benilla-ui\\src\\script\\plain.rs"
+        },
+        {
+          "file_offset": "0x66dcc1c",
+          "end_file_offset_exclusive": "0x66dcc41",
+          "byte_count": 37,
+          "sha256": "0eef1ddff2180a47ccf152f6070949d022f0c2d4ac62c076c54a234b552dd3f2",
+          "rva": "0x66ddc1c",
+          "va": "0x1466ddc1c",
+          "section": ".rdata",
+          "embedded_text": "crates\\benilla-ui\\src\\script\\plain.rs"
+        }
+      ],
+      "present_in_pinned_vendor": false,
+      "interpretation": "Lua script implementation path absent from snapshot; generic engine revision drift is plausible.",
+      "reconstruction": {
+        "status": "unclassified_current_target_code_not_recovered",
+        "source_files": []
+      },
+      "native_function_count": null
+    }
+  ],
+  "excluded_dependency_delta": {
+    "original_source_path": "crates/bevy_render/src/mesh/morph/visitors.rs",
+    "source_path_evidence": [
+      {
+        "file_offset": "0x5f6e14c",
+        "end_file_offset_exclusive": "0x5f6e179",
+        "byte_count": 45,
+        "sha256": "f8f922ad8b9449bad3c4d895345eb1e65e25e026edbf93b7e6c7874cf0b781f6",
+        "rva": "0x5f6f14c",
+        "va": "0x145f6f14c",
+        "section": ".rdata",
+        "embedded_text": "crates/bevy_render/src/mesh/morph/visitors.rs"
+      }
+    ],
+    "classification": "dependency_revision_or_build_difference_excluded",
+    "reason": "Bevy renderer implementation is outside the requested custom-game scope unless a custom game-specific modification is recovered."
+  },
+  "reusable_baseline_evidence": [
+    {
+      "classification": "confirmed_reusable_file_content_excluded",
+      "source_file": "crates/benilla-world/src/shaders/ffx_glow.wgsl",
+      "evidence_path": "docs/analysis/evidence/0.97.2/menu-compositor-0.97.2.json",
+      "native_range": {
+        "file_offset": "0x5c01435",
+        "end_file_offset_exclusive": "0x5c0317b",
+        "byte_count": 7494,
+        "sha256": "a0d0e8fbcceae1f4b6d0aa04b135f27ab44acf1f3e9ab9d86d36d0a4671e2944",
+        "rva": "0x5c02435",
+        "va": "0x145c02435",
+        "section": ".rdata"
+      },
+      "source_sha256": "2a17c73ebbcef5fea8b28068735105851596747772781ba6571d7c07cca7e175",
+      "pinned_vendor_sha256": "2a17c73ebbcef5fea8b28068735105851596747772781ba6571d7c07cca7e175",
+      "comparison": "Complete source matches embedded current-target WGSL after LF-to-CRLF conversion only.",
+      "limit": "Does not prove surrounding native renderer code is unchanged or runtime parity."
+    },
+    {
+      "classification": "confirmed_reusable_file_content_excluded",
+      "source_file": "crates/benilla-app/src/shaders/ui_gamma.wgsl",
+      "evidence_path": "docs/analysis/evidence/0.97.2/menu-compositor-0.97.2.json",
+      "native_range": {
+        "file_offset": "0x59fc805",
+        "end_file_offset_exclusive": "0x59fcd73",
+        "byte_count": 1390,
+        "sha256": "6238c683cb90d68fe2001f1d66acd92d801e941118b5bad9767f90d44c3d48c7",
+        "rva": "0x59fd805",
+        "va": "0x1459fd805",
+        "section": ".rdata"
+      },
+      "source_sha256": "2e207ba9b3835a7242312cfc3a9c25dedfa57a69ff866c1e8a718372ebff2c8f",
+      "pinned_vendor_sha256": "2e207ba9b3835a7242312cfc3a9c25dedfa57a69ff866c1e8a718372ebff2c8f",
+      "comparison": "Complete source matches embedded current-target WGSL after LF-to-CRLF conversion only.",
+      "limit": "Does not prove surrounding native renderer code is unchanged or runtime parity."
+    },
+    {
+      "classification": "confirmed_reusable_file_content_excluded",
+      "source_file": "crates/benilla-app/src/shaders/ui_node_gamma.wgsl",
+      "evidence_path": "docs/analysis/evidence/0.97.2/menu-compositor-0.97.2.json",
+      "native_range": {
+        "file_offset": "0x59fcdaa",
+        "end_file_offset_exclusive": "0x59ff3ac",
+        "byte_count": 9730,
+        "sha256": "1a6360f61321ee55ef359727be1156097d30e0befac39f50998afb0c83f3979f",
+        "rva": "0x59fddaa",
+        "va": "0x1459fddaa",
+        "section": ".rdata"
+      },
+      "source_sha256": "d1f7500931d933181a77c7eab8264a55527bc810cb9a2dddfabeb104f99f18d6",
+      "pinned_vendor_sha256": "d1f7500931d933181a77c7eab8264a55527bc810cb9a2dddfabeb104f99f18d6",
+      "comparison": "Complete source matches embedded current-target WGSL after LF-to-CRLF conversion only.",
+      "limit": "Does not prove surrounding native renderer code is unchanged or runtime parity."
+    },
+    {
+      "classification": "confirmed_reusable_file_content_excluded",
+      "source_file": "crates/benilla-app/src/shaders/ui_slice_gamma.wgsl",
+      "evidence_path": "docs/analysis/evidence/0.97.2/menu-compositor-0.97.2.json",
+      "native_range": {
+        "file_offset": "0x59ff3e3",
+        "end_file_offset_exclusive": "0x5a00ad6",
+        "byte_count": 5875,
+        "sha256": "99f44163e1edf155cccb6fad1157630472a4ed739e067d79459e3395e02bc2d7",
+        "rva": "0x5a003e3",
+        "va": "0x145a003e3",
+        "section": ".rdata"
+      },
+      "source_sha256": "b6f8f54c5402021d8179c318f343820209bb82f2db9cc525c33175030334e8ff",
+      "pinned_vendor_sha256": "b6f8f54c5402021d8179c318f343820209bb82f2db9cc525c33175030334e8ff",
+      "comparison": "Complete source matches embedded current-target WGSL after LF-to-CRLF conversion only.",
+      "limit": "Does not prove surrounding native renderer code is unchanged or runtime parity."
+    },
+    {
+      "classification": "reusable_semantic_seam_not_whole_file_equivalence",
+      "original_source_path": "crates/benilla-world/src/terrain_stream/queries.rs",
+      "source_anchor": "terrain_height_under / terrain_height_under_cached",
+      "native_functions": [
+        {
+          "address": "0x141716030",
+          "end_exclusive": "0x14171604d",
+          "file_offset": "0x1715430",
+          "sha256": "a0055c7548c23c50fd8e350e1dcb73db2df2d7a9e7465b907d545c44c066a38e",
+          "byte_count": 29,
+          "role": "Terrain height query wrapper initializes absent tile cache"
+        },
+        {
+          "address": "0x141716050",
+          "end_exclusive": "0x141716304",
+          "file_offset": "0x1715450",
+          "sha256": "417bddeb3f4496c12b7540ab66fca5a2fb18aa9b6949dc86d9d83284e66ac1b2",
+          "byte_count": 692,
+          "role": "Cached terrain height query from streamed ADT chunks",
+          "rea_evidence_id": "ev_6a1c561680dd18ece25fa26ce45fdcd102c155e226c293a82c19c6f0c60780e1"
+        }
+      ],
+      "evidence_path": "docs/analysis/evidence/0.97.2/menu-scene-0.97.2.json",
+      "reason": "Current static query route resolves ADT cached tile/chunk height as shared source does; no custom terrain-sampling delta recovered.",
+      "limit": "This seam does not establish all terrain_stream code or the full baseline revision."
+    }
+  ],
+  "denominator_conclusion": {
+    "exact_custom_native_function_total": null,
+    "exact_game_completion_percentage": null,
+    "why": [
+      "The exact source fork used for this target is not recovered, so generic engine drift cannot be exhaustively subtracted.",
+      "The native binary is stripped and optimized; type/path evidence does not attribute every native entry or inline body to its source module.",
+      "Current ledger positively identifies concrete custom seams, with partial and historical mappings separated, but does not establish a complete custom-function denominator."
+    ],
+    "allowed_metric": "A reviewed list of identifiable custom source modules/behavior obligations may be tracked with an explicitly stated unit and discovery limits; do not call a fraction of filenames or mapped branches a percentage of all original game code.",
+    "inventory_is_exhaustive": false
+  },
+  "validation": {
+    "binary_sha256": "verified",
+    "selected_original_function_hashes": "verified_against_recorded_current_target_extents",
+    "embedded_shaders": "four complete CRLF-normalized matches",
+    "builds": "not_run",
+    "compiler_checks": "not_run",
+    "tests": "not_run",
+    "emulation": "not_run",
+    "game_launches": "not_run"
+  },
+  "evidence_and_source_files": [
+    {
+      "path": "crates/azeroth-survivors-re/src/background.rs",
+      "size_bytes": 13202,
+      "sha256": "8b8a12b7c83aa67618181aaa561037b79e9e985c0e64f700f1c4fffcadd74322"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/menu_compositor.rs",
+      "size_bytes": 13345,
+      "sha256": "d4033f5ce4276950ec366287a6e9b7bd71f998e1c4355822f795947660e5ebbc"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/menu_scene.rs",
+      "size_bytes": 5994,
+      "sha256": "c297be5302cd566f9e5684f3b19e901b1cf0aa99345a790a4d41d8d873398483"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/menu_scene/residency.rs",
+      "size_bytes": 1954,
+      "sha256": "906745bce746e95f69141b1d6273578794d3d55fd39c0f6e977ec4bbca621524"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/preview.rs",
+      "size_bytes": 41820,
+      "sha256": "e4898efd38f837aca59900fea5b2efd7e6f3e50120789647b332beff9e0830ba"
+    },
+    {
+      "path": "crates/benilla-app/src/char_select/mod.rs",
+      "size_bytes": 63896,
+      "sha256": "5606c887da154f55921220b38d51a7fda893934be283c07686c5b33dcb2aa7a0"
+    },
+    {
+      "path": "crates/benilla-app/src/char_select/refresh.rs",
+      "size_bytes": 13818,
+      "sha256": "4385120d991582c0e39e2737c47fc0cb248971eb40df9856f969b0321e592e5a"
+    },
+    {
+      "path": "crates/benilla-app/src/player/setup.rs",
+      "size_bytes": 6401,
+      "sha256": "d2b75e4507f87c89d85d08dc57fa13960428ed0d6a10ce90b3bdbb523137868d"
+    },
+    {
+      "path": "crates/benilla-app/src/shaders/ui_gamma.wgsl",
+      "size_bytes": 1361,
+      "sha256": "2e207ba9b3835a7242312cfc3a9c25dedfa57a69ff866c1e8a718372ebff2c8f"
+    },
+    {
+      "path": "crates/benilla-app/src/shaders/ui_node_gamma.wgsl",
+      "size_bytes": 9484,
+      "sha256": "d1f7500931d933181a77c7eab8264a55527bc810cb9a2dddfabeb104f99f18d6"
+    },
+    {
+      "path": "crates/benilla-app/src/shaders/ui_slice_gamma.wgsl",
+      "size_bytes": 5730,
+      "sha256": "b6f8f54c5402021d8179c318f343820209bb82f2db9cc525c33175030334e8ff"
+    },
+    {
+      "path": "crates/benilla-world/src/shaders/ffx_glow.wgsl",
+      "size_bytes": 7349,
+      "sha256": "2a17c73ebbcef5fea8b28068735105851596747772781ba6571d7c07cca7e175"
+    },
+    {
+      "path": "crates/benilla-world/src/terrain_stream/queries.rs",
+      "size_bytes": 8995,
+      "sha256": "3ff7c825590b18fdeceb4bae8dbb06ca1221746fa63ab1540baa2e2ccd5e1235"
+    },
+    {
+      "path": "docs/analysis/benilla-vendor.json",
+      "size_bytes": 479686,
+      "sha256": "ad90e6fc3785c3bf29ba22b5db0c85cce4211c557ccfd2808d3e85ad12e95197"
+    },
+    {
+      "path": "docs/analysis/evidence/0.92/canvas-preview-native-paths.json",
+      "size_bytes": 4909,
+      "sha256": "bbc520f3caf3b914637b5d1bf247a0a0b0d74cb8f65e6309e3fc5b3ee94b35ba"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/menu-compositor-0.97.2.json",
+      "size_bytes": 12072,
+      "sha256": "46f5b2f29405183fc83d009bc7443d564d545aed3508a1301f91058ff97db2c9"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/menu-scene-0.97.2.json",
+      "size_bytes": 11567,
+      "sha256": "7ba49527cb2857f1559d4a99448ddc40c2a70c8c7ff6b31baed70b363a126c61"
+    },
+    {
+      "path": "docs/analysis/main-menu-preview.md",
+      "size_bytes": 11414,
+      "sha256": "9ad04a95a7fa8ac12a0faf0ddad7074d4a31f526a3b7304dd8076466955e14cd"
+    },
+    {
+      "path": "docs/analysis/menu-compositor-0.97.2.md",
+      "size_bytes": 5373,
+      "sha256": "11866efa145d8ea0f3d9647f7a5b50d008bf482128e7556f19c639d5b6afe2b3"
+    },
+    {
+      "path": "docs/analysis/menu-scene-0.97.2.md",
+      "size_bytes": 9615,
+      "sha256": "72dcf39b2812be0502bf031d5c6dbdc917e1e7112b246152021b61c04865ec0d"
+    },
+    {
+      "path": "docs/analysis/target-refresh-0.97.2.json",
+      "size_bytes": 6440,
+      "sha256": "94a4039a413704dd35afe8410ced8e3339fe5424c637491058ac1da253719f76"
+    }
+  ],
+  "in_progress_inventory": true,
+  "open_world": true,
+  "inventory_cutoff": "Audit of explicitly reviewed existing source and owning reports before concurrent unfinished hero-preview0.97.2 evidence; unreviewed new work excluded.",
+  "reviewed_game_specific_source_areas": [
+    {
+      "id": "engine.menu_scene",
+      "unit": "game_specific_source_area",
+      "coverage_status": "partial",
+      "original_source_path": null,
+      "original_symbol": "benilla_app::menu_scene::MenuScenePlugin",
+      "current_target_source_files": [
+        "crates/azeroth-survivors-re/src/menu_scene.rs",
+        "crates/azeroth-survivors-re/src/menu_scene/residency.rs",
+        "crates/azeroth-survivors-re/src/background.rs"
+      ],
+      "historical_source_files": [],
+      "current_target_evidence": [
+        "docs/analysis/evidence/0.97.2/menu-scene-0.97.2.json",
+        "docs/analysis/menu-scene-0.97.2.md"
+      ],
+      "historical_evidence": [],
+      "byte_identity_entry": "custom_additions_and_changes[engine.menu_scene]",
+      "evidence_scope": "Current original symbol identity and/or hash-checked native function extents as retained in the detailed entry; source coverage is partial, missing or historical, never completed."
+    },
+    {
+      "id": "engine.char_select.world_live",
+      "unit": "game_specific_source_area",
+      "coverage_status": "partial",
+      "original_source_path": "crates/benilla-app/src/char_select/mod.rs",
+      "original_symbol": "WorldLive publisher: ordinary world OR active menu scene",
+      "current_target_source_files": [
+        "crates/azeroth-survivors-re/src/menu_scene.rs"
+      ],
+      "historical_source_files": [],
+      "current_target_evidence": [
+        "docs/analysis/evidence/0.97.2/menu-scene-0.97.2.json",
+        "docs/analysis/menu-scene-0.97.2.md"
+      ],
+      "historical_evidence": [],
+      "byte_identity_entry": "custom_additions_and_changes[engine.char_select.world_live]",
+      "evidence_scope": "Current original symbol identity and/or hash-checked native function extents as retained in the detailed entry; source coverage is partial, missing or historical, never completed."
+    },
+    {
+      "id": "engine.player.menu_camera_gate",
+      "unit": "game_specific_source_area",
+      "coverage_status": "partial",
+      "original_source_path": "crates/benilla-app/src/player/setup.rs",
+      "original_symbol": "World camera gate",
+      "current_target_source_files": [
+        "crates/azeroth-survivors-re/src/menu_compositor.rs"
+      ],
+      "historical_source_files": [],
+      "current_target_evidence": [
+        "docs/analysis/evidence/0.97.2/menu-scene-0.97.2.json",
+        "docs/analysis/menu-scene-0.97.2.md"
+      ],
+      "historical_evidence": [],
+      "byte_identity_entry": "custom_additions_and_changes[engine.player.menu_camera_gate]",
+      "evidence_scope": "Current original symbol identity and/or hash-checked native function extents as retained in the detailed entry; source coverage is partial, missing or historical, never completed."
+    },
+    {
+      "id": "engine.char_select.preview_suppression",
+      "unit": "game_specific_source_area",
+      "coverage_status": "missing",
+      "original_source_path": "crates/benilla-app/src/char_select/refresh.rs",
+      "original_symbol": "Character-select preview feed menu-request early return",
+      "current_target_source_files": [],
+      "historical_source_files": [],
+      "current_target_evidence": [
+        "docs/analysis/evidence/0.97.2/menu-scene-0.97.2.json",
+        "docs/analysis/menu-scene-0.97.2.md"
+      ],
+      "historical_evidence": [],
+      "byte_identity_entry": "custom_additions_and_changes[engine.char_select.preview_suppression]",
+      "evidence_scope": "Current original symbol identity and/or hash-checked native function extents as retained in the detailed entry; source coverage is partial, missing or historical, never completed."
+    },
+    {
+      "id": "engine.hero_preview",
+      "unit": "game_specific_source_area",
+      "coverage_status": "historical_unrevalidated",
+      "original_source_path": null,
+      "original_symbol": "benilla_app::hero_preview::HeroPreviewPlugin",
+      "current_target_source_files": [],
+      "historical_source_files": [
+        "crates/azeroth-survivors-re/src/preview.rs"
+      ],
+      "current_target_evidence": [],
+      "historical_evidence": [
+        "docs/analysis/main-menu-preview.md",
+        "docs/analysis/evidence/0.92/canvas-preview-native-paths.json"
+      ],
+      "byte_identity_entry": "custom_additions_and_changes[engine.hero_preview]",
+      "evidence_scope": "Current original symbol identity and/or hash-checked native function extents as retained in the detailed entry; source coverage is partial, missing or historical, never completed."
+    },
+    {
+      "id": "engine.world_hold",
+      "unit": "game_specific_source_area",
+      "coverage_status": "missing",
+      "original_source_path": null,
+      "original_symbol": "benilla_app::spell_override::WorldHoldPlugin",
+      "current_target_source_files": [],
+      "historical_source_files": [],
+      "current_target_evidence": [],
+      "historical_evidence": [],
+      "byte_identity_entry": "custom_additions_and_changes[engine.world_hold]",
+      "evidence_scope": "Current original symbol identity and/or hash-checked native function extents as retained in the detailed entry; source coverage is partial, missing or historical, never completed."
+    }
+  ],
+  "source_area_counts": {
+    "inventoried": 6,
+    "partial_current_target_source": 3,
+    "full_current_target_source": 0,
+    "historical_unrevalidated": 1,
+    "missing": 2,
+    "meaning": "Area-based reviewed inventory coverage only. Equal areas are not equal code/work size and inventory can grow."
+  }
+}

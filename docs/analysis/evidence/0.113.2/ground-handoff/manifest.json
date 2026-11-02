@@ -1,0 +1,122 @@
+{
+  "target_version": "0.113.2",
+  "target_sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+  "owners": [
+    {
+      "role": "monster-move",
+      "va": "0x141188210",
+      "byte_count": 3943,
+      "sha256": "c8c876645d2443392a8ea060cf08aef2cb424ab3a9c310354a62aa26b8b0fb3b",
+      "evidence_id": "ev_566a7bb730c7a126360fc6f4fce9d2c26ef4b8f8257b23ee5abb3ce5aea3f225",
+      "provider": "Ghidra 12.1.4",
+      "analysis_profile_digest": "0ab02b27b1a17613b06782c3e5473c6702435c72b6f1cd0bef208ed4ea3a57f9",
+      "analysis_input": "Complete immutable raw-function slice; Win64 semantics interpreted from mapped PE instructions. External calls/data and inferred C types remain incomplete."
+    },
+    {
+      "role": "spline-large",
+      "va": "0x1411a1ec0",
+      "byte_count": 4864,
+      "sha256": "ce694d8816e5513079122ccdfe36b10617329ddb428ea7a892ba90a5154f43a9",
+      "evidence_id": "ev_4f16525cac4ec13116a11c96aa038a55bcfaf5f126547ec48891267e90722994",
+      "provider": "Ghidra 12.1.4",
+      "analysis_profile_digest": "525e766fcb76f1443df76261a5b168ef1e673d6da84a167474b60d102cebb919",
+      "analysis_input": "Complete immutable raw-function slice; Win64 semantics interpreted from mapped PE instructions. External calls/data and inferred C types remain incomplete."
+    },
+    {
+      "role": "ground-clamp",
+      "va": "0x1411a3390",
+      "byte_count": 7404,
+      "sha256": "3f2fe6088bf19d3e5fe21bf2348634deb6b0e9c56f3823c69ce019cfb5757485",
+      "evidence_id": "ev_55a5dd67d2f51a434a3633c2831bd2501e0e650c7055f71132ef3655c3011846",
+      "provider": "Ghidra 12.1.4",
+      "analysis_profile_digest": "85446d0bff185e71605b2a145a765ef1a9b3a76b87e874d9b217744b5e385c8c",
+      "analysis_input": "Complete immutable raw-function slice; Win64 semantics interpreted from mapped PE instructions. External calls/data and inferred C types remain incomplete."
+    }
+  ],
+  "ranges": [
+    {
+      "role": "monster-install-gates",
+      "va": "0x141188d94",
+      "byte_count": 111,
+      "file_offset": "0x1188194",
+      "sha256": "91bdbf19cc2c38533609d35dc1732a994522941ce8bfe7c54c5470e52d1e9c4e",
+      "assembly": "monster-install-gates.asm"
+    },
+    {
+      "role": "monster-create",
+      "va": "0x141188f24",
+      "byte_count": 255,
+      "file_offset": "0x1188324",
+      "sha256": "5f0fb70c41f69fa86e380298a72b7dd92eb1f5ddb45a248388108b5a825d2007",
+      "assembly": "monster-create.asm"
+    },
+    {
+      "role": "spline-position",
+      "va": "0x1411a282d",
+      "byte_count": 75,
+      "file_offset": "0x11a1c2d",
+      "sha256": "e51773ef2a28c01a3e46f8a3e1beb570ce16823ef1205e0e726a323bedc8879a",
+      "assembly": "spline-position.asm"
+    },
+    {
+      "role": "ground-seat",
+      "va": "0x1411a3f48",
+      "byte_count": 35,
+      "file_offset": "0x11a3348",
+      "sha256": "94ff7179e01c80d3cced104238abc3362f7d74f86576ec84aead540d0a8e16b3",
+      "assembly": "ground-seat.asm"
+    },
+    {
+      "role": "ground-cache-hit",
+      "va": "0x1411a3f6b",
+      "byte_count": 127,
+      "file_offset": "0x11a336b",
+      "sha256": "707490884f91a11cc3c3ebf3dd01a2e41f8eea6a4b02bb8f4717c1294f19ed9e",
+      "assembly": "ground-cache-hit.asm"
+    },
+    {
+      "role": "ground-continuity",
+      "va": "0x1411a4111",
+      "byte_count": 129,
+      "file_offset": "0x11a3511",
+      "sha256": "f4bbc15bfbf3dd444b33295254bf6c0e44c4636d7769342cddfd9001cf627b5c",
+      "assembly": "ground-continuity.asm"
+    },
+    {
+      "role": "ground-walk",
+      "va": "0x1411a4192",
+      "byte_count": 315,
+      "file_offset": "0x11a3592",
+      "sha256": "1decdbc6353811cf874dadb526ebf6ddae5f8927344ba5f912162741575c017b",
+      "assembly": "ground-walk.asm"
+    },
+    {
+      "role": "ground-idle",
+      "va": "0x1411a4547",
+      "byte_count": 198,
+      "file_offset": "0x11a3947",
+      "sha256": "3cd35ecec0a36d9ae2221c367bd02dde206a8c320bf920275d4b63e5128c5661",
+      "assembly": "ground-idle.asm"
+    },
+    {
+      "role": "ground-write",
+      "va": "0x1411a4a93",
+      "byte_count": 197,
+      "file_offset": "0x11a3e93",
+      "sha256": "9ee733cb2219af09dbdf3c1279e05ad565df308353914412aeebd4473b337a30",
+      "assembly": "ground-write.asm"
+    }
+  ],
+  "limits": [
+    "Selected shared-interface contracts only; no whole-engine completeness claim.",
+    "Raw Ghidra imports do not establish complete caller, external-data or indirect-reference coverage.",
+    "No source compilation, game process, MPQ geometry or original/rebuilt comparison was executed."
+  ],
+  "reviewed_source": [
+    {
+      "path": "crates/benilla-app/src/net/motion/spline.rs",
+      "sha256": "8f8baf575edda35fb61f55eae13e5017d323ddbee41aaf56e6306232fc8d135f",
+      "scope": "Ground resolver cache-hit memo ownership and authored offline token-lifecycle regression; source compilation/runtime remain unverified."
+    }
+  ]
+}

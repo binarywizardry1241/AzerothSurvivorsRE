@@ -1,0 +1,2524 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.113.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+    "size_bytes": 141932032
+  },
+  "generator": {
+    "path": "scripts/check-q41-m01-jewelry-0.113.2.py",
+    "sha256": "1a6f016c97f35527fde200734deff62aacfd142bbd2a7b4f669d888bad4635e8"
+  },
+  "lead_id": "Q41-M01",
+  "classification_id": "Q41-M01-jewelry-cap-14583fa56",
+  "gap_ids": [
+    34,
+    41
+  ],
+  "selected_input": {
+    "path": "runtime/execheck-0.113.2/proofs/guarded-jump-tables.json",
+    "sha256": "105dcbd3d05ee08a1496601137998fce7ad51de4b055e5466d5245c74c536bfa"
+  },
+  "selected_candidate": {
+    "site": "0x14583fa56",
+    "guard": "0x14583fa3f",
+    "selector_register": "rcx",
+    "guard_kind": "alias-ja",
+    "guard_bound": 19,
+    "selector_alias_proof": {
+      "compare": "0x14583fa3f",
+      "compare_instruction_bytes": "4183f913",
+      "branch": "0x14583fa43",
+      "branch_instruction_bytes": "772f",
+      "maximum": 19,
+      "relation": "exact same scalar through register copies or lossless zero extension under the unsigned bound",
+      "observed_context": [
+        {
+          "site": "0x14583f9f8",
+          "instruction_bytes": "f3410f105004"
+        },
+        {
+          "site": "0x14583f9fe",
+          "instruction_bytes": "75ee"
+        },
+        {
+          "site": "0x14583fa00",
+          "instruction_bytes": "f30f100500bf6800"
+        },
+        {
+          "site": "0x14583fa08",
+          "instruction_bytes": "4883fa04"
+        },
+        {
+          "site": "0x14583fa0c",
+          "instruction_bytes": "41ba04000000"
+        },
+        {
+          "site": "0x14583fa12",
+          "instruction_bytes": "4c0f42d2"
+        },
+        {
+          "site": "0x14583fa16",
+          "instruction_bytes": "418b5008"
+        },
+        {
+          "site": "0x14583fa1a",
+          "instruction_bytes": "f30f105940"
+        },
+        {
+          "site": "0x14583fa1f",
+          "instruction_bytes": "4489d1"
+        },
+        {
+          "site": "0x14583fa22",
+          "instruction_bytes": "4c8d057bc27c01"
+        },
+        {
+          "site": "0x14583fa29",
+          "instruction_bytes": "f3410f100c88"
+        },
+        {
+          "site": "0x14583fa2f",
+          "instruction_bytes": "f30f59cb"
+        },
+        {
+          "site": "0x14583fa33",
+          "instruction_bytes": "f30f59c8"
+        },
+        {
+          "site": "0x14583fa37",
+          "instruction_bytes": "f30f1005e12a6600"
+        },
+        {
+          "site": "0x14583fa3f",
+          "instruction_bytes": "4183f913"
+        },
+        {
+          "site": "0x14583fa43",
+          "instruction_bytes": "772f"
+        },
+        {
+          "site": "0x14583fa45",
+          "instruction_bytes": "4489c9"
+        },
+        {
+          "site": "0x14583fa48",
+          "instruction_bytes": "4c8d05ed547d01"
+        }
+      ]
+    },
+    "selector_minimum": 0,
+    "selector_maximum": 19,
+    "table_address": "0x147014f3c",
+    "relative_base": "0x147014f3c",
+    "file_offset": "0x701393c",
+    "byte_count": 80,
+    "sha256": "900579a12a708c8b9bc35a7930fe71c2fb00bbeafb1ef44d8656f0b856c0ea9c",
+    "case_targets": [
+      "0x14583fa58",
+      "0x14583fa58",
+      "0x14583fa58",
+      "0x14583fa58",
+      "0x14583fa58",
+      "0x14583fa58",
+      "0x14583fa58",
+      "0x14583fa62",
+      "0x14583fa58",
+      "0x14583fff8",
+      "0x14583fa74",
+      "0x14583fa74",
+      "0x14583fa74",
+      "0x14583fa74",
+      "0x14583fa74",
+      "0x14583fa62",
+      "0x14583fa74",
+      "0x14583fa74",
+      "0x14583fa62",
+      "0x14583fa6c"
+    ],
+    "unique_targets": 5,
+    "guarded_fallthrough_cases_complete": true,
+    "all_possible_incoming_contexts_or_type_invariants_complete": false,
+    "whole_domain_instruction_boundaries": {
+      "existing_flow_instruction_targets": 1,
+      "declared_linear_instruction_targets": 0,
+      "exceptions": [
+        {
+          "target": "0x14583fa58",
+          "reason": "no-independent-instruction-boundary"
+        },
+        {
+          "target": "0x14583fa62",
+          "reason": "no-independent-instruction-boundary"
+        },
+        {
+          "target": "0x14583fa6c",
+          "reason": "no-independent-instruction-boundary"
+        },
+        {
+          "target": "0x14583fff8",
+          "reason": "no-independent-instruction-boundary"
+        }
+      ]
+    },
+    "successor_interpretation": "mathematically bounded potential successors; incoming/type restrictions remain unproved",
+    "candidate_rejection_reason": "scalar-domain-has-unproved-or-conflicting-instruction-targets"
+  },
+  "leaf": {
+    "start_preferred_va": "0x14583f9c0",
+    "end_exclusive_preferred_va": "0x145840035",
+    "file_offset": "0x583edc0",
+    "sha256": "383e498a4436f8baae1160b744e3ea34d533bac0e85d8bfa57b2142a0b5cd5a2",
+    "byte_count": 1653,
+    "assembly": "increment.asm"
+  },
+  "cap_table": {
+    "address": "0x147014f3c",
+    "bytes_hex": "1cab82fe1cab82fe1cab82fe1cab82fe1cab82fe1cab82fe1cab82fe26ab82fe1cab82febcb082fe38ab82fe38ab82fe38ab82fe38ab82fe38ab82fe26ab82fe38ab82fe38ab82fe26ab82fe30ab82fe",
+    "case_targets": [
+      "0x14583fa58",
+      "0x14583fa58",
+      "0x14583fa58",
+      "0x14583fa58",
+      "0x14583fa58",
+      "0x14583fa58",
+      "0x14583fa58",
+      "0x14583fa62",
+      "0x14583fa58",
+      "0x14583fff8",
+      "0x14583fa74",
+      "0x14583fa74",
+      "0x14583fa74",
+      "0x14583fa74",
+      "0x14583fa74",
+      "0x14583fa62",
+      "0x14583fa74",
+      "0x14583fa74",
+      "0x14583fa62",
+      "0x14583fa6c"
+    ]
+  },
+  "multiplier_table": {
+    "address": "0x147014f8c",
+    "bytes_hex": "62b082fe9cb082fe9cb082fe9cb082fe9cb082fe9cb082fe9cb082fe9cb082fe62b082fe9cb082fe9cb082fe62b082fe94b082fe",
+    "case_targets": [
+      "0x14583ffee",
+      "0x145840028",
+      "0x145840028",
+      "0x145840028",
+      "0x145840028",
+      "0x145840028",
+      "0x145840028",
+      "0x145840028",
+      "0x14583ffee",
+      "0x145840028",
+      "0x145840028",
+      "0x14583ffee",
+      "0x145840020"
+    ]
+  },
+  "dispatch_cases": [
+    [
+      0,
+      2139095040,
+      "0x14583fa58",
+      true
+    ],
+    [
+      1,
+      2139095040,
+      "0x14583fa58",
+      true
+    ],
+    [
+      2,
+      2139095040,
+      "0x14583fa58",
+      true
+    ],
+    [
+      3,
+      2139095040,
+      "0x14583fa58",
+      true
+    ],
+    [
+      4,
+      2139095040,
+      "0x14583fa58",
+      true
+    ],
+    [
+      5,
+      2139095040,
+      "0x14583fa58",
+      true
+    ],
+    [
+      6,
+      2139095040,
+      "0x14583fa58",
+      true
+    ],
+    [
+      7,
+      1058642330,
+      "0x14583fa62",
+      true
+    ],
+    [
+      8,
+      2139095040,
+      "0x14583fa58",
+      true
+    ],
+    [
+      9,
+      1058642330,
+      "0x14583fff8",
+      true
+    ],
+    [
+      10,
+      1065353216,
+      "0x14583fa74",
+      true
+    ],
+    [
+      11,
+      1065353216,
+      "0x14583fa74",
+      true
+    ],
+    [
+      12,
+      1065353216,
+      "0x14583fa74",
+      true
+    ],
+    [
+      13,
+      1065353216,
+      "0x14583fa74",
+      true
+    ],
+    [
+      14,
+      1065353216,
+      "0x14583fa74",
+      true
+    ],
+    [
+      15,
+      1058642330,
+      "0x14583fa62",
+      true
+    ],
+    [
+      16,
+      1065353216,
+      null,
+      false
+    ],
+    [
+      17,
+      1065353216,
+      "0x14583fa74",
+      true
+    ],
+    [
+      18,
+      1058642330,
+      "0x14583fa62",
+      true
+    ],
+    [
+      19,
+      1061997773,
+      "0x14583fa6c",
+      true
+    ],
+    [
+      20,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      21,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      22,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      23,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      24,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      25,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      26,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      27,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      28,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      29,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      30,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      31,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      32,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      33,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      34,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      35,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      36,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      37,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      38,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      39,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      40,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      41,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      42,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      43,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      44,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      45,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      46,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      47,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      48,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      49,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      50,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      51,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      52,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      53,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      54,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      55,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      56,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      57,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      58,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      59,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      60,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      61,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      62,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      63,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      64,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      65,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      66,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      67,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      68,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      69,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      70,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      71,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      72,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      73,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      74,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      75,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      76,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      77,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      78,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      79,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      80,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      81,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      82,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      83,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      84,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      85,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      86,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      87,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      88,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      89,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      90,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      91,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      92,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      93,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      94,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      95,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      96,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      97,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      98,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      99,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      100,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      101,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      102,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      103,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      104,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      105,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      106,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      107,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      108,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      109,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      110,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      111,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      112,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      113,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      114,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      115,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      116,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      117,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      118,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      119,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      120,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      121,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      122,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      123,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      124,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      125,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      126,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      127,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      128,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      129,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      130,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      131,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      132,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      133,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      134,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      135,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      136,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      137,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      138,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      139,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      140,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      141,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      142,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      143,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      144,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      145,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      146,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      147,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      148,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      149,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      150,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      151,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      152,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      153,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      154,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      155,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      156,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      157,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      158,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      159,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      160,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      161,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      162,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      163,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      164,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      165,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      166,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      167,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      168,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      169,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      170,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      171,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      172,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      173,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      174,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      175,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      176,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      177,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      178,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      179,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      180,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      181,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      182,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      183,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      184,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      185,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      186,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      187,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      188,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      189,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      190,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      191,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      192,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      193,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      194,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      195,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      196,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      197,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      198,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      199,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      200,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      201,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      202,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      203,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      204,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      205,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      206,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      207,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      208,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      209,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      210,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      211,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      212,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      213,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      214,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      215,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      216,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      217,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      218,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      219,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      220,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      221,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      222,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      223,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      224,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      225,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      226,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      227,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      228,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      229,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      230,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      231,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      232,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      233,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      234,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      235,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      236,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      237,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      238,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      239,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      240,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      241,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      242,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      243,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      244,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      245,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      246,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      247,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      248,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      249,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      250,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      251,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      252,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      253,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      254,
+      1065353216,
+      "0x14583fa74",
+      false
+    ],
+    [
+      255,
+      1065353216,
+      "0x14583fa74",
+      false
+    ]
+  ],
+  "native_increment_cases": 1120,
+  "increment_output_sha256": "4a02fe2111a0ccb407be9550f29e5a8c38b21da04aa8a4aead5e26413864df21",
+  "expected_model": {
+    "path": "scripts/recover-jewelry.py",
+    "sha256": "9fe24eac17e5e8273ed90037856655dca7143540e06638f58c016e61aa1d7120"
+  },
+  "source": [
+    {
+      "path": "crates/azeroth-survivors-re/src/loot_rewards.rs",
+      "sha256": "df6de8544308d740a2f57d44b4f64cdf6ef48b0a3361df79b36ce255214f1d3b"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/native_overlay_payload.rs",
+      "sha256": "baa2161f6867654a32e7860f0ad26588801bfdeb8d5eedf4c2af814541671b32"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/treasure.rs",
+      "sha256": "4ec215b338a59b697a0c9dec88c7b170bdb3650b4a732d3f5b3980c5d3cb4bb2"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
+      "sha256": "661ed923b593bf8c425219c3ea29e7e54867200c81f1b3f3e796551445e45ea1"
+    }
+  ],
+  "incoming_reference_input": {
+    "path": "runtime/execheck-0.113.2/ghidra-comprehensive/references.tsv.gz",
+    "sha256": "2975e8ccd5269f6ce1e926e92b6a8c73bcb2c58778c9f8d0f9a9785b073b11f1"
+  },
+  "incoming_references": [
+    {
+      "from": "1402afbed",
+      "to": "14583f9c0",
+      "type": "UNCONDITIONAL_CALL",
+      "operand": "0",
+      "primary": "true",
+      "source": "DEFAULT"
+    }
+  ],
+  "caller_to_description": {
+    "start_preferred_va": "0x1402afbdd",
+    "end_exclusive_preferred_va": "0x1402afc05",
+    "sha256": "1ab19dcb16cbe6df9e4565d2c548abc4bdfa58fb488e2eb66b3834eaf5ebadb1"
+  },
+  "rea": {
+    "profile": {
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "parameters": {
+        "target_kind": "executable",
+        "target_format": "pe",
+        "executable_role": "application",
+        "managed": false,
+        "native_aot_metadata": {
+          "contract_revision": "rtr-9.1-x64-pe-read-only-v3",
+          "source_bytes": 134217728,
+          "work_units": 67108864,
+          "working_memory_bytes": 67108864,
+          "report_bytes": 4194304
+        },
+        "architecture": "x86_64",
+        "available_architectures": [
+          "x86_64"
+        ],
+        "import_mode": "ephemeral-source-immutable",
+        "pdb_observations": "program-info-v1",
+        "annotation_policy": "atomic-function-entry-metadata-v1",
+        "load_image_observations": "source-mappings-entry-context-v2",
+        "function_body_evidence": "complete-inclusive-ranges-v1",
+        "function_references": "complete-body-and-entry-reference-manager-v2",
+        "call_relationship_coverage": "function-body-call-coverage-v5",
+        "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+        "string_inventory_evidence": "defined-data-coverage-v1",
+        "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+        "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+        "instruction_flow_evidence": "decoded-return-pcode-v1",
+        "instruction_references": "exact-address-incoming-v1",
+        "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+        "no_return_repair": "returning-imports-decoded-return-v2",
+        "process_launch": "inspected-jvm-launch-support-v1",
+        "jump_table_evidence": "typed-case-default-blocks-v1",
+        "decompiler_jump_loads": true,
+        "loader": "auto-from-header",
+        "language_id": "auto-from-header",
+        "compiler_spec_id": "auto-default",
+        "analyzer_preset": "ghidra-default+disabled:Stack,Decompiler Switch Analysis,Function ID,Function Start Search,Disassemble Entry Points,Subroutine References,Data Reference,Reference,Non-Returning Functions - Discovered,Shared Return Calls,Create Address Tables,Call Convention ID",
+        "analysis_options": {
+          "disabled_analyzers": [
+            "Stack",
+            "Decompiler Switch Analysis",
+            "Function ID",
+            "Function Start Search",
+            "Disassemble Entry Points",
+            "Subroutine References",
+            "Data Reference",
+            "Reference",
+            "Non-Returning Functions - Discovered",
+            "Shared Return Calls",
+            "Create Address Tables",
+            "Call Convention ID"
+          ]
+        },
+        "analysis_seeds": {
+          "format": "rea-ghidra-seeds-body-repair-v1",
+          "path": "runtime/q41-m01-jewelry-0.113.2/seeds.tsv",
+          "configured_path": "runtime/q41-m01-jewelry-0.113.2/seeds.tsv",
+          "sha256": "bdd251af844bae8b90f808baf0cdbf64ca5547c89e7ef96f12b7e6c65d34eb31",
+          "entries": {
+            "function": 1,
+            "code": 9,
+            "label": 0
+          }
+        }
+      },
+      "digest": "a09660d9b32e3114bb2b39bd6f874ad368c4694984a6b4dea20a696d5c6bf340"
+    },
+    "plan": {
+      "path": "runtime/q41-m01-jewelry-0.113.2/rea-pe/plan.json",
+      "sha256": "70017a212359129fdf3c3d0e9e9943b151d612ab9b55e2becdba70d872230c6b"
+    },
+    "seed_rows": [
+      "0x14583f9c0\tfunction",
+      "0x14583f9c0\tcode",
+      "0x14583fa58\tcode",
+      "0x14583fa62\tcode",
+      "0x14583fa6c\tcode",
+      "0x14583fa74\tcode",
+      "0x14583fff8\tcode",
+      "0x14583ffee\tcode",
+      "0x145840020\tcode",
+      "0x145840028\tcode"
+    ],
+    "observations": [
+      {
+        "artifact": {
+          "path": "runtime/q41-m01-jewelry-0.113.2/rea-pe/003-jewelry-leaf-bytes.json",
+          "sha256": "85017df548862e93c589bd452168c0fc14d87be48c94a58917cf9141ef619af0"
+        },
+        "evidence_id": "ev_90511231d319e52edc0cb7d1f39ca40f9240af3c15940b142b4cc7a93213379a",
+        "operation": "read_bytes",
+        "parameters": {
+          "address": "0x14583f9c0",
+          "length": 1653
+        },
+        "result": {
+          "complete": true,
+          "matched_installed_bytes": true
+        }
+      },
+      {
+        "artifact": {
+          "path": "runtime/q41-m01-jewelry-0.113.2/rea-pe/004-cap-table.json",
+          "sha256": "1bd01c6a645f764baa9a5c5cb359596919780d9bb1cfd9130d67a18ed8f1355f"
+        },
+        "evidence_id": "ev_c4767fe51a3095e272b7a720fd1bc837c1c97e909f362b8bec45bec256c5a116",
+        "operation": "read_bytes",
+        "parameters": {
+          "address": "0x147014f3c",
+          "length": 80
+        },
+        "result": {
+          "complete": true,
+          "matched_installed_bytes": true
+        }
+      },
+      {
+        "artifact": {
+          "path": "runtime/q41-m01-jewelry-0.113.2/rea-pe/005-cap-multiplier-table.json",
+          "sha256": "10292bf7a0f8b5e8b254da0622d4ad64c481d6457c1d71f086d7a1693bd4a711"
+        },
+        "evidence_id": "ev_41a07912d1da036e54f3663d1d0b9a0b4cfef7e310fe7e23c24984ca6dc83979",
+        "operation": "read_bytes",
+        "parameters": {
+          "address": "0x147014f8c",
+          "length": 52
+        },
+        "result": {
+          "complete": true,
+          "matched_installed_bytes": true
+        }
+      },
+      {
+        "artifact": {
+          "path": "runtime/q41-m01-jewelry-0.113.2/rea-pe/006-entry-body.json",
+          "sha256": "fb77f2f95a54a1a7517cfb8525a81dd88f3e260fdfcda689eadd8aa291743950"
+        },
+        "evidence_id": "ev_38621c4fab44348163d4fbd79c5a8eb7d39f08c1e3be48d11bafd65459273bce",
+        "operation": "procedure_info",
+        "parameters": {
+          "procedure": "0x14583f9c0"
+        },
+        "result": {
+          "name": "FUN_14583f9c0",
+          "entrypoint": "0x14583f9c0",
+          "basicblock_count": 53,
+          "length": 1567,
+          "signature": "undefined FUN_14583f9c0()",
+          "locals": [],
+          "classification": {
+            "external": false,
+            "thunk": false,
+            "thunk_target": null,
+            "provenance": "ghidra-function-manager"
+          },
+          "body": {
+            "available": true,
+            "provenance": "ghidra-function-body-address-set",
+            "ranges": [
+              {
+                "start": "0x14583f9c0",
+                "end": "0x14583fa57"
+              },
+              {
+                "start": "0x14583fa74",
+                "end": "0x14583ffed"
+              },
+              {
+                "start": "0x145840028",
+                "end": "0x145840034"
+              }
+            ],
+            "total_bytes": 1567,
+            "span_bytes": 1653,
+            "non_contiguous": true,
+            "contains_entry": true
+          }
+        }
+      },
+      {
+        "artifact": {
+          "path": "runtime/q41-m01-jewelry-0.113.2/rea-pe/007-label-14583f9c0.json",
+          "sha256": "8cfe261a74dd3c8cb78e5cfd8639cf1f2e371224f44d14eb11efdf6fb5de20df"
+        },
+        "evidence_id": "ev_4213c2abd8798b8da51c0b31956985a2efcd68cb5c33653745756f499e0e632d",
+        "operation": "inspect_native_instruction",
+        "parameters": {
+          "address": "0x14583f9c0"
+        },
+        "result": {
+          "address": "0x14583f9c0",
+          "status": "decoded",
+          "procedure": "0x14583f9c0",
+          "mnemonic": "MOVZX",
+          "flow": {
+            "kind": "fallthrough",
+            "conditional": false,
+            "computed": false,
+            "direct_destinations": [],
+            "classification_evidence": [
+              {
+                "source": "ghidra-listing-flow-type",
+                "value": "FALL_THROUGH"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "artifact": {
+          "path": "runtime/q41-m01-jewelry-0.113.2/rea-pe/008-label-14583fa3f.json",
+          "sha256": "a7cfaaabadeb25b478b6995a2329cb1c3516a4c70e4ddf8fa4483a4fdcf0f7b0"
+        },
+        "evidence_id": "ev_61389474059218692693dcca33dbd847f6dfcee00b78243d2734f2ccaaa397ad",
+        "operation": "inspect_native_instruction",
+        "parameters": {
+          "address": "0x14583fa3f"
+        },
+        "result": {
+          "address": "0x14583fa3f",
+          "status": "decoded",
+          "procedure": "0x14583f9c0",
+          "mnemonic": "CMP",
+          "flow": {
+            "kind": "fallthrough",
+            "conditional": false,
+            "computed": false,
+            "direct_destinations": [],
+            "classification_evidence": [
+              {
+                "source": "ghidra-listing-flow-type",
+                "value": "FALL_THROUGH"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "artifact": {
+          "path": "runtime/q41-m01-jewelry-0.113.2/rea-pe/009-label-14583fa43.json",
+          "sha256": "e6c2cdb1cd5253c16dd9b7c18fae39cb2fabf8a474623b9ec0c33344d1224448"
+        },
+        "evidence_id": "ev_bc40f68c94ec18181ff99ba06151ee31bea4891ef45d849b104455e0f0810dd0",
+        "operation": "inspect_native_instruction",
+        "parameters": {
+          "address": "0x14583fa43"
+        },
+        "result": {
+          "address": "0x14583fa43",
+          "status": "decoded",
+          "procedure": "0x14583f9c0",
+          "mnemonic": "JA",
+          "flow": {
+            "kind": "jump",
+            "conditional": true,
+            "computed": false,
+            "direct_destinations": [
+              "0x14583fa74"
+            ],
+            "classification_evidence": [
+              {
+                "source": "ghidra-listing-flow-type",
+                "value": "CONDITIONAL_JUMP"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "artifact": {
+          "path": "runtime/q41-m01-jewelry-0.113.2/rea-pe/010-label-14583fa45.json",
+          "sha256": "32b905638fb8e07e046d50f89efec41e917a54502c7f29cdb84f8e3d51514cdd"
+        },
+        "evidence_id": "ev_0137c71e3e7a2e796652eeaa30fdcdd73424d8f7aac99ae63c22c7fec551bffe",
+        "operation": "inspect_native_instruction",
+        "parameters": {
+          "address": "0x14583fa45"
+        },
+        "result": {
+          "address": "0x14583fa45",
+          "status": "decoded",
+          "procedure": "0x14583f9c0",
+          "mnemonic": "MOV",
+          "flow": {
+            "kind": "fallthrough",
+            "conditional": false,
+            "computed": false,
+            "direct_destinations": [],
+            "classification_evidence": [
+              {
+                "source": "ghidra-listing-flow-type",
+                "value": "FALL_THROUGH"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "artifact": {
+          "path": "runtime/q41-m01-jewelry-0.113.2/rea-pe/011-label-14583fa4f.json",
+          "sha256": "39a64d708b931d3428281362c4f3a78337979026e07ba25def3345aa4cd01329"
+        },
+        "evidence_id": "ev_0d1fa3cf5e7579979adbdce85764dc218a6ef477b87a21c2e6f16b6822f99d0a",
+        "operation": "inspect_native_instruction",
+        "parameters": {
+          "address": "0x14583fa4f"
+        },
+        "result": {
+          "address": "0x14583fa4f",
+          "status": "decoded",
+          "procedure": "0x14583f9c0",
+          "mnemonic": "MOVSXD",
+          "flow": {
+            "kind": "fallthrough",
+            "conditional": false,
+            "computed": false,
+            "direct_destinations": [],
+            "classification_evidence": [
+              {
+                "source": "ghidra-listing-flow-type",
+                "value": "FALL_THROUGH"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "artifact": {
+          "path": "runtime/q41-m01-jewelry-0.113.2/rea-pe/012-label-14583fa56.json",
+          "sha256": "316b56f938ffc1cb398394ac455074283d2b2d8bf850eaf76c818740b2973e63"
+        },
+        "evidence_id": "ev_bb0405272a37ca1e8e0f3ff5be9448abbcff618d39ffd1b8140b9cd20b8b6d07",
+        "operation": "inspect_native_instruction",
+        "parameters": {
+          "address": "0x14583fa56"
+        },
+        "result": {
+          "address": "0x14583fa56",
+          "status": "decoded",
+          "procedure": "0x14583f9c0",
+          "mnemonic": "JMP",
+          "flow": {
+            "kind": "jump",
+            "conditional": false,
+            "computed": true,
+            "direct_destinations": [],
+            "classification_evidence": [
+              {
+                "source": "ghidra-listing-flow-type",
+                "value": "COMPUTED_JUMP"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "artifact": {
+          "path": "runtime/q41-m01-jewelry-0.113.2/rea-pe/013-label-14583fa58.json",
+          "sha256": "46c50b9cb0437c25408b334eee8cc412445b70fc6c3c74ca144f28a0b77d1582"
+        },
+        "evidence_id": "ev_05bcc0bc074834f8b9181afe2817c72511a15ab13fd571c1ff388c642519d30c",
+        "operation": "inspect_native_instruction",
+        "parameters": {
+          "address": "0x14583fa58"
+        },
+        "result": {
+          "address": "0x14583fa58",
+          "status": "decoded",
+          "procedure": null,
+          "mnemonic": "MOVSS",
+          "flow": {
+            "kind": "fallthrough",
+            "conditional": false,
+            "computed": false,
+            "direct_destinations": [],
+            "classification_evidence": [
+              {
+                "source": "ghidra-listing-flow-type",
+                "value": "FALL_THROUGH"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "artifact": {
+          "path": "runtime/q41-m01-jewelry-0.113.2/rea-pe/014-label-14583fa62.json",
+          "sha256": "5dd2909762f7e84a9ab21e14e0c22d16943cf5aec817667fc94a2f4b319da847"
+        },
+        "evidence_id": "ev_5f293da44a1bb8a25b79b4cb37cb7d1603d5b25601b7fa625785184cc33c0b6c",
+        "operation": "inspect_native_instruction",
+        "parameters": {
+          "address": "0x14583fa62"
+        },
+        "result": {
+          "address": "0x14583fa62",
+          "status": "decoded",
+          "procedure": null,
+          "mnemonic": "MOVSS",
+          "flow": {
+            "kind": "fallthrough",
+            "conditional": false,
+            "computed": false,
+            "direct_destinations": [],
+            "classification_evidence": [
+              {
+                "source": "ghidra-listing-flow-type",
+                "value": "FALL_THROUGH"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "artifact": {
+          "path": "runtime/q41-m01-jewelry-0.113.2/rea-pe/015-label-14583fa6c.json",
+          "sha256": "8ea7a5127c3504266c6614300022ee9627652aa7754d4d59cea3dff1f6eeee82"
+        },
+        "evidence_id": "ev_697ee2dd4882178c6583b9687210ddccaa10dd57cfea10a7e787adcddf2f7817",
+        "operation": "inspect_native_instruction",
+        "parameters": {
+          "address": "0x14583fa6c"
+        },
+        "result": {
+          "address": "0x14583fa6c",
+          "status": "decoded",
+          "procedure": null,
+          "mnemonic": "MOVSS",
+          "flow": {
+            "kind": "fallthrough",
+            "conditional": false,
+            "computed": false,
+            "direct_destinations": [],
+            "classification_evidence": [
+              {
+                "source": "ghidra-listing-flow-type",
+                "value": "FALL_THROUGH"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "artifact": {
+          "path": "runtime/q41-m01-jewelry-0.113.2/rea-pe/016-label-14583fa74.json",
+          "sha256": "5adf374c45a9c00f4b3fcc34ac7d30007e427a6be8f4b33cf88092710261478a"
+        },
+        "evidence_id": "ev_02a8f12bb54510b082b8510ec30d330220677f811a0efe1a9039fb41dbc58fbc",
+        "operation": "inspect_native_instruction",
+        "parameters": {
+          "address": "0x14583fa74"
+        },
+        "result": {
+          "address": "0x14583fa74",
+          "status": "decoded",
+          "procedure": "0x14583f9c0",
+          "mnemonic": "MULSS",
+          "flow": {
+            "kind": "fallthrough",
+            "conditional": false,
+            "computed": false,
+            "direct_destinations": [],
+            "classification_evidence": [
+              {
+                "source": "ghidra-listing-flow-type",
+                "value": "FALL_THROUGH"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "artifact": {
+          "path": "runtime/q41-m01-jewelry-0.113.2/rea-pe/017-label-14583ffee.json",
+          "sha256": "f72c60e30c7eb9143987a1024506c13680048d36095fbe0a5b81c4e5ce2a7928"
+        },
+        "evidence_id": "ev_a6405b3ade21cd1b98c17328858bed8b208e3adaa663e49af1ef5274810548ab",
+        "operation": "inspect_native_instruction",
+        "parameters": {
+          "address": "0x14583ffee"
+        },
+        "result": {
+          "address": "0x14583ffee",
+          "status": "decoded",
+          "procedure": null,
+          "mnemonic": "MOVSS",
+          "flow": {
+            "kind": "fallthrough",
+            "conditional": false,
+            "computed": false,
+            "direct_destinations": [],
+            "classification_evidence": [
+              {
+                "source": "ghidra-listing-flow-type",
+                "value": "FALL_THROUGH"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "artifact": {
+          "path": "runtime/q41-m01-jewelry-0.113.2/rea-pe/018-label-14583fff8.json",
+          "sha256": "c3e614d293d2fa69dff220c0ed9859ae7fe3580d684c81f3bcae8e66c0fd70bf"
+        },
+        "evidence_id": "ev_3e10fc5657195cc5a17c7ab4b9cdc5f28f1da8a4cdf1fe5bd4c8ac75003b16d8",
+        "operation": "inspect_native_instruction",
+        "parameters": {
+          "address": "0x14583fff8"
+        },
+        "result": {
+          "address": "0x14583fff8",
+          "status": "decoded",
+          "procedure": null,
+          "mnemonic": "MOVSS",
+          "flow": {
+            "kind": "fallthrough",
+            "conditional": false,
+            "computed": false,
+            "direct_destinations": [],
+            "classification_evidence": [
+              {
+                "source": "ghidra-listing-flow-type",
+                "value": "FALL_THROUGH"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "artifact": {
+          "path": "runtime/q41-m01-jewelry-0.113.2/rea-pe/019-label-145840020.json",
+          "sha256": "72bc58c0ffaca6ceb35cce5c72b2a869ad9f352720057a3b9da73db041f89912"
+        },
+        "evidence_id": "ev_e71ce6136f94efa7d18c8cbf04498c2ff9f38a11b32d31119961b8b5cd139337",
+        "operation": "inspect_native_instruction",
+        "parameters": {
+          "address": "0x145840020"
+        },
+        "result": {
+          "address": "0x145840020",
+          "status": "decoded",
+          "procedure": null,
+          "mnemonic": "MOVSS",
+          "flow": {
+            "kind": "fallthrough",
+            "conditional": false,
+            "computed": false,
+            "direct_destinations": [],
+            "classification_evidence": [
+              {
+                "source": "ghidra-listing-flow-type",
+                "value": "FALL_THROUGH"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "artifact": {
+          "path": "runtime/q41-m01-jewelry-0.113.2/rea-pe/020-label-145840028.json",
+          "sha256": "6afefb8033b883ab1f7f7521ebbd0b49bddee0d522fd565ee263834cf8bbde26"
+        },
+        "evidence_id": "ev_5be60e84125e30d7412793f28d9030488f0a7f1b90aa8809a2705ae55a7e6482",
+        "operation": "inspect_native_instruction",
+        "parameters": {
+          "address": "0x145840028"
+        },
+        "result": {
+          "address": "0x145840028",
+          "status": "decoded",
+          "procedure": "0x14583f9c0",
+          "mnemonic": "MULSS",
+          "flow": {
+            "kind": "fallthrough",
+            "conditional": false,
+            "computed": false,
+            "direct_destinations": [],
+            "classification_evidence": [
+              {
+                "source": "ghidra-listing-flow-type",
+                "value": "FALL_THROUGH"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "artifact": {
+          "path": "runtime/q41-m01-jewelry-0.113.2/rea-pe/021-owner-14583fa58.json",
+          "sha256": "e7bab6855fbc6b8dfd55bfba79b6c7d999c0330ab4c64bb43407bb70c0c54cfe"
+        },
+        "evidence_id": "ev_9810e1d34e7583e25d3f9df72ad14a12dd794e1ca2ec2a08f258e9c9b5c2194a",
+        "operation": "resolve_containing_procedure",
+        "parameters": {
+          "address": "0x14583fa58"
+        },
+        "result": {
+          "query_address": "0x14583fa58",
+          "found": false,
+          "procedure": null,
+          "reason": "not_in_procedure"
+        }
+      },
+      {
+        "artifact": {
+          "path": "runtime/q41-m01-jewelry-0.113.2/rea-pe/022-owner-14583fa62.json",
+          "sha256": "52aab2e4d609eaf13df9b1eb45ca0543fff26f60fecb38e2635517548027a31e"
+        },
+        "evidence_id": "ev_56d370a8188f0f7a7ae269b3c35a4e4a104b7d7117f918c7892794d6a3b622f4",
+        "operation": "resolve_containing_procedure",
+        "parameters": {
+          "address": "0x14583fa62"
+        },
+        "result": {
+          "query_address": "0x14583fa62",
+          "found": false,
+          "procedure": null,
+          "reason": "not_in_procedure"
+        }
+      },
+      {
+        "artifact": {
+          "path": "runtime/q41-m01-jewelry-0.113.2/rea-pe/023-owner-14583fa6c.json",
+          "sha256": "c78efd3e4667f37806beea2a9970e03b7e9002be0eb0ff80918a059398da7863"
+        },
+        "evidence_id": "ev_4a98a245c185ff19887fe4a51eae655f49a539d86dbd693345ce6509d19eb122",
+        "operation": "resolve_containing_procedure",
+        "parameters": {
+          "address": "0x14583fa6c"
+        },
+        "result": {
+          "query_address": "0x14583fa6c",
+          "found": false,
+          "procedure": null,
+          "reason": "not_in_procedure"
+        }
+      },
+      {
+        "artifact": {
+          "path": "runtime/q41-m01-jewelry-0.113.2/rea-pe/024-owner-14583fa74.json",
+          "sha256": "ba411d9936e4ad391355ab06a938eb9a2b4b04c6dfe3df798ff249c7071f2b3c"
+        },
+        "evidence_id": "ev_fc0bad1ddda44e4a2073f638034ef42bb960b27f11b02fb9baeaaeac54312c98",
+        "operation": "resolve_containing_procedure",
+        "parameters": {
+          "address": "0x14583fa74"
+        },
+        "result": {
+          "query_address": "0x14583fa74",
+          "found": true,
+          "procedure": {
+            "address": "0x14583f9c0",
+            "name": "FUN_14583f9c0",
+            "classification": {
+              "external": false,
+              "thunk": false,
+              "thunk_target": null,
+              "provenance": "ghidra-function-manager"
+            },
+            "body": {
+              "available": true,
+              "provenance": "ghidra-function-body-address-set",
+              "ranges": [
+                {
+                  "start": "0x14583f9c0",
+                  "end": "0x14583fa57"
+                },
+                {
+                  "start": "0x14583fa74",
+                  "end": "0x14583ffed"
+                },
+                {
+                  "start": "0x145840028",
+                  "end": "0x145840034"
+                }
+              ],
+              "total_bytes": 1567,
+              "span_bytes": 1653,
+              "non_contiguous": true,
+              "contains_entry": true
+            }
+          }
+        }
+      },
+      {
+        "artifact": {
+          "path": "runtime/q41-m01-jewelry-0.113.2/rea-pe/025-owner-14583fff8.json",
+          "sha256": "4b8dbedfc0353c71f7dfe188f8cf3f948e028a100d4d9ca083de714ed36226d3"
+        },
+        "evidence_id": "ev_15eb36c782002bfcf0d2c049621388d5d88ccdc87c50eacd9aa9e57a028acf84",
+        "operation": "resolve_containing_procedure",
+        "parameters": {
+          "address": "0x14583fff8"
+        },
+        "result": {
+          "query_address": "0x14583fff8",
+          "found": false,
+          "procedure": null,
+          "reason": "not_in_procedure"
+        }
+      }
+    ]
+  },
+  "classification": "AS jewelry increment cap and multiplier dispatch; existing connected source matches",
+  "source_mismatch_established": false,
+  "global_admission_or_census_changed": false,
+  "limits": [
+    "Current original leaf instructions execute with synthetic descriptor/Option and stack memory; no callee seams occur.",
+    "Expected arithmetic is the separately retained source-formula translation; reconstructed Rust is not executed.",
+    "All byte values establish this entry path only, not every computed incoming context, resource alias or catalog lifetime.",
+    "Existing global rejected candidate and census counts stay unchanged; fresh code-only labels do not assert global body ownership.",
+    "No build, compiling test, application, live gameplay, rendering or original/rebuilt parity check ran."
+  ]
+}

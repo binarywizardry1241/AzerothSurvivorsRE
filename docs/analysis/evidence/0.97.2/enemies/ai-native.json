@@ -1,0 +1,305 @@
+{
+  "target_version": "0.97.2",
+  "target_sha256": "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589",
+  "target_executed": false,
+  "function": {
+    "va": "0x1454c9510",
+    "end_exclusive": "0x1454ce7a0",
+    "file_offset": "0x54c8910",
+    "sha256": "65114117995dbb7c0699d9f170e5b751ad863decf286531f7851646b0fe6f048",
+    "boundary": "PE RUNTIME_FUNCTION"
+  },
+  "rea": {
+    "evidence_id": "ev_fec0ab5d5ba261d965364f92a8f153a10d9eeb80bde3e3d7c21caff632e529a5",
+    "operation": "analyze_function",
+    "subject": {
+      "architecture": "x86_64",
+      "digest": {
+        "sha256": "65114117995dbb7c0699d9f170e5b751ad863decf286531f7851646b0fe6f048"
+      },
+      "format": "raw-binary",
+      "local_path": "runtime/guardians-0.97.2/1454c9510.bin",
+      "name": "1454c9510.bin"
+    },
+    "parameters": {
+      "procedure": "0x1454c9510"
+    },
+    "provider": {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "version": "12.1.4"
+    },
+    "analysis_profile": {
+      "digest": "af41d46b58c9634085a19c9cba95cdf0005575c5111d9b3971e1d0569626f08d",
+      "parameters": {
+        "analyzer_preset": "ghidra-default",
+        "annotation_policy": "atomic-function-entry-metadata-v1",
+        "architecture": "x86_64",
+        "available_architectures": [
+          "x86_64"
+        ],
+        "call_relationship_coverage": "function-body-call-coverage-v5",
+        "compiler_spec_id": "gcc",
+        "decompiler_jump_loads": true,
+        "entry_point": "0x1454c9510",
+        "entry_seed": "external-entry-and-function-before-analysis-v1",
+        "function_body_evidence": "complete-inclusive-ranges-v1",
+        "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+        "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+        "function_references": "complete-body-and-entry-reference-manager-v2",
+        "import_mode": "ephemeral-source-immutable",
+        "instruction_flow_evidence": "decoded-return-pcode-v1",
+        "instruction_references": "exact-address-incoming-v1",
+        "jump_table_evidence": "typed-case-default-blocks-v1",
+        "language_id": "x86:LE:64:default",
+        "language_selection": "caller-supplied-v1",
+        "load_image_evidence": "independent-raw-mapping-context-v4",
+        "load_image_observations": "source-mappings-entry-context-v2",
+        "loader": "BinaryLoader",
+        "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+        "no_return_repair": "returning-imports-decoded-return-v2",
+        "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+        "process_launch": "inspected-jvm-launch-support-v1",
+        "string_inventory_evidence": "defined-data-coverage-v1",
+        "target_format": "raw-binary",
+        "target_kind": "executable"
+      },
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      }
+    },
+    "limitations": [
+      "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+      "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+      "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+      "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+      "References cover the complete Ghidra function-body AddressSet and exact entry. Dossier incoming edges omit sources owned by that function; procedure_references also retains those internal edges.",
+      "The dossier combines Ghidra FunctionManager, Listing, ReferenceManager, BasicBlockModel, and decompiler observations; provider-specific pseudocode and assembly are not cross-provider text invariants.",
+      "Resolved reference metadata identifies computed, indirect, external, call, jump, and data edges; unresolved targetless flows remain unknown, and function classifications distinguish thunks and externals.",
+      "Synthetic Ghidra entry-point references without actionable memory sources are omitted.",
+      "The Java bridge serializes one function request per Program and lets each decompilation run until it completes or the caller cancels.",
+      "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+      "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+      "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+      "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+    ],
+    "relationship_coverage": {
+      "diagnostics": [
+        "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+      ],
+      "limitations": [
+        "Ghidra's callee inventory omits targets of 108 call reference(s) or decoded call(s) without destinations."
+      ],
+      "limited_directions": [
+        "callees"
+      ],
+      "status": "partial"
+    }
+  },
+  "scopes": [
+    {
+      "name": "actor-status-gates",
+      "va": "0x1454c9e92",
+      "end_exclusive": "0x1454ca5f0",
+      "file_offset": "0x54c9292",
+      "byte_count": 1886,
+      "sha256": "055ab9d4c50a1a7d2c391007585dacfe8df093e666c0ada09fcb80d860ca424e",
+      "assembly": "actor-status-gates.asm"
+    },
+    {
+      "name": "escape-and-guardian-dispatch",
+      "va": "0x1454ca5f0",
+      "end_exclusive": "0x1454cab2b",
+      "file_offset": "0x54c99f0",
+      "byte_count": 1339,
+      "sha256": "c37a557c825a3d0b45e3da46fb71e7b007a58a9dc44cab282cdab9af91d7a711",
+      "assembly": "escape-and-guardian-dispatch.asm"
+    },
+    {
+      "name": "ordinary-combat",
+      "va": "0x1454cb009",
+      "end_exclusive": "0x1454cb5cd",
+      "file_offset": "0x54ca409",
+      "byte_count": 1476,
+      "sha256": "ec84d333c983f1ecc27a414ceeaa2d5a6c1a8eac3e4e3d3331aee21a59f8dfd7",
+      "assembly": "ordinary-combat.asm"
+    },
+    {
+      "name": "ordinary-movement",
+      "va": "0x1454cbaf5",
+      "end_exclusive": "0x1454cbdff",
+      "file_offset": "0x54caef5",
+      "byte_count": 778,
+      "sha256": "3441282a9af216e915c5b8fcd7364134dbe0f91cae4c91c5a647e0c2c3d4b057",
+      "assembly": "ordinary-movement.asm"
+    },
+    {
+      "name": "ordinary-melee-damage",
+      "va": "0x1454cb959",
+      "end_exclusive": "0x1454cba5a",
+      "file_offset": "0x54cad59",
+      "byte_count": 257,
+      "sha256": "8b70ad8b68f8d15209a85fb83ea6ddf96ce29bb6d0f9a1ca14a1821cfbedde3e",
+      "assembly": "ordinary-melee-damage.asm"
+    },
+    {
+      "name": "melee-dispatch",
+      "va": "0x1454cc1da",
+      "end_exclusive": "0x1454cc255",
+      "file_offset": "0x54cb5da",
+      "byte_count": 123,
+      "sha256": "84c429061b2b133adb8b8bb0ecf20de333d6f62860510841942028f133351416",
+      "assembly": "melee-dispatch.asm"
+    }
+  ],
+  "constants": [
+    {
+      "va": "0x1458eb480",
+      "file_offset": "0x58ea480",
+      "bits": 1065353216,
+      "value": 1.0,
+      "sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c"
+    },
+    {
+      "va": "0x1458eb488",
+      "file_offset": "0x58ea488",
+      "bits": 1056964608,
+      "value": 0.5,
+      "sha256": "d99e58435243d9fef9c88273b8d553b4fba4d0baf8009d29eae74fa99e0d9f57"
+    },
+    {
+      "va": "0x1458eb4f8",
+      "file_offset": "0x58ea4f8",
+      "bits": 1082130432,
+      "value": 4.0,
+      "sha256": "4f4b9b7d8b86633e2824e2f439819357b0cd010ab410ea1a691b12c5f94e91e0"
+    },
+    {
+      "va": "0x1458eb524",
+      "file_offset": "0x58ea524",
+      "bits": 1058642330,
+      "value": 0.6000000238418579,
+      "sha256": "8e215ece122cf70ebe3556a0318fa6c395d1766375c3edc080967e4a09592401"
+    },
+    {
+      "va": "0x1458eb528",
+      "file_offset": "0x58ea528",
+      "bits": 1041865114,
+      "value": 0.15000000596046448,
+      "sha256": "5059b35a51a066cc88e72daa9017c4e126068c6368cd3b9f45b4d8d5cc94b3e5"
+    },
+    {
+      "va": "0x1458f6620",
+      "file_offset": "0x58f5620",
+      "bits": 1036831949,
+      "value": 0.10000000149011612,
+      "sha256": "fb360f7241a770dc32cade9a1d1273c92b13bd4959b1c130931312b7fe95e63f"
+    },
+    {
+      "va": "0x1458f6624",
+      "file_offset": "0x58f5624",
+      "bits": 1073741824,
+      "value": 2.0,
+      "sha256": "d88c86f15bbea365d658ad95a81d45367c465f7af6f7264fb077f01747ddc77d"
+    },
+    {
+      "va": "0x1458f6628",
+      "file_offset": "0x58f5628",
+      "bits": 1061997773,
+      "value": 0.800000011920929,
+      "sha256": "030a1a64b337c633d995221728d15e8b0d086cc0dcf4557205111b089b04464d"
+    },
+    {
+      "va": "0x1458f6680",
+      "file_offset": "0x58f5680",
+      "bits": 1109393408,
+      "value": 40.0,
+      "sha256": "5d5d32c7cf8e2ca77d9af6bf35a0ba5cd09074ccb4f3871aba6f67420b324a57"
+    },
+    {
+      "va": "0x1458fcc38",
+      "file_offset": "0x58fbc38",
+      "bits": 1069547520,
+      "value": 1.5,
+      "sha256": "c0e336a5f371ef22cd534e094269f2c1a9635cd080b71ffa671086832d3b60b7"
+    },
+    {
+      "va": "0x1458fcce8",
+      "file_offset": "0x58fbce8",
+      "bits": 3221225472,
+      "value": -2.0,
+      "sha256": "e4767380eb5e2fc046bce28b8b2a30c81c733be1a56203cd9499066086617f6c"
+    },
+    {
+      "va": "0x1458fcde4",
+      "file_offset": "0x58fbde4",
+      "bits": 1096810496,
+      "value": 14.0,
+      "sha256": "f523ae6cdb082f6b242c14aa86c0925f29e3671f98c7c283ebafedad2cd40838"
+    },
+    {
+      "va": "0x1458fcde8",
+      "file_offset": "0x58fbde8",
+      "bits": 1075419546,
+      "value": 2.4000000953674316,
+      "sha256": "ff55e07bcd00b689dcb5c524e892969bb289cbe869675284ae423adc728913d4"
+    },
+    {
+      "va": "0x1458fcdec",
+      "file_offset": "0x58fbdec",
+      "bits": 1067030938,
+      "value": 1.2000000476837158,
+      "sha256": "2817a2b3ce848459dce7da01a0c7ca38abecd4441cf8da0a0b4dd8769d66da31"
+    },
+    {
+      "va": "0x1458ed010",
+      "file_offset": "0x58ec010",
+      "bits": 1048576000,
+      "value": 0.25,
+      "sha256": "75e253f50979177eba47b2d0805ad36038789108924514d2a761a70de057d16f"
+    },
+    {
+      "va": "0x14590af0c",
+      "file_offset": "0x5909f0c",
+      "bits": 1060320051,
+      "value": 0.699999988079071,
+      "sha256": "2f0d6f3d65a7e28c4223e4389106e46f1e9010a2bd724d35f9794cb8a86d7c68"
+    },
+    {
+      "va": "0x14594f310",
+      "file_offset": "0x594e310",
+      "bits": 1008981770,
+      "value": 0.009999999776482582,
+      "sha256": "0d66bd808e9247acb560fe33efaa62ad6f11ee6f85cc4f61bd17673263de04ee"
+    },
+    {
+      "va": "0x1458f8d40",
+      "file_offset": "0x58f7d40",
+      "bits": 1068708659,
+      "value": 1.399999976158142,
+      "sha256": "55bcbd6097be4e6dbb2e3a87d63d96cb17ed13c4483b7f9a79c7cb115111b3ce"
+    },
+    {
+      "va": "0x1459f74d4",
+      "file_offset": "0x59f64d4",
+      "bits": 1067450368,
+      "value": 1.25,
+      "sha256": "6a8e259d5cfb5822c30440a36c344da8f749269d606006aecf7e0bbd2188015c"
+    },
+    {
+      "va": "0x1458f8e00",
+      "file_offset": "0x58f7e00",
+      "bits": 1090519040,
+      "value": 8.0,
+      "sha256": "03e3c2420f5066a5fa6e36735ed8cc4f6a251046263e1a6024f009deeee3b952"
+    }
+  ],
+  "limitations": [
+    "Static decompilation is not original source or runtime parity.",
+    "REA raw function slice omits external code/data and infers ABI types; original Win64 instructions govern.",
+    "Actor source returns engine requests; world, packets, aura lists and spell resolution require real adapters.",
+    "Host trigonometry/hypot and full Windows CRT equivalence are unverified."
+  ]
+}

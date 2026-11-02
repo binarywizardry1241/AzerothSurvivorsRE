@@ -1,0 +1,50 @@
+1459574a4 f30f10834c0a0000 movss xmm0, dword ptr [rbx + 0xa4c]
+1459574ac f30f1185c4000000 movss dword ptr [rbp + 0xc4], xmm0
+1459574b4 488d05551b2b01 lea rax, [rip + 0x12b1b55]
+1459574bb 48894540 mov qword ptr [rbp + 0x40], rax
+1459574bf 48c745480a000000 mov qword ptr [rbp + 0x48], 0xa
+1459574c7 4531c0 xor r8d, r8d
+1459574ca 488d15dfe92901 lea rdx, [rip + 0x129e9df]
+1459574d1 49b964656174685f636f movabs r9, 0x6f635f6874616564
+1459574db eb14 jmp 0x1459574f1
+1459574dd 0f1f00 nop dword ptr [rax]
+1459574e0 4983c078 add r8, 0x78
+1459574e4 4981f8f8340000 cmp r8, 0x34f8
+1459574eb 0f84dd0d0000 je 0x1459582ce
+1459574f1 49837c10080a cmp qword ptr [r8 + rdx + 8], 0xa
+1459574f7 75e7 jne 0x1459574e0
+1459574f9 498b0410 mov rax, qword ptr [r8 + rdx]
+1459574fd 488b08 mov rcx, qword ptr [rax]
+145957500 4c31c9 xor rcx, r9
+145957503 0fb74008 movzx eax, word ptr [rax + 8]
+145957507 4835696c0000 xor rax, 0x6c69
+14595750d 4809c8 or rax, rcx
+145957510 75ce jne 0x1459574e0
+145957512 450f28eb movaps xmm13, xmm11
+145957516 450f28dc movaps xmm11, xmm12
+14595751a 4901d0 add r8, rdx
+14595751d 488d4d60 lea rcx, [rbp + 0x60]
+145957521 4889da mov rdx, rbx
+145957524 e8872afeff call 0x145939fb0
+145957529 488d8bd0040000 lea rcx, [rbx + 0x4d0]
+145957530 8b4108 mov eax, dword ptr [rcx + 8]
+145957533 894548 mov dword ptr [rbp + 0x48], eax
+145957536 488b01 mov rax, qword ptr [rcx]
+145957539 48894540 mov qword ptr [rbp + 0x40], rax
+14595753d 4c8b6560 mov r12, qword ptr [rbp + 0x60]
+145957541 f3410f105c244c movss xmm3, dword ptr [r12 + 0x4c]
+145957548 48c744242800000000 mov qword ptr [rsp + 0x28], 0
+145957551 48c744242008000000 mov qword ptr [rsp + 0x20], 8
+14595755a 4889e9 mov rcx, rbp
+14595755d 4889da mov rdx, rbx
+145957560 4c8d4540 lea r8, [rbp + 0x40]
+145957564 e8873dfdff call 0x14592b2f0
+145957569 488b4d08 mov rcx, qword ptr [rbp + 8]
+14595756d 488b5510 mov rdx, qword ptr [rbp + 0x10]
+145957571 48894d28 mov qword ptr [rbp + 0x28], rcx
+145957575 4c8d83b8090000 lea r8, [rbx + 0x9b8]
+14595757c e83f360900 call 0x1459eabc0
+145957581 90 nop
+145957582 4885c0 test rax, rax
+145957585 450f28e3 movaps xmm12, xmm11
+145957589 0f84f80b0000 je 0x145958187

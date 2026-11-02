@@ -1,0 +1,419 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.120.0",
+    "sha256": "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08",
+    "size_bytes": 145447424
+  },
+  "native_ranges": [
+    {
+      "role": "race-collector",
+      "va": "0x145c42ab0",
+      "end_va": "0x145c42bf5",
+      "file_offset": "0x5c41eb0",
+      "byte_count": 325,
+      "sha256": "70669f600334016582eab15a6b375ca8805f17d717616a2b214ae196405e84c3",
+      "instruction_count": 79,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/race-account/race-collector.asm",
+        "sha256": "051b1d946e4ccbd73d5becc459a2e737cfd5ebb4952847424067b15a92880ce7"
+      },
+      "query_label": "collector"
+    },
+    {
+      "role": "race-next",
+      "va": "0x145c48790",
+      "end_va": "0x145c48b29",
+      "file_offset": "0x5c47b90",
+      "byte_count": 921,
+      "sha256": "59da4e8146ecd240e375deebd6badefe692ea7f632d2b82f148481d316a00a2f",
+      "instruction_count": 242,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/race-account/race-next.asm",
+        "sha256": "3dd2a51b70cb7cfa63e7886803c565de0c9d12fe0ff1f565cc5d90d31c9e172e"
+      },
+      "query_label": "race-next"
+    },
+    {
+      "role": "race-line-next",
+      "va": "0x145c1e760",
+      "end_va": "0x145c1ea88",
+      "file_offset": "0x5c1db60",
+      "byte_count": 808,
+      "sha256": "95432b07119e30a3fef59b66fc122cc0205b534536085fc4500454d3a24e2efe",
+      "instruction_count": 224,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/race-account/race-line-next.asm",
+        "sha256": "5d6211bdc99c1bc3846543ff1778ec63dc8f8b1a845bac30ad4a86e3666c9ac6"
+      },
+      "query_label": "race-line-next"
+    },
+    {
+      "role": "pick-normalize",
+      "va": "0x145a98160",
+      "end_va": "0x145a984e2",
+      "file_offset": "0x5a97560",
+      "byte_count": 898,
+      "sha256": "42f04cfefa488b3473c7670cd7bbda8f53cda3be1ff5786f9605f6da66dd6f0f",
+      "instruction_count": 238,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/race-account/pick-normalize.asm",
+        "sha256": "dcbc3e0379ebf0727236e750eccd443e0480b2d064f868821014198db36cca6c"
+      },
+      "query_label": "pick-normalize"
+    },
+    {
+      "role": "class-selector",
+      "va": "0x145a8bf80",
+      "end_va": "0x145a8c0ae",
+      "file_offset": "0x5a8b380",
+      "byte_count": 302,
+      "sha256": "28db7db9186f93eee4b6c0f7467e493d0598f5679b1b7df97ec38e7d7f250095",
+      "instruction_count": 94,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/race-account/class-selector.asm",
+        "sha256": "8b6ac64b21a75189716ae7c9d97f9cc76c9a18075b5f7da354e14df7144567be"
+      },
+      "query_label": "class-selector"
+    },
+    {
+      "role": "account-pick-clamp",
+      "va": "0x145a8b4c0",
+      "end_va": "0x145a8b6a3",
+      "file_offset": "0x5a8a8c0",
+      "byte_count": 483,
+      "sha256": "f4d120729cbdbe98f3d698096d23f5053fc227d87024c3e94c52c40e0abcd998",
+      "instruction_count": 132,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/race-account/account-pick-clamp.asm",
+        "sha256": "e2b56814ba7dae53239081fca38bf01d87e0d86827b7c0d14ad7ec37e023986e"
+      },
+      "query_label": "select-class"
+    },
+    {
+      "role": "class-switch",
+      "va": "0x145a8c0f0",
+      "end_va": "0x145a8c222",
+      "file_offset": "0x5a8b4f0",
+      "byte_count": 306,
+      "sha256": "6bc829d11b2a6e623f9d7a531985583baae2e8db2785b51008017e0bc203ad87",
+      "instruction_count": 89,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/race-account/class-switch.asm",
+        "sha256": "9822c1a3f44100d36d4784e7c5bcd1cfdd07d2ef49daec499bfe27b0d0008977"
+      },
+      "query_label": "set-hero"
+    },
+    {
+      "role": "race-id-valid",
+      "va": "0x145b49850",
+      "end_va": "0x145b49859",
+      "file_offset": "0x5b48c50",
+      "byte_count": 9,
+      "sha256": "bc51a8ac71cad5a23cdeeff2cbb6bd4dee8df65b196c31e42ebf13c3344ddbbe",
+      "instruction_count": 4,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/race-account/race-id-valid.asm",
+        "sha256": "87a51538a42452b2e6b9a2a5afcf02be5d94850c39c70dd78f794e17855a6d80"
+      },
+      "query_label": "save-loader"
+    },
+    {
+      "role": "loader-hero-domain",
+      "va": "0x145a90f94",
+      "end_va": "0x145a90fba",
+      "file_offset": "0x5a90394",
+      "byte_count": 38,
+      "sha256": "b50f06828a8cc88ad791ffae192b3f6ba2c68696f79b7fb84bf3b2dd1bac2fab",
+      "instruction_count": 9,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/race-account/loader-hero-domain.asm",
+        "sha256": "3bf4eef04512e68f3becddcb9a8f69a5de4b8b5752b9b8c5bdbd49d7a0e60af1"
+      },
+      "query_label": "save-loader"
+    },
+    {
+      "role": "loader-race-collection",
+      "va": "0x145a8fff7",
+      "end_va": "0x145a90091",
+      "file_offset": "0x5a8f3f7",
+      "byte_count": 154,
+      "sha256": "65b61370380b22a431a7ea7386d6f75d9793fb8a3c6a87381bf50e6e28473bf8",
+      "instruction_count": 21,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/race-account/loader-race-collection.asm",
+        "sha256": "78ac3f80da92b20285be47b57a409febbc98a89f6a3c4967becd02e0b5160ccd"
+      },
+      "query_label": "save-loader"
+    },
+    {
+      "role": "loader-race-sorting-entry",
+      "va": "0x145a91d60",
+      "end_va": "0x145a91db4",
+      "file_offset": "0x5a91160",
+      "byte_count": 84,
+      "sha256": "21634e7767c70e8f2e96eb8681ab2fcef5ae9e8ecf694e2675e3ad2b9c5e4058",
+      "instruction_count": 19,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/race-account/loader-race-sorting-entry.asm",
+        "sha256": "b364f556d6797785b2647d3458885268750f229364f7cfd8d2b0f64092c9fc51"
+      },
+      "query_label": "save-loader"
+    },
+    {
+      "role": "loader-race-sort-dedup",
+      "va": "0x145a92054",
+      "end_va": "0x145a921ad",
+      "file_offset": "0x5a91454",
+      "byte_count": 345,
+      "sha256": "c056a23ff8bfce23e64270e593713d578cd86443d9f728268cccb3a2861485f2",
+      "instruction_count": 99,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/race-account/loader-race-sort-dedup.asm",
+        "sha256": "965c711fa167465ec36a6388eb9be563039453c614434d8d05e091db893f1144"
+      },
+      "query_label": "save-loader"
+    },
+    {
+      "role": "loader-race-sort-large",
+      "va": "0x145a92300",
+      "end_va": "0x145a92318",
+      "file_offset": "0x5a91700",
+      "byte_count": 24,
+      "sha256": "6df250bc06e5356dde4817b8f1feb03e3107268206991d20d1ef10a142e48bd7",
+      "instruction_count": 6,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/race-account/loader-race-sort-large.asm",
+        "sha256": "d4ab394df7339f6b2d4808fde617fd9d5fc9df803a50ad57364fb41139b4ad4b"
+      },
+      "query_label": "save-loader"
+    },
+    {
+      "role": "loader-race-assignment",
+      "va": "0x145a90b0e",
+      "end_va": "0x145a90b2a",
+      "file_offset": "0x5a8ff0e",
+      "byte_count": 28,
+      "sha256": "c8af5acd3e1e941e9cef060741d604ff8cdb962c6a6270180bc9c22d472e87b5",
+      "instruction_count": 4,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/race-account/loader-race-assignment.asm",
+        "sha256": "497effe56dc951f8368ba045db328883ed5e198680b8a4ba988fdbe1dbb98719"
+      },
+      "query_label": "save-loader"
+    }
+  ],
+  "queries": [
+    {
+      "label": "collector",
+      "scope": "raw-bound-range",
+      "procedure": "0x145c42ab0",
+      "subject_sha256": "70669f600334016582eab15a6b375ca8805f17d717616a2b214ae196405e84c3",
+      "evidence_id": "ev_7d5674feb6568d0178619f0fe1b4cbbf4afcc75c1407361f680e9ba8e2906c8f",
+      "analysis_profile_digest": "01964b6d0c11cf50d9eca645d392d2d4a408cbaf67e17e9e873dbc27af6334f8",
+      "normalized_result_sha256": "7963a5c23085de3da8ca71d01f6d9101d8b85a1ab0c98773ff9ab2332422e101",
+      "plan": {
+        "path": "runtime/gap187/loader/collector-query/plan.json",
+        "sha256": "4530913600eb2fd9164936f1a48c32ea16bb3f7fe99765ada34d4f2a7311b814"
+      },
+      "journal": {
+        "path": "runtime/gap187/loader/collector-query/journal.json",
+        "sha256": "a6b003ec550c988147b6178d32c0a8e326cc468bc2c71823827b88d0284f38d7"
+      },
+      "result": {
+        "path": "runtime/gap187/loader/collector-query/results/980e2095ba8358c64051b0637f4f80d55c4212216e63bfc07f92d15177c553b3.json",
+        "sha256": "1f6f3b41749a2099197cb33acea88eb740bb4d777dee3dc9ff8b4ac9475a26fe"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.120.0/race-account/race-collector.c",
+        "sha256": "fb10aa27ed9801122dd17f51562e92e8e9b5634332a20e416407c3998de39620",
+        "formatting": "Trailing line whitespace and outer blank lines removed; original journal result retained unchanged."
+      }
+    },
+    {
+      "label": "race-next",
+      "scope": "raw-bound-range",
+      "procedure": "0x145c48790",
+      "subject_sha256": "59da4e8146ecd240e375deebd6badefe692ea7f632d2b82f148481d316a00a2f",
+      "evidence_id": "ev_748632af8238972903fcf348c3c4f8a10029e0810af0ff30beaf535e64190752",
+      "analysis_profile_digest": "bdec12f7f35c153643b629d90ca92bfdd66488d0f9fdf22188792776f8e549bd",
+      "normalized_result_sha256": "298258f874554f750174ff0aeafc252d2fc1b4d4ee464e8e717cd1559bc0c16d",
+      "plan": {
+        "path": "runtime/gap187/loader/race-next-query/plan.json",
+        "sha256": "b5f71ed1dd36610e40af5b268b093431d3d269f16dc9af791b05f9ddd95f5f79"
+      },
+      "journal": {
+        "path": "runtime/gap187/loader/race-next-query/journal.json",
+        "sha256": "8132a53436c1095ac6de66b5fa16e3b5f904a66b67ec05363753b52e49b03c3a"
+      },
+      "result": {
+        "path": "runtime/gap187/loader/race-next-query/results/322049632bfcb60e2b8da7c0ff77364bb2c95a9c2b724098a048d7360d7abc27.json",
+        "sha256": "a48b4c50694a6618d9fbc8cd327f9c38fae952b08053fb374e57bdae1dfb094c"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.120.0/race-account/race-next.c",
+        "sha256": "496500b60e2e42bcbca8090bbc8133072d22c45d364d7106fd02687388cea604",
+        "formatting": "Trailing line whitespace and outer blank lines removed; original journal result retained unchanged."
+      }
+    },
+    {
+      "label": "race-line-next",
+      "scope": "raw-bound-range",
+      "procedure": "0x145c1e760",
+      "subject_sha256": "95432b07119e30a3fef59b66fc122cc0205b534536085fc4500454d3a24e2efe",
+      "evidence_id": "ev_2ab3f31e3a7c6ecf8d719294ec0c90db49ccadcb64a8c09fc239cad3a284ae8c",
+      "analysis_profile_digest": "b67901ad43b1fe06a8ddacfe949311042822affe038e4e3bb56f025312d05d62",
+      "normalized_result_sha256": "6adc2458434a4dd2955a6f25fc66e5840bd2207493b96e6a352f3d7aa614890e",
+      "plan": {
+        "path": "runtime/gap187/loader/race-line-next-query/plan.json",
+        "sha256": "0362d35e359007253cd013a95d37a9cbf538db234efd3ee838262d5b5526de06"
+      },
+      "journal": {
+        "path": "runtime/gap187/loader/race-line-next-query/journal.json",
+        "sha256": "71d664797e8da72bb2ebbecc75ba22537d7bcdfec16b6037f533ba3831c50da8"
+      },
+      "result": {
+        "path": "runtime/gap187/loader/race-line-next-query/results/e549b06bd027628c32ecac630d17e0393e86138051cdf03497d8ccc1e752e219.json",
+        "sha256": "56ddf73a62f9b0c60616043fa5aecafc092660f68447fcbb70171fa8ee0dcc00"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.120.0/race-account/race-line-next.c",
+        "sha256": "a8a45112f3fb9cc48bc5761117d36cd0c89b87d1f96543d2441df52bee410f61",
+        "formatting": "Trailing line whitespace and outer blank lines removed; original journal result retained unchanged."
+      }
+    },
+    {
+      "label": "pick-normalize",
+      "scope": "raw-bound-range",
+      "procedure": "0x145a98160",
+      "subject_sha256": "42f04cfefa488b3473c7670cd7bbda8f53cda3be1ff5786f9605f6da66dd6f0f",
+      "evidence_id": "ev_27d7a0b437ce27c06e3bb66fc4af311f33e1e1ab8f5088f3641b0befec5f4b7e",
+      "analysis_profile_digest": "7f25635190e00623dccdbf785823903369f7c2c040ba0a4cdd11cd878e5c4758",
+      "normalized_result_sha256": "fed5bfe04320edfbb66bbf55a060ddcd2b293987832307730eef8eb366dcec0d",
+      "plan": {
+        "path": "runtime/gap187/loader/pick-normalize-query/plan.json",
+        "sha256": "dea072dfffed7073de8bd81349b63c22a1db78728403a07233bc4cc89dd65662"
+      },
+      "journal": {
+        "path": "runtime/gap187/loader/pick-normalize-query/journal.json",
+        "sha256": "42ee7bd503baeabd23dab0b88c1f6581eb1940da0fc9d59c710d08a661e770aa"
+      },
+      "result": {
+        "path": "runtime/gap187/loader/pick-normalize-query/results/0efa92e6325daf34c76b33f562649bd3a804cf9c996d3ceccb529ce8afeea340.json",
+        "sha256": "0b12126377d2fbf92083e084e1d017d83f9edcae8376956074913d5be8451d21"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.120.0/race-account/pick-normalize.c",
+        "sha256": "4de20df22fea3acc1944bd9bba0f3256bb1b8a8ebff1a4d60ccf81a2874fc7e8",
+        "formatting": "Trailing line whitespace and outer blank lines removed; original journal result retained unchanged."
+      }
+    },
+    {
+      "label": "class-selector",
+      "scope": "raw-bound-range",
+      "procedure": "0x145a8bf80",
+      "subject_sha256": "28db7db9186f93eee4b6c0f7467e493d0598f5679b1b7df97ec38e7d7f250095",
+      "evidence_id": "ev_41e8cf6cd52365a27859954fc078938c74f6a59902cc7173e3cfc27a05fce7b2",
+      "analysis_profile_digest": "b50da7827739281f1398a12188e93227c3d8e755a7a57766eefdd8c9a92cf9cc",
+      "normalized_result_sha256": "df695f6cd14a23d20aef876289acb5cb7919b7ed2ad3c5066d7b64f0aae7d9a4",
+      "plan": {
+        "path": "runtime/gap187/loader/class-selector-query/plan.json",
+        "sha256": "9e655ab2a6aded271a2a3ae9f6171516d1236985516a640a6cb3f409481f7af7"
+      },
+      "journal": {
+        "path": "runtime/gap187/loader/class-selector-query/journal.json",
+        "sha256": "043d1e9c931d94ade4e1231c6deecd977e7b91901daf561a92f44b412be8e964"
+      },
+      "result": {
+        "path": "runtime/gap187/loader/class-selector-query/results/2c298afeb32d159a6abe8bc406e2ec7b9a30446df672790a195d59f2cb1c01c4.json",
+        "sha256": "ac278d870cf9be36f279de244972e628861bf25a583f91b726fe6798e718d124"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.120.0/race-account/class-selector.c",
+        "sha256": "527cc7ba78c06eeb2d73637ba66812a03bb85327bb7438b12cb7d41262e30734",
+        "formatting": "Trailing line whitespace and outer blank lines removed; original journal result retained unchanged."
+      }
+    },
+    {
+      "label": "select-class",
+      "scope": "raw-bound-range",
+      "procedure": "0x145a8b4c0",
+      "subject_sha256": "f4d120729cbdbe98f3d698096d23f5053fc227d87024c3e94c52c40e0abcd998",
+      "evidence_id": "ev_5d9ecb3b783d222a8402dabd8b7a20e7e77a10b881dcc7d3889a3a5940a7770d",
+      "analysis_profile_digest": "bdc985fe6df7efc118df11fb7e29543e384c48f44a9480e0a4a2ebac5bf5d0d2",
+      "normalized_result_sha256": "5e5944fddfb582af7c705bae17d1d11193e3f5e99c0c420fc282224e95e21e66",
+      "plan": {
+        "path": "runtime/gap187/loader/select-class-query/plan.json",
+        "sha256": "78edf88d3084cbdd3de6de0c2c1a4778731857a8101eb6cc3f65495fc9923ef5"
+      },
+      "journal": {
+        "path": "runtime/gap187/loader/select-class-query/journal.json",
+        "sha256": "6a0eddffe10c7bd58b3efc248ecf1f36d877317fa9d52a883ccb6a3b8f7587c1"
+      },
+      "result": {
+        "path": "runtime/gap187/loader/select-class-query/results/3317a19c7f5f23d66f4cbf345d41f7e68e9a5689d9846b79484bec59621d726e.json",
+        "sha256": "c0da3cbf537459ed7e825968afa46223a5d42c5b981a653425050b33e9ba6be0"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.120.0/race-account/account-pick-clamp.c",
+        "sha256": "0c399d0b77f7d85f85b627fbaab571385340784a465b4ba6e82b34c5f4fc09fe",
+        "formatting": "Trailing line whitespace and outer blank lines removed; original journal result retained unchanged."
+      }
+    },
+    {
+      "label": "set-hero",
+      "scope": "raw-bound-range",
+      "procedure": "0x145a8c0f0",
+      "subject_sha256": "6bc829d11b2a6e623f9d7a531985583baae2e8db2785b51008017e0bc203ad87",
+      "evidence_id": "ev_fc784e067c429e20fdd18c48ddc70507ecf6a58b297d70366e39dd4265bebd64",
+      "analysis_profile_digest": "a828394e3bb8817b704bb7b9714981407512c07630e4a82dcfc8c6de2fcecdad",
+      "normalized_result_sha256": "ffca5e50a0c2a501b35035dec657d3d6069f7953300f2dc99c1fa9d7519b139c",
+      "plan": {
+        "path": "runtime/gap187/loader/set-hero-query/plan.json",
+        "sha256": "e6fed2cc28c03b5ebab4f8c8ea1387868d38dd0346bdc38a71b402e373679eb1"
+      },
+      "journal": {
+        "path": "runtime/gap187/loader/set-hero-query/journal.json",
+        "sha256": "6e3b411c25a8d69f1d9e75333771acfdfff440bc6e12dc908e99449078f81ad4"
+      },
+      "result": {
+        "path": "runtime/gap187/loader/set-hero-query/results/cfed89cfc1f97b759683aa6e78c074a4e34bdc126244e01ed630f490bdd1992c.json",
+        "sha256": "c036e04cfa92a5485c8d936532ce46852f489501395a2c1b70ad3ffc86b3a90a"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.120.0/race-account/class-switch.c",
+        "sha256": "13528afd646f4b3b7c7e698e52f1c6d5acc38cfdb2ec79a05c7096422f60df5d",
+        "formatting": "Trailing line whitespace and outer blank lines removed; original journal result retained unchanged."
+      }
+    },
+    {
+      "label": "save-loader",
+      "procedure": "0x145a8d990",
+      "evidence_id": "ev_cd169dde50a229df93d27be6dee6fc7a42d0124dd223d624cb4c17dcf6d333f7",
+      "ghidra_evidence_id": "ev_cd169dde50a229df93d27be6dee6fc7a42d0124dd223d624cb4c17dcf6d333f7",
+      "analysis_profile_digest": "06262b06abe45173e59c789812058e6061b5206870259300b5b81aa27e9de8fb",
+      "result": {
+        "path": "runtime/execheck-0.120.0-races/contracts-query/results/b8de7289a9c3f41d8d3e29b63f9b3ad5e71ecf658365d2b0cb55be24222303a0.json",
+        "sha256": "a8bee780bb531e42d11dd059b15f3950a698cc12025652317794125ed28a9501"
+      },
+      "plan": {
+        "path": "runtime/execheck-0.120.0-races/contracts-plan.json",
+        "sha256": "a8cd31c1fe35cc584f54364daf8920ff110b39099fed9521636d99363d1ee793"
+      },
+      "journal": {
+        "path": "runtime/execheck-0.120.0-races/contracts-query/journal.json",
+        "sha256": "6843ededf8946038d24025fa7f1a144e9a0d26418fba65f99c05daafcfd1616d"
+      },
+      "normalized_result_sha256": "f3d3c7e0df7de0e5f3724152a3848dd84927b5f7dbe4487cd4a9394513cf723c",
+      "subject_sha256": "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08",
+      "status": "completed",
+      "scope": "full-PE",
+      "role_status": "bounded_query_read_with_exact_PE_instruction_ranges"
+    }
+  ],
+  "strings": [],
+  "source_receipts": [],
+  "limits": [
+    "Curated pseudocode removes trailing line whitespace and outer blank lines; raw Ghidra normalized-result commitments are preserved separately."
+  ]
+}

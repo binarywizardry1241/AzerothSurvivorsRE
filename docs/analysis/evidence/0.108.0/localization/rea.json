@@ -1,0 +1,23 @@
+{
+  "target_sha256": "dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b",
+  "queries": [
+    {
+      "role": "lookup",
+      "evidence_id": "ev_dae786c76621cd798204d6033a58d5eeda24166e4782b128bf0d7602c8b31f8d",
+      "subject_sha256": "2458ffade0cd506b02172f7f2bba8695c41a964835eca7fb25c30b62b0cbafc5",
+      "pseudocode": "lookup.c",
+      "pseudocode_sha256": "bfd959042666a4b877a503d888ddcfcfac1b124728ce5e06ddeaa8259843ab80"
+    },
+    {
+      "role": "select",
+      "evidence_id": "ev_f0b01c15642ce953efdf226b8c4a02cca64a49feb7c0d7b231402825bceacef2",
+      "subject_sha256": "a031624ce604d0a80f30c2c831bd925b4dac21efd331fde506e70bd73c79890d",
+      "pseudocode": "select.c",
+      "pseudocode_sha256": "ff870abce775cd6e125d31eca6d58e4c4819d9c2a41874534c393c2d736a764e"
+    }
+  ],
+  "limits": [
+    "Ghidra raw imports omit original external memory/callees and use a generic ABI; original PE instructions govern."
+  ],
+  "text_normalization": "Trailing whitespace and leading/trailing blank lines removed."
+}

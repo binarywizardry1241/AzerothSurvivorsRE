@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.119.0",
+    "sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f",
+    "size_bytes": 145357824
+  },
+  "gap_ids": [
+    41,
+    63,
+    180
+  ],
+  "lead_ids": [
+    "Q41-F01",
+    "Q41-M01"
+  ],
+  "generator": {
+    "path": "scripts/check-guest-engine-admission-0.119.0.py",
+    "sha256": "6a3b1aa1e5d23ab64987f51ac67abeebb05131287fb0852b6e005162eb4edb54"
+  },
+  "ranges": [
+    {
+      "role": "predicate",
+      "start": "0x145ae0ce0",
+      "end_exclusive": "0x145ae0e04",
+      "file_offset": "0x5ae00e0",
+      "sha256": "b44a1ea1ceb031a2ce1ea394b8ff5bd329788c3f364f18adcc4b3dbb3a0c672f"
+    },
+    {
+      "role": "table",
+      "start": "0x1472da60c",
+      "end_exclusive": "0x1472dab30",
+      "file_offset": "0x72d940c",
+      "sha256": "63c18d92ab073a04160d4fc9025c7a2afbc2eb5bdf67f03122d6da26f4e09597"
+    },
+    {
+      "role": "receiver",
+      "start": "0x145b1cd70",
+      "end_exclusive": "0x145b1cdee",
+      "file_offset": "0x5b1c170",
+      "sha256": "e958a28af42de3cfe5b9d2b98477881d9fd00fe23ecc078b5756428c05fc4136"
+    },
+    {
+      "role": "callback-preparation",
+      "start": "0x145b1d4f8",
+      "end_exclusive": "0x145b1d520",
+      "file_offset": "0x5b1c8f8",
+      "sha256": "07a8f2c3d57b6256afe14a62311792a5ebac879266968d4bb62d80f6c564bc14"
+    },
+    {
+      "role": "login-sync-writer",
+      "start": "0x145b099ee",
+      "end_exclusive": "0x145b09a1c",
+      "file_offset": "0x5b08dee",
+      "sha256": "d624b51b7cc054d0a1d760089b43b20042f994f30f486f91a09233532eb4aa59"
+    }
+  ],
+  "reused_queries": [
+    {
+      "role": "guest-engine-admission",
+      "original_manifest": "docs/analysis/evidence/0.119.0/coop-item-registry/manifest.json",
+      "evidence_id": "ev_f90b92fd9effc255f93c47833338a85ecd2da205404b61cd2a3abe6769a57bbf",
+      "analysis_profile_digest": "c3b786d30c732365ac1a16729d4cacde80b05183d8b1ece2f14ca7d4459be0a6",
+      "result": {
+        "path": "runtime/gap101-0.119.0/guest-engine-admission-v2-query/results/536c68811aefbf3aa1a7801ae8be3f73d71c1e0aa9dc5a85bff1b1c99ed7f35f.json",
+        "sha256": "008ae00480ddf34a479b31cae9660bd8da67c23ccdd009a4e315620bf1e35af6"
+      },
+      "input_sha256": "b44a1ea1ceb031a2ce1ea394b8ff5bd329788c3f364f18adcc4b3dbb3a0c672f",
+      "normalized_sha256": "d9e980ebf4a7b0bddfe703d5d79c841ccde168047377095476c98bfed99dba97"
+    },
+    {
+      "role": "guest-request",
+      "original_manifest": "docs/analysis/evidence/0.119.0/coop-item-registry/manifest.json",
+      "evidence_id": "ev_d4502472a3b98aa1a8bf7c10ce38d50bb319ef213a4222d0c324a645074be23b",
+      "analysis_profile_digest": "a31b5aba28c9a4728384678f7329a3e75897b8ebb34695636462e442e72144ab",
+      "result": {
+        "path": "runtime/gap101-0.119.0/guest-routing-query/results/d32c6f8261b251fc220c5e40b2e16b8e52fd2e81cde21a7b3b047574dc23183f.json",
+        "sha256": "beb16be9b706fa72129b381a639adbc0a500eddc03d2c2040058b5c21717825c"
+      },
+      "input_sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f",
+      "normalized_sha256": "c27a0c2b016624b34451cb2049bb20539c99374eeeb555f5627b82b87bb40ec3"
+    },
+    {
+      "role": "guest-receive",
+      "original_manifest": "docs/analysis/evidence/0.119.0/coop-item-registry/manifest.json",
+      "evidence_id": "ev_a93944f357780eef52fd46a2054a7b74b1d3e6da1cda72869d5df821c3052509",
+      "analysis_profile_digest": "a31b5aba28c9a4728384678f7329a3e75897b8ebb34695636462e442e72144ab",
+      "result": {
+        "path": "runtime/gap101-0.119.0/guest-routing-query/results/d07fb5e332292bd8f72b2485ef3a34c24291bc71c9c513d64209473fe08656e9.json",
+        "sha256": "67cffaf67b951a257417b77258ffbc042e7ccda9363eff78ef69b73d9d44a5ba"
+      },
+      "input_sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f",
+      "normalized_sha256": "6aeb2427da645bf6179859918aa6deda4f98dd630e929d2cb6bd82835f01d079"
+    },
+    {
+      "role": "guest-callback",
+      "original_manifest": "docs/analysis/evidence/0.119.0/coop-item-registry/manifest.json",
+      "evidence_id": "ev_926ab391d1337d17303e8397cb22f7198e83b5b5a3540710bfc781d70d8f93d0",
+      "analysis_profile_digest": "5cd6d428eb3f2bfa89af292de65d258205b886eebb94cec1a0edf31e731c1ab2",
+      "result": {
+        "path": "runtime/gap101-0.119.0/delivery-query/results/d222d764a1b84a7cecebb6e514ebb320c833745d3d0d6ac8a238df79bf518fe8.json",
+        "sha256": "e6b4d44a3017bebab4468302bd996cd7798516fd3165bbcd38720b02886e9074"
+      },
+      "input_sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f",
+      "normalized_sha256": "e681f00018c9b3822069d2a9e9f73ae64b2cfb70e321d2da11c5cb5a06af6b0c"
+    }
+  ],
+  "table_cells": 329,
+  "table_destinations": [
+    "0x145ae0d4c",
+    "0x145ae0de5"
+  ],
+  "admitted_opcodes": [
+    "0x42",
+    "0x51",
+    "0x58",
+    "0x5f",
+    "0x61",
+    "0x7d",
+    "0x96",
+    "0xa9",
+    "0xaa",
+    "0xb5",
+    "0xb6",
+    "0xb7",
+    "0xb8",
+    "0xb9",
+    "0xba",
+    "0xbb",
+    "0xbc",
+    "0xbd",
+    "0xbe",
+    "0xbf",
+    "0xc0",
+    "0xc1",
+    "0xc2",
+    "0xc3",
+    "0xc4",
+    "0xc5",
+    "0xc6",
+    "0xc7",
+    "0xc8",
+    "0xc9",
+    "0xca",
+    "0xcb",
+    "0xda",
+    "0xdb",
+    "0xdd",
+    "0xe2",
+    "0xe8",
+    "0xea",
+    "0xee",
+    "0xef",
+    "0xfd",
+    "0x103",
+    "0x112",
+    "0x122",
+    "0x129",
+    "0x12a",
+    "0x12b",
+    "0x130",
+    "0x131",
+    "0x132",
+    "0x134",
+    "0x135",
+    "0x137",
+    "0x143",
+    "0x144",
+    "0x14a",
+    "0x150",
+    "0x155",
+    "0x17d",
+    "0x17e",
+    "0x180",
+    "0x1cb",
+    "0x1d0",
+    "0x1de",
+    "0x1f3",
+    "0x209",
+    "0x224",
+    "0x236",
+    "0x24e",
+    "0x250",
+    "0x277",
+    "0x2c2",
+    "0x2d2",
+    "0x2f4",
+    "0x321"
+  ],
+  "opcode_lengths": [
+    0,
+    65533,
+    65534,
+    18446744073709551615
+  ],
+  "counts": {
+    "opcode_length_cases": 262144,
+    "receiver_cases": 2625,
+    "receiver_admitted": 144,
+    "native_instructions": 6070981
+  },
+  "opcode_matrix_sha256": "e1c0b15754b1d01acd222b91aa0dd799a9a06af2b0d60c2496f3fb1fbae0a5d4",
+  "receiver_matrix_sha256": "b1684d0021cd664239e032fb9a694fea95b0b2fd1eeac478967f3d82e3f780a3",
+  "source_slices": [
+    {
+      "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+      "start_marker": "// 0.119.0 helper145ae0ce0",
+      "end_marker": "/// Server initializer",
+      "sha256": "33ff82bdb301a7e28fdc336a07d0a26e14639d11bd0b4b70c248469b62c1b957"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+      "start_marker": "    fn guest_engine_packet(",
+      "end_marker": "    pub(crate) fn leave(",
+      "sha256": "d296773753c59f3d6b0eb64beb60277da001e5f2e39801e6a384c9813846a4b9"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+      "start_marker": "            NativeMessage::Lifecycle(LifecyclePacket::EngineCommand { opcode, payload }) => {\n",
+      "end_marker": "            NativeMessage::ZoneKey(zone) if guest => {\n",
+      "sha256": "d73288a50222ae39a19dbf40f4c8b76e62dfdcb4bfd92563c735254415d6cad4"
+    }
+  ],
+  "limits": [
+    "Only the original pure admission predicate, receiver prefix and callback argument preparation execute in Unicorn.",
+    "Receiver replay stops before rejection cleanup or engine callback; no host-call substitution is used.",
+    "Native mode/sync/vector state is synthetic; actual transport/client/engine lifetimes and scheduling are unexecuted.",
+    "The source local engine-port adapter uses LocalClientSession.active, independently of world readiness.",
+    "The table is fully bounded by the original opcode subtraction/comparison; no neighboring cells are inferred.",
+    "Rust regressions are authored but uncompiled/unrun. No game/server/socket execution or original/rebuilt parity."
+  ],
+  "source_defect_repaired": true,
+  "guest_item_registry_bridge": "unchanged_unrecovered",
+  "compilation": "not_run",
+  "runtime_validation": "not_run",
+  "parity": "unverified"
+}

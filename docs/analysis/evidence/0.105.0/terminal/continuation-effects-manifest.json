@@ -1,0 +1,102 @@
+{
+  "target": "AzerothSurvivors/AzerothSurvivors-0.105.0.exe",
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "ranges": [
+    {
+      "role": "unroot-packet",
+      "sha256": "999f3fbb7f37d5e8a93fb6ad322079bc7ff57ddaad755f355a764545752d6551",
+      "assembly": "unroot-packet.asm",
+      "rea_evidence_id": "ev_3d3568119427e81103b2e024d482e8d1e3d9961d8975e4d1802fca82fdcb6a07",
+      "limitations": [
+        "Raw-binary Ghidra maps the unchanged function at its original VA; external callees/data omitted.",
+        "Assembly and data are verified separately against full supplied PE."
+      ],
+      "start": "0x1458aa3b0",
+      "end_exclusive": "0x1458aa49b",
+      "file_offset": "0x58a97b0"
+    },
+    {
+      "role": "notification-packet",
+      "sha256": "b03b6e71f6193352a97a45611b64a68bbc3aad29ba845f7a2a0457ac91059d56",
+      "assembly": "notification-packet.asm",
+      "rea_evidence_id": "ev_99368dc335203d3ded077dd8ffc1ac49233250d52d54172dfcf73a0974271738",
+      "limitations": [
+        "Raw-binary Ghidra maps the unchanged function at its original VA; external callees/data omitted.",
+        "Assembly and data are verified separately against full supplied PE."
+      ],
+      "start": "0x1458a9500",
+      "end_exclusive": "0x1458a97d9",
+      "file_offset": "0x58a8900"
+    },
+    {
+      "role": "movement-counter-init",
+      "sha256": "e6098f8425efc2411ffe9e38c692a9a829f20fa857ce7c92ac78bbc9b90e9fff",
+      "assembly": "player-mover-counter.asm",
+      "rea_evidence_id": "ev_0c0b8f66fe12919aa79fa32a75d3d8604beb8ef370117c7461205e229946cc24",
+      "limitations": [
+        "Raw-binary Ghidra maps the unchanged function at its original VA; external callees/data omitted.",
+        "Assembly and data are verified separately against full supplied PE."
+      ],
+      "start": "0x145900230",
+      "end_exclusive": "0x145901729",
+      "file_offset": "0x58ff630",
+      "assembly_scope": "Selected initializer/store/copy instructions retained; complete owner bytes identified by this range hash and Ghidra evidence identity."
+    },
+    {
+      "role": "fresh-counter-store",
+      "sha256": "b84eb34fa0761b55dd3a2fdc3a76583be593a86ec721ab2eefba87de16e043cb",
+      "assembly": "player-mover-counter.asm",
+      "method": "Original PE instructions, bounded window; counter ownership traced in complete parent functions.",
+      "start": "0x1459009a9",
+      "end_exclusive": "0x1459009ba",
+      "file_offset": "0x58ffda9"
+    },
+    {
+      "role": "fresh-game-output-copy",
+      "sha256": "f580f6154c37fab0e89d52739a2d7addbb573802f357bbaf31d79a0990ae4fc3",
+      "assembly": "player-mover-counter.asm",
+      "method": "Original PE instructions, bounded window; counter ownership traced in complete parent functions.",
+      "start": "0x14590157b",
+      "end_exclusive": "0x145901594",
+      "file_offset": "0x590097b"
+    },
+    {
+      "role": "player-knockback-counter",
+      "sha256": "79ccd3f9d77832c63ccb5062aaaf527624cec128c3fb1ad5eaf57b7892c86407",
+      "assembly": "player-mover-counter.asm",
+      "method": "Original PE instructions, bounded window; counter ownership traced in complete parent functions.",
+      "start": "0x1458f9368",
+      "end_exclusive": "0x1458f93b4",
+      "file_offset": "0x58f8768"
+    },
+    {
+      "role": "player-speed-counter",
+      "sha256": "9f3c5b8ff395fbcb20b0d987489b08cfcdeec3febdc2634d3c6b1084aebaa8a9",
+      "assembly": "player-mover-counter.asm",
+      "method": "Original PE instructions, bounded window; counter ownership traced in complete parent functions.",
+      "start": "0x1458fa0fb",
+      "end_exclusive": "0x1458fa12b",
+      "file_offset": "0x58f94fb"
+    },
+    {
+      "role": "tick-player-relocation-counter",
+      "sha256": "fc49ccb00518bde94bb3a596d7252d5fc7b440f0d7900a079797cec4de227257",
+      "assembly": "player-mover-counter.asm",
+      "method": "Original PE instructions, bounded window; counter ownership traced in complete parent functions.",
+      "start": "0x145902402",
+      "end_exclusive": "0x145902457",
+      "file_offset": "0x5901802"
+    },
+    {
+      "role": "victory-root-counter",
+      "sha256": "7bf72734c1619fb59646e4b3fcca21859bc8506eb44e34fb60fe253b2a1846d3",
+      "assembly": "player-mover-counter.asm",
+      "method": "Original PE instructions, bounded window; counter ownership traced in complete parent functions.",
+      "start": "0x14590fea9",
+      "end_exclusive": "0x14590ff16",
+      "file_offset": "0x590f2a9"
+    }
+  ],
+  "canonical_continue_owner": "continue-endless.asm",
+  "canonical_continue_owner_sha256": "9ff61dc81883ce0c56ad6b6b63e9aef63ddcf46a34dc736502547ca9b121d5b7"
+}

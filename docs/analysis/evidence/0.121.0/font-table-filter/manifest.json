@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "gap_ids": [
+    41,
+    250
+  ],
+  "lead_id": "Q41-U03:font-SFNT-filter",
+  "generator": {
+    "path": "scripts/check-font-table-filter-0.121.0.py",
+    "sha256": "30224e4e7069f09b80252bb4225403ccbfc0f6600ae0af05c75812bad55506c8"
+  },
+  "native_ranges": [
+    {
+      "role": "filter-and-copy",
+      "virtual_address": "0x145ac7d85",
+      "end_exclusive": "0x145ac812a",
+      "file_offset": "0x5ac7185",
+      "byte_count": 933,
+      "sha256": "8b36a92fb347c936b46c500ccdd691cd6969829a375b86318990e866f4609c62",
+      "instruction_count": 181
+    },
+    {
+      "role": "iteration-setup",
+      "virtual_address": "0x145ac7bd0",
+      "end_exclusive": "0x145ac7c03",
+      "file_offset": "0x5ac6fd0",
+      "byte_count": 51,
+      "sha256": "a6b9b5b61c44dcd10617e230a2ad3c590d6ddce258d8ee618644b668bc21b503",
+      "instruction_count": 8
+    },
+    {
+      "role": "change-gate",
+      "virtual_address": "0x145ac7367",
+      "end_exclusive": "0x145ac7374",
+      "file_offset": "0x5ac6767",
+      "byte_count": 13,
+      "sha256": "aeaf3df8136d87e8c0a15c6fdd3084caf008c7cdc48b73d38a4780f55a43d75f",
+      "instruction_count": 2
+    },
+    {
+      "role": "unchanged-copy",
+      "virtual_address": "0x145ac78ed",
+      "end_exclusive": "0x145ac7973",
+      "file_offset": "0x5ac6ced",
+      "byte_count": 134,
+      "sha256": "0b2d6a5a6314ac31ae7705decf9b44c16a0e96cfccad4a1157aa57230486fb66",
+      "instruction_count": 23
+    },
+    {
+      "role": "modification-count-init",
+      "virtual_address": "0x145ac66b2",
+      "end_exclusive": "0x145ac66bc",
+      "file_offset": "0x5ac5ab2",
+      "byte_count": 10,
+      "sha256": "e87c047974239325b40de1e29be511092c681cc07017970b4c662e4fc21f77c4",
+      "instruction_count": 1
+    },
+    {
+      "role": "composite-count",
+      "virtual_address": "0x145ac6e07",
+      "end_exclusive": "0x145ac6e12",
+      "file_offset": "0x5ac6207",
+      "byte_count": 11,
+      "sha256": "5215dd45aa293ec756ad0109234c35f5a5ac790af1889ebfa97f6e07a7e3f6a8",
+      "instruction_count": 2
+    },
+    {
+      "role": "alias-count",
+      "virtual_address": "0x145ac6e95",
+      "end_exclusive": "0x145ac6e9d",
+      "file_offset": "0x5ac6295",
+      "byte_count": 8,
+      "sha256": "cfcf78e0ff5eb04ae3a56d2cafe29957389635e10831fba7390c9db2f8ad143e",
+      "instruction_count": 2
+    },
+    {
+      "role": "mirror-count",
+      "virtual_address": "0x145ac71d9",
+      "end_exclusive": "0x145ac71ec",
+      "file_offset": "0x5ac65d9",
+      "byte_count": 19,
+      "sha256": "6462f9e6201edc4cbb2068047683df7b2388eb6ee2d08d9ce565b95b51648f02",
+      "instruction_count": 4
+    }
+  ],
+  "native_data": [
+    {
+      "role": "first-byte-table",
+      "virtual_address": "0x14730de70",
+      "byte_count": 180,
+      "sha256": "1649e88cb58b91f7dbd14c3d70e3414da38f848bbb6b4529d8b678e6dfddbe27",
+      "bytes_hex": "4c9f7bfe37a27bfe37a27bfe37a27bfe37a27bfe37a27bfe37a27bfe37a27bfe809f7bfe37a27bfe37a27bfe37a27bfe37a27bfe37a27bfe37a27bfe37a27bfe37a27bfe37a27bfeb89f7bfe37a27bfe37a27bfe37a27bfe37a27bfe37a27bfe37a27bfe37a27bfe37a27bfe37a27bfe37a27bfe37a27bfe37a27bfef09f7bfe37a27bfe37a27bfe37a27bfe28a07bfe74a07bfe37a27bfe37a27bfe37a27bfec2a07bfe0ea17bfe37a27bfe37a27bfe57a17bfe"
+    },
+    {
+      "role": "h-second-byte-table",
+      "virtual_address": "0x14730df24",
+      "byte_count": 40,
+      "sha256": "58e47a8c7393f17fed49bba3e6d45d88a03825c5f94e6eed998d596d95707ebb",
+      "bytes_hex": "e79f7bfeeca07bfe83a17bfe83a17bfe20a17bfe83a17bfe83a17bfe83a17bfe83a17bfe50a17bfe"
+    }
+  ],
+  "queries": [
+    {
+      "role": "SFNT-table-filter",
+      "procedure": "0x145ac7d85",
+      "plan": {
+        "path": "runtime/q41-font-filter-0.121.0/plan-v2.json",
+        "sha256": "e5ee156b5854e338acccdb342bca696a5c7ab83f4d2e637f7280210f3aea6e45"
+      },
+      "journal": {
+        "path": "runtime/q41-font-filter-0.121.0/query-v2/journal.json",
+        "sha256": "5a5518cb2886542fa82424aa56dc29f093ea5e848980a2f02a5d5ce81f7d9abb"
+      },
+      "result": {
+        "path": "runtime/q41-font-filter-0.121.0/query-v2/results/ac4cf4a0dd8969a87f5407734ecd8465d0af374ac87ed790404e9e949f0faca2.json",
+        "sha256": "6752aaa7e2599a948a54f9b81636a5f14b7bfb0768646472fe79d7ef02bc22e9"
+      },
+      "raw_input": {
+        "path": "runtime/q41-font-filter-0.121.0/code.bin",
+        "sha256": "8b36a92fb347c936b46c500ccdd691cd6969829a375b86318990e866f4609c62"
+      },
+      "slice_virtual_address": "0x145ac7d85",
+      "evidence_id": "ev_a8ccc0ed85dc7d1937f8d63a44a70d07b13ef36e5b5f4fab9082975444b384e7",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "7879192c2aee66c50347188b40cc7a75bd027a67b6ffb436e6513059705b9e29",
+      "normalized_text_sha256": "39c2afd6d0c4bac7bdc38a9004e02a575f87aa840c9b4af179cbd35ae3936199"
+    }
+  ],
+  "source": [
+    {
+      "path": "crates/azeroth-survivors-re/src/font_patch.rs",
+      "sha256": "a065f17f9ada424d59caad718a4d8fc5f8762b837d22e4eb4f781cc3a6037acb"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/menu_fonts.rs",
+      "sha256": "163bf2e865d3d518644d0756f2cc5f20851e98e1c6e11ed3b0cc81ca015091b3"
+    }
+  ],
+  "recovered": {
+    "drop_original_tags": [
+      "DSIG",
+      "LTSH",
+      "VDMX",
+      "hdmx"
+    ],
+    "replace_tags": [
+      "cmap",
+      "glyf",
+      "head",
+      "hhea",
+      "hmtx",
+      "loca",
+      "maxp",
+      "post"
+    ],
+    "other_tags": "copy the original table payload",
+    "change_gate": "zero modifications copies original input; positive modification count rebuilds",
+    "source_correction": "After unchanged-input return, remove only DSIG/LTSH/VDMX/hdmx before rebuilding the eight replaced tables and serializing."
+  },
+  "static_validation": {
+    "tag_cases": 12506,
+    "tag_classifications": {
+      "drop": 4,
+      "replace": 8,
+      "copy": 12494
+    },
+    "case_result_sha256": "2e2bea0535de0ab814b93643c2bba9cd26bc6808bd14e8743bff24bbffa8b355",
+    "gate_cases": [
+      [
+        0,
+        "unchanged"
+      ],
+      [
+        1,
+        "rebuild"
+      ],
+      [
+        49,
+        "rebuild"
+      ],
+      [
+        4294967295,
+        "rebuild"
+      ]
+    ],
+    "copy_cases": [
+      [
+        "unmatched-table",
+        0
+      ],
+      [
+        "unmatched-table",
+        20
+      ],
+      [
+        "unmatched-table",
+        256
+      ],
+      [
+        "unchanged-input",
+        0
+      ],
+      [
+        "unchanged-input",
+        20
+      ],
+      [
+        "unchanged-input",
+        256
+      ]
+    ],
+    "original_instruction_steps": 175761
+  },
+  "limits": [
+    "Synthetic preallocated inputs; table payload allocation and memcpy are explicit seams, with real native pointer/length and publication instructions.",
+    "Ghidra raw-range decompilation lacks external data/types and cannot recover its indexed table. Exact current instructions and table bytes govern the tag predicates.",
+    "No reconstructed Rust execution, full-font byte/rendering comparison, application compilation, game/client/network/server operation or parity validation."
+  ]
+}

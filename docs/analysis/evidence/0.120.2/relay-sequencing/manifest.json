@@ -1,0 +1,470 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.120.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c",
+    "size_bytes": 145484288
+  },
+  "gap_ids": [
+    197,
+    198,
+    199,
+    200
+  ],
+  "scope": "Current bounded relay service input, inner receive header/sequence/control and outer-send/source boundary; complete relay implementation and delivery are not certified. Wire31/32 parser and bounded per-peer flag dispatch are separate findings199/200.",
+  "target_executed": false,
+  "inputs": [
+    {
+      "path": "runtime/coverage/80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c/inventory.json",
+      "sha256": "b3355374efb17cc973b101ab7359de51064ef20809602fc2e6a0210095ca88a5"
+    },
+    {
+      "path": "docs/analysis/coverage/instruction-summary.json",
+      "sha256": "2b7136d46ff32033a564b521c5415aebc2fcd235e56d75fb8bcbd986adbdefa6"
+    },
+    {
+      "path": "runtime/coverage/80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c/native-prep/guarded-jump-tables.json",
+      "sha256": "b1a2c0b7099a16230d394729794ec7d375d8c0464e8975d6e52aed2991549da4"
+    }
+  ],
+  "native_ranges": [
+    {
+      "role": "receiver",
+      "virtual_address": "0x145bfac90",
+      "end_exclusive": "0x145bfb3cc",
+      "file_offset": "0x5bfa090",
+      "byte_count": 1852,
+      "sha256": "d474a8c514cf02b3b1d2f4a2fdcf86befbf48c593871a16eca905ba1dcc845ad",
+      "instruction_count": 464,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/relay-sequencing/receiver.asm",
+        "sha256": "4daa79aea74500375a4cfe52c2f8fb1644644561efde48a64a50a752238efdde"
+      }
+    },
+    {
+      "role": "service-guest-receive",
+      "virtual_address": "0x145bf7925",
+      "end_exclusive": "0x145bf796f",
+      "file_offset": "0x5bf6d25",
+      "byte_count": 74,
+      "sha256": "5f303a63ca1036870e4af51c2d204bb4fdeecf7508875ecdb64603e15a4589e8",
+      "instruction_count": 13,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/relay-sequencing/service-guest-receive.asm",
+        "sha256": "52ef76850fc539ed11b4ed6318f8342ad182997d24ca847cbb1a84f086baf3eb"
+      }
+    },
+    {
+      "role": "service-host-receive",
+      "virtual_address": "0x145bf8487",
+      "end_exclusive": "0x145bf849f",
+      "file_offset": "0x5bf7887",
+      "byte_count": 24,
+      "sha256": "9d7f97c1960a20e51823ad971f00cd8d26e3045b24acaa077cff9a1b20a7b8b4",
+      "instruction_count": 5,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/relay-sequencing/service-host-receive.asm",
+        "sha256": "456d7d099ee36d94e79b2738bf1e630a4789289610c97a23688d8ca94aa3aba1"
+      }
+    },
+    {
+      "role": "outer-relay-send",
+      "virtual_address": "0x145bf6d20",
+      "end_exclusive": "0x145bf6dc8",
+      "file_offset": "0x5bf6120",
+      "byte_count": 168,
+      "sha256": "92378992ae4163f6baa20633e2c14ac1ac58634b3ed37f8daaa4577d0e5c06a3",
+      "instruction_count": 45,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/relay-sequencing/outer-relay-send.asm",
+        "sha256": "916880d8e08b3079dd7d52df21dc1eeb306768884a0b76588d747eaf764a2628"
+      }
+    },
+    {
+      "role": "outer-control-parser-prefix",
+      "virtual_address": "0x145e0b690",
+      "end_exclusive": "0x145e0ba47",
+      "file_offset": "0x5e0aa90",
+      "byte_count": 951,
+      "sha256": "a174485e0244ef78b2ef021a1427fd7307137b7770cc4ae7720c8a81513e85b2",
+      "instruction_count": 175,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/relay-sequencing/outer-control-parser-prefix.asm",
+        "sha256": "d6b5be409fbe7d850d0dbfead2167f60d39b88e9079bc5d3d4545ae7ff8ccc47"
+      }
+    },
+    {
+      "role": "control-guest-flag",
+      "virtual_address": "0x145bf7add",
+      "end_exclusive": "0x145bf7b02",
+      "file_offset": "0x5bf6edd",
+      "byte_count": 37,
+      "sha256": "ff2f84cbbdbed61ea5a04bc03eec518b3db5cb1fa8db4c27fbaf2201b4eb8350",
+      "instruction_count": 6,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/relay-sequencing/control-guest-flag.asm",
+        "sha256": "c1a77a0f96a4c074caa262dcad4e6dff1b897ce741e94cf82784a6260216a05b"
+      }
+    },
+    {
+      "role": "control-host-flag",
+      "virtual_address": "0x145bf7cea",
+      "end_exclusive": "0x145bf7d02",
+      "file_offset": "0x5bf70ea",
+      "byte_count": 24,
+      "sha256": "0db6992d2c353903b84bb59dcd9ac9912c9b0ab883b865a926d11f77fbb06bf8",
+      "instruction_count": 4,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/relay-sequencing/control-host-flag.asm",
+        "sha256": "bf914b6c6d61339e81d41ca4fbb54e816ad8a7222508f9c9f3444f93802e5dda"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "procedure": "0x145bfac90",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_c4fc5651974f7c0f7c55b378da7b78e90742199ed34278dbdc298ead9f217763",
+      "plan": {
+        "path": "runtime/0.120.2/relay-review/query/plan.json",
+        "sha256": "f2e62a1ad3301e316625749419b27ddd2e925b00591f102ddfdafe4c6a73f794"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/relay-review/query/journal.json",
+        "sha256": "058c87ffe2e0f5c875db3bf96f0dc34b9c4e6faea9e37334e6156b555557779a"
+      },
+      "result": {
+        "path": "runtime/0.120.2/relay-review/query/results/99f58d87a6a23069bb6f3a1cdab1f4ced64f18061ad8d933a0b54886fe4f12c8.json",
+        "sha256": "52b5e1e9e89c5fd8fc84c17afc9085064233eb6323053751c4c7bef99baffb45"
+      },
+      "normalized_sha256": "d31376c935f32a400090c58f690b7b2ce0aafab6ec9a612019b54cf72b8fb3b6",
+      "analysis_profile_digest": "4ceb6c7bb2c40d406226e4a682a117f06817062d23a3a03a8b497682be4c011f"
+    },
+    {
+      "procedure": "0x145bfac90",
+      "operation": "procedure_callees",
+      "evidence_id": "ev_fde0bdd4a28a05bab3ed07b2552b457a01d01b2d222f0863b3bceb36bb9fe436",
+      "plan": {
+        "path": "runtime/0.120.2/relay-review/query/plan.json",
+        "sha256": "f2e62a1ad3301e316625749419b27ddd2e925b00591f102ddfdafe4c6a73f794"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/relay-review/query/journal.json",
+        "sha256": "058c87ffe2e0f5c875db3bf96f0dc34b9c4e6faea9e37334e6156b555557779a"
+      },
+      "result": {
+        "path": "runtime/0.120.2/relay-review/query/results/f67b1756e9b2ea49c9a25a7dbcf8e1ffcf3570dd450ccfb771972b3abc8ef98e-e5cae92b7c9c2cb9.json",
+        "sha256": "b89b5982a7a0196b2b88203d43cf76b1d9676d9a5f6ca50ca6bd3a6b9ec860df"
+      },
+      "normalized_sha256": "daa14f2a1e86def2454fe6afdec2758614078e8f6d43c48bedfdd0060c0fc97d",
+      "analysis_profile_digest": "4ceb6c7bb2c40d406226e4a682a117f06817062d23a3a03a8b497682be4c011f"
+    },
+    {
+      "procedure": "0x145bfac90",
+      "operation": "procedure_references",
+      "evidence_id": "ev_019087de19da6e2d8c29d0f30277b8307eaa297faa4f05984cd9a8f8ac080095",
+      "plan": {
+        "path": "runtime/0.120.2/relay-review/query/plan.json",
+        "sha256": "f2e62a1ad3301e316625749419b27ddd2e925b00591f102ddfdafe4c6a73f794"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/relay-review/query/journal.json",
+        "sha256": "058c87ffe2e0f5c875db3bf96f0dc34b9c4e6faea9e37334e6156b555557779a"
+      },
+      "result": {
+        "path": "runtime/0.120.2/relay-review/query/results/2418d744ba69f3f1e054b40774dbff18517fdc9c90f3077af5fa775be0b87d3d-e7c4f0c0df1ed7ad.json",
+        "sha256": "6bab3c4f08f2b7c57e0a849fda31e9faa0576b3e33f10872c0560e3452f095c0"
+      },
+      "normalized_sha256": "30591436bff89ccf0c56388c71315338519779ec78e132bae5f9b405f217f440",
+      "analysis_profile_digest": "4ceb6c7bb2c40d406226e4a682a117f06817062d23a3a03a8b497682be4c011f"
+    },
+    {
+      "procedure": "0x145bf6d20",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_8b48787c9eb9873b6faa009b4f21667cf597a5d42310f68d3931e5632c2452c2",
+      "plan": {
+        "path": "runtime/0.120.2/relay-review/followup-query/plan.json",
+        "sha256": "2c95c412f738a0744447a1ac1e33440f066a961554b84a68fc831d57b11528ab"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/relay-review/followup-query/journal.json",
+        "sha256": "d4740a163cb1f1e58bd59a54a5f87ca48bd40c97a90833359165bb6276a11f33"
+      },
+      "result": {
+        "path": "runtime/0.120.2/relay-review/followup-query/results/1018abb258474f468c1aeb0b01a2b1ff633a4e335ff55a09e096f4debe979d9b.json",
+        "sha256": "40755072047a2e4798ad9da4e386b61ddf5278805d182d4767df44562ea393fa"
+      },
+      "normalized_sha256": "ffc49778fb2e453dabd704062fdf7ee19414363695c1ee44d88cdc52479cee71",
+      "analysis_profile_digest": "447edf900cf63149f3cd938641902d2844b18ad7b338e29678e3f6c4f401e880"
+    },
+    {
+      "procedure": "0x145bfac90",
+      "operation": "procedure_callers",
+      "evidence_id": "ev_ac2605ffecfcb1d8d5bb49a07a28c787a71f05607e836b56cec50f0b3b40ae70",
+      "plan": {
+        "path": "runtime/0.120.2/relay-review/followup-query/plan.json",
+        "sha256": "2c95c412f738a0744447a1ac1e33440f066a961554b84a68fc831d57b11528ab"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/relay-review/followup-query/journal.json",
+        "sha256": "d4740a163cb1f1e58bd59a54a5f87ca48bd40c97a90833359165bb6276a11f33"
+      },
+      "result": {
+        "path": "runtime/0.120.2/relay-review/followup-query/results/14a7ae88b47e02a69f5e0227875dafd8b5e682a8400d2d7a25a618d887863273-ff61a59e025e72e6.json",
+        "sha256": "60ee8f78cd64b6d27263a93e43f5801042ae0a2b55b272dd07720842eafa9519"
+      },
+      "normalized_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "analysis_profile_digest": "447edf900cf63149f3cd938641902d2844b18ad7b338e29678e3f6c4f401e880"
+    },
+    {
+      "procedure": "0x145bf6e00",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_de2422c8bae9bce1a0b169da8c542426b2b7926bd9b81ebf79b446af73cf6b67",
+      "plan": {
+        "path": "runtime/0.120.2/relay-review/caller-query/plan.json",
+        "sha256": "049ff6c4c4d6a67288cd2e54d8109d9e12e420772c4208fc857279c8c331a7df"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/relay-review/caller-query/journal.json",
+        "sha256": "315f8ef85ea3a03a2b1b41370000257a820753bf73f3673a7007ec0df6be7a01"
+      },
+      "result": {
+        "path": "runtime/0.120.2/relay-review/caller-query/results/909e3ecf0d1d39ff6e82e577b7790ff4e77f439782f093b57fe226974f983703.json",
+        "sha256": "d3d931af7563656d2855092cc4989e6e91b52339a12de1290da2449f49637df5"
+      },
+      "normalized_sha256": "ec480f582d27663bcd6eb0d3cf0c77017a076e098f4f3d557ec0c8eac2225a33",
+      "analysis_profile_digest": "9ca4338f6591fa92006a9bdbe2cfd629f2e0ed29e56d586cb0c92b143bc5b1b4"
+    },
+    {
+      "procedure": "0x145e0b690",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_7a788594669c480152c7048c1f40601c1701c2051b122e8efeb75b5921ce10da",
+      "plan": {
+        "path": "runtime/0.120.2/relay-review/parser-query/plan.json",
+        "sha256": "a11ac3dcda05c4d9d8d6251223c119f548c1e72ca5a58d1b88d4d99535d28e4d"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/relay-review/parser-query/journal.json",
+        "sha256": "c6ae4d8bbbfb06730499c4ad3d0548b562f765bb42f59086ef32618ea821bd66"
+      },
+      "result": {
+        "path": "runtime/0.120.2/relay-review/parser-query/results/576bf4388c07d3bc62e14248d37ea64c7a3806c1022f1560da5b40d6bce257dc.json",
+        "sha256": "34512a6a54adb22f90460215d759ebe91be14c6806a3ee4a053c649c40ca443a"
+      },
+      "analysis_profile_digest": "4d0db581973f8ff254ab0c88ff9926348bc874712ae77a04f3a2815019856e2c",
+      "normalized_sha256": "f454a3877c823b0b18107e93da4b1fa6f174dab02cd4bb718e4284ec68d52c11"
+    }
+  ],
+  "source_first": {
+    "paths": [
+      {
+        "path": "crates/azeroth-survivors-re/src/coop/session.rs",
+        "sha256": "c0154f57bdf407c6f84bbbd30c733d5ca24d1f48d38b2b10eaeab34d8da0e0ab",
+        "revision": "5799d44b"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/coop/service.rs",
+        "sha256": "420f6d3bf28e5c72a319965bdbb969d08f1bdc72b0604c6adf613cfa1be8b5d5",
+        "revision": "5799d44b"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/coop/directory_wire.rs",
+        "sha256": "d3b3564530f5637408ada9c5aa9542a75918509a42eb440c80d0da65576896cd",
+        "revision": "5799d44b"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/coop_directory.rs",
+        "sha256": "f9ef40e3404152155a3a10b17ed994e8a605d0da047de69aacced10b340c34c0",
+        "revision": "5799d44b"
+      },
+      {
+        "path": "docs/analysis/benilla-vendor.json",
+        "sha256": "fe63e833a2a34af9c426cc3467679bfaed304281c00d9bb2d48461515006f7f8",
+        "revision": "5799d44b"
+      }
+    ],
+    "conclusion": "Existing Session relay queues, service codec, directory response parser/frontend and benilla provenance were inspected before extending native recovery. Native work follows the AS-specific inner sequencing/control layer; collection, allocation, clock and platform I/O internals stop at their existing interfaces.",
+    "revision": "5799d44b"
+  },
+  "source_observations": [
+    {
+      "id": "outer-bytes-event",
+      "source": {
+        "path": "crates/azeroth-survivors-re/src/coop/directory_wire.rs",
+        "sha256": "d3b3564530f5637408ada9c5aa9542a75918509a42eb440c80d0da65576896cd",
+        "revision": "5799d44b"
+      },
+      "observed_fragments": [
+        "26 => DirectoryResponse::Bytes {",
+        "value: reader.u32()?,",
+        "bytes: reader.bytes()?,"
+      ],
+      "conclusion": "Existing source decodes the outer directory payload into a peer id and bytes."
+    },
+    {
+      "id": "frontend-dispatch",
+      "source": {
+        "path": "crates/azeroth-survivors-re/src/coop_directory.rs",
+        "sha256": "f9ef40e3404152155a3a10b17ed994e8a605d0da047de69aacced10b340c34c0",
+        "revision": "5799d44b"
+      },
+      "observed_fragments": [
+        "DirectoryResponse::Bytes { value, bytes } => {",
+        "driver.service_receive(value, bytes);"
+      ],
+      "conclusion": "The actual incoming frontend forwards those bytes unchanged into the Session owner."
+    },
+    {
+      "id": "raw-incoming-session",
+      "source": {
+        "path": "crates/azeroth-survivors-re/src/coop/session.rs",
+        "sha256": "c0154f57bdf407c6f84bbbd30c733d5ca24d1f48d38b2b10eaeab34d8da0e0ab",
+        "revision": "5799d44b"
+      },
+      "observed_fragments": [
+        "pub fn service_receive(&mut self, id: u32, payload: Vec<u8>) -> bool {",
+        "peer.received.push_back(payload);"
+      ],
+      "conclusion": "The live Session directly queues raw relay bytes; the recovered nine-byte sequence/control envelope is not consumed at this boundary."
+    },
+    {
+      "id": "raw-outgoing-connection",
+      "source": {
+        "path": "crates/azeroth-survivors-re/src/coop/session.rs",
+        "sha256": "c0154f57bdf407c6f84bbbd30c733d5ca24d1f48d38b2b10eaeab34d8da0e0ab",
+        "revision": "5799d44b"
+      },
+      "observed_fragments": [
+        "outgoing.push(RelayCommand::Send {",
+        "payload: payload.to_vec(),"
+      ],
+      "conclusion": "The existing outgoing connection emits unsequenced game-message bytes."
+    },
+    {
+      "id": "outer-service-send",
+      "source": {
+        "path": "crates/azeroth-survivors-re/src/coop_directory.rs",
+        "sha256": "f9ef40e3404152155a3a10b17ed994e8a605d0da047de69aacced10b340c34c0",
+        "revision": "5799d44b"
+      },
+      "observed_fragments": [
+        "RelayCommand::Send { id, payload } => {",
+        "let message = ClientMessage::Relay { peer: id, payload };",
+        "if service.secondary.is_none() {"
+      ],
+      "conclusion": "The actual frontend wraps the unchanged bytes in the outer service Relay command and chooses primary/secondary. Its inner sequence/control producer remains missing."
+    }
+  ],
+  "bounded_contract_system_ids": [
+    "custom-game-coop-relay"
+  ],
+  "bounded_module_attribution": {
+    "custom-game-coop-relay": {
+      "native_owner": "0x145bfac90",
+      "diagnostic_path": "crates/wenilla-rogue/src/coop/relay.rs",
+      "scope": "Nine-byte inner receive header/sequence/control admission connected to service input and existing source interfaces; broader module semantics/implementation remain open."
+    }
+  },
+  "observed_contract": {
+    "receiver": "0x145bfac90",
+    "service_pump": "0x145bf6e00",
+    "incoming_sites": [
+      "0x145bf796a",
+      "0x145bf849a"
+    ],
+    "minimum_bytes": 9,
+    "header_tag_offset": 0,
+    "sequence_offset": 1,
+    "sequence_bytes": 8,
+    "data_tag": 0,
+    "data_payload_offset": 9,
+    "control_tags": [
+      1,
+      2
+    ],
+    "tag2_requires_tenth_byte": true,
+    "data_admission": "Only sequence == previous +1 advances recipient receive state and delivers the owned payload; other sequences enter the control/timer path.",
+    "outer_send_helper": "0x145bf6d20",
+    "inner_encoder_next": "0x145bf5ed0",
+    "outer_encoder": "0x145e0ae40",
+    "relevant_fields": [
+      "service+0x1b0 per-peer receive/control state",
+      "state-row -0x18 receive sequence",
+      "service+0x40 guest delivery queue",
+      "service+0x180 host peer/connection map"
+    ],
+    "limits": "Field/type names beyond these bounded roles are provisional. Ghidra PIC/merged heap-tail warnings are retained; the original byte slices and direct incoming calls are independently checked."
+  },
+  "findings": {
+    "197": "The new diagnostic module has a registered bounded current-target service-input/receive/source contract. This resolves only the missing-registration dimension, not the complete module or source198.",
+    "198": "Existing source passes outer relay payload directly to game-message queues and sends raw game-message bytes. It lacks the current inner tag/u64 sequence/data-control admission layer. Recover the send sequence producer, inner encoder, per-peer pending-message/replay/ACK/reset lifecycle and clock ownership before implementing this cohesive relay repair.",
+    "199": "Missing wire31 outer service decoder and dispatch: tag31 plus little-endian u32 peer id maps to native variant0xb. Peer0 writes service+1e2 from active-guest flag; existing host peer writes its second flag true. Actual source rejects tag31. Recover the flag consumer, producer/reset lifecycle and delivery effect before selected repair; no stronger connected/ready meaning is assumed.",
+    "200": "Missing wire32 outer service decoder and dispatch: tag32 plus little-endian u32 peer id maps to native variant0xc. Peer0 clears service+1e2; existing host peer clears its second flag. Actual source rejects tag32. Recover the flag consumer, source state owner and lifecycle before selected repair; do not equate it with ordinary peer departure."
+  },
+  "replay_tool": {
+    "path": "scripts/check-relay-sequencing-0.120.2.py",
+    "sha256": "ac81fffba7987612652ad8ced97082fe195b5a66585c5b41cb84207d6330cfae"
+  },
+  "limits": [
+    "This static audit makes no gameplay/network/server source changes.",
+    "Bounded input/dispatch/source recovery is separate from whole-module completeness.",
+    "Full sequence/control/send/replay/initialization/close/time semantics and malformed/out-of-order failure paths remain concrete next recovery work under198.",
+    "No compilation, compiling tests, client/game/network/server execution or original/rebuilt parity comparison was performed."
+  ],
+  "native_tables": [
+    {
+      "role": "outer-service-wire20-through32",
+      "virtual_address": "0x1476773bc",
+      "file_offset": "0x76761bc",
+      "byte_count": 52,
+      "sha256": "ef95c0a1a5e91835c461ce3f2387abd6b36f45df656d065d5bd4ba8cb8a678d8",
+      "case_targets": [
+        "0x145e0b6fd",
+        "0x145e0b8e6",
+        "0x145e0b844",
+        "0x145e0b87a",
+        "0x145e0b771",
+        "0x145e0b91c",
+        "0x145e0b93f",
+        "0x145e0b8b0",
+        "0x145e0ba0e",
+        "0x145e0b7b1",
+        "0x145e0b967",
+        "0x145e0b74e",
+        "0x145e0b791"
+      ],
+      "guard": "0x145e0b6e8",
+      "dispatch_site": "0x145e0b6fb",
+      "wire_minimum": 20,
+      "wire_maximum": 32
+    }
+  ],
+  "observed_outer_controls": {
+    "parser": "0x145e0b690",
+    "jump_site": "0x145e0b6fb",
+    "wire31": {
+      "case": "0x145e0b74e",
+      "variant": "0x800000000000000b",
+      "minimum_bytes": 5,
+      "peer_offset": 1,
+      "peer_bytes": 4
+    },
+    "wire32": {
+      "case": "0x145e0b791",
+      "variant": "0x800000000000000c",
+      "minimum_bytes": 5,
+      "peer_offset": 1,
+      "peer_bytes": 4
+    },
+    "shared_pump_case_variants": [
+      11,
+      12
+    ],
+    "guest_flag_store": "0x145bf7afa",
+    "guest_flag_offset": "0x1e2",
+    "host_flag_store": "0x145bf7cfe",
+    "host_flag_field": "selected peer record second byte flag; exact semantic name/consumer pending",
+    "unused_suffix": "The mandatory five-byte record is recovered; trailing bytes are accepted."
+  }
+}

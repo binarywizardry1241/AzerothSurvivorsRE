@@ -1,0 +1,673 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.120.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08",
+    "size_bytes": 145447424
+  },
+  "gap_ids": [
+    163,
+    183,
+    184,
+    185,
+    186
+  ],
+  "target_executed": false,
+  "predecessor": {
+    "path": "docs/analysis/evidence/0.119.1/coop-disconnect/manifest.json",
+    "sha256": "b11326a77b2aab2a8c4611894e4fff5ff6cabea367b3ccfc379a683b34a87422"
+  },
+  "method": "Reuse prior bounded semantic/source recovery; rebind current full-PE Ghidra producers/dispatch/receiver/removal interfaces, original-byte fields/table/branch gates and exact source slices. Structural similarity is supporting evidence only.",
+  "ranges": [
+    {
+      "role": "service-pump",
+      "start": "0x145aeaa40",
+      "end_exclusive": "0x145aeba11",
+      "file_offset": "0x5ae9e40",
+      "byte_count": 4049,
+      "sha256": "042a277e364c07f08bb5b1f3a292ba22a6fe63c57a6a0d9454ed78245bad98ed",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/coop-correspondence/service-pump.asm",
+        "sha256": "e64e116f29f23ad0137cf963b36ab3dca8a57f21d8c2173959e818077238024e"
+      }
+    },
+    {
+      "role": "primary-service-state",
+      "start": "0x145af3480",
+      "end_exclusive": "0x145af353c",
+      "file_offset": "0x5af2880",
+      "byte_count": 188,
+      "sha256": "40aa9af71672342f3fd17736dd7293faba25bb99ec9cc4936ac25528c5f4756e",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/coop-correspondence/primary-service-state.asm",
+        "sha256": "4c881994e4dbcd6b80f1cfabc760505b8cc91552aa4df4ddfb690cba1df52d76"
+      }
+    },
+    {
+      "role": "selected-relay-closed",
+      "start": "0x145af28a0",
+      "end_exclusive": "0x145af297a",
+      "file_offset": "0x5af1ca0",
+      "byte_count": 218,
+      "sha256": "2b9257573dfb254804333429acc4b94ff9ec4c27e241daadcffe1e152de657e9",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/coop-correspondence/selected-relay-closed.asm",
+        "sha256": "4c13df8a3f2139b75fb5b453a4d0c8d7f16c9000fbf1f505ca35f74d7eb63002"
+      }
+    },
+    {
+      "role": "selected-relay-alive",
+      "start": "0x145af29b0",
+      "end_exclusive": "0x145af2a8a",
+      "file_offset": "0x5af1db0",
+      "byte_count": 218,
+      "sha256": "6246f486f0694374627846904df9d53f9cbd992f656d0d433f25cde291f60dd2",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/coop-correspondence/selected-relay-alive.asm",
+        "sha256": "3ad667144583664b2fcb22e21651c59146d4d76a4d5a29abc770fb7a2ae4d9c4"
+      }
+    },
+    {
+      "role": "run-retention-gates",
+      "start": "0x145b08972",
+      "end_exclusive": "0x145b08b5d",
+      "file_offset": "0x5b07d72",
+      "byte_count": 491,
+      "sha256": "482137edd49365e33f18b0bf0d303a86098639892967acefdcaa742eed83a2a5",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/coop-correspondence/run-retention-gates.asm",
+        "sha256": "7862f498611df629089bf6f7955ee8605a339ae07b4f6e6bfba6999a3ae4b4d7"
+      }
+    },
+    {
+      "role": "server-peer-removal",
+      "start": "0x145b26060",
+      "end_exclusive": "0x145b261ac",
+      "file_offset": "0x5b25460",
+      "byte_count": 332,
+      "sha256": "4f3121674ad67f36ef7b4c5173fe2cff44e83a2e3e870a527e77c90f53612a08",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/coop-correspondence/server-peer-removal.asm",
+        "sha256": "d9235edf6502fcf485f47eb0a06a11a08ebcade1ab070a86d26a8b9b671e94ae"
+      }
+    },
+    {
+      "role": "guest-engine-admission-port",
+      "start": "0x145b26d00",
+      "end_exclusive": "0x145b26d7c",
+      "file_offset": "0x5b26100",
+      "byte_count": 124,
+      "sha256": "ad944e1485a9768c696e434b00d88770e66a92c3c7368ff9ac35d1219bab5418",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/coop-correspondence/guest-engine-admission-port.asm",
+        "sha256": "a29bba60b85605b9aa030823da6b10f85cf99cdb12c084998ccf8fcecb2cb583"
+      }
+    },
+    {
+      "role": "guest-trust-delivery",
+      "start": "0x145b27488",
+      "end_exclusive": "0x145b274fa",
+      "file_offset": "0x5b26888",
+      "byte_count": 114,
+      "sha256": "f8558b14ba0a51e48b2b5eee9ee92b3fd76f9346a068b4f8db394c1641a6a10a",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/coop-correspondence/guest-trust-delivery.asm",
+        "sha256": "bbb1203e59ca5f9d16e87c01897c0826076e32fe78118a12ae78a5c04d618599"
+      }
+    },
+    {
+      "role": "engine-packet-trust",
+      "start": "0x145aa8d20",
+      "end_exclusive": "0x145aa95e1",
+      "file_offset": "0x5aa8120",
+      "byte_count": 2241,
+      "sha256": "034a8a253065e544f3529db2578d6c0274ae46f1382826da1f8c6ae55adeb546",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/coop-correspondence/engine-packet-trust.asm",
+        "sha256": "6f3d887ef18596ff9720b8e730ad5cdbb8b0f46c2d6f6a5cfb9302e3ee53ac60"
+      }
+    },
+    {
+      "role": "exact-version-admission",
+      "start": "0x145b2526e",
+      "end_exclusive": "0x145b252a8",
+      "file_offset": "0x5b2466e",
+      "byte_count": 58,
+      "sha256": "369a5748a0ddc75df34f2f021f28c54b74ab83624559f449b7d9bb92bb7142be",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/coop-correspondence/exact-version-admission.asm",
+        "sha256": "6b3d218465599e81525c6169431a705bcdc5fb94c2d940cf5a885a553d055d19"
+      }
+    },
+    {
+      "role": "dead-peer-removal-call",
+      "start": "0x145b095eb",
+      "end_exclusive": "0x145b0963e",
+      "file_offset": "0x5b089eb",
+      "byte_count": 83,
+      "sha256": "7a5d71b458f6e60d13641ece7d1a696a5c8abd8d6429264503c9266e562a5d2f",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/coop-correspondence/dead-peer-removal-call.asm",
+        "sha256": "4e49c4568d1b1c5a281e09b44035b41885ef00f3dd1481e10811a3bcb43ee8d7"
+      }
+    },
+    {
+      "role": "explicit-peer-close-call",
+      "start": "0x145b09fa3",
+      "end_exclusive": "0x145b0a004",
+      "file_offset": "0x5b093a3",
+      "byte_count": 97,
+      "sha256": "e87a99f651fa11bbda65c6eeba5722db7ed24fab35daf3e66af3fa843e8f08e2",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/coop-correspondence/explicit-peer-close-call.asm",
+        "sha256": "3ada591ab8ca5c8f0a8d0fbaa033b136688f861d025d15077a6039601ced6114"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "role": "relay-closed",
+      "procedure": "0x145af28a0",
+      "evidence_id": "ev_b442458fd7af9571a34a5df8e2d0a248f81d7e66a2ed2d3a2472bcb6f5090bc7",
+      "analysis_profile_digest": "eba374768a7a792b77f6526a9c4830f5ed983182875d08b41f7d4893d98c0f12",
+      "result": {
+        "path": "runtime/coop-correspondence-0.120.0/query/results/6583d4aa5b224d0678370fe347930e09d5c68816699c2e5db229c0b4be7e5131.json",
+        "sha256": "7d110c8107ac2b6d08cf1442ab2439f646c79f0fab37cb08cb964df9b0610700"
+      },
+      "plan": {
+        "path": "runtime/coop-correspondence-0.120.0/query/plan.json",
+        "sha256": "728e555d1f86bac26bcfb9146a2473f321d0fa1c1bbb864b80406cf934e232ac"
+      },
+      "journal": {
+        "path": "runtime/coop-correspondence-0.120.0/query/journal.json",
+        "sha256": "9ea3d198aef9119fd4f958936bd7cda0760de73a39f5c2c5b05b7b64059d2c62"
+      },
+      "normalized_text_sha256": "c9b118cc960c376c73b7eaa12dd7240b122202f259b481e756c4db400474f9f1"
+    },
+    {
+      "role": "relay-alive",
+      "procedure": "0x145af29b0",
+      "evidence_id": "ev_76520d2f521f52d1948843a7ec56a4f7fe2cdbf850bf3038e90366e40b876792",
+      "analysis_profile_digest": "eba374768a7a792b77f6526a9c4830f5ed983182875d08b41f7d4893d98c0f12",
+      "result": {
+        "path": "runtime/coop-correspondence-0.120.0/query/results/c841ec8b2643abade655eaebef97a9eb87a3e9ac87aa71a7be8c83b9603e30ab.json",
+        "sha256": "94bebbb21db1a65b588300857aabc1baed5443ab7e9e8c2ead6a4dfe6c122e69"
+      },
+      "plan": {
+        "path": "runtime/coop-correspondence-0.120.0/query/plan.json",
+        "sha256": "728e555d1f86bac26bcfb9146a2473f321d0fa1c1bbb864b80406cf934e232ac"
+      },
+      "journal": {
+        "path": "runtime/coop-correspondence-0.120.0/query/journal.json",
+        "sha256": "9ea3d198aef9119fd4f958936bd7cda0760de73a39f5c2c5b05b7b64059d2c62"
+      },
+      "normalized_text_sha256": "9729e707f50b61906c5dfe388863b7beacdb8a77fcc8435865cd45e9ef77eaf1"
+    },
+    {
+      "role": "frame-lifetimes",
+      "procedure": "0x145b072e0",
+      "evidence_id": "ev_3e828711d31af25b33f0c8fde9bae6d4016ffe35ba55b75e91e5aa5d0e951032",
+      "analysis_profile_digest": "eba374768a7a792b77f6526a9c4830f5ed983182875d08b41f7d4893d98c0f12",
+      "result": {
+        "path": "runtime/coop-correspondence-0.120.0/query/results/58d03079da7feb3123342c4586a95e09dd22b814fd4dd02e944b3da7b3cbf26b.json",
+        "sha256": "1068d7c3b155981675bb2bfb5040b266358b4e10e496fab19fd8d196e563c6e3"
+      },
+      "plan": {
+        "path": "runtime/coop-correspondence-0.120.0/query/plan.json",
+        "sha256": "728e555d1f86bac26bcfb9146a2473f321d0fa1c1bbb864b80406cf934e232ac"
+      },
+      "journal": {
+        "path": "runtime/coop-correspondence-0.120.0/query/journal.json",
+        "sha256": "9ea3d198aef9119fd4f958936bd7cda0760de73a39f5c2c5b05b7b64059d2c62"
+      },
+      "normalized_text_sha256": "847f5916b1627a716fbd6168010adbab0cfd6ab7331c3c58660d7879a0d7d2b4"
+    },
+    {
+      "role": "packet-trust",
+      "procedure": "0x145aa8d20",
+      "evidence_id": "ev_6b903f58ff6fd477d32a1e55685555293b56be0049ce3a3431d84f0929887e22",
+      "analysis_profile_digest": "eba374768a7a792b77f6526a9c4830f5ed983182875d08b41f7d4893d98c0f12",
+      "result": {
+        "path": "runtime/coop-correspondence-0.120.0/query/results/5412652fda2fe1cfa4ae42a5e34601947de4a78c473a28822e19120c038aeb4a.json",
+        "sha256": "883cac65de3893dd24a70ce2ebebf135e5efd8a56fa63d49321aec76c516a70b"
+      },
+      "plan": {
+        "path": "runtime/coop-correspondence-0.120.0/query/plan.json",
+        "sha256": "728e555d1f86bac26bcfb9146a2473f321d0fa1c1bbb864b80406cf934e232ac"
+      },
+      "journal": {
+        "path": "runtime/coop-correspondence-0.120.0/query/journal.json",
+        "sha256": "9ea3d198aef9119fd4f958936bd7cda0760de73a39f5c2c5b05b7b64059d2c62"
+      },
+      "normalized_text_sha256": "08d3da517eabe600303235947e5b5d8a23590972b51c562a3b59fc609e4bb072"
+    },
+    {
+      "role": "guest-engine-receiver",
+      "procedure": "0x145b261f0",
+      "evidence_id": "ev_d487d61a8af5f3be3325af8b7b22c25b8fcdb8700a58c0e08e7fab5fe0195bc4",
+      "analysis_profile_digest": "eba374768a7a792b77f6526a9c4830f5ed983182875d08b41f7d4893d98c0f12",
+      "result": {
+        "path": "runtime/coop-correspondence-0.120.0/query/results/6fef0ef6a847f579c736c6b4911af64f39e73b1af394bd1c92231e453bc62eda.json",
+        "sha256": "8441f6ada51c0cb1a0e18d446fc28d7f13646475ce0f0cf93b5a478a8a7c37c3"
+      },
+      "plan": {
+        "path": "runtime/coop-correspondence-0.120.0/query/plan.json",
+        "sha256": "728e555d1f86bac26bcfb9146a2473f321d0fa1c1bbb864b80406cf934e232ac"
+      },
+      "journal": {
+        "path": "runtime/coop-correspondence-0.120.0/query/journal.json",
+        "sha256": "9ea3d198aef9119fd4f958936bd7cda0760de73a39f5c2c5b05b7b64059d2c62"
+      },
+      "normalized_text_sha256": "65ec181ce8fe8838b21278b75e3e53d6bc86ebeb0ba08919d7e3f3d0f6480b48"
+    },
+    {
+      "role": "join-admission",
+      "procedure": "0x145b24fc0",
+      "evidence_id": "ev_be1e5e00b2330ea18eed58b70b5f8864b02be281b3adc6433352c2d6683c91b4",
+      "analysis_profile_digest": "eba374768a7a792b77f6526a9c4830f5ed983182875d08b41f7d4893d98c0f12",
+      "result": {
+        "path": "runtime/coop-correspondence-0.120.0/query/results/69b1c9ba5bf4d71c007e952b83d3c2b4e9896231c13ac7a141c06a243c1554d7.json",
+        "sha256": "ea5d5368dab8dd8749acff2e14f0c220dda16ed9e4b5977e12771cae0ca2b956"
+      },
+      "plan": {
+        "path": "runtime/coop-correspondence-0.120.0/query/plan.json",
+        "sha256": "728e555d1f86bac26bcfb9146a2473f321d0fa1c1bbb864b80406cf934e232ac"
+      },
+      "journal": {
+        "path": "runtime/coop-correspondence-0.120.0/query/journal.json",
+        "sha256": "9ea3d198aef9119fd4f958936bd7cda0760de73a39f5c2c5b05b7b64059d2c62"
+      },
+      "normalized_text_sha256": "f50a26a7a1e841059550d43a4eeb8a56f9ef666a244c35c19c2a0de43ef106d3"
+    },
+    {
+      "role": "peer-removal",
+      "procedure": "0x145b26060",
+      "evidence_id": "ev_f3a0c91f541c6504bd6960fe40ee6a633449661f5f9fa9f3411b78796d59bfa5",
+      "analysis_profile_digest": "eba374768a7a792b77f6526a9c4830f5ed983182875d08b41f7d4893d98c0f12",
+      "result": {
+        "path": "runtime/coop-correspondence-0.120.0/query/results/9933796b53887ecbfb9a683477767378b87ac5fcc0c5bd64508e49abadee9a53.json",
+        "sha256": "4cb20f3d3d20808281de85d235ee52704f3e0c855bc05119591f848925d8e0fb"
+      },
+      "plan": {
+        "path": "runtime/coop-correspondence-0.120.0/query/plan.json",
+        "sha256": "728e555d1f86bac26bcfb9146a2473f321d0fa1c1bbb864b80406cf934e232ac"
+      },
+      "journal": {
+        "path": "runtime/coop-correspondence-0.120.0/query/journal.json",
+        "sha256": "9ea3d198aef9119fd4f958936bd7cda0760de73a39f5c2c5b05b7b64059d2c62"
+      },
+      "normalized_text_sha256": "b404e485070c0865299aa29c71efeb19e2cd7506a7f2d0bc2f87dcbf76329066"
+    }
+  ],
+  "data_ranges": [
+    {
+      "role": "bounded-chat-kind-table",
+      "start": "0x146f905e4",
+      "end_exclusive": "0x146f90608",
+      "file_offset": "0x6f8efe4",
+      "byte_count": 36,
+      "sha256": "0e6b78cee4b37a5c1963acfee3199c92048813c4dd8a5ee36f851277ab325071",
+      "bytes_hex": "a887b1fea887b1fe5f89b1fe5f89b1fe5f89b1fea887b1fef888b1fe5f89b1fe0889b1fe",
+      "targets": [
+        "0x145aa8d8c",
+        "0x145aa8d8c",
+        "0x145aa8f43",
+        "0x145aa8f43",
+        "0x145aa8f43",
+        "0x145aa8d8c",
+        "0x145aa8edc",
+        "0x145aa8f43",
+        "0x145aa8eec"
+      ],
+      "guard": "opcode0x96,payload>=5,unsigned first byte<=8; current original instructions145aa8d4f..145aa8d8a"
+    }
+  ],
+  "source_slices": [
+    {
+      "path": "crates/azeroth-survivors-re/src/coop_directory.rs",
+      "start_marker": "fn transport_closed(",
+      "end_marker": "fn initialize_identity(",
+      "sha256": "ed904d0c24d3c0a6ea63ae46d1cd4ffa2a49ff2893269c30487b489e4a7ab246",
+      "observation": "Primary closure drops secondary and calls service_lost; host transport loss is published immediately.",
+      "predecessor_sha256": "ed904d0c24d3c0a6ea63ae46d1cd4ffa2a49ff2893269c30487b489e4a7ab246",
+      "source_slice_unchanged": true
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop/session.rs",
+      "start_marker": "    pub fn service_lost(",
+      "end_marker": "    pub fn take_service_commands(",
+      "sha256": "73e55fd338e43b26c3cc000458a78a024994395de62bc2a0b73006aa9541c6a6",
+      "observation": "service_alive and all relay endpoint liveness are cleared.",
+      "predecessor_sha256": "73e55fd338e43b26c3cc000458a78a024994395de62bc2a0b73006aa9541c6a6",
+      "source_slice_unchanged": true
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop/session.rs",
+      "start_marker": "    pub fn connected(",
+      "end_marker": "    pub fn tick(",
+      "sha256": "6c0268a42a35c01f4a86266c3fe8caba126de4074840378fd1047a71735bcc00",
+      "observation": "All service relay connected paths require service_alive.",
+      "predecessor_sha256": "6c0268a42a35c01f4a86266c3fe8caba126de4074840378fd1047a71735bcc00",
+      "source_slice_unchanged": true
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+      "start_marker": "    fn guest_engine_packet(",
+      "end_marker": "    pub(crate) fn leave(",
+      "sha256": "d296773753c59f3d6b0eb64beb60277da001e5f2e39801e6a384c9813846a4b9",
+      "observation": "Accepted Engine opcode/body is unchanged; no trust transform.",
+      "predecessor_sha256": "d296773753c59f3d6b0eb64beb60277da001e5f2e39801e6a384c9813846a4b9",
+      "source_slice_unchanged": true
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop/client_state.rs",
+      "start_marker": "pub fn sanitize_text(",
+      "end_marker": "/// Tag12",
+      "sha256": "473c30c86829cf70918db2cbc885a869b5863145d1385eae77f1f60f39c94334",
+      "observation": "Separate tag11 resource sanitizer escapes four introducers; no Engine rewrite.",
+      "predecessor_sha256": "473c30c86829cf70918db2cbc885a869b5863145d1385eae77f1f60f39c94334",
+      "source_slice_unchanged": true
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+      "start_marker": "pub const GAME_VERSION:",
+      "end_marker": "pub const MAX_PARTY_SIZE:",
+      "sha256": "d229c21ed8269497aedf1614c581b204fed7e6f89425ea698269daa43c55bbbd",
+      "observation": "Protocol5 matches; GAME_VERSION0.119.0 differs from current exact0.119.1 admission.",
+      "predecessor_sha256": "d229c21ed8269497aedf1614c581b204fed7e6f89425ea698269daa43c55bbbd",
+      "source_slice_unchanged": true
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+      "start_marker": "    pub fn admit(",
+      "end_marker": "    pub fn begin_closing(",
+      "sha256": "f58a53acd284c2075f7fdb4b95dc27703b16853986729718e389d83701071d18",
+      "observation": "Existing actual protocol/version/password/capacity/run-state admission source; current exact-version source difference remains #163."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+      "start_marker": "    pub fn disconnect(",
+      "end_marker": "    pub fn expire_rejections(",
+      "sha256": "87afe6ac1e24472e605b41d8c85b2de5494bcc15a76e640f154497e93cef794d",
+      "observation": "Existing selected client removal and membership-event source; deeper abandonment/roster consumer correspondence remains bounded separately."
+    }
+  ],
+  "structural_correspondence": [
+    {
+      "role": "service-pump",
+      "historical_native_range": {
+        "role": "service-pump",
+        "start": "0x145aad8b0",
+        "end_exclusive": "0x145aae881",
+        "file_offset": "0x5aaccb0",
+        "byte_count": 4049,
+        "sha256": "a1faec1a9cabc1b2f7133398fbe296ff950a8c357e4d63aa57cd4da60907462a",
+        "assembly": {
+          "path": "docs/analysis/evidence/0.119.1/coop-disconnect/service-pump.asm",
+          "sha256": "e6af2e92eeb9103480b557645ac79801b3516e1c8eb97addcb2465386dc3d0e6"
+        }
+      },
+      "current_native_range_selector": "ranges[role=service-pump]",
+      "normalization": "Preserve mnemonic/register/stack/field/immediate values and internal relative branches; abstract RIP displacements and external direct code destinations. This is a structural candidate match, not independent semantic proof.",
+      "normalized_instruction_sequences_equal": true,
+      "historical_instructions": 857,
+      "current_instructions": 857,
+      "historical_normalized_sha256": "fc64470d0485a128c448be408191d2759d83018ad26f85e086407b7a638561c8",
+      "current_normalized_sha256": "fc64470d0485a128c448be408191d2759d83018ad26f85e086407b7a638561c8"
+    },
+    {
+      "role": "selected-relay-closed",
+      "historical_native_range": {
+        "role": "selected-relay-closed",
+        "start": "0x145ab5130",
+        "end_exclusive": "0x145ab520a",
+        "file_offset": "0x5ab4530",
+        "byte_count": 218,
+        "sha256": "5c0ff1d6755d495c37d0e800916375ebbb4d4fa9d28bf950c64e80823ca6f4fb",
+        "assembly": {
+          "path": "docs/analysis/evidence/0.119.1/coop-disconnect/selected-relay-closed.asm",
+          "sha256": "81bf0e3a1805a67622065fa6f20b92215d8cd66d64c41c5084e0e93b47530036"
+        }
+      },
+      "current_native_range_selector": "ranges[role=selected-relay-closed]",
+      "normalization": "Preserve mnemonic/register/stack/field/immediate values and internal relative branches; abstract RIP displacements and external direct code destinations. This is a structural candidate match, not independent semantic proof.",
+      "normalized_instruction_sequences_equal": true,
+      "historical_instructions": 72,
+      "current_instructions": 72,
+      "historical_normalized_sha256": "4659a0d19f12a8ea05def2b53da26996b5fa091559883de7bc9c23a1053235dc",
+      "current_normalized_sha256": "4659a0d19f12a8ea05def2b53da26996b5fa091559883de7bc9c23a1053235dc"
+    },
+    {
+      "role": "selected-relay-alive",
+      "historical_native_range": {
+        "role": "selected-relay-alive",
+        "start": "0x145ab5240",
+        "end_exclusive": "0x145ab531a",
+        "file_offset": "0x5ab4640",
+        "byte_count": 218,
+        "sha256": "7fef3349cb53cb1d3f9e0916c2b9d8c5e8b919631b77db874e357fac46c29bb8",
+        "assembly": {
+          "path": "docs/analysis/evidence/0.119.1/coop-disconnect/selected-relay-alive.asm",
+          "sha256": "b4e2bb3890917d3a7717508528953166ecf29944a173cc8cefda3c08817f56a7"
+        }
+      },
+      "current_native_range_selector": "ranges[role=selected-relay-alive]",
+      "normalization": "Preserve mnemonic/register/stack/field/immediate values and internal relative branches; abstract RIP displacements and external direct code destinations. This is a structural candidate match, not independent semantic proof.",
+      "normalized_instruction_sequences_equal": true,
+      "historical_instructions": 72,
+      "current_instructions": 72,
+      "historical_normalized_sha256": "99ee262c73b3577b0fafefff6e336c18b32fe4b3f60606efce0ca7fe8c32113f",
+      "current_normalized_sha256": "99ee262c73b3577b0fafefff6e336c18b32fe4b3f60606efce0ca7fe8c32113f"
+    },
+    {
+      "role": "server-peer-removal",
+      "historical_native_range": {
+        "role": "server-peer-removal",
+        "start": "0x145b1e7d0",
+        "end_exclusive": "0x145b1e91c",
+        "file_offset": "0x5b1dbd0",
+        "byte_count": 332,
+        "sha256": "32c2030f44539e93cdc74717ca305c88efdcfac90589e36adbcdde33142211c9",
+        "assembly": {
+          "path": "docs/analysis/evidence/0.119.1/coop-disconnect/server-peer-removal.asm",
+          "sha256": "ebfdd907d8d012005629dc2a56c045e73d35d6f532036cfe652fbed903bd998d"
+        }
+      },
+      "current_native_range_selector": "ranges[role=server-peer-removal]",
+      "normalization": "Preserve mnemonic/register/stack/field/immediate values and internal relative branches; abstract RIP displacements and external direct code destinations. This is a structural candidate match, not independent semantic proof.",
+      "normalized_instruction_sequences_equal": true,
+      "historical_instructions": 82,
+      "current_instructions": 82,
+      "historical_normalized_sha256": "a7e00e1337064744d943a8811777ec083275587f05eb786582ac81742ca9dc3f",
+      "current_normalized_sha256": "a7e00e1337064744d943a8811777ec083275587f05eb786582ac81742ca9dc3f"
+    }
+  ],
+  "liveness_replay": {
+    "path": "docs/analysis/evidence/0.120.0/coop-correspondence/liveness-check.json",
+    "sha256": "e6c5bf72cf8acaeaaf04b732a1c141cd4284f23798efd3346b79abc59d7e8925"
+  },
+  "replay_tool": {
+    "path": "docs/analysis/evidence/0.120.0/coop-correspondence/check-liveness.py",
+    "sha256": "940007a2a0fb9feecab7d70b057ae5f9050f03c2b18721f978d28d1d736d2df7"
+  },
+  "bounded_contract_system_ids": [
+    "custom-game-coop-trust",
+    "custom-game-server",
+    "custom-game-server-party"
+  ],
+  "limits": [
+    "All static addresses are preferred PE addresses, not observed live pointers.",
+    "Seven full-PE Ghidra queries retain declared disabled-analyzer/body/type limits; printed incoming/stack/register types are not proof of native type layouts.",
+    "Current original-byte tables/fields/call order bind only the described contract scopes. Complete opcode-domain #180, deeper abandonment/health/roster and transport/mutex/UTF-8/allocation dependencies remain separate.",
+    "36-case liveness fixture uses ordinary unpoisoned/uncontended mutex and transport-state callback seams. No Rust source or socket/server/game runs.",
+    "No compilation, compiling test, client/game/network/server execution, save/settings mutation or original/rebuilt parity comparison."
+  ],
+  "verification_tool": {
+    "path": "docs/analysis/evidence/0.120.0/coop-correspondence/verify.py",
+    "sha256": "a778691ff9556c3c1ae4b6b5dad68f387702979e097bd278ebfac0d91990872a"
+  },
+  "current_module_anchor_input": {
+    "path": "runtime/coverage/291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08/diagnostic-ownership.json",
+    "sha256": "356e4b030058f81e2451d5fbd071465e19d0ec027f5fb7578e25cca37e3ce428",
+    "regenerate": "python3 -B scripts/discover-native-ownership.py --write"
+  },
+  "native_module_anchors": [
+    {
+      "system_id": "custom-game-coop-trust",
+      "diagnostic_path": "crates/wenilla-rogue/src/coop/trust.rs",
+      "bounded_owners": [
+        {
+          "kind": "rust_location",
+          "instruction_address": "0x145aa94c4",
+          "target_address": "0x146f8e5d8",
+          "runtime_function_start": "0x145aa8d20",
+          "runtime_function_end": "0x145aa95e1",
+          "source_line": 226,
+          "source_column": 28,
+          "path_address": "0x146f86d5d",
+          "instruction_bytes": "4c8d0d0d514e01",
+          "instruction": "lea r9, [rip + 0x14e510d]",
+          "owner_file_offset": "0x5aa8120",
+          "owner_byte_count": 2241,
+          "owner_sha256": "034a8a253065e544f3529db2578d6c0274ae46f1382826da1f8c6ae55adeb546"
+        }
+      ],
+      "limit": "Location/body anchors supplement reviewed actual contracts; no whole-body/module semantic ownership is inferred."
+    },
+    {
+      "system_id": "custom-game-server",
+      "diagnostic_path": "crates/wenilla-rogue/src/server.rs",
+      "bounded_owners": [
+        {
+          "kind": "rust_location",
+          "instruction_address": "0x145b0da3a",
+          "target_address": "0x146fb90c8",
+          "runtime_function_start": "0x145b072e0",
+          "runtime_function_end": "0x145b0dba1",
+          "source_line": 338,
+          "source_column": 24,
+          "path_address": "0x146fb8f05",
+          "instruction_bytes": "4c8d0587b64a01",
+          "instruction": "lea r8, [rip + 0x14ab687]",
+          "owner_file_offset": "0x5b066e0",
+          "owner_byte_count": 26817,
+          "owner_sha256": "a8ecd181f8cbdfa39d370d267916eec7a29d7c7ae6616f3f6b4f09427bd74121"
+        },
+        {
+          "kind": "rust_location",
+          "instruction_address": "0x145b0d9ed",
+          "target_address": "0x146fb90e0",
+          "runtime_function_start": "0x145b072e0",
+          "runtime_function_end": "0x145b0dba1",
+          "source_line": 339,
+          "source_column": 53,
+          "path_address": "0x146fb8f05",
+          "instruction_bytes": "4c8d05ecb64a01",
+          "instruction": "lea r8, [rip + 0x14ab6ec]",
+          "owner_file_offset": "0x5b066e0",
+          "owner_byte_count": 26817,
+          "owner_sha256": "a8ecd181f8cbdfa39d370d267916eec7a29d7c7ae6616f3f6b4f09427bd74121"
+        },
+        {
+          "kind": "rust_location",
+          "instruction_address": "0x145b0da4f",
+          "target_address": "0x146fb90f8",
+          "runtime_function_start": "0x145b072e0",
+          "runtime_function_end": "0x145b0dba1",
+          "source_line": 342,
+          "source_column": 27,
+          "path_address": "0x146fb8f05",
+          "instruction_bytes": "4c8d05a2b64a01",
+          "instruction": "lea r8, [rip + 0x14ab6a2]",
+          "owner_file_offset": "0x5b066e0",
+          "owner_byte_count": 26817,
+          "owner_sha256": "a8ecd181f8cbdfa39d370d267916eec7a29d7c7ae6616f3f6b4f09427bd74121"
+        },
+        {
+          "kind": "rust_location",
+          "instruction_address": "0x145b0da64",
+          "target_address": "0x146fb9110",
+          "runtime_function_start": "0x145b072e0",
+          "runtime_function_end": "0x145b0dba1",
+          "source_line": 343,
+          "source_column": 37,
+          "path_address": "0x146fb8f05",
+          "instruction_bytes": "4c8d05a5b64a01",
+          "instruction": "lea r8, [rip + 0x14ab6a5]",
+          "owner_file_offset": "0x5b066e0",
+          "owner_byte_count": 26817,
+          "owner_sha256": "a8ecd181f8cbdfa39d370d267916eec7a29d7c7ae6616f3f6b4f09427bd74121"
+        }
+      ],
+      "limit": "Location/body anchors supplement reviewed actual contracts; no whole-body/module semantic ownership is inferred."
+    },
+    {
+      "system_id": "custom-game-server-party",
+      "diagnostic_path": "crates/wenilla-rogue/src/server/party.rs",
+      "bounded_owners": [
+        {
+          "kind": "rust_location",
+          "instruction_address": "0x145b2594a",
+          "target_address": "0x146fb8d98",
+          "runtime_function_start": "0x145b24fc0",
+          "runtime_function_end": "0x145b25bad",
+          "source_line": 382,
+          "source_column": 63,
+          "path_address": "0x146fb8d68",
+          "instruction_bytes": "4c8d0547344901",
+          "instruction": "lea r8, [rip + 0x1493447]",
+          "owner_file_offset": "0x5b243c0",
+          "owner_byte_count": 3053,
+          "owner_sha256": "41d13fb06441bc4f9389b27fd7aeb4026893fa56f4ab6413338923d5487cf1cd"
+        },
+        {
+          "kind": "rust_location",
+          "instruction_address": "0x145b2596c",
+          "target_address": "0x146fb8db0",
+          "runtime_function_start": "0x145b24fc0",
+          "runtime_function_end": "0x145b25bad",
+          "source_line": 413,
+          "source_column": 68,
+          "path_address": "0x146fb8d68",
+          "instruction_bytes": "4c8d053d344901",
+          "instruction": "lea r8, [rip + 0x149343d]",
+          "owner_file_offset": "0x5b243c0",
+          "owner_byte_count": 3053,
+          "owner_sha256": "41d13fb06441bc4f9389b27fd7aeb4026893fa56f4ab6413338923d5487cf1cd"
+        },
+        {
+          "kind": "rust_location",
+          "instruction_address": "0x145b25b98",
+          "target_address": "0x146fb9d50",
+          "runtime_function_start": "0x145b24fc0",
+          "runtime_function_end": "0x145b25bad",
+          "source_line": 398,
+          "source_column": 40,
+          "path_address": "0x146fb8d68",
+          "instruction_bytes": "4c8d05b1414901",
+          "instruction": "lea r8, [rip + 0x14941b1]",
+          "owner_file_offset": "0x5b243c0",
+          "owner_byte_count": 3053,
+          "owner_sha256": "41d13fb06441bc4f9389b27fd7aeb4026893fa56f4ab6413338923d5487cf1cd"
+        },
+        {
+          "kind": "rust_location",
+          "instruction_address": "0x145b26198",
+          "target_address": "0x146fb9d70",
+          "runtime_function_start": "0x145b26060",
+          "runtime_function_end": "0x145b261ac",
+          "source_line": 479,
+          "source_column": 28,
+          "path_address": "0x146fb8d68",
+          "instruction_bytes": "4c8d05d13b4901",
+          "instruction": "lea r8, [rip + 0x1493bd1]",
+          "owner_file_offset": "0x5b25460",
+          "owner_byte_count": 332,
+          "owner_sha256": "4f3121674ad67f36ef7b4c5173fe2cff44e83a2e3e870a527e77c90f53612a08"
+        }
+      ],
+      "limit": "Location/body anchors supplement reviewed actual contracts; no whole-body/module semantic ownership is inferred."
+    }
+  ]
+}

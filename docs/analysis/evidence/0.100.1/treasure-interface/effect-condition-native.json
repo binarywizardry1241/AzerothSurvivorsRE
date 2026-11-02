@@ -1,0 +1,628 @@
+{
+  "target_sha256": "17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b",
+  "method": "Recover current condition/selector truth tables from bounded native code.\n\nExecutes the unchanged condition leaf1454cb900 and its selector helper1454d02b0\nwith synthetic in-memory records. Selector0 needs no game/catalog external\ncalls. Every other external instruction fails closed; no application is run.\n",
+  "native_owners": [
+    {
+      "start": "0x1454cb900",
+      "end_exclusive": "0x1454cba06",
+      "file_offset": "0x54cad00",
+      "sha256": "0ae525f6198ed384e7d707e40da172ac3cb67184cdc7b801d45dc789706427ed"
+    },
+    {
+      "start": "0x1454d02b0",
+      "end_exclusive": "0x1454d0509",
+      "file_offset": "0x54cf6b0",
+      "sha256": "553dd8fd7b4d1578c42135091eaeae5aa06cc00bfd1927b7b6ce6bbaddb48eeb"
+    }
+  ],
+  "tables": [
+    {
+      "address": "0x1469f8718",
+      "relative_base": "0x1469f8718",
+      "destinations": [
+        "0x1454cb91b",
+        "0x1454cb99a",
+        "0x1454cb972",
+        "0x1454cb982",
+        "0x1454cb940",
+        "0x1454cb9b6",
+        "0x1454cb9e1",
+        "0x1454cb992",
+        "0x1454cb9fa",
+        "0x1454cb94c",
+        "0x1454cb9ee",
+        "0x1454cb934"
+      ],
+      "sha256": "ab9b9a7525afc810da3d7b518ab7913bc56f7bbaaa843108575168f8f8c84378"
+    },
+    {
+      "address": "0x1469f8748",
+      "relative_base": "0x1469f8748",
+      "destinations": [
+        "0x1454ccfd8",
+        "0x1454cbcf4",
+        "0x1454cc206",
+        "0x1454cc33f",
+        "0x1454cbf8d",
+        "0x1454cc453",
+        "0x1454cc529",
+        "0x1454cc38d",
+        "0x1454cc572",
+        "0x1454cc1bd",
+        "0x1454cceca",
+        "0x1454cbe8f",
+        "0x1454cc0c9",
+        "0x1454cbc68",
+        "0x1454cc506",
+        "0x1454cbe49",
+        "0x1454cc2d4",
+        "0x1454cbddd",
+        "0x1454cce33",
+        "0x1454cbc68",
+        "0x1454cbc68",
+        "0x1454cbc68",
+        "0x1454cbc68",
+        "0x1454cbc68",
+        "0x1454cbc68",
+        "0x1454cbc68",
+        "0x1454cbc68",
+        "0x1454cbc68",
+        "0x1454cbc68",
+        "0x1454cbc68",
+        "0x1454cd56f",
+        "0x1454cd465"
+      ],
+      "sha256": "a7bf8bd7fee89e34fb6ed5576bd5c743332a89d0197d7f16d6c06a92eeb6e9f9"
+    },
+    {
+      "address": "0x1469f87c0",
+      "relative_base": "0x1469f87c0",
+      "destinations": [
+        "0x1454cd5e7",
+        "0x1454cd4dd",
+        "0x1454cd57e",
+        "0x1454cd5d8",
+        "0x1454cd56d"
+      ],
+      "sha256": "6f1dfdb0dd491f7af3fb11e27b59002699c75e142fa3bd3602a168dc63725a3e"
+    },
+    {
+      "address": "0x1469f87f8",
+      "relative_base": "0x1469f87f8",
+      "destinations": [
+        "0x1454d02e9",
+        "0x1454d031e",
+        "0x1454d031e",
+        "0x1454d0301",
+        "0x1454d031e",
+        "0x1454d02f0",
+        "0x1454d0314"
+      ],
+      "sha256": "565bf475b63ff9154dc59f13142fdea27d3fb7a142ffc3e5f25827a7d385bc24"
+    },
+    {
+      "address": "0x1469f8814",
+      "relative_base": "0x1469f8814",
+      "destinations": [
+        "0x1454d02e9",
+        "0x1454d04b6",
+        "0x1454d045b",
+        "0x1454d04a8",
+        "0x1454d044d",
+        "0x1454d0403",
+        "0x1454d0403"
+      ],
+      "sha256": "a472d2d11b97256ce65195082985ac23ddf590ec371d0d2e4597943375b96ea9"
+    }
+  ],
+  "selector": 0,
+  "maximum_health": 100.0,
+  "health": 40.0,
+  "threshold_fraction": 0.5,
+  "flag_bit_offsets": [
+    "0x1f",
+    "0x20",
+    "0x21",
+    "0x22"
+  ],
+  "cases": [
+    {
+      "condition": 0,
+      "event_kind": 0,
+      "true_flag_patterns": 65535
+    },
+    {
+      "condition": 0,
+      "event_kind": 1,
+      "true_flag_patterns": 65280
+    },
+    {
+      "condition": 0,
+      "event_kind": 2,
+      "true_flag_patterns": 65280
+    },
+    {
+      "condition": 0,
+      "event_kind": 3,
+      "true_flag_patterns": 65280
+    },
+    {
+      "condition": 0,
+      "event_kind": 4,
+      "true_flag_patterns": 65280
+    },
+    {
+      "condition": 0,
+      "event_kind": 5,
+      "true_flag_patterns": 65280
+    },
+    {
+      "condition": 0,
+      "event_kind": 6,
+      "true_flag_patterns": 65280
+    },
+    {
+      "condition": 0,
+      "event_kind": 7,
+      "true_flag_patterns": 65280
+    },
+    {
+      "condition": 1,
+      "event_kind": 0,
+      "true_flag_patterns": 52428
+    },
+    {
+      "condition": 1,
+      "event_kind": 1,
+      "true_flag_patterns": 52224
+    },
+    {
+      "condition": 1,
+      "event_kind": 2,
+      "true_flag_patterns": 52224
+    },
+    {
+      "condition": 1,
+      "event_kind": 3,
+      "true_flag_patterns": 52224
+    },
+    {
+      "condition": 1,
+      "event_kind": 4,
+      "true_flag_patterns": 52224
+    },
+    {
+      "condition": 1,
+      "event_kind": 5,
+      "true_flag_patterns": 52224
+    },
+    {
+      "condition": 1,
+      "event_kind": 6,
+      "true_flag_patterns": 52224
+    },
+    {
+      "condition": 1,
+      "event_kind": 7,
+      "true_flag_patterns": 52224
+    },
+    {
+      "condition": 2,
+      "event_kind": 0,
+      "true_flag_patterns": 43690
+    },
+    {
+      "condition": 2,
+      "event_kind": 1,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 2,
+      "event_kind": 2,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 2,
+      "event_kind": 3,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 2,
+      "event_kind": 4,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 2,
+      "event_kind": 5,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 2,
+      "event_kind": 6,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 2,
+      "event_kind": 7,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 3,
+      "event_kind": 0,
+      "true_flag_patterns": 61680
+    },
+    {
+      "condition": 3,
+      "event_kind": 1,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 3,
+      "event_kind": 2,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 3,
+      "event_kind": 3,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 3,
+      "event_kind": 4,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 3,
+      "event_kind": 5,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 3,
+      "event_kind": 6,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 3,
+      "event_kind": 7,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 4,
+      "event_kind": 0,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 4,
+      "event_kind": 1,
+      "true_flag_patterns": 65535
+    },
+    {
+      "condition": 4,
+      "event_kind": 2,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 4,
+      "event_kind": 3,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 4,
+      "event_kind": 4,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 4,
+      "event_kind": 5,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 4,
+      "event_kind": 6,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 4,
+      "event_kind": 7,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 5,
+      "event_kind": 0,
+      "true_flag_patterns": 65535
+    },
+    {
+      "condition": 5,
+      "event_kind": 1,
+      "true_flag_patterns": 65535
+    },
+    {
+      "condition": 5,
+      "event_kind": 2,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 5,
+      "event_kind": 3,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 5,
+      "event_kind": 4,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 5,
+      "event_kind": 5,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 5,
+      "event_kind": 6,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 5,
+      "event_kind": 7,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 6,
+      "event_kind": 0,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 6,
+      "event_kind": 1,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 6,
+      "event_kind": 2,
+      "true_flag_patterns": 65535
+    },
+    {
+      "condition": 6,
+      "event_kind": 3,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 6,
+      "event_kind": 4,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 6,
+      "event_kind": 5,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 6,
+      "event_kind": 6,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 6,
+      "event_kind": 7,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 7,
+      "event_kind": 0,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 7,
+      "event_kind": 1,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 7,
+      "event_kind": 2,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 7,
+      "event_kind": 3,
+      "true_flag_patterns": 65535
+    },
+    {
+      "condition": 7,
+      "event_kind": 4,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 7,
+      "event_kind": 5,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 7,
+      "event_kind": 6,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 7,
+      "event_kind": 7,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 8,
+      "event_kind": 0,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 8,
+      "event_kind": 1,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 8,
+      "event_kind": 2,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 8,
+      "event_kind": 3,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 8,
+      "event_kind": 4,
+      "true_flag_patterns": 65535
+    },
+    {
+      "condition": 8,
+      "event_kind": 5,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 8,
+      "event_kind": 6,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 8,
+      "event_kind": 7,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 9,
+      "event_kind": 0,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 9,
+      "event_kind": 1,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 9,
+      "event_kind": 2,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 9,
+      "event_kind": 3,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 9,
+      "event_kind": 4,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 9,
+      "event_kind": 5,
+      "true_flag_patterns": 65535
+    },
+    {
+      "condition": 9,
+      "event_kind": 6,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 9,
+      "event_kind": 7,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 10,
+      "event_kind": 0,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 10,
+      "event_kind": 1,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 10,
+      "event_kind": 2,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 10,
+      "event_kind": 3,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 10,
+      "event_kind": 4,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 10,
+      "event_kind": 5,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 10,
+      "event_kind": 6,
+      "true_flag_patterns": 65535
+    },
+    {
+      "condition": 10,
+      "event_kind": 7,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 11,
+      "event_kind": 0,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 11,
+      "event_kind": 1,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 11,
+      "event_kind": 2,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 11,
+      "event_kind": 3,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 11,
+      "event_kind": 4,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 11,
+      "event_kind": 5,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 11,
+      "event_kind": 6,
+      "true_flag_patterns": 0
+    },
+    {
+      "condition": 11,
+      "event_kind": 7,
+      "true_flag_patterns": 65535
+    }
+  ],
+  "strict_health_thresholds": [
+    {
+      "health": 49.0,
+      "threshold_fraction": 0.5,
+      "result": true
+    },
+    {
+      "health": 50.0,
+      "threshold_fraction": 0.5,
+      "result": false
+    },
+    {
+      "health": 51.0,
+      "threshold_fraction": 0.5,
+      "result": false
+    }
+  ],
+  "instruction_cases": 1539
+}

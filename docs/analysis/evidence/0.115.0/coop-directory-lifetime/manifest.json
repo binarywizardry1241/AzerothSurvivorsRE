@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.115.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+    "size_bytes": 142111232
+  },
+  "target_executed": false,
+  "native_instructions_emulated": true,
+  "ranges": [
+    {
+      "role": "idle-gate",
+      "start": "0x14587824f",
+      "end_exclusive": "0x145878291",
+      "file_offset": "0x587764f",
+      "sha256": "02e2bebe678602410745cd836c37baa652cf5e99b0725db0e73b92de6f54430e",
+      "owner": {
+        "start": "0x145877810",
+        "end_exclusive": "0x14587e0c1",
+        "sha256": "49f002c7826267770134a4d83b3532d552a8863cd4bc260cdb7f16156598bbd6"
+      },
+      "extract": "docs/analysis/evidence/0.115.0/coop-directory-lifetime/idle-gate.asm",
+      "extract_sha256": "7587ac0112cc87a3da03cdc3a79243bdc10f477726a454ea8eab2e0ab0d260f3"
+    },
+    {
+      "role": "idle-close",
+      "start": "0x145878ebe",
+      "end_exclusive": "0x145878f07",
+      "file_offset": "0x58782be",
+      "sha256": "5d7cd1d18cf7b2a8a33cdf495f434bc34daee8946fb9e2b9615c6da7ac3dbf17",
+      "owner": {
+        "start": "0x145877810",
+        "end_exclusive": "0x14587e0c1",
+        "sha256": "49f002c7826267770134a4d83b3532d552a8863cd4bc260cdb7f16156598bbd6"
+      },
+      "extract": "docs/analysis/evidence/0.115.0/coop-directory-lifetime/idle-close.asm",
+      "extract_sha256": "c522e0b181eaa1dc424c2e9c30cc594e6547164f9774c0bae323c9c23970fad6"
+    },
+    {
+      "role": "off-continuation",
+      "start": "0x145879758",
+      "end_exclusive": "0x145879797",
+      "file_offset": "0x5878b58",
+      "sha256": "5490219503c6d7620e8d9e5f1d8550eb878562b2d98d1463b275fe2542a2924b",
+      "owner": {
+        "start": "0x145877810",
+        "end_exclusive": "0x14587e0c1",
+        "sha256": "49f002c7826267770134a4d83b3532d552a8863cd4bc260cdb7f16156598bbd6"
+      },
+      "extract": "docs/analysis/evidence/0.115.0/coop-directory-lifetime/off-continuation.asm",
+      "extract_sha256": "454a65b6a3b7ef96a2464e8146460bba3f22397c68365edae04d47732afdbee9"
+    },
+    {
+      "role": "command-touch",
+      "start": "0x14587a2a5",
+      "end_exclusive": "0x14587a312",
+      "file_offset": "0x58796a5",
+      "sha256": "a27c936995f871e2d204cf7973c330874f9921f561a6cc5fdd91310e02dc4378",
+      "owner": {
+        "start": "0x145877810",
+        "end_exclusive": "0x14587e0c1",
+        "sha256": "49f002c7826267770134a4d83b3532d552a8863cd4bc260cdb7f16156598bbd6"
+      },
+      "extract": "docs/analysis/evidence/0.115.0/coop-directory-lifetime/command-touch.asm",
+      "extract_sha256": "7fc3743aec1808b9a94f981f1636d80176a4a7c569ab7f675399f2b8f703c2ba"
+    },
+    {
+      "role": "close-service",
+      "start": "0x14581e820",
+      "end_exclusive": "0x14581e96d",
+      "file_offset": "0x581dc20",
+      "sha256": "1ab09b26d81c72539d9f5a04e32ceb5a4099732d4b835686be56cb49642b436c",
+      "owner": {
+        "start": "0x14581e820",
+        "end_exclusive": "0x14581e96d",
+        "sha256": "1ab09b26d81c72539d9f5a04e32ceb5a4099732d4b835686be56cb49642b436c"
+      },
+      "extract": "docs/analysis/evidence/0.115.0/coop-directory-lifetime/close-service.asm",
+      "extract_sha256": "952f26110c4c308bc8f74f61a8be712851d48eb31350c6fdc3d48411fc8fb910"
+    },
+    {
+      "role": "drop-service",
+      "start": "0x145871650",
+      "end_exclusive": "0x1458717d6",
+      "file_offset": "0x5870a50",
+      "sha256": "66d6da9b5b42c17958f2c9a2407c8ee249aa74c23b6e6a06847573533d491968",
+      "owner": {
+        "start": "0x145871650",
+        "end_exclusive": "0x1458717d6",
+        "sha256": "66d6da9b5b42c17958f2c9a2407c8ee249aa74c23b6e6a06847573533d491968"
+      },
+      "extract": "docs/analysis/evidence/0.115.0/coop-directory-lifetime/drop-service.asm",
+      "extract_sha256": "0d9c0fa5cb41163b821180e2330d4a169694c0549551756d7c57005067f5c7bc"
+    }
+  ],
+  "literals": [
+    {
+      "role": "idle-seconds",
+      "address": "0x145fbe530",
+      "file_offset": "0x5fbd130",
+      "hex": "0000000000004e40",
+      "sha256": "e39fe0de715a254739f2fbe0a728301100c99ce75fc20c3fa22a49eb772f3b5f"
+    },
+    {
+      "role": "leave-value",
+      "address": "0x146ccab58",
+      "file_offset": "0x6cc9758",
+      "hex": "0700000000000080",
+      "sha256": "cd1fe2a7b9cf8a4a0c6b7e34617cf4adc39d279dc230af36f4ee8e6d3cedffba"
+    }
+  ],
+  "ghidra": [
+    {
+      "role": "idle-gate",
+      "evidence_id": "ev_f4e063a8ddfaa675ec400b37e44ebf67f2ea3e15887286d8e366d6cc72baabc4",
+      "input_sha256": "02e2bebe678602410745cd836c37baa652cf5e99b0725db0e73b92de6f54430e",
+      "profile_digest": "ce2e3a0db6ec65cb14cbb21f8eaefe482d130ce3bdcdd349367333a4fdc1f619",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "normalized_result_sha256": "443f06a10884645eb0f20925717f180013613a2f8ea78a65c3d6759d287978fc",
+      "retained_result": {
+        "path": "runtime/fixgap-99-lifetime/rea-idle-gate/results/65f7010243b1da2242001aa1f5ebfdaf2af8b3aebbb948878257a1daaea0a068.json",
+        "sha256": "d67aa92a2349c9d31f96b00b7304e0344e1cded2cea4abea7fa4106528958cf4"
+      },
+      "journal_ref": "runtime/fixgap-99-lifetime/rea-idle-gate/journal.json",
+      "query_plan_sha256": "22eb66a215e9ff1ef8412b77250749c9458be0807704d03e6cd80c7fa259c553"
+    },
+    {
+      "role": "close-service",
+      "evidence_id": "ev_a8c013d1213b060c7a2200b5768169c90b210b9be365bfc5951f4d0963fb1480",
+      "input_sha256": "1ab09b26d81c72539d9f5a04e32ceb5a4099732d4b835686be56cb49642b436c",
+      "profile_digest": "f80b03f97c1fdb5fb9a69d96ee670f57f48e1025c680505c9c90110329251651",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "normalized_result_sha256": "cf1d8cdde1cbad644b4e290fd0b7f81828dde838f2d589b61a31696445ee02ad",
+      "retained_result": {
+        "path": "runtime/fixgap-99-lifetime/rea-close-service/results/8775cc7586d116efb3f1f8dd1652dc27feba6e7d2cb2df8fa32a80bd689d34e4.json",
+        "sha256": "4a08b976f2f206795c9918d6cd07ac8a272906935d530870525762c0de0e39db"
+      },
+      "journal_ref": "runtime/fixgap-99-lifetime/rea-close-service/journal.json",
+      "query_plan_sha256": "a52b955b196446a307c4c8d99ad0d80d62e5b4ed94f1a3c166688ac17670dfcf"
+    }
+  ],
+  "contract": {
+    "presence": "The application checks service option+0x1590 !=-1 before considering idle closure.",
+    "off_state": "The selected cooperative state+0xc58 must equal2 (Off), independently of solo gameplay.",
+    "deadline": "UCOMISD(elapsed,60.0)/JAE: ordered now_f64-last_request_f64 >=60.0; equality closes, unordered NaN does not.",
+    "activity": "Only unhandled selected co-op app tags20..24 reset live service+0x16c8 at14587a30a. Ordinary AS/menu commands bypass the selected clock block. A generic app prehandler can consume the command first.",
+    "close": "Move old service state to scratch, set service option+0x1590=None, call close-service then drop-service. close-service enqueues native Leave(encoding input0x8000000000000007), signals primary close and closes/drops secondary.",
+    "menu": "The idle branch makes no status/reason/snapshot/filter publication. Off continuation skips directly to ordinary command drain; retain prior menu presentation, received list and selections.",
+    "ordering": "Idle gate runs before pending service messages and before the current frame's ordinary app-command drain."
+  },
+  "seams": [
+    "Ghidra imports only the bounded native code ranges and omits constants/external bodies; Win64 operand and branch effects are checked in original instruction replay.",
+    "Replay substitutes generic app-command handling, memcpy and service close/drop with explicit seams; close-helper lifetime calls are statically traced, not run through OS queues.",
+    "The pure source predicate has source guards; application/ECS scheduling, queue execution and session lifetime execution are not established by this checker. Rust regressions remain uncompiled/unrun. No game, service, TLS, sockets or original/rebuilt parity execution."
+  ]
+}

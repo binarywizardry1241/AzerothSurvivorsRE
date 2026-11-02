@@ -1,0 +1,56 @@
+{
+  "target_version": "0.108.0",
+  "target_sha256": "dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b",
+  "spans": [
+    {
+      "role": "dispatch-prefix",
+      "va": "0x145950ff8",
+      "file_offset": "0x59503f8",
+      "byte_count": 99,
+      "sha256": "54e0871bd3b96c61c40cbf22bdc3f7b8395b0fdd78b0a40379d280a095b9fba4",
+      "end_exclusive": "0x14595105b",
+      "assembly": "dispatch-prefix.asm",
+      "assembly_sha256": "e95319c4c1b59902a8927d78f00c72601e4dca94def34f80de22e755a7809107"
+    },
+    {
+      "role": "dispatch-tail",
+      "va": "0x145955213",
+      "file_offset": "0x5954613",
+      "byte_count": 3066,
+      "sha256": "d461693894794784dbac5bfeabe850e82f8ae0e306de3d5681b54469ad4a28fa",
+      "end_exclusive": "0x145955e0d",
+      "assembly": "dispatch-tail.asm",
+      "assembly_sha256": "ccf424ef891a047b61f17c9d05ec25ab4c2893a5d86557d2396086fc5e33dbca"
+    },
+    {
+      "role": "scheduled-repeat",
+      "va": "0x145973b45",
+      "file_offset": "0x5972f45",
+      "byte_count": 588,
+      "sha256": "3f50c2c0914ce544b3b0e43310394d759b7e409bc5fe36e2510c0ba97e0f3ed2",
+      "end_exclusive": "0x145973d91",
+      "assembly": "docs/analysis/evidence/0.108.0/boss-minions/scheduled-repeat.asm",
+      "assembly_sha256": "a96cceddb448fdcac4e9b22d0623187805ea77a4b8bfcb931098162f85ce52c4"
+    }
+  ],
+  "rea": {
+    "evidence_id": "ev_4e42f9ebbb5d4ceaf7a0196b813f5b828fcf3f2df7fde902d2e65c3a1c69ad51",
+    "provider": {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "version": "12.1.4"
+    },
+    "subject_sha256": "95bba6ade1fb988fac4d1ac7062477c82e529519facac5e4be35713dafad10e2",
+    "analysis_profile_digest": "9a68e5dbb36bec6335be885536a8f304e29da849f0f3b435940769769af5b8da",
+    "query_entry": "0x145950ff8",
+    "owner_start": "0x145950bf0",
+    "owner_end_exclusive": "0x145956052",
+    "pseudocode": "dispatch.pseudo.c",
+    "pseudocode_sha256": "ab1ebfaed087774d50032e74a7d9f98906d4608963fb9cbc0e6d675e2aae55cf"
+  },
+  "limits": [
+    "Bounded original-VA Ghidra raw import with all 30 jump-table entries seeded. Seeds are analyst assertions, not discovered functions.",
+    "Ghidra generic gcc spec; Win64 registers, original PE constants and branches reviewed separately. External code/data and full encounter ownership are not recovered by this import.",
+    "Only current recurring volley membership, speed, flight floor and selected repeat/RNG instructions are certified; hazard lifecycle/presentation and mixed encounter ordering remain open."
+  ]
+}

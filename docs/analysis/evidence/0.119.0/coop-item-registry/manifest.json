@@ -1,0 +1,1196 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.119.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f",
+    "size_bytes": 145357824,
+    "identity_manifest": "docs/analysis/coverage/targets.json",
+    "version_provenance": "matching_embedded_updater_and_independent_version_witness",
+    "runtime_data": {
+      "directory": "installed-game/Data",
+      "archives": [
+        {
+          "path": "installed-game/Data/patch-2.MPQ",
+          "size_bytes": 4690878,
+          "sha256": "366edee41642a5dda22ed90cc252b543ee375755b7e8bee81e2a6cd59fd7b286"
+        },
+        {
+          "path": "installed-game/Data/patch-3.MPQ",
+          "size_bytes": 2580491,
+          "sha256": "75c35ca5b8075197252581e301e8900143007fdf37b493ad271ae1bd39f95a29"
+        },
+        {
+          "path": "installed-game/Data/patch-4.MPQ",
+          "size_bytes": 22769233,
+          "sha256": "2e895e0e0ff6a4781d0e0aaa6ea7d32ed1fe36841e17806fe1855cb880d18865"
+        },
+        {
+          "path": "installed-game/Data/patch-5.MPQ",
+          "size_bytes": 267019039,
+          "sha256": "5008e56873718b468fa5ae1b697dcbe4f5da9ffe6c793f3ef9939dbd7716f3d8"
+        },
+        {
+          "path": "installed-game/Data/patch-6.MPQ",
+          "size_bytes": 212228,
+          "sha256": "cad6ff59b5df028a507581befb836fce07894057e15fe63d9fdc553a95b7ceb5"
+        },
+        {
+          "path": "installed-game/Data/patch-7.MPQ",
+          "size_bytes": 276649,
+          "sha256": "f5fb15b181cf01cc6b5cf2ee9948a27ecc4ba27bab9a8bec584df4381932aae6"
+        },
+        {
+          "path": "installed-game/Data/patch-8.MPQ",
+          "size_bytes": 4155417,
+          "sha256": "ae3aaa29cadb7aeba8255f5b4a8305c7cbecfe8f0d3ed9646522113d16c3e12e"
+        },
+        {
+          "path": "installed-game/Data/patch-9.MPQ",
+          "size_bytes": 5739608,
+          "sha256": "ffff8ea890bdaf91a1680543ac60106db92132bc2210105279610fa73661a524"
+        },
+        {
+          "path": "installed-game/Data/patch-A.MPQ",
+          "size_bytes": 1453122,
+          "sha256": "350cde8cd0f76e5246a663eb3811f5a7b1a9c75e4e699190208c9299177b8d90"
+        },
+        {
+          "path": "installed-game/Data/patch.MPQ",
+          "size_bytes": 1340199244,
+          "sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf"
+        }
+      ]
+    }
+  },
+  "gap_ids": [
+    101,
+    41,
+    63
+  ],
+  "target_executed": false,
+  "ranges": [
+    {
+      "role": "interner",
+      "start": "0x145b5cb20",
+      "end_exclusive": "0x145b5cd22",
+      "file_offset": "0x5b5bf20",
+      "sha256": "bcfc00c6ef5851866bb73bf082abeb6ef5ca7fec3b83df01b6438a763d7e0f36",
+      "decompilation": {
+        "path": "docs/analysis/evidence/0.119.0/coop-item-registry/interner.c",
+        "sha256": "86c520660c2e64725a12666c9bd945b5caee02a2534e28c9e6dc9335cb9c8531",
+        "source_character_range": [
+          0,
+          2438
+        ],
+        "normalization": "Trim outer blank lines and trailing line whitespace; original result unchanged."
+      }
+    },
+    {
+      "role": "lookup",
+      "start": "0x145b5cdc0",
+      "end_exclusive": "0x145b5cefc",
+      "file_offset": "0x5b5c1c0",
+      "sha256": "8e123624c8fcb5b8ac67138b180024eff00a4188706f09a9d8f1de3f9050c862",
+      "decompilation": {
+        "path": "docs/analysis/evidence/0.119.0/coop-item-registry/lookup.c",
+        "sha256": "f9d58577375bb48ff4c245045760311cfff8d5c9d5e76200783c5faad42bf1db",
+        "source_character_range": [
+          0,
+          1714
+        ],
+        "normalization": "Trim outer blank lines and trailing line whitespace; original result unchanged."
+      }
+    },
+    {
+      "role": "serializer-effects",
+      "start": "0x145b66220",
+      "end_exclusive": "0x145b68f80",
+      "file_offset": "0x5b65620",
+      "sha256": "bb58ae887b3096f55774991b52346664075f89c73724c0643e8515b4de1526f6",
+      "decompilation": {
+        "path": "docs/analysis/evidence/0.119.0/coop-item-registry/serializer-effects.c",
+        "sha256": "96a68935b8d7bb101010218937790721fc7510b11eef0bc32c33ce64e840c50b",
+        "source_character_range": [
+          25451,
+          28370
+        ],
+        "normalization": "Trim outer blank lines and trailing line whitespace; original result unchanged."
+      }
+    },
+    {
+      "role": "lookup-registration",
+      "start": "0x14008b480",
+      "end_exclusive": "0x14008f322",
+      "file_offset": "0x8a880",
+      "sha256": "a1957f9098a54ea236de627e586758161d2841f16f5ead07643e1e55117a1bbc",
+      "decompilation": {
+        "path": "docs/analysis/evidence/0.119.0/coop-item-registry/lookup-registration.c",
+        "sha256": "79889662cc79c95f0519d2f0d02ddebf231b9010eba6563184cd070331be821d",
+        "source_character_range": [
+          4894,
+          5004
+        ],
+        "normalization": "Trim outer blank lines and trailing line whitespace; original result unchanged."
+      }
+    },
+    {
+      "role": "lookup-once-setter",
+      "start": "0x14082a8b0",
+      "end_exclusive": "0x14082a8df",
+      "file_offset": "0x829cb0",
+      "sha256": "beccd526cabff8d1939dfdb77a29d7fa896a0dd048e5ad72cebec5c5d5a235b9",
+      "decompilation": {
+        "path": "docs/analysis/evidence/0.119.0/coop-item-registry/lookup-once-setter.c",
+        "sha256": "8f4b2e0da3ce6f7d3329d0ea4de45d19034ef524e7d4e56885048bcedd5a0c47",
+        "source_character_range": [
+          0,
+          191
+        ],
+        "normalization": "Trim outer blank lines and trailing line whitespace; original result unchanged."
+      }
+    },
+    {
+      "role": "lookup-consumer",
+      "start": "0x140c7cc00",
+      "end_exclusive": "0x140c7cdfc",
+      "file_offset": "0xc7c000",
+      "sha256": "b3ee8798c485dfb83228a8931b043848af46649d4b4dcd6228e0e209f18c6e58",
+      "decompilation": {
+        "path": "docs/analysis/evidence/0.119.0/coop-item-registry/lookup-consumer.c",
+        "sha256": "8d02c0efb650da597b05928208d067518c5ec3bed6a37984a48981d45ab70159",
+        "source_character_range": [
+          0,
+          2292
+        ],
+        "normalization": "Trim outer blank lines and trailing line whitespace; original result unchanged."
+      }
+    },
+    {
+      "role": "opcode-58-dispatch",
+      "start": "0x145ca8b50",
+      "end_exclusive": "0x145cb5646",
+      "file_offset": "0x5ca7f50",
+      "sha256": "d655e419fc9bc2ae7593e3ffbf971fb3c0a9b2b69fc8f11ea296702ecf5857a1",
+      "decompilation": {
+        "path": "docs/analysis/evidence/0.119.0/coop-item-registry/opcode-58-dispatch.c",
+        "sha256": "644bed7957609b0c59251780fbabecbbafc2c796d67f30ba83a1cbaff3faca2a",
+        "source_character_range": [
+          36440,
+          37768
+        ],
+        "normalization": "Trim outer blank lines and trailing line whitespace; original result unchanged."
+      }
+    },
+    {
+      "role": "item-template-cache",
+      "start": "0x140ac94d0",
+      "end_exclusive": "0x140aca909",
+      "file_offset": "0xac88d0",
+      "sha256": "cc386deef3b59d348393b784c9012284a4ef642818f50d370d4e7e60397469dd",
+      "decompilation": {
+        "path": "docs/analysis/evidence/0.119.0/coop-item-registry/item-template-cache.c",
+        "sha256": "9fea5147c1086367bef1e963b25f94977d91b915f11d6bbb32ff4c207e060ea3",
+        "source_character_range": [
+          25256,
+          28342
+        ],
+        "normalization": "Trim outer blank lines and trailing line whitespace; original result unchanged."
+      }
+    },
+    {
+      "role": "item-decoder",
+      "start": "0x145c8e500",
+      "end_exclusive": "0x145c8face",
+      "file_offset": "0x5c8d900",
+      "sha256": "f2f1ba8e86a8978f05ffeac98896cd3d5f226ce4d97a588dc475eebfd95c7194",
+      "decompilation": {
+        "path": "docs/analysis/evidence/0.119.0/coop-item-registry/item-decoder.c",
+        "sha256": "09ef35760e9aad6491af8a9cf6b05e8c4824316fa6224081c9566948de07aa27",
+        "source_character_range": [
+          0,
+          34694
+        ],
+        "normalization": "Trim outer blank lines and trailing line whitespace; original result unchanged."
+      }
+    },
+    {
+      "role": "registry-reserve",
+      "start": "0x145f94690",
+      "end_exclusive": "0x145f946fb",
+      "file_offset": "0x5f93a90",
+      "sha256": "c84b08a3b44416af6c58168cfbf071c450360d199c43f299febe2a8e57c761c0",
+      "decompilation": {
+        "path": "docs/analysis/evidence/0.119.0/coop-item-registry/registry-reserve.c",
+        "sha256": "a61d773300683fd995832aa15563021790aea43d2b0542d11e83248da3bb088d",
+        "source_character_range": [
+          0,
+          561
+        ],
+        "normalization": "Trim outer blank lines and trailing line whitespace; original result unchanged."
+      }
+    },
+    {
+      "role": "lookup-once-initializer",
+      "start": "0x145fc32b2",
+      "end_exclusive": "0x145fc32ff",
+      "file_offset": "0x5fc26b2",
+      "sha256": "b58c7f0934e12de0ca9e39a40c2fea1bb9abd5b11a239ac5e0431747e1bd8222",
+      "decompilation": {
+        "path": "docs/analysis/evidence/0.119.0/coop-item-registry/lookup-once-initializer.c",
+        "sha256": "32bbd71c20b84721290c39840a27bb7076977ae6a4bc32f8d70ce44f1b279cdb",
+        "source_character_range": [
+          0,
+          483
+        ],
+        "normalization": "Trim outer blank lines and trailing line whitespace; original result unchanged."
+      }
+    },
+    {
+      "role": "cstring-reader",
+      "start": "0x145cc58f0",
+      "end_exclusive": "0x145cc5a56",
+      "file_offset": "0x5cc4cf0",
+      "sha256": "63919ebe0dffc8e48e773854a7902398dd06123e61bcb75a8a773d89b5639f1b",
+      "decompilation": {
+        "path": "docs/analysis/evidence/0.119.0/coop-item-registry/cstring-reader.c",
+        "sha256": "abbcb658a71836f70350e10bfcd906530916eeca6bc57a3b8294a5f18c218261",
+        "source_character_range": [
+          0,
+          1970
+        ],
+        "normalization": "Trim outer blank lines and trailing line whitespace; original result unchanged."
+      }
+    },
+    {
+      "role": "stat-reserve",
+      "start": "0x145fc4810",
+      "end_exclusive": "0x145fc487b",
+      "file_offset": "0x5fc3c10",
+      "sha256": "3b646bb31d7c98406a3f957e26535f3c5ced5182d2073bd628b095fb49db83ff",
+      "decompilation": {
+        "path": "docs/analysis/evidence/0.119.0/coop-item-registry/stat-reserve.c",
+        "sha256": "6461d6cfe8de5a542f861dbaee5d1613a4ec1749541a6690b5750fffc9b76df6",
+        "source_character_range": [
+          0,
+          558
+        ],
+        "normalization": "Trim outer blank lines and trailing line whitespace; original result unchanged."
+      }
+    },
+    {
+      "role": "damage-reserve",
+      "start": "0x145fc4c00",
+      "end_exclusive": "0x145fc4c6b",
+      "file_offset": "0x5fc4000",
+      "sha256": "b87f12ae8047c5bb1079a91dcd8029ffb6f8a9b6b33dab1730403597b0829a98",
+      "decompilation": {
+        "path": "docs/analysis/evidence/0.119.0/coop-item-registry/damage-reserve.c",
+        "sha256": "b367da32e083064b73920b51ebdb14d7cdb00dada2bc1ecad4ea4f7dc752a87c",
+        "source_character_range": [
+          0,
+          560
+        ],
+        "normalization": "Trim outer blank lines and trailing line whitespace; original result unchanged."
+      }
+    },
+    {
+      "role": "spell-reserve",
+      "start": "0x145fe4450",
+      "end_exclusive": "0x145fe44bb",
+      "file_offset": "0x5fe3850",
+      "sha256": "656dc51f1dab6a92a5a8b439b4f66c8d1f394f6615e1035da84e81a3c7ee6cad",
+      "decompilation": {
+        "path": "docs/analysis/evidence/0.119.0/coop-item-registry/spell-reserve.c",
+        "sha256": "1b67839a870e8a275da15544690d25274cdb226a6eede27a8ea07679ff655e41",
+        "source_character_range": [
+          0,
+          561
+        ],
+        "normalization": "Trim outer blank lines and trailing line whitespace; original result unchanged."
+      }
+    },
+    {
+      "role": "guest-callback",
+      "start": "0x145afd100",
+      "end_exclusive": "0x145afd1be",
+      "file_offset": "0x5afc500",
+      "sha256": "02b9eaa1e1708e7e723e73336b5012b67e58baf1bfea341cc590732a562a0ec2",
+      "decompilation": {
+        "path": "docs/analysis/evidence/0.119.0/coop-item-registry/guest-callback.c",
+        "sha256": "79fea57320aad6ebb726904d92bed6928e5c145b62fe14f7af50fc3030aa1a78",
+        "source_character_range": [
+          0,
+          894
+        ],
+        "normalization": "Trim outer blank lines and trailing line whitespace; original result unchanged."
+      }
+    },
+    {
+      "role": "packet-framer",
+      "start": "0x145b5b2a0",
+      "end_exclusive": "0x145b5b4ae",
+      "file_offset": "0x5b5a6a0",
+      "sha256": "fc3cd26a6cf0f31dd4b5b38d8a89979e252bf4614c06d0711772878bf6ab056f",
+      "decompilation": {
+        "path": "docs/analysis/evidence/0.119.0/coop-item-registry/packet-framer.c",
+        "sha256": "69d53eb5c07c9e0113036cdb2a8bb8ddf220ee359839786c77351a81344ba170",
+        "source_character_range": [
+          0,
+          2906
+        ],
+        "normalization": "Trim outer blank lines and trailing line whitespace; original result unchanged."
+      }
+    },
+    {
+      "role": "guest-engine-admission",
+      "start": "0x145ae0ce0",
+      "end_exclusive": "0x145ae0e04",
+      "file_offset": "0x5ae00e0",
+      "sha256": "b44a1ea1ceb031a2ce1ea394b8ff5bd329788c3f364f18adcc4b3dbb3a0c672f",
+      "decompilation": {
+        "path": "docs/analysis/evidence/0.119.0/coop-item-registry/guest-engine-admission.c",
+        "sha256": "7f72b87dcac9fbb3a65b8400e158dac6f2f52c53f86506ac05cae91fb450c05b",
+        "source_character_range": [
+          0,
+          1473
+        ],
+        "normalization": "Trim outer blank lines and trailing line whitespace; original result unchanged."
+      }
+    },
+    {
+      "role": "guest-request",
+      "start": "0x145b097a0",
+      "end_exclusive": "0x145b0d8b2",
+      "file_offset": "0x5b08ba0",
+      "sha256": "96fcfbf5dbc33e56b283e04a3e52ecf8359692485a33d668278aa4b08530b46d"
+    },
+    {
+      "role": "guest-receive",
+      "start": "0x145b1c260",
+      "end_exclusive": "0x145b1d5e4",
+      "file_offset": "0x5b1b660",
+      "sha256": "eddd38dbfc952ed9074e10594580bfc31da23cf9eec33aa932da10a92706045b"
+    }
+  ],
+  "queries": [
+    {
+      "role": "interner",
+      "evidence_id": "ev_446a262000be784e418c00e783c5a0b62998250093bb0862caf2a538757b9828",
+      "analysis_profile_digest": "a31f4d9f7357b1a4ec19c1327f61ac31362a88ef467156365a0f31968ec5191d",
+      "result": {
+        "path": "runtime/gap101-0.119.0/registry-query/results/c1410496aa60480ba1b40921cca2fb1775045be5e3a030f74d0087eb4ef4cdb9.json",
+        "sha256": "be41214115f6cca5523a8f336305b3bb9215a2a82c2ab5c0b31e6714fd092f8b"
+      },
+      "plan": {
+        "path": "runtime/gap101-0.119.0/registry-query/plan.json",
+        "sha256": "9346e3ef3185d10dc3dbda7847b0f578b13ddbb06031740598fb85b90f5974bf"
+      },
+      "journal": {
+        "path": "runtime/gap101-0.119.0/registry-query/journal.json",
+        "sha256": "7b2c28bfcb3452e2f359eb03f9b86e2e578e5db9f4c7d9d592e4224aa128eeb1"
+      },
+      "normalized_sha256": "4629d1d4ec7133d06e7f309a2870fa566b244bcbdeab79f53a3694ce4245ca85",
+      "input_sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f"
+    },
+    {
+      "role": "lookup",
+      "evidence_id": "ev_dd1ed05f8a0f8131312b193c0ea41f082711c5670fe9a554c52f98c9737072fd",
+      "analysis_profile_digest": "a31f4d9f7357b1a4ec19c1327f61ac31362a88ef467156365a0f31968ec5191d",
+      "result": {
+        "path": "runtime/gap101-0.119.0/registry-query/results/39e73e404b5d3a4dec1c24618de97fb6fe08e7d8c79736017e0e0d3b536c2045.json",
+        "sha256": "c12b3a398396f5d5e739f442cba1be69ce8dc03cb3d6894c380924f3bcacf959"
+      },
+      "plan": {
+        "path": "runtime/gap101-0.119.0/registry-query/plan.json",
+        "sha256": "9346e3ef3185d10dc3dbda7847b0f578b13ddbb06031740598fb85b90f5974bf"
+      },
+      "journal": {
+        "path": "runtime/gap101-0.119.0/registry-query/journal.json",
+        "sha256": "7b2c28bfcb3452e2f359eb03f9b86e2e578e5db9f4c7d9d592e4224aa128eeb1"
+      },
+      "normalized_sha256": "065da84c1f65762a99882b1f4b953aadc4d912770c402ba87848c0beaf29bd5e",
+      "input_sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f"
+    },
+    {
+      "role": "serializer-effects",
+      "evidence_id": "ev_6a72c4ef0c488761bf750e8349ef08bf6609f6e211cb809bbee7a4f1a981ccca",
+      "analysis_profile_digest": "a31f4d9f7357b1a4ec19c1327f61ac31362a88ef467156365a0f31968ec5191d",
+      "result": {
+        "path": "runtime/gap101-0.119.0/registry-query/results/a8fa42fd32f393b5c50888b094f6dc339bc50892e2938928cfcf6d063e84cf06.json",
+        "sha256": "41788aee762109dea85036ba0f72951672600124e50b21581e0dc39f37ce6763"
+      },
+      "plan": {
+        "path": "runtime/gap101-0.119.0/registry-query/plan.json",
+        "sha256": "9346e3ef3185d10dc3dbda7847b0f578b13ddbb06031740598fb85b90f5974bf"
+      },
+      "journal": {
+        "path": "runtime/gap101-0.119.0/registry-query/journal.json",
+        "sha256": "7b2c28bfcb3452e2f359eb03f9b86e2e578e5db9f4c7d9d592e4224aa128eeb1"
+      },
+      "normalized_sha256": "ab8abde6340abe065b21c97466bf20eda952ef761e5b5286c155074a90ef0d0c",
+      "input_sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f"
+    },
+    {
+      "role": "lookup-registration",
+      "evidence_id": "ev_46f56aff63b6dabc01ce1d74e587b079dd7b64e237a7cc67569bf66e3ffebc65",
+      "analysis_profile_digest": "001fa14cd83ffa1a4ab6e3e79253c51cfe77cc8fc0232acda001f8cfd6b88c8b",
+      "result": {
+        "path": "runtime/gap101-0.119.0/decoder-query/results/3518e15f3a765acddd191fae5548dc948936711857788efb775315862a8d4d71.json",
+        "sha256": "89453520a79129194dfc9b99858472f753f3b5726c16354056dd9df90416c316"
+      },
+      "plan": {
+        "path": "runtime/gap101-0.119.0/decoder-query/plan.json",
+        "sha256": "e9adce7984dee28bfbb031110e72d9f4e172b4f74e179ee5bdb3dd01ea5550a6"
+      },
+      "journal": {
+        "path": "runtime/gap101-0.119.0/decoder-query/journal.json",
+        "sha256": "04ad71faa4c7e72acdeda2df45764ce474a85a863ea6a64225c68647eddc8264"
+      },
+      "normalized_sha256": "0d580e4caaf92d2b125868acd8f135ff91fc8f668a5f80111052ec1ae9edc868",
+      "input_sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f"
+    },
+    {
+      "role": "lookup-once-setter",
+      "evidence_id": "ev_f0c43e719804edf45ecfb1caf7802ee9e9dbc9240848766266db111f1c97ac57",
+      "analysis_profile_digest": "001fa14cd83ffa1a4ab6e3e79253c51cfe77cc8fc0232acda001f8cfd6b88c8b",
+      "result": {
+        "path": "runtime/gap101-0.119.0/decoder-query/results/c545b4f6d5489a6769ec68da28de17d254333e7a4c2e23f4908a3b5e17636e13.json",
+        "sha256": "e8f7fba581f8a885d638cdb70879bcc198f138c3a5240d3219e78262aa582dbd"
+      },
+      "plan": {
+        "path": "runtime/gap101-0.119.0/decoder-query/plan.json",
+        "sha256": "e9adce7984dee28bfbb031110e72d9f4e172b4f74e179ee5bdb3dd01ea5550a6"
+      },
+      "journal": {
+        "path": "runtime/gap101-0.119.0/decoder-query/journal.json",
+        "sha256": "04ad71faa4c7e72acdeda2df45764ce474a85a863ea6a64225c68647eddc8264"
+      },
+      "normalized_sha256": "711dd0024272029e0aec7cd91435d5db453a01bb4b16c19a6b6d2579d231fb8d",
+      "input_sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f"
+    },
+    {
+      "role": "lookup-consumer",
+      "evidence_id": "ev_48575b46eda1889aa6dc7bbfa673dd7c70235131da394bc49410ef76e0e7141c",
+      "analysis_profile_digest": "001fa14cd83ffa1a4ab6e3e79253c51cfe77cc8fc0232acda001f8cfd6b88c8b",
+      "result": {
+        "path": "runtime/gap101-0.119.0/decoder-query/results/f8449eed600212aa6066efaab46e16f68a1e8a9664d35792bd9914275ea55edd.json",
+        "sha256": "c5436c962c713bf8bd287e1b9eb2a3ccecb757481ca13f92653207f9f57feaa8"
+      },
+      "plan": {
+        "path": "runtime/gap101-0.119.0/decoder-query/plan.json",
+        "sha256": "e9adce7984dee28bfbb031110e72d9f4e172b4f74e179ee5bdb3dd01ea5550a6"
+      },
+      "journal": {
+        "path": "runtime/gap101-0.119.0/decoder-query/journal.json",
+        "sha256": "04ad71faa4c7e72acdeda2df45764ce474a85a863ea6a64225c68647eddc8264"
+      },
+      "normalized_sha256": "073476ba895796303e05a3f3e747c5ee4a04b3c906c9edaef97b56ce43497d70",
+      "input_sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f"
+    },
+    {
+      "role": "opcode-58-dispatch",
+      "evidence_id": "ev_446d78bdf81bb025fa8ba894cee59edc4916859e1d481521c2132543978a9559",
+      "analysis_profile_digest": "001fa14cd83ffa1a4ab6e3e79253c51cfe77cc8fc0232acda001f8cfd6b88c8b",
+      "result": {
+        "path": "runtime/gap101-0.119.0/decoder-query/results/244ad74ed3ad92bab6992462e272dc68da7cf88d9904db7c4625524f745645fa.json",
+        "sha256": "9ffac0ce07260e46ee5362c733055ed12d6c57117bdac2965ca31c26c5e39517"
+      },
+      "plan": {
+        "path": "runtime/gap101-0.119.0/decoder-query/plan.json",
+        "sha256": "e9adce7984dee28bfbb031110e72d9f4e172b4f74e179ee5bdb3dd01ea5550a6"
+      },
+      "journal": {
+        "path": "runtime/gap101-0.119.0/decoder-query/journal.json",
+        "sha256": "04ad71faa4c7e72acdeda2df45764ce474a85a863ea6a64225c68647eddc8264"
+      },
+      "normalized_sha256": "55f25ee93d320b594dcd8570490a77338d853f7cc9e3b96e058a3d8f72836073",
+      "input_sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f"
+    },
+    {
+      "role": "item-template-cache",
+      "evidence_id": "ev_edc0d093a4982c040a9a04bb4c9e88e0f2bd2d871872902fac84fada9139f851",
+      "analysis_profile_digest": "001fa14cd83ffa1a4ab6e3e79253c51cfe77cc8fc0232acda001f8cfd6b88c8b",
+      "result": {
+        "path": "runtime/gap101-0.119.0/decoder-query/results/75ab04ab6d7fe7180f63dbd138c2042b78785fabf7646e44c7955ddd9da80ebf.json",
+        "sha256": "dfbc3fa5306e1cad043cb9ea72613476432156d295aaab8d662d6ae77ab20cc4"
+      },
+      "plan": {
+        "path": "runtime/gap101-0.119.0/decoder-query/plan.json",
+        "sha256": "e9adce7984dee28bfbb031110e72d9f4e172b4f74e179ee5bdb3dd01ea5550a6"
+      },
+      "journal": {
+        "path": "runtime/gap101-0.119.0/decoder-query/journal.json",
+        "sha256": "04ad71faa4c7e72acdeda2df45764ce474a85a863ea6a64225c68647eddc8264"
+      },
+      "normalized_sha256": "b96009de46871c2a3b0c158756811ef1065b092a39962ba21b512c81d17485d1",
+      "input_sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f"
+    },
+    {
+      "role": "item-decoder",
+      "evidence_id": "ev_d4d43bd6018ced216de9251313ae9f25df26ab520df01275e414c478d6b8197f",
+      "analysis_profile_digest": "477f789cc9219751eb71873000fa427868eac5e5f7b774bf544e8af2652ee0ac",
+      "result": {
+        "path": "runtime/gap101-0.119.0/bridge-query/results/cee1f4054a2c4bfe68b30734dc3304daf5e80c1ff82e489775ccde555d794828.json",
+        "sha256": "266851e3eebd436fb6048b14b2a73944686aef8c88dbc9590bdf5bb97e9cdca1"
+      },
+      "plan": {
+        "path": "runtime/gap101-0.119.0/bridge-query/plan.json",
+        "sha256": "e18620317e0c34c2eaab80df4f413afdb884f1824b5639ea515f167b13a5c624"
+      },
+      "journal": {
+        "path": "runtime/gap101-0.119.0/bridge-query/journal.json",
+        "sha256": "7bec4d77c97a7b61d2db18a790ea9b129bab9f03c20c7cc719c72cf4ec95f45b"
+      },
+      "normalized_sha256": "4fc45e168da4f6f2e77d086079bdfe64daa6e02704003a6665c5727ff755f2a9",
+      "input_sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f"
+    },
+    {
+      "role": "registry-reserve",
+      "evidence_id": "ev_0a0ec5e9b6faa2a73c566614ebd7b73de992e5b91963923c2685ac5a1bb2aeff",
+      "analysis_profile_digest": "477f789cc9219751eb71873000fa427868eac5e5f7b774bf544e8af2652ee0ac",
+      "result": {
+        "path": "runtime/gap101-0.119.0/bridge-query/results/559b2d92a4c1c4b3354de20d0cf844750ec87525c0960c6302e1bd2cfb45a785.json",
+        "sha256": "f629014d2bdae1c50294ed160b1c69198f04ffed1a1276f4d643a21df69ac399"
+      },
+      "plan": {
+        "path": "runtime/gap101-0.119.0/bridge-query/plan.json",
+        "sha256": "e18620317e0c34c2eaab80df4f413afdb884f1824b5639ea515f167b13a5c624"
+      },
+      "journal": {
+        "path": "runtime/gap101-0.119.0/bridge-query/journal.json",
+        "sha256": "7bec4d77c97a7b61d2db18a790ea9b129bab9f03c20c7cc719c72cf4ec95f45b"
+      },
+      "normalized_sha256": "7e61f9a26cb3581512fd4ba8fe670be80607475f56fc0fa10d69915e1f6983f7",
+      "input_sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f"
+    },
+    {
+      "role": "lookup-once-initializer",
+      "evidence_id": "ev_db4a01946ea3c146e0c5f6497860d47f2190cb25ba1a99392e1019caa4635bb7",
+      "analysis_profile_digest": "477f789cc9219751eb71873000fa427868eac5e5f7b774bf544e8af2652ee0ac",
+      "result": {
+        "path": "runtime/gap101-0.119.0/bridge-query/results/507ad07a2ed5507561a742e0fadd3cf39eb17bb17b1f0b4135303b6a7ad70f73.json",
+        "sha256": "ccae8dd47459383feab8277cf2b6bb3f9390e1ea85e5c640559ae64cdc9d9130"
+      },
+      "plan": {
+        "path": "runtime/gap101-0.119.0/bridge-query/plan.json",
+        "sha256": "e18620317e0c34c2eaab80df4f413afdb884f1824b5639ea515f167b13a5c624"
+      },
+      "journal": {
+        "path": "runtime/gap101-0.119.0/bridge-query/journal.json",
+        "sha256": "7bec4d77c97a7b61d2db18a790ea9b129bab9f03c20c7cc719c72cf4ec95f45b"
+      },
+      "normalized_sha256": "fefa7ba96b851a99e71a0dbf8034bbfc160ae0713ed792c499e794801700dba4",
+      "input_sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f"
+    },
+    {
+      "role": "cstring-reader",
+      "evidence_id": "ev_fcd5a6f2b10088ead679664497f97d63d6aed62378b596dc041cacbfa9a09332",
+      "analysis_profile_digest": "18386f6ae82388889e97150411f2d2c798701ec4550dd938497b8ea75af94afc",
+      "result": {
+        "path": "runtime/gap101-0.119.0/decoder-helper-query/results/863309661a30594311151e5592b3c49dc66f3366e5f4cd964c9c3ca74b04a773.json",
+        "sha256": "e59ff1799f2e928e20fd7901a9dff4bcf59c079fe928cfd8d860f314c2cd712f"
+      },
+      "plan": {
+        "path": "runtime/gap101-0.119.0/decoder-helper-query/plan.json",
+        "sha256": "a5eeb78d27d5c8312c6511fcb087d628973c903ccc71209ccc5d2f70365c558f"
+      },
+      "journal": {
+        "path": "runtime/gap101-0.119.0/decoder-helper-query/journal.json",
+        "sha256": "4875d6185114d0546e10d689656736e3e4ab3613a0bc8a80a4c34588562b3c68"
+      },
+      "normalized_sha256": "32f4526681fe671a39103638d6e6df525c5a9472e0d7dcb4fc1b0364a697ad0d",
+      "input_sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f"
+    },
+    {
+      "role": "stat-reserve",
+      "evidence_id": "ev_04fef3ea5894cb8528a991bf3b6cf4f1d9398d82d161625fbd307dba545e27e0",
+      "analysis_profile_digest": "18386f6ae82388889e97150411f2d2c798701ec4550dd938497b8ea75af94afc",
+      "result": {
+        "path": "runtime/gap101-0.119.0/decoder-helper-query/results/cdc6ffa3e57102c4bd1cd5a98f9cb273414d1d2725a3b01350673d0e77a603d6.json",
+        "sha256": "fc09ac505cb427b2b467682c2af75e1930763955e398d825de4d346a17c3f28b"
+      },
+      "plan": {
+        "path": "runtime/gap101-0.119.0/decoder-helper-query/plan.json",
+        "sha256": "a5eeb78d27d5c8312c6511fcb087d628973c903ccc71209ccc5d2f70365c558f"
+      },
+      "journal": {
+        "path": "runtime/gap101-0.119.0/decoder-helper-query/journal.json",
+        "sha256": "4875d6185114d0546e10d689656736e3e4ab3613a0bc8a80a4c34588562b3c68"
+      },
+      "normalized_sha256": "bac564bd605e41605ca7a0ebfa81fe49f08d6775b0b0b0c112dfa6e7e2c0d771",
+      "input_sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f"
+    },
+    {
+      "role": "damage-reserve",
+      "evidence_id": "ev_ac628fed2bc02eebd4bf34e37bd1ac2e75a0ed437b284c7a9cded8cc5d6ccf69",
+      "analysis_profile_digest": "18386f6ae82388889e97150411f2d2c798701ec4550dd938497b8ea75af94afc",
+      "result": {
+        "path": "runtime/gap101-0.119.0/decoder-helper-query/results/bf7b01bb583a3872c46e1ac9b4abbb1eeabde3ec3733fd0a4985312c7024b719.json",
+        "sha256": "347c2297e6b6e91e87d401f1546deaab96f29415dae3510ec1029a22e14e267c"
+      },
+      "plan": {
+        "path": "runtime/gap101-0.119.0/decoder-helper-query/plan.json",
+        "sha256": "a5eeb78d27d5c8312c6511fcb087d628973c903ccc71209ccc5d2f70365c558f"
+      },
+      "journal": {
+        "path": "runtime/gap101-0.119.0/decoder-helper-query/journal.json",
+        "sha256": "4875d6185114d0546e10d689656736e3e4ab3613a0bc8a80a4c34588562b3c68"
+      },
+      "normalized_sha256": "b200cca3640cd7b7d05f808055d071b1538141908d886eaa62d7dbe7ece51930",
+      "input_sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f"
+    },
+    {
+      "role": "spell-reserve",
+      "evidence_id": "ev_b20c62a7853d708e0ed80d845ca331bf2c098ea244bb6dcd582a64778c759541",
+      "analysis_profile_digest": "18386f6ae82388889e97150411f2d2c798701ec4550dd938497b8ea75af94afc",
+      "result": {
+        "path": "runtime/gap101-0.119.0/decoder-helper-query/results/a2bea29c8b7d0d83c86e0d52dc6c9459b1cca8d5b95d25ca88e11a832c9749ca.json",
+        "sha256": "b5b33302ad51b0083093e090b5187a86715e9c9476fa88e7bc97e8ecc505afbd"
+      },
+      "plan": {
+        "path": "runtime/gap101-0.119.0/decoder-helper-query/plan.json",
+        "sha256": "a5eeb78d27d5c8312c6511fcb087d628973c903ccc71209ccc5d2f70365c558f"
+      },
+      "journal": {
+        "path": "runtime/gap101-0.119.0/decoder-helper-query/journal.json",
+        "sha256": "4875d6185114d0546e10d689656736e3e4ab3613a0bc8a80a4c34588562b3c68"
+      },
+      "normalized_sha256": "87a50c2488fe6654fa0313b2da7737af2874a14b851bfc496d042c20380c973b",
+      "input_sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f"
+    },
+    {
+      "role": "guest-callback",
+      "evidence_id": "ev_926ab391d1337d17303e8397cb22f7198e83b5b5a3540710bfc781d70d8f93d0",
+      "analysis_profile_digest": "5cd6d428eb3f2bfa89af292de65d258205b886eebb94cec1a0edf31e731c1ab2",
+      "result": {
+        "path": "runtime/gap101-0.119.0/delivery-query/results/d222d764a1b84a7cecebb6e514ebb320c833745d3d0d6ac8a238df79bf518fe8.json",
+        "sha256": "e6b4d44a3017bebab4468302bd996cd7798516fd3165bbcd38720b02886e9074"
+      },
+      "plan": {
+        "path": "runtime/gap101-0.119.0/delivery-query/plan.json",
+        "sha256": "82cece1e28063c2ebe9fed9d0c4b03a82826d2968aaf0b6431096c023b84743f"
+      },
+      "journal": {
+        "path": "runtime/gap101-0.119.0/delivery-query/journal.json",
+        "sha256": "a07cb8fc86308a1a18ba93376c5eb8fd229055733ed289dafa9bc5fc015c89c5"
+      },
+      "normalized_sha256": "e681f00018c9b3822069d2a9e9f73ae64b2cfb70e321d2da11c5cb5a06af6b0c",
+      "input_sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f"
+    },
+    {
+      "role": "packet-framer",
+      "evidence_id": "ev_3a585828719cf3505be74a938d12ef1dbcd7d393fa7c2cca47b73cadc2cb6c99",
+      "analysis_profile_digest": "5cd6d428eb3f2bfa89af292de65d258205b886eebb94cec1a0edf31e731c1ab2",
+      "result": {
+        "path": "runtime/gap101-0.119.0/delivery-query/results/8a2c97e691028c92b960b07f42f3b1ebe853aa49aa908050618ee44a1a6044e3.json",
+        "sha256": "06bf626eaedb39574b21ae0762b5a1272f82157c50d20a99b555fbc9cf1fdb1d"
+      },
+      "plan": {
+        "path": "runtime/gap101-0.119.0/delivery-query/plan.json",
+        "sha256": "82cece1e28063c2ebe9fed9d0c4b03a82826d2968aaf0b6431096c023b84743f"
+      },
+      "journal": {
+        "path": "runtime/gap101-0.119.0/delivery-query/journal.json",
+        "sha256": "a07cb8fc86308a1a18ba93376c5eb8fd229055733ed289dafa9bc5fc015c89c5"
+      },
+      "normalized_sha256": "436ac67934573ef4ba48cb40e58602ef50834c623b368a7575c7fe31044dba09",
+      "input_sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f"
+    },
+    {
+      "role": "guest-engine-admission",
+      "evidence_id": "ev_f90b92fd9effc255f93c47833338a85ecd2da205404b61cd2a3abe6769a57bbf",
+      "analysis_profile_digest": "c3b786d30c732365ac1a16729d4cacde80b05183d8b1ece2f14ca7d4459be0a6",
+      "result": {
+        "path": "runtime/gap101-0.119.0/guest-engine-admission-v2-query/results/536c68811aefbf3aa1a7801ae8be3f73d71c1e0aa9dc5a85bff1b1c99ed7f35f.json",
+        "sha256": "008ae00480ddf34a479b31cae9660bd8da67c23ccdd009a4e315620bf1e35af6"
+      },
+      "plan": {
+        "path": "runtime/gap101-0.119.0/guest-engine-admission-v2-query/plan.json",
+        "sha256": "752d65b1fc00edca8b2ae7b340764751abfa2953a0e8baf6d70aa8f41e3fd78b"
+      },
+      "journal": {
+        "path": "runtime/gap101-0.119.0/guest-engine-admission-v2-query/journal.json",
+        "sha256": "77ec4d347ed40ccd356810875ec8a265d34d91b343cccc55f29d491721daefd3"
+      },
+      "normalized_sha256": "d9e980ebf4a7b0bddfe703d5d79c841ccde168047377095476c98bfed99dba97",
+      "input_sha256": "b44a1ea1ceb031a2ce1ea394b8ff5bd329788c3f364f18adcc4b3dbb3a0c672f",
+      "raw_input": {
+        "path": "runtime/gap101-0.119.0/guest-engine-admission-v2.bin",
+        "sha256": "b44a1ea1ceb031a2ce1ea394b8ff5bd329788c3f364f18adcc4b3dbb3a0c672f"
+      }
+    },
+    {
+      "role": "guest-request",
+      "evidence_id": "ev_d4502472a3b98aa1a8bf7c10ce38d50bb319ef213a4222d0c324a645074be23b",
+      "analysis_profile_digest": "a31b5aba28c9a4728384678f7329a3e75897b8ebb34695636462e442e72144ab",
+      "result": {
+        "path": "runtime/gap101-0.119.0/guest-routing-query/results/d32c6f8261b251fc220c5e40b2e16b8e52fd2e81cde21a7b3b047574dc23183f.json",
+        "sha256": "beb16be9b706fa72129b381a639adbc0a500eddc03d2c2040058b5c21717825c"
+      },
+      "plan": {
+        "path": "runtime/gap101-0.119.0/guest-routing-query/plan.json",
+        "sha256": "bf359f2ea418762a6f5dcb8427d5683fdcafe008e018c725a9bb88a79120e8cf"
+      },
+      "journal": {
+        "path": "runtime/gap101-0.119.0/guest-routing-query/journal.json",
+        "sha256": "7d08efd6160daa37c290f32eb4e2e93f347242fb44c9b561f0e135dbe6c91dfc"
+      },
+      "normalized_sha256": "c27a0c2b016624b34451cb2049bb20539c99374eeeb555f5627b82b87bb40ec3",
+      "input_sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f"
+    },
+    {
+      "role": "guest-receive",
+      "evidence_id": "ev_a93944f357780eef52fd46a2054a7b74b1d3e6da1cda72869d5df821c3052509",
+      "analysis_profile_digest": "a31b5aba28c9a4728384678f7329a3e75897b8ebb34695636462e442e72144ab",
+      "result": {
+        "path": "runtime/gap101-0.119.0/guest-routing-query/results/d07fb5e332292bd8f72b2485ef3a34c24291bc71c9c513d64209473fe08656e9.json",
+        "sha256": "67cffaf67b951a257417b77258ffbc042e7ccda9363eff78ef69b73d9d44a5ba"
+      },
+      "plan": {
+        "path": "runtime/gap101-0.119.0/guest-routing-query/plan.json",
+        "sha256": "bf359f2ea418762a6f5dcb8427d5683fdcafe008e018c725a9bb88a79120e8cf"
+      },
+      "journal": {
+        "path": "runtime/gap101-0.119.0/guest-routing-query/journal.json",
+        "sha256": "7d08efd6160daa37c290f32eb4e2e93f347242fb44c9b561f0e135dbe6c91dfc"
+      },
+      "normalized_sha256": "6aeb2427da645bf6179859918aa6deda4f98dd630e929d2cb6bd82835f01d079",
+      "input_sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f"
+    }
+  ],
+  "source_witnesses": [
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs",
+      "sha256": "75fc8e61dd32a2091daecfa07447dc454964418f4f821ed63e6bc12951ca7825"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+      "sha256": "c3435c8c4b5bdb0d36339c62c9a74aab3a02b00d3ee77260e5b4b8d45a2d64c0"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop/engine_packets.rs",
+      "sha256": "8b72bef3c1a245265c6dde0f25e6b15e1e2aefb37e02e1ce32717761d4a97414"
+    },
+    {
+      "path": "crates/benilla-app/src/local_client/item_descriptions.rs",
+      "sha256": "810ab16efca38ee468d36ab9c1e75df4fef76b4261931aeba97cf8300848a19b"
+    },
+    {
+      "path": "crates/benilla-app/src/local_client/events.rs",
+      "sha256": "c95bc447b2d5c603ceda13a85d10845602a90a8ea64d255c91aefe8eba4b6d5e"
+    },
+    {
+      "path": "crates/benilla-protocol/src/events/decode.rs",
+      "sha256": "af2015df4a69a79eb1222806a1904345581556fe7e566bc78f8cd11072cfc2c1"
+    },
+    {
+      "path": "crates/benilla-protocol/src/messages/items.rs",
+      "sha256": "0cd9a5660ce2153b6415a538113a7d3462edf8cf395165647edf7a8168f70080"
+    },
+    {
+      "path": "crates/benilla-protocol/src/messages/parse.rs",
+      "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+    },
+    {
+      "path": "crates/benilla-app/src/net/objects.rs",
+      "sha256": "45b8ea61a599a42f38d602b1be7f2ebb6cbc527306a0cbd964cd68456cc91fab"
+    },
+    {
+      "path": "crates/benilla-app/src/ui_items/feed.rs",
+      "sha256": "e0aa04a5d5a38ed0b85f9927ea8ccafe8d57319e678e6ce4bb226ec934f714d5"
+    },
+    {
+      "path": "crates/benilla-app/src/local_client/spell_descriptions.rs",
+      "sha256": "7036e2199f7cfde398b8fca23f1b39c90bcd5db1c31381adc9127738f95b6b26"
+    }
+  ],
+  "source_slices": [
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+      "start_marker": "            NativeMessage::Lifecycle(LifecyclePacket::EngineCommand { opcode, payload }) => {\n",
+      "end_marker": "            NativeMessage::ZoneKey(zone) if guest => {\n",
+      "sha256": "d73288a50222ae39a19dbf40f4c8b76e62dfdcb4bfd92563c735254415d6cad4"
+    }
+  ],
+  "limits": [
+    "Seeded full-PE Ghidra decoding and selected independent byte ranges are bounded observations, not complete engine/system semantics.",
+    "Decompiler types, incoming-register names and switch reconstruction retain provider warnings. The small admission raw slice omits its external jump table; opcode58 follows the explicit bit-test path.",
+    "Complete selected encoded references do not close arbitrary register-derived/computed aliases or unobserved instructions.",
+    "No new carrier, remapping, registry reset or source gameplay change is justified by these observations.",
+    "Compilation, client/game/network/server execution, rendered text and original/rebuilt parity remain unverified."
+  ],
+  "registry_references": {
+    "inputs": [
+      {
+        "path": "runtime/coverage/6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f/native-instructions.sqlite",
+        "sha256": "e6499662b279929d3bc7a0f6bc064bb4196150dae52f30e6b414518e82676c02"
+      },
+      {
+        "path": "runtime/coverage/6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f/unwind-complement.sqlite",
+        "sha256": "6a5ac365cfb62cdfc0671f61da673e8148100b3dfe5526d38b4b78b0cda4da96"
+      }
+    ],
+    "rows": [
+      {
+        "extent": 2034,
+        "site": 5369279696,
+        "bytes": "488d0de918ad05",
+        "kind": "address",
+        "target": "0x145b5cdc0",
+        "operand": 1,
+        "access": 0,
+        "input": "native-instructions.sqlite"
+      },
+      {
+        "extent": 340581,
+        "site": 5464509255,
+        "bytes": "f00fb00dd99b9b02",
+        "kind": "memory",
+        "target": "0x148516728",
+        "operand": 0,
+        "access": 1,
+        "input": "native-instructions.sqlite"
+      },
+      {
+        "extent": 340581,
+        "site": 5464509298,
+        "bytes": "0fb605b09b9b02",
+        "kind": "memory",
+        "target": "0x148516729",
+        "operand": 1,
+        "access": 1,
+        "input": "native-instructions.sqlite"
+      },
+      {
+        "extent": 340581,
+        "site": 5464509305,
+        "bytes": "488b35c09b9b02",
+        "kind": "memory",
+        "target": "0x148516740",
+        "operand": 1,
+        "access": 1,
+        "input": "native-instructions.sqlite"
+      },
+      {
+        "extent": 340581,
+        "site": 5464509321,
+        "bytes": "4c8b35a89b9b02",
+        "kind": "memory",
+        "target": "0x148516738",
+        "operand": 1,
+        "access": 1,
+        "input": "native-instructions.sqlite"
+      },
+      {
+        "extent": 340581,
+        "site": 5464509417,
+        "bytes": "488d0d389b9b02",
+        "kind": "address",
+        "target": "0x148516728",
+        "operand": 1,
+        "access": 0,
+        "input": "native-instructions.sqlite"
+      },
+      {
+        "extent": 340581,
+        "site": 5464509444,
+        "bytes": "0fb6051e9b9b02",
+        "kind": "memory",
+        "target": "0x148516729",
+        "operand": 1,
+        "access": 1,
+        "input": "native-instructions.sqlite"
+      },
+      {
+        "extent": 340581,
+        "site": 5464509451,
+        "bytes": "488b352e9b9b02",
+        "kind": "memory",
+        "target": "0x148516740",
+        "operand": 1,
+        "access": 1,
+        "input": "native-instructions.sqlite"
+      },
+      {
+        "extent": 340581,
+        "site": 5464509544,
+        "bytes": "488b35d19a9b02",
+        "kind": "memory",
+        "target": "0x148516740",
+        "operand": 1,
+        "access": 1,
+        "input": "native-instructions.sqlite"
+      },
+      {
+        "extent": 340581,
+        "site": 5464509551,
+        "bytes": "483b35ba9a9b02",
+        "kind": "memory",
+        "target": "0x148516730",
+        "operand": 1,
+        "access": 1,
+        "input": "native-instructions.sqlite"
+      },
+      {
+        "extent": 340581,
+        "site": 5464509571,
+        "bytes": "483b35a69a9b02",
+        "kind": "memory",
+        "target": "0x148516730",
+        "operand": 1,
+        "access": 1,
+        "input": "native-instructions.sqlite"
+      },
+      {
+        "extent": 340581,
+        "site": 5464509580,
+        "bytes": "488d0d9d9a9b02",
+        "kind": "address",
+        "target": "0x148516730",
+        "operand": 1,
+        "access": 0,
+        "input": "native-instructions.sqlite"
+      },
+      {
+        "extent": 340581,
+        "site": 5464509593,
+        "bytes": "488b05989a9b02",
+        "kind": "memory",
+        "target": "0x148516738",
+        "operand": 1,
+        "access": 1,
+        "input": "native-instructions.sqlite"
+      },
+      {
+        "extent": 340581,
+        "site": 5464509630,
+        "bytes": "4889057b9a9b02",
+        "kind": "memory",
+        "target": "0x148516740",
+        "operand": 0,
+        "access": 2,
+        "input": "native-instructions.sqlite"
+      },
+      {
+        "extent": 340581,
+        "site": 5464509663,
+        "bytes": "8605439a9b02",
+        "kind": "memory",
+        "target": "0x148516728",
+        "operand": 0,
+        "access": 3,
+        "input": "native-instructions.sqlite"
+      },
+      {
+        "extent": 340581,
+        "site": 5464509698,
+        "bytes": "488d0d1f9a9b02",
+        "kind": "address",
+        "target": "0x148516728",
+        "operand": 1,
+        "access": 0,
+        "input": "native-instructions.sqlite"
+      },
+      {
+        "extent": 340581,
+        "site": 5464509721,
+        "bytes": "c605099a9b0201",
+        "kind": "memory",
+        "target": "0x148516729",
+        "operand": 0,
+        "access": 2,
+        "input": "native-instructions.sqlite"
+      },
+      {
+        "extent": 340582,
+        "site": 5464509769,
+        "bytes": "488d0dd8999b02",
+        "kind": "address",
+        "target": "0x148516728",
+        "operand": 1,
+        "access": 0,
+        "input": "native-instructions.sqlite"
+      },
+      {
+        "extent": 340584,
+        "site": 5464509940,
+        "bytes": "f0440fb0052b999b02",
+        "kind": "memory",
+        "target": "0x148516728",
+        "operand": 0,
+        "access": 1,
+        "input": "native-instructions.sqlite"
+      },
+      {
+        "extent": 340584,
+        "site": 5464509971,
+        "bytes": "440fb6050e999b02",
+        "kind": "memory",
+        "target": "0x148516729",
+        "operand": 1,
+        "access": 1,
+        "input": "native-instructions.sqlite"
+      },
+      {
+        "extent": 340584,
+        "site": 5464509979,
+        "bytes": "4839151e999b02",
+        "kind": "memory",
+        "target": "0x148516740",
+        "operand": 0,
+        "access": 1,
+        "input": "native-instructions.sqlite"
+      },
+      {
+        "extent": 340584,
+        "site": 5464510002,
+        "bytes": "480315ff989b02",
+        "kind": "memory",
+        "target": "0x148516738",
+        "operand": 1,
+        "access": 1,
+        "input": "native-instructions.sqlite"
+      },
+      {
+        "extent": 340584,
+        "site": 5464510046,
+        "bytes": "488d05c3989b02",
+        "kind": "address",
+        "target": "0x148516728",
+        "operand": 1,
+        "access": 0,
+        "input": "native-instructions.sqlite"
+      },
+      {
+        "extent": 340584,
+        "site": 5464510094,
+        "bytes": "440fb60593989b02",
+        "kind": "memory",
+        "target": "0x148516729",
+        "operand": 1,
+        "access": 1,
+        "input": "native-instructions.sqlite"
+      },
+      {
+        "extent": 340584,
+        "site": 5464510102,
+        "bytes": "483915a3989b02",
+        "kind": "memory",
+        "target": "0x148516740",
+        "operand": 0,
+        "access": 1,
+        "input": "native-instructions.sqlite"
+      },
+      {
+        "extent": 340584,
+        "site": 5464510135,
+        "bytes": "86056b989b02",
+        "kind": "memory",
+        "target": "0x148516728",
+        "operand": 0,
+        "access": 3,
+        "input": "native-instructions.sqlite"
+      },
+      {
+        "extent": 340584,
+        "site": 5464510157,
+        "bytes": "488d0554989b02",
+        "kind": "address",
+        "target": "0x148516728",
+        "operand": 1,
+        "access": 0,
+        "input": "native-instructions.sqlite"
+      },
+      {
+        "extent": 340584,
+        "site": 5464510195,
+        "bytes": "c6052f989b0201",
+        "kind": "memory",
+        "target": "0x148516729",
+        "operand": 0,
+        "access": 2,
+        "input": "native-instructions.sqlite"
+      },
+      {
+        "extent": 340585,
+        "site": 5464510225,
+        "bytes": "488d0d10989b02",
+        "kind": "address",
+        "target": "0x148516728",
+        "operand": 1,
+        "access": 0,
+        "input": "native-instructions.sqlite"
+      },
+      {
+        "extent": 340779,
+        "site": 5464553261,
+        "bytes": "e8ee53ffff",
+        "kind": "call_direct",
+        "target": "0x145b5cb20",
+        "operand": 0,
+        "access": 0,
+        "input": "native-instructions.sqlite"
+      }
+    ],
+    "initialized_qword_literals": [],
+    "selector": "refs WHERE (target >= '0x148516728' AND target < '0x148516748') OR target IN ('0x145b5cb20','0x145b5cdc0') ORDER BY site",
+    "limits": "Only encoded static-reference populations and exact initialized qword literals; computed/mutable aliases remain unresolved."
+  },
+  "decoder_replay": {
+    "script": {
+      "path": "scripts/coop_item_decoder_native_0_119.py",
+      "sha256": "7aa7684340415e905e8bcd414e0d742dec484b182a5f04ba86df8ac1b365e77c"
+    },
+    "result": {
+      "path": "runtime/gap101-0.119.0/decoder-replay.json",
+      "sha256": "8645de2a6f268441f66416a929bd9b55f05060e055148a52105211c516cbcaf4"
+    },
+    "counts": {
+      "template_cases": 128,
+      "negative_entry_cases": 8,
+      "scalar_truncation_cases": 68,
+      "native_instructions": 256476
+    },
+    "case_commitment": "e878eafc59000f748a2f7eddfb30e5edc7a38b99e06fda77b808d5207a24c86f",
+    "helper_calls": {
+      "0x145cc58f0": 920,
+      "0x145fe4450": 240,
+      "0x1400021d0": 168
+    },
+    "seams": {
+      "0x145cc58f0": "NUL-terminated valid UTF-8 CString read and owned allocation",
+      "0x145fc4810": "eight-byte stat-vector capacity growth/copy",
+      "0x145fc4c00": "twelve-byte damage-vector capacity growth/copy",
+      "0x145fe4450": "twenty-eight-byte spell-vector capacity growth/copy",
+      "0x1400021d0": "deallocation; addresses are not reused"
+    },
+    "limits": [
+      "Only the declared decoder instructions execute; helpers are explicit Python seams.",
+      "Stat/damage growth seams are declared but unexercised by these empty-stat/damage fixtures.",
+      "Missing-NUL, malformed UTF-8, allocation failure and unwind paths are excluded.",
+      "No rebuilt source, game, OS service, socket or server executes.",
+      "Unchanged registry bytes and retained tails apply only to these fixtures and seams.",
+      "This does not establish a guest text carrier or its global absence, UI delivery or parity."
+    ]
+  },
+  "unresolved": {
+    "source_bridge_implemented": false,
+    "original_game_defect_established": false,
+    "question": "No observed native producer/carrier populates the receiving process registry with host IDs/text. Ordinary opcode58 parsing, template-cache handling, registered lookup and observed registry reserve aliases do not supply that bridge. An alternative producer or computed/mutable alias remains unproved; no concrete writer site was established.",
+    "next_action": "A subsequent bounded recovery needs a concrete guest-side registry writer/carrier/alias lead beyond the checked ordinary decoder and direct-reference population. Preserve this blocker; do not invent an envelope, extension, reset or ID remap.",
+    "compilation": "not_run",
+    "runtime": "not_run",
+    "parity": "unverified"
+  },
+  "historical_source_slices": [
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+      "start_marker": "            NativeMessage::Lifecycle(LifecyclePacket::EngineCommand { opcode, payload }) => {\n",
+      "end_marker": "            NativeMessage::ZoneKey(zone) if guest => {\n",
+      "sha256": "68587f449dba67a89d65d506f4bff9d938c9117ddf3543ca0c4f932b71f835b6",
+      "superseded_by": "docs/analysis/evidence/0.119.0/guest-engine-admission.json",
+      "reason": "Guest Engine source now applies the separately recovered native admission gate under #180; registry/decoder proof unchanged."
+    }
+  ]
+}

@@ -1,0 +1,264 @@
+{
+  "schema_version": 1,
+  "target_version": "0.109.0",
+  "target_sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+  "target_executed": false,
+  "ranges": [
+    {
+      "role": "emote-packet",
+      "va": "0x1458c1260",
+      "byte_count": 729,
+      "file_offset": "0x58c0660",
+      "sha256": "9bb26fb3f54be46282487ebbcab8dcf131e38b9c5e74472549fc87379c8a9cfe",
+      "assembly": "emote-packet.asm",
+      "assembly_sha256": "8d9e2be32c353c7a66d52d5670a53d607f819ba68e7c6c3ca3d6e4caaf3711d8"
+    },
+    {
+      "role": "actor-name",
+      "va": "0x14590d9a0",
+      "byte_count": 279,
+      "file_offset": "0x590cda0",
+      "sha256": "b1e7e0a55694326df46257cf0cf37d8f3be29ce2451131b8a0205d44d5ff68a3",
+      "assembly": "actor-name.asm",
+      "assembly_sha256": "2094e63daecb43014f4186e949eb61666c86d5abd915c352f1462c3018dd3b2c"
+    }
+  ],
+  "dispatcher": {
+    "va": "0x1459578e0",
+    "byte_count": 22757,
+    "file_offset": "0x5956ce0",
+    "sha256": "c804d6ae493e7dfb43ae6344a1330d5e33154dbdc08da0af01cd9140c2b14880"
+  },
+  "common_warning_tail": {
+    "va": "0x14595b19d",
+    "byte_count": 64,
+    "file_offset": "0x595a59d",
+    "sha256": "21f76b0c01de920c63227d7823dae4ca7b911eefaf5ea9bbbba2354726b7f17a"
+  },
+  "warning_literals": [
+    {
+      "name": "SweepingGaze",
+      "native_tag": 15,
+      "load_site": {
+        "va": "0x1459588b3",
+        "byte_count": 7,
+        "file_offset": "0x5957cb3",
+        "sha256": "d267f7e64cb3bd780e6679495733821632d0c6ca6c0a2614504f83a8a449d044"
+      },
+      "text": "%s's gaze sweeps the field!",
+      "source": {
+        "va": "0x14722ac08",
+        "byte_count": 27,
+        "file_offset": "0x7229c08",
+        "sha256": "2dbcd96d858e98fb89fb1a4bce9b92f9c71b55007e90c1c74e6678ce6d330b39"
+      }
+    },
+    {
+      "name": "Eggs",
+      "native_tag": 22,
+      "load_site": {
+        "va": "0x14595c315",
+        "byte_count": 7,
+        "file_offset": "0x595b715",
+        "sha256": "b24e27c76028bc77f9edab548cc0761a9ba4bcc069d814a2e8f85c853d229a2e"
+      },
+      "text": "Destroy them before they hatch!",
+      "source": {
+        "va": "0x14722acb8",
+        "byte_count": 31,
+        "file_offset": "0x7229cb8",
+        "sha256": "cf1307b2f403e4b344ded9431cb507d4dc5e936af8987cc9b2dfd5da3faabbce"
+      }
+    },
+    {
+      "name": "HealingWards",
+      "native_tag": 22,
+      "load_site": {
+        "va": "0x14595be65",
+        "byte_count": 7,
+        "file_offset": "0x595b265",
+        "sha256": "bc75851b8a8d726394b728dce53a6678a870116ab7458a5935fc955557311cbf"
+      },
+      "text": "%s is healed by its wards! Destroy them!",
+      "source": {
+        "va": "0x14722acd7",
+        "byte_count": 40,
+        "file_offset": "0x7229cd7",
+        "sha256": "a4ceba0c620b3d56f7b1536822b939f9e1dfde314aa339e1c2c84f04733c1038"
+      }
+    },
+    {
+      "name": "ShieldingWards",
+      "native_tag": 22,
+      "load_site": {
+        "va": "0x14595c329",
+        "byte_count": 7,
+        "file_offset": "0x595b729",
+        "sha256": "e2b26fc479ca0db73069b2a66909668194e35f3bce82fa40cafddd0eeaca2efa"
+      },
+      "text": "%s is shielded by its wards! Destroy them!",
+      "source": {
+        "va": "0x14722acff",
+        "byte_count": 42,
+        "file_offset": "0x7229cff",
+        "sha256": "114c53200ae421751855309956a5e45e404d5f723bfd5bd648fbb710c1f02acf"
+      }
+    },
+    {
+      "name": "Tether",
+      "native_tag": 25,
+      "load_site": {
+        "va": "0x14595acd2",
+        "byte_count": 7,
+        "file_offset": "0x595a0d2",
+        "sha256": "45eb6f293d155a354e382c21483c7424bead38800fa7e5ea78204cf12d91e5d8"
+      },
+      "text": "%s's tether drains you! Get away to break it!",
+      "source": {
+        "va": "0x14722adb8",
+        "byte_count": 45,
+        "file_offset": "0x7229db8",
+        "sha256": "b71fd66933848dade05b76c218c2faca27c062d62729a70a967529989702480d"
+      }
+    },
+    {
+      "name": "Gaze",
+      "native_tag": 26,
+      "load_site": {
+        "va": "0x14595b18b",
+        "byte_count": 7,
+        "file_offset": "0x595a58b",
+        "sha256": "fe0b9504acc40722cb75253bd119aeee804610570596f140275de23905a9b5ef"
+      },
+      "text": "%s fixes its gaze on you! Do not move!",
+      "source": {
+        "va": "0x14722ae18",
+        "byte_count": 38,
+        "file_offset": "0x7229e18",
+        "sha256": "d2ad3c377fc77dfa6fda2dce7b16a6099fffea5be9cd5fe9698f334996616c01"
+      }
+    },
+    {
+      "name": "BurningGround",
+      "native_tag": 28,
+      "load_site": {
+        "va": "0x145958e23",
+        "byte_count": 7,
+        "file_offset": "0x5958223",
+        "sha256": "dbdbc18038b4e34df9cf79d737ad8005ba2cb6329e9af9e13adc90bb80a7c317"
+      },
+      "text": "The ground burns around you! Stay inside the circle!",
+      "source": {
+        "va": "0x14722ae70",
+        "byte_count": 52,
+        "file_offset": "0x7229e70",
+        "sha256": "d488bceb9c7c3a0cf7f991c4667400709444c1fb325c62d985a1a84302643b5c"
+      }
+    },
+    {
+      "name": "Bomb",
+      "native_tag": 30,
+      "load_site": {
+        "va": "0x145957eea",
+        "byte_count": 7,
+        "file_offset": "0x59572ea",
+        "sha256": "d5db20c5e4668a9528e8b60cf5cc59b20dc3fb4058657a20e3c70fcb9aacb325"
+      },
+      "text": "You are the bomb! Carry it into the horde!",
+      "source": {
+        "va": "0x14722af08",
+        "byte_count": 42,
+        "file_offset": "0x7229f08",
+        "sha256": "121fb7416841b1faa6aac48aa4a0fcd9ff5b2929b1bca0ac206006902227c52c"
+      }
+    },
+    {
+      "name": "Crystals",
+      "native_tag": 33,
+      "load_site": {
+        "va": "0x14595ab5f",
+        "byte_count": 7,
+        "file_offset": "0x5959f5f",
+        "sha256": "be3835f303b987dcd15e1bfb9962fe5ee5f64d1620b0f0ae90becd8faf7c0cc4"
+      },
+      "text": "Stand in a crystal to weaken %s!",
+      "source": {
+        "va": "0x14722af98",
+        "byte_count": 32,
+        "file_offset": "0x7229f98",
+        "sha256": "d09f04923fe3e1897438feab5d5f52723a3645a32c18995168fbcf3b58faad90"
+      }
+    }
+  ],
+  "reachable_warning_templates": {
+    "15": [
+      "SweepingGaze"
+    ],
+    "22": [
+      "Eggs",
+      "HealingWards",
+      "ShieldingWards"
+    ],
+    "25": [
+      "Tether"
+    ],
+    "26": [
+      "Gaze"
+    ],
+    "28": [
+      "BurningGround"
+    ],
+    "30": [
+      "Bomb"
+    ],
+    "33": [
+      "Crystals"
+    ]
+  },
+  "name_key_templates": [
+    {
+      "va": "0x146bd251f",
+      "byte_count": 9,
+      "file_offset": "0x6bd151f",
+      "sha256": "0f30309c4e2e184f9365233be87f243d24a9d618539dd42ccf5d1e0bd2a3309e"
+    },
+    {
+      "va": "0x146bd2540",
+      "byte_count": 14,
+      "file_offset": "0x6bd1540",
+      "sha256": "8d3cfb2764327eb094dfd9d21a05a96e2c117dee3fda2c3bf3780ea129a0361b"
+    },
+    {
+      "va": "0x14720ba90",
+      "byte_count": 5,
+      "file_offset": "0x720aa90",
+      "sha256": "0021d5fe20a08754dd965d947e4830740633aa94b4555d03067aaa6a3e6e1214"
+    }
+  ],
+  "native_packet_cases": 15,
+  "native_name_cases": 9,
+  "native_tail_cases": 18,
+  "native_ward_selector_cases": 6,
+  "locale_catalogs": [
+    "cs",
+    "de",
+    "en",
+    "es",
+    "fr",
+    "ja",
+    "ko",
+    "pl",
+    "pt",
+    "ro",
+    "ru",
+    "tr",
+    "uk",
+    "zh"
+  ],
+  "limits": [
+    "Unicorn executes original instructions with synthetic allocator, byte-copy, formatting, localization and Vec seams; the EXE process and reconstructed Rust do not run.",
+    "Dispatcher direct CFG reaches selected warning sites; indirect/global ownership is not certified.",
+    "Fresh Ghidra actor-name/emote raw imports reached a bridge-handshake identity error; no successful fresh decompiler result is claimed.",
+    "Custom boss cast-widget ownership/layout remains unresolved; these warnings use the existing FrameXML RAID_BOSS_EMOTE route."
+  ]
+}

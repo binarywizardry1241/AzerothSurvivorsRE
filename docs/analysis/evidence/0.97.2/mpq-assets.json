@@ -1,0 +1,2858 @@
+{
+  "schema_version": 1,
+  "reviewed_date": "2026-10-18",
+  "target": {
+    "manifest": "docs/analysis/target-refresh-0.97.2.json",
+    "manifest_sha256": "94a4039a413704dd35afe8410ced8e3339fe5424c637491058ac1da253719f76",
+    "version": "0.97.2",
+    "exe_path": "AzerothSurvivors/AzerothSurvivors-0.97.2.exe",
+    "exe_sha256": "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589",
+    "data_freshness": "These are the project-local archive hashes; a matching EXE does not establish that the local MPQs are the current installed version."
+  },
+  "runtime_report": {
+    "path": "runtime/asset-recovery-0.97.2/mpq-inventory.json",
+    "size_bytes": 23383522,
+    "sha256": "ccd6f1cc4d1b860d630d960dd8f9a7fd73a3f08a2bc4acc74bb7fcfa543c1dcb"
+  },
+  "requested_paths_source": {
+    "path": "runtime/asset-recovery-0.97.2/exe-paths.txt",
+    "size_bytes": 6158,
+    "sha256": "23d11a03eaf8bc052e8d980acbef9beb03a839ed46416ec763a6e0997b48f678"
+  },
+  "source_catalog": {
+    "path": "runtime/asset-recovery-0.97.2/summary/mpq-paths.tsv",
+    "size_bytes": 6607630,
+    "sha256": "fe88238a9174f9b09a3d72dcc11c1a89edd77c6fd0656e266005bfa6e2e895fb",
+    "data_rows": 27717,
+    "columns": [
+      "archive_id",
+      "member_path",
+      "bytes",
+      "sha256",
+      "extracted_path"
+    ]
+  },
+  "summary": {
+    "active_archives": 2,
+    "staged_archives": 1,
+    "known_paths": 27722,
+    "member_matches": 27717,
+    "readable_members": 27717,
+    "unsupported_members": 0,
+    "errored_members": 0,
+    "delete_markers": 0,
+    "extracted_members": 27717,
+    "extraction_errors": 0,
+    "extracted_bytes": 1345973861,
+    "requested_paths": 184,
+    "requested_absent": 7
+  },
+  "member_status_counts": {
+    "readable": 27717
+  },
+  "member_errors": [],
+  "extraction_verification": {
+    "performed": true,
+    "verified_files": 27717,
+    "verified_bytes": 1345973861,
+    "method": "Independently reread each extracted file and checked its size and SHA-256 against the recovery report."
+  },
+  "chain_status": "opened_existing_source_chain",
+  "chain_error": null,
+  "limitations": [
+    "Known paths are the union of readable archive listfiles and supplied path probes; MPQ hashes cannot enumerate unknown names.",
+    "The existing benilla-formats Chain rule is reported for comparison only; its mount order has not been verified against the selected 0.97.2 EXE.",
+    "The MPQ reader supports stored/zlib sectored V1/V2 data; encrypted, single-unit, implode, PTCH and other codecs remain explicit errors.",
+    "Staged .MPQ.update files are independently inventoried/extracted but are never activated in the source chain.",
+    "Archive locales/hash-table collisions follow the existing MPQ reader; exhaustive locale variant recovery is not established.",
+    "Extraction refuses unsafe paths, symlinks and existing files; it assumes no concurrent replacement of output directories."
+  ],
+  "archives": [
+    {
+      "archive_id": "0000-patch-2.MPQ",
+      "path": "AzerothSurvivors/Data/patch-2.MPQ",
+      "size_bytes": 4690878,
+      "sha256": "366edee41642a5dda22ed90cc252b543ee375755b7e8bee81e2a6cd59fd7b286",
+      "hash_error": null,
+      "staged_update": false,
+      "source_chain_role": "candidate_existing_source_rule",
+      "open_status": "opened",
+      "open_error": null,
+      "listfile_status": "readable",
+      "listfile_error": null,
+      "listfile_utf8": true,
+      "listed_paths": 119,
+      "member_matches": 120,
+      "readable_members": 120
+    },
+    {
+      "archive_id": "0001-patch-3.MPQ.update",
+      "path": "AzerothSurvivors/Data/patch-3.MPQ.update",
+      "size_bytes": 2580491,
+      "sha256": "75c35ca5b8075197252581e301e8900143007fdf37b493ad271ae1bd39f95a29",
+      "hash_error": null,
+      "staged_update": true,
+      "source_chain_role": "excluded_staged_update",
+      "open_status": "opened",
+      "open_error": null,
+      "listfile_status": "readable",
+      "listfile_error": null,
+      "listfile_utf8": true,
+      "listed_paths": 9,
+      "member_matches": 10,
+      "readable_members": 10
+    },
+    {
+      "archive_id": "0002-patch.MPQ",
+      "path": "AzerothSurvivors/Data/patch.MPQ",
+      "size_bytes": 1340199244,
+      "sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf",
+      "hash_error": null,
+      "staged_update": false,
+      "source_chain_role": "candidate_existing_source_rule",
+      "open_status": "opened",
+      "open_error": null,
+      "listfile_status": "readable",
+      "listfile_error": null,
+      "listfile_utf8": true,
+      "listed_paths": 27586,
+      "member_matches": 27587,
+      "readable_members": 27587
+    }
+  ],
+  "requested_paths": [
+    {
+      "input": "dbfilesclient/animationdata.dbc",
+      "lookup_path": "dbfilesclient\\animationdata.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/areapoi.dbc",
+      "lookup_path": "dbfilesclient\\areapoi.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/areatable.dbc",
+      "lookup_path": "dbfilesclient\\areatable.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/areatrigger.dbc",
+      "lookup_path": "dbfilesclient\\areatrigger.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/auctionhouse.dbc",
+      "lookup_path": "dbfilesclient\\auctionhouse.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/bankbagslotprices.dbc",
+      "lookup_path": "dbfilesclient\\bankbagslotprices.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/camerashakes.dbc",
+      "lookup_path": "dbfilesclient\\camerashakes.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/cfg_categories.dbc",
+      "lookup_path": "dbfilesclient\\cfg_categories.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/characterfacialhairstyles.dbc",
+      "lookup_path": "dbfilesclient\\characterfacialhairstyles.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/charbaseinfo.dbc",
+      "lookup_path": "dbfilesclient\\charbaseinfo.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/charhairgeosets.dbc",
+      "lookup_path": "dbfilesclient\\charhairgeosets.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/charsections.dbc",
+      "lookup_path": "dbfilesclient\\charsections.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/charstartoutfit.dbc",
+      "lookup_path": "dbfilesclient\\charstartoutfit.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/chatchannels.dbc",
+      "lookup_path": "dbfilesclient\\chatchannels.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/chatprofanity.dbc",
+      "lookup_path": "dbfilesclient\\chatprofanity.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/chrclasses.dbc",
+      "lookup_path": "dbfilesclient\\chrclasses.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/chrraces.dbc",
+      "lookup_path": "dbfilesclient\\chrraces.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/cinematiccamera.dbc",
+      "lookup_path": "dbfilesclient\\cinematiccamera.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/cinematicsequences.dbc",
+      "lookup_path": "dbfilesclient\\cinematicsequences.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/creaturedisplayinfo.dbc",
+      "lookup_path": "dbfilesclient\\creaturedisplayinfo.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/creaturedisplayinfoextra.dbc",
+      "lookup_path": "dbfilesclient\\creaturedisplayinfoextra.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/creaturefamily.dbc",
+      "lookup_path": "dbfilesclient\\creaturefamily.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/creaturemodeldata.dbc",
+      "lookup_path": "dbfilesclient\\creaturemodeldata.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/creaturesounddata.dbc",
+      "lookup_path": "dbfilesclient\\creaturesounddata.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/creaturetype.dbc",
+      "lookup_path": "dbfilesclient\\creaturetype.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/deaththudlookups.dbc",
+      "lookup_path": "dbfilesclient\\deaththudlookups.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/durabilitycosts.dbc",
+      "lookup_path": "dbfilesclient\\durabilitycosts.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/durabilityquality.dbc",
+      "lookup_path": "dbfilesclient\\durabilityquality.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/emotes.dbc",
+      "lookup_path": "dbfilesclient\\emotes.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/emotestext.dbc",
+      "lookup_path": "dbfilesclient\\emotestext.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/emotestextdata.dbc",
+      "lookup_path": "dbfilesclient\\emotestextdata.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/emotestextsound.dbc",
+      "lookup_path": "dbfilesclient\\emotestextsound.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/environmentaldamage.dbc",
+      "lookup_path": "dbfilesclient\\environmentaldamage.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/exhaustion.dbc",
+      "lookup_path": "dbfilesclient\\exhaustion.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/faction.dbc",
+      "lookup_path": "dbfilesclient\\faction.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/factiongroup.dbc",
+      "lookup_path": "dbfilesclient\\factiongroup.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/factiontemplate.dbc",
+      "lookup_path": "dbfilesclient\\factiontemplate.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/footprinttextures.dbc",
+      "lookup_path": "dbfilesclient\\footprinttextures.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/footstepterrainlookup.dbc",
+      "lookup_path": "dbfilesclient\\footstepterrainlookup.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/gameobjectdisplayinfo.dbc",
+      "lookup_path": "dbfilesclient\\gameobjectdisplayinfo.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/gametips.dbc",
+      "lookup_path": "dbfilesclient\\gametips.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/gmticketcategory.dbc",
+      "lookup_path": "dbfilesclient\\gmticketcategory.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/groundeffectdoodad.dbc",
+      "lookup_path": "dbfilesclient\\groundeffectdoodad.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/groundeffecttexture.dbc",
+      "lookup_path": "dbfilesclient\\groundeffecttexture.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/helmetgeosetvisdata.dbc",
+      "lookup_path": "dbfilesclient\\helmetgeosetvisdata.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/itembagfamily.dbc",
+      "lookup_path": "dbfilesclient\\itembagfamily.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/itemclass.dbc",
+      "lookup_path": "dbfilesclient\\itemclass.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/itemdisplayinfo.dbc",
+      "lookup_path": "dbfilesclient\\itemdisplayinfo.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/itemgroupsounds.dbc",
+      "lookup_path": "dbfilesclient\\itemgroupsounds.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/itempetfood.dbc",
+      "lookup_path": "dbfilesclient\\itempetfood.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/itemrandomproperties.dbc",
+      "lookup_path": "dbfilesclient\\itemrandomproperties.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/itemset.dbc",
+      "lookup_path": "dbfilesclient\\itemset.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/itemsubclass.dbc",
+      "lookup_path": "dbfilesclient\\itemsubclass.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/itemsubclassmask.dbc",
+      "lookup_path": "dbfilesclient\\itemsubclassmask.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/itemvisualeffects.dbc",
+      "lookup_path": "dbfilesclient\\itemvisualeffects.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/itemvisuals.dbc",
+      "lookup_path": "dbfilesclient\\itemvisuals.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/languages.dbc",
+      "lookup_path": "dbfilesclient\\languages.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/languagewords.dbc",
+      "lookup_path": "dbfilesclient\\languagewords.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/light.dbc",
+      "lookup_path": "dbfilesclient\\light.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/lightfloatband.dbc",
+      "lookup_path": "dbfilesclient\\lightfloatband.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/lightintband.dbc",
+      "lookup_path": "dbfilesclient\\lightintband.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/lightparams.dbc",
+      "lookup_path": "dbfilesclient\\lightparams.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/lightskybox.dbc",
+      "lookup_path": "dbfilesclient\\lightskybox.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/loadingscreens.dbc",
+      "lookup_path": "dbfilesclient\\loadingscreens.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/lock.dbc",
+      "lookup_path": "dbfilesclient\\lock.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/locktype.dbc",
+      "lookup_path": "dbfilesclient\\locktype.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/map.dbc",
+      "lookup_path": "dbfilesclient\\map.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/material.dbc",
+      "lookup_path": "dbfilesclient\\material.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/npcsounds.dbc",
+      "lookup_path": "dbfilesclient\\npcsounds.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/package.dbc",
+      "lookup_path": "dbfilesclient\\package.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/pagetextmaterial.dbc",
+      "lookup_path": "dbfilesclient\\pagetextmaterial.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/petloyalty.dbc",
+      "lookup_path": "dbfilesclient\\petloyalty.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/petpersonality.dbc",
+      "lookup_path": "dbfilesclient\\petpersonality.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/questinfo.dbc",
+      "lookup_path": "dbfilesclient\\questinfo.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/questsort.dbc",
+      "lookup_path": "dbfilesclient\\questsort.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/servermessages.dbc",
+      "lookup_path": "dbfilesclient\\servermessages.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/sheathesoundlookups.dbc",
+      "lookup_path": "dbfilesclient\\sheathesoundlookups.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/skillline.dbc",
+      "lookup_path": "dbfilesclient\\skillline.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/skilllineability.dbc",
+      "lookup_path": "dbfilesclient\\skilllineability.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/skilllinecategory.dbc",
+      "lookup_path": "dbfilesclient\\skilllinecategory.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/skillraceclassinfo.dbc",
+      "lookup_path": "dbfilesclient\\skillraceclassinfo.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/soundambience.dbc",
+      "lookup_path": "dbfilesclient\\soundambience.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/soundentries.dbc",
+      "lookup_path": "dbfilesclient\\soundentries.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/soundproviderpreferences.dbc",
+      "lookup_path": "dbfilesclient\\soundproviderpreferences.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/soundwatertype.dbc",
+      "lookup_path": "dbfilesclient\\soundwatertype.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/spammessages.dbc",
+      "lookup_path": "dbfilesclient\\spammessages.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/spell.dbc",
+      "lookup_path": "dbfilesclient\\spell.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/spellcasttimes.dbc",
+      "lookup_path": "dbfilesclient\\spellcasttimes.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/spellcategory.dbc",
+      "lookup_path": "dbfilesclient\\spellcategory.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/spellchaineffects.dbc",
+      "lookup_path": "dbfilesclient\\spellchaineffects.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/spelldispeltype.dbc",
+      "lookup_path": "dbfilesclient\\spelldispeltype.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/spellduration.dbc",
+      "lookup_path": "dbfilesclient\\spellduration.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/spelleffectcamerashakes.dbc",
+      "lookup_path": "dbfilesclient\\spelleffectcamerashakes.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/spellfocusobject.dbc",
+      "lookup_path": "dbfilesclient\\spellfocusobject.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/spellicon.dbc",
+      "lookup_path": "dbfilesclient\\spellicon.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/spellitemenchantment.dbc",
+      "lookup_path": "dbfilesclient\\spellitemenchantment.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/spellmechanic.dbc",
+      "lookup_path": "dbfilesclient\\spellmechanic.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/spellradius.dbc",
+      "lookup_path": "dbfilesclient\\spellradius.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/spellrange.dbc",
+      "lookup_path": "dbfilesclient\\spellrange.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/spellshapeshiftform.dbc",
+      "lookup_path": "dbfilesclient\\spellshapeshiftform.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/spellvisual.dbc",
+      "lookup_path": "dbfilesclient\\spellvisual.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/spellvisualeffectname.dbc",
+      "lookup_path": "dbfilesclient\\spellvisualeffectname.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/spellvisualkit.dbc",
+      "lookup_path": "dbfilesclient\\spellvisualkit.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/stableslotprices.dbc",
+      "lookup_path": "dbfilesclient\\stableslotprices.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/stationery.dbc",
+      "lookup_path": "dbfilesclient\\stationery.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/talent.dbc",
+      "lookup_path": "dbfilesclient\\talent.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/talenttab.dbc",
+      "lookup_path": "dbfilesclient\\talenttab.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/taxinodes.dbc",
+      "lookup_path": "dbfilesclient\\taxinodes.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/taxipath.dbc",
+      "lookup_path": "dbfilesclient\\taxipath.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/taxipathnode.dbc",
+      "lookup_path": "dbfilesclient\\taxipathnode.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/terraintype.dbc",
+      "lookup_path": "dbfilesclient\\terraintype.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/terraintypesounds.dbc",
+      "lookup_path": "dbfilesclient\\terraintypesounds.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/transportanimation.dbc",
+      "lookup_path": "dbfilesclient\\transportanimation.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/unitblood.dbc",
+      "lookup_path": "dbfilesclient\\unitblood.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/unitbloodlevels.dbc",
+      "lookup_path": "dbfilesclient\\unitbloodlevels.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/vocaluisounds.dbc",
+      "lookup_path": "dbfilesclient\\vocaluisounds.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/weaponimpactsounds.dbc",
+      "lookup_path": "dbfilesclient\\weaponimpactsounds.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/weaponswingsounds2.dbc",
+      "lookup_path": "dbfilesclient\\weaponswingsounds2.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/wmoareatable.dbc",
+      "lookup_path": "dbfilesclient\\wmoareatable.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/worldmaparea.dbc",
+      "lookup_path": "dbfilesclient\\worldmaparea.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/worldmapcontinent.dbc",
+      "lookup_path": "dbfilesclient\\worldmapcontinent.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/worldmapoverlay.dbc",
+      "lookup_path": "dbfilesclient\\worldmapoverlay.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/worldstateui.dbc",
+      "lookup_path": "dbfilesclient\\worldstateui.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/zoneintromusictable.dbc",
+      "lookup_path": "dbfilesclient\\zoneintromusictable.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "dbfilesclient/zonemusic.dbc",
+      "lookup_path": "dbfilesclient\\zonemusic.dbc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "environments/stars/stars.blp",
+      "lookup_path": "environments\\stars\\stars.blp",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "environments/stars/stars.m2",
+      "lookup_path": "environments\\stars\\stars.m2",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "environments/stars/stars2.blp",
+      "lookup_path": "environments\\stars\\stars2.blp",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "fonts/arialn.ttf",
+      "lookup_path": "fonts\\arialn.ttf",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "fonts/azs_jp.ttf",
+      "lookup_path": "fonts\\azs_jp.ttf",
+      "status": "absent_from_available_archives",
+      "error": null,
+      "archive_matches": [],
+      "active_archive_matches": [],
+      "staged_archive_matches": [],
+      "source_chain_winner": null,
+      "source_chain_status": "not_in_existing_source_chain"
+    },
+    {
+      "input": "fonts/azs_kr.ttf",
+      "lookup_path": "fonts\\azs_kr.ttf",
+      "status": "absent_from_available_archives",
+      "error": null,
+      "archive_matches": [],
+      "active_archive_matches": [],
+      "staged_archive_matches": [],
+      "source_chain_winner": null,
+      "source_chain_status": "not_in_existing_source_chain"
+    },
+    {
+      "input": "fonts/azs_sc.ttf",
+      "lookup_path": "fonts\\azs_sc.ttf",
+      "status": "absent_from_available_archives",
+      "error": null,
+      "archive_matches": [],
+      "active_archive_matches": [],
+      "staged_archive_matches": [],
+      "source_chain_winner": null,
+      "source_chain_status": "not_in_existing_source_chain"
+    },
+    {
+      "input": "fonts/frizqt__.ttf",
+      "lookup_path": "fonts\\frizqt__.ttf",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "fonts/morpheus.ttf",
+      "lookup_path": "fonts\\morpheus.ttf",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "fonts/skurri.ttf",
+      "lookup_path": "fonts\\skurri.ttf",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "interface/buttons/glowstar.blp",
+      "lookup_path": "interface\\buttons\\glowstar.blp",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "interface/buttons/talktome.m2",
+      "lookup_path": "interface\\buttons\\talktome.m2",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "interface/buttons/talktomegreen.m2",
+      "lookup_path": "interface\\buttons\\talktomegreen.m2",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "interface/buttons/talktomegrey.m2",
+      "lookup_path": "interface\\buttons\\talktomegrey.m2",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "interface/buttons/talktomequestion_grey.m2",
+      "lookup_path": "interface\\buttons\\talktomequestion_grey.m2",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "interface/buttons/talktomequestion_ltblue.m2",
+      "lookup_path": "interface\\buttons\\talktomequestion_ltblue.m2",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "interface/buttons/talktomequestionmark.m2",
+      "lookup_path": "interface\\buttons\\talktomequestionmark.m2",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "interface/buttons/ui-rotationleft-button-up.blp",
+      "lookup_path": "interface\\buttons\\ui-rotationleft-button-up.blp",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "interface/buttons/ui-rotationright-button-up.blp",
+      "lookup_path": "interface\\buttons\\ui-rotationright-button-up.blp",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "interface/dialogframe/ui-dialogbox-gold-dragon.blp",
+      "lookup_path": "interface\\dialogframe\\ui-dialogbox-gold-dragon.blp",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "interface/framexml/bindings.xml",
+      "lookup_path": "interface\\framexml\\bindings.xml",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "interface/framexml/chatframe.lua",
+      "lookup_path": "interface\\framexml\\chatframe.lua",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "interface/framexml/framexml.toc",
+      "lookup_path": "interface\\framexml\\framexml.toc",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "interface/framexml/globalstrings.lua",
+      "lookup_path": "interface\\framexml\\globalstrings.lua",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "interface/framexml/paperdollframe.lua",
+      "lookup_path": "interface\\framexml\\paperdollframe.lua",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "interface/framexml/reputationframe.lua",
+      "lookup_path": "interface\\framexml\\reputationframe.lua",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "interface/framexml/worldstateframe.lua",
+      "lookup_path": "interface\\framexml\\worldstateframe.lua",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "interface/glues/charactercreate/ui-charactercreate-classes.blp",
+      "lookup_path": "interface\\glues\\charactercreate\\ui-charactercreate-classes.blp",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "interface/glues/charactercreate/ui-charactercreate-races.blp",
+      "lookup_path": "interface\\glues\\charactercreate\\ui-charactercreate-races.blp",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "interface/glues/common/glue-leftarrow-button-up.blp",
+      "lookup_path": "interface\\glues\\common\\glue-leftarrow-button-up.blp",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "interface/glues/common/glue-rightarrow-button-up.blp",
+      "lookup_path": "interface\\glues\\common\\glue-rightarrow-button-up.blp",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "interface/glues/loadingbar/loading-barborder.blp",
+      "lookup_path": "interface\\glues\\loadingbar\\loading-barborder.blp",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "interface/glues/loadingbar/loading-barfill.blp",
+      "lookup_path": "interface\\glues\\loadingbar\\loading-barfill.blp",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "interface/gluexml/gluelocalization.lua",
+      "lookup_path": "interface\\gluexml\\gluelocalization.lua",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "interface/gluexml/gluestrings.lua",
+      "lookup_path": "interface\\gluexml\\gluestrings.lua",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "interface/itemtextframe/itemtext-bronze-topleft.blp",
+      "lookup_path": "interface\\itemtextframe\\itemtext-bronze-topleft.blp",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "interface/minimap/minimap-trackingborder.blp",
+      "lookup_path": "interface\\minimap\\minimap-trackingborder.blp",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "interface/minimap/minimaparrow.mdx",
+      "lookup_path": "interface\\minimap\\minimaparrow.mdx",
+      "status": "absent_from_available_archives",
+      "error": null,
+      "archive_matches": [],
+      "active_archive_matches": [],
+      "staged_archive_matches": [],
+      "source_chain_winner": null,
+      "source_chain_status": "not_in_existing_source_chain"
+    },
+    {
+      "input": "interface/minimap/rotating-minimaparrow.mdx",
+      "lookup_path": "interface\\minimap\\rotating-minimaparrow.mdx",
+      "status": "absent_from_available_archives",
+      "error": null,
+      "archive_matches": [],
+      "active_archive_matches": [],
+      "staged_archive_matches": [],
+      "source_chain_winner": null,
+      "source_chain_status": "not_in_existing_source_chain"
+    },
+    {
+      "input": "interface/paperdollinfoframe/ui-character-skills-bar.blp",
+      "lookup_path": "interface\\paperdollinfoframe\\ui-character-skills-bar.blp",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "interface/spellshadow/spell-shadow-acceptable.blp",
+      "lookup_path": "interface\\spellshadow\\spell-shadow-acceptable.blp",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "interface/spellshadow/spell-shadow-unacceptable.blp",
+      "lookup_path": "interface\\spellshadow\\spell-shadow-unacceptable.blp",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "interface/targetingframe/ui-raidtargetingicons.blp",
+      "lookup_path": "interface\\targetingframe\\ui-raidtargetingicons.blp",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "sound/music/gluescreenmusic/wow_main_theme.mp3",
+      "lookup_path": "sound\\music\\gluescreenmusic\\wow_main_theme.mp3",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "textures/minimap/md5translate.trs",
+      "lookup_path": "textures\\minimap\\md5translate.trs",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "textures/moon.blp",
+      "lookup_path": "textures\\moon.blp",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "textures/moon02.blp",
+      "lookup_path": "textures\\moon02.blp",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "textures/moonglare.blp",
+      "lookup_path": "textures\\moonglare.blp",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "textures/shadowblob.blp",
+      "lookup_path": "textures\\shadowblob.blp",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "textures/splash/splash.blp",
+      "lookup_path": "textures\\splash\\splash.blp",
+      "status": "absent_from_available_archives",
+      "error": null,
+      "archive_matches": [],
+      "active_archive_matches": [],
+      "staged_archive_matches": [],
+      "source_chain_winner": null,
+      "source_chain_status": "not_in_existing_source_chain"
+    },
+    {
+      "input": "textures/splash/wake.blp",
+      "lookup_path": "textures\\splash\\wake.blp",
+      "status": "absent_from_available_archives",
+      "error": null,
+      "archive_matches": [],
+      "active_archive_matches": [],
+      "staged_archive_matches": [],
+      "source_chain_winner": null,
+      "source_chain_status": "not_in_existing_source_chain"
+    },
+    {
+      "input": "textures/suncenter.blp",
+      "lookup_path": "textures\\suncenter.blp",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "textures/sunglare.blp",
+      "lookup_path": "textures\\sunglare.blp",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "textures/unitselecttexture.blp",
+      "lookup_path": "textures\\unitselecttexture.blp",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "textures/waterpoop02.blp",
+      "lookup_path": "textures\\waterpoop02.blp",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "textures/weather/raindrop01.blp",
+      "lookup_path": "textures\\weather\\raindrop01.blp",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "textures/weather/raindropsplash01.blp",
+      "lookup_path": "textures\\weather\\raindropsplash01.blp",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "textures/weather/snowflake01.blp",
+      "lookup_path": "textures\\weather\\snowflake01.blp",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    },
+    {
+      "input": "textures/weather/snowmist01.blp",
+      "lookup_path": "textures\\weather\\snowmist01.blp",
+      "status": "matched",
+      "error": null,
+      "archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "active_archive_matches": [
+        "0002-patch.MPQ"
+      ],
+      "staged_archive_matches": [],
+      "source_chain_winner": "AzerothSurvivors/Data/patch.MPQ",
+      "source_chain_status": "resolved_by_existing_source_rule"
+    }
+  ],
+  "scan_warnings": []
+}

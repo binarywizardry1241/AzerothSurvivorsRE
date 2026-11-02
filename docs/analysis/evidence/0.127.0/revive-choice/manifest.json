@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.127.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+    "size_bytes": 146721280
+  },
+  "target_executed": false,
+  "compiled": false,
+  "queries": [
+    {
+      "procedure": "0x145bfdac0",
+      "slice_virtual_address": "0x145bfdac0",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-168-271-280-0.127.0/revive/body.bin",
+        "sha256": "bcb77329b7bcea9a7a156fe944beb8fb57c23a247d5be8abf2205d980f3c9949"
+      },
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-168-271-280-0.127.0/revive/plan-v2.json",
+        "sha256": "554620f5090d97af7c313d5ca0e44c0dafed06c58843c593d2d372f835c09041"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-168-271-280-0.127.0/revive/query-v2/journal.json",
+        "sha256": "0b03c88edb17145b863dca96d10822e86f200e73dc2949877a3b217bb03d51c5"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-168-271-280-0.127.0/revive/query-v2/results/779af40fd0742dcd6a8f9cfefffe8512c34b99bf3bb629bfabf35b258475fa5a.json",
+        "sha256": "7857f613d01557b1a0e5e54ba441858571ecc51a2119f090370deb06fe9517b1"
+      },
+      "evidence_id": "ev_b571bf20959b0df89df3feb18a951dca7817a1047689d9eef743194dd3ff0e5d",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "cc53b09f22b1887c3b3fe06ff98784c2e9b200dbd5591681e2c4c5f401c418db",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "bcb77329b7bcea9a7a156fe944beb8fb57c23a247d5be8abf2205d980f3c9949",
+        "virtual_address": "0x145bfdac0",
+        "file_offset": "0x5bfcec0",
+        "byte_count": 17861,
+        "result": "runtime/analysis/tasks/fixgap-168-271-280-0.127.0/revive/query-v2/results/779af40fd0742dcd6a8f9cfefffe8512c34b99bf3bb629bfabf35b258475fa5a.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "procedure": "0x145bfdac0",
+      "slice_virtual_address": "0x145bfdac0",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-168-271-280-0.127.0/revive/body.bin",
+        "sha256": "bcb77329b7bcea9a7a156fe944beb8fb57c23a247d5be8abf2205d980f3c9949"
+      },
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-168-271-280-0.127.0/revive/instructions-plan.json",
+        "sha256": "33aa1d4ba8cec6a96db7394145cd53cdfb810759b88cfab4e622ef7473f65070"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-168-271-280-0.127.0/revive/instructions/journal.json",
+        "sha256": "f99946434007f592bd49ee01cf989c0e5007211d3a2671fdb2fcf133d6d22a23"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-168-271-280-0.127.0/revive/instructions/results/f75ceda974b9ebce061c02c15670d90e3c4115875c9a7764a0213434863abedb.json",
+        "sha256": "ee21988204eaa6a6bcd59f3d05e508434ba23d597c27d5f4b4d4802aed675ea9"
+      },
+      "evidence_id": "ev_ef54127cb462f069a6437ee2bde1d1336894146fa2e0ba7b22efffade5555a62",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "cc53b09f22b1887c3b3fe06ff98784c2e9b200dbd5591681e2c4c5f401c418db",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "bcb77329b7bcea9a7a156fe944beb8fb57c23a247d5be8abf2205d980f3c9949",
+        "virtual_address": "0x145bfdac0",
+        "file_offset": "0x5bfcec0",
+        "byte_count": 17861,
+        "result": "runtime/analysis/tasks/fixgap-168-271-280-0.127.0/revive/instructions/results/f75ceda974b9ebce061c02c15670d90e3c4115875c9a7764a0213434863abedb.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    }
+  ],
+  "native_spans": [
+    {
+      "role": "active-helper count, hold/decay and parallel multiplier",
+      "start": "0x145bff3b6",
+      "end_exclusive": "0x145bff46e",
+      "byte_count": 184,
+      "file_offset": "0x5bfe7b6",
+      "sha256": "4ca31b9d305506bb9e7db27e402789b4442117a9528116ff23497923d4ef28f5"
+    }
+  ],
+  "constants": [
+    {
+      "role": "parallel helper increment",
+      "start": "0x14624c840",
+      "end_exclusive": "0x14624c844",
+      "byte_count": 4,
+      "file_offset": "0x624ae40",
+      "sha256": "5d96a77c55b4ac1eea2d77815396c4349292b85e3b07beaca6aff933e7ef8752"
+    },
+    {
+      "role": "first helper rate",
+      "start": "0x146232ec0",
+      "end_exclusive": "0x146232ec4",
+      "byte_count": 4,
+      "file_offset": "0x62314c0",
+      "sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c"
+    }
+  ],
+  "contract": {
+    "nearby": "Existing state1/2 XY/self-exclusion interface retained; local snapshot state1 bit at +0xd is counted separately.",
+    "timer": "No nearby rows decay; nearby chooser-only rows hold; active state1 helpers advance delta*(1+0.2*(count-1)).",
+    "remaining": "Compilation, actual transport/scheduling/HUD/gameplay and parity unverified."
+  }
+}

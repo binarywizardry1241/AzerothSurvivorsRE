@@ -1,0 +1,1347 @@
+{
+  "target_version": "0.105.0",
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "target_executed": false,
+  "method": "Bounded original-instruction Unicorn replay, compared with Python transcription aligned to changed source; no Rust compilation/execution.",
+  "unicorn": "2.1.4",
+  "spans": [
+    {
+      "start": "0x1458a1751",
+      "end_exclusive": "0x1458a1a21",
+      "file_offset": "0x58a0b51",
+      "sha256": "56916076d1c211be1eb6c737add0e2c2eb51730dbdd40661c3cef30b0d487d8e"
+    },
+    {
+      "start": "0x1459a9b56",
+      "end_exclusive": "0x1459a9cb5",
+      "file_offset": "0x59a8f56",
+      "sha256": "a183aa5292b72fc4efa4ebafd328b59670bbe635ba55f33874ea45dbe1662b78"
+    },
+    {
+      "start": "0x1458a1ac6",
+      "end_exclusive": "0x1458a1b7f",
+      "file_offset": "0x58a0ec6",
+      "sha256": "1898d25f40af832788253013bda97f8c9939ef702a6101a72c800c24a895d232"
+    },
+    {
+      "start": "0x1458983c6",
+      "end_exclusive": "0x14589849f",
+      "file_offset": "0x58977c6",
+      "sha256": "57dba840598ba71144d089066d2450a9b7878c7daf2092567f4a21f14cabd91c"
+    },
+    {
+      "start": "0x1458f0110",
+      "end_exclusive": "0x1458f017a",
+      "file_offset": "0x58ef510",
+      "sha256": "832575541643cdc9493627910228ed93593a967109eb6fa2d200ee227692bb52"
+    },
+    {
+      "start": "0x14591d4c0",
+      "end_exclusive": "0x14591d5d8",
+      "file_offset": "0x591c8c0",
+      "sha256": "78c120aa7d629500c95a8a0600166f99e8edcb0e81bdb403d649420cb8ec64b7"
+    },
+    {
+      "start": "0x145900d5f",
+      "end_exclusive": "0x145900d69",
+      "file_offset": "0x590015f",
+      "sha256": "7d405c7867c201c7c68f7d6ef4e279c3e3ac421127658e8e1187a16e35c1dee0"
+    },
+    {
+      "start": "0x1459021c8",
+      "end_exclusive": "0x1459021fa",
+      "file_offset": "0x59015c8",
+      "sha256": "fb97e883a47c78730bf833176993bdfedac41a4af2c1a61914d66bfdcb73aff0"
+    }
+  ],
+  "counts": {
+    "xp": 1547,
+    "xp_order_regressions": 38,
+    "part_deltas_and_checkpoints": 103,
+    "count_deltas": 5,
+    "continuation": 28,
+    "abandon": 14,
+    "total": 1712,
+    "executed_instructions": 249562,
+    "sink_gate": 15
+  },
+  "seams": [
+    "XP zone-index resolver1458753b0 returns explicitly supplied index; native density normalization executes before it.",
+    "CRT roundf145bc97b1 supplied C99 ties-away behavior on f32 arguments, including declared nonfinite cases.",
+    "Part-difference output buffer preallocated; replay starts after allocation1459a9b56.",
+    "Continue stops before first packet builder1458f017a; abandon count0 stops before syncpause14591d553, count>0 stops at first choice destructor14591d513.",
+    "Sink-test checks stop before environment lookup1459021fa; native default Game948=0 executes separately. No test injection, floor query or teleport is executed."
+  ],
+  "limits": [
+    "No compiler, Rust execution, game process, live UI or native CRT execution; source/platform parity unverified.",
+    "Action preservation claims cover Game bytes through stated pre-call stops; destructor, packet, localization, queue publication and allocator effects not executed.",
+    "No unreviewed callee is stubbed or silently skipped; unknown executed address raises an error."
+  ],
+  "regeneration": "python3 scripts/recover-terminal-contracts-0.105.0.py",
+  "xp_selected_cases": [
+    {
+      "inputs": {
+        "kills": 100,
+        "bosses": 1,
+        "seconds": 60.0,
+        "won": false,
+        "zone": 0,
+        "mods": [
+          100,
+          100,
+          100,
+          100
+        ],
+        "veteran": 0.0
+      },
+      "parts": [
+        12,
+        10,
+        40,
+        0,
+        0,
+        0,
+        0
+      ],
+      "total_xp": 62
+    },
+    {
+      "inputs": {
+        "kills": 5,
+        "bosses": 0,
+        "seconds": 2.5,
+        "won": false,
+        "zone": 0,
+        "mods": [
+          100,
+          100,
+          100,
+          100
+        ],
+        "veteran": 0.0
+      },
+      "parts": [
+        1,
+        1,
+        0,
+        0,
+        -1,
+        0,
+        0
+      ],
+      "total_xp": 1
+    },
+    {
+      "inputs": {
+        "kills": 100,
+        "bosses": 1,
+        "seconds": 60.0,
+        "won": true,
+        "zone": 0,
+        "mods": [
+          100,
+          300,
+          300,
+          150
+        ],
+        "veteran": 0.4
+      },
+      "parts": [
+        12,
+        10,
+        40,
+        200,
+        0,
+        262,
+        210
+      ],
+      "total_xp": 734
+    },
+    {
+      "inputs": {
+        "kills": 0,
+        "bosses": 0,
+        "seconds": 0.0,
+        "won": false,
+        "zone": 0,
+        "mods": [
+          100,
+          100,
+          100,
+          100
+        ],
+        "veteran": 0.0
+      },
+      "parts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "total_xp": 0
+    },
+    {
+      "inputs": {
+        "kills": 4294967295,
+        "bosses": 4294967295,
+        "seconds": 36000.0,
+        "won": true,
+        "zone": 11,
+        "mods": [
+          500,
+          500,
+          300,
+          150
+        ],
+        "veteran": 1.0
+      },
+      "parts": [
+        7200,
+        85899352,
+        171798691800,
+        200,
+        -167589631257,
+        4294967296,
+        8589934592
+      ],
+      "total_xp": 4294967295
+    },
+    {
+      "inputs": {
+        "kills": 100,
+        "bosses": 1,
+        "seconds": 60.0,
+        "won": false,
+        "zone": 0,
+        "mods": [
+          100,
+          100,
+          100,
+          0
+        ],
+        "veteran": 0.0
+      },
+      "parts": [
+        12,
+        10,
+        40,
+        0,
+        0,
+        -124,
+        0
+      ],
+      "total_xp": 0
+    },
+    {
+      "inputs": {
+        "kills": 1,
+        "bosses": 0,
+        "seconds": -60.0,
+        "won": false,
+        "zone": 0,
+        "mods": [
+          100,
+          100,
+          100,
+          100
+        ],
+        "veteran": 0.0
+      },
+      "parts": [
+        -12,
+        0,
+        0,
+        0,
+        12,
+        0,
+        0
+      ],
+      "total_xp": 0
+    },
+    {
+      "inputs": {
+        "kills": 4294967295,
+        "bosses": 5,
+        "seconds": 1800.0,
+        "won": false,
+        "zone": 11,
+        "mods": [
+          0,
+          100,
+          100,
+          100
+        ],
+        "veteran": 0.2
+      },
+      "parts": [
+        360,
+        429496736,
+        200,
+        0,
+        687195568,
+        -55834656,
+        212171648
+      ],
+      "total_xp": 1273029856
+    },
+    {
+      "inputs": {
+        "kills": 0,
+        "bosses": 0,
+        "seconds": 375.0,
+        "won": false,
+        "zone": 0,
+        "mods": [
+          100,
+          125,
+          110,
+          125
+        ],
+        "veteran": 0.0
+      },
+      "parts": [
+        75,
+        0,
+        0,
+        0,
+        0,
+        49,
+        0
+      ],
+      "total_xp": 124
+    },
+    {
+      "inputs": {
+        "kills": 0,
+        "bosses": 0,
+        "seconds": 125.0,
+        "won": false,
+        "zone": 0,
+        "mods": [
+          100,
+          125,
+          120,
+          110
+        ],
+        "veteran": 0.0
+      },
+      "parts": [
+        25,
+        0,
+        0,
+        0,
+        0,
+        11,
+        0
+      ],
+      "total_xp": 36
+    },
+    {
+      "inputs": {
+        "kills": 0,
+        "bosses": 0,
+        "seconds": 375.0,
+        "won": false,
+        "zone": 0,
+        "mods": [
+          100,
+          150,
+          110,
+          120
+        ],
+        "veteran": 0.0
+      },
+      "parts": [
+        75,
+        0,
+        0,
+        0,
+        0,
+        49,
+        0
+      ],
+      "total_xp": 124
+    }
+  ],
+  "xp_order_examples": [
+    {
+      "inputs": {
+        "kills": 0,
+        "bosses": 0,
+        "seconds": 375.0,
+        "won": false,
+        "zone": 0,
+        "mods": [
+          100,
+          125,
+          110,
+          125
+        ],
+        "veteran": 0.0
+      },
+      "native": [
+        75,
+        0,
+        0,
+        0,
+        0,
+        49,
+        0
+      ],
+      "legacy_reversed_addition": [
+        75,
+        0,
+        0,
+        0,
+        0,
+        50,
+        0
+      ]
+    },
+    {
+      "inputs": {
+        "kills": 0,
+        "bosses": 0,
+        "seconds": 125.0,
+        "won": false,
+        "zone": 0,
+        "mods": [
+          100,
+          125,
+          120,
+          110
+        ],
+        "veteran": 0.0
+      },
+      "native": [
+        25,
+        0,
+        0,
+        0,
+        0,
+        11,
+        0
+      ],
+      "legacy_reversed_addition": [
+        25,
+        0,
+        0,
+        0,
+        0,
+        10,
+        0
+      ]
+    },
+    {
+      "inputs": {
+        "kills": 0,
+        "bosses": 0,
+        "seconds": 375.0,
+        "won": false,
+        "zone": 0,
+        "mods": [
+          100,
+          150,
+          110,
+          120
+        ],
+        "veteran": 0.0
+      },
+      "native": [
+        75,
+        0,
+        0,
+        0,
+        0,
+        49,
+        0
+      ],
+      "legacy_reversed_addition": [
+        75,
+        0,
+        0,
+        0,
+        0,
+        50,
+        0
+      ]
+    },
+    {
+      "inputs": {
+        "kills": 3522463944,
+        "bosses": 11,
+        "seconds": 14798.4873046875,
+        "won": false,
+        "zone": 6,
+        "mods": [
+          175,
+          500,
+          190,
+          100
+        ],
+        "veteran": 0.800000011920929
+      },
+      "native": [
+        2960,
+        201283664,
+        440,
+        0,
+        175668744,
+        376955808,
+        603129280
+      ],
+      "legacy_reversed_addition": [
+        2960,
+        201283664,
+        440,
+        0,
+        175668712,
+        376955776,
+        603129280
+      ]
+    },
+    {
+      "inputs": {
+        "kills": 3005969879,
+        "bosses": 99,
+        "seconds": 31750.197265625,
+        "won": false,
+        "zone": 5,
+        "mods": [
+          150,
+          175,
+          130,
+          115
+        ],
+        "veteran": 0.20000000298023224
+      },
+      "native": [
+        6350,
+        200398000,
+        3960,
+        0,
+        145751530,
+        278658688,
+        124963712
+      ],
+      "legacy_reversed_addition": [
+        6350,
+        200398000,
+        3960,
+        0,
+        145751498,
+        278658656,
+        124963688
+      ]
+    }
+  ],
+  "delta_boundaries": [
+    {
+      "current": [
+        12,
+        10,
+        40,
+        200,
+        0,
+        262,
+        210
+      ],
+      "previous": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "delta": [
+        12,
+        10,
+        40,
+        200,
+        0,
+        262,
+        210
+      ],
+      "awarded_xp": 734
+    },
+    {
+      "current": [
+        24,
+        20,
+        80,
+        200,
+        0,
+        324,
+        259
+      ],
+      "previous": [
+        12,
+        10,
+        40,
+        200,
+        0,
+        262,
+        210
+      ],
+      "delta": [
+        12,
+        10,
+        40,
+        0,
+        0,
+        62,
+        49
+      ],
+      "awarded_xp": 173
+    },
+    {
+      "current": [
+        1,
+        1,
+        0,
+        0,
+        -1,
+        0,
+        0
+      ],
+      "previous": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "delta": [
+        1,
+        1,
+        0,
+        0,
+        -1,
+        0,
+        0
+      ],
+      "awarded_xp": 1
+    },
+    {
+      "current": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "previous": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "delta": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "awarded_xp": 0
+    },
+    {
+      "current": [
+        9223372036854775807,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "previous": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "delta": [
+        9223372036854775807,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "awarded_xp": 0
+    },
+    {
+      "current": [
+        4294967297,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "previous": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "delta": [
+        4294967297,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "awarded_xp": 1
+    },
+    {
+      "current": [
+        -9223372036854775808,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "previous": [
+        9223372036854775807,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "delta": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "awarded_xp": 1
+    }
+  ],
+  "counter_boundaries": [
+    {
+      "current": [
+        10,
+        20,
+        2,
+        1,
+        4
+      ],
+      "previous": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "saved_before": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "delta": [
+        10,
+        20,
+        2,
+        1,
+        4
+      ],
+      "saved_after": [
+        10,
+        20,
+        2,
+        1,
+        4
+      ]
+    },
+    {
+      "current": [
+        20,
+        50,
+        3,
+        2,
+        6
+      ],
+      "previous": [
+        10,
+        20,
+        2,
+        1,
+        4
+      ],
+      "saved_before": [
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "delta": [
+        10,
+        30,
+        1,
+        1,
+        2
+      ],
+      "saved_after": [
+        110,
+        130,
+        101,
+        101,
+        102
+      ]
+    },
+    {
+      "current": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "previous": [
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295
+      ],
+      "saved_before": [
+        17,
+        17,
+        17,
+        17,
+        17
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "saved_after": [
+        17,
+        17,
+        17,
+        17,
+        17
+      ]
+    },
+    {
+      "current": [
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295
+      ],
+      "previous": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "saved_before": [
+        18446744073709551614,
+        18446744073709551614,
+        18446744073709551614,
+        18446744073709551614,
+        18446744073709551614
+      ],
+      "delta": [
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295
+      ],
+      "saved_after": [
+        18446744073709551615,
+        18446744073709551615,
+        18446744073709551615,
+        18446744073709551615,
+        18446744073709551615
+      ]
+    },
+    {
+      "current": [
+        3,
+        2,
+        1,
+        0,
+        99
+      ],
+      "previous": [
+        4,
+        1,
+        2,
+        0,
+        90
+      ],
+      "saved_before": [
+        10,
+        18446744073709551615,
+        30,
+        40,
+        50
+      ],
+      "delta": [
+        0,
+        1,
+        0,
+        0,
+        9
+      ],
+      "saved_after": [
+        10,
+        18446744073709551615,
+        30,
+        40,
+        59
+      ]
+    }
+  ],
+  "continuation_and_abandon_cases": {
+    "continuation": [
+      {
+        "phase": 0,
+        "elapsed": 0.0,
+        "admitted": false,
+        "next_boss_bits": "2601dcb7",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 0,
+        "elapsed": 300.0,
+        "admitted": false,
+        "next_boss_bits": "2601dcb7",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 0,
+        "elapsed": 1800.25,
+        "admitted": false,
+        "next_boss_bits": "2601dcb7",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 0,
+        "elapsed": 36000.0,
+        "admitted": false,
+        "next_boss_bits": "2601dcb7",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 1,
+        "elapsed": 0.0,
+        "admitted": false,
+        "next_boss_bits": "2601dcb7",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 1,
+        "elapsed": 300.0,
+        "admitted": false,
+        "next_boss_bits": "2601dcb7",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 1,
+        "elapsed": 1800.25,
+        "admitted": false,
+        "next_boss_bits": "2601dcb7",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 1,
+        "elapsed": 36000.0,
+        "admitted": false,
+        "next_boss_bits": "2601dcb7",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 2,
+        "elapsed": 0.0,
+        "admitted": false,
+        "next_boss_bits": "2601dcb7",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 2,
+        "elapsed": 300.0,
+        "admitted": false,
+        "next_boss_bits": "2601dcb7",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 2,
+        "elapsed": 1800.25,
+        "admitted": false,
+        "next_boss_bits": "2601dcb7",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 2,
+        "elapsed": 36000.0,
+        "admitted": false,
+        "next_boss_bits": "2601dcb7",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 3,
+        "elapsed": 0.0,
+        "admitted": false,
+        "next_boss_bits": "2601dcb7",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 3,
+        "elapsed": 300.0,
+        "admitted": false,
+        "next_boss_bits": "2601dcb7",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 3,
+        "elapsed": 1800.25,
+        "admitted": false,
+        "next_boss_bits": "2601dcb7",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 3,
+        "elapsed": 36000.0,
+        "admitted": false,
+        "next_boss_bits": "2601dcb7",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 4,
+        "elapsed": 0.0,
+        "admitted": false,
+        "next_boss_bits": "2601dcb7",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 4,
+        "elapsed": 300.0,
+        "admitted": false,
+        "next_boss_bits": "2601dcb7",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 4,
+        "elapsed": 1800.25,
+        "admitted": false,
+        "next_boss_bits": "2601dcb7",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 4,
+        "elapsed": 36000.0,
+        "admitted": false,
+        "next_boss_bits": "2601dcb7",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 5,
+        "elapsed": 0.0,
+        "admitted": true,
+        "next_boss_bits": "43960000",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 5,
+        "elapsed": 300.0,
+        "admitted": true,
+        "next_boss_bits": "44160000",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 5,
+        "elapsed": 1800.25,
+        "admitted": true,
+        "next_boss_bits": "45034400",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 5,
+        "elapsed": 36000.0,
+        "admitted": true,
+        "next_boss_bits": "470dcc00",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 6,
+        "elapsed": 0.0,
+        "admitted": false,
+        "next_boss_bits": "2601dcb7",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 6,
+        "elapsed": 300.0,
+        "admitted": false,
+        "next_boss_bits": "2601dcb7",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 6,
+        "elapsed": 1800.25,
+        "admitted": false,
+        "next_boss_bits": "2601dcb7",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 6,
+        "elapsed": 36000.0,
+        "admitted": false,
+        "next_boss_bits": "2601dcb7",
+        "preserved_other_game_bytes": true
+      }
+    ],
+    "abandon": [
+      {
+        "phase": 0,
+        "choices": 0,
+        "admitted": false,
+        "stop": "0x400000000",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 0,
+        "choices": 2,
+        "admitted": false,
+        "stop": "0x400000000",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 1,
+        "choices": 0,
+        "admitted": true,
+        "stop": "0x14591d553",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 1,
+        "choices": 2,
+        "admitted": true,
+        "stop": "0x14591d513",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 2,
+        "choices": 0,
+        "admitted": true,
+        "stop": "0x14591d553",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 2,
+        "choices": 2,
+        "admitted": true,
+        "stop": "0x14591d513",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 3,
+        "choices": 0,
+        "admitted": true,
+        "stop": "0x14591d553",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 3,
+        "choices": 2,
+        "admitted": true,
+        "stop": "0x14591d513",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 4,
+        "choices": 0,
+        "admitted": false,
+        "stop": "0x400000000",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 4,
+        "choices": 2,
+        "admitted": false,
+        "stop": "0x400000000",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 5,
+        "choices": 0,
+        "admitted": false,
+        "stop": "0x400000000",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 5,
+        "choices": 2,
+        "admitted": false,
+        "stop": "0x400000000",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 6,
+        "choices": 0,
+        "admitted": false,
+        "stop": "0x400000000",
+        "preserved_other_game_bytes": true
+      },
+      {
+        "phase": 6,
+        "choices": 2,
+        "admitted": false,
+        "stop": "0x400000000",
+        "preserved_other_game_bytes": true
+      }
+    ]
+  },
+  "sink_gate": [
+    {
+      "enabled": 0,
+      "deadline_bits": "bf800000",
+      "admitted": false,
+      "next_deadline_bits": "bf800000",
+      "counter_preserved": true
+    },
+    {
+      "enabled": 0,
+      "deadline_bits": "00000000",
+      "admitted": false,
+      "next_deadline_bits": "00000000",
+      "counter_preserved": true
+    },
+    {
+      "enabled": 0,
+      "deadline_bits": "40000000",
+      "admitted": false,
+      "next_deadline_bits": "40000000",
+      "counter_preserved": true
+    },
+    {
+      "enabled": 0,
+      "deadline_bits": "7f800000",
+      "admitted": false,
+      "next_deadline_bits": "7f800000",
+      "counter_preserved": true
+    },
+    {
+      "enabled": 0,
+      "deadline_bits": "7fc00000",
+      "admitted": false,
+      "next_deadline_bits": "7fc00000",
+      "counter_preserved": true
+    },
+    {
+      "enabled": 1,
+      "deadline_bits": "bf800000",
+      "admitted": true,
+      "next_deadline_bits": "40c00000",
+      "counter_preserved": true
+    },
+    {
+      "enabled": 1,
+      "deadline_bits": "00000000",
+      "admitted": true,
+      "next_deadline_bits": "40c00000",
+      "counter_preserved": true
+    },
+    {
+      "enabled": 1,
+      "deadline_bits": "40000000",
+      "admitted": false,
+      "next_deadline_bits": "40000000",
+      "counter_preserved": true
+    },
+    {
+      "enabled": 1,
+      "deadline_bits": "7f800000",
+      "admitted": false,
+      "next_deadline_bits": "7f800000",
+      "counter_preserved": true
+    },
+    {
+      "enabled": 1,
+      "deadline_bits": "7fc00000",
+      "admitted": true,
+      "next_deadline_bits": "40c00000",
+      "counter_preserved": true
+    },
+    {
+      "enabled": 2,
+      "deadline_bits": "bf800000",
+      "admitted": false,
+      "next_deadline_bits": "bf800000",
+      "counter_preserved": true
+    },
+    {
+      "enabled": 2,
+      "deadline_bits": "00000000",
+      "admitted": false,
+      "next_deadline_bits": "00000000",
+      "counter_preserved": true
+    },
+    {
+      "enabled": 2,
+      "deadline_bits": "40000000",
+      "admitted": false,
+      "next_deadline_bits": "40000000",
+      "counter_preserved": true
+    },
+    {
+      "enabled": 2,
+      "deadline_bits": "7f800000",
+      "admitted": false,
+      "next_deadline_bits": "7f800000",
+      "counter_preserved": true
+    },
+    {
+      "enabled": 2,
+      "deadline_bits": "7fc00000",
+      "admitted": false,
+      "next_deadline_bits": "7fc00000",
+      "counter_preserved": true
+    }
+  ]
+}

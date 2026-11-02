@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.108.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "size_bytes": 140203520,
+    "sha256": "dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b"
+  },
+  "ranges": [
+    {
+      "role": "again-admission",
+      "start": "0x1458b4eee",
+      "end_exclusive": "0x1458b4f72",
+      "file_offset": "0x58b42ee",
+      "sha256": "ffb288a55c3b1d4bdc5149baab1d78aee3784a16239a89a2bbb629c9fbb312e1",
+      "assembly": "again-admission.asm",
+      "assembly_sha256": "90db95b310ca8fcf851618e9da1c9ee4c068caaf8bdb216441a1e9aa89874ecc"
+    },
+    {
+      "role": "again-replacement",
+      "start": "0x1458b5cb2",
+      "end_exclusive": "0x1458b5e9e",
+      "file_offset": "0x58b50b2",
+      "sha256": "e1fb27a3f0455057f7b0960778c3f271252acd488a80f81f5c9ab80ae351d0e8",
+      "assembly": "again-replacement.asm",
+      "assembly_sha256": "77625b85f18d4f9b7e2ce56a31de83c327c40896ba5b6dd5282a515f77e28eee"
+    },
+    {
+      "role": "replacement-admission",
+      "start": "0x1458b7220",
+      "end_exclusive": "0x1458b72de",
+      "file_offset": "0x58b6620",
+      "sha256": "35fba6ee4089a1143ab06c0e2d80c338a4b4417ee0be2bd3abbc4b4afb999612",
+      "assembly": "replacement-admission.asm",
+      "assembly_sha256": "52d0bb4903934b1f0a36cb9d0dedf1ae90071b07894bc4ab763989147a2fe52a"
+    },
+    {
+      "role": "retained-inputs",
+      "start": "0x1458b72f3",
+      "end_exclusive": "0x1458b74b2",
+      "file_offset": "0x58b66f3",
+      "sha256": "2132d483919b4e7fed10b75bd72cb30cb65899bfe0aedc118eb8c50b85ef6ac2",
+      "assembly": "retained-inputs.asm",
+      "assembly_sha256": "8866432a741a3aa03e55f8085359991f149dd5f4686662116d2c4de3cc1dd69a"
+    },
+    {
+      "role": "replacement-checkpoints",
+      "start": "0x1458b79e8",
+      "end_exclusive": "0x1458b7a6d",
+      "file_offset": "0x58b6de8",
+      "sha256": "f302edddc5976702bb815adcfb2a6bcfd50b7edca3cf7fd900445694119b25bf",
+      "assembly": "replacement-checkpoints.asm",
+      "assembly_sha256": "79d42b670b736092c5bebaef14d1632b5b420e482725038f4ad0d883ffa37576"
+    }
+  ],
+  "ghidra": [
+    {
+      "role": "again-branch",
+      "input_start": "0x1458b4eee",
+      "input_end_exclusive": "0x1458b6538",
+      "input_sha256": "1a0cd2526acdd723b9c508a25c29a8f7e13fa27bb233675c11f5b6ed113b27fa",
+      "evidence_id": "ev_1429b7371e07b72e86a837cb2f22bc83ace5a2058f3cf08f24054d745ab6e944",
+      "analysis_profile_digest": "d5f3c72162fd3d00c1ce88ebf1a05d155076c55a457fceb1b2d4b972321d50e0",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "pseudocode": "again-branch.c",
+      "pseudocode_sha256": "11b4b7e1343cea2a6abed9f38554fcf0d559e4380200aeee6621496f81c68a1f",
+      "pseudocode_normalization": "Whitespace only: strip outer blank lines and line-ending spaces; one final LF."
+    },
+    {
+      "role": "replacement-factory",
+      "input_start": "0x1458b7220",
+      "input_end_exclusive": "0x1458b7b06",
+      "input_sha256": "fd2d24de069070ac55c9d3213b72bdfe2a47833e48e641d957cbd5607b92671a",
+      "evidence_id": "ev_08cce56fbc20900c5fa0d737d6bc4108babb084fceb49a0de5bf1afde8e25f34",
+      "analysis_profile_digest": "d451e665dce8dabafc833c3fc0281dc6008c81449ab15846ea4517e62094e6e9",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "pseudocode": "replacement-factory.c",
+      "pseudocode_sha256": "18f9697cca187501fe39a0c4f06cf362f6f78a63250978ccffe40e7437d5c29b",
+      "pseudocode_normalization": "Whitespace only: strip outer blank lines and line-ending spaces; one final LF."
+    }
+  ],
+  "command_table": {
+    "address": "0x146be7534",
+    "bytes_hex": "9bd7ccfe50ddccfeabdcccfe27ddccfebad9ccfe6cdeccfefcdeccfe22e2ccfe0be2ccfe5edaccfeb9dfccfeb2d8ccfe",
+    "again": 6,
+    "again_destination": "0x1458b4eee",
+    "pick": 11,
+    "pick_destination": "0x1458b4f92"
+  },
+  "calls": [
+    {
+      "site": "0x1458b4ef1",
+      "callee": "0x1458b18b0"
+    },
+    {
+      "site": "0x1458b5e68",
+      "callee": "0x1458b7220"
+    },
+    {
+      "site": "0x1458b728e",
+      "callee": "0x145bc5b50"
+    }
+  ],
+  "source_refs": [
+    "crates/azeroth-survivors-re/src/menu_state.rs",
+    "crates/azeroth-survivors-re/src/gameplay/terminal.rs"
+  ],
+  "limits": [
+    "Selected raw imports omit PE data, external/indirect callees and use generic Ghidra ABI; original PE instructions govern Windows argument/field interpretation.",
+    "Native replay stops before every callee and exercises only declared admission, connection selection and checkpoint stores; it does not execute the game, Rust, allocator, packet delivery, native factory or persistence.",
+    "Retained configuration includes source-owned snapshot fields; complete RNG/world-cache/constructor and error/global ownership remain #9/#41. No whole system or parity certification."
+  ]
+}

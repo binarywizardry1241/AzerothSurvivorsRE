@@ -1,0 +1,1992 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.113.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+    "size_bytes": 141932032,
+    "identity_manifest": "docs/analysis/coverage/targets.json",
+    "version_provenance": "matching_embedded_updater_and_dialog_markers",
+    "runtime_data": {
+      "directory": "installed-game/Data",
+      "archives": [
+        {
+          "path": "installed-game/Data/patch-2.MPQ",
+          "size_bytes": 4690878,
+          "sha256": "366edee41642a5dda22ed90cc252b543ee375755b7e8bee81e2a6cd59fd7b286"
+        },
+        {
+          "path": "installed-game/Data/patch-3.MPQ",
+          "size_bytes": 2580491,
+          "sha256": "75c35ca5b8075197252581e301e8900143007fdf37b493ad271ae1bd39f95a29"
+        },
+        {
+          "path": "installed-game/Data/patch-4.MPQ",
+          "size_bytes": 22769233,
+          "sha256": "2e895e0e0ff6a4781d0e0aaa6ea7d32ed1fe36841e17806fe1855cb880d18865"
+        },
+        {
+          "path": "installed-game/Data/patch-5.MPQ",
+          "size_bytes": 267019039,
+          "sha256": "5008e56873718b468fa5ae1b697dcbe4f5da9ffe6c793f3ef9939dbd7716f3d8"
+        },
+        {
+          "path": "installed-game/Data/patch-6.MPQ",
+          "size_bytes": 212228,
+          "sha256": "cad6ff59b5df028a507581befb836fce07894057e15fe63d9fdc553a95b7ceb5"
+        },
+        {
+          "path": "installed-game/Data/patch-7.MPQ",
+          "size_bytes": 276649,
+          "sha256": "f5fb15b181cf01cc6b5cf2ee9948a27ecc4ba27bab9a8bec584df4381932aae6"
+        },
+        {
+          "path": "installed-game/Data/patch-8.MPQ",
+          "size_bytes": 4155417,
+          "sha256": "ae3aaa29cadb7aeba8255f5b4a8305c7cbecfe8f0d3ed9646522113d16c3e12e"
+        },
+        {
+          "path": "installed-game/Data/patch-9.MPQ",
+          "size_bytes": 5739608,
+          "sha256": "ffff8ea890bdaf91a1680543ac60106db92132bc2210105279610fa73661a524"
+        },
+        {
+          "path": "installed-game/Data/patch.MPQ",
+          "size_bytes": 1340199244,
+          "sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf"
+        }
+      ]
+    }
+  },
+  "gap_ids": [
+    41,
+    43
+  ],
+  "selector": {
+    "inputs": [
+      "diagnostic-ownership.json",
+      "bodies.tsv.gz"
+    ],
+    "selector": "verified_references where owner(instruction_address) is null and custom_game_crate and system_id not in excluded_ids",
+    "projection": [
+      "path",
+      "system_id",
+      "instruction_address",
+      "target_address",
+      "runtime_function_start",
+      "runtime_function_end",
+      "instruction_bytes",
+      "actual_native_owner_preferred_VA_or_null"
+    ],
+    "order": "diagnostic path lexicographic; verified_references source-array order",
+    "records": 57,
+    "output_sha256": "4cc990b09011c4545a16293886f935509a6fb9735e225ac5aaa0c2524fc61aad",
+    "paths": 13,
+    "record_groups": {
+      "crates/wenilla-rogue-app/src/screens/armory.rs": 5,
+      "crates/wenilla-rogue-app/src/screens/markers.rs": 1,
+      "crates/wenilla-rogue-app/src/screens/options.rs": 9,
+      "crates/wenilla-rogue-app/src/screens/rewards.rs": 3,
+      "crates/wenilla-rogue/src/content.rs": 14,
+      "crates/wenilla-rogue/src/fonts.rs": 1,
+      "crates/wenilla-rogue/src/game/abilities.rs": 7,
+      "crates/wenilla-rogue/src/game/auras.rs": 2,
+      "crates/wenilla-rogue/src/game/enemy.rs": 7,
+      "crates/wenilla-rogue/src/game/hazards.rs": 2,
+      "crates/wenilla-rogue/src/game/talents.rs": 1,
+      "crates/wenilla-rogue/src/game/upgrades.rs": 1,
+      "crates/wenilla-rogue/src/nav.rs": 4
+    }
+  },
+  "inputs": {
+    "bodies.tsv.gz": {
+      "path": "runtime/execheck-0.113.2/ghidra-comprehensive/bodies.tsv.gz",
+      "sha256": "dc808e3e10d4443dabce229e9d0724060d87bcd7547eb1cb47334e70038b8362",
+      "bytes": 4221082
+    },
+    "diagnostic-ownership.json": {
+      "path": "runtime/coverage/58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb/diagnostic-ownership.json",
+      "sha256": "0c8766b1daa9f615053bdbc05f4d01c27e719d461a8e02fbeb2a666b48e3f190",
+      "bytes": 12801050
+    }
+  },
+  "site_role_counts": {
+    "bounds_failure_call": 30,
+    "formatted_failure_call": 21,
+    "formatting_key_adjacent_to_diagnostic_filename": 2,
+    "location_forwarded_to_stable_120_byte_vector_removal": 1,
+    "location_forwarded_to_stable_u64_vector_removal": 1,
+    "missing_key_failure_call": 1,
+    "option_failure_call": 1
+  },
+  "sites": [
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/armory.rs",
+      "system_id": "custom-app-screens-armory",
+      "site": "0x140147b9d",
+      "diagnostic_target": "0x145ed77e0",
+      "reference_kind": "rust_location",
+      "source_line": 1845,
+      "source_column": 28,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x140147060",
+        "0x140147bc4"
+      ],
+      "extent_sha256": "83526ab7625e064e82c2a45eb0ec0bb6ed4b7461a04399ad21e8fd89e84994b4",
+      "call_site": "0x140147ba9",
+      "callee": "0x145e9c123",
+      "role": "bounds_failure_call",
+      "local_flow_sites": [
+        "0x140147b9d",
+        "0x140147ba4",
+        "0x140147ba9"
+      ],
+      "local_flow_bytes_sha256": "47606adf45cec34c773a62a63ffa70f6c7f3562ec73c85294585a2702143df36",
+      "ghidra_evidence_id": "ev_c80a871aff98c71bc0343260c4f9575bb1e37f02f72acd6d636aa3ecc687f831",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/003-site-140147b9d.json",
+        "sha256": "4a8e7e32d752bef2e697927d933a5976b38366e9ecb05445268c0e30f3c9c90c"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/armory.rs",
+      "system_id": "custom-app-screens-armory",
+      "site": "0x140147bb0",
+      "diagnostic_target": "0x145ed77f8",
+      "reference_kind": "rust_location",
+      "source_line": 1850,
+      "source_column": 21,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x140147060",
+        "0x140147bc4"
+      ],
+      "extent_sha256": "83526ab7625e064e82c2a45eb0ec0bb6ed4b7461a04399ad21e8fd89e84994b4",
+      "call_site": "0x140147bbc",
+      "callee": "0x145e9c123",
+      "role": "bounds_failure_call",
+      "local_flow_sites": [
+        "0x140147bb0",
+        "0x140147bb7",
+        "0x140147bbc"
+      ],
+      "local_flow_bytes_sha256": "8343e57395e2d1993c00baf5dc12403f707a5ff20820b6c1633e0e789779712d",
+      "ghidra_evidence_id": "ev_91ad745ac0828e7814b682233f41ad7220e61be7745b195971ebbf6fa9fe052b",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/004-site-140147bb0.json",
+        "sha256": "6b2b02729727bec0e0e99609ccd5a25ac8abf97a5b6bb7e26b50a08a1ceda986"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/armory.rs",
+      "system_id": "custom-app-screens-armory",
+      "site": "0x140147b8a",
+      "diagnostic_target": "0x145ed7810",
+      "reference_kind": "rust_location",
+      "source_line": 1855,
+      "source_column": 17,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x140147060",
+        "0x140147bc4"
+      ],
+      "extent_sha256": "83526ab7625e064e82c2a45eb0ec0bb6ed4b7461a04399ad21e8fd89e84994b4",
+      "call_site": "0x140147b96",
+      "callee": "0x145e9c123",
+      "role": "bounds_failure_call",
+      "local_flow_sites": [
+        "0x140147b8a",
+        "0x140147b91",
+        "0x140147b96"
+      ],
+      "local_flow_bytes_sha256": "76e93d9d0b64b699cbee28487396f63b2b861ce1153602d348a946605c89d5e5",
+      "ghidra_evidence_id": "ev_bce1e445ded010245d75e454279b8d50b08f51d63bab9747a9e44b94020b36c4",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/005-site-140147b8a.json",
+        "sha256": "96b5091c9d4fcc9f59c26652c317bee8bdee61d1207bc16e2c73f2a51c5f3d7c"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/armory.rs",
+      "system_id": "custom-app-screens-armory",
+      "site": "0x140147b77",
+      "diagnostic_target": "0x145ed7828",
+      "reference_kind": "rust_location",
+      "source_line": 1859,
+      "source_column": 17,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x140147060",
+        "0x140147bc4"
+      ],
+      "extent_sha256": "83526ab7625e064e82c2a45eb0ec0bb6ed4b7461a04399ad21e8fd89e84994b4",
+      "call_site": "0x140147b83",
+      "callee": "0x145e9c123",
+      "role": "bounds_failure_call",
+      "local_flow_sites": [
+        "0x140147b77",
+        "0x140147b7e",
+        "0x140147b83"
+      ],
+      "local_flow_bytes_sha256": "54fd29cd6b2d73dd8c545b6c9c528a7b031ccdbe40a7c796abf03473724ff667",
+      "ghidra_evidence_id": "ev_32ec9cb6e7143aa671856ce266011434f041dbf94999556972830cce48eea995",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/006-site-140147b77.json",
+        "sha256": "c05424f269a9227cd2d1ebe56c46de4d604b5801f0b498868640782f6f28fd98"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/armory.rs",
+      "system_id": "custom-app-screens-armory",
+      "site": "0x1401741fd",
+      "diagnostic_target": "0x145ed7200",
+      "reference_kind": "rust_location",
+      "source_line": 170,
+      "source_column": 38,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x1401731a0",
+        "0x140174231"
+      ],
+      "extent_sha256": "651134a92eb3819d9d925f5134d71b27c9171edf54c22f543cc80a34e6c18fea",
+      "call_site": "0x140174209",
+      "callee": "0x145e9c123",
+      "role": "bounds_failure_call",
+      "local_flow_sites": [
+        "0x1401741fd",
+        "0x140174204",
+        "0x140174209"
+      ],
+      "local_flow_bytes_sha256": "5e5f764edc0c0283ba066d3bf689acfda3de81e87791911807a8f40103a373b9",
+      "ghidra_evidence_id": "ev_3e242a05b0aa39efa5568c1f31c34f2cfb135985ad2e8c6c0454254ec6198f08",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/007-site-1401741fd.json",
+        "sha256": "dfa0e1dd18e835268630da2cbe584fc88a0b8681d8ceaf9fe8a97af812772235"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/markers.rs",
+      "system_id": "custom-app-screens-markers",
+      "site": "0x14017c9a2",
+      "diagnostic_target": "0x145ee3208",
+      "reference_kind": "rust_location",
+      "source_line": 282,
+      "source_column": 15,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x14017a300",
+        "0x14017ca84"
+      ],
+      "extent_sha256": "0c13bd9ae46f805f12603165c3fc5846e87ec52a616d0b68ebb8000f37605fbb",
+      "call_site": "0x14017c9ae",
+      "callee": "0x145e9c040",
+      "role": "missing_key_failure_call",
+      "local_flow_sites": [
+        "0x14017c9a2",
+        "0x14017c9a9",
+        "0x14017c9ae"
+      ],
+      "local_flow_bytes_sha256": "3551f34ecf73de9ac23615732f0bfa030ea202508a071de54677a6dff895d65e",
+      "ghidra_evidence_id": "ev_b77afac1c3622b06663e77ae1046938e7c4ad078eb201112243952c1c9b6e6a6",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/008-site-14017c9a2.json",
+        "sha256": "79eceb4aaf2ca1de57b9c356d18814bcf8daa560acc1680c3132499ad1e71159"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/options.rs",
+      "system_id": "custom-app-screens-options",
+      "site": "0x1401a6bcc",
+      "diagnostic_target": "0x145eedfd0",
+      "reference_kind": "rust_location",
+      "source_line": 806,
+      "source_column": 22,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x1401a6770",
+        "0x1401a6cd8"
+      ],
+      "extent_sha256": "4584637238612334ec03af1b23486aa4671c3ccaea604fa23dae997ce4bcaec4",
+      "call_site": "0x1401a6bd7",
+      "callee": "0x145e9c300",
+      "role": "formatted_failure_call",
+      "local_flow_sites": [
+        "0x1401a6bcc",
+        "0x1401a6bd3",
+        "0x1401a6bd7"
+      ],
+      "local_flow_bytes_sha256": "2e851b9ec7c4c7e1d438240b70189be1f1736b8306c5bd26584ef53eb8f53949",
+      "ghidra_evidence_id": "ev_13a109431bd74635aa73cf3ad5acde3d624745c5c56391c806c799493a41b287",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/009-site-1401a6bcc.json",
+        "sha256": "3d0ee99459a2f38d327cdedfc0df60d0144cc6fa8769477f61951e6e446221e1"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/options.rs",
+      "system_id": "custom-app-screens-options",
+      "site": "0x1401a6ba0",
+      "diagnostic_target": "0x145eedfe8",
+      "reference_kind": "rust_location",
+      "source_line": 813,
+      "source_column": 22,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x1401a6770",
+        "0x1401a6cd8"
+      ],
+      "extent_sha256": "4584637238612334ec03af1b23486aa4671c3ccaea604fa23dae997ce4bcaec4",
+      "call_site": "0x1401a6bab",
+      "callee": "0x145e9c300",
+      "role": "formatted_failure_call",
+      "local_flow_sites": [
+        "0x1401a6ba0",
+        "0x1401a6ba7",
+        "0x1401a6bab"
+      ],
+      "local_flow_bytes_sha256": "eabb94a8c41e47d835d328393abd5fb2ab89291b07450806515d2e30d1552494",
+      "ghidra_evidence_id": "ev_3770907e0ff44d5cf57449f06530ce72cb0d5166776c82a2058639471a83da3d",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/010-site-1401a6ba0.json",
+        "sha256": "3e52edb2cbdd6d7d95bdfb79a5e098d2f253602741c667e7b3b73a1850acb7fe"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/options.rs",
+      "system_id": "custom-app-screens-options",
+      "site": "0x1401a7721",
+      "diagnostic_target": "0x145eee100",
+      "reference_kind": "rust_location",
+      "source_line": 839,
+      "source_column": 46,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x1401a73f0",
+        "0x1401a783b"
+      ],
+      "extent_sha256": "c7ff113aa785e66ccd18fee56cdf97aa99efcbb24d8b02c919a2dc860e752ceb",
+      "call_site": "0x1401a772b",
+      "callee": "0x145e9c123",
+      "role": "bounds_failure_call",
+      "local_flow_sites": [
+        "0x1401a7721",
+        "0x1401a7728",
+        "0x1401a772b"
+      ],
+      "local_flow_bytes_sha256": "98599f4da194bee6e4ac40e5987e460b2e8f6c54076363ef3c569b8d4af9318d",
+      "ghidra_evidence_id": "ev_ef223be47274735722897aaa1e8ffeba8d6b5c6a28a0af869a08a832a113ded5",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/011-site-1401a7721.json",
+        "sha256": "90f3a21fc206782e8157320840debc139b59d9adb66f9267f14805fd2a4bee00"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/options.rs",
+      "system_id": "custom-app-screens-options",
+      "site": "0x1401afdd9",
+      "diagnostic_target": "0x145eedf30",
+      "reference_kind": "rust_location",
+      "source_line": 685,
+      "source_column": 23,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x1401adf90",
+        "0x1401b074d"
+      ],
+      "extent_sha256": "6620deb5ebbc2d8d0a00b941c8347b9ba49756822cd68040d3881a7d06e2adff",
+      "call_site": "0x1401afde7",
+      "callee": "0x145e9c300",
+      "role": "formatted_failure_call",
+      "local_flow_sites": [
+        "0x1401afdd9",
+        "0x1401afde0",
+        "0x1401afde7"
+      ],
+      "local_flow_bytes_sha256": "2266ff4d9c827360f54b597b8f6fa8d229126756d26d1e7dad0568ca4abb2b10",
+      "ghidra_evidence_id": "ev_d21cc23f44ac7405cb8ce59bed07a5aec8c8e9421454dd04c8a002239c226258",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/012-site-1401afdd9.json",
+        "sha256": "e48012cb69a0b74868d924ff9cddb29009258410f09cc60675f0fdb87a0d7535"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/options.rs",
+      "system_id": "custom-app-screens-options",
+      "site": "0x1401b0062",
+      "diagnostic_target": "0x145eedf48",
+      "reference_kind": "rust_location",
+      "source_line": 690,
+      "source_column": 31,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x1401adf90",
+        "0x1401b074d"
+      ],
+      "extent_sha256": "6620deb5ebbc2d8d0a00b941c8347b9ba49756822cd68040d3881a7d06e2adff",
+      "call_site": "0x1401b0070",
+      "callee": "0x145e9c300",
+      "role": "formatted_failure_call",
+      "local_flow_sites": [
+        "0x1401b0062",
+        "0x1401b0069",
+        "0x1401b0070"
+      ],
+      "local_flow_bytes_sha256": "38ef6fddc606ad42e221f4afa5f098c244cda0afff3c446ec8ed5cf9154ab48b",
+      "ghidra_evidence_id": "ev_edeb04093ba1286c3cf019267bd686111626bffa80aa3e7d5a12338ad9055fd9",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/013-site-1401b0062.json",
+        "sha256": "9dda4169f96653823c8b3f405aa9c58e31746d13018f0e4fda94a664bcfe384d"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/options.rs",
+      "system_id": "custom-app-screens-options",
+      "site": "0x1401b0645",
+      "diagnostic_target": "0x145eedf60",
+      "reference_kind": "rust_location",
+      "source_line": 692,
+      "source_column": 32,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x1401adf90",
+        "0x1401b074d"
+      ],
+      "extent_sha256": "6620deb5ebbc2d8d0a00b941c8347b9ba49756822cd68040d3881a7d06e2adff",
+      "call_site": "0x1401b0653",
+      "callee": "0x145e9c300",
+      "role": "formatted_failure_call",
+      "local_flow_sites": [
+        "0x1401b0645",
+        "0x1401b064c",
+        "0x1401b0653"
+      ],
+      "local_flow_bytes_sha256": "c8ec78cba58d853768820700c8ade7313fc94f9cf1a4b56f1893e6e681886a13",
+      "ghidra_evidence_id": "ev_1115a3d5ab2a04c929ab53680d42eacd88df839bd9e5f2821fdbf9441437035b",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/014-site-1401b0645.json",
+        "sha256": "38fbf265220417b560ec6551b406c233eb59dba661e66e4623dbd53c8b6b5e90"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/options.rs",
+      "system_id": "custom-app-screens-options",
+      "site": "0x1401b00ac",
+      "diagnostic_target": "0x145eedf98",
+      "reference_kind": "rust_location",
+      "source_line": 697,
+      "source_column": 23,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x1401adf90",
+        "0x1401b074d"
+      ],
+      "extent_sha256": "6620deb5ebbc2d8d0a00b941c8347b9ba49756822cd68040d3881a7d06e2adff",
+      "call_site": "0x1401b00ba",
+      "callee": "0x145e9c300",
+      "role": "formatted_failure_call",
+      "local_flow_sites": [
+        "0x1401b00ac",
+        "0x1401b00b3",
+        "0x1401b00ba"
+      ],
+      "local_flow_bytes_sha256": "4c159722f0d973b63fe885c70630aafa1d25d05a6b39e92dd9566472121a8043",
+      "ghidra_evidence_id": "ev_4b1b5053831867c2cd4e47a7d08e73a55e22746329ab8462c57826c49649a062",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/015-site-1401b00ac.json",
+        "sha256": "9ba734c01668ecc99fec57e2aeec1da11521ba6b80f0258f58c7b54bda287c01"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/options.rs",
+      "system_id": "custom-app-screens-options",
+      "site": "0x1401b4d83",
+      "diagnostic_target": "0x145eee020",
+      "reference_kind": "rust_location",
+      "source_line": 1807,
+      "source_column": 42,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x1401b37a0",
+        "0x1401b4dbe"
+      ],
+      "extent_sha256": "1b90d71c5febe647065a8907355440cc2d70b7bba200814248062912f68270fc",
+      "call_site": "0x1401b4d92",
+      "callee": "0x145e9c123",
+      "role": "bounds_failure_call",
+      "local_flow_sites": [
+        "0x1401b4d83",
+        "0x1401b4d8a",
+        "0x1401b4d8f",
+        "0x1401b4d92"
+      ],
+      "local_flow_bytes_sha256": "c756906fc0a3feac91e81f334500685fa348775e2010e7a9605f01985ed4a859",
+      "ghidra_evidence_id": "ev_805e0a2680cb4e5ff256d831715d49662aa44d15486afe01f51a2d09909356d0",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/016-site-1401b4d83.json",
+        "sha256": "38d28b37f52449ab63f1d7c1c48595200752a4180dcbf3dd5b599ee2ce91c8b2"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/options.rs",
+      "system_id": "custom-app-screens-options",
+      "site": "0x1401b4ab0",
+      "diagnostic_target": "0x145eee038",
+      "reference_kind": "rust_location",
+      "source_line": 1822,
+      "source_column": 38,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x1401b37a0",
+        "0x1401b4dbe"
+      ],
+      "extent_sha256": "1b90d71c5febe647065a8907355440cc2d70b7bba200814248062912f68270fc",
+      "call_site": "0x1401b4ab7",
+      "callee": "0x140074b90",
+      "role": "location_forwarded_to_stable_u64_vector_removal",
+      "local_flow_sites": [
+        "0x1401b4ab0",
+        "0x1401b4ab7"
+      ],
+      "local_flow_bytes_sha256": "5b09c8d8425a0f09a4c7ba9e783d473dae5407000c1bfe962d7ee3f3efe709b7",
+      "ghidra_evidence_id": "ev_d4d52e9b12b1820ae633423220da796ed8e4d2e72d335d53b1d94562a19a26cf",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/017-site-1401b4ab0.json",
+        "sha256": "3e56a4b1508f279fd230e4984be35142036f9c62de1e8f6738899c390ba7cc57"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/rewards.rs",
+      "system_id": "custom-app-screens-rewards",
+      "site": "0x140402ec3",
+      "diagnostic_target": "0x145f0f100",
+      "reference_kind": "rust_location",
+      "source_line": 988,
+      "source_column": 38,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x140402010",
+        "0x140402efb"
+      ],
+      "extent_sha256": "54b7d84ca30125982e94fe822612466550faef36a753c24e80b236dd3e96ccc0",
+      "call_site": "0x140402ed1",
+      "callee": "0x145e9c300",
+      "role": "formatted_failure_call",
+      "local_flow_sites": [
+        "0x140402ec3",
+        "0x140402eca",
+        "0x140402ed1"
+      ],
+      "local_flow_bytes_sha256": "f837f14c7a51468ecd0124ddaa0297958bbe574f7fc04ee0213d087f368463ca",
+      "ghidra_evidence_id": "ev_005841af42845bf2870bc7282f479dd9fa504d0ed557fb4a0639d21a6450c735",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/018-site-140402ec3.json",
+        "sha256": "31ef1757dc1d11a112e7d6bae95163a220efd9498d97633369afa95ec491ea2c"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/rewards.rs",
+      "system_id": "custom-app-screens-rewards",
+      "site": "0x140402ed9",
+      "diagnostic_target": "0x145f0f118",
+      "reference_kind": "rust_location",
+      "source_line": 1010,
+      "source_column": 17,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x140402010",
+        "0x140402efb"
+      ],
+      "extent_sha256": "54b7d84ca30125982e94fe822612466550faef36a753c24e80b236dd3e96ccc0",
+      "call_site": "0x140402ee5",
+      "callee": "0x145e9c123",
+      "role": "bounds_failure_call",
+      "local_flow_sites": [
+        "0x140402ed9",
+        "0x140402ee0",
+        "0x140402ee5"
+      ],
+      "local_flow_bytes_sha256": "b14c196ffc30f526944b0a52c2c66926c0271fb1dd554e5c7394d40e4e7fe1bc",
+      "ghidra_evidence_id": "ev_6b91eca21bb6fe0b32952d2244582b2142013236280adae77b0b2a5abc650e0b",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/019-site-140402ed9.json",
+        "sha256": "42439fee553198f88db4406c8d799cfe6a04fdb98a1d38c6adb8c6201a095128"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/rewards.rs",
+      "system_id": "custom-app-screens-rewards",
+      "site": "0x140402eec",
+      "diagnostic_target": "0x145f0f130",
+      "reference_kind": "rust_location",
+      "source_line": 1035,
+      "source_column": 22,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x140402010",
+        "0x140402efb"
+      ],
+      "extent_sha256": "54b7d84ca30125982e94fe822612466550faef36a753c24e80b236dd3e96ccc0",
+      "call_site": "0x140402ef3",
+      "callee": "0x145e9c123",
+      "role": "bounds_failure_call",
+      "local_flow_sites": [
+        "0x140402eec",
+        "0x140402ef3"
+      ],
+      "local_flow_bytes_sha256": "11fca9dfba6b817bfd3dd678582b2a3faa61c58cf3223c683c0b2f2fea3f1031",
+      "ghidra_evidence_id": "ev_0fe057f1053539970dc9a1da0ffeea7134edb18b8ad64fdd7ac2c07c04259159",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/020-site-140402eec.json",
+        "sha256": "2adbf30d3b70a48ec9ed0f13de3548b0c0fc7a94b83e49ed8a92aefdfce06aca"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/content.rs",
+      "system_id": "custom-game-content",
+      "site": "0x145938131",
+      "diagnostic_target": "0x146fdf7c0",
+      "reference_kind": "rust_location",
+      "source_line": 796,
+      "source_column": 28,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x145934650",
+        "0x14593827c"
+      ],
+      "extent_sha256": "6e975abb199772fde3569fd77c614a65f9d9e0ef54e784167d8606b07518a5f4",
+      "call_site": "0x14593813f",
+      "callee": "0x145e9c300",
+      "role": "formatted_failure_call",
+      "local_flow_sites": [
+        "0x145938131",
+        "0x145938138",
+        "0x14593813f"
+      ],
+      "local_flow_bytes_sha256": "6e6b74219df0438b7ad1cb7b9b587837686a2020d9778ffcb3001994130e6269",
+      "ghidra_evidence_id": "ev_ac8519a08900c0b5770ca9b0b82142846b85637a07cef0960e83ff9ee03b4942",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/021-site-145938131.json",
+        "sha256": "0286885063516445e566854e86c05d05fb59ba82786b243d2474c527f0e90b06"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/content.rs",
+      "system_id": "custom-game-content",
+      "site": "0x14593816d",
+      "diagnostic_target": "0x146fdf7c0",
+      "reference_kind": "rust_location",
+      "source_line": 796,
+      "source_column": 28,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x145934650",
+        "0x14593827c"
+      ],
+      "extent_sha256": "6e975abb199772fde3569fd77c614a65f9d9e0ef54e784167d8606b07518a5f4",
+      "call_site": "0x14593817b",
+      "callee": "0x145e9c300",
+      "role": "formatted_failure_call",
+      "local_flow_sites": [
+        "0x14593816d",
+        "0x145938174",
+        "0x14593817b"
+      ],
+      "local_flow_bytes_sha256": "b640f197475eabaa979e3e56bc4be3234272923b070763ebf92bc55400412079",
+      "ghidra_evidence_id": "ev_9c1c10e15e100af52c7f42fb75010fcc676b2359815e2ed9494649d3f60e81b5",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/022-site-14593816d.json",
+        "sha256": "448aa6ce22789c818497333b2094e9106ca6049c2482d05bb086f047aa4847ee"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/content.rs",
+      "system_id": "custom-game-content",
+      "site": "0x1459381a9",
+      "diagnostic_target": "0x146fdf7c0",
+      "reference_kind": "rust_location",
+      "source_line": 796,
+      "source_column": 28,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x145934650",
+        "0x14593827c"
+      ],
+      "extent_sha256": "6e975abb199772fde3569fd77c614a65f9d9e0ef54e784167d8606b07518a5f4",
+      "call_site": "0x1459381b7",
+      "callee": "0x145e9c300",
+      "role": "formatted_failure_call",
+      "local_flow_sites": [
+        "0x1459381a9",
+        "0x1459381b0",
+        "0x1459381b7"
+      ],
+      "local_flow_bytes_sha256": "ba6a362072ed02ffbf158c5b4184d7e7ff613d74420274d206ff5f95eecbd16e",
+      "ghidra_evidence_id": "ev_af5784f7b8f674a88435fc13be2188666d48226fec5d8d9c9ba2a01c13ab262a",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/023-site-1459381a9.json",
+        "sha256": "5d9cb435267a003b1db23f897659ba447d93d3aa7974a2590ae307aecb3ec457"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/content.rs",
+      "system_id": "custom-game-content",
+      "site": "0x1459381e5",
+      "diagnostic_target": "0x146fdf7c0",
+      "reference_kind": "rust_location",
+      "source_line": 796,
+      "source_column": 28,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x145934650",
+        "0x14593827c"
+      ],
+      "extent_sha256": "6e975abb199772fde3569fd77c614a65f9d9e0ef54e784167d8606b07518a5f4",
+      "call_site": "0x1459381f3",
+      "callee": "0x145e9c300",
+      "role": "formatted_failure_call",
+      "local_flow_sites": [
+        "0x1459381e5",
+        "0x1459381ec",
+        "0x1459381f3"
+      ],
+      "local_flow_bytes_sha256": "b5c220cf730f72d8ecbcca94ddd25b2c94325d0411371f988c540ae2b8d5a33a",
+      "ghidra_evidence_id": "ev_8f0c841a93c0d9ba24c1e70b8d34c45158fcb05784f4670d66c8cd509cbc22b6",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/024-site-1459381e5.json",
+        "sha256": "28d5116b7b6203d7b07e673f0ce03220cd5ee13d52abb8125278cf7fc72eb947"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/content.rs",
+      "system_id": "custom-game-content",
+      "site": "0x14593821e",
+      "diagnostic_target": "0x146fdf7c0",
+      "reference_kind": "rust_location",
+      "source_line": 796,
+      "source_column": 28,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x145934650",
+        "0x14593827c"
+      ],
+      "extent_sha256": "6e975abb199772fde3569fd77c614a65f9d9e0ef54e784167d8606b07518a5f4",
+      "call_site": "0x14593822c",
+      "callee": "0x145e9c300",
+      "role": "formatted_failure_call",
+      "local_flow_sites": [
+        "0x14593821e",
+        "0x145938225",
+        "0x14593822c"
+      ],
+      "local_flow_bytes_sha256": "ff8f471551d116223ecdadbf95b64a195978bd9dfe5432ac0cb9a125787e3482",
+      "ghidra_evidence_id": "ev_0a6f7c59faad1b6ef38eb00f726ceb1fd3f9bbe58de164d95af6595a586a6a10",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/025-site-14593821e.json",
+        "sha256": "e0b103917c5dc191925c66b036ba701150159660a711d0f5861f318ae1a5c8d2"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/content.rs",
+      "system_id": "custom-game-content",
+      "site": "0x145938257",
+      "diagnostic_target": "0x146fdf7c0",
+      "reference_kind": "rust_location",
+      "source_line": 796,
+      "source_column": 28,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x145934650",
+        "0x14593827c"
+      ],
+      "extent_sha256": "6e975abb199772fde3569fd77c614a65f9d9e0ef54e784167d8606b07518a5f4",
+      "call_site": "0x145938265",
+      "callee": "0x145e9c300",
+      "role": "formatted_failure_call",
+      "local_flow_sites": [
+        "0x145938257",
+        "0x14593825e",
+        "0x145938265"
+      ],
+      "local_flow_bytes_sha256": "f1ac4dfd3708bb28b606d04c2eb7f343d15f72b9fbc05dec6ae412ae38ca0728",
+      "ghidra_evidence_id": "ev_4c97a1fdb6ace4f4efe7fdb3136831ceb15659917bcbb438cfdd8462d589717f",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/026-site-145938257.json",
+        "sha256": "25474d6d96a00ebb82dc29b77b8151801cf15a4a102cd92fb7ed38f503cf1cc5"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/content.rs",
+      "system_id": "custom-game-content",
+      "site": "0x14596b84b",
+      "diagnostic_target": "0x146fdf7c0",
+      "reference_kind": "rust_location",
+      "source_line": 796,
+      "source_column": 28,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x145969bf0",
+        "0x14596b889"
+      ],
+      "extent_sha256": "edd4930b5c4997434e81ea197169734100aea72b2ad506c6de27b19696e4e2f8",
+      "call_site": "0x14596b859",
+      "callee": "0x145e9c300",
+      "role": "formatted_failure_call",
+      "local_flow_sites": [
+        "0x14596b84b",
+        "0x14596b852",
+        "0x14596b859"
+      ],
+      "local_flow_bytes_sha256": "38e950c70f4b0e078a37768e8e00e76059dc93d2258df565c42c5b5834fc0ca7",
+      "ghidra_evidence_id": "ev_051e4e81f947ec96cd65c689bd953d3c8253bfd31b248b68dda56a32486916ed",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/027-site-14596b84b.json",
+        "sha256": "b02d83f07aef10c6a7f24442650fbe8b499a764eed955507aaca309b76667091"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/content.rs",
+      "system_id": "custom-game-content",
+      "site": "0x1459712f4",
+      "diagnostic_target": "0x146fdf7c0",
+      "reference_kind": "rust_location",
+      "source_line": 796,
+      "source_column": 28,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x14596f110",
+        "0x14597131c"
+      ],
+      "extent_sha256": "357229125c4de148ea6a24f248dac2d7dc4e6bc33b52da35dfc1d80cd951d5dc",
+      "call_site": "0x145971302",
+      "callee": "0x145e9c300",
+      "role": "formatted_failure_call",
+      "local_flow_sites": [
+        "0x1459712f4",
+        "0x1459712fb",
+        "0x145971302"
+      ],
+      "local_flow_bytes_sha256": "19b2d6113d1bb381c01a41efdb6e05a59d412b59581ede3491f741f52f570559",
+      "ghidra_evidence_id": "ev_b835b1378890cade9c6290c4163ec5c3e0f2a7aa54d2c4b4ff7fb5e8ab6398bc",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/028-site-1459712f4.json",
+        "sha256": "7a04c6fce4bea1bd03f9d13606bf801d2b9e72162dc40c4a57479ffbbddd0543"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/content.rs",
+      "system_id": "custom-game-content",
+      "site": "0x1459abbaa",
+      "diagnostic_target": "0x146fdf7c0",
+      "reference_kind": "rust_location",
+      "source_line": 796,
+      "source_column": 28,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x1459a9e30",
+        "0x1459abc77"
+      ],
+      "extent_sha256": "1ae113b7275e9779106beb52203d518b63ab6eff76fd398d9f4650a5c6586fc6",
+      "call_site": "0x1459abbb5",
+      "callee": "0x145e9c300",
+      "role": "formatted_failure_call",
+      "local_flow_sites": [
+        "0x1459abbaa",
+        "0x1459abbb1",
+        "0x1459abbb5"
+      ],
+      "local_flow_bytes_sha256": "1f23f65cbbbab51153efed27ed848f9cfc7c664f001ba9923b59ad8549308720",
+      "ghidra_evidence_id": "ev_b13148bb1d9940198cc9b52773ab04a741f5f9b3580bb4124e39f5061c341379",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/029-site-1459abbaa.json",
+        "sha256": "e583cd94701497476440bce32b810b0d09a93d986f5c4da66513c1cbdeadcd52"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/content.rs",
+      "system_id": "custom-game-content",
+      "site": "0x1459abbe4",
+      "diagnostic_target": "0x146fdf7c0",
+      "reference_kind": "rust_location",
+      "source_line": 796,
+      "source_column": 28,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x1459a9e30",
+        "0x1459abc77"
+      ],
+      "extent_sha256": "1ae113b7275e9779106beb52203d518b63ab6eff76fd398d9f4650a5c6586fc6",
+      "call_site": "0x1459abbef",
+      "callee": "0x145e9c300",
+      "role": "formatted_failure_call",
+      "local_flow_sites": [
+        "0x1459abbe4",
+        "0x1459abbeb",
+        "0x1459abbef"
+      ],
+      "local_flow_bytes_sha256": "de2602fa1475f6bf4e191e1b66129b57914acfd96eb68727b6d933cd2a9eca1a",
+      "ghidra_evidence_id": "ev_2767db525f141ceb8555f623fccf750cdb34f1b4dde81c8514b39a46e5f39adb",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/030-site-1459abbe4.json",
+        "sha256": "aa69536a72a730f5f82ceb3f15780da737f01a11668adcc373d322d61fd641f1"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/content.rs",
+      "system_id": "custom-game-content",
+      "site": "0x1459abc1b",
+      "diagnostic_target": "0x146fdf7c0",
+      "reference_kind": "rust_location",
+      "source_line": 796,
+      "source_column": 28,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x1459a9e30",
+        "0x1459abc77"
+      ],
+      "extent_sha256": "1ae113b7275e9779106beb52203d518b63ab6eff76fd398d9f4650a5c6586fc6",
+      "call_site": "0x1459abc26",
+      "callee": "0x145e9c300",
+      "role": "formatted_failure_call",
+      "local_flow_sites": [
+        "0x1459abc1b",
+        "0x1459abc22",
+        "0x1459abc26"
+      ],
+      "local_flow_bytes_sha256": "c4e10feaf79364ba0b9d0f784c8a4f45532d4df649314dc64aa2ec76da10404a",
+      "ghidra_evidence_id": "ev_99d22b7799d1d1cd6c86bf501475666696c62844d9b1cb55703634c1067ae6d7",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/031-site-1459abc1b.json",
+        "sha256": "b896c898bd4da2606665bb96831d2e5ea7df9b000fb676544b57315b605417ef"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/content.rs",
+      "system_id": "custom-game-content",
+      "site": "0x1459b2455",
+      "diagnostic_target": "0x146fdf7c0",
+      "reference_kind": "rust_location",
+      "source_line": 796,
+      "source_column": 28,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x1459af710",
+        "0x1459b25dd"
+      ],
+      "extent_sha256": "99971184951e49f7636e797c1c54fa3770c20d73618343b7811afb4cfe317727",
+      "call_site": "0x1459b2460",
+      "callee": "0x145e9c300",
+      "role": "formatted_failure_call",
+      "local_flow_sites": [
+        "0x1459b2455",
+        "0x1459b245c",
+        "0x1459b2460"
+      ],
+      "local_flow_bytes_sha256": "e056f59234770236c78da370e55e34b3a039ed8e54e403397a0d3cb4c47fb636",
+      "ghidra_evidence_id": "ev_3e12323eb0c0744f9bc806b524039e3bae401509e9203f39a5f955b676653c0d",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/032-site-1459b2455.json",
+        "sha256": "aa1fc4a17be327278dd2bc818fa3ca25be8f0e2dceb5ee5803a9af04c465417a"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/content.rs",
+      "system_id": "custom-game-content",
+      "site": "0x1459b2485",
+      "diagnostic_target": "0x146fdf7c0",
+      "reference_kind": "rust_location",
+      "source_line": 796,
+      "source_column": 28,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x1459af710",
+        "0x1459b25dd"
+      ],
+      "extent_sha256": "99971184951e49f7636e797c1c54fa3770c20d73618343b7811afb4cfe317727",
+      "call_site": "0x1459b2490",
+      "callee": "0x145e9c300",
+      "role": "formatted_failure_call",
+      "local_flow_sites": [
+        "0x1459b2485",
+        "0x1459b248c",
+        "0x1459b2490"
+      ],
+      "local_flow_bytes_sha256": "b6f931a7f056f55614875806b72a47801df3e51fca59a7cf1e4b436f6949bb83",
+      "ghidra_evidence_id": "ev_4bddbb80212030236824f6a7d6b8fb10427c22746918e0eba5bed9528eaa262f",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/033-site-1459b2485.json",
+        "sha256": "ef1e43fecbe75e8b05a337538ce28bbe79aab64e1ea7b851893327eac5bbe68f"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/content.rs",
+      "system_id": "custom-game-content",
+      "site": "0x1459b24e8",
+      "diagnostic_target": "0x146fdf7c0",
+      "reference_kind": "rust_location",
+      "source_line": 796,
+      "source_column": 28,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x1459af710",
+        "0x1459b25dd"
+      ],
+      "extent_sha256": "99971184951e49f7636e797c1c54fa3770c20d73618343b7811afb4cfe317727",
+      "call_site": "0x1459b24f3",
+      "callee": "0x145e9c300",
+      "role": "formatted_failure_call",
+      "local_flow_sites": [
+        "0x1459b24e8",
+        "0x1459b24ef",
+        "0x1459b24f3"
+      ],
+      "local_flow_bytes_sha256": "99be175a1283e8b945a37b2809c12218125a7c230b3201183c8e56f17625a8cd",
+      "ghidra_evidence_id": "ev_04da2ca02a89c74dda200c14bc671e3d1c0a72071227325d7d263ca30df3dd9e",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/034-site-1459b24e8.json",
+        "sha256": "7c5ee39adaeaddd9024c7d871daac695005ec88a2577fca12fe9912f20ceb65d"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/fonts.rs",
+      "system_id": "custom-game-fonts",
+      "site": "0x145806c1e",
+      "diagnostic_target": "0x146c9a728",
+      "reference_kind": "rust_location",
+      "source_line": 288,
+      "source_column": 26,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x145804200",
+        "0x145806c5b"
+      ],
+      "extent_sha256": "6f6a6b7157ec6e3f96d5f28894aab6711e63452696ccfd6c6345f42d4ef3aacf",
+      "call_site": "0x145806c2f",
+      "callee": "0x145e9c123",
+      "role": "bounds_failure_call",
+      "local_flow_sites": [
+        "0x145806c1e",
+        "0x145806c25",
+        "0x145806c2c",
+        "0x145806c2f"
+      ],
+      "local_flow_bytes_sha256": "ec0f1e0592d4522ab85bd5524d48a50eef25fc11c25f8ab20da9892177f1f04b",
+      "ghidra_evidence_id": "ev_db820138b54b1d6f4b6929a0b5c409f45ed575db00aca439aad81eb11271ebac",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/035-site-145806c1e.json",
+        "sha256": "ea75a4456e26da4bc39ce91b951664328ae81c712759e01b8a7e501b291d183d"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/abilities.rs",
+      "system_id": "custom-game-game-abilities",
+      "site": "0x145840f3f",
+      "diagnostic_target": "0x14700bd48",
+      "reference_kind": "rust_location",
+      "source_line": 184,
+      "source_column": 29,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x145840d60",
+        "0x145840f61"
+      ],
+      "extent_sha256": "3f91df8d199dac8e4faeae9eac3ce9b68890f959c68d2e8d930f09cec7720eb5",
+      "call_site": "0x145840f5a",
+      "callee": "0x145e9c123",
+      "role": "bounds_failure_call",
+      "local_flow_sites": [
+        "0x145840f3f",
+        "0x145840f46",
+        "0x145840f4f",
+        "0x145840f54",
+        "0x145840f57",
+        "0x145840f5a"
+      ],
+      "local_flow_bytes_sha256": "4d606ffad855d6a4f62d4231aac15faba04e42df87126f54bfdb2db40b916e77",
+      "ghidra_evidence_id": "ev_2825fac8eb483184c83dafd2e98fa4666ba1c58999466ced4cb88e11294697ba",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/036-site-145840f3f.json",
+        "sha256": "d806ba44dd25e99b526d2fce52f0ae6a8262e296a1168682f1084aee029e26f0"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/abilities.rs",
+      "system_id": "custom-game-game-abilities",
+      "site": "0x145840f48",
+      "diagnostic_target": "0x14700bd78",
+      "reference_kind": "rust_location",
+      "source_line": 186,
+      "source_column": 17,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x145840d60",
+        "0x145840f61"
+      ],
+      "extent_sha256": "3f91df8d199dac8e4faeae9eac3ce9b68890f959c68d2e8d930f09cec7720eb5",
+      "call_site": "0x145840f5a",
+      "callee": "0x145e9c123",
+      "role": "bounds_failure_call",
+      "local_flow_sites": [
+        "0x145840f48",
+        "0x145840f4f",
+        "0x145840f54",
+        "0x145840f57",
+        "0x145840f5a"
+      ],
+      "local_flow_bytes_sha256": "0a0eb3c5b11a949ba7cea3ddd28808cf1bda8ace408b218b57de4597ec46b4d1",
+      "ghidra_evidence_id": "ev_255f6ca89a66156ad3c7a371d434c341aa3d308749a57f62570784c5e7c17614",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/037-site-145840f48.json",
+        "sha256": "0d09edf1d775c81aaf408a3053184537d1b66bcf51663c05f7689009b72de62c"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/abilities.rs",
+      "system_id": "custom-game-game-abilities",
+      "site": "0x145840f24",
+      "diagnostic_target": "0x14700bda8",
+      "reference_kind": "rust_location",
+      "source_line": 193,
+      "source_column": 17,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x145840d60",
+        "0x145840f61"
+      ],
+      "extent_sha256": "3f91df8d199dac8e4faeae9eac3ce9b68890f959c68d2e8d930f09cec7720eb5",
+      "call_site": "0x145840f5a",
+      "callee": "0x145e9c123",
+      "role": "bounds_failure_call",
+      "local_flow_sites": [
+        "0x145840f24",
+        "0x145840f2b",
+        "0x145840f4f",
+        "0x145840f54",
+        "0x145840f57",
+        "0x145840f5a"
+      ],
+      "local_flow_bytes_sha256": "d27c9be9544e52bbf4159acb65b571c547ac2ba4cf7fb7e9d0d6687ae9e8147a",
+      "ghidra_evidence_id": "ev_88bf7dd3e65474d9d94e30fb870e05d1da6a9b2448b837bf6176ee1aa5f9393e",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/038-site-145840f24.json",
+        "sha256": "084c79a142e0aa0a5458cd0fc83e18c9307fafe94961a8f3e15130e80d1803f8"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/abilities.rs",
+      "system_id": "custom-game-game-abilities",
+      "site": "0x145840f36",
+      "diagnostic_target": "0x14700bdd8",
+      "reference_kind": "rust_location",
+      "source_line": 196,
+      "source_column": 17,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x145840d60",
+        "0x145840f61"
+      ],
+      "extent_sha256": "3f91df8d199dac8e4faeae9eac3ce9b68890f959c68d2e8d930f09cec7720eb5",
+      "call_site": "0x145840f5a",
+      "callee": "0x145e9c123",
+      "role": "bounds_failure_call",
+      "local_flow_sites": [
+        "0x145840f36",
+        "0x145840f3d",
+        "0x145840f4f",
+        "0x145840f54",
+        "0x145840f57",
+        "0x145840f5a"
+      ],
+      "local_flow_bytes_sha256": "657958f418be5439d9b545f9cfcca79bb2ca2b6cbde06cd19691bb2051607869",
+      "ghidra_evidence_id": "ev_57943284fa7b4818cccd495256a195e8a6b3e7c6e01686a7a41d246d4ec6b3b8",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/039-site-145840f36.json",
+        "sha256": "5de3b5c4d9473658340575041929f0cfe8eacd7638369f91d49f27f2ab2980b4"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/abilities.rs",
+      "system_id": "custom-game-game-abilities",
+      "site": "0x145840f2d",
+      "diagnostic_target": "0x14700be08",
+      "reference_kind": "rust_location",
+      "source_line": 199,
+      "source_column": 17,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x145840d60",
+        "0x145840f61"
+      ],
+      "extent_sha256": "3f91df8d199dac8e4faeae9eac3ce9b68890f959c68d2e8d930f09cec7720eb5",
+      "call_site": "0x145840f5a",
+      "callee": "0x145e9c123",
+      "role": "bounds_failure_call",
+      "local_flow_sites": [
+        "0x145840f2d",
+        "0x145840f34",
+        "0x145840f4f",
+        "0x145840f54",
+        "0x145840f57",
+        "0x145840f5a"
+      ],
+      "local_flow_bytes_sha256": "4f97120bbada2367fe44e3972393c02e1be41f5ca0ab15e764cfa93322f6f6b1",
+      "ghidra_evidence_id": "ev_95fc925620f795537e6a7d0c8598981a628ae8ce0dfe4011a7f4c2f55b8465a3",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/040-site-145840f2d.json",
+        "sha256": "e0350fba3b0a9ad58ff0fe16bf108b97cb971a4340f1ab1409398b27009b4d89"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/abilities.rs",
+      "system_id": "custom-game-game-abilities",
+      "site": "0x145925d41",
+      "diagnostic_target": "0x14730c9c8",
+      "reference_kind": "rust_location",
+      "source_line": 777,
+      "source_column": 61,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x145922980",
+        "0x145925f5a"
+      ],
+      "extent_sha256": "db4606c72b97110eac68dedcddaa660c78bdd7cab438589f2ba5e8fb1aee1797",
+      "call_site": "0x145925d48",
+      "callee": "0x145e9c080",
+      "role": "option_failure_call",
+      "local_flow_sites": [
+        "0x145925d41",
+        "0x145925d48"
+      ],
+      "local_flow_bytes_sha256": "a7ed309d42b98edc6219222422b8730736f3cd4e17964fc5a40621c3b1252e31",
+      "ghidra_evidence_id": "ev_05d85d3a7c5837fe8b1b0bc844e325dea519cf47e8775a0e7758815e7e33d02d",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/041-site-145925d41.json",
+        "sha256": "752984b3584fc59d9452cf3719da5d5396ab922fe7ed86f50bb5712c764fc2f1"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/abilities.rs",
+      "system_id": "custom-game-game-abilities",
+      "site": "0x145924d08",
+      "diagnostic_target": "0x14730c9e0",
+      "reference_kind": "rust_location",
+      "source_line": 996,
+      "source_column": 45,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x145922980",
+        "0x145925f5a"
+      ],
+      "extent_sha256": "db4606c72b97110eac68dedcddaa660c78bdd7cab438589f2ba5e8fb1aee1797",
+      "call_site": "0x145924d1a",
+      "callee": "0x14597bc80",
+      "role": "location_forwarded_to_stable_120_byte_vector_removal",
+      "local_flow_sites": [
+        "0x145924d08",
+        "0x145924d0f",
+        "0x145924d13",
+        "0x145924d17",
+        "0x145924d1a"
+      ],
+      "local_flow_bytes_sha256": "5d149d0d52a2ecec003644cce02ff6bff2fcdc9d2bbf180956e34a782da7d2aa",
+      "ghidra_evidence_id": "ev_39870270ff91a324e001765772fda0ac90ddc5ccda8d4fb8d3effcd1ec848376",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/042-site-145924d08.json",
+        "sha256": "4d9f65aca0af0e10039a94f69337def8dfabefdc76631febb5d09b4c98951bc4"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/auras.rs",
+      "system_id": "custom-game-game-auras",
+      "site": "0x14596a0f2",
+      "diagnostic_target": "0x14730ba40",
+      "reference_kind": "path_literal",
+      "source_line": null,
+      "source_column": null,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x145969bf0",
+        "0x14596b889"
+      ],
+      "extent_sha256": "edd4930b5c4997434e81ea197169734100aea72b2ad506c6de27b19696e4e2f8",
+      "call_site": "0x14596a145",
+      "callee": "0x145895ad0",
+      "role": "formatting_key_adjacent_to_diagnostic_filename",
+      "local_flow_sites": [
+        "0x14596a0f2",
+        "0x14596a0f9",
+        "0x14596a100",
+        "0x14596a10b",
+        "0x14596a10f",
+        "0x14596a116",
+        "0x14596a11d",
+        "0x14596a124",
+        "0x14596a12b",
+        "0x14596a134",
+        "0x14596a13b",
+        "0x14596a142",
+        "0x14596a145"
+      ],
+      "local_flow_bytes_sha256": "a66bde29a6fd2817fa0d30f18e9a7a74235aaa8ca79877daae273f9bc8e28c80",
+      "ghidra_evidence_id": "ev_e68275dbdcd0f322a804b575eb200cf2ba16281001202bb33ef2f9187f9ac10b",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/043-site-14596a0f2.json",
+        "sha256": "8ae24ed4c3d22a02fe16bb206361fe4c85c1517ecce513c371e997bde007a708"
+      },
+      "classification": "supporting_literal_boundary_context_not_a_filename_consumer"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/auras.rs",
+      "system_id": "custom-game-game-auras",
+      "site": "0x14596a63f",
+      "diagnostic_target": "0x14730ba40",
+      "reference_kind": "path_literal",
+      "source_line": null,
+      "source_column": null,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x145969bf0",
+        "0x14596b889"
+      ],
+      "extent_sha256": "edd4930b5c4997434e81ea197169734100aea72b2ad506c6de27b19696e4e2f8",
+      "call_site": "0x14596a6cd",
+      "callee": "0x145895ad0",
+      "role": "formatting_key_adjacent_to_diagnostic_filename",
+      "local_flow_sites": [
+        "0x14596a63f",
+        "0x14596a646",
+        "0x14596a64d",
+        "0x14596a658",
+        "0x14596a65f",
+        "0x14596a666",
+        "0x14596a66d",
+        "0x14596a674",
+        "0x14596a67b",
+        "0x14596a682",
+        "0x14596a68d",
+        "0x14596a694",
+        "0x14596a69b",
+        "0x14596a6a2",
+        "0x14596a6a9",
+        "0x14596a6b0",
+        "0x14596a6b9",
+        "0x14596a6c0",
+        "0x14596a6c7",
+        "0x14596a6ca",
+        "0x14596a6cd"
+      ],
+      "local_flow_bytes_sha256": "7bbf1ee29e91cfb1083602e07fdc01aa8f413bcb1ff637f673802041a61bf0d3",
+      "ghidra_evidence_id": "ev_b7586016fb5d1ca9ed10e8a6f40d546be3ae8835cbc8c5635f4311ec7844a897",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/044-site-14596a63f.json",
+        "sha256": "4cb2ef24648d06599824b7b473c684d02a2e488629e0ddf855b8674fd6a37e7c"
+      },
+      "classification": "supporting_literal_boundary_context_not_a_filename_consumer"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/enemy.rs",
+      "system_id": "custom-game-game-enemy",
+      "site": "0x14594b6ae",
+      "diagnostic_target": "0x14730cfc0",
+      "reference_kind": "rust_location",
+      "source_line": 1504,
+      "source_column": 51,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x145945cf0",
+        "0x14594b72d"
+      ],
+      "extent_sha256": "b9e3d13a853959631e96ac0955aea11f1039aa4146ee4f0e3e30e24392367ca3",
+      "call_site": "0x14594b6b8",
+      "callee": "0x145e9c123",
+      "role": "bounds_failure_call",
+      "local_flow_sites": [
+        "0x14594b6ae",
+        "0x14594b6b5",
+        "0x14594b6b8"
+      ],
+      "local_flow_bytes_sha256": "a06cd0703e7030e93c926237750f8cdc074106813cc235869189d7e8e7b4086c",
+      "ghidra_evidence_id": "ev_6da7de131844bc321e2f99584bfce9a9c94eab77bee0db6e68dfa1dc00d6cacf",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/045-site-14594b6ae.json",
+        "sha256": "2944357fb57de5e1fff52a4dfadf9baf5bf0173c45bf8f7d7ec1e2062bd534e6"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/enemy.rs",
+      "system_id": "custom-game-game-enemy",
+      "site": "0x14594b71b",
+      "diagnostic_target": "0x14730cfd8",
+      "reference_kind": "rust_location",
+      "source_line": 1506,
+      "source_column": 41,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x145945cf0",
+        "0x14594b72d"
+      ],
+      "extent_sha256": "b9e3d13a853959631e96ac0955aea11f1039aa4146ee4f0e3e30e24392367ca3",
+      "call_site": "0x14594b725",
+      "callee": "0x145e9c123",
+      "role": "bounds_failure_call",
+      "local_flow_sites": [
+        "0x14594b71b",
+        "0x14594b722",
+        "0x14594b725"
+      ],
+      "local_flow_bytes_sha256": "398d0f8f3abfa63b97fdbfc815002725c8cd45894fe0c3d261c5d4323ffb6166",
+      "ghidra_evidence_id": "ev_05802af0eaa868c2ed56f5d0bc5e9b2fa5a694e55ce5b64e736339fc51ff4c52",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/046-site-14594b71b.json",
+        "sha256": "221d1eed7b014adedb594e664bbdf81642e898fa19d6d2a0ab0bc0870f549649"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/enemy.rs",
+      "system_id": "custom-game-game-enemy",
+      "site": "0x14594b55e",
+      "diagnostic_target": "0x14730cff0",
+      "reference_kind": "rust_location",
+      "source_line": 1514,
+      "source_column": 42,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x145945cf0",
+        "0x14594b72d"
+      ],
+      "extent_sha256": "b9e3d13a853959631e96ac0955aea11f1039aa4146ee4f0e3e30e24392367ca3",
+      "call_site": "0x14594b568",
+      "callee": "0x145e9c123",
+      "role": "bounds_failure_call",
+      "local_flow_sites": [
+        "0x14594b55e",
+        "0x14594b565",
+        "0x14594b568"
+      ],
+      "local_flow_bytes_sha256": "74cfa5b3dda12255361dd716a9a8df0488f4eb24de445743e3a950933ba7d476",
+      "ghidra_evidence_id": "ev_ab791738821c9017c48aec1a2cf3debc28d6a55b2f1adb3160b667cd897d6828",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/047-site-14594b55e.json",
+        "sha256": "02c99696fb947c93358adfa70522f8c834216e4eb9c831e379557d55ff729ccf"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/enemy.rs",
+      "system_id": "custom-game-game-enemy",
+      "site": "0x145952a5e",
+      "diagnostic_target": "0x147003e70",
+      "reference_kind": "rust_location",
+      "source_line": 1152,
+      "source_column": 40,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x1459500b0",
+        "0x145952ae4"
+      ],
+      "extent_sha256": "d6ec67374c0b3ca8387bd79300ebde8136c2d94811bd731eb960e00f6cd756fb",
+      "call_site": "0x145952a68",
+      "callee": "0x145e9c123",
+      "role": "bounds_failure_call",
+      "local_flow_sites": [
+        "0x145952a5e",
+        "0x145952a65",
+        "0x145952a68"
+      ],
+      "local_flow_bytes_sha256": "e6f83e3dd18d27da5cbf2c1c8c836ecdbf6ec8643680681eb1b69a6b51b4004b",
+      "ghidra_evidence_id": "ev_2e42009ade82de4f1cab5051540b07a88fb4a0b34de1127f74aad9a63cb19d0d",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/048-site-145952a5e.json",
+        "sha256": "24475e98d0d0237c92e783ac6c2acd9e1962d38eb598d2fc6ad63acee013458f"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/enemy.rs",
+      "system_id": "custom-game-game-enemy",
+      "site": "0x145952a70",
+      "diagnostic_target": "0x147003e88",
+      "reference_kind": "rust_location",
+      "source_line": 1152,
+      "source_column": 71,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x1459500b0",
+        "0x145952ae4"
+      ],
+      "extent_sha256": "d6ec67374c0b3ca8387bd79300ebde8136c2d94811bd731eb960e00f6cd756fb",
+      "call_site": "0x145952a7e",
+      "callee": "0x145e9c123",
+      "role": "bounds_failure_call",
+      "local_flow_sites": [
+        "0x145952a70",
+        "0x145952a77",
+        "0x145952a7a",
+        "0x145952a7e"
+      ],
+      "local_flow_bytes_sha256": "3f63c853c35cffc1d45b9cb341945f6c808eccacd3212a05d7f53cad756a1d35",
+      "ghidra_evidence_id": "ev_1c79143f556ec9d47626d2a656d6e39bf61f092c4e79ea5f2830e49e1a9bd9e7",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/049-site-145952a70.json",
+        "sha256": "2dacf48aa911da50718b8977a8ffd9264d883ed900067574cb4634902cdd2c83"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/enemy.rs",
+      "system_id": "custom-game-game-enemy",
+      "site": "0x145952ad1",
+      "diagnostic_target": "0x14730cf48",
+      "reference_kind": "rust_location",
+      "source_line": 1166,
+      "source_column": 29,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x1459500b0",
+        "0x145952ae4"
+      ],
+      "extent_sha256": "d6ec67374c0b3ca8387bd79300ebde8136c2d94811bd731eb960e00f6cd756fb",
+      "call_site": "0x145952adc",
+      "callee": "0x145e9c123",
+      "role": "bounds_failure_call",
+      "local_flow_sites": [
+        "0x145952ad1",
+        "0x145952ad8",
+        "0x145952adc"
+      ],
+      "local_flow_bytes_sha256": "59ecfc13cb2b2154ca90af28719a9b10139fbc7da6186bcce1363fdb43e6a253",
+      "ghidra_evidence_id": "ev_f9e9ede6f1f63d5a9c639a43bb0204a179142e9d37cb35c8f3052fceee2b4293",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/050-site-145952ad1.json",
+        "sha256": "a87b6f31722ff4e6eda290982402db4b50f8130ce761e3f92dffb852da98091a"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/enemy.rs",
+      "system_id": "custom-game-game-enemy",
+      "site": "0x145952ac2",
+      "diagnostic_target": "0x14730cfa8",
+      "reference_kind": "rust_location",
+      "source_line": 1219,
+      "source_column": 36,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x1459500b0",
+        "0x145952ae4"
+      ],
+      "extent_sha256": "d6ec67374c0b3ca8387bd79300ebde8136c2d94811bd731eb960e00f6cd756fb",
+      "call_site": "0x145952ac9",
+      "callee": "0x145e9c123",
+      "role": "bounds_failure_call",
+      "local_flow_sites": [
+        "0x145952ac2",
+        "0x145952ac9"
+      ],
+      "local_flow_bytes_sha256": "b461584179e383b1f96e329123af3610c1908edf81b3e1d9d94dfde93bf5b32b",
+      "ghidra_evidence_id": "ev_8864ea2dda7efff3532f828710f882febd917b2f94b498579aebcf6aba8372e7",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/051-site-145952ac2.json",
+        "sha256": "9d130e52a00d11b17128108d04ea85277d9e88481886e48740a0f4dd9847d833"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/hazards.rs",
+      "system_id": "custom-game-hazards",
+      "site": "0x14591904c",
+      "diagnostic_target": "0x14730c420",
+      "reference_kind": "rust_location",
+      "source_line": 549,
+      "source_column": 38,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x145913e10",
+        "0x1459194c1"
+      ],
+      "extent_sha256": "b72f327fa3401635a04f4f43adc36a981e2d936104b805246f8f61b9c5acee14",
+      "call_site": "0x145919053",
+      "callee": "0x145e9c123",
+      "role": "bounds_failure_call",
+      "local_flow_sites": [
+        "0x14591904c",
+        "0x145919053"
+      ],
+      "local_flow_bytes_sha256": "423b6bdf1eb0f240f4980fcf475ef629ed4e927ea12996aff59f4ea45ac93931",
+      "ghidra_evidence_id": "ev_d4aefba88274ce53d84ea95ec2bd26e7b9acdcfb2eba99f64693ce3e37df471a",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/052-site-14591904c.json",
+        "sha256": "d385254ff9f9bf8be1635efacb9e92157847026f9550c0b2dfe120b8e4292cd8"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/hazards.rs",
+      "system_id": "custom-game-hazards",
+      "site": "0x14591913e",
+      "diagnostic_target": "0x14730c498",
+      "reference_kind": "rust_location",
+      "source_line": 1333,
+      "source_column": 34,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x145913e10",
+        "0x1459194c1"
+      ],
+      "extent_sha256": "b72f327fa3401635a04f4f43adc36a981e2d936104b805246f8f61b9c5acee14",
+      "call_site": "0x145919148",
+      "callee": "0x145e9c123",
+      "role": "bounds_failure_call",
+      "local_flow_sites": [
+        "0x14591913e",
+        "0x145919145",
+        "0x145919148"
+      ],
+      "local_flow_bytes_sha256": "958a7553f63b0c670f3e50995ebdfc3cef5e4a620d09de03fb7dc5c29563f150",
+      "ghidra_evidence_id": "ev_fa3d927e11642f13f9c98a38927e1fb53b41361c5b050e066759907fb2752a79",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/053-site-14591913e.json",
+        "sha256": "31c66682285cf8ffd46b54bd9ea5bd331597dfe113ad458bdb5463e127c8d305"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/talents.rs",
+      "system_id": "custom-game-game-talents",
+      "site": "0x14593826d",
+      "diagnostic_target": "0x14730cb70",
+      "reference_kind": "rust_location",
+      "source_line": 873,
+      "source_column": 39,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x145934650",
+        "0x14593827c"
+      ],
+      "extent_sha256": "6e975abb199772fde3569fd77c614a65f9d9e0ef54e784167d8606b07518a5f4",
+      "call_site": "0x145938274",
+      "callee": "0x145e9c123",
+      "role": "bounds_failure_call",
+      "local_flow_sites": [
+        "0x14593826d",
+        "0x145938274"
+      ],
+      "local_flow_bytes_sha256": "376805da00efdbf12531bf2762539efb83aeee6b7efc31ea4807a785878e9c6d",
+      "ghidra_evidence_id": "ev_bc3cf8dd3a5ce9ad21b499fc991c15822e8942c7b997086d5b20cf58b383b71e",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/054-site-14593826d.json",
+        "sha256": "84fccc6de75976106af5720618859a4c6aa9454d14c6aa28d7da76391fc632fc"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/upgrades.rs",
+      "system_id": "custom-game-game-upgrades",
+      "site": "0x14596b868",
+      "diagnostic_target": "0x14730e150",
+      "reference_kind": "rust_location",
+      "source_line": 348,
+      "source_column": 47,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x145969bf0",
+        "0x14596b889"
+      ],
+      "extent_sha256": "edd4930b5c4997434e81ea197169734100aea72b2ad506c6de27b19696e4e2f8",
+      "call_site": "0x14596b86f",
+      "callee": "0x145e9c123",
+      "role": "bounds_failure_call",
+      "local_flow_sites": [
+        "0x14596b868",
+        "0x14596b86f"
+      ],
+      "local_flow_bytes_sha256": "c543bc3bf1eabd59dc4fa1fa6a0ced471f62179c645c531f8c1a41da9d2b1f1c",
+      "ghidra_evidence_id": "ev_f78271788c47591afeb3ba5f74a7e9b06ff74f0f77aed811bf649a7126a22bbf",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/055-site-14596b868.json",
+        "sha256": "4550c26b7deb5241f55b1c2579388728868b42add9daec8dcd4901e36ef7aa26"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/nav.rs",
+      "system_id": "custom-game-nav",
+      "site": "0x145952a16",
+      "diagnostic_target": "0x1473011c0",
+      "reference_kind": "rust_location",
+      "source_line": 198,
+      "source_column": 53,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x1459500b0",
+        "0x145952ae4"
+      ],
+      "extent_sha256": "d6ec67374c0b3ca8387bd79300ebde8136c2d94811bd731eb960e00f6cd756fb",
+      "call_site": "0x145952a1d",
+      "callee": "0x145e9c123",
+      "role": "bounds_failure_call",
+      "local_flow_sites": [
+        "0x145952a16",
+        "0x145952a1d"
+      ],
+      "local_flow_bytes_sha256": "e9c695c72e51040652967c4ee2670a3a5d20b53073dfde1480bd4096e206369c",
+      "ghidra_evidence_id": "ev_2edb514cca87c6c91bca9dd9ab896199f17d8d64393a4ebdcfca50ac7ee9d0f1",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/056-site-145952a16.json",
+        "sha256": "7b135c0a33b233719a23a9eaf348e55de0ae0b8aba92667338f5bfd00639923d"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/nav.rs",
+      "system_id": "custom-game-nav",
+      "site": "0x145952a28",
+      "diagnostic_target": "0x1473011c0",
+      "reference_kind": "rust_location",
+      "source_line": 198,
+      "source_column": 53,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x1459500b0",
+        "0x145952ae4"
+      ],
+      "extent_sha256": "d6ec67374c0b3ca8387bd79300ebde8136c2d94811bd731eb960e00f6cd756fb",
+      "call_site": "0x145952a2f",
+      "callee": "0x145e9c123",
+      "role": "bounds_failure_call",
+      "local_flow_sites": [
+        "0x145952a28",
+        "0x145952a2f"
+      ],
+      "local_flow_bytes_sha256": "b407894bd26832f96ee87b9d26b2edd37f9ac1b25001e06bfa596342a7bfc900",
+      "ghidra_evidence_id": "ev_e48fe1ca5ab92a0892286f6fbd2b86d90e5c2bd5e256372c798c33b9c4b05673",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/057-site-145952a28.json",
+        "sha256": "3aa48a1266d2b2259c675df6da83a9687b3333e357bdc1ffce38f676dd39dc26"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/nav.rs",
+      "system_id": "custom-game-nav",
+      "site": "0x145952a3a",
+      "diagnostic_target": "0x147302398",
+      "reference_kind": "rust_location",
+      "source_line": 327,
+      "source_column": 27,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x1459500b0",
+        "0x145952ae4"
+      ],
+      "extent_sha256": "d6ec67374c0b3ca8387bd79300ebde8136c2d94811bd731eb960e00f6cd756fb",
+      "call_site": "0x145952a41",
+      "callee": "0x145e9c123",
+      "role": "bounds_failure_call",
+      "local_flow_sites": [
+        "0x145952a3a",
+        "0x145952a41"
+      ],
+      "local_flow_bytes_sha256": "f5a13e9f07fbc656ee93043028dd8651df8553d72104ea6a6280dc6ec7e3005d",
+      "ghidra_evidence_id": "ev_7f96f08de683cc4d5f04b6ecf6bf8efa6203fb7ae189f5cb89e68a8390756090",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/058-site-145952a3a.json",
+        "sha256": "3d3ad9a55ec5f38f9b7fc18545354b166a4ae4caecfc6cba045417338e36ec93"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    },
+    {
+      "path": "crates/wenilla-rogue/src/nav.rs",
+      "system_id": "custom-game-nav",
+      "site": "0x145952a4c",
+      "diagnostic_target": "0x147302398",
+      "reference_kind": "rust_location",
+      "source_line": 327,
+      "source_column": 27,
+      "original_body_owner": null,
+      "fresh_body_owner": null,
+      "declared_extent": [
+        "0x1459500b0",
+        "0x145952ae4"
+      ],
+      "extent_sha256": "d6ec67374c0b3ca8387bd79300ebde8136c2d94811bd731eb960e00f6cd756fb",
+      "call_site": "0x145952a53",
+      "callee": "0x145e9c123",
+      "role": "bounds_failure_call",
+      "local_flow_sites": [
+        "0x145952a4c",
+        "0x145952a53"
+      ],
+      "local_flow_bytes_sha256": "014533a95891cbc3ffd1b10ddfcdbd1771677f383d2094800cd8651cd7e7e0ab",
+      "ghidra_evidence_id": "ev_1be7915388cdb8cc2e60806dcba4350a8f49ac872d8e68e3cd185ad7da78c93e",
+      "ghidra_response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-c01/059-site-145952a4c.json",
+        "sha256": "6d2f3c04d42805c7faa4eeb00adf26918c17962292db0000fbcb1caf902beaf1"
+      },
+      "classification": "AS_site_role_only_successful_contract_and_aliases_remain_bounded"
+    }
+  ],
+  "stable_vector_interfaces": {
+    "helpers": [
+      {
+        "entry": "0x140074b90",
+        "end_exclusive": "0x140074beb",
+        "width": 8,
+        "sha256": "0c739271676f4d631043aa8a94952e7752610bad4749f418c7bd67fcfa495269",
+        "evidence_id": "ev_38238221c9afc55b660e49444c0b057d2be6041a9d484db2f2193cdf81762e11",
+        "response": {
+          "path": "runtime/q41-remaining-0.113.2/rea-shared-boundaries/005-procedure_pseudo_code-140074b90.json",
+          "sha256": "459a5bff7b558055dd1fccac38fef4d7d7fa90f506e600f0d53bb07c067f5128"
+        }
+      },
+      {
+        "entry": "0x14597bc80",
+        "end_exclusive": "0x14597bd90",
+        "width": 120,
+        "sha256": "a1e30b7250bbb47360d3a7248d7191d58ef2bf09ef0c101d355b91fcb33fc438",
+        "evidence_id": "ev_a33f5064bfb4b9cdcf0e6bed1de7ab77c0496b44aa16d56945070d6c023b5e76",
+        "response": {
+          "path": "runtime/q41-remaining-0.113.2/rea-shared-boundaries/008-procedure_pseudo_code-14597bc80.json",
+          "sha256": "e9154c7f313f82e7d91eb94770d044b823cb3e2d9ea1bf4eb5bc6aff829e58e4"
+        }
+      }
+    ],
+    "cases": {
+      "8": 54,
+      "120": 54,
+      "120_zero_leading_word_failure_after_removal": 1
+    },
+    "limits": "Synthetic owned vectors and bounded memmove seam; these helper calls are ordinary operations, not failure-path entries. Caller input/index meaning and complete AS consumer equivalence remain separate."
+  },
+  "marker_lookup": {
+    "cases": {
+      "empty": 1,
+      "missing": 2048,
+      "found": 2048,
+      "collision": 2048
+    },
+    "original_instructions": 59,
+    "source_consumer": "crates/azeroth-survivors-re/src/gameplay/raid_markers.rs",
+    "source_sha256": "6e164b992d05eff14109e86af4c1d6e7786b3cdfa6d1f1c7605cad80d942dc05",
+    "producer": "Eight generated masks, with key4 present in MASK_SIZES enumeration.",
+    "initializer_ghidra": {
+      "evidence_id": "ev_7e236498b642ba211cd97e6d9e7e67f5ecb0394d41b85cfc6f407def4efabf98",
+      "response": {
+        "path": "runtime/q41-remaining-0.113.2/rea-first/004-instructions-14017a300.json",
+        "sha256": "c7690d1b31045d47b30897646d21bcdf14254946a8f0b4c27526063ac2f3b111"
+      }
+    },
+    "failure_edges": [
+      "0x14017b83a",
+      "0x14017b930"
+    ],
+    "failure_entry": "0x14017c99b",
+    "message": "no entry found for key",
+    "key": 4
+  },
+  "limits": [
+    "All 57 original C01 sites are retained; role classification does not repair census body ownership or revalidate every containing AS contract.",
+    "Two raw path leads consume only spell, before an adjacent filename; no source-owner claim follows from the filename.",
+    "Shared bounds/formatting/Option failure callees are interface classifications; generic panic/runtime recovery stops at that boundary.",
+    "Marker hash/table/geometry memory is synthetic. Real initialization, resource handles, complete valid geometry, ECS/GPU and mutable aliases remain unverified.",
+    "No additional source defect is established by these diagnostic roles. All compilation/runtime/parity obligations remain open."
+  ]
+}

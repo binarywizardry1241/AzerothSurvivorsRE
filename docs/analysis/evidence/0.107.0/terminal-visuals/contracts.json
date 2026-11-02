@@ -1,0 +1,979 @@
+{
+  "target": "installed-game/AzerothSurvivors.exe",
+  "target_version": "0.107.0",
+  "target_sha256": "92eaef3bc806144860ca838660286c02b66f9d7bbee0771f1f07a628209e9f7a",
+  "ranges": [
+    {
+      "role": "terminal-bundle-registration",
+      "virtual_address": "0x1402ef760",
+      "end_exclusive": "0x1402ef9f3",
+      "file_offset": "0x2eeb60",
+      "byte_count": 659,
+      "sha256": "76539a6442fd76fe375f0aec435f0378773d014bc7eb03e236ced26b6ceadedb",
+      "assembly": "terminal-bundle-registration.asm",
+      "assembly_sha256": "f91dce98f81e9279573c1e829c28363add928609e8e5e0405b126095d8d0cf26"
+    },
+    {
+      "role": "terminal-component-registration",
+      "virtual_address": "0x140123b80",
+      "end_exclusive": "0x140124011",
+      "file_offset": "0x122f80",
+      "byte_count": 1169,
+      "sha256": "79ba118ae98c3d950284ccb517dd3e5a840a3e0e764e5d005cbf23a51fe7df9e",
+      "provider": "ghidra",
+      "rea_evidence_id": "ev_ac5ad1a004612747a3fb7d691a8deb0a4f28875f9d7d1bf6bb409073f77ed8f4",
+      "pseudocode": "terminal-component-registration.c",
+      "pseudocode_sha256": "9cb266dd11dfbfc05398d14378e28afd1e17275b74a11b17119b83e4d8b43803"
+    },
+    {
+      "role": "interaction-bundle-registration",
+      "virtual_address": "0x14019c6a0",
+      "end_exclusive": "0x14019ca9b",
+      "file_offset": "0x19baa0",
+      "byte_count": 1019,
+      "sha256": "fcd2c001daf803671417005f43b9657776e8723009c3faa78414ef6d5c3ab060",
+      "provider": "ghidra",
+      "rea_evidence_id": "ev_a6b8c9024c14b8511b279a6032bce42d1b29f1eee265904e2196e3020a626f7b",
+      "pseudocode": "interaction-bundle-registration.c",
+      "pseudocode_sha256": "e5a52d46d473796f922bf979c97956c75cb30ed02f99a630a61cdebea6ce0909"
+    },
+    {
+      "role": "interaction-query-registration",
+      "virtual_address": "0x14031df50",
+      "end_exclusive": "0x14031e3a6",
+      "file_offset": "0x31d350",
+      "byte_count": 1110,
+      "sha256": "5c477f3b83925047fcf4ab20b9fe0c58a775c80700f46afb6e9fa36e18ec2070"
+    },
+    {
+      "role": "end-action-query-registration",
+      "virtual_address": "0x14032f0f0",
+      "end_exclusive": "0x14032f546",
+      "file_offset": "0x32e4f0",
+      "byte_count": 1110,
+      "sha256": "903c7961f6514248d26eee5ae858d4f0826d096db7c1e3e7666d2d96502238d6"
+    },
+    {
+      "role": "border-query-registration",
+      "virtual_address": "0x14031ea30",
+      "end_exclusive": "0x14031ee86",
+      "file_offset": "0x31de30",
+      "byte_count": 1110,
+      "sha256": "14840a4e297ad390dcc97aadbd032496a0b6c512344aae775e84fa396d45fb4d"
+    },
+    {
+      "role": "component-info-new",
+      "virtual_address": "0x144e3e660",
+      "end_exclusive": "0x144e3e749",
+      "file_offset": "0x4e3da60",
+      "byte_count": 233,
+      "sha256": "efce8eaabcd72e9d3f9f11a75b7964ffd3e83a797d1ea733e25221dd98f6531d",
+      "provider": "ghidra",
+      "rea_evidence_id": "ev_26dbf9d84c00d2741261c3038e69684659aceb204986f8e1eead06cd2d1efc7a",
+      "pseudocode": "component-info-new.c",
+      "pseudocode_sha256": "457dd45184b2bf4ea0d30c9f9fc3264bf0eabb61d23882b29c7311b043f9dc41",
+      "assembly": "component-info-new.asm",
+      "assembly_sha256": "4be4777af17eda0b4f4ac118329ac791e5c51280e9a27d02e3452328f916025c"
+    },
+    {
+      "role": "required-dependency-propagation",
+      "virtual_address": "0x144e3e8f0",
+      "end_exclusive": "0x144e3e976",
+      "file_offset": "0x4e3dcf0",
+      "byte_count": 134,
+      "sha256": "5fd932f798ddfe1e625b7eb7c987d78dc4ecd1a57afad092fbdd4d35470eac76"
+    },
+    {
+      "role": "terminal-action-query",
+      "virtual_address": "0x1403d8300",
+      "end_exclusive": "0x1403d8628",
+      "file_offset": "0x3d7700",
+      "byte_count": 808,
+      "sha256": "9015b22d53aba2c4d3e8770cc7a38558bac2be42e6228b98822d21c1af366aa5",
+      "assembly": "terminal-action-query.asm",
+      "assembly_sha256": "0039a9aadfcc36e6dc3289e68fa2358741f46bd0f20fcf0e20852a8d2307b85d"
+    },
+    {
+      "role": "terminal-input-owner",
+      "virtual_address": "0x14010a880",
+      "end_exclusive": "0x14010af5f",
+      "file_offset": "0x109c80",
+      "byte_count": 1759,
+      "sha256": "15c55ef784e3f6cb02c74bab1153f38c5d2465990ab80e8eebed9c55fac26a1e",
+      "provider": "ghidra",
+      "rea_evidence_id": "ev_cca66241980935ca24a3804f9150f4daa0bb5c1b69ed9ecda96e02c733f34aaa",
+      "pseudocode": "terminal-input-owner.c",
+      "pseudocode_sha256": "aa8d459a8a021010ebd4fa45db78737f064eb614b72c3d473769ebe565e20b2d",
+      "assembly": "terminal-input-owner.asm",
+      "assembly_sha256": "675d3427614656f0714f7ffaae1dbcaf0dab2a30778118403c5fbea9376820a4"
+    },
+    {
+      "role": "optional-confirmation-registration",
+      "virtual_address": "0x14032ab00",
+      "end_exclusive": "0x14032af4e",
+      "file_offset": "0x329f00",
+      "byte_count": 1102,
+      "sha256": "7f13fa12abe3ff78df354a0a280805f1ba48512e034e9438138d94dd1b9e1239"
+    },
+    {
+      "role": "singleton-visual-query",
+      "virtual_address": "0x1403d2cf0",
+      "end_exclusive": "0x1403d2fd0",
+      "file_offset": "0x3d20f0",
+      "byte_count": 736,
+      "sha256": "d7a631380a7f8bd09d2c7233eb9bf5aedc52ce44aafa080e84056d928a049c2b",
+      "assembly": "singleton-visual-query.asm",
+      "assembly_sha256": "774f4042fd1bc93774dc7e3d32c2f5fa7244fcf0513191df8c4b07ba45b73f56"
+    },
+    {
+      "role": "card-visual-query",
+      "virtual_address": "0x1403d33d0",
+      "end_exclusive": "0x1403d369c",
+      "file_offset": "0x3d27d0",
+      "byte_count": 716,
+      "sha256": "8cd17a42457e113f8ed8060b1633af6c72aece6d656a83be9adb89bbd2c00cb2",
+      "assembly": "card-visual-query.asm",
+      "assembly_sha256": "a966e848dc92ca1affc0bedab42aff183dc64899ee509ebe9e8c93dc8212394d"
+    },
+    {
+      "role": "picker-visual-query",
+      "virtual_address": "0x1403d9d40",
+      "end_exclusive": "0x1403da07a",
+      "file_offset": "0x3d9140",
+      "byte_count": 826,
+      "sha256": "d167f60b8b0f818496b9ebe3fde18e681542a7605dea4fe006b70f9b4fc508ee",
+      "assembly": "picker-visual-query.asm",
+      "assembly_sha256": "bfc5471928aeabfe20ac6bbe795d4dfed6d0371d5d4d8eff63e4609265cd95a1"
+    },
+    {
+      "role": "singleton-visual-owner",
+      "virtual_address": "0x1401100b0",
+      "end_exclusive": "0x140110f68",
+      "file_offset": "0x10f4b0",
+      "byte_count": 3768,
+      "sha256": "fcadccec321eabaa618245fd49c314611438501f458e4d2a582396f5a1f85046",
+      "provider": "ghidra",
+      "rea_evidence_id": "ev_0075bd589f88f1e2b5534ca23ea03762e6f684545de1c8d3d044e68fe1eb9a8f",
+      "pseudocode": "singleton-visual-owner.c",
+      "pseudocode_sha256": "c1bd51800a0d769ad7864966cc9e842ef7ce6ce2369e95dc961808f31344e976"
+    },
+    {
+      "role": "card-visual-owner",
+      "virtual_address": "0x1401b7420",
+      "end_exclusive": "0x1401b851e",
+      "file_offset": "0x1b6820",
+      "byte_count": 4350,
+      "sha256": "be1b46f90733041d5b24c313ff572d08aae8b61852477d71c3b0506152e5c9e2",
+      "provider": "ghidra",
+      "rea_evidence_id": "ev_59234a9692b8990890afede90cbafc1c9881a531eb6212da5ddf3d3c1c609571",
+      "pseudocode": "card-visual-owner.c",
+      "pseudocode_sha256": "0487f455cf7c591c3820a66e1cd0bf8567f07d1424208f216c61c9729ddd12fc"
+    },
+    {
+      "role": "picker-visual-owner",
+      "virtual_address": "0x1400b5ae0",
+      "end_exclusive": "0x1400b62fe",
+      "file_offset": "0xb4ee0",
+      "byte_count": 2078,
+      "sha256": "9ab6a3e77cda76a30c9982b41e8e3c806c9dbc319e3afdce60855b2e7e5b04da"
+    },
+    {
+      "role": "singleton-state-registration",
+      "virtual_address": "0x140329580",
+      "end_exclusive": "0x1403299cb",
+      "file_offset": "0x328980",
+      "byte_count": 1099,
+      "sha256": "28ad5c4214686b2e53a7fb586bd74b1b73f60097e292913a227139587a8740f0"
+    },
+    {
+      "role": "card-state-registration",
+      "virtual_address": "0x140332160",
+      "end_exclusive": "0x1403325ab",
+      "file_offset": "0x331560",
+      "byte_count": 1099,
+      "sha256": "b01262e1746cf7c02c4c02f299b2844b87b9d96dc751a39a237052107718edb2"
+    },
+    {
+      "role": "picker-state-registration",
+      "virtual_address": "0x1403408a0",
+      "end_exclusive": "0x140340ceb",
+      "file_offset": "0x33fca0",
+      "byte_count": 1099,
+      "sha256": "eda905e37f4fc5a18768e25dd105e0f1999b61c73d2a68d2f78b5e3629c7844b"
+    },
+    {
+      "role": "engine-interaction-registration",
+      "virtual_address": "0x142555160",
+      "end_exclusive": "0x1425555b6",
+      "file_offset": "0x2554560",
+      "byte_count": 1110,
+      "sha256": "43469c4909f196fbd26a7b9581d0284061f206c20f450b5a227c6cb8835acd66"
+    },
+    {
+      "role": "engine-required-interaction-registration",
+      "virtual_address": "0x1425d79a0",
+      "end_exclusive": "0x1425d7cae",
+      "file_offset": "0x25d6da0",
+      "byte_count": 782,
+      "sha256": "981078679f4c53ae3c45762a4e9d93146d0beb65247d51900582dc74a8cc22e7"
+    },
+    {
+      "role": "reflected-interaction-registration",
+      "virtual_address": "0x1425f49f0",
+      "end_exclusive": "0x1425f4f3a",
+      "file_offset": "0x25f3df0",
+      "byte_count": 1354,
+      "sha256": "94a03808c63634a4fda001e8138e049131c7343ce7c2dfa21991684143e16e38"
+    }
+  ],
+  "calls": [
+    {
+      "site": "0x1400106c7",
+      "callee": "0x144e3e660"
+    },
+    {
+      "site": "0x1400bfb01",
+      "callee": "0x1403d9d40"
+    },
+    {
+      "site": "0x1400bfcc7",
+      "callee": "0x1400b5ae0"
+    },
+    {
+      "site": "0x14011b08b",
+      "callee": "0x1403d8300"
+    },
+    {
+      "site": "0x14011b56c",
+      "callee": "0x14010a880"
+    },
+    {
+      "site": "0x14011c2de",
+      "callee": "0x1403d2cf0"
+    },
+    {
+      "site": "0x14011c7ed",
+      "callee": "0x1401100b0"
+    },
+    {
+      "site": "0x140123e06",
+      "callee": "0x1400106a0"
+    },
+    {
+      "site": "0x140123e9e",
+      "callee": "0x144e3e8f0"
+    },
+    {
+      "site": "0x1401c124f",
+      "callee": "0x1403d33d0"
+    },
+    {
+      "site": "0x1401c17c0",
+      "callee": "0x1401b7420"
+    },
+    {
+      "site": "0x1402ef840",
+      "callee": "0x140123b80"
+    },
+    {
+      "site": "0x14031e1f3",
+      "callee": "0x1400106a0"
+    },
+    {
+      "site": "0x14031e296",
+      "callee": "0x144e3e8f0"
+    },
+    {
+      "site": "0x14036aa1e",
+      "callee": "0x1402ef760"
+    },
+    {
+      "site": "0x1403c360d",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403c41df",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403c41f5",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403c463f",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403c4655",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403c4a9f",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403c4aaa",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403c4eff",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403c4f0a",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403c8c7b",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403c9c01",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403ca6ad",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403ca9dd",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403cb55b",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403cb5a0",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403cec46",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403cf33a",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403d2d1f",
+      "callee": "0x140329580"
+    },
+    {
+      "site": "0x1403d2d2a",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403d2d35",
+      "callee": "0x1403215a0"
+    },
+    {
+      "site": "0x1403d2d40",
+      "callee": "0x14031ea30"
+    },
+    {
+      "site": "0x1403d2d4b",
+      "callee": "0x140321ba0"
+    },
+    {
+      "site": "0x1403d2d56",
+      "callee": "0x14031ce70"
+    },
+    {
+      "site": "0x1403d33fd",
+      "callee": "0x140332160"
+    },
+    {
+      "site": "0x1403d3408",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403d3413",
+      "callee": "0x14031ce70"
+    },
+    {
+      "site": "0x1403d341e",
+      "callee": "0x140321ba0"
+    },
+    {
+      "site": "0x1403d3429",
+      "callee": "0x14031ea30"
+    },
+    {
+      "site": "0x1403d3458",
+      "callee": "0x144e7aad0"
+    },
+    {
+      "site": "0x1403d42d3",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403d434e",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403d4f5d",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403d4fb4",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403d537f",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403d5395",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403d5ffb",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403d63cd",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403d66ff",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403d6720",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403d6b1f",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403d6b40",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403d6f3f",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403d6f55",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403d7b3b",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403d7b6e",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403d7f2b",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403d7f70",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403d832b",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403d8336",
+      "callee": "0x14032f0f0"
+    },
+    {
+      "site": "0x1403d835e",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403d871f",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403d8735",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403d8afd",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403d8e2f",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403d8e45",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403d920d",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403d9d6b",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403d9d76",
+      "callee": "0x1403408a0"
+    },
+    {
+      "site": "0x1403d9d81",
+      "callee": "0x14031ea30"
+    },
+    {
+      "site": "0x1403d9d8c",
+      "callee": "0x14031ce70"
+    },
+    {
+      "site": "0x1403d9db0",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403d9dbf",
+      "callee": "0x144e7aad0"
+    },
+    {
+      "site": "0x1403da16f",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403da185",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403da54f",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403da565",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403da92d",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403dac5f",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403dac75",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403db03d",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403db36f",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403db385",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403db74f",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403db765",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403dbb2d",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403dbe5f",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403dbe75",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403dc23f",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403dc255",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403dc61f",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403dc635",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403df308",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x1403e0a94",
+      "callee": "0x14031df50"
+    },
+    {
+      "site": "0x142562237",
+      "callee": "0x1425f49f0"
+    },
+    {
+      "site": "0x1425f6b75",
+      "callee": "0x1425f49f0"
+    },
+    {
+      "site": "0x14262de66",
+      "callee": "0x142555160"
+    }
+  ],
+  "byte_contracts": [
+    {
+      "role": "terminal tuple literal",
+      "address": "0x145df7faa",
+      "bytes_hex": "28626576795f6563733a3a6869657261726368793a3a4368696c644f662c202877656e696c6c615f726f6775655f6170703a3a73637265656e733a3a6875643a3a456e64416374696f6e2c20626576795f75693a3a666f6375733a3a496e746572616374696f6e2c20626576795f75693a3a75695f6e6f64653a3a4e6f64652c2028626576795f75693a3a75695f6e6f64653a3a426f72646572436f6c6f722c20626576795f75693a3a6772616469656e74733a3a4261636b67726f756e644772616469656e74292c20626576795f75693a3a75695f6e6f64653a3a426f78536861646f772929"
+    },
+    {
+      "role": "EndAction TypeId",
+      "address": "0x145dad660",
+      "bytes_hex": "736d1ad49a7f29a0efe308a1848f42cd"
+    },
+    {
+      "role": "Interaction TypeId",
+      "address": "0x145dd7cf0",
+      "bytes_hex": "fa4b97b45afe582358501e3a717a5faa"
+    },
+    {
+      "role": "singleton state size 4",
+      "address": "0x1403297f1",
+      "bytes_hex": "48c745d804000000"
+    },
+    {
+      "role": "card state size 56",
+      "address": "0x1403323d1",
+      "bytes_hex": "48c745d838000000"
+    },
+    {
+      "role": "picker Hover size 44",
+      "address": "0x140340b11",
+      "bytes_hex": "48c745d82c000000"
+    },
+    {
+      "role": "confirmation state size 32",
+      "address": "0x14032ad71",
+      "bytes_hex": "48c745d820000000"
+    },
+    {
+      "role": "confirmation minimum .35",
+      "address": "0x145da0424",
+      "bytes_hex": "3333b33e"
+    },
+    {
+      "role": "confirmation expiry 3",
+      "address": "0x145d97480",
+      "bytes_hex": "00004040"
+    }
+  ],
+  "vtables": [
+    {
+      "init": "0x1400bfa80",
+      "init_slot": "0x145dab4f0",
+      "run": "0x1400bfc60",
+      "run_slot": "0x145dab4b8"
+    },
+    {
+      "init": "0x14011b000",
+      "init_slot": "0x145daed40",
+      "run": "0x14011b390",
+      "run_slot": "0x145daed08"
+    },
+    {
+      "init": "0x14011c1c0",
+      "init_slot": "0x145daf280",
+      "run": "0x14011c590",
+      "run_slot": "0x145daf248"
+    },
+    {
+      "init": "0x1401c1140",
+      "init_slot": "0x145dd9fc8",
+      "run": "0x1401c1570",
+      "run_slot": "0x145dd9f90"
+    }
+  ],
+  "absolute_pointers": [
+    {
+      "address": "0x14031df50",
+      "file_offsets": []
+    },
+    {
+      "address": "0x14032f0f0",
+      "file_offsets": []
+    },
+    {
+      "address": "0x14019c6a0",
+      "file_offsets": []
+    }
+  ],
+  "initializers": {
+    "component_info": {
+      "start": "0x144e3e660",
+      "end": "0x144e3e748"
+    },
+    "required_components": [
+      {
+        "component": "EndAction",
+        "start": "0x140123e41",
+        "end": "0x140123e8f"
+      },
+      {
+        "component": "Interaction",
+        "start": "0x14031e233",
+        "end": "0x14031e287"
+      }
+    ]
+  },
+  "contracts": {
+    "source_owner": "crates/azeroth-survivors-re/src/gameplay/terminal_view.rs::button",
+    "bundle_type": "(bevy_ecs::hierarchy::ChildOf, (wenilla_rogue_app::screens::hud::EndAction, bevy_ui::focus::Interaction, bevy_ui::ui_node::Node, (bevy_ui::ui_node::BorderColor, bevy_ui::gradients::BackgroundGradient), bevy_ui::ui_node::BoxShadow))",
+    "components": [
+      "EndAction",
+      "Interaction",
+      "Node",
+      "BorderColor",
+      "BackgroundGradient",
+      "BoxShadow"
+    ],
+    "bounded_exclusions": [
+      "picker::Hover",
+      "bevy_ui::widget::button::Button"
+    ],
+    "component_info_bytes": 304,
+    "descriptor_bytes": 88,
+    "component_id_offset": 256,
+    "initial_hook_offsets": [
+      264,
+      272,
+      280,
+      288,
+      296
+    ],
+    "initial_hooks": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "initial_EndAction_required_components": 0,
+    "initial_Interaction_required_components": 0,
+    "terminal_query": {
+      "address": "0x1403d8300",
+      "input_owner": "0x14010a880",
+      "required": [
+        "Interaction",
+        "EndAction"
+      ],
+      "optional": [
+        "32-byte confirmation state; exact native type name not established by this scope"
+      ],
+      "changed": "Interaction",
+      "visual_component_writers": []
+    },
+    "specialized_queries": [
+      {
+        "query": "0x1403d2cf0",
+        "extra_state_bytes": 4,
+        "state_getter": "0x140329580",
+        "visual_owner": "0x1401100b0"
+      },
+      {
+        "query": "0x1403d33d0",
+        "extra_state_bytes": 56,
+        "state_getter": "0x140332160",
+        "visual_owner": "0x1401b7420"
+      },
+      {
+        "query": "0x1403d9d40",
+        "extra_state_bytes": 44,
+        "state_getter": "0x1403408a0",
+        "visual_owner": "0x1400b5ae0"
+      }
+    ]
+  },
+  "discovery": {
+    "method": "Executable-section CALL-rel32 candidates admitted only at Capstone instruction boundaries reached from PE unwind starts; exact TypeId copies reviewed through decoded RIP-relative LEA/MOV loads. Not a full native body/reference census.",
+    "direct_call_sites_by_getter": {
+      "0x14019c6a0": 72,
+      "0x14031df50": 68,
+      "0x14032f0f0": 1,
+      "0x142555160": 1,
+      "0x1425f49f0": 2
+    },
+    "custom_Interaction_query_owners": [
+      "0x1403c35e0",
+      "0x1403c41b0",
+      "0x1403c4610",
+      "0x1403c4a70",
+      "0x1403c4ed0",
+      "0x1403c8c50",
+      "0x1403c9bc0",
+      "0x1403ca680",
+      "0x1403ca9b0",
+      "0x1403cb530",
+      "0x1403cec10",
+      "0x1403cf300",
+      "0x1403d2cf0",
+      "0x1403d33d0",
+      "0x1403d42a0",
+      "0x1403d4f30",
+      "0x1403d5350",
+      "0x1403d5fd0",
+      "0x1403d63a0",
+      "0x1403d66d0",
+      "0x1403d6af0",
+      "0x1403d6f10",
+      "0x1403d7b10",
+      "0x1403d7f00",
+      "0x1403d8300",
+      "0x1403d86f0",
+      "0x1403d8ad0",
+      "0x1403d8e00",
+      "0x1403d91e0",
+      "0x1403d9d40",
+      "0x1403da140",
+      "0x1403da520",
+      "0x1403da900",
+      "0x1403dac30",
+      "0x1403db010",
+      "0x1403db340",
+      "0x1403db720",
+      "0x1403dbb00",
+      "0x1403dbe30",
+      "0x1403dc210",
+      "0x1403dc5f0",
+      "0x1403df2d0",
+      "0x1403e0a60"
+    ],
+    "direct_custom_Interaction_BorderColor_query_count": 3,
+    "typeid_reference_method": "LEA and SSE MOV RIP-relative candidates confirmed by original function-entry instruction decoding; immediate, encoded/computed and other instruction forms remain outside this census.",
+    "current_registration_aliases": [
+      "0x14019c6a0",
+      "0x14031df50",
+      "0x142555160",
+      "0x1425d79a0",
+      "0x1425f49f0"
+    ]
+  },
+  "checks": {
+    "script": "scripts/check-terminal-visuals-0.107.0.py",
+    "native_initializer_case_count": 24,
+    "optional_confirmation_case_count": 21
+  },
+  "limitations": [
+    "The empty hooks/requirements result applies to new component metadata and the selected constructor. It does not establish later registry contents after unclassified dynamic mutation.",
+    "Direct-call and selected RIP-relative TypeId discovery exclude unresolved encoded/computed/indirect references. Complete global system scheduling and terminal painters remain open under #9/#41.",
+    "The three custom visual queries require additional 4/56/44-byte state absent from the terminal tuple. This does not establish that every possible terminal visual writer is absent.",
+    "Native raw-function Ghidra imports omit external data/callee bodies and use generic compiler types. Original PE bytes/calls/vtables and bounded initializer execution corroborate the stated contracts.",
+    "The optional 32-byte component acceptance state is recovered at offsets +0x18/+0x1c; its exact original type name and every producer are not established by this scope.",
+    "No compilation, compiling tests, application/game launch, original/rebuilt interaction or rendering/DPI/device/visual parity comparison."
+  ],
+  "optional_confirmation": {
+    "start": "0x14010ae77",
+    "stop": "0x14010af39",
+    "minimum_float_hex": "3333b33e",
+    "maximum_float_hex": "00004040",
+    "instructions": [
+      {
+        "address": "0x14010ae77",
+        "length": 3,
+        "instruction": "test rax, rax"
+      },
+      {
+        "address": "0x14010ae7a",
+        "length": 2,
+        "instruction": "je 0x14010aeb5"
+      },
+      {
+        "address": "0x14010ae7c",
+        "length": 3,
+        "instruction": "mov dword ptr [r8], r14d"
+      },
+      {
+        "address": "0x14010ae7f",
+        "length": 7,
+        "instruction": "mov rdx, qword ptr [rbp + 0x90]"
+      },
+      {
+        "address": "0x14010ae86",
+        "length": 8,
+        "instruction": "movss xmm0, dword ptr [rdx + 0x8c]"
+      },
+      {
+        "address": "0x14010ae8e",
+        "length": 7,
+        "instruction": "movzx edx, byte ptr [rbp + 0x117]"
+      },
+      {
+        "address": "0x14010ae95",
+        "length": 4,
+        "instruction": "cmp dword ptr [rax + 0x18], 1"
+      },
+      {
+        "address": "0x14010ae99",
+        "length": 6,
+        "instruction": "jne 0x14010af2c"
+      },
+      {
+        "address": "0x14010ae9f",
+        "length": 3,
+        "instruction": "movaps xmm1, xmm0"
+      },
+      {
+        "address": "0x14010aea2",
+        "length": 5,
+        "instruction": "subss xmm1, dword ptr [rax + 0x1c]"
+      },
+      {
+        "address": "0x14010aea7",
+        "length": 3,
+        "instruction": "ucomiss xmm6, xmm1"
+      },
+      {
+        "address": "0x14010aeaa",
+        "length": 6,
+        "instruction": "ja 0x14010a999"
+      },
+      {
+        "address": "0x14010aeb0",
+        "length": 3,
+        "instruction": "ucomiss xmm7, xmm1"
+      },
+      {
+        "address": "0x14010aeb3",
+        "length": 2,
+        "instruction": "jbe 0x14010af2c"
+      },
+      {
+        "address": "0x14010af2c",
+        "length": 7,
+        "instruction": "mov dword ptr [rax + 0x18], 1"
+      },
+      {
+        "address": "0x14010af33",
+        "length": 5,
+        "instruction": "movss dword ptr [rax + 0x1c], xmm0"
+      }
+    ],
+    "exits": {
+      "0x14010aeb5": "dispatch",
+      "0x14010a999": "early",
+      "0x14010af38": "arm"
+    },
+    "contract": "No optional state dispatches immediately. Otherwise tag != 1 arms at now; tag 1 accepts float32 elapsed >= .35 and < 3, preserves the first deadline for early repeats, and rearms on expiry/unordered elapsed. Terminal tuples omit this optional component."
+  }
+}

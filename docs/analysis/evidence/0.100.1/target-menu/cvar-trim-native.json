@@ -1,0 +1,458 @@
+{
+  "target_sha256": "17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b",
+  "entry": "0x1400a4890",
+  "end": "0x1400a4b09",
+  "method": "Complete original helper instructions; return address/input UTF8/stack explicitly supplied, no imported calls or arithmetic shims.",
+  "cases": [
+    {
+      "input": "",
+      "trimmed": "",
+      "store_or_spend": false,
+      "hud": true
+    },
+    {
+      "input": "1",
+      "trimmed": "1",
+      "store_or_spend": true,
+      "hud": true
+    },
+    {
+      "input": "0",
+      "trimmed": "0",
+      "store_or_spend": false,
+      "hud": false
+    },
+    {
+      "input": " 1 ",
+      "trimmed": "1",
+      "store_or_spend": true,
+      "hud": true
+    },
+    {
+      "input": "\t\r\n1\n\r\t",
+      "trimmed": "1",
+      "store_or_spend": true,
+      "hud": true
+    },
+    {
+      "input": " 0.0 ",
+      "trimmed": "0.0",
+      "store_or_spend": false,
+      "hud": true
+    },
+    {
+      "input": "00",
+      "trimmed": "00",
+      "store_or_spend": false,
+      "hud": true
+    },
+    {
+      "input": "01",
+      "trimmed": "01",
+      "store_or_spend": false,
+      "hud": true
+    },
+    {
+      "input": "2",
+      "trimmed": "2",
+      "store_or_spend": false,
+      "hud": true
+    },
+    {
+      "input": "false",
+      "trimmed": "false",
+      "store_or_spend": false,
+      "hud": true
+    },
+    {
+      "input": "1 0",
+      "trimmed": "1 0",
+      "store_or_spend": false,
+      "hud": true
+    },
+    {
+      "input": "\t1\t",
+      "trimmed": "1",
+      "store_or_spend": true,
+      "hud": true
+    },
+    {
+      "input": "\t0\t",
+      "trimmed": "0",
+      "store_or_spend": false,
+      "hud": false
+    },
+    {
+      "input": "\n1\n",
+      "trimmed": "1",
+      "store_or_spend": true,
+      "hud": true
+    },
+    {
+      "input": "\n0\n",
+      "trimmed": "0",
+      "store_or_spend": false,
+      "hud": false
+    },
+    {
+      "input": "\u000b1\u000b",
+      "trimmed": "1",
+      "store_or_spend": true,
+      "hud": true
+    },
+    {
+      "input": "\u000b0\u000b",
+      "trimmed": "0",
+      "store_or_spend": false,
+      "hud": false
+    },
+    {
+      "input": "\f1\f",
+      "trimmed": "1",
+      "store_or_spend": true,
+      "hud": true
+    },
+    {
+      "input": "\f0\f",
+      "trimmed": "0",
+      "store_or_spend": false,
+      "hud": false
+    },
+    {
+      "input": "\r1\r",
+      "trimmed": "1",
+      "store_or_spend": true,
+      "hud": true
+    },
+    {
+      "input": "\r0\r",
+      "trimmed": "0",
+      "store_or_spend": false,
+      "hud": false
+    },
+    {
+      "input": " 1 ",
+      "trimmed": "1",
+      "store_or_spend": true,
+      "hud": true
+    },
+    {
+      "input": " 0 ",
+      "trimmed": "0",
+      "store_or_spend": false,
+      "hud": false
+    },
+    {
+      "input": "\u00851\u0085",
+      "trimmed": "1",
+      "store_or_spend": true,
+      "hud": true
+    },
+    {
+      "input": "\u00850\u0085",
+      "trimmed": "0",
+      "store_or_spend": false,
+      "hud": false
+    },
+    {
+      "input": "\u00a01\u00a0",
+      "trimmed": "1",
+      "store_or_spend": true,
+      "hud": true
+    },
+    {
+      "input": "\u00a00\u00a0",
+      "trimmed": "0",
+      "store_or_spend": false,
+      "hud": false
+    },
+    {
+      "input": "\u16801\u1680",
+      "trimmed": "1",
+      "store_or_spend": true,
+      "hud": true
+    },
+    {
+      "input": "\u16800\u1680",
+      "trimmed": "0",
+      "store_or_spend": false,
+      "hud": false
+    },
+    {
+      "input": "\u20001\u2000",
+      "trimmed": "1",
+      "store_or_spend": true,
+      "hud": true
+    },
+    {
+      "input": "\u20000\u2000",
+      "trimmed": "0",
+      "store_or_spend": false,
+      "hud": false
+    },
+    {
+      "input": "\u20011\u2001",
+      "trimmed": "1",
+      "store_or_spend": true,
+      "hud": true
+    },
+    {
+      "input": "\u20010\u2001",
+      "trimmed": "0",
+      "store_or_spend": false,
+      "hud": false
+    },
+    {
+      "input": "\u20021\u2002",
+      "trimmed": "1",
+      "store_or_spend": true,
+      "hud": true
+    },
+    {
+      "input": "\u20020\u2002",
+      "trimmed": "0",
+      "store_or_spend": false,
+      "hud": false
+    },
+    {
+      "input": "\u20031\u2003",
+      "trimmed": "1",
+      "store_or_spend": true,
+      "hud": true
+    },
+    {
+      "input": "\u20030\u2003",
+      "trimmed": "0",
+      "store_or_spend": false,
+      "hud": false
+    },
+    {
+      "input": "\u20041\u2004",
+      "trimmed": "1",
+      "store_or_spend": true,
+      "hud": true
+    },
+    {
+      "input": "\u20040\u2004",
+      "trimmed": "0",
+      "store_or_spend": false,
+      "hud": false
+    },
+    {
+      "input": "\u20051\u2005",
+      "trimmed": "1",
+      "store_or_spend": true,
+      "hud": true
+    },
+    {
+      "input": "\u20050\u2005",
+      "trimmed": "0",
+      "store_or_spend": false,
+      "hud": false
+    },
+    {
+      "input": "\u20061\u2006",
+      "trimmed": "1",
+      "store_or_spend": true,
+      "hud": true
+    },
+    {
+      "input": "\u20060\u2006",
+      "trimmed": "0",
+      "store_or_spend": false,
+      "hud": false
+    },
+    {
+      "input": "\u20071\u2007",
+      "trimmed": "1",
+      "store_or_spend": true,
+      "hud": true
+    },
+    {
+      "input": "\u20070\u2007",
+      "trimmed": "0",
+      "store_or_spend": false,
+      "hud": false
+    },
+    {
+      "input": "\u20081\u2008",
+      "trimmed": "1",
+      "store_or_spend": true,
+      "hud": true
+    },
+    {
+      "input": "\u20080\u2008",
+      "trimmed": "0",
+      "store_or_spend": false,
+      "hud": false
+    },
+    {
+      "input": "\u20091\u2009",
+      "trimmed": "1",
+      "store_or_spend": true,
+      "hud": true
+    },
+    {
+      "input": "\u20090\u2009",
+      "trimmed": "0",
+      "store_or_spend": false,
+      "hud": false
+    },
+    {
+      "input": "\u200a1\u200a",
+      "trimmed": "1",
+      "store_or_spend": true,
+      "hud": true
+    },
+    {
+      "input": "\u200a0\u200a",
+      "trimmed": "0",
+      "store_or_spend": false,
+      "hud": false
+    },
+    {
+      "input": "\u20281\u2028",
+      "trimmed": "1",
+      "store_or_spend": true,
+      "hud": true
+    },
+    {
+      "input": "\u20280\u2028",
+      "trimmed": "0",
+      "store_or_spend": false,
+      "hud": false
+    },
+    {
+      "input": "\u20291\u2029",
+      "trimmed": "1",
+      "store_or_spend": true,
+      "hud": true
+    },
+    {
+      "input": "\u20290\u2029",
+      "trimmed": "0",
+      "store_or_spend": false,
+      "hud": false
+    },
+    {
+      "input": "\u202f1\u202f",
+      "trimmed": "1",
+      "store_or_spend": true,
+      "hud": true
+    },
+    {
+      "input": "\u202f0\u202f",
+      "trimmed": "0",
+      "store_or_spend": false,
+      "hud": false
+    },
+    {
+      "input": "\u205f1\u205f",
+      "trimmed": "1",
+      "store_or_spend": true,
+      "hud": true
+    },
+    {
+      "input": "\u205f0\u205f",
+      "trimmed": "0",
+      "store_or_spend": false,
+      "hud": false
+    },
+    {
+      "input": "\u30001\u3000",
+      "trimmed": "1",
+      "store_or_spend": true,
+      "hud": true
+    },
+    {
+      "input": "\u30000\u3000",
+      "trimmed": "0",
+      "store_or_spend": false,
+      "hud": false
+    },
+    {
+      "input": "\u180e1\u180e",
+      "trimmed": "\u180e1\u180e",
+      "store_or_spend": false,
+      "hud": true
+    },
+    {
+      "input": "\u180e0\u180e",
+      "trimmed": "\u180e0\u180e",
+      "store_or_spend": false,
+      "hud": true
+    },
+    {
+      "input": "\u200b1\u200b",
+      "trimmed": "\u200b1\u200b",
+      "store_or_spend": false,
+      "hud": true
+    },
+    {
+      "input": "\u200b0\u200b",
+      "trimmed": "\u200b0\u200b",
+      "store_or_spend": false,
+      "hud": true
+    },
+    {
+      "input": "\ufeff1\ufeff",
+      "trimmed": "\ufeff1\ufeff",
+      "store_or_spend": false,
+      "hud": true
+    },
+    {
+      "input": "\ufeff0\ufeff",
+      "trimmed": "\ufeff0\ufeff",
+      "store_or_spend": false,
+      "hud": true
+    },
+    {
+      "input": "\u001c1\u001c",
+      "trimmed": "\u001c1\u001c",
+      "store_or_spend": false,
+      "hud": true
+    },
+    {
+      "input": "\u001c0\u001c",
+      "trimmed": "\u001c0\u001c",
+      "store_or_spend": false,
+      "hud": true
+    },
+    {
+      "input": "\u001d1\u001d",
+      "trimmed": "\u001d1\u001d",
+      "store_or_spend": false,
+      "hud": true
+    },
+    {
+      "input": "\u001d0\u001d",
+      "trimmed": "\u001d0\u001d",
+      "store_or_spend": false,
+      "hud": true
+    },
+    {
+      "input": "\u001e1\u001e",
+      "trimmed": "\u001e1\u001e",
+      "store_or_spend": false,
+      "hud": true
+    },
+    {
+      "input": "\u001e0\u001e",
+      "trimmed": "\u001e0\u001e",
+      "store_or_spend": false,
+      "hud": true
+    },
+    {
+      "input": "\u001f1\u001f",
+      "trimmed": "\u001f1\u001f",
+      "store_or_spend": false,
+      "hud": true
+    },
+    {
+      "input": "\u001f0\u001f",
+      "trimmed": "\u001f0\u001f",
+      "store_or_spend": false,
+      "hud": true
+    }
+  ]
+}

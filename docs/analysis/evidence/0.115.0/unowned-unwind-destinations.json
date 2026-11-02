@@ -1,0 +1,1120 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.115.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+    "size_bytes": 142111232
+  },
+  "generator": {
+    "path": "scripts/check-unowned-unwind-destinations-0.115.0.py",
+    "sha256": "b4d0bd78282f79a8ed137d0644f574083bd1d4119362158c201225243f5a0ed4"
+  },
+  "gap_ids": [
+    41
+  ],
+  "lead_ids": [
+    "Q41-M01",
+    "Q41-A01",
+    "Q41-A02"
+  ],
+  "selected_field_roles_classified": true,
+  "global_native_semantics_complete": false,
+  "dynamic_dispatch_verified": false,
+  "source_implementation_added": false,
+  "parity_verified": false,
+  "selector": "Every saved Ghidra reference whose destination is executable and has no actual saved native body.",
+  "inputs": {
+    "bodies.tsv.gz": {
+      "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/full-image-durable/bodies.tsv.gz",
+      "sha256": "98b29cee6dab4cba31326645be1e6b7b49abe20fd1177b2614e875ba4cb4ea49"
+    },
+    "references.tsv.gz": {
+      "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/full-image-durable/references.tsv.gz",
+      "sha256": "6e042ff6654781bed0264d207b30f143125404517c709057aea8d3cd578c712f"
+    }
+  },
+  "reader_dependencies": [
+    {
+      "path": "scripts/recover-native-unwind-handlers.py",
+      "sha256": "b4b7084a113a5314e584e73c6d487cc43da0b5c031ed23d7a4f44e12f441f907"
+    },
+    {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+    },
+    {
+      "path": "scripts/summarize-native-image.py",
+      "sha256": "dd5748de3b992dfd49bf0eca53dac1f8fabfb27102fda0c4815dc331c7f28e14"
+    }
+  ],
+  "encoding": "UNWIND_INFO aligned exception-handler field: little-endian32-bit image-relative RVA; no inferred function pointer/AS gameplay dispatch.",
+  "field_projection": [
+    "source",
+    "destination",
+    "field_role",
+    "unwind_flags",
+    "UNWIND_INFO_address"
+  ],
+  "field_classification_sha256": "6b11f738037587ef4110ee263f3c7d4c08e8409061e2e4b996d68200cbb7a99a",
+  "counts": {
+    "selected_reference_records": 73393,
+    "distinct_destinations": 14,
+    "handler_rva_fields": 73393,
+    "import_thunk_fields": 73358,
+    "native_callback_fields": 35,
+    "native_callbacks": 12,
+    "import_thunks": 2,
+    "callback_reachable_instructions_summed": 847,
+    "unique_callback_instructions": 695,
+    "unique_callback_bytes": 2626,
+    "all_PE_handler_fields": 73410,
+    "already_owned_handler_fields_not_in_selector": 17
+  },
+  "unwind_metadata_counts": {
+    "version-1": 274542,
+    "flags-0": 201116,
+    "flags-3": 73373,
+    "flags-1": 37,
+    "flags-4": 16
+  },
+  "chain_records_followed": 16,
+  "import_thunks": [
+    {
+      "entry": "0x145d145f5",
+      "role": "UNWIND_INFO handler-RVA to PE import JMP thunk",
+      "source_reference_count": 73356,
+      "instruction_bytes": "ff25453c1a00",
+      "instruction_sha256": "7af1d50e46bad000242e15b87863edf1f00b09501916088ba1760b85e0378771",
+      "iat_slot": "0x145eb8240",
+      "library": "VCRUNTIME140.dll",
+      "symbol": "__CxxFrameHandler3",
+      "unwind_flag_counts": {
+        "3": 73356
+      }
+    },
+    {
+      "entry": "0x145d14619",
+      "role": "UNWIND_INFO handler-RVA to PE import JMP thunk",
+      "source_reference_count": 2,
+      "instruction_bytes": "ff25513c1a00",
+      "instruction_sha256": "00ffda68ab5eff1457abfd2d91500c43e4cf8d2e309212461ddc3c46bd73c7fd",
+      "iat_slot": "0x145eb8270",
+      "library": "VCRUNTIME140.dll",
+      "symbol": "__C_specific_handler",
+      "unwind_flag_counts": {
+        "1": 2
+      }
+    }
+  ],
+  "native_callbacks": [
+    {
+      "entry": "0x145b4a160",
+      "role": "native_UNW_FLAG_EHANDLER_callback",
+      "reachable_instructions": 69,
+      "reachable_bytes": 271,
+      "flow_commitment": "c44dac9c5528d690a642470272ca8c02896afa9d3154d5837b323541b1f6802f",
+      "call_interfaces": [
+        {
+          "site": "0x145b4a252",
+          "iat_slot": "0x145eb80d8"
+        }
+      ],
+      "return_sites": [
+        "0x145b4a26e"
+      ],
+      "code_ranges": [
+        {
+          "start": "0x145b4a160",
+          "end_exclusive": "0x145b4a26f",
+          "byte_count": 271,
+          "sha256": "ba1f131d85421d02a5b099d8067aa385f9d9625c465e5d655561b4ac237b7042"
+        }
+      ],
+      "scope": "Supporting Windows exception/context interface; complete enclosing product/library semantics are not assigned.",
+      "source_reference_count": 1,
+      "handler_metadata": [
+        {
+          "handler_rva_field": "0x148198f34",
+          "metadata": {
+            "va": "0x148198f30",
+            "file_offset": "0x8197b30",
+            "byte_count": 8,
+            "sha256": "625e631f0a65ddfe1aaa649308d7fc46702cece4b21d7e521e99644e7d6a6c0d"
+          },
+          "field_bytes": "60a1b405",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b486cd",
+            "0x145b48a89"
+          ],
+          "protected_entry_body_owner": "0x145b486cd"
+        }
+      ]
+    },
+    {
+      "entry": "0x145b4a2e0",
+      "role": "native_UNW_FLAG_EHANDLER_callback",
+      "reachable_instructions": 64,
+      "reachable_bytes": 227,
+      "flow_commitment": "77cb997dc9b7ab9f0654346836a843ec5cbcabf6f6e758c9b8ca0fd85825d8d5",
+      "call_interfaces": [
+        {
+          "site": "0x145b4a252",
+          "iat_slot": "0x145eb80d8"
+        }
+      ],
+      "return_sites": [
+        "0x145b4a26e"
+      ],
+      "code_ranges": [
+        {
+          "start": "0x145b4a1f4",
+          "end_exclusive": "0x145b4a26f",
+          "byte_count": 123,
+          "sha256": "8ed63d5e6ca2abb19ec132fc54c3ec897b60d331ca416f47e1d51414f51f0a39"
+        },
+        {
+          "start": "0x145b4a2e0",
+          "end_exclusive": "0x145b4a348",
+          "byte_count": 104,
+          "sha256": "71709d42512f7db37c923fec6f4e9098df51bf647f0b27baa4b53a013fce1513"
+        }
+      ],
+      "scope": "Supporting Windows exception/context interface; complete enclosing product/library semantics are not assigned.",
+      "source_reference_count": 2,
+      "handler_metadata": [
+        {
+          "handler_rva_field": "0x148198f3c",
+          "metadata": {
+            "va": "0x148198f38",
+            "file_offset": "0x8197b38",
+            "byte_count": 8,
+            "sha256": "537ff7876bb85d5e034a6f50244482d30866c92ce97fbda4a970a15bd6ba336e"
+          },
+          "field_bytes": "e0a2b405",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b48aad",
+            "0x145b49560"
+          ],
+          "protected_entry_body_owner": "0x145b48aad"
+        },
+        {
+          "handler_rva_field": "0x148198f4c",
+          "metadata": {
+            "va": "0x148198f48",
+            "file_offset": "0x8197b48",
+            "byte_count": 8,
+            "sha256": "537ff7876bb85d5e034a6f50244482d30866c92ce97fbda4a970a15bd6ba336e"
+          },
+          "field_bytes": "e0a2b405",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b4956d",
+            "0x145b4a159"
+          ],
+          "protected_entry_body_owner": "0x145b4956d"
+        }
+      ]
+    },
+    {
+      "entry": "0x145b4ac70",
+      "role": "native_UNW_FLAG_EHANDLER_callback",
+      "reachable_instructions": 64,
+      "reachable_bytes": 226,
+      "flow_commitment": "fb0e0b15a0cd2331c8dd12c5e29af39c24759976af910d6db2a2487ef49a8393",
+      "call_interfaces": [
+        {
+          "site": "0x145b4ad35",
+          "iat_slot": "0x145eb80d8"
+        }
+      ],
+      "return_sites": [
+        "0x145b4ad51"
+      ],
+      "code_ranges": [
+        {
+          "start": "0x145b4ac70",
+          "end_exclusive": "0x145b4ad52",
+          "byte_count": 226,
+          "sha256": "cc5b9d968a5c68e84877f07806643a5fcf21a4dfc4c362efd82f699ed536baab"
+        }
+      ],
+      "scope": "Supporting Windows exception/context interface; complete enclosing product/library semantics are not assigned.",
+      "source_reference_count": 2,
+      "handler_metadata": [
+        {
+          "handler_rva_field": "0x148198fa4",
+          "metadata": {
+            "va": "0x148198fa0",
+            "file_offset": "0x8197ba0",
+            "byte_count": 8,
+            "sha256": "e52f7a69af4169703a1ffa4e02ed932903ba28aeadca50e43cfec0a6e96a0524"
+          },
+          "field_bytes": "70acb405",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b4a9cd",
+            "0x145b4aa97"
+          ],
+          "protected_entry_body_owner": "0x145b4a9cd"
+        },
+        {
+          "handler_rva_field": "0x148198fb4",
+          "metadata": {
+            "va": "0x148198fb0",
+            "file_offset": "0x8197bb0",
+            "byte_count": 8,
+            "sha256": "e52f7a69af4169703a1ffa4e02ed932903ba28aeadca50e43cfec0a6e96a0524"
+          },
+          "field_bytes": "70acb405",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b4aaad",
+            "0x145b4ac2c"
+          ],
+          "protected_entry_body_owner": "0x145b4aaad"
+        }
+      ]
+    },
+    {
+      "entry": "0x145b58270",
+      "role": "native_UNW_FLAG_EHANDLER_callback",
+      "reachable_instructions": 66,
+      "reachable_bytes": 240,
+      "flow_commitment": "fb963b1dc84a38712a2dbd2ecaa6e57f6c8bc74f80bd5fa810a726909c79f621",
+      "call_interfaces": [
+        {
+          "site": "0x145b58343",
+          "iat_slot": "0x145eb80d8"
+        }
+      ],
+      "return_sites": [
+        "0x145b5835f"
+      ],
+      "code_ranges": [
+        {
+          "start": "0x145b58270",
+          "end_exclusive": "0x145b58360",
+          "byte_count": 240,
+          "sha256": "14bbd23bc64ccb41599b23191728f6fe87616b753f0356bec0c943ac2d0fbace"
+        }
+      ],
+      "scope": "Supporting Windows exception/context interface; complete enclosing product/library semantics are not assigned.",
+      "source_reference_count": 1,
+      "handler_metadata": [
+        {
+          "handler_rva_field": "0x1481992f4",
+          "metadata": {
+            "va": "0x1481992f0",
+            "file_offset": "0x8197ef0",
+            "byte_count": 8,
+            "sha256": "a52f9bedf91341901a667a05467368e14bbcf70e0c8f2f0b6053d657c51b4102"
+          },
+          "field_bytes": "7082b505",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b575ed",
+            "0x145b57e4a"
+          ],
+          "protected_entry_body_owner": "0x145b575ed"
+        }
+      ]
+    },
+    {
+      "entry": "0x145b612c0",
+      "role": "native_UNW_FLAG_EHANDLER_callback",
+      "reachable_instructions": 81,
+      "reachable_bytes": 319,
+      "flow_commitment": "bd232ed9293f8cb38db0b6684bde3f789c8c84dc3817898c15a1252049f3b97d",
+      "call_interfaces": [
+        {
+          "site": "0x145b613e2",
+          "iat_slot": "0x145eb80d8"
+        }
+      ],
+      "return_sites": [
+        "0x145b613fe"
+      ],
+      "code_ranges": [
+        {
+          "start": "0x145b612c0",
+          "end_exclusive": "0x145b613ff",
+          "byte_count": 319,
+          "sha256": "bd43e77ffa23ac15f9858a5a08fabfa747463c851b734b905a7a499645b06794"
+        }
+      ],
+      "scope": "Supporting Windows exception/context interface; complete enclosing product/library semantics are not assigned.",
+      "source_reference_count": 4,
+      "handler_metadata": [
+        {
+          "handler_rva_field": "0x148199aec",
+          "metadata": {
+            "va": "0x148199ae8",
+            "file_offset": "0x81986e8",
+            "byte_count": 8,
+            "sha256": "62dca30a514d671973a17ee4347915f0edcbb0f9b565ba313702e7d76b27a6be"
+          },
+          "field_bytes": "c012b605",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b5e70d",
+            "0x145b5e819"
+          ],
+          "protected_entry_body_owner": "0x145b5e70d"
+        },
+        {
+          "handler_rva_field": "0x148199b04",
+          "metadata": {
+            "va": "0x148199b00",
+            "file_offset": "0x8198700",
+            "byte_count": 8,
+            "sha256": "62dca30a514d671973a17ee4347915f0edcbb0f9b565ba313702e7d76b27a6be"
+          },
+          "field_bytes": "c012b605",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b5f00d",
+            "0x145b5f17e"
+          ],
+          "protected_entry_body_owner": "0x145b5f00d"
+        },
+        {
+          "handler_rva_field": "0x148199b1c",
+          "metadata": {
+            "va": "0x148199b18",
+            "file_offset": "0x8198718",
+            "byte_count": 8,
+            "sha256": "62dca30a514d671973a17ee4347915f0edcbb0f9b565ba313702e7d76b27a6be"
+          },
+          "field_bytes": "c012b605",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b5fb4d",
+            "0x145b5fc47"
+          ],
+          "protected_entry_body_owner": "0x145b5fb4d"
+        },
+        {
+          "handler_rva_field": "0x148199b34",
+          "metadata": {
+            "va": "0x148199b30",
+            "file_offset": "0x8198730",
+            "byte_count": 8,
+            "sha256": "62dca30a514d671973a17ee4347915f0edcbb0f9b565ba313702e7d76b27a6be"
+          },
+          "field_bytes": "c012b605",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b6044d",
+            "0x145b605c0"
+          ],
+          "protected_entry_body_owner": "0x145b6044d"
+        }
+      ]
+    },
+    {
+      "entry": "0x145b624d0",
+      "role": "native_UNW_FLAG_EHANDLER_callback",
+      "reachable_instructions": 73,
+      "reachable_bytes": 282,
+      "flow_commitment": "996f0c2548930bb2f73be688199068a45c6a8b9b5512fd19babb52cd97ebd356",
+      "call_interfaces": [
+        {
+          "site": "0x145b62631",
+          "iat_slot": "0x145eb80d8"
+        }
+      ],
+      "return_sites": [
+        "0x145b6264d"
+      ],
+      "code_ranges": [
+        {
+          "start": "0x145b624d0",
+          "end_exclusive": "0x145b6252d",
+          "byte_count": 93,
+          "sha256": "e356e0edbf4dedcf850ac592b3b1ce257776a54423f0d694280ea836b8985aca"
+        },
+        {
+          "start": "0x145b62591",
+          "end_exclusive": "0x145b6264e",
+          "byte_count": 189,
+          "sha256": "aa12e49c640a39d9bb3e4adc90ad1e5289fcca2a9b8d03eb99ab5b4e5ec447eb"
+        }
+      ],
+      "scope": "Supporting Windows exception/context interface; complete enclosing product/library semantics are not assigned.",
+      "source_reference_count": 2,
+      "handler_metadata": [
+        {
+          "handler_rva_field": "0x148199cd4",
+          "metadata": {
+            "va": "0x148199cd0",
+            "file_offset": "0x81988d0",
+            "byte_count": 8,
+            "sha256": "6f6f2281f759e88c331af8924d4fa1b0a918fc9898eb961cb19cde8bf044d601"
+          },
+          "field_bytes": "d024b605",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b6140d",
+            "0x145b616c5"
+          ],
+          "protected_entry_body_owner": "0x145b6140d"
+        },
+        {
+          "handler_rva_field": "0x148199ce4",
+          "metadata": {
+            "va": "0x148199ce0",
+            "file_offset": "0x81988e0",
+            "byte_count": 8,
+            "sha256": "6f6f2281f759e88c331af8924d4fa1b0a918fc9898eb961cb19cde8bf044d601"
+          },
+          "field_bytes": "d024b605",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b616dd",
+            "0x145b61c61"
+          ],
+          "protected_entry_body_owner": "0x145b616dd"
+        }
+      ]
+    },
+    {
+      "entry": "0x145b62530",
+      "role": "native_UNW_FLAG_EHANDLER_callback",
+      "reachable_instructions": 75,
+      "reachable_bytes": 286,
+      "flow_commitment": "5d83c47a2b151616ee6159d936a993489e6b30f1681ca7d99b04ec28073eaa36",
+      "call_interfaces": [
+        {
+          "site": "0x145b62631",
+          "iat_slot": "0x145eb80d8"
+        }
+      ],
+      "return_sites": [
+        "0x145b6264d"
+      ],
+      "code_ranges": [
+        {
+          "start": "0x145b62530",
+          "end_exclusive": "0x145b6264e",
+          "byte_count": 286,
+          "sha256": "e0cfca90a23f984cb39b1f2201add744faa24c7bd2fd161f81eee63511cd28b4"
+        }
+      ],
+      "scope": "Supporting Windows exception/context interface; complete enclosing product/library semantics are not assigned.",
+      "source_reference_count": 2,
+      "handler_metadata": [
+        {
+          "handler_rva_field": "0x148199cf4",
+          "metadata": {
+            "va": "0x148199cf0",
+            "file_offset": "0x81988f0",
+            "byte_count": 8,
+            "sha256": "3eea6f7c9a59e970857496ee1e068385a373fba4ffa563f9090a53785a1b0ed3"
+          },
+          "field_bytes": "3025b605",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b61c8d",
+            "0x145b61eef"
+          ],
+          "protected_entry_body_owner": "0x145b61c8d"
+        },
+        {
+          "handler_rva_field": "0x148199d0c",
+          "metadata": {
+            "va": "0x148199d08",
+            "file_offset": "0x8198908",
+            "byte_count": 8,
+            "sha256": "3eea6f7c9a59e970857496ee1e068385a373fba4ffa563f9090a53785a1b0ed3"
+          },
+          "field_bytes": "3025b605",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b61f0d",
+            "0x145b62486"
+          ],
+          "protected_entry_body_owner": "0x145b61f0d"
+        }
+      ]
+    },
+    {
+      "entry": "0x145b65a90",
+      "role": "native_UNW_FLAG_EHANDLER_callback",
+      "reachable_instructions": 80,
+      "reachable_bytes": 308,
+      "flow_commitment": "513ad41c5f7d34a3f138fe9831d65b6ace562ff72068ec9f5776a6854fcb26a6",
+      "call_interfaces": [
+        {
+          "site": "0x145b65ba7",
+          "iat_slot": "0x145eb80d8"
+        }
+      ],
+      "return_sites": [
+        "0x145b65bc3"
+      ],
+      "code_ranges": [
+        {
+          "start": "0x145b65a90",
+          "end_exclusive": "0x145b65bc4",
+          "byte_count": 308,
+          "sha256": "d30f187f2cdd2a9d3d7a325a779eda6a1db30f0cf9a34536a31d00c7dfbc19aa"
+        }
+      ],
+      "scope": "Supporting Windows exception/context interface; complete enclosing product/library semantics are not assigned.",
+      "source_reference_count": 3,
+      "handler_metadata": [
+        {
+          "handler_rva_field": "0x148199e24",
+          "metadata": {
+            "va": "0x148199e20",
+            "file_offset": "0x8198a20",
+            "byte_count": 8,
+            "sha256": "1a493888898857c013513fe6261a2330dd38c36bae8201ae81b74718bf2abd8e"
+          },
+          "field_bytes": "905ab605",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b6268d",
+            "0x145b63825"
+          ],
+          "protected_entry_body_owner": "0x145b6268d"
+        },
+        {
+          "handler_rva_field": "0x148199e3c",
+          "metadata": {
+            "va": "0x148199e38",
+            "file_offset": "0x8198a38",
+            "byte_count": 8,
+            "sha256": "1a493888898857c013513fe6261a2330dd38c36bae8201ae81b74718bf2abd8e"
+          },
+          "field_bytes": "905ab605",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b63c0d",
+            "0x145b64b22"
+          ],
+          "protected_entry_body_owner": "0x145b63c0d"
+        },
+        {
+          "handler_rva_field": "0x148199e4c",
+          "metadata": {
+            "va": "0x148199e48",
+            "file_offset": "0x8198a48",
+            "byte_count": 8,
+            "sha256": "1a493888898857c013513fe6261a2330dd38c36bae8201ae81b74718bf2abd8e"
+          },
+          "field_bytes": "905ab605",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b64b4d",
+            "0x145b65a8d"
+          ],
+          "protected_entry_body_owner": "0x145b64b4d"
+        }
+      ]
+    },
+    {
+      "entry": "0x145b65bd0",
+      "role": "native_UNW_FLAG_EHANDLER_callback",
+      "reachable_instructions": 59,
+      "reachable_bytes": 208,
+      "flow_commitment": "3aeaef07daf12b2abc3ade5c2d132c82cd468253dd49e14c3b6e7bd6da995b59",
+      "call_interfaces": [
+        {
+          "site": "0x145b65ba7",
+          "iat_slot": "0x145eb80d8"
+        }
+      ],
+      "return_sites": [
+        "0x145b65bc3"
+      ],
+      "code_ranges": [
+        {
+          "start": "0x145b65b49",
+          "end_exclusive": "0x145b65bc4",
+          "byte_count": 123,
+          "sha256": "743a49fc8ff6ae3376d5a686e637a0fa558a886920ce63615e6504e0149a095e"
+        },
+        {
+          "start": "0x145b65bd0",
+          "end_exclusive": "0x145b65c25",
+          "byte_count": 85,
+          "sha256": "8896b8a3527f1b69b9cf1fe315e78fd809a2c7d68b741b88196c8e8d9014e2dc"
+        }
+      ],
+      "scope": "Supporting Windows exception/context interface; complete enclosing product/library semantics are not assigned.",
+      "source_reference_count": 1,
+      "handler_metadata": [
+        {
+          "handler_rva_field": "0x148199e34",
+          "metadata": {
+            "va": "0x148199e30",
+            "file_offset": "0x8198a30",
+            "byte_count": 8,
+            "sha256": "7116368e2df1fc68de95b0289992ee29c8d5ce36ccfc7b085e6a695bc9ce8e82"
+          },
+          "field_bytes": "d05bb605",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b6384d",
+            "0x145b63bd1"
+          ],
+          "protected_entry_body_owner": "0x145b6384d"
+        }
+      ]
+    },
+    {
+      "entry": "0x145b680a0",
+      "role": "native_UNW_FLAG_EHANDLER_callback",
+      "reachable_instructions": 80,
+      "reachable_bytes": 314,
+      "flow_commitment": "3cbdf11ed27c7d356073ec1ca942ba0640fbf1444f8535ec4acc614e3df1ff84",
+      "call_interfaces": [
+        {
+          "site": "0x145b681bd",
+          "iat_slot": "0x145eb80d8"
+        }
+      ],
+      "return_sites": [
+        "0x145b681d9"
+      ],
+      "code_ranges": [
+        {
+          "start": "0x145b680a0",
+          "end_exclusive": "0x145b681da",
+          "byte_count": 314,
+          "sha256": "0854d5bcfcd8f563600735b5778ba830acd1ae718d68e0cada0005056fbf3f14"
+        }
+      ],
+      "scope": "Supporting Windows exception/context interface; complete enclosing product/library semantics are not assigned.",
+      "source_reference_count": 2,
+      "handler_metadata": [
+        {
+          "handler_rva_field": "0x148199e5c",
+          "metadata": {
+            "va": "0x148199e58",
+            "file_offset": "0x8198a58",
+            "byte_count": 8,
+            "sha256": "1f69b0ff7c26487041a6b2974d36053cf1b8c8d22bf6f911e4b31befcf7e9d4c"
+          },
+          "field_bytes": "a080b605",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b65c4d",
+            "0x145b66e51"
+          ],
+          "protected_entry_body_owner": "0x145b65c4d"
+        },
+        {
+          "handler_rva_field": "0x148199e6c",
+          "metadata": {
+            "va": "0x148199e68",
+            "file_offset": "0x8198a68",
+            "byte_count": 8,
+            "sha256": "1f69b0ff7c26487041a6b2974d36053cf1b8c8d22bf6f911e4b31befcf7e9d4c"
+          },
+          "field_bytes": "a080b605",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b66e8d",
+            "0x145b6809c"
+          ],
+          "protected_entry_body_owner": "0x145b66e8d"
+        }
+      ]
+    },
+    {
+      "entry": "0x145b6c280",
+      "role": "native_UNW_FLAG_EHANDLER_callback",
+      "reachable_instructions": 64,
+      "reachable_bytes": 230,
+      "flow_commitment": "fb5ff4701d802710ec52a9d9df4331fb52ab15f5d039966265e7e13f3d9afc1a",
+      "call_interfaces": [
+        {
+          "site": "0x145b6c3e4",
+          "iat_slot": "0x145eb80d8"
+        }
+      ],
+      "return_sites": [
+        "0x145b6c400"
+      ],
+      "code_ranges": [
+        {
+          "start": "0x145b6c280",
+          "end_exclusive": "0x145b6c2eb",
+          "byte_count": 107,
+          "sha256": "dd48fd17e46eff8934c03666f0c71cea51a4326e6865f1e404a2c0e3e3842f4f"
+        },
+        {
+          "start": "0x145b6c386",
+          "end_exclusive": "0x145b6c401",
+          "byte_count": 123,
+          "sha256": "be3bb19d8885f6ace83c2d17c3c69feb689e2f5744c8daaaa948dba7616ae6e2"
+        }
+      ],
+      "scope": "Supporting Windows exception/context interface; complete enclosing product/library semantics are not assigned.",
+      "source_reference_count": 1,
+      "handler_metadata": [
+        {
+          "handler_rva_field": "0x148199f24",
+          "metadata": {
+            "va": "0x148199f20",
+            "file_offset": "0x8198b20",
+            "byte_count": 8,
+            "sha256": "4f4b457e6a2a8fb9d3a8c6b2d255d433fff6fd7f7da11343890383c335108689"
+          },
+          "field_bytes": "80c2b605",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b6820d",
+            "0x145b68296"
+          ],
+          "protected_entry_body_owner": "0x145b6820d"
+        }
+      ]
+    },
+    {
+      "entry": "0x145b6c2f0",
+      "role": "native_UNW_FLAG_EHANDLER_callback",
+      "reachable_instructions": 72,
+      "reachable_bytes": 273,
+      "flow_commitment": "a7f28227571f8734da1874ba2ced6e9a39ebc074112ea2d04d14f9deacf5d02b",
+      "call_interfaces": [
+        {
+          "site": "0x145b6c3e4",
+          "iat_slot": "0x145eb80d8"
+        }
+      ],
+      "return_sites": [
+        "0x145b6c400"
+      ],
+      "code_ranges": [
+        {
+          "start": "0x145b6c2f0",
+          "end_exclusive": "0x145b6c401",
+          "byte_count": 273,
+          "sha256": "cabffae898308539ea506c1569edf9443e2ba9ed31d93fe2f86c5a91a03b9206"
+        }
+      ],
+      "scope": "Supporting Windows exception/context interface; complete enclosing product/library semantics are not assigned.",
+      "source_reference_count": 14,
+      "handler_metadata": [
+        {
+          "handler_rva_field": "0x148199f34",
+          "metadata": {
+            "va": "0x148199f30",
+            "file_offset": "0x8198b30",
+            "byte_count": 8,
+            "sha256": "77e35c3ad5bd54237109c61a9977d15ac3f9202897e624afba441fbe89363a38"
+          },
+          "field_bytes": "f0c2b605",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b682ad",
+            "0x145b685eb"
+          ],
+          "protected_entry_body_owner": "0x145b682ad"
+        },
+        {
+          "handler_rva_field": "0x148199f4c",
+          "metadata": {
+            "va": "0x148199f48",
+            "file_offset": "0x8198b48",
+            "byte_count": 8,
+            "sha256": "77e35c3ad5bd54237109c61a9977d15ac3f9202897e624afba441fbe89363a38"
+          },
+          "field_bytes": "f0c2b605",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b6860d",
+            "0x145b688e5"
+          ],
+          "protected_entry_body_owner": "0x145b6860d"
+        },
+        {
+          "handler_rva_field": "0x148199f64",
+          "metadata": {
+            "va": "0x148199f60",
+            "file_offset": "0x8198b60",
+            "byte_count": 8,
+            "sha256": "77e35c3ad5bd54237109c61a9977d15ac3f9202897e624afba441fbe89363a38"
+          },
+          "field_bytes": "f0c2b605",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b6890d",
+            "0x145b68cc5"
+          ],
+          "protected_entry_body_owner": "0x145b6890d"
+        },
+        {
+          "handler_rva_field": "0x148199f7c",
+          "metadata": {
+            "va": "0x148199f78",
+            "file_offset": "0x8198b78",
+            "byte_count": 8,
+            "sha256": "77e35c3ad5bd54237109c61a9977d15ac3f9202897e624afba441fbe89363a38"
+          },
+          "field_bytes": "f0c2b605",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b68ced",
+            "0x145b68ff4"
+          ],
+          "protected_entry_body_owner": "0x145b68ced"
+        },
+        {
+          "handler_rva_field": "0x148199f94",
+          "metadata": {
+            "va": "0x148199f90",
+            "file_offset": "0x8198b90",
+            "byte_count": 8,
+            "sha256": "77e35c3ad5bd54237109c61a9977d15ac3f9202897e624afba441fbe89363a38"
+          },
+          "field_bytes": "f0c2b605",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b6900d",
+            "0x145b69067"
+          ],
+          "protected_entry_body_owner": "0x145b6900d"
+        },
+        {
+          "handler_rva_field": "0x148199fac",
+          "metadata": {
+            "va": "0x148199fa8",
+            "file_offset": "0x8198ba8",
+            "byte_count": 8,
+            "sha256": "77e35c3ad5bd54237109c61a9977d15ac3f9202897e624afba441fbe89363a38"
+          },
+          "field_bytes": "f0c2b605",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b692cd",
+            "0x145b6931e"
+          ],
+          "protected_entry_body_owner": "0x145b692cd"
+        },
+        {
+          "handler_rva_field": "0x148199fc4",
+          "metadata": {
+            "va": "0x148199fc0",
+            "file_offset": "0x8198bc0",
+            "byte_count": 8,
+            "sha256": "77e35c3ad5bd54237109c61a9977d15ac3f9202897e624afba441fbe89363a38"
+          },
+          "field_bytes": "f0c2b605",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b694cd",
+            "0x145b6952b"
+          ],
+          "protected_entry_body_owner": "0x145b694cd"
+        },
+        {
+          "handler_rva_field": "0x148199fdc",
+          "metadata": {
+            "va": "0x148199fd8",
+            "file_offset": "0x8198bd8",
+            "byte_count": 8,
+            "sha256": "77e35c3ad5bd54237109c61a9977d15ac3f9202897e624afba441fbe89363a38"
+          },
+          "field_bytes": "f0c2b605",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b697ad",
+            "0x145b69802"
+          ],
+          "protected_entry_body_owner": "0x145b697ad"
+        },
+        {
+          "handler_rva_field": "0x14819a05c",
+          "metadata": {
+            "va": "0x14819a058",
+            "file_offset": "0x8198c58",
+            "byte_count": 8,
+            "sha256": "77e35c3ad5bd54237109c61a9977d15ac3f9202897e624afba441fbe89363a38"
+          },
+          "field_bytes": "f0c2b605",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b6a0cd",
+            "0x145b6a3da"
+          ],
+          "protected_entry_body_owner": "0x145b6a0cd"
+        },
+        {
+          "handler_rva_field": "0x14819a074",
+          "metadata": {
+            "va": "0x14819a070",
+            "file_offset": "0x8198c70",
+            "byte_count": 8,
+            "sha256": "77e35c3ad5bd54237109c61a9977d15ac3f9202897e624afba441fbe89363a38"
+          },
+          "field_bytes": "f0c2b605",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b6a3ed",
+            "0x145b6ab56"
+          ],
+          "protected_entry_body_owner": "0x145b6a3ed"
+        },
+        {
+          "handler_rva_field": "0x14819a08c",
+          "metadata": {
+            "va": "0x14819a088",
+            "file_offset": "0x8198c88",
+            "byte_count": 8,
+            "sha256": "77e35c3ad5bd54237109c61a9977d15ac3f9202897e624afba441fbe89363a38"
+          },
+          "field_bytes": "f0c2b605",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b6ab6d",
+            "0x145b6b0dc"
+          ],
+          "protected_entry_body_owner": "0x145b6ab6d"
+        },
+        {
+          "handler_rva_field": "0x14819a0a4",
+          "metadata": {
+            "va": "0x14819a0a0",
+            "file_offset": "0x8198ca0",
+            "byte_count": 8,
+            "sha256": "77e35c3ad5bd54237109c61a9977d15ac3f9202897e624afba441fbe89363a38"
+          },
+          "field_bytes": "f0c2b605",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b6b26d",
+            "0x145b6b57e"
+          ],
+          "protected_entry_body_owner": "0x145b6b26d"
+        },
+        {
+          "handler_rva_field": "0x14819a0bc",
+          "metadata": {
+            "va": "0x14819a0b8",
+            "file_offset": "0x8198cb8",
+            "byte_count": 8,
+            "sha256": "77e35c3ad5bd54237109c61a9977d15ac3f9202897e624afba441fbe89363a38"
+          },
+          "field_bytes": "f0c2b605",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b6b58d",
+            "0x145b6bcf5"
+          ],
+          "protected_entry_body_owner": "0x145b6b58d"
+        },
+        {
+          "handler_rva_field": "0x14819a0d4",
+          "metadata": {
+            "va": "0x14819a0d0",
+            "file_offset": "0x8198cd0",
+            "byte_count": 8,
+            "sha256": "77e35c3ad5bd54237109c61a9977d15ac3f9202897e624afba441fbe89363a38"
+          },
+          "field_bytes": "f0c2b605",
+          "flags": 1,
+          "protected_runtime_function": [
+            "0x145b6bd0d",
+            "0x145b6c275"
+          ],
+          "protected_entry_body_owner": "0x145b6bd0d"
+        }
+      ]
+    }
+  ],
+  "canonical_callback_ranges": [
+    {
+      "start": "0x145b4a160",
+      "end_exclusive": "0x145b4a26f",
+      "byte_count": 271,
+      "sha256": "ba1f131d85421d02a5b099d8067aa385f9d9625c465e5d655561b4ac237b7042"
+    },
+    {
+      "start": "0x145b4a2e0",
+      "end_exclusive": "0x145b4a348",
+      "byte_count": 104,
+      "sha256": "71709d42512f7db37c923fec6f4e9098df51bf647f0b27baa4b53a013fce1513"
+    },
+    {
+      "start": "0x145b4ac70",
+      "end_exclusive": "0x145b4ad52",
+      "byte_count": 226,
+      "sha256": "cc5b9d968a5c68e84877f07806643a5fcf21a4dfc4c362efd82f699ed536baab"
+    },
+    {
+      "start": "0x145b58270",
+      "end_exclusive": "0x145b58360",
+      "byte_count": 240,
+      "sha256": "14bbd23bc64ccb41599b23191728f6fe87616b753f0356bec0c943ac2d0fbace"
+    },
+    {
+      "start": "0x145b612c0",
+      "end_exclusive": "0x145b613ff",
+      "byte_count": 319,
+      "sha256": "bd43e77ffa23ac15f9858a5a08fabfa747463c851b734b905a7a499645b06794"
+    },
+    {
+      "start": "0x145b624d0",
+      "end_exclusive": "0x145b6252d",
+      "byte_count": 93,
+      "sha256": "e356e0edbf4dedcf850ac592b3b1ce257776a54423f0d694280ea836b8985aca"
+    },
+    {
+      "start": "0x145b62530",
+      "end_exclusive": "0x145b6264e",
+      "byte_count": 286,
+      "sha256": "e0cfca90a23f984cb39b1f2201add744faa24c7bd2fd161f81eee63511cd28b4"
+    },
+    {
+      "start": "0x145b65a90",
+      "end_exclusive": "0x145b65bc4",
+      "byte_count": 308,
+      "sha256": "d30f187f2cdd2a9d3d7a325a779eda6a1db30f0cf9a34536a31d00c7dfbc19aa"
+    },
+    {
+      "start": "0x145b65bd0",
+      "end_exclusive": "0x145b65c25",
+      "byte_count": 85,
+      "sha256": "8896b8a3527f1b69b9cf1fe315e78fd809a2c7d68b741b88196c8e8d9014e2dc"
+    },
+    {
+      "start": "0x145b680a0",
+      "end_exclusive": "0x145b681da",
+      "byte_count": 314,
+      "sha256": "0854d5bcfcd8f563600735b5778ba830acd1ae718d68e0cada0005056fbf3f14"
+    },
+    {
+      "start": "0x145b6c280",
+      "end_exclusive": "0x145b6c2eb",
+      "byte_count": 107,
+      "sha256": "dd48fd17e46eff8934c03666f0c71cea51a4326e6865f1e404a2c0e3e3842f4f"
+    },
+    {
+      "start": "0x145b6c2f0",
+      "end_exclusive": "0x145b6c401",
+      "byte_count": 273,
+      "sha256": "cabffae898308539ea506c1569edf9443e2ba9ed31d93fe2f86c5a91a03b9206"
+    }
+  ],
+  "callback_OS_interface": {
+    "iat_slot": "0x145eb80d8",
+    "library": "KERNEL32.dll",
+    "symbol": "RtlVirtualUnwind"
+  },
+  "format_reference": "https://learn.microsoft.com/en-us/cpp/build/exception-handling-x64?view=msvc-170",
+  "scope_conclusion": "All 14 destinations are supporting Windows exception-dispatch interfaces. No AS mechanic, missing live source operation or need to reconstruct their enclosing library is established.",
+  "limits": [
+    "Saved Ghidra body observations are unchanged: these 14 destinations still have no body in that census. Field/CFG classification is not fresh Ghidra ownership.",
+    "All 73,393 selected fields are checked; the remaining 17 PE handler fields lead to an already-owned entry outside this selector.",
+    "Native callback traversal follows explicit local branches and verifies every call as RtlVirtualUnwind through its exact IAT slot. It does not execute callbacks, OS exception machinery, protected functions or language-specific handler data.",
+    "Supporting context restoration is where this investigation stops; generic engine/library/unwind reconstruction and excluded co-op/server logic are not implemented.",
+    "No compiler, compiling tests, game/application launch, native instruction execution, platform exception dispatch or original/rebuilt parity."
+  ]
+}

@@ -1,0 +1,12 @@
+0x145b2526e: cmp dword ptr [rdx + 0x38], 5
+0x145b25272: lea r14, [rip + 0x1494aa6]
+0x145b25279: mov ebx, 0x1f
+0x145b2527e: jne 0x145b25506
+0x145b25284: cmp qword ptr [rdx + 0x18], 7
+0x145b25289: jne 0x145b25506
+0x145b2528f: mov eax, 0x32312e30
+0x145b25294: xor eax, dword ptr [r10]
+0x145b25297: mov ecx, 0x302e3032
+0x145b2529c: xor ecx, dword ptr [r10 + 3]
+0x145b252a0: or ecx, eax
+0x145b252a2: jne 0x145b25506

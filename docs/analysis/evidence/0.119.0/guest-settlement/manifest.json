@@ -1,0 +1,1082 @@
+{
+  "schema": "as-guest-settlement-v1",
+  "target": {
+    "version": "0.119.0",
+    "sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f",
+    "size_bytes": 145357824
+  },
+  "target_executed": false,
+  "functions": [
+    {
+      "role": "guest-finalize",
+      "start": "0x145b0f7d0",
+      "end_exclusive": "0x145b10b5d",
+      "file_offset": "0x5b0ebd0",
+      "byte_count": 5005,
+      "sha256": "5c19f25a6851ada3aec7a008ecba78e6b59a2b1f59c77e2bada474c61609ebbb",
+      "instruction_count": 983
+    },
+    {
+      "role": "guest-receive",
+      "start": "0x145b1c260",
+      "end_exclusive": "0x145b1d5e4",
+      "file_offset": "0x5b1b660",
+      "byte_count": 4996,
+      "sha256": "eddd38dbfc952ed9074e10594580bfc31da23cf9eec33aa932da10a92706045b",
+      "instruction_count": 1052
+    },
+    {
+      "role": "guest-teardown",
+      "start": "0x145b1a630",
+      "end_exclusive": "0x145b1a840",
+      "file_offset": "0x5b19a30",
+      "byte_count": 528,
+      "sha256": "be0365add6e0f6e3fcfb24aba530e718a7741cfb967ad8627e0f0d0ad4b066e8",
+      "instruction_count": 122
+    },
+    {
+      "role": "exit-wrapper-a",
+      "start": "0x145b18a30",
+      "end_exclusive": "0x145b18b33",
+      "file_offset": "0x5b17e30",
+      "byte_count": 259,
+      "sha256": "5dec6709cb682612e9bd0a7e1d37a8cbe9ae401011d070c4c2e304bdb8ce9a30",
+      "instruction_count": 65
+    },
+    {
+      "role": "exit-wrapper-b",
+      "start": "0x145b18b70",
+      "end_exclusive": "0x145b18e6a",
+      "file_offset": "0x5b17f70",
+      "byte_count": 762,
+      "sha256": "c65f9e11d3072b4fa83aef5beff26eae8fdc9d26965a7957acf4001ddec01655",
+      "instruction_count": 170
+    },
+    {
+      "role": "current-run-snapshot",
+      "start": "0x145b14d80",
+      "end_exclusive": "0x145b1522d",
+      "file_offset": "0x5b14180",
+      "byte_count": 1197,
+      "sha256": "40a243167e3cf9d3d0fdf9eb05e9ad3ffaed9708112d4f0f31474ec270d0f504",
+      "instruction_count": 287
+    },
+    {
+      "role": "notifications",
+      "start": "0x145b13d30",
+      "end_exclusive": "0x145b13fd8",
+      "file_offset": "0x5b13130",
+      "byte_count": 680,
+      "sha256": "70f73cfb393179c703695b4b1d68f03b77fe503940e3b5f4c266ba3418e4b562",
+      "instruction_count": 177
+    },
+    {
+      "role": "0x145afd390",
+      "start": "0x145afd390",
+      "end_exclusive": "0x145b03c21",
+      "file_offset": "0x5afc790",
+      "byte_count": 26769,
+      "sha256": "14d3382cbdee7799aa86b5f619d9e81b044acc058d41c1d3dc2d77e7f591cd32",
+      "instruction_count": 4962
+    },
+    {
+      "role": "0x145b19870",
+      "start": "0x145b19870",
+      "end_exclusive": "0x145b19b73",
+      "file_offset": "0x5b18c70",
+      "byte_count": 771,
+      "sha256": "b321c8ac7c2464d5ede21534600a0abf47d394de5eb1d62b0a4f53951d0437cd",
+      "instruction_count": 184
+    },
+    {
+      "role": "entry-xp-multiplier",
+      "start": "0x145b44960",
+      "end_exclusive": "0x145b44d27",
+      "file_offset": "0x5b43d60",
+      "byte_count": 967,
+      "sha256": "9fa9f74c97f454be8f4f9e09c03bce798905d713bff9804d339f8ea05b97e464",
+      "instruction_count": 255
+    },
+    {
+      "role": "xp-component-deltas",
+      "start": "0x145c3d3d0",
+      "end_exclusive": "0x145c3d5fd",
+      "file_offset": "0x5c3c7d0",
+      "byte_count": 557,
+      "sha256": "950243a12713b2e4db15f537f6baa6f6245e13e7d337924c746c1654e584d4b8",
+      "instruction_count": 149
+    }
+  ],
+  "relocations": [
+    {
+      "role": "guest-finalize",
+      "historical_target_sha256": "4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae",
+      "historical_start": "0x145b0f720",
+      "historical_body_sha256": "f426aac019079c4a477b3a95757ea04ad546b32da95fee697824494b7e277221",
+      "seed_hex": "5541574156415541545657534881ec88030000488dac2480000000440f2995f0020000440f298de0020000440f2985d00200000f29bdc00200000f29b5b002000048c785a8020000feffffff4889ce488d8d280100004889f2e8525500004883bd28010000ff0f84f2110000488d4db0488d9528010000bbc800000041b8c8000000e8b44548000fb6456f04fa3cfb0f82c01100008b454c89852c020000f30f107548f3480f2cc631ff450f57c0410f2ef00f42c7f3440f100d261a6700410f2ef141beffffffff410f47c648898598000000440fb66d6d4889b580020000488b86b0170000488985200200000fb64570488985f0010000488b4db8488b55c0e84bb3f6ff4869c0f00000004c8d055dc578018b5550f3480f2afa4a8b4c00084a8b540010f30f5e7d6448898da0000000488995a8000000e813b3f6fff3480f2ccf410f2ef80f42cf410f2ef9410f47ce488985880200000f57fff3480f2af9448b7d5cf30f593d685166000f28c7e81b454800f34c0f2ce0f3440f10155e507200410f2ec249beffffffffffffff7f4d0f47e6",
+      "mask_hex": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffff00000000ffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffff",
+      "unique_current_file_offset": "0x5b0ebd0",
+      "current_start": "0x145b0f7d0"
+    },
+    {
+      "role": "guest-receive",
+      "historical_target_sha256": "4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae",
+      "historical_start": "0x145b1c1b0",
+      "historical_body_sha256": "90d1a045dfb00a15d7b223fd9d50b15ef776c38c21798d66c7fb7d1d48f6cc23",
+      "seed_hex": "5541574156415541545657534881ecf8040000488dac2480000000660f29b56004000048c78558040000feffffff4889ce48899538040000488b0248b900000000000000804831c14885c0b803000000480f48c14889852004000048ffc84883f8110f878c100000660f28f2488d0dd9197c01486304814801c8ffe083bea00c0000017707c686d00f0000014883be40160000ff0f8410100000488b85380400000fb6400984c00f84f50f00000fb6c83c05b8050000000f42c1e9e50f0000488b86a00c00004883f80177494883bea80f000000743f4883bed00e0000ff7435c6855704000001c68556040000014889f1e87a34ffff90c6855704000001c68556040000014889f1e82392ffff90488b86a00c000083f8017727f686d10f000001741ec6855704000001c68556040000014889f1e897e2ffff90488b86a00c000083f801772b488dbed00e000048c786a80f0000000000004883bed00e0000ff74084889f9e846a4f8ff48c707ffffffff",
+      "mask_hex": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffff00000000ffffffffffffffffffffffffffffffffff00ffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffff00000000ffffffffffffffffffffffff00ffffffffffffffffff00ffffffffffffffffff00ffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffff00ffffffffffffffff00ffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffff00ffffffffffffffffffffffffffffffffffffffffffffffffffffff00ffffffff00000000ffffffffffffff",
+      "unique_current_file_offset": "0x5b1b660",
+      "current_start": "0x145b1c260"
+    },
+    {
+      "role": "guest-teardown",
+      "historical_target_sha256": "4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae",
+      "historical_start": "0x145b1a580",
+      "historical_body_sha256": "f5096b3b71af8fe9bf933fa95fbfda60021617c5d775002b0fdecb9cfc013cb5",
+      "seed_hex": "55415741565657534881ec88000000488dac248000000048c74500feffffff83b9a00c0000017707c681d10f000000488bb1181000004885f60f8471010000488bb9101000004869c6b000000031db31d26666666666662e0f1f84000000000080bc17a800000000751448ffc34881c2b00000004839d075e7e9320100004989cfc68417a8000000004c8d75d0ba080000004c89f14531c04531c9e8004f04004889f94889f24989d84d89f1e81f2afeffe8ca7b4efab920000000ba01000000e87b7b4efa4885c00f842001000066c745e84d0048c745d020000000488945d848c745e0000000004c8d4dd04889f94889f24989d8e8d629feff498bb7a0170000498bbfa8170000e8737b4efab901000000ba01000000e8247b4efa4885c00f84da000000c6007b48c745d001000000488945d848c745e001000000c645e801488d05910b7c01488944242048c7442428060000004c8d055f087c01488d4db0488d55d041b904000000e891f6fbff488b45b04c8b45c04c39c07444",
+      "mask_hex": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00ffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00ffffffffffffffffffffffffffff00ff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffff00000000ff00000000ffffffffffffffffffffff00000000ffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffff00000000ffffffffffffffffffffff00000000ffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffff00",
+      "unique_current_file_offset": "0x5b19a30",
+      "current_start": "0x145b1a630"
+    },
+    {
+      "role": "exit-wrapper-a",
+      "historical_target_sha256": "4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae",
+      "historical_start": "0x145b18980",
+      "historical_body_sha256": "51e207b54c143416fce9d86b5ed02106fe31c39a279870f313273db515c7ade7",
+      "seed_hex": "5541565657534881eca0060000488dac248000000048c78518060000feffffff4c89c34889d64889cf4c8db1a00c000083b9a00c00000177244883bfa80f000000741a4883bfd00e0000ff74104889f9e84b6dffff4889f9e803cbffff488d4da841b8380300004c89f2e86cb3470049c70602000000488b45a84883f8017766488d8de0020000488d55a841b838030000e845b34700488b8dd8050000488b85e0050000ff50309080bd110600000074094889f9e8471b00009048895c2420488d15f22c7c0141b8050000004889f94989f1e88904000090488d8de0020000e82cecfdffeb0f83f802740a488d4db0e87ce7fdff904881c4a00600005b5f5e415e5dc3",
+      "mask_hex": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00ffffffffffffffffff00ffffffffffffffffff00ffffffff00000000ffffffff00000000ffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffff00ffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffff00ffffffff00000000ffffffffffffffffff00000000ffffffffffffffffffffffffff00000000ffffffffffffffffff00000000ff00ffffffff00ffffffffff00000000ffffffffffffffffffffffffffffff",
+      "unique_current_file_offset": "0x5b17e30",
+      "current_start": "0x145b18a30"
+    },
+    {
+      "role": "exit-wrapper-b",
+      "historical_target_sha256": "4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae",
+      "historical_start": "0x145b18ac0",
+      "historical_body_sha256": "159f1ada7920e8a450eea27ba730fe911fd8436c10968fda90e62a401960591e",
+      "seed_hex": "5541574156415541545657534881ec98030000488dac248000000048c78510030000feffffff4889ce488b81a00c00004883f801772b4883bea80f00000074214883bed00e0000ff74174889f1e80e6cffff4889f1e8c6c9ffff488b86a00c000048c786a00c0000020000004889c14883e902ba02000000480f43d14885d20f8461020000488d8ea80c00004883fa010f85200100000f10010f1049100f1051200f1059300f295de00f1059700f295d200f1059600f295d100f1059500f295d000f1059400f295df00f2955d00f294dc00f2945b04c8b65e0488b45e84c8d3cc049c1e7074d01e7488d3d992d7c01488d9df0020000eb270f1f8400000000004d8db42480040000498b8c2468040000498b842470040000ff5030904d89f44d39fc0f8490010000498b8c2468040000498b9424700400004d8d842460020000e86b5d1400904d8bb424680400004d8bac24700400004889d94889fae82f67f9ff90488b95f80200004c8b8500030000",
+      "mask_hex": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00ffffffffffffffffff00ffffffffffffffffff00ffffffff00000000ffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffff00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffff",
+      "unique_current_file_offset": "0x5b17f70",
+      "current_start": "0x145b18b70"
+    },
+    {
+      "role": "current-run-snapshot",
+      "historical_target_sha256": "4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae",
+      "historical_start": "0x145b14cd0",
+      "historical_body_sha256": "c84f96198547c6d0abc7f842b309d2e0d2e8d3475c0fffaa1eae4f168b681893",
+      "seed_hex": "5541574156415541545657534881ec18010000488dac2480000000440f299580000000440f294d70440f2945600f297d500f29754048c74538feffffff837a10020f85a500000083baa00c0000010f87ce0000004883bad00e0000ff0f84c00000004989cc488d82d00e0000f3440f1082680f0000440f108a6c0f0000f20f10b27c0f0000f2440f1092840f0000f30f10ba8c0f00000fb69a900f0000488d4dd84989d54889c2e8f42145004d8bbdf80e00004a8d34fd000000004c89f948c1e93d0f95c148bafcffffffffffff7f4839d60f97c208ca747e31db4889d94889f2e8855f620090e9710200004883c2100f2875400f287d50440f284560440f284d70440f2895800000004881c4180100005b5f5e415c415d415e415f5de9cebaf9ff48c701ffffffff0f2875400f287d50440f284560440f284d70440f2895800000004881c4180100005b5f5e415c415d415e415f",
+      "mask_hex": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffff00000000ffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00ffffffffffffffffff00000000ffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "unique_current_file_offset": "0x5b14180",
+      "current_start": "0x145b14d80"
+    }
+  ],
+  "native_spans": [
+    {
+      "role": "summary-started-phase",
+      "start": "0x145b0f829",
+      "end_exclusive": "0x145b0f865",
+      "file_offset": "0x5b0ec29",
+      "byte_count": 60,
+      "sha256": "1a2f78956217c3a9d98920461d5bc87bb92b4d4ccc8d4d828562b44969aef9ca",
+      "instruction_count": 12
+    },
+    {
+      "role": "summary-xp-delta-checkpoint",
+      "start": "0x145b0fadc",
+      "end_exclusive": "0x145b0fb35",
+      "file_offset": "0x5b0eedc",
+      "byte_count": 89,
+      "sha256": "420ed08504d372bae96b3c5bb26135f565a7ce29d935feeedb6fb12a785cc883",
+      "instruction_count": 14
+    },
+    {
+      "role": "summary-xp-positive-recipient",
+      "start": "0x145b0fc1f",
+      "end_exclusive": "0x145b0fcf2",
+      "file_offset": "0x5b0f01f",
+      "byte_count": 211,
+      "sha256": "4db62e20e659ce311a5d1a17e5eb147a527e8f2623e1db7b65f022406956c554",
+      "instruction_count": 43
+    },
+    {
+      "role": "summary-first-result",
+      "start": "0x145b10931",
+      "end_exclusive": "0x145b109fe",
+      "file_offset": "0x5b0fd31",
+      "byte_count": 205,
+      "sha256": "8684730ee580de615def9968dadf81799963110b6babab53ca5d0f409bab5398",
+      "instruction_count": 45
+    },
+    {
+      "role": "guest-snapshot-selection",
+      "start": "0x145b14dbd",
+      "end_exclusive": "0x145b14e2c",
+      "file_offset": "0x5b141bd",
+      "byte_count": 111,
+      "sha256": "ab54e8e7084d998d7fcd80ac2cf5de0fd3c60967b6c8e99c5f8d1a2f967ed025",
+      "instruction_count": 18
+    },
+    {
+      "role": "guest-close-wrapper",
+      "start": "0x145b18a59",
+      "end_exclusive": "0x145b18aa6",
+      "file_offset": "0x5b17e59",
+      "byte_count": 77,
+      "sha256": "d212a4d472f323566ee468a191e3a6464901e4c447087572815b5869c08606f9",
+      "instruction_count": 16
+    },
+    {
+      "role": "party-close-wrapper",
+      "start": "0x145b18b99",
+      "end_exclusive": "0x145b18bec",
+      "file_offset": "0x5b17f99",
+      "byte_count": 83,
+      "sha256": "96c103f9cc5cd473a6eb6150d9a1bba20a13883e7c0209ceae71040d7a3c769d",
+      "instruction_count": 17
+    },
+    {
+      "role": "guest-end-dispatch",
+      "start": "0x145b1c31f",
+      "end_exclusive": "0x145b1c41b",
+      "file_offset": "0x5b1b71f",
+      "byte_count": 252,
+      "sha256": "12d7c716afad961b4bf5757ed0369236e0909cd933bafa57d83720013cb45004",
+      "instruction_count": 51
+    },
+    {
+      "role": "guest-zone-reset",
+      "start": "0x145b1c61f",
+      "end_exclusive": "0x145b1c70b",
+      "file_offset": "0x5b1ba1f",
+      "byte_count": 236,
+      "sha256": "4216a2f132aa60c716f304917cdf6df705501725d63ad0e9c1170babc5084b8d",
+      "instruction_count": 38
+    },
+    {
+      "role": "guest-state-terminal-edge",
+      "start": "0x145b1d48a",
+      "end_exclusive": "0x145b1d4f3",
+      "file_offset": "0x5b1c88a",
+      "byte_count": 105,
+      "sha256": "8adec16f891b9b8181029227fdba5b52f786abfcf4389d733dca6b578d35280b",
+      "instruction_count": 21
+    },
+    {
+      "role": "host-loss",
+      "start": "0x145affb40",
+      "end_exclusive": "0x145affb73",
+      "file_offset": "0x5afef40",
+      "byte_count": 51,
+      "sha256": "7c61873c8d44d6b6cdc4fb84d4865f4e89cf40d1beca2c82ee84e39405961d1b",
+      "instruction_count": 10
+    },
+    {
+      "role": "form-leave-command",
+      "start": "0x145affdd3",
+      "end_exclusive": "0x145affe04",
+      "file_offset": "0x5aff1d3",
+      "byte_count": 49,
+      "sha256": "7710a04b357aef7696faf79769afea90625863c2c85aaea8cf47d23b3cb533ac",
+      "instruction_count": 12
+    },
+    {
+      "role": "form-leave-close",
+      "start": "0x145b001fa",
+      "end_exclusive": "0x145b0022c",
+      "file_offset": "0x5aff5fa",
+      "byte_count": 50,
+      "sha256": "6e113db279b9994005b165a0087d660105f672e431d8382f098cffbdba87e32d",
+      "instruction_count": 10
+    },
+    {
+      "role": "run-leave-command",
+      "start": "0x145b198b6",
+      "end_exclusive": "0x145b198df",
+      "file_offset": "0x5b18cb6",
+      "byte_count": 41,
+      "sha256": "11bb5ab5ed02eaaaf4976a00c66ad7e7b80f0c9163d386b510842eb89b9d1482",
+      "instruction_count": 11
+    },
+    {
+      "role": "run-leave-close",
+      "start": "0x145b199a1",
+      "end_exclusive": "0x145b199bb",
+      "file_offset": "0x5b18da1",
+      "byte_count": 26,
+      "sha256": "02ad796a7486b3d14bade50e9285fe9ec6828fd723ee94b22326994d05487e11",
+      "instruction_count": 5
+    },
+    {
+      "role": "notifications-guest-gate",
+      "start": "0x145b13d8d",
+      "end_exclusive": "0x145b13dc9",
+      "file_offset": "0x5b1318d",
+      "byte_count": 60,
+      "sha256": "9c360ae31aaa326f51c771b1d5656f74443225fec41a2c428820b99561c1ebdb",
+      "instruction_count": 13
+    },
+    {
+      "role": "notifications-in-world",
+      "start": "0x145b13dc9",
+      "end_exclusive": "0x145b13e9c",
+      "file_offset": "0x5b131c9",
+      "byte_count": 211,
+      "sha256": "55ffb0565d79e633687e8b9d5609e7c9b9633c8e836acf8b9ac5dadae3bb1fb8",
+      "instruction_count": 54
+    },
+    {
+      "role": "notifications-frontend",
+      "start": "0x145b13ea0",
+      "end_exclusive": "0x145b13f46",
+      "file_offset": "0x5b132a0",
+      "byte_count": 166,
+      "sha256": "e867cf221a1c2a6ce0a59256dc2117854b2684c776de4bea6e4b3db8b65c7db5",
+      "instruction_count": 42
+    },
+    {
+      "role": "entry-veteran-selection",
+      "start": "0x145b44a2f",
+      "end_exclusive": "0x145b44a8a",
+      "file_offset": "0x5b43e2f",
+      "byte_count": 91,
+      "sha256": "e7d8f2809ecf5780867e13dfbae29997ec97c8162b81b279370a564092c5d5a9",
+      "instruction_count": 23
+    },
+    {
+      "role": "entry-veteran-bonus",
+      "start": "0x145b44ca3",
+      "end_exclusive": "0x145b44cf0",
+      "file_offset": "0x5b440a3",
+      "byte_count": 77,
+      "sha256": "2499294f29b729c28dd86cc5d2975d3ebbed5c23b74d0d287b00e5ba6ef120eb",
+      "instruction_count": 19
+    },
+    {
+      "role": "xp-component-subtractions",
+      "start": "0x145c3d479",
+      "end_exclusive": "0x145c3d59c",
+      "file_offset": "0x5c3c879",
+      "byte_count": 291,
+      "sha256": "8cc43fa6269479826d300c720e48f5f2fc94c6bf94ce3041de46d192b2935b04",
+      "instruction_count": 68
+    },
+    {
+      "role": "guest-skips-local-tick-delivery",
+      "start": "0x145b00aa6",
+      "end_exclusive": "0x145b00ab0",
+      "file_offset": "0x5affea6",
+      "byte_count": 10,
+      "sha256": "6615ba1b4e24f2f348f273f878e16046617e2f1fb0b347d7a7ef41807ff16032",
+      "instruction_count": 2
+    },
+    {
+      "role": "guest-close-world-teardown",
+      "start": "0x145b18ad8",
+      "end_exclusive": "0x145b18aea",
+      "file_offset": "0x5b17ed8",
+      "byte_count": 18,
+      "sha256": "c09909a4507d8e4d9d77a029028b3f33f2c9f7d2305e9c000848b00d6baa7f3a",
+      "instruction_count": 5
+    },
+    {
+      "role": "party-close-world-teardown",
+      "start": "0x145b18e0b",
+      "end_exclusive": "0x145b18e1d",
+      "file_offset": "0x5b1820b",
+      "byte_count": 18,
+      "sha256": "ed14f57c0a70b47c78beee8264ac95da7963020172b9166c5a7a8582733ca165",
+      "instruction_count": 5
+    }
+  ],
+  "assembly": {
+    "path": "docs/analysis/evidence/0.119.0/guest-settlement/selected-native.asm",
+    "sha256": "c095cf2fcdf0a83bf1d5bb0f89d04a268d8e9e5683b0466d4c0a5faa2ae44ba2"
+  },
+  "data": [
+    {
+      "role": "guest-receive-selector",
+      "start": "0x1472ddc0c",
+      "file_offset": "0x72dca0c",
+      "byte_count": 72,
+      "sha256": "036ee6c93e5d70510c28fa61692a8106935d72361e3a52fba052ae935d1a5145",
+      "bytes_hex": "d0e683fe1aed83fe48f783fe13ea83fe48f783fe64f183fe48f783fe01f283fe1aec83fe8bed83fe34ee83fe30f383fe89f283fe14e883fef1ec83fef5e883fe13e783fef3ef83fe",
+      "targets": [
+        "0x145b1c2dc",
+        "0x145b1c926",
+        "0x145b1d354",
+        "0x145b1c61f",
+        "0x145b1d354",
+        "0x145b1cd70",
+        "0x145b1d354",
+        "0x145b1ce0d",
+        "0x145b1c826",
+        "0x145b1c997",
+        "0x145b1ca40",
+        "0x145b1cf3c",
+        "0x145b1ce95",
+        "0x145b1c420",
+        "0x145b1c8fd",
+        "0x145b1c501",
+        "0x145b1c31f",
+        "0x145b1cbff"
+      ]
+    },
+    {
+      "role": "frontend-command-selector",
+      "start": "0x1472dd9d0",
+      "file_offset": "0x72dc7d0",
+      "byte_count": 20,
+      "sha256": "4fd53e945506cc9f30cf128d203859df01f2d751d2a456b63074f4ec857b4fd4",
+      "bytes_hex": "342482febe2882fec92682fe2a2882feea2482fe",
+      "targets": [
+        "0x145affe04",
+        "0x145b0028e",
+        "0x145b00099",
+        "0x145b001fa",
+        "0x145affeba"
+      ]
+    },
+    {
+      "role": "run-command-selector",
+      "start": "0x1472dda88",
+      "file_offset": "0x72dc888",
+      "byte_count": 108,
+      "sha256": "6ce997fe0bac2645204c7e573a3b3b40f9cfc6e314f06cb1c402c45810021d5e",
+      "bytes_hex": "a6bf83fe9dbf83fe79bf83fe4dbf83fe57be83fed4c083fec3bf83fe57be83fee2bf83fe96bf83fe96bf83fe96bf83fe96bf83fe96bf83fe96bf83fe96bf83fe96bf83fe96bf83fe96bf83fe96bf83fe96bf83fe96bf83fe96bf83feccbf83fe33bf83fe70bf83fe5dbf83fe",
+      "targets": [
+        "0x145b19a2e",
+        "0x145b19a25",
+        "0x145b19a01",
+        "0x145b199d5",
+        "0x145b198df",
+        "0x145b19b5c",
+        "0x145b19a4b",
+        "0x145b198df",
+        "0x145b19a6a",
+        "0x145b19a1e",
+        "0x145b19a1e",
+        "0x145b19a1e",
+        "0x145b19a1e",
+        "0x145b19a1e",
+        "0x145b19a1e",
+        "0x145b19a1e",
+        "0x145b19a1e",
+        "0x145b19a1e",
+        "0x145b19a1e",
+        "0x145b19a1e",
+        "0x145b19a1e",
+        "0x145b19a1e",
+        "0x145b19a1e",
+        "0x145b19a54",
+        "0x145b199bb",
+        "0x145b199f8",
+        "0x145b199e5"
+      ]
+    },
+    {
+      "role": "host-left-reason",
+      "start": "0x1472db6d0",
+      "file_offset": "0x72da4d0",
+      "byte_count": 13,
+      "sha256": "fbf107249d20edd49b9088d5f21cf34fc35f7a5aa33685830b63811069cf7a65",
+      "bytes_hex": "74686520686f7374206c656674"
+    },
+    {
+      "role": "run-left-reason",
+      "start": "0x1472dbd60",
+      "file_offset": "0x72dab60",
+      "byte_count": 16,
+      "sha256": "004ff34c17aeecb9447afb52d3636f197dda01effa37de5ed9d6256134caa5e6",
+      "bytes_hex": "796f75206c656674207468652072756e"
+    },
+    {
+      "role": "veteran-per-rank",
+      "start": "0x14617a3e0",
+      "file_offset": "0x61791e0",
+      "byte_count": 4,
+      "sha256": "5d96a77c55b4ac1eea2d77815396c4349292b85e3b07beaca6aff933e7ef8752",
+      "bytes_hex": "cdcc4c3e"
+    }
+  ],
+  "queries": [
+    {
+      "role": "guest-finalize",
+      "plan": "runtime/fixgap-166-0.119.0/guest-finalize-plan.json",
+      "plan_sha256": "33a923b0890359b5cc9f0307439316c2f2ce157ac26ebfe5c050f83acd2f2ac9",
+      "journal": "runtime/fixgap-166-0.119.0/guest-finalize-query/journal.json",
+      "journal_sha256": "06318dea6f11e05c7fc3f069e5fe25427b34f4f24d36b9a9cd52962b8c17c786",
+      "result": "runtime/fixgap-166-0.119.0/guest-finalize-query/results/ce43a713ea2957f9d15659ac81c4d1f077f066a36aeb00cbbe20a07ca7fb352b.json",
+      "result_sha256": "afd7e0b4bcec2102e61ef5b2ba1b22be3d5ce9cf5b9b30f76c7ea6122de5c6ec",
+      "input": "runtime/fixgap-166-0.119.0/guest-finalize.bin",
+      "input_sha256": "5c19f25a6851ada3aec7a008ecba78e6b59a2b1f59c77e2bada474c61609ebbb",
+      "evidence_id": "ev_8a0f39a2d599e733b1b675c022460f0a6bf407f6fd74f8a582efa553569c0cbb",
+      "profile_digest": "4b35949e868809c3e6a34edf5b0c4d8f2868af594e7e05b62e17277b9c2e2e3a",
+      "normalized_sha256": "154ea7cb1bc9adb45e2e74a5fe8ad459f991d6146616b169aeec99980e6b6653",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      }
+    },
+    {
+      "role": "guest-receive",
+      "plan": "runtime/fixgap-166-0.119.0/guest-receive-plan.json",
+      "plan_sha256": "2bcca8f4b362c1c05b06df1164ce87768e4ea115a3a446fc2b756abbb17715f6",
+      "journal": "runtime/fixgap-166-0.119.0/guest-receive-query/journal.json",
+      "journal_sha256": "d20a04c016a3c4949411e0b6021b60aa2ea3ae6f8c4ef3d214be1cf0997d10ec",
+      "result": "runtime/fixgap-166-0.119.0/guest-receive-query/results/d07fb5e332292bd8f72b2485ef3a34c24291bc71c9c513d64209473fe08656e9.json",
+      "result_sha256": "19214d2bd8b23ce4aa940d730dc58a6daa5738d3d181d1dbf524c78cb2e93357",
+      "input": "runtime/fixgap-166-0.119.0/guest-receive.bin",
+      "input_sha256": "eddd38dbfc952ed9074e10594580bfc31da23cf9eec33aa932da10a92706045b",
+      "evidence_id": "ev_03a9486dd3e697bdaeba3c373050274f6e17ec9e453d75aef0a1c62969638381",
+      "profile_digest": "6910d73d089f94f2949397b0954ed7d500918118ae7acabcf589d4a9d9ad8240",
+      "normalized_sha256": "82f401355e84a5db0ad9dabdebcfdcf608eecae4c7951d10ae0f2dbcd2647722",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      }
+    },
+    {
+      "role": "current-run-snapshot",
+      "plan": "runtime/fixgap-166-0.119.0/current-run-snapshot-plan.json",
+      "plan_sha256": "711ec54a618f6336657d55d767e41699509c9ae725ef6e87f3313d564050a806",
+      "journal": "runtime/fixgap-166-0.119.0/current-run-snapshot-query/journal.json",
+      "journal_sha256": "44d341d7f60e82b41f406b841e3ee5dc7b57849a9cb4189c8cd86826a7ad22e5",
+      "result": "runtime/fixgap-166-0.119.0/current-run-snapshot-query/results/b7763880f68827f5592adcc33ab956327b96bfeadf3b4f6a772af0c2092e7fdf.json",
+      "result_sha256": "8199fde28ad79003ea96013fcd545bd3602d7a0557c88d662b5af387e3f7f915",
+      "input": "runtime/fixgap-166-0.119.0/current-run-snapshot.bin",
+      "input_sha256": "40a243167e3cf9d3d0fdf9eb05e9ad3ffaed9708112d4f0f31474ec270d0f504",
+      "evidence_id": "ev_113a64fc10e9bc296eb6f03b00bf17de6ccd445ffa2cf81b2979d3b63e8ca291",
+      "profile_digest": "2af9c62c0bc46663d5995b4a65a33b56948742024e3269a50ceda1ca78e4813b",
+      "normalized_sha256": "8824e0ac3140284355d344eff99e8d26ac99bc4d4a73ba99427f157cadbb964b",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      }
+    },
+    {
+      "role": "exit-wrapper-a",
+      "plan": "runtime/fixgap-166-0.119.0/exit-wrapper-a-plan.json",
+      "plan_sha256": "6e067f5b214b50aa19bfff3841eed9e7c2ca56d0b6f73338d1c3a37cdb3b60df",
+      "journal": "runtime/fixgap-166-0.119.0/exit-wrapper-a-query/journal.json",
+      "journal_sha256": "86f9e04bbd9bbcaccfe295053e075c6982fe1a7739eac1e740a547f03400c58a",
+      "result": "runtime/fixgap-166-0.119.0/exit-wrapper-a-query/results/75d2fc1b07b8db449c1bbe8d4cd8f2e19590d0b2f145e925dde93d21d1a45fed.json",
+      "result_sha256": "a92067a16dc09227dea2c05313cd18bc673526aaf066d919cc661ace3551b968",
+      "input": "runtime/fixgap-166-0.119.0/exit-wrapper-a.bin",
+      "input_sha256": "5dec6709cb682612e9bd0a7e1d37a8cbe9ae401011d070c4c2e304bdb8ce9a30",
+      "evidence_id": "ev_911888f5d42fa8f790b5368276bb202fb6aac2438827349244da29750b2e2db6",
+      "profile_digest": "b81fb9c0e463506f2b211485b0ea0c41f2a985e2680c995258c149ac8034b928",
+      "normalized_sha256": "29c35286d5ff902a127335c89d791d994bf59e42b4318ebd9f477b0a04c8be52",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      }
+    },
+    {
+      "role": "exit-wrapper-b",
+      "plan": "runtime/fixgap-166-0.119.0/exit-wrapper-b-plan.json",
+      "plan_sha256": "1a89790cd22995234c0485a431c7116598540dc3edf0a0d7cb684e22849411b4",
+      "journal": "runtime/fixgap-166-0.119.0/exit-wrapper-b-query/journal.json",
+      "journal_sha256": "e179374b51a0a913619eb1e0c68504901eb7c772db309d33570e6d733c60a94a",
+      "result": "runtime/fixgap-166-0.119.0/exit-wrapper-b-query/results/6777f58a6c7c64ad539e2d5a5d042d547b28816b9c4bfba22b96c20c7c70a1cd.json",
+      "result_sha256": "3451c9410cb898430a6de02ffad009eec083946f2e99dcb07532db4f507bb71b",
+      "input": "runtime/fixgap-166-0.119.0/exit-wrapper-b.bin",
+      "input_sha256": "c65f9e11d3072b4fa83aef5beff26eae8fdc9d26965a7957acf4001ddec01655",
+      "evidence_id": "ev_ba002ae1aeba03c855d4521eb491e6d0a225913e8cfda723c42ac65803f145ff",
+      "profile_digest": "4e636a9ab49609266a13577c7762ff4941c46850a5498b6d7bcbe177ffd022a1",
+      "normalized_sha256": "8cd195e5fe4e71604c569adf170d86a41e53097f99d207a9fafb1ab17e679dac",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      }
+    },
+    {
+      "role": "notifications",
+      "plan": "runtime/fixgap-166-0.119.0/notifications-plan.json",
+      "plan_sha256": "ff46eac852cac2264f924888f6a0da7e5d587f72b82dd88ccebddf830a581ba0",
+      "journal": "runtime/fixgap-166-0.119.0/notifications-query/journal.json",
+      "journal_sha256": "585e0603f8d6dd3e071fcedccc45094e9d78c37894ec5ee165ff078af7f6b667",
+      "result": "runtime/fixgap-166-0.119.0/notifications-query/results/dcdb8f48702fcfb57bbc5d1481c70157b1671ba2995bb640621b59578a1bccb3.json",
+      "result_sha256": "3628dfa1c1a801d8a2605174df90a0eb1984bdc7000a45c500e7095e44956f92",
+      "input": "runtime/fixgap-166-0.119.0/notifications.bin",
+      "input_sha256": "70f73cfb393179c703695b4b1d68f03b77fe503940e3b5f4c266ba3418e4b562",
+      "evidence_id": "ev_9d03d21f174f5e51c58fe3daa653e498b432687e4c8bf83e5bca6908df5e5f08",
+      "profile_digest": "4ac8244c672d9e0ec789ba610286f4fd351f8afe70b6fa17acd7cf5461b8c76f",
+      "normalized_sha256": "4b2e7fa310c4c7baa717ef588d4f04b32fbd7ab347509aea5c2d04669669126b",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      }
+    },
+    {
+      "role": "0x145afd390",
+      "plan": "runtime/fixgap-166-0.119.0/0x145afd390-plan.json",
+      "plan_sha256": "c9ba004dfe232c7a56bfe72df871cc775fdf57da586ec41fef6be6e948409f57",
+      "journal": "runtime/fixgap-166-0.119.0/0x145afd390-query/journal.json",
+      "journal_sha256": "d2277be1483efcc6b4145194fa08c46e8ba97e68a04bd475098ca41f3a9b554d",
+      "result": "runtime/fixgap-166-0.119.0/0x145afd390-query/results/bb70228541df140dbcca572bb15a8c918ef07319c98b998d1a90321fdfed475a.json",
+      "result_sha256": "c2e6e588e7d6644f03682640bcde8efdd8c42846e073a7324ef8120712001c79",
+      "input": "runtime/fixgap-166-0.119.0/0x145afd390.bin",
+      "input_sha256": "14d3382cbdee7799aa86b5f619d9e81b044acc058d41c1d3dc2d77e7f591cd32",
+      "evidence_id": "ev_8c8533c613cb32895feb46ffb50c770c37ed0df35ee90211414e03e2206817e1",
+      "profile_digest": "a182f01608e62a7fa2a9416c6972bf9c046a68a38324ecd7ab0492047ae33ea7",
+      "normalized_sha256": "9d8097c167e05fdb73e93b0fdad37f1f0f7d12cb9aaa11d68612ba95bc022d29",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      }
+    },
+    {
+      "role": "0x145b19870",
+      "plan": "runtime/fixgap-166-0.119.0/0x145b19870-plan.json",
+      "plan_sha256": "a7348b8571b6cc5740e9ff73031d1e15a6bfdb30c7504135120c076a3abeb841",
+      "journal": "runtime/fixgap-166-0.119.0/0x145b19870-query/journal.json",
+      "journal_sha256": "3e0551bbea22b035fdc9eeb78ba5b26975cab6f96afae94e0fbc9df5e3431898",
+      "result": "runtime/fixgap-166-0.119.0/0x145b19870-query/results/0ccf7d6afdb0bfcb2bc65b1fd218bb6aac592f3f6dec8169cc0e0179a633a26f.json",
+      "result_sha256": "cabc4c8ce63359eb7fd5f50eda9f2c2481f71b935eea2d836de4d51be2bb5a98",
+      "input": "runtime/fixgap-166-0.119.0/0x145b19870.bin",
+      "input_sha256": "b321c8ac7c2464d5ede21534600a0abf47d394de5eb1d62b0a4f53951d0437cd",
+      "evidence_id": "ev_fa2b65380ac153deaf9e508973012f9f2d80fde1d10e93c5c2c1724b642da894",
+      "profile_digest": "73370bc618509d23b5505cacb4fb5522874e2f775a7acdf75d784901b10c0998",
+      "normalized_sha256": "d75f0b4f638fd565ba57569de7d4f804595df3d01ff9cf890c8329a3214f6218",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      }
+    },
+    {
+      "role": "entry-xp-multiplier",
+      "plan": "runtime/fixgap-166-0.119.0/entry-xp-multiplier-plan.json",
+      "plan_sha256": "3ea180c4a07d92f460f24bf58444241f4391b47246ef11fb1d7fd92387918996",
+      "journal": "runtime/fixgap-166-0.119.0/entry-xp-multiplier-query/journal.json",
+      "journal_sha256": "c87c51c16805f38e781aa9b39b79f028093e4ee0f66566130548458283cd2270",
+      "result": "runtime/fixgap-166-0.119.0/entry-xp-multiplier-query/results/cf55a2933bea2fb71b7616f02b61134b6c8a2f1dc1239b12df0a23d9a1b20931.json",
+      "result_sha256": "d5cd27cd0fd8257980858a769f0802b6fab4072ddb0f57ba7123fddc60615743",
+      "input": "runtime/fixgap-166-0.119.0/entry-xp-multiplier.bin",
+      "input_sha256": "9fa9f74c97f454be8f4f9e09c03bce798905d713bff9804d339f8ea05b97e464",
+      "evidence_id": "ev_2b33c5e96fa557be283867d7242ec77dd0ecd80098981160e589bd3e3d9d246a",
+      "profile_digest": "3c93b80f9b2b7ad67190cde7bb1f3ce3d2f9843439af4eeee8c2f8b7ea3b2dc5",
+      "normalized_sha256": "2d344406f9999bf64186b47717701c333d232e021f83434921f2bc3422a64977",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      }
+    },
+    {
+      "role": "xp-component-deltas",
+      "plan": "runtime/fixgap-166-0.119.0/xp-component-deltas-plan.json",
+      "plan_sha256": "5655f5e6f9c6307ee6eadea4b76dce15894f4a055a9f82dc4e97b01735edf8bb",
+      "journal": "runtime/fixgap-166-0.119.0/xp-component-deltas-query/journal.json",
+      "journal_sha256": "c951460186a444044398d816b073f4457bce7ea162f355ffa93402fde67f0877",
+      "result": "runtime/fixgap-166-0.119.0/xp-component-deltas-query/results/d016dcf7dee445c50c488b863f5f09754e803efd59363c6296d2439a532279c8.json",
+      "result_sha256": "d8e79056addbbe9a637b63186ca46ac7418fad7e093f2f96ce9b9f37e47ef69f",
+      "input": "runtime/fixgap-166-0.119.0/xp-component-deltas.bin",
+      "input_sha256": "950243a12713b2e4db15f537f6baa6f6245e13e7d337924c746c1654e584d4b8",
+      "evidence_id": "ev_f5eea363ed5fa6584849f5b908d559dbec9d19c7aa61afc8fc9ea60da3a4f653",
+      "profile_digest": "1ac9a50ced256b34157e8f73544817872836996fb80ee9e508aec94b62d31176",
+      "normalized_sha256": "61572f30505866b37a954d3c035300b366e73e39b30993015d895243d7d11c2d",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      }
+    }
+  ],
+  "direct_callers": [
+    {
+      "caller": "0x145afd390",
+      "end_exclusive": "0x145b03c21",
+      "site": "0x145afeacc",
+      "target": "0x145b18b70"
+    },
+    {
+      "caller": "0x145afd390",
+      "end_exclusive": "0x145b03c21",
+      "site": "0x145afeb62",
+      "target": "0x145b18b70"
+    },
+    {
+      "caller": "0x145afd390",
+      "end_exclusive": "0x145b03c21",
+      "site": "0x145affb69",
+      "target": "0x145b18a30"
+    },
+    {
+      "caller": "0x145afd390",
+      "end_exclusive": "0x145b03c21",
+      "site": "0x145b0020f",
+      "target": "0x145b18b70"
+    },
+    {
+      "caller": "0x145afd390",
+      "end_exclusive": "0x145b03c21",
+      "site": "0x145b02479",
+      "target": "0x145b0f7d0"
+    },
+    {
+      "caller": "0x145afd390",
+      "end_exclusive": "0x145b03c21",
+      "site": "0x145b02481",
+      "target": "0x145b15590"
+    },
+    {
+      "caller": "0x145b117c0",
+      "end_exclusive": "0x145b12dea",
+      "site": "0x145b12419",
+      "target": "0x145b0f7d0"
+    },
+    {
+      "caller": "0x145b136c0",
+      "end_exclusive": "0x145b13a69",
+      "site": "0x145b136ea",
+      "target": "0x145b0f7d0"
+    },
+    {
+      "caller": "0x145b18a30",
+      "end_exclusive": "0x145b18b33",
+      "site": "0x145b18a80",
+      "target": "0x145b0f7d0"
+    },
+    {
+      "caller": "0x145b18a30",
+      "end_exclusive": "0x145b18b33",
+      "site": "0x145b18a88",
+      "target": "0x145b15590"
+    },
+    {
+      "caller": "0x145b18b70",
+      "end_exclusive": "0x145b18e6a",
+      "site": "0x145b18bbd",
+      "target": "0x145b0f7d0"
+    },
+    {
+      "caller": "0x145b18b70",
+      "end_exclusive": "0x145b18e6a",
+      "site": "0x145b18bc5",
+      "target": "0x145b15590"
+    },
+    {
+      "caller": "0x145b19870",
+      "end_exclusive": "0x145b19b73",
+      "site": "0x145b199b1",
+      "target": "0x145b18a30"
+    },
+    {
+      "caller": "0x145b1c260",
+      "end_exclusive": "0x145b1d5e4",
+      "site": "0x145b1c351",
+      "target": "0x145b0f7d0"
+    },
+    {
+      "caller": "0x145b1c260",
+      "end_exclusive": "0x145b1d5e4",
+      "site": "0x145b1c368",
+      "target": "0x145b15590"
+    },
+    {
+      "caller": "0x145b1c260",
+      "end_exclusive": "0x145b1d5e4",
+      "site": "0x145b1c91b",
+      "target": "0x145b18a30"
+    },
+    {
+      "caller": "0x145b1c260",
+      "end_exclusive": "0x145b1d5e4",
+      "site": "0x145b1d4dd",
+      "target": "0x145b0f7d0"
+    },
+    {
+      "caller": "0x145b1c260",
+      "end_exclusive": "0x145b1d5e4",
+      "site": "0x145b1d4ed",
+      "target": "0x145b15590"
+    }
+  ],
+  "account_dependency": {
+    "report": "docs/analysis/friend-achievements-0.119.0.md",
+    "manifest": "docs/analysis/evidence/0.119.0/friend-achievements/manifest.json",
+    "current_query": "runtime/gap167-0.119.0/query/results/e54e8f6024eca92bca73f8e08411188cae6a3be14113231b8a57736eabdfa944.json",
+    "current_query_sha256": "654041e70b40452b09a5467f3c1fbc57b2218a74ac1f1cc02caa2bd915cf9eb7"
+  },
+  "limitations": [
+    "Static current PE instructions and data with bounded raw Ghidra imports; external types/ABI/jump tables remain independently checked or unresolved.",
+    "Native replay uses scratch memory and intercepts summary/account callees only to record order; it never launches the EXE, compiled source, client, network or server.",
+    "Account recipient/evaluator is current #167 shared proof; complete save/file/UI/runtime/parity behavior is not certified.",
+    "Source guards inspect actual function/match-arm gates and producer/consumer ordering; rustfmt/stdin parses syntax only. They do not execute Rust, type-check dependencies, run authored Rust regressions or certify runtime behavior."
+  ],
+  "source_connections": [
+    {
+      "id": "G166-phase-checkpoint",
+      "contract": "Exact effective-terminal phase admission and unchanged nonterminal marker",
+      "native_role": "guest-state-terminal-edge",
+      "anchors": [
+        [
+          "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs",
+          "fn admit_terminal_state("
+        ]
+      ]
+    },
+    {
+      "id": "G166-cumulative-checkpoints",
+      "contract": "Captured entry bonus, wrapping XP and independent nonnegative counters",
+      "native_role": "xp-component-subtractions",
+      "anchors": [
+        [
+          "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs",
+          "fn from_cached("
+        ],
+        [
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs",
+          "fn restore_guest_checkpoints("
+        ]
+      ]
+    },
+    {
+      "id": "G166-summary-account",
+      "contract": "Summary precedes independent immutable account grants and Save",
+      "native_role": "guest-close-wrapper",
+      "anchors": [
+        [
+          "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs",
+          "fn summary("
+        ],
+        [
+          "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs",
+          "fn account("
+        ]
+      ]
+    },
+    {
+      "id": "G166-cache-live",
+      "contract": "Accepted prebootstrap cache and live replica share settlement ownership",
+      "native_role": "guest-snapshot-selection",
+      "anchors": [
+        [
+          "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+          "fn settle("
+        ],
+        [
+          "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs",
+          "fn from_mechanics("
+        ]
+      ]
+    },
+    {
+      "id": "G166-entry-reset",
+      "contract": "Every ZoneKey captures entry GUID/Veteran and resets without a late grant",
+      "native_role": "guest-zone-reset",
+      "anchors": [
+        [
+          "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+          "NativeMessage::ZoneKey(zone) if guest =>"
+        ]
+      ]
+    },
+    {
+      "id": "G166-state-receive",
+      "contract": "Each accepted terminal State settles in receive order",
+      "native_role": "guest-state-terminal-edge",
+      "anchors": [
+        [
+          "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+          "NativeMessage::State(value) if guest =>"
+        ]
+      ]
+    },
+    {
+      "id": "G166-end",
+      "contract": "End settles accepted cache before teardown regardless bootstrap",
+      "native_role": "guest-end-dispatch",
+      "anchors": [
+        [
+          "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+          "NativeMessage::End if guest && state.zone.is_some() && state.state.is_some() =>"
+        ]
+      ]
+    },
+    {
+      "id": "G166-loss",
+      "contract": "Host loss settles buffered guest state before driver/cache teardown",
+      "native_role": "host-loss",
+      "anchors": [
+        [
+          "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+          "fn finish_transport_lost("
+        ]
+      ]
+    },
+    {
+      "id": "G166-bootstrap",
+      "contract": "Already-delivered checkpoints and staged events transfer to created Mechanics",
+      "native_role": "guest-snapshot-selection",
+      "anchors": [
+        [
+          "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+          "state.checkpoints.apply_to_game(&mut game)"
+        ],
+        [
+          "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+          "std::mem::take(&mut state.pending_events)"
+        ]
+      ]
+    },
+    {
+      "id": "G166-guest-boundary",
+      "contract": "Local tick bypasses guests; forced guest close sends complete transaction",
+      "native_role": "guest-skips-local-tick-delivery",
+      "anchors": [
+        [
+          "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+          "fn persist_run_at("
+        ]
+      ]
+    },
+    {
+      "id": "G166-native-logout",
+      "contract": "Raw Logout settles before closing driver and replacing local game",
+      "native_role": "guest-close-wrapper",
+      "anchors": [
+        [
+          "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+          "fn native_requests("
+        ]
+      ]
+    },
+    {
+      "id": "G166-form-leave",
+      "contract": "Leave command settles before service/session teardown",
+      "native_role": "form-leave-close",
+      "anchors": [
+        [
+          "crates/azeroth-survivors-re/src/coop_directory.rs",
+          "FormRequest::Leave =>"
+        ]
+      ]
+    },
+    {
+      "id": "G166-event-order",
+      "contract": "Queued wire events precede notices and final Logout/Disconnected",
+      "native_role": "notifications-in-world",
+      "anchors": [
+        [
+          "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+          "fn queue_delivery("
+        ]
+      ]
+    },
+    {
+      "id": "G166-notification-consumers",
+      "contract": "Shared achievement/talent formatting and frontend account notices survive teardown",
+      "native_role": "notifications-frontend",
+      "anchors": [
+        [
+          "crates/azeroth-survivors-re/src/gameplay/client.rs",
+          "fn guest_account_messages("
+        ],
+        [
+          "crates/azeroth-survivors-re/src/gameplay/client/events.rs",
+          "fn settlement_messages("
+        ],
+        [
+          "crates/azeroth-survivors-re/src/gameplay/notifications.rs",
+          "fn account_toast("
+        ]
+      ]
+    },
+    {
+      "id": "G166-summary-receipts",
+      "contract": "Pre-save XP/unlock receipts remain available to terminal display",
+      "native_role": "summary-first-result",
+      "anchors": [
+        [
+          "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
+          "guest.terminal_delivery.take()"
+        ],
+        [
+          "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
+          "guest.terminal_unlocked_zone.take()"
+        ],
+        [
+          "crates/azeroth-survivors-re/src/gameplay/client/events.rs",
+          "terminal.queue_talent(value)"
+        ]
+      ]
+    },
+    {
+      "id": "G166-menu-again",
+      "contract": "Guest Menu/Again uses admitted cache close independently of local active-client gate",
+      "native_role": "run-leave-close",
+      "anchors": [
+        [
+          "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
+          "TerminalAction::Again|TerminalAction::Menu=>"
+        ]
+      ]
+    },
+    {
+      "id": "G166-world-presentation-gate",
+      "contract": "Account/cache close remains admitted before world-only menu/session presentation; lobby-only close preserves form/page",
+      "native_role": "party-close-world-teardown",
+      "anchors": [
+        [
+          "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+          "if local_active || menu.in_run { menu.return_from_run(); }"
+        ],
+        [
+          "crates/azeroth-survivors-re/src/coop_directory.rs",
+          "if local.active || menu.in_run { menu.return_from_run(); }"
+        ],
+        [
+          "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
+          "if active_client || menu.in_run { menu.return_from_run(); }"
+        ]
+      ]
+    }
+  ],
+  "source_receipts": [
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs",
+      "sha256": "f7e3eae119cf986faf766bfc21555581c5de37d3654e7804a8784159de4b96ac"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+      "sha256": "a34a0eef35b48014dff4c306e39e28ce28ff9e005f344325281a3945144e574c"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+      "sha256": "3612c35e94c70b516d923f425c4e55acf70a9d8458b451df33a33e24ef52a8fc"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/client.rs",
+      "sha256": "3d7652d9b09712eb55706aee1c58f7309126895ec4202b7657ffe52110d85d94"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/client/events.rs",
+      "sha256": "fa6cb11ff736eab8a2fea55bee6f49a3732f3dc5e964235e48acec72bd83b2f9"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs",
+      "sha256": "a7361cbe9cb697a2e49e6f51f04932968df64ce3e83c9f3de9c31411a7b5db1f"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/notifications.rs",
+      "sha256": "1776ef3bd665a91b78e41cb4ec3b4c5a69852ffb7f90fbdc7cb73be8977eee2f"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
+      "sha256": "a548e80cc141ab031677a72300044fc781198ae028e35c21e5b33c3941861bae"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop_directory.rs",
+      "sha256": "fb5f685c4f7ec2701814adee3ecf0a1d06c2811211e6037fed5093792ababd77"
+    }
+  ],
+  "source_receipts_state": "source-frozen-and-statically-traced"
+}

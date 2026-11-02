@@ -1,0 +1,11 @@
+0000000145ccc53f f30f10ba980c0000               movss xmm7, dword ptr [rdx + 0xc98]
+0000000145ccc547 0fb682570d0000                 movzx eax, byte ptr [rdx + 0xd57]
+0000000145ccc54e 888581000000                   mov byte ptr [rbp + 0x81], al
+0000000145ccc554 0fb682520d0000                 movzx eax, byte ptr [rdx + 0xd52]
+0000000145ccc55b 888582000000                   mov byte ptr [rbp + 0x82], al
+0000000145ccc561 0fb682580d0000                 movzx eax, byte ptr [rdx + 0xd58]
+0000000145ccc568 888583000000                   mov byte ptr [rbp + 0x83], al
+0000000145ccc56e 8b8230050000                   mov eax, dword ptr [rdx + 0x530]
+0000000145ccc574 89451c                         mov dword ptr [rbp + 0x1c], eax
+0000000145ccc577 8b82a80b0000                   mov eax, dword ptr [rdx + 0xba8]
+0000000145ccc57d 894518                         mov dword ptr [rbp + 0x18], eax

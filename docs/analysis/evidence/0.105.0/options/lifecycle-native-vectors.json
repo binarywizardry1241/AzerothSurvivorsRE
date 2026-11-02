@@ -1,0 +1,174 @@
+{
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "numeric_toggles": [
+    {
+      "key": "NAMEPLATES_ON",
+      "input": "1",
+      "literal": "1"
+    },
+    {
+      "key": "NAMEPLATES_ON",
+      "input": "0",
+      "literal": "nil"
+    },
+    {
+      "key": "NAMEPLATES_ON",
+      "input": "",
+      "literal": "nil"
+    },
+    {
+      "key": "NAMEPLATES_ON",
+      "input": "01",
+      "literal": "nil"
+    },
+    {
+      "key": "NAMEPLATES_ON",
+      "input": "true",
+      "literal": "nil"
+    },
+    {
+      "key": "NAMEPLATES_ON",
+      "input": "1 ",
+      "literal": "nil"
+    },
+    {
+      "key": "FRIENDNAMEPLATES_ON",
+      "input": "1",
+      "literal": "1"
+    },
+    {
+      "key": "FRIENDNAMEPLATES_ON",
+      "input": "0",
+      "literal": "nil"
+    },
+    {
+      "key": "FRIENDNAMEPLATES_ON",
+      "input": "",
+      "literal": "nil"
+    },
+    {
+      "key": "FRIENDNAMEPLATES_ON",
+      "input": "01",
+      "literal": "nil"
+    },
+    {
+      "key": "FRIENDNAMEPLATES_ON",
+      "input": "true",
+      "literal": "nil"
+    },
+    {
+      "key": "FRIENDNAMEPLATES_ON",
+      "input": "1 ",
+      "literal": "nil"
+    }
+  ],
+  "assignment_matching": [
+    {
+      "line": "SHOW_COMBAT_TEXT = \"1\"",
+      "replaced": true
+    },
+    {
+      "line": "SHOW_COMBAT_TEXT=nil",
+      "replaced": true
+    },
+    {
+      "line": "SHOW_COMBAT_TEXT \t = 0",
+      "replaced": true
+    },
+    {
+      "line": "SHOW_COMBAT_TEXT =",
+      "replaced": true
+    },
+    {
+      "line": "SHOW_COMBAT_TEXT_EXTRA = 1",
+      "replaced": false
+    },
+    {
+      "line": " SHOW_COMBAT_TEXT = 1",
+      "replaced": false
+    },
+    {
+      "line": "show_combat_text = 1",
+      "replaced": false
+    },
+    {
+      "line": "SHOW_COMBAT_TEXT",
+      "replaced": false
+    },
+    {
+      "line": "-- SHOW_COMBAT_TEXT = 1",
+      "replaced": false
+    },
+    {
+      "line": "SHOW_COMBAT_TEXT\t = false",
+      "replaced": true
+    }
+  ],
+  "addon_precedence": [
+    {
+      "name": "Example",
+      "character_or_default": true,
+      "account": [],
+      "enabled": true
+    },
+    {
+      "name": "Example",
+      "character_or_default": false,
+      "account": [],
+      "enabled": false
+    },
+    {
+      "name": "Example",
+      "character_or_default": true,
+      "account": [
+        [
+          "example",
+          false
+        ]
+      ],
+      "enabled": false
+    },
+    {
+      "name": "Example",
+      "character_or_default": false,
+      "account": [
+        [
+          "EXAMPLE",
+          true
+        ]
+      ],
+      "enabled": true
+    },
+    {
+      "name": "Example",
+      "character_or_default": true,
+      "account": [
+        [
+          "example",
+          false
+        ],
+        [
+          "Example",
+          true
+        ]
+      ],
+      "enabled": false
+    },
+    {
+      "name": "VeryLongAddonName",
+      "character_or_default": false,
+      "account": [
+        [
+          "verylongaddonname",
+          true
+        ]
+      ],
+      "enabled": true
+    }
+  ],
+  "seams": [
+    "Native memcmp and long-name ASCII-insensitive comparator only; no filesystem, VM, allocator or game callees run.",
+    "Assignment replay begins after native lines() decoding, with an explicit UTF-8 line fixture.",
+    "Addon replay begins after the ordinary character/TOC choice, with explicit account-row fixtures."
+  ]
+}

@@ -1,0 +1,337 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.108.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b",
+    "size_bytes": 140203520
+  },
+  "scope": "Most-referenced complement region and its encoded direct-jump destinations, not all non-unwind code.",
+  "selection_rule": "Maximum incoming direct seed-lead count, ties by address; all seeded entries in that range; then all unconditional direct destinations that are current declared starts.",
+  "incoming_leads": 239603,
+  "retained_bundles": [
+    {
+      "path": "runtime/coverage/dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b/ghidra/complement-most-referenced/session/evidence-bundle.json",
+      "sha256": "b6af1966a67e4a1567fb5c5781f53279400f023714439c95657766adc8090ad5",
+      "profile_digest": "aa190484a21ff2b4af574fd847c5055d85f82ccb1c0c0e8a3ac1e75c96273642",
+      "input_range": {
+        "address": "0x1400021b2",
+        "file_offset": "0x15b2",
+        "byte_count": 94,
+        "sha256": "7a6ae92cf468dab2d1cb11c4f736ca0663566d1cc5910584c39ac1c1f58dc4e7",
+        "incoming_leads": 239603
+      },
+      "seed_sha256": "2f1a1cfb0f4ffcb2f0447ff0405e1da748fd82e4b1c4e853cb7bf7dce758e74e"
+    },
+    {
+      "path": "runtime/coverage/dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b/ghidra/complement-forwarder-destinations-replay/session/evidence-bundle.json",
+      "sha256": "492264086905bff0d324452c941576cb32a5f2a748a61bcab32c36986ce77013",
+      "profile_digest": "f6953e73f7572b854d7bdb5205bc0124d5d4fe9db616c000919a89950e8b9930",
+      "input_range": {
+        "address": "0x145b9c560",
+        "file_offset": "0x5b9b960",
+        "byte_count": 609,
+        "sha256": "3f7bef41126b9cfd544f461c844ab59401d1c81940ffaceff9ee6b219e7d1b36",
+        "forwarded_from": {
+          "address": "0x1400021b2",
+          "file_offset": "0x15b2",
+          "byte_count": 94,
+          "sha256": "7a6ae92cf468dab2d1cb11c4f736ca0663566d1cc5910584c39ac1c1f58dc4e7",
+          "incoming_leads": 239603
+        }
+      },
+      "seed_sha256": "51cc473195f0d871e7cb50d8a7c5e93d60dc3e0d1b03e599d367c301adca5154"
+    }
+  ],
+  "assembly": {
+    "path": "docs/analysis/evidence/0.108.0/unwind-complement/native.asm",
+    "sha256": "0e506436b114ddda8e5ed6296f15907d34616d7bf17e665a41be064475a94ce7"
+  },
+  "entries": [
+    {
+      "address": "0x1400021c0",
+      "file_offset": "0x15c0",
+      "byte_count": 5,
+      "sha256": "584e60606ff6c2e959f340951a8305b9c29cbebcfc4549c8d03d3883039c94c1",
+      "instruction_count": 1,
+      "ghidra_capstone_boundaries_equal": true,
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x1400021c4",
+            "start": "0x1400021c0"
+          }
+        ],
+        "span_bytes": 5,
+        "total_bytes": 5
+      },
+      "evidence_ids": {
+        "procedure_info": "ev_06e4846e4dfc39dbd24e3a4ee4a434b0595a364f3ba13e2dda452202db3376fc",
+        "read_function_instructions": "ev_81df3459db08cdf62040a5e4f1aa0460bd0ab75c4b0f96102e4155eb122f058d",
+        "procedure_references": "ev_f315f97bad593618e1e7c7bc611f9557eb6374746e5b1905dc21e88b58b6a0b2"
+      }
+    },
+    {
+      "address": "0x1400021d0",
+      "file_offset": "0x15d0",
+      "byte_count": 5,
+      "sha256": "921563c62055146ff46815faafaf441441068b1905091733a67bbab9778dbe46",
+      "instruction_count": 1,
+      "ghidra_capstone_boundaries_equal": true,
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x1400021d4",
+            "start": "0x1400021d0"
+          }
+        ],
+        "span_bytes": 5,
+        "total_bytes": 5
+      },
+      "evidence_ids": {
+        "read_function_instructions": "ev_4a8c8a4e0d3765ef6b54b6e55a47501714815b7b22d1e3934387dac15f1a9ded",
+        "procedure_info": "ev_bac5241c72746dfdb4d2b3ab14ac7a68a32c88ad3c746af7d9f7883a0e14ce2c",
+        "procedure_references": "ev_f70b8e34480fdeff2bf5c770d5188982a34bbc65fc9ae61e160a123eb3329494"
+      }
+    },
+    {
+      "address": "0x1400021e0",
+      "file_offset": "0x15e0",
+      "byte_count": 5,
+      "sha256": "7ac7d359416bd51a615a5a6d1cd0383e8ca85675f0b6baeba6653238f2764177",
+      "instruction_count": 1,
+      "ghidra_capstone_boundaries_equal": true,
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x1400021e4",
+            "start": "0x1400021e0"
+          }
+        ],
+        "span_bytes": 5,
+        "total_bytes": 5
+      },
+      "evidence_ids": {
+        "read_function_instructions": "ev_47b526cb6bf32ee6567604de70225f468b1d69c3d4ef79c970e014691d6ccc31",
+        "procedure_info": "ev_8d2bcdce95f8060fe20a1bf5c06ed0532c35b6e7379c49149b3b0b9653655658",
+        "procedure_references": "ev_bab8679768018161c66bdb19a83ca40f723fd4d4885dcacf1f2d69415c93a4f6"
+      }
+    },
+    {
+      "address": "0x1400021f0",
+      "file_offset": "0x15f0",
+      "byte_count": 5,
+      "sha256": "e627d209435fae4ac68124c3260b4844f04d2afa5122e94259f7fb1df971429e",
+      "instruction_count": 1,
+      "ghidra_capstone_boundaries_equal": true,
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x1400021f4",
+            "start": "0x1400021f0"
+          }
+        ],
+        "span_bytes": 5,
+        "total_bytes": 5
+      },
+      "evidence_ids": {
+        "procedure_info": "ev_192387a0fbcaff8669af0b62bcd9f1841a2eb19a8363f43c2a48b63894f8cc32",
+        "read_function_instructions": "ev_f7cad3714d4dd96e2b27a20e6a6f1b8e0dd68f57e911cbc33be87d005236a8f4",
+        "procedure_references": "ev_f8568860ce3f408e42a04176f49e415695f6da86105a8ef9c6bb414b4bea836c"
+      }
+    },
+    {
+      "address": "0x140002200",
+      "file_offset": "0x1600",
+      "byte_count": 1,
+      "sha256": "ae3f4619b0413d70d3004b9131c3752153074e45725be13b9a148978895e359e",
+      "instruction_count": 1,
+      "ghidra_capstone_boundaries_equal": true,
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x140002200",
+            "start": "0x140002200"
+          }
+        ],
+        "span_bytes": 1,
+        "total_bytes": 1
+      },
+      "evidence_ids": {
+        "procedure_info": "ev_3587219b733ccc58b7798fbb2df9c016f74e530f92976e2495cc729ec4e07ad8",
+        "read_function_instructions": "ev_99d5fe44c1915b0d86c635758ff4f0f86cec8606c622d06111054335281a357d",
+        "procedure_references": "ev_c6cd2ccc1021f303e4a9bbefb19ac91d7260fd8dcc7ddaa939944c788c7c414d"
+      }
+    },
+    {
+      "address": "0x145b9c560",
+      "file_offset": "0x5b9b960",
+      "byte_count": 93,
+      "sha256": "b8142ba468e0194427fd2aa92e8d69f2c0543be5edf7dc4b7c36a79b4e71f053",
+      "instruction_count": 35,
+      "ghidra_capstone_boundaries_equal": true,
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x145b9c5bc",
+            "start": "0x145b9c560"
+          }
+        ],
+        "span_bytes": 93,
+        "total_bytes": 93
+      },
+      "evidence_ids": {
+        "procedure_pseudo_code": "ev_9f4cdcf7d9586c29ed4130d4b926ccd8e7fed3b2b942661c2163bca8d6b65534",
+        "procedure_info": "ev_ca40139379a5e57c723edf190c24020973c2251cb78a404e0f40dff3317bc4d4",
+        "procedure_references": "ev_cdbe85f8d62d644c2412f5a5ae00ab445226245e45855f5181aec6c825b1c914",
+        "read_function_instructions": "ev_f54af5038651ec401034a1af3c56668c9be3e705b9f7e54615ffc8ebbc81bfa6"
+      }
+    },
+    {
+      "address": "0x145b9c5c0",
+      "file_offset": "0x5b9b9c0",
+      "byte_count": 51,
+      "sha256": "c4940d05a3a7da6b2a5377089011026d58763482dcf47315a635c543fe11b5c5",
+      "instruction_count": 16,
+      "ghidra_capstone_boundaries_equal": true,
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x145b9c5f2",
+            "start": "0x145b9c5c0"
+          }
+        ],
+        "span_bytes": 51,
+        "total_bytes": 51
+      },
+      "evidence_ids": {
+        "procedure_pseudo_code": "ev_2b4ce145842472a79cf737f519bd88a3447f9c363187879c77aecc748f36b21c",
+        "procedure_info": "ev_d568ba5fa0880c003facc58be2f07b6ef656f24bfc1991c0d33387befcf21771",
+        "procedure_references": "ev_d8d46e74ea9e67554dd2fff0bfb220adb690eeea36bb5c1d82bd1ef0f2ab9c03",
+        "read_function_instructions": "ev_fd60e3d1e34f2b9bdb8367b4d9cf0956e709a2dc007153c0969cff129a90f04d"
+      }
+    },
+    {
+      "address": "0x145b9c600",
+      "file_offset": "0x5b9ba00",
+      "byte_count": 174,
+      "sha256": "18947438b729faab790ea06282228b722ffc05aa00ce64a7c6d0b6ba55056b0a",
+      "instruction_count": 61,
+      "ghidra_capstone_boundaries_equal": true,
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x145b9c6ad",
+            "start": "0x145b9c600"
+          }
+        ],
+        "span_bytes": 174,
+        "total_bytes": 174
+      },
+      "evidence_ids": {
+        "procedure_references": "ev_6e3372d2254a7611b094e829f8352584fdc70fb8e59a7fc6dd29d215697f7b74",
+        "read_function_instructions": "ev_82771150849e754b7bbfbbf298cc72e261158d28bf351e5dfeaf8d2e1c04f40e",
+        "procedure_info": "ev_db5635c9b6966e157d729ea7012569c6093490144ce283fc9151021d7e95d240",
+        "procedure_pseudo_code": "ev_e6edace320b3154bb60be9d3b7aa5d11c69c7d158b2f3fb1a939786791e81de9"
+      }
+    },
+    {
+      "address": "0x145b9c760",
+      "file_offset": "0x5b9bb60",
+      "byte_count": 97,
+      "sha256": "ea1156c81ebfc972130660a22d628c5c27ee2bec95b40110316c4e512b037808",
+      "instruction_count": 34,
+      "ghidra_capstone_boundaries_equal": true,
+      "body": {
+        "available": true,
+        "contains_entry": true,
+        "non_contiguous": false,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "end": "0x145b9c7c0",
+            "start": "0x145b9c760"
+          }
+        ],
+        "span_bytes": 97,
+        "total_bytes": 97
+      },
+      "evidence_ids": {
+        "procedure_info": "ev_0a41a080cbe0ce1242be49b5eb425ea4276efcf38856c172ed1495a6784b8660",
+        "procedure_references": "ev_1ef2839fdb489265c8134e6ce1cadf8161db92ab513d52bf16ddad7d93486d22",
+        "procedure_pseudo_code": "ev_3074d07e853550a4f6029176d901a17f800955ed633ce47f710e6518e85882f7",
+        "read_function_instructions": "ev_6300a1160e86740d77f1de48393f19a11011cf3389be4362d4b3122ec349b76b"
+      }
+    }
+  ],
+  "counts": {
+    "complement_entries": 5,
+    "destination_entries": 4,
+    "instructions": 151,
+    "body_bytes": 436
+  },
+  "import_slot_bindings": [
+    {
+      "address": "0x145d94090",
+      "library": "KERNEL32.dll",
+      "symbol": "HeapReAlloc"
+    },
+    {
+      "address": "0x145d946e0",
+      "library": "kernel32.dll",
+      "symbol": "HeapFree"
+    },
+    {
+      "address": "0x145d94760",
+      "library": "kernel32.dll",
+      "symbol": "GetProcessHeap"
+    }
+  ],
+  "decoder": {
+    "name": "Capstone",
+    "version": "5.0.7"
+  },
+  "native_semantics_complete": false,
+  "parity_verified": false,
+  "gap_ids": [
+    41
+  ],
+  "limitations": [
+    "Raw import turns the four missing native destinations into synthetic external-space names; they are native PE addresses, not imported DLL implementations.",
+    "Destination instruction boundaries/body bytes agree independently, but two pseudocode results report bad-data/PIC flow warnings. Pseudocode signatures, Windows ABI and source semantics are not certified.",
+    "GetProcessHeap/HeapFree/HeapReAlloc are exact PE IAT slot associations, not observed runtime callee values. Complete allocator, external/platform and gameplay ownership remain open.",
+    "Raw imports omit full-PE caller/global/import context. Incoming leads are retained independently in the complement database."
+  ]
+}

@@ -1,0 +1,2756 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.120.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c",
+    "size_bytes": 145484288
+  },
+  "profile_id": "094b5ec20e7424f30b178c38b8481a0b63d0641149d633e694a711c72e708c1c",
+  "generator": {
+    "dependencies": [
+      {
+        "path": "scripts/script_sources.py",
+        "sha256": "bc4cdf0f6c4a0805b7052d06c28acc48e644484d08decb79a97168cec6458cfa"
+      },
+      {
+        "path": "scripts/coverage_common.py",
+        "sha256": "aec38237b60b6982f17e0e93c6f6ba111100956fb389d44b397dbd5a6bdb1903"
+      }
+    ],
+    "path": "scripts/compose-as-discovery.py",
+    "sha256": "a385c3832671227d76d2f021e738a8addd0ba0268aa414c0f498b002afd4e0cc"
+  },
+  "artifacts": {
+    "profile.json": {
+      "path": "runtime/coverage/80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c/as-discovery/094b5ec20e7424f30b178c38b8481a0b63d0641149d633e694a711c72e708c1c/profile.json",
+      "sha256": "094b5ec20e7424f30b178c38b8481a0b63d0641149d633e694a711c72e708c1c"
+    },
+    "graph.json": {
+      "path": "runtime/coverage/80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c/as-discovery/094b5ec20e7424f30b178c38b8481a0b63d0641149d633e694a711c72e708c1c/graph.json",
+      "sha256": "bc63a14ea709a25af30603c99e70d639ccc3a1e4627bf66bd1007a1a8231dec5"
+    },
+    "queue.json": {
+      "path": "runtime/coverage/80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c/as-discovery/094b5ec20e7424f30b178c38b8481a0b63d0641149d633e694a711c72e708c1c/queue.json",
+      "sha256": "200d4caeb63f83f3ccdef56ca04076d53f6fe18b02dfa17f54a822b02b010869"
+    },
+    "journal.json": {
+      "path": "runtime/coverage/80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c/as-discovery/094b5ec20e7424f30b178c38b8481a0b63d0641149d633e694a711c72e708c1c/journal.json",
+      "sha256": "02fb5cfb2d46f935fe32b47b430b959c15d2aa08c51c31495e042f6498e15c6f"
+    }
+  },
+  "review_input": {
+    "path": "docs/analysis/evidence/0.120.2/as-discovery-reviews.json",
+    "sha256": "320787cbaeb76f961ee6a18e7040708ad6540be3f204329802c073be80399488"
+  },
+  "data_classification_input": {
+    "path": "docs/analysis/evidence/0.120.2/data-classification/source-connected-manifest.json",
+    "sha256": "76d2f3916b6c496d71a0419802aad1de07a21f9ee7794620f112a9114ee48aec"
+  },
+  "current_native_body_census": {
+    "path": "docs/analysis/coverage/full-image-execheck-0.120.2.json",
+    "sha256": "d76c8b14b186cbe420a416e6fb3a9fb8add17019d46ad9e32828b5ce89a1d03a"
+  },
+  "connection_ledger_input": {
+    "path": "docs/analysis/coverage/exe-connections.json",
+    "sha256": "ab7c3ceed6535c05fa95150ffa15f9f53dbd77a0b63fd422d6277e82a4d25f49"
+  },
+  "unknown_selector_input": {
+    "path": "docs/analysis/evidence/0.120.2/unknown-recovery.json",
+    "sha256": "bbbeab065675b8ede1c29c9be3f26d7141ef5df8d92a5622acdc002154e8b0d0"
+  },
+  "incremental_correspondence": {
+    "path": "docs/analysis/evidence/0.120.2/incremental-correspondence.json",
+    "sha256": "bd4aceb4e66f83685348404a8477d131f6f9f932d4d22c07d35f188162e6c170"
+  },
+  "counts": {
+    "nodes": 10302,
+    "edges": 56776,
+    "node_kinds": {
+      "embedded_candidate": 2135,
+      "registered_contract_artifact": 14,
+      "explicit_finding_binding": 4,
+      "registered_module_context": 62,
+      "flow_body_context": 863,
+      "static_reference_site": 5421,
+      "explicit_pending_native_lead": 1,
+      "explicit_bounded_review": 77,
+      "source_file": 1467,
+      "observed_string_container": 114,
+      "encoded_pointer_length_descriptor_candidate": 104,
+      "target": 1,
+      "residual_selector": 39
+    },
+    "node_ownership_states": {
+      "unknown": 10225,
+      "shared_AS_dependency": 8,
+      "as_specific": 64,
+      "generic_context": 5
+    },
+    "queue_states": {
+      "pending": 2510,
+      "reviewed_bounded": 77
+    },
+    "input_commitments": 1639,
+    "finding_bindings": 4,
+    "bounded_semantic_reviews": 77,
+    "review_states": {
+      "reviewed_bounded": 77
+    },
+    "reviewed_ownership_states": {
+      "shared_AS_dependency": 8,
+      "as_specific": 64,
+      "generic_context": 5
+    },
+    "selected_review_query_records": 77,
+    "distinct_selected_review_queries": 61,
+    "distinct_selected_decompiler_queries": 59,
+    "source_connection_review_states": {
+      "supporting_contract_recovered": 22,
+      "connected": 46,
+      "supporting_context_classified": 9
+    },
+    "source_connected_review_scopes": 46,
+    "partial_source_interface_review_scopes": 0,
+    "pending_frontier_entries": 2510,
+    "pending_native_leads": 1,
+    "pending_correspondence_leads": 0,
+    "resolved_original_table_questions": 14
+  },
+  "reviews": [
+    {
+      "id": "codex1202-growth-lookup",
+      "selector": "Q41-F01:correspondence:retained-table-1403076a2:moved-lookup",
+      "finding_ids": [
+        41,
+        17,
+        73
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "shared_AS_dependency",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "supporting_contract_recovered"
+    },
+    {
+      "id": "coop1202-exact-admission",
+      "selector": "COOP1202:admission:0x145b24b70",
+      "finding_ids": [
+        163
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "creature-query1202-helper-145a7dc80",
+      "selector": "Q41-F01:creature-query-helper:0x145a7dc80",
+      "finding_ids": [
+        41,
+        64,
+        65
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "supporting_contract_recovered"
+    },
+    {
+      "id": "creature-query1202-helper-145a7e610",
+      "selector": "Q41-F01:creature-query-helper:0x145a7e610",
+      "finding_ids": [
+        41,
+        64,
+        65
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "supporting_contract_recovered"
+    },
+    {
+      "id": "creature-query1202-helper-145a7e790",
+      "selector": "Q41-F01:creature-query-helper:0x145a7e790",
+      "finding_ids": [
+        41,
+        64,
+        65
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "supporting_contract_recovered"
+    },
+    {
+      "id": "creature-query1202-helper-145a7e980",
+      "selector": "Q41-F01:creature-query-helper:0x145a7e980",
+      "finding_ids": [
+        41,
+        64,
+        65
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "supporting_contract_recovered"
+    },
+    {
+      "id": "creature-query1202-helper-145bff050",
+      "selector": "Q41-F01:creature-query-helper:0x145bff050",
+      "finding_ids": [
+        41,
+        64,
+        65
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "supporting_contract_recovered"
+    },
+    {
+      "id": "creature-query1202-helper-145c42d30",
+      "selector": "Q41-F01:creature-query-helper:0x145c42d30",
+      "finding_ids": [
+        41,
+        64,
+        65
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "shared_AS_dependency",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "supporting_contract_recovered"
+    },
+    {
+      "id": "creature-query1202-helper-145c47150",
+      "selector": "Q41-F01:creature-query-helper:0x145c47150",
+      "finding_ids": [
+        41,
+        64,
+        65
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "shared_AS_dependency",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "supporting_contract_recovered"
+    },
+    {
+      "id": "flags-core1202-0x145b05c50-procedure_pseudo_code",
+      "selector": "FLAGS-CORE1202:query:0x145b05c50",
+      "finding_ids": [
+        41,
+        63,
+        199,
+        200
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "flags-core1202-0x145c03f90-procedure_pseudo_code",
+      "selector": "FLAGS-CORE1202:query:0x145c03f90",
+      "finding_ids": [
+        41,
+        63,
+        199,
+        200
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "flags-core1202-0x145c05020-procedure_pseudo_code",
+      "selector": "FLAGS-CORE1202:query:0x145c05020",
+      "finding_ids": [
+        41,
+        63,
+        199,
+        200
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "flags-lifetime1202-0x145b226b0-procedure_pseudo_code",
+      "selector": "FLAGS-LIFETIME1202:query:0x145b226b0",
+      "finding_ids": [
+        41,
+        63,
+        199,
+        200
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "flags-lifetime1202-0x145b22c10-procedure_pseudo_code",
+      "selector": "FLAGS-LIFETIME1202:query:0x145b22c10",
+      "finding_ids": [
+        41,
+        63,
+        199,
+        200
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "flags-presentation1202-0x145b24860-procedure_pseudo_code",
+      "selector": "FLAGS-PRESENTATION1202:query:0x145b24860",
+      "finding_ids": [
+        41,
+        63,
+        199,
+        200
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "flags-presentation1202-0x145b456f0-procedure_pseudo_code",
+      "selector": "FLAGS-PRESENTATION1202:query:0x145b456f0",
+      "finding_ids": [
+        41,
+        63,
+        199,
+        200
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "flags-presentation1202-0x145b45840-procedure_pseudo_code",
+      "selector": "FLAGS-PRESENTATION1202:query:0x145b45840",
+      "finding_ids": [
+        41,
+        63,
+        199,
+        200
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "flags-presentation1202-0x145b45a20-procedure_pseudo_code",
+      "selector": "FLAGS-PRESENTATION1202:query:0x145b45a20",
+      "finding_ids": [
+        41,
+        63,
+        199,
+        200
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "flags-presentation1202-0x145b4f3f0-procedure_pseudo_code",
+      "selector": "FLAGS-PRESENTATION1202:query:0x145b4f3f0",
+      "finding_ids": [
+        41,
+        63,
+        199,
+        200
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "flags-presentation1202-0x145b53040-procedure_pseudo_code",
+      "selector": "FLAGS-PRESENTATION1202:query:0x145b53040",
+      "finding_ids": [
+        41,
+        63,
+        199,
+        200
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "flags-presentation1202-0x145c3f980-procedure_pseudo_code",
+      "selector": "FLAGS-PRESENTATION1202:query:0x145c3f980",
+      "finding_ids": [
+        41,
+        63,
+        199,
+        200
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "flags-presentation1202-0x145c5a560-procedure_pseudo_code",
+      "selector": "FLAGS-PRESENTATION1202:query:0x145c5a560",
+      "finding_ids": [
+        41,
+        63,
+        199,
+        200
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "helper1202-145afd95c",
+      "selector": "Q41-F01:table-geometry:0x145afd95c",
+      "finding_ids": [
+        41,
+        63
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "generic_context",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "supporting_context_classified"
+    },
+    {
+      "id": "helper1202-145bf2711",
+      "selector": "Q41-F01:table-geometry:0x145bf2711",
+      "finding_ids": [
+        41,
+        63
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "shared_AS_dependency",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "supporting_context_classified"
+    },
+    {
+      "id": "helper1202-145bf386c",
+      "selector": "Q41-F01:table-geometry:0x145bf386c",
+      "finding_ids": [
+        41,
+        63
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "generic_context",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "supporting_context_classified"
+    },
+    {
+      "id": "helper1202-145bfa69b",
+      "selector": "Q41-F01:table-geometry:0x145bfa69b",
+      "finding_ids": [
+        41,
+        63
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "generic_context",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "supporting_context_classified"
+    },
+    {
+      "id": "helper1202-145c0006e",
+      "selector": "Q41-F01:table-geometry:0x145c0006e",
+      "finding_ids": [
+        41,
+        63
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "shared_AS_dependency",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "supporting_context_classified"
+    },
+    {
+      "id": "helper1202-145c001aa",
+      "selector": "Q41-F01:table-geometry:0x145c001aa",
+      "finding_ids": [
+        41,
+        63
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "shared_AS_dependency",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "supporting_context_classified"
+    },
+    {
+      "id": "helper1202-145c00f70",
+      "selector": "Q41-F01:table-geometry:0x145c00f70",
+      "finding_ids": [
+        41,
+        63
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "shared_AS_dependency",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "supporting_context_classified"
+    },
+    {
+      "id": "helper1202-145c4ed20",
+      "selector": "Q41-F01:table-geometry:0x145c4ed20",
+      "finding_ids": [
+        41,
+        63
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "generic_context",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "supporting_context_classified"
+    },
+    {
+      "id": "helper1202-145c6ce2c",
+      "selector": "Q41-F01:table-geometry:0x145c6ce2c",
+      "finding_ids": [
+        41,
+        63
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "generic_context",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "supporting_context_classified"
+    },
+    {
+      "id": "itemtext1202-aggregate-reserve",
+      "selector": "Q41-ITEMTEXT01:current-registry-aggregate-reserve",
+      "finding_ids": [
+        101
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "shared_AS_dependency",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "supporting_contract_recovered"
+    },
+    {
+      "id": "itemtext1202-interner",
+      "selector": "Q41-ITEMTEXT01:current-registry-interner",
+      "finding_ids": [
+        101
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "supporting_contract_recovered"
+    },
+    {
+      "id": "itemtext1202-lookup",
+      "selector": "Q41-ITEMTEXT01:current-registry-lookup",
+      "finding_ids": [
+        101
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "supporting_contract_recovered"
+    },
+    {
+      "id": "party1202-145af1160",
+      "selector": "PARTY1202:query:0x145af1160",
+      "finding_ids": [
+        194,
+        195,
+        196
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "supporting_contract_recovered"
+    },
+    {
+      "id": "party1202-145b01b00",
+      "selector": "PARTY1202:query:0x145b01b00",
+      "finding_ids": [
+        194,
+        195,
+        196
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "supporting_contract_recovered"
+    },
+    {
+      "id": "party1202-145b1ea00",
+      "selector": "PARTY1202:query:0x145b1ea00",
+      "finding_ids": [
+        194,
+        195,
+        196
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "supporting_contract_recovered"
+    },
+    {
+      "id": "party1202-145b1f210",
+      "selector": "PARTY1202:query:0x145b1f210",
+      "finding_ids": [
+        194,
+        195,
+        196
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "supporting_contract_recovered"
+    },
+    {
+      "id": "party1202-145b205a0",
+      "selector": "PARTY1202:query:0x145b205a0",
+      "finding_ids": [
+        194,
+        195,
+        196
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "supporting_contract_recovered"
+    },
+    {
+      "id": "party1202-145b400f0",
+      "selector": "PARTY1202:query:0x145b400f0",
+      "finding_ids": [
+        194,
+        195,
+        196
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "supporting_contract_recovered"
+    },
+    {
+      "id": "party1202-145b46770",
+      "selector": "PARTY1202:query:0x145b46770",
+      "finding_ids": [
+        194,
+        195,
+        196
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "party1202-145b60c20",
+      "selector": "PARTY1202:query:0x145b60c20",
+      "finding_ids": [
+        194,
+        195,
+        196
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "supporting_contract_recovered"
+    },
+    {
+      "id": "party1202-145b68b20",
+      "selector": "PARTY1202:query:0x145b68b20",
+      "finding_ids": [
+        194,
+        195,
+        196
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "supporting_contract_recovered"
+    },
+    {
+      "id": "party1202-145bba060",
+      "selector": "PARTY1202:query:0x145bba060",
+      "finding_ids": [
+        194,
+        195,
+        196
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "supporting_contract_recovered"
+    },
+    {
+      "id": "relay1202-0x145b21850-procedure_pseudo_code",
+      "selector": "RELAY1202:query:0x145b21850",
+      "finding_ids": [
+        41,
+        63,
+        198
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "relay1202-0x145bf5ed0-procedure_callers",
+      "selector": "RELAY1202:query:0x145bf5ed0",
+      "finding_ids": [
+        41,
+        63,
+        198
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "supporting_contract_recovered"
+    },
+    {
+      "id": "relay1202-0x145bf5ed0-procedure_pseudo_code",
+      "selector": "RELAY1202:query:0x145bf5ed0",
+      "finding_ids": [
+        41,
+        63,
+        198
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "relay1202-0x145bf6d20-procedure_callers",
+      "selector": "RELAY1202:query:0x145bf6d20",
+      "finding_ids": [
+        41,
+        63,
+        198
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "supporting_contract_recovered"
+    },
+    {
+      "id": "relay1202-0x145bfb420-procedure_pseudo_code",
+      "selector": "RELAY1202:query:0x145bfb420",
+      "finding_ids": [
+        41,
+        63,
+        198
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "relay1202-0x145bfbc00-procedure_pseudo_code",
+      "selector": "RELAY1202:query:0x145bfbc00",
+      "finding_ids": [
+        41,
+        63,
+        198
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "relay1202-0x145bfdf90-procedure_pseudo_code",
+      "selector": "RELAY1202:query:0x145bfdf90",
+      "finding_ids": [
+        41,
+        63,
+        198
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "relay1202-0x145c03ec0-procedure_pseudo_code",
+      "selector": "RELAY1202:query:0x145c03ec0",
+      "finding_ids": [
+        41,
+        63,
+        198
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "relay1202-0x145c045b0-procedure_pseudo_code",
+      "selector": "RELAY1202:query:0x145c045b0",
+      "finding_ids": [
+        41,
+        63,
+        198
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "relay1202-0x145c04d60-procedure_pseudo_code",
+      "selector": "RELAY1202:query:0x145c04d60",
+      "finding_ids": [
+        41,
+        63,
+        198
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "relay1202-0x145c04f50-procedure_pseudo_code",
+      "selector": "RELAY1202:query:0x145c04f50",
+      "finding_ids": [
+        41,
+        63,
+        198
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "relay1202-0x145c053b0-procedure_pseudo_code",
+      "selector": "RELAY1202:query:0x145c053b0",
+      "finding_ids": [
+        41,
+        63,
+        198
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "relay1202-0x145c05590-procedure_pseudo_code",
+      "selector": "RELAY1202:query:0x145c05590",
+      "finding_ids": [
+        41,
+        63,
+        198
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "relay1202-outer-send",
+      "selector": "RELAY1202:outer-send:0x145bf6d20",
+      "finding_ids": [
+        197,
+        198
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "relay1202-receiver",
+      "selector": "RELAY1202:receiver:0x145bfac90",
+      "finding_ids": [
+        197,
+        198
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "relay1202-service-dispatch",
+      "selector": "RELAY1202:service-dispatch:0x145bf6e00",
+      "finding_ids": [
+        197,
+        198
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "relay1202-wire31",
+      "selector": "RELAY1202:wire31:0x145e0b690",
+      "finding_ids": [
+        199
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "relay1202-wire32",
+      "selector": "RELAY1202:wire32:0x145e0b690",
+      "finding_ids": [
+        200
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "retained-table-1403076a2",
+      "selector": "Q41-F01:correspondence:retained-table-1403076a2",
+      "finding_ids": [
+        41,
+        17,
+        73
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "retained-table-145afa2a7",
+      "selector": "Q41-F01:correspondence:retained-table-145afa2a7",
+      "finding_ids": [
+        41,
+        64,
+        65
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "retained-table-145afb3fb",
+      "selector": "Q41-F01:correspondence:retained-table-145afb3fb",
+      "finding_ids": [
+        41,
+        64,
+        65
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "retained-table-145afb49a",
+      "selector": "Q41-F01:correspondence:retained-table-145afb49a",
+      "finding_ids": [
+        41,
+        64,
+        65
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "retained-table-145afb64e",
+      "selector": "Q41-F01:correspondence:retained-table-145afb64e",
+      "finding_ids": [
+        41,
+        64,
+        65
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "retained-table-145afb798",
+      "selector": "Q41-F01:correspondence:retained-table-145afb798",
+      "finding_ids": [
+        41,
+        64,
+        65
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "retained-table-145afb7c1",
+      "selector": "Q41-F01:correspondence:retained-table-145afb7c1",
+      "finding_ids": [
+        41,
+        64,
+        65
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "retained-table-145afb7ed",
+      "selector": "Q41-F01:correspondence:retained-table-145afb7ed",
+      "finding_ids": [
+        41,
+        64,
+        65
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "retained-table-145afbad2",
+      "selector": "Q41-F01:correspondence:retained-table-145afbad2",
+      "finding_ids": [
+        41,
+        64,
+        65
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "retained-table-145afbb29",
+      "selector": "Q41-F01:correspondence:retained-table-145afbb29",
+      "finding_ids": [
+        41,
+        64,
+        65
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "retained-table-145afbb66",
+      "selector": "Q41-F01:correspondence:retained-table-145afbb66",
+      "finding_ids": [
+        41,
+        64,
+        65
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "retained-table-145afbb92",
+      "selector": "Q41-F01:correspondence:retained-table-145afbb92",
+      "finding_ids": [
+        41,
+        64,
+        65
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "retained-table-145afbe39",
+      "selector": "Q41-F01:correspondence:retained-table-145afbe39",
+      "finding_ids": [
+        41,
+        64,
+        65
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "retained-table-145afbed3",
+      "selector": "Q41-F01:correspondence:retained-table-145afbed3",
+      "finding_ids": [
+        41,
+        64,
+        65
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "template1202-entry-prefix",
+      "selector": "TEMPLATE1202:entry-prefix:0x145b01eb0",
+      "finding_ids": [
+        41,
+        64,
+        65,
+        201
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "as_specific",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "connected"
+    }
+  ],
+  "query_records": [
+    {
+      "analysis_profile_digest": "4bd0d467830f4570bc127d6d16252b43075e2d8a13ed6a2c4a5404094c225a11",
+      "evidence_id": "ev_00c1ae76b12e034b61913bf8e36e9cea956b06f0bb894c7201dfa41c97778018",
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-route-query/journal.json",
+        "sha256": "5884fd9a60abc2181e74d4f52646fc69ce1643de0d0b786f2e936a32be9a9eb3"
+      },
+      "normalized_sha256": "2a60ad7c0f8d5cd9fcdc712b421106388c16e9fb714af96a8c704c3c7cc51baf",
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-route-query/plan.json",
+        "sha256": "9254aacf87a25667798c0528614ae0d32a3ffabd4cc60c69d8b54dd8bdf90e39"
+      },
+      "procedure": "0x145b24860",
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-route-query/results/c5ca77b0c0935cd5454df5ece70cf06f1f2cca27849d2a9c338bee16c4f77941.json",
+        "sha256": "408d4355dc3446e693320764cf9555ff7d50c8af37cf64e4074e1c5ba63f2432"
+      }
+    },
+    {
+      "analysis_profile_digest": "82ddef487c5c7a6d24e7e7917de8843424bb99338801b7eccdc5b9585122f153",
+      "evidence_id": "ev_02a12a3e09ae92c804bfbe55a509caa6ad7e5ecaf9272d7d4c7aac5f6c2275e3",
+      "journal": {
+        "path": "runtime/0.120.2/relay-198/alive-query/journal.json",
+        "sha256": "31dbf272bacdb9affb609f2695b81630ec85356e3586292f60e8a46759764bbc"
+      },
+      "journal_operation_key": "ac468ffdbc9123bc356c87a44ed95d41e22a789970b2957bbe374dd6ae4e2c8e",
+      "normalized_sha256": "493796772e8c903943adb6665191b249ff45c4dd4fca76b40d3e09e367f3fcef",
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/relay-198/alive-query/plan.json",
+        "sha256": "ef43a3d4e24ab0045dd727534b99fd91fac6a1bb444e7d1a84ee8c6ab560c17c"
+      },
+      "procedure": "0x145c05590",
+      "result": {
+        "path": "runtime/0.120.2/relay-198/alive-query/results/ac468ffdbc9123bc356c87a44ed95d41e22a789970b2957bbe374dd6ae4e2c8e.json",
+        "sha256": "1ae6aaf9e5f6a70415585b020f25d51758433ff290f58f6217383b2f9879c2ed"
+      }
+    },
+    {
+      "analysis_profile_digest": "c27402bb7c726ca457baf6c228915721b2062ce48d3c6c0ca92cb5fc6c765ebb",
+      "evidence_id": "ev_03e85ab1ba50091d03b8dd868829e0271664fb5b794e60f11c5ed95c2805a7c7",
+      "journal": {
+        "path": "runtime/0.120.2/relay-198/send-query/journal.json",
+        "sha256": "cc0b4cbdeb0323f1865f8233c020fe1590cc5283c9e0f28ddbb09c0f7b8311f9"
+      },
+      "journal_operation_key": "9e8544fcc2cfe1509194b2750b0cc0de26de2f8d1822f479e2b601b1d559df58",
+      "normalized_sha256": "7377971a4df6faf00ef937f0561521aed4c84cb0e956b028104703f3553a4abc",
+      "operation": "procedure_callers",
+      "plan": {
+        "path": "runtime/0.120.2/relay-198/send-query/plan.json",
+        "sha256": "9f67b6e866d4942a3b784a306e59180348a61ea5fce6545e16b5278143b341d9"
+      },
+      "procedure": "0x145bf6d20",
+      "result": {
+        "path": "runtime/0.120.2/relay-198/send-query/results/9e8544fcc2cfe1509194b2750b0cc0de26de2f8d1822f479e2b601b1d559df58-9dc808a4d749e048.json",
+        "sha256": "fa906278e7334b4fa2bfd432e76f2a1cdbe6624aafabce1ac7a7481e8628fac1"
+      }
+    },
+    {
+      "analysis_profile_digest": "d33de8164898facc3f84dcfac1ce7180e9d5a059e28b43d67b116f77f1469f26",
+      "evidence_id": "ev_042a27097c67efc77fb11a01995e6867c398c8ea0ae7ce6dd837881647ba9517",
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-followup-query/journal.json",
+        "sha256": "b3bbd81c0629aabddf749d8bce478bd0a3248bfe5f812d697127ebfe2541e6b5"
+      },
+      "normalized_sha256": "0325e43e39a8c06eabffaa3d8e2d6e4a9091d57aaae40ab20f89141ee52e3325",
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-followup-query/plan.json",
+        "sha256": "86b9a32f236d8bcfc93e276e7a70b8bab131eff0cf40ed97ddef383856fba6e1"
+      },
+      "procedure": "0x145b45a20",
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-followup-query/results/7f11d3c6c57adf91ba083299477466bf0e4f71947f8ba6907d64339c1135e7fd-e8137a3790911d8f.json",
+        "sha256": "62554f89b6523b9236ef91578234941628788b7f7103fed311fe8f2f63626de2"
+      }
+    },
+    {
+      "evidence_id": "ev_067f8ff970dd5129959d65e3dc094175ea737769bea50d3b2ad16f21fe322069",
+      "journal": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/journal.json",
+        "sha256": "91890abdd9d39952d399e5d2569389607b99c8435a6ece6b536b7103763f5573"
+      },
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/plan.json",
+        "sha256": "35ec9eb3ddc68d001c2ffc9b186485e852444b0519841e201b6829a6297fd9f5"
+      },
+      "procedure": "0x145afd910",
+      "result": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/results/e2d1496e15e1d2509d7e80c98b5ed8d7c949b30ee5a570a4c1f612791e4dbef7.json",
+        "sha256": "7c46de08bd1e37367f9c2ff7bd45c80ae20ed9648b89b4653f1ce6d57edf21b7"
+      },
+      "reviewed_scope": "Only the classified helper/table branches and byte-bound ranges below; no whole-function or whole-module semantic claim."
+    },
+    {
+      "analysis_profile_digest": "7256dcbe1b3848d9e5347ed25991fcec1f69a425fa0f3034b1e324a99b7b33b3",
+      "evidence_id": "ev_0be16265bf0274b23b9278b8a08a96b7d8ae23e570ee410259ba2e4e5859cb96",
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/query/journal.json",
+        "sha256": "77c20931bd17a97d3dceadd847631211bd38d7f15c58266a213e5daeea309a56"
+      },
+      "journal_operation_key": "99aa7101e709f483628f2293dbc8ddac69549a83c19ce7db2760076f9729b04b",
+      "normalized_sha256": "e6fa9f585051aef65bb9249cf73eb441949bdfa8567415b2fe1ce7e59cf6c263",
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/query/plan.json",
+        "sha256": "50718b41106ab5d68a2e10019270c6c450c51113b3fc0a761a2e907aa231e533"
+      },
+      "procedure": "0x145bfbc00",
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/query/results/99aa7101e709f483628f2293dbc8ddac69549a83c19ce7db2760076f9729b04b.json",
+        "sha256": "f74d8893aeb32efdd09b754ca503ef3aae13af204a2a480ae453e44aca1e662a"
+      }
+    },
+    {
+      "evidence_id": "ev_0fd354cd17c803b4147489355b42ba23b6a432cef388650c6d0faa933b12223a",
+      "journal": {
+        "path": "runtime/0.120.2/creature-query-tables/query/journal.json",
+        "sha256": "cfd5d837f44c73dde0f7b50d2bc85b83bebe1c8efab4bc7183da403856ea7705"
+      },
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/creature-query-tables/query/plan.json",
+        "sha256": "118aaf4e9f4657eb89eb22f237f4b67bc3c39e7e81dd6888bc6ff6b93a461f1d"
+      },
+      "procedure": "0x145c47150",
+      "result": {
+        "path": "runtime/0.120.2/creature-query-tables/query/results/ad6f91a464d24f455ce463a5cc26522717f1534ab9d71a507aa92fcbe9af2178-05503680eb2e3e05.json",
+        "sha256": "b126d6c9f974f63a9ececd722d003df34a0946cf546b8c2cd99f1b1a34cd46ae"
+      }
+    },
+    {
+      "analysis_profile_digest": "d33de8164898facc3f84dcfac1ce7180e9d5a059e28b43d67b116f77f1469f26",
+      "evidence_id": "ev_1b0094750f00ca386d027d290f8c83ba80180e6db740d344c331882240c9ed8d",
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-followup-query/journal.json",
+        "sha256": "b3bbd81c0629aabddf749d8bce478bd0a3248bfe5f812d697127ebfe2541e6b5"
+      },
+      "normalized_sha256": "9c7627ced5170dc38a153f4715c734539da3d47633b774e5a7d786a333a3fdd2",
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-followup-query/plan.json",
+        "sha256": "86b9a32f236d8bcfc93e276e7a70b8bab131eff0cf40ed97ddef383856fba6e1"
+      },
+      "procedure": "0x145c3f980",
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-followup-query/results/0f6dbcc0e007385099d66214a3c0b8af43e07704bc3c6b1b15ade7a26d6001e4-69739ac196538605.json",
+        "sha256": "a280931cbe84851264eaca3be9f08853a7f2f6adec0f34c6de3372577f0a0403"
+      }
+    },
+    {
+      "evidence_id": "ev_2071256befc36890046732d076f4d44afadb0a8def6b2c314341e88073110573",
+      "journal": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/journal.json",
+        "sha256": "91890abdd9d39952d399e5d2569389607b99c8435a6ece6b536b7103763f5573"
+      },
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/plan.json",
+        "sha256": "35ec9eb3ddc68d001c2ffc9b186485e852444b0519841e201b6829a6297fd9f5"
+      },
+      "procedure": "0x145c6cde0",
+      "result": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/results/c33e2439fb8dc37aef0ec697872f139d8630242fb2f4e266c5741407d0013703-d8fda7c3a3c5d85d.json",
+        "sha256": "84c042ff8af6461d7424d4349e82f0468e5e565c178e25faa542dfbede0a22f8"
+      },
+      "reviewed_scope": "Only the classified helper/table branches and byte-bound ranges below; no whole-function or whole-module semantic claim."
+    },
+    {
+      "analysis_profile_digest": "4544c879b569aa6cdd3bf4d01f83e450e4f7133252384017e641856fa42a7e7b",
+      "evidence_id": "ev_2592fda2387e6fee380aaba4a8ce71ceb017257795ba304cc94ca3db1a9e85f9",
+      "journal": {
+        "path": "runtime/0.120.2/relay-198/encoder-query/journal.json",
+        "sha256": "658c2887e155c3dcfca88fea1f5f13a53752a08aedc6ce181634318d6683c2f8"
+      },
+      "journal_operation_key": "a0b511f85a3769322503d0647b686edf4294b19e211933f6a37c62ef2f62479f",
+      "normalized_sha256": "39ada99ff237ec04a38b93e169acf3af2c49cdaf5964c5b0399b9ba3fb7a1fad",
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/relay-198/encoder-query/plan.json",
+        "sha256": "b6723b3bd43402d01b691ae624c2c95701477008d6561817506b0f69f923a2e0"
+      },
+      "procedure": "0x145bf5ed0",
+      "result": {
+        "path": "runtime/0.120.2/relay-198/encoder-query/results/a0b511f85a3769322503d0647b686edf4294b19e211933f6a37c62ef2f62479f.json",
+        "sha256": "f81dc33f99ca92c6bb3aba51c07ac77a7b2138ac3e9db23434b182fa09361b61"
+      }
+    },
+    {
+      "analysis_profile_digest": "472839eef1686bfee81453d5ec78fb04a2a504ed07d047c5815f50f21b87a6ff",
+      "evidence_id": "ev_2a73cafb79b533e735297787af5af34bd71474584fe83a86a4771bcadc45cbf0",
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-query/journal.json",
+        "sha256": "e99b2058c2d11dab03e7df8bbfed7c721c2b89fdcaf27fc4271c5e524e8ed4ff"
+      },
+      "normalized_sha256": "fa98c57c05cb5c4fa83b9a5bdc13c4692a56e3d70a1722340ab801ee203c841c",
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-query/plan.json",
+        "sha256": "d048ae41757fd0cba2596edaa478b54b92b5d150316c0474d29157c65f5731bd"
+      },
+      "procedure": "0x145b4f3f0",
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-query/results/92a51104cdaf19582c748661a17c6192be194524e85d04ceddad3ca6cf5fc62c.json",
+        "sha256": "907de5902f09827ef0468c8911bb96c8d2b4eb0b5b011a936cb221f14c1551a0"
+      }
+    },
+    {
+      "analysis_profile_digest": "d33de8164898facc3f84dcfac1ce7180e9d5a059e28b43d67b116f77f1469f26",
+      "evidence_id": "ev_2c8221a9476f02701554ecde7185b6c5bb05f79cfd4bfb7f2e7d2bcb1023c45f",
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-followup-query/journal.json",
+        "sha256": "b3bbd81c0629aabddf749d8bce478bd0a3248bfe5f812d697127ebfe2541e6b5"
+      },
+      "normalized_sha256": "8040410962e3d501bfb9bff391e8d3eec0d2d460430be1e426216195cb560cbb",
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-followup-query/plan.json",
+        "sha256": "86b9a32f236d8bcfc93e276e7a70b8bab131eff0cf40ed97ddef383856fba6e1"
+      },
+      "procedure": "0x145b45840",
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-followup-query/results/801dd4fd6584abcd0ac09d984a74daa40f157c0c385e5bb03a637e25779e7720.json",
+        "sha256": "8b94da9fe94b10685c0f67b690d5db85b1f0b888f7f85965ec7b60a07f89d3f6"
+      }
+    },
+    {
+      "analysis_profile_digest": "5e6d9229397071294e95e0ae973be651c26b6ca51f5b226fb268ac4274e4e782",
+      "evidence_id": "ev_319357222f488a698292ab56ebdfaede53ee75d7fbff1b49a7744740bc06b050",
+      "journal": {
+        "path": "runtime/q41-codex-contract-0.120.2/query/journal.json",
+        "sha256": "61b32f317697ba69adafe93b30f68564a4b64ce265dfcb013673f3f686e7157a"
+      },
+      "normalized_sha256": "4377ffbedb4d8b1c1b0f7deeed018414a0d0dfa63ec47c8d1252849ab070703e",
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/q41-codex-contract-0.120.2/query/plan.json",
+        "sha256": "38c458a6ad0d8245cd07dbc5661d6981d64ec079685a2b965b0d37b36f3ea0f6"
+      },
+      "procedure": "0x1402de9e0",
+      "result": {
+        "path": "runtime/q41-codex-contract-0.120.2/query/results/96c7e4c9d711c98e03e484aea553fd40c016d8b81c45ee08ff3295a71f028b38.json",
+        "sha256": "069dac1a3a10ea90347a0f2432c2faca8727457fff7cdd65ab5191eb5397c584"
+      }
+    },
+    {
+      "evidence_id": "ev_36d5d4f05f8280bac7805ea9943ccbd40f0780f4b8f09d5dcffac13f937a8bcb",
+      "journal": {
+        "path": "runtime/0.120.2/creature-query-recovery/query/journal.json",
+        "sha256": "2d426b571b2377a7cba1e5e314dfdf0c08354e7d92eb858994d481aab45b325d"
+      },
+      "operation": "procedure_pseudo_code",
+      "original_instruction_check": {
+        "result": {
+          "path": "docs/analysis/evidence/0.120.2/creature-query-tables/native-check.json",
+          "sha256": "27845e3a79201ba94db2e55716148b4d6264f9b48a32bf389b5c52ea63cc82e9"
+        },
+        "scope": "Complete finite template output/source join and13 exact guarded-cell selections under normal opcode0x60 entry."
+      },
+      "plan": {
+        "path": "runtime/0.120.2/creature-query-recovery/query/plan.json",
+        "sha256": "213934660b849d11a0abf60d2633417a65e4968fb56bccaaba30bf4211f2a0b3"
+      },
+      "procedure": "0x145b01eb0",
+      "required_contract_dependencies": [
+        {
+          "evidence_id": "ev_5579a12e3caee4f3c353ca98f5b56b4da6de6e39cb60dd6bfdba699bfcb24d1f",
+          "procedure": "0x145a7dc80",
+          "result": {
+            "path": "runtime/0.120.2/creature-query-tables/query/results/5c88d6a837cf709b90e3ecf437119255e6df5380883d52277c59d42c6294e384.json",
+            "sha256": "a5e7a66b056ac3c2913c4739f9f0971cf1c8f95aafa323e6db422185e08a4018"
+          }
+        },
+        {
+          "evidence_id": "ev_c0c0ab4c5ab26511d7b2cb8492350f9778b3f89d73e25e2f82640ad764fe71e8",
+          "procedure": "0x145a7e610",
+          "result": {
+            "path": "runtime/0.120.2/creature-query-tables/query/results/a4929a62496999bd6556423727f4661bef0ad9065f88b33ac0844c7a9987bd3d-c71f46494fac43ef.json",
+            "sha256": "953cd004063715abfeb4fe0e1c8a6db5b802c17a99f8bd18e017244a931b952a"
+          }
+        },
+        {
+          "evidence_id": "ev_63973b0b44a0ae4f21f75e92bee7db3aa0bed24b837c0985fd1c005e84611145",
+          "procedure": "0x145a7e790",
+          "result": {
+            "path": "runtime/0.120.2/creature-query-tables/query/results/29516b3751061f8dc953dee8af5191fdf53b2541f91c6cff672bd805cc7d76f3-f6f1b5d7eda86faa.json",
+            "sha256": "a31ec897b507c2317c5f9d175a9e08d85a1b4bd540f19a73c777462af3e59daf"
+          }
+        },
+        {
+          "evidence_id": "ev_9d2011548495aac047427867c90630f8edfc82c258ee339e8f61504bf3adc86d",
+          "procedure": "0x145a7e980",
+          "result": {
+            "path": "runtime/0.120.2/creature-query-tables/query/results/6f34ba4394aff15022fc7c8680650e212824da50bcd633e83eaeea3a87c1c1c9-496942abb52e5fcb.json",
+            "sha256": "3bd31bde3af9f181ba9e4bf331f539e5cc5ad54562f2a2c1f99190b7ed4bd5eb"
+          }
+        },
+        {
+          "evidence_id": "ev_e72cbc2eb43be1a6cf4d4d0ca0c5c962bf1afbe520a5a61e889f663e7fde75c4",
+          "procedure": "0x145bff050",
+          "result": {
+            "path": "runtime/0.120.2/creature-query-tables/query/results/92b1c4393f40a3a6fa98139a7636ad325de82d33a938ef6f9cf696b6bb138f50-241ee4d7f37fe28b.json",
+            "sha256": "e13b3331fd927e948bcdddc9b7ebe9c4fb471b7ea33a99d757c76f12abc53a55"
+          }
+        },
+        {
+          "evidence_id": "ev_0fd354cd17c803b4147489355b42ba23b6a432cef388650c6d0faa933b12223a",
+          "procedure": "0x145c47150",
+          "result": {
+            "path": "runtime/0.120.2/creature-query-tables/query/results/ad6f91a464d24f455ce463a5cc26522717f1534ab9d71a507aa92fcbe9af2178-05503680eb2e3e05.json",
+            "sha256": "b126d6c9f974f63a9ececd722d003df34a0946cf546b8c2cd99f1b1a34cd46ae"
+          }
+        },
+        {
+          "evidence_id": "ev_c6d4dc44352ae163707e0352c6e702f65e66089e365a5d19394f9b95221a1bc6",
+          "procedure": "0x145c42d30",
+          "result": {
+            "path": "runtime/0.120.2/creature-query-tables/query/results/b56da763b1da44fd476dbb67a1de7ea0bfa9621beaf0a959fca03906c201a2a4-03423c85d140e21b.json",
+            "sha256": "0096146473c989d9197637b10b0f249532a6d386835152096195d343db150281"
+          }
+        }
+      ],
+      "result": {
+        "path": "runtime/0.120.2/creature-query-recovery/query/results/437445ebf203d8565601846060578b1978e93bbad049df5b0ea1ebddad9180fb.json",
+        "sha256": "b70f563e01ccd2f13832d671753aade88e385497a63f94fdb7d2e670bcb80b6d"
+      }
+    },
+    {
+      "evidence_id": "ev_452824eaeeff360ef1b2addaac8b915e51a8c44f535b92c1c4dcea4df822a808",
+      "journal": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/journal.json",
+        "sha256": "91890abdd9d39952d399e5d2569389607b99c8435a6ece6b536b7103763f5573"
+      },
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/plan.json",
+        "sha256": "35ec9eb3ddc68d001c2ffc9b186485e852444b0519841e201b6829a6297fd9f5"
+      },
+      "procedure": "0x145bf3820",
+      "result": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/results/12d4dcb1bf241810069135ac2f762cd4217076831dd5a18e2f47c6f6399887c1-49d818006381e71e.json",
+        "sha256": "da51e563a35df1bd1a75cc6595ffc1eebc3e9289fc563ef84be954b3175ecee3"
+      },
+      "reviewed_scope": "Only the classified helper/table branches and byte-bound ranges below; no whole-function or whole-module semantic claim."
+    },
+    {
+      "analysis_profile_digest": "2ebaaba0f3192fc0cd26163073537094895a543852a011351f6a248949d7ffb5",
+      "evidence_id": "ev_497a6110f317cf8cd9b8fa8d1970185cbe768614c9d2d86b0e3fd1c071c61e8c",
+      "journal": {
+        "path": "runtime/0.120.2/item-registry-recovery/query-v2/journal.json",
+        "sha256": "b360a726c3752b3b2779c6030c6fd4d88ea1121961565fdbd493b7ed86fa43c8"
+      },
+      "normalized_sha256": "d04c5cdb4a11e71b76ddcc86e19579f976afe637fbcf1aca5080119418f09d61",
+      "plan": {
+        "path": "runtime/0.120.2/item-registry-recovery/plan-v2.json",
+        "sha256": "e136dee3ad3a737001fe6c32993c8ac82555f258f6aefcb8819ec123de5fc27e"
+      },
+      "procedure": "0x145aa2a40",
+      "result": {
+        "path": "runtime/0.120.2/item-registry-recovery/query-v2/results/733afb678adf6cb69ef026aa25082651afcb44f993442cc2a29c42588e446ef2.json",
+        "sha256": "a39a41b4d86dabe2a78ae3c22ab52514bc1b51d8c6256f403a03df92a24f81a6"
+      },
+      "role": "interner"
+    },
+    {
+      "analysis_profile_digest": "561182ec1390b72f568d2ddb5e74a1d9f34aaca48236835e57a2abdb15eee389",
+      "evidence_id": "ev_4b5ce49b53910cba23a0f9c976b9051c635235d893ca5698b09b273281b0f2c1",
+      "journal": "runtime/0.120.2/party-achievement-review/consumer-query/journal.json",
+      "journal_sha256": "1bdc0525364719d7a66e4aeca9f148d71c66fa29766004cd2d338bf0aab8e63f",
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+        "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Ghidra analysis was seeded before auto-analysis from runtime/0.120.2/party-achievement-review/consumer-seeds.tsv (sha256 c4109243b4160d6c048021f93c5bfc32685517c47dae3304180751456c8d0a75: 5 function, 5 code, 0 label entries). Seeded functions, code and names are caller assertions, not Ghidra discoveries.",
+        "Seed outcome: 0 functions created, 5 already present, 0 failed; 5 code seeds decoded, 0 failed; 0 labels applied, 0 failed; 0 seeds outside initialized memory.",
+        "The target references PDB benilla_rogue.pdb (GUID 3e1ddce0-c9eb-47e5-8453-f075c9439e88, age (hex) 1, signature unknown, version RSDS); Ghidra reports load state unknown. Original names and types may be missing; an empty name search does not prove a procedure is absent. Use list_procedures and address-based analysis to inspect recovered functions. REA does not admit a caller-selected PDB companion."
+      ],
+      "normalized_sha256": "cea6656710407840e6c4becfc8823c3c3da671d0415c243f460d842e69f49e8b",
+      "operation": "procedure_pseudo_code",
+      "plan": "runtime/0.120.2/party-achievement-review/consumer-plan.json",
+      "plan_sha256": "a04397a48b14dab22309022774c414ca7d29029f8cab8ddf494cfab7720cef4b",
+      "procedure": "0x145b1ea00",
+      "query": {
+        "arguments": {
+          "procedure": "0x145b1ea00"
+        },
+        "name": "procedure_pseudo_code"
+      },
+      "result": "runtime/0.120.2/party-achievement-review/consumer-query/results/013ab7defc84ebbdc377beded62fe036723a3d831ba4dfa5e1c9b7aed997b802.json",
+      "result_sha256": "83d76a20394768ee75f4b6e4b118311ace8a3ad9da1b907fe7fb836c80765e91"
+    },
+    {
+      "analysis_profile_digest": "29c8b5387256e7a513d8d654a5da00b44494d6314ba2cd3d48053c75756d628f",
+      "evidence_id": "ev_4d6533bf323f4227f118063799c6586051409677237433465da5429410350c38",
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/flag-readers-query/journal.json",
+        "sha256": "472bfb2213d3a056e18fd7f9804965651a5b001495ac2a5012727c5cd4a09821"
+      },
+      "journal_operation_key": "6a57c04512f8d804725a77658db1de3f1cd667acce692fdf485aeaf309fbc1ee",
+      "normalized_sha256": "69ea13a05d3accdb08d91dcc9519ed372402b7ae4ac7c9252a01dc62d62d58cc",
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/flag-readers-query/plan.json",
+        "sha256": "6ec52959007384ffd0a6422ef3c493504d5367b608ab2de6a0029b8583566231"
+      },
+      "procedure": "0x145c03ec0",
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/flag-readers-query/results/6a57c04512f8d804725a77658db1de3f1cd667acce692fdf485aeaf309fbc1ee-ac02363f6ba65b19.json",
+        "sha256": "03ce488cf43e61aa79bd4eb211341f55a5e80fbd8c6042ada63029cbe9ec3487"
+      }
+    },
+    {
+      "analysis_profile_digest": "da1e11bdd237416891d14dda37cbe76f9d4068f28f88ec5bbddbc081473623a2",
+      "evidence_id": "ev_4dc8988c088650ad048a9424750d841d650606ab964c27776295c88a12677169",
+      "journal": {
+        "path": "runtime/0.120.2/party-achievement-review/handshake-query/journal.json",
+        "sha256": "3cb7c8d2005107fee4d0cce83241e3a22abe432e9689e209fc2a2e5c1ad88b08"
+      },
+      "normalized_text_sha256": "5abe5fea5f8817a0ee118df7a9d9c2b35ddaddfa9c4ca76a33e1867b481c24fc",
+      "plan": {
+        "path": "runtime/0.120.2/party-achievement-review/handshake-plan.json",
+        "sha256": "bd668935991fae891a1c9ed9fe18b220ed072af9b7bb59450846ed645773280f"
+      },
+      "procedure": "0x145b24b70",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "result": {
+        "path": "runtime/0.120.2/party-achievement-review/handshake-query/results/b204a12ff9b1b2b32240c1f3898e45cf021b334c3db6c2a5a707befc00a430b2.json",
+        "sha256": "91b4fc6024ca3705a5f31a7ae95799f422d5e786b17aea6670ff23ea032273b4"
+      }
+    },
+    {
+      "analysis_profile_digest": "561182ec1390b72f568d2ddb5e74a1d9f34aaca48236835e57a2abdb15eee389",
+      "evidence_id": "ev_53ddbba0f185b0f1800262a3fe2d2d03e01085b2046aa7c012aa1ec590a997a1",
+      "journal": "runtime/0.120.2/party-achievement-review/consumer-query/journal.json",
+      "journal_sha256": "1bdc0525364719d7a66e4aeca9f148d71c66fa29766004cd2d338bf0aab8e63f",
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+        "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Ghidra analysis was seeded before auto-analysis from runtime/0.120.2/party-achievement-review/consumer-seeds.tsv (sha256 c4109243b4160d6c048021f93c5bfc32685517c47dae3304180751456c8d0a75: 5 function, 5 code, 0 label entries). Seeded functions, code and names are caller assertions, not Ghidra discoveries.",
+        "Seed outcome: 0 functions created, 5 already present, 0 failed; 5 code seeds decoded, 0 failed; 0 labels applied, 0 failed; 0 seeds outside initialized memory.",
+        "The target references PDB benilla_rogue.pdb (GUID 3e1ddce0-c9eb-47e5-8453-f075c9439e88, age (hex) 1, signature unknown, version RSDS); Ghidra reports load state unknown. Original names and types may be missing; an empty name search does not prove a procedure is absent. Use list_procedures and address-based analysis to inspect recovered functions. REA does not admit a caller-selected PDB companion."
+      ],
+      "normalized_sha256": "d6a4009fd8811d443d5205473f83caec1b8dd51d498d148804e7f7ee9d3782fe",
+      "operation": "procedure_pseudo_code",
+      "plan": "runtime/0.120.2/party-achievement-review/consumer-plan.json",
+      "plan_sha256": "a04397a48b14dab22309022774c414ca7d29029f8cab8ddf494cfab7720cef4b",
+      "procedure": "0x145b60c20",
+      "query": {
+        "arguments": {
+          "procedure": "0x145b60c20"
+        },
+        "name": "procedure_pseudo_code"
+      },
+      "result": "runtime/0.120.2/party-achievement-review/consumer-query/results/9a8f99a277c07f0b483b6152e89418d03a359c9fd9387686adc55a42925a8e0c-74d3473476c94cd1.json",
+      "result_sha256": "5abdc84353da80cdc036efd7e0947fbd043d1184ced8b4540fa5ec185ccd0d8e"
+    },
+    {
+      "evidence_id": "ev_5579a12e3caee4f3c353ca98f5b56b4da6de6e39cb60dd6bfdba699bfcb24d1f",
+      "journal": {
+        "path": "runtime/0.120.2/creature-query-tables/query/journal.json",
+        "sha256": "cfd5d837f44c73dde0f7b50d2bc85b83bebe1c8efab4bc7183da403856ea7705"
+      },
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/creature-query-tables/query/plan.json",
+        "sha256": "118aaf4e9f4657eb89eb22f237f4b67bc3c39e7e81dd6888bc6ff6b93a461f1d"
+      },
+      "procedure": "0x145a7dc80",
+      "result": {
+        "path": "runtime/0.120.2/creature-query-tables/query/results/5c88d6a837cf709b90e3ecf437119255e6df5380883d52277c59d42c6294e384.json",
+        "sha256": "a5e7a66b056ac3c2913c4739f9f0971cf1c8f95aafa323e6db422185e08a4018"
+      }
+    },
+    {
+      "analysis_profile_digest": "4544c879b569aa6cdd3bf4d01f83e450e4f7133252384017e641856fa42a7e7b",
+      "evidence_id": "ev_580bb02ba3f30621749a7cdc931fdaa82d909ddd065c35c17775e716164f05bf",
+      "journal": {
+        "path": "runtime/0.120.2/relay-198/encoder-query/journal.json",
+        "sha256": "658c2887e155c3dcfca88fea1f5f13a53752a08aedc6ce181634318d6683c2f8"
+      },
+      "journal_operation_key": "1ffccb7fb089c6374a43839a88483ad2a5aab0ec58c9671991f7706711e1efc3",
+      "normalized_sha256": "25c099ede12a217f473a07cabf3db45b0b15976b58ed255e13154de6ff67b670",
+      "operation": "procedure_callers",
+      "plan": {
+        "path": "runtime/0.120.2/relay-198/encoder-query/plan.json",
+        "sha256": "b6723b3bd43402d01b691ae624c2c95701477008d6561817506b0f69f923a2e0"
+      },
+      "procedure": "0x145bf5ed0",
+      "result": {
+        "path": "runtime/0.120.2/relay-198/encoder-query/results/1ffccb7fb089c6374a43839a88483ad2a5aab0ec58c9671991f7706711e1efc3-3c51f7344d3e8b9e.json",
+        "sha256": "e04a4690ba93d1e9b490d36645bf19b91a45f66686c63d15c760a504f6508c94"
+      }
+    },
+    {
+      "analysis_profile_digest": "472839eef1686bfee81453d5ec78fb04a2a504ed07d047c5815f50f21b87a6ff",
+      "evidence_id": "ev_5ead6a34aa574c553c3b37b1d059618a73258fee4b64d157f388808493f03db3",
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-query/journal.json",
+        "sha256": "e99b2058c2d11dab03e7df8bbfed7c721c2b89fdcaf27fc4271c5e524e8ed4ff"
+      },
+      "normalized_sha256": "80dd2c9ff179b047b5be4e1c58e79e4e28ebf278f2c701101a70da4cdd4869d3",
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-query/plan.json",
+        "sha256": "d048ae41757fd0cba2596edaa478b54b92b5d150316c0474d29157c65f5731bd"
+      },
+      "procedure": "0x145b53040",
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-query/results/284400f13990dfef5496ce6fd6eadd8a1cde1311b8e83e9e11bf2c6a4829a225-ae58e9da5dd85006.json",
+        "sha256": "54f0940da3febbbfdcf72337634dbb305f6ac60534e0c98b8c02bddb7ce59638"
+      }
+    },
+    {
+      "evidence_id": "ev_63973b0b44a0ae4f21f75e92bee7db3aa0bed24b837c0985fd1c005e84611145",
+      "journal": {
+        "path": "runtime/0.120.2/creature-query-tables/query/journal.json",
+        "sha256": "cfd5d837f44c73dde0f7b50d2bc85b83bebe1c8efab4bc7183da403856ea7705"
+      },
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/creature-query-tables/query/plan.json",
+        "sha256": "118aaf4e9f4657eb89eb22f237f4b67bc3c39e7e81dd6888bc6ff6b93a461f1d"
+      },
+      "procedure": "0x145a7e790",
+      "result": {
+        "path": "runtime/0.120.2/creature-query-tables/query/results/29516b3751061f8dc953dee8af5191fdf53b2541f91c6cff672bd805cc7d76f3-f6f1b5d7eda86faa.json",
+        "sha256": "a31ec897b507c2317c5f9d175a9e08d85a1b4bd540f19a73c777462af3e59daf"
+      }
+    },
+    {
+      "analysis_profile_digest": "c27402bb7c726ca457baf6c228915721b2062ce48d3c6c0ca92cb5fc6c765ebb",
+      "evidence_id": "ev_75aa770d47330d66d12eb659088855d8d96708d524717daac8cef4dcf5d72eaa",
+      "journal": {
+        "path": "runtime/0.120.2/relay-198/send-query/journal.json",
+        "sha256": "cc0b4cbdeb0323f1865f8233c020fe1590cc5283c9e0f28ddbb09c0f7b8311f9"
+      },
+      "journal_operation_key": "0e56b476ad31914d2b00e3aa9b3a72dc4bab506a43d45a66cc309b085ad9f160",
+      "normalized_sha256": "b20ba92a8897d38352bf164177ad4be89b4b518f4968a97315a52c6ffebb3c9e",
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/relay-198/send-query/plan.json",
+        "sha256": "9f67b6e866d4942a3b784a306e59180348a61ea5fce6545e16b5278143b341d9"
+      },
+      "procedure": "0x145bfb420",
+      "result": {
+        "path": "runtime/0.120.2/relay-198/send-query/results/0e56b476ad31914d2b00e3aa9b3a72dc4bab506a43d45a66cc309b085ad9f160.json",
+        "sha256": "5ca950816bdddd848dad2ca86f4583d9dc75a3eca589012ef4cf6cdad18391fe"
+      }
+    },
+    {
+      "analysis_profile_digest": "fe9faf86a6edccf6dc41016cf54d7eb67ff1ad9f23fd10b0ead9b6bc164a2a24",
+      "evidence_id": "ev_75e59fbbacb170113b35f7d942a59ddc17bbd051ac61bdb990d9ab6763c90d73",
+      "journal": {
+        "path": "runtime/0.120.2/relay-198/lifecycle-query/journal.json",
+        "sha256": "fdf9291758f7aa107df64907a52a977eb12ea27d385a512162ce51f869da4c97"
+      },
+      "journal_operation_key": "1aea15fb325da0f73ac3e8d16dc3a1cfea31e7ee876f93ff2cc1815112f5ab37",
+      "normalized_sha256": "2832796cab7026fb67f58ba44ace280d551a2dc46a36c0a41439da618e5d054f",
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/relay-198/lifecycle-query/plan.json",
+        "sha256": "7fdfe477d63a85f6ae8ad6c6cffe4833412a1a20a577215881e5e8cb6c290796"
+      },
+      "procedure": "0x145bfdf90",
+      "result": {
+        "path": "runtime/0.120.2/relay-198/lifecycle-query/results/1aea15fb325da0f73ac3e8d16dc3a1cfea31e7ee876f93ff2cc1815112f5ab37.json",
+        "sha256": "1cbea419bd9e441217cfa7e23858e5d79ca5d1703fa76b0cac710c92713ad725"
+      }
+    },
+    {
+      "analysis_profile_digest": "82ddef487c5c7a6d24e7e7917de8843424bb99338801b7eccdc5b9585122f153",
+      "evidence_id": "ev_764d307a0ac5fb9fb9e17dc5f45bace96227326bb41a9340cb139643d5b21676",
+      "journal": {
+        "path": "runtime/0.120.2/relay-198/alive-query/journal.json",
+        "sha256": "31dbf272bacdb9affb609f2695b81630ec85356e3586292f60e8a46759764bbc"
+      },
+      "journal_operation_key": "7e063a979426248732b50e4620abbcf0ddd42c3293016a7d5cfad2a45241c0aa",
+      "normalized_sha256": "b513d4cf57db18e012d2c6dafa84220549c4a4a74f4dddaeab3e97027a837d25",
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/relay-198/alive-query/plan.json",
+        "sha256": "ef43a3d4e24ab0045dd727534b99fd91fac6a1bb444e7d1a84ee8c6ab560c17c"
+      },
+      "procedure": "0x145c04d60",
+      "result": {
+        "path": "runtime/0.120.2/relay-198/alive-query/results/7e063a979426248732b50e4620abbcf0ddd42c3293016a7d5cfad2a45241c0aa-1dbe14ff6363dc8f.json",
+        "sha256": "edc076fd225a2b7c8079a00c5edd65dc553df06efdcd16b1ad5e7538a3fc9957"
+      }
+    },
+    {
+      "analysis_profile_digest": "40eac2c46008206a432d383ab65f1c34703d3e68a8e61074d18d450cad828b51",
+      "evidence_id": "ev_7690a35c61df6a9a42eebfd50f476b791edfc23222130cdb400dee5f198b6932",
+      "journal": {
+        "path": "runtime/0.120.2/relay-198/host-close-query/journal.json",
+        "sha256": "c8f24e7fd5d2ae1eb95b175b31fc77e7fccb160930a35edcea185cb9bf02ed5f"
+      },
+      "journal_operation_key": "00a9ef10cbb664aec82b98b510db7db992aa6e7ff55cce4e33aff15c1f93d04f",
+      "normalized_sha256": "02844dafd83b364dc3d95cca2752ec19376299f8587ce529a6b3db3b7a76a255",
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/relay-198/host-close-query/plan.json",
+        "sha256": "ac9ce89120cd7b33afa66e2ddd356741fdba1f47cd0128c6cbc94f5043f47297"
+      },
+      "procedure": "0x145c045b0",
+      "result": {
+        "path": "runtime/0.120.2/relay-198/host-close-query/results/00a9ef10cbb664aec82b98b510db7db992aa6e7ff55cce4e33aff15c1f93d04f.json",
+        "sha256": "1959061a892989507dd12304a6c99b5a720d34e011cb76cb7593469448100c26"
+      }
+    },
+    {
+      "analysis_profile_digest": "2ebaaba0f3192fc0cd26163073537094895a543852a011351f6a248949d7ffb5",
+      "evidence_id": "ev_7903ccf7c691068d8525c37b6f6daf6d176a0522ee2a9cebb9da56867f2a7233",
+      "journal": {
+        "path": "runtime/0.120.2/item-registry-recovery/query-v2/journal.json",
+        "sha256": "b360a726c3752b3b2779c6030c6fd4d88ea1121961565fdbd493b7ed86fa43c8"
+      },
+      "normalized_sha256": "fc7bd1636b48d6fd4e3f069e792b086d3c85b05e1ee6d19d0d7bebe5df1b9099",
+      "plan": {
+        "path": "runtime/0.120.2/item-registry-recovery/plan-v2.json",
+        "sha256": "e136dee3ad3a737001fe6c32993c8ac82555f258f6aefcb8819ec123de5fc27e"
+      },
+      "procedure": "0x145fab2e0",
+      "result": {
+        "path": "runtime/0.120.2/item-registry-recovery/query-v2/results/8326e162c2762909ca1ab76a60ff912b2d99766f8418d6a71acb8e897343a8c6-fbbc73d0051fcf49.json",
+        "sha256": "66adca1e36e9246f158bbb0cc28486d65e3b6fc0d2a08885f2e5bc6a66e3aac1"
+      },
+      "role": "aggregate-reserve"
+    },
+    {
+      "analysis_profile_digest": "4d0db581973f8ff254ab0c88ff9926348bc874712ae77a04f3a2815019856e2c",
+      "evidence_id": "ev_7a788594669c480152c7048c1f40601c1701c2051b122e8efeb75b5921ce10da",
+      "journal": {
+        "path": "runtime/0.120.2/relay-review/parser-query/journal.json",
+        "sha256": "c6ae4d8bbbfb06730499c4ad3d0548b562f765bb42f59086ef32618ea821bd66"
+      },
+      "normalized_sha256": "f454a3877c823b0b18107e93da4b1fa6f174dab02cd4bb718e4284ec68d52c11",
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/relay-review/parser-query/plan.json",
+        "sha256": "a11ac3dcda05c4d9d8d6251223c119f548c1e72ca5a58d1b88d4d99535d28e4d"
+      },
+      "procedure": "0x145e0b690",
+      "result": {
+        "path": "runtime/0.120.2/relay-review/parser-query/results/576bf4388c07d3bc62e14248d37ea64c7a3806c1022f1560da5b40d6bce257dc.json",
+        "sha256": "34512a6a54adb22f90460215d759ebe91be14c6806a3ee4a053c649c40ca443a"
+      }
+    },
+    {
+      "analysis_profile_digest": "447edf900cf63149f3cd938641902d2844b18ad7b338e29678e3f6c4f401e880",
+      "evidence_id": "ev_8b48787c9eb9873b6faa009b4f21667cf597a5d42310f68d3931e5632c2452c2",
+      "journal": {
+        "path": "runtime/0.120.2/relay-review/followup-query/journal.json",
+        "sha256": "d4740a163cb1f1e58bd59a54a5f87ca48bd40c97a90833359165bb6276a11f33"
+      },
+      "normalized_sha256": "ffc49778fb2e453dabd704062fdf7ee19414363695c1ee44d88cdc52479cee71",
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/relay-review/followup-query/plan.json",
+        "sha256": "2c95c412f738a0744447a1ac1e33440f066a961554b84a68fc831d57b11528ab"
+      },
+      "procedure": "0x145bf6d20",
+      "result": {
+        "path": "runtime/0.120.2/relay-review/followup-query/results/1018abb258474f468c1aeb0b01a2b1ff633a4e335ff55a09e096f4debe979d9b.json",
+        "sha256": "40755072047a2e4798ad9da4e386b61ddf5278805d182d4767df44562ea393fa"
+      }
+    },
+    {
+      "analysis_profile_digest": "705ed7bd5fae92da10f5486557d6e03d43a8404d46a02a7568357976ebd9acab",
+      "evidence_id": "ev_912b47c0c37911738a010e47bc60d9c19ebdce9fa30891a47f8f836b2c159042",
+      "journal": "runtime/0.120.2/party-achievement-review/query-v2/journal.json",
+      "journal_sha256": "00323ca9971e3789a74f2e3cf9cc57b0cf3c9bb3178e421195e4a05773434ce1",
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+        "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Ghidra analysis was seeded before auto-analysis from runtime/0.120.2/party-achievement-review/seeds-v2.tsv (sha256 c7aab38f96aa93d5dc8cbed3b4a272d004f57bfe42d9a90fb8ade9ae022e80dd: 5 function, 5 code, 0 label entries). Seeded functions, code and names are caller assertions, not Ghidra discoveries.",
+        "Seed outcome: 0 functions created, 5 already present, 0 failed; 5 code seeds decoded, 0 failed; 0 labels applied, 0 failed; 0 seeds outside initialized memory.",
+        "The target references PDB benilla_rogue.pdb (GUID 3e1ddce0-c9eb-47e5-8453-f075c9439e88, age (hex) 1, signature unknown, version RSDS); Ghidra reports load state unknown. Original names and types may be missing; an empty name search does not prove a procedure is absent. Use list_procedures and address-based analysis to inspect recovered functions. REA does not admit a caller-selected PDB companion."
+      ],
+      "normalized_sha256": "c7c1753353de91e7f3233be222c791ff371370b273a5fd36f0559ea4edb87575",
+      "operation": "procedure_pseudo_code",
+      "plan": "runtime/0.120.2/party-achievement-review/plan-v2.json",
+      "plan_sha256": "e2e4f18029f018fc7871f3a9a52e8468e7dfca48f58ccb4ea6ea8a7d6e66ebe9",
+      "procedure": "0x145b01b00",
+      "query": {
+        "arguments": {
+          "procedure": "0x145b01b00"
+        },
+        "name": "procedure_pseudo_code"
+      },
+      "result": "runtime/0.120.2/party-achievement-review/query-v2/results/1fcfd34777d66777aa08ec069d6a4457b89fcd32c277582d748acd46182a3f8c.json",
+      "result_sha256": "e1f94a95045d4077b18352b5e9e593adaf926287867c761af65046d98e9d9923"
+    },
+    {
+      "analysis_profile_digest": "e96a1335f6024fd1c52a0356507e93fbfb187bed33a74ddb554cb2e1dd2560a9",
+      "evidence_id": "ev_9278e16f8d451389f4ca3a50b987b0b61f81426185eef5076b47adafd5ac55a2",
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/lifetime-close-query/journal.json",
+        "sha256": "344901cb03ec78dc60d51ea27c4491abd134f700b7474fb042f0e23b6a5b1c24"
+      },
+      "journal_operation_key": "d3587b0d1785ca3ef2f3bcb6262b3a0bad0a8be8ac4ee0c494627b9eec1c52df",
+      "normalized_sha256": "096e163f0b47a44d71ef71c51b8adc1bc67749c7ae69afb55879c3e46fd010e6",
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/lifetime-close-query/plan.json",
+        "sha256": "2418c1ca9586b04be1700e48487b20c23ebcfca5df2e21d0b33e86a3d61e123b"
+      },
+      "procedure": "0x145c053b0",
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/lifetime-close-query/results/d3587b0d1785ca3ef2f3bcb6262b3a0bad0a8be8ac4ee0c494627b9eec1c52df.json",
+        "sha256": "93a2f35ee7e63420cdd75ba950cc014c936544588a3c6efa049d602dd5e40cde"
+      }
+    },
+    {
+      "analysis_profile_digest": "5e6d9229397071294e95e0ae973be651c26b6ca51f5b226fb268ac4274e4e782",
+      "evidence_id": "ev_974ed56008c36ebf317f09431e3990353670b47f828c4c03e8be7fa9298afff5",
+      "journal": {
+        "path": "runtime/q41-codex-contract-0.120.2/query/journal.json",
+        "sha256": "61b32f317697ba69adafe93b30f68564a4b64ce265dfcb013673f3f686e7157a"
+      },
+      "normalized_sha256": "2148da7e2c8c964f45bcc78c0bbce17fc3f573cfc03a03bebe8ecfcf19f5350a",
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/q41-codex-contract-0.120.2/query/plan.json",
+        "sha256": "38c458a6ad0d8245cd07dbc5661d6981d64ec079685a2b965b0d37b36f3ea0f6"
+      },
+      "procedure": "0x145b4ef60",
+      "result": {
+        "path": "runtime/q41-codex-contract-0.120.2/query/results/58b574945522d566a390d2b258a1e4a6755002bf900f3d5076d943be9caf78ed-797390fc5f033ec3.json",
+        "sha256": "0c349d269f27531f95eb867bf8c03c7b6777279e1b1b593271efb3c3f5f12a5d"
+      }
+    },
+    {
+      "evidence_id": "ev_9d2011548495aac047427867c90630f8edfc82c258ee339e8f61504bf3adc86d",
+      "journal": {
+        "path": "runtime/0.120.2/creature-query-tables/query/journal.json",
+        "sha256": "cfd5d837f44c73dde0f7b50d2bc85b83bebe1c8efab4bc7183da403856ea7705"
+      },
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/creature-query-tables/query/plan.json",
+        "sha256": "118aaf4e9f4657eb89eb22f237f4b67bc3c39e7e81dd6888bc6ff6b93a461f1d"
+      },
+      "procedure": "0x145a7e980",
+      "result": {
+        "path": "runtime/0.120.2/creature-query-tables/query/results/6f34ba4394aff15022fc7c8680650e212824da50bcd633e83eaeea3a87c1c1c9-496942abb52e5fcb.json",
+        "sha256": "3bd31bde3af9f181ba9e4bf331f539e5cc5ad54562f2a2c1f99190b7ed4bd5eb"
+      }
+    },
+    {
+      "evidence_id": "ev_9fdceebabffdf04e711dd2605a3916dd58288a67aed21cf2b941cc2a08e906b6",
+      "journal": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/journal.json",
+        "sha256": "91890abdd9d39952d399e5d2569389607b99c8435a6ece6b536b7103763f5573"
+      },
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/plan.json",
+        "sha256": "35ec9eb3ddc68d001c2ffc9b186485e852444b0519841e201b6829a6297fd9f5"
+      },
+      "procedure": "0x145bfa620",
+      "result": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/results/3c0b109ce642cf938ffcf0408a15aec7d99ff5faed18178be1e975d985fe1fee-dfc7cec64a0d049d.json",
+        "sha256": "1b17109af161c6301d3772b9ae6485e8bc84f8c8aefe52063ff4f6ebc084745b"
+      },
+      "reviewed_scope": "Only the classified helper/table branches and byte-bound ranges below; no whole-function or whole-module semantic claim."
+    },
+    {
+      "analysis_profile_digest": "fc3e4aadec7c36cf0a891504717dd24993d7efa7d710a15eefe26462a4e31e16",
+      "evidence_id": "ev_a743ab70af5d10c75dceac33093cbcad1effbc732bf7faeaa2d4b2f22110c477",
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/lifetime-query/journal.json",
+        "sha256": "442882109876fadc8b09d83b4e516d2cfa93c48bc1cb73a46fe3bff147636968"
+      },
+      "normalized_sha256": "66e06d98a17f38e1a40d39ec2012e1530e40ea52b15cd488d510fda0fd86fc7c",
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/lifetime-query/plan.json",
+        "sha256": "1d49716a60b912d3f53ee44612305ba6712ceff773ff4807b7fdd4a62a145438"
+      },
+      "procedure": "0x145b22c10",
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/lifetime-query/results/eed9ca75b3e2a44460f563d5acdafcfc5439a141646f2ddf8dc5e809276b0ccb-2c0a57d01c85dcf0.json",
+        "sha256": "a3b8fd70d2c18c53e96bbe010127b2642396ba81faae169a119a4555fca43fef"
+      }
+    },
+    {
+      "evidence_id": "ev_a7f92dde2ac704f78da6f53f2df53cbb1dd56138312d4b4e4181a5bb7d135234",
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/flag-readers-query/journal.json",
+        "sha256": "472bfb2213d3a056e18fd7f9804965651a5b001495ac2a5012727c5cd4a09821"
+      },
+      "normalized_sha256": "43091796010541fc3457d9692a94286fc756903e7b886fbcf850a8bfb81fc8e5",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x145c03f90"
+      },
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/flag-readers-query/plan.json",
+        "sha256": "6ec52959007384ffd0a6422ef3c493504d5367b608ab2de6a0029b8583566231"
+      },
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/flag-readers-query/results/e2a84bc70016e618b6937572c02812a60f9f22ae52e9934f90a4ee0526d98712-590d3e4788ab968d.json",
+        "sha256": "c377d86c32cc20d02797243dc6c91c7943cd1be39469a880b77abd322dad90f7"
+      }
+    },
+    {
+      "evidence_id": "ev_ab3cfee2951fd32f06bde8b0b586c20d5925cb53359231a8191f68607bf02083",
+      "journal": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/journal.json",
+        "sha256": "91890abdd9d39952d399e5d2569389607b99c8435a6ece6b536b7103763f5573"
+      },
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/plan.json",
+        "sha256": "35ec9eb3ddc68d001c2ffc9b186485e852444b0519841e201b6829a6297fd9f5"
+      },
+      "procedure": "0x145c4ece0",
+      "result": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/results/3b98c6a04b4e57512e6950483d451c6e356952e7aba068770186359995ad223e-f2c38f4eed948a63.json",
+        "sha256": "7836cab38cc78b83580d83f0543be8d24991fe778afc2d236a9183545dd08cd3"
+      },
+      "reviewed_scope": "Only the classified helper/table branches and byte-bound ranges below; no whole-function or whole-module semantic claim."
+    },
+    {
+      "analysis_profile_digest": "705ed7bd5fae92da10f5486557d6e03d43a8404d46a02a7568357976ebd9acab",
+      "evidence_id": "ev_b55563370ed8010a66519c4d6a2e1cb0c1ccf778ae482b4e0741f58216684b2c",
+      "journal": "runtime/0.120.2/party-achievement-review/query-v2/journal.json",
+      "journal_sha256": "00323ca9971e3789a74f2e3cf9cc57b0cf3c9bb3178e421195e4a05773434ce1",
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+        "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Ghidra analysis was seeded before auto-analysis from runtime/0.120.2/party-achievement-review/seeds-v2.tsv (sha256 c7aab38f96aa93d5dc8cbed3b4a272d004f57bfe42d9a90fb8ade9ae022e80dd: 5 function, 5 code, 0 label entries). Seeded functions, code and names are caller assertions, not Ghidra discoveries.",
+        "Seed outcome: 0 functions created, 5 already present, 0 failed; 5 code seeds decoded, 0 failed; 0 labels applied, 0 failed; 0 seeds outside initialized memory.",
+        "The target references PDB benilla_rogue.pdb (GUID 3e1ddce0-c9eb-47e5-8453-f075c9439e88, age (hex) 1, signature unknown, version RSDS); Ghidra reports load state unknown. Original names and types may be missing; an empty name search does not prove a procedure is absent. Use list_procedures and address-based analysis to inspect recovered functions. REA does not admit a caller-selected PDB companion."
+      ],
+      "normalized_sha256": "7c51b9ca39866133585ace4e298d67f2ce9ede37abd316da6ffcd795bad5553e",
+      "operation": "procedure_pseudo_code",
+      "plan": "runtime/0.120.2/party-achievement-review/plan-v2.json",
+      "plan_sha256": "e2e4f18029f018fc7871f3a9a52e8468e7dfca48f58ccb4ea6ea8a7d6e66ebe9",
+      "procedure": "0x145b1f210",
+      "query": {
+        "arguments": {
+          "procedure": "0x145b1f210"
+        },
+        "name": "procedure_pseudo_code"
+      },
+      "result": "runtime/0.120.2/party-achievement-review/query-v2/results/1e59bbce1a20eec26e1d66fca391c0d0eae97e9f568a0be3236cc285b747c108-db6ce38d36c51646.json",
+      "result_sha256": "19c3c432178a4450fc282934071591cf40ce6814d52fbd1f42be70e8883141f1"
+    },
+    {
+      "analysis_profile_digest": "561182ec1390b72f568d2ddb5e74a1d9f34aaca48236835e57a2abdb15eee389",
+      "evidence_id": "ev_bdc6e8e569907cdb5c4026696b3d9aa82ba9ff4b8f39c38228f7415996e10bff",
+      "journal": "runtime/0.120.2/party-achievement-review/consumer-query/journal.json",
+      "journal_sha256": "1bdc0525364719d7a66e4aeca9f148d71c66fa29766004cd2d338bf0aab8e63f",
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+        "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Ghidra analysis was seeded before auto-analysis from runtime/0.120.2/party-achievement-review/consumer-seeds.tsv (sha256 c4109243b4160d6c048021f93c5bfc32685517c47dae3304180751456c8d0a75: 5 function, 5 code, 0 label entries). Seeded functions, code and names are caller assertions, not Ghidra discoveries.",
+        "Seed outcome: 0 functions created, 5 already present, 0 failed; 5 code seeds decoded, 0 failed; 0 labels applied, 0 failed; 0 seeds outside initialized memory.",
+        "The target references PDB benilla_rogue.pdb (GUID 3e1ddce0-c9eb-47e5-8453-f075c9439e88, age (hex) 1, signature unknown, version RSDS); Ghidra reports load state unknown. Original names and types may be missing; an empty name search does not prove a procedure is absent. Use list_procedures and address-based analysis to inspect recovered functions. REA does not admit a caller-selected PDB companion."
+      ],
+      "normalized_sha256": "8ea19192bdb0bee399370c8b954a58eb94777ced3ea7a98c5fe4439fb6bf3e51",
+      "operation": "procedure_pseudo_code",
+      "plan": "runtime/0.120.2/party-achievement-review/consumer-plan.json",
+      "plan_sha256": "a04397a48b14dab22309022774c414ca7d29029f8cab8ddf494cfab7720cef4b",
+      "procedure": "0x145af1160",
+      "query": {
+        "arguments": {
+          "procedure": "0x145af1160"
+        },
+        "name": "procedure_pseudo_code"
+      },
+      "result": "runtime/0.120.2/party-achievement-review/consumer-query/results/f6f56618de98f2a6702b4b887cd49dc73a9001036493af7f3eebb8d8e5523ad0-3067837dcadb2167.json",
+      "result_sha256": "41605ceb723c764a84016a215f2525987b367e1e5affe70ab8fcd817ef0cf5cb"
+    },
+    {
+      "analysis_profile_digest": "fc3e4aadec7c36cf0a891504717dd24993d7efa7d710a15eefe26462a4e31e16",
+      "evidence_id": "ev_be8f75e5771b3fbc75bcdcbfe102b2441b71a320e59c6ecc09a1a0d453a6a80c",
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/lifetime-query/journal.json",
+        "sha256": "442882109876fadc8b09d83b4e516d2cfa93c48bc1cb73a46fe3bff147636968"
+      },
+      "journal_operation_key": "30fd4a252f5ccf15745956c796107c3285d83fb06114fa62617d3c5afdf5d238",
+      "normalized_sha256": "c761a1c3715953845f698142ca32bd9d866c59fc37d48b837c1d93a999f8e0a4",
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/lifetime-query/plan.json",
+        "sha256": "1d49716a60b912d3f53ee44612305ba6712ceff773ff4807b7fdd4a62a145438"
+      },
+      "procedure": "0x145b21850",
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/lifetime-query/results/30fd4a252f5ccf15745956c796107c3285d83fb06114fa62617d3c5afdf5d238.json",
+        "sha256": "22598d135d516f09829d21920934d5175f2d278165487c16aef6f512aaae9eec"
+      }
+    },
+    {
+      "evidence_id": "ev_bff30032df78ca3e6dad0b1e087364f2d10d34a63286734a26f9b008fab2dac9",
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/flag-readers-query/journal.json",
+        "sha256": "472bfb2213d3a056e18fd7f9804965651a5b001495ac2a5012727c5cd4a09821"
+      },
+      "normalized_sha256": "917bc42201bc4e3b4b95d1dc44ed7416c9d98cd42ab259d8464cf2882fb2b342",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x145c05020"
+      },
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/flag-readers-query/plan.json",
+        "sha256": "6ec52959007384ffd0a6422ef3c493504d5367b608ab2de6a0029b8583566231"
+      },
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/flag-readers-query/results/141e999d48e5f4025f6b36570cbd309f563b8577912f4504a3980f62bb26e648.json",
+        "sha256": "e80dac425d976c168234d790ea112ae15642fa485f2a5c06a38aefb6ada64451"
+      }
+    },
+    {
+      "evidence_id": "ev_c0c0ab4c5ab26511d7b2cb8492350f9778b3f89d73e25e2f82640ad764fe71e8",
+      "journal": {
+        "path": "runtime/0.120.2/creature-query-tables/query/journal.json",
+        "sha256": "cfd5d837f44c73dde0f7b50d2bc85b83bebe1c8efab4bc7183da403856ea7705"
+      },
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/creature-query-tables/query/plan.json",
+        "sha256": "118aaf4e9f4657eb89eb22f237f4b67bc3c39e7e81dd6888bc6ff6b93a461f1d"
+      },
+      "procedure": "0x145a7e610",
+      "result": {
+        "path": "runtime/0.120.2/creature-query-tables/query/results/a4929a62496999bd6556423727f4661bef0ad9065f88b33ac0844c7a9987bd3d-c71f46494fac43ef.json",
+        "sha256": "953cd004063715abfeb4fe0e1c8a6db5b802c17a99f8bd18e017244a931b952a"
+      }
+    },
+    {
+      "analysis_profile_digest": "fc3e4aadec7c36cf0a891504717dd24993d7efa7d710a15eefe26462a4e31e16",
+      "evidence_id": "ev_c497e642f28f43ce7d4dad87995a5d0df02e36fb056f43382eae2df88448247a",
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/lifetime-query/journal.json",
+        "sha256": "442882109876fadc8b09d83b4e516d2cfa93c48bc1cb73a46fe3bff147636968"
+      },
+      "normalized_sha256": "4a84720d85a4819c33fed49288d2422abe108ab08558ee33a1e9c92df2401269",
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/lifetime-query/plan.json",
+        "sha256": "1d49716a60b912d3f53ee44612305ba6712ceff773ff4807b7fdd4a62a145438"
+      },
+      "procedure": "0x145b226b0",
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/lifetime-query/results/2658bc7db2cf4e0252b239363688a4f9cf67a2c6bb33ef35fd75062561e1aafd-bb040b20c67bdab5.json",
+        "sha256": "7dd55442eaf388c30bc456987f00aad1ad9f7d0f092c3bb542630a356c2d6a19"
+      }
+    },
+    {
+      "analysis_profile_digest": "4ceb6c7bb2c40d406226e4a682a117f06817062d23a3a03a8b497682be4c011f",
+      "evidence_id": "ev_c4fc5651974f7c0f7c55b378da7b78e90742199ed34278dbdc298ead9f217763",
+      "journal": {
+        "path": "runtime/0.120.2/relay-review/query/journal.json",
+        "sha256": "058c87ffe2e0f5c875db3bf96f0dc34b9c4e6faea9e37334e6156b555557779a"
+      },
+      "normalized_sha256": "d31376c935f32a400090c58f690b7b2ce0aafab6ec9a612019b54cf72b8fb3b6",
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/relay-review/query/plan.json",
+        "sha256": "f2e62a1ad3301e316625749419b27ddd2e925b00591f102ddfdafe4c6a73f794"
+      },
+      "procedure": "0x145bfac90",
+      "result": {
+        "path": "runtime/0.120.2/relay-review/query/results/99f58d87a6a23069bb6f3a1cdab1f4ced64f18061ad8d933a0b54886fe4f12c8.json",
+        "sha256": "52b5e1e9e89c5fd8fc84c17afc9085064233eb6323053751c4c7bef99baffb45"
+      }
+    },
+    {
+      "evidence_id": "ev_c6d4dc44352ae163707e0352c6e702f65e66089e365a5d19394f9b95221a1bc6",
+      "journal": {
+        "path": "runtime/0.120.2/creature-query-tables/query/journal.json",
+        "sha256": "cfd5d837f44c73dde0f7b50d2bc85b83bebe1c8efab4bc7183da403856ea7705"
+      },
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/creature-query-tables/query/plan.json",
+        "sha256": "118aaf4e9f4657eb89eb22f237f4b67bc3c39e7e81dd6888bc6ff6b93a461f1d"
+      },
+      "procedure": "0x145c42d30",
+      "result": {
+        "path": "runtime/0.120.2/creature-query-tables/query/results/b56da763b1da44fd476dbb67a1de7ea0bfa9621beaf0a959fca03906c201a2a4-03423c85d140e21b.json",
+        "sha256": "0096146473c989d9197637b10b0f249532a6d386835152096195d343db150281"
+      }
+    },
+    {
+      "analysis_profile_digest": "472839eef1686bfee81453d5ec78fb04a2a504ed07d047c5815f50f21b87a6ff",
+      "evidence_id": "ev_c7d7964bc036234d1f2595af12a7740d826b7f552022f17a300863f0a744bb0f",
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-query/journal.json",
+        "sha256": "e99b2058c2d11dab03e7df8bbfed7c721c2b89fdcaf27fc4271c5e524e8ed4ff"
+      },
+      "normalized_sha256": "e8ee4eb54113a7166174e5f4f59da626ec873a6d637b653875694ff033e6d556",
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-query/plan.json",
+        "sha256": "d048ae41757fd0cba2596edaa478b54b92b5d150316c0474d29157c65f5731bd"
+      },
+      "procedure": "0x145c5a560",
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-query/results/a7acef844aef13cb615c08818c86bd456a930a11337b39c39f4d9d4a17679a14-aa931cd638c5605e.json",
+        "sha256": "7a0b1b62e3c33e55b5a253c333ab0f5e4b2578e027191e91c04ed1565bf24bdf"
+      }
+    },
+    {
+      "analysis_profile_digest": "705ed7bd5fae92da10f5486557d6e03d43a8404d46a02a7568357976ebd9acab",
+      "evidence_id": "ev_c80ea6abea602963fe62e77237819b7b30fe3662def88a03f0f14a8ec29c26e5",
+      "journal": "runtime/0.120.2/party-achievement-review/query-v2/journal.json",
+      "journal_sha256": "00323ca9971e3789a74f2e3cf9cc57b0cf3c9bb3178e421195e4a05773434ce1",
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+        "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Ghidra analysis was seeded before auto-analysis from runtime/0.120.2/party-achievement-review/seeds-v2.tsv (sha256 c7aab38f96aa93d5dc8cbed3b4a272d004f57bfe42d9a90fb8ade9ae022e80dd: 5 function, 5 code, 0 label entries). Seeded functions, code and names are caller assertions, not Ghidra discoveries.",
+        "Seed outcome: 0 functions created, 5 already present, 0 failed; 5 code seeds decoded, 0 failed; 0 labels applied, 0 failed; 0 seeds outside initialized memory.",
+        "The target references PDB benilla_rogue.pdb (GUID 3e1ddce0-c9eb-47e5-8453-f075c9439e88, age (hex) 1, signature unknown, version RSDS); Ghidra reports load state unknown. Original names and types may be missing; an empty name search does not prove a procedure is absent. Use list_procedures and address-based analysis to inspect recovered functions. REA does not admit a caller-selected PDB companion."
+      ],
+      "normalized_sha256": "55cdd831e53449b7ec0cea58af0b4bfba7e2915e329536823a6a7d3adbbdd2ce",
+      "operation": "procedure_pseudo_code",
+      "plan": "runtime/0.120.2/party-achievement-review/plan-v2.json",
+      "plan_sha256": "e2e4f18029f018fc7871f3a9a52e8468e7dfca48f58ccb4ea6ea8a7d6e66ebe9",
+      "procedure": "0x145b68b20",
+      "query": {
+        "arguments": {
+          "procedure": "0x145b68b20"
+        },
+        "name": "procedure_pseudo_code"
+      },
+      "result": "runtime/0.120.2/party-achievement-review/query-v2/results/eb1aea8ce81ecf06acaf203c99efdeb8e75390a5df27d0b7ae7b2e1b91648d3a-efd0fafcb2c77a33.json",
+      "result_sha256": "6d83592d559aba629ea38a2c5934b0447c2e5d5fac52b290e4fce1a48cddce71"
+    },
+    {
+      "evidence_id": "ev_c9e21a293f54d162c3de75c27b7de098782adc1e43da7076f6bccf9252fdff66",
+      "journal": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/journal.json",
+        "sha256": "91890abdd9d39952d399e5d2569389607b99c8435a6ece6b536b7103763f5573"
+      },
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/plan.json",
+        "sha256": "35ec9eb3ddc68d001c2ffc9b186485e852444b0519841e201b6829a6297fd9f5"
+      },
+      "procedure": "0x145bff3f0",
+      "result": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/results/e2caf213c8cb903a90ebfced9f07bd11f1fea38ef4a364786e4c903a3100901c-fdd0c195e5a3743c.json",
+        "sha256": "1c0b0eb06036eb615613c9272e2b4be49f40503ea8d78f02d03d99fedd35b1b9"
+      },
+      "reviewed_scope": "Only the classified helper/table branches and byte-bound ranges below; no whole-function or whole-module semantic claim."
+    },
+    {
+      "analysis_profile_digest": "29c8b5387256e7a513d8d654a5da00b44494d6314ba2cd3d48053c75756d628f",
+      "evidence_id": "ev_d88096256edde75ad411bc2f201d757669a591b5751fbc98c7f059ca27b67133",
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/flag-readers-query/journal.json",
+        "sha256": "472bfb2213d3a056e18fd7f9804965651a5b001495ac2a5012727c5cd4a09821"
+      },
+      "journal_operation_key": "5c59e63692426745906e1b9e0acff896585bf9c760edf395c846bad8d17ba36a",
+      "normalized_sha256": "6d1a8550fe7bb5b0280e07cdf69306d88e415b7318735ed4e752228fac5e8a37",
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/flag-readers-query/plan.json",
+        "sha256": "6ec52959007384ffd0a6422ef3c493504d5367b608ab2de6a0029b8583566231"
+      },
+      "procedure": "0x145c04f50",
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/flag-readers-query/results/5c59e63692426745906e1b9e0acff896585bf9c760edf395c846bad8d17ba36a-ac12753b848a4422.json",
+        "sha256": "36a605b585f504e619cce65a18113ac859cd105fd5b4240462baa0e6d14d7dff"
+      }
+    },
+    {
+      "analysis_profile_digest": "705ed7bd5fae92da10f5486557d6e03d43a8404d46a02a7568357976ebd9acab",
+      "evidence_id": "ev_db9f9f3f08833d0603b2953234c43e6987f6f260fe19a88968ce2073141846bc",
+      "journal": "runtime/0.120.2/party-achievement-review/query-v2/journal.json",
+      "journal_sha256": "00323ca9971e3789a74f2e3cf9cc57b0cf3c9bb3178e421195e4a05773434ce1",
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+        "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Ghidra analysis was seeded before auto-analysis from runtime/0.120.2/party-achievement-review/seeds-v2.tsv (sha256 c7aab38f96aa93d5dc8cbed3b4a272d004f57bfe42d9a90fb8ade9ae022e80dd: 5 function, 5 code, 0 label entries). Seeded functions, code and names are caller assertions, not Ghidra discoveries.",
+        "Seed outcome: 0 functions created, 5 already present, 0 failed; 5 code seeds decoded, 0 failed; 0 labels applied, 0 failed; 0 seeds outside initialized memory.",
+        "The target references PDB benilla_rogue.pdb (GUID 3e1ddce0-c9eb-47e5-8453-f075c9439e88, age (hex) 1, signature unknown, version RSDS); Ghidra reports load state unknown. Original names and types may be missing; an empty name search does not prove a procedure is absent. Use list_procedures and address-based analysis to inspect recovered functions. REA does not admit a caller-selected PDB companion."
+      ],
+      "normalized_sha256": "2ceeb6ac3c39c404c924633e2fd1fff67358cdec43f4cfca839040da3e6051a4",
+      "operation": "procedure_pseudo_code",
+      "plan": "runtime/0.120.2/party-achievement-review/plan-v2.json",
+      "plan_sha256": "e2e4f18029f018fc7871f3a9a52e8468e7dfca48f58ccb4ea6ea8a7d6e66ebe9",
+      "procedure": "0x145b205a0",
+      "query": {
+        "arguments": {
+          "procedure": "0x145b205a0"
+        },
+        "name": "procedure_pseudo_code"
+      },
+      "result": "runtime/0.120.2/party-achievement-review/query-v2/results/a5d6e1c6e465da1aad800dcc5ab12c64204e7cfb416b9a6dde479d8fd04e6b8a-8567bd216f91d230.json",
+      "result_sha256": "3c392f282eed53c8222bf0cafac9ce744d6730edf567a035e19894e70ec68450"
+    },
+    {
+      "analysis_profile_digest": "9ca4338f6591fa92006a9bdbe2cfd629f2e0ed29e56d586cb0c92b143bc5b1b4",
+      "evidence_id": "ev_de2422c8bae9bce1a0b169da8c542426b2b7926bd9b81ebf79b446af73cf6b67",
+      "journal": {
+        "path": "runtime/0.120.2/relay-review/caller-query/journal.json",
+        "sha256": "315f8ef85ea3a03a2b1b41370000257a820753bf73f3673a7007ec0df6be7a01"
+      },
+      "normalized_sha256": "ec480f582d27663bcd6eb0d3cf0c77017a076e098f4f3d557ec0c8eac2225a33",
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/relay-review/caller-query/plan.json",
+        "sha256": "049ff6c4c4d6a67288cd2e54d8109d9e12e420772c4208fc857279c8c331a7df"
+      },
+      "procedure": "0x145bf6e00",
+      "result": {
+        "path": "runtime/0.120.2/relay-review/caller-query/results/909e3ecf0d1d39ff6e82e577b7790ff4e77f439782f093b57fe226974f983703.json",
+        "sha256": "d3d931af7563656d2855092cc4989e6e91b52339a12de1290da2449f49637df5"
+      }
+    },
+    {
+      "evidence_id": "ev_e06d58014524a3b202df6b57532fa68f846263a02288b3f7c4ff4a414821f914",
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/consumer-query/journal.json",
+        "sha256": "47d7a8859652019e50161f6d5136cbfc6271e25e7d27068fbff6596d03f5f8a4"
+      },
+      "normalized_sha256": "e3b9fd9bb74568dd7121b15b0c5a320b8ffdfef5537c9bdcc588561c6d1fa3d2",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x145b05c50"
+      },
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/consumer-query/plan.json",
+        "sha256": "07f6b3228c23b48fda6dda8d89dad3fa2a9d3d4754a251eedfd77b32a44138ff"
+      },
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/consumer-query/results/cbac2d20346a199b0d499b49d86a837fec11b994740e3be354d4d38a5f0bdc59.json",
+        "sha256": "38e0b969e64ae76df97045c54d1dda0947e0f63fad73bb036f9c0620abec5ef4"
+      }
+    },
+    {
+      "evidence_id": "ev_e72cbc2eb43be1a6cf4d4d0ca0c5c962bf1afbe520a5a61e889f663e7fde75c4",
+      "journal": {
+        "path": "runtime/0.120.2/creature-query-tables/query/journal.json",
+        "sha256": "cfd5d837f44c73dde0f7b50d2bc85b83bebe1c8efab4bc7183da403856ea7705"
+      },
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/creature-query-tables/query/plan.json",
+        "sha256": "118aaf4e9f4657eb89eb22f237f4b67bc3c39e7e81dd6888bc6ff6b93a461f1d"
+      },
+      "procedure": "0x145bff050",
+      "result": {
+        "path": "runtime/0.120.2/creature-query-tables/query/results/92b1c4393f40a3a6fa98139a7636ad325de82d33a938ef6f9cf696b6bb138f50-241ee4d7f37fe28b.json",
+        "sha256": "e13b3331fd927e948bcdddc9b7ebe9c4fb471b7ea33a99d757c76f12abc53a55"
+      }
+    },
+    {
+      "analysis_profile_digest": "705ed7bd5fae92da10f5486557d6e03d43a8404d46a02a7568357976ebd9acab",
+      "evidence_id": "ev_e7dc8174f6725ff449437774dd95b6264a9f6c979a358de74992daf388f8e50f",
+      "journal": "runtime/0.120.2/party-achievement-review/query-v2/journal.json",
+      "journal_sha256": "00323ca9971e3789a74f2e3cf9cc57b0cf3c9bb3178e421195e4a05773434ce1",
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+        "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Ghidra analysis was seeded before auto-analysis from runtime/0.120.2/party-achievement-review/seeds-v2.tsv (sha256 c7aab38f96aa93d5dc8cbed3b4a272d004f57bfe42d9a90fb8ade9ae022e80dd: 5 function, 5 code, 0 label entries). Seeded functions, code and names are caller assertions, not Ghidra discoveries.",
+        "Seed outcome: 0 functions created, 5 already present, 0 failed; 5 code seeds decoded, 0 failed; 0 labels applied, 0 failed; 0 seeds outside initialized memory.",
+        "The target references PDB benilla_rogue.pdb (GUID 3e1ddce0-c9eb-47e5-8453-f075c9439e88, age (hex) 1, signature unknown, version RSDS); Ghidra reports load state unknown. Original names and types may be missing; an empty name search does not prove a procedure is absent. Use list_procedures and address-based analysis to inspect recovered functions. REA does not admit a caller-selected PDB companion."
+      ],
+      "normalized_sha256": "31fd1148ececec702145b248320c46eb9b2b2b68327e08aac0066027bea7da1a",
+      "operation": "procedure_pseudo_code",
+      "plan": "runtime/0.120.2/party-achievement-review/plan-v2.json",
+      "plan_sha256": "e2e4f18029f018fc7871f3a9a52e8468e7dfca48f58ccb4ea6ea8a7d6e66ebe9",
+      "procedure": "0x145bba060",
+      "query": {
+        "arguments": {
+          "procedure": "0x145bba060"
+        },
+        "name": "procedure_pseudo_code"
+      },
+      "result": "runtime/0.120.2/party-achievement-review/query-v2/results/36b7e234428fcca1dd0e99d266eee12dc0dfda196a0a962a420a7ec7f611bef1-48689fd3e4e23502.json",
+      "result_sha256": "af2ec19f7e891cc024440eb8509f042c23888b6c5a488b23f0fb65ff15a4f7ad"
+    },
+    {
+      "analysis_profile_digest": "2ebaaba0f3192fc0cd26163073537094895a543852a011351f6a248949d7ffb5",
+      "evidence_id": "ev_e8a17aafc286d3ffebd4e6b53fdc1f2e52369dd2ff24848c60b4445f01c119a9",
+      "journal": {
+        "path": "runtime/0.120.2/item-registry-recovery/query-v2/journal.json",
+        "sha256": "b360a726c3752b3b2779c6030c6fd4d88ea1121961565fdbd493b7ed86fa43c8"
+      },
+      "normalized_sha256": "1503d3823b2c56f5de1950548dc52a5596a777eb37c1f0e39d51df990c2e1d3b",
+      "plan": {
+        "path": "runtime/0.120.2/item-registry-recovery/plan-v2.json",
+        "sha256": "e136dee3ad3a737001fe6c32993c8ac82555f258f6aefcb8819ec123de5fc27e"
+      },
+      "procedure": "0x145aa2ce0",
+      "result": {
+        "path": "runtime/0.120.2/item-registry-recovery/query-v2/results/f3360553043734e12a62d931cd48af7d88086a5c0a59f0cfb45e7f055435c83e-47e37c99062ca97d.json",
+        "sha256": "f713cbaff30184c1384ae43939b9347978f8197a3c20f3b9e1e149bf6a1fb16c"
+      },
+      "role": "lookup"
+    },
+    {
+      "analysis_profile_digest": "561182ec1390b72f568d2ddb5e74a1d9f34aaca48236835e57a2abdb15eee389",
+      "evidence_id": "ev_e8dae30bf7c0d497863f8e3b48a14ebf43297a4532757d37f9fc961c15be27d4",
+      "journal": "runtime/0.120.2/party-achievement-review/consumer-query/journal.json",
+      "journal_sha256": "1bdc0525364719d7a66e4aeca9f148d71c66fa29766004cd2d338bf0aab8e63f",
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+        "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Ghidra analysis was seeded before auto-analysis from runtime/0.120.2/party-achievement-review/consumer-seeds.tsv (sha256 c4109243b4160d6c048021f93c5bfc32685517c47dae3304180751456c8d0a75: 5 function, 5 code, 0 label entries). Seeded functions, code and names are caller assertions, not Ghidra discoveries.",
+        "Seed outcome: 0 functions created, 5 already present, 0 failed; 5 code seeds decoded, 0 failed; 0 labels applied, 0 failed; 0 seeds outside initialized memory.",
+        "The target references PDB benilla_rogue.pdb (GUID 3e1ddce0-c9eb-47e5-8453-f075c9439e88, age (hex) 1, signature unknown, version RSDS); Ghidra reports load state unknown. Original names and types may be missing; an empty name search does not prove a procedure is absent. Use list_procedures and address-based analysis to inspect recovered functions. REA does not admit a caller-selected PDB companion."
+      ],
+      "normalized_sha256": "5d5e0b526cfd63ff320ce5b16987cd5929c354c3c132abd42e2f58966206fe96",
+      "operation": "procedure_pseudo_code",
+      "plan": "runtime/0.120.2/party-achievement-review/consumer-plan.json",
+      "plan_sha256": "a04397a48b14dab22309022774c414ca7d29029f8cab8ddf494cfab7720cef4b",
+      "procedure": "0x145b46770",
+      "query": {
+        "arguments": {
+          "procedure": "0x145b46770"
+        },
+        "name": "procedure_pseudo_code"
+      },
+      "result": "runtime/0.120.2/party-achievement-review/consumer-query/results/527d72e5a2911e7b0d7c67ebb6c6c2e237272f76dc0c5642b5a803c36872f9ad-3cd562610fe22daa.json",
+      "result_sha256": "e885e569c33c6392cb4cac1dce1a25327e4acc942770b1b2b860e68279311b58"
+    },
+    {
+      "analysis_profile_digest": "561182ec1390b72f568d2ddb5e74a1d9f34aaca48236835e57a2abdb15eee389",
+      "evidence_id": "ev_f2624ed433890afb1be44b74ac09db1c010ccf624cfd697a4b70bbf9305e7f40",
+      "journal": "runtime/0.120.2/party-achievement-review/consumer-query/journal.json",
+      "journal_sha256": "1bdc0525364719d7a66e4aeca9f148d71c66fa29766004cd2d338bf0aab8e63f",
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+        "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Ghidra analysis was seeded before auto-analysis from runtime/0.120.2/party-achievement-review/consumer-seeds.tsv (sha256 c4109243b4160d6c048021f93c5bfc32685517c47dae3304180751456c8d0a75: 5 function, 5 code, 0 label entries). Seeded functions, code and names are caller assertions, not Ghidra discoveries.",
+        "Seed outcome: 0 functions created, 5 already present, 0 failed; 5 code seeds decoded, 0 failed; 0 labels applied, 0 failed; 0 seeds outside initialized memory.",
+        "The target references PDB benilla_rogue.pdb (GUID 3e1ddce0-c9eb-47e5-8453-f075c9439e88, age (hex) 1, signature unknown, version RSDS); Ghidra reports load state unknown. Original names and types may be missing; an empty name search does not prove a procedure is absent. Use list_procedures and address-based analysis to inspect recovered functions. REA does not admit a caller-selected PDB companion."
+      ],
+      "normalized_sha256": "c1c8e91e2fed386a0c2584b86fd1c50b5db21022842c26e013677622db502d50",
+      "operation": "procedure_pseudo_code",
+      "plan": "runtime/0.120.2/party-achievement-review/consumer-plan.json",
+      "plan_sha256": "a04397a48b14dab22309022774c414ca7d29029f8cab8ddf494cfab7720cef4b",
+      "procedure": "0x145b400f0",
+      "query": {
+        "arguments": {
+          "procedure": "0x145b400f0"
+        },
+        "name": "procedure_pseudo_code"
+      },
+      "result": "runtime/0.120.2/party-achievement-review/consumer-query/results/7dafaba6928395122361efc51e1b0436ee4a481485fb596b40ecc0651fba9952-a276a05e2026bc55.json",
+      "result_sha256": "f69fe143d8a45c18e3b4dd44c042865bcf762dc6eae4643f177f95fb94296cd0"
+    },
+    {
+      "evidence_id": "ev_f6fcc233e41e3c910f0f3c2443efd551a585dd434cc7df6b8faab522260cc730",
+      "journal": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/journal.json",
+        "sha256": "91890abdd9d39952d399e5d2569389607b99c8435a6ece6b536b7103763f5573"
+      },
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/plan.json",
+        "sha256": "35ec9eb3ddc68d001c2ffc9b186485e852444b0519841e201b6829a6297fd9f5"
+      },
+      "procedure": "0x145bf2530",
+      "result": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/results/30a608da4f443a842fa14f6316ad670ebc76fd56d1c2040d166b2e4873eef1ac-5cbc29573c479d94.json",
+        "sha256": "c41bb774171296b5a35490054f1fe03d468a6a848fdd73615d11954dba6e69d6"
+      },
+      "reviewed_scope": "Only the classified helper/table branches and byte-bound ranges below; no whole-function or whole-module semantic claim."
+    },
+    {
+      "analysis_profile_digest": "4bd0d467830f4570bc127d6d16252b43075e2d8a13ed6a2c4a5404094c225a11",
+      "evidence_id": "ev_fac41e7e08b46118523c817e28bd42d6a973e3b3a98e1491c538ac84e7118559",
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-route-query/journal.json",
+        "sha256": "5884fd9a60abc2181e74d4f52646fc69ce1643de0d0b786f2e936a32be9a9eb3"
+      },
+      "normalized_sha256": "5afbc6aefed53cc6974ae9d892dc1575e769fb307894b370eaf3765bb15fe33f",
+      "operation": "procedure_pseudo_code",
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-route-query/plan.json",
+        "sha256": "9254aacf87a25667798c0528614ae0d32a3ffabd4cc60c69d8b54dd8bdf90e39"
+      },
+      "procedure": "0x145b456f0",
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-route-query/results/c71d97d77d5693774be42bed30e8d06b31ba5724bc72a500ecdf111a0f403875-d43dd42aa57950fd.json",
+        "sha256": "a4c2aaaa56844a0c245ca9ab26c406d51816c06ddae85de42eef949414ddf869"
+      }
+    }
+  ],
+  "stages": {
+    "1": "partial",
+    "2": "partial",
+    "3": "partial",
+    "4": "partial",
+    "5": "partial",
+    "6": "partial"
+  },
+  "semantic_frontier_closed": false,
+  "global_native_semantics_complete": false,
+  "parity_verified": false,
+  "reproduce": {
+    "write": [
+      "python3 -B scripts/compose-as-discovery.py --classification docs/analysis/evidence/0.120.2/data-classification/source-connected-manifest.json --unknown docs/analysis/evidence/0.120.2/unknown-recovery.json --connections docs/analysis/coverage/exe-connections.json --census docs/analysis/coverage/full-image-execheck-0.120.2.json --reviews docs/analysis/evidence/0.120.2/as-discovery-reviews.json --write",
+      "python3 -B scripts/summarize-as-discovery.py --profile runtime/coverage/80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c/as-discovery/094b5ec20e7424f30b178c38b8481a0b63d0641149d633e694a711c72e708c1c --write"
+    ],
+    "check": [
+      "python3 -B scripts/compose-as-discovery.py --classification docs/analysis/evidence/0.120.2/data-classification/source-connected-manifest.json --unknown docs/analysis/evidence/0.120.2/unknown-recovery.json --connections docs/analysis/coverage/exe-connections.json --census docs/analysis/coverage/full-image-execheck-0.120.2.json --reviews docs/analysis/evidence/0.120.2/as-discovery-reviews.json --check",
+      "python3 -B scripts/summarize-as-discovery.py --profile runtime/coverage/80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c/as-discovery/094b5ec20e7424f30b178c38b8481a0b63d0641149d633e694a711c72e708c1c --check"
+    ]
+  },
+  "limits": [
+    "Counts are explicit candidate/review/module populations with overlap, not AS code decompiled, implemented or matched.",
+    "Sixteen review scopes use fifteen distinct decompiler queries because wire31/32 remain separate findings from one parser result.",
+    "All62 partial-source module connections and4 bounded registrations retain individual dimensions; no whole module/source or parity completion follows.",
+    "Prior21 bounded review identities/source repairs and resolved classifications remain retained. Current14 table candidate positions are mapped, with dependency/source applicability pending."
+  ],
+  "resolved_correspondence_questions": [
+    {
+      "id": "retained-table-1403076a2",
+      "selector": "Q41-F01:correspondence:retained-table-1403076a2",
+      "state": "classified_within_bounded_contract",
+      "finding_ids": [
+        17,
+        73
+      ],
+      "original_question_evidence": {
+        "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+        "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
+      },
+      "classification_evidence": {
+        "path": "docs/analysis/evidence/0.120.2/codex-growth-dispatch/manifest.json",
+        "sha256": "970ae1af4357eb1914698bca238b48ba1bf772656075c35c75f318494c323c53"
+      },
+      "review_id": "retained-table-1403076a2",
+      "completion_scope": "Original finite producer/selector/consumer/source question only; whole module, arbitrary aliases, application execution and parity remain separate."
+    },
+    {
+      "id": "retained-table-145afa2a7",
+      "selector": "Q41-F01:correspondence:retained-table-145afa2a7",
+      "state": "classified_within_bounded_contract",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "original_question_evidence": {
+        "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+        "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
+      },
+      "classification_evidence": {
+        "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
+        "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
+      },
+      "review_id": "retained-table-145afa2a7",
+      "completion_scope": "Original finite producer/selector/consumer/source question only; whole module, arbitrary aliases, application execution and parity remain separate."
+    },
+    {
+      "id": "retained-table-145afb3fb",
+      "selector": "Q41-F01:correspondence:retained-table-145afb3fb",
+      "state": "classified_within_bounded_contract",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "original_question_evidence": {
+        "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+        "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
+      },
+      "classification_evidence": {
+        "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
+        "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
+      },
+      "review_id": "retained-table-145afb3fb",
+      "completion_scope": "Original finite producer/selector/consumer/source question only; whole module, arbitrary aliases, application execution and parity remain separate."
+    },
+    {
+      "id": "retained-table-145afb49a",
+      "selector": "Q41-F01:correspondence:retained-table-145afb49a",
+      "state": "classified_within_bounded_contract",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "original_question_evidence": {
+        "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+        "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
+      },
+      "classification_evidence": {
+        "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
+        "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
+      },
+      "review_id": "retained-table-145afb49a",
+      "completion_scope": "Original finite producer/selector/consumer/source question only; whole module, arbitrary aliases, application execution and parity remain separate."
+    },
+    {
+      "id": "retained-table-145afb64e",
+      "selector": "Q41-F01:correspondence:retained-table-145afb64e",
+      "state": "classified_within_bounded_contract",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "original_question_evidence": {
+        "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+        "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
+      },
+      "classification_evidence": {
+        "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
+        "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
+      },
+      "review_id": "retained-table-145afb64e",
+      "completion_scope": "Original finite producer/selector/consumer/source question only; whole module, arbitrary aliases, application execution and parity remain separate."
+    },
+    {
+      "id": "retained-table-145afb798",
+      "selector": "Q41-F01:correspondence:retained-table-145afb798",
+      "state": "classified_within_bounded_contract",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "original_question_evidence": {
+        "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+        "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
+      },
+      "classification_evidence": {
+        "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
+        "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
+      },
+      "review_id": "retained-table-145afb798",
+      "completion_scope": "Original finite producer/selector/consumer/source question only; whole module, arbitrary aliases, application execution and parity remain separate."
+    },
+    {
+      "id": "retained-table-145afb7c1",
+      "selector": "Q41-F01:correspondence:retained-table-145afb7c1",
+      "state": "classified_within_bounded_contract",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "original_question_evidence": {
+        "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+        "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
+      },
+      "classification_evidence": {
+        "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
+        "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
+      },
+      "review_id": "retained-table-145afb7c1",
+      "completion_scope": "Original finite producer/selector/consumer/source question only; whole module, arbitrary aliases, application execution and parity remain separate."
+    },
+    {
+      "id": "retained-table-145afb7ed",
+      "selector": "Q41-F01:correspondence:retained-table-145afb7ed",
+      "state": "classified_within_bounded_contract",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "original_question_evidence": {
+        "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+        "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
+      },
+      "classification_evidence": {
+        "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
+        "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
+      },
+      "review_id": "retained-table-145afb7ed",
+      "completion_scope": "Original finite producer/selector/consumer/source question only; whole module, arbitrary aliases, application execution and parity remain separate."
+    },
+    {
+      "id": "retained-table-145afbad2",
+      "selector": "Q41-F01:correspondence:retained-table-145afbad2",
+      "state": "classified_within_bounded_contract",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "original_question_evidence": {
+        "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+        "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
+      },
+      "classification_evidence": {
+        "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
+        "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
+      },
+      "review_id": "retained-table-145afbad2",
+      "completion_scope": "Original finite producer/selector/consumer/source question only; whole module, arbitrary aliases, application execution and parity remain separate."
+    },
+    {
+      "id": "retained-table-145afbb29",
+      "selector": "Q41-F01:correspondence:retained-table-145afbb29",
+      "state": "classified_within_bounded_contract",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "original_question_evidence": {
+        "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+        "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
+      },
+      "classification_evidence": {
+        "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
+        "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
+      },
+      "review_id": "retained-table-145afbb29",
+      "completion_scope": "Original finite producer/selector/consumer/source question only; whole module, arbitrary aliases, application execution and parity remain separate."
+    },
+    {
+      "id": "retained-table-145afbb66",
+      "selector": "Q41-F01:correspondence:retained-table-145afbb66",
+      "state": "classified_within_bounded_contract",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "original_question_evidence": {
+        "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+        "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
+      },
+      "classification_evidence": {
+        "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
+        "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
+      },
+      "review_id": "retained-table-145afbb66",
+      "completion_scope": "Original finite producer/selector/consumer/source question only; whole module, arbitrary aliases, application execution and parity remain separate."
+    },
+    {
+      "id": "retained-table-145afbb92",
+      "selector": "Q41-F01:correspondence:retained-table-145afbb92",
+      "state": "classified_within_bounded_contract",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "original_question_evidence": {
+        "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+        "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
+      },
+      "classification_evidence": {
+        "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
+        "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
+      },
+      "review_id": "retained-table-145afbb92",
+      "completion_scope": "Original finite producer/selector/consumer/source question only; whole module, arbitrary aliases, application execution and parity remain separate."
+    },
+    {
+      "id": "retained-table-145afbe39",
+      "selector": "Q41-F01:correspondence:retained-table-145afbe39",
+      "state": "classified_within_bounded_contract",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "original_question_evidence": {
+        "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+        "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
+      },
+      "classification_evidence": {
+        "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
+        "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
+      },
+      "review_id": "retained-table-145afbe39",
+      "completion_scope": "Original finite producer/selector/consumer/source question only; whole module, arbitrary aliases, application execution and parity remain separate."
+    },
+    {
+      "id": "retained-table-145afbed3",
+      "selector": "Q41-F01:correspondence:retained-table-145afbed3",
+      "state": "classified_within_bounded_contract",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "original_question_evidence": {
+        "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+        "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
+      },
+      "classification_evidence": {
+        "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
+        "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
+      },
+      "review_id": "retained-table-145afbed3",
+      "completion_scope": "Original finite producer/selector/consumer/source question only; whole module, arbitrary aliases, application execution and parity remain separate."
+    }
+  ],
+  "summary_generator": {
+    "path": "scripts/summarize-as-discovery.py",
+    "sha256": "a5c2d57a35c0e6521ab3cf10988d0ca5b89aafee6bdb003d746f3e44acd7b801",
+    "scope": "Deterministic graph/review/query counts and current compact registry; no inferred native ownership or closure."
+  }
+}

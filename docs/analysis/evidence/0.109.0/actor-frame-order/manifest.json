@@ -1,0 +1,354 @@
+{
+  "target_version": "0.109.0",
+  "target_sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+  "native_cases": 280,
+  "ranges": [
+    {
+      "role": "actor-vector",
+      "va": "0x14597830a",
+      "file_offset": "0x597770a",
+      "byte_count": 32,
+      "sha256": "fbe7a93bc1549623e520de4fac8ab018846a683988746440355c175b1dd52971",
+      "assembly": "actor-vector.asm",
+      "assembly_sha256": "a7ac57f2beb69921495ecf626003aea4a39455716889c4fc732580989712077c"
+    },
+    {
+      "role": "actor-iterator",
+      "va": "0x1459783dc",
+      "file_offset": "0x59777dc",
+      "byte_count": 62,
+      "sha256": "34d13f4be8260219688ac515cfd4a3d8db9f10301445b3efc92241ee9c9e9703",
+      "assembly": "actor-iterator.asm",
+      "assembly_sha256": "57d11c56da3cd461f2749a3c348d7775e0b6e8349d0e06cb3af337ec686f115d"
+    },
+    {
+      "role": "movement-queue",
+      "va": "0x14597b2e1",
+      "file_offset": "0x597a6e1",
+      "byte_count": 68,
+      "sha256": "05717a8d51d2d06532e0a2cd06bf3f86d9dc4d83910dbb1387d971a50d2e754a",
+      "assembly": "movement-queue.asm",
+      "assembly_sha256": "a0c0032cdecfe9b7d751e6a0955823e8432b0721f44a60e0dc48d216a1d1812b"
+    },
+    {
+      "role": "melee-queue",
+      "va": "0x14597b423",
+      "file_offset": "0x597a823",
+      "byte_count": 42,
+      "sha256": "bb562a9e62dbfd096f6b5ded761c2ce505ca585518571fb00a74e1929aae43df",
+      "assembly": "melee-queue.asm",
+      "assembly_sha256": "fa6d35c90f9e0a43c2714b068ded05a5079d172c4d2d5beef180b46903d55308"
+    },
+    {
+      "role": "corpse-consume",
+      "va": "0x14597b4e5",
+      "file_offset": "0x597a8e5",
+      "byte_count": 23,
+      "sha256": "be523feac3eeeff2601d775b125b2e1c08e629c3cb3b7830cba673d8edfb95d6",
+      "assembly": "corpse-consume.asm",
+      "assembly_sha256": "60f7ee7864b75f72eb5fd3256ababee8a05506ff2caaf1a19ad2657c7aa39152"
+    },
+    {
+      "role": "movement-serial",
+      "va": "0x14597b602",
+      "file_offset": "0x597aa02",
+      "byte_count": 65,
+      "sha256": "25ddf0a435d3ac0f8bd079eea7cff0a3966e218ad15a98aadbb28ba715a299d5",
+      "assembly": "movement-serial.asm",
+      "assembly_sha256": "1e5c50e7953695b91190cd601501f644f6c3d00b0ccf9cbc31f3fb094aa1ecfc"
+    },
+    {
+      "role": "movement-travel-publish",
+      "va": "0x14597b6d9",
+      "file_offset": "0x597aad9",
+      "byte_count": 26,
+      "sha256": "43c11bd76d1ef6a42f58670b56d89fbb1485689751ee7be905dc4135c6793549",
+      "assembly": "movement-travel-publish.asm",
+      "assembly_sha256": "87ba536f140f45fb65dc1ceb9cb1a2822d76fd73c35ffc357bf32bc60c864894"
+    },
+    {
+      "role": "movement-facing-publish",
+      "va": "0x14597b730",
+      "file_offset": "0x597ab30",
+      "byte_count": 33,
+      "sha256": "eba69cf932efc26fa26442a231a48067a6746a339b1fd6b3c2b88e626218163d",
+      "assembly": "movement-facing-publish.asm",
+      "assembly_sha256": "b894d555b67645c5a4dd4ed24fcea1f1a17b4a9a6a20aa5ad8eadf8246436aed"
+    },
+    {
+      "role": "melee-consume",
+      "va": "0x14597b7ed",
+      "file_offset": "0x597abed",
+      "byte_count": 214,
+      "sha256": "3ceac0df7fa2df457c1642cf320f54f745e84e621fc06f977751b1c2169f489a",
+      "assembly": "melee-consume.asm",
+      "assembly_sha256": "7af3f8c63181f880cb806e635d1c9614ce279aa8e85a4b23408a3d505d6de841"
+    },
+    {
+      "role": "cast-start",
+      "va": "0x14597b97b",
+      "file_offset": "0x597ad7b",
+      "byte_count": 165,
+      "sha256": "3f8d1739125fa4dbca37f81a853f52fdd1dda982ac906dcb849d72c34c47bd5f",
+      "assembly": "cast-start.asm",
+      "assembly_sha256": "b6af1253a63efab0b4c56c791afc562243ff0dadef4cb38aa1fb29552fb57440"
+    },
+    {
+      "role": "cast-millis-bound",
+      "va": "0x14597b59c",
+      "file_offset": "0x597a99c",
+      "byte_count": 9,
+      "sha256": "a185595e78a6746094a60d459877a7f6dead206aa4e109328ea6f8b46583c2fe",
+      "assembly": "cast-millis-bound.asm",
+      "assembly_sha256": "de069a606bf747b4eec4a03456340545a7df8e84ddfc35677724cd6971e57745"
+    },
+    {
+      "role": "cast-millis-multiplier",
+      "va": "0x14597b920",
+      "file_offset": "0x597ad20",
+      "byte_count": 9,
+      "sha256": "8e2dd0d3f1d4e82fedb9fcc247c6c4e292f3df39bc3047bd7e758699bd169457",
+      "assembly": "cast-millis-multiplier.asm",
+      "assembly_sha256": "84d6dc199b3073ae4efd72add19fc1ecac316d619aa2852a1e20b7aa406c8360"
+    },
+    {
+      "role": "cast-start-flags",
+      "va": "0x1458c22cf",
+      "file_offset": "0x58c16cf",
+      "byte_count": 78,
+      "sha256": "14844fb5aa4dd0be178b8caea5bae8facaf5394675b731ecc0c5d14f8898358d",
+      "assembly": "cast-start-flags.asm",
+      "assembly_sha256": "5494cb9ee0100be65f40abab550d4d3e0a6a571323dbaa3905c16cb64499f0c2"
+    },
+    {
+      "role": "cast-start-target",
+      "va": "0x1458c234a",
+      "file_offset": "0x58c174a",
+      "byte_count": 55,
+      "sha256": "97875761882193fdd7d230556ea89119e3beb8fd34eb375f253e8911270ac53c",
+      "assembly": "cast-start-target.asm",
+      "assembly_sha256": "c13bfaf8f47c0c43a20d9fd4b56ec5d3d55306afca498c8e38a49477512060e7"
+    },
+    {
+      "role": "cast-source-admission",
+      "va": "0x14597ba20",
+      "file_offset": "0x597ae20",
+      "byte_count": 60,
+      "sha256": "b5c1c86368f18a6daf11cacc584e5f4aa86363c8c4d554904ec5cd4939949c97",
+      "assembly": "cast-source-admission.asm",
+      "assembly_sha256": "807bc387ed6e4d7006a16ae634c6a14ba3a49c1ca132d6a259a85c2750af6d8a"
+    },
+    {
+      "role": "cast-completion",
+      "va": "0x14597babf",
+      "file_offset": "0x597aebf",
+      "byte_count": 374,
+      "sha256": "503e7ee135a8d3fec54f4c0ba9af425c3648567aa6069a21388b9cd403fe7c8c",
+      "assembly": "cast-completion.asm",
+      "assembly_sha256": "b035dc3c72a4c49baa682707e0f7b45d54faac42680e025508af72e13b5f0064"
+    },
+    {
+      "role": "aura-remove-consume",
+      "va": "0x14597c250",
+      "file_offset": "0x597b650",
+      "byte_count": 37,
+      "sha256": "2a16b07cc19f19dc0c8b3f18d9d7103eedbd5283fb2b95f53cbe3cb33f3ca3c6",
+      "assembly": "aura-remove-consume.asm",
+      "assembly_sha256": "76b8993af0184afbcee4855381efbb1ec5c516f35636f120932b5a12fbcb86c9"
+    },
+    {
+      "role": "aura-applications-consume",
+      "va": "0x14597c2c0",
+      "file_offset": "0x597b6c0",
+      "byte_count": 34,
+      "sha256": "1be8cadb0e6356f62ad06c31324d037d800d34ab575a7a83302f51188e0472c5",
+      "assembly": "aura-applications-consume.asm",
+      "assembly_sha256": "ebe983e61f0d8a88997f474acb4f787142acf4645bf77628ddac182ae43872b0"
+    },
+    {
+      "role": "primary-phase-queue",
+      "va": "0x14597a801",
+      "file_offset": "0x5979c01",
+      "byte_count": 45,
+      "sha256": "94d74e8031821404512ee691a66234bc46f8988526b1a5ca78a0929782e5d41f",
+      "assembly": "primary-phase-queue.asm",
+      "assembly_sha256": "5739f43e72e99d0de712da76165294210a26c8ede5fec73bfa0c2d978296b3bc"
+    },
+    {
+      "role": "primary-phase-consume",
+      "va": "0x14597c373",
+      "file_offset": "0x597b773",
+      "byte_count": 71,
+      "sha256": "7c714453b73aa38907a7cf1002b18f63e5a4eda579cb009fea9571e9f01fbaa3",
+      "assembly": "primary-phase-consume.asm",
+      "assembly_sha256": "11d25a120ffe739f0d1bf6d64a92f2622d36194fc72ec8be14c6cb8f6e29a145"
+    },
+    {
+      "role": "guardian-phase-queue",
+      "va": "0x14597a1fe",
+      "file_offset": "0x59795fe",
+      "byte_count": 43,
+      "sha256": "477eabe80892111f23f21dd86bdcb85af79517e29df2431efdf670d1b0199cb5",
+      "assembly": "guardian-phase-queue.asm",
+      "assembly_sha256": "cd2b5ee34db864cea5ad0b71135b190e297fad015a8fcba9ea19ac9334e5a5da"
+    },
+    {
+      "role": "guardian-engage-queue",
+      "va": "0x145979b04",
+      "file_offset": "0x5978f04",
+      "byte_count": 28,
+      "sha256": "a1478ff14f340870a745e557f22586f5dd1816d422c9e5a18f5113e64e0ba927",
+      "assembly": "guardian-engage-queue.asm",
+      "assembly_sha256": "7eef84e375a86fd132efcd7c2a0d1fc47c8bdf9c4bd19d353b57ab5ad8ea5770"
+    },
+    {
+      "role": "guardian-engage-admission",
+      "va": "0x14597c822",
+      "file_offset": "0x597bc22",
+      "byte_count": 337,
+      "sha256": "b6a7a0512886b777e1850ee298c7193054add034c5ec5d095badc25f38b562db",
+      "assembly": "guardian-engage-admission.asm",
+      "assembly_sha256": "5d069b6edd2b99347637e0c39b12e3a54c43a449fc5bcf2b150bc1ff12efc265"
+    },
+    {
+      "role": "guardian-engage-scalars",
+      "va": "0x14597c973",
+      "file_offset": "0x597bd73",
+      "byte_count": 103,
+      "sha256": "ce4643a88bf6ec3f60d4a951ed0e3ede3eef703c9fcdd7e48ba32c17e2e7c101",
+      "assembly": "guardian-engage-scalars.asm",
+      "assembly_sha256": "b34197a36a948dd0fb14a726cf311ebe9458bdf19f0b613afc994878917850d7"
+    },
+    {
+      "role": "guardian-engage-fields-max",
+      "va": "0x14597ca1b",
+      "file_offset": "0x597be1b",
+      "byte_count": 78,
+      "sha256": "daa87f3673019b741fcc48057ccc4867d29e049ba410d7bd1b9353b6ecd2b5e8",
+      "assembly": "guardian-engage-fields-max.asm",
+      "assembly_sha256": "0dfe443851b3e7af702e95f2ea94fd62978837d4b5c8b0bca2b4efe620af4bc3"
+    },
+    {
+      "role": "guardian-engage-health-index",
+      "va": "0x14597ca98",
+      "file_offset": "0x597be98",
+      "byte_count": 11,
+      "sha256": "e7bbc8dd1d8085704904c59d388dc95bdb84b65356f92c6741a5a521bac20374",
+      "assembly": "guardian-engage-health-index.asm",
+      "assembly_sha256": "4c8050a469400898939ecf4f5b501c10b1ce61c1cd06be9b0fbe73662ab149ec"
+    },
+    {
+      "role": "guardian-engage-fields-health",
+      "va": "0x14597cb4f",
+      "file_offset": "0x597bf4f",
+      "byte_count": 326,
+      "sha256": "d87c02111245f9f2095c86384cf4175bcf501cbb2a2cc6b64dda5a1bd4c527e4",
+      "assembly": "guardian-engage-fields-health.asm",
+      "assembly_sha256": "e596d296deb668eef0d05e375c8c6c3e8d4b5a9aef13a1ed0a296c811f59a57a"
+    },
+    {
+      "role": "guardian-engage-yell",
+      "va": "0x14597cc95",
+      "file_offset": "0x597c095",
+      "byte_count": 84,
+      "sha256": "acec2856cb31b9aaba62f46c3edb1d74397f0a6b5cf3ca41d951188fbd9c54c5",
+      "assembly": "guardian-engage-yell.asm",
+      "assembly_sha256": "eb0f15ab87f4fdb3a162743235f9d7caae025f9bbe933b5e521b0d2da66c5f14"
+    },
+    {
+      "role": "generic-hold-admission",
+      "va": "0x14595734d",
+      "file_offset": "0x595674d",
+      "byte_count": 13,
+      "sha256": "a96bf06dfe31feddf951178a50ddef703e47df087886a931d2c0e1725111c1d2",
+      "assembly": "../raid-waves/hold.asm",
+      "assembly_sha256": "26e7cae090739b1e9c3ab3cc7e2adef30962fab1a6f0259d81625e8d683cc2ca"
+    },
+    {
+      "role": "generic-hold-state",
+      "va": "0x145957427",
+      "file_offset": "0x5956827",
+      "byte_count": 130,
+      "sha256": "d4ccab8b80de4eeab77885a5fc78b3a45a8074222eb6cefad10038327e8520a7",
+      "assembly": "../raid-waves/hold.asm",
+      "assembly_sha256": "26e7cae090739b1e9c3ab3cc7e2adef30962fab1a6f0259d81625e8d683cc2ca"
+    },
+    {
+      "role": "common-hold-gate",
+      "va": "0x145978e94",
+      "file_offset": "0x5978294",
+      "byte_count": 18,
+      "sha256": "5b752119d9f790d602ff28f2f47a966ca5fc621866b21f899b3f580b9ba377b6",
+      "assembly": "common-hold-gate.asm",
+      "assembly_sha256": "0ba6c5a033d3bcfa65bc9d3792290a53e1b0b9c9e6c025b340bfa4ff17b6f19f"
+    },
+    {
+      "role": "duration-block-type-gates",
+      "va": "0x145957c72",
+      "file_offset": "0x5957072",
+      "byte_count": 102,
+      "sha256": "106e523ccdef49ace7d8001b2997c07959d46922cbeb7170468d4a729780419c",
+      "assembly": "../raid-waves/action-block.asm",
+      "assembly_sha256": "6a8f133d797d29c208d295a5a65362b8201d23f134d6733549fa37d42ce4f05d"
+    },
+    {
+      "role": "yell-kind",
+      "va": "0x1458c2ff2",
+      "file_offset": "0x58c23f2",
+      "byte_count": 14,
+      "sha256": "edda9d2ef4249e8f7cd8a2b77d183c99236f3cae81a8579c4953d8bf51a1afac",
+      "assembly": "yell-kind.asm",
+      "assembly_sha256": "9c924cf6daf2236ec2797cb8aace1373bf1d5d97f40b44963f3506e7dde15c65"
+    }
+  ],
+  "canonical_references": {
+    "periodic": "raid-sequences/actor-periodic-consume.asm",
+    "guardian-phase-consume": "guardian-signatures/phase-emote-producer.asm",
+    "raid": "raid-sequences/actor-raid-consume.asm",
+    "wards": "raid-wards/tick-actions.asm",
+    "actor-removal": "raid-wards/remove.asm",
+    "raid-source-admission": "raid-wards/producer-admission.asm",
+    "replacement-type-gates": "raid-native/transform32.asm",
+    "appearance-type-gates": "raid-native/transform-unit.asm",
+    "ordinary-defense-type-gates": "raid-shields/damage-factor.asm",
+    "actor-name": "raid-warnings/actor-name.asm",
+    "minion-yell": "raid-sequences/minions.asm"
+  },
+  "stage_order": [
+    "forguidin&frame.removals",
+    "for(guid,movement)inframe.movements",
+    "for(amount,melee,source_guid)inframe.melee",
+    "for(source_guid,spell_id,damage)inframe.casts",
+    "self.resolve_actor_periodic(",
+    "self.publish_actor_aura_updates(",
+    "self.events.extend(frame.yells",
+    "self.events.extend(frame.emotes",
+    "self.dispatch_pending_raid_requests(",
+    "self.resolve_ward_actions(",
+    "self.resolve_guardian_engagements(frame.engaged)"
+  ],
+  "current_semantic_tags": [
+    1,
+    2,
+    5,
+    6,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+  ],
+  "current_recursive_actions": 493,
+  "limits": [
+    "Original byte snippets and synthetic state only; no native callees/game/process.",
+    "Rust integration is inspected statically, not compiled or executed.",
+    "Guardian stat-function inputs retain their separately stated recovery provenance.",
+    "Full packet display, interaction and original/rebuilt gameplay parity remain unverified."
+  ]
+}

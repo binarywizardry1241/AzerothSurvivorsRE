@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.112.0",
+    "sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+    "size_bytes": 140514816
+  },
+  "ranges": [
+    {
+      "role": "summary",
+      "start": "0x1458b9fb0",
+      "end_exclusive": "0x1458bba6a",
+      "file_offset": "0x58b93b0",
+      "byte_count": 6842,
+      "sha256": "ad581e27e7dcea1b0e2f71f7afc7c24ba39f7ffe88486e5d80d733761c858439",
+      "assembly_windows": [
+        {
+          "start": "0x1458ba014",
+          "end_exclusive": "0x1458ba350"
+        },
+        {
+          "start": "0x1458ba3f5",
+          "end_exclusive": "0x1458ba54a"
+        },
+        {
+          "start": "0x1458bb05f",
+          "end_exclusive": "0x1458bb23e"
+        },
+        {
+          "start": "0x1458bb859",
+          "end_exclusive": "0x1458bb8e9"
+        }
+      ],
+      "canonical_ghidra": {
+        "manifest": "docs/analysis/evidence/0.112.0/addon-bridge/manifest.json",
+        "role": "run-save",
+        "evidence_id": "ev_f020fdbcc5ff3990b6c6b20f3fea6b9df30d9b7e3a3ccddb4c74524e7f9f4096"
+      }
+    },
+    {
+      "role": "deltas",
+      "start": "0x1459da440",
+      "end_exclusive": "0x1459da66d",
+      "file_offset": "0x59d9840",
+      "byte_count": 557,
+      "sha256": "086434428410f159da23f9ae025958703fc6db23f255be18444dfc6a0e672b49",
+      "assembly_windows": [
+        {
+          "start": "0x1459da4d6",
+          "end_exclusive": "0x1459da635"
+        }
+      ],
+      "pseudocode": "deltas.ghidra.c",
+      "pseudocode_sha256": "bcdceea7f2217eec0a180f3dfe433274126687f69735771f29fd4b38b106bddc",
+      "raw_pseudocode_sha256": "d951a905c3111b7d72cca52704c58c329a3ad33de6b5812f618978b1830442b0",
+      "rea_evidence_id": "ev_86f6249e7f620be7db2fb563aac9847829f9bf36ff48bdfc27dc735e00e77c02",
+      "analysis_profile_digest": "cc5aa1b42265cda4bf4db255feb00e2552bdf3032c18855c9e9168fa7c8d042d",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "raw_import_sha256": "086434428410f159da23f9ae025958703fc6db23f255be18444dfc6a0e672b49"
+    },
+    {
+      "role": "xp-grant",
+      "start": "0x1458d2fe0",
+      "end_exclusive": "0x1458d3172",
+      "file_offset": "0x58d23e0",
+      "byte_count": 402,
+      "sha256": "2ef5e0a81370935e15681d2c670ac71c2706357ebbd4b3145931b54037c1f109",
+      "assembly_windows": [
+        {
+          "start": "0x1458d2fe0",
+          "end_exclusive": "0x1458d3172"
+        }
+      ],
+      "pseudocode": "xp-grant.ghidra.c",
+      "pseudocode_sha256": "d0e004500449bbae96cd06a039942713a16fabe954d691899c4179b1b951a352",
+      "raw_pseudocode_sha256": "08fc30ef1033a511979c0c7a198d88b90782e52d8540e31d58d1329a970ead82",
+      "rea_evidence_id": "ev_80532ff7e9a88563e1560ba57f93c71b20a88616ffa6cb5e968d844dd6f7c364",
+      "analysis_profile_digest": "fdeea579c2eb27b894331c01a23520da932cc49ae5c287bf6237f6d077c5ca29",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "raw_import_sha256": "2ef5e0a81370935e15681d2c670ac71c2706357ebbd4b3145931b54037c1f109"
+    },
+    {
+      "role": "terminal-guard",
+      "start": "0x1458b0828",
+      "end_exclusive": "0x1458b0aa8",
+      "file_offset": "0x58afc28",
+      "byte_count": 640,
+      "sha256": "51bfbec122c86361b30b0f0497a6be03b5a59115245a01a2bc119ab707abee2e",
+      "assembly_windows": [
+        {
+          "start": "0x1458b0828",
+          "end_exclusive": "0x1458b0857"
+        },
+        {
+          "start": "0x1458b0a90",
+          "end_exclusive": "0x1458b0aa8"
+        }
+      ]
+    },
+    {
+      "role": "terminal-counts",
+      "start": "0x1458b0aa8",
+      "end_exclusive": "0x1458b0bed",
+      "file_offset": "0x58afea8",
+      "byte_count": 325,
+      "sha256": "0d1cef7ad0b8215fee63e54dd45ad7c83b3d24a02a5d373d1824651e19106ce6",
+      "assembly_windows": [
+        {
+          "start": "0x1458b0aa8",
+          "end_exclusive": "0x1458b0bed"
+        }
+      ]
+    },
+    {
+      "role": "account-save-caller",
+      "start": "0x1458b1d05",
+      "end_exclusive": "0x1458b1dfd",
+      "file_offset": "0x58b1105",
+      "byte_count": 248,
+      "sha256": "ac8eac475cd40f96a847df51948a9cef725d2154c0d0931c39b1634efc53dd0f",
+      "assembly_windows": [
+        {
+          "start": "0x1458b1d05",
+          "end_exclusive": "0x1458b1d76"
+        },
+        {
+          "start": "0x1458b1dee",
+          "end_exclusive": "0x1458b1dfd"
+        }
+      ]
+    },
+    {
+      "role": "beaten-zone",
+      "start": "0x1458d3580",
+      "end_exclusive": "0x1458d3687",
+      "file_offset": "0x58d2980",
+      "byte_count": 263,
+      "sha256": "f354eaf64ff4d60a0373af429781feadf68ee000ce95f5ea187b6884e3b2e5cb",
+      "assembly_windows": [
+        {
+          "start": "0x1458d3580",
+          "end_exclusive": "0x1458d3687"
+        }
+      ]
+    },
+    {
+      "role": "backend-save-route",
+      "start": "0x1458d9600",
+      "end_exclusive": "0x1458d967b",
+      "file_offset": "0x58d8a00",
+      "byte_count": 123,
+      "sha256": "c0e051068f2aecf2e5f80250e561b33387123d20196a92aa79aeec723289b047",
+      "assembly_windows": [
+        {
+          "start": "0x1458d9600",
+          "end_exclusive": "0x1458d967b"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Scoped original PE replay and current AS source tracing; no compiler, application, game, filesystem write or runtime comparison executes.",
+    "Zone index and CRT roundf are explicit seams. Full original XP row mutation executes with preallocated vector capacity. Typed save routing ends at serialization, sealing and write-owner interfaces; OS/filesystem behavior is not replayed.",
+    "Full current summary Ghidra owner is reused through the canonical addon-bridge manifest; omitted diagnostic/string formatting and UI publication are not part of terminal arithmetic replay.",
+    "Additional typed Save cases reuse current parser/serializer owners with explicit host memory-management, C-byte and English localization seams; no OS/filesystem or sealed-import cryptography executes."
+  ],
+  "selected_assembly_sha256": "0e7cbbecc7ade071fed0031ef1372605b253af10e0869b08d82b5fd10bec232b",
+  "normalization": "Decompiler C strips leading/trailing blank lines and trailing horizontal whitespace, retaining raw result digest separately.",
+  "canonical_tick": {
+    "manifest": "docs/analysis/evidence/0.112.0/addon-bridge/manifest.json",
+    "role": "poll",
+    "evidence_id": "ev_3383ebf51e83b21848c7985dcaaf0e692b0f04d105b7cabe55afcbf339cce229",
+    "terminal_marker_writes": [
+      "0x1458b0a90"
+    ]
+  }
+}

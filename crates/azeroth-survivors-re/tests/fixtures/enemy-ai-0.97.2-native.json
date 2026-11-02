@@ -1,0 +1,404 @@
+{
+  "target_sha256": "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589",
+  "method": "Bounded unchanged x86-64 instructions in Unicorn; no external calls; game not launched.",
+  "oracle_ranges": {
+    "movement": [
+      "0x1454cb201",
+      "0x1454cb21e"
+    ],
+    "completion": [
+      "0x1454cb084",
+      "0x1454cb0ae"
+    ],
+    "attack": [
+      "0x1454cb4db",
+      "0x1454cb512"
+    ],
+    "cast_start": [
+      "0x1454cb512",
+      "0x1454cb52f"
+    ],
+    "timing": [
+      "0x1454cbcc2",
+      "0x1454cbd4c"
+    ],
+    "fear": [
+      "0x1454c99bf",
+      "0x1454c99e1"
+    ]
+  },
+  "movement_cases": [
+    {
+      "range_bits": 1077936128,
+      "distance_bits": 1077936128,
+      "outside": false,
+      "now_bits": 1092616192,
+      "deadline_bits": 1092616192,
+      "result": 0
+    },
+    {
+      "range_bits": 1077936128,
+      "distance_bits": 1077940322,
+      "outside": false,
+      "now_bits": 1092616192,
+      "deadline_bits": 1092616192,
+      "result": 1
+    },
+    {
+      "range_bits": 1077936128,
+      "distance_bits": 1073741824,
+      "outside": true,
+      "now_bits": 1092616192,
+      "deadline_bits": 1092616192,
+      "result": 1
+    },
+    {
+      "range_bits": 1077936128,
+      "distance_bits": 1082130432,
+      "outside": false,
+      "now_bits": 1092616192,
+      "deadline_bits": 1092617241,
+      "result": 2
+    },
+    {
+      "range_bits": 1077936128,
+      "distance_bits": 1073741824,
+      "outside": false,
+      "now_bits": 1092616192,
+      "deadline_bits": 1148829696,
+      "result": 0
+    },
+    {
+      "range_bits": 2143289344,
+      "distance_bits": 1073741824,
+      "outside": false,
+      "now_bits": 1092616192,
+      "deadline_bits": 1092616192,
+      "result": 1
+    },
+    {
+      "range_bits": 1077936128,
+      "distance_bits": 2143289344,
+      "outside": false,
+      "now_bits": 1092616192,
+      "deadline_bits": 1092616192,
+      "result": 1
+    },
+    {
+      "range_bits": 1077936128,
+      "distance_bits": 1082130432,
+      "outside": false,
+      "now_bits": 1092616192,
+      "deadline_bits": 2143289344,
+      "result": 2
+    }
+  ],
+  "completion_cases": [
+    {
+      "now_bits": 1092616192,
+      "ends_at_bits": 1092616192,
+      "tag": 0,
+      "casting_after": false,
+      "complete": false
+    },
+    {
+      "now_bits": 1092616192,
+      "ends_at_bits": 1092616192,
+      "tag": 1,
+      "casting_after": false,
+      "complete": true
+    },
+    {
+      "now_bits": 1092616192,
+      "ends_at_bits": 1092617241,
+      "tag": 0,
+      "casting_after": true,
+      "complete": false
+    },
+    {
+      "now_bits": 1092616192,
+      "ends_at_bits": 1092617241,
+      "tag": 1,
+      "casting_after": true,
+      "complete": false
+    },
+    {
+      "now_bits": 1092616192,
+      "ends_at_bits": 1091567616,
+      "tag": 0,
+      "casting_after": false,
+      "complete": false
+    },
+    {
+      "now_bits": 1092616192,
+      "ends_at_bits": 1091567616,
+      "tag": 1,
+      "casting_after": false,
+      "complete": true
+    },
+    {
+      "now_bits": 1092616192,
+      "ends_at_bits": 2143289344,
+      "tag": 0,
+      "casting_after": true,
+      "complete": false
+    },
+    {
+      "now_bits": 1092616192,
+      "ends_at_bits": 2143289344,
+      "tag": 1,
+      "casting_after": true,
+      "complete": false
+    }
+  ],
+  "attack_cases": [
+    {
+      "delay_bits": 0,
+      "interval_bits": 1078774989,
+      "tag": 0,
+      "due": true,
+      "after_bits": 1078774989
+    },
+    {
+      "delay_bits": 0,
+      "interval_bits": 1078774989,
+      "tag": 1,
+      "due": true,
+      "after_bits": 1078774989
+    },
+    {
+      "delay_bits": 981668463,
+      "interval_bits": 1078774989,
+      "tag": 0,
+      "due": false,
+      "after_bits": 981668463
+    },
+    {
+      "delay_bits": 981668463,
+      "interval_bits": 1078774989,
+      "tag": 1,
+      "due": false,
+      "after_bits": 981668463
+    },
+    {
+      "delay_bits": 3231711232,
+      "interval_bits": 1078774989,
+      "tag": 0,
+      "due": true,
+      "after_bits": 1078774989
+    },
+    {
+      "delay_bits": 3231711232,
+      "interval_bits": 1078774989,
+      "tag": 1,
+      "due": true,
+      "after_bits": 1078774989
+    },
+    {
+      "delay_bits": 2143289344,
+      "interval_bits": 1078774989,
+      "tag": 0,
+      "due": false,
+      "after_bits": 2143289344
+    },
+    {
+      "delay_bits": 2143289344,
+      "interval_bits": 1078774989,
+      "tag": 1,
+      "due": false,
+      "after_bits": 2143289344
+    }
+  ],
+  "cast_start_cases": [
+    {
+      "duration_bits": 0,
+      "now_bits": 1092616192,
+      "casting": 1,
+      "ends_at_bits": 1092616192
+    },
+    {
+      "duration_bits": 1072064102,
+      "now_bits": 1092616192,
+      "casting": 1,
+      "ends_at_bits": 1094503629
+    },
+    {
+      "duration_bits": 1075838976,
+      "now_bits": 1092616192,
+      "casting": 1,
+      "ends_at_bits": 1095237632
+    }
+  ],
+  "timing_cases": [
+    {
+      "length_bits": 0,
+      "speed_bits": 0,
+      "now_bits": 1092616192,
+      "duration_bits": 0,
+      "next_movement_at_bits": 1092878336
+    },
+    {
+      "length_bits": 0,
+      "speed_bits": 1056964608,
+      "now_bits": 1092616192,
+      "duration_bits": 0,
+      "next_movement_at_bits": 1092878336
+    },
+    {
+      "length_bits": 0,
+      "speed_bits": 1084227584,
+      "now_bits": 1092616192,
+      "duration_bits": 0,
+      "next_movement_at_bits": 1092878336
+    },
+    {
+      "length_bits": 0,
+      "speed_bits": 1120403456,
+      "now_bits": 1092616192,
+      "duration_bits": 0,
+      "next_movement_at_bits": 1092878336
+    },
+    {
+      "length_bits": 1056964608,
+      "speed_bits": 0,
+      "now_bits": 1092616192,
+      "duration_bits": 1065353216,
+      "next_movement_at_bits": 1093350195
+    },
+    {
+      "length_bits": 1056964608,
+      "speed_bits": 1056964608,
+      "now_bits": 1092616192,
+      "duration_bits": 1065353216,
+      "next_movement_at_bits": 1093350195
+    },
+    {
+      "length_bits": 1056964608,
+      "speed_bits": 1084227584,
+      "now_bits": 1092616192,
+      "duration_bits": 1036831949,
+      "next_movement_at_bits": 1092878336
+    },
+    {
+      "length_bits": 1056964608,
+      "speed_bits": 1120403456,
+      "now_bits": 1092616192,
+      "duration_bits": 1000593162,
+      "next_movement_at_bits": 1092878336
+    },
+    {
+      "length_bits": 1065353216,
+      "speed_bits": 0,
+      "now_bits": 1092616192,
+      "duration_bits": 1073741824,
+      "next_movement_at_bits": 1093350195
+    },
+    {
+      "length_bits": 1065353216,
+      "speed_bits": 1056964608,
+      "now_bits": 1092616192,
+      "duration_bits": 1073741824,
+      "next_movement_at_bits": 1093350195
+    },
+    {
+      "length_bits": 1065353216,
+      "speed_bits": 1084227584,
+      "now_bits": 1092616192,
+      "duration_bits": 1045220557,
+      "next_movement_at_bits": 1092878336
+    },
+    {
+      "length_bits": 1065353216,
+      "speed_bits": 1120403456,
+      "now_bits": 1092616192,
+      "duration_bits": 1008981770,
+      "next_movement_at_bits": 1092878336
+    },
+    {
+      "length_bits": 1084227584,
+      "speed_bits": 0,
+      "now_bits": 1092616192,
+      "duration_bits": 1092616192,
+      "next_movement_at_bits": 1093350195
+    },
+    {
+      "length_bits": 1084227584,
+      "speed_bits": 1056964608,
+      "now_bits": 1092616192,
+      "duration_bits": 1092616192,
+      "next_movement_at_bits": 1093350195
+    },
+    {
+      "length_bits": 1084227584,
+      "speed_bits": 1084227584,
+      "now_bits": 1092616192,
+      "duration_bits": 1065353216,
+      "next_movement_at_bits": 1093350195
+    },
+    {
+      "length_bits": 1084227584,
+      "speed_bits": 1120403456,
+      "now_bits": 1092616192,
+      "duration_bits": 1028443341,
+      "next_movement_at_bits": 1092878336
+    },
+    {
+      "length_bits": 1096810496,
+      "speed_bits": 0,
+      "now_bits": 1092616192,
+      "duration_bits": 1105199104,
+      "next_movement_at_bits": 1093350195
+    },
+    {
+      "length_bits": 1096810496,
+      "speed_bits": 1056964608,
+      "now_bits": 1092616192,
+      "duration_bits": 1105199104,
+      "next_movement_at_bits": 1093350195
+    },
+    {
+      "length_bits": 1096810496,
+      "speed_bits": 1084227584,
+      "now_bits": 1092616192,
+      "duration_bits": 1077097267,
+      "next_movement_at_bits": 1093350195
+    },
+    {
+      "length_bits": 1096810496,
+      "speed_bits": 1120403456,
+      "now_bits": 1092616192,
+      "duration_bits": 1041194025,
+      "next_movement_at_bits": 1092878336
+    }
+  ],
+  "fear_cases": [
+    {
+      "now_bits": 0,
+      "next_movement_at_bits": 1068708660
+    },
+    {
+      "now_bits": 1036831949,
+      "next_movement_at_bits": 1069547520
+    },
+    {
+      "now_bits": 1092616192,
+      "next_movement_at_bits": 1094084199
+    },
+    {
+      "now_bits": 1095342490,
+      "next_movement_at_bits": 1096810497
+    },
+    {
+      "now_bits": 1120403456,
+      "next_movement_at_bits": 1120586957
+    },
+    {
+      "now_bits": 1148846080,
+      "next_movement_at_bits": 1148869017
+    },
+    {
+      "now_bits": 1182793728,
+      "next_movement_at_bits": 1182794445
+    }
+  ]
+}

@@ -1,0 +1,856 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-18",
+  "target": {
+    "version": "0.97.2",
+    "path": "AzerothSurvivors/AzerothSurvivors-0.97.2.exe",
+    "size_bytes": 133231104,
+    "sha256": "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589",
+    "format": "PE32+",
+    "architecture": "x86_64",
+    "image_base": "0x140000000",
+    "identity_status": "Verified SHA-256 and embedded version markers; not executed.",
+    "version_basis": "Three exact ASCII 0.97.2 markers in picker/version-label and updater contexts; zero exact ASCII 0.92.0 markers."
+  },
+  "request": "Actual amount of game-specific code reconstructed; no area-presence proxy",
+  "game_specific_code": {
+    "ownership_inventory_status": "incomplete",
+    "reconstruction_completeness_audit_status": "incomplete",
+    "total_custom_native_bytes": null,
+    "reconstructed_custom_native_bytes": null,
+    "not_reconstructed_custom_native_bytes": null,
+    "reconstructed_percent": null,
+    "not_reconstructed_percent": null,
+    "meaning_of_null": "Unknown; neither zero nor evidence that existing source is absent",
+    "measurement_rule": "Publish only after exhaustive custom/inherited/shared ownership and reconstruction-state audits; each span credited to the reconstructed numerator requires complete reviewed source correspondence; other custom spans remain unreconstructed; count disjoint custom instruction spans once, excluding inherited inline bodies, alignment and data",
+    "partial_function_rule": "Do not count an entire function merely because a branch has reconstructed source; unimplemented custom spans remain incomplete",
+    "shared_code_rule": "Inherited generic bodies are excluded; custom specializations/changed bodies need explicit attribution; shared or merged ownership must be resolved before declaring an exhaustive total",
+    "original_source_line_percentage": "Not recoverable from this optimized stripped EXE; generated decompiler lines are not original source lines"
+  },
+  "binary_metadata": {
+    "coff_symbol_pointer": 0,
+    "coff_symbol_count": 0,
+    "debug_records": [
+      {
+        "type": 2,
+        "file_offset": "0x6d25324",
+        "byte_count": 42,
+        "sha256": "6af9b00134dbf31941b5fa33081316acfe768c098fa06e86dc2b933496b3a47c",
+        "supplies_function_ownership": false,
+        "pdb_name": "benilla_rogue.pdb",
+        "pdb_guid": "151805f6-4b07-4868-8c7a-f1eb39c4062d",
+        "pdb_age": 1,
+        "interpretation": "External PDB identity reference, not embedded symbols"
+      },
+      {
+        "type": 12,
+        "file_offset": "0x6d25350",
+        "byte_count": 20,
+        "sha256": "724ada062c32adb9e7cda17d671f758e956fd4962557603441e3b58e4b102b66",
+        "supplies_function_ownership": false,
+        "interpretation": "VC_FEATURE compiler statistics, not source ownership"
+      },
+      {
+        "type": 13,
+        "file_offset": "0x6d25364",
+        "byte_count": 856,
+        "sha256": "2dc267da7956906483140273a958c159d750ec5b55c98daea0760ff9ab2ba05e",
+        "supplies_function_ownership": false,
+        "interpretation": "POGO coarse section contributions, not source/function ownership",
+        "section_contributions": [
+          {
+            "rva": "0x1000",
+            "byte_count": 91354640,
+            "name": ".text"
+          },
+          {
+            "rva": "0x5720610",
+            "byte_count": 223760,
+            "name": ".text$mn"
+          },
+          {
+            "rva": "0x5757020",
+            "byte_count": 64,
+            "name": ".text$mn$00"
+          },
+          {
+            "rva": "0x5757060",
+            "byte_count": 1640856,
+            "name": ".text$unlikely"
+          },
+          {
+            "rva": "0x58e79f8",
+            "byte_count": 54,
+            "name": ".text$x"
+          },
+          {
+            "rva": "0x58e8000",
+            "byte_count": 4176,
+            "name": ".idata$5"
+          },
+          {
+            "rva": "0x58e9050",
+            "byte_count": 56,
+            "name": ".00cfg"
+          },
+          {
+            "rva": "0x58e9088",
+            "byte_count": 8,
+            "name": ".CRT$XCA"
+          },
+          {
+            "rva": "0x58e9090",
+            "byte_count": 8,
+            "name": ".CRT$XCAA"
+          },
+          {
+            "rva": "0x58e9098",
+            "byte_count": 7120,
+            "name": ".CRT$XCU"
+          },
+          {
+            "rva": "0x58eac68",
+            "byte_count": 8,
+            "name": ".CRT$XCZ"
+          },
+          {
+            "rva": "0x58eac70",
+            "byte_count": 8,
+            "name": ".CRT$XIA"
+          },
+          {
+            "rva": "0x58eac78",
+            "byte_count": 8,
+            "name": ".CRT$XIAA"
+          },
+          {
+            "rva": "0x58eac80",
+            "byte_count": 8,
+            "name": ".CRT$XIAC"
+          },
+          {
+            "rva": "0x58eac88",
+            "byte_count": 8,
+            "name": ".CRT$XIZ"
+          },
+          {
+            "rva": "0x58eac90",
+            "byte_count": 8,
+            "name": ".CRT$XLA"
+          },
+          {
+            "rva": "0x58eac98",
+            "byte_count": 8,
+            "name": ".CRT$XLZ"
+          },
+          {
+            "rva": "0x58eaca0",
+            "byte_count": 8,
+            "name": ".CRT$XPA"
+          },
+          {
+            "rva": "0x58eaca8",
+            "byte_count": 8,
+            "name": ".CRT$XPZ"
+          },
+          {
+            "rva": "0x58eacb0",
+            "byte_count": 8,
+            "name": ".CRT$XTA"
+          },
+          {
+            "rva": "0x58eacb8",
+            "byte_count": 840,
+            "name": ".CRT$XTZ"
+          },
+          {
+            "rva": "0x58eb000",
+            "byte_count": 21213696,
+            "name": ".rdata"
+          },
+          {
+            "rva": "0x6d26200",
+            "byte_count": 40,
+            "name": ".rdata$T"
+          },
+          {
+            "rva": "0x6d26228",
+            "byte_count": 116,
+            "name": ".rdata$r"
+          },
+          {
+            "rva": "0x6d2629c",
+            "byte_count": 136,
+            "name": ".rdata$voltmd"
+          },
+          {
+            "rva": "0x6d26324",
+            "byte_count": 924,
+            "name": ".rdata$zzzdbg"
+          },
+          {
+            "rva": "0x6d266c0",
+            "byte_count": 8,
+            "name": ".rtc$IAA"
+          },
+          {
+            "rva": "0x6d266c8",
+            "byte_count": 8,
+            "name": ".rtc$IZZ"
+          },
+          {
+            "rva": "0x6d266d0",
+            "byte_count": 8,
+            "name": ".rtc$TAA"
+          },
+          {
+            "rva": "0x6d266d8",
+            "byte_count": 8,
+            "name": ".rtc$TZZ"
+          },
+          {
+            "rva": "0x6d266e0",
+            "byte_count": 8,
+            "name": ".tls"
+          },
+          {
+            "rva": "0x6d266e8",
+            "byte_count": 905,
+            "name": ".tls$"
+          },
+          {
+            "rva": "0x6d26a71",
+            "byte_count": 7,
+            "name": ".tls$ZZZ"
+          },
+          {
+            "rva": "0x6d26a78",
+            "byte_count": 13056636,
+            "name": ".xdata"
+          },
+          {
+            "rva": "0x799a4f4",
+            "byte_count": 780,
+            "name": ".idata$2"
+          },
+          {
+            "rva": "0x799a800",
+            "byte_count": 440,
+            "name": ".idata$3"
+          },
+          {
+            "rva": "0x799a9b8",
+            "byte_count": 4176,
+            "name": ".idata$4"
+          },
+          {
+            "rva": "0x799ba08",
+            "byte_count": 8828,
+            "name": ".idata$6"
+          },
+          {
+            "rva": "0x799e000",
+            "byte_count": 298744,
+            "name": ".data"
+          },
+          {
+            "rva": "0x79e6ef8",
+            "byte_count": 136,
+            "name": ".data$rs"
+          },
+          {
+            "rva": "0x79e6f80",
+            "byte_count": 11480,
+            "name": ".bss"
+          },
+          {
+            "rva": "0x79ea000",
+            "byte_count": 3910680,
+            "name": ".pdata"
+          },
+          {
+            "rva": "0x7da5000",
+            "byte_count": 448,
+            "name": ".rsrc$01"
+          },
+          {
+            "rva": "0x7da51c0",
+            "byte_count": 210240,
+            "name": ".rsrc$02"
+          }
+        ]
+      }
+    ],
+    "embedded_build_stamp": {
+      "commit": {
+        "value": "43fe5ff8f42496998894368f90fcf12c71179ab9",
+        "file_offsets": [
+          "0x58eae69"
+        ],
+        "byte_count": 40,
+        "sha256": "86b9cbed54158974204ff5192ebbd4ab2275eb3ca839434d3c10f2dcb6782d5a"
+      },
+      "git_describe": {
+        "value": "v0.2.0-448-g43fe5ff8",
+        "file_offsets": [
+          "0x58eae55"
+        ],
+        "byte_count": 20,
+        "sha256": "f63b5a2141d3935708c94c1d82cf996371f0127e7b2c3e8c2de061954c7109ac"
+      }
+    },
+    "build_stamp_repository_identity_verified": false,
+    "cargo_auditable_section_present": false
+  },
+  "project_symbol_artifact_search": {
+    "method": "rg --files --hidden --no-ignore -0 --glob !.git/**; filename extensions pdb/dbg/debug/sym/dwp or benilla/wenilla map",
+    "root": ".",
+    "candidate_paths": [],
+    "matching_pdb_verified": false,
+    "outside_project_searched": false
+  },
+  "source_map_audit": {
+    "path": "docs/analysis/evidence/0.97.2/reconstruction-source-map.json",
+    "reviewed_source_revision": "00b13c0846af3e6e99339b5e9e7627a68f6117c9",
+    "mapped_native_starts": 66,
+    "coverage_status_counts": {
+      "partial_or_complete_not_audited": 66
+    },
+    "reconstructed_instruction_spans_supplied": false,
+    "completed_custom_body_total": null
+  },
+  "diagnostic_path_observations": {
+    "custom_game": 49,
+    "path_in_foundation": 610,
+    "unmatched_engine_or_dependency": 10
+  },
+  "known_custom_seams_not_exhaustive": [
+    {
+      "id": "engine.menu_scene",
+      "classification": "confirmed_custom_addition_current_target",
+      "original_source_path": null,
+      "source_status_at_reviewed_cutoff": "current_target_source_partial",
+      "native_evidence_ranges": [
+        {
+          "address": "0x1406cc240",
+          "end_exclusive": "0x1406cc312",
+          "file_offset": "0x6cb640",
+          "sha256": "aa586dc223b4dcd7d4db93c2393e0bd29645fef9fb5a7cb2d400e8d07db2afa2",
+          "byte_count": 210,
+          "role": "Shared scene mask setter",
+          "custom_instruction_spans": null,
+          "fully_reconstructed_custom_instruction_spans": null,
+          "whole_range_admitted_to_code_percentage": false
+        },
+        {
+          "address": "0x1406cc320",
+          "end_exclusive": "0x1406cc3f0",
+          "file_offset": "0x6cb720",
+          "sha256": "192fd7a5235280d78c79bb80607af0e58ef0a6b7e4c8e6dbd5dcd1f5c23d235e",
+          "byte_count": 208,
+          "role": "Shared scene active getter",
+          "custom_instruction_spans": null,
+          "fully_reconstructed_custom_instruction_spans": null,
+          "whole_range_admitted_to_code_percentage": false
+        },
+        {
+          "address": "0x1406cc3f0",
+          "end_exclusive": "0x1406cc51d",
+          "file_offset": "0x6cb7f0",
+          "sha256": "e94b11187126775e86d1b9bcb187ba5069fb7129dfa74042e5f59ae24b00590f",
+          "byte_count": 301,
+          "role": "Shared 40-byte scene request setter",
+          "custom_instruction_spans": null,
+          "fully_reconstructed_custom_instruction_spans": null,
+          "whole_range_admitted_to_code_percentage": false
+        },
+        {
+          "address": "0x1406cc520",
+          "end_exclusive": "0x1406cc5fe",
+          "file_offset": "0x6cb920",
+          "sha256": "13e22d16966c4a34efaafda4b01467e5de43b1530e6e7aff0322c0068975c393",
+          "byte_count": 222,
+          "role": "Shared scene renderable getter: active and not masked",
+          "custom_instruction_spans": null,
+          "fully_reconstructed_custom_instruction_spans": null,
+          "whole_range_admitted_to_code_percentage": false
+        },
+        {
+          "address": "0x1406cc600",
+          "end_exclusive": "0x1406cc6db",
+          "file_offset": "0x6cba00",
+          "sha256": "d33765994e02a1cef4c532e908c3c2c1d436d85b8a8f775ba3b5c4570dba0e12",
+          "byte_count": 219,
+          "role": "Shared scene ready getter: active and ready",
+          "custom_instruction_spans": null,
+          "fully_reconstructed_custom_instruction_spans": null,
+          "whole_range_admitted_to_code_percentage": false
+        },
+        {
+          "address": "0x1406cc6e0",
+          "end_exclusive": "0x1406cc7ab",
+          "file_offset": "0x6cbae0",
+          "sha256": "9ecec60a9ed35507a68a2653f30af4850f629eb19ecc93270d110cea16ba1dd3",
+          "byte_count": 203,
+          "role": "Shared scene request-present getter",
+          "custom_instruction_spans": null,
+          "fully_reconstructed_custom_instruction_spans": null,
+          "whole_range_admitted_to_code_percentage": false
+        },
+        {
+          "address": "0x1406d3050",
+          "end_exclusive": "0x1406d32ce",
+          "file_offset": "0x6d2450",
+          "sha256": "ac8547a00592e1ea540b3ab4abcf5b53b745c38b40e1520c767e88f30e6b4990",
+          "byte_count": 638,
+          "role": "MenuScenePlugin build and two system registration descriptors",
+          "rea_evidence_id": "ev_e6df01aa1987de5f2ca7c201f459655e44e9ef7625317e8c1d41c4a1dda08901",
+          "custom_instruction_spans": null,
+          "fully_reconstructed_custom_instruction_spans": null,
+          "whole_range_admitted_to_code_percentage": false
+        },
+        {
+          "address": "0x14070eb40",
+          "end_exclusive": "0x14070f544",
+          "file_offset": "0x70df40",
+          "sha256": "c9e86f10cda1488fbfe65a2894c825194faf7f6a7c61a59124cb788da5a4d2dd",
+          "byte_count": 2564,
+          "role": "Scene camera and terrain lift",
+          "rea_evidence_id": "ev_d7bfb95d127175184c5ac2399e1590384ee538bb4e5034e045844510aa3f1a5a",
+          "custom_instruction_spans": null,
+          "fully_reconstructed_custom_instruction_spans": null,
+          "whole_range_admitted_to_code_percentage": false
+        },
+        {
+          "address": "0x14070f550",
+          "end_exclusive": "0x14070f75c",
+          "file_offset": "0x70e950",
+          "sha256": "a00142c3e640c449bc3cdb9c00b73d93a6a3fa957e11ef3d67fbaba984415ed9",
+          "byte_count": 524,
+          "role": "Scene stabilization, map selection, ready latch",
+          "rea_evidence_id": "ev_9976a844d3ed5d73000960cd1ce710dc92b69c76f18d25088a12a04a11a7f0c6",
+          "custom_instruction_spans": null,
+          "fully_reconstructed_custom_instruction_spans": null,
+          "whole_range_admitted_to_code_percentage": false
+        },
+        {
+          "address": "0x1407470b0",
+          "end_exclusive": "0x1407472a8",
+          "file_offset": "0x7464b0",
+          "sha256": "d910a17277427af2c972d5981e9e3422856bb748fb14b71d9d1558cc4f93bab5",
+          "byte_count": 504,
+          "role": "Scene stabilizer resource registration",
+          "custom_instruction_spans": null,
+          "fully_reconstructed_custom_instruction_spans": null,
+          "whole_range_admitted_to_code_percentage": false
+        },
+        {
+          "address": "0x140747390",
+          "end_exclusive": "0x1407475e3",
+          "file_offset": "0x746790",
+          "sha256": "6511e37c7ab20df83c22aade20ea5fe8399b0e725bebd2616c2c3b5281e2edb3",
+          "byte_count": 595,
+          "role": "Scene stabilizer runtime resource tuple",
+          "custom_instruction_spans": null,
+          "fully_reconstructed_custom_instruction_spans": null,
+          "whole_range_admitted_to_code_percentage": false
+        }
+      ]
+    },
+    {
+      "id": "engine.char_select.world_live",
+      "classification": "confirmed_custom_modification_current_target",
+      "original_source_path": "crates/benilla-app/src/char_select/mod.rs",
+      "source_status_at_reviewed_cutoff": "current_target_source_partial",
+      "native_evidence_ranges": [
+        {
+          "address": "0x140963de0",
+          "end_exclusive": "0x140963fa1",
+          "file_offset": "0x9631e0",
+          "sha256": "cee8400a4c4a64a07412f63f5c87b964a511705340006c82cb015d9413158cf5",
+          "byte_count": 449,
+          "role": "WorldLive adapter: ordinary world or menu scene active",
+          "rea_evidence_id": "ev_7e223bb6e8582a6292ce2ca154dbd3b1110f9ddadbeea1254c9cd22f9822d54d",
+          "custom_instruction_spans": null,
+          "fully_reconstructed_custom_instruction_spans": null,
+          "whole_range_admitted_to_code_percentage": false
+        },
+        {
+          "address": "0x140963bd0",
+          "end_exclusive": "0x140963d6a",
+          "file_offset": "0x962fd0",
+          "sha256": "a28d8dbb2fe474423ae5ca30f0d2d4a7ddfc6619fbbfa5a80adec61459d34395",
+          "byte_count": 410,
+          "role": "WorldLive adapter resource registration shares application state TypeID",
+          "custom_instruction_spans": null,
+          "fully_reconstructed_custom_instruction_spans": null,
+          "whole_range_admitted_to_code_percentage": false
+        }
+      ]
+    },
+    {
+      "id": "engine.player.menu_camera_gate",
+      "classification": "confirmed_custom_modification_current_target",
+      "original_source_path": "crates/benilla-app/src/player/setup.rs",
+      "source_status_at_reviewed_cutoff": "current_target_source_partial",
+      "native_evidence_ranges": [
+        {
+          "address": "0x1408395f0",
+          "end_exclusive": "0x1408397a4",
+          "file_offset": "0x8389f0",
+          "sha256": "0c04c5c26b9ac4d97dffcd714a5491d568ffa872ab557eb5826ebaab7ec830ac",
+          "byte_count": 436,
+          "role": "Camera visibility adapter and renderable menu scene helper",
+          "rea_evidence_id": "ev_4b4c8c665087a798eee3b94dfc46b1e049556f957addea8a871f2d32625ca9f2",
+          "custom_instruction_spans": null,
+          "fully_reconstructed_custom_instruction_spans": null,
+          "whole_range_admitted_to_code_percentage": false
+        }
+      ]
+    },
+    {
+      "id": "engine.char_select.preview_suppression",
+      "classification": "confirmed_custom_modification_current_target",
+      "original_source_path": "crates/benilla-app/src/char_select/refresh.rs",
+      "source_status_at_reviewed_cutoff": "no_direct_current_target_reconstruction",
+      "native_evidence_ranges": [
+        {
+          "address": "0x140fbf8a0",
+          "end_exclusive": "0x140fc03af",
+          "file_offset": "0xfbeca0",
+          "sha256": "a0a5b7652a633ef7729735a1abe407c45d6a6fd48f7043ea90c56c1a9d4a0e1e",
+          "byte_count": 2831,
+          "role": "Menu request suppresses stock character-select preview feed",
+          "rea_evidence_id": "ev_209cfd50239ce05adb97c448c920eedbcf2487673f373ee9d7835d3cdb9c67be",
+          "custom_instruction_spans": null,
+          "fully_reconstructed_custom_instruction_spans": null,
+          "whole_range_admitted_to_code_percentage": false
+        },
+        {
+          "address": "0x140fe0160",
+          "end_exclusive": "0x140fe0355",
+          "file_offset": "0xfdf560",
+          "sha256": "18dfb301eb387e1e2e418fbe969be34a7dfcef898143fd9c4169ce63991f6128",
+          "byte_count": 501,
+          "role": "Character-select preview system resource registration",
+          "custom_instruction_spans": null,
+          "fully_reconstructed_custom_instruction_spans": null,
+          "whole_range_admitted_to_code_percentage": false
+        },
+        {
+          "address": "0x140fe0440",
+          "end_exclusive": "0x140fe0641",
+          "file_offset": "0xfdf840",
+          "sha256": "6dbf09e203911e80f86f778aa88b8c4a1057a6294673e8c361ebaecaf33d2038",
+          "byte_count": 513,
+          "role": "Character-select preview system runtime resource tuple",
+          "custom_instruction_spans": null,
+          "fully_reconstructed_custom_instruction_spans": null,
+          "whole_range_admitted_to_code_percentage": false
+        },
+        {
+          "address": "0x140cf52c0",
+          "end_exclusive": "0x140cf55b0",
+          "file_offset": "0xcf46c0",
+          "sha256": "6bc2eb4acc37aab694c9d052044e677343e6d4680ff6ab2966a7c8785e7ec8ea",
+          "byte_count": 752,
+          "role": "Character-select preview resource registration size 0xbc and alignment 4",
+          "custom_instruction_spans": null,
+          "fully_reconstructed_custom_instruction_spans": null,
+          "whole_range_admitted_to_code_percentage": false
+        }
+      ]
+    },
+    {
+      "id": "engine.view.menu_request_gate",
+      "classification": "confirmed_custom_behavior_owner_unresolved",
+      "original_source_path": null,
+      "source_status_at_reviewed_cutoff": "unresolved_not_counted_as_reconstructed",
+      "native_evidence_ranges": [
+        {
+          "address": "0x14093f540",
+          "end_exclusive": "0x14093f6c3",
+          "file_offset": "0x93e940",
+          "sha256": "3749afd57ff52c81a25ddba6de0c15bda3036412b7af4d01f243b7d77b0d3ca2",
+          "byte_count": 387,
+          "role": "Request-present view-lane gate",
+          "custom_instruction_spans": null,
+          "fully_reconstructed_custom_instruction_spans": null,
+          "whole_range_admitted_to_code_percentage": false
+        }
+      ]
+    },
+    {
+      "id": "engine.hero_preview",
+      "classification": "target_only_module_current_presence_behavior_not_revalidated",
+      "original_source_path": null,
+      "source_status_at_reviewed_cutoff": "historical_0_92_source_not_current_target_revalidated",
+      "native_evidence_ranges": []
+    },
+    {
+      "id": "engine.world_hold",
+      "classification": "target_only_module_current_presence_behavior_unrecovered",
+      "original_source_path": null,
+      "source_status_at_reviewed_cutoff": "unrecovered",
+      "native_evidence_ranges": []
+    }
+  ],
+  "additional_native_observations": [
+    {
+      "address": "0x1413fc370",
+      "end_exclusive": "0x1413fc4fb",
+      "file_offset": "0x13fb770",
+      "byte_count": 395,
+      "sha256": "d65f9b32f4b496f1918f9f4f7e413e28177ce02dfa85eef779a1f22be36f8af9",
+      "call_address": "0x1413fc42f",
+      "call_bytes": "e8ecfe2cff",
+      "calls": "0x1406cc320",
+      "known_seam": "engine.char_select.world_live",
+      "review_outcome": "Retained native caller repeats state==3 OR custom active-scene behavior at a wrapper layer; no new distinct source behavior or whole-range custom attribution",
+      "admitted_as_new_source_unit": false,
+      "custom_instruction_spans": null
+    }
+  ],
+  "unresolved_engine_path_ownership": [
+    {
+      "path": "crates/benilla-app/src/host_controls.rs",
+      "source_path_file_offsets": [
+        "0x59d9232",
+        "0x59e0ace",
+        "0x59e0b13",
+        "0x59e0bbe",
+        "0x59e0c6e",
+        "0x59e0d1e"
+      ],
+      "ownership": "unresolved_custom_change_or_foundation_revision_drift",
+      "review_outcome": "TouchDrivePlugin symbol and event paths observed. Input/platform extension is present relative to snapshot; game-specific ownership and complete behavior not established.",
+      "custom_native_bytes": null
+    },
+    {
+      "path": "crates/benilla-app/src/web_pbr_lite.rs",
+      "source_path_file_offsets": [
+        "0x59e09e6",
+        "0x59e0a28"
+      ],
+      "ownership": "unresolved_custom_change_or_foundation_revision_drift",
+      "review_outcome": "Platform/rendering path absent from snapshot. Could be generic upstream/fork drift; no game-specific code binding.",
+      "custom_native_bytes": null
+    },
+    {
+      "path": "crates/benilla-app/src/ui_text/engine/fallback.rs",
+      "source_path_file_offsets": [
+        "0x5a38bce",
+        "0x5a38c28",
+        "0x5a38cde"
+      ],
+      "ownership": "unresolved_custom_change_or_foundation_revision_drift",
+      "review_outcome": "Text-engine fallback source path absent from snapshot. Generic engine drift until code comparison proves a custom-game requirement.",
+      "custom_native_bytes": null
+    },
+    {
+      "path": "crates/benilla-protocol/src/transport/mod.rs",
+      "source_path_file_offsets": [
+        "0x5ae8a40"
+      ],
+      "ownership": "unresolved_custom_change_or_foundation_revision_drift",
+      "review_outcome": "Transport layer absent from snapshot; local/native architecture is a strong integration lead, not recovered custom behavior.",
+      "custom_native_bytes": null
+    },
+    {
+      "path": "crates/benilla-protocol/src/transport/local.rs",
+      "source_path_file_offsets": [
+        "0x5ae8c15"
+      ],
+      "ownership": "unresolved_custom_change_or_foundation_revision_drift",
+      "review_outcome": "Local transport is a candidate simulation/client seam; filename alone does not establish protocol behavior or original game ownership.",
+      "custom_native_bytes": null
+    },
+    {
+      "path": "crates/benilla-protocol/src/transport/native.rs",
+      "source_path_file_offsets": [
+        "0x5ae8c60"
+      ],
+      "ownership": "unresolved_custom_change_or_foundation_revision_drift",
+      "review_outcome": "Native transport sibling is a candidate integration change; no current code ownership proof.",
+      "custom_native_bytes": null
+    },
+    {
+      "path": "crates/benilla-app/src/webbridge/mod.rs",
+      "source_path_file_offsets": [
+        "0x5b01cb6",
+        "0x5b01cf7",
+        "0x5b033fe",
+        "0x5b0d379"
+      ],
+      "ownership": "unresolved_custom_change_or_foundation_revision_drift",
+      "review_outcome": "WebBridgePlugin symbol and paths observed; may be generic platform support and is not automatically game-specific.",
+      "custom_native_bytes": null
+    },
+    {
+      "path": "crates/benilla-world/src/rig_anim/compose_scratch.rs",
+      "source_path_file_offsets": [
+        "0x5bf90a7"
+      ],
+      "ownership": "unresolved_custom_change_or_foundation_revision_drift",
+      "review_outcome": "Animation scratch implementation absent from snapshot; generic engine revision drift is plausible.",
+      "custom_native_bytes": null
+    },
+    {
+      "path": "crates/benilla-ui/src/script/plain.rs",
+      "source_path_file_offsets": [
+        "0x66c350f",
+        "0x66dcc1c"
+      ],
+      "ownership": "unresolved_custom_change_or_foundation_revision_drift",
+      "review_outcome": "Lua script implementation path absent from snapshot; generic engine revision drift is plausible.",
+      "custom_native_bytes": null
+    }
+  ],
+  "custom_namespace_leads_not_native_extents": [
+    {
+      "namespace": "wenilla_rogue_app::screens::achievements",
+      "observations": [
+        {
+          "file_offset": "0x5945d90",
+          "literal": "wenilla_rogue_app::screens::achievements::Pick",
+          "byte_count": 46,
+          "sha256": "2284691470c1659b990ddcdc65e24c3485f127130bacc77a2b29829d3fa22370"
+        },
+        {
+          "file_offset": "0x5945e87",
+          "literal": "wenilla_rogue_app::screens::achievements::Pick",
+          "byte_count": 46,
+          "sha256": "2284691470c1659b990ddcdc65e24c3485f127130bacc77a2b29829d3fa22370"
+        },
+        {
+          "file_offset": "0x5945f0c",
+          "literal": "wenilla_rogue_app::screens::achievements::AchList",
+          "byte_count": 49,
+          "sha256": "1bc4b1a48edf7ff9e022a4556259e4e6661af0fc927d1225cdc38c3e8d29e1a2"
+        }
+      ],
+      "classification": "Supplemental custom namespace; relationship to file units needs review before separate counting"
+    },
+    {
+      "namespace": "wenilla_rogue_app::screens::scrollbar",
+      "observations": [
+        {
+          "file_offset": "0x5948a14",
+          "literal": "wenilla_rogue_app::screens::scrollbar::Kept",
+          "byte_count": 43,
+          "sha256": "3710ca46e7085c5ef84e590ba2491972db82a26569f24468ec1644937875dff0"
+        },
+        {
+          "file_offset": "0x594a387",
+          "literal": "wenilla_rogue_app::screens::scrollbar::Kept",
+          "byte_count": 43,
+          "sha256": "3710ca46e7085c5ef84e590ba2491972db82a26569f24468ec1644937875dff0"
+        },
+        {
+          "file_offset": "0x594a40e",
+          "literal": "wenilla_rogue_app::screens::scrollbar::Scrollbar",
+          "byte_count": 48,
+          "sha256": "5c59a22613445022769f9951ab116421e539b8df8a07c7e26f7e6947bd52c941"
+        },
+        {
+          "file_offset": "0x594c862",
+          "literal": "wenilla_rogue_app::screens::scrollbar::Thumb",
+          "byte_count": 44,
+          "sha256": "732c6e379d2f0c0803ae82452da8a31ee13e56bbd35990a0daecc5718c134e65"
+        }
+      ],
+      "classification": "Supplemental custom namespace; relationship to file units needs review before separate counting"
+    },
+    {
+      "namespace": "wenilla_rogue_app::screens::reward",
+      "observations": [
+        {
+          "file_offset": "0x5948b7e",
+          "literal": "wenilla_rogue_app::screens::reward::PointsText",
+          "byte_count": 46,
+          "sha256": "f260c000280d8f28e99e4330f408b5ad8b0b40613c52f7902fca5524ad0d1319"
+        },
+        {
+          "file_offset": "0x5948c47",
+          "literal": "wenilla_rogue_app::screens::reward::Pop",
+          "byte_count": 39,
+          "sha256": "42736016978cbb79d572f6793b1782c383b606e7f35b12a297057a32d9a50b20"
+        },
+        {
+          "file_offset": "0x5948d2d",
+          "literal": "wenilla_rogue_app::screens::reward::Fill",
+          "byte_count": 40,
+          "sha256": "aa20f8364ac8b0c15bc5a9a33bfee7e5483d57482d7d5edc62e518101c5a7272"
+        },
+        {
+          "file_offset": "0x5948db7",
+          "literal": "wenilla_rogue_app::screens::reward::Part",
+          "byte_count": 40,
+          "sha256": "6b0b476875223013617ca17e19f3d76ed39cc66612790325b80136ba4dedf07e"
+        },
+        {
+          "file_offset": "0x5948eb6",
+          "literal": "wenilla_rogue_app::screens::reward::Part",
+          "byte_count": 40,
+          "sha256": "6b0b476875223013617ca17e19f3d76ed39cc66612790325b80136ba4dedf07e"
+        },
+        {
+          "file_offset": "0x5948f9d",
+          "literal": "wenilla_rogue_app::screens::reward::Reward",
+          "byte_count": 42,
+          "sha256": "d081f7d1236015b91444edf5782c36ed7b6e4967a265c9bb1ec1403e55915230"
+        },
+        {
+          "file_offset": "0x5949043",
+          "literal": "wenilla_rogue_app::screens::reward::BarText",
+          "byte_count": 43,
+          "sha256": "43195bd2c8236e602230ffb1960ace0d833b90b53ad8329d6444b53363068516"
+        },
+        {
+          "file_offset": "0x5949109",
+          "literal": "wenilla_rogue_app::screens::reward::Counter",
+          "byte_count": 43,
+          "sha256": "a524164665fb690ff75e0d2bac9ccce8bf31b3cd96c76dc8d79da8f3869b3fdf"
+        },
+        {
+          "file_offset": "0x594c6c8",
+          "literal": "wenilla_rogue_app::screens::reward::Flash",
+          "byte_count": 41,
+          "sha256": "31f5ad2b82b26b8a16d5a145c2360e5f84d9538cb16b65ce10ce4caf2ba41288"
+        }
+      ],
+      "classification": "Supplemental custom namespace; relationship to file units needs review before separate counting"
+    },
+    {
+      "namespace": "wenilla_rogue_app::window",
+      "observations": [
+        {
+          "file_offset": "0x5950788",
+          "literal": "wenilla_rogue_app::window::GameWindowPlugin",
+          "byte_count": 43,
+          "sha256": "39e700fcf6b01a9c429ecc6d44e35749ba315257286680f6c44438f386b0a95b"
+        }
+      ],
+      "classification": "Supplemental custom namespace; relationship to file units needs review before separate counting"
+    }
+  ],
+  "open_questions": [
+    "Attribute routines without surviving custom path/type diagnostics, including missing leaf routines and inlined code",
+    "Separate changes inside the 610 shared source paths from inherited implementations",
+    "Resolve nine unmatched engine paths as inherited revision drift or custom changes from native behavior, not names",
+    "Resolve menu view-lane owner and namespace aliases without double-counting",
+    "Audit complete source correspondence for custom instruction spans rather than mapped file/function presence"
+  ],
+  "validation": {
+    "whole_file_sha256_verified": true,
+    "native_and_identity_ranges_rehashed": true,
+    "builds_compiler_checks_tests_emulation_launches": "not_run_source_static_only_mode",
+    "ownership_inventory_finished": false
+  },
+  "input_sha256": {
+    "docs/analysis/evidence/0.97.2/game-engine-delta.json": "e7be5e685eabca41079d0db0970f19764c27ffe2ce73169676a56c2b5119ad6f",
+    "docs/analysis/evidence/0.97.2/reconstruction-source-map.json": "d9508b5967f5af0ddd5b6657d672e375bf47105e3d1262ccaa5b5826bec01d75",
+    "docs/analysis/evidence/0.97.2/game-layer-identity.json": "7b66d74d2fabf981893fefac3669acb8928cb0740b6098d9db55dbfe2a5fa5c5",
+    "docs/analysis/evidence/0.97.2/game-module-coverage.json": "0945055ba279911a15a6705ded837418cbc2ae237c8b3d76ff12a75f110dfb8d"
+  }
+}

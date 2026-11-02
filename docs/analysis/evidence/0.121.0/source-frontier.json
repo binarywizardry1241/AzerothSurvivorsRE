@@ -1,0 +1,1151 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "scope": "Source-first review of every added namespace/resource regex candidate, all three added AS diagnostic paths, removed diagnostic context and the complete cooperative source boundary; no current native semantic contract is promoted by this report.",
+  "inputs": [
+    {
+      "path": "docs/analysis/evidence/0.121.0/discovery-delta.json",
+      "sha256": "169aa4cbbd33735d2a458f025d030a5e7c0d1877415b7fbaa02e876037e0c64a"
+    },
+    {
+      "path": "runtime/coverage/22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150/inventory.json",
+      "sha256": "7ae834de5cc2831868e973b4db3d1a5e2d0d49132c8207a3e1ac7dfca84de006",
+      "regenerate": "python3 scripts/inventory-current-target.py --write"
+    },
+    {
+      "path": "runtime/coverage/22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150/diagnostic-ownership.json",
+      "sha256": "73ad07735a2784700ed1c55568198a254d00673865101062007d5f60ac7d69f1",
+      "regenerate": "python3 -B scripts/discover-native-ownership.py --write"
+    },
+    {
+      "path": "docs/analysis/benilla-vendor.json",
+      "sha256": "fe63e833a2a34af9c426cc3467679bfaed304281c00d9bb2d48461515006f7f8"
+    }
+  ],
+  "counts": {
+    "new_AS_paths": 3,
+    "removed_AS_paths": 2,
+    "current_AS_diagnostic_paths": 63,
+    "added_namespace_candidates_reviewed": 27,
+    "added_resource_candidates_reviewed": 4,
+    "new_source_correspondence_questions": 3,
+    "new_current_bounded_contract_questions": 3,
+    "current_bounded_contract_dimensions_supplied": 1,
+    "current_bounded_contract_dimensions_remaining": 2
+  },
+  "new_AS_modules": [
+    {
+      "id": "custom-game-heroic",
+      "path": "crates/wenilla-rogue/src/heroic.rs",
+      "source_correspondence_finding": 240,
+      "current_contract_finding": 243,
+      "current_native_selector": "runtime/coverage/22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150/diagnostic-ownership.json:diagnostics[path='crates/wenilla-rogue/src/heroic.rs']",
+      "native_path_evidence": [
+        {
+          "file_offset": "0x6fc8e15",
+          "virtual_address": "0x146fca015",
+          "byte_count": 34,
+          "sha256": "c59878f42226ef4219da210bb687afb8fd72291e51b217be587a3f20a154a4e3"
+        }
+      ],
+      "verified_reference_count": 2,
+      "verified_instruction_sites": [
+        "0x145abfeea",
+        "0x145ac0259"
+      ],
+      "declared_extent_candidates": [
+        [
+          "0x145abfe70",
+          "0x145abff78"
+        ],
+        [
+          "0x145ac00b0",
+          "0x145ac026c"
+        ]
+      ],
+      "candidate_source_refs": [
+        {
+          "path": "crates/azeroth-survivors-re/src/run_options.rs",
+          "sha256": "f9c5b12b136d4528da06d74bd1f4818e52240548ccd27fd837a7bd60b704c980"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/run_mods.rs",
+          "sha256": "58d5b1687a3433ffa15ab6cc6af530d7d9635c742363e000e6e2d23f361db8d0"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/menu_state.rs",
+          "sha256": "62ecdbb16f3ed2eff093d73be3017447461684d488944a22ee9b7d2249399c8e"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/progress.rs",
+          "sha256": "0872cc06fd14446ff7bd2b822790ce9e5de7a9d2d4f41762ea9d2315c83c97de"
+        }
+      ],
+      "partial_reconstructed_source_status": "not_established_by_this_source_first_review",
+      "current_bounded_contract_status": "separately_recovered_bounded_rank_label_and_affix_selector_scope",
+      "assessment": "Existing Run Options percentage controls and prior run_mods difficulty/reward formulas are preserved; they are candidate integration seams, not reconstructed Heroic I–V progression or proof that heroic.rs is only a rename of mods.rs.",
+      "next_static_action": "Map the current Heroic selectors, table bounds and unlock inputs through menu/run/save consumers; relate old percentage-control contracts only where current dependency correspondence proves it.",
+      "limits": "Current bounded rank-name/affix-selector proof is separately retained at current_bounded_contract_ref. It establishes neither upstream seed/admission policy, gameplay affix effects nor reconstructed Heroic source. Diagnostic declared extent candidates remain navigation until actual-body census joining.",
+      "current_bounded_contract_ref": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-native/manifest.json",
+        "sha256": "f334f17da3c415ab667f19c79cc3d045576db5ed2537fb428dcdc44c66553bcc"
+      },
+      "current_bounded_scope": "Exact rank0/1..5 name/discriminant boundaries and rank3/5 affix-count/selector arithmetic, with current state-input callsite; weekly seed production, full difficulty policy and gameplay affix effects remain pending."
+    },
+    {
+      "id": "custom-game-game-affixes",
+      "path": "crates/wenilla-rogue/src/game/affixes.rs",
+      "source_correspondence_finding": 241,
+      "current_contract_finding": 244,
+      "current_native_selector": "runtime/coverage/22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150/diagnostic-ownership.json:diagnostics[path='crates/wenilla-rogue/src/game/affixes.rs']",
+      "native_path_evidence": [
+        {
+          "file_offset": "0x768f02c",
+          "virtual_address": "0x14769022c",
+          "byte_count": 40,
+          "sha256": "37e473322a0a109d98e619b67a118ee54c168262b375a72a6d34c24948118e21"
+        }
+      ],
+      "verified_reference_count": 1,
+      "verified_instruction_sites": [
+        "0x145c2c242"
+      ],
+      "declared_extent_candidates": [
+        [
+          "0x145c28900",
+          "0x145c2c377"
+        ]
+      ],
+      "candidate_source_refs": [
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+          "sha256": "d4d7607d3be504788bfb3bf7aef55bf5d985bc67d04c1790979c32cc382024c5"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/enemies/spawning.rs",
+          "sha256": "402606f4ef475a33bdcebccc98e21a1fc587a20e1ceceac24b883f8967aca4fd"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs",
+          "sha256": "a7361cbe9cb697a2e49e6f51f04932968df64ce3e83c9f3de9c31411a7b5db1f"
+        }
+      ],
+      "partial_reconstructed_source_status": "not_established_by_this_source_first_review",
+      "current_bounded_contract_status": "not_registered_by_this_source_first_review",
+      "assessment": "Existing wave/spawn, hazard, damage and progression adapters are present; source search found no weekly Bolstering/Sanguine/Explosive state owner or dedicated affix dispatcher. Adjacent effects do not establish partial affix reconstruction.",
+      "next_static_action": "Inspect the Location175:32 owner and its incoming weekly-selection, death-event and direct-hit inputs; recover affix state and gameplay consumers before choosing an implementation owner.",
+      "limits": "Diagnostic instruction verification and declared extent candidates are navigation, not actual Ghidra body or semantic evidence. The concurrent native/release reports may establish further contracts; this record does not certify them."
+    },
+    {
+      "id": "custom-game-sets",
+      "path": "crates/wenilla-rogue/src/sets.rs",
+      "source_correspondence_finding": 242,
+      "current_contract_finding": 245,
+      "current_native_selector": "runtime/coverage/22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150/diagnostic-ownership.json:diagnostics[path='crates/wenilla-rogue/src/sets.rs']",
+      "native_path_evidence": [
+        {
+          "file_offset": "0x6fc854f",
+          "virtual_address": "0x146fc974f",
+          "byte_count": 32,
+          "sha256": "3b9c1cad5abdd611d7f6b5844a005976d154922a0ad733ec9f9c001b15d053ca"
+        }
+      ],
+      "verified_reference_count": 7,
+      "verified_instruction_sites": [
+        "0x145ac0a83",
+        "0x145ac3e97",
+        "0x145ac3f65",
+        "0x145ac4464",
+        "0x145bd817e",
+        "0x145c4fdee",
+        "0x145ca2748"
+      ],
+      "declared_extent_candidates": [
+        [
+          "0x145ac09b0",
+          "0x145ac0ad6"
+        ],
+        [
+          "0x145ac3de0",
+          "0x145ac403f"
+        ],
+        [
+          "0x145ac4160",
+          "0x145ac4478"
+        ],
+        [
+          "0x145bd46c0",
+          "0x145bd90d6"
+        ],
+        [
+          "0x145c4f720",
+          "0x145c506d0"
+        ],
+        [
+          "0x145ca2170",
+          "0x145ca3287"
+        ]
+      ],
+      "candidate_source_refs": [
+        {
+          "path": "crates/azeroth-survivors-re/src/armory.rs",
+          "sha256": "354b98c8949f3f8c3ef7f4b7e32f3b87c33c6c9eff766fba84a06e3965edfb63"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+          "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs",
+          "sha256": "a7361cbe9cb697a2e49e6f51f04932968df64ce3e83c9f3de9c31411a7b5db1f"
+        }
+      ],
+      "partial_reconstructed_source_status": "not_established_by_this_source_first_review",
+      "current_bounded_contract_status": "not_registered_by_this_source_first_review",
+      "assessment": "Existing gear identity, equip/appearance, base effects and class-ability consumers are preserved; they provide candidate integration seams but no established current star/set-bonus producer or complete sets.rs source correspondence.",
+      "next_static_action": "Recover current set/slot/class dispatch, thresholds and scalar producers through gear stats and spell consumers; connect the star-ranked persistence and runtime state without treating existing armor names as set-bonus implementation.",
+      "limits": "Diagnostic instruction verification and declared extent candidates are navigation, not actual Ghidra body or semantic evidence. The concurrent native/release reports may establish further contracts; this record does not certify them."
+    }
+  ],
+  "removed_diagnostic_context": [
+    {
+      "diagnostic_path": "crates/wenilla-rogue/src/mods.rs",
+      "system_id": "custom-game-mods",
+      "finding_ids": [
+        17,
+        19,
+        34,
+        41,
+        144
+      ],
+      "retained_source_refs": [
+        "crates/azeroth-survivors-re/src/run_mods.rs",
+        "crates/azeroth-survivors-re/src/run_options.rs",
+        "crates/azeroth-survivors-re/src/enemies/scaling.rs",
+        "crates/azeroth-survivors-re/src/bosses/scaling.rs",
+        "crates/azeroth-survivors-re/src/guardians/scaling.rs",
+        "crates/azeroth-survivors-re/src/mob_loot.rs",
+        "crates/azeroth-survivors-re/src/run_progression.rs",
+        "scripts/check-menu-persistence-0.115.0.py"
+      ],
+      "status": "diagnostic_literal_absent_in_current_inventory_behavior_applicability_pending",
+      "conclusion": "The prior contracts, source and classifications retain their historical target. Literal removal alone does not prove removed behavior, source obsolescence or a renamed current module."
+    },
+    {
+      "diagnostic_path": "crates/wenilla-rogue/src/realmd.rs",
+      "system_id": "custom-game-realmd",
+      "finding_ids": [
+        9,
+        41,
+        94
+      ],
+      "retained_source_refs": [
+        "crates/benilla-app/src/ui_script/glue_mgr.rs",
+        "crates/benilla-app/src/local_client.rs",
+        "crates/azeroth-survivors-re/src/stock_frontend.rs",
+        "crates/benilla-app/src/local_client/stock_frontend.rs",
+        "crates/benilla-app/src/glue_session/roster.rs",
+        "crates/azeroth-survivors-re/src/save.rs",
+        "crates/azeroth-survivors-re/src/menu_state.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+        "crates/azeroth-survivors-re/src/startup.rs"
+      ],
+      "status": "diagnostic_literal_absent_in_current_inventory_behavior_applicability_pending",
+      "conclusion": "The prior contracts, source and classifications retain their historical target. Literal removal alone does not prove removed behavior, source obsolescence or a renamed current module."
+    }
+  ],
+  "changed_namespace_context": [
+    {
+      "selector": "Q41-I01:module_type_namespace:3",
+      "native_candidate": {
+        "file_offset": "0x61a74ef",
+        "virtual_address": "0x1461a86ef",
+        "byte_count": 43,
+        "sha256": "cde7c9e17af7daec0196cebef97afc83d557dde6258d5ed30eb76852254a4e5e",
+        "literal": "wenilla_rogue_app::screens::ScreensPlugin9w"
+      },
+      "classification": "retained_AS_composition_packed_label_navigation",
+      "finding_ids": [
+        41,
+        66
+      ],
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/main.rs",
+          "sha256": "68d7f223610adee032bb6a478ca9f9b9a1903d777bb2fb7fc18d9b94ed87b0bc"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/startup.rs",
+          "sha256": "cc887fdc355200fc405890be19890eeba18c1414f8b01a7f1fc825993414d406"
+        }
+      ],
+      "source_role": "Application/plugin composition is an existing source boundary. A packed suffix change is not proof of a new independent AS behavior.",
+      "next_action": "Stop at the source-first interface unless a concrete AS producer/consumer dependency or override requires a bounded trace. Preserve native correspondence/semantic uncertainty as supporting context.",
+      "current_native_consumer_verified": false
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:5",
+      "native_candidate": {
+        "file_offset": "0x61e2693",
+        "virtual_address": "0x1461e3893",
+        "byte_count": 128,
+        "sha256": "8c433adf50c24ae85b2c1163c16ac04863dcf09a3cb5e0148e3622f9a95ee801",
+        "literal": "benilla_app::menu_scene::MenuScenePluginbenilla_app::hero_preview::HeroPreviewPluginbenilla_app::host_controls::TouchDrivePlugin"
+      },
+      "classification": "supporting_engine_namespace_context",
+      "finding_ids": [],
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/menu_scene.rs",
+          "sha256": "6ce7227abdf6ad8c2161116527fe5a46ba6d29df42ccc0f4f63a7629aa236a8f"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/preview.rs",
+          "sha256": "27b9a78e85398e040337846d306d21fdfc8384b892b207b9ea4e4abd40f8ace0"
+        },
+        {
+          "path": "crates/benilla-app/src/entities/attach/preview.rs",
+          "sha256": "3375555f896699f03a68dc85fad290443c608f6a597e759b415d3362b112e6c3"
+        }
+      ],
+      "source_role": "The generic engine role is established by the named source subsystem/interface. Packed suffixes, concatenated type lists, missing exact type spelling and namespace discovery do not establish an AS override, compiled revision or native/source behavior equivalence.",
+      "next_action": "Stop at the source-first interface unless a concrete AS producer/consumer dependency or override requires a bounded trace. Preserve native correspondence/semantic uncertainty as supporting context.",
+      "current_native_consumer_verified": false
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:149",
+      "native_candidate": {
+        "file_offset": "0x6200daa",
+        "virtual_address": "0x146201faa",
+        "byte_count": 42,
+        "sha256": "494a38397cec185aab9bf5ce2a093f4010ccace324e23f958ba676b79360c410",
+        "literal": "wenilla_rogue_app::screens::armory::SetTip"
+      },
+      "classification": "AS_release_item_lead",
+      "finding_ids": [
+        234
+      ],
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/armory.rs",
+          "sha256": "354b98c8949f3f8c3ef7f4b7e32f3b87c33c6c9eff766fba84a06e3965edfb63"
+        }
+      ],
+      "source_role": "Current SetTip/SetTipBox labels lead to set tooltip presentation under supplied item #234; actual data/state/UI consumer recovery remains there.",
+      "next_action": "Recover the exact current set-tooltip producer, thresholds and consumers under #234.",
+      "current_native_consumer_verified": false
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:176",
+      "native_candidate": {
+        "file_offset": "0x6201fbc",
+        "virtual_address": "0x1462031bc",
+        "byte_count": 45,
+        "sha256": "ad908eff411363742548fbc9ca7deb6838fdd2c876b76bb6e18ecd1784816e12",
+        "literal": "wenilla_rogue_app::screens::armory::SetTipBox"
+      },
+      "classification": "AS_release_item_lead",
+      "finding_ids": [
+        234
+      ],
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/armory.rs",
+          "sha256": "354b98c8949f3f8c3ef7f4b7e32f3b87c33c6c9eff766fba84a06e3965edfb63"
+        }
+      ],
+      "source_role": "Current SetTip/SetTipBox labels lead to set tooltip presentation under supplied item #234; actual data/state/UI consumer recovery remains there.",
+      "next_action": "Recover the exact current set-tooltip producer, thresholds and consumers under #234.",
+      "current_native_consumer_verified": false
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:212",
+      "native_candidate": {
+        "file_offset": "0x6205330",
+        "virtual_address": "0x146206530",
+        "byte_count": 55,
+        "sha256": "2700fdd1f749bf7f6fda33924a142f319c9258af6728019451b65bc3e0968381",
+        "literal": "benilla_app::spell_override::WorldHoldPlugindescription"
+      },
+      "classification": "supporting_engine_namespace_context",
+      "finding_ids": [],
+      "source_first": [
+        {
+          "path": "crates/benilla-app/src/spell/mod.rs",
+          "sha256": "7d9256f2ba11ec7eb7b65ae267e10c2fb5f8b3171a9f1a8bd7665c2af08e02ba"
+        },
+        {
+          "path": "crates/benilla-app/src/local_client.rs",
+          "sha256": "614f424d88b4a35c5d1c6aa00eaf5839a482d6b94c4460f9fb3a979b19111128"
+        }
+      ],
+      "source_role": "The generic engine role is established by the named source subsystem/interface. Packed suffixes, concatenated type lists, missing exact type spelling and namespace discovery do not establish an AS override, compiled revision or native/source behavior equivalence.",
+      "next_action": "Stop at the source-first interface unless a concrete AS producer/consumer dependency or override requires a bounded trace. Preserve native correspondence/semantic uncertainty as supporting context.",
+      "current_native_consumer_verified": false
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:281",
+      "native_candidate": {
+        "file_offset": "0x6270065",
+        "virtual_address": "0x146271265",
+        "byte_count": 47,
+        "sha256": "b264a581803487ea12a46cf0dce650e8b831e84e65618a1c99abe8efa405fc89",
+        "literal": "benilla_app::sound::output::device::mmcsscrates"
+      },
+      "classification": "supporting_engine_namespace_context",
+      "finding_ids": [],
+      "source_first": [
+        {
+          "path": "crates/benilla-app/src/sound/output/cpal.rs",
+          "sha256": "18fe1921d8aaf9aabf51ae351c0368ad2d503361d31694938d26e4fe11189a4b"
+        },
+        {
+          "path": "crates/benilla-app/src/sound/output/mod.rs",
+          "sha256": "8698b7eadc0aa189ea302baf944407000097591a7fa975b75150989f9756455f"
+        }
+      ],
+      "source_role": "The generic engine role is established by the named source subsystem/interface. Packed suffixes, concatenated type lists, missing exact type spelling and namespace discovery do not establish an AS override, compiled revision or native/source behavior equivalence.",
+      "next_action": "Stop at the source-first interface unless a concrete AS producer/consumer dependency or override requires a bounded trace. Preserve native correspondence/semantic uncertainty as supporting context.",
+      "current_native_consumer_verified": false
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:296",
+      "native_candidate": {
+        "file_offset": "0x627d247",
+        "virtual_address": "0x14627e447",
+        "byte_count": 34,
+        "sha256": "76b43cdde16798fb27c8e4b7b2da378bbd4a23364392a96abaed4a924d4940ed",
+        "literal": "benilla_app::ui_stable::netmessage"
+      },
+      "classification": "supporting_engine_namespace_context",
+      "finding_ids": [],
+      "source_first": [
+        {
+          "path": "crates/benilla-app/src/ui_stable/net.rs",
+          "sha256": "8430c1cbfff0a0d526e7646ec32cad06bc0aaac3190bf6236a058a8a3180ccd8"
+        }
+      ],
+      "source_role": "The generic engine role is established by the named source subsystem/interface. Packed suffixes, concatenated type lists, missing exact type spelling and namespace discovery do not establish an AS override, compiled revision or native/source behavior equivalence.",
+      "next_action": "Stop at the source-first interface unless a concrete AS producer/consumer dependency or override requires a bounded trace. Preserve native correspondence/semantic uncertainty as supporting context.",
+      "current_native_consumer_verified": false
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:297",
+      "native_candidate": {
+        "file_offset": "0x6284e63",
+        "virtual_address": "0x146286063",
+        "byte_count": 44,
+        "sha256": "fbd3c23ed7ad32fa9b4c92017039d1ebf9996c6b1531c7c85021bcf7c3384c47",
+        "literal": "benilla_app::entities::skin_compositemessage"
+      },
+      "classification": "supporting_engine_namespace_context",
+      "finding_ids": [],
+      "source_first": [
+        {
+          "path": "crates/benilla-app/src/entities/skin_composite.rs",
+          "sha256": "c96a97d4d5a8cce16c2bb2ebd34e159bc09aea14e94855c802bd4ea7dbc3d260"
+        }
+      ],
+      "source_role": "The generic engine role is established by the named source subsystem/interface. Packed suffixes, concatenated type lists, missing exact type spelling and namespace discovery do not establish an AS override, compiled revision or native/source behavior equivalence.",
+      "next_action": "Stop at the source-first interface unless a concrete AS producer/consumer dependency or override requires a bounded trace. Preserve native correspondence/semantic uncertainty as supporting context.",
+      "current_native_consumer_verified": false
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:317",
+      "native_candidate": {
+        "file_offset": "0x628b5fd",
+        "virtual_address": "0x14628c7fd",
+        "byte_count": 56,
+        "sha256": "67eb324169d0f051eb3bd3f93ea87f5d59dd6f07832f613e223b2dc3053e75c3",
+        "literal": "benilla_app::ui_passbenilla_app::ui_pass::UiQuadMaterial"
+      },
+      "classification": "supporting_engine_namespace_context",
+      "finding_ids": [],
+      "source_first": [
+        {
+          "path": "crates/benilla-app/src/ui_pass.rs",
+          "sha256": "f6b5de5e50dfc7a36de577fc02ae2d22cf53d77dc8281e953a4f76ebb5171879"
+        }
+      ],
+      "source_role": "The generic engine role is established by the named source subsystem/interface. Packed suffixes, concatenated type lists, missing exact type spelling and namespace discovery do not establish an AS override, compiled revision or native/source behavior equivalence.",
+      "next_action": "Stop at the source-first interface unless a concrete AS producer/consumer dependency or override requires a bounded trace. Preserve native correspondence/semantic uncertainty as supporting context.",
+      "current_native_consumer_verified": false
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:319",
+      "native_candidate": {
+        "file_offset": "0x6298e51",
+        "virtual_address": "0x14629a051",
+        "byte_count": 28,
+        "sha256": "1dae43de61c1ccb6c08c9cec78b939a338434f99c96e106b98e4a6fd4f7470e2",
+        "literal": "benilla_app::ui_actioncrates"
+      },
+      "classification": "supporting_engine_namespace_context",
+      "finding_ids": [],
+      "source_first": [
+        {
+          "path": "crates/benilla-app/src/ui_action/mod.rs",
+          "sha256": "39928bb1d0c5df04456eee08394c891688aa71481b5f7f150f0d3250d439fe7b"
+        }
+      ],
+      "source_role": "The generic engine role is established by the named source subsystem/interface. Packed suffixes, concatenated type lists, missing exact type spelling and namespace discovery do not establish an AS override, compiled revision or native/source behavior equivalence.",
+      "next_action": "Stop at the source-first interface unless a concrete AS producer/consumer dependency or override requires a bounded trace. Preserve native correspondence/semantic uncertainty as supporting context.",
+      "current_native_consumer_verified": false
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:324",
+      "native_candidate": {
+        "file_offset": "0x62995ab",
+        "virtual_address": "0x14629a7ab",
+        "byte_count": 34,
+        "sha256": "e39670a887a2a8f9aa926d01c9cd177443b0d3b2521952154979dc102714ece2",
+        "literal": "benilla_app::ui_bind_confirmcrates"
+      },
+      "classification": "supporting_engine_namespace_context",
+      "finding_ids": [],
+      "source_first": [
+        {
+          "path": "crates/benilla-app/src/ui_bind_confirm.rs",
+          "sha256": "c1b0096e75c9389c6bae1893c0d7bda801959226e703e7ca543bb76149d081b8"
+        }
+      ],
+      "source_role": "The generic engine role is established by the named source subsystem/interface. Packed suffixes, concatenated type lists, missing exact type spelling and namespace discovery do not establish an AS override, compiled revision or native/source behavior equivalence.",
+      "next_action": "Stop at the source-first interface unless a concrete AS producer/consumer dependency or override requires a bounded trace. Preserve native correspondence/semantic uncertainty as supporting context.",
+      "current_native_consumer_verified": false
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:374",
+      "native_candidate": {
+        "file_offset": "0x62d673d",
+        "virtual_address": "0x1462d793d",
+        "byte_count": 87,
+        "sha256": "ae2619c90a00e501b91de85637a126b27ea622bceedc876c8e433a4ba4e27b3a",
+        "literal": "benilla_app::ui_pass::UiQuadMaterialbevy_shader::shader::Shaderbevy_image::image::Image"
+      },
+      "classification": "supporting_engine_namespace_context",
+      "finding_ids": [],
+      "source_first": [
+        {
+          "path": "crates/benilla-app/src/ui_pass.rs",
+          "sha256": "f6b5de5e50dfc7a36de577fc02ae2d22cf53d77dc8281e953a4f76ebb5171879"
+        }
+      ],
+      "source_role": "The generic engine role is established by the named source subsystem/interface. Packed suffixes, concatenated type lists, missing exact type spelling and namespace discovery do not establish an AS override, compiled revision or native/source behavior equivalence.",
+      "next_action": "Stop at the source-first interface unless a concrete AS producer/consumer dependency or override requires a bounded trace. Preserve native correspondence/semantic uncertainty as supporting context.",
+      "current_native_consumer_verified": false
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:377",
+      "native_candidate": {
+        "file_offset": "0x6315b10",
+        "virtual_address": "0x146316d10",
+        "byte_count": 1031,
+        "sha256": "db6232713374ebce6ba8a8532820730c7789282df87e70b6b4799f2bf210e309",
+        "literal_prefix": "benilla_app::combat_log::CombatLogPluginbenilla_app::footprints::FootprintsPluginbenilla_app::nameplates::NameplatesPluginbenilla_app::poi_marker::PoiMarkerPlug",
+        "full_literal_selector": "Q41-I01:module_type_namespace:377"
+      },
+      "classification": "supporting_engine_namespace_context",
+      "finding_ids": [],
+      "source_first": [
+        {
+          "path": "crates/benilla-app/src/game_plugins.rs",
+          "sha256": "fd1e3c0da9fe2cdc17447e44494532bf044d0e03f70af806a0e8970284a57731"
+        },
+        {
+          "path": "crates/benilla-app/src/lib.rs",
+          "sha256": "25b67a0163b792f192f48f548231fe9ec016afc8436bdd6b4b22b58db3e028e1"
+        }
+      ],
+      "source_role": "The generic engine role is established by the named source subsystem/interface. Packed suffixes, concatenated type lists, missing exact type spelling and namespace discovery do not establish an AS override, compiled revision or native/source behavior equivalence.",
+      "next_action": "Stop at the source-first interface unless a concrete AS producer/consumer dependency or override requires a bounded trace. Preserve native correspondence/semantic uncertainty as supporting context.",
+      "current_native_consumer_verified": false
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:378",
+      "native_candidate": {
+        "file_offset": "0x6316008",
+        "virtual_address": "0x146317208",
+        "byte_count": 3497,
+        "sha256": "7078bf83863834a33bcc4eda96145325f541ac3f0a2c379fdd494a6121aa6421",
+        "literal_prefix": "benilla_app::client_state::ClientStatePluginbenilla_app::fishing_line::FishingLinePluginbenilla_app::glue_session::GlueSessionPluginbenilla_app::name_persist::N",
+        "full_literal_selector": "Q41-I01:module_type_namespace:378"
+      },
+      "classification": "supporting_engine_namespace_context",
+      "finding_ids": [],
+      "source_first": [
+        {
+          "path": "crates/benilla-app/src/game_plugins.rs",
+          "sha256": "fd1e3c0da9fe2cdc17447e44494532bf044d0e03f70af806a0e8970284a57731"
+        },
+        {
+          "path": "crates/benilla-app/src/lib.rs",
+          "sha256": "25b67a0163b792f192f48f548231fe9ec016afc8436bdd6b4b22b58db3e028e1"
+        }
+      ],
+      "source_role": "The generic engine role is established by the named source subsystem/interface. Packed suffixes, concatenated type lists, missing exact type spelling and namespace discovery do not establish an AS override, compiled revision or native/source behavior equivalence.",
+      "next_action": "Stop at the source-first interface unless a concrete AS producer/consumer dependency or override requires a bounded trace. Preserve native correspondence/semantic uncertainty as supporting context.",
+      "current_native_consumer_verified": false
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:380",
+      "native_candidate": {
+        "file_offset": "0x631e348",
+        "virtual_address": "0x14631f548",
+        "byte_count": 31,
+        "sha256": "0a46d051680451ab0bb551761003cf23892c0bfaac83a0355b8f66dd2073f5df",
+        "literal": "benilla_app::ui_pet_bookmessage"
+      },
+      "classification": "supporting_engine_namespace_context",
+      "finding_ids": [],
+      "source_first": [
+        {
+          "path": "crates/benilla-app/src/ui_pet_book.rs",
+          "sha256": "9e2e7a84370383bf9f2084449be02f750aa62351d602abcb8f72cc1c71785e1e"
+        }
+      ],
+      "source_role": "The generic engine role is established by the named source subsystem/interface. Packed suffixes, concatenated type lists, missing exact type spelling and namespace discovery do not establish an AS override, compiled revision or native/source behavior equivalence.",
+      "next_action": "Stop at the source-first interface unless a concrete AS producer/consumer dependency or override requires a bounded trace. Preserve native correspondence/semantic uncertainty as supporting context.",
+      "current_native_consumer_verified": false
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:426",
+      "native_candidate": {
+        "file_offset": "0x6346024",
+        "virtual_address": "0x146347224",
+        "byte_count": 93,
+        "sha256": "a7356d6f30ee0ea72c480c06d895db460701e9b0c8618515a9903a2c57e7cd48",
+        "literal": "benilla_app::opaque2d::SkipEmptyOpaque2dPluginbenilla_app::ui_gamma::UiGammaPlugindescription"
+      },
+      "classification": "supporting_engine_namespace_context",
+      "finding_ids": [],
+      "source_first": [
+        {
+          "path": "crates/benilla-app/src/opaque2d.rs",
+          "sha256": "375324f8a0e2e87fb6aa54660efafbab64d26e390b646e19edd09d090f96ba9b"
+        },
+        {
+          "path": "crates/benilla-app/src/ui_gamma.rs",
+          "sha256": "fd1e1f53488c7d133d4f97e33f9ad9627fc193cdba4db53ee8b25016e690b573"
+        }
+      ],
+      "source_role": "The generic engine role is established by the named source subsystem/interface. Packed suffixes, concatenated type lists, missing exact type spelling and namespace discovery do not establish an AS override, compiled revision or native/source behavior equivalence.",
+      "next_action": "Stop at the source-first interface unless a concrete AS producer/consumer dependency or override requires a bounded trace. Preserve native correspondence/semantic uncertainty as supporting context.",
+      "current_native_consumer_verified": false
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:429",
+      "native_candidate": {
+        "file_offset": "0x639ae2d",
+        "virtual_address": "0x14639c02d",
+        "byte_count": 33,
+        "sha256": "bad5d42798f5e81a058c4118a3f1dd603570c46f21787a29dbb19eb1d1462687",
+        "literal": "benilla_app::ui_chat::inputcrates"
+      },
+      "classification": "supporting_engine_namespace_context",
+      "finding_ids": [],
+      "source_first": [],
+      "source_role": "The generic engine role is established by the named source subsystem/interface. Packed suffixes, concatenated type lists, missing exact type spelling and namespace discovery do not establish an AS override, compiled revision or native/source behavior equivalence.",
+      "next_action": "Stop at the source-first interface unless a concrete AS producer/consumer dependency or override requires a bounded trace. Preserve native correspondence/semantic uncertainty as supporting context.",
+      "current_native_consumer_verified": false
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:449",
+      "native_candidate": {
+        "file_offset": "0x63a58a8",
+        "virtual_address": "0x1463a6aa8",
+        "byte_count": 39,
+        "sha256": "06e10843d5fbf9efb3393697852577888f08122112a2ef255a8bfb49c9188378",
+        "literal": "benilla_app::webbridge::WebBridgePlugin"
+      },
+      "classification": "supporting_engine_namespace_context",
+      "finding_ids": [],
+      "source_first": [
+        {
+          "path": "crates/benilla-app/src/lib.rs",
+          "sha256": "25b67a0163b792f192f48f548231fe9ec016afc8436bdd6b4b22b58db3e028e1"
+        }
+      ],
+      "source_role": "The generic engine role is established by the named source subsystem/interface. Packed suffixes, concatenated type lists, missing exact type spelling and namespace discovery do not establish an AS override, compiled revision or native/source behavior equivalence.",
+      "next_action": "Stop at the source-first interface unless a concrete AS producer/consumer dependency or override requires a bounded trace. Preserve native correspondence/semantic uncertainty as supporting context.",
+      "current_native_consumer_verified": false
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:450",
+      "native_candidate": {
+        "file_offset": "0x63a5918",
+        "virtual_address": "0x1463a6b18",
+        "byte_count": 80,
+        "sha256": "66ed353272bc2e2d786156fb4701ffd537c629eca0c25122078e9a1745749c69",
+        "literal": "benilla_world::thread_qos::ThreadQosPluginbenilla_world::mac_quit::MacQuitPlugin"
+      },
+      "classification": "supporting_engine_namespace_context",
+      "finding_ids": [],
+      "source_first": [
+        {
+          "path": "crates/benilla-world/src/thread_qos.rs",
+          "sha256": "9601264690d12675c8dbf40dc60c0f6e2dfa5029a323c681be4f30c83a5be219"
+        },
+        {
+          "path": "crates/benilla-world/src/mac_quit.rs",
+          "sha256": "77bed6db4e39ae1018e7186f83e8dadfa3e6911774fb9f50e4c3a5b50d47a8ce"
+        }
+      ],
+      "source_role": "The generic engine role is established by the named source subsystem/interface. Packed suffixes, concatenated type lists, missing exact type spelling and namespace discovery do not establish an AS override, compiled revision or native/source behavior equivalence.",
+      "next_action": "Stop at the source-first interface unless a concrete AS producer/consumer dependency or override requires a bounded trace. Preserve native correspondence/semantic uncertainty as supporting context.",
+      "current_native_consumer_verified": false
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:451",
+      "native_candidate": {
+        "file_offset": "0x63b161f",
+        "virtual_address": "0x1463b281f",
+        "byte_count": 42,
+        "sha256": "22c9dfd122016f7c00c86fec3c4c8c298c393ecb5ed7fd8b271224f0ab3f34b3",
+        "literal": "benilla_app::sound::output::devicemessageA"
+      },
+      "classification": "supporting_engine_namespace_context",
+      "finding_ids": [],
+      "source_first": [
+        {
+          "path": "crates/benilla-app/src/sound/output/cpal.rs",
+          "sha256": "18fe1921d8aaf9aabf51ae351c0368ad2d503361d31694938d26e4fe11189a4b"
+        },
+        {
+          "path": "crates/benilla-app/src/sound/output/mod.rs",
+          "sha256": "8698b7eadc0aa189ea302baf944407000097591a7fa975b75150989f9756455f"
+        }
+      ],
+      "source_role": "The generic engine role is established by the named source subsystem/interface. Packed suffixes, concatenated type lists, missing exact type spelling and namespace discovery do not establish an AS override, compiled revision or native/source behavior equivalence.",
+      "next_action": "Stop at the source-first interface unless a concrete AS producer/consumer dependency or override requires a bounded trace. Preserve native correspondence/semantic uncertainty as supporting context.",
+      "current_native_consumer_verified": false
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:452",
+      "native_candidate": {
+        "file_offset": "0x63b180f",
+        "virtual_address": "0x1463b2a0f",
+        "byte_count": 31,
+        "sha256": "5e31394ca01d093418c07d9ae36fa9a5e781988680de1c8dfe921e751a41bd31",
+        "literal": "benilla_app::target::scancrates"
+      },
+      "classification": "supporting_engine_namespace_context",
+      "finding_ids": [],
+      "source_first": [
+        {
+          "path": "crates/benilla-app/src/target/scan.rs",
+          "sha256": "2c019bdb7f455f86c3fdf07ae2ae8cef18c82298223734bc9a04a9d05cfee0da"
+        }
+      ],
+      "source_role": "The generic engine role is established by the named source subsystem/interface. Packed suffixes, concatenated type lists, missing exact type spelling and namespace discovery do not establish an AS override, compiled revision or native/source behavior equivalence.",
+      "next_action": "Stop at the source-first interface unless a concrete AS producer/consumer dependency or override requires a bounded trace. Preserve native correspondence/semantic uncertainty as supporting context.",
+      "current_native_consumer_verified": false
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:482",
+      "native_candidate": {
+        "file_offset": "0x63bd350",
+        "virtual_address": "0x1463be550",
+        "byte_count": 33,
+        "sha256": "6d560d24d640492eca9990f9e56e17593a246e0f809ba2a4bc4f8b9bf5be01e4",
+        "literal": "benilla_world::bgwin::BgWinPlugin"
+      },
+      "classification": "supporting_engine_namespace_context",
+      "finding_ids": [],
+      "source_first": [
+        {
+          "path": "crates/benilla-world/src/bgwin.rs",
+          "sha256": "f879354a3e0c599980abb4c4d48237dddc653d81032c383592061650640a8d1f"
+        }
+      ],
+      "source_role": "The generic engine role is established by the named source subsystem/interface. Packed suffixes, concatenated type lists, missing exact type spelling and namespace discovery do not establish an AS override, compiled revision or native/source behavior equivalence.",
+      "next_action": "Stop at the source-first interface unless a concrete AS producer/consumer dependency or override requires a bounded trace. Preserve native correspondence/semantic uncertainty as supporting context.",
+      "current_native_consumer_verified": false
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:483",
+      "native_candidate": {
+        "file_offset": "0x63c7bc0",
+        "virtual_address": "0x1463c8dc0",
+        "byte_count": 32,
+        "sha256": "b817864e1634a6b9de832f7b87096322aaad307eac3de6b689f872645188f334",
+        "literal": "benilla_app::ui_loot_rollmessage"
+      },
+      "classification": "supporting_engine_namespace_context",
+      "finding_ids": [],
+      "source_first": [
+        {
+          "path": "crates/benilla-app/src/ui_loot_roll.rs",
+          "sha256": "ff2a336274f6402582095a3905ad3369a65a8584f2830efde8f12157c1e36396"
+        }
+      ],
+      "source_role": "The generic engine role is established by the named source subsystem/interface. Packed suffixes, concatenated type lists, missing exact type spelling and namespace discovery do not establish an AS override, compiled revision or native/source behavior equivalence.",
+      "next_action": "Stop at the source-first interface unless a concrete AS producer/consumer dependency or override requires a bounded trace. Preserve native correspondence/semantic uncertainty as supporting context.",
+      "current_native_consumer_verified": false
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:522",
+      "native_candidate": {
+        "file_offset": "0x63e3e6b",
+        "virtual_address": "0x1463e506b",
+        "byte_count": 5126,
+        "sha256": "d3b30a707754724a736fbbbdecf8f8596823566acbe33eeb48f58c12c724cfae",
+        "literal_prefix": "benilla_app::aura_visual::AnimRateFreezebenilla_app::aura_visual::AuraNodesbenilla_app::ranged_flex::RangedPropbenilla_app::fishing_line::FishingPoleTipbenilla_",
+        "full_literal_selector": "Q41-I01:module_type_namespace:522"
+      },
+      "classification": "supporting_engine_namespace_context",
+      "finding_ids": [],
+      "source_first": [
+        {
+          "path": "crates/benilla-app/src/lib.rs",
+          "sha256": "25b67a0163b792f192f48f548231fe9ec016afc8436bdd6b4b22b58db3e028e1"
+        }
+      ],
+      "source_role": "The generic engine role is established by the named source subsystem/interface. Packed suffixes, concatenated type lists, missing exact type spelling and namespace discovery do not establish an AS override, compiled revision or native/source behavior equivalence.",
+      "next_action": "Stop at the source-first interface unless a concrete AS producer/consumer dependency or override requires a bounded trace. Preserve native correspondence/semantic uncertainty as supporting context.",
+      "current_native_consumer_verified": false
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:697",
+      "native_candidate": {
+        "file_offset": "0x63e9f96",
+        "virtual_address": "0x1463eb196",
+        "byte_count": 50,
+        "sha256": "4139772ed4ccade5bb8e886456c3b91aae851ad21652f596d3fe60444c211e24",
+        "literal": "benilla_app::entities::item_glow::ItemGlowInstance"
+      },
+      "classification": "supporting_engine_namespace_context",
+      "finding_ids": [],
+      "source_first": [
+        {
+          "path": "crates/benilla-app/src/entities/item_glow.rs",
+          "sha256": "fa8d080c9d61757ff4d3a0461c2c8efc4103af5515b16bb1ad1518c0d85fdf3b"
+        },
+        {
+          "path": "crates/benilla-formats/src/item_visuals.rs",
+          "sha256": "f41ef00efaa7665fcf6f8eb19617436204b2754d26b8b35cc8e4215e2f99a0a6"
+        }
+      ],
+      "source_role": "The generic engine role is established by the named source subsystem/interface. Packed suffixes, concatenated type lists, missing exact type spelling and namespace discovery do not establish an AS override, compiled revision or native/source behavior equivalence.",
+      "next_action": "Stop at the source-first interface unless a concrete AS producer/consumer dependency or override requires a bounded trace. Preserve native correspondence/semantic uncertainty as supporting context.",
+      "current_native_consumer_verified": false
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:858",
+      "native_candidate": {
+        "file_offset": "0x6493ce8",
+        "virtual_address": "0x146494ee8",
+        "byte_count": 32,
+        "sha256": "c454b6fca11e4403cac43017f2d388b7cddaee2a96419710fbba5da012c8ae30",
+        "literal": "benilla_world::frame_pacemessage"
+      },
+      "classification": "supporting_engine_namespace_context",
+      "finding_ids": [],
+      "source_first": [
+        {
+          "path": "crates/benilla-world/src/frame_pace.rs",
+          "sha256": "6761bbeff9eb48a3dce69b1a63362bf446524d018fc3c4ad5280824dddc9a761"
+        }
+      ],
+      "source_role": "The generic engine role is established by the named source subsystem/interface. Packed suffixes, concatenated type lists, missing exact type spelling and namespace discovery do not establish an AS override, compiled revision or native/source behavior equivalence.",
+      "next_action": "Stop at the source-first interface unless a concrete AS producer/consumer dependency or override requires a bounded trace. Preserve native correspondence/semantic uncertainty as supporting context.",
+      "current_native_consumer_verified": false
+    },
+    {
+      "selector": "Q41-I01:module_type_namespace:873",
+      "native_candidate": {
+        "file_offset": "0x64a0d3d",
+        "virtual_address": "0x1464a1f3d",
+        "byte_count": 44,
+        "sha256": "229ead24e6aee0433df041b791c86a99108e8981a799d4ea164b8b35c9cbad26",
+        "literal": "benilla_world::terrain_stream::spawnmessagea"
+      },
+      "classification": "supporting_engine_namespace_context",
+      "finding_ids": [],
+      "source_first": [
+        {
+          "path": "crates/benilla-world/src/terrain_stream/spawn/mod.rs",
+          "sha256": "475e42c22f86bf8d7549d2df1f53cc1ed2dede58a56af0e6545be3f39da5592c"
+        }
+      ],
+      "source_role": "The generic engine role is established by the named source subsystem/interface. Packed suffixes, concatenated type lists, missing exact type spelling and namespace discovery do not establish an AS override, compiled revision or native/source behavior equivalence.",
+      "next_action": "Stop at the source-first interface unless a concrete AS producer/consumer dependency or override requires a bounded trace. Preserve native correspondence/semantic uncertainty as supporting context.",
+      "current_native_consumer_verified": false
+    }
+  ],
+  "changed_resource_context": [
+    {
+      "selector": "Q41-I01:resource_path:51",
+      "native_candidate": {
+        "file_offset": "0x62c88d1",
+        "virtual_address": "0x1462c9ad1",
+        "byte_count": 25,
+        "sha256": "b30f271badd45bc63c12dee44292bf6ac17c5b08bd18060d004a1fcc1c69a9c2",
+        "literal": "//textures/shadowblob.blp"
+      },
+      "classification": "supporting_generic_blob_shadow",
+      "finding_ids": [],
+      "source_first": [
+        {
+          "path": "crates/benilla-app/src/blob_shadow.rs",
+          "sha256": "41934276baa5150a2a3e5c254ed00b8c6dda9c51bb3de5f7fcfe56281aa778fd"
+        }
+      ],
+      "assessment": "Existing SHADOW_TEXTURE -> setup_shadow_assets -> ShadowAssets.texture -> update_shadows/push_shadows owns the generic texture/resource boundary. A new regex path observation alone proves neither a new AS mechanic nor equivalent native shadow rendering.",
+      "next_action": "Stop at the established source interface; recover only a demonstrated AS override or the existing bounded current dependency question. Do not infer a missing feature from changed literal membership.",
+      "current_native_consumer_verified": false
+    },
+    {
+      "selector": "Q41-I01:resource_path:63",
+      "native_candidate": {
+        "file_offset": "0x63504c5",
+        "virtual_address": "0x1463516c5",
+        "byte_count": 33,
+        "sha256": "2bdfdebb7c17112d1a005b8958d546ef376171fdfe13b7c0c724689fdf045ff4",
+        "literal": "FrameXMLAccountLoginRealmlist.xml"
+      },
+      "classification": "packed_glue_layer_context",
+      "finding_ids": [
+        94
+      ],
+      "source_first": [
+        {
+          "path": "crates/benilla-app/src/ui_script/glue.rs",
+          "sha256": "0317500b2d5943253a3f6717edc5dbcde20cb810d1a88c2776c2646741fcc51b"
+        },
+        {
+          "path": "crates/benilla-app/src/realmlist.rs",
+          "sha256": "ba4e3d0aa266ef3188c6f255710c85210b895cf2e602386be820244b2497f186"
+        }
+      ],
+      "assessment": "The candidate packs FrameXML directly beside AccountLoginRealmlist.xml. GLUE_LAYER and load_glue_layer own the existing builtin glue interface; this is not evidence that source must open the concatenated regex candidate as a file.",
+      "next_action": "Stop at the established source interface; recover only a demonstrated AS override or the existing bounded current dependency question. Do not infer a missing feature from changed literal membership.",
+      "current_native_consumer_verified": false,
+      "packed_label_spans": [
+        {
+          "text": "FrameXML",
+          "file_offset": "0x63504c5",
+          "virtual_address": "0x1463516c5",
+          "byte_count": 8,
+          "sha256": "4d88f65d112f703bc694f05e86dd8eba2977f79c7b5f2d24cee2204d2d0b1ea7",
+          "pointer_length_descriptor_file_offsets": []
+        },
+        {
+          "text": "AccountLoginRealmlist.xml",
+          "file_offset": "0x63504cd",
+          "virtual_address": "0x1463516cd",
+          "byte_count": 25,
+          "sha256": "879eb32bf566fb644b4ca7042711f1c0a58be7f8331a4b4c3025bc628e541781",
+          "pointer_length_descriptor_file_offsets": [
+            "0x639a5b0"
+          ]
+        }
+      ]
+    },
+    {
+      "selector": "Q41-I01:resource_path:218",
+      "native_candidate": {
+        "file_offset": "0x765ae30",
+        "virtual_address": "0x14765c030",
+        "byte_count": 33,
+        "sha256": "1caa5303fab13f5b2513b4fea59a95b8b58425c900be1df14542fdcaa14ec4a8",
+        "literal": "DBFilesClient\\ItemDisplayInfo.dbc"
+      },
+      "classification": "retained_custom_DBC_and_shared_display_interface",
+      "finding_ids": [
+        86
+      ],
+      "source_first": [
+        {
+          "path": "crates/azeroth-survivors-re/src/native_dbc.rs",
+          "sha256": "0c6090b8afb0cab4f6775992568bae8b0041e15b57dec8cc29820fc8e082ba72"
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/armory.rs",
+          "sha256": "354b98c8949f3f8c3ef7f4b7e32f3b87c33c6c9eff766fba84a06e3965edfb63"
+        },
+        {
+          "path": "crates/benilla-formats/src/items.rs",
+          "sha256": "0688e94a9bf1c2a0004da256d32fa936ec98c056219a2aee5b27fe483b3f8ec6"
+        }
+      ],
+      "assessment": "native_dbc::load_item_icons/item_icon_dictionary -> armory::load_gear_art owns the custom icon interface, while benilla_formats::items owns the full display schema. Current native reader/dependency applicability remains #86; the new literal occurrence does not prove a new separate behavior.",
+      "next_action": "Stop at the established source interface; recover only a demonstrated AS override or the existing bounded current dependency question. Do not infer a missing feature from changed literal membership.",
+      "current_native_consumer_verified": false
+    },
+    {
+      "selector": "Q41-I01:resource_path:259",
+      "native_candidate": {
+        "file_offset": "0x770a688",
+        "virtual_address": "0x14770b888",
+        "byte_count": 32,
+        "sha256": "feeb1846c5fcf912b44d5f1f7062748456cd1d8b53ce63bf0aa973730da28d16",
+        "literal": "DBFilesClient\\Cfg_Categories.dbc"
+      },
+      "classification": "supporting_generic_realm_categories",
+      "finding_ids": [
+        94
+      ],
+      "source_first": [
+        {
+          "path": "crates/benilla-formats/src/cfg_categories.rs",
+          "sha256": "490ebf3b84612fd45aa662127b4cd7cd251ff39aafd4e1e644e92ab2b9cb54e8"
+        },
+        {
+          "path": "crates/benilla-app/src/glue_session/realm.rs",
+          "sha256": "6014839f8dc2153d7fd29c86abf66d638353154b3a304e77c135af56198ba647"
+        }
+      ],
+      "assessment": "The DBC loader filters Region and returns categories to glue_session::load_categories. This establishes the available source interface, not native compiled revision or an AS-specific realm override.",
+      "next_action": "Stop at the established source interface; recover only a demonstrated AS override or the existing bounded current dependency question. Do not infer a missing feature from changed literal membership.",
+      "current_native_consumer_verified": false
+    }
+  ],
+  "unchanged_candidate_categories": [
+    "game_binding_identifier",
+    "lua_ui_registration",
+    "textual_id_assignment",
+    "textual_numeric_id",
+    "save_configuration_key_lead",
+    "lua_function_declaration"
+  ],
+  "embedded_API": {
+    "unchanged_exact_bytes_from_0_120_5": true,
+    "current": {
+      "file_offset": "0x73051b8",
+      "virtual_address": "0x1473063b8",
+      "byte_count": 16665,
+      "sha256": "a0066d2d6356e9f21fe4544e600def13887047a6608bb588cd6c27859b78ccc5",
+      "canonical_extract": "docs/analysis/evidence/0.121.0/embedded-api.lua",
+      "boundary": "Exact start comment through final event-handler registration; adjacent packed constants excluded.",
+      "native_dependencies_revalidated": false
+    },
+    "consumer_applicability": "pending_native_dependency_and_source_correspondence"
+  },
+  "cooperative_source_boundary": {
+    "source_refs": [
+      {
+        "path": "crates/azeroth-survivors-re/src/coop/directory.rs",
+        "sha256": "260bd16cf98a31f4abeab858be6d0f27e0c40cd2d5f4a8b5f557ce66c0833d6a"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/coop/directory_wire.rs",
+        "sha256": "54b6143cab09dcbd8e7c9f44d98f6a90f4aa549cd05676189cfbf1f395ef098d"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/coop/service.rs",
+        "sha256": "420f6d3bf28e5c72a319965bdbb969d08f1bdc72b0604c6adf613cfa1be8b5d5"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/coop/relay.rs",
+        "sha256": "2709ba058e779cdf00e0a682d874e37900d102fe61aa2e8b6fb1d62c91c8c90b"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/coop/route.rs",
+        "sha256": "24a51dc6a38725b48ef2dc0eb1d1d6fda1df7f7916f3075e3ca35903cb532955"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/coop/tcp.rs",
+        "sha256": "791750b577dd42c6a81cc6caeb243a0893aeb1fd65480f6ec9899d07a89b8a90"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/coop/websocket.rs",
+        "sha256": "e10ff771e26e8ec498eddf208efaa1fe441c45c99cfc109844ff614c120dff04"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/coop/session.rs",
+        "sha256": "3ece7f428878f3d3ec5ca38656057c43e2aa8a86bf18145279d8df35769bf670"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/coop/bootstrap.rs",
+        "sha256": "4710008e49e6b2cfe58d66c47f756eab03bef562d0aa84c29e4dc796756d1be0"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/coop/replication.rs",
+        "sha256": "bb897301520655b027a43662695e561daacb892478d8af49ffb81d8b39311e98"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+        "sha256": "64da67ef3e6a3f5db24de38a8e9364da10b1ae785eaa166f63268c507d148cb6"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/coop/game_party.rs",
+        "sha256": "c649a5a7abe25cfd148bdda341d184dbd94dc46bc9aafe6544a3087f16a56fdd"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/coop_runtime.rs",
+        "sha256": "dd3434deb562ece758d6caa15ed09e00d59c5839738dce895cd31cbbe2056e63"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+        "sha256": "f353664b50e04426b421f05c5ea77386a0c6facb8280a2ed6803a18352539680"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs",
+        "sha256": "f7e3eae119cf986faf766bfc21555581c5de37d3654e7804a8784159de4b96ac"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/coop_forms.rs",
+        "sha256": "168dc0d72f833faaed82a52614291f5348abd9d2c4b891ff154caf2f95372ccc"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/coop_ui.rs",
+        "sha256": "6f259b33c235289ac21449f96028ae7e9944f4b30e87a428794b2c89776998ab"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+        "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/save/coop_history.rs",
+        "sha256": "5e21f9a03825c08a06561d5b96fe8076d8206e3d2405d99f6f0ecfd17383a3fd"
+      }
+    ],
+    "prior_recovery_preserved": true,
+    "existing_shared_version_source": {
+      "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+      "line": 7,
+      "value": "0.120.2",
+      "finding_id": 163,
+      "status": "current_native_admission_applicability_pending_not_recovered_here"
+    },
+    "existing_relay_and_localization_findings": [
+      197,
+      198,
+      208,
+      210,
+      211,
+      212,
+      213,
+      214,
+      215,
+      216,
+      217
+    ],
+    "assessment": "Source already covers discovery/directory, relay, direct TCP/routes, party lifecycle, world bootstrap/replication, gameplay/account settlement and UI/localization. Historical excluded-co-op labels exclude no current recovery. Supplied current Heroic eligibility, reward ownership and reduced scaling require their item-specific current wire/state/consumer investigations, not a reset of prior source reconstruction.",
+    "next_action": "Trace current Heroic/marks/star fields from host selection through admission/replication to recipient-private state, retaining ordinary transport/engine codec interfaces. No server operation is needed for source/static recovery."
+  },
+  "validation": {
+    "fresh_source_read": true,
+    "native_query_executed_by_this_review": false,
+    "compilation": "not_run",
+    "application_client_network_server_execution": "not_run",
+    "controlled_original_rebuilt_comparison": "not_run",
+    "parity_verified": false,
+    "span_hash_checks": {
+      "current_native_spans_verified": 34,
+      "method": "Independently re-read each exact file offset/byte count from the configured hash-verified installed EXE and compare its SHA-256. Source-first candidate hashes independently checked.",
+      "application_execution": false
+    }
+  },
+  "limits": [
+    "Diagnostic starts are declared extent candidates until joined to the independently verified current Ghidra census.",
+    "Candidate source owners are recorded separately from proved partial reconstructed-source correspondence.",
+    "Current module contracts and source counts must come from the final reviewed connection ledger; this review is not that ledger.",
+    "A new hash or missing current registration does not erase retained historical source or recovery."
+  ]
+}

@@ -1,0 +1,185 @@
+{
+  "target": "AzerothSurvivors/AzerothSurvivors-0.105.0.exe",
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "ranges": [
+    {
+      "role": "auth-client-normalize",
+      "virtual_address": "0x140f5c210",
+      "end_exclusive": "0x140f5c3f4",
+      "file_offset": "0xf5b610",
+      "byte_count": 484,
+      "sha256": "4ee7dd203e23a0e59417b528c26ca6f6888cc5cf5afcb6851833a21109ad6d02",
+      "assembly": "auth-client-normalize.asm"
+    },
+    {
+      "role": "auth-server-normalize",
+      "virtual_address": "0x1458de850",
+      "end_exclusive": "0x1458dea33",
+      "file_offset": "0x58ddc50",
+      "byte_count": 483,
+      "sha256": "146841ad4be88a8e5c1fd1703b7ed49ce075610753ca816f324028e864805c08",
+      "assembly": "auth-server-normalize.asm"
+    },
+    {
+      "role": "auth-fixed-password",
+      "virtual_address": "0x145896b4e",
+      "end_exclusive": "0x145896be0",
+      "file_offset": "0x5895f4e",
+      "byte_count": 146,
+      "sha256": "d96cc8136aa44b35240bd978addc57f0883a72ec6b13b9ebabb13a5ab4b61f38",
+      "assembly": "auth-fixed-password.asm"
+    },
+    {
+      "role": "auth-server-credentials",
+      "virtual_address": "0x145963e3e",
+      "end_exclusive": "0x145963f4e",
+      "file_offset": "0x596323e",
+      "byte_count": 272,
+      "sha256": "b5e5dddfc7dfb2a479222e0c59262e8e8c9a117b24a9012685b48ca97175fcb6",
+      "assembly": "auth-server-credentials.asm"
+    },
+    {
+      "role": "auth-server-proof-success",
+      "virtual_address": "0x145963a02",
+      "end_exclusive": "0x145963ac4",
+      "file_offset": "0x5962e02",
+      "byte_count": 194,
+      "sha256": "893bb8b0fe621923ba040911ff61d214e8c4f11ac241948499e10069f51f67c0",
+      "assembly": "auth-server-proof-success.asm"
+    },
+    {
+      "role": "auth-client-credential-calls",
+      "virtual_address": "0x140ea2481",
+      "end_exclusive": "0x140ea2512",
+      "file_offset": "0xea1881",
+      "byte_count": 145,
+      "sha256": "697aa36af5ed752f940ba4f98675c9003406e2ec72743a00cec31d86e6b21f96",
+      "assembly": "auth-client-credential-calls.asm"
+    },
+    {
+      "role": "auth-client-proof-compare",
+      "virtual_address": "0x145a1c199",
+      "end_exclusive": "0x145a1c27d",
+      "file_offset": "0x5a1b599",
+      "byte_count": 228,
+      "sha256": "e24ef76659b6547c0c4e358845ba766dc2ae443cd877bea380ab9d14fe8fdeee",
+      "assembly": "auth-client-proof-compare.asm"
+    },
+    {
+      "role": "auth-client-proof-result",
+      "virtual_address": "0x140ea4935",
+      "end_exclusive": "0x140ea4964",
+      "file_offset": "0xea3d35",
+      "byte_count": 47,
+      "sha256": "eab11ddb69dc097ccb40b5c814e4a5cb304f457f135ca8b4a967cb55891fa42e",
+      "assembly": "auth-client-proof-result.asm"
+    },
+    {
+      "role": "auth-client-proof-error",
+      "virtual_address": "0x140ea4f34",
+      "end_exclusive": "0x140ea4f89",
+      "file_offset": "0xea4334",
+      "byte_count": 85,
+      "sha256": "37fb64ce00d1f421ea0b8ee347800f334ebc0f9a612f9f5fcbf7a50c6003c8f0",
+      "assembly": "auth-client-proof-error.asm"
+    }
+  ],
+  "rea": [
+    {
+      "role": "server-normalize",
+      "provider": "ghidra",
+      "virtual_address": "0x1458de850",
+      "byte_count": 483,
+      "sha256": "146841ad4be88a8e5c1fd1703b7ed49ce075610753ca816f324028e864805c08",
+      "evidence_id": "ev_edc94c6379a31780c4b2b31a802b3497f38c178ab92d49e8392e3c7bdb4a8911"
+    },
+    {
+      "role": "client-proof-verifier",
+      "provider": "ghidra",
+      "virtual_address": "0x145a1be80",
+      "byte_count": 1180,
+      "sha256": "3c5bc226179fc05d7b24f7a51f371a32b8ff3a4e43d93cd0105daee6f41de8f4",
+      "evidence_id": "ev_253510b0b675e671cf69fedb917d9d5503cf00a959e1ccf8377c814389277e87"
+    },
+    {
+      "role": "auth-service",
+      "provider": "ghidra",
+      "virtual_address": "0x1459623b0",
+      "byte_count": 10370,
+      "sha256": "27e1535e98f41b38e06bfd08f4a6eb1bd45e4b594735d4e2ae0daa37d07797fd",
+      "evidence_id": "ev_01407946dd48e46837c3d5792f53acb6ed14200a58fb1d06a83b946214940a69"
+    }
+  ],
+  "normalization": "Both credentials:1..16 UTF-8 bytes, every decoded scalar in printable ASCII0x20..0x7e; uppercase ASCII a..z; no trimming.",
+  "server_credentials": "Challenge username is normalized and used for SRP derivation; there is no HERO equality guard. Auth connection stores fixed survivor password, normalized to SURVIVOR. Invalid server normalization falls back to A, but client rejects such input first.",
+  "proof_failure": "Local server writes opcode1,result0 with its M2; client computes and compares20 proof bytes. Mismatch returns-1, and caller wraps an ordinary server proof mismatch error rather than an AuthReject protocol code.",
+  "adapter_mapping": "Local AuthenticationFailed reuses GlueMgr.on_failed with LoginFailedMessage.refusal=None. Existing Benilla manager maps this to LOGIN_FAILED_STATE5 and RESULT_DISCONNECTED0x14; that manager mapping is source behavior, not a newly recovered native constant.",
+  "credential_vectors": [
+    {
+      "account": "HERO",
+      "password": "survivor",
+      "accepted": true
+    },
+    {
+      "account": "Other",
+      "password": "suRViVor",
+      "accepted": true
+    },
+    {
+      "account": " ",
+      "password": "survivor",
+      "accepted": true
+    },
+    {
+      "account": "1234567890123456",
+      "password": "survivor",
+      "accepted": true
+    },
+    {
+      "account": "",
+      "password": "survivor",
+      "accepted": false
+    },
+    {
+      "account": "12345678901234567",
+      "password": "survivor",
+      "accepted": false
+    },
+    {
+      "account": "\u00e9",
+      "password": "survivor",
+      "accepted": false
+    },
+    {
+      "account": "HERO\n",
+      "password": "survivor",
+      "accepted": false
+    },
+    {
+      "account": "HERO\u007f",
+      "password": "survivor",
+      "accepted": false
+    },
+    {
+      "account": "HERO",
+      "password": "wrong",
+      "accepted": false
+    },
+    {
+      "account": "HERO",
+      "password": " survivor",
+      "accepted": false
+    },
+    {
+      "account": "HERO",
+      "password": "survivor ",
+      "accepted": false
+    }
+  ],
+  "checks": "Selected EXE hash, complete normalizer/proof-verifier hashes, fixed password/opcode/result instructions and error literal;12 model vectors from recovered normalization. These vectors do not execute rebuilt Rust.",
+  "limits": [
+    "Source catalog and native static contracts checked; source compilation and runtime behavior remain unverified.",
+    "Fresh Ghidra raw slices omit external callees/data and use generic compiler types. Selected PE instructions corroborate constants and data flow.",
+    "No target or rebuilt application was executed; no original/rebuilt parity comparison."
+  ]
+}

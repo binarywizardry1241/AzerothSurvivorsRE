@@ -1,0 +1,247 @@
+{
+  "target_version": "0.112.0",
+  "target_sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+  "target_executed": false,
+  "ranges": [
+    {
+      "role": "boss-health-endless",
+      "va": "0x14593b2d9",
+      "file_offset": "0x593a6d9",
+      "byte_count": 173,
+      "sha256": "bceda7ffd420eeca60660571c84a30630c9c74f54b1879086f0e00ae46b093ef",
+      "assembly": "boss-health-endless.asm"
+    },
+    {
+      "role": "boss-damage-actor-stats",
+      "va": "0x14593b6e1",
+      "file_offset": "0x593aae1",
+      "byte_count": 359,
+      "sha256": "532f51004d172b2022c22d981a0ae6dcebbc868de1a529e36c55a1da5a0a7575",
+      "assembly": "boss-damage-actor-stats.asm"
+    },
+    {
+      "role": "guardian-selector",
+      "va": "0x145898f10",
+      "file_offset": "0x5898310",
+      "byte_count": 866,
+      "sha256": "a4defb42c3cc0f56d3c213bb46fdc90a1b384b263b95ba2d96b104b5de034146",
+      "assembly": "guardian-selector.asm"
+    },
+    {
+      "role": "guardian-decision-reset",
+      "va": "0x1459b7f00",
+      "file_offset": "0x59b7300",
+      "byte_count": 934,
+      "sha256": "d2a234fcf1b6715ab6ba41ff988e5f7d36e38d9347434a2e67dc1afa3d50239e",
+      "assembly": "guardian-decision-reset.asm"
+    },
+    {
+      "role": "guardian-selection-constructor",
+      "va": "0x145906d20",
+      "file_offset": "0x5906120",
+      "byte_count": 760,
+      "sha256": "6914829093e1cb7dec222706b2f39691afd64e49234c38ab5f919ca0b1e79029",
+      "assembly": "guardian-selection-constructor.asm"
+    },
+    {
+      "role": "guardian-phase-gates",
+      "va": "0x145947420",
+      "file_offset": "0x5946820",
+      "byte_count": 448,
+      "sha256": "b03b83b0a77e691fdd7da0dfc9e667fea13916dd282059b2cc81873359950d6c",
+      "assembly": "guardian-phase-gates.asm"
+    },
+    {
+      "role": "guardian-scheduler",
+      "va": "0x145947b30",
+      "file_offset": "0x5946f30",
+      "byte_count": 609,
+      "sha256": "2f3bce3f0ef2d3f424703923d9e1d8232cf031d2869e4ab177213836abde61e2",
+      "assembly": "guardian-scheduler.asm"
+    },
+    {
+      "role": "boss-enrage",
+      "va": "0x145947d91",
+      "file_offset": "0x5947191",
+      "byte_count": 57,
+      "sha256": "ac6e5629bf53f8ec1274cf84b443aa59951a45fca2aa0136d733e3688de610af",
+      "assembly": "boss-enrage.asm"
+    },
+    {
+      "role": "boss-phase-ratio",
+      "va": "0x145947dca",
+      "file_offset": "0x59471ca",
+      "byte_count": 86,
+      "sha256": "d40cd818582772bb8e87937dcdfa04799392c64a8b98187d8358555aaf494482",
+      "assembly": "boss-phase-ratio.asm"
+    },
+    {
+      "role": "boss-phase-actions",
+      "va": "0x145947e20",
+      "file_offset": "0x5947220",
+      "byte_count": 789,
+      "sha256": "b33893c85888228acfca3d0f495e8f97b707fc958c9f7b0bae8c010b8245220b",
+      "assembly": "boss-phase-actions.asm"
+    },
+    {
+      "role": "boss-phase-yell",
+      "va": "0x145897ec0",
+      "file_offset": "0x58972c0",
+      "byte_count": 199,
+      "sha256": "cb81df1a39673b553d9d1c3a091ad943367c785535d8ab5e0cfe66e2dfeb5953",
+      "assembly": "boss-phase-yell.asm"
+    },
+    {
+      "role": "replacement-timers",
+      "va": "0x1459da880",
+      "file_offset": "0x59d9c80",
+      "byte_count": 359,
+      "sha256": "095d5a234bec20832025596550a7807e42ebaf66c2d2e69c9e47742a968557a9",
+      "assembly": "replacement-timers.asm"
+    },
+    {
+      "role": "boss-recurring",
+      "va": "0x145948135",
+      "file_offset": "0x5947535",
+      "byte_count": 588,
+      "sha256": "f3400e5d3b5aedd7decc40ae82ad504527bbe023422d690063f4cfa7730e6542",
+      "assembly": "boss-recurring.asm"
+    }
+  ],
+  "boss_arithmetic": {
+    "profiles": [
+      [
+        0.0,
+        1.0,
+        100,
+        100,
+        100,
+        0,
+        false,
+        0.0,
+        7.0,
+        9.0
+      ],
+      [
+        600.0,
+        1.5,
+        175,
+        80,
+        140,
+        0,
+        false,
+        0.0,
+        1.0,
+        1.0
+      ],
+      [
+        600.0,
+        1.0,
+        0,
+        0,
+        0,
+        0,
+        false,
+        0.0,
+        1.0,
+        1.0
+      ],
+      [
+        1200.0,
+        0.75,
+        65535,
+        65535,
+        65535,
+        0,
+        false,
+        0.0,
+        1.0,
+        1.0
+      ],
+      [
+        817.5,
+        2.25,
+        140,
+        120,
+        75,
+        1,
+        true,
+        720.0,
+        1.375,
+        2.0
+      ],
+      [
+        600.0,
+        1.0,
+        100,
+        100,
+        100,
+        1,
+        true,
+        720.0,
+        1.0,
+        1.0
+      ],
+      [
+        817.5,
+        1.0,
+        100,
+        100,
+        100,
+        0,
+        true,
+        720.0,
+        3.0,
+        4.0
+      ],
+      [
+        720.0,
+        1.0,
+        100,
+        100,
+        100,
+        1,
+        true,
+        720.0,
+        1.0,
+        1.0
+      ]
+    ],
+    "cases": 480,
+    "snapshots_sha256": "95633a915a9021c9abedcf5d5c38d5648117619d7ea7ff1b09d5c75a36bcf714"
+  },
+  "guardian_native_cases": {
+    "selector": 1600,
+    "reset_lists": 40,
+    "rng": 32,
+    "variant_index": 128,
+    "phases": 120,
+    "scheduler": 432
+  },
+  "boss_schedule": {
+    "cases": {
+      "enrage": 140,
+      "phase_denominator": 36,
+      "phase_latch": 396,
+      "phase_action_queue": 33,
+      "phase_yell_lookup": 66,
+      "recurring": 15420,
+      "replacement_timers": 5
+    },
+    "boss_phase_records": 33,
+    "boss_recurring_records": 257,
+    "seams": [
+      "Phase label formatting and localization supply controlled output; actual native one-based boss/phase arguments and fallback selection are checked.",
+      "Replacement timer allocation supplies controlled writable storage; actual current scalar/vector arithmetic executes."
+    ]
+  },
+  "source_connections": {
+    "files": 7,
+    "guards": 29
+  },
+  "limitations": [
+    "Synthetic original-byte instruction fixtures do not execute Rust or a game.",
+    "Windows powf outputs are injected explicitly; its library implementation is not certified.",
+    "Call-free fragments reject calls; phase labels and replacement allocations use only their explicitly named seams. Whole constructors, terrain, packet/publication, rendering, audio and parity remain separate."
+  ]
+}

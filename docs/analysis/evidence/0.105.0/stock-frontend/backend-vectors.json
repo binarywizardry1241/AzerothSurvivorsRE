@@ -1,0 +1,208 @@
+{
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "vectors": [
+    {
+      "contract": "next saved GUID",
+      "guids": [],
+      "result": 1
+    },
+    {
+      "contract": "next saved GUID",
+      "guids": [
+        0
+      ],
+      "result": 1
+    },
+    {
+      "contract": "next saved GUID",
+      "guids": [
+        1
+      ],
+      "result": 2
+    },
+    {
+      "contract": "next saved GUID",
+      "guids": [
+        42,
+        2
+      ],
+      "result": 43
+    },
+    {
+      "contract": "next saved GUID",
+      "guids": [
+        2,
+        42
+      ],
+      "result": 43
+    },
+    {
+      "contract": "next saved GUID",
+      "guids": [
+        5,
+        1,
+        9,
+        3,
+        7
+      ],
+      "result": 10
+    },
+    {
+      "contract": "next saved GUID",
+      "guids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "result": 10
+    },
+    {
+      "contract": "next saved GUID",
+      "guids": [
+        18446744073709551615
+      ],
+      "result": 0
+    },
+    {
+      "contract": "next saved GUID",
+      "guids": [
+        18446744073709551614,
+        0,
+        1
+      ],
+      "result": 18446744073709551615
+    },
+    {
+      "contract": "invalid normalized name status",
+      "text": "",
+      "scalar_count": 0,
+      "result": 69,
+      "limit": "Caller supplies the failed-normalization outcome; this does not run the allocator/trim owners."
+    },
+    {
+      "contract": "invalid normalized name status",
+      "text": "A",
+      "scalar_count": 1,
+      "result": 70,
+      "limit": "Caller supplies the failed-normalization outcome; this does not run the allocator/trim owners."
+    },
+    {
+      "contract": "invalid normalized name status",
+      "text": "\u00e9",
+      "scalar_count": 1,
+      "result": 70,
+      "limit": "Caller supplies the failed-normalization outcome; this does not run the allocator/trim owners."
+    },
+    {
+      "contract": "invalid normalized name status",
+      "text": "\u00e9\u00e9",
+      "scalar_count": 2,
+      "result": 72,
+      "limit": "Caller supplies the failed-normalization outcome; this does not run the allocator/trim owners."
+    },
+    {
+      "contract": "invalid normalized name status",
+      "text": " a ",
+      "scalar_count": 1,
+      "result": 70,
+      "limit": "Caller supplies the failed-normalization outcome; this does not run the allocator/trim owners."
+    },
+    {
+      "contract": "invalid normalized name status",
+      "text": "A1",
+      "scalar_count": 2,
+      "result": 72,
+      "limit": "Caller supplies the failed-normalization outcome; this does not run the allocator/trim owners."
+    },
+    {
+      "contract": "invalid normalized name status",
+      "text": "abcdefghijklm",
+      "scalar_count": 13,
+      "result": 71,
+      "limit": "Caller supplies the failed-normalization outcome; this does not run the allocator/trim owners."
+    },
+    {
+      "contract": "invalid normalized name status",
+      "text": "\ud800\udf48\ud800\udf48",
+      "scalar_count": 2,
+      "result": 72,
+      "limit": "Caller supplies the failed-normalization outcome; this does not run the allocator/trim owners."
+    },
+    {
+      "contract": "invalid normalized name status",
+      "text": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "scalar_count": 31,
+      "result": 71,
+      "limit": "Caller supplies the failed-normalization outcome; this does not run the allocator/trim owners."
+    },
+    {
+      "contract": "permanent roster count admission",
+      "count": 0,
+      "admitted": true
+    },
+    {
+      "contract": "permanent roster count admission",
+      "count": 1,
+      "admitted": true
+    },
+    {
+      "contract": "permanent roster count admission",
+      "count": 9,
+      "admitted": true
+    },
+    {
+      "contract": "permanent roster count admission",
+      "count": 10,
+      "admitted": false
+    },
+    {
+      "contract": "permanent roster count admission",
+      "count": 11,
+      "admitted": false
+    },
+    {
+      "contract": "permanent roster count admission",
+      "count": 255,
+      "admitted": false
+    },
+    {
+      "contract": "shared Pick modifiers retained by both frontend modes",
+      "modifiers": [
+        100,
+        100,
+        100,
+        100
+      ]
+    },
+    {
+      "contract": "shared Pick modifiers retained by both frontend modes",
+      "modifiers": [
+        500,
+        400,
+        280,
+        145
+      ]
+    },
+    {
+      "contract": "shared Pick modifiers retained by both frontend modes",
+      "modifiers": [
+        125,
+        150,
+        110,
+        105
+      ]
+    }
+  ],
+  "limits": [
+    "Original bounded leaf instructions only; no native callees execute.",
+    "Name cases admit only the failed-normalization branch, with already-trimmed text.",
+    "No Rust compilation, application launch or rendered/input comparison."
+  ]
+}

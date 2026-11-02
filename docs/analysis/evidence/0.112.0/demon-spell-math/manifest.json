@@ -1,0 +1,98 @@
+{
+  "version": "0.112.0",
+  "target_sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+  "owners": [
+    {
+      "role": "infernal-interval",
+      "start": "0x145930180",
+      "end_exclusive": "0x1459301cf",
+      "file_offset": "0x592f580",
+      "sha256": "aa424219b25d8a9ac66c51a1243f61488e57902ed95f55a3868c9ab3f319de1a",
+      "shared_owner": "docs/analysis/evidence/0.112.0/demon-time-effects/manifest.json"
+    },
+    {
+      "role": "doomguard-focus",
+      "start": "0x1459318c8",
+      "end_exclusive": "0x14593198a",
+      "file_offset": "0x5930cc8",
+      "sha256": "daf5145ba4c10071682663491c8f6774554071727c48f02bf19d0105f5b26b0a",
+      "shared_owner": "docs/analysis/evidence/0.112.0/demon-time-effects/manifest.json"
+    },
+    {
+      "role": "pit-missiles",
+      "start": "0x1459da6c0",
+      "end_exclusive": "0x1459da825",
+      "file_offset": "0x59d9ac0",
+      "sha256": "18e17f887a28075a53a5a9c851cd6ae6d8f97c1cb0d48f019d6375a591e3a51e",
+      "provider": "Ghidra 12.1.4",
+      "evidence_id": "ev_8086319a14ca7d0991703f31a394f8f2c4f9f43985e29ef6e2cd4c4685c49c5d",
+      "assembly": "pit-missiles.asm",
+      "pseudocode": "pit-missiles.c",
+      "text_sha256": {
+        "pit-missiles.asm": "e266bdbd2e463a48337cc297025451dd9ecb7db26292dd5e390d48e1d073b2d5",
+        "pit-missiles.c": "02ab9ede2dcbdc187694ac928a5c189e37c7dcd94e8e52d8cd5b493e951a8c10"
+      }
+    },
+    {
+      "role": "doom-bounce-prepare",
+      "start": "0x145931e14",
+      "end_exclusive": "0x145931f37",
+      "file_offset": "0x5931214",
+      "sha256": "e983b393bc258a731f3fe7599877e51191f5f3aa7206823e7edbb343304c9f3a",
+      "shared_owner": "docs/analysis/evidence/0.112.0/demon-time-effects/manifest.json"
+    },
+    {
+      "role": "imp-fire-power",
+      "start": "0x14595c078",
+      "end_exclusive": "0x14595c186",
+      "file_offset": "0x595b478",
+      "sha256": "da223cb95bd583046819dc98db49291ceff2c7db8987d4223e448a2247da059d",
+      "assembly": "imp-fire-power.asm",
+      "text_sha256": {
+        "imp-fire-power.asm": "c6409616f2d91757725f5836ed0644dda968ad8110120099701aa219afbca5bf"
+      }
+    },
+    {
+      "role": "infernal-visual-scale",
+      "start": "0x14592a4e8",
+      "end_exclusive": "0x14592a678",
+      "file_offset": "0x59298e8",
+      "sha256": "d556303a8308496396ad3f5952d48e775eb69b61008742d7996561155f912ce0",
+      "assembly": "infernal-visual-scale.asm",
+      "text_sha256": {
+        "infernal-visual-scale.asm": "5c08998625a813bfcf63cab0c2551913f3989798af36c371accd20517844770e"
+      }
+    }
+  ],
+  "hellfire": {
+    "address": "0x146bf8610",
+    "byte_count": 120,
+    "sha256": "6de3d0c1f812f0751a505d254a9b9bdde6cb3b7252a8c5c2d63792fa4eb3f040",
+    "base_cooldown_bits": 1069547520
+  },
+  "limitations": [
+    "Bounded arithmetic and allocator/eligibility seams do not validate live game timing or native parity.",
+    "Infernal vectors capture the native modifier output scalar; no independent invented cooldown-factor lane is supplied."
+  ],
+  "visual_ghidra": {
+    "start": "0x14592a220",
+    "end_exclusive": "0x14592a700",
+    "provider": "Ghidra 12.1.4",
+    "evidence_id": "ev_ea4f1d469cc49de4e700adef78c5853d73e695139ada6305381514751dda3415",
+    "import_sha256": "3765cbf0a7bcb0d9ab6c87e17731b0ec4787e1162672f69eea80a96b50b214c3",
+    "pseudocode": "visual-scale.c",
+    "text_sha256": "16abc51985f2b75b55cd1728dad696c2b52dcb1ceab2756898e0f80a3923d65b",
+    "limitations": "Raw import omits external globals and callee semantics; ABI and floating return/register state are controlled by current assembly and interpreter cases."
+  },
+  "seams": [
+    "Imp power runs the complete arithmetic slice without called helpers. It uses the current descriptor damage22.",
+    "Infernal visual tail supplies the fresh area-modifier output and intercepts modifier clone/destruction. Capacity is preallocated; selected original instructions execute the append.",
+    "Windows log1p is supplied by host math.log1p rounded to f32."
+  ],
+  "imp_descriptor": {
+    "address": "0x14723ebc0",
+    "byte_count": 72,
+    "sha256": "fc83a2936688bf79041db5c2ccc6645a13e60919200d6fa66dcbe8d4dfe00e97",
+    "shared_owner": "../demon-actors/manifest.json"
+  }
+}

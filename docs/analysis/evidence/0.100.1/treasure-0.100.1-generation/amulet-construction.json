@@ -1,0 +1,32 @@
+{
+  "constructor_span": {
+    "va": "0x145425af0",
+    "file_offset": "0x5424ef0",
+    "byte_count": 5459,
+    "sha256": "e24d47f6621eb7d98aec3c5d6e6f559337ac83059fbe50b93fa9c994a22d2340"
+  },
+  "ability_table": {
+    "va": "0x146736b48",
+    "file_offset": "0x6735f48",
+    "byte_count": 13440,
+    "sha256": "583f7314aa9393099454936e23bf0dde7262bf5fd68111635548d098989b655c"
+  },
+  "shared_table": {
+    "va": "0x14673c6e0",
+    "file_offset": "0x673bae0",
+    "byte_count": 1360,
+    "sha256": "8a7fee31351de0b706135375708af7e36f2c7e88fede133f096250a9e61a51e8"
+  },
+  "target_sha256": "17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b",
+  "source_asset": "crates/azeroth-survivors-re/assets/native-amulets-0.100.1.json",
+  "source_sha256": "f3171289f20ece9c60ff0336e43f14e679caabbb533cfcdce381d241c35480b6",
+  "method": "Recover current native Amulet records with bounded constructor execution.\n\nOnly 0x145425af0..0x145427043 runs as original code. Vec reserve, locale\nmiss, Rust string formatting and allocation/deallocation are reviewed\nboundaries; unknown calls fail closed. No process, OS or network calls run.\n",
+  "generated_count": 112,
+  "shared_count": 17,
+  "calls": {
+    "0x145780420": 112,
+    "0x145457cb0": 224,
+    "0x145728390": 334,
+    "0x1400021d0": 110
+  }
+}

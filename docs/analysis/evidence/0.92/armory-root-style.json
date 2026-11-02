@@ -1,0 +1,129 @@
+{
+  "version": "0.92.0",
+  "target_sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+  "root_constructor": {
+    "start": "0x140043f10",
+    "end": "0x140044618"
+  },
+  "identity_route": [
+    "ArmoryRoot tupleRTTI stringVA145907eae",
+    "bundlemetadata1403176e0",
+    "spawn1402e8d80",
+    "deferredapply14034be10",
+    "command140237260",
+    "queue1401b6c30",
+    "nativeconstructor140043f10 call0445cc"
+  ],
+  "node": {
+    "position_type": "Absolute",
+    "width": "100%",
+    "height": "100%",
+    "global_z_index": 5400
+  },
+  "background_color": {
+    "enum": "Srgba",
+    "rgba": [
+      0.012,
+      0.01,
+      0.008,
+      0.97
+    ]
+  },
+  "gradient": {
+    "kind": "Radial",
+    "position": {
+      "anchor": [
+        0,
+        0
+      ],
+      "x": "Percent0",
+      "y": "Percent-20"
+    },
+    "shape": "FarthestCorner",
+    "color_space": "Oklaba(default0)",
+    "stops": [
+      {
+        "position": "Percent0",
+        "color_enum": "LinearRgba",
+        "rgba": [
+          0.3,
+          0.17,
+          0.06,
+          0.35
+        ]
+      },
+      {
+        "position": "Percent70",
+        "color_enum": "LinearRgba",
+        "rgba": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  "constants": [
+    {
+      "address": "0x1458ab3e0",
+      "file_offset": "0x58a9be0",
+      "hex": "9a99993e7b142e3e8fc2753d3333b33e",
+      "float_lanes": [
+        0.30000001192092896,
+        0.17000000178813934,
+        0.05999999865889549,
+        0.3499999940395355
+      ],
+      "role": "radial first stop RGBA"
+    },
+    {
+      "address": "0x1458abe48",
+      "file_offset": "0x58aa648",
+      "hex": "0100000000000000000000000000000000000000",
+      "float_lanes": [
+        1.401298464324817e-45,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "transparent LinearRgba Color enum"
+    },
+    {
+      "address": "0x1458ab3f0",
+      "file_offset": "0x58a9bf0",
+      "hex": "0000003f0200000000008c4201000000",
+      "float_lanes": [
+        0.5,
+        2.802596928649634e-45,
+        70.0,
+        1.401298464324817e-45
+      ],
+      "role": "first hint0.5, second stop Percent70, LinearRgba tag1"
+    },
+    {
+      "address": "0x1458ab400",
+      "file_offset": "0x58a9c00",
+      "hex": "0000a0c1",
+      "float_lanes": [
+        -20.0
+      ],
+      "role": "radial y offset Percent-20"
+    },
+    {
+      "address": "0x1458ab410",
+      "file_offset": "0x58a9c10",
+      "hex": "a69b443c0ad7233c6f12033cec51783f",
+      "float_lanes": [
+        0.012000000104308128,
+        0.009999999776482582,
+        0.00800000037997961,
+        0.9700000286102295
+      ],
+      "role": "root BackgroundColor RGBA"
+    }
+  ],
+  "layout_validation": "Existing project runtime/menu-recovery/gradient-layout.rs and LLVM constant layout prove field offsets for Bevy0.18.1; original instruction literals match struct positions. Native runtime captures independently show picker remaining dimmed underneath.",
+  "implementation": "Parent owns overlay integration; this report records recovered behavior, not rebuilt parity."
+}

@@ -1,0 +1,63 @@
+{
+  "target_sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+  "native_helpers": [
+    {
+      "role": "copy-permanent",
+      "start": "0x1458e86e0",
+      "end": "0x1458e87ea",
+      "sha256": "ae201695924918d48116281908f36824756a54cd541c00e01b003e347b69f16c",
+      "assembly": "copy-permanent.asm",
+      "assembly_sha256": "dc9c4544b43afb9957b53dc595590f916e207712be33e0c45b1c95118aac3164",
+      "pseudocode": "copy-permanent.c",
+      "pseudocode_sha256": "f76daf81428b71d7b0183e9fd4c997d596aee559fde6ca2da3d69f50b26d4e59"
+    },
+    {
+      "role": "collect-roster",
+      "start": "0x1459c9650",
+      "end": "0x1459c98c9",
+      "sha256": "febed08228db408620a6f22427c33702b92e6859ead965bb5f5e9f1c87b947df",
+      "assembly": "collect-roster.asm",
+      "assembly_sha256": "e5df56d0f0893e34862e4c7cc0356324743f75bbaa1756b8a59ecbef86f37bb7",
+      "pseudocode": "collect-roster.c",
+      "pseudocode_sha256": "6e1c78696799428a37e814354c52a3553848775f73c4e3d7164862dd546fa204"
+    }
+  ],
+  "ghidra": [
+    {
+      "procedure": "0x1458e86e0",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "profile_digest": "61e78d73384fdf4d5395eadb4f3f6ce1d1d4d4149be322b1d93db319689ce72c",
+      "carrier_sha256": "3f8c795b3402b6f0ad6dadba6bfa30e1d26bed2ee038d9dd5fe3c766f4b8513b",
+      "raw_import_base": "0x1458e86e0"
+    },
+    {
+      "procedure": "0x1459c9650",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "profile_digest": "61e78d73384fdf4d5395eadb4f3f6ce1d1d4d4149be322b1d93db319689ce72c",
+      "carrier_sha256": "3f8c795b3402b6f0ad6dadba6bfa30e1d26bed2ee038d9dd5fe3c766f4b8513b",
+      "raw_import_base": "0x1458e86e0"
+    }
+  ],
+  "login_provider": {
+    "start": "0x1458b30f9",
+    "end": "0x1458b3141",
+    "sha256": "f93c652540723ac8aa5d60e44ad0514ed555c5b420968883ad811f84a6aae56e",
+    "assembly": "login-provider.asm",
+    "assembly_sha256": "c4b8e4262ca25a76d83f8203ec00491d6182578d7f8e1082fa1ea457a44b7efc"
+  },
+  "canonical_factory": "../stock-lifecycle/manifest.json#roster-factory",
+  "canonical_lookup": "../stock-lifecycle/manifest.json#invalid-guid",
+  "canonical_string_clone": "../account-commands/manifest.json#0x145bcd2f0",
+  "limits": [
+    "Ordinary optional/permanent roster projection and first matching GUID only; custom Pick projection has separate current evidence.",
+    "Existing scratch allocation/bytes/free seams; no network, filesystem, application, Rust compilation or game executes."
+  ]
+}

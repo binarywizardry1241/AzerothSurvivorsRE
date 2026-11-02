@@ -1,0 +1,747 @@
+{
+  "target_version": "0.109.0",
+  "target_sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+  "target_executed": false,
+  "compilation": false,
+  "case_count": 68,
+  "cases": [
+    {
+      "contract": "typed-default",
+      "input": "",
+      "canonical": "",
+      "native_has_progress": false
+    },
+    {
+      "contract": "typed-default",
+      "input": "unknown|keep\n",
+      "canonical": "",
+      "native_has_progress": false
+    },
+    {
+      "contract": "typed-default",
+      "input": "items|\n",
+      "canonical": "",
+      "native_has_progress": false
+    },
+    {
+      "contract": "typed-default",
+      "input": "items|bad\n",
+      "canonical": "",
+      "native_has_progress": false
+    },
+    {
+      "contract": "typed-default",
+      "input": "equip|1|\n",
+      "canonical": "equip|1|\nlook|1|\n",
+      "native_has_progress": true
+    },
+    {
+      "contract": "typed-default",
+      "input": "look|1|\n",
+      "canonical": "equip|1|\nlook|1|\n",
+      "native_has_progress": true
+    },
+    {
+      "contract": "typed-default",
+      "input": "talent|1|0|\n",
+      "canonical": "talent|1|0|\n",
+      "native_has_progress": true
+    },
+    {
+      "contract": "typed-default",
+      "input": "spec|1|0|||\n",
+      "canonical": "spec|1|0|||\n",
+      "native_has_progress": true
+    },
+    {
+      "contract": "typed-default",
+      "input": "resets|0\n",
+      "canonical": "",
+      "native_has_progress": false
+    },
+    {
+      "contract": "typed-default",
+      "input": "resets|1\n",
+      "canonical": "resets|1\n",
+      "native_has_progress": true
+    },
+    {
+      "contract": "typed-default",
+      "input": "pets|\n",
+      "canonical": "pets|squirrel\n",
+      "native_has_progress": true
+    },
+    {
+      "contract": "typed-default",
+      "input": "pets|squirrel\n",
+      "canonical": "pets|squirrel\n",
+      "native_has_progress": true
+    },
+    {
+      "contract": "typed-default",
+      "input": "stat|kills=0\n",
+      "canonical": "",
+      "native_has_progress": false
+    },
+    {
+      "contract": "typed-default",
+      "input": "stat|custom=5\n",
+      "canonical": "",
+      "native_has_progress": false
+    },
+    {
+      "contract": "typed-default",
+      "input": "stat|kills=1\n",
+      "canonical": "stat|kills=1,gold=0,guardians=0,bosses=0,runs=0,wins=0,caches=0\n",
+      "native_has_progress": true
+    },
+    {
+      "contract": "typed-default",
+      "input": "achat|\n",
+      "canonical": "",
+      "native_has_progress": false
+    },
+    {
+      "contract": "typed-default",
+      "input": "achat|=0\n",
+      "canonical": "achat|=0\n",
+      "native_has_progress": true
+    },
+    {
+      "contract": "typed-default",
+      "input": "ach|\n",
+      "canonical": "",
+      "native_has_progress": false
+    },
+    {
+      "contract": "typed-default",
+      "input": "ach|anything\n",
+      "canonical": "ach|anything\n",
+      "native_has_progress": true
+    },
+    {
+      "contract": "typed-default",
+      "input": "seen|\n",
+      "canonical": "",
+      "native_has_progress": false
+    },
+    {
+      "contract": "typed-default",
+      "input": "seen|a=0\n",
+      "canonical": "seen|a=0\n",
+      "native_has_progress": true
+    },
+    {
+      "contract": "typed-default",
+      "input": "perk|rerolls:0\n",
+      "canonical": "",
+      "native_has_progress": false
+    },
+    {
+      "contract": "typed-default",
+      "input": "tabard|90001\n",
+      "canonical": "",
+      "native_has_progress": false
+    },
+    {
+      "contract": "typed-default",
+      "input": "beat|1|foo\n",
+      "canonical": "",
+      "native_has_progress": false
+    },
+    {
+      "contract": "typed-default",
+      "input": "open|1|elwynn\n",
+      "canonical": "open|1|elwynn\n",
+      "native_has_progress": true
+    },
+    {
+      "contract": "typed-default",
+      "input": "pick|1|1|0|elwynn|Hero\n",
+      "canonical": "pick|1|1|0|elwynn|Hero|0,0,0,0,0|100,100,100,100\n",
+      "native_has_progress": true
+    },
+    {
+      "contract": "typed-default",
+      "input": "hero|1|1|0|0,0,0,0,0\n",
+      "canonical": "hero|1|1|0|0,0,0,0,0\n",
+      "native_has_progress": true
+    },
+    {
+      "contract": "hourly",
+      "now": 0,
+      "last": 0,
+      "backup": false
+    },
+    {
+      "contract": "hourly",
+      "now": 3599,
+      "last": 0,
+      "backup": false
+    },
+    {
+      "contract": "hourly",
+      "now": 3600,
+      "last": 0,
+      "backup": true
+    },
+    {
+      "contract": "hourly",
+      "now": 3601,
+      "last": 0,
+      "backup": true
+    },
+    {
+      "contract": "hourly",
+      "now": 10000,
+      "last": 10000,
+      "backup": false
+    },
+    {
+      "contract": "hourly",
+      "now": 10000,
+      "last": 6401,
+      "backup": false
+    },
+    {
+      "contract": "hourly",
+      "now": 10000,
+      "last": 6400,
+      "backup": true
+    },
+    {
+      "contract": "hourly",
+      "now": 10000,
+      "last": 10001,
+      "backup": true
+    },
+    {
+      "contract": "hourly",
+      "now": 0,
+      "last": 18446744073709551615,
+      "backup": true
+    },
+    {
+      "contract": "hourly",
+      "now": 18446744073709551615,
+      "last": 0,
+      "backup": true
+    },
+    {
+      "contract": "hourly",
+      "now": 18446744073709551615,
+      "last": 18446744073709551614,
+      "backup": false
+    },
+    {
+      "contract": "retention",
+      "count": 0,
+      "ordered": [],
+      "removed": []
+    },
+    {
+      "contract": "retention",
+      "count": 1,
+      "ordered": [
+        "Saves/Backup 0000.sav"
+      ],
+      "removed": []
+    },
+    {
+      "contract": "retention",
+      "count": 4,
+      "ordered": [
+        "Saves/Backup 0000.sav",
+        "Saves/Backup 0001.sav",
+        "Saves/Backup 0002.sav",
+        "Saves/Backup 0003.sav"
+      ],
+      "removed": []
+    },
+    {
+      "contract": "retention",
+      "count": 5,
+      "ordered": [
+        "Saves/Backup 0000.sav",
+        "Saves/Backup 0001.sav",
+        "Saves/Backup 0002.sav",
+        "Saves/Backup 0003.sav",
+        "Saves/Backup 0004.sav"
+      ],
+      "removed": []
+    },
+    {
+      "contract": "retention",
+      "count": 6,
+      "ordered": [
+        "Saves/Backup 0000.sav",
+        "Saves/Backup 0001.sav",
+        "Saves/Backup 0002.sav",
+        "Saves/Backup 0003.sav",
+        "Saves/Backup 0004.sav",
+        "Saves/Backup 0005.sav"
+      ],
+      "removed": [
+        "Saves/Backup 0000.sav"
+      ]
+    },
+    {
+      "contract": "retention",
+      "count": 7,
+      "ordered": [
+        "Saves/Backup 0000.sav",
+        "Saves/Backup 0001.sav",
+        "Saves/Backup 0002.sav",
+        "Saves/Backup 0003.sav",
+        "Saves/Backup 0004.sav",
+        "Saves/Backup 0005.sav",
+        "Saves/Backup 0006.sav"
+      ],
+      "removed": [
+        "Saves/Backup 0001.sav",
+        "Saves/Backup 0000.sav"
+      ]
+    },
+    {
+      "contract": "retention",
+      "count": 19,
+      "ordered": [
+        "Saves/Backup 0000.sav",
+        "Saves/Backup 0001.sav",
+        "Saves/Backup 0002.sav",
+        "Saves/Backup 0003.sav",
+        "Saves/Backup 0004.sav",
+        "Saves/Backup 0005.sav",
+        "Saves/Backup 0006.sav",
+        "Saves/Backup 0007.sav",
+        "Saves/Backup 0008.sav",
+        "Saves/Backup 0009.sav",
+        "Saves/Backup 0010.sav",
+        "Saves/Backup 0011.sav",
+        "Saves/Backup 0012.sav",
+        "Saves/Backup 0013.sav",
+        "Saves/Backup 0014.sav",
+        "Saves/Backup 0015.sav",
+        "Saves/Backup 0016.sav",
+        "Saves/Backup 0017.sav",
+        "Saves/Backup 0018.sav"
+      ],
+      "removed": [
+        "Saves/Backup 0013.sav",
+        "Saves/Backup 0012.sav",
+        "Saves/Backup 0011.sav",
+        "Saves/Backup 0010.sav",
+        "Saves/Backup 0009.sav",
+        "Saves/Backup 0008.sav",
+        "Saves/Backup 0007.sav",
+        "Saves/Backup 0006.sav",
+        "Saves/Backup 0005.sav",
+        "Saves/Backup 0004.sav",
+        "Saves/Backup 0003.sav",
+        "Saves/Backup 0002.sav",
+        "Saves/Backup 0001.sav",
+        "Saves/Backup 0000.sav"
+      ]
+    },
+    {
+      "contract": "retention",
+      "count": 20,
+      "ordered": [
+        "Saves/Backup 0000.sav",
+        "Saves/Backup 0001.sav",
+        "Saves/Backup 0002.sav",
+        "Saves/Backup 0003.sav",
+        "Saves/Backup 0004.sav",
+        "Saves/Backup 0005.sav",
+        "Saves/Backup 0006.sav",
+        "Saves/Backup 0007.sav",
+        "Saves/Backup 0008.sav",
+        "Saves/Backup 0009.sav",
+        "Saves/Backup 0010.sav",
+        "Saves/Backup 0011.sav",
+        "Saves/Backup 0012.sav",
+        "Saves/Backup 0013.sav",
+        "Saves/Backup 0014.sav",
+        "Saves/Backup 0015.sav",
+        "Saves/Backup 0016.sav",
+        "Saves/Backup 0017.sav",
+        "Saves/Backup 0018.sav",
+        "Saves/Backup 0019.sav"
+      ],
+      "removed": [
+        "Saves/Backup 0014.sav",
+        "Saves/Backup 0013.sav",
+        "Saves/Backup 0012.sav",
+        "Saves/Backup 0011.sav",
+        "Saves/Backup 0010.sav",
+        "Saves/Backup 0009.sav",
+        "Saves/Backup 0008.sav",
+        "Saves/Backup 0007.sav",
+        "Saves/Backup 0006.sav",
+        "Saves/Backup 0005.sav",
+        "Saves/Backup 0004.sav",
+        "Saves/Backup 0003.sav",
+        "Saves/Backup 0002.sav",
+        "Saves/Backup 0001.sav",
+        "Saves/Backup 0000.sav"
+      ]
+    },
+    {
+      "contract": "retention",
+      "count": 21,
+      "ordered": [
+        "Saves/Backup 0000.sav",
+        "Saves/Backup 0001.sav",
+        "Saves/Backup 0002.sav",
+        "Saves/Backup 0003.sav",
+        "Saves/Backup 0004.sav",
+        "Saves/Backup 0005.sav",
+        "Saves/Backup 0006.sav",
+        "Saves/Backup 0007.sav",
+        "Saves/Backup 0008.sav",
+        "Saves/Backup 0009.sav",
+        "Saves/Backup 0010.sav",
+        "Saves/Backup 0011.sav",
+        "Saves/Backup 0012.sav",
+        "Saves/Backup 0013.sav",
+        "Saves/Backup 0014.sav",
+        "Saves/Backup 0015.sav",
+        "Saves/Backup 0016.sav",
+        "Saves/Backup 0017.sav",
+        "Saves/Backup 0018.sav",
+        "Saves/Backup 0019.sav",
+        "Saves/Backup 0020.sav"
+      ],
+      "removed": [
+        "Saves/Backup 0015.sav",
+        "Saves/Backup 0014.sav",
+        "Saves/Backup 0013.sav",
+        "Saves/Backup 0012.sav",
+        "Saves/Backup 0011.sav",
+        "Saves/Backup 0010.sav",
+        "Saves/Backup 0009.sav",
+        "Saves/Backup 0008.sav",
+        "Saves/Backup 0007.sav",
+        "Saves/Backup 0006.sav",
+        "Saves/Backup 0005.sav",
+        "Saves/Backup 0004.sav",
+        "Saves/Backup 0003.sav",
+        "Saves/Backup 0002.sav",
+        "Saves/Backup 0001.sav",
+        "Saves/Backup 0000.sav"
+      ]
+    },
+    {
+      "contract": "retention",
+      "count": 31,
+      "ordered": [
+        "Saves/Backup 0000.sav",
+        "Saves/Backup 0001.sav",
+        "Saves/Backup 0002.sav",
+        "Saves/Backup 0003.sav",
+        "Saves/Backup 0004.sav",
+        "Saves/Backup 0005.sav",
+        "Saves/Backup 0006.sav",
+        "Saves/Backup 0007.sav",
+        "Saves/Backup 0008.sav",
+        "Saves/Backup 0009.sav",
+        "Saves/Backup 0010.sav",
+        "Saves/Backup 0011.sav",
+        "Saves/Backup 0012.sav",
+        "Saves/Backup 0013.sav",
+        "Saves/Backup 0014.sav",
+        "Saves/Backup 0015.sav",
+        "Saves/Backup 0016.sav",
+        "Saves/Backup 0017.sav",
+        "Saves/Backup 0018.sav",
+        "Saves/Backup 0019.sav",
+        "Saves/Backup 0020.sav",
+        "Saves/Backup 0021.sav",
+        "Saves/Backup 0022.sav",
+        "Saves/Backup 0023.sav",
+        "Saves/Backup 0024.sav",
+        "Saves/Backup 0025.sav",
+        "Saves/Backup 0026.sav",
+        "Saves/Backup 0027.sav",
+        "Saves/Backup 0028.sav",
+        "Saves/Backup 0029.sav",
+        "Saves/Backup 0030.sav"
+      ],
+      "removed": [
+        "Saves/Backup 0025.sav",
+        "Saves/Backup 0024.sav",
+        "Saves/Backup 0023.sav",
+        "Saves/Backup 0022.sav",
+        "Saves/Backup 0021.sav",
+        "Saves/Backup 0020.sav",
+        "Saves/Backup 0019.sav",
+        "Saves/Backup 0018.sav",
+        "Saves/Backup 0017.sav",
+        "Saves/Backup 0016.sav",
+        "Saves/Backup 0015.sav",
+        "Saves/Backup 0014.sav",
+        "Saves/Backup 0013.sav",
+        "Saves/Backup 0012.sav",
+        "Saves/Backup 0011.sav",
+        "Saves/Backup 0010.sav",
+        "Saves/Backup 0009.sav",
+        "Saves/Backup 0008.sav",
+        "Saves/Backup 0007.sav",
+        "Saves/Backup 0006.sav",
+        "Saves/Backup 0005.sav",
+        "Saves/Backup 0004.sav",
+        "Saves/Backup 0003.sav",
+        "Saves/Backup 0002.sav",
+        "Saves/Backup 0001.sav",
+        "Saves/Backup 0000.sav"
+      ]
+    },
+    {
+      "contract": "utc-calendar",
+      "seconds": 0,
+      "fields": [
+        1970,
+        1,
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "contract": "utc-calendar",
+      "seconds": 1,
+      "fields": [
+        1970,
+        1,
+        1,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "contract": "utc-calendar",
+      "seconds": 59,
+      "fields": [
+        1970,
+        1,
+        1,
+        0,
+        0,
+        59
+      ]
+    },
+    {
+      "contract": "utc-calendar",
+      "seconds": 60,
+      "fields": [
+        1970,
+        1,
+        1,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "contract": "utc-calendar",
+      "seconds": 3599,
+      "fields": [
+        1970,
+        1,
+        1,
+        0,
+        59,
+        59
+      ]
+    },
+    {
+      "contract": "utc-calendar",
+      "seconds": 3600,
+      "fields": [
+        1970,
+        1,
+        1,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "contract": "utc-calendar",
+      "seconds": 86399,
+      "fields": [
+        1970,
+        1,
+        1,
+        23,
+        59,
+        59
+      ]
+    },
+    {
+      "contract": "utc-calendar",
+      "seconds": 86400,
+      "fields": [
+        1970,
+        1,
+        2,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "contract": "utc-calendar",
+      "seconds": 951782399,
+      "fields": [
+        2000,
+        2,
+        28,
+        23,
+        59,
+        59
+      ]
+    },
+    {
+      "contract": "utc-calendar",
+      "seconds": 951782400,
+      "fields": [
+        2000,
+        2,
+        29,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "contract": "utc-calendar",
+      "seconds": 951868800,
+      "fields": [
+        2000,
+        3,
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "contract": "utc-calendar",
+      "seconds": 1700000000,
+      "fields": [
+        2023,
+        11,
+        14,
+        22,
+        13,
+        20
+      ]
+    },
+    {
+      "contract": "utc-calendar",
+      "seconds": 2147483647,
+      "fields": [
+        2038,
+        1,
+        19,
+        3,
+        14,
+        7
+      ]
+    },
+    {
+      "contract": "utc-calendar",
+      "seconds": 2147483648,
+      "fields": [
+        2038,
+        1,
+        19,
+        3,
+        14,
+        8
+      ]
+    },
+    {
+      "contract": "utc-calendar",
+      "seconds": 4107542400,
+      "fields": [
+        2100,
+        3,
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "contract": "utc-calendar",
+      "seconds": 4133980800,
+      "fields": [
+        2101,
+        1,
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "contract": "utc-calendar",
+      "seconds": 253402300799,
+      "fields": [
+        9999,
+        12,
+        31,
+        23,
+        59,
+        59
+      ]
+    },
+    {
+      "contract": "utc-calendar",
+      "seconds": 4294967295,
+      "fields": [
+        2106,
+        2,
+        7,
+        6,
+        28,
+        15
+      ]
+    },
+    {
+      "contract": "utc-calendar",
+      "seconds": 1099511627776,
+      "fields": [
+        36812,
+        2,
+        20,
+        0,
+        36,
+        16
+      ]
+    },
+    {
+      "contract": "utc-calendar",
+      "seconds": 18446744073709551615,
+      "fields": [
+        584554051223,
+        11,
+        9,
+        7,
+        0,
+        15
+      ]
+    }
+  ],
+  "seams": [
+    "shared Save instruction-fixture allocation/metadata/cache seams",
+    "filesystem deletion records request and returns success"
+  ],
+  "limitations": [
+    "No clock, filesystem, application or platform I/O is executed."
+  ]
+}

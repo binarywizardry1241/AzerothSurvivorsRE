@@ -1,0 +1,115 @@
+{
+  "target": {
+    "version": "0.112.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+    "size_bytes": 140514816,
+    "identity_manifest": "docs/analysis/coverage/targets.json",
+    "version_provenance": "matching_embedded_updater_and_dialog_markers",
+    "runtime_data": {
+      "directory": "installed-game/Data",
+      "archives": [
+        {
+          "path": "installed-game/Data/patch-2.MPQ",
+          "size_bytes": 4690878,
+          "sha256": "366edee41642a5dda22ed90cc252b543ee375755b7e8bee81e2a6cd59fd7b286"
+        },
+        {
+          "path": "installed-game/Data/patch-3.MPQ",
+          "size_bytes": 2580491,
+          "sha256": "75c35ca5b8075197252581e301e8900143007fdf37b493ad271ae1bd39f95a29"
+        },
+        {
+          "path": "installed-game/Data/patch-4.MPQ",
+          "size_bytes": 22769233,
+          "sha256": "2e895e0e0ff6a4781d0e0aaa6ea7d32ed1fe36841e17806fe1855cb880d18865"
+        },
+        {
+          "path": "installed-game/Data/patch-5.MPQ",
+          "size_bytes": 267019039,
+          "sha256": "5008e56873718b468fa5ae1b697dcbe4f5da9ffe6c793f3ef9939dbd7716f3d8"
+        },
+        {
+          "path": "installed-game/Data/patch-6.MPQ",
+          "size_bytes": 212228,
+          "sha256": "cad6ff59b5df028a507581befb836fce07894057e15fe63d9fdc553a95b7ceb5"
+        },
+        {
+          "path": "installed-game/Data/patch-7.MPQ",
+          "size_bytes": 276649,
+          "sha256": "f5fb15b181cf01cc6b5cf2ee9948a27ecc4ba27bab9a8bec584df4381932aae6"
+        },
+        {
+          "path": "installed-game/Data/patch-8.MPQ",
+          "size_bytes": 4155417,
+          "sha256": "ae3aaa29cadb7aeba8255f5b4a8305c7cbecfe8f0d3ed9646522113d16c3e12e"
+        },
+        {
+          "path": "installed-game/Data/patch-9.MPQ",
+          "size_bytes": 5739608,
+          "sha256": "ffff8ea890bdaf91a1680543ac60106db92132bc2210105279610fa73661a524"
+        },
+        {
+          "path": "installed-game/Data/patch.MPQ",
+          "size_bytes": 1340199244,
+          "sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf"
+        }
+      ]
+    }
+  },
+  "ranges": [
+    {
+      "role": "victim-multiplier",
+      "start": "0x14593ed6c",
+      "end_exclusive": "0x14593f188",
+      "file_offset": "0x593e16c",
+      "byte_count": 1052,
+      "sha256": "7d98f862548bd421e56eb26882480cc7162fc0c43d7e0ea1b3f8f1c241a59e75"
+    },
+    {
+      "role": "rank-input",
+      "start": "0x14599e9ae",
+      "end_exclusive": "0x14599ea3b",
+      "file_offset": "0x599ddae",
+      "byte_count": 141,
+      "sha256": "3c28d4ee6c356a1986a4cb84cc98580dac51a2f2fc1f17f82d08aa5e4010dd33"
+    },
+    {
+      "role": "rank-numeric",
+      "start": "0x14599eacb",
+      "end_exclusive": "0x14599eb48",
+      "file_offset": "0x599decb",
+      "byte_count": 125,
+      "sha256": "e229b601f34d2e906e2284e6ab7e1a88a11dd8bb8acd04b692d8cd81c4c8b1d9"
+    }
+  ],
+  "assembly_sha256": "4e6a64e38fa3e31282cd3bad407a678a8e80c88d7df108bb5f527c748ad6ee31",
+  "ghidra": [
+    {
+      "role": "victim-hit",
+      "evidence_id": "ev_383c1105f84cfde51d1a57baf869f11dbe5abeb72c7a2f3dc1a90fd4d631e409",
+      "provider": "Ghidra12.1.4",
+      "input_sha256": "1e320a6ceb0789d42bc494e27465a0ddab0dc1c59987ae328bd10a339f4d1b30",
+      "procedure": {
+        "procedure": "0x14593ec90"
+      }
+    },
+    {
+      "role": "rank-collector",
+      "evidence_id": "ev_be02541abdbf05b4d70a71f7ff4f581302988350ceeab120d721fc1e359b50c0",
+      "provider": "Ghidra12.1.4",
+      "input_sha256": "c6dc2da4937eaa7e706461e694ea9fa8d757a7b5f6e641eab4236c872355ff12",
+      "procedure": {
+        "procedure": "0x14599e8d0"
+      }
+    }
+  ],
+  "description_owner": "../warlock-talents/manifest.json",
+  "saved_allocation_owner": "../../../talent-allocations-0.112.0.md",
+  "limits": [
+    "Ghidra imports exact selected function bytes at original virtual addresses; nativeWin64 ABI and external data follow independentPE instruction checks.",
+    "Raw imports omit external callees/data and do not establish complete references.",
+    "One canonical selected instruction extract is retained here; current descriptions reuse the sharedWarlock formatter evidence and exact-target native fixture.",
+    "Nativeinstruction emulation uses controlled inputs; no source compilation, application process or gameplay/parity comparison."
+  ]
+}

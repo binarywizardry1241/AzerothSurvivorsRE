@@ -1,0 +1,500 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.127.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+    "size_bytes": 146721280
+  },
+  "generator": {
+    "path": "scripts/summarize-native-image.py",
+    "sha256": "df9a85d0c98689681ef700ad0a5ea3fc421fa275ba84124cff3d42d027046807",
+    "dependencies": [
+      {
+        "path": "scripts/derived_gzip.py",
+        "sha256": "3d459854371520d6c8866262e7d1326c117bf58e07d7d3537009cc58e63d761f"
+      },
+      {
+        "path": "scripts/instruction_facts.py",
+        "sha256": "557bb3caaa431454f58f85061cd3f40694bcbe40167ffbbf4604e9e4a4b3c0c5"
+      }
+    ]
+  },
+  "installed_reference_import": "read-only-in-place",
+  "profile": {
+    "format": "rea-whole-image-native-census-address-code-v6",
+    "persistence_format": "ghidra-program-checkpoint-v1",
+    "address_code_leads_sha256": "7ae1a15f246c34dd31f26d6bf611ffc4472de11103f9bced42adf31170bd4dbd",
+    "guarded_jump_tables_sha256": "62c5383c945bbdb483686441cc7f362c06b3c8c89a97a12bef6567a7049dbe0c",
+    "diagnostic_code_leads_sha256": "267ab047d40dc616f1d2b5846c4faa31eeb93f676112635320f816b2425b1b73",
+    "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+    "script_sha256": "9620e0505314b2ce1797f7419c89c9919beac2adfa772289bcfc15006a9be9df",
+    "starts_sha256": "670774aa99541bd95ab09b185535db7b8d3dec5f5af707d60a355e04e87aec6b",
+    "auto_analysis": false,
+    "installed_reference_import": "read-only-in-place",
+    "heap": "6G",
+    "ghidra_version": "12.1.4",
+    "loader_options": [
+      "-loader-loadLibraries",
+      "false",
+      "-loader-libraryLoadDepth",
+      "0",
+      "-loader-ordinalLookup",
+      "false",
+      "-loader-linkExistingProjectLibraries",
+      "false"
+    ],
+    "execution": "persistent-headless-process",
+    "checkpoint_authority": "saved-Program-options",
+    "incremental_reuse": true,
+    "checkpoint_interval_ms": 30000,
+    "checkpoint_max_batches": 256
+  },
+  "profile_digest": "64d89546a815195bfadf72f5b5c1623f894d884321546006eeb751e6a4dc45ad",
+  "counts": {
+    "instructions": 23463701,
+    "instruction_bytes": 94144917,
+    "computed_calls": 71092,
+    "computed_jumps": 142756,
+    "native_functions": 434545,
+    "body_ranges": 491595,
+    "references": 4062058,
+    "external_locations": 425,
+    "seeds_without_instructions": 0,
+    "seeds_without_functions": 0,
+    "seeded_functions_repaired": 431912
+  },
+  "incremental_census": {
+    "reuse_mode": "full",
+    "reuse_fallback_reason": "unresolved-thunk-boundary-dependency",
+    "predecessor_plan_sha256": "c5fbbfecadc8d58401f18ab4fa4dc36b782ea03a56aefb7a9456dca602b5b029",
+    "decode_entries_requested": 455958,
+    "decode_entries_reused": 0,
+    "body_entries_requested": 431912,
+    "body_entries_reused": 0,
+    "body_entries_affected": 0,
+    "body_entries_new": 431912,
+    "body_repairs_executed": 431912
+  },
+  "guarded_flow_observations": {
+    "guarded_tables": 2587,
+    "guarded_table_edges": 17131,
+    "additional_code_seed_targets": 24046,
+    "guarded_flow_edges_applied": 17131,
+    "additional_code_seeds_without_instructions": 0
+  },
+  "guarded_edge_digest": "e51f898e4895939ce344040d8276daec30738fd70502afaa6483a0dc9d0c7098",
+  "direct_call_helper_observations": {
+    "direct_call_helper_targets": 2572,
+    "direct_call_helper_functions_created": 38,
+    "direct_call_helpers_without_instructions": 0,
+    "direct_call_helpers_without_owner": 0
+  },
+  "direct_call_helper_final_ownership": {
+    "counts": {
+      "targets": 2572,
+      "without_final_owner": 0,
+      "owner_changed_during_primary_body_repair": 3
+    },
+    "raw_helper_owner_observation_stage": "before-primary-body-repair",
+    "final_owner_audit": {
+      "path": "runtime/analysis/census/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/42680c2ae461bcdfe7cd797c66fb2737a9beeb67e7b7959cdd10d6d0405f6a8e/direct-call-helper-final-owners.tsv.gz",
+      "sha256": "f8d920ceaaec4ff71e360202a12d49fb384e9d86ec2e2b91463f5d054a9e75e0"
+    }
+  },
+  "guarded_table_input": {
+    "path": "runtime/analysis/census/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/42680c2ae461bcdfe7cd797c66fb2737a9beeb67e7b7959cdd10d6d0405f6a8e/guarded-tables-input.json",
+    "sha256": "62c5383c945bbdb483686441cc7f362c06b3c8c89a97a12bef6567a7049dbe0c"
+  },
+  "diagnostic_code_input": {
+    "path": "runtime/analysis/census/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/42680c2ae461bcdfe7cd797c66fb2737a9beeb67e7b7959cdd10d6d0405f6a8e/diagnostic-code-input.json",
+    "sha256": "267ab047d40dc616f1d2b5846c4faa31eeb93f676112635320f816b2425b1b73"
+  },
+  "import_thunk_input": {
+    "path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/pipeline/1cfe85a0d48b5149/expanded/import-thunks-input.json",
+    "sha256": "6a8261ee1abbfbc7974a190e3083988f6bcee756194c08274c4ca88facfb9f86"
+  },
+  "unwind_handler_input": {
+    "path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/pipeline/1cfe85a0d48b5149/expanded/unwind-handlers-input.json",
+    "sha256": "4919d1c0619a722af78657bfc69c047c001e5019be22ef6210a6eb263cdc8d90"
+  },
+  "address_code_input": {
+    "path": "runtime/analysis/census/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/42680c2ae461bcdfe7cd797c66fb2737a9beeb67e7b7959cdd10d6d0405f6a8e/address-code-input.json",
+    "sha256": "7ae1a15f246c34dd31f26d6bf611ffc4472de11103f9bced42adf31170bd4dbd"
+  },
+  "additional_address_code_starts": 5776,
+  "additional_diagnostic_code_starts": 1356,
+  "seed_scope": "all",
+  "requested_seeds": 431912,
+  "requested_seed_function_records": 431912,
+  "requested_seeds_with_decoded_entries": 431912,
+  "requested_seeds_with_repaired_flow_bodies": 431912,
+  "declared_starts": 359575,
+  "declared_starts_with_actual_bodies": 359575,
+  "independent_instructions": {
+    "performed": true,
+    "decoder": "Capstone",
+    "version": "5.0.7",
+    "instruction_facts": {
+      "schema_version": 1,
+      "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+      "contract_sha256": "8db31b3580a55574db43dfd4d0c861c112312d42ac0d132b6febacdad4a297e5",
+      "contract": {
+        "schema": 1,
+        "decoder": "Capstone",
+        "architecture": 3,
+        "mode": 8,
+        "detail": false,
+        "implementation": {
+          "python_binding_sha256": "6f8a27fe069aa89a46974e189b5365d56eb5e02c2fd581d2fbfad7fbba51549f",
+          "native_library_sha256": "016084c6e70d929249a2abb22f1afda95095294e6cd70f509964ffc54006bf94",
+          "python_version": "5.0.7",
+          "native_version": [
+            5,
+            0,
+            1280
+          ]
+        },
+        "helper_sha256": "557bb3caaa431454f58f85061cd3f40694bcbe40167ffbbf4604e9e4a4b3c0c5",
+        "purpose": "independent-current-byte-and-boundary-verification"
+      },
+      "instruction_stream_sha256": "b44f43934cc94737f7386a69823169720f8ceefa4259e2c910772a5b84e80510",
+      "instructions": 23463701,
+      "scope": "requested-instruction-boundaries",
+      "current_source_bytes_verified": true,
+      "ownership_or_program_flow_cached": false
+    },
+    "exact_source_bytes_verified": true,
+    "instruction_records": 23463701,
+    "decoded_bytes": 94144917,
+    "instructions_inside_declared_extents": 22991611,
+    "instructions_outside_declared_extents": 472090,
+    "flow_kinds": {
+      "COMPUTED_CALL": 71089,
+      "COMPUTED_CALL_TERMINATOR": 3,
+      "COMPUTED_JUMP": 142756,
+      "CONDITIONAL_JUMP": 1498418,
+      "FALL_THROUGH": 19738720,
+      "TERMINATOR": 443183,
+      "UNCONDITIONAL_CALL": 1111392,
+      "UNCONDITIONAL_JUMP": 458140
+    },
+    "declared_extent_bytes_unobserved_by_ghidra": 5302274,
+    "unobserved_declared_ranges": 56901,
+    "unobserved_bytes_by_candidate_kind": {
+      "NOP-CC-instruction-candidate": 383322,
+      "mixed-unclassified": 4914371,
+      "uniform-CC-candidate": 2,
+      "uniform-NOP-candidate": 4579
+    },
+    "unobserved_range_inventory": {
+      "path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/pipeline/1cfe85a0d48b5149/verify-expanded-43e90de2a73ee59f/missing-declared-ranges.tsv.gz",
+      "sha256": "7bd72dcd9a1d49001d14a1772bff7c2aaa451f2dd77074946ccdb6bc89e10421"
+    },
+    "executable_sections": {
+      "mapped_bytes": 102793566,
+      "observed_instruction_union_bytes": 94144917,
+      "unobserved_bytes": 8648649,
+      "unobserved_declared_bytes": 5302274,
+      "unobserved_outside_declared_bytes": 3346375,
+      "unobserved_ranges": 474558,
+      "unobserved_bytes_by_location_and_candidate_kind": {
+        "declared:NOP-CC-instruction-candidate": 383322,
+        "declared:mixed-unclassified": 4914371,
+        "declared:uniform-CC-candidate": 2,
+        "declared:uniform-NOP-candidate": 4579,
+        "outside-declared:NOP-CC-instruction-candidate": 1630832,
+        "outside-declared:mixed-unclassified": 143975,
+        "outside-declared:uniform-CC-candidate": 1558705,
+        "outside-declared:uniform-NOP-candidate": 12863
+      },
+      "range_inventory": {
+        "path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/pipeline/1cfe85a0d48b5149/verify-expanded-43e90de2a73ee59f/missing-executable-ranges.tsv.gz",
+        "sha256": "0b94daa411ff37f790ab3cbd94a3ba79a16151673e937cca2c7f55b3906b6492"
+      }
+    },
+    "padding_or_noncode_proven": false
+  },
+  "reference_kinds": {
+    "COMPUTED_JUMP": 17131,
+    "CONDITIONAL_JUMP": 1498418,
+    "DATA": 794909,
+    "INDIRECTION": 184,
+    "READ": 180983,
+    "READ_WRITE": 505,
+    "UNCONDITIONAL_CALL": 1111392,
+    "UNCONDITIONAL_JUMP": 458140,
+    "WRITE": 396
+  },
+  "reference_destinations": {
+    "memory-without-native-body": 551713,
+    "native-body": 3509920,
+    "non-default-address-space": 425
+  },
+  "reference_source_ownership": {
+    "inside_native_body": 3249846,
+    "outside_native_body": 812212
+  },
+  "declared_import_observations": {
+    "slot_count": 425,
+    "libraries": {
+      "ADVAPI32.dll": 1,
+      "GDI32.dll": 5,
+      "KERNEL32.dll": 52,
+      "USER32.dll": 10,
+      "VCRUNTIME140.dll": 9,
+      "advapi32.dll": 10,
+      "api-ms-win-core-synch-l1-2-0.dll": 3,
+      "api-ms-win-core-winrt-l1-1-0.dll": 1,
+      "api-ms-win-crt-heap-l1-1-0.dll": 2,
+      "api-ms-win-crt-locale-l1-1-0.dll": 1,
+      "api-ms-win-crt-math-l1-1-0.dll": 56,
+      "api-ms-win-crt-runtime-l1-1-0.dll": 19,
+      "api-ms-win-crt-stdio-l1-1-0.dll": 2,
+      "api-ms-win-crt-string-l1-1-0.dll": 2,
+      "avrt.dll": 3,
+      "bcrypt.dll": 1,
+      "bcryptprimitives.dll": 1,
+      "dwmapi.dll": 2,
+      "gdi32.dll": 6,
+      "imm32.dll": 6,
+      "kernel32.dll": 79,
+      "ntdll.dll": 7,
+      "ole32.dll": 10,
+      "oleaut32.dll": 8,
+      "opengl32.dll": 5,
+      "pdh.dll": 7,
+      "powrprof.dll": 1,
+      "psapi.dll": 2,
+      "shell32.dll": 3,
+      "uiautomationcore.dll": 6,
+      "user32.dll": 81,
+      "uxtheme.dll": 1,
+      "ws2_32.dll": 23
+    },
+    "native_references_by_library": {
+      "ADVAPI32.dll": 3,
+      "GDI32.dll": 6,
+      "KERNEL32.dll": 115,
+      "USER32.dll": 17,
+      "VCRUNTIME140.dll": 9,
+      "advapi32.dll": 13,
+      "api-ms-win-core-synch-l1-2-0.dll": 278,
+      "api-ms-win-core-winrt-l1-1-0.dll": 6,
+      "api-ms-win-crt-heap-l1-1-0.dll": 2,
+      "api-ms-win-crt-locale-l1-1-0.dll": 1,
+      "api-ms-win-crt-math-l1-1-0.dll": 56,
+      "api-ms-win-crt-runtime-l1-1-0.dll": 19,
+      "api-ms-win-crt-stdio-l1-1-0.dll": 2,
+      "api-ms-win-crt-string-l1-1-0.dll": 2,
+      "avrt.dll": 5,
+      "bcrypt.dll": 1,
+      "bcryptprimitives.dll": 4,
+      "dwmapi.dll": 6,
+      "gdi32.dll": 9,
+      "imm32.dll": 16,
+      "kernel32.dll": 626,
+      "ntdll.dll": 24,
+      "ole32.dll": 27,
+      "oleaut32.dll": 30,
+      "opengl32.dll": 74,
+      "pdh.dll": 8,
+      "powrprof.dll": 1,
+      "psapi.dll": 2,
+      "shell32.dll": 6,
+      "uiautomationcore.dll": 6,
+      "user32.dll": 262,
+      "uxtheme.dll": 1,
+      "ws2_32.dll": 139
+    },
+    "slot_source_owner_pairs": 1414,
+    "runtime_slot_overwrites_or_external_implementation_verified": false
+  },
+  "relocated_code_pointer_observations": {
+    "slots": 528117,
+    "slot_sections": {
+      ".data": 64,
+      ".rdata": 528053
+    },
+    "distinct_encoded_targets": 137058,
+    "slots_targeting_actual_native_entries": 528083,
+    "slots_targeting_native_body_bytes": 528117,
+    "native_reference_kinds_to_slots": {
+      "DATA": 2,
+      "INDIRECTION": 1,
+      "READ": 121,
+      "WRITE": 9
+    },
+    "slot_source_owner_pairs": 66,
+    "dynamic_callee_or_vtable_semantics_established": false
+  },
+  "direct_native_call_pairs": 820183,
+  "call_destinations_without_native_owner": 0,
+  "call_source_sites_without_native_owner": 4424,
+  "global_static_observations": {
+    "read_write_reference_records": {
+      "READ": 180983,
+      "READ_WRITE": 505,
+      "WRITE": 396
+    },
+    "distinct_targets": 51518,
+    "reader_pairs": 148182,
+    "writer_pairs": 649,
+    "complete_alias_or_global_semantics": false
+  },
+  "artifacts": {
+    "directory": "runtime/analysis/census/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/42680c2ae461bcdfe7cd797c66fb2737a9beeb67e7b7959cdd10d6d0405f6a8e",
+    "plan_sha256": "943ae141f7b1e934d405e8f91d8df090600d65c30ecc1d3733f8db35590c4cef",
+    "progress_sha256": "15674f30887e1671ca9f884df6a4d4fc60df031c981cc841d3a3d1271b19d9a2",
+    "session_result_sha256": "194392c3ac38c25da94a2e5d14547ba4df020d8fc9d4a34472cd277f0052ed87",
+    "files": {
+      "instructions.tsv.gz": {
+        "sha256": "2b87be3b87615e6074a421eed43b81058eeadbf27f54710ae4e23556f9c8a3be",
+        "bytes": 128158593
+      },
+      "bodies.tsv.gz": {
+        "sha256": "1cb005249a2b0ad04e92f22900f66204041f029a39d067a5a39f28d205c88eca",
+        "bytes": 4330640
+      },
+      "references.tsv.gz": {
+        "sha256": "a0d871431360fb541cbd123d14e74089e3fd52b1c5dc64002f8330356e49295e",
+        "bytes": 23884298
+      },
+      "externals.tsv.gz": {
+        "sha256": "010bf0080d0802a7d2e01f9890708cf534b9ef09a523cdf218ab72855bfff274",
+        "bytes": 4266
+      },
+      "direct-call-helpers.tsv.gz": {
+        "sha256": "3bc94b0b351c55413a1c5e9f46f19b98306765c07e39d60669cc59246a0ef487",
+        "bytes": 13445
+      },
+      "reuse-state.json.gz": {
+        "path": "runtime/analysis/census/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/42680c2ae461bcdfe7cd797c66fb2737a9beeb67e7b7959cdd10d6d0405f6a8e/reuse-state.json.gz",
+        "sha256": "bda8c90309cd4302925f835e1d552ca984a9e4467de87c60890752e12c46b5b9",
+        "bytes": 2395613
+      }
+    }
+  },
+  "whole_image_input": true,
+  "all_seeded_body_operations_complete": true,
+  "global_native_semantics_complete": false,
+  "global_references_complete": false,
+  "native_source_ownership_complete": false,
+  "parity_verified": false,
+  "gap_ids": [
+    41
+  ],
+  "limits": [
+    "Ghidra flow bodies are observed, not forced to declared unwind extents; computed flow and decoder disagreements remain explicit.",
+    "Auto-analysis and semantic/decompiler/address-table passes are disabled. Exported static references are complete for this Program state, not all possible runtime edges.",
+    "Global read/write records and direct call pairs establish machine-code relationships, not source-level aliasing, reconstructed behavior or semantic ownership.",
+    "No application compilation, target execution or original/rebuilt comparison."
+  ],
+  "curation_generator": {
+    "path": "scripts/compact-native-census.py",
+    "sha256": "7942342b8e744d859fd72aafc6af37a5580f507908fd9fad806821c5424862b3",
+    "dependencies": [
+      {
+        "path": "scripts/instruction_facts.py",
+        "sha256": "557bb3caaa431454f58f85061cd3f40694bcbe40167ffbbf4604e9e4a4b3c0c5"
+      }
+    ]
+  },
+  "diagnostic_binding_counts": {
+    "paths": 771,
+    "custom_paths": 69,
+    "paths_with_verified_diagnostic_sites": 611,
+    "paths_with_actual_native_owners": 598,
+    "verified_sites": 18158,
+    "sites_without_actual_native_owner": 1224
+  },
+  "diagnostic_owner_exceptions": {
+    "paths_with_unowned_verified_sites": 70,
+    "custom_paths": [
+      {
+        "path": "crates/wenilla-rogue-app/src/screens/armory.rs",
+        "unowned_sites": 5
+      },
+      {
+        "path": "crates/wenilla-rogue-app/src/screens/markers.rs",
+        "unowned_sites": 1
+      },
+      {
+        "path": "crates/wenilla-rogue-app/src/screens/options.rs",
+        "unowned_sites": 9
+      },
+      {
+        "path": "crates/wenilla-rogue-app/src/screens/rewards.rs",
+        "unowned_sites": 3
+      },
+      {
+        "path": "crates/wenilla-rogue/src/content.rs",
+        "unowned_sites": 14
+      },
+      {
+        "path": "crates/wenilla-rogue/src/fonts.rs",
+        "unowned_sites": 1
+      },
+      {
+        "path": "crates/wenilla-rogue/src/game/abilities.rs",
+        "unowned_sites": 7
+      },
+      {
+        "path": "crates/wenilla-rogue/src/game/auras.rs",
+        "unowned_sites": 2
+      },
+      {
+        "path": "crates/wenilla-rogue/src/game/enemy.rs",
+        "unowned_sites": 7
+      },
+      {
+        "path": "crates/wenilla-rogue/src/game/hazards.rs",
+        "unowned_sites": 2
+      },
+      {
+        "path": "crates/wenilla-rogue/src/game/talents.rs",
+        "unowned_sites": 1
+      },
+      {
+        "path": "crates/wenilla-rogue/src/game/upgrades.rs",
+        "unowned_sites": 1
+      },
+      {
+        "path": "crates/wenilla-rogue/src/i18n.rs",
+        "unowned_sites": 3
+      },
+      {
+        "path": "crates/wenilla-rogue/src/jewelry.rs",
+        "unowned_sites": 1
+      },
+      {
+        "path": "crates/wenilla-rogue/src/nav.rs",
+        "unowned_sites": 4
+      }
+    ],
+    "whole_queue_paths_without_any_owner": [
+      "crates/benilla-app/src/creature_anim/driver/mode.rs",
+      "crates/benilla-app/src/ui_mail/net.rs",
+      "crates/benilla-app/src/ui_script/extract/text.rs",
+      "crates/benilla-app/src/ui_text/markup.rs",
+      "crates/benilla-assets/src/blp.rs",
+      "crates/benilla-protocol/src/auth.rs",
+      "crates/benilla-protocol/src/messages/items.rs",
+      "crates/benilla-protocol/src/transport/local.rs",
+      "crates/benilla-protocol/src/transport/native.rs",
+      "crates/benilla-protocol/src/world/reader.rs",
+      "crates/benilla-protocol/src/world/session.rs",
+      "crates/benilla-ui/src/script/backdrop.rs",
+      "crates/benilla-ui/src/script/char_name.rs"
+    ],
+    "complete_exception_records_in_diagnostic_binding_audit": true
+  },
+  "diagnostic_binding_audit": {
+    "path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/pipeline/1cfe85a0d48b5149/verify-expanded-43e90de2a73ee59f/diagnostic-bindings.json",
+    "sha256": "bc2eb6b2cd9b0fe1ab2c6d13ea0f773a3fd8be352b4fb9e1ad5780b01a6ce61f"
+  },
+  "full_summary_snapshot": {
+    "path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/pipeline/1cfe85a0d48b5149/verify-expanded-43e90de2a73ee59f/full-summary.json",
+    "sha256": "5343d24603e505f42cc1af266fe0defb3059b7f7dbc022575aeecf1050b8bd5a"
+  }
+}

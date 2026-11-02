@@ -1,0 +1,298 @@
+{
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "spans": [
+    {
+      "role": "catalog-row",
+      "address": "0x1458d0526",
+      "end_exclusive": "0x1458d05ac",
+      "file_offset": "0x58cf926",
+      "sha256": "322ba4ef5e1591d93efd08f4fc264170742f8d07a4622a1c67cac0a4dbdff3a0"
+    },
+    {
+      "role": "kill-pair-match",
+      "address": "0x1458d49ad",
+      "end_exclusive": "0x1458d49e4",
+      "file_offset": "0x58d3dad",
+      "sha256": "3a6560e5335095e5f62c9ee28fdabace54d65ca646541cacd2f6727e4f2a6f56"
+    }
+  ],
+  "kill_record_source": "docs/analysis/evidence/0.105.0/run-meters/accounting/hit.asm",
+  "kill_record_range": [
+    "0x145934606",
+    "0x145934699"
+  ],
+  "membership_cases": [
+    {
+      "name": "empty",
+      "pairs": [],
+      "matches": false
+    },
+    {
+      "name": "match",
+      "pairs": [
+        [
+          1493,
+          116
+        ]
+      ],
+      "matches": true
+    },
+    {
+      "name": "wrong_spell",
+      "pairs": [
+        [
+          1493,
+          133
+        ]
+      ],
+      "matches": false
+    },
+    {
+      "name": "wrong_guardian",
+      "pairs": [
+        [
+          1492,
+          116
+        ]
+      ],
+      "matches": false
+    },
+    {
+      "name": "reversed_lanes",
+      "pairs": [
+        [
+          116,
+          1493
+        ]
+      ],
+      "matches": false
+    },
+    {
+      "name": "later_match",
+      "pairs": [
+        [
+          1493,
+          133
+        ],
+        [
+          1493,
+          116
+        ]
+      ],
+      "matches": true
+    },
+    {
+      "name": "multiple_wrong",
+      "pairs": [
+        [
+          1492,
+          116
+        ],
+        [
+          1493,
+          133
+        ]
+      ],
+      "matches": false
+    },
+    {
+      "name": "repeated_match",
+      "pairs": [
+        [
+          1493,
+          116
+        ],
+        [
+          1493,
+          116
+        ]
+      ],
+      "matches": true
+    }
+  ],
+  "record_cases": [
+    {
+      "spell": 0,
+      "remaining_health": 0.0,
+      "metadata": true,
+      "pair": [
+        1493,
+        0
+      ]
+    },
+    {
+      "spell": 0,
+      "remaining_health": -5.0,
+      "metadata": true,
+      "pair": [
+        1493,
+        0
+      ]
+    },
+    {
+      "spell": 0,
+      "remaining_health": 1.0,
+      "metadata": true,
+      "pair": null
+    },
+    {
+      "spell": 0,
+      "remaining_health": 0.0,
+      "metadata": false,
+      "pair": null
+    },
+    {
+      "spell": 116,
+      "remaining_health": 0.0,
+      "metadata": true,
+      "pair": [
+        1493,
+        116
+      ]
+    },
+    {
+      "spell": 116,
+      "remaining_health": -5.0,
+      "metadata": true,
+      "pair": [
+        1493,
+        116
+      ]
+    },
+    {
+      "spell": 116,
+      "remaining_health": 1.0,
+      "metadata": true,
+      "pair": null
+    },
+    {
+      "spell": 116,
+      "remaining_health": 0.0,
+      "metadata": false,
+      "pair": null
+    },
+    {
+      "spell": 133,
+      "remaining_health": 0.0,
+      "metadata": true,
+      "pair": [
+        1493,
+        133
+      ]
+    },
+    {
+      "spell": 133,
+      "remaining_health": -5.0,
+      "metadata": true,
+      "pair": [
+        1493,
+        133
+      ]
+    },
+    {
+      "spell": 133,
+      "remaining_health": 1.0,
+      "metadata": true,
+      "pair": null
+    },
+    {
+      "spell": 133,
+      "remaining_health": 0.0,
+      "metadata": false,
+      "pair": null
+    },
+    {
+      "spell": 16038,
+      "remaining_health": 0.0,
+      "metadata": true,
+      "pair": [
+        1493,
+        8349
+      ]
+    },
+    {
+      "spell": 16038,
+      "remaining_health": -5.0,
+      "metadata": true,
+      "pair": [
+        1493,
+        8349
+      ]
+    },
+    {
+      "spell": 16038,
+      "remaining_health": 1.0,
+      "metadata": true,
+      "pair": null
+    },
+    {
+      "spell": 16038,
+      "remaining_health": 0.0,
+      "metadata": false,
+      "pair": null
+    },
+    {
+      "spell": 14186,
+      "remaining_health": 0.0,
+      "metadata": true,
+      "pair": [
+        1493,
+        2098
+      ]
+    },
+    {
+      "spell": 14186,
+      "remaining_health": -5.0,
+      "metadata": true,
+      "pair": [
+        1493,
+        2098
+      ]
+    },
+    {
+      "spell": 14186,
+      "remaining_health": 1.0,
+      "metadata": true,
+      "pair": null
+    },
+    {
+      "spell": 14186,
+      "remaining_health": 0.0,
+      "metadata": false,
+      "pair": null
+    },
+    {
+      "spell": 5308,
+      "remaining_health": 0.0,
+      "metadata": true,
+      "pair": [
+        1493,
+        20647
+      ]
+    },
+    {
+      "spell": 5308,
+      "remaining_health": -5.0,
+      "metadata": true,
+      "pair": [
+        1493,
+        20647
+      ]
+    },
+    {
+      "spell": 5308,
+      "remaining_health": 1.0,
+      "metadata": true,
+      "pair": null
+    },
+    {
+      "spell": 5308,
+      "remaining_health": 0.0,
+      "metadata": false,
+      "pair": null
+    }
+  ],
+  "limits": [
+    "Unchanged native branch replay with synthetic memory; metadata/id/post-hit health are explicit inputs. No allocation, external calls, game or compiled source is executed."
+  ]
+}

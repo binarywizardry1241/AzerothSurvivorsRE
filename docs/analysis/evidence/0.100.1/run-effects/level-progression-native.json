@@ -1,0 +1,916 @@
+{
+  "target_sha256": "17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b",
+  "method": "Hash-bound XP loop, exact level messages and inline per-level healing.\n\nExecute unchanged arithmetic/branch fragments only. Calls are stop boundaries;\nthe localization boundary preserves the requested amount in nonvolatile XMM14.\nNo original runtime, external calls, replacement code or system files are used.\n",
+  "owners": [
+    {
+      "role": "level-experience",
+      "address": "0x1454c69e0",
+      "end_exclusive": "0x1454c74c6",
+      "file_offset": "0x54c5de0",
+      "sha256": "20560e8adecba34693ba12b81ce20c9160a24a50d015c6854b1851b2769948f9",
+      "rea_evidence_id": "ev_cd851f6132e8e1f18435633bf9ad6cf52758c9033c1aaaf8e04f73b6a68ee567",
+      "analysis_profile": {
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "parameters": {
+          "target_kind": "executable",
+          "target_format": "raw-binary",
+          "architecture": "x86_64",
+          "available_architectures": [
+            "x86_64"
+          ],
+          "import_mode": "ephemeral-source-immutable",
+          "annotation_policy": "atomic-function-entry-metadata-v1",
+          "load_image_observations": "source-mappings-entry-context-v2",
+          "function_body_evidence": "complete-inclusive-ranges-v1",
+          "function_references": "complete-body-and-entry-reference-manager-v2",
+          "call_relationship_coverage": "function-body-call-coverage-v5",
+          "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+          "string_inventory_evidence": "defined-data-coverage-v1",
+          "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+          "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+          "instruction_flow_evidence": "decoded-return-pcode-v1",
+          "instruction_references": "exact-address-incoming-v1",
+          "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+          "no_return_repair": "returning-imports-decoded-return-v2",
+          "process_launch": "inspected-jvm-launch-support-v1",
+          "load_image_evidence": "independent-raw-mapping-context-v4",
+          "jump_table_evidence": "typed-case-default-blocks-v1",
+          "decompiler_jump_loads": true,
+          "loader": "BinaryLoader",
+          "language_id": "x86:LE:64:default",
+          "compiler_spec_id": "gcc",
+          "language_selection": "caller-supplied-v1",
+          "entry_point": "0x1454c69e0",
+          "entry_seed": "external-entry-and-function-before-analysis-v1",
+          "analyzer_preset": "ghidra-default+disabled:Function ID,Function Start Search,Disassemble Entry Points,Subroutine References,Non-Returning Functions - Discovered",
+          "analysis_options": {
+            "disabled_analyzers": [
+              "Function ID",
+              "Function Start Search",
+              "Disassemble Entry Points",
+              "Subroutine References",
+              "Non-Returning Functions - Discovered"
+            ]
+          }
+        },
+        "digest": "f81310b1a7cc39853468354b43a3dbd855dd261cd41444e129766e4f1a1d2e73"
+      }
+    },
+    {
+      "role": "level-system-message",
+      "address": "0x14545dc90",
+      "end_exclusive": "0x14545ded4",
+      "file_offset": "0x545d090",
+      "sha256": "862feeed61fc48dc2b04f7716fee7539941a37d02b7f23777e6f56fce8db3c84",
+      "rea_evidence_id": "ev_af5ac3fbfc80fa87dd4bb3a7f01c210a74f82100ff04016407502eb13ed95c30",
+      "analysis_profile": {
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "parameters": {
+          "target_kind": "executable",
+          "target_format": "raw-binary",
+          "architecture": "x86_64",
+          "available_architectures": [
+            "x86_64"
+          ],
+          "import_mode": "ephemeral-source-immutable",
+          "annotation_policy": "atomic-function-entry-metadata-v1",
+          "load_image_observations": "source-mappings-entry-context-v2",
+          "function_body_evidence": "complete-inclusive-ranges-v1",
+          "function_references": "complete-body-and-entry-reference-manager-v2",
+          "call_relationship_coverage": "function-body-call-coverage-v5",
+          "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+          "string_inventory_evidence": "defined-data-coverage-v1",
+          "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+          "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+          "instruction_flow_evidence": "decoded-return-pcode-v1",
+          "instruction_references": "exact-address-incoming-v1",
+          "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+          "no_return_repair": "returning-imports-decoded-return-v2",
+          "process_launch": "inspected-jvm-launch-support-v1",
+          "load_image_evidence": "independent-raw-mapping-context-v4",
+          "jump_table_evidence": "typed-case-default-blocks-v1",
+          "decompiler_jump_loads": true,
+          "loader": "BinaryLoader",
+          "language_id": "x86:LE:64:default",
+          "compiler_spec_id": "gcc",
+          "language_selection": "caller-supplied-v1",
+          "entry_point": "0x14545dc90",
+          "entry_seed": "external-entry-and-function-before-analysis-v1",
+          "analyzer_preset": "ghidra-default+disabled:Function ID,Function Start Search,Disassemble Entry Points,Subroutine References,Non-Returning Functions - Discovered",
+          "analysis_options": {
+            "disabled_analyzers": [
+              "Function ID",
+              "Function Start Search",
+              "Disassemble Entry Points",
+              "Subroutine References",
+              "Non-Returning Functions - Discovered"
+            ]
+          }
+        },
+        "digest": "8370f412dd037963db305374ab3248a6d8862a71dd87a93ba20f3a9cef115919"
+      }
+    }
+  ],
+  "spans": [
+    {
+      "start": "0x1454c6fd6",
+      "end_exclusive": "0x1454c6fe4"
+    },
+    {
+      "start": "0x1454c6ff5",
+      "end_exclusive": "0x1454c703a"
+    },
+    {
+      "start": "0x1454c6e8d",
+      "end_exclusive": "0x1454c6ec7"
+    },
+    {
+      "start": "0x1454c6c54",
+      "end_exclusive": "0x1454c6c6e"
+    },
+    {
+      "start": "0x1454c6cac",
+      "end_exclusive": "0x1454c6cc1"
+    },
+    {
+      "start": "0x1454c6cf2",
+      "end_exclusive": "0x1454c6d06"
+    }
+  ],
+  "strings": [
+    {
+      "role": "stats",
+      "address": "0x1469f6beb",
+      "length": 88,
+      "value": "You have gained {damage}% damage, {health} maximum health and {regen} health per second."
+    },
+    {
+      "role": "periodic",
+      "address": "0x1469f6c7e",
+      "length": 62,
+      "value": "Your damage over time spells now stack {n} times on one enemy."
+    },
+    {
+      "role": "healing-name",
+      "address": "0x1469f6ce0",
+      "length": 8,
+      "value": "Level Up"
+    },
+    {
+      "role": "healing-icon",
+      "address": "0x1469f6ce8",
+      "length": 19,
+      "value": "Spell_Holy_HolyBolt"
+    }
+  ],
+  "format_descriptors": [
+    {
+      "role": "damage-health-integral",
+      "address": "0x1469f6c43",
+      "raw_hex": "c12000207000"
+    },
+    {
+      "role": "regeneration-two-decimals",
+      "address": "0x1469f6c76",
+      "raw_hex": "c5200020700200"
+    }
+  ],
+  "cases": [
+    {
+      "health_bits": 3240099840,
+      "maximum_bits": 0,
+      "requested_bits": 0,
+      "expected": {
+        "health_bits": 3240099840,
+        "actual_bits": 0,
+        "record_meter": false
+      }
+    },
+    {
+      "health_bits": 0,
+      "maximum_bits": 0,
+      "requested_bits": 0,
+      "expected": {
+        "health_bits": 0,
+        "actual_bits": 0,
+        "record_meter": false
+      }
+    },
+    {
+      "health_bits": 1048576000,
+      "maximum_bits": 0,
+      "requested_bits": 0,
+      "expected": {
+        "health_bits": 0,
+        "actual_bits": 3196059648,
+        "record_meter": false
+      }
+    },
+    {
+      "health_bits": 1103626240,
+      "maximum_bits": 0,
+      "requested_bits": 0,
+      "expected": {
+        "health_bits": 0,
+        "actual_bits": 3251109888,
+        "record_meter": false
+      }
+    },
+    {
+      "health_bits": 1119748096,
+      "maximum_bits": 0,
+      "requested_bits": 0,
+      "expected": {
+        "health_bits": 0,
+        "actual_bits": 3267231744,
+        "record_meter": false
+      }
+    },
+    {
+      "health_bits": 1120403456,
+      "maximum_bits": 0,
+      "requested_bits": 0,
+      "expected": {
+        "health_bits": 0,
+        "actual_bits": 3267887104,
+        "record_meter": false
+      }
+    },
+    {
+      "health_bits": 1124859904,
+      "maximum_bits": 0,
+      "requested_bits": 0,
+      "expected": {
+        "health_bits": 0,
+        "actual_bits": 3272343552,
+        "record_meter": false
+      }
+    },
+    {
+      "health_bits": 2143289344,
+      "maximum_bits": 0,
+      "requested_bits": 0,
+      "expected": {
+        "health_bits": 0,
+        "actual_bits": 2143289344,
+        "record_meter": true
+      }
+    },
+    {
+      "health_bits": 3240099840,
+      "maximum_bits": 1065353216,
+      "requested_bits": 1045220557,
+      "expected": {
+        "health_bits": 3239890125,
+        "actual_bits": 1045220544,
+        "record_meter": true
+      }
+    },
+    {
+      "health_bits": 0,
+      "maximum_bits": 1065353216,
+      "requested_bits": 1045220557,
+      "expected": {
+        "health_bits": 1045220557,
+        "actual_bits": 1045220557,
+        "record_meter": true
+      }
+    },
+    {
+      "health_bits": 1048576000,
+      "maximum_bits": 1065353216,
+      "requested_bits": 1045220557,
+      "expected": {
+        "health_bits": 1055286886,
+        "actual_bits": 1045220556,
+        "record_meter": true
+      }
+    },
+    {
+      "health_bits": 1103626240,
+      "maximum_bits": 1065353216,
+      "requested_bits": 1045220557,
+      "expected": {
+        "health_bits": 1065353216,
+        "actual_bits": 3250585600,
+        "record_meter": false
+      }
+    },
+    {
+      "health_bits": 1119748096,
+      "maximum_bits": 1065353216,
+      "requested_bits": 1045220557,
+      "expected": {
+        "health_bits": 1065353216,
+        "actual_bits": 3267100672,
+        "record_meter": false
+      }
+    },
+    {
+      "health_bits": 1120403456,
+      "maximum_bits": 1065353216,
+      "requested_bits": 1045220557,
+      "expected": {
+        "health_bits": 1065353216,
+        "actual_bits": 3267756032,
+        "record_meter": false
+      }
+    },
+    {
+      "health_bits": 1124859904,
+      "maximum_bits": 1065353216,
+      "requested_bits": 1045220557,
+      "expected": {
+        "health_bits": 1065353216,
+        "actual_bits": 3272278016,
+        "record_meter": false
+      }
+    },
+    {
+      "health_bits": 2143289344,
+      "maximum_bits": 1065353216,
+      "requested_bits": 1045220557,
+      "expected": {
+        "health_bits": 1065353216,
+        "actual_bits": 2143289344,
+        "record_meter": true
+      }
+    },
+    {
+      "health_bits": 3240099840,
+      "maximum_bits": 1120403456,
+      "requested_bits": 1101004800,
+      "expected": {
+        "health_bits": 1092616192,
+        "actual_bits": 1101004800,
+        "record_meter": true
+      }
+    },
+    {
+      "health_bits": 0,
+      "maximum_bits": 1120403456,
+      "requested_bits": 1101004800,
+      "expected": {
+        "health_bits": 1101004800,
+        "actual_bits": 1101004800,
+        "record_meter": true
+      }
+    },
+    {
+      "health_bits": 1048576000,
+      "maximum_bits": 1120403456,
+      "requested_bits": 1101004800,
+      "expected": {
+        "health_bits": 1101135872,
+        "actual_bits": 1101004800,
+        "record_meter": true
+      }
+    },
+    {
+      "health_bits": 1103626240,
+      "maximum_bits": 1120403456,
+      "requested_bits": 1101004800,
+      "expected": {
+        "health_bits": 1110704128,
+        "actual_bits": 1101004800,
+        "record_meter": true
+      }
+    },
+    {
+      "health_bits": 1119748096,
+      "maximum_bits": 1120403456,
+      "requested_bits": 1101004800,
+      "expected": {
+        "health_bits": 1120403456,
+        "actual_bits": 1084227584,
+        "record_meter": true
+      }
+    },
+    {
+      "health_bits": 1120403456,
+      "maximum_bits": 1120403456,
+      "requested_bits": 1101004800,
+      "expected": {
+        "health_bits": 1120403456,
+        "actual_bits": 0,
+        "record_meter": false
+      }
+    },
+    {
+      "health_bits": 1124859904,
+      "maximum_bits": 1120403456,
+      "requested_bits": 1101004800,
+      "expected": {
+        "health_bits": 1120403456,
+        "actual_bits": 3256877056,
+        "record_meter": false
+      }
+    },
+    {
+      "health_bits": 2143289344,
+      "maximum_bits": 1120403456,
+      "requested_bits": 1101004800,
+      "expected": {
+        "health_bits": 1120403456,
+        "actual_bits": 2143289344,
+        "record_meter": true
+      }
+    },
+    {
+      "health_bits": 3240099840,
+      "maximum_bits": 1124139008,
+      "requested_bits": 1104045671,
+      "expected": {
+        "health_bits": 1098697934,
+        "actual_bits": 1104045671,
+        "record_meter": true
+      }
+    },
+    {
+      "health_bits": 0,
+      "maximum_bits": 1124139008,
+      "requested_bits": 1104045671,
+      "expected": {
+        "health_bits": 1104045671,
+        "actual_bits": 1104045671,
+        "record_meter": true
+      }
+    },
+    {
+      "health_bits": 1048576000,
+      "maximum_bits": 1124139008,
+      "requested_bits": 1104045671,
+      "expected": {
+        "health_bits": 1104176743,
+        "actual_bits": 1104045671,
+        "record_meter": true
+      }
+    },
+    {
+      "health_bits": 1103626240,
+      "maximum_bits": 1124139008,
+      "requested_bits": 1104045671,
+      "expected": {
+        "health_bits": 1112224564,
+        "actual_bits": 1104045672,
+        "record_meter": true
+      }
+    },
+    {
+      "health_bits": 1119748096,
+      "maximum_bits": 1124139008,
+      "requested_bits": 1104045671,
+      "expected": {
+        "health_bits": 1123129754,
+        "actual_bits": 1104045672,
+        "record_meter": true
+      }
+    },
+    {
+      "health_bits": 1120403456,
+      "maximum_bits": 1124139008,
+      "requested_bits": 1104045671,
+      "expected": {
+        "health_bits": 1123785114,
+        "actual_bits": 1104045672,
+        "record_meter": true
+      }
+    },
+    {
+      "health_bits": 1124859904,
+      "maximum_bits": 1124139008,
+      "requested_bits": 1104045671,
+      "expected": {
+        "health_bits": 1124139008,
+        "actual_bits": 3241148416,
+        "record_meter": false
+      }
+    },
+    {
+      "health_bits": 2143289344,
+      "maximum_bits": 1124139008,
+      "requested_bits": 1104045671,
+      "expected": {
+        "health_bits": 1124139008,
+        "actual_bits": 2143289344,
+        "record_meter": true
+      }
+    },
+    {
+      "health_bits": 3240099840,
+      "maximum_bits": 1124728832,
+      "requested_bits": 1104989389,
+      "expected": {
+        "health_bits": 1099746509,
+        "actual_bits": 1104989389,
+        "record_meter": true
+      }
+    },
+    {
+      "health_bits": 0,
+      "maximum_bits": 1124728832,
+      "requested_bits": 1104989389,
+      "expected": {
+        "health_bits": 1104989389,
+        "actual_bits": 1104989389,
+        "record_meter": true
+      }
+    },
+    {
+      "health_bits": 1048576000,
+      "maximum_bits": 1124728832,
+      "requested_bits": 1104989389,
+      "expected": {
+        "health_bits": 1105120461,
+        "actual_bits": 1104989389,
+        "record_meter": true
+      }
+    },
+    {
+      "health_bits": 1103626240,
+      "maximum_bits": 1124728832,
+      "requested_bits": 1104989389,
+      "expected": {
+        "health_bits": 1112696422,
+        "actual_bits": 1104989388,
+        "record_meter": true
+      }
+    },
+    {
+      "health_bits": 1119748096,
+      "maximum_bits": 1124728832,
+      "requested_bits": 1104989389,
+      "expected": {
+        "health_bits": 1123365683,
+        "actual_bits": 1104989388,
+        "record_meter": true
+      }
+    },
+    {
+      "health_bits": 1120403456,
+      "maximum_bits": 1124728832,
+      "requested_bits": 1104989389,
+      "expected": {
+        "health_bits": 1124021043,
+        "actual_bits": 1104989388,
+        "record_meter": true
+      }
+    },
+    {
+      "health_bits": 1124859904,
+      "maximum_bits": 1124728832,
+      "requested_bits": 1104989389,
+      "expected": {
+        "health_bits": 1124728832,
+        "actual_bits": 3221225472,
+        "record_meter": false
+      }
+    },
+    {
+      "health_bits": 2143289344,
+      "maximum_bits": 1124728832,
+      "requested_bits": 1104989389,
+      "expected": {
+        "health_bits": 1124728832,
+        "actual_bits": 2143289344,
+        "record_meter": true
+      }
+    },
+    {
+      "health_bits": 3240099840,
+      "maximum_bits": 2143289344,
+      "requested_bits": 2143289344,
+      "expected": {
+        "health_bits": 2143289344,
+        "actual_bits": 2143289344,
+        "record_meter": true
+      }
+    },
+    {
+      "health_bits": 0,
+      "maximum_bits": 2143289344,
+      "requested_bits": 2143289344,
+      "expected": {
+        "health_bits": 2143289344,
+        "actual_bits": 2143289344,
+        "record_meter": true
+      }
+    },
+    {
+      "health_bits": 1048576000,
+      "maximum_bits": 2143289344,
+      "requested_bits": 2143289344,
+      "expected": {
+        "health_bits": 2143289344,
+        "actual_bits": 2143289344,
+        "record_meter": true
+      }
+    },
+    {
+      "health_bits": 1103626240,
+      "maximum_bits": 2143289344,
+      "requested_bits": 2143289344,
+      "expected": {
+        "health_bits": 2143289344,
+        "actual_bits": 2143289344,
+        "record_meter": true
+      }
+    },
+    {
+      "health_bits": 1119748096,
+      "maximum_bits": 2143289344,
+      "requested_bits": 2143289344,
+      "expected": {
+        "health_bits": 2143289344,
+        "actual_bits": 2143289344,
+        "record_meter": true
+      }
+    },
+    {
+      "health_bits": 1120403456,
+      "maximum_bits": 2143289344,
+      "requested_bits": 2143289344,
+      "expected": {
+        "health_bits": 2143289344,
+        "actual_bits": 2143289344,
+        "record_meter": true
+      }
+    },
+    {
+      "health_bits": 1124859904,
+      "maximum_bits": 2143289344,
+      "requested_bits": 2143289344,
+      "expected": {
+        "health_bits": 2143289344,
+        "actual_bits": 2143289344,
+        "record_meter": true
+      }
+    },
+    {
+      "health_bits": 2143289344,
+      "maximum_bits": 2143289344,
+      "requested_bits": 2143289344,
+      "expected": {
+        "health_bits": 2143289344,
+        "actual_bits": 2143289344,
+        "record_meter": true
+      }
+    }
+  ],
+  "periodic_message_gates": [
+    {
+      "kinds": [],
+      "before": 0,
+      "after": 0,
+      "show": false
+    },
+    {
+      "kinds": [],
+      "before": 0,
+      "after": 1,
+      "show": false
+    },
+    {
+      "kinds": [],
+      "before": 1,
+      "after": 2,
+      "show": false
+    },
+    {
+      "kinds": [],
+      "before": 2,
+      "after": 1,
+      "show": false
+    },
+    {
+      "kinds": [],
+      "before": 3,
+      "after": 3,
+      "show": false
+    },
+    {
+      "kinds": [],
+      "before": 3,
+      "after": 4,
+      "show": false
+    },
+    {
+      "kinds": [
+        0
+      ],
+      "before": 0,
+      "after": 0,
+      "show": false
+    },
+    {
+      "kinds": [
+        0
+      ],
+      "before": 0,
+      "after": 1,
+      "show": false
+    },
+    {
+      "kinds": [
+        0
+      ],
+      "before": 1,
+      "after": 2,
+      "show": false
+    },
+    {
+      "kinds": [
+        0
+      ],
+      "before": 2,
+      "after": 1,
+      "show": false
+    },
+    {
+      "kinds": [
+        0
+      ],
+      "before": 3,
+      "after": 3,
+      "show": false
+    },
+    {
+      "kinds": [
+        0
+      ],
+      "before": 3,
+      "after": 4,
+      "show": false
+    },
+    {
+      "kinds": [
+        6
+      ],
+      "before": 0,
+      "after": 0,
+      "show": false
+    },
+    {
+      "kinds": [
+        6
+      ],
+      "before": 0,
+      "after": 1,
+      "show": true
+    },
+    {
+      "kinds": [
+        6
+      ],
+      "before": 1,
+      "after": 2,
+      "show": true
+    },
+    {
+      "kinds": [
+        6
+      ],
+      "before": 2,
+      "after": 1,
+      "show": false
+    },
+    {
+      "kinds": [
+        6
+      ],
+      "before": 3,
+      "after": 3,
+      "show": false
+    },
+    {
+      "kinds": [
+        6
+      ],
+      "before": 3,
+      "after": 4,
+      "show": true
+    },
+    {
+      "kinds": [
+        3,
+        6
+      ],
+      "before": 0,
+      "after": 0,
+      "show": false
+    },
+    {
+      "kinds": [
+        3,
+        6
+      ],
+      "before": 0,
+      "after": 1,
+      "show": true
+    },
+    {
+      "kinds": [
+        3,
+        6
+      ],
+      "before": 1,
+      "after": 2,
+      "show": true
+    },
+    {
+      "kinds": [
+        3,
+        6
+      ],
+      "before": 2,
+      "after": 1,
+      "show": false
+    },
+    {
+      "kinds": [
+        3,
+        6
+      ],
+      "before": 3,
+      "after": 3,
+      "show": false
+    },
+    {
+      "kinds": [
+        3,
+        6
+      ],
+      "before": 3,
+      "after": 4,
+      "show": true
+    },
+    {
+      "kinds": [
+        6,
+        6
+      ],
+      "before": 0,
+      "after": 0,
+      "show": false
+    },
+    {
+      "kinds": [
+        6,
+        6
+      ],
+      "before": 0,
+      "after": 1,
+      "show": true
+    },
+    {
+      "kinds": [
+        6,
+        6
+      ],
+      "before": 1,
+      "after": 2,
+      "show": true
+    },
+    {
+      "kinds": [
+        6,
+        6
+      ],
+      "before": 2,
+      "after": 1,
+      "show": false
+    },
+    {
+      "kinds": [
+        6,
+        6
+      ],
+      "before": 3,
+      "after": 3,
+      "show": false
+    },
+    {
+      "kinds": [
+        6,
+        6
+      ],
+      "before": 3,
+      "after": 4,
+      "show": true
+    }
+  ],
+  "findings": [
+    "Each earned-level loop publishes level field34, refreshes stats, sends localized system chat, then heals .20*newMaxHP.",
+    "The inline heal has no spell-heal log, overheal conversion or healing pool.",
+    "After the loop, field716 is remainingXP and717 is next threshold.",
+    "System chat opcode0x96,type0x0a,language0,senderGUID0,textlength+1,NULtext,chatTag0; no SMSG_LEVELUP_INFO."
+  ]
+}

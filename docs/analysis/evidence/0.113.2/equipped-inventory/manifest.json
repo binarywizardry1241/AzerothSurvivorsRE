@@ -1,0 +1,270 @@
+{
+  "target": {
+    "version": "0.113.2",
+    "sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
+  },
+  "ranges": [
+    {
+      "name": "temporary_stat_sentences",
+      "address": "0x145847c90",
+      "end_exclusive": "0x145848e15",
+      "sha256": "a6d7db0107265f332cc8fff46644f1eb51f04ee812d29586b6e95dd7200c6321"
+    },
+    {
+      "name": "jewelry_lines",
+      "address": "0x145849050",
+      "end_exclusive": "0x14584977f",
+      "sha256": "b147af3c5735e8a53ebcc05101be77db91989e269adbbbf8353eab2fb9d66aed"
+    },
+    {
+      "name": "amulet_effect_scaling",
+      "address": "0x1459a9c10",
+      "end_exclusive": "0x1459a9dd9",
+      "sha256": "9a75844b9cb852cb6bdae73b045b9366186308a30f5fee67f88b2807f270f550"
+    },
+    {
+      "name": "amulet_lines",
+      "address": "0x1459a9e30",
+      "end_exclusive": "0x1459abc77",
+      "sha256": "1ae113b7275e9779106beb52203d518b63ab6eff76fd398d9f4650a5c6586fc6"
+    },
+    {
+      "name": "true_items",
+      "address": "0x145911450",
+      "end_exclusive": "0x145911d46",
+      "sha256": "19af2aa0064cc3fcadc079611ff06aebade00f4da041f94f9614debad8c9d4e0"
+    },
+    {
+      "name": "starter_outfit",
+      "address": "0x145824850",
+      "end_exclusive": "0x145824ad5",
+      "sha256": "c790bd1e1cbf0628ee238acb8034c369ed0bca1636f408e067774da2d9dff0a5"
+    },
+    {
+      "name": "ordinary_definition",
+      "address": "0x145825570",
+      "end_exclusive": "0x1458267d2",
+      "sha256": "53c2881222782aba4cbcd82f66782ce6f3ca1cf79e84472ec25282a1c7424a12"
+    },
+    {
+      "name": "initial_item_objects",
+      "address": "0x1458f95b0",
+      "end_exclusive": "0x1458f9833",
+      "sha256": "763e083beeba7142bb4386183798888773a3a768d932b5289fe63001cf469854"
+    },
+    {
+      "name": "player_inventory_and_visible_fields",
+      "address": "0x1458fbb00",
+      "end_exclusive": "0x1458fc16f",
+      "sha256": "95556636c344de78a1ae727323e7fdb21115801b30ec9b37f0b650aae0422498"
+    },
+    {
+      "name": "empty_jewelry_snapshot",
+      "address": "0x1458fc1b0",
+      "end_exclusive": "0x1458fc4cc",
+      "sha256": "3cf4dd4efcd3d4c6f24f617abfc787810f234c386028751db301e763ce244177"
+    },
+    {
+      "name": "dynamic_item_object",
+      "address": "0x1458ff8c0",
+      "end_exclusive": "0x1458ff9be",
+      "sha256": "f466e4944b68652e59d74251a3cf71f76dc13bbbcdcbb125634e9701571222bb"
+    },
+    {
+      "name": "accept_upgrade_and_rebuild_inventory",
+      "address": "0x14596f110",
+      "end_exclusive": "0x14597131c",
+      "sha256": "357229125c4de148ea6a24f248dac2d7dc4e6bc33b52da35dfc1d80cd951d5dc"
+    },
+    {
+      "name": "item_query_request",
+      "address": "0x1458646d0",
+      "end_exclusive": "0x1458670a2",
+      "sha256": "f5b6f0ddd41edf70b437bb69f1728aebb0f9b7e572bf5cb6323dcb90524d9894"
+    },
+    {
+      "name": "item_query_response",
+      "address": "0x1458d0b00",
+      "end_exclusive": "0x1458d2e11",
+      "sha256": "bd184d575ef689b058cbd10284ea8a08172fbf17e82795172adee50c46326987"
+    },
+    {
+      "name": "tooltip_registry",
+      "address": "0x1458c6d60",
+      "end_exclusive": "0x1458c6f62",
+      "sha256": "3f2d3889e910dc27a943761c36a5cf81603f1961013dc2934257ada97fc7a698"
+    },
+    {
+      "name": "icon_display",
+      "address": "0x14584a8c0",
+      "end_exclusive": "0x14584aa7b",
+      "sha256": "47de3d659a11e2b8560433552f0c3e72f7880cceea9b3c71db895f7a04ab0757"
+    }
+  ],
+  "ghidra": [
+    {
+      "owner": "0x145825570",
+      "end_exclusive": "0x1458267d2",
+      "subject_sha256": "53c2881222782aba4cbcd82f66782ce6f3ca1cf79e84472ec25282a1c7424a12",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile": "1537d74c727aaa2170450cba1423d5d1acc0f9c0e6d0470b55b230af5c280f7e",
+      "evidence_id": "ev_a9d1c30e458ca6fc62fe4443f6d573f1231a30b74e5387bcabb887a343e83f90",
+      "operation": "procedure_pseudo_code",
+      "limitations": [
+        "Raw x86_64 slice imported at current VA; external code/data are unresolved in Ghidra.",
+        "Generic decompiler ABI is not Win64 parameter proof. Assembly and bounded native replay resolve arguments."
+      ]
+    },
+    {
+      "owner": "0x145911450",
+      "end_exclusive": "0x145911d46",
+      "subject_sha256": "19af2aa0064cc3fcadc079611ff06aebade00f4da041f94f9614debad8c9d4e0",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile": "27f7ccca5a10128fb89f5c3880b45d96c692b6e7d624a02225afa4640f81fff7",
+      "evidence_id": "ev_ca73c8e4c6b05cf5f17dedd37ec936e5e54ab4f79b5679244b204367cb7c7a1c",
+      "operation": "procedure_pseudo_code",
+      "limitations": [
+        "Raw x86_64 slice imported at current VA; external code/data are unresolved in Ghidra.",
+        "Generic decompiler ABI is not Win64 parameter proof. Assembly and bounded native replay resolve arguments."
+      ]
+    },
+    {
+      "owner": "0x1458d0b00",
+      "end_exclusive": "0x1458d2e11",
+      "subject_sha256": "bd184d575ef689b058cbd10284ea8a08172fbf17e82795172adee50c46326987",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile": "cee5f7e8c2273f8005b8c7153bb7c3c7e0845e8ae512fa5e816aeffb30605e91",
+      "evidence_id": "ev_6a2b378e0709e6ad709762af73750f1ded034baac9ac7b701d9bb6a403bbc7cf",
+      "operation": "procedure_pseudo_code",
+      "limitations": [
+        "Raw x86_64 slice imported at current VA; external code/data are unresolved in Ghidra.",
+        "Generic decompiler ABI is not Win64 parameter proof. Assembly and bounded native replay resolve arguments."
+      ]
+    },
+    {
+      "owner": "0x14596f110",
+      "end_exclusive": "0x14597131c",
+      "subject_sha256": "357229125c4de148ea6a24f248dac2d7dc4e6bc33b52da35dfc1d80cd951d5dc",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile": "8a6ae98e953fbf2c7cfafd1ed95a6aa94ec716696e604f8ca88a2cabbfcb0ce5",
+      "evidence_id": "ev_adc0e10b2504ac22174384ce4631db81dcf571c2e091175feeb775517e88d749",
+      "operation": "procedure_pseudo_code",
+      "limitations": [
+        "Raw x86_64 slice imported at current VA; external code/data are unresolved in Ghidra.",
+        "Generic decompiler ABI is not Win64 parameter proof. Assembly and bounded native replay resolve arguments.",
+        "Decompiler stops at unrecovered switch; later row identity/ID/event order recovered from current assembly."
+      ]
+    },
+    {
+      "owner": "0x145847c90",
+      "end_exclusive": "0x14584977f",
+      "subject_sha256": "f427f38f3369d0a50301252ba920b88851f9194d3c034c79687813c9271831ab",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile": "1cce90ac3e8ee3a6602b4ca5f3228bb34fecfd1e5051830442bf00fa881be0ed",
+      "evidence_id": "ev_63a739563657bb7ffb6a7f460872e3a11c358677b1d9a9465c437b97104a0c14",
+      "operation": "procedure_pseudo_code",
+      "limitations": [
+        "Bounded current raw slice; external references unresolved and generic decompiler ABI is not Win64 proof.",
+        "Current instructions and explicit-fixture replay resolve constructor output."
+      ]
+    },
+    {
+      "owner": "0x145849050",
+      "end_exclusive": "0x14584977f",
+      "subject_sha256": "b147af3c5735e8a53ebcc05101be77db91989e269adbbbf8353eab2fb9d66aed",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile": "3b58060e1019b18cac4191b1ca486bffc50829ee4d676331b8f7fe8e315435ed",
+      "evidence_id": "ev_1fca8fe54fd8259b6415dd4aff9ae6886d53992c753544bb0b339f8345b3d855",
+      "operation": "procedure_pseudo_code",
+      "limitations": [
+        "Bounded current raw slice; external references unresolved and generic decompiler ABI is not Win64 proof.",
+        "Current instructions and explicit-fixture replay resolve constructor output."
+      ]
+    },
+    {
+      "owner": "0x1459a9e30",
+      "end_exclusive": "0x1459abc74",
+      "subject_sha256": "527dcb2450eae09cd62c80ed35203003cb62fe02342b5c975fffb4f84cba73ac",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile": "85699589a84ee4ae225487cf898c1bbd98f56b45d1eb39e9f210d64c14d0a9bb",
+      "evidence_id": "ev_69a518bf1eb209baf591c88c263b7fffa09bc694843bc4ad1656ac2f71508c6c",
+      "operation": "procedure_pseudo_code",
+      "limitations": [
+        "Bounded current raw slice; external references unresolved and generic decompiler ABI is not Win64 proof.",
+        "Current instructions and explicit-fixture replay resolve constructor output."
+      ]
+    }
+  ],
+  "assembly": {
+    "path": "native.asm",
+    "sha256": "21de3a71951f70975b7ed3c8b49997292ec97cf6cab41267b31374ec7d7f6b6f"
+  },
+  "data_ranges": [
+    {
+      "name": "rank_roman_table",
+      "address": "0x14730b528",
+      "size": 176,
+      "sha256": "fa12fbb5a1f2e4415c2e4aa6e60b8a16a37db901200ac224d619f2a2e209b83a"
+    },
+    {
+      "name": "overflow_separator",
+      "address": "0x14730ad98",
+      "size": 8,
+      "sha256": "97ca7d9c8a242c1b46d7da4b53c44ec82b44f22c9df5dff7c2758d0e67f9c9b1"
+    },
+    {
+      "name": "icon_display_table",
+      "address": "0x14700f860",
+      "size": 1224,
+      "sha256": "f604bbeb9a9fbb61fe5a277f41be0960ce4459a4fb4fffc3b8be4aab21877cae"
+    },
+    {
+      "name": "ring_trinket_slots",
+      "address": "0x14730c050",
+      "size": 32,
+      "sha256": "20f5123222122244fc98b0356b608000229c2a9882c9db491beb4ea8e01cc780"
+    }
+  ],
+  "contracts": {
+    "slot_indices": "Native zero-based equipment descriptor slots. Lua inventory indices add one.",
+    "entry_equipment": "Starter race/class outfit plus nonzero frozen Game+2d0, Horde PvP conversion, two-hand offhand clear.",
+    "cosmetics": "Game+4f4 visible entry array is independent from true items and inventory GUIDs.",
+    "temporary": "First two per ring/trinket category plus amulet. Row equality: slot,name,quality,lines; full previous row cloned.",
+    "dynamic_ids": "Process static u32 atomic fetch-add;900000 + old %100000000.",
+    "text_ids": "Process static exact-string dedup;0xf00000 + insertion index.",
+    "ordering": "Item objects before inventory field updates; obsolete dynamic object removals after updates.",
+    "overflow": "First4 lines separate. Fifth joins all remaining using literal LF + Equip: + space."
+  },
+  "limits": [
+    "Derived static evidence and bounded instruction replay, not observed application behavior.",
+    "Full native-image decoding, rebuilt game, actual Lua consumer runtime and original/rebuilt parity remain separate."
+  ]
+}

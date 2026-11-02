@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "gap_ids": [
+    252
+  ],
+  "generator": {
+    "path": "scripts/check-meter-clock-0.121.0.py",
+    "sha256": "74ddbb7f798b7895b8b3b2e6ba2e8cb9e26456d207fda0d663c0e0e349178c68"
+  },
+  "dependencies": [
+    {
+      "path": "scripts/coverage_common.py",
+      "sha256": "aec38237b60b6982f17e0e93c6f6ba111100956fb389d44b397dbd5a6bdb1903"
+    },
+    {
+      "path": "scripts/discovery_native_subject.py",
+      "sha256": "e0bedb2d826d136b6b4c1bfb51b970160c2c42875b713fb1d2814ac360090a6a"
+    },
+    {
+      "path": "scripts/script_sources.py",
+      "sha256": "bc4cdf0f6c4a0805b7052d06c28acc48e644484d08decb79a97168cec6458cfa"
+    },
+    {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+    }
+  ],
+  "native_range": {
+    "virtual_address": "0x1401c8fdf",
+    "end_exclusive": "0x1401c9048",
+    "byte_count": 105,
+    "sha256": "ecc01f94a8a092c5f04af23c0c8b493215ae6a557cf462f730714d0372da2054",
+    "instruction_count": 26
+  },
+  "query": {
+    "role": "meter-HUD-clock",
+    "procedure": "0x1401c8e30",
+    "plan": {
+      "path": "runtime/q41-party-meter-0.121.0/plan.json",
+      "sha256": "c20b8ca4b00129afab02c014897aacd766594021647ab539feca16a5a79d08cf"
+    },
+    "journal": {
+      "path": "runtime/q41-party-meter-0.121.0/query/journal.json",
+      "sha256": "120353ea2642795c646bd3e69fbdffad23f2b71b49eee5521e72d17fd3d2abb5"
+    },
+    "result": {
+      "path": "runtime/q41-party-meter-0.121.0/query/results/d9d2fc5b1ee6073359c87868be42f86236f1d0886e8bcee929ed2f16d027c752.json",
+      "sha256": "45ab3b2a0fd4006f8f91ffb825897db6a98da6547cdb18e3addae04cab4ae3e2"
+    },
+    "raw_input": {
+      "path": "runtime/q41-party-meter-0.121.0/code.bin",
+      "sha256": "4285cf27da1e0b21ce76f37c6ad5b3109b2c2fd4a0605464bc953697ff31f1d6"
+    },
+    "slice_virtual_address": "0x1401a5180",
+    "evidence_id": "ev_3d0febd1f2afc32b05d46f86d8ed9a5740e74f92c51fef0fb95e534a6f32d44c",
+    "provider": {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "version": "12.1.4"
+    },
+    "analysis_profile_digest": "04f9529fc4f6334838374521ff6a7dc78e4ecf620c12b829bc6e7dfd194d21ce",
+    "normalized_text_sha256": "5642cd531d0de929c088c01c0207eb619ae976b410595f167b086f19310b0c43"
+  },
+  "source_contract": {
+    "path": "crates/azeroth-survivors-re/src/gameplay/meter/view.rs",
+    "clock_block_sha256": "6396a27901fcf8f20ed6703c4bb9dac7b61ea7078364c62e2959cc0cfeed824f"
+  },
+  "fixture": {
+    "cases": [
+      {
+        "name": "HUD-ahead-of-State",
+        "state_clock": 81,
+        "HUD_tag": 2,
+        "numeric_kind": 2,
+        "payload_bits": "0x4015000000000000",
+        "missing": false,
+        "native_clock_bits": "0x4015000000000000"
+      },
+      {
+        "name": "HUD-behind-State",
+        "state_clock": 81,
+        "HUD_tag": 2,
+        "numeric_kind": 2,
+        "payload_bits": "0x4004000000000000",
+        "missing": false,
+        "native_clock_bits": "0x4004000000000000"
+      },
+      {
+        "name": "signed-integer",
+        "state_clock": 81,
+        "HUD_tag": 2,
+        "numeric_kind": 1,
+        "payload_bits": "0xfffffffffffffff9",
+        "missing": false,
+        "native_clock_bits": "0xc01c000000000000"
+      },
+      {
+        "name": "unsigned-integer",
+        "state_clock": 81,
+        "HUD_tag": 2,
+        "numeric_kind": 0,
+        "payload_bits": "0x8000000000000011",
+        "missing": false,
+        "native_clock_bits": "0x43e0000000000000"
+      },
+      {
+        "name": "zero",
+        "state_clock": 81,
+        "HUD_tag": 2,
+        "numeric_kind": 2,
+        "payload_bits": "0x0000000000000000",
+        "missing": false,
+        "native_clock_bits": "0x0000000000000000"
+      },
+      {
+        "name": "missing",
+        "state_clock": 81,
+        "HUD_tag": 0,
+        "numeric_kind": 0,
+        "payload_bits": "0x0000000000000000",
+        "missing": true,
+        "native_clock_bits": "0x0000000000000000"
+      },
+      {
+        "name": "null",
+        "state_clock": 81,
+        "HUD_tag": 0,
+        "numeric_kind": 0,
+        "payload_bits": "0x0000000000000000",
+        "missing": false,
+        "native_clock_bits": "0x0000000000000000"
+      },
+      {
+        "name": "wrong-type",
+        "state_clock": 81,
+        "HUD_tag": 3,
+        "numeric_kind": 0,
+        "payload_bits": "0x0000000000000000",
+        "missing": false,
+        "native_clock_bits": "0x0000000000000000"
+      }
+    ],
+    "case_count": 8,
+    "original_instruction_steps": 109,
+    "seams": [
+      "JSON lookup by exact key/time and root HUD pointer"
+    ],
+    "synthetic_memory": true
+  },
+  "limits": [
+    "The original Windows x64 prefix supplies the register/stack ABI; raw-slice pseudocode has generic ABI and omits external data/callees.",
+    "The source clock expression is inspected, not executed. No Rust compilation, client/server/game execution or original/rebuilt parity check was performed."
+  ]
+}

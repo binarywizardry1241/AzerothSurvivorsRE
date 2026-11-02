@@ -1,0 +1,598 @@
+0x1401f4550: PUSH RBP
+0x1401f4551: PUSH R15
+0x1401f4553: PUSH R14
+0x1401f4555: PUSH R13
+0x1401f4557: PUSH R12
+0x1401f4559: PUSH RSI
+0x1401f455a: PUSH RDI
+0x1401f455b: PUSH RBX
+0x1401f455c: SUB RSP, 0x4b8
+0x1401f4563: LEA RBP, [RSP + 0x80]
+0x1401f456b: MOVAPS xmmword ptr [RBP + 0x420], XMM15
+0x1401f4573: MOVAPS xmmword ptr [RBP + 0x410], XMM14
+0x1401f457b: MOVAPS xmmword ptr [RBP + 0x400], XMM13
+0x1401f4583: MOVAPS xmmword ptr [RBP + 0x3f0], XMM12
+0x1401f458b: MOVAPS xmmword ptr [RBP + 0x3e0], XMM11
+0x1401f4593: MOVAPS xmmword ptr [RBP + 0x3d0], XMM10
+0x1401f459b: MOVAPS xmmword ptr [RBP + 0x3c0], XMM9
+0x1401f45a3: MOVAPS xmmword ptr [RBP + 0x3b0], XMM8
+0x1401f45ab: MOVAPS xmmword ptr [RBP + 0x3a0], XMM7
+0x1401f45b2: MOVAPS xmmword ptr [RBP + 0x390], XMM6
+0x1401f45b9: MOV qword ptr [RBP + 0x388], -0x2
+0x1401f45c4: MOV R15, RDX
+0x1401f45c7: MOV RDI, RCX
+0x1401f45ca: MOV RSI, qword ptr [RCX]
+0x1401f45cd: MOV RAX, qword ptr [RCX + 0x28]
+0x1401f45d1: MOV qword ptr [RBP + 0x180], RSI
+0x1401f45d8: LEA RBX, [RBP + 0x188]
+0x1401f45df: MOVUPS XMM0, xmmword ptr [RCX + 0x8]
+0x1401f45e3: MOVUPS xmmword ptr [RBP + 0x188], XMM0
+0x1401f45ea: MOVUPS XMM0, xmmword ptr [RCX + 0x18]
+0x1401f45ee: MOVUPS xmmword ptr [RBP + 0x198], XMM0
+0x1401f45f5: MOV qword ptr [RBP + 0x1a8], RAX
+0x1401f45fc: XORPS XMM0, XMM0
+0x1401f45ff: MOVAPS xmmword ptr [RBP + 0xd0], XMM0
+0x1401f4606: MOVAPS xmmword ptr [RBP + 0xc0], XMM0
+0x1401f460d: MOVAPS xmmword ptr [RBP + 0xb0], XMM0
+0x1401f4614: MOVAPS xmmword ptr [RBP + 0xa0], XMM0
+0x1401f461b: MOVAPS xmmword ptr [RBP + 0x90], XMM0
+0x1401f4622: MOV qword ptr [RBP + 0xe0], 0x0
+0x1401f462d: MOV word ptr [RBP + 0x354], 0x0
+0x1401f4636: MOV dword ptr [RBP + 0x350], 0x0
+0x1401f4640: MOVUPS XMM9, xmmword ptr [0x1458f3698]
+0x1401f4648: MOVUPS xmmword ptr [RBP + 0xe8], XMM9
+0x1401f4650: MOVUPS XMM0, xmmword ptr [0x1458f36a8]
+0x1401f4657: MOVUPS xmmword ptr [RBP + 0xf8], XMM0
+0x1401f465e: MOVUPS XMM10, xmmword ptr [0x1458f36b8]
+0x1401f4666: MOVUPS xmmword ptr [RBP + 0x108], XMM10
+0x1401f466e: MOVUPS XMM0, xmmword ptr [0x1458f36c8]
+0x1401f4675: MOVUPS xmmword ptr [RBP + 0x118], XMM0
+0x1401f467c: MOVUPS XMM0, xmmword ptr [0x1458f36e8]
+0x1401f4683: MOVUPS xmmword ptr [RBP + 0x138], XMM0
+0x1401f468a: MOVUPS XMM11, xmmword ptr [0x1458f36d8]
+0x1401f4692: MOVUPS xmmword ptr [RBP + 0x128], XMM11
+0x1401f469a: MOVUPS XMM12, xmmword ptr [0x1458f3708]
+0x1401f46a2: MOVUPS xmmword ptr [RBP + 0x158], XMM12
+0x1401f46aa: MOVUPS XMM13, xmmword ptr [0x1458f36f8]
+0x1401f46b2: MOVUPS xmmword ptr [RBP + 0x148], XMM13
+0x1401f46ba: MOVUPS XMM15, xmmword ptr [0x1458f35e0]
+0x1401f46c2: MOVAPS xmmword ptr [RBP + 0x30], XMM15
+0x1401f46c7: MOV qword ptr [RBP + 0x40], 0x0
+0x1401f46cf: MOVUPS XMM6, xmmword ptr [0x1458f35f8]
+0x1401f46d6: MOVUPS xmmword ptr [RBP + 0x48], XMM6
+0x1401f46da: MOV qword ptr [RBP + 0x58], 0x0
+0x1401f46e2: MOVUPS XMM7, xmmword ptr [0x1458f3610]
+0x1401f46e9: MOVAPS xmmword ptr [RBP + 0x60], XMM7
+0x1401f46ed: MOV qword ptr [RBP + 0x70], 0x0
+0x1401f46f5: MOVUPS XMM8, xmmword ptr [0x1458f3628]
+0x1401f46fd: MOVUPS xmmword ptr [RBP + 0x78], XMM8
+0x1401f4702: MOV qword ptr [RBP + 0x88], 0x0
+0x1401f470d: LEA RCX, [RBP + 0x1d8]
+0x1401f4714: LEA RDX, [RBP + 0x30]
+0x1401f4718: MOV R8D, 0x138
+0x1401f471e: CALL 0x1457149fd
+0x1401f4723: MOVAPS XMM14, xmmword ptr [0x1458a8210]
+0x1401f472b: MOVUPS xmmword ptr [RBP + 0x310], XMM14
+0x1401f4733: MOV dword ptr [RBP + 0x320], 0x1
+0x1401f473d: MOV qword ptr [RBP + 0x324], 0x0
+0x1401f4748: MOV byte ptr [RBP + 0x32c], 0x1
+0x1401f474f: MOVSD XMM0, qword ptr [0x1458aaa30]
+0x1401f4757: MOVSD qword ptr [RBP + 0x330], XMM0
+0x1401f475f: MOV dword ptr [RBP + 0x338], 0x3f800000
+0x1401f4769: MOV word ptr [RBP + 0x33c], 0x0
+0x1401f4772: MOV dword ptr [RBP + 0x33e], 0x10000
+0x1401f477c: MOV word ptr [RBP + 0x342], 0x0
+0x1401f4785: MOV dword ptr [RBP + 0x344], 0x10000
+0x1401f478f: MOV word ptr [RBP + 0x348], 0x0
+0x1401f4798: MOV dword ptr [RBP + 0x34a], 0x0
+0x1401f47a2: MOV word ptr [RBP + 0x34e], 0x1
+0x1401f47ab: MOV qword ptr [RBP + 0x1d0], RSI
+0x1401f47b2: LEA RCX, [RBP + -0x48]
+0x1401f47b6: LEA R8, [RBP + 0x1d0]
+0x1401f47bd: MOV RDX, RBX
+0x1401f47c0: CALL 0x1401a0510
+0x1401f47c5: MOV RBX, qword ptr [R15]
+0x1401f47c8: MOV R12, qword ptr [R15 + 0x8]
+0x1401f47cc: MOV RSI, qword ptr [R15 + 0x10]
+0x1401f47d0: MOV R14, qword ptr [RBP + -0x48]
+0x1401f47d4: MOV RAX, qword ptr [RBP + -0x20]
+0x1401f47d8: MOV qword ptr [RBP], R14
+0x1401f47dc: MOVUPS XMM0, xmmword ptr [RBP + -0x40]
+0x1401f47e0: MOVUPS xmmword ptr [RBP + 0x8], XMM0
+0x1401f47e4: MOVUPS XMM0, xmmword ptr [RBP + -0x30]
+0x1401f47e8: MOVUPS xmmword ptr [RBP + 0x18], XMM0
+0x1401f47ec: MOV qword ptr [RBP + 0x28], RAX
+0x1401f47f0: LEA RCX, [0x1458f40a5]
+0x1401f47f7: MOV EDX, 0xd
+0x1401f47fc: CALL 0x14541f030
+0x1401f4801: MOV R13, RDX
+0x1401f4804: TEST RDX, RDX
+0x1401f4807: JNS 0x1401f4818
+0x1401f4809: XOR ESI, ESI
+0x1401f480b: MOV RCX, RSI
+0x1401f480e: MOV RDX, R13
+0x1401f4811: CALL 0x1458a3b8b
+0x1401f4816: UD2
+0x1401f4818: MOV qword ptr [RBP + 0x380], RSI
+0x1401f481f: MOV qword ptr [RBP + 0x360], R15
+0x1401f4826: MOV qword ptr [RBP + 0x1c0], RDI
+0x1401f482d: JZ 0x1401f487d
+0x1401f482f: MOV R15, RAX
+0x1401f4832: CALL 0x140002200
+0x1401f4837: MOV ESI, 0x1
+0x1401f483c: MOV EDX, 0x1
+0x1401f4841: MOV RCX, R13
+0x1401f4844: CALL 0x1400021c0
+0x1401f4849: TEST RAX, RAX
+0x1401f484c: JZ 0x1401f480b
+0x1401f484e: MOV RDI, RAX
+0x1401f4851: MOV RCX, RAX
+0x1401f4854: MOV RDX, R15
+0x1401f4857: MOV R8, R13
+0x1401f485a: CALL 0x1457149fd
+0x1401f485f: CMP byte ptr [RBX + 0x18], 0x1
+0x1401f4863: JNZ 0x1401f4888
+0x1401f4865: MOV EAX, dword ptr [RBX + 0x19]
+0x1401f4868: MOV ECX, dword ptr [RBX + 0x1c]
+0x1401f486b: MOV dword ptr [RBP + 0x33], ECX
+0x1401f486e: MOV dword ptr [RBP + 0x30], EAX
+0x1401f4871: MOV RAX, qword ptr [RBX + 0x20]
+0x1401f4875: MOVZX EDX, byte ptr [RBX + 0x28]
+0x1401f4879: MOV CL, 0x1
+0x1401f487b: JMP 0x1401f4898
+0x1401f487d: MOV EDI, 0x1
+0x1401f4882: CMP byte ptr [RBX + 0x18], 0x1
+0x1401f4886: JZ 0x1401f4865
+0x1401f4888: MOV RAX, qword ptr [RBX + 0x20]
+0x1401f488c: INC.LOCK qword ptr [RAX]
+0x1401f4890: JLE 0x1401f521f
+0x1401f4896: XOR ECX, ECX
+0x1401f4898: LEA R15, [RBP + 0x8]
+0x1401f489c: MOV R8D, dword ptr [RBP + 0x30]
+0x1401f48a0: MOV R9D, dword ptr [RBP + 0x33]
+0x1401f48a4: MOV dword ptr [RBP + 0x20c], R9D
+0x1401f48ab: MOV dword ptr [RBP + 0x209], R8D
+0x1401f48b2: MOVUPS XMM0, xmmword ptr [0x1458f3558]
+0x1401f48b9: MOVUPS xmmword ptr [RBP + 0x369], XMM0
+0x1401f48c0: MOV dword ptr [RBP + 0x379], 0x3f800000
+0x1401f48ca: XORPS XMM0, XMM0
+0x1401f48cd: MOVUPS xmmword ptr [RBP + 0x23c], XMM0
+0x1401f48d4: MOV qword ptr [RBP + 0x1d8], R13
+0x1401f48db: MOV qword ptr [RBP + 0x1e0], RDI
+0x1401f48e2: MOV qword ptr [RBP + 0x1e8], R13
+0x1401f48e9: MOV qword ptr [RBP + 0x1f0], 0x0
+0x1401f48f4: MOV qword ptr [RBP + 0x1f8], 0x4
+0x1401f48ff: MOV qword ptr [RBP + 0x200], 0x0
+0x1401f490a: MOV byte ptr [RBP + 0x208], CL
+0x1401f4910: MOV qword ptr [RBP + 0x210], RAX
+0x1401f4917: MOV qword ptr [RBP + 0x218], RDX
+0x1401f491e: MOV dword ptr [RBP + 0x220], 0x42380000
+0x1401f4928: MOV word ptr [RBP + 0x224], 0x190
+0x1401f4931: MOV byte ptr [RBP + 0x226], 0x1
+0x1401f4938: MOV RAX, qword ptr [RBP + 0x375]
+0x1401f493f: MOV qword ptr [RBP + 0x234], RAX
+0x1401f4946: MOVUPS XMM0, xmmword ptr [RBP + 0x368]
+0x1401f494d: MOVUPS xmmword ptr [RBP + 0x227], XMM0
+0x1401f4954: MOVSS XMM0, dword ptr [0x1458a85b8]
+0x1401f495c: MOVLPS qword ptr [RBP + 0x24c], XMM0
+0x1401f4963: MOV dword ptr [RBP + 0x254], 0x40400000
+0x1401f496d: MOV qword ptr [RBP + 0x1d0], R14
+0x1401f4974: LEA RCX, [RBP + 0x30]
+0x1401f4978: LEA R8, [RBP + 0x1d0]
+0x1401f497f: MOV RDX, R15
+0x1401f4982: CALL 0x1401b3940
+0x1401f4987: MOV RDX, qword ptr [R12 + 0x50]
+0x1401f498c: MOV R8, qword ptr [R12 + 0x58]
+0x1401f4991: MOV RCX, R8
+0x1401f4994: SUB RCX, RDX
+0x1401f4997: SUB RCX, R8
+0x1401f499a: XOR R9D, R9D
+0x1401f499d: JMP 0x1401f49b0
+0x1401f49a0: INC R9
+0x1401f49a3: ADD R9, RCX
+0x1401f49a6: CMP R10D, 0x23
+0x1401f49aa: JNZ 0x1401f4a3f
+0x1401f49b0: CMP R9, R8
+0x1401f49b3: JZ 0x1401f4a3c
+0x1401f49b9: MOV RAX, R9
+0x1401f49bc: ADD R9, RDX
+0x1401f49bf: MOVZX ESI, byte ptr [R9]
+0x1401f49c3: MOVZX R10D, SIL
+0x1401f49c7: TEST R10B, R10B
+0x1401f49ca: JNS 0x1401f49a0
+0x1401f49cc: MOV R11D, R10D
+0x1401f49cf: AND R11D, 0x1f
+0x1401f49d3: MOVZX EDI, byte ptr [R9 + 0x1]
+0x1401f49d8: AND EDI, 0x3f
+0x1401f49db: CMP R10B, 0xdf
+0x1401f49df: JBE 0x1401f4a19
+0x1401f49e1: MOVZX R10D, byte ptr [R9 + 0x2]
+0x1401f49e6: SHL EDI, 0x6
+0x1401f49e9: AND R10D, 0x3f
+0x1401f49ed: OR R10D, EDI
+0x1401f49f0: CMP SIL, 0xf0
+0x1401f49f4: JC 0x1401f4a2c
+0x1401f49f6: MOVZX ESI, byte ptr [R9 + 0x3]
+0x1401f49fb: ADD R9, 0x4
+0x1401f49ff: AND R11D, 0x7
+0x1401f4a03: SHL R11D, 0x12
+0x1401f4a07: SHL R10D, 0x6
+0x1401f4a0b: AND ESI, 0x3f
+0x1401f4a0e: OR ESI, R10D
+0x1401f4a11: OR ESI, R11D
+0x1401f4a14: MOV R10D, ESI
+0x1401f4a17: JMP 0x1401f49a3
+0x1401f4a19: ADD R9, 0x2
+0x1401f4a1d: SHL R11D, 0x6
+0x1401f4a21: OR R11D, EDI
+0x1401f4a24: MOV R10D, R11D
+0x1401f4a27: JMP 0x1401f49a3
+0x1401f4a2c: ADD R9, 0x3
+0x1401f4a30: SHL R11D, 0xc
+0x1401f4a34: OR R10D, R11D
+0x1401f4a37: JMP 0x1401f49a3
+0x1401f4a3c: MOV RAX, R8
+0x1401f4a3f: SUB R8, RAX
+0x1401f4a42: ADD RDX, RAX
+0x1401f4a45: LEA RCX, [RBP + 0x1d0]
+0x1401f4a4c: CALL 0x140337fd0
+0x1401f4a51: CMP dword ptr [RBP + 0x1d0], 0x1
+0x1401f4a58: JNZ 0x1401f4a63
+0x1401f4a5a: MOVUPS XMM0, xmmword ptr [0x1458bafa4]
+0x1401f4a61: JMP 0x1401f4a6a
+0x1401f4a63: MOVUPS XMM0, xmmword ptr [RBP + 0x1d4]
+0x1401f4a6a: MOVAPS xmmword ptr [RBP + 0x30], XMM0
+0x1401f4a6e: MOV RCX, R12
+0x1401f4a71: CALL 0x1453dd650
+0x1401f4a76: MOV R12, RDX
+0x1401f4a79: TEST RDX, RDX
+0x1401f4a7c: JNS 0x1401f4a8d
+0x1401f4a7e: XOR ESI, ESI
+0x1401f4a80: MOV RCX, RSI
+0x1401f4a83: MOV RDX, R12
+0x1401f4a86: CALL 0x1458a3b8b
+0x1401f4a8b: UD2
+0x1401f4a8d: JZ 0x1401f4ae2
+0x1401f4a8f: MOV R13, RAX
+0x1401f4a92: CALL 0x140002200
+0x1401f4a97: MOV ESI, 0x1
+0x1401f4a9c: MOV EDX, 0x1
+0x1401f4aa1: MOV RCX, R12
+0x1401f4aa4: CALL 0x1400021c0
+0x1401f4aa9: TEST RAX, RAX
+0x1401f4aac: JZ 0x1401f4a80
+0x1401f4aae: MOV RDI, RAX
+0x1401f4ab1: MOV RCX, RAX
+0x1401f4ab4: MOV RDX, R13
+0x1401f4ab7: MOV R8, R12
+0x1401f4aba: CALL 0x1457149fd
+0x1401f4abf: CMP byte ptr [RBX], 0x1
+0x1401f4ac2: JNZ 0x1401f4aec
+0x1401f4ac4: MOV EAX, dword ptr [RBX + 0x1]
+0x1401f4ac7: MOV ECX, dword ptr [RBX + 0x4]
+0x1401f4aca: MOV dword ptr [RBP + 0x36b], ECX
+0x1401f4ad0: MOV dword ptr [RBP + 0x368], EAX
+0x1401f4ad6: MOV RAX, qword ptr [RBX + 0x8]
+0x1401f4ada: MOVZX EDX, byte ptr [RBX + 0x10]
+0x1401f4ade: MOV CL, 0x1
+0x1401f4ae0: JMP 0x1401f4afc
+0x1401f4ae2: MOV EDI, 0x1
+0x1401f4ae7: CMP byte ptr [RBX], 0x1
+0x1401f4aea: JZ 0x1401f4ac4
+0x1401f4aec: MOV RAX, qword ptr [RBX + 0x8]
+0x1401f4af0: INC.LOCK qword ptr [RAX]
+0x1401f4af4: JLE 0x1401f521f
+0x1401f4afa: XOR ECX, ECX
+0x1401f4afc: MOV R8D, dword ptr [RBP + 0x368]
+0x1401f4b03: MOV R9D, dword ptr [RBP + 0x36b]
+0x1401f4b0a: MOV dword ptr [RBP + 0x20c], R9D
+0x1401f4b11: MOV dword ptr [RBP + 0x209], R8D
+0x1401f4b18: MOVAPS XMM0, xmmword ptr [RBP + 0x30]
+0x1401f4b1c: MOVUPS xmmword ptr [RBP + 0x22c], XMM0
+0x1401f4b23: MOV qword ptr [RBP + 0x1d8], R12
+0x1401f4b2a: MOV qword ptr [RBP + 0x1e0], RDI
+0x1401f4b31: MOV qword ptr [RBP + 0x1e8], R12
+0x1401f4b38: MOV qword ptr [RBP + 0x1f0], 0x0
+0x1401f4b43: MOV qword ptr [RBP + 0x1f8], 0x4
+0x1401f4b4e: MOV qword ptr [RBP + 0x200], 0x0
+0x1401f4b59: MOV byte ptr [RBP + 0x208], CL
+0x1401f4b5f: MOV qword ptr [RBP + 0x210], RAX
+0x1401f4b66: MOV qword ptr [RBP + 0x218], RDX
+0x1401f4b6d: MOV dword ptr [RBP + 0x220], 0x41700000
+0x1401f4b77: MOV word ptr [RBP + 0x224], 0x190
+0x1401f4b80: MOV byte ptr [RBP + 0x226], 0x1
+0x1401f4b87: MOV dword ptr [RBP + 0x228], 0x0
+0x1401f4b91: MOV EAX, dword ptr [0x1458ba908]
+0x1401f4b97: MOV dword ptr [RBP + 0x24c], EAX
+0x1401f4b9d: MOVUPS XMM0, xmmword ptr [0x1458ba8f8]
+0x1401f4ba4: MOVUPS xmmword ptr [RBP + 0x23c], XMM0
+0x1401f4bab: MOVSD XMM0, qword ptr [0x1458a81f0]
+0x1401f4bb3: MOVSD qword ptr [RBP + 0x250], XMM0
+0x1401f4bbb: MOV qword ptr [RBP + 0x1d0], R14
+0x1401f4bc2: LEA RCX, [RBP + 0x30]
+0x1401f4bc6: LEA R8, [RBP + 0x1d0]
+0x1401f4bcd: MOV RDX, R15
+0x1401f4bd0: CALL 0x1401b3940
+0x1401f4bd5: MOV R12, qword ptr [RBP + 0x380]
+0x1401f4bdc: MOV R14, qword ptr [R12 + 0x28]
+0x1401f4be1: TEST R14, R14
+0x1401f4be4: JZ 0x1401f4c28
+0x1401f4be6: MOV R15, qword ptr [R12 + 0x20]
+0x1401f4beb: MOV RDI, qword ptr [R12 + 0x120]
+0x1401f4bf3: XOR ESI, ESI
+0x1401f4bf5: XOR R12D, R12D
+0x1401f4bf8: NOP dword ptr [RAX + RAX*0x1]
+0x1401f4c00: MOV EDX, dword ptr [R15 + R12*0x4]
+0x1401f4c04: MOV RCX, RDI
+0x1401f4c07: CALL 0x1453f9910
+0x1401f4c0c: MOVZX EAX, AL
+0x1401f4c0f: ADD RSI, RAX
+0x1401f4c12: INC R12
+0x1401f4c15: CMP R14, R12
+0x1401f4c18: JNZ 0x1401f4c00
+0x1401f4c1a: MOV R12, qword ptr [RBP + 0x380]
+0x1401f4c21: MOV RAX, qword ptr [R12 + 0x28]
+0x1401f4c26: JMP 0x1401f4c2c
+0x1401f4c28: XOR EAX, EAX
+0x1401f4c2a: XOR ESI, ESI
+0x1401f4c2c: MOV qword ptr [RBP + 0x1b8], RSI
+0x1401f4c33: MOV qword ptr [RBP + 0x1b0], RAX
+0x1401f4c3a: LEA RAX, [0x1458f3f54]
+0x1401f4c41: MOV qword ptr [RBP + 0x1d0], RAX
+0x1401f4c48: MOV qword ptr [RBP + 0x1d8], 0x1
+0x1401f4c53: LEA RAX, [RBP + 0x1b8]
+0x1401f4c5a: MOV qword ptr [RBP + 0x1e0], RAX
+0x1401f4c61: LEA RAX, [0x1458f3808]
+0x1401f4c68: MOV qword ptr [RBP + 0x1e8], RAX
+0x1401f4c6f: LEA RCX, [0x1458f3e32]
+0x1401f4c76: MOV qword ptr [RBP + 0x1f0], RCX
+0x1401f4c7d: MOV qword ptr [RBP + 0x1f8], 0x5
+0x1401f4c88: LEA RCX, [RBP + 0x1b0]
+0x1401f4c8f: MOV qword ptr [RBP + 0x200], RCX
+0x1401f4c96: MOV qword ptr [RBP + 0x208], RAX
+0x1401f4c9d: MOV qword ptr [RSP + 0x20], 0x2
+0x1401f4ca6: LEA RDX, [0x1458f40b2]
+0x1401f4cad: LEA RSI, [RBP + 0x368]
+0x1401f4cb4: LEA R9, [RBP + 0x1d0]
+0x1401f4cbb: MOV R8D, 0x15
+0x1401f4cc1: MOV RCX, RSI
+0x1401f4cc4: CALL 0x14541f090
+0x1401f4cc9: MOV qword ptr [RBP + 0x170], RSI
+0x1401f4cd0: LEA RAX, [0x1400020e0]
+0x1401f4cd7: MOV qword ptr [RBP + 0x178], RAX
+0x1401f4cde: LEA RDX, [0x1458f3be7]
+0x1401f4ce5: LEA RCX, [RBP + -0x18]
+0x1401f4ce9: LEA R8, [RBP + 0x170]
+0x1401f4cf0: CALL 0x1456c9ba0
+0x1401f4cf5: NOP
+0x1401f4cf6: MOV RDI, qword ptr [RBP + 0x360]
+0x1401f4cfd: MOV RDX, qword ptr [RBP + 0x368]
+0x1401f4d04: TEST RDX, RDX
+0x1401f4d07: JZ 0x1401f4d1b
+0x1401f4d09: MOV RCX, qword ptr [RBP + 0x370]
+0x1401f4d10: MOV R8D, 0x1
+0x1401f4d16: CALL 0x1400021d0
+0x1401f4d1b: CMP byte ptr [RBX], 0x1
+0x1401f4d1e: JNZ 0x1401f4d3e
+0x1401f4d20: MOV EAX, dword ptr [RBX + 0x1]
+0x1401f4d23: MOV ECX, dword ptr [RBX + 0x4]
+0x1401f4d26: MOV dword ptr [RBP + 0x36b], ECX
+0x1401f4d2c: MOV dword ptr [RBP + 0x368], EAX
+0x1401f4d32: MOV RAX, qword ptr [RBX + 0x8]
+0x1401f4d36: MOVZX ECX, byte ptr [RBX + 0x10]
+0x1401f4d3a: MOV DL, 0x1
+0x1401f4d3c: JMP 0x1401f4d4e
+0x1401f4d3e: MOV RAX, qword ptr [RBX + 0x8]
+0x1401f4d42: INC.LOCK qword ptr [RAX]
+0x1401f4d46: JLE 0x1401f521f
+0x1401f4d4c: XOR EDX, EDX
+0x1401f4d4e: MOV R8, qword ptr [RBP + -0x8]
+0x1401f4d52: MOV qword ptr [RBP + 0x1e0], R8
+0x1401f4d59: MOVUPS XMM0, xmmword ptr [RBP + -0x18]
+0x1401f4d5d: MOVAPS xmmword ptr [RBP + 0x1d0], XMM0
+0x1401f4d64: MOV qword ptr [RBP + 0x1e8], 0x0
+0x1401f4d6f: MOV qword ptr [RBP + 0x1f0], 0x4
+0x1401f4d7a: MOV qword ptr [RBP + 0x1f8], 0x0
+0x1401f4d85: MOV byte ptr [RBP + 0x200], DL
+0x1401f4d8b: MOV EDX, dword ptr [RBP + 0x368]
+0x1401f4d91: MOV R8D, dword ptr [RBP + 0x36b]
+0x1401f4d98: MOV dword ptr [RBP + 0x201], EDX
+0x1401f4d9e: MOV dword ptr [RBP + 0x204], R8D
+0x1401f4da5: MOV qword ptr [RBP + 0x208], RAX
+0x1401f4dac: MOV qword ptr [RBP + 0x210], RCX
+0x1401f4db3: MOV dword ptr [RBP + 0x218], 0x41700000
+0x1401f4dbd: MOV word ptr [RBP + 0x21c], 0x190
+0x1401f4dc6: MOV byte ptr [RBP + 0x21e], 0x1
+0x1401f4dcd: MOVUPS XMM0, xmmword ptr [0x1458f359c]
+0x1401f4dd4: MOVAPS xmmword ptr [RBP + 0x220], XMM0
+0x1401f4ddb: MOV dword ptr [RBP + 0x230], 0x3f800000
+0x1401f4de5: LEA R13, [RBP + 0x30]
+0x1401f4de9: LEA RDX, [RBP + 0x1d0]
+0x1401f4df0: MOV RCX, R13
+0x1401f4df3: CALL 0x1401b9950
+0x1401f4df8: MOV RAX, qword ptr [R12 + 0x118]
+0x1401f4e00: MOV RDX, qword ptr [R12 + 0x120]
+0x1401f4e08: MOVZX R8D, byte ptr [RAX + 0x38]
+0x1401f4e0d: LEA RCX, [RBP + 0x1d0]
+0x1401f4e14: CALL 0x1400394a0
+0x1401f4e19: MOV RCX, qword ptr [RBP + 0x1d0]
+0x1401f4e20: MOV R12, qword ptr [RBP + 0x1d8]
+0x1401f4e27: MOV RAX, qword ptr [RBP + 0x1e0]
+0x1401f4e2e: MOV R14, RAX
+0x1401f4e31: SHL R14, 0x5
+0x1401f4e35: LEA RSI, [R12 + R14*0x1]
+0x1401f4e39: MOV qword ptr [RBP + 0x1d0], R12
+0x1401f4e40: MOV qword ptr [RBP + 0x1c8], RCX
+0x1401f4e47: MOV qword ptr [RBP + 0x1e0], RCX
+0x1401f4e4e: MOV qword ptr [RBP + 0x1e8], RSI
+0x1401f4e55: MOV RCX, R12
+0x1401f4e58: TEST RAX, RAX
+0x1401f4e5b: MOVAPS XMM4, XMM9
+0x1401f4e5f: MOVAPS XMM5, XMM10
+0x1401f4e63: JZ 0x1401f4f1e
+0x1401f4e69: MOV R15, qword ptr [RDI + 0x18]
+0x1401f4e6d: LEA RCX, [R12 + 0x20]
+0x1401f4e72: LEA RDI, [RBP + 0x180]
+0x1401f4e79: JMP 0x1401f4e9d
+0x1401f4e80: MOV RCX, qword ptr [RBP + 0x360]
+0x1401f4e87: ADD RCX, 0x20
+0x1401f4e8b: ADD R14, -0x20
+0x1401f4e8f: MOVAPS XMM4, XMM9
+0x1401f4e93: MOVAPS XMM5, XMM10
+0x1401f4e97: JZ 0x1401f4f70
+0x1401f4e9d: MOV RAX, qword ptr [RCX + -0x18]
+0x1401f4ea1: CMP RAX, -0x1
+0x1401f4ea5: JZ 0x1401f4f1e
+0x1401f4ea7: MOV qword ptr [RBP + 0x380], RAX
+0x1401f4eae: MOV R8, qword ptr [RCX + -0x10]
+0x1401f4eb2: MOV R9, qword ptr [RCX + -0x8]
+0x1401f4eb6: MOV qword ptr [RBP + 0x360], RCX
+0x1401f4ebd: MOVZX EAX, byte ptr [RCX + -0x20]
+0x1401f4ec1: MOVZX ECX, byte ptr [R15 + 0x76]
+0x1401f4ec6: MOV byte ptr [RBP + 0x34], AL
+0x1401f4ec9: MOV dword ptr [RBP + 0x30], 0x3
+0x1401f4ed0: CMP CL, AL
+0x1401f4ed2: MOV qword ptr [RSP + 0x30], R13
+0x1401f4ed7: SETZ byte ptr [RSP + 0x28]
+0x1401f4edc: MOV dword ptr [RSP + 0x20], 0x41800000
+0x1401f4ee4: MOV RCX, RDI
+0x1401f4ee7: MOV RDX, RBX
+0x1401f4eea: MOV qword ptr [RBP + 0x358], R8
+0x1401f4ef1: CALL 0x14003b3f0
+0x1401f4ef6: NOP
+0x1401f4ef7: MOV RDX, qword ptr [RBP + 0x380]
+0x1401f4efe: TEST RDX, RDX
+0x1401f4f01: JZ 0x1401f4e80
+0x1401f4f07: MOV R8D, 0x1
+0x1401f4f0d: MOV RCX, qword ptr [RBP + 0x358]
+0x1401f4f14: CALL 0x1400021d0
+0x1401f4f19: JMP 0x1401f4e80
+0x1401f4f1e: MOV qword ptr [RBP + 0x1d8], RCX
+0x1401f4f25: SUB RSI, RCX
+0x1401f4f28: JZ 0x1401f4f70
+0x1401f4f2a: SHR RSI, 0x5
+0x1401f4f2e: ADD RCX, 0x10
+0x1401f4f32: JMP 0x1401f4f49
+0x1401f4f40: ADD RCX, 0x20
+0x1401f4f44: DEC RSI
+0x1401f4f47: JZ 0x1401f4f70
+0x1401f4f49: MOV RDX, qword ptr [RCX + -0x8]
+0x1401f4f4d: TEST RDX, RDX
+0x1401f4f50: JZ 0x1401f4f40
+0x1401f4f52: MOV RDI, RCX
+0x1401f4f55: MOV RCX, qword ptr [RCX]
+0x1401f4f58: MOV R8D, 0x1
+0x1401f4f5e: CALL 0x1400021d0
+0x1401f4f63: MOV RCX, RDI
+0x1401f4f66: MOVAPS XMM5, XMM10
+0x1401f4f6a: MOVAPS XMM4, XMM9
+0x1401f4f6e: JMP 0x1401f4f40
+0x1401f4f70: MOV RDX, qword ptr [RBP + 0x1c8]
+0x1401f4f77: TEST RDX, RDX
+0x1401f4f7a: JZ 0x1401f4f96
+0x1401f4f7c: SHL RDX, 0x5
+0x1401f4f80: MOV R8D, 0x8
+0x1401f4f86: MOV RCX, R12
+0x1401f4f89: CALL 0x1400021d0
+0x1401f4f8e: MOVAPS XMM5, XMM10
+0x1401f4f92: MOVAPS XMM4, XMM9
+0x1401f4f96: XORPS XMM0, XMM0
+0x1401f4f99: MOVUPS xmmword ptr [RBP + 0x250], XMM0
+0x1401f4fa0: MOVUPS xmmword ptr [RBP + 0x240], XMM0
+0x1401f4fa7: MOVUPS xmmword ptr [RBP + 0x268], XMM0
+0x1401f4fae: MOVUPS xmmword ptr [RBP + 0x278], XMM0
+0x1401f4fb5: MOV qword ptr [RBP + 0x288], 0x0
+0x1401f4fc0: MOV dword ptr [RBP + 0x350], 0x0
+0x1401f4fca: MOV word ptr [RBP + 0x354], 0x0
+0x1401f4fd3: MOVAPS xmmword ptr [RBP + 0x30], XMM15
+0x1401f4fd8: MOV qword ptr [RBP + 0x40], 0x0
+0x1401f4fe0: MOVUPS xmmword ptr [RBP + 0x48], XMM6
+0x1401f4fe4: MOV qword ptr [RBP + 0x58], 0x0
+0x1401f4fec: MOVAPS xmmword ptr [RBP + 0x60], XMM7
+0x1401f4ff0: MOV qword ptr [RBP + 0x70], 0x0
+0x1401f4ff8: MOVUPS xmmword ptr [RBP + 0x78], XMM8
+0x1401f4ffd: MOV qword ptr [RBP + 0x88], 0x0
+0x1401f5008: MOV RAX, qword ptr [RBP + 0x180]
+0x1401f500f: MOV RCX, qword ptr [RBP + 0x80]
+0x1401f5016: MOV qword ptr [RBP + 0x228], RCX
+0x1401f501d: MOV RCX, qword ptr [RBP + 0x88]
+0x1401f5024: MOV qword ptr [RBP + 0x230], RCX
+0x1401f502b: MOV RCX, qword ptr [RBP + 0x70]
+0x1401f502f: MOV qword ptr [RBP + 0x218], RCX
+0x1401f5036: MOV RCX, qword ptr [RBP + 0x78]
+0x1401f503a: MOV qword ptr [RBP + 0x220], RCX
+0x1401f5041: MOVAPS XMM0, xmmword ptr [RBP + 0x30]
+0x1401f5045: MOVAPS XMM1, xmmword ptr [RBP + 0x40]
+0x1401f5049: MOVAPS XMM2, xmmword ptr [RBP + 0x50]
+0x1401f504d: MOVAPS XMM3, xmmword ptr [RBP + 0x60]
+0x1401f5051: MOVUPS xmmword ptr [RBP + 0x208], XMM3
+0x1401f5058: MOVUPS xmmword ptr [RBP + 0x1f8], XMM2
+0x1401f505f: MOVUPS xmmword ptr [RBP + 0x1e8], XMM1
+0x1401f5066: MOVUPS xmmword ptr [RBP + 0x1d8], XMM0
+0x1401f506d: MOV qword ptr [RBP + 0x238], 0x0
+0x1401f5078: MOV RCX, 0x4190000000000001
+0x1401f5082: MOV qword ptr [RBP + 0x260], RCX
+0x1401f5089: MOVUPS XMM0, xmmword ptr [0x1458f36a8]
+0x1401f5090: MOVUPS xmmword ptr [RBP + 0x2a0], XMM0
+0x1401f5097: MOVUPS xmmword ptr [RBP + 0x290], XMM4
+0x1401f509e: MOVUPS XMM0, xmmword ptr [0x1458f36c8]
+0x1401f50a5: MOVUPS xmmword ptr [RBP + 0x2c0], XMM0
+0x1401f50ac: MOVUPS xmmword ptr [RBP + 0x2b0], XMM5
+0x1401f50b3: MOVUPS XMM0, xmmword ptr [0x1458f36e8]
+0x1401f50ba: MOVUPS xmmword ptr [RBP + 0x2e0], XMM0
+0x1401f50c1: MOVUPS xmmword ptr [RBP + 0x2d0], XMM11
+0x1401f50c9: MOVUPS xmmword ptr [RBP + 0x300], XMM12
+0x1401f50d1: MOVUPS xmmword ptr [RBP + 0x2f0], XMM13
+0x1401f50d9: MOVUPS xmmword ptr [RBP + 0x310], XMM14
+0x1401f50e1: MOV dword ptr [RBP + 0x320], 0x1
+0x1401f50eb: MOV qword ptr [RBP + 0x324], 0x0
+0x1401f50f6: MOV byte ptr [RBP + 0x32c], 0x1
+0x1401f50fd: MOV qword ptr [RBP + 0x330], 0x0
+0x1401f5108: MOV dword ptr [RBP + 0x338], 0x3f800000
+0x1401f5112: MOV word ptr [RBP + 0x33c], 0x0
+0x1401f511b: MOV word ptr [RBP + 0x342], 0x0
+0x1401f5124: MOV dword ptr [RBP + 0x33e], 0x10000
+0x1401f512e: MOV word ptr [RBP + 0x348], 0x0
+0x1401f5137: MOV dword ptr [RBP + 0x344], 0x10000
+0x1401f5141: MOV word ptr [RBP + 0x34e], 0x0
+0x1401f514a: MOV dword ptr [RBP + 0x34a], 0x0
+0x1401f5154: MOV qword ptr [RBP + 0x1d0], RAX
+0x1401f515b: MOV RCX, RBP
+0x1401f515e: LEA RSI, [RBP + 0x1d0]
+0x1401f5165: LEA RDX, [RBP + 0x188]
+0x1401f516c: MOV R8, RSI
+0x1401f516f: CALL 0x1401a0510
+0x1401f5174: LEA RCX, [0x1458f3ddf]
+0x1401f517b: MOV EDX, 0xc
+0x1401f5180: CALL 0x14541f030
+0x1401f5185: MOV R9, RDX
+0x1401f5188: MOV dword ptr [RBP + 0x1d0], 0x2
+0x1401f5192: MOV qword ptr [RSP + 0x30], RSI
+0x1401f5197: MOV byte ptr [RSP + 0x28], 0x1
+0x1401f519c: MOV dword ptr [RSP + 0x20], 0x41900000
+0x1401f51a4: LEA RCX, [RBP + 0x180]
+0x1401f51ab: MOV RDX, RBX
+0x1401f51ae: MOV R8, RAX
+0x1401f51b1: CALL 0x14003b3f0
+0x1401f51b6: MOV RAX, qword ptr [RBP + 0x1c0]
+0x1401f51bd: MOVAPS XMM6, xmmword ptr [RBP + 0x390]
+0x1401f51c4: MOVAPS XMM7, xmmword ptr [RBP + 0x3a0]
+0x1401f51cb: MOVAPS XMM8, xmmword ptr [RBP + 0x3b0]
+0x1401f51d3: MOVAPS XMM9, xmmword ptr [RBP + 0x3c0]
+0x1401f51db: MOVAPS XMM10, xmmword ptr [RBP + 0x3d0]
+0x1401f51e3: MOVAPS XMM11, xmmword ptr [RBP + 0x3e0]
+0x1401f51eb: MOVAPS XMM12, xmmword ptr [RBP + 0x3f0]
+0x1401f51f3: MOVAPS XMM13, xmmword ptr [RBP + 0x400]
+0x1401f51fb: MOVAPS XMM14, xmmword ptr [RBP + 0x410]
+0x1401f5203: MOVAPS XMM15, xmmword ptr [RBP + 0x420]
+0x1401f520b: ADD RSP, 0x4b8
+0x1401f5212: POP RBX
+0x1401f5213: POP RDI
+0x1401f5214: POP RSI
+0x1401f5215: POP R12
+0x1401f5217: POP R13
+0x1401f5219: POP R14
+0x1401f521b: POP R15
+0x1401f521d: POP RBP
+0x1401f521e: RET
+0x1401f521f: UD2

@@ -1,0 +1,437 @@
+{
+  "date": "2026-10-16",
+  "target": "AzerothSurvivors/AzerothSurvivors.exe",
+  "sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+  "scope": "source26 Character/Collection/Drop Tables intrinsic body flow; gameplay excluded",
+  "native_node_layout": {
+    "size": 384,
+    "width": 136,
+    "height": 144,
+    "min_height": 160,
+    "padding": 216,
+    "row_gap": 320,
+    "column_gap": 328,
+    "flex_grow": 348,
+    "flex_shrink": 352,
+    "flex_direction": 374,
+    "align_items": 378,
+    "justify_content": 381,
+    "bundle_rule": "1a0510 plain ChildOf bundle Node at R8+8;1a2050 direct Node at RCX; typed custom child bundles verified against stores; stack evaluator output was used only as a lead."
+  },
+  "panes": [
+    {
+      "constructor": "0x14003cd00",
+      "page": "all three, left Appearance",
+      "width_px": 350,
+      "padding_xy_px": [
+        14,
+        12
+      ],
+      "direction": "Column",
+      "row_gap_px": 8,
+      "content": "0x1401fa130",
+      "min_height_px": 0,
+      "fixed_width_flex_shrink": 0,
+      "frame_helper": "0x1400a1ce0"
+    },
+    {
+      "constructor": "0x14003ca90",
+      "page": "Character center",
+      "flex_grow": 1,
+      "flex_basis_px": 0,
+      "padding_xy_px": [
+        16,
+        12
+      ],
+      "direction": "Column",
+      "row_gap_px": 4,
+      "align_items": "Center",
+      "content": "0x1401f8810",
+      "min_height_px": 0,
+      "fixed_width_flex_shrink": 1,
+      "frame_helper": "0x1400a1ce0"
+    },
+    {
+      "constructor": "0x140037a40",
+      "page": "Character right Features",
+      "width_px": 340,
+      "padding_xy_px": [
+        16,
+        12
+      ],
+      "direction": "Column",
+      "row_gap_px": 8,
+      "content": "0x1401ef1f0",
+      "min_height_px": 0,
+      "fixed_width_flex_shrink": 0,
+      "frame_helper": "0x1400a1ce0"
+    },
+    {
+      "constructor": "0x1400391f0",
+      "page": "Collection center",
+      "flex_grow": 1,
+      "flex_basis_px": 0,
+      "padding_xy_px": [
+        16,
+        12
+      ],
+      "direction": "Column",
+      "row_gap_px": 10,
+      "content": "0x1401f1300",
+      "min_height_px": 0,
+      "fixed_width_flex_shrink": 1,
+      "frame_helper": "0x1400a1ce0"
+    },
+    {
+      "constructor": "0x140035330",
+      "page": "Drop Tables center",
+      "flex_grow": 1,
+      "flex_basis_px": 0,
+      "padding_xy_px": [
+        14,
+        12
+      ],
+      "direction": "Row",
+      "column_gap_px": 14,
+      "content": "0x1401e9010",
+      "min_height_px": 0,
+      "fixed_width_flex_shrink": 1,
+      "frame_helper": "0x1400a1ce0"
+    },
+    {
+      "constructor": "0x140036210",
+      "page": "Collection/Drop Tables right Details",
+      "width_px": 340,
+      "padding_xy_px": [
+        16,
+        12
+      ],
+      "direction": "Column",
+      "row_gap_px": 9,
+      "content": "0x1401edcf0",
+      "min_height_px": 0,
+      "fixed_width_flex_shrink": 0,
+      "frame_helper": "0x1400a1ce0"
+    }
+  ],
+  "child_facts": [
+    {
+      "consumer": "0x1401fa130",
+      "proof": [
+        "0x1401fa44a",
+        "0x1401fa63e",
+        "0x1401fa99a",
+        "0x1401fad21",
+        "0x1401fb9fd",
+        "0x1401fc0b9",
+        "0x1401fc31b"
+      ],
+      "fields": "Appearance/Equipment section heading rows; faction row gap10 centered; faction column gap4 centered; race row gap4; identity row gap8 centered; aggregate bonuses wrap column gap10/row gap2."
+    },
+    {
+      "consumer": "0x14003c520 / 0x1401f7520",
+      "proof": [
+        "0x14003c9a1",
+        "0x1401f7a0d",
+        "0x1401f7bc8"
+      ],
+      "fields": "Equipment row padding6x3,gap10,alignCenter,shrink0,border1,radius6; icon32x32 shrink0,border1/radius4; growing text Column; label10 and piece name14."
+    },
+    {
+      "consumer": "0x1401f8810",
+      "proof": [
+        "0x1401f89fb",
+        "0x1401f8a91",
+        "0x1401f8bb9",
+        "0x1401f8df1",
+        "0x1401f902d",
+        "0x1401f93b5",
+        "0x1401f9669",
+        "0x1401f9812",
+        "0x1401f9b46"
+      ],
+      "fields": "Name34; two-argument sex/race identity15; class blurb15, strips leading#; stage500x610 shrink0; absolute model image100%x100%; floor ellipse left14%,bottom14px,width72%,height64px,radius50%; turn row gap14 centered,turn image34x34,hint12."
+    },
+    {
+      "consumer": "0x14003bf40 / 0x1401f5c00 / 0x14022dc90",
+      "proof": [
+        "0x14003c360",
+        "0x1401f5ec0",
+        "0x1401f6065",
+        "0x1401f61cd",
+        "0x1401f63bc",
+        "0x1401f66b2",
+        "0x14022dcdd",
+        "0x14022de60"
+      ],
+      "fields": "Feature row auto dimensions,padding4x5,gap6,alignCenter,shrink0,border1/radius8; growing center Column gap3; label11,value20; <=16 indicator dots6px gap3; arrow38x38 shrink0; native MPQ asset pairs retained."
+    },
+    {
+      "consumer": "0x1401f1300",
+      "proof": [
+        "0x1401f1639",
+        "0x1401f1670",
+        "0x1401f181d",
+        "0x1401f2282",
+        "0x1401f278c",
+        "0x1401f27a8",
+        "0x1401f2a7a",
+        "0x1401f2c4f"
+      ],
+      "fields": "Collection grid label track150px and one54px track per class slot,row gap10/column gap6,alignSelfCenter/alignItemsCenter; rarity label Column gap1,font17+10; item size54; footer marginTopAuto,Column gap6,SpaceBetween row,font12+13."
+    },
+    {
+      "consumer": "0x140036480",
+      "proof": [
+        "0x140036bcd",
+        "0x140036c05",
+        "0x140036d78"
+      ],
+      "fields": "Missing-list container two minmax(0,1fr) tracks,row gap6/column gap14. Child entry/truncation remains explicitly unclosed."
+    },
+    {
+      "consumer": "0x1401e9010",
+      "proof": [
+        "0x1401e92e7",
+        "0x1401e9983",
+        "0x1401ea273",
+        "0x1401ea4a1",
+        "0x1401eaccc",
+        "0x1401eaf48",
+        "0x1401eb7d9",
+        "0x1401eb7f5"
+      ],
+      "fields": "Zone column230px,shrink0,row gap5; zone button padding10x5,border1/radius6,column; growing boss column gap8; zone heading28,description13; boss row padding10x6,gap12,center,border1/radius8;190px nonshrinking boss identity Column;font16+11; item icons42px. The original code creates icon consumers then tooltip descriptions, not the old inline mini item cards."
+    },
+    {
+      "consumer": "0x140037d50 / 0x1401efee0",
+      "proof": [
+        "0x1400381c4",
+        "0x1401f0329",
+        "0x1401f050d",
+        "0x140038d01",
+        "0x140038f59"
+      ],
+      "fields": "Details header row pad8,gap12,alignCenter,border1/radius8; icon60px shrink0,border2/radius6; growing label Column gap2;font18/12/12; source list Column; actions row marginTop4,gap8."
+    },
+    {
+      "consumer": "0x14003b140 / 0x1401f3510",
+      "proof": [
+        "0x14003b37a",
+        "0x1401f3c86"
+      ],
+      "fields": "Look footer marginTopAuto,Column gap6; buttons wrap gap6 in both axes; native03b3f0 auto-size button labels13."
+    }
+  ],
+  "rea_records": [
+    {
+      "address": "0x14003cd00",
+      "evidence_id": "ev_0c5bc30924cbad93312561d241b5ded1af7f92201ec05f5ee0a42b0bd3e0505a",
+      "analysis": "Ghidra exact unmodified pdata-bounded raw slice, with original Win64 instruction verification"
+    },
+    {
+      "address": "0x14003ca90",
+      "evidence_id": "ev_2b557d4ae7dc8b4e40be09c3298aeabcfc576b4db497f2168615645ced9d73d9",
+      "analysis": "Ghidra exact unmodified pdata-bounded raw slice, with original Win64 instruction verification"
+    },
+    {
+      "address": "0x140037a40",
+      "evidence_id": "ev_cc6bf3b831cc2caf11b0c6b005283917dce2b241b67facb2359a0e331ba2aeb6",
+      "analysis": "Ghidra exact unmodified pdata-bounded raw slice, with original Win64 instruction verification"
+    },
+    {
+      "address": "0x1400391f0",
+      "evidence_id": "ev_ffe317f4a015d309a14105b7bd62d6563287603d8353eb9eef6a58d1a8bf588d",
+      "analysis": "Ghidra exact unmodified pdata-bounded raw slice, with original Win64 instruction verification"
+    },
+    {
+      "address": "0x140035330",
+      "evidence_id": "ev_41b7df040c903afde8a83e9743358de6c8855b4ffbc05d03eb7da4c85cb9744d",
+      "analysis": "Ghidra exact unmodified pdata-bounded raw slice, with original Win64 instruction verification"
+    },
+    {
+      "address": "0x140036210",
+      "evidence_id": "ev_6b11e74fbf81a0fbd3ecf96ef992071e92d8b0bb57116e64df924e293052ddf8",
+      "analysis": "Ghidra exact unmodified pdata-bounded raw slice, with original Win64 instruction verification"
+    },
+    {
+      "address": "0x1401fa130",
+      "evidence_id": "ev_63e29d129d29dee36c36a7c913b60d9a9e52ad38634b3b8baec39c9973455ef5",
+      "analysis": "Ghidra exact unmodified pdata-bounded raw slice, with original Win64 instruction verification"
+    },
+    {
+      "address": "0x1401f8810",
+      "evidence_id": "ev_c738ec8807f83e83b737cef1632184bc6277cf7b8c475c991cec09614663e396",
+      "analysis": "Ghidra exact unmodified pdata-bounded raw slice, with original Win64 instruction verification"
+    },
+    {
+      "address": "0x1401ef1f0",
+      "evidence_id": "ev_58a5d1b7e48a15f51afad83e87ba6ed6b7092c8991de94c786766622325ba602",
+      "analysis": "Ghidra exact unmodified pdata-bounded raw slice, with original Win64 instruction verification"
+    },
+    {
+      "address": "0x1401f1300",
+      "evidence_id": "ev_08e2219b67f229f8803dce25b493bc469905aff9a00710716e51c88f731aeae9",
+      "analysis": "Ghidra exact unmodified pdata-bounded raw slice, with original Win64 instruction verification"
+    },
+    {
+      "address": "0x1401e9010",
+      "evidence_id": "ev_d7d85be81469384c14ad31aff926097a48d72563d4bd7e506f0b4c41ff763c99",
+      "analysis": "Ghidra exact unmodified pdata-bounded raw slice, with original Win64 instruction verification"
+    },
+    {
+      "address": "0x1401edcf0",
+      "evidence_id": "ev_4540443846de26823482b18b954f843edd554245a91618252e91e406fbe30221",
+      "analysis": "Ghidra exact unmodified pdata-bounded raw slice, with original Win64 instruction verification"
+    },
+    {
+      "address": "0x140037d50",
+      "evidence_id": "ev_b0820e1aeac95c0a25bc5744f0cc81058e103be46d7f6c85b4ada3c76a61da99",
+      "analysis": "Ghidra exact unmodified pdata-bounded raw slice, with original Win64 instruction verification"
+    },
+    {
+      "address": "0x14003bf40",
+      "evidence_id": "ev_0e766987b485e79fa8755013a2ff3c98fa4bbc4987a9a7be4d05d85024683a36",
+      "analysis": "Ghidra exact unmodified pdata-bounded raw slice, with original Win64 instruction verification"
+    },
+    {
+      "address": "0x1401f5c00",
+      "evidence_id": "ev_5aad8d4002429373db19dae09c88f910fbc4e5b515719b6a7e393ce926489771",
+      "analysis": "Ghidra exact unmodified pdata-bounded raw slice, with original Win64 instruction verification"
+    },
+    {
+      "address": "0x14003b140",
+      "evidence_id": "ev_cd7b37600dafcb88276a02cf91bd80145c7145bd907521b90b26966f4c64a84d",
+      "analysis": "Ghidra exact unmodified pdata-bounded raw slice, with original Win64 instruction verification"
+    },
+    {
+      "address": "0x1401f3510",
+      "evidence_id": "ev_22f2dfd583499c923ecea70466490c0bfe760582096fe1c18cfd64fa354c67d5",
+      "analysis": "Ghidra exact unmodified pdata-bounded raw slice, with original Win64 instruction verification"
+    },
+    {
+      "address": "0x14003c520",
+      "evidence_id": "ev_a4b9161fd61ac5f596e3d324f1e0a61e49bf4be58dec434685745ca669e53e62",
+      "analysis": "Ghidra exact unmodified pdata-bounded raw slice, with original Win64 instruction verification"
+    },
+    {
+      "address": "0x1401f7520",
+      "evidence_id": "ev_6dffdfea4d4182cf0db18ad5ecd85cea173de425572dfdd62cc1564fc911da64",
+      "analysis": "Ghidra exact unmodified pdata-bounded raw slice, with original Win64 instruction verification"
+    },
+    {
+      "address": "0x1400355e0",
+      "evidence_id": "ev_1614b7e62100052e33853cb77ad208094753bde2ce618fc23d6f7fe2ad9d0aa8",
+      "analysis": "Ghidra exact unmodified pdata-bounded raw slice, with original Win64 instruction verification"
+    },
+    {
+      "address": "0x140036480",
+      "evidence_id": "ev_38fb816b265029b71d8c0d87ff63071ad16a2131bc665e48e4b501a09f579ba1",
+      "analysis": "Ghidra exact unmodified pdata-bounded raw slice, with original Win64 instruction verification"
+    },
+    {
+      "address": "0x1401eda50",
+      "evidence_id": "ev_e02824a2aaf2b885f788fda5c7314cea24dabe13b341918e1857c2fc2d1e13b5",
+      "analysis": "Ghidra exact unmodified pdata-bounded raw slice, with original Win64 instruction verification"
+    },
+    {
+      "address": "0x1401efee0",
+      "evidence_id": "ev_259135178505490ba5d9ea26b4bce5b8a2968b16486e7fcb74c95a486cb23099",
+      "analysis": "Ghidra exact unmodified pdata-bounded raw slice, with original Win64 instruction verification"
+    },
+    {
+      "address": "0x14022dc90",
+      "evidence_id": "ev_1f74011586f05b1ea846cfb123014e10cb18054c76844359197afe74202825a6",
+      "analysis": "Ghidra exact unmodified pdata-bounded raw slice, with original Win64 instruction verification"
+    }
+  ],
+  "implementation": {
+    "source": "crates/azeroth-survivors-re/src/armory.rs",
+    "shared_helpers": [
+      "shell_node",
+      "body_node",
+      "build_header_row",
+      "menu::native_panel",
+      "codex::section_heading"
+    ],
+    "input_scope": "No input/persistence call-site changes. Existing menu/account mutation policy retained. Native rotation image assets now replace unicode glyphs; yaw event semantics remain unclosed.",
+    "build_dependency": "Reference EXE not required to build; MPQ image paths resolved from configured user Data directory."
+  },
+  "remaining_gaps": [
+    "No post-integration original/rebuilt runtime comparison: all new flow remains unverified in rendering.",
+    "Existing faction/race control dimensions, icon tint/crop/frame/hover/shadow and selected palettes are still provisional unless specifically covered above.",
+    "Existing gear stat formatting and locale-dependent global equipment/sex/feature/slot/rarity names remain incomplete; recovered native locale keys are used for directly bound Armory labels.",
+    "Missing-list entry constructor/truncation and full show-current-look/extra action branches remain unclosed. The previous six-entry cap is retained pending that consumer, not claimed native.",
+    "Per-item native tooltip attachment and boss/item hover behavior remain unimplemented.",
+    "Turn image Nodes are recovered; click/held yaw math and drag scaling are not verified by this layout batch.",
+    "The right-side selected-piece prose retains previous semantic formatting until its exact localized native consumers are recovered.",
+    "The large hero stage has exact UI bounds; renderer model/camera/ground material parity still requires independent comparison."
+  ],
+  "validation": {
+    "rustfmt": "PASS for armory.rs with bundled Rust1.98.1 rustfmt,edition2021",
+    "build": {
+      "status": "PASS",
+      "owner": "parent",
+      "checkpoint": 26,
+      "elapsed_seconds": 29.09,
+      "note": "Later parent-only loose-audio fallback change has a separate incremental build; no Armory changes followed this pass."
+    },
+    "focused_harnesses": {
+      "status": "PASS",
+      "owner": "parent",
+      "total_cases_with_overlap": 169,
+      "binary": 74,
+      "native_save": 19,
+      "config": 6,
+      "run_modifier": 1,
+      "save_browser": 14,
+      "updater": 37,
+      "installer": 18,
+      "note": "Harness counts overlap; not169 independent parity scenarios. Includes newly added source-audio fixture checks, unrelated to Armory flow."
+    },
+    "runtime": "NOT RUN per current instruction; no app launch/capture, rendering/interaction parity remains unverified",
+    "worker_commands": "No Cargo or Git operations by this worker",
+    "github": "No push authorized; main-menu1:1 remains incomplete"
+  },
+  "native_constant_bindings": {
+    "collection_grid": {
+      "label_track": "0x1458f2f10: MinPx150/MaxPx150, wrapped by142653460",
+      "per_slot_track": "0x1458bf670: MinPx54/MaxPx54, wrapped once per slot by1004c0",
+      "missing_columns": "0x1458aaab0: MinPx0/MaxFraction1;1426f5c70 repeat count2"
+    },
+    "character_turn_assets": {
+      "table": "0x1458f41f0",
+      "paths": [
+        "mpq://interface/buttons/ui-rotationleft-button-up.blp",
+        "mpq://interface/buttons/ui-rotationright-button-up.blp"
+      ],
+      "size_px": 34
+    },
+    "feature_arrow_assets": {
+      "table": "0x1458f4140",
+      "paths": [
+        "mpq://interface/glues/common/glue-leftarrow-button-up.blp",
+        "mpq://interface/glues/common/glue-rightarrow-button-up.blp"
+      ],
+      "size_constant": "0x1458f34a0",
+      "size_px": 38
+    },
+    "feature_card": {
+      "border_color": "0x1458abd50 = Srgba(.169,.129,.071,1)",
+      "gradient_end": "0x1458aab80 = Srgba(0,0,0,.55)",
+      "gradient_mid": "0x1458aab90 = Srgba(.16,.10,.04,.55)",
+      "gradient_angle": "0x14003c28e = PI/2; colors converted by144c4bc10 then stored LinearRgba"
+    },
+    "ground_ellipse": {
+      "geometry": "1f907a..1f90ab,1f9125..1f9133",
+      "stops": [
+        "0x1458f2f90 Srgba(1,.72,.30,.38) at0%",
+        "0x1458f2fa0 Srgba(.55,.30,.08,.18) at45%",
+        "0x1458f3cc8 LinearRgba(0,0,0,0) at100%"
+      ],
+      "gradient_shape": "1f9356 stores8 = FarthestSide",
+      "position": "0x1458f3f28: ValPx0,ValPx0; center anchor",
+      "color_path": "1f9239..1f92af calls144c4bc10 before LinearRgba storage"
+    }
+  }
+}

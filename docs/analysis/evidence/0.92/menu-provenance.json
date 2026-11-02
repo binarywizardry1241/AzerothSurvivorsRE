@@ -1,0 +1,834 @@
+{
+  "schema_version": 1,
+  "version": "0.92.0",
+  "artifact": {
+    "path": "AzerothSurvivors/AzerothSurvivors.exe",
+    "size_bytes": 130888192,
+    "sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2"
+  },
+  "method": "Static PE string/slice pointer walks; no game execution or MPQ access. Menu build includes JSON source and does not require the EXE.",
+  "english": {
+    "file_offset": "0x66df172",
+    "virtual_address": "0x1466e0972",
+    "length_bytes": 164801,
+    "entry_count": 2507,
+    "sha256": "d6e584be98caf6fba75498bee107a5cc5de37881ad32c7f451a144ab04a1f414",
+    "evidence_file": "docs/analysis/evidence/0.92/embedded-english.json"
+  },
+  "class_table": {
+    "file_offset": "0x66d3058",
+    "virtual_address": "0x1466d4858",
+    "count": 9,
+    "stride_bytes": 144
+  },
+  "zone_table": {
+    "file_offset": "0x66d1210",
+    "virtual_address": "0x1466d2a10",
+    "count": 9,
+    "stride_bytes": 184
+  },
+  "classes": [
+    {
+      "key": "warrior",
+      "record": {
+        "file_offset": "0x66d3058",
+        "virtual_address": "0x1466d4858",
+        "length_bytes": 144,
+        "sha256": "15fbda3a6a8b87b8e4a622ae6ac2c6793c047a0664a8bd1ac2904310c70be5b8",
+        "raw_hex": "010000000000dc41cdcccc3f0000c040c0396d46010000000700000000000000c7396d46010000000700000000000000383a6d46010000000b00000000000000ce396d46010000000600000000000000e83a6d46010000000700000000000000ef3a6d46010000000c00000000000000fb3a6d46010000005c0000000000000000006643ae47613e8fc2753c01010000"
+      },
+      "spell_slice": {
+        "file_offset": "0x66d2238",
+        "virtual_address": "0x1466d3a38",
+        "count": 11,
+        "stride_bytes": 16
+      },
+      "spell_keys": [
+        "cleave",
+        "whirlwind",
+        "thunder_clap",
+        "mortal_strike",
+        "execute",
+        "demo_shout",
+        "battle_shout",
+        "bloodthirst",
+        "rend",
+        "shield_slam",
+        "bloodrage"
+      ],
+      "starting_spell_key": "cleave",
+      "icon": {
+        "file_offset": "0x66d22ef",
+        "virtual_address": "0x1466d3aef",
+        "length_bytes": 12,
+        "text": "INV_Sword_27"
+      },
+      "color": {
+        "file_offset": "0x66d22e8",
+        "virtual_address": "0x1466d3ae8",
+        "length_bytes": 7,
+        "text": "#C79C6E"
+      },
+      "base_health_offset": 128
+    },
+    {
+      "key": "paladin",
+      "record": {
+        "file_offset": "0x66d30e8",
+        "virtual_address": "0x1466d48e8",
+        "length_bytes": 144,
+        "sha256": "57f2a4ee3911da381f81a7440c3aaff4f14672a32a62d28cf566b97757d01368",
+        "raw_hex": "010000000000d8416666e63f0000c040573b6d460100000007000000000000005e3b6d46010000000700000000000000e83b6d46010000000b00000000000000653b6d46010000000c00000000000000983c6d460100000007000000000000009f3c6d46010000001300000000000000b23c6d4601000000530000000000000000007543cdcc4c3ea69bc43b02000000"
+      },
+      "spell_slice": {
+        "file_offset": "0x66d23e8",
+        "virtual_address": "0x1466d3be8",
+        "count": 11,
+        "stride_bytes": 16
+      },
+      "spell_keys": [
+        "consecration",
+        "exorcism",
+        "hammer_of_wrath",
+        "holy_shock",
+        "holy_wrath",
+        "judgement",
+        "hammer_of_justice",
+        "holy_light",
+        "divine_shield",
+        "holy_shield",
+        "redemption"
+      ],
+      "starting_spell_key": "consecration",
+      "icon": {
+        "file_offset": "0x66d249f",
+        "virtual_address": "0x1466d3c9f",
+        "length_bytes": 19,
+        "text": "Spell_Holy_HolyBolt"
+      },
+      "color": {
+        "file_offset": "0x66d2498",
+        "virtual_address": "0x1466d3c98",
+        "length_bytes": 7,
+        "text": "#F58CBA"
+      },
+      "base_health_offset": 128
+    },
+    {
+      "key": "hunter",
+      "record": {
+        "file_offset": "0x66d3178",
+        "virtual_address": "0x1466d4978",
+        "length_bytes": 144,
+        "sha256": "20ba5d09e37fa58adc97a77f2c38789b0dd240096d9c9ea5d5870123240be689",
+        "raw_hex": "00000000000000000000000000000000053d6d460100000006000000000000000b3d6d46010000000600000000000000903d6d46010000000b00000000000000113d6d46010000000900000000000000403e6d46010000000700000000000000473e6d46010000001100000000000000583e6d46010000004f00000000000000000070430ad7233e0000000003000000"
+      },
+      "spell_slice": {
+        "file_offset": "0x66d2590",
+        "virtual_address": "0x1466d3d90",
+        "count": 11,
+        "stride_bytes": 16
+      },
+      "spell_keys": [
+        "auto_shot",
+        "arcane_shot",
+        "multi_shot",
+        "serpent_sting",
+        "volley",
+        "explosive_trap",
+        "concussive_shot",
+        "aimed_shot",
+        "immolation_trap",
+        "frost_trap",
+        "hunters_mark"
+      ],
+      "starting_spell_key": "auto_shot",
+      "icon": {
+        "file_offset": "0x66d2647",
+        "virtual_address": "0x1466d3e47",
+        "length_bytes": 17,
+        "text": "INV_Weapon_Bow_07"
+      },
+      "color": {
+        "file_offset": "0x66d2640",
+        "virtual_address": "0x1466d3e40",
+        "length_bytes": 7,
+        "text": "#ABD473"
+      },
+      "base_health_offset": 128
+    },
+    {
+      "key": "rogue",
+      "record": {
+        "file_offset": "0x66d3208",
+        "virtual_address": "0x1466d4a08",
+        "length_bytes": 144,
+        "sha256": "ede9c8ad56b04039c8622a0c65447a2719c4785b748e421c6532392295822396",
+        "raw_hex": "01000000000060419a99993f0000c040a73e6d46010000000500000000000000ac3e6d46010000000500000000000000303f6d46010000000b00000000000000b13e6d46010000000f00000000000000e03f6d46010000000700000000000000e73f6d46010000001400000000000000fb3f6d46010000004b0000000000000000003e43ec51383e8fc2f53c04030000"
+      },
+      "spell_slice": {
+        "file_offset": "0x66d2730",
+        "virtual_address": "0x1466d3f30",
+        "count": 11,
+        "stride_bytes": 16
+      },
+      "spell_keys": [
+        "sinister_strike",
+        "eviscerate",
+        "blade_flurry",
+        "rupture",
+        "kidney_shot",
+        "gouge",
+        "ghostly_strike",
+        "adrenaline_rush",
+        "backstab",
+        "slice_and_dice",
+        "seal_fate"
+      ],
+      "starting_spell_key": "sinister_strike",
+      "icon": {
+        "file_offset": "0x66d27e7",
+        "virtual_address": "0x1466d3fe7",
+        "length_bytes": 20,
+        "text": "INV_ThrowingKnife_04"
+      },
+      "color": {
+        "file_offset": "0x66d27e0",
+        "virtual_address": "0x1466d3fe0",
+        "length_bytes": 7,
+        "text": "#FFF569"
+      },
+      "base_health_offset": 128
+    },
+    {
+      "key": "priest",
+      "record": {
+        "file_offset": "0x66d3298",
+        "virtual_address": "0x1466d4a98",
+        "length_bytes": 144,
+        "sha256": "25146fc84c6ed0d2107267c855b6201d15cd833347e86041d2d74111ebf0ef71",
+        "raw_hex": "0000000000000000000000000000000046406d460100000006000000000000004c406d46010000000600000000000000b0406d46010000000b0000000000000052406d4601000000050000000000000060416d4601000000070000000000000067416d46010000000c0000000000000073416d4601000000580000000000000000002a430ad7a33d4260653c05000000"
+      },
+      "spell_slice": {
+        "file_offset": "0x66d28b0",
+        "virtual_address": "0x1466d40b0",
+        "count": 11,
+        "stride_bytes": 16
+      },
+      "spell_keys": [
+        "smite",
+        "sw_pain",
+        "mind_blast",
+        "holy_nova",
+        "pw_shield",
+        "renew",
+        "holy_fire",
+        "mind_flay",
+        "psychic_scream",
+        "devouring_plague",
+        "lightwell"
+      ],
+      "starting_spell_key": "smite",
+      "icon": {
+        "file_offset": "0x66d2967",
+        "virtual_address": "0x1466d4167",
+        "length_bytes": 12,
+        "text": "INV_Staff_30"
+      },
+      "color": {
+        "file_offset": "0x66d2960",
+        "virtual_address": "0x1466d4160",
+        "length_bytes": 7,
+        "text": "#FFFFFF"
+      },
+      "base_health_offset": 128
+    },
+    {
+      "key": "shaman",
+      "record": {
+        "file_offset": "0x66d3328",
+        "virtual_address": "0x1466d4b28",
+        "length_bytes": 144,
+        "sha256": "01bdece06d8fb938c45f0595f3484e188e8b8ff90b1320a2a0aa00a390e165e7",
+        "raw_hex": "00000000000000000000000000000000cb416d46010000000600000000000000d1416d4601000000060000000000000060426d46010000000b00000000000000d7416d46010000000e0000000000000010436d4601000000070000000000000017436d460100000016000000000000002d436d46010000004300000000000000000043437b142e3e0000000007000000"
+      },
+      "spell_slice": {
+        "file_offset": "0x66d2a60",
+        "virtual_address": "0x1466d4260",
+        "count": 11,
+        "stride_bytes": 16
+      },
+      "spell_keys": [
+        "lightning_bolt",
+        "chain_lightning",
+        "earth_shock",
+        "flame_shock",
+        "frost_shock",
+        "lightning_shield",
+        "magma_totem",
+        "searing_totem",
+        "fire_nova",
+        "healing_wave",
+        "call_of_flame"
+      ],
+      "starting_spell_key": "lightning_bolt",
+      "icon": {
+        "file_offset": "0x66d2b17",
+        "virtual_address": "0x1466d4317",
+        "length_bytes": 22,
+        "text": "Spell_Nature_BloodLust"
+      },
+      "color": {
+        "file_offset": "0x66d2b10",
+        "virtual_address": "0x1466d4310",
+        "length_bytes": 7,
+        "text": "#0070DE"
+      },
+      "base_health_offset": 128
+    },
+    {
+      "key": "mage",
+      "record": {
+        "file_offset": "0x66d33b8",
+        "virtual_address": "0x1466d4bb8",
+        "length_bytes": 144,
+        "sha256": "8f7e1fbabcf45171b3d164dbfcefca322816e775764b9173d29b9cacad36bd69",
+        "raw_hex": "0000000000000000000000000000000070436d4601000000040000000000000074436d4601000000040000000000000008446d46010000000d0000000000000078436d46010000000800000000000000d8446d46010000000700000000000000df446d46010000000c00000000000000eb446d46010000005100000000000000000057430ad7a33d0000000008000000"
+      },
+      "spell_slice": {
+        "file_offset": "0x66d2c08",
+        "virtual_address": "0x1466d4408",
+        "count": 13,
+        "stride_bytes": 16
+      },
+      "spell_keys": [
+        "fireball",
+        "frostbolt",
+        "arcane_missiles",
+        "frost_nova",
+        "arcane_explosion",
+        "blizzard",
+        "flamestrike",
+        "fire_blast",
+        "cone_of_cold",
+        "blast_wave",
+        "pyroblast",
+        "ice_barrier",
+        "polymorph"
+      ],
+      "starting_spell_key": "fireball",
+      "icon": {
+        "file_offset": "0x66d2cdf",
+        "virtual_address": "0x1466d44df",
+        "length_bytes": 12,
+        "text": "INV_Staff_13"
+      },
+      "color": {
+        "file_offset": "0x66d2cd8",
+        "virtual_address": "0x1466d44d8",
+        "length_bytes": 7,
+        "text": "#69CCF0"
+      },
+      "base_health_offset": 128
+    },
+    {
+      "key": "warlock",
+      "record": {
+        "file_offset": "0x66d3448",
+        "virtual_address": "0x1466d4c48",
+        "length_bytes": 144,
+        "sha256": "255c7a774789ffe27abe3ac21eee36f58ecbe27da9939a207d3d689185759925",
+        "raw_hex": "000000000000000000000000000000003c456d4601000000070000000000000043456d46010000000700000000000000b8456d46010000000b000000000000004a456d46010000000b0000000000000068466d460100000007000000000000006f466d4601000000170000000000000086466d46010000004a00000000000000000025438fc2753d0ad7233c09000000"
+      },
+      "spell_slice": {
+        "file_offset": "0x66d2db8",
+        "virtual_address": "0x1466d45b8",
+        "count": 11,
+        "stride_bytes": 16
+      },
+      "spell_keys": [
+        "shadow_bolt",
+        "corruption",
+        "immolate",
+        "curse_of_agony",
+        "rain_of_fire",
+        "hellfire",
+        "death_coil",
+        "searing_pain",
+        "drain_life",
+        "fear",
+        "soul_fire"
+      ],
+      "starting_spell_key": "shadow_bolt",
+      "icon": {
+        "file_offset": "0x66d2e6f",
+        "virtual_address": "0x1466d466f",
+        "length_bytes": 23,
+        "text": "Spell_Nature_FaerieFire"
+      },
+      "color": {
+        "file_offset": "0x66d2e68",
+        "virtual_address": "0x1466d4668",
+        "length_bytes": 7,
+        "text": "#9482C9"
+      },
+      "base_health_offset": 128
+    },
+    {
+      "key": "druid",
+      "record": {
+        "file_offset": "0x66d34d8",
+        "virtual_address": "0x1466d4cd8",
+        "length_bytes": 144,
+        "sha256": "a8840ed36e5daee1424fd8ac4d4907047a7472d956272359a7a2364e7869abb8",
+        "raw_hex": "00000000000000000000000000000000d0466d46010000000500000000000000d5466d4601000000050000000000000040476d46010000000b00000000000000da466d46010000000500000000000000f0476d46010000000700000000000000f7476d4601000000120000000000000009486d4601000000490000000000000000004d438fc2f53d000000000b000000"
+      },
+      "spell_slice": {
+        "file_offset": "0x66d2f40",
+        "virtual_address": "0x1466d4740",
+        "count": 11,
+        "stride_bytes": 16
+      },
+      "spell_keys": [
+        "wrath",
+        "moonfire",
+        "starfire",
+        "hurricane",
+        "insect_swarm",
+        "entangling_roots",
+        "rejuvenation",
+        "regrowth",
+        "thorns",
+        "swipe",
+        "faerie_fire"
+      ],
+      "starting_spell_key": "wrath",
+      "icon": {
+        "file_offset": "0x66d2ff7",
+        "virtual_address": "0x1466d47f7",
+        "length_bytes": 18,
+        "text": "Ability_Druid_Maul"
+      },
+      "color": {
+        "file_offset": "0x66d2ff0",
+        "virtual_address": "0x1466d47f0",
+        "length_bytes": 7,
+        "text": "#FF7D0A"
+      },
+      "base_health_offset": 128
+    }
+  ],
+  "races": [
+    {
+      "key": "human",
+      "locale_keys": [
+        "race.human.name",
+        "race.human.line1",
+        "race.human.line2",
+        "race.human.line3"
+      ],
+      "faction_source": "Explicit conventional Alliance/Horde UI grouping; not a native class/race eligibility restriction."
+    },
+    {
+      "key": "orc",
+      "locale_keys": [
+        "race.orc.name",
+        "race.orc.line1",
+        "race.orc.line2"
+      ],
+      "faction_source": "Explicit conventional Alliance/Horde UI grouping; not a native class/race eligibility restriction."
+    },
+    {
+      "key": "dwarf",
+      "locale_keys": [
+        "race.dwarf.name",
+        "race.dwarf.line1",
+        "race.dwarf.line2",
+        "race.dwarf.line3"
+      ],
+      "faction_source": "Explicit conventional Alliance/Horde UI grouping; not a native class/race eligibility restriction."
+    },
+    {
+      "key": "nightelf",
+      "locale_keys": [
+        "race.nightelf.name",
+        "race.nightelf.line1",
+        "race.nightelf.line2",
+        "race.nightelf.line3"
+      ],
+      "faction_source": "Explicit conventional Alliance/Horde UI grouping; not a native class/race eligibility restriction."
+    },
+    {
+      "key": "scourge",
+      "locale_keys": [
+        "race.scourge.name",
+        "race.scourge.line1",
+        "race.scourge.line2",
+        "race.scourge.line3"
+      ],
+      "faction_source": "Explicit conventional Alliance/Horde UI grouping; not a native class/race eligibility restriction."
+    },
+    {
+      "key": "tauren",
+      "locale_keys": [
+        "race.tauren.name",
+        "race.tauren.line1",
+        "race.tauren.line2"
+      ],
+      "faction_source": "Explicit conventional Alliance/Horde UI grouping; not a native class/race eligibility restriction."
+    },
+    {
+      "key": "gnome",
+      "locale_keys": [
+        "race.gnome.name",
+        "race.gnome.line1",
+        "race.gnome.line2",
+        "race.gnome.line3"
+      ],
+      "faction_source": "Explicit conventional Alliance/Horde UI grouping; not a native class/race eligibility restriction."
+    },
+    {
+      "key": "troll",
+      "locale_keys": [
+        "race.troll.name",
+        "race.troll.line1",
+        "race.troll.line2",
+        "race.troll.line3"
+      ],
+      "faction_source": "Explicit conventional Alliance/Horde UI grouping; not a native class/race eligibility restriction."
+    }
+  ],
+  "zones": [
+    {
+      "key": "elwynn",
+      "record": {
+        "file_offset": "0x66d1210",
+        "virtual_address": "0x1466d2a10",
+        "length_bytes": 184,
+        "sha256": "0c37a95671204790173584931f14e9f301cc6cdde72ce8403d8c0b0848c3daa6",
+        "raw_hex": "18d26c460100000006000000000000001ed26c46010000000d000000000000002bd26c4601000000130000000000000008000000000000000000000000000000e8d26c46010000000c0000000000000020d96c46010000000500000000000000d8da6c46010000001800000000000000f0da6c460100000093000000000000000000000000000000000000000c00000000d012c600401ec400008842cdcccc3f0000f0420a00000085eb513f000000000000000000000000"
+      },
+      "boss_slice": {
+        "file_offset": "0x66cc120",
+        "virtual_address": "0x1466cd920",
+        "count": 5,
+        "stride_bytes": 88
+      },
+      "selected_final_boss_record": {
+        "file_offset": "0x66cc280",
+        "virtual_address": "0x1466cda80",
+        "length_bytes": 88,
+        "sha256": "ac55d21e8320eb41f8949383f1a461b67445d0599745345b23b2b8e3f7596574",
+        "raw_hex": "7cd86c46010000000e000000000000008cd86c46010000000400000000000000fcd86c46010000002300000000000000b6020000ed0700000ad70341070000000000804100144d47000058423333d3400000000001000000"
+      },
+      "minute_offset": 64,
+      "final_flag_offset": 84,
+      "icon": {
+        "file_offset": "0x66cc2d8",
+        "virtual_address": "0x1466cdad8",
+        "length_bytes": 24,
+        "text": "loadscreeneasternkingdom"
+      }
+    },
+    {
+      "key": "duskwood",
+      "record": {
+        "file_offset": "0x66d12c8",
+        "virtual_address": "0x1466d2ac8",
+        "length_bytes": 184,
+        "sha256": "29f9fa92db05125d61b96a7675e1e758bbb7871f9891985cdd81bb85cf0639f9",
+        "raw_hex": "83db6c460100000008000000000000008bdb6c4601000000080000000000000093db6c460100000016000000000000000800000000000000000000000000000078dc6c46010000000c00000000000000c0e26c4601000000050000000000000078e46c4601000000180000000000000090e46c46010000007600000000000000010000000000803e000000000a00000000b024c6000034436666f241000000000000f04200000000ec51783f000000000000000000000000"
+      },
+      "boss_slice": {
+        "file_offset": "0x66ccac0",
+        "virtual_address": "0x1466ce2c0",
+        "count": 5,
+        "stride_bytes": 88
+      },
+      "selected_final_boss_record": {
+        "file_offset": "0x66ccc20",
+        "virtual_address": "0x1466ce420",
+        "length_bytes": 88,
+        "sha256": "f48aebd4e5736643b8e9429bfcb70b20b1e86ac9e39e933949137f6e3dff0941",
+        "raw_hex": "12e26c46010000000b0000000000000020e26c4601000000040000000000000090e26c46010000002a000000000000001a030000b53f00003d0a3740060000000000804100144d47000058423333b3400000000001000000"
+      },
+      "minute_offset": 64,
+      "final_flag_offset": 84,
+      "icon": {
+        "file_offset": "0x66ccc78",
+        "virtual_address": "0x1466ce478",
+        "length_bytes": 24,
+        "text": "loadscreenshadowfangkeep"
+      }
+    },
+    {
+      "key": "wsg",
+      "record": {
+        "file_offset": "0x66d1380",
+        "virtual_address": "0x1466d2b80",
+        "length_bytes": 184,
+        "sha256": "f0e1ccccce353a908ebe9ec6ff2abe63f1f0031d25ce08ee4264b28b0f217c48",
+        "raw_hex": "06e56c4601000000030000000000000009e56c46010000000d0000000000000016e56c4601000000120000000000000008000000000000000000000000000000a8e56c46010000000c0000000000000020ec6c46010000000500000000000000d8ed6c46010000001600000000000000eeed6c460100000069000000000000000000000000000000e9010000cd0c000000c099440040b54400009b43c3f5c83f0000f042140000005c8fc23f00000000010000000000aa42"
+      },
+      "boss_slice": {
+        "file_offset": "0x66cd420",
+        "virtual_address": "0x1466cec20",
+        "count": 5,
+        "stride_bytes": 88
+      },
+      "selected_final_boss_record": {
+        "file_offset": "0x66cd580",
+        "virtual_address": "0x1466ced80",
+        "length_bytes": 88,
+        "sha256": "16447f6851f0198a9eb591ba71b79f098e6456bf81230cb8f699889ed76afe6f",
+        "raw_hex": "8aeb6c46010000000b0000000000000098eb6c4601000000040000000000000008ec6c46010000001800000000000000c1000000a13000000000c03f030000000000804100144d47000058420000c0400000000001000000"
+      },
+      "minute_offset": 64,
+      "final_flag_offset": 84,
+      "icon": {
+        "file_offset": "0x66cd5d8",
+        "virtual_address": "0x1466cedd8",
+        "length_bytes": 22,
+        "text": "loadscreenwarsonggulch"
+      }
+    },
+    {
+      "key": "ab",
+      "record": {
+        "file_offset": "0x66d1438",
+        "virtual_address": "0x1466d2c38",
+        "length_bytes": 184,
+        "sha256": "8131626c66f5ae4e19ac9c104e50934ba07750cde67d2ca3ba644e81b3c16146",
+        "raw_hex": "57ee6c4601000000020000000000000059ee6c46010000000c0000000000000065ee6c460100000014000000000000000800000000000000000000000000000020ef6c46010000000c0000000000000088f56c4601000000050000000000000040f76c4601000000150000000000000055f76c46010000006500000000000000010000003333b33e110200001e0d000000c0734400c08044000034c2000080400000ff42170000000000c03f000000000000000000000000"
+      },
+      "boss_slice": {
+        "file_offset": "0x66cdd88",
+        "virtual_address": "0x1466cf588",
+        "count": 5,
+        "stride_bytes": 88
+      },
+      "selected_final_boss_record": {
+        "file_offset": "0x66cdee8",
+        "virtual_address": "0x1466cf6e8",
+        "length_bytes": 88,
+        "sha256": "77c08127b5f04966127d187599190cfc6e90b659338db8f2bea82371891b2881",
+        "raw_hex": "ccf46c46010000000a00000000000000d8f46c4601000000040000000000000048f56c46010000003f0000000000000025010000493e00006666e63f060000000000904100f05247000060429a99b9400000000001000000"
+      },
+      "minute_offset": 64,
+      "final_flag_offset": 84,
+      "icon": {
+        "file_offset": "0x66cdf40",
+        "virtual_address": "0x1466cf740",
+        "length_bytes": 21,
+        "text": "loadscreenarathibasin"
+      }
+    },
+    {
+      "key": "feralas",
+      "record": {
+        "file_offset": "0x66d14f0",
+        "virtual_address": "0x1466d2cf0",
+        "length_bytes": 184,
+        "sha256": "69364a46edae7e6678becaed5da2904bb31b73a036f557cae65ab702a673cdaa",
+        "raw_hex": "baf76c46010000000700000000000000c1f76c46010000000700000000000000c8f76c460100000016000000000000000800000000000000000000000000000090f86c46010000000c00000000000000f8fe6c46010000000500000000000000b0006d46010000001200000000000000c2006d46010000009c0000000000000001000000cdcc4c3e0100000065010000004092c50080a2446666be429a99c1400000f0420800000033330340000000000100000000004842"
+      },
+      "boss_slice": {
+        "file_offset": "0x66ce6f8",
+        "virtual_address": "0x1466cfef8",
+        "count": 5,
+        "stride_bytes": 88
+      },
+      "selected_final_boss_record": {
+        "file_offset": "0x66ce858",
+        "virtual_address": "0x1466d0058",
+        "length_bytes": 88,
+        "sha256": "81687393e3050457a3d3f2123d572d5a72b7c64b4ac9562aadaabe78eb90d986",
+        "raw_hex": "69fe6c46010000000b0000000000000074fe6c46010000000400000000000000e4fe6c460100000012000000000000007e0300003f2d000000002040070000000000904100ba5b47000068420000c0400000000001000000"
+      },
+      "minute_offset": 64,
+      "final_flag_offset": 84,
+      "icon": {
+        "file_offset": "0x66ce8b0",
+        "virtual_address": "0x1466d00b0",
+        "length_bytes": 18,
+        "text": "loadscreendiremaul"
+      }
+    },
+    {
+      "key": "arena",
+      "record": {
+        "file_offset": "0x66d15a8",
+        "virtual_address": "0x1466d2da8",
+        "length_bytes": 184,
+        "sha256": "a749672ae8b2031d5c220fa0827e598de5637dbbf560d910704c883a3484c8ed",
+        "raw_hex": "5e016d4601000000050000000000000063016d46010000000f0000000000000072016d460100000013000000000000000800000000000000000000000000000050026d46010000000c0000000000000038096d46010000000500000000000000f00a6d46010000001200000000000000020b6d460100000096000000000000000000000000000000000000002100000000504ec6000089433333af41000000000000004210000000cdcc3c40000000000000000000000000"
+      },
+      "boss_slice": {
+        "file_offset": "0x66cf138",
+        "virtual_address": "0x1466d0938",
+        "count": 5,
+        "stride_bytes": 88
+      },
+      "selected_final_boss_record": {
+        "file_offset": "0x66cf298",
+        "virtual_address": "0x1466d0a98",
+        "length_bytes": 88,
+        "sha256": "2df8df2d525c27a9b179af7960e11428d43e53822e76a7cd78ef977a0e914456",
+        "raw_hex": "58086d4601000000150000000000000070086d46010000000400000000000000e0086d46010000005500000000000000e2030000bf3b000066662640020000000000904100a85e47000068420000c0400000000001000000"
+      },
+      "minute_offset": 64,
+      "final_flag_offset": 84,
+      "icon": {
+        "file_offset": "0x66cf2f0",
+        "virtual_address": "0x1466d0af0",
+        "length_bytes": 18,
+        "text": "loadscreenzulgurub"
+      }
+    },
+    {
+      "key": "av",
+      "record": {
+        "file_offset": "0x66d1660",
+        "virtual_address": "0x1466d2e60",
+        "length_bytes": 184,
+        "sha256": "31dec1733a64f967d7d95a5c375d2e36f234cb755b80fc3e23fdef170e15dd8a",
+        "raw_hex": "980b6d460100000002000000000000009a0b6d46010000000e00000000000000a80b6d46010000001000000000000000b80b6d46010000000100000000000000980c6d46010000000c0000000000000010136d46010000000500000000000000c8146d46010000001900000000000000e1146d46010000007000000000000000020000009a99193f1e000000250a0000000066c3000091c30000e0400000803f000007430e000000cdcc3c40000000000000000000000000"
+      },
+      "boss_slice": {
+        "file_offset": "0x66cfb10",
+        "virtual_address": "0x1466d1310",
+        "count": 5,
+        "stride_bytes": 88
+      },
+      "selected_final_boss_record": {
+        "file_offset": "0x66cfc70",
+        "virtual_address": "0x1466d1470",
+        "length_bytes": 88,
+        "sha256": "ab1a02c4196ac420772c6ef1fc653a5dc386b6a3f802a9e5fdefb8fc1ab6da6a",
+        "raw_hex": "3b126d4601000000080000000000000044126d46010000000400000000000000b4126d4601000000560000000000000089010000c42c0000b81e853f020000000000a04100846447000070420000c0400000000001000000"
+      },
+      "minute_offset": 64,
+      "final_flag_offset": 84,
+      "icon": {
+        "file_offset": "0x66cfcc8",
+        "virtual_address": "0x1466d14c8",
+        "length_bytes": 25,
+        "text": "loadscreenpvpbattleground"
+      }
+    },
+    {
+      "key": "brm",
+      "record": {
+        "file_offset": "0x66d1718",
+        "virtual_address": "0x1466d2f18",
+        "length_bytes": 184,
+        "sha256": "6b8291072d7f9b8cae999e2c4f8e498a3a0bf103c3f85feec45a43290da98cb3",
+        "raw_hex": "51156d4601000000030000000000000054156d4601000000120000000000000066156d4601000000150000000000000080156d4601000000010000000000000048166d46010000000c00000000000000b81d6d46010000000500000000000000701f6d46010000001800000000000000881f6d46010000009f000000000000000000000000000000000000002e0000000080f2c50000e1c4cdcc0443cdcccc3f0000f04215000000cdcc5c40000000000000000000000000"
+      },
+      "boss_slice": {
+        "file_offset": "0x66d05b8",
+        "virtual_address": "0x1466d1db8",
+        "count": 5,
+        "stride_bytes": 88
+      },
+      "selected_final_boss_record": {
+        "file_offset": "0x66d0718",
+        "virtual_address": "0x1466d1f18",
+        "length_bytes": 88,
+        "sha256": "0e52a4d7f54e9f3e4109f0398328b1ff8b32a24a102c6c7bd41e261e95ea5d80",
+        "raw_hex": "b61c6d46010000000800000000000000c01c6d46010000000400000000000000301d6d4601000000810000000000000046040000742c0000c3f5683f020000000000a04100606a47000078426666c6400000000001000000"
+      },
+      "minute_offset": 64,
+      "final_flag_offset": 84,
+      "icon": {
+        "file_offset": "0x66d0770",
+        "virtual_address": "0x1466d1f70",
+        "length_bytes": 24,
+        "text": "loadscreenblackrockspire"
+      }
+    },
+    {
+      "key": "aq",
+      "record": {
+        "file_offset": "0x66d17d0",
+        "virtual_address": "0x1466d2fd0",
+        "length_bytes": 184,
+        "sha256": "2ed23e747225a7b6e97cf7ddcafae22b60a9672af49f9e4f0565310cf6d4abf6",
+        "raw_hex": "27206d4601000000020000000000000029206d460100000012000000000000003b206d460100000011000000000000000800000000000000000000000000000010216d46010000000c00000000000000b0276d4601000000050000000000000068296d460100000017000000000000007f296d46010000008300000000000000030000006666e63e010000006105000000c0f3c50080bb440000c03fc3f548400000f0420d000000cdcc8c400000000048756d616e48554d"
+      },
+      "boss_slice": {
+        "file_offset": "0x66d0fb0",
+        "virtual_address": "0x1466d27b0",
+        "count": 5,
+        "stride_bytes": 88
+      },
+      "selected_final_boss_record": {
+        "file_offset": "0x66d1110",
+        "virtual_address": "0x1466d2910",
+        "length_bytes": 88,
+        "sha256": "d39f1f8ffec5b6f35743a7f62eed9366f6b2a5a8a6f7f951ef404192bf85936c",
+        "raw_hex": "20276d4601000000060000000000000028276d4601000000040000000000000098276d46010000001500000000000000aa040000c43c00006666e63e0a0000000000a04100cc5847000080429a9919400000000001000000"
+      },
+      "minute_offset": 64,
+      "final_flag_offset": 84,
+      "icon": {
+        "file_offset": "0x66d1168",
+        "virtual_address": "0x1466d2968",
+        "length_bytes": 23,
+        "text": "loadscreenahnqiraj40man"
+      }
+    }
+  ],
+  "addon_api": {
+    "file_offset": "0x68ab4f4",
+    "virtual_address": "0x1468accf4",
+    "length_bytes": 7602,
+    "sha256": "bab15b91d5927a2f698dd714058cc80f52cb78c9027ed5341adf4a020a019f2f",
+    "functions": [
+      "AZS_Fields",
+      "AZS_List",
+      "AZS_GetRunTime",
+      "AZS_GetPhase",
+      "AZS_GetRunLength",
+      "AZS_GetBosses",
+      "AZS_GetGuardians",
+      "AZS_GetUpcomingBosses",
+      "AZS_GetMeter",
+      "AZS_MeterTotals",
+      "AZS_GetHealing",
+      "AZS_GetBossMeter",
+      "AZS_GetLairs",
+      "AZS_SetHudShown",
+      "AZS_IsHudShown",
+      "AZS_UnitKind",
+      "AZS_ApiOnEvent"
+    ],
+    "prefixes": [
+      "AZSRUN",
+      "AZSZONE",
+      "AZSBOSSES",
+      "AZSUNITS",
+      "AZSTGT",
+      "AZSSPELLS",
+      "AZSBUFFS",
+      "AZSMETER",
+      "AZSHEAL",
+      "AZSBOSSDMG",
+      "AZSCHESTS",
+      "AZSLAIRS",
+      "AZSTAKEN",
+      "AZS"
+    ],
+    "evidence_file": "docs/analysis/evidence/0.92/official-addon-api.lua"
+  },
+  "limitations": [
+    "The embedded game version0.92.0 is independently recorded in target-refresh-0.92.json; no launched process was inspected.",
+    "Class base_health is the raw +128float; native0.92 application, class/rank/talent effects and health formulas are not established.",
+    "Class starting spell is its default definition; talents may override it.",
+    "Zone minute/final roles follow matching layouts and previous0.91 native consumption;0.92 consumers were not separately traced in this menu pass.",
+    "Race faction is a menu grouping; class/race eligibility was not inferred.",
+    "Icons are original basenames to resolve against user-supplied MPQs; no assets from MPQs are distributed.",
+    "labels preserves the exact English catalog including entries used by later screens; this does not implement their behavior.",
+    "Old0.91 evidence was preserved without modification."
+  ]
+}

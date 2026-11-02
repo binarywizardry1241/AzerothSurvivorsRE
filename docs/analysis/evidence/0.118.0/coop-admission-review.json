@@ -1,0 +1,285 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.118.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae",
+    "size_bytes": 145356800
+  },
+  "gap_ids": [
+    163
+  ],
+  "method": "Fresh exact instruction signature located within current unwind owner, independently decoded with Capstone and queried using durable REA/Ghidra. Static only.",
+  "native_owner": {
+    "virtual_address": "0x145b1af80",
+    "end_exclusive": "0x145b1bb6d",
+    "byte_count": 3053,
+    "sha256": "cd0b4b3ae2ca166a778a6e6f90aeff1512b585f09e0a04ed39a6c9c6848ca996"
+  },
+  "admission_range": {
+    "virtual_address": "0x145b1b22e",
+    "file_offset": "0x5b1a62e",
+    "end_exclusive": "0x145b1b268",
+    "byte_count": 58,
+    "sha256": "4c18acdb6a12ff41fdc0e9d0193644b4ad6ef8a7a01f28bc88fb9937ecaa816f",
+    "bytes_hex": "837a38054c8d35c60b7c01bb1f0000000f858202000048837a18070f8577020000b8302e3131413302b931382e3041334a0309c10f855e020000",
+    "instructions": [
+      {
+        "address": "0x145b1b22e",
+        "bytes_hex": "837a3805",
+        "mnemonic": "cmp",
+        "operands": "dword ptr [rdx + 0x38], 5"
+      },
+      {
+        "address": "0x145b1b232",
+        "bytes_hex": "4c8d35c60b7c01",
+        "mnemonic": "lea",
+        "operands": "r14, [rip + 0x17c0bc6]"
+      },
+      {
+        "address": "0x145b1b239",
+        "bytes_hex": "bb1f000000",
+        "mnemonic": "mov",
+        "operands": "ebx, 0x1f"
+      },
+      {
+        "address": "0x145b1b23e",
+        "bytes_hex": "0f8582020000",
+        "mnemonic": "jne",
+        "operands": "0x145b1b4c6"
+      },
+      {
+        "address": "0x145b1b244",
+        "bytes_hex": "48837a1807",
+        "mnemonic": "cmp",
+        "operands": "qword ptr [rdx + 0x18], 7"
+      },
+      {
+        "address": "0x145b1b249",
+        "bytes_hex": "0f8577020000",
+        "mnemonic": "jne",
+        "operands": "0x145b1b4c6"
+      },
+      {
+        "address": "0x145b1b24f",
+        "bytes_hex": "b8302e3131",
+        "mnemonic": "mov",
+        "operands": "eax, 0x31312e30"
+      },
+      {
+        "address": "0x145b1b254",
+        "bytes_hex": "413302",
+        "mnemonic": "xor",
+        "operands": "eax, dword ptr [r10]"
+      },
+      {
+        "address": "0x145b1b257",
+        "bytes_hex": "b931382e30",
+        "mnemonic": "mov",
+        "operands": "ecx, 0x302e3831"
+      },
+      {
+        "address": "0x145b1b25c",
+        "bytes_hex": "41334a03",
+        "mnemonic": "xor",
+        "operands": "ecx, dword ptr [r10 + 3]"
+      },
+      {
+        "address": "0x145b1b260",
+        "bytes_hex": "09c1",
+        "mnemonic": "or",
+        "operands": "ecx, eax"
+      },
+      {
+        "address": "0x145b1b262",
+        "bytes_hex": "0f855e020000",
+        "mnemonic": "jne",
+        "operands": "0x145b1b4c6"
+      }
+    ]
+  },
+  "required_protocol": 5,
+  "required_version": "0.118.0",
+  "required_version_byte_count": 7,
+  "success_continuation": "0x145b1b268",
+  "version_rejection": "0x145b1b4c6",
+  "query": {
+    "evidence_id": "ev_82160e7bbb37493458a75970bbca9d47c57afa835d7be3c1c061ff46257669d1",
+    "plan": {
+      "path": "runtime/execheck-0.118.0-discovery/party-admission-plan.json",
+      "sha256": "564b699144bf0b2a3461fabb83074050ff4bb41702d493776af85752d3d579f4"
+    },
+    "journal": {
+      "path": "runtime/execheck-0.118.0-discovery/party-admission-query/journal.json",
+      "sha256": "31edca53b3210b3e0cc655fd34cf846a9f19eb0f3f84c67c04e44a25f05fd956"
+    },
+    "result": {
+      "path": "runtime/execheck-0.118.0-discovery/party-admission-query/results/8f834f4bd098abb9452c8c464ca9797e83a108f2a07e5e40c443a0cdcdd9b36f.json",
+      "sha256": "db54aa16ff2dddea13c9abf72e01a48d7910d2abef06c28b8609fff242c636c6"
+    },
+    "raw_input": {
+      "path": "runtime/execheck-0.118.0-discovery/party-admission.bin",
+      "sha256": "cd0b4b3ae2ca166a778a6e6f90aeff1512b585f09e0a04ed39a6c9c6848ca996"
+    },
+    "provider": {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "version": "12.1.4"
+    },
+    "analysis_profile": {
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "parameters": {
+        "target_kind": "executable",
+        "target_format": "raw-binary",
+        "architecture": "x86_64",
+        "available_architectures": [
+          "x86_64"
+        ],
+        "import_mode": "persistent-source-immutable-v1",
+        "durable_queries": {
+          "format": "rea-durable-queries-v1",
+          "static_queries_only": true,
+          "checkpoint_authority": "saved-Program-options",
+          "tooling": {
+            "scripts/rea-durable-queries.mjs": "7f75a03ace604029cbdb8cc925bb45504394f1873d689630abe81e542716b3e8",
+            "scripts/repair-rea-durable-queries.py": "c14cc28baf16e60dc8eb4c4557bc4469ec153455d31d3d378561e93847f620a4",
+            "scripts/ghidra/ReaDurableQueryPrepare.java": "4de425e7c375a1d59b964bfbf565675ef7770f13778649bd48df0aab6824c648",
+            "scripts/ghidra/ReaDurableQueryBridge.fragment.java": "cb1b2fc0c6350449526d5e91dceb75dd98676e7458856d7df9e656542a4abb86",
+            "node_modules/rea-agents/bridge/ghidra/ReaGhidraBridge.java": "9655cefb73c8f83915f6336ea6eee0cf5497b4236e57d8b42c2e76f3117b6681",
+            "node_modules/rea-agents/dist/ghidra/GhidraLauncher.js": "ce306f4e7d6a787ac2da78d9d53f013994dbe7dfe4b7eadc53d3707974f7efc7",
+            "node_modules/rea-agents/dist/ghidra/GhidraAnalysisProfile.js": "a0619504f5cfa381f0eb489881c42079346ecfde48c685aede88fe2f53d57437",
+            "node_modules/rea-agents/dist/ghidra/GhidraSessionValues.js": "d83a81a6aa933c8d3886ccf737008de64f48c7988a307a5142d02bb2e35be4ec",
+            "node_modules/rea-agents/dist/ghidra/GhidraJavaLaunch.js": "9b267c37f14faeb1cb3f01afe81fd29e445684cfef86af2150e3f56e2115ff95",
+            "node_modules/rea-agents/dist/ghidra/GhidraProviderClient.js": "ee2eb4a2fb506b6541e365c87f708b5ac5d65dfb97d645bd5b3929b3799427b9",
+            "node_modules/rea-agents/dist/cli-runtime/binary-BVOr2mgE.js": "06e032e5f5f3870bb96d2b9d60c56954f0d19c6237653894403240ae5a24ff5d",
+            "node_modules/rea-agents/dist/mcp/main-kBXHZ8S5.js": "ed23c9961768f19b78ac67aec6f384c311f55f36049101a85f2bc871ec540acc"
+          },
+          "loader_libraries": "disabled-including-ordinal-and-project-lookup",
+          "analysis": "same-profile-autoanalysis-until-saved-ready",
+          "search_checkpoint": "matching-batches-after-inventory-snapshot-v1",
+          "decompile_checkpoint": "completed-result-only-v1"
+        },
+        "annotation_policy": "atomic-function-entry-metadata-v1",
+        "load_image_observations": "source-mappings-entry-context-v2",
+        "function_body_evidence": "complete-inclusive-ranges-v1",
+        "function_references": "complete-body-and-entry-reference-manager-v2",
+        "call_relationship_coverage": "function-body-call-coverage-v5",
+        "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+        "string_inventory_evidence": "defined-data-coverage-v1",
+        "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+        "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+        "instruction_flow_evidence": "decoded-return-pcode-v1",
+        "instruction_references": "exact-address-incoming-v1",
+        "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+        "no_return_repair": "returning-imports-decoded-return-v2",
+        "process_launch": "inspected-jvm-launch-support-v1",
+        "load_image_evidence": "independent-raw-mapping-context-v4",
+        "jump_table_evidence": "typed-case-default-blocks-v1",
+        "decompiler_jump_loads": true,
+        "loader": "BinaryLoader",
+        "language_id": "x86:LE:64:default",
+        "compiler_spec_id": "gcc",
+        "language_selection": "caller-supplied-v1",
+        "entry_point": "0x145b1af80",
+        "entry_seed": "external-entry-and-function-before-analysis-v1",
+        "analyzer_preset": "ghidra-default"
+      },
+      "digest": "0dc5237040034d8322d9a560160a87da256154ff0653a59d05a2a96124970dd1"
+    }
+  },
+  "source_first": {
+    "paths": [
+      {
+        "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+        "sha256": "e825e29c56e97b29e79202cc6425749d61f245aa7d143b9acb9284d4a4c5f14d"
+      }
+    ],
+    "observed_source_version": "0.118.0",
+    "observed_source_protocol": 5,
+    "producer": "JoinRequest::current",
+    "consumer": "PartyServer::admit",
+    "conclusion": "Both actual JoinRequest::current and PartyServer::admit now use shared GAME_VERSION 0.118.0 and protocol5, matching this bounded current native admission. Fixed Join wire fixture uses the same seven version bytes; Rust regression is not executed.",
+    "state": "connected"
+  },
+  "next_action": "Selected protocol/version source correspondence is connected. Recover independent current packet/recipient/lifecycle contracts separately; compilation and actual client/network admission/parity remain unverified.",
+  "limits": [
+    "Only protocol/version branch is recovered; password/capacity/session and complete Hero/State15 schemas are not revalidated by this range.",
+    "Raw-slice Ghidra preserves original preferred addresses but lacks full PE imports/global data/caller ABI context.",
+    "No compilation, target/server/client/network execution or controlled original/rebuilt parity."
+  ],
+  "bounded_contract_system_ids": [
+    "custom-game-server-party"
+  ],
+  "bounded_contract_owner_scopes": {
+    "custom-game-server-party": "Exact protocol5 / seven-byte 0.118.0 admission branch in current Location-owned message body and connected shared outgoing/incoming source constant. No broader packet/lifecycle recovery."
+  },
+  "module_location_evidence": {
+    "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/diagnostic-ownership.json",
+    "sha256": "70d9f8e6d0116c316189ed819222d0099ea4c9c052c05d972ec22b8943781358",
+    "selector": "diagnostics[path=crates/wenilla-rogue/src/server/party.rs].verified_references[runtime_function_start=0x145b1af80]",
+    "references": [
+      {
+        "kind": "rust_location",
+        "instruction_address": "0x145b1b90a",
+        "target_address": "0x1472dae78",
+        "runtime_function_start": "0x145b1af80",
+        "runtime_function_end": "0x145b1bb6d",
+        "source_line": 382,
+        "source_column": 63,
+        "path_address": "0x1472dae48",
+        "instruction_bytes": "4c8d0567f57b01",
+        "instruction": "lea r8, [rip + 0x17bf567]",
+        "owner_file_offset": "0x5b1a380",
+        "owner_byte_count": 3053,
+        "owner_sha256": "cd0b4b3ae2ca166a778a6e6f90aeff1512b585f09e0a04ed39a6c9c6848ca996"
+      },
+      {
+        "kind": "rust_location",
+        "instruction_address": "0x145b1b92c",
+        "target_address": "0x1472dae90",
+        "runtime_function_start": "0x145b1af80",
+        "runtime_function_end": "0x145b1bb6d",
+        "source_line": 413,
+        "source_column": 68,
+        "path_address": "0x1472dae48",
+        "instruction_bytes": "4c8d055df57b01",
+        "instruction": "lea r8, [rip + 0x17bf55d]",
+        "owner_file_offset": "0x5b1a380",
+        "owner_byte_count": 3053,
+        "owner_sha256": "cd0b4b3ae2ca166a778a6e6f90aeff1512b585f09e0a04ed39a6c9c6848ca996"
+      },
+      {
+        "kind": "rust_location",
+        "instruction_address": "0x145b1bb58",
+        "target_address": "0x1472dbe30",
+        "runtime_function_start": "0x145b1af80",
+        "runtime_function_end": "0x145b1bb6d",
+        "source_line": 398,
+        "source_column": 40,
+        "path_address": "0x1472dae48",
+        "instruction_bytes": "4c8d05d1027c01",
+        "instruction": "lea r8, [rip + 0x17c02d1]",
+        "owner_file_offset": "0x5b1a380",
+        "owner_byte_count": 3053,
+        "owner_sha256": "cd0b4b3ae2ca166a778a6e6f90aeff1512b585f09e0a04ed39a6c9c6848ca996"
+      }
+    ]
+  },
+  "prior_source_observation": {
+    "source_revision": "d8caec8115d3d7a8919bb164f9f1d78a4bc61be9",
+    "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+    "sha256": "0729997861e3e3f5df9355a6a3debef8e365302b5399ef4f07cde2065221ef89",
+    "source_version": "0.117.0",
+    "source_protocol": 5,
+    "native_source_correspondence": "current native exact version differs from this retained historical source revision"
+  },
+  "source_repair": {
+    "report": "docs/analysis/coop-handshake-0.118.0.md",
+    "checker": "scripts/check-coop-handshake-0.118.0.py",
+    "scope": "Shared admission constant/comment/fixed wire fixture only. Native proof reused; prior mismatch retained against exact historical source revision."
+  }
+}

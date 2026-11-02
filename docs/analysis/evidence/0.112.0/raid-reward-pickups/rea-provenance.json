@@ -1,0 +1,47 @@
+{
+  "target_version": "0.112.0",
+  "target_sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+  "target_executed": false,
+  "operations": [
+    {
+      "role": "pickup",
+      "operation": "analyze_function",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "va": "0x145944310",
+      "byte_count": 4415,
+      "input_sha256": "8ed30568f47dfe37488d5743b29124625309b4a63ad7b6fd001a60fe9e93ced0",
+      "evidence_id": "ev_66078dd0f893edb7477ba18cfbd432d7594696d539842d4755407518d303eca9",
+      "analysis_profile_sha256": "1d957c48c575ad32b057fe93e0dc6d855ebf668235bac960e9c39486f0bea9c5",
+      "pseudocode": "pickup.pseudo.c",
+      "pseudocode_sha256": "147b52012349981dd084fc09e8d8b006d06ebf0d764e52d2b3ed0374217eb151",
+      "raw_pseudocode_sha256": "530a501ff4da429a8502afedb3b39fb91f1158540a407b5184cae925c80a9be7",
+      "pseudocode_normalization": "outer blank lines and trailing whitespace removed; original response retained under ignored runtime"
+    },
+    {
+      "role": "object",
+      "operation": "analyze_function",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "va": "0x14594f020",
+      "byte_count": 2861,
+      "input_sha256": "d6560bf858147d3e8791f688739c4bd2482c93594bdb4db47cfddf76622182eb",
+      "evidence_id": "ev_488a005d6192506dd4d35e13180c3b9e93bdfcbc427613797ef9cfa8c7e817ef",
+      "analysis_profile_sha256": "ef282a8a2e4814a50186db9d2f6bc5b23d7cb108b51de610c1596569b1e490c4",
+      "pseudocode": "object.pseudo.c",
+      "pseudocode_sha256": "aeeabb288d657e596ab6ad54dd5ea6fab027e80f5bce45ef393231f26c793953",
+      "raw_pseudocode_sha256": "a80b52868946cb8f768de8b79d3ca7421676f5637d8a7878c474bab26a76dd49",
+      "pseudocode_normalization": "outer blank lines and trailing whitespace removed; original response retained under ignored runtime"
+    }
+  ],
+  "limits": [
+    "Headerless raw imports map file offset0 to current independently checked PE entries; external data/callers/engine implementations and concrete Win64 types remain unresolved.",
+    "Ghidra does not recover the pickup computed switch from this bounded raw import. Exact installed switch slots and executed cases own the AS branch contracts; no function census completeness is claimed."
+  ]
+}

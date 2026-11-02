@@ -1,0 +1,494 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.123.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
+    "size_bytes": 146228736
+  },
+  "gap_ids": [
+    268,
+    269
+  ],
+  "target_executed": false,
+  "bounded_contract_system_ids": [
+    "custom-game-coop-smooth"
+  ],
+  "native_ranges": [
+    {
+      "role": "packet-smoother",
+      "start": "0x145be0a60",
+      "end_exclusive": "0x145be1534",
+      "byte_count": 2772,
+      "file_offset": "0x5bdfe60",
+      "sha256": "4ffdb809a232f8606e7501fddcc625de22146137f6adc76561be683b78be49a1"
+    },
+    {
+      "role": "delay-sample",
+      "start": "0x145be08a0",
+      "end_exclusive": "0x145be0a5e",
+      "byte_count": 446,
+      "file_offset": "0x5bdfca0",
+      "sha256": "17e8c23e79d52f53167ac05fe690c3e89eed9bb9d8fd01edcf0d8e2dff5e6577"
+    },
+    {
+      "role": "packet-caller",
+      "start": "0x145c2f6a0",
+      "end_exclusive": "0x145c30d27",
+      "byte_count": 5767,
+      "file_offset": "0x5c2eaa0",
+      "sha256": "f88035c78f5a3e1ff88dd2c532872df08cbe0aa03f730206ec0a157508751337"
+    },
+    {
+      "role": "spline-builder",
+      "start": "0x145c67c50",
+      "end_exclusive": "0x145c67eed",
+      "byte_count": 669,
+      "file_offset": "0x5c67050",
+      "sha256": "a9d9eec9b58cc32da82f80f978ae60fa54732abfd33365aab68dc98f3890691d"
+    },
+    {
+      "role": "packed-guid",
+      "start": "0x145be19a0",
+      "end_exclusive": "0x145be1af9",
+      "byte_count": 345,
+      "file_offset": "0x5be0da0",
+      "sha256": "27a8d6dd49ebe107caa2ea3b06f74bbfa2bea821570800f691d1ae36a439945a"
+    },
+    {
+      "role": "host-clock-publication",
+      "start": "0x145c13044",
+      "end_exclusive": "0x145c13149",
+      "byte_count": 261,
+      "file_offset": "0x5c12444",
+      "sha256": "2e296a7910cf72d9a8126e04a6138d5646992aaa409ac0aba69aec3d8af10965"
+    },
+    {
+      "role": "host-clock-queue-prepend",
+      "start": "0x145c13384",
+      "end_exclusive": "0x145c13482",
+      "byte_count": 254,
+      "file_offset": "0x5c12784",
+      "sha256": "364e884aa5e49d17731b342dace8aa3533243af4e0c9d26aff4e1178af0bdbba"
+    },
+    {
+      "role": "clock-serialization",
+      "start": "0x145ccbbf8",
+      "end_exclusive": "0x145ccbc15",
+      "byte_count": 29,
+      "file_offset": "0x5ccaff8",
+      "sha256": "7d3faf5593a420f684c2a4d953e33e503e28e8cd365b4dec5c3f2f9bfce2029d"
+    }
+  ],
+  "native_data": [
+    {
+      "role": "exact-json-prefix",
+      "start": "0x14734c8a8",
+      "end_exclusive": "0x14734c8b1",
+      "byte_count": 9,
+      "file_offset": "0x734b2a8",
+      "sha256": "7c26cd0c52abeb4e696bfd50514092b36d6a2511ac4b229996df660adda570e5"
+    },
+    {
+      "role": "offer-key",
+      "start": "0x1476a1a38",
+      "end_exclusive": "0x1476a1a40",
+      "byte_count": 8,
+      "file_offset": "0x76a0438",
+      "sha256": "978415824489c220766194c3f1984574777907ce7f9adf2748b0cec4f0801a10"
+    },
+    {
+      "role": "one-f32",
+      "start": "0x1461b2200",
+      "end_exclusive": "0x1461b2204",
+      "byte_count": 4,
+      "file_offset": "0x61b0c00",
+      "sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c"
+    },
+    {
+      "role": "twenty-f32",
+      "start": "0x1461b26f4",
+      "end_exclusive": "0x1461b26f8",
+      "byte_count": 4,
+      "file_offset": "0x61b10f4",
+      "sha256": "8502957747a29907927566be940a9b39fee0a15dd471ba428eb9eedd15aa80e7"
+    },
+    {
+      "role": "milliseconds",
+      "start": "0x1461bb888",
+      "end_exclusive": "0x1461bb890",
+      "byte_count": 8,
+      "file_offset": "0x61ba288",
+      "sha256": "139107fd63d004e94cb64abb75361dd8490810c6709a9311896ca17496f5ecde"
+    },
+    {
+      "role": "one-f64",
+      "start": "0x1461b80b0",
+      "end_exclusive": "0x1461b80b8",
+      "byte_count": 8,
+      "file_offset": "0x61b6ab0",
+      "sha256": "6c3c396ed6b5c36dcae172271f462051b1266b851e92df3deea8ac65478fd712"
+    },
+    {
+      "role": "delay-threshold-ms",
+      "start": "0x14645d7e0",
+      "end_exclusive": "0x14645d7e8",
+      "byte_count": 8,
+      "file_offset": "0x645c1e0",
+      "sha256": "68b60b1aa7693afedf6e83261ef608190ed91db474cf4806a0a5773599073163"
+    },
+    {
+      "role": "duration-milliseconds",
+      "start": "0x1461c0c48",
+      "end_exclusive": "0x1461c0c4c",
+      "byte_count": 4,
+      "file_offset": "0x61bf648",
+      "sha256": "07883481b5c147464597d44401db095d88c2a6b049fbbcd7b278de98a5ceeb71"
+    },
+    {
+      "role": "catchup-multiplier",
+      "start": "0x1461be040",
+      "end_exclusive": "0x1461be044",
+      "byte_count": 4,
+      "file_offset": "0x61bca40",
+      "sha256": "7976acfbc3de10e4e4720f1fe68a3621615536679ef373fd7d6df906c8c86dc4"
+    },
+    {
+      "role": "movement-speed",
+      "start": "0x1461ba31c",
+      "end_exclusive": "0x1461ba320",
+      "byte_count": 4,
+      "file_offset": "0x61b8d1c",
+      "sha256": "ee0a6628f97214b7ef5d15c54388ea478862369e517aa4ef4593aea18c3ff618"
+    },
+    {
+      "role": "quarter-yard",
+      "start": "0x1461b21b0",
+      "end_exclusive": "0x1461b21b4",
+      "byte_count": 4,
+      "file_offset": "0x61b0bb0",
+      "sha256": "75e253f50979177eba47b2d0805ad36038789108924514d2a761a70de057d16f"
+    },
+    {
+      "role": "movement-flags",
+      "start": "0x1476a0f90",
+      "end_exclusive": "0x1476a0fb0",
+      "byte_count": 32,
+      "file_offset": "0x769f990",
+      "sha256": "e00d8cff994356e0f7ed57baa35f04853bb744e5e311847e025b991906cf0ec3"
+    },
+    {
+      "role": "direction-signs",
+      "start": "0x146213df0",
+      "end_exclusive": "0x146213e00",
+      "byte_count": 16,
+      "file_offset": "0x62127f0",
+      "sha256": "c4ed2338fa8bdfe87ba22b0b14e6f74e4bbf6d849f85310370833d9cc56510ac"
+    },
+    {
+      "role": "sample-window-seconds",
+      "start": "0x146333590",
+      "end_exclusive": "0x146333598",
+      "byte_count": 8,
+      "file_offset": "0x6331f90",
+      "sha256": "24b1f4ef66b650ff816e519b01742ff1753733d36e1b4c3e3b52743168915b1f"
+    },
+    {
+      "role": "u32-maximum-double",
+      "start": "0x1461bb868",
+      "end_exclusive": "0x1461bb870",
+      "byte_count": 8,
+      "file_offset": "0x61ba268",
+      "sha256": "327477d3fe36cf29ff295fd7fec94aa0bd2ba3e4c04d8d0661248ea028b6a630"
+    },
+    {
+      "role": "clock-send-cadence",
+      "start": "0x1476a95f8",
+      "end_exclusive": "0x1476a9600",
+      "byte_count": 8,
+      "file_offset": "0x76a7ff8",
+      "sha256": "c6c9a57771f2313713756c05b0b8a1413e5ef99d747cabf716952b4f6137f34b"
+    },
+    {
+      "role": "u64-conversion-midpoint",
+      "start": "0x1461bb870",
+      "end_exclusive": "0x1461bb878",
+      "byte_count": 8,
+      "file_offset": "0x61ba270",
+      "sha256": "79d42401983a19953cd76220e0cf558400ba5ae159af2da29374ecb9928f305f"
+    },
+    {
+      "role": "u64-conversion-maximum",
+      "start": "0x1461bb878",
+      "end_exclusive": "0x1461bb880",
+      "byte_count": 8,
+      "file_offset": "0x61ba278",
+      "sha256": "432426a5cb5718f44c8374f59e22f63bcce48ee081acb7dd90ae2cc1b64051f8"
+    },
+    {
+      "role": "packet-dispatch-table",
+      "start": "0x1476acce4",
+      "end_exclusive": "0x1476acd34",
+      "byte_count": 80,
+      "file_offset": "0x76ab6e4",
+      "sha256": "43091ea2672d56f2a83270afae1aae88bdb1df75908d8ed58c2e8bbc760387b0"
+    },
+    {
+      "role": "serializer-dispatch-table",
+      "start": "0x1476b84f4",
+      "end_exclusive": "0x1476b854c",
+      "byte_count": 88,
+      "file_offset": "0x76b6ef4",
+      "sha256": "dd36d1728c73cebdec1cd4fdbe7b86b74949407da1cb05094bf412b12ce41132"
+    }
+  ],
+  "queries": [
+    {
+      "procedure": "0x145be0a60",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/release-0.123.0/pick-smooth/input.bin",
+        "sha256": "005952d9760501945dac724bcc01d38ddb24b28dd30a0b114e5393a80362929c"
+      },
+      "slice_virtual_address": "0x145bd7010",
+      "plan": {
+        "path": "runtime/analysis/tasks/release-0.123.0/pick-smooth/plan.json",
+        "sha256": "1d3195677025c3f70f638d9cd9acfe48dcf7afe962b35935814a724c2f50228f"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/release-0.123.0/pick-smooth/query/journal.json",
+        "sha256": "b3962c0481753cebf6850bc535e350d954a475cc7932567bde1a40bb757e7d64"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/release-0.123.0/pick-smooth/query/results/79b40ea82b7b53bed660392cf1ffcf1ac59aa89d8fcdc208fcb592d2ce0058a7-3b211a304a5c27cc.json",
+        "sha256": "3a9a899c801db7fbd3ab0d8e8b2859d0b9b3c1b2634002eb1e4098eabebe2abf"
+      },
+      "evidence_id": "ev_a98601b0527b58b05422c6f8474beab2a4c79a2721dbdc5f25aea3c4f5460265",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "a16068975d8a0fbee5db96a89f071b937aadbfb7d9e8d6fce7254202bc51b6d5",
+      "normalized_sha256": "ddd5c10c800fd8d1233fff383e85deaf6a8ac698ef3eb6a4c8ef9751bd7cdb00",
+      "role": "packet-smoother",
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.123.0/pick-smooth/packet-smoother.c",
+        "sha256": "ddd5c10c800fd8d1233fff383e85deaf6a8ac698ef3eb6a4c8ef9751bd7cdb00"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
+        "raw_sha256": "005952d9760501945dac724bcc01d38ddb24b28dd30a0b114e5393a80362929c",
+        "virtual_address": "0x145bd7010",
+        "file_offset": "0x5bd6410",
+        "byte_count": 42276,
+        "result": "runtime/analysis/objects/3a/3a9a899c801db7fbd3ab0d8e8b2859d0b9b3c1b2634002eb1e4098eabebe2abf",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "role": "delay-sample",
+      "procedure": "0x145be08a0",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/release-0.123.0/pick-smooth/input.bin",
+        "sha256": "005952d9760501945dac724bcc01d38ddb24b28dd30a0b114e5393a80362929c"
+      },
+      "slice_virtual_address": "0x145bd7010",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-268-269-0.123.0/clock-plan.json",
+        "sha256": "0cc717f9e0ce0cdce4dc3d048b1c1ffe91646ae7edc2128deffa109c0ac34809"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-268-269-0.123.0/clock-query/journal.json",
+        "sha256": "8dadb1a921758983582c8ae1ee96008f016957fa07d5886f62be9a5466c6a49c"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-268-269-0.123.0/clock-query/results/54dfb6928bd84646b41425c83da462fa16ef40e1e639eaccaae6fa8fc57a7043.json",
+        "sha256": "dde038cee4f2ddd0240261bb37638e0b4dcd84cf2c18912b7a7cc5afa0683524"
+      },
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.123.0/coop-smoothing/delay-sample.c",
+        "sha256": "bb99d48769bd385701e8611665ee45e2be1f760c166ea4c5afde135246b59f43"
+      },
+      "evidence_id": "ev_5a88d12c6c3f704bc0d1e76716f627a20cb6b551e397c16137a1bcf01283c8e2",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "a16068975d8a0fbee5db96a89f071b937aadbfb7d9e8d6fce7254202bc51b6d5"
+    },
+    {
+      "role": "packet-caller",
+      "procedure": "0x145c2f6a0",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-268-269-0.123.0/caller.bin",
+        "sha256": "f88035c78f5a3e1ff88dd2c532872df08cbe0aa03f730206ec0a157508751337"
+      },
+      "slice_virtual_address": "0x145c2f6a0",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-268-269-0.123.0/caller-plan-v2.json",
+        "sha256": "b8b12ac754068f1369c8bb9531bfea65f5d34b93c2affb16ab0a3aeb7b8343fd"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-268-269-0.123.0/caller-query-v2/journal.json",
+        "sha256": "93fa17df655736dd0d52898fa6c98306272f13a29d8fa8eabb1bea4ce1b4fb1a"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-268-269-0.123.0/caller-query-v2/results/e1a9855e8e59da29d46de04bf2050e1389f4a2f435b2f9e03d0ead99fcac9fd6.json",
+        "sha256": "7896776d2d51128279fe44ece93d4196da0b631e0ce80974c1504d4dd7a1d9a9"
+      },
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.123.0/coop-smoothing/caller-dispatch.c",
+        "sha256": "44896c0fb5f96bcb977eeb4bc762d4619c00ed62889f1f4f3ecb063a1e06fa2e"
+      },
+      "evidence_id": "ev_de4597e43d2dc060d2edcbdf514fb12250e6d6738596f115380a3583e47a589d",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "4ac416758836f234cc24f81ab32a40dae71c3532f59cb4ebfeac9122f8e06424"
+    },
+    {
+      "role": "spline-builder",
+      "procedure": "0x145c67c50",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-268-269-0.123.0/spline-builder.bin",
+        "sha256": "a9d9eec9b58cc32da82f80f978ae60fa54732abfd33365aab68dc98f3890691d"
+      },
+      "slice_virtual_address": "0x145c67c50",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-268-269-0.123.0/spline-builder-plan.json",
+        "sha256": "f03dcbd46b4613252d454fd605319a672070c62006e9ef1cef4e8e008131eaee"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-268-269-0.123.0/spline-builder-query/journal.json",
+        "sha256": "226180ddfea323d2931da5a961193a7bd2924583900b87a1a85fb0a96de1d686"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-268-269-0.123.0/spline-builder-query/results/c8caabeaa497745e309768cc4ca0cb69d480c2080fdf7f3c27c0556ae6111d0f.json",
+        "sha256": "a32b6631a8ac3306783c329f234364abacb2183f6144c32f11a03d4663855704"
+      },
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.123.0/coop-smoothing/spline-builder.c",
+        "sha256": "b1a59471fd307ebb0f578695258b8ae8dede798a17570be7ee383559825174c2"
+      },
+      "evidence_id": "ev_fd40f4ac7c971155913180a9bbb45b1b049e01ca1e1e784383ab21031fbdd869",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "508b5a6811db15c82022658cdbb25f1cf0765854459a62ce607ac079b8138b6c"
+    },
+    {
+      "role": "packed-guid",
+      "procedure": "0x145be19a0",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-268-269-0.123.0/packed-guid.bin",
+        "sha256": "27a8d6dd49ebe107caa2ea3b06f74bbfa2bea821570800f691d1ae36a439945a"
+      },
+      "slice_virtual_address": "0x145be19a0",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-268-269-0.123.0/packed-guid-plan.json",
+        "sha256": "eb287f66b60a8c24ee75065bec71be9d5045d282d8c721c31c05e38352b0bd85"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-268-269-0.123.0/packed-guid-query/journal.json",
+        "sha256": "62c4536b29f613ea350118837b983cb3539b1c6e03dd73843433c42fde8c9f88"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-268-269-0.123.0/packed-guid-query/results/259ab106f7120efbd0bae104f68b375fb0c9ef541fa1594be3ec26ca2bf6a02a.json",
+        "sha256": "0fb80bce0ef54b97c623bb567df85e63fcf38fef738d0890a1862fb862657e5a"
+      },
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.123.0/coop-smoothing/packed-guid.c",
+        "sha256": "fc47811ae09c26524c94795da864e4b0dd78c86a39547e61ebe81ae7a9f5f5f2"
+      },
+      "evidence_id": "ev_f796e41976baa1c5031c041eb85f4231e97629db926f535a0265bb76c569dd84",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "e31daa11a151f75ed6180b60c9d3b56278eafc8ce049be6d08d4cc7529f22ec5"
+    },
+    {
+      "role": "host-clock-owner",
+      "procedure": "0x145c0c010",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-260-0.123.0/party/input.bin",
+        "sha256": "42c7f26fbfd2343bf1bb540885594b6cde4c7b6d1fabdb64307d01bd25403a75"
+      },
+      "slice_virtual_address": "0x145c07df0",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-260-0.123.0/party/plan.json",
+        "sha256": "fc5b0825629627cdb2f533080aecb30231761ef80d6eb6eeaf6a97d8f1c8e6a0"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-260-0.123.0/party/query/journal.json",
+        "sha256": "ba9c3778cca6e0ac74df7a446ab38ff879aafef8ab16f92385d47cd1ec81c754"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-260-0.123.0/party/query/results/6e1371702c59e863c6632605b0b1fe47644ccf56d6f3775c0c19abdd45fa2b39.json",
+        "sha256": "f72142eb9e33b3b89e791e6e709e5b5b14179855ee1205f8e52bef75482cc078"
+      },
+      "canonical_extract": {
+        "path": "runtime/analysis/tasks/fixgap-260-0.123.0/party/party-main.c",
+        "sha256": "b0ea0eabbe21b3b187bb8c865494924c762dec23817d28f956e860e9c158dbc3"
+      },
+      "evidence_id": "ev_a5b825dc9eb4da2c0776897d602af8f77d3529897dce3db4cade848dbc82a854",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "f8db1baa5d276d2497e41b37104f99e3f738597dd5af6fb28c2c720018e2db27"
+    },
+    {
+      "role": "clock-serializer-owner",
+      "procedure": "0x145ccac10",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/release-0.123.0/pick-145ccac10/input.bin",
+        "sha256": "0c78d21fa70d9ce4d6741c63910b18a59d32ce0623814c2f85967e041e6af067"
+      },
+      "slice_virtual_address": "0x145ccac10",
+      "plan": {
+        "path": "runtime/analysis/tasks/release-0.123.0/pick-145ccac10/plan.json",
+        "sha256": "2dd8269e02ece67769cb4af041fd7e81afbb37c86630c079f6ca4e39bf9ba056"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/release-0.123.0/pick-145ccac10/query/journal.json",
+        "sha256": "94f524c93b1037afeafe40fa84f72300a1997b8c528ef0d0f0bb54284816f7dd"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/release-0.123.0/pick-145ccac10/query/results/1cc9fcfad18d95d6133c39adfee45e383c9003ef757add0784000d0660b6c773.json",
+        "sha256": "07e1e589ebd9250522b80bc852ddb05264fc3bd1226c6d8124ccbacd8c913d1b"
+      },
+      "canonical_extract": {
+        "path": "runtime/analysis/tasks/release-0.123.0/pick-145ccac10/result.c",
+        "sha256": "fb27a8924bad7e820963b73b565bc2d689b66891c20ab63d5ab1030217faecdd"
+      },
+      "evidence_id": "ev_63c97e5591760b0adbcac25c7033384aab6dc1e3b441529cf0a60ac7c260644f",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "8a072fb6ceff671510fbe064e1bbc0f8f96fbe37733de2ec4243d8217a27b547"
+    }
+  ],
+  "limits": [
+    "Raw Ghidra subjects omit external functions/data. Caller and serializer decompilations stop at indirect dispatch; current PE jump-table cells and original selected instructions establish the branches.",
+    "Hash-map, CRT, packet-writer and allocator boundaries in instruction fixtures are typed synthetic seams. No source build, application, transport, server or parity execution."
+  ],
+  "static_check": {
+    "path": "docs/analysis/evidence/0.123.0/coop-smoothing/static-check.json",
+    "sha256": "a1d900caa4cc0f2c2fe6a83e38a53d14a91421fc7e868261396dafb38251332f"
+  },
+  "checker": {
+    "path": "scripts/check-coop-smoothing-0.123.0.py",
+    "sha256": "c526de6f9806e09eb95616714d8caa90bcd77c8ecb36231bedfc4f1b8b80d4f7"
+  }
+}

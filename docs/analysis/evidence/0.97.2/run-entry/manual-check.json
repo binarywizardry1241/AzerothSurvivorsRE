@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-18",
+  "binary_sha256": "2c1268d39ef5ce89ac2eb0ee6bf2c04a8551616ed9c394fa1a5b0639d742f7e1",
+  "method": "Native CUA interaction with rebuilt MenuQA app; observed screenshots in task transcript, no input injection outside CUA",
+  "profile": "runtime/menu-qa-state (project-local isolated settings/save)",
+  "zone": "elwynn",
+  "class": "warlock",
+  "race": 1,
+  "sex": 1,
+  "checks": [
+    {
+      "action": "Press Enter on existing picker",
+      "observed": "Real Elwynn level, selected female Warlock, hostile actors, automatic damage, kill and XP; passed"
+    },
+    {
+      "action": "Hold W, then Escape",
+      "observed": "Pause overlay; run had earned level 2 with 2 kills, max HP grew 165 to 174; passed"
+    },
+    {
+      "action": "Click Resume",
+      "observed": "Earned three-card level choice visible; clock and health remained at paused values; passed"
+    },
+    {
+      "action": "Click Uncommon Learn Soul Fire, hold W for 1800 ms, press Escape",
+      "observed": "Choice dismissed, second Soul Fire icon visible, camera/terrain moved with player, clock advanced 10 to 12; pause returned; passed"
+    },
+    {
+      "action": "Click Return to menu, inspect again after scene settled",
+      "observed": "Picker restored and real animated menu backdrop returned; passed"
+    }
+  ],
+  "native_log_excerpt": [
+    "2026-10-18T17:43:14.414382Z  INFO AzerothSurvivorsRE::gameplay: run started: elwynn / warlock / radius 120",
+    "2026-10-18T17:43:15.193626Z  INFO AzerothSurvivorsRE::gameplay::world: run world ready: [-9396.0, -633.0, 68.02375]",
+    "2026-10-18T17:43:20.191224Z  INFO AzerothSurvivorsRE::gameplay: run tick: t=5.01 pos=[-9396.0, -633.0, 68.02375] hp=165.0 level=1 xp=2 kills=1 actors=6 pickups=2",
+    "2026-10-18T17:43:25.204652Z  INFO AzerothSurvivorsRE::gameplay: run tick: t=10.01 pos=[-9396.0, -633.0, 68.02375] hp=124.2 level=1 xp=2 kills=1 actors=8 pickups=2"
+  ],
+  "final_state": "Application left running at picker",
+  "limits": [
+    "One short Human Warlock/Elwynn interaction only",
+    "Arrow keys, both-mouse movement, digit choice, death/retry and victory were not manually checked",
+    "No original EXE run or complete native parity comparison"
+  ]
+}

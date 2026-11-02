@@ -1,0 +1,48 @@
+{
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "manifest_sha256": "6eacd51ec64b7341fce8625dd4c58b0502151a5b9ab9c09328811e9b3f62bada",
+  "check_sources": {
+    "scripts/check-coop-admission.py": "5aa0d3d16a09d4ef7240a47ef127c82c48937ad43141e5129cfcf47e6eef9591",
+    "scripts/coop_handshake_check.py": "77e94ff3471112cb62833c3cf9fdc0e8a611208f8dc1e17319520c7c68ece766",
+    "scripts/discovery_native_subject.py": "e0bedb2d826d136b6b4c1bfb51b970160c2c42875b713fb1d2814ac360090a6a"
+  },
+  "exact_version_admission": {
+    "cases": 3120,
+    "accepted": 1,
+    "rejected": 3119,
+    "protocol_fixtures": 40,
+    "version_fixtures": 78,
+    "native_instruction_count": 13050,
+    "protocol_bit_mutations": 32,
+    "version_bit_mutations": 56,
+    "scope": "Only the manifest-bound 58-byte comparison block; synthetic packet/string memory."
+  },
+  "source": {
+    "state": "connected",
+    "version": "0.121.0",
+    "protocol": 6,
+    "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+    "sha256": "02e85dc5871838f0d958c02ac3934714b9251c509cf79f6057183639641e9c1e",
+    "producer": "JoinRequest::current",
+    "consumer": "PartyServer::admit",
+    "fixed_wire_literal_checked": true,
+    "wire_fields_checked": true,
+    "shared_routes": [
+      "TCP Join",
+      "relay Join",
+      "server admission",
+      "directory Handshake"
+    ],
+    "route_source_hashes": {
+      "crates/azeroth-survivors-re/src/coop/session.rs": "3ece7f428878f3d3ec5ca38656057c43e2aa8a86bf18145279d8df35769bf670",
+      "crates/azeroth-survivors-re/src/coop_directory.rs": "74a41cda318124b012e579a07585ba3cdd036b9af078dcbc44f087807b46f9b7"
+    },
+    "rust_regression_executed": false
+  },
+  "limits": "Only the exact original 58-byte gate and inspected shared source wiring. Raw Ghidra omits external/data context; no application compilation, source execution, sockets, server, game or parity comparison."
+}

@@ -1,0 +1,77 @@
+{
+  "target": "installed-game/AzerothSurvivors.exe",
+  "output": "runtime/q41-card-keyboard-replay/identity",
+  "init_timeout": 60,
+  "timeout": 240,
+  "environment": {
+    "REA_GHIDRA_SEED_FILE": "docs/analysis/evidence/0.113.2/card-keyboard/identity-seeds.tsv",
+    "REA_GHIDRA_DISABLED_ANALYZERS": "Stack,Decompiler Switch Analysis,Function ID,Function Start Search,Disassemble Entry Points,Subroutine References,Data Reference,Reference,Non-Returning Functions - Discovered,Shared Return Calls,Create Address Tables,Call Convention ID,Call-Fixup Installer,Variadic Function Signature Override",
+    "REA_GHIDRA_STARTUP_TIMEOUT_MS": "600000"
+  },
+  "operations": [
+    {
+      "name": "procedure_info",
+      "arguments": {
+        "procedure": "0x1400be1e0"
+      },
+      "label": "cards-system-initializer-body",
+      "timeout": 240
+    },
+    {
+      "name": "read_function_instructions",
+      "arguments": {
+        "procedure": "0x1400be1e0"
+      },
+      "label": "cards-system-initializer-instructions",
+      "timeout": 90
+    },
+    {
+      "name": "procedure_pseudo_code",
+      "arguments": {
+        "procedure": "0x1400be1e0"
+      },
+      "label": "cards-system-initializer-pseudocode",
+      "timeout": 90
+    },
+    {
+      "name": "procedure_info",
+      "arguments": {
+        "procedure": "0x1400cd8d0"
+      },
+      "label": "typed-resource-id-body",
+      "timeout": 90
+    },
+    {
+      "name": "read_function_instructions",
+      "arguments": {
+        "procedure": "0x1400cd8d0"
+      },
+      "label": "typed-resource-id-instructions",
+      "timeout": 90
+    },
+    {
+      "name": "procedure_pseudo_code",
+      "arguments": {
+        "procedure": "0x1400cd8d0"
+      },
+      "label": "typed-resource-id-pseudocode",
+      "timeout": 90
+    },
+    {
+      "name": "read_bytes",
+      "arguments": {
+        "address": "0x145ecf788",
+        "length": 16
+      },
+      "label": "initializer-typeid"
+    },
+    {
+      "name": "read_bytes",
+      "arguments": {
+        "address": "0x145ecf0a0",
+        "length": 16
+      },
+      "label": "snapshot-typeid"
+    }
+  ]
+}

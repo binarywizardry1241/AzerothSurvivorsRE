@@ -1,0 +1,1372 @@
+{
+  "schema_version": 1,
+  "target_sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+  "native_manifest": {
+    "path": "docs/analysis/evidence/0.121.0/heroic-twists/manifest.json",
+    "sha256": "e30e88a492d1047c9c97ff91f246aad60fbea79863231bcb09bf4545877f60b1"
+  },
+  "source_files": [
+    {
+      "path": "crates/azeroth-survivors-re/src/bosses/abilities.rs",
+      "observed_source_sha256": "163804fc23e607100457153ebf926cf1199ccdbcd7cf9a21f326368df4086f66",
+      "owned_fragments": [
+        {
+          "text": "fn heroic_rank(&self)",
+          "normalized_sha256": "c4801f05b0cfa0db10cbe1fe30c089730bc97509f8cce849776f2f8bc21b4c62"
+        },
+        {
+          "text": "heroic_rank > 3 || !matches!(native_tag, 12 | 26)",
+          "normalized_sha256": "7f2c54023100f7fddfbfa125cf4c3b95d54926a208e075fb7b5ca02ce519c7ae"
+        },
+        {
+          "text": "queued_action_enabled_for_rank",
+          "normalized_sha256": "be8cd87e89b5b5210b2170fc6646d51904452854eb240ec0d6cd897c19abdc80"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/bosses/ai.rs",
+      "observed_source_sha256": "bf89b15bf36e79225922e266c785c0c79b6439121589a0383262faf4dfe063d3",
+      "owned_fragments": [
+        {
+          "text": "boss_repeat_factor(heroic_rank",
+          "normalized_sha256": "d60dbe2a0d98274b0a45ca3bdc6e6062cca2d0d40664912284afa1e1d73585ce"
+        },
+        {
+          "text": "tick_with_minion_phases_for_rank",
+          "normalized_sha256": "e5b2b3ca4059c73f1b31711162b14297b9a354fe10881c636f54b83734f154b0"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/bosses/raid_actions.rs",
+      "observed_source_sha256": "a210d3c4a8dc4f53447c8eb03c8ca6a7e0848638e9ef6df112c0464f3cdacb5c",
+      "owned_fragments": [
+        {
+          "text": "Area::danger(",
+          "normalized_sha256": "15a80d5efb0dd82d2787e8a5f889931ddc52fb4a661e2f26ed404d13fe0d31d8"
+        },
+        {
+          "text": "port.heroic_rank()",
+          "normalized_sha256": "470409bd3ab461eccd1fd00fa2374a9bc504507fab6c5a73111cc0d261415dc0"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/bosses/raid_area_catalog.rs",
+      "observed_source_sha256": "cd597e23640a6c4ea93bb2cb18d772347c24de546898e811a1907b6a329b683f",
+      "owned_fragments": [
+        {
+          "text": "advance_with_phases_for_rank",
+          "normalized_sha256": "88f5a4ffbd46a5b9fad14afd78a8b0c988db4825be9191c07c851cdaf0158cef"
+        },
+        {
+          "text": "boss_repeat_factor(heroic_rank",
+          "normalized_sha256": "d60dbe2a0d98274b0a45ca3bdc6e6062cca2d0d40664912284afa1e1d73585ce"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/bosses/raid_areas.rs",
+      "observed_source_sha256": "1f8a7043948f6cf9f35cfb6baed30ccb5156340e33438adab64f042782bcf3e7",
+      "owned_fragments": [
+        {
+          "text": "warning_factor(port.heroic_rank())",
+          "normalized_sha256": "c62e0d40d0eee0f4cc1b65e59a92cfa1b226cbf8d49cd2b0e2b8db02c1ff5a81"
+        },
+        {
+          "text": "warning_factor(heroic_rank)",
+          "normalized_sha256": "0cab7e426fc4e8b3887e14b5ddcdbe507e0f5e411b9f0e96bb2801e89a1b46c5"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/bosses/raid_bombs.rs",
+      "observed_source_sha256": "b147ab85a3c6a23f88035d6bf571e08249e450166ade47f33e8d440ec6f73e03",
+      "owned_fragments": [
+        {
+          "text": "Area::danger(",
+          "normalized_sha256": "15a80d5efb0dd82d2787e8a5f889931ddc52fb4a661e2f26ed404d13fe0d31d8"
+        },
+        {
+          "text": "port.heroic_rank()",
+          "normalized_sha256": "470409bd3ab461eccd1fd00fa2374a9bc504507fab6c5a73111cc0d261415dc0"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/bosses/raid_extra.rs",
+      "observed_source_sha256": "32282ad47eec060a7cb70f533963021b08870c1f27c6791d6851ccc480568dcf",
+      "owned_fragments": [
+        {
+          "text": "Area::danger(",
+          "normalized_sha256": "15a80d5efb0dd82d2787e8a5f889931ddc52fb4a661e2f26ed404d13fe0d31d8"
+        },
+        {
+          "text": "port.heroic_rank()",
+          "normalized_sha256": "470409bd3ab461eccd1fd00fa2374a9bc504507fab6c5a73111cc0d261415dc0"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/bosses/raid_lines.rs",
+      "observed_source_sha256": "754c64409c20b47f63b6b40e5a33d0c575940f95f9b7ea496c147d15ece92bce",
+      "owned_fragments": [
+        {
+          "text": "Area::danger(",
+          "normalized_sha256": "15a80d5efb0dd82d2787e8a5f889931ddc52fb4a661e2f26ed404d13fe0d31d8"
+        },
+        {
+          "text": "port.heroic_rank()",
+          "normalized_sha256": "470409bd3ab461eccd1fd00fa2374a9bc504507fab6c5a73111cc0d261415dc0"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/bosses/raid_pools.rs",
+      "observed_source_sha256": "1f0d49026e24b8e1c1fa487068db3e32ddf3bf46a3a718e87309025da3f895bc",
+      "owned_fragments": [
+        {
+          "text": "Area::danger(",
+          "normalized_sha256": "15a80d5efb0dd82d2787e8a5f889931ddc52fb4a661e2f26ed404d13fe0d31d8"
+        },
+        {
+          "text": "port.heroic_rank()",
+          "normalized_sha256": "470409bd3ab461eccd1fd00fa2374a9bc504507fab6c5a73111cc0d261415dc0"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/bosses/raid_sequence_areas.rs",
+      "observed_source_sha256": "037fe9f97af5ce04e8bd28976bdf933db758761a456b66507ba70c1fe1149696",
+      "owned_fragments": [
+        {
+          "text": "Area::danger(",
+          "normalized_sha256": "15a80d5efb0dd82d2787e8a5f889931ddc52fb4a661e2f26ed404d13fe0d31d8"
+        },
+        {
+          "text": "port.heroic_rank()",
+          "normalized_sha256": "470409bd3ab461eccd1fd00fa2374a9bc504507fab6c5a73111cc0d261415dc0"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/bosses/raid_shapes.rs",
+      "observed_source_sha256": "48034ea5548c887c959ec5afd15af6cfb1fab2f98d504345cb7e5876995a9d87",
+      "owned_fragments": [
+        {
+          "text": "warning_factor(port.heroic_rank())",
+          "normalized_sha256": "c62e0d40d0eee0f4cc1b65e59a92cfa1b226cbf8d49cd2b0e2b8db02c1ff5a81"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/bosses/raid_towers.rs",
+      "observed_source_sha256": "aeaead5cfb8cc29ddf34a79dd9da840ac1b32ede99dc99239b8d339bc0ed866d",
+      "owned_fragments": [
+        {
+          "text": "Area::danger(",
+          "normalized_sha256": "15a80d5efb0dd82d2787e8a5f889931ddc52fb4a661e2f26ed404d13fe0d31d8"
+        },
+        {
+          "text": "port.heroic_rank()",
+          "normalized_sha256": "470409bd3ab461eccd1fd00fa2374a9bc504507fab6c5a73111cc0d261415dc0"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/bosses/spawning.rs",
+      "observed_source_sha256": "b22ebfe0bc18c37ddf3a6f5234419fa28270f7e41383b5832dfc7711ba54c377",
+      "owned_fragments": [
+        {
+          "text": "tick_for_rank",
+          "normalized_sha256": "606bc8c737bcfe9a1a8f1cbda9f0b4794df024ba0157a0968c0fd619d47c2c37"
+        },
+        {
+          "text": "heroic_rank >= 5 && zone.bosses[index].flag_54 & 1 != 0",
+          "normalized_sha256": "4570153455fc954cdc3df83c71d9dcad7cbd6c68cac3362364915262a0a8b208"
+        },
+        {
+          "text": "port.spawn_boss_with_health_factor(friend, &zone.bosses[friend], rng, 0.6)",
+          "normalized_sha256": "e801c168888e89b36c2cc63adf39bb48f14d3ecef7d51d17ab6af02410ae8285"
+        },
+        {
+          "text": "uniform_index(4, rng)",
+          "normalized_sha256": "8d02473ea032c6ea7feb4108e19c63b966418415da857fdae369df493fce410b"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop/game_party.rs",
+      "observed_source_sha256": "a3371b48d2a1c6b7aaa2ba566cfafede63ec5f6e7a7c1aa8bcf3423af79c8c99",
+      "owned_fragments": [
+        {
+          "text": "pub heroic_rank: u8",
+          "normalized_sha256": "5039d4c5e77d36b46d1795bc82c50143af7469d1cb8645a1859357be9bbd65af"
+        },
+        {
+          "text": "revive_seconds(self.heroic_rank)",
+          "normalized_sha256": "267888d344ff7a7f48529070843a100339c5384b28b77d2754d91a01bde16ff9"
+        },
+        {
+          "text": "revive_health(self.heroic_rank)",
+          "normalized_sha256": "4ca06c30a84d3b6ada485e4f93fe57f864933cb3a8f7b704980e2e00f9ba0230"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/enemies/waves.rs",
+      "observed_source_sha256": "5ec522e824a840e318de0bd5fd66b06b452359adafebb5a9115899bc9c72a204",
+      "owned_fragments": [
+        {
+          "text": "tick_elite_for_rank",
+          "normalized_sha256": "c86f463b21b05c01a2cb310180acd70ecdd10ff862daa86abccf69d7501cb0a9"
+        },
+        {
+          "text": "if heroic_rank != 0",
+          "normalized_sha256": "63b6a280a7e625f1ff246d29c3476156c1eee61532b4b7782c0461672bedcc37"
+        },
+        {
+          "text": "port.enemy_position(guid, input.clock_seconds)",
+          "normalized_sha256": "3c06836bef3b42c5ecce75c587267f60332f12f9e4731d79dfc25a4b5a0a2812"
+        },
+        {
+          "text": "Position { x: position.x + 2.5, y: position.y + 1.0, ..position }",
+          "normalized_sha256": "63c09827c04166bc2455f0a306b8f97304f035c89cbf018c6a2502ec1da65dc0"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+      "observed_source_sha256": "16bd301b1a851df8e9c43eeae76b8724a94e3e21833f69d5bb6af48a61db6614",
+      "owned_fragments": [
+        {
+          "text": "regeneration_amount(",
+          "normalized_sha256": "1fa35a2f79e7307e2a6b162b7020aea8a66e561be3d14d2065a3f1367e7e5778"
+        },
+        {
+          "text": "apply_batch_for_rank(",
+          "normalized_sha256": "3a07417ffaf95d59dec9bac175dfb0c15869ab39169a22f85ef7d4b6d92ea745"
+        },
+        {
+          "text": "tick_elite_for_rank(",
+          "normalized_sha256": "e92e1767190c06c850218a46dbb8306d5f63dfff340b680c133cb7a26d3aec28"
+        },
+        {
+          "text": "fn enemy_position(&self",
+          "normalized_sha256": "14b85ef0261d0be8179d6672e1162cc90af664733f41f83bd62eb41122918399"
+        },
+        {
+          "text": "ChestState::for_rank(rules.heroic_rank)",
+          "normalized_sha256": "17737b839607cd0cfc08755ebed8d2f70b0089a2af9d625e8cd3e6e89c595346"
+        },
+        {
+          "text": "fn heal_level_up(&mut self)",
+          "normalized_sha256": "8719f8c8dc869d36238903cca3ca188b20910bf86e25ee7de96e2db0f12d09ca"
+        },
+        {
+          "text": "PendingHealing::leech(result.amount * self.leech)",
+          "normalized_sha256": "b35d00837a7a608a332f833d03cf87fe6b93794455671c277f6d69bf12dd9e8b"
+        },
+        {
+          "text": "PendingHealing::on_kill(self.stats.heal_on_kill)",
+          "normalized_sha256": "866e3d0ae157fb8b8aa17a5df438b16b7c1e193d42841ac37043d6ab356bfc9b"
+        },
+        {
+          "text": "meter_source: Some(azeroth_survivors_re::run_effects::healing::HEALING_ON_KILL)",
+          "normalized_sha256": "90ae682f634e68c53c783b88bd1d5ed7a095a39cb9752f8dbcb54decf85a015a"
+        },
+        {
+          "text": "let requested = self.requested * azeroth_survivors_re::heroic::healing_factor(heroic_rank)",
+          "normalized_sha256": "639adc4d4004e5a6a4c237ba7bae742cbe4abbd5994d57aacacd2783e714a506"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs",
+      "observed_source_sha256": "f696cdedf2ac2cb97d4d1fe3fb2ddbaafc30a676d60a1b281101e01c99af9a98",
+      "owned_fragments": [
+        {
+          "text": "tick_with_minion_phases_for_rank(",
+          "normalized_sha256": "626d7216970dacbba306fa51302f3e62a941fdd0a6180198451e0f97c40bd9ff"
+        },
+        {
+          "text": "initial_raid_action_enabled_for_rank(phase.native_tag",
+          "normalized_sha256": "eadcca043cf0aeba8aa2c9a3c79d103f1329ce0ea267beb8a2dc125af3075723"
+        },
+        {
+          "text": "queued_action_enabled_for_rank(&ability",
+          "normalized_sha256": "6a554f1286cf52d1c7ac143ddf7e92e5c16dfaf47212be514c932694b3d50d67"
+        },
+        {
+          "text": "raid_damage_factor(self.rules.heroic_rank",
+          "normalized_sha256": "10a865953c9c0daa8679fe1a9a814fd302bfc46b8318ef18ea020f5af06973ee"
+        },
+        {
+          "text": "spawn_boss_with_health_factor",
+          "normalized_sha256": "99b369c42ad3697031bc00641c8ab1e5709757eeeb6205c1f450ec1fee85c977"
+        },
+        {
+          "text": ".tick_for_rank(",
+          "normalized_sha256": "dc08365713b304e2de86e5be9d5e3eb2f17bfdba56de0ca64b66159e646fca3a"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/chests.rs",
+      "observed_source_sha256": "fb1e3c84c799e2e484a4ebc8584d99a993d7562f504edc018dfdae549361f770",
+      "owned_fragments": [
+        {
+          "text": "native::ChestSystem::for_rank(heroic_rank)",
+          "normalized_sha256": "19e162520a7167ce72002df107954df4c2a020532740ff9e4c6d3340c47e78bd"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
+      "observed_source_sha256": "82abb1733df362bad80dc75d38514e4dea969847f72e83240ebc6f3bd156fef7",
+      "owned_fragments": [
+        {
+          "text": "snapshot.heroic_rank = self.rules.heroic_rank",
+          "normalized_sha256": "a70dd7ad5af14fef0a083ebdfe08265a62f2779f33abc813b046e854861180a5"
+        },
+        {
+          "text": "revive_seconds(self.rules.heroic_rank)",
+          "normalized_sha256": "17dcf025d962b2c8ff5364044c91d6f71ea05043f8a2342587a419dff7144e4b"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/demon_spells.rs",
+      "observed_source_sha256": "a1f39026b2068e629d342decbb1feab8164a5e757201b9ad8140c714af3b1cc0",
+      "owned_fragments": [
+        {
+          "text": "voidwalker_kill_heal_for_rank(",
+          "normalized_sha256": "014e760f00b6df18b6df7c088aaeb50618c33775089e7b9ee75caf2b571d7ac2"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
+      "observed_source_sha256": "2ca5fe6ab45f8ebeed349dcfc7756f92622f9681d7201e5e27a75f749e3787ae",
+      "owned_fragments": [
+        {
+          "text": "calm_regen: 0.0",
+          "normalized_sha256": "a218b853d0cee7c2b2fbb5403d9bfa0d9abeb3f0dff235c9bbe32380ba8ab2ef"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/guardians.rs",
+      "observed_source_sha256": "9ef9422b98159831cd9d713ee272a62709d8984a4d8a7a2f23554554e7cbd5ae",
+      "owned_fragments": [
+        {
+          "text": "heroic_rank: rules.heroic_rank",
+          "normalized_sha256": "66559f32c3e88935e820418356a49e2a7f93add840a97abed4a1f24dfe6d226a"
+        },
+        {
+          "text": "guardian.raid.advance_for_rank(",
+          "normalized_sha256": "4f0cdec88747a6ccd1f0559464580ec165734c11ce1a6b22a0a6bc4a26e7a639"
+        },
+        {
+          "text": "system.guardian_died_for_rank(",
+          "normalized_sha256": "434c5851609fc076b4c287590d0981882149610c4dbed77a2898d142717944a9"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/passives.rs",
+      "observed_source_sha256": "a3df94852d2acaff9c94dcd5a85a4cf2cc4aded24619a9bed1038a5b6f16a1ca",
+      "owned_fragments": [
+        {
+          "text": "fn heroic_rank(&self)",
+          "normalized_sha256": "c4801f05b0cfa0db10cbe1fe30c089730bc97509f8cce849776f2f8bc21b4c62"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/pickups.rs",
+      "observed_source_sha256": "a959db52ad38acddba94f32a40f35d48b77360a167f60e4f21d63555a9f65657",
+      "owned_fragments": [
+        {
+          "text": "heroic::healing_factor(self.rules.heroic_rank)",
+          "normalized_sha256": "eb05bd914c332c7f13d0857aeaa9df895c3d8502ad50729ec85cffd679996f37"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs",
+      "observed_source_sha256": "d79a2d59f99abb4deb66a1b147aab933e02253ec2fdf6764d33e02dabac61289",
+      "owned_fragments": [
+        {
+          "text": "heroic::free_rerolls_base(self.rules.heroic_rank)",
+          "normalized_sha256": "448bbdb20f45e702e5cb3065a86c8dfa25bb41b2f0cbd645f93ef881f31834c8"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/shared_healing.rs",
+      "observed_source_sha256": "5ed8372ac4f32caeccc1eddfc8e18f63f54d1a33d59395657210805c3fb8c305",
+      "owned_fragments": [
+        {
+          "text": "heroic::healing_factor(",
+          "normalized_sha256": "16b87b5e5f23829f82af229b506f36e7fddea924d1a1260d3f39969f80e5b69d"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/guardians/mod.rs",
+      "observed_source_sha256": "6e330189d8db0731545506495ea4e7dc1cf20ace7d665be61884330ab79f3784",
+      "owned_fragments": [
+        {
+          "text": "record_death_for_rank",
+          "normalized_sha256": "d1326f203bc659005dee70ea2ff6d535346205175e2f2ec40e56730dceb22cfc"
+        },
+        {
+          "text": "guardian_died_for_rank",
+          "normalized_sha256": "b7974b0ad502036e90f6f665326487dcbbcdb3072349136817e262c7beac8d64"
+        },
+        {
+          "text": "guardian_respawn_seconds(heroic_rank)",
+          "normalized_sha256": "d3f1f7654ad7c067e5b39042480c4e1fab7392570c22847e106a17dfa9e2822e"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/guardians/scaling.rs",
+      "observed_source_sha256": "5ada7b311741a07f528413530ecee8c43b18318d8f4c1c5345506819cd8f1131",
+      "owned_fragments": [
+        {
+          "text": "guardian_health_per_kill(input.heroic_rank)",
+          "normalized_sha256": "18eb76ef561d8994253aa10d96ba5c3785995f15c748426ebc76fa2992d8b63d"
+        },
+        {
+          "text": "guardian_damage_per_kill(input.heroic_rank)",
+          "normalized_sha256": "fe90282dc4c134546262595dfa23bbc10b1e2924f4d6eb7ef64b50d393545803"
+        },
+        {
+          "text": "health_multiplier(input.heroic_rank)",
+          "normalized_sha256": "9db3126b224fca8e34028c1894272fcc9eff37199857fd18a32875f59b5f04b4"
+        },
+        {
+          "text": "damage_multiplier(input.heroic_rank)",
+          "normalized_sha256": "7535f4f796b21388959cd44cd6d177f50841733d0ffd296bc4e8e9d687e2ef15"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/guardians/signatures.rs",
+      "observed_source_sha256": "04e4a6e07c44a50faef862b4dcbc577ac95aedf4ce7e3fb8d10e3cde28f1df1c",
+      "owned_fragments": [
+        {
+          "text": "advance_for_rank",
+          "normalized_sha256": "9d63f40b383a3eac93f2b5ce89e674fa509ff13550b743efcf6d7cec19f02bc4"
+        },
+        {
+          "text": "initial_raid_action_enabled_for_rank(",
+          "normalized_sha256": "c8ca5f0226d83528008f818846f2318cfe6aaa6fd3543029a90728f858db1e36"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/incoming.rs",
+      "observed_source_sha256": "55995b91bbed6a3deeb932ee1e20c7ae4911cbee7c0cf7531341fb4a4b410653",
+      "owned_fragments": [
+        {
+          "text": "state.last_hit_at = now;",
+          "normalized_sha256": "5547f8facafd2330ebb7aa2d1b3ea56ed1b08922a267703bdbe6813e3724f21b"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/totem_passives.rs",
+      "observed_source_sha256": "4a3da9e74ef5d83d5e821093cf73f2611b73065077d3cfb7385f976d4858c11f",
+      "owned_fragments": [
+        {
+          "text": "fn heroic_rank(&self)",
+          "normalized_sha256": "c4801f05b0cfa0db10cbe1fe30c089730bc97509f8cce849776f2f8bc21b4c62"
+        },
+        {
+          "text": "prepulse_heal_for_rank",
+          "normalized_sha256": "632453ba0485c31ea8b15add9892e0c83b87d638c364fef5756e3f79940b6ce9"
+        },
+        {
+          "text": "healing_factor(heroic_rank)",
+          "normalized_sha256": "accf7ddb186965cade5237a26ae30fe794a971a35040fc3ba0dc32c276633f34"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/totems.rs",
+      "observed_source_sha256": "3c4d51ea0268afbcc9f989c6f346f26a772d2d6dc504ff226a5cecdac07b9ce0",
+      "owned_fragments": [
+        {
+          "text": "prepulse_heal_for_rank(",
+          "normalized_sha256": "20344753aa58b71563cccbbfbe2a62cec674eb7084dd01d3b6ebbc0c5ccb51f8"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/run_effects.rs",
+      "observed_source_sha256": "5609c916e6cc4ebce82dbe033e2bd9447ab41d0964f9cc72e5ca1d28f77a56e9",
+      "owned_fragments": [
+        {
+          "text": "pub calm_regen: f32",
+          "normalized_sha256": "a68c248692c89c4d558d0974085e7bafef7adbc05cf1ef6f391c694ad77bc9fb"
+        },
+        {
+          "text": "13 => self.calm_regen += value",
+          "normalized_sha256": "8af2c5673a079c5e91f89f99bb3fe29dce058d34009b58276dc18c3b904b7986"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/run_effects/demon_effects.rs",
+      "observed_source_sha256": "ace96e7fa9934189e685d232d442554f5bf08d2fe3b6370dc718e87194a20d4c",
+      "owned_fragments": [
+        {
+          "text": "voidwalker_kill_heal_for_rank",
+          "normalized_sha256": "109f697114a448c2f33e60ac21872376410e916f7e3e32f8c4318c0199d267db"
+        },
+        {
+          "text": "healing_factor(heroic_rank)",
+          "normalized_sha256": "accf7ddb186965cade5237a26ae30fe794a971a35040fc3ba0dc32c276633f34"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/run_effects/healing.rs",
+      "observed_source_sha256": "2885a0804308040b674aaf65cbfad9914bb48b00bf6ebfe3e0fcfb4b933f5960",
+      "owned_fragments": [
+        {
+          "text": "pub const HEALING_ON_KILL: MeterSource = MeterSource { name: \"Healing on Kill\", icon: \"Spell_Shadow_DeathPact\", talent: false, };",
+          "normalized_sha256": "2e9e55ea0e1fb597831321c526ab31523b2354fb7fac910ac955a9462dae5c75"
+        },
+        {
+          "text": "pub fn regeneration_amount",
+          "normalized_sha256": "2721df803a66fbf1a4385cce3efabebecc5524007ca7de3b3cd27ad6d91a4d47"
+        },
+        {
+          "text": "let calm = if now - last_hit_at >= 3.0 { calm_fraction * maximum_health } else { 0.0 }; (calm + flat) * elapsed",
+          "normalized_sha256": "dce8be29d4329a941be51f7be7db5473f55c6de670d5289e9e8b5c8621fe676d"
+        },
+        {
+          "text": "pub fn apply_batch_for_rank",
+          "normalized_sha256": "e15fde199c77492eb83df58b30c22c7410a7d9b838d9d7fde05ea359dd11a2d1"
+        },
+        {
+          "text": "let multiplier = crate::heroic::healing_factor(heroic_rank); let regeneration = regeneration * multiplier; let total = queued.iter().fold(0.0, |sum, (_, amount)| sum + amount) * multiplier;",
+          "normalized_sha256": "0a3a19e2d31283c8464a5a4c4fb8d30d91fe2bdc847fa38140ccbb5fdf29f628"
+        },
+        {
+          "text": "let credited = (amount * effective) / total;",
+          "normalized_sha256": "51423edc219915d0885b0b2039932ad3c407c2bbb230c8370ab6a3629d0fee96"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/treasure_chests/mod.rs",
+      "observed_source_sha256": "4b0f033f5060fe0b75a367b20a9731d9aec59dc97617703998bc093888547aba",
+      "owned_fragments": [
+        {
+          "text": "cache_initial_price(heroic_rank)",
+          "normalized_sha256": "9d88e99a9ee8cb88dc235dafc7c8ce4bf3dcdcf3a18ee9739253d09d0d07f56c"
+        },
+        {
+          "text": "cache_cost_increment(self.heroic_rank)",
+          "normalized_sha256": "8a8f3fe3c4c4c688ffcdd8ef11855d1cd565d322b7b6fde5739de9ebe92f72ec"
+        }
+      ]
+    }
+  ],
+  "syntax_parsed_files": 36,
+  "compiled": false,
+  "source_executed": false,
+  "warning_dispatch_correspondence": {
+    "table": {
+      "virtual_address": "0x147692f84",
+      "byte_count": 128,
+      "sha256": "1f4e44c26f4696b4c0cc8c35c7505cef1975a2352990df46bfffec43b780b778"
+    },
+    "nested_table": {
+      "virtual_address": "0x147693004",
+      "byte_count": 16,
+      "sha256": "d8556c43a66b8e66bcdb704923a4c964ad70546a0b29b0b44786956d9735ef09"
+    },
+    "cases": [
+      {
+        "native_tag": 3,
+        "entry": "0x145bf2c9a",
+        "common_constructor_calls": [
+          "0x145bf5940"
+        ],
+        "inline_factor_table_references": [],
+        "reachable_instruction_count": 47,
+        "reachable_bytes_sha256": "319c8ec4ec4cc2bd491dc1b4ad23c5d419903b5f5d97c799c3f5d79a40d2d34c"
+      },
+      {
+        "native_tag": 4,
+        "entry": "0x145bf2ddd",
+        "common_constructor_calls": [],
+        "inline_factor_table_references": [
+          "0x145bf7b38",
+          "0x145bf7c36"
+        ],
+        "reachable_instruction_count": 438,
+        "reachable_bytes_sha256": "e79abdf5905a2fbbf1bef1ff76524b6c9b70f838a074f6bc40055b314706b75b"
+      },
+      {
+        "native_tag": 5,
+        "entry": "0x145bf438e",
+        "common_constructor_calls": [],
+        "inline_factor_table_references": [],
+        "reachable_instruction_count": 181,
+        "reachable_bytes_sha256": "bfe674d63fc19668244e7c7163f9fb4e75f0fd18de6973d90d18f113478e6d96"
+      },
+      {
+        "native_tag": 6,
+        "entry": "0x145bf468c",
+        "common_constructor_calls": [
+          "0x145bf4735"
+        ],
+        "inline_factor_table_references": [
+          "0x145bf4835",
+          "0x145bf4ad9"
+        ],
+        "reachable_instruction_count": 378,
+        "reachable_bytes_sha256": "1302195ce9c10009f402bb8c9b7b6fd55ef61342ad34edbb0f7690323e467d74"
+      },
+      {
+        "native_tag": 7,
+        "entry": "0x145bf37d9",
+        "common_constructor_calls": [
+          "0x145bf750c"
+        ],
+        "inline_factor_table_references": [],
+        "reachable_instruction_count": 189,
+        "reachable_bytes_sha256": "12148f3c3a1ec014e79e82744f52c81029a91ebb8381c9836c8c81dbb07d817a"
+      },
+      {
+        "native_tag": 8,
+        "entry": "0x145bf4e62",
+        "common_constructor_calls": [
+          "0x145bf4f68"
+        ],
+        "inline_factor_table_references": [],
+        "reachable_instruction_count": 88,
+        "reachable_bytes_sha256": "b952c76d4e71421d93671861d09ba0d2565534f7c1d2eb9a40ff6e06fa88bac3"
+      },
+      {
+        "native_tag": 9,
+        "entry": "0x145bf5857",
+        "common_constructor_calls": [
+          "0x145bf5940"
+        ],
+        "inline_factor_table_references": [],
+        "reachable_instruction_count": 66,
+        "reachable_bytes_sha256": "35349eb80b59bba21bd7d2de809211b442d04690cc7f938aced9ae4aa63bef7a"
+      },
+      {
+        "native_tag": 10,
+        "entry": "0x145bf475b",
+        "common_constructor_calls": [],
+        "inline_factor_table_references": [
+          "0x145bf4835",
+          "0x145bf4ad9"
+        ],
+        "reachable_instruction_count": 336,
+        "reachable_bytes_sha256": "8e397fb07f8c59ba2cdc7eeddefcf0f1a944d8f8379956525968f0576297e8c5"
+      },
+      {
+        "native_tag": 11,
+        "entry": "0x145bf5a2c",
+        "common_constructor_calls": [
+          "0x145bf5af1"
+        ],
+        "inline_factor_table_references": [],
+        "reachable_instruction_count": 142,
+        "reachable_bytes_sha256": "7053be5acad6a00b126eb880e9cae030642d226008a9394a58c8a562c4de3862"
+      },
+      {
+        "native_tag": 12,
+        "entry": "0x145bf3aba",
+        "common_constructor_calls": [],
+        "inline_factor_table_references": [
+          "0x145bf3b91"
+        ],
+        "reachable_instruction_count": 318,
+        "reachable_bytes_sha256": "314b01f24fe13c4049289d20deab3fafe66006d4d63439c42fbc7901f950ec15"
+      },
+      {
+        "native_tag": 13,
+        "entry": "0x145bf59ca",
+        "common_constructor_calls": [
+          "0x145bf7334"
+        ],
+        "inline_factor_table_references": [],
+        "reachable_instruction_count": 122,
+        "reachable_bytes_sha256": "22ca0c935bc863b563635756f24aa671ec5153827082e38095b0a0b3dd47559c"
+      },
+      {
+        "native_tag": 14,
+        "entry": "0x145bf36c3",
+        "common_constructor_calls": [
+          "0x145bf3774"
+        ],
+        "inline_factor_table_references": [],
+        "reachable_instruction_count": 151,
+        "reachable_bytes_sha256": "a84f9a77d7a4998b6d5cb948cb9d1cfe3fb48e850e8627212a0e9a41788fb60a"
+      },
+      {
+        "native_tag": 15,
+        "entry": "0x145bf38b9",
+        "common_constructor_calls": [
+          "0x145bf3a4b"
+        ],
+        "inline_factor_table_references": [],
+        "reachable_instruction_count": 212,
+        "reachable_bytes_sha256": "27bcb235d9d26e3aa2b3ef3affabb50579ce64d01b4a96f1a5a86326edb5e52c"
+      },
+      {
+        "native_tag": 16,
+        "entry": "0x145bf5376",
+        "common_constructor_calls": [],
+        "inline_factor_table_references": [
+          "0x145bf546f"
+        ],
+        "reachable_instruction_count": 235,
+        "reachable_bytes_sha256": "85a7ff047752dff33c6fc63facc6a10e6414ef1d79109d50eb59cb8ef3c95b70"
+      },
+      {
+        "native_tag": 17,
+        "entry": "0x145bf3122",
+        "common_constructor_calls": [],
+        "inline_factor_table_references": [
+          "0x145bf33b9",
+          "0x145bf355b"
+        ],
+        "reachable_instruction_count": 412,
+        "reachable_bytes_sha256": "8652f01dfb42a7a4f5463cd4c351ca6e3c5d2c7f1c31fcfdda398b0695b25479"
+      },
+      {
+        "native_tag": 18,
+        "entry": "0x145bf4537",
+        "common_constructor_calls": [],
+        "inline_factor_table_references": [],
+        "reachable_instruction_count": 86,
+        "reachable_bytes_sha256": "ddf87f4f590fe05c6d54d3cd6047a0d4b93e17a9cb3f26e70381328f756e9988"
+      },
+      {
+        "native_tag": 19,
+        "entry": "0x145bf302a",
+        "common_constructor_calls": [
+          "0x145bf30d8"
+        ],
+        "inline_factor_table_references": [],
+        "reachable_instruction_count": 153,
+        "reachable_bytes_sha256": "43b7917f50ad98b23a14a6cd9da2bb018bbc5aaa5be4b7a2baaab69057ba6c9f"
+      },
+      {
+        "native_tag": 20,
+        "entry": "0x145bf4cb1",
+        "common_constructor_calls": [],
+        "inline_factor_table_references": [],
+        "reachable_instruction_count": 52,
+        "reachable_bytes_sha256": "5c33df5ed84684566c3d81ca7790055dd2a0aeffb089f8991a39951c5c9e215e"
+      },
+      {
+        "native_tag": 21,
+        "entry": "0x145bf594a",
+        "common_constructor_calls": [],
+        "inline_factor_table_references": [],
+        "reachable_instruction_count": 171,
+        "reachable_bytes_sha256": "7f06568651e8fb012efe02723351b67b67505ae5b4d047b051d473bc04a81a8b"
+      },
+      {
+        "native_tag": 22,
+        "entry": "0x145bf60c0",
+        "common_constructor_calls": [],
+        "inline_factor_table_references": [],
+        "reachable_instruction_count": 288,
+        "reachable_bytes_sha256": "5fd762211b335c40ad4dd1ee535916a49e21dbabd4dcffec634fd5e9481789ac"
+      },
+      {
+        "native_tag": 23,
+        "entry": "0x145bf4d3f",
+        "common_constructor_calls": [],
+        "inline_factor_table_references": [],
+        "reachable_instruction_count": 149,
+        "reachable_bytes_sha256": "932196f1d417db1755fa08a2e2c05f2a3834ac88b2081d99e2a7923368e2832b"
+      },
+      {
+        "native_tag": 24,
+        "entry": "0x145bf4fc4",
+        "common_constructor_calls": [],
+        "inline_factor_table_references": [
+          "0x145bf50b9"
+        ],
+        "reachable_instruction_count": 309,
+        "reachable_bytes_sha256": "28c911b56f20cf99b3968e59b16b5aa0b3b37e2e6254c048bfeee766cc7f26e6"
+      },
+      {
+        "native_tag": 25,
+        "entry": "0x145bf5f4c",
+        "common_constructor_calls": [
+          "0x145bf602f"
+        ],
+        "inline_factor_table_references": [],
+        "reachable_instruction_count": 143,
+        "reachable_bytes_sha256": "9cce6dd6c37219d262bad7435b2f5136063630ef69c9a425a92ffe196870aa40"
+      },
+      {
+        "native_tag": 26,
+        "entry": "0x145bf646b",
+        "common_constructor_calls": [
+          "0x145bf64fa"
+        ],
+        "inline_factor_table_references": [],
+        "reachable_instruction_count": 115,
+        "reachable_bytes_sha256": "ffaa2cdb0ec7a0e96d7311cc5e640301b0b9a2bbbf486b831e8c39782f1da652"
+      },
+      {
+        "native_tag": 27,
+        "entry": "0x145bf4048",
+        "common_constructor_calls": [],
+        "inline_factor_table_references": [
+          "0x145bf410c"
+        ],
+        "reachable_instruction_count": 294,
+        "reachable_bytes_sha256": "c9f19b3f7b5d0e023bc1d4250530b173c280b63385a748e43e355900d73f46b0"
+      },
+      {
+        "native_tag": 28,
+        "entry": "0x145bf3f3f",
+        "common_constructor_calls": [
+          "0x145bf3ff9"
+        ],
+        "inline_factor_table_references": [],
+        "reachable_instruction_count": 156,
+        "reachable_bytes_sha256": "cd32172e81809e4aebfaca65d334bb1a487dd437eaa6c80b49cd5073136aaa34"
+      },
+      {
+        "native_tag": 29,
+        "entry": "0x145bf6d0b",
+        "common_constructor_calls": [],
+        "inline_factor_table_references": [
+          "0x145bf6f2b",
+          "0x145bf7132"
+        ],
+        "reachable_instruction_count": 402,
+        "reachable_bytes_sha256": "75d94d4427110b359c860de72fa51961efad19cd1c0becb82818c8df294c44ac"
+      },
+      {
+        "native_tag": 30,
+        "entry": "0x145bf2e4c",
+        "common_constructor_calls": [
+          "0x145bf2ede"
+        ],
+        "inline_factor_table_references": [],
+        "reachable_instruction_count": 205,
+        "reachable_bytes_sha256": "3daa1632a5aade19085b640755e8e28281de3a323342487eccac9d16845f1822"
+      },
+      {
+        "native_tag": 31,
+        "entry": "0x145bf65a6",
+        "common_constructor_calls": [],
+        "inline_factor_table_references": [
+          "0x145bf672d",
+          "0x145bf6a6a"
+        ],
+        "reachable_instruction_count": 416,
+        "reachable_bytes_sha256": "be34ef4ecd5a20b19ec90b194e7be87d58c53e72dfd4896382b91228956dc116"
+      },
+      {
+        "native_tag": 32,
+        "entry": "0x145bf6b74",
+        "common_constructor_calls": [],
+        "inline_factor_table_references": [],
+        "reachable_instruction_count": 153,
+        "reachable_bytes_sha256": "20df82cce4f908c2076f064b5e4be3196644888e7dc524e90c11ed0ae347749f"
+      },
+      {
+        "native_tag": 33,
+        "entry": "0x145bf5b4c",
+        "common_constructor_calls": [],
+        "inline_factor_table_references": [
+          "0x145bf5c06"
+        ],
+        "reachable_instruction_count": 282,
+        "reachable_bytes_sha256": "fe7f50fce1124e3061a4050428acd73de28bc9800c7fb4cca33b53a275024a6b"
+      },
+      {
+        "native_tag": 34,
+        "entry": "0x145bf4baf",
+        "common_constructor_calls": [],
+        "inline_factor_table_references": [],
+        "reachable_instruction_count": 69,
+        "reachable_bytes_sha256": "1b4d0c53a1eff7bf69ac7f88b042847aad2707b55dcd46eaa39e930814610878"
+      }
+    ],
+    "limits": "Original dispatcher conditional CFG and the two explicit current jump tables only. Calls are not recursively expanded; constructor semantics have their separate full native proof. No reconstructed source executes."
+  },
+  "healing_table_correspondence": {
+    "table": "0x14768f420",
+    "sites": [
+      {
+        "site": "0x145bcb46d",
+        "role": "batch-regeneration-and-HoTs",
+        "owner": [
+          "0x145bcb120",
+          "0x145bcc8c1"
+        ],
+        "following_96_bytes_sha256": "e4ff650f144e627cac39e9546c032089f4efb8af167089313946e3049944f533"
+      },
+      {
+        "site": "0x145bd111e",
+        "role": "general-healing",
+        "owner": [
+          "0x145bd10e0",
+          "0x145bd138f"
+        ],
+        "following_96_bytes_sha256": "94cdc0c0a233045d1998a6a73f633833aa3a1cd8fc724672a21a619ad1342d48"
+      },
+      {
+        "site": "0x145be411b",
+        "role": "level-up-through-PendingHealing",
+        "owner": [
+          "0x145be3b50",
+          "0x145be4302"
+        ],
+        "following_96_bytes_sha256": "7b64d9c01c05934270d2e364fb0ae197b8a75635dac52a5c7d0780958c41c7cb"
+      },
+      {
+        "site": "0x145bfee70",
+        "role": "leech-through-PendingHealing",
+        "owner": [
+          "0x145bfea00",
+          "0x145bff6a8"
+        ],
+        "following_96_bytes_sha256": "cf5c25edf55e26fdfd7ece10897115c86aac77401d375c67f35ec123d5ac2edb"
+      },
+      {
+        "site": "0x145bffd1d",
+        "role": "totem-prepulse",
+        "owner": [
+          "0x145bffc30",
+          "0x145c004a5"
+        ],
+        "following_96_bytes_sha256": "8c12e6875194b098ced9c03c6091a1a2d4a3c6a0835253127f4b1b0ff2132e26"
+      },
+      {
+        "site": "0x145c00107",
+        "role": "secondary-through-PendingHealing",
+        "owner": [
+          "0x145bffc30",
+          "0x145c004a5"
+        ],
+        "following_96_bytes_sha256": "d2be3dbfb2b8fac81084594a5632c96727813a0be680680bfeba345933baa3a6"
+      },
+      {
+        "site": "0x145c0dfad",
+        "role": "actor-hit-leech-through-PendingHealing",
+        "owner": [
+          "0x145c0b390",
+          "0x145c0f15d"
+        ],
+        "following_96_bytes_sha256": "7386a7855d04f71656c90e001322af93db672b847503686feacfce1f556ee737"
+      },
+      {
+        "site": "0x145c0ea2a",
+        "role": "actor-hit-secondary-through-PendingHealing",
+        "owner": [
+          "0x145c0b390",
+          "0x145c0f15d"
+        ],
+        "following_96_bytes_sha256": "641fb8cfbf3ac474d540ad6d2d94900b131960056545ac3b0661f1c3ca043fe6"
+      },
+      {
+        "site": "0x145c16bb5",
+        "role": "actor-death-leech-through-PendingHealing",
+        "owner": [
+          "0x145c159a0",
+          "0x145c19d53"
+        ],
+        "following_96_bytes_sha256": "fceef79105e5ee9f7eafb2055e05f475dea3d832bad180b0e8fcc1e00acdfd7b"
+      },
+      {
+        "site": "0x145c17b88",
+        "role": "healing-on-kill-through-PendingHealing",
+        "owner": [
+          "0x145c159a0",
+          "0x145c19d53"
+        ],
+        "following_96_bytes_sha256": "bd467dcf5da738c98baf704cecc20ff78764925e48b7eeae28e779eff882b5d3"
+      },
+      {
+        "site": "0x145c21442",
+        "role": "party-immediate-healing",
+        "owner": [
+          "0x145c1ce90",
+          "0x145c22a79"
+        ],
+        "following_96_bytes_sha256": "36c61c0c65845fbe149e66b0ff2215bcd39f445ec6d4acce26552bb7e11c170f"
+      },
+      {
+        "site": "0x145c2f379",
+        "role": "Restoration",
+        "owner": [
+          "0x145c2f2d0",
+          "0x145c2f7a8"
+        ],
+        "following_96_bytes_sha256": "4fd079faec6b7cc3ccd2e2bd990490d1b62ecdf637d2f4b4ec3fc5fe82cd26f6"
+      }
+    ],
+    "healing_on_kill": {
+      "virtual_address": "0x145c17af9",
+      "end_exclusive": "0x145c17be5",
+      "sha256": "24f8f0d5e7819184b88bc31f253ff8293d52ce011fef2d89d473c6705b464504",
+      "name": {
+        "virtual_address": "0x1476917ae",
+        "text": "Healing on Kill"
+      },
+      "icon": {
+        "virtual_address": "0x1476917bd",
+        "text": "Spell_Shadow_DeathPact"
+      },
+      "talent": false
+    },
+    "limits": "Complete exact RIP-relative LEA references to this shared table in executable sections; not a claim about every possible indirect reference. Voidwalker's distinct2.5/1.25 table has its separate native range. Rebuilt source is not executed."
+  },
+  "council_catalog_correspondence": {
+    "source": "crates/azeroth-survivors-re/src/guardians/catalog.rs",
+    "zones": [
+      {
+        "zone": 0,
+        "source_array": "ELWYNN_BOSSES",
+        "native_table": "0x146fb3348",
+        "ids_and_final_flags": [
+          [
+            690,
+            0
+          ],
+          [
+            691,
+            0
+          ],
+          [
+            692,
+            0
+          ],
+          [
+            693,
+            0
+          ],
+          [
+            694,
+            1
+          ]
+        ]
+      },
+      {
+        "zone": 1,
+        "source_array": "DUSKWOOD_BOSSES",
+        "native_table": "0x146fb41b0",
+        "ids_and_final_flags": [
+          [
+            790,
+            0
+          ],
+          [
+            791,
+            0
+          ],
+          [
+            792,
+            0
+          ],
+          [
+            793,
+            0
+          ],
+          [
+            794,
+            1
+          ]
+        ]
+      },
+      {
+        "zone": 2,
+        "source_array": "WSG_BOSSES",
+        "native_table": "0x146fb4fe0",
+        "ids_and_final_flags": [
+          [
+            190,
+            0
+          ],
+          [
+            191,
+            0
+          ],
+          [
+            192,
+            0
+          ],
+          [
+            194,
+            0
+          ],
+          [
+            193,
+            1
+          ]
+        ]
+      },
+      {
+        "zone": 3,
+        "source_array": "UNGORO_BOSSES",
+        "native_table": "0x146fb5e10",
+        "ids_and_final_flags": [
+          [
+            1290,
+            0
+          ],
+          [
+            1291,
+            0
+          ],
+          [
+            1292,
+            0
+          ],
+          [
+            1293,
+            0
+          ],
+          [
+            1294,
+            1
+          ]
+        ]
+      },
+      {
+        "zone": 4,
+        "source_array": "AB_BOSSES",
+        "native_table": "0x146fb6c20",
+        "ids_and_final_flags": [
+          [
+            1590,
+            0
+          ],
+          [
+            1591,
+            0
+          ],
+          [
+            1592,
+            0
+          ],
+          [
+            1593,
+            0
+          ],
+          [
+            1594,
+            1
+          ]
+        ]
+      },
+      {
+        "zone": 5,
+        "source_array": "FERALAS_BOSSES",
+        "native_table": "0x146fb7b70",
+        "ids_and_final_flags": [
+          [
+            890,
+            0
+          ],
+          [
+            891,
+            0
+          ],
+          [
+            892,
+            0
+          ],
+          [
+            893,
+            0
+          ],
+          [
+            894,
+            1
+          ]
+        ]
+      },
+      {
+        "zone": 6,
+        "source_array": "ARENA_BOSSES",
+        "native_table": "0x146fb8ab0",
+        "ids_and_final_flags": [
+          [
+            990,
+            0
+          ],
+          [
+            991,
+            0
+          ],
+          [
+            992,
+            0
+          ],
+          [
+            993,
+            0
+          ],
+          [
+            994,
+            1
+          ]
+        ]
+      },
+      {
+        "zone": 7,
+        "source_array": "SM_BOSSES",
+        "native_table": "0x146fb9b50",
+        "ids_and_final_flags": [
+          [
+            1390,
+            0
+          ],
+          [
+            1391,
+            0
+          ],
+          [
+            1392,
+            0
+          ],
+          [
+            1393,
+            0
+          ],
+          [
+            1394,
+            1
+          ]
+        ]
+      },
+      {
+        "zone": 8,
+        "source_array": "AV_BOSSES",
+        "native_table": "0x146fbaa58",
+        "ids_and_final_flags": [
+          [
+            390,
+            0
+          ],
+          [
+            391,
+            0
+          ],
+          [
+            392,
+            0
+          ],
+          [
+            394,
+            0
+          ],
+          [
+            393,
+            1
+          ]
+        ]
+      },
+      {
+        "zone": 9,
+        "source_array": "BRM_BOSSES",
+        "native_table": "0x146fbbd28",
+        "ids_and_final_flags": [
+          [
+            1090,
+            0
+          ],
+          [
+            1091,
+            0
+          ],
+          [
+            1092,
+            0
+          ],
+          [
+            1093,
+            0
+          ],
+          [
+            1094,
+            1
+          ]
+        ]
+      },
+      {
+        "zone": 10,
+        "source_array": "AQ_BOSSES",
+        "native_table": "0x146fbcbd8",
+        "ids_and_final_flags": [
+          [
+            1190,
+            0
+          ],
+          [
+            1191,
+            0
+          ],
+          [
+            1192,
+            0
+          ],
+          [
+            1193,
+            0
+          ],
+          [
+            1194,
+            1
+          ]
+        ]
+      },
+      {
+        "zone": 11,
+        "source_array": "NAXX_BOSSES",
+        "native_table": "0x146fbdf68",
+        "ids_and_final_flags": [
+          [
+            1490,
+            0
+          ],
+          [
+            1491,
+            0
+          ],
+          [
+            1492,
+            0
+          ],
+          [
+            1493,
+            0
+          ],
+          [
+            1494,
+            1
+          ]
+        ]
+      }
+    ],
+    "compared_rows": 60,
+    "limits": "Checks the existing five-entry order, identity and final-bit inputs used by the new Council consumer; other boss fields retain their separate provenance."
+  },
+  "limits": "Owned fragments and formatter syntax parsing establish the reviewed wiring only. Whole-file hashes are observations, excluded from enforcement because files have independent source owners. Original-instruction CPU cases remain separate; no compilation, game/server execution or parity comparison occurs."
+}

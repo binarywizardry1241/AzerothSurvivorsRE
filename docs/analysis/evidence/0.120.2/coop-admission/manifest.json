@@ -1,0 +1,130 @@
+{
+  "schema": "as-coop-admission-v1",
+  "target": {
+    "version": "0.120.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c",
+    "size_bytes": 145484288
+  },
+  "gap_ids": [
+    163
+  ],
+  "bounded_contract_system_ids": [
+    "custom-game-server-party"
+  ],
+  "query": {
+    "procedure": "0x145b24b70",
+    "provider": {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "version": "12.1.4"
+    },
+    "evidence_id": "ev_4dc8988c088650ad048a9424750d841d650606ab964c27776295c88a12677169",
+    "analysis_profile_digest": "da1e11bdd237416891d14dda37cbe76f9d4068f28f88ec5bbddbc081473623a2",
+    "normalized_text_sha256": "5abe5fea5f8817a0ee118df7a9d9c2b35ddaddfa9c4ca76a33e1867b481c24fc",
+    "plan": {
+      "path": "runtime/0.120.2/party-achievement-review/handshake-plan.json",
+      "sha256": "bd668935991fae891a1c9ed9fe18b220ed072af9b7bb59450846ed645773280f"
+    },
+    "journal": {
+      "path": "runtime/0.120.2/party-achievement-review/handshake-query/journal.json",
+      "sha256": "3cb7c8d2005107fee4d0cce83241e3a22abe432e9689e209fc2a2e5c1ad88b08"
+    },
+    "result": {
+      "path": "runtime/0.120.2/party-achievement-review/handshake-query/results/b204a12ff9b1b2b32240c1f3898e45cf021b334c3db6c2a5a707befc00a430b2.json",
+      "sha256": "91b4fc6024ca3705a5f31a7ae95799f422d5e786b17aea6670ff23ea032273b4"
+    }
+  },
+  "module_location_evidence": {
+    "path": "runtime/coverage/80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c/diagnostic-ownership.json",
+    "sha256": "3f8912ce0daba6eb21990ceaa7dff498711f65c12a5b32a341b1965303ccf521"
+  },
+  "native_owner": {
+    "virtual_address": "0x145b24b70",
+    "end_exclusive": "0x145b2575d",
+    "file_offset": "0x5b23f70",
+    "byte_count": 3053,
+    "sha256": "4f6d94c7f5304e4aefca435a790304092ef90236202533df2518d40f7c9ab200"
+  },
+  "admission_range": {
+    "virtual_address": "0x145b24e1e",
+    "end_exclusive": "0x145b24e58",
+    "file_offset": "0x5b2421e",
+    "byte_count": 58,
+    "sha256": "bb2eec25245011a775bdc6f6ae92149ba1eb784006805d91566ed9164cb25a02",
+    "bytes_hex": "837a38054c8d3546b07c01bb1f0000000f858202000048837a18070f8577020000b8302e3132413302b932302e3241334a0309c10f855e020000",
+    "assembly": {
+      "path": "docs/analysis/evidence/0.120.2/coop-admission/exact-version-admission.asm",
+      "sha256": "070554645bfd3840cb02febdeb36a3c415e17d89b07005798419f534cba5b337"
+    },
+    "instructions": [
+      {
+        "address": "0x145b24e1e",
+        "bytes_hex": "837a3805"
+      },
+      {
+        "address": "0x145b24e22",
+        "bytes_hex": "4c8d3546b07c01"
+      },
+      {
+        "address": "0x145b24e29",
+        "bytes_hex": "bb1f000000"
+      },
+      {
+        "address": "0x145b24e2e",
+        "bytes_hex": "0f8582020000"
+      },
+      {
+        "address": "0x145b24e34",
+        "bytes_hex": "48837a1807"
+      },
+      {
+        "address": "0x145b24e39",
+        "bytes_hex": "0f8577020000"
+      },
+      {
+        "address": "0x145b24e3f",
+        "bytes_hex": "b8302e3132"
+      },
+      {
+        "address": "0x145b24e44",
+        "bytes_hex": "413302"
+      },
+      {
+        "address": "0x145b24e47",
+        "bytes_hex": "b932302e32"
+      },
+      {
+        "address": "0x145b24e4c",
+        "bytes_hex": "41334a03"
+      },
+      {
+        "address": "0x145b24e50",
+        "bytes_hex": "09c1"
+      },
+      {
+        "address": "0x145b24e52",
+        "bytes_hex": "0f855e020000"
+      }
+    ]
+  },
+  "required_protocol": 5,
+  "required_version": "0.120.2",
+  "required_version_byte_count": 7,
+  "success_continuation": "0x145b24e58",
+  "version_rejection": "0x145b250b6",
+  "source_first": {
+    "observed_source_version": "0.120.0",
+    "paths": [
+      "crates/azeroth-survivors-re/src/coop/server_party.rs",
+      "crates/azeroth-survivors-re/src/coop/session.rs",
+      "crates/azeroth-survivors-re/src/coop_directory.rs"
+    ],
+    "conclusion": "Reuse existing shared GAME_VERSION, JoinRequest and admission/source/codec interfaces; current source constant differs from exact native0.120.2. No engine/network internals expanded."
+  },
+  "predecessor": "docs/analysis/coop-handshake-0.120.0.md",
+  "limits": [
+    "Only current protocol/exact version and existing source routes are rebound; all other source/wire/server contracts retain separate evidence.",
+    "No gameplay source repair, application compilation, client/game/server/network execution or original/rebuilt comparison."
+  ]
+}

@@ -1,0 +1,178 @@
+{
+  "target": "AzerothSurvivors/AzerothSurvivors-0.100.1.exe",
+  "target_sha256": "17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b",
+  "target_executed": false,
+  "functions": [
+    {
+      "role": "command",
+      "address": "0x140177830",
+      "end_exclusive": "0x14017786a",
+      "file_offset": "0x176c30",
+      "byte_count": 58,
+      "sha256": "bd78a68f9066bff81c09c43beb506cb945453e989fcdc6834ae1c2cf676f5190"
+    },
+    {
+      "role": "insert",
+      "address": "0x14005daa0",
+      "end_exclusive": "0x14005dc6f",
+      "file_offset": "0x5cea0",
+      "byte_count": 463,
+      "sha256": "a42903f8de3365c09154bab51328eed8450041634dc31029948c5f41e1e7d575",
+      "evidence_id": "ev_c79a8ffd0dfc9fcb49771449fd5efccb8f1bfb470d4e8fd92f302a9af2212ef4",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "22dbf73f47c5e1051fd74ed4a5fe79e5639a11726ad86224c46752bd58ddd994"
+    },
+    {
+      "role": "ecs-writer",
+      "address": "0x1402129f0",
+      "end_exclusive": "0x140213544",
+      "file_offset": "0x211df0",
+      "byte_count": 2900,
+      "sha256": "866ae37b8a9f3ff4eae5edf9d0af8e34b4a377a341017822777803646588ce2e"
+    },
+    {
+      "role": "component-ids",
+      "address": "0x14034f960",
+      "end_exclusive": "0x14034fc0f",
+      "file_offset": "0x34ed60",
+      "byte_count": 687,
+      "sha256": "86aae221bb3c0444e19b17ac75211cd4c14aa3c1fda507bbf18c715421053467"
+    },
+    {
+      "role": "component-id-collect",
+      "address": "0x1401a3020",
+      "end_exclusive": "0x1401a3236",
+      "file_offset": "0x1a2420",
+      "byte_count": 534,
+      "sha256": "37012f689527216903a2895121fc85401fe4a06b367bbab8d4fa1637ec1604f1"
+    },
+    {
+      "role": "tip-host-registration",
+      "address": "0x140205300",
+      "end_exclusive": "0x1402056f0",
+      "file_offset": "0x204700",
+      "byte_count": 1008,
+      "sha256": "bfb275f22fe84ea719592ae694a83fa015fcc07a67a6a8bd109c24ab3a6b2eb8"
+    },
+    {
+      "role": "interaction-registration",
+      "address": "0x140204480",
+      "end_exclusive": "0x14020487b",
+      "file_offset": "0x203880",
+      "byte_count": 1019,
+      "sha256": "b4eef526af7367540383296a7c2dd3e1933bf35139d8bd67e619320e764598c7"
+    },
+    {
+      "role": "focus-policy-registration",
+      "address": "0x140203fd0",
+      "end_exclusive": "0x1402043cb",
+      "file_offset": "0x2033d0",
+      "byte_count": 1019,
+      "sha256": "da0358d8ab8504afe7512b8b01e9fd24e465f9277a406d0b2e3fa4c6a9e09d12"
+    }
+  ],
+  "queue_fragment": {
+    "address": "0x14010bd58",
+    "end_exclusive": "0x14010bdd2",
+    "file_offset": "0x10b158",
+    "byte_count": 122,
+    "sha256": "92217431188ee002b812b84651277096f6e2907c14d0a8441c90de434aaa5ef9"
+  },
+  "tuple_type": {
+    "address": "0x145963e6c",
+    "end_exclusive": "0x145963ed2",
+    "file_offset": "0x596326c",
+    "byte_count": 102,
+    "sha256": "a55b23fe73e2577d33885cbb73708715d1ab502f50b07bbe95278ce32b18b100",
+    "text": "(wenilla_rogue_app::screens::cards::TipHost, bevy_ui::focus::Interaction, bevy_ui::focus::FocusPolicy)",
+    "reference": "0x14034fa98",
+    "length_instruction": "0x14034faa3"
+  },
+  "command_payload": {
+    "after_handler_pointer": true,
+    "entity_offset": "0x0",
+    "control_byte_offset": "0x8",
+    "interaction_offset": "0x9",
+    "focus_policy_offset": "0xa",
+    "bytes_after_entity": [
+      0,
+      2,
+      1
+    ],
+    "packed_ecx": "0x010200"
+  },
+  "mapping": [
+    {
+      "byte": 0,
+      "value": 0,
+      "role": "insert control; bit0 tested separately",
+      "local": "0x8c(%rbp)",
+      "instruction": "0x140212a2b"
+    },
+    {
+      "byte": 1,
+      "value": 2,
+      "component": "bevy_ui::focus::Interaction",
+      "variant": "None",
+      "local": "0x9a(%rbp)",
+      "extract_instruction": "0x140212a25",
+      "component_id_index": 1,
+      "destination_id_instruction": "0x140213038",
+      "source_instruction": "0x140213082"
+    },
+    {
+      "byte": 2,
+      "value": 1,
+      "component": "bevy_ui::focus::FocusPolicy",
+      "variant": "Pass",
+      "local": "0x9b(%rbp)",
+      "extract_instructions": [
+        "0x140212a33",
+        "0x140212a36",
+        "0x140212a38"
+      ],
+      "component_id_index": 2,
+      "destination_id_instruction": "0x14021310d",
+      "source_instruction": "0x140213157",
+      "source_pointer_instruction": "0x140212f8d"
+    }
+  ],
+  "component_ids": {
+    "registration_order": [
+      "0x140205300",
+      "0x140204480",
+      "0x140203fd0"
+    ],
+    "collector": "0x1401a3020",
+    "collector_all_present_vector_order": [
+      "0x140205300",
+      "0x140204480",
+      "0x140203fd0"
+    ],
+    "all_present_flags": [
+      1,
+      1,
+      1
+    ],
+    "vector_write_instructions": [
+      "0x1401a31c7",
+      "0x1401a31be",
+      "0x1401a31dd"
+    ],
+    "component_sizes": [
+      0,
+      1,
+      1
+    ]
+  },
+  "limitations": [
+    "No original or reconstructed application launched for this question.",
+    "The raw owner was imported through REA with Ghidra12.1.4; Win64 argument/data mapping comes from selected-PE instructions rather than decompiler default gcc parameter labels.",
+    "Variant names follow the typed tuple and matching Bevy0.18.1 enum definitions; no implicit-widget assumption is used.",
+    "This proves the explicit footer FocusPolicy value; it does not prove click/hover parity or a source fix was applied."
+  ]
+}

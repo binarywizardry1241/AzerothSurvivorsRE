@@ -1,0 +1,93 @@
+{
+  "target": {
+    "version": "0.120.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08",
+    "size_bytes": 145447424
+  },
+  "native_ranges": [
+    {
+      "role": "picker-account-union",
+      "start": "0x1402fccf5",
+      "end_exclusive": "0x1402fcd26",
+      "file_offset": "0x2fc0f5",
+      "sha256": "37f8933e46ec85bdf50f0f70920875b88837007c6f645c666b9cd9482931aafe",
+      "instruction_count": 8,
+      "assembly": "picker-account-union.asm",
+      "assembly_sha256": "8281755b29cf12a49e8effe59a6d4ef371068b6d3d7a916f27564bff3459737f"
+    },
+    {
+      "role": "picker-membership",
+      "start": "0x1402fd659",
+      "end_exclusive": "0x1402fd6cc",
+      "file_offset": "0x2fca59",
+      "sha256": "63c944b99aead1626233ebf245e19c6638053809e16862f3cc44f14daf54a1e6",
+      "instruction_count": 27,
+      "assembly": "picker-membership.asm",
+      "assembly_sha256": "9b6e5e30ab23484e635e2f1fc8f2e308e9f9424396d3a07926a928414c48064f"
+    },
+    {
+      "role": "picker-allowed-carrier",
+      "start": "0x1402fdd55",
+      "end_exclusive": "0x1402fdd8c",
+      "file_offset": "0x2fd155",
+      "sha256": "1734aba1bbb60714a88e4ba7f4c1df5645434e1258fef018f3f5b932f61804fc",
+      "instruction_count": 9,
+      "assembly": "picker-allowed-carrier.asm",
+      "assembly_sha256": "d9f3b83f0a9e092a3165ad42f5c4241974d299445e9b942a6bbc0639b9c096e8"
+    },
+    {
+      "role": "picker-click-admission",
+      "start": "0x1402fdef0",
+      "end_exclusive": "0x1402fe017",
+      "file_offset": "0x2fd2f0",
+      "sha256": "d9ed1c245935449795a49a6ea4f4b5f99ab39456880866113463397d9dee5c04",
+      "instruction_count": 52,
+      "assembly": "picker-click-admission.asm",
+      "assembly_sha256": "1b78da657cdea5bcfc581d65b09659146a07f3b425535c95e65152b1d018dbf4"
+    }
+  ],
+  "queries": [
+    {
+      "role": "account-aware-picker",
+      "procedure": "0x1402fc9c0",
+      "native_input": {
+        "start": "0x1402fc9c0",
+        "end_exclusive": "0x1402ff55d",
+        "sha256": "c341693fc502c3e9fb9af47f919c186995f1a8e55506ab1b21062d1ba0df55f1"
+      },
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_794e85bb050442c383e348bd1293daad9a1530ee6fe32b253cfb399e998d52e3",
+      "analysis_profile_digest": "8bf0ccf6f2772930710466326ed2e29d22d9b3f9b8d4f7050f186e2be5cce7f2",
+      "plan": {
+        "path": "runtime/gap187/picker/picker-plan.json",
+        "sha256": "e22c03fb0d3374c0b359237646c7fcb5d00b8ddeb0bb8e115219b9e17c69ad75"
+      },
+      "journal": {
+        "path": "runtime/gap187/picker/picker-query/journal.json",
+        "sha256": "24022524a448f1c601dbb6a721d828fe6e183e2ad1f9559c496f98a68b1f6e07"
+      },
+      "result": {
+        "path": "runtime/gap187/picker/picker-query/results/2645fc4031d92e5c9be065059d9e0ebff9764759b03cb986c62bac92415936cf.json",
+        "sha256": "5883200ccf1d36fe6c9ee612aded06cb303ff13e13be211730bde96f6be45314"
+      },
+      "normalized_result_sha256": "7869503785f824631e3d87e90affd4f601cc8fe6cc96fa937f9642db969eab9f"
+    }
+  ],
+  "semantics": [
+    "CALL1402fcd21 supplies Pick+38 class and account into union145a97aa0; returned Vec lives at rbp+460(ptr+468,len+470).",
+    "Membership1402fd659..6cc reads that exact vector and the current race in R15B, puts contains into DIL.",
+    "1402fdd55/5c copies DIL/current race into consecutive bundle bytes+28c/+28d before typed bundle spawn144fda580.",
+    "1402fdef0..fdf00 skips action registration unless allowed and not selected; accepted action1402fdfa3/ac emits tag4/race."
+  ],
+  "consumer": "Canonical RaceTip consumer recovered by #191 at14024c5b0; use its separate evidence, do not duplicate.",
+  "limits": [
+    "Raw Ghidra input has no PE globals/prototypes and does not resolve the inlined atlas switch table. Exact original instruction spans establish only the reported account-vector/boolean/action interfaces.",
+    "Typed Bevy bundle/query matching is an existing shared-engine seam, not a new ECS subsystem reconstruction.",
+    "No Rust compilation, game/server/client execution, native instruction emulation or original/rebuilt parity."
+  ]
+}

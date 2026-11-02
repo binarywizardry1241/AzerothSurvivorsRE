@@ -1,0 +1,695 @@
+{
+  "target": {
+    "version": "0.109.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+    "size_bytes": 140447744
+  },
+  "ordinal": {
+    "site": "0x14244d02c",
+    "module": "uxtheme.dll",
+    "ordinal": 132,
+    "module_pointer": "0x1462482f2",
+    "load_library_slot": "0x145d9a8a0",
+    "get_proc_address_slot": "0x145d9a900",
+    "code": {
+      "va": "0x14244cff0",
+      "byte_count": 67,
+      "sha256": "f1d73c8fa20c96ce10a1d6124940b4a3b2634dc0283d2dba55e6241c97fbcb27"
+    }
+  },
+  "wrappers": [
+    {
+      "site": "0x1424499b6",
+      "owner": "0x1424498d0",
+      "input_module": "RCX/RDX NUL-terminated byte slice",
+      "input_export": "R8/R9 NUL-terminated byte slice",
+      "literal_direct_callers": 14,
+      "code": {
+        "va": "0x1424498d0",
+        "byte_count": 261,
+        "sha256": "075e0575541e4f35a45615086978ad64e2d792b83231f0a0e65c36caa638dca6"
+      }
+    },
+    {
+      "site": "0x143fb0b29",
+      "owner": "0x143fb0ac0",
+      "input_export": "R8/R9 byte slice via CString helper14409bcd0",
+      "literal_direct_callers": 9,
+      "code": {
+        "va": "0x143fb0ac0",
+        "byte_count": 111,
+        "sha256": "41edbbf68260f33227ce31f81e2e29eb8dbadd3b11948a82cde3416d524b95e0"
+      }
+    },
+    {
+      "site": "0x144096f19",
+      "owner": "0x144096eb0",
+      "input_export": "R8/R9 byte slice via CString helper14409bcd0",
+      "literal_direct_callers": 1,
+      "code": {
+        "va": "0x144096eb0",
+        "byte_count": 111,
+        "sha256": "76f7710e61ee6e188a40bfedb0a9d0aa437a5261adf646733a36d3181da0ef37"
+      }
+    },
+    {
+      "site": "0x143ffe51f",
+      "owner": "0x143ffe4c0",
+      "input_export": "RCX/RDX byte slice via CString helper145bcd020",
+      "literal_direct_callers": 0,
+      "code": {
+        "va": "0x143ffe4c0",
+        "byte_count": 101,
+        "sha256": "226b8fe2177ce0a44cc86ef2cc4257c662b274232f16812f71fb38efa124e4d1"
+      },
+      "barrier": "Both direct callers 0x144064840 and 0x1440648d0 forward incoming RDX through strlen at 0x145bfa1b3 and conversion at 0x145bd10e0. Their references are indirect callback carriers; assigning a finite export set requires the remaining callback alias/caller graph."
+    }
+  ],
+  "callbacks": [
+    {
+      "entry": "0x144064840",
+      "incoming_name": "RDX",
+      "code": {
+        "va": "0x144064840",
+        "byte_count": 135,
+        "sha256": "aa7c6ccca177a32cdcbe6d6f06868db163fda901fbb9bf1d0b0758b30bd7387d"
+      },
+      "relocation_carriers": [
+        {
+          "slot": "0x146825b10",
+          "kind": 10,
+          "target": "0x144064840"
+        }
+      ]
+    },
+    {
+      "entry": "0x1440648d0",
+      "incoming_name": "RDX",
+      "code": {
+        "va": "0x1440648d0",
+        "byte_count": 132,
+        "sha256": "3b1b3a07487a8f274a9e474c8f3004260dfea5758d8bbda6a3c7e673f4cf8715"
+      },
+      "relocation_carriers": [
+        {
+          "slot": "0x146825b08",
+          "kind": 10,
+          "target": "0x1440648d0"
+        }
+      ]
+    }
+  ],
+  "cstring_wrapper": {
+    "va": "0x14409bcd0",
+    "byte_count": 194,
+    "sha256": "e3098d96b1840846a4e62741315d78b7ed713f3f504c0ce6bcdb487476a50b35"
+  },
+  "limits": [
+    "Read-only static audit of exact installed PE bytes and existing census/independent reference artifacts; no new Ghidra, compiler, game or runtime binding observation.",
+    "Caller literal names are input ownership leads. CString helpers, allocator behavior, module search/loading and GetProcAddress results are not certified by this audit."
+  ],
+  "runtime_binding_or_conversion_subhelper_parity_verified": false,
+  "conditional_slot_producers": {
+    "initialization_alias_proved": true,
+    "runtime_binding_verified": false,
+    "shared_once": {
+      "entry": "0x145d97de0",
+      "dispatch_site": "0x145d97eb3",
+      "dispatch_operand": "qword ptr [RSI+0x20]",
+      "alias": "RDI retains incoming R8 capture pointer; RSI retains incoming R9 vtable; dispatch passes RCX=RDI.",
+      "synchronization": "Initial state3 claims state1 by lock cmpxchg. The callback returns before xchg publishes local state0 at145d97ebe. State0 returns without invoking a callback."
+    },
+    "conditional_cached_nt_slots": {
+      "global_va": "0x148049e90",
+      "initializer": "0x1414d6be0",
+      "capture_callback": "0x1414d2870",
+      "once_wrapper": "0x145c2dcf5",
+      "vtable_va": "0x14605f700",
+      "source_location_record_va": "0x14605f778",
+      "module_handle_input": {
+        "import_name": "GetModuleHandleW",
+        "iat_va": "0x145d9a730",
+        "module_literal": "ntdll.dll",
+        "literal_code": {
+          "va": "0x14606095e",
+          "file_offset": "0x605f95e",
+          "byte_count": 20,
+          "sha256": "80073828d8a013e7e35fba04fe3ae2dedec35cec81d2646f4cd1ce3c5cd6ee1c"
+        }
+      },
+      "resolver_import": {
+        "name": "GetProcAddress",
+        "iat_va": "0x145d9a900"
+      },
+      "exports": [
+        {
+          "export_name": "NtCancelIoFileEx",
+          "resolver_site": "0x1414d6bfb",
+          "incoming_object_offset": 0,
+          "global_va": "0x148049e90",
+          "name_bytes": {
+            "va": "0x146060914",
+            "file_offset": "0x605f914",
+            "byte_count": 17,
+            "sha256": "afcf647f3c1f8b2715051b7e4db25a6651beb984b5a6828d13d2a6db779b0726"
+          }
+        },
+        {
+          "export_name": "NtCreateFile",
+          "resolver_site": "0x1414d6c13",
+          "incoming_object_offset": 8,
+          "global_va": "0x148049e98",
+          "name_bytes": {
+            "va": "0x146060925",
+            "file_offset": "0x605f925",
+            "byte_count": 13,
+            "sha256": "566ce76afc3e4259bf501d3ae2907da69086591671ca2b4e6cde2b9925c3b75b"
+          }
+        },
+        {
+          "export_name": "NtDeviceIoControlFile",
+          "resolver_site": "0x1414d6c2b",
+          "incoming_object_offset": 16,
+          "global_va": "0x148049ea0",
+          "name_bytes": {
+            "va": "0x146060932",
+            "file_offset": "0x605f932",
+            "byte_count": 22,
+            "sha256": "155ddf10c613b7159967b56fa8198515834d45e53ef89018e0d825e70d15cc86"
+          }
+        },
+        {
+          "export_name": "RtlNtStatusToDosError",
+          "resolver_site": "0x1414d6c43",
+          "incoming_object_offset": 24,
+          "global_va": "0x148049ea8",
+          "name_bytes": {
+            "va": "0x146060948",
+            "file_offset": "0x605f948",
+            "byte_count": 22,
+            "sha256": "2f770e08a09cf7a35c8822a6adcc540dd2e13eee0abced3a22dadd736fb21257"
+          }
+        }
+      ],
+      "aliases": [
+        "All four direct Once wrapper callers pass RCX = 0x148049e90.",
+        "145c2dcf5 stores that global pointer at its local+0 and passes R8=&local_pointer; R9=0x14605f700.",
+        "Once145d97de0 invokes [vtable+0x20]=0x1414d2870, passing the original R8 as RCX.",
+        "Callback1414d2870: RAX=[RCX] is the local capture object; RSI=[RAX] is the exact global0x148049e90. Clearing[RAX] consumes the capture only.",
+        "After nonzero GetModuleHandleW, initializer1414d6be0 writes four successful resolver outputs at local object offsets0/8/16/24. Any failed lookup stores first pointer0 and an error at+8.",
+        "Callback1414d2870 copies the same 32-byte local object into [RSI+0/8/16/24] at1414d28da..28f0.",
+        "Only after callback return does Once publish state 0. The requested call paths test state 0 and global first pointer != 0 before using cached slots."
+      ],
+      "once_call_sites": [
+        "0x1414d434f",
+        "0x1414d56d8",
+        "0x1414d630f",
+        "0x1414d6a4a"
+      ],
+      "calls": [
+        {
+          "call_site": "0x1414d5697",
+          "global_va": "0x148049ea8",
+          "conditional_export": "RtlNtStatusToDosError",
+          "state_test": "0x1414d561b",
+          "success_tests": [
+            "0x1414d5629",
+            "0x1414d56dd"
+          ]
+        },
+        {
+          "call_site": "0x1414d6245",
+          "global_va": "0x148049ea8",
+          "conditional_export": "RtlNtStatusToDosError",
+          "state_test": "0x1414d619d",
+          "success_tests": [
+            "0x1414d61ab"
+          ]
+        },
+        {
+          "call_site": "0x1414d676c",
+          "global_va": "0x148049ea0",
+          "conditional_export": "NtDeviceIoControlFile",
+          "state_test": "0x1414d6718",
+          "success_tests": [
+            "0x1414d6726"
+          ]
+        },
+        {
+          "call_site": "0x1414d67fd",
+          "global_va": "0x148049ea8",
+          "conditional_export": "RtlNtStatusToDosError",
+          "state_test": "0x1414d6718",
+          "success_tests": [
+            "0x1414d6726"
+          ]
+        }
+      ]
+    },
+    "conditional_local_callback_slots": [
+      {
+        "call_site": "0x1411d3a80",
+        "global_va": "0x148045808",
+        "conditional_native_entry": "0x145895cd0",
+        "literal_site": "0x140186afa",
+        "aliases": [
+          "140186afa loads RCX=145895cd0;140186b01 calls140a27de0.",
+          "140a27de0 stores the pointer at local+20 and passes RDX=&pointer, RCX=148045808 to145c26fe0.",
+          "145c26fe0 captures incomingRDX at+0 and globalRCX at+8; R8 points to its nested capture pointer, R9=145ea40e0.",
+          "Once calls vtable+20=14070c3c0.",
+          "14070c3c0 loads the capture, dereferences captured+0 twice to get the literal pointer, loads captured+8 as global address, and writes the literal to[global] at14070c3e9."
+        ],
+        "initialization_gate": "Call path1411d38ef tests global+8 state; only its zero branch invokes the callback. Setter is Once-owned and receives one literal in the observed direct/reference/relocation graph."
+      },
+      {
+        "call_site": "0x1459fa0ca",
+        "global_va": "0x14808a850",
+        "conditional_native_entry": "0x1411e68b0",
+        "literal_site": "0x14064d5c5",
+        "aliases": [
+          "Conditional branch14064d5c3 falls through to LEA RCX=1411e68b0 and call1459fb5d0.",
+          "1459fb5d0 stores the pointer at local+20 and passes its address as RCX to145d7e46b.",
+          "145d7e46b captures incomingRCX at+0 and global14808a850 at+8; R8 points to the nested capture pointer and R9=147238be0.",
+          "Once calls vtable+20=1459fa140. That callback dereferences the captured pointer to obtain1411e68b0 and writes it to captured global at1459fa169."
+        ],
+        "initialization_gate": "Call path1459fa0b8 tests global+8 state; only zero invokes the callback. Setter is conditional on14064d5c3 and has one literal caller in the observed direct/reference/relocation graph.",
+        "alias_consumer": {
+          "pointer_carrier_va": "0x14808a8a8",
+          "read_site": "0x140a0a683",
+          "call_site": "0x140a0a697",
+          "operand": "qword ptr [RAX]",
+          "alias": "DIR64 carrier contains14808a850; readRAX=carrier, test[RAX+8] state, call[RAX].",
+          "conditional_native_entry": "0x1411e68b0"
+        }
+      }
+    ],
+    "code_ranges": [
+      {
+        "role": "nt_initializer",
+        "code": {
+          "va": "0x1414d6be0",
+          "file_offset": "0x14d5fe0",
+          "byte_count": 208,
+          "sha256": "996a5d477dc72516cdd4f2f0a00536c3a2a2923cc748d1ed6df9c3f25ccc5506"
+        }
+      },
+      {
+        "role": "nt_capture_callback",
+        "code": {
+          "va": "0x1414d2870",
+          "file_offset": "0x14d1c70",
+          "byte_count": 173,
+          "sha256": "4257a870fe6b4bc68ab22696e7f6b838e295b70ba1c4fe332d8707ebeeeff03c"
+        }
+      },
+      {
+        "role": "nt_once_wrapper",
+        "code": {
+          "va": "0x145c2dcf5",
+          "file_offset": "0x5c2d0f5",
+          "byte_count": 73,
+          "sha256": "2090b83d2b2a56171af93ccd80eff9e932d1049921a44b1a49e2a2544885a899"
+        }
+      },
+      {
+        "role": "shared_once_engine",
+        "code": {
+          "va": "0x145d97de0",
+          "file_offset": "0x5d971e0",
+          "byte_count": 427,
+          "sha256": "3eded4abcd781c825e5cdd520695794867d399e2c0c0d64588d5ac6a546dc235"
+        }
+      },
+      {
+        "role": "nt_caller_bootstrap",
+        "code": {
+          "va": "0x1414d3fe0",
+          "file_offset": "0x14d33e0",
+          "byte_count": 1167,
+          "sha256": "b098e4f5efede8bc84cddec1441a09dfc728edce559d2d123fedc2c90bf40134"
+        }
+      },
+      {
+        "role": "nt_caller_create",
+        "code": {
+          "va": "0x1414d55c0",
+          "file_offset": "0x14d49c0",
+          "byte_count": 412,
+          "sha256": "1ca736b93d514250d674ff3b124751724b135f87c39c66fb19ada3bb8f275aa3"
+        }
+      },
+      {
+        "role": "nt_caller_cancel",
+        "code": {
+          "va": "0x1414d6170",
+          "file_offset": "0x14d5570",
+          "byte_count": 496,
+          "sha256": "4efe1e704f59249e5ef98446fd1ebd1e92f8b6b5a47940e30494affc02f2e39f"
+        }
+      },
+      {
+        "role": "nt_caller_control",
+        "code": {
+          "va": "0x1414d6390",
+          "file_offset": "0x14d5790",
+          "byte_count": 1757,
+          "sha256": "d8601d079b91816cd221d7ddc15bc003d01f5960bd7d0d089b04dfafffaf3c50"
+        }
+      },
+      {
+        "role": "callback_one_setter",
+        "code": {
+          "va": "0x140a27de0",
+          "file_offset": "0xa271e0",
+          "byte_count": 47,
+          "sha256": "9144096277f898544df57f2552f8adc225817256e567ac8783d46803643500cf"
+        }
+      },
+      {
+        "role": "callback_one_once_wrapper",
+        "code": {
+          "va": "0x145c26fe0",
+          "file_offset": "0x5c263e0",
+          "byte_count": 77,
+          "sha256": "18dd065416eacff64a90738e201b7360459947661a1995f5c3d88cc0ec4f158c"
+        }
+      },
+      {
+        "role": "callback_one_capture",
+        "code": {
+          "va": "0x14070c3c0",
+          "file_offset": "0x70b7c0",
+          "byte_count": 77,
+          "sha256": "2292dee5945c20d3eae90ddf0b5a8e2e0854d6037655bb9910dc408f42ee8bdd"
+        }
+      },
+      {
+        "role": "callback_one_literal_input",
+        "code": {
+          "va": "0x140186ac0",
+          "file_offset": "0x185ec0",
+          "byte_count": 70,
+          "sha256": "1c7774244aee83353783d878a955af92a6ab9491c343df06d2794f640dc8f132"
+        }
+      },
+      {
+        "role": "callback_one_consumer",
+        "code": {
+          "va": "0x1411d38c0",
+          "file_offset": "0x11d2cc0",
+          "byte_count": 508,
+          "sha256": "1547162dea73aed531987fa7b3505113d40aeac448bdcb79c1ebb4c71db1dc4d"
+        }
+      },
+      {
+        "role": "callback_one_target",
+        "code": {
+          "va": "0x145895cd0",
+          "file_offset": "0x58950d0",
+          "byte_count": 316,
+          "sha256": "6a368d41857041dea33e7ad779b8617517ea297da59255af533cf433fcbb9257"
+        }
+      },
+      {
+        "role": "callback_two_setter",
+        "code": {
+          "va": "0x1459fb5d0",
+          "file_offset": "0x59fa9d0",
+          "byte_count": 40,
+          "sha256": "a3fb906664b1267ce07c1576380dd2ea5a036f835beaae6df196e8956769fb39"
+        }
+      },
+      {
+        "role": "callback_two_once_wrapper",
+        "code": {
+          "va": "0x145d7e46b",
+          "file_offset": "0x5d7d86b",
+          "byte_count": 90,
+          "sha256": "bd9ba3817cf41183dcbb57e5116c41b0968b58e2f559c0995bbe365cc83b6499"
+        }
+      },
+      {
+        "role": "callback_two_capture",
+        "code": {
+          "va": "0x1459fa140",
+          "file_offset": "0x59f9540",
+          "byte_count": 77,
+          "sha256": "02b41a37b2cd385b89c3fb1773914e37383745a769b28da14e55d26ad0c5702f"
+        }
+      },
+      {
+        "role": "callback_two_literal_input",
+        "code": {
+          "va": "0x14064d570",
+          "file_offset": "0x64c970",
+          "byte_count": 97,
+          "sha256": "7c2ae91b3ab3247a08f0f37ce6cc46f251a7d64473eadb0e1102449efce0a4ec"
+        }
+      },
+      {
+        "role": "callback_two_consumer",
+        "code": {
+          "va": "0x1459f9fd0",
+          "file_offset": "0x59f93d0",
+          "byte_count": 298,
+          "sha256": "4ad3bf5e867470178c64a1cdf454c4f91e9863b94916d2088ff267ce0bfd0954"
+        }
+      },
+      {
+        "role": "callback_two_target",
+        "code": {
+          "va": "0x1411e68b0",
+          "file_offset": "0x11e5cb0",
+          "byte_count": 337,
+          "sha256": "48bb07ed73dacdd8e60399e8d2eeaa88d0ae7cc46c8ff70e0d2a58ef9cc588ee"
+        }
+      },
+      {
+        "role": "callback_two_alias_consumer",
+        "code": {
+          "va": "0x140a0a470",
+          "file_offset": "0xa09870",
+          "byte_count": 617,
+          "sha256": "9385a36ac77cb1d7b0a6fc51860bf2d58c20a3d418f6a2a44316a9dba1a4b25a"
+        }
+      }
+    ],
+    "vtables": [
+      {
+        "vtable_va": "0x14605f700",
+        "values": [
+          "0x0",
+          "0x8",
+          "0x8",
+          "0x1414d2870",
+          "0x1414d2870"
+        ],
+        "code": {
+          "va": "0x14605f700",
+          "file_offset": "0x605e700",
+          "byte_count": 40,
+          "sha256": "9ba6ab0ebaf8493eebd505b6fe8c80a720fb973d61628359d3a95064291f83ff"
+        }
+      },
+      {
+        "vtable_va": "0x145ea40e0",
+        "values": [
+          "0x0",
+          "0x8",
+          "0x8",
+          "0x14070c3c0",
+          "0x14070c3c0"
+        ],
+        "code": {
+          "va": "0x145ea40e0",
+          "file_offset": "0x5ea30e0",
+          "byte_count": 40,
+          "sha256": "e838391ae31c83500da0ed76fc97ee18ea9fcf11a27d2d697c29126631d4f6ad"
+        }
+      },
+      {
+        "vtable_va": "0x147238be0",
+        "values": [
+          "0x0",
+          "0x8",
+          "0x8",
+          "0x1459fa140",
+          "0x1459fa140"
+        ],
+        "code": {
+          "va": "0x147238be0",
+          "file_offset": "0x7237be0",
+          "byte_count": 40,
+          "sha256": "128b4386ddf0a419f964a6886a72a55db95f865bccaa1a1531db55ea0de4d9fd"
+        }
+      }
+    ],
+    "dir64_carriers": [
+      {
+        "carrier_va": "0x145de5ca0",
+        "relocation_type": 10,
+        "value_va": "0x140186ac0",
+        "code": {
+          "va": "0x145de5ca0",
+          "file_offset": "0x5de4ca0",
+          "byte_count": 8,
+          "sha256": "b1f6c9b8363e7d7a9e31d7de3ae74fc2ab47eab444ceec119e756f41d1d7fff1"
+        }
+      },
+      {
+        "carrier_va": "0x145ea40f8",
+        "relocation_type": 10,
+        "value_va": "0x14070c3c0",
+        "code": {
+          "va": "0x145ea40f8",
+          "file_offset": "0x5ea30f8",
+          "byte_count": 8,
+          "sha256": "2c7137443513442da096fc5f66149dc883a22909c206f707b566a247b40472b9"
+        }
+      },
+      {
+        "carrier_va": "0x145ea4100",
+        "relocation_type": 10,
+        "value_va": "0x14070c3c0",
+        "code": {
+          "va": "0x145ea4100",
+          "file_offset": "0x5ea3100",
+          "byte_count": 8,
+          "sha256": "2c7137443513442da096fc5f66149dc883a22909c206f707b566a247b40472b9"
+        }
+      },
+      {
+        "carrier_va": "0x145ea44a8",
+        "relocation_type": 10,
+        "value_va": "0x14070c3c0",
+        "code": {
+          "va": "0x145ea44a8",
+          "file_offset": "0x5ea34a8",
+          "byte_count": 8,
+          "sha256": "2c7137443513442da096fc5f66149dc883a22909c206f707b566a247b40472b9"
+        }
+      },
+      {
+        "carrier_va": "0x145ea44b0",
+        "relocation_type": 10,
+        "value_va": "0x14070c3c0",
+        "code": {
+          "va": "0x145ea44b0",
+          "file_offset": "0x5ea34b0",
+          "byte_count": 8,
+          "sha256": "2c7137443513442da096fc5f66149dc883a22909c206f707b566a247b40472b9"
+        }
+      },
+      {
+        "carrier_va": "0x14605f718",
+        "relocation_type": 10,
+        "value_va": "0x1414d2870",
+        "code": {
+          "va": "0x14605f718",
+          "file_offset": "0x605e718",
+          "byte_count": 8,
+          "sha256": "d8682e7f669e0570c7c30dc789e13e768534b7df8bd71f15f91b2e8a60796068"
+        }
+      },
+      {
+        "carrier_va": "0x14605f720",
+        "relocation_type": 10,
+        "value_va": "0x1414d2870",
+        "code": {
+          "va": "0x14605f720",
+          "file_offset": "0x605e720",
+          "byte_count": 8,
+          "sha256": "d8682e7f669e0570c7c30dc789e13e768534b7df8bd71f15f91b2e8a60796068"
+        }
+      },
+      {
+        "carrier_va": "0x147238bf8",
+        "relocation_type": 10,
+        "value_va": "0x1459fa140",
+        "code": {
+          "va": "0x147238bf8",
+          "file_offset": "0x7237bf8",
+          "byte_count": 8,
+          "sha256": "78fbe40efc4b5b07a9dc649e2ae0b6640bfcc63b13ce2d8fd32c83016b296724"
+        }
+      },
+      {
+        "carrier_va": "0x147238c00",
+        "relocation_type": 10,
+        "value_va": "0x1459fa140",
+        "code": {
+          "va": "0x147238c00",
+          "file_offset": "0x7237c00",
+          "byte_count": 8,
+          "sha256": "78fbe40efc4b5b07a9dc649e2ae0b6640bfcc63b13ce2d8fd32c83016b296724"
+        }
+      },
+      {
+        "carrier_va": "0x14808a8a8",
+        "relocation_type": 10,
+        "value_va": "0x14808a850",
+        "code": {
+          "va": "0x14808a8a8",
+          "file_offset": "0x80892a8",
+          "byte_count": 8,
+          "sha256": "80d5bdbc215d7b5305d29d19197110fa35b574a9e2a7b7137e45a8a6bd780e18"
+        }
+      }
+    ],
+    "limits": [
+      "The exported names identify conditional producer returns, not observed DLL resolution, module availability or original-process execution.",
+      "Unique literal producers are proved within the current selected native instruction/reference and PE relocation graph; arbitrary memory corruption, external patching and runtime code generation are not modeled.",
+      "This proof does not implement or certify the full Rust Once, allocator, NT API or callback-body semantics."
+    ],
+    "initial_globals": [
+      {
+        "global_va": "0x148049e90",
+        "initial_pointer": "0x0",
+        "state_va": "0x148049eb0",
+        "initial_state": 3,
+        "code": {
+          "va": "0x148049e90",
+          "file_offset": "0x8048890",
+          "byte_count": 36,
+          "sha256": "977d660f26807198d6e78c6639eb0c6f76b3d9c2dcb53f74ad674c7d8d941554"
+        }
+      },
+      {
+        "global_va": "0x148045808",
+        "initial_pointer": "0x0",
+        "state_va": "0x148045810",
+        "initial_state": 3,
+        "code": {
+          "va": "0x148045808",
+          "file_offset": "0x8044208",
+          "byte_count": 12,
+          "sha256": "1f91fc716ad664bd280d736df6eb8884e4bfb7c0648656b1ec59f4d049f18d23"
+        }
+      },
+      {
+        "global_va": "0x14808a850",
+        "initial_pointer": "0x0",
+        "state_va": "0x14808a858",
+        "initial_state": 3,
+        "code": {
+          "va": "0x14808a850",
+          "file_offset": "0x8089250",
+          "byte_count": 12,
+          "sha256": "1f91fc716ad664bd280d736df6eb8884e4bfb7c0648656b1ec59f4d049f18d23"
+        }
+      }
+    ],
+    "complete_inventory": {
+      "path": "runtime/fixgap-41-42/fixed-slot-initialization-proof.json",
+      "sha256": "5333ea2fdd9b18fa13b26f08d979e84af87f6f7a5b4b1e6a7018ccb377c43641"
+    },
+    "code_body_joins": {
+      "current_native_ranges": 21,
+      "body_artifact": {
+        "path": "runtime/coverage/76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0/ghidra/full-image-streaming-diagnostics/bodies.tsv.gz",
+        "sha256": "5f03e42e16fba755e582299d2cf0c87a584edb3e5922c3ff1b75a21dbef001b9"
+      }
+    }
+  }
+}

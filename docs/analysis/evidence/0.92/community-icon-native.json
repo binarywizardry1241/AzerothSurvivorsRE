@@ -1,0 +1,74 @@
+{
+  "target_sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+  "source_va": "0x1458e4bff",
+  "source_file_offset": "0x58e33ff",
+  "byte_count": 1200,
+  "width": 40,
+  "height": 30,
+  "alpha_sha256": "49b2dbbae99f6985d1168cb3ddeba96d70f79a55d873d9bc7d797bc7363dc870",
+  "rgba_sha256": "1ee92ab47adc089f3d393a4becf24bf3535d8dd7d0edd24b29e615d84ecc7f61",
+  "output": "crates/azeroth-survivors-re/assets/community-icon.json",
+  "output_sha256": "3b99c6e00303e817b9b0f72936c8096de4d228157f5bc3259e93fc449cb7219d",
+  "image_creation": {
+    "dimension": "D2 (native tag1)",
+    "format": "Rgba8UnormSrgb (native tag22)",
+    "asset_usage": "RENDER_WORLD (native bits2)",
+    "pixel_rule": "(255,255,255,alpha)",
+    "sampler": "Image.new default; no per-image sampler override at this producer"
+  },
+  "button": {
+    "display_width": 24,
+    "display_height": 18,
+    "image_tint_srgba": [
+      0.973,
+      0.824,
+      0.416,
+      1.0
+    ],
+    "tint_va": "0x1458f3558",
+    "size_va": "0x1458f3070",
+    "width": "Auto",
+    "height": "Auto",
+    "padding_horizontal": 14,
+    "padding_vertical": 8,
+    "border": 1,
+    "radius": 4,
+    "frame_helper": "0x1400a1200",
+    "shadow_srgba": [
+      0,
+      0,
+      0,
+      0.85
+    ],
+    "shadow_offset": [
+      0,
+      2
+    ],
+    "shadow_spread": 0,
+    "shadow_blur": 6,
+    "action_tag": 11,
+    "url": "https://discord.gg/UzxaZuSAk"
+  },
+  "native_functions": [
+    {
+      "address": "0x1401231b0",
+      "role": "Creates 40\u00d730 RGBA image at 123b30\u2013123b7a and passes handle to 200950 at 124113",
+      "rea_evidence_id": "ev_407f713d134c66031fc7ee00d97040a07b9781b95809090ee4ca283993b70484"
+    },
+    {
+      "address": "0x140101160",
+      "role": "Expands alpha to RGBA(255,255,255,a), 101360\u20131013b7",
+      "rea_evidence_id": "ev_74b208c284d7bdff1bb3d5c3f49731990ce59587e7ddee3ce3af9a7bbcc600f2"
+    },
+    {
+      "address": "0x140200950",
+      "role": "Community button and 24\u00d718 tinted ImageNode",
+      "rea_evidence_id": "ev_95baac9d322be3c7c57227e93a39983be286ea57e4b12211f82ce5d475322b3b"
+    }
+  ],
+  "validation": [
+    "Original static alpha bytes expand to 4800 RGBA bytes by recovered code.",
+    "Source image helper reconstructs the same bytes; integrated rendering and OS URL dispatch remain separate checks.",
+    "No external URL was opened during this recovery."
+  ]
+}

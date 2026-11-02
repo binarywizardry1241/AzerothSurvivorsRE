@@ -1,0 +1,223 @@
+{
+  "target_sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+  "companion_selection": [
+    {
+      "before": [
+        "rabbit",
+        "owl"
+      ],
+      "slot": 0,
+      "selected": "macaw",
+      "after": [
+        "macaw",
+        "owl"
+      ]
+    },
+    {
+      "before": [
+        "rabbit",
+        "owl"
+      ],
+      "slot": 1,
+      "selected": "macaw",
+      "after": [
+        "rabbit",
+        "macaw"
+      ]
+    },
+    {
+      "before": [
+        "rabbit",
+        "owl"
+      ],
+      "slot": 7,
+      "selected": "macaw",
+      "after": [
+        "rabbit",
+        "macaw"
+      ]
+    },
+    {
+      "before": [
+        "panda",
+        "sapphiron"
+      ],
+      "slot": 0,
+      "selected": "macaw",
+      "after": [
+        "macaw",
+        "sapphiron"
+      ]
+    },
+    {
+      "before": [
+        "panda",
+        "sapphiron"
+      ],
+      "slot": 1,
+      "selected": "macaw",
+      "after": [
+        "panda",
+        "macaw"
+      ]
+    },
+    {
+      "before": [
+        "panda",
+        "sapphiron"
+      ],
+      "slot": 7,
+      "selected": "macaw",
+      "after": [
+        "panda",
+        "macaw"
+      ]
+    }
+  ],
+  "navigation": [
+    {
+      "kind": "keep",
+      "requested": 3,
+      "pending": 254,
+      "armory_open": 1,
+      "page": 6,
+      "plan": 123
+    },
+    {
+      "kind": "discard",
+      "requested": 0,
+      "pending": 254,
+      "armory_open": 1,
+      "page": 0,
+      "plan": 18446744073709551615
+    },
+    {
+      "kind": "discard",
+      "requested": 3,
+      "pending": 254,
+      "armory_open": 1,
+      "page": 3,
+      "plan": 18446744073709551615
+    },
+    {
+      "kind": "discard",
+      "requested": 255,
+      "pending": 254,
+      "armory_open": 0,
+      "page": 6,
+      "plan": 18446744073709551615
+    }
+  ],
+  "limitations": [
+    "Bounded original instruction replay; no app, UI query iteration or file write.",
+    "The incoming two-slot clone and allocated replacement string are fixture inputs; allocator release is a no-op.",
+    "Companion normalization/publication after140136cb8 is not executed.",
+    "Discard vectors start after dropping the owned plan; they cover clearing and navigation continuation. Confirm validation/save is not replayed.",
+    "Eight current prerequisite-block cases use explicit descriptor/row inputs and memcmp; they do not execute the complete plan validator.",
+    "Four complete current confirmation-helper cases use explicit clone/apply/enqueue/disposal seams; validation and real persistence are not executed.",
+    "Four current Confirm-leave continuations call a fixture helper and stop before the native outer loop/close branch. Destination tag2 additional gear-selection path is separately owned by Armory input recovery."
+  ],
+  "confirmation": [
+    {
+      "present": false,
+      "accepted": false,
+      "plan_consumed": true,
+      "calls": []
+    },
+    {
+      "present": false,
+      "accepted": true,
+      "plan_consumed": true,
+      "calls": []
+    },
+    {
+      "present": true,
+      "accepted": false,
+      "plan_consumed": true,
+      "calls": [
+        "apply"
+      ]
+    },
+    {
+      "present": true,
+      "accepted": true,
+      "plan_consumed": true,
+      "calls": [
+        "apply",
+        "enqueue17"
+      ]
+    }
+  ],
+  "confirm_continuations": [
+    {
+      "destination": 0,
+      "continued": true,
+      "close_branch": false
+    },
+    {
+      "destination": 3,
+      "continued": true,
+      "close_branch": false
+    },
+    {
+      "destination": 254,
+      "continued": true,
+      "close_branch": false
+    },
+    {
+      "destination": 255,
+      "continued": true,
+      "close_branch": true
+    }
+  ],
+  "prerequisites": [
+    {
+      "explicit_row_rank": 0,
+      "required": false,
+      "prerequisite_rank": 0,
+      "accepted": true
+    },
+    {
+      "explicit_row_rank": 0,
+      "required": false,
+      "prerequisite_rank": 1,
+      "accepted": true
+    },
+    {
+      "explicit_row_rank": 0,
+      "required": true,
+      "prerequisite_rank": 0,
+      "accepted": false
+    },
+    {
+      "explicit_row_rank": 0,
+      "required": true,
+      "prerequisite_rank": 1,
+      "accepted": true
+    },
+    {
+      "explicit_row_rank": 1,
+      "required": false,
+      "prerequisite_rank": 0,
+      "accepted": true
+    },
+    {
+      "explicit_row_rank": 1,
+      "required": false,
+      "prerequisite_rank": 1,
+      "accepted": true
+    },
+    {
+      "explicit_row_rank": 1,
+      "required": true,
+      "prerequisite_rank": 0,
+      "accepted": false
+    },
+    {
+      "explicit_row_rank": 1,
+      "required": true,
+      "prerequisite_rank": 1,
+      "accepted": true
+    }
+  ]
+}

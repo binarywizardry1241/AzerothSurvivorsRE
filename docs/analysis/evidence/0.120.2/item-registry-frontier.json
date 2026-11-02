@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.120.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c",
+    "size_bytes": 145484288
+  },
+  "gap_ids": [
+    101
+  ],
+  "predecessor": {
+    "path": "docs/analysis/evidence/0.120.0/item-registry-frontier.json",
+    "sha256": "5a5dff9b9336c49e6babf9faac856675f37fbaf4bf0f1befb7c0005095a6d383"
+  },
+  "method": "Unique retained interner suffix mapped into current unwind extent; every byte independently decoded with Capstone5.0.7 and actual RIP-relative lock operand resolved. This establishes a candidate location only; prior semantic recovery is retained without repetition.",
+  "signature": {
+    "bytes_hex": "81c60000f00089f04883c448",
+    "file_offset": "0x5aa2009",
+    "virtual_address": "0x145aa2c09",
+    "matches": 1
+  },
+  "native_candidate": {
+    "virtual_address": "0x145aa2a40",
+    "end_exclusive": "0x145aa2c42",
+    "file_offset": "0x5aa1e40",
+    "byte_count": 514,
+    "sha256": "bc75ec917cd4f3cacfbc66fa63af4b611c1459bf23bc4791e7f09b6649ae72ea"
+  },
+  "lock_operand": {
+    "site": "0x145aa2a67",
+    "bytes_hex": "f00fb00de919a902",
+    "instruction": "lock cmpxchg byte ptr [rip + 0x2a919e9], cl",
+    "preferred_registry_address": "0x148534458"
+  },
+  "inputs": [
+    {
+      "path": "runtime/coverage/80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c/inventory.json",
+      "sha256": "b3355374efb17cc973b101ab7359de51064ef20809602fc2e6a0210095ca88a5"
+    },
+    {
+      "path": "runtime/analysis/inventories/80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c/native-instructions-9e072a013ba30dd3.sqlite",
+      "sha256": "6815f8e8eed0997136949107ac3a41db960c69a49fdab8dfcbf03bbbc27fa430",
+      "regenerate": "python3 -B scripts/inventory-native-instructions.py --write"
+    },
+    {
+      "path": "runtime/coverage/80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c/unwind-complement.sqlite",
+      "sha256": "b69b0ae6905b55aa8e6fe2fc49872e6fae8700221e7f072eb91b01f88c875e51",
+      "regenerate": "python3 -B scripts/inventory-unwind-complement.py --write"
+    }
+  ],
+  "source_first": {
+    "paths": [
+      {
+        "path": "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs",
+        "sha256": "75fc8e61dd32a2091daecfa07447dc454964418f4f821ed63e6bc12951ca7825"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+        "sha256": "046e398631cd48c74e44ba27e882a3a46791de020e90decab2e3588c1c0689b5"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+        "sha256": "c3435c8c4b5bdb0d36339c62c9a74aab3a02b00d3ee77260e5b4b8d45a2d64c0"
+      },
+      {
+        "path": "crates/benilla-app/src/local_client/item_descriptions.rs",
+        "sha256": "810ab16efca38ee468d36ab9c1e75df4fef76b4261931aeba97cf8300848a19b"
+      }
+    ],
+    "conclusion": "Retain the existing synthetic item-ID/LocalItemDescriptions source and the0.119.0 ordinary query/receive/decoder/cache contracts. Candidate mapping does not establish an alternative guest writer/carrier or authorize a guessed wire/remap policy."
+  },
+  "instruction_verification": {
+    "decoder": "Capstone5.0.7",
+    "instruction_count": 134,
+    "complete_extent_decoded": true,
+    "exact_source_bytes_verified": true
+  },
+  "state": "pending_current_contract_applicability_and_alternative_writer_carrier",
+  "next_action": "Rebind only the retained interner/query/receive/decoder/lookup dependencies required for this target, then follow a concrete alternative guest writer/carrier or mutable producer. Do not repeat the ordinary decoder absent an affected dependency.",
+  "limits": "Preferred PE VAs and encoded lock references are static candidates, not observed runtime addresses/calls. Current semantic/source equivalence, dynamic writes and network/UI/file parity remain unverified.",
+  "encoded_reference_selection": {
+    "inputs": [
+      {
+        "input": "instruction-summary",
+        "summary": {
+          "path": "docs/analysis/coverage/instruction-summary.json",
+          "sha256": "2b7136d46ff32033a564b521c5415aebc2fcd235e56d75fb8bcbd986adbdefa6"
+        },
+        "database": {
+          "path": "runtime/analysis/inventories/80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c/native-instructions-9e072a013ba30dd3.sqlite",
+          "sha256": "6815f8e8eed0997136949107ac3a41db960c69a49fdab8dfcbf03bbbc27fa430",
+          "regenerate": "python3 -B scripts/inventory-native-instructions.py --write"
+        },
+        "selector": "SELECT site,kind,target FROM refs WHERE target = ? ORDER BY rowid",
+        "parameter": "0x148534458",
+        "records": [
+          {
+            "site": "0x145aa2a67",
+            "kind": "memory",
+            "target": "0x148534458"
+          },
+          {
+            "site": "0x145aa2b09",
+            "kind": "address",
+            "target": "0x148534458"
+          },
+          {
+            "site": "0x145aa2bff",
+            "kind": "memory",
+            "target": "0x148534458"
+          },
+          {
+            "site": "0x145aa2c22",
+            "kind": "address",
+            "target": "0x148534458"
+          },
+          {
+            "site": "0x145aa2c69",
+            "kind": "address",
+            "target": "0x148534458"
+          },
+          {
+            "site": "0x145aa2d14",
+            "kind": "memory",
+            "target": "0x148534458"
+          },
+          {
+            "site": "0x145aa2d7e",
+            "kind": "address",
+            "target": "0x148534458"
+          },
+          {
+            "site": "0x145aa2dd7",
+            "kind": "memory",
+            "target": "0x148534458"
+          },
+          {
+            "site": "0x145aa2ded",
+            "kind": "address",
+            "target": "0x148534458"
+          },
+          {
+            "site": "0x145aa2e31",
+            "kind": "address",
+            "target": "0x148534458"
+          }
+        ]
+      },
+      {
+        "input": "unwind-complement-summary",
+        "summary": {
+          "path": "docs/analysis/coverage/unwind-complement-summary.json",
+          "sha256": "7b2556dcd7ca6db12df3704495d56125a0d7c8b9eb70d2ae0c4aa2fc423c663f"
+        },
+        "database": {
+          "path": "runtime/coverage/80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c/unwind-complement.sqlite",
+          "sha256": "b69b0ae6905b55aa8e6fe2fc49872e6fae8700221e7f072eb91b01f88c875e51",
+          "regenerate": "python3 -B scripts/inventory-unwind-complement.py --write"
+        },
+        "selector": "SELECT site,kind,target FROM refs WHERE target = ? ORDER BY rowid",
+        "parameter": "0x148534458",
+        "records": []
+      }
+    ],
+    "count": 10,
+    "limits": "Complete selected declared/complement encoded references to the initial registry byte address; incoming registers, mutable aliases, alternative writers/carriers and runtime behavior remain unproved."
+  }
+}

@@ -1,0 +1,197 @@
+{
+  "target_version": "0.109.0",
+  "target_sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+  "target_executed": false,
+  "records": [
+    {
+      "boss_id": 192,
+      "slot": 1,
+      "payload_words": [
+        20475,
+        1088421888,
+        1084227584,
+        1072064102,
+        1097859072
+      ],
+      "repeat_bits": 1096810496,
+      "record": {
+        "va": "0x146bd4d48",
+        "byte_count": 56,
+        "file_offset": "0x6bd3d48",
+        "sha256": "19f745d3eab6e540b8111c59cd07a38a0b677b83c6a68cf872aa4afa0b639b9b"
+      }
+    },
+    {
+      "boss_id": 193,
+      "slot": 3,
+      "payload_words": [
+        21056,
+        1088421888,
+        1084227584,
+        1072064102,
+        1099956224
+      ],
+      "repeat_bits": 1099956224,
+      "record": {
+        "va": "0x146bd5050",
+        "byte_count": 56,
+        "file_offset": "0x6bd4050",
+        "sha256": "9c50deac59e2fb64d001100d01ad37ef433d213032ffe2f9ed3eed9ead3c40f3"
+      }
+    },
+    {
+      "boss_id": 1494,
+      "slot": 5,
+      "payload_words": [
+        27819,
+        1088421888,
+        1084227584,
+        1073741824,
+        1101004800
+      ],
+      "repeat_bits": 1098907648,
+      "record": {
+        "va": "0x146bddec8",
+        "byte_count": 56,
+        "file_offset": "0x6bdcec8",
+        "sha256": "a5a0d0b84bbb618f88c8c1654c50bc240673a4401fd1f88d1b57147801e600d1"
+      }
+    }
+  ],
+  "cases": {
+    "producer": 18,
+    "duration": 18,
+    "follow_height": 2,
+    "follow": 15,
+    "movement_gate": 15,
+    "burst_queue": 9,
+    "enemy_selection": 24,
+    "damage_dispatch": 1,
+    "removal_order": 5
+  },
+  "ranges": [
+    {
+      "role": "producer",
+      "va": "0x145957d4b",
+      "byte_count": 489,
+      "file_offset": "0x595714b",
+      "sha256": "37c8d2efeb95d9dd408ccaec9c23b799df1b07a677619fda0dabb274e4d70139",
+      "assembly": "producer.asm",
+      "assembly_sha256": "d7c6fc9cecadf9afd8a323daae6a46373e615dd47cc92c2a51b811ea3244be9f"
+    },
+    {
+      "role": "player-follow-height",
+      "va": "0x14594f1b5",
+      "byte_count": 67,
+      "file_offset": "0x594e5b5",
+      "sha256": "d6a9faad4bdf6b393e8539b8f0fd29c53a61d4d4c2330d7583cde06d5978949a",
+      "assembly": "player-follow-height.asm",
+      "assembly_sha256": "bde6d73de63ba27645288867d86f0ecef2f64e06d7681725dcc13328f9446df6"
+    },
+    {
+      "role": "player-follow",
+      "va": "0x14594f743",
+      "byte_count": 34,
+      "file_offset": "0x594eb43",
+      "sha256": "ec30ea08c0a93e594cf00be447368b350ed15abae3c11291b3de408f003f663b",
+      "assembly": "player-follow.asm",
+      "assembly_sha256": "a1d5486096eb5de93660d726f25cca1bf1be2c9cac8def5cec05adb04635da14"
+    },
+    {
+      "role": "move-publication-gate",
+      "va": "0x145950134",
+      "byte_count": 62,
+      "file_offset": "0x594f534",
+      "sha256": "6e5e3be8aee5e9dbf2a2e64d879fc79954177ee805fda186e39282099cfa4fff",
+      "assembly": "move-publication-gate.asm",
+      "assembly_sha256": "a37acd0108ce824b2e39f3c50e326e536a38f3cee9fb5fab11c5556373f4c715"
+    },
+    {
+      "role": "enemy-burst-queue",
+      "va": "0x145951091",
+      "byte_count": 276,
+      "file_offset": "0x5950491",
+      "sha256": "a9bca93086b9a16f9f7fd6551ec7c43c765994692a02ba01e5abb33f6496dcc1",
+      "assembly": "enemy-burst-queue.asm",
+      "assembly_sha256": "2e324adcd18c55bf5aa8a40ee00b8aede55bbd1942c3e7bc11c25fd63f8f6173"
+    },
+    {
+      "role": "ordinary-radius-selector",
+      "va": "0x1459c4940",
+      "byte_count": 745,
+      "file_offset": "0x59c3d40",
+      "sha256": "85f3fd9fb1ddde81ec412c1c2686e211c8ec1f26d23cf4054877ad2bce6f8973",
+      "assembly": "ordinary-radius-selector.asm",
+      "assembly_sha256": "12fa894bbf2282d46c536a850fbe155fa8c35ecccc35ab118d8b032783ba3f1b"
+    },
+    {
+      "role": "enemy-damage-consumer",
+      "va": "0x1459532d0",
+      "byte_count": 53,
+      "file_offset": "0x59526d0",
+      "sha256": "0982799456b2fcb6ae4e49f324031c843f124741c3242908da2cc6fb51f7b655",
+      "assembly": "enemy-damage-consumer.asm",
+      "assembly_sha256": "4e4398691d44562acddd5171a691c9ed65e5f77599093c8a3ea35cd1b0475d88"
+    },
+    {
+      "role": "removal-sort",
+      "va": "0x14595360f",
+      "byte_count": 98,
+      "file_offset": "0x5952a0f",
+      "sha256": "2929abc2b090a121ce70ef3b0ec51eecfc60341def594cf83ab270662b58be30",
+      "assembly": "removal-sort.asm",
+      "assembly_sha256": "be72630f3be6b28d53c252b29191d2708ab86e337f3254c719e0e1746559068a"
+    },
+    {
+      "role": "removal-deduplicate",
+      "va": "0x145953b7d",
+      "byte_count": 213,
+      "file_offset": "0x5952f7d",
+      "sha256": "1138c17436fefa0574b6e866e42384d1eace1a012cb5dbf05b479500cd631734",
+      "assembly": "removal-deduplicate.asm",
+      "assembly_sha256": "149bbd75c706fc7b4bd81ca17b3ebd43528fd270da2cf49a119dcffb8047e3b3"
+    },
+    {
+      "role": "removal-descending-index",
+      "va": "0x1459528d6",
+      "byte_count": 24,
+      "file_offset": "0x5951cd6",
+      "sha256": "3ef8585b9f8f795339d250fbf5dbd83f9ebf2402bdcfd5fc5948e29e8d518ba0",
+      "assembly": "removal-descending-index.asm",
+      "assembly_sha256": "00546d873d88121fde2370e62944dca27873494c9451d8039a832455043437c0"
+    }
+  ],
+  "canonical_constructor": "docs/analysis/evidence/0.109.0/raid-lines/hazard-constructor.asm",
+  "warning": {
+    "va": "0x14722af08",
+    "byte_count": 42,
+    "file_offset": "0x7229f08",
+    "sha256": "121fb7416841b1faa6aac48aa4a0fcd9ff5b2929b1bca0ac206006902227c52c",
+    "text": "You are the bomb! Carry it into the horde!"
+  },
+  "follow_release_constant": {
+    "va": "0x147229920",
+    "byte_count": 4,
+    "file_offset": "0x7228920",
+    "sha256": "b1434a9695da7715078e0d42e8324c6c0aaaba6b351f40fcfca025c83c4129f1",
+    "bits": "cdccccbf"
+  },
+  "rea": {
+    "provider": "ghidra",
+    "evidence_id": "ev_c4d3cd164dc7a08b02dc1436ec934c908c04e7cd2bc1a88df5caef05351f7c27",
+    "procedure": "0x145957d4b",
+    "input_range": {
+      "va": "0x1459578e0",
+      "byte_count": 21602,
+      "file_offset": "0x5956ce0",
+      "sha256": "96cee90696cf4ae4284f300a860b694b2a0711caf5c5019f680fe04aa95f1867"
+    },
+    "pseudocode": "producer.pseudo.c",
+    "pseudocode_sha256": "ac2259ddc999dab31408e22202fde4804686a8760f13ade41292a88825f74c1a"
+  },
+  "limits": [
+    "Synthetic memory only; original process, Rust compilation, gameplay/visual/original-rebuilt parity not run.",
+    "Height, localization, packet serializers, CRT hypot and canonical player-damage routine are controlled external seams.",
+    "Native producer/header/follow/publication/queue/admission and damage-call arguments execute; complete canonical player damage internals are not re-certified by this check."
+  ]
+}

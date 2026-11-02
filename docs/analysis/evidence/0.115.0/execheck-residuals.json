@@ -1,0 +1,253 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.115.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+    "size_bytes": 142111232
+  },
+  "generator": {
+    "path": "scripts/classify-native-residuals.py",
+    "sha256": "6c845227ae7f82a37574ad7ef62aacd32b32beb53d30731a9530b534fa3b5519"
+  },
+  "dependencies": [
+    {
+      "path": "scripts/summarize-native-image.py",
+      "sha256": "dd5748de3b992dfd49bf0eca53dac1f8fabfb27102fda0c4815dc331c7f28e14"
+    },
+    {
+      "path": "scripts/inventory-current-target.py",
+      "sha256": "f2cf5be70267aa01865b7c34bef7eeb87898d67b5e36f0a91d20d37e3b1299c5"
+    },
+    {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+    },
+    {
+      "path": "scripts/derived_gzip.py",
+      "sha256": "27f82ab71c755614d19f72257d09100a721534dc45a2aa017e6062cc2429cdd5"
+    },
+    {
+      "path": "scripts/coverage_common.py",
+      "sha256": "8e076cd7c55c918ff626e5e4c7df2e2efb0a8861ed3f39844b53ccd3d4c391ce"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "docs/analysis/coverage/full-image-execheck-0.115.0.json",
+      "sha256": "121df2416b8462945a48f1af9539c3cdf476b756f531ad5dce98720b4ae84684"
+    },
+    {
+      "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/execheck-2026-10-25/instructions.tsv.gz",
+      "sha256": "94a38a5766f02524b8bf56aef8a1164a48218b61132bdaab217d9349154a99b2"
+    },
+    {
+      "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/execheck-2026-10-25/bodies.tsv.gz",
+      "sha256": "d7907c54ebdf0ee00e8e048e14ae1aa5d23d65abc741b56df8e31da035032b4a"
+    },
+    {
+      "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/execheck-2026-10-25/references.tsv.gz",
+      "sha256": "0227e719cf906e8cc2b4f09d5ca38fff98da009f38c412a376e2d912e1839f9a"
+    },
+    {
+      "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/execheck-2026-10-25/externals.tsv.gz",
+      "sha256": "66534cafa1c1faeb56a01903a8b7e53d38a461368ad51520287b96b0062e2a69"
+    },
+    {
+      "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/execheck-2026-10-25/direct-call-helpers.tsv.gz",
+      "sha256": "b71a24ade786f539df91acc4e0d7a54d88d9fddad4ca1090ef367ab4e5956d4e"
+    },
+    {
+      "path": "docs/analysis/coverage/diagnostic-ownership.json",
+      "sha256": "4747047720b2840015a2e08156c65737184f04098f658bc03ee0c6bbb8c31c15"
+    },
+    {
+      "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/diagnostic-ownership.json",
+      "sha256": "ce30a3f6e853f7e1c2a57d6851a2f36560de3851b5f61cffa7c03ee3e69e266a"
+    },
+    {
+      "path": "docs/analysis/coverage/instruction-summary.json",
+      "sha256": "ac293f5274832f7ea5adf49a2bca84285c006ddf47ba89cb862dafe4f0b738ef"
+    },
+    {
+      "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/native-instructions.sqlite",
+      "sha256": "984e341b1702fd801b9d5b63326590a0eafd110a72aff5d2facdab0076dc433e"
+    },
+    {
+      "path": "docs/analysis/coverage/unwind-complement-summary.json",
+      "sha256": "7bf6b3a4d0bb4c96f7e6c8eb44648d35c7d5bdf40028e32b956b03434908dc38"
+    },
+    {
+      "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/unwind-complement.sqlite",
+      "sha256": "9941f1f0ccd3723345195e0a011136b414b8a3597586baed8467666f200f9a65"
+    }
+  ],
+  "independent_inputs": {
+    "diagnostic-ownership": {
+      "summary": {
+        "path": "docs/analysis/coverage/diagnostic-ownership.json",
+        "sha256": "4747047720b2840015a2e08156c65737184f04098f658bc03ee0c6bbb8c31c15"
+      },
+      "inventory": {
+        "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/diagnostic-ownership.json",
+        "sha256": "ce30a3f6e853f7e1c2a57d6851a2f36560de3851b5f61cffa7c03ee3e69e266a"
+      }
+    },
+    "instruction-summary": {
+      "summary": {
+        "path": "docs/analysis/coverage/instruction-summary.json",
+        "sha256": "ac293f5274832f7ea5adf49a2bca84285c006ddf47ba89cb862dafe4f0b738ef"
+      },
+      "inventory": {
+        "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/native-instructions.sqlite",
+        "sha256": "984e341b1702fd801b9d5b63326590a0eafd110a72aff5d2facdab0076dc433e"
+      }
+    },
+    "unwind-complement-summary": {
+      "summary": {
+        "path": "docs/analysis/coverage/unwind-complement-summary.json",
+        "sha256": "7bf6b3a4d0bb4c96f7e6c8eb44648d35c7d5bdf40028e32b956b03434908dc38"
+      },
+      "inventory": {
+        "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/unwind-complement.sqlite",
+        "sha256": "9941f1f0ccd3723345195e0a011136b414b8a3597586baed8467666f200f9a65"
+      }
+    }
+  },
+  "artifacts": {
+    "diagnostic-sites.jsonl.gz": {
+      "path": "runtime/execheck-2026-10-25/expanded-residuals/diagnostic-sites.jsonl.gz",
+      "sha256": "6f4c7f22299abd6e2f8085103e6b6e2722b719a6776a2d79aa9c69ed58cd819f",
+      "rows": 17790
+    },
+    "static-reference-roles.tsv.gz": {
+      "path": "runtime/execheck-2026-10-25/expanded-residuals/static-reference-roles.tsv.gz",
+      "sha256": "fbe3f9b2b9a37d170b8371cfefbafbfd491ad511dbf82f05688ea4f8d886fb5e",
+      "rows": 3925504
+    },
+    "ownerless-reference-sources.tsv.gz": {
+      "path": "runtime/execheck-2026-10-25/expanded-residuals/ownerless-reference-sources.tsv.gz",
+      "sha256": "0545bd1eddf2b943d52f4931fefc2ccbb16acdc8c798d6d6dc96b196381ac229",
+      "rows": 790042
+    },
+    "unowned-executable-destinations.tsv.gz": {
+      "path": "runtime/execheck-2026-10-25/expanded-residuals/unowned-executable-destinations.tsv.gz",
+      "sha256": "63d5270195171e4a09f4f213a683594bcace6c55587fc996d4efd97287353ac4",
+      "rows": 5128
+    },
+    "declared-reference-roles.tsv.gz": {
+      "path": "runtime/execheck-2026-10-25/expanded-residuals/declared-reference-roles.tsv.gz",
+      "sha256": "29cdafffa21a05e910cc223f84b9fd9b5f0002718138412fe7a39aaee8413954",
+      "rows": 3826005
+    },
+    "declared-indirect-sites.tsv.gz": {
+      "path": "runtime/execheck-2026-10-25/expanded-residuals/declared-indirect-sites.tsv.gz",
+      "sha256": "f2dbcfae11d15cc0815cfe9f181a2511e0555568be75f1fe7d87f0867d13ce92",
+      "rows": 82636
+    },
+    "declared-extent-roles.tsv.gz": {
+      "path": "runtime/execheck-2026-10-25/expanded-residuals/declared-extent-roles.tsv.gz",
+      "sha256": "62c3ae64e239c38102e4bd210354f8cabde0dde992349f8dee1f9a5e676b6e0c",
+      "rows": 350712
+    },
+    "complement-reference-roles.tsv.gz": {
+      "path": "runtime/execheck-2026-10-25/expanded-residuals/complement-reference-roles.tsv.gz",
+      "sha256": "b789da3a65e97636adb5fb7bdd09a64680ba7b1590ecac6d8e9a87e9b4009419",
+      "rows": 12169
+    },
+    "complement-indirect-sites.tsv.gz": {
+      "path": "runtime/execheck-2026-10-25/expanded-residuals/complement-indirect-sites.tsv.gz",
+      "sha256": "4609f971379efc53603de98879f0bd376a34237fe962f124ae8a5a1bde481385",
+      "rows": 648
+    },
+    "complement-stops.jsonl.gz": {
+      "path": "runtime/execheck-2026-10-25/expanded-residuals/complement-stops.jsonl.gz",
+      "sha256": "b7fc36cdc6dff4e2930a64b1128ddd735a759724e8430146439cdb43d2055501",
+      "rows": 5439
+    },
+    "complement-region-roles.tsv.gz": {
+      "path": "runtime/execheck-2026-10-25/expanded-residuals/complement-region-roles.tsv.gz",
+      "sha256": "42be78b5284008a321db4e6183e162534b84527328d4205d72887a813bb1de6f",
+      "rows": 330329
+    },
+    "ownerless-instructions.tsv.gz": {
+      "path": "runtime/execheck-2026-10-25/expanded-residuals/ownerless-instructions.tsv.gz",
+      "sha256": "6965125999ada042c58dcdd043debb8012d17a8fabb7b40a1f28b7bac0d806d3",
+      "rows": 73536
+    }
+  },
+  "counts": {
+    "instruction_records": 22690396,
+    "ownerless_instruction_records": 73536,
+    "static_reference_records": 3925504,
+    "reference_records_with_ownerless_sources": 790042,
+    "distinct_unowned_executable_destinations": 5128,
+    "diagnostic_sites": {
+      "records": 17790,
+      "owned": 16034,
+      "ownerless": 1756
+    },
+    "diagnostic_contexts": {
+      "AS-custom-path:owned": 665,
+      "AS-custom-path:ownerless": 60,
+      "excluded-coop-path:owned": 98,
+      "shared-engine-or-other-path:owned": 15271,
+      "shared-engine-or-other-path:ownerless": 1696
+    },
+    "reference_roles": {
+      "COMPUTED_JUMP:executable": 16624,
+      "CONDITIONAL_JUMP:executable": 1441858,
+      "DATA:PE-headers": 1,
+      "DATA:data:.data": 2,
+      "DATA:data:.pdata": 2,
+      "DATA:data:.rdata": 350738,
+      "DATA:data:.reloc": 2,
+      "DATA:data:.rsrc": 2,
+      "DATA:executable": 424159,
+      "DATA:external-or-unencoded": 425,
+      "INDIRECTION:data:.rdata": 186,
+      "READ:PE-headers": 2,
+      "READ:data:.data": 33210,
+      "READ:data:.rdata": 140854,
+      "READ_WRITE:data:.data": 415,
+      "UNCONDITIONAL_CALL:executable": 1074256,
+      "UNCONDITIONAL_JUMP:executable": 442392,
+      "WRITE:data:.data": 376
+    },
+    "complement_stops": {
+      "jump_no_fallthrough": 2571,
+      "return": 2822,
+      "trap_or_privileged_exit": 7,
+      "outside_file_backed_complement": 39
+    }
+  },
+  "lead_ids": [
+    "Q41-U01",
+    "Q41-U02",
+    "Q41-U03",
+    "Q41-U04",
+    "Q41-F01",
+    "Q41-F02",
+    "Q41-A01",
+    "Q41-A02",
+    "Q41-D01",
+    "Q41-E01",
+    "Q41-G01",
+    "Q41-M01",
+    "Q41-B01"
+  ],
+  "explicit_residual_sets_available": true,
+  "computed_runtime_targets_complete": false,
+  "source_semantics_complete": false,
+  "global_aliasing_complete": false,
+  "parity_verified": false,
+  "gap_ids": [
+    41
+  ],
+  "limits": [
+    "All source rows are retained, without a sampling cap. Joins describe the saved Program and independent inventories only.",
+    "A Location/path is context, not complete function/source ownership. Header/data reference sources outside code do not imply missing executable instructions.",
+    "Spatial body/data/import classifications do not prove reachable calls, runtime values, data types, padding or native/source equivalence.",
+    "Generic engine reconstruction remains supporting context. Legacy excluded-coop-path labels retain their collection scope; cooperative gameplay/network/server reconstruction is in scope under #63. No application compilation or execution."
+  ]
+}

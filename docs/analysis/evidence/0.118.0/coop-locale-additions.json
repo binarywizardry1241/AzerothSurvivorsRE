@@ -1,0 +1,3941 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.118.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae",
+    "size_bytes": 145356800
+  },
+  "inputs": [
+    {
+      "path": "scripts/review-coop-locale-additions.py",
+      "sha256": "b995d675a6378270baa01a24b4af0837cc4d8fcea272de61e699193a3062a407"
+    },
+    {
+      "path": "docs/analysis/evidence/0.118.0/locale-catalog-review.json",
+      "sha256": "2d03811a6007b0b3a4cf0ef113eb61b0ad2e53359d6296c3398816d44e2fdc4c"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/assets/coop-achievements-0.117.0.json",
+      "sha256": "c0a7733caaf44637e50806b0f8117b1ade588be83e39b5b9976787c4e9eb10bf"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/localization.rs",
+      "sha256": "0b52cd18cbabf44ba35962cb614f5888f12825b94307c2602542816ea3ec267b"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/localization/catalogs.rs",
+      "sha256": "3681e0985c8fe6d54f452264c5d7086edfc7a96fef5cd89a9b88cde39f0c656c"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/catalog.rs",
+      "sha256": "971817c6611760c6f92aa82ce787b622d370ba2061e7045e7b6942d3c06d5a23"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/progression.rs",
+      "sha256": "452c56f910f1c5a42e512badd2a3110761d2944c06fe9652814ee5934c246588"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/progression/rewards.rs",
+      "sha256": "52cc0a79c2294efb2813745821471db52d1929df5937b171a48e948fbadc9db1"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/armory.rs",
+      "sha256": "dedab4d744fc8dca2026a198f48507d63683a8188b3e383c56385f87f4f07acd"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/talents.rs",
+      "sha256": "b51db12ac83b406a72d935b546fdcd4ea2ec28eb72b08cbac5fb71928d063451"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs",
+      "sha256": "75fc8e61dd32a2091daecfa07447dc454964418f4f821ed63e6bc12951ca7825"
+    }
+  ],
+  "descriptor_review": {
+    "path": "docs/analysis/evidence/0.118.0/locale-catalog-review.json",
+    "sha256": "2d03811a6007b0b3a4cf0ef113eb61b0ad2e53359d6296c3398816d44e2fdc4c"
+  },
+  "native_key_population_equal_across_languages": true,
+  "cooperative_keys": [
+    {
+      "key": "A White Devilsaur fights at your side in place of the wolf Tame Beast brings and the raptor Bestial Wrath adds: one beast, biting as often and as hard as they would. Tame Beast and Bestial Wrath still need their points.",
+      "label_family": "hunter_switch_name_prose_or_control"
+    },
+    {
+      "key": "Against All Odds",
+      "label_family": "achievement_name"
+    },
+    {
+      "key": "Ancient Protector",
+      "label_family": "companion_name"
+    },
+    {
+      "key": "Better Together",
+      "label_family": "achievement_name"
+    },
+    {
+      "key": "Complete Duskwood with at least one other player, without any player dying.",
+      "label_family": "achievement_description"
+    },
+    {
+      "key": "Complete Un'Goro Crater in co-op with 5 Hunters.",
+      "label_family": "achievement_description"
+    },
+    {
+      "key": "Complete Warsong Gulch and Arathi Basin, each with at least one other player.",
+      "label_family": "achievement_description"
+    },
+    {
+      "key": "Complete all 12 zones, each with at least one other player, across any number of runs.",
+      "label_family": "achievement_description"
+    },
+    {
+      "key": "Complete any zone in co-op with all 5 players using the same class.",
+      "label_family": "achievement_description"
+    },
+    {
+      "key": "Complete any zone with at least one other player, with all four enemy difficulty modifiers at maximum.",
+      "label_family": "achievement_description"
+    },
+    {
+      "key": "Complete your first zone with at least one other player.",
+      "label_family": "achievement_description"
+    },
+    {
+      "key": "Defeat Azuregos and Nefarian, each with at least one other player.",
+      "label_family": "achievement_description"
+    },
+    {
+      "key": "Defeat C'Thun with at least one other player, with all four enemy difficulty modifiers at maximum.",
+      "label_family": "achievement_description"
+    },
+    {
+      "key": "Defeat Edwin VanCleef in co-op with 5 players, all using different classes.",
+      "label_family": "achievement_description"
+    },
+    {
+      "key": "Defeat Hakkar with 5 Warriors, all talented into Bladestorm. Whirlwind must deliver the killing blow.",
+      "label_family": "achievement_description"
+    },
+    {
+      "key": "Defeat High Inquisitor Whitemane in co-op with 5 Paladins, all having Consecration as their highest-ranked spell. Consecration must deliver the killing blow.",
+      "label_family": "achievement_description"
+    },
+    {
+      "key": "Defeat Kel'Thuzad in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.",
+      "label_family": "achievement_description"
+    },
+    {
+      "key": "Defeat Nefarian in co-op with 5 Shamans, all having Magma Totem as their highest-ranked spell. Magma Totem must deliver the killing blow.",
+      "label_family": "achievement_description"
+    },
+    {
+      "key": "Dragonslayers",
+      "label_family": "achievement_name"
+    },
+    {
+      "key": "Five of a Kind",
+      "label_family": "achievement_name"
+    },
+    {
+      "key": "For the Team",
+      "label_family": "achievement_name"
+    },
+    {
+      "key": "Hakkar Smoothie",
+      "label_family": "achievement_name"
+    },
+    {
+      "key": "Holy Frame Drops",
+      "label_family": "achievement_name"
+    },
+    {
+      "key": "Jurassic Pack",
+      "label_family": "achievement_name"
+    },
+    {
+      "key": "Mini Herod",
+      "label_family": "companion_name"
+    },
+    {
+      "key": "Mini Nefarian",
+      "label_family": "companion_name"
+    },
+    {
+      "key": "Mr. Bigglesworth",
+      "label_family": "companion_name"
+    },
+    {
+      "key": "Off",
+      "label_family": "hunter_switch_name_prose_or_control"
+    },
+    {
+      "key": "Off · no talent point",
+      "label_family": "hunter_switch_name_prose_or_control"
+    },
+    {
+      "key": "On",
+      "label_family": "hunter_switch_name_prose_or_control"
+    },
+    {
+      "key": "On · no talent point",
+      "label_family": "hunter_switch_name_prose_or_control"
+    },
+    {
+      "key": "Requires the achievement {name}",
+      "label_family": "hunter_switch_name_prose_or_control"
+    },
+    {
+      "key": "Rest in Photosynthesis",
+      "label_family": "achievement_name"
+    },
+    {
+      "key": "The Brotherhood Falls",
+      "label_family": "achievement_name"
+    },
+    {
+      "key": "The Old Gods Have No Friends",
+      "label_family": "achievement_name"
+    },
+    {
+      "key": "Things That Go Bump in the Night",
+      "label_family": "achievement_name"
+    },
+    {
+      "key": "Together, To the End",
+      "label_family": "achievement_name"
+    },
+    {
+      "key": "Totem'ly Balanced",
+      "label_family": "achievement_name"
+    },
+    {
+      "key": "Turn off",
+      "label_family": "hunter_switch_name_prose_or_control"
+    },
+    {
+      "key": "Turn on",
+      "label_family": "hunter_switch_name_prose_or_control"
+    },
+    {
+      "key": "United Front",
+      "label_family": "perk_name"
+    },
+    {
+      "key": "White Devilsaur",
+      "label_family": "hunter_switch_name_prose_or_control"
+    },
+    {
+      "key": "cosmetic.90108",
+      "label_family": "cosmetic_name"
+    },
+    {
+      "key": "cosmetic.90109",
+      "label_family": "cosmetic_name"
+    },
+    {
+      "key": "cosmetic.90110",
+      "label_family": "cosmetic_name"
+    },
+    {
+      "key": "cosmetic.90111",
+      "label_family": "cosmetic_name"
+    },
+    {
+      "key": "cosmetic.90112",
+      "label_family": "cosmetic_name"
+    },
+    {
+      "key": "cosmetic.90113",
+      "label_family": "cosmetic_name"
+    },
+    {
+      "key": "cosmetic.90114",
+      "label_family": "cosmetic_name"
+    },
+    {
+      "key": "tabard.90025",
+      "label_family": "tabard_name"
+    }
+  ],
+  "family_counts": {
+    "achievement_name": 14,
+    "achievement_description": 14,
+    "cosmetic_name": 7,
+    "tabard_name": 1,
+    "companion_name": 4,
+    "perk_name": 1,
+    "hunter_switch_name_prose_or_control": 9
+  },
+  "languages": [
+    {
+      "code": "en",
+      "native_keys": 2979,
+      "source_keys": 2979,
+      "missing_source_key_values": [
+        {
+          "key": "Complete Duskwood with at least one other player, without any player dying.",
+          "value": "Complete Duskwood with at least one other player, without any player dying.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete Warsong Gulch and Arathi Basin, each with at least one other player.",
+          "value": "Complete Warsong Gulch and Arathi Basin, each with at least one other player.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete all 12 zones, each with at least one other player, across any number of runs.",
+          "value": "Complete all 12 zones, each with at least one other player, across any number of runs.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete any zone with at least one other player, with all four enemy difficulty modifiers at maximum.",
+          "value": "Complete any zone with at least one other player, with all four enemy difficulty modifiers at maximum.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete your first zone with at least one other player.",
+          "value": "Complete your first zone with at least one other player.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Azuregos and Nefarian, each with at least one other player.",
+          "value": "Defeat Azuregos and Nefarian, each with at least one other player.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat C'Thun with at least one other player, with all four enemy difficulty modifiers at maximum.",
+          "value": "Defeat C'Thun with at least one other player, with all four enemy difficulty modifiers at maximum.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Hakkar with 5 Warriors, all talented into Bladestorm. Whirlwind must deliver the killing blow.",
+          "value": "Defeat Hakkar with 5 Warriors, all talented into Bladestorm. Whirlwind must deliver the killing blow.",
+          "label_family": "achievement_description"
+        }
+      ],
+      "source_only_key_values": [
+        {
+          "key": "Complete Duskwood in co-op without any player dying.",
+          "value": "Complete Duskwood in co-op without any player dying."
+        },
+        {
+          "key": "Complete Warsong Gulch and Arathi Basin in co-op.",
+          "value": "Complete Warsong Gulch and Arathi Basin in co-op."
+        },
+        {
+          "key": "Complete any zone in co-op with all four enemy difficulty modifiers at maximum.",
+          "value": "Complete any zone in co-op with all four enemy difficulty modifiers at maximum."
+        },
+        {
+          "key": "Complete every zone in co-op, across any number of runs.",
+          "value": "Complete every zone in co-op, across any number of runs."
+        },
+        {
+          "key": "Complete your first zone in co-op.",
+          "value": "Complete your first zone in co-op."
+        },
+        {
+          "key": "Defeat Azuregos and Nefarian in co-op.",
+          "value": "Defeat Azuregos and Nefarian in co-op."
+        },
+        {
+          "key": "Defeat C'Thun in co-op with all four enemy difficulty modifiers at maximum.",
+          "value": "Defeat C'Thun in co-op with all four enemy difficulty modifiers at maximum."
+        },
+        {
+          "key": "Defeat Hakkar in co-op with 5 Warriors, all talented into Bladestorm. Whirlwind must deliver the killing blow.",
+          "value": "Defeat Hakkar in co-op with 5 Warriors, all talented into Bladestorm. Whirlwind must deliver the killing blow."
+        }
+      ],
+      "changed_existing_values": [],
+      "added_values_equal_English": 50,
+      "added_keys_with_value_equal_English": [
+        "A White Devilsaur fights at your side in place of the wolf Tame Beast brings and the raptor Bestial Wrath adds: one beast, biting as often and as hard as they would. Tame Beast and Bestial Wrath still need their points.",
+        "Against All Odds",
+        "Ancient Protector",
+        "Better Together",
+        "Complete Duskwood with at least one other player, without any player dying.",
+        "Complete Un'Goro Crater in co-op with 5 Hunters.",
+        "Complete Warsong Gulch and Arathi Basin, each with at least one other player.",
+        "Complete all 12 zones, each with at least one other player, across any number of runs.",
+        "Complete any zone in co-op with all 5 players using the same class.",
+        "Complete any zone with at least one other player, with all four enemy difficulty modifiers at maximum.",
+        "Complete your first zone with at least one other player.",
+        "Defeat Azuregos and Nefarian, each with at least one other player.",
+        "Defeat C'Thun with at least one other player, with all four enemy difficulty modifiers at maximum.",
+        "Defeat Edwin VanCleef in co-op with 5 players, all using different classes.",
+        "Defeat Hakkar with 5 Warriors, all talented into Bladestorm. Whirlwind must deliver the killing blow.",
+        "Defeat High Inquisitor Whitemane in co-op with 5 Paladins, all having Consecration as their highest-ranked spell. Consecration must deliver the killing blow.",
+        "Defeat Kel'Thuzad in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.",
+        "Defeat Nefarian in co-op with 5 Shamans, all having Magma Totem as their highest-ranked spell. Magma Totem must deliver the killing blow.",
+        "Dragonslayers",
+        "Five of a Kind",
+        "For the Team",
+        "Hakkar Smoothie",
+        "Holy Frame Drops",
+        "Jurassic Pack",
+        "Mini Herod",
+        "Mini Nefarian",
+        "Mr. Bigglesworth",
+        "Off",
+        "Off · no talent point",
+        "On",
+        "On · no talent point",
+        "Requires the achievement {name}",
+        "Rest in Photosynthesis",
+        "The Brotherhood Falls",
+        "The Old Gods Have No Friends",
+        "Things That Go Bump in the Night",
+        "Together, To the End",
+        "Totem'ly Balanced",
+        "Turn off",
+        "Turn on",
+        "United Front",
+        "White Devilsaur",
+        "cosmetic.90108",
+        "cosmetic.90109",
+        "cosmetic.90110",
+        "cosmetic.90111",
+        "cosmetic.90112",
+        "cosmetic.90113",
+        "cosmetic.90114",
+        "tabard.90025"
+      ],
+      "all_added_values_nonempty": true
+    },
+    {
+      "code": "pl",
+      "native_keys": 2979,
+      "source_keys": 2929,
+      "missing_source_key_values": [
+        {
+          "key": "A White Devilsaur fights at your side in place of the wolf Tame Beast brings and the raptor Bestial Wrath adds: one beast, biting as often and as hard as they would. Tame Beast and Bestial Wrath still need their points.",
+          "value": "Biały Diabłozaur walczy u twego boku zamiast wilka z Oswojenia Bestii i raptora dodawanego przez Zwierzęcy Gniew: jedna bestia, która gryzie tak często i tak mocno, jak gryzłyby one. Oswojenie Bestii i Zwierzęcy Gniew wciąż wymagają swoich punktów.",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Against All Odds",
+          "value": "Na przekór losowi",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Ancient Protector",
+          "value": "Pradawny Obrońca",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Better Together",
+          "value": "Razem raźniej",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Complete Duskwood with at least one other player, without any player dying.",
+          "value": "Ukończ Duskwood z co najmniej jednym innym graczem tak, by żaden gracz nie zginął.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete Un'Goro Crater in co-op with 5 Hunters.",
+          "value": "Ukończ Krater Un'Goro w trybie co-op 5 łowcami.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete Warsong Gulch and Arathi Basin, each with at least one other player.",
+          "value": "Ukończ Wąwóz Pieśni Wojny i Kotlinę Arathi, za każdym razem z co najmniej jednym innym graczem.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete all 12 zones, each with at least one other player, across any number of runs.",
+          "value": "Ukończ wszystkie 12 stref, każdą z co najmniej jednym innym graczem, w dowolnej liczbie wypraw.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete any zone in co-op with all 5 players using the same class.",
+          "value": "Ukończ dowolną strefę w trybie co-op, gdy wszystkich 5 graczy gra tą samą klasą.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete any zone with at least one other player, with all four enemy difficulty modifiers at maximum.",
+          "value": "Ukończ dowolną strefę z co najmniej jednym innym graczem, ze wszystkimi czterema modyfikatorami trudności wrogów na maksimum.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete your first zone with at least one other player.",
+          "value": "Ukończ swoją pierwszą strefę z co najmniej jednym innym graczem.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Azuregos and Nefarian, each with at least one other player.",
+          "value": "Pokonaj Azuregosa i Nefariana, za każdym razem z co najmniej jednym innym graczem.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat C'Thun with at least one other player, with all four enemy difficulty modifiers at maximum.",
+          "value": "Pokonaj C'Thuna z co najmniej jednym innym graczem, ze wszystkimi czterema modyfikatorami trudności wrogów na maksimum.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Edwin VanCleef in co-op with 5 players, all using different classes.",
+          "value": "Pokonaj Edwina VanCleefa w trybie co-op w 5 graczy, każdy inną klasą.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Hakkar with 5 Warriors, all talented into Bladestorm. Whirlwind must deliver the killing blow.",
+          "value": "Pokonaj Hakkara 5 wojownikami, z których każdy ma talent Burza Ostrzy. Ostatni cios musi zadać Wir.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat High Inquisitor Whitemane in co-op with 5 Paladins, all having Consecration as their highest-ranked spell. Consecration must deliver the killing blow.",
+          "value": "Pokonaj Wielką Inkwizytor Whitemane w trybie co-op 5 paladynami, z których każdy ma Uświęcenie jako zaklęcie o najwyższej randze. Ostatni cios musi zadać Uświęcenie.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Kel'Thuzad in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.",
+          "value": "Pokonaj Kel'Thuzada w trybie co-op 5 druidami, z których każdy ma talent Ukojenie. Ostatni cios musi zadać Ukojenie.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Nefarian in co-op with 5 Shamans, all having Magma Totem as their highest-ranked spell. Magma Totem must deliver the killing blow.",
+          "value": "Pokonaj Nefariana w trybie co-op 5 szamanami, z których każdy ma Totem Magmy jako zaklęcie o najwyższej randze. Ostatni cios musi zadać Totem Magmy.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Dragonslayers",
+          "value": "Smokobójcy",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Five of a Kind",
+          "value": "Pięć jednakowych",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "For the Team",
+          "value": "Dla drużyny",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Hakkar Smoothie",
+          "value": "Koktajl z Hakkara",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Holy Frame Drops",
+          "value": "Święte spadki FPS",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Jurassic Pack",
+          "value": "Jurajska paczka",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Mini Herod",
+          "value": "Mały Herod",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Mini Nefarian",
+          "value": "Mały Nefarian",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Mr. Bigglesworth",
+          "value": "Pan Bigglesworth",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Off",
+          "value": "Wył.",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Off · no talent point",
+          "value": "Wył. · bez punktu talentu",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "On",
+          "value": "Wł.",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "On · no talent point",
+          "value": "Wł. · bez punktu talentu",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Requires the achievement {name}",
+          "value": "Wymaga osiągnięcia {name}",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Rest in Photosynthesis",
+          "value": "Spoczywaj w fotosyntezie",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "The Brotherhood Falls",
+          "value": "Upadek Bractwa",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "The Old Gods Have No Friends",
+          "value": "Przedwieczni Bogowie nie mają przyjaciół",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Things That Go Bump in the Night",
+          "value": "Nocne strachy",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Together, To the End",
+          "value": "Razem do końca",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Totem'ly Balanced",
+          "value": "Totemalnie zbalansowane",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Turn off",
+          "value": "Wyłącz",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Turn on",
+          "value": "Włącz",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "United Front",
+          "value": "Wspólny front",
+          "label_family": "perk_name"
+        },
+        {
+          "key": "White Devilsaur",
+          "value": "Biały Diabłozaur",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "cosmetic.90108",
+          "value": "Kapelusz admirała",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90109",
+          "value": "Kapelusz admirała Krwawych Żagli",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90110",
+          "value": "Płaszcz Bractwa",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90111",
+          "value": "Objęcia Likana",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90112",
+          "value": "Kapelusik Whitemane",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90113",
+          "value": "Płaszcz Władcy Lęgu",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90114",
+          "value": "Płaszcz Pożartych",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "tabard.90025",
+          "value": "Tabard zwycięzcy konkursu",
+          "label_family": "tabard_name"
+        }
+      ],
+      "source_only_key_values": [],
+      "changed_existing_values": [],
+      "added_values_equal_English": 0,
+      "added_keys_with_value_equal_English": [],
+      "all_added_values_nonempty": true
+    },
+    {
+      "code": "cs",
+      "native_keys": 2979,
+      "source_keys": 2929,
+      "missing_source_key_values": [
+        {
+          "key": "A White Devilsaur fights at your side in place of the wolf Tame Beast brings and the raptor Bestial Wrath adds: one beast, biting as often and as hard as they would. Tame Beast and Bestial Wrath still need their points.",
+          "value": "Bílý ďáblosaurus bojuje po tvém boku místo vlka, kterého přivede Ochočení šelmy, a raptora, kterého přidá Zvířecí hněv: jedna šelma, která kouše stejně často a stejně silně jako oni. Ochočení šelmy a Zvířecí hněv dál potřebují své body.",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Against All Odds",
+          "value": "Navzdory všemu",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Ancient Protector",
+          "value": "Prastarý ochránce",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Better Together",
+          "value": "Spolu je líp",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Complete Duskwood with at least one other player, without any player dying.",
+          "value": "Dokonči Duskwood s alespoň jedním dalším hráčem, aniž by zemřel jediný hráč.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete Un'Goro Crater in co-op with 5 Hunters.",
+          "value": "Dokonči Kráter Un'Goro v kooperaci s 5 lovci.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete Warsong Gulch and Arathi Basin, each with at least one other player.",
+          "value": "Dokonči Roklinu Válečné písně a Arathskou pánev, pokaždé s alespoň jedním dalším hráčem.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete all 12 zones, each with at least one other player, across any number of runs.",
+          "value": "Dokonči všech 12 oblastí, každou s alespoň jedním dalším hráčem, v libovolném počtu výprav.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete any zone in co-op with all 5 players using the same class.",
+          "value": "Dokonči libovolnou oblast v kooperaci, když všech 5 hráčů hraje za stejné povolání.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete any zone with at least one other player, with all four enemy difficulty modifiers at maximum.",
+          "value": "Dokonči libovolnou oblast s alespoň jedním dalším hráčem a se všemi čtyřmi modifikátory obtížnosti nepřátel na maximu.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete your first zone with at least one other player.",
+          "value": "Dokonči svou první oblast s alespoň jedním dalším hráčem.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Azuregos and Nefarian, each with at least one other player.",
+          "value": "Poraz Azuregose a Nefariana, pokaždé s alespoň jedním dalším hráčem.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat C'Thun with at least one other player, with all four enemy difficulty modifiers at maximum.",
+          "value": "Poraz C'Thuna s alespoň jedním dalším hráčem a se všemi čtyřmi modifikátory obtížnosti nepřátel na maximu.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Edwin VanCleef in co-op with 5 players, all using different classes.",
+          "value": "Poraz Edwina VanCleefa v kooperaci s 5 hráči, každým za jiné povolání.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Hakkar with 5 Warriors, all talented into Bladestorm. Whirlwind must deliver the killing blow.",
+          "value": "Poraz Hakkara s 5 válečníky, kteří všichni mají talent Bouře čepelí. Poslední úder musí zasadit Vichr.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat High Inquisitor Whitemane in co-op with 5 Paladins, all having Consecration as their highest-ranked spell. Consecration must deliver the killing blow.",
+          "value": "Poraz vrchní inkvizitorku Whitemane v kooperaci s 5 paladiny, kteří všichni mají Posvěcení jako kouzlo nejvyššího stupně. Poslední úder musí zasadit Posvěcení.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Kel'Thuzad in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.",
+          "value": "Poraz Kel'Thuzada v kooperaci s 5 druidy, kteří všichni mají talent Poklid. Poslední úder musí zasadit Poklid.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Nefarian in co-op with 5 Shamans, all having Magma Totem as their highest-ranked spell. Magma Totem must deliver the killing blow.",
+          "value": "Poraz Nefariana v kooperaci s 5 šamany, kteří všichni mají Totem magmatu jako kouzlo nejvyššího stupně. Poslední úder musí zasadit Totem magmatu.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Dragonslayers",
+          "value": "Drakobijci",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Five of a Kind",
+          "value": "Pět stejných",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "For the Team",
+          "value": "Pro tým",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Hakkar Smoothie",
+          "value": "Hakkarovo smoothie",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Holy Frame Drops",
+          "value": "Svaté propady snímků",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Jurassic Pack",
+          "value": "Jurská smečka",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Mini Herod",
+          "value": "Malý Herod",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Mini Nefarian",
+          "value": "Malý Nefarian",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Mr. Bigglesworth",
+          "value": "Pan Bigglesworth",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Off",
+          "value": "Vypnuto",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Off · no talent point",
+          "value": "Vypnuto · bez talentového bodu",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "On",
+          "value": "Zapnuto",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "On · no talent point",
+          "value": "Zapnuto · bez talentového bodu",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Requires the achievement {name}",
+          "value": "Vyžaduje úspěch {name}",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Rest in Photosynthesis",
+          "value": "Odpočívej ve fotosyntéze",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "The Brotherhood Falls",
+          "value": "Pád Bratrstva",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "The Old Gods Have No Friends",
+          "value": "Prastaří bohové nemají přátele",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Things That Go Bump in the Night",
+          "value": "Co v noci straší",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Together, To the End",
+          "value": "Spolu až do konce",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Totem'ly Balanced",
+          "value": "Totemálně vyvážené",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Turn off",
+          "value": "Vypnout",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Turn on",
+          "value": "Zapnout",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "United Front",
+          "value": "Jednotná fronta",
+          "label_family": "perk_name"
+        },
+        {
+          "key": "White Devilsaur",
+          "value": "Bílý ďáblosaurus",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "cosmetic.90108",
+          "value": "Admirálský klobouk",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90109",
+          "value": "Admirálský klobouk Krvavých plachet",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90110",
+          "value": "Plášť Bratrstva",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90111",
+          "value": "Objetí lykana",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90112",
+          "value": "Whitemanin klobouček",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90113",
+          "value": "Plášť pána líhně",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90114",
+          "value": "Plášť pozřených",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "tabard.90025",
+          "value": "Tabard vítěze soutěže",
+          "label_family": "tabard_name"
+        }
+      ],
+      "source_only_key_values": [],
+      "changed_existing_values": [],
+      "added_values_equal_English": 0,
+      "added_keys_with_value_equal_English": [],
+      "all_added_values_nonempty": true
+    },
+    {
+      "code": "de",
+      "native_keys": 2979,
+      "source_keys": 2929,
+      "missing_source_key_values": [
+        {
+          "key": "A White Devilsaur fights at your side in place of the wolf Tame Beast brings and the raptor Bestial Wrath adds: one beast, biting as often and as hard as they would. Tame Beast and Bestial Wrath still need their points.",
+          "value": "Ein Weißer Teufelssaurier kämpft an deiner Seite, anstelle des Wolfs von Wildtier zähmen und des Raptors von Zorn des Wildtiers: ein einziges Tier, das so oft und so hart beißt wie die beiden. Wildtier zähmen und Zorn des Wildtiers brauchen weiterhin ihre Punkte.",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Against All Odds",
+          "value": "Wider alle Wahrscheinlichkeit",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Ancient Protector",
+          "value": "Uralter Beschützer",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Better Together",
+          "value": "Gemeinsam stärker",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Complete Duskwood with at least one other player, without any player dying.",
+          "value": "Schließe den Dämmerwald mit mindestens einem weiteren Spieler ab, ohne dass ein Spieler stirbt.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete Un'Goro Crater in co-op with 5 Hunters.",
+          "value": "Schließe den Krater von Un'Goro im Koop mit 5 Jägern ab.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete Warsong Gulch and Arathi Basin, each with at least one other player.",
+          "value": "Schließe die Kriegshymnenschlucht und das Arathibecken ab, jeweils mit mindestens einem weiteren Spieler.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete all 12 zones, each with at least one other player, across any number of runs.",
+          "value": "Schließe alle 12 Zonen ab, jede mit mindestens einem weiteren Spieler, über beliebig viele Durchläufe hinweg.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete any zone in co-op with all 5 players using the same class.",
+          "value": "Schließe eine beliebige Zone im Koop ab, wobei alle 5 Spieler dieselbe Klasse spielen.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete any zone with at least one other player, with all four enemy difficulty modifiers at maximum.",
+          "value": "Schließe eine beliebige Zone mit mindestens einem weiteren Spieler ab, mit allen vier Schwierigkeitsmodifikatoren der Gegner auf Maximum.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete your first zone with at least one other player.",
+          "value": "Schließe deine erste Zone mit mindestens einem weiteren Spieler ab.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Azuregos and Nefarian, each with at least one other player.",
+          "value": "Besiege Azuregos und Nefarian, jeweils mit mindestens einem weiteren Spieler.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat C'Thun with at least one other player, with all four enemy difficulty modifiers at maximum.",
+          "value": "Besiege C'Thun mit mindestens einem weiteren Spieler, mit allen vier Schwierigkeitsmodifikatoren der Gegner auf Maximum.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Edwin VanCleef in co-op with 5 players, all using different classes.",
+          "value": "Besiege Edwin VanCleef im Koop mit 5 Spielern, die alle verschiedene Klassen spielen.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Hakkar with 5 Warriors, all talented into Bladestorm. Whirlwind must deliver the killing blow.",
+          "value": "Besiege Hakkar mit 5 Kriegern, alle mit dem Talent Klingensturm. Wirbelwind muss den Todesstoß versetzen.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat High Inquisitor Whitemane in co-op with 5 Paladins, all having Consecration as their highest-ranked spell. Consecration must deliver the killing blow.",
+          "value": "Besiege Hochinquisitorin Weißsträhne im Koop mit 5 Paladinen, bei denen allen Weihe der höchstrangige Zauber ist. Weihe muss den Todesstoß versetzen.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Kel'Thuzad in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.",
+          "value": "Besiege Kel'Thuzad im Koop mit 5 Druiden, alle mit dem Talent Gelassenheit. Gelassenheit muss den Todesstoß versetzen.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Nefarian in co-op with 5 Shamans, all having Magma Totem as their highest-ranked spell. Magma Totem must deliver the killing blow.",
+          "value": "Besiege Nefarian im Koop mit 5 Schamanen, bei denen allen Totem der glühenden Magma der höchstrangige Zauber ist. Totem der glühenden Magma muss den Todesstoß versetzen.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Dragonslayers",
+          "value": "Drachentöter",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Five of a Kind",
+          "value": "Fünf Gleiche",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "For the Team",
+          "value": "Fürs Team",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Hakkar Smoothie",
+          "value": "Hakkar-Smoothie",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Holy Frame Drops",
+          "value": "Heiliger FPS-Einbruch",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Jurassic Pack",
+          "value": "Jura-Rudel",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Mini Herod",
+          "value": "Mini-Herod",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Mini Nefarian",
+          "value": "Mini-Nefarian",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Mr. Bigglesworth",
+          "value": "Mr. Bigglesworth",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Off",
+          "value": "Aus",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Off · no talent point",
+          "value": "Aus · kein Talentpunkt",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "On",
+          "value": "An",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "On · no talent point",
+          "value": "An · kein Talentpunkt",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Requires the achievement {name}",
+          "value": "Benötigt den Erfolg {name}",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Rest in Photosynthesis",
+          "value": "Ruhe in Photosynthese",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "The Brotherhood Falls",
+          "value": "Die Bruderschaft fällt",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "The Old Gods Have No Friends",
+          "value": "Die Alten Götter haben keine Freunde",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Things That Go Bump in the Night",
+          "value": "Was nachts poltert",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Together, To the End",
+          "value": "Gemeinsam bis zum Ende",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Totem'ly Balanced",
+          "value": "Totemal ausgewogen",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Turn off",
+          "value": "Ausschalten",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Turn on",
+          "value": "Einschalten",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "United Front",
+          "value": "Vereinte Front",
+          "label_family": "perk_name"
+        },
+        {
+          "key": "White Devilsaur",
+          "value": "Weißer Teufelssaurier",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "cosmetic.90108",
+          "value": "Admiralshut",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90109",
+          "value": "Hut des Blutsegeladmirals",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90110",
+          "value": "Umhang der Bruderschaft",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90111",
+          "value": "Umarmung des Lykanthropen",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90112",
+          "value": "Weißsträhnes Hut",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90113",
+          "value": "Umhang des Brutlords",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90114",
+          "value": "Umhang der Verschlungenen",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "tabard.90025",
+          "value": "Wappenrock des Wettbewerbsgewinners",
+          "label_family": "tabard_name"
+        }
+      ],
+      "source_only_key_values": [],
+      "changed_existing_values": [],
+      "added_values_equal_English": 1,
+      "added_keys_with_value_equal_English": [
+        "Mr. Bigglesworth"
+      ],
+      "all_added_values_nonempty": true
+    },
+    {
+      "code": "pt",
+      "native_keys": 2979,
+      "source_keys": 2929,
+      "missing_source_key_values": [
+        {
+          "key": "A White Devilsaur fights at your side in place of the wolf Tame Beast brings and the raptor Bestial Wrath adds: one beast, biting as often and as hard as they would. Tame Beast and Bestial Wrath still need their points.",
+          "value": "Um Diabossauro Branco luta ao seu lado no lugar do lobo de Domar Fera e do raptor de Ira Bestial: uma só fera, mordendo tão rápido e tão forte quanto os dois. Domar Fera e Ira Bestial ainda precisam dos seus pontos.",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Against All Odds",
+          "value": "Contra Tudo e Todos",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Ancient Protector",
+          "value": "Protetor Ancião",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Better Together",
+          "value": "Melhor Juntos",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Complete Duskwood with at least one other player, without any player dying.",
+          "value": "Conclua a Floresta do Crepúsculo com pelo menos mais um jogador, sem que nenhum jogador morra.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete Un'Goro Crater in co-op with 5 Hunters.",
+          "value": "Conclua a Cratera Un'Goro no cooperativo com 5 caçadores.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete Warsong Gulch and Arathi Basin, each with at least one other player.",
+          "value": "Conclua a Ravina Brado Guerreiro e a Bacia Arathi, cada uma com pelo menos mais um jogador.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete all 12 zones, each with at least one other player, across any number of runs.",
+          "value": "Conclua as 12 zonas, cada uma com pelo menos mais um jogador, em quantas partidas forem precisas.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete any zone in co-op with all 5 players using the same class.",
+          "value": "Conclua qualquer zona no cooperativo com os 5 jogadores usando a mesma classe.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete any zone with at least one other player, with all four enemy difficulty modifiers at maximum.",
+          "value": "Conclua qualquer zona com pelo menos mais um jogador, com os quatro modificadores de dificuldade dos inimigos no máximo.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete your first zone with at least one other player.",
+          "value": "Conclua sua primeira zona com pelo menos mais um jogador.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Azuregos and Nefarian, each with at least one other player.",
+          "value": "Derrote Azuregos e Nefarian, cada um com pelo menos mais um jogador.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat C'Thun with at least one other player, with all four enemy difficulty modifiers at maximum.",
+          "value": "Derrote C'Thun com pelo menos mais um jogador, com os quatro modificadores de dificuldade dos inimigos no máximo.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Edwin VanCleef in co-op with 5 players, all using different classes.",
+          "value": "Derrote Edwin VanCleef no cooperativo com 5 jogadores, todos de classes diferentes.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Hakkar with 5 Warriors, all talented into Bladestorm. Whirlwind must deliver the killing blow.",
+          "value": "Derrote Hakkar com 5 guerreiros, todos com o talento Tempestade de Lâminas. Redemoinho deve desferir o golpe final.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat High Inquisitor Whitemane in co-op with 5 Paladins, all having Consecration as their highest-ranked spell. Consecration must deliver the killing blow.",
+          "value": "Derrote a Alta Inquisidora Cristalva no cooperativo com 5 paladinos, todos com Consagração como o feitiço de maior grau. Consagração deve desferir o golpe final.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Kel'Thuzad in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.",
+          "value": "Derrote Kel'Thuzad no cooperativo com 5 druidas, todos com o talento Tranquilidade. Tranquilidade deve desferir o golpe final.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Nefarian in co-op with 5 Shamans, all having Magma Totem as their highest-ranked spell. Magma Totem must deliver the killing blow.",
+          "value": "Derrote Nefarian no cooperativo com 5 xamãs, todos com Totem de Magma como o feitiço de maior grau. Totem de Magma deve desferir o golpe final.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Dragonslayers",
+          "value": "Matadores de Dragões",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Five of a Kind",
+          "value": "Cinco Iguais",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "For the Team",
+          "value": "Pelo Time",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Hakkar Smoothie",
+          "value": "Vitamina de Hakkar",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Holy Frame Drops",
+          "value": "Queda de FPS Sagrada",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Jurassic Pack",
+          "value": "Matilha Jurássica",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Mini Herod",
+          "value": "Mini-Herodes",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Mini Nefarian",
+          "value": "Mini-Nefarian",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Mr. Bigglesworth",
+          "value": "Sr. Bigglesworth",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Off",
+          "value": "Desligado",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Off · no talent point",
+          "value": "Desligado · sem ponto de talento",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "On",
+          "value": "Ligado",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "On · no talent point",
+          "value": "Ligado · sem ponto de talento",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Requires the achievement {name}",
+          "value": "Requer a conquista {name}",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Rest in Photosynthesis",
+          "value": "Descanse em Fotossíntese",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "The Brotherhood Falls",
+          "value": "A Irmandade Cai",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "The Old Gods Have No Friends",
+          "value": "Os Deuses Antigos Não Têm Amigos",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Things That Go Bump in the Night",
+          "value": "Coisas que Rondam a Noite",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Together, To the End",
+          "value": "Juntos, Até o Fim",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Totem'ly Balanced",
+          "value": "Totem-almente Equilibrado",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Turn off",
+          "value": "Desligar",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Turn on",
+          "value": "Ligar",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "United Front",
+          "value": "Frente Unida",
+          "label_family": "perk_name"
+        },
+        {
+          "key": "White Devilsaur",
+          "value": "Diabossauro Branco",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "cosmetic.90108",
+          "value": "Chapéu de Almirante",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90109",
+          "value": "Chapéu de Almirante Velarrubra",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90110",
+          "value": "Capa da Irmandade",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90111",
+          "value": "Abraço do Licantropo",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90112",
+          "value": "Chapéu de Cristalva",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90113",
+          "value": "Manto do Senhor da Prole",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90114",
+          "value": "Manto dos Devorados",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "tabard.90025",
+          "value": "Tabardo do Vencedor do Concurso",
+          "label_family": "tabard_name"
+        }
+      ],
+      "source_only_key_values": [],
+      "changed_existing_values": [],
+      "added_values_equal_English": 0,
+      "added_keys_with_value_equal_English": [],
+      "all_added_values_nonempty": true
+    },
+    {
+      "code": "es",
+      "native_keys": 2979,
+      "source_keys": 2929,
+      "missing_source_key_values": [
+        {
+          "key": "A White Devilsaur fights at your side in place of the wolf Tame Beast brings and the raptor Bestial Wrath adds: one beast, biting as often and as hard as they would. Tame Beast and Bestial Wrath still need their points.",
+          "value": "Un demonsaurio blanco lucha a tu lado en lugar del lobo de Domesticar bestia y el raptor de Cólera bestial: una sola bestia, que muerde tan a menudo y tan fuerte como ellos dos. Domesticar bestia y Cólera bestial siguen necesitando sus puntos.",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Against All Odds",
+          "value": "Contra viento y marea",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Ancient Protector",
+          "value": "Protector anciano",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Better Together",
+          "value": "Mejor juntos",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Complete Duskwood with at least one other player, without any player dying.",
+          "value": "Completa el Bosque del Ocaso con al menos otro jugador, sin que muera ningún jugador.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete Un'Goro Crater in co-op with 5 Hunters.",
+          "value": "Completa el Cráter de Un'Goro en cooperativo con 5 cazadores.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete Warsong Gulch and Arathi Basin, each with at least one other player.",
+          "value": "Completa la Garganta Grito de Guerra y la Cuenca de Arathi, cada una con al menos otro jugador.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete all 12 zones, each with at least one other player, across any number of runs.",
+          "value": "Completa las 12 zonas, cada una con al menos otro jugador, en tantas partidas como quieras.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete any zone in co-op with all 5 players using the same class.",
+          "value": "Completa cualquier zona en cooperativo con los 5 jugadores usando la misma clase.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete any zone with at least one other player, with all four enemy difficulty modifiers at maximum.",
+          "value": "Completa cualquier zona con al menos otro jugador, con los cuatro modificadores de dificultad enemiga al máximo.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete your first zone with at least one other player.",
+          "value": "Completa tu primera zona con al menos otro jugador.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Azuregos and Nefarian, each with at least one other player.",
+          "value": "Derrota a Azuregos y a Nefarian, cada uno con al menos otro jugador.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat C'Thun with at least one other player, with all four enemy difficulty modifiers at maximum.",
+          "value": "Derrota a C'Thun con al menos otro jugador, con los cuatro modificadores de dificultad enemiga al máximo.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Edwin VanCleef in co-op with 5 players, all using different classes.",
+          "value": "Derrota a Edwin VanCleef en cooperativo con 5 jugadores, todos de clases distintas.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Hakkar with 5 Warriors, all talented into Bladestorm. Whirlwind must deliver the killing blow.",
+          "value": "Derrota a Hakkar con 5 guerreros, todos con el talento Filotormenta. Torbellino debe asestar el golpe de gracia.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat High Inquisitor Whitemane in co-op with 5 Paladins, all having Consecration as their highest-ranked spell. Consecration must deliver the killing blow.",
+          "value": "Derrota a la Alta Inquisidora Melenablanca en cooperativo con 5 paladines, todos con Consagración como su hechizo de mayor rango. Consagración debe asestar el golpe de gracia.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Kel'Thuzad in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.",
+          "value": "Derrota a Kel'Thuzad en cooperativo con 5 druidas, todos con el talento Tranquilidad. Tranquilidad debe asestar el golpe de gracia.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Nefarian in co-op with 5 Shamans, all having Magma Totem as their highest-ranked spell. Magma Totem must deliver the killing blow.",
+          "value": "Derrota a Nefarian en cooperativo con 5 chamanes, todos con Tótem de magma como su hechizo de mayor rango. Tótem de magma debe asestar el golpe de gracia.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Dragonslayers",
+          "value": "Matadragones",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Five of a Kind",
+          "value": "Repóker",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "For the Team",
+          "value": "Por el equipo",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Hakkar Smoothie",
+          "value": "Batido de Hakkar",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Holy Frame Drops",
+          "value": "Caída de FPS sagrada",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Jurassic Pack",
+          "value": "Manada jurásica",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Mini Herod",
+          "value": "Mini-Herod",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Mini Nefarian",
+          "value": "Mini-Nefarian",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Mr. Bigglesworth",
+          "value": "Sr. Bigglesworth",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Off",
+          "value": "Desactivado",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Off · no talent point",
+          "value": "Desactivado · sin punto de talento",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "On",
+          "value": "Activado",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "On · no talent point",
+          "value": "Activado · sin punto de talento",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Requires the achievement {name}",
+          "value": "Requiere el logro {name}",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Rest in Photosynthesis",
+          "value": "Descansa en fotosíntesis",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "The Brotherhood Falls",
+          "value": "Cae la Hermandad",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "The Old Gods Have No Friends",
+          "value": "Los Dioses Antiguos no tienen amigos",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Things That Go Bump in the Night",
+          "value": "Lo que acecha en la noche",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Together, To the End",
+          "value": "Juntos, hasta el final",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Totem'ly Balanced",
+          "value": "Totem-almente equilibrado",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Turn off",
+          "value": "Desactivar",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Turn on",
+          "value": "Activar",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "United Front",
+          "value": "Frente unido",
+          "label_family": "perk_name"
+        },
+        {
+          "key": "White Devilsaur",
+          "value": "Demonsaurio blanco",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "cosmetic.90108",
+          "value": "Sombrero de almirante",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90109",
+          "value": "Sombrero de almirante Velasangre",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90110",
+          "value": "Capa de la Hermandad",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90111",
+          "value": "Abrazo del licántropo",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90112",
+          "value": "Sombrero de Melenablanca",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90113",
+          "value": "Capa del Señor de la Progenie",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90114",
+          "value": "Capa de los Devorados",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "tabard.90025",
+          "value": "Tabardo del ganador del concurso",
+          "label_family": "tabard_name"
+        }
+      ],
+      "source_only_key_values": [],
+      "changed_existing_values": [],
+      "added_values_equal_English": 0,
+      "added_keys_with_value_equal_English": [],
+      "all_added_values_nonempty": true
+    },
+    {
+      "code": "fr",
+      "native_keys": 2979,
+      "source_keys": 2929,
+      "missing_source_key_values": [
+        {
+          "key": "A White Devilsaur fights at your side in place of the wolf Tame Beast brings and the raptor Bestial Wrath adds: one beast, biting as often and as hard as they would. Tame Beast and Bestial Wrath still need their points.",
+          "value": "Un diablosaure blanc combat à vos côtés à la place du loup d'Apprivoiser une bête et du raptor de Courroux bestial : une seule bête, qui mord aussi souvent et aussi fort qu'eux deux. Apprivoiser une bête et Courroux bestial demandent toujours leurs points.",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Against All Odds",
+          "value": "Envers et contre tout",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Ancient Protector",
+          "value": "Ancien protecteur",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Better Together",
+          "value": "Plus forts ensemble",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Complete Duskwood with at least one other player, without any player dying.",
+          "value": "Terminez le Bois de la Pénombre avec au moins un autre joueur, sans qu'aucun joueur ne meure.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete Un'Goro Crater in co-op with 5 Hunters.",
+          "value": "Terminez le Cratère d'Un'Goro en coop avec 5 chasseurs.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete Warsong Gulch and Arathi Basin, each with at least one other player.",
+          "value": "Terminez le Goulet des Chanteguerres et le Bassin Arathi, chacun avec au moins un autre joueur.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete all 12 zones, each with at least one other player, across any number of runs.",
+          "value": "Terminez les 12 zones, chacune avec au moins un autre joueur, en autant de parties qu'il le faut.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete any zone in co-op with all 5 players using the same class.",
+          "value": "Terminez n'importe quelle zone en coop avec les 5 joueurs de la même classe.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete any zone with at least one other player, with all four enemy difficulty modifiers at maximum.",
+          "value": "Terminez n'importe quelle zone avec au moins un autre joueur, avec les quatre modificateurs de difficulté des ennemis au maximum.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete your first zone with at least one other player.",
+          "value": "Terminez votre première zone avec au moins un autre joueur.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Azuregos and Nefarian, each with at least one other player.",
+          "value": "Vainquez Azuregos et Nefarian, chacun avec au moins un autre joueur.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat C'Thun with at least one other player, with all four enemy difficulty modifiers at maximum.",
+          "value": "Vainquez C'Thun avec au moins un autre joueur, avec les quatre modificateurs de difficulté des ennemis au maximum.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Edwin VanCleef in co-op with 5 players, all using different classes.",
+          "value": "Vainquez Edwin VanCleef en coop avec 5 joueurs, tous de classes différentes.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Hakkar with 5 Warriors, all talented into Bladestorm. Whirlwind must deliver the killing blow.",
+          "value": "Vainquez Hakkar avec 5 guerriers, tous dotés du talent Tempête de lames. Tourbillon doit porter le coup fatal.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat High Inquisitor Whitemane in co-op with 5 Paladins, all having Consecration as their highest-ranked spell. Consecration must deliver the killing blow.",
+          "value": "Vainquez la Grande inquisitrice Blanchetête en coop avec 5 paladins dont le sort de plus haut rang est Consécration. Consécration doit porter le coup fatal.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Kel'Thuzad in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.",
+          "value": "Vainquez Kel'Thuzad en coop avec 5 druides, tous dotés du talent Tranquillité. Tranquillité doit porter le coup fatal.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Nefarian in co-op with 5 Shamans, all having Magma Totem as their highest-ranked spell. Magma Totem must deliver the killing blow.",
+          "value": "Vainquez Nefarian en coop avec 5 chamans dont le sort de plus haut rang est Totem de magma. Totem de magma doit porter le coup fatal.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Dragonslayers",
+          "value": "Tueurs de dragons",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Five of a Kind",
+          "value": "Cinq pareils",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "For the Team",
+          "value": "Pour l'équipe",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Hakkar Smoothie",
+          "value": "Smoothie de Hakkar",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Holy Frame Drops",
+          "value": "Chute de FPS sacrée",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Jurassic Pack",
+          "value": "Meute jurassique",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Mini Herod",
+          "value": "Mini-Hérode",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Mini Nefarian",
+          "value": "Mini-Nefarian",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Mr. Bigglesworth",
+          "value": "M. Bigglesworth",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Off",
+          "value": "Désactivé",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Off · no talent point",
+          "value": "Désactivé · aucun point de talent",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "On",
+          "value": "Activé",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "On · no talent point",
+          "value": "Activé · aucun point de talent",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Requires the achievement {name}",
+          "value": "Nécessite le haut fait {name}",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Rest in Photosynthesis",
+          "value": "Repose en photosynthèse",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "The Brotherhood Falls",
+          "value": "La Confrérie tombe",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "The Old Gods Have No Friends",
+          "value": "Les Dieux très anciens n'ont pas d'amis",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Things That Go Bump in the Night",
+          "value": "Ce qui rôde la nuit",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Together, To the End",
+          "value": "Ensemble, jusqu'au bout",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Totem'ly Balanced",
+          "value": "Totem-ent équilibré",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Turn off",
+          "value": "Désactiver",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Turn on",
+          "value": "Activer",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "United Front",
+          "value": "Front uni",
+          "label_family": "perk_name"
+        },
+        {
+          "key": "White Devilsaur",
+          "value": "Diablosaure blanc",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "cosmetic.90108",
+          "value": "Chapeau d'amiral",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90109",
+          "value": "Chapeau d'amiral de la Voile sanglante",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90110",
+          "value": "Cape de la Confrérie",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90111",
+          "value": "Étreinte du lycanthrope",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90112",
+          "value": "Chapeau de Blanchetête",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90113",
+          "value": "Cape du seigneur des couvées",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90114",
+          "value": "Cape des Dévorés",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "tabard.90025",
+          "value": "Tabard du vainqueur du concours",
+          "label_family": "tabard_name"
+        }
+      ],
+      "source_only_key_values": [],
+      "changed_existing_values": [],
+      "added_values_equal_English": 0,
+      "added_keys_with_value_equal_English": [],
+      "all_added_values_nonempty": true
+    },
+    {
+      "code": "ro",
+      "native_keys": 2979,
+      "source_keys": 2929,
+      "missing_source_key_values": [
+        {
+          "key": "A White Devilsaur fights at your side in place of the wolf Tame Beast brings and the raptor Bestial Wrath adds: one beast, biting as often and as hard as they would. Tame Beast and Bestial Wrath still need their points.",
+          "value": "Un Devilsaur alb luptă alături de tine în locul lupului adus de Îmblânzirea fiarei și al raptorului adăugat de Mânia bestială: o singură fiară, care mușcă la fel de des și de tare cum ar mușca ei. Îmblânzirea fiarei și Mânia bestială tot au nevoie de punctele lor.",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Against All Odds",
+          "value": "Împotriva tuturor șanselor",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Ancient Protector",
+          "value": "Ocrotitor străvechi",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Better Together",
+          "value": "Mai buni împreună",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Complete Duskwood with at least one other player, without any player dying.",
+          "value": "Termină Duskwood cu cel puțin încă un jucător, fără ca vreun jucător să moară.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete Un'Goro Crater in co-op with 5 Hunters.",
+          "value": "Termină Un'Goro Crater în co-op cu 5 vânători.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete Warsong Gulch and Arathi Basin, each with at least one other player.",
+          "value": "Termină Warsong Gulch și Arathi Basin, de fiecare dată cu cel puțin încă un jucător.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete all 12 zones, each with at least one other player, across any number of runs.",
+          "value": "Termină toate cele 12 zone, fiecare cu cel puțin încă un jucător, în oricâte partide.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete any zone in co-op with all 5 players using the same class.",
+          "value": "Termină orice zonă în co-op cu toți cei 5 jucători folosind aceeași clasă.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete any zone with at least one other player, with all four enemy difficulty modifiers at maximum.",
+          "value": "Termină orice zonă cu cel puțin încă un jucător, cu toți cei patru modificatori de dificultate ai inamicilor la maximum.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete your first zone with at least one other player.",
+          "value": "Termină prima ta zonă cu cel puțin încă un jucător.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Azuregos and Nefarian, each with at least one other player.",
+          "value": "Învinge-i pe Azuregos și Nefarian, de fiecare dată cu cel puțin încă un jucător.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat C'Thun with at least one other player, with all four enemy difficulty modifiers at maximum.",
+          "value": "Învinge-l pe C'Thun cu cel puțin încă un jucător, cu toți cei patru modificatori de dificultate ai inamicilor la maximum.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Edwin VanCleef in co-op with 5 players, all using different classes.",
+          "value": "Învinge-l pe Edwin VanCleef în co-op cu 5 jucători, toți cu clase diferite.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Hakkar with 5 Warriors, all talented into Bladestorm. Whirlwind must deliver the killing blow.",
+          "value": "Învinge-l pe Hakkar cu 5 războinici, toți cu talentul Furtuna lamelor. Vârtej trebuie să dea lovitura de grație.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat High Inquisitor Whitemane in co-op with 5 Paladins, all having Consecration as their highest-ranked spell. Consecration must deliver the killing blow.",
+          "value": "Învinge-o pe Marele Inchizitor Whitemane în co-op cu 5 paladini, toți având Consacrare ca vraja cu rangul cel mai mare. Consacrare trebuie să dea lovitura de grație.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Kel'Thuzad in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.",
+          "value": "Învinge-l pe Kel'Thuzad în co-op cu 5 druizi, toți cu talentul Liniște. Liniște trebuie să dea lovitura de grație.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Nefarian in co-op with 5 Shamans, all having Magma Totem as their highest-ranked spell. Magma Totem must deliver the killing blow.",
+          "value": "Învinge-l pe Nefarian în co-op cu 5 șamani, toți având Totemul magmei ca vraja cu rangul cel mai mare. Totemul magmei trebuie să dea lovitura de grație.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Dragonslayers",
+          "value": "Ucigași de dragoni",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Five of a Kind",
+          "value": "Cinci la fel",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "For the Team",
+          "value": "Pentru echipă",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Hakkar Smoothie",
+          "value": "Smoothie de Hakkar",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Holy Frame Drops",
+          "value": "Căderi sfinte de FPS",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Jurassic Pack",
+          "value": "Haita jurasică",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Mini Herod",
+          "value": "Mini Herod",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Mini Nefarian",
+          "value": "Mini Nefarian",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Mr. Bigglesworth",
+          "value": "Mr. Bigglesworth",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Off",
+          "value": "Oprit",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Off · no talent point",
+          "value": "Oprit · fără punct de talent",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "On",
+          "value": "Pornit",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "On · no talent point",
+          "value": "Pornit · fără punct de talent",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Requires the achievement {name}",
+          "value": "Necesită realizarea {name}",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Rest in Photosynthesis",
+          "value": "Odihnește-te în fotosinteză",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "The Brotherhood Falls",
+          "value": "Frăția cade",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "The Old Gods Have No Friends",
+          "value": "Zeii Străvechi n-au prieteni",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Things That Go Bump in the Night",
+          "value": "Ce bântuie noaptea",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Together, To the End",
+          "value": "Împreună, până la capăt",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Totem'ly Balanced",
+          "value": "Totemal echilibrat",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Turn off",
+          "value": "Oprește",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Turn on",
+          "value": "Pornește",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "United Front",
+          "value": "Front unit",
+          "label_family": "perk_name"
+        },
+        {
+          "key": "White Devilsaur",
+          "value": "Devilsaur alb",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "cosmetic.90108",
+          "value": "Pălăria amiralului",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90109",
+          "value": "Pălăria amiralului Bloodsail",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90110",
+          "value": "Mantia Frăției",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90111",
+          "value": "Îmbrățișarea licanului",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90112",
+          "value": "Pălăriuța lui Whitemane",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90113",
+          "value": "Mantia Stăpânului puietului",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90114",
+          "value": "Mantia celor devorați",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "tabard.90025",
+          "value": "Tabardul câștigătorului concursului",
+          "label_family": "tabard_name"
+        }
+      ],
+      "source_only_key_values": [],
+      "changed_existing_values": [],
+      "added_values_equal_English": 3,
+      "added_keys_with_value_equal_English": [
+        "Mini Herod",
+        "Mini Nefarian",
+        "Mr. Bigglesworth"
+      ],
+      "all_added_values_nonempty": true
+    },
+    {
+      "code": "tr",
+      "native_keys": 2979,
+      "source_keys": 2929,
+      "missing_source_key_values": [
+        {
+          "key": "A White Devilsaur fights at your side in place of the wolf Tame Beast brings and the raptor Bestial Wrath adds: one beast, biting as often and as hard as they would. Tame Beast and Bestial Wrath still need their points.",
+          "value": "Hayvan Evcilleştirme'nin getirdiği kurdun ve Hayvani Gazap'ın eklediği raptorun yerine yanında bir Beyaz Devilsaur savaşır: tek bir canavar, onlar kadar sık ve sert ısırır. Hayvan Evcilleştirme ve Hayvani Gazap yine de puanlarını gerektirir.",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Against All Odds",
+          "value": "Tüm İhtimallere Karşı",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Ancient Protector",
+          "value": "Kadim Koruyucu",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Better Together",
+          "value": "Birlikte Daha Güçlü",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Complete Duskwood with at least one other player, without any player dying.",
+          "value": "Hiçbir oyuncu ölmeden Duskwood'u en az bir başka oyuncuyla tamamla.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete Un'Goro Crater in co-op with 5 Hunters.",
+          "value": "5 Avcı ile Un'Goro Crater'ı ortak oyunda tamamla.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete Warsong Gulch and Arathi Basin, each with at least one other player.",
+          "value": "Warsong Gulch ve Arathi Basin'i, her birini en az bir başka oyuncuyla tamamla.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete all 12 zones, each with at least one other player, across any number of runs.",
+          "value": "Kaç oyunda olursa olsun, 12 bölgenin hepsini, her birini en az bir başka oyuncuyla tamamla.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete any zone in co-op with all 5 players using the same class.",
+          "value": "5 oyuncunun hepsi aynı sınıfı oynarken herhangi bir bölgeyi ortak oyunda tamamla.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete any zone with at least one other player, with all four enemy difficulty modifiers at maximum.",
+          "value": "Dört düşman zorluk ayarının hepsi en yüksekteyken herhangi bir bölgeyi en az bir başka oyuncuyla tamamla.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete your first zone with at least one other player.",
+          "value": "İlk bölgeni en az bir başka oyuncuyla tamamla.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Azuregos and Nefarian, each with at least one other player.",
+          "value": "Azuregos'u ve Nefarian'ı, her birini en az bir başka oyuncuyla yen.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat C'Thun with at least one other player, with all four enemy difficulty modifiers at maximum.",
+          "value": "Dört düşman zorluk ayarının hepsi en yüksekteyken C'Thun'u en az bir başka oyuncuyla yen.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Edwin VanCleef in co-op with 5 players, all using different classes.",
+          "value": "Hepsi farklı sınıflarda 5 oyuncuyla ortak oyunda Edwin VanCleef'i yen.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Hakkar with 5 Warriors, all talented into Bladestorm. Whirlwind must deliver the killing blow.",
+          "value": "Hepsi Kılıç Fırtınası yeteneğini almış 5 Savaşçı ile Hakkar'ı yen. Son darbeyi Whirlwind vurmalı.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat High Inquisitor Whitemane in co-op with 5 Paladins, all having Consecration as their highest-ranked spell. Consecration must deliver the killing blow.",
+          "value": "En yüksek seviyeli büyüsü Consecration olan 5 Paladin ile ortak oyunda High Inquisitor Whitemane'i yen. Son darbeyi Consecration vurmalı.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Kel'Thuzad in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.",
+          "value": "Hepsi Dinginlik yeteneğini almış 5 Druid ile ortak oyunda Kel'Thuzad'ı yen. Son darbeyi Dinginlik vurmalı.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Nefarian in co-op with 5 Shamans, all having Magma Totem as their highest-ranked spell. Magma Totem must deliver the killing blow.",
+          "value": "En yüksek seviyeli büyüsü Magma Totem olan 5 Şaman ile ortak oyunda Nefarian'ı yen. Son darbeyi Magma Totem vurmalı.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Dragonslayers",
+          "value": "Ejderha Avcıları",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Five of a Kind",
+          "value": "Beşi de Aynı",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "For the Team",
+          "value": "Takım İçin",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Hakkar Smoothie",
+          "value": "Hakkar Smoothiesi",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Holy Frame Drops",
+          "value": "Kutsal FPS Düşüşü",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Jurassic Pack",
+          "value": "Jura Sürüsü",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Mini Herod",
+          "value": "Mini Herod",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Mini Nefarian",
+          "value": "Mini Nefarian",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Mr. Bigglesworth",
+          "value": "Mr. Bigglesworth",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Off",
+          "value": "Kapalı",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Off · no talent point",
+          "value": "Kapalı · yetenek puanı gerekmez",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "On",
+          "value": "Açık",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "On · no talent point",
+          "value": "Açık · yetenek puanı gerekmez",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Requires the achievement {name}",
+          "value": "{name} başarımı gerekir",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Rest in Photosynthesis",
+          "value": "Fotosentez İçinde Yat",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "The Brotherhood Falls",
+          "value": "Kardeşlik Düşüyor",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "The Old Gods Have No Friends",
+          "value": "Kadim Tanrıların Dostu Yok",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Things That Go Bump in the Night",
+          "value": "Gecenin Karanlığında",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Together, To the End",
+          "value": "Birlikte, Sonuna Kadar",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Totem'ly Balanced",
+          "value": "Totemen Dengeli",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Turn off",
+          "value": "Kapat",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Turn on",
+          "value": "Aç",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "United Front",
+          "value": "Birleşik Cephe",
+          "label_family": "perk_name"
+        },
+        {
+          "key": "White Devilsaur",
+          "value": "Beyaz Devilsaur",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "cosmetic.90108",
+          "value": "Amiral Şapkası",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90109",
+          "value": "Bloodsail Amiral Şapkası",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90110",
+          "value": "Kardeşlik Pelerini",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90111",
+          "value": "Lycan'ın Kucağı",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90112",
+          "value": "Whitemane'in Şapkası",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90113",
+          "value": "Kuluçka Lordu Pelerini",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90114",
+          "value": "Yutulmuşların Pelerini",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "tabard.90025",
+          "value": "Contest Winner's Tabard",
+          "label_family": "tabard_name"
+        }
+      ],
+      "source_only_key_values": [],
+      "changed_existing_values": [],
+      "added_values_equal_English": 4,
+      "added_keys_with_value_equal_English": [
+        "Mini Herod",
+        "Mini Nefarian",
+        "Mr. Bigglesworth",
+        "tabard.90025"
+      ],
+      "all_added_values_nonempty": true
+    },
+    {
+      "code": "ru",
+      "native_keys": 2979,
+      "source_keys": 2929,
+      "missing_source_key_values": [
+        {
+          "key": "A White Devilsaur fights at your side in place of the wolf Tame Beast brings and the raptor Bestial Wrath adds: one beast, biting as often and as hard as they would. Tame Beast and Bestial Wrath still need their points.",
+          "value": "Вместо волка от Приручения животного и ящера от Звериного гнева рядом с вами сражается белый девизавр: один зверь, который кусает так же часто и сильно, как кусали бы они. Приручению животного и Звериному гневу по-прежнему нужны их очки.",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Against All Odds",
+          "value": "Вопреки всему",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Ancient Protector",
+          "value": "Древний защитник",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Better Together",
+          "value": "Вместе веселее",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Complete Duskwood with at least one other player, without any player dying.",
+          "value": "Пройдите Сумеречный лес хотя бы с одним другим игроком так, чтобы ни один игрок не погиб.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete Un'Goro Crater in co-op with 5 Hunters.",
+          "value": "Пройдите Кратер Ун'Горо в кооперативе пятью охотниками.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete Warsong Gulch and Arathi Basin, each with at least one other player.",
+          "value": "Пройдите Ущелье Песни Войны и Низину Арати, каждую — хотя бы с одним другим игроком.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete all 12 zones, each with at least one other player, across any number of runs.",
+          "value": "Пройдите все 12 зон, каждую — хотя бы с одним другим игроком, за любое число забегов.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete any zone in co-op with all 5 players using the same class.",
+          "value": "Пройдите любую зону в кооперативе, когда все 5 игроков играют одним классом.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete any zone with at least one other player, with all four enemy difficulty modifiers at maximum.",
+          "value": "Пройдите любую зону хотя бы с одним другим игроком, со всеми четырьмя модификаторами сложности врагов на максимуме.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete your first zone with at least one other player.",
+          "value": "Пройдите свою первую зону хотя бы с одним другим игроком.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Azuregos and Nefarian, each with at least one other player.",
+          "value": "Победите Азурегоса и Нефариана, каждого — хотя бы с одним другим игроком.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat C'Thun with at least one other player, with all four enemy difficulty modifiers at maximum.",
+          "value": "Победите К'Туна хотя бы с одним другим игроком, со всеми четырьмя модификаторами сложности врагов на максимуме.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Edwin VanCleef in co-op with 5 players, all using different classes.",
+          "value": "Победите Эдвина ван Клифа в кооперативе впятером, все — разными классами.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Hakkar with 5 Warriors, all talented into Bladestorm. Whirlwind must deliver the killing blow.",
+          "value": "Победите Хаккара пятью воинами, у каждого из которых изучен Вихрь клинков. Смертельный удар должен нанести Вихрь.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat High Inquisitor Whitemane in co-op with 5 Paladins, all having Consecration as their highest-ranked spell. Consecration must deliver the killing blow.",
+          "value": "Победите Верховную инквизиторшу Вайтмейн в кооперативе пятью паладинами, у каждого из которых Освящение — заклинание наивысшего ранга. Смертельный удар должно нанести Освящение.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Kel'Thuzad in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.",
+          "value": "Победите Кел'Тузада в кооперативе пятью друидами, у каждого из которых изучено Спокойствие. Смертельный удар должно нанести Спокойствие.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Nefarian in co-op with 5 Shamans, all having Magma Totem as their highest-ranked spell. Magma Totem must deliver the killing blow.",
+          "value": "Победите Нефариана в кооперативе пятью шаманами, у каждого из которых Тотем магмы — заклинание наивысшего ранга. Смертельный удар должен нанести Тотем магмы.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Dragonslayers",
+          "value": "Драконоборцы",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Five of a Kind",
+          "value": "Пятеро из ларца",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "For the Team",
+          "value": "За команду!",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Hakkar Smoothie",
+          "value": "Смузи из Хаккара",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Holy Frame Drops",
+          "value": "Святая просадка FPS",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Jurassic Pack",
+          "value": "Юрская стая",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Mini Herod",
+          "value": "Мини-Ирод",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Mini Nefarian",
+          "value": "Мини-Нефариан",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Mr. Bigglesworth",
+          "value": "Мистер Бигглсуорт",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Off",
+          "value": "Выкл.",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Off · no talent point",
+          "value": "Выкл. · без очка талантов",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "On",
+          "value": "Вкл.",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "On · no talent point",
+          "value": "Вкл. · без очка талантов",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Requires the achievement {name}",
+          "value": "Требуется достижение «{name}»",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Rest in Photosynthesis",
+          "value": "Покойся с фотосинтезом",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "The Brotherhood Falls",
+          "value": "Падение Братства",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "The Old Gods Have No Friends",
+          "value": "У Древних богов нет друзей",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Things That Go Bump in the Night",
+          "value": "Кто там стучит в ночи?",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Together, To the End",
+          "value": "Вместе до конца",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Totem'ly Balanced",
+          "value": "Тотемальный баланс",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Turn off",
+          "value": "Выключить",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Turn on",
+          "value": "Включить",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "United Front",
+          "value": "Единый фронт",
+          "label_family": "perk_name"
+        },
+        {
+          "key": "White Devilsaur",
+          "value": "Белый девизавр",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "cosmetic.90108",
+          "value": "Адмиральская шляпа",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90109",
+          "value": "Шляпа адмирала Кровавого Паруса",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90110",
+          "value": "Плащ Братства",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90111",
+          "value": "Объятия ликана",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90112",
+          "value": "Шляпа Вайтмейн",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90113",
+          "value": "Плащ Предводителя драконов",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90114",
+          "value": "Плащ поглощённого",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "tabard.90025",
+          "value": "Гербовая накидка победителя конкурса",
+          "label_family": "tabard_name"
+        }
+      ],
+      "source_only_key_values": [],
+      "changed_existing_values": [],
+      "added_values_equal_English": 0,
+      "added_keys_with_value_equal_English": [],
+      "all_added_values_nonempty": true
+    },
+    {
+      "code": "uk",
+      "native_keys": 2979,
+      "source_keys": 2929,
+      "missing_source_key_values": [
+        {
+          "key": "A White Devilsaur fights at your side in place of the wolf Tame Beast brings and the raptor Bestial Wrath adds: one beast, biting as often and as hard as they would. Tame Beast and Bestial Wrath still need their points.",
+          "value": "Замість вовка від Приручення звіра і ящера від Звірячого гніву поруч із вами б'ється білий дияволозавр: один звір, що кусає так само часто й сильно, як кусали б вони. Приручення звіра і Звірячий гнів досі потребують своїх очок.",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Against All Odds",
+          "value": "Всупереч усьому",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Ancient Protector",
+          "value": "Древній захисник",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Better Together",
+          "value": "Разом веселіше",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Complete Duskwood with at least one other player, without any player dying.",
+          "value": "Пройдіть Сутінковий ліс принаймні з одним іншим гравцем так, щоб жоден гравець не загинув.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete Un'Goro Crater in co-op with 5 Hunters.",
+          "value": "Пройдіть Кратер Ун'Ґоро в кооперативі п'ятьма мисливцями.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete Warsong Gulch and Arathi Basin, each with at least one other player.",
+          "value": "Пройдіть Ущелину Пісні Війни та Низину Араті, кожну — принаймні з одним іншим гравцем.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete all 12 zones, each with at least one other player, across any number of runs.",
+          "value": "Пройдіть усі 12 зон, кожну — принаймні з одним іншим гравцем, за будь-яку кількість забігів.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete any zone in co-op with all 5 players using the same class.",
+          "value": "Пройдіть будь-яку зону в кооперативі, коли всі 5 гравців грають одним класом.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete any zone with at least one other player, with all four enemy difficulty modifiers at maximum.",
+          "value": "Пройдіть будь-яку зону принаймні з одним іншим гравцем, з усіма чотирма модифікаторами складності ворогів на максимумі.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete your first zone with at least one other player.",
+          "value": "Пройдіть свою першу зону принаймні з одним іншим гравцем.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Azuregos and Nefarian, each with at least one other player.",
+          "value": "Переможіть Азурегоса й Нефаріана, кожного — принаймні з одним іншим гравцем.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat C'Thun with at least one other player, with all four enemy difficulty modifiers at maximum.",
+          "value": "Переможіть К'Туна принаймні з одним іншим гравцем, з усіма чотирма модифікаторами складності ворогів на максимумі.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Edwin VanCleef in co-op with 5 players, all using different classes.",
+          "value": "Переможіть Едвіна Ван Кліфа в кооперативі вп'ятьох, усі — різними класами.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Hakkar with 5 Warriors, all talented into Bladestorm. Whirlwind must deliver the killing blow.",
+          "value": "Переможіть Хаккара п'ятьма воїнами, у кожного з яких вивчено Бурю клинків. Смертельного удару має завдати Вихор.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat High Inquisitor Whitemane in co-op with 5 Paladins, all having Consecration as their highest-ranked spell. Consecration must deliver the killing blow.",
+          "value": "Переможіть Верховну інквізиторку Вайтмейн у кооперативі п'ятьма паладинами, у кожного з яких Освячення — закляття найвищого рангу. Смертельного удару має завдати Освячення.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Kel'Thuzad in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.",
+          "value": "Переможіть Кел'Тузада в кооперативі п'ятьма друїдами, у кожного з яких вивчено Спокій. Смертельного удару має завдати Спокій.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Nefarian in co-op with 5 Shamans, all having Magma Totem as their highest-ranked spell. Magma Totem must deliver the killing blow.",
+          "value": "Переможіть Нефаріана в кооперативі п'ятьма шаманами, у кожного з яких Тотем магми — закляття найвищого рангу. Смертельного удару має завдати Тотем магми.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Dragonslayers",
+          "value": "Драконоборці",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Five of a Kind",
+          "value": "П'ятеро однакових",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "For the Team",
+          "value": "За команду!",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Hakkar Smoothie",
+          "value": "Смузі з Хаккара",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Holy Frame Drops",
+          "value": "Святе просідання FPS",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Jurassic Pack",
+          "value": "Юрська зграя",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Mini Herod",
+          "value": "Міні-Ірод",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Mini Nefarian",
+          "value": "Міні-Нефаріан",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Mr. Bigglesworth",
+          "value": "Містер Бігглсворт",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Off",
+          "value": "Вимк.",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Off · no talent point",
+          "value": "Вимк. · без очка таланту",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "On",
+          "value": "Увімк.",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "On · no talent point",
+          "value": "Увімк. · без очка таланту",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Requires the achievement {name}",
+          "value": "Потрібне досягнення «{name}»",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Rest in Photosynthesis",
+          "value": "Спочивай у фотосинтезі",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "The Brotherhood Falls",
+          "value": "Падіння Братства",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "The Old Gods Have No Friends",
+          "value": "У Давніх богів немає друзів",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Things That Go Bump in the Night",
+          "value": "Хто там стукає вночі?",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Together, To the End",
+          "value": "Разом до кінця",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Totem'ly Balanced",
+          "value": "Тотемальний баланс",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Turn off",
+          "value": "Вимкнути",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Turn on",
+          "value": "Увімкнути",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "United Front",
+          "value": "Єдиний фронт",
+          "label_family": "perk_name"
+        },
+        {
+          "key": "White Devilsaur",
+          "value": "Білий дияволозавр",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "cosmetic.90108",
+          "value": "Адміральський капелюх",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90109",
+          "value": "Капелюх адмірала Кривавого Вітрила",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90110",
+          "value": "Плащ Братства",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90111",
+          "value": "Обійми лікана",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90112",
+          "value": "Капелюх Вайтмейн",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90113",
+          "value": "Плащ Владики виводку",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90114",
+          "value": "Плащ поглинутого",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "tabard.90025",
+          "value": "Гербова накидка переможця конкурсу",
+          "label_family": "tabard_name"
+        }
+      ],
+      "source_only_key_values": [],
+      "changed_existing_values": [],
+      "added_values_equal_English": 0,
+      "added_keys_with_value_equal_English": [],
+      "all_added_values_nonempty": true
+    },
+    {
+      "code": "zh",
+      "native_keys": 2979,
+      "source_keys": 2929,
+      "missing_source_key_values": [
+        {
+          "key": "A White Devilsaur fights at your side in place of the wolf Tame Beast brings and the raptor Bestial Wrath adds: one beast, biting as often and as hard as they would. Tame Beast and Bestial Wrath still need their points.",
+          "value": "一只白色魔暴龙在你身边作战，取代驯服野兽带来的狼和狂野怒火加入的迅猛龙：只有一只野兽，但撕咬的频率和力度与它们相同。驯服野兽和狂野怒火仍需投入天赋点。",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Against All Odds",
+          "value": "逆天而行",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Ancient Protector",
+          "value": "远古保护者",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Better Together",
+          "value": "携手更强",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Complete Duskwood with at least one other player, without any player dying.",
+          "value": "与至少一名其他玩家一起完成暮色森林，且没有任何玩家死亡。",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete Un'Goro Crater in co-op with 5 Hunters.",
+          "value": "在合作模式中用5名猎人完成安戈洛环形山。",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete Warsong Gulch and Arathi Basin, each with at least one other player.",
+          "value": "完成战歌峡谷和阿拉希盆地，每次都要与至少一名其他玩家一起。",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete all 12 zones, each with at least one other player, across any number of runs.",
+          "value": "完成全部12个区域，每个都要与至少一名其他玩家一起，可分多次冒险完成。",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete any zone in co-op with all 5 players using the same class.",
+          "value": "在合作模式中，5名玩家全部使用同一职业完成任意区域。",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete any zone with at least one other player, with all four enemy difficulty modifiers at maximum.",
+          "value": "与至少一名其他玩家一起，将四项敌人难度调整全部调至最高并完成任意区域。",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete your first zone with at least one other player.",
+          "value": "与至少一名其他玩家一起首次完成一个区域。",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Azuregos and Nefarian, each with at least one other player.",
+          "value": "击败艾索雷苟斯和奈法利安，每次都要与至少一名其他玩家一起。",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat C'Thun with at least one other player, with all four enemy difficulty modifiers at maximum.",
+          "value": "与至少一名其他玩家一起，将四项敌人难度调整全部调至最高并击败克苏恩。",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Edwin VanCleef in co-op with 5 players, all using different classes.",
+          "value": "在合作模式中，用5名职业各不相同的玩家击败艾德温·范克里夫。",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Hakkar with 5 Warriors, all talented into Bladestorm. Whirlwind must deliver the killing blow.",
+          "value": "用5名都点出了剑刃风暴天赋的战士击败哈卡。必须由旋风斩造成致命一击。",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat High Inquisitor Whitemane in co-op with 5 Paladins, all having Consecration as their highest-ranked spell. Consecration must deliver the killing blow.",
+          "value": "在合作模式中，用5名等级最高的法术都是奉献的圣骑士击败大检察官怀特迈恩。必须由奉献造成致命一击。",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Kel'Thuzad in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.",
+          "value": "在合作模式中，用5名都点出了宁静天赋的德鲁伊击败克尔苏加德。必须由宁静造成致命一击。",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Nefarian in co-op with 5 Shamans, all having Magma Totem as their highest-ranked spell. Magma Totem must deliver the killing blow.",
+          "value": "在合作模式中，用5名等级最高的法术都是熔岩图腾的萨满祭司击败奈法利安。必须由熔岩图腾造成致命一击。",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Dragonslayers",
+          "value": "屠龙者",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Five of a Kind",
+          "value": "五胞胎",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "For the Team",
+          "value": "为了团队",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Hakkar Smoothie",
+          "value": "哈卡奶昔",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Holy Frame Drops",
+          "value": "神圣掉帧",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Jurassic Pack",
+          "value": "侏罗纪猎团",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Mini Herod",
+          "value": "迷你赫洛德",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Mini Nefarian",
+          "value": "迷你奈法利安",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Mr. Bigglesworth",
+          "value": "比格沃斯先生",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Off",
+          "value": "关",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Off · no talent point",
+          "value": "关 · 无需天赋点",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "On",
+          "value": "开",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "On · no talent point",
+          "value": "开 · 无需天赋点",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Requires the achievement {name}",
+          "value": "需要成就{name}",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Rest in Photosynthesis",
+          "value": "光合安息",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "The Brotherhood Falls",
+          "value": "兄弟会覆灭",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "The Old Gods Have No Friends",
+          "value": "上古之神没有朋友",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Things That Go Bump in the Night",
+          "value": "夜半惊魂",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Together, To the End",
+          "value": "携手到最后",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Totem'ly Balanced",
+          "value": "图腾完美平衡",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Turn off",
+          "value": "关闭",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Turn on",
+          "value": "开启",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "United Front",
+          "value": "统一战线",
+          "label_family": "perk_name"
+        },
+        {
+          "key": "White Devilsaur",
+          "value": "白色魔暴龙",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "cosmetic.90108",
+          "value": "海军上将的帽子",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90109",
+          "value": "血帆海军上将的帽子",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90110",
+          "value": "兄弟会披风",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90111",
+          "value": "狼人之拥",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90112",
+          "value": "怀特迈恩的帽子",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90113",
+          "value": "龙巢之王披风",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90114",
+          "value": "被吞噬者披风",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "tabard.90025",
+          "value": "竞赛获胜者战袍",
+          "label_family": "tabard_name"
+        }
+      ],
+      "source_only_key_values": [],
+      "changed_existing_values": [],
+      "added_values_equal_English": 0,
+      "added_keys_with_value_equal_English": [],
+      "all_added_values_nonempty": true
+    },
+    {
+      "code": "ja",
+      "native_keys": 2979,
+      "source_keys": 2929,
+      "missing_source_key_values": [
+        {
+          "key": "A White Devilsaur fights at your side in place of the wolf Tame Beast brings and the raptor Bestial Wrath adds: one beast, biting as often and as hard as they would. Tame Beast and Bestial Wrath still need their points.",
+          "value": "「獣の調教」が連れてくる狼と「ビーストラース」が加えるラプターの代わりに、白いデビルザウルスがあなたの傍らで戦います。獣は1匹だけですが、噛みつく頻度も強さも彼らと同じです。「獣の調教」と「ビーストラース」には引き続きポイントが必要です。",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Against All Odds",
+          "value": "万に一つの勝機",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Ancient Protector",
+          "value": "古の守護者",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Better Together",
+          "value": "みんなで一緒に",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Complete Duskwood with at least one other player, without any player dying.",
+          "value": "ほかのプレイヤー1人以上と一緒に、誰も死なずにダスクウッドをクリアする。",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete Un'Goro Crater in co-op with 5 Hunters.",
+          "value": "協力プレイで、5人のハンターでアンゴロ・クレーターをクリアする。",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete Warsong Gulch and Arathi Basin, each with at least one other player.",
+          "value": "ウォーソング渓谷とアラシ盆地を、それぞれほかのプレイヤー1人以上と一緒にクリアする。",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete all 12 zones, each with at least one other player, across any number of runs.",
+          "value": "全12ゾーンを、それぞれほかのプレイヤー1人以上と一緒にクリアする（何回のランに分けてもよい）。",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete any zone in co-op with all 5 players using the same class.",
+          "value": "協力プレイで、5人全員が同じクラスでいずれかのゾーンをクリアする。",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete any zone with at least one other player, with all four enemy difficulty modifiers at maximum.",
+          "value": "ほかのプレイヤー1人以上と一緒に、敵の4つの難易度設定をすべて最大にしていずれかのゾーンをクリアする。",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete your first zone with at least one other player.",
+          "value": "ほかのプレイヤー1人以上と一緒に、初めてゾーンをクリアする。",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Azuregos and Nefarian, each with at least one other player.",
+          "value": "アズレゴスとネファリアンを、それぞれほかのプレイヤー1人以上と一緒に倒す。",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat C'Thun with at least one other player, with all four enemy difficulty modifiers at maximum.",
+          "value": "ほかのプレイヤー1人以上と一緒に、敵の4つの難易度設定をすべて最大にしてクトゥーンを倒す。",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Edwin VanCleef in co-op with 5 players, all using different classes.",
+          "value": "協力プレイで、全員が異なるクラスの5人でエドウィン・ヴァンクリーフを倒す。",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Hakkar with 5 Warriors, all talented into Bladestorm. Whirlwind must deliver the killing blow.",
+          "value": "全員がブレードストームのタレントを取った5人のウォリアーでハッカーを倒す。とどめはワールウィンドで刺すこと。",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat High Inquisitor Whitemane in co-op with 5 Paladins, all having Consecration as their highest-ranked spell. Consecration must deliver the killing blow.",
+          "value": "協力プレイで、全員の最高ランクの呪文がコンセクレーションである5人のパラディンで大審問官ホワイトメインを倒す。とどめはコンセクレーションで刺すこと。",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Kel'Thuzad in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.",
+          "value": "協力プレイで、全員がトランクィリティのタレントを取った5人のドルイドでケル・スザードを倒す。とどめはトランクィリティで刺すこと。",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Nefarian in co-op with 5 Shamans, all having Magma Totem as their highest-ranked spell. Magma Totem must deliver the killing blow.",
+          "value": "協力プレイで、全員の最高ランクの呪文がマグマトーテムである5人のシャーマンでネファリアンを倒す。とどめはマグマトーテムで刺すこと。",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Dragonslayers",
+          "value": "ドラゴンスレイヤー",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Five of a Kind",
+          "value": "五つ子",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "For the Team",
+          "value": "チームのために",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Hakkar Smoothie",
+          "value": "ハッカー・スムージー",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Holy Frame Drops",
+          "value": "聖なるフレーム落ち",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Jurassic Pack",
+          "value": "ジュラシック・パック",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Mini Herod",
+          "value": "ミニ・ヘロド",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Mini Nefarian",
+          "value": "ミニ・ネファリアン",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Mr. Bigglesworth",
+          "value": "ミスター・ビグルスワース",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Off",
+          "value": "オフ",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Off · no talent point",
+          "value": "オフ · タレントポイント不要",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "On",
+          "value": "オン",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "On · no talent point",
+          "value": "オン · タレントポイント不要",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Requires the achievement {name}",
+          "value": "実績「{name}」が必要",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Rest in Photosynthesis",
+          "value": "光合成に眠れ",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "The Brotherhood Falls",
+          "value": "ブラザーフッドの落日",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "The Old Gods Have No Friends",
+          "value": "古の神に友はなし",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Things That Go Bump in the Night",
+          "value": "夜にうごめくもの",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Together, To the End",
+          "value": "最後まで一緒に",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Totem'ly Balanced",
+          "value": "トーテムで完全調和",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Turn off",
+          "value": "オフにする",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Turn on",
+          "value": "オンにする",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "United Front",
+          "value": "共同戦線",
+          "label_family": "perk_name"
+        },
+        {
+          "key": "White Devilsaur",
+          "value": "白いデビルザウルス",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "cosmetic.90108",
+          "value": "提督の帽子",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90109",
+          "value": "ブラッドセイル提督の帽子",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90110",
+          "value": "ブラザーフッドのケープ",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90111",
+          "value": "ライカンの抱擁",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90112",
+          "value": "ホワイトメインの帽子",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90113",
+          "value": "ブルードロードのクローク",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90114",
+          "value": "喰われし者のクローク",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "tabard.90025",
+          "value": "コンテスト優勝者のタバード",
+          "label_family": "tabard_name"
+        }
+      ],
+      "source_only_key_values": [],
+      "changed_existing_values": [],
+      "added_values_equal_English": 0,
+      "added_keys_with_value_equal_English": [],
+      "all_added_values_nonempty": true
+    },
+    {
+      "code": "ko",
+      "native_keys": 2979,
+      "source_keys": 2929,
+      "missing_source_key_values": [
+        {
+          "key": "A White Devilsaur fights at your side in place of the wolf Tame Beast brings and the raptor Bestial Wrath adds: one beast, biting as often and as hard as they would. Tame Beast and Bestial Wrath still need their points.",
+          "value": "야수 길들이기가 데려오는 늑대와 야수의 격노가 더하는 랩터 대신 하얀 데빌사우루스가 곁에서 싸웁니다. 야수는 하나뿐이지만, 그들만큼 자주, 그리고 세게 뭅니다. 야수 길들이기와 야수의 격노에는 여전히 특성 점수가 필요합니다.",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Against All Odds",
+          "value": "역경을 딛고",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Ancient Protector",
+          "value": "고대의 수호자",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Better Together",
+          "value": "함께라서 더 좋아",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Complete Duskwood with at least one other player, without any player dying.",
+          "value": "다른 플레이어 1명 이상과 함께 아무도 죽지 않고 그늘숲을 완료하세요.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete Un'Goro Crater in co-op with 5 Hunters.",
+          "value": "협동에서 사냥꾼 5명으로 운고로 분화구를 완료하세요.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete Warsong Gulch and Arathi Basin, each with at least one other player.",
+          "value": "전쟁노래 협곡과 아라시 분지를 각각 다른 플레이어 1명 이상과 함께 완료하세요.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete all 12 zones, each with at least one other player, across any number of runs.",
+          "value": "12개 지역을 모두 각각 다른 플레이어 1명 이상과 함께 완료하세요. 여러 번의 도전에 걸쳐도 됩니다.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete any zone in co-op with all 5 players using the same class.",
+          "value": "협동에서 5명 모두 같은 직업으로 아무 지역이나 완료하세요.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete any zone with at least one other player, with all four enemy difficulty modifiers at maximum.",
+          "value": "다른 플레이어 1명 이상과 함께 적 난이도 설정 네 가지를 모두 최대로 두고 아무 지역이나 완료하세요.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Complete your first zone with at least one other player.",
+          "value": "다른 플레이어 1명 이상과 함께 처음으로 지역을 완료하세요.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Azuregos and Nefarian, each with at least one other player.",
+          "value": "아주어고스와 네파리안을 각각 다른 플레이어 1명 이상과 함께 처치하십시오.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat C'Thun with at least one other player, with all four enemy difficulty modifiers at maximum.",
+          "value": "다른 플레이어 1명 이상과 함께 적 난이도 설정 네 가지를 모두 최대로 두고 쑨을 처치하십시오.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Edwin VanCleef in co-op with 5 players, all using different classes.",
+          "value": "협동에서 모두 다른 직업인 5명으로 에드윈 밴클리프를 처치하십시오.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Hakkar with 5 Warriors, all talented into Bladestorm. Whirlwind must deliver the killing blow.",
+          "value": "모두 칼날폭풍 특성을 찍은 전사 5명으로 학카르를 처치하십시오. 소용돌이로 결정타를 가해야 합니다.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat High Inquisitor Whitemane in co-op with 5 Paladins, all having Consecration as their highest-ranked spell. Consecration must deliver the killing blow.",
+          "value": "협동에서 가장 높은 등급의 주문이 모두 신성화인 성기사 5명으로 종교재판관 화이트메인을 처치하십시오. 신성화로 결정타를 가해야 합니다.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Kel'Thuzad in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.",
+          "value": "협동에서 모두 평온 특성을 찍은 드루이드 5명으로 켈투자드를 처치하십시오. 평온으로 결정타를 가해야 합니다.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Defeat Nefarian in co-op with 5 Shamans, all having Magma Totem as their highest-ranked spell. Magma Totem must deliver the killing blow.",
+          "value": "협동에서 가장 높은 등급의 주문이 모두 용암 토템인 주술사 5명으로 네파리안을 처치하십시오. 용암 토템으로 결정타를 가해야 합니다.",
+          "label_family": "achievement_description"
+        },
+        {
+          "key": "Dragonslayers",
+          "value": "용사냥꾼들",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Five of a Kind",
+          "value": "다섯 쌍둥이",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "For the Team",
+          "value": "팀을 위하여",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Hakkar Smoothie",
+          "value": "학카르 스무디",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Holy Frame Drops",
+          "value": "신성한 프레임 드랍",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Jurassic Pack",
+          "value": "쥬라기 사냥단",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Mini Herod",
+          "value": "미니 헤롯",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Mini Nefarian",
+          "value": "미니 네파리안",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Mr. Bigglesworth",
+          "value": "미스터 비글스워스",
+          "label_family": "companion_name"
+        },
+        {
+          "key": "Off",
+          "value": "꺼짐",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Off · no talent point",
+          "value": "꺼짐 · 특성 점수 불필요",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "On",
+          "value": "켜짐",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "On · no talent point",
+          "value": "켜짐 · 특성 점수 불필요",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Requires the achievement {name}",
+          "value": "업적 {name} 필요",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Rest in Photosynthesis",
+          "value": "광합성 속에 잠들라",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "The Brotherhood Falls",
+          "value": "형제단의 몰락",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "The Old Gods Have No Friends",
+          "value": "고대 신에겐 친구가 없다",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Things That Go Bump in the Night",
+          "value": "한밤의 불청객",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Together, To the End",
+          "value": "끝까지 함께",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Totem'ly Balanced",
+          "value": "토템적으로 완벽한 밸런스",
+          "label_family": "achievement_name"
+        },
+        {
+          "key": "Turn off",
+          "value": "끄기",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "Turn on",
+          "value": "켜기",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "United Front",
+          "value": "연합 전선",
+          "label_family": "perk_name"
+        },
+        {
+          "key": "White Devilsaur",
+          "value": "하얀 데빌사우루스",
+          "label_family": "hunter_switch_name_prose_or_control"
+        },
+        {
+          "key": "cosmetic.90108",
+          "value": "제독의 모자",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90109",
+          "value": "붉은해적단 제독의 모자",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90110",
+          "value": "형제단의 망토",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90111",
+          "value": "늑대인간의 포옹",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90112",
+          "value": "화이트메인의 모자",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90113",
+          "value": "용기대장의 망토",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "cosmetic.90114",
+          "value": "삼켜진 자의 망토",
+          "label_family": "cosmetic_name"
+        },
+        {
+          "key": "tabard.90025",
+          "value": "대회 우승자 휘장",
+          "label_family": "tabard_name"
+        }
+      ],
+      "source_only_key_values": [],
+      "changed_existing_values": [],
+      "added_values_equal_English": 0,
+      "added_keys_with_value_equal_English": [],
+      "all_added_values_nonempty": true
+    }
+  ],
+  "stale_source_achievement_description_keys": [
+    {
+      "key": "coop:together",
+      "name": "Better Together",
+      "source_description": "Complete your first zone in co-op."
+    },
+    {
+      "key": "coop:odds",
+      "name": "Against All Odds",
+      "source_description": "Complete any zone in co-op with all four enemy difficulty modifiers at maximum."
+    },
+    {
+      "key": "coop:bump",
+      "name": "Things That Go Bump in the Night",
+      "source_description": "Complete Duskwood in co-op without any player dying."
+    },
+    {
+      "key": "coop:team",
+      "name": "For the Team",
+      "source_description": "Complete Warsong Gulch and Arathi Basin in co-op."
+    },
+    {
+      "key": "coop:smoothie",
+      "name": "Hakkar Smoothie",
+      "source_description": "Defeat Hakkar in co-op with 5 Warriors, all talented into Bladestorm. Whirlwind must deliver the killing blow."
+    },
+    {
+      "key": "coop:dragonslayers",
+      "name": "Dragonslayers",
+      "source_description": "Defeat Azuregos and Nefarian in co-op."
+    },
+    {
+      "key": "coop:oldgods",
+      "name": "The Old Gods Have No Friends",
+      "source_description": "Defeat C'Thun in co-op with all four enemy difficulty modifiers at maximum."
+    },
+    {
+      "key": "coop:end",
+      "name": "Together, To the End",
+      "source_description": "Complete every zone in co-op, across any number of runs."
+    }
+  ],
+  "source_unlock_literal_vs_native_ID_key_leads": [
+    {
+      "achievement_key": "coop:together",
+      "source_unlock_name": "Admiral's Hat",
+      "native_translation_key": "cosmetic.90108",
+      "literal_name_key_present_in_native_catalogs": [],
+      "non_English_value_selector": "languages[code!=en].missing_source_key_values[key=cosmetic.90108]"
+    },
+    {
+      "achievement_key": "coop:fiveofakind",
+      "source_unlock_name": "Bloodsail Admiral's Hat",
+      "native_translation_key": "cosmetic.90109",
+      "literal_name_key_present_in_native_catalogs": [],
+      "non_English_value_selector": "languages[code!=en].missing_source_key_values[key=cosmetic.90109]"
+    },
+    {
+      "achievement_key": "coop:odds",
+      "source_unlock_name": "Contest Winner's Tabard",
+      "native_translation_key": "tabard.90025",
+      "literal_name_key_present_in_native_catalogs": [],
+      "non_English_value_selector": "languages[code!=en].missing_source_key_values[key=tabard.90025]"
+    },
+    {
+      "achievement_key": "coop:brotherhood",
+      "source_unlock_name": "Cape of the Brotherhood",
+      "native_translation_key": "cosmetic.90110",
+      "literal_name_key_present_in_native_catalogs": [],
+      "non_English_value_selector": "languages[code!=en].missing_source_key_values[key=cosmetic.90110]"
+    },
+    {
+      "achievement_key": "coop:bump",
+      "source_unlock_name": "Embrace of the Lycan",
+      "native_translation_key": "cosmetic.90111",
+      "literal_name_key_present_in_native_catalogs": [],
+      "non_English_value_selector": "languages[code!=en].missing_source_key_values[key=cosmetic.90111]"
+    },
+    {
+      "achievement_key": "coop:holyframe",
+      "source_unlock_name": "Whitemane's Chapeau",
+      "native_translation_key": "cosmetic.90112",
+      "literal_name_key_present_in_native_catalogs": [],
+      "non_English_value_selector": "languages[code!=en].missing_source_key_values[key=cosmetic.90112]"
+    },
+    {
+      "achievement_key": "coop:dragonslayers",
+      "source_unlock_name": "Cloak of the Brood Lord",
+      "native_translation_key": "cosmetic.90113",
+      "literal_name_key_present_in_native_catalogs": [],
+      "non_English_value_selector": "languages[code!=en].missing_source_key_values[key=cosmetic.90113]"
+    },
+    {
+      "achievement_key": "coop:oldgods",
+      "source_unlock_name": "Cloak of the Devoured",
+      "native_translation_key": "cosmetic.90114",
+      "literal_name_key_present_in_native_catalogs": [],
+      "non_English_value_selector": "languages[code!=en].missing_source_key_values[key=cosmetic.90114]"
+    }
+  ],
+  "counts": {
+    "catalogs": 14,
+    "cooperative_keys_per_catalog": 50,
+    "cooperative_native_values": 700,
+    "non_English_missing_values": 650,
+    "English_missing_keys": 8,
+    "stale_source_achievement_description_keys": 8
+  },
+  "limits": [
+    "Family assignment classifies text labels only, not native predicates, widgets or reward consumers.",
+    "Nonempty translated payloads do not prove linguistic quality, glyph/layout coverage or original/rebuilt parity.",
+    "Source lookup/fallback and feature consumers were inspected, not executed; native loader/index/parser/fallback proof remains open.",
+    "The source achievement descriptors retain 0.117.0 provenance; keys absent from current native catalogs are recovery/reconstruction leads.",
+    "No source catalog or gameplay repair, compilation, native emulation, application/server run or original/rebuilt comparison occurred."
+  ]
+}

@@ -1,0 +1,214 @@
+{
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "virtual_address": "0x1401317c0",
+  "end_exclusive": "0x140131b21",
+  "file_offset": "0x130bc0",
+  "byte_count": 865,
+  "sha256": "d0f5bf86ebe23e8f0646012b54c1ec9423c61131bcd2f0849ff130f0ccf0ccba",
+  "cases": [
+    {
+      "name": "initial-zero",
+      "active": true,
+      "previous": null,
+      "current": "0",
+      "initial_open": false,
+      "actual_open": false,
+      "expected_open": false,
+      "observed_counter": "0",
+      "external_calls": [
+        "0x14063a0a0"
+      ],
+      "open_change_tick": 0
+    },
+    {
+      "name": "initial-nonzero",
+      "active": true,
+      "previous": null,
+      "current": "7",
+      "initial_open": false,
+      "actual_open": false,
+      "expected_open": false,
+      "observed_counter": "7",
+      "external_calls": [
+        "0x14063a0a0"
+      ],
+      "open_change_tick": 0
+    },
+    {
+      "name": "unchanged",
+      "active": true,
+      "previous": "0",
+      "current": "0",
+      "initial_open": false,
+      "actual_open": false,
+      "expected_open": false,
+      "observed_counter": "0",
+      "external_calls": [
+        "0x14063a0a0",
+        "0x145bc9787",
+        "0x1400021d0"
+      ],
+      "open_change_tick": 0
+    },
+    {
+      "name": "open",
+      "active": true,
+      "previous": "0",
+      "current": "1",
+      "initial_open": false,
+      "actual_open": true,
+      "expected_open": true,
+      "observed_counter": "1",
+      "external_calls": [
+        "0x14063a0a0",
+        "0x145bc9787",
+        "0x1400021d0"
+      ],
+      "open_change_tick": 37
+    },
+    {
+      "name": "close",
+      "active": true,
+      "previous": "1",
+      "current": "2",
+      "initial_open": true,
+      "actual_open": false,
+      "expected_open": false,
+      "observed_counter": "2",
+      "external_calls": [
+        "0x14063a0a0",
+        "0x145bc9787",
+        "0x1400021d0"
+      ],
+      "open_change_tick": 37
+    },
+    {
+      "name": "several-increments-one-toggle",
+      "active": true,
+      "previous": "2",
+      "current": "4",
+      "initial_open": false,
+      "actual_open": true,
+      "expected_open": true,
+      "observed_counter": "4",
+      "external_calls": [
+        "0x14063a0a0",
+        "0x145bc9787",
+        "0x1400021d0"
+      ],
+      "open_change_tick": 37
+    },
+    {
+      "name": "length-change",
+      "active": true,
+      "previous": "9",
+      "current": "10",
+      "initial_open": false,
+      "actual_open": true,
+      "expected_open": true,
+      "observed_counter": "10",
+      "external_calls": [
+        "0x14063a0a0",
+        "0x1400021d0"
+      ],
+      "open_change_tick": 37
+    },
+    {
+      "name": "string-change-no-number-parser",
+      "active": true,
+      "previous": "1",
+      "current": "x",
+      "initial_open": false,
+      "actual_open": true,
+      "expected_open": true,
+      "observed_counter": "x",
+      "external_calls": [
+        "0x14063a0a0",
+        "0x145bc9787",
+        "0x1400021d0"
+      ],
+      "open_change_tick": 37
+    },
+    {
+      "name": "missing-global",
+      "active": true,
+      "previous": "0",
+      "current": null,
+      "initial_open": true,
+      "actual_open": true,
+      "expected_open": true,
+      "observed_counter": "0",
+      "external_calls": [
+        "0x14063a0a0"
+      ],
+      "open_change_tick": 0
+    },
+    {
+      "name": "inactive-clears-observation",
+      "active": false,
+      "previous": "0",
+      "current": "1",
+      "initial_open": false,
+      "actual_open": false,
+      "expected_open": false,
+      "observed_counter": null,
+      "external_calls": [
+        "0x1400021d0"
+      ],
+      "open_change_tick": 0
+    },
+    {
+      "name": "inactive-does-not-toggle-open-state",
+      "active": false,
+      "previous": "0",
+      "current": "1",
+      "initial_open": true,
+      "actual_open": true,
+      "expected_open": true,
+      "observed_counter": null,
+      "external_calls": [
+        "0x1400021d0"
+      ],
+      "open_change_tick": 0
+    }
+  ],
+  "native_lua_fragments": [
+    {
+      "role": "toggle",
+      "file_offset": "0x6ba0315",
+      "virtual_address": "0x146ba1115",
+      "byte_count": 132,
+      "sha256": "077feb0668824da57b21997b14aa7b186f67d88893d4c7cdca75d29e9123356a",
+      "text": "function ToggleTalentFrame()\n\tAZS_TALENT_TOGGLES = tostring((tonumber(AZS_TALENT_TOGGLES) or 0) + 1);\nend\nAZS_TALENT_TOGGLES = \"0\";\n"
+    },
+    {
+      "role": "button-update",
+      "file_offset": "0x6ba04a1",
+      "virtual_address": "0x146ba12a1",
+      "byte_count": 61,
+      "sha256": "46a2468f5445de767f9220813a93c77963d43a59b79da8670ecef426fb589a25",
+      "text": "function UpdateTalentButton()\n\tTalentMicroButton:Show();\nend\n"
+    },
+    {
+      "role": "talent-anchor",
+      "file_offset": "0x6ba054d",
+      "virtual_address": "0x146ba134d",
+      "byte_count": 124,
+      "sha256": "9ea73d387689956064ceb5e9a2b11da494b1c25103d69ee779442159ac8174f8",
+      "text": "TalentMicroButton:ClearAllPoints();\nTalentMicroButton:SetPoint(\"BOTTOMLEFT\", \"CharacterMicroButton\", \"BOTTOMRIGHT\", -3, 0);\n"
+    },
+    {
+      "role": "map-anchor",
+      "file_offset": "0x6ba05c9",
+      "virtual_address": "0x146ba13c9",
+      "byte_count": 125,
+      "sha256": "26792bf179d01420fce0ead7d4475254e801147f934299b5f2d9ffcdb76d2e5b",
+      "text": "WorldMapMicroButton:ClearAllPoints();\nWorldMapMicroButton:SetPoint(\"BOTTOMLEFT\", \"TalentMicroButton\", \"BOTTOMRIGHT\", -3, 0);\n"
+    }
+  ],
+  "method": "Unmodified original-PE x86-64 instructions, including resource lookup, comparison and state/change-tick writes.",
+  "limitations": [
+    "Lua global getter, byte comparison and deallocation are explicit external seams.",
+    "ECS resources and counter strings are fixtures; no Lua VM, UI, game or renderer is executed."
+  ]
+}

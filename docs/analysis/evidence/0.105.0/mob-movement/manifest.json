@@ -1,0 +1,110 @@
+{
+  "target": "AzerothSurvivors/AzerothSurvivors-0.105.0.exe",
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "target_process_launched": false,
+  "owners": [
+    {
+      "role": "movement-dispatch",
+      "start": "0x14593d6bb",
+      "end_exclusive": "0x14593d801",
+      "file_offset": "0x593cabb",
+      "sha256": "a16acf7ee79f4086cf80630fc3ffea25a48c8664c488da0cdd0b08854e55d349",
+      "assembly": "movement-dispatch.asm"
+    },
+    {
+      "role": "movement-packet",
+      "start": "0x1458aa9e0",
+      "end_exclusive": "0x1458aac7d",
+      "file_offset": "0x58a9de0",
+      "sha256": "b9093617e676cbcaa94f7142533052b133b54c76fd7c7395bdf57b1e2081f0bc",
+      "assembly": "movement-packet.asm"
+    },
+    {
+      "role": "facing-packet",
+      "start": "0x1458aa520",
+      "end_exclusive": "0x1458aa81e",
+      "file_offset": "0x58a9920",
+      "sha256": "95baf59f20776e372ebb81a4d64ebb4314072824f49f9df07c348c3b3d3831b2",
+      "assembly": "facing-packet.asm"
+    }
+  ],
+  "rea": [
+    {
+      "role": "actor",
+      "start": "0x14593ac20",
+      "end_exclusive": "0x14593ffd0",
+      "file_offset": "0x593a020",
+      "sha256": "2d568b571ac4fdb3f8b5ba1c16842ab6464fc4f13de3e15692b4457dabd55427",
+      "evidence_id": "ev_10465e5ad204cc1e24111454175964dfde70431e74a96913303a3f3df61c7d1d",
+      "provider": "Ghidra 12.1.4",
+      "limitation": "Headerless function import; Win64 ABI and external code/data require original-PE instructions."
+    },
+    {
+      "role": "movement-packet",
+      "start": "0x1458aa9e0",
+      "end_exclusive": "0x1458aac7d",
+      "file_offset": "0x58a9de0",
+      "sha256": "b9093617e676cbcaa94f7142533052b133b54c76fd7c7395bdf57b1e2081f0bc",
+      "evidence_id": "ev_1692d22b506fdd5aa8d9409b37ad6940ea67aac78fb41fb2e4c75e904d6d04b0",
+      "provider": "Ghidra 12.1.4",
+      "limitation": "Headerless function import; Win64 ABI and external code/data require original-PE instructions."
+    },
+    {
+      "role": "facing-packet",
+      "start": "0x1458aa520",
+      "end_exclusive": "0x1458aa81e",
+      "file_offset": "0x58a9920",
+      "sha256": "95baf59f20776e372ebb81a4d64ebb4314072824f49f9df07c348c3b3d3831b2",
+      "evidence_id": "ev_dceae76d625ed8cf5ac7b49d7312851bff992b390330ec3230a804069b0df7b3",
+      "provider": "Ghidra 12.1.4",
+      "limitation": "Headerless function import; Win64 ABI and external code/data require original-PE instructions."
+    }
+  ],
+  "native_profile": {
+    "dispatch": [
+      "0x14593d6bb",
+      "0x14593d801"
+    ],
+    "packet": [
+      "0x1458aa9e0",
+      "0x1458aac7d"
+    ],
+    "stop_after_move": "0x14593d7b0",
+    "height_query": "0x1458c7b60",
+    "facing_packet": "0x1458aa520",
+    "guid_writer": "0x1458b6c70",
+    "point_writer": "0x145895ba0",
+    "buffer_grow": "0x145bcb2d0",
+    "upper_bound": "0x145d6d874",
+    "terrain_offset": "0x950",
+    "serial_offset": "0xa10",
+    "target_offset": "0x460"
+  },
+  "constants": [
+    {
+      "role": "duration-milliseconds",
+      "start": "0x145dbf5a4",
+      "end_exclusive": "0x145dbf5a8",
+      "file_offset": "0x5dbe7a4",
+      "sha256": "07883481b5c147464597d44401db095d88c2a6b049fbbcd7b278de98a5ceeb71",
+      "bits": 1148846080
+    },
+    {
+      "role": "duration-upper-bound",
+      "start": "0x145d6d874",
+      "end_exclusive": "0x145d6d878",
+      "file_offset": "0x5d6ca74",
+      "sha256": "2a25271875e056e323462f5d609558c140e993d0d331e6bfbfd211949974594c",
+      "bits": 1333788671
+    }
+  ],
+  "validation": {
+    "native_cases": 44,
+    "matches_0_100_1_cases": true
+  },
+  "limits": [
+    "Only movement publication is revalidated here; AI, navigation and cache construction keep their earlier provenance.",
+    "Source tests, compilation, real-MPQ moving-mob and original/rebuilt runtime comparisons were not run.",
+    "Static facing-packet evidence does not close the local stationary-facing integration gap."
+  ]
+}

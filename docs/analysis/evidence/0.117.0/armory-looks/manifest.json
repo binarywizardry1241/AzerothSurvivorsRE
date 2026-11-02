@@ -1,0 +1,280 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.117.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293",
+    "size_bytes": 145283072
+  },
+  "gap_ids": [
+    120
+  ],
+  "scope": "Current Look parent/scroll-row/wrapping named viewport and its existing scrollbar target connection only.",
+  "queries": [
+    {
+      "role": "look",
+      "va": "0x14031b280",
+      "end_exclusive": "0x14031c5b6",
+      "file_offset": "0x31a680",
+      "byte_count": 4918,
+      "sha256": "daf16fdb45f3d76edb437f43cb8eb9282cad8f70a60043c5f01e5b2f8fd840a8",
+      "boundary": "current_PE_declared_unwind_extent",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_6d9db26c7b5865f46dad2107869988f440e5394abdd13bc4cdb3bb42e698e480",
+      "query_plan": {
+        "target": "runtime/0.117.0/armory-looks/look.bin",
+        "output": "runtime/0.117.0/armory-looks/look-query",
+        "init_timeout": 90,
+        "open_options": {
+          "format": "raw-binary",
+          "architecture": "x86_64",
+          "entry_point": "0x14031b280"
+        },
+        "timeout": 240,
+        "operations": [
+          {
+            "name": "procedure_pseudo_code",
+            "arguments": {
+              "procedure": "0x14031b280"
+            },
+            "label": "armory-look"
+          }
+        ]
+      },
+      "retained_query_result": {
+        "path": "runtime/0.117.0/armory-looks/look-query/results/0801d522b826a00f9f3b15cb81df7d0d5a3cf80de925a80ebe59cc440b531e0c.json",
+        "sha256": "2f12dacf232da72b9600c6e9ed91289c7f57776dbd352cdf979596314847ca36"
+      },
+      "decompiler": {
+        "path": "docs/analysis/evidence/0.117.0/armory-looks/look.c",
+        "sha256": "1f15b5bef088c0a342c80686b17b4bc7609c58d5937fce725a5b4336132fd8de",
+        "original_normalized_result_sha256": "b245e959562be74b6b09772252dcd1d14eabbbf2da1f8f965ba5e3be374c73af",
+        "normalization": "Trim trailing whitespace and final blank lines only"
+      },
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+        "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+        "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+        "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+      ]
+    },
+    {
+      "role": "look-parent",
+      "va": "0x14023d840",
+      "end_exclusive": "0x14023db5d",
+      "file_offset": "0x23cc40",
+      "byte_count": 797,
+      "sha256": "9733cc7c694331f409f09c03a35b65d8c1e70e21aa718ca66c87d1a75e208b14",
+      "boundary": "current_PE_declared_unwind_extent",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_60523635d53c0e9fb1703e4606e266c4ca866626adbc1d8b03bea00642faaf65",
+      "query_plan": {
+        "target": "runtime/0.117.0/armory-looks/look-parent.bin",
+        "output": "runtime/0.117.0/armory-looks/look-parent-query",
+        "init_timeout": 90,
+        "open_options": {
+          "format": "raw-binary",
+          "architecture": "x86_64",
+          "entry_point": "0x14023d840"
+        },
+        "timeout": 240,
+        "operations": [
+          {
+            "name": "procedure_pseudo_code",
+            "arguments": {
+              "procedure": "0x14023d840"
+            },
+            "label": "look-parent"
+          }
+        ]
+      },
+      "retained_query_result": {
+        "path": "runtime/0.117.0/armory-looks/look-parent-query/results/f93e8a9362f6d048ad08f328fb2a46f566e05996bab6880f51d4a92cdbbdde16.json",
+        "sha256": "084956d2f6f93c617afa333506c1d4b16e2dc532048d60a664701c5cd005e340"
+      },
+      "decompiler": {
+        "path": "docs/analysis/evidence/0.117.0/armory-looks/look-parent.c",
+        "sha256": "d65b0240849b04fe3e337d5f91beee59f46059c3e1441c17a4076d0958d1e486",
+        "original_normalized_result_sha256": "67b865a1c79b276df1d64d8aca07bcfb4bdb65956ffa857affcc6743e43cf5ee",
+        "normalization": "Trim trailing whitespace and final blank lines only"
+      },
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+        "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+        "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+        "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+      ]
+    },
+    {
+      "role": "scrollbar",
+      "va": "0x140272ef0",
+      "end_exclusive": "0x14027350a",
+      "file_offset": "0x2722f0",
+      "byte_count": 1562,
+      "sha256": "6b855bd7aef0c0d53370d13659cebe5374a2b86e2dd8ea1cfe470dcb8e1c48b2",
+      "boundary": "current_PE_declared_unwind_extent",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_cc0b84ba27b2e40443ec38c559b233ba480161545c50b421c4d9defca13a23ba",
+      "query_plan": {
+        "target": "runtime/0.117.0/armory-looks/scrollbar.bin",
+        "output": "runtime/0.117.0/armory-looks/scrollbar-query",
+        "init_timeout": 90,
+        "open_options": {
+          "format": "raw-binary",
+          "architecture": "x86_64",
+          "entry_point": "0x140272ef0"
+        },
+        "timeout": 240,
+        "operations": [
+          {
+            "name": "procedure_pseudo_code",
+            "arguments": {
+              "procedure": "0x140272ef0"
+            },
+            "label": "scrollbar"
+          }
+        ]
+      },
+      "retained_query_result": {
+        "path": "runtime/0.117.0/armory-looks/scrollbar-query/results/5dc082ad32572b637e1e568fb855963dced32bc784c8281db999147a44774d5b.json",
+        "sha256": "da4b1d513a4610e7b8b16e577a72466c8e60b95b3b5415528a8f2cc5b0cbdb1b"
+      },
+      "decompiler": {
+        "path": "docs/analysis/evidence/0.117.0/armory-looks/scrollbar.c",
+        "sha256": "ff18f3939d647ff2f608b2b34a0f081e487e86d94584ceda0d667e4c2c317158",
+        "original_normalized_result_sha256": "be320dc5a067b6f3d3402622aa8616145708d001e4ffc7b9ed4fea0fecf4d91a",
+        "normalization": "Trim trailing whitespace and final blank lines only"
+      },
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+        "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+        "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+        "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+      ]
+    },
+    {
+      "role": "kept-publish",
+      "va": "0x1402cee60",
+      "end_exclusive": "0x1402cf037",
+      "file_offset": "0x2ce260",
+      "byte_count": 471,
+      "sha256": "670b73d5500bbb056a2137c1d5fb6906fa9386bbc1b1fe4724b496137a4746c6",
+      "boundary": "current_PE_declared_unwind_extent",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_7179bbfbec8319b2b4bcc40846bc54a9a5aeb777f78d489c14794a094b48d7a5",
+      "query_plan": {
+        "target": "runtime/0.117.0/armory-looks/kept-publish.bin",
+        "output": "runtime/0.117.0/armory-looks/kept-publish-query",
+        "init_timeout": 90,
+        "open_options": {
+          "format": "raw-binary",
+          "architecture": "x86_64",
+          "entry_point": "0x1402cee60"
+        },
+        "timeout": 240,
+        "operations": [
+          {
+            "name": "procedure_pseudo_code",
+            "arguments": {
+              "procedure": "0x1402cee60"
+            },
+            "label": "kept-publish"
+          }
+        ]
+      },
+      "retained_query_result": {
+        "path": "runtime/0.117.0/armory-looks/kept-publish-query/results/4e6484a24e1804d18ed2a79a5adaec0f5183c0540995c1b9b227b8cd1b66708b.json",
+        "sha256": "d7c166497781bbee585c0912d678e5a14eaddeabb83d9ac6990a181e35066978"
+      },
+      "decompiler": {
+        "path": "docs/analysis/evidence/0.117.0/armory-looks/kept-publish.c",
+        "sha256": "22b22ecf45ce172c072139e6db2767c19831e2c87d2e891c0b8abe56ee454f11",
+        "original_normalized_result_sha256": "551ea47204358a23c6aeb68ebdd982fb97862f790382d0c96d3141ebb841dc1e",
+        "normalization": "Trim trailing whitespace and final blank lines only"
+      },
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+        "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+        "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+        "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+      ]
+    }
+  ],
+  "literal": {
+    "va": "0x1461aae78",
+    "file_offset": "0x61a9878",
+    "byte_count": 12,
+    "value": "armory-looks",
+    "sha256": "c05aaeff590a912d8cf9fad112fc8f1d8235419aa63a479955c938bef2bc60d3"
+  },
+  "encoded_reference": {
+    "site": "0x14031bd1b",
+    "bytes": "488d0556f1e805",
+    "target": "0x1461aae78",
+    "declared_owner": "0x14031b280"
+  },
+  "nodes": {
+    "path": "docs/analysis/evidence/0.117.0/armory-looks/nodes.json",
+    "sha256": "4a9b0f2dbdab18411c29cafe2b365c7959ac15d9651673a4b1666cf312a63fb0"
+  },
+  "checker": {
+    "path": "scripts/check-armory-looks-0.117.0.py",
+    "sha256": "d2c7591d6ddca41418d8bfdbc5063a55f90dfb633d3ea46f62e2dcc18cf0183a"
+  },
+  "source_refs": [
+    "crates/azeroth-survivors-re/src/armory.rs::look",
+    "crates/azeroth-survivors-re/src/armory.rs::character",
+    "crates/azeroth-survivors-re/src/armory.rs::details",
+    "crates/azeroth-survivors-re/src/scrollbar.rs::Kept",
+    "crates/azeroth-survivors-re/src/scrollbar.rs::spawn"
+  ],
+  "static_validation": "Six poison-seeded current native Node captures, original byte/literal/query commitments, two source callers and actual named-target/scrollbar connection; Rust syntax parses.",
+  "runtime_validation": "not_run",
+  "parity": "unverified",
+  "limits": [
+    "Raw Ghidra function imports omit external callee bodies and original referenced data; pseudocode uses inferred signatures.",
+    "Current native data are read independently by Node replay, with explicit memcpy and UI-publication seams.",
+    "The common wheel/drag implementation is reused; its complete current native scheduling/aliases are not certified.",
+    "No compilation, rebuilt source/UI/input execution, gameplay or original/rebuilt comparison."
+  ]
+}

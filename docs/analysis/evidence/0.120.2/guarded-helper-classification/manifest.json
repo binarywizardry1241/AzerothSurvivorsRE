@@ -1,0 +1,740 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.120.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c",
+    "size_bytes": 145484288
+  },
+  "inputs": [
+    {
+      "path": "docs/analysis/evidence/0.120.2/guarded-table-correspondence.json",
+      "sha256": "dbc47fa14b8ecda4e21e17112b00a6a0ae9d921ae694ec0882bed186197f84b2"
+    },
+    {
+      "path": "scripts/check-guarded-helper-classification-0.120.2.py",
+      "sha256": "30142eef6af93ade0f5e66592679798309502e9143a0f83d615bafcc2f1d1f2a"
+    },
+    {
+      "path": "scripts/coverage_common.py",
+      "sha256": "aec38237b60b6982f17e0e93c6f6ba111100956fb389d44b397dbd5a6bdb1903"
+    },
+    {
+      "path": "scripts/script_sources.py",
+      "sha256": "bc4cdf0f6c4a0805b7052d06c28acc48e644484d08decb79a97168cec6458cfa"
+    },
+    {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+    }
+  ],
+  "source_first": {
+    "paths": [
+      {
+        "path": "crates/azeroth-survivors-re/src/coop/directory_wire.rs",
+        "sha256": "54b6143cab09dcbd8e7c9f44d98f6a90f4aa549cd05676189cfbf1f395ef098d"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/coop/websocket.rs",
+        "sha256": "e10ff771e26e8ec498eddf208efaa1fe441c45c99cfc109844ff614c120dff04"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/coop/tcp.rs",
+        "sha256": "791750b577dd42c6a81cc6caeb243a0893aeb1fd65480f6ec9899d07a89b8a90"
+      }
+    ],
+    "conclusion": "Existing DirectoryResponse/WireLobby use owned String/Vec fields; Rust supplies their lifetime cleanup. Existing tungstenite/std::io adapters already own socket error handling. The bounded native classification proves no source discrepancy and does not revalidate the entire parser or transport.",
+    "observations": [
+      {
+        "path": "crates/azeroth-survivors-re/src/coop/directory_wire.rs",
+        "fragments": [
+          "pub enum DirectoryResponse",
+          "Lobbies(Vec<WireLobby>)",
+          "strings: [String; 3]",
+          "bytes: Vec<u8>"
+        ]
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/coop/websocket.rs",
+        "fragments": [
+          "use tungstenite::{Error, Message, WebSocket",
+          "Err(Error::Io(error)) if error.kind() == ErrorKind::WouldBlock",
+          "ErrorKind::WouldBlock | ErrorKind::TimedOut",
+          "self.socket.flush().map_err"
+        ]
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/coop/tcp.rs",
+        "fragments": [
+          "use std::io::{self, ErrorKind, Read, Write};",
+          "Err(error) if error.kind() == ErrorKind::Interrupted => continue"
+        ]
+      }
+    ]
+  },
+  "native_ranges": [
+    {
+      "id": "helper-145afd95c",
+      "virtual_address": "0x145afd910",
+      "end_exclusive": "0x145afda9f",
+      "file_offset": "0x5afcd10",
+      "byte_count": 399,
+      "sha256": "be5f8d530f9233aae481161eebc607893be86d0b9a60f5b6cae6bbb4f85666ec",
+      "instruction_count": 107,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/guarded-helper-classification/helper-145afd95c.asm",
+        "sha256": "3b038ebc05af65f02c8a49569254f495cfc762f8e920c37f7e8b009e99f682d6"
+      }
+    },
+    {
+      "id": "helper-145bf2711",
+      "virtual_address": "0x145bf2530",
+      "end_exclusive": "0x145bf27ef",
+      "file_offset": "0x5bf1930",
+      "byte_count": 703,
+      "sha256": "6491e63d4323a79cf2577d0afc6fcdad649104b460e5efb35e74f390340eed11",
+      "instruction_count": 184,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/guarded-helper-classification/helper-145bf2711.asm",
+        "sha256": "739713b62d7b165472d033b61d8d04f17528b5b535f6f50baa4e14f314cebbc8"
+      }
+    },
+    {
+      "id": "helper-145bf386c",
+      "virtual_address": "0x145bf3820",
+      "end_exclusive": "0x145bf39af",
+      "file_offset": "0x5bf2c20",
+      "byte_count": 399,
+      "sha256": "36e181f7d3bdc8ab46f5ddb0548dd7dd23a1b7bd19adca4bf06c9ee2b6140cc1",
+      "instruction_count": 107,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/guarded-helper-classification/helper-145bf386c.asm",
+        "sha256": "2ac473a28a0c52b41a1fa82f35500ccd3571bf29b5ff0b7041811e2723218bce"
+      }
+    },
+    {
+      "id": "helper-145bfa69b",
+      "virtual_address": "0x145bfa620",
+      "end_exclusive": "0x145bfa8ea",
+      "file_offset": "0x5bf9a20",
+      "byte_count": 714,
+      "sha256": "4156494ce84d00cf047d0410cfa0fc07495c06158ccebb6f01d4451f4a987936",
+      "instruction_count": 206,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/guarded-helper-classification/helper-145bfa69b.asm",
+        "sha256": "67d2a53f6b16f081e31446dda8950773a6f4448be23d6094dc5fdf34f9ffa424"
+      }
+    },
+    {
+      "id": "helper-145c0006e",
+      "virtual_address": "0x145c0002c",
+      "end_exclusive": "0x145c00103",
+      "file_offset": "0x5bff42c",
+      "byte_count": 215,
+      "sha256": "bfc735c073cd1d6c012521d7cf64b07ca9f30b259cbaaa4f572c83a71806b8c5",
+      "instruction_count": 52,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/guarded-helper-classification/helper-145c0006e.asm",
+        "sha256": "23a8cf3a2fb6205d3ecc509f52fb29c30656face0dc92870106244e327705223"
+      }
+    },
+    {
+      "id": "helper-145c001aa",
+      "virtual_address": "0x145c00150",
+      "end_exclusive": "0x145c00230",
+      "file_offset": "0x5bff550",
+      "byte_count": 224,
+      "sha256": "5464b5e2085f63c75a307692624c94ffa4018b280e63d77c94aa1975a1024fa5",
+      "instruction_count": 51,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/guarded-helper-classification/helper-145c001aa.asm",
+        "sha256": "5a48f686391b479362a9b3592ed3edc300012a25217f37d6b3dc44f051b15f46"
+      }
+    },
+    {
+      "id": "helper-145c00f70",
+      "virtual_address": "0x145c00f49",
+      "end_exclusive": "0x145c01003",
+      "file_offset": "0x5c00349",
+      "byte_count": 186,
+      "sha256": "594f47b8f6433b1be4397d67338c4fcd8f6c3298b1739b9852b96b02941c43d0",
+      "instruction_count": 48,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/guarded-helper-classification/helper-145c00f70.asm",
+        "sha256": "10cf6615305ea89063da1b858e4a08d134b2fe7f5abc92394392917ff2e96c87"
+      }
+    },
+    {
+      "id": "helper-145c4ed20",
+      "virtual_address": "0x145c4ece0",
+      "end_exclusive": "0x145c4ee4c",
+      "file_offset": "0x5c4e0e0",
+      "byte_count": 364,
+      "sha256": "e22b4e4ec4970310a8f6defd12c279f3ea3a668ef326522663bd51f048e97d8f",
+      "instruction_count": 98,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/guarded-helper-classification/helper-145c4ed20.asm",
+        "sha256": "7ae68bcfc3780eb9b77d084ecbf61e2445cc5ca2851b42dcae6d50aa1bc8f12a"
+      }
+    },
+    {
+      "id": "helper-145c6ce2c",
+      "virtual_address": "0x145c6cde0",
+      "end_exclusive": "0x145c6cf6f",
+      "file_offset": "0x5c6c1e0",
+      "byte_count": 399,
+      "sha256": "d4b687dc8d1b3ef948484b0c5fa3104c978afc40095f38226a90395a914c560a",
+      "instruction_count": 107,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/guarded-helper-classification/helper-145c6ce2c.asm",
+        "sha256": "241aa10c8beb7c7b3029d2cc92b11a2332098c06edd2b0137c21bc6fea842ca4"
+      }
+    }
+  ],
+  "native_tables": [
+    {
+      "site": "0x145afd95c",
+      "virtual_address": "0x1472f0238",
+      "byte_count": 44,
+      "sha256": "f4743301406814ef61add2627cb0568411bcb4a25fc1c758eb994ca183876f48",
+      "case_targets": [
+        "0x145afda33",
+        "0x145afd95e",
+        "0x145afd95e",
+        "0x145afd95e",
+        "0x145afda96",
+        "0x145afda96",
+        "0x145afd95e",
+        "0x145afd95e",
+        "0x145afda96",
+        "0x145afd982",
+        "0x145afd9dd"
+      ],
+      "range_id": "helper-145afd95c"
+    },
+    {
+      "site": "0x145bf2711",
+      "virtual_address": "0x147601bbc",
+      "byte_count": 16,
+      "sha256": "c85016c1268e0ec2e41b475f65c1041dd32b75e6546aa93cdc61a22d94874aec",
+      "case_targets": [
+        "0x145bf2713",
+        "0x145bf274b",
+        "0x145bf2724",
+        "0x145bf2742"
+      ],
+      "range_id": "helper-145bf2711"
+    },
+    {
+      "site": "0x145bf386c",
+      "virtual_address": "0x147601bcc",
+      "byte_count": 44,
+      "sha256": "b323f162727e69fe6467edfa2a1f56bb87f7b184d01bc3784433b1afd5194fb7",
+      "case_targets": [
+        "0x145bf3943",
+        "0x145bf386e",
+        "0x145bf386e",
+        "0x145bf386e",
+        "0x145bf39a6",
+        "0x145bf39a6",
+        "0x145bf386e",
+        "0x145bf386e",
+        "0x145bf39a6",
+        "0x145bf3892",
+        "0x145bf38ed"
+      ],
+      "range_id": "helper-145bf386c"
+    },
+    {
+      "site": "0x145bfa69b",
+      "virtual_address": "0x147601d7c",
+      "byte_count": 36,
+      "sha256": "3c9b413cac6e1b3c5f0c027b84bcdf7968a8558a615763ff92ff7edd400b0b78",
+      "case_targets": [
+        "0x145bfa751",
+        "0x145bfa6f5",
+        "0x145bfa6f5",
+        "0x145bfa6f5",
+        "0x145bfa7a4",
+        "0x145bfa7f7",
+        "0x145bfa6f5",
+        "0x145bfa6f5",
+        "0x145bfa69d"
+      ],
+      "range_id": "helper-145bfa69b"
+    },
+    {
+      "site": "0x145c0006e",
+      "virtual_address": "0x147601e38",
+      "byte_count": 16,
+      "sha256": "19d8035c67a3ad470a009690456dbb5454016adc8bd6c932213e23484688fdb0",
+      "case_targets": [
+        "0x145c00070",
+        "0x145c000b8",
+        "0x145c0007d",
+        "0x145c000a8"
+      ],
+      "range_id": "helper-145c0006e"
+    },
+    {
+      "site": "0x145c001aa",
+      "virtual_address": "0x147601e48",
+      "byte_count": 16,
+      "sha256": "4fdfe420402e37687e5abcea84235d38af5ac40fac795b3041c1c4e87fea5d5b",
+      "case_targets": [
+        "0x145c001ac",
+        "0x145c001df",
+        "0x145c001b2",
+        "0x145c001d6"
+      ],
+      "range_id": "helper-145c001aa"
+    },
+    {
+      "site": "0x145c00f70",
+      "virtual_address": "0x147601e68",
+      "byte_count": 16,
+      "sha256": "a6a011e9db60e0a2afea9fef6fc253c3b1776b0840af7f13e9b394c59284a018",
+      "case_targets": [
+        "0x145c00f72",
+        "0x145c00fb2",
+        "0x145c00f7d",
+        "0x145c00fa7"
+      ],
+      "range_id": "helper-145c00f70"
+    },
+    {
+      "site": "0x145c4ed20",
+      "virtual_address": "0x147605398",
+      "byte_count": 44,
+      "sha256": "cbe3a98b7bc9d40cea4290bc2808fe76ba41b56043782cdcaaca95552d992d29",
+      "case_targets": [
+        "0x145c4edf8",
+        "0x145c4ed22",
+        "0x145c4ed22",
+        "0x145c4ed22",
+        "0x145c4ee42",
+        "0x145c4ee42",
+        "0x145c4ed22",
+        "0x145c4ed22",
+        "0x145c4ee42",
+        "0x145c4ed47",
+        "0x145c4eda2"
+      ],
+      "range_id": "helper-145c4ed20"
+    },
+    {
+      "site": "0x145c6ce2c",
+      "virtual_address": "0x1476055d8",
+      "byte_count": 44,
+      "sha256": "145493380d546506d5ab96d3379c88f43eb29bca14895ff0f8a47c7cf42dbe31",
+      "case_targets": [
+        "0x145c6cf03",
+        "0x145c6ce2e",
+        "0x145c6ce2e",
+        "0x145c6ce2e",
+        "0x145c6cf66",
+        "0x145c6cf66",
+        "0x145c6ce2e",
+        "0x145c6ce2e",
+        "0x145c6cf66",
+        "0x145c6ce52",
+        "0x145c6cead"
+      ],
+      "range_id": "helper-145c6ce2c"
+    }
+  ],
+  "queries": [
+    {
+      "evidence_id": "ev_067f8ff970dd5129959d65e3dc094175ea737769bea50d3b2ad16f21fe322069",
+      "operation": "procedure_pseudo_code",
+      "procedure": "0x145afd910",
+      "plan": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/plan.json",
+        "sha256": "35ec9eb3ddc68d001c2ffc9b186485e852444b0519841e201b6829a6297fd9f5"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/journal.json",
+        "sha256": "91890abdd9d39952d399e5d2569389607b99c8435a6ece6b536b7103763f5573"
+      },
+      "result": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/results/e2d1496e15e1d2509d7e80c98b5ed8d7c949b30ee5a570a4c1f612791e4dbef7.json",
+        "sha256": "7c46de08bd1e37367f9c2ff7bd45c80ae20ed9648b89b4653f1ce6d57edf21b7"
+      },
+      "reviewed_scope": "Only the classified helper/table branches and byte-bound ranges below; no whole-function or whole-module semantic claim."
+    },
+    {
+      "evidence_id": "ev_f6fcc233e41e3c910f0f3c2443efd551a585dd434cc7df6b8faab522260cc730",
+      "operation": "procedure_pseudo_code",
+      "procedure": "0x145bf2530",
+      "plan": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/plan.json",
+        "sha256": "35ec9eb3ddc68d001c2ffc9b186485e852444b0519841e201b6829a6297fd9f5"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/journal.json",
+        "sha256": "91890abdd9d39952d399e5d2569389607b99c8435a6ece6b536b7103763f5573"
+      },
+      "result": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/results/30a608da4f443a842fa14f6316ad670ebc76fd56d1c2040d166b2e4873eef1ac-5cbc29573c479d94.json",
+        "sha256": "c41bb774171296b5a35490054f1fe03d468a6a848fdd73615d11954dba6e69d6"
+      },
+      "reviewed_scope": "Only the classified helper/table branches and byte-bound ranges below; no whole-function or whole-module semantic claim."
+    },
+    {
+      "evidence_id": "ev_452824eaeeff360ef1b2addaac8b915e51a8c44f535b92c1c4dcea4df822a808",
+      "operation": "procedure_pseudo_code",
+      "procedure": "0x145bf3820",
+      "plan": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/plan.json",
+        "sha256": "35ec9eb3ddc68d001c2ffc9b186485e852444b0519841e201b6829a6297fd9f5"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/journal.json",
+        "sha256": "91890abdd9d39952d399e5d2569389607b99c8435a6ece6b536b7103763f5573"
+      },
+      "result": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/results/12d4dcb1bf241810069135ac2f762cd4217076831dd5a18e2f47c6f6399887c1-49d818006381e71e.json",
+        "sha256": "da51e563a35df1bd1a75cc6595ffc1eebc3e9289fc563ef84be954b3175ecee3"
+      },
+      "reviewed_scope": "Only the classified helper/table branches and byte-bound ranges below; no whole-function or whole-module semantic claim."
+    },
+    {
+      "evidence_id": "ev_9fdceebabffdf04e711dd2605a3916dd58288a67aed21cf2b941cc2a08e906b6",
+      "operation": "procedure_pseudo_code",
+      "procedure": "0x145bfa620",
+      "plan": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/plan.json",
+        "sha256": "35ec9eb3ddc68d001c2ffc9b186485e852444b0519841e201b6829a6297fd9f5"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/journal.json",
+        "sha256": "91890abdd9d39952d399e5d2569389607b99c8435a6ece6b536b7103763f5573"
+      },
+      "result": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/results/3c0b109ce642cf938ffcf0408a15aec7d99ff5faed18178be1e975d985fe1fee-dfc7cec64a0d049d.json",
+        "sha256": "1b17109af161c6301d3772b9ae6485e8bc84f8c8aefe52063ff4f6ebc084745b"
+      },
+      "reviewed_scope": "Only the classified helper/table branches and byte-bound ranges below; no whole-function or whole-module semantic claim."
+    },
+    {
+      "evidence_id": "ev_c9e21a293f54d162c3de75c27b7de098782adc1e43da7076f6bccf9252fdff66",
+      "operation": "procedure_pseudo_code",
+      "procedure": "0x145bff3f0",
+      "plan": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/plan.json",
+        "sha256": "35ec9eb3ddc68d001c2ffc9b186485e852444b0519841e201b6829a6297fd9f5"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/journal.json",
+        "sha256": "91890abdd9d39952d399e5d2569389607b99c8435a6ece6b536b7103763f5573"
+      },
+      "result": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/results/e2caf213c8cb903a90ebfced9f07bd11f1fea38ef4a364786e4c903a3100901c-fdd0c195e5a3743c.json",
+        "sha256": "1c0b0eb06036eb615613c9272e2b4be49f40503ea8d78f02d03d99fedd35b1b9"
+      },
+      "reviewed_scope": "Only the classified helper/table branches and byte-bound ranges below; no whole-function or whole-module semantic claim."
+    },
+    {
+      "evidence_id": "ev_ab3cfee2951fd32f06bde8b0b586c20d5925cb53359231a8191f68607bf02083",
+      "operation": "procedure_pseudo_code",
+      "procedure": "0x145c4ece0",
+      "plan": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/plan.json",
+        "sha256": "35ec9eb3ddc68d001c2ffc9b186485e852444b0519841e201b6829a6297fd9f5"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/journal.json",
+        "sha256": "91890abdd9d39952d399e5d2569389607b99c8435a6ece6b536b7103763f5573"
+      },
+      "result": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/results/3b98c6a04b4e57512e6950483d451c6e356952e7aba068770186359995ad223e-f2c38f4eed948a63.json",
+        "sha256": "7836cab38cc78b83580d83f0543be8d24991fe778afc2d236a9183545dd08cd3"
+      },
+      "reviewed_scope": "Only the classified helper/table branches and byte-bound ranges below; no whole-function or whole-module semantic claim."
+    },
+    {
+      "evidence_id": "ev_2071256befc36890046732d076f4d44afadb0a8def6b2c314341e88073110573",
+      "operation": "procedure_pseudo_code",
+      "procedure": "0x145c6cde0",
+      "plan": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/plan.json",
+        "sha256": "35ec9eb3ddc68d001c2ffc9b186485e852444b0519841e201b6829a6297fd9f5"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/journal.json",
+        "sha256": "91890abdd9d39952d399e5d2569389607b99c8435a6ece6b536b7103763f5573"
+      },
+      "result": {
+        "path": "runtime/0.120.2/guarded-helper-review/query/results/c33e2439fb8dc37aef0ec697872f139d8630242fb2f4e266c5741407d0013703-d8fda7c3a3c5d85d.json",
+        "sha256": "84c042ff8af6461d7424d4349e82f0468e5e565c178e25faa542dfbede0a22f8"
+      },
+      "reviewed_scope": "Only the classified helper/table branches and byte-bound ranges below; no whole-function or whole-module semantic claim."
+    }
+  ],
+  "classifications": [
+    {
+      "selector": "Q41-F01:table-geometry:0x145afd95c",
+      "finding_ids": [
+        41,
+        63
+      ],
+      "range_id": "helper-145afd95c",
+      "role": "enum_cleanup",
+      "ownership": "generic_context",
+      "query_index": 0,
+      "required_instructions": [
+        [
+          "cmp",
+          "rax, 0xa"
+        ],
+        [
+          "movabs",
+          "rcx, 0x8000000000000000"
+        ],
+        [
+          "call",
+          "0x140502770"
+        ]
+      ],
+      "conclusion": "Niche-tag dispatch releases owned buffers or drops200-byte vector elements and the backing allocation; all direct call/tail destinations are allocation-release or nested-drop interfaces. It establishes cleanup role without an AS gameplay state/output operation.",
+      "next_action": "Retain this supporting classification; do not reconstruct allocator, standard I/O error representations or the surrounding transport library. Follow only independently proved AS interface omissions under their existing findings.",
+      "source_defect_proved": false
+    },
+    {
+      "selector": "Q41-F01:table-geometry:0x145bf2711",
+      "finding_ids": [
+        41,
+        63
+      ],
+      "range_id": "helper-145bf2711",
+      "role": "io_error_kind",
+      "ownership": "shared_AS_dependency",
+      "query_index": 1,
+      "required_instructions": [
+        [
+          "and",
+          "r12d, 3"
+        ],
+        [
+          "cmp",
+          "al, 0x23"
+        ],
+        [
+          "call",
+          "0x145f867d0"
+        ]
+      ],
+      "conclusion": "A low-two-bit error representation selects an inline byte, an upper-word kind, a custom-error kind byte, or platform error mapping before native numeric retry/idle predicates. This is existing transport error handling context, not an AS payload selector.",
+      "next_action": "Retain this supporting classification; do not reconstruct allocator, standard I/O error representations or the surrounding transport library. Follow only independently proved AS interface omissions under their existing findings.",
+      "source_defect_proved": false
+    },
+    {
+      "selector": "Q41-F01:table-geometry:0x145bf386c",
+      "finding_ids": [
+        41,
+        63
+      ],
+      "range_id": "helper-145bf386c",
+      "role": "enum_cleanup",
+      "ownership": "generic_context",
+      "query_index": 2,
+      "required_instructions": [
+        [
+          "cmp",
+          "rax, 0xa"
+        ],
+        [
+          "movabs",
+          "rcx, 0x8000000000000000"
+        ],
+        [
+          "call",
+          "0x140502770"
+        ]
+      ],
+      "conclusion": "Niche-tag dispatch releases owned buffers or drops200-byte vector elements and the backing allocation; all direct call/tail destinations are allocation-release or nested-drop interfaces. It establishes cleanup role without an AS gameplay state/output operation.",
+      "next_action": "Retain this supporting classification; do not reconstruct allocator, standard I/O error representations or the surrounding transport library. Follow only independently proved AS interface omissions under their existing findings.",
+      "source_defect_proved": false
+    },
+    {
+      "selector": "Q41-F01:table-geometry:0x145bfa69b",
+      "finding_ids": [
+        41,
+        63
+      ],
+      "range_id": "helper-145bfa69b",
+      "role": "parent_frame_cleanup",
+      "ownership": "generic_context",
+      "query_index": 3,
+      "required_instructions": [
+        [
+          "lea",
+          "rbp, [rdx + 0x80]"
+        ],
+        [
+          "cmp",
+          "rax, 8"
+        ],
+        [
+          "call",
+          "0x145bf3820"
+        ]
+      ],
+      "conclusion": "The second argument supplies a parent frame. Flag-guarded branches free local buffers, drop a nested value, or delegate the enum cleanup owner; no service message or gameplay operation is established.",
+      "next_action": "Retain this supporting classification; do not reconstruct allocator, standard I/O error representations or the surrounding transport library. Follow only independently proved AS interface omissions under their existing findings.",
+      "source_defect_proved": false
+    },
+    {
+      "selector": "Q41-F01:table-geometry:0x145c0006e",
+      "finding_ids": [
+        41,
+        63
+      ],
+      "range_id": "helper-145c0006e",
+      "role": "io_error_kind",
+      "ownership": "shared_AS_dependency",
+      "query_index": 4,
+      "required_instructions": [
+        [
+          "call",
+          "0x145bfd410"
+        ],
+        [
+          "and",
+          "edi, 3"
+        ],
+        [
+          "cmp",
+          "al, 0xd"
+        ]
+      ],
+      "conclusion": "A low-two-bit error representation selects an inline byte, an upper-word kind, a custom-error kind byte, or platform error mapping before native numeric retry/idle predicates. This is existing transport error handling context, not an AS payload selector.",
+      "next_action": "Retain this supporting classification; do not reconstruct allocator, standard I/O error representations or the surrounding transport library. Follow only independently proved AS interface omissions under their existing findings.",
+      "source_defect_proved": false
+    },
+    {
+      "selector": "Q41-F01:table-geometry:0x145c001aa",
+      "finding_ids": [
+        41,
+        63
+      ],
+      "range_id": "helper-145c001aa",
+      "role": "io_error_kind",
+      "ownership": "shared_AS_dependency",
+      "query_index": 4,
+      "required_instructions": [
+        [
+          "call",
+          "0x145bf2530"
+        ],
+        [
+          "and",
+          "edi, 3"
+        ],
+        [
+          "cmp",
+          "al, 0xd"
+        ]
+      ],
+      "conclusion": "A low-two-bit error representation selects an inline byte, an upper-word kind, a custom-error kind byte, or platform error mapping before native numeric retry/idle predicates. This is existing transport error handling context, not an AS payload selector.",
+      "next_action": "Retain this supporting classification; do not reconstruct allocator, standard I/O error representations or the surrounding transport library. Follow only independently proved AS interface omissions under their existing findings.",
+      "source_defect_proved": false
+    },
+    {
+      "selector": "Q41-F01:table-geometry:0x145c00f70",
+      "finding_ids": [
+        41,
+        63
+      ],
+      "range_id": "helper-145c00f70",
+      "role": "io_error_kind",
+      "ownership": "shared_AS_dependency",
+      "query_index": 4,
+      "required_instructions": [
+        [
+          "and",
+          "eax, 3"
+        ],
+        [
+          "cmp",
+          "bl, 0x16"
+        ],
+        [
+          "cmp",
+          "eax, 0xd"
+        ],
+        [
+          "call",
+          "0x145bf2530"
+        ]
+      ],
+      "conclusion": "A low-two-bit error representation selects an inline byte, an upper-word kind, a custom-error kind byte, or platform error mapping before native numeric retry/idle predicates. This is existing transport error handling context, not an AS payload selector.",
+      "next_action": "Retain this supporting classification; do not reconstruct allocator, standard I/O error representations or the surrounding transport library. Follow only independently proved AS interface omissions under their existing findings.",
+      "source_defect_proved": false
+    },
+    {
+      "selector": "Q41-F01:table-geometry:0x145c4ed20",
+      "finding_ids": [
+        41,
+        63
+      ],
+      "range_id": "helper-145c4ed20",
+      "role": "enum_cleanup",
+      "ownership": "generic_context",
+      "query_index": 5,
+      "required_instructions": [
+        [
+          "cmp",
+          "rax, 0xa"
+        ],
+        [
+          "movabs",
+          "rcx, 0x8000000000000000"
+        ],
+        [
+          "call",
+          "0x140502770"
+        ]
+      ],
+      "conclusion": "Niche-tag dispatch releases owned buffers or drops200-byte vector elements and the backing allocation; all direct call/tail destinations are allocation-release or nested-drop interfaces. It establishes cleanup role without an AS gameplay state/output operation.",
+      "next_action": "Retain this supporting classification; do not reconstruct allocator, standard I/O error representations or the surrounding transport library. Follow only independently proved AS interface omissions under their existing findings.",
+      "source_defect_proved": false
+    },
+    {
+      "selector": "Q41-F01:table-geometry:0x145c6ce2c",
+      "finding_ids": [
+        41,
+        63
+      ],
+      "range_id": "helper-145c6ce2c",
+      "role": "enum_cleanup",
+      "ownership": "generic_context",
+      "query_index": 6,
+      "required_instructions": [
+        [
+          "cmp",
+          "rax, 0xa"
+        ],
+        [
+          "movabs",
+          "rcx, 0x8000000000000000"
+        ],
+        [
+          "call",
+          "0x140502770"
+        ]
+      ],
+      "conclusion": "Niche-tag dispatch releases owned buffers or drops200-byte vector elements and the backing allocation; all direct call/tail destinations are allocation-release or nested-drop interfaces. It establishes cleanup role without an AS gameplay state/output operation.",
+      "next_action": "Retain this supporting classification; do not reconstruct allocator, standard I/O error representations or the surrounding transport library. Follow only independently proved AS interface omissions under their existing findings.",
+      "source_defect_proved": false
+    }
+  ],
+  "limits": [
+    "Only these nine exact table selectors are classified; broad residual populations and whole-function semantics remain open.",
+    "The full145bff3f0 pseudocode has unrelated bad-switch/data-decoding warnings. The three reviewed table branches are independently proved from original bytes; no conclusions use its polluted later region.",
+    "Cleanup pseudocode reports PIC call/branch warnings and inlines allocator code. Exact original-byte range boundaries and the call/tail whitelist govern the cleanup classification.",
+    "Numeric error kinds0x23/0x0d/0x16 are retained as native values; no new gameplay or service flag meaning follows.",
+    "No compilation, application/client/game/network/server execution or original/rebuilt parity comparison occurred."
+  ],
+  "native_decoder_version": "5.0.7"
+}

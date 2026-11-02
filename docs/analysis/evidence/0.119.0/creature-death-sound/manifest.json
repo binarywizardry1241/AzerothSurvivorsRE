@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.119.0",
+    "sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f",
+    "size_bytes": 145357824
+  },
+  "gap_ids": [
+    41,
+    182
+  ],
+  "lead_ids": [
+    "Q41-I01:resource_path:221",
+    "Q41-B02",
+    "Q41-R01"
+  ],
+  "generator": {
+    "path": "scripts/check-creature-death-sound-0.119.0.py",
+    "sha256": "9187f1bd3b47c1b240085920485555ac25e67779130849bce598ad10f302c100"
+  },
+  "native_spans": [
+    {
+      "role": "creature-sound",
+      "start": "0x145b45d30",
+      "end_exclusive": "0x145b45e4d",
+      "sha256": "577153fcff4c9de7a707afbe0caf7fb0a3aa17bf211fc95128ac81cb65bb0bdb",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.119.0/creature-death-sound/creature-sound.asm",
+        "sha256": "159537adf3073b9e37b98bedbdee38f5c461bd8fc3dde014dbe5fedc018cce67"
+      },
+      "instructions": 67
+    },
+    {
+      "role": "creature-sound-transform",
+      "start": "0x145b45bf0",
+      "end_exclusive": "0x145b45d27",
+      "sha256": "2c07d04d8d8d7b96cd8244c673b822dcd2bd424145e7fdfc2ca40d406fbb9149",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.119.0/creature-death-sound/creature-sound-transform.asm",
+        "sha256": "381268a4cb533a669671515d76d318676614fbbbc7801dbd4fa5df11ac7f77d3"
+      },
+      "instructions": 92
+    }
+  ],
+  "queries": [
+    {
+      "evidence_id": "ev_1c51b5cbb491023159327e72dd02ee708d6ab00210813fed825f562e5c7bdbc0",
+      "profile": "8b7e202e0ba106eea335e7bff0686d1d188672b77b4b250f9bbd4bce52cd4c0f",
+      "result": {
+        "path": "runtime/q41-embedded-resources-0.119.0/creature-sound-query/results/83ce682837363f789ae2d9f70b9782f17547cb67da0935da626bf7e6c1f20a99.json",
+        "sha256": "ca6a03f6b3a60a85462d73e5cf5841e0bcef658c0b2af328c450fdfa9470e328"
+      },
+      "journal": {
+        "path": "runtime/q41-embedded-resources-0.119.0/creature-sound-query/journal.json",
+        "sha256": "164c254f0b84597e67a5b2a399670b2c42aa6b8df77f9b0bc7e098e802596aca"
+      },
+      "plan": {
+        "path": "runtime/q41-embedded-resources-0.119.0/creature-sound-plan.json",
+        "sha256": "33907ea9a49334755bc30069d3122eee76c45c3e2cced22554da4f1f87be0527"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.119.0/creature-death-sound/creature-sound.c",
+        "sha256": "1391b76814f570527c2f80c1963872364d69b62aa2a3129281983331256348f5"
+      }
+    },
+    {
+      "evidence_id": "ev_0e3b0e0c2edd7ce0740639d68520dfec742c3de0e88b3bdb479c5cd518580156",
+      "profile": "f7caa22c414f0e4f50598e380fa5ac393957602592eba302db24f082b6a8164f",
+      "result": {
+        "path": "runtime/q41-embedded-resources-0.119.0/creature-sound-transform-query/results/8923cf6587825513c529d7151378f3bcab797b35b34299114bd73c9f2e4c03f1.json",
+        "sha256": "1d1bd0deeebda070370f6363aef8bd08fd06c058c30722b220883ca4e5f6f63a"
+      },
+      "journal": {
+        "path": "runtime/q41-embedded-resources-0.119.0/creature-sound-transform-query/journal.json",
+        "sha256": "642c20911c0bcc42a40ea3ebdeda26464630a132df1675b7abb70f85eb78a063"
+      },
+      "plan": {
+        "path": "runtime/q41-embedded-resources-0.119.0/creature-sound-transform-plan.json",
+        "sha256": "7b3686cbaba718c2db1e1304f5729fcf177189b1f07fcce298caccd93921606a"
+      },
+      "pseudocode": {
+        "path": "docs/analysis/evidence/0.119.0/creature-death-sound/creature-sound-transform.c",
+        "sha256": "da8147910b81053925a37b2588e3a0e6cf42310eba62ad513f8f6f4e0228407d"
+      }
+    }
+  ],
+  "reused_bootstrap": {
+    "path": "docs/analysis/evidence/0.119.0/run-level-cap/manifest.json",
+    "sha256": "2d4fa1c0c866ebdf836778beae8af5f92bf17a24c696030d910ad6e212d2fefa"
+  },
+  "native_cases": 505,
+  "case_digest": "1cfc861664f7637a40acc6269858fafbdc73e503b28068bbf6f17fbb11c16948",
+  "installed_table": {
+    "archive": "installed-game/Data/patch.MPQ",
+    "archive_sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf",
+    "path": "DBFilesClient\\CreatureSoundData.dbc",
+    "bytes": 48741,
+    "sha256": "616e5565ab1d79d2258ca1a903d55105257b1b521f5971a84a332480eeb31d2a",
+    "rows": 406,
+    "fields": 30,
+    "stride": 120,
+    "affected_row_ids": [
+      2068
+    ],
+    "transformed_sha256": "918c39df9d1d5126d23068fadd22cb69ac26d67d82972d7b945a2a70c9ee1ccc"
+  },
+  "source": [
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs",
+      "sha256": "9c534c4b6e52afb0d91cabf4221407beffea1ee1dd9c635cb64845b8fec16788"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap/creature_sound.rs",
+      "sha256": "90ad4ba5baeda108967b0c2992d3ce74d137f8472b6dfdada3bc787ccdd9eea8"
+    },
+    {
+      "path": "crates/benilla-app/src/local_client/extension.rs",
+      "sha256": "f65efa0153381e60b1c69bc812e06671977467d1fe03eff24a2393ffc2967bf3"
+    },
+    {
+      "path": "crates/benilla-app/src/sound/creature.rs",
+      "sha256": "45f354321320776d7594970797e34af1b47c962a9a7cc355cb504d936f347023"
+    },
+    {
+      "path": "crates/benilla-formats/src/creature_sound.rs",
+      "sha256": "66f81b25542b3bb141046d18d97c2bddf60d4a8376bad1592eef22be31a9e024"
+    },
+    {
+      "path": "crates/benilla-formats/src/lib.rs",
+      "sha256": "f31a9b958cfff8f75a9feabce086107eaef132b6ff411e1ff417c8f51f2181c4"
+    },
+    {
+      "path": "crates/benilla-formats/src/creatures.rs",
+      "sha256": "a9268ff31358291e2609d9852cada6937ede10a3e5c7e88c36b23159f0dfaae3"
+    },
+    {
+      "path": "crates/benilla-app/src/sound/kit.rs",
+      "sha256": "6b12bae83f1bfc66202d1548a107fe37bf2b3fdfb0ef171103284cfb38e648c6"
+    }
+  ],
+  "limits": [
+    "Only original transform/patcher instructions execute in synthetic memory. Archive reads, allocation/memcpy, diagnostics and replacement publication are explicit seams; no game or OS interfaces execute.",
+    "The source callback supplies complete rewritten bytes to the existing voice-table parser before shared catalog publication. Other raw table readers use only row IDs, which are unchanged; no generic archive overlay is introduced.",
+    "Source guards and authored Rust regressions do not execute the Rust implementation. Compilation, real cache/audio/client/network behavior and original/rebuilt parity remain unverified.",
+    "The bootstrap proof is reused from #181 without duplicate native extracts. Unrelated arrival voice kits and other sound columns retain their separate owners."
+  ]
+}

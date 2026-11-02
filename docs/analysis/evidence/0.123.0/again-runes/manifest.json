@@ -1,0 +1,289 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.123.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
+    "size_bytes": 146228736
+  },
+  "target_executed": false,
+  "gap_ids": [
+    265,
+    277
+  ],
+  "bounded_contract_system_ids": [
+    "custom-game-driver"
+  ],
+  "ranges": [
+    {
+      "role": "restart-publication",
+      "start": "0x145c24b79",
+      "end_exclusive": "0x145c24cff",
+      "file_offset": "0x5c23f79",
+      "byte_count": 390,
+      "sha256": "b0f1a4f68d3df98efd8ab6e2bd6b718c3de21659e1f51cf46e0adab3d186fb53",
+      "instructions": 72
+    },
+    {
+      "role": "aura-reset-descriptor",
+      "start": "0x145b08d20",
+      "end_exclusive": "0x145b09107",
+      "file_offset": "0x5b08120",
+      "byte_count": 999,
+      "sha256": "8fc75e86e6aaffb2c8a8b009b0e8adb9d3e7067f2772395bfa050e50449da418",
+      "instructions": 249
+    },
+    {
+      "role": "fresh-game-constructor",
+      "start": "0x145b15970",
+      "end_exclusive": "0x145b1717a",
+      "file_offset": "0x5b14d70",
+      "byte_count": 6154,
+      "sha256": "99e167dc41f44bfb6f1b52593198880dfd700367071a96a129bd8b239f07bd15",
+      "instructions": 957
+    },
+    {
+      "role": "speed-packet",
+      "start": "0x145c6a940",
+      "end_exclusive": "0x145c6aaa4",
+      "file_offset": "0x5c69d40",
+      "byte_count": 356,
+      "sha256": "184e02765d6ec0f7435de6f60399a5a7f934de5cb78fe2d313fada6e4163d0c7",
+      "instructions": 88
+    },
+    {
+      "role": "unroot-packet",
+      "start": "0x145c67620",
+      "end_exclusive": "0x145c6770b",
+      "file_offset": "0x5c66a20",
+      "byte_count": 235,
+      "sha256": "780c6dca2b451959c18ea998d60953c6011a476e2d1a542b1a443c10bdb278fd",
+      "instructions": 62
+    }
+  ],
+  "queries": [
+    {
+      "role": "replacement",
+      "procedure": "0x145c26320",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/again-runes-0.123.0/replacement/code.bin",
+        "sha256": "dd88b5ad0aabd91bfaebfc26d42065e293b36cd5d2879ce4140bee120631595b"
+      },
+      "slice_virtual_address": "0x145c26320",
+      "plan": {
+        "path": "runtime/analysis/tasks/again-runes-0.123.0/replacement/plan.json",
+        "sha256": "72e163fd4e224cb13e4210d1ed902b88e46c0e60daeee3e05908113fb230d481"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/again-runes-0.123.0/replacement/query/journal.json",
+        "sha256": "c0019392fa6577ecdd85641b6ba55814e717567ab5bc4cde62d44a077af4ac13"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/again-runes-0.123.0/replacement/query/results/4420e28d8ff3fd93aa6fadff3ce40fe07db60324a42809849e5963f91372be43.json",
+        "sha256": "acb9e2c86736e2bbbf1ade84a849dbe5d64dbb2c1453790ae0fb62adb0961679"
+      },
+      "evidence_id": "ev_c8863eaa5a3c213689059335533811b7891aa410b6e91eeec9930b3fe550c2f6",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "50b6ad5acc25debd86bdd34d5963faf0bd75334378f752d890949753746fdcc4",
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.123.0/again-runes/replacement.c",
+        "sha256": "b14b38451a1f7113959be52024062f2ea4980636a382e918ca1894022b52ea1c"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
+        "raw_sha256": "dd88b5ad0aabd91bfaebfc26d42065e293b36cd5d2879ce4140bee120631595b",
+        "virtual_address": "0x145c26320",
+        "file_offset": "0x5c25720",
+        "byte_count": 2639,
+        "result": "runtime/analysis/tasks/again-runes-0.123.0/replacement/query/results/4420e28d8ff3fd93aa6fadff3ce40fe07db60324a42809849e5963f91372be43.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "role": "descriptor",
+      "procedure": "0x145b08d20",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/again-runes-0.123.0/descriptor/code.bin",
+        "sha256": "8fc75e86e6aaffb2c8a8b009b0e8adb9d3e7067f2772395bfa050e50449da418"
+      },
+      "slice_virtual_address": "0x145b08d20",
+      "plan": {
+        "path": "runtime/analysis/tasks/again-runes-0.123.0/descriptor/plan.json",
+        "sha256": "531381fbdc36bb355348d9f3c62567ffacef3e743f5ea76cff675caaf1750124"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/again-runes-0.123.0/descriptor/query/journal.json",
+        "sha256": "80051ffdfe1163e62b5a27a57a43e73a1e6cc4b370b4c356e03ff6938b1de6d5"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/again-runes-0.123.0/descriptor/query/results/4dcad2f156d8b0182fd2c8f549a662c610f1f58c0843814b3fece3f3f1c22314.json",
+        "sha256": "d551e3f0747670bd38c25b70b8c168a7d8b5bb51a80abe82c1274ccbe6d41ae0"
+      },
+      "evidence_id": "ev_de778cf6a88243546ee104f0350dea64717d4904caa7cb5009abc7402d75b676",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "b97856b5b50b7cbb130774992e6123b8319f13a695d993551a0828c03b534882",
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.123.0/again-runes/descriptor.c",
+        "sha256": "6c9136268bc801998878fc0b9168a04bedf496957ac998ff2c21c9d0627752ed"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
+        "raw_sha256": "8fc75e86e6aaffb2c8a8b009b0e8adb9d3e7067f2772395bfa050e50449da418",
+        "virtual_address": "0x145b08d20",
+        "file_offset": "0x5b08120",
+        "byte_count": 999,
+        "result": "runtime/analysis/tasks/again-runes-0.123.0/descriptor/query/results/4dcad2f156d8b0182fd2c8f549a662c610f1f58c0843814b3fece3f3f1c22314.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "role": "game-constructor",
+      "procedure": "0x145b15970",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/again-runes-0.123.0/game-constructor/code.bin",
+        "sha256": "99e167dc41f44bfb6f1b52593198880dfd700367071a96a129bd8b239f07bd15"
+      },
+      "slice_virtual_address": "0x145b15970",
+      "plan": {
+        "path": "runtime/analysis/tasks/again-runes-0.123.0/game-constructor/plan.json",
+        "sha256": "631f26d14eb70829839d96c52aadd14e4ffe4f5670c83cb16d4cc95585ff9513"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/again-runes-0.123.0/game-constructor/query/journal.json",
+        "sha256": "c83f4562fd6ac6154eaf216899189681ad3dea0286cdbed7bfab50b9b1e4155d"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/again-runes-0.123.0/game-constructor/query/results/f4666274486b9826613e9f40fd89101b065ff76c3764c2f95f329237cefba851.json",
+        "sha256": "b4abe7812ff887217db062812963c4054e889c2fce2388e4811105a6101d2ded"
+      },
+      "evidence_id": "ev_5dc3d92a1e7e2551b99d8bf2c28285cf2855cb7929b09bb3d504de37fa77ab12",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "dbef075b83960e2adce5f5ec7902f8b39ff7b8b7096fb78b9d5de613a0214b54",
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.123.0/again-runes/game-constructor.c",
+        "sha256": "aabb7a76810e21e15e6d2cb59ef1700afae99915f09783a1c7403d3df0833bcf"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
+        "raw_sha256": "99e167dc41f44bfb6f1b52593198880dfd700367071a96a129bd8b239f07bd15",
+        "virtual_address": "0x145b15970",
+        "file_offset": "0x5b14d70",
+        "byte_count": 6154,
+        "result": "runtime/analysis/tasks/again-runes-0.123.0/game-constructor/query/results/f4666274486b9826613e9f40fd89101b065ff76c3764c2f95f329237cefba851.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "role": "speed-packet",
+      "procedure": "0x145c6a940",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/again-runes-0.123.0/speed-packet/code.bin",
+        "sha256": "184e02765d6ec0f7435de6f60399a5a7f934de5cb78fe2d313fada6e4163d0c7"
+      },
+      "slice_virtual_address": "0x145c6a940",
+      "plan": {
+        "path": "runtime/analysis/tasks/again-runes-0.123.0/speed-packet/plan.json",
+        "sha256": "7c0c8696a2f06d44769d5cc46c0768b6dfd78e9f5e913959f0a2b096288a05b4"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/again-runes-0.123.0/speed-packet/query/journal.json",
+        "sha256": "b0effd5c409a8c0bb9f931646b57663da921295666dccf12fc48b31bc4e175d1"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/again-runes-0.123.0/speed-packet/query/results/3880a99242b56212249ac0c31b42d5e9afb2572ec0979f7344902fbb216f4540.json",
+        "sha256": "7e0ad135b5945ee63e0b43794678672f440531725203866db482a9932190914b"
+      },
+      "evidence_id": "ev_d14260f73fb2ee55d7d75252643fa9ade8a620dc58ca72f5dd788a9f864293af",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "0d450f4e289674e5e1f139810648381878a0ef3c056dfb3a068ed929a16e9746",
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.123.0/again-runes/speed-packet.c",
+        "sha256": "3e6041127f644bed4a9f23b823d82aaa3dfb17997cdcd904e29b8833e27b6560"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
+        "raw_sha256": "184e02765d6ec0f7435de6f60399a5a7f934de5cb78fe2d313fada6e4163d0c7",
+        "virtual_address": "0x145c6a940",
+        "file_offset": "0x5c69d40",
+        "byte_count": 356,
+        "result": "runtime/analysis/tasks/again-runes-0.123.0/speed-packet/query/results/3880a99242b56212249ac0c31b42d5e9afb2572ec0979f7344902fbb216f4540.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "role": "again-dispatch-0x145c24476",
+      "procedure": "0x145c24476",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/again-0.123.0/again-dispatch/code.bin",
+        "sha256": "71b0931660c05d67dd57a9b5a61b1b9a938bcdf395b78415d567c6b7591f952d"
+      },
+      "slice_virtual_address": "0x145c23740",
+      "plan": {
+        "path": "runtime/analysis/tasks/again-0.123.0/again-dispatch/plan.json",
+        "sha256": "bb2ee91449f9482a7c68954f9e1eee7f3e8d0c3fe86e935b4a8615abe5f3eaff"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/again-0.123.0/again-dispatch/query/journal.json",
+        "sha256": "d04a93a0510ef05cb2d3fea621103c1a15daac8d46040e876b973e55ef0748b2"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/again-0.123.0/again-dispatch/query/results/6a749ef06c87fd1be881d2954466f92bcbe0da8001c58f6a4b7f6efb5dcbb11f-565f4e8cb8ae4217.json",
+        "sha256": "3beadfe48cafe4be678cc68710e92f39c668d3b827e020b968153b43c5985620"
+      },
+      "evidence_id": "ev_53ea1ded5ac41440291f2d0fa29dd1b2305e53f85170e31eb43c24eda7190e47",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "440a1b800e34405e702b212c9d376acb0ab238a1ad72abcd0fc1b14d82c448e1",
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.123.0/again-retirement/again-dispatch-0x145c24476.c",
+        "sha256": "b940e6296b642a18c3430d87987f5d5a8c16c6584f702905d587aefa78532acb"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
+        "raw_sha256": "71b0931660c05d67dd57a9b5a61b1b9a938bcdf395b78415d567c6b7591f952d",
+        "virtual_address": "0x145c23740",
+        "file_offset": "0x5c22b40",
+        "byte_count": 6073,
+        "result": "runtime/analysis/objects/3b/3beadfe48cafe4be678cc68710e92f39c668d3b827e020b968153b43c5985620",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    }
+  ],
+  "assembly": {
+    "path": "docs/analysis/evidence/0.123.0/again-runes/selected-native.asm",
+    "sha256": "0dfdfc328293fc2fcfe0416be013a25a61cfd5804b445357a20b519f58af6327"
+  },
+  "native_contract": {
+    "aura_reset": "Fresh player descriptor writes zero to48 aura IDs47..94 and6 flag words95..100 before unroot/relocation/speed. Ordinary new-Game effects publish afterward.",
+    "mover_reset": "Old serialN selects unrootN+10, spawn relocationN+11, unconditional fresh cached speedN+12, and successor serialN+13, all wrappingu32. Constructor packets remain queued afterward.",
+    "limits": "Native allocator/BTree/zone/packet seams are explicit. Reconstructed bootstrap previously masked a lasting speed carry locally but did not implement this packet/serial boundary; no observed original-game defect, compilation, runtime or parity claim."
+  },
+  "connected_source_system_ids": [
+    "custom-game-driver",
+    "custom-game-game-auras"
+  ]
+}

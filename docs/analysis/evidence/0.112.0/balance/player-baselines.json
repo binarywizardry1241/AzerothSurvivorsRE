@@ -1,0 +1,132 @@
+{
+  "target_sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+  "native_owner": "0x1458f28e0",
+  "stop_before_packet_work": "0x1458f3455",
+  "classes": 9,
+  "races": 8,
+  "levels": [
+    1,
+    100
+  ],
+  "additional_level_boundaries": [
+    0,
+    16777215,
+    16777216,
+    16777217,
+    16777218,
+    2147483647,
+    2147483648,
+    4294967295
+  ],
+  "native_cases": 7776,
+  "scalar_comparisons": 85536,
+  "output_sha256": "d5aab8352aadaeb4793b151eee82aa3c719afb31aba4cc01d98aac9070773489",
+  "prior_source_disagreements": 675,
+  "prior_source_disagreements_levels_1_to_100": 243,
+  "prior_source_disagreement_sha256": "0fc22ee0a01db495bca245d71034a452427d9db1024273eb76a25509511ff259",
+  "examples": [
+    {
+      "class_id": 1,
+      "race_id": 1,
+      "level": 0,
+      "field": "health",
+      "before_bits": 1130758144,
+      "native_bits": 1130168320
+    },
+    {
+      "class_id": 1,
+      "race_id": 1,
+      "level": 0,
+      "field": "damage",
+      "before_bits": 1065353216,
+      "native_bits": 1064849900
+    },
+    {
+      "class_id": 1,
+      "race_id": 1,
+      "level": 0,
+      "field": "regeneration",
+      "before_bits": 1061997773,
+      "native_bits": 1060655596
+    },
+    {
+      "class_id": 1,
+      "race_id": 1,
+      "level": 16777217,
+      "field": "health",
+      "before_bits": 1292894222,
+      "native_bits": 1292894221
+    },
+    {
+      "class_id": 1,
+      "race_id": 1,
+      "level": 16777217,
+      "field": "damage",
+      "before_bits": 1224065711,
+      "native_bits": 1224065710
+    },
+    {
+      "class_id": 1,
+      "race_id": 1,
+      "level": 16777217,
+      "field": "regeneration",
+      "before_bits": 1235474192,
+      "native_bits": 1235474191
+    },
+    {
+      "class_id": 1,
+      "race_id": 2,
+      "level": 0,
+      "field": "health",
+      "before_bits": 1132265472,
+      "native_bits": 1131616666
+    },
+    {
+      "class_id": 1,
+      "race_id": 2,
+      "level": 0,
+      "field": "damage",
+      "before_bits": 1065353216,
+      "native_bits": 1064849900
+    },
+    {
+      "class_id": 1,
+      "race_id": 2,
+      "level": 0,
+      "field": "regeneration",
+      "before_bits": 1061997773,
+      "native_bits": 1060655596
+    },
+    {
+      "class_id": 1,
+      "race_id": 2,
+      "level": 16777217,
+      "field": "health",
+      "before_bits": 1293837942,
+      "native_bits": 1293837941
+    },
+    {
+      "class_id": 1,
+      "race_id": 2,
+      "level": 16777217,
+      "field": "damage",
+      "before_bits": 1224065711,
+      "native_bits": 1224065710
+    },
+    {
+      "class_id": 1,
+      "race_id": 2,
+      "level": 16777217,
+      "field": "regeneration",
+      "before_bits": 1235474192,
+      "native_bits": 1235474191
+    }
+  ],
+  "seams": [],
+  "limits": [
+    "Original full numeric-refresh prefix uses actual PE class/race tables and empty synthetic equipment,stat,jewelry,aura,temporary and actor collections. Stop precedes movement/health packet construction.",
+    "Source scalar arithmetic and damage projection are translated f32 models with live entry/refresh/tick source guards; no reconstructed Rust executes.",
+    "Levels1..100 and eight explicit integer/float boundaries are bounded numeric profiles, not a claimed exhaustive input domain or observed playthrough. Modified/nonempty Survivors proc/actor state retains separate gap ownership.",
+    "No compilation,game,device,filesystem operation or original/rebuilt parity."
+  ]
+}

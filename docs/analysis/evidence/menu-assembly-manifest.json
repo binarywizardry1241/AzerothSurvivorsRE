@@ -1,0 +1,124 @@
+{
+  "artifact": "AzerothSurvivors/AzerothSurvivors.exe",
+  "artifact_sha256": "719da61487e0ffaf6491a1ca65410a6666028e83271f059692ad46bc4d8af150",
+  "working_directory": "checkout root",
+  "target_executed": false,
+  "tool_version": "Apple LLVM version 17.0.0\n  Optimized build.\n\n\n  Registered Targets:\n    aarch64    - AArch64 (little endian)\n    aarch64_32 - AArch64 (little endian ILP32)\n    aarch64_be - AArch64 (big endian)\n    arm        - ARM\n    arm64      - ARM64 (little endian)\n    arm64_32   - ARM64 (little endian ILP32)\n    armeb      - ARM (big endian)\n    thumb      - Thumb\n    thumbeb    - Thumb (big endian)\n    x86        - 32-bit X86: Pentium-Pro and above\n    x86-64     - 64-bit X86: EM64T and AMD64",
+  "caveat": "Caller excerpts can begin/end inside an instruction. Native semantics require dataflow and REA verification.",
+  "outputs": [
+    {
+      "path": "docs/analysis/evidence/menu-startup-glue-environment.asm",
+      "invocation": [
+        "objdump",
+        "-d",
+        "--start-address=0x14000175f",
+        "--stop-address=0x14000179f",
+        "AzerothSurvivors/AzerothSurvivors.exe"
+      ],
+      "start_address": "0x14000175f",
+      "end_address_exclusive": "0x14000179f",
+      "size_bytes": 992,
+      "sha256": "a0a3815b1b05fa4326783d4b483237643344528f867eef6bea3f4bb1762d762e"
+    },
+    {
+      "path": "docs/analysis/evidence/menu-startup-mode-default.asm",
+      "invocation": [
+        "objdump",
+        "-d",
+        "--start-address=0x140010bcf",
+        "--stop-address=0x140010c2f",
+        "AzerothSurvivors/AzerothSurvivors.exe"
+      ],
+      "start_address": "0x140010bcf",
+      "end_address_exclusive": "0x140010c2f",
+      "size_bytes": 1852,
+      "sha256": "2461a903221f496f609340eca40c5022a11b1b529c9d20f4150a362c7e81eb96"
+    },
+    {
+      "path": "docs/analysis/evidence/menu-startup-mode-logs.asm",
+      "invocation": [
+        "objdump",
+        "-d",
+        "--start-address=0x140001887",
+        "--stop-address=0x1400018eb",
+        "AzerothSurvivors/AzerothSurvivors.exe"
+      ],
+      "start_address": "0x140001887",
+      "end_address_exclusive": "0x1400018eb",
+      "size_bytes": 1560,
+      "sha256": "eb5210627a24c1faf86f68c6580919ead4539eb79617b033b6078a5332a6ee26"
+    },
+    {
+      "path": "docs/analysis/evidence/menu-data-directory-environment.asm",
+      "invocation": [
+        "objdump",
+        "-d",
+        "--start-address=0x14556ce87",
+        "--stop-address=0x14556cea0",
+        "AzerothSurvivors/AzerothSurvivors.exe"
+      ],
+      "start_address": "0x14556ce87",
+      "end_address_exclusive": "0x14556cea0",
+      "size_bytes": 456,
+      "sha256": "af3b864264cbb03e09207a0da59f2f422c50cbc291032b39cee2b01c6e53e68a"
+    },
+    {
+      "path": "docs/analysis/evidence/menu-data-directory-candidates.asm",
+      "invocation": [
+        "objdump",
+        "-d",
+        "--start-address=0x14556d04a",
+        "--stop-address=0x14556d12b",
+        "AzerothSurvivors/AzerothSurvivors.exe"
+      ],
+      "start_address": "0x14556d04a",
+      "end_address_exclusive": "0x14556d12b",
+      "size_bytes": 3518,
+      "sha256": "066519dbb6d207326bd9758d465a2b390f5f569d0d3677579dd1d5aa3834b400"
+    }
+  ],
+  "guardian_math_import_thunk": {
+    "address": "0x14570b233",
+    "bytes": "ff25cf011900",
+    "iat_address": "0x14589b408",
+    "library": "api-ms-win-crt-math-l1-1-0.dll",
+    "imported_function": "powf"
+  },
+  "linked_binary_strings": [
+    {
+      "address": "0x14589e0c8",
+      "size_bytes": 14,
+      "value": "WOW_ROGUE_GLUE"
+    },
+    {
+      "address": "0x14589e0d7",
+      "size_bytes": 30,
+      "value": "benilla-rogue: the hero picker"
+    },
+    {
+      "address": "0x14589e0f6",
+      "size_bytes": 39,
+      "value": "benilla-rogue: the client's own screens"
+    },
+    {
+      "address": "0x146abf150",
+      "size_bytes": 8,
+      "value": "WOW_DATA"
+    },
+    {
+      "address": "0x146abf158",
+      "size_bytes": 8,
+      "value": "WoW/Data"
+    },
+    {
+      "address": "0x146abf160",
+      "size_bytes": 4,
+      "value": "Data"
+    }
+  ],
+  "interpretation": {
+    "default_surface": "With no explicit quickstart hero/zone selection and no WOW_ROGUE_GLUE=1, startup selects the custom hero-picker mode; the env switch selects the stock-client-screen mode.",
+    "data_input": "Data directory candidate builder reads WOW_DATA and constructs WoW/Data and Data path candidates. Final archive selection and required menu assets are not fully traced.",
+    "limits": "No game execution or MPQ content inspection. Native menu pixel layout and every first-run overlay are unverified."
+  }
+}

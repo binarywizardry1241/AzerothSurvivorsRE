@@ -1,0 +1,59 @@
+{
+  "target_version": "0.105.0",
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "owners": [
+    {
+      "role": "movement",
+      "start": "0x14592ea80",
+      "end_exclusive": "0x14592ed7a",
+      "file_offset": "0x592de80",
+      "sha256": "dbf608a629aa80b33dfcf33c90bb59e24137d0ecff216fdba94e754d0e1a85ea",
+      "assembly": "movement.asm",
+      "pseudocode": "movement.ghidra.c",
+      "evidence_id": "ev_e390f8694cb5230820667045c11382f3dc7ae44d39c1754cd7c16a06fa5f1871",
+      "provider": "Ghidra 12.1.4",
+      "analysis_input": "unchanged complete raw-binary slice"
+    },
+    {
+      "role": "special-target",
+      "start": "0x14594cdc0",
+      "end_exclusive": "0x14594e0e4",
+      "file_offset": "0x594c1c0",
+      "sha256": "ccca631387de1ca71f32ce7cea9d9ae569ebf6f3465ecc7f3a6aadde2ee9a741",
+      "assembly": "special-target.asm",
+      "pseudocode": "special-target.ghidra.c",
+      "evidence_id": "ev_e22406c9bdfb699ba30c3dd9b3bee860128d9d11bf08aea1db7d4791c4040638",
+      "provider": "Ghidra 12.1.4",
+      "analysis_input": "unchanged complete raw-binary slice"
+    },
+    {
+      "role": "cooldown",
+      "start": "0x14594e0f0",
+      "end_exclusive": "0x14594e482",
+      "file_offset": "0x594d4f0",
+      "sha256": "7c24bc140a593dce776c159e52e468aa38d2c4296fc32e33cf9161e1467594a1",
+      "assembly": "cooldown.asm",
+      "pseudocode": "cooldown.ghidra.c",
+      "evidence_id": "ev_fcb3482570830434e1c0d051758e75311857923809da4196cb4134d9ebb9485a",
+      "provider": "Ghidra 12.1.4",
+      "analysis_input": "unchanged complete raw-binary slice"
+    },
+    {
+      "role": "pending-resolve",
+      "start": "0x145927040",
+      "end_exclusive": "0x1459271ba",
+      "file_offset": "0x5926440",
+      "sha256": "6378c1816de7133edaa23b19b328b8b3259c0b7a2f1649abaa13b6432d12ebb8",
+      "assembly": "pending-resolve.asm"
+    }
+  ],
+  "method": "Exact PE exception-directory bounds and immutable original bytes; three helper owners also retain REA/Ghidra raw-slice decompilation.",
+  "reproduction": "python3 scripts/recover-pet-tick-0.105.0.py; run generated helper plans with scripts/rea-batch.py when fresh pseudocode is needed.",
+  "shared_tick_assembly": "../tick.asm",
+  "limits": [
+    "Raw-slice imports do not include external functions or constant data; Win64 assembly controls those interpretations.",
+    "Ghidra pseudocode has inferred types and calling conventions and is not original source.",
+    "The special-target helper includes Demonology branches; retaining it does not establish their live implementation.",
+    "No original or rebuilt game process was launched."
+  ]
+}

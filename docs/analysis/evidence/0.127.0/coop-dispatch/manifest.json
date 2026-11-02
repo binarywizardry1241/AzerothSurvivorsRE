@@ -1,0 +1,4267 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.127.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+    "size_bytes": 146721280
+  },
+  "gap_ids": [
+    41,
+    63,
+    291
+  ],
+  "scope": "Four exact AS co-op current dispatch questions and bounded local-request/message/ownership interfaces; not whole-frame or system completion.",
+  "target_executed": false,
+  "ranges": [
+    {
+      "role": "host-receive",
+      "start": "0x145bb4eb2",
+      "end_exclusive": "0x145bb4fc1",
+      "file_offset": "0x5bb42b2",
+      "byte_count": 271,
+      "sha256": "c91f15856f94c4c91ba049c5e210e729520666b3193f1b61d5f3dbdfac384b2e",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/host-receive.asm",
+        "sha256": "3374b96af8e06dd7261cc0fec91328eed020e2b187577da561b51a2e9eb7f845"
+      },
+      "independently_decoded_instructions": 56,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "local-request-prefix",
+      "start": "0x145bb6475",
+      "end_exclusive": "0x145bb6642",
+      "file_offset": "0x5bb5875",
+      "byte_count": 461,
+      "sha256": "454179063d920f1e12d0ca4b155d1dfbf240bfb79064f7b036aa8a54a5eda32b",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/local-request-prefix.asm",
+        "sha256": "df12bde646d58a8783aeae39842e37c435928aac7b94d236230e59c9aa949ea0"
+      },
+      "independently_decoded_instructions": 86,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "local-request-arms",
+      "start": "0x145bb6642",
+      "end_exclusive": "0x145bb6c5a",
+      "file_offset": "0x5bb5a42",
+      "byte_count": 1560,
+      "sha256": "b5a864e62e744fe88f3e1f0b24833ea3326b1fbd94543d5742de7c571dc8b7ec",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/local-request-arms.asm",
+        "sha256": "70719da45ce9f73f7a6ab48d2a6be73d5d0d208c5b2e664e6a84f16c5b12ecd5"
+      },
+      "independently_decoded_instructions": 286,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "guest-chat-send",
+      "start": "0x145bb6ee6",
+      "end_exclusive": "0x145bb701b",
+      "file_offset": "0x5bb62e6",
+      "byte_count": 309,
+      "sha256": "bfdb3a7a2d05f4a8d701405abc8ecc1eaac5f2d6f44a19f8b4a53419531a508a",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/guest-chat-send.asm",
+        "sha256": "30e6526d7c0c7b57116aef2867dfc2b35959323e1703b848ff099da08df8c118"
+      },
+      "independently_decoded_instructions": 52,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "local-request-completion",
+      "start": "0x145bb706a",
+      "end_exclusive": "0x145bb74f3",
+      "file_offset": "0x5bb646a",
+      "byte_count": 1161,
+      "sha256": "df55d3307d8b33e46cd87105f46d965a828a7f3f483068234a9db8c71a6f7e81",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/local-request-completion.asm",
+        "sha256": "f00e6be39f26573ee915d34621980953df001997f21b369dac4533e81bc34577"
+      },
+      "independently_decoded_instructions": 205,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "decoded-enum-prefix",
+      "start": "0x145bd6280",
+      "end_exclusive": "0x145bd64e0",
+      "file_offset": "0x5bd5680",
+      "byte_count": 608,
+      "sha256": "713bc84b0dd7b40b341bb9f4ed6fc72a7a91b82b4d82dc57eda38555d174e9d8",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/decoded-enum-prefix.asm",
+        "sha256": "be3ac97e2972beebc809714a19ad4bda9b31814cc5a818786c326b9da95d187c"
+      },
+      "independently_decoded_instructions": 122,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "compressed-handler",
+      "start": "0x145bd659d",
+      "end_exclusive": "0x145bd679c",
+      "file_offset": "0x5bd599d",
+      "byte_count": 511,
+      "sha256": "1238f9f8f9c989c87a4fca4329fbfa03cb4fa8f70dc16f96fe6bdcb8f3d21af8",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/compressed-handler.asm",
+        "sha256": "ae23c8eebdc80c7ffe81a91d8aecbdc40106b6e033cb27bd880fc8156a6a9a54"
+      },
+      "independently_decoded_instructions": 99,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "decoded-enum-arms",
+      "start": "0x145bd68b8",
+      "end_exclusive": "0x145bd6b27",
+      "file_offset": "0x5bd5cb8",
+      "byte_count": 623,
+      "sha256": "3a5a90c1c5708966cf55236a9ed4eb37ab37bb96bcd8cc036e438f3c74723caa",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/decoded-enum-arms.asm",
+        "sha256": "d016a49d0d70bfb9ec5ea780b32449154a18ef10ad12db7a2a7485bd9e62d7cc"
+      },
+      "independently_decoded_instructions": 120,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "decoded-enum-cleanup",
+      "start": "0x145bd6fd3",
+      "end_exclusive": "0x145bd7085",
+      "file_offset": "0x5bd63d3",
+      "byte_count": 178,
+      "sha256": "cff8eafb2213e914d58569d016558fe2a21d7d3cbf840923c020e6e3b363cf73",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/decoded-enum-cleanup.asm",
+        "sha256": "ab37417322049104f63cf611d53e07c4af9368ccc7792f15c08eb9589fbe0072"
+      },
+      "independently_decoded_instructions": 50,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "chat-serializer",
+      "start": "0x145d15b8e",
+      "end_exclusive": "0x145d15bdb",
+      "file_offset": "0x5d14f8e",
+      "byte_count": 77,
+      "sha256": "67e02e63e14da4644037bcc4f762ef6e149d320553ef8c10858729b0d408485c",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/chat-serializer.asm",
+        "sha256": "0d21a878afaa688db6b54adcfbed622356de56d0014eed0116e86c936d38d4c6"
+      },
+      "independently_decoded_instructions": 23,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "ping-request-serializer",
+      "start": "0x145d15dac",
+      "end_exclusive": "0x145d15dc9",
+      "file_offset": "0x5d151ac",
+      "byte_count": 29,
+      "sha256": "a8ffd0f49a0299f2dffeeb06ad3baffab372100f36126cf838c752bfb3cfc9b4",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/ping-request-serializer.asm",
+        "sha256": "77eedcb8310047dd6d643faac6e76fabf95ada93e51c54b50125c1d188af129c"
+      },
+      "independently_decoded_instructions": 9,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "ping-echo-serializer",
+      "start": "0x145d15deb",
+      "end_exclusive": "0x145d15e08",
+      "file_offset": "0x5d151eb",
+      "byte_count": 29,
+      "sha256": "c8ef4cb2fac2e4ebd2ef830c3546f75076e93138bdf9847138fbbb6ee9454c9d",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/ping-echo-serializer.asm",
+        "sha256": "a1561fdb7957c11c34d81703e752b1c822dfdaf50ae31f43f9f26245c96ec5f2"
+      },
+      "independently_decoded_instructions": 9,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "hero-class-serializer",
+      "start": "0x145d15158",
+      "end_exclusive": "0x145d151b5",
+      "file_offset": "0x5d14558",
+      "byte_count": 93,
+      "sha256": "4085efec3bb0c275be224dac7904b84a4e86ed393384278bcd85b97b84e39c0e",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/hero-class-serializer.asm",
+        "sha256": "14fd8ba0a628141d494d2797bb08bd5067325f3bd9ae05d498040225f4df7a54"
+      },
+      "independently_decoded_instructions": 24,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "compressed-parser",
+      "start": "0x145d17330",
+      "end_exclusive": "0x145d1759b",
+      "file_offset": "0x5d16730",
+      "byte_count": 619,
+      "sha256": "cc01d4e0a77296d4111cdaa96a90ff575416694e4ae8178f888d3a3f9e83bc27",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/compressed-parser.asm",
+        "sha256": "db354e444584a1621e821d65b45e1de7d9f0cc1889212085108e4de28d35a4e2"
+      },
+      "independently_decoded_instructions": 152,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "new-peer-ping-clock",
+      "start": "0x145bb4b02",
+      "end_exclusive": "0x145bb4b55",
+      "file_offset": "0x5bb3f02",
+      "byte_count": 83,
+      "sha256": "4fe49ee63b47ee80190f1238819b5850cdaf2aaaa90d05780c036fa60897d3b0",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/new-peer-ping-clock.asm",
+        "sha256": "ff0a9d899f203b2689ae586845472f0c2f5e9a288ff2789923038ce13f1fac89"
+      },
+      "independently_decoded_instructions": 13,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "new-peer-fields",
+      "start": "0x145bb4c6b",
+      "end_exclusive": "0x145bb4c88",
+      "file_offset": "0x5bb406b",
+      "byte_count": 29,
+      "sha256": "f3f2ddbc5c5d200343852e64248e763056f57118f69020169a4c95d1d7138924",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/new-peer-fields.asm",
+        "sha256": "425e0bbeb43239dfd7bca845a6904445a8632b4cbdb624000b71e369bd162f57"
+      },
+      "independently_decoded_instructions": 4,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "new-peer-ping-state",
+      "start": "0x145bb4e03",
+      "end_exclusive": "0x145bb4e1a",
+      "file_offset": "0x5bb4203",
+      "byte_count": 23,
+      "sha256": "4439e208d2101e7099da978adfcee13986b7f9024f05d7abf082896d0d398478",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/new-peer-ping-state.asm",
+        "sha256": "f011f8de8bc1ff96788438383683725a6e290f80a24f7e9a8852017f9b0499d2"
+      },
+      "independently_decoded_instructions": 3,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "ping-request-producer",
+      "start": "0x145bb50f5",
+      "end_exclusive": "0x145bb528d",
+      "file_offset": "0x5bb44f5",
+      "byte_count": 408,
+      "sha256": "9f3e8ad6e9a9a03150a67388d34f468fbf87cab372c66f8db7458a529155635b",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/ping-request-producer.asm",
+        "sha256": "6ea090e547f0474dfb4cfebc128f3f3adc0bb61e9d1c1e18e654ade6fa1cb408"
+      },
+      "independently_decoded_instructions": 76,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "roster-frame-publication",
+      "start": "0x145bb528d",
+      "end_exclusive": "0x145bb56eb",
+      "file_offset": "0x5bb468d",
+      "byte_count": 1118,
+      "sha256": "678a9f4efbb07d1a7eb5938f07a7c253d3a93e60c55decdfbd17f8aa2a6727d1",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/roster-frame-publication.asm",
+        "sha256": "d4a35cfbba8825cc33decd4a97a163770e591d38545efe28bef1b4e769df139e"
+      },
+      "independently_decoded_instructions": 209,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "roster-row-serializer",
+      "start": "0x145d15a40",
+      "end_exclusive": "0x145d15b60",
+      "file_offset": "0x5d14e40",
+      "byte_count": 288,
+      "sha256": "101784aba24642e136eaf8d9ef90a983c0543f460a9c4479be8125c95ff7b79e",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/roster-row-serializer.asm",
+        "sha256": "4d6aa5498da0d7d2494d5a254b21b961d018352282b30af8429b49ff78677446"
+      },
+      "independently_decoded_instructions": 68,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "roster-country-serializer",
+      "start": "0x145d15e08",
+      "end_exclusive": "0x145d15e62",
+      "file_offset": "0x5d15208",
+      "byte_count": 90,
+      "sha256": "7e37baa04138cc8c068d739f34a967a3a5806c366fa66fd395c6292d6977918f",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/roster-country-serializer.asm",
+        "sha256": "590c082da92a4b60fe88ddc35c46f6bfb75ee2ef77f937e8fe0e7b3987a32d51"
+      },
+      "independently_decoded_instructions": 22,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "roster-row-parser",
+      "start": "0x145d10851",
+      "end_exclusive": "0x145d10a4e",
+      "file_offset": "0x5d0fc51",
+      "byte_count": 509,
+      "sha256": "87bbf909b94144182983fb37f49d0dddba5a3a743b7d1cfda25d755bcd05017f",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/roster-row-parser.asm",
+        "sha256": "a2c2deecbcb4e1af5a623e67c7f861ff9202175fd5472257622b94175c7bd531"
+      },
+      "independently_decoded_instructions": 99,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "roster-country-parser",
+      "start": "0x145d1227b",
+      "end_exclusive": "0x145d123a9",
+      "file_offset": "0x5d1167b",
+      "byte_count": 302,
+      "sha256": "16a6c28595ad9e47d9b481c523374597e9f86a49871a5e7ea5643c8d7231423b",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/roster-country-parser.asm",
+        "sha256": "b9ff941efab376dd0983406bb08b398eb8111c2a2e3734a45e1b81c3e28b7eb0"
+      },
+      "independently_decoded_instructions": 58,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "roster-producer",
+      "start": "0x145bd4660",
+      "end_exclusive": "0x145bd493e",
+      "file_offset": "0x5bd3a60",
+      "byte_count": 734,
+      "sha256": "aa07562cc3c58d4eef718758cacc4113f9592eec82f597dd7af629ae4d346bcc",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/roster-producer.asm",
+        "sha256": "465886d2f23816e91c942f3de49a306ad6c280ad92d749715fb3e8257f4fb552"
+      },
+      "independently_decoded_instructions": 146,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "roster-row-producer",
+      "start": "0x145d07900",
+      "end_exclusive": "0x145d07c38",
+      "file_offset": "0x5d06d00",
+      "byte_count": 824,
+      "sha256": "5e2cd97fff2fa4fe809d89b1af9463be62234e4705a01d40a1059539eb524aa4",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/roster-row-producer.asm",
+        "sha256": "2b8a3923c51f89d08037a2f2132a41ed215a867611d7333f5e122ff52b521388"
+      },
+      "independently_decoded_instructions": 169,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "chat-normalizer",
+      "start": "0x145b53c70",
+      "end_exclusive": "0x145b53fba",
+      "file_offset": "0x5b53070",
+      "byte_count": 842,
+      "sha256": "d861042e0b4866d1dd92be87b5656cea2dffba35f137304ce07103d7c9d94f9d",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/chat-normalizer.asm",
+        "sha256": "d07c419f5be6a18e423a59a96f1994ca2dbc087235b3d0ca2d847e6190421026"
+      },
+      "independently_decoded_instructions": 205,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "chat-word-separator",
+      "start": "0x145d003a0",
+      "end_exclusive": "0x145d005ca",
+      "file_offset": "0x5cff7a0",
+      "byte_count": 554,
+      "sha256": "7f37c359d47ffd27b6241e2ff13e48214bc3a5d3cfb9ac6859cd074deb111253",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/chat-word-separator.asm",
+        "sha256": "a3be813ef98bc9db15d96215a8e7d1d1c286e8d1bbf96543cc93baf2529cc353"
+      },
+      "independently_decoded_instructions": 150,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "chat-host-admission",
+      "start": "0x145bd7620",
+      "end_exclusive": "0x145bd78fb",
+      "file_offset": "0x5bd6a20",
+      "byte_count": 731,
+      "sha256": "5cf704f024683352e0a4aa0b450241f3f3a8da1812ddb7fdd93f2e1142a38e2b",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/chat-host-admission.asm",
+        "sha256": "48a61496cc179f7d1b92c494504740cc19bbadcf23624f2bfe63fd6ed28d883a"
+      },
+      "independently_decoded_instructions": 180,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "chat-fanout",
+      "start": "0x145bd2db0",
+      "end_exclusive": "0x145bd30bb",
+      "file_offset": "0x5bd21b0",
+      "byte_count": 779,
+      "sha256": "124f8b723921643a68e374c0f2f707551e075d9049c0fcaa054a68a8ae796744",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/chat-fanout.asm",
+        "sha256": "4d525405091e60db430fedf6430a856d19be436b120a38ed55c719c082908cb5"
+      },
+      "independently_decoded_instructions": 179,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "guest-ping-echo",
+      "start": "0x145bd7bff",
+      "end_exclusive": "0x145bd7cc8",
+      "file_offset": "0x5bd6fff",
+      "byte_count": 201,
+      "sha256": "27b85d117c5aff75e36623b4877d242f4476a886e1c4dca32286fecc60acba94",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/guest-ping-echo.asm",
+        "sha256": "1b1af1ef53ee7f3e24ebd59f86d0d2bdec42b3b35535765424faebdef9e3b5cb"
+      },
+      "independently_decoded_instructions": 38,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "country-normalizer",
+      "start": "0x145ec0790",
+      "end_exclusive": "0x145ec09b1",
+      "file_offset": "0x5ebfb90",
+      "byte_count": 545,
+      "sha256": "73fd70e09ac248872ecdbe393519cc9bb15bcd154305fddd9abcde8da15d050b",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/country-normalizer.asm",
+        "sha256": "9793aa3e7a10ccb7e6eb22bdc87300889fd32ea4cb0b22dc5324457a29487e03"
+      },
+      "independently_decoded_instructions": 136,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "country-unicode-trim",
+      "start": "0x140207170",
+      "end_exclusive": "0x1402073e9",
+      "file_offset": "0x206570",
+      "byte_count": 633,
+      "sha256": "e4d5e29c53be31c6457418b396866429a3a8643528a0459d1846a5503645db70",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/country-unicode-trim.asm",
+        "sha256": "ddc510f248e19b46fe28bb76d229ddc07264d4cccaf62004f46029491ed2c709"
+      },
+      "independently_decoded_instructions": 181,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "country-string-reader",
+      "start": "0x145ec36e0",
+      "end_exclusive": "0x145ec3887",
+      "file_offset": "0x5ec2ae0",
+      "byte_count": 423,
+      "sha256": "592e415d19953b28221c144a969d2a98bfd3c27074b51741240b6e9752446c95",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/country-string-reader.asm",
+        "sha256": "072bc832b7ae3c2ecdfadc74e5328673829e779c7ec4ecfe322db644a847fe9b"
+      },
+      "independently_decoded_instructions": 128,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "country-invalid-utf8-replacement-a",
+      "start": "0x146031f4c",
+      "end_exclusive": "0x146031f59",
+      "file_offset": "0x603134c",
+      "byte_count": 13,
+      "sha256": "23892820b973e093071fb8fde0949aa6c7b228fd2d969fd287bc4ab6f2f818a3",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/country-invalid-utf8-replacement-a.asm",
+        "sha256": "0da9868417b81c49dbc5d73b98ca7824e83113db5f2a926294339aafb48eba48"
+      },
+      "independently_decoded_instructions": 2,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "country-invalid-utf8-replacement-b",
+      "start": "0x146031fe1",
+      "end_exclusive": "0x146031fec",
+      "file_offset": "0x60313e1",
+      "byte_count": 11,
+      "sha256": "360aba96263b284f90cda60a93c7c4cbe9584885da299e7a3704d02748521be8",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/country-invalid-utf8-replacement-b.asm",
+        "sha256": "1a4bc8293a1f61d80d022efca7de4a4d16eaf2ae66a672b0444a1f2741fe5d4e"
+      },
+      "independently_decoded_instructions": 2,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "service-tag-selector",
+      "start": "0x145ec1e60",
+      "end_exclusive": "0x145ec1ecd",
+      "file_offset": "0x5ec1260",
+      "byte_count": 109,
+      "sha256": "0b6bcd54bb8906cba2168196dadc42281963e685ac0a81b1378befd6c4ce7a2a",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/service-tag-selector.asm",
+        "sha256": "1bb4b550609d10d8adaf70e7c853df8f5667553b9fd6fb4236daa393a5888396"
+      },
+      "independently_decoded_instructions": 26,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "service-country-branch",
+      "start": "0x145ec20ea",
+      "end_exclusive": "0x145ec2102",
+      "file_offset": "0x5ec14ea",
+      "byte_count": 24,
+      "sha256": "f3ab1ada09f00242f62d0a5e59063dd8b5492be311096c8d7ff1b38ab6321af6",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/service-country-branch.asm",
+        "sha256": "bf5e22ade95454a31538e7df3183def3cbc4a603b0871e0ca9498dc357d83a28"
+      },
+      "independently_decoded_instructions": 5,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "service-country-reader",
+      "start": "0x145ec2788",
+      "end_exclusive": "0x145ec280d",
+      "file_offset": "0x5ec1b88",
+      "byte_count": 133,
+      "sha256": "0352366f436b3f366b9ba1867b4903ef85f6c4908b9e7e5e75711752e55624a9",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/service-country-reader.asm",
+        "sha256": "7a7fd2d7f6561d201f9392e0c373204cd590f144718dd80e6dd383ebd1ef226a"
+      },
+      "independently_decoded_instructions": 25,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "service-country-result",
+      "start": "0x145ec29b8",
+      "end_exclusive": "0x145ec2a4e",
+      "file_offset": "0x5ec1db8",
+      "byte_count": 150,
+      "sha256": "2d4881e6486312919322bc8c3f91ac5d42c60bc035de55a14d45bf2740b236e7",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/service-country-result.asm",
+        "sha256": "521b6ae40a03c0c8995b6353b1b9645e9bbaa556515344e018de906b9d3540df"
+      },
+      "independently_decoded_instructions": 33,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "service-country-map-address",
+      "start": "0x145cb79e2",
+      "end_exclusive": "0x145cb79ee",
+      "file_offset": "0x5cb6de2",
+      "byte_count": 12,
+      "sha256": "4496d9af5ae39c88e2c1909a09d58ab4648d910df72bf2c780398caac3137062",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/service-country-map-address.asm",
+        "sha256": "26eda508e0842a5115e4765089b7ed4d55dd1b3fdd0b64793eb2d9d3c96abec6"
+      },
+      "independently_decoded_instructions": 2,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "service-country-variant-selector",
+      "start": "0x145cb7c31",
+      "end_exclusive": "0x145cb7c6a",
+      "file_offset": "0x5cb7031",
+      "byte_count": 57,
+      "sha256": "3b9b2e0a1804ee20adf6514d3d4905356a523fd25f807e0a7050db35251250ef",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/service-country-variant-selector.asm",
+        "sha256": "c1a57bca5e9ad3286e7ca026e348ab4ef0e34aa83ebbfa3085b12ca7d8acede9"
+      },
+      "independently_decoded_instructions": 13,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "service-country-map-insert",
+      "start": "0x145cb7d37",
+      "end_exclusive": "0x145cb7dcd",
+      "file_offset": "0x5cb7137",
+      "byte_count": 150,
+      "sha256": "ca59b8c4da890fcb802456db71f0f1c5871de919e30bd8ceb2d097b29995bca1",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/service-country-map-insert.asm",
+        "sha256": "fcf749da0ee221df958d1457e07802f4799bbb09cef68c5bc955cf597dd22e3f"
+      },
+      "independently_decoded_instructions": 27,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "service-country-hosted-joined-branches",
+      "start": "0x145cb8046",
+      "end_exclusive": "0x145cb8165",
+      "file_offset": "0x5cb7446",
+      "byte_count": 287,
+      "sha256": "5b275191a0dcb22074ac50f9e680e8063db6421641115ca3846cc34e3362190c",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/service-country-hosted-joined-branches.asm",
+        "sha256": "9fdbdb1e93f58ad66eeff87bff1a55fa9dbdaea8087be5a6a5eba314dfe35ec4"
+      },
+      "independently_decoded_instructions": 55,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "service-country-reset-tails",
+      "start": "0x145cb8b34",
+      "end_exclusive": "0x145cb8d03",
+      "file_offset": "0x5cb7f34",
+      "byte_count": 463,
+      "sha256": "d58a223fa3c334ac66b43a1858e7724c9f12ae173ae26013562ac5bc62704b68",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/service-country-reset-tails.asm",
+        "sha256": "f87c2fc43fbcf749cc1a11fe9158c1f8254925daa7e2b1586409a7785bc82743"
+      },
+      "independently_decoded_instructions": 93,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "country-host-listener-accept",
+      "start": "0x145cc8db0",
+      "end_exclusive": "0x145cc8f32",
+      "file_offset": "0x5cc81b0",
+      "byte_count": 386,
+      "sha256": "956386b5aae19476e2fb31f323a35a2aef6f528442547b16f53a043b4210cbeb",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/country-host-listener-accept.asm",
+        "sha256": "09f29e693bfd82e5eb9ff06e0bfec0f99197b7863ccaf9ec6d6d29df11666cf9"
+      },
+      "independently_decoded_instructions": 112,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "country-host-getter",
+      "start": "0x145cc8fa0",
+      "end_exclusive": "0x145cc9154",
+      "file_offset": "0x5cc83a0",
+      "byte_count": 436,
+      "sha256": "322eda95013094693f09bdd4fea856d7aec657e207b36236d4c387143adce72d",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/country-host-getter.asm",
+        "sha256": "a8d43a72e991dcc362e4ae7e6ab126d242345be9f56e1064f381681f3fa780e6"
+      },
+      "independently_decoded_instructions": 118,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "country-remote-getter",
+      "start": "0x145cca780",
+      "end_exclusive": "0x145cca955",
+      "file_offset": "0x5cc9b80",
+      "byte_count": 469,
+      "sha256": "4e0f3dcc56559804a55abab92bbba359b3619bc7cfdc52e9535360edb4115722",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/country-remote-getter.asm",
+        "sha256": "b5566c8772428148db0585d39a930c2a54930fdf27dab46fb0a88a4b3003fb9c"
+      },
+      "independently_decoded_instructions": 127,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "country-initial-map-constants-load",
+      "start": "0x145cbf8c7",
+      "end_exclusive": "0x145cbf8f1",
+      "file_offset": "0x5cbecc7",
+      "byte_count": 42,
+      "sha256": "94907eb86a3cd96eafc54a34a3d1198f8b10ff9fbe9b7cf3aef1076deb66bac9",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/country-initial-map-constants-load.asm",
+        "sha256": "a56febf24734ea55e1aaa4651a83ca43d240685feb08fb090583ae9b2cc00e20"
+      },
+      "independently_decoded_instructions": 6,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "country-initial-map-staging",
+      "start": "0x145cbf932",
+      "end_exclusive": "0x145cbf94e",
+      "file_offset": "0x5cbed32",
+      "byte_count": 28,
+      "sha256": "d6cdb331d48e84f98a4a0ee671ef49517de3d3c126e15a88aa76486a82079205",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/country-initial-map-staging.asm",
+        "sha256": "d6920680179b12eb3e04a50ac4492efc5d35a7a27ec02fc12bdc44f129ab3aec"
+      },
+      "independently_decoded_instructions": 4,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "country-initial-map-copy",
+      "start": "0x145cbf9d2",
+      "end_exclusive": "0x145cbf9fc",
+      "file_offset": "0x5cbedd2",
+      "byte_count": 42,
+      "sha256": "2ce31469056830b08f66e47295961ca89e15edc359e0de6320e8ea44c6496250",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/country-initial-map-copy.asm",
+        "sha256": "691785b397242cdf65a61c63d0cd0a48f7554a5435dfdb0795fbed72bbd4e9f4"
+      },
+      "independently_decoded_instructions": 6,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "country-initial-service-copy",
+      "start": "0x145cbfb12",
+      "end_exclusive": "0x145cbfb27",
+      "file_offset": "0x5cbef12",
+      "byte_count": 21,
+      "sha256": "adac80f7b5f77ed5a893df379590c24c837e77caf3114c7bed73227355d1e826",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/country-initial-service-copy.asm",
+        "sha256": "61a4e90462542c273dfe5732c14aa2dffc1d45a3fc7badfe0351b336a33d4460"
+      },
+      "independently_decoded_instructions": 5,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "role-versus-game-gate",
+      "start": "0x145bb4ad0",
+      "end_exclusive": "0x145bb4b26",
+      "file_offset": "0x5bb3ed0",
+      "byte_count": 86,
+      "sha256": "dbdb001ba9d0bcc802b36c6d6a18b5edd5cf1e97fb095f9f658380f96a5f0125",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/role-versus-game-gate.asm",
+        "sha256": "3b1ce8b6d310ad198f43c0cfe90314291b8a0401504637bbf3498612c4ba8add"
+      },
+      "independently_decoded_instructions": 16,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "denied-serializer",
+      "start": "0x145d14d2f",
+      "end_exclusive": "0x145d14d51",
+      "file_offset": "0x5d1412f",
+      "byte_count": 34,
+      "sha256": "191b6a593c1cd4ebc85a6e365a3fb67b51c8c4c96fd0b766d5a1536e341273cf",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/denied-serializer.asm",
+        "sha256": "91043293e4e7a8941c6800916fbb7eccb5cfefeca8ee1f28c529a49f4520d1da"
+      },
+      "independently_decoded_instructions": 10,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "sized-byte-writer",
+      "start": "0x145ec0c80",
+      "end_exclusive": "0x145ec0cdd",
+      "file_offset": "0x5ec0080",
+      "byte_count": 93,
+      "sha256": "c948fb39bb4ed2695855393ca8b74da00899224e98456ff954fad585791bf432",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/sized-byte-writer.asm",
+        "sha256": "7e298b2a29e1d24fa8e90a0b8fe70656d382f0a63f75b8a2e9e775b6ec2b2b8e"
+      },
+      "independently_decoded_instructions": 34,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "service-start-transport-ping",
+      "start": "0x145cc9770",
+      "end_exclusive": "0x145cc99af",
+      "file_offset": "0x5cc8b70",
+      "byte_count": 575,
+      "sha256": "aee11c6c6b90e522c90a1bdee4d050b559afd4be00406a4770786e44acbea5dd",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/service-start-transport-ping.asm",
+        "sha256": "79c5efb71657e2e9b11c0f5eeec3020df10ce7c8ec7d65893d69626c5fbc2064"
+      },
+      "independently_decoded_instructions": 141,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "service-transport-rtt-getter",
+      "start": "0x145cc93a0",
+      "end_exclusive": "0x145cc94b2",
+      "file_offset": "0x5cc87a0",
+      "byte_count": 274,
+      "sha256": "ed3e3e27286adafb734558557882cb12d52dccef2d6e86bcab62be6ec5e33a49",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/service-transport-rtt-getter.asm",
+        "sha256": "be2d000f72e71a40a9a815c42767bbbf84f07bf7f3cb00b462783b6161733b3d"
+      },
+      "independently_decoded_instructions": 81,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "transport-rtt-map-getter",
+      "start": "0x145b9e4b0",
+      "end_exclusive": "0x145b9e642",
+      "file_offset": "0x5b9d8b0",
+      "byte_count": 402,
+      "sha256": "1ec9cb3b68ad37febc073b8f412ab200efc585ffd939ba593b647cba8887412d",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/transport-rtt-map-getter.asm",
+        "sha256": "27f6e108a752867d3cc36d02f9db5ea04bcaf50321013748020a30ca6beb84fc"
+      },
+      "independently_decoded_instructions": 115,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "transport-ping-interceptor-prefix",
+      "start": "0x145b9e650",
+      "end_exclusive": "0x145b9e787",
+      "file_offset": "0x5b9da50",
+      "byte_count": 311,
+      "sha256": "f18340ad3f0ef827bd5d2a63f88bb259f6bd2d4635f00c06d64f33853f6c1c78",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/transport-ping-interceptor-prefix.asm",
+        "sha256": "4f04396a6f35bee8809731fa7cbec8681cf4003b7918ac54aa0e1d780659ac08"
+      },
+      "independently_decoded_instructions": 87,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "transport-ping-map-update",
+      "start": "0x145b9e8de",
+      "end_exclusive": "0x145b9e915",
+      "file_offset": "0x5b9dcde",
+      "byte_count": 55,
+      "sha256": "e75efc334a352cfb8e56bed8db51a20485e32c5b088a422ee3f861a2b599e79d",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/transport-ping-map-update.asm",
+        "sha256": "741908ed8f201d4c2e7f6636991938f822d59d1e8821d250a1417af2da375a1a"
+      },
+      "independently_decoded_instructions": 16,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "transport-ping-unit-conversion",
+      "start": "0x145b9e7af",
+      "end_exclusive": "0x145b9e7b7",
+      "file_offset": "0x5b9dbaf",
+      "byte_count": 8,
+      "sha256": "b7fb604caa404770778ce6d4fa265ca90d705cd46479153264f51685eec8850d",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/transport-ping-unit-conversion.asm",
+        "sha256": "98a2ada2b8da0ee9cee63c534178e51bfe274bac2ac2f5fccab1b2fbbc43b7f7"
+      },
+      "independently_decoded_instructions": 1,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "transport-outgoing-ping-stamp",
+      "start": "0x145b921e5",
+      "end_exclusive": "0x145b92290",
+      "file_offset": "0x5b915e5",
+      "byte_count": 171,
+      "sha256": "ee02c64f2983c3d75728f1784d4e5b055e1979183395bef98c84c10811960bd4",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/transport-outgoing-ping-stamp.asm",
+        "sha256": "71c2d2c50bde7a4323533f51845d950e4a7ff76feb36554b3c582ff827f31add"
+      },
+      "independently_decoded_instructions": 38,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "transport-incoming-ping-clock",
+      "start": "0x145b92444",
+      "end_exclusive": "0x145b924ca",
+      "file_offset": "0x5b91844",
+      "byte_count": 134,
+      "sha256": "f7d0230967797e15828446bb050587dff1fd9af2054a3ba6e398d9532d277a95",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/transport-incoming-ping-clock.asm",
+        "sha256": "530a662e5aed5ebbbd516281883a0c91c67793e8110ce9fb621dc35fab2589da"
+      },
+      "independently_decoded_instructions": 26,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "transport-rtt-state-initialization",
+      "start": "0x145b7d844",
+      "end_exclusive": "0x145b7d8dd",
+      "file_offset": "0x5b7cc44",
+      "byte_count": 153,
+      "sha256": "ab0f7ce8cb3a7a0ec2b1b265629c19976faf3a1d38fb0e20b7a9cdbca4eaa681",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/transport-rtt-state-initialization.asm",
+        "sha256": "befabb5619c15c7e0158354ad0d9817570c72f6560f860ec001061e6b56d9491"
+      },
+      "independently_decoded_instructions": 30,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "transport-rtt-state-clone",
+      "start": "0x145b7d976",
+      "end_exclusive": "0x145b7d99c",
+      "file_offset": "0x5b7cd76",
+      "byte_count": 38,
+      "sha256": "8e37bc2eb673bf0100bfb8b2e77ab433300f843ee1942630aa641b63a6be499e",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/transport-rtt-state-clone.asm",
+        "sha256": "82235c8530ceba7944cf74b6529340cfc3a9c18589400a113e7ce3ee93cfadad"
+      },
+      "independently_decoded_instructions": 6,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "transport-rtt-state-thread",
+      "start": "0x145b7da95",
+      "end_exclusive": "0x145b7daa0",
+      "file_offset": "0x5b7ce95",
+      "byte_count": 11,
+      "sha256": "eb139c9ff45b22f6dece190657213a025cff97a12a38254fa68de6c32a8805e9",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/transport-rtt-state-thread.asm",
+        "sha256": "5021523322232208cfdda27261fee541951af77adcb4f0c2ad81f8013a556ad7"
+      },
+      "independently_decoded_instructions": 2,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "transport-rtt-state-return",
+      "start": "0x145b7db63",
+      "end_exclusive": "0x145b7db91",
+      "file_offset": "0x5b7cf63",
+      "byte_count": 46,
+      "sha256": "102c31c52b840f10861dcf03142010b52ac617df980a057b1c4b35e9d0d12d5b",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/transport-rtt-state-return.asm",
+        "sha256": "67e0168d1d4441871bd5bbd8a9f1b93fa63b552e39c676d7abf6c77d4b179351"
+      },
+      "independently_decoded_instructions": 9,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "transport-thread-rtt-argument",
+      "start": "0x145b962c0",
+      "end_exclusive": "0x145b96327",
+      "file_offset": "0x5b956c0",
+      "byte_count": 103,
+      "sha256": "278857831e48543fc761ba2a543daec3ec743f38c4e53a4e95d386170e5b09c8",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/transport-thread-rtt-argument.asm",
+        "sha256": "11b085066e6fbf44990c3697c8be4e393cc2a06abdadd4bb395a7bd18edf263f"
+      },
+      "independently_decoded_instructions": 30,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "service-primary-constructor-callback",
+      "start": "0x145ba6660",
+      "end_exclusive": "0x145ba66d8",
+      "file_offset": "0x5ba5a60",
+      "byte_count": 120,
+      "sha256": "95b3aeba552e20fe85d08ddbbf10013bc3974f0af3d6db7da96733d9b1e68a9e",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/service-primary-constructor-callback.asm",
+        "sha256": "c62ded825dec3794ee0897b40e47d8466e47380ea073ed4f560a7115e671cf98"
+      },
+      "independently_decoded_instructions": 31,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "service-initial-transport-construction",
+      "start": "0x145bd1dd3",
+      "end_exclusive": "0x145bd1e4c",
+      "file_offset": "0x5bd11d3",
+      "byte_count": 121,
+      "sha256": "e17e08fbb1fb9022c2e3d6cfc121946d753aca63810ea826679bae010a1597cf",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/service-initial-transport-construction.asm",
+        "sha256": "dcdf02a06f36922c2ab29e09bdacb430ad02704f3f7c074b04fb09823061af7f"
+      },
+      "independently_decoded_instructions": 30,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "service-primary-transport-construction",
+      "start": "0x145cb907b",
+      "end_exclusive": "0x145cb9099",
+      "file_offset": "0x5cb847b",
+      "byte_count": 30,
+      "sha256": "dc84ce9556b6636da95dd07c1c612b50fac3d085a236f94a46044ef83147d3a4",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/service-primary-transport-construction.asm",
+        "sha256": "6fe38ed70d52e88c2de80abd931ed7fa4bd91dbcd7c94f6adb6b87a762156185"
+      },
+      "independently_decoded_instructions": 5,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "service-primary-transport-install",
+      "start": "0x145cb96e5",
+      "end_exclusive": "0x145cb9703",
+      "file_offset": "0x5cb8ae5",
+      "byte_count": 30,
+      "sha256": "7d32cea1b673062edef159021916559fe14f6b68f24beb0f9561e6226be4e052",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/service-primary-transport-install.asm",
+        "sha256": "6b544265286dd958250cc7ca0f96dc187d3ff7f28fb6276194aaf2403e52ddea"
+      },
+      "independently_decoded_instructions": 4,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "joined-no-transport-rtt",
+      "start": "0x140083bd0",
+      "end_exclusive": "0x140083bd3",
+      "file_offset": "0x82fd0",
+      "byte_count": 3,
+      "sha256": "251447ee91a9067dcd6ab96703133f617565974cd6c4819021760c4688c91abf",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/joined-no-transport-rtt.asm",
+        "sha256": "745f02a8d60824733492b7009ba84d0d590dc44b3336725d6dca9c212689fe85"
+      },
+      "independently_decoded_instructions": 2,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "joined-noop-ping",
+      "start": "0x140002200",
+      "end_exclusive": "0x140002201",
+      "file_offset": "0x1600",
+      "byte_count": 1,
+      "sha256": "ae3f4619b0413d70d3004b9131c3752153074e45725be13b9a148978895e359e",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/joined-noop-ping.asm",
+        "sha256": "afe43aedf425e9cd6eaeef9f59f4b492ee9959aabc1a5d758e84d449fd8a9991"
+      },
+      "independently_decoded_instructions": 1,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "transport-rtt-forwarder",
+      "start": "0x145b94e50",
+      "end_exclusive": "0x145b94e59",
+      "file_offset": "0x5b94250",
+      "byte_count": 9,
+      "sha256": "7dc212369b91faef07015757383fd00d13c5a54d7a1350282bae6b5ecb2b91b6",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/transport-rtt-forwarder.asm",
+        "sha256": "1a3334e5b49a07b2953855b5ebfe074bde5066148e602745477f6a4990c784ef"
+      },
+      "independently_decoded_instructions": 2,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "transport-thread-clock-origin",
+      "start": "0x145b91f00",
+      "end_exclusive": "0x145b91f13",
+      "file_offset": "0x5b91300",
+      "byte_count": 19,
+      "sha256": "a29515832e77543072a663e1655cba309f617ca64e7183a25d6160e2b7680c12",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/transport-thread-clock-origin.asm",
+        "sha256": "827a92f916811a249f48178b2b9f0e53a2d2b78145b50b2b5a7b0e8e8cc62ca8"
+      },
+      "independently_decoded_instructions": 4,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "transport-ping-reply-send",
+      "start": "0x145b924cb",
+      "end_exclusive": "0x145b9256b",
+      "file_offset": "0x5b918cb",
+      "byte_count": 160,
+      "sha256": "6be5e1bb9e607275806e71b152109b4c9d51dfc0daace9b6de686e47c738a12b",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/transport-ping-reply-send.asm",
+        "sha256": "76ea56b4df077d864a39687f020108fd8efbf649f47e579987df46546457bb8d"
+      },
+      "independently_decoded_instructions": 28,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "transport-ping-consume-guard",
+      "start": "0x145b92820",
+      "end_exclusive": "0x145b9283b",
+      "file_offset": "0x5b91c20",
+      "byte_count": 27,
+      "sha256": "9842aec9804a36c1cb041baf027d6b688f4804be8a5b5f54d7771ba63e122e5b",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/transport-ping-consume-guard.asm",
+        "sha256": "2bd65a9397ee160b0a4c3c47ca48077536791d009e3579b060424c6a962421be"
+      },
+      "independently_decoded_instructions": 6,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "transport-normal-frame-publication",
+      "start": "0x145b928c0",
+      "end_exclusive": "0x145b928dd",
+      "file_offset": "0x5b91cc0",
+      "byte_count": 29,
+      "sha256": "a0ea0d59cfad2ae349871b33a7672ff2397bead5a4001485d9eadb2e1173565d",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/transport-normal-frame-publication.asm",
+        "sha256": "20e46b4fa2c97d37cc64895a9974d6efdc11241ac5a2c6caf190b7c338cc3ebc"
+      },
+      "independently_decoded_instructions": 5,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "guest-zone-key-lookup",
+      "start": "0x145b05300",
+      "end_exclusive": "0x145b05429",
+      "file_offset": "0x5b04700",
+      "byte_count": 297,
+      "sha256": "efcc7649cc9e3fd090bd38d75fc3aa6fcab3cf47ec84e6274a8044965f741602",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/guest-zone-key-lookup.asm",
+        "sha256": "c3c4ddc0dc91c50149f12d7071318f4be4617bd83bcb67b22f302da38fdcaad2"
+      },
+      "independently_decoded_instructions": 81,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "guest-zone-key-producer",
+      "start": "0x145bd7fa6",
+      "end_exclusive": "0x145bd803c",
+      "file_offset": "0x5bd73a6",
+      "byte_count": 150,
+      "sha256": "40cfd90a619264c7ea2f2b32568e32a11a9f473ec2d7ca9d3d25ac5c6e63c517",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/guest-zone-key-producer.asm",
+        "sha256": "eb9d8b87239272a3dbbeaf04a724009cc369a9cc318af856046f2125615a14a7"
+      },
+      "independently_decoded_instructions": 24,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "guest-zone-key-clear",
+      "start": "0x145bd8728",
+      "end_exclusive": "0x145bd875f",
+      "file_offset": "0x5bd7b28",
+      "byte_count": 55,
+      "sha256": "6cbcb941623c1e36284dee49d7e5790858a3a12f9b88df5bfaa7cda0c9187059",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/guest-zone-key-clear.asm",
+        "sha256": "bb173efca6795c1eedbdeae5ccbe918d624ba5863210977119756fb75d4e48a9"
+      },
+      "independently_decoded_instructions": 10,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "guest-initial-lobby-fields",
+      "start": "0x145bd2acd",
+      "end_exclusive": "0x145bd2b69",
+      "file_offset": "0x5bd1ecd",
+      "byte_count": 156,
+      "sha256": "51b186b4ba3fc57429a843485f01c34c2690277319fdae6f007938d355dd0d6a",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/guest-initial-lobby-fields.asm",
+        "sha256": "4e97c67daff372186bfa78da823060b12fcb8966cd8c05c61fc67094b2483876"
+      },
+      "independently_decoded_instructions": 20,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "guest-joined-flag-producer",
+      "start": "0x145bd7bbc",
+      "end_exclusive": "0x145bd7bcc",
+      "file_offset": "0x5bd6fbc",
+      "byte_count": 16,
+      "sha256": "0e04b1563f34b18768775be28e1c08a850056ac824ea744da9ae9eb08ab864d0",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/guest-joined-flag-producer.asm",
+        "sha256": "74377680ad70311cf6361984d95739091b9684809c3f0b4b4295d4a00d74b346"
+      },
+      "independently_decoded_instructions": 3,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "service-event-forward-prefix",
+      "start": "0x145cb83d1",
+      "end_exclusive": "0x145cb8447",
+      "file_offset": "0x5cb77d1",
+      "byte_count": 118,
+      "sha256": "8ee1bb3bd2a541568833bcf49c4e206f3396f47ffb876d57b629126e3578c705",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/service-event-forward-prefix.asm",
+        "sha256": "bd0da6dbf77da2a743390ee67fb4cf42e099156002dfab06116f8b6c79970874"
+      },
+      "independently_decoded_instructions": 16,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "service-event-control-guest",
+      "start": "0x145cb84f7",
+      "end_exclusive": "0x145cb851d",
+      "file_offset": "0x5cb78f7",
+      "byte_count": 38,
+      "sha256": "8b7262035401eb56b8af08ed4c5960c74245c36e647a117df1c599692dcbb0b5",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/service-event-control-guest.asm",
+        "sha256": "b419367970d300c2828db2978c9a61b9c5b3278af440d6887c8ae931c3258420"
+      },
+      "independently_decoded_instructions": 7,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "service-event-control-peer",
+      "start": "0x145cb8887",
+      "end_exclusive": "0x145cb889b",
+      "file_offset": "0x5cb7c87",
+      "byte_count": 20,
+      "sha256": "cc93a60f8475a5a8320b37dc458bd4b9efa4ac17a48fc58aaa64d8fb5a4b037d",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/service-event-control-peer.asm",
+        "sha256": "702bf945e60974428d4ee495156c2c8c9f0c299f3faa357b0a186a9519ea15d5"
+      },
+      "independently_decoded_instructions": 4,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "service-event-peer-open-prefix",
+      "start": "0x145cb7f04",
+      "end_exclusive": "0x145cb7f7d",
+      "file_offset": "0x5cb7304",
+      "byte_count": 121,
+      "sha256": "8ec5eaa6fcd380198144030ebe5ab0a188bb5b5e03bdea34f10a91a223cc3920",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/service-event-peer-open-prefix.asm",
+        "sha256": "d9a35a224a0292fee7f986893341df716f067112e039d205272c83379536bf64"
+      },
+      "independently_decoded_instructions": 19,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "service-event-secondary-prefix",
+      "start": "0x145cb827e",
+      "end_exclusive": "0x145cb8378",
+      "file_offset": "0x5cb767e",
+      "byte_count": 250,
+      "sha256": "a77ff9c4a9b93f191f5caa5609ab9ecff866e71232538802e38f799abe0d1e77",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/service-event-secondary-prefix.asm",
+        "sha256": "9369cf9765f933e1bf8ae08902d0a00d429e564d2357ca01a8c14afc3c57bc7e"
+      },
+      "independently_decoded_instructions": 47,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "service-code-context-alias",
+      "start": "0x145bb3527",
+      "end_exclusive": "0x145bb3535",
+      "file_offset": "0x5bb2927",
+      "byte_count": 14,
+      "sha256": "973a096748266d47275f63ae44e03efe4eef860a40f40a7851b21e336348be48",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/service-code-context-alias.asm",
+        "sha256": "fb5fbb7cce5465ee8f2380967ce8b851d062bf1360ab5ce49108a11878b4640e"
+      },
+      "independently_decoded_instructions": 2,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "service-code-hosted-producer",
+      "start": "0x145bb3a29",
+      "end_exclusive": "0x145bb3ab4",
+      "file_offset": "0x5bb2e29",
+      "byte_count": 139,
+      "sha256": "805c13afe3160ff215b565556e09bef9975b35c858ea8ab5f310aa56b694aeea",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/service-code-hosted-producer.asm",
+        "sha256": "4823f83a77ca22e4c629c0726996478081edfbc8dad145567d6c6612d4470d69"
+      },
+      "independently_decoded_instructions": 26,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "service-code-joined-producer",
+      "start": "0x145bb3790",
+      "end_exclusive": "0x145bb381b",
+      "file_offset": "0x5bb2b90",
+      "byte_count": 139,
+      "sha256": "7b4286b3066c48ea27d5586e6a09f8cc50820c6c158167ffa72a4f544ead8c6e",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/service-code-joined-producer.asm",
+        "sha256": "85de88669f954e4433652a1a43558e56e48482ae8e0ef3aef69a71bb37e5bb48"
+      },
+      "independently_decoded_instructions": 26,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "service-code-closed-clear",
+      "start": "0x145bb3b3c",
+      "end_exclusive": "0x145bb3b97",
+      "file_offset": "0x5bb2f3c",
+      "byte_count": 91,
+      "sha256": "10428dc2723a5dcf784f8d454e6fcaa7335fd1db716f03ac744770ee30e1b595",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/service-code-closed-clear.asm",
+        "sha256": "fa6a3de13f3624dbf64dbf479d7536cc08c9fd97c5e0d186c6d2d8e1125610b4"
+      },
+      "independently_decoded_instructions": 17,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "service-code-state-initialization",
+      "start": "0x145bd1e6c",
+      "end_exclusive": "0x145bd1ede",
+      "file_offset": "0x5bd126c",
+      "byte_count": 114,
+      "sha256": "40bbf329959f95f6066568aac2d45f4e93829af4fa568af70607b54a0c6766e4",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/service-code-state-initialization.asm",
+        "sha256": "25a42f1d167190338361970a961a42b9719ee192b3875462e75e4d48628ed93f"
+      },
+      "independently_decoded_instructions": 14,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "guest-denied-role-transition",
+      "start": "0x145bd83e2",
+      "end_exclusive": "0x145bd8453",
+      "file_offset": "0x5bd77e2",
+      "byte_count": 113,
+      "sha256": "be8bfed77ddb0bdac6fc77bb66e1d00cf560236e113eef291761f9d2fee02310",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/guest-denied-role-transition.asm",
+        "sha256": "1425b7d05d87bd6eebf6ef7a205893f69e43c9423d4b8a842ca131f7fc597767"
+      },
+      "independently_decoded_instructions": 22,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "guest-denied-reason-publication",
+      "start": "0x145bd906d",
+      "end_exclusive": "0x145bd90da",
+      "file_offset": "0x5bd846d",
+      "byte_count": 109,
+      "sha256": "1c2d94ad034b9a8dcffa56615bbc9244512dc98c163d566fe450031ac52a7100",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/guest-denied-reason-publication.asm",
+        "sha256": "4f8a7b09d9a174be095d1c10a7b7abb448814e3d225ff69f935582529260c56e"
+      },
+      "independently_decoded_instructions": 28,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "guest-receive-role-exit",
+      "start": "0x145bb4e9f",
+      "end_exclusive": "0x145bb4eb2",
+      "file_offset": "0x5bb429f",
+      "byte_count": 19,
+      "sha256": "ef72c644087ff242727d5de67f133ee6d9bcf84a185f70fbc5fdb95640de81fe",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/guest-receive-role-exit.asm",
+        "sha256": "be51f52b2a5bf7a0c84d41886026cdab4e2993f219527a7b6933c7c855ec4aeb"
+      },
+      "independently_decoded_instructions": 4,
+      "complete_original_byte_linear_decode": true
+    },
+    {
+      "role": "guest-off-role-frame-exit",
+      "start": "0x145bb5830",
+      "end_exclusive": "0x145bb5855",
+      "file_offset": "0x5bb4c30",
+      "byte_count": 37,
+      "sha256": "513d8b7f63f8e3969c6b60d2d35c4695e3bed1aa1b0a13ae7a3f2ed232f46104",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/coop-dispatch/guest-off-role-frame-exit.asm",
+        "sha256": "f2c162613a7ed76ec89bb42f380ddbd6b601bc9b16ed477895f7de9082caf5f2"
+      },
+      "independently_decoded_instructions": 8,
+      "complete_original_byte_linear_decode": true
+    }
+  ],
+  "queries": [
+    {
+      "role": "frame",
+      "procedure": "0x145bb29f0",
+      "slice_virtual_address": "0x145bb29f0",
+      "evidence_id": "ev_871a39ab227c2266accd1a8ff4492b7a459692297a10dbee42b5ddd1c9a89eb3",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "5a4334324ff1d6bdf0aeaf9a44ae4ae5ac0241992f1a56ade5a6d22a41ad46ef",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/slices/plan-145bb29f0.json",
+        "sha256": "92e6f0cd80a5180622bfcbaa5313b961e224d7cc532d844cdd3797a0095ce628"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/rea-145bb29f0/journal.json",
+        "sha256": "3d92beddc0ee45690e3ab9362d218e9f3bdc74f346e92f0411e2f1c6f98d581a"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/rea-145bb29f0/results/433346ba21423f054811a125f75e167bbdda0768f5cd5a97434b5402c01e47c4.json",
+        "sha256": "4ece71095c33f48f0bb8cd36f8403cf73223d2b31760cc5fd1b6538379085cde"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/slices/picker-145bb29f0.bin",
+        "sha256": "332147aa07e399d36b92ae9a4ca36f4d8bcf9943eba0adfcdc75be4569fe184d"
+      },
+      "normalized_text_sha256": "108cded2be46056e7fa37e9dd44657cd56466465a4011c288c0a9c4be729343c",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "332147aa07e399d36b92ae9a4ca36f4d8bcf9943eba0adfcdc75be4569fe184d",
+        "virtual_address": "0x145bb29f0",
+        "file_offset": "0x5bb1df0",
+        "byte_count": 33394,
+        "result": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/rea-145bb29f0/results/433346ba21423f054811a125f75e167bbdda0768f5cd5a97434b5402c01e47c4.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "role": "handler",
+      "procedure": "0x145bd6280",
+      "slice_virtual_address": "0x145bd6280",
+      "evidence_id": "ev_a839c952bbc6093f6467c832ac2a32c3160d7945cffbab929079d33bfddeba6e",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "d6a101986160d8efa8693eb4512c1d72f4c9e3c3bd809f319e60582287e4d5b3",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/slices/plan-145bd6280.json",
+        "sha256": "33ab2f575f32eb363036baaae21710fa2a705a9a1d07b375afd0b31b6255ce5a"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/rea-145bd6280/journal.json",
+        "sha256": "97fbb6c2e1273d318bc219246420afb49ac70a7873213696aad1288f298cf587"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/rea-145bd6280/results/1715f15178db25b788e8384446be4af1cdd73804afb0cb88dbee69a9f8b32c29.json",
+        "sha256": "2ec4fc6f40be02305773c32cd2e8a1662bf642c7c936e3d37a5c6196198a6197"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/slices/picker-145bd6280.bin",
+        "sha256": "6c0ba71b65e3c935e90894507cda149dcff43500c6836546a69d4410e095fe5b"
+      },
+      "normalized_text_sha256": "7406e478a6d3e643b0f82253519f8e86f6ae925bdf06f7aa35f90eed733cfb2b",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "6c0ba71b65e3c935e90894507cda149dcff43500c6836546a69d4410e095fe5b",
+        "virtual_address": "0x145bd6280",
+        "file_offset": "0x5bd5680",
+        "byte_count": 3604,
+        "result": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/rea-145bd6280/results/1715f15178db25b788e8384446be4af1cdd73804afb0cb88dbee69a9f8b32c29.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "role": "chat-host-admission",
+      "procedure": "0x145bd7620",
+      "slice_virtual_address": "0x145bd7620",
+      "evidence_id": "ev_848a492f1ea47123a660168bd95fd3d547176fe5ab4311d249afa64c43575142",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "983cc4c27cdd9b644f99f7fa4312da14c119fb53ab9a3543d32f673f5fe1ac63",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/dependencies/slices/plan-145bd7620.json",
+        "sha256": "bf4bef5b41511fe220784156ca1d9a61777dfd1f5d7a0bfefcc9d84ef799e793"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/dependencies/rea-145bd7620/journal.json",
+        "sha256": "b60ee7c1de77fd2378937af9856a5f191ae25783db30e5ed583bf2876374e78e"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/dependencies/rea-145bd7620/results/06a36ee08b90aff3036cbf127ec8623354d4d69793400bb8f9cf3e2e3694b7f7.json",
+        "sha256": "dc38d6322b6cc3c12fef4c1d20c7f8e228f85fb2a5f2300f02592b6435f478df"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/dependencies/slices/picker-145bd7620.bin",
+        "sha256": "5cf704f024683352e0a4aa0b450241f3f3a8da1812ddb7fdd93f2e1142a38e2b"
+      },
+      "normalized_text_sha256": "d33f7be62fdc0a143d3ceb28be82907153e37c3857c29b73ed8c529696e9b364",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "5cf704f024683352e0a4aa0b450241f3f3a8da1812ddb7fdd93f2e1142a38e2b",
+        "virtual_address": "0x145bd7620",
+        "file_offset": "0x5bd6a20",
+        "byte_count": 731,
+        "result": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/dependencies/rea-145bd7620/results/06a36ee08b90aff3036cbf127ec8623354d4d69793400bb8f9cf3e2e3694b7f7.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "role": "compressed-parser",
+      "procedure": "0x145d17330",
+      "slice_virtual_address": "0x145d14a90",
+      "evidence_id": "ev_7c359eced6334d6511b6428c2dede4ebec373b32ef3ced87ba8001d2a68be840",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "a8e9555fe700ed9e4b71c5cd2a1237af87f59fcbae194981639a99dad33cf4d3",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/dependencies/parser-plan.json",
+        "sha256": "eb7720b7c9a40c09fe7a7e6f72128bf80ebc3c05ad020e2df5dd21bcc4a87e56"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/dependencies/rea-145d17330/journal.json",
+        "sha256": "faf6975cfad205eac89c69dee8698d3b3999c2464dd8822c48dfba7a6da4909e"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/dependencies/rea-145d17330/results/5cee4fed1ca7a7dcf2a12670e3941be2473849112df8f50931b67c7fbe24f8bf.json",
+        "sha256": "bda3786b51c83b74e5e0cd8710c2474db8166f1632bcf124e1478bf4396c0614"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/dependencies/slices/picker-145d14a90.bin",
+        "sha256": "7476fbc47e91a360131ab522e90cdc0d1cc80ee64ab25e459be1e8f5ec385465"
+      },
+      "normalized_text_sha256": "185202a033956744926dd2d993be0ee2e997d3fe0864e0d0a357cf4e82bc4c75",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "7476fbc47e91a360131ab522e90cdc0d1cc80ee64ab25e459be1e8f5ec385465",
+        "virtual_address": "0x145d14a90",
+        "file_offset": "0x5d13e90",
+        "byte_count": 11019,
+        "result": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/dependencies/rea-145d17330/results/5cee4fed1ca7a7dcf2a12670e3941be2473849112df8f50931b67c7fbe24f8bf.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "role": "serializer",
+      "procedure": "0x145d14a90",
+      "slice_virtual_address": "0x145d14a90",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_97bbe28004b41c53b881825dffea09105ed6ea3266838774c3c2587e1ea3be8f",
+      "analysis_profile_digest": "541fd90b010b66664b5f1c4e3915bd0a715988cf860b42796dc7b7b41228ff93",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/serializer/plan.json",
+        "sha256": "c34d7305b50e878cc04be8e92a1a482ddfde70f18f246196f04279e892e778c1"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/serializer/rea/journal.json",
+        "sha256": "55c48485e0e67b102f726a54053a1efd6d3319545cefd1ffa9592d29567e2b7c"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/serializer/rea/results/63277a1bd7723663d55760932149ca3e217d923077fa21547186f8bee832e3ed.json",
+        "sha256": "a700462c95880001e54de00c2fa55a4316a7211191ba1bc4fec5f131945668a4"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/serializer/body.bin",
+        "sha256": "ea3d6084623730a98ecd9ba9b18930c44bc7cfa3ac67d8cf3cef32b4375cd706"
+      },
+      "normalized_sha256": "031f118696e380fa0401799e116693d10bb922ac4face9e2e22c9dcf1b13778b",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "ea3d6084623730a98ecd9ba9b18930c44bc7cfa3ac67d8cf3cef32b4375cd706",
+        "virtual_address": "0x145d14a90",
+        "file_offset": "0x5d13e90",
+        "byte_count": 5708,
+        "result": "runtime/analysis/tasks/fixgap-101-0.127.0/serializer/rea/results/63277a1bd7723663d55760932149ca3e217d923077fa21547186f8bee832e3ed.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "role": "chat-normalizer",
+      "procedure": "0x145b53c70",
+      "slice_virtual_address": "0x145b53c70",
+      "evidence_id": "ev_85bc99db9a8dfa47492900ece14f8f9eb13eb24454b2efb3a1629c075a533fe9",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "5b2734512970dbbb863b2d5f7cb274ecebd0baee01b14b141322a62c54269421",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/chat/slices/plan-145b53c70.json",
+        "sha256": "4ddf1c6f436b993b125a1d0a9c3a6db701fe3115f70984f98d475e558b437c77"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/chat/normalizer-query/journal.json",
+        "sha256": "c67108b1562b0c6b3b3579ed24ef87f7a3fd3f0a32f8249635d289e6f374eaf5"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/chat/normalizer-query/results/3c26e65307b67dc0948caa725e503e07295e2a01a47ba2441d7c7544551fcd24-4d8bcd99625f682b.json",
+        "sha256": "46452e7f24fef5c9e8a517dafabdf905913f64e3002bda9a96ae98f4c516ab20"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/chat/slices/picker-145b53c70.bin",
+        "sha256": "d861042e0b4866d1dd92be87b5656cea2dffba35f137304ce07103d7c9d94f9d"
+      },
+      "normalized_text_sha256": "ea833c187025d5e9d3d92bed5417dd286b7a0c559bb6590548777ae080e91735",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "d861042e0b4866d1dd92be87b5656cea2dffba35f137304ce07103d7c9d94f9d",
+        "virtual_address": "0x145b53c70",
+        "file_offset": "0x5b53070",
+        "byte_count": 842,
+        "result": "runtime/analysis/objects/46/46452e7f24fef5c9e8a517dafabdf905913f64e3002bda9a96ae98f4c516ab20",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "role": "chat-fanout",
+      "procedure": "0x145bd2db0",
+      "slice_virtual_address": "0x145bd2db0",
+      "evidence_id": "ev_ea4ef4b3d4bd52376a0cb62de47b8478523a4e6ae9c3048067dbc22eeaf1146f",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "75ab418d007e1c5b38d7a816e5705cae816ae4aebe0eeee4892b501154b3e9e1",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/chat/slices/plan-145bd2db0.json",
+        "sha256": "f815c4ca65553f05efd8ee6a5b19beabd2516b68db5c00d12b149fdf8afc05cb"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/chat/fanout-query/journal.json",
+        "sha256": "6a65572169341eadc9b839b44891cd75d8eb6f8d1d2f83dd3ddcc3de6d788d69"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/chat/fanout-query/results/97183859e330799b7a36daf97c9e07681a2d5b11e70657a92d14cc58484d3f66-d2cbdf118390819f.json",
+        "sha256": "68aefac56ec78f10882744e669b0a0c8493abac8e33e0c282fad5d6b97560c1e"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/chat/slices/picker-145bd2db0.bin",
+        "sha256": "124f8b723921643a68e374c0f2f707551e075d9049c0fcaa054a68a8ae796744"
+      },
+      "normalized_text_sha256": "4f5a52b08c8cc5b34be3f26fd03667397a68c668cab4d50c3ee9ab53c08faa40",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "124f8b723921643a68e374c0f2f707551e075d9049c0fcaa054a68a8ae796744",
+        "virtual_address": "0x145bd2db0",
+        "file_offset": "0x5bd21b0",
+        "byte_count": 779,
+        "result": "runtime/analysis/objects/68/68aefac56ec78f10882744e669b0a0c8493abac8e33e0c282fad5d6b97560c1e",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "role": "chat-word-separator",
+      "procedure": "0x145d003a0",
+      "slice_virtual_address": "0x145d003a0",
+      "evidence_id": "ev_3299494ecfb5b8ec29df5a21d626bf5406574a0173d5380a8044225340af42d9",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "5606003cabc55116867ef9f753f035a0681e3f659dd597d9983df6397511ae0c",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/chat-split/slices/plan-145d003a0.json",
+        "sha256": "750a68f8230d68d2b1004d1583dbbd390d8b0c5b024232a158010d244d61eb64"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/chat-split/query-final/journal.json",
+        "sha256": "8425959471a9a68bc7a231db1143f80b72a9a80e4fbf11b9b2a9b78c3da1ca0b"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/chat-split/query-final/results/fa6f2e4855fc7479180df809ef98468f19075645c953d3758cdbe0b673ef4142-05ed66f9597ec24c.json",
+        "sha256": "316187e654ef4578870902f55c558e51caaed19e904b556decdd6677a2190674"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/chat-split/slices/picker-145d003a0.bin",
+        "sha256": "7f37c359d47ffd27b6241e2ff13e48214bc3a5d3cfb9ac6859cd074deb111253"
+      },
+      "normalized_text_sha256": "02e08051d7e2f6e22a2bb4c30b12a19d07445371b376f2af317a24eb1b42aa66",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "7f37c359d47ffd27b6241e2ff13e48214bc3a5d3cfb9ac6859cd074deb111253",
+        "virtual_address": "0x145d003a0",
+        "file_offset": "0x5cff7a0",
+        "byte_count": 554,
+        "result": "runtime/analysis/objects/31/316187e654ef4578870902f55c558e51caaed19e904b556decdd6677a2190674",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "role": "country-normalizer",
+      "procedure": "0x145ec0790",
+      "slice_virtual_address": "0x145ec0790",
+      "evidence_id": "ev_dff87378633c9af36bc1eb957d0dc2d2ee19f37dcb391a47f623d652eda7ffbf",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "613795a64ee5a945ead90f606692c6025d989141ca61e16a8bda4e832be41bda",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/country/slices/plan-145ec0790.json",
+        "sha256": "01147a70cb2990dfbf07bd182e00e2fea3e4726ebba19260d66f94d163acb282"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/country/query-final/journal.json",
+        "sha256": "afe7e5bea97a596b30e8835d4065c043079ea71d030d19bbb10bf80f74fdb1d4"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/country/query-final/results/6d3f87237f601ebb7d32f53a95ea333286c10405630b96fc486638006f0620af-a9a9b0b4b0b86d0b.json",
+        "sha256": "12016bac7045d7622935af89e23c9a8c36f01642ca0f7580f43aa14de23ecfd2"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/country/slices/picker-145ec0790.bin",
+        "sha256": "73fd70e09ac248872ecdbe393519cc9bb15bcd154305fddd9abcde8da15d050b"
+      },
+      "normalized_text_sha256": "13d6c9814ba0fd8111cf6a546b8a3720273e0d42a98bf8fd09c2f01434a37325",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "73fd70e09ac248872ecdbe393519cc9bb15bcd154305fddd9abcde8da15d050b",
+        "virtual_address": "0x145ec0790",
+        "file_offset": "0x5ebfb90",
+        "byte_count": 545,
+        "result": "runtime/analysis/objects/12/12016bac7045d7622935af89e23c9a8c36f01642ca0f7580f43aa14de23ecfd2",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "role": "country-unicode-trim",
+      "procedure": "0x140207170",
+      "slice_virtual_address": "0x140207170",
+      "evidence_id": "ev_1b2b13103467c85f75b9253358ab4a0c86b73f8e945bbeaf1eb45bc806e6ca53",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "56da8c238415c368e3d4618736b1e6eae3cbad7f1ca6a297b769e702bc59cf90",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/trim/slices/plan-140207170.json",
+        "sha256": "a85a2fb4ac6a3bdd0ead4b6035d0666f663791f01c74edd88677e4183b80c516"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/trim/query-final/journal.json",
+        "sha256": "ff68ea8561a9ebc6c840ed2d335389ebaba32b84aea3a04090dca10b045556fa"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/trim/query-final/results/474dbe593846809f491d820a2a02910ebf57b02fbc62bc03d503e704dfdb36b9-4144b7ea1debbdfe.json",
+        "sha256": "dcfaa8bb8dc983c765c46e1d5ac8aae510d899a36b9a736a8a1d1d2c7e14621d"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/trim/slices/picker-140207170.bin",
+        "sha256": "e4d5e29c53be31c6457418b396866429a3a8643528a0459d1846a5503645db70"
+      },
+      "normalized_text_sha256": "3309662ae0945cc77b27da75066003a34bd924cf33076786a6141aa880bdea9f",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "e4d5e29c53be31c6457418b396866429a3a8643528a0459d1846a5503645db70",
+        "virtual_address": "0x140207170",
+        "file_offset": "0x206570",
+        "byte_count": 633,
+        "result": "runtime/analysis/objects/dc/dcfaa8bb8dc983c765c46e1d5ac8aae510d899a36b9a736a8a1d1d2c7e14621d",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "role": "service-decoder",
+      "procedure": "0x145ec1e60",
+      "slice_virtual_address": "0x145ec1e60",
+      "evidence_id": "ev_f86c23c925806f35b8ba1733ee7c4911be0799e0aeae98c5d350a41c26aeda06",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "51430d6387aa70e1172c994b0a763725b7e9a57f6e52aee6f87a4e7bd112873d",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/service/slices/plan-145ec1e60.json",
+        "sha256": "edee457090cebe835835aaf319a96becd0da1220925113e126d921acea72d5aa"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/service/query-final/journal.json",
+        "sha256": "db1574ef8e7bd7679a6edbbf286e69cbfb02c7b58e24887615a3edced8c9b56e"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/service/query-final/results/1b95d29bbb4544758e80bbe4a5b8288f62c17bc95bd29a282b69c3828210e16e-95089c1b1bb00950.json",
+        "sha256": "38c42cf218eb4e8083eccd24fb729ad317402d6510c52f736ec6f36eab6e6965"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/service/slices/picker-145ec1e60.bin",
+        "sha256": "e72ba94874f6b1c6be22d1531307b1378a28591eb54ab880314e0aa8fa575fe7"
+      },
+      "normalized_text_sha256": "d202b20f60f15b1e5b926eaf0c73754ee4ac49921580d3eef02f3262373853ff",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "e72ba94874f6b1c6be22d1531307b1378a28591eb54ab880314e0aa8fa575fe7",
+        "virtual_address": "0x145ec1e60",
+        "file_offset": "0x5ec1260",
+        "byte_count": 3752,
+        "result": "runtime/analysis/objects/38/38c42cf218eb4e8083eccd24fb729ad317402d6510c52f736ec6f36eab6e6965",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "role": "shared-service-pump",
+      "procedure": "0x145cb7780",
+      "slice_virtual_address": "0x145cb7780",
+      "evidence_id": "ev_32f3ab6863bb58e1ed55cbcb9e5c015933b9c8a88ee5b1213070ce12fbaa81f1",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "08d3bd320ea7b445bb34884dcee3f62549d06afd0fe86929f4e5c5ffd532460c",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-198-203-0.127.0/relay/seeded-plan.json",
+        "sha256": "520ae839767799e54d60273143da204578529c3f2b88c12b8d956cecb03eb54d"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-198-203-0.127.0/relay/seeded-query/journal.json",
+        "sha256": "92f0ab1ada81a72ef8424fb2d9fb4dd3f62c41dd85a51821b4d44c640c44309d"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-198-203-0.127.0/relay/seeded-query/results/6665a3373dd2feaecb6d8cd3de2c1242ccc406c181108c0cc3ce605075c276c5-1fc08f191d5a1639.json",
+        "sha256": "ad9eaf58324fe7b319e47f07e0fdb9cfe7799276394b428f1fc1a9f828979de6"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-198-203-0.127.0/relay/body.bin",
+        "sha256": "c42e196c4a0f045d52553b57a68e69ce1a0c1184dc33192ef9babb78eb2b4ba5"
+      },
+      "normalized_text_sha256": "ab735f8fb9d74de4b827b843ae8c3544dae8b7291e207a210fbde5584dcce01b",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "c42e196c4a0f045d52553b57a68e69ce1a0c1184dc33192ef9babb78eb2b4ba5",
+        "virtual_address": "0x145cb7780",
+        "file_offset": "0x5cb6b80",
+        "byte_count": 46500,
+        "result": "runtime/analysis/objects/ad/ad9eaf58324fe7b319e47f07e0fdb9cfe7799276394b428f1fc1a9f828979de6",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "role": "shared-guest-dispatch",
+      "procedure": "0x145bd7b40",
+      "slice_virtual_address": "0x145bd7b40",
+      "evidence_id": "ev_da1f8719187d80a29570e9839d66a2917849fd0ff9b3dae2e8dae4bb4b0618b7",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "d3868f6314f69a395ad40768d7d7247d25a81e9f98ac64b1b405046088b2e52d",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/guest-envelope/plan.json",
+        "sha256": "155f836b616e03e188debccb406afed1ba293244b91b015cf4c848d9d7240878"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/guest-envelope/rea/journal.json",
+        "sha256": "b01f2fc51ba9857abb745c2cf12ea0a713df832f21eefb897a4505a33536d8b9"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/guest-envelope/rea/results/d60267d56ec61f46696f4195eea547c8090bb0f5db3aed7d2d39092698159b32.json",
+        "sha256": "c62665947a6680da1c9203a69c57ea0ac46256693259828180b55c78bf1a2cb1"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-101-0.127.0/guest-envelope/body.bin",
+        "sha256": "527f1697b0177bd366544fda60b85e7ad0eb2aa6c467ee0f2a11fa67afb02fda"
+      },
+      "normalized_text_sha256": "9c09f7a3658e5993e8d2682b01e061754646392f566acbe3aeaa15a138fc9c2d",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "527f1697b0177bd366544fda60b85e7ad0eb2aa6c467ee0f2a11fa67afb02fda",
+        "virtual_address": "0x145bd7b40",
+        "file_offset": "0x5bd6f40",
+        "byte_count": 6831,
+        "result": "runtime/analysis/tasks/fixgap-101-0.127.0/guest-envelope/rea/results/d60267d56ec61f46696f4195eea547c8090bb0f5db3aed7d2d39092698159b32.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "role": "country-host-listener-accept",
+      "procedure": "0x145cc8db0",
+      "slice_virtual_address": "0x145cc8db0",
+      "evidence_id": "ev_0976aa47c6b96e493fbcd2fd66a1d6a0501f3fcccd899d3a39659c819da7cea0",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "cedb54463de4d4cabc576acc1fd96a376a653503e25efa8df4f522dc2bee8752",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/country-getters/slices/plan-145cc8db0.json",
+        "sha256": "4cf63f47e56f025f7df913f88168dadcfebda489dfce2018fd74bd7949a9f0d6"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/country-getters/query-final/journal.json",
+        "sha256": "04e7d5c0b0191911139991ba6469ce4b63afbae402c2cb3bdd772882c1517e22"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/country-getters/query-final/results/79182d173dc17ceb33148e45650fcb1ee76f0625dbb167c070f2a143ff96362e-d67774796200c0bc.json",
+        "sha256": "8a660bd1b5fb02d74a64bee01261ecd6168262876cae5eb4df77658ddee34f00"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/country-getters/slices/picker-145cc8db0.bin",
+        "sha256": "509ae69429033980795f90525768ad886ce1ec1508d11432703dd8f615cdd6ef"
+      },
+      "normalized_text_sha256": "b5dbc2a9a348bb81a04c6c23a8847e36b9db2d212b01174e49f749e6ee2fb056",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "509ae69429033980795f90525768ad886ce1ec1508d11432703dd8f615cdd6ef",
+        "virtual_address": "0x145cc8db0",
+        "file_offset": "0x5cc81b0",
+        "byte_count": 7077,
+        "result": "runtime/analysis/objects/8a/8a660bd1b5fb02d74a64bee01261ecd6168262876cae5eb4df77658ddee34f00",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "role": "country-host-getter",
+      "procedure": "0x145cc8fa0",
+      "slice_virtual_address": "0x145cc8db0",
+      "evidence_id": "ev_d1ea066d8abf219b4b186ae0135c903f59b43eda8559f2b04a3822a16f0b4e00",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "cedb54463de4d4cabc576acc1fd96a376a653503e25efa8df4f522dc2bee8752",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/country-getters/slices/plan-145cc8db0.json",
+        "sha256": "4cf63f47e56f025f7df913f88168dadcfebda489dfce2018fd74bd7949a9f0d6"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/country-getters/query-final/journal.json",
+        "sha256": "04e7d5c0b0191911139991ba6469ce4b63afbae402c2cb3bdd772882c1517e22"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/country-getters/query-final/results/97ca1ab6ddc55b560c9e1e013cf76178ff7843b3955d977c0600f40dfe112cc2-7784d96e386012a5.json",
+        "sha256": "c50ffd4c5eff8fd497388940becff7275c86bdd0a1cd1aef74f54eabd07fbf66"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/country-getters/slices/picker-145cc8db0.bin",
+        "sha256": "509ae69429033980795f90525768ad886ce1ec1508d11432703dd8f615cdd6ef"
+      },
+      "normalized_text_sha256": "2b95549e79c4867188314c80ff889abaf913f60adbe9e8b56b6876f70693eb04",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "509ae69429033980795f90525768ad886ce1ec1508d11432703dd8f615cdd6ef",
+        "virtual_address": "0x145cc8db0",
+        "file_offset": "0x5cc81b0",
+        "byte_count": 7077,
+        "result": "runtime/analysis/objects/c5/c50ffd4c5eff8fd497388940becff7275c86bdd0a1cd1aef74f54eabd07fbf66",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "role": "country-remote-getter",
+      "procedure": "0x145cca780",
+      "slice_virtual_address": "0x145cc8db0",
+      "evidence_id": "ev_4fb6b489b6294a73804a1880a0ffdd91e446ee3d26c44e94cc964b8bb38ce348",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "cedb54463de4d4cabc576acc1fd96a376a653503e25efa8df4f522dc2bee8752",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/country-getters/slices/plan-145cc8db0.json",
+        "sha256": "4cf63f47e56f025f7df913f88168dadcfebda489dfce2018fd74bd7949a9f0d6"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/country-getters/query-final/journal.json",
+        "sha256": "04e7d5c0b0191911139991ba6469ce4b63afbae402c2cb3bdd772882c1517e22"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/country-getters/query-final/results/aaf17132c524685436e761ec3643f8ddfd8454f724bd5f270e8e679634a7d3db-4dc0b03b6ed261ef.json",
+        "sha256": "8a1150dab518d26bfa943bedf4620582805903a40eac4cc718be1e96984a7a96"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/country-getters/slices/picker-145cc8db0.bin",
+        "sha256": "509ae69429033980795f90525768ad886ce1ec1508d11432703dd8f615cdd6ef"
+      },
+      "normalized_text_sha256": "40ddebb8eb6ad01846c1c7b9a9f9e6c604e90f2eeff12995a1a03aecb07c0fa1",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "509ae69429033980795f90525768ad886ce1ec1508d11432703dd8f615cdd6ef",
+        "virtual_address": "0x145cc8db0",
+        "file_offset": "0x5cc81b0",
+        "byte_count": 7077,
+        "result": "runtime/analysis/objects/8a/8a1150dab518d26bfa943bedf4620582805903a40eac4cc718be1e96984a7a96",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "role": "service-transport-rtt-getter",
+      "procedure": "0x145cc93a0",
+      "slice_virtual_address": "0x145cc8db0",
+      "evidence_id": "ev_01a6f035519514fb37c02150f73e7dbe07f6679f335d73e2ed7700bd7ee35117",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "7f3cddb6761c4d8069059f67448905ec97130735c44079c62ac30d54824d33c1",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/country-getters/rtt-plan.json",
+        "sha256": "d5275d8c6bec2abee2cdadae9882a25a4546f2383920b91a01e384e7ed6da345"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/country-getters/rtt-query-final/journal.json",
+        "sha256": "3615fed4dc67d68639ba1cba6bd342fd9e94f91170c06f6d62749f2543ff5742"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/country-getters/rtt-query-final/results/d09adb7a9405793e3dd9aa307172d44fee3b73379494c0a32c0b40e33f30ddc2-4500e813cfd67f2f.json",
+        "sha256": "0b5817f407d7260e8a85a4f7c6f25a0fe8189117310cfcdf2d2bb0742f0a2fbe"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/country-getters/slices/picker-145cc8db0.bin",
+        "sha256": "509ae69429033980795f90525768ad886ce1ec1508d11432703dd8f615cdd6ef"
+      },
+      "normalized_text_sha256": "f94b571b189baab68adeeec1961057ddace6f80fa347ee366bd65590ca17d396",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "509ae69429033980795f90525768ad886ce1ec1508d11432703dd8f615cdd6ef",
+        "virtual_address": "0x145cc8db0",
+        "file_offset": "0x5cc81b0",
+        "byte_count": 7077,
+        "result": "runtime/analysis/objects/0b/0b5817f407d7260e8a85a4f7c6f25a0fe8189117310cfcdf2d2bb0742f0a2fbe",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "role": "service-start-transport-ping",
+      "procedure": "0x145cc9770",
+      "slice_virtual_address": "0x145cc8db0",
+      "evidence_id": "ev_c4f06108149ca09c11f420ef452d9287852ae1bdaeb27e383509cba67c6ef024",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "7f3cddb6761c4d8069059f67448905ec97130735c44079c62ac30d54824d33c1",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/country-getters/rtt-plan.json",
+        "sha256": "d5275d8c6bec2abee2cdadae9882a25a4546f2383920b91a01e384e7ed6da345"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/country-getters/rtt-query-final/journal.json",
+        "sha256": "3615fed4dc67d68639ba1cba6bd342fd9e94f91170c06f6d62749f2543ff5742"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/country-getters/rtt-query-final/results/dfa78efbc96c62a0c0b582400c75d827020b7f59e1eb6252f5fdae7e2dec6a84-ab9b685d28e81a02.json",
+        "sha256": "3ee8f7dd43877e7b2c463dbb5d1965755455e8e3ee8703bcd136c191c39a365e"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/country-getters/slices/picker-145cc8db0.bin",
+        "sha256": "509ae69429033980795f90525768ad886ce1ec1508d11432703dd8f615cdd6ef"
+      },
+      "normalized_text_sha256": "dec93daeb19365997c2e56246e6946e697add10624c603e53bb45d290524d460",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "509ae69429033980795f90525768ad886ce1ec1508d11432703dd8f615cdd6ef",
+        "virtual_address": "0x145cc8db0",
+        "file_offset": "0x5cc81b0",
+        "byte_count": 7077,
+        "result": "runtime/analysis/objects/3e/3ee8f7dd43877e7b2c463dbb5d1965755455e8e3ee8703bcd136c191c39a365e",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "role": "transport-rtt-map-getter",
+      "procedure": "0x145b9e4b0",
+      "slice_virtual_address": "0x145b9e4b0",
+      "evidence_id": "ev_93505170835be1129ac2371248f4f25d31790fe7602b37de0f85c7bb63488c71",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "3f402122a5508cd978b0615e157fb1317ef32d9222ee461e63d19b316aac4567",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/transport-rtt/slices/plan-145b9e4b0.json",
+        "sha256": "67f132b389205a9ef976bdc530e7f9aa7cb4981f19facfef14d922439df094bc"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/transport-rtt/query-final/journal.json",
+        "sha256": "30335054f205ace7f3f579c3be4fa6f3e419871c527bbfa80bdc3d3fdb5124d7"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/transport-rtt/query-final/results/4103d3f4a0ec4a040191caf5a9e2ca518b60931e6f54e1c14884ba48890b8a94-446068006ddad47c.json",
+        "sha256": "b64f279aef138a3bfb15e2eb8855c045e41e0bbe4e9f027e5077c25d5d3b0b99"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/transport-rtt/slices/picker-145b9e4b0.bin",
+        "sha256": "3a5095543913b82d28ad9c6309e54f8e7a8f7e7ad8ab7fda1a6e3e28f1524c58"
+      },
+      "normalized_text_sha256": "5943444b6d0d2f43a4bda8ddbfa3cfb8deccf5d0b4d79e6f53fbda0f8d361d2f",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "3a5095543913b82d28ad9c6309e54f8e7a8f7e7ad8ab7fda1a6e3e28f1524c58",
+        "virtual_address": "0x145b9e4b0",
+        "file_offset": "0x5b9d8b0",
+        "byte_count": 1260,
+        "result": "runtime/analysis/objects/b6/b64f279aef138a3bfb15e2eb8855c045e41e0bbe4e9f027e5077c25d5d3b0b99",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "role": "transport-ping-interceptor",
+      "procedure": "0x145b9e650",
+      "slice_virtual_address": "0x145b9e4b0",
+      "evidence_id": "ev_47053716fd24802b43c9eeae3352db302443b4d4ab66e823b9a05aaaaeaf97e9",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "3f402122a5508cd978b0615e157fb1317ef32d9222ee461e63d19b316aac4567",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/transport-rtt/slices/plan-145b9e4b0.json",
+        "sha256": "67f132b389205a9ef976bdc530e7f9aa7cb4981f19facfef14d922439df094bc"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/transport-rtt/query-final/journal.json",
+        "sha256": "30335054f205ace7f3f579c3be4fa6f3e419871c527bbfa80bdc3d3fdb5124d7"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/transport-rtt/query-final/results/6383236ee0d806a7dc59547d9bacba27fc64f10cfc7f958fb2ca7cedaec510f0-cd59545e41c284b8.json",
+        "sha256": "2230c8a3bda490365785eba9e116f99528cfaf14c7d65ae8e995015f2dbe0230"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/transport-rtt/slices/picker-145b9e4b0.bin",
+        "sha256": "3a5095543913b82d28ad9c6309e54f8e7a8f7e7ad8ab7fda1a6e3e28f1524c58"
+      },
+      "normalized_text_sha256": "87f71cd752a3afeec8e6ad98ede64d7909bdf0d1bf12052dd58537dc05c794df",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "3a5095543913b82d28ad9c6309e54f8e7a8f7e7ad8ab7fda1a6e3e28f1524c58",
+        "virtual_address": "0x145b9e4b0",
+        "file_offset": "0x5b9d8b0",
+        "byte_count": 1260,
+        "result": "runtime/analysis/objects/22/2230c8a3bda490365785eba9e116f99528cfaf14c7d65ae8e995015f2dbe0230",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "role": "transport-constructor",
+      "procedure": "0x145b7d5f0",
+      "slice_virtual_address": "0x145b7d5f0",
+      "evidence_id": "ev_764af62a74d4b9179c79cb0380c027a2d9a1aad6a5aa3e13af682b862cbe7a12",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "4dea26b941a6e73e71e1472a860b9629ac213dba126be0745449dddb3522ec4b",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/transport-constructor/slices/plan-145b7d5f0.json",
+        "sha256": "50dc6034b05fe95e6942b80e4bfdde507d3a13535387361a89a40abde43192b2"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/transport-constructor/query-final/journal.json",
+        "sha256": "bb3d628ecdc0fcb5673a72eb59cfdd17ad75160e37415d0af204ce344e717efb"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/transport-constructor/query-final/results/45509a54e6abf655b289b540da32b4e6f15ca3bcb3ceb55ed14f6455fa763e8e-1957b4c0a9e2062d.json",
+        "sha256": "468e0ba6858790b6e3d8447c199f1685244b424c19227df94480093d007946ca"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/transport-constructor/slices/picker-145b7d5f0.bin",
+        "sha256": "07b57b23c720568f601768feee346ac584029090f7c141077198888341f385a1"
+      },
+      "normalized_text_sha256": "e1e64d764f15414a24f5c2aa7d3e3da7dac49f360782bedcaa57a18bad937783",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "07b57b23c720568f601768feee346ac584029090f7c141077198888341f385a1",
+        "virtual_address": "0x145b7d5f0",
+        "file_offset": "0x5b7c9f0",
+        "byte_count": 1754,
+        "result": "runtime/analysis/objects/46/468e0ba6858790b6e3d8447c199f1685244b424c19227df94480093d007946ca",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "role": "guest-zone-key-lookup",
+      "procedure": "0x145b05300",
+      "slice_virtual_address": "0x145b05300",
+      "evidence_id": "ev_097e1b4115aa8fd72f1d92728dcebed12d5e9d2d6f59b3df72e4530efd3e1064",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "55996f14df7ba9bee459521a22c593f82e54a8429e09a4c5940aabcf657af8f1",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/guest-zone-key/slices/plan-145b05300.json",
+        "sha256": "3eb04b2f3bf0212be4096ae13b8f2974b020768c75144a1ab2ab5a411a51fa4d"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/guest-zone-key/query-final/journal.json",
+        "sha256": "176c2295fa08afe653265493b32cc189448a452c65f5838dcdf896eb8b476809"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/guest-zone-key/query-final/results/1784661e41b59d5f82b60aa7aa6193195315096771d54d167ac6450a62293c3e-7393bbf00aa0f4e1.json",
+        "sha256": "3694e9f596a4eeebde520f22881111276fa3ef506b1b79a3acb6539112db5680"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-41-coop-dispatch-0.127.0/guest-zone-key/slices/picker-145b05300.bin",
+        "sha256": "efcc7649cc9e3fd090bd38d75fc3aa6fcab3cf47ec84e6274a8044965f741602"
+      },
+      "normalized_text_sha256": "593fb9ac28c8a472bcd49cf15616575308241dd0ce1e34eb19aa8876a7692cf4",
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "efcc7649cc9e3fd090bd38d75fc3aa6fcab3cf47ec84e6274a8044965f741602",
+        "virtual_address": "0x145b05300",
+        "file_offset": "0x5b04700",
+        "byte_count": 297,
+        "result": "runtime/analysis/objects/36/3694e9f596a4eeebde520f22881111276fa3ef506b1b79a3acb6539112db5680",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "evidence_id": "ev_349cb7309ddb47abc05faf77a7573092264d4701ca3fb1536ab0106aebfb5df4",
+      "procedure": "0x1402e12e0",
+      "slice_virtual_address": "0x1402e12e0",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "b2c26b7d5a62aa6d02acbc03931367d67a742dbc6ba7e6ea86af68d82da2cbe4",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-events/plan.json",
+        "sha256": "f5de943792276eab63d6106b53445e9d2637e5d8686de6ae13dae46dfcdb4f45"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-events/rea/journal.json",
+        "sha256": "ac98832fc63eb9afe9a4ef032a3da3e7d7b5ae5bb19d965b6c5d100e8be538a7"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-events/rea/results/84546ae092648005aa1ca5b6e0e0963fc1bc2438908b5eaf9cfd8d9a28b1575b.json",
+        "sha256": "e6a28d79800481e4d23251d1d52c85e3eee550966f8ca659e275a9326ee239cc"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-events/body.bin",
+        "sha256": "0e7332f0f05b664876607491ff0ada180585e884220a865c9fb396ca006bed78"
+      },
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-events.c",
+        "sha256": "277744d0bd190bdc443c7905cf186296c0213f8e180549cdeb522576f5697d5a"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "raw_sha256": "0e7332f0f05b664876607491ff0ada180585e884220a865c9fb396ca006bed78",
+        "virtual_address": "0x1402e12e0",
+        "file_offset": "0x2e06e0",
+        "byte_count": 7013,
+        "result": "runtime/analysis/tasks/fixgap-291-0.127.0/coop-events/rea/results/84546ae092648005aa1ca5b6e0e0963fc1bc2438908b5eaf9cfd8d9a28b1575b.json",
+        "semantic_or_runtime_correspondence_established": false
+      },
+      "role": "shared-coopstate-refused-consumer",
+      "normalized_text_sha256": "277744d0bd190bdc443c7905cf186296c0213f8e180549cdeb522576f5697d5a"
+    }
+  ],
+  "tables": [
+    {
+      "role": "0x145bb6640",
+      "address": "0x147085c04",
+      "entries": 6,
+      "sha256": "95120e2eb32084ed3cd7eb412856bd2fc53d26febbe2bf502f093baba17aa477",
+      "case_targets": [
+        "0x145bb6642",
+        "0x145bb6ae6",
+        "0x145bb68e8",
+        "0x145bb6a4d",
+        "0x145bb66f7",
+        "0x145bb6be8"
+      ],
+      "type_invariants_or_all_incoming_contexts_complete": false
+    },
+    {
+      "role": "0x145bd6353",
+      "address": "0x147085d9c",
+      "entries": 21,
+      "sha256": "3e73eab6e674482c7c846c2c6aef42cdff1797723d81584e688e7d00018e9af2",
+      "case_targets": [
+        "0x145bd6355",
+        "0x145bd6fd3",
+        "0x145bd6904",
+        "0x145bd6a0c",
+        "0x145bd6a71",
+        "0x145bd6fd3",
+        "0x145bd6fd3",
+        "0x145bd6fd3",
+        "0x145bd6fd3",
+        "0x145bd6fd3",
+        "0x145bd6fd3",
+        "0x145bd6fd3",
+        "0x145bd6fd3",
+        "0x145bd6aa6",
+        "0x145bd6fd3",
+        "0x145bd6fd3",
+        "0x145bd6fd3",
+        "0x145bd6fd3",
+        "0x145bd68b8",
+        "0x145bd6fd3",
+        "0x145bd694c"
+      ],
+      "type_invariants_or_all_incoming_contexts_complete": false
+    },
+    {
+      "role": "0x145bd679a",
+      "address": "0x147085d44",
+      "entries": 22,
+      "sha256": "00bc9c205ffef6c829a013a2d86196775db5f2229aad5277a42c8e2ac1583d71",
+      "case_targets": [
+        "0x145bd706a",
+        "0x145bd7013",
+        "0x145bd7013",
+        "0x145bd7009",
+        "0x145bd7013",
+        "0x145bd7013",
+        "0x145bd7021",
+        "0x145bd7013",
+        "0x145bd7013",
+        "0x145bd7013",
+        "0x145bd7013",
+        "0x145bd7013",
+        "0x145bd7013",
+        "0x145bd7013",
+        "0x145bd7013",
+        "0x145bd7013",
+        "0x145bd7013",
+        "0x145bd7013",
+        "0x145bd7013",
+        "0x145bd706a",
+        "0x145bd7013",
+        "0x145bd679c"
+      ],
+      "type_invariants_or_all_incoming_contexts_complete": false
+    },
+    {
+      "role": "0x145bd7007",
+      "address": "0x147085e48",
+      "entries": 22,
+      "sha256": "931b69a8c924e4a05eb978f7703e237dc0125e0d9fd562cca58e77137f127176",
+      "case_targets": [
+        "0x145bd706a",
+        "0x145bd7013",
+        "0x145bd7013",
+        "0x145bd7009",
+        "0x145bd7013",
+        "0x145bd7013",
+        "0x145bd701d",
+        "0x145bd7013",
+        "0x145bd7013",
+        "0x145bd7013",
+        "0x145bd7013",
+        "0x145bd7013",
+        "0x145bd7013",
+        "0x145bd7013",
+        "0x145bd7013",
+        "0x145bd7013",
+        "0x145bd7013",
+        "0x145bd7013",
+        "0x145bd7013",
+        "0x145bd706a",
+        "0x145bd7013",
+        "0x145bd7035"
+      ],
+      "type_invariants_or_all_incoming_contexts_complete": false
+    },
+    {
+      "role": "serializer-enum",
+      "address": "0x14771f0c4",
+      "entries": 25,
+      "sha256": "f33c5d013af9654a9807d4cf984fd4161e8657984b4098e815ba88d80c50f0c3",
+      "case_targets": [
+        "0x145d14afd",
+        "0x145d15a15",
+        "0x145d14d2f",
+        "0x145d15158",
+        "0x145d14c18",
+        "0x145d15b7d",
+        "0x145d15c3a",
+        "0x145d159bf",
+        "0x145d15d8a",
+        "0x145d14ca7",
+        "0x145d15c7a",
+        "0x145d14bae",
+        "0x145d14c3a",
+        "0x145d15bdb",
+        "0x145d14b4d",
+        "0x145d14d51",
+        "0x145d14b3c",
+        "0x145d15a40",
+        "0x145d15c69",
+        "0x145d15dc9",
+        "0x145d15b60",
+        "0x145d15b8e",
+        "0x145d15dac",
+        "0x145d15deb",
+        "0x145d14cc9"
+      ],
+      "type_invariants_or_all_incoming_contexts_complete": false
+    },
+    {
+      "role": "message-decoder",
+      "address": "0x14771f034",
+      "entries": 25,
+      "sha256": "05fbc510f5ce3eb4cde6f073fbdf67f6d4c458bb2318d81fe29fc4d3e6444278",
+      "case_targets": [
+        "0x145d1078b",
+        "0x145d1179e",
+        "0x145d10fea",
+        "0x145d1104d",
+        "0x145d10da7",
+        "0x145d11826",
+        "0x145d11a54",
+        "0x145d11751",
+        "0x145d11ef2",
+        "0x145d10ec7",
+        "0x145d11b09",
+        "0x145d10cdc",
+        "0x145d10dfb",
+        "0x145d1194d",
+        "0x145d10a4e",
+        "0x145d1103e",
+        "0x145d10851",
+        "0x145d117eb",
+        "0x145d11ab5",
+        "0x145d11f75",
+        "0x145d117f7",
+        "0x145d1186c",
+        "0x145d11f46",
+        "0x145d12002",
+        "0x145d10f1b"
+      ],
+      "type_invariants_or_all_incoming_contexts_complete": false
+    },
+    {
+      "role": "service-wire20-33",
+      "address": "0x1477933bc",
+      "entries": 14,
+      "sha256": "40ac084570d4235f65f9097de4466d42336c0b34ad5b5275962437e632f76da8",
+      "case_targets": [
+        "0x145ec1ecd",
+        "0x145ec2098",
+        "0x145ec200b",
+        "0x145ec203a",
+        "0x145ec1f37",
+        "0x145ec20c7",
+        "0x145ec2102",
+        "0x145ec2069",
+        "0x145ec21d3",
+        "0x145ec1f77",
+        "0x145ec212b",
+        "0x145ec1f17",
+        "0x145ec1f57",
+        "0x145ec20ea"
+      ]
+    },
+    {
+      "role": "service-native1-13",
+      "address": "0x14771cdb8",
+      "entries": 13,
+      "sha256": "c05f6400c042991081d5d50bf3ed9637cd3384c138865bde5c44b548fbc306ef",
+      "case_targets": [
+        "0x145cb80da",
+        "0x145cb8046",
+        "0x145cb83d1",
+        "0x145cb7f04",
+        "0x145cb7dcd",
+        "0x145cb7e92",
+        "0x145cb8165",
+        "0x145cb8fc2",
+        "0x145cb83d1",
+        "0x145cb827e",
+        "0x145cb7c6a",
+        "0x145cb7c6a",
+        "0x145cb7d37"
+      ]
+    },
+    {
+      "role": "zone-key-length2-through8",
+      "address": "0x1470442dc",
+      "entries": 7,
+      "sha256": "0508cf2b1d1f5d40899774748954d8d12e287f569e7f2784943de27ec2a1cd0e",
+      "case_targets": [
+        "0x145b0531e",
+        "0x145b053b2",
+        "0x145b05388",
+        "0x145b0539a",
+        "0x145b05350",
+        "0x145b053e0",
+        "0x145b053f9"
+      ]
+    },
+    {
+      "role": "service-application-events-native0-9",
+      "address": "0x147085bb4",
+      "entries": 10,
+      "sha256": "99c4b1e4a8d383c61e5c445e050e4508bf416c859e2df7a85df114b6ae4130a7",
+      "case_targets": [
+        "0x145bb36ad",
+        "0x145bb3a29",
+        "0x145bb3790",
+        "0x145bb3b15",
+        "0x145bb358a",
+        "0x145bb358a",
+        "0x145bb358a",
+        "0x145bb3b3c",
+        "0x145bb358a",
+        "0x145bb387c"
+      ]
+    }
+  ],
+  "data": [
+    {
+      "role": "chat-rate-window",
+      "address": "0x1463bf7e8",
+      "byte_count": 8,
+      "bytes_hex": "0000000000001440",
+      "sha256": "a7ca1349517e14c0690dccc98bf9a515019b2018116a3191f6c7d53831c0432a"
+    },
+    {
+      "role": "chat-word-separator",
+      "address": "0x147050fb0",
+      "byte_count": 1,
+      "bytes_hex": "20",
+      "sha256": "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068"
+    },
+    {
+      "role": "ping-request-interval",
+      "address": "0x14639bce8",
+      "byte_count": 8,
+      "bytes_hex": "0000000000000040",
+      "sha256": "3f710ac088db33363087de2b9a657541fe5447821debaa9fe5cbd538eb1a5f29"
+    },
+    {
+      "role": "unicode-whitespace-table-pointer",
+      "address": "0x14865ec00",
+      "byte_count": 8,
+      "bytes_hex": "2f327b4701000000",
+      "sha256": "3f9ac294f62d3194cbc9038e92bfee25b7ec0cf3ff2716fb7cc396eb6728d4b9"
+    },
+    {
+      "role": "unicode-whitespace-table",
+      "address": "0x1477b322f",
+      "byte_count": 256,
+      "bytes_hex": "02020202020202020202020000000000000000000000000000000000000000000000000000000000020200000000000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "sha256": "2479482c1d14bb27cb07be6eb893aaf994aa096f8318804b68a8d18b0a23ff3f"
+    },
+    {
+      "role": "hosted-listener-vtable",
+      "address": "0x1470833d8",
+      "byte_count": 40,
+      "bytes_hex": "70a9ba450100000008000000000000000800000000000000b08dcc4501000000a08fcc4501000000",
+      "sha256": "90be8cf888ff1ee3529706f1ffaed58a1149425d4027b98643de550e68e398e8"
+    },
+    {
+      "role": "joined-upstream-vtable",
+      "address": "0x147083408",
+      "byte_count": 104,
+      "bytes_hex": "70a9ba45010000001000000000000000080000000000000030afcc4501000000e0adcc450100000090b2cc4501000000b0b0cc450100000020adcc450100000050accc450100000090abcc4501000000103c0840010000000022004001000000d03b084001000000",
+      "sha256": "1913f8ba244fa469cdb04103927ca0c7d498cd3beac35084afc22571f803d160"
+    },
+    {
+      "role": "accepted-service-peer-vtable",
+      "address": "0x14771cc60",
+      "byte_count": 104,
+      "bytes_hex": "70a9ba450100000010000000000000000800000000000000909ccc4501000000809acc4501000000a0a9cc4501000000009fcc4501000000d095cc45010000000095cc4501000000d03b08400100000080a7cc45010000007097cc4501000000a093cc4501000000",
+      "sha256": "6f26aaa93e8bc1a15e3e962a837cb3f0e84587d602dc0cec0a386b6ebbbc7e01"
+    },
+    {
+      "role": "host-country-key-zero",
+      "address": "0x1473e6248",
+      "byte_count": 4,
+      "bytes_hex": "00000000",
+      "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119"
+    },
+    {
+      "role": "initial-country-map-pointer-mask",
+      "address": "0x1473e57a0",
+      "byte_count": 16,
+      "bytes_hex": "90573e47010000000000000000000000",
+      "sha256": "1977901f7687ee10dfc188a33a9a6e838932f58d12072a3ad896cc8c76c7b31f"
+    },
+    {
+      "role": "initial-country-map-growth-count",
+      "address": "0x1473e57b0",
+      "byte_count": 16,
+      "bytes_hex": "00000000000000000000000000000000",
+      "sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+    },
+    {
+      "role": "kick-reason-prefix",
+      "address": "0x147083d80",
+      "byte_count": 16,
+      "bytes_hex": "74686520686f73742073656e7420796f",
+      "sha256": "97ce8e5b7a925d0a19a4b3faa2ec31d382d6b9d90bae858eb36e93172b68e9fd"
+    },
+    {
+      "role": "actual-service-transport-vtable",
+      "address": "0x147082478",
+      "byte_count": 64,
+      "bytes_hex": "7061b9450100000038000000000000000800000000000000e04eb94501000000604eb94501000000204fb94501000000a030b94501000000504eb94501000000",
+      "sha256": "1e4516176dcc3de58ed423bd33b4529391b393f1d35f1b4c716e724455514a68"
+    },
+    {
+      "role": "transport-rtt-microseconds-per-ms",
+      "address": "0x146258c5c",
+      "byte_count": 4,
+      "bytes_hex": "00007a44",
+      "sha256": "07883481b5c147464597d44401db095d88c2a6b049fbbcd7b278de98a5ceeb71"
+    },
+    {
+      "role": "initial-transport-rtt-map-pointer-mask",
+      "address": "0x14707ec50",
+      "byte_count": 16,
+      "bytes_hex": "40ec0747010000000000000000000000",
+      "sha256": "6cd6a236fdf81279b8966be4f71401d8357068b9e828ed8e3f465e1dc8c0250d"
+    },
+    {
+      "role": "initial-transport-rtt-map-growth-count",
+      "address": "0x14707ec60",
+      "byte_count": 16,
+      "bytes_hex": "00000000000000000000000000000000",
+      "sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+    },
+    {
+      "role": "original-source-location-0x145bb4169",
+      "address": "0x147083008",
+      "byte_count": 24,
+      "bytes_hex": "d52c08470100000022000000000000005301000035000000",
+      "sha256": "41075a3dab1dbc4c7bc07c6635d5a4b7b95263c5112793580a3556173d0e4ffa"
+    },
+    {
+      "role": "original-source-location-0x145bbaaa8",
+      "address": "0x147082ff0",
+      "byte_count": 24,
+      "bytes_hex": "d52c08470100000022000000000000005201000018000000",
+      "sha256": "05697d2ec6b17f7ae9e95ca9823e91bb2e313ce579501ef4bcf41d426efb2504"
+    },
+    {
+      "role": "original-source-location-0x145bbaabd",
+      "address": "0x147083020",
+      "byte_count": 24,
+      "bytes_hex": "d52c0847010000002200000000000000560100001b000000",
+      "sha256": "7e4814be4951dc5718add02bc8c30f53d3d5ed83926bc46d0a0b33b855ee345b"
+    },
+    {
+      "role": "original-source-location-0x145bbaad2",
+      "address": "0x147083038",
+      "byte_count": 24,
+      "bytes_hex": "d52c08470100000022000000000000005701000025000000",
+      "sha256": "811c9612513a64b87679181d0c9fb7f5005e4b83d2904666259c8a23b65855f1"
+    },
+    {
+      "role": "original-source-location-0x145bbab4e",
+      "address": "0x147082b60",
+      "byte_count": 24,
+      "bytes_hex": "ef2a0847010000002800000000000000ed0100004d000000",
+      "sha256": "bed3ffb111ffd0c199733a35e4e4896b1e0b51141375a8336540985ffc2d42d0"
+    },
+    {
+      "role": "original-source-location-0x145bbab7e",
+      "address": "0x147083568",
+      "byte_count": 24,
+      "bytes_hex": "ef2a08470100000028000000000000008704000022000000",
+      "sha256": "174dd1f35de957dbc2ed714edbdead35cb2c67fbb37ca5cb7032e131cd963c85"
+    },
+    {
+      "role": "original-source-location-0x145bbab9a",
+      "address": "0x147082b48",
+      "byte_count": 24,
+      "bytes_hex": "ef2a0847010000002800000000000000ee0100003f000000",
+      "sha256": "06e5dae6f0e5bf2b75fb44bac1cf99b27325d22bd52c6993183a2a8e2f04396f"
+    },
+    {
+      "role": "original-source-location-0x145bbabaf",
+      "address": "0x147083ce0",
+      "byte_count": 24,
+      "bytes_hex": "ef2a0847010000002800000000000000be01000037000000",
+      "sha256": "dea40c687b879979eaca636b3fd28f925f7a3e662d0b0d9849a9fc979b040733"
+    },
+    {
+      "role": "original-source-location-0x145bbabd9",
+      "address": "0x1470840e8",
+      "byte_count": 24,
+      "bytes_hex": "ef2a08470100000028000000000000000002000028000000",
+      "sha256": "bd4ba6d927b3e53ea69941a74ac92396dbb0436172ddb9ee44f534eb253ee9f1"
+    },
+    {
+      "role": "original-source-location-0x145bbac2e",
+      "address": "0x147083580",
+      "byte_count": 24,
+      "bytes_hex": "ef2a0847010000002800000000000000a204000022000000",
+      "sha256": "5c7465c2d41460d0f82f085f6ecdbbbc6b8c32df37d6bd2014b850945d6e923c"
+    },
+    {
+      "role": "original-source-location-0x145bd6d44",
+      "address": "0x147083e38",
+      "byte_count": 24,
+      "bytes_hex": "ef2a08470100000028000000000000003202000028000000",
+      "sha256": "4c1288841e3ed39b969f430dc89f2ddeb88f7bfce5a991b9398bf22609d3e210"
+    },
+    {
+      "role": "original-source-location-0x145bd6d7c",
+      "address": "0x147082b18",
+      "byte_count": 24,
+      "bytes_hex": "ef2a08470100000028000000000000000c0200003f000000",
+      "sha256": "92ab9a47cc7c9e353fa61361b627dad54d75d43383ef83d696d31a3006787079"
+    },
+    {
+      "role": "original-source-location-0x145bd6da7",
+      "address": "0x147082b30",
+      "byte_count": 24,
+      "bytes_hex": "ef2a08470100000028000000000000002c02000044000000",
+      "sha256": "9f0ece92c4997a9e696c2b24b166555fd5996d2775ae5cf0440bf1e953fbc378"
+    },
+    {
+      "role": "original-source-location-0x145bd7085",
+      "address": "0x147083e18",
+      "byte_count": 24,
+      "bytes_hex": "ef2a08470100000028000000000000001c02000028000000",
+      "sha256": "0787545b1369f02217dea4a68c1caa0b4fe8975565a1a5583fb81e4b33c01255"
+    },
+    {
+      "role": "guest-denied-status",
+      "address": "0x147083e80",
+      "byte_count": 7,
+      "bytes_hex": "72656675736564",
+      "sha256": "83c874d33e8bff73caaa762c79cd1ed101d727c7f20fe4972c67e67978292f23"
+    }
+  ],
+  "instructions": [
+    {
+      "site": "0x145bb648a",
+      "bytes": "ff5028",
+      "mnemonic": "call",
+      "operands": "qword ptr [rax + 0x28]"
+    },
+    {
+      "site": "0x145bb6494",
+      "bytes": "48699d60060000e8000000",
+      "mnemonic": "imul",
+      "operands": "rbx, qword ptr [rbp + 0x660], 0xe8"
+    },
+    {
+      "site": "0x145bb6585",
+      "bytes": "8b32",
+      "mnemonic": "mov",
+      "operands": "esi, dword ptr [rdx]"
+    },
+    {
+      "site": "0x145bb65c3",
+      "bytes": "83ee02",
+      "mnemonic": "sub",
+      "operands": "esi, 2"
+    },
+    {
+      "site": "0x145bb6614",
+      "bytes": "83e802",
+      "mnemonic": "sub",
+      "operands": "eax, 2"
+    },
+    {
+      "site": "0x145bb6626",
+      "bytes": "83c0ec",
+      "mnemonic": "add",
+      "operands": "eax, -0x14"
+    },
+    {
+      "site": "0x145bb6629",
+      "bytes": "83f805",
+      "mnemonic": "cmp",
+      "operands": "eax, 5"
+    },
+    {
+      "site": "0x145bb4f12",
+      "bytes": "4881fbc7000000",
+      "mnemonic": "cmp",
+      "operands": "rbx, 0xc7"
+    },
+    {
+      "site": "0x145bb4f49",
+      "bytes": "e862cf1000",
+      "mnemonic": "call",
+      "operands": "0x145cc1eb0"
+    },
+    {
+      "site": "0x145bb4fb3",
+      "bytes": "e8c8120200",
+      "mnemonic": "call",
+      "operands": "0x145bd6280"
+    },
+    {
+      "site": "0x145bd62e6",
+      "bytes": "4d8b21",
+      "mnemonic": "mov",
+      "operands": "r12, qword ptr [r9]"
+    },
+    {
+      "site": "0x145bd62f3",
+      "bytes": "4d31e0",
+      "mnemonic": "xor",
+      "operands": "r8, r12"
+    },
+    {
+      "site": "0x145bd62fe",
+      "bytes": "490f48c0",
+      "mnemonic": "cmovs",
+      "operands": "rax, r8"
+    },
+    {
+      "site": "0x145bd6326",
+      "bytes": "80bc0be404000000",
+      "mnemonic": "cmp",
+      "operands": "byte ptr [rbx + rcx + 0x4e4], 0"
+    },
+    {
+      "site": "0x145bd6334",
+      "bytes": "4883c0fd",
+      "mnemonic": "add",
+      "operands": "rax, -3"
+    },
+    {
+      "site": "0x145bd6773",
+      "bytes": "4c31e1",
+      "mnemonic": "xor",
+      "operands": "rcx, r12"
+    },
+    {
+      "site": "0x145bd677e",
+      "bytes": "480f48c1",
+      "mnemonic": "cmovs",
+      "operands": "rax, rcx"
+    },
+    {
+      "site": "0x145bd6fdd",
+      "bytes": "4c31e1",
+      "mnemonic": "xor",
+      "operands": "rcx, r12"
+    },
+    {
+      "site": "0x145bd6fe8",
+      "bytes": "480f48c1",
+      "mnemonic": "cmovs",
+      "operands": "rax, rcx"
+    },
+    {
+      "site": "0x145bd6a31",
+      "bytes": "80bbe504000001",
+      "mnemonic": "cmp",
+      "operands": "byte ptr [rbx + 0x4e5], 1"
+    },
+    {
+      "site": "0x145bd6b05",
+      "bytes": "b9abaaaaaa",
+      "mnemonic": "mov",
+      "operands": "ecx, 0xaaaaaaab"
+    },
+    {
+      "site": "0x145bd6b0e",
+      "bytes": "48c1e921",
+      "mnemonic": "shr",
+      "operands": "rcx, 0x21"
+    },
+    {
+      "site": "0x145bd6b12",
+      "bytes": "66c783e00400000100",
+      "mnemonic": "mov",
+      "operands": "word ptr [rbx + 0x4e0], 1"
+    },
+    {
+      "site": "0x145bd6b1b",
+      "bytes": "66898be2040000",
+      "mnemonic": "mov",
+      "operands": "word ptr [rbx + 0x4e2], cx"
+    },
+    {
+      "site": "0x145bd701d",
+      "bytes": "488b7e08",
+      "mnemonic": "mov",
+      "operands": "rdi, qword ptr [rsi + 8]"
+    },
+    {
+      "site": "0x145bd7052",
+      "bytes": "488b5620",
+      "mnemonic": "mov",
+      "operands": "rdx, qword ptr [rsi + 0x20]"
+    },
+    {
+      "site": "0x145d15b92",
+      "bytes": "b216",
+      "mnemonic": "mov",
+      "operands": "dl, 0x16"
+    },
+    {
+      "site": "0x145d15b9a",
+      "bytes": "488b5738",
+      "mnemonic": "mov",
+      "operands": "rdx, qword ptr [rdi + 0x38]"
+    },
+    {
+      "site": "0x145d15bb8",
+      "bytes": "0fb65740",
+      "mnemonic": "movzx",
+      "operands": "edx, byte ptr [rdi + 0x40]"
+    },
+    {
+      "site": "0x145d15db0",
+      "bytes": "b217",
+      "mnemonic": "mov",
+      "operands": "dl, 0x17"
+    },
+    {
+      "site": "0x145d15def",
+      "bytes": "b218",
+      "mnemonic": "mov",
+      "operands": "dl, 0x18"
+    },
+    {
+      "site": "0x145d15186",
+      "bytes": "0fb69717020000",
+      "mnemonic": "movzx",
+      "operands": "edx, byte ptr [rdi + 0x217]"
+    },
+    {
+      "site": "0x145ec371d",
+      "bytes": "c6421800",
+      "mnemonic": "mov",
+      "operands": "byte ptr [rdx + 0x18], 0"
+    },
+    {
+      "site": "0x145ec3751",
+      "bytes": "c6421800",
+      "mnemonic": "mov",
+      "operands": "byte ptr [rdx + 0x18], 0"
+    },
+    {
+      "site": "0x145ec37bd",
+      "bytes": "e8aee61600",
+      "mnemonic": "call",
+      "operands": "0x146031e70"
+    },
+    {
+      "site": "0x146031f4c",
+      "bytes": "41c6443c02bd",
+      "mnemonic": "mov",
+      "operands": "byte ptr [r12 + rdi + 2], 0xbd"
+    },
+    {
+      "site": "0x146031f52",
+      "bytes": "6641c7043cefbf",
+      "mnemonic": "mov",
+      "operands": "word ptr [r12 + rdi], 0xbfef"
+    },
+    {
+      "site": "0x146031fe1",
+      "bytes": "c6443802bd",
+      "mnemonic": "mov",
+      "operands": "byte ptr [rax + rdi + 2], 0xbd"
+    },
+    {
+      "site": "0x146031fe6",
+      "bytes": "66c70438efbf",
+      "mnemonic": "mov",
+      "operands": "word ptr [rax + rdi], 0xbfef"
+    },
+    {
+      "site": "0x145d00400",
+      "bytes": "83fd20",
+      "mnemonic": "cmp",
+      "operands": "ebp, 0x20"
+    },
+    {
+      "site": "0x145d00403",
+      "bytes": "0f8277010000",
+      "mnemonic": "jb",
+      "operands": "0x145d00580"
+    },
+    {
+      "site": "0x145d00409",
+      "bytes": "83c581",
+      "mnemonic": "add",
+      "operands": "ebp, -0x7f"
+    },
+    {
+      "site": "0x145d0040c",
+      "bytes": "83fd20",
+      "mnemonic": "cmp",
+      "operands": "ebp, 0x20"
+    },
+    {
+      "site": "0x145d0040f",
+      "bytes": "0f866b010000",
+      "mnemonic": "jbe",
+      "operands": "0x145d00580"
+    },
+    {
+      "site": "0x145bb3d82",
+      "bytes": "4c8d057ff64c01",
+      "mnemonic": "lea",
+      "operands": "r8, [rip + 0x14cf67f]"
+    },
+    {
+      "site": "0x145bb3ee1",
+      "bytes": "4c8d05f0f44c01",
+      "mnemonic": "lea",
+      "operands": "r8, [rip + 0x14cf4f0]"
+    },
+    {
+      "site": "0x145bd265b",
+      "bytes": "488955e8",
+      "mnemonic": "mov",
+      "operands": "qword ptr [rbp - 0x18], rdx"
+    },
+    {
+      "site": "0x145bd265f",
+      "bytes": "83791002",
+      "mnemonic": "cmp",
+      "operands": "dword ptr [rcx + 0x10], 2"
+    },
+    {
+      "site": "0x145bd2665",
+      "bytes": "83b9980d000002",
+      "mnemonic": "cmp",
+      "operands": "dword ptr [rcx + 0xd98], 2"
+    },
+    {
+      "site": "0x145bd2713",
+      "bytes": "48c781980d000003000000",
+      "mnemonic": "mov",
+      "operands": "qword ptr [rcx + 0xd98], 3"
+    },
+    {
+      "site": "0x145bd278d",
+      "bytes": "488b45e8",
+      "mnemonic": "mov",
+      "operands": "rax, qword ptr [rbp - 0x18]"
+    },
+    {
+      "site": "0x145bd2791",
+      "bytes": "488981180e0000",
+      "mnemonic": "mov",
+      "operands": "qword ptr [rcx + 0xe18], rax"
+    },
+    {
+      "site": "0x145bd2798",
+      "bytes": "4c8981200e0000",
+      "mnemonic": "mov",
+      "operands": "qword ptr [rcx + 0xe20], r8"
+    },
+    {
+      "site": "0x145bb50f5",
+      "bytes": "41837f1002",
+      "mnemonic": "cmp",
+      "operands": "dword ptr [r15 + 0x10], 2"
+    },
+    {
+      "site": "0x145bd1e47",
+      "bytes": "e8d4d80e00",
+      "mnemonic": "call",
+      "operands": "0x145cbf720"
+    },
+    {
+      "site": "0x145bb4f6f",
+      "bytes": "4c8b643810",
+      "mnemonic": "mov",
+      "operands": "r12, qword ptr [rax + rdi + 0x10]"
+    },
+    {
+      "site": "0x145bd7690",
+      "bytes": "837e1002",
+      "mnemonic": "cmp",
+      "operands": "dword ptr [rsi + 0x10], 2"
+    },
+    {
+      "site": "0x145bd2dd6",
+      "bytes": "83b9980d000003",
+      "mnemonic": "cmp",
+      "operands": "dword ptr [rcx + 0xd98], 3"
+    },
+    {
+      "site": "0x145bc29b5",
+      "bytes": "c686bd11000001",
+      "mnemonic": "mov",
+      "operands": "byte ptr [rsi + 0x11bd], 1"
+    },
+    {
+      "site": "0x145ec20b8",
+      "bytes": "49be0100000000000080",
+      "mnemonic": "movabs",
+      "operands": "r14, 0x8000000000000001"
+    },
+    {
+      "site": "0x145ec202b",
+      "bytes": "49be0200000000000080",
+      "mnemonic": "movabs",
+      "operands": "r14, 0x8000000000000002"
+    },
+    {
+      "site": "0x145ec205a",
+      "bytes": "49be0300000000000080",
+      "mnemonic": "movabs",
+      "operands": "r14, 0x8000000000000003"
+    },
+    {
+      "site": "0x145ec1f48",
+      "bytes": "49be0400000000000080",
+      "mnemonic": "movabs",
+      "operands": "r14, 0x8000000000000004"
+    },
+    {
+      "site": "0x145ec21ef",
+      "bytes": "49be0400000000000080",
+      "mnemonic": "movabs",
+      "operands": "r14, 0x8000000000000004"
+    },
+    {
+      "site": "0x145ec20d8",
+      "bytes": "49be0500000000000080",
+      "mnemonic": "movabs",
+      "operands": "r14, 0x8000000000000005"
+    },
+    {
+      "site": "0x145ec2779",
+      "bytes": "49be0500000000000080",
+      "mnemonic": "movabs",
+      "operands": "r14, 0x8000000000000005"
+    },
+    {
+      "site": "0x145ec2832",
+      "bytes": "49be0600000000000080",
+      "mnemonic": "movabs",
+      "operands": "r14, 0x8000000000000006"
+    },
+    {
+      "site": "0x145ec2853",
+      "bytes": "49be0600000000000080",
+      "mnemonic": "movabs",
+      "operands": "r14, 0x8000000000000006"
+    },
+    {
+      "site": "0x145ec2089",
+      "bytes": "49be0700000000000080",
+      "mnemonic": "movabs",
+      "operands": "r14, 0x8000000000000007"
+    },
+    {
+      "site": "0x145ec21d3",
+      "bytes": "49be0800000000000080",
+      "mnemonic": "movabs",
+      "operands": "r14, 0x8000000000000008"
+    },
+    {
+      "site": "0x145ec1ffc",
+      "bytes": "49be0900000000000080",
+      "mnemonic": "movabs",
+      "operands": "r14, 0x8000000000000009"
+    },
+    {
+      "site": "0x145ec214f",
+      "bytes": "4c8bb548010000",
+      "mnemonic": "mov",
+      "operands": "r14, qword ptr [rbp + 0x148]"
+    },
+    {
+      "site": "0x145ec1f17",
+      "bytes": "49be0b00000000000080",
+      "mnemonic": "movabs",
+      "operands": "r14, 0x800000000000000b"
+    },
+    {
+      "site": "0x145ec1f68",
+      "bytes": "49be0c00000000000080",
+      "mnemonic": "movabs",
+      "operands": "r14, 0x800000000000000c"
+    },
+    {
+      "site": "0x145ec2202",
+      "bytes": "49be0c00000000000080",
+      "mnemonic": "movabs",
+      "operands": "r14, 0x800000000000000c"
+    },
+    {
+      "site": "0x145ec27fb",
+      "bytes": "49be0d00000000000080",
+      "mnemonic": "movabs",
+      "operands": "r14, 0x800000000000000d"
+    },
+    {
+      "site": "0x145ec29ae",
+      "bytes": "49be0000000000000080",
+      "mnemonic": "movabs",
+      "operands": "r14, 0x8000000000000000"
+    },
+    {
+      "site": "0x145ec29ed",
+      "bytes": "4d8930",
+      "mnemonic": "mov",
+      "operands": "qword ptr [r8], r14"
+    },
+    {
+      "site": "0x145bb4169",
+      "bytes": "4c8d0598ee4c01",
+      "mnemonic": "lea",
+      "operands": "r8, [rip + 0x14cee98]"
+    },
+    {
+      "site": "0x145bbaaa8",
+      "bytes": "4c8d0541854c01",
+      "mnemonic": "lea",
+      "operands": "r8, [rip + 0x14c8541]"
+    },
+    {
+      "site": "0x145bbaabd",
+      "bytes": "4c8d055c854c01",
+      "mnemonic": "lea",
+      "operands": "r8, [rip + 0x14c855c]"
+    },
+    {
+      "site": "0x145bbaad2",
+      "bytes": "4c8d055f854c01",
+      "mnemonic": "lea",
+      "operands": "r8, [rip + 0x14c855f]"
+    },
+    {
+      "site": "0x145bbab4e",
+      "bytes": "4c8d050b804c01",
+      "mnemonic": "lea",
+      "operands": "r8, [rip + 0x14c800b]"
+    },
+    {
+      "site": "0x145bbab7e",
+      "bytes": "4c8d05e3894c01",
+      "mnemonic": "lea",
+      "operands": "r8, [rip + 0x14c89e3]"
+    },
+    {
+      "site": "0x145bbab9a",
+      "bytes": "4c8d05a77f4c01",
+      "mnemonic": "lea",
+      "operands": "r8, [rip + 0x14c7fa7]"
+    },
+    {
+      "site": "0x145bbabaf",
+      "bytes": "4c8d052a914c01",
+      "mnemonic": "lea",
+      "operands": "r8, [rip + 0x14c912a]"
+    },
+    {
+      "site": "0x145bbabd9",
+      "bytes": "4c8d0508954c01",
+      "mnemonic": "lea",
+      "operands": "r8, [rip + 0x14c9508]"
+    },
+    {
+      "site": "0x145bbac2e",
+      "bytes": "4c8d054b894c01",
+      "mnemonic": "lea",
+      "operands": "r8, [rip + 0x14c894b]"
+    },
+    {
+      "site": "0x145bd6d44",
+      "bytes": "4c8d05edd04a01",
+      "mnemonic": "lea",
+      "operands": "r8, [rip + 0x14ad0ed]"
+    },
+    {
+      "site": "0x145bd6d7c",
+      "bytes": "4c8d0595bd4a01",
+      "mnemonic": "lea",
+      "operands": "r8, [rip + 0x14abd95]"
+    },
+    {
+      "site": "0x145bd6da7",
+      "bytes": "4c8d0582bd4a01",
+      "mnemonic": "lea",
+      "operands": "r8, [rip + 0x14abd82]"
+    },
+    {
+      "site": "0x145bd7085",
+      "bytes": "4c8d058ccd4a01",
+      "mnemonic": "lea",
+      "operands": "r8, [rip + 0x14acd8c]"
+    }
+  ],
+  "shared_evidence": [
+    {
+      "path": "docs/analysis/evidence/0.127.0/switch-context-source-review.json",
+      "sha256": "7186d6b8e9c01e84b85a1104ab6003252a9d7fc1f93a38f8b6929efbb9dc9cd5"
+    },
+    {
+      "path": "docs/analysis/evidence/0.127.0/coop-item-carrier/manifest.json",
+      "sha256": "913ab0cc657767d066d24c1db9960c4e0628bdc0d6683b0bfc7d2b95f877b028"
+    }
+  ],
+  "dispatches": [
+    {
+      "site": "0x145bb6640",
+      "classification": "local_request_variants22_through27_not_network_tags",
+      "query_index": 0,
+      "source_or_feature_owner": "existing directory/Forms plus #291 Chat/Kick"
+    },
+    {
+      "site": "0x145bd6353",
+      "classification": "host_decoded_message_niche_variants3_through23_with_direct_Join0_and_Compressed19",
+      "query_index": 1,
+      "source_or_feature_owner": "existing Session/replication plus #291 Chat/RTT"
+    },
+    {
+      "site": "0x145bd679a",
+      "classification": "post_compressed_variant19_owned_message_cleanup",
+      "query_index": 1,
+      "source_or_feature_owner": "existing ownership/RAII interface"
+    },
+    {
+      "site": "0x145bd7007",
+      "classification": "ordinary_exit_alias_of_same_message_cleanup",
+      "query_index": 1,
+      "source_or_feature_owner": "existing ownership/RAII interface"
+    }
+  ],
+  "source_first": [
+    {
+      "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+      "sha256": "009c67624841ac6f036c7a5eaa139b5f5a5e816f61cdfea69caa291b1a91b66c"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop/replication.rs",
+      "sha256": "d3ea43b43070477540d1308776b4303dff0885c3f67d1585ef35d3ed31a82951"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop/session.rs",
+      "sha256": "a4df410ed828d578ab31d26e727aa86000596df5949e98de240f3ed32d63920f"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop_directory.rs",
+      "sha256": "bd5c929207fc126c93a1a3ad1f62b4f5b8fe8f3324b466ab977028454038e7cf"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop_forms.rs",
+      "sha256": "14c4588142bc4251e2208e10b9d226b47762bbb5480ad4d733fadbe535454669"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop/websocket.rs",
+      "sha256": "5b96b3953ceb74066e21f47a03f11b67f6c711b756ded366921e8a4569c35f55"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop/directory_wire.rs",
+      "sha256": "214fc6a20852c383763ddcbeda0d731729f988e75eafcb9b6a0ed8fa0a924a00"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+      "sha256": "eca7414b503320555eb40079a900f95327a3e970d3e4c998b845d6f168cf450c"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/zones.rs",
+      "sha256": "28b1267834660d083f5501381dcc807458aaab09bc7984993fa118b409c6f84e"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop_runtime.rs",
+      "sha256": "cd542f26037fae993a9d8302bb9f18b5ebb30730e544b718dfb05886efaa0cce"
+    }
+  ],
+  "source_semantics_complete": false,
+  "parity_verified": false,
+  "limits": [
+    "Raw Ghidra slices omit external data/callees and issue unrecovered-switch warnings. Original Windows-x64 instructions and exact current table cells govern bounded dispatch statements.",
+    "Local requests, native niche encodings and wire tags are distinct; serializer domain includes variant24/wire25 owned by canonical item-carrier proof.",
+    "The separate current admission proof owns the protocol/version gate; no admission extract is duplicated here.",
+    "Generic allocation/drop/parser internals stop at the AS owned-message interface; full transport/type/alias/source closure is not certified.",
+    "No compilation, client/game/network/server execution, rendering or original/rebuilt comparison."
+  ],
+  "alias_contracts": [
+    {
+      "site": "0x145bd679a",
+      "dominator": "normalized original variant == 19 before entry145bd659d",
+      "original_first_qword_loads": [
+        "0x145bd62e6",
+        "0x145bd64ae"
+      ],
+      "preservation": "R12 is nonvolatile under original Windows x64 ABI; no intervening body writes except those original loads",
+      "selected_index": 19,
+      "selected_destination": "0x145bd706a",
+      "conclusion": "Post-compressed return after owned batch input cleanup; remaining table cells are not additional reachable semantic cases here."
+    },
+    {
+      "site": "0x145bd7007",
+      "original_alias": "R12 retains original message first qword",
+      "conclusion": "Ordinary exit drop selection for the same native owned-message encoding; not an independent protocol type."
+    }
+  ],
+  "imports": [
+    {
+      "stub": "0x14606176f",
+      "iat_slot": "0x14620a378",
+      "library": "api-ms-win-crt-math-l1-1-0.dll",
+      "function": "roundf"
+    }
+  ],
+  "roster_contract": {
+    "native_row_stride": 184,
+    "wire_tag": 17,
+    "serializer_native_variant": 17,
+    "per_row_optional_rtt_sentinel": 65535,
+    "country_tail_has_count": false,
+    "country_tail_rule": "one string per already-decoded roster row while cursor<packet length; absent remainder retains initialized empty country",
+    "remote_country_getter_vtable_offset": 80,
+    "remote_rtt_field_offset": "0x4e0",
+    "country_type_producer_complete": true
+  },
+  "ping_contract": {
+    "first_request_clock_bits": "0xfff0000000000000",
+    "first_eligible_poll_immediate": true,
+    "interval_seconds": 2.0,
+    "request_only_in_lobby": true,
+    "requires_joined_nonclosing": true,
+    "transport_sample_conversion": "roundf then saturating unsigned conversion",
+    "maximum_sample_ms": 9999,
+    "smoothing": "integer (new + 2*old) / 3",
+    "application_guard": {
+      "object": "Driver",
+      "field": "0x10",
+      "equals": 2,
+      "site": "0x145bb50f5",
+      "meaning": "empty embedded local Game slot"
+    },
+    "host_role_guard": {
+      "object": "Driver",
+      "field": "0xd98",
+      "equals": 3,
+      "site": "0x145bb4ad7 / normalized branch to145bb4b02"
+    }
+  },
+  "chat_contract": {
+    "normalizer": "0x145b53c70",
+    "word_separator": "0x145d003a0",
+    "separator_predicate": "Unicode White_Space or control (U+0000..001F, U+007F..009F)",
+    "empty_words_omitted": true,
+    "join_separator": "single ASCII space",
+    "maximum_unicode_scalars": 160,
+    "host_requires_actual_sanitized_peer": true,
+    "maximum_messages_in_five_seconds": 4,
+    "guest_echo_native_modes": [
+      0,
+      1
+    ],
+    "guest_echo_copies_timestamp_unchanged": true,
+    "guest_echo_extra_joined_gate": false,
+    "guest_requires": [
+      "joined +11bc ==1",
+      "accepted canonical ZoneKey pointer +1190 ==0",
+      "Sync requested +11bd ==0"
+    ]
+  },
+  "country_contract": {
+    "normalizer": "0x145ec0790",
+    "trim": "0x140207170",
+    "trim_codepoints": [
+      "0x9",
+      "0xa",
+      "0xb",
+      "0xc",
+      "0xd",
+      "0x20",
+      "0x85",
+      "0xa0",
+      "0x1680",
+      "0x2000",
+      "0x2001",
+      "0x2002",
+      "0x2003",
+      "0x2004",
+      "0x2005",
+      "0x2006",
+      "0x2007",
+      "0x2008",
+      "0x2009",
+      "0x200a",
+      "0x2028",
+      "0x2029",
+      "0x202f",
+      "0x205f",
+      "0x3000"
+    ],
+    "ascii_uppercase": true,
+    "accept": "exactly two ASCII A-Z bytes except XX",
+    "otherwise": "empty string",
+    "shared_string_reader": "0x145ec36e0",
+    "utf8_conversion": "lossy U+FFFD replacement before country normalization",
+    "invalid_utf8_country": "empty country; message remains length-valid",
+    "truncated_string": "reader valid flag false; message failure",
+    "service_wire_tag": 33,
+    "native_variant": 13,
+    "peer_key_type": "u32 service peer identity, not world GUID/localClientId",
+    "map_offset": "0x1c8",
+    "insert_independent_of_peer_open": true,
+    "pump_reset_events": [
+      "Hosted wire21"
+    ],
+    "pump_no_reset_events": [
+      "Joined wire22",
+      "Closed wire27",
+      "PeerClose wire25"
+    ],
+    "constructor_and_getter_binding_complete": true,
+    "pump_reset_paths": [
+      {
+        "event": "Hosted",
+        "entry": "0x145cb80da",
+        "clear_reachable": true
+      },
+      {
+        "event": "Joined",
+        "entry": "0x145cb8046",
+        "clear_reachable": false
+      },
+      {
+        "event": "Closed",
+        "entry": "0x145cb8165",
+        "clear_reachable": false
+      },
+      {
+        "event": "PeerClose",
+        "entry": "0x145cb7dcd",
+        "clear_reachable": false
+      }
+    ],
+    "host_key": 0,
+    "host_getter": "0x145cc8fa0",
+    "accepted_peer_getter": "0x145cca780",
+    "listener_accept": "0x145cc8db0",
+    "listener_vtable": "0x1470833d8",
+    "accepted_connection_vtable": "0x14771cc60",
+    "Arc_service_payload_offset": "0x18",
+    "initial_map_empty": true,
+    "constructor": "0x145cbf720",
+    "getter_missing_key": "empty string",
+    "getter_reads_live_map": true
+  },
+  "object_fields": [
+    {
+      "object": "Driver",
+      "offset": "0x10",
+      "observed_type": "embedded LOCAL Game slot: variant2 empty/no populated local Game; original Rust type spelling and other variant names unclaimed",
+      "producer_or_reference": [
+        "0x145bb22d6",
+        "0x145bcd1ca",
+        "0x145bcba4f",
+        "0x145bc5df2"
+      ],
+      "consumer": "0x145bb50f5"
+    },
+    {
+      "object": "Driver",
+      "offset": "0xd98",
+      "observed_type": "network role enum: guests0/1, off2, host3",
+      "host_producer": "0x145bd2713",
+      "consumer": "0x145bb4ad7"
+    },
+    {
+      "object": "client row (stride0x4e8), not Driver",
+      "offset": "0x10",
+      "observed_type": "connection state: nonzero skips host dispatch; variant1 closing in fanout",
+      "consumer": "0x145bb4f6f"
+    },
+    {
+      "object": "Driver guest role",
+      "offset": "0x1190/+0x1198",
+      "observed_type": "Option<borrowed canonical zone key> pointer/length; NativeMessage ZoneKey receipt normalizes to static row, including unknown->elwynn"
+    },
+    {
+      "object": "Driver guest role",
+      "offset": "0x11bd",
+      "observed_type": "Sync requested, initialized false and set true by PLAYER_LOGIN Sync producer"
+    }
+  ],
+  "kick_contract": {
+    "local_request": 26,
+    "native_message_variant": 2,
+    "wire_tag": 3,
+    "owned_reason_offsets": {
+      "capacity": "0x8",
+      "pointer": "0x10",
+      "length": "0x18"
+    },
+    "reason_bytes_hex": "74686520686f73742073656e7420796f752061776179",
+    "wire_bytes_hex": "031600000074686520686f73742073656e7420796f752061776179",
+    "ordering": [
+      "flush queued output at145bb67eb",
+      "serialize Denied at145bb6814",
+      "send through actual connection+18 at145bb6849",
+      "release temporary owned buffers145bb684d..145bb6894",
+      "close actual connection+30 at145bb68bb",
+      "remove actual client row at145bb68dd"
+    ],
+    "distinct_from_service_request_tag": 7,
+    "distinct_from_service_denied_tag": 23
+  },
+  "transport_rtt_contract": {
+    "accepted_peer_vtable": "0x14771cc60",
+    "start_ping_slot": "0x58",
+    "start_ping": "0x145cc9770",
+    "rtt_slot": "0x60",
+    "rtt_getter": "0x145cc93a0",
+    "lower_transport_rtt_slot": "0x38",
+    "initial_and_secondary_transport_vtable": "0x147082478",
+    "primary_factory": "0x145ba6660",
+    "primary_and_secondary_same_provider": true,
+    "actual_reader": "0x145b94e50 ->0x145b9e4b0",
+    "map_key": "actual u32 service peer identity",
+    "map_value": "f32 milliseconds",
+    "missing_key": "None",
+    "map_initially_empty": true,
+    "shared_constructor_field": "connection+0x30",
+    "shared_thread_field": "closure+0x48",
+    "incoming_interceptor": "0x145b9e650",
+    "incoming_guard": "rawframe[0]==26 and rawframe length>=18; payload byte+9 is5 or6",
+    "incoming_declared_payload_length_checked": false,
+    "request_payload": "byte5,u64zero placeholder",
+    "outgoing_stamp_guard": "rawframe[0]==6 and length>=18 and byte+9==5",
+    "stamp_offset": 10,
+    "stamp_clock": "u64 microseconds from a per-transport origin retained before handshake",
+    "kind5_reply": "copy first18 bytes, set outertag6 and payloadtag6; preserve peer/length/stamp; consume original",
+    "kind6_update": "map[peer]=f32(now_us.saturating_sub(stamp_us))/1000.0; consume original",
+    "other_frames": "continue ordinary service/relay decoding",
+    "joined_direct_connection": "slot58 no-op140002200; slot60 None140083bd0",
+    "generic_engine_boundary": "Stop after actual port, clock, raw control intercept and shared typed RTT map; no socket/thread/allocator completeness claim.",
+    "rtt_selection": "dynamic port(service+130/+138) if present(service+60!=-1), else original port(service+180/+188); no readiness predicate for RTTread and no ready fallback",
+    "start_ping_selection": "same selected port; selected+28 must return1; present dynamic port additionally requires closing+141clear and retry+128==-1; no fallback from present unready dynamic",
+    "source_worker_aliases": "Service.worker is original constructor input; Service.secondary is dynamic ticket port; source names differ from native positional primary/secondary shorthand"
+  },
+  "game_slot_producers": {
+    "path": "docs/analysis/evidence/0.127.0/coop-dispatch/game-slot-producers.json",
+    "sha256": "57fc34987de2ca6476488e3e8876df19e951186359ae6763efd18d66ede3917f"
+  },
+  "guest_zone_contract": {
+    "field": "Driver+0x1190 pointer /+0x1198 length",
+    "type": "optional borrowed canonical zone key; zero pointer means None",
+    "initial": "None; joined/sync flags false",
+    "joined_flag": "Driver+0x11bc; accepted nativevariant1 sets true",
+    "lookup": "0x145b05300",
+    "zone_table": "0x14703a5b0",
+    "row_stride": 240,
+    "keys": [
+      "elwynn",
+      "duskwood",
+      "wsg",
+      "ungoro",
+      "ab",
+      "feralas",
+      "arena",
+      "sm",
+      "av",
+      "brm",
+      "aq",
+      "naxx"
+    ],
+    "unknown_key_result": 0,
+    "exact_case_sensitive_bytes": true,
+    "message_native_variant": 4,
+    "wire_tag": 5,
+    "receipt_sets_some_even_for_unknown_key": true,
+    "guest_chat_requires": "joined11bc ==1, zonekey1190 ==0, sync_requested11bd ==0",
+    "sync_flag_producer": "0x145bc29b5 PLAYER_LOGIN -> wire6 Sync",
+    "zone_clear": "0x145bd873b; cachedState10b0 cleared separately",
+    "not_a_vector_or_pending_input_length": true
+  },
+  "guest_zone_table_proof": {
+    "path": "docs/analysis/evidence/0.127.0/creature-sizes/contract.json",
+    "sha256": "8a4cc2b438487a7d83f1ba4cdaea02fd2f812e2b6a08703d8c898db20febe83f"
+  },
+  "guest_sync_proof": {
+    "path": "docs/analysis/evidence/0.127.0/coop-bootstrap/selected.asm",
+    "sha256": "ee87d24eba4b776ecbdcb6253dbcf77e38264df3a3def4354347c1262720a936"
+  },
+  "service_event_contract": {
+    "site": "0x145cb7c68",
+    "table": "0x14771cdb8",
+    "native_enum": "decoded directory/service event; distinct from reliable relay0..4 and cooperative packet enum",
+    "selector": "signednegative firstword XOR0x8000000000000000; nonnegative firstword ->10; subtract1; unsigned<=12",
+    "native_domain_in_table": [
+      1,
+      13
+    ],
+    "wire_domain_decoded": [
+      20,
+      33
+    ],
+    "wire30_niche": "first owned String capacity is nonnegative, normalized to nativevariant10",
+    "native0_wire20": "lobby rows use unsigned default after subtract1, forwarding at145cb83d1; no tablecell0 alias",
+    "branches": [
+      {
+        "table_index": 0,
+        "native_variant": 1,
+        "wire_tag": 21,
+        "decoder_entry": "0x145ec2098",
+        "pump_destination": "0x145cb80da",
+        "role": "Hosted",
+        "payload": "String code",
+        "action": "reset relay/endpoint state and country map, then forward Hosted"
+      },
+      {
+        "table_index": 1,
+        "native_variant": 2,
+        "wire_tag": 22,
+        "decoder_entry": "0x145ec200b",
+        "pump_destination": "0x145cb8046",
+        "role": "Joined",
+        "payload": "String code",
+        "action": "activate guest, reset relay/endpoint state, preserve country map, forward Joined"
+      },
+      {
+        "table_index": 2,
+        "native_variant": 3,
+        "wire_tag": 23,
+        "decoder_entry": "0x145ec203a",
+        "pump_destination": "0x145cb83d1",
+        "role": "Denied",
+        "payload": "String reason",
+        "action": "forward the unchanged owned service event"
+      },
+      {
+        "table_index": 3,
+        "native_variant": 4,
+        "wire_tag": 24,
+        "decoder_entry": "0x145ec1f37",
+        "pump_destination": "0x145cb7f04",
+        "role": "PeerOpen",
+        "payload": "u32 peer",
+        "action": "insert live endpoint; enqueue peer identity for actual listener accept"
+      },
+      {
+        "table_index": 4,
+        "native_variant": 5,
+        "wire_tag": 25,
+        "decoder_entry": "0x145ec20c7",
+        "pump_destination": "0x145cb7dcd",
+        "role": "PeerClose",
+        "payload": "u32 peer",
+        "action": "retire endpoint and remove reliable-relay peer; preserve country map"
+      },
+      {
+        "table_index": 5,
+        "native_variant": 6,
+        "wire_tag": 26,
+        "decoder_entry": "0x145ec2102",
+        "pump_destination": "0x145cb7e92",
+        "role": "RelayData",
+        "payload": "u32 peer plus byte vector",
+        "action": "pass actual peer and bytes to145cbd180 reliable receiver"
+      },
+      {
+        "table_index": 6,
+        "native_variant": 7,
+        "wire_tag": 27,
+        "decoder_entry": "0x145ec2069",
+        "pump_destination": "0x145cb8165",
+        "role": "Closed",
+        "payload": "String reason",
+        "action": "close/drop dynamic port and reset endpoint/relay state, forward Closed; preserve country map"
+      },
+      {
+        "table_index": 7,
+        "native_variant": 8,
+        "wire_tag": 28,
+        "decoder_entry": "0x145ec21d3",
+        "pump_destination": "0x145cb8fc2",
+        "role": "Unit28",
+        "payload": "none",
+        "action": "consume no-payload event without publication"
+      },
+      {
+        "table_index": 8,
+        "native_variant": 9,
+        "wire_tag": 29,
+        "decoder_entry": "0x145ec1f77",
+        "pump_destination": "0x145cb83d1",
+        "role": "StructuredProfile29",
+        "payload": "three Strings,two u64,byte vector in existing decoder order",
+        "action": "forward owned profile carrier to application roster-profile consumer"
+      },
+      {
+        "table_index": 9,
+        "native_variant": 10,
+        "wire_tag": 30,
+        "decoder_entry": "0x145ec212b",
+        "pump_destination": "0x145cb827e",
+        "role": "SecondaryConnectionTicket30",
+        "payload": "three Strings,two u64,u32,byte vector in existing decoder order",
+        "action": "retire prior dynamic port, create supplied endpoint through145ba6660, authenticate/heartbeat and retain native retry state"
+      },
+      {
+        "table_index": 10,
+        "native_variant": 11,
+        "wire_tag": 31,
+        "decoder_entry": "0x145ec1f17",
+        "pump_destination": "0x145cb7c6a",
+        "role": "Reconnecting31",
+        "payload": "u32 peer",
+        "action": "peer0: reconnecting flag = guest active; other peer: reconnecting=true"
+      },
+      {
+        "table_index": 11,
+        "native_variant": 12,
+        "wire_tag": 32,
+        "decoder_entry": "0x145ec1f57",
+        "pump_destination": "0x145cb7c6a",
+        "role": "Reconnected32",
+        "payload": "u32 peer",
+        "action": "peer0: reconnecting=false; other peer: reconnecting=false"
+      },
+      {
+        "table_index": 12,
+        "native_variant": 13,
+        "wire_tag": 33,
+        "decoder_entry": "0x145ec20ea",
+        "pump_destination": "0x145cb7d37",
+        "role": "Country",
+        "payload": "u32 peer plus normalized String",
+        "action": "update live service country map independently of endpoint presence"
+      }
+    ],
+    "source_interfaces": [
+      "crates/azeroth-survivors-re/src/coop/directory_wire.rs",
+      "crates/azeroth-survivors-re/src/coop_directory.rs",
+      "crates/azeroth-survivors-re/src/coop/session.rs",
+      "crates/azeroth-survivors-re/src/coop/relay.rs",
+      "crates/azeroth-survivors-re/src/coop/service.rs"
+    ],
+    "scope": "All thirteen exact adjusted table entries have current typed producer/consumer roles; no whole-service, generic I/O, allocator or external server-policy completeness claim."
+  },
+  "source_assertions": [
+    {
+      "path": "crates/azeroth-survivors-re/src/coop/websocket.rs",
+      "required": [
+        "elapsed.as_secs().wrapping_mul(1_000_000)",
+        "elapsed.subsec_nanos() / 1_000",
+        "bytes.len() >= 18 && bytes[0] == 6 && bytes[9] == 5",
+        "bytes[10..18].copy_from_slice(&now_us.to_le_bytes())",
+        "bytes.len() < 18 || bytes[0] != 26",
+        "reply[0] = 6",
+        "reply[9] = 6",
+        "u32::from_le_bytes(bytes[1..5]",
+        "now_us.saturating_sub(stamp) as f32 / 1_000.0",
+        "self.rtt.lock().unwrap().insert(peer, milliseconds)"
+      ],
+      "ordered": [
+        {
+          "start": "pub fn connect_with_rtt(",
+          "end": "pub fn send_binary(",
+          "tokens": [
+            "let clock_origin = Instant::now()",
+            "tungstenite::connect(url)"
+          ]
+        },
+        {
+          "start": "fn drain_outgoing(",
+          "end": "pub fn should_sleep(",
+          "tokens": [
+            "stamp_probe(&mut bytes, transport_micros(self.clock_origin))",
+            "self.socket.send(Message::Binary(bytes.into()))"
+          ]
+        },
+        {
+          "start": "pub fn poll(",
+          "end": "Ok(events)",
+          "tokens": [
+            "TransportProbe::Reply(reply)",
+            "self.send_binary(reply.to_vec())",
+            "self.drain_outgoing()?"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop/session.rs",
+      "required": [
+        "self.secondary.as_ref().or(self.primary.as_ref())",
+        "samples.lock().unwrap().get(&id).copied()",
+        "NativeMessage::Lifecycle(LifecyclePacket::Pong(sent)) if joined =>",
+        "pub fn kick_client(&mut self, client: ClientId, now: f64) -> bool",
+        "if refused { break 'receive; }"
+      ],
+      "ordered": [
+        {
+          "start": "pub fn kick_client(",
+          "end": "pub fn send_message(",
+          "tokens": [
+            "if !self.is_hosting() { return false; }",
+            "self.peers.iter().position(|peer| peer.id == client)",
+            "peer.flush(now);",
+            "LifecyclePacket::Denied(b\"the host sent you away\".to_vec())",
+            "peer.connection.send(&denied);",
+            "peer.connection.close();",
+            "self.peers.remove(index);",
+            "self.retire_client(client);"
+          ]
+        },
+        {
+          "start": "NativeMessage::Lifecycle(LifecyclePacket::Denied(reason)) =>",
+          "end": "NativeMessage::Lifecycle(LifecyclePacket::Roster(rows)) =>",
+          "tokens": [
+            "self.denial = Some(reason.clone());",
+            "self.accepted = None;",
+            "self.roster = None;",
+            "upstream.close();"
+          ],
+          "forbidden": [
+            "world_synchronization_completed",
+            "synchronize(",
+            "SessionEnd"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop_directory.rs",
+      "required": [
+        "if let Some(worker) = &self.secondary",
+        "worker.connected() && self.secondary_lifetime.as_ref()",
+        "state.can_send(true)",
+        "self.worker.as_ref().filter(|worker| worker.connected())",
+        "primary: self.worker.as_ref().map(endpoint), secondary: self.secondary.as_ref().map(endpoint)",
+        "FormRequest::Kick(hero_identity)",
+        "runtime.kick_requests.push(hero_identity)"
+      ],
+      "ordered": []
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+      "required": [
+        "text.split(|c: char| c.is_whitespace() || c.is_control())",
+        ".chars().take(160).collect()",
+        "String::from_utf8_lossy(bytes).trim().to_ascii_uppercase()",
+        "country.len() == 2 && country.bytes().all(|c| c.is_ascii_uppercase()) && country != \"XX\"",
+        "entry.ping_ms.unwrap_or(u16::MAX).to_le_bytes()",
+        "for entry in entries { bytes(&mut out, &entry.country)?; }",
+        "entry.country = normalize_lobby_country(&reader.bytes()?);"
+      ],
+      "ordered": []
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop/directory_wire.rs",
+      "required": [
+        "Some(String::from_utf8_lossy(&self.bytes()?).into_owned())",
+        "33 => DirectoryResponse::Country { peer: reader.u32()?, country: reader.string()? }"
+      ],
+      "ordered": []
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+      "required": [
+        "if state.zone.is_some() || state.sync_sent { continue; }",
+        "if run.mechanics.is_some() { continue; }",
+        "let zone = azeroth_survivors_re::zones::resolve(&zone).key.to_owned();",
+        "driver.send_guest_lobby_chat(text.into_bytes());",
+        "self.profiles.get(&client.id)",
+        "hero.guid == hero_identity",
+        "driver.kick_client(client, now)",
+        "std::mem::take(&mut runtime.kick_requests)",
+        "if state.receive_denied(client) { return; }"
+      ],
+      "ordered": [
+        {
+          "start": "fn receive_denied(",
+          "end": "fn kick_member(",
+          "tokens": [
+            "if client.is_some() { return false; }",
+            "self.leave();",
+            "true"
+          ],
+          "forbidden": [
+            "finish_transport_lost",
+            "settle_guest(",
+            "run.",
+            "menu.",
+            "SessionEnd"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/zones.rs",
+      "required": [
+        "ZoneDefinition::by_key(key).unwrap_or(&ZONES[0])"
+      ],
+      "ordered": []
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop_runtime.rs",
+      "required": [
+        "if let Some(reason) = &driver.denial",
+        "view.status = \"refused\".into();",
+        "view.role.clear();",
+        "let reason = String::from_utf8_lossy(reason);",
+        "view.unavailable_reason = Some(reason.into_owned());"
+      ],
+      "ordered": []
+    }
+  ],
+  "staff_service_context_contract": {
+    "service_state_field": "Driver+0x1918: -1 absent, otherwise retained composite service state",
+    "service_arc_field": "Driver+0x1a40",
+    "code_field": "Driver+0x1948/+1950/+1958 optional owned String",
+    "code_semantic": "actual service Host/Join code returned by wire21/22",
+    "initialization": "145bd1e70 service state present;145bd1ea7 code absent;145bd1ed7 stores service Arc",
+    "code_alias": "145bb3527/145bb352e retain Driver+1948 in frame[rbp+cf0] during serviceeventloop",
+    "hosted_producer": "wire21/native1 ->145bb3a29; clone145bb3a64; publish145bb3aa6/145bb3aaa/145bb3ab1",
+    "joined_producer": "wire22/native2 ->145bb3790; clone145bb37cb; publish145bb380d/145bb3811/145bb3818",
+    "closed_clear": "wire27/native7 ->145bb3b3c; drop old String then145bb3b8c writes -1",
+    "title_caller": "145bb56a5..145bb576a: use cloned code iff both service1918 and code1948 present, else emptycontext",
+    "presence_is_not_readiness": true,
+    "presence_selects_context_not_automatic_vouch_rejection": true,
+    "helper_title_predicate_owner": "current Staff/profile helper proof; this descriptor establishes context provenance only",
+    "source_interface": "CoopUi/view.code, gated by retained service state when supplying context"
+  },
+  "diagnostic_owners": {
+    "bodies": [
+      {
+        "start": "0x145bb29f0",
+        "end_exclusive": "0x145bbac62",
+        "query_index": 0,
+        "locations": [
+          {
+            "instruction": "0x145bb4169",
+            "location": "0x147083008",
+            "file_offset": "0x7081608",
+            "system": "custom-game-server",
+            "original_path": "crates/wenilla-rogue/src/server.rs",
+            "path_pointer": "0x147082cd5",
+            "path_length": 34,
+            "path_sha256": "78170b2152d926669fe41d9cd547f852740bf38cd96c1215152ac2bf50f9589b",
+            "line": 339,
+            "column": 53
+          },
+          {
+            "instruction": "0x145bbaaa8",
+            "location": "0x147082ff0",
+            "file_offset": "0x70815f0",
+            "system": "custom-game-server",
+            "original_path": "crates/wenilla-rogue/src/server.rs",
+            "path_pointer": "0x147082cd5",
+            "path_length": 34,
+            "path_sha256": "78170b2152d926669fe41d9cd547f852740bf38cd96c1215152ac2bf50f9589b",
+            "line": 338,
+            "column": 24
+          },
+          {
+            "instruction": "0x145bbaabd",
+            "location": "0x147083020",
+            "file_offset": "0x7081620",
+            "system": "custom-game-server",
+            "original_path": "crates/wenilla-rogue/src/server.rs",
+            "path_pointer": "0x147082cd5",
+            "path_length": 34,
+            "path_sha256": "78170b2152d926669fe41d9cd547f852740bf38cd96c1215152ac2bf50f9589b",
+            "line": 342,
+            "column": 27
+          },
+          {
+            "instruction": "0x145bbaad2",
+            "location": "0x147083038",
+            "file_offset": "0x7081638",
+            "system": "custom-game-server",
+            "original_path": "crates/wenilla-rogue/src/server.rs",
+            "path_pointer": "0x147082cd5",
+            "path_length": 34,
+            "path_sha256": "78170b2152d926669fe41d9cd547f852740bf38cd96c1215152ac2bf50f9589b",
+            "line": 343,
+            "column": 37
+          },
+          {
+            "instruction": "0x145bbab4e",
+            "location": "0x147082b60",
+            "file_offset": "0x7081160",
+            "system": "custom-game-server-party",
+            "original_path": "crates/wenilla-rogue/src/server/party.rs",
+            "path_pointer": "0x147082aef",
+            "path_length": 40,
+            "path_sha256": "7bda69dbe493bd70e45f0ea40666494a42213c70ee6981629eacc1c4202f2cf7",
+            "line": 493,
+            "column": 77
+          },
+          {
+            "instruction": "0x145bbab7e",
+            "location": "0x147083568",
+            "file_offset": "0x7081b68",
+            "system": "custom-game-server-party",
+            "original_path": "crates/wenilla-rogue/src/server/party.rs",
+            "path_pointer": "0x147082aef",
+            "path_length": 40,
+            "path_sha256": "7bda69dbe493bd70e45f0ea40666494a42213c70ee6981629eacc1c4202f2cf7",
+            "line": 1159,
+            "column": 34
+          },
+          {
+            "instruction": "0x145bbab9a",
+            "location": "0x147082b48",
+            "file_offset": "0x7081148",
+            "system": "custom-game-server-party",
+            "original_path": "crates/wenilla-rogue/src/server/party.rs",
+            "path_pointer": "0x147082aef",
+            "path_length": 40,
+            "path_sha256": "7bda69dbe493bd70e45f0ea40666494a42213c70ee6981629eacc1c4202f2cf7",
+            "line": 494,
+            "column": 63
+          },
+          {
+            "instruction": "0x145bbabaf",
+            "location": "0x147083ce0",
+            "file_offset": "0x70822e0",
+            "system": "custom-game-server-party",
+            "original_path": "crates/wenilla-rogue/src/server/party.rs",
+            "path_pointer": "0x147082aef",
+            "path_length": 40,
+            "path_sha256": "7bda69dbe493bd70e45f0ea40666494a42213c70ee6981629eacc1c4202f2cf7",
+            "line": 446,
+            "column": 55
+          },
+          {
+            "instruction": "0x145bbabd9",
+            "location": "0x1470840e8",
+            "file_offset": "0x70826e8",
+            "system": "custom-game-server-party",
+            "original_path": "crates/wenilla-rogue/src/server/party.rs",
+            "path_pointer": "0x147082aef",
+            "path_length": 40,
+            "path_sha256": "7bda69dbe493bd70e45f0ea40666494a42213c70ee6981629eacc1c4202f2cf7",
+            "line": 512,
+            "column": 40
+          },
+          {
+            "instruction": "0x145bbac2e",
+            "location": "0x147083580",
+            "file_offset": "0x7081b80",
+            "system": "custom-game-server-party",
+            "original_path": "crates/wenilla-rogue/src/server/party.rs",
+            "path_pointer": "0x147082aef",
+            "path_length": 40,
+            "path_sha256": "7bda69dbe493bd70e45f0ea40666494a42213c70ee6981629eacc1c4202f2cf7",
+            "line": 1186,
+            "column": 34
+          }
+        ]
+      },
+      {
+        "start": "0x145bd6280",
+        "end_exclusive": "0x145bd7094",
+        "query_index": 1,
+        "locations": [
+          {
+            "instruction": "0x145bd6d44",
+            "location": "0x147083e38",
+            "file_offset": "0x7082438",
+            "system": "custom-game-server-party",
+            "original_path": "crates/wenilla-rogue/src/server/party.rs",
+            "path_pointer": "0x147082aef",
+            "path_length": 40,
+            "path_sha256": "7bda69dbe493bd70e45f0ea40666494a42213c70ee6981629eacc1c4202f2cf7",
+            "line": 562,
+            "column": 40
+          },
+          {
+            "instruction": "0x145bd6d7c",
+            "location": "0x147082b18",
+            "file_offset": "0x7081118",
+            "system": "custom-game-server-party",
+            "original_path": "crates/wenilla-rogue/src/server/party.rs",
+            "path_pointer": "0x147082aef",
+            "path_length": 40,
+            "path_sha256": "7bda69dbe493bd70e45f0ea40666494a42213c70ee6981629eacc1c4202f2cf7",
+            "line": 524,
+            "column": 63
+          },
+          {
+            "instruction": "0x145bd6da7",
+            "location": "0x147082b30",
+            "file_offset": "0x7081130",
+            "system": "custom-game-server-party",
+            "original_path": "crates/wenilla-rogue/src/server/party.rs",
+            "path_pointer": "0x147082aef",
+            "path_length": 40,
+            "path_sha256": "7bda69dbe493bd70e45f0ea40666494a42213c70ee6981629eacc1c4202f2cf7",
+            "line": 556,
+            "column": 68
+          },
+          {
+            "instruction": "0x145bd7085",
+            "location": "0x147083e18",
+            "file_offset": "0x7082418",
+            "system": "custom-game-server-party",
+            "original_path": "crates/wenilla-rogue/src/server/party.rs",
+            "path_pointer": "0x147082aef",
+            "path_length": 40,
+            "path_sha256": "7bda69dbe493bd70e45f0ea40666494a42213c70ee6981629eacc1c4202f2cf7",
+            "line": 540,
+            "column": 40
+          }
+        ]
+      }
+    ],
+    "system_ids": [
+      "custom-game-server",
+      "custom-game-server-party"
+    ],
+    "reconstructed_driver_label_is_original_driver_module": false,
+    "scope": "Exact direct Rust Location records in the two queried bodies; no whole-module or original Rust type identity claim"
+  },
+  "guest_denied_contract": {
+    "native_variant": 2,
+    "wire_tag": 3,
+    "guest_query_index": 12,
+    "table": "0x147085ea0",
+    "table_index": 1,
+    "destination": "0x145bd83e2",
+    "reason_layout": "Owned String cap+8/ptr+10/len+18; raw reason retained through publication",
+    "joined_zone_or_game_gate": false,
+    "role_transition": "145bd8419 sets Coordinator+d98=2 (Off) after moving old0x428-byte role; old guest0/1 closes at145bd8440 and drops at145bd8448",
+    "status": "145bd907c..145bd9098 publishes coopstate state=refused, why=raw reason through145bd4110, then releases reason",
+    "caller": "145bb4ea4 sees role>1 and stops receive;145bb5830 Off selects145bb6475 local-request poll",
+    "ordinary_failure_helper_called": false,
+    "game_or_award_settlement_established": false,
+    "limit": "The proved AS denial interface drops its role/endpoint/cache and publishes refusal; it has no ordinary failure end/save, localGame reset or UI Leave/reset action. Independent engine/menu lifetime and presentation retain their existing verification boundary; no generic engine sweep is required for this selected contract.",
+    "ui_query_index": 22,
+    "ui_refused_path": "1402e2800..2822 ->2855 member clear;2938..2954 ->2a00 chat/draft/unread clear;len7 bypasses closed/ended-only request22 at2b04..2b16;2bac..2bbf stores refused status;2058 next event",
+    "ui_generates_game_or_leave_reset_request": false,
+    "performs_game_or_award_settlement": false,
+    "engine_or_menu_lifetime_sweep_required_for_this_contract": false
+  },
+  "guest_denied_ui_proof": {
+    "role": "coop-events",
+    "start": "0x1402e12e0",
+    "end_exclusive": "0x1402e2e45",
+    "file_offset": "0x2e06e0",
+    "byte_count": 7013,
+    "sha256": "0e7332f0f05b664876607491ff0ada180585e884220a865c9fb396ca006bed78",
+    "assembly": {
+      "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-events.asm",
+      "sha256": "defd563530c827605e3be0aa3c0f138f8b885667473d6fc11a24e15578bf85a5"
+    },
+    "pseudocode": {
+      "path": "docs/analysis/evidence/0.127.0/coop-lobby-ui/coop-events.c",
+      "sha256": "277744d0bd190bdc443c7905cf186296c0213f8e180549cdeb522576f5697d5a"
+    },
+    "independently_decoded_instructions": 1504
+  },
+  "source_inspection_conclusion": "The ten current source snapshots connect the bounded local-request, joined-message, ownership/RAII, chat, actual-GUID Kick, refusal, RTT, Country33/map/roster and canonical ZoneKey interfaces. Refusal stops receive and drops its guest cache while preserving raw reason; no ordinary failure settlement/Game reset is inferred. Static guards are non-compiling; wider payload/type/engine completeness and runtime/parity remain outside this bounded proof."
+}

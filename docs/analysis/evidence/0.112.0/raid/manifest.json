@@ -1,0 +1,116 @@
+{
+  "target_version": "0.112.0",
+  "target_sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+  "target_executed": false,
+  "historical_graph": {
+    "path": "docs/analysis/evidence/0.109.0/raid-native/catalog.json",
+    "sha256": "d2c36e01371235210adc363fdc19f05ce402e6b6539e620aeb60f5eb8388a914"
+  },
+  "counts": {
+    "actions": 493,
+    "bosses": 60,
+    "boss_recurring": 257,
+    "boss_phases": 33,
+    "guardian_identities": 37,
+    "guardian_lists": 40,
+    "guardian_recurring": 120,
+    "guardian_phases": 15
+  },
+  "relocated_pointer_nodes": [
+    2,
+    22,
+    23,
+    28,
+    30,
+    49,
+    56,
+    61,
+    77,
+    87,
+    97,
+    100,
+    113,
+    122,
+    141,
+    145,
+    157,
+    176,
+    194,
+    201,
+    205,
+    217,
+    248,
+    257,
+    266,
+    276,
+    286,
+    320,
+    327,
+    331,
+    347,
+    358,
+    364,
+    373,
+    387,
+    396,
+    423
+  ],
+  "all_scalar_graph_values_and_root_order_match": true,
+  "all_sixty_boss_headers_match": true,
+  "suppressed_initial_requests": [
+    {
+      "boss_id": 1594,
+      "role": "phases",
+      "slot": 0
+    },
+    {
+      "boss_id": 994,
+      "role": "moves",
+      "slot": 5
+    },
+    {
+      "boss_id": 1493,
+      "role": "moves",
+      "slot": 3
+    },
+    {
+      "boss_id": 1493,
+      "role": "phases",
+      "slot": 0
+    },
+    {
+      "boss_id": 1494,
+      "role": "phases",
+      "slot": 2
+    }
+  ],
+  "initial_request_filter": {
+    "native_tag": 12,
+    "semantic_tag": 13,
+    "sentinel_native_tag": 255,
+    "range": {
+      "va": "0x145949ca7",
+      "file_offset": "0x59490a7",
+      "byte_count": 129,
+      "sha256": "f433f3b133627f4d9c8d9560b12071161ccb24a35a6b148baf2474f5508e8429"
+    },
+    "direct_nested_and_delayed_dispatch_unchanged": true
+  },
+  "duration": {
+    "va": "0x145896950",
+    "file_offset": "0x5895d50",
+    "byte_count": 500,
+    "sha256": "db686b757400dd579c46e0c527b083c973203cdc88f4c48b55cf4ef7a6a21b41"
+  },
+  "checks": {
+    "native_duration_cases": 493,
+    "native_queue_cases": 262,
+    "queue_dispatch_intercepted": true,
+    "source_executed": false
+  },
+  "limitations": [
+    "Graph/header and bounded original-instruction checks do not certify remaining native dependencies.",
+    "Historical source/native payload pointer words keep their actual 0.109.0 provenance; source uses recursive indices.",
+    "No compilation, Rust tests, game process, MPQ terrain, input/rendering or original/rebuilt parity comparison."
+  ]
+}

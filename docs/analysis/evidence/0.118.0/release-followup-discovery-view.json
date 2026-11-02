@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.118.0",
+    "sha256": "4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae",
+    "size_bytes": 145356800
+  },
+  "gap_ids": [
+    173,
+    174
+  ],
+  "method": "Read-only graph admission view over existing release-contract native/query/source evidence; no new query, duplicate native extract or module ownership assignment.",
+  "origin_manifest": {
+    "path": "docs/analysis/evidence/0.118.0/release-contracts/manifest.json",
+    "sha256": "b1b79e9c6b32791c8034304f4a4e6f71dd445f9ef2e2632775b8371c5a596bda"
+  },
+  "queries": {
+    "account-delivery": {
+      "evidence_id": "ev_a69ba188d5f4b213d741582b06243e0b2a7584e915732f1b4abffe4225453124",
+      "operation": "procedure_pseudo_code",
+      "procedure": "0x145b154e0",
+      "analysis_profile_digest": "b21d8ef2f0b75226f238b2422e096a410991f41f477fd0fef4ba7df578d6d7dd",
+      "origin_manifest": {
+        "path": "docs/analysis/evidence/0.118.0/release-contracts/manifest.json",
+        "sha256": "b1b79e9c6b32791c8034304f4a4e6f71dd445f9ef2e2632775b8371c5a596bda"
+      },
+      "original_selector": [
+        "queries",
+        0
+      ],
+      "original_selected_sha256": "7366f1caab08b65430025d55798f25a0d53d5b8402e260fb973b809dbf0b385f",
+      "native_owner_selector": "functions[role=account-delivery]",
+      "result": {
+        "path": "runtime/execheck-0.118.0-contracts/account-delivery-query/results/d5d79e88af1867f26dd0a0b140c8f05d4783699364ad4f8e0ac4300413d00cc8.json",
+        "sha256": "01f9bc525454de0ec1bfa7bff32a00e27dca351958dae02cb7a920e4db67e532"
+      },
+      "plan": {
+        "path": "runtime/execheck-0.118.0-contracts/account-delivery-plan.json",
+        "sha256": "e1353bd60999cca1e2aa6c7019e61ea96b8cd57d931400ad413980e7e9f3c1c8"
+      },
+      "journal": {
+        "path": "runtime/execheck-0.118.0-contracts/account-delivery-query/journal.json",
+        "sha256": "77cc420a9219f2b41ad99cd244eca6b2f797827184498dd854ce82361ecf2584"
+      }
+    },
+    "exit-wrapper-a": {
+      "evidence_id": "ev_a086dc9ee11adc2fdd54b4931840c24bd85516692a1966e0ae6d8d93495df334",
+      "operation": "procedure_pseudo_code",
+      "procedure": "0x145b18980",
+      "analysis_profile_digest": "e9bdeb597817236746b9fb6b86bc492043e16e241c63eb9577808a6050fb2f80",
+      "origin_manifest": {
+        "path": "docs/analysis/evidence/0.118.0/release-contracts/manifest.json",
+        "sha256": "b1b79e9c6b32791c8034304f4a4e6f71dd445f9ef2e2632775b8371c5a596bda"
+      },
+      "original_selector": [
+        "queries",
+        2
+      ],
+      "original_selected_sha256": "e89ec43adc8f0433e6ec0a9825585d7f18368d163307e55c1a9b228f773429b3",
+      "native_owner_selector": "functions[role=exit-wrapper-a]",
+      "result": {
+        "path": "runtime/execheck-0.118.0-contracts/exit-wrapper-a-query/results/86ff76dfebd3c44e16e398b259738c498da6b33b3130f891762f12db1a822289.json",
+        "sha256": "c69a0d382dfcd074e8da83f31184c54ed01f1891932f38c047b458f6f92167f4"
+      },
+      "plan": {
+        "path": "runtime/execheck-0.118.0-contracts/exit-wrapper-a-plan.json",
+        "sha256": "01402e565568f023a9093d2939737471f9299d622f5823d5e41b449bca3726dc"
+      },
+      "journal": {
+        "path": "runtime/execheck-0.118.0-contracts/exit-wrapper-a-query/journal.json",
+        "sha256": "880bda50983c76fa9120adc522c1975af1d117e961258e5a58802ab5393e144c"
+      }
+    }
+  },
+  "source_first": {
+    "paths": [
+      {
+        "path": "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+        "sha256": "af96d4163cc9c3e0f656331a6329137bb6c1591c7101d3009720165a74669cc1"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
+        "sha256": "3ecc881df19515afd3593e49e691d8b942feee94dc89f59497d1fdb35b9f2016"
+      }
+    ],
+    "conclusion": "Inspected actual persist_run_at won/context history writer and force_summary gate plus terminal Menu/Again persist_run(..., true) caller. Singleton history lacks the current native count-two guard; forced summary omits the cooperative feat/history branch. Existing XP and ordinary account-result handling remain separate."
+  }
+}

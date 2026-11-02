@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.115.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+    "size_bytes": 142111232
+  },
+  "target_executed": false,
+  "owner": {
+    "start": "0x1401116e0",
+    "end_exclusive": "0x140112b87",
+    "file_offset": "0x110ae0",
+    "sha256": "a76b7fdf3f953d50908a681ce7f4a6bf8d589193081fc6da3a112b53bff59b2a"
+  },
+  "ranges": [
+    {
+      "role": "hzt-clock-movement-keep",
+      "start": "0x140111815",
+      "end_exclusive": "0x140111ba3",
+      "sha256": "042e617f93887b074f8030f7d3b06f8b467a05debad4276c49c0ff8d331457ac",
+      "extract": "docs/analysis/evidence/0.115.0/coop-markers/hzt-clock-movement-keep.asm",
+      "extract_sha256": "3be28c1193df491246906ac973e0d521b325494efdb9dde5fbf13c31a3c3d0b1"
+    },
+    {
+      "role": "occupancy-input",
+      "start": "0x140111c70",
+      "end_exclusive": "0x140111ca9",
+      "sha256": "f78b5a6e65898519bfa20fd40b9230aeceecb42c0750e7fcb8c0158cb9d3d3fa",
+      "extract": "docs/analysis/evidence/0.115.0/coop-markers/occupancy-input.asm",
+      "extract_sha256": "a2e264066cf34f6820cc0a63cc86892e60a1ea422793c1a4b2791bf5c2173d2a"
+    },
+    {
+      "role": "occupancy-ending-gate",
+      "start": "0x140111e22",
+      "end_exclusive": "0x140111e84",
+      "sha256": "ec931f77b18f798984b78d017e31d4b1b17b6602fcd0c1ea6892d7d33ce42674",
+      "extract": "docs/analysis/evidence/0.115.0/coop-markers/occupancy-ending-gate.asm",
+      "extract_sha256": "2e86547304c0fe039e72161a46b035f6198cb60fe6519e28f58abceacdfab4c7"
+    }
+  ],
+  "literals": [
+    {
+      "role": "type",
+      "address": "0x145ef1f41",
+      "hex": "74797065",
+      "sha256": "1303c06b0b014d0ce7b988ab173a13f31227d417058ff4bbe6f8c222b4ad913c"
+    },
+    {
+      "role": "clock",
+      "address": "0x145ef1f45",
+      "hex": "74",
+      "sha256": "e3b98a4da31a127d4bde6e43033f66ba274cab0eb7eb1c70ec41402bf6273dd8"
+    },
+    {
+      "role": "moves",
+      "address": "0x145ef1f46",
+      "hex": "6d",
+      "sha256": "62c66a7a5dd70c3146618063c344e531e6d4b59e379808443ce962b3abd63c5a"
+    },
+    {
+      "role": "keep",
+      "address": "0x145ef1f47",
+      "hex": "6b656570",
+      "sha256": "6ca7ea2feefc88ecb5ed6356ed963f47dc9137f82526fdd25d618ea626d0803f"
+    },
+    {
+      "role": "occupancy",
+      "address": "0x145ef167f",
+      "hex": "696e",
+      "sha256": "582967534d0f909d196b97f9e6921342777aea87b46fa52df165389db1fb8ccf"
+    }
+  ],
+  "instructions": [
+    {
+      "address": "0x140111847",
+      "hex": "4883f803",
+      "instruction": "cmp rax, 3"
+    },
+    {
+      "address": "0x140111854",
+      "hex": "35687a0000",
+      "instruction": "xor eax, 0x7a68"
+    },
+    {
+      "address": "0x14011185d",
+      "hex": "83f174",
+      "instruction": "xor ecx, 0x74"
+    },
+    {
+      "address": "0x1401118d8",
+      "hex": "f3410f11442418",
+      "instruction": "movss dword ptr [r12 + 0x18], xmm0"
+    },
+    {
+      "address": "0x1401118e9",
+      "hex": "f3410f1174241c",
+      "instruction": "movss dword ptr [r12 + 0x1c], xmm6"
+    },
+    {
+      "address": "0x140111b60",
+      "hex": "ba04000000",
+      "instruction": "mov edx, 4"
+    },
+    {
+      "address": "0x140111b65",
+      "hex": "488d0ddb03de05",
+      "instruction": "lea rcx, [rip + 0x5de03db]"
+    },
+    {
+      "address": "0x140111b73",
+      "hex": "e8284e9602",
+      "instruction": "call 0x142a769a0"
+    },
+    {
+      "address": "0x140111b81",
+      "hex": "803801",
+      "instruction": "cmp byte ptr [rax], 1"
+    },
+    {
+      "address": "0x140111b84",
+      "hex": "0f85e6000000",
+      "instruction": "jne 0x140111c70"
+    },
+    {
+      "address": "0x140111b8a",
+      "hex": "80780100",
+      "instruction": "cmp byte ptr [rax + 1], 0"
+    },
+    {
+      "address": "0x140111b8e",
+      "hex": "0f84dc000000",
+      "instruction": "je 0x140111c70"
+    },
+    {
+      "address": "0x140111b9e",
+      "hex": "e93dfcffff",
+      "instruction": "jmp 0x1401117e0"
+    },
+    {
+      "address": "0x140111e77",
+      "hex": "41807b3000",
+      "instruction": "cmp byte ptr [r11 + 0x30], 0"
+    },
+    {
+      "address": "0x140111e7c",
+      "hex": "75e6",
+      "instruction": "jne 0x140111e64"
+    }
+  ],
+  "query": {
+    "operation": "procedure_pseudo_code",
+    "evidence_id": "ev_88252291b90b05d1c886c09a26e54cd9f79740c2de80029835e6721ad97e3a09",
+    "analysis_profile_sha256": "31552855d71b4d8e7347f194570ca44eae19bcc9dea60bba4a97707a736792ea",
+    "subject_sha256": "a76b7fdf3f953d50908a681ce7f4a6bf8d589193081fc6da3a112b53bff59b2a",
+    "normalized_result_sha256": "ba806db59567c437962c4d7ed997d2213aa9077d85f5c8bd3e56d6fdb5a98a76"
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "target": {
+    "version": "0.115.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+    "size_bytes": 142111232
+  },
+  "input_mapping": {
+    "kind": "rust_location",
+    "instruction_address": "0x14585ac7b",
+    "target_address": "0x14700d378",
+    "runtime_function_start": "0x14585aba0",
+    "runtime_function_end": "0x14585b57a",
+    "source_line": 156,
+    "source_column": 25,
+    "path_address": "0x14700d350",
+    "instruction_bytes": "488d05f6267b01",
+    "instruction": "lea rax, [rip + 0x17b26f6]",
+    "owner_file_offset": "0x5859fa0",
+    "owner_byte_count": 2522,
+    "owner_sha256": "29bdc4d98e9e7a6fb129d9193cf2885bd58815cd3a1bf84d1a0c6ef97651b156",
+    "target_sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
+  },
+  "raw_slice": {
+    "path": "runtime/refresh-0.115.0/banners/owner.bin",
+    "sha256": "29bdc4d98e9e7a6fb129d9193cf2885bd58815cd3a1bf84d1a0c6ef97651b156",
+    "byte_count": 2522
+  },
+  "provider": {
+    "id": "ghidra",
+    "name": "Ghidra",
+    "version": "12.1.4"
+  },
+  "analysis_profile": {
+    "provider": {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "version": "12.1.4"
+    },
+    "parameters": {
+      "target_kind": "executable",
+      "target_format": "raw-binary",
+      "architecture": "x86_64",
+      "available_architectures": [
+        "x86_64"
+      ],
+      "import_mode": "ephemeral-source-immutable",
+      "annotation_policy": "atomic-function-entry-metadata-v1",
+      "load_image_observations": "source-mappings-entry-context-v2",
+      "function_body_evidence": "complete-inclusive-ranges-v1",
+      "function_references": "complete-body-and-entry-reference-manager-v2",
+      "call_relationship_coverage": "function-body-call-coverage-v5",
+      "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+      "string_inventory_evidence": "defined-data-coverage-v1",
+      "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+      "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+      "instruction_flow_evidence": "decoded-return-pcode-v1",
+      "instruction_references": "exact-address-incoming-v1",
+      "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+      "no_return_repair": "returning-imports-decoded-return-v2",
+      "process_launch": "inspected-jvm-launch-support-v1",
+      "load_image_evidence": "independent-raw-mapping-context-v4",
+      "jump_table_evidence": "typed-case-default-blocks-v1",
+      "decompiler_jump_loads": true,
+      "loader": "BinaryLoader",
+      "language_id": "x86:LE:64:default",
+      "compiler_spec_id": "gcc",
+      "language_selection": "caller-supplied-v1",
+      "entry_point": "0x14585aba0",
+      "entry_seed": "external-entry-and-function-before-analysis-v1",
+      "analyzer_preset": "ghidra-default"
+    },
+    "digest": "7de6b9f512a32e255018b65a3c3d9d225af8791550ba7d11060a1dac033e183e"
+  },
+  "operation": "analyze_function",
+  "native_body": {
+    "available": true,
+    "provenance": "ghidra-function-body-address-set",
+    "ranges": [
+      {
+        "start": "0x14585aba0",
+        "end": "0x14585ad65"
+      },
+      {
+        "start": "0x14585ad70",
+        "end": "0x14585b579"
+      }
+    ],
+    "total_bytes": 2512,
+    "span_bytes": 2522,
+    "non_contiguous": true,
+    "contains_entry": true
+  },
+  "canonical_extract": {
+    "path": "docs/analysis/evidence/0.115.0/banners-owner-pseudocode.txt",
+    "sha256": "faadc5255770cbf27c31acfe4d53dd2a1fb0559e2872d25196eac652e2d36a2b",
+    "presentation_normalization": "Trailing whitespace and surrounding blank lines removed; full raw provider Evidence remains separately committed by digest."
+  },
+  "retained_evidence": {
+    "path": "runtime/refresh-0.115.0/banners/rea/003-banners-owner.json",
+    "sha256": "9da8057ea603d993e221336015b453b142bdfd90a98a399979b7f64de3cb90e0"
+  },
+  "observation": "The bounded body scans quoted UTF-8 text, handles backslash/newline/Unicode escape branches and contains a string-boundary failure referencing banners.rs:156. This is a text-parser lead, not proof of banner emission or per-player language behavior.",
+  "limits": [
+    "Raw slice excludes callees, constant payloads, globals, incoming callers and native type identity.",
+    "Decompiler warns about removed unreachable blocks; output is analysis pseudocode, not original source.",
+    "No native semantic/source contract, implementation or runtime/parity closure."
+  ],
+  "next_action": "Query full-PE incoming callers and referenced payload at 0x14700d348; trace parsed output to local banner construction and consumers before assigning AS behavior."
+}

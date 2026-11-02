@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "gap_ids": [
+    219,
+    221
+  ],
+  "bounded_contract_system_ids": [
+    "custom-game-heroic"
+  ],
+  "bounded_contract_owner_scopes": {
+    "custom-game-heroic": "Exact rank0/1..5 name/discriminant boundaries and rank3/5 affix-count/selector arithmetic, with current state-input callsite; weekly seed production, full difficulty policy and gameplay affix effects remain pending."
+  },
+  "queries": [
+    {
+      "role": "heroic-helpers-0x145abfe70",
+      "procedure": "0x145abfe70",
+      "evidence_id": "ev_a0c1c554db0a6959d6f02f8d51c76965d20caca88c1b860ad919e8f2ce751cfc",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "a76635f9cc35e7a44a8e3e00138d4828790a16c535709c0f8ab94e6a17877d56",
+      "normalized_text_sha256": "a6d36ea94228226fa0a9d819e89196fac3732ccda7efd6773298ccd917860bd5",
+      "plan": {
+        "path": "runtime/execheck-0.121.0/heroic-native/plan.json",
+        "sha256": "2bada3793624c20bbfc2ab5facf57929c4080166651515bd4a17091c1eb66743"
+      },
+      "journal": {
+        "path": "runtime/execheck-0.121.0/heroic-native/query/journal.json",
+        "sha256": "1be2e2bcd0b1ab906c108468a8f0f07c9cc2a68be01465b6de88f61748115491"
+      },
+      "result": {
+        "path": "runtime/execheck-0.121.0/heroic-native/query/results/1d4dc3be83579bf4405d3432fa16d847330a00be88bcfeee2998bcaf6aa422c0.json",
+        "sha256": "d46951fe0696e05e1cc2aea024455a9a594a9e11e22af5ed00e8385a7ab9323d"
+      },
+      "raw_input": {
+        "path": "runtime/execheck-0.121.0/heroic-native/code.bin",
+        "sha256": "4adab11c95ad5fa961763950f9171b012b27118b7cb02c1823af000629e9d2a2"
+      },
+      "slice_virtual_address": "0x145abfe70"
+    },
+    {
+      "role": "heroic-helpers-0x145ac00b0",
+      "procedure": "0x145ac00b0",
+      "evidence_id": "ev_8828ec13d89836c8bd2c4a589f7bf2bcbf8214a0cbeb7108a3a85666de26bcdb",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "a76635f9cc35e7a44a8e3e00138d4828790a16c535709c0f8ab94e6a17877d56",
+      "normalized_text_sha256": "5a7475ee953796d7cdfd040ba0d72631d73be83d9f660425658c0bbd1ee13be8",
+      "plan": {
+        "path": "runtime/execheck-0.121.0/heroic-native/plan.json",
+        "sha256": "2bada3793624c20bbfc2ab5facf57929c4080166651515bd4a17091c1eb66743"
+      },
+      "journal": {
+        "path": "runtime/execheck-0.121.0/heroic-native/query/journal.json",
+        "sha256": "1be2e2bcd0b1ab906c108468a8f0f07c9cc2a68be01465b6de88f61748115491"
+      },
+      "result": {
+        "path": "runtime/execheck-0.121.0/heroic-native/query/results/d0a4adfb4bc84c681f3f8e4d179b9031f63db730a0c1e7a1b5a4c210e012c02a-023d7b28906a28c0.json",
+        "sha256": "01ea18d0919308b56f09b6627f8e67b566a40612f25eac6087c75979ecb8d770"
+      },
+      "raw_input": {
+        "path": "runtime/execheck-0.121.0/heroic-native/code.bin",
+        "sha256": "4adab11c95ad5fa961763950f9171b012b27118b7cb02c1823af000629e9d2a2"
+      },
+      "slice_virtual_address": "0x145abfe70"
+    },
+    {
+      "role": "selection-caller-0x145bdcb10",
+      "procedure": "0x145bdcb10",
+      "evidence_id": "ev_6cd57c83950911b54c60aa81d7e0b87df6f50350320d8289a7a27ee6af8e6268",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "16f914ced920e235724b3618580f01b46b80a013852b39749cf3d97212da0d6f",
+      "normalized_text_sha256": "7c53df4c148c587f1a468651455a8c79dc8f60a498414b3fd9cb44478e194ea8",
+      "plan": {
+        "path": "runtime/execheck-0.121.0/heroic-native/caller/plan.json",
+        "sha256": "fd88d4f6df8f703a0c61913494ce977a48089479d2848a29b596dc9706e9d95a"
+      },
+      "journal": {
+        "path": "runtime/execheck-0.121.0/heroic-native/caller/query/journal.json",
+        "sha256": "93031b87deaccd35b5bd4f1ff50958f2918024b7e0b139ed70066ba895c6bd7f"
+      },
+      "result": {
+        "path": "runtime/execheck-0.121.0/heroic-native/caller/query/results/be850c0c6ba10d0356d0ee37d014d3c9a05ef3d54c1bd09d8853cf6ba44b79dc.json",
+        "sha256": "59acc01c27208e27dffdfdc71e73cc7f144baf738a2529a4fb449919b63007f4"
+      },
+      "raw_input": {
+        "path": "runtime/execheck-0.121.0/heroic-native/caller/code.bin",
+        "sha256": "457b507def5d350c7fed3e53bb8636cc1d0e38ec342d2000c413bf24b242b9b2"
+      },
+      "slice_virtual_address": "0x145bdcb10"
+    }
+  ],
+  "native_ranges": [
+    {
+      "role": "affix-selection",
+      "virtual_address": "0x145abfe70",
+      "file_offset": "0x5abf270",
+      "byte_count": 264,
+      "sha256": "b9e9b1d97906cdec5d2a0299f75fb5e3a1f800f3ff8343e72d1f1ec8be785b73",
+      "bytes_hex": "5541565657534883ec40488d6c244048c745f8feffffff4889ce80fa03731c48c7060000000048c746080100000048c7461000000000e9ae0000004c89c789d348b9abaaaaaaaaaaaaaa4c89c048f7e14989d6e8382354fab901000000ba01000000e8e92254fa4885c00f848700000049d1ee4b8d0c764829cf488d0d21a150010fb6140f881048c745e001000000488945e848c745f00100000080fb0476324183e6014a8d043748ffc04889c24883ea03480f42d08a1c0a488d4de0e87eba550090488b45e888580148c745f002000000488b45f048894610488b45e0488906488b45e8488946084889f04883c4405b5f5e415e5dc3b901000000ba01000000e82b416d000f0b",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-native/affix-selection.asm",
+        "sha256": "3148e146f1ff07942ccdc3904978537b8718296e5932f48073ea31f9795578a3"
+      },
+      "instruction_count": 69
+    },
+    {
+      "role": "rank-name",
+      "virtual_address": "0x145ac00b0",
+      "file_offset": "0x5abf4b0",
+      "byte_count": 444,
+      "sha256": "5d217910741259e60d1b8015238b2ac65441feb8292789a824231dda6141f33a",
+      "bytes_hex": "415741565657534881eca00000004889ce84d20f84fd00000089d3488d3d6c9f500141be06000000ba060000004889f9e87bae02004885c0480f44c7490f44d648894424204889542428488d05439f5001488944244048c744244801000000488d052f9f5001488944245048c744245802000000488d051c9f5001488944246048c744246803000000488d050a9f5001488944247048c744247802000000488d05f79e5001488984248000000048c7842488000000010000000fb6cb80fb060f83e4000000c1e1040f10440c300f11842490000000488d4424204889442430488d052a1f54fa4889442438488d8c249000000048894c24404889442448488d15b49e50014c8d4424304889f1e8afe74f00e981000000488d3d6b9e5001bb06000000ba060000004889f9e881ad02004885c0480f44c74889d7480f44fb4885ff79104531ff4c89f94889fae8bb3e6d000f0b74334989c6e8f41f54fa41bf01000000ba010000004889f9e8a11f54fa4885c074d14889c34889c14c89f24989f8e8e6b95200eb05bb0100000048893e48895e0848897e104889f04881c4a00000005b5f5e415e415fc34c8d05f09d5001ba06000000e8e9416d000f0b",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-native/rank-name.asm",
+        "sha256": "d0fadf619cc35298421bdb83da27b9081690aa3b2dc5db5c0caaab7d426fed48"
+      },
+      "instruction_count": 100
+    },
+    {
+      "role": "selection-caller-input",
+      "virtual_address": "0x145bdcb8a",
+      "file_offset": "0x5bdbf8a",
+      "byte_count": 174,
+      "sha256": "50fbd4fa68ac5a3eab1666836001a95c2e846c97f1bbf01beff1f49569bb40e9",
+      "bytes_hex": "4989d748898d080f00004c8985481000004c8985a00f00000fb682a5010000488985501000008d78febb010000004080ff07730e400fb6c7488d0daf5fab018b1c81418b870c0100008985b00f0000458ab7bf01000031f64180fe030f9385581000004d8ba7200100004d8baf280100004c89e14c89eae88af5ebff418b8f9c0100004c8d04c84929c8c6856410000001488d8de80e00004488b5611000004489f24c89bdb80f0000e83832eeff",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/heroic-native/selection-caller-input.asm",
+        "sha256": "1d354c0a938a297d2f02d1a7779f8a53810cfeb482e2f29c78b4f60ba6f8c4c9"
+      },
+      "instruction_count": 33
+    }
+  ],
+  "native_data": [
+    {
+      "role": "affix-domain",
+      "virtual_address": "0x146fca012",
+      "file_offset": "0x6fc8e12",
+      "byte_count": 3,
+      "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+      "bytes_hex": "000102"
+    },
+    {
+      "role": "rank-label-data",
+      "virtual_address": "0x146fca038",
+      "file_offset": "0x6fc8e38",
+      "byte_count": 21,
+      "sha256": "8dd11885daba638fc97029b184603ccdcd45a22d4ec80b61be886f7cebe0342a",
+      "bytes_hex": "4e6f726d616c4865726f6963494949494949495656"
+    },
+    {
+      "role": "rank-format",
+      "virtual_address": "0x146fca068",
+      "file_offset": "0x6fc8e68",
+      "byte_count": 5,
+      "sha256": "9448e3d21a14cdcf797809c436cdf40309df9a69ec291d7e13b0de4ea080fa44",
+      "bytes_hex": "c00120c000"
+    },
+    {
+      "role": "rank-bounds-location",
+      "virtual_address": "0x146fca050",
+      "file_offset": "0x6fc8e50",
+      "byte_count": 24,
+      "sha256": "ca56a829b2d3ad9d4c0a0f42e9f5309bf519e87465e608df77eed61bff39cf70",
+      "bytes_hex": "15a0fc460100000022000000000000001a01000009000000"
+    }
+  ],
+  "module_location_evidence": {
+    "path": "runtime/coverage/22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150/diagnostic-ownership.json",
+    "sha256": "32a8efb17ea288d620f61e67543682225b5d13dd5e0540be7e714613fb369e37"
+  },
+  "source_bindings": [
+    {
+      "path": "crates/azeroth-survivors-re/src/run_options.rs",
+      "sha256": "f9c5b12b136d4528da06d74bd1f4818e52240548ccd27fd837a7bd60b704c980"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/run_mods.rs",
+      "sha256": "58d5b1687a3433ffa15ab6cc6af530d7d9635c742363e000e6e2d23f361db8d0"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/save.rs",
+      "sha256": "b1c9e74cf57881980eee8f5201676895b0d1eae49445a0bd3b3fec3250ec06d4"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/menu_state.rs",
+      "sha256": "62ecdbb16f3ed2eff093d73be3017447461684d488944a22ee9b7d2249399c8e"
+    }
+  ],
+  "recovered_contract": {
+    "rank_domain": "The naming helper accepts0 through5;0 localizes Normal,1..5 localize Heroic and submit Roman I..V through existing formatter; >=6 takes bounds failure.",
+    "affix_count": "rank<3 ->0;rank3/4 ->1;rank>=5 ->2. Naming bounds establish intended displayed ranks0..5, without proving all upstream admission clamps.",
+    "selector": "first=s%3;second=(s%3+((s//3)&1)+1)%3, table bytes[0,1,2]; valid ranks5 yield two distinct IDs.",
+    "caller": "At145bdcc33 the helper consumes byte(state+0x1bf); s=helper145a9c190(state+0x120, state+0x128)+7*u32(state+0x19c) with wrapping u64 arithmetic. Meanings and all upstream writers of these seed inputs remain pending.",
+    "source_difference": "Existing run_options.rs/run_mods.rs construct four percentage modifiers and weighted reward cap; no Heroic rank label/affix selector contract is implemented there. Source remains retained historical reconstruction, not validated current Heroic policy."
+  },
+  "pending": [
+    {
+      "selector": "HEROIC1210:seed-producer:0x145bdcc01",
+      "action": "Recover145a9c190 interface and writers of state+0x120/+0x128/+0x19c, then bind weekly origin/epoch and zone coupling without assuming wall-clock behavior."
+    },
+    {
+      "selector": "HEROIC1210:affix-consumer:0x145bdcc33",
+      "action": "Follow returned Vec<u8> through initialization and game/affixes.rs owner145c28900; prove ID-to-effect mapping and lifetime before assigning mechanics."
+    },
+    {
+      "selector": "HEROIC1210:rank-producers:state+0x1bf",
+      "action": "Recover save/menu/co-op admission writers and current selection dispatch; name-helper bounds do not prove all accepted rank values."
+    }
+  ],
+  "static_validation": "Original bytes/Capstone boundaries, three durable raw-slice Ghidra receipts and synthetic original-instruction branch/argument cases. Native gameplay and generic formatter implementation are not executed.",
+  "target_executed": false,
+  "runtime_validation": "not_run",
+  "parity": "unverified",
+  "limits": "Bounded exact current helpers and selection callsite only. Raw Programs omit external functions/data and caller pseudocode has a stack-probe modeling limit; original instruction/data bytes govern. Allocation/growth, localization, memcpy and packed formatting are declared synthetic seams. Weekly origin/epoch, seed helper meaning, save/co-op rank producers, affix ID/effect consumers, complete difficulty scaling/unlocks and source implementation remain pending. No compilation, application/game/network/server operation or original/rebuilt comparison."
+}

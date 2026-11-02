@@ -1,0 +1,1105 @@
+{
+  "schema": "as-white-devilsaur-leads-v1",
+  "target": {
+    "version": "0.117.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293",
+    "size_bytes": 145283072
+  },
+  "gap_ids": [
+    119
+  ],
+  "source_first_question": "Recover the AS Hunter switch/gate, free-point allocation bit/codec/save contract and raw29 wolf/raptor replacement; stop at established generic allocation, formatting, byte-copy, ECS and pet-publication boundaries.",
+  "source_receipts": [
+    {
+      "path": "crates/azeroth-survivors-re/src/talents.rs",
+      "sha256": "e1fd43d537ebad33743db7544535441ce338159cff1e6127a2cb719f3df4d37f"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/save/talents.rs",
+      "sha256": "e832d199bcee233cb33d3472a0e6779a9335f6e8d8e3717a74f6ccf40270d9ff"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/run_effects/pets.rs",
+      "sha256": "5eb6a5dbf6c4dc67d93524a45ce18d2a99562c5ede2f5c22a8fe5a7372e49de4"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
+      "sha256": "2fc1e1535a1f38ea6657add83a650199a0aaf6075c6438a58a8ac5e1af2d3784"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/pets.rs",
+      "sha256": "3f49e8aac4832a566413a1094d8ce72837209ea8778ecfe7b5283cd06ba864b6"
+    }
+  ],
+  "queries": [
+    {
+      "extract": {
+        "label": "ui-description",
+        "va": "0x14010ae80",
+        "end_exclusive": "0x14010cb9d",
+        "file_offset": "0x10a280",
+        "byte_count": 7453,
+        "sha256": "37449a6267e221999c2123ba2ca3223afc302a2a2ec055bca51171c369d3dc42",
+        "extract": "runtime/0.117.0/white-devilsaur/ui-description.bin",
+        "plan": "runtime/0.117.0/white-devilsaur/ui-description-plan.json"
+      },
+      "plan_sha256": "087bcdc7e848eb003b59a0c571b154f1cb0db779cf4602812d67257912603228",
+      "result_path": "runtime/0.117.0/white-devilsaur/ui-description-query/results/e5ac7099e9bebeefb4862d6a155cd17f57fc9d913a671943790489d62e2ad08d.json",
+      "result_sha256": "c41d0da11e4dac7d1d7a0b71bf6ea1b892b33945bf1b15cbf79c6ccfcf96077d",
+      "evidence_id": "ev_a5d345e1286f86532afe7f8c220a8438adc5c79e517b63e3b6ea76d549626ca9",
+      "analysis_profile_digest": "84a09dd4f0b846cdade0739ca6d201e70f0e6bdff83d26a56883d90323d8fcbb",
+      "normalized_pseudocode_sha256": "cd4abbe490d126f59d2dd6310c5bc3880ba78d2746a6710b02955180ee7bef6d",
+      "raw_slice_limits": "Generic x64 raw import omits PE/data/callers/external callees and may infer an incorrect ABI; decoded actual argument registers/stores are authoritative here.",
+      "decompiler_jump_table_recovered": null
+    },
+    {
+      "extract": {
+        "label": "ui-switch",
+        "va": "0x14010ce70",
+        "end_exclusive": "0x14010d5e1",
+        "file_offset": "0x10c270",
+        "byte_count": 1905,
+        "sha256": "70369524ad872574bc370fb7cb810f1d31ebb0dfb8e53f491e05ddd57ece4c7d",
+        "extract": "runtime/0.117.0/white-devilsaur/ui-switch.bin",
+        "plan": "runtime/0.117.0/white-devilsaur/ui-switch-plan.json"
+      },
+      "plan_sha256": "628abd7c1355330a2fb83ce283bd3a17d5380b85fcc34d7efdfa92076c5c44cc",
+      "result_path": "runtime/0.117.0/white-devilsaur/ui-switch-query/results/3d2eabc931d446f4b36506f3955ac48a0f42965bc46092e5d5f35828be35a9ec.json",
+      "result_sha256": "abf0cdef728305b1f0a97b886bcfda73d556c78cd28244ab8a18c3ec7918dbfe",
+      "evidence_id": "ev_1a1da8b1e3711bfaaf04e9c609784c305ac01be2304e16607aafe9c6a440a6e6",
+      "analysis_profile_digest": "693bea030b286fb40abfbe03e9fadc00afc9ed2c7254b1789f5580b01390bfe3",
+      "normalized_pseudocode_sha256": "b10c0912463fb134bc63cb7da4030bad05284ee108fc9e48d43980e76104640c",
+      "raw_slice_limits": "Generic x64 raw import omits PE/data/callers/external callees and may infer an incorrect ABI; decoded actual argument registers/stores are authoritative here.",
+      "decompiler_jump_table_recovered": null
+    },
+    {
+      "extract": {
+        "label": "ui-input",
+        "va": "0x14011a2b0",
+        "end_exclusive": "0x14011ab3f",
+        "file_offset": "0x1196b0",
+        "byte_count": 2191,
+        "sha256": "b6c4938c94f59d54f522474272b9bf81ab83efb5e389fd2956a0f37b4037cfe1",
+        "extract": "runtime/0.117.0/white-devilsaur/ui-input.bin",
+        "plan": "runtime/0.117.0/white-devilsaur/ui-input-plan.json"
+      },
+      "plan_sha256": "045a9c7672425f4e987722253dc6efdf7d54666c9b96db6be3b48e8ce2b6d378",
+      "result_path": "runtime/0.117.0/white-devilsaur/ui-input-query/results/35da5eff8ca5a0ae890b107dc2aec23fa292b4c53fa732f91463873099e75549.json",
+      "result_sha256": "c8019bb6cd27ce7c769d689d4a4baaa96ebff850733d68caece4928286b70c67",
+      "evidence_id": "ev_cc6b488ac7e1f0a13076b36b2970f9b5b919bce2cc7c0ae8c043006c750e365b",
+      "analysis_profile_digest": "232f75b5e0293cc858fb2bca579be2c3c86ca0f063a5244c4b60efc79df00e2c",
+      "normalized_pseudocode_sha256": "5cedc4ec599219286b4818d09b6ab9fb7dc3413a6dc1a383aaca72ae76c914ef",
+      "raw_slice_limits": "Generic x64 raw import omits PE/data/callers/external callees and may infer an incorrect ABI; decoded actual argument registers/stores are authoritative here.",
+      "decompiler_jump_table_recovered": false
+    },
+    {
+      "extract": {
+        "label": "pet-selector",
+        "va": "0x145a85a20",
+        "end_exclusive": "0x145a85b74",
+        "file_offset": "0x5a84e20",
+        "byte_count": 340,
+        "sha256": "6bfa2006d8d913f2aeffc8ff2969cf979d5ef71b44e50285133feb456e2375a9",
+        "extract": "runtime/0.117.0/white-devilsaur/pet-selector.bin",
+        "plan": "runtime/0.117.0/white-devilsaur/pet-selector-plan.json"
+      },
+      "plan_sha256": "db63bdbc3a1ce868d62636de26349b7607815a6a4d4b44a203e096b39d887382",
+      "result_path": "runtime/0.117.0/white-devilsaur/pet-selector-query/results/dae9fbee46359415655c615aa54ad01c81300f830c548b10eced9055de017585.json",
+      "result_sha256": "046dd45a60ef10abb97fb16e570cb0d1b1ea451eafc948c6c5fb2da8d977143a",
+      "evidence_id": "ev_8939fdc5e7f558100879b33599e7ff6441bc12e3827320c735c3802381c2373d",
+      "analysis_profile_digest": "c6afb4974a8e87fc9accd4692eed8b79824e3f02d02c51875cafb6e5997dc708",
+      "normalized_pseudocode_sha256": "286dfc389afc6d99339d797bcdc8db7f0791ac1832c375c9840ea7e5baa4787b",
+      "raw_slice_limits": "Generic x64 raw import omits PE/data/callers/external callees and may infer an incorrect ABI; decoded actual argument registers/stores are authoritative here.",
+      "decompiler_jump_table_recovered": null
+    },
+    {
+      "extract": {
+        "label": "pet-replacement-effects",
+        "va": "0x145ab2f90",
+        "end_exclusive": "0x145ab32be",
+        "file_offset": "0x5ab2390",
+        "byte_count": 814,
+        "sha256": "57dbe94627e8e2b1c330eab8d3a19f268589f033ccc2d814c3bac2c7c5fdf4a7",
+        "extract": "runtime/0.117.0/white-devilsaur/pet-replacement-effects.bin",
+        "plan": "runtime/0.117.0/white-devilsaur/pet-replacement-effects-plan.json"
+      },
+      "plan_sha256": "7be4fee553620382a11d6a55197605a5a045399fff6b6ba4d335235bd2bb2877",
+      "result_path": "runtime/0.117.0/white-devilsaur/pet-replacement-effects-query/results/dc6be582d8ef57c4896a9b89cc5c1793695381efb3cfc234faeacce9b7a0c3d6.json",
+      "result_sha256": "30ef59c265f790b4f4ae05bc1831f0a2a4f25a3953d30e244b825af3d45ec905",
+      "evidence_id": "ev_6e8e775f886e2e6966be2ecfb0f139d059336eb2592eade149f244987da9d493",
+      "analysis_profile_digest": "becd4118085aa271b22239379cbcb69f288bef0e9887c18327fade4beaa7f21b",
+      "normalized_pseudocode_sha256": "61242fd9f999be6ea9ea100b4301fae9341f2f891b99587880153e6d9def93eb",
+      "raw_slice_limits": "Generic x64 raw import omits PE/data/callers/external callees and may infer an incorrect ABI; decoded actual argument registers/stores are authoritative here.",
+      "decompiler_jump_table_recovered": null
+    },
+    {
+      "extract": {
+        "label": "allocation-read",
+        "va": "0x145ac4bd0",
+        "end_exclusive": "0x145ac4dfa",
+        "file_offset": "0x5ac3fd0",
+        "byte_count": 554,
+        "sha256": "a40328df66e68cc01e783596424162116fd0f1d7b2673b371666df0e27e98ed1",
+        "extract": "runtime/0.117.0/white-devilsaur/allocation-read.bin",
+        "plan": "runtime/0.117.0/white-devilsaur/allocation-read-plan.json"
+      },
+      "plan_sha256": "8c577f426136a0db2236b29fc4971724260e6a5d8690176fd8345205924e2b0e",
+      "result_path": "runtime/0.117.0/white-devilsaur/allocation-read-query/results/09e3b15232bd622476024f7c9cd03ceff2c5d327cd94969b75db68f81925b6bb.json",
+      "result_sha256": "7bd3011534ee09707bea6dfdc55294829df6c70a83a3c8a9616b9363f221981e",
+      "evidence_id": "ev_660c69b605c341cc13de21b6e3963c4d28b8059ceaaddef49403bd853637b6a4",
+      "analysis_profile_digest": "7fcf5b8628c6713fd184ca914585bf2a5ccd978cd65e118b7b1c80185fba2d13",
+      "normalized_pseudocode_sha256": "9917bdd9c92f2ba8e2972b78fce7645b537613f966cef3b033f0243a91abaf84",
+      "raw_slice_limits": "Generic x64 raw import omits PE/data/callers/external callees and may infer an incorrect ABI; decoded actual argument registers/stores are authoritative here.",
+      "decompiler_jump_table_recovered": null
+    },
+    {
+      "extract": {
+        "label": "allocation-write",
+        "va": "0x145acf5b0",
+        "end_exclusive": "0x145acf974",
+        "file_offset": "0x5ace9b0",
+        "byte_count": 964,
+        "sha256": "e119860affc86f15e3f42cd093bbcafc0584b2502da53ae9f43af62f9cf4ff4f",
+        "extract": "runtime/0.117.0/white-devilsaur/allocation-write.bin",
+        "plan": "runtime/0.117.0/white-devilsaur/allocation-write-plan.json"
+      },
+      "plan_sha256": "3944d3c2d4fcacae0dc78c87068165c152066d58b1dd57d20752045d5dc8ed75",
+      "result_path": "runtime/0.117.0/white-devilsaur/allocation-write-query/results/0ba09c1231d5edc73835b3bbee85aaceb43aaf46fbeeddd07009738047fb2075.json",
+      "result_sha256": "918fce067cf7f42c43dbe6466a22f35fc9cc7738619e5cc3c207e36ffad930fc",
+      "evidence_id": "ev_550948729c15d5c12a118351ae4dbdedc98762f9892aba5d1a6e1989145b6159",
+      "analysis_profile_digest": "9f8047c04ad92f96fa362357edd85472d87473f470fe72b22a179338f479c119",
+      "normalized_pseudocode_sha256": "60bb7eff2fb924e5a77ce0a87bc14cf5a7803869669f109727d79151158b03ea",
+      "raw_slice_limits": "Generic x64 raw import omits PE/data/callers/external callees and may infer an incorrect ABI; decoded actual argument registers/stores are authoritative here.",
+      "decompiler_jump_table_recovered": null
+    },
+    {
+      "extract": {
+        "label": "allocation-input",
+        "va": "0x145a86310",
+        "end_exclusive": "0x145a863d8",
+        "file_offset": "0x5a85710",
+        "byte_count": 200,
+        "sha256": "d4e9baa32af1e5fa3d0ea9490ae2e9012f1b0f0008cc1d2c761f7ec1d663c99f",
+        "extract": "runtime/0.117.0/white-devilsaur/allocation-input.bin",
+        "plan": "runtime/0.117.0/white-devilsaur/allocation-input-plan.json"
+      },
+      "plan_sha256": "3f440816880bfec713da2416eea283a283838eb1a5cffe0c4419b970bef370a2",
+      "result_path": "runtime/0.117.0/white-devilsaur/allocation-input-query/results/59d506822027d8d6433fd4f0cc4f41d078268e8df7217b8679ab70bed4db1c5c.json",
+      "result_sha256": "80bd06eb0bb1bc12bbc7c995e98303349959a3eef6984e847cca8d24c100c754",
+      "evidence_id": "ev_9f9828611a11b13afb167d0bdf9d6acea7981048c492c12b7611d4e076e0efc4",
+      "analysis_profile_digest": "f9178efd49008f36529efd8bf8f982ca549bd8bc6225f2b682807e7523c8539e",
+      "normalized_pseudocode_sha256": "68c3106ef50d0bbda9c92ddb203e441368f090ad1fca05b8b5c7ba756bb2ba21",
+      "raw_slice_limits": "Generic x64 raw import omits PE/data/callers/external callees and may infer an incorrect ABI; decoded actual argument registers/stores are authoritative here.",
+      "decompiler_jump_table_recovered": null
+    },
+    {
+      "extract": {
+        "label": "allocation-decode",
+        "va": "0x145a86450",
+        "end_exclusive": "0x145a86658",
+        "file_offset": "0x5a85850",
+        "byte_count": 520,
+        "sha256": "bcb4558190c0eaf920c7c92132a48548c65f75455a1493e329450936ee5b2710",
+        "extract": "runtime/0.117.0/white-devilsaur/allocation-decode.bin",
+        "plan": "runtime/0.117.0/white-devilsaur/allocation-decode-plan.json"
+      },
+      "plan_sha256": "9cf0177b4f36527a42160cc25d8242e7427ffc68b31530ff69e9e27da6dee0ac",
+      "result_path": "runtime/0.117.0/white-devilsaur/allocation-decode-query/results/60cdb22f360c6285c7efae10f871225131a32c76ee992d085758e2864e5bce3f.json",
+      "result_sha256": "cacd66eb6f8d695778803dd23acef06543fd3796385b2544cf267a042ed0616a",
+      "evidence_id": "ev_cd2b9313e02fc89567251e5647e0f91f5250102d29fa9dbcc85941cb22ba7010",
+      "analysis_profile_digest": "425b2d1f82f0c44fa8f65599987854144618002ee1745e36d0464043882438ae",
+      "normalized_pseudocode_sha256": "ffb74f12e75d377f940ac2cb58c5f5b399e6793684919cc8293c98d4b6735b26",
+      "raw_slice_limits": "Generic x64 raw import omits PE/data/callers/external callees and may infer an incorrect ABI; decoded actual argument registers/stores are authoritative here.",
+      "decompiler_jump_table_recovered": null
+    },
+    {
+      "extract": {
+        "label": "allocation-encode",
+        "va": "0x145a871d0",
+        "end_exclusive": "0x145a872ef",
+        "file_offset": "0x5a865d0",
+        "byte_count": 287,
+        "sha256": "f087476cf1799c6fa5a81a4e867596f198e9db34e463959a691460b799ea3973",
+        "extract": "runtime/0.117.0/white-devilsaur/allocation-encode.bin",
+        "plan": "runtime/0.117.0/white-devilsaur/allocation-encode-plan.json"
+      },
+      "plan_sha256": "5e596c884b16dde10508098a39034030c25e1731a33ff4465c0d1386bda9f71d",
+      "result_path": "runtime/0.117.0/white-devilsaur/allocation-encode-query/results/ac87cf531d74a35bcaf7e5fff41dbd2cdcb7279cd37c0e714e972d428f2cf669.json",
+      "result_sha256": "5867a5804a6350488b6a13b80e6e55d9922446085e5d7cedac13c689192cbb28",
+      "evidence_id": "ev_1be04d7ba0c02a6df3261ddd516dc51bf289c57ff4e7d90d124b1733db7a663c",
+      "analysis_profile_digest": "c44c696d73d9a2c7ee2e46a17d9fb118702d3bdc27d1fb0a270942a758aaa9e4",
+      "normalized_pseudocode_sha256": "08d3fca2531016025436762e48dccad851b6f2afa7bad868385175ebb1ec7156",
+      "raw_slice_limits": "Generic x64 raw import omits PE/data/callers/external callees and may infer an incorrect ABI; decoded actual argument registers/stores are authoritative here.",
+      "decompiler_jump_table_recovered": null
+    },
+    {
+      "extract": {
+        "label": "allocation-normalize",
+        "va": "0x145a87320",
+        "end_exclusive": "0x145a87b24",
+        "file_offset": "0x5a86720",
+        "byte_count": 2052,
+        "sha256": "78d0aee3003ca3f4c599ad26cb911e88829a1e61c92fa0a65e6f29e816a8175d",
+        "extract": "runtime/0.117.0/white-devilsaur/allocation-normalize.bin",
+        "plan": "runtime/0.117.0/white-devilsaur/allocation-normalize-plan.json"
+      },
+      "plan_sha256": "f1ef7b0d95a0ab4788b7b1d02b72b9bc76d54a98a9e10beb4970d4a0e097625e",
+      "result_path": "runtime/0.117.0/white-devilsaur/allocation-normalize-query/results/a9743be04a94609019a5464d0f30796a022fb29dbf7e676ab5954c424713a5ac.json",
+      "result_sha256": "7c889383ed8f1169ce3602835b76bb69a8d890661238c9c61dd97415f6c1cee7",
+      "evidence_id": "ev_81790a5ab0f4711e5099048421006674ff5778059765d6f089c0920e72615edb",
+      "analysis_profile_digest": "6efaf37583401e53b6ba33c4f33e55c21e8c3e405dd35945e1ce31024867dffc",
+      "normalized_pseudocode_sha256": "edbcf3ce76473b39b3b3d4878231f47d9a92398ff19a4007623abcc8f7be4dcb",
+      "raw_slice_limits": "Generic x64 raw import omits PE/data/callers/external callees and may infer an incorrect ABI; decoded actual argument registers/stores are authoritative here.",
+      "decompiler_jump_table_recovered": null
+    }
+  ],
+  "pet_records": [
+    {
+      "label": "white_two",
+      "name": "White Devilsaur",
+      "icon": null,
+      "entry": 9531,
+      "model": 5239,
+      "scale": 0.30000001192092896,
+      "damage": 60.0,
+      "period": 0.6000000238418579,
+      "spell_id": 0,
+      "school": 0,
+      "special": 0,
+      "va": "0x1472c3a00",
+      "end_exclusive": "0x1472c3a40",
+      "file_offset": "0x72c2400",
+      "byte_count": 64,
+      "sha256": "7f21491346d08001236baa991ecdf9cc0539e753827a8cc0942e3776234ce341"
+    },
+    {
+      "label": "white_one",
+      "name": "White Devilsaur",
+      "icon": null,
+      "entry": 9530,
+      "model": 5239,
+      "scale": 0.30000001192092896,
+      "damage": 67.0,
+      "period": 1.2000000476837158,
+      "spell_id": 0,
+      "school": 0,
+      "special": 0,
+      "va": "0x1472c3a40",
+      "end_exclusive": "0x1472c3a80",
+      "file_offset": "0x72c2440",
+      "byte_count": 64,
+      "sha256": "10ce804fc2a5f0b69ca701d4278f9aaff4dbe1b80efc35ab1191df80ccce1b60"
+    },
+    {
+      "label": "raptor",
+      "name": "Raptor",
+      "icon": null,
+      "entry": 9511,
+      "model": 1959,
+      "scale": 1.0,
+      "damage": 53.0,
+      "period": 1.2000000476837158,
+      "spell_id": 0,
+      "school": 0,
+      "special": 0,
+      "va": "0x1472c3980",
+      "end_exclusive": "0x1472c39c0",
+      "file_offset": "0x72c2380",
+      "byte_count": 64,
+      "sha256": "7550a6fb08abd1e5b67bd24dc5dc585f92031ed7de6f4b52fb3c7447dd7670aa"
+    },
+    {
+      "label": "wolf",
+      "name": "Wolf",
+      "icon": null,
+      "entry": 9510,
+      "model": 165,
+      "scale": 1.0,
+      "damage": 67.0,
+      "period": 1.2000000476837158,
+      "spell_id": 0,
+      "school": 0,
+      "special": 0,
+      "va": "0x1472c39c0",
+      "end_exclusive": "0x1472c3a00",
+      "file_offset": "0x72c23c0",
+      "byte_count": 64,
+      "sha256": "a117be61a5041da1bccc475f05b22f4ddeed5707a311919796052263c1340082"
+    },
+    {
+      "label": "rejected_water_elemental",
+      "name": "Water Elemental",
+      "icon": null,
+      "entry": 9517,
+      "model": 110,
+      "scale": 0.550000011920929,
+      "damage": 50.0,
+      "period": 2.200000047683716,
+      "spell_id": 116,
+      "school": 4,
+      "special": 0,
+      "va": "0x1472c2fc0",
+      "end_exclusive": "0x1472c3000",
+      "file_offset": "0x72c19c0",
+      "byte_count": 64,
+      "sha256": "5655e4b91a96b25223ed1909883cf85a387b656bfa86a26b5252dde0cbb3d507"
+    }
+  ],
+  "selected_code": [
+    {
+      "label": "ui_action4",
+      "va": "0x14011a872",
+      "end_exclusive": "0x14011a929",
+      "file_offset": "0x119c72",
+      "byte_count": 183,
+      "sha256": "d00ebf61cdf199946a57a5dfc9bb535f252e401abc4fb813ce360dd38fae10ee"
+    },
+    {
+      "label": "ui_action_dispatch",
+      "va": "0x14011a783",
+      "end_exclusive": "0x14011a79d",
+      "file_offset": "0x119b83",
+      "byte_count": 26,
+      "sha256": "dcfb7d6dea986e77e4b48551e9143600363ae3265306fe15f0ed554b8ce73c6e"
+    },
+    {
+      "label": "normalizer_flag",
+      "va": "0x145a873cc",
+      "end_exclusive": "0x145a8740d",
+      "file_offset": "0x5a867cc",
+      "byte_count": 65,
+      "sha256": "1dc3b85ea1eb3a53782ea49f519d2e2281b491d1203b40c0a71c4277088cb723"
+    },
+    {
+      "label": "normalizer_point_sum",
+      "va": "0x145a875d2",
+      "end_exclusive": "0x145a8769a",
+      "file_offset": "0x5a869d2",
+      "byte_count": 200,
+      "sha256": "c2490aefaa368c9d6060a325cf62f88ab3515f9db959e9379d940e3a3e858679"
+    },
+    {
+      "label": "decoder_flag",
+      "va": "0x145a8658b",
+      "end_exclusive": "0x145a86641",
+      "file_offset": "0x5a8598b",
+      "byte_count": 182,
+      "sha256": "885cf00adecc2c5c68e71f3586b83163b0042e0961784b6db25195592b2bbe38"
+    },
+    {
+      "label": "encoder_flag",
+      "va": "0x145a871e7",
+      "end_exclusive": "0x145a87284",
+      "file_offset": "0x5a865e7",
+      "byte_count": 157,
+      "sha256": "d66bdc95fbb5a439a4f710f670028ce2bf4458f9d419d729efc465a252016bb3"
+    },
+    {
+      "label": "save_spec_encode",
+      "va": "0x145acc7f3",
+      "end_exclusive": "0x145acc86b",
+      "file_offset": "0x5acbbf3",
+      "byte_count": 120,
+      "sha256": "6e4d6fd659ec97c2693d0153c1da1596cf9bdbbeae434d567a2924187f94e3ba"
+    },
+    {
+      "label": "writer_flag_gate",
+      "va": "0x145acf69d",
+      "end_exclusive": "0x145acf748",
+      "file_offset": "0x5acea9d",
+      "byte_count": 171,
+      "sha256": "111bf8c8e401e397be9c4ac51c0767c2b0de01a12f7c3d40f7cac514dc92217f"
+    },
+    {
+      "label": "writer_spec_flag",
+      "va": "0x145acf807",
+      "end_exclusive": "0x145acf860",
+      "file_offset": "0x5acec07",
+      "byte_count": 89,
+      "sha256": "a87fe622c316a1f52ba871b5325343fe226dfb697e88d50d87e9f8c1f4e9de9a"
+    },
+    {
+      "label": "effect_flag_and_raptor_remove",
+      "va": "0x145ab30f5",
+      "end_exclusive": "0x145ab31fe",
+      "file_offset": "0x5ab24f5",
+      "byte_count": 265,
+      "sha256": "4e959ea170670a9e3f04baa55ba999e0fe6f7be5e7727fda4cdd0478e841058f"
+    },
+    {
+      "label": "effect_wolf_replace",
+      "va": "0x145ab31fe",
+      "end_exclusive": "0x145ab324d",
+      "file_offset": "0x5ab25fe",
+      "byte_count": 79,
+      "sha256": "ab86a7c138ec53e3d9c65f140a8f76dac2fa24bfbe20c19a3aa9a3257ee74fd8"
+    },
+    {
+      "label": "ui_clear_ranks_preserve_flag",
+      "va": "0x14011a92e",
+      "end_exclusive": "0x14011a9cc",
+      "file_offset": "0x119d2e",
+      "byte_count": 158,
+      "sha256": "7a51875a9488f4c8f037c282dafd888ce362fdbe625cf7dee55c71e8428ade80"
+    }
+  ],
+  "literals": [
+    {
+      "text": "white_devilsaur",
+      "va": "0x1472a5210",
+      "end_exclusive": "0x1472a521f",
+      "file_offset": "0x72a3c10",
+      "byte_count": 15,
+      "sha256": "d922ef4a8b12dfb93e8a5a1ecbec20d8ab1c516b519add8678cd4f9eca8fdac2"
+    },
+    {
+      "text": "coop:jurassic",
+      "va": "0x1472ce6e8",
+      "end_exclusive": "0x1472ce6f5",
+      "file_offset": "0x72cd0e8",
+      "byte_count": 13,
+      "sha256": "c6c81a1b90d09820288573914377534c72596699a35e39117ef86091e4462ce1"
+    },
+    {
+      "text": ",",
+      "va": "0x1472a57b8",
+      "end_exclusive": "0x1472a57b9",
+      "file_offset": "0x72a41b8",
+      "byte_count": 1,
+      "sha256": "d03502c43d74a30b936740a9517dc4ea2b2ad7168caa0a774cefe793ce0b33e7"
+    }
+  ],
+  "format_bytes": {
+    "hex": "c0023a3100",
+    "meaning": "one string argument followed by literal :1",
+    "va": "0x1472a5270",
+    "end_exclusive": "0x1472a5275",
+    "file_offset": "0x72a3c70",
+    "byte_count": 5,
+    "sha256": "b313aa0bf6b388b466929b425cc6fd9cdc873a7b37c68ca75d97dfee073038cf"
+  },
+  "action_case": {
+    "index": 4,
+    "table_base": "0x14617d8b8",
+    "target": "0x14011a872",
+    "generated_action": "4 emitted only when supplied enabled gate is true and read-only gate is false",
+    "entry": {
+      "va": "0x14617d8c8",
+      "end_exclusive": "0x14617d8cc",
+      "file_offset": "0x617c2c8",
+      "byte_count": 4,
+      "sha256": "ba3c52365a688e6233bdb91d60d13ef2823197a6d767578c898d8c8c701f322e"
+    },
+    "limits": "Only selected generated index4 and target instructions proved; complete enum/alias/indirect ECS registration domain remains unproved."
+  },
+  "descriptor_references": [
+    {
+      "label": "White9530",
+      "site": "0x145a8b501",
+      "target": "0x1472c3a40",
+      "owner": "0x145a8b330",
+      "end": "0x145a8b57a",
+      "decoded_from_unwind_start": true,
+      "instruction": "lea rdx, [rip + 0x1838538]"
+    },
+    {
+      "label": "White9531",
+      "site": "0x145a8b50c",
+      "target": "0x1472c3a00",
+      "owner": "0x145a8b330",
+      "end": "0x145a8b57a",
+      "decoded_from_unwind_start": true,
+      "instruction": "lea rdx, [rip + 0x18384ed]"
+    },
+    {
+      "label": "White9530",
+      "site": "0x145ab312f",
+      "target": "0x1472c3a40",
+      "owner": "0x145ab2f90",
+      "end": "0x145ab32be",
+      "decoded_from_unwind_start": true,
+      "instruction": "lea r9, [rip + 0x181090a]"
+    },
+    {
+      "label": "White9531",
+      "site": "0x145ab31f7",
+      "target": "0x1472c3a00",
+      "owner": "0x145ab2f90",
+      "end": "0x145ab32be",
+      "decoded_from_unwind_start": true,
+      "instruction": "lea r9, [rip + 0x1810802]"
+    },
+    {
+      "label": "White9531",
+      "site": "0x145afb4da",
+      "target": "0x1472c3a00",
+      "owner": "0x145af93e0",
+      "end": "0x145afc03c",
+      "decoded_from_unwind_start": true,
+      "instruction": "lea rax, [rip + 0x17c851f]"
+    },
+    {
+      "label": "White9530",
+      "site": "0x145afb4f5",
+      "target": "0x1472c3a40",
+      "owner": "0x145af93e0",
+      "end": "0x145afc03c",
+      "decoded_from_unwind_start": true,
+      "instruction": "lea rax, [rip + 0x17c8544]"
+    },
+    {
+      "label": "White9530",
+      "site": "0x145bc0583",
+      "target": "0x1472c3a40",
+      "owner": "0x145bc0230",
+      "end": "0x145bc1300",
+      "decoded_from_unwind_start": true,
+      "instruction": "lea r14, [rip + 0x17034b6]"
+    },
+    {
+      "label": "White9531",
+      "site": "0x145bc0687",
+      "target": "0x1472c3a00",
+      "owner": "0x145bc0230",
+      "end": "0x145bc1300",
+      "decoded_from_unwind_start": true,
+      "instruction": "lea r14, [rip + 0x1703372]"
+    }
+  ],
+  "allocation_callers": [
+    {
+      "site": "0x14010e0c3",
+      "target": "0x145ac4bd0",
+      "owner": "0x14010e030",
+      "end": "0x14010e765"
+    },
+    {
+      "site": "0x14010e0eb",
+      "target": "0x145ac4bd0",
+      "owner": "0x14010e030",
+      "end": "0x14010e765"
+    },
+    {
+      "site": "0x14011a156",
+      "target": "0x145ac4bd0",
+      "owner": "0x140119cf0",
+      "end": "0x14011a24f"
+    },
+    {
+      "site": "0x14011a1be",
+      "target": "0x145acf5b0",
+      "owner": "0x140119cf0",
+      "end": "0x14011a24f"
+    },
+    {
+      "site": "0x14011a1d9",
+      "target": "0x145ac4bd0",
+      "owner": "0x140119cf0",
+      "end": "0x14011a24f"
+    },
+    {
+      "site": "0x14011a76b",
+      "target": "0x145ac4bd0",
+      "owner": "0x14011a2b0",
+      "end": "0x14011ab3f"
+    },
+    {
+      "site": "0x14011a829",
+      "target": "0x145acf5b0",
+      "owner": "0x14011a2b0",
+      "end": "0x14011ab3f"
+    },
+    {
+      "site": "0x14011a844",
+      "target": "0x145ac4bd0",
+      "owner": "0x14011a2b0",
+      "end": "0x14011ab3f"
+    },
+    {
+      "site": "0x14011a8e5",
+      "target": "0x145acf5b0",
+      "owner": "0x14011a2b0",
+      "end": "0x14011ab3f"
+    },
+    {
+      "site": "0x14011a900",
+      "target": "0x145ac4bd0",
+      "owner": "0x14011a2b0",
+      "end": "0x14011ab3f"
+    },
+    {
+      "site": "0x14011a983",
+      "target": "0x145acf5b0",
+      "owner": "0x14011a2b0",
+      "end": "0x14011ab3f"
+    },
+    {
+      "site": "0x14011a99e",
+      "target": "0x145ac4bd0",
+      "owner": "0x14011a2b0",
+      "end": "0x14011ab3f"
+    },
+    {
+      "site": "0x14011aab5",
+      "target": "0x145acf5b0",
+      "owner": "0x14011a2b0",
+      "end": "0x14011ab3f"
+    },
+    {
+      "site": "0x14011aad0",
+      "target": "0x145ac4bd0",
+      "owner": "0x14011a2b0",
+      "end": "0x14011ab3f"
+    },
+    {
+      "site": "0x14013f33e",
+      "target": "0x145ac4bd0",
+      "owner": "0x14013eb60",
+      "end": "0x14013f5de"
+    },
+    {
+      "site": "0x14023baf7",
+      "target": "0x145ac4bd0",
+      "owner": "0x14023bab0",
+      "end": "0x14023c055"
+    },
+    {
+      "site": "0x145a86b4e",
+      "target": "0x145a87320",
+      "owner": "0x145a869a0",
+      "end": "0x145a86dd6"
+    },
+    {
+      "site": "0x145aa91e1",
+      "target": "0x145a86450",
+      "owner": "0x145aa9160",
+      "end": "0x145aa9340"
+    },
+    {
+      "site": "0x145aa93f9",
+      "target": "0x145ac4bd0",
+      "owner": "0x145aa9390",
+      "end": "0x145aa9665"
+    },
+    {
+      "site": "0x145ac2f20",
+      "target": "0x145ac4bd0",
+      "owner": "0x145ac2ed0",
+      "end": "0x145ac30d4"
+    },
+    {
+      "site": "0x145ac30ca",
+      "target": "0x145a87320",
+      "owner": "0x145ac2ed0",
+      "end": "0x145ac30d4"
+    },
+    {
+      "site": "0x145ac324c",
+      "target": "0x145ac4bd0",
+      "owner": "0x145ac31c0",
+      "end": "0x145ac35ac"
+    },
+    {
+      "site": "0x145ac34f4",
+      "target": "0x145acf5b0",
+      "owner": "0x145ac31c0",
+      "end": "0x145ac35ac"
+    },
+    {
+      "site": "0x145ac621d",
+      "target": "0x145a86450",
+      "owner": "0x145ac5150",
+      "end": "0x145ac98b4"
+    },
+    {
+      "site": "0x145ac623e",
+      "target": "0x145a87320",
+      "owner": "0x145ac5150",
+      "end": "0x145ac98b4"
+    },
+    {
+      "site": "0x145acf67d",
+      "target": "0x145a87320",
+      "owner": "0x145acf5b0",
+      "end": "0x145acf974"
+    },
+    {
+      "site": "0x145ad2caa",
+      "target": "0x145a86450",
+      "owner": "0x145ad2990",
+      "end": "0x145ad2e01"
+    },
+    {
+      "site": "0x145ad2cbe",
+      "target": "0x145a87320",
+      "owner": "0x145ad2990",
+      "end": "0x145ad2e01"
+    },
+    {
+      "site": "0x145ae1c62",
+      "target": "0x145a86450",
+      "owner": "0x145ae1990",
+      "end": "0x145ae232d"
+    },
+    {
+      "site": "0x145ae1c8b",
+      "target": "0x145a87320",
+      "owner": "0x145ae1990",
+      "end": "0x145ae232d"
+    },
+    {
+      "site": "0x145b0aa0e",
+      "target": "0x145ac4bd0",
+      "owner": "0x145b09700",
+      "end": "0x145b0d812"
+    },
+    {
+      "site": "0x145b11ab8",
+      "target": "0x145acf5b0",
+      "owner": "0x145b11720",
+      "end": "0x145b12d4a"
+    }
+  ],
+  "other_caller_candidates": [
+    {
+      "site": "0x145aa940d",
+      "target": "0x145a871d0",
+      "owner": "0x145aa9390",
+      "end": "0x145aa9665"
+    },
+    {
+      "site": "0x145acc5f7",
+      "target": "0x145a871d0",
+      "owner": "0x145acb970",
+      "end": "0x145ace12e"
+    },
+    {
+      "site": "0x145ae1c9f",
+      "target": "0x145a871d0",
+      "owner": "0x145ae1990",
+      "end": "0x145ae232d"
+    },
+    {
+      "site": "0x145b9e8a8",
+      "target": "0x145ab2f90",
+      "owner": "0x145b9e780",
+      "end": "0x145b9fe5d"
+    },
+    {
+      "site": "0x145bbe353",
+      "target": "0x145ab2f90",
+      "owner": "0x145bbdfa0",
+      "end": "0x145bbe480"
+    },
+    {
+      "site": "0x145bc0dc8",
+      "target": "0x145ab2f90",
+      "owner": "0x145bc0230",
+      "end": "0x145bc1300"
+    },
+    {
+      "site": "0x145bc3a5a",
+      "target": "0x145ab2f90",
+      "owner": "0x145bc3a00",
+      "end": "0x145bc45c4"
+    },
+    {
+      "site": "0x145bc5df9",
+      "target": "0x145ab2f90",
+      "owner": "0x145bc4f80",
+      "end": "0x145bc91a8"
+    },
+    {
+      "site": "0x145bc74a4",
+      "target": "0x145ab2f90",
+      "owner": "0x145bc4f80",
+      "end": "0x145bc91a8"
+    },
+    {
+      "site": "0x145bc78b7",
+      "target": "0x145ab2f90",
+      "owner": "0x145bc4f80",
+      "end": "0x145bc91a8"
+    },
+    {
+      "site": "0x145bf87a2",
+      "target": "0x145ab2f90",
+      "owner": "0x145bf8650",
+      "end": "0x145bf8884"
+    },
+    {
+      "site": "0x145bfa047",
+      "target": "0x145ab2f90",
+      "owner": "0x145bf9e30",
+      "end": "0x145bfa7f3"
+    },
+    {
+      "site": "0x145bfa3db",
+      "target": "0x145ab2f90",
+      "owner": "0x145bf9e30",
+      "end": "0x145bfa7f3"
+    }
+  ],
+  "ownership_inventory": {
+    "path": "runtime/coverage/507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293/diagnostic-ownership.json",
+    "sha256": "1451b0577b454847a5b2a8a40898a7fb7e8e84083a27e2f2472147d776b89872"
+  },
+  "ownership": [
+    {
+      "system_id": "custom-app-screens-talents",
+      "diagnostic_path": "crates/wenilla-rogue-app/src/screens/talents.rs",
+      "diagnostic_occurrences": [
+        {
+          "file_offset": "0x617a59b",
+          "virtual_address": "0x14617bb9b",
+          "byte_count": 47,
+          "sha256": "608c6d2a0cc3e20e582bf636aa6e6ebd487bbe9456c4740576d46eefca95bb70"
+        },
+        {
+          "file_offset": "0x61aca19",
+          "virtual_address": "0x1461ae019",
+          "byte_count": 47,
+          "sha256": "608c6d2a0cc3e20e582bf636aa6e6ebd487bbe9456c4740576d46eefca95bb70"
+        }
+      ],
+      "location_records": [
+        {
+          "location_address": "0x14617bbd0",
+          "path_address": "0x14617bb9b",
+          "source_line": 806,
+          "source_column": 18
+        }
+      ],
+      "verified_references": [
+        {
+          "kind": "rust_location",
+          "instruction_address": "0x14010cb87",
+          "target_address": "0x14617bbd0",
+          "runtime_function_start": "0x14010ae80",
+          "runtime_function_end": "0x14010cb9d",
+          "source_line": 806,
+          "source_column": 18,
+          "path_address": "0x14617bb9b",
+          "instruction_bytes": "4c8d0542f00606",
+          "instruction": "lea r8, [rip + 0x606f042]",
+          "owner_file_offset": "0x10a280",
+          "owner_byte_count": 7453,
+          "owner_sha256": "37449a6267e221999c2123ba2ca3223afc302a2a2ec055bca51171c369d3dc42"
+        }
+      ]
+    },
+    {
+      "system_id": "custom-game-save",
+      "diagnostic_path": "crates/wenilla-rogue/src/save.rs",
+      "diagnostic_occurrences": [
+        {
+          "file_offset": "0x72cce91",
+          "virtual_address": "0x1472ce491",
+          "byte_count": 32,
+          "sha256": "c252c8f93f0f1959c6deedb61473d6c7c6f1e4ae1db73a0f025c73c5d8744afb"
+        }
+      ],
+      "location_records": [
+        {
+          "location_address": "0x1472ce810",
+          "path_address": "0x1472ce491",
+          "source_line": 603,
+          "source_column": 48
+        },
+        {
+          "location_address": "0x1472ce900",
+          "path_address": "0x1472ce491",
+          "source_line": 832,
+          "source_column": 13
+        }
+      ],
+      "verified_references": [
+        {
+          "kind": "rust_location",
+          "instruction_address": "0x145ace0f1",
+          "target_address": "0x1472ce810",
+          "runtime_function_start": "0x145acb970",
+          "runtime_function_end": "0x145ace12e",
+          "source_line": 603,
+          "source_column": 48,
+          "path_address": "0x1472ce491",
+          "instruction_bytes": "4c8d0518078001",
+          "instruction": "lea r8, [rip + 0x1800718]",
+          "owner_file_offset": "0x5acad70",
+          "owner_byte_count": 10174,
+          "owner_sha256": "945b9162fb0635b1b9f3d7e16daa6fc72cc845a94f66cfd212eabf82ade7e475"
+        },
+        {
+          "kind": "rust_location",
+          "instruction_address": "0x145acf95d",
+          "target_address": "0x1472ce900",
+          "runtime_function_start": "0x145acf5b0",
+          "runtime_function_end": "0x145acf974",
+          "source_line": 832,
+          "source_column": 13,
+          "path_address": "0x1472ce491",
+          "instruction_bytes": "4c8d059cef7f01",
+          "instruction": "lea r8, [rip + 0x17fef9c]",
+          "owner_file_offset": "0x5ace9b0",
+          "owner_byte_count": 964,
+          "owner_sha256": "e119860affc86f15e3f42cd093bbcafc0584b2502da53ae9f43af62f9cf4ff4f"
+        }
+      ]
+    },
+    {
+      "system_id": "custom-game-talents",
+      "diagnostic_path": "crates/wenilla-rogue/src/talents.rs",
+      "diagnostic_occurrences": [
+        {
+          "file_offset": "0x72a3c30",
+          "virtual_address": "0x1472a5230",
+          "byte_count": 35,
+          "sha256": "a1d5559d291ee8beca996c5c876398c30976af59d7db7a8ab51250c27bb1eff0"
+        }
+      ],
+      "location_records": [
+        {
+          "location_address": "0x1472a5258",
+          "path_address": "0x1472a5230",
+          "source_line": 990,
+          "source_column": 47
+        },
+        {
+          "location_address": "0x1472a5800",
+          "path_address": "0x1472a5230",
+          "source_line": 756,
+          "source_column": 32
+        },
+        {
+          "location_address": "0x1472a5818",
+          "path_address": "0x1472a5230",
+          "source_line": 756,
+          "source_column": 24
+        }
+      ],
+      "verified_references": [
+        {
+          "kind": "rust_location",
+          "instruction_address": "0x145a86201",
+          "target_address": "0x1472a5800",
+          "runtime_function_start": "0x145a85b80",
+          "runtime_function_end": "0x145a86223",
+          "source_line": 756,
+          "source_column": 32,
+          "path_address": "0x1472a5230",
+          "instruction_bytes": "4c8d05f8f58101",
+          "instruction": "lea r8, [rip + 0x181f5f8]",
+          "owner_file_offset": "0x5a84f80",
+          "owner_byte_count": 1699,
+          "owner_sha256": "42301265c9ba8ce3ba8234397203682f96f687422728980e22a12a6d725c00c0"
+        },
+        {
+          "kind": "rust_location",
+          "instruction_address": "0x145a86214",
+          "target_address": "0x1472a5818",
+          "runtime_function_start": "0x145a85b80",
+          "runtime_function_end": "0x145a86223",
+          "source_line": 756,
+          "source_column": 24,
+          "path_address": "0x1472a5230",
+          "instruction_bytes": "4c8d05fdf58101",
+          "instruction": "lea r8, [rip + 0x181f5fd]",
+          "owner_file_offset": "0x5a84f80",
+          "owner_byte_count": 1699,
+          "owner_sha256": "42301265c9ba8ce3ba8234397203682f96f687422728980e22a12a6d725c00c0"
+        },
+        {
+          "kind": "rust_location",
+          "instruction_address": "0x145a87154",
+          "target_address": "0x1472a5258",
+          "runtime_function_start": "0x145a87020",
+          "runtime_function_end": "0x145a87167",
+          "source_line": 990,
+          "source_column": 47,
+          "path_address": "0x1472a5230",
+          "instruction_bytes": "4c8d05fde08101",
+          "instruction": "lea r8, [rip + 0x181e0fd]",
+          "owner_file_offset": "0x5a86420",
+          "owner_byte_count": 327,
+          "owner_sha256": "882468d788b55b34859d1b9fddf324e3a93d73386a82764d812fe4431a9716c4"
+        }
+      ]
+    }
+  ],
+  "contracts": [
+    {
+      "id": "WHITE-ALLOCATION",
+      "status": "bounded_current_native_recovered_source_missing",
+      "facts": [
+        "32-byte allocation has ordinary vector at+0..23 and distinct toggle byte+0x18.",
+        "Class3-only normalization preserves the toggle independently of ordinary rank/point sums.",
+        "Getter and writer both mask toggle with earned coop:jurassic.",
+        "Writer mirrors normalized flag into live40-byte class row and selected104-byte spec record slot.",
+        "The clear-ranks/reset-like action2 builds an empty ordinary vector while retaining the toggle before gated writeback."
+      ],
+      "source_counterparts": [
+        "save/talents.rs::normalize/spent/decode_allocation/encode_allocation/set_talent_allocation",
+        "talents.rs::Action/apply_action"
+      ]
+    },
+    {
+      "id": "WHITE-CODEC",
+      "status": "bounded_current_native_recovered_source_missing",
+      "facts": [
+        "Class3 decoder scans comma tokens split at colon, trims key/value, and enables matching white_devilsaur when value is not exactly 0.",
+        "Encoder includes white_devilsaur:1 for true flag and comma-joins it with ordinary allocations.",
+        "Current Save formatter calls encoder for live allocation and separately formats the same token for stored slots."
+      ],
+      "limits": [
+        "Split/trim/format/collection calls are external to raw query imports; branch predicates and data commitments are direct current-byte evidence.",
+        "Full Save parser/serializer error handling and OS I/O are outside this bounded follow-up."
+      ]
+    },
+    {
+      "id": "WHITE-PETS",
+      "status": "bounded_current_native_recovered_source_missing",
+      "facts": [
+        "When input allocation byte+0x18 is false, no replacement runs.",
+        "For true flag, remove first raw29 Raptor descriptor1472c3980 and matching40-byte provenance row; choose White9531 if removed, otherwise9530.",
+        "Replace every raw29 Wolf descriptor1472c39c0 with the chosen White descriptor; no Wolf means no White is created by this transform."
+      ],
+      "limits": [
+        "Current pet creation, live attack scheduling, global multipliers, target selection and gameplay equivalence are not replayed.",
+        "Descriptor base/period fields are recovered data; equal nominal arithmetic is not measured DPS or parity."
+      ]
+    }
+  ],
+  "rejected_candidate": {
+    "original_selector": "release-review.json native_leads kind White Devilsaur pet referring to1472c2fb0/1472c2fc0",
+    "actual_role": "Adjacent Water Elemental literal/descriptor; proximity to White Devilsaur string did not establish a White descriptor or consumer.",
+    "preserved_observation": "Original bytes and candidate references remain exact; the earlier semantic label is superseded by this descriptor/pointer proof."
+  },
+  "pending": [
+    "Recover actual UI grid placement, constructor inbound registration/closure capture and complete action admission.",
+    "Bind decoder/normalizer through complete live/stored slot parsing, switch/class-XP updates, account export/import and co-op profile consumers.",
+    "Recover current pet actor creation/update/damage consumers for9530/9531, including no-wolf/raptor-only/repeated grant behavior and provenance.",
+    "Source implementation, compilation, UI/game/network/save execution and original/rebuilt parity remain unverified."
+  ],
+  "limits": [
+    "All reported native observations are static. No original/rebuilt application or server runs.",
+    "A diagnostic Location identifies the containing native owner, not all neighboring helper ownership or complete semantics.",
+    "Normalizer/getter/effect owner module assignments without direct Locations remain bounded role/caller associations.",
+    "No new gameplay implementation or blanket module fidelity claim is made."
+  ],
+  "related_cases": [
+    {
+      "index": 2,
+      "table_base": "0x14617d8b8",
+      "target": "0x14011a92e",
+      "entry": {
+        "va": "0x14617d8c0",
+        "end_exclusive": "0x14617d8c4",
+        "file_offset": "0x617c2c0",
+        "byte_count": 4,
+        "sha256": "318133d83c9e3b4f6ef8681f911b2c1a1cbaf369cb58a52133da88ec6a209f12"
+      },
+      "meaning": "Clear ordinary ranks while retaining input toggle, then use the same gated writer and account command14."
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "engine": "Unicorn 2.1.4",
+  "application_executed": false,
+  "cases": 4,
+  "frame": {
+    "width": {
+      "tag": 1,
+      "value": 252.0
+    },
+    "height": {
+      "tag": 0,
+      "value": null
+    },
+    "min_height": {
+      "tag": 1,
+      "value": 388.0
+    }
+  },
+  "footer": {
+    "width": {
+      "tag": 2,
+      "value": 100.0
+    },
+    "margin_top": {
+      "tag": 0,
+      "value": null
+    },
+    "padding_left": {
+      "tag": 1,
+      "value": 10.0
+    },
+    "padding_right": {
+      "tag": 1,
+      "value": 10.0
+    },
+    "padding_top": {
+      "tag": 1,
+      "value": 9.0
+    },
+    "padding_bottom": {
+      "tag": 1,
+      "value": 9.0
+    }
+  },
+  "name_font": [
+    {
+      "handle_tag": 0,
+      "same_font": true,
+      "size": 21.0
+    },
+    {
+      "handle_tag": 1,
+      "same_font": true,
+      "size": 21.0
+    }
+  ],
+  "seams": [
+    "memcpy copies selected bytes without alteration",
+    "title-string clone supplies an empty string",
+    "ECS spawn calls are stopped before execution"
+  ],
+  "limitations": [
+    "Instruction vectors do not run the Bevy layout or renderer.",
+    "No original/rebuilt visual or interaction parity is established."
+  ]
+}

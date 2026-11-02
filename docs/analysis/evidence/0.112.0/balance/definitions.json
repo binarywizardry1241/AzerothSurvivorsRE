@@ -1,0 +1,948 @@
+{
+  "target": {
+    "version": "0.112.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+    "size_bytes": 140514816
+  },
+  "ability_fields": {
+    "target": {
+      "version": "0.112.0",
+      "path": "installed-game/AzerothSurvivors.exe",
+      "sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+      "size_bytes": 140514816
+    },
+    "generator": {
+      "path": "scripts/check-balance-definitions-0.112.0.py"
+    },
+    "generator_dependencies": [
+      {
+        "path": "scripts/coverage_common.py",
+        "sha256": "3aaa705f6fe366d06b59fbb1cc011bf98f28e59299e91371bd084c63b77d8eeb"
+      },
+      {
+        "path": "scripts/inventory-current-target.py",
+        "sha256": "f2cf5be70267aa01865b7c34bef7eeb87898d67b5e36f0a91d20d37e3b1299c5"
+      },
+      {
+        "path": "scripts/inventory-executable.py",
+        "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+      },
+      {
+        "path": "scripts/check-ability-definitions-0.109.0.py",
+        "sha256": "478ac5de2ce2d677f69bda7df8fb47dcb0716779c3e3c01a16044d107da9141e"
+      }
+    ],
+    "source": {
+      "path": "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
+      "sha256": "bed3b8a73f346f4c08c982d5065ac5c8d9114d914a04e56d1a07a05d20d16362"
+    },
+    "table": {
+      "va": "0x146bf5eb0",
+      "byte_count": 13560,
+      "stride": 120,
+      "records": 113
+    },
+    "status_tag_translations": [
+      {
+        "key": "demo_shout",
+        "native_tag": 11,
+        "source_tag": 10
+      },
+      {
+        "key": "divine_shield",
+        "native_tag": 12,
+        "source_tag": 11
+      },
+      {
+        "key": "holy_shield",
+        "native_tag": 13,
+        "source_tag": 12
+      },
+      {
+        "key": "lightning_shield",
+        "native_tag": 13,
+        "source_tag": 12
+      },
+      {
+        "key": "insect_swarm",
+        "native_tag": 11,
+        "source_tag": 10
+      },
+      {
+        "key": "thorns",
+        "native_tag": 13,
+        "source_tag": 12
+      },
+      {
+        "key": "shadowmeld",
+        "native_tag": 12,
+        "source_tag": 11
+      },
+      {
+        "key": "will_of_the_forsaken",
+        "native_tag": 12,
+        "source_tag": 11
+      }
+    ],
+    "mismatches": 0,
+    "gameplay_consumers_verified": false,
+    "parity_verified": false,
+    "limits": [
+      "Names, icons, ordered upgrade types, all numeric/status fields, school and cast kind are compared as exact values/bits.",
+      "The recovered 113-record table is the scope; arbitrary other records and producer/consumer behavior are not certified.",
+      "No compilation, source execution, game launch, live memory or original/rebuilt comparison occurred."
+    ],
+    "range_count": 340,
+    "range_manifest_sha256": "41575654905aba96631869a89af9763db873b9068acc528f89f9c8232d436f34"
+  },
+  "classes": [
+    {
+      "id": 1,
+      "key": "warrior",
+      "starter": "cleave",
+      "pool": [
+        "cleave",
+        "whirlwind",
+        "thunder_clap",
+        "mortal_strike",
+        "execute",
+        "demo_shout",
+        "battle_shout",
+        "bloodthirst",
+        "rend",
+        "shield_slam",
+        "bloodrage"
+      ],
+      "baseline_bits": [
+        1130758144,
+        1046562734,
+        1014350479
+      ]
+    },
+    {
+      "id": 2,
+      "key": "paladin",
+      "starter": "consecration",
+      "pool": [
+        "consecration",
+        "exorcism",
+        "hammer_of_wrath",
+        "holy_shock",
+        "holy_wrath",
+        "judgement",
+        "hammer_of_justice",
+        "holy_light",
+        "divine_shield",
+        "holy_shield",
+        "redemption"
+      ],
+      "baseline_bits": [
+        1131741184,
+        1045220557,
+        1002740646
+      ]
+    },
+    {
+      "id": 3,
+      "key": "hunter",
+      "starter": "auto_shot",
+      "pool": [
+        "auto_shot",
+        "arcane_shot",
+        "multi_shot",
+        "serpent_sting",
+        "volley",
+        "explosive_trap",
+        "concussive_shot",
+        "aimed_shot",
+        "immolation_trap",
+        "frost_trap",
+        "hunters_mark"
+      ],
+      "baseline_bits": [
+        1131413504,
+        1042536202,
+        1000593162
+      ]
+    },
+    {
+      "id": 4,
+      "key": "rogue",
+      "starter": "sinister_strike",
+      "pool": [
+        "sinister_strike",
+        "eviscerate",
+        "blade_flurry",
+        "rupture",
+        "kidney_shot",
+        "gouge",
+        "ghostly_strike",
+        "adrenaline_rush",
+        "backstab",
+        "slice_and_dice",
+        "seal_fate"
+      ],
+      "baseline_bits": [
+        1128136704,
+        1043878380,
+        1022739087
+      ]
+    },
+    {
+      "id": 5,
+      "key": "priest",
+      "starter": "smite",
+      "pool": [
+        "smite",
+        "sw_pain",
+        "mind_blast",
+        "holy_nova",
+        "pw_shield",
+        "renew",
+        "holy_fire",
+        "mind_flay",
+        "psychic_scream",
+        "devouring_plague",
+        "lightwell"
+      ],
+      "baseline_bits": [
+        1126825984,
+        1034147594,
+        1013276738
+      ]
+    },
+    {
+      "id": 7,
+      "key": "shaman",
+      "starter": "lightning_bolt",
+      "pool": [
+        "lightning_bolt",
+        "chain_lightning",
+        "earth_shock",
+        "flame_shock",
+        "frost_shock",
+        "lightning_shield",
+        "magma_totem",
+        "searing_totem",
+        "fire_nova",
+        "healing_wave",
+        "call_of_flame"
+      ],
+      "baseline_bits": [
+        1128464384,
+        1043207291,
+        0
+      ]
+    },
+    {
+      "id": 8,
+      "key": "mage",
+      "starter": "fireball",
+      "pool": [
+        "fireball",
+        "frostbolt",
+        "arcane_missiles",
+        "frost_nova",
+        "arcane_explosion",
+        "blizzard",
+        "flamestrike",
+        "fire_blast",
+        "cone_of_cold",
+        "blast_wave",
+        "pyroblast",
+        "ice_barrier",
+        "polymorph"
+      ],
+      "baseline_bits": [
+        1129775104,
+        1034147594,
+        0
+      ]
+    },
+    {
+      "id": 9,
+      "key": "warlock",
+      "starter": "shadow_bolt",
+      "pool": [
+        "shadow_bolt",
+        "corruption",
+        "immolate",
+        "curse_of_agony",
+        "rain_of_fire",
+        "hellfire",
+        "death_coil",
+        "searing_pain",
+        "drain_life",
+        "fear",
+        "soul_fire",
+        "demonic_empowerment"
+      ],
+      "baseline_bits": [
+        1126498304,
+        1031127695,
+        1008981770
+      ]
+    },
+    {
+      "id": 11,
+      "key": "druid",
+      "starter": "wrath",
+      "pool": [
+        "wrath",
+        "moonfire",
+        "starfire",
+        "hurricane",
+        "insect_swarm",
+        "entangling_roots",
+        "rejuvenation",
+        "regrowth",
+        "thorns",
+        "swipe",
+        "faerie_fire",
+        "shred"
+      ],
+      "baseline_bits": [
+        1129119744,
+        1039516303,
+        0
+      ]
+    }
+  ],
+  "gear_count": 415,
+  "shared_pvp_numeric_rows": 83,
+  "gear_semantic_sha256": "b55f65666b48ca2e3d4637a5d173a13f246bc246188863969060b6096b6df6d8",
+  "native_gear_cases": 913,
+  "native_equipment_merge_cases": 127,
+  "native_gear_composition_cases": 127,
+  "native_gear_composition_sha256": "00f03ce058b26ffb3de39330430d6f5e62bd4e3ccc37e41b9fcb444147ab3ea6",
+  "native_gear_sha256": "cc1f9213404912e7ae47b954bcec04443935f94cecd195f0ddce939597d7ba0c",
+  "ordinary_upgrade_tables": [
+    {
+      "name": "POWER",
+      "address": "0x14721b0ec",
+      "bits": [
+        1043878380,
+        1048576000,
+        1051595899,
+        1055622431,
+        1059481190
+      ]
+    },
+    {
+      "name": "COOLDOWN",
+      "address": "0x14721b118",
+      "bits": [
+        1032805417,
+        1036831949,
+        1040522936,
+        1043207291,
+        1047233823
+      ]
+    },
+    {
+      "name": "TARGETS",
+      "address": "0x14721b148",
+      "bits": [
+        1065353216,
+        1065353216,
+        1065353216,
+        1073741824,
+        1073741824
+      ]
+    },
+    {
+      "name": "AREA",
+      "address": "0x14721b178",
+      "bits": [
+        1039516303,
+        1043878380,
+        1048576000,
+        1051931443,
+        1056964608
+      ]
+    },
+    {
+      "name": "DURATION",
+      "address": "0x14721b1a8",
+      "bits": [
+        1041865114,
+        1046562734,
+        1050253722,
+        1053609165,
+        1058642330
+      ]
+    }
+  ],
+  "native_upgrade_magnitude_cases": 11300,
+  "native_upgrade_sha256": "99d93393606b5e5fc4b156796d34a352ff4fff6ad0745ad32b2fb3cfa4b0d2ca",
+  "retained_talents": 313,
+  "native_rank_descriptions": 989,
+  "rank_text_sha256": "5972eaf4cdec6b9b1b7b9de60b0874a453b4c0761d87f6980687159a43ee987b",
+  "follower_grants": [
+    {
+      "key": "tame_beast",
+      "entries": [
+        9510
+      ]
+    },
+    {
+      "key": "bestial_wrath",
+      "entries": [
+        9511
+      ]
+    },
+    {
+      "key": "stormstrike",
+      "entries": [
+        9516,
+        9516
+      ]
+    },
+    {
+      "key": "water_elemental",
+      "entries": [
+        9517
+      ]
+    },
+    {
+      "key": "force_of_nature",
+      "entries": [
+        9515,
+        9515
+      ]
+    }
+  ],
+  "talent_semantic_sha256": "1c34c1d9c6085d149c2a4d2b3d5fcd3a8daceb76e4d8fda6bd59c733e8a0ddd2",
+  "separately_owned_current_talents": [
+    "imp_heroic",
+    "unbridled_wrath",
+    "suppression",
+    "imp_corruption",
+    "imp_coa",
+    "imp_drain_life",
+    "nightfall",
+    "dark_pact",
+    "grim_reach",
+    "shadow_mastery",
+    "contagion",
+    "amplify_curse",
+    "siphon_life",
+    "fel_concentration",
+    "seed_of_corruption",
+    "demonic_familiar",
+    "demonic_embrace",
+    "fel_stamina",
+    "unholy_power",
+    "soul_devourer",
+    "soul_link",
+    "felfire_training",
+    "master_demonologist",
+    "legion_gate",
+    "demonic_supremacy",
+    "summon_infernal",
+    "summon_doomguard",
+    "pact_of_the_annihilan",
+    "butcher",
+    "imp_shadow_bolt",
+    "cataclysm",
+    "intensity",
+    "aftermath",
+    "shadowburn",
+    "imp_searing_pain",
+    "destructive_reach",
+    "devastation",
+    "conflagrate",
+    "emberstorm",
+    "ruin",
+    "bane",
+    "rain_of_chaos"
+  ],
+  "ranges": [
+    {
+      "address": "0x146bf4988",
+      "byte_count": 144,
+      "sha256": "d60da81f96d3f0419153e1276fd8d14d861a2ee92c30ae5201e67ab38da31aeb"
+    },
+    {
+      "address": "0x146bf4a18",
+      "byte_count": 144,
+      "sha256": "9460cbc430a0da31dc4e7c14dcb83c6a69bcad4a0e2fefdb775bafc32aad1676"
+    },
+    {
+      "address": "0x146bf4aa8",
+      "byte_count": 144,
+      "sha256": "fde4479d913061f20bc907684b2e0146d5de0e0a2adc84d0f7467c107ff41586"
+    },
+    {
+      "address": "0x146bf4b38",
+      "byte_count": 144,
+      "sha256": "554e43dc27c7b3e40900337e855f6d37d6bbc780cc735835298e233f25ec5be8"
+    },
+    {
+      "address": "0x146bf4bc8",
+      "byte_count": 144,
+      "sha256": "d31417da5f634b733d1cebadaba8b95a02b806ec13e805aa1294f7717b97dd58"
+    },
+    {
+      "address": "0x146bf4c58",
+      "byte_count": 144,
+      "sha256": "076b79f482f97468f5ccee3aee8f49fbb03cc53040afc7570ea5bd32593b9fcf"
+    },
+    {
+      "address": "0x146bf4ce8",
+      "byte_count": 144,
+      "sha256": "29ad969561c43ce7d6f1f8f268d398358bbc6049fa6ee1281a24eb9ffe437a33"
+    },
+    {
+      "address": "0x146bf4d78",
+      "byte_count": 144,
+      "sha256": "7259af5afaaa0a717eb509253f3d7dd3b01f7527dceb5ee9b6693df39f05aa92"
+    },
+    {
+      "address": "0x146bf4e08",
+      "byte_count": 144,
+      "sha256": "989adf8312cb8e3ca1f26ce93533631babecd6f91a8c3ab6c766ddbe25c483d1"
+    },
+    {
+      "address": "0x14721db08",
+      "byte_count": 144,
+      "sha256": "91c6fe2ea6fe8c2c76e8ca0b718fb22560f55c44f859c57ffbe0e482fbcd9ff2"
+    },
+    {
+      "address": "0x14721dc20",
+      "byte_count": 144,
+      "sha256": "553d60bab6368d942ce3b26fb3be882d7d21bb0cd06cbdc4f2b2ce32a8996013"
+    },
+    {
+      "address": "0x14721dd68",
+      "byte_count": 144,
+      "sha256": "a06e2d7b61a0f81ecfa3289e3804ff79dc756fd5ae77961fc649ce3791ef788e"
+    },
+    {
+      "address": "0x14721ded8",
+      "byte_count": 144,
+      "sha256": "0641e1685137caf1d82a187756e298700b486de2cc60cc613553e44c2a009b1e"
+    },
+    {
+      "address": "0x14721df68",
+      "byte_count": 144,
+      "sha256": "a19d2a71f354a88c31bdc6100b48037f20b76ea5f2e43061e79e95fa3afe060f"
+    },
+    {
+      "address": "0x14721e068",
+      "byte_count": 144,
+      "sha256": "6dce632891cc078f6da1583c8d38d315be0b974d3f529f3a8ca440d5e430ebd5"
+    },
+    {
+      "address": "0x14721e1c8",
+      "byte_count": 144,
+      "sha256": "aff43ba82aed5957782e606b6f59be74fad4fd566ddf07a42910173cca3204b5"
+    },
+    {
+      "address": "0x14721e258",
+      "byte_count": 144,
+      "sha256": "dbb73f8c21c7048b50e3ff1c164b119e689e63af98364298f2171257f657768e"
+    },
+    {
+      "address": "0x14721e380",
+      "byte_count": 144,
+      "sha256": "3604be323084623871fb1b6b5a01fb29e72a8fc19e0b3cd9bcdf75f160dc0aaf"
+    },
+    {
+      "address": "0x14721e480",
+      "byte_count": 144,
+      "sha256": "3bf3e1e2de61dbdc4fce353f37fed9d22233c48046e9d0f25b8f64d44c753d79"
+    },
+    {
+      "address": "0x14721e578",
+      "byte_count": 144,
+      "sha256": "8b13aea759390ef8e558bfc4691186d1f9eb4a2d2adccaa9168b8583dd6166f0"
+    },
+    {
+      "address": "0x14721e608",
+      "byte_count": 304,
+      "sha256": "81aae0ce73ef73cee78d3c9d197f614a383ae48ac02f8838dd25358f26b0f7e6"
+    },
+    {
+      "address": "0x14721e738",
+      "byte_count": 304,
+      "sha256": "5fbb2bdcffdf3de24c6f70fe2cc565b1749f6cef7b5ab025e7cb8c042334678d"
+    },
+    {
+      "address": "0x14721e868",
+      "byte_count": 304,
+      "sha256": "1ed277920c31734e816556b060eb11cf538081d1b26e9910500640ed9949e95f"
+    },
+    {
+      "address": "0x14721e998",
+      "byte_count": 304,
+      "sha256": "b53237aa7bcb90cbc7f77e37103a8da5307185991ee3db0e6943c7bd1330ba97"
+    },
+    {
+      "address": "0x14721eac8",
+      "byte_count": 304,
+      "sha256": "5a2b0405dec98fd97fde7bca6dcb28525948fa369aca945949eae2e802c458c3"
+    },
+    {
+      "address": "0x14721ebf8",
+      "byte_count": 304,
+      "sha256": "622a543d47c1c605c260e8c77099957ef9c2791f3fab246411cd3559a436072b"
+    },
+    {
+      "address": "0x14721ed28",
+      "byte_count": 304,
+      "sha256": "1dac2ff30be1630d77989ad7b3e3c48dd3e2331bec49b8c61795ea0778cc6545"
+    },
+    {
+      "address": "0x14721ee58",
+      "byte_count": 304,
+      "sha256": "a7c7aa74b987e5c9c5e298a1f0c4a12351cf04ad34f8eab472da54295a72745a"
+    },
+    {
+      "address": "0x14721ef88",
+      "byte_count": 304,
+      "sha256": "1b3fb4ececc5208587ae091e7c803a113588a9982670e796a8388fc6926837a2"
+    },
+    {
+      "address": "0x147221f28",
+      "byte_count": 123,
+      "sha256": "f8cf4c7835071416abe1ee86592d6b562eb0089e64b4ed4b71d6061622412fe5"
+    },
+    {
+      "address": "0x147222280",
+      "byte_count": 141,
+      "sha256": "c6b7b0f4a54b44ce908a21301ff0db8756c7f32f707649b22e58e4350216f654"
+    },
+    {
+      "address": "0x147222310",
+      "byte_count": 2080,
+      "sha256": "3d37286eceac11264ed188dc1f9a235c00862d84548f781c8231b519a4013426"
+    },
+    {
+      "address": "0x1472234e0",
+      "byte_count": 2080,
+      "sha256": "cc05a7860e83e9d7e3983e29c0af6f1e64a67e9a20e42527438a168cd0413528"
+    },
+    {
+      "address": "0x147224090",
+      "byte_count": 142,
+      "sha256": "7ffab27496660291dc2b591cd4a60016a08248ff816bbbcf1f3c456e22b8c616"
+    },
+    {
+      "address": "0x1472244d0",
+      "byte_count": 174,
+      "sha256": "a29a3c9b8676c3550bf0573677d0d71890110a086ba13eb17278966fa2d25eaa"
+    },
+    {
+      "address": "0x147224670",
+      "byte_count": 163,
+      "sha256": "c27ecd0f48497bb6ec089d3ba35a423fa47ebac0d16f54e256191db742e55c18"
+    },
+    {
+      "address": "0x1472248f0",
+      "byte_count": 236,
+      "sha256": "9dc98e723c0533bedc5524c1a562190de2d1b89c49a0864dfaf0fef6c807e739"
+    },
+    {
+      "address": "0x1472249e0",
+      "byte_count": 2240,
+      "sha256": "1a0ed869a68a7fe33bb2bd50868fed63c9514a289d4a1a5b5bb06515e41dc56a"
+    },
+    {
+      "address": "0x147225aa0",
+      "byte_count": 2080,
+      "sha256": "c67f70be19f785f7fddc618c4552198b9ec1c1da5f38546b368534a2a9c299dd"
+    },
+    {
+      "address": "0x1472265e0",
+      "byte_count": 124,
+      "sha256": "3f7aafec788092b6d941ac4bea92c62258d5f7915d55636e1bb09f62241e6df0"
+    },
+    {
+      "address": "0x147226a90",
+      "byte_count": 217,
+      "sha256": "1568ed935eb5913b6942daf720e13f1a07e2f88764f3c74c850077b29581865f"
+    },
+    {
+      "address": "0x147226c78",
+      "byte_count": 136,
+      "sha256": "df230fcc3fd46ddf75c0aa8515378fce3088e9c6c040acb447ac90e6fa789033"
+    },
+    {
+      "address": "0x147226ef0",
+      "byte_count": 315,
+      "sha256": "7f9a9b910e5479f4880e79fd20c6bbe4078cbc0da6d1a4482493c7513742010a"
+    },
+    {
+      "address": "0x147227030",
+      "byte_count": 2240,
+      "sha256": "2cc825a936a5431ab691025711483f79e34dbf1db16a226ff1fd8ea47e14fea2"
+    },
+    {
+      "address": "0x147227b60",
+      "byte_count": 126,
+      "sha256": "488bbaf3dcefaeca24e310c0ff4370f4922a382eab25e2ab3ad548fdb5f42182"
+    },
+    {
+      "address": "0x1472280c8",
+      "byte_count": 134,
+      "sha256": "c87c6a052a161dc7bfcf3e8b070b8c23f703235e230ba0eeed93cf3198eca3be"
+    },
+    {
+      "address": "0x147228150",
+      "byte_count": 2080,
+      "sha256": "447d810fbc4c7582996981494e1a7f8c03e911334eeb936555ed366f17c8bd88"
+    },
+    {
+      "address": "0x147229018",
+      "byte_count": 2080,
+      "sha256": "6680ecf8d4ed55c0ccd271acd33a20ecbc9c47c3e5a11b8550073bf489869b2e"
+    },
+    {
+      "address": "0x14722a020",
+      "byte_count": 133,
+      "sha256": "b0435abff9a391d7687b1e368a8bdd1afa4a95b259777a17c0336fbddbaf1c1a"
+    },
+    {
+      "address": "0x14722a0a8",
+      "byte_count": 2080,
+      "sha256": "a834bf6d0b6a449586917d821db831771025baa026afc9876866069418189c38"
+    },
+    {
+      "address": "0x14722ad80",
+      "byte_count": 125,
+      "sha256": "864412386f2c58b16b96bc036cd652f34c8eea7d7613493ad84ec707627252f2"
+    },
+    {
+      "address": "0x14722b0a0",
+      "byte_count": 2080,
+      "sha256": "2bd5f28aea3872b92370694b0e7a0f89fb3192e1801962cd9851f7869eb313eb"
+    },
+    {
+      "address": "0x14722bd48",
+      "byte_count": 129,
+      "sha256": "1a20f0db6214e12381ad402b7f93a305ff61aac407e20e8d16aebf1f22ad9570"
+    },
+    {
+      "address": "0x14722bf40",
+      "byte_count": 130,
+      "sha256": "54f856a6d8660addb141d9bb997583ca15f34517b7a02816ffa7d485d8f303c1"
+    },
+    {
+      "address": "0x14722bfc8",
+      "byte_count": 2080,
+      "sha256": "e27cfac7424fb777ed13f82f07b85d1926af7d080437117dfe889a47bddbb553"
+    },
+    {
+      "address": "0x14722cef0",
+      "byte_count": 2080,
+      "sha256": "139b23cc1c50ae863e459d397f73ff4a57439facb2b060fee5a0dc39cd19f455"
+    },
+    {
+      "address": "0x14722d940",
+      "byte_count": 155,
+      "sha256": "37be801715515261af547178f4cd734739edb9935db4f7e579d3af3d99693934"
+    },
+    {
+      "address": "0x14722ddc0",
+      "byte_count": 173,
+      "sha256": "27adaf8bfd9c9f7edfddb9943aba37113f4460bac996e9d52b99730b96b5b662"
+    },
+    {
+      "address": "0x14722de70",
+      "byte_count": 2080,
+      "sha256": "cf9bc1f8eb140f7b96069abeb402c80275e0d5e32523a8387af303b3bb1056e1"
+    },
+    {
+      "address": "0x14722e978",
+      "byte_count": 168,
+      "sha256": "9722b9d9b7f1c9f530b5c2c37ce10a45dc3631869a0e6c8b332bb993aaafed3e"
+    },
+    {
+      "address": "0x14722ed18",
+      "byte_count": 121,
+      "sha256": "7eb60acf5b08911b48a5f861be78eae34b18f00c47404884bd05f8716edc5406"
+    },
+    {
+      "address": "0x14722ed98",
+      "byte_count": 2080,
+      "sha256": "9792f0c26eabd480189a29e79d1e66acabfd25ff200db3e54499ed31fb016a31"
+    },
+    {
+      "address": "0x14722fcc8",
+      "byte_count": 2080,
+      "sha256": "938844de99adceccfcc1c1904224f3193191ec67a7eaba090d79fa26a0420618"
+    },
+    {
+      "address": "0x147230a70",
+      "byte_count": 178,
+      "sha256": "79a960661c3b136bddf77999d7cfb1a86a8348d47d54a2156211235d074efac1"
+    },
+    {
+      "address": "0x147230d50",
+      "byte_count": 215,
+      "sha256": "b0fe14cde0147d5dd0c128f3675653aeaa15a763846981f5ba4689be32b1eea4"
+    },
+    {
+      "address": "0x147230e28",
+      "byte_count": 2080,
+      "sha256": "739f4541e8960e1f468d3b1fa72abf591d85c577406f88e4d09f8a1f5bb57d12"
+    },
+    {
+      "address": "0x147231f70",
+      "byte_count": 2080,
+      "sha256": "56f0e1dc82233b2c18c43a87f8bc2258dc5f3677129a8fa7fc1fbb5333836ec8"
+    },
+    {
+      "address": "0x147232e18",
+      "byte_count": 121,
+      "sha256": "797d2162fce979540fef98ee5a1a2afc952c46403b4982ec13c747dd86833d5d"
+    },
+    {
+      "address": "0x147232e98",
+      "byte_count": 2080,
+      "sha256": "fa30c997b2ca8f466ea7556572ce8d3c65ae7e32307943649c85b60a8023d791"
+    },
+    {
+      "address": "0x147233db0",
+      "byte_count": 2080,
+      "sha256": "bd457b4fb01df216816926bcc1679f28d3d8cc912fa264ef0c719b02b7865fa6"
+    },
+    {
+      "address": "0x147234d10",
+      "byte_count": 237,
+      "sha256": "dc8a4508b073ed37c0da4acaf0e0ff50f8c367ec68c168048f4ffc7aab421c82"
+    },
+    {
+      "address": "0x147234e00",
+      "byte_count": 2080,
+      "sha256": "f100418de86ea9d94665255b883c4dafe2d7b0963f715ab798fc1b313143d170"
+    },
+    {
+      "address": "0x147235d40",
+      "byte_count": 172,
+      "sha256": "e7f2f1951fe4285cad9ec5a65abf0915bd7230c00d89d3ff97a1e5f3f6bb12bd"
+    },
+    {
+      "address": "0x147235df0",
+      "byte_count": 2080,
+      "sha256": "4d0b9dc352cdb121fa58a0cfef930e50f73f7af4c96ddbe4b53e540820c6b935"
+    },
+    {
+      "address": "0x147236cf0",
+      "byte_count": 175,
+      "sha256": "939bd63abe07248beb2c31566b9019a24bae0486dd2d817eca6ace7ec3dbe1d2"
+    },
+    {
+      "address": "0x147236da0",
+      "byte_count": 2080,
+      "sha256": "9c650c8f0972f63000f472926dc77f01e8ed2f0bdbc8749720de511a6787dcb9"
+    },
+    {
+      "address": "0x147237ff0",
+      "byte_count": 2080,
+      "sha256": "5c165fdfb9659fe26141b077ee5083e7178b14d536918ae6da8cefe979742e35"
+    },
+    {
+      "address": "0x147239798",
+      "byte_count": 2240,
+      "sha256": "358d0b9ed919ef345de0592c244de304c461a3eb98ba946a3aecf370347ff129"
+    },
+    {
+      "address": "0x14723a8c8",
+      "byte_count": 2080,
+      "sha256": "483c12c64e32238a8c40ce45f1c86ad15fb63df8c964cc1263f09f2919e656d8"
+    },
+    {
+      "address": "0x14723b840",
+      "byte_count": 2080,
+      "sha256": "dbe6a9dc496a3eb343dcf8f3379b942f0a8712d5ebbfa027fe5593d9e819cc93"
+    },
+    {
+      "address": "0x14723c410",
+      "byte_count": 186,
+      "sha256": "6096c9c6e46a43f0f49657afbae1ec50e887a23d28846897e8afc2104aa4a6f4"
+    },
+    {
+      "address": "0x14723c940",
+      "byte_count": 282,
+      "sha256": "e92e5886c89fd471f1b1b1a44066a38899d164688bbad2aef820dd7d631c578e"
+    },
+    {
+      "address": "0x14723cc00",
+      "byte_count": 229,
+      "sha256": "37e863600d29d8f3bb267f8ab8f235178dbad496d8cbf7a37e0e90265a128143"
+    },
+    {
+      "address": "0x14723cce8",
+      "byte_count": 2240,
+      "sha256": "9d597eb6afb19d3af48bacbfa68e8add11d16fbe9a63a2f31fe09768c357f976"
+    },
+    {
+      "address": "0x14723dbb8",
+      "byte_count": 130,
+      "sha256": "4a0706fb269c841f32fbe1c57c18e3ab7ec7c7b9907b69871aa03da3d8647351"
+    },
+    {
+      "address": "0x14723dc40",
+      "byte_count": 2080,
+      "sha256": "2b0c9077b174e84b2d1441b5163129fd835ccd7dc40f0b40856f205b5eec5e6c"
+    },
+    {
+      "address": "0x14723e460",
+      "byte_count": 200,
+      "sha256": "16407d4b86dee8b34dae09f602ac7b70bc5c81d3a01088056fe8e1cfec39f1b4"
+    },
+    {
+      "address": "0x14723e528",
+      "byte_count": 200,
+      "sha256": "1e6c4066b2900508a442b0e79bd164b3096e0618797ca7763b4caaa3793496fd"
+    },
+    {
+      "address": "0x14723e5f0",
+      "byte_count": 200,
+      "sha256": "657b684c43eb89dee81e38f126f083f84d82e523df793cfca16ecb0174378ef7"
+    },
+    {
+      "address": "0x14723e6b8",
+      "byte_count": 200,
+      "sha256": "f023aa4e2dacb451a0901ee90b99279600e8a1ff2c116f50dd825911a483a0c0"
+    },
+    {
+      "address": "0x14723e780",
+      "byte_count": 200,
+      "sha256": "e497957ed44693a44813d0dc50eca235c513c1337ec0a3f0080a5cc3afaff3b4"
+    },
+    {
+      "address": "0x14723e848",
+      "byte_count": 200,
+      "sha256": "8d956f5956a2059c6c9f4bf756faa29a137386a1a9674bebd77892a752338c37"
+    },
+    {
+      "address": "0x14723e910",
+      "byte_count": 200,
+      "sha256": "5c114e1ccfcb87dfb10e7f9117105e9cea03a785f79c6750afef752f889b8e45"
+    },
+    {
+      "address": "0x14723e9d8",
+      "byte_count": 200,
+      "sha256": "92d21e28ed94601242c6fc422c8c98ae633b7ed34008790e1e8c287c745cc6c9"
+    },
+    {
+      "address": "0x14723eaa0",
+      "byte_count": 200,
+      "sha256": "6fe0f5fb83730d953c810cf0a649fa4611b7449ce50912bc9599fafe7092a441"
+    }
+  ],
+  "range_count": 5472,
+  "range_manifest_sha256": "5352be3af4790763b3d471ce677793b122dd3a486f1b7bed2ffbfe7c49157116",
+  "seams": [
+    "Current native allocator/C-memory/roundf fixture with preallocated numeric output; locale fallback is unused by numeric scalers."
+  ],
+  "limits": [
+    "All113 ordinary ability fields,9 classes/pools/baselines,415 ordinary gear and83 shared PvP effects and retained non-Warlock talent definitions/effects are compared.",
+    "Changed Warlock/Warrior overlays, boss consumers and amulets have separate current proofs. Full arbitrary gameplay consumers/global ownership remain separate.",
+    "No compilation, reconstructed Rust execution, game, device, filesystem or original/rebuilt parity."
+  ]
+}

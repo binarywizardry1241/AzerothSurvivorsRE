@@ -1,0 +1,483 @@
+{
+  "target_sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+  "gap_ids": [
+    17,
+    21,
+    41
+  ],
+  "lead_ids": [
+    "Q41-D01",
+    "Q41-D02"
+  ],
+  "selected_target": "0x145eee140",
+  "selected_reader": "0x1401a8163",
+  "queue_input": {
+    "path": "docs/analysis/evidence/0.113.2/unknown-recovery.json",
+    "sha256": "d4148a7bcd2feb746bdd36dd5c88dfbe804b5f608edeafe16792841405ac342b"
+  },
+  "queue_selectors": {
+    "Q41-D01": {
+      "inputs": [
+        "references.tsv.gz",
+        "bodies.tsv.gz"
+      ],
+      "selector": "to has default address space and owner(to) is null",
+      "projection": [
+        "from",
+        "to",
+        "type",
+        "operand",
+        "primary",
+        "source"
+      ],
+      "order": "source file row order",
+      "records": 531765,
+      "output_sha256": "187661820f34c3ed91e117c76be568640f9f808dd2f649be300246f452824a84",
+      "record_groups": {
+        "CONDITIONAL_JUMP": 5874,
+        "DATA": 350387,
+        "INDIRECTION": 186,
+        "READ": 173767,
+        "READ_WRITE": 418,
+        "UNCONDITIONAL_JUMP": 758,
+        "WRITE": 375
+      }
+    },
+    "Q41-D02": {
+      "inputs": [
+        "references.tsv.gz",
+        "bodies.tsv.gz"
+      ],
+      "selector": "to has default address space and owner(to) is null and type in ('READ','WRITE','READ_WRITE')",
+      "projection": [
+        "from",
+        "to",
+        "type",
+        "operand",
+        "primary",
+        "source"
+      ],
+      "order": "source file row order",
+      "records": 174560,
+      "output_sha256": "9219ca60adc5e4a5a78c287a77adf0ed1e99eb1954e02980bbb5ed00fdecd946",
+      "distinct_targets": 50209,
+      "reader_pairs": 143010,
+      "writer_pairs": 569,
+      "record_groups": {
+        "READ": 173767,
+        "READ_WRITE": 418,
+        "WRITE": 375
+      }
+    }
+  },
+  "inputs": {
+    "references.tsv.gz": {
+      "path": "runtime/execheck-0.113.2/ghidra-comprehensive/references.tsv.gz",
+      "sha256": "2975e8ccd5269f6ce1e926e92b6a8c73bcb2c58778c9f8d0f9a9785b073b11f1",
+      "bytes": 23033468
+    },
+    "bodies.tsv.gz": {
+      "path": "runtime/execheck-0.113.2/ghidra-comprehensive/bodies.tsv.gz",
+      "sha256": "dc808e3e10d4443dabce229e9d0724060d87bcd7547eb1cb47334e70038b8362",
+      "bytes": 4221082
+    }
+  },
+  "reference_records_inspected": 3919777,
+  "selected_references": [
+    {
+      "row": 57548,
+      "from": "1401a8163",
+      "to": "145eee140",
+      "type": "READ",
+      "operand": "1",
+      "primary": "true",
+      "source": "DEFAULT"
+    }
+  ],
+  "literal": {
+    "address": "0x145eee140",
+    "end_exclusive": "0x145eee151",
+    "byte_count": 17,
+    "sha256": "c14717cb2a6d960d79331cfedf5748d098abd6c7b06b9ae66631755cda3e6ed1",
+    "bytes_hex": "417a65726f7468205375727669766f7273",
+    "value": "Azeroth Survivors",
+    "encoding": "UTF-8/ASCII",
+    "observed_read_bytes": 16,
+    "final_output_byte_from_immediate": "73",
+    "section": ".rdata",
+    "section_characteristics": "0x40000040",
+    "file_offset": 99535680,
+    "lifetime": "Image-backed immutable input; an allocated owned String is published by the selected branch."
+  },
+  "owner": {
+    "address": "0x1401a8020",
+    "end_exclusive": "0x1401a81c6",
+    "byte_count": 422,
+    "sha256": "ccf9c99a23a1f90c4141dd9c33a06da9a717c18b6fc31f3147914b141cbd8fa2",
+    "assembly": "binding-label-mapper.asm",
+    "assembly_sha256": "234f2babf5cf31b1a6a6479ef1df7bfa5598a805452d60e399b898e318cbfa56"
+  },
+  "layout": {
+    "classification": "Instruction-derived semantic layout, not an original/debug type",
+    "size_bytes": 48,
+    "header": {
+      "sentinel_offset": 0,
+      "sentinel": "ffffffffffffffff",
+      "string_fields": [
+        "capacity@8",
+        "pointer@16",
+        "length@24"
+      ]
+    },
+    "command": {
+      "key_fields": [
+        "capacity@0",
+        "pointer@8",
+        "length@16"
+      ],
+      "label_fields": [
+        "capacity@24",
+        "pointer@32",
+        "length@40"
+      ]
+    }
+  },
+  "native_cases": 37,
+  "cases": [
+    {
+      "kind": "header",
+      "key": "AZS",
+      "capacity": 3,
+      "old_label": "",
+      "output": "Azeroth Survivors",
+      "freed_objects": 1
+    },
+    {
+      "kind": "header",
+      "key": "AZS",
+      "capacity": 17,
+      "old_label": "",
+      "output": "Azeroth Survivors",
+      "freed_objects": 1
+    },
+    {
+      "kind": "header",
+      "key": "AZS",
+      "capacity": 31,
+      "old_label": "",
+      "output": "Azeroth Survivors",
+      "freed_objects": 1
+    },
+    {
+      "kind": "header",
+      "key": "",
+      "capacity": 0,
+      "old_label": "",
+      "output": "unchanged",
+      "freed_objects": 0
+    },
+    {
+      "kind": "header",
+      "key": "AZ",
+      "capacity": 2,
+      "old_label": "",
+      "output": "unchanged",
+      "freed_objects": 0
+    },
+    {
+      "kind": "header",
+      "key": "AZSS",
+      "capacity": 4,
+      "old_label": "",
+      "output": "unchanged",
+      "freed_objects": 0
+    },
+    {
+      "kind": "header",
+      "key": "azs",
+      "capacity": 3,
+      "old_label": "",
+      "output": "unchanged",
+      "freed_objects": 0
+    },
+    {
+      "kind": "header",
+      "key": "AzS",
+      "capacity": 3,
+      "old_label": "",
+      "output": "unchanged",
+      "freed_objects": 0
+    },
+    {
+      "kind": "header",
+      "key": "AZs",
+      "capacity": 3,
+      "old_label": "",
+      "output": "unchanged",
+      "freed_objects": 0
+    },
+    {
+      "kind": "header",
+      "key": "AZS\u0000",
+      "capacity": 4,
+      "old_label": "",
+      "output": "unchanged",
+      "freed_objects": 0
+    },
+    {
+      "kind": "header",
+      "key": "MOVEMENT",
+      "capacity": 8,
+      "old_label": "",
+      "output": "unchanged",
+      "freed_objects": 0
+    },
+    {
+      "kind": "header",
+      "key": "HEADER_AZS",
+      "capacity": 10,
+      "old_label": "",
+      "output": "unchanged",
+      "freed_objects": 0
+    },
+    {
+      "kind": "header",
+      "key": "OTHER",
+      "capacity": 5,
+      "old_label": "",
+      "output": "unchanged",
+      "freed_objects": 0
+    },
+    {
+      "kind": "header",
+      "key": "AZS",
+      "capacity": 7,
+      "allocation_failure": true,
+      "output_published": false
+    },
+    {
+      "kind": "command",
+      "key": "AZS_OPENLEVELS",
+      "capacity": 14,
+      "old_label": "",
+      "output": "Level Up!",
+      "freed_objects": 0
+    },
+    {
+      "kind": "command",
+      "key": "AZS_OPENLEVELS",
+      "capacity": 14,
+      "old_label": "",
+      "output": "Niveau supérieur !",
+      "freed_objects": 0
+    },
+    {
+      "kind": "command",
+      "key": "AZS_OPENLEVELS",
+      "capacity": 14,
+      "old_label": "Changed by an addon",
+      "output": "Level Up!",
+      "freed_objects": 1
+    },
+    {
+      "kind": "command",
+      "key": "AZS_OPENLEVELS",
+      "capacity": 14,
+      "old_label": "Changed by an addon",
+      "output": "Niveau supérieur !",
+      "freed_objects": 1
+    },
+    {
+      "kind": "command",
+      "key": "aZS_OPENLEVELS",
+      "capacity": 14,
+      "old_label": "Unchanged command label",
+      "output": "unchanged",
+      "freed_objects": 0
+    },
+    {
+      "kind": "command",
+      "key": "AzS_OPENLEVELS",
+      "capacity": 14,
+      "old_label": "Unchanged command label",
+      "output": "unchanged",
+      "freed_objects": 0
+    },
+    {
+      "kind": "command",
+      "key": "AZs_OPENLEVELS",
+      "capacity": 14,
+      "old_label": "Unchanged command label",
+      "output": "unchanged",
+      "freed_objects": 0
+    },
+    {
+      "kind": "command",
+      "key": "AZSOPENLEVELS",
+      "capacity": 14,
+      "old_label": "Unchanged command label",
+      "output": "unchanged",
+      "freed_objects": 0
+    },
+    {
+      "kind": "command",
+      "key": "AZS_oPENLEVELS",
+      "capacity": 14,
+      "old_label": "Unchanged command label",
+      "output": "unchanged",
+      "freed_objects": 0
+    },
+    {
+      "kind": "command",
+      "key": "AZS_OpENLEVELS",
+      "capacity": 14,
+      "old_label": "Unchanged command label",
+      "output": "unchanged",
+      "freed_objects": 0
+    },
+    {
+      "kind": "command",
+      "key": "AZS_OPeNLEVELS",
+      "capacity": 14,
+      "old_label": "Unchanged command label",
+      "output": "unchanged",
+      "freed_objects": 0
+    },
+    {
+      "kind": "command",
+      "key": "AZS_OPEnLEVELS",
+      "capacity": 14,
+      "old_label": "Unchanged command label",
+      "output": "unchanged",
+      "freed_objects": 0
+    },
+    {
+      "kind": "command",
+      "key": "AZS_OPENlEVELS",
+      "capacity": 14,
+      "old_label": "Unchanged command label",
+      "output": "unchanged",
+      "freed_objects": 0
+    },
+    {
+      "kind": "command",
+      "key": "AZS_OPENLeVELS",
+      "capacity": 14,
+      "old_label": "Unchanged command label",
+      "output": "unchanged",
+      "freed_objects": 0
+    },
+    {
+      "kind": "command",
+      "key": "AZS_OPENLEvELS",
+      "capacity": 14,
+      "old_label": "Unchanged command label",
+      "output": "unchanged",
+      "freed_objects": 0
+    },
+    {
+      "kind": "command",
+      "key": "AZS_OPENLEVeLS",
+      "capacity": 14,
+      "old_label": "Unchanged command label",
+      "output": "unchanged",
+      "freed_objects": 0
+    },
+    {
+      "kind": "command",
+      "key": "AZS_OPENLEVElS",
+      "capacity": 14,
+      "old_label": "Unchanged command label",
+      "output": "unchanged",
+      "freed_objects": 0
+    },
+    {
+      "kind": "command",
+      "key": "AZS_OPENLEVELs",
+      "capacity": 14,
+      "old_label": "Unchanged command label",
+      "output": "unchanged",
+      "freed_objects": 0
+    },
+    {
+      "kind": "command",
+      "key": "",
+      "capacity": 0,
+      "old_label": "Unchanged command label",
+      "output": "unchanged",
+      "freed_objects": 0
+    },
+    {
+      "kind": "command",
+      "key": "AZS_OPENLEVEL",
+      "capacity": 13,
+      "old_label": "Unchanged command label",
+      "output": "unchanged",
+      "freed_objects": 0
+    },
+    {
+      "kind": "command",
+      "key": "AZS_OPENLEVELSS",
+      "capacity": 15,
+      "old_label": "Unchanged command label",
+      "output": "unchanged",
+      "freed_objects": 0
+    },
+    {
+      "kind": "command",
+      "key": "JUMP",
+      "capacity": 4,
+      "old_label": "Unchanged command label",
+      "output": "unchanged",
+      "freed_objects": 0
+    },
+    {
+      "kind": "command",
+      "key": "HEADER_AZS",
+      "capacity": 10,
+      "old_label": "Unchanged command label",
+      "output": "unchanged",
+      "freed_objects": 0
+    }
+  ],
+  "cases_sha256": "5d5fbd8431c9adfd7322fd1335dd4aaf0e6dba5df911c171627d4ee1f464ca0e",
+  "seam_addresses": [
+    "0x1400021c0",
+    "0x1400021d0",
+    "0x140002200",
+    "0x145895670",
+    "0x145895ad0",
+    "0x145e9bd8b"
+  ],
+  "source_projection": {
+    "sync_engine": {
+      "sha256": "27eed54aa1a73339fc82511840dd1947ed41ace2871ed336b6480c9d5c546ffe",
+      "limit": "Static source trace; Rust was not executed"
+    },
+    "draw_bindings": {
+      "sha256": "e46d745f9f9f2a0cf056cd73aba19d4e3c5cf093e44f9cb9f3acb2392ffa4038",
+      "limit": "Static source trace; Rust was not executed"
+    },
+    "native_labels": {
+      "sha256": "6106d990e9e69a371e5f007a31417f7d4a0c1a5bdb660b3ceb639b75b77b90ad",
+      "limit": "Static source trace; Rust was not executed"
+    },
+    "binding_xml": {
+      "sha256": "082246c47314e76211348199025363f2855d329d0db48141041bf53a8b037f42",
+      "limit": "Static source trace; Rust was not executed"
+    }
+  },
+  "compiler_run": false,
+  "application_executed": false,
+  "rebuilt_code_executed": false,
+  "parity_verified": false,
+  "limits": [
+    "The reference selector scans the committed full-profile export, not every possible mutable alias or computed address.",
+    "One observed READ and zero observed writers are bounded export facts; no whole-image semantic or alias closure is claimed.",
+    "String/enum layouts are recovered from instructions. Ghidra reports no defined type at the selected literal.",
+    "Synthetic valid header/command strings drive the original mapper. Allocation/free and localization/string construction are explicit seams.",
+    "A failed allocation stops at the native error interface; allocation/runtime internals are not reconstructed.",
+    "The neighboring command-label branch is checked at its declared localization seam; actual locale resources and UI execution remain separate.",
+    "No compiler, original/rebuilt application, actual VM/device/file IO, rendering or parity comparison runs."
+  ]
+}

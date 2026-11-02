@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.127.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+    "size_bytes": 146721280
+  },
+  "generator": {
+    "path": "scripts/inventory-unwind-complement.py",
+    "sha256": "ab9dfc20dbb9a3a158a128b1a759fee2575a201216f3f69321349e2d83bbc330",
+    "decoder": "Capstone",
+    "decoder_version": "5.0.7",
+    "helper_sha256": "f5b2670a63284390306dcfff4ce16f86c05660b309a0391d299bdce314bdcb82",
+    "parser_sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09",
+    "pe_helper_sha256": "f2cf5be70267aa01865b7c34bef7eeb87898d67b5e36f0a91d20d37e3b1299c5"
+  },
+  "input_summary_sha256": "f81a9bf59c179c81a5ff6df950079baeb45a5147c6c4b983d137560c5ac5c289",
+  "input_inventory_sha256": "dafb0cb8a6f657d2ab1774ad7109f755a115bc569fccb4dc34eff123e83c855b",
+  "inventory": {
+    "path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/unwind-complement.sqlite",
+    "sha256": "fea1ccc95ade72997db43463b3d8b572a9cfa247e578eccb6ad43d222efca4de",
+    "regenerate": "python3 -B scripts/inventory-unwind-complement.py --write"
+  },
+  "counts": {
+    "complement_regions": 338915,
+    "mapped_regions": 338915,
+    "executable_complement_bytes": 5271003,
+    "file_backed_bytes": 5271003,
+    "virtual_zero_fill_bytes": 0,
+    "incoming_seed_leads": 395759,
+    "unique_seed_addresses": 2862,
+    "seed_kinds": {
+      "call_direct": 380502,
+      "jump_direct": 15257
+    },
+    "decoded_instruction_records": 81009,
+    "decoded_bytes_summed": 350825,
+    "decoded_bytes_union": 350825,
+    "overlapping_decode_bytes": 0,
+    "reference_kinds": {
+      "address": 2139,
+      "call_direct": 18,
+      "jump_direct": 10839,
+      "jump_indirect": 650,
+      "memory": 1196
+    },
+    "stop_reasons": {
+      "jump_no_fallthrough": 2922,
+      "outside_file_backed_complement": 39,
+      "return": 3087,
+      "trap_or_privileged_exit": 7
+    },
+    "imported_pointer_transfer_sites": 121,
+    "imported_pointer_slots": 114
+  },
+  "residual_byte_partition": {
+    "decoded_candidate_bytes": 350825,
+    "mixed_or_other": 2327663,
+    "uniform_cc_candidate": 951097,
+    "uniform_nop_candidate": 11276,
+    "x86_padding_sequence_candidate": 1630142
+  },
+  "byte_accounting_complete": true,
+  "seeded_flow_pass_complete": true,
+  "native_semantics_complete": false,
+  "parity_verified": false,
+  "gap_ids": [
+    41
+  ],
+  "limits": [
+    "Seeds are encoded direct-reference leads from a linear unwind census plus PE entry/export metadata; actual reachability and semantic function ownership are unknown.",
+    "Only seeded file-backed executable complement bytes are decoded. Each instruction must fit one mapped complement region; invalid encodings, traps, returns, indirect jumps and boundary exits terminate that path.",
+    "Conditional branches follow both encoded successors and calls follow their continuation without assuming that either executes. Register/indirect targets, exception flow, computed dispatch and unseeded code remain unknown.",
+    "Uniform CC/zero/NOP and exact canonical x86 NOP/CC byte sequences are padding candidates, not proof of noncode. Decoded bytes may overlap candidate padding; only the residual partition is disjoint.",
+    "An IAT slot match identifies an encoded imported-pointer transfer, not a runtime callee or the imported implementation. No global aliasing, source equivalence, system/changelog completion or parity is certified.",
+    "Full-image Ghidra body/reference recovery and historical source-contract revalidation remain open under #41; this independent decoder does not replace them."
+  ]
+}

@@ -1,0 +1,326 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.113.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+    "size_bytes": 141932032
+  },
+  "gap_ids": [
+    38,
+    41
+  ],
+  "lead_ids": [
+    "Q41-S01",
+    "Q41-M03"
+  ],
+  "native_ranges": [
+    {
+      "start": "0x1458fd2b0",
+      "end_exclusive": "0x1458fdee1",
+      "byte_count": 3121,
+      "sha256": "f3af899504c1c913620a335f6bbb5cd1ec13a1ecde09e92592cd3896bc98cdf6"
+    },
+    {
+      "start": "0x14590b550",
+      "end_exclusive": "0x14590b5ce",
+      "byte_count": 126,
+      "sha256": "708dac49f0eace0e08829a2ed8497853ef4aa58fa184bfef913795f8e99e4849"
+    }
+  ],
+  "source": {
+    "path": "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+    "sha256": "9193ce732b9b8ee285ba0489e35a96bc93d192d65a2cbd2fe552249131d5cdfa"
+  },
+  "checker": {
+    "path": "scripts/check-movement-entry-0.113.2.py",
+    "sha256": "b7671de92230f1667ba9ef4d9133d7eab9932055f004bc38e54d475ac771e0b3"
+  },
+  "probe": {
+    "path": "scripts/movement_entry_native.py",
+    "sha256": "ebdb05ac992493b5b14c71d63c3a5c5df796f2e529411340df075c396db372ca"
+  },
+  "ghidra": [
+    {
+      "evidence_id": "ev_bc985ac85cf26b7f6980adbbe5f77ed4656c60a2e636f06cdc3df2b23527e327",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "operation": "procedure_info",
+      "parameters": {
+        "procedure": "0x1458fd2b0"
+      },
+      "normalized_result": {
+        "name": "FUN_1458fd2b0",
+        "entrypoint": "0x1458fd2b0",
+        "basicblock_count": 128,
+        "length": 3112,
+        "signature": "undefined FUN_1458fd2b0()",
+        "locals": [],
+        "classification": {
+          "external": false,
+          "thunk": false,
+          "thunk_target": null,
+          "provenance": "ghidra-function-manager"
+        },
+        "body": {
+          "available": true,
+          "provenance": "ghidra-function-body-address-set",
+          "ranges": [
+            {
+              "start": "0x1458fd2b0",
+              "end": "0x1458fd436"
+            },
+            {
+              "start": "0x1458fd440",
+              "end": "0x1458fdee0"
+            }
+          ],
+          "total_bytes": 3112,
+          "span_bytes": 3121,
+          "non_contiguous": true,
+          "contains_entry": true
+        }
+      },
+      "recorded_profile_digest": "be7d08f4b076667dcb0932e87e86039cd8e94d951000e7960e0bd11e7de60f2c",
+      "analysis_settings": {
+        "disabled_analyzers": [
+          "Stack",
+          "Decompiler Switch Analysis",
+          "Function ID",
+          "Function Start Search",
+          "Disassemble Entry Points",
+          "Subroutine References",
+          "Data Reference",
+          "Reference",
+          "Non-Returning Functions - Discovered",
+          "Shared Return Calls",
+          "Create Address Tables",
+          "Call Convention ID"
+        ],
+        "seed_input": {
+          "path": "runtime/q41-local-movement-0.113.2/seeds.tsv",
+          "sha256": "24dc2699535d062ef70417a79811969447954b263b6d72749888f3b40824c580"
+        },
+        "seed_format": "rea-ghidra-seeds-body-repair-v1",
+        "seed_entries": {
+          "function": 2,
+          "code": 2,
+          "label": 0
+        }
+      },
+      "limitations_workspace_paths_normalized": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Ghidra analysis was seeded before auto-analysis from runtime/q41-local-movement-0.113.2/seeds.tsv (sha256 24dc2699535d062ef70417a79811969447954b263b6d72749888f3b40824c580: 2 function, 2 code, 0 label entries). Seeded functions, code and names are caller assertions, not Ghidra discoveries.",
+        "Seed outcome: 0 functions created, 2 already present, 0 failed; 2 code seeds decoded, 0 failed; 0 labels applied, 0 failed; 0 seeds outside initialized memory.",
+        "The target references PDB benilla_rogue.pdb (GUID aaf000c3-15a9-4eaa-b7e0-7863bf03c45c, age (hex) 1, signature unknown, version RSDS); Ghidra reports load state unknown. Original names and types may be missing; an empty name search does not prove a procedure is absent. Use list_procedures and address-based analysis to inspect recovered functions. REA does not admit a caller-selected PDB companion."
+      ]
+    },
+    {
+      "evidence_id": "ev_8eb77a91656fe5e3fa6b167a7fdd91dc948c9eaa1d9b4feb6cad4a4626be2c68",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "operation": "procedure_info",
+      "parameters": {
+        "procedure": "0x14590b550"
+      },
+      "normalized_result": {
+        "name": "FUN_14590b550",
+        "entrypoint": "0x14590b550",
+        "basicblock_count": 290,
+        "length": 9470,
+        "signature": "undefined FUN_14590b550()",
+        "locals": [],
+        "classification": {
+          "external": false,
+          "thunk": false,
+          "thunk_target": null,
+          "provenance": "ghidra-function-manager"
+        },
+        "body": {
+          "available": true,
+          "provenance": "ghidra-function-body-address-set",
+          "ranges": [
+            {
+              "start": "0x14590b550",
+              "end": "0x14590b715"
+            },
+            {
+              "start": "0x14590b720",
+              "end": "0x14590b79e"
+            },
+            {
+              "start": "0x14590b7a0",
+              "end": "0x14590bcab"
+            },
+            {
+              "start": "0x14590bcb0",
+              "end": "0x14590bea6"
+            },
+            {
+              "start": "0x14590beb0",
+              "end": "0x14590bf69"
+            },
+            {
+              "start": "0x14590bf70",
+              "end": "0x14590c187"
+            },
+            {
+              "start": "0x14590c190",
+              "end": "0x14590c1bc"
+            },
+            {
+              "start": "0x14590c1c0",
+              "end": "0x14590c250"
+            },
+            {
+              "start": "0x14590c260",
+              "end": "0x14590c284"
+            },
+            {
+              "start": "0x14590c290",
+              "end": "0x14590c30c"
+            },
+            {
+              "start": "0x14590c310",
+              "end": "0x14590c53c"
+            },
+            {
+              "start": "0x14590c540",
+              "end": "0x14590c7b6"
+            },
+            {
+              "start": "0x14590c7c0",
+              "end": "0x14590c805"
+            },
+            {
+              "start": "0x14590c810",
+              "end": "0x14590cf40"
+            },
+            {
+              "start": "0x14590cf50",
+              "end": "0x14590d05a"
+            },
+            {
+              "start": "0x14590d060",
+              "end": "0x14590d0ae"
+            },
+            {
+              "start": "0x14590d0b0",
+              "end": "0x14590d288"
+            },
+            {
+              "start": "0x14590d290",
+              "end": "0x14590d4f2"
+            },
+            {
+              "start": "0x14590d500",
+              "end": "0x14590d7e5"
+            },
+            {
+              "start": "0x14590d7f0",
+              "end": "0x14590d812"
+            },
+            {
+              "start": "0x14590d820",
+              "end": "0x14590d8f9"
+            },
+            {
+              "start": "0x14590d900",
+              "end": "0x14590daef"
+            }
+          ],
+          "total_bytes": 9470,
+          "span_bytes": 9632,
+          "non_contiguous": true,
+          "contains_entry": true
+        }
+      },
+      "recorded_profile_digest": "b364b0343d23766f53eab5fec00987ee7fda6d0383bb991155abfdf9a883af1b",
+      "analysis_settings": {
+        "disabled_analyzers": [
+          "Stack",
+          "Decompiler Switch Analysis",
+          "Function ID",
+          "Function Start Search",
+          "Disassemble Entry Points",
+          "Subroutine References",
+          "Data Reference",
+          "Reference",
+          "Non-Returning Functions - Discovered",
+          "Shared Return Calls",
+          "Create Address Tables",
+          "Call Convention ID"
+        ],
+        "seed_input": {
+          "path": "runtime/q41-local-begin-0.113.2/seeds.tsv",
+          "sha256": "0c62083ae460d2aa628cf9f7db092352efc3c3c1e95699eaecc4ce4aad66866f"
+        },
+        "seed_format": "rea-ghidra-seeds-body-repair-v1",
+        "seed_entries": {
+          "function": 1,
+          "code": 1,
+          "label": 0
+        }
+      },
+      "limitations_workspace_paths_normalized": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Ghidra analysis was seeded before auto-analysis from runtime/q41-local-begin-0.113.2/seeds.tsv (sha256 0c62083ae460d2aa628cf9f7db092352efc3c3c1e95699eaecc4ce4aad66866f: 1 function, 1 code, 0 label entries). Seeded functions, code and names are caller assertions, not Ghidra discoveries.",
+        "Seed outcome: 0 functions created, 1 already present, 0 failed; 1 code seeds decoded, 0 failed; 0 labels applied, 0 failed; 0 seeds outside initialized memory.",
+        "The target references PDB benilla_rogue.pdb (GUID aaf000c3-15a9-4eaa-b7e0-7863bf03c45c, age (hex) 1, signature unknown, version RSDS); Ghidra reports load state unknown. Original names and types may be missing; an empty name search does not prove a procedure is absent. Use list_procedures and address-based analysis to inspect recovered functions. REA does not admit a caller-selected PDB companion."
+      ]
+    }
+  ],
+  "movement_cases": 576,
+  "ignored_prefix_cases": 26,
+  "begin_phase_cases": 256,
+  "results_sha256": "4e9933f90234610a21e8c11b53f579e79d7023202e5abb29f34c80079bcfffd6",
+  "regression_witness": {
+    "old": [
+      -9396.0,
+      -633.0,
+      0.0
+    ],
+    "reported": [
+      -9395.0,
+      -633.0,
+      -100.0
+    ],
+    "phase": 0,
+    "pending": 0,
+    "local_index": 0,
+    "final": [
+      -9395.0,
+      -633.0,
+      0.5
+    ],
+    "corrected": [
+      -9395.0,
+      -633.0,
+      0.5
+    ],
+    "begins": 1,
+    "notice": false,
+    "final_phase": 1,
+    "pending_reports": 12
+  },
+  "limits": [
+    "Only current Elwynn local report instructions execute with supplied primary height0, hypotf, opaque corrective/notice packets and Begin phase-store seams.",
+    "Other phase/pending/index values classify gates only, not co-op behavior or a complete source state machine.",
+    "The actual Begin prefix is independently replayed through its phase store for all256 byte values. Its actor/RNG/stat/publication tail does not execute.",
+    "Source checks establish connectivity, not Rust execution. Two Rust regressions are authored/uncompiled/unrun; no real terrain/controller/ECS/game or original/rebuilt parity."
+  ]
+}

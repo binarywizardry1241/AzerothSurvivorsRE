@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.113.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+    "size_bytes": 141932032
+  },
+  "owners": [
+    {
+      "role": "packed-guid",
+      "va": "0x1458b6e10",
+      "end_exclusive": "0x1458b7025",
+      "byte_count": 533,
+      "sha256": "8c67a07efccff982dc13b1f68b10ff5f4b9c331708ffc634a6e2ab1a0b0ccc39"
+    },
+    {
+      "role": "remove-pickup",
+      "va": "0x14594fd70",
+      "end_exclusive": "0x14594ff8d",
+      "byte_count": 541,
+      "sha256": "06a64459a4294cf9f2a1d8945941e41428442b8a0089da2dde806b8019e0d988"
+    },
+    {
+      "role": "nearby-pickup-guids",
+      "va": "0x14598ad90",
+      "end_exclusive": "0x14598afee",
+      "byte_count": 606,
+      "sha256": "e7c4584a285d000d33b3284b5a26fc92db1fde47a1761dda81379b9fbbb0155e"
+    },
+    {
+      "role": "linked-pickup-guids",
+      "va": "0x14598b760",
+      "end_exclusive": "0x14598b91c",
+      "byte_count": 444,
+      "sha256": "6560f8104399743805e914f2168fca0710b15a7c78249bcbfc8c02889e5c90c9"
+    },
+    {
+      "role": "free-instance",
+      "va": "0x145939920",
+      "end_exclusive": "0x145939b35",
+      "byte_count": 533,
+      "sha256": "21141230093c77e458c04b6eda85cac8899dba60898aab1be9beead01c27ad34"
+    },
+    {
+      "role": "delayed-action-admission",
+      "va": "0x145913fc9",
+      "end_exclusive": "0x145913fe3",
+      "byte_count": 26,
+      "sha256": "d7d2893db1d0a436ea657d89ae37800b77fbbd78de6c2b0440550e813fdc2e91"
+    },
+    {
+      "role": "delayed-action-snapshot-compaction",
+      "va": "0x145914068",
+      "end_exclusive": "0x1459140c3",
+      "byte_count": 91,
+      "sha256": "70f205bc9df5809bab03fa71f6084ea552c3a8ff5953c1f66fed2373beea2445"
+    }
+  ],
+  "packed_guid": {
+    "cases": 1536,
+    "result_sha256": "65f8c7e008a37d5d8016b659dd7bd45d4270b3ebbd498feaa15984f062201634"
+  },
+  "pickup_readers": {
+    "linked_cases": 512,
+    "nearby_cases": 4112,
+    "linked_sha256": "fd0b96abe30c1433ae18bc9783c87747ff1cd440ff2049e8a19955310db86c4b",
+    "nearby_sha256": "48a0ce40343c4799b4b5dd74b505c7e636e4325edb8d82584b50362f03ea1ad8",
+    "native_rows_unchanged": true
+  },
+  "pickup_remove": {
+    "cases": 45,
+    "result_sha256": "8265d43d0cca1053a69e4ded3fd64f223b972b4e6209abe75a4f0e5e40f2f5de",
+    "boundary": "Stop after native full-record memmove/length store, before destructor packet allocation or panic."
+  },
+  "free_instance": {
+    "cases": 28,
+    "result_sha256": "8f0d43b6b26cb32b68bc21042bda362fad79d4fcb91e44b6d588fef01826c265",
+    "semantic_bytes": 84,
+    "stride": 88,
+    "game_and_learned_input_unchanged": true,
+    "limits": "Fallback modifier vector is empty; arbitrary aliased output/input pointers are not admitted."
+  },
+  "hazard_actions": {
+    "admission_cases": 36,
+    "snapshot_cases": 168,
+    "admission_sha256": "abc37a7aa3ce80eb189436bc99b8a96d5e0347305816746d77ae8bb490297c25",
+    "snapshot_sha256": "cbeba99c7f566ad06931588327bb5e80fc8808df051eb427bb53c8fcbf720d88",
+    "layout": "Game+5a8/5b0/5b8, stride64, action bytes16..63",
+    "boundary": "Due/admitted local queue prefixes only; tag dispatch, source lookup and payload execution are excluded."
+  },
+  "seams": [
+    "0x1400021c0",
+    "0x140002200",
+    "0x145cf9991",
+    "0x145cf999d",
+    "0x145cf99df"
+  ],
+  "limits": [
+    "Synthetic typed inputs do not prove whole-program alias closure, producer-domain closure or native source ownership.",
+    "Allocator/free/memcpy/memmove/memcmp/roundf are explicit host seams; GUID fixtures preallocate capacity.",
+    "No compiler, Rust code, client/game process or original/rebuilt comparison executes."
+  ]
+}

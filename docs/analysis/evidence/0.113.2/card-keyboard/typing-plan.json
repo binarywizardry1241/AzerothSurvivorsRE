@@ -1,0 +1,37 @@
+{
+  "target": "installed-game/AzerothSurvivors.exe",
+  "output": "runtime/q41-card-keyboard-replay/typing",
+  "init_timeout": 60,
+  "timeout": 240,
+  "environment": {
+    "REA_GHIDRA_SEED_FILE": "docs/analysis/evidence/0.113.2/card-keyboard/typing-seeds.tsv",
+    "REA_GHIDRA_DISABLED_ANALYZERS": "Stack,Decompiler Switch Analysis,Function ID,Function Start Search,Disassemble Entry Points,Subroutine References,Data Reference,Reference,Non-Returning Functions - Discovered,Shared Return Calls,Create Address Tables,Call Convention ID,Call-Fixup Installer,Variadic Function Signature Override",
+    "REA_GHIDRA_STARTUP_TIMEOUT_MS": "600000"
+  },
+  "operations": [
+    {
+      "name": "analyze_function",
+      "arguments": {
+        "procedure": "0x1400d8630"
+      },
+      "label": "snapshot-producer",
+      "timeout": 660
+    },
+    {
+      "name": "analyze_function",
+      "arguments": {
+        "procedure": "0x1405c90a0"
+      },
+      "label": "typing-getter",
+      "timeout": 240
+    },
+    {
+      "name": "analyze_function",
+      "arguments": {
+        "procedure": "0x1400be610"
+      },
+      "label": "keyboard-wrapper",
+      "timeout": 240
+    }
+  ]
+}

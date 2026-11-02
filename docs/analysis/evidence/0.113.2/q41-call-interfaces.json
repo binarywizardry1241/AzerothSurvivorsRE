@@ -1,0 +1,1287 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.113.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+    "size_bytes": 141932032,
+    "identity_manifest": "docs/analysis/coverage/targets.json",
+    "version_provenance": "matching_embedded_updater_and_dialog_markers",
+    "runtime_data": {
+      "directory": "installed-game/Data",
+      "archives": [
+        {
+          "path": "installed-game/Data/patch-2.MPQ",
+          "size_bytes": 4690878,
+          "sha256": "366edee41642a5dda22ed90cc252b543ee375755b7e8bee81e2a6cd59fd7b286"
+        },
+        {
+          "path": "installed-game/Data/patch-3.MPQ",
+          "size_bytes": 2580491,
+          "sha256": "75c35ca5b8075197252581e301e8900143007fdf37b493ad271ae1bd39f95a29"
+        },
+        {
+          "path": "installed-game/Data/patch-4.MPQ",
+          "size_bytes": 22769233,
+          "sha256": "2e895e0e0ff6a4781d0e0aaa6ea7d32ed1fe36841e17806fe1855cb880d18865"
+        },
+        {
+          "path": "installed-game/Data/patch-5.MPQ",
+          "size_bytes": 267019039,
+          "sha256": "5008e56873718b468fa5ae1b697dcbe4f5da9ffe6c793f3ef9939dbd7716f3d8"
+        },
+        {
+          "path": "installed-game/Data/patch-6.MPQ",
+          "size_bytes": 212228,
+          "sha256": "cad6ff59b5df028a507581befb836fce07894057e15fe63d9fdc553a95b7ceb5"
+        },
+        {
+          "path": "installed-game/Data/patch-7.MPQ",
+          "size_bytes": 276649,
+          "sha256": "f5fb15b181cf01cc6b5cf2ee9948a27ecc4ba27bab9a8bec584df4381932aae6"
+        },
+        {
+          "path": "installed-game/Data/patch-8.MPQ",
+          "size_bytes": 4155417,
+          "sha256": "ae3aaa29cadb7aeba8255f5b4a8305c7cbecfe8f0d3ed9646522113d16c3e12e"
+        },
+        {
+          "path": "installed-game/Data/patch-9.MPQ",
+          "size_bytes": 5739608,
+          "sha256": "ffff8ea890bdaf91a1680543ac60106db92132bc2210105279610fa73661a524"
+        },
+        {
+          "path": "installed-game/Data/patch.MPQ",
+          "size_bytes": 1340199244,
+          "sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf"
+        }
+      ]
+    }
+  },
+  "gap_ids": [
+    9,
+    17,
+    22,
+    41,
+    62
+  ],
+  "original_parent": {
+    "path": "docs/analysis/evidence/0.113.2/q41-p01-aura/manifest.json",
+    "sha256": "2264f53af80da9032941dbf69077c424a616f3bef6ed141f6251d2e5817d6959"
+  },
+  "original_selected_records": 245,
+  "static_target_records": 244,
+  "static_targets": 21,
+  "selected_interfaces": [
+    {
+      "original_routing_record": {
+        "target": "0x144bf4410",
+        "record_count": 1,
+        "routing_scope": "AS_shared_interface_remaining",
+        "routing_meaning": "pad UI supporting trampoline; target semantics remain unclassified",
+        "first_instruction": "jmp 0x144bfc300",
+        "first_instruction_hex": "e9eb7e0000",
+        "selected_owner_contexts": {
+          "crates/wenilla-rogue-app/src/screens/pad.rs": 1
+        }
+      },
+      "bounded_classification": "Current Pad input has tag0; the admitted leaf copies four RGBA words. Other variants and complete UI identity remain unverified."
+    },
+    {
+      "original_routing_record": {
+        "target": "0x145a3dce0",
+        "record_count": 3,
+        "routing_scope": "AS_local_auth_support_remaining",
+        "routing_meaning": "realmd local-auth/roster supporting trampoline; target semantics unclassified and not selected",
+        "first_instruction": "jmp 0x145a483b0",
+        "first_instruction_hex": "e9cba60000",
+        "selected_owner_contexts": {
+          "crates/wenilla-rogue/src/realmd.rs": 3
+        }
+      },
+      "bounded_classification": "Shared big-unsigned power/modulus library boundary; no authentication or bigint reconstruction."
+    },
+    {
+      "original_routing_record": {
+        "target": "0x145a4abe0",
+        "record_count": 1,
+        "routing_scope": "AS_local_auth_support_remaining",
+        "routing_meaning": "realmd local-auth/roster reference-count/drop candidate; target semantics unclassified and not selected",
+        "first_instruction": "mov rcx, qword ptr [rcx]",
+        "first_instruction_hex": "488b09",
+        "selected_owner_contexts": {
+          "crates/wenilla-rogue/src/realmd.rs": 1
+        }
+      },
+      "bounded_classification": "Sentinel-aware counter decrement/storage-release ABI; concrete object/ownership identity unclassified."
+    },
+    {
+      "original_routing_record": {
+        "target": "0x145cdf070",
+        "record_count": 5,
+        "routing_scope": "AS_legacy_configuration_support",
+        "routing_meaning": "dynamic drop dispatch; concrete trait type remains unclassified",
+        "first_instruction": "mov rcx, qword ptr [rcx]",
+        "first_instruction_hex": "488b09",
+        "selected_owner_contexts": {
+          "crates/wenilla-rogue-app/src/legacy_config.rs": 5
+        }
+      },
+      "bounded_classification": "Five low-tag1 move/gate prefixes plus slot+0x18 tail-forward ABI; concrete runtime payload/method remains unclassified."
+    }
+  ],
+  "native_ranges": [
+    {
+      "start": "0x144bf4410",
+      "end_exclusive": "0x144bf4415",
+      "sha256": "cd972039e78417fa885859255a4e25f6466c259d3769049fddd007434e750411"
+    },
+    {
+      "start": "0x144bfc300",
+      "end_exclusive": "0x144bfca76",
+      "sha256": "111e9a5aa0e80be50a01698e7676130cb3081c1597c299d16b6b31c3498c3f17"
+    },
+    {
+      "start": "0x145a3dce0",
+      "end_exclusive": "0x145a3dce5",
+      "sha256": "de624a9199441a22f7fe3b688b05ba16ebd9bcd930061664f028f575cbdc3b73"
+    },
+    {
+      "start": "0x145a483b0",
+      "end_exclusive": "0x145a48921",
+      "sha256": "b28261868c76e03bf780f9a886e9edd8b04e6074c4b74f96d7b7600e2e5e85ae"
+    },
+    {
+      "start": "0x145a4abe0",
+      "end_exclusive": "0x145a4ac00",
+      "sha256": "91764ac7e434af065ff363b22cd4b5734f5c260c0769eb103d2f2e6e1764088a"
+    },
+    {
+      "start": "0x145cdf070",
+      "end_exclusive": "0x145cdf077",
+      "sha256": "8cbc0a542f5641e293d6cd9000bf03935dc3f901b09ae90e646366af6a2bc396"
+    }
+  ],
+  "ghidra_observations": [
+    {
+      "evidence_id": "ev_7b1acc137ad13267d00ada8ed4b554af98a74ed9678645cc1c37942d8fa63139",
+      "operation": "procedure_info",
+      "parameters": {
+        "procedure": "0x144bf4410"
+      },
+      "response": {
+        "path": "runtime/q41-call-interfaces-0.113.2/rea-interfaces/003-procedure_info-0x144bf4410.json",
+        "sha256": "143156a5044ea2f88a7284e4589c840aa550c5dda8390c364400f3df6de7286e"
+      },
+      "actual_body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x144bf4410",
+            "end": "0x144bf4414"
+          }
+        ],
+        "total_bytes": 5,
+        "span_bytes": 5,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "evidence_id": "ev_e0d44a4b7c3a87f79fb78afe701aafbf9869905c0573be2ac5dfde1f4fbc6e83",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x144bf4410"
+      },
+      "response": {
+        "path": "runtime/q41-call-interfaces-0.113.2/rea-interfaces/005-procedure_pseudo_code-0x144bf4410.json",
+        "sha256": "201f628a97ab06848f9fe2893d8c11fc0caed2956ce1c421860441674f0b16ba"
+      },
+      "pseudocode_sha256": "440c14b7c489f48230bb0cc6278dc0262329ad8565856f40b2ace9201eee5ae2"
+    },
+    {
+      "evidence_id": "ev_d7feaa777798ea7b86217a7e38f531184db4b9248b8f3cbb5daffc590f9052bd",
+      "operation": "procedure_info",
+      "parameters": {
+        "procedure": "0x145a3dce0"
+      },
+      "response": {
+        "path": "runtime/q41-call-interfaces-0.113.2/rea-interfaces/006-procedure_info-0x145a3dce0.json",
+        "sha256": "7e505a0dc5b3a3619f45cfe973707b091a040b6d7a0f08d40acebf369436a65c"
+      },
+      "actual_body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x145a3dce0",
+            "end": "0x145a3dce4"
+          }
+        ],
+        "total_bytes": 5,
+        "span_bytes": 5,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "evidence_id": "ev_45d2bf4f44e3a0b1b4d94d953edbb155713bf522a5c7a7924949b93e2cd7bb75",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x145a3dce0"
+      },
+      "response": {
+        "path": "runtime/q41-call-interfaces-0.113.2/rea-interfaces/008-procedure_pseudo_code-0x145a3dce0.json",
+        "sha256": "bfc3154a34cf60ff8ce283f63697dc7ee0b25b0ecf100c3cf9f8d8a716c16e9f"
+      },
+      "pseudocode_sha256": "1c265e1889a6518c162640ea69e4f52ea5ae5ef0e8cfd0d54c4ac5e0d70ffa5f",
+      "observed_role": "shared_big_unsigned_power_modulus_boundary_not_full_math_or_auth_recovery"
+    },
+    {
+      "evidence_id": "ev_98853e224b516216b958b81fba93fcb2f38f0cc4912835a02cf6f6119a803af1",
+      "operation": "procedure_info",
+      "parameters": {
+        "procedure": "0x145a4abe0"
+      },
+      "response": {
+        "path": "runtime/q41-call-interfaces-0.113.2/rea-interfaces/009-procedure_info-0x145a4abe0.json",
+        "sha256": "a5066b43cb66961cf658f805833598fd7afefbaf7b4ed65c898c3272de5076ea"
+      },
+      "actual_body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x1400021d0",
+            "end": "0x1400021d4"
+          },
+          {
+            "start": "0x145a4abe0",
+            "end": "0x145a4abff"
+          }
+        ],
+        "total_bytes": 37,
+        "span_bytes": 94669360,
+        "non_contiguous": true,
+        "contains_entry": true
+      }
+    },
+    {
+      "evidence_id": "ev_f71f12f975626b9aab3190a7f586243de4b20096f0543e3c63c198805af11a75",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x145a4abe0"
+      },
+      "response": {
+        "path": "runtime/q41-call-interfaces-0.113.2/rea-interfaces/011-procedure_pseudo_code-0x145a4abe0.json",
+        "sha256": "b4ef79e991cf879442cf2091fde3496ffe80fe244c5960e2658a9c656f890560"
+      },
+      "pseudocode_sha256": "9e355602e8808a4d23c6ffeb98aacef8016c7794f011e7fa5719dc2a540b0694"
+    },
+    {
+      "evidence_id": "ev_7635bfaeb418d605eee94fa114c50dc4600a8d5f26c6beff1322059bc650a2a6",
+      "operation": "procedure_info",
+      "parameters": {
+        "procedure": "0x145cdf070"
+      },
+      "response": {
+        "path": "runtime/q41-call-interfaces-0.113.2/rea-interfaces/012-procedure_info-0x145cdf070.json",
+        "sha256": "8a89041fd69ed0f055acbfdabf98dd804e3eb34159df27393e827d059b0fab48"
+      },
+      "actual_body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x145cdf070",
+            "end": "0x145cdf076"
+          }
+        ],
+        "total_bytes": 7,
+        "span_bytes": 7,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "evidence_id": "ev_64ac338236273bfd8072760b8f47d5eb4c167541f42a68a5ed8ace4e45508a88",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x145cdf070"
+      },
+      "response": {
+        "path": "runtime/q41-call-interfaces-0.113.2/rea-interfaces/014-procedure_pseudo_code-0x145cdf070.json",
+        "sha256": "6c6d391a518012f01313ef0cc52c389abd340310d94afb9684c357de51b2a0ca"
+      },
+      "pseudocode_sha256": "ec0ec7ebab25c996847a6d0ae765dcd9f91ced6db42f15967e17aa0041a07c7f"
+    },
+    {
+      "evidence_id": "ev_b3b18ddcdd597e0851349c56d26d88ec8868bbb96eef71678ee9ed4f84526445",
+      "operation": "procedure_info",
+      "parameters": {
+        "procedure": "0x144bfc300"
+      },
+      "response": {
+        "path": "runtime/q41-call-interfaces-0.113.2/rea-interfaces/015-procedure_info-0x144bfc300.json",
+        "sha256": "7fc2760ceb546cd9f80217111c3374f68ca097785e47f1e8c4a4af1489d1d67e"
+      },
+      "actual_body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x144bfc300",
+            "end": "0x144bfc345"
+          }
+        ],
+        "total_bytes": 70,
+        "span_bytes": 70,
+        "non_contiguous": false,
+        "contains_entry": true
+      }
+    },
+    {
+      "evidence_id": "ev_245c5a5a60f31ba4536e654ea0d5f22fad3031a4e5a74dd29b445b8d542cd559",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x144bfc300"
+      },
+      "response": {
+        "path": "runtime/q41-call-interfaces-0.113.2/rea-interfaces/017-procedure_pseudo_code-0x144bfc300.json",
+        "sha256": "18f372a748110362900c8ac72f60d057a6919c9e19aa1569ca47b9737024da73"
+      },
+      "pseudocode_sha256": "55be33ee38be79405e4d73df0aa31923e891ff2ba0339999f8243171c9e371f4"
+    },
+    {
+      "evidence_id": "ev_3d5826f8dec09f7302b0dbbdde92a444a0e1343f7cab220a39c40bdbefbc9049",
+      "operation": "procedure_info",
+      "parameters": {
+        "procedure": "0x145a483b0"
+      },
+      "response": {
+        "path": "runtime/q41-call-interfaces-0.113.2/rea-interfaces/018-procedure_info-0x145a483b0.json",
+        "sha256": "1c7e791511c17f71ec199463308c7b302d49bb78f7742b1b7c2b494abfd2f3d3"
+      },
+      "actual_body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x145a483b0",
+            "end": "0x145a484d9"
+          },
+          {
+            "start": "0x145a484e0",
+            "end": "0x145a4859a"
+          },
+          {
+            "start": "0x145a485a0",
+            "end": "0x145a4866e"
+          },
+          {
+            "start": "0x145a48670",
+            "end": "0x145a48920"
+          }
+        ],
+        "total_bytes": 1381,
+        "span_bytes": 1393,
+        "non_contiguous": true,
+        "contains_entry": true
+      }
+    },
+    {
+      "evidence_id": "ev_53c6140e55b6bc590c69de8c3f550cd0ccb1618801d41ef4e57917815b5a3e3b",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x145a483b0"
+      },
+      "response": {
+        "path": "runtime/q41-call-interfaces-0.113.2/rea-interfaces/020-procedure_pseudo_code-0x145a483b0.json",
+        "sha256": "9d3e49fab2b38ab2a6a971a21daa986bd659bd12023ca78256e685c4bee47a50"
+      },
+      "pseudocode_sha256": "f413e007e8beb00447921656f228f4f011987a3612f9b7a81ce4872f4e5dc843",
+      "observed_role": "shared_big_unsigned_power_modulus_boundary_not_full_math_or_auth_recovery"
+    }
+  ],
+  "pad_input": {
+    "call": "0x14014181c",
+    "input_constant": "0x145ed743c",
+    "words": [
+      0,
+      1064900231,
+      1062400426,
+      1054146036,
+      1058642330
+    ],
+    "observed_tag": 0,
+    "source_ref": "crates/azeroth-survivors-re/src/native_input/focus.rs",
+    "source_sha256": "856cee162a9ca9069bcebc592afbcd2f415b9478c1d7c23dac1f73c2b94e6faf",
+    "scope": "Selected current tagged-value/RGBA copy and matching source color constant only; broader converter variants, UI element identity, source/ECS/color-pipeline/rendered parity remain unverified."
+  },
+  "replay": {
+    "color_cases": [
+      [
+        0,
+        1062400426,
+        1054146036,
+        1058642330
+      ],
+      [
+        2147483648,
+        1062400426,
+        1054146036,
+        1058642330
+      ],
+      [
+        1065353216,
+        1062400426,
+        1054146036,
+        1058642330
+      ],
+      [
+        3212836864,
+        1062400426,
+        1054146036,
+        1058642330
+      ],
+      [
+        2139095040,
+        1062400426,
+        1054146036,
+        1058642330
+      ],
+      [
+        4286578688,
+        1062400426,
+        1054146036,
+        1058642330
+      ],
+      [
+        2143289344,
+        1062400426,
+        1054146036,
+        1058642330
+      ],
+      [
+        2141266757,
+        1062400426,
+        1054146036,
+        1058642330
+      ],
+      [
+        1064900231,
+        1062400426,
+        1054146036,
+        1058642330
+      ],
+      [
+        1062400426,
+        1062400426,
+        1054146036,
+        1058642330
+      ],
+      [
+        1054146036,
+        1062400426,
+        1054146036,
+        1058642330
+      ],
+      [
+        1058642330,
+        1062400426,
+        1054146036,
+        1058642330
+      ],
+      [
+        1064900231,
+        0,
+        1054146036,
+        1058642330
+      ],
+      [
+        1064900231,
+        2147483648,
+        1054146036,
+        1058642330
+      ],
+      [
+        1064900231,
+        1065353216,
+        1054146036,
+        1058642330
+      ],
+      [
+        1064900231,
+        3212836864,
+        1054146036,
+        1058642330
+      ],
+      [
+        1064900231,
+        2139095040,
+        1054146036,
+        1058642330
+      ],
+      [
+        1064900231,
+        4286578688,
+        1054146036,
+        1058642330
+      ],
+      [
+        1064900231,
+        2143289344,
+        1054146036,
+        1058642330
+      ],
+      [
+        1064900231,
+        2141266757,
+        1054146036,
+        1058642330
+      ],
+      [
+        1064900231,
+        1064900231,
+        1054146036,
+        1058642330
+      ],
+      [
+        1064900231,
+        1062400426,
+        1054146036,
+        1058642330
+      ],
+      [
+        1064900231,
+        1054146036,
+        1054146036,
+        1058642330
+      ],
+      [
+        1064900231,
+        1058642330,
+        1054146036,
+        1058642330
+      ],
+      [
+        1064900231,
+        1062400426,
+        0,
+        1058642330
+      ],
+      [
+        1064900231,
+        1062400426,
+        2147483648,
+        1058642330
+      ],
+      [
+        1064900231,
+        1062400426,
+        1065353216,
+        1058642330
+      ],
+      [
+        1064900231,
+        1062400426,
+        3212836864,
+        1058642330
+      ],
+      [
+        1064900231,
+        1062400426,
+        2139095040,
+        1058642330
+      ],
+      [
+        1064900231,
+        1062400426,
+        4286578688,
+        1058642330
+      ],
+      [
+        1064900231,
+        1062400426,
+        2143289344,
+        1058642330
+      ],
+      [
+        1064900231,
+        1062400426,
+        2141266757,
+        1058642330
+      ],
+      [
+        1064900231,
+        1062400426,
+        1064900231,
+        1058642330
+      ],
+      [
+        1064900231,
+        1062400426,
+        1062400426,
+        1058642330
+      ],
+      [
+        1064900231,
+        1062400426,
+        1054146036,
+        1058642330
+      ],
+      [
+        1064900231,
+        1062400426,
+        1058642330,
+        1058642330
+      ],
+      [
+        1064900231,
+        1062400426,
+        1054146036,
+        0
+      ],
+      [
+        1064900231,
+        1062400426,
+        1054146036,
+        2147483648
+      ],
+      [
+        1064900231,
+        1062400426,
+        1054146036,
+        1065353216
+      ],
+      [
+        1064900231,
+        1062400426,
+        1054146036,
+        3212836864
+      ],
+      [
+        1064900231,
+        1062400426,
+        1054146036,
+        2139095040
+      ],
+      [
+        1064900231,
+        1062400426,
+        1054146036,
+        4286578688
+      ],
+      [
+        1064900231,
+        1062400426,
+        1054146036,
+        2143289344
+      ],
+      [
+        1064900231,
+        1062400426,
+        1054146036,
+        2141266757
+      ],
+      [
+        1064900231,
+        1062400426,
+        1054146036,
+        1064900231
+      ],
+      [
+        1064900231,
+        1062400426,
+        1054146036,
+        1062400426
+      ],
+      [
+        1064900231,
+        1062400426,
+        1054146036,
+        1054146036
+      ],
+      [
+        1064900231,
+        1062400426,
+        1054146036,
+        1058642330
+      ]
+    ],
+    "refcount_cases": [
+      {
+        "sentinel": false,
+        "count": 0,
+        "result": 18446744073709551615,
+        "dealloc": []
+      },
+      {
+        "sentinel": false,
+        "count": 1,
+        "result": 0,
+        "dealloc": [
+          [
+            8590004224,
+            368,
+            16
+          ]
+        ]
+      },
+      {
+        "sentinel": false,
+        "count": 2,
+        "result": 1,
+        "dealloc": []
+      },
+      {
+        "sentinel": false,
+        "count": 3,
+        "result": 2,
+        "dealloc": []
+      },
+      {
+        "sentinel": false,
+        "count": 4294967296,
+        "result": 4294967295,
+        "dealloc": []
+      },
+      {
+        "sentinel": false,
+        "count": 18446744073709551615,
+        "result": 18446744073709551614,
+        "dealloc": []
+      },
+      {
+        "sentinel": true,
+        "count": 0,
+        "result": 0,
+        "dealloc": []
+      },
+      {
+        "sentinel": true,
+        "count": 1,
+        "result": 1,
+        "dealloc": []
+      },
+      {
+        "sentinel": true,
+        "count": 2,
+        "result": 2,
+        "dealloc": []
+      },
+      {
+        "sentinel": true,
+        "count": 3,
+        "result": 3,
+        "dealloc": []
+      },
+      {
+        "sentinel": true,
+        "count": 4294967296,
+        "result": 4294967296,
+        "dealloc": []
+      },
+      {
+        "sentinel": true,
+        "count": 18446744073709551615,
+        "result": 18446744073709551615,
+        "dealloc": []
+      }
+    ],
+    "dispatch_cases": [
+      {
+        "input": 8590000128,
+        "forwarded": 8590004224,
+        "rdx": 305419896,
+        "r8": 2147483648,
+        "r9": 2146435072
+      },
+      {
+        "input": 8590000256,
+        "forwarded": 8590004352,
+        "rdx": 305419896,
+        "r8": 2147483648,
+        "r9": 2146435072
+      },
+      {
+        "input": 8590000384,
+        "forwarded": 8590004480,
+        "rdx": 305419896,
+        "r8": 2147483648,
+        "r9": 2146435072
+      },
+      {
+        "input": 8590000512,
+        "forwarded": 8590004608,
+        "rdx": 305419896,
+        "r8": 2147483648,
+        "r9": 2146435072
+      },
+      {
+        "input": 8590000640,
+        "forwarded": 8590004736,
+        "rdx": 305419896,
+        "r8": 2147483648,
+        "r9": 2146435072
+      },
+      {
+        "input": 8590000768,
+        "forwarded": 8590004864,
+        "rdx": 305419896,
+        "r8": 2147483648,
+        "r9": 2146435072
+      },
+      {
+        "input": 8590000896,
+        "forwarded": 8590004992,
+        "rdx": 305419896,
+        "r8": 2147483648,
+        "r9": 2146435072
+      },
+      {
+        "input": 8590001024,
+        "forwarded": 8590005120,
+        "rdx": 305419896,
+        "r8": 2147483648,
+        "r9": 2146435072
+      }
+    ],
+    "config_gate_cases": [
+      {
+        "start": "0x140017e4d",
+        "value": 0,
+        "called": false
+      },
+      {
+        "start": "0x140017e4d",
+        "value": 1,
+        "called": true
+      },
+      {
+        "start": "0x140017e4d",
+        "value": 2,
+        "called": false
+      },
+      {
+        "start": "0x140017e4d",
+        "value": 3,
+        "called": false
+      },
+      {
+        "start": "0x140017e4d",
+        "value": 4,
+        "called": false
+      },
+      {
+        "start": "0x140017e4d",
+        "value": 5,
+        "called": true
+      },
+      {
+        "start": "0x140017e4d",
+        "value": 6,
+        "called": false
+      },
+      {
+        "start": "0x140017e4d",
+        "value": 7,
+        "called": false
+      },
+      {
+        "start": "0x140017e4d",
+        "value": 8,
+        "called": false
+      },
+      {
+        "start": "0x140017e4d",
+        "value": 9,
+        "called": true
+      },
+      {
+        "start": "0x140017e4d",
+        "value": 10,
+        "called": false
+      },
+      {
+        "start": "0x140017e4d",
+        "value": 11,
+        "called": false
+      },
+      {
+        "start": "0x140017e4d",
+        "value": 12,
+        "called": false
+      },
+      {
+        "start": "0x140017e4d",
+        "value": 13,
+        "called": true
+      },
+      {
+        "start": "0x140017e4d",
+        "value": 14,
+        "called": false
+      },
+      {
+        "start": "0x140017e4d",
+        "value": 15,
+        "called": false
+      },
+      {
+        "start": "0x140017e4d",
+        "value": 18446744073709551615,
+        "called": false
+      },
+      {
+        "start": "0x140017f8f",
+        "value": 0,
+        "called": false
+      },
+      {
+        "start": "0x140017f8f",
+        "value": 1,
+        "called": true
+      },
+      {
+        "start": "0x140017f8f",
+        "value": 2,
+        "called": false
+      },
+      {
+        "start": "0x140017f8f",
+        "value": 3,
+        "called": false
+      },
+      {
+        "start": "0x140017f8f",
+        "value": 4,
+        "called": false
+      },
+      {
+        "start": "0x140017f8f",
+        "value": 5,
+        "called": true
+      },
+      {
+        "start": "0x140017f8f",
+        "value": 6,
+        "called": false
+      },
+      {
+        "start": "0x140017f8f",
+        "value": 7,
+        "called": false
+      },
+      {
+        "start": "0x140017f8f",
+        "value": 8,
+        "called": false
+      },
+      {
+        "start": "0x140017f8f",
+        "value": 9,
+        "called": true
+      },
+      {
+        "start": "0x140017f8f",
+        "value": 10,
+        "called": false
+      },
+      {
+        "start": "0x140017f8f",
+        "value": 11,
+        "called": false
+      },
+      {
+        "start": "0x140017f8f",
+        "value": 12,
+        "called": false
+      },
+      {
+        "start": "0x140017f8f",
+        "value": 13,
+        "called": true
+      },
+      {
+        "start": "0x140017f8f",
+        "value": 14,
+        "called": false
+      },
+      {
+        "start": "0x140017f8f",
+        "value": 15,
+        "called": false
+      },
+      {
+        "start": "0x140017f8f",
+        "value": 18446744073709551615,
+        "called": false
+      },
+      {
+        "start": "0x140018218",
+        "value": 0,
+        "called": false
+      },
+      {
+        "start": "0x140018218",
+        "value": 1,
+        "called": true
+      },
+      {
+        "start": "0x140018218",
+        "value": 2,
+        "called": false
+      },
+      {
+        "start": "0x140018218",
+        "value": 3,
+        "called": false
+      },
+      {
+        "start": "0x140018218",
+        "value": 4,
+        "called": false
+      },
+      {
+        "start": "0x140018218",
+        "value": 5,
+        "called": true
+      },
+      {
+        "start": "0x140018218",
+        "value": 6,
+        "called": false
+      },
+      {
+        "start": "0x140018218",
+        "value": 7,
+        "called": false
+      },
+      {
+        "start": "0x140018218",
+        "value": 8,
+        "called": false
+      },
+      {
+        "start": "0x140018218",
+        "value": 9,
+        "called": true
+      },
+      {
+        "start": "0x140018218",
+        "value": 10,
+        "called": false
+      },
+      {
+        "start": "0x140018218",
+        "value": 11,
+        "called": false
+      },
+      {
+        "start": "0x140018218",
+        "value": 12,
+        "called": false
+      },
+      {
+        "start": "0x140018218",
+        "value": 13,
+        "called": true
+      },
+      {
+        "start": "0x140018218",
+        "value": 14,
+        "called": false
+      },
+      {
+        "start": "0x140018218",
+        "value": 15,
+        "called": false
+      },
+      {
+        "start": "0x140018218",
+        "value": 18446744073709551615,
+        "called": false
+      },
+      {
+        "start": "0x140018399",
+        "value": 0,
+        "called": false
+      },
+      {
+        "start": "0x140018399",
+        "value": 1,
+        "called": true
+      },
+      {
+        "start": "0x140018399",
+        "value": 2,
+        "called": false
+      },
+      {
+        "start": "0x140018399",
+        "value": 3,
+        "called": false
+      },
+      {
+        "start": "0x140018399",
+        "value": 4,
+        "called": false
+      },
+      {
+        "start": "0x140018399",
+        "value": 5,
+        "called": true
+      },
+      {
+        "start": "0x140018399",
+        "value": 6,
+        "called": false
+      },
+      {
+        "start": "0x140018399",
+        "value": 7,
+        "called": false
+      },
+      {
+        "start": "0x140018399",
+        "value": 8,
+        "called": false
+      },
+      {
+        "start": "0x140018399",
+        "value": 9,
+        "called": true
+      },
+      {
+        "start": "0x140018399",
+        "value": 10,
+        "called": false
+      },
+      {
+        "start": "0x140018399",
+        "value": 11,
+        "called": false
+      },
+      {
+        "start": "0x140018399",
+        "value": 12,
+        "called": false
+      },
+      {
+        "start": "0x140018399",
+        "value": 13,
+        "called": true
+      },
+      {
+        "start": "0x140018399",
+        "value": 14,
+        "called": false
+      },
+      {
+        "start": "0x140018399",
+        "value": 15,
+        "called": false
+      },
+      {
+        "start": "0x140018399",
+        "value": 18446744073709551615,
+        "called": false
+      },
+      {
+        "start": "0x140018e8e",
+        "value": 0,
+        "called": false
+      },
+      {
+        "start": "0x140018e8e",
+        "value": 1,
+        "called": true
+      },
+      {
+        "start": "0x140018e8e",
+        "value": 2,
+        "called": false
+      },
+      {
+        "start": "0x140018e8e",
+        "value": 3,
+        "called": false
+      },
+      {
+        "start": "0x140018e8e",
+        "value": 4,
+        "called": false
+      },
+      {
+        "start": "0x140018e8e",
+        "value": 5,
+        "called": true
+      },
+      {
+        "start": "0x140018e8e",
+        "value": 6,
+        "called": false
+      },
+      {
+        "start": "0x140018e8e",
+        "value": 7,
+        "called": false
+      },
+      {
+        "start": "0x140018e8e",
+        "value": 8,
+        "called": false
+      },
+      {
+        "start": "0x140018e8e",
+        "value": 9,
+        "called": true
+      },
+      {
+        "start": "0x140018e8e",
+        "value": 10,
+        "called": false
+      },
+      {
+        "start": "0x140018e8e",
+        "value": 11,
+        "called": false
+      },
+      {
+        "start": "0x140018e8e",
+        "value": 12,
+        "called": false
+      },
+      {
+        "start": "0x140018e8e",
+        "value": 13,
+        "called": true
+      },
+      {
+        "start": "0x140018e8e",
+        "value": 14,
+        "called": false
+      },
+      {
+        "start": "0x140018e8e",
+        "value": 15,
+        "called": false
+      },
+      {
+        "start": "0x140018e8e",
+        "value": 18446744073709551615,
+        "called": false
+      }
+    ]
+  },
+  "limits": [
+    "153 synthetic cases:48 tag0 bitwise copies,12 reference-count storage states,8 indirect method forwards,85 already-selected configuration tagged-result gates.",
+    "The local-auth power/modulus role follows current Ghidra code/diagnostics. No bigint algorithm or authentication execution/reconstruction; this branch stops at shared-library context.",
+    "Reference-count storage release is observed, not a proven concrete Arc/Rc object type or complete ownership protocol. The allocator is intercepted.",
+    "Configuration gates retain only low-tag1, subtract1 and move the payload before the slot+0x18 tail dispatcher. The concrete error/payload/method identity remains unclassified; synthetic pointers stop before actual dispatch.",
+    "Tag0 copy cases do not classify other converter variants or repair original computed body ownership. All original census/P01 counts/selectors remain unchanged.",
+    "No new AS source defect is established. No compiler, source, Windows/controller/filesystem/auth/network/game or original/rebuilt parity execution."
+  ]
+}

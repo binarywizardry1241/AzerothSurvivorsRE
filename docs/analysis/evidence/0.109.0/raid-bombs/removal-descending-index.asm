@@ -1,0 +1,5 @@
+1459528d6: 4c89f6 mov rsi, r14
+1459528d9: 498b5ef8 mov rbx, qword ptr [r14 - 8]
+1459528dd: 4d8bb42498050000 mov r14, qword ptr [r12 + 0x598]
+1459528e5: 4c39f3 cmp rbx, r14
+1459528e8: 0f83bb0e0000 jae 0x1459537a9

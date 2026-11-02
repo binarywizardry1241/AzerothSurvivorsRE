@@ -1,0 +1,205 @@
+{
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "owners": [
+    {
+      "role": "serialize-meter",
+      "address": "0x1458bff90",
+      "end_exclusive": "0x1458c01aa",
+      "file_offset": "0x58bf390",
+      "byte_count": 538,
+      "sha256": "4968b18a8c207e4d75edd6ab1083a53482d1dd6c634244416a4ac5f32f2b0541",
+      "assembly": "serialize-meter.asm",
+      "assembly_sha256": "977e0be99b299f5cb6f9a17071bd45fff30f6c85e627e37f24011df50aef4e9f",
+      "rea_evidence_id": "ev_e3a1ce86f6a0a71e35ed6cc28bc5acfce2ac9781bcc4e1855e2bc5308dda8175",
+      "rea_input_sha256": "4968b18a8c207e4d75edd6ab1083a53482d1dd6c634244416a4ac5f32f2b0541",
+      "analysis_profile_digest": "1925a27a6c06255b6a9a5ce847a4300cd87983b23d6e15773a95417ec61a000f",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "pseudocode": "serialize-meter.ghidra.c",
+      "pseudocode_sha256": "5a447e48c96f5bf9d73bcee4e912d6df1e69fbcd685df01819dbcb84b2d2de3a"
+    },
+    {
+      "role": "serialize-taken",
+      "address": "0x1458ec300",
+      "end_exclusive": "0x1458ec544",
+      "file_offset": "0x58eb700",
+      "byte_count": 580,
+      "sha256": "53e0716b969145a9a641c3d808d43ea6582711df2a59fc4482a01e13eed518b7",
+      "assembly": "serialize-taken.asm",
+      "assembly_sha256": "d641be9dc50f33865881bd6a2c79ec48f66039d8de2fa7d56499414df57a6c4a"
+    },
+    {
+      "role": "meter-row",
+      "address": "0x1459b8d60",
+      "end_exclusive": "0x1459b8f76",
+      "file_offset": "0x59b8160",
+      "byte_count": 534,
+      "sha256": "e851ecea0f1668438ce650279373561a9574faef0b8b858863da5735e4844b45",
+      "assembly": "meter-row.asm",
+      "assembly_sha256": "9ddfa72eba1ccddc936263e123677961a24e11700630d02c15ba97541e47a838",
+      "rea_evidence_id": "ev_d80dd2f128732fba718f276e6d60dc418045de351545125247db2c9384f29df0",
+      "rea_input_sha256": "2bb2e7b844c1a042fc282f9326e63fbb1665623fdab3f4c8f4d0b7549345ecfb",
+      "analysis_profile_digest": "c38bda409af14b9c312f00cabd791c2dafcf455498ae3810ccb900cc4434af38",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "pseudocode": "meter-row.ghidra.c",
+      "pseudocode_sha256": "1567a5800366958718888916d9ae5d6fdfff777a2a4a0036065dc1ecc2b24295"
+    },
+    {
+      "role": "taken-row",
+      "address": "0x1459b98d0",
+      "end_exclusive": "0x1459b9a83",
+      "file_offset": "0x59b8cd0",
+      "byte_count": 435,
+      "sha256": "a0942a97c1f64e65ef05513a5d6a29dfb8296119255c86f7b9c1d1f8eed07731",
+      "assembly": "taken-row.asm",
+      "assembly_sha256": "42801fe8868281b77aff330086a58bcba6f7f567d2c351e39ee394e6ddf115f8"
+    },
+    {
+      "role": "sanitize-field",
+      "address": "0x1459b9b70",
+      "end_exclusive": "0x1459b9dbc",
+      "file_offset": "0x59b8f70",
+      "byte_count": 588,
+      "sha256": "8e28e913fb880df09f8574f6a388454ee973e95d75a2dceee22b405f795beb93",
+      "assembly": "sanitize-field.asm",
+      "assembly_sha256": "7fa501c90e2ae6a8a78b318cdcdf23e5c4fc6f42e4a93f7c05f3430c8bbe0831"
+    },
+    {
+      "role": "sort-meter-rows",
+      "address": "0x145981c90",
+      "end_exclusive": "0x145981d54",
+      "file_offset": "0x5981090",
+      "byte_count": 196,
+      "sha256": "669a4290900ace33fa603711a90d46022bfef93104a1654cb423fe6e8648aec3",
+      "assembly": "sort-meter-rows.asm",
+      "assembly_sha256": "806f4e7940f987027ab89b35905ee459671c5b9b2de3052339b38c1b95992a71"
+    },
+    {
+      "role": "sort-taken-rows",
+      "address": "0x145981f70",
+      "end_exclusive": "0x14598202a",
+      "file_offset": "0x5981370",
+      "byte_count": 186,
+      "sha256": "dd10b60c7d02b59e4a093301686158ead2c75cd846eab78aa2e1f5ed07a1027a",
+      "assembly": "sort-taken-rows.asm",
+      "assembly_sha256": "ce79781ac68db1f132587450e5d38e6a58c46f0a6b4ae3f13e2d8d21d7753ea5"
+    }
+  ],
+  "literals": [
+    {
+      "role": "meter-format",
+      "address": "0x1471b67b0",
+      "file_offset": "0x71b59b0",
+      "byte_count": 30,
+      "sha256": "08af30e09b7069216b6c48110e1c660083258962b0cca9c9cdc6879f805cdcb9",
+      "hex": "c0012cc120000070012cc5200000700100012cc5200000700400012cc000"
+    },
+    {
+      "role": "taken-format",
+      "address": "0x1471b5b48",
+      "file_offset": "0x71b4d48",
+      "byte_count": 9,
+      "sha256": "b12f81cabe172c2590ca0817dde715202610276eed44460911a40c253207394c",
+      "hex": "c0012cc12000007000"
+    },
+    {
+      "role": "separator",
+      "address": "0x146bbe500",
+      "file_offset": "0x6bbd700",
+      "byte_count": 1,
+      "sha256": "41b805ea7ac014e23556e98bb374702a08344268f92489a02f0880849394a1e4",
+      "hex": "3b"
+    },
+    {
+      "role": "duration-floor",
+      "address": "0x145d6d36c",
+      "file_offset": "0x5d6c56c",
+      "byte_count": 4,
+      "sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c",
+      "hex": "0000803f"
+    },
+    {
+      "role": "sum-initial",
+      "address": "0x145dac578",
+      "file_offset": "0x5dab778",
+      "byte_count": 8,
+      "sha256": "e6ad6c9a3a3b7658c35bacf6553fcb8ffe34387534a648fe18f875b8f7a86ddb",
+      "hex": "0000000000000080"
+    },
+    {
+      "role": "proc-byte-formatter-prefix",
+      "address": "0x145baa8b0",
+      "file_offset": "0x5ba9cb0",
+      "byte_count": 26,
+      "sha256": "5b6db42ed20ea5d0196acf561588eaf30ace42d617e4a891bd3b88c737de890d",
+      "hex": "554883ec40488d6c24400fb609b8030000004189c880f90a7232"
+    },
+    {
+      "role": "area",
+      "address": "0x146e79247",
+      "file_offset": "0x6e78447",
+      "byte_count": 4,
+      "sha256": "4a91ee5f0106c2b35c11c168352f0abfbf4fc86165c62d6fb51b5232dfc692e6",
+      "hex": "61726561"
+    },
+    {
+      "role": "boss-spell",
+      "address": "0x146e7924b",
+      "file_offset": "0x6e7844b",
+      "byte_count": 10,
+      "sha256": "2316f9020ace21ca6e57f25a390df4cbb1b78dfe7d64d52d714e39a5f040fbaa",
+      "hex": "626f7373207370656c6c"
+    },
+    {
+      "role": "boss-melee",
+      "address": "0x146e79255",
+      "file_offset": "0x6e78455",
+      "byte_count": 10,
+      "sha256": "aeb9743c2337f7bd3863522d19b727762cd917b89a92a787230a18e0504798e8",
+      "hex": "626f7373206d656c6565"
+    },
+    {
+      "role": "mob-spell",
+      "address": "0x146e7925f",
+      "file_offset": "0x6e7845f",
+      "byte_count": 9,
+      "sha256": "47706062e5680b38d769cbde65819611ab66a6a71de2d2a6ab5e135b6ff87069",
+      "hex": "6d6f62207370656c6c"
+    },
+    {
+      "role": "mob-melee",
+      "address": "0x146e79268",
+      "file_offset": "0x6e78468",
+      "byte_count": 9,
+      "sha256": "01b4e81d458ea98f84c38eddcacb2bd57cde0de7863e745d517d38b4fe48ce8f",
+      "hex": "6d6f62206d656c6565"
+    },
+    {
+      "role": "elite",
+      "address": "0x146e78b09",
+      "file_offset": "0x6e77d09",
+      "byte_count": 5,
+      "sha256": "1a80b0691b696fe18dbc9e94722bc7bb2325d76078bda9fdd0c1760bd4cd9864",
+      "hex": "656c697465"
+    }
+  ],
+  "round_import": {
+    "iat": "0x145d6a368",
+    "library": "api-ms-win-crt-math-l1-1-0.dll",
+    "name": "round"
+  },
+  "limits": [
+    "Static REA/Ghidra and original Win64 assembly; no game or reconstructed application executed.",
+    "Raw Ghidra import uses the generic GCC ABI; original assembly controls argument bindings and unmapped literals.",
+    "Native incoming accounting is owned by1458f3330; its canonical extract remains with the terminal-totals evidence.",
+    "The retained source tests were not compiled or executed; native/rebuilt runtime and visual parity remain unverified.",
+    "Curated pseudocode normalizes surrounding blank lines and trailing whitespace; native code hashes remain unchanged."
+  ]
+}

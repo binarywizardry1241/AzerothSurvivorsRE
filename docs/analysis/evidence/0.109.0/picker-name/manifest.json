@@ -1,0 +1,266 @@
+{
+  "target": {
+    "version": "0.109.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+    "size_bytes": 140447744
+  },
+  "ranges": [
+    {
+      "role": "content-update",
+      "address": "0x140078c10",
+      "end_exclusive": "0x140079fa6",
+      "file_offset": "0x78010",
+      "byte_count": 5014,
+      "sha256": "75f3e12031ccaf49fe126959e941e1a281c1564897d1bb60d5078b51f2468790",
+      "assembly": "content-update.asm",
+      "assembly_sha256": "cb4e32ee5fb57d2396c2c22af1003c59aa45ff6370d5f6eb728ca37a66c48c08",
+      "rea_evidence_id": "ev_7014ce1817da2012ec1fc77b69c6e3c85fe1dbca87a185b197baa8cc7ace04be",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "e9f8526fb2e11082b431d33abdd498b8b02e0f1e3de9b91de5a0cae6b09880bc",
+      "pseudocode": "content-update.c",
+      "pseudocode_sha256": "1f87784d6a89fb0f4c5186db0da44eabacf8be011abb480a8c8d1605c6b6a499"
+    },
+    {
+      "role": "name-font-size",
+      "address": "0x140067b70",
+      "end_exclusive": "0x140067bfb",
+      "file_offset": "0x66f70",
+      "byte_count": 139,
+      "sha256": "73672b2db799f1efe8a3cc5debc6931e4f29f6c8c4e2a4c1b1b6821584d2766c",
+      "assembly": "name-font-size.asm",
+      "assembly_sha256": "71bf0e75d677459fc715c04a1ed0f9f4e91f1594f37a07240247288e391dbe8e",
+      "rea_evidence_id": "ev_a1882ab9526ca408105aa5bfaebd8f5985468b02f2e818a3ab437a4c470e37a0",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "363bed97c3f87890d599974d431672f24362f441da86061abf6e849daacf08cf",
+      "pseudocode": "name-font-size.c",
+      "pseudocode_sha256": "02d6d9190f26eac31a17b9f2561f29b234a3094cff56730d7c4d58b898dedf37"
+    },
+    {
+      "role": "portrait-node",
+      "address": "0x14024e8a2",
+      "end_exclusive": "0x14024e9a8",
+      "file_offset": "0x24dca2",
+      "byte_count": 262,
+      "sha256": "029477dd9cf73d675a2236f6881722deac45be548048371d229f70c6c37cbf66",
+      "assembly": "portrait-node.asm",
+      "assembly_sha256": "dd72349780c505497ba2ccd6f92bfbb6fb6073ee1da3b4b95d8d2a4d127012ce",
+      "parent_function": "0x14024e4d0"
+    },
+    {
+      "role": "name-and-caret-constructor",
+      "address": "0x14025017d",
+      "end_exclusive": "0x14025044c",
+      "file_offset": "0x24f57d",
+      "byte_count": 719,
+      "sha256": "e17361d961b1d2e173693c668b33e26f404395118b1d61745f2391fe33a5ae2f",
+      "assembly": "name-and-caret-constructor.asm",
+      "assembly_sha256": "90aa0edf4d14de33021bcd4af5e44ded5ab31cd814d4daaae1e691197d33bac1",
+      "parent_function": "0x14024e4d0"
+    }
+  ],
+  "literals": [
+    {
+      "address": "0x145dcd0f0",
+      "file_offset": "0x5dcc0f0",
+      "byte_count": 4,
+      "sha256": "44d37033bfae3f36d1166b3c258bb23ea09b1b13f54454d2278305325b398db4",
+      "hex": "0000b841"
+    },
+    {
+      "address": "0x145dccf50",
+      "file_offset": "0x5dcbf50",
+      "byte_count": 8,
+      "sha256": "824651d498b37e00400dbc9ad7e8b172174eaa1bf057c2a77d7615c4762a63f9",
+      "hex": "000040c18fc2f5bc"
+    },
+    {
+      "address": "0x145d9d2a0",
+      "file_offset": "0x5d9c2a0",
+      "byte_count": 4,
+      "sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c",
+      "hex": "0000803f"
+    },
+    {
+      "address": "0x145deb560",
+      "file_offset": "0x5dea560",
+      "byte_count": 16,
+      "sha256": "e1b03bf298502ed084123f478eb6fd270e1e4b6ab125da94e3e7b078d529cc9f",
+      "hex": "010000000000f8420100000000002843"
+    }
+  ],
+  "native_instruction_cases": 20,
+  "cases": [
+    {
+      "case": "same",
+      "name": "Old",
+      "native_route": "name-only",
+      "text": "Old",
+      "font_size": 23.0,
+      "caret_font_size": 23.0,
+      "snapshot_updated": true
+    },
+    {
+      "case": "renamed",
+      "name": "New",
+      "native_route": "name-only",
+      "text": "New",
+      "font_size": 23.0,
+      "caret_font_size": 23.0,
+      "snapshot_updated": true
+    },
+    {
+      "case": "empty",
+      "name": "",
+      "native_route": "name-only",
+      "text": "",
+      "font_size": 23.0,
+      "caret_font_size": 23.0,
+      "snapshot_updated": true
+    },
+    {
+      "case": "twelve",
+      "name": "AAAAAAAAAAAA",
+      "native_route": "name-only",
+      "text": "AAAAAAAAAAAA",
+      "font_size": 23.0,
+      "caret_font_size": 23.0,
+      "snapshot_updated": true
+    },
+    {
+      "case": "thirteen",
+      "name": "AAAAAAAAAAAAA",
+      "native_route": "name-only",
+      "text": "AAAAAAAAAAAAA",
+      "font_size": 22.310001373291016,
+      "caret_font_size": 22.310001373291016,
+      "snapshot_updated": true
+    },
+    {
+      "case": "twenty",
+      "name": "AAAAAAAAAAAAAAAAAAAA",
+      "native_route": "name-only",
+      "text": "AAAAAAAAAAAAAAAAAAAA",
+      "font_size": 17.479999542236328,
+      "caret_font_size": 17.479999542236328,
+      "snapshot_updated": true
+    },
+    {
+      "case": "utf8-count",
+      "name": "ÅÅÅÅÅÅÅÅÅÅÅÅÅ",
+      "native_route": "name-only",
+      "text": "ÅÅÅÅÅÅÅÅÅÅÅÅÅ",
+      "font_size": 22.310001373291016,
+      "caret_font_size": 22.310001373291016,
+      "snapshot_updated": true
+    },
+    {
+      "case": "long-count",
+      "name": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "native_route": "name-only",
+      "text": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "font_size": 3.6800005435943604,
+      "caret_font_size": 3.6800005435943604,
+      "snapshot_updated": true
+    },
+    {
+      "case": "class",
+      "name": "New",
+      "native_route": "rebuild"
+    },
+    {
+      "case": "race",
+      "name": "New",
+      "native_route": "rebuild"
+    },
+    {
+      "case": "sex",
+      "name": "New",
+      "native_route": "rebuild"
+    },
+    {
+      "case": "skin",
+      "name": "New",
+      "native_route": "rebuild"
+    },
+    {
+      "case": "face",
+      "name": "New",
+      "native_route": "rebuild"
+    },
+    {
+      "case": "hair",
+      "name": "New",
+      "native_route": "rebuild"
+    },
+    {
+      "case": "hair-color",
+      "name": "New",
+      "native_route": "rebuild"
+    },
+    {
+      "case": "facial-hair",
+      "name": "New",
+      "native_route": "rebuild"
+    },
+    {
+      "case": "zone",
+      "name": "New",
+      "native_route": "rebuild"
+    },
+    {
+      "case": "mods",
+      "name": "New",
+      "native_route": "rebuild"
+    },
+    {
+      "case": "entering",
+      "name": "New",
+      "native_route": "rebuild"
+    },
+    {
+      "case": "snapshot-absent",
+      "name": "New",
+      "native_route": "rebuild"
+    }
+  ],
+  "native_entry": "0x1400797f8",
+  "native_stops": {
+    "name-only": "0x140079744",
+    "rebuild": "0x1400792dc"
+  },
+  "host_seams": {
+    "0x145bcd2f0": "String clone: copy the 24-byte record into fixture-owned storage",
+    "0x145bcd280": "String clone_from: copy the fixture-owned name record",
+    "0x145bfa0e1": "memcmp: compare the two supplied fixture byte spans",
+    "0x1400021d0": "deallocate: fixture storage remains mapped",
+    "0x140007bc0": "drop cached Pick: fixture storage remains mapped",
+    "0x145bd5590": "short string character count supplied by UTF-8 decoding",
+    "0x145bd4f70": "long string character count supplied by UTF-8 decoding"
+  },
+  "seam_calls": {
+    "0x145bcd2f0": 54,
+    "0x145bcd280": 8,
+    "0x145bfa0e1": 29,
+    "0x1400021d0": 53,
+    "0x140007bc0": 8,
+    "0x145bd5590": 7,
+    "0x145bd4f70": 1
+  },
+  "source_trace": "Menu input -> in-place picker::sync_name; structural content key excludes name; retained Text and caret font update without changing HeroPreview.",
+  "limits": [
+    "The gate starts after native root/query/Save-change prerequisites; these prerequisites are statically traced, not emulated here.",
+    "One synthetic dense ECS row and one caret child exercise retained Text/TextFont writes; complete Bevy scheduling, sparse rows and stale-entity branches are not runtime validation.",
+    "String/count/allocation/drop operations use the explicit host seams; allocator ownership, native Unicode counting internals and name-input acceptance are outside these observations.",
+    "Raw Ghidra imports omit callees/constants and use generic GCC ABI; original PE Windows x64 instructions govern field/call interpretation.",
+    "No compilation, compiling tests, game/UI/platform launch or original/rebuilt rendering comparison; portrait appearance and full menu parity remain unverified."
+  ]
+}

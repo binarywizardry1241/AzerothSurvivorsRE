@@ -1,0 +1,90 @@
+{
+  "target_sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+  "operations": [
+    {
+      "role": "selector",
+      "evidence_id": "ev_c099bea8ffaf88129f78ec43ef34ec65a1241c43d923ab833d46213e3100ecfd",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_sha256": "767cf78e6b770e0e9e79ca8f111f4fffb2e028ad323f6ad1e0aa8b2647a8ceaa",
+      "input_sha256": "3cb8950f35dd570b8a86d95197ac7e02ac2a6c5c2b948e168a6f0c417a129f3a",
+      "procedure": "0x14588d220",
+      "pseudocode": "selector.c",
+      "pseudocode_sha256": "fdd64c8d1e6649b609368fd4d790affb3f2686ae2f03d50a03f1cc45fc55da52",
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+        "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+        "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+        "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+      ]
+    },
+    {
+      "role": "decision",
+      "evidence_id": "ev_428d48461d7814effcce35397727936e4f806331c0bb88f4268b8d24f8fd6386",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_sha256": "e7d2b0fa679f1b1837b4b61b725c0b8c56708a5f960bf5c6a5498572631f1b2c",
+      "input_sha256": "c6d2fa8837cfa41bdd2ea6d3c952f1abcfcd8105e85d04c4039193735e90a6fa",
+      "procedure": "0x145899e70",
+      "pseudocode": "decision.c",
+      "pseudocode_sha256": "50815d91ba34b313b89da6e06ce33ba8efe64d612a9457fdced73edd8047d281",
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+        "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+        "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+        "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+      ]
+    },
+    {
+      "role": "scheduler",
+      "evidence_id": "ev_d3b1b7b4a27cfa7a437c4e9e735166ba58b84e87a215cdb443793a6023ec55d8",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_sha256": "2e6ba99683e9946a3a8851aceaaa3b2c61f4e2f8320484d21ec946d7e81669bf",
+      "input_sha256": "43791058022da5fa50e284bae7e668855aae3db7fb01d8a5b501e3471a7e6d4b",
+      "procedure": "0x14597a230",
+      "pseudocode": "scheduler.c",
+      "pseudocode_sha256": "9f51bcb8236594d3b5282745c1e606564971226d277adf4bd542d2c0f61ea226",
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+        "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+        "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+        "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+        "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+      ]
+    }
+  ],
+  "limits": [
+    "Exact installed bytes imported into Ghidra12.1.4 at original VAs using ./scripts/rea.",
+    "Raw imports use generic gcc specification; Win64 register arguments, calls and out-of-range data require original-instruction review.",
+    "Selector jump table is outside its raw import; all1600 candidate IDs are separately executed against original mapped PE bytes.",
+    "Scheduler is an explicit fragment inside the larger actor owner; pseudocode does not establish a complete native function or engine/call ownership."
+  ],
+  "pseudocode_normalization": "Trailing whitespace and extra final blank lines removed; raw provider responses remain under ignored runtime."
+}

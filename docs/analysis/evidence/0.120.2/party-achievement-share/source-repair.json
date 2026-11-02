@@ -1,0 +1,81 @@
+{
+  "schema": "as-party-boss-credit-source-v1",
+  "target_sha256": "80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c",
+  "pre_repair_commit": "5799d44b67212fcb2f61c606a3f995bc772033c3",
+  "source_status": {
+    "195": "source_connected_static_checked",
+    "196": "source_connected_static_checked"
+  },
+  "source_sha256": {
+    "crates/azeroth-survivors-re/src/gameplay/coop_publish.rs": "d7e336597c2e7ce2fc1b46707f587d2d0a3a1c3661cccef75f178472bf420838",
+    "crates/azeroth-survivors-re/src/gameplay/coop.rs": "046e398631cd48c74e44ba27e882a3a46791de020e90decab2e3588c1c0689b5",
+    "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs": "f7e3eae119cf986faf766bfc21555581c5de37d3654e7804a8784159de4b96ac",
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs": "a7361cbe9cb697a2e49e6f51f04932968df64ce3e83c9f3de9c31411a7b5db1f",
+    "crates/azeroth-survivors-re/src/gameplay/mod.rs": "6674edb92ef13d2962539aae9d123e766dcdd3942a4096efbeaa8bf57f0958fd",
+    "crates/azeroth-survivors-re/src/account_progression.rs": "f366d213179219ff158842935fbfb942eb475e981de97601b239d474ca56ee8b",
+    "crates/azeroth-survivors-re/src/progression.rs": "3e9ede8b8540c87d29673847e908e615be21b64c70248063c0c8e8263755ba26",
+    "crates/azeroth-survivors-re/src/save/progress.rs": "0872cc06fd14446ff7bd2b822790ce9e5de7a9d2d4f41762ea9d2315c83c97de",
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs": "dace988b09d5390d49ba3d2f1ea129eb40e1a24bf01ba620755c46b94ce1a506",
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs": "ff6dee97ad209eda0b7e3314bc8bdacfc035fe7dd6ae6ecb9b57568ec2915149",
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/shared_healing.rs": "daff564b87f459ae1c11179637bb9494ea1390b7bc03f2dd137f7466f14d91ca"
+  },
+  "consumer_anchors": {
+    "crates/azeroth-survivors-re/src/gameplay/coop_publish.rs": [
+      "game.native_state()",
+      "NativeMessage::State(native.clone())"
+    ],
+    "crates/azeroth-survivors-re/src/gameplay/coop.rs": [
+      "game.apply_replica_native(&value)",
+      "state.checkpoints.admit_terminal_state(&value)",
+      "self.checkpoints.acknowledge_account(&snapshot, entry.roster_guid)"
+    ],
+    "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs": [
+      "&self.killing_blows",
+      "&self.boss_killing_blows",
+      "&self.damaged_by_bosses",
+      "menu.backend_save.apply_run_counts(self.delta_counts)"
+    ],
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs": [
+      "self.boss_kills()",
+      "counts[index].saturating_sub(self.effect_state.terminal_counts[index])",
+      "self.effect_state.terminal_counts = counts"
+    ],
+    "crates/azeroth-survivors-re/src/gameplay/mod.rs": [
+      "game.killing_blows()",
+      "game.boss_killing_blows()",
+      "game.damaged_by_bosses()",
+      "menu.commit_account()",
+      "ordinary_shared_boss_histories_reach_recipient_save_once_with_first_date",
+      "shared_boss_count_grants_boss_hunter_and_saves_only_new_recipient_deltas"
+    ],
+    "crates/azeroth-survivors-re/src/account_progression.rs": [
+      "Some(14) => killing_blows.contains",
+      "boss_killing_blows.iter().any",
+      "damaged_by_bosses.contains"
+    ],
+    "crates/azeroth-survivors-re/src/progression.rs": [
+      "definition, snapshot, killing_blows, boss_killing_blows, damaged_by_bosses"
+    ],
+    "crates/azeroth-survivors-re/src/save/progress.rs": [
+      "(\"bosses\", u64::from(counts[3]))"
+    ]
+  },
+  "rust_syntax_paths": [
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs",
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
+    "crates/azeroth-survivors-re/src/gameplay/mod.rs"
+  ],
+  "authored_unrun_regressions": 5,
+  "checker": {
+    "path": "scripts/check-party-boss-credit-0.120.2.py",
+    "sha256": "81c4a056054c92463e50413bf9a68004f156bb53735f70b1f85fa157d11a3ee1"
+  },
+  "limits": [
+    "Source trace and syntax parsing only; no Rust compilation or execution.",
+    "Retained native windows and query receipts have independent target/byte commitments.",
+    "Build/client/network/file/UI behavior and original/rebuilt parity remain unverified."
+  ],
+  "corrected_retained_regressions": [
+    "shared_killing_blow_reaches_non_killer_save_once_with_first_date"
+  ]
+}

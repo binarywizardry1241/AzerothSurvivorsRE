@@ -1,0 +1,30 @@
+{
+  "target_version": "0.112.0",
+  "target_sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+  "target_executed": false,
+  "queries": [
+    {
+      "role": "initial-request-loop",
+      "evidence_id": "ev_71ecc13781bf857e0a4d50300c35b829c5406420c5132baa1d0544baf6512d51",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "raw_input": {
+        "va": "0x145949ca7",
+        "file_offset": "0x59490a7",
+        "byte_count": 129,
+        "sha256": "f433f3b133627f4d9c8d9560b12071161ccb24a35a6b148baf2474f5508e8429"
+      },
+      "pseudocode": "queue.pseudo.c",
+      "pseudocode_sha256": "2b1494aeafb09949a6f302804428d50405fb8dff39a30dfd551afdac22e50c16",
+      "raw_import_sha256": "f433f3b133627f4d9c8d9560b12071161ccb24a35a6b148baf2474f5508e8429",
+      "limitations": [
+        "Bounded raw import omits PE-wide callers, globals, types and external dispatcher body; assembly and isolated original instructions own exact fields."
+      ],
+      "raw_pseudocode_sha256": "bab1231fac5588f33f6e8835d6699eb18730b549342e866a22ece2928b6d07de",
+      "pseudocode_normalization": "outer blank lines and trailing spaces removed; original response retained in ignored runtime"
+    }
+  ]
+}

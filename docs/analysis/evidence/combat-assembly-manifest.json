@@ -1,0 +1,147 @@
+{
+  "artifact": "AzerothSurvivors/AzerothSurvivors.exe",
+  "artifact_sha256": "719da61487e0ffaf6491a1ca65410a6666028e83271f059692ad46bc4d8af150",
+  "working_directory": "checkout root",
+  "target_executed": false,
+  "tool_version": "Apple LLVM version 17.0.0\n  Optimized build.\n\n\n  Registered Targets:\n    aarch64    - AArch64 (little endian)\n    aarch64_32 - AArch64 (little endian ILP32)\n    aarch64_be - AArch64 (big endian)\n    arm        - ARM\n    arm64      - ARM64 (little endian)\n    arm64_32   - ARM64 (little endian ILP32)\n    armeb      - ARM (big endian)\n    thumb      - Thumb\n    thumbeb    - Thumb (big endian)\n    x86        - 32-bit X86: Pentium-Pro and above\n    x86-64     - 64-bit X86: EM64T and AMD64",
+  "caveat": "Caller excerpts can begin/end inside an instruction. Native semantics require dataflow and REA verification.",
+  "outputs": [
+    {
+      "path": "docs/analysis/evidence/combat-actor-health-subtraction.asm",
+      "invocation": [
+        "objdump",
+        "-d",
+        "--start-address=0x145493960",
+        "--stop-address=0x1454939ad",
+        "AzerothSurvivors/AzerothSurvivors.exe"
+      ],
+      "start_address": "0x145493960",
+      "end_address_exclusive": "0x1454939ad",
+      "size_bytes": 1017,
+      "sha256": "22327057280ebafa9632e8cb6fbd3e01bc5caf4d4054cf5c3eec2bfd325a4a5b"
+    },
+    {
+      "path": "docs/analysis/evidence/combat-actor-death-and-guardian-metadata.asm",
+      "invocation": [
+        "objdump",
+        "-d",
+        "--start-address=0x145494227",
+        "--stop-address=0x1454944df",
+        "AzerothSurvivors/AzerothSurvivors.exe"
+      ],
+      "start_address": "0x145494227",
+      "end_address_exclusive": "0x1454944df",
+      "size_bytes": 7907,
+      "sha256": "aff37b5ebb349e9d31a13df8a15fb42749024e9417aade1a9eb8a3a67f6258ac"
+    },
+    {
+      "path": "docs/analysis/evidence/combat-guardian-counter-and-reward-type.asm",
+      "invocation": [
+        "objdump",
+        "-d",
+        "--start-address=0x1454948fb",
+        "--stop-address=0x145494aa0",
+        "AzerothSurvivors/AzerothSurvivors.exe"
+      ],
+      "start_address": "0x1454948fb",
+      "end_address_exclusive": "0x145494aa0",
+      "size_bytes": 5184,
+      "sha256": "cae2c53589898ff5c63a77e59ecdb08ee9a262d8032de2413cda145c7ca2404b"
+    },
+    {
+      "path": "docs/analysis/evidence/combat-attack-damage-source-and-queue.asm",
+      "invocation": [
+        "objdump",
+        "-d",
+        "--start-address=0x14549aab7",
+        "--stop-address=0x14549ad15",
+        "AzerothSurvivors/AzerothSurvivors.exe"
+      ],
+      "start_address": "0x14549aab7",
+      "end_address_exclusive": "0x14549ad15",
+      "size_bytes": 6597,
+      "sha256": "cfbdf865ed4c4fdbff3965b6514e37c79ccd2b361c845576ea2bc9d9a115a6b3"
+    },
+    {
+      "path": "docs/analysis/evidence/combat-attack-damage-queue-consumer.asm",
+      "invocation": [
+        "objdump",
+        "-d",
+        "--start-address=0x14549c411",
+        "--stop-address=0x14549c533",
+        "AzerothSurvivors/AzerothSurvivors.exe"
+      ],
+      "start_address": "0x14549c411",
+      "end_address_exclusive": "0x14549c533",
+      "size_bytes": 3803,
+      "sha256": "c33e91dea0db75293e04fb133603aa826e87552ae74317985912e1460db0a4cc"
+    },
+    {
+      "path": "docs/analysis/evidence/combat-player-damage-argument.asm",
+      "invocation": [
+        "objdump",
+        "-d",
+        "--start-address=0x145463484",
+        "--stop-address=0x145463567",
+        "AzerothSurvivors/AzerothSurvivors.exe"
+      ],
+      "start_address": "0x145463484",
+      "end_address_exclusive": "0x145463567",
+      "size_bytes": 2986,
+      "sha256": "a54a73d7807ca8397f3c2db58494cf37b1dd69ccce7817e2c247083fed5d5eee"
+    },
+    {
+      "path": "docs/analysis/evidence/combat-player-health-subtraction.asm",
+      "invocation": [
+        "objdump",
+        "-d",
+        "--start-address=0x145463743",
+        "--stop-address=0x14546375b",
+        "AzerothSurvivors/AzerothSurvivors.exe"
+      ],
+      "start_address": "0x145463743",
+      "end_address_exclusive": "0x14546375b",
+      "size_bytes": 327,
+      "sha256": "4227131ec8057045b6b0220fe42812b8204a5eb423b4ae77449a9fdc970afab1"
+    }
+  ],
+  "guardian_math_import_thunk": {
+    "address": "0x14570b233",
+    "bytes": "ff25cf011900",
+    "iat_address": "0x14589b408",
+    "library": "api-ms-win-crt-math-l1-1-0.dll",
+    "imported_function": "powf"
+  },
+  "linked_binary_strings": [
+    {
+      "address": "0x146aa6f28",
+      "size_bytes": 91,
+      "value": "is slain! Its lair yields treasure and its strength, and the other guardians grow stronger."
+    },
+    {
+      "address": "0x146aa5038",
+      "size_bytes": 8,
+      "value": "guardian"
+    },
+    {
+      "address": "0x146aa5729",
+      "size_bytes": 4,
+      "value": "type"
+    }
+  ],
+  "observed_float_constants": [
+    {
+      "address": "0x14589f888",
+      "value": 0.25
+    },
+    {
+      "address": "0x1458a76c0",
+      "value": 0.05000000074505806
+    }
+  ],
+  "interpretation": {
+    "guardian_counter": "Instruction0x145494942 increments state+0x65c in the branch consuming actor guardian metadata; the same branch emits guardian-slain text and a reward typed guardian.",
+    "attack_damage": "Actor+0xf8 is the input damage scalar in a queued attack; the queue consumer passes that float to0x145463440, which applies defenses then subtracts remaining damage from state+0x3f8.",
+    "limits": "Static observations; runtime execution, every modifier and every alternate combat path remain unverified."
+  }
+}

@@ -1,0 +1,482 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.113.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+    "size_bytes": 141932032
+  },
+  "gap_ids": [
+    41
+  ],
+  "lead_ids": [
+    "Q41-D03",
+    "Q41-A01"
+  ],
+  "queue": {
+    "path": "docs/analysis/evidence/0.113.2/unknown-recovery.json",
+    "sha256": "d4148a7bcd2feb746bdd36dd5c88dfbe804b5f608edeafe16792841405ac342b"
+  },
+  "operand_audit": {
+    "path": "docs/analysis/evidence/0.113.2/native-operand-boundaries.json",
+    "sha256": "d6a4d04e1d01ab2fff2cf3cbdc38d12d65fa2baadf162195635c77f68abb3a99"
+  },
+  "selected_leads": [
+    {
+      "file_offset": "0xe9047",
+      "virtual_address": "0x1400e9c47",
+      "byte_count": 8,
+      "sha256": "df2e83d09d41bbf9646ed0053916488219e9e8d367374deaf55c9a8a6a659891",
+      "literal": "talentxp"
+    },
+    {
+      "file_offset": "0x5ea0341",
+      "virtual_address": "0x145ea1941",
+      "byte_count": 11,
+      "sha256": "28043ff911f28a5cb5742f7638363546311225a63eabc365af5356c70d4deb77",
+      "literal": "config.toml"
+    },
+    {
+      "file_offset": "0x60284a1",
+      "virtual_address": "0x146029aa1",
+      "byte_count": 11,
+      "sha256": "28043ff911f28a5cb5742f7638363546311225a63eabc365af5356c70d4deb77",
+      "literal": "config.toml"
+    },
+    {
+      "file_offset": "0x701497e",
+      "virtual_address": "0x147015f7e",
+      "byte_count": 8,
+      "sha256": "df2e83d09d41bbf9646ed0053916488219e9e8d367374deaf55c9a8a6a659891",
+      "literal": "talentxp"
+    },
+    {
+      "file_offset": "0x72fecd5",
+      "virtual_address": "0x1473002d5",
+      "byte_count": 14,
+      "sha256": "d658737f2bc5179691e0be81b61b56643b4b29ff1c31aeca45c6df16597ddfb4",
+      "literal": "characters.txt"
+    }
+  ],
+  "forming_operands": [
+    {
+      "operand_index": 1,
+      "kind": "address-expression",
+      "target": "0x145ea1941",
+      "width": 8,
+      "access": 1,
+      "site": "0x140018733",
+      "instruction_bytes": "488d150792e805",
+      "source_native_owner": "0x140017b60",
+      "program_reference_pair_present": false,
+      "target_region": ".rdata"
+    },
+    {
+      "operand_index": 1,
+      "kind": "address-expression",
+      "target": "0x146029aa1",
+      "width": 8,
+      "access": 1,
+      "site": "0x140f12017",
+      "instruction_bytes": "4c8d0d837a1105",
+      "source_native_owner": "0x140f11f70",
+      "program_reference_pair_present": false,
+      "target_region": ".rdata"
+    },
+    {
+      "operand_index": 1,
+      "kind": "address-expression",
+      "target": "0x146029aa1",
+      "width": 8,
+      "access": 1,
+      "site": "0x140f13d42",
+      "instruction_bytes": "4c8d0d585d1105",
+      "source_native_owner": "0x140f13cf0",
+      "program_reference_pair_present": false,
+      "target_region": ".rdata"
+    },
+    {
+      "operand_index": 1,
+      "kind": "address-expression",
+      "target": "0x147015f7e",
+      "width": 8,
+      "access": 1,
+      "site": "0x14587bac4",
+      "instruction_bytes": "488d05b3a47901",
+      "source_native_owner": "0x14587b0e0",
+      "program_reference_pair_present": false,
+      "target_region": ".rdata"
+    },
+    {
+      "operand_index": 1,
+      "kind": "address-expression",
+      "target": "0x1473002d5",
+      "width": 8,
+      "access": 1,
+      "site": "0x14589895a",
+      "instruction_bytes": "4c8d0d7479a601",
+      "source_native_owner": "0x1458988e0",
+      "program_reference_pair_present": false,
+      "target_region": ".rdata"
+    }
+  ],
+  "instruction_case": {
+    "start": "0x1400e9c45",
+    "end_exclusive": "0x1400e9c58",
+    "sha256": "28eccabcefa0076a1678db945955908a09fdc023af44e8acb9b61d44875c73aa",
+    "observations": [
+      {
+        "evidence_id": "ev_d4902a4ef9640de32e68dd938320921d6b0991b7950d4b403b90dcc73cf5eb3c",
+        "operation": "inspect_native_instruction",
+        "parameters": {
+          "address": "0x1400e9c45"
+        },
+        "result": {
+          "address": "0x1400e9c45",
+          "status": "decoded",
+          "procedure": null,
+          "architecture": "x86:LE:64:default",
+          "mode": "default",
+          "bytes": "48b974616c656e747870",
+          "length": 10,
+          "mnemonic": "MOV",
+          "raw_disassembly": "MOV RCX,0x7078746e656c6174",
+          "operands": [
+            {
+              "index": 0,
+              "raw": "RCX",
+              "provider_type": 512,
+              "components": [
+                {
+                  "kind": "register",
+                  "text": "RCX",
+                  "value": "RCX",
+                  "bit_width": 64
+                }
+              ],
+              "memory_addressing": "unavailable"
+            },
+            {
+              "index": 1,
+              "raw": "0x7078746e656c6174",
+              "provider_type": 16384,
+              "components": [
+                {
+                  "kind": "immediate",
+                  "text": "0x7078746e656c6174",
+                  "value": "0x7078746e656c6174",
+                  "bit_width": 64
+                }
+              ],
+              "memory_addressing": "unavailable"
+            }
+          ],
+          "flow": {
+            "kind": "fallthrough",
+            "conditional": false,
+            "computed": false,
+            "direct_destinations": [],
+            "classification_evidence": [
+              {
+                "source": "ghidra-listing-flow-type",
+                "value": "FALL_THROUGH"
+              }
+            ]
+          },
+          "references": [],
+          "incoming_references": [],
+          "limitations": [
+            "Operand components are Ghidra Listing decoder tokens; effective memory base/index/displacement roles and per-instruction context mode are unavailable. The mode field is the program language variant."
+          ]
+        }
+      },
+      {
+        "evidence_id": "ev_b8ac1523322f27d6a85a9fc77be107b70637a9750acc3ea6d9bddd0f349cf373",
+        "operation": "inspect_native_instruction",
+        "parameters": {
+          "address": "0x1400e9c4f"
+        },
+        "result": {
+          "address": "0x1400e9c4f",
+          "status": "decoded",
+          "procedure": null,
+          "architecture": "x86:LE:64:default",
+          "mode": "default",
+          "bytes": "483908",
+          "length": 3,
+          "mnemonic": "CMP",
+          "raw_disassembly": "CMP qword ptr [RAX],RCX",
+          "operands": [
+            {
+              "index": 0,
+              "raw": "qword ptr [RAX]",
+              "provider_type": 4194304,
+              "components": [
+                {
+                  "kind": "register",
+                  "text": "RAX",
+                  "value": "RAX",
+                  "bit_width": 64
+                }
+              ],
+              "memory_addressing": "unavailable"
+            },
+            {
+              "index": 1,
+              "raw": "RCX",
+              "provider_type": 512,
+              "components": [
+                {
+                  "kind": "register",
+                  "text": "RCX",
+                  "value": "RCX",
+                  "bit_width": 64
+                }
+              ],
+              "memory_addressing": "unavailable"
+            }
+          ],
+          "flow": {
+            "kind": "fallthrough",
+            "conditional": false,
+            "computed": false,
+            "direct_destinations": [],
+            "classification_evidence": [
+              {
+                "source": "ghidra-listing-flow-type",
+                "value": "FALL_THROUGH"
+              }
+            ]
+          },
+          "references": [],
+          "incoming_references": [],
+          "limitations": [
+            "Operand components are Ghidra Listing decoder tokens; effective memory base/index/displacement roles and per-instruction context mode are unavailable. The mode field is the program language variant."
+          ]
+        }
+      },
+      {
+        "evidence_id": "ev_70d57dc41a86464133e6df6f27f6d6089fa0513a985938c0716cbc7a9edcc1e6",
+        "operation": "inspect_native_instruction",
+        "parameters": {
+          "address": "0x1400e9c52"
+        },
+        "result": {
+          "address": "0x1400e9c52",
+          "status": "decoded",
+          "procedure": null,
+          "architecture": "x86:LE:64:default",
+          "mode": "default",
+          "bytes": "0f848e070000",
+          "length": 6,
+          "mnemonic": "JZ",
+          "raw_disassembly": "JZ 0x1400ea3e6",
+          "operands": [
+            {
+              "index": 0,
+              "raw": "0x1400ea3e6",
+              "provider_type": 8256,
+              "components": [
+                {
+                  "kind": "address",
+                  "text": "1400ea3e6",
+                  "value": "0x1400ea3e6",
+                  "bit_width": null
+                }
+              ],
+              "memory_addressing": "unavailable"
+            }
+          ],
+          "flow": {
+            "kind": "jump",
+            "conditional": true,
+            "computed": false,
+            "direct_destinations": [
+              "0x1400ea3e6"
+            ],
+            "classification_evidence": [
+              {
+                "source": "ghidra-listing-flow-type",
+                "value": "CONDITIONAL_JUMP"
+              }
+            ]
+          },
+          "references": [
+            {
+              "target_address": "0x1400ea3e6",
+              "type": "CONDITIONAL_JUMP",
+              "call": false,
+              "jump": true,
+              "indirect": false,
+              "computed": false,
+              "operand_index": 0,
+              "source_address": "0x1400e9c52",
+              "data": false,
+              "read": false,
+              "write": false,
+              "primary": true,
+              "provenance": "ghidra-reference-manager",
+              "source": "default"
+            }
+          ],
+          "incoming_references": [],
+          "limitations": [
+            "Operand components are Ghidra Listing decoder tokens; effective memory base/index/displacement roles and per-instruction context mode are unavailable. The mode field is the program language variant."
+          ]
+        }
+      },
+      {
+        "evidence_id": "ev_fe0083f6ee335f14aead1862fbd0cc5d190ced1eb82debaa46deed8b9b8ea115",
+        "operation": "inspect_native_instruction",
+        "parameters": {
+          "address": "0x1400ea3e6"
+        },
+        "result": {
+          "address": "0x1400ea3e6",
+          "status": "decoded",
+          "procedure": null,
+          "architecture": "x86:LE:64:default",
+          "mode": "default",
+          "bytes": "488b8540020000",
+          "length": 7,
+          "mnemonic": "MOV",
+          "raw_disassembly": "MOV RAX,qword ptr [RBP + 0x240]",
+          "operands": [
+            {
+              "index": 0,
+              "raw": "RAX",
+              "provider_type": 512,
+              "components": [
+                {
+                  "kind": "register",
+                  "text": "RAX",
+                  "value": "RAX",
+                  "bit_width": 64
+                }
+              ],
+              "memory_addressing": "unavailable"
+            },
+            {
+              "index": 1,
+              "raw": "qword ptr [RBP + 0x240]",
+              "provider_type": 4194304,
+              "components": [
+                {
+                  "kind": "register",
+                  "text": "RBP",
+                  "value": "RBP",
+                  "bit_width": 64
+                },
+                {
+                  "kind": "immediate",
+                  "text": "0x240",
+                  "value": "0x240",
+                  "bit_width": 64
+                }
+              ],
+              "memory_addressing": "unavailable"
+            }
+          ],
+          "flow": {
+            "kind": "fallthrough",
+            "conditional": false,
+            "computed": false,
+            "direct_destinations": [],
+            "classification_evidence": [
+              {
+                "source": "ghidra-listing-flow-type",
+                "value": "FALL_THROUGH"
+              }
+            ]
+          },
+          "references": [],
+          "incoming_references": [
+            {
+              "target_address": "0x1400ea3e6",
+              "type": "CONDITIONAL_JUMP",
+              "call": false,
+              "jump": true,
+              "indirect": false,
+              "computed": false,
+              "operand_index": 0,
+              "source_address": "0x1400e9c52",
+              "data": false,
+              "read": false,
+              "write": false,
+              "primary": true,
+              "provenance": "ghidra-reference-manager",
+              "source": "default"
+            }
+          ],
+          "limitations": [
+            "Operand components are Ghidra Listing decoder tokens; effective memory base/index/displacement roles and per-instruction context mode are unavailable. The mode field is the program language variant."
+          ]
+        }
+      }
+    ]
+  },
+  "ghidra": [
+    {
+      "evidence_id": "ev_1c75c25d090695536f2a8bbd424d1d9ed796a8c2bd14550855c821281f317f1e",
+      "procedure": "0x1400e8e30",
+      "profile_digest": "5a719e503ed73c79b324a4a66c664fc505db25ba2f1a484e2911cddc607757d8",
+      "pseudocode_sha256": "2e5406b6147a67f2fb749c9e6448d1d4255c268905c49ac90060903660d23e13"
+    },
+    {
+      "evidence_id": "ev_d4dc1eed37cf7c3d779caae37d82dcdfbb7469637dfaed4b4025a6a020a3fe64",
+      "procedure": "0x140f11f70",
+      "profile_digest": "5a719e503ed73c79b324a4a66c664fc505db25ba2f1a484e2911cddc607757d8",
+      "pseudocode_sha256": "9f5ae1d5a4b505393be3378aec537a94b56e1035c4545b6cb4ab49ba4f77a65f"
+    },
+    {
+      "evidence_id": "ev_b34de17d59c8f1d9467c9e336d926d9112481f68ec0066944a1b7aa827558bb3",
+      "procedure": "0x140f13cf0",
+      "profile_digest": "5a719e503ed73c79b324a4a66c664fc505db25ba2f1a484e2911cddc607757d8",
+      "pseudocode_sha256": "c9975490b2eb822b8f6f2716ed4c3c40845116e34dd27f2752bba1e966065c1e"
+    },
+    {
+      "evidence_id": "ev_ae3e4031fabdfb7398e1305380ebb355f2630f498f676ebdc52af314ebc5f0ce",
+      "procedure": "0x14587b0e0",
+      "profile_digest": "5a719e503ed73c79b324a4a66c664fc505db25ba2f1a484e2911cddc607757d8",
+      "pseudocode_sha256": "5cfc50a8b22f91ea7d0db537735b5f072a2f7156e835f7207fb538b052c64bea"
+    },
+    {
+      "evidence_id": "ev_a180efa2b932f2c0ae82fbeb092785e60ce8cc300a3386774a2313fc060ee540",
+      "procedure": "0x1458988e0",
+      "profile_digest": "5a719e503ed73c79b324a4a66c664fc505db25ba2f1a484e2911cddc607757d8",
+      "pseudocode_sha256": "07ab6fdbdc40b54fa6007b6217b67e5b99c50c364870aa546efce0ea21b7b1ff"
+    }
+  ],
+  "source_connections": [
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
+      "sha256": "fe6d992541341afd4853681e0e539db191aedc096a993d65fdd98caf0fa94f94"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/terminal_view.rs",
+      "sha256": "ef9166cb007570dfb4cd7e1bf18ea2fd3cc49ef5706c0230fe665419c0dc475b"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/save.rs",
+      "sha256": "6736c59db05ce87b156fb25c9ec5983a554e5f6f34ec3b18048796b9d3e2898a"
+    }
+  ],
+  "classifications": {
+    "0x1400e9c47": "Immediate constant in frontend talent-XP message-type comparison; not a save key.",
+    "0x145ea1941": "Existing current legacy-configuration migration special filename; see legacy-config-0.113.2.md.",
+    "0x146029aa1": "Shared engine CVar config reader/writer filename; not a second AS save format.",
+    "0x147015f7e": "Backend talent-XP JSON type value; producer and frontend consumer are paired.",
+    "0x1473002d5": "Default AS character-save filename after WOW_ROGUE_SAVE override selection."
+  },
+  "generator": {
+    "path": "scripts/check-q41-save-key-leads-0.113.2.py",
+    "sha256": "5ab430b129eca21d6b509032a76645137f6c1557f2fad40fde17f9fec048cd56"
+  },
+  "source_change_required": false,
+  "limits": [
+    "Every original five-row candidate is retained. Regex category names are not semantic types; talentxp is a message discriminator.",
+    "Focused frontend body ownership omits computed cases; code-only instruction observations and exact PE bytes classify the selected comparison without assigning enclosing-unwind ownership.",
+    "Existing typed XP snapshot and character-path source connections are traced, not executed. Full current XP arithmetic/parser/UI, worker/alias and OS/save/config behavior remain unverified.",
+    "No original selector/census change, engine reconstruction, compiler, application, real file operation or original/rebuilt parity comparison."
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "generator": {
+    "path": "scripts/review-target-refresh.py",
+    "sha256": "cf6b232cffd848001f069ba09f367fde67d993082c596a3f3d91a386f0fa3bc9"
+  },
+  "current_descriptor": {
+    "file_offset": "0x61ea2ac",
+    "virtual_address": "0x1461eb4ac",
+    "byte_count": 52,
+    "sha256": "d3fb2ddf7db3906f4049a705ddf6afd485b28f620b8291dc5a0a77400d01b845",
+    "zero_padding_bytes": 4
+  },
+  "unaltered_current_descriptor": "accepted",
+  "mutated_in_memory_cases": [
+    {
+      "case": "nonzero_alignment",
+      "result": "rejected"
+    },
+    {
+      "case": "wrong_version_pointer",
+      "result": "rejected"
+    },
+    {
+      "case": "wrong_version_length",
+      "result": "rejected"
+    },
+    {
+      "case": "wrong_platform_pointer",
+      "result": "rejected"
+    },
+    {
+      "case": "wrong_platform_length",
+      "result": "rejected"
+    }
+  ],
+  "limits": "Bounded non-compiling current-input parser checks; mutations exist only in synthetic memory. No installed file modification, target/source application execution or parity proof."
+}

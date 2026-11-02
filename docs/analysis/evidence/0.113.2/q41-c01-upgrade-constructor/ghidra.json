@@ -1,0 +1,223 @@
+{
+  "target_sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+  "provider": {
+    "id": "ghidra",
+    "name": "Ghidra",
+    "version": "12.1.4"
+  },
+  "observed_profile_digest": "532cf661665799c308d08b802dddb0968a0f89b43902ca8e64ea6054c28ac0fe",
+  "observed_seed_sha256": "0f355cdf7f61ffb876550ce7d64984cdd94759b9cde5a35c2e6ab64fb9bbc0e4",
+  "function_body": {
+    "available": true,
+    "provenance": "ghidra-function-body-address-set",
+    "ranges": [
+      {
+        "start": "0x145969bf0",
+        "end": "0x145969ca0"
+      }
+    ],
+    "total_bytes": 177,
+    "span_bytes": 177,
+    "non_contiguous": false,
+    "contains_entry": true
+  },
+  "site_owner": {
+    "query_address": "0x14596b868",
+    "found": false,
+    "procedure": null,
+    "reason": "not_in_procedure"
+  },
+  "branch": {
+    "address": "0x14596a427",
+    "status": "decoded",
+    "procedure": null,
+    "architecture": "x86:LE:64:default",
+    "mode": "default",
+    "bytes": "0f8334140000",
+    "length": 6,
+    "mnemonic": "JNC",
+    "raw_disassembly": "JNC 0x14596b861",
+    "operands": [
+      {
+        "index": 0,
+        "raw": "0x14596b861",
+        "provider_type": 8256,
+        "components": [
+          {
+            "kind": "address",
+            "text": "14596b861",
+            "value": "0x14596b861",
+            "bit_width": null
+          }
+        ],
+        "memory_addressing": "unavailable"
+      }
+    ],
+    "flow": {
+      "kind": "jump",
+      "conditional": true,
+      "computed": false,
+      "direct_destinations": [
+        "0x14596b861"
+      ],
+      "classification_evidence": [
+        {
+          "source": "ghidra-listing-flow-type",
+          "value": "CONDITIONAL_JUMP"
+        }
+      ]
+    },
+    "references": [
+      {
+        "target_address": "0x14596b861",
+        "type": "CONDITIONAL_JUMP",
+        "call": false,
+        "jump": true,
+        "indirect": false,
+        "computed": false,
+        "operand_index": 0,
+        "source_address": "0x14596a427",
+        "data": false,
+        "read": false,
+        "write": false,
+        "primary": true,
+        "provenance": "ghidra-reference-manager",
+        "source": "default"
+      }
+    ],
+    "incoming_references": [],
+    "limitations": [
+      "Operand components are Ghidra Listing decoder tokens; effective memory base/index/displacement roles and per-instruction context mode are unavailable. The mode field is the program language variant."
+    ]
+  },
+  "call": {
+    "address": "0x14596b86f",
+    "status": "decoded",
+    "procedure": null,
+    "architecture": "x86:LE:64:default",
+    "mode": "default",
+    "bytes": "e8af085300",
+    "length": 5,
+    "mnemonic": "CALL",
+    "raw_disassembly": "CALL 0x145e9c123",
+    "operands": [
+      {
+        "index": 0,
+        "raw": "0x145e9c123",
+        "provider_type": 8256,
+        "components": [
+          {
+            "kind": "address",
+            "text": "145e9c123",
+            "value": "0x145e9c123",
+            "bit_width": null
+          }
+        ],
+        "memory_addressing": "unavailable"
+      }
+    ],
+    "flow": {
+      "kind": "call",
+      "conditional": false,
+      "computed": false,
+      "direct_destinations": [
+        "0x145e9c123"
+      ],
+      "classification_evidence": [
+        {
+          "source": "ghidra-listing-flow-type",
+          "value": "UNCONDITIONAL_CALL"
+        }
+      ]
+    },
+    "references": [
+      {
+        "target_address": "0x145e9c123",
+        "type": "UNCONDITIONAL_CALL",
+        "call": true,
+        "jump": false,
+        "indirect": false,
+        "computed": false,
+        "operand_index": 0,
+        "source_address": "0x14596b86f",
+        "data": false,
+        "read": false,
+        "write": false,
+        "primary": true,
+        "provenance": "ghidra-reference-manager",
+        "source": "default"
+      }
+    ],
+    "incoming_references": [],
+    "limitations": [
+      "Operand components are Ghidra Listing decoder tokens; effective memory base/index/displacement roles and per-instruction context mode are unavailable. The mode field is the program language variant."
+    ]
+  },
+  "caller_query": [],
+  "evidence": [
+    {
+      "artifact": "runtime/q41-c01-upgrade-apply/rea-probe/003-owner.json",
+      "artifact_sha256": "55352e14306e7683b00f6dd4ba826bbca419990738e0a8995887cee106f15c6b",
+      "evidence_id": "ev_4a7cfb702ee3037bd3f86afb3aafc09152f69642a23edf42e86d0eaa77b5eb59",
+      "operation": "analyze_function",
+      "parameters": {
+        "procedure": "0x145969bf0"
+      }
+    },
+    {
+      "artifact": "runtime/q41-c01-upgrade-apply/rea-probe/004-instructions.json",
+      "artifact_sha256": "5f4990f46e38b1d5f9e258476db970e158a4ee8b9fa317cef5f496de6ce8476d",
+      "evidence_id": "ev_48363fd9ead22f82ed9ffbe34661f3304d975ad305c2a058ef7b604f68766f4f",
+      "operation": "read_function_instructions",
+      "parameters": {
+        "procedure": "0x145969bf0"
+      }
+    },
+    {
+      "artifact": "runtime/q41-c01-upgrade-apply/rea-probe/005-callers.json",
+      "artifact_sha256": "2883143965612545bd43334b46dacd0efefd166bdd0ba9865cb1ac9bd0922a66",
+      "evidence_id": "ev_714856830cc4e5778d97d8291659db28f88fb2497319b6153c169a174aa0a0b6",
+      "operation": "procedure_callers",
+      "parameters": {
+        "procedure": "0x145969bf0"
+      }
+    },
+    {
+      "artifact": "runtime/q41-c01-upgrade-apply/rea-probe/006-site-owner.json",
+      "artifact_sha256": "72b96d5b32bf6640bc37db214e10279a4516e3cd06043aa3da98e57b976029c4",
+      "evidence_id": "ev_02943fa337de091a884e5a7af805f1672f571344773e25c50c7d8e312dc231aa",
+      "operation": "resolve_containing_procedure",
+      "parameters": {
+        "address": "0x14596b868"
+      }
+    },
+    {
+      "artifact": "runtime/q41-c01-upgrade-apply/rea-probe/007-bounds-predecessor.json",
+      "artifact_sha256": "7ee0565909e125ce28c9f1b21208321627da2a92eba213be8b8283e2fb9a5c3c",
+      "evidence_id": "ev_2efb117343707fbf25c4b547e19a631c5e64729127f6a11b6fc6d8c57248027c",
+      "operation": "inspect_native_instruction",
+      "parameters": {
+        "address": "0x14596a427"
+      }
+    },
+    {
+      "artifact": "runtime/q41-c01-upgrade-apply/rea-probe/008-diagnostic-call.json",
+      "artifact_sha256": "27c1335a07e8a8dd3326591e67f12fb16adc7bba7abac816d8864815ae5030e9",
+      "evidence_id": "ev_e91c339b283f68a820fa6169c4d6b3ca62309932c031027c1e0cd6eae5d03e3e",
+      "operation": "inspect_native_instruction",
+      "parameters": {
+        "address": "0x14596b86f"
+      }
+    }
+  ],
+  "reproduction": {
+    "probe-plan.json": "64a63d506479b9ae73bfea0bedd602e5b1e1f7eef3cf64c6d765e987ef90af0f",
+    "probe-seeds.tsv": "0f355cdf7f61ffb876550ce7d64984cdd94759b9cde5a35c2e6ab64fb9bbc0e4"
+  },
+  "limits": [
+    "The observed profile used the identical retained seeds at their original runtime path. Reproduction from the portable curated plan has a different path/profile digest and new Evidence IDs.",
+    "Ghidra body ownership still ends at the unresolved dispatch; code seeds do not establish a function owner.",
+    "Reference analyzers are disabled; an empty fresh caller query is not evidence of absent callers.",
+    "No target process, build or application ran."
+  ]
+}

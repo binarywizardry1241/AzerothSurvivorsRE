@@ -1,0 +1,157 @@
+{
+  "target_sha256": "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589",
+  "owner_report": "docs/analysis/native-overlays-0.97.2.md",
+  "status": "recovered presentation and supported level controls; not runtime parity",
+  "owners": {
+    "root": "0x1400d6fc0",
+    "layout": "0x140217370",
+    "tile": "0x1400c1d40",
+    "content": "0x140214080",
+    "banish": "0x1400c1500",
+    "prose": "0x145476fe0",
+    "animation": "0x1400d8f40",
+    "reroll_transaction": "0x1454e7820",
+    "banish_transaction": "0x1454e3f50",
+    "skip_transaction": "0x1454de300",
+    "action_slots": "0x1454e3d30"
+  },
+  "canvas": {
+    "width": 1280,
+    "height": 760,
+    "max_scale": 1.35,
+    "z_index": 6000
+  },
+  "layout": {
+    "root_gap": 18,
+    "cards_gap": 26,
+    "card_banish_gap": 10,
+    "footer_gap": 20
+  },
+  "card": {
+    "width": 252,
+    "min_height": 388,
+    "border": 2,
+    "radius": 14,
+    "shadow_y": 18,
+    "shadow_blur": 40,
+    "icon_stage": 108,
+    "icon_margin_top": 40,
+    "icon_size": 84,
+    "icon_glow_size": 150,
+    "icon_glow_alpha": 0.42,
+    "icon_shadow_alpha": 0.55,
+    "icon_shadow_spread": 1,
+    "icon_shadow_blur": 18,
+    "divider_width_percent": 70
+  },
+  "rarity_palette": {
+    "text": [
+      [
+        0.91,
+        0.91,
+        0.91
+      ],
+      [
+        0.118,
+        1,
+        0
+      ],
+      [
+        0.231,
+        0.612,
+        1
+      ],
+      [
+        0.761,
+        0.486,
+        1
+      ],
+      [
+        1,
+        0.604,
+        0.165
+      ]
+    ],
+    "border": [
+      [
+        0.541,
+        0.541,
+        0.541
+      ],
+      [
+        0.075,
+        0.541,
+        0
+      ],
+      [
+        0.039,
+        0.31,
+        0.612
+      ],
+      [
+        0.42,
+        0.122,
+        0.659
+      ],
+      [
+        0.698,
+        0.329,
+        0
+      ]
+    ],
+    "background": [
+      [
+        0.165,
+        0.161,
+        0.145
+      ],
+      [
+        0.067,
+        0.161,
+        0.047
+      ],
+      [
+        0.047,
+        0.11,
+        0.2
+      ],
+      [
+        0.133,
+        0.063,
+        0.227
+      ],
+      [
+        0.227,
+        0.114,
+        0.02
+      ]
+    ]
+  },
+  "unimplemented": [
+    "native animation and hover update",
+    "replacement item tooltip",
+    "current dynamic run description producer",
+    "reward and footer-action transactions"
+  ],
+  "animation": {
+    "opening_duration": 0.55,
+    "stagger_per_index": 0.11,
+    "stagger_base": 0.08,
+    "hover_speed": 14,
+    "hover_scale_add": 0.035,
+    "hover_y": -10,
+    "breathe_frequency": 2.6,
+    "breathe_amplitude": 0.06,
+    "legendary_rim_speed": 2.1,
+    "ray_rotation_speed": 0.1
+  },
+  "footer_rules": {
+    "base_free_rerolls": 3,
+    "paid_initial_cost": 100,
+    "paid_growth": 3,
+    "overflow_cost": "u32::MAX",
+    "skip_base": "max(level>>2,10)",
+    "skip_award": "roundf(base*gold_multiplier)",
+    "banish_upgrade_key_prefix": "rank:"
+  }
+}

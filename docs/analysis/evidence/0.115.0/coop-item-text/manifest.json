@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.115.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+    "size_bytes": 142111232
+  },
+  "target_executed": false,
+  "analysis": "Exact selected PE ranges and durable raw Ghidra decompilation. Raw slices do not recover external call signatures, all jump tables or incoming aliases. Native instruction replays use explicit fixture seams; no process/game/network execution.",
+  "ranges": [
+    {
+      "start": "0x1458d69c0",
+      "end_exclusive": "0x1458d6b28",
+      "file_offset": "0x58d5dc0",
+      "sha256": "51f73cfbc0eaa485449de788b158fb3b9a8430f8daec9af69d1174c94f8c4ff4",
+      "role": "locale-transform",
+      "ghidra_evidence_id": "ev_0276e2d2b57b739e5b4d2188320e2cd265e6ff9aa29017e4dc38c83c166ab8d7",
+      "ghidra_analysis_profile": "e1e8de74b4b7f533c99d9256f3388db08065e2476be5e3240a706be1184b4cb5",
+      "extract": {
+        "path": "docs/analysis/evidence/0.115.0/coop-item-text/locale-transform.c",
+        "sha256": "c7d930a0e679d3a2f363d40eb0d407540ff0d40f1ccbbe8d36dfd2da47233d22"
+      }
+    },
+    {
+      "start": "0x1459b0520",
+      "end_exclusive": "0x1459b09af",
+      "file_offset": "0x59af920",
+      "sha256": "7263b85030f4f967436ed7ae8e0f4234f9ce0a397c521e297c2dc5c49e047d50",
+      "role": "packet-transform",
+      "ghidra_evidence_id": "ev_ba917c4ebb8346eb26d27e54b65c1ff11612a1bfae2266f5fa4833dafef367ac",
+      "ghidra_analysis_profile": "be33ca02cd45a2b30553a415a180aaaf095c371f9406613a96389d076d0dbd59",
+      "extract": {
+        "path": "docs/analysis/evidence/0.115.0/coop-item-text/packet-transform.c",
+        "sha256": "cb5397ba8a1941405b55db06930c3656d79d4884a4f2fce4b49e67cf6242eb51"
+      }
+    },
+    {
+      "start": "0x1459a8f50",
+      "end_exclusive": "0x1459a9152",
+      "file_offset": "0x59a8350",
+      "sha256": "6c5a00946a88d5ac595670084f10a1d47f0830b0d63a8d6eb16ccef30f8f7185",
+      "role": "text-intern",
+      "ghidra_evidence_id": "ev_2e6d0d6c5ee484497b8d9a6ec1ed696fa1ed0e3d0c7b7d9558a4daa57c0648bd",
+      "ghidra_analysis_profile": "17b5d62405815f1c82a886998682bdb06113754a2a9294dea78d17267913717c",
+      "extract": {
+        "path": "docs/analysis/evidence/0.115.0/coop-item-text/text-intern.c",
+        "sha256": "bf5e3db328cf530f4a11860086dc2575fd2c7a37763e5529dd4072041965c185"
+      }
+    },
+    {
+      "start": "0x1459a91f0",
+      "end_exclusive": "0x1459a932c",
+      "file_offset": "0x59a85f0",
+      "sha256": "e92212fe4e417db302e8c67e6f0f71c361d6d6d0b76069c332ad17f1fe9d9d70",
+      "role": "text-lookup",
+      "ghidra_evidence_id": "ev_3416d985f951c2a3e1dfdc0d7de7712b691c4403cb9055a175f23ef1fdadd8f6",
+      "ghidra_analysis_profile": "aea2c3c95572577ee5ced45c7cc16efebe4b8295e0fd01fb04b0ae2405cbfe43",
+      "extract": {
+        "path": "docs/analysis/evidence/0.115.0/coop-item-text/text-lookup.c",
+        "sha256": "f1b71b9e42ecb21e005e513d0d3e33a5501de25104d0d22c8036835e06c97fcd"
+      }
+    },
+    {
+      "start": "0x1459b1d90",
+      "end_exclusive": "0x1459b40a1",
+      "file_offset": "0x59b1190",
+      "sha256": "afc0daec160d4f3d57857fa939a07cfeb9389d42436b860e90d397d128e18b62",
+      "role": "item-serializer",
+      "ghidra_evidence_id": "ev_922a2ac2994f631d51acdd590cb812a445e55ea68085bba25a4eb85bced061cc",
+      "ghidra_analysis_profile": "ed98f21e9f708f97cb7c2a3d95715674a50ce13e4f1c6680ee0e92a1c553d0b4",
+      "extract": {
+        "path": "docs/analysis/evidence/0.115.0/coop-item-text/item-serializer.c",
+        "sha256": "274959bbfac8cfdc6e85cf43778c2ba457733c7e60674e9829f6c28b97c67514"
+      }
+    },
+    {
+      "role": "remote-query-locale-scope",
+      "start": "0x1458dca70",
+      "end_exclusive": "0x1458dcbcc",
+      "file_offset": "0x58dbe70",
+      "sha256": "8877e21c2929b3d0184f155e5bc0cba1219ee456726d440ff6dfd608a78db91a"
+    },
+    {
+      "role": "temporary-publish-locale-scope",
+      "start": "0x1458dc460",
+      "end_exclusive": "0x1458dc724",
+      "file_offset": "0x58db860",
+      "sha256": "b4f8debb5e500a16983df1937d8a7f08ce9fae9d00c615e8ccb8bcf12579cec0"
+    },
+    {
+      "role": "item-query-dispatch",
+      "start": "0x145873da2",
+      "end_exclusive": "0x145873f1f",
+      "file_offset": "0x58731a2",
+      "sha256": "8a58e0e3d212d52c3fb5300e087bf19fe4710ed791b8b9c8ad3d844138ca8e68"
+    },
+    {
+      "role": "item-query-response",
+      "start": "0x145874547",
+      "end_exclusive": "0x1458750b0",
+      "file_offset": "0x5873947",
+      "sha256": "57c251d87b4c8a0950066f80340d80e5add01f483289122c0f55ea490a189525"
+    },
+    {
+      "role": "guest-forward-gate",
+      "start": "0x145883bc6",
+      "end_exclusive": "0x145883bff",
+      "file_offset": "0x5882fc6",
+      "sha256": "9b40dae87a79c33c27bea475dafabe098a654a0cada3a67fee9eb628192c3a34"
+    },
+    {
+      "role": "engine-item-description-callback",
+      "start": "0x140c41810",
+      "end_exclusive": "0x140c41a0c",
+      "file_offset": "0xc40c10",
+      "sha256": "cefd1b8fdd2c29fd16aad7c9980f41d2f6b73424c00cbdadef7222b86b5022e7"
+    },
+    {
+      "start": "0x145873da2",
+      "end_exclusive": "0x145876652",
+      "file_offset": "0x58731a2",
+      "sha256": "28bd386103e6b8543d79b1405eb0f4272e3820dbd731e87ff20d593949eaade0",
+      "role": "item-query-branch",
+      "ghidra_evidence_id": "ev_325b0e5910b3b5eed1595741bdeb211dff37432bf635bafe857cc92adb6f27ea",
+      "ghidra_analysis_profile": "3aaa68b47c8f037bc4306d9998711e7242e7109cc991330a14dfe4d03170f304",
+      "extract": {
+        "path": "docs/analysis/evidence/0.115.0/coop-item-text/item-query-branch.c",
+        "sha256": "bea0bef57e038b43b0667f6fab0334cbbea4927a07b08fc33ccc392d2c197f00"
+      }
+    },
+    {
+      "role": "global-temporary-entry-allocation",
+      "start": "0x14597ffe0",
+      "end_exclusive": "0x14598000c",
+      "file_offset": "0x597f3e0",
+      "sha256": "c09972094108fc88d649767520c577bd63d3695cbfa01054d401409f70a21584"
+    },
+    {
+      "role": "temporary-entry-identity",
+      "start": "0x14597fd83",
+      "end_exclusive": "0x14597fe68",
+      "file_offset": "0x597f183",
+      "sha256": "9f71564a64cfa327710ef88f577c2d877aa74bd25e93429428f1adf6c5669af1"
+    },
+    {
+      "role": "cached-dynamic-entry-resolver",
+      "start": "0x1458eac30",
+      "end_exclusive": "0x1458eb0dd",
+      "file_offset": "0x58ea030",
+      "sha256": "bc76e5e8a8ebf6fbfa75551cf371ebeb54e8367721d013ed9d992e721a44fd05"
+    },
+    {
+      "role": "item-query-dispatch-table",
+      "start": "0x14702e47c",
+      "end_exclusive": "0x14702e4d4",
+      "file_offset": "0x702d07c",
+      "sha256": "07ade6a59f0c966061e0b41b631b8d40219098a18fb5bb9c6593db819b2843d1"
+    }
+  ],
+  "canonical_references": [
+    "docs/analysis/evidence/0.115.0/coop-bootstrap/manifest.json",
+    "docs/analysis/evidence/0.115.0/coop-replication/manifest.json",
+    "docs/analysis/evidence/0.115.0/amulet-names.json"
+  ],
+  "contracts": {
+    "recipient_query_owner": "0x1458dca70",
+    "request_dispatch_owner": "0x145873b00",
+    "item_opcode": "0x56",
+    "response_opcode": "0x58",
+    "request_jump_table": "0x14702e47c",
+    "item_branch": "0x145873da2",
+    "ordinary_constructor": "0x1458cfdf0",
+    "dynamic_resolver": "0x14586e360",
+    "cached_dynamic_lookup": "0x1458eac30",
+    "temporary_publisher": "0x14597e730",
+    "registry_globals": [
+      "0x1482147e0",
+      "0x1482147e8",
+      "0x1482147f0"
+    ],
+    "first_text_spell": "0xf00000",
+    "text_intern": "0x1459a8f50",
+    "text_lookup": "0x1459a91f0",
+    "chat_transformer_opcodes": [
+      "0x96"
+    ],
+    "chat_transformer_types": [
+      "0xc",
+      "0x5a"
+    ],
+    "unresolved": "No recovered per-recipient guest population/transfer of the process-local synthetic item-text registry. Known guest engine delivery forwards opcode/body unchanged; tag11 is independently owned spell-display metadata. Do not invent another carrier or claim mixed-language effect-text parity.",
+    "entry_counter": "0x148217140",
+    "entry_allocation": "900000 + fetch_add_u32(1) % 100000000"
+  }
+}

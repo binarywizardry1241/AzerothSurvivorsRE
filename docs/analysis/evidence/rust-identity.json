@@ -1,0 +1,70 @@
+{
+  "evidence_id": "ev_17243367f3b1f9ac667ed4a1ebb19e11cd8aedefc0b50043a4ab49d10c21d583",
+  "subject": {
+    "name": "AzerothSurvivors.exe",
+    "digest": {
+      "sha256": "719da61487e0ffaf6491a1ca65410a6666028e83271f059692ad46bc4d8af150"
+    },
+    "local_path": "AzerothSurvivors/AzerothSurvivors.exe",
+    "format": "pe",
+    "architecture": "x86_64"
+  },
+  "provider": {
+    "id": "rust-auditable",
+    "name": "REA Rust dependency reader",
+    "version": "1"
+  },
+  "analysis_profile": null,
+  "predicate_type": "rea.analysis",
+  "operation": "inspect_rust_binary",
+  "parameters": {
+    "path": "AzerothSurvivors/AzerothSurvivors.exe"
+  },
+  "raw_result": null,
+  "normalized_result": {
+    "artifact": {
+      "path": "AzerothSurvivors/AzerothSurvivors.exe",
+      "sha256": "719da61487e0ffaf6491a1ca65410a6666028e83271f059692ad46bc4d8af150",
+      "bytes": 130840064
+    },
+    "format": "pe",
+    "architecture": "amd64",
+    "bits": 64,
+    "byte_order": "little",
+    "auditable_metadata": null,
+    "rustc_commit": {
+      "evidence_kind": "inferred",
+      "hashes": [
+        {
+          "hash": "48a229ceaefd4985c50990b14116b6d856af0985",
+          "file_offset": 92916836
+        }
+      ]
+    },
+    "limitations": [
+      "Embedded dependency metadata is file content. It does not authenticate package names, versions, sources, or the compiler that produced the binary.",
+      "Only the .dep-v0 dependency section and read-only compiler path strings are inspected. Functions, types, and runtime behavior are not recovered.",
+      "Resource guards bound the selected file to 256 MiB, a dependency section to 1 MiB, inflated JSON to the smaller of 8 MiB and 64 times the section size, and the complete report to 8 MiB. Package and dependency counts are admitted against that output budget before schema cloning, graph objects, or reverse-edge allocation.",
+      "No .dep-v0 section was found. Absence of .dep-v0 does not mean the binary has no dependencies.",
+      "The rustc commit hash is inferred from a /rustc/<40-hex>/ path in read-only data. It does not by itself prove which compiler produced the binary."
+    ]
+  },
+  "confidence": "observed",
+  "authority": "shipped-artifact",
+  "environment": null,
+  "limitations": [
+    "Embedded dependency metadata is file content. It does not authenticate package names, versions, sources, or the compiler that produced the binary.",
+    "Only the .dep-v0 dependency section and read-only compiler path strings are inspected. Functions, types, and runtime behavior are not recovered.",
+    "Resource guards bound the selected file to 256 MiB, a dependency section to 1 MiB, inflated JSON to the smaller of 8 MiB and 64 times the section size, and the complete report to 8 MiB. Package and dependency counts are admitted against that output budget before schema cloning, graph objects, or reverse-edge allocation.",
+    "No .dep-v0 section was found. Absence of .dep-v0 does not mean the binary has no dependencies.",
+    "The rustc commit hash is inferred from a /rustc/<40-hex>/ path in read-only data. It does not by itself prove which compiler produced the binary."
+  ],
+  "relationship_coverage": null,
+  "locations": [
+    {
+      "kind": "artifact-path",
+      "path": "AzerothSurvivors/AzerothSurvivors.exe"
+    }
+  ],
+  "evidence_links": []
+}

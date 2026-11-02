@@ -1,0 +1,101 @@
+{
+  "target": {
+    "version": "0.109.0",
+    "sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0"
+  },
+  "owners": {
+    "focus": {
+      "start": "0x14096fa20",
+      "end_exclusive": "0x14096fd1a",
+      "byte_count": 762,
+      "sha256": "7e846e973ee8127daba19ea0e2a549d52509a2ac8a155c9d5fe0840294ca6a12"
+    },
+    "callback": {
+      "start": "0x1409705b0",
+      "end_exclusive": "0x140970ba3",
+      "byte_count": 1523,
+      "sha256": "48b339af4e2b05420611b47b7b1d375344dac4bd879a7768a0c407f4c065617d"
+    },
+    "watch": {
+      "start": "0x14097b520",
+      "end_exclusive": "0x14097b98e",
+      "byte_count": 1134,
+      "sha256": "bc76b48d9d285f20171e4c25523961da657fbdfa925b981d02e2c86d3cabc4fb"
+    },
+    "handoff": {
+      "start": "0x14097bb30",
+      "end_exclusive": "0x14097bcd6",
+      "byte_count": 422,
+      "sha256": "b321ce48635a2a38e6ba24e890c57e5d742fafa689697efffd0bdb2a3cf54fd2"
+    },
+    "master": {
+      "start": "0x1409a73f0",
+      "end_exclusive": "0x1409a76b8",
+      "byte_count": 712,
+      "sha256": "8a8ca6846a9d0055d3217d0a90d1743f4220d051a694b794eab65ce05b390ba0"
+    }
+  },
+  "gluexml": {
+    "archive": {
+      "path": "installed-game/Data/patch.MPQ",
+      "size_bytes": 1340199244,
+      "sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf"
+    },
+    "member": "Interface\\GlueXML\\GlueParent.lua",
+    "file_pos": 339284563,
+    "compressed_bytes": 10517,
+    "uncompressed_bytes": 10517,
+    "flags": 2147483648,
+    "sha256": "78e8976a42de4ca5015555031abb54c48dd6f08eb424d42ddbacce732b9e6ccd"
+  },
+  "ghidra": [
+    {
+      "operation": {
+        "procedure": "0x14096fa20"
+      },
+      "evidence_id": "ev_09d3f6aef5c18e55f6a69d055c0aa77bf19231948abaa982886dacbe3dcfe83c",
+      "analysis_profile": "1de3c809c6062182e169d241a93b8191a3a2b3f80dce5d1f3482c43d9265954b",
+      "subject_sha256": "759e77831237228b53eb7b3cd3d5d9c1ae998ccc2ab77830b9498815e4ef9fe0"
+    },
+    {
+      "operation": {
+        "procedure": "0x1409705b0"
+      },
+      "evidence_id": "ev_aec36d74d984ae38ba3adb9759ae28f5662bf6a0cfeb51e264799bce482e05f9",
+      "analysis_profile": "1de3c809c6062182e169d241a93b8191a3a2b3f80dce5d1f3482c43d9265954b",
+      "subject_sha256": "759e77831237228b53eb7b3cd3d5d9c1ae998ccc2ab77830b9498815e4ef9fe0"
+    },
+    {
+      "operation": {
+        "procedure": "0x14097b520"
+      },
+      "evidence_id": "ev_9a4563fd2f412dbbcc115d70de06192b5ade805dc8443383ddfc82c8fceea7c8",
+      "analysis_profile": "1de3c809c6062182e169d241a93b8191a3a2b3f80dce5d1f3482c43d9265954b",
+      "subject_sha256": "759e77831237228b53eb7b3cd3d5d9c1ae998ccc2ab77830b9498815e4ef9fe0"
+    },
+    {
+      "operation": {
+        "procedure": "0x14097bb30"
+      },
+      "evidence_id": "ev_dbbf920e52f46793a3d0b8922a6b31fa6d83f4ff4e50200585ff1d8249c84d33",
+      "analysis_profile": "1de3c809c6062182e169d241a93b8191a3a2b3f80dce5d1f3482c43d9265954b",
+      "subject_sha256": "759e77831237228b53eb7b3cd3d5d9c1ae998ccc2ab77830b9498815e4ef9fe0"
+    },
+    {
+      "operation": {
+        "procedure": "0x1409a73f0"
+      },
+      "evidence_id": "ev_36078bdde456b19d72427a25e8fa481e4a95157987def3bedbc4ec2e261bee26",
+      "analysis_profile": "1de3c809c6062182e169d241a93b8191a3a2b3f80dce5d1f3482c43d9265954b",
+      "subject_sha256": "759e77831237228b53eb7b3cd3d5d9c1ae998ccc2ab77830b9498815e4ef9fe0"
+    }
+  ],
+  "numeric_helpers": "docs/analysis/evidence/0.109.0/options-values/manifest.json",
+  "native_cases": 115,
+  "limits": [
+    "Original callback plus lexical/f32 parser execute; host seams provide Unicode trim for declared ASCII fixtures, scratch allocation/free and memcpy. Current gain uses a separately rounded CRT log10f seam.",
+    "Current load-drain predicates, cached cover state, changed tick, triple-buffer stop command and fading flag execute; optional tracing is disabled through its real current level gate.",
+    "Current focus/master full owners are hash-bound and Ghidra-reviewed; these checks do not execute their complete ECS window/resource query paths or device/backend code.",
+    "No compilation, Rust execution, MPQ decoder playback, audio device, game, actual Bevy scheduling or original/rebuilt comparison."
+  ]
+}

@@ -1,0 +1,466 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.120.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c",
+    "size_bytes": 145484288
+  },
+  "finding_ids": [
+    41,
+    64,
+    65
+  ],
+  "inputs": [
+    {
+      "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+      "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
+    },
+    {
+      "path": "docs/analysis/evidence/0.120.2/native-switch-proposals.json",
+      "sha256": "6006202e6d53499898483cd073dcb3adf247d287a4c4a0ee9927bbd002fac6c0"
+    },
+    {
+      "path": "docs/analysis/evidence/0.120.2/template-query-input/static-check.json",
+      "sha256": "b17d6d2391d21e4660d15a6676f332bd7e57c4139a78ce9219d7e085deaf6344"
+    },
+    {
+      "path": "docs/analysis/evidence/0.113.2/creature-queries.json",
+      "sha256": "ff67854948551302e40f3f316b23bc4b524ad2b323d8010684e951b9c30c641b"
+    },
+    {
+      "path": "docs/analysis/evidence/0.117.0/white-devilsaur-integration.json",
+      "sha256": "80766fe349394767770069f33e430eea6db29051eaf745dd8ab7ca2e6b9b9153"
+    }
+  ],
+  "source_first": {
+    "paths": [
+      {
+        "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+        "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+        "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+        "sha256": "902df96b931c108e8b5385052c3a8e6c996e0a376d7f30e8a21536bf1bf08ce5"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+        "sha256": "6674edb92ef13d2962539aae9d123e766dcdd3942a4096efbeaa8bf57f0958fd"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/guardians/catalog.rs",
+        "sha256": "ddeabbea847034f1bf5cad019ee8a25a1f9a2faa7c8bb5f94b02ae14a28bff37"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/assets/menu.json",
+        "sha256": "8206d03870b234952945ed57af33bf6a76e748ac0a6387b0c2f2dbe6bb1994d3"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/coop/engine_packets.rs",
+        "sha256": "8b72bef3c1a245265c6dde0f25e6b15e1e2aefb37e02e1ce32717761d4a97414"
+      },
+      {
+        "path": "crates/benilla-app/src/local_client/requests.rs",
+        "sha256": "2b883a00a5efa264565f4813be1a32cf9cc12741c02da6f2e840025dc96b6e2f"
+      },
+      {
+        "path": "crates/benilla-app/src/names.rs",
+        "sha256": "ed7c5f408c34d7d6b60dbe2d6a8fb460305b2ad7ea2a23735573e71e0a44428a"
+      },
+      {
+        "path": "crates/benilla-protocol/src/messages/parse.rs",
+        "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+      },
+      {
+        "path": "crates/benilla-protocol/src/events/decode.rs",
+        "sha256": "af2015df4a69a79eb1222806a1904345581556fe7e566bc78f8cd11072cfc2c1"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/assets/locales/en.json",
+        "sha256": "49dbafdd10f35922c5d55cb3390ac4b2d968da2f876eb39319890a6c376c88b4"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/assets/locales/pl.json",
+        "sha256": "74ac709dc784ddf28252cfc81ffb17bfed9eb2e9ef43ff78062a62dc319f5544"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/assets/locales/cs.json",
+        "sha256": "c1c2b806593ae0ca2e17fddc60d1b09e264b8c073fe10721ed712865fc46703e"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/assets/locales/de.json",
+        "sha256": "543d4043bd6d489434d5e9561250f9fb0d1475c464e35be0835ad2736242dc1d"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/assets/locales/pt.json",
+        "sha256": "b352f2e1abc241eae71daedff406f14fd908573cfd191c43fb73fbe2a2ef3b7e"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/assets/locales/es.json",
+        "sha256": "b564873e3bb6e7dc9775b92aa81ffb67624ed830857011598cca10469e216e4f"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/assets/locales/fr.json",
+        "sha256": "f0e443a427a2e4b0ffc2f737aa91ca5881a2aadda9d4e7afa66c6a0d2a103fbf"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/assets/locales/ro.json",
+        "sha256": "f99eb1b94067ea8c5601a7f969396fc9e97c4df624437374edb09b63e17ae86c"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/assets/locales/tr.json",
+        "sha256": "203d4a8ed0acc1d1f77244ff06359b2e6a58a67a5ff1e53e522d0dadb4446b22"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/assets/locales/ru.json",
+        "sha256": "8b42832ea40b26829ac6b6c59ee140c62c65e435cec652608d236a7b7c3d6efb"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/assets/locales/uk.json",
+        "sha256": "08fefa5b820ffc484c72c5440f596467c5a0cfd61c3713336b6514cec42d8fae"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/assets/locales/zh.json",
+        "sha256": "e81c73583803f972a8f24608a09eea8bc04934a3fd33285de2c1cb78b5e4bee7"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/assets/locales/ja.json",
+        "sha256": "913dbf5302013972616ef1a13fa2bb33adc3cc8da25a67d890bb154c4c886ea3"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/assets/locales/ko.json",
+        "sha256": "00663758ba7a231103ebc89fc4568bb75b49371ee2dce3df59401b55aaa87826"
+      }
+    ],
+    "conclusion": "The existing finite AS CreatureQuery source was traced through shared enemy/boss catalogs,44specials, actual co-op/member-locale and local request adapters, native wire encoder/reused parser, CreatureName decode and NameCache/event consumers. The current complete original-instruction template/locale comparison identifies no missing metadata source operation; the separately repaired201 prefix reader owns malformed/truncated request admission.",
+    "observations": [
+      {
+        "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+        "fragments": [
+          "pub(crate) fn creature_query",
+          "super::query_packets::decode",
+          "enemy.raw_2c",
+          "boss.raw_3c",
+          "entry & 0x7fff_ffff",
+          "(9530, \"White Devilsaur\"",
+          "(9626, \"\", \"\", \"\", 8, 16622)"
+        ]
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+        "fragments": [
+          "benilla_protocol::messages::parse_server",
+          "benilla_protocol::decode",
+          "coop::engine_packets::encode"
+        ]
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+        "fragments": [
+          "opcode::CMSG_CREATURE_QUERY =>",
+          "let entry = template_entry(&packet.payload);",
+          "client::creature_queries::creature_query(entry, &member_locale)"
+        ]
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+        "fragments": [
+          "LocalClientRequest::CreatureQuery { entry }",
+          "client::creature_queries::creature_query(entry, &locale)"
+        ]
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/coop/engine_packets.rs",
+        "fragments": [
+          "SessionEvent::CreatureName {",
+          "*entry | 0x8000_0000",
+          "op::SMSG_CREATURE_QUERY_RESPONSE"
+        ]
+      },
+      {
+        "path": "crates/benilla-app/src/local_client/requests.rs",
+        "fragments": [
+          "ClientCommand::CreatureQuery { entry, .. }",
+          "Some(LocalClientRequest::CreatureQuery { entry })"
+        ]
+      },
+      {
+        "path": "crates/benilla-app/src/names.rs",
+        "fragments": [
+          "fn on_creature_name(",
+          "mut names: ResMut<NameCache>",
+          "id: id::UNIT_NAME_UPDATE",
+          "id: id::UNIT_CLASSIFICATION_CHANGED"
+        ]
+      },
+      {
+        "path": "crates/benilla-protocol/src/messages/parse.rs",
+        "fragments": [
+          "opcode::SMSG_CREATURE_QUERY_RESPONSE",
+          "entry & 0x7FFF_FFFF",
+          "let name = read_cstring",
+          "let display_id = read_u32_le"
+        ]
+      },
+      {
+        "path": "crates/benilla-protocol/src/events/decode.rs",
+        "fragments": [
+          "ServerPacket::CreatureQueryResponse { entry, info }",
+          "Some(i.subname).filter(|s| !s.is_empty())"
+        ]
+      }
+    ]
+  },
+  "tools": [
+    {
+      "path": "scripts/check-creature-query-tables-0.120.2.py",
+      "sha256": "d72891ad60a4c31297b7e49edc804633644b1916ace7ca3bdc005b1c94076015"
+    },
+    {
+      "path": "scripts/creature_query_native_0_120_2.py",
+      "sha256": "108e0ae481b1cd1b4c4864848af31dd2f20dd326d39f0eeea19248da7245c044"
+    },
+    {
+      "path": "scripts/equipment_native.py",
+      "sha256": "67f4dbd290445b7a466ed90b8a06741719326a7a225e6144da214380d825c6c2"
+    },
+    {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+    },
+    {
+      "path": "scripts/coverage_common.py",
+      "sha256": "aec38237b60b6982f17e0e93c6f6ba111100956fb389d44b397dbd5a6bdb1903"
+    },
+    {
+      "path": "scripts/script_sources.py",
+      "sha256": "bc4cdf0f6c4a0805b7052d06c28acc48e644484d08decb79a97168cec6458cfa"
+    }
+  ],
+  "native_check": {
+    "path": "docs/analysis/evidence/0.120.2/creature-query-tables/native-check.json",
+    "sha256": "27845e3a79201ba94db2e55716148b4d6264f9b48a32bf389b5c52ea63cc82e9"
+  },
+  "native_tool_versions": {
+    "unicorn": "2.1.4",
+    "capstone": "5.0.7"
+  },
+  "queries": [
+    {
+      "evidence_id": "ev_36d5d4f05f8280bac7805ea9943ccbd40f0780f4b8f09d5dcffac13f937a8bcb",
+      "operation": "procedure_pseudo_code",
+      "procedure": "0x145b01eb0",
+      "plan": {
+        "path": "runtime/0.120.2/creature-query-recovery/query/plan.json",
+        "sha256": "213934660b849d11a0abf60d2633417a65e4968fb56bccaaba30bf4211f2a0b3"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/creature-query-recovery/query/journal.json",
+        "sha256": "2d426b571b2377a7cba1e5e314dfdf0c08354e7d92eb858994d481aab45b325d"
+      },
+      "result": {
+        "path": "runtime/0.120.2/creature-query-recovery/query/results/437445ebf203d8565601846060578b1978e93bbad049df5b0ea1ebddad9180fb.json",
+        "sha256": "b70f563e01ccd2f13832d671753aade88e385497a63f94fdb7d2e670bcb80b6d"
+      },
+      "required_contract_dependencies": [
+        {
+          "evidence_id": "ev_5579a12e3caee4f3c353ca98f5b56b4da6de6e39cb60dd6bfdba699bfcb24d1f",
+          "procedure": "0x145a7dc80",
+          "result": {
+            "path": "runtime/0.120.2/creature-query-tables/query/results/5c88d6a837cf709b90e3ecf437119255e6df5380883d52277c59d42c6294e384.json",
+            "sha256": "a5e7a66b056ac3c2913c4739f9f0971cf1c8f95aafa323e6db422185e08a4018"
+          }
+        },
+        {
+          "evidence_id": "ev_c0c0ab4c5ab26511d7b2cb8492350f9778b3f89d73e25e2f82640ad764fe71e8",
+          "procedure": "0x145a7e610",
+          "result": {
+            "path": "runtime/0.120.2/creature-query-tables/query/results/a4929a62496999bd6556423727f4661bef0ad9065f88b33ac0844c7a9987bd3d-c71f46494fac43ef.json",
+            "sha256": "953cd004063715abfeb4fe0e1c8a6db5b802c17a99f8bd18e017244a931b952a"
+          }
+        },
+        {
+          "evidence_id": "ev_63973b0b44a0ae4f21f75e92bee7db3aa0bed24b837c0985fd1c005e84611145",
+          "procedure": "0x145a7e790",
+          "result": {
+            "path": "runtime/0.120.2/creature-query-tables/query/results/29516b3751061f8dc953dee8af5191fdf53b2541f91c6cff672bd805cc7d76f3-f6f1b5d7eda86faa.json",
+            "sha256": "a31ec897b507c2317c5f9d175a9e08d85a1b4bd540f19a73c777462af3e59daf"
+          }
+        },
+        {
+          "evidence_id": "ev_9d2011548495aac047427867c90630f8edfc82c258ee339e8f61504bf3adc86d",
+          "procedure": "0x145a7e980",
+          "result": {
+            "path": "runtime/0.120.2/creature-query-tables/query/results/6f34ba4394aff15022fc7c8680650e212824da50bcd633e83eaeea3a87c1c1c9-496942abb52e5fcb.json",
+            "sha256": "3bd31bde3af9f181ba9e4bf331f539e5cc5ad54562f2a2c1f99190b7ed4bd5eb"
+          }
+        },
+        {
+          "evidence_id": "ev_e72cbc2eb43be1a6cf4d4d0ca0c5c962bf1afbe520a5a61e889f663e7fde75c4",
+          "procedure": "0x145bff050",
+          "result": {
+            "path": "runtime/0.120.2/creature-query-tables/query/results/92b1c4393f40a3a6fa98139a7636ad325de82d33a938ef6f9cf696b6bb138f50-241ee4d7f37fe28b.json",
+            "sha256": "e13b3331fd927e948bcdddc9b7ebe9c4fb471b7ea33a99d757c76f12abc53a55"
+          }
+        },
+        {
+          "evidence_id": "ev_0fd354cd17c803b4147489355b42ba23b6a432cef388650c6d0faa933b12223a",
+          "procedure": "0x145c47150",
+          "result": {
+            "path": "runtime/0.120.2/creature-query-tables/query/results/ad6f91a464d24f455ce463a5cc26522717f1534ab9d71a507aa92fcbe9af2178-05503680eb2e3e05.json",
+            "sha256": "b126d6c9f974f63a9ececd722d003df34a0946cf546b8c2cd99f1b1a34cd46ae"
+          }
+        },
+        {
+          "evidence_id": "ev_c6d4dc44352ae163707e0352c6e702f65e66089e365a5d19394f9b95221a1bc6",
+          "procedure": "0x145c42d30",
+          "result": {
+            "path": "runtime/0.120.2/creature-query-tables/query/results/b56da763b1da44fd476dbb67a1de7ea0bfa9621beaf0a959fca03906c201a2a4-03423c85d140e21b.json",
+            "sha256": "0096146473c989d9197637b10b0f249532a6d386835152096195d343db150281"
+          }
+        }
+      ],
+      "original_instruction_check": {
+        "result": {
+          "path": "docs/analysis/evidence/0.120.2/creature-query-tables/native-check.json",
+          "sha256": "27845e3a79201ba94db2e55716148b4d6264f9b48a32bf389b5c52ea63cc82e9"
+        },
+        "scope": "Complete finite template output/source join and13 exact guarded-cell selections under normal opcode0x60 entry."
+      }
+    },
+    {
+      "evidence_id": "ev_5579a12e3caee4f3c353ca98f5b56b4da6de6e39cb60dd6bfdba699bfcb24d1f",
+      "operation": "procedure_pseudo_code",
+      "procedure": "0x145a7dc80",
+      "plan": {
+        "path": "runtime/0.120.2/creature-query-tables/query/plan.json",
+        "sha256": "118aaf4e9f4657eb89eb22f237f4b67bc3c39e7e81dd6888bc6ff6b93a461f1d"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/creature-query-tables/query/journal.json",
+        "sha256": "cfd5d837f44c73dde0f7b50d2bc85b83bebe1c8efab4bc7183da403856ea7705"
+      },
+      "result": {
+        "path": "runtime/0.120.2/creature-query-tables/query/results/5c88d6a837cf709b90e3ecf437119255e6df5380883d52277c59d42c6294e384.json",
+        "sha256": "a5e7a66b056ac3c2913c4739f9f0971cf1c8f95aafa323e6db422185e08a4018"
+      }
+    },
+    {
+      "evidence_id": "ev_c0c0ab4c5ab26511d7b2cb8492350f9778b3f89d73e25e2f82640ad764fe71e8",
+      "operation": "procedure_pseudo_code",
+      "procedure": "0x145a7e610",
+      "plan": {
+        "path": "runtime/0.120.2/creature-query-tables/query/plan.json",
+        "sha256": "118aaf4e9f4657eb89eb22f237f4b67bc3c39e7e81dd6888bc6ff6b93a461f1d"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/creature-query-tables/query/journal.json",
+        "sha256": "cfd5d837f44c73dde0f7b50d2bc85b83bebe1c8efab4bc7183da403856ea7705"
+      },
+      "result": {
+        "path": "runtime/0.120.2/creature-query-tables/query/results/a4929a62496999bd6556423727f4661bef0ad9065f88b33ac0844c7a9987bd3d-c71f46494fac43ef.json",
+        "sha256": "953cd004063715abfeb4fe0e1c8a6db5b802c17a99f8bd18e017244a931b952a"
+      }
+    },
+    {
+      "evidence_id": "ev_63973b0b44a0ae4f21f75e92bee7db3aa0bed24b837c0985fd1c005e84611145",
+      "operation": "procedure_pseudo_code",
+      "procedure": "0x145a7e790",
+      "plan": {
+        "path": "runtime/0.120.2/creature-query-tables/query/plan.json",
+        "sha256": "118aaf4e9f4657eb89eb22f237f4b67bc3c39e7e81dd6888bc6ff6b93a461f1d"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/creature-query-tables/query/journal.json",
+        "sha256": "cfd5d837f44c73dde0f7b50d2bc85b83bebe1c8efab4bc7183da403856ea7705"
+      },
+      "result": {
+        "path": "runtime/0.120.2/creature-query-tables/query/results/29516b3751061f8dc953dee8af5191fdf53b2541f91c6cff672bd805cc7d76f3-f6f1b5d7eda86faa.json",
+        "sha256": "a31ec897b507c2317c5f9d175a9e08d85a1b4bd540f19a73c777462af3e59daf"
+      }
+    },
+    {
+      "evidence_id": "ev_9d2011548495aac047427867c90630f8edfc82c258ee339e8f61504bf3adc86d",
+      "operation": "procedure_pseudo_code",
+      "procedure": "0x145a7e980",
+      "plan": {
+        "path": "runtime/0.120.2/creature-query-tables/query/plan.json",
+        "sha256": "118aaf4e9f4657eb89eb22f237f4b67bc3c39e7e81dd6888bc6ff6b93a461f1d"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/creature-query-tables/query/journal.json",
+        "sha256": "cfd5d837f44c73dde0f7b50d2bc85b83bebe1c8efab4bc7183da403856ea7705"
+      },
+      "result": {
+        "path": "runtime/0.120.2/creature-query-tables/query/results/6f34ba4394aff15022fc7c8680650e212824da50bcd633e83eaeea3a87c1c1c9-496942abb52e5fcb.json",
+        "sha256": "3bd31bde3af9f181ba9e4bf331f539e5cc5ad54562f2a2c1f99190b7ed4bd5eb"
+      }
+    },
+    {
+      "evidence_id": "ev_e72cbc2eb43be1a6cf4d4d0ca0c5c962bf1afbe520a5a61e889f663e7fde75c4",
+      "operation": "procedure_pseudo_code",
+      "procedure": "0x145bff050",
+      "plan": {
+        "path": "runtime/0.120.2/creature-query-tables/query/plan.json",
+        "sha256": "118aaf4e9f4657eb89eb22f237f4b67bc3c39e7e81dd6888bc6ff6b93a461f1d"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/creature-query-tables/query/journal.json",
+        "sha256": "cfd5d837f44c73dde0f7b50d2bc85b83bebe1c8efab4bc7183da403856ea7705"
+      },
+      "result": {
+        "path": "runtime/0.120.2/creature-query-tables/query/results/92b1c4393f40a3a6fa98139a7636ad325de82d33a938ef6f9cf696b6bb138f50-241ee4d7f37fe28b.json",
+        "sha256": "e13b3331fd927e948bcdddc9b7ebe9c4fb471b7ea33a99d757c76f12abc53a55"
+      }
+    },
+    {
+      "evidence_id": "ev_0fd354cd17c803b4147489355b42ba23b6a432cef388650c6d0faa933b12223a",
+      "operation": "procedure_pseudo_code",
+      "procedure": "0x145c47150",
+      "plan": {
+        "path": "runtime/0.120.2/creature-query-tables/query/plan.json",
+        "sha256": "118aaf4e9f4657eb89eb22f237f4b67bc3c39e7e81dd6888bc6ff6b93a461f1d"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/creature-query-tables/query/journal.json",
+        "sha256": "cfd5d837f44c73dde0f7b50d2bc85b83bebe1c8efab4bc7183da403856ea7705"
+      },
+      "result": {
+        "path": "runtime/0.120.2/creature-query-tables/query/results/ad6f91a464d24f455ce463a5cc26522717f1534ab9d71a507aa92fcbe9af2178-05503680eb2e3e05.json",
+        "sha256": "b126d6c9f974f63a9ececd722d003df34a0946cf546b8c2cd99f1b1a34cd46ae"
+      }
+    },
+    {
+      "evidence_id": "ev_c6d4dc44352ae163707e0352c6e702f65e66089e365a5d19394f9b95221a1bc6",
+      "operation": "procedure_pseudo_code",
+      "procedure": "0x145c42d30",
+      "plan": {
+        "path": "runtime/0.120.2/creature-query-tables/query/plan.json",
+        "sha256": "118aaf4e9f4657eb89eb22f237f4b67bc3c39e7e81dd6888bc6ff6b93a461f1d"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/creature-query-tables/query/journal.json",
+        "sha256": "cfd5d837f44c73dde0f7b50d2bc85b83bebe1c8efab4bc7183da403856ea7705"
+      },
+      "result": {
+        "path": "runtime/0.120.2/creature-query-tables/query/results/b56da763b1da44fd476dbb67a1de7ea0bfa9621beaf0a959fca03906c201a2a4-03423c85d140e21b.json",
+        "sha256": "0096146473c989d9197637b10b0f249532a6d386835152096195d343db150281"
+      }
+    }
+  ],
+  "conclusion": "All13 retained table questions are the existing finite CreatureQuery entry/template metadata path.252 native hits, all14locale maps and raw fallback agree with live source; no independent missing AS metadata operation is proved. New prefix behavior is separately repaired under201. Current applicability of this bounded contract is unchanged; no whole containing-function, full engine protocol or runtime/parity claim follows.",
+  "limits": [
+    "Original query owner/name getters/empty-template leaf/hit and miss serializers execute with synthetic host/packet buffers.",
+    "Allocation, growth, memory copy/comparison, Rust formatting and locale-map lookup are explicit seams; sender is intercepted.",
+    "Source records and live connection guards are parsed, not compiled or executed. Existing authored Rust tests remain unrun.",
+    "u16 sweep covers its domain; five extra u32 values are samples. The separately owned template-query-input proof owns prefix/GUID cases.",
+    "Each table lists actually reached destinations/entries; original immutable cells/guards remain separately byte-verified.",
+    "No client/game/server/network or parity comparison occurred.",
+    "Only the normal opcode0x60 interface is covered; fabricated interior entry/register aliases are not certified.",
+    "Unselected command cases in the shared owner remain outside this review. Each current table cell is checked;36 cells skipped by earlier normal-entry cases all share an observed miss destination."
+  ]
+}

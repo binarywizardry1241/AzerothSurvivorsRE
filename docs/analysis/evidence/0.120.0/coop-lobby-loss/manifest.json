@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "gap_ids": [
+    184,
+    183,
+    185
+  ],
+  "target_sha256": "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08",
+  "native_evidence_ref": "docs/analysis/evidence/0.120.0/coop-correspondence/manifest.json",
+  "native_cases": 128,
+  "native_instructions": 2684,
+  "rust_syntax_files": 2,
+  "authored_uncompiled_unrun_regressions": 5,
+  "files": [
+    {
+      "path": "crates/azeroth-survivors-re/src/coop_directory.rs",
+      "sha256": "f9ef40e3404152155a3a10b17ed994e8a605d0da047de69aacced10b340c34c0"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop/session.rs",
+      "sha256": "c0154f57bdf407c6f84bbbd30c733d5ca24d1f48d38b2b10eaeab34d8da0e0ab"
+    },
+    {
+      "path": "scripts/check-coop-lobby-loss-0.120.0.py",
+      "sha256": "8dce1bb1dfa64c1a4c6f8c5f247708786106592b36046f2a648f5a993023e216"
+    },
+    {
+      "path": "scripts/check-coop-heartbeat-0.120.0.py",
+      "sha256": "d8b36629607a44ee83e7e2e7f7b88c6339bf3f8f975c89d28e2ea9834a853fe6"
+    },
+    {
+      "path": "docs/analysis/evidence/0.120.0/coop-correspondence/manifest.json",
+      "sha256": "c4bd217a7f40ff0067bd6ea2942783935dd876d9b306edd2984d5e1991a92f37"
+    },
+    {
+      "path": "docs/analysis/evidence/0.120.0/coop-lobby-loss/check.json",
+      "sha256": "a5f8bfd2b6438ef72a8509e11d8c17f300974f30863f14efd92df06f75838f66"
+    }
+  ],
+  "limits": [
+    "Ordinary mutex and transport-state callbacks are explicit seams. Frame replay stops before cleanup; heartbeat starts after the shared deadline and observes construction/send callbacks.",
+    "Source guards and syntax parsing do not execute Rust. No compilation, client/game/network/server execution or parity validation."
+  ],
+  "compilation": false,
+  "rust_executed": false,
+  "game_network_server_executed": false,
+  "parity_verified": false
+}

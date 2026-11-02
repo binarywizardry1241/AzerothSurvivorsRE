@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.123.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
+    "size_bytes": 146228736
+  },
+  "gap_ids": [
+    282
+  ],
+  "target_executed": false,
+  "queries": [
+    {
+      "role": "dispatch",
+      "procedure": "0x145ae4870",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-270-0.123.0/dispatch/input.bin",
+        "sha256": "dd4fdb8496656c2f95fd55edacc3986df5b97d7a4f7987944cefb5037245d461"
+      },
+      "slice_virtual_address": "0x145ae4870",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-270-0.123.0/dispatch/plan.json",
+        "sha256": "0e630ac4afe080d342e41c409692e6a1f028b0f78c0dc0a714aac144753f0a8e"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-270-0.123.0/dispatch/query/journal.json",
+        "sha256": "fce73dfdef33b187e52e9b435e6c08d7fa0778a7564d95e980d3c8fbff76b14f"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-270-0.123.0/dispatch/query/results/17ca6fef67d6af84d948fee877acab987d3640fb48f3dfe2afcd0e7efd96d2db.json",
+        "sha256": "c71f248775acd78f6363be4482f7c49b110b58315b51a460ff41e2ad08bc4c58"
+      },
+      "evidence_id": "ev_85cb46151c83f8b420914c3a3273c36874c0bc55f318131513741756f249c445",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "fd04e07c67f8e14a7ac6c6bf281ab2956eb1a437b692917795c85091259094fd",
+      "normalized_sha256": "f958c59c14b8753ac82e48abf52b448154f83a9f82d70c7884ba46c47c59d28b",
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.123.0/coop-correction/dispatch.c",
+        "sha256": "f958c59c14b8753ac82e48abf52b448154f83a9f82d70c7884ba46c47c59d28b"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
+        "raw_sha256": "dd4fdb8496656c2f95fd55edacc3986df5b97d7a4f7987944cefb5037245d461",
+        "virtual_address": "0x145ae4870",
+        "file_offset": "0x5ae3c70",
+        "byte_count": 934,
+        "result": "runtime/analysis/tasks/fixgap-270-0.123.0/dispatch/query/results/17ca6fef67d6af84d948fee877acab987d3640fb48f3dfe2afcd0e7efd96d2db.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "role": "closure",
+      "procedure": "0x145bb79f0",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-270-0.123.0/closure/input.bin",
+        "sha256": "5735a2fff889fe451db3971966557d8b6da4bc6b8a2ba989446193bd579f1e14"
+      },
+      "slice_virtual_address": "0x145bb79f0",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-270-0.123.0/closure/plan.json",
+        "sha256": "dd54732a37d886bf4dee697efd6586d83f135115a733e353d5b6996194b58b47"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-270-0.123.0/closure/query/journal.json",
+        "sha256": "c0d55fd30dcb1e284a1a0c61c167bd028d389ca13d754f33b1d2b3dd0c73255b"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-270-0.123.0/closure/query/results/af02153c40873e8fe049a63d6bb28b0566f5181d947d9a0e2df86f2e768205da.json",
+        "sha256": "cd5ff5b8478290730668e90fa8e938c2498589fd3a89cb9498e69cd79390024f"
+      },
+      "evidence_id": "ev_7b0b25101c0354243acb3034c80ccbac886f77b14e16ead209adfe7d3b21b84e",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "115b7820bd16b78c05fbf5e88da953215c4cc74b2a8ef480f88f2ed4dfbdde18",
+      "normalized_sha256": "392f5566359c1d352dee6b234031cc10ac28f0096bedb072a237a1afbd1677a9",
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.123.0/coop-correction/closure.c",
+        "sha256": "392f5566359c1d352dee6b234031cc10ac28f0096bedb072a237a1afbd1677a9"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
+        "raw_sha256": "5735a2fff889fe451db3971966557d8b6da4bc6b8a2ba989446193bd579f1e14",
+        "virtual_address": "0x145bb79f0",
+        "file_offset": "0x5bb6df0",
+        "byte_count": 401,
+        "result": "runtime/analysis/tasks/fixgap-270-0.123.0/closure/query/results/af02153c40873e8fe049a63d6bb28b0566f5181d947d9a0e2df86f2e768205da.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "role": "floor",
+      "procedure": "0x145b0a060",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-270-0.123.0/floor/input.bin",
+        "sha256": "026693e48cdc387c01c005ca189420a24959760634dd42d38e2f21939467d26e"
+      },
+      "slice_virtual_address": "0x145b0a060",
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-270-0.123.0/floor/plan.json",
+        "sha256": "700661677f96119f49f94e1f4b49e761ce3ddecc060c1346c17284be53e47261"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-270-0.123.0/floor/query/journal.json",
+        "sha256": "89c4a4f3536be8cbd977398b292f8c4e1b523709a3626992a4f560b83a023d25"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-270-0.123.0/floor/query/results/f5f8dcc69977572823a825fcb851486581d3cd6841a5ba1b1edadbc531d19427.json",
+        "sha256": "cda5537fbc23e66757fc68244427b497776c6f97ea7284b6cbebb7270c08aa9e"
+      },
+      "evidence_id": "ev_491a27d171bddcd268d7526d12f4ad377e66bd3bada2d954e2d81ff5c9136f61",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "859e75e7108bf4a277a11ccb0c5c35534c5a96cc3aa7393cb45868106e28029e",
+      "normalized_sha256": "a107d095c7a2eb0daad35f8a5dc7a9bcb7c9a77996bf233db1d9c851056a50b0",
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.123.0/coop-correction/floor.c",
+        "sha256": "a107d095c7a2eb0daad35f8a5dc7a9bcb7c9a77996bf233db1d9c851056a50b0"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
+        "raw_sha256": "026693e48cdc387c01c005ca189420a24959760634dd42d38e2f21939467d26e",
+        "virtual_address": "0x145b0a060",
+        "file_offset": "0x5b09460",
+        "byte_count": 3251,
+        "result": "runtime/analysis/tasks/fixgap-270-0.123.0/floor/query/results/f5f8dcc69977572823a825fcb851486581d3cd6841a5ba1b1edadbc531d19427.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    }
+  ],
+  "native_ranges": [
+    {
+      "role": "remote-context-lifetime",
+      "virtual_address": "0x145ae4adb",
+      "end_exclusive": "0x145ae4b4c",
+      "file_offset": "0x5ae3edb",
+      "byte_count": 113,
+      "sha256": "b553445e90be700c85ddf7144922d43b7651466b0da0f71d780f2f0f517f281c",
+      "bytes_hex": "488b8598130000488986500c0000488b8ef0020000488b96f8020000488b85901300000f10000f1048100f298da00900000f2985900900004889b5b0090000c685af130000014c8d8590090000e8c32e0d00904188c6c685af130000014889f1e8e07b01009048c786500c000000000000"
+    },
+    {
+      "role": "movement-start-gate",
+      "virtual_address": "0x145b0abf5",
+      "end_exclusive": "0x145b0ac31",
+      "file_offset": "0x5b09ff5",
+      "byte_count": 60,
+      "sha256": "84b456b86f11409585f4a364a9aa22684ff9c962dbcf2e2f43d1b26d992269b1",
+      "bytes_hex": "80be570d0000007533410f5ccb0f59c9f30f16c1f30f58c10f2e052c2f6b00761b4883be500c000000751180be530d00000075084889f1e8cfdf0000"
+    },
+    {
+      "role": "start-phase-publication",
+      "virtual_address": "0x145b18c74",
+      "end_exclusive": "0x145b18c7e",
+      "file_offset": "0x5b18074",
+      "byte_count": 10,
+      "sha256": "f11f17bb184a96388781b4fdb308d801c0b6af3e54729dfe703ed7e7ebe74d5c",
+      "bytes_hex": "4989ccc681570d000001"
+    }
+  ],
+  "native_data": [
+    {
+      "role": "start-displacement-squared",
+      "virtual_address": "0x1461bdb40",
+      "file_offset": "0x61bc540",
+      "byte_count": 4,
+      "sha256": "08e21eeb808e4a7f66f95c58d9fc585c31f50045de5d8828c81d7a6d97efb559",
+      "bytes_hex": "0ad7233d"
+    }
+  ],
+  "contract": {
+    "remote_selector": "Nonzero assigned actor selector is stored at Game+c50 throughout remote floor callback and cleared afterward.",
+    "start_gate": "phase0 and squared XY displacement > current0.04 and actor selector0 and restriction byte0",
+    "start_phase": "145b18c77 writes Game+d57=1"
+  }
+}

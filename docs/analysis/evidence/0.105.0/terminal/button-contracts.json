@@ -1,0 +1,120 @@
+{
+  "target": "AzerothSurvivors/AzerothSurvivors-0.105.0.exe",
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "ranges": [
+    {
+      "role": "button-style",
+      "virtual_address": "0x140012180",
+      "end_exclusive": "0x140012325",
+      "file_offset": "0x11580",
+      "byte_count": 421,
+      "sha256": "73cd6f4ecec26bc0b6ee81eeb1801cb67da034eac344667994954d5f8ae2b4d7",
+      "provider": "ghidra",
+      "rea_evidence_id": "ev_fa9d2bdb4f0a9d8f0f4e1fb1ed4eebc1c3f60ac9b2c7f41c1b2c79b6533a8d86",
+      "assembly": "button-style.asm"
+    },
+    {
+      "role": "button-bundle",
+      "virtual_address": "0x140191ec0",
+      "end_exclusive": "0x140192097",
+      "file_offset": "0x1912c0",
+      "byte_count": 471,
+      "sha256": "3bd5958167e508dfb812d2c31136ab0044d71d657ddfee73f71030ed8b644cc4",
+      "provider": "ghidra",
+      "rea_evidence_id": "ev_a43ce84b0e34e928002da3c97b2e9355f2c1a01b2ee0ae3be5916134dcac9d18",
+      "assembly": "button-bundle.asm"
+    }
+  ],
+  "source_owner": "crates/azeroth-survivors-re/src/gameplay/terminal_view.rs::button",
+  "constructor": {
+    "owner": "0x1401af460..0x1401b167a",
+    "owner_manifest": "presentation-manifest.json",
+    "style_call": "0x1401b12b4",
+    "spawn_call": "0x1401b1442",
+    "bundle_bytes": 528,
+    "bundle_type": "(bevy_ecs::hierarchy::ChildOf, (wenilla_rogue_app::screens::hud::EndAction, bevy_ui::focus::Interaction, bevy_ui::ui_node::Node, (bevy_ui::ui_node::BorderColor, bevy_ui::gradients::BackgroundGradient), bevy_ui::ui_node::BoxShadow))",
+    "initial_interaction": "None (byte 2)",
+    "bundle_fields": {
+      "ChildOf": 0,
+      "Node": 8,
+      "BorderColor": 392,
+      "BackgroundGradient": 472,
+      "EndAction": 496,
+      "Interaction": 497,
+      "BoxShadow": 504
+    },
+    "type_literal": {
+      "role": "bundle-type",
+      "virtual_address": "0x145dc5b62",
+      "end_exclusive": "0x145dc5c49",
+      "file_offset": "0x5dc4d62",
+      "byte_count": 231,
+      "sha256": "5c0dd9067559b05aa59f48693cc2e2a17a84286de2bce614cde8f092e7ae4234"
+    },
+    "type_reference": {
+      "role": "bundle-type-reference",
+      "virtual_address": "0x14033755c",
+      "end_exclusive": "0x140337575",
+      "file_offset": "0x33695c",
+      "byte_count": 25,
+      "sha256": "a68e7a299bee1612462eabcbce914cb51e34e62f5ae75bde87a8af626789fa73"
+    },
+    "bounded_negative": "This tuple contains neither picker::Hover nor the Bevy Button marker. The terminal constructor does not queue a separate Hover insertion. This does not rule out an external/global visual updater selecting Interaction."
+  },
+  "default_style": {
+    "border_color": {
+      "bevy_color_variant": 0,
+      "srgba": [
+        0.6899999976158142,
+        0.5410000085830688,
+        0.22699999809265137,
+        1.0
+      ]
+    },
+    "gradient": {
+      "angle_bits": "40490fdb",
+      "angle": "PI",
+      "interpolation_tag": 0,
+      "stops_linear_rgba": [
+        [
+          0.23100000619888306,
+          0.050999999046325684,
+          0.0430000014603138,
+          1.0
+        ],
+        [
+          0.10199999809265137,
+          0.019999999552965164,
+          0.019999999552965164,
+          1.0
+        ]
+      ],
+      "conversion": "Native helper144c67100 exports raw RGBA; stops are stored as LinearRgba"
+    },
+    "shadow": {
+      "rgba": [
+        0,
+        0,
+        0,
+        0.85
+      ],
+      "offset_px": [
+        0,
+        2
+      ],
+      "spread_px": 0,
+      "blur_px": 6
+    },
+    "source_status": "Existing source default border, two raw linear gradient stops and shadow match; unchanged."
+  },
+  "checks": {
+    "kind": "Exact PE hash, two unchanged function hashes/unwind boundary, embedded tuple/type-reference bytes, two call targets, bundle size, initial Interaction and border literal",
+    "result": "passed",
+    "script": "scripts/recover-terminal-buttons-0.105.0.py"
+  },
+  "limitations": [
+    "Global Interaction/gradient/border/shadow query registration and terminal hover/press visual consumer remain unresolved. No interpolation, active color or hover shadow has been inferred or implemented from these constructors.",
+    "Raw Ghidra slices use generic compiler types and omit callees/data; original PE instructions and literals corroborate fields.",
+    "No source compilation, compiling tests, game launch or original/rebuilt interaction/visual comparison."
+  ]
+}

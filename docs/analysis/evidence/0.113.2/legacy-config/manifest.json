@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.113.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+    "size_bytes": 141932032
+  },
+  "target_executed": false,
+  "functions": [
+    {
+      "role": "migration",
+      "start": "0x140017b60",
+      "end_exclusive": "0x140019564",
+      "file_offset": "0x16f60",
+      "sha256": "43fb2960d696c3e842e4cf9eff0970d62ce783c083a35a9d5fd5e4dc3814f891",
+      "evidence_id": "ev_3cd012b375600f52c6c5d28c2e12b7ae815c53124b62c90f66b220eced7c9867",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "profile_digest": "20376f200a3fe4b860eeba0aa2e7b217d020a0c49b9dee0b6724e606d1754075",
+      "input_sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+      "input_kind": "full PE",
+      "extract": "migration.c"
+    },
+    {
+      "role": "collector",
+      "start": "0x140017550",
+      "end_exclusive": "0x14001790b",
+      "file_offset": "0x16950",
+      "sha256": "ab6ceed209022ead4c3182b19017528b2dc590c0c652e072c8c9842718ce8846",
+      "evidence_id": "ev_048deba7de9cf03933224c689b7b90e55431b6efff5b39fde0d89e85ad150136",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "profile_digest": "9b9dacfe394696ecf4a6094894e281bf7b563ee714564d7aafd52c69fc6988ea",
+      "input_sha256": "cccb802ed71a3b6f32afa5362304dd64a44eb166faa4bc0a5fcce8a5df7f1307",
+      "input_kind": "exact raw range; external code/data unmapped",
+      "extract": "collector.c"
+    },
+    {
+      "role": "roots",
+      "start": "0x1400657b0",
+      "end_exclusive": "0x140065915",
+      "file_offset": "0x64bb0",
+      "sha256": "c30f0c65baa3b1ac51b7564a39aa4a98e82145383b6abe696319c2ff960e6432",
+      "evidence_id": "ev_44bb713276a11f282bee55bd972ef2087dda425a6e47452346f7c7752d979b92",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "profile_digest": "674eecbb39c62b018b41f7097184906c4cffb36384f208173c65696123e60e16",
+      "input_sha256": "c30f0c65baa3b1ac51b7564a39aa4a98e82145383b6abe696319c2ff960e6432",
+      "input_kind": "exact raw range; external code/data unmapped",
+      "extract": "roots.c"
+    },
+    {
+      "role": "worktree-roots",
+      "start": "0x14007ef10",
+      "end_exclusive": "0x14007f0f5",
+      "file_offset": "0x7e310",
+      "sha256": "ecd4d83c4266044c3b6e67d19f04aa9803ed96ba5f118fc20e222561f431e5d7",
+      "evidence_id": "ev_e486e8597ab0af6f43ae7b3ada5b404f2042418ab9dc4e01800d6311344efead",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "profile_digest": "72f614635dd09d99673bb56411142a67ed9eb5c9d845057f31212c0cb2eaadcd",
+      "input_sha256": "ecd4d83c4266044c3b6e67d19f04aa9803ed96ba5f118fc20e222561f431e5d7",
+      "input_kind": "exact raw range; external code/data unmapped",
+      "extract": "worktree-roots.c"
+    },
+    {
+      "role": "home",
+      "start": "0x140c03ca0",
+      "end_exclusive": "0x140c03ed6",
+      "file_offset": "0xc030a0",
+      "sha256": "30f12a39111f0fca68e41e830f03cb40003f6299aa42885097803431640f4a98",
+      "evidence_id": "ev_07ffa2ba49c692a867ff8c0ca370bbabe78aa0545ef74ea54926325ca70142ec",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "profile_digest": "588e37aca1b878ec11e7f4061dd259f55393bc7666a9a9ebdee5f7dd34489c26",
+      "input_sha256": "30f12a39111f0fca68e41e830f03cb40003f6299aa42885097803431640f4a98",
+      "input_kind": "exact raw range; external code/data unmapped",
+      "extract": "home.c"
+    },
+    {
+      "role": "priority-instructions",
+      "start": "0x140024c10",
+      "end_exclusive": "0x140024de8",
+      "file_offset": "0x24010",
+      "sha256": "8ceb5aed75cbb4c650b5ba5f4a4a744a947fead7e3a6b1ee89cc213ba2598c53",
+      "extract": "priority.asm",
+      "decoder": "Capstone 5.0.7; current bytes independently checked against Ghidra owner discovery"
+    },
+    {
+      "role": "header-instructions",
+      "start": "0x14009e3c0",
+      "end_exclusive": "0x14009e53b",
+      "file_offset": "0x9d7c0",
+      "sha256": "4f10e8b38665497415af2e8adba5539eebcf6ea7b41934fa5d044d1fac1a0f3f",
+      "extract": "header.asm",
+      "decoder": "Capstone 5.0.7; current bytes independently checked against Ghidra owner discovery"
+    },
+    {
+      "role": "startup-instructions",
+      "start": "0x140001250",
+      "end_exclusive": "0x140001290",
+      "file_offset": "0x650",
+      "sha256": "fbe6dd29261d722569bdba892b0c064fac1bf7db7f732065a514faf1cebb801f",
+      "extract": "startup.asm",
+      "decoder": "Capstone 5.0.7; current bytes independently checked against Ghidra owner discovery"
+    },
+    {
+      "role": "migration-instructions",
+      "start": "0x140017b60",
+      "end_exclusive": "0x140019564",
+      "file_offset": "0x16f60",
+      "sha256": "43fb2960d696c3e842e4cf9eff0970d62ce783c083a35a9d5fd5e4dc3814f891",
+      "extract": "migration.asm",
+      "decoder": "Capstone 5.0.7; current bytes independently checked against Ghidra owner discovery"
+    },
+    {
+      "role": "collector-instructions",
+      "start": "0x140017550",
+      "end_exclusive": "0x14001790b",
+      "file_offset": "0x16950",
+      "sha256": "ab6ceed209022ead4c3182b19017528b2dc590c0c652e072c8c9842718ce8846",
+      "extract": "collector.asm",
+      "decoder": "Capstone 5.0.7; current bytes independently checked against Ghidra owner discovery"
+    },
+    {
+      "role": "home-instructions",
+      "start": "0x140c03ca0",
+      "end_exclusive": "0x140c03ed6",
+      "file_offset": "0xc030a0",
+      "sha256": "30f12a39111f0fca68e41e830f03cb40003f6299aa42885097803431640f4a98",
+      "extract": "home.asm",
+      "decoder": "Capstone 5.0.7; current bytes independently checked against Ghidra owner discovery"
+    }
+  ],
+  "extracts": {
+    "home.c": "b5f9574510e60c20731febf27544cb500761eeedcb1583119104c68bcc3bd748",
+    "roots.c": "2275dea30dbe83c27235f75f90cc32ca62ed1997039ce8b2737a090b665b5d90",
+    "collector.asm": "e86c3c673996943ecc7699398c72b7bcdd0b7aeffc698474148c3e474baf069e",
+    "home.asm": "33f35df82c0a00c4b41793531e60ea255c5b115de29b308da5f05f5d3b7bb90c",
+    "priority.asm": "34f102a45636a9fee5d79ee60a57f4e23831bbb48bdc7abf03b28aadee97e653",
+    "collector.c": "5c805b55d92c631adb29c61b1941144e088aea46b25ff5635830879ed78376e6",
+    "migration.asm": "4b4ea3aed2429314aa81c7d15f41381e2407a8c3f3960bd99f7964b07470271c",
+    "header.asm": "f59428ac8c0248ebb5e4fb7c79d97936b7223c89fecdd7afbdca415f599f56a8",
+    "startup.asm": "5a6833436dbefbbf531d02715bdd8fd682e133d443e48a12510a4346424e256c",
+    "migration.c": "5654bc4680184415f7541c45d62c3c59b1d0b2b01e207e05f98b530f1e91b782",
+    "worktree-roots.c": "162139f05e24417dee021b0036af3459b8e2be27910f2d0306e2978a84973e3e"
+  },
+  "limits": [
+    "Raw-range decompilation has unmapped callees/data and unstable types; instruction/data/call-site tracing supplies the named contract.",
+    "Full-PE profile seeds selected owners and disables automatic reference/discovery passes; global native completeness is not asserted.",
+    "No Rust compilation, Windows file operations, game execution or original/rebuilt parity check."
+  ]
+}

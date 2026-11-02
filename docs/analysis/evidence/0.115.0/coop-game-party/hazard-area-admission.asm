@@ -1,0 +1,16 @@
+0x145923e75: xor edi, edi
+0x145923e77: mov rax, r13
+0x145923e7a: nop word ptr [rax + rax]
+0x145923e80: cmp r8, rdi
+0x145923e83: je 0x145923eaf
+0x145923e85: add rdi, 0x1e0
+0x145923e8c: cmp qword ptr [rax + 0xf0], rsi
+0x145923e93: lea rax, [rax + 0x1e0]
+0x145923e9a: jne 0x145923e80
+0x145923e9c: mov rax, qword ptr [r13 + rdi - 0xe8]
+0x145923ea4: cmp rax, r11
+0x145923ea7: jne 0x145923d96
+0x145923ead: jmp 0x145923eba
+0x145923eaf: xor eax, eax
+0x145923eb1: cmp rax, r11
+0x145923eb4: jne 0x145923d96

@@ -1,0 +1,1059 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "inputs": [
+    {
+      "path": "docs/analysis/evidence/0.121.0/release-items.json",
+      "sha256": "2ae92421acb45bc01a01c546ec1d4502dbe2cca874449214f8458edd7e080839"
+    },
+    {
+      "path": "docs/analysis/evidence/0.121.0/heroic-native/manifest.json",
+      "sha256": "f334f17da3c415ab667f19c79cc3d045576db5ed2537fb428dcdc44c66553bcc"
+    }
+  ],
+  "native_questions": [
+    {
+      "id": "release1210-218",
+      "selector": "RELEASE1210:item:218",
+      "finding_ids": [
+        218
+      ],
+      "range": {
+        "virtual_address": "0x1461af88b",
+        "end_exclusive": "0x1461af8a5",
+        "file_offset": "0x61ae68b",
+        "byte_count": 26,
+        "sha256": "dd62ad905594535a95fd55c4b68252111af4111371ae4c1831f79f0444fa4938"
+      },
+      "origin": {
+        "kind": "exact_current_literal_navigation_only",
+        "literal": "Heroic makes {zone} harder",
+        "release_item_selector": [
+          "items",
+          0
+        ]
+      },
+      "question": "Complete the separately numbered Heroic, reward, star, set and source connections; preserve historical implementations while mapping their current consumers.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/armory.rs",
+            "sha256": "354b98c8949f3f8c3ef7f4b7e32f3b87c33c6c9eff766fba84a06e3965edfb63"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/run_options.rs",
+            "sha256": "f9c5b12b136d4528da06d74bd1f4818e52240548ccd27fd837a7bd60b704c980"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+            "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+          }
+        ],
+        "conclusion": "Inspected existing actual AS source producers/consumers before expanding this current native proof. Exact labels/diagnostics remain navigation; full release behavior and current source applicability are pending."
+      }
+    },
+    {
+      "id": "release1210-219",
+      "selector": "RELEASE1210:item:219",
+      "finding_ids": [
+        219
+      ],
+      "range": {
+        "virtual_address": "0x1461adfd2",
+        "end_exclusive": "0x1461adfdc",
+        "file_offset": "0x61acdd2",
+        "byte_count": 10,
+        "sha256": "be44133ed57f9e44f829282224b15981f033e9b0acc5458070e10104509eb398"
+      },
+      "origin": {
+        "kind": "exact_current_literal_navigation_only",
+        "literal": "Difficulty",
+        "release_item_selector": [
+          "items",
+          1
+        ]
+      },
+      "question": "Trace the current picker/runmods action dispatcher into Heroic state, six level descriptors, all ten twist gates and actual enemy/boss/guardian/healing consumers; recover defaults and admission before source replacement.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/menu.rs",
+            "sha256": "79ef862f816a38ddefab9af1f25b10c8f6a1866e30f14762fa115ed068298fc0"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/picker.rs",
+            "sha256": "8c08c269fda881414cf2c5a4e64bf8e38250c7584477d5e5555e41f37990d0b4"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/run_mods.rs",
+            "sha256": "58d5b1687a3433ffa15ab6cc6af530d7d9635c742363e000e6e2d23f361db8d0"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/run_options.rs",
+            "sha256": "f9c5b12b136d4528da06d74bd1f4818e52240548ccd27fd837a7bd60b704c980"
+          }
+        ],
+        "conclusion": "Inspected existing actual AS source producers/consumers before expanding this current native proof. Exact labels/diagnostics remain navigation; full release behavior and current source applicability are pending."
+      }
+    },
+    {
+      "id": "release1210-220",
+      "selector": "RELEASE1210:item:220",
+      "finding_ids": [
+        220
+      ],
+      "range": {
+        "virtual_address": "0x1461af946",
+        "end_exclusive": "0x1461af97b",
+        "file_offset": "0x61ae746",
+        "byte_count": 53,
+        "sha256": "4cc846f99fbf5ec5acdfb84c87a43d60558a7d55ee2e6494cd576574afa38a88"
+      },
+      "origin": {
+        "kind": "exact_current_literal_navigation_only",
+        "literal": "Beat {zone} on normal with this class to open Heroic.",
+        "release_item_selector": [
+          "items",
+          2
+        ]
+      },
+      "question": "Recover hbeat parse/write widths and class/zone/rank keys, then follow victory producer, all-class max-rank query and selected-class normal-clear admission into local and co-op start.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/menu_state.rs",
+            "sha256": "62ecdbb16f3ed2eff093d73be3017447461684d488944a22ee9b7d2249399c8e"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/picker.rs",
+            "sha256": "8c08c269fda881414cf2c5a4e64bf8e38250c7584477d5e5555e41f37990d0b4"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/save.rs",
+            "sha256": "b1c9e74cf57881980eee8f5201676895b0d1eae49445a0bd3b3fec3250ec06d4"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/save/progress.rs",
+            "sha256": "0872cc06fd14446ff7bd2b822790ce9e5de7a9d2d4f41762ea9d2315c83c97de"
+          }
+        ],
+        "conclusion": "Inspected existing actual AS source producers/consumers before expanding this current native proof. Exact labels/diagnostics remain navigation; full release behavior and current source applicability are pending."
+      }
+    },
+    {
+      "id": "release1210-221",
+      "selector": "RELEASE1210:item:221",
+      "finding_ids": [
+        221
+      ],
+      "range": {
+        "virtual_address": "0x1461afb32",
+        "end_exclusive": "0x1461afb3c",
+        "file_offset": "0x61ae932",
+        "byte_count": 10,
+        "sha256": "cc7978fed062b802a09276c275bca7fb3ca5be2fd6ba7a25b58e82be38a7b966"
+      },
+      "origin": {
+        "kind": "exact_current_literal_navigation_only",
+        "literal": "Bolstering",
+        "release_item_selector": [
+          "items",
+          3
+        ]
+      },
+      "question": "Connect the recovered selection helper to the week/epoch producer, active Heroic rank, game construction and affix dispatcher, retaining local/co-op synchronization and invalid rank handling.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+            "sha256": "d4d7607d3be504788bfb3bf7aef55bf5d985bc67d04c1790979c32cc382024c5"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/run_options.rs",
+            "sha256": "f9c5b12b136d4528da06d74bd1f4818e52240548ccd27fd837a7bd60b704c980"
+          }
+        ],
+        "conclusion": "Inspected existing actual AS source producers/consumers before expanding this current native proof. Exact labels/diagnostics remain navigation; full release behavior and current source applicability are pending."
+      }
+    },
+    {
+      "id": "release1210-222",
+      "selector": "RELEASE1210:item:222",
+      "finding_ids": [
+        222
+      ],
+      "range": {
+        "virtual_address": "0x1461afb32",
+        "end_exclusive": "0x1461afb3c",
+        "file_offset": "0x61ae932",
+        "byte_count": 10,
+        "sha256": "cc7978fed062b802a09276c275bca7fb3ca5be2fd6ba7a25b58e82be38a7b966"
+      },
+      "origin": {
+        "kind": "exact_current_literal_navigation_only",
+        "literal": "Bolstering",
+        "release_item_selector": [
+          "items",
+          4
+        ]
+      },
+      "question": "Recover the death dispatcher, squared-distance comparison, stack cap and HP/damage writes with actual life/death and elite/boss exclusions; then identify reset/lifetime and replication consumers.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/enemies/scaling.rs",
+            "sha256": "0eb569941bf80f0dfd822b829390ea6d1cf26f7f8946371362c0a837baeafc8f"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+            "sha256": "d4d7607d3be504788bfb3bf7aef55bf5d985bc67d04c1790979c32cc382024c5"
+          }
+        ],
+        "conclusion": "Inspected existing actual AS source producers/consumers before expanding this current native proof. Exact labels/diagnostics remain navigation; full release behavior and current source applicability are pending."
+      }
+    },
+    {
+      "id": "release1210-223",
+      "selector": "RELEASE1210:item:223",
+      "finding_ids": [
+        223
+      ],
+      "range": {
+        "virtual_address": "0x1461afb3e",
+        "end_exclusive": "0x1461afb46",
+        "file_offset": "0x61ae93e",
+        "byte_count": 8,
+        "sha256": "93ed74bbac78cc4ac2c90ac373d03406ec53f0a59f8c5a3b1fdf037a6b83f73e"
+      },
+      "origin": {
+        "kind": "exact_current_literal_navigation_only",
+        "literal": "Sanguine",
+        "release_item_selector": [
+          "items",
+          5
+        ]
+      },
+      "question": "Trace elite death to affix pool creation, clock/radius/lifetime and enemy-heal eligibility; recover tick amount/order and visual/resource cleanup at the existing ground-effect engine interface.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/bosses/raid_pools.rs",
+            "sha256": "ce39e1ad45145e35e44fd1c2af43e357f638ccbedb914670987a4facebe9dae9"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+            "sha256": "d4d7607d3be504788bfb3bf7aef55bf5d985bc67d04c1790979c32cc382024c5"
+          }
+        ],
+        "conclusion": "Inspected existing actual AS source producers/consumers before expanding this current native proof. Exact labels/diagnostics remain navigation; full release behavior and current source applicability are pending."
+      }
+    },
+    {
+      "id": "release1210-224",
+      "selector": "RELEASE1210:item:224",
+      "finding_ids": [
+        224
+      ],
+      "range": {
+        "virtual_address": "0x146fc0b2f",
+        "end_exclusive": "0x146fc0b3c",
+        "file_offset": "0x6fbf92f",
+        "byte_count": 13,
+        "sha256": "7bd829fbc3f07bdea38fecac032788ea57d1af2e99d51b591fdfabacade41c33"
+      },
+      "origin": {
+        "kind": "exact_current_literal_navigation_only",
+        "literal": "Explosive Orb",
+        "release_item_selector": [
+          "items",
+          6
+        ]
+      },
+      "question": "Recover orb spawn interval, actor/target classification and single-target/weapon hit gate, then prove hit-count death versus timer explosion, victim max-health arithmetic, area-spell bypass and cleanup.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/bosses/raid_bombs.rs",
+            "sha256": "53d9c28a95f8feaad8510a91d0ce825bd56dc70e3c974ec16199abbd4f401de0"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+            "sha256": "d4d7607d3be504788bfb3bf7aef55bf5d985bc67d04c1790979c32cc382024c5"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/hit_passives.rs",
+            "sha256": "65bf21374da48a68188ff54246c09fb5aa053ecaabe3d07ac9d1ae034270e6c6"
+          }
+        ],
+        "conclusion": "Inspected existing actual AS source producers/consumers before expanding this current native proof. Exact labels/diagnostics remain navigation; full release behavior and current source applicability are pending."
+      }
+    },
+    {
+      "id": "release1210-225",
+      "selector": "RELEASE1210:item:225",
+      "finding_ids": [
+        225
+      ],
+      "range": {
+        "virtual_address": "0x145b778f0",
+        "end_exclusive": "0x145b77af1",
+        "file_offset": "0x5b76cf0",
+        "byte_count": 513,
+        "sha256": "89c8bc16fc8e1b6da85619cf9116d68353af008b1c75769c8daab9860426fb95"
+      },
+      "origin": {
+        "kind": "declared_diagnostic_extent_navigation_only",
+        "path": "crates/wenilla-rogue/src/game/abilities.rs",
+        "site": "0x145b77acf",
+        "release_item_selector": [
+          "items",
+          7
+        ]
+      },
+      "question": "Trace movement-snapshot/velocity producers into each native blast, breath, charge, beam, volley and rain target, recover Heroic-dependent lead/clamp arithmetic and retarget/failure paths, then compare each actual source branch.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/bosses/abilities.rs",
+            "sha256": "e416202ae606fb0aeac2e05a230bb6b046088ee6a97a047454aaab6fc616483c"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/bosses/ai.rs",
+            "sha256": "9be85f6c1c7589a40beda11d4dbcc3419062d4833b2f160cff71ce7896ff01a2"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs",
+            "sha256": "dace988b09d5390d49ba3d2f1ea129eb40e1a24bf01ba620755c46b94ce1a506"
+          }
+        ],
+        "conclusion": "Inspected existing actual AS source producers/consumers before expanding this current native proof. Exact labels/diagnostics remain navigation; full release behavior and current source applicability are pending."
+      }
+    },
+    {
+      "id": "release1210-226",
+      "selector": "RELEASE1210:item:226",
+      "finding_ids": [
+        226
+      ],
+      "range": {
+        "virtual_address": "0x1461af9d9",
+        "end_exclusive": "0x1461af9f8",
+        "file_offset": "0x61ae7d9",
+        "byte_count": 31,
+        "sha256": "a29da7644710429018ffa04ca7780b048fa0f72935ac57efdc26764cea29ad88"
+      },
+      "origin": {
+        "kind": "exact_current_literal_navigation_only",
+        "literal": "Loot and talent experience x{n}",
+        "release_item_selector": [
+          "items",
+          8
+        ]
+      },
+      "question": "Recover Heroic reward tables and boss-roll/terminal-XP consumers; trace Against the Odds and each old full-options co-op feat to their actual rank comparison, preserving separate per-item predicates.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/account_progression.rs",
+            "sha256": "f366d213179219ff158842935fbfb942eb475e981de97601b239d474ca56ee8b"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/party_achievements.rs",
+            "sha256": "7d5918678dd123bef5815df2170d6d84b3c67988d4ea6f67f3b1a534d84c1da6"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/mob_loot.rs",
+            "sha256": "9f82e405c0b9d31fb1e5f6befe452215f24158a480794a790e91991c0233f232"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/run_progression.rs",
+            "sha256": "4f03f42c157ee1f89db89584c1ab338003c69fe89834f66f56dcc9b6a2704b3c"
+          }
+        ],
+        "conclusion": "Inspected existing actual AS source producers/consumers before expanding this current native proof. Exact labels/diagnostics remain navigation; full release behavior and current source applicability are pending."
+      }
+    },
+    {
+      "id": "release1210-227",
+      "selector": "RELEASE1210:item:227",
+      "finding_ids": [
+        227
+      ],
+      "range": {
+        "virtual_address": "0x146fc8894",
+        "end_exclusive": "0x146fc889a",
+        "file_offset": "0x6fc7694",
+        "byte_count": 6,
+        "sha256": "e998b95a90b8fd5e6f15d54c42de2d4e07a801a1ecb16c3041353292a211a6b2"
+      },
+      "origin": {
+        "kind": "exact_current_literal_navigation_only",
+        "literal": "marks|",
+        "release_item_selector": [
+          "items",
+          9
+        ]
+      },
+      "question": "Recover boss mark producer, zone/Heroic/endless multipliers and normal rounding; prove duplicate ownership conversion and class-keyed save/delta delivery for local and every co-op recipient.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/coop/client_state.rs",
+            "sha256": "cb9436e7c150a075de95c9935c4eafe09add48c9e5fdc5d99f28e14436bb2c1a"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs",
+            "sha256": "dace988b09d5390d49ba3d2f1ea129eb40e1a24bf01ba620755c46b94ce1a506"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs",
+            "sha256": "a7361cbe9cb697a2e49e6f51f04932968df64ce3e83c9f3de9c31411a7b5db1f"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+            "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+          }
+        ],
+        "conclusion": "Inspected existing actual AS source producers/consumers before expanding this current native proof. Exact labels/diagnostics remain navigation; full release behavior and current source applicability are pending."
+      }
+    },
+    {
+      "id": "release1210-228",
+      "selector": "RELEASE1210:item:228",
+      "finding_ids": [
+        228
+      ],
+      "range": {
+        "virtual_address": "0x146fc86ce",
+        "end_exclusive": "0x146fc86d3",
+        "file_offset": "0x6fc74ce",
+        "byte_count": 5,
+        "sha256": "1e66064f4f06ab58b10f61dd1cc2b2870c2d5a3c9f2479e829453a6d999d94fe"
+      },
+      "origin": {
+        "kind": "exact_current_literal_navigation_only",
+        "literal": "pity|",
+        "release_item_selector": [
+          "items",
+          10
+        ]
+      },
+      "question": "Recover pity| parser/writer and key domain; follow each boss candidate miss/success/ownership path to counter updates, probability arithmetic, cap/reset and save ordering before identifying the precise source change.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs",
+            "sha256": "a7361cbe9cb697a2e49e6f51f04932968df64ce3e83c9f3de9c31411a7b5db1f"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/mob_loot.rs",
+            "sha256": "9f82e405c0b9d31fb1e5f6befe452215f24158a480794a790e91991c0233f232"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+            "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+          }
+        ],
+        "conclusion": "Inspected existing actual AS source producers/consumers before expanding this current native proof. Exact labels/diagnostics remain navigation; full release behavior and current source applicability are pending."
+      }
+    },
+    {
+      "id": "release1210-229",
+      "selector": "RELEASE1210:item:229",
+      "finding_ids": [
+        229
+      ],
+      "range": {
+        "virtual_address": "0x146fc86c8",
+        "end_exclusive": "0x146fc86ce",
+        "file_offset": "0x6fc74c8",
+        "byte_count": 6,
+        "sha256": "4ee7ae9d687742b5455cca17d2fc2c85a63cb63d39cbd0fc78f6d8301d54ba03"
+      },
+      "origin": {
+        "kind": "exact_current_literal_navigation_only",
+        "literal": "stars|",
+        "release_item_selector": [
+          "items",
+          11
+        ]
+      },
+      "question": "Recover per-piece star storage, mark debit transaction and failure guards, set-zone Heroic cap, tier/rank cost table and cross-class rank counting/rounding, then connect existing armory input and save owners.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/armory.rs",
+            "sha256": "354b98c8949f3f8c3ef7f4b7e32f3b87c33c6c9eff766fba84a06e3965edfb63"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+            "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/save/progress.rs",
+            "sha256": "0872cc06fd14446ff7bd2b822790ce9e5de7a9d2d4f41762ea9d2315c83c97de"
+          }
+        ],
+        "conclusion": "Inspected existing actual AS source producers/consumers before expanding this current native proof. Exact labels/diagnostics remain navigation; full release behavior and current source applicability are pending."
+      }
+    },
+    {
+      "id": "release1210-230",
+      "selector": "RELEASE1210:item:230",
+      "finding_ids": [
+        230
+      ],
+      "range": {
+        "virtual_address": "0x1461ac6cb",
+        "end_exclusive": "0x1461ac6d7",
+        "file_offset": "0x61ab4cb",
+        "byte_count": 12,
+        "sha256": "72ca5a9bf234e3982d30c12362820f18f82e2ac6f126e94d3ebe30c9105706ee"
+      },
+      "origin": {
+        "kind": "exact_current_literal_navigation_only",
+        "literal": "armory.stars",
+        "release_item_selector": [
+          "items",
+          12
+        ]
+      },
+      "question": "Recover tier/rank multipliers, fifth-star cross-tier baseline selection and stat-type rounding/order through gear effect projection into run stats, with separate cost confirmation under #229.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/armory.rs",
+            "sha256": "354b98c8949f3f8c3ef7f4b7e32f3b87c33c6c9eff766fba84a06e3965edfb63"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
+            "sha256": "ec994096fe6beaf43776cd71ebe94c7958c854915177d61fe1c04cfa087a3727"
+          }
+        ],
+        "conclusion": "Inspected existing actual AS source producers/consumers before expanding this current native proof. Exact labels/diagnostics remain navigation; full release behavior and current source applicability are pending."
+      }
+    },
+    {
+      "id": "release1210-231",
+      "selector": "RELEASE1210:item:231",
+      "finding_ids": [
+        231
+      ],
+      "range": {
+        "virtual_address": "0x1461ae58e",
+        "end_exclusive": "0x1461ae59e",
+        "file_offset": "0x61ad38e",
+        "byte_count": 16,
+        "sha256": "70869a3adffc3478e625026258646ba5ad70da654aa3fbe2ecbb8a11cefb8e79"
+      },
+      "origin": {
+        "kind": "exact_current_literal_navigation_only",
+        "literal": "armory.set_bonus",
+        "release_item_selector": [
+          "items",
+          13
+        ]
+      },
+      "question": "Recover armor-slot/set matching, per-piece minimum rank and four-piece count gate, then follow each bonus tag/value into stats and the armory summary without treating unequipped owned pieces as worn.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/armory.rs",
+            "sha256": "354b98c8949f3f8c3ef7f4b7e32f3b87c33c6c9eff766fba84a06e3965edfb63"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
+            "sha256": "ec994096fe6beaf43776cd71ebe94c7958c854915177d61fe1c04cfa087a3727"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+            "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+          }
+        ],
+        "conclusion": "Inspected existing actual AS source producers/consumers before expanding this current native proof. Exact labels/diagnostics remain navigation; full release behavior and current source applicability are pending."
+      }
+    },
+    {
+      "id": "release1210-232",
+      "selector": "RELEASE1210:item:232",
+      "finding_ids": [
+        232
+      ],
+      "range": {
+        "virtual_address": "0x1461ae59e",
+        "end_exclusive": "0x1461ae5a9",
+        "file_offset": "0x61ad39e",
+        "byte_count": 11,
+        "sha256": "4cb232a455789ac955dd9c34b98af96d1b3933c47d2276e9f8ddd42077da2355"
+      },
+      "origin": {
+        "kind": "exact_current_literal_navigation_only",
+        "literal": "armory.set8",
+        "release_item_selector": [
+          "items",
+          14
+        ]
+      },
+      "question": "Recover the class/set descriptor domain, eight worn armor slot and rank3/rank5 gates, then trace each listed spell override into its actual dispatch/targeting/tick/cooldown consumer and prove the empowerment factor.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/armory.rs",
+            "sha256": "354b98c8949f3f8c3ef7f4b7e32f3b87c33c6c9eff766fba84a06e3965edfb63"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
+            "sha256": "ec994096fe6beaf43776cd71ebe94c7958c854915177d61fe1c04cfa087a3727"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/hit_passives.rs",
+            "sha256": "65bf21374da48a68188ff54246c09fb5aa053ecaabe3d07ac9d1ae034270e6c6"
+          }
+        ],
+        "conclusion": "Inspected existing actual AS source producers/consumers before expanding this current native proof. Exact labels/diagnostics remain navigation; full release behavior and current source applicability are pending."
+      }
+    },
+    {
+      "id": "release1210-233",
+      "selector": "RELEASE1210:item:233",
+      "finding_ids": [
+        233
+      ],
+      "range": {
+        "virtual_address": "0x146fcbaa4",
+        "end_exclusive": "0x146fcbafe",
+        "file_offset": "0x6fca8a4",
+        "byte_count": 90,
+        "sha256": "970d9848fe6798a58b040522f2e94594b5b271b4995eef8dfedf2f37690f37ae"
+      },
+      "origin": {
+        "kind": "exact_current_literal_navigation_only",
+        "literal": "Concussive Shot strikes {v} more enemies, deals 150% more damage and comes back 40% sooner",
+        "release_item_selector": [
+          "items",
+          15
+        ]
+      },
+      "question": "Recover all seven class descriptors, activation threshold, target-control attribution/expiry and damage/cooldown/count modifiers, then trace ordinary/empowered consumers while preserving faction/item-set identity.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/armory.rs",
+            "sha256": "354b98c8949f3f8c3ef7f4b7e32f3b87c33c6c9eff766fba84a06e3965edfb63"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
+            "sha256": "ec994096fe6beaf43776cd71ebe94c7958c854915177d61fe1c04cfa087a3727"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/hit_passives.rs",
+            "sha256": "65bf21374da48a68188ff54246c09fb5aa053ecaabe3d07ac9d1ae034270e6c6"
+          }
+        ],
+        "conclusion": "Inspected existing actual AS source producers/consumers before expanding this current native proof. Exact labels/diagnostics remain navigation; full release behavior and current source applicability are pending."
+      }
+    },
+    {
+      "id": "release1210-234",
+      "selector": "RELEASE1210:item:234",
+      "finding_ids": [
+        234
+      ],
+      "range": {
+        "virtual_address": "0x1461ee7c5",
+        "end_exclusive": "0x1461ee7da",
+        "file_offset": "0x61ed5c5",
+        "byte_count": 21,
+        "sha256": "e58fc395c00b4dd2c5faa7235388e8280da63d903d0ca9855e79b4775cefc7fa"
+      },
+      "origin": {
+        "kind": "exact_current_literal_navigation_only",
+        "literal": "armory.set_tip_title4",
+        "release_item_selector": [
+          "items",
+          16
+        ]
+      },
+      "question": "Trace SetTip/SetTipBox registration and character-pane gameplay/client/inventory.rs::Item::template publication to the existing item-set tooltip feed; recover AS set title/worn count, ordered piece membership, registered set ID/data and rank-dependent four/eight-piece lines before adapting the source producer.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/armory.rs",
+            "sha256": "354b98c8949f3f8c3ef7f4b7e32f3b87c33c6c9eff766fba84a06e3965edfb63"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+            "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs",
+            "sha256": "75fc8e61dd32a2091daecfa07447dc454964418f4f821ed63e6bc12951ca7825"
+          },
+          {
+            "path": "crates/benilla-app/src/ui_items/feed.rs",
+            "sha256": "e0aa04a5d5a38ed0b85f9927ea8ccafe8d57319e678e6ce4bb226ec934f714d5"
+          }
+        ],
+        "conclusion": "Inspected existing actual AS source producers/consumers before expanding this current native proof. Exact labels/diagnostics remain navigation; full release behavior and current source applicability are pending."
+      }
+    },
+    {
+      "id": "release1210-235",
+      "selector": "RELEASE1210:item:235",
+      "finding_ids": [
+        235
+      ],
+      "range": {
+        "virtual_address": "0x146fc88b7",
+        "end_exclusive": "0x146fc88bc",
+        "file_offset": "0x6fc76b7",
+        "byte_count": 5,
+        "sha256": "e973a319429cd47e290ab8ba77322515f7dec4c8db59b92e8fc4fb8b02c0d985"
+      },
+      "origin": {
+        "kind": "exact_current_literal_navigation_only",
+        "literal": "glow|",
+        "release_item_selector": [
+          "items",
+          17
+        ]
+      },
+      "question": "Recover class selection/None persistence, rank5 default, two achievement unlock gates and priority over legendary base visual; connect to the existing engine enchant/glow descriptor and preview/world consumers.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/armory.rs",
+            "sha256": "354b98c8949f3f8c3ef7f4b7e32f3b87c33c6c9eff766fba84a06e3965edfb63"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/armory_cosmetics.rs",
+            "sha256": "7e04aa7de101c38625d309659439bb9993816b539a785462c3e6ece91ae770c7"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+            "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+          },
+          {
+            "path": "crates/benilla-app/src/entities/item_glow.rs",
+            "sha256": "fa8d080c9d61757ff4d3a0461c2c8efc4103af5515b16bb1ad1518c0d85fdf3b"
+          },
+          {
+            "path": "crates/benilla-app/src/entities/equipment/resolve.rs",
+            "sha256": "2a9e7f0b0a6df6ae625d52ac095151f80e3ae7e66994fe8339e79642a8a21401"
+          }
+        ],
+        "conclusion": "Inspected existing actual AS source producers/consumers before expanding this current native proof. Exact labels/diagnostics remain navigation; full release behavior and current source applicability are pending."
+      }
+    },
+    {
+      "id": "release1210-236",
+      "selector": "RELEASE1210:item:236",
+      "finding_ids": [
+        236
+      ],
+      "range": {
+        "virtual_address": "0x1461ee508",
+        "end_exclusive": "0x1461ee51c",
+        "file_offset": "0x61ed308",
+        "byte_count": 20,
+        "sha256": "43a0be73963e190ee788c4516dbc298fcdeb8a325ca94945bb2bb39cd862cbac"
+      },
+      "origin": {
+        "kind": "exact_current_literal_navigation_only",
+        "literal": "armory.still_to_find",
+        "release_item_selector": [
+          "items",
+          18
+        ]
+      },
+      "question": "Recover missing-only tile filtering and boss/chance arguments, complete-collection transition into set/rank progress/cap rows, and exact numeric formatting branches; retain actual item/drop and worn-set consumers.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/armory.rs",
+            "sha256": "354b98c8949f3f8c3ef7f4b7e32f3b87c33c6c9eff766fba84a06e3965edfb63"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/save/gear.rs",
+            "sha256": "3cd053fcccb37385f183dc5e253d215d4f935d3b3373176a64b9500cb7385ba0"
+          }
+        ],
+        "conclusion": "Inspected existing actual AS source producers/consumers before expanding this current native proof. Exact labels/diagnostics remain navigation; full release behavior and current source applicability are pending."
+      }
+    },
+    {
+      "id": "release1210-237",
+      "selector": "RELEASE1210:item:237",
+      "finding_ids": [
+        237
+      ],
+      "range": {
+        "virtual_address": "0x14734307a",
+        "end_exclusive": "0x147343088",
+        "file_offset": "0x7341e7a",
+        "byte_count": 14,
+        "sha256": "1639e5fbb96027747dd15c4c9d5824050821e857509e8dc5ff7ca482f1d4dfda"
+      },
+      "origin": {
+        "kind": "exact_current_literal_navigation_only",
+        "literal": "Radiant Armory",
+        "release_item_selector": [
+          "items",
+          19
+        ]
+      },
+      "question": "Recover the full new descriptor/predicate/reward domain, progress producers and migration/retroactive checks, then follow tab order, filters and mark/endless/empowered counters into the existing save and sidebar consumers.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/account_progression.rs",
+            "sha256": "f366d213179219ff158842935fbfb942eb475e981de97601b239d474ca56ee8b"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/progression.rs",
+            "sha256": "3e9ede8b8540c87d29673847e908e615be21b64c70248063c0c8e8263755ba26"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/progression/achievements_sidebar.rs",
+            "sha256": "6ffd7bd64a1d5a6f9569ace0a77bc03f1b1d84ae013be159da6ea07a77bfa484"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/save/achievements.rs",
+            "sha256": "de90d7a7ff2c16cfde1685b9dfe06191f334634a796e69f3bd5aa5daf034cc79"
+          }
+        ],
+        "conclusion": "Inspected existing actual AS source producers/consumers before expanding this current native proof. Exact labels/diagnostics remain navigation; full release behavior and current source applicability are pending."
+      }
+    },
+    {
+      "id": "release1210-238",
+      "selector": "RELEASE1210:item:238",
+      "finding_ids": [
+        238
+      ],
+      "range": {
+        "virtual_address": "0x1461ead1c",
+        "end_exclusive": "0x1461ead55",
+        "file_offset": "0x61e9b1c",
+        "byte_count": 57,
+        "sha256": "eacdcd4a769faea83489f2133a72de751ffdfe0761daa4bd0eb02ba75febd79f"
+      },
+      "origin": {
+        "kind": "exact_current_literal_navigation_only",
+        "literal": "you haven't opened {heroic} of {zone} with this class yet",
+        "release_item_selector": [
+          "items",
+          20
+        ]
+      },
+      "question": "Recover host rank selection and wire/admission fields, every-recipient unlock validation/failure, run bootstrap and recipient-private boss mark/drop/clear persistence; preserve existing transport/service interfaces and run no server.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/coop/client_state.rs",
+            "sha256": "cb9436e7c150a075de95c9935c4eafe09add48c9e5fdc5d99f28e14436bb2c1a"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+            "sha256": "64da67ef3e6a3f5db24de38a8e9364da10b1ae785eaa166f63268c507d148cb6"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/coop_forms.rs",
+            "sha256": "168dc0d72f833faaed82a52614291f5348abd9d2c4b891ff154caf2f95372ccc"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
+            "sha256": "ff6dee97ad209eda0b7e3314bc8bdacfc035fe7dd6ae6ecb9b57568ec2915149"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/save/coop_history.rs",
+            "sha256": "5e21f9a03825c08a06561d5b96fe8076d8206e3d2405d99f6f0ecfd17383a3fd"
+          }
+        ],
+        "conclusion": "Inspected existing actual AS source producers/consumers before expanding this current native proof. Exact labels/diagnostics remain navigation; full release behavior and current source applicability are pending."
+      }
+    },
+    {
+      "id": "release1210-239",
+      "selector": "RELEASE1210:item:239",
+      "finding_ids": [
+        239
+      ],
+      "range": {
+        "virtual_address": "0x145ae4da0",
+        "end_exclusive": "0x145ae51d4",
+        "file_offset": "0x5ae41a0",
+        "byte_count": 1076,
+        "sha256": "7d7542e5eb60d6d680e44ce150075a1c68e7b2f90056835f5c90f9b3a8c052ee"
+      },
+      "origin": {
+        "kind": "declared_diagnostic_extent_navigation_only",
+        "path": "crates/wenilla-rogue/src/game/party.rs",
+        "site": "0x145ae51c5",
+        "release_item_selector": [
+          "items",
+          21
+        ]
+      },
+      "question": "Recover current live-hero coefficient producers and every health/density/damage use, preserving early-zone rules, special boss/guardian classes, rounding and disconnect rescale; compare each source consumer separately.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/bosses/scaling.rs",
+            "sha256": "76029ead559845b1f18e4a1096f318fd301669cc739cdb9cf3728da6ff9ff094"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/enemies/scaling.rs",
+            "sha256": "0eb569941bf80f0dfd822b829390ea6d1cf26f7f8946371362c0a837baeafc8f"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
+            "sha256": "ff6dee97ad209eda0b7e3314bc8bdacfc035fe7dd6ae6ecb9b57568ec2915149"
+          }
+        ],
+        "conclusion": "Inspected existing actual AS source producers/consumers before expanding this current native proof. Exact labels/diagnostics remain navigation; full release behavior and current source applicability are pending."
+      }
+    },
+    {
+      "id": "heroic1210-pending-0",
+      "selector": "HEROIC1210:seed-producer:0x145bdcc01",
+      "finding_ids": [
+        221
+      ],
+      "range": {
+        "virtual_address": "0x145bdcb8a",
+        "file_offset": "0x5bdbf8a",
+        "byte_count": 174,
+        "sha256": "50fbd4fa68ac5a3eab1666836001a95c2e846c97f1bbf01beff1f49569bb40e9",
+        "end_exclusive": "0x145bdcc38"
+      },
+      "origin": {
+        "kind": "proved_caller_input_scope_with_missing_producer_or_consumer",
+        "manifest": "docs/analysis/evidence/0.121.0/heroic-native/manifest.json",
+        "native_range_selector": [
+          "native_ranges",
+          2
+        ]
+      },
+      "question": "Recover145a9c190 interface and writers of state+0x120/+0x128/+0x19c, then bind weekly origin/epoch and zone coupling without assuming wall-clock behavior.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/run_options.rs",
+            "sha256": "f9c5b12b136d4528da06d74bd1f4818e52240548ccd27fd837a7bd60b704c980"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/run_mods.rs",
+            "sha256": "58d5b1687a3433ffa15ab6cc6af530d7d9635c742363e000e6e2d23f361db8d0"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/save.rs",
+            "sha256": "b1c9e74cf57881980eee8f5201676895b0d1eae49445a0bd3b3fec3250ec06d4"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/menu_state.rs",
+            "sha256": "62ecdbb16f3ed2eff093d73be3017447461684d488944a22ee9b7d2249399c8e"
+          }
+        ],
+        "conclusion": "Existing Run Options, modifier, menu and save interfaces were inspected. Current bounded helper recovery is preserved; only the named upstream producer or downstream consumer question remains pending."
+      }
+    },
+    {
+      "id": "heroic1210-pending-1",
+      "selector": "HEROIC1210:affix-consumer:0x145bdcc33",
+      "finding_ids": [
+        221,
+        244
+      ],
+      "range": {
+        "virtual_address": "0x145bdcb8a",
+        "file_offset": "0x5bdbf8a",
+        "byte_count": 174,
+        "sha256": "50fbd4fa68ac5a3eab1666836001a95c2e846c97f1bbf01beff1f49569bb40e9",
+        "end_exclusive": "0x145bdcc38"
+      },
+      "origin": {
+        "kind": "proved_caller_input_scope_with_missing_producer_or_consumer",
+        "manifest": "docs/analysis/evidence/0.121.0/heroic-native/manifest.json",
+        "native_range_selector": [
+          "native_ranges",
+          2
+        ]
+      },
+      "question": "Follow returned Vec<u8> through initialization and game/affixes.rs owner145c28900; prove ID-to-effect mapping and lifetime before assigning mechanics.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/run_options.rs",
+            "sha256": "f9c5b12b136d4528da06d74bd1f4818e52240548ccd27fd837a7bd60b704c980"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/run_mods.rs",
+            "sha256": "58d5b1687a3433ffa15ab6cc6af530d7d9635c742363e000e6e2d23f361db8d0"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/save.rs",
+            "sha256": "b1c9e74cf57881980eee8f5201676895b0d1eae49445a0bd3b3fec3250ec06d4"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/menu_state.rs",
+            "sha256": "62ecdbb16f3ed2eff093d73be3017447461684d488944a22ee9b7d2249399c8e"
+          }
+        ],
+        "conclusion": "Existing Run Options, modifier, menu and save interfaces were inspected. Current bounded helper recovery is preserved; only the named upstream producer or downstream consumer question remains pending."
+      }
+    },
+    {
+      "id": "heroic1210-pending-2",
+      "selector": "HEROIC1210:rank-producers:state+0x1bf",
+      "finding_ids": [
+        219,
+        220,
+        238
+      ],
+      "range": {
+        "virtual_address": "0x145bdcb8a",
+        "file_offset": "0x5bdbf8a",
+        "byte_count": 174,
+        "sha256": "50fbd4fa68ac5a3eab1666836001a95c2e846c97f1bbf01beff1f49569bb40e9",
+        "end_exclusive": "0x145bdcc38"
+      },
+      "origin": {
+        "kind": "proved_caller_input_scope_with_missing_producer_or_consumer",
+        "manifest": "docs/analysis/evidence/0.121.0/heroic-native/manifest.json",
+        "native_range_selector": [
+          "native_ranges",
+          2
+        ]
+      },
+      "question": "Recover save/menu/co-op admission writers and current selection dispatch; name-helper bounds do not prove all accepted rank values.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/run_options.rs",
+            "sha256": "f9c5b12b136d4528da06d74bd1f4818e52240548ccd27fd837a7bd60b704c980"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/run_mods.rs",
+            "sha256": "58d5b1687a3433ffa15ab6cc6af530d7d9635c742363e000e6e2d23f361db8d0"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/save.rs",
+            "sha256": "b1c9e74cf57881980eee8f5201676895b0d1eae49445a0bd3b3fec3250ec06d4"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/menu_state.rs",
+            "sha256": "62ecdbb16f3ed2eff093d73be3017447461684d488944a22ee9b7d2249399c8e"
+          }
+        ],
+        "conclusion": "Existing Run Options, modifier, menu and save interfaces were inspected. Current bounded helper recovery is preserved; only the named upstream producer or downstream consumer question remains pending."
+      }
+    }
+  ],
+  "limits": "Exact current navigation ranges and source-first pending questions only. Native/source semantic recovery, implementation, source execution and original/rebuilt parity are not established by queue publication."
+}

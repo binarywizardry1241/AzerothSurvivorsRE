@@ -1,0 +1,65 @@
+{
+  "target_version": "0.127.0",
+  "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+  "achievements": [
+    {
+      "key": "coop:photosynthesis",
+      "name": "Rest in Photosynthesis",
+      "description": "Defeat Kel'Thuzad on Heroic III in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.",
+      "icon": "Spell_Nature_Tranquility",
+      "points": 50,
+      "category": 5,
+      "kind": 9,
+      "selector": 0,
+      "target": 1,
+      "zone": null,
+      "feat_kind": null,
+      "feat_spell": null,
+      "tokens": {},
+      "unlocks": [
+        {
+          "prefix": "Companion",
+          "name": "Ancient Protector",
+          "icon": "Spell_Nature_Tranquility"
+        }
+      ],
+      "cooperative": {
+        "type": "boss",
+        "boss_id": 1494,
+        "spells": [
+          740
+        ],
+        "max_modifiers": false,
+        "party": {
+          "kind": "talent",
+          "class": 11,
+          "key": "tranquility"
+        },
+        "heroic_rank": 3
+      }
+    },
+    {
+      "key": "coop:insane",
+      "name": "The Insane",
+      "description": "Survive for 40 minutes or longer in Naxxramas on Heroic V with at least two other players.",
+      "icon": "Spell_Shadow_UnholyFrenzy",
+      "points": 50,
+      "category": 5,
+      "kind": 15,
+      "selector": 0,
+      "target": 1,
+      "zone": null,
+      "feat_kind": null,
+      "feat_spell": null,
+      "tokens": {},
+      "unlocks": [],
+      "cooperative": {
+        "type": "survival",
+        "zone": 11,
+        "heroic_rank": 5,
+        "seconds": 2400,
+        "minimum_members": 3
+      }
+    }
+  ]
+}

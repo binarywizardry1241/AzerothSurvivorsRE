@@ -1,0 +1,201 @@
+{
+  "engine": "Unicorn 2.1.4",
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "application_executed": false,
+  "cases": [
+    {
+      "kind": "speed-prefix",
+      "remembered": "7.0",
+      "candidate": "7.0",
+      "sequence": 1,
+      "sent": false,
+      "next_sequence": 1
+    },
+    {
+      "kind": "speed-prefix",
+      "remembered": "7.0",
+      "candidate": "7.0",
+      "sequence": 4294967295,
+      "sent": false,
+      "next_sequence": 4294967295
+    },
+    {
+      "kind": "speed-prefix",
+      "remembered": "7.0",
+      "candidate": "7.005",
+      "sequence": 1,
+      "sent": false,
+      "next_sequence": 1
+    },
+    {
+      "kind": "speed-prefix",
+      "remembered": "7.0",
+      "candidate": "7.005",
+      "sequence": 4294967295,
+      "sent": false,
+      "next_sequence": 4294967295
+    },
+    {
+      "kind": "speed-prefix",
+      "remembered": "7.0",
+      "candidate": "7.01",
+      "sequence": 1,
+      "sent": true,
+      "next_sequence": 2
+    },
+    {
+      "kind": "speed-prefix",
+      "remembered": "7.0",
+      "candidate": "7.01",
+      "sequence": 4294967295,
+      "sent": true,
+      "next_sequence": 0
+    },
+    {
+      "kind": "speed-prefix",
+      "remembered": "7.0",
+      "candidate": "7.011",
+      "sequence": 1,
+      "sent": true,
+      "next_sequence": 2
+    },
+    {
+      "kind": "speed-prefix",
+      "remembered": "7.0",
+      "candidate": "7.011",
+      "sequence": 4294967295,
+      "sent": true,
+      "next_sequence": 0
+    },
+    {
+      "kind": "speed-prefix",
+      "remembered": "7.0",
+      "candidate": "6.995",
+      "sequence": 1,
+      "sent": false,
+      "next_sequence": 1
+    },
+    {
+      "kind": "speed-prefix",
+      "remembered": "7.0",
+      "candidate": "6.995",
+      "sequence": 4294967295,
+      "sent": false,
+      "next_sequence": 4294967295
+    },
+    {
+      "kind": "speed-prefix",
+      "remembered": "7.0",
+      "candidate": "6.98",
+      "sequence": 1,
+      "sent": true,
+      "next_sequence": 2
+    },
+    {
+      "kind": "speed-prefix",
+      "remembered": "7.0",
+      "candidate": "6.98",
+      "sequence": 4294967295,
+      "sent": true,
+      "next_sequence": 0
+    },
+    {
+      "kind": "speed-prefix",
+      "remembered": "7.0",
+      "candidate": "nan",
+      "sequence": 1,
+      "sent": false,
+      "next_sequence": 1
+    },
+    {
+      "kind": "speed-prefix",
+      "remembered": "7.0",
+      "candidate": "nan",
+      "sequence": 4294967295,
+      "sent": false,
+      "next_sequence": 4294967295
+    },
+    {
+      "kind": "speed-prefix",
+      "remembered": "nan",
+      "candidate": "8.0",
+      "sequence": 1,
+      "sent": false,
+      "next_sequence": 1
+    },
+    {
+      "kind": "speed-prefix",
+      "remembered": "nan",
+      "candidate": "8.0",
+      "sequence": 4294967295,
+      "sent": false,
+      "next_sequence": 4294967295
+    },
+    {
+      "kind": "speed-prefix",
+      "remembered": "inf",
+      "candidate": "inf",
+      "sequence": 1,
+      "sent": false,
+      "next_sequence": 1
+    },
+    {
+      "kind": "speed-prefix",
+      "remembered": "inf",
+      "candidate": "inf",
+      "sequence": 4294967295,
+      "sent": false,
+      "next_sequence": 4294967295
+    },
+    {
+      "kind": "report-teleport",
+      "sequence": 1,
+      "next_sequence": 2
+    },
+    {
+      "kind": "report-teleport",
+      "sequence": 4294967295,
+      "next_sequence": 0
+    },
+    {
+      "kind": "sink-test-teleport",
+      "sequence": 1,
+      "next_sequence": 2
+    },
+    {
+      "kind": "sink-test-teleport",
+      "sequence": 4294967295,
+      "next_sequence": 0
+    },
+    {
+      "kind": "root",
+      "sequence": 1,
+      "next_sequence": 2
+    },
+    {
+      "kind": "root",
+      "sequence": 4294967295,
+      "next_sequence": 0
+    },
+    {
+      "kind": "unroot",
+      "sequence": 1,
+      "next_sequence": 2
+    },
+    {
+      "kind": "unroot",
+      "sequence": 4294967295,
+      "next_sequence": 0
+    },
+    {
+      "kind": "constructor",
+      "sequence": 1,
+      "remembered_speed": 7.0
+    }
+  ],
+  "seams": [
+    "Speed prefix stops before serializer call or no-change continuation.",
+    "Root/unroot counter read and post-queue increment replay separately; packet serialization and queue execution are not emulated.",
+    "Relocation cases execute counter read/increment only; floor and sink-test admission are outside these cases."
+  ]
+}

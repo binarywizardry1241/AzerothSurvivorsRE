@@ -1,0 +1,518 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.120.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c",
+    "size_bytes": 145484288
+  },
+  "finding_ids": [
+    41,
+    17,
+    73
+  ],
+  "lead_id": "Q41-F01:correspondence:retained-table-1403076a2",
+  "classification": "existing_codex_jewelry_growth_ceiling_contract_no_source_omission_identified",
+  "inputs": [
+    {
+      "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+      "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
+    },
+    {
+      "path": "docs/analysis/evidence/0.120.2/native-switch-proposals.json",
+      "sha256": "6006202e6d53499898483cd073dcb3adf247d287a4c4a0ee9927bbd002fac6c0"
+    },
+    {
+      "path": "docs/analysis/evidence/0.119.1/native-switch-proposals.json",
+      "sha256": "e3eb0a52391faa7be9aac08e89839b6b5488d81cf59346261d2af38b86971021"
+    },
+    {
+      "path": "docs/analysis/evidence/0.109.0/codex/manifest.json",
+      "sha256": "333915dc1cea5217e0682bc037dc16879f7c4538878bc4496f71c53d25abc58f"
+    },
+    {
+      "path": "scripts/check-codex-growth-dispatch-0.120.2.py",
+      "sha256": "83cf0532f2b3c2ac35a29a81c9ccf0bb6f693f184fd2a169cc19bb9dbacf55b4"
+    },
+    {
+      "path": "scripts/coverage_common.py",
+      "sha256": "aec38237b60b6982f17e0e93c6f6ba111100956fb389d44b397dbd5a6bdb1903"
+    },
+    {
+      "path": "scripts/script_sources.py",
+      "sha256": "bc4cdf0f6c4a0805b7052d06c28acc48e644484d08decb79a97168cec6458cfa"
+    },
+    {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+    }
+  ],
+  "source_first": [
+    {
+      "path": "crates/azeroth-survivors-re/src/codex.rs",
+      "sha256": "159f37324f1a79bf99479b65df1b96f38bb9163dbbf4bde1e0400ea58bdd9043"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/loot_rewards/catalog_01120.rs",
+      "sha256": "d18c16eb16c36e15c1c70eeefcc8247f997a56ae6de1eafbeb77a823d92e43c6"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/assets/codex-0.105.0.json",
+      "sha256": "380f9304a54f01fc1f19c8a523464ffd690c85625fb490a9fc8ed9728693806c"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/assets/codex-locales-0.105.0.json",
+      "sha256": "2994aa975e89bd13a94adb5df94d76a23a8a34a85080ba4ade2e29d39fdd5ccc"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/assets/jewelry-codex-0.112.0.json",
+      "sha256": "6c1abab90c968fe6391f5533a1413a7a5535058f1aa0c08035777cef94f4b843"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/localization.rs",
+      "sha256": "55297efb429366d09d6023b8b1fceff38de02957eefe4711583f63d915e1c80d"
+    }
+  ],
+  "native_ranges": [
+    {
+      "role": "row-producer",
+      "virtual_address": "0x1402e021e",
+      "file_offset": "0x2df61e",
+      "byte_count": 38,
+      "sha256": "0b95186d36409e32246dc3a89103899a6d59a527df03b949b5fac7139238f3b4",
+      "end_exclusive": "0x1402e0244",
+      "instruction_count": 8,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/codex-growth-dispatch/row-producer.asm",
+        "sha256": "f86814e2d786b5b32e91a57c8b6f7efdb2dfbd86063f8fc122cc1179340fd442"
+      }
+    },
+    {
+      "role": "outer-growth-selector",
+      "virtual_address": "0x1402e141e",
+      "file_offset": "0x2e081e",
+      "byte_count": 54,
+      "sha256": "b9e6f570262a810854cfbdb9d2e2a5b9a650aee5bb076f46c4f473d35b7bd47e",
+      "end_exclusive": "0x1402e1454",
+      "instruction_count": 11,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/codex-growth-dispatch/outer-growth-selector.asm",
+        "sha256": "d679707e99bda2e143253e1a18f268d37a49f1be2ec2ff5df15ab20489b88f56"
+      }
+    },
+    {
+      "role": "selected-cap-format",
+      "virtual_address": "0x1402e1ac8",
+      "file_offset": "0x2e0ec8",
+      "byte_count": 402,
+      "sha256": "60c6e4fa9402462ffe105ad309eda6f201617b7b198bbe02f3a32d46cdd94ed5",
+      "end_exclusive": "0x1402e1c5a",
+      "instruction_count": 71,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/codex-growth-dispatch/selected-cap-format.asm",
+        "sha256": "b2463c06d6af4061c2253eef130ea6bc4fa0cf54df0195a77a4d8234b9259b0c"
+      }
+    },
+    {
+      "role": "growth-text-consumer",
+      "virtual_address": "0x1402e1c91",
+      "file_offset": "0x2e1091",
+      "byte_count": 308,
+      "sha256": "97abd70fb8fc0c06f2e0b948dac097d579b0027fadd804544b12e4a1b2dfee73",
+      "end_exclusive": "0x1402e1dc5",
+      "instruction_count": 51,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/codex-growth-dispatch/growth-text-consumer.asm",
+        "sha256": "dec0bcb51c8be71195a7b5c9f52d9bbc01bdae6ba34628482df23b6525b3730f"
+      }
+    },
+    {
+      "role": "kind9-cap-leaf",
+      "virtual_address": "0x1402e1dca",
+      "file_offset": "0x2e11ca",
+      "byte_count": 13,
+      "sha256": "0c4647de2f4d51c128f4b4af39f013dd3d0d04daaa1664b1fee86af81ee69383",
+      "end_exclusive": "0x1402e1dd7",
+      "instruction_count": 2,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/codex-growth-dispatch/kind9-cap-leaf.asm",
+        "sha256": "14b69177a7794318f25b6fcf4eafcb040d2f7448b5e286237edb475d84c8ee24"
+      }
+    },
+    {
+      "role": "moved-lookup-wrapper",
+      "virtual_address": "0x145b4ef60",
+      "file_offset": "0x5b4e360",
+      "byte_count": 35,
+      "sha256": "bf0b2a78201782fd1c91a08551c39ce2645cb28f1976c561ac1cb08f318ae724",
+      "end_exclusive": "0x145b4ef83",
+      "instruction_count": 13,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/codex-growth-dispatch/moved-lookup-wrapper.asm",
+        "sha256": "74901eb1c176ec90df8b01f8b10ef5b467ac4a808ee2d5ed4f9c1591dd11e0da"
+      }
+    }
+  ],
+  "native_data": [
+    {
+      "role": "initial-jewelry-slice",
+      "virtual_address": "0x148534660",
+      "file_offset": "0x8532e60",
+      "byte_count": 8,
+      "sha256": "364b63451cd4e75c0f6d3b4e1a0bb5b05e2b2891e6ea79a3ef26e9ce878ec7cf"
+    },
+    {
+      "role": "jewelry-slice",
+      "virtual_address": "0x1472c7218",
+      "file_offset": "0x72c6018",
+      "byte_count": 16,
+      "sha256": "93875ecb24aab225c28d53974dd2d9fc014dca083df2a96e40faf9801a955ee7"
+    },
+    {
+      "role": "jewelry-rows",
+      "virtual_address": "0x1472bfb30",
+      "file_offset": "0x72be930",
+      "byte_count": 1656,
+      "sha256": "2b16d03e8c59d06e8b291140f9838cac610866ad85513e2d862ec24954f04d5b"
+    },
+    {
+      "role": "outer-growth-table",
+      "virtual_address": "0x1461c32ac",
+      "file_offset": "0x61c20ac",
+      "byte_count": 68,
+      "sha256": "041bc8300e830da7bbae882ee73fe9ecc6f09a80a7a0f844bdde882793aff163"
+    },
+    {
+      "role": "selected-cap-table",
+      "virtual_address": "0x1461c32f0",
+      "file_offset": "0x61c20f0",
+      "byte_count": 80,
+      "sha256": "7cff6029be1592505a7bc3848a35d1540b41291523d7ccf3a0b082614aa95ffb"
+    },
+    {
+      "role": "growth-template",
+      "virtual_address": "0x1461c17d3",
+      "file_offset": "0x61c05d3",
+      "byte_count": 73,
+      "sha256": "7b5cc3590813ac2174093a79362ca21857e77c8cb850fd3300c4ea8da181102e"
+    },
+    {
+      "role": "ceiling-token",
+      "virtual_address": "0x1461c1789",
+      "file_offset": "0x61c0589",
+      "byte_count": 7,
+      "sha256": "96f16e929047d5fa07f1a824858e3d7c101ef56562ae7c8e801f924882e41ed8"
+    },
+    {
+      "role": "cap-f32",
+      "virtual_address": "0x146198cf0",
+      "file_offset": "0x6197af0",
+      "byte_count": 4,
+      "sha256": "fca31f1667a6aa1bba12fca4e4ea1becd503379d80da3213af07f6cc5702828d"
+    },
+    {
+      "role": "cap-f32",
+      "virtual_address": "0x1461bce94",
+      "file_offset": "0x61bbc94",
+      "byte_count": 4,
+      "sha256": "d7173dd8a9e81deded3f2e4719ef149effbd21afd81da9d10ed50b5dff69a708"
+    },
+    {
+      "role": "cap-f32",
+      "virtual_address": "0x146198bb0",
+      "file_offset": "0x61979b0",
+      "byte_count": 4,
+      "sha256": "ea2845900b5856c9bf354b1aa9761b5aa6888e5ed61738fe9579ca42bc0f6054"
+    },
+    {
+      "role": "cap-f32",
+      "virtual_address": "0x14617aa38",
+      "file_offset": "0x6179838",
+      "byte_count": 4,
+      "sha256": "4f4b9b7d8b86633e2824e2f439819357b0cd010ab410ea1a691b12c5f94e91e0"
+    },
+    {
+      "role": "cap-f32",
+      "virtual_address": "0x146198e7c",
+      "file_offset": "0x6197c7c",
+      "byte_count": 4,
+      "sha256": "8e215ece122cf70ebe3556a0318fa6c395d1766375c3edc080967e4a09592401"
+    }
+  ],
+  "jewelry_rows": [
+    {
+      "index": 0,
+      "address": "0x1472bfb30",
+      "key": "accuria",
+      "base_bits": "0x3e2e147b",
+      "kind": 0,
+      "slot": 0
+    },
+    {
+      "index": 1,
+      "address": "0x1472bfb78",
+      "key": "quick_strike",
+      "base_bits": "0x3db851ec",
+      "kind": 1,
+      "slot": 0
+    },
+    {
+      "index": 2,
+      "address": "0x1472bfbc0",
+      "key": "dark_iron",
+      "base_bits": "0x3e4ccccd",
+      "kind": 2,
+      "slot": 0
+    },
+    {
+      "index": 3,
+      "address": "0x1472bfc08",
+      "key": "dragonslayer",
+      "base_bits": "0x3d23d70a",
+      "kind": 3,
+      "slot": 0
+    },
+    {
+      "index": 4,
+      "address": "0x1472bfc50",
+      "key": "archimtiros",
+      "base_bits": "0x3d0f5c29",
+      "kind": 5,
+      "slot": 0
+    },
+    {
+      "index": 5,
+      "address": "0x1472bfc98",
+      "key": "devoured",
+      "base_bits": "0x3fc00000",
+      "kind": 7,
+      "slot": 0
+    },
+    {
+      "index": 6,
+      "address": "0x1472bfce0",
+      "key": "spell_power",
+      "base_bits": "0x3e0f5c29",
+      "kind": 8,
+      "slot": 0
+    },
+    {
+      "index": 7,
+      "address": "0x1472bfd28",
+      "key": "seal_damned",
+      "base_bits": "0x3dcccccd",
+      "kind": 19,
+      "slot": 0
+    },
+    {
+      "index": 8,
+      "address": "0x1472bfd70",
+      "key": "blooddrinker",
+      "base_bits": "0x3c23d70a",
+      "kind": 18,
+      "slot": 0
+    },
+    {
+      "index": 9,
+      "address": "0x1472bfdb8",
+      "key": "earthstrike",
+      "base_bits": "0x3e051eb8",
+      "kind": 0,
+      "slot": 1
+    },
+    {
+      "index": 10,
+      "address": "0x1472bfe00",
+      "key": "tep",
+      "base_bits": "0x3d8f5c29",
+      "kind": 1,
+      "slot": 1
+    },
+    {
+      "index": 11,
+      "address": "0x1472bfe48",
+      "key": "lifegiving",
+      "base_bits": "0x3e23d70a",
+      "kind": 2,
+      "slot": 1
+    },
+    {
+      "index": 12,
+      "address": "0x1472bfe90",
+      "key": "hoj",
+      "base_bits": "0x3d75c28f",
+      "kind": 9,
+      "slot": 1
+    },
+    {
+      "index": 13,
+      "address": "0x1472bfed8",
+      "key": "blackhand",
+      "base_bits": "0x3e47ae14",
+      "kind": 4,
+      "slot": 1
+    },
+    {
+      "index": 14,
+      "address": "0x1472bff20",
+      "key": "carrot",
+      "base_bits": "0x3da3d70a",
+      "kind": 10,
+      "slot": 1
+    },
+    {
+      "index": 15,
+      "address": "0x1472bff68",
+      "key": "remote",
+      "base_bits": "0x3eb33333",
+      "kind": 11,
+      "slot": 1
+    },
+    {
+      "index": 16,
+      "address": "0x1472bffb0",
+      "key": "insignia",
+      "base_bits": "0x3df5c28f",
+      "kind": 12,
+      "slot": 1
+    },
+    {
+      "index": 17,
+      "address": "0x1472bfff8",
+      "key": "eldre_thalas",
+      "base_bits": "0x3e800000",
+      "kind": 13,
+      "slot": 1
+    },
+    {
+      "index": 18,
+      "address": "0x1472c0040",
+      "key": "chosen",
+      "base_bits": "0x3e19999a",
+      "kind": 14,
+      "slot": 1
+    },
+    {
+      "index": 19,
+      "address": "0x1472c0088",
+      "key": "onyxia_blood",
+      "base_bits": "0x40000000",
+      "kind": 15,
+      "slot": 1
+    },
+    {
+      "index": 20,
+      "address": "0x1472c00d0",
+      "key": "war_horn",
+      "base_bits": "0x3e19999a",
+      "kind": 17,
+      "slot": 1
+    },
+    {
+      "index": 21,
+      "address": "0x1472c0118",
+      "key": "soulstone",
+      "base_bits": "0x3f800000",
+      "kind": 16,
+      "slot": 1
+    },
+    {
+      "index": 22,
+      "address": "0x1472c0160",
+      "key": "star_of_mystaria",
+      "base_bits": "0x3e2aaaab",
+      "kind": 6,
+      "slot": 1
+    }
+  ],
+  "table": {
+    "virtual_address": "0x1461c32f0",
+    "selector_minimum": 0,
+    "selector_maximum": 19,
+    "case_targets": [
+      "0x1402e1b14",
+      "0x1402e1b14",
+      "0x1402e1b14",
+      "0x1402e1b14",
+      "0x1402e1b14",
+      "0x1402e1b14",
+      "0x1402e1b14",
+      "0x1402e1b51",
+      "0x1402e1b14",
+      "0x1402e1dca",
+      "0x1402e1bed",
+      "0x1402e1bed",
+      "0x1402e1bed",
+      "0x1402e1bed",
+      "0x1402e1bed",
+      "0x1402e1b51",
+      "0x1402e1bed",
+      "0x1402e1bed",
+      "0x1402e1b51",
+      "0x1402e1be5"
+    ]
+  },
+  "outer_selector": {
+    "virtual_address": "0x1461c32ac",
+    "case9_target": "0x1402e1ac8"
+  },
+  "queries": [
+    {
+      "procedure": "0x1402de9e0",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_319357222f488a698292ab56ebdfaede53ee75d7fbff1b49a7744740bc06b050",
+      "analysis_profile_digest": "5e6d9229397071294e95e0ae973be651c26b6ca51f5b226fb268ac4274e4e782",
+      "plan": {
+        "path": "runtime/q41-codex-contract-0.120.2/query/plan.json",
+        "sha256": "38c458a6ad0d8245cd07dbc5661d6981d64ec079685a2b965b0d37b36f3ea0f6"
+      },
+      "journal": {
+        "path": "runtime/q41-codex-contract-0.120.2/query/journal.json",
+        "sha256": "61b32f317697ba69adafe93b30f68564a4b64ce265dfcb013673f3f686e7157a"
+      },
+      "result": {
+        "path": "runtime/q41-codex-contract-0.120.2/query/results/96c7e4c9d711c98e03e484aea553fd40c016d8b81c45ee08ff3295a71f028b38.json",
+        "sha256": "069dac1a3a10ea90347a0f2432c2faca8727457fff7cdd65ab5191eb5397c584"
+      },
+      "normalized_sha256": "4377ffbedb4d8b1c1b0f7deeed018414a0d0dfa63ec47c8d1252849ab070703e"
+    },
+    {
+      "procedure": "0x145b4ef60",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_974ed56008c36ebf317f09431e3990353670b47f828c4c03e8be7fa9298afff5",
+      "analysis_profile_digest": "5e6d9229397071294e95e0ae973be651c26b6ca51f5b226fb268ac4274e4e782",
+      "plan": {
+        "path": "runtime/q41-codex-contract-0.120.2/query/plan.json",
+        "sha256": "38c458a6ad0d8245cd07dbc5661d6981d64ec079685a2b965b0d37b36f3ea0f6"
+      },
+      "journal": {
+        "path": "runtime/q41-codex-contract-0.120.2/query/journal.json",
+        "sha256": "61b32f317697ba69adafe93b30f68564a4b64ce265dfcb013673f3f686e7157a"
+      },
+      "result": {
+        "path": "runtime/q41-codex-contract-0.120.2/query/results/58b574945522d566a390d2b258a1e4a6755002bf900f3d5076d943be9caf78ed-797390fc5f033ec3.json",
+        "sha256": "0c349d269f27531f95eb867bf8c03c7b6777279e1b1b593271efb3c3f5f12a5d"
+      },
+      "normalized_sha256": "2148da7e2c8c964f45bcc78c0bbce17fc3f573cfc03a03bebe8ecfcf19f5350a"
+    }
+  ],
+  "existing_source_growth": "Picked again, it grows by nearly the pick's whole worth, up to 60% chance for a spell to cast twice.",
+  "native_selector_cases": 1536,
+  "limits": [
+    "Original instructions execute only from selected cap-selector input through intercepted jewelry-description formatter; no string formatter, locale map, ECS/widget, Rust source or game executes.",
+    "The moved fallback wrapper is traced through its selected call boundary; complete underlying map/TLS/format-helper semantics and arbitrary mutable aliases remain outside this contract.",
+    "Initial native pointers and immutable jewelry bytes establish the selected producer; no claim about every possible writer or whole Codex/module/native semantic closure.",
+    "Compilation, actual UI/input/rendering and original/rebuilt parity remain unverified."
+  ],
+  "native_wrapper_cases": 8,
+  "bounded_contract_system_ids": [
+    "custom-app-screens-codex"
+  ],
+  "bounded_contract_owner_scopes": {
+    "custom-app-screens-codex": "Only the admitted jewelry index and72-byte record kind/base inputs, selected field+0x44 growth-ceiling dispatch, moved optional-lookup fallback wrapper and live12px Codex growth-label consumer. No whole Codex catalog, page, locale map, widget, module or parity closure."
+  },
+  "native_tool_versions": {
+    "capstone": "5.0.7",
+    "unicorn": "2.1.4"
+  }
+}

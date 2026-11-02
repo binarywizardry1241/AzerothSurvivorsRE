@@ -1,0 +1,211 @@
+{
+  "target_sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+  "lead": "Q41-C01",
+  "selected_site": "0x140147b9d",
+  "queue_input": {
+    "path": "docs/analysis/evidence/0.113.2/unknown-recovery.json",
+    "sha256": "d4148a7bcd2feb746bdd36dd5c88dfbe804b5f608edeafe16792841405ac342b"
+  },
+  "diagnostic_input": {
+    "path": "runtime/coverage/58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb/diagnostic-ownership.json",
+    "sha256": "0c8766b1daa9f615053bdbc05f4d01c27e719d461a8e02fbeb2a666b48e3f190",
+    "bytes": 12801050
+  },
+  "selected_diagnostic": {
+    "kind": "rust_location",
+    "instruction_address": "0x140147b9d",
+    "target_address": "0x145ed77e0",
+    "runtime_function_start": "0x140147060",
+    "runtime_function_end": "0x140147bc4",
+    "source_line": 1845,
+    "source_column": 28,
+    "path_address": "0x145ed6df8",
+    "instruction_bytes": "4c8d053cfcd805",
+    "instruction": "lea r8, [rip + 0x5d8fc3c]",
+    "owner_file_offset": "0x146460",
+    "owner_byte_count": 2916,
+    "owner_sha256": "83526ab7625e064e82c2a45eb0ec0bb6ed4b7461a04399ad21e8fd89e84994b4"
+  },
+  "declared_extent": {
+    "address": "0x140147060",
+    "end_exclusive": "0x140147bc4",
+    "byte_count": 2916,
+    "sha256": "83526ab7625e064e82c2a45eb0ec0bb6ed4b7461a04399ad21e8fd89e84994b4"
+  },
+  "source_location": {
+    "path": "crates\\wenilla-rogue-app\\src\\screens\\armory.rs",
+    "line": 1845,
+    "column": 28
+  },
+  "dispatch": {
+    "site": "0x140147526",
+    "table": "0x145ee1ffc",
+    "table_targets": [
+      "0x140147528",
+      "0x140147840",
+      "0x1401476f3",
+      "0x140147788",
+      "0x14014760c",
+      "0x14014786b",
+      "0x1401478b1",
+      "0x14014781e",
+      "0x140147aba",
+      "0x140147188",
+      "0x140147950",
+      "0x140147545"
+    ],
+    "admitted_action_discriminant": 7,
+    "admitted_index": 5,
+    "limit": "Only discriminant 7 is followed. No global enum-domain or all-target ownership proof."
+  },
+  "ranges": [
+    {
+      "role": "dispatch",
+      "assembly": "dispatch.asm",
+      "address": "0x140147509",
+      "end_exclusive": "0x140147528",
+      "byte_count": 31,
+      "sha256": "905b83e5867950593593aca845e085139a801655c3997bd870d02d9520d60aa5",
+      "assembly_sha256": "a79f7bd85f1e8be1723af51af6ae26a9416e20e60da55290797199d522a7ccf6"
+    },
+    {
+      "role": "slot-action",
+      "assembly": "slot-action.asm",
+      "address": "0x14014786b",
+      "end_exclusive": "0x1401478b1",
+      "byte_count": 70,
+      "sha256": "aa55811b1d22cfc1c249e94584e7e1bda6d82b59a8e695f34ae2303edfe94633",
+      "assembly_sha256": "6fe1363b8fee5a8f9a0d6ebf426fa4628f16b7142dacbc97a6e9d77b467a003b"
+    },
+    {
+      "role": "slot-bounds-panic",
+      "assembly": "slot-bounds-panic.asm",
+      "address": "0x140147b9d",
+      "end_exclusive": "0x140147bb0",
+      "byte_count": 19,
+      "sha256": "264078a98325e408837155f7aac8933a5933e559f288e7ad4df29bb6247f3cff",
+      "assembly_sha256": "7091ee74cef679b1a42a25dc4d5c0c1bffd45eef614773d070393f9ccd294b2e"
+    },
+    {
+      "role": "bounds-diagnostic",
+      "assembly": "bounds-diagnostic.asm",
+      "address": "0x145e9c123",
+      "end_exclusive": "0x145e9c163",
+      "byte_count": 64,
+      "sha256": "a300604c2e5757cee665abd5399aff4d947ce6328dd507900e294e913171a4bf",
+      "assembly_sha256": "e4a785510e473bbca3af9bba1f1fbb3bcee61c835705919621d823a0aa2f78e6"
+    }
+  ],
+  "data": [
+    {
+      "role": "action-targets",
+      "bytes_hex": "2c5526fa445826faf75626fa8c5726fa105626fa6f5826fab55826fa225826fabe5a26fa8c5126fa545926fa495526fa",
+      "address": "0x145ee1ffc",
+      "end_exclusive": "0x145ee202c",
+      "byte_count": 48,
+      "sha256": "b7c612557e23d3d01bbf6c8666adceb1251a09ca7b252c810ba3dbdf1bc3218c"
+    },
+    {
+      "role": "armory-location",
+      "bytes_hex": "f86ded45010000002e00000000000000350700001c000000",
+      "address": "0x145ed77e0",
+      "end_exclusive": "0x145ed77f8",
+      "byte_count": 24,
+      "sha256": "9e325fc460b0fa6dd867c8acf7e15e43c9474d42ae9147c8643cb3773b488cd2"
+    },
+    {
+      "role": "armory-path",
+      "bytes_hex": "6372617465735c77656e696c6c612d726f6775652d6170705c7372635c73637265656e735c61726d6f72792e7273",
+      "address": "0x145ed6df8",
+      "end_exclusive": "0x145ed6e26",
+      "byte_count": 46,
+      "sha256": "3296790129f4ac04bbeb1b96079d2be7d027fc0cc7ad5cb09a5840fe88e94862"
+    },
+    {
+      "role": "bounds-format",
+      "bytes_hex": "20696e646578206f7574206f6620626f756e64733a20746865206c656e20697320c012206275742074686520696e64657820697320c000",
+      "address": "0x1473a81d0",
+      "end_exclusive": "0x1473a8207",
+      "byte_count": 55,
+      "sha256": "62e6ce87338db40c4706d01e334cc3fcbc65a4681e8175f65376b95e001f5a0d"
+    }
+  ],
+  "source_projection": {
+    "path": "crates/azeroth-survivors-re/src/armory.rs",
+    "slot_arm_sha256": "c8a598f5dbf46fd844c60f01170b45a7e299e613e225978c266966c4960438e2",
+    "worn_body_sha256": "d3620ab295c3d9a6968f32b1e4c8242eb02c71407948fa84b011e0b068723575",
+    "contract": "Slot UI producer -> ArmoryAction::Slot -> view.slot and GearSave::worn -> view.selected",
+    "limit": "Static live-source correspondence only; Rust and UI were not executed."
+  },
+  "case_count": 59,
+  "cases_sha256": "da029e9ecd7664b578766b77007f5ec4c188276cc38a9c42fb7e019880eb57d1",
+  "boundary_cases": [
+    {
+      "slot": 0,
+      "worn": 0,
+      "selected": null,
+      "focused_slot": 0,
+      "continuation": "0x1401471a6"
+    },
+    {
+      "slot": 0,
+      "worn": 101000,
+      "selected": 101000,
+      "focused_slot": 0,
+      "continuation": "0x1401471a6"
+    },
+    {
+      "slot": 0,
+      "worn": 4294967295,
+      "selected": 4294967295,
+      "focused_slot": 0,
+      "continuation": "0x1401471a6"
+    },
+    {
+      "slot": 18,
+      "worn": 0,
+      "selected": null,
+      "focused_slot": 18,
+      "continuation": "0x1401471a6"
+    },
+    {
+      "slot": 18,
+      "worn": 101000,
+      "selected": 101000,
+      "focused_slot": 18,
+      "continuation": "0x1401471a6"
+    },
+    {
+      "slot": 18,
+      "worn": 4294967295,
+      "selected": 4294967295,
+      "focused_slot": 18,
+      "continuation": "0x1401471a6"
+    },
+    {
+      "slot": 19,
+      "panic": "0x145e9c123",
+      "length": 19,
+      "location": "0x145ed77e0",
+      "source_line": 1845,
+      "source_column": 28
+    },
+    {
+      "slot": 255,
+      "panic": "0x145e9c123",
+      "length": 19,
+      "location": "0x145ed77e0",
+      "source_line": 1845,
+      "source_column": 28
+    }
+  ],
+  "native_instructions_executed": true,
+  "application_executed": false,
+  "rebuilt_code_executed": false,
+  "limits": [
+    "Only the selected switch lane and its direct bounds failure execute; account snapshot, ECS action membership/ticks and iteration are supplied synthetic memory.",
+    "The 19-slot array is supplied after account projection. Arbitrary nonzero IDs test selection semantics, not ownership admission or item validity.",
+    "A declared unwind extent and decoded branch/table targets do not become a Ghidra function-body ownership assertion.",
+    "No original process, files, configuration, saves, compiler, reconstructed Rust, renderer or original/rebuilt comparison runs."
+  ]
+}

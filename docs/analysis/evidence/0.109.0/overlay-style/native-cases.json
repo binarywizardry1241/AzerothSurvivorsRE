@@ -1,0 +1,46 @@
+{
+  "target": {
+    "version": "0.109.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+    "size_bytes": 140447744
+  },
+  "vectors": [
+    {
+      "role": "button",
+      "poison": 0,
+      "result": "passed"
+    },
+    {
+      "role": "button",
+      "poison": 90,
+      "result": "passed"
+    },
+    {
+      "role": "button",
+      "poison": 165,
+      "result": "passed"
+    },
+    {
+      "role": "panel",
+      "poison": 0,
+      "result": "passed"
+    },
+    {
+      "role": "panel",
+      "poison": 90,
+      "result": "passed"
+    },
+    {
+      "role": "panel",
+      "poison": 165,
+      "result": "passed"
+    }
+  ],
+  "seams": [
+    "allocation shim",
+    "successful zeroed allocation",
+    "memcpy"
+  ],
+  "limits": "Raw Ghidra ABI/types are inferred. Native replay covers only Color tag0, successful synthetic allocations and memcpy; other color variants, allocation failures, ECS scheduling, shaping/GPU and original/rebuilt parity are unverified."
+}

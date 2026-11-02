@@ -1,0 +1,1707 @@
+{
+  "target_sha256": "17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b",
+  "method": "Bounded unchanged native timed-cast lifecycle and split cooldown snapshots.\n\nExecute only reviewed no-call instruction fragments. The before/after dispatch\nboundary is explicit: fallback captures pre-cast global cooldown, while a\npositive override uses post-cast global cooldown. Constructor/refresh Ghidra\nand PE owners retain startup1.5, suffix1.0 and base-prefix preservation.\n",
+  "owners": [
+    {
+      "role": "timed-initial-iterator",
+      "address": "0x145545650",
+      "end_exclusive": "0x14554573a",
+      "file_offset": "0x5544a50",
+      "sha256": "f0acae7afa5287b059cfd17ec9bfe50732088b5fb58df33e41876df0925cd7a7",
+      "rea_evidence_id": "ev_979ceab2e7871c5225e6520711614f4717969aee0a5d2484faf87b156c413bf6",
+      "analysis_profile": {
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "parameters": {
+          "target_kind": "executable",
+          "target_format": "raw-binary",
+          "architecture": "x86_64",
+          "available_architectures": [
+            "x86_64"
+          ],
+          "import_mode": "ephemeral-source-immutable",
+          "annotation_policy": "atomic-function-entry-metadata-v1",
+          "load_image_observations": "source-mappings-entry-context-v2",
+          "function_body_evidence": "complete-inclusive-ranges-v1",
+          "function_references": "complete-body-and-entry-reference-manager-v2",
+          "call_relationship_coverage": "function-body-call-coverage-v5",
+          "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+          "string_inventory_evidence": "defined-data-coverage-v1",
+          "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+          "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+          "instruction_flow_evidence": "decoded-return-pcode-v1",
+          "instruction_references": "exact-address-incoming-v1",
+          "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+          "no_return_repair": "returning-imports-decoded-return-v2",
+          "process_launch": "inspected-jvm-launch-support-v1",
+          "load_image_evidence": "independent-raw-mapping-context-v4",
+          "jump_table_evidence": "typed-case-default-blocks-v1",
+          "decompiler_jump_loads": true,
+          "loader": "BinaryLoader",
+          "language_id": "x86:LE:64:default",
+          "compiler_spec_id": "gcc",
+          "language_selection": "caller-supplied-v1",
+          "entry_point": "0x145545650",
+          "entry_seed": "external-entry-and-function-before-analysis-v1",
+          "analyzer_preset": "ghidra-default+disabled:Function ID,Function Start Search,Disassemble Entry Points,Subroutine References,Non-Returning Functions - Discovered",
+          "analysis_options": {
+            "disabled_analyzers": [
+              "Function ID",
+              "Function Start Search",
+              "Disassemble Entry Points",
+              "Subroutine References",
+              "Non-Returning Functions - Discovered"
+            ]
+          }
+        },
+        "digest": "9dc0744a1f6ea11e128aba0c5a61753383f72c6554c413a381f47109b0400f70"
+      }
+    },
+    {
+      "role": "timed-initial-constructor",
+      "address": "0x145559c90",
+      "end_exclusive": "0x145559eac",
+      "file_offset": "0x5559090",
+      "sha256": "b7715df4a7fb1946248dd41e8b05a1fa6d0bc64cdd6a616bc695973e7c5c31fc",
+      "rea_evidence_id": "ev_72a301438465cf34eef2439716da42a1f769ca566d56cfe1cedca44dd3777a4a",
+      "analysis_profile": {
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "parameters": {
+          "target_kind": "executable",
+          "target_format": "raw-binary",
+          "architecture": "x86_64",
+          "available_architectures": [
+            "x86_64"
+          ],
+          "import_mode": "ephemeral-source-immutable",
+          "annotation_policy": "atomic-function-entry-metadata-v1",
+          "load_image_observations": "source-mappings-entry-context-v2",
+          "function_body_evidence": "complete-inclusive-ranges-v1",
+          "function_references": "complete-body-and-entry-reference-manager-v2",
+          "call_relationship_coverage": "function-body-call-coverage-v5",
+          "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+          "string_inventory_evidence": "defined-data-coverage-v1",
+          "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+          "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+          "instruction_flow_evidence": "decoded-return-pcode-v1",
+          "instruction_references": "exact-address-incoming-v1",
+          "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+          "no_return_repair": "returning-imports-decoded-return-v2",
+          "process_launch": "inspected-jvm-launch-support-v1",
+          "load_image_evidence": "independent-raw-mapping-context-v4",
+          "jump_table_evidence": "typed-case-default-blocks-v1",
+          "decompiler_jump_loads": true,
+          "loader": "BinaryLoader",
+          "language_id": "x86:LE:64:default",
+          "compiler_spec_id": "gcc",
+          "language_selection": "caller-supplied-v1",
+          "entry_point": "0x145559c90",
+          "entry_seed": "external-entry-and-function-before-analysis-v1",
+          "analyzer_preset": "ghidra-default+disabled:Function ID,Function Start Search,Disassemble Entry Points,Subroutine References,Non-Returning Functions - Discovered",
+          "analysis_options": {
+            "disabled_analyzers": [
+              "Function ID",
+              "Function Start Search",
+              "Disassemble Entry Points",
+              "Subroutine References",
+              "Non-Returning Functions - Discovered"
+            ]
+          }
+        },
+        "digest": "46cad35ca0a54f527859e41d372f61e2e6d3336ac3e0b81eaffea7c280ebdacc"
+      }
+    },
+    {
+      "role": "timed-live-stage",
+      "address": "0x1454b0e66",
+      "end_exclusive": "0x1454b1105",
+      "file_offset": "0x54b0266",
+      "sha256": "e535a577ffa3538a98090c690aec183ca42dc96027f40f98d125426e342852a7"
+    },
+    {
+      "role": "timed-base-count",
+      "address": "0x1454c9c9c",
+      "end_exclusive": "0x1454c9d02",
+      "file_offset": "0x54c909c",
+      "sha256": "eb027138673d20794abb6ac84fe536dee75fae83396cd1d817af9039432131ca"
+    },
+    {
+      "role": "timed-prefix-refresh",
+      "address": "0x1454ca1d9",
+      "end_exclusive": "0x1454ca511",
+      "file_offset": "0x54c95d9",
+      "sha256": "703e9d576bf79a4c7fa8e4513694ad717778ad6934ad6589ebe1df04ad7f9e13"
+    }
+  ],
+  "spans": [
+    {
+      "start": "0x1454b0ee7",
+      "end_exclusive": "0x1454b0f1d"
+    },
+    {
+      "start": "0x1454b0f87",
+      "end_exclusive": "0x1454b0fb1"
+    },
+    {
+      "start": "0x1454b0ffb",
+      "end_exclusive": "0x1454b101e"
+    },
+    {
+      "start": "0x1454b101e",
+      "end_exclusive": "0x1454b10c7"
+    },
+    {
+      "start": "0x1454b10e0",
+      "end_exclusive": "0x1454b1105"
+    },
+    {
+      "start": "0x1454b0f3a",
+      "end_exclusive": "0x1454b0fec"
+    }
+  ],
+  "intervals": [
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1050253722,
+      "override_bits": 3212836864,
+      "expected_fallback_bits": 1015652391,
+      "expected_interval_bits": 1048576000
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1050253722,
+      "override_bits": 0,
+      "expected_fallback_bits": 1015652391,
+      "expected_interval_bits": 1048576000
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1050253722,
+      "override_bits": 1077936128,
+      "expected_fallback_bits": 1015652391,
+      "expected_interval_bits": 1063675495
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1050253722,
+      "override_bits": 2143289344,
+      "expected_fallback_bits": 1015652391,
+      "expected_interval_bits": 1048576000
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1073741824,
+      "override_bits": 3212836864,
+      "expected_fallback_bits": 1015652391,
+      "expected_interval_bits": 1048576000
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1073741824,
+      "override_bits": 0,
+      "expected_fallback_bits": 1015652391,
+      "expected_interval_bits": 1048576000
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1073741824,
+      "override_bits": 1077936128,
+      "expected_fallback_bits": 1015652391,
+      "expected_interval_bits": 1086324736
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1073741824,
+      "override_bits": 2143289344,
+      "expected_fallback_bits": 1015652391,
+      "expected_interval_bits": 1048576000
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1050253722,
+      "override_bits": 3212836864,
+      "expected_fallback_bits": 1045327931,
+      "expected_interval_bits": 1048576000
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1050253722,
+      "override_bits": 0,
+      "expected_fallback_bits": 1045327931,
+      "expected_interval_bits": 1048576000
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1050253722,
+      "override_bits": 1077936128,
+      "expected_fallback_bits": 1045327931,
+      "expected_interval_bits": 1063675495
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1050253722,
+      "override_bits": 2143289344,
+      "expected_fallback_bits": 1045327931,
+      "expected_interval_bits": 1048576000
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1073741824,
+      "override_bits": 3212836864,
+      "expected_fallback_bits": 1045327931,
+      "expected_interval_bits": 1048576000
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1073741824,
+      "override_bits": 0,
+      "expected_fallback_bits": 1045327931,
+      "expected_interval_bits": 1048576000
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1073741824,
+      "override_bits": 1077936128,
+      "expected_fallback_bits": 1045327931,
+      "expected_interval_bits": 1086324736
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1073741824,
+      "override_bits": 2143289344,
+      "expected_fallback_bits": 1045327931,
+      "expected_interval_bits": 1048576000
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1050253722,
+      "override_bits": 3212836864,
+      "expected_fallback_bits": 1032993322,
+      "expected_interval_bits": 1048576000
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1050253722,
+      "override_bits": 0,
+      "expected_fallback_bits": 1032993322,
+      "expected_interval_bits": 1048576000
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1050253722,
+      "override_bits": 1077936128,
+      "expected_fallback_bits": 1032993322,
+      "expected_interval_bits": 1063675495
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1050253722,
+      "override_bits": 2143289344,
+      "expected_fallback_bits": 1032993322,
+      "expected_interval_bits": 1048576000
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1073741824,
+      "override_bits": 3212836864,
+      "expected_fallback_bits": 1032993322,
+      "expected_interval_bits": 1048576000
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1073741824,
+      "override_bits": 0,
+      "expected_fallback_bits": 1032993322,
+      "expected_interval_bits": 1048576000
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1073741824,
+      "override_bits": 1077936128,
+      "expected_fallback_bits": 1032993322,
+      "expected_interval_bits": 1086324736
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1073741824,
+      "override_bits": 2143289344,
+      "expected_fallback_bits": 1032993322,
+      "expected_interval_bits": 1048576000
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1050253722,
+      "override_bits": 3212836864,
+      "expected_fallback_bits": 1062950719,
+      "expected_interval_bits": 1062950719
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1050253722,
+      "override_bits": 0,
+      "expected_fallback_bits": 1062950719,
+      "expected_interval_bits": 1062950719
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1050253722,
+      "override_bits": 1077936128,
+      "expected_fallback_bits": 1062950719,
+      "expected_interval_bits": 1063675495
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1050253722,
+      "override_bits": 2143289344,
+      "expected_fallback_bits": 1062950719,
+      "expected_interval_bits": 1062950719
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1073741824,
+      "override_bits": 3212836864,
+      "expected_fallback_bits": 1062950719,
+      "expected_interval_bits": 1062950719
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1073741824,
+      "override_bits": 0,
+      "expected_fallback_bits": 1062950719,
+      "expected_interval_bits": 1062950719
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1073741824,
+      "override_bits": 1077936128,
+      "expected_fallback_bits": 1062950719,
+      "expected_interval_bits": 1086324736
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1073741824,
+      "override_bits": 2143289344,
+      "expected_fallback_bits": 1062950719,
+      "expected_interval_bits": 1062950719
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1050253722,
+      "override_bits": 3212836864,
+      "expected_fallback_bits": 1038066751,
+      "expected_interval_bits": 1048576000
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1050253722,
+      "override_bits": 0,
+      "expected_fallback_bits": 1038066751,
+      "expected_interval_bits": 1048576000
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1050253722,
+      "override_bits": 1077936128,
+      "expected_fallback_bits": 1038066751,
+      "expected_interval_bits": 1063675495
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1050253722,
+      "override_bits": 2143289344,
+      "expected_fallback_bits": 1038066751,
+      "expected_interval_bits": 1048576000
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1073741824,
+      "override_bits": 3212836864,
+      "expected_fallback_bits": 1038066751,
+      "expected_interval_bits": 1048576000
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1073741824,
+      "override_bits": 0,
+      "expected_fallback_bits": 1038066751,
+      "expected_interval_bits": 1048576000
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1073741824,
+      "override_bits": 1077936128,
+      "expected_fallback_bits": 1038066751,
+      "expected_interval_bits": 1086324736
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1073741824,
+      "override_bits": 2143289344,
+      "expected_fallback_bits": 1038066751,
+      "expected_interval_bits": 1048576000
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1050253722,
+      "override_bits": 3212836864,
+      "expected_fallback_bits": 1067957039,
+      "expected_interval_bits": 1067957039
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1050253722,
+      "override_bits": 0,
+      "expected_fallback_bits": 1067957039,
+      "expected_interval_bits": 1067957039
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1050253722,
+      "override_bits": 1077936128,
+      "expected_fallback_bits": 1067957039,
+      "expected_interval_bits": 1063675495
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1050253722,
+      "override_bits": 2143289344,
+      "expected_fallback_bits": 1067957039,
+      "expected_interval_bits": 1067957039
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1073741824,
+      "override_bits": 3212836864,
+      "expected_fallback_bits": 1067957039,
+      "expected_interval_bits": 1067957039
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1073741824,
+      "override_bits": 0,
+      "expected_fallback_bits": 1067957039,
+      "expected_interval_bits": 1067957039
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1073741824,
+      "override_bits": 1077936128,
+      "expected_fallback_bits": 1067957039,
+      "expected_interval_bits": 1086324736
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1073741824,
+      "override_bits": 2143289344,
+      "expected_fallback_bits": 1067957039,
+      "expected_interval_bits": 1067957039
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1050253722,
+      "override_bits": 3212836864,
+      "expected_fallback_bits": 1055760003,
+      "expected_interval_bits": 1055760003
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1050253722,
+      "override_bits": 0,
+      "expected_fallback_bits": 1055760003,
+      "expected_interval_bits": 1055760003
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1050253722,
+      "override_bits": 1077936128,
+      "expected_fallback_bits": 1055760003,
+      "expected_interval_bits": 1063675495
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1050253722,
+      "override_bits": 2143289344,
+      "expected_fallback_bits": 1055760003,
+      "expected_interval_bits": 1055760003
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1073741824,
+      "override_bits": 3212836864,
+      "expected_fallback_bits": 1055760003,
+      "expected_interval_bits": 1055760003
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1073741824,
+      "override_bits": 0,
+      "expected_fallback_bits": 1055760003,
+      "expected_interval_bits": 1055760003
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1073741824,
+      "override_bits": 1077936128,
+      "expected_fallback_bits": 1055760003,
+      "expected_interval_bits": 1086324736
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1073741824,
+      "override_bits": 2143289344,
+      "expected_fallback_bits": 1055760003,
+      "expected_interval_bits": 1055760003
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1050253722,
+      "override_bits": 3212836864,
+      "expected_fallback_bits": 1085421283,
+      "expected_interval_bits": 1085421283
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1050253722,
+      "override_bits": 0,
+      "expected_fallback_bits": 1085421283,
+      "expected_interval_bits": 1085421283
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1050253722,
+      "override_bits": 1077936128,
+      "expected_fallback_bits": 1085421283,
+      "expected_interval_bits": 1063675495
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1050253722,
+      "override_bits": 2143289344,
+      "expected_fallback_bits": 1085421283,
+      "expected_interval_bits": 1085421283
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1073741824,
+      "override_bits": 3212836864,
+      "expected_fallback_bits": 1085421283,
+      "expected_interval_bits": 1085421283
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1073741824,
+      "override_bits": 0,
+      "expected_fallback_bits": 1085421283,
+      "expected_interval_bits": 1085421283
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1073741824,
+      "override_bits": 1077936128,
+      "expected_fallback_bits": 1085421283,
+      "expected_interval_bits": 1086324736
+    },
+    {
+      "base_bits": 1069547520,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1073741824,
+      "override_bits": 2143289344,
+      "expected_fallback_bits": 1085421283,
+      "expected_interval_bits": 1085421283
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1050253722,
+      "override_bits": 3212836864,
+      "expected_fallback_bits": 1042546940,
+      "expected_interval_bits": 1048576000
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1050253722,
+      "override_bits": 0,
+      "expected_fallback_bits": 1042546940,
+      "expected_interval_bits": 1048576000
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1050253722,
+      "override_bits": 1077936128,
+      "expected_fallback_bits": 1042546940,
+      "expected_interval_bits": 1063675495
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1050253722,
+      "override_bits": 2143289344,
+      "expected_fallback_bits": 1042546940,
+      "expected_interval_bits": 1048576000
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1073741824,
+      "override_bits": 3212836864,
+      "expected_fallback_bits": 1042546940,
+      "expected_interval_bits": 1048576000
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1073741824,
+      "override_bits": 0,
+      "expected_fallback_bits": 1042546940,
+      "expected_interval_bits": 1048576000
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1073741824,
+      "override_bits": 1077936128,
+      "expected_fallback_bits": 1042546940,
+      "expected_interval_bits": 1086324736
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1073741824,
+      "override_bits": 2143289344,
+      "expected_fallback_bits": 1042546940,
+      "expected_interval_bits": 1048576000
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1050253722,
+      "override_bits": 3212836864,
+      "expected_fallback_bits": 1073086843,
+      "expected_interval_bits": 1073086843
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1050253722,
+      "override_bits": 0,
+      "expected_fallback_bits": 1073086843,
+      "expected_interval_bits": 1073086843
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1050253722,
+      "override_bits": 1077936128,
+      "expected_fallback_bits": 1073086843,
+      "expected_interval_bits": 1063675495
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1050253722,
+      "override_bits": 2143289344,
+      "expected_fallback_bits": 1073086843,
+      "expected_interval_bits": 1073086843
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1073741824,
+      "override_bits": 3212836864,
+      "expected_fallback_bits": 1073086843,
+      "expected_interval_bits": 1073086843
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1073741824,
+      "override_bits": 0,
+      "expected_fallback_bits": 1073086843,
+      "expected_interval_bits": 1073086843
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1073741824,
+      "override_bits": 1077936128,
+      "expected_fallback_bits": 1073086843,
+      "expected_interval_bits": 1086324736
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1073741824,
+      "override_bits": 2143289344,
+      "expected_fallback_bits": 1073086843,
+      "expected_interval_bits": 1073086843
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1050253722,
+      "override_bits": 3212836864,
+      "expected_fallback_bits": 1059995916,
+      "expected_interval_bits": 1059995916
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1050253722,
+      "override_bits": 0,
+      "expected_fallback_bits": 1059995916,
+      "expected_interval_bits": 1059995916
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1050253722,
+      "override_bits": 1077936128,
+      "expected_fallback_bits": 1059995916,
+      "expected_interval_bits": 1063675495
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1050253722,
+      "override_bits": 2143289344,
+      "expected_fallback_bits": 1059995916,
+      "expected_interval_bits": 1059995916
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1073741824,
+      "override_bits": 3212836864,
+      "expected_fallback_bits": 1059995916,
+      "expected_interval_bits": 1059995916
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1073741824,
+      "override_bits": 0,
+      "expected_fallback_bits": 1059995916,
+      "expected_interval_bits": 1059995916
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1073741824,
+      "override_bits": 1077936128,
+      "expected_fallback_bits": 1059995916,
+      "expected_interval_bits": 1086324736
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1073741824,
+      "override_bits": 2143289344,
+      "expected_fallback_bits": 1059995916,
+      "expected_interval_bits": 1059995916
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1050253722,
+      "override_bits": 3212836864,
+      "expected_fallback_bits": 1090695369,
+      "expected_interval_bits": 1090695369
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1050253722,
+      "override_bits": 0,
+      "expected_fallback_bits": 1090695369,
+      "expected_interval_bits": 1090695369
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1050253722,
+      "override_bits": 1077936128,
+      "expected_fallback_bits": 1090695369,
+      "expected_interval_bits": 1063675495
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1050253722,
+      "override_bits": 2143289344,
+      "expected_fallback_bits": 1090695369,
+      "expected_interval_bits": 1090695369
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1073741824,
+      "override_bits": 3212836864,
+      "expected_fallback_bits": 1090695369,
+      "expected_interval_bits": 1090695369
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1073741824,
+      "override_bits": 0,
+      "expected_fallback_bits": 1090695369,
+      "expected_interval_bits": 1090695369
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1073741824,
+      "override_bits": 1077936128,
+      "expected_fallback_bits": 1090695369,
+      "expected_interval_bits": 1086324736
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1045220557,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1073741824,
+      "override_bits": 2143289344,
+      "expected_fallback_bits": 1090695369,
+      "expected_interval_bits": 1090695369
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1050253722,
+      "override_bits": 3212836864,
+      "expected_fallback_bits": 1065697484,
+      "expected_interval_bits": 1065697484
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1050253722,
+      "override_bits": 0,
+      "expected_fallback_bits": 1065697484,
+      "expected_interval_bits": 1065697484
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1050253722,
+      "override_bits": 1077936128,
+      "expected_fallback_bits": 1065697484,
+      "expected_interval_bits": 1063675495
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1050253722,
+      "override_bits": 2143289344,
+      "expected_fallback_bits": 1065697484,
+      "expected_interval_bits": 1065697484
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1073741824,
+      "override_bits": 3212836864,
+      "expected_fallback_bits": 1065697484,
+      "expected_interval_bits": 1065697484
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1073741824,
+      "override_bits": 0,
+      "expected_fallback_bits": 1065697484,
+      "expected_interval_bits": 1065697484
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1073741824,
+      "override_bits": 1077936128,
+      "expected_fallback_bits": 1065697484,
+      "expected_interval_bits": 1086324736
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1073741824,
+      "override_bits": 2143289344,
+      "expected_fallback_bits": 1065697484,
+      "expected_interval_bits": 1065697484
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1050253722,
+      "override_bits": 3212836864,
+      "expected_fallback_bits": 1095229747,
+      "expected_interval_bits": 1095229747
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1050253722,
+      "override_bits": 0,
+      "expected_fallback_bits": 1095229747,
+      "expected_interval_bits": 1095229747
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1050253722,
+      "override_bits": 1077936128,
+      "expected_fallback_bits": 1095229747,
+      "expected_interval_bits": 1063675495
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1050253722,
+      "override_bits": 2143289344,
+      "expected_fallback_bits": 1095229747,
+      "expected_interval_bits": 1095229747
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1073741824,
+      "override_bits": 3212836864,
+      "expected_fallback_bits": 1095229747,
+      "expected_interval_bits": 1095229747
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1073741824,
+      "override_bits": 0,
+      "expected_fallback_bits": 1095229747,
+      "expected_interval_bits": 1095229747
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1073741824,
+      "override_bits": 1077936128,
+      "expected_fallback_bits": 1095229747,
+      "expected_interval_bits": 1086324736
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1053609165,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1073741824,
+      "override_bits": 2143289344,
+      "expected_fallback_bits": 1095229747,
+      "expected_interval_bits": 1095229747
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1050253722,
+      "override_bits": 3212836864,
+      "expected_fallback_bits": 1083020505,
+      "expected_interval_bits": 1083020505
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1050253722,
+      "override_bits": 0,
+      "expected_fallback_bits": 1083020505,
+      "expected_interval_bits": 1083020505
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1050253722,
+      "override_bits": 1077936128,
+      "expected_fallback_bits": 1083020505,
+      "expected_interval_bits": 1063675495
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1050253722,
+      "override_bits": 2143289344,
+      "expected_fallback_bits": 1083020505,
+      "expected_interval_bits": 1083020505
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1073741824,
+      "override_bits": 3212836864,
+      "expected_fallback_bits": 1083020505,
+      "expected_interval_bits": 1083020505
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1073741824,
+      "override_bits": 0,
+      "expected_fallback_bits": 1083020505,
+      "expected_interval_bits": 1083020505
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1073741824,
+      "override_bits": 1077936128,
+      "expected_fallback_bits": 1083020505,
+      "expected_interval_bits": 1086324736
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1036831949,
+      "global_after_bits": 1073741824,
+      "override_bits": 2143289344,
+      "expected_fallback_bits": 1083020505,
+      "expected_interval_bits": 1083020505
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1050253722,
+      "override_bits": 3212836864,
+      "expected_fallback_bits": 1112825670,
+      "expected_interval_bits": 1112825670
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1050253722,
+      "override_bits": 0,
+      "expected_fallback_bits": 1112825670,
+      "expected_interval_bits": 1112825670
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1050253722,
+      "override_bits": 1077936128,
+      "expected_fallback_bits": 1112825670,
+      "expected_interval_bits": 1063675495
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1050253722,
+      "override_bits": 2143289344,
+      "expected_fallback_bits": 1112825670,
+      "expected_interval_bits": 1112825670
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1073741824,
+      "override_bits": 3212836864,
+      "expected_fallback_bits": 1112825670,
+      "expected_interval_bits": 1112825670
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1073741824,
+      "override_bits": 0,
+      "expected_fallback_bits": 1112825670,
+      "expected_interval_bits": 1112825670
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1073741824,
+      "override_bits": 1077936128,
+      "expected_fallback_bits": 1112825670,
+      "expected_interval_bits": 1086324736
+    },
+    {
+      "base_bits": 1097125069,
+      "ordinary_bits": 1067869798,
+      "talent_bits": 1071225242,
+      "global_before_bits": 1067030938,
+      "global_after_bits": 1073741824,
+      "override_bits": 2143289344,
+      "expected_fallback_bits": 1112825670,
+      "expected_interval_bits": 1112825670
+    }
+  ],
+  "due": [
+    {
+      "remaining_bits": 3212836864,
+      "delta_bits": 0,
+      "expected_bits": 3212836864,
+      "due": true
+    },
+    {
+      "remaining_bits": 3212836864,
+      "delta_bits": 1036831949,
+      "expected_bits": 3213675725,
+      "due": true
+    },
+    {
+      "remaining_bits": 3212836864,
+      "delta_bits": 1050253722,
+      "expected_bits": 3215353446,
+      "due": true
+    },
+    {
+      "remaining_bits": 3212836864,
+      "delta_bits": 1073741824,
+      "expected_bits": 3225419776,
+      "due": true
+    },
+    {
+      "remaining_bits": 3212836864,
+      "delta_bits": 2143289344,
+      "expected_bits": 2143289344,
+      "due": true
+    },
+    {
+      "remaining_bits": 0,
+      "delta_bits": 0,
+      "expected_bits": 0,
+      "due": true
+    },
+    {
+      "remaining_bits": 0,
+      "delta_bits": 1036831949,
+      "expected_bits": 3184315597,
+      "due": true
+    },
+    {
+      "remaining_bits": 0,
+      "delta_bits": 1050253722,
+      "expected_bits": 3197737370,
+      "due": true
+    },
+    {
+      "remaining_bits": 0,
+      "delta_bits": 1073741824,
+      "expected_bits": 3221225472,
+      "due": true
+    },
+    {
+      "remaining_bits": 0,
+      "delta_bits": 2143289344,
+      "expected_bits": 2143289344,
+      "due": true
+    },
+    {
+      "remaining_bits": 1050253722,
+      "delta_bits": 0,
+      "expected_bits": 1050253722,
+      "due": false
+    },
+    {
+      "remaining_bits": 1050253722,
+      "delta_bits": 1036831949,
+      "expected_bits": 1045220558,
+      "due": false
+    },
+    {
+      "remaining_bits": 1050253722,
+      "delta_bits": 1050253722,
+      "expected_bits": 0,
+      "due": true
+    },
+    {
+      "remaining_bits": 1050253722,
+      "delta_bits": 1073741824,
+      "expected_bits": 3218708890,
+      "due": true
+    },
+    {
+      "remaining_bits": 1050253722,
+      "delta_bits": 2143289344,
+      "expected_bits": 2143289344,
+      "due": true
+    },
+    {
+      "remaining_bits": 1069547520,
+      "delta_bits": 0,
+      "expected_bits": 1069547520,
+      "due": false
+    },
+    {
+      "remaining_bits": 1069547520,
+      "delta_bits": 1036831949,
+      "expected_bits": 1068708659,
+      "due": false
+    },
+    {
+      "remaining_bits": 1069547520,
+      "delta_bits": 1050253722,
+      "expected_bits": 1067030938,
+      "due": false
+    },
+    {
+      "remaining_bits": 1069547520,
+      "delta_bits": 1073741824,
+      "expected_bits": 3204448256,
+      "due": true
+    },
+    {
+      "remaining_bits": 1069547520,
+      "delta_bits": 2143289344,
+      "expected_bits": 2143289344,
+      "due": true
+    },
+    {
+      "remaining_bits": 2143289344,
+      "delta_bits": 0,
+      "expected_bits": 2143289344,
+      "due": true
+    },
+    {
+      "remaining_bits": 2143289344,
+      "delta_bits": 1036831949,
+      "expected_bits": 2143289344,
+      "due": true
+    },
+    {
+      "remaining_bits": 2143289344,
+      "delta_bits": 1050253722,
+      "expected_bits": 2143289344,
+      "due": true
+    },
+    {
+      "remaining_bits": 2143289344,
+      "delta_bits": 1073741824,
+      "expected_bits": 2143289344,
+      "due": true
+    },
+    {
+      "remaining_bits": 2143289344,
+      "delta_bits": 2143289344,
+      "expected_bits": 2143289344,
+      "due": true
+    }
+  ],
+  "tails": [
+    {
+      "success": false,
+      "depth": 0,
+      "effect_count": 0,
+      "expected_remaining_bits": 1050253722,
+      "cast_event": false,
+      "event_hex": null
+    },
+    {
+      "success": false,
+      "depth": 0,
+      "effect_count": 1,
+      "expected_remaining_bits": 1050253722,
+      "cast_event": false,
+      "event_hex": null
+    },
+    {
+      "success": false,
+      "depth": 1,
+      "effect_count": 0,
+      "expected_remaining_bits": 1050253722,
+      "cast_event": false,
+      "event_hex": null
+    },
+    {
+      "success": false,
+      "depth": 1,
+      "effect_count": 1,
+      "expected_remaining_bits": 1050253722,
+      "cast_event": false,
+      "event_hex": null
+    },
+    {
+      "success": false,
+      "depth": 4294967295,
+      "effect_count": 0,
+      "expected_remaining_bits": 1050253722,
+      "cast_event": false,
+      "event_hex": null
+    },
+    {
+      "success": false,
+      "depth": 4294967295,
+      "effect_count": 1,
+      "expected_remaining_bits": 1050253722,
+      "cast_event": false,
+      "event_hex": null
+    },
+    {
+      "success": true,
+      "depth": 0,
+      "effect_count": 0,
+      "expected_remaining_bits": 1075838976,
+      "cast_event": false,
+      "event_hex": null
+    },
+    {
+      "success": true,
+      "depth": 0,
+      "effect_count": 1,
+      "expected_remaining_bits": 1075838976,
+      "cast_event": true,
+      "event_hex": "00000000000000004902000000000000000000000000000000000000010300000000000000000000"
+    },
+    {
+      "success": true,
+      "depth": 1,
+      "effect_count": 0,
+      "expected_remaining_bits": 1075838976,
+      "cast_event": false,
+      "event_hex": null
+    },
+    {
+      "success": true,
+      "depth": 1,
+      "effect_count": 1,
+      "expected_remaining_bits": 1075838976,
+      "cast_event": false,
+      "event_hex": null
+    },
+    {
+      "success": true,
+      "depth": 4294967295,
+      "effect_count": 0,
+      "expected_remaining_bits": 1075838976,
+      "cast_event": false,
+      "event_hex": null
+    },
+    {
+      "success": true,
+      "depth": 4294967295,
+      "effect_count": 1,
+      "expected_remaining_bits": 1075838976,
+      "cast_event": false,
+      "event_hex": null
+    }
+  ],
+  "findings": [
+    "Timed startup1.5; refresh preserves base-talent prefix and rebuilds suffix at1.0.",
+    "Each slot subtracts delta once, due iff not ordered positive; no catch-up loop or scheduler RNG.",
+    "Fresh free-instance fields are used for dispatch with the due timer replacing instance.remaining.",
+    "Success writes interval before optional kind3 event; failure writes literal.3; no cooldown packet or cast echoes."
+  ]
+}

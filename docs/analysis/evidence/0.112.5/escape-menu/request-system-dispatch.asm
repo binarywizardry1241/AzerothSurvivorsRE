@@ -1,0 +1,2 @@
+14009ac37	488d542470	lea	rdx, [rsp + 0x70]
+14009ac3c	e83f35ffff	call	0x14008e180

@@ -1,0 +1,99 @@
+{
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "ranges": [
+    {
+      "role": "teleport",
+      "start": "0x1458b57d0",
+      "end_exclusive": "0x1458b5a85",
+      "file_offset": "0x58b4bd0",
+      "sha256": "f108eddd480f8eb86ee9fbae03f9f6e352aa4e6303e2fafa606c238e226e06c7",
+      "assembly": "player-teleport-packet.asm",
+      "rea_evidence_id": "ev_727ab0c45c47e6a108dc4af585835f3efc9165f01627128daa81689fd1fb5901",
+      "limitations": [
+        "Raw-function Ghidra import uses original VA; external callees and constants omitted. Win64 ABI and field bytes cross-checked against full selected PE."
+      ]
+    },
+    {
+      "role": "speed",
+      "start": "0x1458ad310",
+      "end_exclusive": "0x1458ad474",
+      "file_offset": "0x58ac710",
+      "sha256": "620fe5c730d3ea31514690f8ccf3c60d66763037754ddb7a5a02a1ec6fbd277e",
+      "assembly": "player-speed-packet.asm",
+      "rea_evidence_id": "ev_8a3a8eefd2a33dff75923a4790f40e81a88479c7a9f40a833ea9a5755ae9135e",
+      "limitations": [
+        "Raw-function Ghidra import uses original VA; external callees and constants omitted. Win64 ABI and field bytes cross-checked against full selected PE."
+      ]
+    },
+    {
+      "role": "root",
+      "start": "0x1458a9970",
+      "end_exclusive": "0x1458a9a5b",
+      "file_offset": "0x58a8d70",
+      "sha256": "a09bf570079246b16984b2aa4cbc98daaa83b58facfb41aaf6b3fbc9c4478c8f",
+      "assembly": "player-root-packet.asm",
+      "rea_evidence_id": "ev_5f3392fdc0dfc72118e8839e7d0df0c67df59b4778c7f71e1ba1c3881b75e3d4",
+      "limitations": [
+        "Raw-function Ghidra import uses original VA; external callees and constants omitted. Win64 ABI and field bytes cross-checked against full selected PE."
+      ]
+    },
+    {
+      "role": "initial-player-speed",
+      "start": "0x1459009ba",
+      "end_exclusive": "0x1459009ca",
+      "file_offset": "0x58ffdba",
+      "sha256": "2ab28f5233bc8397c26cadcf9f245bf1067538980d690327eb0487a67f083c21",
+      "assembly": "player-initial-player-speed.asm",
+      "method": "Original selected PE instruction span; callers and data separately bound."
+    },
+    {
+      "role": "player-speed-deadband",
+      "start": "0x1458fa0cf",
+      "end_exclusive": "0x1458fa0fb",
+      "file_offset": "0x58f94cf",
+      "sha256": "f99a7e5095780c10ce697595f4b3a88b4cc1ef704761a7ec087f38e9cff68a71",
+      "assembly": "player-player-speed-deadband.asm",
+      "method": "Original selected PE instruction span; callers and data separately bound."
+    },
+    {
+      "role": "point-writer",
+      "start": "0x145895ba0",
+      "end_exclusive": "0x145895d25",
+      "file_offset": "0x5894fa0",
+      "sha256": "a7c306a9e07faccb0a63e9650acb0e041128ad7b976d108fe93f49ce7259f5e6",
+      "assembly": "player-point-writer.asm",
+      "method": "Original selected PE instruction span; callers and data separately bound."
+    }
+  ],
+  "constants": [
+    {
+      "role": "initial-run-speed",
+      "address": "0x146e783b0",
+      "file_offset": "0x6e775b0",
+      "hex": "0000e040",
+      "sha256": "ee0a6628f97214b7ef5d15c54388ea478862369e517aa4ef4593aea18c3ff618"
+    },
+    {
+      "role": "run-speed-scale",
+      "address": "0x145dbe640",
+      "file_offset": "0x5dbd840",
+      "hex": "0000e040",
+      "sha256": "ee0a6628f97214b7ef5d15c54388ea478862369e517aa4ef4593aea18c3ff618"
+    },
+    {
+      "role": "run-speed-deadband",
+      "address": "0x145d9ae90",
+      "file_offset": "0x5d9a090",
+      "hex": "0ad7233c",
+      "sha256": "0d66bd808e9247acb560fe33efaa62ad6f11ee6f85cc4f61bd17673263de04ee"
+    }
+  ],
+  "shared": [
+    "continuation-effects-manifest.json",
+    "continuation-effects-contracts.json",
+    "player-mover-counter.asm",
+    "unroot-packet.asm"
+  ],
+  "validation": "Static PE bytes, bounded REA/Ghidra and source contracts only; no compilation or target execution.",
+  "native_vectors": "player-mover-native-vectors.json"
+}

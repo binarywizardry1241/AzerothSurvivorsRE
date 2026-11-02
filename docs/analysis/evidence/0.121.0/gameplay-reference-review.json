@@ -1,0 +1,597 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "gap_ids": [
+    41
+  ],
+  "lead_ids": [
+    "Q41-F01",
+    "Q41-F02",
+    "Q41-M01"
+  ],
+  "inputs": [
+    {
+      "path": "docs/analysis/evidence/0.121.0/as-reference-frontier.json",
+      "sha256": "a6775f38d6d137e7de9d8ef6a476d5f7eaf6e26b76f26a8494b7a8a178010a7f"
+    },
+    {
+      "path": "docs/analysis/evidence/0.121.0/transport-pointer-boundary.json",
+      "sha256": "21c7d63675d3ed95dd01f6b9235c88e71ece5a358519a40cfc703ff639969563"
+    }
+  ],
+  "scope": "Complete38remaining actual-body AS-context CALLs and27game/co-op JMPs;10UI/font JMPs have a separate owning review.13declared-only sites,5imports and45retained tables remain in the complete projection, not silently dropped.",
+  "review_profiles": {
+    "server_control": {
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/coop/session.rs",
+        "crates/azeroth-survivors-re/src/coop/server_party.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/coop-session-0.115.0.md",
+        "docs/analysis/coop-server-party-0.115.0.md"
+      ],
+      "observation": "Current admitted niche-tag domain0..9 dispatches existing server lifecycle/control context. Current full variant/source mapping is not established merely by the table. Existing source and old bounded recovery remain; no new independently identified mechanic or missing operation follows from this selector."
+    },
+    "name_validation": {
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/hero_name.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/hero-names-0.109.0.md",
+        "docs/analysis/stock-lifecycle-0.109.0.md"
+      ],
+      "observation": "Current helper145ab5d60 classifies empty/invalid-character/space/length name outcomes; its caller guardadmits0..5. Existing normalize_roster and protocol error mapping own this behavior. Wider new-target Unicode/parser/input dependencies remain applicability, not absent implementation."
+    },
+    "io_error": {
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/coop/tcp.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/coop-transport-0.115.0.md"
+      ],
+      "observation": "Read/write error branches index their tagged IO error representation by low2bits. Existing TCP pump owns the AS interface; generic std::io error/drop implementation is supporting context, outside AS reconstruction."
+    },
+    "party_control": {
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
+        "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/computed-source-frontier-0.119.0.md"
+      ],
+      "observation": "Control byte0 supplies the selector and byte1 its argument at the retained party-control interface. Prior ten-action semantics/source remain; no arbitrary-byte/local-bounds contract or current complete correspondence is inferred."
+    },
+    "hazards": {
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/bosses/raid_areas.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_shapes.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_lines.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_extra.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/raid-native-0.112.0.md",
+        "docs/analysis/raid-hazards-0.112.0.md"
+      ],
+      "observation": "Existing hazard action/shape/line/area source and recovered native graph remain. Current repeated shape consumers read record+30 with associated geometry/scalars; exact current payload/domain/dependency applicability remains pending. Predictive aiming is separately owned#225. No additional mechanic or missing source is inferred from compiled switches."
+    },
+    "content": {
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/catalog.rs",
+        "crates/azeroth-survivors-re/src/enemies/catalog.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/player-baselines-0.112.0.md"
+      ],
+      "observation": "Existing descriptor/content classification source remains. Current enum/table navigation alone establishes no new content feature or independently absent implementation; exact current dependency/field applicability stays separate."
+    },
+    "enemy": {
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/enemies/ai.rs",
+        "crates/azeroth-survivors-re/src/enemies/scaling.rs",
+        "crates/azeroth-survivors-re/src/enemies/spawning.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/enemy-spawning-0.97.2.md",
+        "docs/analysis/runmods-scaling-0.109.0.md",
+        "docs/analysis/mob-movement-0.105.0.md"
+      ],
+      "observation": "Existing enemy actor/behavior/spawn/scaling source and actual prior recovery remain. Current selected enum/result producers and exact dependencies remain applicability questions. Added-player scaling/affix effects are independently owned#222/#223/#239; no further mechanic or source absence is inferred."
+    },
+    "affixes": {
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/heroic-native-0.121.0.md",
+        "docs/analysis/release-review-0.121.0.md"
+      ],
+      "observation": "Current AS affix consumer is a concrete dependency of selected#221\u2013#224. It is neither generic excluded context nor a second unnamed mechanic. Its actual source/recovery outcome belongs to those findings."
+    },
+    "demons": {
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/run_effects/demons.rs",
+        "crates/azeroth-survivors-re/src/run_effects/demon_effects.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/warlock-talents-0.112.0.md",
+        "docs/analysis/run-effects-progression-0.100.1.md"
+      ],
+      "observation": "Existing demon actor/state/effect path owns the record+39discriminant interface. Previous semantics/source remain; current exact selector/domain/state correspondence alone does not reopen a source repair."
+    },
+    "upgrades": {
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/player_abilities/upgrades.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/choices.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/choice-contracts-0.112.0.md",
+        "docs/analysis/upgrade-flow-0.100.1.md"
+      ],
+      "observation": "Existing choice/upgrade effect source and recovery remain. Current local guard0..19 supplies navigation; no new reward rule or independently missing operation follows from changed successor geometry."
+    },
+    "gear_numeric": {
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/armory.rs",
+        "crates/azeroth-survivors-re/src/save/gear.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/armory-input-0.100.1.md"
+      ],
+      "observation": "Existing gear numeric/descriptor/source consumers remain. Heroic stars/set/numeric changes are separately selected#229\u2013#236. Current helper switches alone do not establish an additional defect."
+    },
+    "jewelry_numeric": {
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+        "crates/azeroth-survivors-re/src/run_effects.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/run-effects-progression-0.100.1.md",
+        "docs/analysis/upgrade-prose-0.100.1.md"
+      ],
+      "observation": "Existing jewelry effect numeric/string/aggregation interfaces remain. Exact current type/field/dependency applicability is separate; a compiled table is not a missing implementation."
+    },
+    "spell_numeric": {
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+        "crates/azeroth-survivors-re/src/run_effects.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/run-effects-progression-0.100.1.md"
+      ],
+      "observation": "Current record byte+24selects scalar modifier after selector matching. Existing spell-modifier lanes/live application remain; full current payload/dependency correspondence is not inferred."
+    }
+  },
+  "sites": [
+    {
+      "site": "0x14006a74f",
+      "native_owner": "0x14006a470",
+      "kind": "call",
+      "review": "external_XInputGetState_interface"
+    },
+    {
+      "site": "0x14008c0be",
+      "native_owner": "0x14008bb20",
+      "kind": "call",
+      "review": "generic_boxed_drop_interface"
+    },
+    {
+      "site": "0x145b0d859",
+      "native_owner": "0x145b0cb70",
+      "kind": "call",
+      "review": "receiver:caller_supplied_server_core_interface_1968_1970"
+    },
+    {
+      "site": "0x145b142bf",
+      "native_owner": "0x145b13630",
+      "kind": "jump",
+      "review": "server_control"
+    },
+    {
+      "site": "0x145b156f4",
+      "native_owner": "0x145b13630",
+      "kind": "call",
+      "review": "receiver:host_listener_0da8_0db0_accept_interface"
+    },
+    {
+      "site": "0x145b1576b",
+      "native_owner": "0x145b13630",
+      "kind": "call",
+      "review": "receiver:host_listener_0da8_0db0_accept_interface"
+    },
+    {
+      "site": "0x145b15b94",
+      "native_owner": "0x145b13630",
+      "kind": "call",
+      "review": "receiver:peer_connection_4b0_4b8_interface"
+    },
+    {
+      "site": "0x145b15c10",
+      "native_owner": "0x145b13630",
+      "kind": "call",
+      "review": "receiver:peer_connection_4b0_4b8_interface"
+    },
+    {
+      "site": "0x145b15e67",
+      "native_owner": "0x145b13630",
+      "kind": "call",
+      "review": "receiver:peer_connection_4b0_4b8_interface"
+    },
+    {
+      "site": "0x145b15f0a",
+      "native_owner": "0x145b13630",
+      "kind": "call",
+      "review": "receiver:guest_upstream_connection_1088_1090_interface"
+    },
+    {
+      "site": "0x145b15f23",
+      "native_owner": "0x145b13630",
+      "kind": "call",
+      "review": "receiver:guest_upstream_connection_1088_1090_interface"
+    },
+    {
+      "site": "0x145b15fd0",
+      "native_owner": "0x145b13630",
+      "kind": "call",
+      "review": "receiver:caller_supplied_server_core_interface_1968_1970"
+    },
+    {
+      "site": "0x145b1610e",
+      "native_owner": "0x145b13630",
+      "kind": "call",
+      "review": "receiver:peer_connection_4b0_4b8_interface"
+    },
+    {
+      "site": "0x145b1613c",
+      "native_owner": "0x145b13630",
+      "kind": "call",
+      "review": "receiver:peer_connection_4b0_4b8_interface"
+    },
+    {
+      "site": "0x145b1618d",
+      "native_owner": "0x145b13630",
+      "kind": "call",
+      "review": "receiver:guest_upstream_connection_1088_1090_interface"
+    },
+    {
+      "site": "0x145b161a6",
+      "native_owner": "0x145b13630",
+      "kind": "call",
+      "review": "receiver:guest_upstream_connection_1088_1090_interface"
+    },
+    {
+      "site": "0x145b161bc",
+      "native_owner": "0x145b13630",
+      "kind": "call",
+      "review": "receiver:guest_upstream_connection_1088_1090_interface"
+    },
+    {
+      "site": "0x145b162a1",
+      "native_owner": "0x145b13630",
+      "kind": "call",
+      "review": "receiver:peer_connection_4b0_4b8_interface"
+    },
+    {
+      "site": "0x145b16332",
+      "native_owner": "0x145b13630",
+      "kind": "call",
+      "review": "receiver:peer_connection_4b0_4b8_interface"
+    },
+    {
+      "site": "0x145b16c5d",
+      "native_owner": "0x145b13630",
+      "kind": "call",
+      "review": "receiver:caller_supplied_server_core_interface_1968_1970"
+    },
+    {
+      "site": "0x145b16fd6",
+      "native_owner": "0x145b13630",
+      "kind": "call",
+      "review": "receiver:actor_connection_250_258_interface"
+    },
+    {
+      "site": "0x145b17038",
+      "native_owner": "0x145b13630",
+      "kind": "call",
+      "review": "receiver:actor_connection_250_258_interface"
+    },
+    {
+      "site": "0x145b1820c",
+      "native_owner": "0x145b13630",
+      "kind": "call",
+      "review": "receiver:caller_supplied_server_core_interface_1968_1970"
+    },
+    {
+      "site": "0x145b1991e",
+      "native_owner": "0x145b13630",
+      "kind": "call",
+      "review": "receiver:caller_supplied_server_core_interface_1968_1970"
+    },
+    {
+      "site": "0x145b19b66",
+      "native_owner": "0x145b13630",
+      "kind": "call",
+      "review": "receiver:caller_supplied_server_core_interface_1968_1970"
+    },
+    {
+      "site": "0x145b1a4be",
+      "native_owner": "0x145b13630",
+      "kind": "call",
+      "review": "receiver:caller_supplied_server_core_interface_1968_1970"
+    },
+    {
+      "site": "0x145b1a566",
+      "native_owner": "0x145b13630",
+      "kind": "call",
+      "review": "receiver:caller_supplied_server_core_interface_1968_1970"
+    },
+    {
+      "site": "0x145b1a741",
+      "native_owner": "0x145b13630",
+      "kind": "call",
+      "review": "receiver:caller_supplied_server_core_interface_1968_1970"
+    },
+    {
+      "site": "0x145b2218f",
+      "native_owner": "0x145b21eb0",
+      "kind": "call",
+      "review": "receiver:guest_upstream_connection_1088_1090_interface"
+    },
+    {
+      "site": "0x145b224f6",
+      "native_owner": "0x145b21eb0",
+      "kind": "call",
+      "review": "receiver:caller_supplied_server_core_interface_1968_1970"
+    },
+    {
+      "site": "0x145b22ef1",
+      "native_owner": "0x145b21eb0",
+      "kind": "call",
+      "review": "receiver:caller_supplied_server_core_interface_1968_1970"
+    },
+    {
+      "site": "0x145b2309a",
+      "native_owner": "0x145b21eb0",
+      "kind": "jump",
+      "review": "name_validation"
+    },
+    {
+      "site": "0x145b25911",
+      "native_owner": "0x145b21eb0",
+      "kind": "call",
+      "review": "receiver:caller_supplied_server_core_interface_1968_1970"
+    },
+    {
+      "site": "0x145b260b7",
+      "native_owner": "0x145b21eb0",
+      "kind": "call",
+      "review": "receiver:peer_connection_4b0_4b8_interface"
+    },
+    {
+      "site": "0x145b282ff",
+      "native_owner": "0x145b28190",
+      "kind": "call",
+      "review": "receiver:caller_supplied_server_core_interface_1968_1970"
+    },
+    {
+      "site": "0x145b2f190",
+      "native_owner": "0x145b2e580",
+      "kind": "call",
+      "review": "receiver:caller_supplied_server_core_interface_1968_1970"
+    },
+    {
+      "site": "0x145b30199",
+      "native_owner": "0x145b2fc90",
+      "kind": "call",
+      "review": "receiver:caller_supplied_server_core_interface_1968_1970"
+    },
+    {
+      "site": "0x145b34936",
+      "native_owner": "0x145b34840",
+      "kind": "call",
+      "review": "receiver:peer_connection_4b0_4b8_interface"
+    },
+    {
+      "site": "0x145b35513",
+      "native_owner": "0x145b34e30",
+      "kind": "call",
+      "review": "receiver:peer_connection_4b0_4b8_interface"
+    },
+    {
+      "site": "0x145b41a16",
+      "native_owner": "0x145b41970",
+      "kind": "jump",
+      "review": "io_error"
+    },
+    {
+      "site": "0x145b41c70",
+      "native_owner": "0x145b41970",
+      "kind": "jump",
+      "review": "io_error"
+    },
+    {
+      "site": "0x145bb1a7d",
+      "native_owner": "0x145bb1a20",
+      "kind": "jump",
+      "review": "party_control"
+    },
+    {
+      "site": "0x145be93ad",
+      "native_owner": "0x145be9050",
+      "kind": "jump",
+      "review": "hazards"
+    },
+    {
+      "site": "0x145bea55a",
+      "native_owner": "0x145be9050",
+      "kind": "jump",
+      "review": "hazards"
+    },
+    {
+      "site": "0x145beac0b",
+      "native_owner": "0x145be9050",
+      "kind": "jump",
+      "review": "hazards"
+    },
+    {
+      "site": "0x145beae4d",
+      "native_owner": "0x145be9050",
+      "kind": "jump",
+      "review": "hazards"
+    },
+    {
+      "site": "0x145bec3a8",
+      "native_owner": "0x145be9050",
+      "kind": "jump",
+      "review": "hazards"
+    },
+    {
+      "site": "0x145bec9d4",
+      "native_owner": "0x145be9050",
+      "kind": "jump",
+      "review": "hazards"
+    },
+    {
+      "site": "0x145bf2ddb",
+      "native_owner": "0x145bf29c0",
+      "kind": "jump",
+      "review": "hazards"
+    },
+    {
+      "site": "0x145bf72c3",
+      "native_owner": "0x145bf29c0",
+      "kind": "jump",
+      "review": "hazards"
+    },
+    {
+      "site": "0x145c10331",
+      "native_owner": "0x145c101e0",
+      "kind": "jump",
+      "review": "content"
+    },
+    {
+      "site": "0x145c14e5d",
+      "native_owner": "0x145c14ae0",
+      "kind": "call",
+      "review": "finite_enemy_two_function_selection"
+    },
+    {
+      "site": "0x145c18597",
+      "native_owner": "0x145c159a0",
+      "kind": "jump",
+      "review": "enemy"
+    },
+    {
+      "site": "0x145c1ef3e",
+      "native_owner": "0x145c1ce90",
+      "kind": "jump",
+      "review": "enemy"
+    },
+    {
+      "site": "0x145c266ed",
+      "native_owner": "0x145c25fa0",
+      "kind": "jump",
+      "review": "enemy"
+    },
+    {
+      "site": "0x145c2a608",
+      "native_owner": "0x145c28900",
+      "kind": "jump",
+      "review": "affixes"
+    },
+    {
+      "site": "0x145c3c118",
+      "native_owner": "0x145c3b4c0",
+      "kind": "jump",
+      "review": "demons"
+    },
+    {
+      "site": "0x145c47c85",
+      "native_owner": "0x145c47800",
+      "kind": "jump",
+      "review": "upgrades"
+    },
+    {
+      "site": "0x145c90d83",
+      "native_owner": "0x145c90cc0",
+      "kind": "jump",
+      "review": "gear_numeric"
+    },
+    {
+      "site": "0x145c90fe3",
+      "native_owner": "0x145c90f20",
+      "kind": "jump",
+      "review": "gear_numeric"
+    },
+    {
+      "site": "0x145c91243",
+      "native_owner": "0x145c91180",
+      "kind": "jump",
+      "review": "gear_numeric"
+    },
+    {
+      "site": "0x145c92c58",
+      "native_owner": "0x145c929b0",
+      "kind": "jump",
+      "review": "jewelry_numeric"
+    },
+    {
+      "site": "0x145c92e4c",
+      "native_owner": "0x145c929b0",
+      "kind": "jump",
+      "review": "jewelry_numeric"
+    },
+    {
+      "site": "0x145c9303e",
+      "native_owner": "0x145c929b0",
+      "kind": "jump",
+      "review": "jewelry_numeric"
+    },
+    {
+      "site": "0x145c985df",
+      "native_owner": "0x145c98480",
+      "kind": "jump",
+      "review": "spell_numeric"
+    }
+  ],
+  "additional_call_profiles": {
+    "receiver_groups": "transport-pointer-boundary.json:receiver_site_groups and recovered_boundary preserve current peer factory/TCPslots plus separate caller-supplied core interface. Current dynamic backend enumeration is not inferred.",
+    "external_XInputGetState_interface": {
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/native_input/acquisition.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/evidence/0.113.2/q41-p01/manifest.json"
+      ],
+      "classification": "Retained Windows GetState acquisition interface; actual runtime export address belongs to the loaded platform DLL. Earlier semantics/source are preserved with current full loader/consumer applicability separate; no platform reimplementation."
+    },
+    "generic_boxed_drop_interface": {
+      "classification": "Vtable slot0 is loaded,testednonzero,then called with boxeddata during updater cleanup. Generic destructor/allocator implementation is supporting context; update policy is not inferred from this call."
+    },
+    "finite_enemy_two_function_selection": {
+      "evidence_refs": [
+        "docs/analysis/evidence/0.121.0/transport-pointer-boundary.json"
+      ],
+      "classification": "Current twoLEA/CMOVNE writer resolves exacttargets145c51590/145c515e0. Nativeformula and wholeenemy initialization applicability remain with existing enemy/scaling and selected#239owners; no arbitrary callee count or proved source defect."
+    }
+  },
+  "classification_is_whole_native_contract": false,
+  "does_not_register_module_contract": true,
+  "new_source_defect_established": false,
+  "source_and_semantics_reset": false,
+  "limits": [
+    "Per-site ownership/interface review does not prove all current enum fields,guards,aliases,branches or behavioral equivalence. Exact current-target applicability is preserved separately from old recovery and source.",
+    "A known source/module/interface is not proof of full source correctness; new concrete discrepancies require their native producer/consumer proof. These reviewed sites establish no additional source defect.",
+    "Affix/predictive-aim/star/set/player-scaling work remains with its existing independent findings. Proof-only correspondence does not duplicate those repairs or create new findings.",
+    "No compiler,game,server,network or native target execution; parity remains unverified."
+  ],
+  "range_prefix_input": {
+    "path": "runtime/fixgap41-dispatch/gameplay-range-prefixes.json",
+    "sha256": "76123ced1bb0587e59417776b4c721ef5f255d45cac64e58e2d3eaf3b02681d1",
+    "scope": "Exact current original-byte prefixes for25 game/co-op AS-Location residual intervals; selector contexts are not complete semantics."
+  }
+}

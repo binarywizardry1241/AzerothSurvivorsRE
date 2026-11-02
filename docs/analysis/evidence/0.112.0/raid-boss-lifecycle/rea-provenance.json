@@ -1,0 +1,75 @@
+{
+  "target_version": "0.112.0",
+  "target_sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+  "target_executed": false,
+  "operations": [
+    {
+      "role": "placement",
+      "operation": "analyze_function",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "va": "0x14593d500",
+      "byte_count": 2181,
+      "input_sha256": "53a0b709a756504e99c523b00a80258478245ea5077708b57e4fa8b502cf8391",
+      "evidence_id": "ev_2f4c3c5504d810409a63bf0d8250481a6b19e7d40cf57643781e74916006cb2f",
+      "analysis_profile_sha256": "f7b04aa8ca46a9713a3a1fe1824f565639e46425fb0d98aa3eb4af50bb6100fe",
+      "language_id": "x86:LE:64:default",
+      "compiler_spec_id": "gcc",
+      "analyzer_preset": "ghidra-default",
+      "pseudocode": "placement.pseudo.c",
+      "pseudocode_sha256": "2a68ae0da93d9f16045852eee66c076e26eef11e8c5bfef22074fcaf45a35fb8",
+      "raw_pseudocode_sha256": "9a409ff59c4bcbd808047cfc02d8da2b62e68d944cb51e0b1cb2a27ec8800ef9",
+      "pseudocode_normalization": "outer blank lines and trailing whitespace removed; original response retained under ignored runtime"
+    },
+    {
+      "role": "fallback",
+      "operation": "analyze_function",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "va": "0x14593e800",
+      "byte_count": 1156,
+      "input_sha256": "042afd3efc1745f12bcee1712da476ec98db119784333b6f96ebb8bfb23bc3b7",
+      "evidence_id": "ev_fb5ee52fccd55b5bcce564048f2359776fcc96db0d2a83bfe459050763ae5439",
+      "analysis_profile_sha256": "1635c62de5a144fb78332566827b3c246ae8402b88a7b6749b3284942d32a403",
+      "language_id": "x86:LE:64:default",
+      "compiler_spec_id": "gcc",
+      "analyzer_preset": "ghidra-default",
+      "pseudocode": "fallback.pseudo.c",
+      "pseudocode_sha256": "67475e5d17f856de20f119f2afaa200070fdeaa4830527ed879a8800ecdcd064",
+      "raw_pseudocode_sha256": "9a7d7727990d72e0de6b172a3929ffac5cc9a44455c8016f48cc8466b639c257",
+      "pseudocode_normalization": "outer blank lines and trailing whitespace removed; original response retained under ignored runtime"
+    },
+    {
+      "role": "equipment",
+      "operation": "analyze_function",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "va": "0x145994a20",
+      "byte_count": 942,
+      "input_sha256": "d338bfe5bb71b8c388f01835f22d6d01ab036613b22d1f5e96d7dc28da74ac26",
+      "evidence_id": "ev_fe2967de9eaf8feb5d956170c0ec1bb6dac228197d1e3fcef215480863ac1030",
+      "analysis_profile_sha256": "b8449730ec5c94877f42a864baeffc499a594df3c10b41a05ff1fe2ba2528f55",
+      "language_id": "x86:LE:64:default",
+      "compiler_spec_id": "gcc",
+      "analyzer_preset": "ghidra-default",
+      "pseudocode": "equipment.pseudo.c",
+      "pseudocode_sha256": "0054fe9d8e7b21d969c9405cf080c7ad516093d4eccddbee89fa64145e112c28",
+      "raw_pseudocode_sha256": "8515fddab0ddb9f20ae97f54271e041c6e1ff16352dca50715336b59353e20b1",
+      "pseudocode_normalization": "outer blank lines and trailing whitespace removed; original response retained under ignored runtime"
+    }
+  ],
+  "limits": [
+    "Headerless raw-function imports map file offset0 at independently verified current PE entries; external data, calls, broader callers/types and target compiler ABI are unresolved.",
+    "The placement raw import ends in a tail jump outside its input; Ghidra bad-data warning does not certify that tail. Current-byte fixtures execute the separately mapped fallback body.",
+    "Assembly and byte-executed fixtures own exact instructions and source formulas; raw-import inferred names, signatures and body partitions are not function census claims."
+  ]
+}

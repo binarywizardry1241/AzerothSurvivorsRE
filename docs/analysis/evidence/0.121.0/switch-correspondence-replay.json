@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "purpose": "Replay saved native switch data after tool-only input changes; retain original source-first snapshots and classifications.",
+  "invocation": {
+    "script": "scripts/review-native-switch-frontier.py",
+    "arguments": [
+      "--census-summary",
+      "docs/analysis/coverage/full-image-execheck-0.121.0.json",
+      "--applied-summary",
+      "runtime/analysis/census/22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150/66afdbf901bbbb80dbbf99d9bfc318b653ab871011851892a3d125424d1fb8db/jump-tables-input-summary.json",
+      "--proposed-summary",
+      "docs/analysis/coverage/native-jump-tables-rechecked-0.121.0.json",
+      "--predecessor",
+      "docs/analysis/evidence/0.120.5/computed-correspondence-frontier.json",
+      "--predecessor-census-summary",
+      "docs/analysis/coverage/full-image-execheck-0.120.5.json",
+      "--predecessor-applied-summary",
+      "runtime/analysis/census/522e1c831b3b4627875a28a1030368ef9d2e7f98c5606c34cb30448d3b7d776e/033859dd791a8f59b958d1ae7a33f323ef914b57ef1731dd3d8f842d2cd3a9ae/jump-tables-input-summary.json"
+    ]
+  },
+  "originals": {
+    "frontier": {
+      "path": "runtime/analysis/objects/ff/ff5215143553e6cdbb7250818547dfda7eb733302805bcca47e37515414f7e5a",
+      "sha256": "ff5215143553e6cdbb7250818547dfda7eb733302805bcca47e37515414f7e5a",
+      "initial_path": "docs/analysis/evidence/0.121.0/computed-correspondence-frontier.json"
+    },
+    "proposal_review": {
+      "path": "runtime/analysis/objects/aa/aa74aac82f11191156e4ee9ba50f8dccb07ad9a37d2858bd7eeddb357165c99d",
+      "sha256": "aa74aac82f11191156e4ee9ba50f8dccb07ad9a37d2858bd7eeddb357165c99d",
+      "initial_path": "docs/analysis/evidence/0.121.0/native-switch-proposal-review.json"
+    },
+    "query_review": {
+      "path": "runtime/analysis/objects/6a/6a125bc0a51cd1b6c424260aeeb36f5c53fd3188c81702b2d66b26de3cd9e11c",
+      "sha256": "6a125bc0a51cd1b6c424260aeeb36f5c53fd3188c81702b2d66b26de3cd9e11c",
+      "initial_path": "docs/analysis/evidence/0.121.0/reviewed-switch-correspondence.json"
+    },
+    "native_witness": {
+      "path": "runtime/analysis/objects/a9/a9d13c843d74de20cf8eec61bac9ff931774566c16eadca33e076e4dc0e795c5",
+      "sha256": "a9d13c843d74de20cf8eec61bac9ff931774566c16eadca33e076e4dc0e795c5"
+    },
+    "query_witness": {
+      "path": "runtime/analysis/objects/4f/4f1779f5138261c830426b86754be2e33652281cc495ba316e64302484d79c01",
+      "sha256": "4f1779f5138261c830426b86754be2e33652281cc495ba316e64302484d79c01"
+    }
+  },
+  "permitted_replayed_tool_inputs": [
+    "scripts/summarize-native-image.py"
+  ],
+  "outputs": {
+    "frontier": "docs/analysis/evidence/0.121.0/computed-correspondence-frontier.json",
+    "proposal_review": "docs/analysis/evidence/0.121.0/native-switch-proposal-review.json",
+    "query_review": "docs/analysis/evidence/0.121.0/reviewed-switch-correspondence.json"
+  },
+  "query_manifest": "docs/analysis/evidence/0.121.0/orb-query/manifest.json",
+  "query_static_check": "docs/analysis/evidence/0.121.0/orb-query/static-check.json",
+  "source_receipt_policy": "Exact original current_source_receipts are retained for all14 stable questions. Current source observations cannot replace their initial snapshots.",
+  "native_query_policy": "Replay saved inputs only; query plan, subject, profile, result and exact native ranges remain checked. No provider invocation or broad census refresh."
+}

@@ -1,0 +1,170 @@
+{
+  "emulator": "Unicorn 2.1.4",
+  "cases": [
+    {
+      "case": "ascii",
+      "row": 0,
+      "field": 0,
+      "stride": 4,
+      "result": "Spell"
+    },
+    {
+      "case": "ascii",
+      "row": 1,
+      "field": 1,
+      "stride": 8,
+      "result": "Spell"
+    },
+    {
+      "case": "first-empty",
+      "row": 0,
+      "field": 0,
+      "stride": 4,
+      "result": ""
+    },
+    {
+      "case": "first-empty",
+      "row": 1,
+      "field": 1,
+      "stride": 8,
+      "result": ""
+    },
+    {
+      "case": "utf8",
+      "row": 0,
+      "field": 0,
+      "stride": 4,
+      "result": "Zażółć"
+    },
+    {
+      "case": "utf8",
+      "row": 1,
+      "field": 1,
+      "stride": 8,
+      "result": "Zażółć"
+    },
+    {
+      "case": "invalid-utf8",
+      "row": 0,
+      "field": 0,
+      "stride": 4,
+      "result": ""
+    },
+    {
+      "case": "invalid-utf8",
+      "row": 1,
+      "field": 1,
+      "stride": 8,
+      "result": ""
+    },
+    {
+      "case": "truncated-utf8",
+      "row": 0,
+      "field": 0,
+      "stride": 4,
+      "result": ""
+    },
+    {
+      "case": "truncated-utf8",
+      "row": 1,
+      "field": 1,
+      "stride": 8,
+      "result": ""
+    },
+    {
+      "case": "overlong-utf8",
+      "row": 0,
+      "field": 0,
+      "stride": 4,
+      "result": ""
+    },
+    {
+      "case": "overlong-utf8",
+      "row": 1,
+      "field": 1,
+      "stride": 8,
+      "result": ""
+    },
+    {
+      "case": "surrogate-utf8",
+      "row": 0,
+      "field": 0,
+      "stride": 4,
+      "result": ""
+    },
+    {
+      "case": "surrogate-utf8",
+      "row": 1,
+      "field": 1,
+      "stride": 8,
+      "result": ""
+    },
+    {
+      "case": "four-byte-utf8",
+      "row": 0,
+      "field": 0,
+      "stride": 4,
+      "result": "😀"
+    },
+    {
+      "case": "four-byte-utf8",
+      "row": 1,
+      "field": 1,
+      "stride": 8,
+      "result": "😀"
+    },
+    {
+      "case": "unterminated-tail",
+      "row": 0,
+      "field": 0,
+      "stride": 4,
+      "result": "Spell"
+    },
+    {
+      "case": "unterminated-tail",
+      "row": 1,
+      "field": 1,
+      "stride": 8,
+      "result": "Spell"
+    },
+    {
+      "case": "exact-end",
+      "row": 0,
+      "field": 0,
+      "stride": 4,
+      "result": ""
+    },
+    {
+      "case": "exact-end",
+      "row": 1,
+      "field": 1,
+      "stride": 8,
+      "result": ""
+    },
+    {
+      "case": "past-end",
+      "row": 0,
+      "field": 0,
+      "stride": 4,
+      "result": "native bounds panic"
+    },
+    {
+      "case": "past-end",
+      "row": 1,
+      "field": 1,
+      "stride": 8,
+      "result": "native bounds panic"
+    },
+    {
+      "case": "field-outside-buffer",
+      "row": 0,
+      "field": 0,
+      "stride": 4,
+      "result": "native bounds panic"
+    }
+  ],
+  "limits": [
+    "Original reader instructions execute on synthetic DBC buffers, not the actual MPQs or reconstructed Rust.",
+    "The original UTF-8 validator and its byte-width table execute. Allocation, dictionary/hash dispatch and external callers do not execute."
+  ]
+}

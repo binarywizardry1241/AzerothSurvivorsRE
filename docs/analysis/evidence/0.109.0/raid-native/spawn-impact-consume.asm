@@ -1,0 +1,26 @@
+145953120: 488b8598000000 mov rax, qword ptr [rbp + 0x98]
+145953127: 48898538020000 mov qword ptr [rbp + 0x238], rax
+14595312e: 488b85a0000000 mov rax, qword ptr [rbp + 0xa0]
+145953135: 48898570020000 mov qword ptr [rbp + 0x270], rax
+14595313c: 488b85a8000000 mov rax, qword ptr [rbp + 0xa8]
+145953143: 4885c0 test rax, rax
+145953146: 7458 je 0x1459531a0
+145953148: 488d0440 lea rax, [rax + rax*2]
+14595314c: 4c8bb570020000 mov r14, qword ptr [rbp + 0x270]
+145953153: 498d34c6 lea rsi, [r14 + rax*8]
+145953157: 488d9de4010000 lea rbx, [rbp + 0x1e4]
+14595315e: 488dbde0010000 lea rdi, [rbp + 0x1e0]
+145953165: 66662e0f1f840000000000 nop word ptr cs:[rax + rax]
+145953170: 498b16 mov rdx, qword ptr [r14]
+145953173: 418b4610 mov eax, dword ptr [r14 + 0x10]
+145953177: 894308 mov dword ptr [rbx + 8], eax
+14595317a: 498b4608 mov rax, qword ptr [r14 + 8]
+14595317e: 488903 mov qword ptr [rbx], rax
+145953181: c785e001000001000000 mov dword ptr [rbp + 0x1e0], 1
+14595318b: 4c89f9 mov rcx, r15
+14595318e: 4989f8 mov r8, rdi
+145953191: e8cad30100 call 0x145970560
+145953196: 90 nop
+145953197: 4983c618 add r14, 0x18
+14595319b: 4939f6 cmp r14, rsi
+14595319e: 75d0 jne 0x145953170

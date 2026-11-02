@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "target_sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+  "gap_id": 44,
+  "archives": [
+    {
+      "path": "installed-game/Data/patch.MPQ",
+      "size_bytes": 1340199244,
+      "sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf"
+    },
+    {
+      "path": "installed-game/Data/patch-2.MPQ",
+      "size_bytes": 4690878,
+      "sha256": "366edee41642a5dda22ed90cc252b543ee375755b7e8bee81e2a6cd59fd7b286"
+    },
+    {
+      "path": "installed-game/Data/patch-3.MPQ",
+      "size_bytes": 2580491,
+      "sha256": "75c35ca5b8075197252581e301e8900143007fdf37b493ad271ae1bd39f95a29"
+    },
+    {
+      "path": "installed-game/Data/patch-4.MPQ",
+      "size_bytes": 22769233,
+      "sha256": "2e895e0e0ff6a4781d0e0aaa6ea7d32ed1fe36841e17806fe1855cb880d18865"
+    },
+    {
+      "path": "installed-game/Data/patch-5.MPQ",
+      "size_bytes": 267019039,
+      "sha256": "5008e56873718b468fa5ae1b697dcbe4f5da9ffe6c793f3ef9939dbd7716f3d8"
+    },
+    {
+      "path": "installed-game/Data/patch-6.MPQ",
+      "size_bytes": 212228,
+      "sha256": "cad6ff59b5df028a507581befb836fce07894057e15fe63d9fdc553a95b7ceb5"
+    },
+    {
+      "path": "installed-game/Data/patch-7.MPQ",
+      "size_bytes": 276649,
+      "sha256": "f5fb15b181cf01cc6b5cf2ee9948a27ecc4ba27bab9a8bec584df4381932aae6"
+    },
+    {
+      "path": "installed-game/Data/patch-8.MPQ",
+      "size_bytes": 4155417,
+      "sha256": "ae3aaa29cadb7aeba8255f5b4a8305c7cbecfe8f0d3ed9646522113d16c3e12e"
+    }
+  ],
+  "translate": {
+    "archive": "installed-game/Data/patch.MPQ",
+    "bytes": 727561,
+    "sha256": "5c97e50b5a132c500cb59c389a18c857fc8cd69627d3635b7446771fdc58eb9f",
+    "entries": 8401
+  },
+  "failed_tiles": [
+    {
+      "logical": "Azeroth\\map31_31.blp",
+      "filename": "f7a3bdcacfa0acb8e4a526dfc1afdaaa.blp",
+      "present_in_archives": []
+    },
+    {
+      "logical": "Azeroth\\map31_32.blp",
+      "filename": "a4bb42226fce2f0e8eb247caa86479b5.blp",
+      "present_in_archives": []
+    },
+    {
+      "logical": "Azeroth\\map32_31.blp",
+      "filename": "1357b2221b80394db7cf75ea7c4b1f6c.blp",
+      "present_in_archives": []
+    },
+    {
+      "logical": "Azeroth\\map32_32.blp",
+      "filename": "6cc087b26eab6f8a75d13e678903d4d5.blp",
+      "present_in_archives": []
+    }
+  ],
+  "positive_control": {
+    "logical": "Azeroth\\map33_49.blp",
+    "filename": "6f92966dae6a4fabce321a0944281746.blp",
+    "archive": "installed-game/Data/patch.MPQ",
+    "bytes": 33940,
+    "sha256": "2b49a3481c326c312f522153c64f33059dd1c1ebbea2f12e96c6dd4acd473371",
+    "dimensions": [
+      256,
+      256
+    ]
+  },
+  "source_contract": "Reset composite/hover, then return before tile lookup/load when Player.active is false. Active-player lookup and missing-file errors remain unchanged.",
+  "diagnosis": "The four retained paths are the translation hits around (0,0). Logout resets Player to inactive/zero before the old MinimapWidget necessarily disappears. The old renderer admitted that source state.",
+  "limits": [
+    "Source and resource proof; no Rust execution, game reproduction, rendering or original/rebuilt parity.",
+    "The historical log has no call stack. Its timing/path match supports this cause without proving the exact historical scheduling."
+  ]
+}

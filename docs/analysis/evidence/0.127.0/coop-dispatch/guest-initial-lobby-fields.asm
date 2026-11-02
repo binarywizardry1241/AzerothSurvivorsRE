@@ -1,0 +1,20 @@
+0000000145bd2acd 0f57c0                         xorps xmm0, xmm0
+0000000145bd2ad0 0f1186180e0000                 movups xmmword ptr [rsi + 0xe18], xmm0
+0000000145bd2ad7 48c786280e000008000000         mov qword ptr [rsi + 0xe28], 8
+0000000145bd2ae2 0f1186300e0000                 movups xmmword ptr [rsi + 0xe30], xmm0
+0000000145bd2ae9 0f100de0164b01                 movups xmm1, xmmword ptr [rip + 0x14b16e0]
+0000000145bd2af0 0f118e400e0000                 movups xmmword ptr [rsi + 0xe40], xmm1
+0000000145bd2af7 0f100de2164b01                 movups xmm1, xmmword ptr [rip + 0x14b16e2]
+0000000145bd2afe 0f118e500e0000                 movups xmmword ptr [rsi + 0xe50], xmm1
+0000000145bd2b05 488986600e0000                 mov qword ptr [rsi + 0xe60], rax
+0000000145bd2b0c 488996680e0000                 mov qword ptr [rsi + 0xe68], rdx
+0000000145bd2b13 48c786700e000000000000         mov qword ptr [rsi + 0xe70], 0
+0000000145bd2b1e 48c786780e0000ffffffff         mov qword ptr [rsi + 0xe78], 0xffffffffffffffff
+0000000145bd2b29 48c786b0100000ffffffff         mov qword ptr [rsi + 0x10b0], 0xffffffffffffffff
+0000000145bd2b34 488b8500020000                 mov rax, qword ptr [rbp + 0x200]
+0000000145bd2b3b 48898680110000                 mov qword ptr [rsi + 0x1180], rax
+0000000145bd2b42 488b8508020000                 mov rax, qword ptr [rbp + 0x208]
+0000000145bd2b49 48898688110000                 mov qword ptr [rsi + 0x1188], rax
+0000000145bd2b50 48c7869011000000000000         mov qword ptr [rsi + 0x1190], 0
+0000000145bd2b5b 0f1186b0110000                 movups xmmword ptr [rsi + 0x11b0], xmm0
+0000000145bd2b62 0f1186a0110000                 movups xmmword ptr [rsi + 0x11a0], xmm0

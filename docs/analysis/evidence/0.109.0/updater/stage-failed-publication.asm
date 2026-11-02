@@ -1,0 +1,7 @@
+; 0.109.0 SHA256 76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0
+; 0x14009023b..0x140090260 SHA256 7be3d98fc84ee534fd16b7e9f10fc4ed50a797b871fb1b7c11b1a4e65eeb18f0
+0x14009023b: mov qword ptr [rbp + 0x88], 4
+0x140090246: mov byte ptr [rbp + 0x1de], 0
+0x14009024d: lea rdx, [rbp + 0x88]
+0x140090254: mov rcx, qword ptr [rbp + 0x190]
+0x14009025b: call 0x14017ea80

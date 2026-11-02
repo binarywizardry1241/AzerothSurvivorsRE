@@ -1,0 +1,119 @@
+{
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "manifest_sha256": "d3b8d01c49708ab6557aac0c75c44d2fa75579b809fc8d98b7681565d2874855",
+  "check_sources": {
+    "scripts/recover-sets-core-0.121.0.py": "61975ab03de9736f0fcff389e0fdebfad03a5ea408c3e218f514b7b5528b467d",
+    "scripts/check-sets-core-0.121.0.py": "47497bcc05d58803a6056b0124df1ff7da64aba0517ae092bb520668ff1bc81e"
+  },
+  "constructor_cases": 273,
+  "consumer_cases": 2388,
+  "original_instruction_steps": 201324,
+  "observation_sha256": "c9b8dff26d446e7e64f9bd9fede26501cc2f2a3a6733942093979d54c18c8575",
+  "native_data_spans": 37,
+  "source_rust_syntax_parsed": true,
+  "compilation": "not_run",
+  "application_executed": false,
+  "parity_verified": false,
+  "pointer_scan": "Every byte-aligned8-byte payload window:zero remaining mapped PE pointers after typed field normalization.",
+  "four_piece_rows": [
+    {
+      "tier": 0,
+      "pointer": "0x146fcb498",
+      "rows": [
+        {
+          "tag": 9,
+          "bits": "0x3e800000"
+        },
+        {
+          "tag": 8,
+          "bits": "0x3e99999a"
+        }
+      ]
+    },
+    {
+      "tier": 1,
+      "pointer": "0x146fcb4a8",
+      "rows": [
+        {
+          "tag": 13,
+          "bits": "0x3c75c28f"
+        }
+      ]
+    },
+    {
+      "tier": 2,
+      "pointer": "0x146fcb4b0",
+      "rows": [
+        {
+          "tag": 11,
+          "bits": "0x1"
+        }
+      ]
+    },
+    {
+      "tier": 3,
+      "pointer": "0x146fcb4b8",
+      "rows": [
+        {
+          "tag": 12,
+          "bits": "0x3d75c28f"
+        }
+      ]
+    },
+    {
+      "tier": 4,
+      "pointer": "0x146fcb4c8",
+      "rows": [
+        {
+          "tag": 4,
+          "bits": "0x3e99999a"
+        }
+      ]
+    },
+    {
+      "tier": 5,
+      "pointer": "0x146fcb4c0",
+      "rows": [
+        {
+          "tag": 14,
+          "bits": "0x3df5c28f"
+        }
+      ]
+    }
+  ],
+  "source_correspondence_review": {
+    "prior_source_sha256": "d62a5c270811bbe05c47def0c68fb088aac2474e0d2a1fdcd5c09ab5bf570548",
+    "reviewed_source_sha256": "afc62cffb36073d60f5ddf052b518d0fb772eea2e4d237aabe8b2882bd8aaf5d",
+    "prior_source_exactly_reconstructed_after_removing_only_reviewed_additions": true,
+    "changes": [
+      {
+        "source": "encode_set_id / item_set_id",
+        "assessment": "Extraction of the previously reviewed wrapping0xa000+(class<<4)+tier expression; arithmetic and admitted item path are unchanged."
+      },
+      {
+        "source": "SetIdentity::item_set_id",
+        "assessment": "Canonical identity encoding reuses the same expression and maps Horde PvP to low nibble15, matching the current set-ID producer domain."
+      },
+      {
+        "source": "four_piece_tiers",
+        "assessment": "Nonzero-star decoded armor counts from current145affbe0, then ascending six-tier filtering at count>3 from145c7bec0. This additional helper is delegated to the separate set-consumers proof and is not counted among the core instruction fixtures."
+      }
+    ],
+    "additional_scope_reference": {
+      "path": "docs/analysis/evidence/0.121.0/set-consumers/manifest.json",
+      "target_sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+      "query_procedures": [
+        "0x145c7bec0"
+      ],
+      "selected_query_projection_sha256": "dd6417fe42662f04680216028b8afcb28d674da69618098c34bf594dc071e850",
+      "native_producer": "0x145affbe0",
+      "native_iterator": "0x145c7bec0",
+      "fixture_scope": "Separate owning proof; no additional cases or steps are claimed by sets-core."
+    }
+  }
+}

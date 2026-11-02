@@ -1,0 +1,942 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.109.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+    "size_bytes": 140447744
+  },
+  "method": "Fresh selected-target REA/Ghidra imports and independent Capstone decoding; bounded unchanged PE instructions replayed by the related checker.",
+  "ranges": [
+    {
+      "role": "startup-selector",
+      "start": "0x14000eb00",
+      "end_exclusive": "0x14000ec9f",
+      "file_offset": "0xdf00",
+      "byte_count": 415,
+      "sha256": "95fc5733ec28597031b1a164d6114b0c12fc761a17e27b294264760eb1dc386c",
+      "kind": "code",
+      "assembly": "startup-selector.asm",
+      "assembly_sha256": "68f5cbfbb2b505b2bde336308fb5908a095ff11ea1bd64bcc2df17b73107cf23"
+    },
+    {
+      "role": "glue-value",
+      "start": "0x140001779",
+      "end_exclusive": "0x14000179f",
+      "file_offset": "0xb79",
+      "byte_count": 38,
+      "sha256": "015460439888642b36663338384a15ad59e2a741626027d92678f9e43f73e282",
+      "kind": "code",
+      "assembly": "glue-value.asm",
+      "assembly_sha256": "98747751803e5b9edfd67092c13a219517fef97721284b0a511ba9b85f28ec4b"
+    },
+    {
+      "role": "tester-factory",
+      "start": "0x1458cf500",
+      "end_exclusive": "0x1458d056a",
+      "file_offset": "0x58ce900",
+      "byte_count": 4202,
+      "sha256": "2111f6040754329d10e505822fbe9fdbfd43a91facf984e073a2aa98abc8419d",
+      "kind": "code",
+      "assembly": "tester-factory.asm",
+      "assembly_sha256": "85df05150f2b6f7a409c3136d4941abc42abafc3b292a0cb55400c00a425c559"
+    },
+    {
+      "role": "zone-parser",
+      "start": "0x14588d0d0",
+      "end_exclusive": "0x14588d1f9",
+      "file_offset": "0x588c4d0",
+      "byte_count": 297,
+      "sha256": "3153dfef588d9b58208f1cf43dca1d3d3e5b2df67586d3cf64f54146940a9a5c",
+      "kind": "code",
+      "assembly": "zone-parser.asm",
+      "assembly_sha256": "1785739596dd0a21b097956fd0f0ad46b064dbf54897f8360e701f6f3f068b6e"
+    },
+    {
+      "role": "realm-name",
+      "start": "0x1458d07b0",
+      "end_exclusive": "0x1458d07d6",
+      "file_offset": "0x58cfbb0",
+      "byte_count": 38,
+      "sha256": "439162ae99fbf05fdcc09d1dd33f0bac60fa8a4d15b3cd4d121deffaf541b899",
+      "kind": "code",
+      "assembly": "realm-name.asm",
+      "assembly_sha256": "d37754c4ce7e394f86847e05d5a20f0edae8cc29054b384e39ce2e2446ec5799"
+    },
+    {
+      "role": "frontend-environment",
+      "start": "0x145890450",
+      "end_exclusive": "0x1458907a2",
+      "file_offset": "0x588f850",
+      "byte_count": 850,
+      "sha256": "d1d1f03bb98610e744e0da5346d50e03aa9edcd09379f3053d3010a6597c1ae1",
+      "kind": "code",
+      "assembly": "frontend-environment.asm",
+      "assembly_sha256": "ffbed2103ebc593bec809270576f11d214a280a3bc11635060248c774b047f09"
+    },
+    {
+      "role": "driver",
+      "start": "0x1458eea30",
+      "end_exclusive": "0x1458eeb85",
+      "file_offset": "0x58ede30",
+      "byte_count": 341,
+      "sha256": "5be6ae0ae582c291b7a7fa8720c01520c2b54b0ac0aeeb3fbc02c205bfb4953d",
+      "kind": "code",
+      "assembly": "driver.asm",
+      "assembly_sha256": "ca3ac6c2af44f3732bad9879449d5eceb08172d420d14a4f18c4d7f70c1a892c"
+    },
+    {
+      "role": "client-park-dispatch",
+      "start": "0x140626874",
+      "end_exclusive": "0x140626d7a",
+      "file_offset": "0x625c74",
+      "byte_count": 1286,
+      "sha256": "7ba31d357b31a05810080363497ba6e424369253f3326deeeaa5cac785c4558b",
+      "kind": "code",
+      "assembly": "client-park-dispatch.asm",
+      "assembly_sha256": "a8c1a559526d3cca762944f1280904422f4ec49dcd3a72a00f962bc48393befa"
+    },
+    {
+      "role": "client-request-tables",
+      "start": "0x145ea27a4",
+      "end_exclusive": "0x145ea27e8",
+      "file_offset": "0x5ea17a4",
+      "byte_count": 68,
+      "sha256": "f43c3cf8ec8f11f6a7b1774ed90c3e2538b4d7950ca5e8d2803c1d9d7ef31010",
+      "kind": "data",
+      "bytes_hex": "024178fadd4778fad64578facc4678fac74578fadf4878fa6b4378fac34478faa54478fab44478fa1d5078faef5978faa95678fab75778fad73e78faba5078fa537378fa"
+    },
+    {
+      "role": "realm-query",
+      "start": "0x140624950",
+      "end_exclusive": "0x14062506d",
+      "file_offset": "0x623d50",
+      "byte_count": 1821,
+      "sha256": "f93593cc100b7d444eca007eea0f31e136d483882b1eb577f68b7f0fdce37cfa",
+      "kind": "code",
+      "assembly": "realm-query.asm",
+      "assembly_sha256": "03ab858f520b75d95b35e626d9bd979062cac399e2cc6789ac2111cb856193b9"
+    },
+    {
+      "role": "world-enter-close",
+      "start": "0x14062833c",
+      "end_exclusive": "0x14062836f",
+      "file_offset": "0x62773c",
+      "byte_count": 51,
+      "sha256": "9df60f9215845c9838d4fd69c6ba4ab51aeb3f2adc6e3ce5e1e3006759caa139",
+      "kind": "code",
+      "assembly": "world-enter-close.asm",
+      "assembly_sha256": "28cdc3692be6bfdcf1f583aad5de933516954ecb46e1470135fbc5e3b6428ae8"
+    },
+    {
+      "role": "world-auth-close",
+      "start": "0x145a175e0",
+      "end_exclusive": "0x145a17668",
+      "file_offset": "0x5a169e0",
+      "byte_count": 136,
+      "sha256": "8675ac24910696c057bd1c4fca2c6d8a5e4f4513eb5002e2ce13870f6d163112",
+      "kind": "code",
+      "assembly": "world-auth-close.asm",
+      "assembly_sha256": "61b13fcc10b75b319c06b929a7b7e6cdeb0ad19fab7c868f4b1ff78f5db51178"
+    },
+    {
+      "role": "auth-count-snapshot",
+      "start": "0x1458ada1f",
+      "end_exclusive": "0x1458ada39",
+      "file_offset": "0x58ace1f",
+      "byte_count": 26,
+      "sha256": "ee0f301de52b014d0ea706003e420897b855f4681e154e22886cb7dae6bde01a",
+      "kind": "code",
+      "assembly": "auth-count-snapshot.asm",
+      "assembly_sha256": "b04f7326dc7cf980c241aaa9de8315ef5c98e5adb3753b8829338218fe7e0de4"
+    },
+    {
+      "role": "world-zone-port",
+      "start": "0x1458ada80",
+      "end_exclusive": "0x1458adab8",
+      "file_offset": "0x58ace80",
+      "byte_count": 56,
+      "sha256": "397cb6f2c24d7a8734fde14b57ae2117cdc024028ffef031fe89580d5967170b",
+      "kind": "code",
+      "assembly": "world-zone-port.asm",
+      "assembly_sha256": "e885243547770fb0978bdbf73ff3ac3b7f38bc2c2899f8fc9b5aa7a92294f530"
+    },
+    {
+      "role": "invalid-guid",
+      "start": "0x1458b3141",
+      "end_exclusive": "0x1458b31d0",
+      "file_offset": "0x58b2541",
+      "byte_count": 143,
+      "sha256": "3f4864cdac2b4160ea5dbbec2e1b2631e9be88b6d05d9f6379fcc563f348ff06",
+      "kind": "code",
+      "assembly": "invalid-guid.asm",
+      "assembly_sha256": "447835145da61ef1e85bf223d80a417b1a0c31b6c33110624d93eeb89106801e"
+    },
+    {
+      "role": "world-packet-table",
+      "start": "0x146bec598",
+      "end_exclusive": "0x146bec644",
+      "file_offset": "0x6beb598",
+      "byte_count": 172,
+      "sha256": "8be2f19ffd3c8fb53bd49e2af6f34a7c1b9d135c87eda514ce248a3ba4298e72",
+      "kind": "data",
+      "bytes_hex": "a060ccfee362ccfe5d63ccfecd65ccfecd65ccfecd65ccfecd65ccfe2863ccfecd65ccfecd65ccfecd65ccfecd65ccfecd65ccfecd65ccfecd65ccfecd65ccfecd65ccfecd65ccfecd65ccfecd65ccfecd65ccfec963ccfecd65ccfecd65ccfecd65ccfecd65ccfe8463ccfecd65ccfecd65ccfecd65ccfecd65ccfecd65ccfea363ccfecd65ccfecd65ccfecd65ccfecd65ccfecd65ccfecd65ccfecd65ccfea262ccfecd65ccfec162ccfe"
+    },
+    {
+      "role": "auth-session-key",
+      "start": "0x1458f2e80",
+      "end_exclusive": "0x1458f2eb6",
+      "file_offset": "0x58f2280",
+      "byte_count": 54,
+      "sha256": "68ee691d96efb477b0df4a096816de4bc2c87b53f0af16585ac2237eaff12504",
+      "kind": "code",
+      "assembly": "auth-session-key.asm",
+      "assembly_sha256": "d3d8df5e4cefcd3c50c10f1a914f2db7bc20837d0e57da9e01f83d0548b68520"
+    },
+    {
+      "role": "driver-panic-context",
+      "start": "0x146ed0740",
+      "end_exclusive": "0x146ed0798",
+      "file_offset": "0x6ecf740",
+      "byte_count": 88,
+      "sha256": "1db61346fbf5ce5d86e6c662e75252aa63d10721985d8cfb5c7568bef705dbea",
+      "kind": "data",
+      "bytes_hex": "737061776e2074686520726f67756520736572766572207468726561646372617465735c77656e696c6c612d726f6775655c7372635c6472697665722e7273005d07ed460100000022000000000000001a0000000a000000"
+    },
+    {
+      "role": "character-name",
+      "start": "0x1458a8cb0",
+      "end_exclusive": "0x1458a8cfc",
+      "file_offset": "0x58a80b0",
+      "byte_count": 76,
+      "sha256": "2b5a97ad31a98c243e18e703a99b44e4a8cafa97bc5acdf48f3b892b68de5fa9",
+      "kind": "code",
+      "assembly": "character-name.asm",
+      "assembly_sha256": "de18e0afe3c0f8fcc66ae78787153660d9e8046dd98f21111c6595e1ff9e58a2"
+    },
+    {
+      "role": "name-validator",
+      "start": "0x1458a8710",
+      "end_exclusive": "0x1458a8bca",
+      "file_offset": "0x58a7b10",
+      "byte_count": 1210,
+      "sha256": "b6b4c4f19e817a568195707371a5c95480851175ce89590109e8c51e6124d67b",
+      "kind": "code",
+      "assembly": "name-validator.asm",
+      "assembly_sha256": "696b1362d0472598c429e1d32c6b38916aeef63fbe545e2876bb33c2ed3f8099"
+    },
+    {
+      "role": "name-titlecase",
+      "start": "0x1458a8fa0",
+      "end_exclusive": "0x1458a9292",
+      "file_offset": "0x58a83a0",
+      "byte_count": 754,
+      "sha256": "f4f9c0cda35e3956d5d0a2d1a9ac65d52bbb9f67a848d495cdad7b62f3a01b6b",
+      "kind": "code",
+      "assembly": "name-titlecase.asm",
+      "assembly_sha256": "e24e848a92d5be0a3140ad13ec0b680bd677a364306d44006b3f9d8bbf008d3b"
+    },
+    {
+      "role": "name-trim",
+      "start": "0x140089200",
+      "end_exclusive": "0x140089479",
+      "file_offset": "0x88600",
+      "byte_count": 633,
+      "sha256": "4b8d1e0490329123b87cc3cee3826c3a92e236fb0b9902021d32b7d9eacd6cc7",
+      "kind": "code",
+      "assembly": "name-trim.asm",
+      "assembly_sha256": "ddd1e7a8848d37797d93192b5b063569b7b86658fcb38b4b1a675b72a3e11875"
+    },
+    {
+      "role": "name-word-iterator",
+      "start": "0x1458aabb0",
+      "end_exclusive": "0x1458aad6a",
+      "file_offset": "0x58a9fb0",
+      "byte_count": 442,
+      "sha256": "b04704ff5c59e463e476deb671ea43478ec55edf717bf898b2e79dc857796074",
+      "kind": "code",
+      "assembly": "name-word-iterator.asm",
+      "assembly_sha256": "8d3286a76581a170f8372be95d5d6217d674e753bdb709ca7f1a5f41d8fc5111"
+    },
+    {
+      "role": "name-char-count-short",
+      "start": "0x145bd5590",
+      "end_exclusive": "0x145bd564e",
+      "file_offset": "0x5bd4990",
+      "byte_count": 190,
+      "sha256": "80cae0de4ce674d6f9ec6edad0fac848a61e5527d3af210ee37d709f0b2dbd16",
+      "kind": "code",
+      "assembly": "name-char-count-short.asm",
+      "assembly_sha256": "9e9a76883cc40956de75bac674fa05806e987978ac4efd83ddb648f9edfff5e0"
+    },
+    {
+      "role": "picker-name-append",
+      "start": "0x140067e90",
+      "end_exclusive": "0x140067fb2",
+      "file_offset": "0x67290",
+      "byte_count": 290,
+      "sha256": "b7cb5c935d0d6f7a68dcb8033ed6344bccf14fb87e3529a2c8505b9ef6467eb3",
+      "kind": "code",
+      "assembly": "picker-name-append.asm",
+      "assembly_sha256": "0efabe53b95e09069cf94cd6cdaf70e82cd9045fe23fb8292100c8842a3aaa16"
+    },
+    {
+      "role": "picker-name-input",
+      "start": "0x14007b130",
+      "end_exclusive": "0x14007b4bb",
+      "file_offset": "0x7a530",
+      "byte_count": 907,
+      "sha256": "9d6dd37d9e8ab0a7c9c0d8b815e78313f51f5b6fb99b1d6067195ef83e02b920",
+      "kind": "code",
+      "assembly": "picker-name-input.asm",
+      "assembly_sha256": "4306adb21d9887df43572c57717d03f09b8a030b9f2a89c3219de1f7126ad8b3"
+    },
+    {
+      "role": "server-normalizer",
+      "start": "0x14590c6d0",
+      "end_exclusive": "0x14590c8b3",
+      "file_offset": "0x590bad0",
+      "byte_count": 483,
+      "sha256": "b306bbac453c8da79fa08b209e49d053559f25eca009e7513794566cd1363ed5",
+      "kind": "code",
+      "assembly": "server-normalizer.asm",
+      "assembly_sha256": "07fb807cd9ce5a6ff78bcc7c3c8d83140811a5f49c26de77f9df7741440053fc"
+    },
+    {
+      "role": "client-normalizer-0x14104b6c0",
+      "start": "0x14104b6c0",
+      "end_exclusive": "0x14104b8a4",
+      "file_offset": "0x104aac0",
+      "byte_count": 484,
+      "sha256": "6d32d4253ef90db9ac5da57fb393fa4d6e644185055afbc91b7027af6d8b66b9",
+      "kind": "code",
+      "assembly": "client-normalizer-0x14104b6c0.asm",
+      "assembly_sha256": "69f1c891bfbec6eb2f9ad14b7daacd217b7d869dad77cba3fe49206fce6e3476"
+    },
+    {
+      "role": "client-proof",
+      "start": "0x145a4c0b0",
+      "end_exclusive": "0x145a4c54c",
+      "file_offset": "0x5a4b4b0",
+      "byte_count": 1180,
+      "sha256": "d9ae0188ea349ae9ebcc5d90f60ef7b2a76377ce28ac7d157b084a2a22f5f659",
+      "kind": "code",
+      "assembly": "client-proof.asm",
+      "assembly_sha256": "29c90805bdbcb01a9a6cb2e2b3ab4125890f9fb18c9acd26da6edaf74c3429e0",
+      "assembly_representation": "Selected original M2 comparison/result interval; complete imported owner identity retained above.",
+      "assembly_intervals": [
+        {
+          "start": "0x145a4c424",
+          "end_exclusive": "0x145a4c51b"
+        }
+      ]
+    },
+    {
+      "role": "realmd-fixed-password",
+      "start": "0x1458add4e",
+      "end_exclusive": "0x1458adde0",
+      "file_offset": "0x58ad14e",
+      "byte_count": 146,
+      "sha256": "a2b31e2116327e1345e69c1479e78554a58b68f1f549b8cf9413cdf8b73152e6",
+      "kind": "code",
+      "assembly": "realmd-fixed-password.asm",
+      "assembly_sha256": "1c44cd61b7c4581606fcdd68de13c4b4dcad34bd7222d36605bfbc8a7855c729"
+    },
+    {
+      "role": "realmd-password-field",
+      "start": "0x1458f1819",
+      "end_exclusive": "0x1458f182c",
+      "file_offset": "0x58f0c19",
+      "byte_count": 19,
+      "sha256": "8dc885eff72717637a1a2acfc415a240623690e00e04e28d20377bccc9dc099b",
+      "kind": "code",
+      "assembly": "realmd-password-field.asm",
+      "assembly_sha256": "717ab3119f6846ae8694e3f145ce029305dad59a8e4dd54b54f68c0c4ad3e98c"
+    },
+    {
+      "role": "realmd-parser-input",
+      "start": "0x1458ad88f",
+      "end_exclusive": "0x1458ad8a9",
+      "file_offset": "0x58acc8f",
+      "byte_count": 26,
+      "sha256": "0546b0be14c911afeb8b55a1d3facb76d357386d25947d1f7d22aead476d8a1c",
+      "kind": "code",
+      "assembly": "realmd-parser-input.asm",
+      "assembly_sha256": "1273020045d568efe64155f028e8935e050619f00034b15a975b6116b6502a36"
+    },
+    {
+      "role": "realmd-credentials",
+      "start": "0x1458f31be",
+      "end_exclusive": "0x1458f32e1",
+      "file_offset": "0x58f25be",
+      "byte_count": 291,
+      "sha256": "b34929e71d39adea58abec1d0b957e3aedc5914b4034f3b7699f3eb4ab104118",
+      "kind": "code",
+      "assembly": "realmd-credentials.asm",
+      "assembly_sha256": "8330e6bb52b4a36b6194c243df7cda7759ea1d1899cbd1ff4bf846613273db44"
+    },
+    {
+      "role": "client-credentials",
+      "start": "0x1406167ed",
+      "end_exclusive": "0x140616919",
+      "file_offset": "0x615bed",
+      "byte_count": 300,
+      "sha256": "85b1b4631789fa04fa4787cc327637903e6c63df395d8c4a2ef5762a2a68e88c",
+      "kind": "code",
+      "assembly": "client-credentials.asm",
+      "assembly_sha256": "6ad11b31a7a4bd18174e4c73bfb14ccda75b358b7bc5e3ff7db6b4bb04ca1b32"
+    },
+    {
+      "role": "client-credential-rejection",
+      "start": "0x1406169d0",
+      "end_exclusive": "0x140616a70",
+      "file_offset": "0x615dd0",
+      "byte_count": 160,
+      "sha256": "967274b1f56af58aaa769da1c8e7baf7a5a5e0d5d83e21a2e5ca5fa60214b42a",
+      "kind": "code",
+      "assembly": "client-credential-rejection.asm",
+      "assembly_sha256": "a649dfeb13de4cf55120bb047d47c230dccbc6bb85ce8c989f1866a8d237e6f6"
+    },
+    {
+      "role": "client-proof-result",
+      "start": "0x140618d11",
+      "end_exclusive": "0x140618d40",
+      "file_offset": "0x618111",
+      "byte_count": 47,
+      "sha256": "5a1b1c2b7efeb6ae37bf42f63239f60a8e0cc77cb5a1145e56f139c168aa6ec1",
+      "kind": "code",
+      "assembly": "client-proof-result.asm",
+      "assembly_sha256": "bf9cf929dca8d79958434f87cf9af599c3706fb3f4fe3615133c2ccda138634c"
+    },
+    {
+      "role": "name-packet-result-table",
+      "start": "0x146bedd24",
+      "end_exclusive": "0x146bedd3c",
+      "file_offset": "0x6becd24",
+      "byte_count": 24,
+      "sha256": "72055f65ebe02a763ff3bd47432367795de1b8d407dadf4ee427c937b01ec859",
+      "kind": "data",
+      "bytes_hex": "8b5dccfe3881ccfe3081ccfe4d82ccfe2881ccfe4081ccfe"
+    },
+    {
+      "role": "name-packet-result-leaves",
+      "start": "0x1458b5e4c",
+      "end_exclusive": "0x1458b5e6c",
+      "file_offset": "0x58b524c",
+      "byte_count": 32,
+      "sha256": "3edc619da0a5a0064fb70feb7343a3093c82cd2c5be3d66a386ed705c3e9c6ab",
+      "kind": "code",
+      "assembly": "name-packet-result-leaves.asm",
+      "assembly_sha256": "f8009f36c93735f1a743af7d3f615d963ee9ef1895bb244f1552f41392d13214"
+    },
+    {
+      "role": "name-bad-character-result",
+      "start": "0x1458b5f71",
+      "end_exclusive": "0x1458b5f79",
+      "file_offset": "0x58b5371",
+      "byte_count": 8,
+      "sha256": "701cd323a829573bb46cb4a44724cb4786577c42ccbe10f60aa746eaadf093a8",
+      "kind": "code",
+      "assembly": "name-bad-character-result.asm",
+      "assembly_sha256": "7b7850d05e24426703b1ce364777b84a9aa2edfe136d64b2e95e6464468cf101"
+    },
+    {
+      "role": "unicode-whitespace-table",
+      "start": "0x14726c3df",
+      "end_exclusive": "0x14726c4df",
+      "file_offset": "0x726b3df",
+      "byte_count": 256,
+      "sha256": "2479482c1d14bb27cb07be6eb893aaf994aa096f8318804b68a8d18b0a23ff3f",
+      "kind": "data",
+      "bytes_hex": "02020202020202020202020000000000000000000000000000000000000000000000000000000000020200000000000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "role": "unicode-whitespace-pointer",
+      "start": "0x14808aa80",
+      "end_exclusive": "0x14808aa88",
+      "file_offset": "0x8089480",
+      "byte_count": 8,
+      "sha256": "c5b37c9c64680e0e29e3755a2da3d7b00f3118c1777c6a9e432f8f0e33bc0085",
+      "kind": "data",
+      "bytes_hex": "dfc3264701000000"
+    },
+    {
+      "role": "roster-factory",
+      "start": "0x1458bb880",
+      "end_exclusive": "0x1458bb9c0",
+      "file_offset": "0x58bac80",
+      "byte_count": 320,
+      "sha256": "5e9a89e53cd21011582193779cbd0b113f3497a367ba7470a0a6831ce0bdd2ad",
+      "kind": "code",
+      "assembly": "roster-factory.asm",
+      "assembly_sha256": "485a18df3c8da17e8e3bb7798a28bd64baec9b0863988710eed973d9cf26aafe"
+    },
+    {
+      "role": "create-duplicate-limit",
+      "start": "0x1458b5eca",
+      "end_exclusive": "0x1458b6114",
+      "file_offset": "0x58b52ca",
+      "byte_count": 586,
+      "sha256": "b1027f9ca0abfd5089fdb1ec0723e5a74d41bbc79d1825d91d0c0a1371813211",
+      "kind": "code",
+      "assembly": "create-duplicate-limit.asm",
+      "assembly_sha256": "82adf77fad5aef7b9e5e7a30dd8dd180f95fffcede47880490e9e1941f8bc8c1"
+    }
+  ],
+  "ghidra": [
+    {
+      "role": "server-tick",
+      "evidence_id": "ev_3658003e92ff58beb432f12f7a6f755c82cb8c968d70df45f0ecdc1ef1865915",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "procedure": "0x1458ad720",
+      "subject_sha256": "c78da57aa01c45dd9b636839e44a0b5209bf8859f141475232013946252bfede",
+      "profile_sha256": "a86e672cf5c2ccd391d5e56d40ffebc46b9b918a5d653dd59c3cfbbc49f487aa",
+      "input_range": {
+        "start": "0x1458ad720",
+        "end_exclusive": "0x1458b07e5",
+        "file_offset": "0x58acb20",
+        "byte_count": 12485,
+        "sha256": "c78da57aa01c45dd9b636839e44a0b5209bf8859f141475232013946252bfede"
+      },
+      "normalized_result_sha256": "488d3f0b73553773a52eccb2afab0c2ca482f6dbfa395dceb257837028bfd19a",
+      "normalization": "REA normalized_result UTF-8, unmodified, including leading/trailing newlines."
+    },
+    {
+      "role": "realmd-parser",
+      "evidence_id": "ev_cd93f72f2d3fa8ef8914bd7f97ea11d1c06c8b1294fbe0c3276b6ba1e16c1608",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "procedure": "0x1458f1730",
+      "subject_sha256": "f19bc2e4589c60a80a9a6aa799a1ebeb9c74d75ff222179aaab75dd75c31ca4a",
+      "profile_sha256": "635c5d969e32ee7f15b35d0402595a9152d5aec4af31d64b88ace01e45931855",
+      "input_range": {
+        "start": "0x1458f1730",
+        "end_exclusive": "0x1458f3fb2",
+        "file_offset": "0x58f0b30",
+        "byte_count": 10370,
+        "sha256": "f19bc2e4589c60a80a9a6aa799a1ebeb9c74d75ff222179aaab75dd75c31ca4a"
+      },
+      "normalized_result_sha256": "fae1bbedfc5be051b742b5733193e5be89f9585bf109834c2dfc176dd1bd0358",
+      "normalization": "REA normalized_result UTF-8, unmodified, including leading/trailing newlines."
+    },
+    {
+      "role": "startup-selector",
+      "evidence_id": "ev_a60cf05ac1498f126d740ef5b301ab717120f17fcf21a786053ad92f1f98d59b",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "procedure": "0x14000eb00",
+      "pseudocode": "startup-selector-0x14000eb00.c",
+      "pseudocode_sha256": "a57df741581dc09ca17188c00584ecb234ae7d0f6b950891170c69943305d567",
+      "subject_sha256": "95fc5733ec28597031b1a164d6114b0c12fc761a17e27b294264760eb1dc386c",
+      "profile_sha256": "4e1433fe776c2ad30bd2155cae247cb0aea16537827025718aaed49d7a298d7e",
+      "input_range": {
+        "start": "0x14000eb00",
+        "end_exclusive": "0x14000ec9f",
+        "file_offset": "0xdf00",
+        "byte_count": 415,
+        "sha256": "95fc5733ec28597031b1a164d6114b0c12fc761a17e27b294264760eb1dc386c"
+      },
+      "normalized_result_sha256": "57d05a5ca5b5c964edea5b94d8dfc979613d5fcdf61bedf0e1b7e324e6943ebc",
+      "normalization": "REA normalized_result UTF-8, unmodified, including leading/trailing newlines."
+    },
+    {
+      "role": "tester-factory",
+      "evidence_id": "ev_d61288de082a616eb56342b795d1bed8f2c30bc12314e84df403389e74ae04de",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "procedure": "0x1458cf500",
+      "pseudocode": "tester-factory-0x1458cf500.c",
+      "pseudocode_sha256": "5ac088be50a12569a3dca19bc371ee50f392f097894915be52d4ba369b1f7298",
+      "subject_sha256": "2111f6040754329d10e505822fbe9fdbfd43a91facf984e073a2aa98abc8419d",
+      "profile_sha256": "ad704d1aa764a9c6af804f0e88e8b1455365c154bb50abc0aee208d9337765a9",
+      "input_range": {
+        "start": "0x1458cf500",
+        "end_exclusive": "0x1458d056a",
+        "file_offset": "0x58ce900",
+        "byte_count": 4202,
+        "sha256": "2111f6040754329d10e505822fbe9fdbfd43a91facf984e073a2aa98abc8419d"
+      }
+    },
+    {
+      "role": "client-park-dispatch",
+      "evidence_id": "ev_ebdd4c1136750d74b9bed0a3293da6ae6548803d785c9c1e1ad70f86789f2bf6",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "procedure": "0x140626874",
+      "limitation": "Raw-import indirect/out-of-range flow was not recoverable as complete pseudocode; current PE instructions/tables establish only the selected contract.",
+      "subject_sha256": "7ba31d357b31a05810080363497ba6e424369253f3326deeeaa5cac785c4558b",
+      "profile_sha256": "129efd6744bb174646e7e0697d365739347a00e83c43c92a8214b17c9715d6e8",
+      "input_range": {
+        "start": "0x140626874",
+        "end_exclusive": "0x140626d7a",
+        "file_offset": "0x625c74",
+        "byte_count": 1286,
+        "sha256": "7ba31d357b31a05810080363497ba6e424369253f3326deeeaa5cac785c4558b"
+      }
+    },
+    {
+      "role": "client-park-dispatch",
+      "evidence_id": "ev_894e1bc9e47582b081c6ba3644ded69b7157fef851770b833d1f498a84c4f9dd",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "procedure": "0x140626b0d",
+      "pseudocode": "client-park-dispatch-0x140626b0d.c",
+      "pseudocode_sha256": "c8a1182fda49420b61570442a24e049012c91c798c6746d201a0afa4f65699c6",
+      "subject_sha256": "7ba31d357b31a05810080363497ba6e424369253f3326deeeaa5cac785c4558b",
+      "profile_sha256": "129efd6744bb174646e7e0697d365739347a00e83c43c92a8214b17c9715d6e8",
+      "input_range": {
+        "start": "0x140626874",
+        "end_exclusive": "0x140626d7a",
+        "file_offset": "0x625c74",
+        "byte_count": 1286,
+        "sha256": "7ba31d357b31a05810080363497ba6e424369253f3326deeeaa5cac785c4558b"
+      }
+    },
+    {
+      "role": "client-park-dispatch",
+      "evidence_id": "ev_9d83ae19d0220b08e77d76f56f2ace7c660f0578289bf660d36cd8724a5800ee",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "procedure": "0x140626c61",
+      "limitation": "Raw-import indirect/out-of-range flow was not recoverable as complete pseudocode; current PE instructions/tables establish only the selected contract.",
+      "subject_sha256": "7ba31d357b31a05810080363497ba6e424369253f3326deeeaa5cac785c4558b",
+      "profile_sha256": "129efd6744bb174646e7e0697d365739347a00e83c43c92a8214b17c9715d6e8",
+      "input_range": {
+        "start": "0x140626874",
+        "end_exclusive": "0x140626d7a",
+        "file_offset": "0x625c74",
+        "byte_count": 1286,
+        "sha256": "7ba31d357b31a05810080363497ba6e424369253f3326deeeaa5cac785c4558b"
+      }
+    },
+    {
+      "role": "client-park-dispatch",
+      "evidence_id": "ev_95b235470965805933b18c17d3d950f5addac598eca993f4dce92206d32f7e32",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "procedure": "0x140626c70",
+      "limitation": "Raw-import indirect/out-of-range flow was not recoverable as complete pseudocode; current PE instructions/tables establish only the selected contract.",
+      "subject_sha256": "7ba31d357b31a05810080363497ba6e424369253f3326deeeaa5cac785c4558b",
+      "profile_sha256": "129efd6744bb174646e7e0697d365739347a00e83c43c92a8214b17c9715d6e8",
+      "input_range": {
+        "start": "0x140626874",
+        "end_exclusive": "0x140626d7a",
+        "file_offset": "0x625c74",
+        "byte_count": 1286,
+        "sha256": "7ba31d357b31a05810080363497ba6e424369253f3326deeeaa5cac785c4558b"
+      }
+    },
+    {
+      "role": "client-park-dispatch",
+      "evidence_id": "ev_71b05d05eaad58e9a3ca5b435417f4462989b0e9c803c6c0252e2a370c8d76aa",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "procedure": "0x140626d6b",
+      "limitation": "Raw-import indirect/out-of-range flow was not recoverable as complete pseudocode; current PE instructions/tables establish only the selected contract.",
+      "subject_sha256": "7ba31d357b31a05810080363497ba6e424369253f3326deeeaa5cac785c4558b",
+      "profile_sha256": "129efd6744bb174646e7e0697d365739347a00e83c43c92a8214b17c9715d6e8",
+      "input_range": {
+        "start": "0x140626874",
+        "end_exclusive": "0x140626d7a",
+        "file_offset": "0x625c74",
+        "byte_count": 1286,
+        "sha256": "7ba31d357b31a05810080363497ba6e424369253f3326deeeaa5cac785c4558b"
+      }
+    },
+    {
+      "role": "realm-query",
+      "evidence_id": "ev_860b268e8eb59818ad84bfef64b80482ea0c8e58e91605bff98f326068bbc1db",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "procedure": "0x140624950",
+      "subject_sha256": "f93593cc100b7d444eca007eea0f31e136d483882b1eb577f68b7f0fdce37cfa",
+      "profile_sha256": "a054da95fc7e00188e531e653873d8f97a3a2cf92b4977928d5e9af9a661dc75",
+      "input_range": {
+        "start": "0x140624950",
+        "end_exclusive": "0x14062506d",
+        "file_offset": "0x623d50",
+        "byte_count": 1821,
+        "sha256": "f93593cc100b7d444eca007eea0f31e136d483882b1eb577f68b7f0fdce37cfa"
+      },
+      "normalized_result_sha256": "4bbc98107fd657b8b6309fa2966271bdd2ae55eb12efe2d98485fb302e7b60cd",
+      "normalization": "REA normalized_result UTF-8, unmodified, including leading/trailing newlines."
+    },
+    {
+      "role": "character-name",
+      "procedure": "0x1458a8cb0",
+      "evidence_id": "ev_bd3de687c59793de37f1ad5ad4e2aaa39a6b244a3c03140376d495ceb60b07c7",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "profile_sha256": "89003452524d93819ccfafbe954d0d7b2b87912fdb422d4856f3adc8c3258e52",
+      "subject_sha256": "2b5a97ad31a98c243e18e703a99b44e4a8cafa97bc5acdf48f3b892b68de5fa9",
+      "pseudocode": "character-name.c",
+      "pseudocode_sha256": "9362e4fbf94937228764d7ceab90397dbef78d0e2aace2d558e31e8d56d4a242",
+      "input_range": {
+        "start": "0x1458a8cb0",
+        "end_exclusive": "0x1458a8cfc",
+        "file_offset": "0x58a80b0",
+        "byte_count": 76,
+        "sha256": "2b5a97ad31a98c243e18e703a99b44e4a8cafa97bc5acdf48f3b892b68de5fa9"
+      },
+      "normalized_result_sha256": "e5b0fdaa795ab5dc4a3aaba1596f4f9e431664aba1494d6378ad8ec7fbad3dc6",
+      "normalization": "REA normalized_result UTF-8, unmodified, including leading/trailing newlines."
+    },
+    {
+      "role": "name-titlecase",
+      "procedure": "0x1458a8fa0",
+      "evidence_id": "ev_281b913fe8b682b4eb8e12f3ddc3ad543b0547683c4b16f599287d7f13661c4c",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "profile_sha256": "ff1808f4ace756590bd778c3aa00748922b3e7d38281bc9fbf263932308e1cb6",
+      "subject_sha256": "f4f9c0cda35e3956d5d0a2d1a9ac65d52bbb9f67a848d495cdad7b62f3a01b6b",
+      "pseudocode": "name-titlecase.c",
+      "pseudocode_sha256": "0514215c2f1c1df68c6eda5fe053a91559618140150bbf0e48e5d4b86411c001",
+      "input_range": {
+        "start": "0x1458a8fa0",
+        "end_exclusive": "0x1458a9292",
+        "file_offset": "0x58a83a0",
+        "byte_count": 754,
+        "sha256": "f4f9c0cda35e3956d5d0a2d1a9ac65d52bbb9f67a848d495cdad7b62f3a01b6b"
+      },
+      "normalized_result_sha256": "bdd50e5be4dd81629eba21aaad096849f85e076a51e8d65b3304d1256725c8b7",
+      "normalization": "REA normalized_result UTF-8, unmodified, including leading/trailing newlines."
+    },
+    {
+      "role": "name-trim",
+      "procedure": "0x140089200",
+      "evidence_id": "ev_c4957e36bcb9ff9b4c0469e45032304c2dcfbc8d5bde7edeb1bc002d53fa87fe",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "profile_sha256": "96e382500e387666d0b512baa3e7efc1a916488e6fd7a1268ddccb84c3b34dd0",
+      "subject_sha256": "4b8d1e0490329123b87cc3cee3826c3a92e236fb0b9902021d32b7d9eacd6cc7",
+      "pseudocode": "name-trim.c",
+      "pseudocode_sha256": "9e4ac35209780d8a2d018cd9fa6a4e1cf840eac9363f6e76b6595724b833aa6e",
+      "input_range": {
+        "start": "0x140089200",
+        "end_exclusive": "0x140089479",
+        "file_offset": "0x88600",
+        "byte_count": 633,
+        "sha256": "4b8d1e0490329123b87cc3cee3826c3a92e236fb0b9902021d32b7d9eacd6cc7"
+      },
+      "normalized_result_sha256": "6277a04739105339c5e42f878a6715132b1b443cd530940c669a044903752bf0",
+      "normalization": "REA normalized_result UTF-8, unmodified, including leading/trailing newlines."
+    },
+    {
+      "role": "name-word-iterator",
+      "procedure": "0x1458aabb0",
+      "evidence_id": "ev_fed484dffaf74a21e3b7b406663e418fd4011e24eb3a85a2069943f388034378",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "profile_sha256": "dbc4e5b7aa97986e5e35419426fb1b6f7f4029fbf4dc30b78221ee078b3e8974",
+      "subject_sha256": "b04704ff5c59e463e476deb671ea43478ec55edf717bf898b2e79dc857796074",
+      "pseudocode": "name-word-iterator.c",
+      "pseudocode_sha256": "aa49ba0b7f64f288160fe10fd34862188d007d9fe7a807f0452c4458342589c6",
+      "input_range": {
+        "start": "0x1458aabb0",
+        "end_exclusive": "0x1458aad6a",
+        "file_offset": "0x58a9fb0",
+        "byte_count": 442,
+        "sha256": "b04704ff5c59e463e476deb671ea43478ec55edf717bf898b2e79dc857796074"
+      },
+      "normalized_result_sha256": "57ff17b14fccb7235c41ec36e45692720f0f24bcf1eeaba577beecb1580a0246",
+      "normalization": "REA normalized_result UTF-8, unmodified, including leading/trailing newlines."
+    },
+    {
+      "role": "picker-name-input",
+      "procedure": "0x14007b130",
+      "evidence_id": "ev_2eb98e47f260ee4d74a118ee277426a07cf845e67abfcb7511213e6048d91f89",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "profile_sha256": "ebb62adec4a8f7b1c28541004d24c07cf5e4fd36f50ee6cc7afe7ee6aa49e1bb",
+      "subject_sha256": "9d6dd37d9e8ab0a7c9c0d8b815e78313f51f5b6fb99b1d6067195ef83e02b920",
+      "pseudocode": "picker-name-input.c",
+      "pseudocode_sha256": "00bf33ae437ea74084c03d65df401902d62f449a80058f35478ebcff936785dc",
+      "input_range": {
+        "start": "0x14007b130",
+        "end_exclusive": "0x14007b4bb",
+        "file_offset": "0x7a530",
+        "byte_count": 907,
+        "sha256": "9d6dd37d9e8ab0a7c9c0d8b815e78313f51f5b6fb99b1d6067195ef83e02b920"
+      },
+      "normalized_result_sha256": "294cc8753e7ee5290c225398a642b0f21c605b2dc43d76ca6fafb0fa27494b1e",
+      "normalization": "REA normalized_result UTF-8, unmodified, including leading/trailing newlines."
+    },
+    {
+      "role": "server-normalizer",
+      "procedure": "0x14590c6d0",
+      "evidence_id": "ev_c567ea7284f249b821cd21e7de157564cc1ace4386892f324ee487c76add62f3",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "profile_sha256": "595ff06aa89ec865b25a02ceadfd133504ea0fb64bb397f2ff53b4577b1d766d",
+      "subject_sha256": "b306bbac453c8da79fa08b209e49d053559f25eca009e7513794566cd1363ed5",
+      "pseudocode": "server-normalizer.c",
+      "pseudocode_sha256": "349ff8c510174d5bfa5b4a7e570ecf78700f298784331757e699a7ee8a2a4bd4",
+      "input_range": {
+        "start": "0x14590c6d0",
+        "end_exclusive": "0x14590c8b3",
+        "file_offset": "0x590bad0",
+        "byte_count": 483,
+        "sha256": "b306bbac453c8da79fa08b209e49d053559f25eca009e7513794566cd1363ed5"
+      },
+      "normalized_result_sha256": "89c71bd0a42db8c448ef660f67a4c1437817fb8b7e12db3443fa76961b35a415",
+      "normalization": "REA normalized_result UTF-8, unmodified, including leading/trailing newlines."
+    },
+    {
+      "role": "client-normalizer-0x14104b6c0",
+      "procedure": "0x14104b6c0",
+      "evidence_id": "ev_a9130003a7c08c725557f97fa3bb8d0e0fb26cf67dcfe503adad0b92886d5b42",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "profile_sha256": "15cba59eee99abdcd7837f9fe4c746a943597c7a62f422611c47119b02ea1342",
+      "subject_sha256": "6d32d4253ef90db9ac5da57fb393fa4d6e644185055afbc91b7027af6d8b66b9",
+      "pseudocode": "client-normalizer-0x14104b6c0.c",
+      "pseudocode_sha256": "7b81d7d2b1cce07cb6e540311d39e00a019fe7272848f0a6157d65a3806a3fad",
+      "input_range": {
+        "start": "0x14104b6c0",
+        "end_exclusive": "0x14104b8a4",
+        "file_offset": "0x104aac0",
+        "byte_count": 484,
+        "sha256": "6d32d4253ef90db9ac5da57fb393fa4d6e644185055afbc91b7027af6d8b66b9"
+      },
+      "normalized_result_sha256": "62d5500580f9ccdb8c103d079b4d8c47ca3a37e7130c533e0d51704a8756d905",
+      "normalization": "REA normalized_result UTF-8, unmodified, including leading/trailing newlines."
+    },
+    {
+      "role": "picker-name-append",
+      "procedure": "0x140067e90",
+      "evidence_id": "ev_ae2ef0c283c6cbdcf020ef8ef8d35fc4829fb529b69dfb263012d1680f2574c0",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "profile_sha256": "a252a319fae14b7a0ae1a9fdb713c1c6d5ee4b315fe034bbbd9b7339e4485898",
+      "subject_sha256": "b7cb5c935d0d6f7a68dcb8033ed6344bccf14fb87e3529a2c8505b9ef6467eb3",
+      "pseudocode": "picker-name-append.c",
+      "pseudocode_sha256": "c3d57eefc91973e69ebbaab078f70f319fab58b3401045af2c8526794f8f5782",
+      "input_range": {
+        "start": "0x140067e90",
+        "end_exclusive": "0x140067fb2",
+        "file_offset": "0x67290",
+        "byte_count": 290,
+        "sha256": "b7cb5c935d0d6f7a68dcb8033ed6344bccf14fb87e3529a2c8505b9ef6467eb3"
+      },
+      "normalized_result_sha256": "74da599ce3383569e9912a874af708ac85a0e38a673a755d55db890fc7bda241",
+      "normalization": "REA normalized_result UTF-8, unmodified, including leading/trailing newlines."
+    },
+    {
+      "role": "client-proof",
+      "procedure": "0x145a4c0b0",
+      "evidence_id": "ev_8cf32da2565b13766300d2ef1aa7965856fe3ba77430d7f09d83e09c608985ec",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "profile_sha256": "b4b5c0539f78710d60e0c34d5833a95043d0f94181c34207f30f6d68f3cd04a4",
+      "subject_sha256": "d9ae0188ea349ae9ebcc5d90f60ef7b2a76377ce28ac7d157b084a2a22f5f659",
+      "input_range": {
+        "start": "0x145a4c0b0",
+        "end_exclusive": "0x145a4c54c",
+        "file_offset": "0x5a4b4b0",
+        "byte_count": 1180,
+        "sha256": "d9ae0188ea349ae9ebcc5d90f60ef7b2a76377ce28ac7d157b084a2a22f5f659"
+      },
+      "normalized_result_sha256": "5a4574a379f06dc3d43956e7127814c2ad324265b94b87c04ec6ee2960205e18",
+      "normalization": "REA normalized_result UTF-8, unmodified, including leading/trailing newlines.",
+      "durable_representation": "Complete raw decompilation omitted; evidence ID and full normalized-result hash retained. The selected M2 comparison/result interval governs this recovered contract."
+    },
+    {
+      "role": "roster-factory",
+      "procedure": "0x1458bb880",
+      "evidence_id": "ev_14865f11515c7d2e23042c369cddaa723d1cc53a92ed4e4f1a957a2d57946fc6",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "profile_sha256": "3d29c105ccde88ee4d84c5f32b8b50e92f8256879a3cc6022bf50dc573422a16",
+      "subject_sha256": "5e9a89e53cd21011582193779cbd0b113f3497a367ba7470a0a6831ce0bdd2ad",
+      "input_range": {
+        "start": "0x1458bb880",
+        "end_exclusive": "0x1458bb9c0",
+        "file_offset": "0x58bac80",
+        "byte_count": 320,
+        "sha256": "5e9a89e53cd21011582193779cbd0b113f3497a367ba7470a0a6831ce0bdd2ad"
+      },
+      "normalized_result_sha256": "59219588d934f8a2e278c83b15dc4d373d7716a5cc75e4ab6f390de6016eba3c",
+      "normalization": "REA normalized_result UTF-8, unmodified, including leading/trailing newlines.",
+      "pseudocode": "roster-factory.c",
+      "pseudocode_sha256": "b2fb587381a9609bd968dd81f1f89d8badfa527d90f17a00809743352f61dd93"
+    }
+  ],
+  "source_refs": [
+    "crates/azeroth-survivors-re/src/startup.rs",
+    "crates/azeroth-survivors-re/src/main.rs",
+    "crates/azeroth-survivors-re/src/stock_frontend.rs",
+    "crates/benilla-app/src/local_client/stock_frontend.rs",
+    "crates/benilla-app/src/ui_script/glue_mgr.rs",
+    "crates/azeroth-survivors-re/src/hero_name.rs",
+    "crates/azeroth-survivors-re/src/save.rs",
+    "crates/azeroth-survivors-re/tests/current_menu_save.rs",
+    "crates/azeroth-survivors-re/src/menu.rs"
+  ],
+  "limits": [
+    "No compiler, Rust tests, operating-system thread/socket, game or original/rebuilt interaction/rendering/parity was run.",
+    "Raw native imports use generic x86-64 ABI; current PE instructions govern Windows arguments, fields and constants. Raw imports omit external data/indirect targets; seeded leaves and caller/data traces are identified separately from complete function/system recovery. Current name-validator Ghidra pseudocode fails with a varnode-hash error under default and Stack-disabled analysis; its unchanged PE body and dependencies are decoded and independently replayed.",
+    "Replay substitutes memory allocation/copy/vector growth, ASCII comparison and declared thread-result seams; no filesystem/network/unreviewed native callee executes.",
+    "The in-process backend models logical auth/world lifecycle. It has no network worker, cryptographic SRP exchange, packet buffering/backpressure, operating-system thread/port failures or native execution timing. Complete engine/indirect ownership remains independently open."
+  ]
+}

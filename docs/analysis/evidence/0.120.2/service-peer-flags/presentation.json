@@ -1,0 +1,301 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.120.2",
+    "sha256": "80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c",
+    "size_bytes": 145484288
+  },
+  "scope": "Selected31/32 reconnection notices and shared local relay-retry presentation. Original native meaning, caller gates, source implementation and runtime parity are separate evidence levels.",
+  "inputs": [
+    {
+      "path": "scripts/check-service-reconnection-presentation-0.120.2.py",
+      "sha256": "40280c5bc52f0e56a692c33782ba4262ea95147472a6d10d0fcde63e91613906"
+    },
+    {
+      "path": "scripts/equipment_native.py",
+      "sha256": "67f4dbd290445b7a466ed90b8a06741719326a7a225e6144da214380d825c6c2"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop/reconnection.rs",
+      "sha256": "6085ac52cfbd069feda434003fb98b7669ef3b34510d67458708f7be47adf076"
+    },
+    {
+      "path": "docs/analysis/evidence/0.120.2/service-peer-flags/notice-locales.json",
+      "sha256": "ee6f01621484470d782091530e83d344f25b3d226e803ccbe52ddf868e1ef9f2"
+    }
+  ],
+  "native_ranges": [
+    {
+      "role": "notice-template-substitution",
+      "start": "0x145b4f3f0",
+      "end_exclusive": "0x145b4f974",
+      "file_offset": "0x5b4e7f0",
+      "byte_count": 1412,
+      "sha256": "51fcfdf14454f00c8c55ce398e7b457f514aff04e3654668ce15b94272c4081c",
+      "instruction_count": 374,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/service-peer-flags/presentation-notice-template-substitution.asm",
+        "sha256": "5acff812f6f802fdc0a893083dac414f11e2350334565dd27df5c841867f610e"
+      }
+    },
+    {
+      "role": "source-actor-name-context",
+      "start": "0x145b53040",
+      "end_exclusive": "0x145b533a2",
+      "file_offset": "0x5b52440",
+      "byte_count": 866,
+      "sha256": "539750363b1ba5fa5fa7c750c75950dec47fe0cded49b9b3af8bb5bdcc4f0204",
+      "instruction_count": 175,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/service-peer-flags/presentation-source-actor-name-context.asm",
+        "sha256": "55ef8a13cc3cffb5df61efb19c6e6cfa207880a093581c088905701f0ba17cea"
+      }
+    },
+    {
+      "role": "host-notice-recipient-iterator",
+      "start": "0x145c5a560",
+      "end_exclusive": "0x145c5a7c4",
+      "file_offset": "0x5c59960",
+      "byte_count": 612,
+      "sha256": "367954e97a9180291775bccb6c3643a0a48bac2b27ebc7189981ee216653c68b",
+      "instruction_count": 154,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/service-peer-flags/presentation-host-notice-recipient-iterator.asm",
+        "sha256": "0bf6f713a675df57f0c229d5dca7558fed2e7bb4004ca2e25fef66efa67aab42"
+      }
+    },
+    {
+      "role": "host-notice-localized-text",
+      "start": "0x145b45840",
+      "end_exclusive": "0x145b45a18",
+      "file_offset": "0x5b44c40",
+      "byte_count": 472,
+      "sha256": "d6b5c120f9a92a70744f0ec3b6e15d3d70f181cdfdae3df74562145387c98c9a",
+      "instruction_count": 123,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/service-peer-flags/presentation-host-notice-localized-text.asm",
+        "sha256": "58eefd2bd9abf5cc0b519afcf20fdfbee269fd3a25e485e42c804aa0e7a90c31"
+      }
+    },
+    {
+      "role": "relay-notice-localized-text",
+      "start": "0x145b45a20",
+      "end_exclusive": "0x145b45bb5",
+      "file_offset": "0x5b44e20",
+      "byte_count": 405,
+      "sha256": "fbf2a15ae050a8ad58ec7fd8d63f7c14b47021fa84b6436f740908aa9355a2be",
+      "instruction_count": 110,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/service-peer-flags/presentation-relay-notice-localized-text.asm",
+        "sha256": "631ac4dfbd70df8b72e474d8edb1f7423161a50aafbc56a5e423036e63bcba88"
+      }
+    },
+    {
+      "role": "system-chat-packet",
+      "start": "0x145c3f980",
+      "end_exclusive": "0x145c3fbc4",
+      "file_offset": "0x5c3ed80",
+      "byte_count": 580,
+      "sha256": "e5caf595629e68c1368dc14ea9b5599d706e26fb03761a93a512321aea8b2477",
+      "instruction_count": 145,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/service-peer-flags/presentation-system-chat-packet.asm",
+        "sha256": "065b9c598f5003eb02f59931daebcce95a86424f86da128d1a8cc544df97710a"
+      }
+    },
+    {
+      "role": "notice-actor-delivery",
+      "start": "0x145b24860",
+      "end_exclusive": "0x145b24aa6",
+      "file_offset": "0x5b23c60",
+      "byte_count": 582,
+      "sha256": "9834acb277ceafa54e245083a10eedb2d671116d3131ae6304717d16857c3867",
+      "instruction_count": 128,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/service-peer-flags/presentation-notice-actor-delivery.asm",
+        "sha256": "37d8576036be632436326b5968707e8a8de6fbe190349b7cfea42ab2299ac62b"
+      }
+    },
+    {
+      "role": "source-actor-name",
+      "start": "0x145b456f0",
+      "end_exclusive": "0x145b45832",
+      "file_offset": "0x5b44af0",
+      "byte_count": 322,
+      "sha256": "364f152f79775e73a0a274ef61cee776d995f93c088130eab231a997a3df0f1f",
+      "instruction_count": 89,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/service-peer-flags/presentation-source-actor-name.asm",
+        "sha256": "6ea16a2df54c6326d4a5f3fc80866309b6cccd6277b46d1a3c4174360b6835fc"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "procedure": "0x145b53040",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_5ead6a34aa574c553c3b37b1d059618a73258fee4b64d157f388808493f03db3",
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-query/plan.json",
+        "sha256": "d048ae41757fd0cba2596edaa478b54b92b5d150316c0474d29157c65f5731bd"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-query/journal.json",
+        "sha256": "e99b2058c2d11dab03e7df8bbfed7c721c2b89fdcaf27fc4271c5e524e8ed4ff"
+      },
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-query/results/284400f13990dfef5496ce6fd6eadd8a1cde1311b8e83e9e11bf2c6a4829a225-ae58e9da5dd85006.json",
+        "sha256": "54f0940da3febbbfdcf72337634dbb305f6ac60534e0c98b8c02bddb7ce59638"
+      },
+      "normalized_sha256": "80dd2c9ff179b047b5be4e1c58e79e4e28ebf278f2c701101a70da4cdd4869d3",
+      "analysis_profile_digest": "472839eef1686bfee81453d5ec78fb04a2a504ed07d047c5815f50f21b87a6ff"
+    },
+    {
+      "procedure": "0x145b4f3f0",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_2a73cafb79b533e735297787af5af34bd71474584fe83a86a4771bcadc45cbf0",
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-query/plan.json",
+        "sha256": "d048ae41757fd0cba2596edaa478b54b92b5d150316c0474d29157c65f5731bd"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-query/journal.json",
+        "sha256": "e99b2058c2d11dab03e7df8bbfed7c721c2b89fdcaf27fc4271c5e524e8ed4ff"
+      },
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-query/results/92a51104cdaf19582c748661a17c6192be194524e85d04ceddad3ca6cf5fc62c.json",
+        "sha256": "907de5902f09827ef0468c8911bb96c8d2b4eb0b5b011a936cb221f14c1551a0"
+      },
+      "normalized_sha256": "fa98c57c05cb5c4fa83b9a5bdc13c4692a56e3d70a1722340ab801ee203c841c",
+      "analysis_profile_digest": "472839eef1686bfee81453d5ec78fb04a2a504ed07d047c5815f50f21b87a6ff"
+    },
+    {
+      "procedure": "0x145c5a560",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_c7d7964bc036234d1f2595af12a7740d826b7f552022f17a300863f0a744bb0f",
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-query/plan.json",
+        "sha256": "d048ae41757fd0cba2596edaa478b54b92b5d150316c0474d29157c65f5731bd"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-query/journal.json",
+        "sha256": "e99b2058c2d11dab03e7df8bbfed7c721c2b89fdcaf27fc4271c5e524e8ed4ff"
+      },
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-query/results/a7acef844aef13cb615c08818c86bd456a930a11337b39c39f4d9d4a17679a14-aa931cd638c5605e.json",
+        "sha256": "7a0b1b62e3c33e55b5a253c333ab0f5e4b2578e027191e91c04ed1565bf24bdf"
+      },
+      "normalized_sha256": "e8ee4eb54113a7166174e5f4f59da626ec873a6d637b653875694ff033e6d556",
+      "analysis_profile_digest": "472839eef1686bfee81453d5ec78fb04a2a504ed07d047c5815f50f21b87a6ff"
+    },
+    {
+      "procedure": "0x145c3f980",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_1b0094750f00ca386d027d290f8c83ba80180e6db740d344c331882240c9ed8d",
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-followup-query/plan.json",
+        "sha256": "86b9a32f236d8bcfc93e276e7a70b8bab131eff0cf40ed97ddef383856fba6e1"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-followup-query/journal.json",
+        "sha256": "b3bbd81c0629aabddf749d8bce478bd0a3248bfe5f812d697127ebfe2541e6b5"
+      },
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-followup-query/results/0f6dbcc0e007385099d66214a3c0b8af43e07704bc3c6b1b15ade7a26d6001e4-69739ac196538605.json",
+        "sha256": "a280931cbe84851264eaca3be9f08853a7f2f6adec0f34c6de3372577f0a0403"
+      },
+      "normalized_sha256": "9c7627ced5170dc38a153f4715c734539da3d47633b774e5a7d786a333a3fdd2",
+      "analysis_profile_digest": "d33de8164898facc3f84dcfac1ce7180e9d5a059e28b43d67b116f77f1469f26"
+    },
+    {
+      "procedure": "0x145b45a20",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_042a27097c67efc77fb11a01995e6867c398c8ea0ae7ce6dd837881647ba9517",
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-followup-query/plan.json",
+        "sha256": "86b9a32f236d8bcfc93e276e7a70b8bab131eff0cf40ed97ddef383856fba6e1"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-followup-query/journal.json",
+        "sha256": "b3bbd81c0629aabddf749d8bce478bd0a3248bfe5f812d697127ebfe2541e6b5"
+      },
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-followup-query/results/7f11d3c6c57adf91ba083299477466bf0e4f71947f8ba6907d64339c1135e7fd-e8137a3790911d8f.json",
+        "sha256": "62554f89b6523b9236ef91578234941628788b7f7103fed311fe8f2f63626de2"
+      },
+      "normalized_sha256": "0325e43e39a8c06eabffaa3d8e2d6e4a9091d57aaae40ab20f89141ee52e3325",
+      "analysis_profile_digest": "d33de8164898facc3f84dcfac1ce7180e9d5a059e28b43d67b116f77f1469f26"
+    },
+    {
+      "procedure": "0x145b45840",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_2c8221a9476f02701554ecde7185b6c5bb05f79cfd4bfb7f2e7d2bcb1023c45f",
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-followup-query/plan.json",
+        "sha256": "86b9a32f236d8bcfc93e276e7a70b8bab131eff0cf40ed97ddef383856fba6e1"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-followup-query/journal.json",
+        "sha256": "b3bbd81c0629aabddf749d8bce478bd0a3248bfe5f812d697127ebfe2541e6b5"
+      },
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-followup-query/results/801dd4fd6584abcd0ac09d984a74daa40f157c0c385e5bb03a637e25779e7720.json",
+        "sha256": "8b94da9fe94b10685c0f67b690d5db85b1f0b888f7f85965ec7b60a07f89d3f6"
+      },
+      "normalized_sha256": "8040410962e3d501bfb9bff391e8d3eec0d2d460430be1e426216195cb560cbb",
+      "analysis_profile_digest": "d33de8164898facc3f84dcfac1ce7180e9d5a059e28b43d67b116f77f1469f26"
+    },
+    {
+      "procedure": "0x145b24860",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_00c1ae76b12e034b61913bf8e36e9cea956b06f0bb894c7201dfa41c97778018",
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-route-query/plan.json",
+        "sha256": "9254aacf87a25667798c0528614ae0d32a3ffabd4cc60c69d8b54dd8bdf90e39"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-route-query/journal.json",
+        "sha256": "5884fd9a60abc2181e74d4f52646fc69ce1643de0d0b786f2e936a32be9a9eb3"
+      },
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-route-query/results/c5ca77b0c0935cd5454df5ece70cf06f1f2cca27849d2a9c338bee16c4f77941.json",
+        "sha256": "408d4355dc3446e693320764cf9555ff7d50c8af37cf64e4074e1c5ba63f2432"
+      },
+      "normalized_sha256": "2a60ad7c0f8d5cd9fcdc712b421106388c16e9fb714af96a8c704c3c7cc51baf",
+      "analysis_profile_digest": "4bd0d467830f4570bc127d6d16252b43075e2d8a13ed6a2c4a5404094c225a11"
+    },
+    {
+      "procedure": "0x145b456f0",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_fac41e7e08b46118523c817e28bd42d6a973e3b3a98e1491c538ac84e7118559",
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-route-query/plan.json",
+        "sha256": "9254aacf87a25667798c0528614ae0d32a3ffabd4cc60c69d8b54dd8bdf90e39"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-route-query/journal.json",
+        "sha256": "5884fd9a60abc2181e74d4f52646fc69ce1643de0d0b786f2e936a32be9a9eb3"
+      },
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/presentation-route-query/results/c71d97d77d5693774be42bed30e8d06b31ba5724bc72a500ecdf111a0f403875-d43dd42aa57950fd.json",
+        "sha256": "a4c2aaaa56844a0c245ca9ab26c406d51816c06ddae85de42eef949414ddf869"
+      },
+      "normalized_sha256": "5afbc6aefed53cc6974ae9d892dc1575e769fb307894b370eaf3765bb15fe33f",
+      "analysis_profile_digest": "4bd0d467830f4570bc127d6d16252b43075e2d8a13ed6a2c4a5404094c225a11"
+    }
+  ],
+  "contracts": {
+    "guest": "Live upstream samples host reconnecting and local relay retry independently; caches update before sync/active-local-port delivery gates. Native31/32 use host text; relay retry uses separate local connection text.",
+    "host": "Only actual world-assigned source clients produce peer notices. World actors except affected source receive per-recipient localized peer text. Host relay retry notices target local actor0 only.",
+    "name": "Source actor context returns a plain clone of current Game+0x1b0 name, without class color or other decoration.",
+    "locale": "Recognized exact2-byte locale code overrides global locale for formatting; invalid code leaves global selected locale active. TLS override restored afterward.",
+    "delivery": "Actor0 uses first active local port. Remote delivery requires host role3, actual matching world-assigned client row and current+0x479 synchronized byte1; no extra live/abandoned filter in this bounded delivery helper.",
+    "packet": "Opcode0x96, system chat10, universal language0, senderGUID0, u32text-byte-length+1, originalUTF8text, NUL, chat-tag0."
+  },
+  "limits": [
+    "Native ranges are PE-declared helper extents, independently decoded; Ghidra pseudocode remains a recovered analysis representation.",
+    "EquipmentProbe allocation, memcpy and Vec growth are fixture seams, not reconstructed generic engine internals.",
+    "Parent service flag proof owns current frame/pump/getter/cached-transition ranges; these helpers do not duplicate them.",
+    "Rust source regressions are uncompiled/unrun. Actual chat delivery/rendering, networking and original/rebuilt parity remain unverified."
+  ]
+}

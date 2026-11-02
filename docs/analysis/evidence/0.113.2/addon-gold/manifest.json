@@ -1,0 +1,35 @@
+{
+  "target_version": "0.113.2",
+  "target_sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+  "function": {
+    "start": "0x145c30ed0",
+    "end_exclusive": "0x145c31e46",
+    "file_offset": "0x5c302d0",
+    "byte_count": 3958,
+    "sha256": "1b975d1a9cd321fc62c3be28bd738baef36a68736b5d68dd430d51465fcbcfcc",
+    "canonical_assembly": "docs/analysis/evidence/0.113.2/tga-decoder.asm",
+    "assembly_sha256": "9c90775671487641b2ed6694275b84b6c298a4a29420295bbbfdfd3778799520"
+  },
+  "ghidra": {
+    "evidence_id": "ev_9c5562b8d641a743cd81f87d3b81f06c6aea8ad6d0eb0ebd49dffc950f03eeec",
+    "analysis_profile_digest": "19ec788a83984cc4b7e4511814822dab042569ed0a00dae18d2c43a5877ccc72",
+    "pseudocode_sha256": "1ecf109bb6341ec0e0986037d3f2776ea21a512d8fa00f8bc69847f59120ad18"
+  },
+  "replay": {
+    "valid_cases": 616,
+    "valid_sha256": "4cd1cbaf9185fbc17bab40471584ac780a3730e6f2856c6437f3750fcd6c4975",
+    "rejection_cases": 33,
+    "rejection_sha256": "2cfb919c2c493d9efcf58a616babf2a43c6f28c2f680961c33aa27157c25e2ba"
+  },
+  "limits": [
+    "Whole decoder's original instructions; allocation/copy/free/probe seams. Error formatting is stopped at native rejection branches.",
+    "Raw Ghidra import omits external code/data and uses generic ABI; Windows registers and exact PE instructions own interpretation.",
+    "Source guards are tracing, not reconstructed Rust execution. No compilation, game, GPU/addon execution or original/rebuilt parity."
+  ],
+  "atlas": {
+    "input_sha256": "7e2b57533361f224e01171dbc857247b04096fdc33e58364901b230b75b270be",
+    "rgba_sha256": "df19b43c5a4b9af721a620bce4b638202b2c6c4004b9a8e23ee8d46361b4a60c",
+    "top_left_quadrant_sha256": "e0f4b02f72f18121933175880dfa89c537a174700224cc1890bbd9274d230eb2",
+    "distinct_alpha_values": 172
+  }
+}

@@ -1,0 +1,198 @@
+{
+  "schema": "as-coop-companion-creature-metadata-v1",
+  "target": {
+    "version": "0.117.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293",
+    "size_bytes": 145283072
+  },
+  "gap_ids": [
+    117
+  ],
+  "native_spans": [
+    {
+      "role": "retained-companion-lookup-query-input",
+      "va": "0x145adab60",
+      "byte_count": 128,
+      "sha256": "92da8948e21c575ceb03d472c2a3c35b93ecba1652d0c1f6c43007ee2157c9f5"
+    },
+    {
+      "role": "companion-metadata-output",
+      "va": "0x145afaef6",
+      "byte_count": 56,
+      "sha256": "038d8b2fed9d78a05154a7d84a43be0e19673e6c6e8c2fc79b8ed687348a27d5"
+    },
+    {
+      "role": "creature-template-payload-consumer",
+      "va": "0x145afb071",
+      "byte_count": 73,
+      "sha256": "46ef5c839c701215c66978c542c426e01f29eb871a20e79cbc90a96909531953"
+    },
+    {
+      "role": "four-current-companion-pointers",
+      "va": "0x1472d9250",
+      "byte_count": 32,
+      "sha256": "375a814fcd075c65f09181ca637e25ef394bb76f52888bf6003876dab72c26f8"
+    }
+  ],
+  "selected_dispatch_entry": {
+    "role": "opcode0x60",
+    "table_base": "0x1472db538",
+    "index": 21,
+    "destination": "0x145af96c2"
+  },
+  "data_fields": [
+    {
+      "role": "9623 companion descriptor pointer",
+      "va": "0x1472d9250",
+      "hex": "380a2d4701000000"
+    },
+    {
+      "role": "9623 companion display",
+      "va": "0x1472d0a88",
+      "hex": "7d090000"
+    },
+    {
+      "role": "9624 companion descriptor pointer",
+      "va": "0x1472d9258",
+      "hex": "980a2d4701000000"
+    },
+    {
+      "role": "9624 companion display",
+      "va": "0x1472d0ae8",
+      "hex": "f9070000"
+    },
+    {
+      "role": "9625 companion descriptor pointer",
+      "va": "0x1472d9260",
+      "hex": "f80a2d4701000000"
+    },
+    {
+      "role": "9625 companion display",
+      "va": "0x1472d0b48",
+      "hex": "742c0000"
+    },
+    {
+      "role": "9626 companion descriptor pointer",
+      "va": "0x1472d9268",
+      "hex": "580b2d4701000000"
+    },
+    {
+      "role": "9626 companion display",
+      "va": "0x1472d0ba8",
+      "hex": "ee400000"
+    }
+  ],
+  "creature_templates": [
+    {
+      "entry": 9623,
+      "name": "",
+      "subname": "",
+      "type": 8,
+      "rank": 0,
+      "display": 2429
+    },
+    {
+      "entry": 9624,
+      "name": "",
+      "subname": "",
+      "type": 8,
+      "rank": 0,
+      "display": 2041
+    },
+    {
+      "entry": 9625,
+      "name": "",
+      "subname": "",
+      "type": 8,
+      "rank": 0,
+      "display": 11380
+    },
+    {
+      "entry": 9626,
+      "name": "",
+      "subname": "",
+      "type": 8,
+      "rank": 0,
+      "display": 16622
+    }
+  ],
+  "query_receipts": [
+    {
+      "role": "companion-template-plan:read_function_instructions",
+      "plan": "runtime/0.117.0/white-devilsaur-integration/companion-template-plan.json",
+      "plan_sha256": "9fdcabc72474d40b4ad911b8cb7f7555622c6b88c25fe68bbec0d03cbbf04bbd",
+      "result": "runtime/0.117.0/white-devilsaur-integration/companion-template-query/results/3d7e4614536439180c4c6be7028f9c63603b9acedbc66c88634b12a236686e05.json",
+      "result_sha256": "04fc4e623749da6f25b01d2e8bc4682e0a6d065ba66296b37ef8e67b2b4085d0",
+      "input_sha256": "92da8948e21c575ceb03d472c2a3c35b93ecba1652d0c1f6c43007ee2157c9f5",
+      "evidence_id": "ev_8ec8dfb292cf34c930cb35be80a45d03e49abf38b20c3988abde2ed7263e7f37",
+      "profile_sha256": "957e9ee4e98d0ac449abc33797a997463e80eee8dc225532de68a53edde62de1"
+    },
+    {
+      "role": "companion-template-plan:procedure_pseudo_code",
+      "plan": "runtime/0.117.0/white-devilsaur-integration/companion-template-plan.json",
+      "plan_sha256": "9fdcabc72474d40b4ad911b8cb7f7555622c6b88c25fe68bbec0d03cbbf04bbd",
+      "result": "runtime/0.117.0/white-devilsaur-integration/companion-template-query/results/686a53bff88b20a2bd110f4b06ed33946be0d14fffb5539cc769579e8e7abf23.json",
+      "result_sha256": "89004d30e70d7066be46fe505f93b9c682ad7729855913545440cf5995320e3c",
+      "input_sha256": "92da8948e21c575ceb03d472c2a3c35b93ecba1652d0c1f6c43007ee2157c9f5",
+      "evidence_id": "ev_38034dd953cb1f32955f089cc15c476eacc7fb2cec1de8bcf3a4a210d86ac7d4",
+      "profile_sha256": "957e9ee4e98d0ac449abc33797a997463e80eee8dc225532de68a53edde62de1"
+    },
+    {
+      "role": "creature-query-case-plan:read_function_instructions",
+      "plan": "runtime/0.117.0/white-devilsaur-integration/creature-query-case-plan.json",
+      "plan_sha256": "a55459fec552f0da75ef7ea93d49ab196235f2f19cf0033f58dac930ca9e1f19",
+      "result": "runtime/0.117.0/white-devilsaur-integration/creature-query-case-query/results/2cd9bb145bc2f58cd76cdb6703b9737c23f37eacbd5b6a11f4804402c1aba9ff.json",
+      "result_sha256": "f4646b328171460c3d0c2f3ce301833bfcdf6261febd1504ef4d3e1d46d5ade3",
+      "input_sha256": "2a618aba82e4075bc6fb6422d832def9a16d2b767574c5d0144d5ba53667feb7",
+      "evidence_id": "ev_9eb70a47f40316dbd2208795ceb943567274676dc899e9601fd96ce3b336d848",
+      "profile_sha256": "e8d63dea077e700370dda9432df786785b01719445717750d412fe851086d350"
+    },
+    {
+      "role": "creature-query-case-plan:procedure_pseudo_code",
+      "plan": "runtime/0.117.0/white-devilsaur-integration/creature-query-case-plan.json",
+      "plan_sha256": "a55459fec552f0da75ef7ea93d49ab196235f2f19cf0033f58dac930ca9e1f19",
+      "result": "runtime/0.117.0/white-devilsaur-integration/creature-query-case-query/results/a0f8cbbf61c38b73cd6c92f9072137e63d6bcc1c39d4e84d3ed5c8e3338026fc.json",
+      "result_sha256": "65d645c2ec73b5450b12b6663454178ef26545170f946babdb4ea4b84ffca4cd",
+      "input_sha256": "2a618aba82e4075bc6fb6422d832def9a16d2b767574c5d0144d5ba53667feb7",
+      "evidence_id": "ev_81a820604c8ba409a4df39f524a6dc966a9a0ce708252397703c39963abf296b",
+      "profile_sha256": "e8d63dea077e700370dda9432df786785b01719445717750d412fe851086d350"
+    }
+  ],
+  "selected_instructions": [
+    "0x145afaef6: MOV ECX, R14D",
+    "0x145afaef9: CALL 0x145adab60",
+    "0x145afaefe: TEST RAX, RAX",
+    "0x145afaf01: JZ 0x145afb233",
+    "0x145afaf07: MOV R12, RBX",
+    "0x145afaf0a: MOV RBX, R13",
+    "0x145afaf0d: MOV R8D, dword ptr [RAX + 0x50]",
+    "0x145afaf11: XOR R13D, R13D",
+    "0x145afaf14: MOV R9D, 0x8",
+    "0x145afaf1a: MOV EAX, 0x1",
+    "0x145afaf1f: MOV ECX, 0x1",
+    "0x145afaf24: XOR EDX, EDX",
+    "0x145afaf26: XOR R10D, R10D",
+    "0x145afaf29: JMP 0x145afb071",
+    "0x145afb071: MOV dword ptr [RSP + 0x40], R8D",
+    "0x145afb076: MOV dword ptr [RSP + 0x38], R10D",
+    "0x145afb07b: MOV dword ptr [RSP + 0x30], R9D",
+    "0x145afb080: MOV qword ptr [RSP + 0x28], RDX",
+    "0x145afb085: MOV qword ptr [RSP + 0x20], RCX",
+    "0x145afb08a: LEA RCX, [RBP + 0x1b0]",
+    "0x145afb091: MOV EDX, R14D",
+    "0x145afb094: MOV R8, RAX",
+    "0x145afb097: MOV R9, R13",
+    "0x145afb09a: CALL 0x145b6b0c0",
+    "0x145afb09f: MOVUPS XMM0, xmmword ptr [RBP + 0x1b0]",
+    "0x145afb0a6: MOVUPS XMM1, xmmword ptr [RBP + 0x1c0]",
+    "0x145afb0ad: MOVAPS xmmword ptr [RBP], XMM1",
+    "0x145afb0b1: MOVAPS xmmword ptr [RBP + -0x10], XMM0",
+    "0x145afb0b5: JMP 0x145afbd4d"
+  ],
+  "limits": [
+    "Only current opcode0x60 companion lookup/display/type/empty-name producer and four source metadata rows.",
+    "Raw imports omit PE/external data and ABI; selected current instructions and exact pointer/display fields supply these bounds.",
+    "No White Devilsaur switch/pet/source contracts are included. No compilation, source/client/cache/VM/network/server or original/rebuilt parity."
+  ]
+}

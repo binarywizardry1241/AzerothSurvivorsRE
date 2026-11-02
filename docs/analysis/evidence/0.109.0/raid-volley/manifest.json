@@ -1,0 +1,630 @@
+{
+  "target_version": "0.109.0",
+  "target_sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+  "ranges": [
+    {
+      "role": "speed-prefix",
+      "va": "0x145957ce8",
+      "byte_count": 99,
+      "file_offset": "0x59570e8",
+      "sha256": "2fed706aa862130655da54a8d4456c1dbcc4930e3f1d4a15b7131da80cfeddf0",
+      "assembly": "speed-prefix.asm",
+      "assembly_sha256": "0ab4347b39780c25bc65ab219ef859fc706513a21e7fa28ada336d5f4b2b20c3"
+    },
+    {
+      "role": "speed-low",
+      "va": "0x14595bf03",
+      "byte_count": 65,
+      "file_offset": "0x595b303",
+      "sha256": "714725315fa430b9ddfc3a08e45d4b94580da989f44d45ab5f5580359d522858",
+      "assembly": "speed-low.asm",
+      "assembly_sha256": "5bd608cb6d1555ecc668c90b957dfc6a3a660b102bc73742fba12081db37fcb5"
+    },
+    {
+      "role": "speed-high",
+      "va": "0x14595c382",
+      "byte_count": 244,
+      "file_offset": "0x595b782",
+      "sha256": "e67b2532721c8c914d322e9a59a8018677f26b47471f1511ee864020f379cac6",
+      "assembly": "speed-high.asm",
+      "assembly_sha256": "33dc8ee6768518362268c31cf9a2192e722d96d136225d7bf8f7178aafe6d73d"
+    },
+    {
+      "role": "speed-special",
+      "va": "0x14595caf0",
+      "byte_count": 13,
+      "file_offset": "0x595bef0",
+      "sha256": "c8b3075eee4aeb1ef5d944006d44d9b0980406d11e94e4ba18413021fedacd81",
+      "assembly": "speed-special.asm",
+      "assembly_sha256": "a3f60bc3e684de57415c81b59864afd903b4ac661e53869010006eda9b2addfd"
+    },
+    {
+      "role": "first-flight-and-payload",
+      "va": "0x14595c5ce",
+      "byte_count": 304,
+      "file_offset": "0x595b9ce",
+      "sha256": "569e5f5271cfdf3c9701c1e24963585fcac108ca92a371633714d1daafdf9ed6",
+      "assembly": "first-flight-and-payload.asm",
+      "assembly_sha256": "468102da0a9e42b1611f37b4bc7efdc91da4c3f4419fb8bebb51f4a555595608"
+    },
+    {
+      "role": "later-payload",
+      "va": "0x14595c73d",
+      "byte_count": 170,
+      "file_offset": "0x595bb3d",
+      "sha256": "c2dcc5d55f6b9cb8ca3a2e5c47f45c7bfac3865592290d886735a97b8fff468b",
+      "assembly": "later-payload.asm",
+      "assembly_sha256": "ebc23c9d9af5d65cce5ae0b2c61c29196cf40ca7ded0e2b06590d9b726acc7ad"
+    },
+    {
+      "role": "later-flight",
+      "va": "0x14595ca1f",
+      "byte_count": 82,
+      "file_offset": "0x595be1f",
+      "sha256": "2cec902be6d81a4a1213460ac9863cfa8ea7116adcf2624c38b417136602a100",
+      "assembly": "later-flight.asm",
+      "assembly_sha256": "8027d0890856fedb8ab4dd8eb899cb1ca1378ed7c5204ce43fbc5d4b14da2b63"
+    },
+    {
+      "role": "publish",
+      "va": "0x145950063",
+      "byte_count": 34,
+      "file_offset": "0x594f463",
+      "sha256": "d2e9ecc49cf1e212febe457e9c2baf66fdbc9c8c1d1f47585a6f33f504145670",
+      "assembly": "publish.asm",
+      "assembly_sha256": "bd8b6dce7fc265ff96dc9e66b3cb09aef9bde11dcc9d18d462df1db643cc4213"
+    },
+    {
+      "role": "deadline-and-circle",
+      "va": "0x1459503c4",
+      "byte_count": 114,
+      "file_offset": "0x594f7c4",
+      "sha256": "2949afb5288e890d9800d8ad5813b76efad6245f01b82610eedc40feff200ea4",
+      "assembly": "deadline-and-circle.asm",
+      "assembly_sha256": "0fce7df49b2df7ca2f6b3e22e995d41e6dc1d20eb1fe2cb3d151e20c4236db3f"
+    },
+    {
+      "role": "sum-and-source",
+      "va": "0x14595053a",
+      "byte_count": 49,
+      "file_offset": "0x594f93a",
+      "sha256": "a9452c487d8042c19944e77b708a0bd1c70f67f469259beb4c7c92ffaecfb6e1",
+      "assembly": "sum-and-source.asm",
+      "assembly_sha256": "9f358c11c64fcab16234c7168d15e389698d6940914f678076683840298e4eb2"
+    },
+    {
+      "role": "final-damage-scale",
+      "va": "0x145952f18",
+      "byte_count": 68,
+      "file_offset": "0x5952318",
+      "sha256": "f781f7cbcb1781b6832c83516e7aeb18f1f3992e8ef13f1c6d0af396e5224e9d",
+      "assembly": "final-damage-scale.asm",
+      "assembly_sha256": "0ead86121f8825231d5b28e857e98752eb9d96ede0feabef40e22b790498583a"
+    },
+    {
+      "role": "endless-resume-flag",
+      "va": "0x14591d6cb",
+      "byte_count": 30,
+      "file_offset": "0x591cacb",
+      "sha256": "93536ed56c55bc2d5b8481e63dcce18ce8a082708f0eb513c7bef69b7ce687bf",
+      "assembly": "endless-resume-flag.asm",
+      "assembly_sha256": "d5f0fae9f3c8a6e68754abfc5198a55f30a8f20c119f40c39e9dd93bc886e249"
+    }
+  ],
+  "cases": {
+    "speed": 27,
+    "flight": 324,
+    "payload": 48,
+    "publication": 36,
+    "membership": 15,
+    "aggregation": 9,
+    "damage_scale": 12
+  },
+  "boss_memberships": [
+    {
+      "boss_id": 690,
+      "volleys": []
+    },
+    {
+      "boss_id": 691,
+      "volleys": []
+    },
+    {
+      "boss_id": 692,
+      "volleys": []
+    },
+    {
+      "boss_id": 693,
+      "volleys": []
+    },
+    {
+      "boss_id": 694,
+      "volleys": []
+    },
+    {
+      "boss_id": 790,
+      "volleys": []
+    },
+    {
+      "boss_id": 791,
+      "volleys": []
+    },
+    {
+      "boss_id": 792,
+      "volleys": []
+    },
+    {
+      "boss_id": 793,
+      "volleys": []
+    },
+    {
+      "boss_id": 794,
+      "volleys": [
+        [
+          1,
+          686,
+          7,
+          0,
+          0,
+          0,
+          1084227584
+        ]
+      ]
+    },
+    {
+      "boss_id": 190,
+      "volleys": []
+    },
+    {
+      "boss_id": 191,
+      "volleys": [
+        [
+          1,
+          686,
+          5,
+          0,
+          0,
+          0,
+          1084227584
+        ]
+      ]
+    },
+    {
+      "boss_id": 192,
+      "volleys": []
+    },
+    {
+      "boss_id": 194,
+      "volleys": [
+        [
+          1,
+          686,
+          6,
+          0,
+          0,
+          0,
+          1083179008
+        ]
+      ]
+    },
+    {
+      "boss_id": 193,
+      "volleys": [
+        [
+          1,
+          686,
+          7,
+          0,
+          0,
+          0,
+          1083179008
+        ]
+      ]
+    },
+    {
+      "boss_id": 1290,
+      "volleys": []
+    },
+    {
+      "boss_id": 1291,
+      "volleys": []
+    },
+    {
+      "boss_id": 1292,
+      "volleys": [
+        [
+          1,
+          6917,
+          5,
+          0,
+          0,
+          0,
+          1084227584
+        ]
+      ]
+    },
+    {
+      "boss_id": 1293,
+      "volleys": []
+    },
+    {
+      "boss_id": 1294,
+      "volleys": []
+    },
+    {
+      "boss_id": 1590,
+      "volleys": []
+    },
+    {
+      "boss_id": 1591,
+      "volleys": []
+    },
+    {
+      "boss_id": 1592,
+      "volleys": [
+        [
+          1,
+          116,
+          5,
+          0,
+          0,
+          0,
+          1084227584
+        ]
+      ]
+    },
+    {
+      "boss_id": 1593,
+      "volleys": []
+    },
+    {
+      "boss_id": 1594,
+      "volleys": [
+        [
+          1,
+          686,
+          7,
+          0,
+          0,
+          0,
+          1084227584
+        ]
+      ]
+    },
+    {
+      "boss_id": 890,
+      "volleys": [
+        [
+          1,
+          686,
+          5,
+          0,
+          0,
+          0,
+          1084227584
+        ]
+      ]
+    },
+    {
+      "boss_id": 891,
+      "volleys": [
+        [
+          1,
+          5176,
+          5,
+          0,
+          0,
+          0,
+          1084227584
+        ]
+      ]
+    },
+    {
+      "boss_id": 892,
+      "volleys": []
+    },
+    {
+      "boss_id": 893,
+      "volleys": [
+        [
+          1,
+          686,
+          6,
+          0,
+          0,
+          0,
+          1083179008
+        ]
+      ]
+    },
+    {
+      "boss_id": 894,
+      "volleys": []
+    },
+    {
+      "boss_id": 990,
+      "volleys": [
+        [
+          1,
+          133,
+          5,
+          0,
+          0,
+          0,
+          1084227584
+        ]
+      ]
+    },
+    {
+      "boss_id": 991,
+      "volleys": [
+        [
+          1,
+          403,
+          5,
+          0,
+          0,
+          0,
+          1084227584
+        ]
+      ]
+    },
+    {
+      "boss_id": 992,
+      "volleys": []
+    },
+    {
+      "boss_id": 993,
+      "volleys": [
+        [
+          1,
+          686,
+          6,
+          0,
+          0,
+          0,
+          1084227584
+        ]
+      ]
+    },
+    {
+      "boss_id": 994,
+      "volleys": [
+        [
+          1,
+          686,
+          8,
+          0,
+          0,
+          0,
+          1084227584
+        ]
+      ]
+    },
+    {
+      "boss_id": 1390,
+      "volleys": []
+    },
+    {
+      "boss_id": 1391,
+      "volleys": [
+        [
+          1,
+          133,
+          5,
+          0,
+          0,
+          0,
+          1084227584
+        ]
+      ]
+    },
+    {
+      "boss_id": 1392,
+      "volleys": []
+    },
+    {
+      "boss_id": 1393,
+      "volleys": []
+    },
+    {
+      "boss_id": 1394,
+      "volleys": [
+        [
+          1,
+          7269,
+          8,
+          0,
+          0,
+          0,
+          1084227584
+        ]
+      ]
+    },
+    {
+      "boss_id": 390,
+      "volleys": []
+    },
+    {
+      "boss_id": 391,
+      "volleys": [
+        [
+          1,
+          5176,
+          5,
+          0,
+          0,
+          0,
+          1084227584
+        ]
+      ]
+    },
+    {
+      "boss_id": 392,
+      "volleys": []
+    },
+    {
+      "boss_id": 394,
+      "volleys": []
+    },
+    {
+      "boss_id": 393,
+      "volleys": [
+        [
+          1,
+          116,
+          7,
+          0,
+          0,
+          0,
+          1084227584
+        ]
+      ]
+    },
+    {
+      "boss_id": 1090,
+      "volleys": []
+    },
+    {
+      "boss_id": 1091,
+      "volleys": []
+    },
+    {
+      "boss_id": 1092,
+      "volleys": [
+        [
+          1,
+          133,
+          6,
+          0,
+          0,
+          0,
+          1084227584
+        ]
+      ]
+    },
+    {
+      "boss_id": 1093,
+      "volleys": [
+        [
+          1,
+          133,
+          7,
+          0,
+          0,
+          0,
+          1084227584
+        ]
+      ]
+    },
+    {
+      "boss_id": 1094,
+      "volleys": [
+        [
+          1,
+          686,
+          8,
+          0,
+          0,
+          0,
+          1084227584
+        ]
+      ]
+    },
+    {
+      "boss_id": 1190,
+      "volleys": []
+    },
+    {
+      "boss_id": 1191,
+      "volleys": []
+    },
+    {
+      "boss_id": 1192,
+      "volleys": [
+        [
+          1,
+          26053,
+          6,
+          0,
+          0,
+          0,
+          1084227584
+        ]
+      ]
+    },
+    {
+      "boss_id": 1193,
+      "volleys": []
+    },
+    {
+      "boss_id": 1194,
+      "volleys": [
+        [
+          1,
+          686,
+          9,
+          0,
+          0,
+          0,
+          1083179008
+        ]
+      ]
+    },
+    {
+      "boss_id": 1490,
+      "volleys": []
+    },
+    {
+      "boss_id": 1491,
+      "volleys": [
+        [
+          1,
+          686,
+          6,
+          0,
+          0,
+          0,
+          1084227584
+        ]
+      ]
+    },
+    {
+      "boss_id": 1492,
+      "volleys": []
+    },
+    {
+      "boss_id": 1493,
+      "volleys": [
+        [
+          1,
+          116,
+          7,
+          0,
+          0,
+          0,
+          1084227584
+        ]
+      ]
+    },
+    {
+      "boss_id": 1494,
+      "volleys": [
+        [
+          1,
+          116,
+          9,
+          0,
+          0,
+          0,
+          1083179008
+        ]
+      ]
+    }
+  ],
+  "limits": [
+    "Only selected no-call Win64 instructions run in synthetic preallocated memory.",
+    "Historical fixture inputs are replayed against fresh current bytes; RNG/trig, terrain, allocators, serializers and complete scheduling remain separate boundaries.",
+    "Source tracing is not Rust compilation or runtime/UI/original-rebuilt parity."
+  ]
+}

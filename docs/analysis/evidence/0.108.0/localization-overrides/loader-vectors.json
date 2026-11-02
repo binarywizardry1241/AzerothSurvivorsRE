@@ -1,0 +1,294 @@
+{
+  "target_sha256": "dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b",
+  "vector_count": 12,
+  "executed_instructions": 9283,
+  "vectors": [
+    {
+      "name": "both-roots-merge",
+      "reads": [
+        "/fixture/exe/lang/de.json",
+        "/fixture/save/lang/de.json"
+      ],
+      "entries": [
+        [
+          "same",
+          "exe"
+        ],
+        [
+          "extra",
+          "new"
+        ],
+        [
+          "same",
+          "save"
+        ],
+        [
+          "empty",
+          ""
+        ]
+      ],
+      "parse_diagnostics": 0
+    },
+    {
+      "name": "empty-map-preserves",
+      "reads": [
+        "/fixture/exe/lang/de.json",
+        "/fixture/save/lang/de.json"
+      ],
+      "entries": [],
+      "parse_diagnostics": 0
+    },
+    {
+      "name": "first-parse-error-second-valid",
+      "reads": [
+        "/fixture/exe/lang/de.json",
+        "/fixture/save/lang/de.json"
+      ],
+      "entries": [
+        [
+          "same",
+          "save"
+        ]
+      ],
+      "parse_diagnostics": 1
+    },
+    {
+      "name": "second-parse-error-preserves-first",
+      "reads": [
+        "/fixture/exe/lang/de.json",
+        "/fixture/save/lang/de.json"
+      ],
+      "entries": [
+        [
+          "same",
+          "exe"
+        ]
+      ],
+      "parse_diagnostics": 1
+    },
+    {
+      "name": "read-errors-ignored",
+      "reads": [
+        "/fixture/exe/lang/de.json",
+        "/fixture/save/lang/de.json"
+      ],
+      "entries": [],
+      "parse_diagnostics": 0
+    },
+    {
+      "name": "no-executable-save-only",
+      "reads": [
+        "/fixture/save/lang/de.json"
+      ],
+      "entries": [
+        [
+          "same",
+          "save"
+        ]
+      ],
+      "parse_diagnostics": 0
+    },
+    {
+      "name": "no-executable-parent-save-only",
+      "reads": [
+        "/fixture/save/lang/de.json"
+      ],
+      "entries": [
+        [
+          "same",
+          "save"
+        ]
+      ],
+      "parse_diagnostics": 0
+    },
+    {
+      "name": "no-save-executable-only",
+      "reads": [
+        "/fixture/exe/lang/de.json"
+      ],
+      "entries": [
+        [
+          "same",
+          "exe"
+        ]
+      ],
+      "parse_diagnostics": 0
+    },
+    {
+      "name": "no-roots",
+      "reads": [],
+      "entries": [],
+      "parse_diagnostics": 0
+    },
+    {
+      "name": "duplicate-roots-retain-order",
+      "reads": [
+        "/fixture/exe/lang/de.json",
+        "/fixture/exe/lang/de.json"
+      ],
+      "entries": [
+        [
+          "same",
+          "exe"
+        ],
+        [
+          "same",
+          "exe"
+        ]
+      ],
+      "parse_diagnostics": 0
+    },
+    {
+      "name": "fourteen-descriptor-lazy-initialization",
+      "reads": [
+        "/fixture/exe/lang/en.json",
+        "/fixture/save/lang/en.json",
+        "/fixture/exe/lang/pl.json",
+        "/fixture/save/lang/pl.json",
+        "/fixture/exe/lang/cs.json",
+        "/fixture/save/lang/cs.json",
+        "/fixture/exe/lang/de.json",
+        "/fixture/save/lang/de.json",
+        "/fixture/exe/lang/pt.json",
+        "/fixture/save/lang/pt.json",
+        "/fixture/exe/lang/es.json",
+        "/fixture/save/lang/es.json",
+        "/fixture/exe/lang/fr.json",
+        "/fixture/save/lang/fr.json",
+        "/fixture/exe/lang/ro.json",
+        "/fixture/save/lang/ro.json",
+        "/fixture/exe/lang/tr.json",
+        "/fixture/save/lang/tr.json",
+        "/fixture/exe/lang/ru.json",
+        "/fixture/save/lang/ru.json",
+        "/fixture/exe/lang/uk.json",
+        "/fixture/save/lang/uk.json",
+        "/fixture/exe/lang/zh.json",
+        "/fixture/save/lang/zh.json",
+        "/fixture/exe/lang/ja.json",
+        "/fixture/save/lang/ja.json",
+        "/fixture/exe/lang/ko.json",
+        "/fixture/save/lang/ko.json"
+      ],
+      "locale_order": [
+        "en",
+        "pl",
+        "cs",
+        "de",
+        "pt",
+        "es",
+        "fr",
+        "ro",
+        "tr",
+        "ru",
+        "uk",
+        "zh",
+        "ja",
+        "ko"
+      ],
+      "catalogs": {
+        "en": {
+          "same": "en",
+          "kept": "embedded"
+        },
+        "pl": {
+          "same": "pl",
+          "kept": "embedded"
+        },
+        "cs": {
+          "same": "cs",
+          "kept": "embedded"
+        },
+        "de": {
+          "same": "save",
+          "kept": "embedded",
+          "unknown": "added",
+          "blank": ""
+        },
+        "pt": {
+          "same": "pt",
+          "kept": "embedded"
+        },
+        "es": {
+          "same": "es",
+          "kept": "embedded"
+        },
+        "fr": {
+          "same": "fr",
+          "kept": "embedded"
+        },
+        "ro": {
+          "same": "ro",
+          "kept": "embedded"
+        },
+        "tr": {
+          "same": "tr",
+          "kept": "embedded"
+        },
+        "ru": {
+          "same": "ru",
+          "kept": "embedded"
+        },
+        "uk": {
+          "same": "uk",
+          "kept": "embedded"
+        },
+        "zh": {
+          "same": "zh",
+          "kept": "embedded"
+        },
+        "ja": {
+          "same": "ja",
+          "kept": "embedded"
+        },
+        "ko": {
+          "same": "ko",
+          "kept": "embedded"
+        }
+      },
+      "ordered_inserts": [
+        [
+          "same",
+          "exe"
+        ],
+        [
+          "unknown",
+          "added"
+        ],
+        [
+          "same",
+          "save"
+        ],
+        [
+          "blank",
+          ""
+        ]
+      ]
+    },
+    {
+      "name": "native-map-insert-overwrite-empty-value",
+      "inserts": [
+        {
+          "key": "same",
+          "value": "override",
+          "previous": "embedded"
+        },
+        {
+          "key": "added",
+          "value": "new",
+          "previous": null
+        },
+        {
+          "key": "same",
+          "value": "",
+          "previous": "override"
+        }
+      ],
+      "result": {
+        "same": "",
+        "kept": "untouched",
+        "added": "new"
+      }
+    }
+  ]
+}

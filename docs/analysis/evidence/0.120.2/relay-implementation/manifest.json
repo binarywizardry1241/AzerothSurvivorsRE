@@ -1,0 +1,1428 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.120.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c",
+    "size_bytes": 145484288
+  },
+  "gap_ids": [
+    198
+  ],
+  "scope": "Inner co-op relay encoding, per-peer sequencing/ACK/control/replay, pending-byte limit, service-wide sender credit and monotonic clock lifecycle. This bounded static proof does not certify whole-module fidelity or actual networking.",
+  "target_executed": false,
+  "inputs": [
+    {
+      "path": "docs/analysis/target-refresh-0.120.2.json",
+      "sha256": "3319c442fe151410c612f9e62964e12a95f70597ec9e95c5a93d097dfb38a604"
+    }
+  ],
+  "native_ranges": [
+    {
+      "role": "inner-encoder",
+      "virtual_address": "0x145bf5ed0",
+      "end_exclusive": "0x145bf603d",
+      "file_offset": "0x5bf52d0",
+      "byte_count": 365,
+      "sha256": "4bd88469d825e6027fd636bba28d847aa6b474ee9ff46ade730f1841bb4cf310",
+      "instruction_count": 97,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/relay-implementation/inner-encoder.asm",
+        "sha256": "c06588c9f9c1dc5de3329a58db95d38007ca6235a046826b1f14e557c2889baf"
+      }
+    },
+    {
+      "role": "send-producer",
+      "virtual_address": "0x145bfbc00",
+      "end_exclusive": "0x145bfc187",
+      "file_offset": "0x5bfb000",
+      "byte_count": 1415,
+      "sha256": "349e0096b3e62667e07116480e9894146295e8c7f5bc02892132f56f7bd7c7d9",
+      "instruction_count": 358,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/relay-implementation/send-producer.asm",
+        "sha256": "fba00e8c658488868bbb62625334ad7a19daaacfdcc80b96e1776b0d438d1655"
+      }
+    },
+    {
+      "role": "send-drain",
+      "virtual_address": "0x145bfb420",
+      "end_exclusive": "0x145bfba25",
+      "file_offset": "0x5bfa820",
+      "byte_count": 1541,
+      "sha256": "2bc267705ed853f5e24819447ca036586974e0c3322243f3fc177ed662077156",
+      "instruction_count": 330,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/relay-implementation/send-drain.asm",
+        "sha256": "90ffde947a4b84b609bcc0252ae9d56e2824423be6d1c35e570c27c70541d1da"
+      }
+    },
+    {
+      "role": "service-constructor",
+      "virtual_address": "0x145bfd820",
+      "end_exclusive": "0x145bfdc40",
+      "file_offset": "0x5bfcc20",
+      "byte_count": 1056,
+      "sha256": "ee510ace60b312b682c8864b17ee5ae42817f7ed0aece520b96a0dcf252de75f",
+      "instruction_count": 206,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/relay-implementation/service-constructor.asm",
+        "sha256": "80b89e69153ded770585ca62e43b2d252c0efa0e53098884c5b470e63bfdfe1a"
+      }
+    },
+    {
+      "role": "service-payload-projection",
+      "virtual_address": "0x145bfdebf",
+      "end_exclusive": "0x145bfdecb",
+      "file_offset": "0x5bfd2bf",
+      "byte_count": 12,
+      "sha256": "3e14c6f248ee558fd3143a18aefac659d5c406709b0332dc407929fbf73d90fe",
+      "instruction_count": 3,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/relay-implementation/service-payload-projection.asm",
+        "sha256": "780945ce2e7b101724642b26f11a43b8f886f397725823b92fc6595453475efd"
+      }
+    },
+    {
+      "role": "secondary-replacement-control-reset",
+      "virtual_address": "0x145bf889e",
+      "end_exclusive": "0x145bf91df",
+      "file_offset": "0x5bf7c9e",
+      "byte_count": 2369,
+      "sha256": "f2423f64df438c0bfd3ee042db59e73b489a30221f31e27a6409691c88f9b089",
+      "instruction_count": 494,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/relay-implementation/secondary-replacement-control-reset.asm",
+        "sha256": "77a97b46e43836ce98ae32e0e657ccd772132548340f12f59606a5783ef2526b"
+      }
+    },
+    {
+      "role": "relay-poll-control-and-ack",
+      "virtual_address": "0x145bf92bd",
+      "end_exclusive": "0x145bf96f5",
+      "file_offset": "0x5bf86bd",
+      "byte_count": 1080,
+      "sha256": "927a76ab07b193a03b80cca2b6d553259d19d8d5440ff9c49ecd7e09caf45131",
+      "instruction_count": 230,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/relay-implementation/relay-poll-control-and-ack.asm",
+        "sha256": "cce1c810bc2424e75f8edcd378743111a2222a4c81f6cfc8919c312a03315d8d"
+      }
+    },
+    {
+      "role": "receiver",
+      "virtual_address": "0x145bfac90",
+      "end_exclusive": "0x145bfb3cc",
+      "file_offset": "0x5bfa090",
+      "byte_count": 1852,
+      "sha256": "d474a8c514cf02b3b1d2f4a2fdcf86befbf48c593871a16eca905ba1dcc845ad",
+      "instruction_count": 464,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/relay-sequencing/receiver.asm",
+        "sha256": "4daa79aea74500375a4cfe52c2f8fb1644644561efde48a64a50a752238efdde"
+      }
+    },
+    {
+      "role": "outer-relay-send",
+      "virtual_address": "0x145bf6d20",
+      "end_exclusive": "0x145bf6dc8",
+      "file_offset": "0x5bf6120",
+      "byte_count": 168,
+      "sha256": "92378992ae4163f6baa20633e2c14ac1ac58634b3ed37f8daaa4577d0e5c06a3",
+      "instruction_count": 45,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/relay-sequencing/outer-relay-send.asm",
+        "sha256": "916880d8e08b3079dd7d52df21dc1eeb306768884a0b76588d747eaf764a2628"
+      }
+    },
+    {
+      "role": "guest-alive",
+      "virtual_address": "0x145c05590",
+      "end_exclusive": "0x145c056cf",
+      "file_offset": "0x5c04990",
+      "byte_count": 319,
+      "sha256": "fd830edf90b73689838d8e608a3dc475d72c35cc862e9fbb4b116e2ee7ca7d72",
+      "instruction_count": 94,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/relay-implementation/guest-alive.asm",
+        "sha256": "32d6c1a3130bb2447546d0964b13dd27abb2c11229a2d9f1f195d9e7d4d5e3bc"
+      }
+    },
+    {
+      "role": "host-peer-alive",
+      "virtual_address": "0x145c04d60",
+      "end_exclusive": "0x145c04f19",
+      "file_offset": "0x5c04160",
+      "byte_count": 441,
+      "sha256": "dda6368d52681bfae4375d1ce528af6fd9c1a15a88bbaaeb8797c3a53683b769",
+      "instruction_count": 129,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/relay-implementation/host-peer-alive.asm",
+        "sha256": "3489b76e92e74bde58955051095e2204e72a19ddbedcfa83cdfbad423959ab21"
+      }
+    },
+    {
+      "role": "guest-selected-relay-retry",
+      "virtual_address": "0x145c04f50",
+      "end_exclusive": "0x145c0501e",
+      "file_offset": "0x5c04350",
+      "byte_count": 206,
+      "sha256": "006e6b8cab559018caadb93cc8dbaaf7e4412f09c68197373d725857e71e933a",
+      "instruction_count": 69,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/relay-implementation/guest-selected-relay-retry.asm",
+        "sha256": "8404733ee80dbff598193f5d480ad760879030238e4cd57dac17a0b0eea0f30b"
+      }
+    },
+    {
+      "role": "host-selected-relay-retry",
+      "virtual_address": "0x145c03ec0",
+      "end_exclusive": "0x145c03f83",
+      "file_offset": "0x5c032c0",
+      "byte_count": 195,
+      "sha256": "e447ba9003fe25f424a3f9a3a622e60d037e14525cdb9a589aa39b63a5abbd1d",
+      "instruction_count": 66,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/relay-implementation/host-selected-relay-retry.asm",
+        "sha256": "f43a938ac8205a5309c7b51a1203d0ca275bf91535e7e706b23ab62d47bc24dc"
+      }
+    },
+    {
+      "role": "host-handle-close",
+      "virtual_address": "0x145c045b0",
+      "end_exclusive": "0x145c04c9f",
+      "file_offset": "0x5c039b0",
+      "byte_count": 1775,
+      "sha256": "fab0b5a9532399dfec65af9fac6174fed5766ca36bdf70e3f58d0f699500fda0",
+      "instruction_count": 449,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/relay-implementation/host-handle-close.asm",
+        "sha256": "2ee32524e56f50a8b1d3ee5ab245a0f5a9cbd64d28af3602558840fb058315f8"
+      }
+    },
+    {
+      "role": "outer-command-wrapper",
+      "virtual_address": "0x145bfdf90",
+      "end_exclusive": "0x145bfe05e",
+      "file_offset": "0x5bfd390",
+      "byte_count": 206,
+      "sha256": "4d26b1461b777c74c3f380f4fd8879ca5375180d652f23c543608aa13631854f",
+      "instruction_count": 66,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/relay-implementation/outer-command-wrapper.asm",
+        "sha256": "37049a36f87aea800f83e53ab0130e85c9a449b15b38abd3d2ab39bcce6c0698"
+      }
+    },
+    {
+      "role": "service-event-dispatch",
+      "virtual_address": "0x145bf7277",
+      "end_exclusive": "0x145bf72b1",
+      "file_offset": "0x5bf6677",
+      "byte_count": 58,
+      "sha256": "b3f67389685aff6042ec98db9e0bc7e302fe9e18bb94c7c9f40f7871eaf26f0c",
+      "instruction_count": 13,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/relay-implementation/service-event-dispatch.asm",
+        "sha256": "25cf1cb99cf7eff8fbc3a85f26c8f050762c830f94de13ba6e51bb1aac3d2052"
+      }
+    },
+    {
+      "role": "peer-open-host-upsert-entry",
+      "virtual_address": "0x145bf737b",
+      "end_exclusive": "0x145bf74b6",
+      "file_offset": "0x5bf677b",
+      "byte_count": 315,
+      "sha256": "255fc5b51ad6e416831278a91a72f4787eb5152cf73015d7f946702900830afb",
+      "instruction_count": 69,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/relay-implementation/peer-open-host-upsert-entry.asm",
+        "sha256": "a4dc35df0dac1a928895fcc3a8f4ababd7e4ca71fa2c22aba31b1751da9bfcd7"
+      }
+    },
+    {
+      "role": "peer-open-existing-host-replace",
+      "virtual_address": "0x145bf7b11",
+      "end_exclusive": "0x145bf7c06",
+      "file_offset": "0x5bf6f11",
+      "byte_count": 245,
+      "sha256": "7baf86e26787b2e23ba9a9fdee75503587ec833362ecfa76671f0612d401b9a4",
+      "instruction_count": 52,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/relay-implementation/peer-open-existing-host-replace.asm",
+        "sha256": "d47247a7ca011b29e2eff3b3e8d92db721ec8e5a87d2899bac462c93a6190179"
+      }
+    },
+    {
+      "role": "peer-open-existing-queue-release-tail",
+      "virtual_address": "0x145bf7d11",
+      "end_exclusive": "0x145bf7d40",
+      "file_offset": "0x5bf7111",
+      "byte_count": 47,
+      "sha256": "1f2ac2dda038701df9a82d95ecbb5b51fa1c1f0b58f89d8b70f8cdccf4515f93",
+      "instruction_count": 9,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/relay-implementation/peer-open-existing-queue-release-tail.asm",
+        "sha256": "b36f245a24b0c76e2d331cea181999a0213e61ff4b196b8a7460300e9e0a9b49"
+      }
+    },
+    {
+      "role": "peer-open-new-host-insert",
+      "virtual_address": "0x145bf7f6e",
+      "end_exclusive": "0x145bf801e",
+      "file_offset": "0x5bf736e",
+      "byte_count": 176,
+      "sha256": "5fe17b1bdb6ea596325d5d63ea949d5ec22384b78cb511ecc7e5265eecc55b15",
+      "instruction_count": 32,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/relay-implementation/peer-open-new-host-insert.asm",
+        "sha256": "50bb2d80c43158e06b117ed5b0a5505280f1ab4aa84c5b681800b93ffb2d5c00"
+      }
+    },
+    {
+      "role": "peer-open-inner-state-reset",
+      "virtual_address": "0x145bf801e",
+      "end_exclusive": "0x145bf8433",
+      "file_offset": "0x5bf741e",
+      "byte_count": 1045,
+      "sha256": "596dc32113466a0d576e54a121d15d52eeede62a4b2ba59ea250ad3da5bb41ac",
+      "instruction_count": 214,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/relay-implementation/peer-open-inner-state-reset.asm",
+        "sha256": "483fc944d3f2bdb56276a05c64af4ff7e3db5f8ca58143d5e92be453f7240ef0"
+      }
+    },
+    {
+      "role": "peer-open-map-resize-paths",
+      "virtual_address": "0x145bf87e6",
+      "end_exclusive": "0x145bf884f",
+      "file_offset": "0x5bf7be6",
+      "byte_count": 105,
+      "sha256": "82f921b67a5c30df62aec95d9eabf59ab3388751554405c956c974c617be6a2f",
+      "instruction_count": 24,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/relay-implementation/peer-open-map-resize-paths.asm",
+        "sha256": "2036f1c49043d8c580d4450e47a1e8e57abfa5299932a2a64b21fe6dc6609a75"
+      }
+    },
+    {
+      "role": "guest-constructor-caches",
+      "end_exclusive": "0x145b21ae6",
+      "file_offset": "0x5b20c50",
+      "byte_count": 662,
+      "sha256": "adb176a2e72e9f68bd285ea9a21bb33920a3d40da47fed90567b4919a971dcf1",
+      "instruction_count": 137,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/service-peer-flags/lifetime-guest-constructor-caches.asm",
+        "sha256": "04ea2eaf4282f5fb477b1425daf9af0256076f6c3f45ccbd58821f79910005a1"
+      },
+      "virtual_address": "0x145b21850"
+    },
+    {
+      "role": "guest-handle-close",
+      "end_exclusive": "0x145c05518",
+      "file_offset": "0x5c047b0",
+      "byte_count": 360,
+      "sha256": "6c9f73588d7cd498150c3b476dc7d891106d7875920663f88220d80b29a731ed",
+      "instruction_count": 92,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/service-peer-flags/lifetime-guest-handle-close.asm",
+        "sha256": "bb8e36437fe088992999d6d8027f8f0a7e94bfb8dd462d315de91275c3bd0aa3"
+      },
+      "virtual_address": "0x145c053b0"
+    },
+    {
+      "role": "outer-control-parser-prefix",
+      "virtual_address": "0x145e0b690",
+      "end_exclusive": "0x145e0ba47",
+      "file_offset": "0x5e0aa90",
+      "byte_count": 951,
+      "sha256": "a174485e0244ef78b2ef021a1427fd7307137b7770cc4ae7720c8a81513e85b2",
+      "instruction_count": 175,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.2/relay-sequencing/outer-control-parser-prefix.asm",
+        "sha256": "d6b5be409fbe7d850d0dbfead2167f60d39b88e9079bc5d3d4545ae7ff8ccc47"
+      }
+    }
+  ],
+  "native_constants": [
+    {
+      "role": "sender-rate-and-cap",
+      "virtual_address": "0x1475fe2d8",
+      "file_offset": "0x75fd0d8",
+      "byte_count": 8,
+      "sha256": "8e5176c3cfe43188316c8764523c729bf4e47fef95ebd5dbb7d6c3fae6dd9a70",
+      "encoding": "f64",
+      "value": 1572864.0
+    },
+    {
+      "role": "sender-nanoseconds-per-second",
+      "virtual_address": "0x14617ae50",
+      "file_offset": "0x6179c50",
+      "byte_count": 8,
+      "sha256": "3743e2520ce26efc75a9a9fb439f5a9363b9db858a88cc95bcf647236a86c012",
+      "encoding": "f64",
+      "value": 1000000000.0
+    },
+    {
+      "role": "control-nanoseconds-per-second",
+      "virtual_address": "0x1461f9cf0",
+      "file_offset": "0x61f8af0",
+      "byte_count": 4,
+      "sha256": "87de9f551024f5990e80638703a56b1d54327e7097342f37f26a819e7825f272",
+      "encoding": "f32",
+      "value": 1000000000.0
+    },
+    {
+      "role": "control-retry-seconds",
+      "virtual_address": "0x146198bb0",
+      "file_offset": "0x61979b0",
+      "byte_count": 4,
+      "sha256": "ea2845900b5856c9bf354b1aa9761b5aa6888e5ed61738fe9579ca42bc0f6054",
+      "encoding": "f32",
+      "value": 3.0
+    },
+    {
+      "role": "ack-interval-seconds",
+      "virtual_address": "0x14617a7f4",
+      "file_offset": "0x61795f4",
+      "byte_count": 4,
+      "sha256": "d99e58435243d9fef9c88273b8d553b4fba4d0baf8009d29eae74fa99e0d9f57",
+      "encoding": "f32",
+      "value": 0.5
+    },
+    {
+      "role": "initial-credit-immediate",
+      "virtual_address": "0x145bfdb1c",
+      "file_offset": "0x5bfcf1c",
+      "byte_count": 8,
+      "sha256": "8e5176c3cfe43188316c8764523c729bf4e47fef95ebd5dbb7d6c3fae6dd9a70",
+      "encoding": "f64",
+      "value": 1572864.0
+    },
+    {
+      "role": "pending-byte-limit-immediate",
+      "virtual_address": "0x145bfbe13",
+      "file_offset": "0x5bfb213",
+      "byte_count": 4,
+      "sha256": "413432a2e4977ca133f00f95e74dcb2af10220ee4bcf9c47ac33ed88a7d7bffa",
+      "encoding": "u32",
+      "value": 4194304
+    }
+  ],
+  "native_tables": [
+    {
+      "role": "inner-variant-sequence-field-offsets",
+      "virtual_address": "0x1476016a0",
+      "file_offset": "0x76004a0",
+      "byte_count": 24,
+      "sha256": "ff7f8b9d30d480cbe166b550688d25c2ac5d3a11c37bb398f9c01520c6d28750",
+      "values": [
+        24,
+        8,
+        8
+      ],
+      "selector": "Inner encoder maps data/ack/control variants to wire tags0/1/2; sequence offsets24/8/8 are read at145bf5f45."
+    },
+    {
+      "role": "service-native-event-dispatch",
+      "virtual_address": "0x147601d50",
+      "file_offset": "0x7600b50",
+      "byte_count": 44,
+      "sha256": "9ba0248df8b7c3b50140c064ff90eac47d0927af8e719017e4110ca4ed48ee2e",
+      "encoding": "relative_i32",
+      "case_targets": [
+        "0x145bf75b4",
+        "0x145bf79a7",
+        "0x145bf737b",
+        "0x145bf7863",
+        "0x145bf7925",
+        "0x145bf74b6",
+        "0x145bf8444",
+        "0x145bf79a7",
+        "0x145bf76ac",
+        "0x145bf72b1",
+        "0x145bf72b1"
+      ],
+      "minimum_selector": 2,
+      "maximum_selector": 12,
+      "selected_selector": 4,
+      "selected_target": "0x145bf737b"
+    },
+    {
+      "role": "service-wire-tag-dispatch",
+      "virtual_address": "0x1476773bc",
+      "file_offset": "0x76761bc",
+      "byte_count": 52,
+      "sha256": "ef95c0a1a5e91835c461ce3f2387abd6b36f45df656d065d5bd4ba8cb8a678d8",
+      "encoding": "relative_i32",
+      "case_targets": [
+        "0x145e0b6fd",
+        "0x145e0b8e6",
+        "0x145e0b844",
+        "0x145e0b87a",
+        "0x145e0b771",
+        "0x145e0b91c",
+        "0x145e0b93f",
+        "0x145e0b8b0",
+        "0x145e0ba0e",
+        "0x145e0b7b1",
+        "0x145e0b967",
+        "0x145e0b74e",
+        "0x145e0b791"
+      ],
+      "minimum_selector": 20,
+      "maximum_selector": 32,
+      "selected_selector": 24,
+      "selected_target": "0x145e0b771"
+    }
+  ],
+  "instruction_assertions": [
+    {
+      "role": "encoder-wire-tag",
+      "site": "0x145bf5f2e",
+      "mnemonic": "mov",
+      "operands": "byte ptr [rax], r14b"
+    },
+    {
+      "role": "encoder-sequence-table",
+      "site": "0x145bf5f06",
+      "mnemonic": "lea",
+      "operands": "rax, [rip + 0x1a0b793]"
+    },
+    {
+      "role": "encoder-u64-sequence",
+      "site": "0x145bf5f75",
+      "mnemonic": "mov",
+      "operands": "qword ptr [rcx + r15], rdi"
+    },
+    {
+      "role": "encoder-control-boolean",
+      "site": "0x145bf5fd1",
+      "mnemonic": "mov",
+      "operands": "byte ptr [rcx + r15 + 8], bl"
+    },
+    {
+      "role": "producer-pending-bytes",
+      "site": "0x145bfbda6",
+      "mnemonic": "add",
+      "operands": "qword ptr [r15 - 0x28], r12"
+    },
+    {
+      "role": "producer-byte-limit",
+      "site": "0x145bfbe0f",
+      "mnemonic": "cmp",
+      "operands": "qword ptr [r15 - 0x28], 0x400000"
+    },
+    {
+      "role": "producer-limit-inclusive",
+      "site": "0x145bfbe17",
+      "mnemonic": "jbe",
+      "operands": "0x145bfbebe"
+    },
+    {
+      "role": "producer-send-drain",
+      "site": "0x145bfbec5",
+      "mnemonic": "call",
+      "operands": "0x145bfb420"
+    },
+    {
+      "role": "drain-transport-connected",
+      "site": "0x145bfb493",
+      "mnemonic": "cmp",
+      "operands": "al, 1"
+    },
+    {
+      "role": "drain-credit-load",
+      "site": "0x145bfb49b",
+      "mnemonic": "movsd",
+      "operands": "xmm6, qword ptr [rsi + 0x150]"
+    },
+    {
+      "role": "drain-duration-nanoseconds",
+      "site": "0x145bfb4d3",
+      "mnemonic": "cvtsi2sd",
+      "operands": "xmm0, edx"
+    },
+    {
+      "role": "drain-rate-and-cap",
+      "site": "0x145bfb4e3",
+      "mnemonic": "movsd",
+      "operands": "xmm1, qword ptr [rip + 0x1a02ded]"
+    },
+    {
+      "role": "drain-credit-cap",
+      "site": "0x145bfb4f3",
+      "mnemonic": "minsd",
+      "operands": "xmm0, xmm1"
+    },
+    {
+      "role": "drain-pending-control-gate",
+      "site": "0x145bfb5b7",
+      "mnemonic": "cmp",
+      "operands": "byte ptr [r13 + rax - 8], 0"
+    },
+    {
+      "role": "drain-unsent-cursor-gate",
+      "site": "0x145bfb5e0",
+      "mnemonic": "cmp",
+      "operands": "rax, qword ptr [rdi - 0x48]"
+    },
+    {
+      "role": "drain-positive-credit-gate",
+      "site": "0x145bfb5ee",
+      "mnemonic": "ucomisd",
+      "operands": "xmm0, xmm6"
+    },
+    {
+      "role": "drain-subtract-raw-payload-bytes",
+      "site": "0x145bfb61c",
+      "mnemonic": "subsd",
+      "operands": "xmm0, xmm1"
+    },
+    {
+      "role": "drain-advance-sent-cursor",
+      "site": "0x145bfb7d5",
+      "mnemonic": "mov",
+      "operands": "qword ptr [rdi - 0x20], rax"
+    },
+    {
+      "role": "constructor-initial-clock",
+      "site": "0x145bfd97b",
+      "mnemonic": "call",
+      "operands": "0x145f54a10"
+    },
+    {
+      "role": "constructor-initial-credit",
+      "site": "0x145bfdb1a",
+      "mnemonic": "movabs",
+      "operands": "rcx, 0x4138000000000000"
+    },
+    {
+      "role": "constructor-credit-store",
+      "site": "0x145bfdb24",
+      "mnemonic": "mov",
+      "operands": "qword ptr [rbp + 0x108], rcx"
+    },
+    {
+      "role": "constructor-clock-seconds",
+      "site": "0x145bfdb2b",
+      "mnemonic": "mov",
+      "operands": "qword ptr [rbp + 0x110], rsi"
+    },
+    {
+      "role": "constructor-clock-nanoseconds",
+      "site": "0x145bfdb32",
+      "mnemonic": "mov",
+      "operands": "dword ptr [rbp + 0x118], edi"
+    },
+    {
+      "role": "constructor-aggregate-source",
+      "site": "0x145bfdba7",
+      "mnemonic": "lea",
+      "operands": "rdx, [rbp - 0x60]"
+    },
+    {
+      "role": "constructor-aggregate-copy",
+      "site": "0x145bfdbb7",
+      "mnemonic": "call",
+      "operands": "0x145faae2b"
+    },
+    {
+      "role": "service-payload-after-mutex-header",
+      "site": "0x145bfdebf",
+      "mnemonic": "add",
+      "operands": "rdi, 0x18"
+    },
+    {
+      "role": "service-payload-pump-call",
+      "site": "0x145bfdec6",
+      "mnemonic": "call",
+      "operands": "0x145bf6e00"
+    },
+    {
+      "role": "reset-mark-pending",
+      "site": "0x145bf902d",
+      "mnemonic": "mov",
+      "operands": "byte ptr [r12 + rax - 8], 1"
+    },
+    {
+      "role": "reset-stamp-clock",
+      "site": "0x145bf9033",
+      "mnemonic": "mov",
+      "operands": "qword ptr [r12 + rax - 0x40], r11"
+    },
+    {
+      "role": "reset-request-boolean-false",
+      "site": "0x145bf8fd1",
+      "mnemonic": "mov",
+      "operands": "byte ptr [r15 + rcx*8 + 0x18], 0"
+    },
+    {
+      "role": "poll-global-ack-clock",
+      "site": "0x145bf9315",
+      "mnemonic": "lea",
+      "operands": "rcx, [r12 + 0x140]"
+    },
+    {
+      "role": "poll-control-three-second-gate",
+      "site": "0x145bf94bd",
+      "mnemonic": "ucomiss",
+      "operands": "xmm1, xmm8"
+    },
+    {
+      "role": "poll-half-second-ack-gate",
+      "site": "0x145bf94c3",
+      "mnemonic": "ucomiss",
+      "operands": "xmm6, xmm9"
+    },
+    {
+      "role": "poll-ack-published-sequence",
+      "site": "0x145bf94db",
+      "mnemonic": "mov",
+      "operands": "qword ptr [rbx - 0x10], r12"
+    },
+    {
+      "role": "poll-global-ack-clock-update",
+      "site": "0x145bf9592",
+      "mnemonic": "mov",
+      "operands": "qword ptr [rcx + 0x140], rax"
+    },
+    {
+      "role": "receiver-next-sequence",
+      "site": "0x145bfafde",
+      "mnemonic": "cmp",
+      "operands": "r13, rax"
+    },
+    {
+      "role": "receiver-ack-drain-sequence",
+      "site": "0x145bfaf56",
+      "mnemonic": "cmp",
+      "operands": "qword ptr [rbx + rdx], r9"
+    },
+    {
+      "role": "receiver-control-drain-sequence",
+      "site": "0x145bfb106",
+      "mnemonic": "cmp",
+      "operands": "qword ptr [r15 + rdx], r9"
+    },
+    {
+      "role": "receiver-control-replay-cursor-reset",
+      "site": "0x145bfb17b",
+      "mnemonic": "mov",
+      "operands": "qword ptr [r14 - 0x20], 0"
+    },
+    {
+      "role": "receiver-control-pending-clear",
+      "site": "0x145bfb183",
+      "mnemonic": "mov",
+      "operands": "byte ptr [r14 - 8], 0"
+    },
+    {
+      "role": "receiver-control-clock-clear",
+      "site": "0x145bfb188",
+      "mnemonic": "mov",
+      "operands": "dword ptr [r14 - 0x38], 0xffffffff"
+    },
+    {
+      "role": "receiver-control-request-response-gate",
+      "site": "0x145bfb190",
+      "mnemonic": "test",
+      "operands": "byte ptr [rbp - 0x50], 1"
+    },
+    {
+      "role": "receiver-control-send",
+      "site": "0x145bfb2da",
+      "mnemonic": "call",
+      "operands": "0x145bf6d20"
+    },
+    {
+      "role": "outer-send-calls-inner-encoder",
+      "site": "0x145bf6d46",
+      "mnemonic": "call",
+      "operands": "0x145bf5ed0"
+    },
+    {
+      "role": "guest-fatal-overflow-before-buffer-admission",
+      "site": "0x145c055d9",
+      "mnemonic": "cmp",
+      "operands": "byte ptr [rbx + 0x1f9], 0"
+    },
+    {
+      "role": "guest-active-or-buffered",
+      "site": "0x145c05651",
+      "mnemonic": "cmp",
+      "operands": "byte ptr [rbx + 0x1f8], 0"
+    },
+    {
+      "role": "host-peer-alive-or-buffered",
+      "site": "0x145c04ee2",
+      "mnemonic": "cmp",
+      "operands": "byte ptr [rcx - 8], 0"
+    },
+    {
+      "role": "host-peer-buffered-after-departure",
+      "site": "0x145c04ee8",
+      "mnemonic": "cmp",
+      "operands": "qword ptr [rcx - 0x10], 0"
+    },
+    {
+      "role": "guest-retry-requires-selected-secondary",
+      "site": "0x145c04f82",
+      "mnemonic": "cmp",
+      "operands": "qword ptr [rsi + 0x78], -1"
+    },
+    {
+      "role": "guest-retry-rejects-permanent-failure",
+      "site": "0x145c04f89",
+      "mnemonic": "cmp",
+      "operands": "byte ptr [rsi + 0x141], 1"
+    },
+    {
+      "role": "guest-retry-clock-present",
+      "site": "0x145c04fa3",
+      "mnemonic": "cmp",
+      "operands": "dword ptr [rsi + 0x128], -1"
+    },
+    {
+      "role": "host-retry-requires-selected-secondary",
+      "site": "0x145c03eec",
+      "mnemonic": "cmp",
+      "operands": "qword ptr [rsi + 0x78], -1"
+    },
+    {
+      "role": "host-retry-rejects-permanent-failure",
+      "site": "0x145c03ef3",
+      "mnemonic": "cmp",
+      "operands": "byte ptr [rsi + 0x141], 1"
+    },
+    {
+      "role": "host-retry-clock-present",
+      "site": "0x145c03f04",
+      "mnemonic": "cmp",
+      "operands": "dword ptr [rsi + 0x128], -1"
+    },
+    {
+      "role": "host-close-drains-before-secondary-kick",
+      "site": "0x145c04738",
+      "mnemonic": "call",
+      "operands": "0x145bfb420"
+    },
+    {
+      "role": "host-close-removes-host-row",
+      "site": "0x145c0490a",
+      "mnemonic": "dec",
+      "operands": "qword ptr [r14 + 0x1b0]"
+    },
+    {
+      "role": "host-close-inner-map-pointer",
+      "site": "0x145c049f1",
+      "mnemonic": "mov",
+      "operands": "rcx, qword ptr [r14 + 0x1c8]"
+    },
+    {
+      "role": "host-close-inner-map-peer-key",
+      "site": "0x145c04a48",
+      "mnemonic": "cmp",
+      "operands": "edi, dword ptr [rcx + r8 - 0x68]"
+    },
+    {
+      "role": "host-close-removes-inner-row",
+      "site": "0x145c04af6",
+      "mnemonic": "dec",
+      "operands": "qword ptr [r14 + 0x1e0]"
+    },
+    {
+      "role": "outer-command-encode-only",
+      "site": "0x145bfdfe6",
+      "mnemonic": "call",
+      "operands": "0x145e0ae40"
+    },
+    {
+      "role": "outer-command-send-primary",
+      "site": "0x145bfdff3",
+      "mnemonic": "call",
+      "operands": "qword ptr [rbx + 0x18]"
+    },
+    {
+      "role": "guest-close-disables-handle",
+      "site": "0x145c053d2",
+      "mnemonic": "mov",
+      "operands": "byte ptr [rcx + 8], 0"
+    },
+    {
+      "role": "guest-close-clears-selected-secondary",
+      "site": "0x145c0544e",
+      "mnemonic": "mov",
+      "operands": "qword ptr [rsi + 0x78], 0xffffffffffffffff"
+    },
+    {
+      "role": "guest-constructor-clears-game-caches",
+      "site": "0x145b21a96",
+      "mnemonic": "movups",
+      "operands": "xmmword ptr [r15 + 0xfdc], xmm0"
+    },
+    {
+      "role": "parser-wire24-native-variant4",
+      "site": "0x145e0b782",
+      "mnemonic": "movabs",
+      "operands": "rdx, 0x8000000000000004"
+    },
+    {
+      "role": "pump-native-variant-selector-guard",
+      "site": "0x145bf7297",
+      "mnemonic": "cmp",
+      "operands": "rax, 0xa"
+    },
+    {
+      "role": "pump-native-variant-table",
+      "site": "0x145bf72a1",
+      "mnemonic": "lea",
+      "operands": "rcx, [rip + 0x1a0aaa8]"
+    },
+    {
+      "role": "pump-native-variant-dispatch",
+      "site": "0x145bf72af",
+      "mnemonic": "jmp",
+      "operands": "rax"
+    },
+    {
+      "role": "wire24-existing-host-direct-reset",
+      "site": "0x145bf7b54",
+      "mnemonic": "je",
+      "operands": "0x145bf801e"
+    },
+    {
+      "role": "wire24-existing-host-empty-queue-reset",
+      "site": "0x145bf7d1b",
+      "mnemonic": "je",
+      "operands": "0x145bf801e"
+    },
+    {
+      "role": "wire24-existing-host-release-reset",
+      "site": "0x145bf7d3b",
+      "mnemonic": "jmp",
+      "operands": "0x145bf801e"
+    },
+    {
+      "role": "wire24-new-host-before-inner-reset",
+      "site": "0x145bf8018",
+      "mnemonic": "movdqu",
+      "operands": "xmmword ptr [rax + rcx - 0x10], xmm2"
+    },
+    {
+      "role": "wire24-default-inner-state",
+      "site": "0x145bf801e",
+      "mnemonic": "mov",
+      "operands": "qword ptr [rbp + 0x230], 0"
+    },
+    {
+      "role": "wire24-inner-none-control-clock",
+      "site": "0x145bf8056",
+      "mnemonic": "mov",
+      "operands": "dword ptr [rbp + 0x228], 0xffffffff"
+    },
+    {
+      "role": "wire24-replaces-existing-inner-tail",
+      "site": "0x145bf81a5",
+      "mnemonic": "movups",
+      "operands": "xmmword ptr [rax - 0x40], xmm2"
+    },
+    {
+      "role": "wire24-replaces-existing-inner-queue",
+      "site": "0x145bf81c5",
+      "mnemonic": "movdqu",
+      "operands": "xmmword ptr [rax - 0x60], xmm0"
+    },
+    {
+      "role": "wire24-inserts-inner-peer-key",
+      "site": "0x145bf8366",
+      "mnemonic": "mov",
+      "operands": "dword ptr [rax + rcx - 0x68], edx"
+    },
+    {
+      "role": "wire24-inserts-inner-default-state",
+      "site": "0x145bf8388",
+      "mnemonic": "movups",
+      "operands": "xmmword ptr [rax + rcx - 0x64], xmm0"
+    },
+    {
+      "role": "wire24-publishes-peer-after-state-reset",
+      "site": "0x145bf840c",
+      "mnemonic": "mov",
+      "operands": "qword ptr [r12 + 0x38], rdx"
+    },
+    {
+      "role": "parser-wire-tag-domain",
+      "site": "0x145e0b6e8",
+      "mnemonic": "cmp",
+      "operands": "eax, 0xc"
+    },
+    {
+      "role": "parser-wire-tag-dispatch",
+      "site": "0x145e0b6fb",
+      "mnemonic": "jmp",
+      "operands": "rax"
+    }
+  ],
+  "queries": [
+    {
+      "procedure": "0x145bf5ed0",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_2592fda2387e6fee380aaba4a8ce71ceb017257795ba304cc94ca3db1a9e85f9",
+      "plan": {
+        "path": "runtime/0.120.2/relay-198/encoder-query/plan.json",
+        "sha256": "b6723b3bd43402d01b691ae624c2c95701477008d6561817506b0f69f923a2e0"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/relay-198/encoder-query/journal.json",
+        "sha256": "658c2887e155c3dcfca88fea1f5f13a53752a08aedc6ce181634318d6683c2f8"
+      },
+      "journal_operation_key": "a0b511f85a3769322503d0647b686edf4294b19e211933f6a37c62ef2f62479f",
+      "result": {
+        "path": "runtime/0.120.2/relay-198/encoder-query/results/a0b511f85a3769322503d0647b686edf4294b19e211933f6a37c62ef2f62479f.json",
+        "sha256": "f81dc33f99ca92c6bb3aba51c07ac77a7b2138ac3e9db23434b182fa09361b61"
+      },
+      "normalized_sha256": "39ada99ff237ec04a38b93e169acf3af2c49cdaf5964c5b0399b9ba3fb7a1fad",
+      "analysis_profile_digest": "4544c879b569aa6cdd3bf4d01f83e450e4f7133252384017e641856fa42a7e7b"
+    },
+    {
+      "procedure": "0x145bf5ed0",
+      "operation": "procedure_callers",
+      "evidence_id": "ev_580bb02ba3f30621749a7cdc931fdaa82d909ddd065c35c17775e716164f05bf",
+      "plan": {
+        "path": "runtime/0.120.2/relay-198/encoder-query/plan.json",
+        "sha256": "b6723b3bd43402d01b691ae624c2c95701477008d6561817506b0f69f923a2e0"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/relay-198/encoder-query/journal.json",
+        "sha256": "658c2887e155c3dcfca88fea1f5f13a53752a08aedc6ce181634318d6683c2f8"
+      },
+      "journal_operation_key": "1ffccb7fb089c6374a43839a88483ad2a5aab0ec58c9671991f7706711e1efc3",
+      "result": {
+        "path": "runtime/0.120.2/relay-198/encoder-query/results/1ffccb7fb089c6374a43839a88483ad2a5aab0ec58c9671991f7706711e1efc3-3c51f7344d3e8b9e.json",
+        "sha256": "e04a4690ba93d1e9b490d36645bf19b91a45f66686c63d15c760a504f6508c94"
+      },
+      "normalized_sha256": "25c099ede12a217f473a07cabf3db45b0b15976b58ed255e13154de6ff67b670",
+      "analysis_profile_digest": "4544c879b569aa6cdd3bf4d01f83e450e4f7133252384017e641856fa42a7e7b"
+    },
+    {
+      "procedure": "0x145bfb420",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_75aa770d47330d66d12eb659088855d8d96708d524717daac8cef4dcf5d72eaa",
+      "plan": {
+        "path": "runtime/0.120.2/relay-198/send-query/plan.json",
+        "sha256": "9f67b6e866d4942a3b784a306e59180348a61ea5fce6545e16b5278143b341d9"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/relay-198/send-query/journal.json",
+        "sha256": "cc0b4cbdeb0323f1865f8233c020fe1590cc5283c9e0f28ddbb09c0f7b8311f9"
+      },
+      "journal_operation_key": "0e56b476ad31914d2b00e3aa9b3a72dc4bab506a43d45a66cc309b085ad9f160",
+      "result": {
+        "path": "runtime/0.120.2/relay-198/send-query/results/0e56b476ad31914d2b00e3aa9b3a72dc4bab506a43d45a66cc309b085ad9f160.json",
+        "sha256": "5ca950816bdddd848dad2ca86f4583d9dc75a3eca589012ef4cf6cdad18391fe"
+      },
+      "normalized_sha256": "b20ba92a8897d38352bf164177ad4be89b4b518f4968a97315a52c6ffebb3c9e",
+      "analysis_profile_digest": "c27402bb7c726ca457baf6c228915721b2062ce48d3c6c0ca92cb5fc6c765ebb"
+    },
+    {
+      "procedure": "0x145bf6d20",
+      "operation": "procedure_callers",
+      "evidence_id": "ev_03e85ab1ba50091d03b8dd868829e0271664fb5b794e60f11c5ed95c2805a7c7",
+      "plan": {
+        "path": "runtime/0.120.2/relay-198/send-query/plan.json",
+        "sha256": "9f67b6e866d4942a3b784a306e59180348a61ea5fce6545e16b5278143b341d9"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/relay-198/send-query/journal.json",
+        "sha256": "cc0b4cbdeb0323f1865f8233c020fe1590cc5283c9e0f28ddbb09c0f7b8311f9"
+      },
+      "journal_operation_key": "9e8544fcc2cfe1509194b2750b0cc0de26de2f8d1822f479e2b601b1d559df58",
+      "result": {
+        "path": "runtime/0.120.2/relay-198/send-query/results/9e8544fcc2cfe1509194b2750b0cc0de26de2f8d1822f479e2b601b1d559df58-9dc808a4d749e048.json",
+        "sha256": "fa906278e7334b4fa2bfd432e76f2a1cdbe6624aafabce1ac7a7481e8628fac1"
+      },
+      "normalized_sha256": "7377971a4df6faf00ef937f0561521aed4c84cb0e956b028104703f3553a4abc",
+      "analysis_profile_digest": "c27402bb7c726ca457baf6c228915721b2062ce48d3c6c0ca92cb5fc6c765ebb"
+    },
+    {
+      "procedure": "0x145bfbc00",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_0be16265bf0274b23b9278b8a08a96b7d8ae23e570ee410259ba2e4e5859cb96",
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/query/plan.json",
+        "sha256": "50718b41106ab5d68a2e10019270c6c450c51113b3fc0a761a2e907aa231e533"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/query/journal.json",
+        "sha256": "77c20931bd17a97d3dceadd847631211bd38d7f15c58266a213e5daeea309a56"
+      },
+      "journal_operation_key": "99aa7101e709f483628f2293dbc8ddac69549a83c19ce7db2760076f9729b04b",
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/query/results/99aa7101e709f483628f2293dbc8ddac69549a83c19ce7db2760076f9729b04b.json",
+        "sha256": "f74d8893aeb32efdd09b754ca503ef3aae13af204a2a480ae453e44aca1e662a"
+      },
+      "normalized_sha256": "e6fa9f585051aef65bb9249cf73eb441949bdfa8567415b2fe1ce7e59cf6c263",
+      "analysis_profile_digest": "7256dcbe1b3848d9e5347ed25991fcec1f69a425fa0f3034b1e324a99b7b33b3"
+    },
+    {
+      "procedure": "0x145bf6e00",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_de2422c8bae9bce1a0b169da8c542426b2b7926bd9b81ebf79b446af73cf6b67",
+      "plan": {
+        "path": "runtime/0.120.2/relay-review/caller-query/plan.json",
+        "sha256": "049ff6c4c4d6a67288cd2e54d8109d9e12e420772c4208fc857279c8c331a7df"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/relay-review/caller-query/journal.json",
+        "sha256": "315f8ef85ea3a03a2b1b41370000257a820753bf73f3673a7007ec0df6be7a01"
+      },
+      "journal_operation_key": "909e3ecf0d1d39ff6e82e577b7790ff4e77f439782f093b57fe226974f983703",
+      "result": {
+        "path": "runtime/0.120.2/relay-review/caller-query/results/909e3ecf0d1d39ff6e82e577b7790ff4e77f439782f093b57fe226974f983703.json",
+        "sha256": "d3d931af7563656d2855092cc4989e6e91b52339a12de1290da2449f49637df5"
+      },
+      "normalized_sha256": "06c43c9264eae8e8da2be668b29c7ffb121167425f5047247e96bb46697408bd",
+      "analysis_profile_digest": "9ca4338f6591fa92006a9bdbe2cfd629f2e0ed29e56d586cb0c92b143bc5b1b4"
+    },
+    {
+      "procedure": "0x145bfac90",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_c4fc5651974f7c0f7c55b378da7b78e90742199ed34278dbdc298ead9f217763",
+      "plan": {
+        "path": "runtime/0.120.2/relay-review/query/plan.json",
+        "sha256": "f2e62a1ad3301e316625749419b27ddd2e925b00591f102ddfdafe4c6a73f794"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/relay-review/query/journal.json",
+        "sha256": "058c87ffe2e0f5c875db3bf96f0dc34b9c4e6faea9e37334e6156b555557779a"
+      },
+      "journal_operation_key": "99f58d87a6a23069bb6f3a1cdab1f4ced64f18061ad8d933a0b54886fe4f12c8",
+      "result": {
+        "path": "runtime/0.120.2/relay-review/query/results/99f58d87a6a23069bb6f3a1cdab1f4ced64f18061ad8d933a0b54886fe4f12c8.json",
+        "sha256": "52b5e1e9e89c5fd8fc84c17afc9085064233eb6323053751c4c7bef99baffb45"
+      },
+      "normalized_sha256": "8e54892de0bfea30ab7146ee49763a4ccff46d32d87e156127cc47a264f2cfba",
+      "analysis_profile_digest": "4ceb6c7bb2c40d406226e4a682a117f06817062d23a3a03a8b497682be4c011f"
+    },
+    {
+      "procedure": "0x145c05590",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_02a12a3e09ae92c804bfbe55a509caa6ad7e5ecaf9272d7d4c7aac5f6c2275e3",
+      "plan": {
+        "path": "runtime/0.120.2/relay-198/alive-query/plan.json",
+        "sha256": "ef43a3d4e24ab0045dd727534b99fd91fac6a1bb444e7d1a84ee8c6ab560c17c"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/relay-198/alive-query/journal.json",
+        "sha256": "31dbf272bacdb9affb609f2695b81630ec85356e3586292f60e8a46759764bbc"
+      },
+      "journal_operation_key": "ac468ffdbc9123bc356c87a44ed95d41e22a789970b2957bbe374dd6ae4e2c8e",
+      "result": {
+        "path": "runtime/0.120.2/relay-198/alive-query/results/ac468ffdbc9123bc356c87a44ed95d41e22a789970b2957bbe374dd6ae4e2c8e.json",
+        "sha256": "1ae6aaf9e5f6a70415585b020f25d51758433ff290f58f6217383b2f9879c2ed"
+      },
+      "normalized_sha256": "493796772e8c903943adb6665191b249ff45c4dd4fca76b40d3e09e367f3fcef",
+      "analysis_profile_digest": "82ddef487c5c7a6d24e7e7917de8843424bb99338801b7eccdc5b9585122f153"
+    },
+    {
+      "procedure": "0x145c04d60",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_764d307a0ac5fb9fb9e17dc5f45bace96227326bb41a9340cb139643d5b21676",
+      "plan": {
+        "path": "runtime/0.120.2/relay-198/alive-query/plan.json",
+        "sha256": "ef43a3d4e24ab0045dd727534b99fd91fac6a1bb444e7d1a84ee8c6ab560c17c"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/relay-198/alive-query/journal.json",
+        "sha256": "31dbf272bacdb9affb609f2695b81630ec85356e3586292f60e8a46759764bbc"
+      },
+      "journal_operation_key": "7e063a979426248732b50e4620abbcf0ddd42c3293016a7d5cfad2a45241c0aa",
+      "result": {
+        "path": "runtime/0.120.2/relay-198/alive-query/results/7e063a979426248732b50e4620abbcf0ddd42c3293016a7d5cfad2a45241c0aa-1dbe14ff6363dc8f.json",
+        "sha256": "edc076fd225a2b7c8079a00c5edd65dc553df06efdcd16b1ad5e7538a3fc9957"
+      },
+      "normalized_sha256": "b513d4cf57db18e012d2c6dafa84220549c4a4a74f4dddaeab3e97027a837d25",
+      "analysis_profile_digest": "82ddef487c5c7a6d24e7e7917de8843424bb99338801b7eccdc5b9585122f153"
+    },
+    {
+      "procedure": "0x145c04f50",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_d88096256edde75ad411bc2f201d757669a591b5751fbc98c7f059ca27b67133",
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/flag-readers-query/plan.json",
+        "sha256": "6ec52959007384ffd0a6422ef3c493504d5367b608ab2de6a0029b8583566231"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/flag-readers-query/journal.json",
+        "sha256": "472bfb2213d3a056e18fd7f9804965651a5b001495ac2a5012727c5cd4a09821"
+      },
+      "journal_operation_key": "5c59e63692426745906e1b9e0acff896585bf9c760edf395c846bad8d17ba36a",
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/flag-readers-query/results/5c59e63692426745906e1b9e0acff896585bf9c760edf395c846bad8d17ba36a-ac12753b848a4422.json",
+        "sha256": "36a605b585f504e619cce65a18113ac859cd105fd5b4240462baa0e6d14d7dff"
+      },
+      "normalized_sha256": "6d1a8550fe7bb5b0280e07cdf69306d88e415b7318735ed4e752228fac5e8a37",
+      "analysis_profile_digest": "29c8b5387256e7a513d8d654a5da00b44494d6314ba2cd3d48053c75756d628f"
+    },
+    {
+      "procedure": "0x145c03ec0",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_4d6533bf323f4227f118063799c6586051409677237433465da5429410350c38",
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/flag-readers-query/plan.json",
+        "sha256": "6ec52959007384ffd0a6422ef3c493504d5367b608ab2de6a0029b8583566231"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/flag-readers-query/journal.json",
+        "sha256": "472bfb2213d3a056e18fd7f9804965651a5b001495ac2a5012727c5cd4a09821"
+      },
+      "journal_operation_key": "6a57c04512f8d804725a77658db1de3f1cd667acce692fdf485aeaf309fbc1ee",
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/flag-readers-query/results/6a57c04512f8d804725a77658db1de3f1cd667acce692fdf485aeaf309fbc1ee-ac02363f6ba65b19.json",
+        "sha256": "03ce488cf43e61aa79bd4eb211341f55a5e80fbd8c6042ada63029cbe9ec3487"
+      },
+      "normalized_sha256": "69ea13a05d3accdb08d91dcc9519ed372402b7ae4ac7c9252a01dc62d62d58cc",
+      "analysis_profile_digest": "29c8b5387256e7a513d8d654a5da00b44494d6314ba2cd3d48053c75756d628f"
+    },
+    {
+      "procedure": "0x145c045b0",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_7690a35c61df6a9a42eebfd50f476b791edfc23222130cdb400dee5f198b6932",
+      "plan": {
+        "path": "runtime/0.120.2/relay-198/host-close-query/plan.json",
+        "sha256": "ac9ce89120cd7b33afa66e2ddd356741fdba1f47cd0128c6cbc94f5043f47297"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/relay-198/host-close-query/journal.json",
+        "sha256": "c8f24e7fd5d2ae1eb95b175b31fc77e7fccb160930a35edcea185cb9bf02ed5f"
+      },
+      "journal_operation_key": "00a9ef10cbb664aec82b98b510db7db992aa6e7ff55cce4e33aff15c1f93d04f",
+      "result": {
+        "path": "runtime/0.120.2/relay-198/host-close-query/results/00a9ef10cbb664aec82b98b510db7db992aa6e7ff55cce4e33aff15c1f93d04f.json",
+        "sha256": "1959061a892989507dd12304a6c99b5a720d34e011cb76cb7593469448100c26"
+      },
+      "normalized_sha256": "02844dafd83b364dc3d95cca2752ec19376299f8587ce529a6b3db3b7a76a255",
+      "analysis_profile_digest": "40eac2c46008206a432d383ab65f1c34703d3e68a8e61074d18d450cad828b51"
+    },
+    {
+      "procedure": "0x145bfdf90",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_75e59fbbacb170113b35f7d942a59ddc17bbd051ac61bdb990d9ab6763c90d73",
+      "plan": {
+        "path": "runtime/0.120.2/relay-198/lifecycle-query/plan.json",
+        "sha256": "7fdfe477d63a85f6ae8ad6c6cffe4833412a1a20a577215881e5e8cb6c290796"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/relay-198/lifecycle-query/journal.json",
+        "sha256": "fdf9291758f7aa107df64907a52a977eb12ea27d385a512162ce51f869da4c97"
+      },
+      "journal_operation_key": "1aea15fb325da0f73ac3e8d16dc3a1cfea31e7ee876f93ff2cc1815112f5ab37",
+      "result": {
+        "path": "runtime/0.120.2/relay-198/lifecycle-query/results/1aea15fb325da0f73ac3e8d16dc3a1cfea31e7ee876f93ff2cc1815112f5ab37.json",
+        "sha256": "1cbea419bd9e441217cfa7e23858e5d79ca5d1703fa76b0cac710c92713ad725"
+      },
+      "normalized_sha256": "2832796cab7026fb67f58ba44ace280d551a2dc46a36c0a41439da618e5d054f",
+      "analysis_profile_digest": "fe9faf86a6edccf6dc41016cf54d7eb67ff1ad9f23fd10b0ead9b6bc164a2a24"
+    },
+    {
+      "procedure": "0x145b21850",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_be8f75e5771b3fbc75bcdcbfe102b2441b71a320e59c6ecc09a1a0d453a6a80c",
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/lifetime-query/plan.json",
+        "sha256": "1d49716a60b912d3f53ee44612305ba6712ceff773ff4807b7fdd4a62a145438"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/lifetime-query/journal.json",
+        "sha256": "442882109876fadc8b09d83b4e516d2cfa93c48bc1cb73a46fe3bff147636968"
+      },
+      "journal_operation_key": "30fd4a252f5ccf15745956c796107c3285d83fb06114fa62617d3c5afdf5d238",
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/lifetime-query/results/30fd4a252f5ccf15745956c796107c3285d83fb06114fa62617d3c5afdf5d238.json",
+        "sha256": "22598d135d516f09829d21920934d5175f2d278165487c16aef6f512aaae9eec"
+      },
+      "normalized_sha256": "c761a1c3715953845f698142ca32bd9d866c59fc37d48b837c1d93a999f8e0a4",
+      "analysis_profile_digest": "fc3e4aadec7c36cf0a891504717dd24993d7efa7d710a15eefe26462a4e31e16"
+    },
+    {
+      "procedure": "0x145c053b0",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_9278e16f8d451389f4ca3a50b987b0b61f81426185eef5076b47adafd5ac55a2",
+      "plan": {
+        "path": "runtime/0.120.2/service-peer-flags/lifetime-close-query/plan.json",
+        "sha256": "2418c1ca9586b04be1700e48487b20c23ebcfca5df2e21d0b33e86a3d61e123b"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/service-peer-flags/lifetime-close-query/journal.json",
+        "sha256": "344901cb03ec78dc60d51ea27c4491abd134f700b7474fb042f0e23b6a5b1c24"
+      },
+      "journal_operation_key": "d3587b0d1785ca3ef2f3bcb6262b3a0bad0a8be8ac4ee0c494627b9eec1c52df",
+      "result": {
+        "path": "runtime/0.120.2/service-peer-flags/lifetime-close-query/results/d3587b0d1785ca3ef2f3bcb6262b3a0bad0a8be8ac4ee0c494627b9eec1c52df.json",
+        "sha256": "93a2f35ee7e63420cdd75ba950cc014c936544588a3c6efa049d602dd5e40cde"
+      },
+      "normalized_sha256": "096e163f0b47a44d71ef71c51b8adc1bc67749c7ae69afb55879c3e46fd010e6",
+      "analysis_profile_digest": "e96a1335f6024fd1c52a0356507e93fbfb187bed33a74ddb554cb2e1dd2560a9"
+    },
+    {
+      "procedure": "0x145e0b690",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_7a788594669c480152c7048c1f40601c1701c2051b122e8efeb75b5921ce10da",
+      "plan": {
+        "path": "runtime/0.120.2/relay-review/parser-query/plan.json",
+        "sha256": "a11ac3dcda05c4d9d8d6251223c119f548c1e72ca5a58d1b88d4d99535d28e4d"
+      },
+      "journal": {
+        "path": "runtime/0.120.2/relay-review/parser-query/journal.json",
+        "sha256": "c6ae4d8bbbfb06730499c4ad3d0548b562f765bb42f59086ef32618ea821bd66"
+      },
+      "journal_operation_key": "576bf4388c07d3bc62e14248d37ea64c7a3806c1022f1560da5b40d6bce257dc",
+      "result": {
+        "path": "runtime/0.120.2/relay-review/parser-query/results/576bf4388c07d3bc62e14248d37ea64c7a3806c1022f1560da5b40d6bce257dc.json",
+        "sha256": "34512a6a54adb22f90460215d759ebe91be14c6806a3ee4a053c649c40ca443a"
+      },
+      "normalized_sha256": "1e3f71dec55cc649449d79e336928cc6d3f0bee96c30e7f306804ac3ec75cc41",
+      "analysis_profile_digest": "4d0db581973f8ff254ab0c88ff9926348bc874712ae77a04f3a2815019856e2c"
+    }
+  ],
+  "source_observations": [
+    {
+      "id": "inner-state-machine",
+      "source": {
+        "path": "crates/azeroth-survivors-re/src/coop/relay.rs",
+        "sha256": "2709ba058e779cdf00e0a682d874e37900d102fe61aa2e8b6fb1d62c91c8c90b"
+      },
+      "observed_fragments": [
+        "peer.send_sequence = peer.send_sequence.wrapping_add(1);",
+        "if peer.pending_bytes > MAX_PENDING_BYTES",
+        "peer.sent = peer.sent.saturating_sub(1);",
+        "self.credit -= payload.len() as f64;",
+        "fn seconds_f32(elapsed: Duration) -> f32",
+        "pub fn set_connected(&mut self, connected: bool)"
+      ]
+    },
+    {
+      "id": "secondary-lifecycle",
+      "source": {
+        "path": "crates/azeroth-survivors-re/src/coop/relay_lifetime.rs",
+        "sha256": "46106c7ace692225008d88ea517cae07229f914f456ecae96f22a87cc399309c"
+      },
+      "observed_fragments": [
+        "0 => elapsed(now, self.started) <= 8.0,",
+        "1 => elapsed(now, self.received) <= 15.0,",
+        "if elapsed(now, started) > 45.0",
+        "if elapsed(now, self.started) < 2.0",
+        "self.retry_started = None;"
+      ]
+    },
+    {
+      "id": "session-producers-consumers",
+      "source": {
+        "path": "crates/azeroth-survivors-re/src/coop/session.rs",
+        "sha256": "3ece7f428878f3d3ec5ca38656057c43e2aa8a86bf18145279d8df35769bf670"
+      },
+      "observed_fragments": [
+        "pub struct RelayHostState {",
+        "pub fn service_guest_receive(",
+        "pub fn service_peer_open(protocol: &RelayProtocol, hosts: &RelayPeers, id: u32)",
+        "pub fn share_relay_peers(&mut self, peers: RelayPeers)",
+        "fn accept_service_peers(&mut self)",
+        "encoded.append(&mut self.relay_commands);",
+        "pub fn take_relay_retry_change(&mut self) -> Option<bool>",
+        "pub fn service_join_with_flags(",
+        "session.guest_flags = flags;",
+        "pub fn service_relay_reset(",
+        "service_peer_open(&self.relay_protocol, &self.relay_peers, id);"
+      ]
+    },
+    {
+      "id": "live-service-routing",
+      "source": {
+        "path": "crates/azeroth-survivors-re/src/coop_directory.rs",
+        "sha256": "74a41cda318124b012e579a07585ba3cdd036b9af078dcbc44f087807b46f9b7"
+      },
+      "observed_fragments": [
+        "self.relay_protocol = Default::default();",
+        "self.relay_peers = Default::default();",
+        "driver.share_relay_peers(service.relay_peers.clone());",
+        "session::service_guest_receive(",
+        "session::service_host_receive(",
+        "drain_service_relay(&mut service);",
+        "worker.submit(ClientMessage::Authenticate(auth.clone()));",
+        "Action::Failed => {",
+        "session::service_relay_reset(",
+        "session::service_peer_open(",
+        "session::service_peer_reconnecting(",
+        ".close_peer(id, secondary, Instant::now())"
+      ]
+    }
+  ],
+  "bounded_contract_system_ids": [
+    "custom-game-coop-relay"
+  ],
+  "contracts": {
+    "wire": {
+      "data": {
+        "tag": 0,
+        "sequence_offset": 1,
+        "sequence_bytes": 8,
+        "payload_offset": 9
+      },
+      "ack": {
+        "tag": 1,
+        "minimum_bytes": 9
+      },
+      "control": {
+        "tag": 2,
+        "minimum_bytes": 10,
+        "response_flag_offset": 9,
+        "response_flag_nonzero_is_true": true
+      },
+      "unknown_or_truncated": "Ignored before creating peer sequence state; unused ACK/control suffix is accepted."
+    },
+    "peer_fields": {
+      "entry_bytes": 104,
+      "pending_deque_offset": 8,
+      "control_clock_seconds": 40,
+      "control_clock_nanoseconds": 48,
+      "control_clock_none_nanoseconds": 4294967295,
+      "send_sequence": 56,
+      "pending_payload_bytes": 64,
+      "sent_cursor": 72,
+      "receive_sequence": 80,
+      "acknowledged_receive_sequence": 88,
+      "control_pending": 96
+    },
+    "receive": "Deliver only sequence==receive_sequence.wrapping_add(1), update receive sequence and copy payload. Duplicate/older frames are ignored; a future gap emits control(false,current receive) at most once per3s without buffering the future payload.",
+    "ack": "Drain pending front records with sequence<=ACK sequence; subtract raw payload bytes and saturating-decrement sent cursor for each.",
+    "control": "Drain as ACK; sent cursor=0, pending=false, control clock=None. False flag answers control(true,current receive); nonzero flag does not answer. Retained pending records replay with original IDs.",
+    "timers": "Global monotonic0.5s clock publishes advanced receive sequences as ACKs; per-peer pending control retries every3s. Both compare seconds+nanos/1e9 as f32; selected transport must report state1.",
+    "secondary_reset": "Actual selected-secondary replacement/re-authentication marks every relay row pending, stamps its control clock and emits control(false,current receive). Pending rows suppress outgoing game data until control reception.",
+    "sender": "One service-wide f64 bucket starts full1572864 bytes, refills1572864 bytes/sec and caps at1572864. Positive credit admits one entire raw payload and may go negative; inner/outer headers consume no credit. A sent cursor tracks dispatched pending rows without removing them.",
+    "overflow": "Append increments wrapping sequence and raw pending bytes before >4194304 check. Exact4MiB is admitted; overflow removes relay state and fails the corresponding guest/host connection.",
+    "constructor": "Arc/Mutex aggregate stores service payload at+0x18. Initial ACK/credit clocks use constructor now; initial bucket is1572864.0.",
+    "guest_liveness": "Enabled guest handle and no fatal service+1e1 overflow. On selected primary state2 or permanent-secondary failure only buffered guest messages retain liveness; otherwise active guest or buffered messages retain it.",
+    "host_peer_liveness": "Selected primary state2 or permanent selected-secondary failure returns false; otherwise an existing host peer is alive while its active flag or buffered queue is nonempty.",
+    "selected_secondary_retry_getters": "Vtable+40 reports actual selected-secondary presence, no permanent failure and retry clock Some; guest additionally requires enabled handle. It is distinct from remote peer wire31/32 reconnect flags at vtable+38.",
+    "peer_open_reset": "Service wire24 decodes native variant4, dispatches to145bf737b and replaces/inserts the host endpoint row. Existing-host branches145bf7b54/145bf7d1b/145bf7d3b reach145bf801e; new host insertion falls through there.145bf801e initializes default inner state, then replaces/inserts that peer row before publishing the peer ID. Reset belongs to the service event, not construction of a later host connection handle.",
+    "guest_handle_lifetime": "Guest handle constructor145b21850 resets Game sample caches and sends its ordinary join command; it does not reset the service-owned inner relay state. Guest close145c053b0 disables that handle, sends Leave and closes/removes the selected secondary, preserving inner peer sequence/pending state and service flags. A new guest handle in the same service wrapper retains that state.",
+    "host_handle_close": "Host Close145c045b0 optionally sends Kick for an active peer, drains pending output before the selected-secondary Kick, then removes both the host endpoint row and its inner relay state. Arc+1c8 identifies the inner map at service+1b0; Arc+1e0 is its row count.",
+    "outer_command_lifetime": "Wrapper145bfdf90 only locks the service, encodes the supplied outer command and submits it through the primary callback. It neither resets nor removes inner peer state; command names alone do not imply sequence teardown."
+  },
+  "limits": [
+    "REA Ghidra pseudocode is supporting evidence, not original source; merged heap/PIC tails and clock return aliases were checked against exact instructions.",
+    "Curated constructor and service projection use current exact Capstone bytes and direct caller/context, without claiming a fresh Ghidra query for those extents.",
+    "HashMap traversal order is not a recovered deterministic peer ordering guarantee.",
+    "Source connections are bound separately after implementation settles.",
+    "No compilation, compiling tests, client/game/server/network execution or original/rebuilt parity comparison was performed.",
+    "Guest handle construction/close and wire24 reset ownership are bound separately; generic Worker construction145bf61c0 is supporting context and is not a curated reconstruction contract."
+  ],
+  "checker": "scripts/check-relay-implementation-0.120.2.py",
+  "bounded_module_attribution": {
+    "custom-game-coop-relay": {
+      "scope": "Inner wire encoder/receiver, queue/budget/ACK/replay/reset, selected secondary retry lifetime and live Session/frontend source; static bounded proof without runtime/parity."
+    }
+  },
+  "implementation": "Connected inner relay and secondary lifecycle: shared guest/host queues and listener backlog, wire24 reset, preserved guest sequence/fatal/inbox across handles, Off reset/drain, secondary-specific host-close send ordering.24 Rust cases authored, not compiled or executed."
+}

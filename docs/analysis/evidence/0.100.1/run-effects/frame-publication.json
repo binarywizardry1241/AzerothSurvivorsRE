@@ -1,0 +1,141 @@
+{
+  "target_sha256": "17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b",
+  "target_executed": false,
+  "method": "Curate exact current frame-stage and synchronous player-aura call sites.\n\nThe complete owning native functions were recovered separately with Ghidra.\nThese unmodified PE instruction windows retain the actual branch/call sites;\nthey do not assert untraced mode flags or complete frame parity.\n",
+  "windows": [
+    {
+      "role": "frame-flagged-mode",
+      "address": "0x1454af025",
+      "end_exclusive": "0x1454af097",
+      "anchor": "0x1454af06c",
+      "owner": "0x1454aefa0",
+      "file_offset": "0x54ae425",
+      "sha256": "f13e8f5d8f4f59ffe0f8f9ab719515b4f0728697ec01748982fa1b9b7ade8deb"
+    },
+    {
+      "role": "frame-player-cast",
+      "address": "0x1454b05b1",
+      "end_exclusive": "0x1454b061d",
+      "anchor": "0x1454b0601",
+      "owner": "0x1454aefa0",
+      "file_offset": "0x54af9b1",
+      "sha256": "22e59e375d2218e8956600dcf1e024b0850bf2822ab35076acccd933f1c4747d"
+    },
+    {
+      "role": "frame-pending-hostile",
+      "address": "0x1454b5774",
+      "end_exclusive": "0x1454b57cc",
+      "anchor": "0x1454b57b9",
+      "owner": "0x1454aefa0",
+      "file_offset": "0x54b4b74",
+      "sha256": "9431b5f553c26b7a888cee05da5168e45b3bbe95a09c6ab26e141e53abd64591"
+    },
+    {
+      "role": "frame-area-hostile",
+      "address": "0x1454b5c63",
+      "end_exclusive": "0x1454b5ca8",
+      "anchor": "0x1454b5c8f",
+      "owner": "0x1454aefa0",
+      "file_offset": "0x54b5063",
+      "sha256": "e13eabd162baae2ad92f3796fc2fabccebc55a6e8e80f5961b2dd0cf710f95bb"
+    },
+    {
+      "role": "frame-actor-update",
+      "address": "0x1454b7092",
+      "end_exclusive": "0x1454b70f6",
+      "anchor": "0x1454b70d2",
+      "owner": "0x1454aefa0",
+      "file_offset": "0x54b6492",
+      "sha256": "6eb84ca5476c8fdd469dce6c464e777eaed34f05a4124b9385e683eebae2aad9"
+    },
+    {
+      "role": "frame-xp-arrival",
+      "address": "0x1454b7721",
+      "end_exclusive": "0x1454b777d",
+      "anchor": "0x1454b775c",
+      "owner": "0x1454aefa0",
+      "file_offset": "0x54b6b21",
+      "sha256": "b2c3db73dd1b14baddc4dbb3fc104f005ad56ab7bf3d641bc40f71fa9200d5c2"
+    },
+    {
+      "role": "frame-normal-spawn",
+      "address": "0x1454b9406",
+      "end_exclusive": "0x1454b9458",
+      "anchor": "0x1454b9444",
+      "owner": "0x1454aefa0",
+      "file_offset": "0x54b8806",
+      "sha256": "da007fc0947310cdd45afd610723ab7ef9f7393805bac2ec2fb18961b7248395"
+    },
+    {
+      "role": "frame-primary-boss-spawn",
+      "address": "0x1454bb099",
+      "end_exclusive": "0x1454bb0e7",
+      "anchor": "0x1454bb0d1",
+      "owner": "0x1454aefa0",
+      "file_offset": "0x54ba499",
+      "sha256": "b9fb726f9430ca1ddb1bc6700791a6242435dabd49dc83b4e823efeb87132e6d"
+    },
+    {
+      "role": "aura-absorb-consumed",
+      "address": "0x1454a0af2",
+      "end_exclusive": "0x1454a0b3d",
+      "anchor": "0x1454a0b1c",
+      "owner": "0x1454a0910",
+      "file_offset": "0x549fef2",
+      "sha256": "e4a57d663f078bcab92587e219799977f4e7cdf070042b15693679ffd84054f7"
+    },
+    {
+      "role": "aura-talent-rescue",
+      "address": "0x1454a1654",
+      "end_exclusive": "0x1454a16ab",
+      "anchor": "0x1454a1696",
+      "owner": "0x1454a0910",
+      "file_offset": "0x54a0a54",
+      "sha256": "fdc205fd5a7ccd4f19003eb060d5c2a8693727d677876ff7806c7512aea1eb79"
+    },
+    {
+      "role": "aura-self-buff-one",
+      "address": "0x1454fcbce",
+      "end_exclusive": "0x1454fcc2a",
+      "anchor": "0x1454fcc0b",
+      "owner": "0x1454f9bf0",
+      "file_offset": "0x54fbfce",
+      "sha256": "b5bcb8876f34888b1c11411baae1e5d6ba9a74ff003080e85b57d46a74defa4b"
+    },
+    {
+      "role": "aura-self-buff-two",
+      "address": "0x1454fcd19",
+      "end_exclusive": "0x1454fcd6d",
+      "anchor": "0x1454fcd58",
+      "owner": "0x1454f9bf0",
+      "file_offset": "0x54fc119",
+      "sha256": "6952699cb99ad5b52fed2c24429a8186dd08365955bdb57b111c8a86adde8881"
+    },
+    {
+      "role": "aura-self-buff-three",
+      "address": "0x1454fd3a6",
+      "end_exclusive": "0x1454fd406",
+      "anchor": "0x1454fd3ed",
+      "owner": "0x1454f9bf0",
+      "file_offset": "0x54fc7a6",
+      "sha256": "881e88ee19cbb173c322023832cb0f006a5312f1ab7af54412fa1838b918d3d5"
+    },
+    {
+      "role": "aura-shared-status",
+      "address": "0x1454fff10",
+      "end_exclusive": "0x1454fff4b",
+      "anchor": "0x1454fff36",
+      "owner": "0x1454ff860",
+      "file_offset": "0x54ff310",
+      "sha256": "a3cd2ab8ed2d5447752ff5a3f64d729efec86edd0421b4706c79cb10e87d8927"
+    }
+  ],
+  "findings": [
+    "Normal schedule creation follows player casts, pending hostile/area impacts, actor-update and XP arrivals.",
+    "Game9b2 flagged early mode refills health, clears pending levels and uses Game994. Its semantic mode is unverified; no queue interpretation is assumed.",
+    "Absorb cleanup and talent rescue call the player-aura projector synchronously inside incoming damage.",
+    "Current self-buff and shared-status owners call the projector before returning to their scheduler.",
+    "A full event-time descriptor must survive when a shield is applied and consumed in one frame.",
+    "This selected stage correction does not establish all timed-cast, companion, milestone or entire-frame parity."
+  ]
+}

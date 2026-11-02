@@ -1,0 +1,446 @@
+{
+  "date": "2026-10-18",
+  "target_version": "0.97.2",
+  "target_sha256": "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589",
+  "target_executed_as_application": false,
+  "source_compiled": false,
+  "rust_tests_run": false,
+  "work_mode": "Source buildup and static REA only; builds/compiler checks/compile-based tests/game launches stopped by AGENTS.md.",
+  "checks": {
+    "target_identity": "passed",
+    "native_byte_spans": {
+      "status": "passed",
+      "count": 405
+    },
+    "catalog_regeneration": "passed: python3 scripts/recover-enemy-catalog.py --check; 12 zones / 148 definitions",
+    "local_report_links": {
+      "status": "passed",
+      "count": 34
+    },
+    "native_oracle_generation": "completed by recovery scripts; unchanged instruction scopes with documented seams",
+    "native_cases": {
+      "spawning": {
+        "admission": 982,
+        "weights": 517,
+        "budget": 8,
+        "population": 7,
+        "uniform": 21,
+        "formations": 18,
+        "intervals": 6
+      },
+      "scaling": {
+        "scaling_cases": 1184,
+        "population_cases": 60,
+        "clamp_guid_cases": 4
+      },
+      "ai": {
+        "movement_cases": 8,
+        "completion_cases": 8,
+        "attack_cases": 8,
+        "cast_start_cases": 3,
+        "timing_cases": 20,
+        "fear_cases": 7
+      },
+      "relocation": {
+        "selection_cases": 7,
+        "reset_cases": 3
+      }
+    },
+    "total_native_cases": 2871,
+    "source_review": "Independent static review completed; fear deadline f32 order corrected; APIs reviewed without compilation",
+    "rust_compilation": "intentionally not run",
+    "rust_tests": "authored; intentionally not run",
+    "original_rebuilt_launch": "not run",
+    "runtime_parity": "not established"
+  },
+  "rea": {
+    "provider": "Ghidra",
+    "launcher": "./scripts/rea via scripts/rea-batch.py",
+    "evidence_ids": [
+      "ev_276a920dff43cc841ef537d608bb7dad70b7728d48d06199275799bc5d683a5c",
+      "ev_2a6918f53d7e381c0390b6ff62a0269662c0df43fd423be729979aca2d0c5246",
+      "ev_323dd6277aa1bac6c1de2924325956c285d362b90150072f06ddfa01d6b27ff3",
+      "ev_35821215f04ba7d8fe03c42d3f58ce0a2bc72ade24863e04d7b04bdf6cf3caf7",
+      "ev_3f9caf6502324439470c711b2bec4d26133fa321dd040def7929fff4e0794bb4",
+      "ev_4c505adb044f0c65ad5d5b70ae76b364f44a691f909698f669850418e11f0032",
+      "ev_6ba2251b09c79873deb3f9348a6c19acb85427880b59bbb77c74fc878b07d86d",
+      "ev_6fdba7dc0aad55f1c64a0c0221d35588788986f2cf112e0beff10a7d032cf195",
+      "ev_7840563fa26a21db7d35e1c04dbed492491797f8d462d493c12e651350f3248d",
+      "ev_8a4622546aae04aad6d21292da992d3b3aab376e620d3bb481bd4273d85e84c2",
+      "ev_916314abca00d3723ed68a2eec52a7b9fde12e61f82eb821ff7595c2e30b5216",
+      "ev_946627a037c3ac526b01084412c8b2769a16792d0a33a29b6f32506f5aeef328",
+      "ev_a91fc7cd8a11af77821946d6fc3f0a82c0508c92e506604460359f636f6155ee",
+      "ev_b04b336f49f882f1dabe7531c4ac71211f26e776496f6d9f3c434251d0b92a29",
+      "ev_c07c3815dc969d7c4c03b71db69da0a63022997a086bb769a21e0807a9e69cde",
+      "ev_c0a13c628de05c01b5c3a185ab5cf0e588f4ea4751f0c683415da515304504a2",
+      "ev_c5c9cc29e1e6e39c77e71ac55fc8abbce607fd9cb931b6b010eee7b8f4720299",
+      "ev_d003448cdd683f12a018bd1a5971336f8c2ce6789a90d243ed33907dbb4deaae",
+      "ev_d23038e067f82a2d203ad037ac514786faf0c4f47e3c93f1d06be790e4d8aee5",
+      "ev_dc7fe460d1098a78dd357e81fdf8ccf4e04c0ea64bedd3da4c9a8d9de68d0731",
+      "ev_e1e2e5cb7502849ccfc7ede6ea9b1f274ec5904017d202e2869823621ab28fdb",
+      "ev_fec0ab5d5ba261d965364f92a8f153a10d9eeb80bde3e3d7c21caff632e529a5"
+    ],
+    "opened_sessions": "exported and closed",
+    "limits": "Exact function/branch slices omit outside code/data; Win64 instructions and full selected PE constants govern; pseudocode is not original source."
+  },
+  "incomplete": [
+    "Real world/terrain/path/entity/packet and game-loop adapters",
+    "Shared aura/proc lists and spell/projectile effect owners",
+    "Full scheduled primary-boss ability AI",
+    "Windows CRT math equivalence and platform/runtime/rendered parity",
+    "Final Rust compilation and test execution await explicit resumption"
+  ],
+  "delivery": "Local source/evidence commit requested; no push under active menu-parity restriction.",
+  "artifacts": [
+    {
+      "path": "crates/azeroth-survivors-re/src/enemies/ai.rs",
+      "bytes": 14803,
+      "sha256": "a3c1f43e2e9a4c10ad2c33408a80ba7442872f56aaf0bd10816f2c84db71d037"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/enemies/catalog.rs",
+      "bytes": 87228,
+      "sha256": "35b27545723f5cb14f4ae26329e2e323deda2d3d8b15e7cfaa3681beab77943a"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/enemies/mod.rs",
+      "bytes": 912,
+      "sha256": "ff8381a97375efa077ef675d8663edc80e68a6e045a1eaa43848596c2c4e6cfa"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/enemies/relocation.rs",
+      "bytes": 4249,
+      "sha256": "72663f8da835c6c152a8da16edf2df3fe7bcad536f4d83d1e96ad52b59067b67"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/enemies/scaling.rs",
+      "bytes": 6125,
+      "sha256": "fc6cd9f900d142e639dbf72a9c429a0aedb586460444812020a3209b313c63a2"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/enemies/spawning.rs",
+      "bytes": 16138,
+      "sha256": "2e1a10ee226ff7f33d1b5690470594d9c17da83920934bed34bde4f1ba57ac2f"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/enemies/waves.rs",
+      "bytes": 14292,
+      "sha256": "6e8c51dc750a1625b6fcea88efb1fb0233b18872c0c686e053565bd055a8f9c1"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/tests/enemy_ai.rs",
+      "bytes": 5516,
+      "sha256": "fb7d18733eb4fb247e771dc51d567541e3f18afaf4bea30fcb7631565b996e8c"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/tests/enemy_catalog.rs",
+      "bytes": 4448,
+      "sha256": "9c5dd0f6993bbb1964d027192e0a581c0d0051ec23089d5d10ac725153280dcd"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/tests/enemy_relocation.rs",
+      "bytes": 3835,
+      "sha256": "89e76b2b3613fb211f5940a621b221f2408b51a192f92a6b556bc3798e8d0ce8"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/tests/enemy_scaling.rs",
+      "bytes": 5376,
+      "sha256": "6b8c19daf0317bdbd4895f8466a3fa854525a3ba9094b7f3e61bc932fee6f049"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/tests/enemy_spawning.rs",
+      "bytes": 7869,
+      "sha256": "4f9868918182eb8af5942d33f5306d486355ab0dc9282772e32a9be95041457f"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/tests/fixtures/enemy-ai-0.97.2-native.json",
+      "bytes": 9130,
+      "sha256": "cdeeb24c77a9c6068cfd41ea0fc613ca33bb0faa3d4344f5be973692753132d6"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/tests/fixtures/enemy-relocation-native.json",
+      "bytes": 16070,
+      "sha256": "4bcbdc5bf37e0a3c7a7c0a1f478c28f72815355bb5b170683057914a6b54f33b"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/tests/fixtures/enemy-scaling-native.json",
+      "bytes": 2379288,
+      "sha256": "badc5cc2880d3be516b085d3cdce5e449ee81db537a0a780765b152027c7b1ee"
+    },
+    {
+      "path": "docs/analysis/enemies-0.97.2.md",
+      "bytes": 9556,
+      "sha256": "2302da79f311f35e84d41b6a2d5e306631f744a1d3144e5969501005e44cdcb0"
+    },
+    {
+      "path": "docs/analysis/enemy-catalog-0.97.2.md",
+      "bytes": 16453,
+      "sha256": "55eec3c911f3f36d54a8290a488763fadc959e6682d1017910d05f8f68aa212d"
+    },
+    {
+      "path": "docs/analysis/enemy-relocation-0.97.2.md",
+      "bytes": 6505,
+      "sha256": "4883bbf73b4f17114aeac037ace0dc1255244d3beb9ac14db9dbfd436baf80b8"
+    },
+    {
+      "path": "docs/analysis/enemy-scaling-0.97.2.md",
+      "bytes": 9452,
+      "sha256": "60c102cd9562cc107e6fe23888e1ac1bf43ae240213dab1a4805f04498eaf93a"
+    },
+    {
+      "path": "docs/analysis/enemy-spawning-0.97.2.md",
+      "bytes": 11992,
+      "sha256": "928295b8bcf1fc974906413aaff10cd5b7821b55e4c88dd3906678bb33d1aa2f"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/actor-status-gates.asm",
+      "bytes": 14344,
+      "sha256": "4e3767bdda673b8c13fdf3507ef392b727b26dd44bbe0d24ff4cc4e36278e756"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/actor-update.ghidra.c",
+      "bytes": 83661,
+      "sha256": "e18334f0cfb93ebb365810963169525e7105a14a674c278a812f58e529b23c06"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/ai-native.json",
+      "bytes": 12134,
+      "sha256": "e6b17542b85538b63c33727596ba11428431462466a1cb8fbc363134000838eb"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/catalog-native.json",
+      "bytes": 32068,
+      "sha256": "4faec36309e22ebaab4eb4e557ad9194ed662fba9b1b077fd7a5e1a0cadd99b0"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/catalog.json",
+      "bytes": 220175,
+      "sha256": "f63262411e96115339b454db3fa162f1607951abeda31dbd68a014073f42c86f"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/escape-and-guardian-dispatch.asm",
+      "bytes": 9951,
+      "sha256": "1ddfe154eeabc001abc90cae7fb20e4956322baea8e10a8ae17767aae5b95203"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/initialization-budget-credit-wave-and-previous-defaults.asm",
+      "bytes": 336,
+      "sha256": "ca29d30f40d1589384f1826b9910eb6c5d0a274f83e9a103ac1e239a1aea8678"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/initialization-constructor-output-argument.asm",
+      "bytes": 1165,
+      "sha256": "1588a7eed0ca69c4b8b98edbb46a07ed0462843c0d993e4a6fe2845fe4d5a9a1"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/initialization-elite-deadline-default.asm",
+      "bytes": 230,
+      "sha256": "ac62759e251b459ac519885e69c548197b86117112368161076a039071abc245"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/initialization-game-aggregate-copy.asm",
+      "bytes": 580,
+      "sha256": "788703478efb63437f73326c54c67f497c632e4be3c97734add2554fde035348"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/initialization-guardian-lair-suppression-zero-default.asm",
+      "bytes": 505,
+      "sha256": "3f2acefcc6c6f3d676dbab42e968bd2f93c578291d119175252537880ab118c7"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/initialization-native.json",
+      "bytes": 183455,
+      "sha256": "3cd3ad75ddec6cf8c6382434e879d88b15d646206c31bb59b116f5e23fd8f49e"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/initialization-ordinary-suppression-zero-default.asm",
+      "bytes": 194,
+      "sha256": "89b8aa19d9d20fcd482b0f017f0571d1bfe5fd16db27295ea09262544e506fc4"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/melee-dispatch.asm",
+      "bytes": 1145,
+      "sha256": "bdd8a5a187106371bc47881b484e0de4126ea0d519c61d4c23cc8067466da728"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/ordinary-combat.asm",
+      "bytes": 11439,
+      "sha256": "cf635a1065a28f6aabfd10a6bd56279a4886e01d06ad021cf2b2e6a86c5771e0"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/ordinary-melee-damage.asm",
+      "bytes": 2081,
+      "sha256": "c7bf054dec08d85e1b317338a73c6257d12668be707ef9628e2d42ecedad7c8b"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/ordinary-movement.asm",
+      "bytes": 5980,
+      "sha256": "2dadc8dd5ea0833a0afe869db1dadd8db5b09f69e4c49de740feabe5391c114c"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/relocation-manifest.json",
+      "bytes": 1517,
+      "sha256": "7993f67ae6e56c856b823922463919bff52a1178a8d5f8d13c1bac80936a42d6"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/relocation-native.json",
+      "bytes": 22634,
+      "sha256": "b4acdeb254e9bbd5039b59013beeede450af209a0eaa6f5ad7ce3d7592468a88"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/relocation-predicate.asm",
+      "bytes": 7175,
+      "sha256": "ec9ba928d8baf0d455e54eb0778077fd6985a9227ab94c2d86908e7ef638f2ac"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/relocation-predicate.ghidra.c",
+      "bytes": 4671,
+      "sha256": "5c2a085694b1d6bbbcf23c80592c171047b09863d0bb6ae1783f0a08b595c5f9"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/relocation-tick.asm",
+      "bytes": 4225,
+      "sha256": "3c54d69046ae649187df00e104e87f94f5f9fdedd814e621a4c48018a70e30e5"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/scaling-1454c2040.asm",
+      "bytes": 16951,
+      "sha256": "d4cf1bf523bf4cc6344302a917b5402754b511e4673b782756612360a54bf06c"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/scaling-1454f0830.asm",
+      "bytes": 705,
+      "sha256": "1045d0eed20b8fa3e30fa3c6a45666a30abce3e132a3f9e955d57b5bef654ba1"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/scaling-1454f0880.asm",
+      "bytes": 705,
+      "sha256": "f65084ea34a792ee83ca205e751260ecdd903a1df0c741b48ec69773d25b9e9f"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/scaling-evidence.json",
+      "bytes": 72304,
+      "sha256": "d31e36c18597f6d2eebd4538fa7d9ba6c0efd380bc5ab3a5ae9bbce16b94cc2a"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/spawning-1454beef0.asm",
+      "bytes": 4702,
+      "sha256": "feb363f27c53845e027970605075a117c7b0df437efcd65189067c98ab20b39e"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/spawning-1454c17b0.asm",
+      "bytes": 18650,
+      "sha256": "089a6536ee99be1827236748f30706fb8bb83969b9336f635393aae619b6a902"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/spawning-1454c2a20.asm",
+      "bytes": 10327,
+      "sha256": "796a29a7b5888f080f9da342fee6b7239ddf12135e2bc2566f607257624985be"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/spawning-1454d1b70.asm",
+      "bytes": 6323,
+      "sha256": "a8c16db4f7168d645c8fbb5677c95dc709e829b9b580485ee3c29a334f5aab5d"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/spawning-145529990.asm",
+      "bytes": 3686,
+      "sha256": "4b7ab02d883d55ae736eeb7b8df013a1a7a25e709ccfcc37b6f4d7378de236b4"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/spawning-14552ef30.asm",
+      "bytes": 3842,
+      "sha256": "4a161b00c8af3000e84914769c54ea710c450e086568ade76cfd3541c5676e53"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/spawning-14552f110.asm",
+      "bytes": 3842,
+      "sha256": "7675adcc1213375e18ae5a28623ca0aceabc7e0b743a092dedc49b97aada3715"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/spawning-14552f4d0.asm",
+      "bytes": 3825,
+      "sha256": "7969b60bf97768f7b4e38cfcb4316313ca74ec9f32d6cda398ff55ac8c986e03"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/spawning-145536a90.asm",
+      "bytes": 2905,
+      "sha256": "722fab4e913ddfc55454efc31bee72e088d9f56ce5ea2aff65cfe583ffe02fa1"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/spawning-fixtures.json",
+      "bytes": 191270,
+      "sha256": "a42c0332b5c7cc0261eefb28c1bd42a0c874ce2274cdbd5272c2d646f58125de"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/spawning-manifest.json",
+      "bytes": 16004,
+      "sha256": "e5b9558546806220a36888fc7018efdf9eda027e7644aa8694abdb2870912267"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/spawning-rea.json",
+      "bytes": 176075,
+      "sha256": "6b14765b4397e9d4b65bf81bda4b323c1faad4a0d353bd3bac26a449225990ed"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/spawning-tick.asm",
+      "bytes": 19598,
+      "sha256": "4499e04d14c532156b90c49049db21e4a5eae4ceb36645c2688b516d4d5f2608"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/enemies/spawning-waves.asm",
+      "bytes": 53551,
+      "sha256": "c58812c08c77d48fd0ff2729c77f46b315f4f4f6af14e69c30e4e4109eb06c1b"
+    },
+    {
+      "path": "scripts/enemy_evidence.py",
+      "bytes": 973,
+      "sha256": "3e026cf3356b904ec5ca55af6fb3690c5e12ddd9d05170ff69eacf84f38c2c09"
+    },
+    {
+      "path": "scripts/recover-enemy-ai.py",
+      "bytes": 10780,
+      "sha256": "c6981c8a0927710a2348d74656dc7f01893a3f457e355d95654586ea757de73e"
+    },
+    {
+      "path": "scripts/recover-enemy-catalog.py",
+      "bytes": 12684,
+      "sha256": "22e30510586b19d70469fa8ec72b673e3a807e5d94c439472269c924dc98394a"
+    },
+    {
+      "path": "scripts/recover-enemy-relocation.py",
+      "bytes": 12808,
+      "sha256": "a0d43c0182fbaf6b4596311964233a82d677105bed24a0599465ed49c27fa429"
+    },
+    {
+      "path": "scripts/recover-enemy-scaling-evidence.py",
+      "bytes": 4983,
+      "sha256": "cf223d3087ad0f9f88fa2681b01220572a83116d79c14bfb9a3a21a6555ba8b2"
+    },
+    {
+      "path": "scripts/recover-enemy-scaling-fixtures.py",
+      "bytes": 8934,
+      "sha256": "83891ed66b75807844df46b0c45703090d7eb9cf674ab90bc72addf92d2a2fce"
+    },
+    {
+      "path": "scripts/recover-enemy-scaling-initialization.py",
+      "bytes": 6622,
+      "sha256": "239ade0436418b1cfccc347259e2d02ec831f46fb376888575cd308932f87dd4"
+    },
+    {
+      "path": "scripts/recover-enemy-spawning-fixtures.py",
+      "bytes": 8691,
+      "sha256": "a01168b0b99af274b4bae7407c201cd444ca1232c459f85e56624315d810934f"
+    },
+    {
+      "path": "scripts/recover-enemy-spawning.py",
+      "bytes": 7413,
+      "sha256": "4b1e241f62d19924898db4a8666bb6d740ef6bf26e9ca3d4a471b65c34f01ae2"
+    },
+    {
+      "path": "scripts/verify-enemy-evidence.py",
+      "bytes": 5819,
+      "sha256": "ec14577caac3879374fb1fbea906757942a9aeb4539bf59b3a7ee255eceb0a17"
+    }
+  ]
+}

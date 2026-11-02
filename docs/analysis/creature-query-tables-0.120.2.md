@@ -1,0 +1,111 @@
+# Finite CreatureQuery contract — 0.120.2
+
+Selected EXE SHA-256:
+`80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c`.
+This bounded #41/#64/#65 recovery resolves the thirteen retained CreatureQuery
+table questions in the [current frontier](evidence/0.120.2/computed-correspondence-frontier.json).
+The [manifest](evidence/0.120.2/creature-query-tables/manifest.json) binds eight
+journaled Ghidra results, exact native ranges, all table cells, source consumers
+and the [original-instruction result](evidence/0.120.2/creature-query-tables/native-check.json).
+The Codex table is separate. The original frontier and historical recoveries
+keep their actual provenance.
+
+The thirteen tables implement the existing finite AS creature-template metadata
+path. Current original outputs agree with all **252** source records: **148
+ordinary enemies, 60 bosses and 44 special templates**. No independently missing
+metadata operation is proved. The separate **#201** repair owns the truncated
+entry reader in co-op requests; its input proof is reused here. Compilation,
+actual cache/FrameXML/co-op delivery and original/rebuilt parity remain open.
+
+## Entry, fields and consumers
+
+The current shared command owner is `145b01eb0..145b04a8a`. Its normal opcode
+`0x60` path reads the little-endian entry prefix and dispatches these thirteen
+tables. Other opcodes, other interior entry contexts and surrounding engine
+behavior are outside this contract.
+
+| Existing template population | Current native producer | Connected source |
+| --- | --- | --- |
+| Ordinary enemies | Name getter `145a7e610`; zone-subtitle getter `145a7e980`; selected native type/rank/display fields | Shared `ZONES` enemy records; `enemy.<entry>` and `zone.<key>.subtitle` with raw fallbacks |
+| Bosses | Name getter `145a7e790`; selected type/display and rank 3 | Shared `ZONES` boss records; `boss.<entry>.name` with raw fallback; empty subname |
+| Named special objects | Name getter `145a7dc80` and exact special branches | Existing `SPECIALS` object keys, literal defaults, type/rank/display records |
+| Companions | Selected native descriptors, name lookup and `Companion` subname | Existing thirteen ordinary pet records plus White Devilsaur 9530/9531 |
+| Valid empty-name templates | Current leaf `145bff050..145bff06c` bounds its descriptor lookup to 9601..9626; earlier named-object branches take precedence | Existing 9612..9626 empty-name mechanical rows, type 8/rank 0 and their exact displays |
+
+The query still distinguishes a valid empty name from a miss. Hit serializer
+`145c47150..145c47714` emits opcode `0x61`, the entry, name plus three empty
+alternate names, subname, seven u32 words and two bytes. Type flags, pet family,
+the unused word, pet-spell list, civilian and racial-leader values are zero in
+these records. Miss serializer `145c42d30..145c42d90` emits only
+`entry | 0x80000000`. The five extra u32 boundary checks retain the decoder's
+high-bit treatment; they are samples beyond the exhaustive u16 request domain.
+
+Source `client/creature_queries.rs` uses the shared enemy/boss catalogs and
+`SPECIALS`, then passes the typed result through `query_packets`. The shared
+encoder supplies the packet and the existing `parse_server` / event decoder
+preserves the miss bit, empty-name and empty-subname distinctions. Co-op
+`coop_commands::apply` uses the requesting member's locale; local requests use
+the ordinary presentation queue. `NameCache::on_creature_name` supplies the
+existing held-unit `UNIT_NAME_UPDATE` and `UNIT_CLASSIFICATION_CHANGED` notices.
+These live source paths are inspected and hash-bound; they were not executed.
+
+## Thirteen stable table questions
+
+Every row retains selector
+`Q41-F01:correspondence:retained-table-<historical dispatch>`. These are thirteen
+dispatches within one metadata contract, rather than thirteen new features.
+
+| Historical dispatch identity | Current dispatch | Stored cells | Cells selected by normal u16 requests |
+| --- | --- | ---: | ---: |
+| `145afa2a7` | `145b02b87` | 112 | 112 |
+| `145afb3fb` | `145b03cc2` | 94 | 94 |
+| `145afb49a` | `145b03d61` | 22 | 22 |
+| `145afb64e` | `145b03f15` | 101 | 101 |
+| `145afb798` | `145b0405f` | 95 | 95 |
+| `145afb7c1` | `145b04088` | 95 | 95 |
+| `145afb7ed` | `145b040b4` | 12 | 12 |
+| `145afbad2` | `145b043af` | 195 | 195 |
+| `145afbb29` | `145b043d7` | 95 | 95 |
+| `145afbb66` | `145b04414` | 10 | 10 |
+| `145afbb92` | `145b04440` | 5 | 5 |
+| `145afbe39` | `145b046e7` | 495 | 461 |
+| `145afbed3` | `145b04781` | 89 | 87 |
+
+All **1,420** immutable cells match their current byte commitments. Original
+execution records the index before each indexed load and its computed
+destination. All **1,384** selected cells agree with the stored target, and
+every distinct stored destination is reached as an actual instruction.
+
+The 36 unselected cells add no unseen successor. The 495-cell table subtracts
+1000; its skipped indices are 200..211, 290..294, 300..311 and 390..394.
+Entries 1200..1211, 1290..1294, 1300..1311 and 1390..1394 take earlier template
+branches. The 89-cell table subtracts 306; indices 2/3 correspond to entries
+308/309, also handled earlier. All 36 stored cells point to the already
+executed miss block `145b0478f`. This establishes the normal interface's table
+meaning without claiming arbitrary forged register/interior-entry contexts.
+
+## Static checks and limits
+
+The native probe executes the current command owner, four name getters, the
+descriptor leaf and both serializers. It intercepts sender `145b24400` and uses
+synthetic host/packet buffers. Allocation, growth, memory operations, Rust key
+formatting and locale lookup are explicit seams; unreviewed external calls fail.
+The manifest binds the imported probe/PE/coverage/loading scripts, checker hashes
+and **Unicorn 2.1.4 / Capstone 5.0.7** versions.
+
+```sh
+PYTHONPATH=runtime/tests/query-python-deps python3 -B scripts/check-creature-query-tables.py
+```
+
+The retained replay passes **65,536 u16 requests: 252 hits / 65,284 misses**,
+**3,780** template cases across fourteen locale maps plus missing-key raw
+fallback, and five additional u32 miss boundaries. It executes **10,601,873
+original instructions / 1,390 distinct sites**. The separately owned prefix
+proof retains its length/GUID cases; this check does not duplicate them.
+
+The source connection and output fields match within this finite contract.
+The seven helper queries and the containing-owner query do not establish
+complete semantics for other command cases, the localization subsystem,
+arbitrary aliases or the reused engine. No compiler, client, game, socket,
+server or controlled original/rebuilt comparison ran. Existing Rust tests
+remain uncompiled and unrun.

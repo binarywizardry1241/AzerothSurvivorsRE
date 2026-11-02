@@ -1,0 +1,116 @@
+{
+  "date": "2026-10-16",
+  "target": {
+    "path": "AzerothSurvivors/AzerothSurvivors.exe",
+    "version": "0.92.0",
+    "sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2"
+  },
+  "records": [
+    {
+      "original_va": "0x1401b89f0",
+      "evidence_id": "ev_2db9fd92f0204c0f9c9e7b3e0677589db16c32b70ccba3b2f4c46de87082b782",
+      "runtime_bundle": "runtime/menu-recovery/rea-1401b89f0/evidence-bundle.json",
+      "operation": "analyze_function"
+    },
+    {
+      "original_va": "0x1402387f0",
+      "evidence_id": "ev_e96b0b37569e87fe6f7d37510d6d2b16a8731e225de2f07e01fb78455a9bf19b",
+      "runtime_bundle": "runtime/menu-recovery/rea-1402387f0/evidence-bundle.json",
+      "operation": "analyze_function"
+    },
+    {
+      "original_va": "0x140326310",
+      "evidence_id": "ev_34f0d7e16defcb662147a9f83726358e89169e87c8af23c575772023bc4cbf9e",
+      "runtime_bundle": "runtime/menu-recovery/rea-140326310/evidence-bundle.json",
+      "operation": "analyze_function"
+    },
+    {
+      "original_va": "0x14031ea40",
+      "evidence_id": "ev_1384961965f14e839ed22943f04d0c1b02d9a10f41e5625fcbad040128e241c5",
+      "runtime_bundle": "runtime/menu-recovery/rea-14031ea40/evidence-bundle.json",
+      "operation": "analyze_function"
+    },
+    {
+      "original_va": "0x1402f99a0",
+      "evidence_id": "ev_58baf044cc2b7d4372e59c0d92de60244f29329dc9eb9fd021005108d0c97d21",
+      "runtime_bundle": "runtime/menu-recovery/rea-1402f99a0/evidence-bundle.json",
+      "operation": "analyze_function"
+    },
+    {
+      "original_va": "0x14006b7a0",
+      "evidence_id": "ev_4a139de3efdf86ba47708cd8accaa7ff3938fbd6d49c2df015a540800e49b0f9",
+      "runtime_bundle": "runtime/menu-recovery/rea-14006b7a0/evidence-bundle.json",
+      "operation": "analyze_function"
+    },
+    {
+      "original_va": "0x1406a9400",
+      "evidence_id": "ev_d69ba09eb0aa84cad4e50b49fbe2de1813b1a80aa7570ba7bcac21deb6d8a2ec",
+      "runtime_bundle": "runtime/menu-recovery/rea-1406a9400/evidence-bundle.json",
+      "operation": "analyze_function"
+    },
+    {
+      "original_va": "0x1406c97f0",
+      "evidence_id": "ev_72cdbd35bd1b1b8fee7270fe5bf93fa3aafa54c029009b5d87f855880c7a44ff",
+      "runtime_bundle": "runtime/menu-recovery/rea-1406c97f0/evidence-bundle.json",
+      "operation": "analyze_function"
+    },
+    {
+      "original_va": "0x140044c40",
+      "evidence_id": "ev_4d4eb36d98bae47221dcaac1a5c9fb04065d1cae80d3cdbe7252fe50b7565202",
+      "runtime_bundle": "runtime/menu-recovery/rea-140044c40/evidence-bundle.json",
+      "operation": "analyze_function"
+    }
+  ],
+  "native_canvas": {
+    "fit_function": "0x14006c640",
+    "target_scale_function": "0x14006d9e0",
+    "command_path": [
+      "0x1401b89f0",
+      "0x1402387f0",
+      "0x140326310",
+      "0x1402f99a0"
+    ],
+    "component_type": "bevy_app::propagate::Propagate<bevy_ui::ui_node::ComputedUiRenderTargetInfo>",
+    "type_name_va": "0x14590166b",
+    "type_name_file_offset": "0x58ffe6b",
+    "type_name_length": 76,
+    "type_name_reference_instruction": "0x1402f9ad8",
+    "type_name_length_instruction": "0x1402f9ae3",
+    "payload": {
+      "byte0": "physical viewport width u32",
+      "byte4": "physical viewport height u32",
+      "byte8": "camera target scaling factor * UiScale * Canvas fit f32",
+      "byte12": "insert mode bool; not part of the 12-byte component"
+    },
+    "fit": "max(0.1,min(window.logical_width/design.x,window.logical_height/design.y,max_scale))",
+    "node_left_top": "((window.logical_size / fit) - design) * 0.5",
+    "main_design": [
+      1600,
+      900
+    ],
+    "main_max_scale": 1.6,
+    "options_design": [
+      1060,
+      700
+    ],
+    "options_max_scale": 1.4,
+    "implementation": "canvas.rs uses typed reflection of Bevy public Reflect component to construct crate-private fields and Propagate; separate UI roots, no UiTransform scaling"
+  },
+  "font": {
+    "initializer": "0x14006b7a0",
+    "paths_in_order": [
+      "mpq://Fonts/FRIZQT__.ttf",
+      "mpq://Fonts/MORPHEUS.ttf"
+    ],
+    "textfont_native_weight": 400,
+    "textfont_native_smoothing_byte": 1,
+    "source_binding": "FontSmoothing::AntiAliased=1 in Bevy0.18.1; normal font weight400",
+    "comparison_limit": "MPQ and embedded font outlines/metrics inspected for selected Latin sample only; font rasterization visual parity not established"
+  },
+  "limitations": [
+    "Ghidra raw x86_64 uses GCC ABI; typed Windows call arguments were checked against original instructions.",
+    "Imported function slices omit constant/string/callee bytes; those were read separately from the SHA-bound original PE.",
+    "Native camera traversal for other render targets and exact global UiScale handling need additional runtime validation; launcher currently uses one primary-window menu camera.",
+    "Native text/font/material appearance is not established by static component identification alone."
+  ]
+}

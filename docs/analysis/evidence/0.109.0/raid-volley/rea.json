@@ -1,0 +1,45 @@
+{
+  "target_sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+  "records": [
+    {
+      "role": "producer",
+      "evidence_id": "ev_c7e810db26987130c1027fa0ceb5492e746ac0f186b657f752548f9539454b96",
+      "input_sha256": "96cee90696cf4ae4284f300a860b694b2a0711caf5c5019f680fe04aa95f1867",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "predicate_type": "rea.analysis",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x145957ce8"
+      },
+      "analysis_profile_digest": "925ea76477d08114099dd52f172225d114fe78892ceb1cfac0183165c9928450",
+      "limits": [
+        "Original-VA raw-range import, generic compiler ABI; actual Win64 instructions independently checked.",
+        "Seeds are analyst-selected. External calls/data and omitted jump-table branches require separate recovery."
+      ]
+    },
+    {
+      "role": "hazard-tick",
+      "evidence_id": "ev_aa88e35b42a18b6a6e7038620855a18d5793acbdff9e96bf15f60d13c00084fe",
+      "input_sha256": "d09291c95585ef92e4f075037a1fde6d133532b8275a77e42ea5326cfe8575b7",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "predicate_type": "rea.analysis",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x14594e610"
+      },
+      "analysis_profile_digest": "f7cdf95de52779c2b6f55cb64b550eb39b7707f1d3e89010e746313b3937457e",
+      "limits": [
+        "Original-VA raw-range import, generic compiler ABI; actual Win64 instructions independently checked.",
+        "Seeds are analyst-selected. External calls/data and omitted jump-table branches require separate recovery."
+      ]
+    }
+  ]
+}

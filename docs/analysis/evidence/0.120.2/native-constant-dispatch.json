@@ -1,0 +1,45 @@
+{
+  "target": {
+    "version": "0.120.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c",
+    "size_bytes": 145484288
+  },
+  "generator": {
+    "path": "scripts/audit-native-constant-dispatch.py",
+    "sha256": "1872ed1a289c3df5ecaa17eff178f64c4a49e12075cb61ca2e09bc450e3fd57e",
+    "capstone_version": "5.0.7"
+  },
+  "generator_dependencies": [
+    {
+      "path": "scripts/classify-native-ownership.py",
+      "sha256": "1e09943661633e7f5fcb8e0d5f88ba390b333c1e45924608303de2a2d1c9d4b4"
+    },
+    {
+      "path": "scripts/summarize-native-image.py",
+      "sha256": "8f39d797aec3f11a2537d7517d7077de8ad6b4f8d24ee59a44ff725665f59ab1"
+    },
+    {
+      "path": "scripts/inventory-current-target.py",
+      "sha256": "f2cf5be70267aa01865b7c34bef7eeb87898d67b5e36f0a91d20d37e3b1299c5"
+    },
+    {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+    }
+  ],
+  "source_census": {
+    "path": "docs/analysis/coverage/full-image-execheck-0.120.2.json",
+    "sha256": "d76c8b14b186cbe420a416e6fb3a9fb8add17019d46ad9e32828b5ce89a1d03a"
+  },
+  "counts": {},
+  "limits": [
+    "Constants follow the observed fallthrough block and reset at known incoming targets, gaps and transfers. Unobserved computed incoming aliases remain unknown.",
+    "No initial PE import, relocation slot or memory-loaded value participates. A constant computed CALL is a concrete entry lead; JMP and address-only values do not establish source function semantics."
+  ],
+  "inventory": {
+    "path": "runtime/analysis/census/80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c/d9b443a64a37a5e925ddf3c7417fd03d10866eaf0c369fdd1f6bbaa1d99d204c/constant-register-dispatch.json",
+    "sha256": "1b14aaddc097542ce8a28c250f8c9b7066872834b6722f8aa465a10ccac85c7f"
+  }
+}
+

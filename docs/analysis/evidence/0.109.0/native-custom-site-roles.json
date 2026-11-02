@@ -1,0 +1,390 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.109.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+    "size_bytes": 140447744
+  },
+  "scope": "Five exact auras adjacent-literal references: two from the complete 96 raw ownerless-site audit, plus three explicitly selected owned literal candidates. No claim is made about other raw literal candidates.",
+  "generator": {
+    "path": "runtime/fixgap-41-42/as-custom-orphans/package.py",
+    "sha256": "c9424ea3ecd2eba570274671a75e887560964d1816e32e277fb5783cfba7c113"
+  },
+  "exclusions": [
+    {
+      "site": "0x145994020",
+      "path": "crates/wenilla-rogue/src/game/auras.rs",
+      "role": "adjacent-literal-reference",
+      "source_instruction": {
+        "va": "0x145994020",
+        "file_offset": "0x5993420",
+        "byte_count": 7,
+        "sha256": "7c875aaedd4111dd0d6e0c0ce2e97a580a3027e2c050fb92b4c55776721d2e1c",
+        "hex": "488d0569608901",
+        "decoded_target": "0x14722a090"
+      },
+      "literal": {
+        "va": "0x14722a090",
+        "file_offset": "0x7229090",
+        "byte_count": 5,
+        "sha256": "8f4a0aaa62c4ceef88578b1b674070e6b8d9405b80729d5c7af2f353543b2f89",
+        "hex": "7370656c6c"
+      },
+      "filename": {
+        "va": "0x14722a095",
+        "file_offset": "0x7229095",
+        "byte_count": 38,
+        "sha256": "e645d891a3f1e887b6e91a4b387caf0622ee3023575af5a2e1e8fa1c0bab30f3"
+      },
+      "diagnosed_filename_start": "0x14722a095",
+      "pointed_literal_length": 5,
+      "descriptor": {
+        "base_register": "rbp",
+        "pointer_offset": "0x168",
+        "length_offset": "0x170",
+        "explicit_length": 5,
+        "producer_code": {
+          "va": "0x145994020",
+          "file_offset": "0x5993420",
+          "byte_count": 25,
+          "sha256": "809ae2aa21b30bc53cae98d729a7cf2974216d20472bf255b6093cf144e70f70",
+          "hex": "488d05696089014889856801000048c7857001000005000000"
+        },
+        "length_instruction": {
+          "va": "0x14599402e",
+          "file_offset": "0x599342e",
+          "byte_count": 11,
+          "sha256": "aaf1942bed230fb61e5b612eb43066e9a764dc658a41c124af5a2049e989e9bf",
+          "hex": "48c7857001000005000000"
+        }
+      },
+      "consumer": {
+        "argument_register": "r9",
+        "descriptor_count": 1,
+        "entry": "0x1458ec8b0",
+        "call_instruction": {
+          "va": "0x145994073",
+          "file_offset": "0x5993473",
+          "byte_count": 5,
+          "sha256": "62a249cefeca621fe72695d2e2b679bcedde54bc795ce2ca564ea6a1c4a2d378",
+          "hex": "e83888f5ff"
+        },
+        "producer_to_consumer_code": {
+          "va": "0x145994020",
+          "file_offset": "0x5993420",
+          "byte_count": 88,
+          "sha256": "51407bdac3dffe6c96fc189ebb8ad1452b39714d720d9a913870de5630dddae4",
+          "hex": "488d05696089014889856801000048c7857001000005000000488d452848898578010000488d052560890148898580010000c685660200000148c744242001000000488d8d480100004c8d8d680100004c89e2e83888f5ff"
+        }
+      }
+    },
+    {
+      "site": "0x14599456f",
+      "path": "crates/wenilla-rogue/src/game/auras.rs",
+      "role": "adjacent-literal-reference",
+      "source_instruction": {
+        "va": "0x14599456f",
+        "file_offset": "0x599396f",
+        "byte_count": 7,
+        "sha256": "34cd93583dd3697f9174618e6f0bf3ee6cf03ad90d5db505d3d7cba47dfddc39",
+        "hex": "488d051a5b8901",
+        "decoded_target": "0x14722a090"
+      },
+      "literal": {
+        "va": "0x14722a090",
+        "file_offset": "0x7229090",
+        "byte_count": 5,
+        "sha256": "8f4a0aaa62c4ceef88578b1b674070e6b8d9405b80729d5c7af2f353543b2f89",
+        "hex": "7370656c6c"
+      },
+      "filename": {
+        "va": "0x14722a095",
+        "file_offset": "0x7229095",
+        "byte_count": 38,
+        "sha256": "e645d891a3f1e887b6e91a4b387caf0622ee3023575af5a2e1e8fa1c0bab30f3"
+      },
+      "diagnosed_filename_start": "0x14722a095",
+      "pointed_literal_length": 5,
+      "descriptor": {
+        "base_register": "rbp",
+        "pointer_offset": "0x168",
+        "length_offset": "0x170",
+        "explicit_length": 5,
+        "producer_code": {
+          "va": "0x14599456f",
+          "file_offset": "0x599396f",
+          "byte_count": 25,
+          "sha256": "d6420ed800c14877d51cbc5841cd512dc8997eb2bb5b766484094e8456effbe7",
+          "hex": "488d051a5b89014889856801000048c7857001000005000000"
+        },
+        "length_instruction": {
+          "va": "0x14599457d",
+          "file_offset": "0x599397d",
+          "byte_count": 11,
+          "sha256": "aaf1942bed230fb61e5b612eb43066e9a764dc658a41c124af5a2049e989e9bf",
+          "hex": "48c7857001000005000000"
+        }
+      },
+      "consumer": {
+        "argument_register": "r9",
+        "descriptor_count": 2,
+        "entry": "0x1458ec8b0",
+        "call_instruction": {
+          "va": "0x1459945fd",
+          "file_offset": "0x59939fd",
+          "byte_count": 5,
+          "sha256": "cb49c52844a6c5dd6813a5f7b05baf19b4f3f219741717397182c49fa936f8ae",
+          "hex": "e8ae82f5ff"
+        },
+        "producer_to_consumer_code": {
+          "va": "0x14599456f",
+          "file_offset": "0x599396f",
+          "byte_count": 147,
+          "sha256": "96292d5d50cdf7fa6fd06fe605d67ba71b5b5bd298b9e75f58f60d453ad4ff18",
+          "hex": "488d051a5b89014889856801000048c7857001000005000000488d85a800000048898578010000488d05d35a890148898580010000488d05706189014889858801000048c7859001000004000000488d858000000048898598010000488d051e5b8901488985a0010000c685570200000148c744242002000000488d8d000200004c8d8d680100004889da4d89f0e8ae82f5ff"
+        }
+      }
+    },
+    {
+      "site": "0x14591c62d",
+      "path": "crates/wenilla-rogue/src/game/auras.rs",
+      "role": "adjacent-literal-reference",
+      "source_instruction": {
+        "va": "0x14591c62d",
+        "file_offset": "0x591ba2d",
+        "byte_count": 7,
+        "sha256": "cf06330874b7c3b60f4f0ced6f86c5156bf2bccdfdd42f591bd04eb649ab4c59",
+        "hex": "488d055cda9001",
+        "decoded_target": "0x14722a090"
+      },
+      "literal": {
+        "va": "0x14722a090",
+        "file_offset": "0x7229090",
+        "byte_count": 5,
+        "sha256": "8f4a0aaa62c4ceef88578b1b674070e6b8d9405b80729d5c7af2f353543b2f89",
+        "hex": "7370656c6c"
+      },
+      "filename": {
+        "va": "0x14722a095",
+        "file_offset": "0x7229095",
+        "byte_count": 38,
+        "sha256": "e645d891a3f1e887b6e91a4b387caf0622ee3023575af5a2e1e8fa1c0bab30f3"
+      },
+      "diagnosed_filename_start": "0x14722a095",
+      "pointed_literal_length": 5,
+      "raw_actual_native_owner": "0x14591b8f0",
+      "consumer": {
+        "entry": "0x1458ec8b0",
+        "call_instruction": {
+          "va": "0x14591c670",
+          "file_offset": "0x591ba70",
+          "byte_count": 5,
+          "sha256": "3b7f0e5dc371a2139c0ce923f3a2c58843ce56c2352906f9c21f514a4d11fef1",
+          "hex": "e83b02fdff"
+        },
+        "producer_to_consumer_code": {
+          "va": "0x14591c62d",
+          "file_offset": "0x591ba2d",
+          "byte_count": 72,
+          "sha256": "e453f0530ab0af12bd12e31235f9f1e2915329f7df419cb7c9a9652f6f9a2ba3",
+          "hex": "488d055cda9001488945f848c7450005000000488d850801000048894508488d051eda90014889451048c744242001000000488d8dc80000004889f24989f84c8d4df8e83b02fdff"
+        },
+        "argument_register": "r9",
+        "descriptor_count": 1
+      },
+      "descriptor": {
+        "base_register": "rbp",
+        "pointer_offset": "-0x8",
+        "length_offset": "0x0",
+        "explicit_length": 5,
+        "producer_code": {
+          "va": "0x14591c62d",
+          "file_offset": "0x591ba2d",
+          "byte_count": 19,
+          "sha256": "6a3b5dc6c21eab737b8fccaa8a3cc21c37c42083b65e2326ce99631edf14508c",
+          "hex": "488d055cda9001488945f848c7450005000000"
+        },
+        "length_instruction": {
+          "va": "0x14591c638",
+          "file_offset": "0x591ba38",
+          "byte_count": 8,
+          "sha256": "b38d7943b135f5273779fe9f0b869a65bddcfe178a1c7621d4ffd662fdbbf946",
+          "hex": "48c7450005000000"
+        }
+      }
+    },
+    {
+      "site": "0x1459284ea",
+      "path": "crates/wenilla-rogue/src/game/auras.rs",
+      "role": "adjacent-literal-reference",
+      "source_instruction": {
+        "va": "0x1459284ea",
+        "file_offset": "0x59278ea",
+        "byte_count": 7,
+        "sha256": "4ba806727b89b7459ca1494d54b83b02b105292a5bc3e2122db602a6c282b9f6",
+        "hex": "4c8d059f1b9001",
+        "decoded_target": "0x14722a090"
+      },
+      "literal": {
+        "va": "0x14722a090",
+        "file_offset": "0x7229090",
+        "byte_count": 5,
+        "sha256": "8f4a0aaa62c4ceef88578b1b674070e6b8d9405b80729d5c7af2f353543b2f89",
+        "hex": "7370656c6c"
+      },
+      "filename": {
+        "va": "0x14722a095",
+        "file_offset": "0x7229095",
+        "byte_count": 38,
+        "sha256": "e645d891a3f1e887b6e91a4b387caf0622ee3023575af5a2e1e8fa1c0bab30f3"
+      },
+      "diagnosed_filename_start": "0x14722a095",
+      "pointed_literal_length": 5,
+      "raw_actual_native_owner": "0x145928330",
+      "consumer": {
+        "entry": "0x1458e6910",
+        "call_instruction": {
+          "va": "0x1459284f1",
+          "file_offset": "0x59278f1",
+          "byte_count": 5,
+          "sha256": "c8c9ebeeed131b0da17396f9c9d9c00451305f6ffccaf098f3629944ab28e18b",
+          "hex": "e81ae4fbff"
+        },
+        "producer_to_consumer_code": {
+          "va": "0x1459284de",
+          "file_offset": "0x59278de",
+          "byte_count": 24,
+          "sha256": "a37415e852ca76e7d001839ad8771f580940e1070ad735b81ba212c73e69c72c",
+          "hex": "41b9050000004c89f14889da4c8d059f1b9001e81ae4fbff"
+        }
+      },
+      "pointer_length_arguments": {
+        "pointer_register": "r8",
+        "length_register": "r9d",
+        "explicit_length": 5,
+        "length_instruction": {
+          "va": "0x1459284de",
+          "file_offset": "0x59278de",
+          "byte_count": 6,
+          "sha256": "97a6c4aa9af45c831cbfabfc105603c71c600e9dc0e3621813504189e4323210",
+          "hex": "41b905000000"
+        },
+        "callee_forwarding_code": {
+          "va": "0x1458e6930",
+          "file_offset": "0x58e5d30",
+          "byte_count": 14,
+          "sha256": "71b077b5a2c85f36fa0d3d24cae3beb846ea771ae15524f9265956aae108db1c",
+          "hex": "4889d14c89c24d89c8e8324b0000"
+        },
+        "forwarded_pointer_register": "rdx",
+        "forwarded_length_register": "r8",
+        "forwarded_call": "0x1458eb470"
+      }
+    },
+    {
+      "site": "0x1459294ad",
+      "path": "crates/wenilla-rogue/src/game/auras.rs",
+      "role": "adjacent-literal-reference",
+      "source_instruction": {
+        "va": "0x1459294ad",
+        "file_offset": "0x59288ad",
+        "byte_count": 7,
+        "sha256": "058b747effda2fffe91be92ecf59747687596cde45b8607418ee648cd7387bb4",
+        "hex": "4c8d05dc0b9001",
+        "decoded_target": "0x14722a090"
+      },
+      "literal": {
+        "va": "0x14722a090",
+        "file_offset": "0x7229090",
+        "byte_count": 5,
+        "sha256": "8f4a0aaa62c4ceef88578b1b674070e6b8d9405b80729d5c7af2f353543b2f89",
+        "hex": "7370656c6c"
+      },
+      "filename": {
+        "va": "0x14722a095",
+        "file_offset": "0x7229095",
+        "byte_count": 38,
+        "sha256": "e645d891a3f1e887b6e91a4b387caf0622ee3023575af5a2e1e8fa1c0bab30f3"
+      },
+      "diagnosed_filename_start": "0x14722a095",
+      "pointed_literal_length": 5,
+      "raw_actual_native_owner": "0x145928330",
+      "consumer": {
+        "entry": "0x1458e6910",
+        "call_instruction": {
+          "va": "0x1459294b4",
+          "file_offset": "0x59288b4",
+          "byte_count": 5,
+          "sha256": "f2a2cc58d7ff0c08e668446a9d06ef8fb6175acb2525ee1bc4f928ba9ed6b807",
+          "hex": "e857d4fbff"
+        },
+        "producer_to_consumer_code": {
+          "va": "0x1459294a1",
+          "file_offset": "0x59288a1",
+          "byte_count": 24,
+          "sha256": "ad4af8b79a9d6b44b9297665a6e64bd4886731eaec3dcfb2c420da1dd6775676",
+          "hex": "41b9050000004889f94c89fa4c8d05dc0b9001e857d4fbff"
+        }
+      },
+      "pointer_length_arguments": {
+        "pointer_register": "r8",
+        "length_register": "r9d",
+        "explicit_length": 5,
+        "length_instruction": {
+          "va": "0x1459294a1",
+          "file_offset": "0x59288a1",
+          "byte_count": 6,
+          "sha256": "97a6c4aa9af45c831cbfabfc105603c71c600e9dc0e3621813504189e4323210",
+          "hex": "41b905000000"
+        },
+        "callee_forwarding_code": {
+          "va": "0x1458e6930",
+          "file_offset": "0x58e5d30",
+          "byte_count": 14,
+          "sha256": "71b077b5a2c85f36fa0d3d24cae3beb846ea771ae15524f9265956aae108db1c",
+          "hex": "4889d14c89c24d89c8e8324b0000"
+        },
+        "forwarded_pointer_register": "rdx",
+        "forwarded_length_register": "r8",
+        "forwarded_call": "0x1458eb470"
+      }
+    }
+  ],
+  "audit": {
+    "path": "runtime/fixgap-41-42/as-custom-orphans/audit.json",
+    "sha256": "f446279a4e68ffa9cda5e69da0a1f3be4ecfb32b3301dd11ad50cb4657365947",
+    "raw_reference_count": 96,
+    "actual_source_locations": 94,
+    "adjacent_literal_references": 2,
+    "declared_pe_extents": 20,
+    "declared_extent_membership_is_function_ownership": false,
+    "role_counts": {
+      "bounds-failure-location": 67,
+      "missing-key-failure-location": 1,
+      "formatted-failure-location": 23,
+      "checked-vector-removal-location": 2,
+      "option-failure-location": 1,
+      "adjacent-literal-reference": 2
+    }
+  },
+  "limits": [
+    "The 94 actual SourceLocations are immediate bounds/failure or checked-vector-removal consumers; source availability and compiled body ownership remain distinct.",
+    "All96raw records retain actual_native_owner:null. No missing Survivors behavior was established by this finite audit.",
+    "Only these five exact site/path pairs are excluded; the 96-site runtime audit remains 94 Locations plus 2 adjacent-label refs."
+  ],
+  "validator": {
+    "path": "scripts/check-native-custom-site-roles.py",
+    "sha256": "04c87b39c96791d3eee94c2c6cb3f0c3168edc34a12123a4de01e0bea6b60f6d"
+  },
+  "dependencies": [
+    {
+      "path": "scripts/coverage_common.py",
+      "sha256": "3aaa705f6fe366d06b59fbb1cc011bf98f28e59299e91371bd084c63b77d8eeb"
+    },
+    {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "wire_fixtures": [
+    {
+      "kind": "hero",
+      "rich": false,
+      "wire_hex": "0400008000000000000100000041080100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000c000000000000000000000000000000660700000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000"
+    },
+    {
+      "kind": "hero",
+      "rich": true,
+      "wire_hex": "040000800000000000010000004108010000000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f00000010000000110000001200000013000000ffffffff00000000b2040000ffffffff00000000b5040000ffffffff00000000b8040000ffffffff00000000bb040000ffffffff00000000be040000ffffffff00000000c1040000ffffffff000102030405060708090a0b0c0d0e0f10111203000000e9030000ffea03000028e9030000000c000000000102030405ff05040302016c07000003000000782c7900000000000000000000000000000000000000000000000000000000000000000000000000000100000000"
+    },
+    {
+      "kind": "state",
+      "wire_hex": "0f0000803f02010300000001040000000500000006000000070000000800000005110000000000c03f00000040040600080000000000000000000000000000000000"
+    },
+    {
+      "kind": "state-party",
+      "wire_hex": "0f0000803f02010300000001040000000500000006000000070000000800000005110000000000c03f00000040040600080000000000000000000000000000000001010000000844332211fe064d0000000100000000"
+    }
+  ],
+  "original_instruction_steps": 1718,
+  "scope": "Hero4 and State15/party member metadata only",
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "canonical_native_manifest": "docs/analysis/evidence/0.121.0/coop-heroic-wire/manifest.json",
+  "checked_source_files": [
+    "coop/server_party.rs",
+    "coop/replication.rs",
+    "coop/client_state.rs",
+    "coop_profile.rs",
+    "armory.rs",
+    "gameplay/mechanics/effects.rs",
+    "gameplay/mechanics/coop.rs",
+    "gameplay/mechanics/party_achievements.rs",
+    "gameplay/mod.rs"
+  ],
+  "source_scope": "Metadata producers/storage/typed codecs only",
+  "excluded_source": [
+    "Admission",
+    "Private Save receivers/rewards",
+    "Set effect application",
+    "UI"
+  ],
+  "dependencies": [
+    "Current accepted-snapshot settlement consumers for renamed RunProjection fields (#226)"
+  ],
+  "included_counter_interfaces": [
+    "run_marks",
+    "max_boss_marks",
+    "endless_boss_kills"
+  ],
+  "compiled": false,
+  "target_executed": false,
+  "parity": "unverified"
+}

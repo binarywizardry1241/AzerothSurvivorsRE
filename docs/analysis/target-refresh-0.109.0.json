@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "reviewed_date": "2026-10-21",
+  "selected_target": "0.109.0",
+  "current_target": {
+    "version": "0.109.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+    "size_bytes": 140447744,
+    "format": "PE32+",
+    "architecture": "x86_64",
+    "machine": "0x8664",
+    "image_base": "0x140000000",
+    "identity_status": "Complete installed EXE hash, PE machine, agreeing updater/dialog version contexts and a separate footer/build literal candidate; native footer consumer not revalidated; target not executed."
+  },
+  "input_policy": {
+    "mode": "installed_game_read_only",
+    "configuration": ".codex/reference-game.json (local and ignored)",
+    "copies_or_symlinks_created": false,
+    "installed_files_modified": false
+  },
+  "version_markers": [
+    {
+      "role": "footer-build-literal",
+      "value": "0.109.0",
+      "file_offset": "0x5dcde20",
+      "virtual_address": "0x145dcee20",
+      "context_file_offset": "0x5dcde08",
+      "context_byte_count": 111,
+      "context_sha256": "688aa839e72335bbc33507221dc4566ed78994749a7adc3389dbabf1145f5b06",
+      "context_hex": "2e0000000000000038010000200000006562393430353133302e3130392e300020eedc450100000007000000000000000176c0022028c0012900256d70713a2f2f696e746572666163652f676c7565732f6c6f6164696e6773637265656e732fc0042e626c70000000000000000000"
+    },
+    {
+      "role": "updater-checker",
+      "value": "0.109.0",
+      "file_offset": "0x5dd0315",
+      "virtual_address": "0x145dd1315",
+      "context_file_offset": "0x5dd02fd",
+      "context_byte_count": 111,
+      "context_sha256": "cd18533a1098e737bf836807c612a507224c2918d8ff4833792466e693f7ae99",
+      "context_hex": "4e614e4e614e6633324e614e66363470726f636573736f72302e3130392e301e7570646174653a20757020746f2064617465202873697465206861732076c002290a00097570646174653a2076c012206973206f75742028746869732069732076c002290a00187570646174653a20"
+    },
+    {
+      "role": "new-version-dialog",
+      "value": "0.109.0",
+      "file_offset": "0x5de7fe1",
+      "virtual_address": "0x145de8fe1",
+      "context_file_offset": "0x5de7fc9",
+      "context_byte_count": 111,
+      "context_sha256": "3c698d5545a3e68ff6e587d8a93c73053edeb72673bef8d286c77b2e251a561b",
+      "context_hex": "000000000000000800000000000000e0200040010000006e302e3130392e3041206e65772076657273696f6e206973206f7574214e65772067616d652064617461000000000000aaf1723f79e9663f5eba493f0000803f7b73697a657d20646f776e6c6f616420c2b7207468652067"
+    }
+  ],
+  "runtime_data": {
+    "directory": "installed-game/Data",
+    "archives": [
+      {
+        "path": "installed-game/Data/patch-2.MPQ",
+        "size_bytes": 4690878,
+        "sha256": "366edee41642a5dda22ed90cc252b543ee375755b7e8bee81e2a6cd59fd7b286"
+      },
+      {
+        "path": "installed-game/Data/patch-3.MPQ",
+        "size_bytes": 2580491,
+        "sha256": "75c35ca5b8075197252581e301e8900143007fdf37b493ad271ae1bd39f95a29"
+      },
+      {
+        "path": "installed-game/Data/patch-4.MPQ",
+        "size_bytes": 22769233,
+        "sha256": "2e895e0e0ff6a4781d0e0aaa6ea7d32ed1fe36841e17806fe1855cb880d18865"
+      },
+      {
+        "path": "installed-game/Data/patch-5.MPQ",
+        "size_bytes": 267019039,
+        "sha256": "5008e56873718b468fa5ae1b697dcbe4f5da9ffe6c793f3ef9939dbd7716f3d8"
+      },
+      {
+        "path": "installed-game/Data/patch-6.MPQ",
+        "size_bytes": 212228,
+        "sha256": "cad6ff59b5df028a507581befb836fce07894057e15fe63d9fdc553a95b7ceb5"
+      },
+      {
+        "path": "installed-game/Data/patch-7.MPQ",
+        "size_bytes": 276649,
+        "sha256": "f5fb15b181cf01cc6b5cf2ee9948a27ecc4ba27bab9a8bec584df4381932aae6"
+      },
+      {
+        "path": "installed-game/Data/patch-8.MPQ",
+        "size_bytes": 4155417,
+        "sha256": "ae3aaa29cadb7aeba8255f5b4a8305c7cbecfe8f0d3ed9646522113d16c3e12e"
+      },
+      {
+        "path": "installed-game/Data/patch.MPQ",
+        "size_bytes": 1340199244,
+        "sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf"
+      }
+    ],
+    "archive_count": 8,
+    "total_bytes": 1641903179
+  },
+  "resource_comparison": {
+    "previous_identity_manifest": "docs/analysis/target-refresh-0.108.0.json",
+    "unchanged_archives": [
+      "patch-2.MPQ",
+      "patch-3.MPQ",
+      "patch-4.MPQ",
+      "patch-5.MPQ",
+      "patch-6.MPQ",
+      "patch-7.MPQ",
+      "patch-8.MPQ",
+      "patch.MPQ"
+    ],
+    "changed_archives": [],
+    "compatibility": "Unverified; equal inputs do not certify executable/source consumers."
+  },
+  "changelog": {
+    "path": "docs/CHANGELOG.md",
+    "latest_supplied_version": "0.109.0",
+    "selected_target_release_notes_supplied": true,
+    "new_release_claims_invented": false
+  },
+  "coverage_boundary": {
+    "workflow": "docs/analysis/reconstruction-coverage.md",
+    "native_completeness_gap": 41,
+    "identity_registration_is_full_refresh": false
+  },
+  "validation": {
+    "whole_installed_exe_hashed": true,
+    "all_registered_archives_rehashed": true,
+    "target_executed": false,
+    "compilation": "not run",
+    "game_launch": "not run",
+    "original_rebuilt_comparison": "not run"
+  },
+  "limitations": [
+    "Earlier native/source evidence retains its actual target until individually revalidated.",
+    "No new source behavior or parity is inferred from metadata, release labels, unchanged resources or equal diagnostic membership."
+  ]
+}

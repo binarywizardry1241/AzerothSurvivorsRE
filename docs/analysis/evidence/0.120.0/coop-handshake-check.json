@@ -1,0 +1,63 @@
+{
+  "target": {
+    "version": "0.120.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08",
+    "size_bytes": 145447424
+  },
+  "proof": {
+    "path": "docs/analysis/evidence/0.120.0/coop-correspondence/manifest.json",
+    "sha256": "c4bd217a7f40ff0067bd6ea2942783935dd876d9b306edd2984d5e1991a92f37"
+  },
+  "receipt_digests": {
+    "plan": "728e555d1f86bac26bcfb9146a2473f321d0fa1c1bbb864b80406cf934e232ac",
+    "journal": "9ea3d198aef9119fd4f958936bd7cda0760de73a39f5c2c5b05b7b64059d2c62",
+    "result": "ea5d5368dab8dd8749acff2e14f0c220dda16ed9e4b5977e12771cae0ca2b956"
+  },
+  "source": {
+    "state": "connected",
+    "version": "0.120.0",
+    "protocol": 5,
+    "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+    "sha256": "5ec3b85a66a5088613a6798bfa114397abfe1a5b6a0c7684d0342953d6c4bfe5",
+    "producer": "JoinRequest::current",
+    "consumer": "PartyServer::admit",
+    "fixed_wire_literal_checked": true,
+    "wire_fields_checked": true,
+    "shared_routes": [
+      "TCP Join",
+      "relay Join",
+      "server admission",
+      "directory Handshake"
+    ],
+    "rust_regression_executed": false,
+    "route_receipt_scope": "Only the version-producing Join/Handshake call sites and codec guards are checked; unrelated source bodies and concurrent changes are outside this result."
+  },
+  "native_admission": {
+    "cases": 3081,
+    "accepted": 1,
+    "rejected": 3080,
+    "protocol_fixtures": 39,
+    "version_fixtures": 79,
+    "native_instruction_count": 12902,
+    "protocol_bit_mutations": 32,
+    "version_bit_mutations": 56,
+    "scope": "Only the manifest-bound 58-byte comparison block; synthetic packet/string memory."
+  },
+  "limits": [
+    "Only exact protocol/version admission and shared source version wiring are checked.",
+    "No password/capacity/session, Hero or State schema revalidation.",
+    "Fixed Rust wire regression is inspected, not compiled or executed.",
+    "No discovery, application/client/server/network execution, build or original/rebuilt parity."
+  ],
+  "checkers": [
+    {
+      "path": "scripts/coop_handshake_check.py",
+      "sha256": "568bb5b73fb2e294a40387f5ef0591955e240083bd248563c3784f47f7abee6f"
+    },
+    {
+      "path": "scripts/check-coop-handshake-0.120.0.py",
+      "sha256": "339ae35fddbe7024a3d6668838d12ae57b3719348b467e09864a3ee5b0e017bb"
+    }
+  ]
+}

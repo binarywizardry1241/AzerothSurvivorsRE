@@ -1,0 +1,203 @@
+{
+  "date": "2026-10-16",
+  "target_sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+  "method": "Exact original PE function slices analyzed by REA/Ghidra, bounded original PE disassembly for typed insertion and metadata registration, and literal reads. Node offsets measured from matching Bevy0.18.1 compilation; stores manually checked after Node snapshot leads.",
+  "evidence_ids": {
+    "140174450": "ev_220480f660769dbef90f4eb5afc030cf98b56a100df88ff3aa58ab3d35cbaee7",
+    "1401c17a0": "ev_83514988cb0d069139829f682b78ea5c8b05fea3b36da328a3e271411c8e3e67",
+    "1401c2810": "ev_212332876fe48420bc511ecf6d408361b6b24392f95402716096607eaa1d800c",
+    "1401c2d50": "ev_103f9ad584c1f92360946cf96036978410492c578585e388e62be8e4e00f5e08",
+    "1401a57a0": "ev_32ba593d4fe05adb7b0f4c1b468cf8f35182735d3084bf642b34df62759ad057",
+    "140233050": "ev_5fc616d5f9d19e74214e164e064d49083be3bf50beabe730f674d623cbe3eed3",
+    "140342a00": "ev_bd33c4ae2597f1a1b06948d51aef3f3173e3805632a9514dbe7e423fc9a58781",
+    "1402acce0": "ev_80e89b31cf8c15c42dea1712a5d78217dc3d097964b82e320aca253acc670342",
+    "1401a5a50": "ev_0a72a58cc31e5d8271a09d7f2074df88099a677ed036de6d6dc530ff58757314",
+    "1402330d0": "ev_2eebeef6f711ad45b7f2ec8a9e7d94650672a036c432f86106fcaac091560dae",
+    "140342b70": "ev_de3b6ece2dbf03ee6da790fc0b9f670f24ddb57c27c42a17d1ff57a174517ebf",
+    "1402ad500": "ev_48a252761cd834ae66b30a1d2d98d2694a4eeffa6a0185ff7543be109606f6fa",
+    "14011eae0": "ev_3fc583c8553d8ea3173ad9dba22dc85f5a017b357ecc094b7591d082d2f5ffcd"
+  },
+  "summary_category_row": {
+    "builder": "0x1401c17a0",
+    "spawn": "0x1401a57a0",
+    "deferred_callback": "0x140233050",
+    "insert": "0x140342a00 -> 0x1402acce0",
+    "type_registration": "0x140302910",
+    "type_name_va": "0x1459029b9",
+    "type_name_length": 133,
+    "type_name": "(bevy_ecs::hierarchy::ChildOf, (wenilla_rogue_app::screens::achievements::Pick, bevy_ui::focus::Interaction, bevy_ui::ui_node::Node))",
+    "payload_offsets": {
+      "ChildOf": 0,
+      "Interaction": 8,
+      "Pick_u8_category": 9,
+      "Node": 16
+    },
+    "no_hover_or_background_component": true,
+    "wrapper_node": {
+      "padding": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "column_gap": 10,
+      "align_items": "Center"
+    },
+    "icon": {
+      "width": 32,
+      "height": 32,
+      "border": 1,
+      "radius": 4,
+      "border_srgba": [
+        0.427,
+        0.333,
+        0.145,
+        1
+      ]
+    },
+    "content": {
+      "flex_grow": 1,
+      "row_gap": 4,
+      "direction": "Column",
+      "name_count_row_justify": "SpaceBetween",
+      "name_font_size": 15,
+      "name_srgba": [
+        0.973,
+        0.824,
+        0.416,
+        1
+      ],
+      "count_font_size": 12,
+      "count_srgba": [
+        0.725,
+        0.663,
+        0.51,
+        1
+      ],
+      "count_template": "{have} / {all}  \u00b7  {pts} of {pall} points",
+      "bar_height": 12
+    },
+    "instruction_anchors": {
+      "pick_interaction": "0x1401c1a5d..0x1401c1a64",
+      "spawn": "0x1401c1bd1",
+      "child_icon": "0x1401c1c27..0x1401c1e88",
+      "name_size": "0x1401c2396",
+      "count_size": "0x1401c25a2",
+      "bar_height": "0x1401c2696"
+    }
+  },
+  "category_view": {
+    "builder": "0x140174450",
+    "header_builder": "0x1401c2810",
+    "header_node": {
+      "column_gap": 16,
+      "align_items": "Center"
+    },
+    "header_text": {
+      "template": "{have} of {all} earned  \u00b7  {pts} of {pall} points",
+      "font_size": 13,
+      "color_srgba": [
+        0.725,
+        0.663,
+        0.51,
+        1
+      ]
+    },
+    "header_bar": {
+      "flex_grow": 1,
+      "height": 8
+    },
+    "body_row": {
+      "column_gap": 4,
+      "flex_grow": 1,
+      "min_height": 0
+    },
+    "scroll_builder": "0x1401c2d50",
+    "scroll_tuple_type_va": "0x145902a3e",
+    "scroll_tuple_type": "(bevy_ecs::hierarchy::ChildOf, (wenilla_rogue_app::screens::achievements::AchList, bevy_ui::ui_node::Node, bevy_ui::ui_node::ScrollPosition))",
+    "scroll_node": {
+      "direction": "Column",
+      "flex_grow": 1,
+      "min_height": 0,
+      "overflow_x": "Visible",
+      "overflow_y": "Scroll",
+      "initial_scroll_position": [
+        0,
+        0
+      ]
+    },
+    "card_grid": {
+      "columns": 2,
+      "row_gap": 8,
+      "column_gap": 10,
+      "padding_right": 6
+    },
+    "bottom_fade": {
+      "position": "Absolute",
+      "left": 1,
+      "right": 1,
+      "bottom": 1,
+      "height": 34,
+      "bottom_corner_radius": 10,
+      "top_corner_radius": 0,
+      "linear_gradient_angle": "PI",
+      "automatic_stops_linear_rgba": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0.031,
+          0.024,
+          0.016,
+          0.95
+        ]
+      ],
+      "stops_source": "0x140174d47..0x140174e1c"
+    },
+    "scrollbar": {
+      "helper": "0x14011eae0",
+      "track_width": 8,
+      "track_radius": 4,
+      "track_background_srgba": [
+        0,
+        0,
+        0,
+        0.45
+      ],
+      "thumb_radius": 4,
+      "thumb_border_srgba": [
+        0.169,
+        0.129,
+        0.071,
+        1
+      ],
+      "thumb_background_srgba": [
+        0.69,
+        0.541,
+        0.227,
+        1
+      ],
+      "initial_thumb_width": "100%",
+      "initial_thumb_height": "100%"
+    }
+  },
+  "limitations": [
+    "Static recovery does not observe original or rebuilt runtime rendering.",
+    "Generic scrollbar update, drag and wheel handlers are outside these constructor scopes; do not infer their constraints from constructor defaults.",
+    "Source checkpoint21 applies recovered Summary click/constructor and category header/grid/fade; parent build21 and54focused harness cases passed. Rebuilt visual comparison not run. Generic scrollbar consumers remain unrecovered."
+  ],
+  "source_checkpoint": {
+    "build20": "PASS18bin+3config tests, including free-tabard gate fixture",
+    "build21": "PASS12.05s; all54focused harness cases PASS",
+    "no_new_ui_launch_or_capture": true
+  }
+}

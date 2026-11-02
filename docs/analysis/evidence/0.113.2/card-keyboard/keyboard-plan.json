@@ -1,0 +1,35 @@
+{
+  "target": "installed-game/AzerothSurvivors.exe",
+  "output": "runtime/q41-card-keyboard-replay/keyboard",
+  "init_timeout": 60,
+  "timeout": 240,
+  "environment": {
+    "REA_GHIDRA_SEED_FILE": "docs/analysis/evidence/0.113.2/card-keyboard/keyboard-seeds.tsv",
+    "REA_GHIDRA_DISABLED_ANALYZERS": "Stack,Decompiler Switch Analysis,Function ID,Function Start Search,Disassemble Entry Points,Subroutine References,Data Reference,Reference,Non-Returning Functions - Discovered,Shared Return Calls,Create Address Tables,Call Convention ID,Call-Fixup Installer,Variadic Function Signature Override",
+    "REA_GHIDRA_STARTUP_TIMEOUT_MS": "600000"
+  },
+  "operations": [
+    {
+      "name": "analyze_function",
+      "arguments": {
+        "procedure": "0x1400b3420"
+      },
+      "label": "keyboard-controller",
+      "timeout": 660
+    },
+    {
+      "name": "read_function_instructions",
+      "arguments": {
+        "procedure": "0x1400b3420"
+      },
+      "label": "keyboard-instructions"
+    },
+    {
+      "name": "procedure_references",
+      "arguments": {
+        "procedure": "0x1400b3420"
+      },
+      "label": "keyboard-references"
+    }
+  ]
+}

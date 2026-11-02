@@ -1,0 +1,102 @@
+{
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "generator": {
+    "path": "scripts/audit-native-dispatch.py",
+    "sha256": "8c545160fdfe556c2c08533f8e3923bdbedfae0d80317102b39e1f87f4e19c34"
+  },
+  "instruction_facts": {
+    "schema_version": 1,
+    "target_sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "contract_sha256": "fe00021e12c3b1bc7db88532612e4909140d4b87c40e4c02137b133570580d28",
+    "contract": {
+      "schema": 1,
+      "decoder": "Capstone",
+      "architecture": 3,
+      "mode": 8,
+      "detail": true,
+      "implementation": {
+        "python_binding_sha256": "6f8a27fe069aa89a46974e189b5365d56eb5e02c2fd581d2fbfad7fbba51549f",
+        "native_library_sha256": "016084c6e70d929249a2abb22f1afda95095294e6cd70f509964ffc54006bf94",
+        "python_version": "5.0.7",
+        "native_version": [
+          5,
+          0,
+          1280
+        ]
+      },
+      "helper_sha256": "c0cfa330db9028d5b9bb3bc96ed5b83230c2cfe140103ef0c5d890f70a790287"
+    },
+    "instruction_stream_sha256": "d1afdcb9e5f4ff2977e026a96829ca4745e8900cc079953cb2e9a6a986870fb1",
+    "instructions": 254125,
+    "scope": "requested-instruction-boundaries",
+    "current_source_bytes_verified": true,
+    "ownership_or_program_flow_cached": false
+  },
+  "generator_dependencies": [
+    {
+      "path": "scripts/instruction_facts.py",
+      "sha256": "c0cfa330db9028d5b9bb3bc96ed5b83230c2cfe140103ef0c5d890f70a790287"
+    }
+  ],
+  "source_census": {
+    "path": "docs/analysis/coverage/full-image-execheck-0.121.0.json",
+    "sha256": "76e27cb956a7a75142fbdc71bb3808fe1c7885c5f0f72f88fe5d846dc4b9c17f"
+  },
+  "computed_jump_operands": {
+    "register": 11334,
+    "fixed-or-rip-memory": 183,
+    "memory-with-base-field": 131,
+    "memory-with-index": 1
+  },
+  "register_producer_shapes": {
+    "add-produced-register": 8361,
+    "producer-mov": 43,
+    "memory-load-base-field": 2906,
+    "no-producer-in-contiguous-fallthrough-region": 13,
+    "memory-load-fixed-or-rip": 2,
+    "producer-lea": 9
+  },
+  "unowned_direct_flow_counts": {
+    "destinations": 5738,
+    "exact_instructions": 5738,
+    "interior_conflicts": 0,
+    "undecoded": 0
+  },
+  "unowned_direct_reference_kinds": {
+    "UNCONDITIONAL_JUMP": 1215,
+    "CONDITIONAL_JUMP": 6502
+  },
+  "incoming_source_body_ownership": {
+    "False": 7717
+  },
+  "limits": [
+    "Last-producer shapes in observed contiguous fallthrough regions are candidates, not complete aliases, type invariants, table bounds or runtime dispatch.",
+    "Encoded jumps into unowned code do not establish source function ownership; all incoming source owners and actual instruction boundaries are retained."
+  ],
+  "retained_full_derivative": {
+    "path": "runtime/coverage/22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150/pipeline/bedf416e7a9cae19/derived/dispatch-boundaries.json",
+    "sha256": "6938111451371c95aadde9b2bf7934467757b31a6e6e757199a5b6d3aba01f91"
+  },
+  "producer_records_inventory": {
+    "records": 11649,
+    "artifact": {
+      "path": "runtime/coverage/22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150/pipeline/bedf416e7a9cae19/derived/dispatch-boundaries.json",
+      "sha256": "6938111451371c95aadde9b2bf7934467757b31a6e6e757199a5b6d3aba01f91"
+    },
+    "selector": "producer_records"
+  },
+  "unowned_direct_destinations_inventory": {
+    "records": 5738,
+    "artifact": {
+      "path": "runtime/coverage/22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150/pipeline/bedf416e7a9cae19/derived/dispatch-boundaries.json",
+      "sha256": "6938111451371c95aadde9b2bf7934467757b31a6e6e757199a5b6d3aba01f91"
+    },
+    "selector": "unowned_direct_destinations"
+  },
+  "publication_scope": "Compact hash-bound census/producer counts; full per-site and destination populations remain in the retained shared runtime derivative for resumed recovery."
+}

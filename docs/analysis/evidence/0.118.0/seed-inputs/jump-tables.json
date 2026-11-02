@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.118.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae",
+    "size_bytes": 145356800
+  },
+  "census_summary": "docs/analysis/coverage/full-image-declared-0.118.0.json",
+  "census_summary_sha256": "f7a6dac3c0c8175318495e0567eaefbbba6a082ddab2fab6dd3aebc433f94c97",
+  "generator": {
+    "path": "scripts/recover-native-jump-tables.py",
+    "sha256": "e334caee6931e56e9aa4b81a40fbec0a1137223c30acd946fe3538bdf6074a46",
+    "capstone_version": "5.0.7"
+  },
+  "counts": {
+    "bounded-table-has-non-executable-target": 1064,
+    "guarded-fallthrough-has-empty-proved-domain": 2,
+    "guarded-relative-tables": 2573,
+    "not-register-jump": 147,
+    "not-relative-add": 1255,
+    "not-signed-table-load": 15,
+    "relative-table-without-proven-unsigned-bound": 1692,
+    "scalar-domain-has-unproved-or-conflicting-instruction-targets": 228,
+    "short-context": 146,
+    "table-base-not-static": 558
+  },
+  "linear_boundary_input": {
+    "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/seed-inputs/guarded-tables-linear-boundaries.json",
+    "sha256": "28a114e2f20aeaace7fe7c4e2f0ce4ee84f145be094d65849c6af05dd64f2334"
+  },
+  "pe_parser_helpers": [
+    {
+      "path": "scripts/inventory-current-target.py",
+      "sha256": "f2cf5be70267aa01865b7c34bef7eeb87898d67b5e36f0a91d20d37e3b1299c5"
+    },
+    {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+    }
+  ],
+  "native_semantics_or_all_computed_edges_complete": false,
+  "rejected_scalar_domain_tables": 228,
+  "selector_alias_helpers": {
+    "path": "scripts/native_scalar_aliases.py",
+    "sha256": "d262801367fbfd316920a73f051f744edc1cd5126913a591288c93c08abba335"
+  },
+  "alias_guard_tables": 144,
+  "case_entries": 52553,
+  "unique_target_addresses": 16782,
+  "edge_digest": "f6ed716c8e3c979a7b5121d6172a69bf8a12242d5458b8238ed227564341e6de",
+  "census_helpers": {
+    "path": "scripts/summarize-native-image.py",
+    "sha256": "dd5748de3b992dfd49bf0eca53dac1f8fabfb27102fda0c4815dc331c7f28e14"
+  },
+  "scalar_helpers": {
+    "path": "scripts/classify-native-ownership.py",
+    "sha256": "17e55ad17f776f62445cc162af1fd12f68d361f7a8435429e3ab906bb8bc7381"
+  },
+  "inventory": {
+    "path": "runtime/coverage/4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae/seed-inputs/guarded-tables.json",
+    "sha256": "d3bb373a85580492fbf2de23b15f7d5c35a96b3c4453e65cacb55dd8f46a266f"
+  },
+  "gap_ids": [
+    41
+  ],
+  "parity_verified": false,
+  "limits": [
+    "Only explicit unsigned selector guards or whole-domain boundary-validated potential scalar successors in the exact signed-relative table idiom are recovered. Missing enum/type invariants and other dispatch remain unknown.",
+    "Recovered successors describe the guarded fallthrough path; unknown incoming computed edges or wider caller invariants are not silently excluded.",
+    "Successors seed code and flow edges, never invented function boundaries. No application compilation or execution."
+  ]
+}

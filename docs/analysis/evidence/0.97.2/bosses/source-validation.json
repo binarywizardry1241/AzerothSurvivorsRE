@@ -1,0 +1,527 @@
+{
+  "date": "2026-10-18",
+  "target_version": "0.97.2",
+  "target_sha256": "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589",
+  "target_executed_as_application": false,
+  "source_compiled": false,
+  "rust_tests_run": false,
+  "checks": {
+    "target_identity": "passed",
+    "catalog_regeneration": "passed: 60 bosses / 191 abilities / 12 zones / 10 fixed points",
+    "unique_native_byte_spans": {
+      "status": "passed",
+      "count": 467
+    },
+    "retained_assembly_digests": {
+      "status": "passed",
+      "count": 34
+    },
+    "local_report_links": {
+      "status": "passed",
+      "count": 38
+    },
+    "native_cases": {
+      "spawning": {
+        "schedule": 228,
+        "point_filters": 6,
+        "farthest_comparisons": 6,
+        "point_draws": 12
+      },
+      "scaling": {
+        "creation_cases": 480
+      },
+      "ai": {
+        "enrage_cases": 10,
+        "timer_cases": 1910,
+        "damage_cases": 8,
+        "speed_cases": 8
+      },
+      "abilities": {
+        "lookups": 46,
+        "charge_duration": 6,
+        "charge_clip": 5,
+        "minion_indices": 60,
+        "area_range": 24,
+        "missile_draws": 12
+      },
+      "death": {
+        "death_cases": 300,
+        "completion_cases": 32,
+        "meter_cases": 6,
+        "attraction_pickup_rows": 7
+      }
+    },
+    "total_native_cases": 3166,
+    "native_oracle_generation": "Completed by recovery scripts, with unchanged instructions and documented external seams; no application launch",
+    "source_review": "Independent static review of catalog/placement, actor stage, deferred dispatch and ability interfaces; no compiler checks",
+    "rust_compilation": "intentionally not run",
+    "rust_tests": "authored; intentionally not run",
+    "original_rebuilt_launch": "not run",
+    "runtime_parity": "not established"
+  },
+  "rea": {
+    "provider": "Ghidra",
+    "launcher": "./scripts/rea via scripts/rea-batch.py",
+    "evidence_ids": [
+      "ev_0a70ae3d0e617b905d6c2f350f51bb5ae4b8e1aa24ec69f957a7857ecd6145e6",
+      "ev_1a300c46b0cd9a8293d1db1fd8f463545744dd706d342fb9346dd3af201644f2",
+      "ev_49653061f6b9aca0213cc621c11c1d1cfc5197eadb9cd5d63b56a1b2840ae473",
+      "ev_6ba2251b09c79873deb3f9348a6c19acb85427880b59bbb77c74fc878b07d86d",
+      "ev_7794ea172ab39e92b90dcb2245dfcf127b1bf644ca54d2531b6ce3f56879cc9d",
+      "ev_90c1541efd3a719e744b67b824ab03a4752ffed1d84692ffaf1394c701ac14bb",
+      "ev_97a8d513dd6cbe43a58e39198aff7b66330d041f64e7ff175b50473c1d12db52",
+      "ev_a392356bb025d910043f9cee7dfe826fe401cd8b8131c9779ece4e40d82c2ed4",
+      "ev_ba95562638ee7eaae2ea1dc88d80c5df86859a014473f69b678b229aacd357bd",
+      "ev_c5c9cc29e1e6e39c77e71ac55fc8abbce607fd9cb931b6b010eee7b8f4720299",
+      "ev_d74d3b1a18bff212539dba2083d62c29147b4ac6a1b9d0e0ff1c5b016bac17e5",
+      "ev_dbdc7f7c0aba7fbc289a5203a4cebbfe40e8a78c6d7aab83505d77ded62dbc24",
+      "ev_dc857bab9dbf7c909bfb14d05e9589edd9c795f88308d1c63db247eb8c5a058b",
+      "ev_e6f30ed60ac4cc6f9c3c6dea58abc8cc11d4f27c396aaed4d6801d2aba98d9df",
+      "ev_ea4194960d19031fb3a6d3910c92132b075e08f93cc510876cf0191af4062b77",
+      "ev_ef89212e2d7db801d1bdc1ca0015e8b0854ecd60c7a4bd4f7b49a35c35b856fc",
+      "ev_fa9606ae85366708cca4b058de46f312617366435b2a5cccaa6a0c32ed7039b2",
+      "ev_fec0ab5d5ba261d965364f92a8f153a10d9eeb80bde3e3d7c21caff632e529a5"
+    ],
+    "opened_sessions": "exported and closed",
+    "limits": "Function and branch slices have documented outside-code/data seams. Win64 instructions and selected PE constants govern; Ghidra output is not original source."
+  },
+  "incomplete": [
+    "Real world/terrain/path/entity/packet/player-damage/account adapters",
+    "Integration with the shared active-run frame, aura/proc and other effect queues",
+    "Windows CRT math equivalence, rendered behavior and original/rebuilt runtime parity",
+    "Rust compilation and test execution await explicit resumption"
+  ],
+  "delivery": "Local source/evidence commit; no push under active menu-parity restriction.",
+  "artifacts": [
+    {
+      "path": "crates/azeroth-survivors-re/Cargo.toml",
+      "bytes": 2383,
+      "sha256": "cc8683b20834281c0d88a80a7c46d153399259ff87028657cb17cc1024f2ac6e"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/bosses/abilities.rs",
+      "bytes": 14315,
+      "sha256": "612b0a13ee7ccd0fe3bf4950a1462fd0b9449caa0a1c34756697bc68b703c14c"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/bosses/ai.rs",
+      "bytes": 5943,
+      "sha256": "441c803f2659bd7869423aa5e61344cadcb50b3e13e50eabb219b47602974b7f"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/bosses/catalog.rs",
+      "bytes": 1418,
+      "sha256": "c7a0ed978f3c1af2e746c9023e4d6f3c38214cfdcd3842750e68d0409150ddf3"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/bosses/death.rs",
+      "bytes": 10136,
+      "sha256": "5e230ac7d1e427fd038074698756a4f58a9848beb2d979707183dbc73fe0d7b2"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/bosses/mod.rs",
+      "bytes": 598,
+      "sha256": "55cdcd84b59d1f649670ef618dcdfc6f64a9318d2d5c0e0c83bc9f0e6f67a626"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/bosses/placement.rs",
+      "bytes": 3197,
+      "sha256": "cc9d5f160fd6da6bab98d86baa2777f470775f36f8328d2b0623d01af8f0fb4c"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/bosses/scaling.rs",
+      "bytes": 3307,
+      "sha256": "24e269475bb6a040add1892360c728147a26f01b221e237d194dd04fa6b443f5"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/bosses/spawning.rs",
+      "bytes": 2821,
+      "sha256": "f1f5ff65bba0ce9804e0af70ba3a05fe8a7f3e6c678d18bc389fc04ad12094c6"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/enemies/ai.rs",
+      "bytes": 16603,
+      "sha256": "2272102c303958b517d9c149babb2fb2cfac914d3aa9912d1aeff1f1e49f8595"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/enemies/spawning.rs",
+      "bytes": 16746,
+      "sha256": "8686eacab5a92ce30ba85411bb331890e778fd9d58679e010bc1e3fa5783f82f"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/guardians/catalog.rs",
+      "bytes": 165534,
+      "sha256": "e8ebd6414213d0f5bfb6ff9a30113363dca2f8568c4b592c530ecf3599e4d3ae"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/lib.rs",
+      "bytes": 361,
+      "sha256": "630e9d51a18e2838a442bcfe44782f395aa1f5df98ed12007b910d4f8b6a81c5"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/tests/boss_abilities.rs",
+      "bytes": 7785,
+      "sha256": "811ccbc31d7b4bd5b093a2bf71f61dde478529046aba1f1735ce9d68cedf9653"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/tests/boss_ai.rs",
+      "bytes": 7430,
+      "sha256": "1994c331009d2f221dd7df31faf2f0e0ebe637de0178d30f7ba7f34a0e028f44"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/tests/boss_catalog.rs",
+      "bytes": 2589,
+      "sha256": "081b6af8566d6a47eeee6563b1b45423866d21aee795e818c545eaa96cab61c4"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/tests/boss_death.rs",
+      "bytes": 8408,
+      "sha256": "52f9b306537fd04d6d7691d2d7c05fc44c5e1bb6cef5a3614eae01da8a8f9ba3"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/tests/boss_scaling.rs",
+      "bytes": 3148,
+      "sha256": "ad15068f86f77e6d67c0f6d2fd6dc77ef77651d808684122194acd89cbd018e5"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/tests/boss_spawning.rs",
+      "bytes": 3153,
+      "sha256": "2426125f71c5a4a8e3da3cc16d95abf02604f802c677c03920e0cb0f0ad963f6"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/tests/fixtures/boss-ai-native.json",
+      "bytes": 425312,
+      "sha256": "3e1d7ea556c24240a1fe6cb2c14699fd8bf22b5e55efa9a41acc460a8928f572"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/tests/fixtures/boss-death-native.json",
+      "bytes": 398355,
+      "sha256": "083060286a0d3a85c4ff4be82bc9edcb7ba26faf066424d520d6920acf93cd79"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/tests/fixtures/boss-scaling-native.json",
+      "bytes": 785474,
+      "sha256": "20e4a9d2e2313edc60e72d645e66ba48b51b17dca7d1ac75b12416905d9cfae9"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/tests/fixtures/boss-spawning-native.json",
+      "bytes": 99403,
+      "sha256": "b21a7b4978720555704c6c150aedea393b82cbb5741ffdd8366a12c759cdca19"
+    },
+    {
+      "path": "docs/analysis/boss-abilities-0.97.2.md",
+      "bytes": 12588,
+      "sha256": "0676a102afdb13d9a4d1b92393d8805c4d97a3d38f658fb3de29be488cce06a3"
+    },
+    {
+      "path": "docs/analysis/boss-catalog-0.97.2.md",
+      "bytes": 13466,
+      "sha256": "e6e7343e952310b2ead57e341aa721213cd2910633972fdffb6a5844291d4943"
+    },
+    {
+      "path": "docs/analysis/boss-death-0.97.2.md",
+      "bytes": 8148,
+      "sha256": "ce1612632832d079ceb591d3ed325d2dd1f41c94def7e41a0d59bb95111f7726"
+    },
+    {
+      "path": "docs/analysis/boss-scaling-0.97.2.md",
+      "bytes": 4676,
+      "sha256": "89883e17603425f9d7f1ceda5603cb78f9b2b75a81393eafc9b2ec3a88c327a4"
+    },
+    {
+      "path": "docs/analysis/boss-spawning-0.97.2.md",
+      "bytes": 8250,
+      "sha256": "545d40c1d3b30b37589d2e43269315d3a27b225f57af7a33b245adc9931d23c8"
+    },
+    {
+      "path": "docs/analysis/bosses-0.97.2.md",
+      "bytes": 7774,
+      "sha256": "5ef91715672a27cb6c22c18d2bd85cf99344e5f3993148ab9cfb499f9f787dec"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/abilities-14544b1a0.asm",
+      "bytes": 13007,
+      "sha256": "27f91dbcc1242f4d85f8536ebabb171c88fba34bfd35d3f6c7745d8960b967e7"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/abilities-1454eeaa0.asm",
+      "bytes": 19358,
+      "sha256": "6370467a5a489236016fcbccc4980c697616921bde62da11294ea4328ca62aa1"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/abilities-1454f0710.asm",
+      "bytes": 3522,
+      "sha256": "8fda4b102dc36e3f8145f9eda805ab0732b51607923f5ac79298ebaab9142242"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/abilities-1454f08d0.asm",
+      "bytes": 3922,
+      "sha256": "1f282c506fa6fac0f6885375d2e6037bfece2ae93b698639a54c127ce4d67418"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/abilities-dispatch.asm",
+      "bytes": 34898,
+      "sha256": "d986f210e46799c1c87e00e9b5718f54445de4e32482caa21874d273948f625e"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/abilities-effect-resolution.asm",
+      "bytes": 9554,
+      "sha256": "40590878399d2369eb5eda95f4696a918185fec7be9699b0be72f21f415e4b6a"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/abilities-fixtures.json",
+      "bytes": 18163,
+      "sha256": "613090da468c76eaf884fad5e459e6f01ad4bca4ade04b328a018cfa7ec6afbf"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/abilities-manifest.json",
+      "bytes": 111806,
+      "sha256": "ed12afe35e43415b3f50559d6c56a84862e1db89f2f970c4310c584fd103f003"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/abilities-rea.json",
+      "bytes": 107786,
+      "sha256": "d4eee32f3f5294ff9e8429a68739804543cfe03ee50271acb9580d49f52bdc58"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/ai-native.json",
+      "bytes": 34291,
+      "sha256": "b714734f1e40a114c7569eadea220bf93862faf2b118f621991430ec2eb8f2c7"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/boss-ai-timers.asm",
+      "bytes": 3213,
+      "sha256": "63afcfaa264ac084f6230080fe864d8ed4ecc5e4e1b8f85062096f39a5d6d98a"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/boss-common-movement-modifier.asm",
+      "bytes": 810,
+      "sha256": "5cc2e0811aad995ddcf12df9dc95212eb5aebb25a95e0b0a30981b0551290ca3"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/boss-dispatch-lookup-and-damage.asm",
+      "bytes": 2978,
+      "sha256": "6532980cfaf9893d207e2f2975ebbd52215903e475ee651c7d519740929c835a"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/catalog.json",
+      "bytes": 232503,
+      "sha256": "cda3ba598fee6723007ba03c17fe62e6f8727ea17b6f3510875f68305fd8c783"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/death-boss-meter-empty.asm",
+      "bytes": 1260,
+      "sha256": "a0d1e6ea089b6b1e8684cb1516bd68f549982873926085627ae91d06be3eae0c"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/death-boss-meter-start.asm",
+      "bytes": 1196,
+      "sha256": "23bf87f5b2135cd0ddbbdbfdd3106b44e247a5bafda176c76833b28b502ad36b"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/death-boss-meter-time-live.asm",
+      "bytes": 1431,
+      "sha256": "00d7648119c484f521d7c233da65b94bac565da9c704ed54298416e6b58bd928"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/death-completion-packet.asm",
+      "bytes": 2355,
+      "sha256": "67a6ec59b00298aa07fece5983980107745038a8ce474fd7885e6a39d6b173ec"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/death-completion-statistics.asm",
+      "bytes": 9938,
+      "sha256": "f14336f7245b09d7b103c73b57661ed11d374e62fec8037c18384c4f6834aca1"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/death-completion-stop-live-actors.asm",
+      "bytes": 3296,
+      "sha256": "b3b12b592fed1153578ccf52b91447da6d1f78737a42be9da29397f809565cab"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/death-deferred-completion.asm",
+      "bytes": 2289,
+      "sha256": "ff72b38cf00bb09795f673fd77a5582b4278fdf8f3c24f26bd87250ae7e96a8f"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/death-experience-attraction.asm",
+      "bytes": 2721,
+      "sha256": "b6a3e1dff2129859b810907a59eee97fd1ec356576859cdecf888542043ed974"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/death-native.json",
+      "bytes": 34959,
+      "sha256": "ccd6b877dafa0848540caf60f557c11e174565ba50c47d8d86cd44f136d407b5"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/death-primary-boss-announcement-account.asm",
+      "bytes": 3528,
+      "sha256": "a570000f4a3324a12760abc1b23b0058ee71b29a407d67d1693490e98103bf04"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/death-primary-boss-counter-meter.asm",
+      "bytes": 490,
+      "sha256": "d41b36bef7995cda4c19ff876f0c909949eba8556998b303e8bfb2989a616197"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/death-primary-boss-equipment-admission.asm",
+      "bytes": 1180,
+      "sha256": "ce240ff2f81849ef312787eb7a80407c0660bf4c20e120025653414a7f28d8cd"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/death-primary-boss-equipment-roll.asm",
+      "bytes": 3148,
+      "sha256": "0aa97f8f5943348a35377174f45ba6753575749c2d9dbbce4bf9fdf858f044b9"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/death-primary-boss-final-phase.asm",
+      "bytes": 618,
+      "sha256": "9154f7cc6d917297378998e67f9190e366237adff932a906ff647f2ffcc28cac"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/death-primary-boss-pickups.asm",
+      "bytes": 1906,
+      "sha256": "286721dd891a4a3209cb8dd90e7745b4750ee5f20e3da20733c8c882092dc7e2"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/death-primary-boss-survivor-scan.asm",
+      "bytes": 845,
+      "sha256": "08acc4ed592bdedcc5e147463a7fbf5cbd2a24278c38300fdf0771d864e9cb50"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/scaling-damage-and-actor.asm",
+      "bytes": 3632,
+      "sha256": "e81d9f2f7657fe5d4ec4c377d163362231e807b2c6010f2501d856eb7d002fd3"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/scaling-health-and-entity.asm",
+      "bytes": 2262,
+      "sha256": "7b334816baacd4ea404b7225ce100e759e9082577aeff73d2bfd79f792dadb1d"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/scaling-initial-ability-timers.asm",
+      "bytes": 6962,
+      "sha256": "5b4dbca0050344b91eeeccf86f0c95610dbb33a24088e3c603460f6b0dc28fbf"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/scaling-native.json",
+      "bytes": 13610,
+      "sha256": "89531b01ecf396ce54c7e6949319d3f8d019a2fc2b7fb1d9f289d8408ba68a6f"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/spawning-boss-ring-fallback.asm",
+      "bytes": 683,
+      "sha256": "b08b413373d25d6ca30f5ce7607d5c0da036492f1fd4b2c2fd0f7124218d70c6"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/spawning-constructor-endless-deadline.asm",
+      "bytes": 232,
+      "sha256": "ab312c0a423a14c9c1d4d97e983990461fa934b016071202ca8cb9968b4f3104"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/spawning-constructor-index-zero.asm",
+      "bytes": 171,
+      "sha256": "9bb17679487e6958fc7d4b0f250ba5ec75040f24e355a17836c9edb2a1696d6c"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/spawning-fixed-point-admission.asm",
+      "bytes": 3911,
+      "sha256": "8573ba0c582f3bba6421cb8191cbf5fe71dc63e2913ab224e3cef86b66619f37"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/spawning-fixed-point-farthest.asm",
+      "bytes": 1709,
+      "sha256": "db04fc89f27f431a7a2f8b376171467acc2eefc52c16678f557174de85335973"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/spawning-fixed-point-uniform.asm",
+      "bytes": 1083,
+      "sha256": "68e18c1d20c959259c1efbe5cb02f7ac82fec5fce8fb35dc17af9f118eb6127c"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/spawning-manifest.json",
+      "bytes": 28852,
+      "sha256": "cb6ce995c93f32d5d68c2aba47b77d32687d216e10ae3f194cf296919d0f0547"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/spawning-point-filter-native.json",
+      "bytes": 468382,
+      "sha256": "abe7a5d93ca698abfcd5c0d7f88ed73a0ea6f3b08840787835a70d6cd71c6cd0"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/spawning-point-filter.ghidra.c",
+      "bytes": 1895,
+      "sha256": "707f44efdbfa3b0c9dd3f8983905a8ecec25864b413bad65a44ee46ac58b66da"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/spawning-primary-schedule.asm",
+      "bytes": 2229,
+      "sha256": "e7cb836a37a519bca0d6c04121f5db962c8d9f2fcead1fb2374979712d84c56b"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/spawning-schedule-outer-suppression.asm",
+      "bytes": 359,
+      "sha256": "25b9d4169e8388dfaf0fa108df437c9d80508fc2119420731fc90dfc17093f53"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/spawning-startup-all-bosses.asm",
+      "bytes": 1059,
+      "sha256": "94f5823d95d3dc59bdf905e9e7a375a25c348a425b25b140076c48e1322ca4e9"
+    },
+    {
+      "path": "docs/analysis/evidence/0.97.2/bosses/spawning-startup-gate.asm",
+      "bytes": 1141,
+      "sha256": "422d2c875cb89694db8af442d57c8ac08d0194d1cb6bb725b8a0e0c001e8b235"
+    },
+    {
+      "path": "scripts/recover-boss-abilities-fixtures.py",
+      "bytes": 6473,
+      "sha256": "b4824f3dcbff487d7504f59d9aaf31ba0c7d31271b918a4d7f8844fe0bdf3f3c"
+    },
+    {
+      "path": "scripts/recover-boss-abilities.py",
+      "bytes": 5145,
+      "sha256": "31cbe15fdc2897a2e8a79f549a9bf9176f0a7e54c985e0b14bd0af9c29dbd700"
+    },
+    {
+      "path": "scripts/recover-boss-ai.py",
+      "bytes": 8317,
+      "sha256": "9de021db7458f56afe92c639d94da457cbc13f2ecdef164ba6a96cf428cc9426"
+    },
+    {
+      "path": "scripts/recover-boss-catalog.py",
+      "bytes": 6709,
+      "sha256": "d9cd14c6b127dc64c346ad9896d38f232fdda7dfe4c439ba7e9391b35077be27"
+    },
+    {
+      "path": "scripts/recover-boss-death-evidence.py",
+      "bytes": 4991,
+      "sha256": "c417c2659f53e5924c6626a8ff27ab0564c9bc34528ecc3d35e0b0405f186540"
+    },
+    {
+      "path": "scripts/recover-boss-death-fixtures.py",
+      "bytes": 10996,
+      "sha256": "6216ea5c5511df10955faf8466faf1c2e96ab120f923e8979a88430d67f20c0f"
+    },
+    {
+      "path": "scripts/recover-boss-scaling-evidence.py",
+      "bytes": 3300,
+      "sha256": "b67211b9e725b633f9dae93feb25ed9a3651541908b99f344872a266309f8dd0"
+    },
+    {
+      "path": "scripts/recover-boss-scaling-fixtures.py",
+      "bytes": 6648,
+      "sha256": "f54afc91eb124ebef74631550e14cda9691b244b6c114f6f57c9f9b17a27380d"
+    },
+    {
+      "path": "scripts/recover-boss-spawning.py",
+      "bytes": 12057,
+      "sha256": "b0877e14d0e11dc343e223e0930af1e87ee8f8dddb440b1afb10fdead63216fa"
+    },
+    {
+      "path": "scripts/verify-boss-evidence.py",
+      "bytes": 6717,
+      "sha256": "e0eebcdeb8f7dd5c1b96c8015cfdd41876a6b8f0a1fd4c828fbe7718464986bd"
+    }
+  ]
+}

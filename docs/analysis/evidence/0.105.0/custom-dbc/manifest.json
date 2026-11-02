@@ -1,0 +1,78 @@
+{
+  "target": {
+    "version": "0.105.0",
+    "path": "AzerothSurvivors/AzerothSurvivors-0.105.0.exe",
+    "sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
+  },
+  "ranges": [
+    {
+      "role": "string-reader",
+      "virtual_address": "0x145873b10",
+      "file_offset": "0x5872f10",
+      "byte_count": 218,
+      "sha256": "52f948a433108ebca68facab59ecfff29bf47ee428900ad3cac1957ea63f7852",
+      "assembly": "string-reader.asm",
+      "assembly_sha256": "481f14a6bfb26cbeaa7c4d323ea2adb21ecd8ce025702ff5887d4ce08a1b744c",
+      "pseudocode": "string-reader.ghidra.c",
+      "pseudocode_sha256": "d4f4c4dd95f9fa820393f7d35b91fabfbd094e680d51bd24e74bbd0e45f7cf54",
+      "rea_evidence_id": "ev_8370486b5a3a779d59199c976054bed5dce480c37fe3b7898a8d6dcc1c54fa3b"
+    },
+    {
+      "role": "id-string-map",
+      "virtual_address": "0x1458b9140",
+      "file_offset": "0x58b8540",
+      "byte_count": 215,
+      "sha256": "a0e46e128bd907258ba625450ef52f17db1210224547b67b0f571d71d1c7cb4a",
+      "assembly": "id-string-map.asm",
+      "assembly_sha256": "54791c3455e0661dae05ede46fae1c0080800567829fc73ca343b2ebef8919b8",
+      "pseudocode": "id-string-map.ghidra.c",
+      "pseudocode_sha256": "378da018f57b136605138019f2c7f0300b5b5b980f493a3f899d8fcb8a1609ee",
+      "rea_evidence_id": "ev_a5a1896f8e2cea88b5f579a14c6aeb07e0d4a52c9cba92ed244712cd3c674fcd"
+    },
+    {
+      "role": "selected-name-map",
+      "virtual_address": "0x1459ad750",
+      "file_offset": "0x59acb50",
+      "byte_count": 481,
+      "sha256": "0a37a2a7f86c3a8a7219f079a822be0a82ec75ec6cbb6d05590c053ce32da997",
+      "assembly": "selected-name-map.asm",
+      "assembly_sha256": "10bde949a8b8529079846327a6430317ea19d0752f4934ae547b91f16cb49c23",
+      "pseudocode": "selected-name-map.ghidra.c",
+      "pseudocode_sha256": "3d424ad2d9e7790b8bc143f7634195387f25abe3c9e9303f5e9ff882c13f5c7e",
+      "rea_evidence_id": "ev_56e406f5b37e0ee28f67fb1d8e89057823830279838ef5f646b942eedda89638"
+    },
+    {
+      "role": "spell-metadata-map",
+      "virtual_address": "0x1459b2e30",
+      "file_offset": "0x59b2230",
+      "byte_count": 1149,
+      "sha256": "063489ca1fc3196d833773214b425399909b805709fcf8a52409c85087f6952c",
+      "assembly": "spell-metadata-map.asm",
+      "assembly_sha256": "2bd243620a7d42536d0d3dee3cc5a75c4ef6dcde4cd7ebeee6734fad3b0b2ad3",
+      "pseudocode": "spell-metadata-map.ghidra.c",
+      "pseudocode_sha256": "7a500440ce5839405117311881dbda1720302621a691cca18703bb17bc7d5c21",
+      "rea_evidence_id": "ev_544ba30984662325e5459312bc98587c7a142f5fb0c316a20f5da87273b3e24f"
+    },
+    {
+      "role": "utf8-validator",
+      "virtual_address": "0x145ba4cf0",
+      "file_offset": "0x5ba40f0",
+      "byte_count": 521,
+      "sha256": "fb88503c33f5d75a97b58440251177e3a5c44ef13ff5258629a871d8dad1856c",
+      "assembly": "utf8-validator.asm",
+      "assembly_sha256": "47f850b7377f602a7773540954b147af3157f5740d4827138c28804116393217"
+    },
+    {
+      "role": "utf8-width-table",
+      "virtual_address": "0x1471ec7f5",
+      "file_offset": "0x71eb9f5",
+      "byte_count": 256,
+      "sha256": "02b189407fa32e9604226dec547e4849ffaa560a3bf60c7e2cf4d48db5aa2f90",
+      "hex": "01010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000202020202020202020202020202020202020202020202020202020202020303030303030303030303030303030304040404040000000000000000000000"
+    }
+  ],
+  "limits": [
+    "Raw-function Ghidra imports use a generic GCC ABI and omit external code/data; original PE instructions govern arguments, constants and call sites.",
+    "Diagnostic-linked bodies are bounded owners, not a complete enumeration of inlined/custom DBC readers or their callers."
+  ]
+}

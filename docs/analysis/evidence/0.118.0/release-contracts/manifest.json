@@ -1,0 +1,645 @@
+{
+  "schema": "as-release-contract-review-v1",
+  "target": {
+    "version": "0.118.0",
+    "sha256": "4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae",
+    "size_bytes": 145356800
+  },
+  "target_executed": false,
+  "native_spans": [
+    {
+      "role": "guest-end-settlement",
+      "start": "0x145b1c26f",
+      "end_exclusive": "0x145b1c370",
+      "file_offset": "0x5b1b66f",
+      "byte_count": 257,
+      "sha256": "e9a042e108def23be25cb82efa4109777b4b9efb61a7faf3320a15ef8d636159",
+      "instruction_count": 52
+    },
+    {
+      "role": "guest-summary-started-admission",
+      "start": "0x145b0f76c",
+      "end_exclusive": "0x145b0f7b5",
+      "file_offset": "0x5b0eb6c",
+      "byte_count": 73,
+      "sha256": "3b0a4776fc13381ec60c7b02fb3613ebc31d67678707a24f35c53bb626ebd038",
+      "instruction_count": 15
+    },
+    {
+      "role": "guest-snapshot-source",
+      "start": "0x145b14d0d",
+      "end_exclusive": "0x145b14d77",
+      "file_offset": "0x5b1410d",
+      "byte_count": 106,
+      "sha256": "91bc24b2f186e873d8d45e5796ce90ed9a82213a5d43d4bbd01fafc4ab7ba637",
+      "instruction_count": 17
+    },
+    {
+      "role": "guest-finalize-save-xp",
+      "start": "0x145b0fb87",
+      "end_exclusive": "0x145b0fc43",
+      "file_offset": "0x5b0ef87",
+      "byte_count": 188,
+      "sha256": "96f97f3283d411741d2792fc38f4afe8e3e04ea6b57dc307e9d92f1454b2ba60",
+      "instruction_count": 39
+    },
+    {
+      "role": "cooperative-history-admission",
+      "start": "0x145b1576e",
+      "end_exclusive": "0x145b15791",
+      "file_offset": "0x5b14b6e",
+      "byte_count": 35,
+      "sha256": "ae2f7ab9479e6f2f79040a8153ac27236bc84fe41225eb1a2dd36b9c90b210bd",
+      "instruction_count": 5
+    },
+    {
+      "role": "party-any-dispatch",
+      "start": "0x145b336ba",
+      "end_exclusive": "0x145b336eb",
+      "file_offset": "0x5b32aba",
+      "byte_count": 49,
+      "sha256": "3b540af3edea53749ed3252c40aa0c6f0a57895b5844808d469a79e29b9b7d36",
+      "instruction_count": 12
+    },
+    {
+      "role": "party-run-boss-members-a",
+      "start": "0x145b42f60",
+      "end_exclusive": "0x145b42fa6",
+      "file_offset": "0x5b42360",
+      "byte_count": 70,
+      "sha256": "3de9928d63bbf5f804c16411d02a9bd6df26e39af8036d641d44a50b9196bb9c",
+      "instruction_count": 20
+    },
+    {
+      "role": "party-run-boss-members-b",
+      "start": "0x145b433f0",
+      "end_exclusive": "0x145b43428",
+      "file_offset": "0x5b427f0",
+      "byte_count": 56,
+      "sha256": "81b3e19be2919f85a473618c45e78ca7a0a70acdeb53d3d2c7ef723c83f44220",
+      "instruction_count": 15
+    },
+    {
+      "role": "party-run-victory-members",
+      "start": "0x145b43571",
+      "end_exclusive": "0x145b43595",
+      "file_offset": "0x5b42971",
+      "byte_count": 36,
+      "sha256": "9c7a4009e2e42d1fd3e9c175b6e429b22ce7120389866a6860d32a0616b2483e",
+      "instruction_count": 9
+    },
+    {
+      "role": "revive-snapshot-flags",
+      "start": "0x145b7e5dd",
+      "end_exclusive": "0x145b7e642",
+      "file_offset": "0x5b7d9dd",
+      "byte_count": 101,
+      "sha256": "b676b1d2d7e360c9401a85a3fa4a53be9b7dbe88a000db1d2d992fd621d4623d",
+      "instruction_count": 22
+    },
+    {
+      "role": "revive-nearby-helper-collection",
+      "start": "0x145c33508",
+      "end_exclusive": "0x145c33541",
+      "file_offset": "0x5c32908",
+      "byte_count": 57,
+      "sha256": "01edd9220ac440f77cc457f49b9fefdc3bf852820bd73e812d0ef5499a565495",
+      "instruction_count": 16
+    },
+    {
+      "role": "revive-three-way-timer",
+      "start": "0x145b7e937",
+      "end_exclusive": "0x145b7ea0b",
+      "file_offset": "0x5b7dd37",
+      "byte_count": 212,
+      "sha256": "f472d3850093789a5fe7eea42d7d6fb5450d58fcf10818d53fabff265cbea339",
+      "instruction_count": 38
+    },
+    {
+      "role": "revive-hold-path",
+      "start": "0x145b7ebd1",
+      "end_exclusive": "0x145b7ebf2",
+      "file_offset": "0x5b7dfd1",
+      "byte_count": 33,
+      "sha256": "039310cf41dded5c064ebf962a131c0167cd6d2bdbce40ca9d230e48f6255996",
+      "instruction_count": 4
+    },
+    {
+      "role": "guest-close-wrapper",
+      "start": "0x145b189a9",
+      "end_exclusive": "0x145b189ef",
+      "file_offset": "0x5b17da9",
+      "byte_count": 70,
+      "sha256": "96cbeb28dd5d61482d628818127799390c74437a74819475bb2a974213566c2a",
+      "instruction_count": 15
+    },
+    {
+      "role": "party-close-wrapper",
+      "start": "0x145b18ae6",
+      "end_exclusive": "0x145b18b2c",
+      "file_offset": "0x5b17ee6",
+      "byte_count": 70,
+      "sha256": "d5b0c6dda62811550fa4a425b12d1553b2fd70fe5d0e43439530077a891276cf",
+      "instruction_count": 14
+    },
+    {
+      "role": "hakkar-descriptor-lookup",
+      "start": "0x145b3e61d",
+      "end_exclusive": "0x145b3e6b3",
+      "file_offset": "0x5b3da1d",
+      "byte_count": 150,
+      "sha256": "17472a6c6b9e88082e24e2586939421ad409d4564f3bcae66c727cd2d6c3a826",
+      "instruction_count": 26
+    }
+  ],
+  "assembly": {
+    "path": "docs/analysis/evidence/0.118.0/release-contracts/selected-native.asm",
+    "sha256": "c639abd3aa7ddeabab4180bcc0bd5c13be380ba4a3b7ab35e2897cf6a956e0dc"
+  },
+  "data": [
+    {
+      "role": "party-composition-switch",
+      "start": "0x1475e2550",
+      "file_offset": "0x75e0f50",
+      "byte_count": 16,
+      "sha256": "bb83daa3eb5c31aa8b7468e0f17856478d8d0f4b9086170226bf85eec02024eb",
+      "bytes_hex": "8f1155fead1255fe9b1155fecf1155fe",
+      "relative_targets": [
+        "0x145b336df",
+        "0x145b337fd",
+        "0x145b336eb",
+        "0x145b3371f"
+      ]
+    },
+    {
+      "role": "guest-receive-switch",
+      "start": "0x1472ddbfc",
+      "file_offset": "0x72dc5fc",
+      "byte_count": 72,
+      "sha256": "37f8255e62fdd3ceb48ace4e1d23b88a83e5f07bc6ff25f8154a5c3c5f15009e",
+      "bytes_hex": "30e683fe7aec83fea8f683fe73e983fea8f683fec4f083fea8f683fe61f183fe7aeb83feebec83fe94ed83fe90f283fee9f183fe74e783fe51ec83fe55e883fe73e683fe53ef83fe",
+      "relative_targets": [
+        "0x145b1c22c",
+        "0x145b1c876",
+        "0x145b1d2a4",
+        "0x145b1c56f",
+        "0x145b1d2a4",
+        "0x145b1ccc0",
+        "0x145b1d2a4",
+        "0x145b1cd5d",
+        "0x145b1c776",
+        "0x145b1c8e7",
+        "0x145b1c990",
+        "0x145b1ce8c",
+        "0x145b1cde5",
+        "0x145b1c370",
+        "0x145b1c84d",
+        "0x145b1c451",
+        "0x145b1c26f",
+        "0x145b1cb4f"
+      ]
+    },
+    {
+      "role": "hakkar-description",
+      "start": "0x1475d81f1",
+      "file_offset": "0x75d6bf1",
+      "byte_count": 101,
+      "sha256": "4751824d8e0057c72e2cfb8867930512d3a3fab5464d068c5371cb9a5299f9dc",
+      "bytes_hex": "4465666561742048616b6b6172207769746820352057617272696f72732c20616c6c2074616c656e74656420696e746f20426c61646573746f726d2e20576869726c77696e64206d7573742064656c6976657220746865206b696c6c696e6720626c6f772e",
+      "text": "Defeat Hakkar with 5 Warriors, all talented into Bladestorm. Whirlwind must deliver the killing blow."
+    }
+  ],
+  "functions": [
+    {
+      "role": "recipient-snapshot",
+      "start": "0x145b16870",
+      "end_exclusive": "0x145b16aec",
+      "file_offset": "0x5b15c70",
+      "byte_count": 636,
+      "sha256": "a1adac1cbc3d382ef0fc9406f3cd6c23efdd4ffb072f743cf76b49f0818bd304"
+    },
+    {
+      "role": "account-delivery",
+      "start": "0x145b154e0",
+      "end_exclusive": "0x145b15a17",
+      "file_offset": "0x5b148e0",
+      "byte_count": 1335,
+      "sha256": "16e7bc4874d826f414ed21a8855ada922ed5560210ff6826172ba5889e1fd424"
+    },
+    {
+      "role": "context",
+      "start": "0x145b84ed0",
+      "end_exclusive": "0x145b85065",
+      "file_offset": "0x5b842d0",
+      "byte_count": 405,
+      "sha256": "efa719f076219a03594378af95ccc02797391fddabd635f02797ee9cb36f0698"
+    },
+    {
+      "role": "party-composition",
+      "start": "0x145b336b0",
+      "end_exclusive": "0x145b339c2",
+      "file_offset": "0x5b32ab0",
+      "byte_count": 786,
+      "sha256": "0e126499988dd8a75d4501c85b422cb7518f45fb38c7abcb1beeef91b2fcb723"
+    },
+    {
+      "role": "run-grant",
+      "start": "0x145b42b40",
+      "end_exclusive": "0x145b43606",
+      "file_offset": "0x5b41f40",
+      "byte_count": 2758,
+      "sha256": "e26e7e8711bcb701ecddf656fbe00e90df0ecad822f2c9decabd115fdfcb4bab"
+    },
+    {
+      "role": "party-update",
+      "start": "0x145b7cfc0",
+      "end_exclusive": "0x145b814b5",
+      "file_offset": "0x5b7c3c0",
+      "byte_count": 17653,
+      "sha256": "ac3550f309f45f32662802b7c61683618ee339656f3c9a0bc502e511183a0c3d"
+    },
+    {
+      "role": "revive-helpers",
+      "start": "0x145c334a0",
+      "end_exclusive": "0x145c33666",
+      "file_offset": "0x5c328a0",
+      "byte_count": 454,
+      "sha256": "ff414d9002bfee8f67b967de324ed3409ce8e24824614da61cd63a9fb0f680fe"
+    },
+    {
+      "role": "guest-receive",
+      "start": "0x145b1c1b0",
+      "end_exclusive": "0x145b1d534",
+      "file_offset": "0x5b1b5b0",
+      "byte_count": 4996,
+      "sha256": "90d1a045dfb00a15d7b223fd9d50b15ef776c38c21798d66c7fb7d1d48f6cc23"
+    },
+    {
+      "role": "guest-finalize",
+      "start": "0x145b0f720",
+      "end_exclusive": "0x145b10aad",
+      "file_offset": "0x5b0eb20",
+      "byte_count": 5005,
+      "sha256": "f426aac019079c4a477b3a95757ea04ad546b32da95fee697824494b7e277221"
+    },
+    {
+      "role": "guest-teardown",
+      "start": "0x145b1a580",
+      "end_exclusive": "0x145b1a790",
+      "file_offset": "0x5b19980",
+      "byte_count": 528,
+      "sha256": "f5096b3b71af8fe9bf933fa95fbfda60021617c5d775002b0fdecb9cfc013cb5"
+    },
+    {
+      "role": "cooperative-grants",
+      "start": "0x145b43670",
+      "end_exclusive": "0x145b43c38",
+      "file_offset": "0x5b42a70",
+      "byte_count": 1480,
+      "sha256": "376eb09c49fb6caae6f9cc0b42029a5200a1094a2546febcc9d0017c4070a334"
+    },
+    {
+      "role": "achievement-constructor",
+      "start": "0x145b396b0",
+      "end_exclusive": "0x145b3fa81",
+      "file_offset": "0x5b38ab0",
+      "byte_count": 25553,
+      "sha256": "6660042146111a19857dab7cfa1ef0b7e15f0a87c20b7fd5acf5f8d367c8abe0"
+    },
+    {
+      "role": "exit-wrapper-a",
+      "start": "0x145b18980",
+      "end_exclusive": "0x145b18a83",
+      "file_offset": "0x5b17d80",
+      "byte_count": 259,
+      "sha256": "51e207b54c143416fce9d86b5ed02106fe31c39a279870f313273db515c7ade7"
+    },
+    {
+      "role": "exit-wrapper-b",
+      "start": "0x145b18ac0",
+      "end_exclusive": "0x145b18dba",
+      "file_offset": "0x5b17ec0",
+      "byte_count": 762,
+      "sha256": "159f1ada7920e8a450eea27ba730fe911fd8436c10968fda90e62a401960591e"
+    },
+    {
+      "role": "current-run-snapshot",
+      "start": "0x145b14cd0",
+      "end_exclusive": "0x145b1517d",
+      "file_offset": "0x5b140d0",
+      "byte_count": 1197,
+      "sha256": "c84f96198547c6d0abc7f842b309d2e0d2e8d3475c0fffaa1eae4f168b681893"
+    }
+  ],
+  "queries": [
+    {
+      "role": "account-delivery",
+      "plan": "runtime/execheck-0.118.0-contracts/account-delivery-plan.json",
+      "plan_sha256": "e1353bd60999cca1e2aa6c7019e61ea96b8cd57d931400ad413980e7e9f3c1c8",
+      "input": "runtime/execheck-0.118.0-contracts/account-delivery.bin",
+      "input_sha256": "16e7bc4874d826f414ed21a8855ada922ed5560210ff6826172ba5889e1fd424",
+      "journal": "runtime/execheck-0.118.0-contracts/account-delivery-query/journal.json",
+      "journal_sha256": "77cc420a9219f2b41ad99cd244eca6b2f797827184498dd854ce82361ecf2584",
+      "result": "runtime/execheck-0.118.0-contracts/account-delivery-query/results/d5d79e88af1867f26dd0a0b140c8f05d4783699364ad4f8e0ac4300413d00cc8.json",
+      "result_sha256": "01f9bc525454de0ec1bfa7bff32a00e27dca351958dae02cb7a920e4db67e532",
+      "evidence_id": "ev_a69ba188d5f4b213d741582b06243e0b2a7584e915732f1b4abffe4225453124",
+      "profile_digest": "b21d8ef2f0b75226f238b2422e096a410991f41f477fd0fef4ba7df578d6d7dd",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "normalized_sha256": "8036ffc40e5430627a999246e5de0bb42d76aee370de28ffde2008812b110087"
+    },
+    {
+      "role": "achievement-constructor",
+      "plan": "runtime/execheck-0.118.0-contracts/achievement-constructor-plan.json",
+      "plan_sha256": "e44a71993568b2bb40967b3a6aa577ec6b467537f38c0e0aa7b06e42ae3788b6",
+      "input": "runtime/execheck-0.118.0-contracts/achievement-constructor.bin",
+      "input_sha256": "6660042146111a19857dab7cfa1ef0b7e15f0a87c20b7fd5acf5f8d367c8abe0",
+      "journal": "runtime/execheck-0.118.0-contracts/achievement-constructor-query/journal.json",
+      "journal_sha256": "c034e5b28815023fd8bbbf27c0f791e0eef8eae071321cd429a7d28b0c30f2c6",
+      "result": "runtime/execheck-0.118.0-contracts/achievement-constructor-query/results/e1a43bf9144dd65add5a407a3368f681e53584802c30233e9102f1162c5a1c20.json",
+      "result_sha256": "453510ccba5b2275cdfc5aa9d21d31e63fcb8cfb53f86669af7137792778eb9c",
+      "evidence_id": "ev_174ca4647bd9a9fd6971b52a5aaf7c09fc2a73c3cae056c9c0ff03daffe14483",
+      "profile_digest": "62176b9320ea9a37ccbd86c5065b375d563d8b4803524a04372f7553a645d0ab",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "normalized_sha256": "11c9eba6e0a9a109cecd179d19205b88887f094a9cb098d6b2031ecf75b8c2a3"
+    },
+    {
+      "role": "exit-wrapper-a",
+      "plan": "runtime/execheck-0.118.0-contracts/exit-wrapper-a-plan.json",
+      "plan_sha256": "01402e565568f023a9093d2939737471f9299d622f5823d5e41b449bca3726dc",
+      "input": "runtime/execheck-0.118.0-contracts/exit-wrapper-a.bin",
+      "input_sha256": "51e207b54c143416fce9d86b5ed02106fe31c39a279870f313273db515c7ade7",
+      "journal": "runtime/execheck-0.118.0-contracts/exit-wrapper-a-query/journal.json",
+      "journal_sha256": "880bda50983c76fa9120adc522c1975af1d117e961258e5a58802ab5393e144c",
+      "result": "runtime/execheck-0.118.0-contracts/exit-wrapper-a-query/results/86ff76dfebd3c44e16e398b259738c498da6b33b3130f891762f12db1a822289.json",
+      "result_sha256": "c69a0d382dfcd074e8da83f31184c54ed01f1891932f38c047b458f6f92167f4",
+      "evidence_id": "ev_a086dc9ee11adc2fdd54b4931840c24bd85516692a1966e0ae6d8d93495df334",
+      "profile_digest": "e9bdeb597817236746b9fb6b86bc492043e16e241c63eb9577808a6050fb2f80",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "normalized_sha256": "d1e650599d9a2c635a1cfbc0f491238425a05e2b026a1ae6a9b571011bfdf9ac"
+    },
+    {
+      "role": "guest-finalize",
+      "plan": "runtime/execheck-0.118.0-contracts/guest-finalize-plan.json",
+      "plan_sha256": "7efed3f4f6a137b0cd23775b692e537d63061ec91a1383ac908735df92f528bc",
+      "input": "runtime/execheck-0.118.0-contracts/guest-finalize.bin",
+      "input_sha256": "f426aac019079c4a477b3a95757ea04ad546b32da95fee697824494b7e277221",
+      "journal": "runtime/execheck-0.118.0-contracts/guest-finalize-query/journal.json",
+      "journal_sha256": "d33ed695c50de38fcd60f65adec800d244c0c9c7e034c8149278466f2e630304",
+      "result": "runtime/execheck-0.118.0-contracts/guest-finalize-query/results/dded4ab6b5e4f759b0b3af956ccbdd49e32e00dd8dd1356d52026a160a0aeb25.json",
+      "result_sha256": "760a51a876f5e975c27497f70f408c94cef7fa666474b4cd3d392fece03dd8a8",
+      "evidence_id": "ev_75d517bbe7d08adfe1b1fe989b88ba27d3a0b6fa572849eb87cbf40b36f96012",
+      "profile_digest": "bb21bd4a99e18b75cea62a23919784726181e5f3c2bcd928691d5a90665fadac",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "normalized_sha256": "c59504aab50f18e74be39475f437b624630e9dfee452844e356241bb0890007e"
+    },
+    {
+      "role": "guest-receive",
+      "plan": "runtime/execheck-0.118.0-contracts/guest-receive-plan.json",
+      "plan_sha256": "93f314289f931d387e1e6f9106b4238495d6f62b60986f3fde56b3737afa34b6",
+      "input": "runtime/execheck-0.118.0-contracts/guest-receive.bin",
+      "input_sha256": "90d1a045dfb00a15d7b223fd9d50b15ef776c38c21798d66c7fb7d1d48f6cc23",
+      "journal": "runtime/execheck-0.118.0-contracts/guest-receive-query/journal.json",
+      "journal_sha256": "4c9141c02cd4b2b57f840f4c4d8c0cd55c2e787efa7ec23ea9fe1e87d7724f57",
+      "result": "runtime/execheck-0.118.0-contracts/guest-receive-query/results/3a68e4adac9a6261f3f162de5c541bc95bde0151ad005a219a5be28eb7acc4a1.json",
+      "result_sha256": "300a9cdf5d63c14ab1c1f3494cd6d058210cd11adefc5b9f6868082286bdba2c",
+      "evidence_id": "ev_f6a1275ee5df6e2b5a62ac9c2e79cca141ceb99dfe8f5b96e9564150581b908d",
+      "profile_digest": "1a06f8edc46427ec12995ef255549dea85a879f7dc07e58c61c1f3e033f47b49",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "normalized_sha256": "4b2ee17c5ef1214751b56950e89ae9506c63d20b95821398636e3ead3b60c6f4"
+    },
+    {
+      "role": "party-composition",
+      "plan": "runtime/execheck-0.118.0-contracts/party-composition-plan.json",
+      "plan_sha256": "8629b5c524a823ebeb812e053594c17c840b76394a16e9d609e469ec392bcd10",
+      "input": "runtime/execheck-0.118.0-contracts/party-composition.bin",
+      "input_sha256": "0e126499988dd8a75d4501c85b422cb7518f45fb38c7abcb1beeef91b2fcb723",
+      "journal": "runtime/execheck-0.118.0-contracts/party-composition-query/journal.json",
+      "journal_sha256": "ae1b54b5cbf5cd661ed334d6864ee89b4b13df47c0bfe64e9329cd4c216d882f",
+      "result": "runtime/execheck-0.118.0-contracts/party-composition-query/results/56006a19be019a1ea0462a4a8aae510683cd920faaeb7821f2dff9c88d2c1763.json",
+      "result_sha256": "342037f72694d0442148f231749ab92a038324951f52b54d47601c937e4fe4d9",
+      "evidence_id": "ev_b1126380f31c0b7a803d19c03c8a85c4a5dca1f22263d2870e1e82c7c0287ce3",
+      "profile_digest": "e45077c1ce865a20a71d70c37a7bf01e37058957806d07f2671165b2567aa31d",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "normalized_sha256": "4b22c3c33f8d0006a031c8bb081a838ce099d78fab8a32ba195cb44c22ee4e3b"
+    },
+    {
+      "role": "party-update",
+      "plan": "runtime/execheck-0.118.0-contracts/party-update-plan.json",
+      "plan_sha256": "4dd15daa576ec5dcfd172e4fa183671b97bd60967d233d7861720717ccafef99",
+      "input": "runtime/execheck-0.118.0-contracts/party-update.bin",
+      "input_sha256": "ac3550f309f45f32662802b7c61683618ee339656f3c9a0bc502e511183a0c3d",
+      "journal": "runtime/execheck-0.118.0-contracts/party-update-query/journal.json",
+      "journal_sha256": "5fa54939eca84e77c5f5b68c313742c10877dd562cf4e401d78ba8be4bd2efa7",
+      "result": "runtime/execheck-0.118.0-contracts/party-update-query/results/507f9bac5dd92478cb64debc19fe9002edfdc75a25aac0118da16dcd2a199151.json",
+      "result_sha256": "1962ab68fc72685c7c5d22a6185b333a2abe0e6c3a796246109f999996e1cfd4",
+      "evidence_id": "ev_2263069f59964c427813560f5b8489f39e9b3810ddb9fa5ca9031afc1617a286",
+      "profile_digest": "cc24322045c45d6f6c35d89a04ec690eb195315cbda5c12d6e5b5b6005a8aa52",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "normalized_sha256": "c21f3109d35696bed51888396abce855398fc4c61e2cc5de970aba4ca5e695f9"
+    },
+    {
+      "role": "recipient-snapshot",
+      "plan": "runtime/execheck-0.118.0-contracts/recipient-snapshot-plan.json",
+      "plan_sha256": "74571e3295260db4632be96dcc05f0f2a70d0bc9ce0725036c15a6a5cdf47633",
+      "input": "runtime/execheck-0.118.0-contracts/recipient-snapshot.bin",
+      "input_sha256": "a1adac1cbc3d382ef0fc9406f3cd6c23efdd4ffb072f743cf76b49f0818bd304",
+      "journal": "runtime/execheck-0.118.0-contracts/recipient-snapshot-query/journal.json",
+      "journal_sha256": "6c423c76fbcdf77a31d4f8e1a533972440c78303fdc520a21838c17bd26a345b",
+      "result": "runtime/execheck-0.118.0-contracts/recipient-snapshot-query/results/1b67bb2c02019ac807856e98237f5b7e3b7ad4834cd351fe5f3b3f4aa0544907.json",
+      "result_sha256": "1d5349562455d06c679fe3bfb80e574b57a4f8b483c23034bb08079788868e7e",
+      "evidence_id": "ev_4b4338d77c01f6fbff7b04abb9b6f1a27993f119e393229d24601c36718cc1ee",
+      "profile_digest": "108205129422a351f37313ed4ba91c79d887171b14d61c3a4bb9f1da0b3e0a57",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "normalized_sha256": "b309a809f1d74f9a7161e02d49aa865413b2f9006b77d6acdc0bc691e996e046"
+    },
+    {
+      "role": "revive-helpers",
+      "plan": "runtime/execheck-0.118.0-contracts/revive-helpers-plan.json",
+      "plan_sha256": "555e23c1cf153aca43c17e3aeb8ccce2127e3798e4ef7d3e9ac7ed10d49225ba",
+      "input": "runtime/execheck-0.118.0-contracts/revive-helpers.bin",
+      "input_sha256": "ff414d9002bfee8f67b967de324ed3409ce8e24824614da61cd63a9fb0f680fe",
+      "journal": "runtime/execheck-0.118.0-contracts/revive-helpers-query/journal.json",
+      "journal_sha256": "58635f6edde210d41cf0af143d32d2cac6adbce8dc4b7b3d290f23c368b34bc2",
+      "result": "runtime/execheck-0.118.0-contracts/revive-helpers-query/results/a03e97fc8b2def5e6d14a9a018e5f97a3a125ebf00b652434e19dc1cdad87207.json",
+      "result_sha256": "89b38a7cfceef7af1af0c8ec2c4a8ff30bf66ecfc97f401d04118e671bb93e1b",
+      "evidence_id": "ev_090b5f2ae0c9e385dd0a149944e06624177cc10d4df29a3d120cb12bc955bafb",
+      "profile_digest": "08507ebcaac2c3bb90324f9716769d61536cb131b89722b51459413f2540f845",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "normalized_sha256": "7c4a112ab23a3c0001ea0ac4d65552f250b070730410b8f7f14b36b9742641d8"
+    }
+  ],
+  "source_receipts": [
+    {
+      "path": "crates/azeroth-survivors-re/src/coop/game_party.rs",
+      "sha256": "92e838a4941f76b539edecf26383eed8ea2909aeb57047fbdc3d1ce153a3ced6"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+      "sha256": "0ddcc62c352b2f03d137af581c5ece61eabc6c1c2a4b67e6092fe57ffbb72271"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+      "sha256": "af96d4163cc9c3e0f656331a6329137bb6c1591c7101d3009720165a74669cc1"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
+      "sha256": "3ecc881df19515afd3593e49e691d8b942feee94dc89f59497d1fdb35b9f2016"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/account_progression.rs",
+      "sha256": "93b2738305fda1a7febaf26fbf9c9ca46a7c02bf10ffa87e4cfee86a934d9cc5"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/assets/coop-achievements-0.117.0.json",
+      "sha256": "c0a7733caaf44637e50806b0f8117b1ade588be83e39b5b9976787c4e9eb10bf"
+    }
+  ],
+  "current_location_anchors": [
+    {
+      "system_id": "custom-game-achievements",
+      "diagnostic_path": "crates/wenilla-rogue/src/achievements.rs",
+      "reference": {
+        "kind": "rust_location",
+        "instruction_address": "0x145b3f594",
+        "target_address": "0x1475d9da0",
+        "runtime_function_start": "0x145b396b0",
+        "runtime_function_end": "0x145b3fa81",
+        "source_line": 398,
+        "source_column": 5,
+        "path_address": "0x1475d86b0",
+        "instruction_bytes": "4c8d0505a8a901",
+        "instruction": "lea r8, [rip + 0x1a9a805]",
+        "owner_file_offset": "0x5b38ab0",
+        "owner_byte_count": 25553,
+        "owner_sha256": "6660042146111a19857dab7cfa1ef0b7e15f0a87c20b7fd5acf5f8d367c8abe0"
+      }
+    },
+    {
+      "system_id": "custom-game-achievements",
+      "diagnostic_path": "crates/wenilla-rogue/src/achievements.rs",
+      "reference": {
+        "kind": "rust_location",
+        "instruction_address": "0x145b3f5f3",
+        "target_address": "0x1475d9da0",
+        "runtime_function_start": "0x145b396b0",
+        "runtime_function_end": "0x145b3fa81",
+        "source_line": 398,
+        "source_column": 5,
+        "path_address": "0x1475d86b0",
+        "instruction_bytes": "4c8d05a6a7a901",
+        "instruction": "lea r8, [rip + 0x1a9a7a6]",
+        "owner_file_offset": "0x5b38ab0",
+        "owner_byte_count": 25553,
+        "owner_sha256": "6660042146111a19857dab7cfa1ef0b7e15f0a87c20b7fd5acf5f8d367c8abe0"
+      }
+    },
+    {
+      "system_id": "custom-game-game-party",
+      "diagnostic_path": "crates/wenilla-rogue/src/game/party.rs",
+      "reference": {
+        "kind": "rust_location",
+        "instruction_address": "0x145b7f2ed",
+        "target_address": "0x1475e34b8",
+        "runtime_function_start": "0x145b7cfc0",
+        "runtime_function_end": "0x145b814b5",
+        "source_line": 344,
+        "source_column": 32,
+        "path_address": "0x1475e3490",
+        "instruction_bytes": "4c8d0dc441a601",
+        "instruction": "lea r9, [rip + 0x1a641c4]",
+        "owner_file_offset": "0x5b7c3c0",
+        "owner_byte_count": 17653,
+        "owner_sha256": "ac3550f309f45f32662802b7c61683618ee339656f3c9a0bc502e511183a0c3d"
+      }
+    },
+    {
+      "system_id": "custom-game-game-party",
+      "diagnostic_path": "crates/wenilla-rogue/src/game/party.rs",
+      "reference": {
+        "kind": "rust_location",
+        "instruction_address": "0x145b81415",
+        "target_address": "0x1475e34d0",
+        "runtime_function_start": "0x145b7cfc0",
+        "runtime_function_end": "0x145b814b5",
+        "source_line": 353,
+        "source_column": 20,
+        "path_address": "0x1475e3490",
+        "instruction_bytes": "4c8d05b420a601",
+        "instruction": "lea r8, [rip + 0x1a620b4]",
+        "owner_file_offset": "0x5b7c3c0",
+        "owner_byte_count": 17653,
+        "owner_sha256": "ac3550f309f45f32662802b7c61683618ee339656f3c9a0bc502e511183a0c3d"
+      }
+    },
+    {
+      "system_id": "custom-game-game-party",
+      "diagnostic_path": "crates/wenilla-rogue/src/game/party.rs",
+      "reference": {
+        "kind": "rust_location",
+        "instruction_address": "0x145b81431",
+        "target_address": "0x1475e3578",
+        "runtime_function_start": "0x145b7cfc0",
+        "runtime_function_end": "0x145b814b5",
+        "source_line": 707,
+        "source_column": 48,
+        "path_address": "0x1475e3490",
+        "instruction_bytes": "4c8d054021a601",
+        "instruction": "lea r8, [rip + 0x1a62140]",
+        "owner_file_offset": "0x5b7c3c0",
+        "owner_byte_count": 17653,
+        "owner_sha256": "ac3550f309f45f32662802b7c61683618ee339656f3c9a0bc502e511183a0c3d"
+      }
+    }
+  ],
+  "bounded_contract_system_ids": [
+    "custom-game-achievements",
+    "custom-game-game-party"
+  ],
+  "limitations": [
+    "Exact instruction bytes/static flow reviewed; raw Ghidra imports omit PE external data/callees and may not resolve jump tables or ABI/types.",
+    "Helpers without their own current Location stay helper associations; no Save/Game/app module ownership inferred.",
+    "Source discrepancies are reported; no gameplay repair, compilation, tests that compile, client/game/server/network execution or original/rebuilt comparison."
+  ],
+  "direct_callers": {
+    "path": "runtime/execheck-0.118.0-contracts/finalization-callers.json",
+    "sha256": "2ead3d40d8af3a600686b6030be61ddac5a6692f677afae474625d14b517f36b",
+    "target_sha256": "4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae",
+    "scope": "Exact E8 call matches independently verified at decoded boundaries in their current declared extents; indirect calls and undeclared code remain unknown."
+  }
+}

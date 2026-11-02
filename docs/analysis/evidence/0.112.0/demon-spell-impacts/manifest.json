@@ -1,0 +1,30 @@
+{
+  "version": "0.112.0",
+  "target_sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+  "owners": [
+    {
+      "role": "pending-doomguard-followups",
+      "native_parent": "0x1458fb890",
+      "start": "0x145900a09",
+      "end_exclusive": "0x1459013e6",
+      "file_offset": "0x58ffe09",
+      "sha256": "0b805f69b0f25cea51f154a5f6d17fc5e6b7cf0b54b4e58a8cb9ee77eea6644c",
+      "assembly": "pending-native.asm"
+    }
+  ],
+  "text_sha256": {
+    "pending-native.asm": "228bbb56163495932dde817be635a84f9dcfac4c841577d88336d8d11f2bf3ae"
+  },
+  "raw_effects_owner": "../warlock-talents/definitions.json",
+  "seams": [
+    "Actor damage records calls, optionally marks the primary dead; it does not replay the full damage pipeline.",
+    "Modifier cloning returns the supplied exact current raw Nightfall/Conflagrate rows.",
+    "Periodic installation and aura publication record native inputs; they do not execute the native installer.",
+    "Position interpolation supplies a fixed post-callback position, and radius query returns two ordered neighbors.",
+    "Allocator/destructor and Windows floor helpers are substituted."
+  ],
+  "limitations": [
+    "Selected GameTick range and called-helper seams establish only these pending admission/payload contracts.",
+    "No compiling Rust tests, game process, original/rebuilt comparison or parity certification."
+  ]
+}

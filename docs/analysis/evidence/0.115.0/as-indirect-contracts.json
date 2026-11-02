@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.115.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+    "size_bytes": 142111232
+  },
+  "generator": {
+    "path": "scripts/classify-as-indirect-contracts.py",
+    "sha256": "12989f1315aaad4c07d55b2dae869477244e389325f5433f82545b91866daf6a"
+  },
+  "dependencies": [
+    {
+      "path": "scripts/coverage_common.py",
+      "sha256": "8e076cd7c55c918ff626e5e4c7df2e2efb0a8861ed3f39844b53ccd3d4c391ce"
+    },
+    {
+      "path": "scripts/script_sources.py",
+      "sha256": "6b0d00b50784cca57d122d4abc4f0ee34a23d226d409ff3180e668b6df78f74d"
+    },
+    {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+    },
+    {
+      "path": "scripts/classify-native-ownership.py",
+      "sha256": "17e55ad17f776f62445cc162af1fd12f68d361f7a8435429e3ab906bb8bc7381"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "docs/analysis/evidence/0.115.0/execheck-residuals.json",
+      "sha256": "548582b6a4ff0b0dd19e4f44ae4eed2d5453cd531d5ec40d4689c78097dce1ec"
+    },
+    {
+      "path": "docs/analysis/evidence/0.115.0/independent-indirects.json",
+      "sha256": "32ee045ee8a6c419040616ab2ab8ea35bea85e474278c741c4ad3d30a0086c68"
+    },
+    {
+      "path": "docs/analysis/evidence/0.115.0/native-residuals.json",
+      "sha256": "912caeef5ae48f4cb592389fdcb3f7e8ffd55997f89e1c7f223ea733abd7f1f8"
+    },
+    {
+      "path": "runtime/execheck-2026-10-25/expanded-residuals/complement-indirect-sites.tsv.gz",
+      "sha256": "4609f971379efc53603de98879f0bd376a34237fe962f124ae8a5a1bde481385"
+    },
+    {
+      "path": "runtime/execheck-2026-10-25/expanded-residuals/declared-indirect-sites.tsv.gz",
+      "sha256": "f2dbcfae11d15cc0815cfe9f181a2511e0555568be75f1fe7d87f0867d13ce92"
+    },
+    {
+      "path": "runtime/execheck-2026-10-25/expanded-residuals/diagnostic-sites.jsonl.gz",
+      "sha256": "6f4c7f22299abd6e2f8085103e6b6e2722b719a6776a2d79aa9c69ed58cd819f"
+    },
+    {
+      "path": "runtime/q41-ownership-0.115.0/independent-indirects-final/independent-indirect-operands.jsonl.gz",
+      "sha256": "8f275b0d5df3acb5f3a0e7391ce61090654623415e6b838c1501b972c2c39bda"
+    },
+    {
+      "path": "runtime/q41-ownership-0.115.0/residuals-v2/complement-indirect-sites.tsv.gz",
+      "sha256": "9ec7564c75de9b94eaa292e9fb0f10d9ce0465572eeb08dbf2bff404281ee8f7"
+    },
+    {
+      "path": "runtime/q41-ownership-0.115.0/residuals-v2/declared-indirect-sites.tsv.gz",
+      "sha256": "9a139128656518f0c463d4ac114ddb52db812536746860a884742a9d3fb82ee3"
+    },
+    {
+      "path": "runtime/q41-ownership-0.115.0/residuals-v2/diagnostic-sites.jsonl.gz",
+      "sha256": "7b4d74e1187c3d0e0adb7c7d583e422556f513833501fce1662966a71a81442b"
+    }
+  ],
+  "profiles": {
+    "canonical-declared": {
+      "selected_context_sites": 91,
+      "complete_indirect_sites": 83284
+    },
+    "expanded-all-seeds": {
+      "selected_context_sites": 117,
+      "complete_indirect_sites": 83284
+    }
+  },
+  "counts": {
+    "independent_sites": 83284,
+    "contextual_sites": 117,
+    "classifications": {
+      "callback-receiver-state-required": 30,
+      "declared-loader-interface": 6,
+      "relative-table-expression": 81
+    }
+  },
+  "contextual_sites": [
+    "0x1400579ef",
+    "0x1400763ce",
+    "0x14007d1a4",
+    "0x14007d77f",
+    "0x14007deef",
+    "0x14007e198",
+    "0x14007e1bb",
+    "0x14007e42b",
+    "0x140087028",
+    "0x1400871db",
+    "0x1400a34d7",
+    "0x1400ab763",
+    "0x140132e38",
+    "0x1401420b8",
+    "0x140167764",
+    "0x14024625e",
+    "0x140301ad7",
+    "0x140303552",
+    "0x140303b6a",
+    "0x140303c12",
+    "0x140306e02",
+    "0x14030fe3b",
+    "0x140312bc7",
+    "0x140318623",
+    "0x14031bbd4",
+    "0x14031c539",
+    "0x1403305a3",
+    "0x14582d463",
+    "0x14582f07c",
+    "0x1458413f9",
+    "0x14584297a",
+    "0x14584a301",
+    "0x14585645a",
+    "0x14587305a",
+    "0x145873b7e",
+    "0x145873bb8",
+    "0x1458747b7",
+    "0x1458758a2",
+    "0x145875941",
+    "0x145875af8",
+    "0x145875c27",
+    "0x145875c50",
+    "0x145875c7c",
+    "0x145875f5d",
+    "0x145875f9f",
+    "0x145875fdc",
+    "0x145876008",
+    "0x1458762af",
+    "0x145876349",
+    "0x1458784ab",
+    "0x1458797b8",
+    "0x14587982f",
+    "0x145879c64",
+    "0x145879cdc",
+    "0x145879f4a",
+    "0x145879ff0",
+    "0x14587a056",
+    "0x14587a13b",
+    "0x14587a1ca",
+    "0x14587a346",
+    "0x14587a546",
+    "0x14587a5ab",
+    "0x14587c90c",
+    "0x14587cb92",
+    "0x14587cdec",
+    "0x14587d765",
+    "0x14587d846",
+    "0x14587d9f4",
+    "0x145883c52",
+    "0x145883e5f",
+    "0x1458841c6",
+    "0x145884b7b",
+    "0x145884d16",
+    "0x145887305",
+    "0x145887a56",
+    "0x145889bcf",
+    "0x1458906a9",
+    "0x145894df6",
+    "0x1458953c1",
+    "0x14589581a",
+    "0x145895a13",
+    "0x145895a4a",
+    "0x1458acf26",
+    "0x1458ad180",
+    "0x1458c428b",
+    "0x1458cf113",
+    "0x1458cfe36",
+    "0x1458d0b59",
+    "0x1458e204c",
+    "0x1458ee65d",
+    "0x1459232ed",
+    "0x14592449a",
+    "0x145924b4b",
+    "0x145924d8d",
+    "0x1459262e8",
+    "0x145926914",
+    "0x14592c46e",
+    "0x14592c596",
+    "0x1459484c6",
+    "0x1459485e1",
+    "0x14594e301",
+    "0x145950d62",
+    "0x145956f58",
+    "0x14595e21d",
+    "0x1459600d5",
+    "0x145970c58",
+    "0x145974282",
+    "0x145974306",
+    "0x14597c785",
+    "0x1459df713",
+    "0x1459df953",
+    "0x1459dfb93",
+    "0x1459e13b8",
+    "0x1459e15ac",
+    "0x1459e179e",
+    "0x1459e705f",
+    "0x1459e7222"
+  ],
+  "classification_only": true,
+  "source_defect_established": false,
+  "incoming_state_complete": false,
+  "source_semantics_complete": false,
+  "parity_verified": false,
+  "gap_ids": [
+    41
+  ],
+  "lead_ids": [
+    "Q41-F01",
+    "Q41-F02"
+  ],
+  "limitations": [
+    "Exact diagnostic body joins are context, not AS ownership or a missing implementation.",
+    "Relative-table expressions do not recover base/index admission, table bounds, dynamic aliases or runtime callees.",
+    "Callbacks require actual receiver/writer identity at the existing engine interface; generic engine reconstruction is outside this scope.",
+    "No compilation, game/network execution or original/rebuilt parity comparison."
+  ],
+  "artifact": {
+    "path": "runtime/q41-indirect-contracts-0.115.0/contextual-indirects.jsonl.gz",
+    "sha256": "4d57c384516af009925b89dbc8390bbfcc29a678cf6843190c63ccd5d10c2d2c",
+    "rows": 117
+  }
+}

@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "target_sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+  "lead": "Q41-C01",
+  "classification_id": "Q41-C01-upgrade-constructor-14596b868",
+  "selected_site": "0x14596b868",
+  "queue_input": {
+    "path": "docs/analysis/evidence/0.113.2/unknown-recovery.json",
+    "sha256": "d4148a7bcd2feb746bdd36dd5c88dfbe804b5f608edeafe16792841405ac342b"
+  },
+  "selector_inputs": {
+    "diagnostic-ownership.json": {
+      "path": "runtime/coverage/58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb/diagnostic-ownership.json",
+      "sha256": "0c8766b1daa9f615053bdbc05f4d01c27e719d461a8e02fbeb2a666b48e3f190",
+      "bytes": 12801050
+    },
+    "bodies.tsv.gz": {
+      "path": "runtime/execheck-0.113.2/ghidra-comprehensive/bodies.tsv.gz",
+      "sha256": "dc808e3e10d4443dabce229e9d0724060d87bcd7547eb1cb47334e70038b8362",
+      "bytes": 4221082
+    }
+  },
+  "selector_output_sha256": "4cc990b09011c4545a16293886f935509a6fb9735e225ac5aaa0c2524fc61aad",
+  "selected_row": [
+    "crates/wenilla-rogue/src/game/upgrades.rs",
+    "custom-game-game-upgrades",
+    "0x14596b868",
+    "0x14730e150",
+    "0x145969bf0",
+    "0x14596b889",
+    "4c8d05e1289a01",
+    null
+  ],
+  "declared_extent": {
+    "address": "0x145969bf0",
+    "end_exclusive": "0x14596b889",
+    "byte_count": 7321,
+    "sha256": "edd4930b5c4997434e81ea197169734100aea72b2ad506c6de27b19696e4e2f8"
+  },
+  "source_location": {
+    "path": "crates\\wenilla-rogue\\src\\game\\upgrades.rs",
+    "line": 348,
+    "column": 47
+  },
+  "shared_diagnostic": {
+    "path": "docs/analysis/evidence/0.113.2/q41-c01/contract.json",
+    "sha256": "23987829fe6bf7e0a4bd2d0eb49bca6b8ae35d1144ed845914cd51ab5aab7e80",
+    "role": "bounds-diagnostic"
+  },
+  "dispatch": {
+    "site": "0x145969c9f",
+    "table": "0x14730ed74",
+    "targets": [
+      "0x145969ca1",
+      "0x14596a412",
+      "0x14596a251",
+      "0x14596a2ed",
+      "0x14596a1f5"
+    ],
+    "admitted_selector": 1,
+    "normalization": "Nonnegative header -> 1; negative header XOR 0x8000000000000000",
+    "limit": "Only selector 1 is followed; no universal enum-domain or dynamic-alias proof"
+  },
+  "ranges": [
+    {
+      "role": "candidate-bound",
+      "assembly": "candidate-bound.asm",
+      "address": "0x1459657ad",
+      "end_exclusive": "0x1459657e4",
+      "byte_count": 55,
+      "sha256": "1e36b3eb66809462614abadd60ea1680183d705c84da1ab83d2093bc76ffc3e8",
+      "assembly_sha256": "af2b304684ee1af6a7622a19a7fb08c37d13c09679e473a7707377a2a6fca531"
+    },
+    {
+      "role": "candidate-index",
+      "assembly": "candidate-index.asm",
+      "address": "0x1459659de",
+      "end_exclusive": "0x145965a06",
+      "byte_count": 40,
+      "sha256": "90e241a82bab43477d092fe25d83c906600afa7cb7e6c7ec0bdc4a1813ef5df3",
+      "assembly_sha256": "b940042a7450dfa752a8a21d45d8ff8a459afc8c397fcabc7fac5395a45ee6fa"
+    },
+    {
+      "role": "candidate-publication",
+      "assembly": "candidate-publication.asm",
+      "address": "0x145965770",
+      "end_exclusive": "0x145965799",
+      "byte_count": 41,
+      "sha256": "b581638e9da5423fe1ce5c8093da1a85df9c9db0b688225f31e1f16b96117d8a",
+      "assembly_sha256": "4a1417445845470111ce2dfba2e3866c92e01258b0c46a2c9cf152b8774a9eaa"
+    },
+    {
+      "role": "cursor-copy",
+      "assembly": "cursor-copy.asm",
+      "address": "0x145999200",
+      "end_exclusive": "0x14599922d",
+      "byte_count": 45,
+      "sha256": "79a0568f7ed227f5abb20c67dff603d7d7074eca37e570c2435290f6522ab662",
+      "assembly_sha256": "6deebdaaa6515387996867f493972fae942905040021cacc4e7a20941a2acf7e"
+    },
+    {
+      "role": "constructor-call",
+      "assembly": "constructor-call.asm",
+      "address": "0x1459994ad",
+      "end_exclusive": "0x1459994e0",
+      "byte_count": 51,
+      "sha256": "e3464abee36de307d75bee4941325fe5607a6ab1bd4491b3bb65b869e01e7c02",
+      "assembly_sha256": "eb7706288370c44c5ad212abccf8046af2340ccadfd4d3b1b975e92a232d4c0f"
+    },
+    {
+      "role": "constructor-dispatch",
+      "assembly": "constructor-dispatch.asm",
+      "address": "0x145969c60",
+      "end_exclusive": "0x145969ca1",
+      "byte_count": 65,
+      "sha256": "e8236024891b72b073949d947fd4b6cf2ab8805b18161fcb682795107a8cbc2b",
+      "assembly_sha256": "2ea38b103a1b80988270ed11ad64ea4da440aaf1ada17990383cda5e4be1dfc8"
+    },
+    {
+      "role": "upgrade-index",
+      "assembly": "upgrade-index.asm",
+      "address": "0x14596a412",
+      "end_exclusive": "0x14596a4c7",
+      "byte_count": 181,
+      "sha256": "edbbcb1206d0012f9d707398c05101649bb6578893eb8d9def4f5033d9a52293",
+      "assembly_sha256": "7bb57c043587ba6a337f617a9d1fd45a26a5d0b7181b8553305869d5882d03a0"
+    },
+    {
+      "role": "upgrade-bounds",
+      "assembly": "upgrade-bounds.asm",
+      "address": "0x14596b861",
+      "end_exclusive": "0x14596b874",
+      "byte_count": 19,
+      "sha256": "383e17822b009f0ab5cf7046968b3e28bc340ebe11cfad28147a8172abeccaae",
+      "assembly_sha256": "9b12d36ea24744f55b8cec8197f2e706d3e38ce98f0f40b2dab1be2e48ea75fd"
+    }
+  ],
+  "data": [
+    {
+      "role": "constructor-targets",
+      "bytes_hex": "2daf65fe9eb665feddb465fe79b565fe81b465fe",
+      "address": "0x14730ed74",
+      "end_exclusive": "0x14730ed88",
+      "byte_count": 20,
+      "sha256": "29365e42ddfab049fa319f14c1e8be2f594ed5bea4edf6ae9e93107c55d51964"
+    },
+    {
+      "role": "upgrade-location",
+      "bytes_hex": "e8b230470100000029000000000000005c0100002f000000",
+      "address": "0x14730e150",
+      "end_exclusive": "0x14730e168",
+      "byte_count": 24,
+      "sha256": "fb649ed0e7757c775aa888b4d16f7a4bb20ea593aec45d476479935366644f69"
+    },
+    {
+      "role": "upgrade-path",
+      "bytes_hex": "6372617465735c77656e696c6c612d726f6775655c7372635c67616d655c75706772616465732e7273",
+      "address": "0x14730b2e8",
+      "end_exclusive": "0x14730b311",
+      "byte_count": 41,
+      "sha256": "d1ce8f5ef043174352eceef6a820c4a6e0427ecf4a4df664603f72eae780d948"
+    }
+  ],
+  "source_projections": [
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/choices.rs",
+      "producer_sha256": "31535674c61e9b7451412a4148f7c1b37314d90a7a9283ba0d61d189f94ab189",
+      "constructor_sha256": "675c6876af75808702e4a8d01ef138afa638148aa33275c539fd725ea0ec71ec"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/native_overlay_payload.rs",
+      "for_choice_sha256": "a21770be0779b5eb7b7ce23a4d5021f176374c4cbccdfbebb00a4569ec1499ab"
+    }
+  ],
+  "native_cases": 105,
+  "valid_cases": 25,
+  "invalid_cases": 80,
+  "cases_sha256": "86bea15f6ded8881ada30acf8c2ed85d95950044ee7254294d7badb192198427",
+  "source_change_required": false,
+  "native_instructions_executed": true,
+  "compilation_run": false,
+  "game_run": false,
+  "limits": [
+    "Candidate/Game/instance/pointer/stack values are synthetic. Captures are checked at the collector boundary; collector, shuffle, prose, allocation and display publication do not execute.",
+    "Header cases include a synthetic negative selector-1 value; decoding it does not establish that live producers can publish it.",
+    "Producer/publication/cursor extracts are statically traced, not executed by these cases. All aliases, arbitrary-run pointer ancestry, source execution, UI and parity remain unverified.",
+    "Existing bounds-panic consumer evidence in ../q41-c01/ owns the shared diagnostic helper; no duplicate helper extraction is retained.",
+    "The canonical 57-site ownerless inventory and Ghidra body boundaries remain unchanged."
+  ]
+}

@@ -1,0 +1,566 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "target_executed": false,
+  "gap_ids": [
+    101,
+    254,
+    234,
+    41,
+    255
+  ],
+  "bounded_contract_system_ids": [
+    "custom-game-server-party",
+    "custom-game-sets"
+  ],
+  "bounded_contract_owner_scopes": {
+    "custom-game-server-party": "Shared exact-string registry and item-serializer caller; guest text carrier remains unrecovered.",
+    "custom-game-sets": "Demand callback shared-registry insertion side effect only."
+  },
+  "ranges": [
+    {
+      "role": "interner",
+      "start": "0x145b78be0",
+      "end_exclusive": "0x145b78de2",
+      "file_offset": "0x5b77fe0",
+      "sha256": "c23dc1b3bd4eb96f823e1f12ba11e87262769b396b884d085f1b4f159fff3698",
+      "instructions": 134,
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.121.0/coop-item-registry/interner.c",
+        "sha256": "736cc5c27e32e281d602aca10cc52528b4018a91abccc2fb37946e9c7bc3b11b"
+      }
+    },
+    {
+      "role": "lookup",
+      "start": "0x145b78e80",
+      "end_exclusive": "0x145b78fbc",
+      "file_offset": "0x5b78280",
+      "sha256": "3a4f2f8bc8376c2bac659c6df71da45075b699033587fb23e3637e2f02db9dcc",
+      "instructions": 90,
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.121.0/coop-item-registry/lookup.c",
+        "sha256": "8b1a312b84cdbade00423208f511342c61a16fc257929de89f155699359e0812"
+      }
+    },
+    {
+      "role": "guest-request-routing",
+      "start": "0x145b21eb0",
+      "end_exclusive": "0x145b263d0",
+      "file_offset": "0x5b212b0",
+      "sha256": "da17a2d746516cb19e0b2ea610df1babdc132d05783001924ef68fcd42dfeff4",
+      "instructions": 3356
+    },
+    {
+      "role": "recipient-locale",
+      "start": "0x145ae8260",
+      "end_exclusive": "0x145ae83bc",
+      "file_offset": "0x5ae7660",
+      "sha256": "a69fdfea920fb1fb26a3908dbf93531e5538629194ff2cc5f27c6e5a31db16eb",
+      "instructions": 95
+    },
+    {
+      "role": "item-serializer",
+      "start": "0x145b81a20",
+      "end_exclusive": "0x145b83d31",
+      "file_offset": "0x5b80e20",
+      "sha256": "8b98565d15ec27390e3bce20dc254837abd498987e12bb956fa6c1b856b06cb4",
+      "instructions": 1765
+    },
+    {
+      "role": "local-item-query-handler",
+      "start": "0x145b0f580",
+      "end_exclusive": "0x145b1243d",
+      "file_offset": "0x5b0e980",
+      "sha256": "9df7b207b921dced814d3f045d6673d1c7e76fa49aec092faa0aec81c8b50a2e"
+    }
+  ],
+  "queries": [
+    {
+      "role": "interner",
+      "procedure": "0x145b78be0",
+      "result": {
+        "path": "runtime/analysis/tasks/gap101-0.121.0/query/results/aed19019fefac8aded9981ab8df2c27942d58b0677987729e39417a81ca243ca.json",
+        "sha256": "0e52e93ed44ac8e61b29362547b971c6bb47582456f479df37a514522e871e66"
+      },
+      "plan": {
+        "path": "runtime/analysis/tasks/gap101-0.121.0/plan.json",
+        "sha256": "a04bb9e5b10c6786b5c398a6ba036f488c5bed046a5a53acca1b324a4e23136a"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/gap101-0.121.0/query/journal.json",
+        "sha256": "fd99caaf91bc78b5959efabbad47442c5c40e597e0c9ebd93be3ec74a72465b5"
+      },
+      "evidence_id": "ev_1c551b1e01a715ea83ed5e94a96b9fb9d3e8ebc55f7597f24b18e906422e5de0",
+      "analysis_profile_digest": "16378a9742e7bacd636e489a6c39c7a4e7ac12824b30c2d0ae5ad23bcb266321",
+      "normalized_sha256": "acc5ba7864294ba6e114b2fbcff3145fb7ec1bd4139455f93fe767666430ea0f"
+    },
+    {
+      "role": "lookup",
+      "procedure": "0x145b78e80",
+      "result": {
+        "path": "runtime/analysis/tasks/gap101-0.121.0/query/results/bab95068ebaac6ad5d3b2323507c8bc423931bbafef215bb40a1c5903b3bb573-dcc8480dc190ed42.json",
+        "sha256": "e82dbe6a2050142fe611cecfb3227634208e75f014f7a8158ac1658745faa562"
+      },
+      "plan": {
+        "path": "runtime/analysis/tasks/gap101-0.121.0/plan.json",
+        "sha256": "a04bb9e5b10c6786b5c398a6ba036f488c5bed046a5a53acca1b324a4e23136a"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/gap101-0.121.0/query/journal.json",
+        "sha256": "fd99caaf91bc78b5959efabbad47442c5c40e597e0c9ebd93be3ec74a72465b5"
+      },
+      "evidence_id": "ev_94a489096dfab16989267d0ef36e8890852423ad42094eade3f0c061f6842e60",
+      "analysis_profile_digest": "16378a9742e7bacd636e489a6c39c7a4e7ac12824b30c2d0ae5ad23bcb266321",
+      "normalized_sha256": "e26285851d43714582def94ea582a622ffc7b907e9fbbe83fe917d2394094d43"
+    },
+    {
+      "role": "guest-request-routing",
+      "procedure": "0x145b21eb0",
+      "result": {
+        "path": "runtime/analysis/tasks/gap101-0.121.0/query/results/4be1b3b5eaa4ce8eedb669fa3cbdf57e07191094a01079e85b1be2a1a9d978e5-e4291f0da2c4a053.json",
+        "sha256": "546a987e7b6755839225280d4bcfeabe9792f5b389316c82c83abb926e027ea9"
+      },
+      "plan": {
+        "path": "runtime/analysis/tasks/gap101-0.121.0/plan.json",
+        "sha256": "a04bb9e5b10c6786b5c398a6ba036f488c5bed046a5a53acca1b324a4e23136a"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/gap101-0.121.0/query/journal.json",
+        "sha256": "fd99caaf91bc78b5959efabbad47442c5c40e597e0c9ebd93be3ec74a72465b5"
+      },
+      "evidence_id": "ev_1819523726dbfd5a699f56b1935dbda09eb1ec96057e71eb4122777cf3d1545c",
+      "analysis_profile_digest": "16378a9742e7bacd636e489a6c39c7a4e7ac12824b30c2d0ae5ad23bcb266321",
+      "normalized_sha256": "271719ad2310029c28471a872e673b1109ce19ab423e18eabdef5d57694928dd"
+    },
+    {
+      "role": "recipient-locale",
+      "procedure": "0x145ae8260",
+      "result": {
+        "path": "runtime/analysis/tasks/gap101-0.121.0/query/results/5806c1535057c49341a6283d7fbeb864ae155a700d88971064d65e67006f341a-5452800eb9ffee2d.json",
+        "sha256": "efe5642fe44a24427d2eb3c204a99ae4a569e92d85c5b27c9e49677954d9c35e"
+      },
+      "plan": {
+        "path": "runtime/analysis/tasks/gap101-0.121.0/plan.json",
+        "sha256": "a04bb9e5b10c6786b5c398a6ba036f488c5bed046a5a53acca1b324a4e23136a"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/gap101-0.121.0/query/journal.json",
+        "sha256": "fd99caaf91bc78b5959efabbad47442c5c40e597e0c9ebd93be3ec74a72465b5"
+      },
+      "evidence_id": "ev_4b1ab374b28bda843582170597f0880e5c4dd9cbc176ce577a33dd96c75e068c",
+      "analysis_profile_digest": "16378a9742e7bacd636e489a6c39c7a4e7ac12824b30c2d0ae5ad23bcb266321",
+      "normalized_sha256": "50dd95bab2b2abd89fe6486e719634c0ed2f0d5f8d30365b300c1c02f7c5aaba"
+    },
+    {
+      "role": "item-serializer",
+      "procedure": "0x145b81a20",
+      "result": {
+        "path": "runtime/analysis/tasks/gap101-0.121.0/query/results/f6458d6f04892b0ff0fa878846ac779d890e5b1758d0571d5ca1c791d739bff9-2051b5516899d273.json",
+        "sha256": "eaaa3aeab7d4a4b0d2bdd30b2922d31c237e53025814379150109f1c6a2ec802"
+      },
+      "plan": {
+        "path": "runtime/analysis/tasks/gap101-0.121.0/plan.json",
+        "sha256": "a04bb9e5b10c6786b5c398a6ba036f488c5bed046a5a53acca1b324a4e23136a"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/gap101-0.121.0/query/journal.json",
+        "sha256": "fd99caaf91bc78b5959efabbad47442c5c40e597e0c9ebd93be3ec74a72465b5"
+      },
+      "evidence_id": "ev_bd2abbed401c22997eefc6919fcfe8ae50d30f3f2701be7bb2f70e2801036ada",
+      "analysis_profile_digest": "16378a9742e7bacd636e489a6c39c7a4e7ac12824b30c2d0ae5ad23bcb266321",
+      "normalized_sha256": "ef08ceb37a5843dcd538e0f51fb7ec37501e98dbe1a1fb69f116fa8c88e8dbc8"
+    },
+    {
+      "role": "local-item-query-handler",
+      "procedure": "0x145b0f580",
+      "result": {
+        "path": "runtime/analysis/tasks/gap101-0.121.0/local-query/results/f66198df536e3e2ea9ea99bbeeadb868358953d5e617708d030130154023b478.json",
+        "sha256": "527e1db70e55d076ee2bcda71003a20771df80bc1d378490771f73147172762b"
+      },
+      "plan": {
+        "path": "runtime/analysis/tasks/gap101-0.121.0/local-query-plan.json",
+        "sha256": "52fe332b1d2a2d9dec38f80b3840f1d26e878f3d887a1f624a999c1c8d30d018"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/gap101-0.121.0/local-query/journal.json",
+        "sha256": "e8e7cce22c2b6df3a03beaad25342a733790fa4019064184fe18b60aacf664dc"
+      },
+      "evidence_id": "ev_fd8badf0ab6c66ee862574ad9f4a372ff000aebf427b4883ae3ec177e5642a87",
+      "analysis_profile_digest": "976afdcb4c0b50991955c3ad14856a3962bb1f28d91386ef8e3d7c2806586e82",
+      "normalized_sha256": "1393640c810ac32fac54d9f6717794d3d589d1d7cefe3ddd44406b26359dc4fe"
+    }
+  ],
+  "set_contract": {
+    "path": "docs/analysis/evidence/0.121.0/sets-core/manifest.json",
+    "sha256": "d3b8d01c49708ab6557aac0c75c44d2fa75579b809fc8d98b7681565d2874855"
+  },
+  "reference_sql": "SELECT * FROM refs WHERE (target >= '0x1485c6758' AND target < '0x1485c6778') OR target IN ('0x145b78be0','0x145b78e80') ORDER BY site",
+  "reference_inputs": [
+    {
+      "path": "runtime/analysis/inventories/22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150/native-instructions-ca06f5ff506540c8.sqlite",
+      "sha256": "5fb940be73005b58222cbae52fa4ef2b550d64a0a0d90209b01e18e3a8db55a6",
+      "rows": [
+        {
+          "extent": 1114,
+          "site": 5369066022,
+          "bytes": "488d0d531cb205",
+          "kind": "address",
+          "target": "0x145b78e80",
+          "operand": 1,
+          "access": 0
+        },
+        {
+          "extent": 338819,
+          "site": 5463872418,
+          "bytes": "e839780b00",
+          "kind": "call_direct",
+          "target": "0x145b78be0",
+          "operand": 0,
+          "access": 0
+        },
+        {
+          "extent": 338819,
+          "site": 5463872814,
+          "bytes": "e8ad760b00",
+          "kind": "call_direct",
+          "target": "0x145b78be0",
+          "operand": 0,
+          "access": 0
+        },
+        {
+          "extent": 340746,
+          "site": 5464624135,
+          "bytes": "f00fb00d49dba402",
+          "kind": "memory",
+          "target": "0x1485c6758",
+          "operand": 0,
+          "access": 1
+        },
+        {
+          "extent": 340746,
+          "site": 5464624178,
+          "bytes": "0fb60520dba402",
+          "kind": "memory",
+          "target": "0x1485c6759",
+          "operand": 1,
+          "access": 1
+        },
+        {
+          "extent": 340746,
+          "site": 5464624185,
+          "bytes": "488b3530dba402",
+          "kind": "memory",
+          "target": "0x1485c6770",
+          "operand": 1,
+          "access": 1
+        },
+        {
+          "extent": 340746,
+          "site": 5464624201,
+          "bytes": "4c8b3518dba402",
+          "kind": "memory",
+          "target": "0x1485c6768",
+          "operand": 1,
+          "access": 1
+        },
+        {
+          "extent": 340746,
+          "site": 5464624297,
+          "bytes": "488d0da8daa402",
+          "kind": "address",
+          "target": "0x1485c6758",
+          "operand": 1,
+          "access": 0
+        },
+        {
+          "extent": 340746,
+          "site": 5464624324,
+          "bytes": "0fb6058edaa402",
+          "kind": "memory",
+          "target": "0x1485c6759",
+          "operand": 1,
+          "access": 1
+        },
+        {
+          "extent": 340746,
+          "site": 5464624331,
+          "bytes": "488b359edaa402",
+          "kind": "memory",
+          "target": "0x1485c6770",
+          "operand": 1,
+          "access": 1
+        },
+        {
+          "extent": 340746,
+          "site": 5464624424,
+          "bytes": "488b3541daa402",
+          "kind": "memory",
+          "target": "0x1485c6770",
+          "operand": 1,
+          "access": 1
+        },
+        {
+          "extent": 340746,
+          "site": 5464624431,
+          "bytes": "483b352adaa402",
+          "kind": "memory",
+          "target": "0x1485c6760",
+          "operand": 1,
+          "access": 1
+        },
+        {
+          "extent": 340746,
+          "site": 5464624451,
+          "bytes": "483b3516daa402",
+          "kind": "memory",
+          "target": "0x1485c6760",
+          "operand": 1,
+          "access": 1
+        },
+        {
+          "extent": 340746,
+          "site": 5464624460,
+          "bytes": "488d0d0ddaa402",
+          "kind": "address",
+          "target": "0x1485c6760",
+          "operand": 1,
+          "access": 0
+        },
+        {
+          "extent": 340746,
+          "site": 5464624473,
+          "bytes": "488b0508daa402",
+          "kind": "memory",
+          "target": "0x1485c6768",
+          "operand": 1,
+          "access": 1
+        },
+        {
+          "extent": 340746,
+          "site": 5464624510,
+          "bytes": "488905ebd9a402",
+          "kind": "memory",
+          "target": "0x1485c6770",
+          "operand": 0,
+          "access": 2
+        },
+        {
+          "extent": 340746,
+          "site": 5464624543,
+          "bytes": "8605b3d9a402",
+          "kind": "memory",
+          "target": "0x1485c6758",
+          "operand": 0,
+          "access": 3
+        },
+        {
+          "extent": 340746,
+          "site": 5464624578,
+          "bytes": "488d0d8fd9a402",
+          "kind": "address",
+          "target": "0x1485c6758",
+          "operand": 1,
+          "access": 0
+        },
+        {
+          "extent": 340746,
+          "site": 5464624601,
+          "bytes": "c60579d9a40201",
+          "kind": "memory",
+          "target": "0x1485c6759",
+          "operand": 0,
+          "access": 2
+        },
+        {
+          "extent": 340747,
+          "site": 5464624649,
+          "bytes": "488d0d48d9a402",
+          "kind": "address",
+          "target": "0x1485c6758",
+          "operand": 1,
+          "access": 0
+        },
+        {
+          "extent": 340749,
+          "site": 5464624820,
+          "bytes": "f0440fb0059bd8a402",
+          "kind": "memory",
+          "target": "0x1485c6758",
+          "operand": 0,
+          "access": 1
+        },
+        {
+          "extent": 340749,
+          "site": 5464624851,
+          "bytes": "440fb6057ed8a402",
+          "kind": "memory",
+          "target": "0x1485c6759",
+          "operand": 1,
+          "access": 1
+        },
+        {
+          "extent": 340749,
+          "site": 5464624859,
+          "bytes": "4839158ed8a402",
+          "kind": "memory",
+          "target": "0x1485c6770",
+          "operand": 0,
+          "access": 1
+        },
+        {
+          "extent": 340749,
+          "site": 5464624882,
+          "bytes": "4803156fd8a402",
+          "kind": "memory",
+          "target": "0x1485c6768",
+          "operand": 1,
+          "access": 1
+        },
+        {
+          "extent": 340749,
+          "site": 5464624926,
+          "bytes": "488d0533d8a402",
+          "kind": "address",
+          "target": "0x1485c6758",
+          "operand": 1,
+          "access": 0
+        },
+        {
+          "extent": 340749,
+          "site": 5464624974,
+          "bytes": "440fb60503d8a402",
+          "kind": "memory",
+          "target": "0x1485c6759",
+          "operand": 1,
+          "access": 1
+        },
+        {
+          "extent": 340749,
+          "site": 5464624982,
+          "bytes": "48391513d8a402",
+          "kind": "memory",
+          "target": "0x1485c6770",
+          "operand": 0,
+          "access": 1
+        },
+        {
+          "extent": 340749,
+          "site": 5464625015,
+          "bytes": "8605dbd7a402",
+          "kind": "memory",
+          "target": "0x1485c6758",
+          "operand": 0,
+          "access": 3
+        },
+        {
+          "extent": 340749,
+          "site": 5464625037,
+          "bytes": "488d05c4d7a402",
+          "kind": "address",
+          "target": "0x1485c6758",
+          "operand": 1,
+          "access": 0
+        },
+        {
+          "extent": 340749,
+          "site": 5464625075,
+          "bytes": "c6059fd7a40201",
+          "kind": "memory",
+          "target": "0x1485c6759",
+          "operand": 0,
+          "access": 2
+        },
+        {
+          "extent": 340750,
+          "site": 5464625105,
+          "bytes": "488d0d80d7a402",
+          "kind": "address",
+          "target": "0x1485c6758",
+          "operand": 1,
+          "access": 0
+        },
+        {
+          "extent": 340960,
+          "site": 5464664551,
+          "bytes": "e8f461ffff",
+          "kind": "call_direct",
+          "target": "0x145b78be0",
+          "operand": 0,
+          "access": 0
+        }
+      ]
+    },
+    {
+      "path": "runtime/coverage/22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150/unwind-complement.sqlite",
+      "sha256": "75eb03129907bdfbab21733a97ce8b4605ac406eeea4c443302da2307c0578e6",
+      "rows": []
+    }
+  ],
+  "source_witnesses": [
+    {
+      "path": "crates/benilla-app/src/local_client/item_descriptions.rs",
+      "sha256": "fa9373600dd2fc1fa69db8a27277ab208a094e8358a763ef63d29c55fc7f2720"
+    },
+    {
+      "path": "crates/benilla-app/src/local_client/item_sets.rs",
+      "sha256": "b77769a0c81c69c3396ecc83e13cd1634c233d22d44a97b113b73550fad596de"
+    },
+    {
+      "path": "crates/benilla-app/src/ui_items/feed.rs",
+      "sha256": "389d5f6c0805ee8ce62b60b58ffe99742990bf2aaf7d99ccec9e11b43d0b4ecc"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs",
+      "sha256": "6a1ef38f988dc493176aab153e87ce84af2f02b325d4b584c879dac52800044d"
+    },
+    {
+      "path": "crates/benilla-ui/src/script/model.rs",
+      "sha256": "742752bfab0b84ed2dfa3edfa8f62d7651270e066479be1418f8eb96f21ecaf6"
+    },
+    {
+      "path": "crates/benilla-ui/src/script/tooltip_item/render.rs",
+      "sha256": "fbc54ae7a9f535f03c0fb9f171e08a70e6f37c9527b5b53091de10306e672275"
+    },
+    {
+      "path": "crates/benilla-ui/src/script/item_stats.rs",
+      "sha256": "1d1da1d757c61a87fca5e15975cca231ffcec7d5dd0a5879435e02a91482736a"
+    },
+    {
+      "path": "crates/benilla-ui/src/script/tests/tooltip_item/set.rs",
+      "sha256": "86696063984319bbb2900f4802dfa77c1267cd5ec776eccba9d7dfef53a0be07"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop_runtime.rs",
+      "sha256": "b34b56b6956eb66c75b92b1e2e1d496b82e0c32817ce1f94893d464b984447f9"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+      "sha256": "76c4e397887084a603ef11015679ff6beb7446793d8c5b930f19e4db1fc3be35"
+    },
+    {
+      "path": "crates/benilla-app/src/local_client/requests.rs",
+      "sha256": "508c47bf6217be953046cf4d1f6fe043c1fdc853dafdddadfbaf9b8c7ad1a55b"
+    }
+  ],
+  "state": "set_callback_registry_source_repaired_guest_item_carrier_unresolved",
+  "limits": [
+    "Declared/complement encoded references are bounded static populations, not all mutable/computed aliases.",
+    "Set query order restores its own registry side effect; it does not establish host/guest ID agreement.",
+    "No compilation, client/game/network/server execution or original/rebuilt parity."
+  ],
+  "pre_sync_source_repair": {
+    "forwarding_predicate": "guest && existing synchronization state",
+    "native_gate": [
+      "0x145b21ef6",
+      "0x145b21f2f"
+    ],
+    "native_local_item_dispatch": "0x145b0f822",
+    "source_state": "ordinary_local_pre_sync_queries_connected",
+    "remaining_limit": "Host/guest ID agreement and broader dynamic item fallback/native dependency applicability remain unverified."
+  }
+}

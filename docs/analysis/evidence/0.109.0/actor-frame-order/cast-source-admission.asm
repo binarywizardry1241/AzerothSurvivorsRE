@@ -1,0 +1,11 @@
+14597ba20: 498b8760050000 mov rax, qword ptr [r15 + 0x560]
+14597ba27: 49699768050000d8010000 imul rdx, qword ptr [r15 + 0x568], 0x1d8
+14597ba32: 31c9 xor ecx, ecx
+14597ba34: 4989c0 mov r8, rax
+14597ba37: 660f1f840000000000 nop word ptr [rax + rax]
+14597ba40: 4839ca cmp rdx, rcx
+14597ba43: 746b je 0x14597bab0
+14597ba45: 4881c1d8010000 add rcx, 0x1d8
+14597ba4c: 4939b8f0000000 cmp qword ptr [r8 + 0xf0], rdi
+14597ba53: 4d8d80d8010000 lea r8, [r8 + 0x1d8]
+14597ba5a: 75e4 jne 0x14597ba40

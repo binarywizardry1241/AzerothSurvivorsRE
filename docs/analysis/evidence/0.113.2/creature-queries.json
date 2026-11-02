@@ -1,0 +1,524 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.113.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+    "size_bytes": 141932032,
+    "identity_manifest": "docs/analysis/coverage/targets.json",
+    "version_provenance": "matching_embedded_updater_and_dialog_markers",
+    "runtime_data": {
+      "directory": "installed-game/Data",
+      "archives": [
+        {
+          "path": "installed-game/Data/patch-2.MPQ",
+          "size_bytes": 4690878,
+          "sha256": "366edee41642a5dda22ed90cc252b543ee375755b7e8bee81e2a6cd59fd7b286"
+        },
+        {
+          "path": "installed-game/Data/patch-3.MPQ",
+          "size_bytes": 2580491,
+          "sha256": "75c35ca5b8075197252581e301e8900143007fdf37b493ad271ae1bd39f95a29"
+        },
+        {
+          "path": "installed-game/Data/patch-4.MPQ",
+          "size_bytes": 22769233,
+          "sha256": "2e895e0e0ff6a4781d0e0aaa6ea7d32ed1fe36841e17806fe1855cb880d18865"
+        },
+        {
+          "path": "installed-game/Data/patch-5.MPQ",
+          "size_bytes": 267019039,
+          "sha256": "5008e56873718b468fa5ae1b697dcbe4f5da9ffe6c793f3ef9939dbd7716f3d8"
+        },
+        {
+          "path": "installed-game/Data/patch-6.MPQ",
+          "size_bytes": 212228,
+          "sha256": "cad6ff59b5df028a507581befb836fce07894057e15fe63d9fdc553a95b7ceb5"
+        },
+        {
+          "path": "installed-game/Data/patch-7.MPQ",
+          "size_bytes": 276649,
+          "sha256": "f5fb15b181cf01cc6b5cf2ee9948a27ecc4ba27bab9a8bec584df4381932aae6"
+        },
+        {
+          "path": "installed-game/Data/patch-8.MPQ",
+          "size_bytes": 4155417,
+          "sha256": "ae3aaa29cadb7aeba8255f5b4a8305c7cbecfe8f0d3ed9646522113d16c3e12e"
+        },
+        {
+          "path": "installed-game/Data/patch-9.MPQ",
+          "size_bytes": 5739608,
+          "sha256": "ffff8ea890bdaf91a1680543ac60106db92132bc2210105279610fa73661a524"
+        },
+        {
+          "path": "installed-game/Data/patch.MPQ",
+          "size_bytes": 1340199244,
+          "sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf"
+        }
+      ]
+    }
+  },
+  "gap_ids": [
+    41,
+    64
+  ],
+  "native_ranges": [
+    {
+      "start": "0x1457fd770",
+      "end_exclusive": "0x1457fd807",
+      "byte_count": 151,
+      "sha256": "13293211e6304402342f6c1dd580821a418f8e1719b33941dab96508d718b9b3"
+    },
+    {
+      "start": "0x145847c70",
+      "end_exclusive": "0x145847c8c",
+      "byte_count": 28,
+      "sha256": "3b0c09477b39bd64c68dc5058efe2d2620fe7c79c229768c57e1a2068041beae"
+    },
+    {
+      "start": "0x1458646d0",
+      "end_exclusive": "0x1458670a2",
+      "byte_count": 10706,
+      "sha256": "f5b6f0ddd41edf70b437bb69f1728aebb0f9b7e572bf5cb6323dcb90524d9894"
+    },
+    {
+      "start": "0x1458d4d00",
+      "end_exclusive": "0x1458d52c4",
+      "byte_count": 1476,
+      "sha256": "a1d00a9ea045150e9a3811cc98599f7c465816cb90ba8d43b11eb7a34446e2fb"
+    },
+    {
+      "start": "0x1458d08e0",
+      "end_exclusive": "0x1458d0940",
+      "byte_count": 96,
+      "sha256": "f800070d4583ec500654f7edcb07d877352606e92703cef0e2af4346d30efe11"
+    },
+    {
+      "start": "0x1458006a0",
+      "end_exclusive": "0x145800738",
+      "byte_count": 152,
+      "sha256": "1ad97a7aa3fb5e5676ef88cec041097140cb23345b2085b848106884b73e06c5"
+    },
+    {
+      "start": "0x145800820",
+      "end_exclusive": "0x1458008b7",
+      "byte_count": 151,
+      "sha256": "05540014add8b28ee5ca64cf569610466cded3708075b0616bdf1af11e687da2"
+    },
+    {
+      "start": "0x145800a10",
+      "end_exclusive": "0x145800aa8",
+      "byte_count": 152,
+      "sha256": "1a2e46026756f936911c6643dcee41d9c8efe879290ca6a8599ce34da425a232"
+    }
+  ],
+  "ghidra_evidence": [
+    {
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x1458646d0"
+      },
+      "evidence_id": "ev_e3e8af23e9e5ef00399b2af7447d90a0b5bfa2ef030c1f8d3bab9c67447e5e01"
+    },
+    {
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x1458d4d00"
+      },
+      "evidence_id": "ev_9b3c10d9caa77342b3738d1d60910a81f690de649a711a99d192c458ea9530dc"
+    },
+    {
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x1458d08e0"
+      },
+      "evidence_id": "ev_70666a2ea224a6f01f293c03822f3d6625fc0155e9a449deefe76c9cdc27c882"
+    },
+    {
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x1458006a0"
+      },
+      "evidence_id": "ev_11e5befcc7aa26d424d1da1073816a94aa517f5379cf6a561ebcaecfde1190ae"
+    },
+    {
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x145800820"
+      },
+      "evidence_id": "ev_5367b40b24b78bb04779ae659acf47f5e4dc1e066d3521a9775d568c1b41b675"
+    },
+    {
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x145800a10"
+      },
+      "evidence_id": "ev_f076d6576fc96978000b2d6b4db37bb4b0cbc4875ddc05c54576804a8d7f4ad3"
+    },
+    {
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x145847c70"
+      },
+      "evidence_id": "ev_9058833febe8dcc5378735e14fb5e015c6ca4f7e13532b11f37239287d756994"
+    },
+    {
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x1457fd770"
+      },
+      "evidence_id": "ev_0c53996c1624db5c9788c058e3d3bf19f6d047c175fa74d6c71c772768379d77"
+    }
+  ],
+  "source_catalog_projection_sha256": "01e460aa46666f25e92147262eb28511ead481b83aeb9379e3151e2dcfbbd5cc",
+  "hits": [
+    {"entry": 100, "found": true, "name": "Burning Imp", "other_names": ["", "", ""], "subname": "The Burning Legion", "fields": [0, 3, 0, 0, 0, 0, 4449, 0, 0], "keys": ["enemy.100", "zone.wsg.subtitle"], "category": "enemy", "raw_name": "Burning Imp", "name_key": "enemy.100", "raw_subname": "The Burning Legion", "subname_key": "zone.wsg.subtitle"},
+    {"entry": 101, "found": true, "name": "Felhound", "other_names": ["", "", ""], "subname": "The Burning Legion", "fields": [0, 3, 0, 0, 0, 0, 850, 0, 0], "keys": ["enemy.101", "zone.wsg.subtitle"], "category": "enemy", "raw_name": "Felhound", "name_key": "enemy.101", "raw_subname": "The Burning Legion", "subname_key": "zone.wsg.subtitle"},
+    {"entry": 102, "found": true, "name": "Satyr Trickster", "other_names": ["", "", ""], "subname": "The Burning Legion", "fields": [0, 3, 0, 0, 0, 0, 467, 0, 0], "keys": ["enemy.102", "zone.wsg.subtitle"], "category": "enemy", "raw_name": "Satyr Trickster", "name_key": "enemy.102", "raw_subname": "The Burning Legion", "subname_key": "zone.wsg.subtitle"},
+    {"entry": 103, "found": true, "name": "Satyr Shadowcaster", "other_names": ["", "", ""], "subname": "The Burning Legion", "fields": [0, 3, 0, 0, 0, 0, 2011, 0, 0], "keys": ["enemy.103", "zone.wsg.subtitle"], "category": "enemy", "raw_name": "Satyr Shadowcaster", "name_key": "enemy.103", "raw_subname": "The Burning Legion", "subname_key": "zone.wsg.subtitle"},
+    {"entry": 104, "found": true, "name": "Voidwalker", "other_names": ["", "", ""], "subname": "The Burning Legion", "fields": [0, 3, 0, 0, 0, 0, 1130, 0, 0], "keys": ["enemy.104", "zone.wsg.subtitle"], "category": "enemy", "raw_name": "Voidwalker", "name_key": "enemy.104", "raw_subname": "The Burning Legion", "subname_key": "zone.wsg.subtitle"},
+    {"entry": 105, "found": true, "name": "Succubus", "other_names": ["", "", ""], "subname": "The Burning Legion", "fields": [0, 3, 0, 0, 0, 0, 4162, 0, 0], "keys": ["enemy.105", "zone.wsg.subtitle"], "category": "enemy", "raw_name": "Succubus", "name_key": "enemy.105", "raw_subname": "The Burning Legion", "subname_key": "zone.wsg.subtitle"},
+    {"entry": 106, "found": true, "name": "Felguard Elite", "other_names": ["", "", ""], "subname": "The Burning Legion", "fields": [0, 3, 0, 1, 0, 0, 5047, 0, 0], "keys": ["enemy.106", "zone.wsg.subtitle"], "category": "enemy", "raw_name": "Felguard Elite", "name_key": "enemy.106", "raw_subname": "The Burning Legion", "subname_key": "zone.wsg.subtitle"},
+    {"entry": 107, "found": true, "name": "Infernal", "other_names": ["", "", ""], "subname": "The Burning Legion", "fields": [0, 3, 0, 1, 0, 0, 169, 0, 0], "keys": ["enemy.107", "zone.wsg.subtitle"], "category": "enemy", "raw_name": "Infernal", "name_key": "enemy.107", "raw_subname": "The Burning Legion", "subname_key": "zone.wsg.subtitle"},
+    {"entry": 108, "found": true, "name": "Fel Bat", "other_names": ["", "", ""], "subname": "The Burning Legion", "fields": [0, 3, 0, 0, 0, 0, 4185, 0, 0], "keys": ["enemy.108", "zone.wsg.subtitle"], "category": "enemy", "raw_name": "Fel Bat", "name_key": "enemy.108", "raw_subname": "The Burning Legion", "subname_key": "zone.wsg.subtitle"},
+    {"entry": 109, "found": true, "name": "Fire Imp", "other_names": ["", "", ""], "subname": "The Burning Legion", "fields": [0, 3, 0, 0, 0, 0, 12190, 0, 0], "keys": ["enemy.109", "zone.wsg.subtitle"], "category": "enemy", "raw_name": "Fire Imp", "name_key": "enemy.109", "raw_subname": "The Burning Legion", "subname_key": "zone.wsg.subtitle"},
+    {"entry": 110, "found": true, "name": "Mana Fiend", "other_names": ["", "", ""], "subname": "The Burning Legion", "fields": [0, 3, 0, 0, 0, 0, 14252, 0, 0], "keys": ["enemy.110", "zone.wsg.subtitle"], "category": "enemy", "raw_name": "Mana Fiend", "name_key": "enemy.110", "raw_subname": "The Burning Legion", "subname_key": "zone.wsg.subtitle"},
+    {"entry": 111, "found": true, "name": "Doomguard", "other_names": ["", "", ""], "subname": "The Burning Legion", "fields": [0, 3, 0, 1, 0, 0, 433, 0, 0], "keys": ["enemy.111", "zone.wsg.subtitle"], "category": "enemy", "raw_name": "Doomguard", "name_key": "enemy.111", "raw_subname": "The Burning Legion", "subname_key": "zone.wsg.subtitle"},
+    {"entry": 190, "found": true, "name": "Doomguard Commander", "other_names": ["", "", ""], "subname": "", "fields": [0, 3, 0, 3, 0, 0, 68, 0, 0], "keys": ["boss.190.name"], "category": "boss", "raw_name": "Doomguard Commander", "name_key": "boss.190.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 191, "found": true, "name": "Mannoroth's Herald", "other_names": ["", "", ""], "subname": "", "fields": [0, 3, 0, 3, 0, 0, 2879, 0, 0], "keys": ["boss.191.name"], "category": "boss", "raw_name": "Mannoroth's Herald", "name_key": "boss.191.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 192, "found": true, "name": "Varimathras", "other_names": ["", "", ""], "subname": "", "fields": [0, 3, 0, 3, 0, 0, 130, 0, 0], "keys": ["boss.192.name"], "category": "boss", "raw_name": "Varimathras", "name_key": "boss.192.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 193, "found": true, "name": "Lord Kazzak", "other_names": ["", "", ""], "subname": "", "fields": [0, 3, 0, 3, 0, 0, 12449, 0, 0], "keys": ["boss.193.name"], "category": "boss", "raw_name": "Lord Kazzak", "name_key": "boss.193.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 194, "found": true, "name": "Lord Hel'nurath", "other_names": ["", "", ""], "subname": "", "fields": [0, 3, 0, 3, 0, 0, 8609, 0, 0], "keys": ["boss.194.name"], "category": "boss", "raw_name": "Lord Hel'nurath", "name_key": "boss.194.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 300, "found": true, "name": "Trogg Tunneler", "other_names": ["", "", ""], "subname": "The Frozen Wilds", "fields": [0, 7, 0, 0, 0, 0, 160, 0, 0], "keys": ["enemy.300", "zone.av.subtitle"], "category": "enemy", "raw_name": "Trogg Tunneler", "name_key": "enemy.300", "raw_subname": "The Frozen Wilds", "subname_key": "zone.av.subtitle"},
+    {"entry": 301, "found": true, "name": "Starving Frostwolf", "other_names": ["", "", ""], "subname": "The Frozen Wilds", "fields": [0, 1, 0, 0, 0, 0, 776, 0, 0], "keys": ["enemy.301", "zone.av.subtitle"], "category": "enemy", "raw_name": "Starving Frostwolf", "name_key": "enemy.301", "raw_subname": "The Frozen Wilds", "subname_key": "zone.av.subtitle"},
+    {"entry": 302, "found": true, "name": "Snowfall Wendigo", "other_names": ["", "", ""], "subname": "The Frozen Wilds", "fields": [0, 1, 0, 0, 0, 0, 927, 0, 0], "keys": ["enemy.302", "zone.av.subtitle"], "category": "enemy", "raw_name": "Snowfall Wendigo", "name_key": "enemy.302", "raw_subname": "The Frozen Wilds", "subname_key": "zone.av.subtitle"},
+    {"entry": 303, "found": true, "name": "Crushridge Ogre Mage", "other_names": ["", "", ""], "subname": "The Frozen Wilds", "fields": [0, 7, 0, 0, 0, 0, 33, 0, 0], "keys": ["enemy.303", "zone.av.subtitle"], "category": "enemy", "raw_name": "Crushridge Ogre Mage", "name_key": "enemy.303", "raw_subname": "The Frozen Wilds", "subname_key": "zone.av.subtitle"},
+    {"entry": 304, "found": true, "name": "Crushridge Brute", "other_names": ["", "", ""], "subname": "The Frozen Wilds", "fields": [0, 7, 0, 0, 0, 0, 415, 0, 0], "keys": ["enemy.304", "zone.av.subtitle"], "category": "enemy", "raw_name": "Crushridge Brute", "name_key": "enemy.304", "raw_subname": "The Frozen Wilds", "subname_key": "zone.av.subtitle"},
+    {"entry": 305, "found": true, "name": "Ice Revenant", "other_names": ["", "", ""], "subname": "The Frozen Wilds", "fields": [0, 4, 0, 0, 0, 0, 110, 0, 0], "keys": ["enemy.305", "zone.av.subtitle"], "category": "enemy", "raw_name": "Ice Revenant", "name_key": "enemy.305", "raw_subname": "The Frozen Wilds", "subname_key": "zone.av.subtitle"},
+    {"entry": 306, "found": true, "name": "Alterac Yeti Lord", "other_names": ["", "", ""], "subname": "The Frozen Wilds", "fields": [0, 1, 0, 1, 0, 0, 3208, 0, 0], "keys": ["enemy.306", "zone.av.subtitle"], "category": "enemy", "raw_name": "Alterac Yeti Lord", "name_key": "enemy.306", "raw_subname": "The Frozen Wilds", "subname_key": "zone.av.subtitle"},
+    {"entry": 307, "found": true, "name": "Mountain Giant", "other_names": ["", "", ""], "subname": "The Frozen Wilds", "fields": [0, 5, 0, 1, 0, 0, 1918, 0, 0], "keys": ["enemy.307", "zone.av.subtitle"], "category": "enemy", "raw_name": "Mountain Giant", "name_key": "enemy.307", "raw_subname": "The Frozen Wilds", "subname_key": "zone.av.subtitle"},
+    {"entry": 308, "found": true, "name": "Winterax Axe Thrower", "other_names": ["", "", ""], "subname": "The Frozen Wilds", "fields": [0, 7, 0, 0, 0, 0, 665, 0, 0], "keys": ["enemy.308", "zone.av.subtitle"], "category": "enemy", "raw_name": "Winterax Axe Thrower", "name_key": "enemy.308", "raw_subname": "The Frozen Wilds", "subname_key": "zone.av.subtitle"},
+    {"entry": 309, "found": true, "name": "Winterax Shadow Hunter", "other_names": ["", "", ""], "subname": "The Frozen Wilds", "fields": [0, 7, 0, 0, 0, 0, 661, 0, 0], "keys": ["enemy.309", "zone.av.subtitle"], "category": "enemy", "raw_name": "Winterax Shadow Hunter", "name_key": "enemy.309", "raw_subname": "The Frozen Wilds", "subname_key": "zone.av.subtitle"},
+    {"entry": 310, "found": true, "name": "Frostwolf Packleader", "other_names": ["", "", ""], "subname": "The Frozen Wilds", "fields": [0, 1, 0, 0, 0, 0, 868, 0, 0], "keys": ["enemy.310", "zone.av.subtitle"], "category": "enemy", "raw_name": "Frostwolf Packleader", "name_key": "enemy.310", "raw_subname": "The Frozen Wilds", "subname_key": "zone.av.subtitle"},
+    {"entry": 311, "found": true, "name": "Winterax Warlord", "other_names": ["", "", ""], "subname": "The Frozen Wilds", "fields": [0, 7, 0, 1, 0, 0, 13989, 0, 0], "keys": ["enemy.311", "zone.av.subtitle"], "category": "enemy", "raw_name": "Winterax Warlord", "name_key": "enemy.311", "raw_subname": "The Frozen Wilds", "subname_key": "zone.av.subtitle"},
+    {"entry": 390, "found": true, "name": "Korrak the Bloodrager", "other_names": ["", "", ""], "subname": "", "fields": [0, 7, 0, 3, 0, 0, 10169, 0, 0], "keys": ["boss.390.name"], "category": "boss", "raw_name": "Korrak the Bloodrager", "name_key": "boss.390.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 391, "found": true, "name": "Ivus the Forest Lord", "other_names": ["", "", ""], "subname": "", "fields": [0, 4, 0, 3, 0, 0, 14884, 0, 0], "keys": ["boss.391.name"], "category": "boss", "raw_name": "Ivus the Forest Lord", "name_key": "boss.391.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 392, "found": true, "name": "Lokholar the Ice Lord", "other_names": ["", "", ""], "subname": "", "fields": [0, 4, 0, 3, 0, 0, 110, 0, 0], "keys": ["boss.392.name"], "category": "boss", "raw_name": "Lokholar the Ice Lord", "name_key": "boss.392.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 393, "found": true, "name": "Azuregos", "other_names": ["", "", ""], "subname": "", "fields": [0, 2, 0, 3, 0, 0, 11460, 0, 0], "keys": ["boss.393.name"], "category": "boss", "raw_name": "Azuregos", "name_key": "boss.393.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 394, "found": true, "name": "Glacius the Frozen Titan", "other_names": ["", "", ""], "subname": "", "fields": [0, 5, 0, 3, 0, 0, 6209, 0, 0], "keys": ["boss.394.name"], "category": "boss", "raw_name": "Glacius the Frozen Titan", "name_key": "boss.394.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 600, "found": true, "name": "Kobold Vermin", "other_names": ["", "", ""], "subname": "The Defias Uprising", "fields": [0, 7, 0, 0, 0, 0, 26, 0, 0], "keys": ["enemy.600", "zone.elwynn.subtitle"], "category": "enemy", "raw_name": "Kobold Vermin", "name_key": "enemy.600", "raw_subname": "The Defias Uprising", "subname_key": "zone.elwynn.subtitle"},
+    {"entry": 601, "found": true, "name": "Young Wolf", "other_names": ["", "", ""], "subname": "The Defias Uprising", "fields": [0, 1, 0, 0, 0, 0, 165, 0, 0], "keys": ["enemy.601", "zone.elwynn.subtitle"], "category": "enemy", "raw_name": "Young Wolf", "name_key": "enemy.601", "raw_subname": "The Defias Uprising", "subname_key": "zone.elwynn.subtitle"},
+    {"entry": 602, "found": true, "name": "Murloc Streamrunner", "other_names": ["", "", ""], "subname": "The Defias Uprising", "fields": [0, 7, 0, 0, 0, 0, 31, 0, 0], "keys": ["enemy.602", "zone.elwynn.subtitle"], "category": "enemy", "raw_name": "Murloc Streamrunner", "name_key": "enemy.602", "raw_subname": "The Defias Uprising", "subname_key": "zone.elwynn.subtitle"},
+    {"entry": 603, "found": true, "name": "Kobold Geomancer", "other_names": ["", "", ""], "subname": "The Defias Uprising", "fields": [0, 7, 0, 0, 0, 0, 163, 0, 0], "keys": ["enemy.603", "zone.elwynn.subtitle"], "category": "enemy", "raw_name": "Kobold Geomancer", "name_key": "enemy.603", "raw_subname": "The Defias Uprising", "subname_key": "zone.elwynn.subtitle"},
+    {"entry": 604, "found": true, "name": "Defias Thug", "other_names": ["", "", ""], "subname": "The Defias Uprising", "fields": [0, 7, 0, 0, 0, 0, 2323, 0, 0], "keys": ["enemy.604", "zone.elwynn.subtitle"], "category": "enemy", "raw_name": "Defias Thug", "name_key": "enemy.604", "raw_subname": "The Defias Uprising", "subname_key": "zone.elwynn.subtitle"},
+    {"entry": 605, "found": true, "name": "Riverpaw Brute", "other_names": ["", "", ""], "subname": "The Defias Uprising", "fields": [0, 7, 0, 0, 0, 0, 175, 0, 0], "keys": ["enemy.605", "zone.elwynn.subtitle"], "category": "enemy", "raw_name": "Riverpaw Brute", "name_key": "enemy.605", "raw_subname": "The Defias Uprising", "subname_key": "zone.elwynn.subtitle"},
+    {"entry": 606, "found": true, "name": "Prowler", "other_names": ["", "", ""], "subname": "The Defias Uprising", "fields": [0, 1, 0, 0, 0, 0, 644, 0, 0], "keys": ["enemy.606", "zone.elwynn.subtitle"], "category": "enemy", "raw_name": "Prowler", "name_key": "enemy.606", "raw_subname": "The Defias Uprising", "subname_key": "zone.elwynn.subtitle"},
+    {"entry": 607, "found": true, "name": "Defias Rogue Wizard", "other_names": ["", "", ""], "subname": "The Defias Uprising", "fields": [0, 7, 0, 0, 0, 0, 2315, 0, 0], "keys": ["enemy.607", "zone.elwynn.subtitle"], "category": "enemy", "raw_name": "Defias Rogue Wizard", "name_key": "enemy.607", "raw_subname": "The Defias Uprising", "subname_key": "zone.elwynn.subtitle"},
+    {"entry": 608, "found": true, "name": "Defias Enforcer", "other_names": ["", "", ""], "subname": "The Defias Uprising", "fields": [0, 7, 0, 0, 0, 0, 2324, 0, 0], "keys": ["enemy.608", "zone.elwynn.subtitle"], "category": "enemy", "raw_name": "Defias Enforcer", "name_key": "enemy.608", "raw_subname": "The Defias Uprising", "subname_key": "zone.elwynn.subtitle"},
+    {"entry": 609, "found": true, "name": "Kobold Taskmaster", "other_names": ["", "", ""], "subname": "The Defias Uprising", "fields": [0, 7, 0, 1, 0, 0, 163, 0, 0], "keys": ["enemy.609", "zone.elwynn.subtitle"], "category": "enemy", "raw_name": "Kobold Taskmaster", "name_key": "enemy.609", "raw_subname": "The Defias Uprising", "subname_key": "zone.elwynn.subtitle"},
+    {"entry": 610, "found": true, "name": "Gruff Swiftbite", "other_names": ["", "", ""], "subname": "The Defias Uprising", "fields": [0, 1, 0, 1, 0, 0, 246, 0, 0], "keys": ["enemy.610", "zone.elwynn.subtitle"], "category": "enemy", "raw_name": "Gruff Swiftbite", "name_key": "enemy.610", "raw_subname": "The Defias Uprising", "subname_key": "zone.elwynn.subtitle"},
+    {"entry": 611, "found": true, "name": "Bellygrub", "other_names": ["", "", ""], "subname": "The Defias Uprising", "fields": [0, 1, 0, 1, 0, 0, 377, 0, 0], "keys": ["enemy.611", "zone.elwynn.subtitle"], "category": "enemy", "raw_name": "Bellygrub", "name_key": "enemy.611", "raw_subname": "The Defias Uprising", "subname_key": "zone.elwynn.subtitle"},
+    {"entry": 690, "found": true, "name": "Hogger", "other_names": ["", "", ""], "subname": "", "fields": [0, 7, 0, 3, 0, 0, 384, 0, 0], "keys": ["boss.690.name"], "category": "boss", "raw_name": "Hogger", "name_key": "boss.690.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 691, "found": true, "name": "Mother Fang", "other_names": ["", "", ""], "subname": "", "fields": [0, 1, 0, 3, 0, 0, 7536, 0, 0], "keys": ["boss.691.name"], "category": "boss", "raw_name": "Mother Fang", "name_key": "boss.691.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 692, "found": true, "name": "Rhahk'Zor", "other_names": ["", "", ""], "subname": "", "fields": [0, 7, 0, 3, 0, 0, 14403, 0, 0], "keys": ["boss.692.name"], "category": "boss", "raw_name": "Rhahk'Zor", "name_key": "boss.692.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 693, "found": true, "name": "Mr. Smite", "other_names": ["", "", ""], "subname": "", "fields": [0, 7, 0, 3, 0, 0, 2026, 0, 0], "keys": ["boss.693.name"], "category": "boss", "raw_name": "Mr. Smite", "name_key": "boss.693.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 694, "found": true, "name": "Edwin VanCleef", "other_names": ["", "", ""], "subname": "", "fields": [0, 7, 0, 3, 0, 0, 2029, 0, 0], "keys": ["boss.694.name"], "category": "boss", "raw_name": "Edwin VanCleef", "name_key": "boss.694.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 700, "found": true, "name": "Skeletal Raider", "other_names": ["", "", ""], "subname": "Night of the Nightbane", "fields": [0, 6, 0, 0, 0, 0, 158, 0, 0], "keys": ["enemy.700", "zone.duskwood.subtitle"], "category": "enemy", "raw_name": "Skeletal Raider", "name_key": "enemy.700", "raw_subname": "Night of the Nightbane", "subname_key": "zone.duskwood.subtitle"},
+    {"entry": 701, "found": true, "name": "Plague Spreader", "other_names": ["", "", ""], "subname": "Night of the Nightbane", "fields": [0, 6, 0, 0, 0, 0, 137, 0, 0], "keys": ["enemy.701", "zone.duskwood.subtitle"], "category": "enemy", "raw_name": "Plague Spreader", "name_key": "enemy.701", "raw_subname": "Night of the Nightbane", "subname_key": "zone.duskwood.subtitle"},
+    {"entry": 702, "found": true, "name": "Black Widow Hatchling", "other_names": ["", "", ""], "subname": "Night of the Nightbane", "fields": [0, 1, 0, 0, 0, 0, 1091, 0, 0], "keys": ["enemy.702", "zone.duskwood.subtitle"], "category": "enemy", "raw_name": "Black Widow Hatchling", "name_key": "enemy.702", "raw_subname": "Night of the Nightbane", "subname_key": "zone.duskwood.subtitle"},
+    {"entry": 703, "found": true, "name": "Nightbane Shadow Weaver", "other_names": ["", "", ""], "subname": "Night of the Nightbane", "fields": [0, 7, 0, 0, 0, 0, 203, 0, 0], "keys": ["enemy.703", "zone.duskwood.subtitle"], "category": "enemy", "raw_name": "Nightbane Shadow Weaver", "name_key": "enemy.703", "raw_subname": "Night of the Nightbane", "subname_key": "zone.duskwood.subtitle"},
+    {"entry": 704, "found": true, "name": "Rotting Horror", "other_names": ["", "", ""], "subname": "Night of the Nightbane", "fields": [0, 6, 0, 0, 0, 0, 1201, 0, 0], "keys": ["enemy.704", "zone.duskwood.subtitle"], "category": "enemy", "raw_name": "Rotting Horror", "name_key": "enemy.704", "raw_subname": "Night of the Nightbane", "subname_key": "zone.duskwood.subtitle"},
+    {"entry": 705, "found": true, "name": "Nightbane Dark Runner", "other_names": ["", "", ""], "subname": "Night of the Nightbane", "fields": [0, 7, 0, 0, 0, 0, 202, 0, 0], "keys": ["enemy.705", "zone.duskwood.subtitle"], "category": "enemy", "raw_name": "Nightbane Dark Runner", "name_key": "enemy.705", "raw_subname": "Night of the Nightbane", "subname_key": "zone.duskwood.subtitle"},
+    {"entry": 706, "found": true, "name": "Fleshripper", "other_names": ["", "", ""], "subname": "Night of the Nightbane", "fields": [0, 1, 0, 0, 0, 0, 388, 0, 0], "keys": ["enemy.706", "zone.duskwood.subtitle"], "category": "enemy", "raw_name": "Fleshripper", "name_key": "enemy.706", "raw_subname": "Night of the Nightbane", "subname_key": "zone.duskwood.subtitle"},
+    {"entry": 707, "found": true, "name": "Restless Shade", "other_names": ["", "", ""], "subname": "Night of the Nightbane", "fields": [0, 6, 0, 0, 0, 0, 146, 0, 0], "keys": ["enemy.707", "zone.duskwood.subtitle"], "category": "enemy", "raw_name": "Restless Shade", "name_key": "enemy.707", "raw_subname": "Night of the Nightbane", "subname_key": "zone.duskwood.subtitle"},
+    {"entry": 708, "found": true, "name": "Bone Chewer", "other_names": ["", "", ""], "subname": "Night of the Nightbane", "fields": [0, 6, 0, 0, 0, 0, 414, 0, 0], "keys": ["enemy.708", "zone.duskwood.subtitle"], "category": "enemy", "raw_name": "Bone Chewer", "name_key": "enemy.708", "raw_subname": "Night of the Nightbane", "subname_key": "zone.duskwood.subtitle"},
+    {"entry": 709, "found": true, "name": "Nightbane Worgen Alpha", "other_names": ["", "", ""], "subname": "Night of the Nightbane", "fields": [0, 7, 0, 1, 0, 0, 523, 0, 0], "keys": ["enemy.709", "zone.duskwood.subtitle"], "category": "enemy", "raw_name": "Nightbane Worgen Alpha", "name_key": "enemy.709", "raw_subname": "Night of the Nightbane", "subname_key": "zone.duskwood.subtitle"},
+    {"entry": 710, "found": true, "name": "Carrion Recluse", "other_names": ["", "", ""], "subname": "Night of the Nightbane", "fields": [0, 1, 0, 1, 0, 0, 366, 0, 0], "keys": ["enemy.710", "zone.duskwood.subtitle"], "category": "enemy", "raw_name": "Carrion Recluse", "name_key": "enemy.710", "raw_subname": "Night of the Nightbane", "subname_key": "zone.duskwood.subtitle"},
+    {"entry": 711, "found": true, "name": "Flesh Eating Abomination", "other_names": ["", "", ""], "subname": "Night of the Nightbane", "fields": [0, 6, 0, 1, 0, 0, 15961, 0, 0], "keys": ["enemy.711", "zone.duskwood.subtitle"], "category": "enemy", "raw_name": "Flesh Eating Abomination", "name_key": "enemy.711", "raw_subname": "Night of the Nightbane", "subname_key": "zone.duskwood.subtitle"},
+    {"entry": 790, "found": true, "name": "Naraxis", "other_names": ["", "", ""], "subname": "", "fields": [0, 1, 0, 3, 0, 0, 1091, 0, 0], "keys": ["boss.790.name"], "category": "boss", "raw_name": "Naraxis", "name_key": "boss.790.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 791, "found": true, "name": "Mor'Ladim", "other_names": ["", "", ""], "subname": "", "fields": [0, 6, 0, 3, 0, 0, 200, 0, 0], "keys": ["boss.791.name"], "category": "boss", "raw_name": "Mor'Ladim", "name_key": "boss.791.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 792, "found": true, "name": "Stitches", "other_names": ["", "", ""], "subname": "", "fields": [0, 6, 0, 3, 0, 0, 1061, 0, 0], "keys": ["boss.792.name"], "category": "boss", "raw_name": "Stitches", "name_key": "boss.792.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 793, "found": true, "name": "Lupos", "other_names": ["", "", ""], "subname": "", "fields": [0, 1, 0, 3, 0, 0, 1236, 0, 0], "keys": ["boss.793.name"], "category": "boss", "raw_name": "Lupos", "name_key": "boss.793.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 794, "found": true, "name": "Morbent Fel", "other_names": ["", "", ""], "subname": "", "fields": [0, 6, 0, 3, 0, 0, 16309, 0, 0], "keys": ["boss.794.name"], "category": "boss", "raw_name": "Morbent Fel", "name_key": "boss.794.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 800, "found": true, "name": "Woodpaw Mongrel", "other_names": ["", "", ""], "subname": "The Gates of Dire Maul", "fields": [0, 7, 0, 0, 0, 0, 355, 0, 0], "keys": ["enemy.800", "zone.feralas.subtitle"], "category": "enemy", "raw_name": "Woodpaw Mongrel", "name_key": "enemy.800", "raw_subname": "The Gates of Dire Maul", "subname_key": "zone.feralas.subtitle"},
+    {"entry": 801, "found": true, "name": "Longtooth Runner", "other_names": ["", "", ""], "subname": "The Gates of Dire Maul", "fields": [0, 1, 0, 0, 0, 0, 165, 0, 0], "keys": ["enemy.801", "zone.feralas.subtitle"], "category": "enemy", "raw_name": "Longtooth Runner", "name_key": "enemy.801", "raw_subname": "The Gates of Dire Maul", "subname_key": "zone.feralas.subtitle"},
+    {"entry": 802, "found": true, "name": "Sprite Darter", "other_names": ["", "", ""], "subname": "The Gates of Dire Maul", "fields": [0, 2, 0, 0, 0, 0, 1267, 0, 0], "keys": ["enemy.802", "zone.feralas.subtitle"], "category": "enemy", "raw_name": "Sprite Darter", "name_key": "enemy.802", "raw_subname": "The Gates of Dire Maul", "subname_key": "zone.feralas.subtitle"},
+    {"entry": 803, "found": true, "name": "Woodpaw Mystic", "other_names": ["", "", ""], "subname": "The Gates of Dire Maul", "fields": [0, 7, 0, 0, 0, 0, 491, 0, 0], "keys": ["enemy.803", "zone.feralas.subtitle"], "category": "enemy", "raw_name": "Woodpaw Mystic", "name_key": "enemy.803", "raw_subname": "The Gates of Dire Maul", "subname_key": "zone.feralas.subtitle"},
+    {"entry": 804, "found": true, "name": "Gordunni Ogre", "other_names": ["", "", ""], "subname": "The Gates of Dire Maul", "fields": [0, 7, 0, 0, 0, 0, 415, 0, 0], "keys": ["enemy.804", "zone.feralas.subtitle"], "category": "enemy", "raw_name": "Gordunni Ogre", "name_key": "enemy.804", "raw_subname": "The Gates of Dire Maul", "subname_key": "zone.feralas.subtitle"},
+    {"entry": 805, "found": true, "name": "Wildspawn Satyr", "other_names": ["", "", ""], "subname": "The Gates of Dire Maul", "fields": [0, 3, 0, 0, 0, 0, 2013, 0, 0], "keys": ["enemy.805", "zone.feralas.subtitle"], "category": "enemy", "raw_name": "Wildspawn Satyr", "name_key": "enemy.805", "raw_subname": "The Gates of Dire Maul", "subname_key": "zone.feralas.subtitle"},
+    {"entry": 806, "found": true, "name": "Ironfur Bear", "other_names": ["", "", ""], "subname": "The Gates of Dire Maul", "fields": [0, 1, 0, 0, 0, 0, 820, 0, 0], "keys": ["enemy.806", "zone.feralas.subtitle"], "category": "enemy", "raw_name": "Ironfur Bear", "name_key": "enemy.806", "raw_subname": "The Gates of Dire Maul", "subname_key": "zone.feralas.subtitle"},
+    {"entry": 807, "found": true, "name": "Gordunni Ogre-Mage", "other_names": ["", "", ""], "subname": "The Gates of Dire Maul", "fields": [0, 7, 0, 0, 0, 0, 3250, 0, 0], "keys": ["enemy.807", "zone.feralas.subtitle"], "category": "enemy", "raw_name": "Gordunni Ogre-Mage", "name_key": "enemy.807", "raw_subname": "The Gates of Dire Maul", "subname_key": "zone.feralas.subtitle"},
+    {"entry": 808, "found": true, "name": "Feral Scar Yeti", "other_names": ["", "", ""], "subname": "The Gates of Dire Maul", "fields": [0, 1, 0, 0, 0, 0, 1076, 0, 0], "keys": ["enemy.808", "zone.feralas.subtitle"], "category": "enemy", "raw_name": "Feral Scar Yeti", "name_key": "enemy.808", "raw_subname": "The Gates of Dire Maul", "subname_key": "zone.feralas.subtitle"},
+    {"entry": 809, "found": true, "name": "Gordunni Brute", "other_names": ["", "", ""], "subname": "The Gates of Dire Maul", "fields": [0, 7, 0, 1, 0, 0, 10170, 0, 0], "keys": ["enemy.809", "zone.feralas.subtitle"], "category": "enemy", "raw_name": "Gordunni Brute", "name_key": "enemy.809", "raw_subname": "The Gates of Dire Maul", "subname_key": "zone.feralas.subtitle"},
+    {"entry": 810, "found": true, "name": "Warpwood Treant", "other_names": ["", "", ""], "subname": "The Gates of Dire Maul", "fields": [0, 4, 0, 1, 0, 0, 2078, 0, 0], "keys": ["enemy.810", "zone.feralas.subtitle"], "category": "enemy", "raw_name": "Warpwood Treant", "name_key": "enemy.810", "raw_subname": "The Gates of Dire Maul", "subname_key": "zone.feralas.subtitle"},
+    {"entry": 811, "found": true, "name": "Ironbark Protector", "other_names": ["", "", ""], "subname": "The Gates of Dire Maul", "fields": [0, 4, 0, 1, 0, 0, 860, 0, 0], "keys": ["enemy.811", "zone.feralas.subtitle"], "category": "enemy", "raw_name": "Ironbark Protector", "name_key": "enemy.811", "raw_subname": "The Gates of Dire Maul", "subname_key": "zone.feralas.subtitle"},
+    {"entry": 890, "found": true, "name": "Zevrim Thornhoof", "other_names": ["", "", ""], "subname": "", "fields": [0, 3, 0, 3, 0, 0, 11346, 0, 0], "keys": ["boss.890.name"], "category": "boss", "raw_name": "Zevrim Thornhoof", "name_key": "boss.890.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 891, "found": true, "name": "Alzzin the Wildshaper", "other_names": ["", "", ""], "subname": "", "fields": [0, 3, 0, 3, 0, 0, 14416, 0, 0], "keys": ["boss.891.name"], "category": "boss", "raw_name": "Alzzin the Wildshaper", "name_key": "boss.891.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 892, "found": true, "name": "Tendris Warpwood", "other_names": ["", "", ""], "subname": "", "fields": [0, 4, 0, 3, 0, 0, 14383, 0, 0], "keys": ["boss.892.name"], "category": "boss", "raw_name": "Tendris Warpwood", "name_key": "boss.892.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 893, "found": true, "name": "Immol'thar", "other_names": ["", "", ""], "subname": "", "fields": [0, 3, 0, 3, 0, 0, 14173, 0, 0], "keys": ["boss.893.name"], "category": "boss", "raw_name": "Immol'thar", "name_key": "boss.893.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 894, "found": true, "name": "King Gordok", "other_names": ["", "", ""], "subname": "", "fields": [0, 7, 0, 3, 0, 0, 11583, 0, 0], "keys": ["boss.894.name"], "category": "boss", "raw_name": "King Gordok", "name_key": "boss.894.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 900, "found": true, "name": "Gurubashi Scout", "other_names": ["", "", ""], "subname": "The Blood God Wakes", "fields": [0, 7, 0, 0, 0, 0, 337, 0, 0], "keys": ["enemy.900", "zone.arena.subtitle"], "category": "enemy", "raw_name": "Gurubashi Scout", "name_key": "enemy.900", "raw_subname": "The Blood God Wakes", "subname_key": "zone.arena.subtitle"},
+    {"entry": 901, "found": true, "name": "Razzashi Raptor", "other_names": ["", "", ""], "subname": "The Blood God Wakes", "fields": [0, 1, 0, 0, 0, 0, 1959, 0, 0], "keys": ["enemy.901", "zone.arena.subtitle"], "category": "enemy", "raw_name": "Razzashi Raptor", "name_key": "enemy.901", "raw_subname": "The Blood God Wakes", "subname_key": "zone.arena.subtitle"},
+    {"entry": 902, "found": true, "name": "Bloodseeker Bat", "other_names": ["", "", ""], "subname": "The Blood God Wakes", "fields": [0, 1, 0, 0, 0, 0, 15191, 0, 0], "keys": ["enemy.902", "zone.arena.subtitle"], "category": "enemy", "raw_name": "Bloodseeker Bat", "name_key": "enemy.902", "raw_subname": "The Blood God Wakes", "subname_key": "zone.arena.subtitle"},
+    {"entry": 903, "found": true, "name": "Hakkari Shadowcaster", "other_names": ["", "", ""], "subname": "The Blood God Wakes", "fields": [0, 7, 0, 0, 0, 0, 314, 0, 0], "keys": ["enemy.903", "zone.arena.subtitle"], "category": "enemy", "raw_name": "Hakkari Shadowcaster", "name_key": "enemy.903", "raw_subname": "The Blood God Wakes", "subname_key": "zone.arena.subtitle"},
+    {"entry": 904, "found": true, "name": "Gurubashi Axe Thrower", "other_names": ["", "", ""], "subname": "The Blood God Wakes", "fields": [0, 7, 0, 0, 0, 0, 316, 0, 0], "keys": ["enemy.904", "zone.arena.subtitle"], "category": "enemy", "raw_name": "Gurubashi Axe Thrower", "name_key": "enemy.904", "raw_subname": "The Blood God Wakes", "subname_key": "zone.arena.subtitle"},
+    {"entry": 905, "found": true, "name": "Zulian Tiger", "other_names": ["", "", ""], "subname": "The Blood God Wakes", "fields": [0, 1, 0, 0, 0, 0, 599, 0, 0], "keys": ["enemy.905", "zone.arena.subtitle"], "category": "enemy", "raw_name": "Zulian Tiger", "name_key": "enemy.905", "raw_subname": "The Blood God Wakes", "subname_key": "zone.arena.subtitle"},
+    {"entry": 906, "found": true, "name": "Razzashi Serpent", "other_names": ["", "", ""], "subname": "The Blood God Wakes", "fields": [0, 1, 0, 0, 0, 0, 4312, 0, 0], "keys": ["enemy.906", "zone.arena.subtitle"], "category": "enemy", "raw_name": "Razzashi Serpent", "name_key": "enemy.906", "raw_subname": "The Blood God Wakes", "subname_key": "zone.arena.subtitle"},
+    {"entry": 907, "found": true, "name": "Hakkari Witch Doctor", "other_names": ["", "", ""], "subname": "The Blood God Wakes", "fields": [0, 7, 0, 0, 0, 0, 317, 0, 0], "keys": ["enemy.907", "zone.arena.subtitle"], "category": "enemy", "raw_name": "Hakkari Witch Doctor", "name_key": "enemy.907", "raw_subname": "The Blood God Wakes", "subname_key": "zone.arena.subtitle"},
+    {"entry": 908, "found": true, "name": "Son of Hakkar", "other_names": ["", "", ""], "subname": "The Blood God Wakes", "fields": [0, 2, 0, 0, 0, 0, 2699, 0, 0], "keys": ["enemy.908", "zone.arena.subtitle"], "category": "enemy", "raw_name": "Son of Hakkar", "name_key": "enemy.908", "raw_subname": "The Blood God Wakes", "subname_key": "zone.arena.subtitle"},
+    {"entry": 909, "found": true, "name": "Gurubashi Berserker", "other_names": ["", "", ""], "subname": "The Blood God Wakes", "fields": [0, 7, 0, 1, 0, 0, 591, 0, 0], "keys": ["enemy.909", "zone.arena.subtitle"], "category": "enemy", "raw_name": "Gurubashi Berserker", "name_key": "enemy.909", "raw_subname": "The Blood God Wakes", "subname_key": "zone.arena.subtitle"},
+    {"entry": 910, "found": true, "name": "Zulian Crocolisk", "other_names": ["", "", ""], "subname": "The Blood God Wakes", "fields": [0, 1, 0, 1, 0, 0, 807, 0, 0], "keys": ["enemy.910", "zone.arena.subtitle"], "category": "enemy", "raw_name": "Zulian Crocolisk", "name_key": "enemy.910", "raw_subname": "The Blood God Wakes", "subname_key": "zone.arena.subtitle"},
+    {"entry": 911, "found": true, "name": "Gurubashi Champion", "other_names": ["", "", ""], "subname": "The Blood God Wakes", "fields": [0, 7, 0, 1, 0, 0, 593, 0, 0], "keys": ["enemy.911", "zone.arena.subtitle"], "category": "enemy", "raw_name": "Gurubashi Champion", "name_key": "enemy.911", "raw_subname": "The Blood God Wakes", "subname_key": "zone.arena.subtitle"},
+    {"entry": 990, "found": true, "name": "High Priestess Jeklik", "other_names": ["", "", ""], "subname": "", "fields": [0, 7, 0, 3, 0, 0, 15219, 0, 0], "keys": ["boss.990.name"], "category": "boss", "raw_name": "High Priestess Jeklik", "name_key": "boss.990.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 991, "found": true, "name": "High Priest Venoxis", "other_names": ["", "", ""], "subname": "", "fields": [0, 7, 0, 3, 0, 0, 15217, 0, 0], "keys": ["boss.991.name"], "category": "boss", "raw_name": "High Priest Venoxis", "name_key": "boss.991.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 992, "found": true, "name": "Bloodlord Mandokir", "other_names": ["", "", ""], "subname": "", "fields": [0, 7, 0, 3, 0, 0, 11288, 0, 0], "keys": ["boss.992.name"], "category": "boss", "raw_name": "Bloodlord Mandokir", "name_key": "boss.992.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 993, "found": true, "name": "Jin'do the Hexxer", "other_names": ["", "", ""], "subname": "", "fields": [0, 7, 0, 3, 0, 0, 11311, 0, 0], "keys": ["boss.993.name"], "category": "boss", "raw_name": "Jin'do the Hexxer", "name_key": "boss.993.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 994, "found": true, "name": "Hakkar the Soulflayer", "other_names": ["", "", ""], "subname": "", "fields": [0, 2, 0, 3, 0, 0, 15295, 0, 0], "keys": ["boss.994.name"], "category": "boss", "raw_name": "Hakkar the Soulflayer", "name_key": "boss.994.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 1000, "found": true, "name": "Dark Iron Slaver", "other_names": ["", "", ""], "subname": "The Lord of Blackrock", "fields": [0, 7, 0, 0, 0, 0, 8673, 0, 0], "keys": ["enemy.1000", "zone.brm.subtitle"], "category": "enemy", "raw_name": "Dark Iron Slaver", "name_key": "enemy.1000", "raw_subname": "The Lord of Blackrock", "subname_key": "zone.brm.subtitle"},
+    {"entry": 1001, "found": true, "name": "Black Broodling", "other_names": ["", "", ""], "subname": "The Lord of Blackrock", "fields": [0, 2, 0, 0, 0, 0, 387, 0, 0], "keys": ["enemy.1001", "zone.brm.subtitle"], "category": "enemy", "raw_name": "Black Broodling", "name_key": "enemy.1001", "raw_subname": "The Lord of Blackrock", "subname_key": "zone.brm.subtitle"},
+    {"entry": 1002, "found": true, "name": "Blackrock Grunt", "other_names": ["", "", ""], "subname": "The Lord of Blackrock", "fields": [0, 7, 0, 0, 0, 0, 8699, 0, 0], "keys": ["enemy.1002", "zone.brm.subtitle"], "category": "enemy", "raw_name": "Blackrock Grunt", "name_key": "enemy.1002", "raw_subname": "The Lord of Blackrock", "subname_key": "zone.brm.subtitle"},
+    {"entry": 1003, "found": true, "name": "Dark Iron Geomancer", "other_names": ["", "", ""], "subname": "The Lord of Blackrock", "fields": [0, 7, 0, 0, 0, 0, 8799, 0, 0], "keys": ["enemy.1003", "zone.brm.subtitle"], "category": "enemy", "raw_name": "Dark Iron Geomancer", "name_key": "enemy.1003", "raw_subname": "The Lord of Blackrock", "subname_key": "zone.brm.subtitle"},
+    {"entry": 1004, "found": true, "name": "Anvilrage Guardsman", "other_names": ["", "", ""], "subname": "The Lord of Blackrock", "fields": [0, 7, 0, 0, 0, 0, 8681, 0, 0], "keys": ["enemy.1004", "zone.brm.subtitle"], "category": "enemy", "raw_name": "Anvilrage Guardsman", "name_key": "enemy.1004", "raw_subname": "The Lord of Blackrock", "subname_key": "zone.brm.subtitle"},
+    {"entry": 1005, "found": true, "name": "Blazing Elemental", "other_names": ["", "", ""], "subname": "The Lord of Blackrock", "fields": [0, 4, 0, 0, 0, 0, 1070, 0, 0], "keys": ["enemy.1005", "zone.brm.subtitle"], "category": "enemy", "raw_name": "Blazing Elemental", "name_key": "enemy.1005", "raw_subname": "The Lord of Blackrock", "subname_key": "zone.brm.subtitle"},
+    {"entry": 1006, "found": true, "name": "Firegut Ogre", "other_names": ["", "", ""], "subname": "The Lord of Blackrock", "fields": [0, 7, 0, 0, 0, 0, 10707, 0, 0], "keys": ["enemy.1006", "zone.brm.subtitle"], "category": "enemy", "raw_name": "Firegut Ogre", "name_key": "enemy.1006", "raw_subname": "The Lord of Blackrock", "subname_key": "zone.brm.subtitle"},
+    {"entry": 1007, "found": true, "name": "Black Wyrmkin", "other_names": ["", "", ""], "subname": "The Lord of Blackrock", "fields": [0, 2, 0, 0, 0, 0, 8249, 0, 0], "keys": ["enemy.1007", "zone.brm.subtitle"], "category": "enemy", "raw_name": "Black Wyrmkin", "name_key": "enemy.1007", "raw_subname": "The Lord of Blackrock", "subname_key": "zone.brm.subtitle"},
+    {"entry": 1008, "found": true, "name": "Fireguard Destroyer", "other_names": ["", "", ""], "subname": "The Lord of Blackrock", "fields": [0, 7, 0, 0, 0, 0, 8686, 0, 0], "keys": ["enemy.1008", "zone.brm.subtitle"], "category": "enemy", "raw_name": "Fireguard Destroyer", "name_key": "enemy.1008", "raw_subname": "The Lord of Blackrock", "subname_key": "zone.brm.subtitle"},
+    {"entry": 1009, "found": true, "name": "Core Hound", "other_names": ["", "", ""], "subname": "The Lord of Blackrock", "fields": [0, 1, 0, 1, 0, 0, 10193, 0, 0], "keys": ["enemy.1009", "zone.brm.subtitle"], "category": "enemy", "raw_name": "Core Hound", "name_key": "enemy.1009", "raw_subname": "The Lord of Blackrock", "subname_key": "zone.brm.subtitle"},
+    {"entry": 1010, "found": true, "name": "Black Drake", "other_names": ["", "", ""], "subname": "The Lord of Blackrock", "fields": [0, 2, 0, 1, 0, 0, 6377, 0, 0], "keys": ["enemy.1010", "zone.brm.subtitle"], "category": "enemy", "raw_name": "Black Drake", "name_key": "enemy.1010", "raw_subname": "The Lord of Blackrock", "subname_key": "zone.brm.subtitle"},
+    {"entry": 1011, "found": true, "name": "Molten Giant", "other_names": ["", "", ""], "subname": "The Lord of Blackrock", "fields": [0, 5, 0, 1, 0, 0, 12162, 0, 0], "keys": ["enemy.1011", "zone.brm.subtitle"], "category": "enemy", "raw_name": "Molten Giant", "name_key": "enemy.1011", "raw_subname": "The Lord of Blackrock", "subname_key": "zone.brm.subtitle"},
+    {"entry": 1090, "found": true, "name": "General Angerforge", "other_names": ["", "", ""], "subname": "", "fields": [0, 7, 0, 3, 0, 0, 8756, 0, 0], "keys": ["boss.1090.name"], "category": "boss", "raw_name": "General Angerforge", "name_key": "boss.1090.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 1091, "found": true, "name": "Warchief Rend Blackhand", "other_names": ["", "", ""], "subname": "", "fields": [0, 7, 0, 3, 0, 0, 9778, 0, 0], "keys": ["boss.1091.name"], "category": "boss", "raw_name": "Warchief Rend Blackhand", "name_key": "boss.1091.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 1092, "found": true, "name": "Emperor Dagran Thaurissan", "other_names": ["", "", ""], "subname": "", "fields": [0, 7, 0, 3, 0, 0, 8807, 0, 0], "keys": ["boss.1092.name"], "category": "boss", "raw_name": "Emperor Dagran Thaurissan", "name_key": "boss.1092.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 1093, "found": true, "name": "Majordomo Executus", "other_names": ["", "", ""], "subname": "", "fields": [0, 7, 0, 3, 0, 0, 12029, 0, 0], "keys": ["boss.1093.name"], "category": "boss", "raw_name": "Majordomo Executus", "name_key": "boss.1093.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 1094, "found": true, "name": "Nefarian", "other_names": ["", "", ""], "subname": "", "fields": [0, 2, 0, 3, 0, 0, 11380, 0, 0], "keys": ["boss.1094.name"], "category": "boss", "raw_name": "Nefarian", "name_key": "boss.1094.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 1100, "found": true, "name": "Silithid Swarmer", "other_names": ["", "", ""], "subname": "The Old God Stirs", "fields": [0, 1, 0, 0, 0, 0, 11143, 0, 0], "keys": ["enemy.1100", "zone.aq.subtitle"], "category": "enemy", "raw_name": "Silithid Swarmer", "name_key": "enemy.1100", "raw_subname": "The Old God Stirs", "subname_key": "zone.aq.subtitle"},
+    {"entry": 1101, "found": true, "name": "Silithid Creeper", "other_names": ["", "", ""], "subname": "The Old God Stirs", "fields": [0, 1, 0, 0, 0, 0, 11097, 0, 0], "keys": ["enemy.1101", "zone.aq.subtitle"], "category": "enemy", "raw_name": "Silithid Creeper", "name_key": "enemy.1101", "raw_subname": "The Old God Stirs", "subname_key": "zone.aq.subtitle"},
+    {"entry": 1102, "found": true, "name": "Hive'Zara Stinger", "other_names": ["", "", ""], "subname": "The Old God Stirs", "fields": [0, 1, 0, 0, 0, 0, 15335, 0, 0], "keys": ["enemy.1102", "zone.aq.subtitle"], "category": "enemy", "raw_name": "Hive'Zara Stinger", "name_key": "enemy.1102", "raw_subname": "The Old God Stirs", "subname_key": "zone.aq.subtitle"},
+    {"entry": 1103, "found": true, "name": "Twilight Geolord", "other_names": ["", "", ""], "subname": "The Old God Stirs", "fields": [0, 7, 0, 0, 0, 0, 2870, 0, 0], "keys": ["enemy.1103", "zone.aq.subtitle"], "category": "enemy", "raw_name": "Twilight Geolord", "name_key": "enemy.1103", "raw_subname": "The Old God Stirs", "subname_key": "zone.aq.subtitle"},
+    {"entry": 1104, "found": true, "name": "Qiraji Gladiator", "other_names": ["", "", ""], "subname": "The Old God Stirs", "fields": [0, 7, 0, 0, 0, 0, 1063, 0, 0], "keys": ["enemy.1104", "zone.aq.subtitle"], "category": "enemy", "raw_name": "Qiraji Gladiator", "name_key": "enemy.1104", "raw_subname": "The Old God Stirs", "subname_key": "zone.aq.subtitle"},
+    {"entry": 1105, "found": true, "name": "Stonelash Scorpid", "other_names": ["", "", ""], "subname": "The Old God Stirs", "fields": [0, 1, 0, 0, 0, 0, 2485, 0, 0], "keys": ["enemy.1105", "zone.aq.subtitle"], "category": "enemy", "raw_name": "Stonelash Scorpid", "name_key": "enemy.1105", "raw_subname": "The Old God Stirs", "subname_key": "zone.aq.subtitle"},
+    {"entry": 1106, "found": true, "name": "Silithid Ravager", "other_names": ["", "", ""], "subname": "The Old God Stirs", "fields": [0, 1, 0, 0, 0, 0, 11099, 0, 0], "keys": ["enemy.1106", "zone.aq.subtitle"], "category": "enemy", "raw_name": "Silithid Ravager", "name_key": "enemy.1106", "raw_subname": "The Old God Stirs", "subname_key": "zone.aq.subtitle"},
+    {"entry": 1107, "found": true, "name": "Qiraji Mindslayer", "other_names": ["", "", ""], "subname": "The Old God Stirs", "fields": [0, 7, 0, 0, 0, 0, 1064, 0, 0], "keys": ["enemy.1107", "zone.aq.subtitle"], "category": "enemy", "raw_name": "Qiraji Mindslayer", "name_key": "enemy.1107", "raw_subname": "The Old God Stirs", "subname_key": "zone.aq.subtitle"},
+    {"entry": 1108, "found": true, "name": "Dust Stormer", "other_names": ["", "", ""], "subname": "The Old God Stirs", "fields": [0, 4, 0, 0, 0, 0, 5327, 0, 0], "keys": ["enemy.1108", "zone.aq.subtitle"], "category": "enemy", "raw_name": "Dust Stormer", "name_key": "enemy.1108", "raw_subname": "The Old God Stirs", "subname_key": "zone.aq.subtitle"},
+    {"entry": 1109, "found": true, "name": "Qiraji Champion", "other_names": ["", "", ""], "subname": "The Old God Stirs", "fields": [0, 7, 0, 1, 0, 0, 1062, 0, 0], "keys": ["enemy.1109", "zone.aq.subtitle"], "category": "enemy", "raw_name": "Qiraji Champion", "name_key": "enemy.1109", "raw_subname": "The Old God Stirs", "subname_key": "zone.aq.subtitle"},
+    {"entry": 1110, "found": true, "name": "Anubisath Sentinel", "other_names": ["", "", ""], "subname": "The Old God Stirs", "fields": [0, 7, 0, 1, 0, 0, 5965, 0, 0], "keys": ["enemy.1110", "zone.aq.subtitle"], "category": "enemy", "raw_name": "Anubisath Sentinel", "name_key": "enemy.1110", "raw_subname": "The Old God Stirs", "subname_key": "zone.aq.subtitle"},
+    {"entry": 1111, "found": true, "name": "Obsidian Destroyer", "other_names": ["", "", ""], "subname": "The Old God Stirs", "fields": [0, 9, 0, 1, 0, 0, 11914, 0, 0], "keys": ["enemy.1111", "zone.aq.subtitle"], "category": "enemy", "raw_name": "Obsidian Destroyer", "name_key": "enemy.1111", "raw_subname": "The Old God Stirs", "subname_key": "zone.aq.subtitle"},
+    {"entry": 1190, "found": true, "name": "Kurinnaxx", "other_names": ["", "", ""], "subname": "", "fields": [0, 1, 0, 3, 0, 0, 15742, 0, 0], "keys": ["boss.1190.name"], "category": "boss", "raw_name": "Kurinnaxx", "name_key": "boss.1190.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 1191, "found": true, "name": "General Rajaxx", "other_names": ["", "", ""], "subname": "", "fields": [0, 7, 0, 3, 0, 0, 15376, 0, 0], "keys": ["boss.1191.name"], "category": "boss", "raw_name": "General Rajaxx", "name_key": "boss.1191.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 1192, "found": true, "name": "Princess Huhuran", "other_names": ["", "", ""], "subname": "", "fields": [0, 1, 0, 3, 0, 0, 15739, 0, 0], "keys": ["boss.1192.name"], "category": "boss", "raw_name": "Princess Huhuran", "name_key": "boss.1192.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 1193, "found": true, "name": "Ossirian the Unscarred", "other_names": ["", "", ""], "subname": "", "fields": [0, 7, 0, 3, 0, 0, 15432, 0, 0], "keys": ["boss.1193.name"], "category": "boss", "raw_name": "Ossirian the Unscarred", "name_key": "boss.1193.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 1194, "found": true, "name": "C'Thun", "other_names": ["", "", ""], "subname": "", "fields": [0, 10, 0, 3, 0, 0, 15556, 0, 0], "keys": ["boss.1194.name"], "category": "boss", "raw_name": "C'Thun", "name_key": "boss.1194.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 1200, "found": true, "name": "Ravasaur Runner", "other_names": ["", "", ""], "subname": "The Primal Hunt", "fields": [0, 1, 0, 0, 0, 0, 5290, 0, 0], "keys": ["enemy.1200", "zone.ungoro.subtitle"], "category": "enemy", "raw_name": "Ravasaur Runner", "name_key": "enemy.1200", "raw_subname": "The Primal Hunt", "subname_key": "zone.ungoro.subtitle"},
+    {"entry": 1201, "found": true, "name": "Young Ravasaur", "other_names": ["", "", ""], "subname": "The Primal Hunt", "fields": [0, 1, 0, 0, 0, 0, 5242, 0, 0], "keys": ["enemy.1201", "zone.ungoro.subtitle"], "category": "enemy", "raw_name": "Young Ravasaur", "name_key": "enemy.1201", "raw_subname": "The Primal Hunt", "subname_key": "zone.ungoro.subtitle"},
+    {"entry": 1202, "found": true, "name": "Fledgling Pterrordax", "other_names": ["", "", ""], "subname": "The Primal Hunt", "fields": [0, 1, 0, 0, 0, 0, 8410, 0, 0], "keys": ["enemy.1202", "zone.ungoro.subtitle"], "category": "enemy", "raw_name": "Fledgling Pterrordax", "name_key": "enemy.1202", "raw_subname": "The Primal Hunt", "subname_key": "zone.ungoro.subtitle"},
+    {"entry": 1203, "found": true, "name": "Gorishi Stinger", "other_names": ["", "", ""], "subname": "The Primal Hunt", "fields": [0, 1, 0, 0, 0, 0, 11088, 0, 0], "keys": ["enemy.1203", "zone.ungoro.subtitle"], "category": "enemy", "raw_name": "Gorishi Stinger", "name_key": "enemy.1203", "raw_subname": "The Primal Hunt", "subname_key": "zone.ungoro.subtitle"},
+    {"entry": 1204, "found": true, "name": "Bloodpetal Lasher", "other_names": ["", "", ""], "subname": "The Primal Hunt", "fields": [0, 4, 0, 0, 0, 0, 11634, 0, 0], "keys": ["enemy.1204", "zone.ungoro.subtitle"], "category": "enemy", "raw_name": "Bloodpetal Lasher", "name_key": "enemy.1204", "raw_subname": "The Primal Hunt", "subname_key": "zone.ungoro.subtitle"},
+    {"entry": 1205, "found": true, "name": "Un'Goro Stomper", "other_names": ["", "", ""], "subname": "The Primal Hunt", "fields": [0, 1, 0, 0, 0, 0, 5294, 0, 0], "keys": ["enemy.1205", "zone.ungoro.subtitle"], "category": "enemy", "raw_name": "Un'Goro Stomper", "name_key": "enemy.1205", "raw_subname": "The Primal Hunt", "subname_key": "zone.ungoro.subtitle"},
+    {"entry": 1206, "found": true, "name": "Venomhide Ravasaur", "other_names": ["", "", ""], "subname": "The Primal Hunt", "fields": [0, 1, 0, 0, 0, 0, 5291, 0, 0], "keys": ["enemy.1206", "zone.ungoro.subtitle"], "category": "enemy", "raw_name": "Venomhide Ravasaur", "name_key": "enemy.1206", "raw_subname": "The Primal Hunt", "subname_key": "zone.ungoro.subtitle"},
+    {"entry": 1207, "found": true, "name": "Frenzied Pterrordax", "other_names": ["", "", ""], "subname": "The Primal Hunt", "fields": [0, 1, 0, 0, 0, 0, 8411, 0, 0], "keys": ["enemy.1207", "zone.ungoro.subtitle"], "category": "enemy", "raw_name": "Frenzied Pterrordax", "name_key": "enemy.1207", "raw_subname": "The Primal Hunt", "subname_key": "zone.ungoro.subtitle"},
+    {"entry": 1208, "found": true, "name": "Elder Diemetradon", "other_names": ["", "", ""], "subname": "The Primal Hunt", "fields": [0, 1, 0, 0, 0, 0, 8512, 0, 0], "keys": ["enemy.1208", "zone.ungoro.subtitle"], "category": "enemy", "raw_name": "Elder Diemetradon", "name_key": "enemy.1208", "raw_subname": "The Primal Hunt", "subname_key": "zone.ungoro.subtitle"},
+    {"entry": 1209, "found": true, "name": "Ravasaur Hunter", "other_names": ["", "", ""], "subname": "The Primal Hunt", "fields": [0, 1, 0, 1, 0, 0, 5292, 0, 0], "keys": ["enemy.1209", "zone.ungoro.subtitle"], "category": "enemy", "raw_name": "Ravasaur Hunter", "name_key": "enemy.1209", "raw_subname": "The Primal Hunt", "subname_key": "zone.ungoro.subtitle"},
+    {"entry": 1210, "found": true, "name": "Un'Goro Thunderer", "other_names": ["", "", ""], "subname": "The Primal Hunt", "fields": [0, 1, 0, 1, 0, 0, 8129, 0, 0], "keys": ["enemy.1210", "zone.ungoro.subtitle"], "category": "enemy", "raw_name": "Un'Goro Thunderer", "name_key": "enemy.1210", "raw_subname": "The Primal Hunt", "subname_key": "zone.ungoro.subtitle"},
+    {"entry": 1211, "found": true, "name": "Devilsaur", "other_names": ["", "", ""], "subname": "The Primal Hunt", "fields": [0, 1, 0, 1, 0, 0, 5239, 0, 0], "keys": ["enemy.1211", "zone.ungoro.subtitle"], "category": "enemy", "raw_name": "Devilsaur", "name_key": "enemy.1211", "raw_subname": "The Primal Hunt", "subname_key": "zone.ungoro.subtitle"},
+    {"entry": 1290, "found": true, "name": "Ravasaur Matriarch", "other_names": ["", "", ""], "subname": "", "fields": [0, 1, 0, 3, 0, 0, 11319, 0, 0], "keys": ["boss.1290.name"], "category": "boss", "raw_name": "Ravasaur Matriarch", "name_key": "boss.1290.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 1291, "found": true, "name": "Uhk'loc", "other_names": ["", "", ""], "subname": "", "fields": [0, 1, 0, 3, 0, 0, 8129, 0, 0], "keys": ["boss.1291.name"], "category": "boss", "raw_name": "Uhk'loc", "name_key": "boss.1291.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 1292, "found": true, "name": "Lar'korwi", "other_names": ["", "", ""], "subname": "", "fields": [0, 1, 0, 3, 0, 0, 11318, 0, 0], "keys": ["boss.1292.name"], "category": "boss", "raw_name": "Lar'korwi", "name_key": "boss.1292.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 1293, "found": true, "name": "Tyrant Devilsaur", "other_names": ["", "", ""], "subname": "", "fields": [0, 1, 0, 3, 0, 0, 5240, 0, 0], "keys": ["boss.1293.name"], "category": "boss", "raw_name": "Tyrant Devilsaur", "name_key": "boss.1293.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 1294, "found": true, "name": "King Mosh", "other_names": ["", "", ""], "subname": "", "fields": [0, 1, 0, 3, 0, 0, 5305, 0, 0], "keys": ["boss.1294.name"], "category": "boss", "raw_name": "King Mosh", "name_key": "boss.1294.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 1300, "found": true, "name": "Scarlet Monk", "other_names": ["", "", ""], "subname": "The Crusade's Last Stand", "fields": [0, 7, 0, 0, 0, 0, 2603, 0, 0], "keys": ["enemy.1300", "zone.sm.subtitle"], "category": "enemy", "raw_name": "Scarlet Monk", "name_key": "enemy.1300", "raw_subname": "The Crusade's Last Stand", "subname_key": "zone.sm.subtitle"},
+    {"entry": 1301, "found": true, "name": "Scarlet Tracking Hound", "other_names": ["", "", ""], "subname": "The Crusade's Last Stand", "fields": [0, 1, 0, 0, 0, 0, 2709, 0, 0], "keys": ["enemy.1301", "zone.sm.subtitle"], "category": "enemy", "raw_name": "Scarlet Tracking Hound", "name_key": "enemy.1301", "raw_subname": "The Crusade's Last Stand", "subname_key": "zone.sm.subtitle"},
+    {"entry": 1302, "found": true, "name": "Scarlet Scout", "other_names": ["", "", ""], "subname": "The Crusade's Last Stand", "fields": [0, 7, 0, 0, 0, 0, 2516, 0, 0], "keys": ["enemy.1302", "zone.sm.subtitle"], "category": "enemy", "raw_name": "Scarlet Scout", "name_key": "enemy.1302", "raw_subname": "The Crusade's Last Stand", "subname_key": "zone.sm.subtitle"},
+    {"entry": 1303, "found": true, "name": "Scarlet Adept", "other_names": ["", "", ""], "subname": "The Crusade's Last Stand", "fields": [0, 7, 0, 0, 0, 0, 5726, 0, 0], "keys": ["enemy.1303", "zone.sm.subtitle"], "category": "enemy", "raw_name": "Scarlet Adept", "name_key": "enemy.1303", "raw_subname": "The Crusade's Last Stand", "subname_key": "zone.sm.subtitle"},
+    {"entry": 1304, "found": true, "name": "Scarlet Centurion", "other_names": ["", "", ""], "subname": "The Crusade's Last Stand", "fields": [0, 7, 0, 0, 0, 0, 2499, 0, 0], "keys": ["enemy.1304", "zone.sm.subtitle"], "category": "enemy", "raw_name": "Scarlet Centurion", "name_key": "enemy.1304", "raw_subname": "The Crusade's Last Stand", "subname_key": "zone.sm.subtitle"},
+    {"entry": 1305, "found": true, "name": "Scarlet Defender", "other_names": ["", "", ""], "subname": "The Crusade's Last Stand", "fields": [0, 7, 0, 0, 0, 0, 2462, 0, 0], "keys": ["enemy.1305", "zone.sm.subtitle"], "category": "enemy", "raw_name": "Scarlet Defender", "name_key": "enemy.1305", "raw_subname": "The Crusade's Last Stand", "subname_key": "zone.sm.subtitle"},
+    {"entry": 1306, "found": true, "name": "Scarlet Gallant", "other_names": ["", "", ""], "subname": "The Crusade's Last Stand", "fields": [0, 7, 0, 0, 0, 0, 2463, 0, 0], "keys": ["enemy.1306", "zone.sm.subtitle"], "category": "enemy", "raw_name": "Scarlet Gallant", "name_key": "enemy.1306", "raw_subname": "The Crusade's Last Stand", "subname_key": "zone.sm.subtitle"},
+    {"entry": 1307, "found": true, "name": "Scarlet Wizard", "other_names": ["", "", ""], "subname": "The Crusade's Last Stand", "fields": [0, 7, 0, 0, 0, 0, 2525, 0, 0], "keys": ["enemy.1307", "zone.sm.subtitle"], "category": "enemy", "raw_name": "Scarlet Wizard", "name_key": "enemy.1307", "raw_subname": "The Crusade's Last Stand", "subname_key": "zone.sm.subtitle"},
+    {"entry": 1308, "found": true, "name": "Scarlet Protector", "other_names": ["", "", ""], "subname": "The Crusade's Last Stand", "fields": [0, 7, 0, 0, 0, 0, 2476, 0, 0], "keys": ["enemy.1308", "zone.sm.subtitle"], "category": "enemy", "raw_name": "Scarlet Protector", "name_key": "enemy.1308", "raw_subname": "The Crusade's Last Stand", "subname_key": "zone.sm.subtitle"},
+    {"entry": 1309, "found": true, "name": "Scarlet Myrmidon", "other_names": ["", "", ""], "subname": "The Crusade's Last Stand", "fields": [0, 7, 0, 1, 0, 0, 2514, 0, 0], "keys": ["enemy.1309", "zone.sm.subtitle"], "category": "enemy", "raw_name": "Scarlet Myrmidon", "name_key": "enemy.1309", "raw_subname": "The Crusade's Last Stand", "subname_key": "zone.sm.subtitle"},
+    {"entry": 1310, "found": true, "name": "Scarlet Champion", "other_names": ["", "", ""], "subname": "The Crusade's Last Stand", "fields": [0, 7, 0, 1, 0, 0, 2460, 0, 0], "keys": ["enemy.1310", "zone.sm.subtitle"], "category": "enemy", "raw_name": "Scarlet Champion", "name_key": "enemy.1310", "raw_subname": "The Crusade's Last Stand", "subname_key": "zone.sm.subtitle"},
+    {"entry": 1311, "found": true, "name": "Scarlet Abbot", "other_names": ["", "", ""], "subname": "The Crusade's Last Stand", "fields": [0, 7, 0, 1, 0, 0, 2492, 0, 0], "keys": ["enemy.1311", "zone.sm.subtitle"], "category": "enemy", "raw_name": "Scarlet Abbot", "name_key": "enemy.1311", "raw_subname": "The Crusade's Last Stand", "subname_key": "zone.sm.subtitle"},
+    {"entry": 1390, "found": true, "name": "Houndmaster Loksey", "other_names": ["", "", ""], "subname": "", "fields": [0, 7, 0, 3, 0, 0, 2040, 0, 0], "keys": ["boss.1390.name"], "category": "boss", "raw_name": "Houndmaster Loksey", "name_key": "boss.1390.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 1391, "found": true, "name": "Arcanist Doan", "other_names": ["", "", ""], "subname": "", "fields": [0, 7, 0, 3, 0, 0, 5266, 0, 0], "keys": ["boss.1391.name"], "category": "boss", "raw_name": "Arcanist Doan", "name_key": "boss.1391.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 1392, "found": true, "name": "Herod", "other_names": ["", "", ""], "subname": "", "fields": [0, 7, 0, 3, 0, 0, 2041, 0, 0], "keys": ["boss.1392.name"], "category": "boss", "raw_name": "Herod", "name_key": "boss.1392.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 1393, "found": true, "name": "Scarlet Commander Mograine", "other_names": ["", "", ""], "subname": "", "fields": [0, 7, 0, 3, 0, 0, 2042, 0, 0], "keys": ["boss.1393.name"], "category": "boss", "raw_name": "Scarlet Commander Mograine", "name_key": "boss.1393.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 1394, "found": true, "name": "High Inquisitor Whitemane", "other_names": ["", "", ""], "subname": "", "fields": [0, 7, 0, 3, 0, 0, 2043, 0, 0], "keys": ["boss.1394.name"], "category": "boss", "raw_name": "High Inquisitor Whitemane", "name_key": "boss.1394.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 1400, "found": true, "name": "Plagued Ghoul", "other_names": ["", "", ""], "subname": "The Scourge Invasion", "fields": [0, 6, 0, 0, 0, 0, 14708, 0, 0], "keys": ["enemy.1400", "zone.naxx.subtitle"], "category": "enemy", "raw_name": "Plagued Ghoul", "name_key": "enemy.1400", "raw_subname": "The Scourge Invasion", "subname_key": "zone.naxx.subtitle"},
+    {"entry": 1401, "found": true, "name": "Dread Creeper", "other_names": ["", "", ""], "subname": "The Scourge Invasion", "fields": [0, 1, 0, 0, 0, 0, 15937, 0, 0], "keys": ["enemy.1401", "zone.naxx.subtitle"], "category": "enemy", "raw_name": "Dread Creeper", "name_key": "enemy.1401", "raw_subname": "The Scourge Invasion", "subname_key": "zone.naxx.subtitle"},
+    {"entry": 1402, "found": true, "name": "Soldier of the Frozen Wastes", "other_names": ["", "", ""], "subname": "The Scourge Invasion", "fields": [0, 6, 0, 0, 0, 0, 7869, 0, 0], "keys": ["enemy.1402", "zone.naxx.subtitle"], "category": "enemy", "raw_name": "Soldier of the Frozen Wastes", "name_key": "enemy.1402", "raw_subname": "The Scourge Invasion", "subname_key": "zone.naxx.subtitle"},
+    {"entry": 1403, "found": true, "name": "Naxxramas Cultist", "other_names": ["", "", ""], "subname": "The Scourge Invasion", "fields": [0, 7, 0, 0, 0, 0, 16594, 0, 0], "keys": ["enemy.1403", "zone.naxx.subtitle"], "category": "enemy", "raw_name": "Naxxramas Cultist", "name_key": "enemy.1403", "raw_subname": "The Scourge Invasion", "subname_key": "zone.naxx.subtitle"},
+    {"entry": 1404, "found": true, "name": "Carrion Spinner", "other_names": ["", "", ""], "subname": "The Scourge Invasion", "fields": [0, 1, 0, 0, 0, 0, 15938, 0, 0], "keys": ["enemy.1404", "zone.naxx.subtitle"], "category": "enemy", "raw_name": "Carrion Spinner", "name_key": "enemy.1404", "raw_subname": "The Scourge Invasion", "subname_key": "zone.naxx.subtitle"},
+    {"entry": 1405, "found": true, "name": "Bile Retcher", "other_names": ["", "", ""], "subname": "The Scourge Invasion", "fields": [0, 6, 0, 0, 0, 0, 15958, 0, 0], "keys": ["enemy.1405", "zone.naxx.subtitle"], "category": "enemy", "raw_name": "Bile Retcher", "name_key": "enemy.1405", "raw_subname": "The Scourge Invasion", "subname_key": "zone.naxx.subtitle"},
+    {"entry": 1406, "found": true, "name": "Stoneskin Gargoyle", "other_names": ["", "", ""], "subname": "The Scourge Invasion", "fields": [0, 6, 0, 0, 0, 0, 14710, 0, 0], "keys": ["enemy.1406", "zone.naxx.subtitle"], "category": "enemy", "raw_name": "Stoneskin Gargoyle", "name_key": "enemy.1406", "raw_subname": "The Scourge Invasion", "subname_key": "zone.naxx.subtitle"},
+    {"entry": 1407, "found": true, "name": "Naxxramas Acolyte", "other_names": ["", "", ""], "subname": "The Scourge Invasion", "fields": [0, 7, 0, 0, 0, 0, 16598, 0, 0], "keys": ["enemy.1407", "zone.naxx.subtitle"], "category": "enemy", "raw_name": "Naxxramas Acolyte", "name_key": "enemy.1407", "raw_subname": "The Scourge Invasion", "subname_key": "zone.naxx.subtitle"},
+    {"entry": 1408, "found": true, "name": "Living Monstrosity", "other_names": ["", "", ""], "subname": "The Scourge Invasion", "fields": [0, 6, 0, 0, 0, 0, 16175, 0, 0], "keys": ["enemy.1408", "zone.naxx.subtitle"], "category": "enemy", "raw_name": "Living Monstrosity", "name_key": "enemy.1408", "raw_subname": "The Scourge Invasion", "subname_key": "zone.naxx.subtitle"},
+    {"entry": 1409, "found": true, "name": "Soul Weaver", "other_names": ["", "", ""], "subname": "The Scourge Invasion", "fields": [0, 6, 0, 1, 0, 0, 16178, 0, 0], "keys": ["enemy.1409", "zone.naxx.subtitle"], "category": "enemy", "raw_name": "Soul Weaver", "name_key": "enemy.1409", "raw_subname": "The Scourge Invasion", "subname_key": "zone.naxx.subtitle"},
+    {"entry": 1410, "found": true, "name": "Unstoppable Abomination", "other_names": ["", "", ""], "subname": "The Scourge Invasion", "fields": [0, 6, 0, 1, 0, 0, 12818, 0, 0], "keys": ["enemy.1410", "zone.naxx.subtitle"], "category": "enemy", "raw_name": "Unstoppable Abomination", "name_key": "enemy.1410", "raw_subname": "The Scourge Invasion", "subname_key": "zone.naxx.subtitle"},
+    {"entry": 1411, "found": true, "name": "Guardian of Icecrown", "other_names": ["", "", ""], "subname": "The Scourge Invasion", "fields": [0, 6, 0, 1, 0, 0, 16586, 0, 0], "keys": ["enemy.1411", "zone.naxx.subtitle"], "category": "enemy", "raw_name": "Guardian of Icecrown", "name_key": "enemy.1411", "raw_subname": "The Scourge Invasion", "subname_key": "zone.naxx.subtitle"},
+    {"entry": 1412, "found": true, "name": "Highlord Mograine", "other_names": ["", "", ""], "subname": "The Scourge Invasion", "fields": [0, 6, 0, 1, 0, 0, 16139, 0, 0], "keys": ["enemy.1412", "zone.naxx.subtitle"], "category": "enemy", "raw_name": "Highlord Mograine", "name_key": "enemy.1412", "raw_subname": "The Scourge Invasion", "subname_key": "zone.naxx.subtitle"},
+    {"entry": 1413, "found": true, "name": "Thane Korth'azz", "other_names": ["", "", ""], "subname": "The Scourge Invasion", "fields": [0, 6, 0, 1, 0, 0, 16155, 0, 0], "keys": ["enemy.1413", "zone.naxx.subtitle"], "category": "enemy", "raw_name": "Thane Korth'azz", "name_key": "enemy.1413", "raw_subname": "The Scourge Invasion", "subname_key": "zone.naxx.subtitle"},
+    {"entry": 1414, "found": true, "name": "Lady Blaumeux", "other_names": ["", "", ""], "subname": "The Scourge Invasion", "fields": [0, 6, 0, 1, 0, 0, 16153, 0, 0], "keys": ["enemy.1414", "zone.naxx.subtitle"], "category": "enemy", "raw_name": "Lady Blaumeux", "name_key": "enemy.1414", "raw_subname": "The Scourge Invasion", "subname_key": "zone.naxx.subtitle"},
+    {"entry": 1415, "found": true, "name": "Sir Zeliek", "other_names": ["", "", ""], "subname": "The Scourge Invasion", "fields": [0, 6, 0, 1, 0, 0, 16154, 0, 0], "keys": ["enemy.1415", "zone.naxx.subtitle"], "category": "enemy", "raw_name": "Sir Zeliek", "name_key": "enemy.1415", "raw_subname": "The Scourge Invasion", "subname_key": "zone.naxx.subtitle"},
+    {"entry": 1490, "found": true, "name": "Anub'Rekhan", "other_names": ["", "", ""], "subname": "", "fields": [0, 6, 0, 3, 0, 0, 15931, 0, 0], "keys": ["boss.1490.name"], "category": "boss", "raw_name": "Anub'Rekhan", "name_key": "boss.1490.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 1491, "found": true, "name": "Noth the Plaguebringer", "other_names": ["", "", ""], "subname": "", "fields": [0, 6, 0, 3, 0, 0, 16590, 0, 0], "keys": ["boss.1491.name"], "category": "boss", "raw_name": "Noth the Plaguebringer", "name_key": "boss.1491.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 1492, "found": true, "name": "Patchwerk", "other_names": ["", "", ""], "subname": "", "fields": [0, 6, 0, 3, 0, 0, 16174, 0, 0], "keys": ["boss.1492.name"], "category": "boss", "raw_name": "Patchwerk", "name_key": "boss.1492.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 1493, "found": true, "name": "Sapphiron", "other_names": ["", "", ""], "subname": "", "fields": [0, 2, 0, 3, 0, 0, 16033, 0, 0], "keys": ["boss.1493.name"], "category": "boss", "raw_name": "Sapphiron", "name_key": "boss.1493.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 1494, "found": true, "name": "Kel'Thuzad", "other_names": ["", "", ""], "subname": "", "fields": [0, 6, 0, 3, 0, 0, 15945, 0, 0], "keys": ["boss.1494.name"], "category": "boss", "raw_name": "Kel'Thuzad", "name_key": "boss.1494.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 1500, "found": true, "name": "Witherbark Troll", "other_names": ["", "", ""], "subname": "The Highlands Rise", "fields": [0, 7, 0, 0, 0, 0, 3986, 0, 0], "keys": ["enemy.1500", "zone.ab.subtitle"], "category": "enemy", "raw_name": "Witherbark Troll", "name_key": "enemy.1500", "raw_subname": "The Highlands Rise", "subname_key": "zone.ab.subtitle"},
+    {"entry": 1501, "found": true, "name": "Plains Creeper", "other_names": ["", "", ""], "subname": "The Highlands Rise", "fields": [0, 1, 0, 0, 0, 0, 1103, 0, 0], "keys": ["enemy.1501", "zone.ab.subtitle"], "category": "enemy", "raw_name": "Plains Creeper", "name_key": "enemy.1501", "raw_subname": "The Highlands Rise", "subname_key": "zone.ab.subtitle"},
+    {"entry": 1502, "found": true, "name": "Mesa Buzzard", "other_names": ["", "", ""], "subname": "The Highlands Rise", "fields": [0, 1, 0, 0, 0, 0, 1105, 0, 0], "keys": ["enemy.1502", "zone.ab.subtitle"], "category": "enemy", "raw_name": "Mesa Buzzard", "name_key": "enemy.1502", "raw_subname": "The Highlands Rise", "subname_key": "zone.ab.subtitle"},
+    {"entry": 1503, "found": true, "name": "Witherbark Shadowcaster", "other_names": ["", "", ""], "subname": "The Highlands Rise", "fields": [0, 7, 0, 0, 0, 0, 3993, 0, 0], "keys": ["enemy.1503", "zone.ab.subtitle"], "category": "enemy", "raw_name": "Witherbark Shadowcaster", "name_key": "enemy.1503", "raw_subname": "The Highlands Rise", "subname_key": "zone.ab.subtitle"},
+    {"entry": 1504, "found": true, "name": "Syndicate Mercenary", "other_names": ["", "", ""], "subname": "The Highlands Rise", "fields": [0, 7, 0, 0, 0, 0, 3987, 0, 0], "keys": ["enemy.1504", "zone.ab.subtitle"], "category": "enemy", "raw_name": "Syndicate Mercenary", "name_key": "enemy.1504", "raw_subname": "The Highlands Rise", "subname_key": "zone.ab.subtitle"},
+    {"entry": 1505, "found": true, "name": "Boulderfist Ogre", "other_names": ["", "", ""], "subname": "The Highlands Rise", "fields": [0, 7, 0, 0, 0, 0, 1052, 0, 0], "keys": ["enemy.1505", "zone.ab.subtitle"], "category": "enemy", "raw_name": "Boulderfist Ogre", "name_key": "enemy.1505", "raw_subname": "The Highlands Rise", "subname_key": "zone.ab.subtitle"},
+    {"entry": 1506, "found": true, "name": "Feral Mountain Lion", "other_names": ["", "", ""], "subname": "The Highlands Rise", "fields": [0, 1, 0, 0, 0, 0, 1056, 0, 0], "keys": ["enemy.1506", "zone.ab.subtitle"], "category": "enemy", "raw_name": "Feral Mountain Lion", "name_key": "enemy.1506", "raw_subname": "The Highlands Rise", "subname_key": "zone.ab.subtitle"},
+    {"entry": 1507, "found": true, "name": "Boulderfist Magus", "other_names": ["", "", ""], "subname": "The Highlands Rise", "fields": [0, 7, 0, 0, 0, 0, 6170, 0, 0], "keys": ["enemy.1507", "zone.ab.subtitle"], "category": "enemy", "raw_name": "Boulderfist Magus", "name_key": "enemy.1507", "raw_subname": "The Highlands Rise", "subname_key": "zone.ab.subtitle"},
+    {"entry": 1508, "found": true, "name": "Boulderfist Brute", "other_names": ["", "", ""], "subname": "The Highlands Rise", "fields": [0, 7, 0, 0, 0, 0, 3193, 0, 0], "keys": ["enemy.1508", "zone.ab.subtitle"], "category": "enemy", "raw_name": "Boulderfist Brute", "name_key": "enemy.1508", "raw_subname": "The Highlands Rise", "subname_key": "zone.ab.subtitle"},
+    {"entry": 1509, "found": true, "name": "Witherbark Headhunter", "other_names": ["", "", ""], "subname": "The Highlands Rise", "fields": [0, 7, 0, 1, 0, 0, 3995, 0, 0], "keys": ["enemy.1509", "zone.ab.subtitle"], "category": "enemy", "raw_name": "Witherbark Headhunter", "name_key": "enemy.1509", "raw_subname": "The Highlands Rise", "subname_key": "zone.ab.subtitle"},
+    {"entry": 1510, "found": true, "name": "Rumbling Exile", "other_names": ["", "", ""], "subname": "The Highlands Rise", "fields": [0, 4, 0, 1, 0, 0, 9587, 0, 0], "keys": ["enemy.1510", "zone.ab.subtitle"], "category": "enemy", "raw_name": "Rumbling Exile", "name_key": "enemy.1510", "raw_subname": "The Highlands Rise", "subname_key": "zone.ab.subtitle"},
+    {"entry": 1511, "found": true, "name": "Boulderfist Enforcer", "other_names": ["", "", ""], "subname": "The Highlands Rise", "fields": [0, 7, 0, 1, 0, 0, 1054, 0, 0], "keys": ["enemy.1511", "zone.ab.subtitle"], "category": "enemy", "raw_name": "Boulderfist Enforcer", "name_key": "enemy.1511", "raw_subname": "The Highlands Rise", "subname_key": "zone.ab.subtitle"},
+    {"entry": 1590, "found": true, "name": "Kovork", "other_names": ["", "", ""], "subname": "", "fields": [0, 7, 0, 3, 0, 0, 448, 0, 0], "keys": ["boss.1590.name"], "category": "boss", "raw_name": "Kovork", "name_key": "boss.1590.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 1591, "found": true, "name": "Nimar the Slayer", "other_names": ["", "", ""], "subname": "", "fields": [0, 7, 0, 3, 0, 0, 3995, 0, 0], "keys": ["boss.1591.name"], "category": "boss", "raw_name": "Nimar the Slayer", "name_key": "boss.1591.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 1592, "found": true, "name": "Marez Cowl", "other_names": ["", "", ""], "subname": "", "fields": [0, 7, 0, 3, 0, 0, 4018, 0, 0], "keys": ["boss.1592.name"], "category": "boss", "raw_name": "Marez Cowl", "name_key": "boss.1592.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 1593, "found": true, "name": "Lord Falconcrest", "other_names": ["", "", ""], "subname": "", "fields": [0, 7, 0, 3, 0, 0, 2051, 0, 0], "keys": ["boss.1593.name"], "category": "boss", "raw_name": "Lord Falconcrest", "name_key": "boss.1593.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 1594, "found": true, "name": "Lord Aliden Perenolde", "other_names": ["", "", ""], "subname": "", "fields": [0, 7, 0, 3, 0, 0, 6572, 0, 0], "keys": ["boss.1594.name"], "category": "boss", "raw_name": "Lord Aliden Perenolde", "name_key": "boss.1594.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 9001, "found": true, "name": "Experience", "other_names": ["", "", ""], "subname": "", "fields": [0, 10, 0, 0, 0, 0, 1825, 0, 0], "keys": ["Experience"], "category": "special", "raw_name": "Experience", "name_key": "Experience", "raw_subname": "", "subname_key": ""},
+    {"entry": 9500, "found": true, "name": "Totem", "other_names": ["", "", ""], "subname": "", "fields": [0, 11, 0, 0, 0, 0, 4589, 0, 0], "keys": ["Totem"], "category": "special", "raw_name": "Totem", "name_key": "Totem", "raw_subname": "", "subname_key": ""},
+    {"entry": 9510, "found": true, "name": "Wolf", "other_names": ["", "", ""], "subname": "Companion", "fields": [0, 1, 0, 0, 0, 0, 165, 0, 0], "keys": ["Companion", "Wolf"], "category": "special", "raw_name": "Wolf", "name_key": "Wolf", "raw_subname": "Companion", "subname_key": "Companion"},
+    {"entry": 9511, "found": true, "name": "Raptor", "other_names": ["", "", ""], "subname": "Companion", "fields": [0, 1, 0, 0, 0, 0, 1959, 0, 0], "keys": ["Companion", "Raptor"], "category": "special", "raw_name": "Raptor", "name_key": "Raptor", "raw_subname": "Companion", "subname_key": "Companion"},
+    {"entry": 9512, "found": true, "name": "Imp", "other_names": ["", "", ""], "subname": "Companion", "fields": [0, 1, 0, 0, 0, 0, 4449, 0, 0], "keys": ["Companion", "Imp"], "category": "special", "raw_name": "Imp", "name_key": "Imp", "raw_subname": "Companion", "subname_key": "Companion"},
+    {"entry": 9514, "found": true, "name": "Felguard", "other_names": ["", "", ""], "subname": "Companion", "fields": [0, 1, 0, 0, 0, 0, 5047, 0, 0], "keys": ["Companion", "Felguard"], "category": "special", "raw_name": "Felguard", "name_key": "Felguard", "raw_subname": "Companion", "subname_key": "Companion"},
+    {"entry": 9515, "found": true, "name": "Treant", "other_names": ["", "", ""], "subname": "Companion", "fields": [0, 1, 0, 0, 0, 0, 2078, 0, 0], "keys": ["Companion", "Treant"], "category": "special", "raw_name": "Treant", "name_key": "Treant", "raw_subname": "Companion", "subname_key": "Companion"},
+    {"entry": 9516, "found": true, "name": "Spirit Wolf", "other_names": ["", "", ""], "subname": "Companion", "fields": [0, 1, 0, 0, 0, 0, 776, 0, 0], "keys": ["Companion", "Spirit Wolf"], "category": "special", "raw_name": "Spirit Wolf", "name_key": "Spirit Wolf", "raw_subname": "Companion", "subname_key": "Companion"},
+    {"entry": 9517, "found": true, "name": "Water Elemental", "other_names": ["", "", ""], "subname": "Companion", "fields": [0, 1, 0, 0, 0, 0, 110, 0, 0], "keys": ["Companion", "Water Elemental"], "category": "special", "raw_name": "Water Elemental", "name_key": "Water Elemental", "raw_subname": "Companion", "subname_key": "Companion"},
+    {"entry": 9518, "found": true, "name": "Felhunter", "other_names": ["", "", ""], "subname": "Companion", "fields": [0, 1, 0, 0, 0, 0, 850, 0, 0], "keys": ["Companion", "Felhunter"], "category": "special", "raw_name": "Felhunter", "name_key": "Felhunter", "raw_subname": "Companion", "subname_key": "Companion"},
+    {"entry": 9519, "found": true, "name": "Voidwalker", "other_names": ["", "", ""], "subname": "Companion", "fields": [0, 1, 0, 0, 0, 0, 1130, 0, 0], "keys": ["Companion", "Voidwalker"], "category": "special", "raw_name": "Voidwalker", "name_key": "Voidwalker", "raw_subname": "Companion", "subname_key": "Companion"},
+    {"entry": 9520, "found": true, "name": "Succubus", "other_names": ["", "", ""], "subname": "Companion", "fields": [0, 1, 0, 0, 0, 0, 4162, 0, 0], "keys": ["Companion", "Succubus"], "category": "special", "raw_name": "Succubus", "name_key": "Succubus", "raw_subname": "Companion", "subname_key": "Companion"},
+    {"entry": 9521, "found": true, "name": "Infernal", "other_names": ["", "", ""], "subname": "Companion", "fields": [0, 1, 0, 0, 0, 0, 169, 0, 0], "keys": ["Companion", "Infernal"], "category": "special", "raw_name": "Infernal", "name_key": "Infernal", "raw_subname": "Companion", "subname_key": "Companion"},
+    {"entry": 9522, "found": true, "name": "Doomguard", "other_names": ["", "", ""], "subname": "Companion", "fields": [0, 1, 0, 0, 0, 0, 433, 0, 0], "keys": ["Companion", "Doomguard"], "category": "special", "raw_name": "Doomguard", "name_key": "Doomguard", "raw_subname": "Companion", "subname_key": "Companion"},
+    {"entry": 9523, "found": true, "name": "Pit Lord", "other_names": ["", "", ""], "subname": "Companion", "fields": [0, 1, 0, 0, 0, 0, 12449, 0, 0], "keys": ["Companion", "Pit Lord"], "category": "special", "raw_name": "Pit Lord", "name_key": "Pit Lord", "raw_subname": "Companion", "subname_key": "Companion"},
+    {"entry": 9600, "found": true, "name": "Egg Sac", "other_names": ["", "", ""], "subname": "", "fields": [0, 10, 0, 0, 0, 0, 10056, 0, 0], "keys": ["object.9600.name"], "category": "special", "raw_name": "Egg Sac", "name_key": "object.9600.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 9601, "found": true, "name": "Fel Totem", "other_names": ["", "", ""], "subname": "", "fields": [0, 10, 0, 0, 0, 0, 4589, 0, 0], "keys": ["object.9601.name"], "category": "special", "raw_name": "Fel Totem", "name_key": "object.9601.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 9602, "found": true, "name": "Hex Totem", "other_names": ["", "", ""], "subname": "", "fields": [0, 10, 0, 0, 0, 0, 1529, 0, 0], "keys": ["object.9602.name"], "category": "special", "raw_name": "Hex Totem", "name_key": "object.9602.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 9603, "found": true, "name": "Healing Ward", "other_names": ["", "", ""], "subname": "", "fields": [0, 10, 0, 0, 0, 0, 2030, 0, 0], "keys": ["object.9603.name"], "category": "special", "raw_name": "Healing Ward", "name_key": "object.9603.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 9604, "found": true, "name": "Warding Totem", "other_names": ["", "", ""], "subname": "", "fields": [0, 10, 0, 0, 0, 0, 4588, 0, 0], "keys": ["object.9604.name"], "category": "special", "raw_name": "Warding Totem", "name_key": "object.9604.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 9605, "found": true, "name": "Arcane Crystal", "other_names": ["", "", ""], "subname": "", "fields": [0, 10, 0, 0, 0, 0, 9832, 0, 0], "keys": ["object.9605.name"], "category": "special", "raw_name": "Arcane Crystal", "name_key": "object.9605.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 9606, "found": true, "name": "Soul Crystal", "other_names": ["", "", ""], "subname": "", "fields": [0, 10, 0, 0, 0, 0, 16135, 0, 0], "keys": ["object.9606.name"], "category": "special", "raw_name": "Soul Crystal", "name_key": "object.9606.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 9607, "found": true, "name": "Web Cocoon", "other_names": ["", "", ""], "subname": "", "fields": [0, 10, 0, 0, 0, 0, 16213, 0, 0], "keys": ["object.9607.name"], "category": "special", "raw_name": "Web Cocoon", "name_key": "object.9607.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 9608, "found": true, "name": "Spore", "other_names": ["", "", ""], "subname": "", "fields": [0, 10, 0, 0, 0, 0, 16111, 0, 0], "keys": ["object.9608.name"], "category": "special", "raw_name": "Spore", "name_key": "object.9608.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 9609, "found": true, "name": "Restless Spirit", "other_names": ["", "", ""], "subname": "", "fields": [0, 10, 0, 0, 0, 0, 1825, 0, 0], "keys": ["object.9609.name"], "category": "special", "raw_name": "Restless Spirit", "name_key": "object.9609.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 9610, "found": true, "name": "Frost Totem", "other_names": ["", "", ""], "subname": "", "fields": [0, 10, 0, 0, 0, 0, 4587, 0, 0], "keys": ["object.9610.name"], "category": "special", "raw_name": "Frost Totem", "name_key": "object.9610.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 9611, "found": true, "name": "Wind Totem", "other_names": ["", "", ""], "subname": "", "fields": [0, 10, 0, 0, 0, 0, 4590, 0, 0], "keys": ["object.9611.name"], "category": "special", "raw_name": "Wind Totem", "name_key": "object.9611.name", "raw_subname": "", "subname_key": ""},
+    {"entry": 9612, "found": true, "name": "", "other_names": ["", "", ""], "subname": "", "fields": [0, 8, 0, 0, 0, 0, 10990, 0, 0], "keys": [], "category": "special", "raw_name": "", "name_key": "", "raw_subname": "", "subname_key": ""},
+    {"entry": 9613, "found": true, "name": "", "other_names": ["", "", ""], "subname": "", "fields": [0, 8, 0, 0, 0, 0, 16033, 0, 0], "keys": [], "category": "special", "raw_name": "", "name_key": "", "raw_subname": "", "subname_key": ""},
+    {"entry": 9614, "found": true, "name": "", "other_names": ["", "", ""], "subname": "", "fields": [0, 8, 0, 0, 0, 0, 15290, 0, 0], "keys": [], "category": "special", "raw_name": "", "name_key": "", "raw_subname": "", "subname_key": ""},
+    {"entry": 9615, "found": true, "name": "", "other_names": ["", "", ""], "subname": "", "fields": [0, 8, 0, 0, 0, 0, 14352, 0, 0], "keys": [], "category": "special", "raw_name": "", "name_key": "", "raw_subname": "", "subname_key": ""},
+    {"entry": 9616, "found": true, "name": "", "other_names": ["", "", ""], "subname": "", "fields": [0, 8, 0, 0, 0, 0, 15556, 0, 0], "keys": [], "category": "special", "raw_name": "", "name_key": "", "raw_subname": "", "subname_key": ""},
+    {"entry": 9617, "found": true, "name": "", "other_names": ["", "", ""], "subname": "", "fields": [0, 8, 0, 0, 0, 0, 1061, 0, 0], "keys": [], "category": "special", "raw_name": "", "name_key": "", "raw_subname": "", "subname_key": ""},
+    {"entry": 9618, "found": true, "name": "", "other_names": ["", "", ""], "subname": "", "fields": [0, 8, 0, 0, 0, 0, 433, 0, 0], "keys": [], "category": "special", "raw_name": "", "name_key": "", "raw_subname": "", "subname_key": ""},
+    {"entry": 9619, "found": true, "name": "", "other_names": ["", "", ""], "subname": "", "fields": [0, 8, 0, 0, 0, 0, 5305, 0, 0], "keys": [], "category": "special", "raw_name": "", "name_key": "", "raw_subname": "", "subname_key": ""},
+    {"entry": 9620, "found": true, "name": "", "other_names": ["", "", ""], "subname": "", "fields": [0, 8, 0, 0, 0, 0, 448, 0, 0], "keys": [], "category": "special", "raw_name": "", "name_key": "", "raw_subname": "", "subname_key": ""},
+    {"entry": 9621, "found": true, "name": "", "other_names": ["", "", ""], "subname": "", "fields": [0, 8, 0, 0, 0, 0, 11583, 0, 0], "keys": [], "category": "special", "raw_name": "", "name_key": "", "raw_subname": "", "subname_key": ""},
+    {"entry": 9622, "found": true, "name": "", "other_names": ["", "", ""], "subname": "", "fields": [0, 8, 0, 0, 0, 0, 9994, 0, 0], "keys": [], "category": "special", "raw_name": "", "name_key": "", "raw_subname": "", "subname_key": ""}
+  ],
+  "u16_entries_tested": 65536,
+  "miss_cases": 65290,
+  "miss_results_sha256": "9dee1b25a9670518f5700ca9d52074ddc07bf8c2e25f202ebe6f758817b2d2ec",
+  "locales": {
+    "en": {
+      "cases": 246,
+      "sha256": "8b33d67c6a617e5d9b112059e0e01af33fbc470bc658cb2770a4ebb11d097d4d"
+    },
+    "pl": {
+      "cases": 246,
+      "sha256": "25355e6afc49e380bd870353ab2b93ac770086ee5a3e9ca4c8c0ff68ed574a58"
+    },
+    "cs": {
+      "cases": 246,
+      "sha256": "00ab19532fb58fd1bf82d0aaf8dd19f2c531de33393dafd7cf62b7fe63b57a1a"
+    },
+    "de": {
+      "cases": 246,
+      "sha256": "ee0568a0c9b88cd2b0c56e7d0ca78ec5cfcb05a0ff7b3681c7152b8cd52964c5"
+    },
+    "pt": {
+      "cases": 246,
+      "sha256": "821284807ebd577605e72ec729ea952bc771e767848f53848b11f2cb5e4a90a4"
+    },
+    "es": {
+      "cases": 246,
+      "sha256": "7187d03045a3b9bf8327b7d736f3c6a3dc96dde5f5bcc6c95f86fcd3dc5282ca"
+    },
+    "fr": {
+      "cases": 246,
+      "sha256": "4aa63244b48f6155ad320748b0fe870ca99701ba10e222d091ebc4032ef52d48"
+    },
+    "ro": {
+      "cases": 246,
+      "sha256": "6dccd65c675fa4e44167d56a2c22c3288f758506a794fb834f3524d47c976cdd"
+    },
+    "tr": {
+      "cases": 246,
+      "sha256": "2dc63af7e257e573a4c754e7179f1fd8eac25114a55c13150d0b4c6aa574d595"
+    },
+    "ru": {
+      "cases": 246,
+      "sha256": "62bee23e7e243638f6e560af066639f9f0d9d295da9cbe49ecea90f20b8e6092"
+    },
+    "uk": {
+      "cases": 246,
+      "sha256": "a189b26ad1cd288b766d6a3d6312677d83dfc9bf700a14040cc4a9beb4e996ab"
+    },
+    "zh": {
+      "cases": 246,
+      "sha256": "85ced80b157be79e0a935c2e3805bdb90274deb9e3a83aa158e77d798b2dc7ad"
+    },
+    "ja": {
+      "cases": 246,
+      "sha256": "0512ed9aa84457919cc2141988879145337d4322098f615cbe8aee83af4b709c"
+    },
+    "ko": {
+      "cases": 246,
+      "sha256": "6d0e13b68ed1ef2b87eba564a3c35d23be6a94dad71326f1ffbfbf0f37154345"
+    },
+    "missing": {
+      "cases": 246,
+      "sha256": "8b33d67c6a617e5d9b112059e0e01af33fbc470bc658cb2770a4ebb11d097d4d"
+    }
+  },
+  "u32_boundaries": [
+    {
+      "entry": 65536,
+      "found": false,
+      "response_entry": 65536
+    },
+    {
+      "entry": 2147483647,
+      "found": false,
+      "response_entry": 2147483647
+    },
+    {
+      "entry": 2147483648,
+      "found": false,
+      "response_entry": 0
+    },
+    {
+      "entry": 2147484248,
+      "found": false,
+      "response_entry": 600
+    },
+    {
+      "entry": 4294967295,
+      "found": false,
+      "response_entry": 2147483647
+    }
+  ],
+  "payload_cases": 80,
+  "payload_results_sha256": "24326a60300aa9b9f2d7deda7ae34580a124fe9c0607909c93350a913e61f85b",
+  "native_instructions_observed": 1435,
+  "limits": [
+    "Original query branch/name getters/serializers execute with synthetic host/packet buffers.",
+    "Allocation, buffer growth, memcpy/memcmp, Rust formatting and locale-map lookup are seams; packet sender is intercepted.",
+    "Source records and connection guards are parsed, not compiled/executed. Unit tests are authored but unrun.",
+    "65536 entries exhaust the u16 domain; five extra u32 boundaries are samples, not an exhaustive u32 proof.",
+    "No game, network, real ECS/cache/FrameXML or original/rebuilt parity check. Native census totals are unchanged."
+  ]
+}

@@ -1,0 +1,202 @@
+{
+  "target_sha256": "17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b",
+  "target_executed": false,
+  "functions": [
+    {
+      "role": "radius-query",
+      "address": "0x145500300",
+      "end_exclusive": "0x145500482",
+      "file_offset": "0x54ff700",
+      "sha256": "4562ad0650917b99dc2423fc36f4a2ca44c63fba54e8e737db6514b1af64ad83",
+      "boundary": "PE unwind owner",
+      "evidence_id": "ev_8953ae703af2641c0ad203d490ee0558e1b0723697a79dec0f900d8a731fff19",
+      "analysis_profile": {
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "parameters": {
+          "target_kind": "executable",
+          "target_format": "raw-binary",
+          "architecture": "x86_64",
+          "available_architectures": [
+            "x86_64"
+          ],
+          "import_mode": "ephemeral-source-immutable",
+          "annotation_policy": "atomic-function-entry-metadata-v1",
+          "load_image_observations": "source-mappings-entry-context-v2",
+          "function_body_evidence": "complete-inclusive-ranges-v1",
+          "function_references": "complete-body-and-entry-reference-manager-v2",
+          "call_relationship_coverage": "function-body-call-coverage-v5",
+          "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+          "string_inventory_evidence": "defined-data-coverage-v1",
+          "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+          "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+          "instruction_flow_evidence": "decoded-return-pcode-v1",
+          "instruction_references": "exact-address-incoming-v1",
+          "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+          "no_return_repair": "returning-imports-decoded-return-v2",
+          "process_launch": "inspected-jvm-launch-support-v1",
+          "load_image_evidence": "independent-raw-mapping-context-v4",
+          "jump_table_evidence": "typed-case-default-blocks-v1",
+          "decompiler_jump_loads": true,
+          "loader": "BinaryLoader",
+          "language_id": "x86:LE:64:default",
+          "compiler_spec_id": "gcc",
+          "language_selection": "caller-supplied-v1",
+          "entry_point": "0x145500300",
+          "entry_seed": "external-entry-and-function-before-analysis-v1",
+          "analyzer_preset": "ghidra-default+disabled:Function ID,Function Start Search,Disassemble Entry Points,Subroutine References,Non-Returning Functions - Discovered",
+          "analysis_options": {
+            "disabled_analyzers": [
+              "Function ID",
+              "Function Start Search",
+              "Disassemble Entry Points",
+              "Subroutine References",
+              "Non-Returning Functions - Discovered"
+            ]
+          }
+        },
+        "digest": "05b97f6e5dc5a08cafc88cc18229a1ea4d3e5a00ee90b1d222d978ea23c4fe18"
+      }
+    },
+    {
+      "role": "spread-filter",
+      "address": "0x145558cc0",
+      "end_exclusive": "0x145558e27",
+      "file_offset": "0x55580c0",
+      "sha256": "1969ea2bf05092e9209604b50376443b4b49b2bf115d276ac1caaf4af5ce1937",
+      "boundary": "PE unwind owner",
+      "evidence_id": "ev_24a8944ca35080d208225f7acdf729567e4d077f27c4f8f47c23b44bd3dd4246",
+      "analysis_profile": {
+        "provider": {
+          "id": "ghidra",
+          "name": "Ghidra",
+          "version": "12.1.4"
+        },
+        "parameters": {
+          "target_kind": "executable",
+          "target_format": "raw-binary",
+          "architecture": "x86_64",
+          "available_architectures": [
+            "x86_64"
+          ],
+          "import_mode": "ephemeral-source-immutable",
+          "annotation_policy": "atomic-function-entry-metadata-v1",
+          "load_image_observations": "source-mappings-entry-context-v2",
+          "function_body_evidence": "complete-inclusive-ranges-v1",
+          "function_references": "complete-body-and-entry-reference-manager-v2",
+          "call_relationship_coverage": "function-body-call-coverage-v5",
+          "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+          "string_inventory_evidence": "defined-data-coverage-v1",
+          "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+          "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+          "instruction_flow_evidence": "decoded-return-pcode-v1",
+          "instruction_references": "exact-address-incoming-v1",
+          "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+          "no_return_repair": "returning-imports-decoded-return-v2",
+          "process_launch": "inspected-jvm-launch-support-v1",
+          "load_image_evidence": "independent-raw-mapping-context-v4",
+          "jump_table_evidence": "typed-case-default-blocks-v1",
+          "decompiler_jump_loads": true,
+          "loader": "BinaryLoader",
+          "language_id": "x86:LE:64:default",
+          "compiler_spec_id": "gcc",
+          "language_selection": "caller-supplied-v1",
+          "entry_point": "0x145558cc0",
+          "entry_seed": "external-entry-and-function-before-analysis-v1",
+          "analyzer_preset": "ghidra-default+disabled:Function ID,Function Start Search,Disassemble Entry Points,Subroutine References,Non-Returning Functions - Discovered",
+          "analysis_options": {
+            "disabled_analyzers": [
+              "Function ID",
+              "Function Start Search",
+              "Disassemble Entry Points",
+              "Subroutine References",
+              "Non-Returning Functions - Discovered"
+            ]
+          }
+        },
+        "digest": "d192d9d2c6379ddd9e537a4d1eefc16b94fe65cb718f163ccf722b84bc3242a5"
+      }
+    },
+    {
+      "role": "radius-next",
+      "address": "0x1455491c0",
+      "end_exclusive": "0x1455493b9",
+      "file_offset": "0x55485c0",
+      "sha256": "bb8c24072f15fdf762a8bc465880fdc5396010ad06a956996cfceeb4f104cbfe",
+      "boundary": "PE unwind owner"
+    },
+    {
+      "role": "radius-small-sort",
+      "address": "0x14193aca0",
+      "end_exclusive": "0x14193ad4c",
+      "file_offset": "0x193a0a0",
+      "sha256": "35c92405d196d1218db5c64da3607e252de682dbb1f1a7db16a4bc0f02e2d032",
+      "boundary": "PE unwind owner"
+    },
+    {
+      "role": "actor-periodic-fields",
+      "address": "0x1454dbcd1",
+      "end_exclusive": "0x1454dbe54",
+      "file_offset": "0x54db0d1",
+      "sha256": "0a0cee75d7e83d788fd29159bdd16ba7f615a4e3a78f6d7adf10c43ac731a44d",
+      "boundary": "selected interior instruction span"
+    },
+    {
+      "role": "actor-aura-cleanup",
+      "address": "0x1454dbe54",
+      "end_exclusive": "0x1454dc314",
+      "file_offset": "0x54db254",
+      "sha256": "fd4143264bb9ea53535c6d9615b9f7192f6f0b2beac0f1f0c220a5e50944cac5",
+      "boundary": "selected interior instruction span"
+    },
+    {
+      "role": "actor-periodic-compaction",
+      "address": "0x1454dd962",
+      "end_exclusive": "0x1454dd9c3",
+      "file_offset": "0x54dcd62",
+      "sha256": "402bf4bf68920a04922dc1b522c8dfb6ad453008e0484f7383b1934cb615d173",
+      "boundary": "selected interior instruction span"
+    },
+    {
+      "role": "exhausted-periodic-spells",
+      "address": "0x14553e800",
+      "end_exclusive": "0x14553e93a",
+      "file_offset": "0x553dc00",
+      "sha256": "57f68794596295b8422c3db9dbac25deb6152aea4f7b700d745179dd20ff56f1",
+      "boundary": "PE unwind owner"
+    },
+    {
+      "role": "actor-update-call-order",
+      "address": "0x1454b709f",
+      "end_exclusive": "0x1454b70e6",
+      "file_offset": "0x54b649f",
+      "sha256": "4fd89ce6b8fdb4d955bfc7ca211274363903bfb9aafdb4f0ed0c67cbec2adfc8",
+      "boundary": "selected interior instruction span"
+    },
+    {
+      "role": "actor-aura-removal-publish",
+      "address": "0x1454dec1a",
+      "end_exclusive": "0x1454dec75",
+      "file_offset": "0x54de01a",
+      "sha256": "4d1aaa0775a26b9865b14aa6cca07e66665202b3f5d80a769425feca2d455f2f",
+      "boundary": "selected interior instruction span"
+    }
+  ],
+  "findings": [
+    "Radius queries compare interpolated XY squared distance inclusively and exclude supplied GUIDs/dead actors; output sorts by f32 total distance.",
+    "Spread filter skips active matching spell/owner rows before consuming the requested target count.",
+    "Current actor-update decrements periodic+20 and compares +24 for the first-tick flag. Spread1454cd796 reads initial+24, restoring original rather than remaining tick count.",
+    "Effect12 publishes a ground-target spell visual before selecting radius targets; recursive damage source-kind is3.",
+    "Current game-tick1454b70d2 calls actor-update only after player casts, class-specials, pending impacts, ground and totems.",
+    "Actor-update collects exhausted spellIDs, compacts ticks_remaining0 records, queues applications-only updates if the spell survives, otherwise removals; publication follows periodic damage.",
+    "Reduction actor+134 is removed at now>=reduction deadline. Expired control scans16 slots and excludes that current reduction ID and any remaining stored periodic spellID before removal."
+  ],
+  "limitations": [
+    "Complete switch actions remain bound to talent-events.asm and its separate current REA evidence.",
+    "Raw helper imports omit external allocation/sort/callee bodies; original PE instructions control their field interpretation.",
+    "No original application session or full parity is implied."
+  ]
+}

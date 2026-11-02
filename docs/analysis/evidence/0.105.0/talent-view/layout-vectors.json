@@ -1,0 +1,930 @@
+{
+  "snapshot_format": "Node snapshots omit zero/Auto fields and Px0 gaps/rects; helper call sites deduplicated. Typed original instructions are retained in assembly.",
+  "class_headers": [
+    {
+      "class_id": 1,
+      "descriptor": "0x146bab7a8",
+      "fields": {
+        "key": {
+          "address": "0x146baa8d0",
+          "length": 7,
+          "value": "warrior",
+          "sha256": "ffb29103283b6b9997b82997ed5a6a687f34bcfff7c07f33c715555942a30aa6"
+        },
+        "display_name": {
+          "address": "0x146baa8d7",
+          "length": 7,
+          "value": "Warrior",
+          "sha256": "eaf0fe0a362b58490e9d73c9584a36ef7353872dd1663afef4e2099b88bf56bf"
+        },
+        "color": {
+          "address": "0x146baa9f8",
+          "length": 7,
+          "value": "#C79C6E",
+          "sha256": "d189a6ae98fef68deb2473c34ec51a17cfa860ae85720619d57fd838006b244d"
+        }
+      }
+    },
+    {
+      "class_id": 2,
+      "descriptor": "0x146bab838",
+      "fields": {
+        "key": {
+          "address": "0x146baaa67",
+          "length": 7,
+          "value": "paladin",
+          "sha256": "b9e40e48939d8dca68a7bf33dd69c93c17a0bb73fd9d4ee517a9ba27c15df391"
+        },
+        "display_name": {
+          "address": "0x146baaa6e",
+          "length": 7,
+          "value": "Paladin",
+          "sha256": "a7d973a732d0577f073922ed98f4e20235dbab50df3a45f478b8d32c7ebcbc38"
+        },
+        "color": {
+          "address": "0x146baaba8",
+          "length": 7,
+          "value": "#F58CBA",
+          "sha256": "72463a6f5578b11f49a6927c2511691ec0cd8516c50476a5569b98b8f165077b"
+        }
+      }
+    },
+    {
+      "class_id": 3,
+      "descriptor": "0x146bab8c8",
+      "fields": {
+        "key": {
+          "address": "0x146baac15",
+          "length": 6,
+          "value": "hunter",
+          "sha256": "e9a63a4eb15738ae85cd416221c8fcc4ccc0018fac91335b42eaa016c76e87f9"
+        },
+        "display_name": {
+          "address": "0x146baac1b",
+          "length": 6,
+          "value": "Hunter",
+          "sha256": "680ce38047bf1f299d9f7e3956216b0ecc353171be36b86754c6f0442f702e23"
+        },
+        "color": {
+          "address": "0x146baad50",
+          "length": 7,
+          "value": "#ABD473",
+          "sha256": "5617b7cc50b8fa90afb93874bea3c8dec436a036b4964a3ef2202566a59a0c89"
+        }
+      }
+    },
+    {
+      "class_id": 4,
+      "descriptor": "0x146bab958",
+      "fields": {
+        "key": {
+          "address": "0x146baadb7",
+          "length": 5,
+          "value": "rogue",
+          "sha256": "d20bcf177b60169a92529f6b5b71c8647583a0ed940f93ae5af62c127856cb1d"
+        },
+        "display_name": {
+          "address": "0x146baadbc",
+          "length": 5,
+          "value": "Rogue",
+          "sha256": "0b8cdd9ec4e4cbca2aeedbb7e4572400dfbd7e7cbf415dbb99acecafcccbdc21"
+        },
+        "color": {
+          "address": "0x146baaef0",
+          "length": 7,
+          "value": "#FFF569",
+          "sha256": "b326e4c8d71166bd21d86166a9bdc27a52244f22dc890cf9d81263fc66cc5269"
+        }
+      }
+    },
+    {
+      "class_id": 5,
+      "descriptor": "0x146bab9e8",
+      "fields": {
+        "key": {
+          "address": "0x146baaf56",
+          "length": 6,
+          "value": "priest",
+          "sha256": "0fc4816bb32221ae6b754a5fc2c9dd4c33257c8a6e784b9492f76071668d762b"
+        },
+        "display_name": {
+          "address": "0x146baaf5c",
+          "length": 6,
+          "value": "Priest",
+          "sha256": "909a4523837aae515905ec70c82bfb91472f47fc9e1ffe9df3de2453e1b4532a"
+        },
+        "color": {
+          "address": "0x146bab070",
+          "length": 7,
+          "value": "#FFFFFF",
+          "sha256": "07ee686b3ce29f11070f5edcd6f0da03659e67becfba76650c1c6b5ac079847a"
+        }
+      }
+    },
+    {
+      "class_id": 7,
+      "descriptor": "0x146baba78",
+      "fields": {
+        "key": {
+          "address": "0x146bab0db",
+          "length": 6,
+          "value": "shaman",
+          "sha256": "e656f6cd1caedec309d0616246cfdcbc2c7cccfdd858440e0b47335d94001aab"
+        },
+        "display_name": {
+          "address": "0x146bab0e1",
+          "length": 6,
+          "value": "Shaman",
+          "sha256": "0953e68a3e85ea3909e6d3786c7afb898713a25d9a66a227e978ffdbf00266e4"
+        },
+        "color": {
+          "address": "0x146bab220",
+          "length": 7,
+          "value": "#0070DE",
+          "sha256": "088058adb35d611d2ae41329fcb73aded39a14ffdc1c978abe3fe59700234328"
+        }
+      }
+    },
+    {
+      "class_id": 8,
+      "descriptor": "0x146babb08",
+      "fields": {
+        "key": {
+          "address": "0x146bab280",
+          "length": 4,
+          "value": "mage",
+          "sha256": "6661473579cc99d9243ac99890127a568835bc3a983f542a581823998653153b"
+        },
+        "display_name": {
+          "address": "0x146bab284",
+          "length": 4,
+          "value": "Mage",
+          "sha256": "e181bc015be0fe01de62a0e9898c690c3a2bb48fa90e4e5cb9aab481ea3fe004"
+        },
+        "color": {
+          "address": "0x146bab3e8",
+          "length": 7,
+          "value": "#69CCF0",
+          "sha256": "052b3a40e9195aa28f1af1a4b07cad77517f391472f89418b9963d660bea220f"
+        }
+      }
+    },
+    {
+      "class_id": 9,
+      "descriptor": "0x146babb98",
+      "fields": {
+        "key": {
+          "address": "0x146bab44c",
+          "length": 7,
+          "value": "warlock",
+          "sha256": "2341a4d5a6b462deab7d7657226f2e192425e4b94e61d5ae9e0a8bdd1591b12d"
+        },
+        "display_name": {
+          "address": "0x146bab453",
+          "length": 7,
+          "value": "Warlock",
+          "sha256": "6e7e607fb37564c5377836a4f393487bcd394efdf65a48aa7736912791754796"
+        },
+        "color": {
+          "address": "0x146bab5a0",
+          "length": 7,
+          "value": "#9482C9",
+          "sha256": "128123eea921b3917466c455d342500cd6a98604954509c1b8d95d5d9255af9e"
+        }
+      }
+    },
+    {
+      "class_id": 11,
+      "descriptor": "0x146babc28",
+      "fields": {
+        "key": {
+          "address": "0x146bab608",
+          "length": 5,
+          "value": "druid",
+          "sha256": "7ff2b4df6b7f9bf6253c3ea43f2e57705f63ea2fa9ef6aef758761a344f02958"
+        },
+        "display_name": {
+          "address": "0x146bab60d",
+          "length": 5,
+          "value": "Druid",
+          "sha256": "274814f1a96fb52d27a72df64b5558e96816647b69f87ec1fc4b024fc414099e"
+        },
+        "color": {
+          "address": "0x146bab740",
+          "length": 7,
+          "value": "#FF7D0A",
+          "sha256": "46d91e0f7ea7b9b548c7d2f48c52360647fb174f3324b898191492b31d4e65e4"
+        }
+      }
+    }
+  ],
+  "header_colors": {
+    "title": [
+      0.973,
+      0.824,
+      0.416,
+      1
+    ],
+    "trailing_subtitle": [
+      0.725,
+      0.663,
+      0.51,
+      1
+    ],
+    "close": [
+      1,
+      0.914,
+      0.659,
+      1
+    ]
+  },
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "constructors": {
+    "0x140130c73": [
+      {
+        "kind": "root",
+        "node": {
+          "flex_shrink": 1.0,
+          "height": [
+            2,
+            100.0
+          ],
+          "position_type": 1,
+          "width": [
+            2,
+            100.0
+          ]
+        },
+        "tail": "00000000000000000000000000000000ec51383fb41400000200000000000000"
+      }
+    ],
+    "0x1401a5a10": [
+      {
+        "site": "0x1401a5cc2",
+        "kind": "node",
+        "target": "0x14018f1b0",
+        "node": {
+          "flex_shrink": 1.0,
+          "height": [
+            1,
+            860.0
+          ],
+          "position_type": 1,
+          "width": [
+            1,
+            1600.0
+          ]
+        },
+        "tail": "0000c84400005744cdcccc3f010000000000000001000000000000000000803f0000803f0000803f00000000000000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+      }
+    ],
+    "0x1401a5ce0": [
+      {
+        "site": "0x1401a5fb4",
+        "kind": "node",
+        "node": {
+          "flex_direction": 1,
+          "flex_shrink": 1.0,
+          "height": [
+            2,
+            100.0
+          ],
+          "padding": [
+            [
+              1,
+              40.0
+            ],
+            [
+              1,
+              40.0
+            ],
+            [
+              1,
+              20.0
+            ],
+            [
+              1,
+              20.0
+            ]
+          ],
+          "row_gap": [
+            1,
+            14.0
+          ],
+          "width": [
+            2,
+            100.0
+          ]
+        }
+      },
+      {
+        "site": "0x1401a621c",
+        "kind": "node",
+        "node": {
+          "align_items": 5,
+          "column_gap": [
+            1,
+            14.0
+          ],
+          "flex_shrink": 1.0,
+          "width": [
+            2,
+            100.0
+          ]
+        }
+      },
+      {
+        "site": "0x1401a6401",
+        "kind": "node",
+        "node": {
+          "flex_direction": 1,
+          "flex_shrink": 1.0,
+          "flex_grow": 1.0
+        }
+      },
+      {
+        "site": "0x1401a6614",
+        "kind": "text",
+        "text": "Talents",
+        "size": 42.0
+      },
+      {
+        "site": "0x1401a6891",
+        "kind": "text",
+        "text": "Warrior",
+        "size": 15.0
+      },
+      {
+        "site": "0x1401a69b8",
+        "kind": "text",
+        "text": "  \u00b7  what this run plays with",
+        "size": 15.0
+      },
+      {
+        "site": "0x1401a6c99",
+        "kind": "node",
+        "target": "0x14018f460",
+        "node": {
+          "align_items": 5,
+          "border": [
+            [
+              1,
+              1.0
+            ],
+            [
+              1,
+              1.0
+            ],
+            [
+              1,
+              1.0
+            ],
+            [
+              1,
+              1.0
+            ]
+          ],
+          "border_radius": [
+            [
+              1,
+              5.0
+            ],
+            [
+              1,
+              5.0
+            ],
+            [
+              1,
+              5.0
+            ],
+            [
+              1,
+              5.0
+            ]
+          ],
+          "flex_shrink": 1.0,
+          "justify_content": 5,
+          "padding": [
+            [
+              1,
+              14.0
+            ],
+            [
+              1,
+              14.0
+            ],
+            [
+              1,
+              6.0
+            ],
+            [
+              1,
+              6.0
+            ]
+          ]
+        },
+        "tail": "000000008716793faaf1523ff4fdd43e0000803f000000000000803fe7fb693f39b4283f0000803f00000000020000000000000000000000080000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000"
+      },
+      {
+        "site": "0x1401a6e0e",
+        "kind": "text",
+        "text": "Close",
+        "size": 18.0
+      },
+      {
+        "site": "0x1401a703c",
+        "kind": "node",
+        "node": {
+          "column_gap": [
+            1,
+            18.0
+          ],
+          "flex_shrink": 1.0,
+          "width": [
+            2,
+            100.0
+          ],
+          "flex_grow": 1.0
+        }
+      },
+      {
+        "kind": "helper",
+        "site": "0x1401a70ad",
+        "target": "0x14012bb00",
+        "readonly": true
+      }
+    ],
+    "0x14012bb00": [
+      {
+        "site": "0x14012be38",
+        "kind": "node",
+        "node": {
+          "align_items": 5,
+          "flex_direction": 1,
+          "padding": [
+            [
+              1,
+              10.0
+            ],
+            [
+              1,
+              10.0
+            ],
+            [
+              1,
+              10.0
+            ],
+            [
+              1,
+              10.0
+            ]
+          ],
+          "row_gap": [
+            1,
+            8.0
+          ]
+        }
+      },
+      {
+        "kind": "helper",
+        "site": "0x14012bebe",
+        "target": "0x14021aed0"
+      },
+      {
+        "site": "0x14012be38",
+        "kind": "node",
+        "node": {
+          "align_items": 5,
+          "flex_direction": 1,
+          "padding": [
+            [
+              1,
+              10.0
+            ],
+            [
+              1,
+              10.0
+            ],
+            [
+              1,
+              10.0
+            ],
+            [
+              1,
+              10.0
+            ]
+          ],
+          "row_gap": [
+            1,
+            8.0
+          ]
+        }
+      },
+      {
+        "site": "0x14012be38",
+        "kind": "node",
+        "node": {
+          "align_items": 5,
+          "flex_direction": 1,
+          "padding": [
+            [
+              1,
+              10.0
+            ],
+            [
+              1,
+              10.0
+            ],
+            [
+              1,
+              10.0
+            ],
+            [
+              1,
+              10.0
+            ]
+          ],
+          "row_gap": [
+            1,
+            8.0
+          ]
+        }
+      },
+      {
+        "site": "0x14012c11b",
+        "kind": "node",
+        "node": {
+          "flex_direction": 1,
+          "padding": [
+            [
+              1,
+              16.0
+            ],
+            [
+              1,
+              16.0
+            ],
+            [
+              1,
+              12.0
+            ],
+            [
+              1,
+              12.0
+            ]
+          ],
+          "row_gap": [
+            1,
+            9.0
+          ],
+          "width": [
+            1,
+            310.0
+          ]
+        }
+      },
+      {
+        "kind": "helper",
+        "site": "0x14012c1a6",
+        "target": "0x140217570"
+      }
+    ],
+    "0x14021aed0": [
+      {
+        "site": "0x14021b186",
+        "kind": "node",
+        "node": {
+          "align_items": 5,
+          "column_gap": [
+            1,
+            10.0
+          ],
+          "flex_shrink": 1.0,
+          "width": [
+            1,
+            360.0
+          ]
+        }
+      },
+      {
+        "site": "0x14021b459",
+        "kind": "node",
+        "target": "0x14018ba80",
+        "node": {
+          "border": [
+            [
+              1,
+              1.0
+            ],
+            [
+              1,
+              1.0
+            ],
+            [
+              1,
+              1.0
+            ],
+            [
+              1,
+              1.0
+            ]
+          ],
+          "border_radius": [
+            [
+              1,
+              4.0
+            ],
+            [
+              1,
+              4.0
+            ],
+            [
+              1,
+              4.0
+            ],
+            [
+              1,
+              4.0
+            ]
+          ],
+          "flex_shrink": 1.0,
+          "height": [
+            1,
+            30.0
+          ],
+          "width": [
+            1,
+            30.0
+          ]
+        }
+      },
+      {
+        "site": "0x14021b7a6",
+        "kind": "node",
+        "target": "0x14018e390",
+        "node": {
+          "flex_shrink": 1.0,
+          "flex_grow": 1.0
+        }
+      },
+      {
+        "site": "0x14021b970",
+        "kind": "text",
+        "text": "{spent} points",
+        "size": 15.0
+      },
+      {
+        "site": "0x14021bc4b",
+        "kind": "node",
+        "node": {
+          "border": [
+            [
+              1,
+              1.0
+            ],
+            [
+              1,
+              1.0
+            ],
+            [
+              1,
+              1.0
+            ],
+            [
+              1,
+              1.0
+            ]
+          ],
+          "border_radius": [
+            [
+              1,
+              4.0
+            ],
+            [
+              1,
+              4.0
+            ],
+            [
+              1,
+              4.0
+            ],
+            [
+              1,
+              4.0
+            ]
+          ],
+          "flex_shrink": 1.0,
+          "height": [
+            1,
+            520.0
+          ],
+          "width": [
+            1,
+            360.0
+          ]
+        }
+      },
+      {
+        "kind": "helper",
+        "site": "0x14021bcc9",
+        "target": "0x140128540"
+      },
+      {
+        "kind": "helper",
+        "site": "0x14021bcdc",
+        "target": "0x14012cde0"
+      },
+      {
+        "kind": "helper",
+        "site": "0x14021bd4c",
+        "target": "0x140129140"
+      },
+      {
+        "kind": "helper",
+        "site": "0x14021bd70",
+        "target": "0x140128e80"
+      }
+    ],
+    "0x140217570": [
+      {
+        "site": "0x140217b81",
+        "kind": "node",
+        "node": {
+          "align_items": 5,
+          "column_gap": [
+            1,
+            12.0
+          ],
+          "flex_shrink": 1.0,
+          "width": [
+            2,
+            100.0
+          ]
+        }
+      },
+      {
+        "kind": "helper",
+        "site": "0x140217b91",
+        "target": "0x1401d6140"
+      },
+      {
+        "site": "0x140217e11",
+        "kind": "text",
+        "text": "{spent} spent",
+        "size": 30.0
+      },
+      {
+        "site": "0x1402180ce",
+        "kind": "text",
+        "text": "{spent} of {earned} earned spent \u00b7 {a}/{b}/{c} \u00b7 {max} at most",
+        "size": 13.0
+      },
+      {
+        "site": "0x1402185b9",
+        "kind": "text",
+        "text": "Every talent point earned.",
+        "size": 12.0
+      },
+      {
+        "site": "0x1402187a3",
+        "kind": "text",
+        "text": "Talents are spent in the armory's Talents tab, between runs. Respecs are free.",
+        "size": 12.0
+      },
+      {
+        "site": "0x140218c6a",
+        "kind": "node",
+        "target": "0x14018d5c0",
+        "node": {
+          "flex_shrink": 1.0,
+          "margin": [
+            [
+              1,
+              0.0
+            ],
+            [
+              1,
+              0.0
+            ],
+            [
+              1,
+              4.0
+            ],
+            [
+              1,
+              4.0
+            ]
+          ],
+          "width": [
+            2,
+            100.0
+          ]
+        }
+      },
+      {
+        "site": "0x140218e8b",
+        "kind": "text",
+        "text": "Point at a talent to read it. The milestones at 10, 20 and 30 points change how your spells play.",
+        "size": 14.0
+      }
+    ]
+  },
+  "readonly_cell_cases": [
+    {
+      "rank": 0,
+      "max_rank": 3,
+      "otherwise_learnable": false,
+      "milestone": false,
+      "selected": false,
+      "readonly": true,
+      "brightness": 0.2199999988079071,
+      "color_variant": 0.0,
+      "border_rgba": [
+        0.16899999976158142,
+        0.1289999932050705,
+        0.07100000232458115,
+        1.0
+      ]
+    },
+    {
+      "rank": 0,
+      "max_rank": 3,
+      "otherwise_learnable": true,
+      "milestone": false,
+      "selected": false,
+      "readonly": true,
+      "brightness": 0.550000011920929,
+      "color_variant": 0.0,
+      "border_rgba": [
+        0.16899999976158142,
+        0.1289999932050705,
+        0.07100000232458115,
+        1.0
+      ]
+    },
+    {
+      "rank": 1,
+      "max_rank": 3,
+      "otherwise_learnable": true,
+      "milestone": false,
+      "selected": false,
+      "readonly": true,
+      "brightness": 1.0,
+      "color_variant": 0.0,
+      "border_rgba": [
+        0.3019999861717224,
+        1.0,
+        0.41600000858306885,
+        1.0
+      ]
+    },
+    {
+      "rank": 3,
+      "max_rank": 3,
+      "otherwise_learnable": true,
+      "milestone": false,
+      "selected": false,
+      "readonly": true,
+      "brightness": 1.0,
+      "color_variant": 0.0,
+      "border_rgba": [
+        0.9729999899864197,
+        0.8240000009536743,
+        0.41600000858306885,
+        1.0
+      ]
+    },
+    {
+      "rank": 0,
+      "max_rank": 3,
+      "otherwise_learnable": false,
+      "milestone": true,
+      "selected": false,
+      "readonly": true,
+      "brightness": 0.2199999988079071,
+      "color_variant": 0.0,
+      "border_rgba": [
+        0.6399999856948853,
+        0.20999999344348907,
+        0.9300000071525574,
+        0.6000000238418579
+      ]
+    },
+    {
+      "rank": 0,
+      "max_rank": 3,
+      "otherwise_learnable": true,
+      "milestone": false,
+      "selected": true,
+      "readonly": true,
+      "brightness": 0.550000011920929,
+      "color_variant": 0.0,
+      "border_rgba": [
+        1.0,
+        0.9139999747276306,
+        0.6589999794960022,
+        1.0
+      ]
+    }
+  ]
+}

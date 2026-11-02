@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.113.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+    "size_bytes": 141932032
+  },
+  "gap_ids": [
+    41
+  ],
+  "lead_ids": [
+    "Q41-U01",
+    "Q41-U02",
+    "Q41-U04"
+  ],
+  "input_proof": {
+    "path": "docs/analysis/evidence/0.113.2/unknown-recovery.json",
+    "sha256": "d4148a7bcd2feb746bdd36dd5c88dfbe804b5f608edeafe16792841405ac342b"
+  },
+  "inputs": {
+    "missing-executable-ranges.tsv.gz": {
+      "path": "runtime/execheck-0.113.2/ghidra-comprehensive/missing-executable-ranges.tsv.gz",
+      "sha256": "ba4a557d6b23548a495220de44978d051ce0729a2417b77f5398de468de4edd1",
+      "bytes": 4211639
+    },
+    "unwind-complement.sqlite": {
+      "path": "runtime/coverage/58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb/unwind-complement.sqlite",
+      "sha256": "5ced9760078309f09f63e372ec2185cf40e3c623d46f1255bd987366a2271460",
+      "bytes": 66252800
+    }
+  },
+  "capstone_version": "5.0.7",
+  "ghidra_unobserved": {
+    "result_sha256": "c06a88e2972dfeb51f02dc38a66e355aa8490c3aaa71746eaf4b8f9e1953ae91",
+    "original_selector_sha256": "d37088445eb2421fe15b2cab356edda98e726861a5bc66253f78dd3f488fb3b0",
+    "counts": {
+      "declared:NOP-INT3-instruction-sequence:bytes": 365310,
+      "declared:NOP-INT3-instruction-sequence:ranges": 42828,
+      "declared:mixed-unclassified:bytes": 4849350,
+      "declared:mixed-unclassified:ranges": 8395,
+      "declared:uniform-INT3-encoding:bytes": 2,
+      "declared:uniform-INT3-encoding:ranges": 2,
+      "declared:uniform-NOP-encoding:bytes": 4541,
+      "declared:uniform-NOP-encoding:ranges": 3750,
+      "outside-declared:NOP-INT3-instruction-sequence:bytes": 1582124,
+      "outside-declared:NOP-INT3-instruction-sequence:ranges": 184404,
+      "outside-declared:mixed-unclassified:bytes": 143455,
+      "outside-declared:mixed-unclassified:ranges": 1539,
+      "outside-declared:uniform-INT3-encoding:bytes": 1522707,
+      "outside-declared:uniform-INT3-encoding:ranges": 210668,
+      "outside-declared:uniform-NOP-encoding:bytes": 12519,
+      "outside-declared:uniform-NOP-encoding:ranges": 10947
+    },
+    "records": 462533,
+    "bytes": 8480008
+  },
+  "independent_complement": {
+    "result_sha256": "39a6a320e94fec64e30a5adf4ecc1da1d533453955d748114b065f1729c819e0",
+    "original_selector_sha256": "474b11cf3ae27d248b26fc470919022f37d2505436cf98714cd2c76baada231f",
+    "counts": {
+      "complement:NOP-INT3-instruction-sequence:bytes": 1581819,
+      "complement:NOP-INT3-instruction-sequence:ranges": 184361,
+      "complement:mixed-unclassified:bytes": 2273044,
+      "complement:mixed-unclassified:ranges": 19216,
+      "complement:uniform-INT3-encoding:bytes": 952445,
+      "complement:uniform-INT3-encoding:ranges": 118177,
+      "complement:uniform-NOP-encoding:bytes": 12434,
+      "complement:uniform-NOP-encoding:ranges": 10936
+    },
+    "records": 332690,
+    "bytes": 4819742
+  },
+  "boundary_counterexamples": 5,
+  "limits": [
+    "Complete current residual inventories and PE bytes are read. Encoding is not semantic/source/AS ownership, padding, function entry or dynamic unreachability proof.",
+    "NOP preserves fallthrough; INT3 traps if executed. Neither establishes whether a caller exists or whether later mutation occurs. Mixed intervals remain unclassified.",
+    "The two inventories overlap and their byte/range totals must never be added. Original census and queue selectors/counts are preserved.",
+    "No new engine reconstruction, source compilation, application/game execution or original/rebuilt parity comparison."
+  ]
+}

@@ -1,0 +1,322 @@
+{
+  "target": {
+    "version": "0.120.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08",
+    "size_bytes": 145447424
+  },
+  "generator": {
+    "path": "scripts/recover-native-unwind-handlers.py",
+    "sha256": "b4b7084a113a5314e584e73c6d487cc43da0b5c031ed23d7a4f44e12f441f907"
+  },
+  "source_census": {
+    "path": "docs/analysis/coverage/full-image-census.json",
+    "sha256": "2f6379b11b39565a5c3c96a11a7c10899398c2e658f812ad684212ddbd8f9e58"
+  },
+  "format_reference": "https://learn.microsoft.com/en-us/cpp/build/exception-handling-x64?view=msvc-170",
+  "metadata_counts": {
+    "version-1": 281115,
+    "flags-0": 205911,
+    "flags-3": 75151,
+    "flags-1": 37,
+    "flags-4": 16
+  },
+  "directory_audit": {
+    "exports": {
+      "rva": "0x0",
+      "directory_bytes": 0,
+      "present": false
+    },
+    "tls": {
+      "rva": "0x7697f00",
+      "directory_bytes": 40,
+      "present": true,
+      "callbacks": 0,
+      "metadata": {
+        "va": "0x147697f00",
+        "file_offset": "0x7696900",
+        "byte_count": 40,
+        "sha256": "3f48f5b0a6964849ee92b740544e0d96f70dfa72bdd6a5e9ba2c9651e038c51e"
+      },
+      "callback_vector": {
+        "va": "0x14614ea98",
+        "file_offset": "0x614d498",
+        "byte_count": 8,
+        "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+      }
+    },
+    "load_config": {
+      "rva": "0x7697d20",
+      "directory_bytes": 320,
+      "present": true,
+      "declared_bytes": 320,
+      "metadata": {
+        "va": "0x147697d20",
+        "file_offset": "0x7696720",
+        "byte_count": 320,
+        "sha256": "f27e6c6f6c4f6c6343596e514ee4853b41e2786a9b4f7028e3aec5badff78469"
+      },
+      "guard_flags": "0x100",
+      "entry_tables": {
+        "GuardCF": {
+          "pointer": "0x0",
+          "count": 0,
+          "row_bytes": 4,
+          "field_available": true
+        },
+        "GuardLongJump": {
+          "pointer": "0x0",
+          "count": 0,
+          "row_bytes": 4,
+          "field_available": true
+        },
+        "GuardEHContinuation": {
+          "pointer": "0x0",
+          "count": 0,
+          "row_bytes": 4,
+          "field_available": true
+        }
+      },
+      "function_pointer_slots": [
+        {
+          "name": "GuardCFCheck",
+          "encoded_field": "0x14614ce50",
+          "field": {
+            "va": "0x147697d90",
+            "file_offset": "0x7696790",
+            "byte_count": 8,
+            "sha256": "65dffbb7ea84085d8ccdc429f42da8db5d7521c03aa2c239a54989712fed9779"
+          },
+          "slot": {
+            "va": "0x14614ce50",
+            "file_offset": "0x614b850",
+            "byte_count": 8,
+            "sha256": "b91ee92b0bfbe82b3fee6a6d1af13c4816d328cc8d62b3f5af381aa43519f19b"
+          },
+          "initial_target": "0x145fa3384",
+          "executable_target": true
+        },
+        {
+          "name": "GuardCFDispatch",
+          "encoded_field": "0x14614ce60",
+          "field": {
+            "va": "0x147697d98",
+            "file_offset": "0x7696798",
+            "byte_count": 8,
+            "sha256": "d965a71634e2de09ba081a979f25ec9541bd0583e967b14991c85be7c3bbefb2"
+          },
+          "slot": {
+            "va": "0x14614ce60",
+            "file_offset": "0x614b860",
+            "byte_count": 8,
+            "sha256": "814886286985a864eee01b8164f5e90f4835e5f68e1c653a7b006f42d97f2845"
+          },
+          "initial_target": "0x145fa3ce0",
+          "executable_target": true
+        },
+        {
+          "name": "GuardXFGCheck",
+          "encoded_field": "0x14614ce58",
+          "field": {
+            "va": "0x147697e38",
+            "file_offset": "0x7696838",
+            "byte_count": 8,
+            "sha256": "cf12bdf3e537953081b50778a1962ec3e9791f6d73bb379e7ed25799f909d863"
+          },
+          "slot": {
+            "va": "0x14614ce58",
+            "file_offset": "0x614b858",
+            "byte_count": 8,
+            "sha256": "b91ee92b0bfbe82b3fee6a6d1af13c4816d328cc8d62b3f5af381aa43519f19b"
+          },
+          "initial_target": "0x145fa3384",
+          "executable_target": true
+        },
+        {
+          "name": "GuardXFGDispatch",
+          "encoded_field": "0x14614ce68",
+          "field": {
+            "va": "0x147697e40",
+            "file_offset": "0x7696840",
+            "byte_count": 8,
+            "sha256": "a7eb12ef1980b19a88b2dc8ed9d7401641d2a82f735f30a6b8a3a20e0a214ff8"
+          },
+          "slot": {
+            "va": "0x14614ce68",
+            "file_offset": "0x614b868",
+            "byte_count": 8,
+            "sha256": "fa905dc74db98f68686cc6c9146da9e99cf2970722539b4598461a7379ac8b59"
+          },
+          "initial_target": "0x145fa3d00",
+          "executable_target": true
+        },
+        {
+          "name": "GuardXFGTableDispatch",
+          "encoded_field": "0x14614ce70",
+          "field": {
+            "va": "0x147697e48",
+            "file_offset": "0x7696848",
+            "byte_count": 8,
+            "sha256": "966c4bbc37bd81c8e99eaa103ef6664f6f9e5b221e9594958dbf769f70c9e234"
+          },
+          "slot": {
+            "va": "0x14614ce70",
+            "file_offset": "0x614b870",
+            "byte_count": 8,
+            "sha256": "fa905dc74db98f68686cc6c9146da9e99cf2970722539b4598461a7379ac8b59"
+          },
+          "initial_target": "0x145fa3d00",
+          "executable_target": true
+        },
+        {
+          "name": "GuardMemcpy",
+          "encoded_field": "0x14614ce80",
+          "field": {
+            "va": "0x147697e58",
+            "file_offset": "0x7696858",
+            "byte_count": 8,
+            "sha256": "d9f6f074bff9e5bb17b2f61bfc10f3f8adb1939200dcf13454fe0ae09e7ff464"
+          },
+          "slot": {
+            "va": "0x14614ce80",
+            "file_offset": "0x614b880",
+            "byte_count": 8,
+            "sha256": "c8b00277be782dc0d92b77fc74ba6c9c35b8a404a4ac2a8dd2973232ac2494c7"
+          },
+          "initial_target": "0x145fa3aab",
+          "executable_target": true
+        }
+      ]
+    }
+  },
+  "counts": {
+    "distinct_unwind_records": 281115,
+    "handler_metadata_records": 75188,
+    "chain_records": 16,
+    "distinct_handler_entries": 15,
+    "distinct_directory_and_handler_entries": 28,
+    "entries_without_actual_native_owner": 14
+  },
+  "entries": [
+    {
+      "entry": "0x145dd3560",
+      "actual_native_owner": null
+    },
+    {
+      "entry": "0x145dd36e0",
+      "actual_native_owner": null
+    },
+    {
+      "entry": "0x145dd4070",
+      "actual_native_owner": null
+    },
+    {
+      "entry": "0x145de1670",
+      "actual_native_owner": null
+    },
+    {
+      "entry": "0x145dea6c0",
+      "actual_native_owner": null
+    },
+    {
+      "entry": "0x145deb8d0",
+      "actual_native_owner": null
+    },
+    {
+      "entry": "0x145deb930",
+      "actual_native_owner": null
+    },
+    {
+      "entry": "0x145deee90",
+      "actual_native_owner": null
+    },
+    {
+      "entry": "0x145deefd0",
+      "actual_native_owner": null
+    },
+    {
+      "entry": "0x145df14a0",
+      "actual_native_owner": null
+    },
+    {
+      "entry": "0x145df5680",
+      "actual_native_owner": null
+    },
+    {
+      "entry": "0x145df56f0",
+      "actual_native_owner": null
+    },
+    {
+      "entry": "0x145f98140",
+      "actual_native_owner": "0x145f98140"
+    },
+    {
+      "entry": "0x145f9e7b0",
+      "actual_native_owner": "0x145f9e7b0"
+    },
+    {
+      "entry": "0x145f9eca0",
+      "actual_native_owner": "0x145f9eca0"
+    },
+    {
+      "entry": "0x145f9ecef",
+      "actual_native_owner": "0x145f9ecef"
+    },
+    {
+      "entry": "0x145f9f250",
+      "actual_native_owner": "0x145f9f250"
+    },
+    {
+      "entry": "0x145f9f4e0",
+      "actual_native_owner": "0x145f9f4e0"
+    },
+    {
+      "entry": "0x145f9fe70",
+      "actual_native_owner": "0x145f9fe70"
+    },
+    {
+      "entry": "0x145fa0110",
+      "actual_native_owner": "0x145fa0110"
+    },
+    {
+      "entry": "0x145fa2f14",
+      "actual_native_owner": "0x145fa2f14"
+    },
+    {
+      "entry": "0x145fa2fbc",
+      "actual_native_owner": "0x145fa2fbc"
+    },
+    {
+      "entry": "0x145fa3384",
+      "actual_native_owner": "0x145fa3384"
+    },
+    {
+      "entry": "0x145fa3aa5",
+      "actual_native_owner": null
+    },
+    {
+      "entry": "0x145fa3aab",
+      "actual_native_owner": "0x145fa3aab"
+    },
+    {
+      "entry": "0x145fa3ac9",
+      "actual_native_owner": null
+    },
+    {
+      "entry": "0x145fa3ce0",
+      "actual_native_owner": "0x145fa3ce0"
+    },
+    {
+      "entry": "0x145fa3d00",
+      "actual_native_owner": "0x145fa3d00"
+    }
+  ],
+  "limits": [
+    "Explicit AMD64 version-1 handler RVAs establish callable native entries; language-specific handler-data layouts and runtime exception behavior remain unverified.",
+    "Chained records are followed as metadata without turning unwind extents into function bodies."
+  ],
+  "inventory": {
+    "path": "runtime/coverage/291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08/ghidra/declared/unwind-handlers.json",
+    "sha256": "5d38590cb6261d1e4e507edc11343e14a8ab4617e77f3965b6ffc431f83c4284"
+  }
+}

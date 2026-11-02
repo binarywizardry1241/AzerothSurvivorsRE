@@ -1,0 +1,121 @@
+{
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "ranges": [
+    {
+      "role": "infernal-status-capture",
+      "range": [
+        "0x14594f752",
+        "0x14594f7c3"
+      ],
+      "sha256": "b8e5ca40a9ca97a61f2b953b7bdb06e299236fd9124edd809220ceca9c095b67",
+      "assembly": "infernal-status-capture.asm",
+      "text_sha256": "8a8a94bd7315c0e02e26ccc60f98ba80c3072bce947f2de426cf180d9da1192b"
+    },
+    {
+      "role": "infernal-status-apply",
+      "range": [
+        "0x14594f9d2",
+        "0x14594fa89"
+      ],
+      "sha256": "b60429100f89bffce33bd79371b1ff4af52b986c80e593e8055b42ad7389e56e",
+      "assembly": "infernal-status-apply.asm",
+      "text_sha256": "573d0d200c0ca8d02a56602375cca330080a405c6e6106da9b89c0fb51edf01d"
+    },
+    {
+      "role": "infernal-power",
+      "range": [
+        "0x14594f7c3",
+        "0x14594f8c1"
+      ],
+      "sha256": "aa2e4590ab03ee30f3a9544f1ec3479c094358aa16b527a3abe448c1f200627c",
+      "assembly": "infernal-power.asm",
+      "text_sha256": "f957dab03ff744dab13020f2d50027ba39eab33feb006e5a7a294856be3f995c"
+    },
+    {
+      "role": "doomguard-power",
+      "range": [
+        "0x145950159",
+        "0x1459501ed"
+      ],
+      "sha256": "e8935784cc446ad666a94e61bdd678dcea80b5cb1fe4c86e8077f79763304dc0",
+      "assembly": "doomguard-power.asm",
+      "text_sha256": "9834e0255c7e637a7a6efd356ee778ef2106baa630fde265483189d69b1c86c2"
+    },
+    {
+      "role": "pit-lord-power",
+      "range": [
+        "0x14595164f",
+        "0x1459516a9"
+      ],
+      "sha256": "57eca46de300bccfce5b41718f420c17e7f674b3b19f8dfd227f344bc65b71ba",
+      "assembly": "pit-lord-power.asm",
+      "text_sha256": "8109ccfb6df441d2c66696d29857a8d80559828da9ec416206e5a89f24db38a0"
+    },
+    {
+      "role": "infernal-interval",
+      "range": [
+        "0x1459049a3",
+        "0x1459049ed"
+      ],
+      "sha256": "0621a3c8ab205314aa0f80c271a17e1ca95b2c28aeadb7ed5f53bcfa2f684330",
+      "assembly": "infernal-interval.asm",
+      "text_sha256": "954ba4cff0692f6842f8491f40faeef09517d0bcdf7b9a56d0c938fb9a84085e"
+    },
+    {
+      "role": "fallback-power",
+      "range": [
+        "0x14594f3e2",
+        "0x14594f4a6"
+      ],
+      "sha256": "6b1d668ba43653dc7676ee0bad04c72da84bc7af53782ad4dca2698b60ef07c7",
+      "assembly": "fallback-power.asm",
+      "text_sha256": "a03390a40ae6eed1ab9ba555cbedce90155b784f5b1e67ba9b6c21be11259d09"
+    },
+    {
+      "role": "doomguard-focus",
+      "range": [
+        "0x145950241",
+        "0x1459502dc"
+      ],
+      "sha256": "4239e4ad42482737ab3ec6d24e44a78ea99791c06bbfabb0e4e2b55a873ccecd",
+      "assembly": "doomguard-focus.asm",
+      "text_sha256": "fede02e3d4fce5e18ab5a13cf07753a5f69c412a29be08c30413ee4ee0020e4d"
+    },
+    {
+      "role": "doomguard-target-count",
+      "range": [
+        "0x1459503ae",
+        "0x1459503cf"
+      ],
+      "sha256": "42ec706b042086e329c47cb38987604edf539a921cbae4532c21260c7f5dbb48",
+      "assembly": "doomguard-target-count.asm",
+      "text_sha256": "ccf5fd68cacb26e75545767c8fe5e3103178028a714e3470ef8237212b663199"
+    },
+    {
+      "role": "pit-lord-target-count",
+      "range": [
+        "0x145951622",
+        "0x14595164f"
+      ],
+      "sha256": "6db48c26447c7ebd55abd0056e66b3ec3ca85e52a3028c2739ca7777b9c454d6",
+      "assembly": "pit-lord-target-count.asm",
+      "text_sha256": "f0f03985d1b47fc740dc1077b15ee958511517745e2f3232cc94123c648ab5e0"
+    }
+  ],
+  "rea_infernal_owner": {
+    "evidence_id": "ev_c6526fea20891e33620ad7f6789e5f1ee8932b87073fa74aaed30c3c84f6ccd2",
+    "provider": {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "version": "12.1.4"
+    },
+    "input_sha256": "dfa491b81adce78b40a1e570290ab2b72a3eab78106a734633a3a7d40921ad9d",
+    "pe_range": [
+      "0x14594f2b0",
+      "0x14594fb4d"
+    ]
+  },
+  "limitations": [
+    "Bounded unchanged instructions; spell-modifier production, targeting, criticals and packets are outside these vectors."
+  ]
+}

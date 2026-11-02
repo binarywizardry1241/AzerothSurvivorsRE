@@ -1,0 +1,1047 @@
+{
+  "target_sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+  "id": 9,
+  "trees": [
+    {
+      "name": "Affliction",
+      "background": "WarlockCurses",
+      "icon": "Spell_Shadow_DeathCoil",
+      "talents": [
+        {
+          "key": "suppression",
+          "name": "Suppression",
+          "icon": "Spell_Shadow_UnsummonBuilding",
+          "description": "Increases your luck by {v}%.",
+          "prerequisite": null,
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 0,
+          "column": 1,
+          "max_rank": 5,
+          "exclusive": false,
+          "milestone": false,
+          "numeric_values": [
+            "5",
+            "10",
+            "15",
+            "20",
+            "25"
+          ],
+          "secondary_numeric_values": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "imp_corruption",
+          "name": "Shadow Embrace",
+          "icon": "Spell_Shadow_AbominationExplosion",
+          "description": "Your damage-over-time effects deal {v}% more damage.",
+          "prerequisite": null,
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 0,
+          "column": 2,
+          "max_rank": 5,
+          "exclusive": false,
+          "milestone": false,
+          "numeric_values": [
+            "4",
+            "8",
+            "12",
+            "16",
+            "20"
+          ],
+          "secondary_numeric_values": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "imp_coa",
+          "name": "Improved Curse of Agony",
+          "icon": "Spell_Shadow_CurseOfSargeras",
+          "description": "Curse of Agony deals {v}% more damage.",
+          "prerequisite": null,
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 1,
+          "column": 0,
+          "max_rank": 3,
+          "exclusive": false,
+          "milestone": false,
+          "numeric_values": [
+            "5",
+            "10",
+            "15"
+          ],
+          "secondary_numeric_values": [
+            null,
+            null,
+            null
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "imp_drain_life",
+          "name": "Improved Drain Life",
+          "icon": "Spell_Shadow_LifeDrain02",
+          "description": "Drain Life deals {v}% more damage.",
+          "prerequisite": null,
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 1,
+          "column": 2,
+          "max_rank": 5,
+          "exclusive": false,
+          "milestone": false,
+          "numeric_values": [
+            "8",
+            "16",
+            "24",
+            "32",
+            "40"
+          ],
+          "secondary_numeric_values": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "nightfall",
+          "name": "Nightfall",
+          "icon": "Spell_Shadow_Twilight",
+          "description": "Milestone. Your Shadow Bolts carry the night: each one that lands corrupts its target for {v}% of the bolt over 12 sec, and every tick of Corruption has a 2% chance to fire a free Shadow Bolt, at most twice a second.",
+          "prerequisite": null,
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 2,
+          "column": 1,
+          "max_rank": 1,
+          "exclusive": false,
+          "milestone": true,
+          "numeric_values": [
+            "40"
+          ],
+          "secondary_numeric_values": [
+            null
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "dark_pact",
+          "name": "Soul Reaping",
+          "icon": "Spell_Shadow_DarkRitual",
+          "description": "Death Coil instantly deals {v}% of your Drain Life's remaining damage on its target, without consuming it.",
+          "prerequisite": null,
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 2,
+          "column": 2,
+          "max_rank": 3,
+          "exclusive": false,
+          "milestone": false,
+          "numeric_values": [
+            "5",
+            "7.5",
+            "10"
+          ],
+          "secondary_numeric_values": [
+            null,
+            null,
+            null
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "grim_reach",
+          "name": "Grim Reach",
+          "icon": "Spell_Shadow_CallofBone",
+          "description": "Your damage-over-time spells take {v} more target.",
+          "prerequisite": null,
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 3,
+          "column": 0,
+          "max_rank": 1,
+          "exclusive": false,
+          "milestone": false,
+          "numeric_values": [
+            "1"
+          ],
+          "secondary_numeric_values": [
+            null
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "shadow_mastery",
+          "name": "Shadow Mastery",
+          "icon": "Spell_Shadow_ShadeTrueSight",
+          "description": "Shadow spells deal {v}% more damage.",
+          "prerequisite": null,
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 3,
+          "column": 2,
+          "max_rank": 5,
+          "exclusive": false,
+          "milestone": false,
+          "numeric_values": [
+            "3",
+            "6",
+            "9",
+            "12",
+            "15"
+          ],
+          "secondary_numeric_values": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "contagion",
+          "name": "Contagion",
+          "icon": "Spell_Shadow_PlagueCloud",
+          "description": "Milestone. When an enemy dies with Corruption or Curse of Agony on it, each jumps to the enemy nearest it.",
+          "prerequisite": "nightfall",
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 4,
+          "column": 1,
+          "max_rank": 1,
+          "exclusive": false,
+          "milestone": true,
+          "numeric_values": [
+            null
+          ],
+          "secondary_numeric_values": [
+            null
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "amplify_curse",
+          "name": "Amplify Curse",
+          "icon": "Spell_Shadow_Contagion",
+          "description": "Curse of Agony's cooldown is {v}% shorter.",
+          "prerequisite": null,
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 4,
+          "column": 2,
+          "max_rank": 3,
+          "exclusive": false,
+          "milestone": false,
+          "numeric_values": [
+            "8",
+            "16",
+            "24"
+          ],
+          "secondary_numeric_values": [
+            null,
+            null,
+            null
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "siphon_life",
+          "name": "Siphon Life",
+          "icon": "Spell_Shadow_Requiem",
+          "description": "Every tick of your damage-over-time effects heals you for 1% of it.",
+          "prerequisite": null,
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 5,
+          "column": 0,
+          "max_rank": 1,
+          "exclusive": false,
+          "milestone": false,
+          "numeric_values": [
+            null
+          ],
+          "secondary_numeric_values": [
+            null
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "fel_concentration",
+          "name": "Fel Concentration",
+          "icon": "Spell_Shadow_FingerOfDeath",
+          "description": "Your damage-over-time effects last {v}% longer.",
+          "prerequisite": null,
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 5,
+          "column": 2,
+          "max_rank": 3,
+          "exclusive": false,
+          "milestone": false,
+          "numeric_values": [
+            "6",
+            "12",
+            "18"
+          ],
+          "secondary_numeric_values": [
+            null,
+            null,
+            null
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "seed_of_corruption",
+          "name": "Seed of Corruption",
+          "icon": "Spell_Shadow_CurseOfMannoroth",
+          "description": "Capstone. You start every run with Corruption, and enemies that die afflicted by your damage-over-time effects burst for {v}% of their maximum health on everything within 6 yd.",
+          "prerequisite": "contagion",
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 6,
+          "column": 1,
+          "max_rank": 1,
+          "exclusive": false,
+          "milestone": true,
+          "numeric_values": [
+            "3"
+          ],
+          "secondary_numeric_values": [
+            null
+          ],
+          "supremacy_numeric_values": []
+        }
+      ]
+    },
+    {
+      "name": "Demonology",
+      "background": "WarlockSummoning",
+      "icon": "Spell_Shadow_Metamorphosis",
+      "talents": [
+        {
+          "key": "demonic_familiar",
+          "name": "Demonic Familiar",
+          "icon": "Spell_Shadow_SummonImp",
+          "description": "An Imp fights at your side for good, its Firebolts {v}% stronger. Each one also strikes every enemy burning with your Immolate.",
+          "prerequisite": null,
+          "alternative_prerequisite": null,
+          "supremacy_description": "Supremacy: your Infernal's Hellfire deals {v}% more damage.",
+          "row": 0,
+          "column": 1,
+          "max_rank": 5,
+          "exclusive": false,
+          "milestone": false,
+          "numeric_values": [
+            "4",
+            "8",
+            "12",
+            "16",
+            "20"
+          ],
+          "secondary_numeric_values": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "supremacy_numeric_values": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ]
+        },
+        {
+          "key": "demonic_embrace",
+          "name": "Demonic Embrace",
+          "icon": "Spell_Shadow_Metamorphosis",
+          "description": "Increases your maximum health by {v}%.",
+          "prerequisite": null,
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 0,
+          "column": 2,
+          "max_rank": 5,
+          "exclusive": false,
+          "milestone": false,
+          "numeric_values": [
+            "4",
+            "8",
+            "12",
+            "16",
+            "20"
+          ],
+          "secondary_numeric_values": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "fel_stamina",
+          "name": "Fel Stamina",
+          "icon": "Spell_Shadow_AntiShadow",
+          "description": "Reduces all damage taken by {v}%.",
+          "prerequisite": null,
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 1,
+          "column": 0,
+          "max_rank": 3,
+          "exclusive": false,
+          "milestone": false,
+          "numeric_values": [
+            "2.5",
+            "5",
+            "7.5"
+          ],
+          "secondary_numeric_values": [
+            null,
+            null,
+            null
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "unholy_power",
+          "name": "Unholy Power",
+          "icon": "Spell_Shadow_ShadowWordDominate",
+          "description": "Your demons deal {v}% more damage.",
+          "prerequisite": null,
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 1,
+          "column": 3,
+          "max_rank": 5,
+          "exclusive": false,
+          "milestone": false,
+          "numeric_values": [
+            "5",
+            "10",
+            "15",
+            "20",
+            "25"
+          ],
+          "secondary_numeric_values": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "soul_devourer",
+          "name": "Soul Devourer",
+          "icon": "Spell_Shadow_SummonFelHunter",
+          "description": "Milestone. Permanently summons a Felhunter. Its bites hit 2 enemies, prioritizing bosses and elites, and deal {v}% more damage per 1% missing enemy health.\nConsume Magic: Consumes 10% of your highest-ranked DoT's remaining duration, dealing 150% of the consumed damage.\nRules out Soul Link.",
+          "prerequisite": "demonic_familiar",
+          "alternative_prerequisite": null,
+          "supremacy_description": "Supremacy: your Doomguard deals {v}% more damage to bosses and elites.",
+          "row": 2,
+          "column": 0,
+          "max_rank": 3,
+          "exclusive": true,
+          "milestone": true,
+          "numeric_values": [
+            "0.5",
+            "1",
+            "2"
+          ],
+          "secondary_numeric_values": [
+            null,
+            null,
+            null
+          ],
+          "supremacy_numeric_values": [
+            "2",
+            "4",
+            "6"
+          ]
+        },
+        {
+          "key": "soul_link",
+          "name": "Soul Link",
+          "icon": "Spell_Shadow_GatherShadows",
+          "description": "Milestone. Permanently summons a Voidwalker that hits 2 enemies. Gains 3% damage per 1% Damage Reduction and 2% per 1% bonus max health.\nYour Voidwalkers shield you for {v}% of their damage, up to 25% of your max health.\nRules out Soul Devourer.",
+          "prerequisite": "demonic_familiar",
+          "alternative_prerequisite": null,
+          "supremacy_description": "Supremacy: gain {v}% damage reduction.",
+          "row": 2,
+          "column": 2,
+          "max_rank": 3,
+          "exclusive": true,
+          "milestone": true,
+          "numeric_values": [
+            "5",
+            "10",
+            "15"
+          ],
+          "secondary_numeric_values": [
+            null,
+            null,
+            null
+          ],
+          "supremacy_numeric_values": [
+            "1",
+            "2",
+            "3"
+          ]
+        },
+        {
+          "key": "felfire_training",
+          "name": "Demonic Echoes",
+          "icon": "Spell_Shadow_Possession",
+          "description": "Your demons' attacks have a {v}% chance to Echo for full damage. This is their only Echo source.",
+          "prerequisite": null,
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 2,
+          "column": 3,
+          "max_rank": 3,
+          "exclusive": false,
+          "milestone": false,
+          "numeric_values": [
+            "5",
+            "10",
+            "15"
+          ],
+          "secondary_numeric_values": [
+            null,
+            null,
+            null
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "master_demonologist",
+          "name": "Master Demonologist",
+          "icon": "Spell_Shadow_ShadowPact",
+          "description": "Increases all damage and your demons' critical strike chance by {v}%.",
+          "prerequisite": null,
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 3,
+          "column": 3,
+          "max_rank": 3,
+          "exclusive": false,
+          "milestone": false,
+          "numeric_values": [
+            "3",
+            "6",
+            "9"
+          ],
+          "secondary_numeric_values": [
+            null,
+            null,
+            null
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "legion_gate",
+          "name": "Legion Gate",
+          "icon": "Spell_Shadow_RitualOfSacrifice",
+          "description": "Milestone. Every 4 sec, summon 3 random lesser demons for 12–16 sec (max 12).\nSuccubi stun Corrupted enemies. Their kills trigger a Death Coil at 50% damage.",
+          "prerequisite": "soul_devourer",
+          "alternative_prerequisite": "soul_link",
+          "supremacy_description": "Supremacy: every 12 sec, your greater demons empower their next attack for +{v}% damage.",
+          "row": 4,
+          "column": 1,
+          "max_rank": 1,
+          "exclusive": false,
+          "milestone": true,
+          "numeric_values": [
+            null
+          ],
+          "secondary_numeric_values": [
+            null
+          ],
+          "supremacy_numeric_values": [
+            "50"
+          ]
+        },
+        {
+          "key": "demonic_supremacy",
+          "name": "Demonic Supremacy",
+          "icon": "Spell_Shadow_CurseOfAchimonde",
+          "description": "Your Infernal and Doomguard become permanent. You can no longer summon lesser demons. Maximum one of each.",
+          "prerequisite": null,
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 4,
+          "column": 3,
+          "max_rank": 1,
+          "exclusive": false,
+          "milestone": false,
+          "numeric_values": [
+            null
+          ],
+          "secondary_numeric_values": [
+            null
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "summon_infernal",
+          "name": "Summon Infernal",
+          "icon": "Spell_Shadow_SummonInfernal",
+          "description": "Your damaging spells have a 5% chance to summon an Infernal for 15 sec (max 1). Its Meteor stuns enemies on impact, and it burns nearby enemies with Hellfire at {v}% effectiveness.",
+          "prerequisite": null,
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 5,
+          "column": 0,
+          "max_rank": 3,
+          "exclusive": false,
+          "milestone": false,
+          "numeric_values": [
+            "100",
+            "120",
+            "140"
+          ],
+          "secondary_numeric_values": [
+            null,
+            null,
+            null
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "summon_doomguard",
+          "name": "Summon Doomguard",
+          "icon": "Spell_Shadow_AntiMagicShell",
+          "description": "Your damaging spells have a 5% chance to summon a Doomguard for 15 sec (max 1). Its Shadow Bolts hit 2 enemies and inherit your upgrades.\nDoom Bringer: Consecutive hits on the same boss or elite deal 20% more damage, up to {v}%.",
+          "prerequisite": null,
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 5,
+          "column": 3,
+          "max_rank": 3,
+          "exclusive": false,
+          "milestone": false,
+          "numeric_values": [
+            "60",
+            "80",
+            "100"
+          ],
+          "secondary_numeric_values": [
+            null,
+            null,
+            null
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "pact_of_the_annihilan",
+          "name": "Pact of the Annihilan",
+          "icon": "Spell_Shadow_UnholyStrength",
+          "description": "Capstone. Summons a Pit Lord for {v} sec every 30 sec, reduced by CDR (min 13 sec). Up to 2 active.\nFelseeker inherits your Searing Pain upgrades and deals 25% more damage to its primary target. It hits up to 6 enemies.\nExclusive with Butcher.",
+          "prerequisite": "legion_gate",
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 6,
+          "column": 0,
+          "max_rank": 1,
+          "exclusive": false,
+          "milestone": true,
+          "numeric_values": [
+            "20"
+          ],
+          "secondary_numeric_values": [
+            null
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "butcher",
+          "name": "Butcher",
+          "icon": "Ability_Warrior_Cleave",
+          "description": "Capstone. Summons a Felguard for {v} sec every 30 sec, reduced by CDR (min 13 sec). Up to 2 active.\nCleaves up to 10 enemies within 15 yd. Every third swing deals double damage. Deals 50% more damage below 30% enemy health.\nExclusive with Pact of the Annihilan.",
+          "prerequisite": "legion_gate",
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 6,
+          "column": 2,
+          "max_rank": 1,
+          "exclusive": false,
+          "milestone": true,
+          "numeric_values": [
+            "20"
+          ],
+          "secondary_numeric_values": [
+            null
+          ],
+          "supremacy_numeric_values": []
+        }
+      ]
+    },
+    {
+      "name": "Destruction",
+      "background": "WarlockDestruction",
+      "icon": "Spell_Shadow_RainOfFire",
+      "talents": [
+        {
+          "key": "imp_shadow_bolt",
+          "name": "Improved Shadow Bolt",
+          "icon": "Spell_Shadow_ShadowBolt",
+          "description": "Shadow Bolt deals {v}% more damage.",
+          "prerequisite": null,
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 0,
+          "column": 1,
+          "max_rank": 5,
+          "exclusive": false,
+          "milestone": false,
+          "numeric_values": [
+            "5",
+            "10",
+            "15",
+            "20",
+            "25"
+          ],
+          "secondary_numeric_values": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "cataclysm",
+          "name": "Cataclysm",
+          "icon": "Spell_Fire_WindsofWoe",
+          "description": "Your cooldowns recover {v}% faster.",
+          "prerequisite": null,
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 0,
+          "column": 2,
+          "max_rank": 5,
+          "exclusive": false,
+          "milestone": false,
+          "numeric_values": [
+            "1.5",
+            "3",
+            "4.5",
+            "6",
+            "7.5"
+          ],
+          "secondary_numeric_values": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "intensity",
+          "name": "Intensity",
+          "icon": "Spell_Fire_LavaSpawn",
+          "description": "Soulfire deals {v}% more damage.",
+          "prerequisite": null,
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 1,
+          "column": 0,
+          "max_rank": 5,
+          "exclusive": false,
+          "milestone": false,
+          "numeric_values": [
+            "4",
+            "8",
+            "12",
+            "16",
+            "20"
+          ],
+          "secondary_numeric_values": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "aftermath",
+          "name": "Scorched Earth",
+          "icon": "Spell_Fire_Immolation",
+          "description": "Your Hellfire deals {v}% more damage. Each pulse has a {v2}% chance to slow each enemy it burns by 40% for 3 sec.",
+          "prerequisite": null,
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 1,
+          "column": 2,
+          "max_rank": 5,
+          "exclusive": false,
+          "milestone": false,
+          "numeric_values": [
+            "5",
+            "10",
+            "15",
+            "20",
+            "25"
+          ],
+          "secondary_numeric_values": [
+            "3",
+            "6",
+            "9",
+            "12",
+            "15"
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "shadowburn",
+          "name": "Shadow Cleave",
+          "icon": "Spell_Shadow_ScourgeBuild",
+          "description": "Milestone. Shadow Bolt splits: every bolt that lands forks to 2 more enemies for {v}% of it.",
+          "prerequisite": null,
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 2,
+          "column": 1,
+          "max_rank": 1,
+          "exclusive": false,
+          "milestone": true,
+          "numeric_values": [
+            "15"
+          ],
+          "secondary_numeric_values": [
+            null
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "imp_searing_pain",
+          "name": "Improved Searing Pain",
+          "icon": "Spell_Fire_SoulBurn",
+          "description": "Searing Pain and Immolate deal {v}% more damage.",
+          "prerequisite": null,
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 2,
+          "column": 2,
+          "max_rank": 3,
+          "exclusive": false,
+          "milestone": false,
+          "numeric_values": [
+            "8",
+            "16",
+            "24"
+          ],
+          "secondary_numeric_values": [
+            null,
+            null,
+            null
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "destructive_reach",
+          "name": "Destructive Reach",
+          "icon": "Spell_Shadow_CorpseExplode",
+          "description": "Rain of Fire and Hellfire reach {v}% farther.",
+          "prerequisite": null,
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 3,
+          "column": 0,
+          "max_rank": 3,
+          "exclusive": false,
+          "milestone": false,
+          "numeric_values": [
+            "8",
+            "16",
+            "24"
+          ],
+          "secondary_numeric_values": [
+            null,
+            null,
+            null
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "devastation",
+          "name": "Devastation",
+          "icon": "Spell_Fire_FlameShock",
+          "description": "Increases your critical strike chance by {v}%.",
+          "prerequisite": null,
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 3,
+          "column": 2,
+          "max_rank": 5,
+          "exclusive": false,
+          "milestone": false,
+          "numeric_values": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "secondary_numeric_values": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "conflagrate",
+          "name": "Conflagrate",
+          "icon": "Spell_Fire_Fireball",
+          "description": "Milestone. Start every run with Immolate. Shadow Bolt and Searing Pain make Immolated enemies explode for {v}% of the hit's damage within 6 yd.",
+          "prerequisite": "shadowburn",
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 4,
+          "column": 1,
+          "max_rank": 1,
+          "exclusive": false,
+          "milestone": true,
+          "numeric_values": [
+            "15"
+          ],
+          "secondary_numeric_values": [
+            null
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "emberstorm",
+          "name": "Emberstorm",
+          "icon": "Spell_Fire_SelfDestruct",
+          "description": "Fire spells deal {v}% more damage.",
+          "prerequisite": null,
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 4,
+          "column": 2,
+          "max_rank": 5,
+          "exclusive": false,
+          "milestone": false,
+          "numeric_values": [
+            "3",
+            "6",
+            "9",
+            "12",
+            "15"
+          ],
+          "secondary_numeric_values": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "ruin",
+          "name": "Ruin",
+          "icon": "Spell_Shadow_ShadowWordPain",
+          "description": "Increases your critical strike damage by {v}%.",
+          "prerequisite": null,
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 5,
+          "column": 0,
+          "max_rank": 3,
+          "exclusive": false,
+          "milestone": false,
+          "numeric_values": [
+            "8",
+            "16",
+            "24"
+          ],
+          "secondary_numeric_values": [
+            null,
+            null,
+            null
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "bane",
+          "name": "Bane",
+          "icon": "Spell_Shadow_DeathPact",
+          "description": "Shadow Bolt and Immolate cooldowns are {v}% shorter.",
+          "prerequisite": null,
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 5,
+          "column": 2,
+          "max_rank": 3,
+          "exclusive": false,
+          "milestone": false,
+          "numeric_values": [
+            "7",
+            "14",
+            "20"
+          ],
+          "secondary_numeric_values": [
+            null,
+            null,
+            null
+          ],
+          "supremacy_numeric_values": []
+        },
+        {
+          "key": "rain_of_chaos",
+          "name": "Rain of Chaos",
+          "icon": "Spell_Shadow_RainOfFire",
+          "description": "Capstone. A second Rain of Fire falls on its own every 13 sec, and its burning ground slows what it touches.",
+          "prerequisite": "conflagrate",
+          "alternative_prerequisite": null,
+          "supremacy_description": null,
+          "row": 6,
+          "column": 1,
+          "max_rank": 1,
+          "exclusive": false,
+          "milestone": true,
+          "numeric_values": [
+            null
+          ],
+          "secondary_numeric_values": [
+            null
+          ],
+          "supremacy_numeric_values": []
+        }
+      ]
+    }
+  ]
+}

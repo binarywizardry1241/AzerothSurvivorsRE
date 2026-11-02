@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.117.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293",
+    "size_bytes": 145283072,
+    "identity_manifest": "docs/analysis/coverage/targets.json",
+    "version_provenance": "matching_embedded_updater_and_independent_version_witness",
+    "runtime_data": {
+      "directory": "installed-game/Data",
+      "archives": [
+        {
+          "path": "installed-game/Data/patch-2.MPQ",
+          "size_bytes": 4690878,
+          "sha256": "366edee41642a5dda22ed90cc252b543ee375755b7e8bee81e2a6cd59fd7b286"
+        },
+        {
+          "path": "installed-game/Data/patch-3.MPQ",
+          "size_bytes": 2580491,
+          "sha256": "75c35ca5b8075197252581e301e8900143007fdf37b493ad271ae1bd39f95a29"
+        },
+        {
+          "path": "installed-game/Data/patch-4.MPQ",
+          "size_bytes": 22769233,
+          "sha256": "2e895e0e0ff6a4781d0e0aaa6ea7d32ed1fe36841e17806fe1855cb880d18865"
+        },
+        {
+          "path": "installed-game/Data/patch-5.MPQ",
+          "size_bytes": 267019039,
+          "sha256": "5008e56873718b468fa5ae1b697dcbe4f5da9ffe6c793f3ef9939dbd7716f3d8"
+        },
+        {
+          "path": "installed-game/Data/patch-6.MPQ",
+          "size_bytes": 212228,
+          "sha256": "cad6ff59b5df028a507581befb836fce07894057e15fe63d9fdc553a95b7ceb5"
+        },
+        {
+          "path": "installed-game/Data/patch-7.MPQ",
+          "size_bytes": 276649,
+          "sha256": "f5fb15b181cf01cc6b5cf2ee9948a27ecc4ba27bab9a8bec584df4381932aae6"
+        },
+        {
+          "path": "installed-game/Data/patch-8.MPQ",
+          "size_bytes": 4155417,
+          "sha256": "ae3aaa29cadb7aeba8255f5b4a8305c7cbecfe8f0d3ed9646522113d16c3e12e"
+        },
+        {
+          "path": "installed-game/Data/patch-9.MPQ",
+          "size_bytes": 5739608,
+          "sha256": "ffff8ea890bdaf91a1680543ac60106db92132bc2210105279610fa73661a524"
+        },
+        {
+          "path": "installed-game/Data/patch-A.MPQ",
+          "size_bytes": 1453122,
+          "sha256": "350cde8cd0f76e5246a663eb3811f5a7b1a9c75e4e699190208c9299177b8d90"
+        },
+        {
+          "path": "installed-game/Data/patch.MPQ",
+          "size_bytes": 1340199244,
+          "sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf"
+        }
+      ]
+    }
+  },
+  "gap_ids": [
+    115
+  ],
+  "native_ranges": [
+    {
+      "label": "zone-key lookup",
+      "va": "0x145b4d1d0",
+      "file_offset": "0x5b4c5d0",
+      "byte_count": 432,
+      "sha256": "7770a2695c8168e5530c3a4e13f1a04548ed313560923043cb8979bceb789733"
+    },
+    {
+      "label": "zone descriptors",
+      "va": "0x14729b018",
+      "file_offset": "0x7299a18",
+      "byte_count": 2880,
+      "sha256": "c63a14be973e44e52f8965ca40723fd929d9ab92f139bacb75628e990acc98ce"
+    },
+    {
+      "label": "coopbeat prefix/split iterator",
+      "va": "0x145c0e650",
+      "file_offset": "0x5c0da50",
+      "byte_count": 606,
+      "sha256": "ad075fb5cb5d4509bcf2d965ffba2ddf49b5b77d13088b49c51a934e013067e1"
+    },
+    {
+      "label": "history iterator",
+      "va": "0x145c37b20",
+      "file_offset": "0x5c36f20",
+      "byte_count": 424,
+      "sha256": "84016eed44b5a685e1fb64ce7f2e21cd462420b4e567e4f157fef203130e7293"
+    },
+    {
+      "label": "history collector",
+      "va": "0x145c32910",
+      "file_offset": "0x5c31d10",
+      "byte_count": 343,
+      "sha256": "2222a0f37736a52c70ffd7841e9e3f6f28cd08fe18631795bd4a11bccd7e535f"
+    },
+    {
+      "label": "history key iterator",
+      "va": "0x145c2cd90",
+      "file_offset": "0x5c2c190",
+      "byte_count": 450,
+      "sha256": "ab71814b0e206ccd18a49b3c749ead702f55e8eb78d6d7f380ccd8b541b45cfe"
+    },
+    {
+      "label": "Save loader sort/dedup",
+      "va": "0x145ac7fe2",
+      "file_offset": "0x5ac73e2",
+      "byte_count": 398,
+      "sha256": "c292cf605cdd6aad4b10e7d41fbf886979fac602a6fd784bd250ca6841be9ea6"
+    },
+    {
+      "label": "Save formatter family",
+      "va": "0x145acd5a0",
+      "file_offset": "0x5acc9a0",
+      "byte_count": 272,
+      "sha256": "d3e2c3c811d17b049f93b7776bb04047e6d3c84409842c9413182b65d5362926"
+    },
+    {
+      "label": "coopbeat format",
+      "va": "0x1472ce88b",
+      "file_offset": "0x72cd28b",
+      "byte_count": 14,
+      "sha256": "d1f86ed3a9f04388d30828969a320edfe82fd58ffd76da5b23554607322d2f12"
+    }
+  ],
+  "query_receipts": [
+    {
+      "path": "runtime/0.117.0/coop-package/zone-key-query/results/454c4ce8aa1a36c48ce3746696caa2fe1c98bbe0a2c3b63d5e1228dbd72b858f.json",
+      "sha256": "c1e49ec11d8553d5a1aad52e825b141623b36c376134ebd2efb748f72585f35a"
+    },
+    {
+      "path": "runtime/0.117.0/coop-package/history-reader-query/results/d3ed1075b889e8655958bf23bd4c0bdfc90c613e7c9fd42460496e415e287b28.json",
+      "sha256": "0bc16e115ea0ed5fc72ee22bb2b06397d4fb76cdffa783494e95e854a8443fb0"
+    },
+    {
+      "path": "runtime/0.117.0/coop-package/history-format-query/results/02a275fc66445567556a5e6fb3861162092db38a61b0bd39d2ae261057871f9c.json",
+      "sha256": "2bb0530c4d722c98c041d91c728b519b17a6e4261e6740e5e29484bf887be288"
+    },
+    {
+      "path": "runtime/0.117.0/coop-package/history-key-list-query/results/06ad420a54fb2dc435294aef1496554c1e440128543ad0c22ce44cee98fd9e9f.json",
+      "sha256": "1ed4bf88db3770567b926a39df6da5e694eeb8bf3c1a288804e0643480c2013b"
+    },
+    {
+      "path": "runtime/0.117.0/tabard-admission/save-parser-query/results/de9923d459b50aaab6bdef7db700f2844f9f4b2d680bb8fdb8449b743835acce.json",
+      "sha256": "fab7e8f099cc031e9dc12d68f8a17ec10c6d60b9017a846f3ee513ecd4f80b31"
+    },
+    {
+      "path": "runtime/0.117.0/tabard-admission/save-formatter-query/results/9c4eb3bd1d8fbb351f617ed6eaae169d6baeb21cdddb28c5839105a9eddb6e5c.json",
+      "sha256": "002a19df4535ec2bac31e9c79053a007640b72f0d852440a225a11b79ae62c7c"
+    }
+  ],
+  "ordered_zone_keys": [
+    "elwynn",
+    "duskwood",
+    "wsg",
+    "ungoro",
+    "ab",
+    "feralas",
+    "arena",
+    "sm",
+    "av",
+    "brm",
+    "aq",
+    "naxx"
+  ],
+  "contract": {
+    "save_family": "coopbeat|",
+    "token_separator": ",",
+    "domain": "exact current zone keys, class-independent",
+    "duplicates": "union then ascending ordinal sort and dedup",
+    "empty": "omit family",
+    "family_order": "after ordinary beat and before perks",
+    "writer_admission": "won with cooperative context; owned by party-achievement route"
+  },
+  "limits": [
+    "Raw Ghidra slices omit external data/callees/ABI; native bytes and bounded lookup replay establish independent contracts.",
+    "Native lookup execution is isolated instruction emulation; reconstructed source, save I/O, compilation, client/server execution and parity remain unverified."
+  ]
+}

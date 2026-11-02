@@ -1,0 +1,455 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.109.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+    "size_bytes": 140447744
+  },
+  "profile": {
+    "format": "rea-whole-image-native-census-v1",
+    "target_sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+    "script_sha256": "4cadaebc3476d81708451ba9ce1fd0add3f7db25dd52cebc44e8dd838193f303",
+    "starts_sha256": "8aa1f9698e348a7873a490a5e592ee526f40bbea4e71b62444805b705f6e4d30",
+    "auto_analysis": false,
+    "heap": "6G",
+    "ghidra_version": "12.1.4"
+  },
+  "profile_digest": "37cb990284faec1852f842a8967cd22045d01a983acda53dcae07203e41ee6cb",
+  "counts": {
+    "instructions": 736675,
+    "instruction_bytes": 3085850,
+    "computed_calls": 941,
+    "computed_jumps": 4674,
+    "native_functions": 349723,
+    "body_ranges": 350192,
+    "references": 887879,
+    "external_locations": 420,
+    "seeds_without_instructions": 0,
+    "seeds_without_functions": 0,
+    "seeded_functions_repaired": 2636
+  },
+  "seed_scope": "complement",
+  "requested_seeds": 2636,
+  "requested_seed_function_records": 2636,
+  "requested_seeds_with_decoded_entries": 2636,
+  "requested_seeds_with_repaired_flow_bodies": 2636,
+  "declared_starts": 347099,
+  "declared_starts_with_actual_bodies": 347083,
+  "independent_instructions": {
+    "performed": true,
+    "decoder": "Capstone",
+    "version": "5.0.7",
+    "exact_source_bytes_verified": true,
+    "instruction_records": 736675,
+    "decoded_bytes": 3085850,
+    "instructions_inside_declared_extents": 667435,
+    "instructions_outside_declared_extents": 69240,
+    "flow_kinds": {
+      "COMPUTED_CALL": 941,
+      "COMPUTED_JUMP": 4674,
+      "CONDITIONAL_JUMP": 61283,
+      "FALL_THROUGH": 609826,
+      "TERMINATOR": 7641,
+      "UNCONDITIONAL_CALL": 30865,
+      "UNCONDITIONAL_JUMP": 21445
+    },
+    "declared_extent_bytes_unobserved_by_ghidra": 90276216,
+    "unobserved_declared_ranges": 326639,
+    "unobserved_bytes_by_candidate_kind": {
+      "NOP-CC-instruction-candidate": 22759,
+      "mixed-unclassified": 90253457
+    },
+    "unobserved_range_inventory": {
+      "path": "runtime/coverage/76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0/ghidra/full-image-streaming-complement/missing-declared-ranges.tsv.gz",
+      "sha256": "c7910a98b0ace6a168a2e18d169def78781e4694eac5e0d0f6b5a785a5e58bb0"
+    },
+    "padding_or_noncode_proven": false
+  },
+  "reference_kinds": {
+    "CONDITIONAL_JUMP": 61283,
+    "DATA": 767437,
+    "INDIRECTION": 131,
+    "READ": 6625,
+    "READ_WRITE": 45,
+    "UNCONDITIONAL_CALL": 30865,
+    "UNCONDITIONAL_JUMP": 21445,
+    "WRITE": 48
+  },
+  "reference_destinations": {
+    "memory-without-native-body": 499862,
+    "native-body": 387597,
+    "non-default-address-space": 420
+  },
+  "reference_source_ownership": {
+    "inside_native_body": 9863,
+    "outside_native_body": 878016
+  },
+  "declared_import_observations": {
+    "slot_count": 420,
+    "libraries": {
+      "ADVAPI32.dll": 1,
+      "GDI32.dll": 5,
+      "KERNEL32.dll": 50,
+      "USER32.dll": 10,
+      "VCRUNTIME140.dll": 9,
+      "advapi32.dll": 10,
+      "api-ms-win-core-synch-l1-2-0.dll": 3,
+      "api-ms-win-core-winrt-l1-1-0.dll": 1,
+      "api-ms-win-crt-heap-l1-1-0.dll": 2,
+      "api-ms-win-crt-locale-l1-1-0.dll": 1,
+      "api-ms-win-crt-math-l1-1-0.dll": 56,
+      "api-ms-win-crt-runtime-l1-1-0.dll": 19,
+      "api-ms-win-crt-stdio-l1-1-0.dll": 2,
+      "api-ms-win-crt-string-l1-1-0.dll": 2,
+      "avrt.dll": 3,
+      "bcrypt.dll": 1,
+      "bcryptprimitives.dll": 1,
+      "dwmapi.dll": 2,
+      "gdi32.dll": 6,
+      "imm32.dll": 6,
+      "kernel32.dll": 80,
+      "ntdll.dll": 7,
+      "ole32.dll": 10,
+      "oleaut32.dll": 8,
+      "opengl32.dll": 5,
+      "pdh.dll": 7,
+      "powrprof.dll": 1,
+      "psapi.dll": 2,
+      "shell32.dll": 3,
+      "uiautomationcore.dll": 6,
+      "user32.dll": 81,
+      "uxtheme.dll": 1,
+      "ws2_32.dll": 19
+    },
+    "native_references_by_library": {
+      "ADVAPI32.dll": 3,
+      "GDI32.dll": 1,
+      "KERNEL32.dll": 41,
+      "VCRUNTIME140.dll": 7,
+      "advapi32.dll": 4,
+      "api-ms-win-core-synch-l1-2-0.dll": 56,
+      "api-ms-win-core-winrt-l1-1-0.dll": 4,
+      "api-ms-win-crt-heap-l1-1-0.dll": 2,
+      "api-ms-win-crt-locale-l1-1-0.dll": 1,
+      "api-ms-win-crt-math-l1-1-0.dll": 56,
+      "api-ms-win-crt-runtime-l1-1-0.dll": 19,
+      "api-ms-win-crt-stdio-l1-1-0.dll": 2,
+      "api-ms-win-crt-string-l1-1-0.dll": 2,
+      "bcrypt.dll": 1,
+      "bcryptprimitives.dll": 1,
+      "imm32.dll": 1,
+      "kernel32.dll": 152,
+      "ntdll.dll": 6,
+      "ole32.dll": 7,
+      "oleaut32.dll": 1,
+      "opengl32.dll": 3,
+      "user32.dll": 8,
+      "ws2_32.dll": 8
+    },
+    "slot_source_owner_pairs": 206,
+    "runtime_slot_overwrites_or_external_implementation_verified": false
+  },
+  "relocated_code_pointer_observations": {
+    "slots": 522845,
+    "slot_sections": {
+      ".data": 63,
+      ".rdata": 522782
+    },
+    "distinct_encoded_targets": 134801,
+    "slots_targeting_actual_native_entries": 187436,
+    "slots_targeting_native_body_bytes": 187436,
+    "native_reference_kinds_to_slots": {
+      "DATA": 2,
+      "READ": 3
+    },
+    "slot_source_owner_pairs": 3,
+    "dynamic_callee_or_vtable_semantics_established": false
+  },
+  "direct_native_call_pairs": 1,
+  "call_destinations_without_native_owner": 4588,
+  "global_static_observations": {
+    "read_write_reference_records": {
+      "READ": 6625,
+      "READ_WRITE": 45,
+      "WRITE": 48
+    },
+    "distinct_targets": 2538,
+    "reader_pairs": 2748,
+    "writer_pairs": 62,
+    "complete_alias_or_global_semantics": false
+  },
+  "artifacts": {
+    "directory": "runtime/coverage/76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0/ghidra/full-image-streaming-complement",
+    "plan_sha256": "9a0262e49611c11f9c65a53390baefc7a3faefd05ddeb628f3743dbcc379f9f8",
+    "progress_sha256": "32d7eab843b10b7d9229668ecc1d0647f68e29528322f3e11515e4054bd8b9de",
+    "files": {
+      "instructions.tsv.gz": {
+        "sha256": "709fe111142ccc4965c54a7ef0e45910cdf51f948b1921568b077b914afc1270",
+        "bytes": 4550305
+      },
+      "bodies.tsv.gz": {
+        "sha256": "e08f6e8edc818a4f165b848c10e894ba08ea2a41741758f5cebad2dc3f918ca4",
+        "bytes": 2374834
+      },
+      "references.tsv.gz": {
+        "sha256": "be3dd2f43a476016e50d4d4aa2734f1486ea01a26be714b72b79d67186b682e9",
+        "bytes": 5033147
+      },
+      "externals.tsv.gz": {
+        "sha256": "0ee9109dd65cf36b53838b423cebc44dd1d9c779114271f64c71225467d40c3a",
+        "bytes": 4199
+      }
+    }
+  },
+  "whole_image_input": true,
+  "all_seeded_body_operations_complete": true,
+  "global_native_semantics_complete": false,
+  "global_references_complete": false,
+  "native_source_ownership_complete": false,
+  "parity_verified": false,
+  "gap_ids": [
+    41
+  ],
+  "limits": [
+    "Ghidra flow bodies are observed, not forced to declared unwind extents; computed flow and decoder disagreements remain explicit.",
+    "Auto-analysis and semantic/decompiler/address-table passes are disabled. Exported static references are complete for this Program state, not all possible runtime edges.",
+    "Global read/write records and direct call pairs establish machine-code relationships, not source-level aliasing, reconstructed behavior or semantic ownership.",
+    "No application compilation, target execution or original/rebuilt comparison."
+  ],
+  "diagnostic_binding_counts": {
+    "paths": 725,
+    "custom_paths": 53,
+    "paths_with_verified_diagnostic_sites": 564,
+    "paths_with_actual_native_owners": 0,
+    "verified_sites": 17682,
+    "sites_without_actual_native_owner": 17682
+  },
+  "diagnostic_owner_exceptions": {
+    "paths_with_unowned_verified_sites": 564,
+    "custom_paths": [
+      {
+        "path": "crates/wenilla-rogue-app/src/lib.rs",
+        "unowned_sites": 2
+      },
+      {
+        "path": "crates/wenilla-rogue-app/src/screens/armory.rs",
+        "unowned_sites": 29
+      },
+      {
+        "path": "crates/wenilla-rogue-app/src/screens/backdrop.rs",
+        "unowned_sites": 2
+      },
+      {
+        "path": "crates/wenilla-rogue-app/src/screens/cards.rs",
+        "unowned_sites": 15
+      },
+      {
+        "path": "crates/wenilla-rogue-app/src/screens/codex.rs",
+        "unowned_sites": 38
+      },
+      {
+        "path": "crates/wenilla-rogue-app/src/screens/discord.rs",
+        "unowned_sites": 10
+      },
+      {
+        "path": "crates/wenilla-rogue-app/src/screens/hud.rs",
+        "unowned_sites": 21
+      },
+      {
+        "path": "crates/wenilla-rogue-app/src/screens/hudparts.rs",
+        "unowned_sites": 3
+      },
+      {
+        "path": "crates/wenilla-rogue-app/src/screens/language.rs",
+        "unowned_sites": 3
+      },
+      {
+        "path": "crates/wenilla-rogue-app/src/screens/markers.rs",
+        "unowned_sites": 10
+      },
+      {
+        "path": "crates/wenilla-rogue-app/src/screens/meter.rs",
+        "unowned_sites": 13
+      },
+      {
+        "path": "crates/wenilla-rogue-app/src/screens/mod.rs",
+        "unowned_sites": 22
+      },
+      {
+        "path": "crates/wenilla-rogue-app/src/screens/options.rs",
+        "unowned_sites": 25
+      },
+      {
+        "path": "crates/wenilla-rogue-app/src/screens/pad.rs",
+        "unowned_sites": 3
+      },
+      {
+        "path": "crates/wenilla-rogue-app/src/screens/picker.rs",
+        "unowned_sites": 14
+      },
+      {
+        "path": "crates/wenilla-rogue-app/src/screens/rewards.rs",
+        "unowned_sites": 3
+      },
+      {
+        "path": "crates/wenilla-rogue-app/src/screens/runmods.rs",
+        "unowned_sites": 4
+      },
+      {
+        "path": "crates/wenilla-rogue-app/src/screens/talents.rs",
+        "unowned_sites": 3
+      },
+      {
+        "path": "crates/wenilla-rogue-app/src/screens/talentview.rs",
+        "unowned_sites": 6
+      },
+      {
+        "path": "crates/wenilla-rogue-app/src/screens/touch.rs",
+        "unowned_sites": 5
+      },
+      {
+        "path": "crates/wenilla-rogue-app/src/screens/update.rs",
+        "unowned_sites": 6
+      },
+      {
+        "path": "crates/wenilla-rogue-app/src/screens/xinput.rs",
+        "unowned_sites": 1
+      },
+      {
+        "path": "crates/wenilla-rogue-app/src/update.rs",
+        "unowned_sites": 3
+      },
+      {
+        "path": "crates/wenilla-rogue/src/achievements.rs",
+        "unowned_sites": 3
+      },
+      {
+        "path": "crates/wenilla-rogue/src/appearance.rs",
+        "unowned_sites": 2
+      },
+      {
+        "path": "crates/wenilla-rogue/src/bindings.rs",
+        "unowned_sites": 1
+      },
+      {
+        "path": "crates/wenilla-rogue/src/content.rs",
+        "unowned_sites": 47
+      },
+      {
+        "path": "crates/wenilla-rogue/src/dbc.rs",
+        "unowned_sites": 9
+      },
+      {
+        "path": "crates/wenilla-rogue/src/driver.rs",
+        "unowned_sites": 1
+      },
+      {
+        "path": "crates/wenilla-rogue/src/fonts.rs",
+        "unowned_sites": 16
+      },
+      {
+        "path": "crates/wenilla-rogue/src/game/abilities.rs",
+        "unowned_sites": 22
+      },
+      {
+        "path": "crates/wenilla-rogue/src/game/addon.rs",
+        "unowned_sites": 1
+      },
+      {
+        "path": "crates/wenilla-rogue/src/game/auras.rs",
+        "unowned_sites": 6
+      },
+      {
+        "path": "crates/wenilla-rogue/src/game/companions.rs",
+        "unowned_sites": 18
+      },
+      {
+        "path": "crates/wenilla-rogue/src/game/demons.rs",
+        "unowned_sites": 23
+      },
+      {
+        "path": "crates/wenilla-rogue/src/game/enemy.rs",
+        "unowned_sites": 29
+      },
+      {
+        "path": "crates/wenilla-rogue/src/game/guardians.rs",
+        "unowned_sites": 15
+      },
+      {
+        "path": "crates/wenilla-rogue/src/game/hazards.rs",
+        "unowned_sites": 47
+      },
+      {
+        "path": "crates/wenilla-rogue/src/game/mod.rs",
+        "unowned_sites": 13
+      },
+      {
+        "path": "crates/wenilla-rogue/src/game/procs.rs",
+        "unowned_sites": 3
+      },
+      {
+        "path": "crates/wenilla-rogue/src/game/talents.rs",
+        "unowned_sites": 15
+      },
+      {
+        "path": "crates/wenilla-rogue/src/game/upgrades.rs",
+        "unowned_sites": 12
+      },
+      {
+        "path": "crates/wenilla-rogue/src/gear.rs",
+        "unowned_sites": 15
+      },
+      {
+        "path": "crates/wenilla-rogue/src/i18n.rs",
+        "unowned_sites": 9
+      },
+      {
+        "path": "crates/wenilla-rogue/src/jewelry.rs",
+        "unowned_sites": 4
+      },
+      {
+        "path": "crates/wenilla-rogue/src/mods.rs",
+        "unowned_sites": 2
+      },
+      {
+        "path": "crates/wenilla-rogue/src/nav.rs",
+        "unowned_sites": 64
+      },
+      {
+        "path": "crates/wenilla-rogue/src/proto.rs",
+        "unowned_sites": 2
+      },
+      {
+        "path": "crates/wenilla-rogue/src/realmd.rs",
+        "unowned_sites": 2
+      },
+      {
+        "path": "crates/wenilla-rogue/src/save.rs",
+        "unowned_sites": 18
+      },
+      {
+        "path": "crates/wenilla-rogue/src/server.rs",
+        "unowned_sites": 15
+      },
+      {
+        "path": "crates/wenilla-rogue/src/talents.rs",
+        "unowned_sites": 2
+      },
+      {
+        "path": "crates/wenilla-rogue/src/terrain.rs",
+        "unowned_sites": 26
+      }
+    ],
+    "whole_queue_paths_without_any_owner": [],
+    "complete_exception_records_in_diagnostic_binding_audit": true
+  },
+  "diagnostic_binding_audit": {
+    "path": "runtime/coverage/76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0/ghidra/full-image-streaming-complement/diagnostic-bindings.json",
+    "sha256": "348a413e936cbfa2510e1ed5f927869076d92c22c1da85c4b4dd1f79f084fe62"
+  },
+  "full_summary_snapshot": {
+    "path": "runtime/coverage/76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0/ghidra/full-image-streaming-complement/full-summary.json",
+    "sha256": "e765e08edcef532ebb66dc08eaaff68ba606bd1c01acc5c7a850aa9573979104"
+  }
+}

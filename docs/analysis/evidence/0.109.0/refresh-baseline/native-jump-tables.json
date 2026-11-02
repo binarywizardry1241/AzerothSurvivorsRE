@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.109.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+    "size_bytes": 140447744
+  },
+  "census_summary": "docs/analysis/coverage/full-image-pe-entries.json",
+  "census_summary_sha256": "c28ab1e85980e8cdcd8889567f5e32c4fa320a7dcdc87cea6d7127bcba81cc57",
+  "generator": {
+    "path": "scripts/recover-native-jump-tables.py",
+    "sha256": "d2906bd508e14ad7c67c349efb1b62f1a4552b57c61fcae1ccd34f267675fac3",
+    "capstone_version": "5.0.7"
+  },
+  "counts": {
+    "bounded-table-has-non-executable-target": 1193,
+    "guarded-fallthrough-has-empty-proved-domain": 2,
+    "guarded-relative-tables": 3355,
+    "not-register-jump": 156,
+    "not-relative-add": 3680,
+    "not-signed-table-load": 15,
+    "relative-table-without-proven-unsigned-bound": 1784,
+    "scalar-domain-has-unproved-or-conflicting-instruction-targets": 223,
+    "short-context": 164,
+    "table-base-not-static": 620
+  },
+  "linear_boundary_input": {
+    "path": "runtime/fixgap-41-42/guarded-scalars-code-final-linear-boundaries.json",
+    "sha256": "4926a8f56278fb6cdff2163dc1844cfbef8db33014bbd29c23ec790a9336a1f5"
+  },
+  "pe_parser_helpers": [
+    {
+      "path": "scripts/inventory-current-target.py",
+      "sha256": "f2cf5be70267aa01865b7c34bef7eeb87898d67b5e36f0a91d20d37e3b1299c5"
+    },
+    {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+    }
+  ],
+  "native_semantics_or_all_computed_edges_complete": false,
+  "rejected_scalar_domain_tables": 223,
+  "case_entries": 62661,
+  "unique_target_addresses": 21088,
+  "edge_digest": "079454161deef1b7a1a9ca637ff2e965ff4137b2ff528c53a6830a624f6e631e",
+  "census_helpers": {
+    "path": "scripts/summarize-native-image.py",
+    "sha256": "5e0873407d07276ca6642677f63848d737244411cbad672aa83f4657dbf128b5"
+  },
+  "scalar_helpers": {
+    "path": "scripts/classify-native-ownership.py",
+    "sha256": "517909d86860aabfb56b1276d4c390b4ae76f98b018fc89cbac1fc9f09650b2b"
+  },
+  "inventory": {
+    "path": "runtime/fixgap-41-42/guarded-scalars-code-final.json",
+    "sha256": "98ab2df02173a0eb10dc77b095af623e5d1b77988b0d64785b64a4563aaa6686"
+  },
+  "gap_ids": [
+    41
+  ],
+  "parity_verified": false,
+  "limits": [
+    "Only explicit unsigned selector guards or whole-domain boundary-validated potential scalar successors in the exact signed-relative table idiom are recovered. Missing enum/type invariants and other dispatch remain unknown.",
+    "Recovered successors describe the guarded fallthrough path; unknown incoming computed edges or wider caller invariants are not silently excluded.",
+    "Successors seed code and flow edges, never invented function boundaries. No application compilation or execution."
+  ]
+}

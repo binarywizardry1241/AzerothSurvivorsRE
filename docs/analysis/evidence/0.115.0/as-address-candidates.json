@@ -1,0 +1,268 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.115.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+    "size_bytes": 142111232
+  },
+  "generator": {
+    "path": "scripts/check-as-address-candidates.py",
+    "sha256": "a0146aec781dedda30f09ed5f6e7e0c4bf437fa82dbf4f48c40a1f30402a9c7b"
+  },
+  "tool_versions": {
+    "capstone": "5.0.7",
+    "unicorn": "2.1.4"
+  },
+  "dependencies": [
+    {
+      "path": "scripts/coverage_common.py",
+      "sha256": "8e076cd7c55c918ff626e5e4c7df2e2efb0a8861ed3f39844b53ccd3d4c391ce"
+    },
+    {
+      "path": "scripts/native_recovery.py",
+      "sha256": "a06dff182d666e1700d4f4e12baf7c3854c38bf8cb6d7ca1a6ea31f88c82762f"
+    },
+    {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+    },
+    {
+      "path": "scripts/summarize-native-image.py",
+      "sha256": "dd5748de3b992dfd49bf0eca53dac1f8fabfb27102fda0c4815dc331c7f28e14"
+    },
+    {
+      "path": "scripts/native_residual_summary.py",
+      "sha256": "b3c3ec245bb9f5db92870ea66a6c4481a107273a99aec598d05a27e9901eebaa"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "runtime/q41-ownership-0.115.0/address-leads/summary.json",
+      "sha256": "401b3fdd171ba5980f7bb7185acae2135a7fe730610f7599b1e241aaccfe05a2"
+    },
+    {
+      "path": "runtime/q41-ownership-0.115.0/address-leads/inventory.json",
+      "sha256": "0cec9439828db4a6ef15d1a53abcb0036a7af13145dc81644223e884efc7e07a"
+    },
+    {
+      "path": "runtime/execheck-2026-10-25/contracts/residual-review/canonical-proof-after.json",
+      "sha256": "912caeef5ae48f4cb592389fdcb3f7e8ffd55997f89e1c7f223ea733abd7f1f8"
+    },
+    {
+      "path": "runtime/q41-ownership-0.115.0/residuals-v2/diagnostic-sites.jsonl.gz",
+      "sha256": "7b4d74e1187c3d0e0adb7c7d583e422556f513833501fce1662966a71a81442b"
+    },
+    {
+      "path": "docs/analysis/coverage/full-image-census.json",
+      "sha256": "8918323779f56759fada5da333abf290c4323393bab739a8e202b0e9737c95fd"
+    },
+    {
+      "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/full-image-durable/bodies.tsv.gz",
+      "sha256": "98b29cee6dab4cba31326645be1e6b7b49abe20fd1177b2614e875ba4cb4ea49"
+    }
+  ],
+  "source_contract": {
+    "path": "crates/azeroth-survivors-re/src/enemies/scaling.rs",
+    "function": "health_polynomial",
+    "body_sha256": "0d7f32357ec1e164c261e96b68e3f725ba0b2068c88abc9f41a56d38f8af4461"
+  },
+  "exact_direct_AS_context_candidates": [
+    {
+      "site": "0x140006ea0",
+      "source_site": "0x14012fca3",
+      "source_native_owner": "0x14012f990",
+      "direct_diagnostic_context": [
+        "crates/wenilla-rogue-app/src/screens/mod.rs",
+        "crates/wenilla-rogue-app/src/screens/touch.rs"
+      ]
+    },
+    {
+      "site": "0x14005b390",
+      "source_site": "0x14008177e",
+      "source_native_owner": "0x14007f800",
+      "direct_diagnostic_context": [
+        "crates/wenilla-rogue-app/src/screens/discord.rs",
+        "crates/wenilla-rogue-app/src/screens/meter.rs"
+      ]
+    },
+    {
+      "site": "0x14008c5e0",
+      "source_site": "0x1401320d2",
+      "source_native_owner": "0x14012f990",
+      "direct_diagnostic_context": [
+        "crates/wenilla-rogue-app/src/screens/mod.rs",
+        "crates/wenilla-rogue-app/src/screens/touch.rs"
+      ]
+    },
+    {
+      "site": "0x145985db0",
+      "source_site": "0x14594e2b3",
+      "source_native_owner": "0x14594df00",
+      "direct_diagnostic_context": [
+        "crates/wenilla-rogue/src/game/enemy.rs"
+      ]
+    },
+    {
+      "site": "0x145985e00",
+      "source_site": "0x14594e2ba",
+      "source_native_owner": "0x14594df00",
+      "direct_diagnostic_context": [
+        "crates/wenilla-rogue/src/game/enemy.rs"
+      ]
+    }
+  ],
+  "ranges": {
+    "ordinary-constructor": {
+      "start": "0x14594df00",
+      "end_exclusive": "0x14594e874",
+      "sha256": "0ba2818d6c138868c76dd1382a4261568eaff32bccb8c6f2893e1b910b3c24a3",
+      "instruction_count": 471
+    },
+    "touch-context-owner": {
+      "start": "0x14012f990",
+      "end_exclusive": "0x140133878",
+      "sha256": "4603ae1fb56d42e320246df90f90781b7917abd8f11b40ebe375f945a1153323",
+      "instruction_count": 3139
+    },
+    "meter-context-owner": {
+      "start": "0x14007f800",
+      "end_exclusive": "0x140083785",
+      "sha256": "d452795765c9dba6cefb160f2453c2a01cd96b060da6c3b0cabac7f6308f3ccd",
+      "instruction_count": 3202
+    },
+    "nonzero-hp-helper": {
+      "start": "0x145985db0",
+      "end_exclusive": "0x145985df5",
+      "sha256": "92fd0d42bc2e90aae5432b3b22c8309ed1f91ca705f32b834068e8942ca42898",
+      "instruction_count": 14
+    },
+    "zero-hp-helper": {
+      "start": "0x145985e00",
+      "end_exclusive": "0x145985e45",
+      "sha256": "53d0c264edad02aff0e2da0accf0e9e9506d6eb35b8a1821f7fbd9cac4686368",
+      "instruction_count": 14
+    },
+    "hp-clock-selection-call": {
+      "start": "0x14594e1e6",
+      "end_exclusive": "0x14594e308",
+      "sha256": "0eff5c8bb3aa13251297681ee3ca4f1c00107c54ff134238937787d9b4d8a57d",
+      "instruction_count": 52
+    },
+    "hp-post-call-consumer": {
+      "start": "0x14594e308",
+      "end_exclusive": "0x14594e36a",
+      "sha256": "f0cdb284ec9526735ddea8ee4ba0a3ce3f637c5bb1dd823052e073e6ad3827f2",
+      "instruction_count": 19
+    },
+    "hp-percent-product": {
+      "start": "0x14594e3de",
+      "end_exclusive": "0x14594e3e3",
+      "sha256": "f606801c4a256302353435423f28d4a4655818cca6f4d288c71c473dfca5dc3d",
+      "instruction_count": 1
+    },
+    "refcount-release-thunk": {
+      "start": "0x140006ea0",
+      "end_exclusive": "0x140006eaf",
+      "sha256": "77503c34f1e0effd98aaa414d8b3762c570e21de50c83c3f5b5969fb00a35171",
+      "instruction_count": 5
+    },
+    "data-count-forwarding-thunk": {
+      "start": "0x14005b390",
+      "end_exclusive": "0x14005b3a3",
+      "sha256": "1ed15541e202b8cbf5fe84c5073aaef488a9bd2187ea16a593b259d596801bb9",
+      "instruction_count": 5
+    },
+    "vector-deallocation-thunk": {
+      "start": "0x14008c5e0",
+      "end_exclusive": "0x14008c5fd",
+      "sha256": "332a5a9cdfb7ee766b450fa6095c656d035bb41106a7a7707c821627e31222ea",
+      "instruction_count": 8
+    },
+    "refcount-callback-consumer": {
+      "start": "0x14012fc60",
+      "end_exclusive": "0x14012fce8",
+      "sha256": "ea88cf29d1f739f811604271d0e8aa4912e4adf19adf7fe24ba54514322e0e1f",
+      "instruction_count": 20
+    },
+    "vector-callback-consumer": {
+      "start": "0x140132090",
+      "end_exclusive": "0x140132117",
+      "sha256": "be01ee89d7a867a06ee9ba9d2f9642da4b742cedce2992585921ab47772f65d8",
+      "instruction_count": 20
+    },
+    "format-argument-consumer": {
+      "start": "0x140081748",
+      "end_exclusive": "0x1400817ca",
+      "sha256": "9bc9d5f87794ab53df26e6d27df2b290e2f1bcf19dda649b858aacb1266db0a5",
+      "instruction_count": 20
+    }
+  },
+  "hp_coefficients": {
+    "0x145985db0": [
+      {
+        "instruction": "0x145985db0",
+        "address": "0x145ee05c0",
+        "bits": 1036831949
+      },
+      {
+        "instruction": "0x145985dbc",
+        "address": "0x145edfeb0",
+        "bits": 1065353216
+      },
+      {
+        "instruction": "0x145985dc4",
+        "address": "0x14732f660",
+        "bits": 1024685244
+      },
+      {
+        "instruction": "0x145985dd8",
+        "address": "0x14732f664",
+        "bits": 1002611797
+      }
+    ],
+    "0x145985e00": [
+      {
+        "instruction": "0x145985e00",
+        "address": "0x145ee05c0",
+        "bits": 1036831949
+      },
+      {
+        "instruction": "0x145985e0c",
+        "address": "0x145edfeb0",
+        "bits": 1065353216
+      },
+      {
+        "instruction": "0x145985e14",
+        "address": "0x14732f660",
+        "bits": 1024685244
+      },
+      {
+        "instruction": "0x145985e28",
+        "address": "0x14732f668",
+        "bits": 1004974029
+      }
+    ]
+  },
+  "checks": {
+    "hp_helper_cases": 330,
+    "hp_caller_cases": 324,
+    "support_thunk_cases": 5
+  },
+  "cases": {
+    "path": "runtime/q41-as-addresses-0.115.0/native-cases.json",
+    "sha256": "89e0502ce649c156a9d9fa75deef0dfb76b568df70bd440a7f9ea31a23bafd1f"
+  },
+  "actual_source_defect_found": false,
+  "hp_helper_current_source_expression_matches": true,
+  "source_semantics_complete": false,
+  "global_aliasing_complete": false,
+  "gameplay_parity_verified": false,
+  "limits": [
+    "Current original instructions and immutable constants run with synthetic inputs; no arithmetic or call host seam exists inside the HP helper/caller intervals.",
+    "The caller replay stops after its selected HP helper and base-HP product, before late-zone/endless/percentage/entity-publication behavior. Later arithmetic is retained as static consumer context only.",
+    "The source expression is a reviewed hash-bound scalar-f32 transcription; Rust was neither compiled nor executed.",
+    "Three UI-context code candidates are support thunks. Their shared destructor/formatter/allocator targets and complete UI consumer semantics remain outside scope.",
+    "No native analysis session or application/game launch. Five selected candidates do not establish all enemy/UI/source ownership, changelog completion or original/rebuilt parity."
+  ]
+}

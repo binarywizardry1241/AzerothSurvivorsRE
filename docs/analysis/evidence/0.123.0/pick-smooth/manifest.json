@@ -1,0 +1,382 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.123.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
+    "size_bytes": 146228736
+  },
+  "target_executed": false,
+  "gap_ids": [
+    267,
+    268,
+    269,
+    270,
+    271,
+    272,
+    273,
+    274,
+    275,
+    280,
+    281
+  ],
+  "bounded_contract_system_ids": [
+    "custom-game-coop-pick",
+    "custom-game-coop-smooth"
+  ],
+  "bounded_contract_owner_scopes": {
+    "custom-game-coop-pick": "Exact prefixed choice/resume event receiver, retained payload and u32 offer-field extraction only. Host late-pick comparison, offers producer and full lifecycle remain untraced.",
+    "custom-game-coop-smooth": "Current packet transform classifies destroy/spline/movement, keeps GUID keyed interpolation records and extrapolates qualifying remote movement using admitted delay. Clock producer, complete spline policy and self-correction entry/exit remain untraced."
+  },
+  "queries": [
+    {
+      "procedure": "0x145bd7010",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/release-0.123.0/pick-smooth/input.bin",
+        "sha256": "005952d9760501945dac724bcc01d38ddb24b28dd30a0b114e5393a80362929c"
+      },
+      "slice_virtual_address": "0x145bd7010",
+      "plan": {
+        "path": "runtime/analysis/tasks/release-0.123.0/pick-smooth/plan.json",
+        "sha256": "1d3195677025c3f70f638d9cd9acfe48dcf7afe962b35935814a724c2f50228f"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/release-0.123.0/pick-smooth/query/journal.json",
+        "sha256": "b3962c0481753cebf6850bc535e350d954a475cc7932567bde1a40bb757e7d64"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/release-0.123.0/pick-smooth/query/results/c1b7626feba425769562a66ac666071f6063b394f2df617023732f5c14936562.json",
+        "sha256": "cd1321426db9fe63e33cdd74edf8abca34e9f352b1649a0b57e64e6bd3db1d8a"
+      },
+      "evidence_id": "ev_c41be6c8fdb32247fedcd5a469a2cbbe645eccec16867d0ede2db7792c0f9598",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "a16068975d8a0fbee5db96a89f071b937aadbfb7d9e8d6fce7254202bc51b6d5",
+      "normalized_sha256": "e6a582f38acb9e2fa5b96feef23caad032dd41f5496abe9aba03664b803e460d",
+      "role": "choice-receiver",
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.123.0/pick-smooth/choice-receiver.c",
+        "sha256": "e6a582f38acb9e2fa5b96feef23caad032dd41f5496abe9aba03664b803e460d"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
+        "raw_sha256": "005952d9760501945dac724bcc01d38ddb24b28dd30a0b114e5393a80362929c",
+        "virtual_address": "0x145bd7010",
+        "file_offset": "0x5bd6410",
+        "byte_count": 42276,
+        "result": "runtime/analysis/tasks/release-0.123.0/pick-smooth/query/results/c1b7626feba425769562a66ac666071f6063b394f2df617023732f5c14936562.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "procedure": "0x145be0a60",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/release-0.123.0/pick-smooth/input.bin",
+        "sha256": "005952d9760501945dac724bcc01d38ddb24b28dd30a0b114e5393a80362929c"
+      },
+      "slice_virtual_address": "0x145bd7010",
+      "plan": {
+        "path": "runtime/analysis/tasks/release-0.123.0/pick-smooth/plan.json",
+        "sha256": "1d3195677025c3f70f638d9cd9acfe48dcf7afe962b35935814a724c2f50228f"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/release-0.123.0/pick-smooth/query/journal.json",
+        "sha256": "b3962c0481753cebf6850bc535e350d954a475cc7932567bde1a40bb757e7d64"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/release-0.123.0/pick-smooth/query/results/79b40ea82b7b53bed660392cf1ffcf1ac59aa89d8fcdc208fcb592d2ce0058a7-3b211a304a5c27cc.json",
+        "sha256": "3a9a899c801db7fbd3ab0d8e8b2859d0b9b3c1b2634002eb1e4098eabebe2abf"
+      },
+      "evidence_id": "ev_a98601b0527b58b05422c6f8474beab2a4c79a2721dbdc5f25aea3c4f5460265",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "a16068975d8a0fbee5db96a89f071b937aadbfb7d9e8d6fce7254202bc51b6d5",
+      "normalized_sha256": "ddd5c10c800fd8d1233fff383e85deaf6a8ac698ef3eb6a4c8ef9751bd7cdb00",
+      "role": "packet-smoother",
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.123.0/pick-smooth/packet-smoother.c",
+        "sha256": "ddd5c10c800fd8d1233fff383e85deaf6a8ac698ef3eb6a4c8ef9751bd7cdb00"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
+        "raw_sha256": "005952d9760501945dac724bcc01d38ddb24b28dd30a0b114e5393a80362929c",
+        "virtual_address": "0x145bd7010",
+        "file_offset": "0x5bd6410",
+        "byte_count": 42276,
+        "result": "runtime/analysis/objects/3a/3a9a899c801db7fbd3ab0d8e8b2859d0b9b3c1b2634002eb1e4098eabebe2abf",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    },
+    {
+      "procedure": "0x145bde900",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/release-0.123.0/pick-smooth/input.bin",
+        "sha256": "005952d9760501945dac724bcc01d38ddb24b28dd30a0b114e5393a80362929c"
+      },
+      "slice_virtual_address": "0x145bd7010",
+      "plan": {
+        "path": "runtime/analysis/tasks/release-0.123.0/pick-smooth/helper-plan.json",
+        "sha256": "809f204f8001333683df76d925618e7e4a50e9f110207ebc7e0e3162076338e7"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/release-0.123.0/pick-smooth/helper-query/journal.json",
+        "sha256": "736cc72e27a1d3b978c4d8d78b44d2a89ec2728d8e2927a5bf8e353f60c6609e"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/release-0.123.0/pick-smooth/helper-query/results/c31d976314d6a807ad76d70981e4ae76bb7d8f212120bfce9294e185580a69e7.json",
+        "sha256": "27fc9d5003a1e4cd2240eb0a3d4f32324fe60fb3b6d8873284b7617f2216ff88"
+      },
+      "evidence_id": "ev_160faad90ac1df53d6e0db223988a83ea4250b2c85b96daa249d21ee7d89aeda",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "a16068975d8a0fbee5db96a89f071b937aadbfb7d9e8d6fce7254202bc51b6d5",
+      "normalized_sha256": "f2c15f56e09096cd16683a42e6947af16655cafbad3aee289234430bd9fb2131",
+      "role": "smoother-guid-container",
+      "canonical_extract": {
+        "path": "docs/analysis/evidence/0.123.0/pick-smooth/smoother-guid-container.c",
+        "sha256": "f2c15f56e09096cd16683a42e6947af16655cafbad3aee289234430bd9fb2131"
+      },
+      "subject_verification": {
+        "kind": "exact_declared_PE_raw_slice",
+        "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
+        "raw_sha256": "005952d9760501945dac724bcc01d38ddb24b28dd30a0b114e5393a80362929c",
+        "virtual_address": "0x145bd7010",
+        "file_offset": "0x5bd6410",
+        "byte_count": 42276,
+        "result": "runtime/analysis/tasks/release-0.123.0/pick-smooth/helper-query/results/c31d976314d6a807ad76d70981e4ae76bb7d8f212120bfce9294e185580a69e7.json",
+        "semantic_or_runtime_correspondence_established": false
+      }
+    }
+  ],
+  "ranges": [
+    {
+      "role": "choice-receiver",
+      "start": "0x145bd7010",
+      "end_exclusive": "0x145bd7494",
+      "file_offset": "0x5bd6410",
+      "sha256": "07089126d51f13b7a4a3b92bcf0bea64bcff30cbe97460b6f2e7974eb0ba6304"
+    },
+    {
+      "role": "packet-smoother",
+      "start": "0x145be0a60",
+      "end_exclusive": "0x145be1534",
+      "file_offset": "0x5bdfe60",
+      "sha256": "4ffdb809a232f8606e7501fddcc625de22146137f6adc76561be683b78be49a1"
+    },
+    {
+      "role": "smoother-guid-container",
+      "start": "0x145bde900",
+      "end_exclusive": "0x145bdead3",
+      "file_offset": "0x5bddd00",
+      "sha256": "5583181de43e93ff48bca63de37bc56626480bb7712ba2ba295a5ced08f3069b"
+    }
+  ],
+  "data_ranges": [
+    {
+      "role": "exact-json-prefix",
+      "start": "0x14734c8a8",
+      "file_offset": "0x734b2a8",
+      "byte_count": 9,
+      "hex": "7b2274797065223a22",
+      "sha256": "7c26cd0c52abeb4e696bfd50514092b36d6a2511ac4b229996df660adda570e5",
+      "utf8": "{\"type\":\""
+    },
+    {
+      "role": "offer-key",
+      "start": "0x1476a1a38",
+      "file_offset": "0x76a0438",
+      "byte_count": 8,
+      "hex": "226f66666572223a",
+      "sha256": "978415824489c220766194c3f1984574777907ce7f9adf2748b0cec4f0801a10",
+      "utf8": "\"offer\":"
+    },
+    {
+      "role": "one-f32",
+      "start": "0x1461b2200",
+      "file_offset": "0x61b0c00",
+      "byte_count": 4,
+      "hex": "0000803f",
+      "sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c",
+      "value": 1.0
+    },
+    {
+      "role": "twenty-f32",
+      "start": "0x1461b26f4",
+      "file_offset": "0x61b10f4",
+      "byte_count": 4,
+      "hex": "0000a041",
+      "sha256": "8502957747a29907927566be940a9b39fee0a15dd471ba428eb9eedd15aa80e7",
+      "value": 20.0
+    },
+    {
+      "role": "milliseconds",
+      "start": "0x1461bb888",
+      "file_offset": "0x61ba288",
+      "byte_count": 8,
+      "hex": "0000000000408f40",
+      "sha256": "139107fd63d004e94cb64abb75361dd8490810c6709a9311896ca17496f5ecde",
+      "value": 1000.0
+    },
+    {
+      "role": "one-f64",
+      "start": "0x1461b80b0",
+      "file_offset": "0x61b6ab0",
+      "byte_count": 8,
+      "hex": "000000000000f03f",
+      "sha256": "6c3c396ed6b5c36dcae172271f462051b1266b851e92df3deea8ac65478fd712",
+      "value": 1.0
+    },
+    {
+      "role": "delay-threshold-ms",
+      "start": "0x14645d7e0",
+      "file_offset": "0x645c1e0",
+      "byte_count": 8,
+      "hex": "0000000000004440",
+      "sha256": "68b60b1aa7693afedf6e83261ef608190ed91db474cf4806a0a5773599073163",
+      "value": 40.0
+    },
+    {
+      "role": "duration-milliseconds",
+      "start": "0x1461c0c48",
+      "file_offset": "0x61bf648",
+      "byte_count": 4,
+      "hex": "00007a44",
+      "sha256": "07883481b5c147464597d44401db095d88c2a6b049fbbcd7b278de98a5ceeb71",
+      "value": 1000.0
+    },
+    {
+      "role": "catchup-multiplier",
+      "start": "0x1461be040",
+      "file_offset": "0x61bca40",
+      "byte_count": 4,
+      "hex": "cdcccc3f",
+      "sha256": "7976acfbc3de10e4e4720f1fe68a3621615536679ef373fd7d6df906c8c86dc4",
+      "value": 1.600000023841858
+    },
+    {
+      "role": "movement-speed",
+      "start": "0x1461ba31c",
+      "file_offset": "0x61b8d1c",
+      "byte_count": 4,
+      "hex": "0000e040",
+      "sha256": "ee0a6628f97214b7ef5d15c54388ea478862369e517aa4ef4593aea18c3ff618",
+      "value": 7.0
+    },
+    {
+      "role": "quarter-yard",
+      "start": "0x1461b21b0",
+      "file_offset": "0x61b0bb0",
+      "byte_count": 4,
+      "hex": "0000803e",
+      "sha256": "75e253f50979177eba47b2d0805ad36038789108924514d2a761a70de057d16f",
+      "value": 0.25
+    },
+    {
+      "role": "movement-flags",
+      "start": "0x1476a0f90",
+      "file_offset": "0x769f990",
+      "byte_count": 32,
+      "hex": "0100000004000000000000000000000002000000080000000000000000000000",
+      "sha256": "e00d8cff994356e0f7ed57baa35f04853bb744e5e311847e025b991906cf0ec3"
+    },
+    {
+      "role": "direction-signs",
+      "start": "0x146213df0",
+      "file_offset": "0x62127f0",
+      "byte_count": 16,
+      "hex": "000080bf000080bf0000000000000000",
+      "sha256": "c4ed2338fa8bdfe87ba22b0b14e6f74e4bbf6d849f85310370833d9cc56510ac"
+    }
+  ],
+  "source_witnesses": [
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/coop_overlay.rs",
+      "sha256": "30b262753026937f339657d12ccadf5ea19eac26d20e5cadef99ee2bfc2475ff"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop/replication.rs",
+      "sha256": "88c73522eb8f9c955ab2ceb669fca4f857841bd585d87c4c6b6d355b75ee4f37"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+      "sha256": "4a74b4b1fe4cb3ce8c7fa097425ffd7658b28fe506f1e0fb4b783fbaed9a3b24"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+      "sha256": "76c4e397887084a603ef11015679ff6beb7446793d8c5b930f19e4db1fc3be35"
+    },
+    {
+      "path": "crates/benilla-app/src/net/motion/remote.rs",
+      "sha256": "c9847e04aad1e9812641a95c9c17ac78e832a958022dbb0cc87cabd2778c3604"
+    },
+    {
+      "path": "crates/benilla-app/src/net/motion/spline.rs",
+      "sha256": "8f8baf575edda35fb61f55eae13e5017d323ddbee41aaf56e6306232fc8d135f"
+    }
+  ],
+  "source_review": {
+    "pick": "Existing receive_choices retains a choices JSON and increments only a local revision. Native explicit offer extraction/storage has no counterpart. Wire Control only contains kind and argument; current producer/host admission remain missing recovery.",
+    "smooth": "Existing AS packet forwarding feeds benilla remote/spline consumers. No AS pre-consumer transform/latency state is established in source by this bounded review; generic engine counterparts are supporting interfaces, not implementation of the AS wrapper."
+  },
+  "limitations": [
+    "Raw Programs omit external code/data. Referenced current literals/constants are separately read and hashed from the original PE.",
+    "Ghidra omitted function signatures/call metadata are not complete layout proof. Container helper establishes GUID-keyed state only; generic hash internals are supporting context.",
+    "No application or native instruction execution, compilation, server operation, real network/correction/rendering behavior or original/rebuilt parity is established.",
+    "Current choice receiver alone does not prove host stale-pick admission or duplicate suppression; current smoothing receiver does not establish its clock producer, full caller integration or self-teleport policy."
+  ],
+  "import_bindings": [
+    {
+      "thunk": "0x14600504b",
+      "file_offset": "0x600444b",
+      "hex": "ff25f7a11a00",
+      "sha256": "1c3555aed2943426dc9cc96ed6ccf9aaeb2ec1924c5cde37b74cd1401fe26e0c",
+      "iat": "0x1461af248",
+      "library": "VCRUNTIME140.dll",
+      "function": "memcpy"
+    },
+    {
+      "thunk": "0x146005081",
+      "file_offset": "0x6004481",
+      "hex": "ff2521a31a00",
+      "sha256": "0c6649ef6085963f8d0d66e4192a66ffe210cd6a5f5dfcd962747190241bf58b",
+      "iat": "0x1461af3a8",
+      "library": "api-ms-win-crt-math-l1-1-0.dll",
+      "function": "_hypotf"
+    },
+    {
+      "thunk": "0x14600509f",
+      "file_offset": "0x600449f",
+      "hex": "ff25d3a21a00",
+      "sha256": "a5470f3f02f5d6af83d782ea5b74f5fea58d386092762b57631b14920ab7d9a2",
+      "iat": "0x1461af378",
+      "library": "api-ms-win-crt-math-l1-1-0.dll",
+      "function": "cosf"
+    },
+    {
+      "thunk": "0x14600508d",
+      "file_offset": "0x600448d",
+      "hex": "ff2505a31a00",
+      "sha256": "f5d4b9c4dccf3e551afc9fb6a842322a9ab28f0bb95e4e0a3011f65105642818",
+      "iat": "0x1461af398",
+      "library": "api-ms-win-crt-math-l1-1-0.dll",
+      "function": "sinf"
+    }
+  ],
+  "static_validation": {
+    "command": "PYTHONPATH=runtime/camera-recovery-0.105.0/python-libs:runtime/armory-recovery/python-libs python3 -B scripts/check-pick-smooth-discovery-0.123.0.py",
+    "result": "passed",
+    "instruction_count": 1071,
+    "limits": "Receipt/byte/boundary/source-witness verification only; no native instruction execution or complete semantic/source/runtime/parity claim."
+  }
+}

@@ -1,0 +1,5507 @@
+{
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "target_process_launched": false,
+  "method": "Unchanged 0.105.0 x86-64 pet melee and ranged instruction fragments in Unicorn.",
+  "owners": [
+    {
+      "role": "pet-stat17-entry",
+      "start": "0x145906479",
+      "end_exclusive": "0x1459064ad",
+      "file_offset": "0x5905879",
+      "sha256": "4f1bd7b13a5f3ed59f974da80a7ba150e7887ce9b69e12d67a36092a30438974",
+      "assembly": "../tick.asm"
+    },
+    {
+      "role": "pet-stat17-and-melee-power",
+      "start": "0x145906960",
+      "end_exclusive": "0x145906a0d",
+      "file_offset": "0x5905d60",
+      "sha256": "c7284c4eb7ebb177198494c26ade14e98b9f35c0e90b2011fbfe2a9fb5dbe7a6",
+      "assembly": "../tick.asm"
+    },
+    {
+      "role": "pet-ranged-power",
+      "start": "0x1459062ef",
+      "end_exclusive": "0x14590634b",
+      "file_offset": "0x59056ef",
+      "sha256": "eb5550027b87574a1515f9344f170893debd0eb755538376fd3a43d5842971da",
+      "assembly": "../tick.asm"
+    }
+  ],
+  "constants": [
+    {
+      "role": "level-offset",
+      "address": "0x145d73d14",
+      "file_offset": "0x5d72f14",
+      "sha256": "c68830a25204a09f8e77aada6bc5807f607cccaaa0ebb2a7122d317584478a8b",
+      "bits": 3212836864
+    },
+    {
+      "role": "level-growth",
+      "address": "0x145db5ef4",
+      "file_offset": "0x5db50f4",
+      "sha256": "7632daccb6cf9fee26fe90bbbd5005d3268efa78578beffbc8b3092ac0e23437",
+      "bits": 1039516303
+    },
+    {
+      "role": "one",
+      "address": "0x145d6d36c",
+      "file_offset": "0x5d6c56c",
+      "sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c",
+      "bits": 1065353216
+    },
+    {
+      "role": "negative-zero",
+      "address": "0x145d70c70",
+      "file_offset": "0x5d6fe70",
+      "sha256": "6d58692645c9d1cfaf13541cbd258f86193ef63c2f1d38f6bbca9617372d7bd6",
+      "bits": 2147483648
+    }
+  ],
+  "cases": [
+    {
+      "rows": [],
+      "level": 1,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1094713344,
+      "ranged_power_bits": 1094713344,
+      "ranged_critical_bits": 1101529088
+    },
+    {
+      "rows": [],
+      "level": 1,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1094713344,
+      "ranged_power_bits": 1094713344,
+      "ranged_critical_bits": 1101529088
+    },
+    {
+      "rows": [],
+      "level": 1,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1101529088,
+      "ranged_power_bits": 1094713344,
+      "ranged_critical_bits": 1101529088
+    },
+    {
+      "rows": [],
+      "level": 1,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1111883776,
+      "ranged_power_bits": 1111883776,
+      "ranged_critical_bits": 1118650368
+    },
+    {
+      "rows": [],
+      "level": 1,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1111883776,
+      "ranged_power_bits": 1111883776,
+      "ranged_critical_bits": 1118650368
+    },
+    {
+      "rows": [],
+      "level": 1,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1118650368,
+      "ranged_power_bits": 1111883776,
+      "ranged_critical_bits": 1118650368
+    },
+    {
+      "rows": [],
+      "level": 1,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [],
+      "level": 1,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [],
+      "level": 1,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [],
+      "level": 2,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1096223294,
+      "ranged_power_bits": 1096223294,
+      "ranged_critical_bits": 1102850294
+    },
+    {
+      "rows": [],
+      "level": 2,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1096223294,
+      "ranged_power_bits": 1096223294,
+      "ranged_critical_bits": 1102850294
+    },
+    {
+      "rows": [],
+      "level": 2,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1102850294,
+      "ranged_power_bits": 1096223294,
+      "ranged_critical_bits": 1102850294
+    },
+    {
+      "rows": [],
+      "level": 2,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1113440911,
+      "ranged_power_bits": 1113440911,
+      "ranged_critical_bits": 1120012861
+    },
+    {
+      "rows": [],
+      "level": 2,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1113440911,
+      "ranged_power_bits": 1113440911,
+      "ranged_critical_bits": 1120012861
+    },
+    {
+      "rows": [],
+      "level": 2,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1120012861,
+      "ranged_power_bits": 1113440911,
+      "ranged_critical_bits": 1120012861
+    },
+    {
+      "rows": [],
+      "level": 2,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [],
+      "level": 2,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [],
+      "level": 2,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [],
+      "level": 30,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1113000510,
+      "ranged_power_bits": 1113000510,
+      "ranged_critical_bits": 1119627510
+    },
+    {
+      "rows": [],
+      "level": 30,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1113000510,
+      "ranged_power_bits": 1113000510,
+      "ranged_critical_bits": 1119627510
+    },
+    {
+      "rows": [],
+      "level": 30,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1119627510,
+      "ranged_power_bits": 1113000510,
+      "ranged_critical_bits": 1119627510
+    },
+    {
+      "rows": [],
+      "level": 30,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1130218127,
+      "ranged_power_bits": 1130218127,
+      "ranged_critical_bits": 1136790077
+    },
+    {
+      "rows": [],
+      "level": 30,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1130218127,
+      "ranged_power_bits": 1130218127,
+      "ranged_critical_bits": 1136790077
+    },
+    {
+      "rows": [],
+      "level": 30,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1136790077,
+      "ranged_power_bits": 1130218127,
+      "ranged_critical_bits": 1136790077
+    },
+    {
+      "rows": [],
+      "level": 30,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [],
+      "level": 30,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [],
+      "level": 30,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [],
+      "level": 71,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1122081177,
+      "ranged_power_bits": 1122081177,
+      "ranged_critical_bits": 1128621670
+    },
+    {
+      "rows": [],
+      "level": 71,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1122081177,
+      "ranged_power_bits": 1122081177,
+      "ranged_critical_bits": 1128621670
+    },
+    {
+      "rows": [],
+      "level": 71,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1128621670,
+      "ranged_power_bits": 1122081177,
+      "ranged_critical_bits": 1128621670
+    },
+    {
+      "rows": [],
+      "level": 71,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1139320422,
+      "ranged_power_bits": 1139320422,
+      "ranged_critical_bits": 1145803161
+    },
+    {
+      "rows": [],
+      "level": 71,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1139320422,
+      "ranged_power_bits": 1139320422,
+      "ranged_critical_bits": 1145803161
+    },
+    {
+      "rows": [],
+      "level": 71,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1145803161,
+      "ranged_power_bits": 1139320422,
+      "ranged_critical_bits": 1145803161
+    },
+    {
+      "rows": [],
+      "level": 71,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [],
+      "level": 71,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [],
+      "level": 71,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1094713344,
+      "ranged_power_bits": 1094713344,
+      "ranged_critical_bits": 1101529088
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1094713344,
+      "ranged_power_bits": 1094713344,
+      "ranged_critical_bits": 1101529088
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1101529088,
+      "ranged_power_bits": 1094713344,
+      "ranged_critical_bits": 1101529088
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1111883776,
+      "ranged_power_bits": 1111883776,
+      "ranged_critical_bits": 1118650368
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1111883776,
+      "ranged_power_bits": 1111883776,
+      "ranged_critical_bits": 1118650368
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1118650368,
+      "ranged_power_bits": 1111883776,
+      "ranged_critical_bits": 1118650368
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 1,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 1,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 1,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1096223294,
+      "ranged_power_bits": 1096223294,
+      "ranged_critical_bits": 1102850294
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1096223294,
+      "ranged_power_bits": 1096223294,
+      "ranged_critical_bits": 1102850294
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1102850294,
+      "ranged_power_bits": 1096223294,
+      "ranged_critical_bits": 1102850294
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1113440911,
+      "ranged_power_bits": 1113440911,
+      "ranged_critical_bits": 1120012861
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1113440911,
+      "ranged_power_bits": 1113440911,
+      "ranged_critical_bits": 1120012861
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1120012861,
+      "ranged_power_bits": 1113440911,
+      "ranged_critical_bits": 1120012861
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 2,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 2,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 2,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1113000510,
+      "ranged_power_bits": 1113000510,
+      "ranged_critical_bits": 1119627510
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1113000510,
+      "ranged_power_bits": 1113000510,
+      "ranged_critical_bits": 1119627510
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1119627510,
+      "ranged_power_bits": 1113000510,
+      "ranged_critical_bits": 1119627510
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1130218127,
+      "ranged_power_bits": 1130218127,
+      "ranged_critical_bits": 1136790077
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1130218127,
+      "ranged_power_bits": 1130218127,
+      "ranged_critical_bits": 1136790077
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1136790077,
+      "ranged_power_bits": 1130218127,
+      "ranged_critical_bits": 1136790077
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 30,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 30,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 30,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1122081177,
+      "ranged_power_bits": 1122081177,
+      "ranged_critical_bits": 1128621670
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1122081177,
+      "ranged_power_bits": 1122081177,
+      "ranged_critical_bits": 1128621670
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1128621670,
+      "ranged_power_bits": 1122081177,
+      "ranged_critical_bits": 1128621670
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1139320422,
+      "ranged_power_bits": 1139320422,
+      "ranged_critical_bits": 1145803161
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1139320422,
+      "ranged_power_bits": 1139320422,
+      "ranged_critical_bits": 1145803161
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1145803161,
+      "ranged_power_bits": 1139320422,
+      "ranged_critical_bits": 1145803161
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 71,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 71,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          16,
+          1073741824
+        ]
+      ],
+      "level": 71,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1097229927,
+      "ranged_power_bits": 1097229927,
+      "ranged_critical_bits": 1103731098
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1097229927,
+      "ranged_power_bits": 1097229927,
+      "ranged_critical_bits": 1103731098
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1103731098,
+      "ranged_power_bits": 1097229927,
+      "ranged_critical_bits": 1103731098
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1114479002,
+      "ranged_power_bits": 1114479002,
+      "ranged_critical_bits": 1120921191
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1114479002,
+      "ranged_power_bits": 1114479002,
+      "ranged_critical_bits": 1120921191
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1120921191,
+      "ranged_power_bits": 1114479002,
+      "ranged_critical_bits": 1120921191
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 1,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 1,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 1,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1098974758,
+      "ranged_power_bits": 1098974758,
+      "ranged_critical_bits": 1105316546
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1098974758,
+      "ranged_power_bits": 1098974758,
+      "ranged_critical_bits": 1105316546
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1105316546,
+      "ranged_power_bits": 1098974758,
+      "ranged_critical_bits": 1105316546
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1116016214,
+      "ranged_power_bits": 1116016214,
+      "ranged_critical_bits": 1122556182
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1116016214,
+      "ranged_power_bits": 1116016214,
+      "ranged_critical_bits": 1122556182
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1122556182,
+      "ranged_power_bits": 1116016214,
+      "ranged_critical_bits": 1122556182
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 2,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 2,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 2,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1115751974,
+      "ranged_power_bits": 1115751974,
+      "ranged_critical_bits": 1122093762
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1115751974,
+      "ranged_power_bits": 1115751974,
+      "ranged_critical_bits": 1122093762
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1122093762,
+      "ranged_power_bits": 1115751974,
+      "ranged_critical_bits": 1122093762
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1132793430,
+      "ranged_power_bits": 1132793430,
+      "ranged_critical_bits": 1139333398
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1132793430,
+      "ranged_power_bits": 1132793430,
+      "ranged_critical_bits": 1139333398
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1139333398,
+      "ranged_power_bits": 1132793430,
+      "ranged_critical_bits": 1139333398
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 30,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 30,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 30,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1124555817,
+      "ranged_power_bits": 1124555817,
+      "ranged_critical_bits": 1131209032
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1124555817,
+      "ranged_power_bits": 1124555817,
+      "ranged_critical_bits": 1131209032
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1131209032,
+      "ranged_power_bits": 1124555817,
+      "ranged_critical_bits": 1131209032
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1141610250,
+      "ranged_power_bits": 1141610250,
+      "ranged_critical_bits": 1148471378
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1141610250,
+      "ranged_power_bits": 1141610250,
+      "ranged_critical_bits": 1148471378
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1148471378,
+      "ranged_power_bits": 1141610250,
+      "ranged_critical_bits": 1148471378
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 71,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 71,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ]
+      ],
+      "level": 71,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1098488217,
+      "ranged_power_bits": 1098488217,
+      "ranged_critical_bits": 1104832102
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1098488217,
+      "ranged_power_bits": 1098488217,
+      "ranged_critical_bits": 1104832102
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1104832102,
+      "ranged_power_bits": 1098488217,
+      "ranged_critical_bits": 1104832102
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1115730739,
+      "ranged_power_bits": 1115730739,
+      "ranged_critical_bits": 1122056601
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1115730739,
+      "ranged_power_bits": 1115730739,
+      "ranged_critical_bits": 1122056601
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1122056601,
+      "ranged_power_bits": 1115730739,
+      "ranged_critical_bits": 1122056601
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 1,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 1,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 1,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1099679400,
+      "ranged_power_bits": 1099679400,
+      "ranged_critical_bits": 1106549670
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1099679400,
+      "ranged_power_bits": 1099679400,
+      "ranged_critical_bits": 1106549670
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1106549670,
+      "ranged_power_bits": 1099679400,
+      "ranged_critical_bits": 1106549670
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1116742877,
+      "ranged_power_bits": 1116742877,
+      "ranged_critical_bits": 1123827843
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1116742877,
+      "ranged_power_bits": 1116742877,
+      "ranged_critical_bits": 1123827843
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1123827843,
+      "ranged_power_bits": 1116742877,
+      "ranged_critical_bits": 1123827843
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 2,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 2,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 2,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1116456616,
+      "ranged_power_bits": 1116456616,
+      "ranged_critical_bits": 1123326886
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1116456616,
+      "ranged_power_bits": 1116456616,
+      "ranged_critical_bits": 1123326886
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1123326886,
+      "ranged_power_bits": 1116456616,
+      "ranged_critical_bits": 1123326886
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1133520093,
+      "ranged_power_bits": 1133520093,
+      "ranged_critical_bits": 1140605059
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1133520093,
+      "ranged_power_bits": 1133520093,
+      "ranged_critical_bits": 1140605059
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1140605059,
+      "ranged_power_bits": 1133520093,
+      "ranged_critical_bits": 1140605059
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 30,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 30,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 30,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1125295062,
+      "ranged_power_bits": 1125295062,
+      "ranged_critical_bits": 1132482395
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1125295062,
+      "ranged_power_bits": 1125295062,
+      "ranged_critical_bits": 1132482395
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1132482395,
+      "ranged_power_bits": 1125295062,
+      "ranged_critical_bits": 1132482395
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1142372597,
+      "ranged_power_bits": 1142372597,
+      "ranged_critical_bits": 1149522390
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1142372597,
+      "ranged_power_bits": 1142372597,
+      "ranged_critical_bits": 1149522390
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1149522390,
+      "ranged_power_bits": 1142372597,
+      "ranged_critical_bits": 1149522390
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 71,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 71,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1045220557
+        ],
+        [
+          17,
+          1036831949
+        ]
+      ],
+      "level": 71,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1095342489,
+      "ranged_power_bits": 1095342489,
+      "ranged_critical_bits": 1102079590
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1095342489,
+      "ranged_power_bits": 1095342489,
+      "ranged_critical_bits": 1102079590
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1102079590,
+      "ranged_power_bits": 1095342489,
+      "ranged_critical_bits": 1102079590
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1112532582,
+      "ranged_power_bits": 1112532582,
+      "ranged_critical_bits": 1119218073
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1112532582,
+      "ranged_power_bits": 1112532582,
+      "ranged_critical_bits": 1119218073
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1119218073,
+      "ranged_power_bits": 1112532582,
+      "ranged_critical_bits": 1119218073
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 1,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 1,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 1,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1096927936,
+      "ranged_power_bits": 1096927936,
+      "ranged_critical_bits": 1103466856
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1096927936,
+      "ranged_power_bits": 1096927936,
+      "ranged_critical_bits": 1103466856
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1103466856,
+      "ranged_power_bits": 1096927936,
+      "ranged_critical_bits": 1103466856
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1114167573,
+      "ranged_power_bits": 1114167573,
+      "ranged_critical_bits": 1120648690
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1114167573,
+      "ranged_power_bits": 1114167573,
+      "ranged_critical_bits": 1120648690
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1120648690,
+      "ranged_power_bits": 1114167573,
+      "ranged_critical_bits": 1120648690
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 2,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 2,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 2,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1113705152,
+      "ranged_power_bits": 1113705152,
+      "ranged_critical_bits": 1120244072
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1113705152,
+      "ranged_power_bits": 1113705152,
+      "ranged_critical_bits": 1120244072
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1120244072,
+      "ranged_power_bits": 1113705152,
+      "ranged_critical_bits": 1120244072
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1130944789,
+      "ranged_power_bits": 1130944789,
+      "ranged_critical_bits": 1137425906
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1130944789,
+      "ranged_power_bits": 1130944789,
+      "ranged_critical_bits": 1137425906
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1137425906,
+      "ranged_power_bits": 1130944789,
+      "ranged_critical_bits": 1137425906
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 30,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 30,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 30,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1122820422,
+      "ranged_power_bits": 1122820422,
+      "ranged_critical_bits": 1129268509
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1122820422,
+      "ranged_power_bits": 1122820422,
+      "ranged_critical_bits": 1129268509
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1129268509,
+      "ranged_power_bits": 1122820422,
+      "ranged_critical_bits": 1129268509
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1140082769,
+      "ranged_power_bits": 1140082769,
+      "ranged_critical_bits": 1146470215
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1140082769,
+      "ranged_power_bits": 1140082769,
+      "ranged_critical_bits": 1146470215
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1146470215,
+      "ranged_power_bits": 1140082769,
+      "ranged_critical_bits": 1146470215
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 71,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 71,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1036831949
+        ],
+        [
+          0,
+          1090519040
+        ],
+        [
+          17,
+          3175926989
+        ]
+      ],
+      "level": 71,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1097859072,
+      "ranged_power_bits": 1097859072,
+      "ranged_critical_bits": 1104281600
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1097859072,
+      "ranged_power_bits": 1097859072,
+      "ranged_critical_bits": 1104281600
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1104281600,
+      "ranged_power_bits": 1097859072,
+      "ranged_critical_bits": 1104281600
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1115127808,
+      "ranged_power_bits": 1115127808,
+      "ranged_critical_bits": 1121488896
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1115127808,
+      "ranged_power_bits": 1115127808,
+      "ranged_critical_bits": 1121488896
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1121488896,
+      "ranged_power_bits": 1115127808,
+      "ranged_critical_bits": 1121488896
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 1,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 1,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 1,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1099327079,
+      "ranged_power_bits": 1099327079,
+      "ranged_critical_bits": 1105933108
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1099327079,
+      "ranged_power_bits": 1099327079,
+      "ranged_critical_bits": 1105933108
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1105933108,
+      "ranged_power_bits": 1099327079,
+      "ranged_critical_bits": 1105933108
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1116379545,
+      "ranged_power_bits": 1116379545,
+      "ranged_critical_bits": 1123192012
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1116379545,
+      "ranged_power_bits": 1116379545,
+      "ranged_critical_bits": 1123192012
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1123192012,
+      "ranged_power_bits": 1116379545,
+      "ranged_critical_bits": 1123192012
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 2,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 2,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 2,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1116104295,
+      "ranged_power_bits": 1116104295,
+      "ranged_critical_bits": 1122710324
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1116104295,
+      "ranged_power_bits": 1116104295,
+      "ranged_critical_bits": 1122710324
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1122710324,
+      "ranged_power_bits": 1116104295,
+      "ranged_critical_bits": 1122710324
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1133156761,
+      "ranged_power_bits": 1133156761,
+      "ranged_critical_bits": 1139969228
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1133156761,
+      "ranged_power_bits": 1133156761,
+      "ranged_critical_bits": 1139969228
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1139969228,
+      "ranged_power_bits": 1133156761,
+      "ranged_critical_bits": 1139969228
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 30,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 30,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 30,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1124925440,
+      "ranged_power_bits": 1124925440,
+      "ranged_critical_bits": 1131855872
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1124925440,
+      "ranged_power_bits": 1124925440,
+      "ranged_critical_bits": 1131855872
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1131855872,
+      "ranged_power_bits": 1124925440,
+      "ranged_critical_bits": 1131855872
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1141991424,
+      "ranged_power_bits": 1141991424,
+      "ranged_critical_bits": 1149138432
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1141991424,
+      "ranged_power_bits": 1141991424,
+      "ranged_critical_bits": 1149138432
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1149138432,
+      "ranged_power_bits": 1141991424,
+      "ranged_critical_bits": 1149138432
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 71,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 71,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          1266679808
+        ],
+        [
+          17,
+          3414163456
+        ],
+        [
+          17,
+          1048576000
+        ]
+      ],
+      "level": 71,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1086324736,
+      "ranged_power_bits": 1086324736,
+      "ranged_critical_bits": 1093140480
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1086324736,
+      "ranged_power_bits": 1086324736,
+      "ranged_critical_bits": 1093140480
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1093140480,
+      "ranged_power_bits": 1086324736,
+      "ranged_critical_bits": 1093140480
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1103495168,
+      "ranged_power_bits": 1103495168,
+      "ranged_critical_bits": 1110261760
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1103495168,
+      "ranged_power_bits": 1103495168,
+      "ranged_critical_bits": 1110261760
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1110261760,
+      "ranged_power_bits": 1103495168,
+      "ranged_critical_bits": 1110261760
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 1,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 1,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 1,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1087834686,
+      "ranged_power_bits": 1087834686,
+      "ranged_critical_bits": 1094461686
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1087834686,
+      "ranged_power_bits": 1087834686,
+      "ranged_critical_bits": 1094461686
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1094461686,
+      "ranged_power_bits": 1087834686,
+      "ranged_critical_bits": 1094461686
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1105052303,
+      "ranged_power_bits": 1105052303,
+      "ranged_critical_bits": 1111624253
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1105052303,
+      "ranged_power_bits": 1105052303,
+      "ranged_critical_bits": 1111624253
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1111624253,
+      "ranged_power_bits": 1105052303,
+      "ranged_critical_bits": 1111624253
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 2,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 2,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 2,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1104611902,
+      "ranged_power_bits": 1104611902,
+      "ranged_critical_bits": 1111238902
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1104611902,
+      "ranged_power_bits": 1104611902,
+      "ranged_critical_bits": 1111238902
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1111238902,
+      "ranged_power_bits": 1104611902,
+      "ranged_critical_bits": 1111238902
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1121829519,
+      "ranged_power_bits": 1121829519,
+      "ranged_critical_bits": 1128401469
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1121829519,
+      "ranged_power_bits": 1121829519,
+      "ranged_critical_bits": 1128401469
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1128401469,
+      "ranged_power_bits": 1121829519,
+      "ranged_critical_bits": 1128401469
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 30,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 30,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 30,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1113692569,
+      "ranged_power_bits": 1113692569,
+      "ranged_critical_bits": 1120233062
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1113692569,
+      "ranged_power_bits": 1113692569,
+      "ranged_critical_bits": 1120233062
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1120233062,
+      "ranged_power_bits": 1113692569,
+      "ranged_critical_bits": 1120233062
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1130931814,
+      "ranged_power_bits": 1130931814,
+      "ranged_critical_bits": 1137414553
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1130931814,
+      "ranged_power_bits": 1130931814,
+      "ranged_critical_bits": 1137414553
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 1137414553,
+      "ranged_power_bits": 1130931814,
+      "ranged_critical_bits": 1137414553
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 71,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 71,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3204448256
+        ]
+      ],
+      "level": 71,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 1,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 1,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 1,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 1,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 2,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 2,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 2,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 2,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 30,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 30,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 30,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 30,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1094713344,
+      "damage_bits": 1065353216,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 71,
+      "base_bits": 1104936960,
+      "damage_bits": 1072064102,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 71,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 0,
+      "draw_bits": 1050253722,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 71,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1056964608,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    },
+    {
+      "rows": [
+        [
+          17,
+          3212836864
+        ]
+      ],
+      "level": 71,
+      "base_bits": 0,
+      "damage_bits": 1073741824,
+      "chance_bits": 1056964608,
+      "draw_bits": 1048576000,
+      "critical_multiplier_bits": 1071644672,
+      "power_bits": 0,
+      "ranged_power_bits": 0,
+      "ranged_critical_bits": 0
+    }
+  ],
+  "seams": [
+    "Actual ordered 8-byte stat vector, level, base damage, outgoing multiplier, crit fields.",
+    "Critical random sample is a supplied input; no RNG, pet lifecycle, target query or game process runs.",
+    "Ranged extraction stops before projectile selection and deferred impact."
+  ],
+  "limits": [
+    "Finite arithmetic vectors do not establish live pet AI, animation, model or gameplay parity."
+  ]
+}

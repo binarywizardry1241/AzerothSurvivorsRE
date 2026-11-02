@@ -1,0 +1,126 @@
+{
+  "schema": "as-item-query-name-bridge-v1",
+  "target_sha256": "507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293",
+  "findings": [
+    116,
+    161,
+    162
+  ],
+  "parent_current_dispatcher": {
+    "va": "0x145af93e0",
+    "end_exclusive": "0x145afc03c",
+    "shared_query": "runtime/0.117.0/white-devilsaur-integration/creature-query-query"
+  },
+  "native_spans": [
+    {
+      "role": "opcode-index-selector",
+      "va": "0x145af947e",
+      "end_exclusive": "0x145af949a",
+      "file_offset": "0x5af887e",
+      "byte_count": 28,
+      "sha256": "51277a551dffc2b21f5951bf10107db1cf66a3a6afe0ffe8e0654a8d2b8dd3ed"
+    },
+    {
+      "role": "opcode56-table-entry",
+      "va": "0x1472db564",
+      "end_exclusive": "0x1472db568",
+      "file_offset": "0x72d9f64",
+      "byte_count": 4,
+      "sha256": "f10690d71e252532dcb6be4826f533c895f2dc0693c690e314865be7a4363b8b"
+    },
+    {
+      "role": "opcode56-id-prefix",
+      "va": "0x145af9682",
+      "end_exclusive": "0x145af96a2",
+      "file_offset": "0x5af8a82",
+      "byte_count": 32,
+      "sha256": "211dd679615c1a3f5483985824d066fa6f7ab4f9edefde70aec8cfc24790c803"
+    },
+    {
+      "role": "known-item-descriptor-response",
+      "va": "0x145af9e81",
+      "end_exclusive": "0x145afaa53",
+      "file_offset": "0x5af9281",
+      "byte_count": 3026,
+      "sha256": "3c996ee4d91f496b7caacfc5cd6c53b6eea938ad3dea400baaab68b5f7c19926"
+    },
+    {
+      "role": "starter-descriptor-call",
+      "va": "0x145ab6a64",
+      "end_exclusive": "0x145ab6a80",
+      "file_offset": "0x5ab5e64",
+      "byte_count": 28,
+      "sha256": "71647ea2d03f38a60c7a2fd9c491cd25183e8b4b6e9da067f16f35e4bacf9b3b"
+    },
+    {
+      "role": "opcode58-header-name-copy",
+      "va": "0x145b66370",
+      "end_exclusive": "0x145b6649d",
+      "file_offset": "0x5b65770",
+      "byte_count": 301,
+      "sha256": "e9640f20bc7723c1fa65ce39207258ad4e31aa2e47312754c0cddc685b817886"
+    },
+    {
+      "role": "selected-response-to-sender",
+      "va": "0x145afaa88",
+      "end_exclusive": "0x145afaa9a",
+      "file_offset": "0x5af9e88",
+      "byte_count": 18,
+      "sha256": "6814949082ae05dd3d840149197848c4f6eb7a86efe27462e7bd4a41af860cd3"
+    },
+    {
+      "role": "actual-send-call",
+      "va": "0x145afbd5a",
+      "end_exclusive": "0x145afbd5f",
+      "file_offset": "0x5afb15a",
+      "byte_count": 5,
+      "sha256": "9c6bd2321fa0e04654f728ec4714548ca3fe06419363a5c69461e273f10d210c"
+    },
+    {
+      "role": "starter-name-metadata",
+      "va": "0x145ab5be0",
+      "end_exclusive": "0x145ab6144",
+      "file_offset": "0x5ab4fe0",
+      "byte_count": 1380,
+      "sha256": "1e8b9b694f67ea78ed9381fb76bc7649b2187f69993dd2934200d4b3420c0a04"
+    }
+  ],
+  "shared_metadata_contract": "docs/analysis/evidence/0.117.0/party-rewards/contracts.json",
+  "query_receipts": [
+    {
+      "plan_path": "runtime/0.117.0/reward-additions/item-query-case-plan.json",
+      "plan_sha256": "ae3b26f867a63d1c5ce02905b97ccb1d0114fe4c4a38851455263165fd4423dc",
+      "result_path": "runtime/0.117.0/reward-additions/item-query-case-query/results/0de3a1429eacaa55ad2563b6b237ff660340859c4094812042930d3f9762f4c8.json",
+      "result_sha256": "8d04d66718598f156f5deba98f9b2dc8c884dc2f54fdc2f48202bd71bf15e32a",
+      "evidence_id": "ev_9af1c349eaca7282cbc708fa685939ac5ec8f05121860cae484f8f8443c2323c",
+      "procedure": "0x145af9e81",
+      "analysis_profile_digest": "61696e990e50347249b9cb1a3a54f13e547eb4aa4523fa2fd8766600a37fa98c",
+      "normalized_pseudocode_sha256": "afd5c56031d608bc93ffa14f8b3af92c3b3e0a8b62649a40ee1453b579ff79e4",
+      "raw_input_sha256": "3c996ee4d91f496b7caacfc5cd6c53b6eea938ad3dea400baaab68b5f7c19926"
+    }
+  ],
+  "cases": 404,
+  "cases_sha256": "a857fe51a9d2d43d2c9630808a52dcbe4d8eeee3a8a56dedd10dafce2800a50d",
+  "populations": {
+    "starters": 66,
+    "tabards": 21,
+    "cosmetics": 14,
+    "locale_states": 4
+  },
+  "logical_response_fields": [
+    "name",
+    "entry",
+    "item_class",
+    "subclass",
+    "display_id",
+    "quality",
+    "inventory_type"
+  ],
+  "limits": [
+    "Current known-definition ItemQuery branch and both actual metadata constructors execute with synthetic frame memory.",
+    "Formatting is a typed exact literal-prefix/u32 operation; locale lookup, allocation/copy and empty-effects rendering are seams.",
+    "The logical response is captured at original serializer entry145b66370; opcode58 and unchanged name-copy instructions are separately byte/branch checked.",
+    "Current raw Ghidra case import omits external PE/data/callees and entry ABI; out-of-range exits cause explicit bad-instruction truncation, not successful whole-dispatch recovery.",
+    "No application/network/server/file/save/source execution, compilation or original/rebuilt parity."
+  ]
+}

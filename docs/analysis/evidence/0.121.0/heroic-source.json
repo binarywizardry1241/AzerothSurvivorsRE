@@ -1,0 +1,1163 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "gap_ids": [
+    240,
+    243
+  ],
+  "helper_contract": {
+    "path": "docs/analysis/evidence/0.121.0/heroic-native/manifest.json",
+    "sha256": "f334f17da3c415ab667f19c79cc3d045576db5ed2537fb428dcdc44c66553bcc"
+  },
+  "source_bindings": [
+    {
+      "path": "crates/azeroth-survivors-re/src/heroic.rs",
+      "sha256": "05bd834f650440b8a6dbecdc53db1da22fed4acc81240d1ad28eb12e491b3bd3"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/heroic/affix_calendar.rs",
+      "sha256": "95893fddc528a677c638ef1ee9e73d584aaf150afd4af6e7548bcdc2b0d97f1e"
+    }
+  ],
+  "supporting_context_queries": [
+    {
+      "role": "cleanup-deallocation",
+      "procedure": "0x145abfe30",
+      "evidence_id": "ev_a3d2e9554a2ecdd60fff631b1ae4b06801d30593233b5f04c72f1a3bb0b0fc62",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "7afb1663e6fdca28be58fe35561e56767d55490e41b34ddce0d5a09993492002",
+      "normalized_text_sha256": "ac606a22defa5bd8b3846b19146e4f357058fb457c1c8382268762d10c9bc8a7",
+      "plan": {
+        "path": "runtime/fixgap-0.121.0/heroic-source/core/plan.json",
+        "sha256": "062997ab03478d879d1a54f958824d234f1f60bae86e53b7e820b860dde640ad"
+      },
+      "journal": {
+        "path": "runtime/fixgap-0.121.0/heroic-source/core/query/journal.json",
+        "sha256": "d71b2885239df01d97def947ccf7737691a42fc31aa80651e64d9252d57bcd22"
+      },
+      "result": {
+        "path": "runtime/fixgap-0.121.0/heroic-source/core/query/results/5f806b6b019ca76b12dd5e21bd3179df0238203b43490ef2a8a121ada53348e3-c77f4772969cb657.json",
+        "sha256": "71288f34da8708d274fec9fc4c28e163a7932f15db757fa5d2fe1f97a176d7e0"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap-0.121.0/heroic-source/core/code.bin",
+        "sha256": "ed18cb4cbb7e527f3b28ecbfc977f0638191abbbc36fe7fe36320912bd2083d8"
+      },
+      "slice_virtual_address": "0x145abfde0",
+      "native_range": {
+        "virtual_address": "0x145abfe30",
+        "end_exclusive": "0x145abfe6b",
+        "file_offset": "0x5abf230",
+        "byte_count": 59,
+        "sha256": "7888b8a6b1da152d2233229e1535d815a00159191bccccead85f6588a28ad8ef",
+        "independently_decoded_instructions": 24
+      }
+    },
+    {
+      "role": "localized-key-cleanup",
+      "procedure": "0x145ac0410",
+      "evidence_id": "ev_f5b379d86fc0397e8496f06ed45642d2b49b9473cbddfef9e720244b9a2673c4",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "7afb1663e6fdca28be58fe35561e56767d55490e41b34ddce0d5a09993492002",
+      "normalized_text_sha256": "c1008c0fbab5ec4e698a4ad4b219962db452c9478186990d40891969113c48f0",
+      "plan": {
+        "path": "runtime/fixgap-0.121.0/heroic-source/core/plan.json",
+        "sha256": "062997ab03478d879d1a54f958824d234f1f60bae86e53b7e820b860dde640ad"
+      },
+      "journal": {
+        "path": "runtime/fixgap-0.121.0/heroic-source/core/query/journal.json",
+        "sha256": "d71b2885239df01d97def947ccf7737691a42fc31aa80651e64d9252d57bcd22"
+      },
+      "result": {
+        "path": "runtime/fixgap-0.121.0/heroic-source/core/query/results/69d37f42f2dfedcbf79ed5e3121d467b81d31ffb006147c707e0f22b6773a052-081f6a4768a6d285.json",
+        "sha256": "00a3050b5c02d22db8cca32090d206e19841f18577bb9e8099313a071d169a54"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap-0.121.0/heroic-source/core/code.bin",
+        "sha256": "ed18cb4cbb7e527f3b28ecbfc977f0638191abbbc36fe7fe36320912bd2083d8"
+      },
+      "slice_virtual_address": "0x145abfde0",
+      "native_range": {
+        "virtual_address": "0x145ac0410",
+        "end_exclusive": "0x145ac0447",
+        "file_offset": "0x5abf810",
+        "byte_count": 55,
+        "sha256": "a32abcaadface913611093a11e5dfc377afc6dc2163e659ca843ac9181db099c",
+        "independently_decoded_instructions": 22
+      }
+    },
+    {
+      "role": "string-split-iterator-support",
+      "procedure": "0x145ac0450",
+      "evidence_id": "ev_3b547d87ad41ec424977da56a2a19a5d9150405eb0d47c31023cbf58be682af2",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "7afb1663e6fdca28be58fe35561e56767d55490e41b34ddce0d5a09993492002",
+      "normalized_text_sha256": "81352cfcaf8c1bc8064b1cb6dfe4b17e5eb02851bd60daa8e82c7378639ba515",
+      "plan": {
+        "path": "runtime/fixgap-0.121.0/heroic-source/core/plan.json",
+        "sha256": "062997ab03478d879d1a54f958824d234f1f60bae86e53b7e820b860dde640ad"
+      },
+      "journal": {
+        "path": "runtime/fixgap-0.121.0/heroic-source/core/query/journal.json",
+        "sha256": "d71b2885239df01d97def947ccf7737691a42fc31aa80651e64d9252d57bcd22"
+      },
+      "result": {
+        "path": "runtime/fixgap-0.121.0/heroic-source/core/query/results/83d2b4facb17208f8d410c8f9cef8a43674c6a0703f90d00778bbe7c5210a120-cf292a8ad0af63b8.json",
+        "sha256": "1bea666985e815fd8c6458dff8f1ba27ee373cfc96a5a8c1a95feccbee6e3ac6"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap-0.121.0/heroic-source/core/code.bin",
+        "sha256": "ed18cb4cbb7e527f3b28ecbfc977f0638191abbbc36fe7fe36320912bd2083d8"
+      },
+      "slice_virtual_address": "0x145abfde0",
+      "native_range": {
+        "virtual_address": "0x145ac0450",
+        "end_exclusive": "0x145ac0616",
+        "file_offset": "0x5abf850",
+        "byte_count": 454,
+        "sha256": "bc6eb10153a07db7b6d93a659be3a138d98529028012f537c3593efc469d5167",
+        "independently_decoded_instructions": 146
+      }
+    },
+    {
+      "role": "affix-vector-cleanup",
+      "procedure": "0x145abff80",
+      "evidence_id": "ev_20f9b87d005e40cf29f9f7f364ff913a7aab73142a1d80b12201ce4950a501fa",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "7afb1663e6fdca28be58fe35561e56767d55490e41b34ddce0d5a09993492002",
+      "normalized_text_sha256": "cff92bfa7605827faede08e4f4ed91479203feed5c8db5cddf6dfc1fa80a0237",
+      "plan": {
+        "path": "runtime/fixgap-0.121.0/heroic-source/core/plan.json",
+        "sha256": "062997ab03478d879d1a54f958824d234f1f60bae86e53b7e820b860dde640ad"
+      },
+      "journal": {
+        "path": "runtime/fixgap-0.121.0/heroic-source/core/query/journal.json",
+        "sha256": "d71b2885239df01d97def947ccf7737691a42fc31aa80651e64d9252d57bcd22"
+      },
+      "result": {
+        "path": "runtime/fixgap-0.121.0/heroic-source/core/query/results/c3195f0320fdc94ede582ca226fab341fa9efe770cdea7267b1053db405352c3-44cd42218b8ebecc.json",
+        "sha256": "c81c8ad42e7f849135091d3f42965665d9977af470ca8479571dd5a8d6b56a5b"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap-0.121.0/heroic-source/core/code.bin",
+        "sha256": "ed18cb4cbb7e527f3b28ecbfc977f0638191abbbc36fe7fe36320912bd2083d8"
+      },
+      "slice_virtual_address": "0x145abfde0",
+      "native_range": {
+        "virtual_address": "0x145abff80",
+        "end_exclusive": "0x145abffb7",
+        "file_offset": "0x5abf380",
+        "byte_count": 55,
+        "sha256": "4326eb6723641d5edae518b070f4b2315e967c985610968a80a1266607120f90",
+        "independently_decoded_instructions": 22
+      }
+    },
+    {
+      "role": "localized-key-format-lookup",
+      "procedure": "0x145ac0370",
+      "evidence_id": "ev_90537a5b286fed73b6067f9425534f605d79654fff2f29e7b96cc7643e1ca25b",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "7afb1663e6fdca28be58fe35561e56767d55490e41b34ddce0d5a09993492002",
+      "normalized_text_sha256": "0ccf2b5ab8b72481096cc8c614d03b9ca814a896809dac60f311521d4181271d",
+      "plan": {
+        "path": "runtime/fixgap-0.121.0/heroic-source/core/plan.json",
+        "sha256": "062997ab03478d879d1a54f958824d234f1f60bae86e53b7e820b860dde640ad"
+      },
+      "journal": {
+        "path": "runtime/fixgap-0.121.0/heroic-source/core/query/journal.json",
+        "sha256": "d71b2885239df01d97def947ccf7737691a42fc31aa80651e64d9252d57bcd22"
+      },
+      "result": {
+        "path": "runtime/fixgap-0.121.0/heroic-source/core/query/results/c60a5812c0be8c7ee8934851cc8c4f089923e0941026bf8154090a8f982d80de-cdc69559f1abc6cd.json",
+        "sha256": "7484fe964ecf7dfb3382195d0ab5e6a62b61051b73de29d36d0a196d24b745e6"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap-0.121.0/heroic-source/core/code.bin",
+        "sha256": "ed18cb4cbb7e527f3b28ecbfc977f0638191abbbc36fe7fe36320912bd2083d8"
+      },
+      "slice_virtual_address": "0x145abfde0",
+      "native_range": {
+        "virtual_address": "0x145ac0370",
+        "end_exclusive": "0x145ac0404",
+        "file_offset": "0x5abf770",
+        "byte_count": 148,
+        "sha256": "f1b154c47f068b9c9d03ea67f5f5e3b948175ead5b95c08e604680eb9023a879",
+        "independently_decoded_instructions": 44
+      }
+    },
+    {
+      "role": "cleanup-deallocation",
+      "procedure": "0x145abfde0",
+      "evidence_id": "ev_b41a9ac6ab9f4d2e614d0090879e1542498f646ffbf5c1511ab95bd601f2c5df",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "7afb1663e6fdca28be58fe35561e56767d55490e41b34ddce0d5a09993492002",
+      "normalized_text_sha256": "cd65757b31130bbb90a41b6551e126941fe679d365fbf425651966d59bfb212e",
+      "plan": {
+        "path": "runtime/fixgap-0.121.0/heroic-source/core/plan.json",
+        "sha256": "062997ab03478d879d1a54f958824d234f1f60bae86e53b7e820b860dde640ad"
+      },
+      "journal": {
+        "path": "runtime/fixgap-0.121.0/heroic-source/core/query/journal.json",
+        "sha256": "d71b2885239df01d97def947ccf7737691a42fc31aa80651e64d9252d57bcd22"
+      },
+      "result": {
+        "path": "runtime/fixgap-0.121.0/heroic-source/core/query/results/d892a45402d4418cacc3f0132e847d14e1d5626ce4973a30ff7b9a71f1152f69.json",
+        "sha256": "f42b2c60f909cf385404bd71089b3c6e881db9894ec2319cf6aaa1bc17cdabfb"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap-0.121.0/heroic-source/core/code.bin",
+        "sha256": "ed18cb4cbb7e527f3b28ecbfc977f0638191abbbc36fe7fe36320912bd2083d8"
+      },
+      "slice_virtual_address": "0x145abfde0",
+      "native_range": {
+        "virtual_address": "0x145abfde0",
+        "end_exclusive": "0x145abfe22",
+        "file_offset": "0x5abf1e0",
+        "byte_count": 66,
+        "sha256": "800b11b8579972c6cb6af584f50931bae347a78ba499817306e0d9dde333c75c",
+        "independently_decoded_instructions": 26
+      }
+    }
+  ],
+  "classification": "The selected adjacent owners expose cleanup/deallocation, localization and string-split support. They establish no additional Heroic rank/gameplay policy and do not authorize surrounding engine reconstruction.",
+  "source_contracts": {
+    "rank_name": "Normal at0; localized Heroic plus one ASCII space plus RomanI..V at1..5; explicit bounds failure at>=6.",
+    "selector_from_inputs": "wrapping u64(input_hash+7*u32(discriminator)), preserving the current construction callsite argument operation without assuming input origin.",
+    "affix_ids": "rank<3:empty;rank3..4:selector%3;rank>=5:ordered first and(first+((selector/3)&1)+1)%3.",
+    "health_damage_descriptors": "Five original48-byte rows hold two twist slices and four f32 scalars: health,damage,marks,reward. Current live guardian,boss-loot and terminalXP consumers bind the four meanings independently. No scalar is inferred from release wording.",
+    "parse_rank": "Strict ASCII decimal u8 with optional leading plus, invalid/empty/negative/overflow fallback0, then successful u8 clamp to5. Legacy four-modifier CSV is invalid and becomes0, not a partial rank.",
+    "scalar_policies": "Current byte-rank predicates: healing rank>=5:.5 else1; warning rank!=0:.85 else1; revive duration rank>=5:9 else6; revive max-health fraction rank>=5:.3 else.5; per guardian kill HP rank>=2:.35 else.25; damage rank>=2:.07 else.05.",
+    "guardian_respawn_seconds": "Current guardian death writes next spawn time=current clock+(rank>=2?150:180). Source exposes only the bounded duration choice.",
+    "boss_repeat_factor": "Current rank>=2 supplies ordinary.8/enraged.6; below2 supplies ordinary1/enraged.7. Existing boss state controls the actual enrage flag and timer consumer.",
+    "raid_damage_factor": "Current positive aggregate raid-hazard consumer applies rank>=4?3:(endless?1:2) after marker/time messages. The caller must retain this admission/order rather than multiplying every individual effect.",
+    "marks_multiplier": "Native leaf145ac0270 returns row+40 for ranks1..5, otherwise Normal0.5. Boss-roll145c135f0 consumes the same field as mark-rate factor.",
+    "reward_multiplier": "Native leaf145ac0330 returns row+44 for ranks1..5, otherwise1.0. Boss-loot and terminalXP consume that field; the XPcaller independently caps>5toV before its lookup.",
+    "lean_purse": "Current constructor selects initial cacheprice25 at rank>=3 else20, and free reroll base1 at rank>=3 else3 before account perks. Current cachepurchase adds6.25 at rank>=3 else5 after the existing1.3 multiply.",
+    "calendar": "current_week returnsu32(SystemTime::now().duration_since(UNIX_EPOCH).seconds/604800), error0. Exact authored zone ordinal mapping withunknown0 feeds the existing wrapping ordinal+7*week selector."
+  },
+  "static_validation": {
+    "supporting_query_receipts_verified": 6,
+    "supporting_original_instructions": 284,
+    "retained_helper_replay": {
+      "affix_cases": 174,
+      "rank_name_cases": 16,
+      "original_instruction_steps": 7569
+    },
+    "source_executed": false,
+    "descriptor_rows": 5,
+    "twist_strings": 10,
+    "guardian_policy_query_receipts_verified": 2,
+    "parser_cases": 4609,
+    "parser_original_instruction_steps": 355354,
+    "scalar_policy_fixtures": 6,
+    "scalar_selector_cases": 2560,
+    "scalar_original_instruction_steps": 23050,
+    "borrowed_twist_validation": {
+      "healing": {
+        "cases": 400,
+        "sha256": "08f5110d27b5c1f0415dbdf513f312dd7fb2dcd519aa9af501f2a06425ff671e"
+      },
+      "scalars": {
+        "warning_cases": 32,
+        "rank_cooldown_cases": 8,
+        "sha256": "620eec9f5c14643c4346e28f88db0cddf717e49fe56ce5424a1b87594d3ad093"
+      },
+      "guardians": {
+        "pairs": 168,
+        "sha256": "fda9286e8fb0933106d370852b8a4371e049003c22f7f8e4cb86e0a6e5fc3ea0",
+        "seams": "Selected zone index, two supplied health knots and explicit powf result; party mode is disabled."
+      },
+      "lifecycle": {
+        "revive_health": 8,
+        "revive_time": 40,
+        "guardian_respawn": 24,
+        "phase_admission": 264,
+        "queued_admission": 264,
+        "hazard_damage": 48
+      },
+      "warning_constructor": {
+        "cases": 192,
+        "sha256": "177fe181db7c2a56d2a4953545a9c562cdfe088ffb9bd37f814c639f073644bd",
+        "seams": "Primary/secondary terrain answers and successful vector growth only; every constructor instruction executes."
+      },
+      "purse": {
+        "cases": 88,
+        "sha256": "81831a600b4a1c0733bbefd603f6d773ab774c32ceb4e23c1ab3af493bad8712"
+      },
+      "elite_pairs": {
+        "cases": 48,
+        "sha256": "07d2f3fd978b4ad3b7a6e8238087145642a2c2124e23bbba07286c259aab3ddf",
+        "seam": "Second enemy creator only; GUID search, position interpolation and offset run as original instructions."
+      },
+      "council": {
+        "cases": 96,
+        "health_factor_cases": 3,
+        "sha256": "41bdb040a12707502251dcecac2ed5b1b03bf0daa650d736f14cc8fb3a14bfcb",
+        "seam": "Boss creator only; full rank/final-bit gate and RNG rejection transitions execute."
+      },
+      "batch_healing": {
+        "cases": 224,
+        "timestamp_producer_cases": 1,
+        "sha256": "7448a551924804fd1099f112514831057efeeb84eaccc6c697c7f79ad46cc6ec",
+        "seams": "Field/meter publication, label lookup, ceil and vector disposal only; calm gate, HP/absorb/pool and per-spell credit instructions execute."
+      }
+    },
+    "calendar_zone_cases": 67,
+    "calendar_week_cases": 24,
+    "calendar_original_instruction_steps": 1504
+  },
+  "remaining": "Core contracts and traced live connections are implemented. Full Heroic progression/admission, reward transactions, affix gameplay and their wider UI/state contracts retain their owning findings. Source execution, compilation and runtime/parity remain unverified; no whole-system completion is inferred.",
+  "compilation": "not_run",
+  "runtime_validation": "not_run",
+  "parity": "unverified",
+  "native_data": [
+    {
+      "role": "heroic-five-descriptors",
+      "virtual_address": "0x146fca2e0",
+      "file_offset": "0x6fc90e0",
+      "byte_count": 240,
+      "sha256": "78f5b865d195740b548734810ddff84ba7e7070405fdd2aeaeeb0280928aed23",
+      "bytes_hex": "6da0fc4601000000230000000000000090a0fc46010000002200000000000000b81ee53f3333d33f0000803f6666a63fb2a0fc46010000004e0000000000000000a1fc46010000005600000000000000f628fc3f5c8fe23f0000a03f3333b33f56a1fc46010000003c0000000000000092a1fc46010000003700000000000000713d0a40d7a3f03f0000c03f0000c03fc9a1fc46010000002e00000000000000f7a1fc46010000003d00000000000000cdcc1c40d7a3004000000040cdcccc3f34a2fc460100000057000000000000008ba2fc460100000051000000000000007b142e40713d0a40000020409a99d93f"
+    },
+    {
+      "role": "rank-1-twist-1",
+      "virtual_address": "0x146fca06d",
+      "file_offset": "0x6fc8e6d",
+      "byte_count": 35,
+      "sha256": "b9263783ffe1b57334d106264c69530f56bb0704cbcdff52e1db45d3e6a3f5a7",
+      "bytes_hex": "426f73732061747461636b73206769766520313525206c657373207761726e696e672e"
+    },
+    {
+      "role": "rank-1-twist-2",
+      "virtual_address": "0x146fca090",
+      "file_offset": "0x6fc8e90",
+      "byte_count": 34,
+      "sha256": "767690da78770c5ff63861688d6113cf39e3cc7d573dd73b665b88577e698c1c",
+      "bytes_hex": "456c697465207061636b733a20656c6974657320636f6d6520696e2070616972732e"
+    },
+    {
+      "role": "rank-2-twist-1",
+      "virtual_address": "0x146fca0b2",
+      "file_offset": "0x6fc8eb2",
+      "byte_count": 78,
+      "sha256": "49b4ea12451b5374786b450338cfe399deaf9608ebf2532041e3c4926c0650d9",
+      "bytes_hex": "52656c656e746c6573733a20626f7373657320666967687420656e72616765642066726f6d207468652073746172742c20616e6420666965726365722062656c6f7720333025206865616c74682e"
+    },
+    {
+      "role": "rank-2-twist-2",
+      "virtual_address": "0x146fca100",
+      "file_offset": "0x6fc8f00",
+      "byte_count": 86,
+      "sha256": "079b9b79a5f8fb312ebced6be3d03a01afc32437810231fcce6408e82d1e1298",
+      "bytes_hex": "57617264656e733a206561636820677561726469616e20736c61696e206d616b657320746865206f746865727320747769636520617320746f7567682c20616e64206c6169727320726566696c6c20736f6f6e65722e"
+    },
+    {
+      "role": "rank-3-twist-1",
+      "virtual_address": "0x146fca156",
+      "file_offset": "0x6fc8f56",
+      "byte_count": 60,
+      "sha256": "69fb84793fcdfed08c8d79632409a38db8f71737b87455a453e7fab653184b5d",
+      "bytes_hex": "4c65616e2070757273653a206f6e652066726565207265726f6c6c2c20616e642063616368657320636f737420612071756172746572206d6f72652e"
+    },
+    {
+      "role": "rank-3-twist-2",
+      "virtual_address": "0x146fca192",
+      "file_offset": "0x6fc8f92",
+      "byte_count": 55,
+      "sha256": "a84eebed37b85050361f9484b8875ef663250a0b562263486d584d60949a55d2",
+      "bytes_hex": "41666669783a2074686520686f7264652068617320426f6c73746572696e672c2053616e6775696e65206f72204578706c6f736976652e"
+    },
+    {
+      "role": "rank-4-twist-1",
+      "virtual_address": "0x146fca1c9",
+      "file_offset": "0x6fc8fc9",
+      "byte_count": 46,
+      "sha256": "b6fe02576056afd887366f3c8b5fb083c0c74867382c764e9f22e9183ffd0ed1",
+      "bytes_hex": "4f6c64206d656368616e6963733a20626f737320746f7765727320616e642067617a657320617265206261636b2e"
+    },
+    {
+      "role": "rank-4-twist-2",
+      "virtual_address": "0x146fca1f7",
+      "file_offset": "0x6fc8ff7",
+      "byte_count": 61,
+      "sha256": "ad152012ab2739a90d3e7b306df1cbdc37653e5921d7633df36d35878f390ae5",
+      "bytes_hex": "556e666f72676976696e673a2061206661696c656420626f7373206d656368616e696320686974732074687265652074696d657320617320686172642e"
+    },
+    {
+      "role": "rank-5-twist-1",
+      "virtual_address": "0x146fca234",
+      "file_offset": "0x6fc9034",
+      "byte_count": 87,
+      "sha256": "cb7e2484bf032726e84e96135a615dba5d080a4c2790cb7237c315467b329b31",
+      "bytes_hex": "576974686572696e673a20726567656e65726174696f6e2c206865616c7320616e64206c65656368206172652068616c7665642c20616e6420726576697665732061726520736c6f77657220616e64207765616b65722e"
+    },
+    {
+      "role": "rank-5-twist-2",
+      "virtual_address": "0x146fca28b",
+      "file_offset": "0x6fc908b",
+      "byte_count": 81,
+      "sha256": "07966f762180a87da3ce8945b1734877d743bccebf601fb00da7bda14d7594e7",
+      "bytes_hex": "436f756e63696c3a2074776f20616666697865732c20616e64207468652066696e616c20626f7373206272696e6773206f6e65206f6620746865207a6f6e652773206561726c69657220626f737365732e"
+    },
+    {
+      "role": "healing_factor-scalar-pair",
+      "virtual_address": "0x14768f420",
+      "file_offset": "0x768e220",
+      "byte_count": 8,
+      "sha256": "b09540ff36f486fafd91acb451c6d92cc0c31ab1e9f4379a9342bc0cc88df1a6",
+      "bytes_hex": "0000803f0000003f"
+    },
+    {
+      "role": "warning_factor-scalar-pair",
+      "virtual_address": "0x14768f580",
+      "file_offset": "0x768e380",
+      "byte_count": 8,
+      "sha256": "75b5c9e91944e453a4683ec5bd52790c0f506af611f9b938f75a4837e86788c0",
+      "bytes_hex": "9a99593f0000803f"
+    },
+    {
+      "role": "revive_seconds-scalar-pair",
+      "virtual_address": "0x14730e500",
+      "file_offset": "0x730d300",
+      "byte_count": 8,
+      "sha256": "16dc15478071efa6609c67c5430da995581f942d55c1840fa39d06d2ad7dfcdc",
+      "bytes_hex": "0000c04000001041"
+    },
+    {
+      "role": "revive_health-scalar-pair",
+      "virtual_address": "0x14768f400",
+      "file_offset": "0x768e200",
+      "byte_count": 8,
+      "sha256": "ec28977f8ae3699dbbef0f2ac7d063534caf2290da0861331cbbafb82500cd9c",
+      "bytes_hex": "0000003f9a99993e"
+    },
+    {
+      "role": "guardian_health_per_kill-scalar-pair",
+      "virtual_address": "0x14768f850",
+      "file_offset": "0x768e650",
+      "byte_count": 8,
+      "sha256": "58992109ecacacfaade8762e0a95b2b2e76282427354784ed2c840438ef9d0e5",
+      "bytes_hex": "0000803e3333b33e"
+    },
+    {
+      "role": "guardian_damage_per_kill-scalar-pair",
+      "virtual_address": "0x14768f860",
+      "file_offset": "0x768e660",
+      "byte_count": 8,
+      "sha256": "64db6fc5ef44daeb2df26b5df8dafbdccc8e4f76c22c707fb8740c95553f06c7",
+      "bytes_hex": "cdcc4c3d295c8f3d"
+    },
+    {
+      "role": "default-scalar-one",
+      "virtual_address": "0x1461981a0",
+      "file_offset": "0x6196fa0",
+      "byte_count": 4,
+      "sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c",
+      "bytes_hex": "0000803f"
+    },
+    {
+      "role": "normal-mark-half",
+      "virtual_address": "0x146198204",
+      "file_offset": "0x6197004",
+      "byte_count": 4,
+      "sha256": "d99e58435243d9fef9c88273b8d553b4fba4d0baf8009d29eae74fa99e0d9f57",
+      "bytes_hex": "0000003f"
+    },
+    {
+      "role": "zone-length-dispatch",
+      "virtual_address": "0x146fc8194",
+      "file_offset": "0x6fc6f94",
+      "byte_count": 28,
+      "sha256": "211c8f1e7bf9e9e06f6d3e284fce7c9a0d4d96114a8830b21438a6caf7ff2ced",
+      "bytes_hex": "1a40adfeae40adfe8440adfe9640adfe4c40adfedc40adfef540adfe"
+    }
+  ],
+  "descriptors": [
+    {
+      "rank": 1,
+      "virtual_address": "0x146fca2e0",
+      "twists": [
+        "Boss attacks give 15% less warning.",
+        "Elite packs: elites come in pairs."
+      ],
+      "health_multiplier_bytes": "b81ee53f",
+      "damage_multiplier_bytes": "3333d33f",
+      "marks_multiplier_bytes": "0000803f",
+      "reward_multiplier_bytes": "6666a63f"
+    },
+    {
+      "rank": 2,
+      "virtual_address": "0x146fca310",
+      "twists": [
+        "Relentless: bosses fight enraged from the start, and fiercer below 30% health.",
+        "Wardens: each guardian slain makes the others twice as tough, and lairs refill sooner."
+      ],
+      "health_multiplier_bytes": "f628fc3f",
+      "damage_multiplier_bytes": "5c8fe23f",
+      "marks_multiplier_bytes": "0000a03f",
+      "reward_multiplier_bytes": "3333b33f"
+    },
+    {
+      "rank": 3,
+      "virtual_address": "0x146fca340",
+      "twists": [
+        "Lean purse: one free reroll, and caches cost a quarter more.",
+        "Affix: the horde has Bolstering, Sanguine or Explosive."
+      ],
+      "health_multiplier_bytes": "713d0a40",
+      "damage_multiplier_bytes": "d7a3f03f",
+      "marks_multiplier_bytes": "0000c03f",
+      "reward_multiplier_bytes": "0000c03f"
+    },
+    {
+      "rank": 4,
+      "virtual_address": "0x146fca370",
+      "twists": [
+        "Old mechanics: boss towers and gazes are back.",
+        "Unforgiving: a failed boss mechanic hits three times as hard."
+      ],
+      "health_multiplier_bytes": "cdcc1c40",
+      "damage_multiplier_bytes": "d7a30040",
+      "marks_multiplier_bytes": "00000040",
+      "reward_multiplier_bytes": "cdcccc3f"
+    },
+    {
+      "rank": 5,
+      "virtual_address": "0x146fca3a0",
+      "twists": [
+        "Withering: regeneration, heals and leech are halved, and revives are slower and weaker.",
+        "Council: two affixes, and the final boss brings one of the zone's earlier bosses."
+      ],
+      "health_multiplier_bytes": "7b142e40",
+      "damage_multiplier_bytes": "713d0a40",
+      "marks_multiplier_bytes": "00002040",
+      "reward_multiplier_bytes": "9a99d93f"
+    }
+  ],
+  "native_ranges": [
+    {
+      "role": "guardian-health-rank-input",
+      "virtual_address": "0x145c4ebd9",
+      "file_offset": "0x5c4dfd9",
+      "byte_count": 19,
+      "sha256": "854232d0904c04c94a271906dcedf9d5787fa474de3e56ef219bf3ba78c6529f",
+      "bytes_hex": "440fb6be6f030000450fb6e7448bb604080000",
+      "instruction_count": 3
+    },
+    {
+      "role": "guardian-health-descriptor-selector",
+      "virtual_address": "0x145c4ec56",
+      "file_offset": "0x5c4e056",
+      "byte_count": 43,
+      "sha256": "9dd007d3b42407f939f870d62059296d770cb2f007b1af9692d230ae5b057f8f",
+      "bytes_hex": "418d47fa3cfb0f92c14b8d1464c1e204488d0573b637014801d04883f8300f94c208ca7506f3440f1060f0",
+      "instruction_count": 12
+    },
+    {
+      "role": "guardian-damage-rank-and-selector",
+      "virtual_address": "0x145c4efa2",
+      "file_offset": "0x5c4e3a2",
+      "byte_count": 62,
+      "sha256": "9eb76276062d9753540642099627550157a3c832f7412f860647cc935f508410",
+      "bytes_hex": "0fb68e6f0300008b86040800008d51fa80fafb410f92c04c8d0c4941c1e104488d1518b337014c01ca4883fa30410f94c14508c10f28cf7505f30f104af4",
+      "instruction_count": 15
+    },
+    {
+      "role": "pick-rank-parser",
+      "virtual_address": "0x145abffc0",
+      "file_offset": "0x5abf3c0",
+      "byte_count": 197,
+      "sha256": "1a3e84b920adc550c4536a288c46ac77f2ecb6c25dc65d79b9926eff1f12ab3b",
+      "bytes_hex": "4885d20f84a80000004883fa01751a440fb6014183f82b0f84940000004183f82d0f848a000000eb04440fb60131c04180f82b0f94c04989d04929c04801c14983f80373304d85c0746a0fb60183c0d083f809775c4983f801745b0fb6490183c1d083f909774a0fb6c001c08d048000c189c8eb4148f7d84801c248f7da4531c041b10a31c04989d24d01c2742841f6e1701e460fb61c014183c3d04400d8410f92c24183fb09770849ffc04584d274d531c0c331c00fb6c880f905b8050000000f42c1c3",
+      "instruction_count": 65
+    },
+    {
+      "role": "healing_factor-native-selector",
+      "virtual_address": "0x145bd1112",
+      "file_offset": "0x5bd0512",
+      "byte_count": 24,
+      "sha256": "a130cca73205ce3f9948f4a22b2710f4dc93ffd989888e179b9111fd94f8ef89",
+      "bytes_hex": "31c080b96f030000050f93c0488d0dfbe2ab01f30f593c81",
+      "instruction_count": 5
+    },
+    {
+      "role": "warning_factor-native-selector",
+      "virtual_address": "0x145bf20a1",
+      "file_offset": "0x5bf14a1",
+      "byte_count": 21,
+      "sha256": "719de5900f1109b7a66e2699b43f16ac67c09458f8847cf46d78232a794982fe",
+      "bytes_hex": "31c04584ff0f94c0488d0dd0d4a901f3440f591c81",
+      "instruction_count": 5
+    },
+    {
+      "role": "revive_seconds-native-selector",
+      "virtual_address": "0x145ae4fdd",
+      "file_offset": "0x5ae43dd",
+      "byte_count": 24,
+      "sha256": "0bf7168478b6ea7c3c62b1af7e632f636ffae1a7c01be32982f946c892fca33b",
+      "bytes_hex": "31c980bf6f030000050f93c1488d1510958201f30f100c8a",
+      "instruction_count": 5
+    },
+    {
+      "role": "revive_health-native-selector",
+      "virtual_address": "0x145bc4f2d",
+      "file_offset": "0x5bc432d",
+      "byte_count": 32,
+      "sha256": "c7aefa5919ab934539ca11588d59ff15ed4faffac050451924e7a2aa175769d6",
+      "bytes_hex": "31c080be6f03000005f30f10b6c80400000f93c0488d0db8a4ac01f30f100481",
+      "instruction_count": 6
+    },
+    {
+      "role": "guardian_health_per_kill-native-selector",
+      "virtual_address": "0x145c4ed19",
+      "file_offset": "0x5c4e119",
+      "byte_count": 32,
+      "sha256": "bf15dbcf01d1073a5b1387b72bf42aa6a55d346dffa7cad32a608e4adfc08464",
+      "bytes_hex": "31c04180ff020f93c04489f10f57c9f3480f2ac9488d0d1c0ba401f30f590c81",
+      "instruction_count": 8
+    },
+    {
+      "role": "guardian_damage_per_kill-native-selector",
+      "virtual_address": "0x145c4f031",
+      "file_offset": "0x5c4e431",
+      "byte_count": 30,
+      "sha256": "d98edbc58dc669bddd1b05cfe52009f61b2cd3e42f4e8bd0d78388dc0b28492e",
+      "bytes_hex": "31d280f90289c00f57c0f3480f2ac00f93c2488d051608a401f30f590490",
+      "instruction_count": 8
+    },
+    {
+      "role": "warning-rank-input",
+      "virtual_address": "0x145bf1ff6",
+      "file_offset": "0x5bf13f6",
+      "byte_count": 8,
+      "sha256": "a1c4d22d92dde63d14f065fd66ef07e8b8d6948f88b0a3c274c88e0349dbd1a2",
+      "bytes_hex": "440fb6b96f030000",
+      "instruction_count": 1
+    },
+    {
+      "role": "revive-health-publication",
+      "virtual_address": "0x145bc4f4d",
+      "file_offset": "0x5bc434d",
+      "byte_count": 12,
+      "sha256": "c594bad5f812b36368ad3f549dcb15e0d64e7ed7e0dc88e47a852d37cd810a7d",
+      "bytes_hex": "f30f59c6f30f118638050000",
+      "instruction_count": 2
+    },
+    {
+      "role": "revive-progress-duration-selection",
+      "virtual_address": "0x145bb880a",
+      "file_offset": "0x5bb7c0a",
+      "byte_count": 24,
+      "sha256": "da20604ff2f41585b0615d6276ccb228f96faedfc7768d9c0b5124358e02282a",
+      "bytes_hex": "31c080bf6f030000050f93c0488d0de35c7501f30f5e0481",
+      "instruction_count": 5
+    },
+    {
+      "role": "solo-revive-duration-selection",
+      "virtual_address": "0x145bbc30d",
+      "file_offset": "0x5bbb70d",
+      "byte_count": 24,
+      "sha256": "f118dba86940b214a14c591df8c7104aeb9a58bb306aa9bed60dedac7690e2ef",
+      "bytes_hex": "31c980be6f030000050f93c1488d15e0217501f30f100c8a",
+      "instruction_count": 5
+    },
+    {
+      "role": "run-revive-progress-duration-selection",
+      "virtual_address": "0x145bd75a3",
+      "file_offset": "0x5bd69a3",
+      "byte_count": 24,
+      "sha256": "f1bc54ef7c1b1d98e9ba3a43ee3cbd46febb247440c617c832d1c48c20ee429f",
+      "bytes_hex": "31c080be6f030000050f93c0488d0d4a6f7301f30f5e0481",
+      "instruction_count": 5
+    },
+    {
+      "role": "marks_multiplier-leaf-helper",
+      "virtual_address": "0x145ac0270",
+      "file_offset": "0x5abf670",
+      "byte_count": 54,
+      "sha256": "5622ad874ac1360915219ecc7573957b89c5cd3f95a7d4c994f4733151f6e1d7",
+      "bytes_hex": "8d41fa3cfb0f92c20fb6c1488d0c40c1e104488d0557a050014801c84883f8300f94c108d17409f30f1005657f6d00c3f30f1040f8c3",
+      "instruction_count": 16
+    },
+    {
+      "role": "reward_multiplier-leaf-helper",
+      "virtual_address": "0x145ac0330",
+      "file_offset": "0x5abf730",
+      "byte_count": 54,
+      "sha256": "7cf256b0e9c147ba009b8ef469ddefbb74e697d257cea22f16da138cab297ec9",
+      "bytes_hex": "8d41fa3cfb0f92c20fb6c1488d0c40c1e104488d05979f50014801c84883f8300f94c108d17409f30f1005417e6d00c3f30f1040fcc3",
+      "instruction_count": 16
+    },
+    {
+      "role": "zone-ordinal-helper",
+      "virtual_address": "0x145a9c190",
+      "file_offset": "0x5a9b590",
+      "byte_count": 297,
+      "sha256": "4f109a94ea1f349d8b71c2a55de10489de6f8bfd6bf4db102e3262a0ca251ec1",
+      "bytes_hex": "4883c2fe4883fa060f87fa000000488d05efbf5201486314904801c2ffe266813961620f84e2000000668139736d0f84e900000066813961760f84e400000066813961710f85be000000b80a000000c3b8656c777933010fb7510481f26e6e000009c20f849f000000b8756e676f33010fb7490481f1726f000009c10f8586000000b803000000c331d281396e617878b80b000000480f45c2c3b86172656e33010fb6490483f16109c1755cb806000000c30fb70135777300000fb6510283f2676609c2744b0fb70135627200000fb6490283f16d6609c1752eb809000000c3b8666572613301ba616c617333510309c27515b805000000c348b86475736b776f6f64483901740f31c0c3b804000000c3b802000000c3b801000000c3b807000000c3b808000000c3",
+      "instruction_count": 81
+    },
+    {
+      "role": "week-helper",
+      "virtual_address": "0x145ac9f90",
+      "file_offset": "0x5ac9390",
+      "byte_count": 78,
+      "sha256": "11d05c136901cddba1d316b91a4440c36163034c4bc727721924db704ed7b553",
+      "bytes_hex": "4883ec48e847f54c00894424288954242c488d4c2430488d54242841b800803ed541b9deb19d01e8d4f44c0048b85915de6926ef7a3748f764243848c1ea1131c0807c2430000f44c24883c448c3",
+      "instruction_count": 17
+    }
+  ],
+  "scalar_selector_fixtures": [
+    {
+      "field": "health_multiplier",
+      "start": "0x145c4ec56",
+      "end_exclusive": "0x145c4ec81",
+      "output_register": "XMM12",
+      "synthetic_input": "r12=r15=byte rank; xmm12=1.0. The preceding current producer loads both rank registers from game+0x36f."
+    },
+    {
+      "field": "damage_multiplier",
+      "start": "0x145c4efa2",
+      "end_exclusive": "0x145c4efe0",
+      "output_register": "XMM1",
+      "synthetic_input": "rsi addresses synthetic game memory with byte rank at+0x36f; xmm7=1.0."
+    },
+    {
+      "field": "marks_multiplier",
+      "start": "0x145ac0270",
+      "end_exclusive": "0x145ac02a6",
+      "output_register": "XMM0",
+      "returns": true,
+      "default_bytes": "0000003f",
+      "register_inputs": {
+        "RCX": "rank"
+      },
+      "synthetic_input": "RCX carries the byte rank; stack returns to the fixture stop. The complete original leaf helper executes for every byte rank."
+    },
+    {
+      "field": "reward_multiplier",
+      "start": "0x145ac0330",
+      "end_exclusive": "0x145ac0366",
+      "output_register": "XMM0",
+      "returns": true,
+      "default_bytes": "0000803f",
+      "register_inputs": {
+        "RCX": "rank"
+      },
+      "synthetic_input": "RCX carries the byte rank; stack returns to the fixture stop. The complete original leaf helper executes for every byte rank."
+    }
+  ],
+  "policy_queries": [
+    {
+      "role": "guardian-rank-scalar-consumer",
+      "procedure": "0x145c4e9e0",
+      "evidence_id": "ev_5d83353f951114ddfed9c60b3279ecbebb4fe6a1f7e1d43b22ccefc3cc518e37",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "c4059d86932cfdc93b27928b6f66f4ed15a8eaf67d5ac0d5d2254196294f915c",
+      "normalized_text_sha256": "70793c38cbc257123ec4727c001d510cb90308cf76b0d6f27ad21a137dd4c0a6",
+      "plan": {
+        "path": "runtime/fixgap219/twists/guardian-stats/plan.json",
+        "sha256": "77bd986f373d75dd0356850629eda0ce38dfc75e34874b75eea8fa252643fee4"
+      },
+      "journal": {
+        "path": "runtime/fixgap219/twists/guardian-stats/query/journal.json",
+        "sha256": "648833100740c66e040c851905f2a2306a3823110eaf371f3a46d8d985d5fc8c"
+      },
+      "result": {
+        "path": "runtime/fixgap219/twists/guardian-stats/query/results/0f8168471896386d6a03dc52550e996bb9f6871393f012280681a77a0039a0b2.json",
+        "sha256": "17882359cf3316012193f2f1324c13117ebdcd7ec9ecd00c122c98947345d36f"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap219/twists/guardian-stats/code.bin",
+        "sha256": "6e2c62bc30bab5a4c41157bcccabd403d1e575b0198a10571599d42c212d64b0"
+      },
+      "slice_virtual_address": "0x145c4e9e0"
+    },
+    {
+      "role": "guardian-rank-scalar-consumer",
+      "procedure": "0x145c4eed0",
+      "evidence_id": "ev_165b2e69269ade180db16275adaa10f5694bed60c59950ee828c55b5030ff778",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "c4059d86932cfdc93b27928b6f66f4ed15a8eaf67d5ac0d5d2254196294f915c",
+      "normalized_text_sha256": "42fd53bb0d906f33b6850be593b2f0bd1fce1fd3e5e962661e37c83266ea8f20",
+      "plan": {
+        "path": "runtime/fixgap219/twists/guardian-stats/plan.json",
+        "sha256": "77bd986f373d75dd0356850629eda0ce38dfc75e34874b75eea8fa252643fee4"
+      },
+      "journal": {
+        "path": "runtime/fixgap219/twists/guardian-stats/query/journal.json",
+        "sha256": "648833100740c66e040c851905f2a2306a3823110eaf371f3a46d8d985d5fc8c"
+      },
+      "result": {
+        "path": "runtime/fixgap219/twists/guardian-stats/query/results/fcda7262efbfec3e77781bb392d0eb949ca1557711bb9edc6b0e50188055d6e0-b48c5e26406e14bd.json",
+        "sha256": "fe4d951547f7f0bedc8f72c4a15b2f7357de761f26eb5509203435ed6c2f6f47"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap219/twists/guardian-stats/code.bin",
+        "sha256": "6e2c62bc30bab5a4c41157bcccabd403d1e575b0198a10571599d42c212d64b0"
+      },
+      "slice_virtual_address": "0x145c4e9e0"
+    },
+    {
+      "role": "terminal-talent-experience-reward-consumer",
+      "procedure": "0x145b28410",
+      "evidence_id": "ev_eb9fc683b34ad10e7585a035ee9335533d04ecfcb08dbb3462f5742e9f63c299",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "77434c00fa12715fb5203ceab7aa1a9b966249b814c9502d098b6b5b5f01bfa4",
+      "normalized_text_sha256": "7bf1a4afe425cd93d57413c9215eb19148cc3bcfffb673be13f2b954286d6938",
+      "plan": {
+        "path": "runtime/fixgap226-0.121.0/plan.json",
+        "sha256": "cc0e8647eacf3ea391625993d345f188a9fa24cac637b747c533610ee523e831"
+      },
+      "journal": {
+        "path": "runtime/fixgap226-0.121.0/query/journal.json",
+        "sha256": "b0b61782c19e73dca21a8b85250489440ebb19eb373217bd456ff4ab7f0021d3"
+      },
+      "result": {
+        "path": "runtime/fixgap226-0.121.0/query/results/f46a74ca1750bbd7b6dce2b5d04542f59ed5bfb61948effb9ba38a5de0ca2b90.json",
+        "sha256": "59f6479cffdf9ecaf32c7bbb6acd75422b79dfe7d24931369ea0fe34b2720392"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap226-0.121.0/summary.bin",
+        "sha256": "cbd14b79741f917a9a2628571a146f5d4599571a5ee8e3381d70e4653b0822a6"
+      },
+      "slice_virtual_address": "0x145b28410"
+    },
+    {
+      "role": "boss-marks-loot-reward-consumer",
+      "procedure": "0x145c135f0",
+      "evidence_id": "ev_afd19bba6cf4b7a6aeb2e902e13d4f691bbc2212e6ad05ba4f3102a9531edab0",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "9d9e3882a52dde0dfa3671ea4a914e0a9ee57220b25b9bf178de95906e291a84",
+      "normalized_text_sha256": "2fcc591cc0325e6d730eff9e739f9767bb1b914ecc77336c3ea87dbd14b25e42",
+      "plan": {
+        "path": "runtime/fixgap-220-229/gear/boss-roll/plan.json",
+        "sha256": "9f1830eafae4275509ad294f79045ce70f00dd3eccfc4731ae60434df516126e"
+      },
+      "journal": {
+        "path": "runtime/fixgap-220-229/gear/boss-roll/query/journal.json",
+        "sha256": "98590f3f8e96a3d18b99ce16f1bca56fce3a8f130cb69d49a14f7eeccca7b56e"
+      },
+      "result": {
+        "path": "runtime/fixgap-220-229/gear/boss-roll/query/results/4145fe72629f9536147051837931ca49ecae82363dc9f8341e5bb9ae825225f1.json",
+        "sha256": "3e683e28720bfda53a48857717f90681d9b932076729b29899965dfdae026289"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap-220-229/gear/boss-roll/code.bin",
+        "sha256": "1214ff47e42f8a0a6fcbe0487e258cb80598bd406741efaa6a785def5584da50"
+      },
+      "slice_virtual_address": "0x145c135f0"
+    },
+    {
+      "role": "unix-epoch-week-producer",
+      "procedure": "0x145ac9f90",
+      "evidence_id": "ev_4a0e93a4f6e381d9e3590ed29ecbfa893df413a07ec2f7b62f3f27c359e656d4",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "93dab1167b22942473b66745c58b795246cf7bb2c628d9fff4500fba7793c3bc",
+      "normalized_text_sha256": "3ca9812c226fb650894719df21eebe61558f8f6af88b65f6fe97f364617a786f",
+      "plan": {
+        "path": "runtime/fixgap220229/affixes/week/plan.json",
+        "sha256": "17f2e0cc191015016b223eee48d819f721f893f8e1192cb13b68a63f5286f6c1"
+      },
+      "journal": {
+        "path": "runtime/fixgap220229/affixes/week/query/journal.json",
+        "sha256": "c6e506b4b5dca57a2a0193fa6fb6c385a7499747710f4b21037e3f2c057c691e"
+      },
+      "result": {
+        "path": "runtime/fixgap220229/affixes/week/query/results/019632830632fbe9607978fc32b65b857cf7ea4588dfce55e3ad74df38ffb135.json",
+        "sha256": "4f779ac5cf9871b805d074f8d54320f7705b8b2ca94f95b0a409f8c7953652c8"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap220229/affixes/week/code.bin",
+        "sha256": "11d05c136901cddba1d316b91a4440c36163034c4bc727721924db704ed7b553"
+      },
+      "slice_virtual_address": "0x145ac9f90"
+    }
+  ],
+  "parser_raw_subject_binding": {
+    "path": "runtime/execheck-0.121.0/heroic-native/code.bin",
+    "sha256": "4adab11c95ad5fa961763950f9171b012b27118b7cb02c1823af000629e9d2a2",
+    "virtual_address": "0x145abfe70",
+    "reused_native_query_manifest": {
+      "path": "docs/analysis/evidence/0.121.0/heroic-native/manifest.json",
+      "sha256": "f334f17da3c415ab667f19c79cc3d045576db5ed2537fb428dcdc44c66553bcc"
+    },
+    "note": "Complete parser instruction bytes lie within this previously hash-verified raw query subject. Their complete boundaries and branch behavior are checked independently; no fresh parser decompilation is claimed."
+  },
+  "policy_scalar_fixtures": [
+    {
+      "field": "healing_factor",
+      "start": "0x145bd1112",
+      "end_exclusive": "0x145bd112a",
+      "output_register": "XMM7",
+      "threshold": 5,
+      "comparison": "at_least",
+      "source_condition": "if rank >= 5",
+      "true_bytes": "0000003f",
+      "false_bytes": "0000803f",
+      "register_inputs": {},
+      "synthetic_input": "Game memory has rank at+0x36f and max health1.0 at+0x4c8. Scalar input XMM7/XMM11=1.0; guardian kill count1. Register overrides are explicit."
+    },
+    {
+      "field": "warning_factor",
+      "start": "0x145bf20a1",
+      "end_exclusive": "0x145bf20b6",
+      "output_register": "XMM11",
+      "threshold": 0,
+      "comparison": "not_equal",
+      "source_condition": "if rank != 0",
+      "true_bytes": "9a99593f",
+      "false_bytes": "0000803f",
+      "register_inputs": {},
+      "synthetic_input": "Game memory has rank at+0x36f and max health1.0 at+0x4c8. Scalar input XMM7/XMM11=1.0; guardian kill count1. Register overrides are explicit."
+    },
+    {
+      "field": "revive_seconds",
+      "start": "0x145ae4fdd",
+      "end_exclusive": "0x145ae4ff5",
+      "output_register": "XMM1",
+      "threshold": 5,
+      "comparison": "at_least",
+      "source_condition": "if rank >= 5",
+      "true_bytes": "00001041",
+      "false_bytes": "0000c040",
+      "register_inputs": {},
+      "synthetic_input": "Game memory has rank at+0x36f and max health1.0 at+0x4c8. Scalar input XMM7/XMM11=1.0; guardian kill count1. Register overrides are explicit."
+    },
+    {
+      "field": "revive_health",
+      "start": "0x145bc4f2d",
+      "end_exclusive": "0x145bc4f4d",
+      "output_register": "XMM0",
+      "threshold": 5,
+      "comparison": "at_least",
+      "source_condition": "if rank >= 5",
+      "true_bytes": "9a99993e",
+      "false_bytes": "0000003f",
+      "register_inputs": {},
+      "synthetic_input": "Game memory has rank at+0x36f and max health1.0 at+0x4c8. Scalar input XMM7/XMM11=1.0; guardian kill count1. Register overrides are explicit."
+    },
+    {
+      "field": "guardian_health_per_kill",
+      "start": "0x145c4ed19",
+      "end_exclusive": "0x145c4ed39",
+      "output_register": "XMM1",
+      "threshold": 2,
+      "comparison": "at_least",
+      "source_condition": "if rank >= 2",
+      "true_bytes": "3333b33e",
+      "false_bytes": "0000803e",
+      "register_inputs": {
+        "R14": 1
+      },
+      "synthetic_input": "Game memory has rank at+0x36f and max health1.0 at+0x4c8. Scalar input XMM7/XMM11=1.0; guardian kill count1. Register overrides are explicit."
+    },
+    {
+      "field": "guardian_damage_per_kill",
+      "start": "0x145c4f031",
+      "end_exclusive": "0x145c4f04f",
+      "output_register": "XMM0",
+      "threshold": 2,
+      "comparison": "at_least",
+      "source_condition": "if rank >= 2",
+      "true_bytes": "295c8f3d",
+      "false_bytes": "cdcc4c3d",
+      "register_inputs": {
+        "RCX": "rank",
+        "RAX": 1
+      },
+      "synthetic_input": "Game memory has rank at+0x36f and max health1.0 at+0x4c8. Scalar input XMM7/XMM11=1.0; guardian kill count1. Register overrides are explicit."
+    }
+  ],
+  "policy_reference_basis": {
+    "target_sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "retained_queue": "docs/analysis/evidence/0.121.0/unknown-recovery.json",
+    "reference_selector": "instruction-summary:refs[target IN ('0x14730e500','0x14768f400')]",
+    "sites": [
+      "0x145ae4fe9",
+      "0x145bb8816",
+      "0x145bbc319",
+      "0x145bd75af",
+      "0x145bc4f41"
+    ],
+    "limits": "These retained encoded-reference leads select the independently verified original code/data above. Exact rank guards, scalar values and consumer reads/writes establish this bounded source contract. No new decompilation or whole surrounding lifetime behavior is claimed."
+  },
+  "shared_twist_contract": {
+    "path": "docs/analysis/evidence/0.121.0/heroic-twists/manifest.json",
+    "curation_snapshot_sha256": "e30e88a492d1047c9c97ff91f246aad60fbea79863231bcb09bf4545877f60b1",
+    "selected_projection_sha256": "d3d7bf143628d488adcd3c43483d376677bc4707bbe440eb7595c04a1ba73341",
+    "projection": "Exact selected target/native-range/assembly/data rows. Unrelated appended fixture metadata is outside this dependency; selected-row drift is rejected."
+  },
+  "shared_twist_native_roles": [
+    "guardian-respawn",
+    "boss-rank",
+    "boss-cooldowns",
+    "boss-repeat",
+    "hazard-factor-default",
+    "hazard-damage",
+    "cache-cost",
+    "lean-rank",
+    "cache-initial",
+    "cache-commit",
+    "reroll-initial",
+    "reroll-commit"
+  ],
+  "additional_policy_contracts": [
+    {
+      "field": "guardian_respawn_seconds",
+      "native_data_role": "guardian-respawn-seconds",
+      "source_conditions": [
+        "if rank >= 2"
+      ],
+      "source_value_bits": [
+        1125515264,
+        1127481344
+      ]
+    },
+    {
+      "field": "boss_repeat_factor",
+      "native_data_role": "boss-repeat-factors",
+      "source_conditions": [
+        "if rank >= 2",
+        "if enraged"
+      ],
+      "source_value_bits": [
+        1058642330,
+        1061997773,
+        1060320051,
+        1065353216
+      ],
+      "native_layout": "Ordinary pair14768f730 is[1,.8]; enraged pair14768f738 is[.7,.6], each indexed byrank>=2."
+    },
+    {
+      "field": "raid_damage_factor",
+      "native_data_role": "hazard-factor",
+      "source_conditions": [
+        "if rank >= 4",
+        "else if endless"
+      ],
+      "source_value_bits": [
+        1077936128,
+        1065353216,
+        1073741824
+      ]
+    },
+    {
+      "field": "free_rerolls_base",
+      "source_conditions": [
+        "if rank >= 3"
+      ],
+      "value_kind": "u32",
+      "source_values": [
+        1,
+        3
+      ],
+      "native_roles": [
+        "reroll-initial",
+        "reroll-commit"
+      ],
+      "native_formula": "Account reroll perk plus1+2*(rank<3); this helper supplies the base only."
+    },
+    {
+      "field": "cache_initial_price",
+      "source_conditions": [
+        "if rank >= 3"
+      ],
+      "value_kind": "u32",
+      "source_values": [
+        25,
+        20
+      ],
+      "native_roles": [
+        "lean-rank",
+        "cache-initial",
+        "cache-commit"
+      ],
+      "native_formula": "20+5*u32(rank>=3)."
+    },
+    {
+      "field": "cache_cost_increment",
+      "source_conditions": [
+        "if rank >= 3"
+      ],
+      "native_data_role": "cache-cost-increment",
+      "source_value_bits": [
+        1086849024,
+        1084227584
+      ]
+    }
+  ],
+  "calendar_contract": {
+    "source": "crates/azeroth-survivors-re/src/heroic/affix_calendar.rs",
+    "explicit_zone_ordinals": {
+      "duskwood": 1,
+      "wsg": 2,
+      "ungoro": 3,
+      "ab": 4,
+      "feralas": 5,
+      "arena": 6,
+      "sm": 7,
+      "av": 8,
+      "brm": 9,
+      "aq": 10,
+      "naxx": 11
+    },
+    "elwynn_ordinal": 0,
+    "unknown_key_ordinal": 0,
+    "week": "u32(seconds_since_Unix_epoch/604800), error0, truncatingu32, no Monday/calendar offset",
+    "external_clock_seams": [
+      "SystemTime::now145f994e0",
+      "duration_since145f99490 with epochFILETIME019db1ded53e8000"
+    ],
+    "limits": "Clock helpers are synthetic interfaces in original-instruction fixtures. Neither host SystemTime nor the game/source executes. Exact zone labels and full local compare dispatch execute from original bytes; no new zone-helper decompilation is claimed."
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.117.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293",
+    "size_bytes": 145283072
+  },
+  "reviews": [],
+  "finding_bindings": [
+    {
+      "id": "current-frontier-gap103",
+      "selectors": [
+        "Q41-I01:resource_path:0"
+      ],
+      "finding_ids": [
+        103
+      ],
+      "conclusion": "The existing image-loader and progression-bar source were inspected. Native reads of current URI bytes are data/connection leads; no current handle-to-bar source equivalence is established. Finding attribution only; leave queue status pending and ownership unknown.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.117.0/as-discovery-frontier.json",
+        "sha256": "65cae1adaac3b25598bfe7798c27dd26a96722aa20735004f0a1595682076fa9"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "Q41-I01:resource_path:0"
+        ],
+        "sha256": "794991ec129fadab0082e786790d83b4b37abecb2da8bb0304439594889fa07f"
+      }
+    },
+    {
+      "id": "current-frontier-gap104",
+      "selectors": [
+        "Q41-I01:resource_path:4"
+      ],
+      "finding_ids": [
+        104
+      ],
+      "conclusion": "The current source already loads dragon art and consumes it in the sidebar. Current encoded reads do not establish the native handle or source mapping. Finding attribution only; leave queue status pending and ownership unknown.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.117.0/as-discovery-frontier.json",
+        "sha256": "65cae1adaac3b25598bfe7798c27dd26a96722aa20735004f0a1595682076fa9"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "Q41-I01:resource_path:4"
+        ],
+        "sha256": "e7705fedbfcc4a5c59e4d1a28d6023c2a69fb4bbd52b9447d1c91ee8a2caf7b4"
+      }
+    },
+    {
+      "id": "current-frontier-gap98",
+      "selectors": [
+        "Q41-I01:save_configuration_key_lead:5"
+      ],
+      "finding_ids": [
+        98
+      ],
+      "conclusion": "Existing source preserves the complete talentxp Value in an active context and parses the terminal snapshot. Its historical native contract does not establish the role of this new current data occurrence. Finding attribution only; leave queue status pending and ownership unknown.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.117.0/as-discovery-frontier.json",
+        "sha256": "65cae1adaac3b25598bfe7798c27dd26a96722aa20735004f0a1595682076fa9"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "Q41-I01:save_configuration_key_lead:5"
+        ],
+        "sha256": "ccb27f4aabdfcdf6da8a5ba04587531e6f470e4786e63887f6ca3be1b2f3aff6"
+      }
+    }
+  ],
+  "limits": [
+    "No bounded semantic review is admitted by this attribution file. Existing historical review/range identities are not promoted to this target."
+  ]
+}

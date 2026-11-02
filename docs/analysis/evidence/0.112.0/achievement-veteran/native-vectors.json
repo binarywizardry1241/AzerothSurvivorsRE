@@ -1,0 +1,25 @@
+{
+  "target": {
+    "version": "0.112.0",
+    "sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+    "size_bytes": 140514816
+  },
+  "factor_cases": 1620,
+  "factor_sha256": "51a72c03af8b5517cfc186ab70d1c0e3c4c304f90b4f7bbb02ed3a16f4b63d44",
+  "caller_cases": 81,
+  "caller_sha256": "13847cc7794afdeddadb7f3e2dd362864f8b2c29eca441a6ce118c728ca061c8",
+  "caller_instructions": 675,
+  "executed_addresses": 3723,
+  "seams": [
+    "0x1400021c0",
+    "0x1400021d0",
+    "0x140002200",
+    "0x145c0a3db",
+    "0x145c0a3e7"
+  ],
+  "limits": [
+    "Current Veteran owner and current typed Save parser/supporting owners execute original PE instructions with explicit allocator/free/realloc/C-byte seams; only synthetic memory is used.",
+    "Caller replay executes the complete selected-GUID/class/backend-pointer/store window, with its already independently replayed Veteran owner return supplied as an explicit seam.",
+    "Other account-perk consumers, worker scheduling, UI/engine lifecycle and OS/filesystem behavior are outside this bounded input proof. No compiler, application/game or rebuilt Rust executes."
+  ]
+}

@@ -1,0 +1,14 @@
+14594c61c 4c8d3d3d4c9e01 lea r15, [rip + 0x19e4c3d]
+14594c623 bf1a000000 mov edi, 0x1a
+14594c628 ba1a000000 mov edx, 0x1a
+14594c62d 4c89f9 mov rcx, r15
+14594c630 e85b39f9ff call 0x1458dff90
+14594c635 4885c0 test rax, rax
+14594c638 4c0f45f8 cmovne r15, rax
+14594c63c 480f44d7 cmove rdx, rdi
+14594c640 4889542420 mov qword ptr [rsp + 0x20], rdx
+14594c645 488d4dc8 lea rcx, [rbp - 0x38]
+14594c649 4889da mov rdx, rbx
+14594c64c 4d89e0 mov r8, r12
+14594c64f 4d89f9 mov r9, r15
+14594c652 e809cd0500 call 0x1459a9360

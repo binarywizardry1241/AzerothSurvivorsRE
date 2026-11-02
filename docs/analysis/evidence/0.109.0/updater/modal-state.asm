@@ -1,0 +1,9 @@
+; 0.109.0 SHA256 76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0
+; 0x1401c79d1..0x1401c79ef SHA256 bea17466cec1b20bf418366eab95e3e3eefe394a916771ce9918c2a394b3dfe1
+0x1401c79d1: mov rcx, qword ptr [rbp - 0x58]
+0x1401c79d5: test rcx, rcx
+0x1401c79d8: setne al
+0x1401c79db: cmp rcx, 3
+0x1401c79df: ja 0x1401c7e79
+0x1401c79e5: cmp rcx, 1
+0x1401c79e9: je 0x1401c7e79

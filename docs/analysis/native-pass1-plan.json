@@ -1,0 +1,91 @@
+{
+  "target": "AzerothSurvivors/AzerothSurvivors-0.91.4.exe",
+  "output": "runtime/rea-native-pass1-scoped",
+  "timeout": 180,
+  "open_timeout": 1200,
+  "environment": {
+    "REA_GHIDRA_STARTUP_TIMEOUT_MS": "1200000",
+    "REA_GHIDRA_SEED_FILE": "docs/analysis/native-pass1-seeds.tsv",
+    "REA_GHIDRA_DISABLED_ANALYZERS": "Stack,Decompiler Switch Analysis,Function ID,Function Start Search,Disassemble Entry Points,Subroutine References,Data Reference,Reference,Non-Returning Functions - Discovered,Shared Return Calls"
+  },
+  "operations": [
+    {
+      "name": "procedure_pseudo_code",
+      "arguments": {
+        "procedure": "0x1454bea70"
+      },
+      "timeout": 1260,
+      "label": "pseudo-0x1454bea70"
+    },
+    {
+      "name": "procedure_pseudo_code",
+      "arguments": {
+        "procedure": "0x1454bee60"
+      },
+      "timeout": 180,
+      "label": "pseudo-0x1454bee60"
+    },
+    {
+      "name": "procedure_pseudo_code",
+      "arguments": {
+        "procedure": "0x1453e3690"
+      },
+      "timeout": 180,
+      "label": "pseudo-0x1453e3690"
+    },
+    {
+      "name": "procedure_pseudo_code",
+      "arguments": {
+        "procedure": "0x14548f900"
+      },
+      "timeout": 180,
+      "label": "pseudo-0x14548f900"
+    },
+    {
+      "name": "procedure_pseudo_code",
+      "arguments": {
+        "procedure": "0x145490cc0"
+      },
+      "timeout": 180,
+      "label": "pseudo-0x145490cc0"
+    },
+    {
+      "name": "procedure_pseudo_code",
+      "arguments": {
+        "procedure": "0x145461360"
+      },
+      "timeout": 180,
+      "label": "pseudo-0x145461360"
+    },
+    {
+      "name": "procedure_pseudo_code",
+      "arguments": {
+        "procedure": "0x145499a60"
+      },
+      "timeout": 180,
+      "label": "pseudo-0x145499a60"
+    },
+    {
+      "name": "procedure_pseudo_code",
+      "arguments": {
+        "procedure": "0x1453f0460"
+      },
+      "timeout": 180,
+      "label": "pseudo-0x1453f0460"
+    },
+    {
+      "name": "procedure_pseudo_code",
+      "arguments": {
+        "procedure": "0x1454705e0"
+      },
+      "timeout": 180,
+      "label": "pseudo-0x1454705e0"
+    },
+    {
+      "name": "binary_session",
+      "arguments": {},
+      "label": "session"
+    }
+  ],
+  "stop_on_error": true
+}

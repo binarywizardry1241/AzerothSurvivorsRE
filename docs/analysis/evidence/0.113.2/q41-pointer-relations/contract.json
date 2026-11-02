@@ -1,0 +1,284 @@
+{
+  "target_sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+  "leads": [
+    "Q41-A02",
+    "Q41-A03",
+    "Q41-O02"
+  ],
+  "classification_ids": [
+    "Q41-A02-armory-line-display-145ed7700",
+    "Q41-A03-armory-location-145ed76d0",
+    "Q41-O02-armory-runtime-function-1481fa240"
+  ],
+  "queue": {
+    "path": "docs/analysis/evidence/0.113.2/unknown-recovery.json",
+    "sha256": "d4148a7bcd2feb746bdd36dd5c88dfbe804b5f608edeafe16792841405ac342b"
+  },
+  "inputs": {
+    "inventory.json": {
+      "path": "runtime/coverage/58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb/inventory.json",
+      "sha256": "b3753d3045ed2a4589ad518a437d1aacaaed92d8368ad16969ab33b3a2ce5bb2",
+      "bytes": 78421285
+    },
+    "bodies.tsv.gz": {
+      "path": "runtime/execheck-0.113.2/ghidra-comprehensive/bodies.tsv.gz",
+      "sha256": "dc808e3e10d4443dabce229e9d0724060d87bcd7547eb1cb47334e70038b8362",
+      "bytes": 4221082
+    },
+    "references.tsv.gz": {
+      "path": "runtime/execheck-0.113.2/ghidra-comprehensive/references.tsv.gz",
+      "sha256": "2975e8ccd5269f6ce1e926e92b6a8c73bcb2c58778c9f8d0f9a9785b073b11f1",
+      "bytes": 23033468
+    },
+    "native-instructions.sqlite": {
+      "path": "runtime/coverage/58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb/native-instructions.sqlite",
+      "sha256": "82e9307e46c478816f881c0e197257b7094586a53f4ef58f4a93ed67a51fcd2d",
+      "bytes": 327753728
+    }
+  },
+  "selected": {
+    "code_pointer_relocation": [
+      99448576,
+      10,
+      5368717536
+    ],
+    "data_pointer_relocation": [
+      99448528,
+      10,
+      5468155384
+    ],
+    "metadata_references": [
+      {
+        "from": "1481fa240",
+        "to": "140136300",
+        "type": "DATA",
+        "operand": "0",
+        "primary": "true",
+        "source": "DEFAULT"
+      },
+      {
+        "from": "1481fa248",
+        "to": "1473dc7f8",
+        "type": "DATA",
+        "operand": "0",
+        "primary": "true",
+        "source": "DEFAULT"
+      }
+    ],
+    "code_pointer_target_owner": "0x1400020e0",
+    "metadata_source_owner": null
+  },
+  "constructor_reference": [
+    4144,
+    5369981628,
+    "488d05250cda05",
+    "address",
+    "0x145ed76e8",
+    1,
+    0
+  ],
+  "location_reference": [
+    4144,
+    5369984803,
+    "4c8d05a6ffd905",
+    "address",
+    "0x145ed76d0",
+    1,
+    0
+  ],
+  "data": [
+    {
+      "role": "armory-string-vtable",
+      "bytes_hex": "c05100400100000018000000000000000800000000000000e020004001000000",
+      "address": "0x145ed76e8",
+      "end_exclusive": "0x145ed7708",
+      "byte_count": 32,
+      "sha256": "49827ed78e0c54980e53c58f7c040bee9579f75a3636b200197b32e89fbafd81"
+    },
+    {
+      "role": "armory-rust-location",
+      "bytes_hex": "f86ded45010000002e000000000000007206000013000000",
+      "address": "0x145ed76d0",
+      "end_exclusive": "0x145ed76e8",
+      "byte_count": 24,
+      "sha256": "bc2df8ed5bf7381ff1e4ff90919611b6c06d0e2fdd4837fc549cbbf8a47f40af"
+    },
+    {
+      "role": "armory-localization-literals",
+      "bytes_hex": "6c696e656974656d2e6571756970",
+      "address": "0x145ed7708",
+      "end_exclusive": "0x145ed7716",
+      "byte_count": 14,
+      "sha256": "ebd312c78a3fbe07c58e70a86896812ad51bb19f4f20d7e384cbec383113d6bc"
+    },
+    {
+      "role": "armory-runtime-function",
+      "bytes_hex": "0063130035771300f8c73d07",
+      "address": "0x1481fa240",
+      "end_exclusive": "0x1481fa24c",
+      "byte_count": 12,
+      "sha256": "b46d3a951b19b361ab3ce3f36b8f7a7668605d44b4d87bc24efa9a68899ecc9a"
+    }
+  ],
+  "source_path_reference": {
+    "path": "docs/analysis/evidence/0.113.2/q41-c01/contract.json",
+    "role": "armory-path"
+  },
+  "source_location": {
+    "path": "crates\\wenilla-rogue-app\\src\\screens\\armory.rs",
+    "line": 1650,
+    "column": 19
+  },
+  "declared_extent": {
+    "address": "0x140136300",
+    "end_exclusive": "0x140137735",
+    "byte_count": 5173,
+    "sha256": "5b929b7270b8a85463ead46abfefd5a08f70b67dffcdec86b83a95bd75cc35fc"
+  },
+  "ranges": [
+    {
+      "role": "armory-argument",
+      "assembly": "armory-argument.asm",
+      "address": "0x140136a95",
+      "end_exclusive": "0x140136aef",
+      "byte_count": 90,
+      "sha256": "afd7051e1107791240871a0fbf32f6b509b8ef0199bbe4c8257f02def9cac019",
+      "assembly_sha256": "0b0c9e60443ba3ef84c31b774774b8e2437e9af9db4f4fcf368e30d130660a32"
+    },
+    {
+      "role": "display-dispatch",
+      "assembly": "display-dispatch.asm",
+      "address": "0x14017f820",
+      "end_exclusive": "0x14017f831",
+      "byte_count": 17,
+      "sha256": "9e803e9af0a932c4d0ac6041df9a7e2414e7006a4f193ace09e0db14ee38ce67",
+      "assembly_sha256": "d4375d58d1267b8d3554102e0dd38295ceea5dd0ccfcde272cf571754cb1bda5"
+    },
+    {
+      "role": "string-display",
+      "assembly": "string-display.asm",
+      "address": "0x1400020e0",
+      "end_exclusive": "0x1400020f3",
+      "byte_count": 19,
+      "sha256": "971590453d60db457cdf8636d9b79faa863e1c485fc75f350427c2e52abbe72a",
+      "assembly_sha256": "545e53646c89b21b2b02390a9eda33de45fa26f5c468040d7b75b70598a963d6"
+    },
+    {
+      "role": "string-adapter",
+      "assembly": "string-adapter.asm",
+      "address": "0x145cdf5d0",
+      "end_exclusive": "0x145cdf5e1",
+      "byte_count": 17,
+      "sha256": "663bca6563f7a582e0c6c4ae95e6bd4ec95fab1a297543d06c4a062247b7ba84",
+      "assembly_sha256": "51d4f9068307dc6e3db352d95e803992907220b6fe5a8132e4e5beb5aea9f9af"
+    },
+    {
+      "role": "string-drop",
+      "assembly": "string-drop.asm",
+      "address": "0x1400051c0",
+      "end_exclusive": "0x1400051d8",
+      "byte_count": 24,
+      "sha256": "0f922793c3c1f5d02f9af6553a3a2918580187fca498465e61df83fe7f5d4a73",
+      "assembly_sha256": "9a59c34ec9b0df318cda8036308a42d615dd3529e1e227d6487f1a15468c363a"
+    },
+    {
+      "role": "localize-then-substitute",
+      "assembly": "localize-then-substitute.asm",
+      "address": "0x1458956d0",
+      "end_exclusive": "0x145895715",
+      "byte_count": 69,
+      "sha256": "296e41308b924c6cc964b8e6c7512021ad70689c6d26f73c57f5a347354d2a06",
+      "assembly_sha256": "20a39bccf01cebfe82b0d7ba8e707aed637f72af07c70489f5fdb34d925285fc"
+    },
+    {
+      "role": "placeholder-argument",
+      "assembly": "placeholder-argument.asm",
+      "address": "0x145895ce7",
+      "end_exclusive": "0x145895d52",
+      "byte_count": 107,
+      "sha256": "c2fdaf3ee25a769fe55b8df7e9c24118a650a37d7d83ffb736b7cf9d7cc5c67e",
+      "assembly_sha256": "9b2ef0686757c69d790ac3571f67499fe238510a8c69365a048550729ac33721"
+    },
+    {
+      "role": "armory-location-use",
+      "assembly": "armory-location-use.asm",
+      "address": "0x140137723",
+      "end_exclusive": "0x140137735",
+      "byte_count": 18,
+      "sha256": "bd24f5cf9f25829fb049904ac7c7e6c96c16c4167c759cf53a79f0282b6d26ad",
+      "assembly_sha256": "fb87912af322b53d27f1e67de0281ab6fd63973dcae7b5103851b75183bc289f"
+    }
+  ],
+  "source_projection": {
+    "path": "crates/azeroth-survivors-re/src/armory.rs",
+    "sha256": "f627c3a050bc3b58ff87fc4633b5f5f2d5b5862fbe2c1598392beb8940af04ce",
+    "contract": "Armory non-health effect -> item.equip -> {line} -> effect_line"
+  },
+  "case_count": 10,
+  "cases": [
+    {
+      "kind": "armory-constructor",
+      "key": "item.equip",
+      "argument": "line",
+      "count": 1
+    },
+    {
+      "kind": "display-method",
+      "byte_count": 0,
+      "text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "output_boundary": "0x145cd30d0"
+    },
+    {
+      "kind": "display-method",
+      "byte_count": 1,
+      "text_sha256": "2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "output_boundary": "0x145cd30d0"
+    },
+    {
+      "kind": "display-method",
+      "byte_count": 11,
+      "text_sha256": "5981b177059f855d65756089abdf4a54849bf6a67cca5e8f2b1985d698cd91e7",
+      "output_boundary": "0x145cd30d0"
+    },
+    {
+      "kind": "display-method",
+      "byte_count": 8,
+      "text_sha256": "749eae9b0da15ae992ab9b3f8ff57ac8325b8b81769aa518480a328f904d35df",
+      "output_boundary": "0x145cd30d0"
+    },
+    {
+      "kind": "display-method",
+      "byte_count": 31,
+      "text_sha256": "36653ec490651defc15439aa89f6be7bb8e0e1cc09ea3292deee186ca1b2ab4d",
+      "output_boundary": "0x145cd30d0"
+    },
+    {
+      "kind": "display-method",
+      "byte_count": 255,
+      "text_sha256": "d8f9abad0f43ffe2fce0032fd245bfc98edbdab8e222f7b6c313a35abfd2782a",
+      "output_boundary": "0x145cd30d0"
+    },
+    {
+      "kind": "string-drop",
+      "capacity": 0,
+      "deallocation_requested": false
+    },
+    {
+      "kind": "string-drop",
+      "capacity": 1,
+      "deallocation_requested": true
+    },
+    {
+      "kind": "string-drop",
+      "capacity": 31,
+      "deallocation_requested": true
+    }
+  ],
+  "conclusion": "Selected code slot is a String display adapter for one Armory localization argument; the noncode relocation is a Rust Location path; the ownerless exported reference is PE runtime-function metadata.",
+  "limits": [
+    "Synthetic original-instruction replay checks descriptor and ABI transfers, not the complete localization implementation or rendered text.",
+    "Template key selection and selected {line} source consumer match statically; whole Armory behavior and source execution remain unverified.",
+    "No new function ownership is inferred from PE declared extents or metadata references; original census counts remain unchanged.",
+    "Compiler, game, original/rebuilt comparison, saves and configuration are not invoked."
+  ]
+}

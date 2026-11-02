@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-16",
+  "target_sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+  "owner": "0x140119320",
+  "compression": {
+    "start": "0x1404ae320",
+    "end": "0x1404b1068",
+    "sha256": "e38f2ac8902b05402500db17ffb5732c438897f8b5c8d4d611ff2f0622e54c16",
+    "rea_evidence_id": "ev_666fff40e92762fd51a53ab641d5a2309ec7f006079ef4f3ca3aa0034e1b81ac"
+  },
+  "initial_state": {
+    "address": "0x1458e5bb8",
+    "bytes_hex": "67e6096a85ae67bb72f36e3c3af54fa57f520e518c68059babd9831f19cde05b",
+    "owner_load": "0x14011954b/0x140119559"
+  },
+  "checks": [
+    {
+      "input_length": 0,
+      "input_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "native_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "blocks": 1
+    },
+    {
+      "input_length": 3,
+      "input_sha256": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+      "native_sha256": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+      "blocks": 1
+    },
+    {
+      "input_length": 55,
+      "input_sha256": "9f4390f8d30c2dd92ec9f095b65e2b9ae9b0a925a5258e241c9f1e910f734318",
+      "native_sha256": "9f4390f8d30c2dd92ec9f095b65e2b9ae9b0a925a5258e241c9f1e910f734318",
+      "blocks": 1
+    },
+    {
+      "input_length": 56,
+      "input_sha256": "b35439a4ac6f0948b6d6f9e3c6af0f5f590ce20f1bde7090ef7970686ec6738a",
+      "native_sha256": "b35439a4ac6f0948b6d6f9e3c6af0f5f590ce20f1bde7090ef7970686ec6738a",
+      "blocks": 2
+    },
+    {
+      "input_length": 65538,
+      "input_sha256": "d591ff05defe75c3c3624a82ef8590da060c0b931c320467c0b7d99078061b2c",
+      "native_sha256": "d591ff05defe75c3c3624a82ef8590da060c0b931c320467c0b7d99078061b2c",
+      "blocks": 1025
+    }
+  ],
+  "boundary": "Only original compression instructions run in Unicorn. In-memory CPU feature byte147764158=0 selects the existing scalar fallback, bypassing CPU detection/accelerated path. Any call/branch outside the function aborts. Padding and final big-endian formatting are supplied by the harness from native119320 operations. No OS, file, HTTP or updater instructions are reachable.",
+  "scope": "Binds native updater hash to standard SHA256; does not identify its original crate/version or replay the whole downloader.",
+  "provider_choice": "Source fixture helper reuses pinned ring0.17.14 SHA256 already present in lock and target dependencies; no claim native updater compression is ring. No sha2 crate/version string was found in bounded target byte search."
+}

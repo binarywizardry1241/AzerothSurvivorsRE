@@ -1,0 +1,648 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.110.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048",
+    "size_bytes": 140523520
+  },
+  "method": "Selected installed EXE read directly; retained canonical helper bytes are hash-verified and eight synthetic instruction probes execute. Embedded Lua literal/range discovery and bounded source inspection remain separate.",
+  "target_process_launched": false,
+  "compilation": "not_run",
+  "runtime_validation": "unverified",
+  "parity": "unverified",
+  "demon_cooldown": {
+    "gap_ids": [
+      24,
+      41
+    ],
+    "status": "confirmed_partial_source_formula_mismatch",
+    "canonical_manifest": "docs/analysis/evidence/0.110.0/ordinary-pets/manifest.json",
+    "native_range": {
+      "role": "cooldown",
+      "va": "0x145954780",
+      "byte_count": 579,
+      "file_offset": "0x5953b80",
+      "sha256": "054d9fd3def6c0872cbec4833538cb22b1a4bb664677e06f575c2ce5359c08eb",
+      "assembly": "cooldown.asm"
+    },
+    "canonical_assembly": "docs/analysis/evidence/0.110.0/ordinary-pets/cooldown.asm",
+    "canonical_assembly_sha256": "aeb977ade2e1b37807dab4c1ea051f8a3617eaa76745e3003bf24ae1bcce6866",
+    "native_branch_ranges": [
+      {
+        "va": "0x1459548ac",
+        "end_exclusive": "0x1459548be",
+        "canonical_assembly_lines": [
+          71,
+          73
+        ],
+        "observation": "Nonzero/non7 special branch multiplies descriptor+0x30 by Game+0x490.",
+        "file_offset": "0x5953cac",
+        "byte_count": 18,
+        "sha256": "2d1acb5f12d4d2c2d9552f4f6bb5a2707da5bc375f9c850481a0428cea34b489"
+      },
+      {
+        "va": "0x145954963",
+        "end_exclusive": "0x14595496b",
+        "canonical_assembly_lines": [
+          112,
+          112
+        ],
+        "observation": "Final MAXSS uses the 0.5-second floor.",
+        "file_offset": "0x5953d63",
+        "byte_count": 8,
+        "sha256": "cb84678e92b7c888ee73e2cc1ce438ad4a9a62c769a31f882111faea0a14cec4"
+      }
+    ],
+    "source_witnesses": [
+      {
+        "path": "crates/azeroth-survivors-re/src/run_effects/demons.rs",
+        "sha256": "8b87c9287bc13089d400f8cb0968e15b3425f955acbbcdfd8a403ab369c19e9f",
+        "line_ranges": [
+          [
+            223,
+            238
+          ]
+        ],
+        "observation": "Retained 0.105.0 attack_interval divides descriptor period by 1 plus aura10 haste plus special5 recovery/execute bonuses."
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/demons.rs",
+        "sha256": "2fe4333833bf27115e3782a670488c9aba6f75ee461c8cf4ec1192faad121a01",
+        "line_ranges": [
+          [
+            554,
+            568
+          ],
+          [
+            711,
+            718
+          ]
+        ],
+        "observation": "Live caller supplies the retained interval with aura10 haste and aura-adjusted cooldown; complete current aura/caller semantics remain pending."
+      }
+    ],
+    "cases": [
+      {
+        "synthetic_special": 1,
+        "synthetic_period": 2.0,
+        "current_cooldown": 1.0,
+        "native_seconds": 2.0,
+        "retained_source_scalar_formula_seconds": 2.0,
+        "source_haste_input": 0.0,
+        "source_target": "none"
+      },
+      {
+        "synthetic_special": 1,
+        "synthetic_period": 2.0,
+        "current_cooldown": 0.5,
+        "native_seconds": 1.0,
+        "retained_source_scalar_formula_seconds": 2.0,
+        "source_haste_input": 0.0,
+        "source_target": "none"
+      },
+      {
+        "synthetic_special": 1,
+        "synthetic_period": 2.0,
+        "current_cooldown": 0.10000000149011612,
+        "native_seconds": 0.5,
+        "retained_source_scalar_formula_seconds": 2.0,
+        "source_haste_input": 0.0,
+        "source_target": "none"
+      },
+      {
+        "synthetic_special": 1,
+        "synthetic_period": 2.0,
+        "current_cooldown": 0.0,
+        "native_seconds": 0.5,
+        "retained_source_scalar_formula_seconds": 2.0,
+        "source_haste_input": 0.0,
+        "source_target": "none"
+      },
+      {
+        "synthetic_special": 5,
+        "synthetic_period": 2.5,
+        "current_cooldown": 1.0,
+        "native_seconds": 2.5,
+        "retained_source_scalar_formula_seconds": 2.5,
+        "source_haste_input": 0.0,
+        "source_target": "none"
+      },
+      {
+        "synthetic_special": 5,
+        "synthetic_period": 2.5,
+        "current_cooldown": 0.5,
+        "native_seconds": 1.25,
+        "retained_source_scalar_formula_seconds": 1.6666666269302368,
+        "source_haste_input": 0.0,
+        "source_target": "none"
+      },
+      {
+        "synthetic_special": 5,
+        "synthetic_period": 2.5,
+        "current_cooldown": 0.10000000149011612,
+        "native_seconds": 0.5,
+        "retained_source_scalar_formula_seconds": 1.3157894611358643,
+        "source_haste_input": 0.0,
+        "source_target": "none"
+      },
+      {
+        "synthetic_special": 5,
+        "synthetic_period": 2.5,
+        "current_cooldown": 0.0,
+        "native_seconds": 0.5,
+        "retained_source_scalar_formula_seconds": 1.25,
+        "source_haste_input": 0.0,
+        "source_target": "none"
+      }
+    ],
+    "instruction_address_count": 34,
+    "static_check": {
+      "command": "python3 -B scripts/check-demon-cooldown-lead-0.110.0.py",
+      "result": "passed",
+      "case_count": 8,
+      "checker_sha256": "8e72d725cafa0741bf3ed0b4b8c3adf6e35ff3d758759622cd184c1b6d632370"
+    },
+    "limits": [
+      "Synthetic special1/special5 descriptors and Game state; actual current descriptor and caller/aura producers are not recovered here.",
+      "No callees are stubbed; instructions outside the current helper are rejected.",
+      "Retained-source scalar f32 formula is transcribed from inspected Rust; Rust is not compiled/executed.",
+      "No target process, game, compilation, MPQs or parity check."
+    ],
+    "next_static_step": "Recover current demon descriptor table and complete special7, caller/aura, scheduler, attack and lifecycle dependencies before replacing the retained interval or certifying the full release claim.",
+    "minimum_period_constant": {
+      "va": "0x145da8274",
+      "file_offset": "0x5da7274",
+      "byte_count": 4,
+      "sha256": "d99e58435243d9fef9c88273b8d553b4fba4d0baf8009d29eae74fa99e0d9f57",
+      "f32_value": 0.5
+    }
+  },
+  "addon_summons": {
+    "gap_ids": [
+      11,
+      41
+    ],
+    "status": "confirmed_embedded_api_absent_from_retained_source",
+    "current_embedded_chunk": {
+      "file_offset": "0x6bfc5c2",
+      "preferred_pe_va": "0x146bfd5c2",
+      "byte_count": 14541,
+      "sha256": "5202238629df69c1c03c0125007dc59fdcf747f1d2671fbe24e9782a07075754",
+      "method": "Unique retained inventory start-comment and final-frame-registration markers; no copied chunk.",
+      "body_or_lifetime_semantics_verified": false
+    },
+    "literal_evidence": [
+      {
+        "name": "AZS_GetSummons",
+        "literal_occurrences": [
+          {
+            "file_offset": "0x6bfd331",
+            "preferred_pe_va": "0x146bfe331",
+            "byte_count": 14,
+            "sha256": "f445a082f8fccb8fe3916598e269523fc60ded25fbeddcab1f81322ecf106bc7"
+          },
+          {
+            "file_offset": "0x6bfd662",
+            "preferred_pe_va": "0x146bfe662",
+            "byte_count": 14,
+            "sha256": "f445a082f8fccb8fe3916598e269523fc60ded25fbeddcab1f81322ecf106bc7"
+          },
+          {
+            "file_offset": "0x6bfd800",
+            "preferred_pe_va": "0x146bfe800",
+            "byte_count": 14,
+            "sha256": "f445a082f8fccb8fe3916598e269523fc60ded25fbeddcab1f81322ecf106bc7"
+          }
+        ],
+        "unique_definition_prefix": {
+          "literal": "function AZS_GetSummons(which)",
+          "file_offset": "0x6bfd328",
+          "preferred_pe_va": "0x146bfe328",
+          "byte_count": 30,
+          "sha256": "199aa61f78693d9b3517e1a158c546a828f78738e73d2ddf74681922727c6b2c"
+        }
+      },
+      {
+        "name": "AZS_GetSummonCount",
+        "literal_occurrences": [
+          {
+            "file_offset": "0x6bfd635",
+            "preferred_pe_va": "0x146bfe635",
+            "byte_count": 18,
+            "sha256": "724dd3394df0be46a3aa7da6d866ef537c98292d004613a1042203e23cbe12fb"
+          }
+        ],
+        "unique_definition_prefix": {
+          "literal": "function AZS_GetSummonCount(which)",
+          "file_offset": "0x6bfd62c",
+          "preferred_pe_va": "0x146bfe62c",
+          "byte_count": 34,
+          "sha256": "d84c1cb9dcbdd28664d3f926a459afad3020fb0b7a1e5722e267a4ed532da45f"
+        }
+      },
+      {
+        "name": "AZS_GetSummonGroups",
+        "literal_occurrences": [
+          {
+            "file_offset": "0x6bfd7c9",
+            "preferred_pe_va": "0x146bfe7c9",
+            "byte_count": 19,
+            "sha256": "60eda403f3b4c85e80c041f1dab21b4eee4a287dc3d56e6a26de43f25cf79b65"
+          }
+        ],
+        "unique_definition_prefix": {
+          "literal": "function AZS_GetSummonGroups()",
+          "file_offset": "0x6bfd7c0",
+          "preferred_pe_va": "0x146bfe7c0",
+          "byte_count": 30,
+          "sha256": "741f161c5be9c99a0835ec833e36a959b1774843b233fd5fddb6df4a185c5086"
+        }
+      },
+      {
+        "name": "AZS_PETS",
+        "literal_occurrences": [
+          {
+            "file_offset": "0x6bfc6d6",
+            "preferred_pe_va": "0x146bfd6d6",
+            "byte_count": 8,
+            "sha256": "0d900ceec4e2a54736145e6b8407da0b1fa94f0e0268c012b5ff041ab90f5ef9"
+          },
+          {
+            "file_offset": "0x6bfd393",
+            "preferred_pe_va": "0x146bfe393",
+            "byte_count": 8,
+            "sha256": "0d900ceec4e2a54736145e6b8407da0b1fa94f0e0268c012b5ff041ab90f5ef9"
+          },
+          {
+            "file_offset": "0x6bfd3ac",
+            "preferred_pe_va": "0x146bfe3ac",
+            "byte_count": 8,
+            "sha256": "0d900ceec4e2a54736145e6b8407da0b1fa94f0e0268c012b5ff041ab90f5ef9"
+          },
+          {
+            "file_offset": "0x6bff914",
+            "preferred_pe_va": "0x146c00914",
+            "byte_count": 8,
+            "sha256": "0d900ceec4e2a54736145e6b8407da0b1fa94f0e0268c012b5ff041ab90f5ef9"
+          },
+          {
+            "file_offset": "0x6bff972",
+            "preferred_pe_va": "0x146c00972",
+            "byte_count": 8,
+            "sha256": "0d900ceec4e2a54736145e6b8407da0b1fa94f0e0268c012b5ff041ab90f5ef9"
+          }
+        ],
+        "selected_literal": {
+          "literal": "AZS_PETS = {};",
+          "ranges": [
+            {
+              "file_offset": "0x6bfc6d6",
+              "preferred_pe_va": "0x146bfd6d6",
+              "byte_count": 14,
+              "sha256": "3b75d02150a7d0b37739bd59eeceb74346952b7a04a8d05a69f4930e61a22316"
+            }
+          ]
+        }
+      },
+      {
+        "name": "AZSPETS",
+        "literal_occurrences": [
+          {
+            "file_offset": "0x6bff902",
+            "preferred_pe_va": "0x146c00902",
+            "byte_count": 7,
+            "sha256": "8abacd4ac29241dc06097fddc13a4fd21340cde4ce96c51f6f980de2dcf70d94"
+          },
+          {
+            "file_offset": "0x6c00622",
+            "preferred_pe_va": "0x146c01622",
+            "byte_count": 7,
+            "sha256": "8abacd4ac29241dc06097fddc13a4fd21340cde4ce96c51f6f980de2dcf70d94"
+          }
+        ],
+        "selected_literal": {
+          "literal": "AZSPETS",
+          "ranges": [
+            {
+              "file_offset": "0x6bff902",
+              "preferred_pe_va": "0x146c00902",
+              "byte_count": 7,
+              "sha256": "8abacd4ac29241dc06097fddc13a4fd21340cde4ce96c51f6f980de2dcf70d94"
+            },
+            {
+              "file_offset": "0x6c00622",
+              "preferred_pe_va": "0x146c01622",
+              "byte_count": 7,
+              "sha256": "8abacd4ac29241dc06097fddc13a4fd21340cde4ce96c51f6f980de2dcf70d94"
+            }
+          ]
+        }
+      }
+    ],
+    "source_embedding": {
+      "path": "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs",
+      "sha256": "dd46d8905899ea67a4938263f8667267c196215c932a6c75a1de7e63485d15ce",
+      "line_ranges": [
+        [
+          1,
+          10
+        ]
+      ],
+      "embedded_asset": "docs/analysis/evidence/0.108.0/addon-api.lua",
+      "embedded_asset_sha256": "d97cae2cb64675a2b61c2651db6dd6af30bdd18f416bd6d8ab156f955826abf8",
+      "embedded_asset_lacks_names": [
+        "AZS_GetSummons",
+        "AZS_GetSummonCount",
+        "AZS_GetSummonGroups",
+        "AZS_PETS",
+        "AZSPETS"
+      ]
+    },
+    "source_absence": {
+      "names": [
+        "AZS_GetSummons",
+        "AZS_GetSummonCount",
+        "AZS_GetSummonGroups",
+        "AZS_PETS",
+        "AZSPETS"
+      ],
+      "scope": [
+        "crates/azeroth-survivors-re/src",
+        "crates/azeroth-survivors-re/assets",
+        "crates/benilla-app/src"
+      ],
+      "extensions": [
+        ".rs",
+        ".lua",
+        ".json",
+        ".xml"
+      ],
+      "searched_file_count": 1040,
+      "result": "No literal matches in these production source/asset roots; historical docs outside this search are not implementation."
+    },
+    "limits": [
+      "Summon getters/list parser and run-clock dependency have the bounded selected-target embedded Lua source corroboration recorded above; this is not observed execution.",
+      "External PR documentation supplies documented expectations, with receipt date separate from verified client release; native producer/cadence/identity/lifecycle guarantees remain unrecovered.",
+      "Native AZSPETS producer ownership, emitted field values, admission/caching, ReloadUI/new-run/terminal lifetime and complete summon consumers remain unrecovered.",
+      "Literal absence in the declared reconstruction source roots is bounded; dynamically generated names or future code changes are not excluded.",
+      "No external document, current API chunk or assembly extract is duplicated here; no Lua/Rust/game process executes."
+    ],
+    "next_static_step": "Use the hash-bound embedded getter/parser ranges and separately identified reference expectations to recover native AZSPETS producer, descriptor/identity/ordering and cache/cadence/lifetime dependencies, then connect the retained addon feed; current source implementation and runtime/parity remain open.",
+    "native_encoded_reference_lead": {
+      "instruction_address": "0x1458aca3a",
+      "file_offset": "0x58abe3a",
+      "byte_count": 7,
+      "sha256": "7e56f084c99826d380fc822d45b9e049469dceb8ccb4d7cd345ab250608a46a4",
+      "encoded_target": "0x146c01622",
+      "target_literal": "AZSPETS",
+      "declared_extent_start": "0x1458aa0c0",
+      "declared_extent_end_exclusive": "0x1458ad20d",
+      "declared_extent_ordinal": 332660,
+      "source_inventory": "docs/analysis/coverage/instruction-summary.json",
+      "boundary_decoder": "Capstone 5.0.7",
+      "observation": "Exact RIP-relative LEA addresses the standalone AZSPETS literal. The declared extent is a recovery candidate, not inferred source/function ownership or a complete producer contract."
+    },
+    "external_reference": {
+      "repository": "SurvivorsDragonUi",
+      "pull_request": 30,
+      "source_ref": "feature/native-banner-events",
+      "resolved_commit": "fbfb6a480957faaf53f63d34aed23e201a06f892",
+      "revision_witness": "git ls-remote refs/heads/feature/native-banner-events; each commit-pinned raw document was fetched and matched its branch URL bytes.",
+      "receipt_date": "2026-10-22",
+      "receipt_date_is_client_release_version": false,
+      "authority_limit": "External reference and addon-consumer documentation. Receipt date is not a verified client release. Only separately hash-bound installed embedded Lua corroboration below establishes selected-target static facts.",
+      "documents": [
+        {
+          "path": "docs/SUMMONS-API.md",
+          "byte_count": 7664,
+          "line_count": 134,
+          "sha256": "a38275f1bb34d100476368073c7e9616239c46005a5d463639ecfe73f90257c9",
+          "line_scopes": [
+            {
+              "lines": [
+                3,
+                6
+              ],
+              "purpose": "Receipt date and preserved older references."
+            },
+            {
+              "lines": [
+                16,
+                38
+              ],
+              "purpose": "Summon getter, groups, raw payload and update claims."
+            },
+            {
+              "lines": [
+                75,
+                78
+              ],
+              "purpose": "ID domain and absent unit-token conversion."
+            },
+            {
+              "lines": [
+                133,
+                134
+              ],
+              "purpose": "Publication/reload/rendering remain unverified."
+            }
+          ]
+        },
+        {
+          "path": "docs/PET-FRAMES.md",
+          "byte_count": 3824,
+          "line_count": 63,
+          "sha256": "44f3de148e30583bb24def03b573146b3d73a221d96ba71926d95f3d1b754cbf",
+          "line_scopes": [
+            {
+              "lines": [
+                3,
+                9
+              ],
+              "purpose": "Addon presentation and geometry scope."
+            },
+            {
+              "lines": [
+                20,
+                47
+              ],
+              "purpose": "Consumer gating, getter timing, zero-remaining visibility and session cleanup."
+            },
+            {
+              "lines": [
+                61,
+                63
+              ],
+              "purpose": "Unrun local/runtime validation."
+            }
+          ]
+        },
+        {
+          "path": "docs/AzerothSurvivors-Addon-API-2026-10-22.txt",
+          "byte_count": 24923,
+          "line_count": 479,
+          "sha256": "c65d1b00cfa7b7f69008f4b67358654966a1801845ea749d9e6c7f7ab0d46079",
+          "line_scopes": [
+            {
+              "lines": [
+                49,
+                50
+              ],
+              "purpose": "Documented run clock."
+            },
+            {
+              "lines": [
+                140,
+                159
+              ],
+              "purpose": "Individual/count/group getters and documented IDs, keys/kinds and lifetimes."
+            },
+            {
+              "lines": [
+                170,
+                170
+              ],
+              "purpose": "Update-stamp convention."
+            },
+            {
+              "lines": [
+                258,
+                259
+              ],
+              "purpose": "Eight raw summon fields and documented -1/-1 permanent sentinel."
+            },
+            {
+              "lines": [
+                351,
+                378
+              ],
+              "purpose": "Parser ordering, AZSPETS on-change claim, list delimiters and global five-per-second update limit."
+            }
+          ]
+        }
+      ]
+    },
+    "embedded_lua_corroboration": {
+      "status": "bounded_static_lua_source_contract_recovered",
+      "target_sha256": "e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048",
+      "range_scope": "Subranges of the existing 14,541-byte embedded chunk; metadata and observations only, no duplicate Lua extract.",
+      "ranges": {
+        "get_summons": {
+          "file_offset": "0x6bfd328",
+          "preferred_pe_va": "0x146bfe328",
+          "byte_count": 699,
+          "sha256": "85abeb4daa03c3cee37c2a41514e0f90fb0af40c2ff904850794708bab1e927a",
+          "start_marker": "function AZS_GetSummons(which)",
+          "end_marker_excluded": "\n-- How many summons"
+        },
+        "get_summon_count": {
+          "file_offset": "0x6bfd62c",
+          "preferred_pe_va": "0x146bfe62c",
+          "byte_count": 82,
+          "sha256": "9cd6b38b458fccc75534ec029152a5165a1f4f8ddeb54ec4a939a82b3f823f89",
+          "start_marker": "function AZS_GetSummonCount(which)",
+          "end_marker_excluded": "\n-- Your summons by kind"
+        },
+        "get_summon_groups": {
+          "file_offset": "0x6bfd7c0",
+          "preferred_pe_va": "0x146bfe7c0",
+          "byte_count": 685,
+          "sha256": "3daedf4bc3997bd168c1c5a97dba7e9fd317099621f12d15614a979305ec5109",
+          "start_marker": "function AZS_GetSummonGroups()",
+          "end_marker_excluded": "\n-- The bosses alive now"
+        },
+        "parse_pet_snapshot": {
+          "file_offset": "0x6bff8f0",
+          "preferred_pe_va": "0x146c008f0",
+          "byte_count": 161,
+          "sha256": "164b2be349b261b7cd3cf34ae0e19a726d1f957110e40f75e1e1f32779d664e7",
+          "start_marker": "elseif ( arg1 == \"AZSPETS\" ) then",
+          "end_marker_excluded": "elseif ( arg1 == \"AZSMETER\" ) then"
+        },
+        "get_run_time": {
+          "file_offset": "0x6bfcc20",
+          "preferred_pe_va": "0x146bfdc20",
+          "byte_count": 204,
+          "sha256": "d6604703ee84d07f5817c437d11e689cc5370c4b0c1fb514600dbe03f9c6131a",
+          "start_marker": "function AZS_GetRunTime()",
+          "end_marker_excluded": "\n-- ready, playing"
+        },
+        "list_parser": {
+          "file_offset": "0x6bfc950",
+          "preferred_pe_va": "0x146bfd950",
+          "byte_count": 635,
+          "sha256": "93e03badd5897caedfb5fe45c7098a63769c6204d072346b5a0854ad3203c93d",
+          "start_marker": "function AZS_List(msg, names)",
+          "end_marker_excluded": "\n-- The run's clock"
+        }
+      },
+      "facts": [
+        {
+          "range_roles": [
+            "parse_pet_snapshot",
+            "list_parser"
+          ],
+          "observation": "AZSPETS decodes exactly id, entry, key, kind, ends, dur, icon, name. AZS_List splits rows by semicolon, fields by comma, and uses tonumber(value) or the string."
+        },
+        {
+          "range_roles": [
+            "parse_pet_snapshot"
+          ],
+          "observation": "Each parsed AZSPETS event replaces AZS_PETS and sets AZS_PETS_UPDATED=GetTime()."
+        },
+        {
+          "range_roles": [
+            "get_summons"
+          ],
+          "observation": "AZS_GetSummons(which) preserves received row order and matches the exact key OR kind. It returns id, entry, key, kind, name, a nonempty icon when present, and normalized timing/permanence."
+        },
+        {
+          "range_roles": [
+            "get_summons",
+            "get_run_time"
+          ],
+          "observation": "ends>=0 gives duration=dur and remaining=max(ends-(AZS_GetRunTime() or 0),0). ends<0 sets permanent=true with nil duration/remaining; the getter does not require dur==-1. It retains still-listed expired rows at remaining zero."
+        },
+        {
+          "range_roles": [
+            "get_run_time"
+          ],
+          "observation": "Run time interpolates from received t only while phase is playing and AZS_RUN_UPDATED exists. The getter retains received t in other phases."
+        },
+        {
+          "range_roles": [
+            "get_summon_count"
+          ],
+          "observation": "AZS_GetSummonCount(which) is the length of the filtered individual getter result."
+        },
+        {
+          "range_roles": [
+            "get_summon_groups"
+          ],
+          "observation": "Groups are keyed by key, not kind, in first-seen received-key order. They carry count, permanent/temporary counts, and minimum temporary remaining; the second result counts all received rows."
+        },
+        {
+          "range_roles": [
+            "get_summons",
+            "parse_pet_snapshot"
+          ],
+          "observation": "The summon getter itself neither gates phase nor requires a receipt stamp. Those safeguards described in PET-FRAMES.md are addon-consumer policy, not a recovered native producer guarantee."
+        }
+      ],
+      "not_proved_by_lua": [
+        "Actual summon creation/arrival ordering, unique run-local IDs, stable key/kind assignments, localization/icons and cosmetic-companion exclusion require native producer/catalog recovery.",
+        "The documented -1 ends and -1 dur permanent pair is not proved as an emitted producer invariant by a getter that tests only ends<0.",
+        "On-change publication, five-per-second admission/caching, registration order, cross-run/world/reset/ReloadUI/terminal lifetime and snapshot replay require native callers/state/packet recovery.",
+        "PET-FRAMES.md retirement/deferred-read behavior describes an external addon consumer and does not certify either the current native producer or this reconstruction."
+      ],
+      "validation": "Static installed embedded source inspection only; no Lua/Rust execution, compilation, addon/game process or original/rebuilt parity."
+    }
+  },
+  "release_claims": {
+    "selected_target_review_count": 38,
+    "status": "pending_claim_recovery",
+    "ledger": "docs/analysis/coverage/changelog-reviews.json",
+    "limits": "All 38 selected-target ownership assessments remain pending; bounded #1/#6 checks and these leads do not certify whole release claims."
+  }
+}

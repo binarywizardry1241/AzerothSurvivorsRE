@@ -1,0 +1,933 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.115.0",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
+  },
+  "target_executed": false,
+  "compiled": false,
+  "owners": [
+    {
+      "role": "all19messageparser",
+      "start": "0x145819960",
+      "end_exclusive": "0x14581ba67",
+      "file_offset": "0x5818d60",
+      "sha256": "ea1fe63d6c30d432a7f2aabe8dc6c939d654f6a12b8a06ad03831dd70e9d9902",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/145819960.asm",
+      "extract_sha256": "01ee5c89360a8d8626bae9083e0e7358337d5f9b37e68eda7ae477cef4c4706b"
+    },
+    {
+      "role": "compressedbatchwriter",
+      "start": "0x145820d40",
+      "end_exclusive": "0x145821194",
+      "file_offset": "0x5820140",
+      "sha256": "053abe5747f11b0e3ede713e81cfd2aa29dfcfdabdf51f50cd42c24851033c62",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/145820d40.asm",
+      "extract_sha256": "098421ee731dc85c233f79e173f793d850f3399c828dcfda73467fb4425dfb0c"
+    },
+    {
+      "role": "compressedbatchreader",
+      "start": "0x145821360",
+      "end_exclusive": "0x1458215cb",
+      "file_offset": "0x5820760",
+      "sha256": "9512989f84d1044603f2c2848c66804a722f89165cea83e39f39b308a36dc9ce",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/145821360.asm",
+      "extract_sha256": "9044a46c3b6e9ac0ec5b2c2aaad56515fee8ccb0e988bc2f26eed1034d856785"
+    },
+    {
+      "role": "batchrowfilter",
+      "start": "0x1459c4ae0",
+      "end_exclusive": "0x1459c4e25",
+      "file_offset": "0x59c3ee0",
+      "sha256": "5a93b300afc58b8b3b6689990df10b1b04dfab28361c7889eef1860ca6423988",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/1459c4ae0.asm",
+      "extract_sha256": "e28621ddbf2f316eec158e8a086ed2e89cae9b2c219ff8085145836597f4260b"
+    },
+    {
+      "role": "queuedflush",
+      "start": "0x145824200",
+      "end_exclusive": "0x145824367",
+      "file_offset": "0x5823600",
+      "sha256": "66b0183f13665bd2ab395d197682b16f89e54ba4696cb01b8376ca1feb66abdd",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/145824200.asm",
+      "extract_sha256": "ab8942372b9a89a4913d7f594ce04b25a148713f77e1b055628a9cdff7ff4508"
+    },
+    {
+      "role": "clientwireconsumer",
+      "start": "0x145896520",
+      "end_exclusive": "0x1458978d4",
+      "file_offset": "0x5895920",
+      "sha256": "88106a39d69debae447ebd5f58f32bccd55798db5d61c6cabc5940bc5feb03f7",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/145896520.asm",
+      "extract_sha256": "1a78bd5b211341c387c8f059b3fb866e4a3900499126a38affc2a36d4dbf6240"
+    },
+    {
+      "role": "native15producer",
+      "start": "0x14581d7b0",
+      "end_exclusive": "0x14581dd84",
+      "file_offset": "0x581cbb0",
+      "sha256": "e6b17179670d84a2364c561b4abd06433f666b20c234e3ebe9db90d5e6d5a666",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/14581d7b0.asm",
+      "extract_sha256": "bac35f948d61d148d2b903f40d2b2ddfd6298ae37be506218becf7f812b45790"
+    },
+    {
+      "role": "remote15contextwrapper",
+      "start": "0x1458eb290",
+      "end_exclusive": "0x1458eb5e9",
+      "file_offset": "0x58ea690",
+      "sha256": "4252466e9d7837acb2fd76171d8bc93c55d291eb09772888d185b1c3c462b8a7",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/1458eb290.asm",
+      "extract_sha256": "d9c2359c4d803d5147defc8aab44316be3a43af1f84c5fa7b4b81e7b8b230143"
+    },
+    {
+      "role": "native15validation",
+      "start": "0x14584a9b0",
+      "end_exclusive": "0x14584af22",
+      "file_offset": "0x5849db0",
+      "sha256": "83840cff8e208552a03e44341f9f5fdfb57b0595f4f4782ea29b15ad4caa3486",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/14584a9b0.asm",
+      "extract_sha256": "136ca8a79e435dc9580e652d3dd629a9ef484fc7299ac508f4cb902014a3e654"
+    },
+    {
+      "role": "spelltooltipsanitizer",
+      "start": "0x14584b0b0",
+      "end_exclusive": "0x14584b1f0",
+      "file_offset": "0x584a4b0",
+      "sha256": "5d2c22fbfb73c7dcb7b9d30186cec9f6e18effc181295541dc0d94d0059c365c",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/14584b0b0.asm",
+      "extract_sha256": "500b915f912427a3ce28a5a3c39c2c14341787d219609425e9b7dba71b5f5186"
+    },
+    {
+      "role": "geargrantfilter",
+      "start": "0x14584b280",
+      "end_exclusive": "0x14584b363",
+      "file_offset": "0x584a680",
+      "sha256": "350ceb243f7daa64d6b977127398f6046724627c26291844151ae15a9e57d84f",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/14584b280.asm",
+      "extract_sha256": "6427ad63874c3b3fbd924e8fd91ad97f23f59029b563d5a9c50386207b36b313"
+    },
+    {
+      "role": "spellvisualscaleproducer",
+      "start": "0x145936cf0",
+      "end_exclusive": "0x1459371d0",
+      "file_offset": "0x59360f0",
+      "sha256": "69c5a8fd4e192d1e32f15179e518b04bcec484ec1ec7caec1c8e218099fd073e",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/145936cf0.asm",
+      "extract_sha256": "08e320bb2db7191d1551ebafacd9ea78c86ee24e24a386a96df0807c2b1ed8c7"
+    },
+    {
+      "role": "AZSRUNscalarsemanticproof",
+      "start": "0x1458f25e0",
+      "end_exclusive": "0x1458f33bd",
+      "file_offset": "0x58f19e0",
+      "sha256": "2168f293db78b8cf159c25ae5d19eaf597bccded099099df002027b9b7d470a0",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/1458f25e0.asm",
+      "extract_sha256": "bb68600b30133ea77d63edd7b5a49b1023397a280eb644806ebf1f1b648f13d7"
+    },
+    {
+      "role": "bossidpairfilter",
+      "start": "0x1459bb9f0",
+      "end_exclusive": "0x1459bbba8",
+      "file_offset": "0x59badf0",
+      "sha256": "5d0f25ab8d48a85006e4e65e722a701c2cbb926dbde057076e7c9d511fd92fde",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/1459bb9f0.asm",
+      "extract_sha256": "832e5b139d79361f6a961b3a3608326df5cc3d6a5f0ebc794393db5927b6b313"
+    },
+    {
+      "role": "bossidrowfilter",
+      "start": "0x1459ba540",
+      "end_exclusive": "0x1459ba708",
+      "file_offset": "0x59b9940",
+      "sha256": "d9c1b99c96863b187c6d597f13a8957d405255233c85a121ae1d66e08db8c02e",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/1459ba540.asm",
+      "extract_sha256": "1c93c97a7f4f7d8f07725e6f0e41179096a8fc6192a292af191c9b3b7b24156f"
+    },
+    {
+      "role": "bossidwordfilter",
+      "start": "0x1459bbd80",
+      "end_exclusive": "0x1459bbf23",
+      "file_offset": "0x59bb180",
+      "sha256": "e1d40ab297f26018bcf9bbdb257692ea401a66c3d9074de40e568862a7e67ce3",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/1459bbd80.asm",
+      "extract_sha256": "99bff8cbfce35a6ea9e648dd8138a33d88a4740be265dc6abb1a1ed3a19a5b73"
+    },
+    {
+      "role": "clienttextescape",
+      "start": "0x14583bab0",
+      "end_exclusive": "0x14583bc92",
+      "file_offset": "0x583aeb0",
+      "sha256": "3dfc04705bc24d4356dfd4fc4c4fae73c10d82c8082e0f241c31ffe6864c2609",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/14583bab0.asm",
+      "extract_sha256": "9bc039e23afc8a27a6f68f7b0452f90003129e0da8b48d544769b0dc331e912e"
+    },
+    {
+      "role": "companiondescriptorlookup",
+      "start": "0x14583ed80",
+      "end_exclusive": "0x14583f053",
+      "file_offset": "0x583e180",
+      "sha256": "58e593a46a89a80925ea58324534f96f7b190657180d1226bfcceb6f31cc231b",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/14583ed80.asm",
+      "extract_sha256": "5090d37e631732b5e36ca01ffe784e7b1f58453f3655a5385faf66cb97d705be"
+    },
+    {
+      "role": "hudjsonportqueue",
+      "start": "0x14586d120",
+      "end_exclusive": "0x14586d25e",
+      "file_offset": "0x586c520",
+      "sha256": "9621c1c91fde5b2f3c268837c5d03a70a8a12e5e5d933e16872c49bdce6f65bc",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/14586d120.asm",
+      "extract_sha256": "0f6b361c87401a16734fdbf905fc0c35cb706ece5110d9fb2ee2557b6a082e34"
+    },
+    {
+      "role": "spelltooltipportqueue",
+      "start": "0x14586c6d0",
+      "end_exclusive": "0x14586cbab",
+      "file_offset": "0x586bad0",
+      "sha256": "0f28c7e42df1df3794ed9224dc08d62eb8e1641f13c28775b322eb64eaf3e701",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/14586c6d0.asm",
+      "extract_sha256": "77f86fe54d241f27f2aa94dd9e2cd76333e09e49d14785ad214b6530999bd444"
+    },
+    {
+      "role": "visualscaleportqueue",
+      "start": "0x14586cf60",
+      "end_exclusive": "0x14586d0de",
+      "file_offset": "0x586c360",
+      "sha256": "06e991ad2e2280bef7f9abf513e03ea810e6b77f74d7a9843577d870fae37e19",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/14586cf60.asm",
+      "extract_sha256": "befd3e6b5ebd04147599cbaea25b03ac91457663dcc5e8b1ea443d7d72e1bb63"
+    },
+    {
+      "role": "end18logout",
+      "start": "0x1458948f0",
+      "end_exclusive": "0x145894b00",
+      "file_offset": "0x5893cf0",
+      "sha256": "1f11dcee8fd5ff2e371643b1acba2371fbe319fe26c60216d51cc5f17f92c007",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/1458948f0.asm",
+      "extract_sha256": "cab8c9834bad811f1d0eddb3f1e9c4d6169f2b01f6276a235cd93bd5356c5a4e"
+    },
+    {
+      "role": "end18resubmithero",
+      "start": "0x145893fc0",
+      "end_exclusive": "0x145894385",
+      "file_offset": "0x58933c0",
+      "sha256": "a044303e2af539732b67ff366a358acd85e761398f9b132b5e434c9e4feae2a0",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/145893fc0.asm",
+      "extract_sha256": "a2bd931396830722827082450d299ff38ab0ae5ddc1f8a6a2c4525a41a1a37e3"
+    },
+    {
+      "role": "200outerframebudget",
+      "start": "0x145879b31",
+      "end_exclusive": "0x145879c41",
+      "file_offset": "0x5878f31",
+      "sha256": "b4f05a428f46509267a7e1610eba80daafeb5f173149bdae3d98a041d38b443b",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/145879b31-145879c41.asm",
+      "extract_sha256": "fba2639b39465af964e48087de7f89c54cd9dabd3062cb506f35103ad1b91c16"
+    },
+    {
+      "role": "host60Hzguestunthrottledflush",
+      "start": "0x14587d637",
+      "end_exclusive": "0x14587d6d9",
+      "file_offset": "0x587ca37",
+      "sha256": "7ddc1bdb4e3a7a41a125d17ccbd58bc597e58a56e3a2cdcdf93a9f71e9b91b05",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/14587d637-14587d6d9.asm",
+      "extract_sha256": "c612b63c635b7129edba55d0ac2065db689a0518f77d9b14e26895ed2736cc16"
+    },
+    {
+      "role": "native15cadence",
+      "start": "0x14587b322",
+      "end_exclusive": "0x14587b4fc",
+      "file_offset": "0x587a722",
+      "sha256": "c0282458fb562fbe074e95267d3c14b4a7686e80e98ba7e62b7f9f2861a48465",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/14587b322-14587b4fc.asm",
+      "extract_sha256": "fd3c02d3599d4daa78e8eae122c37641b0ec326a78ebbf116eacd02a1259f63d"
+    },
+    {
+      "role": "initialrefreshclockzero",
+      "start": "0x1458770fc",
+      "end_exclusive": "0x145877118",
+      "file_offset": "0x58764fc",
+      "sha256": "a1e509ec8936b96d5f1c8f0b0affbe67cfd46278aca94b0c4fd6bdddbcb403e5",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/1458770fc-145877118.asm",
+      "extract_sha256": "dfbb62557921e02c9e408eb63406405f688814478d3edb7a544624975933354e"
+    },
+    {
+      "role": "spelltooltipnameandrank",
+      "start": "0x1458649b7",
+      "end_exclusive": "0x145864b97",
+      "file_offset": "0x5863db7",
+      "sha256": "9c50b8b1168540ee23ad6224810b0d1385237039ff12b48094f35b2617a4b818",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/1458649b7-145864b97.asm",
+      "extract_sha256": "807cfa47171be4a6d1613470d70e544e8e5be71fd4c5b11e39d839f6ccf48be6"
+    },
+    {
+      "role": "spelltooltiprange",
+      "start": "0x145864d29",
+      "end_exclusive": "0x145864dfb",
+      "file_offset": "0x5864129",
+      "sha256": "d09918c9dd0ef5a3ab2662b7709343aec983853e12ba609e0bd405424c5d0d76",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/145864d29-145864dfb.asm",
+      "extract_sha256": "686b7209023d520b61b263f93c0a7cf6043e8da90648600357525fba441f7709"
+    },
+    {
+      "role": "spelltooltipautomatic",
+      "start": "0x14586524d",
+      "end_exclusive": "0x145865356",
+      "file_offset": "0x586464d",
+      "sha256": "5b189c71ac3777edf25f06848ddf1969e7d2a7642a184983d94036252d7462ea",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/14586524d-145865356.asm",
+      "extract_sha256": "c33b74a28c1552f7732414d6a996581b5ea3da74652198326da59948f9e5fe76"
+    },
+    {
+      "role": "spelltooltipcooldown",
+      "start": "0x14586535c",
+      "end_exclusive": "0x145865456",
+      "file_offset": "0x586475c",
+      "sha256": "dfd82163ebb46e9dbb9b9e31abe79f1a4704161551533eaf4e92a12060ac8049",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/14586535c-145865456.asm",
+      "extract_sha256": "c20bbaba2189ad950bcc7c8b6d65217bffe7a5bb3875f31e6df1fdcabb7e0eb4"
+    },
+    {
+      "role": "spelltooltipdescription",
+      "start": "0x1458655fb",
+      "end_exclusive": "0x14586561c",
+      "file_offset": "0x58649fb",
+      "sha256": "f1a970e4f067a4e76900726633017033d152443b52ad65254d7bd3cec04f3892",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/1458655fb-14586561c.asm",
+      "extract_sha256": "c8a04fb3e9851675db12548bd3bf6dd7da41cc1363f9c34b79e494caa357028b"
+    },
+    {
+      "role": "spelltooltiprecordlayout",
+      "start": "0x145866364",
+      "end_exclusive": "0x145866422",
+      "file_offset": "0x5865764",
+      "sha256": "edfa4a6c2d42f52fd8417cbeb594256bda7bbacf937623bc078cd4f29b3095bb",
+      "extract": "docs/analysis/evidence/0.115.0/coop-replication/145866364-145866422.asm",
+      "extract_sha256": "d8f4ba4d93c3071c27177d8706650cc9cc2ee929d1944982cae4d93201943501"
+    }
+  ],
+  "shared_ranges": [
+    {
+      "role": "all19serializer",
+      "owner_manifest": "docs/analysis/evidence/0.115.0/coop-server-party/manifest.json",
+      "start": "0x14581c690",
+      "extract": "docs/analysis/evidence/0.115.0/coop-server-party/14581c690.asm",
+      "sha256": "83a146914678e5b1dcc86086913f4ce71016d53229a913e8fa5c7a27abb5526d"
+    }
+  ],
+  "tables": [
+    {
+      "role": "serializer19",
+      "address": "0x146ccb14c",
+      "sha256": "e6164577859b0c993f2d42cc2ad2bb47407cbac650a188e909bede54cb7ce556",
+      "targets": [
+        "0x14581c6fd",
+        "0x14581d1b2",
+        "0x14581cb1c",
+        "0x14581cb4f",
+        "0x14581ca88",
+        "0x14581d1ee",
+        "0x14581d25e",
+        "0x14581d172",
+        "0x14581d3ba",
+        "0x14581cafa",
+        "0x14581d2af",
+        "0x14581ca1a",
+        "0x14581caaa",
+        "0x14581d1ff",
+        "0x14581c818",
+        "0x14581cb3e",
+        "0x14581c73c",
+        "0x14581d1dd",
+        "0x14581d28d"
+      ]
+    },
+    {
+      "role": "parser19",
+      "address": "0x146ccb0d8",
+      "sha256": "26e3cc1284d09f047285ebb665d10502b9f6933bb870b6ea1a77ddb49a251d2a",
+      "targets": [
+        "0x1458199ed",
+        "0x14581a7dc",
+        "0x14581a097",
+        "0x14581a105",
+        "0x145819f36",
+        "0x14581a81d",
+        "0x14581a927",
+        "0x14581a766",
+        "0x14581ade7",
+        "0x14581a038",
+        "0x14581aa0a",
+        "0x145819e68",
+        "0x145819f95",
+        "0x14581a845",
+        "0x145819c5d",
+        "0x14581a0f6",
+        "0x145819aab",
+        "0x14581a811",
+        "0x14581a9ab"
+      ]
+    },
+    {
+      "role": "controlboolnormalization",
+      "address": "0x146ccb124",
+      "sha256": "7a94f475a58050a509c16d8e3b73b05fb8464a537b64dc85b24c08ac0870ebb9",
+      "targets": [
+        "0x14581a79b",
+        "0x14581a79b",
+        "0x14581a79b",
+        "0x14581a79b",
+        "0x14581a79b",
+        "0x14581a79b",
+        "0x14581a79b",
+        "0x14581ba07",
+        "0x14581ba37",
+        "0x14581b9d7"
+      ]
+    },
+    {
+      "role": "clientconsumer",
+      "address": "0x14702fe40",
+      "sha256": "edb1b369d2042c1549e6643f24bc8df30d0bffab286f36d81d25e8dc2a28856d",
+      "targets": [
+        "0x14589659c",
+        "0x145896bb9",
+        "0x145897644",
+        "0x1458968bf",
+        "0x145897644",
+        "0x145897010",
+        "0x145897644",
+        "0x1458970ad",
+        "0x145896ac6",
+        "0x145896c2a",
+        "0x145896ce0",
+        "0x1458971dc",
+        "0x145897135",
+        "0x145896692",
+        "0x145896b9d",
+        "0x1458967a1",
+        "0x1458965df",
+        "0x145896e9f"
+      ]
+    },
+    {
+      "role": "enginecommandsloginSync",
+      "address": "0x14702fc18",
+      "sha256": "0ad9a43069d3f52bae5d0a6beca6d301b2070eb93baa64b744e7e3d9019f5969",
+      "targets": [
+        "0x145883c54",
+        "0x145883ea8",
+        "0x145883da7",
+        "0x145883d88",
+        "0x145883d88",
+        "0x145883d88",
+        "0x145883d88",
+        "0x145883dce"
+      ]
+    }
+  ],
+  "literals": [
+    {
+      "role": "synchronizeconstant",
+      "address": "0x14702cef0",
+      "file_offset": "0x702baf0",
+      "hex": "0500000000000080",
+      "sha256": "3533a639926376a36a2f9f8980a95bd65c0b2aa3456cfafa09098cfdb16b64a5"
+    },
+    {
+      "role": "zoneentryevent",
+      "address": "0x14702d607",
+      "file_offset": "0x702c207",
+      "hex": "636f6f707374617274",
+      "sha256": "a754ef982c9b8239fbf5a0669abcfc90f1085a87d8d4693f71b0a01dbab12183"
+    },
+    {
+      "role": "zoneentrykey",
+      "address": "0x14702c80e",
+      "file_offset": "0x702b40e",
+      "hex": "6267",
+      "sha256": "3f14db6ed20043e880a29460790f5f5cec2a7d38c41795e59fdac71789322af2"
+    },
+    {
+      "role": "hyperlinkstart",
+      "address": "0x146ccc95d",
+      "file_offset": "0x6ccb55d",
+      "hex": "7c48",
+      "sha256": "43fdd231d5631a9f3537127f6f39d55445d2709b04d079fcad99542743cffc65"
+    },
+    {
+      "role": "escapedhyperlinkstart",
+      "address": "0x146ccc95f",
+      "file_offset": "0x6ccb55f",
+      "hex": "7c7c48",
+      "sha256": "f78c81c6efe49edf119f0642a3a98a1311817accd81b3a2c2423f776438650cb"
+    },
+    {
+      "role": "hyperlinkend",
+      "address": "0x146ccc962",
+      "file_offset": "0x6ccb562",
+      "hex": "7c68",
+      "sha256": "b0eeb158511701d609170101dce65cfd0dc55e066fc7b8aef28dd50d626f6da1"
+    },
+    {
+      "role": "escapedhyperlinkend",
+      "address": "0x146ccc964",
+      "file_offset": "0x6ccb564",
+      "hex": "7c7c68",
+      "sha256": "50acb25c0e9428b42820b0d6e7e4d09c1f8c770b9079b3da4d8e768449a3823d"
+    },
+    {
+      "role": "texturestart",
+      "address": "0x146ccc967",
+      "file_offset": "0x6ccb567",
+      "hex": "7c54",
+      "sha256": "5e1d2315609edfae0615586326f8f84e8a06aed74b3924e5010d50bab3e3b607"
+    },
+    {
+      "role": "escapedtexturestart",
+      "address": "0x146ccc969",
+      "file_offset": "0x6ccb569",
+      "hex": "7c7c54",
+      "sha256": "aaeea56e34df383d6d551aec5eccd035e5ad04d21d8f1eed63a19b43ee0769cd"
+    },
+    {
+      "role": "textureend",
+      "address": "0x146ccc96c",
+      "file_offset": "0x6ccb56c",
+      "hex": "7c74",
+      "sha256": "4f4b382e3d083585eb13c08fa615fc20d1c623f210b6b1e023be6d0cbc11f505"
+    },
+    {
+      "role": "escapedtextureend",
+      "address": "0x146ccc96e",
+      "file_offset": "0x6ccb56e",
+      "hex": "7c7c74",
+      "sha256": "2df6795af3eefa7a9143420d2d4eb94a8b0322ca63f82fa1083e3a17f830eb80"
+    },
+    {
+      "role": "AZSRUNfieldformat",
+      "address": "0x14732fb39",
+      "file_offset": "0x732e739",
+      "hex": "02743dc5200000700200043b70683dc0053b6c766c3dc0043b78703dc0053b78706e3dc0043b68703dc120000070053b68706d3dc120000070043b73683dc120000070063b676f6c643dc0073b6b696c6c733dc0043b656e3dc0043b656c3dc0043b62753dc0043b67753dc0043b67613dc0073b6c616972733dc0043b62733dc0043b62743dc0043b6e623dc5200000700100053b6e626e3dc0053b66696e3dc120000070063b6c6566743dc5200000700100063b656e646c3dc0053b776f6e3dc0073b6c697665733dc0043b72723dc0053b7272633dc0073b63686573743dc0073b6465616c743dc120000070043b626b3dc0043b676b3dc0043b656b3dc0043b636b3dc0073b74616b656e3dc120000070043b67653dc0063b6f7765643dc0043b736c3dc0063b70726f633dc0043b70763dc0043b706d3dc0043b70783dc5200000700100043b70793dc5200000700100043b707a3dc5200000700100043b70663dc520000070030000677561726469616e6e6f726d",
+      "sha256": "d762741e6d0e5a3b3c5fa7f05f4d3a9ed33173bd9d8dc78ca4c95c1c5b6498bd"
+    },
+    {
+      "role": "phaselabellengths",
+      "address": "0x1473327f8",
+      "file_offset": "0x73313f8",
+      "hex": "050000000000000007000000000000000800000000000000060000000000000004000000000000000700000000000000",
+      "sha256": "af88778880132958e300ef3bdb91e13c7229631d4a7f4e517a737b577da1ff49"
+    },
+    {
+      "role": "phaselabelpointers",
+      "address": "0x147332828",
+      "file_offset": "0x7331428",
+      "hex": "1bfb32470100000020fb32470100000027fb3247010000002ffb32470100000035fb324701000000c9f7324701000000",
+      "sha256": "62e5f43182cb14980544d1bc537e10474c4f3e3a975060b7de064c526c7f1805"
+    },
+    {
+      "role": "phase0through4",
+      "address": "0x14732fb1b",
+      "file_offset": "0x732e71b",
+      "hex": "7265616479706c6179696e6763686f6f73696e6770617573656464656164",
+      "sha256": "4a9db7f78372addb52099502b435fdfbe29c6ed978563f12f6498729f07ce71b"
+    },
+    {
+      "role": "phase5",
+      "address": "0x14732f7c9",
+      "file_offset": "0x732e3c9",
+      "hex": "766963746f7279",
+      "sha256": "21665ca201d4070f6fcc99b84aa1e55ae49e7b47069a24ed524da86413381b23"
+    },
+    {
+      "role": "scalar1",
+      "address": "0x145edfeb0",
+      "file_offset": "0x5edeab0",
+      "hex": "0000803f",
+      "sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c"
+    },
+    {
+      "role": "percent100",
+      "address": "0x145ee03c0",
+      "file_offset": "0x5edefc0",
+      "hex": "0000c842",
+      "sha256": "2238f30df488055daf5e8f362cf904e370011a172d20df193c1b7ae8e5db8e01"
+    },
+    {
+      "role": "minus100",
+      "address": "0x1465f92f0",
+      "file_offset": "0x65f7ef0",
+      "hex": "0000c8c2",
+      "sha256": "a48bed9ee2950cc60ca91386a6c64a241a9ffd24bdc321bb15424ac7a7d3baed"
+    },
+    {
+      "role": "densityweight",
+      "address": "0x145ef0570",
+      "file_offset": "0x5eef170",
+      "hex": "cdcc4c3d",
+      "sha256": "0b9d79ff0fc4d0a77ef398763bbe45c445501e826219f2b6a1aa709411ab631d"
+    },
+    {
+      "role": "healthweight",
+      "address": "0x145ef0478",
+      "file_offset": "0x5eef078",
+      "hex": "cdcccc3e",
+      "sha256": "e0fb2d87992a9fc79e7729163ad2aea5efbf14806711292c8c46e873bac1a253"
+    },
+    {
+      "role": "damageweight",
+      "address": "0x145ee0378",
+      "file_offset": "0x5edef78",
+      "hex": "9a99193f",
+      "sha256": "8e215ece122cf70ebe3556a0318fa6c395d1766375c3edc080967e4a09592401"
+    },
+    {
+      "role": "factor2",
+      "address": "0x145ee02b0",
+      "file_offset": "0x5edeeb0",
+      "hex": "00000040",
+      "sha256": "d88c86f15bbea365d658ad95a81d45367c465f7af6f7264fb077f01747ddc77d"
+    },
+    {
+      "role": "densitycap5",
+      "address": "0x145ee0200",
+      "file_offset": "0x5edee00",
+      "hex": "0000a040",
+      "sha256": "fca31f1667a6aa1bba12fca4e4ea1becd503379d80da3213af07f6cc5702828d"
+    },
+    {
+      "role": "elapsedslack30",
+      "address": "0x146c64700",
+      "file_offset": "0x6c63300",
+      "hex": "0000000000003e40",
+      "sha256": "a6eb657cf3aab7d4083b6f0eca93d6e4726d1db995b090f29decf45f2376682d"
+    },
+    {
+      "role": "bossbudgetrate",
+      "address": "0x146ccc668",
+      "file_offset": "0x6ccb268",
+      "hex": "4f1be8b4814e6b3f",
+      "sha256": "f55b3b8b5263b55e132fd1ecf956640ef4c9587498eb91d2fdb50ffde0ab3f40"
+    },
+    {
+      "role": "killcaprate",
+      "address": "0x1461493e8",
+      "file_offset": "0x6147fe8",
+      "hex": "0000000000004440",
+      "sha256": "68b60b1aa7693afedf6e83261ef608190ed91db474cf4806a0a5773599073163"
+    },
+    {
+      "role": "killcapbase",
+      "address": "0x146c7f6f8",
+      "file_offset": "0x6c7e2f8",
+      "hex": "0000000000004940",
+      "sha256": "fe555d486cc8379252e92fe7c97b5e5b603a97a9f965105cfd169a1ab4327fb9"
+    },
+    {
+      "role": "goldcaprate",
+      "address": "0x1460e8470",
+      "file_offset": "0x60e7070",
+      "hex": "0000000000407f40",
+      "sha256": "35ba779625877df3fea7b5cc8f8c8b7842a6fb8ebb44f00d39aaa18c342c4575"
+    },
+    {
+      "role": "goldcapbase",
+      "address": "0x145ee3c80",
+      "file_offset": "0x5ee2880",
+      "hex": "0000000000408f40",
+      "sha256": "139107fd63d004e94cb64abb75361dd8490810c6709a9311896ca17496f5ecde"
+    },
+    {
+      "role": "guardiancaprate",
+      "address": "0x145f93b00",
+      "file_offset": "0x5f92700",
+      "hex": "9a9999999999a93f",
+      "sha256": "7f925b2036e92fe2f1f0697c3aedfff74d719c1ee2cb6b739d7c30484e75972c"
+    },
+    {
+      "role": "cachecaprate",
+      "address": "0x145fbe140",
+      "file_offset": "0x5fbcd40",
+      "hex": "9a9999999999b93f",
+      "sha256": "45d2b662d9d490ae9b932759c910b26b9a874065de620f4ac0a3a23a65e40b8c"
+    },
+    {
+      "role": "cachecapbase",
+      "address": "0x145fd0918",
+      "file_offset": "0x5fcf518",
+      "hex": "0000000000000040",
+      "sha256": "3f710ac088db33363087de2b9a657541fe5447821debaa9fe5cbd538eb1a5f29"
+    },
+    {
+      "role": "visualscaleminimum",
+      "address": "0x145ee05c0",
+      "file_offset": "0x5edf1c0",
+      "hex": "cdcccc3d",
+      "sha256": "fb360f7241a770dc32cade9a1d1273c92b13bd4959b1c130931312b7fe95e63f"
+    },
+    {
+      "role": "visualscalemaximum",
+      "address": "0x145ee038c",
+      "file_offset": "0x5edef8c",
+      "hex": "00002041",
+      "sha256": "80c8a717ccd70c8809eb78e6a9591c003e11c721fe0ccaf62fd592abda1a5593"
+    }
+  ],
+  "ghidra_queries": [
+    {
+      "owner": "0x145819960",
+      "operation": "procedure_pseudo_code",
+      "subject_sha256": "ea1fe63d6c30d432a7f2aabe8dc6c939d654f6a12b8a06ad03831dd70e9d9902",
+      "evidence_id": "ev_4b237fa2b91079c66292ee0303c68d1f0086a9e5308037d442b3e13846ba352a",
+      "analysis_profile_sha256": "3e3f547c6474641a98865b5d92dfcbf06b54b9cf1ec591496652d375a6561910",
+      "provider": "ghidra",
+      "limitations": [
+        "Raw-slice decompiler may stop at indirect dispatch; retained complete assembly and original PE dispatch tables supply switch targets."
+      ]
+    },
+    {
+      "owner": "0x145820d40",
+      "operation": "procedure_pseudo_code",
+      "subject_sha256": "053abe5747f11b0e3ede713e81cfd2aa29dfcfdabdf51f50cd42c24851033c62",
+      "evidence_id": "ev_f4da07ccb94135beb4c162924a36f1c23135b3ddd10d3bd852d0696aab64f059",
+      "analysis_profile_sha256": "e7fc644e648274c30189b99b43faae34750dbe2c6f7ba70728abc00eb22c5b8d",
+      "provider": "ghidra",
+      "limitations": [
+        "Raw-slice decompiler may stop at indirect dispatch; retained complete assembly and original PE dispatch tables supply switch targets."
+      ]
+    },
+    {
+      "owner": "0x145821360",
+      "operation": "procedure_pseudo_code",
+      "subject_sha256": "9512989f84d1044603f2c2848c66804a722f89165cea83e39f39b308a36dc9ce",
+      "evidence_id": "ev_a6a98b9929bdb61b6edb88a11be651c95aa7ed262742caffef068493972a9838",
+      "analysis_profile_sha256": "0f3b23dbf2a1116776b7c22e784831b3791af452fd69c5f9e674d68b557a5c56",
+      "provider": "ghidra",
+      "limitations": [
+        "Raw-slice decompiler may stop at indirect dispatch; retained complete assembly and original PE dispatch tables supply switch targets."
+      ]
+    },
+    {
+      "owner": "0x1459c4ae0",
+      "operation": "procedure_pseudo_code",
+      "subject_sha256": "5a93b300afc58b8b3b6689990df10b1b04dfab28361c7889eef1860ca6423988",
+      "evidence_id": "ev_b68a887fe52c45a3b2fab477d9bc56b24f7e0bf5492a17606873f0865f632491",
+      "analysis_profile_sha256": "55adfc3158bcc20dd44cdb7fa3a9672b32db20c6f85c252f1a98c10019af6559",
+      "provider": "ghidra",
+      "limitations": [
+        "Raw-slice decompiler may stop at indirect dispatch; retained complete assembly and original PE dispatch tables supply switch targets."
+      ]
+    },
+    {
+      "owner": "0x145824200",
+      "operation": "procedure_pseudo_code",
+      "subject_sha256": "66b0183f13665bd2ab395d197682b16f89e54ba4696cb01b8376ca1feb66abdd",
+      "evidence_id": "ev_d12fba495c2e3b318f3554e37c14fededbda717b96c35f4d35d7ca53cd088f78",
+      "analysis_profile_sha256": "9091fc2122b29830e7bde9d6a6747dc40a9a89878b59437e91cd6493c81b9059",
+      "provider": "ghidra",
+      "limitations": [
+        "Raw-slice decompiler may stop at indirect dispatch; retained complete assembly and original PE dispatch tables supply switch targets."
+      ]
+    },
+    {
+      "owner": "0x145896520",
+      "operation": "procedure_pseudo_code",
+      "subject_sha256": "88106a39d69debae447ebd5f58f32bccd55798db5d61c6cabc5940bc5feb03f7",
+      "evidence_id": "ev_5b32304c3644ab851123450d882c0192bba73d3f9c4412c35ce11b1e0b85189e",
+      "analysis_profile_sha256": "7d71b4cbc3d5d69f6a28e7af6882abf1cd905413f928ad240d6bfbce4e16495c",
+      "provider": "ghidra",
+      "limitations": [
+        "Raw-slice decompiler may stop at indirect dispatch; retained complete assembly and original PE dispatch tables supply switch targets."
+      ]
+    },
+    {
+      "owner": "0x14581d7b0",
+      "operation": "procedure_pseudo_code",
+      "subject_sha256": "e6b17179670d84a2364c561b4abd06433f666b20c234e3ebe9db90d5e6d5a666",
+      "evidence_id": "ev_e8923e759307e68401c2a5f71168981291275959c65023cfefe697cefb5ff0d0",
+      "analysis_profile_sha256": "c2501df2115d3726c07d438864d03b8921323d1454da81cdaccb28dd811d3636",
+      "provider": "ghidra",
+      "limitations": [
+        "Raw-slice decompiler may stop at indirect dispatch; retained complete assembly and original PE dispatch tables supply switch targets."
+      ]
+    },
+    {
+      "owner": "0x1458eb290",
+      "operation": "procedure_pseudo_code",
+      "subject_sha256": "4252466e9d7837acb2fd76171d8bc93c55d291eb09772888d185b1c3c462b8a7",
+      "evidence_id": "ev_d6526336f26d07fa53752727ab3663f492673b9974c12b14fd1b48673f275364",
+      "analysis_profile_sha256": "18ee06b17053b291f75980f53af2f52ffc02b9351167c22779552bfc1cf11e6c",
+      "provider": "ghidra",
+      "limitations": [
+        "Raw-slice decompiler may stop at indirect dispatch; retained complete assembly and original PE dispatch tables supply switch targets."
+      ]
+    },
+    {
+      "owner": "0x14584a9b0",
+      "operation": "procedure_pseudo_code",
+      "subject_sha256": "83840cff8e208552a03e44341f9f5fdfb57b0595f4f4782ea29b15ad4caa3486",
+      "evidence_id": "ev_95ddd6a8d6f9066d4d05cf5520bad37ec04adbf43fabec26764d793f53d5ed78",
+      "analysis_profile_sha256": "c1557597911470ed301e5b073f9e3f47e60006bb3dc14ac2768d37d23d3716c8",
+      "provider": "ghidra",
+      "limitations": [
+        "Raw-slice decompiler may stop at indirect dispatch; retained complete assembly and original PE dispatch tables supply switch targets."
+      ]
+    },
+    {
+      "owner": "0x14584b0b0",
+      "operation": "procedure_pseudo_code",
+      "subject_sha256": "5d2c22fbfb73c7dcb7b9d30186cec9f6e18effc181295541dc0d94d0059c365c",
+      "evidence_id": "ev_0daab0fce169acde66bc69abfb39fb4badbaaeb7b8824d2d8b43612b2f297511",
+      "analysis_profile_sha256": "ece0aa71d140e4af93089cd9c56e59ffc6e81a405053ee458817a5f7f5d4bb02",
+      "provider": "ghidra",
+      "limitations": [
+        "Raw-slice decompiler may stop at indirect dispatch; retained complete assembly and original PE dispatch tables supply switch targets."
+      ]
+    },
+    {
+      "owner": "0x14584b280",
+      "operation": "procedure_pseudo_code",
+      "subject_sha256": "350ceb243f7daa64d6b977127398f6046724627c26291844151ae15a9e57d84f",
+      "evidence_id": "ev_00d5cc77f6a92e9d7113459836c7b58770c3e44d043e161e5e2f94176ff8248a",
+      "analysis_profile_sha256": "1c52c7c204c65732201cb44e43e109b319e219b473a57bde962b159a448a4c75",
+      "provider": "ghidra",
+      "limitations": [
+        "Raw-slice decompiler may stop at indirect dispatch; retained complete assembly and original PE dispatch tables supply switch targets."
+      ]
+    },
+    {
+      "owner": "0x145936cf0",
+      "operation": "procedure_pseudo_code",
+      "subject_sha256": "69c5a8fd4e192d1e32f15179e518b04bcec484ec1ec7caec1c8e218099fd073e",
+      "evidence_id": "ev_8a40a69011b05f0b3d8891b3b8688af9e5c9e1663b0e77902f2aa4448879cfff",
+      "analysis_profile_sha256": "15f12ea37413f6954ce913b7463bd33fcf92d4ac6766d17b330b74a2df6a3949",
+      "provider": "ghidra",
+      "limitations": [
+        "Raw-slice decompiler may stop at indirect dispatch; retained complete assembly and original PE dispatch tables supply switch targets."
+      ]
+    },
+    {
+      "owner": "0x1458f25e0",
+      "operation": "procedure_pseudo_code",
+      "subject_sha256": "2168f293db78b8cf159c25ae5d19eaf597bccded099099df002027b9b7d470a0",
+      "evidence_id": "ev_e49f16d163d00128d6fc58099b16bec547eb2472f510d97874d0b93614657f03",
+      "analysis_profile_sha256": "9905f9b796ccc69e599e7cd304a3592feb070e39aac441e64983e131062155a7",
+      "provider": "ghidra",
+      "limitations": [
+        "Raw-slice decompiler may stop at indirect dispatch; retained complete assembly and original PE dispatch tables supply switch targets."
+      ]
+    },
+    {
+      "owner": "0x1459bb9f0",
+      "operation": "procedure_pseudo_code",
+      "subject_sha256": "5d0f25ab8d48a85006e4e65e722a701c2cbb926dbde057076e7c9d511fd92fde",
+      "evidence_id": "ev_a83320a67d3aaaf06618afbde739fa9ab89c8134d4d50de12e50967f2d0c624b",
+      "analysis_profile_sha256": "1c51bcc312da93f50a69c3a8655ca8ffa594bb5c3649fc3a66515bb3d4fdb309",
+      "provider": "ghidra",
+      "limitations": [
+        "Raw-slice decompiler may stop at indirect dispatch; retained complete assembly and original PE dispatch tables supply switch targets."
+      ]
+    },
+    {
+      "owner": "0x1459ba540",
+      "operation": "procedure_pseudo_code",
+      "subject_sha256": "d9c1b99c96863b187c6d597f13a8957d405255233c85a121ae1d66e08db8c02e",
+      "evidence_id": "ev_c9f24c64777e53c687041ea29d6b0b39bbc3d40bc39460750879bf79585165de",
+      "analysis_profile_sha256": "e025be099268276625224b86d257059acfb12c5042f6a24f7fd1a373dcd5436b",
+      "provider": "ghidra",
+      "limitations": [
+        "Raw-slice decompiler may stop at indirect dispatch; retained complete assembly and original PE dispatch tables supply switch targets."
+      ]
+    },
+    {
+      "owner": "0x1459bbd80",
+      "operation": "procedure_pseudo_code",
+      "subject_sha256": "e1d40ab297f26018bcf9bbdb257692ea401a66c3d9074de40e568862a7e67ce3",
+      "evidence_id": "ev_d6040329d48ff0b18ee22e59e78e3dbaf417e0c643adf00e42692de047d4aafd",
+      "analysis_profile_sha256": "2e537aeddf6e114c0826bb4b2c15f1fc8349478ae7ffe97fa5faceaa2965528c",
+      "provider": "ghidra",
+      "limitations": [
+        "Raw-slice decompiler may stop at indirect dispatch; retained complete assembly and original PE dispatch tables supply switch targets."
+      ]
+    },
+    {
+      "owner": "0x14583bab0",
+      "operation": "procedure_pseudo_code",
+      "subject_sha256": "3dfc04705bc24d4356dfd4fc4c4fae73c10d82c8082e0f241c31ffe6864c2609",
+      "evidence_id": "ev_e701edf45cd825b2598da0fa62541af895d518b7b2eebf1b67d0eece869f7e43",
+      "analysis_profile_sha256": "c29d50c4c541c1d6d7bb67d954da085c104b7e9aa14c84d761ebdc82d38e7767",
+      "provider": "ghidra",
+      "limitations": [
+        "Raw-slice decompiler may stop at indirect dispatch; retained complete assembly and original PE dispatch tables supply switch targets."
+      ]
+    },
+    {
+      "owner": "0x14583ed80",
+      "operation": "procedure_pseudo_code",
+      "subject_sha256": "58e593a46a89a80925ea58324534f96f7b190657180d1226bfcceb6f31cc231b",
+      "evidence_id": "ev_a82c73caf86b87793141c7efc9b8e8ca6cb234201f42644a39504713e2f3326e",
+      "analysis_profile_sha256": "abdc8b066e10f698d72ff83e1078c736b1f90975cc6c5681004e3a2251ad9085",
+      "provider": "ghidra",
+      "limitations": [
+        "Raw-slice decompiler may stop at indirect dispatch; retained complete assembly and original PE dispatch tables supply switch targets."
+      ]
+    },
+    {
+      "owner": "0x14586d120",
+      "operation": "procedure_pseudo_code",
+      "subject_sha256": "9621c1c91fde5b2f3c268837c5d03a70a8a12e5e5d933e16872c49bdce6f65bc",
+      "evidence_id": "ev_9d990fbaaf5c43d6d49ad26867996f86d3762c034266bced9c83c324ba0b3b1e",
+      "analysis_profile_sha256": "02db6fd42d7a34371dc1040887e42272011b2510f88f4f46d42af170ba9f91e0",
+      "provider": "ghidra",
+      "limitations": [
+        "Raw-slice decompiler may stop at indirect dispatch; retained complete assembly and original PE dispatch tables supply switch targets."
+      ]
+    },
+    {
+      "owner": "0x14586c6d0",
+      "operation": "procedure_pseudo_code",
+      "subject_sha256": "0f28c7e42df1df3794ed9224dc08d62eb8e1641f13c28775b322eb64eaf3e701",
+      "evidence_id": "ev_cef1309b992561aba6fe8d36386b4a6279e90abbdc73ff2b0075672f0b501d8f",
+      "analysis_profile_sha256": "6ac86e2d2baca7fa5d4f5879fb4e84d43725c085d03498bb071f4317dbfc17d8",
+      "provider": "ghidra",
+      "limitations": [
+        "Raw-slice decompiler may stop at indirect dispatch; retained complete assembly and original PE dispatch tables supply switch targets."
+      ]
+    },
+    {
+      "owner": "0x14586cf60",
+      "operation": "procedure_pseudo_code",
+      "subject_sha256": "06e991ad2e2280bef7f9abf513e03ea810e6b77f74d7a9843577d870fae37e19",
+      "evidence_id": "ev_c72efb5d2b9ead497043033947f51fc59fc8ce0825cb0ab2e2d824f3117fd1e4",
+      "analysis_profile_sha256": "06f7a055fa23b6f9e5991326a2ff7b66e2dbdb033802666137e48a394b9ad952",
+      "provider": "ghidra",
+      "limitations": [
+        "Raw-slice decompiler may stop at indirect dispatch; retained complete assembly and original PE dispatch tables supply switch targets."
+      ]
+    }
+  ],
+  "semantic_fields": {
+    "float_68_bits": "clock",
+    "byte_8f": "phase0ready1playing2choosing3paused4dead5victory",
+    "flag_8c": "effectiveterminalphase",
+    "word_6c": "level",
+    "flag_8d": "won",
+    "words_70": [
+      "kills",
+      "gold_earned",
+      "guardian_kills",
+      "boss_kills",
+      "caches_bought"
+    ],
+    "float_84_bits": "density_multiplier",
+    "float_88_bits": "reward_multiplier",
+    "flag_8e": "all19equipmentzero",
+    "byte_90": "class",
+    "text": "canonicalzonekey"
+  },
+  "limits": [
+    "Source/static evidence; authored Rust regressions not compiled or run.",
+    "Initial-world packet content is owned by existing engine producers and bootstrap report.",
+    "Wire shapes complete; full native packet/application behavior and parity remain separate.",
+    "Tag13/14 current filters and wider history meanings remain separate recovery surfaces."
+  ]
+}

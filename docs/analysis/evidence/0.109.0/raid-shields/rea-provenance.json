@@ -1,0 +1,74 @@
+{
+  "target_version": "0.109.0",
+  "target_sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+  "target_executed": false,
+  "records": [
+    {
+      "role": "producer",
+      "evidence_id": "ev_77381918f247dcd57b79734b6ab38079d15b50928a29f45a070c7b74d3b1019e",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "subject_sha256": "96cee90696cf4ae4284f300a860b694b2a0711caf5c5019f680fe04aa95f1867",
+      "procedure": {
+        "procedure": "0x145959aa1"
+      },
+      "pseudocode_sha256": "bd25d39ddd3770ab8f6acb98856e84868f826ccfa529655373a87a8099851630",
+      "analysis_profile_sha256": "754e565a42e4d259787396139cfb3f77719aff37bebf45b778879a6ea9e8981b",
+      "pseudocode": "producer.c"
+    },
+    {
+      "role": "damage",
+      "evidence_id": "ev_b4c4b1b637d29555a2b6d45b65a0bbb686c7138b4936c3c896b442c8dd6de7fe",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "subject_sha256": "29c32ff65f4aa42df84d97147aa342e238726999f826d39da3daa794cca251b9",
+      "procedure": {
+        "procedure": "0x145971998"
+      },
+      "pseudocode_sha256": "37d66672a7dc9d757218c2128ec79b244b862bce842327cadf176fbce6b04a86",
+      "analysis_profile_sha256": "cdf651bae6ef84688d85c7790290c5eacb382f6ae9a3ae7dec5c1c260e99e331"
+    },
+    {
+      "role": "aura",
+      "evidence_id": "ev_de8f93d50968dde9527cf167a965219441ed8471a0644a7d453c178bac4a95d6",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "subject_sha256": "10decf6e8b9113116a387710df92ae23586b3e9774696db28b508eebe9c06a79",
+      "procedure": {
+        "procedure": "0x145980540"
+      },
+      "pseudocode_sha256": "e2a38b7113c78a816398f9cd61c94885ed8d0015f66eb6baeb75e9750acb5e9a",
+      "analysis_profile_sha256": "c825944f16e3b183ae3f74d7a7fbb3320cf6cfe561260231352330807c58b865",
+      "pseudocode": "aura.c"
+    },
+    {
+      "role": "applications",
+      "evidence_id": "ev_633c97a1d72b00df050b06d12804440652cb97425c2ee65049ae8b700eee63df",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "subject_sha256": "9cbffc66f7fd9018a25aa9efd38eac179cb3ebb4e6b23cdfb6cad22660d8cbf7",
+      "procedure": {
+        "procedure": "0x14590d560"
+      },
+      "pseudocode_sha256": "9925659d92f5f30e99f7604bb6d0389b8158f36613bb1f8a6564ed629efbc790",
+      "analysis_profile_sha256": "14fc121f17cd55330d7680f269e6040d1d4e3f60f88c69eeeb206a8df8cc81e1",
+      "pseudocode": "applications.c"
+    }
+  ],
+  "limitations": [
+    "Original-VA raw imports use generic ABI; external/global relationships remain bounded.",
+    "Damage branch decompilation includes unrelated tail code; retain its hash/provenance and only the selected canonical instructions."
+  ]
+}

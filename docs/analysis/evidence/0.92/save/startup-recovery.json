@@ -1,0 +1,172 @@
+{
+  "date": "2026-10-16",
+  "version": "0.92.0",
+  "target_sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+  "functions": [
+    {
+      "start": "0x1401120b0",
+      "end_exclusive": "0x1401122bf",
+      "source_file_offset": "0x1114b0",
+      "sha256": "b5ab360cc83d541e0ac86f7c437f53a3d751059a504c5bd814b5cb9cfa105d12",
+      "role": "Picker default loads account, uses Pick or default; normalizes, clamps zone and replaces Hero with a random name"
+    },
+    {
+      "start": "0x1453f9d00",
+      "end_exclusive": "0x1453fa51f",
+      "source_file_offset": "0x53f9100",
+      "sha256": "9b431d9b39ce29a7f06747921f1db6c5dbea78fa644df70a471cb9b64f6244af",
+      "role": "Active startup account loader; missing/read error, sealed, damaged and legacy branches"
+    },
+    {
+      "start": "0x145421330",
+      "end_exclusive": "0x1454213e7",
+      "source_file_offset": "0x5420730",
+      "sha256": "c30eeb4c9591600b8331273d6e1ea568af5050df0d91c0f075eb576f68d5c43b",
+      "role": "Active reader converts every IO/UTF8 read error into None without logging"
+    },
+    {
+      "start": "0x1456ba000",
+      "end_exclusive": "0x1456ba1da",
+      "source_file_offset": "0x56b9400",
+      "sha256": "5730c8a3f0cd27894c320a762bc1178f5766642e8d5d210b188e2838f93dc72d",
+      "role": "Read-to-string implementation; UTF8 validator error uses static146ae1428"
+    },
+    {
+      "start": "0x1453f8ad0",
+      "end_exclusive": "0x1453f8bae",
+      "source_file_offset": "0x53f7ed0",
+      "sha256": "83e5c61d16d3cc61f10e159be6e0ca888b658b69052e750b4ab318b5b628e8f4",
+      "role": "Numbered unreadable-backup slot availability/equality helper"
+    },
+    {
+      "start": "0x145420cf0",
+      "end_exclusive": "0x145420e63",
+      "source_file_offset": "0x54200f0",
+      "sha256": "2f0b97977b535105793e61492e07a780315c07229ed938665df8a3a2ebe33d17",
+      "role": "Auxiliary .txt writer ignores directory-create and write errors"
+    },
+    {
+      "start": "0x145421620",
+      "end_exclusive": "0x145421775",
+      "source_file_offset": "0x5420a20",
+      "sha256": "ac6977fd95f5353bed5aeec225409f93073c6707c0fc9165b7b0d37bf8332a4f",
+      "role": "Auxiliary .txt reader"
+    },
+    {
+      "start": "0x1454034c0",
+      "end_exclusive": "0x1454035a5",
+      "source_file_offset": "0x54028c0",
+      "sha256": "e199ac4a1287d70ca1c75a8d3545ecd545ed05a7ac6d7c36fc2f0b809fbbe0de",
+      "role": "No-Pick default: Human Warrior male, zero appearance, Hero/elwynn,100% modifiers"
+    },
+    {
+      "start": "0x1454027e0",
+      "end_exclusive": "0x145402b5e",
+      "source_file_offset": "0x5401be0",
+      "sha256": "fac5431a6b6a8567f4f68aeac6ca2cbbf3bad3f3e0d1a6832ae5e3a637e7fb50",
+      "role": "Full Pick normalizer, including class/race, name, canonical zone, appearance helper and modifier steps"
+    },
+    {
+      "start": "0x1453f9130",
+      "end_exclusive": "0x1453f92c7",
+      "source_file_offset": "0x53f8530",
+      "sha256": "fe221ce6c23d06711e080462f53182685aff3fe2d325a4eb354c9100c86f2077",
+      "role": "Class-unlock zone clamp"
+    },
+    {
+      "start": "0x1453e23e0",
+      "end_exclusive": "0x1453e24c1",
+      "source_file_offset": "0x53e17e0",
+      "sha256": "9e441e747ab4ee1d24d11438804105dbc807c83c722bc00b9fbaf86032ef6fd8",
+      "role": "Leaf native zone-index getter, all RET paths bounded before INT3 padding",
+      "boundary": "Instruction-decoded leaf, not a PE unwind-entry assertion"
+    }
+  ],
+  "evidence": {
+    "rea_provenance": "startup-recovery-provenance.json",
+    "instructions": "startup-recovery-instructions.asm",
+    "fixture": "startup-recovery-fixtures.json",
+    "fixture_sha256": "0250c6031a28576c015245d1ba4dcec0da07a4c71ca28c95b0270907dc855147",
+    "generator": "scripts/recover-menu-startup-save.py",
+    "native_loader_cases": 6,
+    "native_zone_cases": 162
+  },
+  "active_read_failure": {
+    "reader": "145421330 calls1456ba000 at14542136d; error\u2192None at1454213ac and drops IO error.",
+    "invalid_utf8": "1456ba13e calls UTF8 validator; nonzero error path selects static146ae1428. Its string146ae1402 is stream did not contain valid UTF-8. The wrapper returns Err, which active reader drops.",
+    "startup": "None\u2192empty account at1453f9dcd. No warning, backup or persistent error field.",
+    "source": "Save::load defaults silently; MenuState starts with no error/hold. Later native committing actions can write."
+  },
+  "damaged_sealed_input": {
+    "detect": "Trimmed text beginsRSE1: but opener1454569f0 returns None.",
+    "slot_selector": "1453f8ad0 reads characters.unreadable.N.txt for N1..32. Return first unreadable/missing backup or one with exactly equal raw text; if all32 differ, choose32.",
+    "write": "145420cf0 attempts raw original text at chosen stem+.txt, ignoring directory-create and write errors. Active file remains untouched until a later committing event.",
+    "log": "rogue: the save does not open; starting fresh, the old one kept as characters.unreadable.N\\n",
+    "result": "Exact native440-byte account output equals unreadable-file default in all6 fixture cases; there is no permanent damaged-save guard."
+  },
+  "legacy_plaintext": {
+    "condition": "Raw input lacks trimmedRSE1: prefix and contains non-whitespace text.",
+    "backup": "Read fixed characters.legacy.txt. If not readable, attempt original raw text backup; retain any readable existing copy, including empty.",
+    "result": "Parse original text via1453fab00. Complete parser migration remains unimplemented."
+  },
+  "no_saved_pick": {
+    "branch": "1401120b0 checks account Pick niche; None invokes1454034c0. It does not read account hero Vec in this branch.",
+    "default_hero": [
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "default_name_before_random": "Hero",
+    "default_zone": "elwynn",
+    "default_modifiers": [
+      100,
+      100,
+      100,
+      100
+    ],
+    "source": "Startup no longer invents restoration from saved Warrior hero when Pick is absent. Import replacement is a separate still-unproved bridge for this edge."
+  },
+  "loaded_zone": {
+    "native_order": "1401120b0 calls1454027e0 then1453f9130.",
+    "clamp": "Missing/zero class unlock\u2192one open zone; otherwise clamp count to9. When selected valid-zone index is outside that count, replace with last unlocked zone.",
+    "fixtures": "162 exact native outputs: Warrior/Mage \u00d7 missing,0,1,2,3,8,9,10,u64MAX unlock \u00d7 all9 zones. Native code and zone-index leaf both execute unchanged; expected keys are actual output strings, not a formula.",
+    "source": "Startup, class switch and import replacement use shared clamp_zone; only startup lacked the rule before26."
+  },
+  "source_status": "Checkpoint26 rustfmt passed. Parent-owned locked/offline build passed11.08s after preceding combined29.09s build; all169 overlapping focused harness cases passed, test compile12.95s. No application launch.",
+  "source_validation": {
+    "checkpoint": 26,
+    "owner": "parent integrated build/test run",
+    "build": "PASS, locked/offline, final11.08s; preceding combined build29.09s",
+    "test_compile_seconds": 12.95,
+    "harness_cases": {
+      "binary": 74,
+      "native_save": 19,
+      "config": 6,
+      "run_modifiers": 1,
+      "save_browser": 14,
+      "updater": 37,
+      "installer": 18,
+      "total_with_shared_module_overlap": 169
+    },
+    "result": "All passed, including startup recovery and162 native-zone output comparisons.",
+    "limits": "No application launch; passing fixtures do not establish visual, audible or full menu parity. Frozen native facts and fixture outputs are unchanged."
+  },
+  "remaining_gaps": [
+    "Full1453fab00 legacy/migration and invalid-record behavior.",
+    "Appearance normalization14544e6f0 and full invalid class/race Pick normalization.",
+    "Import-without-Pick selection replacement lifecycle, distinct from native startup.",
+    "Exact25ms Core worker/thread scheduling; source continues ordered menu-schedule draining.",
+    "New source behavior has no rebuilt-runtime comparison yet."
+  ],
+  "limits": [
+    "All addresses and hashes are0.92 only.",
+    "Raw Ghidra GCC ABI signatures are provisional; interpretations use original Windows instructions.",
+    "Native fixture IO/seal/format/allocation boundary stubs are enumerated; no OS/files/network calls occur inside emulation.",
+    "Actual source filesystem tests use explicit project-local fixture paths; installed player profiles are not accessed."
+  ]
+}

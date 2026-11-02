@@ -1,0 +1,360 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.109.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+    "size_bytes": 140447744
+  },
+  "method": "Current EXE diagnostic/TypeId and instruction-reference discovery, original PE instruction decoding, scoped REA/Ghidra12.1.4 raw-function imports and bounded Unicorn replay.",
+  "ranges": [
+    {
+      "start": "0x1458b8620",
+      "end_exclusive": "0x1458ba0d9",
+      "sha256": "1cd0f37176dfe5ab6fb1fe41cd5f3dc798c1c002f4fe35a794a175892328f56c",
+      "role": "summary",
+      "file_offset": "0x58b7a20",
+      "byte_count": 6841,
+      "assembly": "summary.asm",
+      "assembly_sha256": "61aaa294cbe4a12927744b04da8a622d7f79373c72ea866c994502bb0aa3b108",
+      "rea_evidence_id": "ev_cc070956acaa293d885387de96931085aed4983b5e34c6b2f788cb67cba8bd6c",
+      "analysis_profile_digest": "ea27464f1d31776012a42623219334a333d34dadc2aeff581798c6eb85ca2174",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "raw_import_sha256": "1cd0f37176dfe5ab6fb1fe41cd5f3dc798c1c002f4fe35a794a175892328f56c",
+      "assembly_windows": [
+        {
+          "start": "0x1458b8684",
+          "end_exclusive": "0x1458b89c0"
+        },
+        {
+          "start": "0x1458b8a65",
+          "end_exclusive": "0x1458b8b96"
+        },
+        {
+          "start": "0x1458b8ba0",
+          "end_exclusive": "0x1458b8c00"
+        },
+        {
+          "start": "0x1458b9091",
+          "end_exclusive": "0x1458b9122"
+        },
+        {
+          "start": "0x1458b96cf",
+          "end_exclusive": "0x1458b98a0"
+        },
+        {
+          "start": "0x1458b9ec9",
+          "end_exclusive": "0x1458b9f7a"
+        }
+      ],
+      "complete_pseudocode_sha256": "0461c40e73d9ec68566577c544fa11055fc08c40dcf2cf4377b3cf4ea4730b42",
+      "pseudocode_excerpt": "summary-excerpts.c",
+      "pseudocode_excerpt_sha256": "924194c2e458193b39ededd95b3c2f71f65cd6631fd107bbaa1ebdf3c74592a0",
+      "pseudocode_excerpt_lines": [
+        {
+          "start": 145,
+          "end_exclusive": 269
+        },
+        {
+          "start": 318,
+          "end_exclusive": 338
+        },
+        {
+          "start": 605,
+          "end_exclusive": 687
+        },
+        {
+          "start": 831,
+          "end_exclusive": 879
+        }
+      ]
+    },
+    {
+      "start": "0x1459ca650",
+      "end_exclusive": "0x1459ca87d",
+      "sha256": "36c12e8f69e619d28369a509374e325c7a4521af4fa615af1c7f53205d46bb05",
+      "role": "delta-parts",
+      "file_offset": "0x59c9a50",
+      "byte_count": 557,
+      "assembly": "delta-parts.asm",
+      "assembly_sha256": "9f9172e8f49d7b5f08dbb827a2b58e9a8a36ed8bfff35767a9f05f5f6b360d95",
+      "assembly_windows": [
+        {
+          "start": "0x1459ca650",
+          "end_exclusive": "0x1459ca87d"
+        }
+      ]
+    },
+    {
+      "role": "account-counts",
+      "start": "0x1458af562",
+      "end_exclusive": "0x1458af69f",
+      "file_offset": "0x58ae962",
+      "byte_count": 317,
+      "sha256": "6754611005a73c1764b15fe990d3b08d6c800c04eab59325872cbe4c765531f4",
+      "assembly": "account-counts.asm",
+      "assembly_sha256": "b8c91d1484ce26e8ee2f7b0f38691267412e455624af856c711b282e20d06fd4",
+      "assembly_windows": [
+        {
+          "start": "0x1458af562",
+          "end_exclusive": "0x1458af69f"
+        }
+      ],
+      "owning_function": {
+        "start": "0x1458ad720",
+        "end_exclusive": "0x1458b07e5"
+      },
+      "method": "Independent current declared-extent original-instruction decode; full native tick import belongs to the startup scope; no duplicate Ghidra import."
+    },
+    {
+      "role": "terminal-phase-guard",
+      "start": "0x1458af14c",
+      "end_exclusive": "0x1458af562",
+      "file_offset": "0x58ae54c",
+      "byte_count": 1046,
+      "sha256": "df572b0682ed3010f2740e9075f114632ad2f6d59a5d5512ab3fcc06c62949d1",
+      "assembly": "terminal-phase-guard.asm",
+      "assembly_sha256": "9ca68cd0a42d12dccbe297574bde4bb67492a513a997fad99d1e1926090cfb12",
+      "assembly_windows": [
+        {
+          "start": "0x1458af14c",
+          "end_exclusive": "0x1458af17b"
+        },
+        {
+          "start": "0x1458af554",
+          "end_exclusive": "0x1458af562"
+        }
+      ],
+      "owning_function": {
+        "start": "0x1458ad720",
+        "end_exclusive": "0x1458b07e5"
+      },
+      "rea_parent_evidence_id": "ev_3658003e92ff58beb432f12f7a6f755c82cb8c968d70df45f0ecdc1ef1865915",
+      "method": "Original PE predecessors of terminal counter block; parent tick fresh Ghidra result inspected in full; no duplicate raw import."
+    },
+    {
+      "role": "summary-save",
+      "start": "0x1458a33c0",
+      "end_exclusive": "0x1458a3aaa",
+      "file_offset": "0x58a27c0",
+      "byte_count": 1770,
+      "sha256": "ac54767b46e5ceba88facc24589a529deaaaab5433996e7e081454b15b303c55",
+      "assembly": "summary-save.asm",
+      "assembly_sha256": "12f14cad990aaeb6163bbc28a63b4e5f422573e8b21e504c8b14fb25b26d3648",
+      "assembly_windows": [
+        {
+          "start": "0x1458a33c0",
+          "end_exclusive": "0x1458a34d0"
+        },
+        {
+          "start": "0x1458a35da",
+          "end_exclusive": "0x1458a365c"
+        },
+        {
+          "start": "0x1458a37af",
+          "end_exclusive": "0x1458a37e8"
+        },
+        {
+          "start": "0x1458a38d0",
+          "end_exclusive": "0x1458a3908"
+        },
+        {
+          "start": "0x1458a39a4",
+          "end_exclusive": "0x1458a39d0"
+        },
+        {
+          "start": "0x1458a3a1e",
+          "end_exclusive": "0x1458a3a5d"
+        }
+      ],
+      "rea_evidence_id": "ev_072ed899f50cc4b6911c2a48da2a9a5b09382bacbbfae9579bfc02008506474a",
+      "analysis_profile_digest": "13e16c4b53a60c7f81ea8126bcccb94321aabf494e91fd1bdf2da0df09c73e9e",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "raw_import_sha256": "ac54767b46e5ceba88facc24589a529deaaaab5433996e7e081454b15b303c55",
+      "complete_pseudocode_sha256": "3c837941c2c7e9e30e0a39226c03e01293f5074cdfe4b5fa48b935d8326da8c2",
+      "pseudocode_excerpt": "summary-save-excerpts.c",
+      "pseudocode_excerpt_sha256": "f2ecc44a892e39d2a97f86d4687d6772e5fea996c04fd5616108672b88242570",
+      "pseudocode_excerpt_lines": [
+        {
+          "start": 36,
+          "end_exclusive": 60
+        },
+        {
+          "start": 126,
+          "end_exclusive": 149
+        }
+      ]
+    },
+    {
+      "role": "save-write",
+      "start": "0x1458ef670",
+      "end_exclusive": "0x1458ef7ac",
+      "file_offset": "0x58eea70",
+      "byte_count": 316,
+      "sha256": "d9faba8dfdb5dc1398e003bcd488e6a210823de56ada6137309f53cee0840b0f",
+      "assembly": "save-write.asm",
+      "assembly_sha256": "ccc827f81a98def2f5ddb961e39b58616c895bec95d4b98783d79a162b020705",
+      "assembly_windows": [
+        {
+          "start": "0x1458ef670",
+          "end_exclusive": "0x1458ef7ac"
+        }
+      ],
+      "rea_evidence_id": "ev_db5526ae19e15eb5d48e64095303b66f9ee1686041c6d13019c72c0fc3d9ff20",
+      "analysis_profile_digest": "30a7475db9321d907c134976c027cefd6e0edf4544a452c51e5e3b3492c15b06",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "raw_import_sha256": "d9faba8dfdb5dc1398e003bcd488e6a210823de56ada6137309f53cee0840b0f",
+      "complete_pseudocode_sha256": "8af3d7c81d6780c6551261adca4b286ef6018a7f1aa04fa24ac4805f114476f4"
+    },
+    {
+      "role": "fallback-roster",
+      "start": "0x1458bb880",
+      "end_exclusive": "0x1458bb9c0",
+      "file_offset": "0x58bac80",
+      "byte_count": 320,
+      "sha256": "5e9a89e53cd21011582193779cbd0b113f3497a367ba7470a0a6831ce0bdd2ad",
+      "assembly": "../stock-lifecycle/roster-factory.asm",
+      "assembly_sha256": "485a18df3c8da17e8e3bb7798a28bd64baec9b0863988710eed973d9cf26aafe",
+      "assembly_windows": [
+        {
+          "start": "0x1458bb897",
+          "end_exclusive": "0x1458bb8a4"
+        },
+        {
+          "start": "0x1458bb8c8",
+          "end_exclusive": "0x1458bb960"
+        },
+        {
+          "start": "0x1458bb962",
+          "end_exclusive": "0x1458bb9a7"
+        }
+      ],
+      "rea_evidence_id": "ev_14865f11515c7d2e23042c369cddaa723d1cc53a92ed4e4f1a957a2d57946fc6",
+      "analysis_profile_digest": "3d29c105ccde88ee4d84c5f32b8b50e92f8256879a3cc6022bf50dc573422a16",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "raw_import_sha256": "5e9a89e53cd21011582193779cbd0b113f3497a367ba7470a0a6831ce0bdd2ad",
+      "complete_pseudocode_sha256": "252f551a0a94563a3dc5bae7b0ef33629147b30f44622b18a7a8ed5a26e04860"
+    },
+    {
+      "role": "beaten-zone",
+      "start": "0x14589d440",
+      "end_exclusive": "0x14589d547",
+      "file_offset": "0x589c840",
+      "byte_count": 263,
+      "sha256": "6e50a94122fc1eb877c63ec5b92c809ee8dfbfe2948997bd9d151b1ef7db888f",
+      "assembly": "beaten-zone.asm",
+      "assembly_sha256": "059a68490e47ccf87889c84a39ba1771182de4cda9458ceea22db57929efc15f",
+      "assembly_windows": [
+        {
+          "start": "0x14589d440",
+          "end_exclusive": "0x14589d547"
+        }
+      ],
+      "rea_evidence_id": "ev_ba976147319a868366d8e24e0d5ba4d192b3ae6007b2459af7c67a0d6c9cf761",
+      "analysis_profile_digest": "82b67b34c855301119b0c2eba30189feed32d37203a0a21f48aac0afaa21c08b",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "raw_import_sha256": "6e50a94122fc1eb877c63ec5b92c809ee8dfbfe2948997bd9d151b1ef7db888f",
+      "complete_pseudocode_sha256": "43daab5a34b0d9650be00e46bb3e13911f676b0218004ba3d860d36209467206"
+    },
+    {
+      "role": "post-summary-save",
+      "start": "0x1458af69f",
+      "end_exclusive": "0x1458b06bb",
+      "file_offset": "0x58aea9f",
+      "byte_count": 4124,
+      "sha256": "ef560a4345711edc91ec8366c2f1799fb3931422fa4a7c123ba795cd02a1f88e",
+      "owning_function": {
+        "start": "0x1458ad720",
+        "end_exclusive": "0x1458b07e5"
+      },
+      "rea_parent_evidence_id": "ev_3658003e92ff58beb432f12f7a6f755c82cb8c968d70df45f0ecdc1ef1865915",
+      "assembly": "post-summary-save.asm",
+      "assembly_sha256": "8226419d0120ee7ff9e31c7844dab3217cdf21cd9db1342e945c98aeb9be3a86",
+      "assembly_windows": [
+        {
+          "start": "0x1458af69f",
+          "end_exclusive": "0x1458af6d2"
+        },
+        {
+          "start": "0x1458b056d",
+          "end_exclusive": "0x1458b06bb"
+        }
+      ],
+      "pseudocode_excerpt": "post-summary-save-excerpts.c",
+      "pseudocode_excerpt_sha256": "95bb82827472693f6e03d1b89090baa12e7de26a704f9e5a47dd73e6dbe56f4a",
+      "pseudocode_excerpt_lines": [
+        {
+          "start": 989,
+          "end_exclusive": 1004
+        },
+        {
+          "start": 1043,
+          "end_exclusive": 1114
+        }
+      ],
+      "complete_pseudocode_sha256": "d2163ffaa87d37084a70e20d3b7307cb98c906354bda10c63ee4bcc56685ebea"
+    },
+    {
+      "role": "optional-startup-row",
+      "start": "0x1458ad1b3",
+      "end_exclusive": "0x1458ad317",
+      "file_offset": "0x58ac5b3",
+      "byte_count": 356,
+      "sha256": "aa85ebda244981bb590842ea877aa090bce2c39df835e336d69952bfd026946d",
+      "canonical_owner_manifest": "../run-seed/manifest.json",
+      "owning_function": {
+        "start": "0x1458acff0",
+        "end_exclusive": "0x1458ad502",
+        "sha256": "d9b1feee1afe026201d085bc47fd4e4ae3d335add033434e2de43bb5e69c54f2"
+      },
+      "assembly": "optional-startup-row.asm",
+      "assembly_sha256": "a1bcdc72f28c3fb18bfef06e2daf63f939e796f0d45f49aee4468ec8125598d3",
+      "assembly_windows": [
+        {
+          "start": "0x1458ad1b3",
+          "end_exclusive": "0x1458ad219"
+        },
+        {
+          "start": "0x1458ad2e0",
+          "end_exclusive": "0x1458ad317"
+        }
+      ]
+    }
+  ],
+  "source_refs": [
+    "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs",
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
+    "crates/azeroth-survivors-re/src/save/progress.rs",
+    "crates/azeroth-survivors-re/src/menu_state.rs",
+    "crates/azeroth-survivors-re/src/stock_frontend.rs"
+  ],
+  "limitations": [
+    "Full current enclosing Game/phase/first-result/GUID/showcase control flow is reviewed; selected original instruction windows are replayed with synthetic scratch state.",
+    "Zone-index and roundf are stated leaf seams; roster storage is preallocated. Saved-first optional startup best_level and untouched optional seconds/runs/wins are executed.",
+    "Save selector substitutes memcmp/free/diagnostic/write leaves; direct writer substitutes path/parent/mkdir/write/free/diagnostic leaves. No original filesystem, serializer, sealing codec, backup creation or source compiler executes.",
+    "Native Save writes occur for every admitted summary and every eligible post-summary counter transaction, including zero deltas. Source queues separate snapshots in native order; OS scheduling and filesystem timing remain unverified.",
+    "Historical parser/envelope/hourly-backup implementation retains its actual provenance. Current Save caller and main-write/backup-gate context do not revalidate all nested file/codec helpers.",
+    "Live game/worker/client scheduling, graphics/input/resource/device behavior and original/rebuilt gameplay parity remain unverified."
+  ]
+}

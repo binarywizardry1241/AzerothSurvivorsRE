@@ -1,0 +1,3565 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.112.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+    "size_bytes": 140514816
+  },
+  "generator": {
+    "path": "scripts/recover-custom-producer-inputs-0.112.0.py",
+    "sha256": "88f43fc3093570ac54fa8d564baed4606c99f75f919cb0fd4acbb646909bb572"
+  },
+  "fixture": {
+    "path": "scripts/native_talent_fixture_0_112.py",
+    "sha256": "fd1a3c2e98f4da91ef6d2496c5615b464d82b10032b59508040eb4ef2f1f93bd",
+    "seams_used": [
+      "0x1400021c0",
+      "0x1400021d0",
+      "0x140002200",
+      "0x14598ddd0",
+      "0x145bb40a0",
+      "0x145c0a3db"
+    ]
+  },
+  "descriptor_table": {
+    "va": "0x146bf5eb0",
+    "stride": 120,
+    "count": 113,
+    "byte_count": 13560,
+    "sha256": "5024b1bb850af4c469fa8402529a8bed1defb46d08925f923724d290aa9d7790"
+  },
+  "canonical_factory": {
+    "manifest": "docs/analysis/evidence/0.112.0/demonic-empowerment/manifest.json",
+    "manifest_sha256": "102ff69d969f3465fdb19e25aeabdd7944d7c02a36afde2fd7854db965e35a0f",
+    "va": "0x1458a1730",
+    "byte_count": 5804,
+    "sha256": "3ca039526ffb0cca25a5d2887620a3adc08a82cbbb2880b19a0c1fa3194e60fe"
+  },
+  "counts": {
+    "static_descriptors": 113,
+    "factory_replays": 113,
+    "nonnegative_first_qwords": 113,
+    "factory_selector_counts": {
+      "0": 24,
+      "1": 5,
+      "2": 16,
+      "3": 8,
+      "4": 1,
+      "5": 9,
+      "6": 12,
+      "7": 3,
+      "8": 2,
+      "9": 22,
+      "10": 2,
+      "11": 9
+    }
+  },
+  "static_upgrade_domain": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "metadata_reference_roles": [
+    {
+      "reference_site": "0x1484713f8",
+      "entry_byte_count": 12,
+      "sha256": "3652bedf9bb7b3706d973a029867b81d090cb32154ab2bbc76f0cac274c9d91c",
+      "role": "PE-pdata-RUNTIME_FUNCTION-BeginAddress-DWORD",
+      "owner_entry": "0x145961590",
+      "end_exclusive": "0x145963229",
+      "unwind_rva": "0x7ff9f64",
+      "runtime_indirect_caller_inferred": false
+    },
+    {
+      "reference_site": "0x148471614",
+      "entry_byte_count": 12,
+      "sha256": "b231094f670d33cd1c38564708f1002fd3b3d6a7669f533a94beee103ed00950",
+      "role": "PE-pdata-RUNTIME_FUNCTION-BeginAddress-DWORD",
+      "owner_entry": "0x145964550",
+      "end_exclusive": "0x145965a20",
+      "unwind_rva": "0x7ffa7f4",
+      "runtime_indirect_caller_inferred": false
+    },
+    {
+      "reference_site": "0x148471704",
+      "entry_byte_count": 12,
+      "sha256": "ed5590b6ca0a47651a619d463f211b3cc14f53c1bb40db9f28a1472d52d85d5d",
+      "role": "PE-pdata-RUNTIME_FUNCTION-BeginAddress-DWORD",
+      "owner_entry": "0x145966a60",
+      "end_exclusive": "0x145968b5e",
+      "unwind_rva": "0x7ffadf8",
+      "runtime_indirect_caller_inferred": false
+    },
+    {
+      "reference_site": "0x148472e44",
+      "entry_byte_count": 12,
+      "sha256": "f10f6115df128647129d79b291aa431f90fb2d3ed2fe83a8a6919f558c21024e",
+      "role": "PE-pdata-RUNTIME_FUNCTION-BeginAddress-DWORD",
+      "owner_entry": "0x145993420",
+      "end_exclusive": "0x145993621",
+      "unwind_rva": "0x7283a7c",
+      "runtime_indirect_caller_inferred": false
+    }
+  ],
+  "choice_input_native_contracts": {
+    "constructor_selector": {
+      "va": "0x145961600",
+      "end_exclusive": "0x145961641",
+      "byte_count": 65,
+      "sha256": "97d945a9ab33a55188e4f79493287708c78abb72f19768f01b42be286cce62f3",
+      "instructions": [
+        {
+          "site": "0x145961600",
+          "instruction_bytes": "498b08",
+          "mnemonic": "mov",
+          "operands": "rcx, qword ptr [r8]"
+        },
+        {
+          "site": "0x145961603",
+          "instruction_bytes": "48ba0000000000000080",
+          "mnemonic": "movabs",
+          "operands": "rdx, 0x8000000000000000"
+        },
+        {
+          "site": "0x14596160d",
+          "instruction_bytes": "4889c8",
+          "mnemonic": "mov",
+          "operands": "rax, rcx"
+        },
+        {
+          "site": "0x145961610",
+          "instruction_bytes": "4831d0",
+          "mnemonic": "xor",
+          "operands": "rax, rdx"
+        },
+        {
+          "site": "0x145961613",
+          "instruction_bytes": "48898d98000000",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rbp + 0x98], rcx"
+        },
+        {
+          "site": "0x14596161a",
+          "instruction_bytes": "4885c9",
+          "mnemonic": "test",
+          "operands": "rcx, rcx"
+        },
+        {
+          "site": "0x14596161d",
+          "instruction_bytes": "b901000000",
+          "mnemonic": "mov",
+          "operands": "ecx, 1"
+        },
+        {
+          "site": "0x145961622",
+          "instruction_bytes": "480f48c8",
+          "mnemonic": "cmovs",
+          "operands": "rcx, rax"
+        },
+        {
+          "site": "0x145961626",
+          "instruction_bytes": "0f2945b0",
+          "mnemonic": "movaps",
+          "operands": "xmmword ptr [rbp - 0x50], xmm0"
+        },
+        {
+          "site": "0x14596162a",
+          "instruction_bytes": "488d051bb12a01",
+          "mnemonic": "lea",
+          "operands": "rax, [rip + 0x12ab11b]"
+        },
+        {
+          "site": "0x145961631",
+          "instruction_bytes": "48630c88",
+          "mnemonic": "movsxd",
+          "operands": "rcx, dword ptr [rax + rcx*4]"
+        },
+        {
+          "site": "0x145961635",
+          "instruction_bytes": "4801c1",
+          "mnemonic": "add",
+          "operands": "rcx, rax"
+        },
+        {
+          "site": "0x145961638",
+          "instruction_bytes": "4c898550010000",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rbp + 0x150], r8"
+        },
+        {
+          "site": "0x14596163f",
+          "instruction_bytes": "ffe1",
+          "mnemonic": "jmp",
+          "operands": "rcx"
+        }
+      ]
+    },
+    "accept_selector": {
+      "va": "0x145966adb",
+      "end_exclusive": "0x145966b26",
+      "byte_count": 75,
+      "sha256": "2a7648275f8dde8e3274e086103e3b3a4ef32b45da699e608f5671ad0603155e",
+      "instructions": [
+        {
+          "site": "0x145966adb",
+          "instruction_bytes": "488b8158060000",
+          "mnemonic": "mov",
+          "operands": "rax, qword ptr [rcx + 0x658]"
+        },
+        {
+          "site": "0x145966ae2",
+          "instruction_bytes": "4c8d0c92",
+          "mnemonic": "lea",
+          "operands": "r9, [rdx + rdx*4]"
+        },
+        {
+          "site": "0x145966ae6",
+          "instruction_bytes": "49c1e105",
+          "mnemonic": "shl",
+          "operands": "r9, 5"
+        },
+        {
+          "site": "0x145966aea",
+          "instruction_bytes": "4a8b540878",
+          "mnemonic": "mov",
+          "operands": "rdx, qword ptr [rax + r9 + 0x78]"
+        },
+        {
+          "site": "0x145966aef",
+          "instruction_bytes": "48be0000000000000080",
+          "mnemonic": "movabs",
+          "operands": "rsi, 0x8000000000000000"
+        },
+        {
+          "site": "0x145966af9",
+          "instruction_bytes": "4989d0",
+          "mnemonic": "mov",
+          "operands": "r8, rdx"
+        },
+        {
+          "site": "0x145966afc",
+          "instruction_bytes": "4931f0",
+          "mnemonic": "xor",
+          "operands": "r8, rsi"
+        },
+        {
+          "site": "0x145966aff",
+          "instruction_bytes": "4885d2",
+          "mnemonic": "test",
+          "operands": "rdx, rdx"
+        },
+        {
+          "site": "0x145966b02",
+          "instruction_bytes": "ba01000000",
+          "mnemonic": "mov",
+          "operands": "edx, 1"
+        },
+        {
+          "site": "0x145966b07",
+          "instruction_bytes": "490f48d0",
+          "mnemonic": "cmovs",
+          "operands": "rdx, r8"
+        },
+        {
+          "site": "0x145966b0b",
+          "instruction_bytes": "4a8d3c08",
+          "mnemonic": "lea",
+          "operands": "rdi, [rax + r9]"
+        },
+        {
+          "site": "0x145966b0f",
+          "instruction_bytes": "488d059a5c2a01",
+          "mnemonic": "lea",
+          "operands": "rax, [rip + 0x12a5c9a]"
+        },
+        {
+          "site": "0x145966b16",
+          "instruction_bytes": "48631490",
+          "mnemonic": "movsxd",
+          "operands": "rdx, dword ptr [rax + rdx*4]"
+        },
+        {
+          "site": "0x145966b1a",
+          "instruction_bytes": "4801c2",
+          "mnemonic": "add",
+          "operands": "rdx, rax"
+        },
+        {
+          "site": "0x145966b1d",
+          "instruction_bytes": "48898da0020000",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rbp + 0x2a0], rcx"
+        },
+        {
+          "site": "0x145966b24",
+          "instruction_bytes": "ffe2",
+          "mnemonic": "jmp",
+          "operands": "rdx"
+        }
+      ]
+    },
+    "pool_call": {
+      "va": "0x14595cb03",
+      "end_exclusive": "0x14595cb10",
+      "byte_count": 13,
+      "sha256": "00318b348e6bc9ed1e382835f3444af47773f210233452224c6e3b12ba066f31",
+      "instructions": [
+        {
+          "site": "0x14595cb03",
+          "instruction_bytes": "4889f2",
+          "mnemonic": "mov",
+          "operands": "rdx, rsi"
+        },
+        {
+          "site": "0x14595cb06",
+          "instruction_bytes": "e8457a0000",
+          "mnemonic": "call",
+          "operands": "0x145964550"
+        },
+        {
+          "site": "0x14595cb0b",
+          "instruction_bytes": "e9010c0000",
+          "mnemonic": "jmp",
+          "operands": "0x14595d711"
+        }
+      ]
+    },
+    "destination_vec": {
+      "va": "0x14595d711",
+      "end_exclusive": "0x14595d71f",
+      "byte_count": 14,
+      "sha256": "78b9e08414156b96f622126cbccffe1fd983f8f262334eec5484f623458c65d7",
+      "instructions": [
+        {
+          "site": "0x14595d711",
+          "instruction_bytes": "488d8650060000",
+          "mnemonic": "lea",
+          "operands": "rax, [rsi + 0x650]"
+        },
+        {
+          "site": "0x14595d718",
+          "instruction_bytes": "48898530010000",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rbp + 0x130], rax"
+        }
+      ]
+    },
+    "returned_vec_copy": {
+      "va": "0x14595d7ac",
+      "end_exclusive": "0x14595d7bb",
+      "byte_count": 15,
+      "sha256": "91b0baa0d883da746e3c53d5b38c6ff0c4c655d0dc362c7a03e6666b7efde819",
+      "instructions": [
+        {
+          "site": "0x14595d7ac",
+          "instruction_bytes": "488b4500",
+          "mnemonic": "mov",
+          "operands": "rax, qword ptr [rbp]"
+        },
+        {
+          "site": "0x14595d7b0",
+          "instruction_bytes": "48894610",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rsi + 0x10], rax"
+        },
+        {
+          "site": "0x14595d7b4",
+          "instruction_bytes": "0f2845f0",
+          "mnemonic": "movaps",
+          "operands": "xmm0, xmmword ptr [rbp - 0x10]"
+        },
+        {
+          "site": "0x14595d7b8",
+          "instruction_bytes": "0f1106",
+          "mnemonic": "movups",
+          "operands": "xmmword ptr [rsi], xmm0"
+        }
+      ]
+    },
+    "literal_constructor_inputs": [
+      {
+        "encoded_header": "0x8000000000000004",
+        "normalized_selector": 4,
+        "header_store": "0x14595d682",
+        "frame_offset": "0xb0",
+        "call": "0x14595d69a",
+        "incoming_alias_precondition": null,
+        "native_span": {
+          "va": "0x14595d678",
+          "end_exclusive": "0x14595d69f",
+          "byte_count": 39,
+          "sha256": "739125f0139ae9b8a37c863e9ebf8ff52192098bcc3fa984242985b75c0727d9",
+          "instructions": [
+            {
+              "site": "0x14595d678",
+              "instruction_bytes": "48b80400000000000080",
+              "mnemonic": "movabs",
+              "operands": "rax, 0x8000000000000004"
+            },
+            {
+              "site": "0x14595d682",
+              "instruction_bytes": "488985b0000000",
+              "mnemonic": "mov",
+              "operands": "qword ptr [rbp + 0xb0], rax"
+            },
+            {
+              "site": "0x14595d689",
+              "instruction_bytes": "488d4df0",
+              "mnemonic": "lea",
+              "operands": "rcx, [rbp - 0x10]"
+            },
+            {
+              "site": "0x14595d68d",
+              "instruction_bytes": "4c8d85b0000000",
+              "mnemonic": "lea",
+              "operands": "r8, [rbp + 0xb0]"
+            },
+            {
+              "site": "0x14595d694",
+              "instruction_bytes": "4889f2",
+              "mnemonic": "mov",
+              "operands": "rdx, rsi"
+            },
+            {
+              "site": "0x14595d697",
+              "instruction_bytes": "4531c9",
+              "mnemonic": "xor",
+              "operands": "r9d, r9d"
+            },
+            {
+              "site": "0x14595d69a",
+              "instruction_bytes": "e8f13e0000",
+              "mnemonic": "call",
+              "operands": "0x145961590"
+            }
+          ]
+        },
+        "all_incoming_paths_or_aliases_proved": false
+      },
+      {
+        "encoded_header": "0x8000000000000003",
+        "normalized_selector": 3,
+        "header_store": "0x145965269",
+        "frame_offset": "0x170",
+        "call": "0x145965288",
+        "incoming_alias_precondition": null,
+        "native_span": {
+          "va": "0x14596525f",
+          "end_exclusive": "0x14596528d",
+          "byte_count": 46,
+          "sha256": "a18e6b889f4841c2bfc8c6fd5847c6d0a8ae8c9fee56e21286515ad528fcdbf6",
+          "instructions": [
+            {
+              "site": "0x14596525f",
+              "instruction_bytes": "48b80300000000000080",
+              "mnemonic": "movabs",
+              "operands": "rax, 0x8000000000000003"
+            },
+            {
+              "site": "0x145965269",
+              "instruction_bytes": "48898570010000",
+              "mnemonic": "mov",
+              "operands": "qword ptr [rbp + 0x170], rax"
+            },
+            {
+              "site": "0x145965270",
+              "instruction_bytes": "488d4db0",
+              "mnemonic": "lea",
+              "operands": "rcx, [rbp - 0x50]"
+            },
+            {
+              "site": "0x145965274",
+              "instruction_bytes": "4889da",
+              "mnemonic": "mov",
+              "operands": "rdx, rbx"
+            },
+            {
+              "site": "0x145965277",
+              "instruction_bytes": "4c8da570010000",
+              "mnemonic": "lea",
+              "operands": "r12, [rbp + 0x170]"
+            },
+            {
+              "site": "0x14596527e",
+              "instruction_bytes": "4d89e0",
+              "mnemonic": "mov",
+              "operands": "r8, r12"
+            },
+            {
+              "site": "0x145965281",
+              "instruction_bytes": "4c8b8dc0010000",
+              "mnemonic": "mov",
+              "operands": "r9, qword ptr [rbp + 0x1c0]"
+            },
+            {
+              "site": "0x145965288",
+              "instruction_bytes": "e803c3ffff",
+              "mnemonic": "call",
+              "operands": "0x145961590"
+            }
+          ]
+        },
+        "all_incoming_paths_or_aliases_proved": false
+      },
+      {
+        "encoded_header": "0x8000000000000002",
+        "normalized_selector": 2,
+        "header_store": "0x14596567e",
+        "frame_offset": "0x60",
+        "call": "0x14596568c",
+        "incoming_alias_precondition": "RBX=RBP+0x60",
+        "native_span": {
+          "va": "0x145965674",
+          "end_exclusive": "0x145965691",
+          "byte_count": 29,
+          "sha256": "5eb928bad05607e5c1e6eef55f5e0715ec18afb244ae1610a7f43486f861acaf",
+          "instructions": [
+            {
+              "site": "0x145965674",
+              "instruction_bytes": "48b80200000000000080",
+              "mnemonic": "movabs",
+              "operands": "rax, 0x8000000000000002"
+            },
+            {
+              "site": "0x14596567e",
+              "instruction_bytes": "48894560",
+              "mnemonic": "mov",
+              "operands": "qword ptr [rbp + 0x60], rax"
+            },
+            {
+              "site": "0x145965682",
+              "instruction_bytes": "488d4db0",
+              "mnemonic": "lea",
+              "operands": "rcx, [rbp - 0x50]"
+            },
+            {
+              "site": "0x145965686",
+              "instruction_bytes": "4c89f2",
+              "mnemonic": "mov",
+              "operands": "rdx, r14"
+            },
+            {
+              "site": "0x145965689",
+              "instruction_bytes": "4989d8",
+              "mnemonic": "mov",
+              "operands": "r8, rbx"
+            },
+            {
+              "site": "0x14596568c",
+              "instruction_bytes": "e8ffbeffff",
+              "mnemonic": "call",
+              "operands": "0x145961590"
+            }
+          ]
+        },
+        "all_incoming_paths_or_aliases_proved": false
+      },
+      {
+        "encoded_header": "0x8000000000000003",
+        "normalized_selector": 3,
+        "header_store": "0x1459657e7",
+        "frame_offset": "0x170",
+        "call": "0x1459657fb",
+        "incoming_alias_precondition": "R12=RBP+0x170",
+        "native_span": {
+          "va": "0x1459657dd",
+          "end_exclusive": "0x145965800",
+          "byte_count": 35,
+          "sha256": "896c003905aa83640f788fd80a67a5b5adeefccbb83327abb240d9b9d034a84e",
+          "instructions": [
+            {
+              "site": "0x1459657dd",
+              "instruction_bytes": "48b80300000000000080",
+              "mnemonic": "movabs",
+              "operands": "rax, 0x8000000000000003"
+            },
+            {
+              "site": "0x1459657e7",
+              "instruction_bytes": "48898570010000",
+              "mnemonic": "mov",
+              "operands": "qword ptr [rbp + 0x170], rax"
+            },
+            {
+              "site": "0x1459657ee",
+              "instruction_bytes": "488d4db0",
+              "mnemonic": "lea",
+              "operands": "rcx, [rbp - 0x50]"
+            },
+            {
+              "site": "0x1459657f2",
+              "instruction_bytes": "4c89f2",
+              "mnemonic": "mov",
+              "operands": "rdx, r14"
+            },
+            {
+              "site": "0x1459657f5",
+              "instruction_bytes": "4d89e0",
+              "mnemonic": "mov",
+              "operands": "r8, r12"
+            },
+            {
+              "site": "0x1459657f8",
+              "instruction_bytes": "4989d9",
+              "mnemonic": "mov",
+              "operands": "r9, rbx"
+            },
+            {
+              "site": "0x1459657fb",
+              "instruction_bytes": "e890bdffff",
+              "mnemonic": "call",
+              "operands": "0x145961590"
+            }
+          ]
+        },
+        "all_incoming_paths_or_aliases_proved": false
+      },
+      {
+        "encoded_header": "0x8000000000000004",
+        "normalized_selector": 4,
+        "header_store": "0x1459658e6",
+        "frame_offset": "0x170",
+        "call": "0x145965901",
+        "incoming_alias_precondition": null,
+        "native_span": {
+          "va": "0x1459658dc",
+          "end_exclusive": "0x145965906",
+          "byte_count": 42,
+          "sha256": "9c171bc1b3739791bd7fbccbd171b7e9f6f35875ad9339555217346ebfe1e2b3",
+          "instructions": [
+            {
+              "site": "0x1459658dc",
+              "instruction_bytes": "48b80400000000000080",
+              "mnemonic": "movabs",
+              "operands": "rax, 0x8000000000000004"
+            },
+            {
+              "site": "0x1459658e6",
+              "instruction_bytes": "48898570010000",
+              "mnemonic": "mov",
+              "operands": "qword ptr [rbp + 0x170], rax"
+            },
+            {
+              "site": "0x1459658ed",
+              "instruction_bytes": "488d4d60",
+              "mnemonic": "lea",
+              "operands": "rcx, [rbp + 0x60]"
+            },
+            {
+              "site": "0x1459658f1",
+              "instruction_bytes": "4c8d8570010000",
+              "mnemonic": "lea",
+              "operands": "r8, [rbp + 0x170]"
+            },
+            {
+              "site": "0x1459658f8",
+              "instruction_bytes": "41b902000000",
+              "mnemonic": "mov",
+              "operands": "r9d, 2"
+            },
+            {
+              "site": "0x1459658fe",
+              "instruction_bytes": "4c89f2",
+              "mnemonic": "mov",
+              "operands": "rdx, r14"
+            },
+            {
+              "site": "0x145965901",
+              "instruction_bytes": "e88abcffff",
+              "mnemonic": "call",
+              "operands": "0x145961590"
+            }
+          ]
+        },
+        "all_incoming_paths_or_aliases_proved": false
+      }
+    ],
+    "weighted_learn_input": {
+      "va": "0x14595ce80",
+      "end_exclusive": "0x14595ce9b",
+      "byte_count": 27,
+      "sha256": "67569454b2b34fe332615a18db155ee6284918e6784f84dca605ced107d9cb52",
+      "instructions": [
+        {
+          "site": "0x14595ce80",
+          "instruction_bytes": "f30f1175f0",
+          "mnemonic": "movss",
+          "operands": "dword ptr [rbp - 0x10], xmm6"
+        },
+        {
+          "site": "0x14595ce85",
+          "instruction_bytes": "48b80000000000000080",
+          "mnemonic": "movabs",
+          "operands": "rax, 0x8000000000000000"
+        },
+        {
+          "site": "0x14595ce8f",
+          "instruction_bytes": "488945f8",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rbp - 8], rax"
+        },
+        {
+          "site": "0x14595ce93",
+          "instruction_bytes": "4c897500",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rbp], r14"
+        },
+        {
+          "site": "0x14595ce97",
+          "instruction_bytes": "4c897d08",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rbp + 8], r15"
+        }
+      ]
+    },
+    "weighted_learn_append": {
+      "va": "0x14595cc90",
+      "end_exclusive": "0x14595ccb9",
+      "byte_count": 41,
+      "sha256": "6d8b6a558f4c2d08028958b911a5fe7ac3e975166104e17c869ef7f73e5c752f",
+      "instructions": [
+        {
+          "site": "0x14595cc90",
+          "instruction_bytes": "4b8d04a4",
+          "mnemonic": "lea",
+          "operands": "rax, [r12 + r12*4]"
+        },
+        {
+          "site": "0x14595cc94",
+          "instruction_bytes": "488b4d10",
+          "mnemonic": "mov",
+          "operands": "rcx, qword ptr [rbp + 0x10]"
+        },
+        {
+          "site": "0x14595cc98",
+          "instruction_bytes": "488b9530010000",
+          "mnemonic": "mov",
+          "operands": "rdx, qword ptr [rbp + 0x130]"
+        },
+        {
+          "site": "0x14595cc9f",
+          "instruction_bytes": "48894cc220",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rdx + rax*8 + 0x20], rcx"
+        },
+        {
+          "site": "0x14595cca4",
+          "instruction_bytes": "f30f6f45f0",
+          "mnemonic": "movdqu",
+          "operands": "xmm0, xmmword ptr [rbp - 0x10]"
+        },
+        {
+          "site": "0x14595cca9",
+          "instruction_bytes": "f30f6f4d00",
+          "mnemonic": "movdqu",
+          "operands": "xmm1, xmmword ptr [rbp]"
+        },
+        {
+          "site": "0x14595ccae",
+          "instruction_bytes": "f30f7f4cc210",
+          "mnemonic": "movdqu",
+          "operands": "xmmword ptr [rdx + rax*8 + 0x10], xmm1"
+        },
+        {
+          "site": "0x14595ccb4",
+          "instruction_bytes": "f30f7f04c2",
+          "mnemonic": "movdqu",
+          "operands": "xmmword ptr [rdx + rax*8], xmm0"
+        }
+      ]
+    },
+    "weighted_upgrade_input": {
+      "va": "0x14595d2b7",
+      "end_exclusive": "0x14595d2d6",
+      "byte_count": 31,
+      "sha256": "211f0e483ad6f0be5ee54175477dbad66d8b4aae39eb83d0e2bd9f11fc10be3f",
+      "instructions": [
+        {
+          "site": "0x14595d2b7",
+          "instruction_bytes": "c745f06666a63f",
+          "mnemonic": "mov",
+          "operands": "dword ptr [rbp - 0x10], 0x3fa66666"
+        },
+        {
+          "site": "0x14595d2be",
+          "instruction_bytes": "48c745f801000000",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rbp - 8], 1"
+        },
+        {
+          "site": "0x14595d2c6",
+          "instruction_bytes": "48894500",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rbp], rax"
+        },
+        {
+          "site": "0x14595d2ca",
+          "instruction_bytes": "48c7450801000000",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rbp + 8], 1"
+        },
+        {
+          "site": "0x14595d2d2",
+          "instruction_bytes": "4c896d10",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rbp + 0x10], r13"
+        }
+      ]
+    },
+    "weighted_upgrade_append": {
+      "va": "0x14595d040",
+      "end_exclusive": "0x14595d069",
+      "byte_count": 41,
+      "sha256": "b581638e9da5423fe1ce5c8093da1a85df9c9db0b688225f31e1f16b96117d8a",
+      "instructions": [
+        {
+          "site": "0x14595d040",
+          "instruction_bytes": "488b85d8000000",
+          "mnemonic": "mov",
+          "operands": "rax, qword ptr [rbp + 0xd8]"
+        },
+        {
+          "site": "0x14595d047",
+          "instruction_bytes": "488d0cb6",
+          "mnemonic": "lea",
+          "operands": "rcx, [rsi + rsi*4]"
+        },
+        {
+          "site": "0x14595d04b",
+          "instruction_bytes": "488b5510",
+          "mnemonic": "mov",
+          "operands": "rdx, qword ptr [rbp + 0x10]"
+        },
+        {
+          "site": "0x14595d04f",
+          "instruction_bytes": "488954c820",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rax + rcx*8 + 0x20], rdx"
+        },
+        {
+          "site": "0x14595d054",
+          "instruction_bytes": "f30f6f45f0",
+          "mnemonic": "movdqu",
+          "operands": "xmm0, xmmword ptr [rbp - 0x10]"
+        },
+        {
+          "site": "0x14595d059",
+          "instruction_bytes": "f30f6f4d00",
+          "mnemonic": "movdqu",
+          "operands": "xmm1, xmmword ptr [rbp]"
+        },
+        {
+          "site": "0x14595d05e",
+          "instruction_bytes": "f30f7f4cc810",
+          "mnemonic": "movdqu",
+          "operands": "xmmword ptr [rax + rcx*8 + 0x10], xmm1"
+        },
+        {
+          "site": "0x14595d064",
+          "instruction_bytes": "f30f7f04c8",
+          "mnemonic": "movdqu",
+          "operands": "xmmword ptr [rax + rcx*8], xmm0"
+        }
+      ]
+    },
+    "weighted_selection_payload": {
+      "va": "0x14595d506",
+      "end_exclusive": "0x14595d58c",
+      "byte_count": 134,
+      "sha256": "776f42113b586f69e2e8536854a244765a39d0992440f6c81a7222b564a695c2",
+      "instructions": [
+        {
+          "site": "0x14595d506",
+          "instruction_bytes": "4989d8",
+          "mnemonic": "mov",
+          "operands": "r8, rbx"
+        },
+        {
+          "site": "0x14595d509",
+          "instruction_bytes": "4b8d04bf",
+          "mnemonic": "lea",
+          "operands": "rax, [r15 + r15*4]"
+        },
+        {
+          "site": "0x14595d50d",
+          "instruction_bytes": "488d0cc7",
+          "mnemonic": "lea",
+          "operands": "rcx, [rdi + rax*8]"
+        },
+        {
+          "site": "0x14595d511",
+          "instruction_bytes": "488b5cc708",
+          "mnemonic": "mov",
+          "operands": "rbx, qword ptr [rdi + rax*8 + 8]"
+        },
+        {
+          "site": "0x14595d516",
+          "instruction_bytes": "488b54c720",
+          "mnemonic": "mov",
+          "operands": "rdx, qword ptr [rdi + rax*8 + 0x20]"
+        },
+        {
+          "site": "0x14595d51b",
+          "instruction_bytes": "488995c0000000",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rbp + 0xc0], rdx"
+        },
+        {
+          "site": "0x14595d522",
+          "instruction_bytes": "0f1044c710",
+          "mnemonic": "movups",
+          "operands": "xmm0, xmmword ptr [rdi + rax*8 + 0x10]"
+        },
+        {
+          "site": "0x14595d527",
+          "instruction_bytes": "0f2985b0000000",
+          "mnemonic": "movaps",
+          "operands": "xmmword ptr [rbp + 0xb0], xmm0"
+        },
+        {
+          "site": "0x14595d52e",
+          "instruction_bytes": "488d14c7",
+          "mnemonic": "lea",
+          "operands": "rdx, [rdi + rax*8]"
+        },
+        {
+          "site": "0x14595d532",
+          "instruction_bytes": "4883c228",
+          "mnemonic": "add",
+          "operands": "rdx, 0x28"
+        },
+        {
+          "site": "0x14595d536",
+          "instruction_bytes": "4c89f8",
+          "mnemonic": "mov",
+          "operands": "rax, r15"
+        },
+        {
+          "site": "0x14595d539",
+          "instruction_bytes": "48f7d0",
+          "mnemonic": "not",
+          "operands": "rax"
+        },
+        {
+          "site": "0x14595d53c",
+          "instruction_bytes": "4901c0",
+          "mnemonic": "add",
+          "operands": "r8, rax"
+        },
+        {
+          "site": "0x14595d53f",
+          "instruction_bytes": "49c1e003",
+          "mnemonic": "shl",
+          "operands": "r8, 3"
+        },
+        {
+          "site": "0x14595d543",
+          "instruction_bytes": "4f8d0480",
+          "mnemonic": "lea",
+          "operands": "r8, [r8 + r8*4]"
+        },
+        {
+          "site": "0x14595d547",
+          "instruction_bytes": "e8a1ce2a00",
+          "mnemonic": "call",
+          "operands": "0x145c0a3ed"
+        },
+        {
+          "site": "0x14595d54c",
+          "instruction_bytes": "488975e0",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rbp - 0x20], rsi"
+        },
+        {
+          "site": "0x14595d550",
+          "instruction_bytes": "4883fbff",
+          "mnemonic": "cmp",
+          "operands": "rbx, -1"
+        },
+        {
+          "site": "0x14595d554",
+          "instruction_bytes": "0f849b050000",
+          "mnemonic": "je",
+          "operands": "0x14595daf5"
+        },
+        {
+          "site": "0x14595d55a",
+          "instruction_bytes": "488b85c0000000",
+          "mnemonic": "mov",
+          "operands": "rax, qword ptr [rbp + 0xc0]"
+        },
+        {
+          "site": "0x14595d561",
+          "instruction_bytes": "48898500010000",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rbp + 0x100], rax"
+        },
+        {
+          "site": "0x14595d568",
+          "instruction_bytes": "0f2885b0000000",
+          "mnemonic": "movaps",
+          "operands": "xmm0, xmmword ptr [rbp + 0xb0]"
+        },
+        {
+          "site": "0x14595d56f",
+          "instruction_bytes": "0f2985f0000000",
+          "mnemonic": "movaps",
+          "operands": "xmmword ptr [rbp + 0xf0], xmm0"
+        },
+        {
+          "site": "0x14595d576",
+          "instruction_bytes": "48895df0",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rbp - 0x10], rbx"
+        },
+        {
+          "site": "0x14595d57a",
+          "instruction_bytes": "488d4df8",
+          "mnemonic": "lea",
+          "operands": "rcx, [rbp - 8]"
+        },
+        {
+          "site": "0x14595d57e",
+          "instruction_bytes": "48894110",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rcx + 0x10], rax"
+        },
+        {
+          "site": "0x14595d582",
+          "instruction_bytes": "0f1101",
+          "mnemonic": "movups",
+          "operands": "xmmword ptr [rcx], xmm0"
+        },
+        {
+          "site": "0x14595d585",
+          "instruction_bytes": "4c8bbda0000000",
+          "mnemonic": "mov",
+          "operands": "r15, qword ptr [rbp + 0xa0]"
+        }
+      ]
+    },
+    "selected32_byte_append": {
+      "va": "0x14595d3d0",
+      "end_exclusive": "0x14595d3fa",
+      "byte_count": 42,
+      "sha256": "4b3cc777d893f928384ef243c42d0b65bc785dd2777adec71fc14417c75d6cc3",
+      "instructions": [
+        {
+          "site": "0x14595d3d0",
+          "instruction_bytes": "488bbd98000000",
+          "mnemonic": "mov",
+          "operands": "rdi, qword ptr [rbp + 0x98]"
+        },
+        {
+          "site": "0x14595d3d7",
+          "instruction_bytes": "4c89f8",
+          "mnemonic": "mov",
+          "operands": "rax, r15"
+        },
+        {
+          "site": "0x14595d3da",
+          "instruction_bytes": "48c1e005",
+          "mnemonic": "shl",
+          "operands": "rax, 5"
+        },
+        {
+          "site": "0x14595d3de",
+          "instruction_bytes": "48891c07",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rdi + rax], rbx"
+        },
+        {
+          "site": "0x14595d3e2",
+          "instruction_bytes": "0f2885f0000000",
+          "mnemonic": "movaps",
+          "operands": "xmm0, xmmword ptr [rbp + 0xf0]"
+        },
+        {
+          "site": "0x14595d3e9",
+          "instruction_bytes": "0f11440708",
+          "mnemonic": "movups",
+          "operands": "xmmword ptr [rdi + rax + 8], xmm0"
+        },
+        {
+          "site": "0x14595d3ee",
+          "instruction_bytes": "488b8d00010000",
+          "mnemonic": "mov",
+          "operands": "rcx, qword ptr [rbp + 0x100]"
+        },
+        {
+          "site": "0x14595d3f5",
+          "instruction_bytes": "48894c0718",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rdi + rax + 0x18], rcx"
+        }
+      ]
+    },
+    "selected_iterator_setup": {
+      "va": "0x14595d61c",
+      "end_exclusive": "0x14595d663",
+      "byte_count": 71,
+      "sha256": "ebf1cd0176654acb70f7b0748388e2c6d5ec53f57415d37c66177676389f7820",
+      "instructions": [
+        {
+          "site": "0x14595d61c",
+          "instruction_bytes": "49c1e705",
+          "mnemonic": "shl",
+          "operands": "r15, 5"
+        },
+        {
+          "site": "0x14595d620",
+          "instruction_bytes": "4901ff",
+          "mnemonic": "add",
+          "operands": "r15, rdi"
+        },
+        {
+          "site": "0x14595d623",
+          "instruction_bytes": "48897df0",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rbp - 0x10], rdi"
+        },
+        {
+          "site": "0x14595d627",
+          "instruction_bytes": "48897df8",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rbp - 8], rdi"
+        },
+        {
+          "site": "0x14595d62b",
+          "instruction_bytes": "48897500",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rbp], rsi"
+        },
+        {
+          "site": "0x14595d62f",
+          "instruction_bytes": "4c897d08",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rbp + 8], r15"
+        },
+        {
+          "site": "0x14595d633",
+          "instruction_bytes": "488bb528010000",
+          "mnemonic": "mov",
+          "operands": "rsi, qword ptr [rbp + 0x128]"
+        },
+        {
+          "site": "0x14595d63a",
+          "instruction_bytes": "48897510",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rbp + 0x10], rsi"
+        },
+        {
+          "site": "0x14595d63e",
+          "instruction_bytes": "488b8548010000",
+          "mnemonic": "mov",
+          "operands": "rax, qword ptr [rbp + 0x148]"
+        },
+        {
+          "site": "0x14595d645",
+          "instruction_bytes": "48898510010000",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rbp + 0x110], rax"
+        },
+        {
+          "site": "0x14595d64c",
+          "instruction_bytes": "c6855701000000",
+          "mnemonic": "mov",
+          "operands": "byte ptr [rbp + 0x157], 0"
+        },
+        {
+          "site": "0x14595d653",
+          "instruction_bytes": "488d8df0000000",
+          "mnemonic": "lea",
+          "operands": "rcx, [rbp + 0xf0]"
+        },
+        {
+          "site": "0x14595d65a",
+          "instruction_bytes": "488d55f0",
+          "mnemonic": "lea",
+          "operands": "rdx, [rbp - 0x10]"
+        },
+        {
+          "site": "0x14595d65e",
+          "instruction_bytes": "e82dc60700",
+          "mnemonic": "call",
+          "operands": "0x1459d9c90"
+        }
+      ]
+    },
+    "iterator_adapter": {
+      "va": "0x1459d9d2b",
+      "end_exclusive": "0x1459d9d61",
+      "byte_count": 54,
+      "sha256": "d42e50479ce4f316418b9c0d1ab5096907a788e19161ac3194177acee9bc3214",
+      "instructions": [
+        {
+          "site": "0x1459d9d2b",
+          "instruction_bytes": "410f1007",
+          "mnemonic": "movups",
+          "operands": "xmm0, xmmword ptr [r15]"
+        },
+        {
+          "site": "0x1459d9d2f",
+          "instruction_bytes": "410f104f10",
+          "mnemonic": "movups",
+          "operands": "xmm1, xmmword ptr [r15 + 0x10]"
+        },
+        {
+          "site": "0x1459d9d34",
+          "instruction_bytes": "0f294db0",
+          "mnemonic": "movaps",
+          "operands": "xmmword ptr [rbp - 0x50], xmm1"
+        },
+        {
+          "site": "0x1459d9d38",
+          "instruction_bytes": "0f2945a0",
+          "mnemonic": "movaps",
+          "operands": "xmmword ptr [rbp - 0x60], xmm0"
+        },
+        {
+          "site": "0x1459d9d3c",
+          "instruction_bytes": "498b5720",
+          "mnemonic": "mov",
+          "operands": "rdx, qword ptr [r15 + 0x20]"
+        },
+        {
+          "site": "0x1459d9d40",
+          "instruction_bytes": "48894dc8",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rbp - 0x38], rcx"
+        },
+        {
+          "site": "0x1459d9d44",
+          "instruction_bytes": "48c745d000000000",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rbp - 0x30], 0"
+        },
+        {
+          "site": "0x1459d9d4c",
+          "instruction_bytes": "488945d8",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rbp - 0x28], rax"
+        },
+        {
+          "site": "0x1459d9d50",
+          "instruction_bytes": "488955e0",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rbp - 0x20], rdx"
+        },
+        {
+          "site": "0x1459d9d54",
+          "instruction_bytes": "488d4da0",
+          "mnemonic": "lea",
+          "operands": "rcx, [rbp - 0x60]"
+        },
+        {
+          "site": "0x1459d9d58",
+          "instruction_bytes": "488d55c8",
+          "mnemonic": "lea",
+          "operands": "rdx, [rbp - 0x38]"
+        },
+        {
+          "site": "0x1459d9d5c",
+          "instruction_bytes": "e86f220100",
+          "mnemonic": "call",
+          "operands": "0x1459ebfd0"
+        }
+      ]
+    },
+    "iterator_cursor_read": {
+      "va": "0x1459ec044",
+      "end_exclusive": "0x1459ec0ed",
+      "byte_count": 169,
+      "sha256": "54d1cd9d41e73c488845b74ac277b4a127a3f5d51aed66efe5b4ab9a2e19c35e",
+      "instructions": [
+        {
+          "site": "0x1459ec044",
+          "instruction_bytes": "488b4108",
+          "mnemonic": "mov",
+          "operands": "rax, qword ptr [rcx + 8]"
+        },
+        {
+          "site": "0x1459ec048",
+          "instruction_bytes": "4c8b4118",
+          "mnemonic": "mov",
+          "operands": "r8, qword ptr [rcx + 0x18]"
+        },
+        {
+          "site": "0x1459ec04c",
+          "instruction_bytes": "4c898588000000",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rbp + 0x88], r8"
+        },
+        {
+          "site": "0x1459ec053",
+          "instruction_bytes": "4c8b4210",
+          "mnemonic": "mov",
+          "operands": "r8, qword ptr [rdx + 0x10]"
+        },
+        {
+          "site": "0x1459ec057",
+          "instruction_bytes": "4c898590000000",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rbp + 0x90], r8"
+        },
+        {
+          "site": "0x1459ec05e",
+          "instruction_bytes": "488995d8000000",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rbp + 0xd8], rdx"
+        },
+        {
+          "site": "0x1459ec065",
+          "instruction_bytes": "488b7218",
+          "mnemonic": "mov",
+          "operands": "rsi, qword ptr [rdx + 0x18]"
+        },
+        {
+          "site": "0x1459ec069",
+          "instruction_bytes": "488dbe80040000",
+          "mnemonic": "lea",
+          "operands": "rdi, [rsi + 0x480]"
+        },
+        {
+          "site": "0x1459ec070",
+          "instruction_bytes": "f30f103d98c73c00",
+          "mnemonic": "movss",
+          "operands": "xmm7, dword ptr [rip + 0x3cc798]"
+        },
+        {
+          "site": "0x1459ec078",
+          "instruction_bytes": "f3440f1005df113c00",
+          "mnemonic": "movss",
+          "operands": "xmm8, dword ptr [rip + 0x3c11df]"
+        },
+        {
+          "site": "0x1459ec081",
+          "instruction_bytes": "f3440f100dc62e4a00",
+          "mnemonic": "movss",
+          "operands": "xmm9, dword ptr [rip + 0x4a2ec6]"
+        },
+        {
+          "site": "0x1459ec08a",
+          "instruction_bytes": "f3440f10152d543c00",
+          "mnemonic": "movss",
+          "operands": "xmm10, dword ptr [rip + 0x3c542d]"
+        },
+        {
+          "site": "0x1459ec093",
+          "instruction_bytes": "f3440f101d98aa3c00",
+          "mnemonic": "movss",
+          "operands": "xmm11, dword ptr [rip + 0x3caa98]"
+        },
+        {
+          "site": "0x1459ec09c",
+          "instruction_bytes": "f3440f10253bc73c00",
+          "mnemonic": "movss",
+          "operands": "xmm12, dword ptr [rip + 0x3cc73b]"
+        },
+        {
+          "site": "0x1459ec0a5",
+          "instruction_bytes": "4c8dadc8000000",
+          "mnemonic": "lea",
+          "operands": "r13, [rbp + 0xc8]"
+        },
+        {
+          "site": "0x1459ec0ac",
+          "instruction_bytes": "48898dd0000000",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rbp + 0xd0], rcx"
+        },
+        {
+          "site": "0x1459ec0b3",
+          "instruction_bytes": "483b8588000000",
+          "mnemonic": "cmp",
+          "operands": "rax, qword ptr [rbp + 0x88]"
+        },
+        {
+          "site": "0x1459ec0ba",
+          "instruction_bytes": "0f842c030000",
+          "mnemonic": "je",
+          "operands": "0x1459ec3ec"
+        },
+        {
+          "site": "0x1459ec0c0",
+          "instruction_bytes": "0f1000",
+          "mnemonic": "movups",
+          "operands": "xmm0, xmmword ptr [rax]"
+        },
+        {
+          "site": "0x1459ec0c3",
+          "instruction_bytes": "0f104810",
+          "mnemonic": "movups",
+          "operands": "xmm1, xmmword ptr [rax + 0x10]"
+        },
+        {
+          "site": "0x1459ec0c7",
+          "instruction_bytes": "0f294db0",
+          "mnemonic": "movaps",
+          "operands": "xmmword ptr [rbp - 0x50], xmm1"
+        },
+        {
+          "site": "0x1459ec0cb",
+          "instruction_bytes": "0f2945a0",
+          "mnemonic": "movaps",
+          "operands": "xmmword ptr [rbp - 0x60], xmm0"
+        },
+        {
+          "site": "0x1459ec0cf",
+          "instruction_bytes": "488d5020",
+          "mnemonic": "lea",
+          "operands": "rdx, [rax + 0x20]"
+        },
+        {
+          "site": "0x1459ec0d3",
+          "instruction_bytes": "48899580000000",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rbp + 0x80], rdx"
+        },
+        {
+          "site": "0x1459ec0da",
+          "instruction_bytes": "48895108",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rcx + 8], rdx"
+        },
+        {
+          "site": "0x1459ec0de",
+          "instruction_bytes": "0f1000",
+          "mnemonic": "movups",
+          "operands": "xmm0, xmmword ptr [rax]"
+        },
+        {
+          "site": "0x1459ec0e1",
+          "instruction_bytes": "0f104810",
+          "mnemonic": "movups",
+          "operands": "xmm1, xmmword ptr [rax + 0x10]"
+        },
+        {
+          "site": "0x1459ec0e5",
+          "instruction_bytes": "0f294d70",
+          "mnemonic": "movaps",
+          "operands": "xmmword ptr [rbp + 0x70], xmm1"
+        },
+        {
+          "site": "0x1459ec0e9",
+          "instruction_bytes": "0f294560",
+          "mnemonic": "movaps",
+          "operands": "xmmword ptr [rbp + 0x60], xmm0"
+        }
+      ]
+    },
+    "constructor_niche_output_stores": [
+      {
+        "va": "0x14596256a",
+        "end_exclusive": "0x145962578",
+        "byte_count": 14,
+        "sha256": "a0f806b634cb9c2d80330d94f5cecb058001251fa6414976526b937c0a82ee01",
+        "instructions": [
+          {
+            "site": "0x14596256a",
+            "instruction_bytes": "48b80300000000000080",
+            "mnemonic": "movabs",
+            "operands": "rax, 0x8000000000000003"
+          },
+          {
+            "site": "0x145962574",
+            "instruction_bytes": "49894578",
+            "mnemonic": "mov",
+            "operands": "qword ptr [r13 + 0x78], rax"
+          }
+        ]
+      },
+      {
+        "va": "0x145962a4b",
+        "end_exclusive": "0x145962a59",
+        "byte_count": 14,
+        "sha256": "d7f4bd35729ee6357ff2d2e9dfcf21a645b6ce609ef9811f832363108e220811",
+        "instructions": [
+          {
+            "site": "0x145962a4b",
+            "instruction_bytes": "48ba0400000000000080",
+            "mnemonic": "movabs",
+            "operands": "rdx, 0x8000000000000004"
+          },
+          {
+            "site": "0x145962a55",
+            "instruction_bytes": "49895578",
+            "mnemonic": "mov",
+            "operands": "qword ptr [r13 + 0x78], rdx"
+          }
+        ]
+      },
+      {
+        "va": "0x145962b6f",
+        "end_exclusive": "0x145962b84",
+        "byte_count": 21,
+        "sha256": "63a781df07fa552453a01a41ebc3c034d7206b4fbe1cf12c83e4fb10846a4e6b",
+        "instructions": [
+          {
+            "site": "0x145962b6f",
+            "instruction_bytes": "4c8badf8010000",
+            "mnemonic": "mov",
+            "operands": "r13, qword ptr [rbp + 0x1f8]"
+          },
+          {
+            "site": "0x145962b76",
+            "instruction_bytes": "48b80000000000000080",
+            "mnemonic": "movabs",
+            "operands": "rax, 0x8000000000000000"
+          },
+          {
+            "site": "0x145962b80",
+            "instruction_bytes": "49894578",
+            "mnemonic": "mov",
+            "operands": "qword ptr [r13 + 0x78], rax"
+          }
+        ]
+      },
+      {
+        "va": "0x1459630a7",
+        "end_exclusive": "0x1459630bc",
+        "byte_count": 21,
+        "sha256": "a4755017163b2217e0e8a9ee0d4d10df60ef51eb268b590452aaba31a0bde2d2",
+        "instructions": [
+          {
+            "site": "0x1459630a7",
+            "instruction_bytes": "48b80200000000000080",
+            "mnemonic": "movabs",
+            "operands": "rax, 0x8000000000000002"
+          },
+          {
+            "site": "0x1459630b1",
+            "instruction_bytes": "488b8df8010000",
+            "mnemonic": "mov",
+            "operands": "rcx, qword ptr [rbp + 0x1f8]"
+          },
+          {
+            "site": "0x1459630b8",
+            "instruction_bytes": "48894178",
+            "mnemonic": "mov",
+            "operands": "qword ptr [rcx + 0x78], rax"
+          }
+        ]
+      }
+    ],
+    "constructor_upgrade_vector_source": {
+      "va": "0x145961e54",
+      "end_exclusive": "0x145961e67",
+      "byte_count": 19,
+      "sha256": "5dbd09e92902d658e12cbef6732d2434f72b69265bc6386f8d79e8172ca5180b",
+      "instructions": [
+        {
+          "site": "0x145961e54",
+          "instruction_bytes": "488d8d38010000",
+          "mnemonic": "lea",
+          "operands": "rcx, [rbp + 0x138]"
+        },
+        {
+          "site": "0x145961e5b",
+          "instruction_bytes": "488d9568010000",
+          "mnemonic": "lea",
+          "operands": "rdx, [rbp + 0x168]"
+        },
+        {
+          "site": "0x145961e62",
+          "instruction_bytes": "e839940600",
+          "mnemonic": "call",
+          "operands": "0x1459cb2a0"
+        }
+      ]
+    },
+    "constructor_upgrade_vector_output": {
+      "va": "0x145962ad9",
+      "end_exclusive": "0x145962af9",
+      "byte_count": 32,
+      "sha256": "35cbd165c032aaa9de5f2a7a2cb234817f96717298b78d1d1143a7aaab8c21a0",
+      "instructions": [
+        {
+          "site": "0x145962ad9",
+          "instruction_bytes": "41be01000000",
+          "mnemonic": "mov",
+          "operands": "r14d, 1"
+        },
+        {
+          "site": "0x145962adf",
+          "instruction_bytes": "488b8548010000",
+          "mnemonic": "mov",
+          "operands": "rax, qword ptr [rbp + 0x148]"
+        },
+        {
+          "site": "0x145962ae6",
+          "instruction_bytes": "49898588000000",
+          "mnemonic": "mov",
+          "operands": "qword ptr [r13 + 0x88], rax"
+        },
+        {
+          "site": "0x145962aed",
+          "instruction_bytes": "0f108538010000",
+          "mnemonic": "movups",
+          "operands": "xmm0, xmmword ptr [rbp + 0x138]"
+        },
+        {
+          "site": "0x145962af4",
+          "instruction_bytes": "410f114578",
+          "mnemonic": "movups",
+          "operands": "xmmword ptr [r13 + 0x78], xmm0"
+        }
+      ]
+    },
+    "unresolved_iterator_call": {
+      "call": "0x1459ec39b",
+      "native_input_copy": {
+        "va": "0x1459ec36d",
+        "end_exclusive": "0x1459ec3a0",
+        "byte_count": 51,
+        "sha256": "32d9ac003134beb3628493d95512fce9cf6ea648f3bfe07192889bc51069f098",
+        "instructions": [
+          {
+            "site": "0x1459ec36d",
+            "instruction_bytes": "0f2845a0",
+            "mnemonic": "movaps",
+            "operands": "xmm0, xmmword ptr [rbp - 0x60]"
+          },
+          {
+            "site": "0x1459ec371",
+            "instruction_bytes": "0f284db0",
+            "mnemonic": "movaps",
+            "operands": "xmm1, xmmword ptr [rbp - 0x50]"
+          },
+          {
+            "site": "0x1459ec375",
+            "instruction_bytes": "0f298db0000000",
+            "mnemonic": "movaps",
+            "operands": "xmmword ptr [rbp + 0xb0], xmm1"
+          },
+          {
+            "site": "0x1459ec37c",
+            "instruction_bytes": "0f2985a0000000",
+            "mnemonic": "movaps",
+            "operands": "xmmword ptr [rbp + 0xa0], xmm0"
+          },
+          {
+            "site": "0x1459ec383",
+            "instruction_bytes": "c685e700000000",
+            "mnemonic": "mov",
+            "operands": "byte ptr [rbp + 0xe7], 0"
+          },
+          {
+            "site": "0x1459ec38a",
+            "instruction_bytes": "488d4dc0",
+            "mnemonic": "lea",
+            "operands": "rcx, [rbp - 0x40]"
+          },
+          {
+            "site": "0x1459ec38e",
+            "instruction_bytes": "4889f2",
+            "mnemonic": "mov",
+            "operands": "rdx, rsi"
+          },
+          {
+            "site": "0x1459ec391",
+            "instruction_bytes": "4c8d85a0000000",
+            "mnemonic": "lea",
+            "operands": "r8, [rbp + 0xa0]"
+          },
+          {
+            "site": "0x1459ec398",
+            "instruction_bytes": "4d89e1",
+            "mnemonic": "mov",
+            "operands": "r9, r12"
+          },
+          {
+            "site": "0x1459ec39b",
+            "instruction_bytes": "e8f051f7ff",
+            "mnemonic": "call",
+            "operands": "0x145961590"
+          }
+        ]
+      },
+      "copied_input": "RBP-0x60..RBP-0x40 -> RBP+0xa0..RBP+0xc0",
+      "earlier_sum_writer": "32-byte cursor buffer assembled from weighted selection in14595ca60",
+      "all_caller_aliases_and_mutations_proved": false
+    },
+    "live_choice_domain_complete": false,
+    "limits": [
+      "Native literal caller fragments and the returned Vec copy are exact current code leads; they do not enumerate every live record mutation.",
+      "The constructor receives a32-byte sum, while accept reads that sum from160-byte display record+0x78.",
+      "The113 factory outputs are112-byte records with a different layout; their first words cannot supply the constructor sum domain."
+    ],
+    "contextual_native_prefix_replays": [
+      {
+        "selector": 0,
+        "fixture_header": "0x8000000000000000",
+        "constructor_target": "0x145961641",
+        "accept_target": "0x145966b26",
+        "magnitude_target": "0x145993438"
+      },
+      {
+        "selector": 1,
+        "fixture_header": "0x1",
+        "constructor_target": "0x145961db2",
+        "accept_target": "0x145966c05",
+        "magnitude_target": "0x145993558"
+      },
+      {
+        "selector": 2,
+        "fixture_header": "0x8000000000000002",
+        "constructor_target": "0x145961bf1",
+        "accept_target": "0x145966b5b",
+        "magnitude_target": "0x14599349c"
+      },
+      {
+        "selector": 3,
+        "fixture_header": "0x8000000000000003",
+        "constructor_target": "0x145961c8d",
+        "accept_target": "0x145966b78",
+        "magnitude_target": "0x145993530"
+      },
+      {
+        "selector": 4,
+        "fixture_header": "0x8000000000000004",
+        "constructor_target": "0x145961b95",
+        "accept_target": "0x145966b40",
+        "magnitude_target": "0x145993471"
+      }
+    ],
+    "contextual_replay_limits": [
+      "Each32-byte or160-byte input is explicitly populated as a fixture; no whole constructor, Game queue lifecycle or arbitrary input alias is emulated.",
+      "The magnitude values are scoped to the extracted113 static upgrade slices, without asserting all live slice pointer ancestry.",
+      "No contextual target is automatically admitted as a globally guarded whole-domain edge."
+    ]
+  },
+  "unresolved_boundaries": [
+    "All writes/copy ancestry into live Game+0x658 choice records and their +0x78 headers still require separate producer proof.",
+    "Magnitude dispatch observed encoded callers1458965c0,14596748a and1459f49d2 read runtime slices; their complete pointer/length producer ancestry remains separate.",
+    "Negative jewelry/amulet headers and every mutation of the live sum type are not inferred from these113 positive factory outputs."
+  ],
+  "gap_ids": [
+    41
+  ],
+  "runtime_game_validation": false,
+  "parity_verified": false,
+  "limits": [
+    "Only113 exact current immutable descriptors are enumerated; no complete dynamic or indirect-caller domain is asserted.",
+    "Heap/byte operations and English localization fallback retain the explicit shared fixture seams.",
+    "The header is inserted into the consumer field as an explicit fixture input; this does not establish live queue copy ancestry.",
+    "The factory112-byte output and constructor32-byte incoming choice sum have different layouts. Factory first words do not establish any learn/upgrade choice variant domain.",
+    "No compilation or game process."
+  ],
+  "static_upgrade_slices": [
+    {
+      "index": 0,
+      "key": "cleave",
+      "descriptor": {
+        "va": "0x146bf5eb0",
+        "byte_count": 120,
+        "sha256": "12910c141436db991660ac642df1f7349267927dce8a7040de7783cb1e15a394"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 5
+    },
+    {
+      "index": 1,
+      "key": "whirlwind",
+      "descriptor": {
+        "va": "0x146bf5f28",
+        "byte_count": 120,
+        "sha256": "aeed3f0abb7cd13b703b690ba5b38f9123eafa0a69c863d05a89667d644c0096"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf516d",
+        "length": 3,
+        "hex": "000103",
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24"
+      },
+      "factory_selector_byte_0x75": 2
+    },
+    {
+      "index": 2,
+      "key": "thunder_clap",
+      "descriptor": {
+        "va": "0x146bf5fa0",
+        "byte_count": 120,
+        "sha256": "e1c3221b1fb5e3a528f2a13c6e95e1ffbf22f81ee3143ed45041063001d8273f"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf516d",
+        "length": 3,
+        "hex": "000103",
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24"
+      },
+      "factory_selector_byte_0x75": 2
+    },
+    {
+      "index": 3,
+      "key": "mortal_strike",
+      "descriptor": {
+        "va": "0x146bf6018",
+        "byte_count": 120,
+        "sha256": "bf84efe43c6d0d67610087c81e224cebaedf4577cd3d604594bc559cde947730"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 5
+    },
+    {
+      "index": 4,
+      "key": "execute",
+      "descriptor": {
+        "va": "0x146bf6090",
+        "byte_count": 120,
+        "sha256": "1c9ac7cde8db168cfcd3a5a7529f6e39fa982964a215bd293d786c1a49f5a01f"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf51ce",
+        "length": 2,
+        "hex": "0001",
+        "sha256": "b413f47d13ee2fe6c845b2ee141af81de858df4ec549a58b7970bb96645bc8d2"
+      },
+      "factory_selector_byte_0x75": 7
+    },
+    {
+      "index": 5,
+      "key": "demo_shout",
+      "descriptor": {
+        "va": "0x146bf6108",
+        "byte_count": 120,
+        "sha256": "2760ac4fd3ea4b74a81b449bd165aad5b9439f35b6b3272c488e05f605a316a8"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf51f8",
+        "length": 2,
+        "hex": "0103",
+        "sha256": "c79b932e1e1da3c0e098e5ad2c422937eb904a76cf61d83975a74a68fbb04b99"
+      },
+      "factory_selector_byte_0x75": 2
+    },
+    {
+      "index": 6,
+      "key": "battle_shout",
+      "descriptor": {
+        "va": "0x146bf6180",
+        "byte_count": 120,
+        "sha256": "9ef60cd6cb2ea4dfac448e2a759f36fe234681d83d97e0a7c03badff49ff6510"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5221",
+        "length": 2,
+        "hex": "0104",
+        "sha256": "a8d5dd63fba471ebcb1f3e8f7c1e1879b7152a6e7298a91ce119a63400ade7c5"
+      },
+      "factory_selector_byte_0x75": 9
+    },
+    {
+      "index": 7,
+      "key": "bloodthirst",
+      "descriptor": {
+        "va": "0x146bf61f8",
+        "byte_count": 120,
+        "sha256": "4e05d820b1767ab2e072214a907b184938ca3d76dfaa3fc9e7aee5aafc18bb60"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 5
+    },
+    {
+      "index": 8,
+      "key": "rend",
+      "descriptor": {
+        "va": "0x146bf6270",
+        "byte_count": 120,
+        "sha256": "54e7a76b195b64fbbfc2355e61709b5bdddcdf7aeff2af0567a743ef1caaf573"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf523f",
+        "length": 4,
+        "hex": "00010402",
+        "sha256": "0a7623721ffb3c45272ccf1f497cbb6f172ec1c38be06117b4d1e20d17554f72"
+      },
+      "factory_selector_byte_0x75": 6
+    },
+    {
+      "index": 9,
+      "key": "shield_slam",
+      "descriptor": {
+        "va": "0x146bf62e8",
+        "byte_count": 120,
+        "sha256": "7e8b5056deebc84b8c3f5ebab0233db607e26f33ff76600f5983097e59ec606e"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 5
+    },
+    {
+      "index": 10,
+      "key": "bloodrage",
+      "descriptor": {
+        "va": "0x146bf6360",
+        "byte_count": 120,
+        "sha256": "e9408da14a5e590c5f328a9b6531c95c4c8297241993a674bf14c1a04f1c80b2"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf516d",
+        "length": 3,
+        "hex": "000103",
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24"
+      },
+      "factory_selector_byte_0x75": 11
+    },
+    {
+      "index": 11,
+      "key": "consecration",
+      "descriptor": {
+        "va": "0x146bf63d8",
+        "byte_count": 120,
+        "sha256": "d478b8f3ba776cb2fcc5544ebe56153b780e83dd3a7ebb71a5631140635b753a"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf529c",
+        "length": 4,
+        "hex": "00010304",
+        "sha256": "f682d654a310a7d6579b0a0bfa3f274615d3e789af868555fde0e197206dccc9"
+      },
+      "factory_selector_byte_0x75": 3
+    },
+    {
+      "index": 12,
+      "key": "exorcism",
+      "descriptor": {
+        "va": "0x146bf6450",
+        "byte_count": 120,
+        "sha256": "c469ab89a18613cca5ca68138b2567520d1dcc139912ff1bd95418d5867aeae8"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 0
+    },
+    {
+      "index": 13,
+      "key": "hammer_of_wrath",
+      "descriptor": {
+        "va": "0x146bf64c8",
+        "byte_count": 120,
+        "sha256": "2f6e323b1153949ccb9ceb9e3e3dc892920425f627179a5632144598586c5118"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 0
+    },
+    {
+      "index": 14,
+      "key": "holy_shock",
+      "descriptor": {
+        "va": "0x146bf6540",
+        "byte_count": 120,
+        "sha256": "e183cb694e44c0f8eba603f9ecda480e5f8b71c1c2e2e0eabf99a8612f5dc413"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 1
+    },
+    {
+      "index": 15,
+      "key": "holy_wrath",
+      "descriptor": {
+        "va": "0x146bf65b8",
+        "byte_count": 120,
+        "sha256": "a69a763073fe5a319fd235e6923c693623469d2bcd5dc36dcf7fbbad8032e268"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf516d",
+        "length": 3,
+        "hex": "000103",
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24"
+      },
+      "factory_selector_byte_0x75": 2
+    },
+    {
+      "index": 16,
+      "key": "judgement",
+      "descriptor": {
+        "va": "0x146bf6630",
+        "byte_count": 120,
+        "sha256": "bffaca29b86a39e2f7e3240805456f6fd702ecec9048b88a342050f8d6375edd"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 0
+    },
+    {
+      "index": 17,
+      "key": "hammer_of_justice",
+      "descriptor": {
+        "va": "0x146bf66a8",
+        "byte_count": 120,
+        "sha256": "80b47ac7f76936a0595ee77177282f557ad1d01df8d85496aecc946372d92ffa"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 0
+    },
+    {
+      "index": 18,
+      "key": "holy_light",
+      "descriptor": {
+        "va": "0x146bf6720",
+        "byte_count": 120,
+        "sha256": "11b5921252ff7e770c131fdd7a59debbf4d256c43f114965f708c535858e141b"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf51ce",
+        "length": 2,
+        "hex": "0001",
+        "sha256": "b413f47d13ee2fe6c845b2ee141af81de858df4ec549a58b7970bb96645bc8d2"
+      },
+      "factory_selector_byte_0x75": 9
+    },
+    {
+      "index": 19,
+      "key": "divine_shield",
+      "descriptor": {
+        "va": "0x146bf6798",
+        "byte_count": 120,
+        "sha256": "6be66827fb50117bbd556f44c729b27378a1d861b849412959cf5a90998c08aa"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5221",
+        "length": 2,
+        "hex": "0104",
+        "sha256": "a8d5dd63fba471ebcb1f3e8f7c1e1879b7152a6e7298a91ce119a63400ade7c5"
+      },
+      "factory_selector_byte_0x75": 9
+    },
+    {
+      "index": 20,
+      "key": "holy_shield",
+      "descriptor": {
+        "va": "0x146bf6810",
+        "byte_count": 120,
+        "sha256": "c64053d1079ef1eddf4f0bf53433c6ee7d2af441976c40d1edbbb87ce90f4402"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf53c6",
+        "length": 3,
+        "hex": "000104",
+        "sha256": "3f078d3b7e22c8944e5561909a236ae48b48a7ea42f28dd861c22b6f64d7e97b"
+      },
+      "factory_selector_byte_0x75": 9
+    },
+    {
+      "index": 21,
+      "key": "redemption",
+      "descriptor": {
+        "va": "0x146bf6888",
+        "byte_count": 120,
+        "sha256": "c9cd3d8e2af757d4c308d475f2fff576da8b57374d1851ce14b18fb7917823da"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf516d",
+        "length": 3,
+        "hex": "000103",
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24"
+      },
+      "factory_selector_byte_0x75": 11
+    },
+    {
+      "index": 22,
+      "key": "auto_shot",
+      "descriptor": {
+        "va": "0x146bf6900",
+        "byte_count": 120,
+        "sha256": "7f83b108c61793111dc66224105a66b22e801277bcdfe32831dc106de00b3f07"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 0
+    },
+    {
+      "index": 23,
+      "key": "arcane_shot",
+      "descriptor": {
+        "va": "0x146bf6978",
+        "byte_count": 120,
+        "sha256": "be5e3cddb30166b337171dddda61fa934b5bc32175e7503231b71c7281f16556"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 0
+    },
+    {
+      "index": 24,
+      "key": "multi_shot",
+      "descriptor": {
+        "va": "0x146bf69f0",
+        "byte_count": 120,
+        "sha256": "24567e327d1e50782cd738e3e32ac34079129c94b43893778a6ad58aa7242017"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 0
+    },
+    {
+      "index": 25,
+      "key": "serpent_sting",
+      "descriptor": {
+        "va": "0x146bf6a68",
+        "byte_count": 120,
+        "sha256": "a5cc07ab45ad82504781f30d2de67de2d8fd3d85244c77caabf18d6e9f9482a1"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf523f",
+        "length": 4,
+        "hex": "00010402",
+        "sha256": "0a7623721ffb3c45272ccf1f497cbb6f172ec1c38be06117b4d1e20d17554f72"
+      },
+      "factory_selector_byte_0x75": 6
+    },
+    {
+      "index": 26,
+      "key": "volley",
+      "descriptor": {
+        "va": "0x146bf6ae0",
+        "byte_count": 120,
+        "sha256": "ba2e44afafe4880bdb86a4fed9180f501c984923d9e5c2b79f2c268a9b9bf9cc"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf529c",
+        "length": 4,
+        "hex": "00010304",
+        "sha256": "f682d654a310a7d6579b0a0bfa3f274615d3e789af868555fde0e197206dccc9"
+      },
+      "factory_selector_byte_0x75": 3
+    },
+    {
+      "index": 27,
+      "key": "explosive_trap",
+      "descriptor": {
+        "va": "0x146bf6b58",
+        "byte_count": 120,
+        "sha256": "9fe6af27d5c85ee335c47d495dd51ba0af38e4c5a8fe745c28b76a48c2aa889b"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf516d",
+        "length": 3,
+        "hex": "000103",
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24"
+      },
+      "factory_selector_byte_0x75": 2
+    },
+    {
+      "index": 28,
+      "key": "concussive_shot",
+      "descriptor": {
+        "va": "0x146bf6bd0",
+        "byte_count": 120,
+        "sha256": "bc2dca6087c5f08a61ece785b1b91d755d3bb6591f33f99147ba9f4c9ac2ae56"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 0
+    },
+    {
+      "index": 29,
+      "key": "aimed_shot",
+      "descriptor": {
+        "va": "0x146bf6c48",
+        "byte_count": 120,
+        "sha256": "fd01edf928e6aee91df325b10cbcca0fbfb88a9ad73543dde58e6b3d2f698cc1"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 0
+    },
+    {
+      "index": 30,
+      "key": "immolation_trap",
+      "descriptor": {
+        "va": "0x146bf6cc0",
+        "byte_count": 120,
+        "sha256": "ea713977bca7589d5c91b3d7d1b046d95672abf3a7612931def02d7431a19614"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf529c",
+        "length": 4,
+        "hex": "00010304",
+        "sha256": "f682d654a310a7d6579b0a0bfa3f274615d3e789af868555fde0e197206dccc9"
+      },
+      "factory_selector_byte_0x75": 3
+    },
+    {
+      "index": 31,
+      "key": "frost_trap",
+      "descriptor": {
+        "va": "0x146bf6d38",
+        "byte_count": 120,
+        "sha256": "a21adf8d48575e25e65f2eda5ce780d69fc5051a7eefd1941b25d7834ddfca18"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf529c",
+        "length": 4,
+        "hex": "00010304",
+        "sha256": "f682d654a310a7d6579b0a0bfa3f274615d3e789af868555fde0e197206dccc9"
+      },
+      "factory_selector_byte_0x75": 3
+    },
+    {
+      "index": 32,
+      "key": "hunters_mark",
+      "descriptor": {
+        "va": "0x146bf6db0",
+        "byte_count": 120,
+        "sha256": "dd58954995a087813d555d054ccada2598d4ac32e112e3785969f7d643928dbc"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf516d",
+        "length": 3,
+        "hex": "000103",
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24"
+      },
+      "factory_selector_byte_0x75": 11
+    },
+    {
+      "index": 33,
+      "key": "sinister_strike",
+      "descriptor": {
+        "va": "0x146bf6e28",
+        "byte_count": 120,
+        "sha256": "16abd077c4adbed7049f651e053a521a3749e5192f81e850c225e5b3b01d0124"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 5
+    },
+    {
+      "index": 34,
+      "key": "eviscerate",
+      "descriptor": {
+        "va": "0x146bf6ea0",
+        "byte_count": 120,
+        "sha256": "439f2c012883f55770a5eb3807b1fc4e73899faf22c537fea36ce83edec882fd"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf51ce",
+        "length": 2,
+        "hex": "0001",
+        "sha256": "b413f47d13ee2fe6c845b2ee141af81de858df4ec549a58b7970bb96645bc8d2"
+      },
+      "factory_selector_byte_0x75": 7
+    },
+    {
+      "index": 35,
+      "key": "blade_flurry",
+      "descriptor": {
+        "va": "0x146bf6f18",
+        "byte_count": 120,
+        "sha256": "635eef59a0692ba52361f8daa8da3b8bbd725a71373043ca703c2f0c90ca3494"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf516d",
+        "length": 3,
+        "hex": "000103",
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24"
+      },
+      "factory_selector_byte_0x75": 2
+    },
+    {
+      "index": 36,
+      "key": "rupture",
+      "descriptor": {
+        "va": "0x146bf6f90",
+        "byte_count": 120,
+        "sha256": "e389eaa165fd72158f34d1af9992905afef4e7766e4fe1f8909a928090410ba8"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf523f",
+        "length": 4,
+        "hex": "00010402",
+        "sha256": "0a7623721ffb3c45272ccf1f497cbb6f172ec1c38be06117b4d1e20d17554f72"
+      },
+      "factory_selector_byte_0x75": 6
+    },
+    {
+      "index": 37,
+      "key": "kidney_shot",
+      "descriptor": {
+        "va": "0x146bf7008",
+        "byte_count": 120,
+        "sha256": "be6ba7027185138fc22aaa5812d50bbc41d96695d8509ea5237ff3337602910a"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 5
+    },
+    {
+      "index": 38,
+      "key": "gouge",
+      "descriptor": {
+        "va": "0x146bf7080",
+        "byte_count": 120,
+        "sha256": "159dabf5828a2685f054338dda7f52e3a9630fcb47d7c0ed476cc76dda55f47a"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 5
+    },
+    {
+      "index": 39,
+      "key": "ghostly_strike",
+      "descriptor": {
+        "va": "0x146bf70f8",
+        "byte_count": 120,
+        "sha256": "68d8f10a1270f737f6a21ddb858a6835053a03473768fb9b787eec2a6c89f743"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 5
+    },
+    {
+      "index": 40,
+      "key": "adrenaline_rush",
+      "descriptor": {
+        "va": "0x146bf7170",
+        "byte_count": 120,
+        "sha256": "c90647ebd65613a23ca4dfa455244ad3925733b9ebf456643838b4f55b779b23"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5221",
+        "length": 2,
+        "hex": "0104",
+        "sha256": "a8d5dd63fba471ebcb1f3e8f7c1e1879b7152a6e7298a91ce119a63400ade7c5"
+      },
+      "factory_selector_byte_0x75": 9
+    },
+    {
+      "index": 41,
+      "key": "backstab",
+      "descriptor": {
+        "va": "0x146bf71e8",
+        "byte_count": 120,
+        "sha256": "d46accdd5c43ef3385149c7b45de54e6cdfe28b2ebd2c08e1fec3dd11ad90d77"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf51ce",
+        "length": 2,
+        "hex": "0001",
+        "sha256": "b413f47d13ee2fe6c845b2ee141af81de858df4ec549a58b7970bb96645bc8d2"
+      },
+      "factory_selector_byte_0x75": 7
+    },
+    {
+      "index": 42,
+      "key": "slice_and_dice",
+      "descriptor": {
+        "va": "0x146bf7260",
+        "byte_count": 120,
+        "sha256": "aab41014a3ad67f721d88ad24002d86a9a907cf2965602bf8c34bcf198238452"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5221",
+        "length": 2,
+        "hex": "0104",
+        "sha256": "a8d5dd63fba471ebcb1f3e8f7c1e1879b7152a6e7298a91ce119a63400ade7c5"
+      },
+      "factory_selector_byte_0x75": 9
+    },
+    {
+      "index": 43,
+      "key": "seal_fate",
+      "descriptor": {
+        "va": "0x146bf72d8",
+        "byte_count": 120,
+        "sha256": "d16b5f1d887795b4c65b29d07fc67ff42a462c5dd043f435478e5f6cf1670710"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 11
+    },
+    {
+      "index": 44,
+      "key": "smite",
+      "descriptor": {
+        "va": "0x146bf7350",
+        "byte_count": 120,
+        "sha256": "fc8b8dc98e407f375cf901a23a8bc675bb4ea5a7fe93acee336de3f21dd25558"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 0
+    },
+    {
+      "index": 45,
+      "key": "sw_pain",
+      "descriptor": {
+        "va": "0x146bf73c8",
+        "byte_count": 120,
+        "sha256": "2022f47d05f0f2f572442e0dfe7811c16fbda26530c6838f76677681baa8a90f"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf523f",
+        "length": 4,
+        "hex": "00010402",
+        "sha256": "0a7623721ffb3c45272ccf1f497cbb6f172ec1c38be06117b4d1e20d17554f72"
+      },
+      "factory_selector_byte_0x75": 6
+    },
+    {
+      "index": 46,
+      "key": "mind_blast",
+      "descriptor": {
+        "va": "0x146bf7440",
+        "byte_count": 120,
+        "sha256": "1315738c1596f1b2a78d6e2462fa220ad64abab32c55fe903121307b0e42b547"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 0
+    },
+    {
+      "index": 47,
+      "key": "holy_nova",
+      "descriptor": {
+        "va": "0x146bf74b8",
+        "byte_count": 120,
+        "sha256": "3e557ea921dd0ca5708c252d823bd79c622155cd70bf5a2e521698ffc993e55a"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf516d",
+        "length": 3,
+        "hex": "000103",
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24"
+      },
+      "factory_selector_byte_0x75": 2
+    },
+    {
+      "index": 48,
+      "key": "pw_shield",
+      "descriptor": {
+        "va": "0x146bf7530",
+        "byte_count": 120,
+        "sha256": "4e4486c79aca86932781a7c4276d93c8b195c74eecf4c119b055a08b8b942dde"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf51ce",
+        "length": 2,
+        "hex": "0001",
+        "sha256": "b413f47d13ee2fe6c845b2ee141af81de858df4ec549a58b7970bb96645bc8d2"
+      },
+      "factory_selector_byte_0x75": 9
+    },
+    {
+      "index": 49,
+      "key": "renew",
+      "descriptor": {
+        "va": "0x146bf75a8",
+        "byte_count": 120,
+        "sha256": "c0f4b3fb92f2b50dc459cf70431af53a3103912b46f6e8a1900449db796a06ff"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf51ce",
+        "length": 2,
+        "hex": "0001",
+        "sha256": "b413f47d13ee2fe6c845b2ee141af81de858df4ec549a58b7970bb96645bc8d2"
+      },
+      "factory_selector_byte_0x75": 9
+    },
+    {
+      "index": 50,
+      "key": "holy_fire",
+      "descriptor": {
+        "va": "0x146bf7620",
+        "byte_count": 120,
+        "sha256": "7fc161ab3f71ae8afe3045210a960326bd95e520988528ed97ed4b8171e034e9"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 0
+    },
+    {
+      "index": 51,
+      "key": "mind_flay",
+      "descriptor": {
+        "va": "0x146bf7698",
+        "byte_count": 120,
+        "sha256": "df08972cf20b7ae98f2e00e276105ad5bc40fca5bec187b5875514bfcf508ad2"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf516d",
+        "length": 3,
+        "hex": "000103",
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24"
+      },
+      "factory_selector_byte_0x75": 8
+    },
+    {
+      "index": 52,
+      "key": "psychic_scream",
+      "descriptor": {
+        "va": "0x146bf7710",
+        "byte_count": 120,
+        "sha256": "32d31387fe5c003b59292a03cfb0bc0a128f93bc06d77179fbe7c6ede1170a3c"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf51f8",
+        "length": 2,
+        "hex": "0103",
+        "sha256": "c79b932e1e1da3c0e098e5ad2c422937eb904a76cf61d83975a74a68fbb04b99"
+      },
+      "factory_selector_byte_0x75": 2
+    },
+    {
+      "index": 53,
+      "key": "devouring_plague",
+      "descriptor": {
+        "va": "0x146bf7788",
+        "byte_count": 120,
+        "sha256": "8e779acccc4cc2f4b2817502bb096ca2fa597ed3d5eef12990c8df24c3f867bc"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf523f",
+        "length": 4,
+        "hex": "00010402",
+        "sha256": "0a7623721ffb3c45272ccf1f497cbb6f172ec1c38be06117b4d1e20d17554f72"
+      },
+      "factory_selector_byte_0x75": 6
+    },
+    {
+      "index": 54,
+      "key": "lightwell",
+      "descriptor": {
+        "va": "0x146bf7800",
+        "byte_count": 120,
+        "sha256": "a17bc8c8d453990f918cb1789a410e1f173a51570f3020328746197d0c89d88e"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf523f",
+        "length": 4,
+        "hex": "00010402",
+        "sha256": "0a7623721ffb3c45272ccf1f497cbb6f172ec1c38be06117b4d1e20d17554f72"
+      },
+      "factory_selector_byte_0x75": 11
+    },
+    {
+      "index": 55,
+      "key": "lightning_bolt",
+      "descriptor": {
+        "va": "0x146bf7878",
+        "byte_count": 120,
+        "sha256": "7370abe7c2fb7dccdd3751aca45f0205e4b298b0a0f837ae0338ff0d1628ac00"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 0
+    },
+    {
+      "index": 56,
+      "key": "chain_lightning",
+      "descriptor": {
+        "va": "0x146bf78f0",
+        "byte_count": 120,
+        "sha256": "ad0cbe2fa615429016d548bd000dcb47500f288fe9e8b878d96b86c821e9e910"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 4
+    },
+    {
+      "index": 57,
+      "key": "earth_shock",
+      "descriptor": {
+        "va": "0x146bf7968",
+        "byte_count": 120,
+        "sha256": "ad3eff606caec15dd9e119e252198434b543775adcb7a80d8f91c7457f7083ba"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 0
+    },
+    {
+      "index": 58,
+      "key": "flame_shock",
+      "descriptor": {
+        "va": "0x146bf79e0",
+        "byte_count": 120,
+        "sha256": "c50732762a569649af7023fba5d254457da0e3a8f768cbcc98a7f698ccb49024"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf523f",
+        "length": 4,
+        "hex": "00010402",
+        "sha256": "0a7623721ffb3c45272ccf1f497cbb6f172ec1c38be06117b4d1e20d17554f72"
+      },
+      "factory_selector_byte_0x75": 6
+    },
+    {
+      "index": 59,
+      "key": "frost_shock",
+      "descriptor": {
+        "va": "0x146bf7a58",
+        "byte_count": 120,
+        "sha256": "058ea344d8c0d4278d4baaaf4938c7d8cfca97b1185613f4d71ad2ee600babd3"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 0
+    },
+    {
+      "index": 60,
+      "key": "lightning_shield",
+      "descriptor": {
+        "va": "0x146bf7ad0",
+        "byte_count": 120,
+        "sha256": "f0aa48437dcb37bd7e4989206ccf4c1a03bfaf7e6e56540ca24fbd2a85c300f7"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf58c3",
+        "length": 1,
+        "hex": "00",
+        "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+      },
+      "factory_selector_byte_0x75": 9
+    },
+    {
+      "index": 61,
+      "key": "magma_totem",
+      "descriptor": {
+        "va": "0x146bf7b48",
+        "byte_count": 120,
+        "sha256": "98c66711a3404ab690dc17bdfbcbe299bfd4920b5c469d5d9562b513ab77f083"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf529c",
+        "length": 4,
+        "hex": "00010304",
+        "sha256": "f682d654a310a7d6579b0a0bfa3f274615d3e789af868555fde0e197206dccc9"
+      },
+      "factory_selector_byte_0x75": 10
+    },
+    {
+      "index": 62,
+      "key": "searing_totem",
+      "descriptor": {
+        "va": "0x146bf7bc0",
+        "byte_count": 120,
+        "sha256": "f9626a4f880486bd50c5dae9f65b035572c7358db5b198a94e611ca3ab6a6360"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf523f",
+        "length": 4,
+        "hex": "00010402",
+        "sha256": "0a7623721ffb3c45272ccf1f497cbb6f172ec1c38be06117b4d1e20d17554f72"
+      },
+      "factory_selector_byte_0x75": 10
+    },
+    {
+      "index": 63,
+      "key": "fire_nova",
+      "descriptor": {
+        "va": "0x146bf7c38",
+        "byte_count": 120,
+        "sha256": "9ad0a3921ef121847736f093b5d239934f9982be289b2d354515220fd64e8f9d"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf516d",
+        "length": 3,
+        "hex": "000103",
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24"
+      },
+      "factory_selector_byte_0x75": 2
+    },
+    {
+      "index": 64,
+      "key": "healing_wave",
+      "descriptor": {
+        "va": "0x146bf7cb0",
+        "byte_count": 120,
+        "sha256": "3d631b14b178359399e5e7774fc3ea54fccc9a02e37573230f16f6f28fd8c7c4"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf51ce",
+        "length": 2,
+        "hex": "0001",
+        "sha256": "b413f47d13ee2fe6c845b2ee141af81de858df4ec549a58b7970bb96645bc8d2"
+      },
+      "factory_selector_byte_0x75": 9
+    },
+    {
+      "index": 65,
+      "key": "call_of_flame",
+      "descriptor": {
+        "va": "0x146bf7d28",
+        "byte_count": 120,
+        "sha256": "f4b3cacdc971369c2ce48ff5e2a1ab8962a99bd521d86fe616f7b72fa2e9eaa2"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5959",
+        "length": 2,
+        "hex": "0003",
+        "sha256": "583c7dfb7b3055d99465544032a571e10a134b1b6f769422bbb71fd7fa167a5d"
+      },
+      "factory_selector_byte_0x75": 11
+    },
+    {
+      "index": 66,
+      "key": "fireball",
+      "descriptor": {
+        "va": "0x146bf7da0",
+        "byte_count": 120,
+        "sha256": "663f12267a4f581e43509fce9e7baec2eba25d008f7204781eb6a89bc92ab236"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 0
+    },
+    {
+      "index": 67,
+      "key": "frostbolt",
+      "descriptor": {
+        "va": "0x146bf7e18",
+        "byte_count": 120,
+        "sha256": "123cf25b4793020aa012eb9a2f0547fed26337dfa61ac16c31f1a387fc04b153"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 0
+    },
+    {
+      "index": 68,
+      "key": "arcane_missiles",
+      "descriptor": {
+        "va": "0x146bf7e90",
+        "byte_count": 120,
+        "sha256": "d20c0d7fbafde2dd5d9f294d99a29446247abcf128771cbfb273787768f86c5b"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 1
+    },
+    {
+      "index": 69,
+      "key": "frost_nova",
+      "descriptor": {
+        "va": "0x146bf7f08",
+        "byte_count": 120,
+        "sha256": "244943ef306b95b7627e2aada974b457f6a4f47cf7f93e695fdee6b2e9b55056"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf516d",
+        "length": 3,
+        "hex": "000103",
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24"
+      },
+      "factory_selector_byte_0x75": 2
+    },
+    {
+      "index": 70,
+      "key": "arcane_explosion",
+      "descriptor": {
+        "va": "0x146bf7f80",
+        "byte_count": 120,
+        "sha256": "d93f5fff00b7e36285d3b4cb2a4feb66fe2f9ad2353f599b0a8279e7bf6701e4"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf516d",
+        "length": 3,
+        "hex": "000103",
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24"
+      },
+      "factory_selector_byte_0x75": 2
+    },
+    {
+      "index": 71,
+      "key": "blizzard",
+      "descriptor": {
+        "va": "0x146bf7ff8",
+        "byte_count": 120,
+        "sha256": "86aa2a82926fc4d6f2f9a3d900e37f250a24b51a853c95a501051dc19cb6519f"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf529c",
+        "length": 4,
+        "hex": "00010304",
+        "sha256": "f682d654a310a7d6579b0a0bfa3f274615d3e789af868555fde0e197206dccc9"
+      },
+      "factory_selector_byte_0x75": 3
+    },
+    {
+      "index": 72,
+      "key": "flamestrike",
+      "descriptor": {
+        "va": "0x146bf8070",
+        "byte_count": 120,
+        "sha256": "70b77774e2df4de875ac30e4f8219105419b4f9d2dbde3f468410a1bcd40837d"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf529c",
+        "length": 4,
+        "hex": "00010304",
+        "sha256": "f682d654a310a7d6579b0a0bfa3f274615d3e789af868555fde0e197206dccc9"
+      },
+      "factory_selector_byte_0x75": 3
+    },
+    {
+      "index": 73,
+      "key": "fire_blast",
+      "descriptor": {
+        "va": "0x146bf80e8",
+        "byte_count": 120,
+        "sha256": "6dabfcf98a908e266b573c04729b88b60d4c8574f377378657a23e696adb71a1"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 1
+    },
+    {
+      "index": 74,
+      "key": "cone_of_cold",
+      "descriptor": {
+        "va": "0x146bf8160",
+        "byte_count": 120,
+        "sha256": "daff52a50ac2a5aa14c1af046804f439ce10aa7a49f4039d5ea44e203db34bf1"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf516d",
+        "length": 3,
+        "hex": "000103",
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24"
+      },
+      "factory_selector_byte_0x75": 8
+    },
+    {
+      "index": 75,
+      "key": "blast_wave",
+      "descriptor": {
+        "va": "0x146bf81d8",
+        "byte_count": 120,
+        "sha256": "e99b76f9f302b0fe286e498f27c7fedaef3e13ee0b7ea55f9a16d90669d2ecb3"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf516d",
+        "length": 3,
+        "hex": "000103",
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24"
+      },
+      "factory_selector_byte_0x75": 2
+    },
+    {
+      "index": 76,
+      "key": "pyroblast",
+      "descriptor": {
+        "va": "0x146bf8250",
+        "byte_count": 120,
+        "sha256": "626c91217a1916b2225ec8f8886a717fa2912a48a649e07f3037864e6540542b"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 0
+    },
+    {
+      "index": 77,
+      "key": "ice_barrier",
+      "descriptor": {
+        "va": "0x146bf82c8",
+        "byte_count": 120,
+        "sha256": "7bca6b16171be3a823331d1710473c784c71fee614db5d4749d509858ad20784"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf51ce",
+        "length": 2,
+        "hex": "0001",
+        "sha256": "b413f47d13ee2fe6c845b2ee141af81de858df4ec549a58b7970bb96645bc8d2"
+      },
+      "factory_selector_byte_0x75": 9
+    },
+    {
+      "index": 78,
+      "key": "polymorph",
+      "descriptor": {
+        "va": "0x146bf8340",
+        "byte_count": 120,
+        "sha256": "a9d923c77c3109e2652590d2dd8e7b7b86ac2568fc11eb75d5b15ef671321841"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5959",
+        "length": 2,
+        "hex": "0003",
+        "sha256": "583c7dfb7b3055d99465544032a571e10a134b1b6f769422bbb71fd7fa167a5d"
+      },
+      "factory_selector_byte_0x75": 11
+    },
+    {
+      "index": 79,
+      "key": "shadow_bolt",
+      "descriptor": {
+        "va": "0x146bf83b8",
+        "byte_count": 120,
+        "sha256": "110dd243c9f18df94c29be58eefbb3dc3e120f3e2b6d6570e41500655a07b1c5"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 0
+    },
+    {
+      "index": 80,
+      "key": "corruption",
+      "descriptor": {
+        "va": "0x146bf8430",
+        "byte_count": 120,
+        "sha256": "f35486e30c9bdc13e2064603f869aa6c5db6fb3afc26310428c6f6d8f73e3440"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf523f",
+        "length": 4,
+        "hex": "00010402",
+        "sha256": "0a7623721ffb3c45272ccf1f497cbb6f172ec1c38be06117b4d1e20d17554f72"
+      },
+      "factory_selector_byte_0x75": 6
+    },
+    {
+      "index": 81,
+      "key": "immolate",
+      "descriptor": {
+        "va": "0x146bf84a8",
+        "byte_count": 120,
+        "sha256": "ef73e891f9695017f5013d758d40038db905f79617092d403db2affaa58d626c"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf523f",
+        "length": 4,
+        "hex": "00010402",
+        "sha256": "0a7623721ffb3c45272ccf1f497cbb6f172ec1c38be06117b4d1e20d17554f72"
+      },
+      "factory_selector_byte_0x75": 6
+    },
+    {
+      "index": 82,
+      "key": "curse_of_agony",
+      "descriptor": {
+        "va": "0x146bf8520",
+        "byte_count": 120,
+        "sha256": "3136cb4a9ac1cbca7ed54b527966a4368a3e093acebdc018c181e611ade4bc9b"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf523f",
+        "length": 4,
+        "hex": "00010402",
+        "sha256": "0a7623721ffb3c45272ccf1f497cbb6f172ec1c38be06117b4d1e20d17554f72"
+      },
+      "factory_selector_byte_0x75": 6
+    },
+    {
+      "index": 83,
+      "key": "rain_of_fire",
+      "descriptor": {
+        "va": "0x146bf8598",
+        "byte_count": 120,
+        "sha256": "dbbd3932290d15163c26237f08e1274395b279fe12aa96d17dde062bd1c1e621"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf529c",
+        "length": 4,
+        "hex": "00010304",
+        "sha256": "f682d654a310a7d6579b0a0bfa3f274615d3e789af868555fde0e197206dccc9"
+      },
+      "factory_selector_byte_0x75": 3
+    },
+    {
+      "index": 84,
+      "key": "hellfire",
+      "descriptor": {
+        "va": "0x146bf8610",
+        "byte_count": 120,
+        "sha256": "6de3d0c1f812f0751a505d254a9b9bdde6cb3b7252a8c5c2d63792fa4eb3f040"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf516d",
+        "length": 3,
+        "hex": "000103",
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24"
+      },
+      "factory_selector_byte_0x75": 2
+    },
+    {
+      "index": 85,
+      "key": "death_coil",
+      "descriptor": {
+        "va": "0x146bf8688",
+        "byte_count": 120,
+        "sha256": "9c6f03fbca6f612291ce09f0cddb8d168a9cfbdb066db21a5a04ace6ab2dbeaf"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 0
+    },
+    {
+      "index": 86,
+      "key": "searing_pain",
+      "descriptor": {
+        "va": "0x146bf8700",
+        "byte_count": 120,
+        "sha256": "2b157da9e9b282bf38d4ae981f94c8d9f48d28ddea6682dbb6db75d0f3cf03f3"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 1
+    },
+    {
+      "index": 87,
+      "key": "drain_life",
+      "descriptor": {
+        "va": "0x146bf8778",
+        "byte_count": 120,
+        "sha256": "9e6c082149d999195180be3386361e6331a958f4d81656e6b27a96c9dd60f68d"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf523f",
+        "length": 4,
+        "hex": "00010402",
+        "sha256": "0a7623721ffb3c45272ccf1f497cbb6f172ec1c38be06117b4d1e20d17554f72"
+      },
+      "factory_selector_byte_0x75": 6
+    },
+    {
+      "index": 88,
+      "key": "fear",
+      "descriptor": {
+        "va": "0x146bf87f0",
+        "byte_count": 120,
+        "sha256": "019552642752c145bd1b192089b4b8378ab4d1fc7b17d78cd5157f7c3fe8ce24"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5c01",
+        "length": 2,
+        "hex": "0102",
+        "sha256": "a12871fee210fb8619291eaea194581cbd2531e4b23759d225f6806923f63222"
+      },
+      "factory_selector_byte_0x75": 0
+    },
+    {
+      "index": 89,
+      "key": "soul_fire",
+      "descriptor": {
+        "va": "0x146bf8868",
+        "byte_count": 120,
+        "sha256": "8608f678a3a79cfcf111391a5c37c16e573796d45eee505a749ecc6ec3337bcb"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 11
+    },
+    {
+      "index": 90,
+      "key": "demonic_empowerment",
+      "descriptor": {
+        "va": "0x146bf88e0",
+        "byte_count": 120,
+        "sha256": "f894ba3c74ef13c4d41f30db9ffc482a3a41ed41f5b64a898eb7a295d179057e"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5221",
+        "length": 2,
+        "hex": "0104",
+        "sha256": "a8d5dd63fba471ebcb1f3e8f7c1e1879b7152a6e7298a91ce119a63400ade7c5"
+      },
+      "factory_selector_byte_0x75": 9
+    },
+    {
+      "index": 91,
+      "key": "wrath",
+      "descriptor": {
+        "va": "0x146bf8958",
+        "byte_count": 120,
+        "sha256": "7c646a3e516244870131df5c63ee74460dbc0b1e9444f8586e19ad60ed81ad1e"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 0
+    },
+    {
+      "index": 92,
+      "key": "moonfire",
+      "descriptor": {
+        "va": "0x146bf89d0",
+        "byte_count": 120,
+        "sha256": "f06db16ece96e71d21af94958563c01d03df8dfa1713296803eba75db5c49f5a"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf523f",
+        "length": 4,
+        "hex": "00010402",
+        "sha256": "0a7623721ffb3c45272ccf1f497cbb6f172ec1c38be06117b4d1e20d17554f72"
+      },
+      "factory_selector_byte_0x75": 6
+    },
+    {
+      "index": 93,
+      "key": "starfire",
+      "descriptor": {
+        "va": "0x146bf8a48",
+        "byte_count": 120,
+        "sha256": "1cdd6e6dbdf1a4fe98098a3fa9e14d314a116e07425696b210194325914ca15b"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 0
+    },
+    {
+      "index": 94,
+      "key": "hurricane",
+      "descriptor": {
+        "va": "0x146bf8ac0",
+        "byte_count": 120,
+        "sha256": "45421cf989fb80858735ff520cc36be46198cbbef393c8a122510e4db9cd3f89"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf529c",
+        "length": 4,
+        "hex": "00010304",
+        "sha256": "f682d654a310a7d6579b0a0bfa3f274615d3e789af868555fde0e197206dccc9"
+      },
+      "factory_selector_byte_0x75": 3
+    },
+    {
+      "index": 95,
+      "key": "insect_swarm",
+      "descriptor": {
+        "va": "0x146bf8b38",
+        "byte_count": 120,
+        "sha256": "8c9cf04533ff30a0e1f1480da6bd4395f047f3e6c610af6ed7fd0ea8b407d709"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf523f",
+        "length": 4,
+        "hex": "00010402",
+        "sha256": "0a7623721ffb3c45272ccf1f497cbb6f172ec1c38be06117b4d1e20d17554f72"
+      },
+      "factory_selector_byte_0x75": 6
+    },
+    {
+      "index": 96,
+      "key": "entangling_roots",
+      "descriptor": {
+        "va": "0x146bf8bb0",
+        "byte_count": 120,
+        "sha256": "dbf370139290d8477e91c6791c8b0785ce27ecf27cbd566d0895b7ca72d10933"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 0
+    },
+    {
+      "index": 97,
+      "key": "rejuvenation",
+      "descriptor": {
+        "va": "0x146bf8c28",
+        "byte_count": 120,
+        "sha256": "660496a5f112f4956761c27ee5d77da7c25b8702670be309e590b29ad294e7a4"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf51ce",
+        "length": 2,
+        "hex": "0001",
+        "sha256": "b413f47d13ee2fe6c845b2ee141af81de858df4ec549a58b7970bb96645bc8d2"
+      },
+      "factory_selector_byte_0x75": 9
+    },
+    {
+      "index": 98,
+      "key": "regrowth",
+      "descriptor": {
+        "va": "0x146bf8ca0",
+        "byte_count": 120,
+        "sha256": "b30602ee0572fb793823c03759f3e16f148e874dd8bf94dc33ed6a93ab05aaff"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf51ce",
+        "length": 2,
+        "hex": "0001",
+        "sha256": "b413f47d13ee2fe6c845b2ee141af81de858df4ec549a58b7970bb96645bc8d2"
+      },
+      "factory_selector_byte_0x75": 9
+    },
+    {
+      "index": 99,
+      "key": "thorns",
+      "descriptor": {
+        "va": "0x146bf8d18",
+        "byte_count": 120,
+        "sha256": "89bbddf8bf2a00134fe7d26e5d31562ff47aa079d48f39f3e619e043c7f79f1a"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf58c3",
+        "length": 1,
+        "hex": "00",
+        "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+      },
+      "factory_selector_byte_0x75": 9
+    },
+    {
+      "index": 100,
+      "key": "swipe",
+      "descriptor": {
+        "va": "0x146bf8d90",
+        "byte_count": 120,
+        "sha256": "f5eb942901cd182029f7df965c8df3c1660b68b0ddf18ab3bccceba6e424edc3"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf516d",
+        "length": 3,
+        "hex": "000103",
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24"
+      },
+      "factory_selector_byte_0x75": 2
+    },
+    {
+      "index": 101,
+      "key": "shred",
+      "descriptor": {
+        "va": "0x146bf8e08",
+        "byte_count": 120,
+        "sha256": "519e8b6a3f3818bfe5de5fd67bf243ea22ff86aaec2e9a93edfdd64d6becd873"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf51ce",
+        "length": 2,
+        "hex": "0001",
+        "sha256": "b413f47d13ee2fe6c845b2ee141af81de858df4ec549a58b7970bb96645bc8d2"
+      },
+      "factory_selector_byte_0x75": 5
+    },
+    {
+      "index": 102,
+      "key": "faerie_fire",
+      "descriptor": {
+        "va": "0x146bf8e80",
+        "byte_count": 120,
+        "sha256": "c30a95ec48a0769932dc16640487286c9ca914c90990a0ec55b3f890118415f6"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5d88",
+        "length": 3,
+        "hex": "000203",
+        "sha256": "e9969bdc67747c3797d62fd1c3e4277269a0945fdb999e8ccc6c7bfb4eeb06bd"
+      },
+      "factory_selector_byte_0x75": 11
+    },
+    {
+      "index": 103,
+      "key": "perception",
+      "descriptor": {
+        "va": "0x146bf8ef8",
+        "byte_count": 120,
+        "sha256": "9ba0a9c2934d5683fbb6f372a38c135b5f7929b849f09f810e0940866ee1f06f"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5221",
+        "length": 2,
+        "hex": "0104",
+        "sha256": "a8d5dd63fba471ebcb1f3e8f7c1e1879b7152a6e7298a91ce119a63400ade7c5"
+      },
+      "factory_selector_byte_0x75": 9
+    },
+    {
+      "index": 104,
+      "key": "blood_fury",
+      "descriptor": {
+        "va": "0x146bf8f70",
+        "byte_count": 120,
+        "sha256": "eedc6e43d02077cc20831dc6a35f08d0a0d5f6be4b352b9bdd576bf75d562cfc"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5221",
+        "length": 2,
+        "hex": "0104",
+        "sha256": "a8d5dd63fba471ebcb1f3e8f7c1e1879b7152a6e7298a91ce119a63400ade7c5"
+      },
+      "factory_selector_byte_0x75": 9
+    },
+    {
+      "index": 105,
+      "key": "stoneform",
+      "descriptor": {
+        "va": "0x146bf8fe8",
+        "byte_count": 120,
+        "sha256": "18cd5150e22b61aa19ed47aec8ed6778a81f3104536ab71b4d8e6f09f79e8370"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf51ce",
+        "length": 2,
+        "hex": "0001",
+        "sha256": "b413f47d13ee2fe6c845b2ee141af81de858df4ec549a58b7970bb96645bc8d2"
+      },
+      "factory_selector_byte_0x75": 9
+    },
+    {
+      "index": 106,
+      "key": "shadowmeld",
+      "descriptor": {
+        "va": "0x146bf9060",
+        "byte_count": 120,
+        "sha256": "dde1a762037a88bb1e653030cffed984399bad867d464a6dc8625761cb22e333"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5221",
+        "length": 2,
+        "hex": "0104",
+        "sha256": "a8d5dd63fba471ebcb1f3e8f7c1e1879b7152a6e7298a91ce119a63400ade7c5"
+      },
+      "factory_selector_byte_0x75": 9
+    },
+    {
+      "index": 107,
+      "key": "will_of_the_forsaken",
+      "descriptor": {
+        "va": "0x146bf90d8",
+        "byte_count": 120,
+        "sha256": "c3cefb322f7472324499712a1ebc762cb3b72460685954b29a7fd114e7533085"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5221",
+        "length": 2,
+        "hex": "0104",
+        "sha256": "a8d5dd63fba471ebcb1f3e8f7c1e1879b7152a6e7298a91ce119a63400ade7c5"
+      },
+      "factory_selector_byte_0x75": 9
+    },
+    {
+      "index": 108,
+      "key": "war_stomp",
+      "descriptor": {
+        "va": "0x146bf9150",
+        "byte_count": 120,
+        "sha256": "20428849ea9f0e0e47ed8e6f6689780ce3ba23957ba90a03902d9dce3d3dab52"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf516d",
+        "length": 3,
+        "hex": "000103",
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24"
+      },
+      "factory_selector_byte_0x75": 2
+    },
+    {
+      "index": 109,
+      "key": "escape_artist",
+      "descriptor": {
+        "va": "0x146bf91c8",
+        "byte_count": 120,
+        "sha256": "dd7acd7bd4fecd3fb7fa1a359a9fdf961a80940c9d996f080a1a452f8ef969d8"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf516d",
+        "length": 3,
+        "hex": "000103",
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24"
+      },
+      "factory_selector_byte_0x75": 2
+    },
+    {
+      "index": 110,
+      "key": "berserking",
+      "descriptor": {
+        "va": "0x146bf9240",
+        "byte_count": 120,
+        "sha256": "5e89c1501c54eab66f54c96e273a0b79c88e7e94c756f26d901757518046377e"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5221",
+        "length": 2,
+        "hex": "0104",
+        "sha256": "a8d5dd63fba471ebcb1f3e8f7c1e1879b7152a6e7298a91ce119a63400ade7c5"
+      },
+      "factory_selector_byte_0x75": 9
+    },
+    {
+      "index": 111,
+      "key": "penance",
+      "descriptor": {
+        "va": "0x146bf92b8",
+        "byte_count": 120,
+        "sha256": "5028c4d4416342a5b26b5b4f8cd652107608fdfd810f94cd5c8ec301a365a56f"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5150",
+        "length": 3,
+        "hex": "000102",
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc"
+      },
+      "factory_selector_byte_0x75": 1
+    },
+    {
+      "index": 112,
+      "key": "arcane_power",
+      "descriptor": {
+        "va": "0x146bf9330",
+        "byte_count": 120,
+        "sha256": "cbd9f3cd05a77aa3eab1ac932f547d7780ac847e5ceb2a89e7bd99420f0aa612"
+      },
+      "upgrade_types": {
+        "pointer": "0x146bf5221",
+        "length": 2,
+        "hex": "0104",
+        "sha256": "a8d5dd63fba471ebcb1f3e8f7c1e1879b7152a6e7298a91ce119a63400ade7c5"
+      },
+      "factory_selector_byte_0x75": 9
+    }
+  ],
+  "full_fixture_inventory": {
+    "path": "runtime/native-evidence/0.112.0/producer-inputs-current/fixtures.json",
+    "sha256": "f5ff1b9554219b6c3f35182059f6330fbf39af460e94c4bbf2d5e2676a729eee"
+  }
+}

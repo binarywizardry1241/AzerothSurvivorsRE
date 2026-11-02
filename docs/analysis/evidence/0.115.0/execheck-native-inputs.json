@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.115.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+    "size_bytes": 142111232
+  },
+  "original_declared_census": {
+    "summary": {
+      "path": "docs/analysis/coverage/full-image-census.json",
+      "sha256": "8918323779f56759fada5da333abf290c4323393bab739a8e202b0e9737c95fd"
+    },
+    "profile_digest": "dcdb60b2ecbb77992bbea14c45047fb842d666b78022d8c89c02409897b8f8ad",
+    "plan": {
+      "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/full-image-durable/plan.json",
+      "sha256": "c711ce3139030e95dc5e2272ccabb87ddc24bc9067d2cb7ddc5b81ba1d132e56"
+    },
+    "executed_collector_tool_commitments": {
+      "scripts/ghidra/ReaNativeCensus.java": "d91f77b533a723c6c8ab128b4d55c9aa0d94abc6f3f6e6ae8e54c46f1a045b09",
+      "scripts/census-native-image.py": "e3cfacf62eb4a49efc06562e3211a1aad2032f889c64ffe1ebb711c4efcf5a51",
+      "scripts/rea-native-census.mjs": "234161bf645f2473bfdebea16c9753f2955b7f945236604193536f968670edc4",
+      "scripts/repair-rea-native-census.py": "a97a4095dffb58b81c927049d139b79c8c98fe6ca3520b600c1103b39b815cde",
+      "scripts/repair-rea-reference-input.py": "29da663b1a71a8d6258bfb1c2b8d3117bac3e39c9299bfa35681f85a28db2502",
+      "node_modules/rea-agents/dist/ghidra/GhidraLauncher.js": "a47d3c13d71e6ea4c66ee3a1ed826c58a00cb4a023db54b3f582119d136a2983",
+      "node_modules/rea-agents/dist/ghidra/GhidraTargetSnapshot.js": "6e726143fad91cb487cf0455beca03751da8004034cf6680ab5cb842eca679b6"
+    }
+  },
+  "seed_proofs": {
+    "jump-tables": {
+      "summary": {
+        "path": "runtime/execheck-2026-10-25/seeds/native-jump-tables.json",
+        "sha256": "c6e653ac08797575ae906c857d388044dd5e9c0f53267ccd070b7334225f5c66"
+      },
+      "inventory": {
+        "path": "runtime/execheck-2026-10-25/seeds/guarded-jump-tables.json",
+        "sha256": "af3be03a0b83ef27660079a6a02ba812ea1d9fa1cc15e2331bfa136bcd957a26"
+      },
+      "counts": {
+        "bounded-table-has-non-executable-target": 1065,
+        "guarded-fallthrough-has-empty-proved-domain": 2,
+        "guarded-relative-tables": 2537,
+        "not-register-jump": 150,
+        "not-relative-add": 1235,
+        "not-signed-table-load": 15,
+        "relative-table-without-proven-unsigned-bound": 1653,
+        "scalar-domain-has-unproved-or-conflicting-instruction-targets": 208,
+        "short-context": 146,
+        "table-base-not-static": 634
+      },
+      "case_entries": 51187,
+      "unique_target_addresses": 16448,
+      "rejected_scalar_domain_tables": 208,
+      "alias_guard_tables": 138,
+      "independently_reverified_table_records": 2537,
+      "independently_reverified_case_entries": 51187,
+      "original_producer": {
+        "path": "scripts/recover-native-jump-tables.py",
+        "sha256": "e334caee6931e56e9aa4b81a40fbec0a1137223c30acd946fe3538bdf6074a46",
+        "capstone_version": "5.0.7"
+      }
+    },
+    "address-leads": {
+      "summary": {
+        "path": "runtime/execheck-2026-10-25/seeds/native-address-code-leads.json",
+        "sha256": "a52ad4e1229d3cfb1c566bc78954bc79d767b738a20d41cf40aed742fb4a12a5"
+      },
+      "inventory": {
+        "path": "runtime/execheck-2026-10-25/seeds/address-code-leads.json",
+        "sha256": "816484dbcb1171bb90cbb2618bccd022327ac19dbe0495432fc9a85038ba8750"
+      },
+      "counts": {
+        "addressed_executable_targets": 8051,
+        "admitted_code_only_starts": 8051,
+        "retained_existing_instruction_starts": 0,
+        "exceptions": {}
+      },
+      "independently_reverified_entries": 8051,
+      "original_producer": {
+        "path": "scripts/recover-native-address-leads.py",
+        "sha256": "02bb39e644ffaafba19774cab098f84d5f986443f64dd98946f64db840209c9a",
+        "capstone_version": "5.0.7"
+      }
+    },
+    "import-thunks": {
+      "summary": {
+        "path": "runtime/execheck-2026-10-25/seeds/native-import-thunks.json",
+        "sha256": "0eb315d31f46ed8107468d29e641b48c7e4a6dc74a5285de16d7e63e056f9bbe"
+      },
+      "inventory": {
+        "path": "runtime/execheck-2026-10-25/seeds/lea-import-thunks.json",
+        "sha256": "2d060a83416519722836d00c6edbad5d4f4e40df50775bd3e60b50e734c64dff"
+      },
+      "counts": {
+        "exact_source_instructions": 3,
+        "distinct_import_thunk_entries": 2,
+        "entries_without_actual_native_owner": 2
+      },
+      "independently_reverified_entries": 2,
+      "original_producer": {
+        "path": "scripts/recover-native-import-thunks.py",
+        "sha256": "65883151064e3974474ea249020d5c20a7accb2fd2cf81404b205f893c3f6909"
+      }
+    },
+    "unwind-handlers": {
+      "summary": {
+        "path": "runtime/execheck-2026-10-25/seeds/native-unwind-handlers.json",
+        "sha256": "f33ab135a3a39319a2ff37c60b430e7b60cf086810da17e02f287f71be673574"
+      },
+      "inventory": {
+        "path": "runtime/execheck-2026-10-25/seeds/unwind-handlers.json",
+        "sha256": "5899b17c60b966e0868f7d3a16586c06e07f5f0ad11527a9ee3bd31c212bef2a"
+      },
+      "counts": {
+        "distinct_unwind_records": 274542,
+        "handler_metadata_records": 73410,
+        "chain_records": 16,
+        "distinct_handler_entries": 15,
+        "distinct_directory_and_handler_entries": 28,
+        "entries_without_actual_native_owner": 14
+      },
+      "independently_reverified_entries": 28,
+      "original_producer": {
+        "path": "scripts/recover-native-unwind-handlers.py",
+        "sha256": "b4b7084a113a5314e584e73c6d487cc43da0b5c031ed23d7a4f44e12f441f907"
+      }
+    },
+    "diagnostic-leads": {
+      "inventory": {
+        "path": "runtime/execheck-2026-10-25/seeds/diagnostic-code-leads.json",
+        "sha256": "1daafb684b8c3cd39cbbc06beb5724e51dfe2aa891a5e576b5360619397ba613"
+      },
+      "counts": {
+        "undecoded-exact-diagnostic-lead": 1885
+      },
+      "independently_reverified_entries": 1885,
+      "original_producer": {
+        "path": "scripts/prepare-native-diagnostic-leads.py",
+        "sha256": "c037b70d058ecb87447fd91c780bb44afdb1a722cb2248a0a0b82d629c4e8f44"
+      }
+    }
+  },
+  "fresh_launch": {
+    "plan": {
+      "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/execheck-2026-10-25/plan.json",
+      "sha256": "d9ce716609366afbe3e9112ba07e3286d04d1603cdfa8d05386dcc8ed935fba8"
+    },
+    "starts": {
+      "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/execheck-2026-10-25/starts.tsv",
+      "sha256": "f778a5164fbde6fd0fcb7832181ce51c1ed9fa470fd7d5ebe7280323a97a22ba"
+    },
+    "seed_scope": "all",
+    "requested_seeds": 422071,
+    "heap": "6G",
+    "batch_size": 1024,
+    "executed_collector_tool_commitments": {
+      "scripts/ghidra/ReaNativeCensus.java": "d91f77b533a723c6c8ab128b4d55c9aa0d94abc6f3f6e6ae8e54c46f1a045b09",
+      "scripts/census-native-image.py": "e3cfacf62eb4a49efc06562e3211a1aad2032f889c64ffe1ebb711c4efcf5a51",
+      "scripts/rea-native-census.mjs": "234161bf645f2473bfdebea16c9753f2955b7f945236604193536f968670edc4",
+      "scripts/repair-rea-native-census.py": "fc49ad9a0473addac7cb30851c4c6583042474bbd47055c77c842157fe190163",
+      "scripts/repair-rea-reference-input.py": "29da663b1a71a8d6258bfb1c2b8d3117bac3e39c9299bfa35681f85a28db2502",
+      "node_modules/rea-agents/dist/ghidra/GhidraLauncher.js": "ce306f4e7d6a787ac2da78d9d53f013994dbe7dfe4b7eadc53d3707974f7efc7",
+      "node_modules/rea-agents/dist/ghidra/GhidraTargetSnapshot.js": "6e726143fad91cb487cf0455beca03751da8004034cf6680ab5cb842eca679b6",
+      "scripts/recover-native-address-leads.py": "02bb39e644ffaafba19774cab098f84d5f986443f64dd98946f64db840209c9a",
+      "scripts/recover-native-import-thunks.py": "65883151064e3974474ea249020d5c20a7accb2fd2cf81404b205f893c3f6909",
+      "scripts/recover-native-unwind-handlers.py": "b4b7084a113a5314e584e73c6d487cc43da0b5c031ed23d7a4f44e12f441f907"
+    }
+  },
+  "source_semantics_established": false,
+  "parity_verified": false,
+  "gap_ids": [
+    41
+  ],
+  "limits": [
+    "Original declared-census producers and tool hashes retain their original identities; changed current launch tooling is recorded separately.",
+    "Seed proofs establish exact machine-code/data leads, bounds and source bytes. Additional code-only starts do not establish functions, incoming runtime edges, source types or semantic ownership.",
+    "The fresh full-PE result and independent verification are separate evidence; preparing or consuming this queue does not certify that result or close #41.",
+    "No application compilation, target/game execution or original/rebuilt comparison."
+  ]
+}

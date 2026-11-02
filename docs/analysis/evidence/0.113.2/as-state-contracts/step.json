@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.113.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+    "size_bytes": 141932032
+  },
+  "server_scalar_cases": 64,
+  "local_clock_cases": 70,
+  "scalar_cases_sha256": "1df7da3c949452d37ad2ef4272699c83570fa450cd22bc3a41f2ae6cdf0031cd",
+  "gate_cases_sha256": "fd6fdcf7d6da6b7600c81703d8c89dacb6d6d9860aea3dd8f3953de6c10aff3e",
+  "ranges": [
+    {
+      "va": "0x1458681b5",
+      "end_exclusive": "0x1458681f1",
+      "byte_count": 60,
+      "sha256": "6fc7df0b20f89bb89aca9cdb78be38b9da0790fa4f0353f16b85153e0cdb5d97"
+    },
+    {
+      "va": "0x14586c2e1",
+      "end_exclusive": "0x14586c2f9",
+      "byte_count": 24,
+      "sha256": "0390fdd7e8826c726b228bde8f456ba441d7b97709a13d66122cab1247a9bdbd"
+    },
+    {
+      "va": "0x14590a241",
+      "end_exclusive": "0x14590a2f2",
+      "byte_count": 177,
+      "sha256": "ddb4541b2ce56242873819623788c89d1261cdd1d1bfac0f71cf8ca7cbddd2d5"
+    }
+  ],
+  "max_step": {
+    "va": "0x145fa3620",
+    "f64_hex": "9a9999999999b93f"
+  },
+  "source_refs": [
+    "crates/azeroth-survivors-re/src/gameplay/mechanics.rs"
+  ],
+  "limits": [
+    "Native timestamp acquisition, full Game tick, scheduling and Rust execution are not exercised.",
+    "The startup helper is an explicit phase-store seam; the supplied clock gate uses original instructions.",
+    "NaN classes are checked, but exact NaN payload equivalence is not claimed.",
+    "Existing source nonpositive-tick admission remains; no complete zero-step side-effect equivalence is inferred."
+  ]
+}

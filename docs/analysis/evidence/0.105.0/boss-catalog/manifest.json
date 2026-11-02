@@ -1,0 +1,165 @@
+{
+  "target": "AzerothSurvivors/AzerothSurvivors-0.105.0.exe",
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "target_process_launched": false,
+  "constructor": {
+    "va": "0x14592ff90",
+    "file_offset": "0x592f390",
+    "byte_count": 3682,
+    "sha256": "dc27a0828aec7b9853a62c9e956bd99af38d5d57da11e208889751e2ee5c8baa"
+  },
+  "assembly": "constructor.asm",
+  "assembly_sha256": "7b8a5f0093a1b86e5f4a57c9e2d566cfb5166e11978fc742f6cf06442fa73cf3",
+  "pseudocode": "constructor.pseudo.c",
+  "pseudocode_sha256": "b88a564b43656f1b0f9fb4a8d1ff65488214f1ea0a0849800de81f9285b41185",
+  "rea": {
+    "evidence_id": "ev_4013bdef3f794cf06df3c99ac1f48cfbd0958abc4c64e4dd43e722251fb2c9bc",
+    "operation": "procedure_pseudo_code",
+    "parameters": {
+      "procedure": "0x14592ff90"
+    },
+    "subject": {
+      "architecture": "x86_64",
+      "digest": {
+        "sha256": "dc27a0828aec7b9853a62c9e956bd99af38d5d57da11e208889751e2ee5c8baa"
+      },
+      "format": "raw-binary",
+      "name": "constructor.bin",
+      "project_relative_path": "runtime/boss-catalog-0.105.0/constructor.bin"
+    },
+    "provider": {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "version": "12.1.4"
+    },
+    "analysis_profile": {
+      "digest": "cbb5a922d070d223572eabccfebbfff91f751481b568db267aaf193a5d93fc9c",
+      "parameters": {
+        "analyzer_preset": "ghidra-default",
+        "annotation_policy": "atomic-function-entry-metadata-v1",
+        "architecture": "x86_64",
+        "available_architectures": [
+          "x86_64"
+        ],
+        "call_relationship_coverage": "function-body-call-coverage-v5",
+        "compiler_spec_id": "gcc",
+        "decompiler_jump_loads": true,
+        "entry_point": "0x14592ff90",
+        "entry_seed": "external-entry-and-function-before-analysis-v1",
+        "function_body_evidence": "complete-inclusive-ranges-v1",
+        "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+        "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+        "function_references": "complete-body-and-entry-reference-manager-v2",
+        "import_mode": "ephemeral-source-immutable",
+        "instruction_flow_evidence": "decoded-return-pcode-v1",
+        "instruction_references": "exact-address-incoming-v1",
+        "jump_table_evidence": "typed-case-default-blocks-v1",
+        "language_id": "x86:LE:64:default",
+        "language_selection": "caller-supplied-v1",
+        "load_image_evidence": "independent-raw-mapping-context-v4",
+        "load_image_observations": "source-mappings-entry-context-v2",
+        "loader": "BinaryLoader",
+        "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+        "no_return_repair": "returning-imports-decoded-return-v2",
+        "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+        "process_launch": "inspected-jvm-launch-support-v1",
+        "string_inventory_evidence": "defined-data-coverage-v1",
+        "target_format": "raw-binary",
+        "target_kind": "executable"
+      },
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      }
+    }
+  },
+  "constant_spans": [
+    {
+      "va": "0x145dbf580",
+      "file_offset": "0x5dbe780",
+      "byte_count": 4,
+      "sha256": "fb7614b89815f3ebaaba34a1cbd1fe490c839c39571d6a45e3a3cff5fcb1383c",
+      "role": "minutes",
+      "hex": "00007042"
+    },
+    {
+      "va": "0x146e78610",
+      "file_offset": "0x6e77810",
+      "byte_count": 8,
+      "sha256": "7eb82bf178c29ad0a0e48dd130027ca6350f121fb1d2da8df5f068379d209fef",
+      "role": "hp_factor_and_endless_base",
+      "hex": "0000b840f6289c3f"
+    },
+    {
+      "va": "0x146e78620",
+      "file_offset": "0x6e77820",
+      "byte_count": 16,
+      "sha256": "afd412dfcb6ee71ad9c41bd10c768c9eb82642b5926ff6530dab8fe467895c41",
+      "role": "cooldown_factor_vector",
+      "hex": "9a99193f9a99193f9a99193f9a99193f"
+    },
+    {
+      "va": "0x146e78630",
+      "file_offset": "0x6e77830",
+      "byte_count": 4,
+      "sha256": "11e473d341d61d7f3076465abef2ba4033a2f93d269c24b9da6d11eb98885e1a",
+      "role": "damage_endless_base",
+      "hex": "ba498c3f"
+    },
+    {
+      "va": "0x145d6d4a0",
+      "file_offset": "0x5d6c6a0",
+      "byte_count": 4,
+      "sha256": "2238f30df488055daf5e8f362cf904e370011a172d20df193c1b7ae8e5db8e01",
+      "role": "health_percent_divisor",
+      "hex": "0000c842"
+    },
+    {
+      "va": "0x145d74008",
+      "file_offset": "0x5d73208",
+      "byte_count": 4,
+      "sha256": "8e215ece122cf70ebe3556a0318fa6c395d1766375c3edc080967e4a09592401",
+      "role": "cooldown_factor_scalar",
+      "hex": "9a99193f"
+    },
+    {
+      "va": "0x145d9ae9c",
+      "file_offset": "0x5d9a09c",
+      "byte_count": 8,
+      "sha256": "a6e26e11372a6aaf42490fb040f3853f44475dfacfba43d136b0fae0f49a1f3a",
+      "role": "reach_factor_and_cap",
+      "hex": "0000c03f00001041"
+    },
+    {
+      "va": "0x14609dd44",
+      "file_offset": "0x609cf44",
+      "byte_count": 4,
+      "sha256": "e21712a06022eecab9f5bd25414b4af9adeb316bb03947134cea060c78afd2d9",
+      "role": "reach_offset",
+      "hex": "00006040"
+    },
+    {
+      "va": "0x145d6d36c",
+      "file_offset": "0x5d6c56c",
+      "byte_count": 4,
+      "sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c",
+      "role": "movement_delay",
+      "hex": "0000803f"
+    },
+    {
+      "va": "0x146ab54c0",
+      "file_offset": "0x6ab46c0",
+      "byte_count": 16,
+      "sha256": "4d0166082e70c0d06c8f2b1c4d300bc70acb17301ab84cc6e6fc89745bee03fd",
+      "role": "percent_divisor_vector",
+      "hex": "0000c8420000c8420000000000000000"
+    }
+  ],
+  "limitations": [
+    "REA imports a hash-bound raw function slice mapped to its original PE address. External functions and data are absent from Ghidra; full PE instruction and constant spans govern those operands.",
+    "Ghidra raw-binary generic ABI pseudocode does not recover the original Rust types or Win64 parameter ABI.",
+    "Canonical constructor extract shared by current boss catalog/reach and entrance audio.",
+    "Static records and bounded no-call instruction emulation do not establish compilation, gameplay, audible or rendered parity."
+  ]
+}

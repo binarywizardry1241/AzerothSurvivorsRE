@@ -1,0 +1,288 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.119.0",
+    "sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f",
+    "size_bytes": 145357824
+  },
+  "source_manifest": {
+    "path": "docs/analysis/evidence/0.119.0/druid-release/manifest.json",
+    "sha256": "b03d0e4310524721aaf614d8a9a73c0c081023d20a29e14377de44e76dcf80dd"
+  },
+  "queries": {
+    "game-tick": {
+      "role": "game-tick",
+      "procedure": "0x145bc53e0",
+      "plan": {
+        "path": "runtime/execheck-0.119.0-druid/full-pe-plan.json",
+        "sha256": "4bd95beaee2cdc004d6ec8d8f4513750834c63a0489d082c99fc16b0261d7054"
+      },
+      "journal": {
+        "path": "runtime/execheck-0.119.0-druid/full-pe-query/journal.json",
+        "sha256": "7b33d560e688bfc574015d3e4f107a9d616f10cf4be4501f9028abd65f7c7857"
+      },
+      "result": {
+        "path": "runtime/execheck-0.119.0-druid/full-pe-query/results/0b3e18fecb89526f7dde6a49eb9847871053cfff55d9cc13fd47ab658b49c3c0.json",
+        "sha256": "1676480a689bbe817eabd23ba945ddce770e3b5c928d3a38cf4b76a4d0177298"
+      },
+      "evidence_id": "ev_53ae9a7cab480f493254bfd0c432aa02908603df8f68725aad3bb2ffc8e6947c",
+      "profile_digest": "78f208d06098c14e401a27cc59457660ad83fe1130492408574a89261c90ed44",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "normalized_sha256": "b0b3c6e1f9bb2a373d595794fbe2a49caf99b0aea8d341a0a4bb1165aeb876e6",
+      "seed_inputs": {
+        "runtime/execheck-0.119.0-druid/seeds.tsv": "edb35f4f0923829fefb7d6a71e8a70dbf01e767d4f504d5b538eed6149386c6e"
+      },
+      "original_tooling": {
+        "scripts/rea-batch.py": "093fe31a2cf4b388fd6e405b01c41e3e23b0965f1eb15ad4e6a4f44c3e2bbdd9",
+        "scripts/rea": "100aca6677907d7bf2e432a53e61cae733f1fa76cba78d17cff7a577c97369ea",
+        "scripts/repair-rea-reference-input.py": "29da663b1a71a8d6258bfb1c2b8d3117bac3e39c9299bfa35681f85a28db2502",
+        "scripts/repair-rea-durable-queries.py": "c14cc28baf16e60dc8eb4c4557bc4469ec153455d31d3d378561e93847f620a4",
+        "scripts/rea-durable-queries.mjs": "7f75a03ace604029cbdb8cc925bb45504394f1873d689630abe81e542716b3e8",
+        "scripts/ghidra/ReaDurableQueryPrepare.java": "4de425e7c375a1d59b964bfbf565675ef7770f13778649bd48df0aab6824c648",
+        "scripts/ghidra/ReaDurableQueryBridge.fragment.java": "cb1b2fc0c6350449526d5e91dceb75dd98676e7458856d7df9e656542a4abb86",
+        "node_modules/rea-agents/bridge/ghidra/ReaGhidraBridge.java": "9655cefb73c8f83915f6336ea6eee0cf5497b4236e57d8b42c2e76f3117b6681",
+        "node_modules/rea-agents/dist/ghidra/GhidraLauncher.js": "ce306f4e7d6a787ac2da78d9d53f013994dbe7dfe4b7eadc53d3707974f7efc7",
+        "node_modules/rea-agents/dist/ghidra/GhidraJavaLaunch.js": "9b267c37f14faeb1cb3f01afe81fd29e445684cfef86af2150e3f56e2115ff95",
+        "node_modules/rea-agents/dist/ghidra/GhidraAnalysisProfile.js": "a0619504f5cfa381f0eb489881c42079346ecfde48c685aede88fe2f53d57437",
+        "node_modules/rea-agents/dist/ghidra/GhidraProviderClient.js": "ee2eb4a2fb506b6541e365c87f708b5ac5d65dfb97d645bd5b3929b3799427b9",
+        "node_modules/rea-agents/dist/ghidra/GhidraSessionValues.js": "d83a81a6aa933c8d3886ccf737008de64f48c7988a307a5142d02bb2e35be4ec",
+        "node_modules/rea-agents/dist/cli-runtime/binary-BVOr2mgE.js": "06e032e5f5f3870bb96d2b9d60c56954f0d19c6237653894403240ae5a24ff5d",
+        "node_modules/rea-agents/dist/mcp/main-kBXHZ8S5.js": "ed23c9961768f19b78ac67aec6f384c311f55f36049101a85f2bc871ec540acc"
+      },
+      "target_executed": false,
+      "original_manifest": {
+        "path": "docs/analysis/evidence/0.119.0/druid-release/manifest.json",
+        "sha256": "b03d0e4310524721aaf614d8a9a73c0c081023d20a29e14377de44e76dcf80dd"
+      },
+      "original_query_selector": [
+        "queries",
+        0
+      ],
+      "original_query_canonical_sha256": "d36b167c1bb2a5fb6472ff2ab1ab3189bfcd58c866756235d202d5620f853a95"
+    },
+    "actor-hit": {
+      "role": "actor-hit",
+      "procedure": "0x145bd6420",
+      "plan": {
+        "path": "runtime/execheck-0.119.0-druid/full-pe-plan.json",
+        "sha256": "4bd95beaee2cdc004d6ec8d8f4513750834c63a0489d082c99fc16b0261d7054"
+      },
+      "journal": {
+        "path": "runtime/execheck-0.119.0-druid/full-pe-query/journal.json",
+        "sha256": "7b33d560e688bfc574015d3e4f107a9d616f10cf4be4501f9028abd65f7c7857"
+      },
+      "result": {
+        "path": "runtime/execheck-0.119.0-druid/full-pe-query/results/a2bec8a8fdae7a627d64ea211d02a2719a0c6f3f23cbcfa80b54ad0abde75659.json",
+        "sha256": "cb53046cec55f64cf232a7672b048248866ae93a4cbf246357d5c2c5ed69a5e0"
+      },
+      "evidence_id": "ev_4e96de0f680c5e9a4a503390304931f661ca70e39667e9c70bf594b3da7b2345",
+      "profile_digest": "78f208d06098c14e401a27cc59457660ad83fe1130492408574a89261c90ed44",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "normalized_sha256": "320b1c052461563403fe787112ea6c4d9952193e419565b973028d3faf8b7fcd",
+      "seed_inputs": {
+        "runtime/execheck-0.119.0-druid/seeds.tsv": "edb35f4f0923829fefb7d6a71e8a70dbf01e767d4f504d5b538eed6149386c6e"
+      },
+      "original_tooling": {
+        "scripts/rea-batch.py": "093fe31a2cf4b388fd6e405b01c41e3e23b0965f1eb15ad4e6a4f44c3e2bbdd9",
+        "scripts/rea": "100aca6677907d7bf2e432a53e61cae733f1fa76cba78d17cff7a577c97369ea",
+        "scripts/repair-rea-reference-input.py": "29da663b1a71a8d6258bfb1c2b8d3117bac3e39c9299bfa35681f85a28db2502",
+        "scripts/repair-rea-durable-queries.py": "c14cc28baf16e60dc8eb4c4557bc4469ec153455d31d3d378561e93847f620a4",
+        "scripts/rea-durable-queries.mjs": "7f75a03ace604029cbdb8cc925bb45504394f1873d689630abe81e542716b3e8",
+        "scripts/ghidra/ReaDurableQueryPrepare.java": "4de425e7c375a1d59b964bfbf565675ef7770f13778649bd48df0aab6824c648",
+        "scripts/ghidra/ReaDurableQueryBridge.fragment.java": "cb1b2fc0c6350449526d5e91dceb75dd98676e7458856d7df9e656542a4abb86",
+        "node_modules/rea-agents/bridge/ghidra/ReaGhidraBridge.java": "9655cefb73c8f83915f6336ea6eee0cf5497b4236e57d8b42c2e76f3117b6681",
+        "node_modules/rea-agents/dist/ghidra/GhidraLauncher.js": "ce306f4e7d6a787ac2da78d9d53f013994dbe7dfe4b7eadc53d3707974f7efc7",
+        "node_modules/rea-agents/dist/ghidra/GhidraJavaLaunch.js": "9b267c37f14faeb1cb3f01afe81fd29e445684cfef86af2150e3f56e2115ff95",
+        "node_modules/rea-agents/dist/ghidra/GhidraAnalysisProfile.js": "a0619504f5cfa381f0eb489881c42079346ecfde48c685aede88fe2f53d57437",
+        "node_modules/rea-agents/dist/ghidra/GhidraProviderClient.js": "ee2eb4a2fb506b6541e365c87f708b5ac5d65dfb97d645bd5b3929b3799427b9",
+        "node_modules/rea-agents/dist/ghidra/GhidraSessionValues.js": "d83a81a6aa933c8d3886ccf737008de64f48c7988a307a5142d02bb2e35be4ec",
+        "node_modules/rea-agents/dist/cli-runtime/binary-BVOr2mgE.js": "06e032e5f5f3870bb96d2b9d60c56954f0d19c6237653894403240ae5a24ff5d",
+        "node_modules/rea-agents/dist/mcp/main-kBXHZ8S5.js": "ed23c9961768f19b78ac67aec6f384c311f55f36049101a85f2bc871ec540acc"
+      },
+      "target_executed": false,
+      "original_manifest": {
+        "path": "docs/analysis/evidence/0.119.0/druid-release/manifest.json",
+        "sha256": "b03d0e4310524721aaf614d8a9a73c0c081023d20a29e14377de44e76dcf80dd"
+      },
+      "original_query_selector": [
+        "queries",
+        1
+      ],
+      "original_query_canonical_sha256": "9943566feebf848e679b45ee31906efe2adef1cdfd40eada04661f43de305d82"
+    },
+    "local-hot-prune": {
+      "role": "local-hot-prune",
+      "procedure": "0x145c20c50",
+      "plan": {
+        "path": "runtime/execheck-0.119.0-druid/consumers-plan.json",
+        "sha256": "debe61876216a0e22ef74b69cddc303e2f342fe2ce4c3bca23e0244906cf4147"
+      },
+      "journal": {
+        "path": "runtime/execheck-0.119.0-druid/consumers-query/journal.json",
+        "sha256": "18ebf952481abdd798b8e90042f08037bc0d2c2e8a45549ce25a8a329a5598ac"
+      },
+      "result": {
+        "path": "runtime/execheck-0.119.0-druid/consumers-query/results/5e6f5d7b95d0b860a5d43c6709f2c63238c44bd0fb2611e6798ed21b2a0d3b39.json",
+        "sha256": "add5b899f44edeff3e0cb6eaf60dd32539271fd67c1896611da0180c484e4747"
+      },
+      "evidence_id": "ev_42564495481cdd9f488b547231711e07677941583f3b1dbdb248c296a8c70424",
+      "profile_digest": "0880c5b620124b8c710c9ed84286c3d6560646770cb098d518e2ad10f66ac2ff",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "normalized_sha256": "b509267edd6a2c0c84bd1400007536489bd27ee626099a565f9b928c3a800e9a",
+      "seed_inputs": {
+        "runtime/execheck-0.119.0-druid/consumer-seeds.tsv": "8fe7b348791a2699f0fe7b0059d4afae4696ff87772989c6c0437710e032980f"
+      },
+      "original_tooling": {
+        "scripts/rea-batch.py": "093fe31a2cf4b388fd6e405b01c41e3e23b0965f1eb15ad4e6a4f44c3e2bbdd9",
+        "scripts/rea": "100aca6677907d7bf2e432a53e61cae733f1fa76cba78d17cff7a577c97369ea",
+        "scripts/repair-rea-reference-input.py": "29da663b1a71a8d6258bfb1c2b8d3117bac3e39c9299bfa35681f85a28db2502",
+        "scripts/repair-rea-durable-queries.py": "c14cc28baf16e60dc8eb4c4557bc4469ec153455d31d3d378561e93847f620a4",
+        "scripts/rea-durable-queries.mjs": "7f75a03ace604029cbdb8cc925bb45504394f1873d689630abe81e542716b3e8",
+        "scripts/ghidra/ReaDurableQueryPrepare.java": "4de425e7c375a1d59b964bfbf565675ef7770f13778649bd48df0aab6824c648",
+        "scripts/ghidra/ReaDurableQueryBridge.fragment.java": "cb1b2fc0c6350449526d5e91dceb75dd98676e7458856d7df9e656542a4abb86",
+        "node_modules/rea-agents/bridge/ghidra/ReaGhidraBridge.java": "9655cefb73c8f83915f6336ea6eee0cf5497b4236e57d8b42c2e76f3117b6681",
+        "node_modules/rea-agents/dist/ghidra/GhidraLauncher.js": "ce306f4e7d6a787ac2da78d9d53f013994dbe7dfe4b7eadc53d3707974f7efc7",
+        "node_modules/rea-agents/dist/ghidra/GhidraJavaLaunch.js": "9b267c37f14faeb1cb3f01afe81fd29e445684cfef86af2150e3f56e2115ff95",
+        "node_modules/rea-agents/dist/ghidra/GhidraAnalysisProfile.js": "a0619504f5cfa381f0eb489881c42079346ecfde48c685aede88fe2f53d57437",
+        "node_modules/rea-agents/dist/ghidra/GhidraProviderClient.js": "ee2eb4a2fb506b6541e365c87f708b5ac5d65dfb97d645bd5b3929b3799427b9",
+        "node_modules/rea-agents/dist/ghidra/GhidraSessionValues.js": "d83a81a6aa933c8d3886ccf737008de64f48c7988a307a5142d02bb2e35be4ec",
+        "node_modules/rea-agents/dist/cli-runtime/binary-BVOr2mgE.js": "06e032e5f5f3870bb96d2b9d60c56954f0d19c6237653894403240ae5a24ff5d",
+        "node_modules/rea-agents/dist/mcp/main-kBXHZ8S5.js": "ed23c9961768f19b78ac67aec6f384c311f55f36049101a85f2bc871ec540acc"
+      },
+      "target_executed": false,
+      "original_manifest": {
+        "path": "docs/analysis/evidence/0.119.0/druid-release/manifest.json",
+        "sha256": "b03d0e4310524721aaf614d8a9a73c0c081023d20a29e14377de44e76dcf80dd"
+      },
+      "original_query_selector": [
+        "queries",
+        5
+      ],
+      "original_query_canonical_sha256": "ac46e59a1b2687a5627363d7d1e143cb2eb934e315563addf69aa0dae3215592"
+    },
+    "shared-heal-recipient": {
+      "role": "shared-heal-recipient",
+      "procedure": "0x145b86da0",
+      "plan": {
+        "path": "runtime/execheck-0.119.0-druid/recipient-plan.json",
+        "sha256": "e7e0f1501bd91f016dc2a9c516f361608a93373f0d8840be355452afb87e4451"
+      },
+      "journal": {
+        "path": "runtime/execheck-0.119.0-druid/recipient-query/journal.json",
+        "sha256": "03740f906422cae000ae643c9187cf440a03aee7e7e62d0a9d45a7953e3714c0"
+      },
+      "result": {
+        "path": "runtime/execheck-0.119.0-druid/recipient-query/results/0b92872e78651a02cf4019aee71c9e64328f49e452d8e2c54a4aaf94db33a3b7.json",
+        "sha256": "d6271468e7f4cf2a2349f470a9982256aed24f96eb81fb917c2cfc1afc569583"
+      },
+      "evidence_id": "ev_fcc5cddfd56d49f6fe13c4b29e0c07cd523079f43190259017cda392a516ec6e",
+      "profile_digest": "2b4279dde0f6f37904e034462e0a662722682c3bc3e9f85bac0a13232f90aa0b",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "normalized_sha256": "0bb189480347eed7ceb0e116ec2d1b60d265963694db83816d00ae1bdb8c7017",
+      "seed_inputs": {
+        "runtime/execheck-0.119.0-druid/recipient-seeds.tsv": "62505011962b166d5dca4a7fe1a4ced249a7cf81a9a5ad5a4754e7a26fd8b610"
+      },
+      "original_tooling": {
+        "scripts/rea-batch.py": "093fe31a2cf4b388fd6e405b01c41e3e23b0965f1eb15ad4e6a4f44c3e2bbdd9",
+        "scripts/rea": "100aca6677907d7bf2e432a53e61cae733f1fa76cba78d17cff7a577c97369ea",
+        "scripts/repair-rea-reference-input.py": "29da663b1a71a8d6258bfb1c2b8d3117bac3e39c9299bfa35681f85a28db2502",
+        "scripts/repair-rea-durable-queries.py": "c14cc28baf16e60dc8eb4c4557bc4469ec153455d31d3d378561e93847f620a4",
+        "scripts/rea-durable-queries.mjs": "7f75a03ace604029cbdb8cc925bb45504394f1873d689630abe81e542716b3e8",
+        "scripts/ghidra/ReaDurableQueryPrepare.java": "4de425e7c375a1d59b964bfbf565675ef7770f13778649bd48df0aab6824c648",
+        "scripts/ghidra/ReaDurableQueryBridge.fragment.java": "cb1b2fc0c6350449526d5e91dceb75dd98676e7458856d7df9e656542a4abb86",
+        "node_modules/rea-agents/bridge/ghidra/ReaGhidraBridge.java": "9655cefb73c8f83915f6336ea6eee0cf5497b4236e57d8b42c2e76f3117b6681",
+        "node_modules/rea-agents/dist/ghidra/GhidraLauncher.js": "ce306f4e7d6a787ac2da78d9d53f013994dbe7dfe4b7eadc53d3707974f7efc7",
+        "node_modules/rea-agents/dist/ghidra/GhidraJavaLaunch.js": "9b267c37f14faeb1cb3f01afe81fd29e445684cfef86af2150e3f56e2115ff95",
+        "node_modules/rea-agents/dist/ghidra/GhidraAnalysisProfile.js": "a0619504f5cfa381f0eb489881c42079346ecfde48c685aede88fe2f53d57437",
+        "node_modules/rea-agents/dist/ghidra/GhidraProviderClient.js": "ee2eb4a2fb506b6541e365c87f708b5ac5d65dfb97d645bd5b3929b3799427b9",
+        "node_modules/rea-agents/dist/ghidra/GhidraSessionValues.js": "d83a81a6aa933c8d3886ccf737008de64f48c7988a307a5142d02bb2e35be4ec",
+        "node_modules/rea-agents/dist/cli-runtime/binary-BVOr2mgE.js": "06e032e5f5f3870bb96d2b9d60c56954f0d19c6237653894403240ae5a24ff5d",
+        "node_modules/rea-agents/dist/mcp/main-kBXHZ8S5.js": "ed23c9961768f19b78ac67aec6f384c311f55f36049101a85f2bc871ec540acc"
+      },
+      "target_executed": false,
+      "original_manifest": {
+        "path": "docs/analysis/evidence/0.119.0/druid-release/manifest.json",
+        "sha256": "b03d0e4310524721aaf614d8a9a73c0c081023d20a29e14377de44e76dcf80dd"
+      },
+      "original_query_selector": [
+        "queries",
+        10
+      ],
+      "original_query_canonical_sha256": "528ae3c316fd3a6b2b75bc855acd59dd2de98707702b3b605fe897e42df5c70b"
+    },
+    "aura-publisher": {
+      "role": "aura-publisher",
+      "procedure": "0x145b8bd60",
+      "plan": {
+        "path": "runtime/execheck-0.119.0-druid/consumers-plan.json",
+        "sha256": "debe61876216a0e22ef74b69cddc303e2f342fe2ce4c3bca23e0244906cf4147"
+      },
+      "journal": {
+        "path": "runtime/execheck-0.119.0-druid/consumers-query/journal.json",
+        "sha256": "18ebf952481abdd798b8e90042f08037bc0d2c2e8a45549ce25a8a329a5598ac"
+      },
+      "result": {
+        "path": "runtime/execheck-0.119.0-druid/consumers-query/results/d6c8d54681938e3364da0531b00f04753408184b33dc76117cfd314d74c458e3.json",
+        "sha256": "826243acc2bb8421083664250efb63811534b123afe7af9c58f1fdd33288c118"
+      },
+      "evidence_id": "ev_505f6c2f397b33bca86ac0eb9a294bea4d1a9d33c1428c7e4a234a0721be6665",
+      "profile_digest": "0880c5b620124b8c710c9ed84286c3d6560646770cb098d518e2ad10f66ac2ff",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "normalized_sha256": "1f3336e6ee13e12461b488a06d3191072d36580e484426d120b5065b5819bf65",
+      "seed_inputs": {
+        "runtime/execheck-0.119.0-druid/consumer-seeds.tsv": "8fe7b348791a2699f0fe7b0059d4afae4696ff87772989c6c0437710e032980f"
+      },
+      "original_tooling": {
+        "scripts/rea-batch.py": "093fe31a2cf4b388fd6e405b01c41e3e23b0965f1eb15ad4e6a4f44c3e2bbdd9",
+        "scripts/rea": "100aca6677907d7bf2e432a53e61cae733f1fa76cba78d17cff7a577c97369ea",
+        "scripts/repair-rea-reference-input.py": "29da663b1a71a8d6258bfb1c2b8d3117bac3e39c9299bfa35681f85a28db2502",
+        "scripts/repair-rea-durable-queries.py": "c14cc28baf16e60dc8eb4c4557bc4469ec153455d31d3d378561e93847f620a4",
+        "scripts/rea-durable-queries.mjs": "7f75a03ace604029cbdb8cc925bb45504394f1873d689630abe81e542716b3e8",
+        "scripts/ghidra/ReaDurableQueryPrepare.java": "4de425e7c375a1d59b964bfbf565675ef7770f13778649bd48df0aab6824c648",
+        "scripts/ghidra/ReaDurableQueryBridge.fragment.java": "cb1b2fc0c6350449526d5e91dceb75dd98676e7458856d7df9e656542a4abb86",
+        "node_modules/rea-agents/bridge/ghidra/ReaGhidraBridge.java": "9655cefb73c8f83915f6336ea6eee0cf5497b4236e57d8b42c2e76f3117b6681",
+        "node_modules/rea-agents/dist/ghidra/GhidraLauncher.js": "ce306f4e7d6a787ac2da78d9d53f013994dbe7dfe4b7eadc53d3707974f7efc7",
+        "node_modules/rea-agents/dist/ghidra/GhidraJavaLaunch.js": "9b267c37f14faeb1cb3f01afe81fd29e445684cfef86af2150e3f56e2115ff95",
+        "node_modules/rea-agents/dist/ghidra/GhidraAnalysisProfile.js": "a0619504f5cfa381f0eb489881c42079346ecfde48c685aede88fe2f53d57437",
+        "node_modules/rea-agents/dist/ghidra/GhidraProviderClient.js": "ee2eb4a2fb506b6541e365c87f708b5ac5d65dfb97d645bd5b3929b3799427b9",
+        "node_modules/rea-agents/dist/ghidra/GhidraSessionValues.js": "d83a81a6aa933c8d3886ccf737008de64f48c7988a307a5142d02bb2e35be4ec",
+        "node_modules/rea-agents/dist/cli-runtime/binary-BVOr2mgE.js": "06e032e5f5f3870bb96d2b9d60c56954f0d19c6237653894403240ae5a24ff5d",
+        "node_modules/rea-agents/dist/mcp/main-kBXHZ8S5.js": "ed23c9961768f19b78ac67aec6f384c311f55f36049101a85f2bc871ec540acc"
+      },
+      "target_executed": false,
+      "original_manifest": {
+        "path": "docs/analysis/evidence/0.119.0/druid-release/manifest.json",
+        "sha256": "b03d0e4310524721aaf614d8a9a73c0c081023d20a29e14377de44e76dcf80dd"
+      },
+      "original_query_selector": [
+        "queries",
+        7
+      ],
+      "original_query_canonical_sha256": "dbaf4947864ae86f40edc686c34dc7ee2eecb1ee23a23c80113b56f745334b3f"
+    }
+  },
+  "limits": [
+    "Exact selected original native query/result/profile identities are reused; this view executes no new query and contains no duplicate native extract.",
+    "Only the five stated bounded review scopes are selected. Other release dependencies retain the owning report and exact native/source proof."
+  ]
+}

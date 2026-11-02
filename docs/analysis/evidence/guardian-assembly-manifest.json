@@ -1,0 +1,73 @@
+{
+  "artifact": "AzerothSurvivors/AzerothSurvivors.exe",
+  "artifact_sha256": "719da61487e0ffaf6491a1ca65410a6666028e83271f059692ad46bc4d8af150",
+  "working_directory": "checkout root",
+  "target_executed": false,
+  "tool_version": "Apple LLVM version 17.0.0\n  Optimized build.\n\n\n  Registered Targets:\n    aarch64    - AArch64 (little endian)\n    aarch64_32 - AArch64 (little endian ILP32)\n    aarch64_be - AArch64 (big endian)\n    arm        - ARM\n    arm64      - ARM64 (little endian)\n    arm64_32   - ARM64 (little endian ILP32)\n    armeb      - ARM (big endian)\n    thumb      - Thumb\n    thumbeb    - Thumb (big endian)\n    x86        - 32-bit X86: Pentium-Pro and above\n    x86-64     - 64-bit X86: EM64T and AMD64",
+  "caveat": "Caller excerpts can begin/end inside an instruction. Native semantics require dataflow and REA verification.",
+  "outputs": [
+    {
+      "path": "docs/analysis/evidence/guardian-scalar-0.asm",
+      "invocation": [
+        "objdump",
+        "-d",
+        "--start-address=0x1454bea70",
+        "--stop-address=0x1454bedbd",
+        "AzerothSurvivors/AzerothSurvivors.exe"
+      ],
+      "start_address": "0x1454bea70",
+      "end_address_exclusive": "0x1454bedbd",
+      "size_bytes": 11651,
+      "sha256": "16b28d2379ea924073f4b4a58d48d82f2259c61e494c458211c00813c057152b"
+    },
+    {
+      "path": "docs/analysis/evidence/guardian-scalar-1.asm",
+      "invocation": [
+        "objdump",
+        "-d",
+        "--start-address=0x1454bee60",
+        "--stop-address=0x1454befed",
+        "AzerothSurvivors/AzerothSurvivors.exe"
+      ],
+      "start_address": "0x1454bee60",
+      "end_address_exclusive": "0x1454befed",
+      "size_bytes": 5169,
+      "sha256": "cdde27ad7496299bcdec99ae0d11781512b1ae028f94e1bf2e77c2a8df6e0058"
+    },
+    {
+      "path": "docs/analysis/evidence/guardian-scalar-caller-core.asm",
+      "invocation": [
+        "objdump",
+        "-d",
+        "--start-address=0x14547be10",
+        "--stop-address=0x14547c020",
+        "AzerothSurvivors/AzerothSurvivors.exe"
+      ],
+      "start_address": "0x14547be10",
+      "end_address_exclusive": "0x14547c020",
+      "size_bytes": 6958,
+      "sha256": "0a62f37514a4dbf6debb0d14abe6ccb3dccc975a0148d4cb6f7d9daecc28cc6a"
+    },
+    {
+      "path": "docs/analysis/evidence/guardian-scalar-caller-rescale.asm",
+      "invocation": [
+        "objdump",
+        "-d",
+        "--start-address=0x14549de50",
+        "--stop-address=0x14549dff0",
+        "AzerothSurvivors/AzerothSurvivors.exe"
+      ],
+      "start_address": "0x14549de50",
+      "end_address_exclusive": "0x14549dff0",
+      "size_bytes": 5503,
+      "sha256": "fc60630259c6097ab43b0856d97e39f79bcbf602c69f49060c897ec31e01b278"
+    }
+  ],
+  "guardian_math_import_thunk": {
+    "address": "0x14570b233",
+    "bytes": "ff25cf011900",
+    "iat_address": "0x14589b408",
+    "library": "api-ms-win-crt-math-l1-1-0.dll",
+    "imported_function": "powf"
+  }
+}

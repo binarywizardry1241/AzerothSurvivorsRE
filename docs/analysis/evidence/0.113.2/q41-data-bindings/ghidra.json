@@ -1,0 +1,249 @@
+{
+  "target_sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+  "provider": {
+    "id": "ghidra",
+    "name": "Ghidra",
+    "version": "12.1.4"
+  },
+  "analysis_profile_digest": "5993882551434d089626d3dcfe04172817af7857c160d1f0a7ed76b497f33e10",
+  "input_mode": "Installed full PE directly through configured read-only reference input; selected existing function entry and code seed.",
+  "profile_seed_sha256": "89d147d221fc90e40107e99d76ca04f4e9456b48314ea5c83a3ddf685b79a325",
+  "probe_plan": {
+    "path": "probe-plan.json",
+    "sha256": "977650474eb9c11abb39902d2dd5750c04b41f8b2bb5f8fb3dc1ffd6d267c4ad"
+  },
+  "seed_file": {
+    "path": "probe-seeds.tsv",
+    "sha256": "89d147d221fc90e40107e99d76ca04f4e9456b48314ea5c83a3ddf685b79a325"
+  },
+  "executed_plan_sha256": "8e1d3003f5058ddd692a85816593c3d8310138ac4dca23f2db7534dab7e1f4d5",
+  "function_body": {
+    "available": true,
+    "provenance": "ghidra-function-body-address-set",
+    "ranges": [
+      {
+        "start": "0x1401a8020",
+        "end": "0x1401a81c5"
+      }
+    ],
+    "total_bytes": 422,
+    "span_bytes": 422,
+    "non_contiguous": false,
+    "contains_entry": true
+  },
+  "literal_references": [
+    "0x1401a8163"
+  ],
+  "literal_bytes": {
+    "address": "0x145eee140",
+    "requested_bytes": 26,
+    "returned_bytes": 26,
+    "bytes_hex": "417a65726f7468205375727669766f72734c6576656c20557021",
+    "complete": true
+  },
+  "literal_type": {
+    "status": "unavailable",
+    "reason": "No exact database type or defined typed data exists at the selected identity",
+    "id": null,
+    "name": null,
+    "kind": "unavailable",
+    "source": "analysis-database",
+    "source_archive": null,
+    "address": "0x145eee140",
+    "size_bytes": null,
+    "alignment_bytes": null,
+    "packing_enabled": null,
+    "referenced_type": null,
+    "array_count": null,
+    "array_stride_bytes": null,
+    "fields": [],
+    "members": [],
+    "total_fields": 0,
+    "truncated": false,
+    "limitations": [
+      "Layouts are Ghidra data-type database observations; original debug/source authority and flexible-tail semantics are not inferred. Nested and recursive types retain category-path identities for separate inspection.",
+      "At most 20000 fields or enum members are serialized per type to bound provider output. total_fields and truncated report omissions. Enum values preserve Ghidra's signed long representation."
+    ]
+  },
+  "literal_reader": {
+    "address": "0x1401a8163",
+    "status": "decoded",
+    "procedure": "0x1401a8020",
+    "architecture": "x86:LE:64:default",
+    "mode": "default",
+    "bytes": "0f1005d65fd405",
+    "length": 7,
+    "mnemonic": "MOVUPS",
+    "raw_disassembly": "MOVUPS XMM0,xmmword ptr [0x145eee140]",
+    "operands": [
+      {
+        "index": 0,
+        "raw": "XMM0",
+        "provider_type": 512,
+        "components": [
+          {
+            "kind": "register",
+            "text": "XMM0",
+            "value": "XMM0",
+            "bit_width": 128
+          }
+        ],
+        "memory_addressing": "unavailable"
+      },
+      {
+        "index": 1,
+        "raw": "xmmword ptr [0x145eee140]",
+        "provider_type": 8320,
+        "components": [
+          {
+            "kind": "address",
+            "text": "145eee140",
+            "value": "0x145eee140",
+            "bit_width": null
+          }
+        ],
+        "memory_addressing": "unavailable"
+      }
+    ],
+    "flow": {
+      "kind": "fallthrough",
+      "conditional": false,
+      "computed": false,
+      "direct_destinations": [],
+      "classification_evidence": [
+        {
+          "source": "ghidra-listing-flow-type",
+          "value": "FALL_THROUGH"
+        }
+      ]
+    },
+    "references": [
+      {
+        "target_address": "0x145eee140",
+        "type": "READ",
+        "call": false,
+        "jump": false,
+        "indirect": false,
+        "computed": false,
+        "operand_index": 1,
+        "source_address": "0x1401a8163",
+        "data": true,
+        "read": true,
+        "write": false,
+        "primary": true,
+        "provenance": "ghidra-reference-manager",
+        "source": "default"
+      }
+    ],
+    "incoming_references": [],
+    "limitations": [
+      "Operand components are Ghidra Listing decoder tokens; effective memory base/index/displacement roles and per-instruction context mode are unavailable. The mode field is the program language variant."
+    ]
+  },
+  "literal_body": {
+    "query_address": "0x145eee140",
+    "found": false,
+    "procedure": null,
+    "reason": "not_in_procedure"
+  },
+  "incoming_owner_references": [
+    {
+      "source_address": "0x1481fe440",
+      "target_address": "0x1401a8020",
+      "source_procedure": null,
+      "target_procedure": {
+        "address": "0x1401a8020",
+        "name": "FUN_1401a8020",
+        "classification": {
+          "external": false,
+          "thunk": false,
+          "thunk_target": null,
+          "provenance": "ghidra-function-manager"
+        },
+        "body": {
+          "available": true,
+          "provenance": "ghidra-function-body-address-set",
+          "ranges": [
+            {
+              "start": "0x1401a8020",
+              "end": "0x1401a81c5"
+            }
+          ],
+          "total_bytes": 422,
+          "span_bytes": 422,
+          "non_contiguous": false,
+          "contains_entry": true
+        }
+      },
+      "kind": {
+        "available": true,
+        "provenance": "ghidra-reference-manager",
+        "type": "DATA",
+        "flow": false,
+        "call": false,
+        "jump": false,
+        "data": true,
+        "read": false,
+        "write": false,
+        "indirect": false,
+        "computed": false,
+        "conditional": false,
+        "terminal": false,
+        "primary": true,
+        "operand_index": 0,
+        "external": false
+      }
+    }
+  ],
+  "records": [
+    {
+      "operation": "analyze_function",
+      "parameters": {
+        "procedure": "0x1401a8020"
+      },
+      "evidence_id": "ev_20cdd7280c1d9ffaae6738260bf879fc6e865b462302a98dcfa2c381304da72f"
+    },
+    {
+      "operation": "xrefs",
+      "parameters": {
+        "address": "0x145eee140"
+      },
+      "evidence_id": "ev_1f99453132730377a5fb14882e03860b8a2b904ced90a26b8d2e9428bb6b92e5"
+    },
+    {
+      "operation": "read_bytes",
+      "parameters": {
+        "address": "0x145eee140",
+        "length": 26
+      },
+      "evidence_id": "ev_3d2b90e247d73b53e8e3fbcb56dd50252173ee549f63c1006863fe14d9a4632d"
+    },
+    {
+      "operation": "inspect_native_data_type",
+      "parameters": {
+        "address": "0x145eee140"
+      },
+      "evidence_id": "ev_2104567852b83ecc31dec2ae5466390a19fdfda704833aa1663c9e60283cf453"
+    },
+    {
+      "operation": "inspect_native_instruction",
+      "parameters": {
+        "address": "0x1401a8163"
+      },
+      "evidence_id": "ev_e9c2412aac077e8823dfe3f0af3ba6449702c7a2a90defed91998ac3e5ba44b9"
+    },
+    {
+      "operation": "resolve_containing_procedure",
+      "parameters": {
+        "address": "0x145eee140"
+      },
+      "evidence_id": "ev_983335206f744691de030d41e5d8dbb9c1c0ef8e62a7fa6863780c1b0d4057a5"
+    }
+  ],
+  "limits": [
+    "The literal has no Ghidra-defined data type. UTF-8/ASCII and String/variant fields are instruction-derived semantics, not a recovered original/debug type.",
+    "The single existing function body is fully observed; AS-wide caller/alias and runtime lifetime closure remain open.",
+    "Reference/Data Reference and other listed analyzers are disabled in the selected seed profile; fresh xrefs are not a new whole-image census.",
+    "Original executed plan/seed locations stay in ignored runtime; moving the reproduction seed changes the future profile digest. Preserve these original IDs rather than relabeling replay."
+  ]
+}

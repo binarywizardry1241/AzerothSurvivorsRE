@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "target_version": "0.127.0",
+  "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+  "ranges": [
+    {
+      "role": "sight-clear",
+      "start": "0x145b98c90",
+      "end_exclusive": "0x145b98de4",
+      "file_offset": "0x5b98090",
+      "sha256": "7d772014c0aec2591888a538be93c53507385c7b6af016d7f08c612db078f758",
+      "assembly": "sight-clear.asm",
+      "assembly_sha256": "5a86ec0a4d5947982f289d7dbc0f65f9601283070d34ccc81ad50102279f34d4",
+      "instructions": 92
+    },
+    {
+      "role": "caster-sight-query",
+      "start": "0x145c3d50a",
+      "end_exclusive": "0x145c3d654",
+      "file_offset": "0x5c3c90a",
+      "sha256": "99cdaa143aae685b9ada34af0014319e8af3793ff3c70a23d74cbcd077bc7060",
+      "assembly": "caster-sight-query.asm",
+      "assembly_sha256": "b6d74e313576586926f8d7d83c3c4238e2c0ef11c9e55465167f8a5ab435d0bf",
+      "instructions": 63
+    },
+    {
+      "role": "cast-completion",
+      "start": "0x145c3d654",
+      "end_exclusive": "0x145c3d69f",
+      "file_offset": "0x5c3ca54",
+      "sha256": "89a0c61313e2ac064ef8f456c4a847eb705b9b503e686c377bdf4c2ab9ec29ce",
+      "assembly": "cast-completion.asm",
+      "assembly_sha256": "4e3a57f61b406a82185a6ba4f93bc9ac60964f72c0d428b7ee17d213e9d463ad",
+      "instructions": 13
+    },
+    {
+      "role": "cast-admission",
+      "start": "0x145c3d759",
+      "end_exclusive": "0x145c3d76e",
+      "file_offset": "0x5c3cb59",
+      "sha256": "316ac401d625644adf120feaae9ffaa6ac92fa476ffa31051bf1e812551b03c2",
+      "assembly": "cast-admission.asm",
+      "assembly_sha256": "971f17e2c9dd39cc7ce7a426a7f5395deb9b8e9d780a69108d2a706c385ef436",
+      "instructions": 7
+    },
+    {
+      "role": "chase-radius",
+      "start": "0x145c3d9df",
+      "end_exclusive": "0x145c3da1d",
+      "file_offset": "0x5c3cddf",
+      "sha256": "31f57f984bd8a2989b8f11b9fe91bd7ea9ceba21198c87b1d8f36fde09af60a5",
+      "assembly": "chase-radius.asm",
+      "assembly_sha256": "2c4e7d5aa0d893b885274e948c096bf20c271f308bf66b39f981569a42e0e5a0",
+      "instructions": 11
+    },
+    {
+      "role": "hostile-launch",
+      "start": "0x145c3e5f6",
+      "end_exclusive": "0x145c3e6d8",
+      "file_offset": "0x5c3d9f6",
+      "sha256": "e2a484884992f4b7911ade063de3f0de5d4f007f02e180f9eba79caddcbd677e",
+      "assembly": "hostile-launch.asm",
+      "assembly_sha256": "2e7a993f1ea6f415548e09127e5d90d2bf4cfd6a6aed593b4788f7006eb96189",
+      "instructions": 41
+    },
+    {
+      "role": "hostile-impact",
+      "start": "0x145c69b43",
+      "end_exclusive": "0x145c69c24",
+      "file_offset": "0x5c68f43",
+      "sha256": "0bcca07da871f6af8776e6e2cc636991cf3c965a9b503b3c60e1e03241467de0",
+      "assembly": "hostile-impact.asm",
+      "assembly_sha256": "8ff24ca66afb188b3e6e81d9cabc221e58a47b8a74c37bf5f049e206fb3c0245",
+      "instructions": 46
+    }
+  ],
+  "queries": [
+    {
+      "start": "0x145b98c90",
+      "raw_input": {
+        "path": "runtime/caster-navigation-0.127.0/145b98c90/body.bin",
+        "sha256": "7d772014c0aec2591888a538be93c53507385c7b6af016d7f08c612db078f758"
+      },
+      "plan": {
+        "path": "runtime/caster-navigation-0.127.0/145b98c90/plan.json",
+        "sha256": "8acc1d32f22bfcd4a201003db7b6d93356b904f72571c5e9ff33c79a16c8d6c3"
+      },
+      "journal": {
+        "path": "runtime/caster-navigation-0.127.0/145b98c90/rea/journal.json",
+        "sha256": "45ebfadbc5e2179d40cd113de8fcd732f42b915b1bd884bad32f66d8d8c673ea"
+      },
+      "result": {
+        "path": "runtime/caster-navigation-0.127.0/145b98c90/rea/results/f34af8782510ed42c627bb252447d108e894cdc307067d276c7f61806b936f45.json",
+        "sha256": "c98e7648b258af8044bb00792fc7d232f27f0a0ebf601790c92f8d2a46b41643"
+      },
+      "evidence_id": "ev_c36304ef2178d40c89810534c4f0baebd7af95d1c0c5fc8fe693e9d0429ce7c6",
+      "analysis_profile_digest": "e8a61995a45add8a5bfc76b6f5b6f381d40ca9ba79cb94bda74c0ce69b89d3cb"
+    },
+    {
+      "start": "0x145c3a1f0",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-239-286-0.127.0/actor/body.bin",
+        "sha256": "57584e677865ef0d849b9cf17f79a1175106028e30ac2a89fb0cd8add7d5a399"
+      },
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-239-286-0.127.0/actor/plan.json",
+        "sha256": "e1e069fb2ff6c549b5f010117e9cb42f23ced7d623b24a6b6fce73262e7d5b50"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-239-286-0.127.0/actor/query/journal.json",
+        "sha256": "4d38d0fb80f284bf81f409c2ee1ce2b5cd903ac0fb8a6832bdd0ca21a178eb52"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-239-286-0.127.0/actor/query/results/a3af1f553926d409f10239638aa61c3fbc061494245d8e822dc1874c9cd1364a.json",
+        "sha256": "c024b41ee345ae9cb9507ba01a8930b7e2ec90599ef3d2cc7df5ecb9410e3a57"
+      },
+      "evidence_id": "ev_bca250ec8f6eec325229b5aeeda2af1c29096ed2200fc627161f28cf132c4653",
+      "analysis_profile_digest": "58b022c77bdf1fc4b47b0b9ab2d224ec0c76f735ded4a177de61528b5b9f5be2"
+    },
+    {
+      "start": "0x145c69940",
+      "raw_input": {
+        "path": "runtime/caster-navigation-0.127.0/145c69940/body.bin",
+        "sha256": "f4654424495cfc85ed41c42c11dd5bf0e6b264318da211186b24f1535f930609"
+      },
+      "plan": {
+        "path": "runtime/caster-navigation-0.127.0/145c69940/plan.json",
+        "sha256": "fd482c6770da4eaef9fbc92d543f06e775c3c8610303055154329eaf18cabc2f"
+      },
+      "journal": {
+        "path": "runtime/caster-navigation-0.127.0/145c69940/rea/journal.json",
+        "sha256": "99447c7bf6d541962940b3eabbba0e9b4b57619a80583e05b44de3d6d55e17fe"
+      },
+      "result": {
+        "path": "runtime/caster-navigation-0.127.0/145c69940/rea/results/16eca0ff745d44c2cc25c8bfd27a6ecadd353c3953a7653cbc3376cffee0307f.json",
+        "sha256": "854158fdef3e93d6b8eb83dc89894190600fee7036000f71cb8f0f00945d3c5c"
+      },
+      "evidence_id": "ev_1874552b63af24c73786221f1cd40ad178abc10be072c7d120a497cee8890e2f",
+      "analysis_profile_digest": "2aaecd8e938e7498c674d85d3e66013115e0f4ec5815d425dc7901664a17d3b0"
+    }
+  ],
+  "native_contract": {
+    "grid_target_correction_radius": 2.5,
+    "blocked_destination_cell": 1,
+    "nearest_open_failure": "accept",
+    "segment_clear_threshold": 1.0,
+    "blocked_in_range_chase_radius": 1.5,
+    "cast_completion_rechecks_sight": true,
+    "hostile_impact_origin": "launch xyz retained as optional tag1; current victim XY tested at impact",
+    "hostile_impact_stride": 144
+  },
+  "limits": [
+    "Bounded AS caster/hostile-projectile interface; static recovery does not establish whole enemy/nav/terrain subsystem semantics.",
+    "Existing nearest-open, occupancy rasterization and chase APIs are reused at the recovered inputs/outputs; no generic engine reconstruction.",
+    "No compilation, game/client/server/network operation, rendering or original/rebuilt parity validation."
+  ]
+}

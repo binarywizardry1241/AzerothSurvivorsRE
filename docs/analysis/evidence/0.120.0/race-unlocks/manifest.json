@@ -1,0 +1,743 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.120.0",
+    "sha256": "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08",
+    "size_bytes": 145447424
+  },
+  "native_ranges": [
+    {
+      "role": "faction-form-selector",
+      "va": "0x145b7b9d6",
+      "end_va": "0x145b7bbde",
+      "file_offset": "0x5b7add6",
+      "byte_count": 520,
+      "sha256": "fb03d544e0c8e3839672556220e88c1a94a1832bb4354dc61fa127796154b7d6",
+      "instruction_count": 131,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/race-unlocks/faction-form-selector.asm",
+        "sha256": "d497874a513e9f0e6dcc1132dee851a6d9c27261281003b3bb20aa2385f2c34f"
+      },
+      "query_label": "form-display"
+    },
+    {
+      "role": "race-card-admission",
+      "va": "0x1401a1646",
+      "end_va": "0x1401a18e2",
+      "file_offset": "0x1a0a46",
+      "byte_count": 668,
+      "sha256": "6e0cc5584274ff3509e1cac9b69e3c69ca1dbd8c43874cc2c5e41b7c92e0d4fa",
+      "instruction_count": 140,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/race-unlocks/race-card-admission.asm",
+        "sha256": "b2b9a67a669fe8e61026b056063ded6ac93df0d0719e22501c4ba235ee8cce6e"
+      },
+      "query_label": "race-card"
+    },
+    {
+      "role": "race-spending",
+      "va": "0x145b3563e",
+      "end_va": "0x145b35646",
+      "file_offset": "0x5b34a3e",
+      "byte_count": 8,
+      "sha256": "0e11442cb0b33075b7381d2a9da32f2d0feda745580b1be809a9ca986314522f",
+      "instruction_count": 3,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/race-unlocks/race-spending.asm",
+        "sha256": "38a07eb45fb283763881681933a3338c3c9b7e90e1b2e21dc185530e3640b219"
+      },
+      "query_label": "reward-spending"
+    },
+    {
+      "role": "race-validation",
+      "va": "0x145b35cb7",
+      "end_va": "0x145b35d89",
+      "file_offset": "0x5b350b7",
+      "byte_count": 210,
+      "sha256": "d24331a7334efee002aa58b3390a131c079ae225aa6f4780067ae87cc8818586",
+      "instruction_count": 60,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/race-unlocks/race-validation.asm",
+        "sha256": "83cd09913ddccbad3606297b23b7f02a21598e794d434f6b62eaaa497f244a02"
+      },
+      "query_label": "reward-validator"
+    },
+    {
+      "role": "race-account-application",
+      "va": "0x145b362cc",
+      "end_va": "0x145b36311",
+      "file_offset": "0x5b356cc",
+      "byte_count": 69,
+      "sha256": "2e7027073cc76f63a3392dbea073fc79dc2cd69edfd1e2024b8278a7e7c326d4",
+      "instruction_count": 15,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/race-unlocks/race-account-application.asm",
+        "sha256": "142073605e18547a5dbd99a5883885dca8dd6aa04c052627c4b9e3e056788ca2"
+      },
+      "query_label": "reward-apply"
+    },
+    {
+      "role": "race-save-output",
+      "va": "0x145a95c14",
+      "end_va": "0x145a95cb4",
+      "file_offset": "0x5a95014",
+      "byte_count": 160,
+      "sha256": "30a751a7a6d8295c14922971be3ae76b222f46958871476059bb4102cb08bec5",
+      "instruction_count": 29,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/race-unlocks/race-save-output.asm",
+        "sha256": "929e4acba60c135287fa269cc3a6b0140d9bce09cac5dc4977928dc145a5735c"
+      },
+      "query_label": "save-serializer"
+    },
+    {
+      "role": "allowed-races-union",
+      "va": "0x145a97aa0",
+      "end_va": "0x145a97c00",
+      "file_offset": "0x5a96ea0",
+      "byte_count": 352,
+      "sha256": "17daef3133084d506643d472b5e39261bb437be0b4919f23e566ff343980d634",
+      "instruction_count": 104,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/race-unlocks/allowed-races-union.asm",
+        "sha256": "2a65aa3126eecf26517c4891ea6c1239a689a2a07b0be4a9783f35a19dc81df9"
+      },
+      "query_label": "allowed-races"
+    },
+    {
+      "role": "perk-reset",
+      "va": "0x145b4a010",
+      "end_va": "0x145b4a08e",
+      "file_offset": "0x5b49410",
+      "byte_count": 126,
+      "sha256": "df94009452203215b437fb749fec29e4284335ba4ad6ef103a8a8aec20fd7267",
+      "instruction_count": 40,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/race-unlocks/perk-reset.asm",
+        "sha256": "60e7ed159d57bb14d81832c3e55a8b38d8ab2cae5cf6d2b22187b049d45eecb2"
+      },
+      "query_label": "real-reset-helper"
+    },
+    {
+      "role": "restricted-race-tip",
+      "va": "0x1402f97e9",
+      "end_va": "0x1402f99c7",
+      "file_offset": "0x2f8be9",
+      "byte_count": 478,
+      "sha256": "e127cd7c34ba0220c5c42627384d26f39034b6136c43be37991357ccd5e8caf8",
+      "instruction_count": 82,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/race-unlocks/restricted-race-tip.asm",
+        "sha256": "900e4a2fb8ae38c76c5e1a2fa7c42db613688f58ce7b11a6ff87b4f69bd6b9b2"
+      },
+      "query_label": "race-tip"
+    },
+    {
+      "role": "five-rewards-tabs",
+      "va": "0x140324c20",
+      "end_va": "0x140324ca4",
+      "file_offset": "0x324020",
+      "byte_count": 132,
+      "sha256": "cabecab8ad83302e3ea18de5f3600348c644785cff695eab4595b5df4362bf0b",
+      "instruction_count": 32,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/race-unlocks/five-rewards-tabs.asm",
+        "sha256": "31a37d17856defe5e438d945fb9172e6b7124681961ebe8d6bb4a605fb0b068e"
+      },
+      "query_label": "rewards-sidebar"
+    },
+    {
+      "role": "races-pane-dispatch",
+      "va": "0x14019f6e4",
+      "end_va": "0x14019f76e",
+      "file_offset": "0x19eae4",
+      "byte_count": 138,
+      "sha256": "7538ab5a332736dacaf5b6258afb57e4c26633d50c24cbecb993108240c42fde",
+      "instruction_count": 33,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/race-unlocks/races-pane-dispatch.asm",
+        "sha256": "29914951776cb9093a327cf0cfe44d3b3c89befa3544c37e9372a82555baf985"
+      },
+      "query_label": "races-pane"
+    },
+    {
+      "role": "alliance-cat-return",
+      "va": "0x145b7befb",
+      "end_va": "0x145b7bf14",
+      "file_offset": "0x5b7b2fb",
+      "byte_count": 25,
+      "sha256": "740af1ae5fe6850431840fc5ffdff4a0c15e9074c38f8bd726717580f080dce8",
+      "instruction_count": 5,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.120.0/race-unlocks/alliance-cat-return.asm",
+        "sha256": "8307be69b5735f4fb7df09c4053dd644390d42617b1109ccc7b7f4c42b44fe07"
+      },
+      "query_label": "form-display"
+    }
+  ],
+  "strings": [
+    {
+      "role": "purchase-description",
+      "file_offset": "0x619fd3d",
+      "va": "0x1461a133d",
+      "byte_count": 117,
+      "sha256": "b0d4d8e5441f3a69c1cdc044a1065236270793009ca7dedb7107b1c371965217",
+      "text": "Open a race to every class, its racial and passives with it, for {cost} points each. Bought for good: resets keep it."
+    },
+    {
+      "role": "race-tip-hint",
+      "file_offset": "0x61b753a",
+      "va": "0x1461b8b3a",
+      "byte_count": 55,
+      "sha256": "b3ffc1bd66bc58f1c68f707798a6ff110ce76af3dbb4deb6f160e7d5c00de01d",
+      "text": "Open it to every class on the Rewards tab, under Races."
+    },
+    {
+      "role": "reset-description",
+      "file_offset": "0x61b9c89",
+      "va": "0x1461bb289",
+      "byte_count": 128,
+      "sha256": "b2f2cb994467db10a3fd593605768bb4ea20cc2e1e99735cb2c397d49e127e80",
+      "text": "Takes back every point spent on perks, to spend again. Tabards and races are kept. {resets} of {total} resets left on this save."
+    },
+    {
+      "role": "race-save-format",
+      "file_offset": "0x6f84957",
+      "va": "0x146f85f57",
+      "byte_count": 11,
+      "sha256": "040bf8472255b8838527b6758ba8d93907b9d06148f162cb7effecbe8d726ec5",
+      "text": "\u0006races|À\u0001\n\u0000"
+    }
+  ],
+  "queries": [
+    {
+      "label": "race-tip",
+      "procedure": "0x1402f8e00",
+      "evidence_id": "ev_004812d95eeb6e15ee0c2412d1fd99a8c64f33a543634ce50f0710a4dc12070e",
+      "ghidra_evidence_id": "ev_004812d95eeb6e15ee0c2412d1fd99a8c64f33a543634ce50f0710a4dc12070e",
+      "analysis_profile_digest": "c337fc9f8cd0083c529595751f9f356cbfc39c7419a0f54c8c467a70d7a05cdb",
+      "result": {
+        "path": "runtime/execheck-0.120.0-races/ui-query-v2/results/26a1090772b4d5d4580884466ca9fd814bd948c167c2671bc83e10c17b3068be.json",
+        "sha256": "2169e1258c7df9164f494ba79283c730439aa4ad99278da3b3ad32bc03444cb7"
+      },
+      "plan": {
+        "path": "runtime/execheck-0.120.0-races/ui-plan-v2.json",
+        "sha256": "be4f4251140cd4544bbb8b3c3bec1af387e08f793ebd4e34338f787a157ca677"
+      },
+      "journal": {
+        "path": "runtime/execheck-0.120.0-races/ui-query-v2/journal.json",
+        "sha256": "4a9eb561818404062c9b0453d9a7f28c2e818a22669f942f3c95ed4db38cca7f"
+      },
+      "normalized_result_sha256": "e40d6bf377e8b32ff1f367e1bc1aa69cb15341266df5ce5985032d527019cff9",
+      "subject_sha256": "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08",
+      "status": "completed",
+      "scope": "full-PE",
+      "role_status": "bounded_query_read_with_exact_PE_instruction_ranges"
+    },
+    {
+      "label": "player-descriptor",
+      "procedure": "0x145a63930",
+      "evidence_id": "ev_515a07a5e312eaa2ab07b8149182a641ed0f4eb569d5c8ae91a8e95dc41e9c37",
+      "ghidra_evidence_id": "ev_515a07a5e312eaa2ab07b8149182a641ed0f4eb569d5c8ae91a8e95dc41e9c37",
+      "analysis_profile_digest": "c337fc9f8cd0083c529595751f9f356cbfc39c7419a0f54c8c467a70d7a05cdb",
+      "result": {
+        "path": "runtime/execheck-0.120.0-races/ui-query-v2/results/50ff33a1e3d6a069cef06aba1ded7dd910a26f5e93e5551045b3b5c8e5765f93.json",
+        "sha256": "489b7af442c46d99294b3e7920ac4881e89801202e484cbb8e61fd4b3dbc9886"
+      },
+      "plan": {
+        "path": "runtime/execheck-0.120.0-races/ui-plan-v2.json",
+        "sha256": "be4f4251140cd4544bbb8b3c3bec1af387e08f793ebd4e34338f787a157ca677"
+      },
+      "journal": {
+        "path": "runtime/execheck-0.120.0-races/ui-query-v2/journal.json",
+        "sha256": "4a9eb561818404062c9b0453d9a7f28c2e818a22669f942f3c95ed4db38cca7f"
+      },
+      "normalized_result_sha256": "088e5e28a269a09235d18d5f0d0a0fd4fa2b794b894afc06442667d4482af63f",
+      "subject_sha256": "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08",
+      "status": "completed",
+      "scope": "full-PE",
+      "role_status": "candidate_query_not_used_as_bounded_contract"
+    },
+    {
+      "label": "rewards-sidebar",
+      "procedure": "0x140323e70",
+      "evidence_id": "ev_e9c731e9f1135f4414ea532e4ca05c920d5508a9f574b566afb5834dc7dbbf02",
+      "ghidra_evidence_id": "ev_e9c731e9f1135f4414ea532e4ca05c920d5508a9f574b566afb5834dc7dbbf02",
+      "analysis_profile_digest": "c337fc9f8cd0083c529595751f9f356cbfc39c7419a0f54c8c467a70d7a05cdb",
+      "result": {
+        "path": "runtime/execheck-0.120.0-races/ui-query-v2/results/76b00bcca547e0e4d7fd50c61a9cf706d314c6def682f8ec96b6cce9a85d5506.json",
+        "sha256": "b73b2546a4d2e52eca1e093456a507a83b4517b907e0d891c9c733ec088c9cda"
+      },
+      "plan": {
+        "path": "runtime/execheck-0.120.0-races/ui-plan-v2.json",
+        "sha256": "be4f4251140cd4544bbb8b3c3bec1af387e08f793ebd4e34338f787a157ca677"
+      },
+      "journal": {
+        "path": "runtime/execheck-0.120.0-races/ui-query-v2/journal.json",
+        "sha256": "4a9eb561818404062c9b0453d9a7f28c2e818a22669f942f3c95ed4db38cca7f"
+      },
+      "normalized_result_sha256": "4cf2e4dd8720c9be29f6e5e8457cbcae1534a4328219c4952bf874f4f4af43c7",
+      "subject_sha256": "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08",
+      "status": "completed",
+      "scope": "full-PE",
+      "role_status": "bounded_query_read_with_exact_PE_instruction_ranges"
+    },
+    {
+      "label": "reward-tab-label",
+      "procedure": "0x145b386b0",
+      "evidence_id": "ev_d38934a7cf2926a2779c77522eacad308b84b92a9e91da2741336e9a877d1a45",
+      "ghidra_evidence_id": "ev_d38934a7cf2926a2779c77522eacad308b84b92a9e91da2741336e9a877d1a45",
+      "analysis_profile_digest": "c337fc9f8cd0083c529595751f9f356cbfc39c7419a0f54c8c467a70d7a05cdb",
+      "result": {
+        "path": "runtime/execheck-0.120.0-races/ui-query-v2/results/81e0f532ba2dfd4671d4e23c7838baafaab3561c0ac8113db3099e614704caa1.json",
+        "sha256": "48c0ea7104097a319169f65d56a7ffac0cae7d2a09bf872fb3a782e36cb5a005"
+      },
+      "plan": {
+        "path": "runtime/execheck-0.120.0-races/ui-plan-v2.json",
+        "sha256": "be4f4251140cd4544bbb8b3c3bec1af387e08f793ebd4e34338f787a157ca677"
+      },
+      "journal": {
+        "path": "runtime/execheck-0.120.0-races/ui-query-v2/journal.json",
+        "sha256": "4a9eb561818404062c9b0453d9a7f28c2e818a22669f942f3c95ed4db38cca7f"
+      },
+      "normalized_result_sha256": "859b5877392c3eaa915023924ef956d83480a1ba15a592782288acb6672d21f7",
+      "subject_sha256": "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08",
+      "status": "completed",
+      "scope": "full-PE",
+      "role_status": "bounded_query_read_with_exact_PE_instruction_ranges"
+    },
+    {
+      "label": "form-display",
+      "procedure": "0x145b7b820",
+      "evidence_id": "ev_0892f2bc62e89c57a8d5182ae620a92fd1d060bab4b2184a4e8084ef964ee36f",
+      "ghidra_evidence_id": "ev_0892f2bc62e89c57a8d5182ae620a92fd1d060bab4b2184a4e8084ef964ee36f",
+      "analysis_profile_digest": "c337fc9f8cd0083c529595751f9f356cbfc39c7419a0f54c8c467a70d7a05cdb",
+      "result": {
+        "path": "runtime/execheck-0.120.0-races/ui-query-v2/results/9c2b05d60a762b399f127cb0365b993c1be809e8bd26d9e551807bbb40310339.json",
+        "sha256": "a2572880832a3f92d2133b9d0b56eb806c0e54de168ce55d0cfa1383ca828c5b"
+      },
+      "plan": {
+        "path": "runtime/execheck-0.120.0-races/ui-plan-v2.json",
+        "sha256": "be4f4251140cd4544bbb8b3c3bec1af387e08f793ebd4e34338f787a157ca677"
+      },
+      "journal": {
+        "path": "runtime/execheck-0.120.0-races/ui-query-v2/journal.json",
+        "sha256": "4a9eb561818404062c9b0453d9a7f28c2e818a22669f942f3c95ed4db38cca7f"
+      },
+      "normalized_result_sha256": "8da6c5d488600780d0bcc1f1208fbec35f8b4e460094d1ab4d67f5cbe8976daf",
+      "subject_sha256": "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08",
+      "status": "completed",
+      "scope": "full-PE",
+      "role_status": "bounded_query_read_with_exact_PE_instruction_ranges"
+    },
+    {
+      "label": "races-pane",
+      "procedure": "0x14019f0e0",
+      "evidence_id": "ev_613b64a2b6e5446c7a3c48e7c154d90dfa677bf5c90582c9557293959264485e",
+      "ghidra_evidence_id": "ev_613b64a2b6e5446c7a3c48e7c154d90dfa677bf5c90582c9557293959264485e",
+      "analysis_profile_digest": "c337fc9f8cd0083c529595751f9f356cbfc39c7419a0f54c8c467a70d7a05cdb",
+      "result": {
+        "path": "runtime/execheck-0.120.0-races/ui-query-v2/results/da0a1271fc89140a0ac2f57dfe0b936e9da68fa66caf4bf4916a98d7ed82dd33.json",
+        "sha256": "c94e181d275b2d6d5954708b105631225d8c08f876f592acdf534e9759df5fed"
+      },
+      "plan": {
+        "path": "runtime/execheck-0.120.0-races/ui-plan-v2.json",
+        "sha256": "be4f4251140cd4544bbb8b3c3bec1af387e08f793ebd4e34338f787a157ca677"
+      },
+      "journal": {
+        "path": "runtime/execheck-0.120.0-races/ui-query-v2/journal.json",
+        "sha256": "4a9eb561818404062c9b0453d9a7f28c2e818a22669f942f3c95ed4db38cca7f"
+      },
+      "normalized_result_sha256": "c6d14734313eba62fcf4d960cd2b1293f5ea51fd6573f1765e5ebd4ab86e4367",
+      "subject_sha256": "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08",
+      "status": "completed",
+      "scope": "full-PE",
+      "role_status": "bounded_query_read_with_exact_PE_instruction_ranges"
+    },
+    {
+      "label": "reward-spending",
+      "procedure": "0x145b35460",
+      "evidence_id": "ev_d4972c67921e9bdd1903dbd85996044cbcd1b866358bd78f011f8452d00b932a",
+      "ghidra_evidence_id": "ev_d4972c67921e9bdd1903dbd85996044cbcd1b866358bd78f011f8452d00b932a",
+      "analysis_profile_digest": "06262b06abe45173e59c789812058e6061b5206870259300b5b81aa27e9de8fb",
+      "result": {
+        "path": "runtime/execheck-0.120.0-races/contracts-query/results/119c27948dde1d287acd1462f91fe675bced5f7d687e8952dd3d8fe4371c901a.json",
+        "sha256": "d1ce69e83a44442fec6035d5f4f2060407834003e4253fe0d40caa4bbb53aaa0"
+      },
+      "plan": {
+        "path": "runtime/execheck-0.120.0-races/contracts-plan.json",
+        "sha256": "a8cd31c1fe35cc584f54364daf8920ff110b39099fed9521636d99363d1ee793"
+      },
+      "journal": {
+        "path": "runtime/execheck-0.120.0-races/contracts-query/journal.json",
+        "sha256": "6843ededf8946038d24025fa7f1a144e9a0d26418fba65f99c05daafcfd1616d"
+      },
+      "normalized_result_sha256": "042bfd2a1fdfafc2be50bed07e775de7bb259b7c1945bb6638dc361dee26c3d5",
+      "subject_sha256": "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08",
+      "status": "completed",
+      "scope": "full-PE",
+      "role_status": "bounded_query_read_with_exact_PE_instruction_ranges"
+    },
+    {
+      "label": "base-class-races",
+      "procedure": "0x145a83360",
+      "evidence_id": "ev_979fd128d9465c1fc9a4c9f90b21f84a5e541829d951038c64e1d879c6fa40d5",
+      "ghidra_evidence_id": "ev_979fd128d9465c1fc9a4c9f90b21f84a5e541829d951038c64e1d879c6fa40d5",
+      "analysis_profile_digest": "06262b06abe45173e59c789812058e6061b5206870259300b5b81aa27e9de8fb",
+      "result": {
+        "path": "runtime/execheck-0.120.0-races/contracts-query/results/12563d2710e52e088431c7e6cb650e5cd477739f096207e367006038bf375264.json",
+        "sha256": "5ae694d2a356cca2ceb219024e96bd2b1315e80de1cfdf9d1a44f540eba02709"
+      },
+      "plan": {
+        "path": "runtime/execheck-0.120.0-races/contracts-plan.json",
+        "sha256": "a8cd31c1fe35cc584f54364daf8920ff110b39099fed9521636d99363d1ee793"
+      },
+      "journal": {
+        "path": "runtime/execheck-0.120.0-races/contracts-query/journal.json",
+        "sha256": "6843ededf8946038d24025fa7f1a144e9a0d26418fba65f99c05daafcfd1616d"
+      },
+      "normalized_result_sha256": "f35d95dc6f0ae48b78893256b20267f74e2737c6f82eadb719f67aaa38bd90cf",
+      "subject_sha256": "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08",
+      "status": "completed",
+      "scope": "full-PE",
+      "role_status": "candidate_query_not_used_as_bounded_contract"
+    },
+    {
+      "label": "account-reset",
+      "procedure": "0x145af9990",
+      "evidence_id": "ev_64481695c6fb13e673be17a83e3c04376557520c7b09ef6665049cf1ff57ccda",
+      "ghidra_evidence_id": "ev_64481695c6fb13e673be17a83e3c04376557520c7b09ef6665049cf1ff57ccda",
+      "analysis_profile_digest": "06262b06abe45173e59c789812058e6061b5206870259300b5b81aa27e9de8fb",
+      "result": {
+        "path": "runtime/execheck-0.120.0-races/contracts-query/results/4d64f122035cda2241dd9908f105eaf5d1f2d092ec836c6bb52194d8c1739c56.json",
+        "sha256": "dc0d8cec81c1c63a588f41ccf916b1c81c1ba3f9bca7d9c2fdb4626eabdba697"
+      },
+      "plan": {
+        "path": "runtime/execheck-0.120.0-races/contracts-plan.json",
+        "sha256": "a8cd31c1fe35cc584f54364daf8920ff110b39099fed9521636d99363d1ee793"
+      },
+      "journal": {
+        "path": "runtime/execheck-0.120.0-races/contracts-query/journal.json",
+        "sha256": "6843ededf8946038d24025fa7f1a144e9a0d26418fba65f99c05daafcfd1616d"
+      },
+      "normalized_result_sha256": "b26b8f72bb994437afe8d032491b134e84abde5ee2cd31c6996746fdb9a3b3e3",
+      "subject_sha256": "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08",
+      "status": "completed",
+      "scope": "full-PE",
+      "role_status": "candidate_query_not_used_as_bounded_contract"
+    },
+    {
+      "label": "reward-validator",
+      "procedure": "0x145b35660",
+      "evidence_id": "ev_617c5e52cfb184bd4dfb06424cc9a4e8aac6db8c67addd3efc7a88e99e124c10",
+      "ghidra_evidence_id": "ev_617c5e52cfb184bd4dfb06424cc9a4e8aac6db8c67addd3efc7a88e99e124c10",
+      "analysis_profile_digest": "06262b06abe45173e59c789812058e6061b5206870259300b5b81aa27e9de8fb",
+      "result": {
+        "path": "runtime/execheck-0.120.0-races/contracts-query/results/a44ff1ade5d5cb3accd09fb462248115a02b62703858db4328c8a9c0b16a894e.json",
+        "sha256": "a7f12cbef6fca0bd3d99d86a6ed987adbb6e5afeeddfa656176231d556d7dce8"
+      },
+      "plan": {
+        "path": "runtime/execheck-0.120.0-races/contracts-plan.json",
+        "sha256": "a8cd31c1fe35cc584f54364daf8920ff110b39099fed9521636d99363d1ee793"
+      },
+      "journal": {
+        "path": "runtime/execheck-0.120.0-races/contracts-query/journal.json",
+        "sha256": "6843ededf8946038d24025fa7f1a144e9a0d26418fba65f99c05daafcfd1616d"
+      },
+      "normalized_result_sha256": "8832249a2e0117d6906ce378e4e3728b1a18a11ae84e2e2cb30036ca09ede67d",
+      "subject_sha256": "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08",
+      "status": "completed",
+      "scope": "full-PE",
+      "role_status": "bounded_query_read_with_exact_PE_instruction_ranges"
+    },
+    {
+      "label": "rewards-input",
+      "procedure": "0x1401b6a80",
+      "evidence_id": "ev_bfbe18769dd84b2ba051555bb0b00e62607d42b8ada0924edacd8ccfa78edcc1",
+      "ghidra_evidence_id": "ev_bfbe18769dd84b2ba051555bb0b00e62607d42b8ada0924edacd8ccfa78edcc1",
+      "analysis_profile_digest": "06262b06abe45173e59c789812058e6061b5206870259300b5b81aa27e9de8fb",
+      "result": {
+        "path": "runtime/execheck-0.120.0-races/contracts-query/results/b265999f86d8850c9ab46b47b4bf5c77732b860eb2c6ae44b4dfd2a1fc0093f6.json",
+        "sha256": "870a4f6abc5fa23442d276e604ea55b7db730dddbc7aed9406052b32547d78ff"
+      },
+      "plan": {
+        "path": "runtime/execheck-0.120.0-races/contracts-plan.json",
+        "sha256": "a8cd31c1fe35cc584f54364daf8920ff110b39099fed9521636d99363d1ee793"
+      },
+      "journal": {
+        "path": "runtime/execheck-0.120.0-races/contracts-query/journal.json",
+        "sha256": "6843ededf8946038d24025fa7f1a144e9a0d26418fba65f99c05daafcfd1616d"
+      },
+      "normalized_result_sha256": "111332aad6b3de068a1c3011ddb341b4a88d890d245eb4249730ca811099d02b",
+      "subject_sha256": "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08",
+      "status": "completed",
+      "scope": "full-PE",
+      "role_status": "bounded_query_read_with_exact_PE_instruction_ranges"
+    },
+    {
+      "label": "save-serializer",
+      "procedure": "0x145a93b90",
+      "evidence_id": "ev_2d208370aeb0ce3ea6aa289b011f85ad5b294533699693c770e464bb2dc889ae",
+      "ghidra_evidence_id": "ev_2d208370aeb0ce3ea6aa289b011f85ad5b294533699693c770e464bb2dc889ae",
+      "analysis_profile_digest": "06262b06abe45173e59c789812058e6061b5206870259300b5b81aa27e9de8fb",
+      "result": {
+        "path": "runtime/execheck-0.120.0-races/contracts-query/results/b484948b637ea241e6209c7a416ad62b33d29ff99298d39575c205e5bcacccba.json",
+        "sha256": "9d19ca2c8fcb4660d5ad26d19112fa50fda779627a55c56c0f42576be071c0a6"
+      },
+      "plan": {
+        "path": "runtime/execheck-0.120.0-races/contracts-plan.json",
+        "sha256": "a8cd31c1fe35cc584f54364daf8920ff110b39099fed9521636d99363d1ee793"
+      },
+      "journal": {
+        "path": "runtime/execheck-0.120.0-races/contracts-query/journal.json",
+        "sha256": "6843ededf8946038d24025fa7f1a144e9a0d26418fba65f99c05daafcfd1616d"
+      },
+      "normalized_result_sha256": "bb736b7f8e01a92cafe0863a130effb3758ab475aff55c6a62ea49f07cef085e",
+      "subject_sha256": "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08",
+      "status": "completed",
+      "scope": "full-PE",
+      "role_status": "bounded_query_read_with_exact_PE_instruction_ranges"
+    },
+    {
+      "label": "race-card",
+      "procedure": "0x1401a1620",
+      "evidence_id": "ev_cfc3a8353bd6afab2d6514c286c82efa0411b411c95391843664bb793675e434",
+      "ghidra_evidence_id": "ev_cfc3a8353bd6afab2d6514c286c82efa0411b411c95391843664bb793675e434",
+      "analysis_profile_digest": "06262b06abe45173e59c789812058e6061b5206870259300b5b81aa27e9de8fb",
+      "result": {
+        "path": "runtime/execheck-0.120.0-races/contracts-query/results/b5e987cc25f09c8435d989fec6d40295998dc8627e67bfdf314f5bfb3d4fdecc.json",
+        "sha256": "67509b83c9d7225def035863f58000059a6b2b508525a844694d509a6570251a"
+      },
+      "plan": {
+        "path": "runtime/execheck-0.120.0-races/contracts-plan.json",
+        "sha256": "a8cd31c1fe35cc584f54364daf8920ff110b39099fed9521636d99363d1ee793"
+      },
+      "journal": {
+        "path": "runtime/execheck-0.120.0-races/contracts-query/journal.json",
+        "sha256": "6843ededf8946038d24025fa7f1a144e9a0d26418fba65f99c05daafcfd1616d"
+      },
+      "normalized_result_sha256": "968bd61171d6eee76f8b588c74d572b20215af50c4ea125979fe3fa22b3efb5f",
+      "subject_sha256": "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08",
+      "status": "completed",
+      "scope": "full-PE",
+      "role_status": "bounded_query_read_with_exact_PE_instruction_ranges"
+    },
+    {
+      "label": "save-loader",
+      "procedure": "0x145a8d990",
+      "evidence_id": "ev_cd169dde50a229df93d27be6dee6fc7a42d0124dd223d624cb4c17dcf6d333f7",
+      "ghidra_evidence_id": "ev_cd169dde50a229df93d27be6dee6fc7a42d0124dd223d624cb4c17dcf6d333f7",
+      "analysis_profile_digest": "06262b06abe45173e59c789812058e6061b5206870259300b5b81aa27e9de8fb",
+      "result": {
+        "path": "runtime/execheck-0.120.0-races/contracts-query/results/b8de7289a9c3f41d8d3e29b63f9b3ad5e71ecf658365d2b0cb55be24222303a0.json",
+        "sha256": "a8bee780bb531e42d11dd059b15f3950a698cc12025652317794125ed28a9501"
+      },
+      "plan": {
+        "path": "runtime/execheck-0.120.0-races/contracts-plan.json",
+        "sha256": "a8cd31c1fe35cc584f54364daf8920ff110b39099fed9521636d99363d1ee793"
+      },
+      "journal": {
+        "path": "runtime/execheck-0.120.0-races/contracts-query/journal.json",
+        "sha256": "6843ededf8946038d24025fa7f1a144e9a0d26418fba65f99c05daafcfd1616d"
+      },
+      "normalized_result_sha256": "f3d3c7e0df7de0e5f3724152a3848dd84927b5f7dbe4487cd4a9394513cf723c",
+      "subject_sha256": "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08",
+      "status": "completed",
+      "scope": "full-PE",
+      "role_status": "bounded_query_read_with_exact_PE_instruction_ranges"
+    },
+    {
+      "label": "picker-race-list",
+      "procedure": "0x145a7ee50",
+      "evidence_id": "ev_48575c4efd0497eee519908c7ff11233e915c97a1d974dcb99af1a87584b071c",
+      "ghidra_evidence_id": "ev_48575c4efd0497eee519908c7ff11233e915c97a1d974dcb99af1a87584b071c",
+      "analysis_profile_digest": "06262b06abe45173e59c789812058e6061b5206870259300b5b81aa27e9de8fb",
+      "result": {
+        "path": "runtime/execheck-0.120.0-races/contracts-query/results/bdf42130ecf7bc87172f1e135e678acde2e1b361a46cdf99c2a0b72357697280.json",
+        "sha256": "b6b59bd5cd4f56b2bc7a88566299fd1b2694fd5ae735fefe33cd3e1338e06756"
+      },
+      "plan": {
+        "path": "runtime/execheck-0.120.0-races/contracts-plan.json",
+        "sha256": "a8cd31c1fe35cc584f54364daf8920ff110b39099fed9521636d99363d1ee793"
+      },
+      "journal": {
+        "path": "runtime/execheck-0.120.0-races/contracts-query/journal.json",
+        "sha256": "6843ededf8946038d24025fa7f1a144e9a0d26418fba65f99c05daafcfd1616d"
+      },
+      "normalized_result_sha256": "813bc3516927660ea7b3b7f347d8e7a3352a5cbda5460753abb1b30b7d593410",
+      "subject_sha256": "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08",
+      "status": "completed",
+      "scope": "full-PE",
+      "role_status": "candidate_query_not_used_as_bounded_contract"
+    },
+    {
+      "label": "reward-apply",
+      "procedure": "0x145b36190",
+      "evidence_id": "ev_a6c18e013479670020929825bfb5a2f65be9b86a43e371c8e80b7b4f74fb9075",
+      "ghidra_evidence_id": "ev_a6c18e013479670020929825bfb5a2f65be9b86a43e371c8e80b7b4f74fb9075",
+      "analysis_profile_digest": "06262b06abe45173e59c789812058e6061b5206870259300b5b81aa27e9de8fb",
+      "result": {
+        "path": "runtime/execheck-0.120.0-races/contracts-query/results/fcf8a34fdea08f41e76e2829513ed6faccaa26b3d7cbb6cf4e001d0648057067.json",
+        "sha256": "a61cabb3482956d8a8e4a136e697652665af14ab15b09a9da8b02feda53c0017"
+      },
+      "plan": {
+        "path": "runtime/execheck-0.120.0-races/contracts-plan.json",
+        "sha256": "a8cd31c1fe35cc584f54364daf8920ff110b39099fed9521636d99363d1ee793"
+      },
+      "journal": {
+        "path": "runtime/execheck-0.120.0-races/contracts-query/journal.json",
+        "sha256": "6843ededf8946038d24025fa7f1a144e9a0d26418fba65f99c05daafcfd1616d"
+      },
+      "normalized_result_sha256": "31d84bbbebc6a880351abe516a9de5370449bb5dfb7d38312341628acf1d781a",
+      "subject_sha256": "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08",
+      "status": "completed",
+      "scope": "full-PE",
+      "role_status": "bounded_query_read_with_exact_PE_instruction_ranges"
+    },
+    {
+      "label": "allowed-races",
+      "procedure": "0x145a97aa0",
+      "evidence_id": "ev_503941b07186c83bec6dc9374a4a45507235a951e19d16107ec4123a8fbf74f3",
+      "ghidra_evidence_id": "ev_503941b07186c83bec6dc9374a4a45507235a951e19d16107ec4123a8fbf74f3",
+      "analysis_profile_digest": "79ffa03c7e66bc7be6da05a0dabb2cca8ab819f702d8fe5e3eb0233d151ce130",
+      "result": {
+        "path": "runtime/execheck-0.120.0-races/allowed-races-query/results/d683f51b81fd254e8951b50147bfca80f30766967d104ced6345af70de727234.json",
+        "sha256": "fefebfa809049e2cb7e2bead0789e0c0a29c0e9bc811e35e16d7a60383cdeb67"
+      },
+      "plan": {
+        "path": "runtime/execheck-0.120.0-races/allowed-races-plan.json",
+        "sha256": "69cd8d988726856c683c92c49f99a82c50c73eb85616dfaaf1de37d3bb384ff8"
+      },
+      "journal": {
+        "path": "runtime/execheck-0.120.0-races/allowed-races-query/journal.json",
+        "sha256": "2c93ade22131d42673a5959ea4ff0c1463b836f5cdc4ca125161bdc332a76097"
+      },
+      "normalized_result_sha256": "91c7d3f16551231cb2be41646bc5fb82d8bceb5e818ed9f322c3ddfe140f479c",
+      "subject_sha256": "17daef3133084d506643d472b5e39261bb437be0b4919f23e566ff343980d634",
+      "status": "completed",
+      "scope": "original-byte raw range",
+      "role_status": "bounded_query_read_with_exact_PE_instruction_ranges"
+    },
+    {
+      "label": "real-reset-helper",
+      "procedure": "0x145b4a010",
+      "evidence_id": "ev_a59afddb85107bc1b980bebebc6546e7cda7cd6703009791824257c499cab467",
+      "ghidra_evidence_id": "ev_a59afddb85107bc1b980bebebc6546e7cda7cd6703009791824257c499cab467",
+      "analysis_profile_digest": "fa4d1d17e8b95d7df0f088df855cb4dbb670078e6ee059e406f61eb7cf2b73e1",
+      "result": {
+        "path": "runtime/execheck-0.120.0-races/real-reset-helper-query/results/f1ef99f9f7198d38bc50ec421f136657d8db7d7ecf91033bde0ff19b277084bd.json",
+        "sha256": "b3f2810bf6b908366cabb46f7d5bb72521262979484e919f0cac7de92ed8168f"
+      },
+      "plan": {
+        "path": "runtime/execheck-0.120.0-races/real-reset-helper-plan.json",
+        "sha256": "640b7a9606e7b1834aa251be42a0870196cee39012dab33a3607d2b6b62dcc6b"
+      },
+      "journal": {
+        "path": "runtime/execheck-0.120.0-races/real-reset-helper-query/journal.json",
+        "sha256": "43abcd016d8d84f80056b280430d8b4e1d4292954663dafaeea91ae196d17359"
+      },
+      "normalized_result_sha256": "931165731a6cebde5d0784b7d0e7129b44c40e6f3894f4040e1a2a5526715468",
+      "subject_sha256": "df94009452203215b437fb749fec29e4284335ba4ad6ef103a8a8aec20fd7267",
+      "status": "completed",
+      "scope": "original-byte raw range",
+      "role_status": "bounded_query_read_with_exact_PE_instruction_ranges"
+    }
+  ],
+  "source_receipts": [
+    {
+      "path": "crates/azeroth-survivors-re/src/progression.rs",
+      "sha256": "7ad5fa820db544db0b467d76846e61eba8e17cd4ee4f3fc36315d9c4b50bd6da",
+      "git_revision": "4145d742"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/progression/rewards.rs",
+      "sha256": "6a50bd3b270e5f34591a84584e5e27ed0f5214802ea161334339e4d425301998",
+      "git_revision": "4145d742"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/save.rs",
+      "sha256": "8c9b8fc2ae0ebb1c5cf9f977128c938c257e4b9424f83dffa6df90fe0e36372e",
+      "git_revision": "4145d742"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/save/schema.rs",
+      "sha256": "7253457cf96f98f817dace8a16842c1f48dfd41320a4cda37758bb1b24096313",
+      "git_revision": "4145d742"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/armory.rs",
+      "sha256": "dedab4d744fc8dca2026a198f48507d63683a8188b3e383c56385f87f4f07acd",
+      "git_revision": "4145d742"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/armory/race_tip.rs",
+      "sha256": "9012fe70210519e65c65f033228d46c5963ec04189d4a82a654cc7982c7cbb36",
+      "git_revision": "4145d742"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/run_effects/forms.rs",
+      "sha256": "59f0ec5656ab366278090eae36882723d0a5b4de2f207ec8ec0ddfacfc30fa1c",
+      "git_revision": "4145d742"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+      "sha256": "d4d7607d3be504788bfb3bf7aef55bf5d985bc67d04c1790979c32cc382024c5",
+      "git_revision": "4145d742"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop_profile.rs",
+      "sha256": "acd05c055fcc9a4a56516861932c8b13eb8560809e8519c166194d330f70b52a",
+      "git_revision": "4145d742"
+    },
+    {
+      "path": "crates/benilla-formats/src/chr_races.rs",
+      "sha256": "a6ebd0e5f1a9f24c9e448caa0e916aa11d402e5774e2c9351257de9d4cee7ffe",
+      "git_revision": "4145d742"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/account_progression.rs",
+      "sha256": "f366d213179219ff158842935fbfb942eb475e981de97601b239d474ca56ee8b",
+      "git_revision": "4145d742"
+    }
+  ],
+  "findings": [
+    {
+      "id": 187,
+      "scope": "summary/all-class race access"
+    },
+    {
+      "id": 188,
+      "scope": "Rewards purchase, eligibility, racial/passive consumers"
+    },
+    {
+      "id": 189,
+      "scope": "permanent races through save/reset"
+    },
+    {
+      "id": 190,
+      "scope": "faction-specific Cat/Bear display"
+    },
+    {
+      "id": 191,
+      "scope": "restricted race hint"
+    }
+  ],
+  "limits": [
+    "Static evidence; no compilation, original/reconstructed game/server execution, filesystem mutation of installed inputs, or controlled parity comparison.",
+    "Full-PE Ghidra function bodies may overexpand through unconstrained switches; only exact curated PE instruction spans support bounded conclusions.",
+    "Raw helper queries infer generic ABI and omit PE globals/call targets; exact original PE bytes and full-PE callers establish those bounded interfaces.",
+    "Query labels are immutable routing labels, not semantic findings. player-descriptor was a false constants-search candidate; account-reset is an inventory helper; base-class-races is a class-label helper; picker-race-list produces racial description rows. Those four queries do not certify their initial label.",
+    "Save race-record parsing, malformed input/duplicate semantics, full racial/passive current correspondence, and broader co-op/new-combination dependencies remain separate recovery work.",
+    "Original source-discrepancy receipts retain their committed pre-repair revision; subsequent race repairs use separate current-source proofs."
+  ],
+  "method": "Exact selected-PE ranges and disjoint instruction boundaries independently decoded with Capstone5.0.7; durable Ghidra results retain original profiles and labels.",
+  "bounded_module_attribution": {
+    "custom-app-screens-rewards": "Direct current UI and input interface with native screens/rewards.rs owners.",
+    "custom-app-screens-armory": "RaceTip presentation interface and current Armory producer/consumer.",
+    "custom-game-save": "Current save.rs serializer and typed account/eligibility interface.",
+    "not_promoted": [
+      "Form descriptor diagnostic module attribution remains unproved.",
+      "nav.rs Location inside account validator is a shared assertion seam, not recovered navigation semantics."
+    ]
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "date": "2026-10-16",
+  "target_sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+  "version": "0.92.0",
+  "authority": "derived from shipped artifact",
+  "method": "Bounded Unicorn x86_64 execution of native picker formatter and helpers with level-zero class stats and default AbilityInstance. Reviewed allocation/String/locale/math primitives are substituted; every other external call fails closed. No OS or network calls are reachable.",
+  "functions": [
+    {
+      "start": "0x140116ca0",
+      "end_exclusive": "0x14011714e",
+      "sha256": "d7d79280b3f6cee89bf3ea4596957baea737ef26057fc207fd155c12bb744561"
+    },
+    {
+      "start": "0x14540bb90",
+      "end_exclusive": "0x14540ebbd",
+      "sha256": "1b8a4e24bcf66ce117dd4e2aba461cb171142242403ba58fdf1621461574b8f3"
+    },
+    {
+      "start": "0x145493f50",
+      "end_exclusive": "0x145494013",
+      "sha256": "2eeb1cfde39606ad324ff1ca6960442af700b44d3ac51ed4ed4ce4637d26d72a"
+    },
+    {
+      "start": "0x14540baf0",
+      "end_exclusive": "0x14540bb8f",
+      "sha256": "3075063dc248ed127b7f80a36fc1414ee4e2c5ade8355b06169fda1dab5953ab"
+    },
+    {
+      "start": "0x1454117e0",
+      "end_exclusive": "0x145411937",
+      "sha256": "d3fbf88d8357e16002549d473869859fa1d2e1ccc6b617bbc230766e7601516b"
+    },
+    {
+      "start": "0x145419710",
+      "end_exclusive": "0x14541985d",
+      "sha256": "aed265e256e614d581c9bda618bc2aeee1f6a7e5bc045fe838d1b0de2c36ef4c"
+    },
+    {
+      "start": "0x1454ac8a0",
+      "end_exclusive": "0x1454ae293",
+      "sha256": "333cecdb540d4e6625cc16db1363399283371046ba49ed6e8a512ebc6925d2ec"
+    },
+    {
+      "start": "0x14545dbf0",
+      "end_exclusive": "0x14545dd04",
+      "sha256": "d1ad1471b04697aed7f06ee4f054cc0bb1b5e65f0261e83bd3a300be1305f10a"
+    },
+    {
+      "start": "0x14545dd10",
+      "end_exclusive": "0x14545ddd4",
+      "sha256": "a70c396fc6fc727bd152b929354d0c2170f9cf7b75ed44c7fca6f9a10439251f"
+    }
+  ],
+  "ability_table": {
+    "address": "0x1466d5b20",
+    "stride": 120,
+    "total": 111,
+    "used_picker_entries": 101
+  },
+  "base_instance": {
+    "power": 1,
+    "modifiers": 1,
+    "additional_damage": 0,
+    "additional_projectiles": 0,
+    "rank": 1
+  },
+  "native_scale": {
+    "literal": "0x1458a85a4",
+    "value": 1.4,
+    "applies_to": [
+      "power",
+      "cooldown",
+      "duration"
+    ]
+  },
+  "number_format": {
+    "function": "0x1454117e0",
+    "threshold": 9.95,
+    "below": "one decimal, trim trailing .0",
+    "at_or_above": "zero decimals"
+  },
+  "math_imports": {
+    "0x145714a45": "truncf",
+    "0x145714a5d": "roundf",
+    "0x145714a99": "ceilf",
+    "0x145714b77": "log1pf"
+  },
+  "stub_calls": {
+    "0x1457149f7": 579,
+    "0x14541f0e0": 818,
+    "0x140002200": 354,
+    "0x1400021c0": 354,
+    "0x1457149fd": 485,
+    "0x145714a45": 101,
+    "0x1456c9ba0": 685,
+    "0x145717840": 131,
+    "0x14541f090": 101,
+    "0x1400021d0": 1431,
+    "0x14541f400": 261,
+    "0x1456ca060": 232,
+    "0x145714a5d": 32,
+    "0x145714a99": 1
+  },
+  "asset": {
+    "path": "crates/azeroth-survivors-re/assets/ability-tooltips.json",
+    "sha256": "311296da2c76e3c82d3f14c35e144b939ab005bd3ae66b4ab99a35382f1ff8f1",
+    "entries": 101
+  },
+  "validation": {
+    "english_expressions_equal_native_emulated_output": 101,
+    "all_template_keys_present_in_locales": {
+      "zh": 65,
+      "tr": 65,
+      "de": 65,
+      "ru": 65,
+      "pl": 65,
+      "pt": 65,
+      "en": 65,
+      "fr": 65,
+      "ko": 65,
+      "es": 65
+    }
+  },
+  "limitations": [
+    "The reviewed emulation primitives are not original source, and generated results are derived evidence rather than 101 independent original runtime observations.",
+    "Cleave66damage/2.1sec is independently observed in original runtime; additional original hover comparisons and rebuilt verification remain necessary.",
+    "Base picker tooltips only: upgraded gameplay spell values are outside scope."
+  ]
+}

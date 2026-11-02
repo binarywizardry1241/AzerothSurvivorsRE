@@ -1,0 +1,29 @@
+1459533c5: 4c0810 or byte ptr [rax], r10b
+1459533c8: 0f110408 movups xmmword ptr [rax + rcx], xmm0
+1459533cc: 49ffc6 inc r14
+1459533cf: 4c89b228060000 mov qword ptr [rdx + 0x628], r14
+1459533d6: 4d39e5 cmp r13, r12
+1459533d9: 0f84e6000000 je 0x1459534c5
+1459533df: 4c89e9 mov rcx, r13
+1459533e2: 4983c510 add r13, 0x10
+1459533e6: 488b8548020000 mov rax, qword ptr [rbp + 0x248]
+1459533ed: 488b9068050000 mov rdx, qword ptr [rax + 0x568]
+1459533f4: 4885d2 test rdx, rdx
+1459533f7: 74dd je 0x1459533d6
+1459533f9: 488b01 mov rax, qword ptr [rcx]
+1459533fc: f30f104108 movss xmm0, dword ptr [rcx + 8]
+145953401: 488b8d48020000 mov rcx, qword ptr [rbp + 0x248]
+145953408: 488b8960050000 mov rcx, qword ptr [rcx + 0x560]
+14595340f: 4869d2d8010000 imul rdx, rdx, 0x1d8
+145953416: eb18 jmp 0x145953430
+145953418: 0f1f840000000000 nop dword ptr [rax + rax]
+145953420: 4881c1d8010000 add rcx, 0x1d8
+145953427: 4881c228feffff add rdx, -0x1d8
+14595342e: 74a6 je 0x1459533d6
+145953430: 483981f0000000 cmp qword ptr [rcx + 0xf0], rax
+145953437: 75e7 jne 0x145953420
+145953439: 83b9b000000001 cmp dword ptr [rcx + 0xb0], 1
+145953440: 74de je 0x145953420
+145953442: f30f588534020000 addss xmm0, dword ptr [rbp + 0x234]
+14595344a: f30f1181d0010000 movss dword ptr [rcx + 0x1d0], xmm0
+145953452: c781cc01000000000000 mov dword ptr [rcx + 0x1cc], 0

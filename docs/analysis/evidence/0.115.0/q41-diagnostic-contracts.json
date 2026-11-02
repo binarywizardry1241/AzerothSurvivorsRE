@@ -1,0 +1,2269 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.115.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+    "size_bytes": 142111232
+  },
+  "lead": "Q41-D01",
+  "gap_ids": [
+    41
+  ],
+  "generator": {
+    "path": "scripts/check-q41-diagnostic-contracts-0.115.0.py",
+    "sha256": "851f8f8fa1fa0caa757b0a15c308950a1d039a9c8c1d8251ff08e177d830a9ab",
+    "capstone_version": "5.0.7"
+  },
+  "dependencies": [
+    {
+      "path": "scripts/coverage_common.py",
+      "sha256": "8e076cd7c55c918ff626e5e4c7df2e2efb0a8861ed3f39844b53ccd3d4c391ce"
+    },
+    {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+    },
+    {
+      "path": "scripts/check-owned-custom-diagnostics-0.115.0.py",
+      "sha256": "d757fd6a7c8c2274b7d3207dc79ff6d856394499efc60db502efb4d78ecef329"
+    },
+    {
+      "path": "scripts/classify-native-ownership.py",
+      "sha256": "17e55ad17f776f62445cc162af1fd12f68d361f7a8435429e3ab906bb8bc7381"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "docs/analysis/evidence/0.115.0/q41-custom-diagnostics.json",
+      "sha256": "a66cee954fd9931e76a6e9d79e625fac39e073b9c7a302e7d2436755a7d0b930"
+    },
+    {
+      "path": "docs/analysis/evidence/0.115.0/owned-custom-diagnostics.json",
+      "sha256": "bdaaf982666022224b1b97468c8af246a3420465eff44a39a14a5eb4326ad74c"
+    },
+    {
+      "path": "docs/analysis/evidence/0.115.0/execheck-diagnostic-sites.json",
+      "sha256": "fcffae20d00f79ab0dc7f6702c7124e4ee019535770d3a122be52cf9525b2672"
+    },
+    {
+      "path": "runtime/execheck-2026-10-25/expanded-diagnostic-sites/diagnostic-sites.jsonl",
+      "sha256": "50f2e956b2736acf95862daf0f9d5fdbd9a6daffd41fab0a60391641222aacd0"
+    },
+    {
+      "path": "runtime/q41-owned-d01-0.115.0/v8/owned-custom-first-interfaces.jsonl.gz",
+      "sha256": "ecd1ce019e58a704563a521b45819b0378f42078f017f55a8d956f771055f9f1"
+    },
+    {
+      "path": "docs/analysis/coverage/full-image-census.json",
+      "sha256": "8918323779f56759fada5da333abf290c4323393bab739a8e202b0e9737c95fd"
+    },
+    {
+      "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/full-image-durable/references.tsv.gz",
+      "sha256": "6e042ff6654781bed0264d207b30f143125404517c709057aea8d3cd578c712f"
+    },
+    {
+      "path": "runtime/q41-diagnostics-0.115.0/cards/input-receipt.json",
+      "sha256": "51342e50625c223c1dc1b9e1e7b77755d6a3f2c8798e65f67cb677ddbcf9b00f"
+    },
+    {
+      "path": "runtime/q41-diagnostics-0.115.0/cards/rea/results/71c714b108affb225ba14c68b0301a6a535d7c3bb71b30518b1f140069a91924.json",
+      "sha256": "38f494438edd1401e9e11e3a604c33680a7281dbc8f60ba7cb7f49bca90bf6ca"
+    }
+  ],
+  "ghidra_query": {
+    "evidence_id": "ev_60ca12a67b465a56e188414f0e4aca5ddddc3f9cc96447d812aa834364ccece2",
+    "provider": "ghidra",
+    "function": "0x140054020",
+    "source_range_sha256": "d4bd4812d4d6efbf0cb936ac2eeb8fb524d20d7880d32ac2b77c68e752aab771",
+    "inferred_return": "void",
+    "limitations": "Raw-function Ghidra inference corroborates the state-mutator role; it is not original types, callback ABI closure or whole-game proof."
+  },
+  "pointer_model_regression_cases": 5,
+  "expanded_counts": {
+    "sites": 60,
+    "paths": 14,
+    "roles": {
+      "adjacent_key_literal_substitution": 5,
+      "bounds_failure_interface": 30,
+      "formatted_failure_interface": 21,
+      "missing_key_failure_interface": 1,
+      "option_failure_interface": 1,
+      "stable_120_byte_vector_removal": 1,
+      "stable_u64_vector_removal": 1
+    }
+  },
+  "expanded_sites": [
+    {
+      "site": "0x14010cc5d",
+      "path": "crates/wenilla-rogue-app/src/screens/armory.rs",
+      "role": "bounds_failure_interface",
+      "callee": "0x145eb7363",
+      "declared_extent_sha256": "81ded5f2d270d5f8c29dd88ae162f3357f2a08571d1cc16ff2d4bb97dc6f5fe8",
+      "flow_bytes_sha256": "c7887167e38047e4e9cc6f3942346acd8310fee06db4fada9bfd1ff70e3766c8"
+    },
+    {
+      "site": "0x140255a1d",
+      "path": "crates/wenilla-rogue-app/src/screens/armory.rs",
+      "role": "bounds_failure_interface",
+      "callee": "0x145eb7363",
+      "declared_extent_sha256": "24d46a5e9cbf200adfd9a539da48aabca653e288ddda9fa0b92edde644903edd",
+      "flow_bytes_sha256": "5e832d10369c6c136d5b6aa8cc7bd527d6fb2adff8c6d3b42670247b71078e69"
+    },
+    {
+      "site": "0x140255a30",
+      "path": "crates/wenilla-rogue-app/src/screens/armory.rs",
+      "role": "bounds_failure_interface",
+      "callee": "0x145eb7363",
+      "declared_extent_sha256": "24d46a5e9cbf200adfd9a539da48aabca653e288ddda9fa0b92edde644903edd",
+      "flow_bytes_sha256": "7a5ef380a484397f842a42c2aadf5cc662f3cac702b7c85dbbc3c1a3f6e1370e"
+    },
+    {
+      "site": "0x140255a0a",
+      "path": "crates/wenilla-rogue-app/src/screens/armory.rs",
+      "role": "bounds_failure_interface",
+      "callee": "0x145eb7363",
+      "declared_extent_sha256": "24d46a5e9cbf200adfd9a539da48aabca653e288ddda9fa0b92edde644903edd",
+      "flow_bytes_sha256": "a6182761dd8b39eda182f05c1617b6382139188a8b2c44f8a79222ef368ddb91"
+    },
+    {
+      "site": "0x1402559f7",
+      "path": "crates/wenilla-rogue-app/src/screens/armory.rs",
+      "role": "bounds_failure_interface",
+      "callee": "0x145eb7363",
+      "declared_extent_sha256": "24d46a5e9cbf200adfd9a539da48aabca653e288ddda9fa0b92edde644903edd",
+      "flow_bytes_sha256": "7fa8ca94851a551e399ae53276717330af38c751a0278189cb22f58a72ec4de7"
+    },
+    {
+      "site": "0x1401157b9",
+      "path": "crates/wenilla-rogue-app/src/screens/markers.rs",
+      "role": "missing_key_failure_interface",
+      "callee": "0x145eb7280",
+      "declared_extent_sha256": "d85ad49e4f4c6afc6db320215f94359b2601047382a54901a8068dfc6566209d",
+      "flow_bytes_sha256": "9cf6bbb643d20a037ce0ccf5a286fb33872660aaa4d247750975e204efebc3dd"
+    },
+    {
+      "site": "0x1400a38cc",
+      "path": "crates/wenilla-rogue-app/src/screens/options.rs",
+      "role": "formatted_failure_interface",
+      "callee": "0x145eb7540",
+      "declared_extent_sha256": "c1a42d89a85416fd7bd22b0e2c69f64eb62fc0af0a55cbb21aaa3f08fcac4265",
+      "flow_bytes_sha256": "3585dd4799e8f2f999b2e78f5c480a39f94c93b6b537d0643572ae95f1a2913a"
+    },
+    {
+      "site": "0x1400a38a0",
+      "path": "crates/wenilla-rogue-app/src/screens/options.rs",
+      "role": "formatted_failure_interface",
+      "callee": "0x145eb7540",
+      "declared_extent_sha256": "c1a42d89a85416fd7bd22b0e2c69f64eb62fc0af0a55cbb21aaa3f08fcac4265",
+      "flow_bytes_sha256": "fcaee868f6b30503ec1e300d729007c75b1941074f99358e1f6f206c9587b8ba"
+    },
+    {
+      "site": "0x1400a4421",
+      "path": "crates/wenilla-rogue-app/src/screens/options.rs",
+      "role": "bounds_failure_interface",
+      "callee": "0x145eb7363",
+      "declared_extent_sha256": "2dcbdba6aa3dc77625e680ae16d360b5bba57646c4df13db414925accc1390ea",
+      "flow_bytes_sha256": "e4d54ba3e8ac46869a4baf655f0d18c30f5a2efdb502f661a336aa5d78672ba6"
+    },
+    {
+      "site": "0x1400acbc9",
+      "path": "crates/wenilla-rogue-app/src/screens/options.rs",
+      "role": "formatted_failure_interface",
+      "callee": "0x145eb7540",
+      "declared_extent_sha256": "301a4d08fde4c4bfb33bf9eb33ac3abcd1c62e2220a0cfaa26f6cee2e8a43c40",
+      "flow_bytes_sha256": "a4185ee38343467b753ae63f50289ce6e9cd9c0dab64fe3763f7ff6ba7f273ee"
+    },
+    {
+      "site": "0x1400ace52",
+      "path": "crates/wenilla-rogue-app/src/screens/options.rs",
+      "role": "formatted_failure_interface",
+      "callee": "0x145eb7540",
+      "declared_extent_sha256": "301a4d08fde4c4bfb33bf9eb33ac3abcd1c62e2220a0cfaa26f6cee2e8a43c40",
+      "flow_bytes_sha256": "b57d59fbcc465f7a0d8c145cbebc1593d25036080ae8bfd35f7a18842e5e585f"
+    },
+    {
+      "site": "0x1400ad435",
+      "path": "crates/wenilla-rogue-app/src/screens/options.rs",
+      "role": "formatted_failure_interface",
+      "callee": "0x145eb7540",
+      "declared_extent_sha256": "301a4d08fde4c4bfb33bf9eb33ac3abcd1c62e2220a0cfaa26f6cee2e8a43c40",
+      "flow_bytes_sha256": "ec3b881e5ac160f9d02447f007aeff9732a97f546a64ab0f01fcb109c6949ae7"
+    },
+    {
+      "site": "0x1400ace9c",
+      "path": "crates/wenilla-rogue-app/src/screens/options.rs",
+      "role": "formatted_failure_interface",
+      "callee": "0x145eb7540",
+      "declared_extent_sha256": "301a4d08fde4c4bfb33bf9eb33ac3abcd1c62e2220a0cfaa26f6cee2e8a43c40",
+      "flow_bytes_sha256": "a35edbb86ba99b80cd21e305a13d3c1361267cbaa2314b3e060f46fcd7295097"
+    },
+    {
+      "site": "0x1400b1b73",
+      "path": "crates/wenilla-rogue-app/src/screens/options.rs",
+      "role": "bounds_failure_interface",
+      "callee": "0x145eb7363",
+      "declared_extent_sha256": "ccfcae024f1a6f0ce53f2b6f11d76940950a57fe7c83629380f61fa1490810dd",
+      "flow_bytes_sha256": "044f89eefff9579c5d7d6c23e0d7b29b3b2a327f558b6c0aabf3bfd6ab228fbb"
+    },
+    {
+      "site": "0x1400b18a0",
+      "path": "crates/wenilla-rogue-app/src/screens/options.rs",
+      "role": "stable_u64_vector_removal",
+      "callee": "0x1400d48d0",
+      "declared_extent_sha256": "ccfcae024f1a6f0ce53f2b6f11d76940950a57fe7c83629380f61fa1490810dd",
+      "flow_bytes_sha256": "ff063482c535e1dc0c140ed1e72e91d01275ef6cacc63517e85458ebc795a8c9"
+    },
+    {
+      "site": "0x1402b1c03",
+      "path": "crates/wenilla-rogue-app/src/screens/rewards.rs",
+      "role": "formatted_failure_interface",
+      "callee": "0x145eb7540",
+      "declared_extent_sha256": "af455089dea9a2f2088e3aad9403b84ea4b8fa24c25878f37d3e211fa1a1a222",
+      "flow_bytes_sha256": "ff6012e3158d4a39392a2cf027a076bbc732b4c0cc2dbe1e63384a37aa35b6a7"
+    },
+    {
+      "site": "0x1402b1c19",
+      "path": "crates/wenilla-rogue-app/src/screens/rewards.rs",
+      "role": "bounds_failure_interface",
+      "callee": "0x145eb7363",
+      "declared_extent_sha256": "af455089dea9a2f2088e3aad9403b84ea4b8fa24c25878f37d3e211fa1a1a222",
+      "flow_bytes_sha256": "d06dd6da529a6f44e57f89952dddf419dc23d72e49731679ce62205638a8c420"
+    },
+    {
+      "site": "0x1402b1c2c",
+      "path": "crates/wenilla-rogue-app/src/screens/rewards.rs",
+      "role": "bounds_failure_interface",
+      "callee": "0x145eb7363",
+      "declared_extent_sha256": "af455089dea9a2f2088e3aad9403b84ea4b8fa24c25878f37d3e211fa1a1a222",
+      "flow_bytes_sha256": "12209a74d1417e8d150c8cd814b97ffdb9cad770eaeb35b32cef750b6d4a7351"
+    },
+    {
+      "site": "0x1459472c3",
+      "path": "crates/wenilla-rogue/src/content.rs",
+      "role": "formatted_failure_interface",
+      "callee": "0x145eb7540",
+      "declared_extent_sha256": "823756c5b9a11122cbf34d6c251a26969f4e552eaa06ef13161024496d70ab13",
+      "flow_bytes_sha256": "05c825e81706b2326e5077367357857212d609a5d75a8f4dbca62f465e7bbceb"
+    },
+    {
+      "site": "0x1459472ff",
+      "path": "crates/wenilla-rogue/src/content.rs",
+      "role": "formatted_failure_interface",
+      "callee": "0x145eb7540",
+      "declared_extent_sha256": "823756c5b9a11122cbf34d6c251a26969f4e552eaa06ef13161024496d70ab13",
+      "flow_bytes_sha256": "d7d77b7fa12514ff1d4faeb44a0ab58edff65fbe08b5b5d959933824c970c24c"
+    },
+    {
+      "site": "0x14594733b",
+      "path": "crates/wenilla-rogue/src/content.rs",
+      "role": "formatted_failure_interface",
+      "callee": "0x145eb7540",
+      "declared_extent_sha256": "823756c5b9a11122cbf34d6c251a26969f4e552eaa06ef13161024496d70ab13",
+      "flow_bytes_sha256": "357fca466e2fb48db636939c3f746066988f0b1f75c87ed961fe3cf625ebad78"
+    },
+    {
+      "site": "0x145947377",
+      "path": "crates/wenilla-rogue/src/content.rs",
+      "role": "formatted_failure_interface",
+      "callee": "0x145eb7540",
+      "declared_extent_sha256": "823756c5b9a11122cbf34d6c251a26969f4e552eaa06ef13161024496d70ab13",
+      "flow_bytes_sha256": "fb603bb7689e6709f86c40fd1f1c0ca9c3cbf351bc3f80fe0b29943cdb076b51"
+    },
+    {
+      "site": "0x1459473b0",
+      "path": "crates/wenilla-rogue/src/content.rs",
+      "role": "formatted_failure_interface",
+      "callee": "0x145eb7540",
+      "declared_extent_sha256": "823756c5b9a11122cbf34d6c251a26969f4e552eaa06ef13161024496d70ab13",
+      "flow_bytes_sha256": "2974beacd2eaa1966fb58d3c5ffb817bbdb935e622ad966113d0e144fe642b79"
+    },
+    {
+      "site": "0x1459473e9",
+      "path": "crates/wenilla-rogue/src/content.rs",
+      "role": "formatted_failure_interface",
+      "callee": "0x145eb7540",
+      "declared_extent_sha256": "823756c5b9a11122cbf34d6c251a26969f4e552eaa06ef13161024496d70ab13",
+      "flow_bytes_sha256": "7a19e4c0d1f887c4ce46e27b9bd112f167e6668f144c0e12e239b1bea89fe435"
+    },
+    {
+      "site": "0x14597af9b",
+      "path": "crates/wenilla-rogue/src/content.rs",
+      "role": "formatted_failure_interface",
+      "callee": "0x145eb7540",
+      "declared_extent_sha256": "d8e1345c4f1c0ff1d2e8536062e389b7ec76e24eadf148a3a59e978c112b5a88",
+      "flow_bytes_sha256": "a9b0cd352df385812fa708cb36f9fb8d4c7e8912edc4fc1db19f8105e399ffcc"
+    },
+    {
+      "site": "0x1459807f4",
+      "path": "crates/wenilla-rogue/src/content.rs",
+      "role": "formatted_failure_interface",
+      "callee": "0x145eb7540",
+      "declared_extent_sha256": "88c669ae95d80a008484af41d72ef48008f75726e5173e7e8da564a3522c75c3",
+      "flow_bytes_sha256": "7a5f3c5ba705616d4b4ec4a9a0c823cf73858ab431c38b162bbfeb1c3b3ee4b9"
+    },
+    {
+      "site": "0x1459e2e8a",
+      "path": "crates/wenilla-rogue/src/content.rs",
+      "role": "formatted_failure_interface",
+      "callee": "0x145eb7540",
+      "declared_extent_sha256": "fff278d6f6c490e2d60ed2d40e09eec03a696ce6de6bbef07c989511338de845",
+      "flow_bytes_sha256": "952d4195cbc610d8a863753f0092dd7e0359b7a53e4409c88db1a25ec1533e32"
+    },
+    {
+      "site": "0x1459e2ec4",
+      "path": "crates/wenilla-rogue/src/content.rs",
+      "role": "formatted_failure_interface",
+      "callee": "0x145eb7540",
+      "declared_extent_sha256": "fff278d6f6c490e2d60ed2d40e09eec03a696ce6de6bbef07c989511338de845",
+      "flow_bytes_sha256": "bca407a3e5ee57e6b70739a87add8af2fd07f5f57150a26402da0d0243c5c780"
+    },
+    {
+      "site": "0x1459e2efb",
+      "path": "crates/wenilla-rogue/src/content.rs",
+      "role": "formatted_failure_interface",
+      "callee": "0x145eb7540",
+      "declared_extent_sha256": "fff278d6f6c490e2d60ed2d40e09eec03a696ce6de6bbef07c989511338de845",
+      "flow_bytes_sha256": "321bfff3f04233e7b33ace45336e30b9dc3023b9309ab5fc044a150b3dd31dbb"
+    },
+    {
+      "site": "0x1459e9c45",
+      "path": "crates/wenilla-rogue/src/content.rs",
+      "role": "formatted_failure_interface",
+      "callee": "0x145eb7540",
+      "declared_extent_sha256": "f3e2f71c1db3278548e8c88affcc4712a9cbfa756eae52913a6d9a05de13cb04",
+      "flow_bytes_sha256": "4d6181bcf88272c4c578441125e32bb638bc600aa4350ed32c97bbc67bf5ea53"
+    },
+    {
+      "site": "0x1459e9c75",
+      "path": "crates/wenilla-rogue/src/content.rs",
+      "role": "formatted_failure_interface",
+      "callee": "0x145eb7540",
+      "declared_extent_sha256": "f3e2f71c1db3278548e8c88affcc4712a9cbfa756eae52913a6d9a05de13cb04",
+      "flow_bytes_sha256": "c79cbaa4ee7fd02d75f9de95639bfd2ceb43e675e3bfeeb473536ef880bdd09c"
+    },
+    {
+      "site": "0x1459e9cd8",
+      "path": "crates/wenilla-rogue/src/content.rs",
+      "role": "formatted_failure_interface",
+      "callee": "0x145eb7540",
+      "declared_extent_sha256": "f3e2f71c1db3278548e8c88affcc4712a9cbfa756eae52913a6d9a05de13cb04",
+      "flow_bytes_sha256": "9df397aab1b7b72f5ed91119aa548a742f5559f75109f7758d32dcba519b3504"
+    },
+    {
+      "site": "0x1458430ae",
+      "path": "crates/wenilla-rogue/src/fonts.rs",
+      "role": "bounds_failure_interface",
+      "callee": "0x145eb7363",
+      "declared_extent_sha256": "c219e2d91d525fdf5f3b8c20eb6dfceb6569442a638e9cd83b79dce99d5a29de",
+      "flow_bytes_sha256": "5046c0aa623bdc2b709a13eb592e9551621e3c259061192c256c497f8b97accf"
+    },
+    {
+      "site": "0x14585440f",
+      "path": "crates/wenilla-rogue/src/game/abilities.rs",
+      "role": "bounds_failure_interface",
+      "callee": "0x145eb7363",
+      "declared_extent_sha256": "33442a0da73cf8e324303d653d8944caa413ea71787d84707d8f1a8ccd45db0c",
+      "flow_bytes_sha256": "6d38b9abd7447e001368317730e29d4dd1cbd527b6804eebc50357fe86717ff7"
+    },
+    {
+      "site": "0x145854418",
+      "path": "crates/wenilla-rogue/src/game/abilities.rs",
+      "role": "bounds_failure_interface",
+      "callee": "0x145eb7363",
+      "declared_extent_sha256": "33442a0da73cf8e324303d653d8944caa413ea71787d84707d8f1a8ccd45db0c",
+      "flow_bytes_sha256": "d7af8e9e3867c457dbe54fa43fa7235f0af53633444fe675372150867da72059"
+    },
+    {
+      "site": "0x1458543f4",
+      "path": "crates/wenilla-rogue/src/game/abilities.rs",
+      "role": "bounds_failure_interface",
+      "callee": "0x145eb7363",
+      "declared_extent_sha256": "33442a0da73cf8e324303d653d8944caa413ea71787d84707d8f1a8ccd45db0c",
+      "flow_bytes_sha256": "f99db60115a90035565a83f93f37b55975b2c9bf9b3110604a194985baedea3a"
+    },
+    {
+      "site": "0x145854406",
+      "path": "crates/wenilla-rogue/src/game/abilities.rs",
+      "role": "bounds_failure_interface",
+      "callee": "0x145eb7363",
+      "declared_extent_sha256": "33442a0da73cf8e324303d653d8944caa413ea71787d84707d8f1a8ccd45db0c",
+      "flow_bytes_sha256": "a1c0d39de0f1058c46c7130e3d327ec17e0403cea2ea1f65c24fcd6578ce081d"
+    },
+    {
+      "site": "0x1458543fd",
+      "path": "crates/wenilla-rogue/src/game/abilities.rs",
+      "role": "bounds_failure_interface",
+      "callee": "0x145eb7363",
+      "declared_extent_sha256": "33442a0da73cf8e324303d653d8944caa413ea71787d84707d8f1a8ccd45db0c",
+      "flow_bytes_sha256": "ed802fcf933bd3b2011aa392861ab0f19ea40017098f43b4fd0290947131a6e7"
+    },
+    {
+      "site": "0x145934d07",
+      "path": "crates/wenilla-rogue/src/game/abilities.rs",
+      "role": "option_failure_interface",
+      "callee": "0x145eb72c0",
+      "declared_extent_sha256": "3a448355945cbe76f21ea898292d3557e8bf14c83ee708c01a5c84112ebfcaed",
+      "flow_bytes_sha256": "ddcfc76533d6ccb33f360dd637618dd43ca906fe758e698209174c19e300124b"
+    },
+    {
+      "site": "0x145933b58",
+      "path": "crates/wenilla-rogue/src/game/abilities.rs",
+      "role": "stable_120_byte_vector_removal",
+      "callee": "0x1459bf5e0",
+      "declared_extent_sha256": "3a448355945cbe76f21ea898292d3557e8bf14c83ee708c01a5c84112ebfcaed",
+      "flow_bytes_sha256": "fa7472464b8d2463779b3658c9d59cf9c8a9ea059a85130b62a845a9170142eb"
+    },
+    {
+      "site": "0x145979842",
+      "path": "crates/wenilla-rogue/src/game/auras.rs",
+      "role": "adjacent_key_literal_substitution",
+      "callee": "0x1458e0370",
+      "declared_extent_sha256": "d8e1345c4f1c0ff1d2e8536062e389b7ec76e24eadf148a3a59e978c112b5a88",
+      "flow_bytes_sha256": "c4890f069c27c545dd61f58717d2597307521be94f58d73bcea82baa36b2cbc3"
+    },
+    {
+      "site": "0x145979d8f",
+      "path": "crates/wenilla-rogue/src/game/auras.rs",
+      "role": "adjacent_key_literal_substitution",
+      "callee": "0x1458e0370",
+      "declared_extent_sha256": "d8e1345c4f1c0ff1d2e8536062e389b7ec76e24eadf148a3a59e978c112b5a88",
+      "flow_bytes_sha256": "39270cc3806935acb5d9ec499e33b4a5294cb43b9fae85e6491851ab0a3337ff"
+    },
+    {
+      "site": "0x14595a83e",
+      "path": "crates/wenilla-rogue/src/game/enemy.rs",
+      "role": "bounds_failure_interface",
+      "callee": "0x145eb7363",
+      "declared_extent_sha256": "d3d6856c944850b983f4d4ae46f0b69696803476c8be417f6360d8f9e0648454",
+      "flow_bytes_sha256": "9647dc5d4ee0a0b11103986fde706a2494a7c7dd785b8661c0a7eab5a69fc050"
+    },
+    {
+      "site": "0x14595a8ab",
+      "path": "crates/wenilla-rogue/src/game/enemy.rs",
+      "role": "bounds_failure_interface",
+      "callee": "0x145eb7363",
+      "declared_extent_sha256": "d3d6856c944850b983f4d4ae46f0b69696803476c8be417f6360d8f9e0648454",
+      "flow_bytes_sha256": "47b0bf9ba19527e7bab585e78aa79ca563b071f169fd1ab7f5b111df07f3c9ac"
+    },
+    {
+      "site": "0x14595a6ee",
+      "path": "crates/wenilla-rogue/src/game/enemy.rs",
+      "role": "bounds_failure_interface",
+      "callee": "0x145eb7363",
+      "declared_extent_sha256": "d3d6856c944850b983f4d4ae46f0b69696803476c8be417f6360d8f9e0648454",
+      "flow_bytes_sha256": "58e5f9696cb65ba26307c375ca5e7c3f7c07b4b7795e83002d70c985e16fed76"
+    },
+    {
+      "site": "0x145961bda",
+      "path": "crates/wenilla-rogue/src/game/enemy.rs",
+      "role": "bounds_failure_interface",
+      "callee": "0x145eb7363",
+      "declared_extent_sha256": "0dc88d29a7111bb75e05e470280e1d7ad3961a49b8cd98154fae564166f47fff",
+      "flow_bytes_sha256": "d1adf029806b850a77139daa38dcc357a389340ff3960995af734f01ee8ae95f"
+    },
+    {
+      "site": "0x145961bec",
+      "path": "crates/wenilla-rogue/src/game/enemy.rs",
+      "role": "bounds_failure_interface",
+      "callee": "0x145eb7363",
+      "declared_extent_sha256": "0dc88d29a7111bb75e05e470280e1d7ad3961a49b8cd98154fae564166f47fff",
+      "flow_bytes_sha256": "a7f5c432d5f99c4551adda03294b4c4f928e1ff887c4fcbd3a099744a8b7c196"
+    },
+    {
+      "site": "0x145961c4d",
+      "path": "crates/wenilla-rogue/src/game/enemy.rs",
+      "role": "bounds_failure_interface",
+      "callee": "0x145eb7363",
+      "declared_extent_sha256": "0dc88d29a7111bb75e05e470280e1d7ad3961a49b8cd98154fae564166f47fff",
+      "flow_bytes_sha256": "309635abe2cd48de5f9b3f17ece710f0a9b7adc08ecd457c26becd7eb24cfbec"
+    },
+    {
+      "site": "0x145961c3e",
+      "path": "crates/wenilla-rogue/src/game/enemy.rs",
+      "role": "bounds_failure_interface",
+      "callee": "0x145eb7363",
+      "declared_extent_sha256": "0dc88d29a7111bb75e05e470280e1d7ad3961a49b8cd98154fae564166f47fff",
+      "flow_bytes_sha256": "ee057df5b6ae2183024ff50c16e9cf30f1f777a0e2b177ce24f21a585cd5d861"
+    },
+    {
+      "site": "0x145927feb",
+      "path": "crates/wenilla-rogue/src/game/hazards.rs",
+      "role": "bounds_failure_interface",
+      "callee": "0x145eb7363",
+      "declared_extent_sha256": "9e7dd49d2b742902b99d14c8e6f7b2c17939dcfed2e5dcf0928ba12acb8f5af7",
+      "flow_bytes_sha256": "817757681ab2ecda23536250fd1f2328fc7d44fc2469664412f89674331d4ffe"
+    },
+    {
+      "site": "0x1459280dd",
+      "path": "crates/wenilla-rogue/src/game/hazards.rs",
+      "role": "bounds_failure_interface",
+      "callee": "0x145eb7363",
+      "declared_extent_sha256": "9e7dd49d2b742902b99d14c8e6f7b2c17939dcfed2e5dcf0928ba12acb8f5af7",
+      "flow_bytes_sha256": "b7786b535cacb94b74adf6d35ea95f881d20c5eb3df1aba1f29dd5b4e4e097f1"
+    },
+    {
+      "site": "0x1459473ff",
+      "path": "crates/wenilla-rogue/src/game/talents.rs",
+      "role": "bounds_failure_interface",
+      "callee": "0x145eb7363",
+      "declared_extent_sha256": "823756c5b9a11122cbf34d6c251a26969f4e552eaa06ef13161024496d70ab13",
+      "flow_bytes_sha256": "bcb91f6fa626f739e0811da8f1dfe74a8fb697048d4f976a7bdbcf12e8fb4947"
+    },
+    {
+      "site": "0x14597afb8",
+      "path": "crates/wenilla-rogue/src/game/upgrades.rs",
+      "role": "bounds_failure_interface",
+      "callee": "0x145eb7363",
+      "declared_extent_sha256": "d8e1345c4f1c0ff1d2e8536062e389b7ec76e24eadf148a3a59e978c112b5a88",
+      "flow_bytes_sha256": "c9953d5c9b9ddc8c3dd41b7c7b53979280303053e12bb671d26a4f6bc3d158f4"
+    },
+    {
+      "site": "0x1459e0704",
+      "path": "crates/wenilla-rogue/src/i18n.rs",
+      "role": "adjacent_key_literal_substitution",
+      "callee": "0x1458e0370",
+      "declared_extent_sha256": "386f60580314a554031fd864414ae5a47136e87fbb68a49443d5056083107632",
+      "flow_bytes_sha256": "1394df75be2accb30a8d0411c1f67d20c41c87318fa5ab611675f9556eba0a2a"
+    },
+    {
+      "site": "0x1459e083a",
+      "path": "crates/wenilla-rogue/src/i18n.rs",
+      "role": "adjacent_key_literal_substitution",
+      "callee": "0x1458e0370",
+      "declared_extent_sha256": "386f60580314a554031fd864414ae5a47136e87fbb68a49443d5056083107632",
+      "flow_bytes_sha256": "5ab899d218c66da5f2372a3a9e4036fb05958866ab1048a7c08e3012d949ee0f"
+    },
+    {
+      "site": "0x1459e08e0",
+      "path": "crates/wenilla-rogue/src/i18n.rs",
+      "role": "adjacent_key_literal_substitution",
+      "callee": "0x1458e0370",
+      "declared_extent_sha256": "386f60580314a554031fd864414ae5a47136e87fbb68a49443d5056083107632",
+      "flow_bytes_sha256": "d31aa66cde18c86ec9b3c653192d2c88fe8e9cb097849d7158a4c5dbe375989e"
+    },
+    {
+      "site": "0x145961b92",
+      "path": "crates/wenilla-rogue/src/nav.rs",
+      "role": "bounds_failure_interface",
+      "callee": "0x145eb7363",
+      "declared_extent_sha256": "0dc88d29a7111bb75e05e470280e1d7ad3961a49b8cd98154fae564166f47fff",
+      "flow_bytes_sha256": "58a4a707970073ed82c3f355d70830ba3c1455985a2cb207a9f98ccb7b13c7dc"
+    },
+    {
+      "site": "0x145961ba4",
+      "path": "crates/wenilla-rogue/src/nav.rs",
+      "role": "bounds_failure_interface",
+      "callee": "0x145eb7363",
+      "declared_extent_sha256": "0dc88d29a7111bb75e05e470280e1d7ad3961a49b8cd98154fae564166f47fff",
+      "flow_bytes_sha256": "634e2d67b1ff635e9994e6ddac3e179e92fc83a5348844be7621dd596e2baa4c"
+    },
+    {
+      "site": "0x145961bb6",
+      "path": "crates/wenilla-rogue/src/nav.rs",
+      "role": "bounds_failure_interface",
+      "callee": "0x145eb7363",
+      "declared_extent_sha256": "0dc88d29a7111bb75e05e470280e1d7ad3961a49b8cd98154fae564166f47fff",
+      "flow_bytes_sha256": "e3ff6d01af21af8dad166b4f8b366192c4684f93d8d97e205f615bd010ad53c2"
+    },
+    {
+      "site": "0x145961bc8",
+      "path": "crates/wenilla-rogue/src/nav.rs",
+      "role": "bounds_failure_interface",
+      "callee": "0x145eb7363",
+      "declared_extent_sha256": "0dc88d29a7111bb75e05e470280e1d7ad3961a49b8cd98154fae564166f47fff",
+      "flow_bytes_sha256": "e54062db805243bde9764206a1a57f12518a5af31852f895cff49c5392c09204"
+    }
+  ],
+  "canonical_graph_counts": {
+    "sites": 31,
+    "owners": 12,
+    "states": 2621,
+    "exits": {
+      "nonconsuming_call": 38,
+      "overwritten": 15,
+      "return_residue": 22
+    }
+  },
+  "supporting_interfaces": {
+    "0x142a769a0": {
+      "sha256": "1fa9721fddb3cd28ace4e4980d498d1e7d158c612e9b104149afa3606bf5f832",
+      "meaningful_input_arguments": [
+        "rcx",
+        "rdx",
+        "r8"
+      ],
+      "role": "tagged_object_length_bounded_key_lookup"
+    },
+    "0x144df2810": {
+      "sha256": "8000298800e964f332dcc05b1ce294000f3ad4e559ab77fe6436d750de08cb3c",
+      "meaningful_input_arguments": [
+        "rcx"
+      ],
+      "role": "queued_command_append"
+    },
+    "0x1400021d0": {
+      "sha256": "d81d62cb66149c453527a97f36557bdec2ce4ed2b200d021af7862c2dc6a4599",
+      "meaningful_input_arguments": [
+        "rcx",
+        "rdx",
+        "r8"
+      ],
+      "role": "heap_deallocation_thunk"
+    },
+    "0x1401f1e70": {
+      "sha256": "52c672bac18aecd565fe5fb1cbdd25d898979d9ad60ca1b59e803407d440be7e",
+      "meaningful_input_arguments": [
+        "rcx"
+      ],
+      "role": "tagged_value_drop_and_storage_release"
+    }
+  },
+  "canonical_graphs": [
+    {
+      "site": "0x14005443f",
+      "path": "crates/wenilla-rogue-app/src/screens/cards.rs",
+      "owner": "0x140054020",
+      "declared_extent": [
+        "0x140054020",
+        "0x1400551d0"
+      ],
+      "declared_extent_sha256": "d4bd4812d4d6efbf0cb936ac2eeb8fb524d20d7880d32ac2b77c68e752aab771",
+      "graph_states": 62,
+      "revisited_addresses": [
+        "0x140054455",
+        "0x140054470"
+      ],
+      "graph_instruction_commitment": "9bf84122b8aef4da38082502cf44aec01685bc54a5f0327eb808a2264226d5c4",
+      "exits": [
+        {
+          "site": "0x1400544e7",
+          "kind": "nonconsuming_call",
+          "callee": "0x144df2810",
+          "retained_registers": [
+            "r10",
+            "rdx"
+          ],
+          "supplied_arguments": [
+            "rdx"
+          ],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x140054540",
+          "kind": "nonconsuming_call",
+          "callee": "0x142a769a0",
+          "retained_registers": [
+            "r10"
+          ],
+          "supplied_arguments": [],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x140054f95",
+          "kind": "return_residue",
+          "retained_registers": [
+            "r10"
+          ],
+          "contract": "No exact pointer store or RAX return; residue exists only in volatile non-RAX registers. Concrete output ABI is not certified."
+        }
+      ],
+      "successful_AS_semantics_complete": false,
+      "output_ABI_certified": false
+    },
+    {
+      "site": "0x1400544f3",
+      "path": "crates/wenilla-rogue-app/src/screens/cards.rs",
+      "owner": "0x140054020",
+      "declared_extent": [
+        "0x140054020",
+        "0x1400551d0"
+      ],
+      "declared_extent_sha256": "d4bd4812d4d6efbf0cb936ac2eeb8fb524d20d7880d32ac2b77c68e752aab771",
+      "graph_states": 64,
+      "revisited_addresses": [
+        "0x140054455",
+        "0x140054470"
+      ],
+      "graph_instruction_commitment": "d7278b728fe2820a2216de1da6b0a4fa94e408616ce3574223953eda0a16c7b6",
+      "exits": [
+        {
+          "site": "0x1400544e7",
+          "kind": "nonconsuming_call",
+          "callee": "0x144df2810",
+          "retained_registers": [
+            "r10",
+            "rdx"
+          ],
+          "supplied_arguments": [
+            "rdx"
+          ],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x140054540",
+          "kind": "nonconsuming_call",
+          "callee": "0x142a769a0",
+          "retained_registers": [
+            "r10"
+          ],
+          "supplied_arguments": [],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x140054f95",
+          "kind": "return_residue",
+          "retained_registers": [
+            "r10"
+          ],
+          "contract": "No exact pointer store or RAX return; residue exists only in volatile non-RAX registers. Concrete output ABI is not certified."
+        }
+      ],
+      "successful_AS_semantics_complete": false,
+      "output_ABI_certified": false
+    },
+    {
+      "site": "0x140219922",
+      "path": "crates/wenilla-rogue-app/src/screens/coop.rs",
+      "owner": "0x140219790",
+      "declared_extent": [
+        "0x140219790",
+        "0x140219dc6"
+      ],
+      "declared_extent_sha256": "f97d356b3c45e803f0046ba85d62704e88d3d53c612d8f553cbc6165c764d2a2",
+      "graph_states": 134,
+      "revisited_addresses": [
+        "0x140219a29",
+        "0x140219a40"
+      ],
+      "graph_instruction_commitment": "63550d1b0f9fc6fdbf99164df1cc8389c859027bb7b10dc6a7e6313d813936b2",
+      "exits": [
+        {
+          "site": "0x140219acd",
+          "kind": "nonconsuming_call",
+          "callee": "0x144df2810",
+          "retained_registers": [
+            "rdx"
+          ],
+          "supplied_arguments": [
+            "rdx"
+          ],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x140219d8d",
+          "kind": "overwritten"
+        },
+        {
+          "site": "0x140219dbe",
+          "kind": "return_residue",
+          "retained_registers": [
+            "rdx"
+          ],
+          "contract": "No exact pointer store or RAX return; residue exists only in volatile non-RAX registers. Concrete output ABI is not certified."
+        }
+      ],
+      "successful_AS_semantics_complete": false,
+      "output_ABI_certified": false
+    },
+    {
+      "site": "0x140219ad2",
+      "path": "crates/wenilla-rogue-app/src/screens/coop.rs",
+      "owner": "0x140219790",
+      "declared_extent": [
+        "0x140219790",
+        "0x140219dc6"
+      ],
+      "declared_extent_sha256": "f97d356b3c45e803f0046ba85d62704e88d3d53c612d8f553cbc6165c764d2a2",
+      "graph_states": 137,
+      "revisited_addresses": [
+        "0x140219a29",
+        "0x140219a40"
+      ],
+      "graph_instruction_commitment": "0c1b34b84b03d9ee612f2a86af84aef76e7b5e43dd4935aa01a3f75b2fd7da25",
+      "exits": [
+        {
+          "site": "0x140219acd",
+          "kind": "nonconsuming_call",
+          "callee": "0x144df2810",
+          "retained_registers": [
+            "rdx"
+          ],
+          "supplied_arguments": [
+            "rdx"
+          ],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x140219d8d",
+          "kind": "overwritten"
+        },
+        {
+          "site": "0x140219dbe",
+          "kind": "return_residue",
+          "retained_registers": [
+            "rdx"
+          ],
+          "contract": "No exact pointer store or RAX return; residue exists only in volatile non-RAX registers. Concrete output ABI is not certified."
+        }
+      ],
+      "successful_AS_semantics_complete": false,
+      "output_ABI_certified": false
+    },
+    {
+      "site": "0x140190259",
+      "path": "crates/wenilla-rogue-app/src/screens/hud.rs",
+      "owner": "0x140190130",
+      "declared_extent": [
+        "0x140190130",
+        "0x1401931b9"
+      ],
+      "declared_extent_sha256": "265e8a29836cdfb33175eb5ee69e5445fd652f0f853c874f3e5b39efe99173ac",
+      "graph_states": 81,
+      "revisited_addresses": [
+        "0x14019070a",
+        "0x140190720",
+        "0x140190730",
+        "0x14019076b",
+        "0x14019077a",
+        "0x140190780",
+        "0x1401907a3",
+        "0x1401907ab"
+      ],
+      "graph_instruction_commitment": "29748452c9cdd8fe60d90f35fd806ab2f4d229b584d39534c4169c1cea28b010",
+      "exits": [
+        {
+          "site": "0x1401906c7",
+          "kind": "nonconsuming_call",
+          "callee": "0x144df2810",
+          "retained_registers": [
+            "r11",
+            "rdx"
+          ],
+          "supplied_arguments": [
+            "rdx"
+          ],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x1401907ec",
+          "kind": "return_residue",
+          "retained_registers": [
+            "r11"
+          ],
+          "contract": "No exact pointer store or RAX return; residue exists only in volatile non-RAX registers. Concrete output ABI is not certified."
+        }
+      ],
+      "successful_AS_semantics_complete": false,
+      "output_ABI_certified": false
+    },
+    {
+      "site": "0x1401906cc",
+      "path": "crates/wenilla-rogue-app/src/screens/hud.rs",
+      "owner": "0x140190130",
+      "declared_extent": [
+        "0x140190130",
+        "0x1401931b9"
+      ],
+      "declared_extent_sha256": "265e8a29836cdfb33175eb5ee69e5445fd652f0f853c874f3e5b39efe99173ac",
+      "graph_states": 83,
+      "revisited_addresses": [
+        "0x14019070a",
+        "0x140190720",
+        "0x140190730",
+        "0x14019076b",
+        "0x14019077a",
+        "0x140190780",
+        "0x1401907a3",
+        "0x1401907ab"
+      ],
+      "graph_instruction_commitment": "ba93bfbf1de2d13c6c4f8bede0ccffa68d1bc656f99ed5fde706c28678f3d243",
+      "exits": [
+        {
+          "site": "0x1401906c7",
+          "kind": "nonconsuming_call",
+          "callee": "0x144df2810",
+          "retained_registers": [
+            "r11",
+            "rdx"
+          ],
+          "supplied_arguments": [
+            "rdx"
+          ],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x1401907ec",
+          "kind": "return_residue",
+          "retained_registers": [
+            "r11"
+          ],
+          "contract": "No exact pointer store or RAX return; residue exists only in volatile non-RAX registers. Concrete output ABI is not certified."
+        }
+      ],
+      "successful_AS_semantics_complete": false,
+      "output_ABI_certified": false
+    },
+    {
+      "site": "0x140198411",
+      "path": "crates/wenilla-rogue-app/src/screens/hud.rs",
+      "owner": "0x1401981e0",
+      "declared_extent": [
+        "0x1401981e0",
+        "0x14019975a"
+      ],
+      "declared_extent_sha256": "12a0f9baabcf1cf7db0a7a79b63b6725969851f5114ccb7b51c7517cad67873e",
+      "graph_states": 57,
+      "revisited_addresses": [
+        "0x14019845b",
+        "0x140198470"
+      ],
+      "graph_instruction_commitment": "79474f623a3db76f34ae63ff85dc7c532b2efd302daf0c176232c05e0fce6b35",
+      "exits": [
+        {
+          "site": "0x1401984f9",
+          "kind": "nonconsuming_call",
+          "callee": "0x144df2810",
+          "retained_registers": [
+            "rdx"
+          ],
+          "supplied_arguments": [
+            "rdx"
+          ],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x140198641",
+          "kind": "overwritten"
+        },
+        {
+          "site": "0x140199748",
+          "kind": "return_residue",
+          "retained_registers": [
+            "rdx"
+          ],
+          "contract": "No exact pointer store or RAX return; residue exists only in volatile non-RAX registers. Concrete output ABI is not certified."
+        }
+      ],
+      "successful_AS_semantics_complete": false,
+      "output_ABI_certified": false
+    },
+    {
+      "site": "0x140198429",
+      "path": "crates/wenilla-rogue-app/src/screens/hud.rs",
+      "owner": "0x1401981e0",
+      "declared_extent": [
+        "0x1401981e0",
+        "0x14019975a"
+      ],
+      "declared_extent_sha256": "12a0f9baabcf1cf7db0a7a79b63b6725969851f5114ccb7b51c7517cad67873e",
+      "graph_states": 61,
+      "revisited_addresses": [
+        "0x14019853a",
+        "0x140198560"
+      ],
+      "graph_instruction_commitment": "c8964c7d7d94e0b65022ad91f1889c138087cb478c061d4089e8d1f657064d0a",
+      "exits": [
+        {
+          "site": "0x1401985f7",
+          "kind": "nonconsuming_call",
+          "callee": "0x144df2810",
+          "retained_registers": [
+            "r8",
+            "rdx"
+          ],
+          "supplied_arguments": [
+            "r8",
+            "rdx"
+          ],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x140198646",
+          "kind": "overwritten"
+        },
+        {
+          "site": "0x140199748",
+          "kind": "return_residue",
+          "retained_registers": [
+            "r8"
+          ],
+          "contract": "No exact pointer store or RAX return; residue exists only in volatile non-RAX registers. Concrete output ABI is not certified."
+        }
+      ],
+      "successful_AS_semantics_complete": false,
+      "output_ABI_certified": false
+    },
+    {
+      "site": "0x140198505",
+      "path": "crates/wenilla-rogue-app/src/screens/hud.rs",
+      "owner": "0x1401981e0",
+      "declared_extent": [
+        "0x1401981e0",
+        "0x14019975a"
+      ],
+      "declared_extent_sha256": "12a0f9baabcf1cf7db0a7a79b63b6725969851f5114ccb7b51c7517cad67873e",
+      "graph_states": 58,
+      "revisited_addresses": [
+        "0x14019845b",
+        "0x140198470"
+      ],
+      "graph_instruction_commitment": "1f33ceb9c180f0e6da35c4b7fd1e5dfd32adc814224745f28064a1d5ab100650",
+      "exits": [
+        {
+          "site": "0x1401984f9",
+          "kind": "nonconsuming_call",
+          "callee": "0x144df2810",
+          "retained_registers": [
+            "rdx"
+          ],
+          "supplied_arguments": [
+            "rdx"
+          ],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x140198641",
+          "kind": "overwritten"
+        },
+        {
+          "site": "0x140199748",
+          "kind": "return_residue",
+          "retained_registers": [
+            "rdx"
+          ],
+          "contract": "No exact pointer store or RAX return; residue exists only in volatile non-RAX registers. Concrete output ABI is not certified."
+        }
+      ],
+      "successful_AS_semantics_complete": false,
+      "output_ABI_certified": false
+    },
+    {
+      "site": "0x1401985fc",
+      "path": "crates/wenilla-rogue-app/src/screens/hud.rs",
+      "owner": "0x1401981e0",
+      "declared_extent": [
+        "0x1401981e0",
+        "0x14019975a"
+      ],
+      "declared_extent_sha256": "12a0f9baabcf1cf7db0a7a79b63b6725969851f5114ccb7b51c7517cad67873e",
+      "graph_states": 63,
+      "revisited_addresses": [
+        "0x14019853a",
+        "0x140198560"
+      ],
+      "graph_instruction_commitment": "57a77f97c6fa5f9a6193350b0efbc25d0470169cedd6e3dd4c3864cdf28b4053",
+      "exits": [
+        {
+          "site": "0x1401985f7",
+          "kind": "nonconsuming_call",
+          "callee": "0x144df2810",
+          "retained_registers": [
+            "r8",
+            "rdx"
+          ],
+          "supplied_arguments": [
+            "r8",
+            "rdx"
+          ],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x140198646",
+          "kind": "overwritten"
+        },
+        {
+          "site": "0x140199748",
+          "kind": "return_residue",
+          "retained_registers": [
+            "r8"
+          ],
+          "contract": "No exact pointer store or RAX return; residue exists only in volatile non-RAX registers. Concrete output ABI is not certified."
+        }
+      ],
+      "successful_AS_semantics_complete": false,
+      "output_ABI_certified": false
+    },
+    {
+      "site": "0x14019d8a0",
+      "path": "crates/wenilla-rogue-app/src/screens/hud.rs",
+      "owner": "0x14019d570",
+      "declared_extent": [
+        "0x14019d570",
+        "0x14019df1b"
+      ],
+      "declared_extent_sha256": "d393089d87bacba38f79c29ee62bab7753f9c11d69e6ad939d0fa9443e3c8a8b",
+      "graph_states": 54,
+      "revisited_addresses": [
+        "0x14019d9b0",
+        "0x14019d9d0"
+      ],
+      "graph_instruction_commitment": "878059ae50b79f9e6de272403ff66e208d34cfc6244e33b5e6a2cbbae0a84484",
+      "exits": [
+        {
+          "site": "0x14019da64",
+          "kind": "nonconsuming_call",
+          "callee": "0x144df2810",
+          "retained_registers": [
+            "rdx"
+          ],
+          "supplied_arguments": [
+            "rdx"
+          ],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x14019dece",
+          "kind": "return_residue",
+          "retained_registers": [
+            "rdx"
+          ],
+          "contract": "No exact pointer store or RAX return; residue exists only in volatile non-RAX registers. Concrete output ABI is not certified."
+        }
+      ],
+      "successful_AS_semantics_complete": false,
+      "output_ABI_certified": false
+    },
+    {
+      "site": "0x14019da69",
+      "path": "crates/wenilla-rogue-app/src/screens/hud.rs",
+      "owner": "0x14019d570",
+      "declared_extent": [
+        "0x14019d570",
+        "0x14019df1b"
+      ],
+      "declared_extent_sha256": "d393089d87bacba38f79c29ee62bab7753f9c11d69e6ad939d0fa9443e3c8a8b",
+      "graph_states": 57,
+      "revisited_addresses": [
+        "0x14019d9b0",
+        "0x14019d9d0"
+      ],
+      "graph_instruction_commitment": "7b49a2d689142f89c61ac6b7be54750503519819593676ce21cc34a65396be56",
+      "exits": [
+        {
+          "site": "0x14019da64",
+          "kind": "nonconsuming_call",
+          "callee": "0x144df2810",
+          "retained_registers": [
+            "rdx"
+          ],
+          "supplied_arguments": [
+            "rdx"
+          ],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x14019dece",
+          "kind": "return_residue",
+          "retained_registers": [
+            "rdx"
+          ],
+          "contract": "No exact pointer store or RAX return; residue exists only in volatile non-RAX registers. Concrete output ABI is not certified."
+        }
+      ],
+      "successful_AS_semantics_complete": false,
+      "output_ABI_certified": false
+    },
+    {
+      "site": "0x1401a07a8",
+      "path": "crates/wenilla-rogue-app/src/screens/hud.rs",
+      "owner": "0x1401a03b0",
+      "declared_extent": [
+        "0x1401a03b0",
+        "0x1401a0f65"
+      ],
+      "declared_extent_sha256": "810f2b73037cc400eab6ce0ed6a71c3f6a694b3ec96d9b162aa243245eb99886",
+      "graph_states": 115,
+      "revisited_addresses": [
+        "0x1401a07c0",
+        "0x1401a07e0"
+      ],
+      "graph_instruction_commitment": "a6aa2b6ae2563d9a7912fecc30d932d8ee445fd1921fbd42aa10776c0c81c137",
+      "exits": [
+        {
+          "site": "0x1401a0861",
+          "kind": "nonconsuming_call",
+          "callee": "0x144df2810",
+          "retained_registers": [
+            "rdx"
+          ],
+          "supplied_arguments": [
+            "rdx"
+          ],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x1401a0c1d",
+          "kind": "overwritten"
+        }
+      ],
+      "successful_AS_semantics_complete": false,
+      "output_ABI_certified": false
+    },
+    {
+      "site": "0x1401a086e",
+      "path": "crates/wenilla-rogue-app/src/screens/hud.rs",
+      "owner": "0x1401a03b0",
+      "declared_extent": [
+        "0x1401a03b0",
+        "0x1401a0f65"
+      ],
+      "declared_extent_sha256": "810f2b73037cc400eab6ce0ed6a71c3f6a694b3ec96d9b162aa243245eb99886",
+      "graph_states": 116,
+      "revisited_addresses": [
+        "0x1401a07c0",
+        "0x1401a07e0"
+      ],
+      "graph_instruction_commitment": "5d3a4671cdbdf25d32dbdb6ac061d1abd9f8452e09323de402edba8ba24c8eaa",
+      "exits": [
+        {
+          "site": "0x1401a0861",
+          "kind": "nonconsuming_call",
+          "callee": "0x144df2810",
+          "retained_registers": [
+            "rdx"
+          ],
+          "supplied_arguments": [
+            "rdx"
+          ],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x1401a0c1d",
+          "kind": "overwritten"
+        }
+      ],
+      "successful_AS_semantics_complete": false,
+      "output_ABI_certified": false
+    },
+    {
+      "site": "0x1401a08ba",
+      "path": "crates/wenilla-rogue-app/src/screens/hud.rs",
+      "owner": "0x1401a03b0",
+      "declared_extent": [
+        "0x1401a03b0",
+        "0x1401a0f65"
+      ],
+      "declared_extent_sha256": "810f2b73037cc400eab6ce0ed6a71c3f6a694b3ec96d9b162aa243245eb99886",
+      "graph_states": 116,
+      "revisited_addresses": [
+        "0x1401a08d0",
+        "0x1401a08f0"
+      ],
+      "graph_instruction_commitment": "c26efd6476d0f707d2bde41101c5cec86672176d41d1ed149bd2a6494fb1ccb8",
+      "exits": [
+        {
+          "site": "0x1401a0974",
+          "kind": "nonconsuming_call",
+          "callee": "0x144df2810",
+          "retained_registers": [
+            "rdx"
+          ],
+          "supplied_arguments": [
+            "rdx"
+          ],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x1401a0c1d",
+          "kind": "overwritten"
+        }
+      ],
+      "successful_AS_semantics_complete": false,
+      "output_ABI_certified": false
+    },
+    {
+      "site": "0x1401a0981",
+      "path": "crates/wenilla-rogue-app/src/screens/hud.rs",
+      "owner": "0x1401a03b0",
+      "declared_extent": [
+        "0x1401a03b0",
+        "0x1401a0f65"
+      ],
+      "declared_extent_sha256": "810f2b73037cc400eab6ce0ed6a71c3f6a694b3ec96d9b162aa243245eb99886",
+      "graph_states": 118,
+      "revisited_addresses": [
+        "0x1401a08d0",
+        "0x1401a08f0"
+      ],
+      "graph_instruction_commitment": "c98350cb19ff12fd62fabb841a6f6ee807eab70848564e2af682b3b957c4e09d",
+      "exits": [
+        {
+          "site": "0x1401a0974",
+          "kind": "nonconsuming_call",
+          "callee": "0x144df2810",
+          "retained_registers": [
+            "rdx"
+          ],
+          "supplied_arguments": [
+            "rdx"
+          ],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x1401a0c1d",
+          "kind": "overwritten"
+        }
+      ],
+      "successful_AS_semantics_complete": false,
+      "output_ABI_certified": false
+    },
+    {
+      "site": "0x14016baad",
+      "path": "crates/wenilla-rogue-app/src/screens/meter.rs",
+      "owner": "0x14016b820",
+      "declared_extent": [
+        "0x14016b820",
+        "0x14016bff0"
+      ],
+      "declared_extent_sha256": "a0a9258ef0f1df2435183d588b5b92eb6c98754a9af79e09a9aa433a6480c021",
+      "graph_states": 53,
+      "revisited_addresses": [
+        "0x14016bafa",
+        "0x14016bb10"
+      ],
+      "graph_instruction_commitment": "17a5f738d5864e163247279bc825656fb674f6e7a73c7ff203f07e97156fbb37",
+      "exits": [
+        {
+          "site": "0x14016bfe5",
+          "kind": "overwritten"
+        }
+      ],
+      "successful_AS_semantics_complete": false,
+      "output_ABI_certified": false
+    },
+    {
+      "site": "0x14016bacd",
+      "path": "crates/wenilla-rogue-app/src/screens/meter.rs",
+      "owner": "0x14016b820",
+      "declared_extent": [
+        "0x14016b820",
+        "0x14016bff0"
+      ],
+      "declared_extent_sha256": "a0a9258ef0f1df2435183d588b5b92eb6c98754a9af79e09a9aa433a6480c021",
+      "graph_states": 53,
+      "revisited_addresses": [
+        "0x14016bbc9",
+        "0x14016bbe0"
+      ],
+      "graph_instruction_commitment": "e2e8cb8a30f9d6a2b1979f8165bfcbd23327d4c8af7b6147bff47dd3b41e6092",
+      "exits": [
+        {
+          "site": "0x14016bc60",
+          "kind": "nonconsuming_call",
+          "callee": "0x144df2810",
+          "retained_registers": [
+            "rdx"
+          ],
+          "supplied_arguments": [
+            "rdx"
+          ],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x14016bfef",
+          "kind": "return_residue",
+          "retained_registers": [
+            "rdx"
+          ],
+          "contract": "No exact pointer store or RAX return; residue exists only in volatile non-RAX registers. Concrete output ABI is not certified."
+        }
+      ],
+      "successful_AS_semantics_complete": false,
+      "output_ABI_certified": false
+    },
+    {
+      "site": "0x14016bc6d",
+      "path": "crates/wenilla-rogue-app/src/screens/meter.rs",
+      "owner": "0x14016b820",
+      "declared_extent": [
+        "0x14016b820",
+        "0x14016bff0"
+      ],
+      "declared_extent_sha256": "a0a9258ef0f1df2435183d588b5b92eb6c98754a9af79e09a9aa433a6480c021",
+      "graph_states": 54,
+      "revisited_addresses": [
+        "0x14016bbc9",
+        "0x14016bbe0"
+      ],
+      "graph_instruction_commitment": "504f3fb15d52ec831d5ddbf557cc811608b33f3465243cd0afa605e14d660347",
+      "exits": [
+        {
+          "site": "0x14016bc60",
+          "kind": "nonconsuming_call",
+          "callee": "0x144df2810",
+          "retained_registers": [
+            "rdx"
+          ],
+          "supplied_arguments": [
+            "rdx"
+          ],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x14016bfef",
+          "kind": "return_residue",
+          "retained_registers": [
+            "rdx"
+          ],
+          "contract": "No exact pointer store or RAX return; residue exists only in volatile non-RAX registers. Concrete output ABI is not certified."
+        }
+      ],
+      "successful_AS_semantics_complete": false,
+      "output_ABI_certified": false
+    },
+    {
+      "site": "0x14010997a",
+      "path": "crates/wenilla-rogue-app/src/screens/picker.rs",
+      "owner": "0x140109240",
+      "declared_extent": [
+        "0x140109240",
+        "0x14010a904"
+      ],
+      "declared_extent_sha256": "d9650f5487197faa6191cdafb6d6b0ede8e907eeca407c8f358a584a6e9b82d4",
+      "graph_states": 64,
+      "revisited_addresses": [
+        "0x140109a80",
+        "0x140109aa0"
+      ],
+      "graph_instruction_commitment": "5e121c53c6c87cbbc24cb7bcc72a96d346167a82c64a8dbb1bdd0c3c6f251fb8",
+      "exits": [
+        {
+          "site": "0x140109b34",
+          "kind": "nonconsuming_call",
+          "callee": "0x144df2810",
+          "retained_registers": [
+            "rdx"
+          ],
+          "supplied_arguments": [
+            "rdx"
+          ],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x14010a8ae",
+          "kind": "return_residue",
+          "retained_registers": [
+            "rdx"
+          ],
+          "contract": "No exact pointer store or RAX return; residue exists only in volatile non-RAX registers. Concrete output ABI is not certified."
+        }
+      ],
+      "successful_AS_semantics_complete": false,
+      "output_ABI_certified": false
+    },
+    {
+      "site": "0x140109b39",
+      "path": "crates/wenilla-rogue-app/src/screens/picker.rs",
+      "owner": "0x140109240",
+      "declared_extent": [
+        "0x140109240",
+        "0x14010a904"
+      ],
+      "declared_extent_sha256": "d9650f5487197faa6191cdafb6d6b0ede8e907eeca407c8f358a584a6e9b82d4",
+      "graph_states": 67,
+      "revisited_addresses": [
+        "0x140109a80",
+        "0x140109aa0"
+      ],
+      "graph_instruction_commitment": "4bf2d4751a88ab68c48ba4726c5e66b0457da3b7bce22d6542e7dd84c473aaa1",
+      "exits": [
+        {
+          "site": "0x140109b34",
+          "kind": "nonconsuming_call",
+          "callee": "0x144df2810",
+          "retained_registers": [
+            "rdx"
+          ],
+          "supplied_arguments": [
+            "rdx"
+          ],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x14010a8ae",
+          "kind": "return_residue",
+          "retained_registers": [
+            "rdx"
+          ],
+          "contract": "No exact pointer store or RAX return; residue exists only in volatile non-RAX registers. Concrete output ABI is not certified."
+        }
+      ],
+      "successful_AS_semantics_complete": false,
+      "output_ABI_certified": false
+    },
+    {
+      "site": "0x14010977d",
+      "path": "crates/wenilla-rogue-app/src/screens/picker.rs",
+      "owner": "0x140109240",
+      "declared_extent": [
+        "0x140109240",
+        "0x14010a904"
+      ],
+      "declared_extent_sha256": "d9650f5487197faa6191cdafb6d6b0ede8e907eeca407c8f358a584a6e9b82d4",
+      "graph_states": 64,
+      "revisited_addresses": [
+        "0x140109890",
+        "0x1401098b0"
+      ],
+      "graph_instruction_commitment": "e52b93519b33c7a846035e0a2af678502359f24b0670f8e6f8230b09b64354f0",
+      "exits": [
+        {
+          "site": "0x140109944",
+          "kind": "nonconsuming_call",
+          "callee": "0x144df2810",
+          "retained_registers": [
+            "rdx"
+          ],
+          "supplied_arguments": [
+            "rdx"
+          ],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x14010a8ae",
+          "kind": "return_residue",
+          "retained_registers": [
+            "rdx"
+          ],
+          "contract": "No exact pointer store or RAX return; residue exists only in volatile non-RAX registers. Concrete output ABI is not certified."
+        }
+      ],
+      "successful_AS_semantics_complete": false,
+      "output_ABI_certified": false
+    },
+    {
+      "site": "0x140109949",
+      "path": "crates/wenilla-rogue-app/src/screens/picker.rs",
+      "owner": "0x140109240",
+      "declared_extent": [
+        "0x140109240",
+        "0x14010a904"
+      ],
+      "declared_extent_sha256": "d9650f5487197faa6191cdafb6d6b0ede8e907eeca407c8f358a584a6e9b82d4",
+      "graph_states": 67,
+      "revisited_addresses": [
+        "0x140109890",
+        "0x1401098b0"
+      ],
+      "graph_instruction_commitment": "8bd7065c16c5034900a3c393d00e10a0810f5f68a9bb5d18f1cb70ea26d4d632",
+      "exits": [
+        {
+          "site": "0x140109944",
+          "kind": "nonconsuming_call",
+          "callee": "0x144df2810",
+          "retained_registers": [
+            "rdx"
+          ],
+          "supplied_arguments": [
+            "rdx"
+          ],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x14010a8ae",
+          "kind": "return_residue",
+          "retained_registers": [
+            "rdx"
+          ],
+          "contract": "No exact pointer store or RAX return; residue exists only in volatile non-RAX registers. Concrete output ABI is not certified."
+        }
+      ],
+      "successful_AS_semantics_complete": false,
+      "output_ABI_certified": false
+    },
+    {
+      "site": "0x140058ab1",
+      "path": "crates/wenilla-rogue-app/src/screens/runmods.rs",
+      "owner": "0x140058900",
+      "declared_extent": [
+        "0x140058900",
+        "0x140058f22"
+      ],
+      "declared_extent_sha256": "2b721054426a9b39abf6ead61750704c94ce3b05f84a6f107d233715afbbf15f",
+      "graph_states": 130,
+      "revisited_addresses": [
+        "0x140058bb9",
+        "0x140058bd0"
+      ],
+      "graph_instruction_commitment": "4f8ae579224c539932e0e6ec709799c60e1d54a0a6cd6e3b74e65f9b67ed6760",
+      "exits": [
+        {
+          "site": "0x140058c5d",
+          "kind": "nonconsuming_call",
+          "callee": "0x144df2810",
+          "retained_registers": [
+            "rdx"
+          ],
+          "supplied_arguments": [
+            "rdx"
+          ],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x140058ee6",
+          "kind": "overwritten"
+        },
+        {
+          "site": "0x140058f1a",
+          "kind": "return_residue",
+          "retained_registers": [
+            "rdx"
+          ],
+          "contract": "No exact pointer store or RAX return; residue exists only in volatile non-RAX registers. Concrete output ABI is not certified."
+        }
+      ],
+      "successful_AS_semantics_complete": false,
+      "output_ABI_certified": false
+    },
+    {
+      "site": "0x140058c62",
+      "path": "crates/wenilla-rogue-app/src/screens/runmods.rs",
+      "owner": "0x140058900",
+      "declared_extent": [
+        "0x140058900",
+        "0x140058f22"
+      ],
+      "declared_extent_sha256": "2b721054426a9b39abf6ead61750704c94ce3b05f84a6f107d233715afbbf15f",
+      "graph_states": 133,
+      "revisited_addresses": [
+        "0x140058bb9",
+        "0x140058bd0"
+      ],
+      "graph_instruction_commitment": "5533a26c2c5d38c6015d893cfb8e80d69ab4d8401b51371d4a6e223e29632d17",
+      "exits": [
+        {
+          "site": "0x140058c5d",
+          "kind": "nonconsuming_call",
+          "callee": "0x144df2810",
+          "retained_registers": [
+            "rdx"
+          ],
+          "supplied_arguments": [
+            "rdx"
+          ],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x140058ee6",
+          "kind": "overwritten"
+        },
+        {
+          "site": "0x140058f1a",
+          "kind": "return_residue",
+          "retained_registers": [
+            "rdx"
+          ],
+          "contract": "No exact pointer store or RAX return; residue exists only in volatile non-RAX registers. Concrete output ABI is not certified."
+        }
+      ],
+      "successful_AS_semantics_complete": false,
+      "output_ABI_certified": false
+    },
+    {
+      "site": "0x140052701",
+      "path": "crates/wenilla-rogue-app/src/screens/talentview.rs",
+      "owner": "0x140052540",
+      "declared_extent": [
+        "0x140052540",
+        "0x140052b8b"
+      ],
+      "declared_extent_sha256": "13e09566f7ec0543e56854cdb93a223083796cb228257dbcbbb153f958a36f72",
+      "graph_states": 135,
+      "revisited_addresses": [
+        "0x140052809",
+        "0x140052820"
+      ],
+      "graph_instruction_commitment": "9da53f0279e9efc3f1363a474a1a9deaa841252eb090fc786c4007cccfaed5e5",
+      "exits": [
+        {
+          "site": "0x1400528ad",
+          "kind": "nonconsuming_call",
+          "callee": "0x144df2810",
+          "retained_registers": [
+            "rdx"
+          ],
+          "supplied_arguments": [
+            "rdx"
+          ],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x140052b56",
+          "kind": "overwritten"
+        },
+        {
+          "site": "0x140052b8a",
+          "kind": "return_residue",
+          "retained_registers": [
+            "rdx"
+          ],
+          "contract": "No exact pointer store or RAX return; residue exists only in volatile non-RAX registers. Concrete output ABI is not certified."
+        }
+      ],
+      "successful_AS_semantics_complete": false,
+      "output_ABI_certified": false
+    },
+    {
+      "site": "0x1400528b2",
+      "path": "crates/wenilla-rogue-app/src/screens/talentview.rs",
+      "owner": "0x140052540",
+      "declared_extent": [
+        "0x140052540",
+        "0x140052b8b"
+      ],
+      "declared_extent_sha256": "13e09566f7ec0543e56854cdb93a223083796cb228257dbcbbb153f958a36f72",
+      "graph_states": 138,
+      "revisited_addresses": [
+        "0x140052809",
+        "0x140052820"
+      ],
+      "graph_instruction_commitment": "87f4be0b78acec2f2464d4fd2e2fe09c23cfbb56c22b7c08419298199b5c91b1",
+      "exits": [
+        {
+          "site": "0x1400528ad",
+          "kind": "nonconsuming_call",
+          "callee": "0x144df2810",
+          "retained_registers": [
+            "rdx"
+          ],
+          "supplied_arguments": [
+            "rdx"
+          ],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x140052b56",
+          "kind": "overwritten"
+        },
+        {
+          "site": "0x140052b8a",
+          "kind": "return_residue",
+          "retained_registers": [
+            "rdx"
+          ],
+          "contract": "No exact pointer store or RAX return; residue exists only in volatile non-RAX registers. Concrete output ABI is not certified."
+        }
+      ],
+      "successful_AS_semantics_complete": false,
+      "output_ABI_certified": false
+    },
+    {
+      "site": "0x14021dee8",
+      "path": "crates/wenilla-rogue-app/src/screens/update.rs",
+      "owner": "0x14021dce0",
+      "declared_extent": [
+        "0x14021dce0",
+        "0x14021e6a8"
+      ],
+      "declared_extent_sha256": "73714814cae15c55216cfcee6771bc746aaf0df0c69c766a56113122469354e4",
+      "graph_states": 77,
+      "revisited_addresses": [
+        "0x14021df15",
+        "0x14021df29",
+        "0x14021df30",
+        "0x14021df66",
+        "0x14021df72",
+        "0x14021df80",
+        "0x14021dfaf",
+        "0x14021e525"
+      ],
+      "graph_instruction_commitment": "852d6b4dad74e9d289fbd8b747a025f867b2cb353899e3a7e3da1c3f38c99a26",
+      "exits": [
+        {
+          "site": "0x14021e007",
+          "kind": "nonconsuming_call",
+          "callee": "0x144df2810",
+          "retained_registers": [
+            "r10",
+            "rdx"
+          ],
+          "supplied_arguments": [
+            "rdx"
+          ],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x14021e649",
+          "kind": "nonconsuming_call",
+          "callee": "0x1400021d0",
+          "retained_registers": [
+            "r10"
+          ],
+          "supplied_arguments": [],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x14021e652",
+          "kind": "nonconsuming_call",
+          "callee": "0x1401f1e70",
+          "retained_registers": [
+            "r10"
+          ],
+          "supplied_arguments": [],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        }
+      ],
+      "successful_AS_semantics_complete": false,
+      "output_ABI_certified": false
+    },
+    {
+      "site": "0x14021e022",
+      "path": "crates/wenilla-rogue-app/src/screens/update.rs",
+      "owner": "0x14021dce0",
+      "declared_extent": [
+        "0x14021dce0",
+        "0x14021e6a8"
+      ],
+      "declared_extent_sha256": "73714814cae15c55216cfcee6771bc746aaf0df0c69c766a56113122469354e4",
+      "graph_states": 77,
+      "revisited_addresses": [
+        "0x14021df15",
+        "0x14021df29",
+        "0x14021df30",
+        "0x14021df66",
+        "0x14021df72",
+        "0x14021df80",
+        "0x14021dfaf",
+        "0x14021e525"
+      ],
+      "graph_instruction_commitment": "940f5f4258f89617616515d00ba83cb081c86f5ca554f3f83c33f661c608a771",
+      "exits": [
+        {
+          "site": "0x14021e007",
+          "kind": "nonconsuming_call",
+          "callee": "0x144df2810",
+          "retained_registers": [
+            "r10",
+            "rdx"
+          ],
+          "supplied_arguments": [
+            "rdx"
+          ],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x14021e649",
+          "kind": "nonconsuming_call",
+          "callee": "0x1400021d0",
+          "retained_registers": [
+            "r10"
+          ],
+          "supplied_arguments": [],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x14021e652",
+          "kind": "nonconsuming_call",
+          "callee": "0x1401f1e70",
+          "retained_registers": [
+            "r10"
+          ],
+          "supplied_arguments": [],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        }
+      ],
+      "successful_AS_semantics_complete": false,
+      "output_ABI_certified": false
+    },
+    {
+      "site": "0x14021f278",
+      "path": "crates/wenilla-rogue-app/src/screens/update.rs",
+      "owner": "0x14021f090",
+      "declared_extent": [
+        "0x14021f090",
+        "0x14021f657"
+      ],
+      "declared_extent_sha256": "422d81698898db79977d3a6144f806d6de3583573a84402132efaa951c04558f",
+      "graph_states": 66,
+      "revisited_addresses": [
+        "0x14021f2a2",
+        "0x14021f2b7",
+        "0x14021f2c0",
+        "0x14021f2f5",
+        "0x14021f301",
+        "0x14021f310",
+        "0x14021f33e",
+        "0x14021f60e"
+      ],
+      "graph_instruction_commitment": "0c5e4851c833554b199927e96dee5046f574b0e3dee605d21a04d8f3d6d29b93",
+      "exits": [
+        {
+          "site": "0x14021f375",
+          "kind": "nonconsuming_call",
+          "callee": "0x144df2810",
+          "retained_registers": [
+            "rdx"
+          ],
+          "supplied_arguments": [
+            "rdx"
+          ],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x14021f612",
+          "kind": "nonconsuming_call",
+          "callee": "0x1401f1e70",
+          "retained_registers": [
+            "rdx"
+          ],
+          "supplied_arguments": [
+            "rdx"
+          ],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        }
+      ],
+      "successful_AS_semantics_complete": false,
+      "output_ABI_certified": false
+    },
+    {
+      "site": "0x14021f389",
+      "path": "crates/wenilla-rogue-app/src/screens/update.rs",
+      "owner": "0x14021f090",
+      "declared_extent": [
+        "0x14021f090",
+        "0x14021f657"
+      ],
+      "declared_extent_sha256": "422d81698898db79977d3a6144f806d6de3583573a84402132efaa951c04558f",
+      "graph_states": 67,
+      "revisited_addresses": [
+        "0x14021f2a2",
+        "0x14021f2b7",
+        "0x14021f2c0",
+        "0x14021f2f5",
+        "0x14021f301",
+        "0x14021f310",
+        "0x14021f33e",
+        "0x14021f60e"
+      ],
+      "graph_instruction_commitment": "aad997c4d265c10797fccaad4f30208ed6c4897affd92b5b837f0016d6ac8621",
+      "exits": [
+        {
+          "site": "0x14021f375",
+          "kind": "nonconsuming_call",
+          "callee": "0x144df2810",
+          "retained_registers": [
+            "rdx"
+          ],
+          "supplied_arguments": [
+            "rdx"
+          ],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        },
+        {
+          "site": "0x14021f612",
+          "kind": "nonconsuming_call",
+          "callee": "0x1401f1e70",
+          "retained_registers": [
+            "rdx"
+          ],
+          "supplied_arguments": [
+            "rdx"
+          ],
+          "contract": "Selected pointer is absent from meaningful inputs; only volatile copies remain."
+        }
+      ],
+      "successful_AS_semantics_complete": false,
+      "output_ABI_certified": false
+    }
+  ],
+  "outer_references": [
+    {
+      "site": "0x140061bbd",
+      "target": "0x140052540",
+      "role": "direct_caller_ignores_volatile_residue",
+      "continuation_instruction_count": 13,
+      "return_site": "0x140061bea",
+      "flow_address_bytes_sha256": "6190f819f897e37882ecf38d2cd380f0be1fbd973f1d0365bdb8aa4f8efd0117",
+      "concrete_callback_ABI_certified": false
+    },
+    {
+      "site": "0x14006270c",
+      "target": "0x140054020",
+      "role": "direct_caller_ignores_volatile_residue",
+      "continuation_instruction_count": 13,
+      "return_site": "0x140062739",
+      "flow_address_bytes_sha256": "29a41acadc2f67456a8c8c2a326c2b5bce1722187da6967390c5b7ceb316baa2",
+      "concrete_callback_ABI_certified": false
+    },
+    {
+      "site": "0x14006305d",
+      "target": "0x140058900",
+      "role": "direct_caller_ignores_volatile_residue",
+      "continuation_instruction_count": 13,
+      "return_site": "0x14006308a",
+      "flow_address_bytes_sha256": "e7d3860eb4f0e1555420333e5cc03a3df901c1ec12a38f4db982a3a64ebadd11",
+      "concrete_callback_ABI_certified": false
+    },
+    {
+      "site": "0x140121ff0",
+      "target": "0x140109240",
+      "role": "direct_caller_ignores_volatile_residue",
+      "continuation_instruction_count": 13,
+      "return_site": "0x14012201d",
+      "flow_address_bytes_sha256": "d7e746e41fe61abb095b8d62ff37e0a456c2db661f50aed7e83b0c6cf38b7127",
+      "concrete_callback_ABI_certified": false
+    },
+    {
+      "site": "0x14018262d",
+      "target": "0x14016b820",
+      "role": "direct_caller_ignores_volatile_residue",
+      "continuation_instruction_count": 13,
+      "return_site": "0x14018265a",
+      "flow_address_bytes_sha256": "f848c928d1388f331b096f95233397cebf8a1f1355b29bb26ad68496dd4702e6",
+      "concrete_callback_ABI_certified": false
+    },
+    {
+      "site": "0x1401ab902",
+      "target": "0x14019d570",
+      "role": "direct_caller_ignores_volatile_residue",
+      "continuation_instruction_count": 13,
+      "return_site": "0x1401ab92f",
+      "flow_address_bytes_sha256": "91f41e25bccb5b71090c0b536ba9e5e02ffb83d6f87d58b9391366e1d7ae546a",
+      "concrete_callback_ABI_certified": false
+    },
+    {
+      "site": "0x1401ac505",
+      "target": "0x1401981e0",
+      "role": "direct_caller_ignores_volatile_residue",
+      "continuation_instruction_count": 13,
+      "return_site": "0x1401ac532",
+      "flow_address_bytes_sha256": "6a0f8ae3126c184373d13b405a8763a99902fc22fa031f8affb7da32f1cddec0",
+      "concrete_callback_ABI_certified": false
+    },
+    {
+      "site": "0x1401ad51a",
+      "target": "0x140190130",
+      "role": "direct_caller_ignores_volatile_residue",
+      "continuation_instruction_count": 13,
+      "return_site": "0x1401ad547",
+      "flow_address_bytes_sha256": "3d8ac0eead8cd3dd750bb81c928158f11bac495811cfd4520a9a8f5e99970750",
+      "concrete_callback_ABI_certified": false
+    },
+    {
+      "site": "0x1401af548",
+      "target": "0x1401a03b0",
+      "role": "direct_caller_ignores_volatile_residue",
+      "continuation_instruction_count": 13,
+      "return_site": "0x1401af575",
+      "flow_address_bytes_sha256": "8e80841f49c655e224fe188979795c4d61afada8671ee749ee6eaea04b809a75",
+      "concrete_callback_ABI_certified": false
+    },
+    {
+      "site": "0x1401e2bf0",
+      "target": "0x14019d570",
+      "role": "direct_caller_ignores_volatile_residue",
+      "continuation_instruction_count": 14,
+      "return_site": "0x1401e2c1d",
+      "flow_address_bytes_sha256": "cc21aa38b34976d01ee91b04939ebb08afddc799bc84d2f9f64aa268663bcc52",
+      "concrete_callback_ABI_certified": false
+    },
+    {
+      "site": "0x1401e32a7",
+      "target": "0x1401981e0",
+      "role": "direct_caller_ignores_volatile_residue",
+      "continuation_instruction_count": 14,
+      "return_site": "0x1401e32d9",
+      "flow_address_bytes_sha256": "65939b8a39f725f08f87117184bdc0fe4d2bb19328b15641f70828f7d981df68",
+      "concrete_callback_ABI_certified": false
+    },
+    {
+      "site": "0x1401e4225",
+      "target": "0x14016b820",
+      "role": "direct_caller_ignores_volatile_residue",
+      "continuation_instruction_count": 14,
+      "return_site": "0x1401e4256",
+      "flow_address_bytes_sha256": "4aad0ce5c02566e211a39200e99c5e29e8545f3df9555ce35cfab4045b1606dd",
+      "concrete_callback_ABI_certified": false
+    },
+    {
+      "site": "0x1401e4712",
+      "target": "0x140052540",
+      "role": "direct_caller_ignores_volatile_residue",
+      "continuation_instruction_count": 15,
+      "return_site": "0x1401e47bd",
+      "flow_address_bytes_sha256": "6f607a6a88b5ad8286975c50f674713e31f1ca1bcf36fe6dfbe5ac49943b82cf",
+      "concrete_callback_ABI_certified": false
+    },
+    {
+      "site": "0x1401e4d8e",
+      "target": "0x140054020",
+      "role": "direct_caller_ignores_volatile_residue",
+      "continuation_instruction_count": 13,
+      "return_site": "0x1401e4db6",
+      "flow_address_bytes_sha256": "388bc607e45d42e2c7773d169ab65450d4d51639d4e5958dc8f22b8c8a5df407",
+      "concrete_callback_ABI_certified": false
+    },
+    {
+      "site": "0x1401e55b2",
+      "target": "0x140190130",
+      "role": "direct_caller_ignores_volatile_residue",
+      "continuation_instruction_count": 14,
+      "return_site": "0x1401e55e3",
+      "flow_address_bytes_sha256": "ee8311d33f044681593ce0fb9538610fa057c04fc77b7aadf916f51fc559eb56",
+      "concrete_callback_ABI_certified": false
+    },
+    {
+      "site": "0x1401e6d55",
+      "target": "0x140219790",
+      "role": "direct_caller_ignores_volatile_residue",
+      "continuation_instruction_count": 14,
+      "return_site": "0x1401e6e07",
+      "flow_address_bytes_sha256": "43f0acf0d8b4ab010e560b120016c7c9a257173fb324cc8e28ae81dd9e657bed",
+      "concrete_callback_ABI_certified": false
+    },
+    {
+      "site": "0x1401e7455",
+      "target": "0x140058900",
+      "role": "direct_caller_ignores_volatile_residue",
+      "continuation_instruction_count": 14,
+      "return_site": "0x1401e7507",
+      "flow_address_bytes_sha256": "8bee781c86134bd5cc01ba9e643d50c721ce6dce00758cf64dfb99fc3fb9087e",
+      "concrete_callback_ABI_certified": false
+    },
+    {
+      "site": "0x1401e7b84",
+      "target": "0x140109240",
+      "role": "direct_caller_ignores_volatile_residue",
+      "continuation_instruction_count": 13,
+      "return_site": "0x1401e7bac",
+      "flow_address_bytes_sha256": "797d544f8a447215a21e47616ae9f63094a18fcc7341597dadf65dc45419e85f",
+      "concrete_callback_ABI_certified": false
+    },
+    {
+      "site": "0x1401e9e5b",
+      "target": "0x14021f090",
+      "role": "direct_caller_ignores_volatile_residue",
+      "continuation_instruction_count": 15,
+      "return_site": "0x1401e9f1f",
+      "flow_address_bytes_sha256": "0a8fcd2dadd801badfdea6ee70f40169fc7611c040c4f9b84f5ec8239f320b31",
+      "concrete_callback_ABI_certified": false
+    },
+    {
+      "site": "0x1401ea389",
+      "target": "0x14021dce0",
+      "role": "direct_caller_ignores_volatile_residue",
+      "continuation_instruction_count": 15,
+      "return_site": "0x1401ea445",
+      "flow_address_bytes_sha256": "16dfed3661e5d2d3aa9db4243323226a4f7a501d123ca361e79c1e4b9aa3fbfe",
+      "concrete_callback_ABI_certified": false
+    },
+    {
+      "site": "0x1401ec8db",
+      "target": "0x1401a03b0",
+      "role": "direct_caller_ignores_volatile_residue",
+      "continuation_instruction_count": 14,
+      "return_site": "0x1401ec988",
+      "flow_address_bytes_sha256": "6dd2adf9ed5aad280a2768613e7673d1a2d83184a6637a0d9e75ce14b2e3b563",
+      "concrete_callback_ABI_certified": false
+    },
+    {
+      "site": "0x14022b43d",
+      "target": "0x140219790",
+      "role": "direct_caller_ignores_volatile_residue",
+      "continuation_instruction_count": 13,
+      "return_site": "0x14022b46a",
+      "flow_address_bytes_sha256": "283e44ed94f77e9244590c1058f29e58a8e9205e605b00adf197f9a2b7fbceb0",
+      "concrete_callback_ABI_certified": false
+    },
+    {
+      "site": "0x14022c7ba",
+      "target": "0x14021f090",
+      "role": "direct_caller_ignores_volatile_residue",
+      "continuation_instruction_count": 13,
+      "return_site": "0x14022c7e7",
+      "flow_address_bytes_sha256": "b95a9c831e3f52eaedfa9110e02ab26efbeeb480e323d4129dde97308c160a96",
+      "concrete_callback_ABI_certified": false
+    },
+    {
+      "site": "0x14022d114",
+      "target": "0x14021dce0",
+      "role": "direct_caller_ignores_volatile_residue",
+      "continuation_instruction_count": 13,
+      "return_site": "0x14022d13e",
+      "flow_address_bytes_sha256": "337a461fef36a12cdb9f84b855159082acec3782e5dc04a2d09b988f468608af",
+      "concrete_callback_ABI_certified": false
+    },
+    {
+      "site": "0x14821b84c",
+      "target": "0x140052540",
+      "role": "PE_runtime_function_start_metadata",
+      "bytes": "40250500"
+    },
+    {
+      "site": "0x14821b894",
+      "target": "0x140054020",
+      "role": "PE_runtime_function_start_metadata",
+      "bytes": "20400500"
+    },
+    {
+      "site": "0x14821b9e4",
+      "target": "0x140058900",
+      "role": "PE_runtime_function_start_metadata",
+      "bytes": "00890500"
+    },
+    {
+      "site": "0x1482227f4",
+      "target": "0x140109240",
+      "role": "PE_runtime_function_start_metadata",
+      "bytes": "40921000"
+    },
+    {
+      "site": "0x148226184",
+      "target": "0x14016b820",
+      "role": "PE_runtime_function_start_metadata",
+      "bytes": "20b81600"
+    },
+    {
+      "site": "0x148227d98",
+      "target": "0x140190130",
+      "role": "PE_runtime_function_start_metadata",
+      "bytes": "30011900"
+    },
+    {
+      "site": "0x148228110",
+      "target": "0x1401981e0",
+      "role": "PE_runtime_function_start_metadata",
+      "bytes": "e0811900"
+    },
+    {
+      "site": "0x148228218",
+      "target": "0x14019d570",
+      "role": "PE_runtime_function_start_metadata",
+      "bytes": "70d51900"
+    },
+    {
+      "site": "0x1482282a8",
+      "target": "0x1401a03b0",
+      "role": "PE_runtime_function_start_metadata",
+      "bytes": "b0031a00"
+    },
+    {
+      "site": "0x14822cbd4",
+      "target": "0x140219790",
+      "role": "PE_runtime_function_start_metadata",
+      "bytes": "90972100"
+    },
+    {
+      "site": "0x14822cd48",
+      "target": "0x14021dce0",
+      "role": "PE_runtime_function_start_metadata",
+      "bytes": "e0dc2100"
+    },
+    {
+      "site": "0x14822cd9c",
+      "target": "0x14021f090",
+      "role": "PE_runtime_function_start_metadata",
+      "bytes": "90f02100"
+    }
+  ],
+  "native_semantics_complete": false,
+  "source_implementation_added": false,
+  "parity_verified": false,
+  "limits": [
+    "All expanded immediate consumers reuse byte-verified canonical roles; no body ownership is forced.",
+    "Repeated pointer states close only the operand-flow graph; they do not establish loop termination, valid collection state or executed branches.",
+    "Volatile non-RAX return residue is retained explicitly; concrete Rust output ABI and complete successful AS state remain unproved.",
+    "No source change, compilation, game/application/network execution or original/rebuilt comparison."
+  ]
+}

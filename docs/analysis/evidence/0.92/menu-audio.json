@@ -1,0 +1,190 @@
+{
+  "date": "2026-10-16",
+  "target": "AzerothSurvivors/AzerothSurvivors.exe",
+  "target_sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+  "status": "Custom picker theme activation is confirmed by an existing native log; source integration pending rebuilt playback verification",
+  "theme": "Sound\\Music\\GlueScreenMusic\\wow_main_theme.mp3",
+  "constants": [
+    {
+      "va": "0x1459841d0",
+      "label": "theme multiplier",
+      "bytes": "cdcc4c3f",
+      "f32": 0.800000011920929
+    },
+    {
+      "va": "0x1458a8600",
+      "label": "silence threshold",
+      "bytes": "6f12833a",
+      "f32": 0.0010000000474974513
+    },
+    {
+      "va": "0x1458ab460",
+      "label": "decibel multiplier",
+      "bytes": "0000a041",
+      "f32": 20.0
+    },
+    {
+      "va": "0x1459d9d70",
+      "label": "silence dB",
+      "bytes": "000070c2",
+      "f32": -60.0
+    }
+  ],
+  "rea": {
+    "start": {
+      "va": "0x1409017a0",
+      "evidence_id": "ev_f4c78b512643dfc1052a3328f15a22a6d87157997b1fa64c0a18078dd2c02982"
+    },
+    "watch": {
+      "va": "0x1409020c0",
+      "evidence_id": "ev_16b18921478f50483576fb23dffe0f811f883fcbaa0d64a7f1dd3ef2cd70b30e"
+    },
+    "plugin": {
+      "va": "0x140914e30",
+      "evidence_id": "ev_34c8f57bea4d884fe1a1e1dff8ec68ba0dd603f9c5ee0ca9238ad437a0b9e95d"
+    }
+  },
+  "math_thunk": {
+    "va": "0x145714ab1",
+    "iat": "0x1458a5468",
+    "binding": {
+      "library": "api-ms-win-crt-math-l1-1-0.dll",
+      "function": "log10f"
+    }
+  },
+  "native_fragment": {
+    "start": "0x140902107",
+    "stop": "0x14090213d",
+    "cases": [
+      {
+        "name": "disabled",
+        "enabled": false,
+        "music_enabled": true,
+        "music_bits": "3ecccccd",
+        "native_db_bits": "c2700000",
+        "import_calls": []
+      },
+      {
+        "name": "music disabled",
+        "enabled": true,
+        "music_enabled": false,
+        "music_bits": "3ecccccd",
+        "native_db_bits": "c2700000",
+        "import_calls": []
+      },
+      {
+        "name": "zero",
+        "enabled": true,
+        "music_enabled": true,
+        "music_bits": "00000000",
+        "native_db_bits": "c2700000",
+        "import_calls": []
+      },
+      {
+        "name": "below floor",
+        "enabled": true,
+        "music_enabled": true,
+        "music_bits": "3a83126f",
+        "native_db_bits": "c2700000",
+        "import_calls": []
+      },
+      {
+        "name": "exact floor",
+        "enabled": true,
+        "music_enabled": true,
+        "music_bits": "3aa3d70a",
+        "native_db_bits": "c2700000",
+        "import_calls": []
+      },
+      {
+        "name": "above floor",
+        "enabled": true,
+        "music_enabled": true,
+        "music_bits": "3b03126f",
+        "native_db_bits": "c25faba0",
+        "import_calls": [
+          "CRT log10f"
+        ]
+      },
+      {
+        "name": "default",
+        "enabled": true,
+        "music_enabled": true,
+        "music_bits": "3ecccccd",
+        "native_db_bits": "c11e5a1c",
+        "import_calls": [
+          "CRT log10f"
+        ]
+      },
+      {
+        "name": "maximum",
+        "enabled": true,
+        "music_enabled": true,
+        "music_bits": "3f800000",
+        "native_db_bits": "bff816f1",
+        "import_calls": [
+          "CRT log10f"
+        ]
+      },
+      {
+        "name": "NaN",
+        "enabled": true,
+        "music_enabled": true,
+        "music_bits": "7fc00000",
+        "native_db_bits": "7fc00000",
+        "import_calls": [
+          "CRT log10f"
+        ]
+      }
+    ],
+    "scope": "Native raw SoundConfig enabled/music flags and f32 volume; no ECS, stream, device, file or process adapter runs.",
+    "substitution": "CRT log10f only, using Python math.log10 rounded to f32; final native f32 multiply and all branch instructions run unchanged."
+  },
+  "runtime_evidence": {
+    "path": "runtime/reference-captures/wrapper.log",
+    "read_only_existing_log": true,
+    "prefix_line_count": 200,
+    "prefix_byte_count": 39672,
+    "prefix_sha256": "31c3926e4563680d34add5cdbeaf8f9d4764af7c3b96c09cf355e788691e476b",
+    "selected_lines": [
+      {
+        "line": 1,
+        "text": "benilla-rogue: the hero picker"
+      },
+      {
+        "line": 6,
+        "text": "2026-10-16T06:38:05.660655Z  INFO benilla_app::net::io: net: parked at the login screen \u2014 waiting for credentials"
+      },
+      {
+        "line": 14,
+        "text": "2026-10-16T06:38:06.752465Z  INFO benilla_world::build_id: benilla build 0.2.0+435 \u00b7 919a0183 \u00b7 2026-10-15 \u00b7 release \u00b7 extended"
+      },
+      {
+        "line": 89,
+        "text": "2026-10-16T06:38:09.963129Z  INFO benilla_app::sound::glue: glue music: Sound\\Music\\GlueScreenMusic\\wow_main_theme.mp3"
+      },
+      {
+        "line": 90,
+        "text": "2026-10-16T06:38:09.971822Z  INFO benilla_app::sound::mixer: audio: Speakers \u2014 48000 Hz, IO buffer 512 frames (~10.7 ms), mix-ahead 100 ms, device latency ~0.0 ms"
+      },
+      {
+        "line": 106,
+        "text": "2026-10-16T06:38:12.051461Z  INFO benilla_app::net::io: net: parked at character select"
+      },
+      {
+        "line": 154,
+        "text": "2026-10-16T06:40:52.934841Z  INFO benilla_app::sound::glue: glue music: Sound\\Music\\GlueScreenMusic\\wow_main_theme.mp3"
+      },
+      {
+        "line": 191,
+        "text": "2026-10-16T06:43:34.453544Z  INFO benilla_app::sound::glue: glue music: Sound\\Music\\GlueScreenMusic\\wow_main_theme.mp3"
+      }
+    ],
+    "limit": "The running log may append. Hash covers only its captured prefix; no launch or capture was made."
+  },
+  "limits": [
+    "No audible native/rebuilt comparison or new playback was performed.",
+    "Shared Kira/output source does not establish exact target dependency revision or DSP/device parity.",
+    "Native run-condition/scheduler equivalence, click sounds, mute/probe/credits/movie routes remain incomplete; gameplay fade is outside scope."
+  ]
+}

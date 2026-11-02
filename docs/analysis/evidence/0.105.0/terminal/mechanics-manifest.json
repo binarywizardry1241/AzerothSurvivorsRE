@@ -1,0 +1,224 @@
+{
+  "target": "AzerothSurvivors/AzerothSurvivors-0.105.0.exe",
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "method": "REA/Ghidra12.1.4 raw x86_64 little-endian slices at original VA; original full-PE disassembly and literals corroborate calls and data.",
+  "limitations": [
+    "Raw slices use the generic x86_64 GCC compiler specification; inferred ABI/types and external callees need assembly corroboration.",
+    "No application launch, source compilation or original/rebuilt comparison."
+  ],
+  "functions": [
+    {
+      "role": "elite-actor-writers",
+      "assembly": "elite-actor-writers.asm",
+      "spans": [
+        {
+          "start": "0x14593357a",
+          "end_exclusive": "0x14593357f",
+          "file_offset": "0x593297a",
+          "byte_count": 5,
+          "sha256": "fa20fc2179745b2093549978ba5c504bca293f74df322350b6e868c0ec4a05d2"
+        },
+        {
+          "start": "0x1459338ab",
+          "end_exclusive": "0x1459338bd",
+          "file_offset": "0x5932cab",
+          "byte_count": 18,
+          "sha256": "38679ea3f2d2f01aa8561fe4461c47e4811ad581b021c298c9f29aa12e7cfb2a"
+        },
+        {
+          "start": "0x1459306cd",
+          "end_exclusive": "0x14593072f",
+          "file_offset": "0x592facd",
+          "byte_count": 98,
+          "sha256": "f7948b0814554c5509ed5a7f02bf022edce82a4968ebf984f6210992cfe1b8f5"
+        },
+        {
+          "start": "0x145910834",
+          "end_exclusive": "0x14591083a",
+          "file_offset": "0x590fc34",
+          "byte_count": 6,
+          "sha256": "c30aeab64816c12ae502fe41b7d758dad8366dc0494a7400f789c96c8604ad63"
+        },
+        {
+          "start": "0x145910a77",
+          "end_exclusive": "0x145910ac5",
+          "file_offset": "0x590fe77",
+          "byte_count": 78,
+          "sha256": "07072d4cb3bda0766a6236e5e1ae0e960aba0f6f060278da782df889f022422a"
+        }
+      ]
+    },
+    {
+      "role": "xp-arithmetic-and-checkpoints",
+      "assembly": "xp-arithmetic-and-checkpoints.asm",
+      "spans": [
+        {
+          "start": "0x1458a1751",
+          "end_exclusive": "0x1458a1a60",
+          "file_offset": "0x58a0b51",
+          "byte_count": 783,
+          "sha256": "439c50a76ced4a56dcdfa3bbe7b7c3241ba0048673982ec50b80f5d22174751c"
+        },
+        {
+          "start": "0x1458a1b4f",
+          "end_exclusive": "0x1458a1b93",
+          "file_offset": "0x58a0f4f",
+          "byte_count": 68,
+          "sha256": "a7e7f9bbbf10582e5434175c045db8cc01e24a81e10847db6d1ff54b5a15b631"
+        },
+        {
+          "start": "0x1458a27ff",
+          "end_exclusive": "0x1458a283a",
+          "file_offset": "0x58a1bff",
+          "byte_count": 59,
+          "sha256": "3af53915007590549b970041f9850e33417701824a853719a094b236358e7175"
+        },
+        {
+          "start": "0x1458a2ea8",
+          "end_exclusive": "0x1458a2f39",
+          "file_offset": "0x58a22a8",
+          "byte_count": 145,
+          "sha256": "222c040babc41d7bf1afa3df6c8495a90b96c17234a2b1d14e60c20bb2a40d26"
+        }
+      ]
+    },
+    {
+      "role": "xp-presentation",
+      "assembly": "xp-presentation.asm",
+      "spans": [
+        {
+          "start": "0x1458a1d80",
+          "end_exclusive": "0x1458a1fcc",
+          "file_offset": "0x58a1180",
+          "byte_count": 588,
+          "sha256": "0e54f4695969980a08db8caf5d04110df00fb9aea3dc90b9a60c98a374715788"
+        },
+        {
+          "start": "0x1458a20ab",
+          "end_exclusive": "0x1458a2305",
+          "file_offset": "0x58a14ab",
+          "byte_count": 602,
+          "sha256": "b8dd15d3eef4e1c0d6fc0f78a794a3ae0e4d7b555305b19a8f4cf47ff4987959"
+        }
+      ]
+    },
+    {
+      "role": "endless-deadline-consumer",
+      "assembly": "endless-deadline-consumer.asm",
+      "spans": [
+        {
+          "start": "0x14590f994",
+          "end_exclusive": "0x14590fa5f",
+          "file_offset": "0x590ed94",
+          "byte_count": 203,
+          "sha256": "418211cf17569df895a423b5be2e78863a08d4aff13bb0eb899f74c0da6aef0d"
+        }
+      ],
+      "owning_complete_function": {
+        "start": "0x145901d80",
+        "end_exclusive": "0x145911a64"
+      }
+    },
+    {
+      "role": "continue-endless",
+      "assembly": "continue-endless.asm",
+      "spans": [
+        {
+          "start": "0x1458f0110",
+          "end_exclusive": "0x1458f0279",
+          "file_offset": "0x58ef510",
+          "byte_count": 361,
+          "sha256": "9ff61dc81883ce0c56ad6b6b63e9aef63ddcf46a34dc736502547ca9b121d5b7"
+        }
+      ]
+    },
+    {
+      "role": "end-run-command",
+      "assembly": "end-run-command.asm",
+      "spans": [
+        {
+          "start": "0x14591d4c0",
+          "end_exclusive": "0x14591d5d8",
+          "file_offset": "0x591c8c0",
+          "byte_count": 280,
+          "sha256": "78c120aa7d629500c95a8a0600166f99e8edcb0e81bdb403d649420cb8ec64b7"
+        }
+      ]
+    },
+    {
+      "role": "summary-input",
+      "assembly": "summary-input.asm",
+      "spans": [
+        {
+          "start": "0x140275bc0",
+          "end_exclusive": "0x1402762d2",
+          "file_offset": "0x274fc0",
+          "byte_count": 1810,
+          "sha256": "065f4e655a7ac1757d97243ba54f9f6a8ee7e6ee26f12d179d3fc1509daf2fac"
+        }
+      ]
+    }
+  ],
+  "ghidra": [
+    {
+      "role": "azsend-result",
+      "evidence_id": "ev_2ca93f9b17d502b938ad33281b646f6c34b8076ded97cd6ef4b7e5d72b7ad816",
+      "raw_import_sha256": "193c5aa900bb28ee57e74e74441f249eebfc5d24c0c9329160698e0ed9aba143",
+      "profile_digest": "398e460ac0bb7a1c78604a9402eb68fabaa3597a88861bbdbfe04ce18f3041a1"
+    },
+    {
+      "role": "damage-owner",
+      "evidence_id": "ev_50916242986868240244bab7405f34cbac7f76ce69581bfd471bd294303311b9",
+      "raw_import_sha256": "a2a423361ba209fc8533dc1579e671295adf0b4c53fad872469f899a98ac8e0b",
+      "profile_digest": "c6bb6df3c41bf903dae7765d21dc39814a90c1c7103f6bb838bbf332b1c9b1b3"
+    },
+    {
+      "role": "incoming-owner",
+      "evidence_id": "ev_2faa81bccb31e80d95ed8972d6d19d9cf45961c7b29108e027643701b2f1ae38",
+      "raw_import_sha256": "73bd46a1e5ffb14b3c672d66e0cf36b6d8a66675e39eff4012fea8172c329f82",
+      "profile_digest": "feefc40a1932028c8007aa0ab48606904b662ac1fcb761ec05256b777d7eafe8"
+    },
+    {
+      "role": "account-result",
+      "evidence_id": "ev_f67c77db73f9cd8b9cd4be138469780d5b39fc224e2d6cdbabd37134615f1466",
+      "raw_import_sha256": "ea51e0cdf6e2e0f2b0bebfd3b408f8ce0f2371844c073e2f37ae069708c9f7c9",
+      "profile_digest": "b0a1b33c84912bd91e55ae737c339db9588984657fcda5bfb679ea1488512636"
+    },
+    {
+      "role": "continue-endless",
+      "evidence_id": "ev_04b0d5ad863dc064e5d8d5cffaf565a5e17e2c05ce401e7bc81adf43e0bba22e",
+      "raw_import_sha256": "9ff61dc81883ce0c56ad6b6b63e9aef63ddcf46a34dc736502547ca9b121d5b7",
+      "profile_digest": "042e926c61d42d353b7a3d12c405fd8291d7b8688e0b0143454d2c9861b753ff"
+    },
+    {
+      "role": "shared-actor",
+      "evidence_id": "ev_a0d461b7975971841fffc98976ba3fa4e9f62c485b9b72909b6bb6398303aede",
+      "raw_import_sha256": "b1df0b5f325be9436d2dd34a45a1799b63e000875a7344d8a2c999c8e8e75a73",
+      "profile_digest": "69332b9ae2124b2bbf05ceca9c71be6a29dcad4ba16b008f227a9ead6b995a2f"
+    },
+    {
+      "role": "end-run-command",
+      "evidence_id": "ev_f4a252ef464d1c7092eeb55fbea74f97870cbd84d25edd043d9ead052c7f6fed",
+      "raw_import_sha256": "78c120aa7d629500c95a8a0600166f99e8edcb0e81bdb403d649420cb8ec64b7",
+      "profile_digest": "204e75e9b9cf0d45381e29b655199dec2acd65d488bf8f76b213c3a73cabd822"
+    },
+    {
+      "role": "endless-deadline-consumer",
+      "evidence_id": "ev_28c10c1f55047aa0360c0a3ced425ac0ab2da98f34210294141f7c79d6129cf4",
+      "raw_import_sha256": "418211cf17569df895a423b5be2e78863a08d4aff13bb0eb899f74c0da6aef0d",
+      "profile_digest": "7f713d822fccd4cbcccc746b0496e2b0919268128bdd50cc5b0baa60e3e1ae24"
+    },
+    {
+      "role": "summary-input",
+      "evidence_id": "ev_f163edd0c43fbf6f5faa95338ac7d868c794743dd0af9c906f60c26c872650e0",
+      "raw_import_sha256": "065f4e655a7ac1757d97243ba54f9f6a8ee7e6ee26f12d179d3fc1509daf2fac"
+    }
+  ],
+  "canonical_reuse": {
+    "effective_damage_and_elite_death": "../run-meters/accounting/hit.asm",
+    "taken_damage": "../run-meters/accounting/soul-link-credit.asm",
+    "end_run_confirmation": "../run-hud/controls-pause-actions.asm",
+    "common_panel": "../run-hud/controls-panel-style.asm",
+    "addon_terminal_result": "../addon-bridge/native-end.ghidra.c"
+  }
+}

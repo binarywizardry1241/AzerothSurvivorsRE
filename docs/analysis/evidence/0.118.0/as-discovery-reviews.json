@@ -1,0 +1,345 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.118.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "4c3c6bbac1e5ca403672109ad57cf1c84781ffe78e113ba965b8d89c6f41b6ae",
+    "size_bytes": 145356800
+  },
+  "reviews": [
+    {
+      "id": "coop-current-version-admission",
+      "selector": "COOPADMIT01:protocol-and-version:0x145b1b22e-0x145b1b268",
+      "parent": "module:custom-game-server-party",
+      "finding_ids": [
+        154,
+        163
+      ],
+      "ownership": "as_specific",
+      "conclusion": "Current Rust Location-owned party admission requires protocol5 and exactly seven bytes 0.118.0. Actual shared outgoing JoinRequest and incoming admission now use that exact version/protocol; scope is only this comparison branch and fixed source wire fixture.",
+      "next_action": "Selected protocol/version source correspondence is connected. Recover independent current packet/recipient/lifecycle contracts separately; compilation and actual client/network admission/parity remain unverified.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+            "sha256": "e825e29c56e97b29e79202cc6425749d61f245aa7d143b9acb9284d4a4c5f14d"
+          }
+        ],
+        "conclusion": "Both actual JoinRequest::current and PartyServer::admit now use shared GAME_VERSION 0.118.0 and protocol5, matching this bounded current native admission. Fixed Join wire fixture uses the same seven version bytes; Rust regression is not executed."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.118.0/coop-admission-review.json",
+        "sha256": "c1e5a555557b193c6b3e15cb1c4f80920698bc60f7fdb4c3e34be22392626bae"
+      },
+      "query": {
+        "selector": [
+          "query"
+        ],
+        "sha256": "fad9863c43a1214a907a20fc7875da39c02603e199d69331f9f5c41f6bf42748"
+      },
+      "results": [
+        {
+          "path": "runtime/execheck-0.118.0-discovery/party-admission-query/results/8f834f4bd098abb9452c8c464ca9797e83a108f2a07e5e40c443a0cdcdd9b36f.json",
+          "sha256": "db54aa16ff2dddea13c9abf72e01a48d7910d2abef06c28b8609fff242c636c6"
+        }
+      ],
+      "source_connection_state": "selected_contract_connected"
+    },
+    {
+      "id": "current-item-registry-text-intern",
+      "selector": "ITEMTEXT01:text-intern:0x145b5ca70-0x145b5cc72",
+      "finding_ids": [
+        101
+      ],
+      "ownership": "shared_AS_dependency",
+      "conclusion": "Current process interner deduplicates exact length-delimited strings and returns0xf00000+index. Item::template has this partial source counterpart; registry synchronization/ID history/guest writer are unresolved.",
+      "next_action": "Recover the native producer/carrier supplying host-assigned synthetic IDs and strings to the receiving process; retain registry ordering/lifetime and alias uncertainty.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs",
+            "sha256": "75fc8e61dd32a2091daecfa07447dc454964418f4f821ed63e6bc12951ca7825"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+            "sha256": "c3435c8c4b5bdb0d36339c62c9a74aab3a02b00d3ee77260e5b4b8d45a2d64c0"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+            "sha256": "0ddcc62c352b2f03d137af581c5ece61eabc6c1c2a4b67e6092fe57ffbb72271"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_overlay.rs",
+            "sha256": "30b262753026937f339657d12ccadf5ea19eac26d20e5cadef99ee2bfc2475ff"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/coop/engine_packets.rs",
+            "sha256": "8b72bef3c1a245265c6dde0f25e6b15e1e2aefb37e02e1ce32717761d4a97414"
+          },
+          {
+            "path": "crates/benilla-app/src/local_client/item_descriptions.rs",
+            "sha256": "810ab16efca38ee468d36ab9c1e75df4fef76b4261931aeba97cf8300848a19b"
+          },
+          {
+            "path": "crates/benilla-app/src/ui_items/feed.rs",
+            "sha256": "e0aa04a5d5a38ed0b85f9927ea8ccafe8d57319e678e6ce4bb226ec934f714d5"
+          }
+        ],
+        "conclusion": "Inspected actual Item::template exact-string 0xf00000+index interning, host RemoteInventory item response, guest LocalWireEvents Engine delivery, distinct wire11 VM/spell overrides and persistent LocalItemDescriptions publication. Native guest producer/carrier associating IDs and strings remains unrecovered."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.118.0/item-registry-discovery-view.json",
+        "sha256": "809ac71ca95d5f78a34c3534ced42d514252441814857de7ae1b9ca725cdb447"
+      },
+      "query": {
+        "selector": [
+          "queries",
+          "text-intern"
+        ],
+        "sha256": "caaa36eb456b667a410effdbd96900daf754b0b73e0e148259b3566804f67a67"
+      },
+      "results": [
+        {
+          "path": "runtime/gap101-0.118.0/text-intern-query/results/7d5e768cc7231433d3727ccc954f4bb0abd86f3d059f1d3889804c6d6d63aba4.json",
+          "sha256": "fb74567d3a268c8f1dd261a1ba6a913164c727093246da98396ff67c42e5ab2a"
+        }
+      ],
+      "source_connection_state": "partial_source_correspondence"
+    },
+    {
+      "id": "current-item-registry-guest-callback",
+      "selector": "ITEMTEXT01:guest-callback:0x145afd050-0x145afd10e",
+      "finding_ids": [
+        101
+      ],
+      "ownership": "shared_AS_dependency",
+      "conclusion": "Current callback selects the actor, delegates packet framing and appends output; current source receives Engine opcode/body in LocalWireEvents. These bounded endpoints do not recover any guest registry writer or identify surrounding module ownership.",
+      "next_action": "Recover the ordinary-client0x58 decoder owner and any computed/mutable registry writer after the known raw Engine receive/queue path; do not invent a wire11 extension, remap or reset.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs",
+            "sha256": "75fc8e61dd32a2091daecfa07447dc454964418f4f821ed63e6bc12951ca7825"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+            "sha256": "c3435c8c4b5bdb0d36339c62c9a74aab3a02b00d3ee77260e5b4b8d45a2d64c0"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+            "sha256": "0ddcc62c352b2f03d137af581c5ece61eabc6c1c2a4b67e6092fe57ffbb72271"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_overlay.rs",
+            "sha256": "30b262753026937f339657d12ccadf5ea19eac26d20e5cadef99ee2bfc2475ff"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/coop/engine_packets.rs",
+            "sha256": "8b72bef3c1a245265c6dde0f25e6b15e1e2aefb37e02e1ce32717761d4a97414"
+          },
+          {
+            "path": "crates/benilla-app/src/local_client/item_descriptions.rs",
+            "sha256": "810ab16efca38ee468d36ab9c1e75df4fef76b4261931aeba97cf8300848a19b"
+          },
+          {
+            "path": "crates/benilla-app/src/ui_items/feed.rs",
+            "sha256": "e0aa04a5d5a38ed0b85f9927ea8ccafe8d57319e678e6ce4bb226ec934f714d5"
+          }
+        ],
+        "conclusion": "Inspected actual Item::template exact-string 0xf00000+index interning, host RemoteInventory item response, guest LocalWireEvents Engine delivery, distinct wire11 VM/spell overrides and persistent LocalItemDescriptions publication. Native guest producer/carrier associating IDs and strings remains unrecovered."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.118.0/item-registry-discovery-view.json",
+        "sha256": "809ac71ca95d5f78a34c3534ced42d514252441814857de7ae1b9ca725cdb447"
+      },
+      "query": {
+        "selector": [
+          "queries",
+          "guest-callback"
+        ],
+        "sha256": "a2c8901143d6bf8a2aebb5bec8bd78622aef1792224f30c359085a691fc68435"
+      },
+      "results": [
+        {
+          "path": "runtime/gap101-0.118.0/guest-callback-query/results/3cdc08ab9eaa290ce7d583a5ee2a26f6ae97dce2167fd52f6c58d1824e3d6fdf.json",
+          "sha256": "ea199d43dc556ead2f0c6395fb5790fcb2b494f2597ee15685c5dba3286f9b01"
+        }
+      ],
+      "source_connection_state": "partial_source_correspondence"
+    },
+    {
+      "id": "current-release-followup-173",
+      "selector": "COOPHISTORY01:member-count-guard:0x145b1576e-0x145b15791",
+      "finding_ids": [
+        173
+      ],
+      "ownership": "as_specific",
+      "source_connection_state": "source_difference_identified",
+      "conclusion": "Current native won-zone cooperative history requires at least two members; source persist_run_at requires won/context without that population guard. This writer is independent of #167 Any composition.",
+      "next_action": "Apply the current count-two guard in the actual cooperative-history writer; retain per-recipient account/date/idempotency semantics and validate preserved historical progress separately.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+            "sha256": "af96d4163cc9c3e0f656331a6329137bb6c1591c7101d3009720165a74669cc1"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
+            "sha256": "3ecc881df19515afd3593e49e691d8b942feee94dc89f59497d1fdb35b9f2016"
+          }
+        ],
+        "conclusion": "Inspected actual persist_run_at won/context history writer and force_summary gate plus terminal Menu/Again persist_run(..., true) caller. Singleton history lacks the current native count-two guard; forced summary omits the cooperative feat/history branch. Existing XP and ordinary account-result handling remain separate."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.118.0/release-followup-discovery-view.json",
+        "sha256": "b08c223033704fdba421a7e6e11d31218efbc7e841edfc56daca3a21357df2b7"
+      },
+      "query": {
+        "selector": [
+          "queries",
+          "account-delivery"
+        ],
+        "sha256": "4b4d1bbeb8d09f12e86e4dafa06ba4a3b647022c276363b0d98ad55c3471abd8"
+      },
+      "results": [
+        {
+          "path": "runtime/execheck-0.118.0-contracts/account-delivery-query/results/d5d79e88af1867f26dd0a0b140c8f05d4783699364ad4f8e0ac4300413d00cc8.json",
+          "sha256": "01f9bc525454de0ec1bfa7bff32a00e27dca351958dae02cb7a920e4db67e532"
+        }
+      ]
+    },
+    {
+      "id": "current-release-followup-174",
+      "selector": "COOPCLOSE01:forced-summary-account:0x145b189a9-0x145b189ef",
+      "finding_ids": [
+        174
+      ],
+      "ownership": "as_specific",
+      "source_connection_state": "source_difference_identified",
+      "conclusion": "Current close wrapper calls summary then account delivery before teardown; terminal Menu/Again already forces summary, but source persist_run_at excludes cooperative feat/history under force_summary. Existing summary XP and ordinary account-result handling are present.",
+      "next_action": "Connect cooperative feat/history evaluation at proven explicit-close settlement boundaries while preserving checkpoints and first-earned dates; classify other close/host-loss callers without inventing a late packet or award policy.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+            "sha256": "af96d4163cc9c3e0f656331a6329137bb6c1591c7101d3009720165a74669cc1"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
+            "sha256": "3ecc881df19515afd3593e49e691d8b942feee94dc89f59497d1fdb35b9f2016"
+          }
+        ],
+        "conclusion": "Inspected actual persist_run_at won/context history writer and force_summary gate plus terminal Menu/Again persist_run(..., true) caller. Singleton history lacks the current native count-two guard; forced summary omits the cooperative feat/history branch. Existing XP and ordinary account-result handling remain separate."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.118.0/release-followup-discovery-view.json",
+        "sha256": "b08c223033704fdba421a7e6e11d31218efbc7e841edfc56daca3a21357df2b7"
+      },
+      "query": {
+        "selector": [
+          "queries",
+          "exit-wrapper-a"
+        ],
+        "sha256": "c40f0645f5bcd7a1acc16120a64eb6c32374c05b0bec81a1a43d0f5f32ae0b11"
+      },
+      "results": [
+        {
+          "path": "runtime/execheck-0.118.0-contracts/exit-wrapper-a-query/results/86ff76dfebd3c44e16e398b259738c498da6b33b3130f891762f12db1a822289.json",
+          "sha256": "c69a0d382dfcd074e8da83f31184c54ed01f1891932f38c047b458f6f92167f4"
+        }
+      ]
+    }
+  ],
+  "finding_bindings": [
+    {
+      "id": "current-frontier-gap103",
+      "selectors": [
+        "Q41-I01:resource_path:0"
+      ],
+      "finding_ids": [
+        103
+      ],
+      "conclusion": "Existing image-loader/progression-bar source was inspected. Current URI reads are structural data/connection leads; no current handle-to-bar equivalence is established. Finding attribution only; leave queue pending and ownership unknown.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.118.0/as-discovery-frontier.json",
+        "sha256": "55b31bc808bfc86d4499dc6ce5ec90199dc0505c72d853d18c9caa6acbf14caf"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "Q41-I01:resource_path:0"
+        ],
+        "sha256": "1584feca31f552b8bd65e434a35e13ff630c02380fd96e94b42484a84d7ebd40"
+      }
+    },
+    {
+      "id": "current-frontier-gap104",
+      "selectors": [
+        "Q41-I01:resource_path:4"
+      ],
+      "finding_ids": [
+        104
+      ],
+      "conclusion": "Existing source loads dragon art and consumes it in the sidebar. Current reads do not prove native handle/source equivalence. Finding attribution only; leave queue pending and ownership unknown.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.118.0/as-discovery-frontier.json",
+        "sha256": "55b31bc808bfc86d4499dc6ce5ec90199dc0505c72d853d18c9caa6acbf14caf"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "Q41-I01:resource_path:4"
+        ],
+        "sha256": "1d2ba2b5df06172a3a86e2c266e96ff0f99bce1b2b1dbcade294f12529333bf3"
+      }
+    },
+    {
+      "id": "current-frontier-gap98",
+      "selectors": [
+        "Q41-I01:save_configuration_key_lead:5"
+      ],
+      "finding_ids": [
+        98
+      ],
+      "conclusion": "Existing source preserves a talentxp Value in active context and parses terminal snapshots. Historical contract does not prove this current occurrence's producer/schema/lifetime. Finding attribution only; leave queue pending and ownership unknown.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.118.0/as-discovery-frontier.json",
+        "sha256": "55b31bc808bfc86d4499dc6ce5ec90199dc0505c72d853d18c9caa6acbf14caf"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "Q41-I01:save_configuration_key_lead:5"
+        ],
+        "sha256": "28b7eceb87826f14ca5448124e434f937840d596292ca8942555eda1d41eae5a"
+      }
+    },
+    {
+      "id": "current-frontier-gap98-consumer",
+      "selectors": [
+        "Q41-I01:save_configuration_key_lead:0"
+      ],
+      "finding_ids": [
+        98
+      ],
+      "conclusion": "Exact current type/width guard, signed-relative target and talentxp context write are independently bound; Ghidra whole dispatch and incoming lifecycle/interfaces remain pending. Existing source consumer is partial correspondence, with no new whole-module ownership.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.118.0/as-discovery-frontier.json",
+        "sha256": "55b31bc808bfc86d4499dc6ce5ec90199dc0505c72d853d18c9caa6acbf14caf"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "Q41-I01:save_configuration_key_lead:0"
+        ],
+        "sha256": "04476264a728dea0630eadcb4dfebd2a256aaaeb6cef4156b801512bf8453113"
+      }
+    }
+  ],
+  "limits": [
+    "Bounded semantic review applies only to admission comparison branch; module completeness, remaining packet/lifecycle/source behavior and parity are not certified.",
+    "Four frontier attributions remain pending complete ownership/semantic classification; exact source and native commitments only.",
+    "Current #101 views reuse the adjacent proof with its actual current query/profile receipts. Two bounded supporting endpoint reviews do not recover the missing guest registry producer/carrier and do not assign diagnostic-module ownership.",
+    "The independent #173/#174 source-difference reviews reuse original release queries. No diagnostic ownership is assigned to their account/close helpers, and neither source repair, compilation nor runtime/parity is implied."
+  ]
+}

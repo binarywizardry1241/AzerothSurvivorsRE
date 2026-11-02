@@ -1,0 +1,539 @@
+{
+  "schema": "rejuvenation-shared-healing-0.119.0-v1",
+  "target": {
+    "version": "0.119.0",
+    "sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f",
+    "size_bytes": 145357824
+  },
+  "gap_ids": [
+    177
+  ],
+  "target_executed": false,
+  "native_spans": [
+    {
+      "role": "nearby-injured-helper",
+      "start": "0x145b85e70",
+      "end_exclusive": "0x145b85efb",
+      "file_offset": "0x5b85270",
+      "byte_count": 139,
+      "sha256": "fff01337a3f21f66a8e48279799cf708684a0a701f5ee9dc386d79a86b909ea0",
+      "instruction_count": 36
+    },
+    {
+      "role": "local-healing-admission-snapshot",
+      "start": "0x145b85a14",
+      "end_exclusive": "0x145b85a69",
+      "file_offset": "0x5b84e14",
+      "byte_count": 85,
+      "sha256": "38801e2bc375658f979871c8dc83bf9f4cab53e2f2715d8159cf8aa025f60ead",
+      "instruction_count": 14
+    },
+    {
+      "role": "remote-healing-admission-snapshot",
+      "start": "0x145b243d3",
+      "end_exclusive": "0x145b24470",
+      "file_offset": "0x5b237d3",
+      "byte_count": 157,
+      "sha256": "693227c8140cc379da53eb2c40a42065dfafe85f1eb93be92f3126b022af1a40",
+      "instruction_count": 35
+    },
+    {
+      "role": "remote-active-hero-tick-gate",
+      "start": "0x145b221e2",
+      "end_exclusive": "0x145b22222",
+      "file_offset": "0x5b215e2",
+      "byte_count": 64,
+      "sha256": "518ee20d2aa0fea2fc2eedf760b836fe211202cb2b70e3bfe6184d7ffd5027c8",
+      "instruction_count": 16
+    },
+    {
+      "role": "raw-and-scaled-cast-duration",
+      "start": "0x145bb9c80",
+      "end_exclusive": "0x145bb9cb7",
+      "file_offset": "0x5bb9080",
+      "byte_count": 55,
+      "sha256": "3190543161ea864af88fae02e64ca4a824b55abba90ca6be91f42444f37d8cf4",
+      "instruction_count": 8
+    }
+  ],
+  "reused_contracts": {
+    "manifest": "docs/analysis/evidence/0.119.0/druid-release/manifest.json",
+    "roles": [
+      "local-hot-cast",
+      "local-hot-prune",
+      "shared-heal-event",
+      "local-recipient-fanout",
+      "remote-recipient-fanout",
+      "shared-heal-recipient",
+      "independent-hot-tick",
+      "combined-hot-health",
+      "hot-meter-credits"
+    ]
+  },
+  "reused_queries": [
+    "ability-cast",
+    "ability-preparation",
+    "local-hot-prune",
+    "party-heal-event",
+    "party-update",
+    "shared-heal-recipient",
+    "remote-heal-fanout"
+  ],
+  "exports": [
+    {
+      "path": "docs/analysis/evidence/0.119.0/rejuvenation/missing-contracts.asm",
+      "sha256": "6067f770d1ae72d23b381c57b52d514700508fdae8e7ed08a8b32c8cb6c804ba"
+    },
+    {
+      "path": "docs/analysis/evidence/0.119.0/rejuvenation/missing-contracts.c",
+      "sha256": "2f805a35450d95b6d4873b26c4557b88bb96bbf93be4c3e3b5519dfe5625a6eb"
+    }
+  ],
+  "queries": [
+    {
+      "role": "shared-heal-need-admission",
+      "procedure": "0x145b85e70",
+      "operation": "procedure_pseudo_code",
+      "plan": "runtime/gap177-native/lifecycle-plan.json",
+      "plan_sha256": "744a21116e09438567d8d5523836d43fa6f6758f4c75af131fdfec3b8a6d4b5b",
+      "journal": "runtime/gap177-native/lifecycle-query/journal.json",
+      "journal_sha256": "d4a784079f1336b81e0d83fbeea27763064f6c781bbdfa5990435f9dcdeea655",
+      "result": "runtime/gap177-native/lifecycle-query/results/b73d8e2fca0e81e622385517698bdecccbc31a3f9889b26153303359b9ed0897.json",
+      "result_sha256": "d21c136350f6ebee9e4fb29aeb7d0e79ef67f76615d8d72fc2677a37021a61fd",
+      "evidence_id": "ev_b1547550819f0ae793e2b696edadf247ec30bdba09a8d53ef6a379ded3187999",
+      "profile_digest": "4fdc3cdc9492ea097b989a5f7396455d8d681984fb83302c08b3d7444c1cb6b6",
+      "target_executed": false,
+      "seed_inputs": {
+        "runtime/gap177-native/health-seeds.tsv": "b2cd7677041a1caa0552a4412b2f4f31709a9c95556e683c4b0cbc53792cb561"
+      }
+    },
+    {
+      "role": "remote-hero-tick-gates",
+      "procedure": "0x145b220c0",
+      "operation": "procedure_pseudo_code",
+      "plan": "runtime/gap177-native/lifecycle-plan.json",
+      "plan_sha256": "744a21116e09438567d8d5523836d43fa6f6758f4c75af131fdfec3b8a6d4b5b",
+      "journal": "runtime/gap177-native/lifecycle-query/journal.json",
+      "journal_sha256": "d4a784079f1336b81e0d83fbeea27763064f6c781bbdfa5990435f9dcdeea655",
+      "result": "runtime/gap177-native/lifecycle-query/results/dcff0e14fb4ebe580b7b63c09b587fac1e2bb3a4b00b09e9ba7944259b4b7cc7.json",
+      "result_sha256": "874673fb6930630f73deb04bbee90204896e1bf0d207809e7b3dd328d1cca16d",
+      "evidence_id": "ev_2023ed411f11dfcf55631d1edb0321ced0184214b9a4ce179b2ba687e9478741",
+      "profile_digest": "4fdc3cdc9492ea097b989a5f7396455d8d681984fb83302c08b3d7444c1cb6b6",
+      "target_executed": false,
+      "seed_inputs": {
+        "runtime/gap177-native/health-seeds.tsv": "b2cd7677041a1caa0552a4412b2f4f31709a9c95556e683c4b0cbc53792cb561"
+      }
+    },
+    {
+      "role": "health-admission-instructions",
+      "procedure": "0x145b85e70",
+      "operation": "read_function_instructions",
+      "plan": "runtime/gap177-native/instructions-plan.json",
+      "plan_sha256": "13c05dbaed64059a67c6d6d06a1d88223a2afba4b86ed28d1fa5163b233e3fe1",
+      "journal": "runtime/gap177-native/instructions-query/journal.json",
+      "journal_sha256": "98b44f81ee243ae3ddccc386f66b8bfd8614d3b6300e2f8f992b2f073bb478b5",
+      "result": "runtime/gap177-native/instructions-query/results/b575756aeb1c0021df40ae7d96fecf9bafc6ea5ce14fb47ab73020b6ef88756a.json",
+      "result_sha256": "667adc6410926b4a1fb007a4301aa684a775dedaeb3e216725d371cee4faf923",
+      "evidence_id": "ev_48ee6c7e566efba99aafc5e03ed5786b890e3a0b2d518708f2e54e4ba10edc8c",
+      "profile_digest": "4fdc3cdc9492ea097b989a5f7396455d8d681984fb83302c08b3d7444c1cb6b6",
+      "target_executed": false,
+      "seed_inputs": {
+        "runtime/gap177-native/health-seeds.tsv": "b2cd7677041a1caa0552a4412b2f4f31709a9c95556e683c4b0cbc53792cb561"
+      }
+    },
+    {
+      "role": "remote-tick-instructions",
+      "procedure": "0x145b220c0",
+      "operation": "read_function_instructions",
+      "plan": "runtime/gap177-native/instructions-plan.json",
+      "plan_sha256": "13c05dbaed64059a67c6d6d06a1d88223a2afba4b86ed28d1fa5163b233e3fe1",
+      "journal": "runtime/gap177-native/instructions-query/journal.json",
+      "journal_sha256": "98b44f81ee243ae3ddccc386f66b8bfd8614d3b6300e2f8f992b2f073bb478b5",
+      "result": "runtime/gap177-native/instructions-query/results/d4b1d371278b9c4c9b0145b4fbc8423d639a6a94ed6ec14d719415cd5c36b6d8.json",
+      "result_sha256": "e47e420e5b909682ab1b9082fb1370f830578e306746c42062796ad9b5afbd59",
+      "evidence_id": "ev_71383af5c21bb8a0d46a015c24d92aeb424c3eb8f1fbfe686896c023c0e714dc",
+      "profile_digest": "4fdc3cdc9492ea097b989a5f7396455d8d681984fb83302c08b3d7444c1cb6b6",
+      "target_executed": false,
+      "seed_inputs": {
+        "runtime/gap177-native/health-seeds.tsv": "b2cd7677041a1caa0552a4412b2f4f31709a9c95556e683c4b0cbc53792cb561"
+      }
+    },
+    {
+      "role": "healing-admission-snapshot",
+      "procedure": "0x145b85970",
+      "operation": "procedure_pseudo_code",
+      "plan": "runtime/gap177-native/admission-snapshot-plan.json",
+      "plan_sha256": "ee832eeffeabbc1766231404e1d1a3a2c2b18f98226c377caba7908c9f680195",
+      "journal": "runtime/gap177-native/admission-snapshot-query/journal.json",
+      "journal_sha256": "42f49b67e1b3a2b38e16d8431f78d8622abea6e12f966582ef73ee3e0932ecba",
+      "result": "runtime/gap177-native/admission-snapshot-query/results/11f03104e09129da7e08cef6443fdee67ab3405effd722dd90f053c6d1daa883.json",
+      "result_sha256": "f2f86e564b956accb03578df5959bb78a9ebc50e0d45069cccc339ee9c6a9cb3",
+      "evidence_id": "ev_27fd8ee00fe89a810f24cb81532b97c91bcf92e73462d964f9d14f0c2ea15e6b",
+      "profile_digest": "4648fe0c4436fcbf34aae96fe9d988c9d108c6c2ace30090cdef89446f2aeec1",
+      "target_executed": false,
+      "seed_inputs": {
+        "runtime/gap177-native/admission-snapshot-seeds.tsv": "80e06d8156745d5b20475849c0906f000f99dc1d8a8df8900b3aab0c7f221a6e"
+      }
+    },
+    {
+      "role": "healing-snapshot-instructions",
+      "procedure": "0x145b85970",
+      "operation": "read_function_instructions",
+      "plan": "runtime/gap177-native/admission-snapshot-plan.json",
+      "plan_sha256": "ee832eeffeabbc1766231404e1d1a3a2c2b18f98226c377caba7908c9f680195",
+      "journal": "runtime/gap177-native/admission-snapshot-query/journal.json",
+      "journal_sha256": "42f49b67e1b3a2b38e16d8431f78d8622abea6e12f966582ef73ee3e0932ecba",
+      "result": "runtime/gap177-native/admission-snapshot-query/results/d89ad2d9d9cbc0f5e691b58469e7637ac69964718b92545734977f32b13ddde4.json",
+      "result_sha256": "58c4023e06d3633e6ea4a53e7d4bdcf1f1194d195eaec7dcbbb5934a6bb55ffc",
+      "evidence_id": "ev_15dfca3f8cdbbdff6c84aec7b4cc300780d14c503f3f2a42d55eefb72b8a763e",
+      "profile_digest": "4648fe0c4436fcbf34aae96fe9d988c9d108c6c2ace30090cdef89446f2aeec1",
+      "target_executed": false,
+      "seed_inputs": {
+        "runtime/gap177-native/admission-snapshot-seeds.tsv": "80e06d8156745d5b20475849c0906f000f99dc1d8a8df8900b3aab0c7f221a6e"
+      }
+    },
+    {
+      "role": "remote-healing-admission-snapshot",
+      "procedure": "0x145b242a0",
+      "operation": "procedure_pseudo_code",
+      "plan": "runtime/gap177-native/remote-snapshot-plan.json",
+      "plan_sha256": "ee32595391f6151bde92db8f61c9020720ab16d8755b7ded8f12c3e79920f609",
+      "journal": "runtime/gap177-native/remote-snapshot-query/journal.json",
+      "journal_sha256": "35fb6962eb63a8276c720297ade9683e6fe78317bc28fa855692dd70c673ad74",
+      "result": "runtime/gap177-native/remote-snapshot-query/results/b5a66468f1dbc151fee66117992db764dfd67e66ca939ceee617411e943105fb.json",
+      "result_sha256": "bc9dc4d655a03defbc79c7a4230394a8486d606d5ea4bb187ded02ec9e7c01e1",
+      "evidence_id": "ev_e6e0233a2a5a2e1edfbdbb32c643bbba8e8294ef0b6720f0d1dc6bbbf633247d",
+      "profile_digest": "4648fe0c4436fcbf34aae96fe9d988c9d108c6c2ace30090cdef89446f2aeec1",
+      "target_executed": false,
+      "seed_inputs": {
+        "runtime/gap177-native/admission-snapshot-seeds.tsv": "80e06d8156745d5b20475849c0906f000f99dc1d8a8df8900b3aab0c7f221a6e"
+      }
+    }
+  ],
+  "limits": [
+    "Exact missing helper/snapshot/duration spans complement the canonical Druid evidence; no original ranges are copied.",
+    "Ghidra inferred ABI/body observations are separate from independently decoded selected bytes; broader reachable code/alias coverage is not certified.",
+    "Unicorn fixtures hook allocation, visual/packet publication and full actor scheduling boundaries; reconstructed source, real clients/servers, disk/network and original/rebuilt parity are unexecuted.",
+    "No source-guid membership purge is inferred: aura ticks consume stored rows independently; admission uses fixed start-of-tick state1/position/health snapshots."
+  ],
+  "source_receipts": [
+    {
+      "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs",
+      "sha256": "9e917f1b1daaf0e7b1138978d8e2ac231783ab1bb773c40332a33082fb36ccf8",
+      "scope": "Selected healing contract and connected source only; not whole-file parity."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
+      "sha256": "7967298cd9195029428ad1aad1b4ade1973ee38f2aa198fc0dacd06f346e38b9",
+      "scope": "Selected healing contract and connected source only; not whole-file parity."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/incoming.rs",
+      "sha256": "5fcef7fc36b64762f5922fdc5d1df805279442a76f2c59323999d507b6928a54",
+      "scope": "Selected healing contract and connected source only; not whole-file parity."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
+      "sha256": "bed3b8a73f346f4c08c982d5065ac5c8d9114d914a04e56d1a07a05d20d16362",
+      "scope": "Selected healing contract and connected source only; not whole-file parity."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/player_abilities/damage.rs",
+      "sha256": "ad75bccc798c8f4cf74c5c561c9db0bc5161e73314ce6f3dd75269b3b6aa720b",
+      "scope": "Selected healing contract and connected source only; not whole-file parity."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+      "sha256": "d4d7607d3be504788bfb3bf7aef55bf5d985bc67d04c1790979c32cc382024c5",
+      "scope": "Selected healing contract and connected source only; not whole-file parity."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
+      "sha256": "3aff6c05627363c037b1b3f2453f646f7aabdf7695bd8fb58661cbac7eebe185",
+      "scope": "Selected healing contract and connected source only; not whole-file parity."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/shared_healing.rs",
+      "sha256": "daff564b87f459ae1c11179637bb9494ea1390b7bc03f2dd137f7466f14d91ca",
+      "scope": "Selected healing contract and connected source only; not whole-file parity."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/shared_healing_tests.rs",
+      "sha256": "0e59fd484b90b98899418590d7f823934675502698ea155bc6a8047a060f8112",
+      "scope": "Selected healing contract and connected source only; not whole-file parity."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/passives.rs",
+      "sha256": "84bc4e073a16f89aff1aff971cd918069327ec1cfa4b05f8413a40555eb52feb",
+      "scope": "Selected healing contract and connected source only; not whole-file parity."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs",
+      "sha256": "abcd3cb6d3f3d7cda2762728187460882bb8e450b9b39294bba1d8a5205ad1bf",
+      "scope": "Selected healing contract and connected source only; not whole-file parity."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/addon_timers.rs",
+      "sha256": "19fcbebbc6fa3e950f0eb79c3cf184d5c319a5dc3ef7137ad3bbc5ca64f6e589",
+      "scope": "Selected healing contract and connected source only; not whole-file parity."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/kill_feats.rs",
+      "sha256": "e6368d423e5c312ab2a5f2a2b9f1a91ce9cb8560ed306849658b92ec2ce2dda2",
+      "scope": "Selected healing contract and connected source only; not whole-file parity."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/attacks.rs",
+      "sha256": "f0558cdba9f303494659d1247520b530902686c516043a575fe0f5832a87798f",
+      "scope": "Selected healing contract and connected source only; not whole-file parity."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/pickups.rs",
+      "sha256": "c5dc0b55310b4cdf6342069a07a331126eff9578d1fd7e14f6fcf4a9cfeb0d8b",
+      "scope": "Selected healing contract and connected source only; not whole-file parity."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/completion.rs",
+      "sha256": "8b4b93431685bc42b8ff6645e888fca09bdbf973a9501a975ba62cd151a438e8",
+      "scope": "Selected healing contract and connected source only; not whole-file parity."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/demons.rs",
+      "sha256": "5efeb1b081f4a89e70b99813272648bb4b8192c2e457ca3d58489b0ff10722cd",
+      "scope": "Selected healing contract and connected source only; not whole-file parity."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/raid_hits.rs",
+      "sha256": "5ee00109b532f340c9a9c174aa139f1cc6b42ca62da724b461ac8777ae4b2d0e",
+      "scope": "Selected healing contract and connected source only; not whole-file parity."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs",
+      "sha256": "73509dec9d40f36ea934458d9585ec7c5bdc20e886e3e9890f207aad01e4f940",
+      "scope": "Selected healing contract and connected source only; not whole-file parity."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/run_effects/player_auras.rs",
+      "sha256": "b30321ba30f2d3911120146982017a0380563c73e05cb7e8ada985dfaddb8652",
+      "scope": "Selected healing contract and connected source only; not whole-file parity."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/run_effects/healing.rs",
+      "sha256": "a5352a7c783cc15f13b145a2f29e644af8455accc84bfa2be70d5563a5c744d5",
+      "scope": "Selected healing contract and connected source only; not whole-file parity."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/client/events.rs",
+      "sha256": "fa6cb11ff736eab8a2fea55bee6f49a3732f3dc5e964235e48acec72bd83b2f9",
+      "scope": "Selected healing contract and connected source only; not whole-file parity."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/tests/rejuvenation_0_119.rs",
+      "sha256": "9099d6f99f118cf176e84410617ac312c0f22bc51396d5a036adb75dde5e4f02",
+      "scope": "Selected healing contract and connected source only; not whole-file parity."
+    },
+    {
+      "path": "scripts/check-rejuvenation-0.119.0.py",
+      "sha256": "0724bf1f7910ab0bd73344bd8df3058059f93756684ecdc01c1f618ce9ffd55e",
+      "scope": "Selected healing contract and connected source only; not whole-file parity."
+    }
+  ],
+  "source_validation": {
+    "native_instruction_cases": 2037,
+    "rust_regressions_authored": 16,
+    "rust_regressions_executed": false,
+    "compilation": false,
+    "runtime_validation": "not_run",
+    "parity_verified": false
+  },
+  "definition_inputs": {
+    "method": "Bounded current-PE lookup of the four known key pointer/length pairs, admitted only by exact native key/name/icon triples, spell ID, tag6 and kind9. Each had one matching120-byte record. Current cast loads spell+0x40/rawduration+0x58/effectvalue+0x6c; this is producer input data, not whole catalog/runtime/parity certification. No historical RVA selects these records.",
+    "record_layout": {
+      "byte_count": 120,
+      "key_pair": 0,
+      "name_pair": 16,
+      "icon_pair": 32,
+      "spell_id": 64,
+      "raw_duration": 88,
+      "effect_tag": 104,
+      "effect_value": 108,
+      "effect_duration": 112,
+      "school": 116,
+      "kind": 117
+    },
+    "records": [
+      {
+        "key": "renew",
+        "spell_id": 139,
+        "start": "0x1472a0d00",
+        "file_offset": "0x729fb00",
+        "byte_count": 120,
+        "sha256": "55f17fc1e03678a44e9e99b6231f4179652a61c536e9125a41b7a13b0dd81c65",
+        "identity_strings": [
+          {
+            "field": "key",
+            "descriptor_offset": "0x0",
+            "start": "0x14729d8ca",
+            "file_offset": "0x729c6ca",
+            "byte_count": 5,
+            "sha256": "a36a2ce1800626b7cf4751afdc8256807d43467660ae8e444a3f2592b71e454a",
+            "text": "renew"
+          },
+          {
+            "field": "name",
+            "descriptor_offset": "0x10",
+            "start": "0x14729eeab",
+            "file_offset": "0x729dcab",
+            "byte_count": 5,
+            "sha256": "90c1689b0b74f032be5f870df39094e6f77e0441963a2576a5d203fe664b5590",
+            "text": "Renew"
+          },
+          {
+            "field": "icon",
+            "descriptor_offset": "0x20",
+            "start": "0x14729eeb0",
+            "file_offset": "0x729dcb0",
+            "byte_count": 16,
+            "sha256": "58f70fc6ac12f21821b774921ba682f9b619bc293fae1b903d8db3e47d3454b4",
+            "text": "Spell_Holy_Renew"
+          }
+        ],
+        "duration_bits": "41200000",
+        "effect_tag": 6,
+        "effect_value_bits": "3eb851ec",
+        "effect_duration_bits": "00000000",
+        "school": 1,
+        "kind": 9
+      },
+      {
+        "key": "healing_wave",
+        "spell_id": 331,
+        "start": "0x1472a1408",
+        "file_offset": "0x72a0208",
+        "byte_count": 120,
+        "sha256": "ae9355f13c21ea9ff1ed183cdd2d0941a9480c5c30bf092b11e4861535e22271",
+        "identity_strings": [
+          {
+            "field": "key",
+            "descriptor_offset": "0x0",
+            "start": "0x14729da96",
+            "file_offset": "0x729c896",
+            "byte_count": 12,
+            "sha256": "c056722a4cdb6ab6c9587d0807bbeecbc98232ad60e55e3c68e12b58d54f09fc",
+            "text": "healing_wave"
+          },
+          {
+            "field": "name",
+            "descriptor_offset": "0x10",
+            "start": "0x14729f069",
+            "file_offset": "0x729de69",
+            "byte_count": 12,
+            "sha256": "592c876a85cce346518fc607d531d6d02bf4c95091092fdb27e6dcbdf09e571d",
+            "text": "Healing Wave"
+          },
+          {
+            "field": "icon",
+            "descriptor_offset": "0x20",
+            "start": "0x14729f075",
+            "file_offset": "0x729de75",
+            "byte_count": 26,
+            "sha256": "d54b8c1eb4562600c7145dbadf11aac41cac1b7e4918e5b5fd2ce429296f1ecc",
+            "text": "Spell_Nature_MagicImmunity"
+          }
+        ],
+        "duration_bits": "00000000",
+        "effect_tag": 6,
+        "effect_value_bits": "3e8f5c29",
+        "effect_duration_bits": "00000000",
+        "school": 3,
+        "kind": 9
+      },
+      {
+        "key": "rejuvenation",
+        "spell_id": 774,
+        "start": "0x1472a2380",
+        "file_offset": "0x72a1180",
+        "byte_count": 120,
+        "sha256": "604bb04ea4934a8187388a166ee4966e554ecd536fae37722f71a26738761c98",
+        "identity_strings": [
+          {
+            "field": "key",
+            "descriptor_offset": "0x0",
+            "start": "0x14729df84",
+            "file_offset": "0x729cd84",
+            "byte_count": 12,
+            "sha256": "fb8f21fc2d38e15cfc54a750afd2a73785a5a42322468f6842c6db8de4267427",
+            "text": "rejuvenation"
+          },
+          {
+            "field": "name",
+            "descriptor_offset": "0x10",
+            "start": "0x14729f43c",
+            "file_offset": "0x729e23c",
+            "byte_count": 12,
+            "sha256": "f8a66e812c8c3d3fb50f5b7e7df3e0135a88b95349a9609526a8d94915d81d23",
+            "text": "Rejuvenation"
+          },
+          {
+            "field": "icon",
+            "descriptor_offset": "0x20",
+            "start": "0x14729f448",
+            "file_offset": "0x729e248",
+            "byte_count": 25,
+            "sha256": "3882e86d301ec5ff2edd972fea9ae1cf86edc0b2101358d236227c86679d1fff",
+            "text": "Spell_Nature_Rejuvenation"
+          }
+        ],
+        "duration_bits": "41400000",
+        "effect_tag": 6,
+        "effect_value_bits": "3e99999a",
+        "effect_duration_bits": "00000000",
+        "school": 3,
+        "kind": 9
+      },
+      {
+        "key": "regrowth",
+        "spell_id": 8936,
+        "start": "0x1472a23f8",
+        "file_offset": "0x72a11f8",
+        "byte_count": 120,
+        "sha256": "eca425577cbe539e813a692186da9dcebaf4402951b122d3dbf4bc60c5cc6bf5",
+        "identity_strings": [
+          {
+            "field": "key",
+            "descriptor_offset": "0x0",
+            "start": "0x14729df90",
+            "file_offset": "0x729cd90",
+            "byte_count": 8,
+            "sha256": "729e0d2c8346cad0f4aec0b83ad22c79c4d71712ff03e9bd277ff69d35478b7e",
+            "text": "regrowth"
+          },
+          {
+            "field": "name",
+            "descriptor_offset": "0x10",
+            "start": "0x14729f461",
+            "file_offset": "0x729e261",
+            "byte_count": 8,
+            "sha256": "7774fb54d233da6e9169ef7dc4111a46645377e4c9d6d239ec54b052a8420b39",
+            "text": "Regrowth"
+          },
+          {
+            "field": "icon",
+            "descriptor_offset": "0x20",
+            "start": "0x14729f469",
+            "file_offset": "0x729e269",
+            "byte_count": 25,
+            "sha256": "cd1659c80372cc8a16b3ce51936d41c6310099c7b73c2896613453579a59d55e",
+            "text": "Spell_Nature_ResistNature"
+          }
+        ],
+        "duration_bits": "00000000",
+        "effect_tag": 6,
+        "effect_value_bits": "3ed70a3d",
+        "effect_duration_bits": "00000000",
+        "school": 3,
+        "kind": 9
+      }
+    ]
+  }
+}

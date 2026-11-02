@@ -1,0 +1,408 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.119.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f",
+    "size_bytes": 145357824
+  },
+  "reviews": [
+    {
+      "id": "current-party-admission",
+      "selector": "COOPADMISSION01:protocol-version:0x145b1b2de-0x145b1b318",
+      "finding_ids": [
+        163
+      ],
+      "ownership": "as_specific",
+      "conclusion": "Current native protocol5/seven-byte0.119.0 comparison differs from shared source GAME_VERSION0.118.0. Complete server/packet/lifecycle recovery is outside this selected branch.",
+      "next_action": "Connect the exact0.119.0 requirement to the shared outgoing/incoming source constant and fixed wire fixture in a separately selected repair. Recover independent packet/lifecycle contracts separately.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+            "sha256": "e825e29c56e97b29e79202cc6425749d61f245aa7d143b9acb9284d4a4c5f14d"
+          }
+        ],
+        "observed_source_version": "0.118.0",
+        "observed_source_protocol": 5,
+        "producer": "JoinRequest::current",
+        "consumer": "PartyServer::admit",
+        "conclusion": "Shared source GAME_VERSION remains0.118.0 while exact current native admission requires0.119.0; protocol5 matches. No source repair or network execution.",
+        "state": "source_difference_identified"
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.0/coop-admission-review.json",
+        "sha256": "70a752bf379b26596df674380427486a10bb0fc9435bb950acf36cb56c82f874"
+      },
+      "query": {
+        "selector": [
+          "query"
+        ],
+        "sha256": "4c35f8ae56618a8d7f1a88dcc4e73406b9ddba186fc835c9f1f05264cac90f12"
+      },
+      "results": [
+        {
+          "path": "runtime/execheck-0.119.0-druid/full-pe-query/results/f8e051a0330eaab42be1d77bb9eebcb8ac61a7bdd57ee9f9274e152b2f3ac804.json",
+          "sha256": "34a3365453611e87c4e5f4752824cd410423972cc998654fbf39cbd1d31d776b"
+        }
+      ],
+      "source_connection_state": "source_difference_identified"
+    },
+    {
+      "id": "tranquility-critical-pulse",
+      "selector": "DRUID119:game-tick:0x145bc5784-0x145bc5a51",
+      "finding_ids": [
+        176
+      ],
+      "ownership": "as_specific",
+      "conclusion": "Current per-victim xoshiro spell-critical preparation and multiplier are missing from pulse_healing_pool; its school3/spell740/effect attribution exists. Preserve RNG order and suppressed effects.",
+      "next_action": "Follow the owning release-contract report for this exact branch and source connection; recover wider dependent lifetimes/consumers only when required. Implement selected source repairs separately, then obtain build/runtime/original-rebuilt comparison evidence.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs",
+            "sha256": "b69040e41154838817d7f66b4b4937cc3b44d4f9befe02d94ae6b45a435b51b7"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+            "sha256": "68663b99ed4dfc7d3e963137781be0c8fec56d38dae6b50137da9a1350d6da92"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/execution.rs",
+            "sha256": "efcb033675ea7e6e831741dd8dc3720dfb2ffb712a2a8db90102d1f7847b7464"
+          }
+        ],
+        "conclusion": "Current per-victim xoshiro spell-critical preparation and multiplier are missing from pulse_healing_pool; its school3/spell740/effect attribution exists. Preserve RNG order and suppressed effects."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.0/druid-discovery-view.json",
+        "sha256": "4a44d56842ac69e3908b136ca2eab698da74939217bf5608c8121902c466b8f9"
+      },
+      "query": {
+        "selector": [
+          "queries",
+          "game-tick"
+        ],
+        "sha256": "fee1136fc74a558cc7c1e8162cce433fc62b1ad7b6ce07ecf7d1688dc5d15d2f"
+      },
+      "results": [
+        {
+          "path": "runtime/execheck-0.119.0-druid/full-pe-query/results/0b3e18fecb89526f7dde6a49eb9847871053cfff55d9cc13fd47ab658b49c3c0.json",
+          "sha256": "1676480a689bbe817eabd23ba945ddce770e3b5c928d3a38cf4b76a4d0177298"
+        }
+      ],
+      "source_connection_state": "source_difference_identified"
+    },
+    {
+      "id": "tranquility-proc-suppression",
+      "selector": "DRUID119:actor-hit:0x145bd983b-0x145bd985a",
+      "finding_ids": [
+        176
+      ],
+      "ownership": "as_specific",
+      "conclusion": "Current source-kind3 branch suppresses generic effect dispatch; actual run_effects::hit_event already excludes source_kind3. This selected gate does not certify every class-specific or hit/death consumer.",
+      "next_action": "Follow the owning release-contract report for this exact branch and source connection; recover wider dependent lifetimes/consumers only when required. Implement selected source repairs separately, then obtain build/runtime/original-rebuilt comparison evidence.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs",
+            "sha256": "b69040e41154838817d7f66b4b4937cc3b44d4f9befe02d94ae6b45a435b51b7"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/run_effects.rs",
+            "sha256": "1483ce01470d539ee9d2ff804469614f02a1a1fa67b5dcd32167a4a233c1181a"
+          }
+        ],
+        "conclusion": "Current source-kind3 branch suppresses generic effect dispatch; actual run_effects::hit_event already excludes source_kind3. This selected gate does not certify every class-specific or hit/death consumer."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.0/druid-discovery-view.json",
+        "sha256": "4a44d56842ac69e3908b136ca2eab698da74939217bf5608c8121902c466b8f9"
+      },
+      "query": {
+        "selector": [
+          "queries",
+          "actor-hit"
+        ],
+        "sha256": "003cfc61104169a8602032cb22904747fb633ef55b6fdc37e0c80c39aa79642f"
+      },
+      "results": [
+        {
+          "path": "runtime/execheck-0.119.0-druid/full-pe-query/results/a2bec8a8fdae7a627d64ea211d02a2719a0c6f3f23cbcfa80b54ad0abde75659.json",
+          "sha256": "cb53046cec55f64cf232a7672b048248866ae93a4cbf246357d5c2c5ed69a5e0"
+        }
+      ],
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "rejuvenation-local-refresh",
+      "selector": "DRUID119:local-hot-prune:0x145c20c50-0x145c20de1",
+      "finding_ids": [
+        177
+      ],
+      "ownership": "as_specific",
+      "conclusion": "Current spell774 local refresh removes source0 matches only; source Aura lacks source identity and apply_self_buff removes every matching spell row.",
+      "next_action": "Follow the owning release-contract report for this exact branch and source connection; recover wider dependent lifetimes/consumers only when required. Implement selected source repairs separately, then obtain build/runtime/original-rebuilt comparison evidence.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs",
+            "sha256": "bb1a7c0b7954750d07923da926c2587dcd8eec9c960a780f01c3cc91bbe8286e"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
+            "sha256": "a1adadfc2a70223cf82191cfcf931044ec88ad9d03ec5f2a26c0151b6ccc498e"
+          }
+        ],
+        "conclusion": "Current spell774 local refresh removes source0 matches only; source Aura lacks source identity and apply_self_buff removes every matching spell row."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.0/druid-discovery-view.json",
+        "sha256": "4a44d56842ac69e3908b136ca2eab698da74939217bf5608c8121902c466b8f9"
+      },
+      "query": {
+        "selector": [
+          "queries",
+          "local-hot-prune"
+        ],
+        "sha256": "0d232e6566373dfd3297a7d42a2282c9b25f0b6a104917b6079327571d2e83e7"
+      },
+      "results": [
+        {
+          "path": "runtime/execheck-0.119.0-druid/consumers-query/results/5e6f5d7b95d0b860a5d43c6709f2c63238c44bd0fb2611e6798ed21b2a0d3b39.json",
+          "sha256": "add5b899f44edeff3e0cb6eaf60dd32539271fd67c1896611da0180c484e4747"
+        }
+      ],
+      "source_connection_state": "source_difference_identified"
+    },
+    {
+      "id": "rejuvenation-shared-recipient",
+      "selector": "DRUID119:shared-heal-recipient:0x145b86da0-0x145b87500",
+      "finding_ids": [
+        177
+      ],
+      "ownership": "as_specific",
+      "conclusion": "Current recipient keeps different source GUID contributions and replaces matching spell/source only. Existing source per-hero swapping and independent aura ticks do not supply the recovered shared-heal event/recipient bridge.",
+      "next_action": "Follow the owning release-contract report for this exact branch and source connection; recover wider dependent lifetimes/consumers only when required. Implement selected source repairs separately, then obtain build/runtime/original-rebuilt comparison evidence.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs",
+            "sha256": "bb1a7c0b7954750d07923da926c2587dcd8eec9c960a780f01c3cc91bbe8286e"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
+            "sha256": "a1adadfc2a70223cf82191cfcf931044ec88ad9d03ec5f2a26c0151b6ccc498e"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
+            "sha256": "6539295a9e571708481ea2a3afc2b959a546b1e396a427cea9fd73845b80fc2b"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/run_effects/healing.rs",
+            "sha256": "a5352a7c783cc15f13b145a2f29e644af8455accc84bfa2be70d5563a5c744d5"
+          }
+        ],
+        "conclusion": "Current recipient keeps different source GUID contributions and replaces matching spell/source only. Existing source per-hero swapping and independent aura ticks do not supply the recovered shared-heal event/recipient bridge."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.0/druid-discovery-view.json",
+        "sha256": "4a44d56842ac69e3908b136ca2eab698da74939217bf5608c8121902c466b8f9"
+      },
+      "query": {
+        "selector": [
+          "queries",
+          "shared-heal-recipient"
+        ],
+        "sha256": "b1edd845717419b4b97b0dcb87f1e714a4018d33cf9cb3f9a4e019ef0298fa8e"
+      },
+      "results": [
+        {
+          "path": "runtime/execheck-0.119.0-druid/recipient-query/results/0b92872e78651a02cf4019aee71c9e64328f49e452d8e2c54a4aaf94db33a3b7.json",
+          "sha256": "d6271468e7f4cf2a2349f470a9982256aed24f96eb81fb917c2cfc1afc569583"
+        }
+      ],
+      "source_connection_state": "source_difference_identified"
+    },
+    {
+      "id": "player-aura-applications",
+      "selector": "DRUID119:aura-publisher:0x145b8bd9c-0x145b8beb5",
+      "finding_ids": [
+        178
+      ],
+      "ownership": "as_specific",
+      "conclusion": "Current active-aura publication merges spell IDs with applications and maximum expiry in first encounter order. Source PlayerAuraInputs::slots publishes one count1 slot per aura; existing UNIT_AURA field consumers are reused.",
+      "next_action": "Follow the owning release-contract report for this exact branch and source connection; recover wider dependent lifetimes/consumers only when required. Implement selected source repairs separately, then obtain build/runtime/original-rebuilt comparison evidence.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/run_effects/player_auras.rs",
+            "sha256": "348b4be8d43c36d7bd94b4959f977d6fbbe62908ac8865146a9164024a4dd167"
+          }
+        ],
+        "conclusion": "Current active-aura publication merges spell IDs with applications and maximum expiry in first encounter order. Source PlayerAuraInputs::slots publishes one count1 slot per aura; existing UNIT_AURA field consumers are reused."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.0/druid-discovery-view.json",
+        "sha256": "4a44d56842ac69e3908b136ca2eab698da74939217bf5608c8121902c466b8f9"
+      },
+      "query": {
+        "selector": [
+          "queries",
+          "aura-publisher"
+        ],
+        "sha256": "0dce3fbd8908c9045fdecc6b169e6fcec6613b05468e3a3fc4ddbae88d4e0ef9"
+      },
+      "results": [
+        {
+          "path": "runtime/execheck-0.119.0-druid/consumers-query/results/d6c8d54681938e3364da0531b00f04753408184b33dc76117cfd314d74c458e3.json",
+          "sha256": "826243acc2bb8421083664250efb63811534b123afe7af9c58f1fdd33288c118"
+        }
+      ],
+      "source_connection_state": "source_difference_identified"
+    }
+  ],
+  "finding_bindings": [
+    {
+      "id": "current-frontier-103-0",
+      "selectors": [
+        "Q41-I01:resource_path:0"
+      ],
+      "finding_ids": [
+        103
+      ],
+      "conclusion": "Existing image-loader/progression-bar source was inspected. Current URI reads are structural data/connection leads; no current handle-to-bar equivalence is established. Exact finding attribution only; native ownership/schema/producer-consumer equivalence remain pending.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.0/as-discovery-frontier.json",
+        "sha256": "f17d6f51f38ac5e8bbf2383f0f7000353d430891a96c846211961cd9e3192424"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "Q41-I01:resource_path:0"
+        ],
+        "sha256": "89d75a8058e5e8d2cb8e3077d6caa7c4906dee3d239f6c601d50e29865e7c975"
+      }
+    },
+    {
+      "id": "current-frontier-104-1",
+      "selectors": [
+        "Q41-I01:resource_path:4"
+      ],
+      "finding_ids": [
+        104
+      ],
+      "conclusion": "Existing source loads dragon art and consumes it in the sidebar. Current reads do not prove native handle/source equivalence. Exact finding attribution only; native ownership/schema/producer-consumer equivalence remain pending.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.0/as-discovery-frontier.json",
+        "sha256": "f17d6f51f38ac5e8bbf2383f0f7000353d430891a96c846211961cd9e3192424"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "Q41-I01:resource_path:4"
+        ],
+        "sha256": "16a0a251267863b1d12ddf0c71485ee705c57ec81543738d8cf71166a8cc2364"
+      }
+    },
+    {
+      "id": "current-frontier-98-2",
+      "selectors": [
+        "Q41-I01:save_configuration_key_lead:5"
+      ],
+      "finding_ids": [
+        98
+      ],
+      "conclusion": "Existing source preserves a talentxp Value in active context and parses terminal snapshots. Historical contract does not prove this current occurrence's producer/schema/lifetime. Exact finding attribution only; native ownership/schema/producer-consumer equivalence remain pending.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.0/as-discovery-frontier.json",
+        "sha256": "f17d6f51f38ac5e8bbf2383f0f7000353d430891a96c846211961cd9e3192424"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "Q41-I01:save_configuration_key_lead:5"
+        ],
+        "sha256": "f6c9370b3907fb8ee2a4278fa677984ec5621bdc29550344f38864c8f2b4a0fb"
+      }
+    },
+    {
+      "id": "current-frontier-98-3",
+      "selectors": [
+        "Q41-I01:save_configuration_key_lead:0"
+      ],
+      "finding_ids": [
+        98
+      ],
+      "conclusion": "Context::accept admits an active talentxp Value, retains it and wrapping-increments revision; terminal capture/drain supplies its existing UI consumer. This current executable immediate remains a candidate native boundary; guard/dispatch/context lifecycle is not revalidated by these byte/reference observations. Exact finding attribution only; native ownership/schema/producer-consumer equivalence remain pending.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.0/as-discovery-frontier.json",
+        "sha256": "f17d6f51f38ac5e8bbf2383f0f7000353d430891a96c846211961cd9e3192424"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "Q41-I01:save_configuration_key_lead:0"
+        ],
+        "sha256": "51334559da588ed1837745df874c1a8afbd7b2d96dce3a70b11ccc383c6ea690"
+      }
+    }
+  ],
+  "limits": [
+    "Review statuses are bounded and not transitive through graph neighbours; no module completeness, compilation, execution or parity is implied.",
+    "Current source/target/profile/result receipts are explicit. Four unchanged-identity embedded frontier attributions retain pending native semantic recovery.",
+    "The filename-free #101 interner candidate retains an explicit pending native graph/queue entry with exact current range, producer-result/input/source receipts and next action; it is not a completed native query/review."
+  ],
+  "pending_native_leads": [
+    {
+      "id": "item-registry-native-candidate",
+      "selector": "Q41-ITEMTEXT01:owner:0x145b5cb20-0x145b5cd22",
+      "finding_ids": [
+        101
+      ],
+      "conclusion": "Fresh unique suffix, current unwind owner and RIP lock operand identify a candidate interner frontier; no current interning/guest carrier semantics are promoted.",
+      "next_action": "Query this exact candidate owner in full-PE Ghidra, re-establish interning/index semantics and trace current ordinary-client0x58 decoder + registry writers to the guest carrier. Stop at existing engine item/spell tooltip publication. Do not invent a packet/remap/reset contract.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs",
+            "sha256": "75fc8e61dd32a2091daecfa07447dc454964418f4f821ed63e6bc12951ca7825"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+            "sha256": "0ddcc62c352b2f03d137af581c5ece61eabc6c1c2a4b67e6092fe57ffbb72271"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+            "sha256": "c3435c8c4b5bdb0d36339c62c9a74aab3a02b00d3ee77260e5b4b8d45a2d64c0"
+          },
+          {
+            "path": "crates/benilla-app/src/local_client/item_descriptions.rs",
+            "sha256": "810ab16efca38ee468d36ab9c1e75df4fef76b4261931aeba97cf8300848a19b"
+          }
+        ],
+        "conclusion": "Actual source contains per-text persistent synthetic template IDs and LocalItemDescriptions publication. Ordinary co-op Engine delivery exists; the current native producer/carrier linking host IDs/text to the guest writer remains unproved."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.119.0/item-registry-frontier.json",
+        "sha256": "5e5c192cde4fd81cf175983a794fbfe94c90ead2f3e7f0c7e9370b2dae63ff88"
+      },
+      "proof": {
+        "selector": [
+          "native_candidate"
+        ],
+        "sha256": "ab063713a3b4f24f01ae28cef6a72d512400d2f73161a9ffd960116ca3c4f07e"
+      },
+      "inputs": [
+        {
+          "path": "runtime/coverage/6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f/native-instructions.sqlite",
+          "sha256": "e6499662b279929d3bc7a0f6bc064bb4196150dae52f30e6b414518e82676c02"
+        },
+        {
+          "path": "runtime/coverage/6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f/unwind-complement.sqlite",
+          "sha256": "6a5ac365cfb62cdfc0671f61da673e8148100b3dfe5526d38b4b78b0cda4da96"
+        }
+      ]
+    }
+  ]
+}

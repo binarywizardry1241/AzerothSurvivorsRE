@@ -1,0 +1,384 @@
+{
+  "version": "0.112.0",
+  "target_sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+  "owners": [
+    {
+      "role": "target",
+      "start": "0x1459586e0",
+      "end_exclusive": "0x1459598a8",
+      "file_offset": "0x5957ae0",
+      "sha256": "bcad39456b9e53bc5347999bb70d13813fd33789fca048be6ff9c19223a030f1",
+      "assembly": "target.asm",
+      "text_sha256": {
+        "target.asm": "c0748cdb9f0f3f88f12c8c434d6d4790378b26a7164038cf42ca4d503b178ce0",
+        "target.c": "680b45aac240c105ce367f75e143d37ee0f81003d7106807ad840bf10a94aa0f"
+      },
+      "pseudocode": "target.c",
+      "evidence_id": "ev_3d3d96e969c53e2074a908e1012e4897f21f6cbbef77ae3e5b390e35ee07279e",
+      "provider": "Ghidra 12.1.4"
+    },
+    {
+      "role": "cooldown",
+      "start": "0x1459598b0",
+      "end_exclusive": "0x145959ae4",
+      "file_offset": "0x5958cb0",
+      "sha256": "73e1f3916c672d38fd463fe89d3412f1988d4e01fd56a7fb7a82c8f33200ab19",
+      "assembly": "cooldown.asm",
+      "text_sha256": {
+        "cooldown.asm": "465e74fb902b902e214a122df19cf1790101e6d9178be5ef3c1ea2b6e8f2a9c4",
+        "cooldown.c": "572c76010c9fe11f781e5c3c8d33f7eab17aff912a2a3170645ed614e10d08f7"
+      },
+      "pseudocode": "cooldown.c",
+      "evidence_id": "ev_059a14cd939af4b91a339c1defde53aeac2429692895914e759e22798d719021",
+      "provider": "Ghidra 12.1.4"
+    },
+    {
+      "role": "gate-pool",
+      "start": "0x1459a3280",
+      "end_exclusive": "0x1459a340f",
+      "file_offset": "0x59a2680",
+      "sha256": "cffb79340691b62c6105693de38d2dc5689f58d9cc74fd57d46238929de88dd7",
+      "assembly": "gate-pool.asm",
+      "text_sha256": {
+        "gate-pool.asm": "2ec50e5dcc7300b369da6f6efb415b6e85c9d707df677d94f31c9a6af3935233",
+        "gate-pool.c": "8dffdeaf2500a24670387b169864fe4d54021968265ca1287cbc263796a747e1"
+      },
+      "pseudocode": "gate-pool.c",
+      "evidence_id": "ev_1dc66525a567f173041be6764709c8778f5518069cb65afee8aada742581a1a4",
+      "provider": "Ghidra 12.1.4"
+    },
+    {
+      "role": "gate-iterator",
+      "start": "0x1459f2d70",
+      "end_exclusive": "0x1459f2ea8",
+      "file_offset": "0x59f2170",
+      "sha256": "41e37a139c5c30d10793cf836bf06f2a0c4353967faf10e8ec05f9b8d0f0ea43",
+      "assembly": "gate-iterator.asm",
+      "text_sha256": {
+        "gate-iterator.asm": "58d19f55e69d12d13d4e815c4b1f19d392ad22e6a132a12307e1fb28f224fee8"
+      }
+    },
+    {
+      "role": "expiry",
+      "start": "0x1459d5600",
+      "end_exclusive": "0x1459d5790",
+      "file_offset": "0x59d4a00",
+      "sha256": "cdec5cec83669e3454cebf60561168766151b3f1ba960e7a7acdb7a829935df5",
+      "assembly": "expiry.asm",
+      "text_sha256": {
+        "expiry.asm": "92cd321b4936a33d2908383b596b9ced6012d87bf54bacc39a5742b1ebe47c4b"
+      }
+    },
+    {
+      "role": "stable-retain",
+      "start": "0x1459c4ce0",
+      "end_exclusive": "0x1459c4fb9",
+      "file_offset": "0x59c40e0",
+      "sha256": "ffa3c27d0e3b87c2242763703aeacb024174ccaac053289fc5b1dc3f880fe822",
+      "assembly": "../addon-bridge/summon-stable-retain.asm",
+      "text_sha256": {
+        "../addon-bridge/summon-stable-retain.asm": "1f85323cd02774efb3949efb75a321a62f71a89fd050962ce22de7827e7b2a73"
+      },
+      "shared_owner": "docs/analysis/evidence/0.112.0/addon-bridge/manifest.json"
+    },
+    {
+      "role": "felguard-min",
+      "start": "0x1459efab0",
+      "end_exclusive": "0x1459efc2a",
+      "file_offset": "0x59eeeb0",
+      "sha256": "17ae43b159d87bb203eb2902397e03bb37a8ab4fee3e6e6eda0a32f9bdfb6487",
+      "assembly": "felguard-min.asm",
+      "text_sha256": {
+        "felguard-min.asm": "433d90837a412b0b38e474ddb5575d865cff445233bd0011388351b8ca85b452"
+      }
+    },
+    {
+      "role": "ordered-lifecycle",
+      "start": "0x14592fa3e",
+      "end_exclusive": "0x14592ffab",
+      "file_offset": "0x592ee3e",
+      "sha256": "444c15b25b674117d2a6434db48c02aa7e6b5fc7ee5f29ae03fcb9d87cb758fa",
+      "shared_owner": "docs/analysis/evidence/0.112.0/demon-time-effects/manifest.json"
+    },
+    {
+      "role": "actor-movement",
+      "start": "0x145930385",
+      "end_exclusive": "0x1459307d3",
+      "file_offset": "0x592f785",
+      "sha256": "4eae3a9192046e1ec81154bb8843c5440821035d40ae675e3e1fed1e47ffd9d3",
+      "shared_owner": "docs/analysis/evidence/0.112.0/demon-time-effects/manifest.json"
+    },
+    {
+      "role": "actor-move-tail",
+      "start": "0x145932dcb",
+      "end_exclusive": "0x145932f1b",
+      "file_offset": "0x59321cb",
+      "sha256": "cd5c27855696e42c68e5e8c30bda8d35b256dec5f15597c2d3e77f5736e14ed2",
+      "shared_owner": "docs/analysis/evidence/0.112.0/demon-time-effects/manifest.json"
+    },
+    {
+      "role": "initial-greater",
+      "start": "0x14590e066",
+      "end_exclusive": "0x14590e264",
+      "file_offset": "0x590d466",
+      "sha256": "c8b003e696705f8385cc500ef12e3b3c348aeea06ad59d9e576b17710706d1fb",
+      "assembly": "initial-greater.asm",
+      "text_sha256": {
+        "initial-greater.asm": "92ca0fffd94391d2c2c171889063df9e8678106bfa7ae4e37e59cf6422db5eb3"
+      }
+    },
+    {
+      "role": "summon-landing",
+      "start": "0x145959b30",
+      "end_exclusive": "0x14595a2d2",
+      "file_offset": "0x5958f30",
+      "sha256": "be5c4fa4c6811b58b5ed8338ca7d135bda440c16893081b6b6d67b92e2bf2c0f",
+      "assembly": "summon-landing.asm",
+      "pseudocode": "summon-landing.c",
+      "evidence_id": "ev_46599e7333f67d6daee6eb53bfba16bfaca5de3a9c54f146bfb692e0bb9e6fc2",
+      "provider": "Ghidra 12.1.4",
+      "text_sha256": {
+        "summon-landing.asm": "684fb2245fc74947d89f21a2aae25b0b0943fb79c2433db6b15610641e6d0322",
+        "summon-landing.c": "1510496d59d1a366f4e77c911482371eb0b1c9f24247ddf72fdb4a8428380f3b"
+      }
+    },
+    {
+      "role": "ranged-update-deadline",
+      "start": "0x145932811",
+      "end_exclusive": "0x14593286e",
+      "file_offset": "0x5931c11",
+      "sha256": "0e33e5ff3a7e399a6fe3e26f4e1952da46c0bb5c34d818ebe0a44083277280e1",
+      "shared_owner": "docs/analysis/evidence/0.112.0/demon-time-effects/manifest.json"
+    },
+    {
+      "role": "object-display-scale",
+      "start": "0x14592e636",
+      "end_exclusive": "0x14592e65e",
+      "file_offset": "0x592da36",
+      "sha256": "7440da4d0f784a94bdb1440768e6e746d62304d3a79bdd073c59b686e5971867",
+      "assembly": "object-scale.asm",
+      "text_sha256": {
+        "object-scale.asm": "3188fd9afcaddf4ae5e3cdfdb316beedbeffb6d9615e74ccdd639c199264aafc"
+      }
+    },
+    {
+      "role": "object-ordinary-scale",
+      "start": "0x14592e6d9",
+      "end_exclusive": "0x14592e6e6",
+      "file_offset": "0x592dad9",
+      "sha256": "17779c3dd351e624c4fdf54b94fe3e05c1509758cfc734c0811f3d34d9869db2",
+      "assembly": "object-scale.asm",
+      "text_sha256": {
+        "object-scale.asm": "3188fd9afcaddf4ae5e3cdfdb316beedbeffb6d9615e74ccdd639c199264aafc"
+      }
+    },
+    {
+      "role": "object-collision-radius",
+      "start": "0x14592eb73",
+      "end_exclusive": "0x14592eb80",
+      "file_offset": "0x592df73",
+      "sha256": "147fd2b6083a52f59f91a49aabdcd42404923936e387f1060cacb83e6fc1be3b",
+      "assembly": "object-scale.asm",
+      "text_sha256": {
+        "object-scale.asm": "3188fd9afcaddf4ae5e3cdfdb316beedbeffb6d9615e74ccdd639c199264aafc"
+      }
+    },
+    {
+      "role": "object-collision-reach",
+      "start": "0x14592ec2a",
+      "end_exclusive": "0x14592ec33",
+      "file_offset": "0x592e02a",
+      "sha256": "7cf1d459d5f64e85d89e398b90a572eabeb1c4584c2fba58681a42a1c3c44f84",
+      "assembly": "object-scale.asm",
+      "text_sha256": {
+        "object-scale.asm": "3188fd9afcaddf4ae5e3cdfdb316beedbeffb6d9615e74ccdd639c199264aafc"
+      }
+    },
+    {
+      "role": "imp-immolate-selection",
+      "start": "0x1459ebae0",
+      "end_exclusive": "0x1459ebbed",
+      "file_offset": "0x59eaee0",
+      "sha256": "b035383299cbe718630e4f336a294b52f6e66d6378bd89f9fb2daba3a68368dc",
+      "assembly": "imp-immolate-selection.asm",
+      "text_sha256": {
+        "imp-immolate-selection.asm": "26754020455bd82a3d008145a5c42a787daecc926fc63ddcb7c899dc71726d0b"
+      }
+    },
+    {
+      "role": "melee-echo-live-filter",
+      "start": "0x1459ebf30",
+      "end_exclusive": "0x1459ebfca",
+      "file_offset": "0x59eb330",
+      "sha256": "cd0719618d4b62606dd45983514376c6fc6aa9630abaed0c743fd78ea6ee1454",
+      "assembly": "melee-echo-filter.asm",
+      "text_sha256": {
+        "melee-echo-filter.asm": "51b24259cef2b30abe9bc9d7fa150e75cc1122864ff4920672ac2e6529a4a15c"
+      }
+    }
+  ],
+  "descriptors": [
+    {
+      "entry": 9510,
+      "address": "0x14723ec08",
+      "sha256": "aaa010b1547598d617b203215e880885f45775b6ed40da7d2648b6ce90cbd7e8",
+      "scale_bits": 1065353216,
+      "damage_bits": 1116078080,
+      "period_bits": 1067030938,
+      "spell_id": 0,
+      "school": 0,
+      "special": 0
+    },
+    {
+      "entry": 9511,
+      "address": "0x14723ec58",
+      "sha256": "bf5a33f03f588a108e7e11327189d6cb79414c1a530ee01f50c4f723f3cb0067",
+      "scale_bits": 1065353216,
+      "damage_bits": 1112801280,
+      "period_bits": 1067030938,
+      "spell_id": 0,
+      "school": 0,
+      "special": 0
+    },
+    {
+      "entry": 9512,
+      "address": "0x14723ebc0",
+      "sha256": "c22bea288b5e6a6861ad519f9df60cfafd5f8113f3fa8e5f0125a2173ec2c3fa",
+      "scale_bits": 1060320051,
+      "damage_bits": 1102053376,
+      "period_bits": 1073741824,
+      "spell_id": 133,
+      "school": 2,
+      "special": 1
+    },
+    {
+      "entry": 9514,
+      "address": "0x14723ece8",
+      "sha256": "e63a48013c42e2d4e5fbe906c44b30db606fccff1f1a0a6fa199246bb3dd8ac9",
+      "scale_bits": 1061158912,
+      "damage_bits": 1111490560,
+      "period_bits": 1075838976,
+      "spell_id": 0,
+      "school": 0,
+      "special": 5
+    },
+    {
+      "entry": 9515,
+      "address": "0x14723eca0",
+      "sha256": "dc9a2d56b26b575aac7be625b3ed21cd3ac19c06d1ee12088901e5a0978fc35c",
+      "scale_bits": 1050253722,
+      "damage_bits": 1117388800,
+      "period_bits": 1069547520,
+      "spell_id": 0,
+      "school": 3,
+      "special": 0
+    },
+    {
+      "entry": 9516,
+      "address": "0x1472218e8",
+      "sha256": "e14ad920a0e100c86d97478ebb0b4304b595cf808ac97481e558b56337de4eb1",
+      "scale_bits": 1063675494,
+      "damage_bits": 1105199104,
+      "period_bits": 1068708659,
+      "spell_id": 0,
+      "school": 3,
+      "special": 0
+    },
+    {
+      "entry": 9517,
+      "address": "0x14723eb78",
+      "sha256": "30506d11b40e5692947c482ac48710ca6915ad77d234984b4b2c15aeedef481a",
+      "scale_bits": 1057803469,
+      "damage_bits": 1112014848,
+      "period_bits": 1074580685,
+      "spell_id": 116,
+      "school": 4,
+      "special": 0
+    },
+    {
+      "entry": 9518,
+      "address": "0x14723ee60",
+      "sha256": "48b6449a03c69f6974d63f30103f137a13e8a364808acbd971c35e315cff8a82",
+      "scale_bits": 1057803469,
+      "damage_bits": 1104150528,
+      "period_bits": 1072064102,
+      "spell_id": 0,
+      "school": 5,
+      "special": 2
+    },
+    {
+      "entry": 9519,
+      "address": "0x147221848",
+      "sha256": "760234d93c22ba3c14d846afe2bb26baa5f6bf2d75b6bf43fb3e5d990b5a4222",
+      "scale_bits": 1058642330,
+      "damage_bits": 1096810496,
+      "period_bits": 1075000115,
+      "spell_id": 0,
+      "school": 5,
+      "special": 3
+    },
+    {
+      "entry": 9520,
+      "address": "0x14723edc0",
+      "sha256": "3dbe245fead9d86ed0f2d274c7efea8807bc516ed5d526d6476607a64248ac80",
+      "scale_bits": 1065353216,
+      "damage_bits": 1102053376,
+      "period_bits": 1073741824,
+      "spell_id": 0,
+      "school": 5,
+      "special": 4
+    },
+    {
+      "entry": 9521,
+      "address": "0x14723ed30",
+      "sha256": "84e3727132ffc5af92034a35bf83802ea22eb3adee2b716ef54ae5e267a6813d",
+      "scale_bits": 1058642330,
+      "damage_bits": 1112014848,
+      "period_bits": 1075838976,
+      "spell_id": 0,
+      "school": 2,
+      "special": 6
+    },
+    {
+      "entry": 9522,
+      "address": "0x14723ee10",
+      "sha256": "6cb29fa5c4163ef035c81d63be87318a539d5a9af6ed9b6414f3ec192fc8cad5",
+      "scale_bits": 1061158912,
+      "damage_bits": 1067030938,
+      "period_bits": 1075419546,
+      "spell_id": 686,
+      "school": 5,
+      "special": 7
+    },
+    {
+      "entry": 9523,
+      "address": "0x14723ed78",
+      "sha256": "01185c97c4d1fc2d587807436d8d2764c23878966c3adfd465d400c75d3e21f3",
+      "scale_bits": 1050253722,
+      "damage_bits": 1070386381,
+      "period_bits": 1074580685,
+      "spell_id": 5676,
+      "school": 2,
+      "special": 8
+    }
+  ],
+  "shared_talent_effects": "docs/analysis/evidence/0.112.0/warlock-talents/definitions.json",
+  "limitations": [
+    "Ghidra raw-slice C uses inferred types; external constants/dispatch omitted from C remain supplied by exact installed-image instructions.",
+    "Native inputs, allocator/query/modifier/cast seams are bounded; no Rust compilation, game process, MPQ gameplay or parity comparison."
+  ],
+  "tables": [
+    {
+      "role": "object-special-scale-factors",
+      "address": "0x146c0bf48",
+      "byte_count": 32,
+      "sha256": "b78f0f901aed45ee46bb028a7f385a40730f631d6707b91beddcb05a93338e06"
+    }
+  ],
+  "melee_seams": [
+    "Query supplies ordered neighbors and captures native center/radius/exclusions. Shared position helper supplies the primary victim position.",
+    "Vector allocation/append is replaced; native caller supplies actual count/cap and initial primary.",
+    "Spell packet records the visual and substitutes serialization. Common melee records the original call payload without executing hit/death.",
+    "Host log1p rounded to f32 supplies the imported CRT function. The separate Echo filter executes completely without helper seams."
+  ]
+}

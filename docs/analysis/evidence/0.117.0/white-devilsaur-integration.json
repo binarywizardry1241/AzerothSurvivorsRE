@@ -1,0 +1,861 @@
+{
+  "schema": 1,
+  "target": {
+    "version": "0.117.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293",
+    "size_bytes": 145283072
+  },
+  "gap_ids": [
+    119,
+    117,
+    64
+  ],
+  "base_contract": {
+    "path": "docs/analysis/evidence/0.117.0/white-devilsaur-leads.json",
+    "sha256": "22f987e0436f87e6eecbf511e0aa801d2da924bc97b77911f3d453a56eabc64c"
+  },
+  "native_spans": [
+    {
+      "role": "Hunter tree closure and actual switch constructor call",
+      "va": "0x1403588e0",
+      "byte_count": 3924,
+      "sha256": "016118b2bb864c3e055f1b2a1f2f64a014f911b068301c039564d9892a0a4428"
+    },
+    {
+      "role": "selected live and inactive stored allocation reads",
+      "va": "0x145ac2ed0",
+      "byte_count": 516,
+      "sha256": "829296542aba814a912e7bd94fed46b5572c6a95e6da0b7964ed2f067c6e4b5f"
+    },
+    {
+      "role": "outgoing/live flag retention and gated incoming-slot writer",
+      "va": "0x145ac31c0",
+      "byte_count": 1004,
+      "sha256": "961dccc63673d3e43c189f0be4827bfbe83cce08cbcd8af7694c66107290fd93"
+    },
+    {
+      "role": "class3/tree0 optional achievement gate and closure capture",
+      "va": "0x14010e030",
+      "byte_count": 1845,
+      "sha256": "0f24dd69f7be8c56160f384207f257a1320e602f5f01d55da3b69e818a572f73"
+    },
+    {
+      "role": "On/Off badge text, color, font and anchoring",
+      "va": "0x140355850",
+      "byte_count": 1555,
+      "sha256": "7722a09efbc465a18e019f4ba9e17377444607c6ee71162515994e64969e2c4a"
+    },
+    {
+      "role": "special inspection title/icon and point-free status",
+      "va": "0x140356ad0",
+      "byte_count": 2437,
+      "sha256": "13a03920c76efdc23722b8220eea12767a3809076610495b6b0d35ce3e85a585"
+    },
+    {
+      "role": "special details activation control",
+      "va": "0x14010ec50",
+      "byte_count": 1784,
+      "sha256": "f0bb5682254af2e18b79cf210f1da3c8e1875de86405f1f50d589fa1d2bd5621"
+    },
+    {
+      "role": "ordinary/special pet update and source2 melee consumer",
+      "va": "0x145bc4f80",
+      "byte_count": 16936,
+      "sha256": "164cae71b1248035b02890c807ed6f6528af41d8b6b9a28ff976e9e3d39c6ff0"
+    },
+    {
+      "role": "captured pet-source descriptor identity dispatch",
+      "va": "0x145bc0230",
+      "byte_count": 4304,
+      "sha256": "907d9c824c4261398c278195f218d6a7ab5e48959ed8dfbf20ef4fdddae30dea"
+    },
+    {
+      "role": "ordinary descriptor cadence interface",
+      "va": "0x145bf8650",
+      "byte_count": 564,
+      "sha256": "038ea5ed26a61fea06aadd7242a818dda00cd444d7ce3dcb5f621dafdbfd6b56"
+    },
+    {
+      "role": "Game construction/effect transformation producer",
+      "va": "0x145b9e780",
+      "byte_count": 5853,
+      "sha256": "2079b4bf48071d2d5ecf487c8111d5d2bddad5a300164c3863614f2e6307bb46"
+    },
+    {
+      "role": "equipped effect refresh and existing actor state consumer",
+      "va": "0x145bc3a00",
+      "byte_count": 3012,
+      "sha256": "6c41ff6d0b6e912ee1a273e3d7d3f206b7f8ac386cc9192b8b9e73acd449c080"
+    },
+    {
+      "role": "expired pet cleanup and destroy publication",
+      "va": "0x145bc3240",
+      "byte_count": 399,
+      "sha256": "fa948714b224006f0e848b01683ea8ab52205901eb9c83f97cf829ff2c6e786f"
+    },
+    {
+      "role": "opcode dispatcher containing creature query",
+      "va": "0x145af93e0",
+      "byte_count": 11356,
+      "sha256": "ceca7bb8acb7c537307a4265218a201873a2195a65615c483032d9e5eacdd9c0"
+    },
+    {
+      "role": "opcode0x60 entry/parser and exact template-table dispatch",
+      "va": "0x145af96c2",
+      "byte_count": 10618,
+      "sha256": "2a618aba82e4075bc6fb6422d832def9a16d2b767574c5d0144d5ba53667feb7"
+    },
+    {
+      "role": "9530 descriptor/name/subname/type/display branch",
+      "va": "0x145afb4f2",
+      "byte_count": 302,
+      "sha256": "0993af8513d4381cf249799f64be85650d7840e909eba3dd707aee18e2f499c5"
+    },
+    {
+      "role": "9531 descriptor/name/subname/type/display branch",
+      "va": "0x145afb4d7",
+      "byte_count": 329,
+      "sha256": "aac87e35af2dd47f9626fd649ad3a5462806e314526bf75ab0bb2d47ee1e187d"
+    },
+    {
+      "role": "9601..9626 companion descriptor lookup leaf",
+      "va": "0x145adab60",
+      "byte_count": 128,
+      "sha256": "92da8948e21c575ceb03d472c2a3c35b93ecba1652d0c1f6c43007ee2157c9f5"
+    },
+    {
+      "role": "first-occurrence allocation token delimiter split",
+      "va": "0x145a8f5a0",
+      "byte_count": 442,
+      "sha256": "7eca316189bd7d2482daa33f9b465c5728f886f87e020d9f087ff837a9b158d4"
+    }
+  ],
+  "selected_dispatch_entries": [
+    {
+      "role": "opcode0x60",
+      "table_base": "0x1472db538",
+      "index": 21,
+      "destination": "0x145af96c2"
+    },
+    {
+      "role": "White9530",
+      "table_base": "0x1472db998",
+      "index": 20,
+      "destination": "0x145afb4f2"
+    },
+    {
+      "role": "White9531",
+      "table_base": "0x1472db998",
+      "index": 21,
+      "destination": "0x145afb4d7"
+    }
+  ],
+  "data_fields": [
+    {
+      "role": "switch x",
+      "va": "0x14617a610",
+      "hex": "0100000000009243"
+    },
+    {
+      "role": "switch y",
+      "va": "0x14617a620",
+      "hex": "01000000b7ede543"
+    },
+    {
+      "role": "switch dimensions",
+      "va": "0x146174ad0",
+      "hex": "01000000000038420100000000003842"
+    },
+    {
+      "role": "switch icon",
+      "va": "0x14617bb82",
+      "hex": "4162696c6974795f48756e7465725f5065745f526170746f72"
+    },
+    {
+      "role": "locked icon tint",
+      "va": "0x146174b10",
+      "hex": "ae47613e"
+    },
+    {
+      "role": "enabled icon tint",
+      "va": "0x14617a5e0",
+      "hex": "cdcc0c3f"
+    },
+    {
+      "role": "special detail disabled border",
+      "va": "0x1461a8e60",
+      "hex": "00000000d7a3303ffa7e0a3fb072683e0000803f"
+    },
+    {
+      "role": "ordinary pet update interval",
+      "va": "0x146164184",
+      "hex": "0000803e"
+    },
+    {
+      "role": "9623 companion descriptor pointer",
+      "va": "0x1472d9250",
+      "hex": "380a2d4701000000"
+    },
+    {
+      "role": "9623 companion display",
+      "va": "0x1472d0a88",
+      "hex": "7d090000"
+    },
+    {
+      "role": "9624 companion descriptor pointer",
+      "va": "0x1472d9258",
+      "hex": "980a2d4701000000"
+    },
+    {
+      "role": "9624 companion display",
+      "va": "0x1472d0ae8",
+      "hex": "f9070000"
+    },
+    {
+      "role": "9625 companion descriptor pointer",
+      "va": "0x1472d9260",
+      "hex": "f80a2d4701000000"
+    },
+    {
+      "role": "9625 companion display",
+      "va": "0x1472d0b48",
+      "hex": "742c0000"
+    },
+    {
+      "role": "9626 companion descriptor pointer",
+      "va": "0x1472d9268",
+      "hex": "580b2d4701000000"
+    },
+    {
+      "role": "9626 companion display",
+      "va": "0x1472d0ba8",
+      "hex": "ee400000"
+    }
+  ],
+  "query_receipts": [
+    {
+      "role": "companion-template-plan:read_function_instructions",
+      "plan": "runtime/0.117.0/white-devilsaur-integration/companion-template-plan.json",
+      "plan_sha256": "9fdcabc72474d40b4ad911b8cb7f7555622c6b88c25fe68bbec0d03cbbf04bbd",
+      "result": "runtime/0.117.0/white-devilsaur-integration/companion-template-query/results/3d7e4614536439180c4c6be7028f9c63603b9acedbc66c88634b12a236686e05.json",
+      "result_sha256": "04fc4e623749da6f25b01d2e8bc4682e0a6d065ba66296b37ef8e67b2b4085d0",
+      "input_sha256": "92da8948e21c575ceb03d472c2a3c35b93ecba1652d0c1f6c43007ee2157c9f5",
+      "evidence_id": "ev_8ec8dfb292cf34c930cb35be80a45d03e49abf38b20c3988abde2ed7263e7f37",
+      "profile_sha256": "957e9ee4e98d0ac449abc33797a997463e80eee8dc225532de68a53edde62de1"
+    },
+    {
+      "role": "companion-template-plan:procedure_pseudo_code",
+      "plan": "runtime/0.117.0/white-devilsaur-integration/companion-template-plan.json",
+      "plan_sha256": "9fdcabc72474d40b4ad911b8cb7f7555622c6b88c25fe68bbec0d03cbbf04bbd",
+      "result": "runtime/0.117.0/white-devilsaur-integration/companion-template-query/results/686a53bff88b20a2bd110f4b06ed33946be0d14fffb5539cc769579e8e7abf23.json",
+      "result_sha256": "89004d30e70d7066be46fe505f93b9c682ad7729855913545440cf5995320e3c",
+      "input_sha256": "92da8948e21c575ceb03d472c2a3c35b93ecba1652d0c1f6c43007ee2157c9f5",
+      "evidence_id": "ev_38034dd953cb1f32955f089cc15c476eacc7fb2cec1de8bcf3a4a210d86ac7d4",
+      "profile_sha256": "957e9ee4e98d0ac449abc33797a997463e80eee8dc225532de68a53edde62de1"
+    },
+    {
+      "role": "creature-query-9530-plan:read_function_instructions",
+      "plan": "runtime/0.117.0/white-devilsaur-integration/creature-query-9530-plan.json",
+      "plan_sha256": "1053658eff4ac155f2e1e4aa21dfd1e1974167039128f7c6f344f6ef0d758271",
+      "result": "runtime/0.117.0/white-devilsaur-integration/creature-query-9530-query/results/213d82411f651d4093aed1b396a6e6d28dabdea432c201362294acf04fa2266f.json",
+      "result_sha256": "a66d0e75a493facc64232387dbb149cec161065ba7c9475e016a390a2a63a592",
+      "input_sha256": "0993af8513d4381cf249799f64be85650d7840e909eba3dd707aee18e2f499c5",
+      "evidence_id": "ev_305a9ea62806b677da08726b12b32514929fe525c9bd465ab6626eb034048d51",
+      "profile_sha256": "6c2bad3d985f7d8139dc14ead648d7d90748cac223fd7372ac4ae345428d7273"
+    },
+    {
+      "role": "creature-query-9530-plan:procedure_pseudo_code",
+      "plan": "runtime/0.117.0/white-devilsaur-integration/creature-query-9530-plan.json",
+      "plan_sha256": "1053658eff4ac155f2e1e4aa21dfd1e1974167039128f7c6f344f6ef0d758271",
+      "result": "runtime/0.117.0/white-devilsaur-integration/creature-query-9530-query/results/a8a899dae059cd61d7048ce159bb2d3a0c04fe3489fec0884a470cbad5378f1a.json",
+      "result_sha256": "7f3a875cbd78379e11f938428f2ecbdd8e31a780675637fe9dfef6c6cde79e76",
+      "input_sha256": "0993af8513d4381cf249799f64be85650d7840e909eba3dd707aee18e2f499c5",
+      "evidence_id": "ev_b973d0f5c4c2f3c7a6de48612138752f2e75eed8d522378ffdb11ef582692069",
+      "profile_sha256": "6c2bad3d985f7d8139dc14ead648d7d90748cac223fd7372ac4ae345428d7273"
+    },
+    {
+      "role": "creature-query-9531-plan:read_function_instructions",
+      "plan": "runtime/0.117.0/white-devilsaur-integration/creature-query-9531-plan.json",
+      "plan_sha256": "005fa7bc811bab16210bcddee928e67f95527587dbdf642056b034f4ea5a64ba",
+      "result": "runtime/0.117.0/white-devilsaur-integration/creature-query-9531-query/results/6a3678ca052df23e38c83779ab22dd38920c15e4de132cfc65937c17c25e427c.json",
+      "result_sha256": "dcb923de1a29d7dc2f5f550ea629a1f3244586a95f2d429874340b65ca636ef5",
+      "input_sha256": "aac87e35af2dd47f9626fd649ad3a5462806e314526bf75ab0bb2d47ee1e187d",
+      "evidence_id": "ev_a161fd82f33cd4b79256be1f008dcf7a02dc0b2372bf65ac01dc25b1d5fc7e9e",
+      "profile_sha256": "c82ce085cfb4fd6a458444d312ee736ba6448746f0ebece714a1c818576f74bb"
+    },
+    {
+      "role": "creature-query-9531-plan:procedure_pseudo_code",
+      "plan": "runtime/0.117.0/white-devilsaur-integration/creature-query-9531-plan.json",
+      "plan_sha256": "005fa7bc811bab16210bcddee928e67f95527587dbdf642056b034f4ea5a64ba",
+      "result": "runtime/0.117.0/white-devilsaur-integration/creature-query-9531-query/results/9a39a54b2c5d26c9f5e46dbb51c61dd91632c24b2378de3642f8cb67e6853b3a.json",
+      "result_sha256": "daa31ac933eddf74ce3ab4777ed103bee6f38434e95d2c8fab96aa3bdd86ddd4",
+      "input_sha256": "aac87e35af2dd47f9626fd649ad3a5462806e314526bf75ab0bb2d47ee1e187d",
+      "evidence_id": "ev_c6b8036c00f4f148d79e84fbbad7c0d42073a51a27800419e7f981e576eba82e",
+      "profile_sha256": "c82ce085cfb4fd6a458444d312ee736ba6448746f0ebece714a1c818576f74bb"
+    },
+    {
+      "role": "creature-query-case-plan:read_function_instructions",
+      "plan": "runtime/0.117.0/white-devilsaur-integration/creature-query-case-plan.json",
+      "plan_sha256": "a55459fec552f0da75ef7ea93d49ab196235f2f19cf0033f58dac930ca9e1f19",
+      "result": "runtime/0.117.0/white-devilsaur-integration/creature-query-case-query/results/2cd9bb145bc2f58cd76cdb6703b9737c23f37eacbd5b6a11f4804402c1aba9ff.json",
+      "result_sha256": "f4646b328171460c3d0c2f3ce301833bfcdf6261febd1504ef4d3e1d46d5ade3",
+      "input_sha256": "2a618aba82e4075bc6fb6422d832def9a16d2b767574c5d0144d5ba53667feb7",
+      "evidence_id": "ev_9eb70a47f40316dbd2208795ceb943567274676dc899e9601fd96ce3b336d848",
+      "profile_sha256": "e8d63dea077e700370dda9432df786785b01719445717750d412fe851086d350"
+    },
+    {
+      "role": "creature-query-case-plan:procedure_pseudo_code",
+      "plan": "runtime/0.117.0/white-devilsaur-integration/creature-query-case-plan.json",
+      "plan_sha256": "a55459fec552f0da75ef7ea93d49ab196235f2f19cf0033f58dac930ca9e1f19",
+      "result": "runtime/0.117.0/white-devilsaur-integration/creature-query-case-query/results/a0f8cbbf61c38b73cd6c92f9072137e63d6bcc1c39d4e84d3ed5c8e3338026fc.json",
+      "result_sha256": "65d645c2ec73b5450b12b6663454178ef26545170f946babdb4ea4b84ffca4cd",
+      "input_sha256": "2a618aba82e4075bc6fb6422d832def9a16d2b767574c5d0144d5ba53667feb7",
+      "evidence_id": "ev_81a820604c8ba409a4df39f524a6dc966a9a0ce708252397703c39963abf296b",
+      "profile_sha256": "e8d63dea077e700370dda9432df786785b01719445717750d412fe851086d350"
+    },
+    {
+      "role": "creature-query-plan:procedure_pseudo_code",
+      "plan": "runtime/0.117.0/white-devilsaur-integration/creature-query-plan.json",
+      "plan_sha256": "655e2888dbc1a3b941bc32a404068626e9e65f58a6b2ddc3364768fcb6933326",
+      "result": "runtime/0.117.0/white-devilsaur-integration/creature-query-query/results/204f8fbe5c7e8d6973f561b5a230a3ad3d66bb92febceeb941c04d138a5c631b.json",
+      "result_sha256": "08ead26c1086cdbcd0cec35839d3994b13beeacfb4d390fcb42725ba45ba2dfd",
+      "input_sha256": "ceca7bb8acb7c537307a4265218a201873a2195a65615c483032d9e5eacdd9c0",
+      "evidence_id": "ev_2d7f5b1eba33b0c8ee4e58a862cb441b232a02bf6e867fda6bf4cc94baa61045",
+      "profile_sha256": "0db8059a35a60ba504b134a7771b05db9ec00f3d998868f212f0a99dc2a40d98"
+    },
+    {
+      "role": "pet-begin-plan:procedure_pseudo_code",
+      "plan": "runtime/0.117.0/white-devilsaur-integration/pet-begin-plan.json",
+      "plan_sha256": "0887e9199d52d6467d48e331739843a7c24bd6f2fbb93a589821c21ab0402284",
+      "result": "runtime/0.117.0/white-devilsaur-integration/pet-begin-query/results/641f0e995e91b399562821a38a7f1557a8fda0448b4d63707bfc783195dcecbf.json",
+      "result_sha256": "b53bdc190b504b8146f703d55f352debb5f670d2a4ec12a9c9e4d57224931534",
+      "input_sha256": "164cae71b1248035b02890c807ed6f6528af41d8b6b9a28ff976e9e3d39c6ff0",
+      "evidence_id": "ev_8dd4c37cdc59ab292ea0d3e1208602abab876685e6ebf0475ca0e4118da728cd",
+      "profile_sha256": "69474a6270b17171176215ec7109d903fa5dfa203964228290a6280195c4901d"
+    },
+    {
+      "role": "pet-constructor-plan:procedure_pseudo_code",
+      "plan": "runtime/0.117.0/white-devilsaur-integration/pet-constructor-plan.json",
+      "plan_sha256": "f7e12f19a80a2dcb1fab840aa6800bf1eee7c650dd2a5ecc8bc2b5608e763b43",
+      "result": "runtime/0.117.0/white-devilsaur-integration/pet-constructor-query/results/2b42b9c7656b68a5830b270d91e9f9a98c53b141c9342f849e480d0a3b4b6ca4.json",
+      "result_sha256": "3ee5070b89173f647df82d025fd01e67287a52d2b4c24088d697524db0fbb3e8",
+      "input_sha256": "6c41ff6d0b6e912ee1a273e3d7d3f206b7f8ac386cc9192b8b9e73acd449c080",
+      "evidence_id": "ev_340138e5b111f07d2a82cccd6bce922e2082af431d4333e79ac0b0535878932a",
+      "profile_sha256": "16e1e4a0d94bb97a2acd52595bd77b9211bb7ff9ef5e47cac8146d6f2e518b03"
+    },
+    {
+      "role": "pet-period-instructions-plan:read_function_instructions",
+      "plan": "runtime/0.117.0/white-devilsaur-integration/pet-period-instructions-plan.json",
+      "plan_sha256": "1786a72631296220abc8fd039044265cff05e8efb632991eaee721490ab20fab",
+      "result": "runtime/0.117.0/white-devilsaur-integration/pet-period-instructions-query/results/0ab9eb4753945664ea88005c2b387085d70e226817ca01d97d73939ee257ed75.json",
+      "result_sha256": "1ce1fd1919c9e831aa640b6586df3ef7966008482d7c9a56e870083896af2175",
+      "input_sha256": "038ea5ed26a61fea06aadd7242a818dda00cd444d7ce3dcb5f621dafdbfd6b56",
+      "evidence_id": "ev_1887eafe6a8c8dcd8281fdd3b430d7a96118b7da2f687e9c9a7ce6d7cf3a8eb1",
+      "profile_sha256": "a7b7fec6433fbd37e3743de7646d0627e96c8d29329cf69c9101b625f0bce993"
+    },
+    {
+      "role": "pet-period-plan:procedure_pseudo_code",
+      "plan": "runtime/0.117.0/white-devilsaur-integration/pet-period-plan.json",
+      "plan_sha256": "556388e93c61935763079fe55681501894ce54638ced277dc2537f4b710025bf",
+      "result": "runtime/0.117.0/white-devilsaur-integration/pet-period-query/results/783b2b6fe18218db330c334c45a1206cbf7d0f94912e9427895cb266ebdfa59f.json",
+      "result_sha256": "c9c9448535c98d81aa2b2bef8fea93d017c846c1d3fd767cb8b01c85465fdc91",
+      "input_sha256": "038ea5ed26a61fea06aadd7242a818dda00cd444d7ce3dcb5f621dafdbfd6b56",
+      "evidence_id": "ev_2216d32fab5d9b1692af19b21ab8f1ef4eabd7b85e3b85734d0f61575aa34f7d",
+      "profile_sha256": "a7b7fec6433fbd37e3743de7646d0627e96c8d29329cf69c9101b625f0bce993"
+    },
+    {
+      "role": "pet-run-entry-plan:procedure_pseudo_code",
+      "plan": "runtime/0.117.0/white-devilsaur-integration/pet-run-entry-plan.json",
+      "plan_sha256": "46c2257dbbd3a22ea755502451a1bf7406bea53daff394cf0b475d3bce572552",
+      "result": "runtime/0.117.0/white-devilsaur-integration/pet-run-entry-query/results/5989c3c3333653499b7fd88f44bd04fcde5b221bef1da42be223e80bba62b617.json",
+      "result_sha256": "ad5da3631bf43003dc9b6825d60121c4d69d8bd142367d028929529be26c523a",
+      "input_sha256": "fa948714b224006f0e848b01683ea8ab52205901eb9c83f97cf829ff2c6e786f",
+      "evidence_id": "ev_c853f251359b927a833d7ffb577515c587276c580665a491e5f295a6900e20e6",
+      "profile_sha256": "d0e67371c674806c66b65a2cc740ff329d3380e2951e8db6636c5124a7670ebf"
+    },
+    {
+      "role": "run-begin-plan:procedure_pseudo_code",
+      "plan": "runtime/0.117.0/white-devilsaur-integration/run-begin-plan.json",
+      "plan_sha256": "d1f3fae9777bea5de34f8332decc575079ef4b22038eb953d88ae15d9133cf0b",
+      "result": "runtime/0.117.0/white-devilsaur-integration/run-begin-query/results/f87f02f03773230cf91379b085bc03dab5154f2f097e12f851d88a4c7db27288.json",
+      "result_sha256": "52933177467c5cf745c90527bcd412f418ec67e1e5a53c36b3cdb8597deabafd",
+      "input_sha256": "2079b4bf48071d2d5ecf487c8111d5d2bddad5a300164c3863614f2e6307bb46",
+      "evidence_id": "ev_e26c0cd5da5123592a39b032b4eb3c332a9dccdf15564f8b2bc3d7f98e2041bc",
+      "profile_sha256": "8640bd5b56a43094617fb6821957284952ceb197b97a90d8bc667285c70095d8"
+    },
+    {
+      "role": "run-configuration-plan:procedure_pseudo_code",
+      "plan": "runtime/0.117.0/white-devilsaur-integration/run-configuration-plan.json",
+      "plan_sha256": "1be59ce2abeac8399fdd0cb7ca8f1a611f56dc70c4445d4bc8ca408fd54262bf",
+      "result": "runtime/0.117.0/white-devilsaur-integration/run-configuration-query/results/03ab907665479ae6f9c5b22347e44fe1ab4f9cc322a86783aa5f9674ac713d7b.json",
+      "result_sha256": "8feaec3cc51e624a92e05b919236f8fb2757abcd9918686a785e73be5446033c",
+      "input_sha256": "907d9c824c4261398c278195f218d6a7ab5e48959ed8dfbf20ef4fdddae30dea",
+      "evidence_id": "ev_3f39ac347e499a7388398ba33538d20cb4f21315d2657083fdc7176d5a467110",
+      "profile_sha256": "3acc455bb11772d6671fc5d8880be87b8606bc3ddb486e8605e40620f03a5069"
+    },
+    {
+      "role": "spec-reader-plan:procedure_pseudo_code",
+      "plan": "runtime/0.117.0/white-devilsaur-integration/spec-reader-plan.json",
+      "plan_sha256": "180155e46afa82165eb470d3cbcf4602f0d9bda082334ccafd4dc5718ac16f02",
+      "result": "runtime/0.117.0/white-devilsaur-integration/spec-reader-query/results/c1cd99c0f88da42b6a9ccd55d79ee6f63500a1693787fa16a12216d3af8baccb.json",
+      "result_sha256": "022430e046c8d64d1fc643c02f7acd85eca2832c4b759cb730fd12a2902de9e0",
+      "input_sha256": "829296542aba814a912e7bd94fed46b5572c6a95e6da0b7964ed2f067c6e4b5f",
+      "evidence_id": "ev_504497520010236621ecee1c271c2eb13abbbe11ac5b1c52d81d325fd1eb5f1d",
+      "profile_sha256": "edacbf641b3ee0569e070e9fc18fcf8ea0d049c54ca4d0abd108504efd1ad595"
+    },
+    {
+      "role": "spec-switch-plan:procedure_pseudo_code",
+      "plan": "runtime/0.117.0/white-devilsaur-integration/spec-switch-plan.json",
+      "plan_sha256": "c05080bd4760cfa4e054423d9c9b6ab32056c7ad92b8d8c8b50449a0bcaa7b34",
+      "result": "runtime/0.117.0/white-devilsaur-integration/spec-switch-query/results/9d9ead7d0c0a41d57273693866f088bb151f9c1c42b6b05c0b976b4da26128f7.json",
+      "result_sha256": "84538a309fa12ea0ee9046f19d952abc2f757087f5aa3bfde1a70a45cf12dd37",
+      "input_sha256": "961dccc63673d3e43c189f0be4827bfbe83cce08cbcd8af7694c66107290fd93",
+      "evidence_id": "ev_aec1ef025a5c42a5ed06768ad8f3966ef6f9e6e6dea49cdefcbf342a3e16b105",
+      "profile_sha256": "87fabbd51c3289bb256a18133480a1f2158e063090351cb5cf460f6cb51cdba0"
+    },
+    {
+      "role": "ui-grid-ingress-asm-plan:read_function_instructions",
+      "plan": "runtime/0.117.0/white-devilsaur-integration/ui-grid-ingress-asm-plan.json",
+      "plan_sha256": "88965c65d2340cde488d86c000d47630710059538145e3daf3c40a4397670448",
+      "result": "runtime/0.117.0/white-devilsaur-integration/ui-grid-ingress-asm-query/results/bbed7bcc6521e5d7614029cec971b1ef1979bef7b173dffeed788b2910a0804d.json",
+      "result_sha256": "719f009e432e9ebf30f0f6ae4466f51758a07e89059c5c2600ccd40901c2b66b",
+      "input_sha256": "016118b2bb864c3e055f1b2a1f2f64a014f911b068301c039564d9892a0a4428",
+      "evidence_id": "ev_9dff64086372fed8f240e346238e65e0bb1eae128276f419898d9636e73d4f79",
+      "profile_sha256": "eb4c536bd12d4e65e1286dce401c6bab353d2dc2751a92923c908a36f9aabf8c"
+    },
+    {
+      "role": "ui-grid-ingress-plan:procedure_pseudo_code",
+      "plan": "runtime/0.117.0/white-devilsaur-integration/ui-grid-ingress-plan.json",
+      "plan_sha256": "07d67d6ff9643ba49f7734d65807d5ef1893412fb2556ebf7350a31a9b50efc5",
+      "result": "runtime/0.117.0/white-devilsaur-integration/ui-grid-ingress-query/results/de9704cedf8c6b34386f15935b2a7daaee5af8e6675552ae1ea40c3118909b76.json",
+      "result_sha256": "377435e82fd6152948a201c782286106690b70e087c03741abaf0693c305db61",
+      "input_sha256": "016118b2bb864c3e055f1b2a1f2f64a014f911b068301c039564d9892a0a4428",
+      "evidence_id": "ev_40e34577ec2c6197ed98b95d027d2d96e9268129f08606334601f6a061afa4c6",
+      "profile_sha256": "eb4c536bd12d4e65e1286dce401c6bab353d2dc2751a92923c908a36f9aabf8c"
+    },
+    {
+      "role": "ui-special-detail-action-plan:procedure_pseudo_code",
+      "plan": "runtime/0.117.0/white-devilsaur-integration/ui-special-detail-action-plan.json",
+      "plan_sha256": "32021387f96e4d270800a005b38a1289d3fb7781b58886243e37d8db45a82cd5",
+      "result": "runtime/0.117.0/white-devilsaur-integration/ui-special-detail-action-query/results/3a246cb9f38ab134eb8991e62fe54314e00105c79722de50708d18f16441ca44.json",
+      "result_sha256": "8b1e8212bb7b43978edbf239094f56b16b08bdc404c58b7768440e7a673b7973",
+      "input_sha256": "f0bb5682254af2e18b79cf210f1da3c8e1875de86405f1f50d589fa1d2bd5621",
+      "evidence_id": "ev_65dec3a2d82eed6f8c804a5b628bbb47947ed3aa3f0c9a9e6734d76b2dd7c2c0",
+      "profile_sha256": "47b75e8904a326415076229c9682cdc24b9470e6f8a7330c764a1feb9dfd079d"
+    },
+    {
+      "role": "ui-special-detail-header-plan:procedure_pseudo_code",
+      "plan": "runtime/0.117.0/white-devilsaur-integration/ui-special-detail-header-plan.json",
+      "plan_sha256": "a15e8abafac399a30b710f4f8ef8eec56df79690f508105c56400de95d2b52f3",
+      "result": "runtime/0.117.0/white-devilsaur-integration/ui-special-detail-header-query/results/71a4fd5ca611160c091bab2dc99e70722fd2a059d7b725b4d685ff76ffde28d0.json",
+      "result_sha256": "9471a032698c7128c7f692f671818b8571da94f84e5de5672e9caa19c3bc3e0e",
+      "input_sha256": "13a03920c76efdc23722b8220eea12767a3809076610495b6b0d35ce3e85a585",
+      "evidence_id": "ev_6b8a3e7084048e3269cf3380a0a758a021c8e65955a9a723cf21e1b451bb2699",
+      "profile_sha256": "1cbd956ea6a40c9eb462ca2974c238c8849d24e9bce22f141bd8ddb11510f90e"
+    },
+    {
+      "role": "ui-switch-badge-plan:procedure_pseudo_code",
+      "plan": "runtime/0.117.0/white-devilsaur-integration/ui-switch-badge-plan.json",
+      "plan_sha256": "4d6804da237654c104550c0fdb8770c0d1a089daadfe4735789ea5cdbc70b957",
+      "result": "runtime/0.117.0/white-devilsaur-integration/ui-switch-badge-query/results/00ff4a2988fbfedc2d905673e4fdc99a39275c108c69ba61ab0fe66fafd72570.json",
+      "result_sha256": "7bbf4b7fe8685eed752b88de6792e7c78e9f343ea4185463c2c43d57e3bdc3cd",
+      "input_sha256": "7722a09efbc465a18e019f4ba9e17377444607c6ee71162515994e64969e2c4a",
+      "evidence_id": "ev_a2e15d58de6e5f2805f86e26feb67a7dfbc773fa8227e7f4490544dd151cf601",
+      "profile_sha256": "f9e8cd674acd7d32f43f50ccfffc969ddc10d3d923f1678f2fcf66b41e2eb9c5"
+    },
+    {
+      "role": "ui-switch-instructions-plan:read_function_instructions",
+      "plan": "runtime/0.117.0/white-devilsaur-integration/ui-switch-instructions-plan.json",
+      "plan_sha256": "d1dda5529a6988bdbc005a41910b444b7ea39b3a51bbd8a83c23e58919a500c9",
+      "result": "runtime/0.117.0/white-devilsaur-integration/ui-switch-instructions-query/results/4c07ec5dbb014eed7f9704730fadfcd7c7283f4e32f21d98e0098c2fe588691a.json",
+      "result_sha256": "25d956303e96b38179f474c8c4786a827bfb0255bede894cb9fe833311fdcaa7",
+      "input_sha256": "70369524ad872574bc370fb7cb810f1d31ebb0dfb8e53f491e05ddd57ece4c7d",
+      "evidence_id": "ev_2bbcec2e736da61bb7e34b9a7835387fb2a77dff36782d95e95c0cde03e54e50",
+      "profile_sha256": "693bea030b286fb40abfbe03e9fadc00afc9ed2c7254b1789f5580b01390bfe3"
+    },
+    {
+      "role": "ui-tree-owner-plan:procedure_pseudo_code",
+      "plan": "runtime/0.117.0/white-devilsaur-integration/ui-tree-owner-plan.json",
+      "plan_sha256": "8dc15148d6dade5c57def4df4a2bf0aaf860088c8cae9fc90b9ef39e7452b5f8",
+      "result": "runtime/0.117.0/white-devilsaur-integration/ui-tree-owner-query/results/482d2a6a56e59e794b759dd1257586cc8c499287d7f24d591a539911faa3e465.json",
+      "result_sha256": "b445ee9b0ca8eeef897779240e48a1f58088fd620d49ce0e00bef7096ed0a472",
+      "input_sha256": "0f24dd69f7be8c56160f384207f257a1320e602f5f01d55da3b69e818a572f73",
+      "evidence_id": "ev_009e1fc6ea5ab23b6504a85cc26520625bde1ad2992d0e66f860c804846063a9",
+      "profile_sha256": "77e877a3a0981ef7d84ad3c501358f38f1262dda8adf25d5f6e1b17d0f0eeda1"
+    },
+    {
+      "role": "ui-tree-owner-plan:read_function_instructions",
+      "plan": "runtime/0.117.0/white-devilsaur-integration/ui-tree-owner-plan.json",
+      "plan_sha256": "8dc15148d6dade5c57def4df4a2bf0aaf860088c8cae9fc90b9ef39e7452b5f8",
+      "result": "runtime/0.117.0/white-devilsaur-integration/ui-tree-owner-query/results/99970446f8194f70dde9b6deae510d869be3f92f4d5bde0817074c3aabfef38a.json",
+      "result_sha256": "db0618dc53b55c252ac66d1a66792f061848f3a6dc4c06470dce288e568cb8a4",
+      "input_sha256": "0f24dd69f7be8c56160f384207f257a1320e602f5f01d55da3b69e818a572f73",
+      "evidence_id": "ev_c8731274ad9527bb3b261007912d439bcfde56c0bc881ac9f55a7e0672d7ef3c",
+      "profile_sha256": "77e877a3a0981ef7d84ad3c501358f38f1262dda8adf25d5f6e1b17d0f0eeda1"
+    },
+    {
+      "role": "allocation-token-split-plan:procedure_pseudo_code",
+      "plan": "runtime/0.117.0/white-devilsaur-integration/allocation-token-split-plan.json",
+      "plan_sha256": "8f067b5ebbc01aa1c4c2e1139501e29ebdf28c9b2ecfd5ae014fa17ab53b39a4",
+      "result": "runtime/0.117.0/white-devilsaur-integration/allocation-token-split-query/results/47e5778af1ef88b8d47ec11972db6d6c46898ee9ad0d54d07bdd8b5b717eca9c.json",
+      "result_sha256": "a26bc709396734823fdbceb4b771b0c3ef820d885f620b13500493bdb7cba6bd",
+      "input_sha256": "7eca316189bd7d2482daa33f9b465c5728f886f87e020d9f087ff837a9b158d4",
+      "evidence_id": "ev_7bb3e9dc0a439495f38bac387d133112b461bc24aee779dd227849eab8354d52",
+      "profile_sha256": "e4d916a3f0f4375e80c91426116a63f2a24f79c25f4cc6dd2b61994b3bf1eac1"
+    },
+    {
+      "role": "allocation-decode-instructions-plan:read_function_instructions",
+      "plan": "runtime/0.117.0/white-devilsaur-integration/allocation-decode-instructions-plan.json",
+      "plan_sha256": "657acad55c182bfd0903e753fcf00e5314f74e955f0f294eb11624012355030c",
+      "result": "runtime/0.117.0/white-devilsaur-integration/allocation-decode-instructions-query/results/1335cf9edcedc7b9d436ac054cf1e49656d0a57046b5fcd57148313b23717439.json",
+      "result_sha256": "f4fe36a2408b0da093f6dc32a092acda82663a86871a425579cfa8ce19c1f37e",
+      "input_sha256": "bcb4558190c0eaf920c7c92132a48548c65f75455a1493e329450936ee5b2710",
+      "evidence_id": "ev_d1d1c1dae89afed8e937899792b75345a1dade8eb6d0bddea4e0f059565fbe46",
+      "profile_sha256": "425b2d1f82f0c44fa8f65599987854144618002ee1745e36d0464043882438ae"
+    }
+  ],
+  "white_descriptors": [
+    {
+      "entry": 9530,
+      "va": "0x1472c3a40",
+      "model": 5239,
+      "scale_bits": "0x3e99999a",
+      "damage": 67,
+      "period_bits": "0x3f99999a",
+      "spell_id": 0,
+      "school": 0,
+      "special": 0
+    },
+    {
+      "entry": 9531,
+      "va": "0x1472c3a00",
+      "model": 5239,
+      "scale_bits": "0x3e99999a",
+      "damage": 60,
+      "period_bits": "0x3f19999a",
+      "spell_id": 0,
+      "school": 0,
+      "special": 0
+    }
+  ],
+  "creature_templates": [
+    {
+      "entry": 9530,
+      "name": "White Devilsaur",
+      "subname": "Companion",
+      "type": 1,
+      "rank": 0,
+      "display": 5239
+    },
+    {
+      "entry": 9531,
+      "name": "White Devilsaur",
+      "subname": "Companion",
+      "type": 1,
+      "rank": 0,
+      "display": 5239
+    },
+    {
+      "entry": 9623,
+      "name": "",
+      "subname": "",
+      "type": 8,
+      "rank": 0,
+      "display": 2429
+    },
+    {
+      "entry": 9624,
+      "name": "",
+      "subname": "",
+      "type": 8,
+      "rank": 0,
+      "display": 2041
+    },
+    {
+      "entry": 9625,
+      "name": "",
+      "subname": "",
+      "type": 8,
+      "rank": 0,
+      "display": 11380
+    },
+    {
+      "entry": 9626,
+      "name": "",
+      "subname": "",
+      "type": 8,
+      "rank": 0,
+      "display": 16622
+    }
+  ],
+  "source_receipts": [
+    {
+      "path": "crates/azeroth-survivors-re/src/save/talents.rs",
+      "sha256": "808ef0a4fcfbf52edf901646e8d5405f05420421be8ee4fca891bb7fde8279e1"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/talents.rs",
+      "sha256": "b51db12ac83b406a72d935b546fdcd4ea2ec28eb72b08cbac5fb71928d063451"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/run_effects/pets.rs",
+      "sha256": "99aa2fd51714180cad27040559df9613a5e66c64849b94d5fb2864d95cc6085a"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
+      "fragments": [
+        {
+          "start": "    pub fn configure_effects(&mut self, allocation: &[(String, u8)], gear: &[(u8, f32)]) {",
+          "end": "    /// Jewelry and empowered amulets pass through the same refresh after a reward.",
+          "sha256": "ae193b30b6a956e521059187860d80de142945b81018889e6bd0ed3e6012bfba"
+        }
+      ]
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/talent_view.rs",
+      "sha256": "f34644ab1ce10e637ad1db602726bda0eeb47b992e6197c4676187600a29a195"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+      "sha256": "020f560211643f16bef1bcd364c3da6a468e65de0a525dd6575622c684e87d8f"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/pets.rs",
+      "sha256": "3f49e8aac4832a566413a1094d8ce72837209ea8778ecfe7b5283cd06ba864b6"
+    }
+  ],
+  "source_connections": [
+    {
+      "path": "crates/azeroth-survivors-re/src/save/talents.rs",
+      "role": "earned account identity",
+      "anchor": "pub const WHITE_DEVILSAUR_ACHIEVEMENT: &str = \"coop:jurassic\";"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/save/talents.rs",
+      "role": "Hunter free lane normalization",
+      "anchor": "if class.id == 3 && raw.iter().any(|(key, value)| key == WHITE_DEVILSAUR && *value != 0)"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/save/talents.rs",
+      "role": "first-colon token split",
+      "anchor": "let (key, rank) = entry.split_once(':')?;"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/save/talents.rs",
+      "role": "special exact-zero boolean parser",
+      "anchor": "return (rank.trim() != \"0\").then(|| (key.to_owned(), 1));"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/save/talents.rs",
+      "role": "account reader/writer achievement mask",
+      "anchor": "if !self.earned_achievements().contains(WHITE_DEVILSAUR_ACHIEVEMENT)"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/save/talents.rs",
+      "role": "special token follows ordinary ranks",
+      "anchor": "return (u8::MAX, usize::MAX, u8::MAX);"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/talents.rs",
+      "role": "reset preserves independent switch",
+      "anchor": "let white = white_devilsaur(&allocation);"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/talents.rs",
+      "role": "only Hunter tree zero presents switch",
+      "anchor": "(class.id == 3 && index == 0).then("
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/talents.rs",
+      "role": "fixed native cell geometry",
+      "anchor": "menu::rect([292.0, f32::from_bits(0x43e5_edb7), 46.0, 46.0])"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/talents.rs",
+      "role": "existing talent edit dispatch",
+      "anchor": "Action::WhiteDevilsaur => {"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/talents.rs",
+      "role": "read-only cell has no mutating action",
+      "anchor": "cell.insert(ReadOnlyCell);"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/talents.rs",
+      "role": "point-free details status",
+      "anchor": "\"On · no talent point\""
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/talents.rs",
+      "role": "earned eligibility invalidates menu signature",
+      "anchor": "menu.save.earned_achievements().contains(WHITE_DEVILSAUR_ACHIEVEMENT),"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/talent_view.rs",
+      "role": "read-only backend achievement gate",
+      "anchor": ".earned_achievements().contains(crate::save::talents::WHITE_DEVILSAUR_ACHIEVEMENT)"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/run_effects/pets.rs",
+      "role": "first Raptor removal",
+      "anchor": "let removed = rows.iter().position(|row| {"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/run_effects/pets.rs",
+      "role": "parallel generic provenance index",
+      "anchor": "rows[..index].iter().filter(|row| row.is_generic()).count()"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/run_effects/pets.rs",
+      "role": "Raptor presence chooses faster descriptor",
+      "anchor": "definition(if removed.is_some() { 9531 } else { 9530 })"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/run_effects/pets.rs",
+      "role": "replace actual Wolf payload identity",
+      "anchor": "row.bytes[8..16].copy_from_slice(&replacement.native_address.to_le_bytes());"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
+      "role": "special key excluded from ordinary spell talent display",
+      "anchor": "key != crate::save::talents::WHITE_DEVILSAUR"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
+      "role": "transform collected effects before follower grants",
+      "anchor": "run_effects::pets::replace_white_devilsaur("
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
+      "role": "remove matching parallel provenance",
+      "anchor": "self.effect_state.talent_provenance.remove(index);"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
+      "role": "derive grants from transformed raw29 payloads",
+      "anchor": ".filter_map(|row| run_effects::pets::raw29_definition(&row.bytes))"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/pets.rs",
+      "role": "same shared follower actor creation",
+      "anchor": "let definition = pets::definition(entry).expect(\"recovered follower definition\");"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/pets.rs",
+      "role": "captured melee pet identity",
+      "anchor": "pet_entry: Some(pet.definition.entry),"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+      "role": "same CreatureName cache response route",
+      "anchor": "SessionEvent::CreatureName {"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+      "role": "six current templates fixture",
+      "anchor": "fn current_white_and_cooperative_companion_templates_match_native_fixture()"
+    }
+  ],
+  "limits": [
+    "Raw Ghidra imports omit PE/data/external callees and can misinfer the Win64 ABI or fail external jump tables. Selected current instruction/data relations govern these seams.",
+    "Selected ordinary pet interfaces do not certify every generic actor/proc/movement dependency or whole-target fidelity.",
+    "Rust regressions are authored but uncompiled and unrun. No compilation, game/client/network/server or filesystem scenario, or original/rebuilt parity comparison ran.",
+    "The effects.rs source receipt binds only configure_effects; unrelated numeric/party refresh changes in the shared file are outside #119."
+  ],
+  "instruction_extracts": [
+    {
+      "source_result": "runtime/0.117.0/white-devilsaur-integration/creature-query-9530-query/results/213d82411f651d4093aed1b396a6e6d28dabdea432c201362294acf04fa2266f.json",
+      "evidence_id": "ev_305a9ea62806b677da08726b12b32514929fe525c9bd465ab6626eb034048d51",
+      "instructions": [
+        "0x145afb4f2: MOV RBX, R13",
+        "0x145afb4f5: LEA RAX, [0x1472c3a40]",
+        "0x145afb4fc: JMP 0x145afb568",
+        "0x145afb568: MOV qword ptr [RBP + 0x2d0], RAX",
+        "0x145afb56f: MOV RCX, qword ptr [RAX]",
+        "0x145afb572: MOV qword ptr [RBP + 0x2b8], RCX",
+        "0x145afb579: MOV RDI, qword ptr [RAX + 0x8]",
+        "0x145afb57d: MOV RDX, RDI",
+        "0x145afb580: CALL 0x145b29c00",
+        "0x145afb585: MOV R15, RAX",
+        "0x145afb588: MOV R13, RDX",
+        "0x145afb58b: TEST RAX, RAX",
+        "0x145afb58e: CMOVZ R13, RDI",
+        "0x145afb592: CMOVZ R15, qword ptr [RBP + 0x2b8]",
+        "0x145afb59a: LEA RDI, [0x1472db27f]",
+        "0x145afb5a1: MOV EDX, 0x9",
+        "0x145afb5a6: MOV RCX, RDI",
+        "0x145afb5a9: CALL 0x145b29c00",
+        "0x145afb5ae: MOV RCX, RAX",
+        "0x145afb5b1: MOV RAX, R15",
+        "0x145afb5b4: TEST RCX, RCX",
+        "0x145afb5b7: CMOVZ RCX, RDI",
+        "0x145afb5bb: MOV R8D, 0x9",
+        "0x145afb5c1: CMOVZ RDX, R8",
+        "0x145afb5c5: MOV R8, qword ptr [RBP + 0x2d0]",
+        "0x145afb5cc: MOV R8D, dword ptr [R8 + 0x24]",
+        "0x145afb5d0: MOV R9D, 0x1",
+        "0x145afb5d6: XOR R10D, R10D",
+        "0x145afb5d9: JMP 0x145afb068"
+      ]
+    },
+    {
+      "source_result": "runtime/0.117.0/white-devilsaur-integration/creature-query-9531-query/results/6a3678ca052df23e38c83779ab22dd38920c15e4de132cfc65937c17c25e427c.json",
+      "evidence_id": "ev_a161fd82f33cd4b79256be1f008dcf7a02dc0b2372bf65ac01dc25b1d5fc7e9e",
+      "instructions": [
+        "0x145afb4d7: MOV RBX, R13",
+        "0x145afb4da: LEA RAX, [0x1472c3a00]",
+        "0x145afb4e1: JMP 0x145afb568"
+      ]
+    },
+    {
+      "source_result": "runtime/0.117.0/white-devilsaur-integration/companion-template-query/results/3d7e4614536439180c4c6be7028f9c63603b9acedbc66c88634b12a236686e05.json",
+      "evidence_id": "ev_8ec8dfb292cf34c930cb35be80a45d03e49abf38b20c3988abde2ed7263e7f37",
+      "instructions": [
+        "0x145adab60: ADD ECX, 0xffffda7f",
+        "0x145adab66: CMP ECX, 0x19",
+        "0x145adab69: JA 0x145adab79",
+        "0x145adab6b: MOV EAX, ECX",
+        "0x145adab6d: LEA RCX, [0x1472d91a0]",
+        "0x145adab74: MOV RAX, qword ptr [RCX + RAX*0x8]",
+        "0x145adab78: RET",
+        "0x145adab79: XOR EAX, EAX",
+        "0x145adab7b: RET"
+      ]
+    },
+    {
+      "source_result": "runtime/0.117.0/white-devilsaur-integration/ui-grid-ingress-asm-query/results/bbed7bcc6521e5d7614029cec971b1ef1979bef7b173dffeed788b2910a0804d.json",
+      "evidence_id": "ev_9dff64086372fed8f240e346238e65e0bb1eae128276f419898d9636e73d4f79",
+      "instructions": [
+        "0x140359751: MOV RDX, R12",
+        "0x140359754: MOV R8, R13",
+        "0x140359757: MOV R9, qword ptr [RBP + 0x688]",
+        "0x14035975e: CALL 0x14010a3b0",
+        "0x140359763: ADD RSI, -0xa0",
+        "0x14035976a: JNZ 0x140359720",
+        "0x14035976c: MOV R9, qword ptr [RBP + 0x688]",
+        "0x140359773: MOV RAX, qword ptr [RBP + 0x398]",
+        "0x14035977a: MOVZX EAX, byte ptr [RAX]",
+        "0x14035977d: CMP AL, 0x2",
+        "0x14035977f: JZ 0x1403597a7",
+        "0x140359781: MOVZX ECX, byte ptr [RDI]",
+        "0x140359784: MOV byte ptr [RSP + 0x30], CL",
+        "0x140359788: MOV byte ptr [RSP + 0x28], AL",
+        "0x14035978c: MOV qword ptr [RSP + 0x20], RBX",
+        "0x140359791: LEA RCX, [RBP + 0x3a0]",
+        "0x140359798: MOV RDX, qword ptr [RBP + 0x6a0]",
+        "0x14035979f: MOV R8, R13",
+        "0x1403597a2: CALL 0x14010ce70",
+        "0x1403597a7: MOV qword ptr [RSP + 0x20], RBX"
+      ]
+    },
+    {
+      "source_result": "runtime/0.117.0/white-devilsaur-integration/pet-period-instructions-query/results/0ab9eb4753945664ea88005c2b387085d70e226817ca01d97d73939ee257ed75.json",
+      "evidence_id": "ev_1887eafe6a8c8dcd8281fdd3b430d7a96118b7da2f687e9c9a7ce6d7cf3a8eb1",
+      "instructions": [
+        "0x145bf8772: MOVSS XMM0, dword ptr [RAX + 0x30]",
+        "0x145bf8777: JMP 0x145bf8830"
+      ]
+    }
+  ]
+}

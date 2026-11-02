@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.109.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+    "size_bytes": 140447744
+  },
+  "whole_image_input": true,
+  "profile": "full-image-entry-decoding-extended",
+  "analysis_environment": {
+    "REA_GHIDRA_STARTUP_TIMEOUT_MS": "600000",
+    "REA_GHIDRA_DISABLED_ANALYZERS": "Stack,Decompiler Switch Analysis,Function ID,Function Start Search,Subroutine References,Data Reference,Reference,Non-Returning Functions - Discovered,Shared Return Calls,Create Address Tables",
+    "GHIDRA_HEADLESS_MAXMEM": "6G"
+  },
+  "status": "failed_startup_timeout",
+  "elapsed_seconds": 601.519,
+  "failure_kind": "timeout",
+  "failure_message": "Ghidra startup deadline elapsed",
+  "completed_procedure_inventory": false,
+  "instruction_records": 0,
+  "source_semantics_or_parity_verified": false,
+  "gap_ids": [
+    41
+  ],
+  "limits": [
+    "No native inventory or body query completed in this profile. Complete-image instruction/reference/source recovery remains open.",
+    "Distinct 6 GiB/600-second attempt for this exact 0.109.0 target; earlier failures are historical. Full disposable diagnostics stay under runtime/."
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "target_sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+  "target_executed": false,
+  "provider": {
+    "id": "ghidra",
+    "name": "Ghidra",
+    "version": "12.1.4"
+  },
+  "operations": [
+    {
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_d5065c418f383d1996118e496a8be3d9f2d4cf5a34615c9ab9bef63e2d5dbd76",
+      "analysis_profile_sha256": "ddaf495b7c3ef52f3bfecc75907be2702f8616ddd12e5df09f596b8444c1d467",
+      "va": "0x145923d55",
+      "byte_count": 176,
+      "input_sha256": "913c11df87a209d1bb502440e4f2c4c7d72c41193c2888448275596d4508fdab",
+      "pseudocode": "source-gate.c",
+      "pseudocode_sha256": "f1c0d68d6bef32db879892427782a0e394c8cf8a2bd098c17a7cb332398b40b2",
+      "pseudocode_formatting": "Decode literal newlines and trim trailing whitespace only."
+    }
+  ],
+  "limits": [
+    "Bounded raw import; no PE-wide callers, surrounding body or engine callbacks are supplied.",
+    "Decompiler bad-data halts mark omitted outgoing continuations, not observed native faults.",
+    "Exact-byte instruction fixtures own source admission, exit destinations, death state and removal behavior; generic decompiler ABI/type guesses are not implementation contracts."
+  ]
+}

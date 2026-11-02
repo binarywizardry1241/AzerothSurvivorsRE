@@ -1,0 +1,4 @@
+145940801: 0f28c6 movaps xmm0, xmm6
+145940804: f3410f5c87640a0000 subss xmm0, dword ptr [r15 + 0xa64]
+14594080d: 0f2e054c134700 ucomiss xmm0, dword ptr [rip + 0x47134c]
+145940814: 0f822b010000 jb 0x145940945

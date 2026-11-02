@@ -1,0 +1,295 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.109.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+    "size_bytes": 140447744
+  },
+  "method": "Fresh current-EXE Ghidra 12.1.4 raw imports, independent Capstone 5.0.7 PE decoding, bounded Unicorn 2.1.4 instruction replay and explicit live producer/consumer tracing.",
+  "ranges": [
+    {
+      "role": "terminal-freeze",
+      "start": "0x145924710",
+      "end_exclusive": "0x145924e6d",
+      "file_offset": "0x5923b10",
+      "byte_count": 1885,
+      "sha256": "613b689ab1157bb90d7403634d9d3698efc363a155663e9daa02c3dd1aea66d7",
+      "kind": "code",
+      "assembly": "terminal-freeze.asm",
+      "assembly_sha256": "efdbd42188e5396dbb68c438c1ce5b13cddb09f7e19b1c3e7c04327ad4d4e490",
+      "pseudocode": "terminal-freeze.c",
+      "pseudocode_sha256": "68ef8d8ad1f9b14354861578bff5aa27df0ec177d8e4c642c997f00d7405ca44",
+      "rea_evidence_id": "ev_4df15d0ee5089ff7f67487a71a8c9a882d33b6ca27be0e176f1e6b5d4acc6f92",
+      "analysis_profile_digest": "0ad1cb6b0b3af065b9530057b400a84ae9e907b8d8b13ceac3a56c00d828cdbc",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analyzed_body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x145924710",
+            "end": "0x145924907"
+          },
+          {
+            "start": "0x145924910",
+            "end": "0x145924b36"
+          },
+          {
+            "start": "0x145924b40",
+            "end": "0x145924d70"
+          },
+          {
+            "start": "0x145924d80",
+            "end": "0x145924e6c"
+          }
+        ],
+        "total_bytes": 1853,
+        "span_bytes": 1885,
+        "non_contiguous": true,
+        "contains_entry": true
+      },
+      "pseudocode_normalization": "Whitespace only: outer blank lines and trailing line whitespace removed; one final LF."
+    },
+    {
+      "role": "ordinary-append",
+      "start": "0x14594e55a",
+      "end_exclusive": "0x14594e59e",
+      "file_offset": "0x594d95a",
+      "byte_count": 68,
+      "sha256": "d0495164204eb4ccc6e4ab5b5fa9407aac87f5409dd52f37d5357803e81cb3e1",
+      "kind": "code",
+      "assembly": "ordinary-append.asm",
+      "assembly_sha256": "8df13e5bc290071cf23980dd7aab8052eb79abf7cf48a87fc43def3752fc9e2e",
+      "pseudocode": "ordinary-append.c",
+      "pseudocode_sha256": "897fdceb1a72d2603b1ffb033a25a1b9768eefc6a00006ef53c7655db50f273f",
+      "rea_evidence_id": "ev_21eec865d6f14f7ba0d16c060fbb82ed40c083483fa6a4b237e54f725e0856ba",
+      "analysis_profile_digest": "8f4b954c04a12be4b241a1b003217d1446a9d541ebef5e66f811702f6d97173f",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analyzed_body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x14594e55a",
+            "end": "0x14594e59d"
+          }
+        ],
+        "total_bytes": 68,
+        "span_bytes": 68,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "pseudocode_normalization": "Whitespace only: outer blank lines and trailing line whitespace removed; one final LF."
+    },
+    {
+      "role": "guardian-append",
+      "start": "0x14593e5db",
+      "end_exclusive": "0x14593e61f",
+      "file_offset": "0x593d9db",
+      "byte_count": 68,
+      "sha256": "bc61d9f9a790eb022ab534fc3673aec629e6f277bf9d6d7552bfd0b5c4137394",
+      "kind": "code",
+      "assembly": "guardian-append.asm",
+      "assembly_sha256": "75d3f8e070308089acfcff536c9b0026e86a67a74c11a911f990560c5c3e1c72",
+      "pseudocode": "guardian-append.c",
+      "pseudocode_sha256": "619590fb87a594c463cc240a296e493dce56ce01443f0ab39abbe183af62e0a6",
+      "rea_evidence_id": "ev_0d959d6994d95191ff29140ee0917376f733c38ccb1659b4222715745a0ca865",
+      "analysis_profile_digest": "674a6673341a5f4bdb495b8f58396691ace7006b40611b7eeb963d22b2815cd8",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analyzed_body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x14593e5db",
+            "end": "0x14593e61e"
+          }
+        ],
+        "total_bytes": 68,
+        "span_bytes": 68,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "pseudocode_normalization": "Whitespace only: outer blank lines and trailing line whitespace removed; one final LF."
+    },
+    {
+      "role": "boss-append",
+      "start": "0x14596e07f",
+      "end_exclusive": "0x14596e0c7",
+      "file_offset": "0x596d47f",
+      "byte_count": 72,
+      "sha256": "3a82886b72363dc0174c64a172f5f90cd946c9c330d97d9fc91e57cae2bef478",
+      "kind": "code",
+      "assembly": "boss-append.asm",
+      "assembly_sha256": "cee9f9631e7e58483a2700f6bc4f625f9bf374920573e206b486b233886a8bbd",
+      "pseudocode": "boss-append.c",
+      "pseudocode_sha256": "897fdceb1a72d2603b1ffb033a25a1b9768eefc6a00006ef53c7655db50f273f",
+      "rea_evidence_id": "ev_6d84a4173242185c306628ae6c48c1781a28fc0061078b8dba577d582274d699",
+      "analysis_profile_digest": "0478ea9521a7e2534c0f31e3c0aec8a3e33235fb9efab61bc868c42beddc9a8d",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analyzed_body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x14596e07f",
+            "end": "0x14596e0c6"
+          }
+        ],
+        "total_bytes": 72,
+        "span_bytes": 72,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "pseudocode_normalization": "Whitespace only: outer blank lines and trailing line whitespace removed; one final LF."
+    },
+    {
+      "role": "combat-follower-create",
+      "start": "0x1459670f3",
+      "end_exclusive": "0x1459671a0",
+      "file_offset": "0x59664f3",
+      "byte_count": 173,
+      "sha256": "056f854abda0ca882ec658803a048e642c00cc2786fd34499deaed68f8b73ca2",
+      "kind": "code",
+      "assembly": "combat-follower-create.asm",
+      "assembly_sha256": "7e780f6911f418bb7efcdb17daed1a5330490c8dd01ded39ccc262a604d8ff44",
+      "pseudocode": "combat-follower-create.c",
+      "pseudocode_sha256": "e3e3cfe94833e066867a6e5e4283e5f731d401314690a3372396ff92d3ccbaac",
+      "rea_evidence_id": "ev_21048caa096db11ae5bfb083262f57ea8e68865d8a1d87f7ad1e678cc6f6b8c5",
+      "analysis_profile_digest": "756ac70a5a0d2dbcd7de61ac1b5cd1d9734902c87e6ab674e6af102c135834f5",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analyzed_body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x1459670f3",
+            "end": "0x14596719f"
+          }
+        ],
+        "total_bytes": 173,
+        "span_bytes": 173,
+        "non_contiguous": false,
+        "contains_entry": true
+      },
+      "pseudocode_normalization": "Whitespace only: outer blank lines and trailing line whitespace removed; one final LF."
+    },
+    {
+      "role": "combat-follower-retention",
+      "start": "0x14593235b",
+      "end_exclusive": "0x145932485",
+      "file_offset": "0x593175b",
+      "byte_count": 298,
+      "sha256": "77f4c616ae9b8d0d3f3da5880c68dbe188a403f1d31c3b94ac3d8b0225947acd",
+      "kind": "code",
+      "assembly": "combat-follower-retention.asm",
+      "assembly_sha256": "03798d841b496ae0d4e25323d33d9e6a77e1ac0f07c58dc5349cd612605d0837",
+      "pseudocode": "combat-follower-retention.c",
+      "pseudocode_sha256": "f8b07a91a93d143d966008a7f57f0b9c7d223a7767fd20b12576a15a6662aeb4",
+      "rea_evidence_id": "ev_34f0b7f26b23364ec590c294fd3324f3ed3c94aa6e851fa16325ea12dee880e6",
+      "analysis_profile_digest": "d5131b645793eae783d4493e75495269e37e1168d7b505c371ee78023e2ebda2",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analyzed_body": {
+        "available": true,
+        "provenance": "ghidra-function-body-address-set",
+        "ranges": [
+          {
+            "start": "0x14593235b",
+            "end": "0x1459323bd"
+          },
+          {
+            "start": "0x1459323dd",
+            "end": "0x145932484"
+          }
+        ],
+        "total_bytes": 267,
+        "span_bytes": 298,
+        "non_contiguous": true,
+        "contains_entry": true
+      },
+      "pseudocode_normalization": "Whitespace only: outer blank lines and trailing line whitespace removed; one final LF."
+    }
+  ],
+  "source_refs": [
+    "crates/azeroth-survivors-re/src/native_counter.rs",
+    "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs",
+    "crates/azeroth-survivors-re/src/guardians/mod.rs",
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/guardians.rs",
+    "crates/azeroth-survivors-re/src/run_effects/pets.rs",
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/pets.rs",
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/demons.rs",
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/terminal_movement.rs"
+  ],
+  "source_connections": {
+    "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": [
+      "pub allocation_order: u64",
+      "creature_guid_with_order(definition.id, self.counter)",
+      "RunActor { guid, allocation_order,"
+    ],
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs": [
+      "pub allocation_order: u64",
+      "creature_guid_with_order(definition.id, self.counter)",
+      "RunBoss { guid, allocation_order,"
+    ],
+    "crates/azeroth-survivors-re/src/guardians/mod.rs": [
+      "pub allocation_order: u64",
+      "creature_guid_with_order(definition.id, guid_counter)",
+      "GuardianSpawn { guid, allocation_order,"
+    ],
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/guardians.rs": [
+      "allocation_order: spawn.allocation_order"
+    ],
+    "crates/azeroth-survivors-re/src/run_effects/pets.rs": [
+      "pub allocation_order: u64",
+      "creature_guid_with_order(definition.entry, counter)",
+      "InitialState { guid, allocation_order,"
+    ],
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/pets.rs": [
+      "allocation_order: initial.allocation_order"
+    ],
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/demons.rs": [
+      "allocation_order: initial.allocation_order"
+    ],
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/terminal_movement.rs": [
+      "self.counter.sequence()",
+      "current.wrapping_sub(order)",
+      "row.allocation_order",
+      "actors.sort_by_key(|(order, _)| age(*order))",
+      "followers.sort_by_key(|(order, _, _, _)| age(*order))"
+    ]
+  },
+  "limitations": [
+    "No compilation, compiling tests, native application, original/rebuilt interaction, rendering or parity comparison.",
+    "Raw Ghidra x86-64 imports omit external callee/data semantics and original Rust types; narrow append/retention windows can end at a deliberately truncated boundary. Analyzed body sets and actual retained PE intervals are recorded separately.",
+    "Native replay substitutes primary-height miss, temporary vector allocation, stop-packet construction, deallocation and memcpy; it does not execute OS, filesystem, allocators, native external callees or game code outside the reviewed windows.",
+    "The internal u64 chronology is an adapter implementation for stable native-vector order, not a recovered additional native Game field. Live actors retain their paired chronology across low-24-bit GUID and u32 serial wrap.",
+    "Plain-u32 leaf fixtures retain a native wrapping counter, without full allocation chronology; live gameplay uses SharedCounter. No claim of arbitrary concurrent native game allocation or a live survivor spanning a complete u64 chronology cycle.",
+    "Complete startup/channel/auth/roster/summary/progression and raw ComponentId/global/indirect ownership remain outside this bounded ordering repair."
+  ]
+}

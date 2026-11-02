@@ -1,0 +1,56 @@
+{
+  "target": "installed-game/AzerothSurvivors.exe",
+  "output": "runtime/q41-c01-upgrade-constructor/rea-replay",
+  "init_timeout": 60,
+  "timeout": 240,
+  "environment": {
+    "REA_GHIDRA_SEED_FILE": "docs/analysis/evidence/0.113.2/q41-c01-upgrade-constructor/probe-seeds.tsv",
+    "REA_GHIDRA_DISABLED_ANALYZERS": "Stack,Decompiler Switch Analysis,Function ID,Function Start Search,Disassemble Entry Points,Subroutine References,Data Reference,Reference,Non-Returning Functions - Discovered,Shared Return Calls,Create Address Tables,Call Convention ID,Call-Fixup Installer,Variadic Function Signature Override",
+    "REA_GHIDRA_STARTUP_TIMEOUT_MS": "600000"
+  },
+  "operations": [
+    {
+      "name": "analyze_function",
+      "arguments": {
+        "procedure": "0x145969bf0"
+      },
+      "label": "owner",
+      "timeout": 660
+    },
+    {
+      "name": "read_function_instructions",
+      "arguments": {
+        "procedure": "0x145969bf0"
+      },
+      "label": "instructions"
+    },
+    {
+      "name": "procedure_callers",
+      "arguments": {
+        "procedure": "0x145969bf0"
+      },
+      "label": "callers"
+    },
+    {
+      "name": "resolve_containing_procedure",
+      "arguments": {
+        "address": "0x14596b868"
+      },
+      "label": "site-owner"
+    },
+    {
+      "name": "inspect_native_instruction",
+      "arguments": {
+        "address": "0x14596a427"
+      },
+      "label": "bounds-predecessor"
+    },
+    {
+      "name": "inspect_native_instruction",
+      "arguments": {
+        "address": "0x14596b86f"
+      },
+      "label": "diagnostic-call"
+    }
+  ]
+}

@@ -1,0 +1,1546 @@
+{
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "looks": [
+    {
+      "key": "squirrel",
+      "name": "Squirrel",
+      "achievement": null,
+      "display_id": 134,
+      "scale": 1.0,
+      "creature_id": 9601
+    },
+    {
+      "key": "rabbit",
+      "name": "Snowshoe Rabbit",
+      "achievement": "zone:duskwood",
+      "display_id": 328,
+      "scale": 1.0,
+      "creature_id": 9602
+    },
+    {
+      "key": "macaw",
+      "name": "Crimson Macaw",
+      "achievement": "zone:wsg",
+      "display_id": 5505,
+      "scale": 0.30000001192092896,
+      "creature_id": 9603
+    },
+    {
+      "key": "owl",
+      "name": "Great Horned Owl",
+      "achievement": "zone:ab",
+      "display_id": 4566,
+      "scale": 0.3499999940395355,
+      "creature_id": 9604
+    },
+    {
+      "key": "frog",
+      "name": "Tree Frog",
+      "achievement": "zone:feralas",
+      "display_id": 1924,
+      "scale": 1.0,
+      "creature_id": 9605
+    },
+    {
+      "key": "kingsnake",
+      "name": "Black Kingsnake",
+      "achievement": "zone:arena",
+      "display_id": 1206,
+      "scale": 0.800000011920929,
+      "creature_id": 9606
+    },
+    {
+      "key": "darter",
+      "name": "Sprite Darter",
+      "achievement": "zone:av",
+      "display_id": 1267,
+      "scale": 0.3499999940395355,
+      "creature_id": 9607
+    },
+    {
+      "key": "whelp",
+      "name": "Black Whelpling",
+      "achievement": "zone:brm",
+      "display_id": 387,
+      "scale": 0.3499999940395355,
+      "creature_id": 9608
+    },
+    {
+      "key": "zergling",
+      "name": "Zergling",
+      "achievement": "zone:aq",
+      "display_id": 10993,
+      "scale": 0.5,
+      "creature_id": 9609
+    },
+    {
+      "key": "chicken",
+      "name": "Westfall Chicken",
+      "achievement": "count:runs100",
+      "display_id": 304,
+      "scale": 1.0,
+      "creature_id": 9610
+    },
+    {
+      "key": "roach",
+      "name": "Undercity Cockroach",
+      "achievement": "count:kills100k",
+      "display_id": 2177,
+      "scale": 1.0,
+      "creature_id": 9611
+    },
+    {
+      "key": "panda",
+      "name": "Panda Cub",
+      "achievement": "feat:endless40",
+      "display_id": 10990,
+      "scale": 1.0,
+      "creature_id": 9612
+    },
+    {
+      "key": "sapphiron",
+      "name": "Sapphiron",
+      "achievement": "feat:nou",
+      "display_id": 16033,
+      "scale": 0.07000000029802322,
+      "creature_id": 9613
+    }
+  ],
+  "instincts": [
+    [
+      "instinct_gold",
+      1
+    ],
+    [
+      "instinct_wisps",
+      2
+    ],
+    [
+      "instinct_runes",
+      3
+    ]
+  ],
+  "constants": {
+    "0x145d6d320": [
+      14.0
+    ],
+    "0x145d6d510": [
+      0.20000000298023224
+    ],
+    "0x145d73d44": [
+      0.25
+    ],
+    "0x145d9aecc": [
+      4.0
+    ],
+    "0x145dbf580": [
+      60.0
+    ],
+    "0x14609dd44": [
+      3.5
+    ],
+    "0x146e78490": [
+      2.200000047683716,
+      2.200000047683716
+    ],
+    "0x146e78480": [
+      2.0,
+      1.600000023841858,
+      1.2999999523162842,
+      1.0
+    ],
+    "0x145d9de68": [
+      15.0
+    ],
+    "0x145d6d878": [
+      0.3499999940395355
+    ],
+    "0x146e78464": [
+      1.149999976158142
+    ],
+    "0x145d9af14": [
+      3.1415927410125732
+    ],
+    "0x145db8620": [
+      2.5
+    ]
+  },
+  "selection_cases": [
+    {
+      "name": "empty",
+      "pickups": [],
+      "instinct": 0,
+      "reserved": [],
+      "from_position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "radius": 9.0,
+      "leash": 0,
+      "selected": null
+    },
+    {
+      "name": "inside_hero_radius",
+      "pickups": [
+        {
+          "guid": 1,
+          "kind": 0,
+          "position": [
+            9.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        }
+      ],
+      "instinct": 0,
+      "reserved": [],
+      "from_position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "radius": 9.0,
+      "leash": 0,
+      "selected": null
+    },
+    {
+      "name": "outer_edge",
+      "pickups": [
+        {
+          "guid": 1,
+          "kind": 0,
+          "position": [
+            34.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        }
+      ],
+      "instinct": 0,
+      "reserved": [],
+      "from_position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "radius": 9.0,
+      "leash": 0,
+      "selected": 1
+    },
+    {
+      "name": "outside_edge",
+      "pickups": [
+        {
+          "guid": 1,
+          "kind": 0,
+          "position": [
+            34.1,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        }
+      ],
+      "instinct": 0,
+      "reserved": [],
+      "from_position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "radius": 9.0,
+      "leash": 0,
+      "selected": null
+    },
+    {
+      "name": "leash",
+      "pickups": [
+        {
+          "guid": 1,
+          "kind": 0,
+          "position": [
+            64.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        }
+      ],
+      "instinct": 0,
+      "reserved": [],
+      "from_position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "radius": 9.0,
+      "leash": 3,
+      "selected": 1
+    },
+    {
+      "name": "reserved",
+      "pickups": [
+        {
+          "guid": 1,
+          "kind": 0,
+          "position": [
+            15.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        },
+        {
+          "guid": 2,
+          "kind": 1,
+          "position": [
+            17.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        }
+      ],
+      "instinct": 0,
+      "reserved": [
+        1
+      ],
+      "from_position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "radius": 9.0,
+      "leash": 0,
+      "selected": 2
+    },
+    {
+      "name": "in_flight",
+      "pickups": [
+        {
+          "guid": 1,
+          "kind": 0,
+          "position": [
+            15.0,
+            0.0,
+            0.0
+          ],
+          "idle": false
+        },
+        {
+          "guid": 2,
+          "kind": 1,
+          "position": [
+            17.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        }
+      ],
+      "instinct": 0,
+      "reserved": [],
+      "from_position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "radius": 9.0,
+      "leash": 0,
+      "selected": 2
+    },
+    {
+      "name": "current_position",
+      "pickups": [
+        {
+          "guid": 1,
+          "kind": 0,
+          "position": [
+            10.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        },
+        {
+          "guid": 2,
+          "kind": 0,
+          "position": [
+            30.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        }
+      ],
+      "instinct": 0,
+      "reserved": [],
+      "from_position": [
+        28.0,
+        0.0,
+        0.0
+      ],
+      "radius": 9.0,
+      "leash": 0,
+      "selected": 2
+    },
+    {
+      "name": "equal_distance_first",
+      "pickups": [
+        {
+          "guid": 1,
+          "kind": 0,
+          "position": [
+            20.0,
+            1.0,
+            0.0
+          ],
+          "idle": true
+        },
+        {
+          "guid": 2,
+          "kind": 0,
+          "position": [
+            20.0,
+            -1.0,
+            0.0
+          ],
+          "idle": true
+        }
+      ],
+      "instinct": 0,
+      "reserved": [],
+      "from_position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "radius": 9.0,
+      "leash": 0,
+      "selected": 1
+    },
+    {
+      "name": "priority_0",
+      "pickups": [
+        {
+          "guid": 1,
+          "kind": 0,
+          "position": [
+            11.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        },
+        {
+          "guid": 2,
+          "kind": 1,
+          "position": [
+            18.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        },
+        {
+          "guid": 3,
+          "kind": 3,
+          "position": [
+            20.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        },
+        {
+          "guid": 4,
+          "kind": 2,
+          "position": [
+            10.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        },
+        {
+          "guid": 5,
+          "kind": 6,
+          "position": [
+            10.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        }
+      ],
+      "instinct": 0,
+      "reserved": [],
+      "from_position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "radius": 9.0,
+      "leash": 0,
+      "selected": 1
+    },
+    {
+      "name": "priority_1",
+      "pickups": [
+        {
+          "guid": 1,
+          "kind": 0,
+          "position": [
+            11.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        },
+        {
+          "guid": 2,
+          "kind": 1,
+          "position": [
+            18.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        },
+        {
+          "guid": 3,
+          "kind": 3,
+          "position": [
+            20.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        },
+        {
+          "guid": 4,
+          "kind": 2,
+          "position": [
+            10.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        },
+        {
+          "guid": 5,
+          "kind": 6,
+          "position": [
+            10.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        }
+      ],
+      "instinct": 1,
+      "reserved": [],
+      "from_position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "radius": 9.0,
+      "leash": 0,
+      "selected": 2
+    },
+    {
+      "name": "priority_2",
+      "pickups": [
+        {
+          "guid": 1,
+          "kind": 0,
+          "position": [
+            11.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        },
+        {
+          "guid": 2,
+          "kind": 1,
+          "position": [
+            18.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        },
+        {
+          "guid": 3,
+          "kind": 3,
+          "position": [
+            20.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        },
+        {
+          "guid": 4,
+          "kind": 2,
+          "position": [
+            10.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        },
+        {
+          "guid": 5,
+          "kind": 6,
+          "position": [
+            10.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        }
+      ],
+      "instinct": 2,
+      "reserved": [],
+      "from_position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "radius": 9.0,
+      "leash": 0,
+      "selected": 1
+    },
+    {
+      "name": "priority_3",
+      "pickups": [
+        {
+          "guid": 1,
+          "kind": 0,
+          "position": [
+            11.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        },
+        {
+          "guid": 2,
+          "kind": 1,
+          "position": [
+            18.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        },
+        {
+          "guid": 3,
+          "kind": 3,
+          "position": [
+            20.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        },
+        {
+          "guid": 4,
+          "kind": 2,
+          "position": [
+            10.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        },
+        {
+          "guid": 5,
+          "kind": 6,
+          "position": [
+            10.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        }
+      ],
+      "instinct": 3,
+      "reserved": [],
+      "from_position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "radius": 9.0,
+      "leash": 0,
+      "selected": 3
+    },
+    {
+      "name": "runehound_kind_0",
+      "pickups": [
+        {
+          "guid": 1,
+          "kind": 0,
+          "position": [
+            12.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        }
+      ],
+      "instinct": 3,
+      "reserved": [],
+      "from_position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "radius": 9.0,
+      "leash": 0,
+      "selected": 1
+    },
+    {
+      "name": "runehound_kind_1",
+      "pickups": [
+        {
+          "guid": 1,
+          "kind": 1,
+          "position": [
+            12.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        }
+      ],
+      "instinct": 3,
+      "reserved": [],
+      "from_position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "radius": 9.0,
+      "leash": 0,
+      "selected": 1
+    },
+    {
+      "name": "runehound_kind_2",
+      "pickups": [
+        {
+          "guid": 1,
+          "kind": 2,
+          "position": [
+            12.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        }
+      ],
+      "instinct": 3,
+      "reserved": [],
+      "from_position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "radius": 9.0,
+      "leash": 0,
+      "selected": null
+    },
+    {
+      "name": "runehound_kind_3",
+      "pickups": [
+        {
+          "guid": 1,
+          "kind": 3,
+          "position": [
+            12.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        }
+      ],
+      "instinct": 3,
+      "reserved": [],
+      "from_position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "radius": 9.0,
+      "leash": 0,
+      "selected": 1
+    },
+    {
+      "name": "runehound_kind_4",
+      "pickups": [
+        {
+          "guid": 1,
+          "kind": 4,
+          "position": [
+            12.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        }
+      ],
+      "instinct": 3,
+      "reserved": [],
+      "from_position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "radius": 9.0,
+      "leash": 0,
+      "selected": 1
+    },
+    {
+      "name": "runehound_kind_5",
+      "pickups": [
+        {
+          "guid": 1,
+          "kind": 5,
+          "position": [
+            12.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        }
+      ],
+      "instinct": 3,
+      "reserved": [],
+      "from_position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "radius": 9.0,
+      "leash": 0,
+      "selected": 1
+    },
+    {
+      "name": "runehound_kind_6",
+      "pickups": [
+        {
+          "guid": 1,
+          "kind": 6,
+          "position": [
+            12.0,
+            0.0,
+            0.0
+          ],
+          "idle": true
+        }
+      ],
+      "instinct": 3,
+      "reserved": [],
+      "from_position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "radius": 9.0,
+      "leash": 0,
+      "selected": null
+    }
+  ],
+  "speed_cases": [
+    {
+      "paws": 0,
+      "hero": 0.75,
+      "speed_bits": 1096810496
+    },
+    {
+      "paws": 0,
+      "hero": 1.0,
+      "speed_bits": 1096810496
+    },
+    {
+      "paws": 0,
+      "hero": 1.1,
+      "speed_bits": 1098278503
+    },
+    {
+      "paws": 0,
+      "hero": 1.23,
+      "speed_bits": 1099547280
+    },
+    {
+      "paws": 0,
+      "hero": 1.7,
+      "speed_bits": 1102997095
+    },
+    {
+      "paws": 0,
+      "hero": 2.2,
+      "speed_bits": 1106667111
+    },
+    {
+      "paws": 1,
+      "hero": 0.75,
+      "speed_bits": 1099327079
+    },
+    {
+      "paws": 1,
+      "hero": 1.0,
+      "speed_bits": 1099327079
+    },
+    {
+      "paws": 1,
+      "hero": 1.1,
+      "speed_bits": 1100207883
+    },
+    {
+      "paws": 1,
+      "hero": 1.23,
+      "speed_bits": 1101352928
+    },
+    {
+      "paws": 1,
+      "hero": 1.7,
+      "speed_bits": 1105492707
+    },
+    {
+      "paws": 1,
+      "hero": 2.2,
+      "speed_bits": 1108596491
+    },
+    {
+      "paws": 2,
+      "hero": 0.75,
+      "speed_bits": 1100795085
+    },
+    {
+      "paws": 2,
+      "hero": 1.0,
+      "speed_bits": 1100795085
+    },
+    {
+      "paws": 2,
+      "hero": 1.1,
+      "speed_bits": 1101822690
+    },
+    {
+      "paws": 2,
+      "hero": 1.23,
+      "speed_bits": 1103158576
+    },
+    {
+      "paws": 2,
+      "hero": 1.7,
+      "speed_bits": 1107642286
+    },
+    {
+      "paws": 2,
+      "hero": 2.2,
+      "speed_bits": 1110211298
+    },
+    {
+      "paws": 3,
+      "hero": 0.75,
+      "speed_bits": 1102263091
+    },
+    {
+      "paws": 3,
+      "hero": 1.0,
+      "speed_bits": 1102263091
+    },
+    {
+      "paws": 3,
+      "hero": 1.1,
+      "speed_bits": 1103437496
+    },
+    {
+      "paws": 3,
+      "hero": 1.23,
+      "speed_bits": 1104964223
+    },
+    {
+      "paws": 3,
+      "hero": 1.7,
+      "speed_bits": 1108890092
+    },
+    {
+      "paws": 3,
+      "hero": 2.2,
+      "speed_bits": 1111826104
+    }
+  ],
+  "angle_cases": [
+    {
+      "slot": 0,
+      "angle_bits": 1080506530
+    },
+    {
+      "slot": 1,
+      "angle_bits": 1083624420
+    }
+  ],
+  "sweep_cases": [
+    {
+      "instinct": 0,
+      "kind": 0,
+      "distance": 4.0,
+      "accepted": true
+    },
+    {
+      "instinct": 0,
+      "kind": 0,
+      "distance": 4.1,
+      "accepted": false
+    },
+    {
+      "instinct": 0,
+      "kind": 0,
+      "distance": 8.0,
+      "accepted": false
+    },
+    {
+      "instinct": 0,
+      "kind": 1,
+      "distance": 4.0,
+      "accepted": true
+    },
+    {
+      "instinct": 0,
+      "kind": 1,
+      "distance": 4.1,
+      "accepted": false
+    },
+    {
+      "instinct": 0,
+      "kind": 1,
+      "distance": 8.0,
+      "accepted": false
+    },
+    {
+      "instinct": 0,
+      "kind": 2,
+      "distance": 4.0,
+      "accepted": false
+    },
+    {
+      "instinct": 0,
+      "kind": 2,
+      "distance": 4.1,
+      "accepted": false
+    },
+    {
+      "instinct": 0,
+      "kind": 2,
+      "distance": 8.0,
+      "accepted": false
+    },
+    {
+      "instinct": 0,
+      "kind": 3,
+      "distance": 4.0,
+      "accepted": false
+    },
+    {
+      "instinct": 0,
+      "kind": 3,
+      "distance": 4.1,
+      "accepted": false
+    },
+    {
+      "instinct": 0,
+      "kind": 3,
+      "distance": 8.0,
+      "accepted": false
+    },
+    {
+      "instinct": 0,
+      "kind": 4,
+      "distance": 4.0,
+      "accepted": false
+    },
+    {
+      "instinct": 0,
+      "kind": 4,
+      "distance": 4.1,
+      "accepted": false
+    },
+    {
+      "instinct": 0,
+      "kind": 4,
+      "distance": 8.0,
+      "accepted": false
+    },
+    {
+      "instinct": 0,
+      "kind": 5,
+      "distance": 4.0,
+      "accepted": false
+    },
+    {
+      "instinct": 0,
+      "kind": 5,
+      "distance": 4.1,
+      "accepted": false
+    },
+    {
+      "instinct": 0,
+      "kind": 5,
+      "distance": 8.0,
+      "accepted": false
+    },
+    {
+      "instinct": 0,
+      "kind": 6,
+      "distance": 4.0,
+      "accepted": false
+    },
+    {
+      "instinct": 0,
+      "kind": 6,
+      "distance": 4.1,
+      "accepted": false
+    },
+    {
+      "instinct": 0,
+      "kind": 6,
+      "distance": 8.0,
+      "accepted": false
+    },
+    {
+      "instinct": 1,
+      "kind": 0,
+      "distance": 4.0,
+      "accepted": true
+    },
+    {
+      "instinct": 1,
+      "kind": 0,
+      "distance": 4.1,
+      "accepted": false
+    },
+    {
+      "instinct": 1,
+      "kind": 0,
+      "distance": 8.0,
+      "accepted": false
+    },
+    {
+      "instinct": 1,
+      "kind": 1,
+      "distance": 4.0,
+      "accepted": true
+    },
+    {
+      "instinct": 1,
+      "kind": 1,
+      "distance": 4.1,
+      "accepted": false
+    },
+    {
+      "instinct": 1,
+      "kind": 1,
+      "distance": 8.0,
+      "accepted": false
+    },
+    {
+      "instinct": 1,
+      "kind": 2,
+      "distance": 4.0,
+      "accepted": false
+    },
+    {
+      "instinct": 1,
+      "kind": 2,
+      "distance": 4.1,
+      "accepted": false
+    },
+    {
+      "instinct": 1,
+      "kind": 2,
+      "distance": 8.0,
+      "accepted": false
+    },
+    {
+      "instinct": 1,
+      "kind": 3,
+      "distance": 4.0,
+      "accepted": false
+    },
+    {
+      "instinct": 1,
+      "kind": 3,
+      "distance": 4.1,
+      "accepted": false
+    },
+    {
+      "instinct": 1,
+      "kind": 3,
+      "distance": 8.0,
+      "accepted": false
+    },
+    {
+      "instinct": 1,
+      "kind": 4,
+      "distance": 4.0,
+      "accepted": false
+    },
+    {
+      "instinct": 1,
+      "kind": 4,
+      "distance": 4.1,
+      "accepted": false
+    },
+    {
+      "instinct": 1,
+      "kind": 4,
+      "distance": 8.0,
+      "accepted": false
+    },
+    {
+      "instinct": 1,
+      "kind": 5,
+      "distance": 4.0,
+      "accepted": false
+    },
+    {
+      "instinct": 1,
+      "kind": 5,
+      "distance": 4.1,
+      "accepted": false
+    },
+    {
+      "instinct": 1,
+      "kind": 5,
+      "distance": 8.0,
+      "accepted": false
+    },
+    {
+      "instinct": 1,
+      "kind": 6,
+      "distance": 4.0,
+      "accepted": false
+    },
+    {
+      "instinct": 1,
+      "kind": 6,
+      "distance": 4.1,
+      "accepted": false
+    },
+    {
+      "instinct": 1,
+      "kind": 6,
+      "distance": 8.0,
+      "accepted": false
+    },
+    {
+      "instinct": 2,
+      "kind": 0,
+      "distance": 4.0,
+      "accepted": true
+    },
+    {
+      "instinct": 2,
+      "kind": 0,
+      "distance": 4.1,
+      "accepted": true
+    },
+    {
+      "instinct": 2,
+      "kind": 0,
+      "distance": 8.0,
+      "accepted": true
+    },
+    {
+      "instinct": 2,
+      "kind": 1,
+      "distance": 4.0,
+      "accepted": true
+    },
+    {
+      "instinct": 2,
+      "kind": 1,
+      "distance": 4.1,
+      "accepted": false
+    },
+    {
+      "instinct": 2,
+      "kind": 1,
+      "distance": 8.0,
+      "accepted": false
+    },
+    {
+      "instinct": 2,
+      "kind": 2,
+      "distance": 4.0,
+      "accepted": false
+    },
+    {
+      "instinct": 2,
+      "kind": 2,
+      "distance": 4.1,
+      "accepted": false
+    },
+    {
+      "instinct": 2,
+      "kind": 2,
+      "distance": 8.0,
+      "accepted": false
+    },
+    {
+      "instinct": 2,
+      "kind": 3,
+      "distance": 4.0,
+      "accepted": false
+    },
+    {
+      "instinct": 2,
+      "kind": 3,
+      "distance": 4.1,
+      "accepted": false
+    },
+    {
+      "instinct": 2,
+      "kind": 3,
+      "distance": 8.0,
+      "accepted": false
+    },
+    {
+      "instinct": 2,
+      "kind": 4,
+      "distance": 4.0,
+      "accepted": false
+    },
+    {
+      "instinct": 2,
+      "kind": 4,
+      "distance": 4.1,
+      "accepted": false
+    },
+    {
+      "instinct": 2,
+      "kind": 4,
+      "distance": 8.0,
+      "accepted": false
+    },
+    {
+      "instinct": 2,
+      "kind": 5,
+      "distance": 4.0,
+      "accepted": false
+    },
+    {
+      "instinct": 2,
+      "kind": 5,
+      "distance": 4.1,
+      "accepted": false
+    },
+    {
+      "instinct": 2,
+      "kind": 5,
+      "distance": 8.0,
+      "accepted": false
+    },
+    {
+      "instinct": 2,
+      "kind": 6,
+      "distance": 4.0,
+      "accepted": false
+    },
+    {
+      "instinct": 2,
+      "kind": 6,
+      "distance": 4.1,
+      "accepted": false
+    },
+    {
+      "instinct": 2,
+      "kind": 6,
+      "distance": 8.0,
+      "accepted": false
+    },
+    {
+      "instinct": 3,
+      "kind": 0,
+      "distance": 4.0,
+      "accepted": true
+    },
+    {
+      "instinct": 3,
+      "kind": 0,
+      "distance": 4.1,
+      "accepted": false
+    },
+    {
+      "instinct": 3,
+      "kind": 0,
+      "distance": 8.0,
+      "accepted": false
+    },
+    {
+      "instinct": 3,
+      "kind": 1,
+      "distance": 4.0,
+      "accepted": true
+    },
+    {
+      "instinct": 3,
+      "kind": 1,
+      "distance": 4.1,
+      "accepted": false
+    },
+    {
+      "instinct": 3,
+      "kind": 1,
+      "distance": 8.0,
+      "accepted": false
+    },
+    {
+      "instinct": 3,
+      "kind": 2,
+      "distance": 4.0,
+      "accepted": false
+    },
+    {
+      "instinct": 3,
+      "kind": 2,
+      "distance": 4.1,
+      "accepted": false
+    },
+    {
+      "instinct": 3,
+      "kind": 2,
+      "distance": 8.0,
+      "accepted": false
+    },
+    {
+      "instinct": 3,
+      "kind": 3,
+      "distance": 4.0,
+      "accepted": true
+    },
+    {
+      "instinct": 3,
+      "kind": 3,
+      "distance": 4.1,
+      "accepted": false
+    },
+    {
+      "instinct": 3,
+      "kind": 3,
+      "distance": 8.0,
+      "accepted": false
+    },
+    {
+      "instinct": 3,
+      "kind": 4,
+      "distance": 4.0,
+      "accepted": true
+    },
+    {
+      "instinct": 3,
+      "kind": 4,
+      "distance": 4.1,
+      "accepted": false
+    },
+    {
+      "instinct": 3,
+      "kind": 4,
+      "distance": 8.0,
+      "accepted": false
+    },
+    {
+      "instinct": 3,
+      "kind": 5,
+      "distance": 4.0,
+      "accepted": true
+    },
+    {
+      "instinct": 3,
+      "kind": 5,
+      "distance": 4.1,
+      "accepted": false
+    },
+    {
+      "instinct": 3,
+      "kind": 5,
+      "distance": 8.0,
+      "accepted": false
+    },
+    {
+      "instinct": 3,
+      "kind": 6,
+      "distance": 4.0,
+      "accepted": false
+    },
+    {
+      "instinct": 3,
+      "kind": 6,
+      "distance": 4.1,
+      "accepted": false
+    },
+    {
+      "instinct": 3,
+      "kind": 6,
+      "distance": 8.0,
+      "accepted": false
+    }
+  ],
+  "ranges": [
+    {
+      "role": "select",
+      "address": "0x14592f7a0",
+      "end_exclusive": "0x14592fd7c",
+      "file_offset": "0x592eba0",
+      "sha256": "12be1ea8d6ecafc60dd8d8e159b0c260077391bf54ac5d0e1d042a6b3fcc943d"
+    },
+    {
+      "role": "movement",
+      "address": "0x14592f1a0",
+      "end_exclusive": "0x14592f49a",
+      "file_offset": "0x592e5a0",
+      "sha256": "de102fc895b89906b812f0561422f2f85f29abd25f22730d8e17a2f4a4e5188a"
+    },
+    {
+      "role": "sweep-filter",
+      "address": "0x1459a3e50",
+      "end_exclusive": "0x1459a40ae",
+      "file_offset": "0x59a3250",
+      "sha256": "ae96f61ea1493d4c8eeab6fcd2da4995a5034e8679d3ce80487985fe1af95c36"
+    },
+    {
+      "role": "sweep",
+      "address": "0x14592f560",
+      "end_exclusive": "0x14592f73b",
+      "file_offset": "0x592e960",
+      "sha256": "7a61625aacfe96ba57658107b6a2d8ece8b859ce89ac70e0968af6bb2fc5ca5e"
+    },
+    {
+      "role": "startup",
+      "address": "0x145918950",
+      "end_exclusive": "0x14591983c",
+      "file_offset": "0x5917d50",
+      "sha256": "52fbcce4527befad1811f77901d1d9ced225fe054830d2566a0134888b4212c3"
+    },
+    {
+      "role": "collection-tick",
+      "address": "0x14590cbbe",
+      "end_exclusive": "0x14590d698",
+      "file_offset": "0x590bfbe",
+      "sha256": "81d005aaabe8dada034843cf7b4d4c1732b75744d93b298ce2c00047df4700bd"
+    }
+  ],
+  "limits": [
+    "Unmodified native selector/filter with synthetic pickup/companion memory. Active reservation collection, deallocation and a bounded32-byte filter-output allocation are explicit external seams. Startup, movement and collection state paths are statically recovered, not original-game runtime observations."
+  ]
+}

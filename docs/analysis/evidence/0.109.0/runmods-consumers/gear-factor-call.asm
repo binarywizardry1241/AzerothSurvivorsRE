@@ -1,0 +1,5 @@
+0x145973090: 488d8fb0020000 lea rcx, [rdi + 0x2b0]
+0x145973097: c6858701000000 mov byte ptr [rbp + 0x187], 0
+0x14597309e: e8fdb3f9ff call 0x14590e4a0
+0x1459730a3: 90 nop
+0x1459730a4: 0f28f8 movaps xmm7, xmm0

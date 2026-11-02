@@ -1,0 +1,1298 @@
+{
+  "target_sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+  "cases": [
+    {
+      "group": "unknown",
+      "input": "",
+      "expected": ""
+    },
+    {
+      "group": "unknown",
+      "input": "unknown|1|2\nfoo\n",
+      "expected": ""
+    },
+    {
+      "group": "unknown",
+      "input": "hero|1|1|0|0,0,0,0,0\n",
+      "expected": "hero|1|1|0|0,0,0,0,0\n"
+    },
+    {
+      "group": "unknown",
+      "input": "pick|1|1|0|elwynn|Alric\n",
+      "expected": "pick|1|1|0|elwynn|Alric|0,0,0,0,0|100,100,100,100\n"
+    },
+    {
+      "group": "class-order",
+      "input": "open|255|wsg\nopen|1|elwynn\nopen|2|aq\n",
+      "expected": "open|255|wsg\nopen|1|elwynn\nopen|2|aq\n"
+    },
+    {
+      "group": "class-order",
+      "input": "open|1|aq\nopen|1|elwynn\nopen|255|wsg\n",
+      "expected": "open|1|aq\nopen|255|wsg\n"
+    },
+    {
+      "group": "class-order",
+      "input": "beat|2|aq,elwynn,wsg,wsg\nbeat|1|aq\n",
+      "expected": "open|1|naxx\nopen|2|naxx\nbeat|1|aq\nbeat|2|elwynn,wsg,aq\n"
+    },
+    {
+      "group": "class-order",
+      "input": "open|1|wsg\nbeat|1|wsg\n",
+      "expected": "open|1|ungoro\nbeat|1|wsg\n"
+    },
+    {
+      "group": "class-order",
+      "input": "unlock|1|0\nunlock|2|999\n",
+      "expected": "open|1|elwynn\nopen|2|aq\n"
+    },
+    {
+      "group": "class-order",
+      "input": "open|1|bogus\nunlock|2|bad\n",
+      "expected": ""
+    },
+    {
+      "group": "class-order",
+      "input": "beat|6|elwynn\nopen|6|wsg\n",
+      "expected": "open|6|wsg\nbeat|6|elwynn\n"
+    },
+    {
+      "group": "class-order",
+      "input": "beat|+1| aq,wsg ,wsg,elwynn\n",
+      "expected": "open|1|ungoro\nbeat|1|elwynn,wsg\n"
+    },
+    {
+      "group": "class-order",
+      "input": "open|+1|+2\n",
+      "expected": ""
+    },
+    {
+      "group": "class-order",
+      "input": "open|1|elwynn|x\nbeat|1|wsg|x\n",
+      "expected": ""
+    },
+    {
+      "group": "class-order",
+      "input": "unlock|1|5\nopen|1|elwynn\n",
+      "expected": "open|1|feralas\n"
+    },
+    {
+      "group": "seed",
+      "input": "ach|foo,bar,foo,\n",
+      "expected": "ach|bar,foo\n"
+    },
+    {
+      "group": "account",
+      "input": "ach|a, b,b ,a|extra\n",
+      "expected": "ach| b,a,a|extra,b \n"
+    },
+    {
+      "group": "account",
+      "input": "achat|foo=99,foo=1,bar=2,=3\n",
+      "expected": "achat|=3,bar=2,foo=1\n"
+    },
+    {
+      "group": "account",
+      "input": "achat|a=+0,a=9,a=1,b=-1,c=18446744073709551615,d=18446744073709551616\n",
+      "expected": "achat|a=0,c=18446744073709551615\n"
+    },
+    {
+      "group": "account",
+      "input": "achat|a=1=2,b=3 |extra\n",
+      "expected": ""
+    },
+    {
+      "group": "account",
+      "input": "perk|rerolls:3,rerolls:1,banish:2,banish:0\n",
+      "expected": "perk|banish:2,rerolls:1\n"
+    },
+    {
+      "group": "account",
+      "input": "perk| rerolls : 3 ,veteran:255,banish:256,leash:+2,opening:0\n",
+      "expected": "perk|leash:2,veteran:2\n"
+    },
+    {
+      "group": "account",
+      "input": "perk|rerolls:2:1,banish:1|extra\n",
+      "expected": ""
+    },
+    {
+      "group": "account",
+      "input": "tabard|90011,90024,90025,90006,90010,90012,90011\n",
+      "expected": "tabard|90011,90012,90024\n"
+    },
+    {
+      "group": "account",
+      "input": "tabard|90011\ntabard|90012\n",
+      "expected": "tabard|90011,90012\n"
+    },
+    {
+      "group": "account",
+      "input": "pets|\npets|rabbit,owl\n",
+      "expected": "pets|squirrel\n"
+    },
+    {
+      "group": "account",
+      "input": "pets|none,none\n",
+      "expected": "pets|squirrel,squirrel\n"
+    },
+    {
+      "group": "account",
+      "input": "pets| rabbit ,owl|x\n",
+      "expected": "pets|squirrel,squirrel\n"
+    },
+    {
+      "group": "account",
+      "input": "resets|-1\nresets|+2\nresets|5\n",
+      "expected": "resets|2\n"
+    },
+    {
+      "group": "account",
+      "input": "resets|0\nresets|4\n",
+      "expected": ""
+    },
+    {
+      "group": "account",
+      "input": "resets|4294967296\nresets|4294967295\n",
+      "expected": "resets|4294967295\n"
+    },
+    {
+      "group": "account",
+      "input": "resets|2|extra\nresets|9\n",
+      "expected": "resets|9\n"
+    },
+    {
+      "group": "account",
+      "input": "stat|kills=1,kills=5,gold=2,custom=3\nstat|kills=3,wins=1\n",
+      "expected": "stat|kills=5,gold=2,guardians=0,bosses=0,runs=0,wins=1,caches=0\n"
+    },
+    {
+      "group": "account",
+      "input": "stat| kills=4,kills=+9,bosses=18446744073709551615,runs=-1\n",
+      "expected": "stat|kills=9,gold=0,guardians=0,bosses=18446744073709551615,runs=0,wins=0,caches=0\n"
+    },
+    {
+      "group": "account",
+      "input": "stat|kills=1=2,gold=3|extra\n",
+      "expected": ""
+    },
+    {
+      "group": "hero",
+      "input": "hero|1|1|255|1,2,3,4,5\n",
+      "expected": "hero|1|1|1|1,2,3,4,5\n"
+    },
+    {
+      "group": "hero",
+      "input": "hero|1|9|0|0,0,0,0,0\n",
+      "expected": ""
+    },
+    {
+      "group": "hero",
+      "input": "hero|6|1|0|0,0,0,0,0\n",
+      "expected": ""
+    },
+    {
+      "group": "hero",
+      "input": "hero|1|1|0|0,0,0,0,0|extra\n",
+      "expected": ""
+    },
+    {
+      "group": "hero",
+      "input": "hero|+1|+1|+0|0,0,0,0,0\n",
+      "expected": "hero|1|1|0|0,0,0,0,0\n"
+    },
+    {
+      "group": "hero",
+      "input": "hero|1|1|0|0,bad,0,0,0,0\n",
+      "expected": "hero|1|1|0|0,0,0,0,0\n"
+    },
+    {
+      "group": "hero",
+      "input": "hero|1|1|0|0,0,0,0\n",
+      "expected": ""
+    },
+    {
+      "group": "hero",
+      "input": "hero|2|1|0|0,0,0,0,0\nhero|1|2|1|0,0,0,0,0\nhero|2|3|1|0,0,0,0,0\n",
+      "expected": "hero|1|2|1|0,0,0,0,0\nhero|2|3|1|0,0,0,0,0\n"
+    },
+    {
+      "group": "pick",
+      "input": "pick|6|9|255|bogus|Not A Name|255,255,255,255,255|0,501,350,175\n",
+      "expected": "pick|1|1|1|elwynn|Hero|255,255,255,255,255|100,500,300,150\n"
+    },
+    {
+      "group": "pick",
+      "input": "pick|1|1|0|elwynn|A\npick|2|3|1|aq|Second\n",
+      "expected": "pick|1|1|0|elwynn|Hero|0,0,0,0,0|100,100,100,100\n"
+    },
+    {
+      "group": "pick",
+      "input": "pick|1|1|0|elwynn|bad|x|500,500,300,150|extra\n",
+      "expected": ""
+    },
+    {
+      "group": "pick",
+      "input": "pick|1|1|0|elwynn|bad|0,bad,0,0,0,0|100,100,100,100\n",
+      "expected": "pick|1|1|0|elwynn|Bad|0,0,0,0,0|100,100,100,100\n"
+    },
+    {
+      "group": "pick",
+      "input": "pick|1|1|0|elwynn|bad|0,0,0,0,0|100,bad,100,100,100\n",
+      "expected": "pick|1|1|0|elwynn|Bad|0,0,0,0,0|100,100,100,100\n"
+    },
+    {
+      "group": "roster",
+      "input": "1|Arthas|1|1|0|0,0,0,0,0|60|123|1|1\n",
+      "expected": "1|Arthas|1|1|0|0,0,0,0,0|60|123|1|1\n"
+    },
+    {
+      "group": "roster",
+      "input": "1|foo bar|9|6|255|255,255,255,255,255|0|4294967295|2|9\n",
+      "expected": "1|foo bar|9|6|255|255,255,255,255,255|0|4294967295|2|9\n"
+    },
+    {
+      "group": "roster",
+      "input": "2|Second|1|1|0|0,0,0,0,0|1|0|0|0\n1|First|1|1|0|0,0,0,0,0|2|0|0|0\n2|Duplicate|2|1|1|0,0,0,0,0|3|4|5|6\n",
+      "expected": "2|Second|1|1|0|0,0,0,0,0|1|0|0|0\n1|First|1|1|0|0,0,0,0,0|2|0|0|0\n2|Duplicate|2|1|1|0,0,0,0,0|3|4|5|6\n"
+    },
+    {
+      "group": "roster",
+      "input": "+1|Plus|+1|+1|+2|0,bad,0,0,0,0|0|0|0|0\n",
+      "expected": "1|Plus|1|1|2|0,0,0,0,0|0|0|0|0\n"
+    },
+    {
+      "group": "roster",
+      "input": "1|bad|1|1|0|0,0,0,0,0|61|1|0|0|x\n",
+      "expected": "1|bad|1|1|0|0,0,0,0,0|61|1|0|0\n"
+    },
+    {
+      "group": "roster",
+      "input": "0|bad|1|1|0|0,0,0,0,0|999|0|0|0\n",
+      "expected": "0|bad|1|1|0|0,0,0,0,0|999|0|0|0\n"
+    },
+    {
+      "group": "roster",
+      "input": "1|bad|1|1|0|0,0,0,0,0|1|0|0|0\n1|same|1|1|0|0,0,0,0,0|2|2|2|2\n",
+      "expected": "1|bad|1|1|0|0,0,0,0,0|1|0|0|0\n1|same|1|1|0|0,0,0,0,0|2|2|2|2\n"
+    },
+    {
+      "group": "all",
+      "input": "resets|1\npets|rabbit,owl\ntabard|90011\nperk|banish:1\nstat|kills=9\nachat|foo=12\nach|foo\nseen|unknown=3\nlook|1|0:0\nequip|1|0:101000\nitems|101000\nbeat|1|elwynn\nopen|1|wsg\nhero|1|1|0|0,0,0,0,0\npick|1|1|0|elwynn|Alric\n1|Alric|1|1|0|0,0,0,0,0|1|0|0|0\n",
+      "expected": "1|Alric|1|1|0|0,0,0,0,0|1|0|0|0\npick|1|1|0|elwynn|Alric|0,0,0,0,0|100,100,100,100\nopen|1|wsg\nitems|101000\nequip|1|0:101000\nlook|1|0:0\nseen|unknown=3\nach|foo\nachat|foo=12\nstat|kills=9,gold=0,guardians=0,bosses=0,runs=0,wins=0,caches=0\nbeat|1|elwynn\nperk|banish:1\ntabard|90011\npets|rabbit,owl\nresets|1\nhero|1|1|0|0,0,0,0,0\n"
+    },
+    {
+      "group": "roster-width",
+      "input": "1|Wide|18446744073709551615|4294967296|256|0,0,0,0,0|4294967296|18446744073709551615|1|0\n",
+      "expected": "1|Wide|255|0|0|0,0,0,0,0|0|4294967295|1|0\n"
+    },
+    {
+      "group": "roster-width",
+      "input": "1|Features|1|1|0|0,0,256,0,0,0|1|0|0|0\n",
+      "expected": "1|Features|1|1|0|0,0,0,0,0|1|0|0|0\n"
+    },
+    {
+      "group": "all-talent",
+      "input": "resets|1\nhero|1|1|0|0,0,0,0,0\nstat|kills=2\nseen|a=1\nspec|1|0|||\ntalent|1|80|improved_heroic_strike:1\nequip|1|0:101000\nlook|1|0:0\n",
+      "expected": "equip|1|0:101000\nlook|1|0:0\ntalent|1|80|\nspec|1|0|||\nseen|a=1\nstat|kills=2,gold=0,guardians=0,bosses=0,runs=0,wins=0,caches=0\nresets|1\nhero|1|1|0|0,0,0,0,0\n"
+    },
+    {
+      "group": "extra",
+      "input": "pick|1|1|0|elwynn|Alric|0,0,0,0,0|500,bad,500,300,150\n",
+      "expected": "pick|1|1|0|elwynn|Alric|0,0,0,0,0|500,500,300,150\n"
+    },
+    {
+      "group": "extra",
+      "input": "pick|1|1|0|elwynn|Alric|0,0,0,0,0|500,500,300,150\n",
+      "expected": "pick|1|1|0|elwynn|Alric|0,0,0,0,0|500,500,300,150\n"
+    },
+    {
+      "group": "extra",
+      "input": "hero|1|1|0|255,255,255,255,255\n",
+      "expected": "hero|1|1|0|255,255,255,255,255\n"
+    },
+    {
+      "group": "extra",
+      "input": "pets|squirrel,squirrel\n",
+      "expected": "pets|squirrel,squirrel\n"
+    },
+    {
+      "group": "extra",
+      "input": "pets|rabbit,rabbit\n",
+      "expected": "pets|rabbit,rabbit\n"
+    },
+    {
+      "group": "extra",
+      "input": "pets|macaw,macaw\n",
+      "expected": "pets|macaw,macaw\n"
+    },
+    {
+      "group": "extra",
+      "input": "pets|owl,owl\n",
+      "expected": "pets|owl,owl\n"
+    },
+    {
+      "group": "extra",
+      "input": "pets|frog,frog\n",
+      "expected": "pets|frog,frog\n"
+    },
+    {
+      "group": "extra",
+      "input": "pets|kingsnake,kingsnake\n",
+      "expected": "pets|kingsnake,kingsnake\n"
+    },
+    {
+      "group": "extra",
+      "input": "pets|darter,darter\n",
+      "expected": "pets|darter,darter\n"
+    },
+    {
+      "group": "extra",
+      "input": "pets|whelp,whelp\n",
+      "expected": "pets|whelp,whelp\n"
+    },
+    {
+      "group": "extra",
+      "input": "pets|zergling,zergling\n",
+      "expected": "pets|zergling,zergling\n"
+    },
+    {
+      "group": "extra",
+      "input": "pets|chicken,chicken\n",
+      "expected": "pets|chicken,chicken\n"
+    },
+    {
+      "group": "extra",
+      "input": "pets|roach,roach\n",
+      "expected": "pets|roach,roach\n"
+    },
+    {
+      "group": "extra",
+      "input": "pets|panda,panda\n",
+      "expected": "pets|panda,panda\n"
+    },
+    {
+      "group": "extra",
+      "input": "pets|sapphiron,sapphiron\n",
+      "expected": "pets|sapphiron,sapphiron\n"
+    },
+    {
+      "group": "extra",
+      "input": "pets|unknown,unknown\n",
+      "expected": "pets|squirrel,squirrel\n"
+    },
+    {
+      "group": "mixed-legacy-order",
+      "input": "unlock|2|4\nopen|1|elwynn\n",
+      "expected": "open|2|ab\nopen|1|elwynn\n"
+    },
+    {
+      "group": "mixed-legacy-order",
+      "input": "open|2|elwynn\nunlock|1|4\n",
+      "expected": "open|2|elwynn\nopen|1|ab\n"
+    },
+    {
+      "group": "mixed-legacy-order",
+      "input": "unlock|2|4\nopen|1|elwynn\nunlock|9|9\nopen|2|naxx\n",
+      "expected": "open|2|naxx\nopen|1|elwynn\nopen|9|aq\n"
+    },
+    {
+      "group": "mixed-legacy-order",
+      "input": "beat|9|elwynn\nunlock|2|4\nopen|1|elwynn\n",
+      "expected": "open|2|ab\nopen|1|elwynn\nopen|9|duskwood\nbeat|9|elwynn\n"
+    },
+    {
+      "group": "repeated-delimiters",
+      "input": "achat|a=b=1\n",
+      "expected": ""
+    },
+    {
+      "group": "repeated-delimiters",
+      "input": "stat|kills=1=2\n",
+      "expected": ""
+    },
+    {
+      "group": "repeated-delimiters",
+      "input": "seen|a=b=1\n",
+      "expected": ""
+    },
+    {
+      "group": "repeated-delimiters",
+      "input": "perk|rerolls:1:2\n",
+      "expected": ""
+    },
+    {
+      "group": "repeated-delimiters",
+      "input": "achat|=1\n",
+      "expected": "achat|=1\n"
+    },
+    {
+      "group": "repeated-delimiters",
+      "input": "achat|a==1\n",
+      "expected": ""
+    },
+    {
+      "group": "repeated-delimiters",
+      "input": "stat|kills==1\n",
+      "expected": ""
+    },
+    {
+      "group": "account",
+      "input": "stat|wins=2,kills=9,kills=1,gold=3,custom=99\nstat|kills=7,caches=4,bosses=5,guardians=6,runs=8\n",
+      "expected": "stat|kills=9,gold=3,guardians=6,bosses=5,runs=8,wins=2,caches=4\n"
+    },
+    {
+      "group": "account",
+      "input": "stat|kills=0,gold=0\n",
+      "expected": ""
+    },
+    {
+      "group": "account",
+      "input": "stat|kills=18446744073709551615,kills=+12,wins=-1\n",
+      "expected": "stat|kills=18446744073709551615,gold=0,guardians=0,bosses=0,runs=0,wins=0,caches=0\n"
+    },
+    {
+      "group": "account",
+      "input": "open|0|wsg\nopen|255|wsg\nopen|256|wsg\n",
+      "expected": "open|0|wsg\nopen|255|wsg\n"
+    },
+    {
+      "group": "account",
+      "input": "unlock|1|12\n",
+      "expected": "open|1|aq\n"
+    },
+    {
+      "group": "account",
+      "input": "unlock|1|0\n",
+      "expected": "open|1|elwynn\n"
+    },
+    {
+      "group": "account",
+      "input": "open|1|wsg\nopen|1|elwynn\n",
+      "expected": "open|1|wsg\n"
+    },
+    {
+      "group": "account",
+      "input": "open|1| wsg\n",
+      "expected": ""
+    },
+    {
+      "group": "account",
+      "input": "beat|1|wsg,elwynn,wsg\nbeat|1|duskwood\n",
+      "expected": "open|1|ungoro\nbeat|1|elwynn,duskwood,wsg\n"
+    },
+    {
+      "group": "account",
+      "input": "beat|0|elwynn\nbeat|255|wsg\n",
+      "expected": "open|0|duskwood\nopen|255|ungoro\nbeat|0|elwynn\nbeat|255|wsg\n"
+    },
+    {
+      "group": "account",
+      "input": "achat|z=9,a=5,z=2,=3,a=0\nachat|z=1,a=4\n",
+      "expected": "achat|=3,a=0,z=1\n"
+    },
+    {
+      "group": "account",
+      "input": "achat| key =+12,foo=-1,bar=18446744073709551616\n",
+      "expected": "achat| key =12\n"
+    },
+    {
+      "group": "account",
+      "input": "ach| foo ,foo,,foo\nach|Bar, foo \n",
+      "expected": "ach| foo, foo ,Bar,foo\n"
+    },
+    {
+      "group": "account",
+      "input": "perk|rerolls:4,rerolls:1,rerolls:3,banish:2\n",
+      "expected": "perk|banish:2,rerolls:1\n"
+    },
+    {
+      "group": "account",
+      "input": "perk|rerolls:2\nperk|rerolls:1\n",
+      "expected": "perk|rerolls:1\n"
+    },
+    {
+      "group": "account",
+      "input": "resets|0\nresets|9\n",
+      "expected": ""
+    },
+    {
+      "group": "account",
+      "input": "resets|bad\nresets|+4\nresets|9\n",
+      "expected": "resets|4\n"
+    },
+    {
+      "group": "account",
+      "input": "pets| rabbit ,owl\n",
+      "expected": "pets|squirrel,owl\n"
+    },
+    {
+      "group": "account",
+      "input": "pets|owl,owl,macaw\n",
+      "expected": "pets|owl,owl\n"
+    },
+    {
+      "group": "account",
+      "input": "pets|\npets|frog,macaw\n",
+      "expected": "pets|squirrel\n"
+    },
+    {
+      "group": "account",
+      "input": "42|A|1|1|2|0,0,0,0,0|5|10|2|1\n",
+      "expected": "42|A|1|1|2|0,0,0,0,0|5|10|2|1\n"
+    },
+    {
+      "group": "account",
+      "input": "42||256|257|258|1,2,3,4,5|5|10|2|1|extra\n",
+      "expected": "42||0|1|2|1,2,3,4,5|5|10|2|1\n"
+    },
+    {
+      "group": "account",
+      "input": "42|Odd|1|1|0|bad|5|10|2|1\n",
+      "expected": ""
+    },
+    {
+      "group": "account",
+      "input": "42|Odd|1|1|0|1,2,3,4|5|10|2|1\n",
+      "expected": ""
+    },
+    {
+      "group": "account",
+      "input": "42|Odd|1|1|0|1,2,3,4,5,6|5|10|2|1\n",
+      "expected": ""
+    },
+    {
+      "group": "account",
+      "input": "42|Zed|1|1|0|0,0,0,0,0|5|10|2|1\n42|Alpha|2|3|1|1,2,3,4,5|9|11|4|3\n",
+      "expected": "42|Zed|1|1|0|0,0,0,0,0|5|10|2|1\n42|Alpha|2|3|1|1,2,3,4,5|9|11|4|3\n"
+    },
+    {
+      "group": "seed",
+      "input": "perk|rerolls:0,rerolls:2,banish:3,unknown:3\n",
+      "expected": "perk|banish:3,rerolls:2\n"
+    },
+    {
+      "group": "seed",
+      "input": "tabard|90011,90012,90011,90024,90001,0,4294967295\n",
+      "expected": "tabard|90011,90012,90024\n"
+    },
+    {
+      "group": "seed",
+      "input": "pets|rabbit,owl\n",
+      "expected": "pets|rabbit,owl\n"
+    },
+    {
+      "group": "seed",
+      "input": "pets|rabbit,unknown\npets|frog,macaw\n",
+      "expected": "pets|rabbit,squirrel\n"
+    },
+    {
+      "group": "seed",
+      "input": "pets|,owl\n",
+      "expected": "pets|squirrel,owl\n"
+    },
+    {
+      "group": "seed",
+      "input": "pets|rabbit\n",
+      "expected": "pets|rabbit\n"
+    },
+    {
+      "group": "seed",
+      "input": "pets|rabbit,owl,macaw\n",
+      "expected": "pets|rabbit,owl\n"
+    },
+    {
+      "group": "seed",
+      "input": "resets|0\n",
+      "expected": ""
+    },
+    {
+      "group": "seed",
+      "input": "resets|1\nresets|9\nresets|3\n",
+      "expected": "resets|1\n"
+    },
+    {
+      "group": "seed",
+      "input": "stat|custom=99,kills=0\n",
+      "expected": ""
+    },
+    {
+      "group": "seed",
+      "input": "achat|foo=99,foo=0,bar=2,=3\n",
+      "expected": "achat|=3,bar=2,foo=0\n"
+    },
+    {
+      "group": "seed",
+      "input": "beat|1|elwynn,wsg,foo\n",
+      "expected": "open|1|ungoro\nbeat|1|elwynn,wsg\n"
+    },
+    {
+      "group": "seed",
+      "input": "open|1|wsg\n",
+      "expected": "open|1|wsg\n"
+    },
+    {
+      "group": "seed",
+      "input": "unlock|1|9\n",
+      "expected": "open|1|aq\n"
+    },
+    {
+      "group": "account-roster-overflow",
+      "input": "42|Odd|1|1|0|0,0,0,0,0|4294967295|4294967295|4294967295|4294967295\n",
+      "expected": "42|Odd|1|1|0|0,0,0,0,0|4294967295|4294967295|4294967295|4294967295\n"
+    },
+    {
+      "group": "account-roster-overflow",
+      "input": "42|Odd|1|1|0|0,0,0,0,0|4294967296|4294967296|4294967296|4294967296\n",
+      "expected": "42|Odd|1|1|0|0,0,0,0,0|0|0|0|0\n"
+    },
+    {
+      "group": "account-roster-overflow",
+      "input": "42|Odd|1|1|0|0,0,0,0,0|18446744073709551615|18446744073709551615|18446744073709551615|18446744073709551615\n",
+      "expected": "42|Odd|1|1|0|0,0,0,0,0|4294967295|4294967295|4294967295|4294967295\n"
+    },
+    {
+      "group": "account-roster-overflow",
+      "input": "42|Odd|1|1|0|0,0,0,0,0|18446744073709551616|18446744073709551616|18446744073709551616|18446744073709551616\n",
+      "expected": ""
+    },
+    {
+      "group": "account-open-order",
+      "input": "open|9|wsg\nopen|1|elwynn\nopen|9|naxx\n",
+      "expected": "open|9|naxx\nopen|1|elwynn\n"
+    },
+    {
+      "group": "account-open-order",
+      "input": "open|255|wsg\nopen|0|elwynn\nbeat|2|elwynn\n",
+      "expected": "open|255|wsg\nopen|0|elwynn\nopen|2|duskwood\nbeat|2|elwynn\n"
+    },
+    {
+      "group": "account-open-order",
+      "input": "open|9|wsg\nopen|1|elwynn\nbeat|9|elwynn\nbeat|0|wsg\n",
+      "expected": "open|9|wsg\nopen|1|elwynn\nopen|0|ungoro\nbeat|0|wsg\nbeat|9|elwynn\n"
+    }
+  ],
+  "appearance_cases": [
+    {
+      "counts": null,
+      "race": 1,
+      "sex": 0,
+      "features": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "counts": null,
+      "race": 1,
+      "sex": 0,
+      "features": [
+        255,
+        255,
+        255,
+        255,
+        255
+      ],
+      "expected": [
+        255,
+        255,
+        255,
+        255,
+        255
+      ]
+    },
+    {
+      "counts": null,
+      "race": 1,
+      "sex": 0,
+      "features": [
+        200,
+        3,
+        9,
+        0,
+        255
+      ],
+      "expected": [
+        200,
+        3,
+        9,
+        0,
+        255
+      ]
+    },
+    {
+      "counts": null,
+      "race": 2,
+      "sex": 0,
+      "features": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "counts": null,
+      "race": 2,
+      "sex": 0,
+      "features": [
+        255,
+        255,
+        255,
+        255,
+        255
+      ],
+      "expected": [
+        255,
+        255,
+        255,
+        255,
+        255
+      ]
+    },
+    {
+      "counts": null,
+      "race": 2,
+      "sex": 0,
+      "features": [
+        200,
+        3,
+        9,
+        0,
+        255
+      ],
+      "expected": [
+        200,
+        3,
+        9,
+        0,
+        255
+      ]
+    },
+    {
+      "counts": null,
+      "race": 1,
+      "sex": 1,
+      "features": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "counts": null,
+      "race": 1,
+      "sex": 1,
+      "features": [
+        255,
+        255,
+        255,
+        255,
+        255
+      ],
+      "expected": [
+        255,
+        255,
+        255,
+        255,
+        255
+      ]
+    },
+    {
+      "counts": null,
+      "race": 1,
+      "sex": 1,
+      "features": [
+        200,
+        3,
+        9,
+        0,
+        255
+      ],
+      "expected": [
+        200,
+        3,
+        9,
+        0,
+        255
+      ]
+    },
+    {
+      "counts": [],
+      "race": 1,
+      "sex": 0,
+      "features": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "counts": [],
+      "race": 1,
+      "sex": 0,
+      "features": [
+        255,
+        255,
+        255,
+        255,
+        255
+      ],
+      "expected": [
+        255,
+        255,
+        255,
+        255,
+        255
+      ]
+    },
+    {
+      "counts": [],
+      "race": 1,
+      "sex": 0,
+      "features": [
+        200,
+        3,
+        9,
+        0,
+        255
+      ],
+      "expected": [
+        200,
+        3,
+        9,
+        0,
+        255
+      ]
+    },
+    {
+      "counts": [],
+      "race": 2,
+      "sex": 0,
+      "features": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "counts": [],
+      "race": 2,
+      "sex": 0,
+      "features": [
+        255,
+        255,
+        255,
+        255,
+        255
+      ],
+      "expected": [
+        255,
+        255,
+        255,
+        255,
+        255
+      ]
+    },
+    {
+      "counts": [],
+      "race": 2,
+      "sex": 0,
+      "features": [
+        200,
+        3,
+        9,
+        0,
+        255
+      ],
+      "expected": [
+        200,
+        3,
+        9,
+        0,
+        255
+      ]
+    },
+    {
+      "counts": [],
+      "race": 1,
+      "sex": 1,
+      "features": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "counts": [],
+      "race": 1,
+      "sex": 1,
+      "features": [
+        255,
+        255,
+        255,
+        255,
+        255
+      ],
+      "expected": [
+        255,
+        255,
+        255,
+        255,
+        255
+      ]
+    },
+    {
+      "counts": [],
+      "race": 1,
+      "sex": 1,
+      "features": [
+        200,
+        3,
+        9,
+        0,
+        255
+      ],
+      "expected": [
+        200,
+        3,
+        9,
+        0,
+        255
+      ]
+    },
+    {
+      "counts": [
+        {
+          "race": 1,
+          "sex": 0,
+          "values": [
+            0,
+            2,
+            5,
+            1,
+            255
+          ]
+        }
+      ],
+      "race": 1,
+      "sex": 0,
+      "features": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "counts": [
+        {
+          "race": 1,
+          "sex": 0,
+          "values": [
+            0,
+            2,
+            5,
+            1,
+            255
+          ]
+        }
+      ],
+      "race": 1,
+      "sex": 0,
+      "features": [
+        255,
+        255,
+        255,
+        255,
+        255
+      ],
+      "expected": [
+        0,
+        1,
+        4,
+        0,
+        254
+      ]
+    },
+    {
+      "counts": [
+        {
+          "race": 1,
+          "sex": 0,
+          "values": [
+            0,
+            2,
+            5,
+            1,
+            255
+          ]
+        }
+      ],
+      "race": 1,
+      "sex": 0,
+      "features": [
+        200,
+        3,
+        9,
+        0,
+        255
+      ],
+      "expected": [
+        0,
+        1,
+        4,
+        0,
+        254
+      ]
+    },
+    {
+      "counts": [
+        {
+          "race": 1,
+          "sex": 0,
+          "values": [
+            0,
+            2,
+            5,
+            1,
+            255
+          ]
+        }
+      ],
+      "race": 2,
+      "sex": 0,
+      "features": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "counts": [
+        {
+          "race": 1,
+          "sex": 0,
+          "values": [
+            0,
+            2,
+            5,
+            1,
+            255
+          ]
+        }
+      ],
+      "race": 2,
+      "sex": 0,
+      "features": [
+        255,
+        255,
+        255,
+        255,
+        255
+      ],
+      "expected": [
+        255,
+        255,
+        255,
+        255,
+        255
+      ]
+    },
+    {
+      "counts": [
+        {
+          "race": 1,
+          "sex": 0,
+          "values": [
+            0,
+            2,
+            5,
+            1,
+            255
+          ]
+        }
+      ],
+      "race": 2,
+      "sex": 0,
+      "features": [
+        200,
+        3,
+        9,
+        0,
+        255
+      ],
+      "expected": [
+        200,
+        3,
+        9,
+        0,
+        255
+      ]
+    },
+    {
+      "counts": [
+        {
+          "race": 1,
+          "sex": 0,
+          "values": [
+            0,
+            2,
+            5,
+            1,
+            255
+          ]
+        }
+      ],
+      "race": 1,
+      "sex": 1,
+      "features": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "counts": [
+        {
+          "race": 1,
+          "sex": 0,
+          "values": [
+            0,
+            2,
+            5,
+            1,
+            255
+          ]
+        }
+      ],
+      "race": 1,
+      "sex": 1,
+      "features": [
+        255,
+        255,
+        255,
+        255,
+        255
+      ],
+      "expected": [
+        255,
+        255,
+        255,
+        255,
+        255
+      ]
+    },
+    {
+      "counts": [
+        {
+          "race": 1,
+          "sex": 0,
+          "values": [
+            0,
+            2,
+            5,
+            1,
+            255
+          ]
+        }
+      ],
+      "race": 1,
+      "sex": 1,
+      "features": [
+        200,
+        3,
+        9,
+        0,
+        255
+      ],
+      "expected": [
+        200,
+        3,
+        9,
+        0,
+        255
+      ]
+    }
+  ]
+}

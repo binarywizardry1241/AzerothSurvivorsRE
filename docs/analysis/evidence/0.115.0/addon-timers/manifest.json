@@ -1,0 +1,190 @@
+{
+  "target": {
+    "version": "0.115.0",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+    "size": 142111232,
+    "path": "installed-game/AzerothSurvivors.exe"
+  },
+  "method": "REA 6.5.0/Ghidra 12.1.4 static original-address imports, exact embedded Lua and current PE code/data; source review of the local addon consumer.",
+  "target_executed": false,
+  "addon_executed": false,
+  "native_ranges": [
+    {
+      "role": "timer-snapshot",
+      "va": "0x1458f6040",
+      "end": "0x1458f612f",
+      "file_offset": "0x58f5440",
+      "size": 239,
+      "sha256": "3df46a634bf901de5a0bbfb7c63742f374b70ce9d88feeb2224da49ad87525fa",
+      "assembly": "timer-snapshot.asm",
+      "assembly_sha256": "905a0536c243e359a7298bb0473fe8f6b76ff934fb07bf49f07be0ed47c4851a"
+    },
+    {
+      "role": "timer-rows",
+      "va": "0x1459721c0",
+      "end": "0x145972592",
+      "file_offset": "0x59715c0",
+      "size": 978,
+      "sha256": "5c667d8be9b9c356bade6ed48a031d0cdb14ca1c160d93193ab9ec17555a9643",
+      "assembly": "timer-rows.asm",
+      "assembly_sha256": "0bbea143031a48644ce14ded59034b4462a3a1f346633cc88dc797c46c2dade5"
+    },
+    {
+      "role": "timer-format",
+      "va": "0x1458e4220",
+      "end": "0x1458e454a",
+      "file_offset": "0x58e3620",
+      "size": 810,
+      "sha256": "901d0b08a8e6619ffdf2298f3ead1468c821db002d4d6b685a44b5d5ab6c19a8",
+      "assembly": "timer-format.asm",
+      "assembly_sha256": "39ba450edcac50afdba9eec7ebdaecdb1b7e1063ddd56d6bbabebeb4af2536bd"
+    }
+  ],
+  "extra_ranges": [
+    {
+      "role": "timer-effect-switch",
+      "va": "0x14733303c",
+      "file_offset": "0x7331c3c",
+      "size": 140,
+      "sha256": "3ea8caf47452c126542ae0e9c48671757ca6fa10d39b3f2f04482cbca1201904",
+      "bytes_hex": "6df363fe42f363fe42f363fe42f363fe42f363fe42f363fe42f363fe42f363fe42f363fe42f363fe81f463fe42f363fe42f363fe42f363fe42f363fe42f363fe6df363fe6df363fe42f363febef463fe42f363fe42f363fe42f363fe42f363fe42f363fe42f363fe42f363fe42f363fe42f363fe42f363fe42f363fe42f363fe7ff363fe42f363fecdf363fe"
+    },
+    {
+      "role": "summon-kind",
+      "va": "0x1473320ba",
+      "file_offset": "0x7330cba",
+      "size": 6,
+      "sha256": "2815cb02b95b6d15383bf551f09b33e01806ad2f4221b035a592c1be146d6a99",
+      "bytes_hex": "73756d6d6f6e"
+    },
+    {
+      "role": "cooldown-kind",
+      "va": "0x147330552",
+      "file_offset": "0x732f152",
+      "size": 8,
+      "sha256": "09182dd8b7aee92e720540b2ee8524a457dee3a3b255dac838cd903aa8f988ec",
+      "bytes_hex": "636f6f6c646f776e"
+    },
+    {
+      "role": "timer-wire-format",
+      "va": "0x14732edf8",
+      "file_offset": "0x732d9f8",
+      "size": 26,
+      "sha256": "925519159279e02068bff760430c06a64cedcc806d7103c030e3fca11c65068d",
+      "bytes_hex": "c0012cc0012cc0012cc5200000700100012cc520000070010000"
+    },
+    {
+      "role": "publication-interval",
+      "va": "0x14702c5d0",
+      "file_offset": "0x702b1d0",
+      "size": 8,
+      "sha256": "ec361add5afbcdb8b62bf8daef0ed186d18714095ea66df0b460266669a7c753",
+      "bytes_hex": "9a9999999999c93f"
+    },
+    {
+      "role": "timer-field-zero",
+      "va": "0x145ee0430",
+      "file_offset": "0x5edf030",
+      "size": 4,
+      "sha256": "6d58692645c9d1cfaf13541cbd258f86193ef63c2f1d38f6bbca9617372d7bd6",
+      "bytes_hex": "00000080"
+    },
+    {
+      "role": "gate-special-wait",
+      "va": "0x145edff10",
+      "file_offset": "0x5edeb10",
+      "size": 4,
+      "sha256": "d9fc8a51763953481a1808af3156bcb8144c2f925e96dec623c886f6d9d975b2",
+      "bytes_hex": "00004041"
+    },
+    {
+      "role": "gate-minimum-wait",
+      "va": "0x145ee55c0",
+      "file_offset": "0x5ee41c0",
+      "size": 4,
+      "sha256": "4f4b9b7d8b86633e2824e2f439819357b0cd010ab410ea1a691b12c5f94e91e0",
+      "bytes_hex": "00008040"
+    },
+    {
+      "role": "talent-class-descriptors",
+      "va": "0x147029fc8",
+      "file_offset": "0x7028bc8",
+      "size": 1800,
+      "sha256": "e40464107c01d5374413f48c9e4dcf94760554321682b6fb2c07e1a5b8d6e062",
+      "bytes_hex": null
+    },
+    {
+      "role": "poll-gate",
+      "va": "0x14587d6d9",
+      "file_offset": "0x587cad9",
+      "size": 63,
+      "sha256": "7485c8902fa3258395b3f1c3c76ae5594c724855c87a6ec9f7ea25fd2118e226",
+      "bytes_hex": "660f28c6488b85000e0000f20f5c8040170000660f2e05dcee7a010f829707000083b8580c000001770df680490f0000010f8581070000f20f11b040170000"
+    },
+    {
+      "role": "changed-payload",
+      "va": "0x14587dc9d",
+      "file_offset": "0x587d09d",
+      "size": 166,
+      "sha256": "27d99b98c3e9c2e0e245aac8ba944a0ba45887633fe799c42f44f83042b61670",
+      "bytes_hex": null
+    }
+  ],
+  "rea": [
+    {
+      "role": "timer-rows-with-table",
+      "evidence_id": "ev_da269800848ee2a5e0d0ffa2eae7294b4dad7a7b1823c7b71dd2575c0358a68b",
+      "subject_sha256": "e1acbc0d5db39356c1885e069778a46b1536fba5508a6f34fb83243712607e3d",
+      "pseudocode": "timer-rows-with-table.c",
+      "pseudocode_sha256": "ab9ee9ebc14243d8c4839edd632468154b34f797e40454c0a4d60fa24d41f237"
+    },
+    {
+      "role": "timer-formatter",
+      "evidence_id": "ev_fa6c8d28de1bb7458ed5b3076cec32a9760e6ff829c343f06cec042cb957a18d",
+      "subject_sha256": "901d0b08a8e6619ffdf2298f3ead1468c821db002d4d6b685a44b5d5ab6c19a8",
+      "pseudocode": "timer-formatter.c",
+      "pseudocode_sha256": "27d616fd1035abe4fbe64a438c43330d5b17e778a2bb98b6bbbab133ad6eca24"
+    }
+  ],
+  "limits": [
+    "Original-address raw Ghidra imports retain approximate ABI/types and explicitly enumerated sparse ranges; zero-filled gaps are not native evidence.",
+    "Current timer source now connects exact API, equipped clocks/metadata, localization,20-stream cache and raw racial/aura recovery; source compilation/execution and original/rebuilt parity are unverified. See integration.json and the source report for current scope.",
+    "All355talent descriptors,21timer-talents,16shared amulets and3generated timer amulets have current data/source checks. This does not certify every non-timer generated amulet or underlying talent/combat behavior.",
+    "Packet loss, live Menu/ReloadUI/reconnect ordering, locale replacement, real client/FrameXML/addon scheduling and rendered interaction remain unverified."
+  ],
+  "embedded_api": {
+    "file_offset": "0x70063f2",
+    "va": "0x1470077f2",
+    "size": 16663,
+    "sha256": "f73763ffc2f5852ff3f76a4945656ea5494d2d89db75833b71a89327738506db"
+  },
+  "talent_definitions": {
+    "path": "talent-timer-definitions.json",
+    "sha256": "161f1291e2d846533c5f9d236c35e12bfbb61c060d43fef1489e879a147b6d5f",
+    "catalog_count": 355,
+    "eligible_effect_count": 21
+  },
+  "sparse_import": {
+    "entry_point": "0x1459721c0",
+    "end_exclusive": "0x1473330c8",
+    "copied_ranges": [
+      "timer-rows",
+      "timer-effect-switch",
+      "timer-field-zero",
+      "gate-special-wait",
+      "gate-minimum-wait",
+      "summon-kind",
+      "cooldown-kind"
+    ],
+    "gaps": "Zero-filled and not claimed as original bytes."
+  },
+  "consumer": {
+    "project": "SurvivorsDragonUi",
+    "module": "modules/unit/auras.lua",
+    "presentation": "All native timer rows appended to the existing Buffs layout; native icons and run-clock remainders, full wait/kind/ready tooltip, fourteen source/runtime caption catalogs.",
+    "delivery": "Local installed addon source only; no addon commit, push, PR or release.",
+    "validation": "Source review only; no addon checks, formatters, tests or game/addon execution."
+  },
+  "source_integration": "integration.json",
+  "source_report": "docs/analysis/addon-timers-0.115.0.md"
+}

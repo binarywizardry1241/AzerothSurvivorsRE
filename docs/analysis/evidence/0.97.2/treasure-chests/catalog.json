@@ -1,0 +1,2671 @@
+{
+  "version": "0.97.2",
+  "target": "AzerothSurvivors/AzerothSurvivors-0.97.2.exe",
+  "target_sha256": "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589",
+  "target_size": 133231104,
+  "target_executed": false,
+  "method": "Exact PE string/pointer/record reads; layouts confirmed by target native consumers.",
+  "zone_table_base": "0x146716438",
+  "zone_stride": 240,
+  "enemy_stride": 80,
+  "consumers": {
+    "placement": "0x1454c2a20",
+    "shared_creation": "0x1454c8110",
+    "enemy_death_flag_consumer": "0x1454c4ce6..0x1454c4d40",
+    "boss_drop_zone_count_and_stride": "0x145458a21..0x145458a41"
+  },
+  "zone_count": 12,
+  "enemy_count": 148,
+  "chest_flagged_enemy_count": 40,
+  "zones": [
+    {
+      "index": 0,
+      "key": "elwynn",
+      "name": "Elwynn Forest",
+      "record": {
+        "va": "0x146716438",
+        "rva": "0x6716438",
+        "file_offset": "0x6715438",
+        "byte_count": 240,
+        "sha256": "5c6362e70c2ce83880c378c4fb4259a68848051263cf5e762fd90f94f5e56105",
+        "hex": "0000000000000000b0ea7046010000000600000000000000b6ea7046010000000d00000000000000c3ea70460100000013000000000000000800000000000000000000000000000008000000000000000000000000000000040000000000000000000000000000000400000000000000000000000000000080eb7046010000000c00000000000000b8f1704601000000050000000000000070f3704601000000180000000000000088f370460100000093000000000000000000000000000000000000000c00000000d012c600401ec400008842cdcccc3f0000f0420a00000085eb513f000000000000000000000000"
+      },
+      "center_xyz": [
+        -9396.0,
+        -633.0,
+        68.0
+      ],
+      "radius": 120.0,
+      "enemy_table_va": "0x14670eb80",
+      "enemy_count": 12,
+      "enemy_definitions": [
+        {
+          "index": 0,
+          "id": 600,
+          "name": "Kobold Vermin",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.0,
+          "record": {
+            "va": "0x14670eb80",
+            "rva": "0x670eb80",
+            "file_offset": "0x670db80",
+            "byte_count": 80,
+            "sha256": "61c09a276795dfdc519cb51b972d7be8a6e6091bab28a31659cae065aa882fc2",
+            "hex": "00000000000000000000000000000000d6ea7046010000000d00000000000000580200001a0000006666663f070000000000c04100004040cdcccc3f0000a040010000000000803f0000000000000000"
+          }
+        },
+        {
+          "index": 1,
+          "id": 601,
+          "name": "Young Wolf",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.0,
+          "record": {
+            "va": "0x14670ebd0",
+            "rva": "0x670ebd0",
+            "file_offset": "0x670dbd0",
+            "byte_count": 80,
+            "sha256": "ff3eac82c8975da5f2103352511e705b6bd26d7c5768b2913548cd952e9c3d74",
+            "hex": "00000000000000000000000000000000e3ea7046010000000a0000000000000059020000a50000003333333f0100000000009041000040406666a63fcdccec40010000000000803f0000003f00000000"
+          }
+        },
+        {
+          "index": 2,
+          "id": 602,
+          "name": "Murloc Streamrunner",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.0,
+          "record": {
+            "va": "0x14670ec20",
+            "rva": "0x670ec20",
+            "file_offset": "0x670dc20",
+            "byte_count": 80,
+            "sha256": "d0649085cf81fa44559b1a30fa7b56f1e5ba6ad662e4e1e3dc9b7d0e84af07cb",
+            "hex": "00000000000000000000000000000000edea70460100000013000000000000005a0200001f0000000000803f070000000000f04100008040cdcccc3f3333b340010000000000803f9a99993f00000000"
+          }
+        },
+        {
+          "index": 3,
+          "id": 603,
+          "name": "Kobold Geomancer",
+          "chest_flag": 0,
+          "base_experience": 2,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x14670ec70",
+            "rva": "0x670ec70",
+            "file_offset": "0x670dc70",
+            "byte_count": 80,
+            "sha256": "2b48edff7511127e9719b56eb47f88ac4ffd8f802a24b1d5d076b85fd2586ad1",
+            "hex": "0100000085000000000090416666e63f00eb70460100000010000000000000005b020000a30000000000803f070000000000f0410000c040cdcc4c400000a04002000000000000400000004000000000"
+          }
+        },
+        {
+          "index": 4,
+          "id": 604,
+          "name": "Defias Thug",
+          "chest_flag": 0,
+          "base_experience": 2,
+          "death_accumulator": 1.5,
+          "record": {
+            "va": "0x14670ecc0",
+            "rva": "0x670ecc0",
+            "file_offset": "0x670dcc0",
+            "byte_count": 80,
+            "sha256": "598aa51f7964b5d5d0207ce6c759424608883a9acbd383c892d6b956fb6a71a7",
+            "hex": "0000000000000000000000000000000010eb7046010000000b000000000000005c020000130900000000803f07000000000030420000c0406666e63fcdccac40020000000000c03f0000404000000000"
+          }
+        },
+        {
+          "index": 5,
+          "id": 605,
+          "name": "Riverpaw Brute",
+          "chest_flag": 0,
+          "base_experience": 4,
+          "death_accumulator": 3.0,
+          "record": {
+            "va": "0x14670ed10",
+            "rva": "0x670ed10",
+            "file_offset": "0x670dd10",
+            "byte_count": 80,
+            "sha256": "1f9c76c701dba9cb35310bb6801517112a92a93b6f94d7fa8e6a8a31f3f7dff2",
+            "hex": "000000000000000000000000000000001beb7046010000000e000000000000005d020000af000000cdcc8c3f070000000000f04200001041cdcc0c403333934004000000000040400000904000000000"
+          }
+        },
+        {
+          "index": 6,
+          "id": 606,
+          "name": "Prowler",
+          "chest_flag": 0,
+          "base_experience": 2,
+          "death_accumulator": 1.5,
+          "record": {
+            "va": "0x14670ed60",
+            "rva": "0x670ed60",
+            "file_offset": "0x670dd60",
+            "byte_count": 80,
+            "sha256": "0003c76698c2cc4e9288861797690e617259028a4ea559bc46643957c8699a23",
+            "hex": "0000000000000000000000000000000029eb70460100000007000000000000005e020000840200006666a63f01000000000048420000e0406666a63f3333f340020000000000c03f0000c04000000000"
+          }
+        },
+        {
+          "index": 7,
+          "id": 607,
+          "name": "Defias Rogue Wizard",
+          "chest_flag": 0,
+          "base_experience": 3,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x14670edb0",
+            "rva": "0x670edb0",
+            "file_offset": "0x670ddb0",
+            "byte_count": 80,
+            "sha256": "06edaae56221ece5e5154e06c41f12f0f4f9908f0166aa3aab7d5137b9922a3c",
+            "hex": "010000007400000000009041cdcccc3f30eb70460100000013000000000000005f0200000b0900000000803f07000000000020420000e040cdcc4c400000a04003000000000000400000f04000000000"
+          }
+        },
+        {
+          "index": 8,
+          "id": 608,
+          "name": "Defias Enforcer",
+          "chest_flag": 0,
+          "base_experience": 4,
+          "death_accumulator": 3.0,
+          "record": {
+            "va": "0x14670ee00",
+            "rva": "0x670ee00",
+            "file_offset": "0x670de00",
+            "byte_count": 80,
+            "sha256": "f839721984a08c42ef50f76f411cb4c82634d663d8cb7edfad7f3b1dc9203406",
+            "hex": "0000000000000000000000000000000043eb7046010000000f0000000000000060020000140900000000a03f0700000000002a4300004041cdcc0c409a99994004000000000040400000104100000000"
+          }
+        },
+        {
+          "index": 9,
+          "id": 609,
+          "name": "Kobold Taskmaster",
+          "chest_flag": 1,
+          "base_experience": 25,
+          "death_accumulator": 12.0,
+          "record": {
+            "va": "0x14670ee50",
+            "rva": "0x670ee50",
+            "file_offset": "0x670de50",
+            "byte_count": 80,
+            "sha256": "43ff8b52ca12820c5a7c22268d95c6d2fd5b0fcc25ccc5fd742e022e7f1456c3",
+            "hex": "0000000000000000000000000000000052eb704601000000110000000000000061020000a300000085eb014007000000000016440000904100000040cdccac4019000000000040410000604001000000"
+          }
+        },
+        {
+          "index": 10,
+          "id": 610,
+          "name": "Gruff Swiftbite",
+          "chest_flag": 1,
+          "base_experience": 28,
+          "death_accumulator": 13.0,
+          "record": {
+            "va": "0x14670eea0",
+            "rva": "0x670eea0",
+            "file_offset": "0x670dea0",
+            "byte_count": 80,
+            "sha256": "3e45d28e5d09425b8a02e9d9f977c1b1d7c1014df92e012a605b5cc31ebac6ad",
+            "hex": "0000000000000000000000000000000063eb7046010000000f0000000000000062020000f6000000295ccf3f01000000000048440000b041cdcccc3f3333d3401c000000000050410000004101000000"
+          }
+        },
+        {
+          "index": 11,
+          "id": 611,
+          "name": "Bellygrub",
+          "chest_flag": 1,
+          "base_experience": 30,
+          "death_accumulator": 14.0,
+          "record": {
+            "va": "0x14670eef0",
+            "rva": "0x670eef0",
+            "file_offset": "0x670def0",
+            "byte_count": 80,
+            "sha256": "28330414a2e99e175019a28b24a4ef2b669a2cabfb963c6b7236c529b8bb4161",
+            "hex": "0000000000000000000000000000000072eb704601000000090000000000000063020000790100007b143e400100000000007a440000d0419a9919400000a0401e000000000060410000504101000000"
+          }
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "key": "duskwood",
+      "name": "Duskwood",
+      "record": {
+        "va": "0x146716528",
+        "rva": "0x6716528",
+        "file_offset": "0x6715528",
+        "byte_count": 240,
+        "sha256": "2565dfaa0bd4094a1fcefbf6ca4c8c53c5b24c2dfec793690748e658d516fd61",
+        "hex": "00000000000000001bf4704601000000080000000000000023f470460100000008000000000000002bf470460100000016000000000000000800000000000000000000000000000008000000000000000000000000000000040000000000000000000000000000000400000000000000000000000000000010f57046010000000c0000000000000058fb704601000000050000000000000010fd704601000000180000000000000028fd7046010000007600000000000000010000000000803e000000000a00000000b024c6000034436666f241000000000000f04200000000ec51783f000000000000000000000000"
+      },
+      "center_xyz": [
+        -10540.0,
+        180.0,
+        30.299999237060547
+      ],
+      "radius": 120.0,
+      "enemy_table_va": "0x14670f510",
+      "enemy_count": 12,
+      "enemy_definitions": [
+        {
+          "index": 0,
+          "id": 700,
+          "name": "Skeletal Raider",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.0,
+          "record": {
+            "va": "0x14670f510",
+            "rva": "0x670f510",
+            "file_offset": "0x670e510",
+            "byte_count": 80,
+            "sha256": "77cf30985135ff1b2f11972ff71876f96fb8aa251125d1272c0d652f01125e6c",
+            "hex": "0000000000000000000000000000000041f47046010000000f00000000000000bc0200009e0000000000803f060000000000e04100008040cdcccc3f6666a640010000000000803f0000000000000000"
+          }
+        },
+        {
+          "index": 1,
+          "id": 701,
+          "name": "Plague Spreader",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.0,
+          "record": {
+            "va": "0x14670f560",
+            "rva": "0x670f560",
+            "file_offset": "0x670e560",
+            "byte_count": 80,
+            "sha256": "1c8a20b778667d138982dfe417ec4d6b72b83745d94cec7d203d32c84539195c",
+            "hex": "0000000000000000000000000000000050f47046010000000f00000000000000bd020000890000000000803f060000000000f04100008040cdcccc3fcdccac40010000000000803fcdcccc3e00000000"
+          }
+        },
+        {
+          "index": 2,
+          "id": 702,
+          "name": "Black Widow Hatchling",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.0,
+          "record": {
+            "va": "0x14670f5b0",
+            "rva": "0x670f5b0",
+            "file_offset": "0x670e5b0",
+            "byte_count": 80,
+            "sha256": "7a2142bc3663331a813cff4182b9c852514fb58cc6bb56744436a1b67edd0182",
+            "hex": "000000000000000000000000000000005ff47046010000001500000000000000be020000430400009a99193f0100000000009041000080409a99993f9a99f940010000000000803f0000803f00000000"
+          }
+        },
+        {
+          "index": 3,
+          "id": 703,
+          "name": "Nightbane Shadow Weaver",
+          "chest_flag": 0,
+          "base_experience": 2,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x14670f600",
+            "rva": "0x670f600",
+            "file_offset": "0x670e600",
+            "byte_count": 80,
+            "sha256": "2275b63dc91ab1d85a123b1268fce0227bfa6cea916f619909a35ee0be68659a",
+            "hex": "01000000ae020000000090416666e63f74f47046010000001700000000000000bf020000cb0000000000803f07000000000010420000e040cdcc4c400000a04002000000000000400000004000000000"
+          }
+        },
+        {
+          "index": 4,
+          "id": 704,
+          "name": "Rotting Horror",
+          "chest_flag": 0,
+          "base_experience": 2,
+          "death_accumulator": 1.5,
+          "record": {
+            "va": "0x14670f650",
+            "rva": "0x670f650",
+            "file_offset": "0x670e650",
+            "byte_count": 80,
+            "sha256": "d94095f1cb1f88174fb4b9518009e1caded61402f1ae8ee9babc8bfcf96b9215",
+            "hex": "000000000000000000000000000000008bf47046010000000e00000000000000c0020000b1040000cdcc8c3f06000000000070420000e040000000409a999940020000000000c03f0000404000000000"
+          }
+        },
+        {
+          "index": 5,
+          "id": 705,
+          "name": "Nightbane Dark Runner",
+          "chest_flag": 0,
+          "base_experience": 2,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x14670f6a0",
+            "rva": "0x670f6a0",
+            "file_offset": "0x670e6a0",
+            "byte_count": 80,
+            "sha256": "4ddb89d03d5c30b66c084cb5bce323a07c81c3459bebfababd96a09a4d15bca7",
+            "hex": "0000000000000000000000000000000099f47046010000001500000000000000c1020000ca0000000000803f0700000000005c42000000413333b33f0000e04002000000000000400000804000000000"
+          }
+        },
+        {
+          "index": 6,
+          "id": 706,
+          "name": "Fleshripper",
+          "chest_flag": 0,
+          "base_experience": 2,
+          "death_accumulator": 1.5,
+          "record": {
+            "va": "0x14670f6f0",
+            "rva": "0x670f6f0",
+            "file_offset": "0x670e6f0",
+            "byte_count": 80,
+            "sha256": "b63a202ab5ba8049d16a5b783a1655cf6b9d38aab38b558c2bbacec3d9db468d",
+            "hex": "00000000000000000000000000000000aef47046010000000b00000000000000c2020000840100003333b33e01000000000020420000c0403333b33fcdccec40020000000000c03f0000b04000000000"
+          }
+        },
+        {
+          "index": 7,
+          "id": 707,
+          "name": "Restless Shade",
+          "chest_flag": 0,
+          "base_experience": 3,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x14670f740",
+            "rva": "0x670f740",
+            "file_offset": "0x670e740",
+            "byte_count": 80,
+            "sha256": "4804b8ac9f330d3ad3c2bf2a82dbf87fe5b5223541e2e12f63f2ac0977524e4f",
+            "hex": "010000007400000000009041cdcccc3fb9f47046010000000e00000000000000c3020000920000000000803f060000000000384200000041cdcc4c400000a04003000000000000400000e04000000000"
+          }
+        },
+        {
+          "index": 8,
+          "id": 708,
+          "name": "Bone Chewer",
+          "chest_flag": 0,
+          "base_experience": 4,
+          "death_accumulator": 3.0,
+          "record": {
+            "va": "0x14670f790",
+            "rva": "0x670f790",
+            "file_offset": "0x670e790",
+            "byte_count": 80,
+            "sha256": "47da3811c29b7fd1500b15b2c94c6839668ee3cbd2501befbee8074583df1013",
+            "hex": "00000000000000000000000000000000c7f47046010000000b00000000000000c40200009e0100000000c03f0600000000002a4300004041333313403333934004000000000040400000104100000000"
+          }
+        },
+        {
+          "index": 9,
+          "id": 709,
+          "name": "Nightbane Worgen Alpha",
+          "chest_flag": 1,
+          "base_experience": 25,
+          "death_accumulator": 12.0,
+          "record": {
+            "va": "0x14670f7e0",
+            "rva": "0x670f7e0",
+            "file_offset": "0x670e7e0",
+            "byte_count": 80,
+            "sha256": "e237ed992030d0c5403112ab950246c308564a08f0a5c0cc6bfc733c9d5b3457",
+            "hex": "00000000000000000000000000000000d2f47046010000001600000000000000c50200000b0200009a99993f0700000000002f440000a041cdcccc3fcdcccc4019000000000040410000804001000000"
+          }
+        },
+        {
+          "index": 10,
+          "id": 710,
+          "name": "Carrion Recluse",
+          "chest_flag": 1,
+          "base_experience": 28,
+          "death_accumulator": 13.0,
+          "record": {
+            "va": "0x14670f830",
+            "rva": "0x670f830",
+            "file_offset": "0x670e830",
+            "byte_count": 80,
+            "sha256": "6f413b902db55120b446d711455b7b98abe4b5fecfe476ce556e0157ab5e659f",
+            "hex": "00000000000000000000000000000000e8f47046010000000f00000000000000c60200006e0100009a99d93f01000000008054440000c041000000403333b3401c000000000050410000084101000000"
+          }
+        },
+        {
+          "index": 11,
+          "id": 711,
+          "name": "Flesh Eating Abomination",
+          "chest_flag": 1,
+          "base_experience": 30,
+          "death_accumulator": 14.0,
+          "record": {
+            "va": "0x14670f880",
+            "rva": "0x670f880",
+            "file_offset": "0x670e880",
+            "byte_count": 80,
+            "sha256": "a3fac50a5b35428a409d19ce9aa5070242e7dd592dd73682def93cd7993bc650",
+            "hex": "00000000000000000000000000000000f7f47046010000001800000000000000c7020000593e00009a99193f0600000000007a440000e0419a991940333393401e000000000060410000504101000000"
+          }
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "key": "wsg",
+      "name": "Warsong Gulch",
+      "record": {
+        "va": "0x146716618",
+        "rva": "0x6716618",
+        "file_offset": "0x6715618",
+        "byte_count": 240,
+        "sha256": "6be4485b15197829b1d39834289692ec9a2d410006563c76feb8bf12ba57c8f7",
+        "hex": "00000000000000009efd7046010000000300000000000000a1fd7046010000000d00000000000000aefd70460100000012000000000000000800000000000000000000000000000008000000000000000000000000000000040000000000000000000000000000000400000000000000000000000000000040fe7046010000000c00000000000000b804714601000000050000000000000070067146010000001600000000000000860671460100000069000000000000000000000000000000e9010000cd0c000000c099440040b54400009b43c3f5c83f0000f042140000008fc2953f000000000000000000000000"
+      },
+      "center_xyz": [
+        1230.0,
+        1450.0,
+        310.0
+      ],
+      "radius": 120.0,
+      "enemy_table_va": "0x14670fe40",
+      "enemy_count": 12,
+      "enemy_definitions": [
+        {
+          "index": 0,
+          "id": 100,
+          "name": "Burning Imp",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.0,
+          "record": {
+            "va": "0x14670fe40",
+            "rva": "0x670fe40",
+            "file_offset": "0x670ee40",
+            "byte_count": 80,
+            "sha256": "9940ebaf346831bca3be2c2d8840f94bd6c764737ac9099df557e0bcf92e7d48",
+            "hex": "00000000000000000000000000000000c0fd7046010000000b0000000000000064000000611100000000803f030000000000d04100008040cdcccc3f6666a640010000000000803f0000000000000000"
+          }
+        },
+        {
+          "index": 1,
+          "id": 101,
+          "name": "Felhound",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.0,
+          "record": {
+            "va": "0x14670fe90",
+            "rva": "0x670fe90",
+            "file_offset": "0x670ee90",
+            "byte_count": 80,
+            "sha256": "44fa9931b399cc77d4e6b9d9655aa877e9e9fddea70688410424dc02d4e71952",
+            "hex": "00000000000000000000000000000000cbfd70460100000008000000000000006500000052030000cdcc4c3f030000000000b041000080403333b33f3333f340010000000000803f3333333f00000000"
+          }
+        },
+        {
+          "index": 2,
+          "id": 108,
+          "name": "Fel Bat",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.2000000476837158,
+          "record": {
+            "va": "0x14670fee0",
+            "rva": "0x670fee0",
+            "file_offset": "0x670eee0",
+            "byte_count": 80,
+            "sha256": "bf0c7498192a668b31310de6e30e6ecf842dd530c12a6e7b0ea047ea9a9a1f7d",
+            "hex": "00000000000000000000000000000000d3fd70460100000007000000000000006c000000591000000000803f030000000000b0410000a0406666a63f00000041010000009a99993f9a99993f00000000"
+          }
+        },
+        {
+          "index": 3,
+          "id": 103,
+          "name": "Satyr Shadowcaster",
+          "chest_flag": 0,
+          "base_experience": 2,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x14670ff30",
+            "rva": "0x670ff30",
+            "file_offset": "0x670ef30",
+            "byte_count": 80,
+            "sha256": "6d6a4f427a0779cdebc73416db64f80357383f58507fef967b6dede1887b6904",
+            "hex": "01000000ae02000000009041cdcccc3fdafd704601000000120000000000000067000000db0700000000803f03000000000008420000e040cdcc4c400000a04002000000000000400000004000000000"
+          }
+        },
+        {
+          "index": 4,
+          "id": 102,
+          "name": "Satyr Trickster",
+          "chest_flag": 0,
+          "base_experience": 2,
+          "death_accumulator": 1.5,
+          "record": {
+            "va": "0x14670ff80",
+            "rva": "0x670ff80",
+            "file_offset": "0x670ef80",
+            "byte_count": 80,
+            "sha256": "2d7932c5d9e319c710f1b6ec8cfe8d8e2c2ad791ac5864ebf8f61df4e7e9cf3f",
+            "hex": "00000000000000000000000000000000ecfd7046010000000f0000000000000066000000d30100000000803f03000000000020420000c0406666e63fcdccac40020000000000c03f0000404000000000"
+          }
+        },
+        {
+          "index": 5,
+          "id": 104,
+          "name": "Voidwalker",
+          "chest_flag": 0,
+          "base_experience": 4,
+          "death_accumulator": 3.0,
+          "record": {
+            "va": "0x14670ffd0",
+            "rva": "0x670ffd0",
+            "file_offset": "0x670efd0",
+            "byte_count": 80,
+            "sha256": "56a50d3d27ccece1ba6d4319390e5121d0ed121df869655e751613f6b7aa6a9b",
+            "hex": "00000000000000000000000000000000fbfd7046010000000a00000000000000680000006a040000cdcc8c3f030000000000024300002041cdcc0c40cdcc8c4004000000000040400000904000000000"
+          }
+        },
+        {
+          "index": 6,
+          "id": 105,
+          "name": "Succubus",
+          "chest_flag": 0,
+          "base_experience": 3,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x146710020",
+            "rva": "0x6710020",
+            "file_offset": "0x670f020",
+            "byte_count": 80,
+            "sha256": "5e63c55062dbcd46e15684384afa0e3d66eebc39653da7aaf643863954563f77",
+            "hex": "0000000000000000000000000000000005fe704601000000080000000000000069000000421000000000803f0300000000007042000010410000c03fcdcccc4003000000000000400000c04000000000"
+          }
+        },
+        {
+          "index": 7,
+          "id": 109,
+          "name": "Fire Imp",
+          "chest_flag": 0,
+          "base_experience": 3,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x146710070",
+            "rva": "0x6710070",
+            "file_offset": "0x670f070",
+            "byte_count": 80,
+            "sha256": "79fd244eee8417cc9be086d28a4155b1599958b7cac2b2088536ece0cf174682",
+            "hex": "010000008500000000009041cdcccc3f0dfe70460100000008000000000000006d0000009e2f00007b142e3e030000000000204200000041cdcc4c400000a04003000000000000400000f04000000000"
+          }
+        },
+        {
+          "index": 8,
+          "id": 110,
+          "name": "Mana Fiend",
+          "chest_flag": 0,
+          "base_experience": 5,
+          "death_accumulator": 3.5,
+          "record": {
+            "va": "0x1467100c0",
+            "rva": "0x67100c0",
+            "file_offset": "0x670f0c0",
+            "byte_count": 80,
+            "sha256": "89d34b62738ade6824e3a711b82dffa640b37cef34da8a2b47af0f5ae72d84cc",
+            "hex": "0000000000000000000000000000000015fe7046010000000a000000000000006e000000ac3700000000003f0300000000003e4300005041cdcc0c400000a04005000000000060400000104100000000"
+          }
+        },
+        {
+          "index": 9,
+          "id": 106,
+          "name": "Felguard Elite",
+          "chest_flag": 1,
+          "base_experience": 25,
+          "death_accumulator": 12.0,
+          "record": {
+            "va": "0x146710110",
+            "rva": "0x6710110",
+            "file_offset": "0x670f110",
+            "byte_count": 80,
+            "sha256": "b4e156e61d5ce3ade78265f18d3e09f46c55c5a0a4290c1fbb048c3d636b8b52",
+            "hex": "000000000000000000000000000000001ffe7046010000000e000000000000006a000000b71300000000004003000000008022440000a041000000403333b34019000000000040410000804001000000"
+          }
+        },
+        {
+          "index": 10,
+          "id": 107,
+          "name": "Infernal",
+          "chest_flag": 1,
+          "base_experience": 30,
+          "death_accumulator": 14.0,
+          "record": {
+            "va": "0x146710160",
+            "rva": "0x6710160",
+            "file_offset": "0x670f160",
+            "byte_count": 80,
+            "sha256": "2c5cce32fd128fe954e437cd9d871c00e983188c1de0dc966c82b04bd055b857",
+            "hex": "000000000000000000000000000000002dfe70460100000008000000000000006b000000a90000000000a03f03000000000061440000d0419a991940333393401e000000000060410000084101000000"
+          }
+        },
+        {
+          "index": 11,
+          "id": 111,
+          "name": "Doomguard",
+          "chest_flag": 1,
+          "base_experience": 32,
+          "death_accumulator": 15.0,
+          "record": {
+            "va": "0x1467101b0",
+            "rva": "0x67101b0",
+            "file_offset": "0x670f1b0",
+            "byte_count": 80,
+            "sha256": "88f31aed013ac56b99240982774c5a4f62450c3e6e18975999f4c5e1762d01e5",
+            "hex": "0000000000000000000000000000000035fe70460100000009000000000000006f000000b10100009a99194003000000008089440000f0419a991940cdccac4020000000000070410000504101000000"
+          }
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "key": "ungoro",
+      "name": "Un'Goro Crater",
+      "record": {
+        "va": "0x146716708",
+        "rva": "0x6716708",
+        "file_offset": "0x6715708",
+        "byte_count": 240,
+        "sha256": "12d81d5d39c63e0dbbe9e60362d7b7b697b06bcb38cbab20f6784ac142ac840f",
+        "hex": "0000000000000000ef067146010000000600000000000000f5067146010000000e0000000000000003077146010000000f0000000000000008000000000000000000000000000000080000000000000000000000000000000400000000000000000000000000000004000000000000000000000000000000d8077146010000000c00000000000000780e71460100000005000000000000003010714601000000120000000000000042107146010000009700000000000000010000009a99193e01000000ea0100000000d2c50000f0c49a1988c3cdcccc3f0000f0420b000000c3f5a83f000000000000000000000000"
+      },
+      "center_xyz": [
+        -6720.0,
+        -1920.0,
+        -272.20001220703125
+      ],
+      "radius": 120.0,
+      "enemy_table_va": "0x1467107d8",
+      "enemy_count": 12,
+      "enemy_definitions": [
+        {
+          "index": 0,
+          "id": 1200,
+          "name": "Ravasaur Runner",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.0,
+          "record": {
+            "va": "0x1467107d8",
+            "rva": "0x67107d8",
+            "file_offset": "0x670f7d8",
+            "byte_count": 80,
+            "sha256": "17d4f9b279a9e492b3ca683195d58003ccfd65e11e3c314f56e043239ebf57b9",
+            "hex": "0000000000000000000000000000000012077146010000000f00000000000000b0040000aa1400005c8fc23e010000000000d041000080406666a63f3333f340010000000000803f0000000000000000"
+          }
+        },
+        {
+          "index": 1,
+          "id": 1201,
+          "name": "Young Ravasaur",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.0,
+          "record": {
+            "va": "0x146710828",
+            "rva": "0x6710828",
+            "file_offset": "0x670f828",
+            "byte_count": 80,
+            "sha256": "82c23b0d1d8411cae43004e4ef7e0e058f58790e1a57616587098f11cf2f4242",
+            "hex": "0000000000000000000000000000000021077146010000000e00000000000000b10400007a140000295c8f3e010000000000c041000080406666a63f9a99f940010000000000803f9a99193f00000000"
+          }
+        },
+        {
+          "index": 2,
+          "id": 1202,
+          "name": "Fledgling Pterrordax",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.2000000476837158,
+          "record": {
+            "va": "0x146710878",
+            "rva": "0x6710878",
+            "file_offset": "0x670f878",
+            "byte_count": 80,
+            "sha256": "3f7f6f9632b8a84c76dac9cb75556d13f030319da8afc54d67ea71e52cafd5a8",
+            "hex": "000000000000000000000000000000002f077146010000001400000000000000b2040000da2000000000003f010000000000b0410000a0406666a63f00000041010000009a99993f9a99993f00000000"
+          }
+        },
+        {
+          "index": 3,
+          "id": 1203,
+          "name": "Gorishi Stinger",
+          "chest_flag": 0,
+          "base_experience": 2,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x1467108c8",
+            "rva": "0x67108c8",
+            "file_offset": "0x670f8c8",
+            "byte_count": 80,
+            "sha256": "a3d55aeead209d81d78b835ea70d41c92d4cbbf983be5b6a779983f3865f67ef",
+            "hex": "01000000051b000000009041cdcccc3f43077146010000000f00000000000000b3040000502b0000c3f5a83e01000000000008420000e040cdcc4c400000a04002000000000000400000004000000000"
+          }
+        },
+        {
+          "index": 4,
+          "id": 1204,
+          "name": "Bloodpetal Lasher",
+          "chest_flag": 0,
+          "base_experience": 2,
+          "death_accumulator": 1.5,
+          "record": {
+            "va": "0x146710918",
+            "rva": "0x6710918",
+            "file_offset": "0x670f918",
+            "byte_count": 80,
+            "sha256": "eea2dd49c9f65dc113a8769bf52db88e312195d3db556b78236b6a06c5290be7",
+            "hex": "0000000000000000000000000000000052077146010000001100000000000000b4040000722d0000cdcc4c3f04000000000020420000c0406666e63fcdccac40020000000000c03f0000404000000000"
+          }
+        },
+        {
+          "index": 5,
+          "id": 1205,
+          "name": "Un'Goro Stomper",
+          "chest_flag": 0,
+          "base_experience": 4,
+          "death_accumulator": 3.0,
+          "record": {
+            "va": "0x146710968",
+            "rva": "0x6710968",
+            "file_offset": "0x670f968",
+            "byte_count": 80,
+            "sha256": "34afb8bcb5a38e9d0ac2ed25f14a49145b46d7f37b50f5918d5ca0892b5eb9bd",
+            "hex": "0000000000000000000000000000000063077146010000000f00000000000000b5040000ae1400003333933f010000000000024300002041cdcc0c403333934004000000000040400000904000000000"
+          }
+        },
+        {
+          "index": 6,
+          "id": 1206,
+          "name": "Venomhide Ravasaur",
+          "chest_flag": 0,
+          "base_experience": 3,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x1467109b8",
+            "rva": "0x67109b8",
+            "file_offset": "0x670f9b8",
+            "byte_count": 80,
+            "sha256": "af761620b043ac7e36322c18346d6400c9a41c5a63dc217b686a15139d7f8bfb",
+            "hex": "0000000000000000000000000000000072077146010000001200000000000000b6040000ab140000cdcccc3e0100000000007042000010413333b33f6666e64003000000000000400000c04000000000"
+          }
+        },
+        {
+          "index": 7,
+          "id": 1207,
+          "name": "Frenzied Pterrordax",
+          "chest_flag": 0,
+          "base_experience": 3,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x146710a08",
+            "rva": "0x6710a08",
+            "file_offset": "0x670fa08",
+            "byte_count": 80,
+            "sha256": "7bd0c52da0d62b968eab0ad14b9c28a24e32cca86fdbb1480b18be446bd21293",
+            "hex": "01000000051b000000009041cdcccc3f84077146010000001300000000000000b7040000db200000d7a3f03e010000000000204200000041cdcc4c400000a04003000000000000400000f04000000000"
+          }
+        },
+        {
+          "index": 8,
+          "id": 1208,
+          "name": "Elder Diemetradon",
+          "chest_flag": 0,
+          "base_experience": 5,
+          "death_accumulator": 3.5,
+          "record": {
+            "va": "0x146710a58",
+            "rva": "0x6710a58",
+            "file_offset": "0x670fa58",
+            "byte_count": 80,
+            "sha256": "4fba3c4f41695a6c7f75320155fd0ed416db627e47c0d7f4c5ae630f0a216eca",
+            "hex": "0000000000000000000000000000000097077146010000001100000000000000b804000040210000295c0f3f0100000000003e4300005041cdcc0c400000a04005000000000060400000104100000000"
+          }
+        },
+        {
+          "index": 9,
+          "id": 1209,
+          "name": "Ravasaur Hunter",
+          "chest_flag": 1,
+          "base_experience": 25,
+          "death_accumulator": 12.0,
+          "record": {
+            "va": "0x146710aa8",
+            "rva": "0x6710aa8",
+            "file_offset": "0x670faa8",
+            "byte_count": 80,
+            "sha256": "88778123b45bdb7dac29b830585799c0351b6e7a2a7bdcd52012d519f50c9c0f",
+            "hex": "00000000000000000000000000000000a8077146010000000f00000000000000b9040000ac1400001f852b3f01000000008022440000a041cdcccc3f3333d34019000000000040410000804001000000"
+          }
+        },
+        {
+          "index": 10,
+          "id": 1210,
+          "name": "Un'Goro Thunderer",
+          "chest_flag": 1,
+          "base_experience": 30,
+          "death_accumulator": 14.0,
+          "record": {
+            "va": "0x146710af8",
+            "rva": "0x6710af8",
+            "file_offset": "0x670faf8",
+            "byte_count": 80,
+            "sha256": "3253af600369503bf3ddbf12ce9a9115bcd318199636eae637a24ff9c8a231da",
+            "hex": "00000000000000000000000000000000b7077146010000001100000000000000ba040000c11f0000cdccec3f01000000000061440000d0419a9919400000a0401e000000000060410000084101000000"
+          }
+        },
+        {
+          "index": 11,
+          "id": 1211,
+          "name": "Devilsaur",
+          "chest_flag": 1,
+          "base_experience": 32,
+          "death_accumulator": 15.0,
+          "record": {
+            "va": "0x146710b48",
+            "rva": "0x6710b48",
+            "file_offset": "0x670fb48",
+            "byte_count": 80,
+            "sha256": "8ecbeea3eef433e647711afe0aa62f36c07db425544bc0233cb78bea508172b0",
+            "hex": "00000000000000000000000000000000c8077146010000000900000000000000bb040000771400001f85eb3e01000000008089440000f0419a9919403333b34020000000000070410000504101000000"
+          }
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "key": "ab",
+      "name": "Arathi Basin",
+      "record": {
+        "va": "0x1467167f8",
+        "rva": "0x67167f8",
+        "file_offset": "0x67157f8",
+        "byte_count": 240,
+        "sha256": "62ed91a7b3926ed762dc7d3518830129ea4086fd67896c82af35b9b4387aad55",
+        "hex": "010000000000aa42d9107146010000000200000000000000db107146010000000c00000000000000e710714601000000120000000000000008000000000000000000000000000000080000000000000000000000000000000400000000000000000000000000000004000000000000000000000000000000d0117146010000000c0000000000000080187146010000000500000000000000381a71460100000015000000000000004d1a714601000000cb00000000000000010000003333b33e110200001e0d000000c0734400c08044000034c2000080400000ff42130000000000c03f000000000000000000000000"
+      },
+      "center_xyz": [
+        975.0,
+        1030.0,
+        -45.0
+      ],
+      "radius": 127.5,
+      "enemy_table_va": "0x1467111d0",
+      "enemy_count": 12,
+      "enemy_definitions": [
+        {
+          "index": 0,
+          "id": 1500,
+          "name": "Witherbark Troll",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.0,
+          "record": {
+            "va": "0x1467111d0",
+            "rva": "0x67111d0",
+            "file_offset": "0x67101d0",
+            "byte_count": 80,
+            "sha256": "9c1045de65688636e696d0fd5a2c2d09f28f29e2c91c56c01f46f606e6c7f1c9",
+            "hex": "00000000000000000000000000000000f9107146010000001000000000000000dc050000920f00000000803f070000000000e04100008040cdcccc3f0000a040010000000000803f0000000000000000"
+          }
+        },
+        {
+          "index": 1,
+          "id": 1501,
+          "name": "Plains Creeper",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.0,
+          "record": {
+            "va": "0x146711220",
+            "rva": "0x6711220",
+            "file_offset": "0x6710220",
+            "byte_count": 80,
+            "sha256": "01333b4aa8b2f751138e633e74d613725670ea8e8054cc368111b43b13ac039a",
+            "hex": "0000000000000000000000000000000009117146010000000e00000000000000dd0500004f0400006666663f010000000000f0410000a0400000c03fcdccec40010000000000803f0000003f00000000"
+          }
+        },
+        {
+          "index": 2,
+          "id": 1502,
+          "name": "Mesa Buzzard",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.2000000476837158,
+          "record": {
+            "va": "0x146711270",
+            "rva": "0x6711270",
+            "file_offset": "0x6710270",
+            "byte_count": 80,
+            "sha256": "e3337fe81b26a1628b33bcd3c59067739e9dd7f050617b833cf6d36494e8d2df",
+            "hex": "0000000000000000000000000000000017117146010000000c00000000000000de05000051040000cdcccc3e010000000000c0410000a0403333b33f9a99f940010000009a99993f0000803f00000000"
+          }
+        },
+        {
+          "index": 3,
+          "id": 1503,
+          "name": "Witherbark Shadowcaster",
+          "chest_flag": 0,
+          "base_experience": 2,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x1467112c0",
+            "rva": "0x67112c0",
+            "file_offset": "0x67102c0",
+            "byte_count": 80,
+            "sha256": "b356f5d444500e956b79d2c62d9cf7ff42e934849c0f84a10d6bd7a592b64b18",
+            "hex": "01000000ae020000000090416666e63f23117146010000001700000000000000df050000990f00000000803f07000000000000420000e040cdcc4c400000a04002000000000000400000004000000000"
+          }
+        },
+        {
+          "index": 4,
+          "id": 1504,
+          "name": "Syndicate Mercenary",
+          "chest_flag": 0,
+          "base_experience": 2,
+          "death_accumulator": 1.5,
+          "record": {
+            "va": "0x146711310",
+            "rva": "0x6711310",
+            "file_offset": "0x6710310",
+            "byte_count": 80,
+            "sha256": "d9457e2ef3a9b11705b8ae27c2b7e15eac4bc9a4c2d986e6c977d9d580818890",
+            "hex": "000000000000000000000000000000003a117146010000001300000000000000e0050000930f0000cdcc8c3f07000000000010420000c0403333b33f3333d340020000000000c03f0000404000000000"
+          }
+        },
+        {
+          "index": 5,
+          "id": 1505,
+          "name": "Boulderfist Ogre",
+          "chest_flag": 0,
+          "base_experience": 4,
+          "death_accumulator": 3.0,
+          "record": {
+            "va": "0x146711360",
+            "rva": "0x6711360",
+            "file_offset": "0x6710360",
+            "byte_count": 80,
+            "sha256": "0535b9a8e4fd83cd708b5bbc288c09f84078e42ce77fa476ce8adbb6cee3422a",
+            "hex": "000000000000000000000000000000004d117146010000001000000000000000e10500001c0400000000803f0700000000001643000030419a9919406666864004000000000040400000904000000000"
+          }
+        },
+        {
+          "index": 6,
+          "id": 1506,
+          "name": "Feral Mountain Lion",
+          "chest_flag": 0,
+          "base_experience": 3,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x1467113b0",
+            "rva": "0x67113b0",
+            "file_offset": "0x67103b0",
+            "byte_count": 80,
+            "sha256": "7d7dc79895a7becf99c6cdb4d76fe005cbdac4eeab9801321a70ec05674c60e8",
+            "hex": "000000000000000000000000000000005d117146010000001300000000000000e2050000200400009a99993f0100000000003842000000416666a63fcdccec4003000000000000400000c04000000000"
+          }
+        },
+        {
+          "index": 7,
+          "id": 1507,
+          "name": "Boulderfist Magus",
+          "chest_flag": 0,
+          "base_experience": 3,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x146711400",
+            "rva": "0x6711400",
+            "file_offset": "0x6710400",
+            "byte_count": 80,
+            "sha256": "c67e2f28c6256160f2d18fdac522f0954e6df2ba59b6a1a7f87813c926064fe7",
+            "hex": "010000008500000000009041cdcccc3f70117146010000001100000000000000e30500001a180000cdcc4c3f070000000000504200001041cdcc4c400000a04003000000000000400000f04000000000"
+          }
+        },
+        {
+          "index": 8,
+          "id": 1508,
+          "name": "Boulderfist Brute",
+          "chest_flag": 0,
+          "base_experience": 5,
+          "death_accumulator": 3.5,
+          "record": {
+            "va": "0x146711450",
+            "rva": "0x6711450",
+            "file_offset": "0x6710450",
+            "byte_count": 80,
+            "sha256": "83944f7c86d26fd69e2efee7e4a09ecd8e2d424a9ec1f663acdd5657e34354ca",
+            "hex": "0000000000000000000000000000000081117146010000001100000000000000e4050000790c00006666663f070000000000484300005041cdcc0c400000a04005000000000060400000104100000000"
+          }
+        },
+        {
+          "index": 9,
+          "id": 1509,
+          "name": "Witherbark Headhunter",
+          "chest_flag": 1,
+          "base_experience": 25,
+          "death_accumulator": 12.0,
+          "record": {
+            "va": "0x1467114a0",
+            "rva": "0x67114a0",
+            "file_offset": "0x67104a0",
+            "byte_count": 80,
+            "sha256": "b870481c2cc69a96ad50b13399bfd359db1b1c4f59588840afc75afdfcb1c983",
+            "hex": "0000000000000000000000000000000092117146010000001500000000000000e50500009b0f00003333f33f0700000000002f440000a84100000040cdccac4019000000000040410000804001000000"
+          }
+        },
+        {
+          "index": 10,
+          "id": 1510,
+          "name": "Rumbling Exile",
+          "chest_flag": 1,
+          "base_experience": 30,
+          "death_accumulator": 14.0,
+          "record": {
+            "va": "0x1467114f0",
+            "rva": "0x67114f0",
+            "file_offset": "0x67104f0",
+            "byte_count": 80,
+            "sha256": "97bcf63f7d39c30c1fc0008354541508d4a3907172dcf513d05ac1ecad2ab0df",
+            "hex": "00000000000000000000000000000000a7117146010000000e00000000000000e605000073250000c3f5283f0400000000806d440000d8419a991940333393401e000000000060410000084101000000"
+          }
+        },
+        {
+          "index": 11,
+          "id": 1511,
+          "name": "Boulderfist Enforcer",
+          "chest_flag": 1,
+          "base_experience": 32,
+          "death_accumulator": 15.0,
+          "record": {
+            "va": "0x146711540",
+            "rva": "0x6711540",
+            "file_offset": "0x6710540",
+            "byte_count": 80,
+            "sha256": "7a1626bc960bc5048cab71f0f8506b4dc00c6249730ed0bb2f13352131390390",
+            "hex": "00000000000000000000000000000000b5117146010000001400000000000000e70500001e040000666606400700000000c08f440000f841cdcc0c403333b34020000000000070410000504101000000"
+          }
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "key": "feralas",
+      "name": "Feralas",
+      "record": {
+        "va": "0x1467168e8",
+        "rva": "0x67168e8",
+        "file_offset": "0x67158e8",
+        "byte_count": 240,
+        "sha256": "5242cb3c3f6788dce84f9734e4b67f66ed50cb76c356c940dfa2df6b8ec76dc8",
+        "hex": "0000000000000000181b71460100000007000000000000001f1b7146010000000700000000000000261b714601000000160000000000000008000000000000000000000000000000080000000000000000000000000000000400000000000000000000000000000004000000000000000000000000000000f01b7146010000000c00000000000000582271460100000005000000000000001024714601000000120000000000000022247146010000009c0000000000000001000000cdcc4c3e0100000065010000004092c50080a2446666be429a99c1400000f0420800000033330340000000000000000000000000"
+      },
+      "center_xyz": [
+        -4680.0,
+        1300.0,
+        95.19999694824219
+      ],
+      "radius": 120.0,
+      "enemy_table_va": "0x146711bf0",
+      "enemy_count": 12,
+      "enemy_definitions": [
+        {
+          "index": 0,
+          "id": 800,
+          "name": "Woodpaw Mongrel",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.0,
+          "record": {
+            "va": "0x146711bf0",
+            "rva": "0x6711bf0",
+            "file_offset": "0x6710bf0",
+            "byte_count": 80,
+            "sha256": "ee36e878fa9375eefb39b68d80caf08b8178435b0b78a14afc547761eeb8f54c",
+            "hex": "000000000000000000000000000000003c1b7146010000000f0000000000000020030000630100000000803f070000000000e04100008040cdcccc3fcdccac40010000000000803f0000000000000000"
+          }
+        },
+        {
+          "index": 1,
+          "id": 801,
+          "name": "Longtooth Runner",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.0,
+          "record": {
+            "va": "0x146711c40",
+            "rva": "0x6711c40",
+            "file_offset": "0x6710c40",
+            "byte_count": 80,
+            "sha256": "74a097b001b44b34f80a13e0aa9a668a4f59f66370164e0e8951cda9069b56ae",
+            "hex": "000000000000000000000000000000004b1b714601000000100000000000000021030000a50000006666663f010000000000c0410000a0406666a63f9a99f940010000000000803f9a99193f00000000"
+          }
+        },
+        {
+          "index": 2,
+          "id": 802,
+          "name": "Sprite Darter",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.2000000476837158,
+          "record": {
+            "va": "0x146711c90",
+            "rva": "0x6711c90",
+            "file_offset": "0x6710c90",
+            "byte_count": 80,
+            "sha256": "e086a124bf37a98b68ea64e20eae96fee934c8c293c9338aa9bf3a96a5327270",
+            "hex": "000000000000000000000000000000005b1b7146010000000d0000000000000022030000f3040000cdcc4c3f020000000000b0410000a0403333b33f00000041010000009a99993f9a99993f00000000"
+          }
+        },
+        {
+          "index": 3,
+          "id": 803,
+          "name": "Woodpaw Mystic",
+          "chest_flag": 0,
+          "base_experience": 2,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x146711ce0",
+            "rva": "0x6711ce0",
+            "file_offset": "0x6710ce0",
+            "byte_count": 80,
+            "sha256": "d364cec24d04f735b1de4e44219e08b11dd38f5fa5dd5f7a9c1c4e9dc8cf8c47",
+            "hex": "0100000093010000000090416666e63f681b7146010000000e0000000000000023030000eb0100000000803f07000000000010420000e040cdcc4c400000a04002000000000000400000004000000000"
+          }
+        },
+        {
+          "index": 4,
+          "id": 804,
+          "name": "Gordunni Ogre",
+          "chest_flag": 0,
+          "base_experience": 3,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x146711d30",
+            "rva": "0x6711d30",
+            "file_offset": "0x6710d30",
+            "byte_count": 80,
+            "sha256": "95df3bbf2d5e12ae91144a62366569062e80a27106f1596dfeff872bbed1d804",
+            "hex": "00000000000000000000000000000000761b7146010000000d00000000000000240300009f0100000000803f070000000000964200001041000000400000a04003000000000000400000404000000000"
+          }
+        },
+        {
+          "index": 5,
+          "id": 805,
+          "name": "Wildspawn Satyr",
+          "chest_flag": 0,
+          "base_experience": 2,
+          "death_accumulator": 1.5,
+          "record": {
+            "va": "0x146711d80",
+            "rva": "0x6711d80",
+            "file_offset": "0x6710d80",
+            "byte_count": 80,
+            "sha256": "d0aa7e55f35b58504b01de93b273b695bf19a1c31b5646c9647612365a0ad331",
+            "hex": "00000000000000000000000000000000831b7146010000000f0000000000000025030000dd0700000000803f030000000000484200000041cdcccc3f6666c640020000000000c03f0000804000000000"
+          }
+        },
+        {
+          "index": 6,
+          "id": 806,
+          "name": "Ironfur Bear",
+          "chest_flag": 0,
+          "base_experience": 4,
+          "death_accumulator": 3.0,
+          "record": {
+            "va": "0x146711dd0",
+            "rva": "0x6711dd0",
+            "file_offset": "0x6710dd0",
+            "byte_count": 80,
+            "sha256": "1f7c41b58524c4a27b2bfc9470ab8f9693f2ce3591adc5397718b834481fdb4b",
+            "hex": "00000000000000000000000000000000921b7146010000000c0000000000000026030000340300000000803f010000000000204300004041cdcc0c409a99994004000000000040400000b04000000000"
+          }
+        },
+        {
+          "index": 7,
+          "id": 807,
+          "name": "Gordunni Ogre-Mage",
+          "chest_flag": 0,
+          "base_experience": 3,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x146711e20",
+            "rva": "0x6711e20",
+            "file_offset": "0x6710e20",
+            "byte_count": 80,
+            "sha256": "647689e56bd2cdfa5aecc02189eb6301e7bafc54eafb6999390819af4005bb52",
+            "hex": "0100000085000000000090416666e63f9e1b714601000000120000000000000027030000b20c00000000803f0700000000005c4200001041cdcc4c400000a04003000000000000400000e04000000000"
+          }
+        },
+        {
+          "index": 8,
+          "id": 808,
+          "name": "Feral Scar Yeti",
+          "chest_flag": 0,
+          "base_experience": 5,
+          "death_accumulator": 3.5,
+          "record": {
+            "va": "0x146711e70",
+            "rva": "0x6711e70",
+            "file_offset": "0x6710e70",
+            "byte_count": 80,
+            "sha256": "e342e5da36c086e18525f0c62c2a7eefa66e48f3f57cae90e3f5b052bb2c90cc",
+            "hex": "00000000000000000000000000000000b01b7146010000000f0000000000000028030000340400006666a63f0100000000004843000060419a9919403333934005000000000060400000104100000000"
+          }
+        },
+        {
+          "index": 9,
+          "id": 809,
+          "name": "Gordunni Brute",
+          "chest_flag": 1,
+          "base_experience": 25,
+          "death_accumulator": 12.0,
+          "record": {
+            "va": "0x146711ec0",
+            "rva": "0x6711ec0",
+            "file_offset": "0x6710ec0",
+            "byte_count": 80,
+            "sha256": "d7af5dba1d4917a954d7bb70c22f30bb2f1f75f8ef8811e3b4ea4cf10c2f6e93",
+            "hex": "00000000000000000000000000000000bf1b7146010000000e0000000000000029030000ba270000cdcccc3f0700000000803b440000b04100000040cdccac4019000000000040410000804001000000"
+          }
+        },
+        {
+          "index": 10,
+          "id": 810,
+          "name": "Warpwood Treant",
+          "chest_flag": 1,
+          "base_experience": 28,
+          "death_accumulator": 13.0,
+          "record": {
+            "va": "0x146711f10",
+            "rva": "0x6711f10",
+            "file_offset": "0x6710f10",
+            "byte_count": 80,
+            "sha256": "835543fc9a667068eaae23961ed3e9fbdca7293cda257db75bb13246635bc808",
+            "hex": "00000000000000000000000000000000cd1b7146010000000f000000000000002a0300001e0800003333b33f0400000000806d440000d0419a991940cdcc8c401c000000000050410000084101000000"
+          }
+        },
+        {
+          "index": 11,
+          "id": 811,
+          "name": "Ironbark Protector",
+          "chest_flag": 1,
+          "base_experience": 32,
+          "death_accumulator": 15.0,
+          "record": {
+            "va": "0x146711f60",
+            "rva": "0x6711f60",
+            "file_offset": "0x6710f60",
+            "byte_count": 80,
+            "sha256": "eb52d458e7ff2db02f9c65d484db0c1859c69f63930bfe1d494c583616e1ba71",
+            "hex": "00000000000000000000000000000000dc1b71460100000012000000000000002b0300005c0300003333f33f0400000000c08f440000f04166662640cdcc8c4020000000000070410000504101000000"
+          }
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "key": "arena",
+      "name": "Gurubashi Arena",
+      "record": {
+        "va": "0x1467169d8",
+        "rva": "0x67169d8",
+        "file_offset": "0x67159d8",
+        "byte_count": 240,
+        "sha256": "52d25b89a90da9ccd9a642068d127c2b8b75649348d44e89657428db9109127d",
+        "hex": "0100000000004842be247146010000000500000000000000c3247146010000000f00000000000000d224714601000000130000000000000008000000000000000000000000000000080000000000000000000000000000000400000000000000000000000000000004000000000000000000000000000000b0257146010000000c00000000000000982c7146010000000500000000000000502e7146010000001200000000000000622e71460100000096000000000000000000000000000000000000002100000000504ec6000089433333af41000000000000004210000000cdcc3c40000000000000000000000000"
+      },
+      "center_xyz": [
+        -13204.0,
+        274.0,
+        21.899999618530273
+      ],
+      "radius": 32.0,
+      "enemy_table_va": "0x1467125b0",
+      "enemy_count": 12,
+      "enemy_definitions": [
+        {
+          "index": 0,
+          "id": 900,
+          "name": "Gurubashi Scout",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.0,
+          "record": {
+            "va": "0x1467125b0",
+            "rva": "0x67125b0",
+            "file_offset": "0x67115b0",
+            "byte_count": 80,
+            "sha256": "280f7732de632865b7ada3bc6b062dc4b43b9a31aceb3c6773be31513e2fc8ac",
+            "hex": "00000000000000000000000000000000e5247146010000000f0000000000000084030000510100000000803f070000000000f04100008040cdcccc3f3333b340010000000000803f0000000000000000"
+          }
+        },
+        {
+          "index": 1,
+          "id": 901,
+          "name": "Razzashi Raptor",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.0,
+          "record": {
+            "va": "0x146712600",
+            "rva": "0x6712600",
+            "file_offset": "0x6711600",
+            "byte_count": 80,
+            "sha256": "ea3e5affd7725656c51374aba4c54e82e64599f953f903e949fbe91799c7783d",
+            "hex": "00000000000000000000000000000000f4247146010000000f0000000000000085030000a70700009a99993f010000000000d0410000a0406666a63f00000041010000000000803f0000003f00000000"
+          }
+        },
+        {
+          "index": 2,
+          "id": 902,
+          "name": "Bloodseeker Bat",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.2000000476837158,
+          "record": {
+            "va": "0x146712650",
+            "rva": "0x6712650",
+            "file_offset": "0x6711650",
+            "byte_count": 80,
+            "sha256": "8444d535eb580f23e6833e9cf4a76b08f9c7a9004ec270a9f2a8f0e556a53080",
+            "hex": "0000000000000000000000000000000003257146010000000f0000000000000086030000573b00009a99193f010000000000c0410000a0406666a63f33330341010000009a99993f9a99993f00000000"
+          }
+        },
+        {
+          "index": 3,
+          "id": 903,
+          "name": "Hakkari Shadowcaster",
+          "chest_flag": 0,
+          "base_experience": 2,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x1467126a0",
+            "rva": "0x67126a0",
+            "file_offset": "0x67116a0",
+            "byte_count": 80,
+            "sha256": "df85bb78a2836055972217f2c0e02a4f8e5df38ea593d3be4977f7ec499e2e5d",
+            "hex": "01000000ae020000000090416666e63f12257146010000001400000000000000870300003a0100000000803f070000000000184200000041cdcc4c400000a04002000000000000400000004000000000"
+          }
+        },
+        {
+          "index": 4,
+          "id": 904,
+          "name": "Gurubashi Axe Thrower",
+          "chest_flag": 0,
+          "base_experience": 2,
+          "death_accumulator": 1.5,
+          "record": {
+            "va": "0x1467126f0",
+            "rva": "0x67126f0",
+            "file_offset": "0x67116f0",
+            "byte_count": 80,
+            "sha256": "d19e8c340bab928aba510155e141397e2fe82eee1a7fa1ed6ae1cf928b9bf6e2",
+            "hex": "0000000000000000000000000000000026257146010000001500000000000000880300003c0100000000803f0700000000007042000010416666e63f3333b340020000000000c03f0000404000000000"
+          }
+        },
+        {
+          "index": 5,
+          "id": 905,
+          "name": "Zulian Tiger",
+          "chest_flag": 0,
+          "base_experience": 2,
+          "death_accumulator": 1.5,
+          "record": {
+            "va": "0x146712740",
+            "rva": "0x6712740",
+            "file_offset": "0x6711740",
+            "byte_count": 80,
+            "sha256": "0ab5fc6392342a7f1ea8993fbd92c1ec1a574d6addfe887d1c3e331da3ae3cb7",
+            "hex": "000000000000000000000000000000003b257146010000000c000000000000008903000057020000cdcc8c3f0100000000005c42000010416666a63f3333f340020000000000c03f0000804000000000"
+          }
+        },
+        {
+          "index": 6,
+          "id": 906,
+          "name": "Razzashi Serpent",
+          "chest_flag": 0,
+          "base_experience": 4,
+          "death_accumulator": 3.0,
+          "record": {
+            "va": "0x146712790",
+            "rva": "0x6712790",
+            "file_offset": "0x6711790",
+            "byte_count": 80,
+            "sha256": "b6d571c7723020781fedf8a5cd4b9db0790780b9fcd56ff2c1a66226dce27e0f",
+            "hex": "00000000000000000000000000000000472571460100000010000000000000008a030000d81000006666a63f0100000000000c4300004041000000400000a04004000000000040400000b04000000000"
+          }
+        },
+        {
+          "index": 7,
+          "id": 907,
+          "name": "Hakkari Witch Doctor",
+          "chest_flag": 0,
+          "base_experience": 3,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x1467127e0",
+            "rva": "0x67127e0",
+            "file_offset": "0x67117e0",
+            "byte_count": 80,
+            "sha256": "a936e93a20a9c1e66b0b4a1ecff70351d7a83eaa8c126cac980804bdec73a467",
+            "hex": "010000009301000000009041cdcccc3f572571460100000014000000000000008b0300003d0100000000803f070000000000504200001041cdcc4c400000a04003000000000000400000e04000000000"
+          }
+        },
+        {
+          "index": 8,
+          "id": 908,
+          "name": "Son of Hakkar",
+          "chest_flag": 0,
+          "base_experience": 5,
+          "death_accumulator": 3.5,
+          "record": {
+            "va": "0x146712830",
+            "rva": "0x6712830",
+            "file_offset": "0x6711830",
+            "byte_count": 80,
+            "sha256": "4ae8644d592bf397da6f27b8c5d3f2662b3dd868920c7fdd434b1dd2c145a45f",
+            "hex": "000000000000000000000000000000006b257146010000000d000000000000008c0300008b0a00000000803f0200000000003e4300006041000000400000c04005000000000060400000104100000000"
+          }
+        },
+        {
+          "index": 9,
+          "id": 909,
+          "name": "Gurubashi Berserker",
+          "chest_flag": 1,
+          "base_experience": 25,
+          "death_accumulator": 12.0,
+          "record": {
+            "va": "0x146712880",
+            "rva": "0x6712880",
+            "file_offset": "0x6711880",
+            "byte_count": 80,
+            "sha256": "0eac11ef017421c8d4c64c793d4e46c90f88ac7cb96183ff5800e7b8e966590b",
+            "hex": "00000000000000000000000000000000782571460100000013000000000000008d0300004f0200006666a63f07000000000048440000c041000000403333b34019000000000040410000804001000000"
+          }
+        },
+        {
+          "index": 10,
+          "id": 910,
+          "name": "Zulian Crocolisk",
+          "chest_flag": 1,
+          "base_experience": 28,
+          "death_accumulator": 13.0,
+          "record": {
+            "va": "0x1467128d0",
+            "rva": "0x67128d0",
+            "file_offset": "0x67118d0",
+            "byte_count": 80,
+            "sha256": "f8653a3500708c556bac54faf3d2439fd6a38fb9a25a4d94cde2d7c90148b5b7",
+            "hex": "000000000000000000000000000000008b2571460100000010000000000000008e03000027030000ec51d83f0100000000806d440000d0419a9919409a9999401c000000000050410000084101000000"
+          }
+        },
+        {
+          "index": 11,
+          "id": 911,
+          "name": "Gurubashi Champion",
+          "chest_flag": 1,
+          "base_experience": 32,
+          "death_accumulator": 15.0,
+          "record": {
+            "va": "0x146712920",
+            "rva": "0x6712920",
+            "file_offset": "0x6711920",
+            "byte_count": 80,
+            "sha256": "ebeaf2538c08dad04201c273e64bfc6138ec55898fa2205e2161afc74e039b09",
+            "hex": "000000000000000000000000000000009b2571460100000012000000000000008f030000510200003333b33f0700000000c08f4400000042cdcc0c40cdccac4020000000000070410000504101000000"
+          }
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "key": "sm",
+      "name": "Scarlet Monastery",
+      "record": {
+        "va": "0x146716ac8",
+        "rva": "0x6716ac8",
+        "file_offset": "0x6715ac8",
+        "byte_count": 240,
+        "sha256": "3eb8aeada139307617e98e8cb88d6cbe0a1c75a270e65a1b2e46094aa47a4bff",
+        "hex": "0000000000000000f82e7146010000000200000000000000fa2e71460100000011000000000000000b2f7146010000001800000000000000282f714601000000040000000000000008000000000000000000000000000000682f7146010000000400000000000000882f714601000000040000000000000060307146010000000c0000000000000000377146010000000500000000000000b8387146010000001300000000000000cb38714601000000af000000000000000000000000000000bd0000001c03000000a082440080ae440000d84100000000000016430c000000b81e1540000000000100000000000000"
+      },
+      "center_xyz": [
+        1045.0,
+        1396.0,
+        27.0
+      ],
+      "radius": 150.0,
+      "enemy_table_va": "0x146713060",
+      "enemy_count": 12,
+      "enemy_definitions": [
+        {
+          "index": 0,
+          "id": 1300,
+          "name": "Scarlet Monk",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.0,
+          "record": {
+            "va": "0x146713060",
+            "rva": "0x6713060",
+            "file_offset": "0x6712060",
+            "byte_count": 80,
+            "sha256": "f5458a12fc6431616a9ae73471ddf4f13c9251ab6de10043a08625f54682cec2",
+            "hex": "00000000000000000000000000000000a82f7146010000000c00000000000000140500002b0a00000000803f070000000000f04100008040cdcccc3f3333b340010000000000803f0000000000000000"
+          }
+        },
+        {
+          "index": 1,
+          "id": 1301,
+          "name": "Scarlet Tracking Hound",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.0,
+          "record": {
+            "va": "0x1467130b0",
+            "rva": "0x67130b0",
+            "file_offset": "0x67120b0",
+            "byte_count": 80,
+            "sha256": "edcd7a8cda7c19774bdbb2f97bec13b2379d171543aac9cc1c3a7f1fc35817a1",
+            "hex": "00000000000000000000000000000000b42f714601000000160000000000000015050000950a0000cdcc8c3f010000000000d0410000a0406666a63f00000041010000000000803f0000003f00000000"
+          }
+        },
+        {
+          "index": 2,
+          "id": 1302,
+          "name": "Scarlet Scout",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.2000000476837158,
+          "record": {
+            "va": "0x146713100",
+            "rva": "0x6713100",
+            "file_offset": "0x6712100",
+            "byte_count": 80,
+            "sha256": "478a1cfbb6a3a289ed4141817250f84021fdbc219ed085d7ca76aa25be518979",
+            "hex": "00000000000000000000000000000000ca2f7146010000000d0000000000000016050000d40900000000803f070000000000d0410000a0406666a63fcdccec40010000009a99993f9a99993f00000000"
+          }
+        },
+        {
+          "index": 3,
+          "id": 1303,
+          "name": "Scarlet Adept",
+          "chest_flag": 0,
+          "base_experience": 2,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x146713150",
+            "rva": "0x6713150",
+            "file_offset": "0x6712150",
+            "byte_count": 80,
+            "sha256": "e8723abe083801a5005ecce27f01db34f803f4d9a4dd9809ed5f4767c10f58c1",
+            "hex": "0100000049020000000090416666e63fd72f7146010000000d00000000000000170500005e160000cdcc8c3f070000000000184200000041cdcc4c400000a04002000000000000400000004000000000"
+          }
+        },
+        {
+          "index": 4,
+          "id": 1304,
+          "name": "Scarlet Centurion",
+          "chest_flag": 0,
+          "base_experience": 2,
+          "death_accumulator": 1.5,
+          "record": {
+            "va": "0x1467131a0",
+            "rva": "0x67131a0",
+            "file_offset": "0x67121a0",
+            "byte_count": 80,
+            "sha256": "807a175ebe8d2c89c57b7866187a191d9093b14e33cac283b4265093a7652ebd",
+            "hex": "00000000000000000000000000000000e42f714601000000110000000000000018050000c30900009a99993f0700000000007042000010416666e63f3333b340020000000000c03f0000404000000000"
+          }
+        },
+        {
+          "index": 5,
+          "id": 1305,
+          "name": "Scarlet Defender",
+          "chest_flag": 0,
+          "base_experience": 4,
+          "death_accumulator": 3.0,
+          "record": {
+            "va": "0x1467131f0",
+            "rva": "0x67131f0",
+            "file_offset": "0x67121f0",
+            "byte_count": 80,
+            "sha256": "8577948af6520a3698457951a0eb81a42d3dabaa528a9387a4634fbac1cb7e2c",
+            "hex": "00000000000000000000000000000000f52f7146010000001000000000000000190500009e090000cdcccc3f0700000000000c4300004041cdcc0c403333934004000000000040400000904000000000"
+          }
+        },
+        {
+          "index": 6,
+          "id": 1306,
+          "name": "Scarlet Gallant",
+          "chest_flag": 0,
+          "base_experience": 2,
+          "death_accumulator": 1.5,
+          "record": {
+            "va": "0x146713240",
+            "rva": "0x6713240",
+            "file_offset": "0x6712240",
+            "byte_count": 80,
+            "sha256": "73979d485656cee9ba521e726a6b5232928e498271b8662dc91b14eb9b74d7e7",
+            "hex": "0000000000000000000000000000000005307146010000000f000000000000001a0500009f0900003333933f0700000000005c42000010413333b33f6666e640020000000000c03f0000c04000000000"
+          }
+        },
+        {
+          "index": 7,
+          "id": 1307,
+          "name": "Scarlet Wizard",
+          "chest_flag": 0,
+          "base_experience": 3,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x146713290",
+            "rva": "0x6713290",
+            "file_offset": "0x6712290",
+            "byte_count": 80,
+            "sha256": "8f9a2aba0265ccd89e8a921a5d7a76049be5bc79a483a9627668c18d71b5e3db",
+            "hex": "010000008500000000009041cdcccc3f14307146010000000e000000000000001b050000dd0900009a99993f070000000000504200001041cdcc4c400000a04003000000000000400000e04000000000"
+          }
+        },
+        {
+          "index": 8,
+          "id": 1308,
+          "name": "Scarlet Protector",
+          "chest_flag": 0,
+          "base_experience": 5,
+          "death_accumulator": 3.5,
+          "record": {
+            "va": "0x1467132e0",
+            "rva": "0x67132e0",
+            "file_offset": "0x67122e0",
+            "byte_count": 80,
+            "sha256": "f59ac742be244aa5fc39f0494d46b91e64c8d3c2fb0939af673926272ce189a2",
+            "hex": "00000000000000000000000000000000223071460100000011000000000000001c050000ac0900003333f33f0700000000003e430000604100000040cdccac4005000000000060400000104100000000"
+          }
+        },
+        {
+          "index": 9,
+          "id": 1309,
+          "name": "Scarlet Myrmidon",
+          "chest_flag": 1,
+          "base_experience": 25,
+          "death_accumulator": 12.0,
+          "record": {
+            "va": "0x146713330",
+            "rva": "0x6713330",
+            "file_offset": "0x6712330",
+            "byte_count": 80,
+            "sha256": "c7f007de04bc511299f140a528ec819e284d0003ba49b08a4399e30fc8cb7eb1",
+            "hex": "00000000000000000000000000000000333071460100000010000000000000001d050000d20900000000a03f07000000000048440000c041000000403333b34019000000000040410000804001000000"
+          }
+        },
+        {
+          "index": 10,
+          "id": 1310,
+          "name": "Scarlet Champion",
+          "chest_flag": 1,
+          "base_experience": 28,
+          "death_accumulator": 13.0,
+          "record": {
+            "va": "0x146713380",
+            "rva": "0x6713380",
+            "file_offset": "0x6712380",
+            "byte_count": 80,
+            "sha256": "9a05e43022dc70cb255dfe4518eab0f3cdf6f20effa5260b0c6fb21424489eef",
+            "hex": "00000000000000000000000000000000433071460100000010000000000000001e0500009c090000cdcccc3f0700000000806d440000d041cdcc0c40cdccac401c000000000050410000084101000000"
+          }
+        },
+        {
+          "index": 11,
+          "id": 1311,
+          "name": "Scarlet Abbot",
+          "chest_flag": 1,
+          "base_experience": 32,
+          "death_accumulator": 15.0,
+          "record": {
+            "va": "0x1467133d0",
+            "rva": "0x67133d0",
+            "file_offset": "0x67123d0",
+            "byte_count": 80,
+            "sha256": "d2d66307f2b9a2ef01f56b97e7747915534d17ebeeb8606ba1efea5239b94ed1",
+            "hex": "0000000000000000000000000000000053307146010000000d000000000000001f050000bc0900000000f03f0700000000c08f4400000042cdcc0c406666a64020000000000070410000504101000000"
+          }
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "key": "av",
+      "name": "Alterac Valley",
+      "record": {
+        "va": "0x146716bb8",
+        "rva": "0x6716bb8",
+        "file_offset": "0x6715bb8",
+        "byte_count": 240,
+        "sha256": "834de47eeb2b4a0315719e157ba2a4dd011f37248db35277ded9b5903ac556c5",
+        "hex": "00000000000000007a3971460100000002000000000000007c397146010000000e000000000000008a397146010000001000000000000000a0397146010000000100000000000000080000000000000000000000000000000400000000000000000000000000000004000000000000000000000000000000803a7146010000000c00000000000000f8407146010000000500000000000000b0427146010000001900000000000000c9427146010000007000000000000000020000009a99193f1e000000250a0000000066c3000091c30000e0400000803f000007430e000000cdcc3c40000000000000000000000000"
+      },
+      "center_xyz": [
+        -230.0,
+        -290.0,
+        7.0
+      ],
+      "radius": 135.0,
+      "enemy_table_va": "0x146713a80",
+      "enemy_count": 12,
+      "enemy_definitions": [
+        {
+          "index": 0,
+          "id": 300,
+          "name": "Trogg Tunneler",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.0,
+          "record": {
+            "va": "0x146713a80",
+            "rva": "0x6713a80",
+            "file_offset": "0x6712a80",
+            "byte_count": 80,
+            "sha256": "4b6d5507405fef05a5c89854c61d610a2287cc8e6be231acf44fc21ab1695c75",
+            "hex": "00000000000000000000000000000000b0397146010000000e000000000000002c010000a00000000000803f070000000000f04100008040cdcccc3f6666a640010000000000803f0000000000000000"
+          }
+        },
+        {
+          "index": 1,
+          "id": 301,
+          "name": "Starving Frostwolf",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.0,
+          "record": {
+            "va": "0x146713ad0",
+            "rva": "0x6713ad0",
+            "file_offset": "0x6712ad0",
+            "byte_count": 80,
+            "sha256": "cbc0f30cbc81a9b05ff873bc169dafa69cc32e31f6087e211ca682a5f93c6549",
+            "hex": "00000000000000000000000000000000be3971460100000012000000000000002d01000008030000cdcc4c3f010000000000c0410000a0406666a63f9a99f940010000000000803f9a99193f00000000"
+          }
+        },
+        {
+          "index": 2,
+          "id": 308,
+          "name": "Winterax Axe Thrower",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.2000000476837158,
+          "record": {
+            "va": "0x146713b20",
+            "rva": "0x6713b20",
+            "file_offset": "0x6712b20",
+            "byte_count": 80,
+            "sha256": "ef10fd5a0515adc6bb5ab90a133f3888254b49f9f43eb78920627a8a56b39b8b",
+            "hex": "00000000000000000000000000000000d039714601000000140000000000000034010000990200000000803f07000000000008420000c0409a99d93f3333b340010000009a99993f9a99993f00000000"
+          }
+        },
+        {
+          "index": 3,
+          "id": 303,
+          "name": "Crushridge Ogre Mage",
+          "chest_flag": 0,
+          "base_experience": 3,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x146713b70",
+            "rva": "0x6713b70",
+            "file_offset": "0x6712b70",
+            "byte_count": 80,
+            "sha256": "be1e954c5abf682bdd75dae782c98bb52f8bebee071b0a017f7c6058ed557ecf",
+            "hex": "0100000074000000000090416666e63fe43971460100000014000000000000002f010000210000000000803f070000000000404200000041cdcc4c400000a04003000000000000400000004000000000"
+          }
+        },
+        {
+          "index": 4,
+          "id": 302,
+          "name": "Snowfall Wendigo",
+          "chest_flag": 0,
+          "base_experience": 2,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x146713bc0",
+            "rva": "0x6713bc0",
+            "file_offset": "0x6712bc0",
+            "byte_count": 80,
+            "sha256": "a230326f3e7cef14a9753d01655acf69129bdcd8a711add1205403296cab3df3",
+            "hex": "00000000000000000000000000000000f83971460100000010000000000000002e0100009f0300000000803f0100000000008c4200000041000000400000a04002000000000000400000404000000000"
+          }
+        },
+        {
+          "index": 5,
+          "id": 304,
+          "name": "Crushridge Brute",
+          "chest_flag": 0,
+          "base_experience": 4,
+          "death_accumulator": 3.0,
+          "record": {
+            "va": "0x146713c10",
+            "rva": "0x6713c10",
+            "file_offset": "0x6712c10",
+            "byte_count": 80,
+            "sha256": "ef087c237224a4e0265b978259c31705668b2c6bcc53f6d49a291181c20fa83f",
+            "hex": "00000000000000000000000000000000083a7146010000001000000000000000300100009f0100009a99993f0700000000002a43000040419a991940cdcc8c4004000000000040400000904000000000"
+          }
+        },
+        {
+          "index": 6,
+          "id": 305,
+          "name": "Ice Revenant",
+          "chest_flag": 0,
+          "base_experience": 3,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x146713c60",
+            "rva": "0x6713c60",
+            "file_offset": "0x6712c60",
+            "byte_count": 80,
+            "sha256": "13508a3f21ec3114cc1b2dc215ef6c5c763ea16e24315366c29bd0865171c4e8",
+            "hex": "00000000000000000000000000000000183a7146010000000c00000000000000310100006e0000003333333f040000000000b442000010416666e63f3333b34003000000000000400000c04000000000"
+          }
+        },
+        {
+          "index": 7,
+          "id": 309,
+          "name": "Winterax Shadow Hunter",
+          "chest_flag": 0,
+          "base_experience": 3,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x146713cb0",
+            "rva": "0x6713cb0",
+            "file_offset": "0x6712cb0",
+            "byte_count": 80,
+            "sha256": "2f201d3924c655085cdeb695e0b7520a41703245718fc9eefabb92b5d5795429",
+            "hex": "010000007400000000009041cdcccc3f243a714601000000160000000000000035010000950200000000803f070000000000604200001041cdcc4c400000a04003000000000000400000f04000000000"
+          }
+        },
+        {
+          "index": 8,
+          "id": 310,
+          "name": "Frostwolf Packleader",
+          "chest_flag": 0,
+          "base_experience": 5,
+          "death_accumulator": 3.5,
+          "record": {
+            "va": "0x146713d00",
+            "rva": "0x6713d00",
+            "file_offset": "0x6712d00",
+            "byte_count": 80,
+            "sha256": "8be27f82d44723a705490f601c6b2367f404233bed64e31be296461090e5574a",
+            "hex": "000000000000000000000000000000003a3a714601000000140000000000000036010000640300009a99993f010000000000484300006041cdcccc3fcdcccc4005000000000060400000104100000000"
+          }
+        },
+        {
+          "index": 9,
+          "id": 306,
+          "name": "Alterac Yeti Lord",
+          "chest_flag": 1,
+          "base_experience": 25,
+          "death_accumulator": 12.0,
+          "record": {
+            "va": "0x146713d50",
+            "rva": "0x6713d50",
+            "file_offset": "0x6712d50",
+            "byte_count": 80,
+            "sha256": "4c5a8cd851a13b09ecc0be2d5ac7255fb0e719b82ec8c83ef13639d908eaad46",
+            "hex": "000000000000000000000000000000004e3a714601000000110000000000000032010000880c00000000c03f0100000000803b440000b041000000403333b34019000000000040410000804001000000"
+          }
+        },
+        {
+          "index": 10,
+          "id": 307,
+          "name": "Mountain Giant",
+          "chest_flag": 1,
+          "base_experience": 30,
+          "death_accumulator": 14.0,
+          "record": {
+            "va": "0x146713da0",
+            "rva": "0x6713da0",
+            "file_offset": "0x6712da0",
+            "byte_count": 80,
+            "sha256": "1e03d035c88dc19687d487aea2711252e7ca93b96b4d9159ae73a60f248e2aa9",
+            "hex": "000000000000000000000000000000005f3a7146010000000e00000000000000330100007e0700000000803f0500000000007a440000e04166662640333393401e000000000060410000084101000000"
+          }
+        },
+        {
+          "index": 11,
+          "id": 311,
+          "name": "Winterax Warlord",
+          "chest_flag": 1,
+          "base_experience": 32,
+          "death_accumulator": 15.0,
+          "record": {
+            "va": "0x146713df0",
+            "rva": "0x6713df0",
+            "file_offset": "0x6712df0",
+            "byte_count": 80,
+            "sha256": "64094d0eca522aaf4715afcb34d00a071fcb560560c4211a1d9eecfa05c1418f",
+            "hex": "000000000000000000000000000000006d3a714601000000100000000000000037010000a53600006666e63f070000000000964400000042cdcc0c403333b34020000000000070410000504101000000"
+          }
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "key": "brm",
+      "name": "Blackrock Mountain",
+      "record": {
+        "va": "0x146716ca8",
+        "rva": "0x6716ca8",
+        "file_offset": "0x6715ca8",
+        "byte_count": 240,
+        "sha256": "0dfd02bf96a95212003b0ee5943f28ae6b7bd5ad69742f9d72daa5b830f133da",
+        "hex": "0000000000000000394371460100000003000000000000003c4371460100000012000000000000004e4371460100000015000000000000006843714601000000010000000000000008000000000000000000000000000000040000000000000000000000000000000400000000000000000000000000000030447146010000000c00000000000000a04b7146010000000500000000000000584d7146010000001800000000000000704d7146010000009f000000000000000000000000000000000000002e0000000080f2c50000e1c4cdcc0443cdcccc3f0000f04215000000e17a8440000000000000000000000000"
+      },
+      "center_xyz": [
+        -7760.0,
+        -1800.0,
+        132.8000030517578
+      ],
+      "radius": 120.0,
+      "enemy_table_va": "0x146714430",
+      "enemy_count": 12,
+      "enemy_definitions": [
+        {
+          "index": 0,
+          "id": 1000,
+          "name": "Dark Iron Slaver",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.0,
+          "record": {
+            "va": "0x146714430",
+            "rva": "0x6714430",
+            "file_offset": "0x6713430",
+            "byte_count": 80,
+            "sha256": "d6b7e3132d36d7aaef90558f9f81132d87f611424fbd767c4ee4a97c32de455b",
+            "hex": "0000000000000000000000000000000078437146010000001000000000000000e8030000e12100000000803f070000000000f0410000a040cdcccc3f6666a640010000000000803f0000000000000000"
+          }
+        },
+        {
+          "index": 1,
+          "id": 1001,
+          "name": "Black Broodling",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.0,
+          "record": {
+            "va": "0x146714480",
+            "rva": "0x6714480",
+            "file_offset": "0x6713480",
+            "byte_count": 80,
+            "sha256": "8addd3049b146a97dc015c40b4429adbb287d1fb499e42a7b3aa6d7b2c93d8a9",
+            "hex": "0000000000000000000000000000000088437146010000000f00000000000000e9030000830100000000803f020000000000c0410000a0406666a63f9a99f940010000000000803f0000003f00000000"
+          }
+        },
+        {
+          "index": 2,
+          "id": 1002,
+          "name": "Blackrock Grunt",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.2000000476837158,
+          "record": {
+            "va": "0x1467144d0",
+            "rva": "0x67144d0",
+            "file_offset": "0x67134d0",
+            "byte_count": 80,
+            "sha256": "ae9710bef355e7b34493fe0d1b33aeef5ec801f8559d1c9e340d2fa9a9afcd98",
+            "hex": "0000000000000000000000000000000097437146010000000f00000000000000ea030000fb2100000000803f07000000000010420000c0409a99d93f3333b340010000009a99993f9a99993f00000000"
+          }
+        },
+        {
+          "index": 3,
+          "id": 1003,
+          "name": "Dark Iron Geomancer",
+          "chest_flag": 0,
+          "base_experience": 2,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x146714520",
+            "rva": "0x6714520",
+            "file_offset": "0x6713520",
+            "byte_count": 80,
+            "sha256": "f04a5ca8241eb826b6c4609e083f5aca26f98c10346f2ae2a0eac3be0c6b4721",
+            "hex": "0100000085000000000090416666e63fa6437146010000001300000000000000eb0300005f2200000000803f070000000000184200000041cdcc4c400000a04002000000000000400000004000000000"
+          }
+        },
+        {
+          "index": 4,
+          "id": 1004,
+          "name": "Anvilrage Guardsman",
+          "chest_flag": 0,
+          "base_experience": 3,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x146714570",
+            "rva": "0x6714570",
+            "file_offset": "0x6713570",
+            "byte_count": 80,
+            "sha256": "71f187ec65935aa4b7a67806b2d701998ef434a39171fdbc01310d4a44f04935",
+            "hex": "00000000000000000000000000000000b9437146010000001300000000000000ec030000e92100000000803f070000000000a04200002041000000400000a04003000000000000400000404000000000"
+          }
+        },
+        {
+          "index": 5,
+          "id": 1005,
+          "name": "Blazing Elemental",
+          "chest_flag": 0,
+          "base_experience": 2,
+          "death_accumulator": 1.5,
+          "record": {
+            "va": "0x1467145c0",
+            "rva": "0x67145c0",
+            "file_offset": "0x67135c0",
+            "byte_count": 80,
+            "sha256": "9a08abcbae3ecad893936839a402e43c1697d79fbee6c114d312791da829b800",
+            "hex": "00000000000000000000000000000000cc437146010000001100000000000000ed0300002e040000cdcc4c3f0400000000005c42000010413333b33f0000e040020000000000c03f0000804000000000"
+          }
+        },
+        {
+          "index": 6,
+          "id": 1006,
+          "name": "Firegut Ogre",
+          "chest_flag": 0,
+          "base_experience": 4,
+          "death_accumulator": 3.0,
+          "record": {
+            "va": "0x146714610",
+            "rva": "0x6714610",
+            "file_offset": "0x6713610",
+            "byte_count": 80,
+            "sha256": "bb6efb7bcff8774cfefa924b22e1ba2161c7000efbf03d59798a57ff2e38a766",
+            "hex": "00000000000000000000000000000000dd437146010000000c00000000000000ee030000d3290000cdcc0c3f0700000000002a4300005041cdcc0c409a99994004000000000040400000b04000000000"
+          }
+        },
+        {
+          "index": 7,
+          "id": 1007,
+          "name": "Black Wyrmkin",
+          "chest_flag": 0,
+          "base_experience": 3,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x146714660",
+            "rva": "0x6714660",
+            "file_offset": "0x6713660",
+            "byte_count": 80,
+            "sha256": "a9a13dbc051ed3207f0c6b1c78a14835ba4ea465d5e1c18ac84692a38c6d50d0",
+            "hex": "01000000662c000000009041cdcc0c40e9437146010000000d00000000000000ef030000392000006666663f020000000000704200002041cdcc4c400000a04003000000000000400000e04000000000"
+          }
+        },
+        {
+          "index": 8,
+          "id": 1008,
+          "name": "Fireguard Destroyer",
+          "chest_flag": 0,
+          "base_experience": 5,
+          "death_accumulator": 3.5,
+          "record": {
+            "va": "0x1467146b0",
+            "rva": "0x67146b0",
+            "file_offset": "0x67136b0",
+            "byte_count": 80,
+            "sha256": "4678ac6ffd60f79f1a2b34433c09ec53e08a3dc7ed56772f9bb04921445f149f",
+            "hex": "00000000000000000000000000000000f6437146010000001300000000000000f0030000ee2100000000403f0700000000005243000070419a9919403333934005000000000060400000104100000000"
+          }
+        },
+        {
+          "index": 9,
+          "id": 1009,
+          "name": "Core Hound",
+          "chest_flag": 1,
+          "base_experience": 25,
+          "death_accumulator": 12.0,
+          "record": {
+            "va": "0x146714700",
+            "rva": "0x6714700",
+            "file_offset": "0x6713700",
+            "byte_count": 80,
+            "sha256": "12b8af7da0fdcad7d668c11a1a9ad3a0fd7102ab77339908b7ae9df8b2f912ad",
+            "hex": "0000000000000000000000000000000009447146010000000a00000000000000f1030000d12700006666663f01000000008054440000d0416666e63f0000c04019000000000040410000804001000000"
+          }
+        },
+        {
+          "index": 10,
+          "id": 1010,
+          "name": "Black Drake",
+          "chest_flag": 1,
+          "base_experience": 28,
+          "death_accumulator": 13.0,
+          "record": {
+            "va": "0x146714750",
+            "rva": "0x6714750",
+            "file_offset": "0x6713750",
+            "byte_count": 80,
+            "sha256": "945c2e7d28c46a2f162f84d7e0ded74d81f17cf01eb949d3aa46683afa7dbf12",
+            "hex": "0000000000000000000000000000000013447146010000000b00000000000000f2030000e9180000cdcccc3e0200000000007a440000e041cdcc0c406666c6401c000000000050410000084101000000"
+          }
+        },
+        {
+          "index": 11,
+          "id": 1011,
+          "name": "Molten Giant",
+          "chest_flag": 1,
+          "base_experience": 32,
+          "death_accumulator": 15.0,
+          "record": {
+            "va": "0x1467147a0",
+            "rva": "0x67147a0",
+            "file_offset": "0x67137a0",
+            "byte_count": 80,
+            "sha256": "5e1da43a9bab931a3a29138415a6cb21f4cdf563896cb4d208957460f1d65cf2",
+            "hex": "000000000000000000000000000000001e447146010000000c00000000000000f3030000822f00009a99193f0500000000409c440000084266662640cdcc8c4020000000000070410000504101000000"
+          }
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "key": "aq",
+      "name": "Gates of Ahn'Qiraj",
+      "record": {
+        "va": "0x146716d98",
+        "rva": "0x6716d98",
+        "file_offset": "0x6715d98",
+        "byte_count": 240,
+        "sha256": "6d138bd8541de4cf1222268d23ab5236380654a663db467b59d9c5218d97ffdc",
+        "hex": "00000000000000000f4e7146010000000200000000000000114e7146010000001200000000000000234e714601000000110000000000000008000000000000000000000000000000080000000000000000000000000000000400000000000000000000000000000004000000000000000000000000000000f84e7146010000000c00000000000000985571460100000005000000000000005057714601000000170000000000000067577146010000008300000000000000030000006666e63e010000006105000000c0f3c50080bb440000c03fc3f548400000f0420d000000d7a35040000000000000000000000000"
+      },
+      "center_xyz": [
+        -7800.0,
+        1500.0,
+        1.5
+      ],
+      "radius": 120.0,
+      "enemy_table_va": "0x146714ef8",
+      "enemy_count": 12,
+      "enemy_definitions": [
+        {
+          "index": 0,
+          "id": 1100,
+          "name": "Silithid Swarmer",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.0,
+          "record": {
+            "va": "0x146714ef8",
+            "rva": "0x6714ef8",
+            "file_offset": "0x6713ef8",
+            "byte_count": 80,
+            "sha256": "6a317da413d0ede4a8c342fda475cd0a8ec5339701c23cffc4861c180bd110f6",
+            "hex": "00000000000000000000000000000000344e71460100000010000000000000004c040000872b00000000803f010000000000c0410000a0409a99993f3333f340010000000000803f0000000000000000"
+          }
+        },
+        {
+          "index": 1,
+          "id": 1101,
+          "name": "Silithid Creeper",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.0,
+          "record": {
+            "va": "0x146714f48",
+            "rva": "0x6714f48",
+            "file_offset": "0x6713f48",
+            "byte_count": 80,
+            "sha256": "c01b7484fca91b6fdaa9639362a24a02098699f39b2126956ff17eda8089e38e",
+            "hex": "00000000000000000000000000000000444e71460100000010000000000000004d040000592b00006666a63f01000000000000420000c040cdcccc3f3333b340010000000000803f0000003f00000000"
+          }
+        },
+        {
+          "index": 2,
+          "id": 1102,
+          "name": "Hive'Zara Stinger",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.2000000476837158,
+          "record": {
+            "va": "0x146714f98",
+            "rva": "0x6714f98",
+            "file_offset": "0x6713f98",
+            "byte_count": 80,
+            "sha256": "9396ae45b4db64cae2a8588ce8c5f32e0100ca34d87f1c6a6007596054e5f0bd",
+            "hex": "00000000000000000000000000000000544e71460100000011000000000000004e040000e73b00003333b33e010000000000d0410000c0406666a63f33330341010000009a99993f9a99993f00000000"
+          }
+        },
+        {
+          "index": 3,
+          "id": 1103,
+          "name": "Twilight Geolord",
+          "chest_flag": 0,
+          "base_experience": 2,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x146714fe8",
+            "rva": "0x6714fe8",
+            "file_offset": "0x6713fe8",
+            "byte_count": 80,
+            "sha256": "84181cbdd2a039b5e6bcfccd6ae7a3a1c6433d852a2e70c229d77bfed5698d74",
+            "hex": "0100000093010000000090416666e63f654e71460100000010000000000000004f040000360b00000000803f070000000000204200000041cdcc4c400000a04002000000000000400000004000000000"
+          }
+        },
+        {
+          "index": 4,
+          "id": 1104,
+          "name": "Qiraji Gladiator",
+          "chest_flag": 0,
+          "base_experience": 3,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x146715038",
+            "rva": "0x6715038",
+            "file_offset": "0x6714038",
+            "byte_count": 80,
+            "sha256": "ec079dece1f6ec49047c92c52c39251399957a710bac9eafd728ce63d0555565",
+            "hex": "00000000000000000000000000000000754e714601000000100000000000000050040000270400009a99193f070000000000b4420000304100000040cdccac4003000000000000400000404000000000"
+          }
+        },
+        {
+          "index": 5,
+          "id": 1105,
+          "name": "Stonelash Scorpid",
+          "chest_flag": 0,
+          "base_experience": 2,
+          "death_accumulator": 1.5,
+          "record": {
+            "va": "0x146715088",
+            "rva": "0x6715088",
+            "file_offset": "0x6714088",
+            "byte_count": 80,
+            "sha256": "5a0a2f0db179868797e6b7ecfeaf405f5f4c884ec3af7dec8822a4f7ab59a691",
+            "hex": "00000000000000000000000000000000854e714601000000110000000000000051040000b50900009a99993f0100000000007042000020413333b33f9a99d940020000000000c03f0000804000000000"
+          }
+        },
+        {
+          "index": 6,
+          "id": 1106,
+          "name": "Silithid Ravager",
+          "chest_flag": 0,
+          "base_experience": 4,
+          "death_accumulator": 3.0,
+          "record": {
+            "va": "0x1467150d8",
+            "rva": "0x67150d8",
+            "file_offset": "0x67140d8",
+            "byte_count": 80,
+            "sha256": "0fd2263b66e79a87377e0a53bbc49e6047ac8ba52f8c38cddce3766ed049bea5",
+            "hex": "00000000000000000000000000000000964e7146010000001000000000000000520400005b2b00009a99993f0100000000003e4300006041cdcc0c409a99994004000000000040400000b04000000000"
+          }
+        },
+        {
+          "index": 7,
+          "id": 1107,
+          "name": "Qiraji Mindslayer",
+          "chest_flag": 0,
+          "base_experience": 3,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x146715128",
+            "rva": "0x6715128",
+            "file_offset": "0x6714128",
+            "byte_count": 80,
+            "sha256": "d55c39d0b61c5a7796c580f1a0bce7fda06d6e339519ca25c9810a3ee40733c4",
+            "hex": "010000009c1f000000009041cdcccc3fa64e714601000000110000000000000053040000280400009a99193f070000000000704200003041cdcc4c400000a04003000000000000400000e04000000000"
+          }
+        },
+        {
+          "index": 8,
+          "id": 1108,
+          "name": "Dust Stormer",
+          "chest_flag": 0,
+          "base_experience": 5,
+          "death_accumulator": 3.5,
+          "record": {
+            "va": "0x146715178",
+            "rva": "0x6715178",
+            "file_offset": "0x6714178",
+            "byte_count": 80,
+            "sha256": "c82687c208d8bfca1fff7d6c1d43b04e287fdfd747a5a62cf66914981db7c7bd",
+            "hex": "00000000000000000000000000000000b74e7146010000000c0000000000000054040000cf1400006666a63f040000000000664300008041cdcc0c403333b34005000000000060400000104100000000"
+          }
+        },
+        {
+          "index": 9,
+          "id": 1109,
+          "name": "Qiraji Champion",
+          "chest_flag": 1,
+          "base_experience": 25,
+          "death_accumulator": 12.0,
+          "record": {
+            "va": "0x1467151c8",
+            "rva": "0x67151c8",
+            "file_offset": "0x67141c8",
+            "byte_count": 80,
+            "sha256": "2d67b33f4f8b936bbd70b2789edb7363eaaad972fdaf24be259dfa1566156eec",
+            "hex": "00000000000000000000000000000000c34e7146010000000f000000000000005504000026040000cdcc4c3f07000000000061440000e041000000403333b34019000000000040410000804001000000"
+          }
+        },
+        {
+          "index": 10,
+          "id": 1110,
+          "name": "Anubisath Sentinel",
+          "chest_flag": 1,
+          "base_experience": 28,
+          "death_accumulator": 13.0,
+          "record": {
+            "va": "0x146715218",
+            "rva": "0x6715218",
+            "file_offset": "0x6714218",
+            "byte_count": 80,
+            "sha256": "e49fde21f0a2d63e6bed26777d140abc80d9eab69b3a68ff70016dc7c0cef312",
+            "hex": "00000000000000000000000000000000d24e7146010000001200000000000000560400004d1700009a99193f07000000008089440000f0419a9919409a9999401c000000000050410000084101000000"
+          }
+        },
+        {
+          "index": 11,
+          "id": 1111,
+          "name": "Obsidian Destroyer",
+          "chest_flag": 1,
+          "base_experience": 32,
+          "death_accumulator": 15.0,
+          "record": {
+            "va": "0x146715268",
+            "rva": "0x6715268",
+            "file_offset": "0x6714268",
+            "byte_count": 80,
+            "sha256": "0d9f74ec539c0c2089c8a1d11c682d7ea90a6c85ab7ae399577e2b5e07fd2aa0",
+            "hex": "00000000000000000000000000000000e44e7146010000001200000000000000570400008a2e0000ae47813f0900000000c0a84400001042666626403333934020000000000070410000504101000000"
+          }
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "key": "naxx",
+      "name": "Naxxramas",
+      "record": {
+        "va": "0x146716e88",
+        "rva": "0x6716e88",
+        "file_offset": "0x6715e88",
+        "byte_count": 240,
+        "sha256": "4b6301d2ab1eeb0abff7bb054783feaebea0f4d88d3d59501af00e90121cbf5a",
+        "hex": "0000000000000000ea577146010000000400000000000000ee577146010000000900000000000000f757714601000000140000000000000010587146010000000400000000000000505871460100000004000000000000000400000000000000000000000000000070587146010000000600000000000000a8597146010000001000000000000000a0617146010000000500000000000000586371460100000013000000000000006b63714601000000cd00000000000000000000000000000015020000800d00000040684500909fc5cd4c0d430000000000003042000000000000c840000000000100000000000000"
+      },
+      "center_xyz": [
+        3716.0,
+        -5106.0,
+        141.3000030517578
+      ],
+      "radius": 44.0,
+      "enemy_table_va": "0x1467159a8",
+      "enemy_count": 16,
+      "enemy_definitions": [
+        {
+          "index": 0,
+          "id": 1400,
+          "name": "Plagued Ghoul",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.0,
+          "record": {
+            "va": "0x1467159a8",
+            "rva": "0x67159a8",
+            "file_offset": "0x67149a8",
+            "byte_count": 80,
+            "sha256": "889cd35cad10581875d89c10dd1a83fd28c8f81b8caaf971fd56d1de16e36f1e",
+            "hex": "00000000000000000000000000000000a0587146010000000d00000000000000780500007439000048e13a3f060000000000f0410000a040cdcccc3fcdccac40010000000000803f0000000000000000"
+          }
+        },
+        {
+          "index": 1,
+          "id": 1401,
+          "name": "Dread Creeper",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.0,
+          "record": {
+            "va": "0x1467159f8",
+            "rva": "0x67159f8",
+            "file_offset": "0x67149f8",
+            "byte_count": 80,
+            "sha256": "b56a80e3ef9790f23f0d2503dee68f77afee73d0ed2a77f12757600fcb34d4bc",
+            "hex": "00000000000000000000000000000000ad587146010000000d0000000000000079050000413e00009a99593f010000000000e0410000c0406666a63f9a99f940010000000000803f0000003f00000000"
+          }
+        },
+        {
+          "index": 2,
+          "id": 1402,
+          "name": "Soldier of the Frozen Wastes",
+          "chest_flag": 0,
+          "base_experience": 1,
+          "death_accumulator": 1.2000000476837158,
+          "record": {
+            "va": "0x146715a48",
+            "rva": "0x6715a48",
+            "file_offset": "0x6714a48",
+            "byte_count": 80,
+            "sha256": "17d56fa6dce8357e5104891611ea7a461182def97b8217fccc8bb27e4c8d4d86",
+            "hex": "00000000000000000000000000000000ba587146010000001c000000000000007a050000bd1e00000000403f060000000000d0410000c0403333b33f00000041010000009a99993f9a99993f00000000"
+          }
+        },
+        {
+          "index": 3,
+          "id": 1403,
+          "name": "Naxxramas Cultist",
+          "chest_flag": 0,
+          "base_experience": 2,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x146715a98",
+            "rva": "0x6715a98",
+            "file_offset": "0x6714a98",
+            "byte_count": 80,
+            "sha256": "3f33fa502aff27de730338ed3128b51f69fb82af935bc6ff63ee2a35229fac1f",
+            "hex": "01000000ae020000000090416666e63fd65871460100000011000000000000007b050000d24000003333733f070000000000284200001041cdcc4c400000a04002000000000000400000004000000000"
+          }
+        },
+        {
+          "index": 4,
+          "id": 1404,
+          "name": "Carrion Spinner",
+          "chest_flag": 0,
+          "base_experience": 3,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x146715ae8",
+            "rva": "0x6715ae8",
+            "file_offset": "0x6714ae8",
+            "byte_count": 80,
+            "sha256": "d5a24518c6d0fe229521975581f2e8091b3902c52594d5db1a8be5c48ec65244",
+            "hex": "00000000000000000000000000000000e7587146010000000f000000000000007c050000423e00003333733f010000000000b4420000304100000040cdccac4003000000000000400000404000000000"
+          }
+        },
+        {
+          "index": 5,
+          "id": 1405,
+          "name": "Bile Retcher",
+          "chest_flag": 0,
+          "base_experience": 4,
+          "death_accumulator": 3.0,
+          "record": {
+            "va": "0x146715b38",
+            "rva": "0x6715b38",
+            "file_offset": "0x6714b38",
+            "byte_count": 80,
+            "sha256": "ce10272ca29f1901eaceb3bfc7f9352c5dd0b070865ecff8d17d7ab49a78771b",
+            "hex": "00000000000000000000000000000000f6587146010000000c000000000000007d050000563e00008fc2f53e0600000000003e4300006041cdcc0c403333934004000000000040400000b04000000000"
+          }
+        },
+        {
+          "index": 6,
+          "id": 1406,
+          "name": "Stoneskin Gargoyle",
+          "chest_flag": 0,
+          "base_experience": 2,
+          "death_accumulator": 1.5,
+          "record": {
+            "va": "0x146715b88",
+            "rva": "0x6715b88",
+            "file_offset": "0x6714b88",
+            "byte_count": 80,
+            "sha256": "03e7e294cabb840aea2a987e47b47142683a240e313c75b8413a320fa691bd1e",
+            "hex": "00000000000000000000000000000000025971460100000012000000000000007e050000763900000000003f0600000000007842000020413333b33f0000e040020000000000c03f0000804000000000"
+          }
+        },
+        {
+          "index": 7,
+          "id": 1407,
+          "name": "Naxxramas Acolyte",
+          "chest_flag": 0,
+          "base_experience": 3,
+          "death_accumulator": 2.0,
+          "record": {
+            "va": "0x146715bd8",
+            "rva": "0x6715bd8",
+            "file_offset": "0x6714bd8",
+            "byte_count": 80,
+            "sha256": "240aa135384f98c78d9862a0bca107012281faf1f9ee96c1e598a7dc163a4d9f",
+            "hex": "010000007400000000009041cdcccc3f145971460100000011000000000000007f050000d64000006666863f070000000000784200003041cdcc4c400000a04003000000000000400000e04000000000"
+          }
+        },
+        {
+          "index": 8,
+          "id": 1408,
+          "name": "Living Monstrosity",
+          "chest_flag": 0,
+          "base_experience": 5,
+          "death_accumulator": 3.5,
+          "record": {
+            "va": "0x146715c28",
+            "rva": "0x6715c28",
+            "file_offset": "0x6714c28",
+            "byte_count": 80,
+            "sha256": "b467535ef833928cdbc66602febc20ffbbbb4cd5739ae482b3878d5566e46a3e",
+            "hex": "0000000000000000000000000000000025597146010000001200000000000000800500002f3f00006666663f060000000000704300008041cdcc0c403333b34005000000000060400000104100000000"
+          }
+        },
+        {
+          "index": 9,
+          "id": 1409,
+          "name": "Soul Weaver",
+          "chest_flag": 1,
+          "base_experience": 25,
+          "death_accumulator": 12.0,
+          "record": {
+            "va": "0x146715c78",
+            "rva": "0x6715c78",
+            "file_offset": "0x6714c78",
+            "byte_count": 80,
+            "sha256": "fb5de5b74a356d07add0c68348c29df5f19581024a7604b26e1d66097492b093",
+            "hex": "0000000000000000000000000000000037597146010000000b0000000000000081050000323f00001f85eb3e0600000000806d440000e041000000403333b34019000000000040410000804001000000"
+          }
+        },
+        {
+          "index": 10,
+          "id": 1410,
+          "name": "Unstoppable Abomination",
+          "chest_flag": 1,
+          "base_experience": 28,
+          "death_accumulator": 13.0,
+          "record": {
+            "va": "0x146715cc8",
+            "rva": "0x6715cc8",
+            "file_offset": "0x6714cc8",
+            "byte_count": 80,
+            "sha256": "5f970f9b61febab28ba0b90f248361050c0c9dd26729d72038799e29cdc6917e",
+            "hex": "000000000000000000000000000000004259714601000000170000000000000082050000123200001f856b3f0600000000c08f440000f8419a9919409a9999401c000000000050410000084101000000"
+          }
+        },
+        {
+          "index": 11,
+          "id": 1411,
+          "name": "Guardian of Icecrown",
+          "chest_flag": 1,
+          "base_experience": 32,
+          "death_accumulator": 15.0,
+          "record": {
+            "va": "0x146715d18",
+            "rva": "0x6715d18",
+            "file_offset": "0x6714d18",
+            "byte_count": 80,
+            "sha256": "247bec244f0761b16353c5628bc475ba95f77901f4e0c56ff776af2708c1ee8d",
+            "hex": "000000000000000000000000000000005959714601000000140000000000000083050000ca4000009a99d93f060000000000af4400001442666626409a99994020000000000070410000504101000000"
+          }
+        },
+        {
+          "index": 12,
+          "id": 1412,
+          "name": "Highlord Mograine",
+          "chest_flag": 1,
+          "base_experience": 32,
+          "death_accumulator": 15.0,
+          "record": {
+            "va": "0x146715d68",
+            "rva": "0x6715d68",
+            "file_offset": "0x6714d68",
+            "byte_count": 80,
+            "sha256": "09144ad3118227b6a6082cf208fac974cd9e9d4dae9b075221656b1bb1d9d8d8",
+            "hex": "000000000000000000000000000000006d597146010000001100000000000000840500000b3f00003333b33f060000000000af44000014429a9919403333b34020000000000070410000807f01000000"
+          }
+        },
+        {
+          "index": 13,
+          "id": 1413,
+          "name": "Thane Korth'azz",
+          "chest_flag": 1,
+          "base_experience": 32,
+          "death_accumulator": 15.0,
+          "record": {
+            "va": "0x146715db8",
+            "rva": "0x6715db8",
+            "file_offset": "0x6714db8",
+            "byte_count": 80,
+            "sha256": "3136bb83afb4bfc69dcc8c3eb7670d0a12b58b7ee29de9c507ceaefdd9dbb203",
+            "hex": "000000000000000000000000000000007e597146010000000f00000000000000850500001b3f00003333b33f060000000000af44000014429a9919403333b34020000000000070410000807f01000000"
+          }
+        },
+        {
+          "index": 14,
+          "id": 1414,
+          "name": "Lady Blaumeux",
+          "chest_flag": 1,
+          "base_experience": 32,
+          "death_accumulator": 15.0,
+          "record": {
+            "va": "0x146715e08",
+            "rva": "0x6715e08",
+            "file_offset": "0x6714e08",
+            "byte_count": 80,
+            "sha256": "9a414d58da259049598e422625e9d4d9cf14d25f143afaedffa0e5b8e6fd570d",
+            "hex": "000000000000000000000000000000008d597146010000000d0000000000000086050000193f00003333b33f060000000000af44000014429a9919403333b34020000000000070410000807f01000000"
+          }
+        },
+        {
+          "index": 15,
+          "id": 1415,
+          "name": "Sir Zeliek",
+          "chest_flag": 1,
+          "base_experience": 32,
+          "death_accumulator": 15.0,
+          "record": {
+            "va": "0x146715e58",
+            "rva": "0x6715e58",
+            "file_offset": "0x6714e58",
+            "byte_count": 80,
+            "sha256": "71452ec509f835335e96b6cb7f517ec5bb28f4a1650e13c67fcac23568ac1cb4",
+            "hex": "000000000000000000000000000000009a597146010000000a00000000000000870500001a3f00003333b33f060000000000af44000014429a9919403333b34020000000000070410000807f01000000"
+          }
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Static records do not establish original/rebuilt runtime parity.",
+    "chest_flag is an interpreted field name; the authority is native byte +0x4c and its consumer.",
+    "Naxxramas has sixteen definitions, including four extra flag-one Horsemen; the other zones have twelve."
+  ]
+}

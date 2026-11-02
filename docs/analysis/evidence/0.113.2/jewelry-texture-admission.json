@@ -1,0 +1,172 @@
+{
+  "schema_version": 1,
+  "gap_id": 53,
+  "target_version": "0.113.2",
+  "target_path": "installed-game/AzerothSurvivors.exe",
+  "target_sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+  "target_executed": false,
+  "native_ranges": [
+    {
+      "name": "sprite-content-dispatch",
+      "va": "0x142207bee",
+      "file_offset": 35680238,
+      "byte_count": 44,
+      "sha256": "93c5e71df4d4da278de4179dfe0e882ce547f2292d85bb2a34f9a543532d4db2",
+      "hex": "48898500010000488b55e84c8b45f04983f804488995f80000007208813a424c503274674c89f9e8b692a203",
+      "assembly": [
+        "142207bee: mov qword ptr [rbp + 0x100], rax",
+        "142207bf5: mov rdx, qword ptr [rbp - 0x18]",
+        "142207bf9: mov r8, qword ptr [rbp - 0x10]",
+        "142207bfd: cmp r8, 4",
+        "142207c01: mov qword ptr [rbp + 0xf8], rdx",
+        "142207c08: jb 0x142207c12",
+        "142207c0a: cmp dword ptr [rdx], 0x32504c42",
+        "142207c10: je 0x142207c79",
+        "142207c12: mov rcx, r15",
+        "142207c15: call 0x145c30ed0"
+      ]
+    },
+    {
+      "name": "tga-dimensions",
+      "va": "0x145c31088",
+      "file_offset": 96666760,
+      "byte_count": 40,
+      "sha256": "7f899bd43a2ab436dff68eedd7fb8faafb69df54f8486a906d77d30682961b0c",
+      "hex": "458d8bffdfffff4181f900e0ffff0f82d00a0000448d8fffdfffff4181f900e0ffff0f82bc0a0000",
+      "assembly": [
+        "145c31088: lea r9d, [r11 - 0x2001]",
+        "145c3108f: cmp r9d, 0xffffe000",
+        "145c31096: jb 0x145c31b6c",
+        "145c3109c: lea r9d, [rdi - 0x2001]",
+        "145c310a3: cmp r9d, 0xffffe000",
+        "145c310aa: jb 0x145c31b6c"
+      ]
+    }
+  ],
+  "ghidra_recovery": [
+    {
+      "name": "sprite-candidate",
+      "va": "0x142207a10",
+      "end_exclusive": "0x1422082fa",
+      "boundary_basis": "matching selected PE exception-directory runtime function",
+      "file_offset": 35679760,
+      "byte_count": 2282,
+      "slice_sha256": "fd5b970d1394db9c5e7c81b886f849319cf627f4486fbb498bce3a9b21e9c0de",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_8d84a28b7229704f47902b39c7b1d97d7f19363f6aa52874a0c6748a02c37539",
+      "pseudocode_sha256": "05a0e00eb044500777942456f84189de0c514edcf362c5d2833fa1322035796c",
+      "local_dossier": "runtime/fixgap53-0.113.2/rea-sprite-candidate/003-sprite-candidate.json"
+    },
+    {
+      "name": "tga-decode",
+      "va": "0x145c30ed0",
+      "end_exclusive": "0x145c31e46",
+      "boundary_basis": "matching selected PE exception-directory runtime function",
+      "file_offset": 96666320,
+      "byte_count": 3958,
+      "slice_sha256": "1b975d1a9cd321fc62c3be28bd738baef36a68736b5d68dd430d51465fcbcfcc",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_e00d6bf1c877653be7c7a4d90742e2a588bc4b8a9a97e64250de0cfc4a6395cc",
+      "pseudocode_sha256": "1ecf109bb6341ec0e0986037d3f2776ea21a512d8fa00f8bc69847f59120ad18",
+      "local_dossier": "runtime/fixgap53-0.113.2/rea-tga-decode/003-tga-decode.json",
+      "canonical_assembly": "docs/analysis/evidence/0.113.2/tga-decoder.asm"
+    }
+  ],
+  "addon_inputs": [
+    {
+      "path": "modules/ui/jewelry.lua",
+      "sha256": "1b33be9e0ad4ac53cb8780a414ac8299535497aac55f2cee1aac653b3b91b607"
+    },
+    {
+      "path": "modules/bars/bars.lua",
+      "sha256": "f77178ac88221d464f3a5a7666065772b3d94d10d546d90c7746337e370dc069"
+    },
+    {
+      "path": "core/core.lua",
+      "sha256": "3dc4b1b82c6142564c42d74785c33e5d94d8f1b0c06431c7947a912a834998b8"
+    },
+    {
+      "path": "media/tex/jewelry/Frame.tga",
+      "sha256": "48959a41a8345f3a4bed88243d7c20872467cb6caf4974a43e669055c095a33c",
+      "dimensions": [
+        1024,
+        256
+      ],
+      "image_type": 2,
+      "pixel_depth": 32,
+      "descriptor": 8,
+      "crop": [
+        106,
+        56,
+        178,
+        128
+      ],
+      "decoded_rgba_sha256": "ad7373880407a0a71d6adce5ce7f3ed5534ca00d3e5d62e5878ed34b4ef5b838",
+      "crop_alpha_zero_partial_opaque": [
+        1751,
+        2773,
+        660
+      ]
+    },
+    {
+      "path": "media/tex/jewelry/SocketRail.tga",
+      "sha256": "968bfa0b470fbac501d7b8e5072c14e7895780c6175d80617d591593baca4e3d",
+      "dimensions": [
+        2048,
+        256
+      ],
+      "image_type": 2,
+      "pixel_depth": 32,
+      "descriptor": 8,
+      "crop": [
+        0,
+        0,
+        1200,
+        152
+      ],
+      "decoded_rgba_sha256": "9bdf5765a712a638ee6eb2f5abc933f27357550ed5e89e6c54e0d11f69654a85",
+      "crop_alpha_zero_partial_opaque": [
+        120904,
+        9840,
+        51656
+      ]
+    },
+    {
+      "path": "media/tex/jewelry/SocketDetached.tga",
+      "sha256": "93360239e348b8db3cd3ce1df421684fe89d75f23c7501b8537e530d32f4be3f",
+      "dimensions": [
+        256,
+        256
+      ],
+      "image_type": 2,
+      "pixel_depth": 32,
+      "descriptor": 8,
+      "crop": [
+        0,
+        0,
+        160,
+        160
+      ],
+      "decoded_rgba_sha256": "23037ece75bfe11e8acf7d1a15f869e20d9ee463c63c7716ced85d6c0fe50cf5",
+      "crop_alpha_zero_partial_opaque": [
+        15444,
+        1924,
+        8232
+      ]
+    }
+  ],
+  "limitations": [
+    "REA/Ghidra used exact PE exception-directory function slices; external callees/data and original names/types are absent.",
+    "Only the selected interface-texture dimension contract is corrected; unrelated TGA alpha/header/failure policies are not established by this repair.",
+    "Addon inputs are previously copied project-local runtime files, not a fresh installed-addon read or runtime observation.",
+    "The static checker validates immutable native guards, source bounds and optional offline input pixels; it does not execute Rust, Lua, the game or the renderer."
+  ]
+}

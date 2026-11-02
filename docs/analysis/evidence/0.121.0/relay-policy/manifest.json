@@ -1,0 +1,497 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960,
+    "identity_manifest": "docs/analysis/coverage/targets.json",
+    "version_provenance": "matching_embedded_updater_and_independent_version_witness",
+    "runtime_data": {
+      "directory": "installed-game/Data",
+      "archives": [
+        {
+          "path": "installed-game/Data/patch-2.MPQ",
+          "size_bytes": 4690878,
+          "sha256": "366edee41642a5dda22ed90cc252b543ee375755b7e8bee81e2a6cd59fd7b286"
+        },
+        {
+          "path": "installed-game/Data/patch-3.MPQ",
+          "size_bytes": 2580491,
+          "sha256": "75c35ca5b8075197252581e301e8900143007fdf37b493ad271ae1bd39f95a29"
+        },
+        {
+          "path": "installed-game/Data/patch-4.MPQ",
+          "size_bytes": 22769233,
+          "sha256": "2e895e0e0ff6a4781d0e0aaa6ea7d32ed1fe36841e17806fe1855cb880d18865"
+        },
+        {
+          "path": "installed-game/Data/patch-5.MPQ",
+          "size_bytes": 267019039,
+          "sha256": "5008e56873718b468fa5ae1b697dcbe4f5da9ffe6c793f3ef9939dbd7716f3d8"
+        },
+        {
+          "path": "installed-game/Data/patch-6.MPQ",
+          "size_bytes": 212228,
+          "sha256": "cad6ff59b5df028a507581befb836fce07894057e15fe63d9fdc553a95b7ceb5"
+        },
+        {
+          "path": "installed-game/Data/patch-7.MPQ",
+          "size_bytes": 276649,
+          "sha256": "f5fb15b181cf01cc6b5cf2ee9948a27ecc4ba27bab9a8bec584df4381932aae6"
+        },
+        {
+          "path": "installed-game/Data/patch-8.MPQ",
+          "size_bytes": 4155417,
+          "sha256": "ae3aaa29cadb7aeba8255f5b4a8305c7cbecfe8f0d3ed9646522113d16c3e12e"
+        },
+        {
+          "path": "installed-game/Data/patch-9.MPQ",
+          "size_bytes": 5739608,
+          "sha256": "ffff8ea890bdaf91a1680543ac60106db92132bc2210105279610fa73661a524"
+        },
+        {
+          "path": "installed-game/Data/patch-A.MPQ",
+          "size_bytes": 1453122,
+          "sha256": "350cde8cd0f76e5246a663eb3811f5a7b1a9c75e4e699190208c9299177b8d90"
+        },
+        {
+          "path": "installed-game/Data/patch-B.MPQ",
+          "size_bytes": 2935,
+          "sha256": "e9d074b012078efc1c1c8c729bf94d28b1d213d5fcb721dc4370a142f98834bd"
+        },
+        {
+          "path": "installed-game/Data/patch.MPQ",
+          "size_bytes": 1340199244,
+          "sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf"
+        }
+      ]
+    }
+  },
+  "gap_ids": [
+    214,
+    215
+  ],
+  "target_executed": false,
+  "bounded_contract_system_ids": [
+    "custom-game-coop-relay"
+  ],
+  "bounded_contract_owner_scopes": {
+    "custom-game-coop-relay": "Selected-secondary one-use initial alternate URL, factory/auth/heartbeat/clocks, retained endpoint and initial sent-cursor rewind distinct from admitted control reset. Existing transport/library interfaces; broader relay/new-party contracts retain their separate owners."
+  },
+  "native_ranges": [
+    {
+      "role": "alternate-delimiter-guard",
+      "virtual_address": "0x145c5885a",
+      "end_exclusive": "0x145c58885",
+      "file_offset": "0x5c57c5a",
+      "byte_count": 43,
+      "sha256": "b2edd36bfd8269cb90f6f35dfcf18dae00ae1593ead66efb96008017531be37a",
+      "bytes_hex": "48c744242003000000488d8dd0010000488b95100300004c8b85000300004c8d0d69b9a301e88cd2360090",
+      "instruction_count": 7,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/relay-policy/alternate-delimiter-guard.asm",
+        "sha256": "5330c53cea8c7b78d469ea05f8a477cb046f6967cdccdb37c7ea5861b654f8d8"
+      }
+    },
+    {
+      "role": "alternate-authority-path",
+      "virtual_address": "0x145c58c39",
+      "end_exclusive": "0x145c58d75",
+      "file_offset": "0x5c58039",
+      "byte_count": 316,
+      "sha256": "37f35e66957a96be1afa4a58f39972d3a95ff5912eb0b9931b780a32024cbd2f",
+      "bytes_hex": "488bb5000300004829de488b85100300004801c3488945c84c8945d048899dd00100004889b5d801000048c785e0010000000000004889b5e8010000c685f80100000148b82f0000002f000000488985f0010000488d8d90000000488d95d0010000e810ca00009080bd9000000000741c488b9598000000488b85a00000004829c64801d84889f14889d6eb07b80100000031c94889451848894d204989f0eb0f660f1f4400004939f00f8781000000b13a4889dae89de73600904883f80175704989d04839f273de42803c033a75d748895d004c894508488d45c8488985d0010000488d0d9d933afa48898dd80100004889e8488985e001000048898de8010000488d4518488985f001000048898df8010000488d8d90000000488d1590b4a3014c8d85d0010000e8095c360090eb0b48c78590000000ffffffff",
+      "instruction_count": 65,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/relay-policy/alternate-authority-path.asm",
+        "sha256": "3956c80d471deb7bd205eaa99b99ac1eb94efdcf1b06c5335842f07cc2e41d95"
+      }
+    },
+    {
+      "role": "selected-endpoint-initial-install",
+      "virtual_address": "0x145c58dae",
+      "end_exclusive": "0x145c58e97",
+      "file_offset": "0x5c581ae",
+      "byte_count": 233,
+      "sha256": "7b9256bf332f82d6f5f3b9c75d2e15aebc4a41f617455c32f4fc88830f575400",
+      "bytes_hex": "488b8d20030000488b455848894160488b851003000048894168488b8500030000488941700f2885b0010000488b45700f1140500f2885a00100000f1140400f288560010000660f6f8d70010000660f6f95800100000f289d900100000f115830f30f7f5020f30f7f48100f1100488b85e0010000488b555048894210660f6f85d0010000f30f7f02488b9580000000488991f00000008b45788981f80000004889910001000089810801000048899110010000898118010000c78128010000ffffffff488b85e002000048898130010000488b85c00200004889813801000066c781400100000000",
+      "instruction_count": 39,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/relay-policy/selected-endpoint-initial-install.asm",
+        "sha256": "81168f1c8f18d66b60eb85a86ee334470e90af36a9ef9822bb91da6637c7c99c"
+      }
+    },
+    {
+      "role": "initial-health-fallback",
+      "virtual_address": "0x145c58fd6",
+      "end_exclusive": "0x145c59159",
+      "file_offset": "0x5c583d6",
+      "byte_count": 387,
+      "sha256": "913535635ecd54390d1f913c53ce3fca3e1ca7f7a35d4d110d378a79908c2bb6",
+      "bytes_hex": "49837c2460ff0f848c0d00004180bc2441010000000f857d0d0000498bbc2490010000498b8c2430010000498b842438010000488b4028c6853703000000ffd09084c0743f0fb6c083f8010f8592000000c6853703000000488b4d30e819c93300904885c078440f57c0f3480f2ac0eb5231f64889f14889dae867b0530090e9ac120000c6853703000000488b4d38e8e6c83300904885c00f88b50100000f57c0f3480f2ac0e9c00100004889c148d1e983e0014809c80f57c0f3480f2ac0f30f58c00f57c9f30f2acaf30f5e0d28365e00f30f58c80f2e0dad2b55000f86a80100004180bc2440010000007420418bb4242801000083feff0f843d020000498b84242001000089f2e94b020000488b4550488b0848c700ffffffff4883f9ff0f84f302000048898db8020000498b8424e0000000488985f80200004d8bbc24e8000000498b8c2430010000498b842438010000488b4030c6853003000001ffd090c6853003000001488b8df80200004c89faffd7488985d0020000488995c8020000",
+      "instruction_count": 82,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/relay-policy/initial-health-fallback.asm",
+        "sha256": "78c92dd60276fe4675ef5c70685ca67abce505ae8e1894d4e926d7ed1c121e8d"
+      }
+    },
+    {
+      "role": "initial-failure-close",
+      "virtual_address": "0x145c593ef",
+      "end_exclusive": "0x145c5941b",
+      "file_offset": "0x5c587ef",
+      "byte_count": 44,
+      "sha256": "48c7149e19eeca392d1e1067b5c447cbc2a436ad1fce51b9b76fdf113fb840a0",
+      "bytes_hex": "41c684244101000001498b8c2430010000498b842438010000488b4030c6853703000000ffd090e953090000",
+      "instruction_count": 8,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/relay-policy/initial-failure-close.asm",
+        "sha256": "bc0936ef2fcd9283e93248b8243ff8e8d8f3dfc79cdaebececf72d7833fcb704"
+      }
+    },
+    {
+      "role": "fallback-auth-heartbeat",
+      "virtual_address": "0x145c596a9",
+      "end_exclusive": "0x145c597de",
+      "file_offset": "0x5c58aa9",
+      "byte_count": 309,
+      "sha256": "2e89f313d23fa77e4beca782b02346c73a5305ddaed0593d6a7d3787608798c2",
+      "bytes_hex": "488b8570010000488985f00000000f1085600100000f2985e00000000f108dd00100000f118df8000000488b85e0010000488985080100000f1185d8010000488b85f0000000488985e8010000488b85f8000000488985f0010000488b8500010000488985f8010000488b85080100004889850002000048899d080200004c89b51002000048899d180200004c89ad2002000048898d280200004489a53002000048b80a00000000000080488985d0010000488d8de0000000488d95d0010000e8d21f1f0090488d95e0000000488b8dd0020000488b85c8020000ff501890488d8dd0010000e87c91ffff4c8ba520030000498bbc2430010000498bb42438010000c6853003000001488d1597a7a301488d8dd0010000e87b1f1f0090488b4618c6853003000001488d95d00100004889f9ffd090",
+      "instruction_count": 50,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/relay-policy/fallback-auth-heartbeat.asm",
+        "sha256": "e2649b6866ebf22341338c788e87c5d74661d41e042c42e14746ac36737714a6"
+      }
+    },
+    {
+      "role": "fallback-commit-clocks-rewind",
+      "virtual_address": "0x145c597ff",
+      "end_exclusive": "0x145c598dc",
+      "file_offset": "0x5c58bff",
+      "byte_count": 221,
+      "sha256": "27d117bfa09a4fdd414ee53f78ebdb69dd711bca0e845f56232d9de03e7b7c53",
+      "bytes_hex": "488b85b80200004989442460488b85f802000049894424684d897c2470c6853003000000e8d8bf33009049898424f000000041899424f80000004989842400010000418994240801000049898424100100004189942418010000498b8424c8010000498b8c24e0010000660f6f00488d501066440fd7c041f7d0eb270f1f440000458d48fff3450fbcd04521c149f7da4d6bc2704ac74400d80000000048ffc94589c8664585c075d84885c90f84bd0400006666666666662e0f1f840000000000660f6f02480500f9ffff4883c21066440fd7c04181f0ffff000074e4",
+      "instruction_count": 41,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/relay-policy/fallback-commit-clocks-rewind.asm",
+        "sha256": "d064bb085bc780a4b0b574ff00a1a12c8114dc35d83f33af674ddf9174ab8aab"
+      }
+    },
+    {
+      "role": "admitted-reopen-auth-reset",
+      "virtual_address": "0x145c598e3",
+      "end_exclusive": "0x145c59ade",
+      "file_offset": "0x5c58ce3",
+      "byte_count": 507,
+      "sha256": "7d9abc4fec5db6e8b0d47c927ee87947ef46e26a314588dc4579b52b4311de3b",
+      "bytes_hex": "488b8570010000488985f0000000f30f6f8560010000660f7f85e0000000f30f6f8dd0010000f30f7f8df8000000488b85e001000048898508010000f30f7f85d8010000488b85f0000000488985e8010000488b85f8000000488985f0010000488b8500010000488985f8010000488b8508010000488985000200004889b50802000048899d100200004889b5180200004c89a5200200004c89ad280200004489bd3002000048b80a00000000000080488985d0010000488d8de0000000488d95d0010000e8931d1f0090488d95e0000000488b8dc8020000488b85f8020000ff501890488d8dd0010000e83d8fffff4c8ba520030000498bb42430010000498bbc2438010000c6853703000000488d1558a5a301488d8dd0010000e83c1d1f0090488b4718c6853703000000488d95d00100004889f1ffd090c6853703000000e8d7bd3300904989c349898424f000000041899424f80000004989842400010000418994240801000049898424100100008995f8020000418994241801000041c68424fa01000000498b842498010000498b8c24b0010000660f6f00488d501066440fd7c041f7d0eb256690458d48fff3450fbcd04521c149f7da4f8d045249c1e00442c64400f90048ffc94589c8664585c075d74885c974206690660f6f02480500fdffff4883c21066440fd7c04181f0ffff000074e4ebb2",
+      "instruction_count": 91,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/relay-policy/admitted-reopen-auth-reset.asm",
+        "sha256": "e89294fd27460a2ce64817ae0e6569664d3e8aea55a56f41447a62b62bf3d56b"
+      }
+    },
+    {
+      "role": "service-factory-install",
+      "virtual_address": "0x145c5e328",
+      "end_exclusive": "0x145c5e3ac",
+      "file_offset": "0x5c5d728",
+      "byte_count": 132,
+      "sha256": "6f99cfc529888ece7bd5daab9b2418721e98a7e069603d57fdde2f9d50e8c6af",
+      "bytes_hex": "488b8d0803000048898d40010000488b8d0003000048898d48010000488d0de50ee8ff48898d500100000f11b5980100000f11bd88010000488985a8010000488995b001000066c785b80100000000c685ba01000000e87d3e3afab918020000ba08000000e82e3e3afa4885c0746e488d55a841b8180200004889c14889c6e86fd83800",
+      "instruction_count": 23,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/relay-policy/service-factory-install.asm",
+        "sha256": "dd1b1c5edbadd1f1281f7570dbff85c91960e43e98f6ad242ef02821170921aa"
+      }
+    },
+    {
+      "role": "connection-factory-wrapper",
+      "virtual_address": "0x145adf230",
+      "end_exclusive": "0x145adf2a0",
+      "file_offset": "0x5ade630",
+      "byte_count": 112,
+      "sha256": "a44338e9aeb4468b29f501aa6787e1868341394e87d2f9c4e4ba84f516d8e285",
+      "bytes_hex": "554883ec60488d6c246048c745f8feffffff4989d04889ca488d4dc8e89f701700e8aa2f52fab930000000ba08000000e85b2f52fa4885c074240f1045c80f104dd80f1055e80f1150200f1148100f1100488d15a8f182014883c4605dc3b908000000ba30000000e8044e6b00900f0b",
+      "instruction_count": 29,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/relay-policy/connection-factory-wrapper.asm",
+        "sha256": "25a81b485107041d758af20d40b0918e39efacd517f2be9fdef0be3969da6940"
+      }
+    },
+    {
+      "role": "worker-constructor",
+      "virtual_address": "0x145c562f0",
+      "end_exclusive": "0x145c568e2",
+      "file_offset": "0x5c556f0",
+      "byte_count": 1522,
+      "sha256": "f0131dc518c38f09979b592031a60eb3ed68ddd3fd1f2fe99474e3218d489a17",
+      "bytes_hex": "5541574156415541545657534881ecb8030000488dac24800000000f29b5200300004883e4804889e34889ab9003000048c78518030000feffffff4d89c54989d44889ce48c783000300000100000048c7830803000001000000c683100300000066c78380020000000048c78388020000000000000f57f60f29b3800100000f29b30002000048c78390020000080000000f11b39802000048c783a80200000800000048c783b002000000000000c683b802000001e856be3afab900020000ba80000000e807be3afa4885c00f84aa0400004889c7488d938001000041b8000200004889c1e84158390048c783f0000000010000004889bbf800000048c78300010000010000004889bb0801000048c783000300000100000048c7830803000001000000c683100300000066c78380020000000048c78388020000000000000f29b3800100000f29b30002000048c78390020000080000000f11b39802000048c783a80200000800000048c783b002000000000000c683b802000001e88fbd3afab900020000ba80000000e840bd3afa4885c00f84f50300004989c6488d938001000041b8000200004889c1e87a57390048c78310010000010000004c89b31801000048c78320010000010000004c89b328010000e836bd3afab918000000ba08000000e8e7bc3afa4885c00f84ae0300004989c748c7000100000048c7400801000000c6401000488983c8000000e8fcbc3afab918000000ba08000000e8adbc3afa4885c00f849403000048c7000100000048c7400801000000c6401000488983d00000004d85ed79224531e4c6838e00000001c6838f000000014c89e14c89eae864db530090e9830300004889b3e0000000488983b000000074474c89e6e88bbc3afa41bc01000000ba010000004c89e9e838bc3afa4885c074b1488983b80000004889c14889f24d89e8e879563900488bb3b0000000f049ff077f1ee92c0300004889c6b801000000488983b8000000f049ff070f8e130300004c89abc0000000f048ff060f8e020300004c89bbd80000004889b3e800000048c78390010000ffffffff48c7838001000000000000c683a801000000e8f2bb3afab90a000000ba01000000e8a3bb3afa4885c0488983a80000000f84a302000048b9726f6775652d636f48890866c740086f7048c783900000000a0000004889839800000048c783a00000000a000000488d8b500100004c8da3800100004c8d83900000004c89e2e896fa330090488bb3e0000000488b83c0000000488983a0010000488b8bb800000048898ba8010000488983b001000048c78380010000010000004889bb8801000048c78390010000010000004c89b3980100004c89bbb8010000488b83b0000000488983c0010000488b8370010000488983400100000f1083600100000f2983300100004c8b83500100004c8b8b580100000fb68378010000c6838600000001c68387000000014c896424308844242048c744242800000000488d8b90000000488d9330010000e82ea8e4ff904c8ba390000000488b8398000000488d93980000004d85e4741e488b8ba000000048898ba0000000488983980000004c89a390000000eb184889839800000048c7839000000000000000b10241864f1048c7060100000048897e0848c74610010000004c8976184c897e20488b8bb000000048894e284d85e47452488993a8000000488b8ba0000000ff15f6f05300f049ff0c24750d488d8b90000000e88bd8340090488b8398000000f048ff08755bc6838600000001c6838700000000488b8ba8000000e823d7340090eb3e89c183e1038d51fe83fa0272314885c9742c48ffc8488d8b8801000048898388010000c6838001000003c6838600000001c6838700000000e8b3aa3700904889f00f28b520030000488da5380300005b5f5e415c415d415e415f5dc3b980000000ba00020000e826d8530090eb62b980000000ba00020000e814d8530090eb50c6838a00000001c6838b00000001b908000000ba18000000e8f4d7530090eb30c6838c00000001c6838d00000001b908000000ba18000000e8d4d7530090eb10b901000000ba0a000000e8dcd75300900f0b",
+      "instruction_count": 281,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/relay-policy/worker-constructor.asm",
+        "sha256": "58e884c43ba212ec354fa9dc1a72ae909847bf7232e7b5d013985d2053a9c1fd"
+      }
+    },
+    {
+      "role": "sender-cursor-consumer",
+      "virtual_address": "0x145c5c730",
+      "end_exclusive": "0x145c5cd25",
+      "file_offset": "0x5c5bb30",
+      "byte_count": 1525,
+      "sha256": "2df8a9533ddff72658c5023d8e245e5a0227e16eee243ffbe47bd3ea5655284a",
+      "bytes_hex": "5541574156415541545657534881ec88010000488dac2480000000660f29b5f000000048c785e8000000feffffff4889ce48837960ff742680be41010000000f856905000083be28010000ff0f855c050000b838010000b930010000eb0ab888010000b980010000488b0c0e488b0406ff50283c010f8533050000f20f10b668010000488d8e70010000e89191330066480f6ec0660f620584be5300660f5c058cbe5300660f28c8660f15c8f20f58c80f57c0f20f2ac2f20f5e0571595500f20f58c1f20f100dd56da301f20f59c1f20f58c6f20f5dc1f20f118668010000e8ec8f33004889867001000089967801000048c785a80000000000000048c785b00000000800000048c785b8000000000000004c8ba6e00100004d85e40f84fd0200004c8baec801000066410f6f4500660fd7c0f7d0498d5d10660f57f6eb0f908d41ff21c849ffcc0f847b0400006685c07527666666662e0f1f840000000000660f6f034981c500f9ffff4883c310660fd7c035ffff000074e689c1f30fbcc148f7d8486bc07041807c05f80075b14a8d3c28418b4405908985a4000000488b47d848898d900000004c89a5c0000000483b47b0738a488b57e0f20f1086680100004839d0730a660f2ec60f866fffffff488b4fa84801c14c8b47984c39c141b9000000004d0f42c14c29c148c1e10548034fa04839d073150f57c9f2480f2a4918f20f5cc1f20f1186680100004c8b61184d85e40f88e9010000488b01488985c8000000743c4c8b7110e8a0583afa41bf01000000ba010000004c89e1e84d583afa4885c00f84bb010000488985d80000004889c14c89f24d89e0e88af23800eb0cb801000000488985d80000004c89a5d0000000e855583afab901000000ba01000000e806583afa4885c00f8450030000c6000048c745d001000000488945d848c745e00100000048c744242001000000ba0100000041b80800000041b901000000488d4dd0e893f93800904c8ba5c00000004c8b7dd84c8b75e0488b85c80000004b8904374983c6084c8975e0488b45d0488985c80000004c29f04c8b85d00000004939c00f87bb0000004d85c074104b8d0c37488b95d8000000e8c8f138004c89bd980000004c8bbdb80000004c3bbda8000000750d488d8da8000000e85afc380090488b95d00000004901d64c89f848c1e00549ffc7488b8db0000000448b85a4000000448904014c8b85c80000004c894401084c8b85980000004c894401104c897401184c89bdb80000004885d2741241b801000000488b8dd8000000e8f8563afa488b47d848ffc0488947d8807ff800488b8d900000000f84ecfdffffe977fdffff48c74424200100000041b901000000488d4dd04c89f2e87cf83800904c8b75e0488b45d0488985c80000004c8b7dd84c8b85d0000000e90fffffff4531ffc685e7000000004c89f94c89e2e87275530090e9d4010000b90800000031c031d24889c348c1e3054c8d2c1948894d70488995c0000000488995800000004c89ad8800000048898dd80000004989cc4885c00f84ea000000488b85d80000004883c0204c8d75a84c8d7dd0eb2a6666662e0f1f8400000000004c89f9e8585dffff4c8ba5d0000000498d4424204883c3e00f84ab0000004989c4488b40e84883f8ff0f849a000000418b4c24e04c89a5d0000000f3410f6f4424f0660f7f45c0894df0488945d8488d45e0f30f7f0048b80500000000000080488945d048837e60ff74354c8ba630010000488bbe380100004c89f14c89fae80ceb1e00904c89e14c89f2ff571890e96cffffff6666662e0f1f8400000000004c8ba680010000488bbe880100004c89f14c89fae8d7ea1e00904c89e14c89f2ff571890e937ffffff4c8965784d29e5488bb5d8000000488bbdc0000000743449c1ed054983c410eb0f660f1f4400004983c42049ffcd741b498b5424f84885d274ed498b0c2441b801000000e80e553afaebdc4885ff741548c1e70541b8080000004889f14889fae8f2543afa0f28b5f00000004881c4880100005b5f5e415c415d415e415f5dc3488b95a8000000488b8db0000000488b85b8000000e945feffffb901000000ba01000000e87f735300900f0b",
+      "instruction_count": 333,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/relay-policy/sender-cursor-consumer.asm",
+        "sha256": "b52e44ab710bcbc7abdb27ab5f316d25c3aeeab4c228e007d1f635b07a471fb4"
+      }
+    },
+    {
+      "role": "connect-elapsed",
+      "virtual_address": "0x145c59229",
+      "end_exclusive": "0x145c59261",
+      "file_offset": "0x5c58629",
+      "byte_count": 56,
+      "sha256": "f1d0736b81374a8735a127cd0a54404b28c8023e1ccfd349772d739439c8b74f",
+      "bytes_hex": "4889c148d1e983e0014809c80f57c0f3480f2ac0f30f58c00f57c9f30f2acaf30f5e0d80345e00f30f58c80f2e0dcdf053000f8758feffff",
+      "instruction_count": 13,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.121.0/relay-policy/connect-elapsed.asm",
+        "sha256": "79500ee8e993e6fa4bb2361d2f66d4cffbb85f45233d04f037cac58a95a1a44f"
+      }
+    }
+  ],
+  "native_data": [
+    {
+      "role": "alternate-url-delimiter",
+      "virtual_address": "0x1476941e8",
+      "file_offset": "0x7692fe8",
+      "byte_count": 3,
+      "sha256": "5a5e2bae0f508e87a1d47efb5c8cbb775632359b89a7bc331cda162ce7aa7b02",
+      "bytes_hex": "3a2f2f"
+    },
+    {
+      "role": "alternate-url-format",
+      "virtual_address": "0x1476941eb",
+      "file_offset": "0x7692feb",
+      "byte_count": 10,
+      "sha256": "7ea1fe2ed5f8610d44b412a57d6bcc1be3a7df76bec243011514781ef13d8629",
+      "bytes_hex": "c0033a2f2fc0012fc000"
+    },
+    {
+      "role": "connect-timeout",
+      "virtual_address": "0x146198328",
+      "file_offset": "0x6197128",
+      "byte_count": 4,
+      "sha256": "03e3c2420f5066a5fa6e36735ed8cc4f6a251046263e1a6024f009deeee3b952",
+      "bytes_hex": "00000041"
+    },
+    {
+      "role": "silence-timeout",
+      "virtual_address": "0x1461abc60",
+      "file_offset": "0x61aaa60",
+      "byte_count": 4,
+      "sha256": "a5d4cd5b9cc4aba67ebe403c68466c378868947703d75704381d0c90e2615d1e",
+      "bytes_hex": "00007041"
+    },
+    {
+      "role": "heartbeat-period",
+      "virtual_address": "0x1461985c0",
+      "file_offset": "0x61973c0",
+      "byte_count": 4,
+      "sha256": "fca31f1667a6aa1bba12fca4e4ea1becd503379d80da3213af07f6cc5702828d",
+      "bytes_hex": "0000a040"
+    },
+    {
+      "role": "nanoseconds",
+      "virtual_address": "0x14623c6d0",
+      "file_offset": "0x623b4d0",
+      "byte_count": 4,
+      "sha256": "87de9f551024f5990e80638703a56b1d54327e7097342f37f26a819e7825f272",
+      "bytes_hex": "286b6e4e"
+    }
+  ],
+  "queries": [
+    {
+      "role": "relay-145c56f30",
+      "procedure": "0x145c56f30",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_22d21215d26465453eadb922ce25a18323c4ef73ba1be2422f5b6a00ba906b77",
+      "normalized_text_sha256": "5c52d8b9d614cc75adc48051a4fc9d458e3fc54028c4d4d803b7868ff60fa80d",
+      "analysis_profile_digest": "476c21f4151fb0c6211f8851342c515221d5d5a0266561e2673cf5e99d623647",
+      "plan": {
+        "path": "runtime/fixgap-214-217-0.121.0/relay/plan.json",
+        "sha256": "42b4e8012b385e8a210537567a6701b03f8e5f44f7c14bcd7c4dee4ff16ca267"
+      },
+      "journal": {
+        "path": "runtime/fixgap-214-217-0.121.0/relay/query/journal.json",
+        "sha256": "90cb299a4b02ecca3813c2b9c8c8b376bbce1bac622ed62377883e588fbefc2b"
+      },
+      "result": {
+        "path": "runtime/fixgap-214-217-0.121.0/relay/query/results/28c9920b4fb1070d467934160a90434bcaf9f0c635d2739e24d30b43ab9eed16.json",
+        "sha256": "ad93857effad8de68df7bcf6f6d925bdc74df69ad2d30eab2a5d3e1c6da18dd8"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap-214-217-0.121.0/relay/code.bin",
+        "sha256": "761eaf4a1f3815f0dcaf763bdf2fb539d1350757af68217917c4a0efbc80f5e2"
+      },
+      "slice_virtual_address": "0x145c56b50"
+    },
+    {
+      "role": "relay-145c5e880",
+      "procedure": "0x145c5e880",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_50cf241565d655831e9bf1922f0ea43cb956bca935f6731681c8821588e813f0",
+      "normalized_text_sha256": "20548cd2e3a82f846f7717ebfa71fa7b8c7e5634a7c348da5c415897eb634ddd",
+      "analysis_profile_digest": "476c21f4151fb0c6211f8851342c515221d5d5a0266561e2673cf5e99d623647",
+      "plan": {
+        "path": "runtime/fixgap-214-217-0.121.0/relay/plan-contracts.json",
+        "sha256": "0a1e8e7d4d8fde3f06490e27bcaa2affa761f3716383e2077817c12bc07eb15b"
+      },
+      "journal": {
+        "path": "runtime/fixgap-214-217-0.121.0/relay/query-contracts/journal.json",
+        "sha256": "eebdb00c05294928ea6988bb8f5d44ff54d745d02f3b26a6337e60278cadf55c"
+      },
+      "result": {
+        "path": "runtime/fixgap-214-217-0.121.0/relay/query-contracts/results/30492ceaeaa2bfdd79d30d9f0dbf2a7ddf8c53d3d13bc2df858cfc06f23d99e1-dc62c1d96939655b.json",
+        "sha256": "4677c034a6208c21e5f37a13902ebb0ea8fff0c40902a63671b75c67e49676fa"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap-214-217-0.121.0/relay/code.bin",
+        "sha256": "761eaf4a1f3815f0dcaf763bdf2fb539d1350757af68217917c4a0efbc80f5e2"
+      },
+      "slice_virtual_address": "0x145c56b50"
+    },
+    {
+      "role": "relay-145c5e010",
+      "procedure": "0x145c5e010",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_d018299db56d383fc246c0742f3a7dd0e279e3d5b173efa4e97dbe4f9c4e56de",
+      "normalized_text_sha256": "3d1563205d99e62220c48a440e0311ae6fa5311135bb68737607b0bb52d06ac9",
+      "analysis_profile_digest": "476c21f4151fb0c6211f8851342c515221d5d5a0266561e2673cf5e99d623647",
+      "plan": {
+        "path": "runtime/fixgap-214-217-0.121.0/relay/plan-factory.json",
+        "sha256": "7c46b31aafc9658bc80c58ba29fd7e30335159093ca6ad865bee17d0e5bf71e0"
+      },
+      "journal": {
+        "path": "runtime/fixgap-214-217-0.121.0/relay/query-factory/journal.json",
+        "sha256": "589813e58bd489af3a2a8a8fe8f2d9b5167a8cb12c13069b0f68554bba4db0fb"
+      },
+      "result": {
+        "path": "runtime/fixgap-214-217-0.121.0/relay/query-factory/results/3cdd2a317d567a85e1290414091790945064305928a8a784d78300aee0a479ef.json",
+        "sha256": "63407efa300124f6395ad55b44230137fa4296a12317b31b485d00cb4ce2207d"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap-214-217-0.121.0/relay/code.bin",
+        "sha256": "761eaf4a1f3815f0dcaf763bdf2fb539d1350757af68217917c4a0efbc80f5e2"
+      },
+      "slice_virtual_address": "0x145c56b50"
+    },
+    {
+      "role": "relay-145c5c730",
+      "procedure": "0x145c5c730",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "evidence_id": "ev_b3ca751c2fb2c8c2c1a91bc9d542cf318663c8a3790105f76e4b94166d2dd774",
+      "normalized_text_sha256": "7af7fb9559fca3f2d83e8b5c42a5ae517a6b3f7874cc5d85218648bab4439d8d",
+      "analysis_profile_digest": "476c21f4151fb0c6211f8851342c515221d5d5a0266561e2673cf5e99d623647",
+      "plan": {
+        "path": "runtime/fixgap-214-217-0.121.0/relay/plan-sender.json",
+        "sha256": "c6592f6900f8b220dfbc1a4d9b81e12b41835118aa621948d252959c8059a933"
+      },
+      "journal": {
+        "path": "runtime/fixgap-214-217-0.121.0/relay/query-sender/journal.json",
+        "sha256": "07547e99f72a17ba5c1b55913951bad036953938dfc94aad6027f35a86c279bf"
+      },
+      "result": {
+        "path": "runtime/fixgap-214-217-0.121.0/relay/query-sender/results/365544ecd0cab304e8ea7ebd39f10c3e0f226c0e3ad5589410d191c41bbb4093.json",
+        "sha256": "7b25fe58b6840ed0627214eac9bbbe82933020d2b1f4e6616d58026bb0cb9037"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap-214-217-0.121.0/relay/code.bin",
+        "sha256": "761eaf4a1f3815f0dcaf763bdf2fb539d1350757af68217917c4a0efbc80f5e2"
+      },
+      "slice_virtual_address": "0x145c56b50"
+    }
+  ],
+  "url_cases": [
+    [
+      "wss://host:8443/path",
+      "wss://host/path"
+    ],
+    [
+      "ws://host:8080/a/b?q=1#h",
+      "ws://host/a/b?q=1#h"
+    ],
+    [
+      "wss://host:9999",
+      "wss://host/"
+    ],
+    [
+      "wss://host:443/",
+      "wss://host/"
+    ],
+    [
+      "ws://host:80/",
+      "ws://host/"
+    ],
+    [
+      "wss://host/path",
+      null
+    ],
+    [
+      "ws://host",
+      null
+    ],
+    [
+      "wss://host:/x",
+      "wss://host/x"
+    ],
+    [
+      "wss://host:1/a:b",
+      "wss://host/a:b"
+    ],
+    [
+      "wss://[::1]:8443/path",
+      "wss://[::1]/path"
+    ],
+    [
+      "WSS://Host:1234/Path",
+      "WSS://Host/Path"
+    ],
+    [
+      "wss://host:1234//path",
+      "wss://host//path"
+    ]
+  ],
+  "source_refs": [
+    "crates/azeroth-survivors-re/src/coop/relay_lifetime.rs",
+    "crates/azeroth-survivors-re/src/coop/relay.rs",
+    "crates/azeroth-survivors-re/src/coop/session.rs",
+    "crates/azeroth-survivors-re/src/coop_directory.rs"
+  ],
+  "limits": [
+    "Original instruction fixtures use synthetic memory, uncontended/unpoisoned mutex, transport state/factory/close, monotonic elapsed, Rust split/reverse-search and formatting seams. No native OS code runs.",
+    "URL fixture begins after exact :// discovery and covers declared strings only, not a general malformed URL/Unicode/IPv6 parser proof. Existing Tungstenite/URL behavior supplies scheme-default ports.",
+    "Raw Programs omit external data/switch tables. Exact retained ranges and separately checked current tables govern the bounded callsite connections.",
+    "No Rust compilation, authored regression execution, client/game/network/server operation, rendering or original/rebuilt parity. Thread-spawn failure remains the existing OS-interface seam: replacement retains its stopped old worker and bounded lifetime, with no unbounded missing-worker wait."
+  ],
+  "localization_evidence": "docs/analysis/evidence/0.121.0/relay-locales/manifest.json"
+}

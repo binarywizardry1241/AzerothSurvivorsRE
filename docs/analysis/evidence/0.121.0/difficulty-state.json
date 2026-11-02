@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "gap_ids": [
+    219
+  ],
+  "query": {
+    "procedure": "0x145bdcb10",
+    "evidence_id": "ev_47a02f379438dab8f787bdcfe0cf54a97034fa3920b53235c808c25e6ef8c9c2",
+    "provider": {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "version": "12.1.4"
+    },
+    "analysis_profile_digest": "16f914ced920e235724b3618580f01b46b80a013852b39749cf3d97212da0d6f",
+    "plan": {
+      "path": "runtime/fixgap219/constructor/plan.json",
+      "sha256": "6c1122104395f1251465b6075bdbbacee11261dcd737ec9c79e49a0eb5ce9cb2"
+    },
+    "journal": {
+      "path": "runtime/fixgap219/constructor/query/journal.json",
+      "sha256": "c6f0b61de448d292fb824b24e42d8b0913397bdbbc8025ff7a5549e2070e5bfc"
+    },
+    "result": {
+      "path": "runtime/fixgap219/constructor/query/results/d369d9b5632f8583bb842214d0584498be87f9c0dacd42fc3aeba2175b2b8acc.json",
+      "sha256": "d09a3d87613e0258f751ff4475254d363bd64ff6c48e8b14cfedc0f7726d4752"
+    },
+    "raw_input": {
+      "path": "runtime/execheck-0.121.0/heroic-native/caller/code.bin",
+      "sha256": "457b507def5d350c7fed3e53bb8636cc1d0e38ec342d2000c413bf24b242b9b2"
+    },
+    "slice_virtual_address": "0x145bdcb10"
+  },
+  "native_ranges": [
+    {
+      "role": "rank-read",
+      "virtual_address": "0x145bdcbd9",
+      "file_offset": "0x5bdbfd9",
+      "byte_count": 7,
+      "bytes_hex": "458ab7bf010000",
+      "sha256": "95fce7bc8fa72f78d57f039d73bdf4c86a140f39ff2aabc8e5d984f5ee25f155"
+    },
+    {
+      "role": "copy-input",
+      "virtual_address": "0x145bdcff8",
+      "file_offset": "0x5bdc3f8",
+      "byte_count": 21,
+      "bytes_hex": "488d8dc001000041b8c00100004c89eae80eec4000",
+      "sha256": "06d53d6a7b6d0ad2e2fdf5fc1a82439a1126ca2ce0c84749bb1c30156deb08f2"
+    },
+    {
+      "role": "copy-output",
+      "virtual_address": "0x145bde16f",
+      "file_offset": "0x5bdd56f",
+      "byte_count": 25,
+      "bytes_hex": "488d551041b8380d0000488bb5080f00004889f1e893da4000",
+      "sha256": "034480d2f17dc83fdd156ca529899d2b02ad12f3a16cfae0a1cf60c9554299c6"
+    }
+  ],
+  "contract": "The constructor reads rank at input+0x1bf, copies the full 0x1c0-byte input into Game+0x1b0, then copies the 0xd38-byte Game out. Rank therefore reaches Game+0x36f unchanged.",
+  "source_refs": [
+    "crates/azeroth-survivors-re/src/menu_state.rs",
+    "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+    "crates/azeroth-survivors-re/src/gameplay/mechanics.rs"
+  ],
+  "limits": "Bounded constructor state connection only. Pick parse/admission, Heroic policies and their consumers have independent proofs. Raw Ghidra function discovery omits external switch targets. memcpy is a synthetic seam; no reconstructed source, compiler, OS, application or server runs.",
+  "target_executed": false,
+  "runtime_validation": "not_run",
+  "parity": "unverified",
+  "static_result": {
+    "rank_cases": 8,
+    "native_copy_calls": 16,
+    "target_executed": false,
+    "runtime_validation": "not_run",
+    "parity": "unverified"
+  }
+}

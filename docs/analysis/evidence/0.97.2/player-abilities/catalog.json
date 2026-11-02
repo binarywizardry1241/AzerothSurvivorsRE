@@ -1,0 +1,4981 @@
+{
+  "target": {
+    "path": "AzerothSurvivors/AzerothSurvivors-0.97.2.exe",
+    "sha256": "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589",
+    "size_bytes": 133231104
+  },
+  "method": "Read-only PE-backed Rust strings, slices, scalar fields and constants; no execution.",
+  "record_layout": {
+    "stride": 120,
+    "upgrade_types": 48,
+    "spell_id": 64,
+    "base_power": 68,
+    "base_cooldown": 72,
+    "range": 76,
+    "radius": 80,
+    "targets": 84,
+    "duration": 88,
+    "ticks": 92,
+    "projectile_speed": 96,
+    "pulse_spell_id": 100,
+    "effect_tag_value_duration": [
+      104,
+      108,
+      112
+    ],
+    "school": 116,
+    "kind": 117
+  },
+  "definitions": [
+    {
+      "key": "cleave",
+      "name": "Cleave",
+      "icon": "Ability_Warrior_Cleave",
+      "base_power": 47.0,
+      "base_cooldown": 1.5,
+      "range": 7.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 845,
+      "targets": 3,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 0,
+      "kind": 5,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6718a68",
+        "virtual_address": "0x146719a68",
+        "size_bytes": 120,
+        "sha256": "3bb2274bb4aaffad8672f2c899e340d81d539b33478ffb3d45ec3997e77e3eec",
+        "raw_hex": "c6787146010000000600000000000000148d71460100000006000000000000001a8d7146010000001600000000000000308d71460100000003000000000000004d03000000003c420000c03f0000e04000000000030000000000000000000000000000000000000000000000000000000000000000050000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "whirlwind",
+      "name": "Whirlwind",
+      "icon": "Ability_Whirlwind",
+      "base_power": 48.0,
+      "base_cooldown": 4.5,
+      "range": 0.0,
+      "radius": 8.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 1680,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 0,
+      "kind": 2,
+      "upgrade_types": [
+        0,
+        1,
+        3
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6718ae0",
+        "virtual_address": "0x146719ae0",
+        "size_bytes": 120,
+        "sha256": "b74bca4418c1047ea7e26a4a99d6eae008e74ed2737644da78dc2808efcf42ea",
+        "raw_hex": "cc787146010000000900000000000000338d71460100000009000000000000003c8d71460100000011000000000000004d8d71460100000003000000000000009006000000004042000090400000000000000041000000000000000000000000000000000000000000000000000000000000000000020000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d4d",
+        "virtual_address": "0x146718d4d",
+        "size_bytes": 3,
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24",
+        "raw_hex": "000103"
+      }
+    },
+    {
+      "key": "thunder_clap",
+      "name": "Thunder Clap",
+      "icon": "Spell_Nature_ThunderClap",
+      "base_power": 21.0,
+      "base_cooldown": 5.0,
+      "range": 0.0,
+      "radius": 10.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 6343,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 0,
+      "kind": 2,
+      "upgrade_types": [
+        0,
+        1,
+        3
+      ],
+      "effect": {
+        "tag": 1,
+        "value": 0.5,
+        "duration": 3.0
+      },
+      "record": {
+        "file_offset": "0x6718b58",
+        "virtual_address": "0x146719b58",
+        "size_bytes": 120,
+        "sha256": "d0f0edaa37cd0c4b926de06a0224f9c0036102822dd6a599966748494c085164",
+        "raw_hex": "d5787146010000000c00000000000000508d7146010000000c000000000000005c8d71460100000018000000000000004d8d7146010000000300000000000000c71800000000a8410000a04000000000000020410000000000000000000000000000000000000000010000000000003f0000404000020000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d4d",
+        "virtual_address": "0x146718d4d",
+        "size_bytes": 3,
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24",
+        "raw_hex": "000103"
+      }
+    },
+    {
+      "key": "mortal_strike",
+      "name": "Mortal Strike",
+      "icon": "Ability_Warrior_SavageBlow",
+      "base_power": 136.5,
+      "base_cooldown": 3.0,
+      "range": 7.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 12294,
+      "targets": 1,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 0,
+      "kind": 5,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6718bd0",
+        "virtual_address": "0x146719bd0",
+        "size_bytes": 120,
+        "sha256": "b61cf8a37d05a1353d542b03efb73399821470bbada107676b08fb98194db20a",
+        "raw_hex": "e1787146010000000d00000000000000748d7146010000000d00000000000000818d7146010000001a00000000000000308d71460100000003000000000000000630000000800843000040400000e04000000000010000000000000000000000000000000000000000000000000000000000000000050000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "execute",
+      "name": "Execute",
+      "icon": "INV_Sword_48",
+      "base_power": 117.0,
+      "base_cooldown": 2.5,
+      "range": 10.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 5308,
+      "targets": 1,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 0,
+      "kind": 7,
+      "upgrade_types": [
+        0,
+        1
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6718c48",
+        "virtual_address": "0x146719c48",
+        "size_bytes": 120,
+        "sha256": "b0698fddd54ebaf061a71b5083d641482d141cc1b4541c886a89ae6d2257c769",
+        "raw_hex": "ee7871460100000007000000000000009b8d7146010000000700000000000000a28d7146010000000c00000000000000ae8d7146010000000200000000000000bc1400000000ea42000020400000204100000000010000000000000000000000000000000000000000000000000000000000000000070000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717dae",
+        "virtual_address": "0x146718dae",
+        "size_bytes": 2,
+        "sha256": "b413f47d13ee2fe6c845b2ee141af81de858df4ec549a58b7970bb96645bc8d2",
+        "raw_hex": "0001"
+      }
+    },
+    {
+      "key": "demo_shout",
+      "name": "Demoralizing Shout",
+      "icon": "Ability_Warrior_WarCry",
+      "base_power": 8.0,
+      "base_cooldown": 10.0,
+      "range": 0.0,
+      "radius": 14.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 1160,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 0,
+      "kind": 2,
+      "upgrade_types": [
+        1,
+        3
+      ],
+      "effect": {
+        "tag": 10,
+        "value": 0.3499999940395355,
+        "duration": 6.0
+      },
+      "record": {
+        "file_offset": "0x6718cc0",
+        "virtual_address": "0x146719cc0",
+        "size_bytes": 120,
+        "sha256": "c8d37f6ce740d943014aa00484fec61a2d05c563f07b09d59fe923b166040cc0",
+        "raw_hex": "f5787146010000000a00000000000000b08d7146010000001200000000000000c28d7146010000001600000000000000d88d7146010000000200000000000000880400000000004100002041000000000000604100000000000000000000000000000000000000000a0000003333b33e0000c04000020000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717dd8",
+        "virtual_address": "0x146718dd8",
+        "size_bytes": 2,
+        "sha256": "c79b932e1e1da3c0e098e5ad2c422937eb904a76cf61d83975a74a68fbb04b99",
+        "raw_hex": "0103"
+      }
+    },
+    {
+      "key": "battle_shout",
+      "name": "Battle Shout",
+      "icon": "Ability_Warrior_BattleShout",
+      "base_power": 0.0,
+      "base_cooldown": 16.0,
+      "range": 0.0,
+      "radius": 0.0,
+      "duration": 8.0,
+      "projectile_speed": 0.0,
+      "spell_id": 6673,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 0,
+      "kind": 9,
+      "upgrade_types": [
+        1,
+        4
+      ],
+      "effect": {
+        "tag": 8,
+        "value": 0.4000000059604645,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6718d38",
+        "virtual_address": "0x146719d38",
+        "size_bytes": 120,
+        "sha256": "fe2f2e5db6bf849286f1ae84961d80f54f573960175dbcb980ffadf85f05e4ee",
+        "raw_hex": "ff787146010000000c00000000000000da8d7146010000000c00000000000000e68d7146010000001b00000000000000018e7146010000000200000000000000111a000000000000000080410000000000000000000000000000004100000000000000000000000008000000cdcccc3e0000000000090000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e01",
+        "virtual_address": "0x146718e01",
+        "size_bytes": 2,
+        "sha256": "a8d5dd63fba471ebcb1f3e8f7c1e1879b7152a6e7298a91ce119a63400ade7c5",
+        "raw_hex": "0104"
+      }
+    },
+    {
+      "key": "bloodthirst",
+      "name": "Bloodthirst",
+      "icon": "Spell_Nature_BloodLust",
+      "base_power": 88.0,
+      "base_cooldown": 4.0,
+      "range": 7.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 23881,
+      "targets": 1,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 0,
+      "kind": 5,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 5,
+        "value": 0.5,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6718db0",
+        "virtual_address": "0x146719db0",
+        "size_bytes": 120,
+        "sha256": "d7804f66defbf0fc0703ecf66e61636de4e89d73d04ea717f9640b043548bb8d",
+        "raw_hex": "0b797146010000000b00000000000000038e7146010000000b000000000000000f827146010000001600000000000000308d7146010000000300000000000000495d00000000b042000080400000e040000000000100000000000000000000000000000000000000050000000000003f0000000000050000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "rend",
+      "name": "Rend",
+      "icon": "Ability_Gouge",
+      "base_power": 78.0,
+      "base_cooldown": 3.0,
+      "range": 8.0,
+      "radius": 0.0,
+      "duration": 5.0,
+      "projectile_speed": 0.0,
+      "spell_id": 772,
+      "targets": 3,
+      "ticks": 5,
+      "pulse_spell_id": 0,
+      "school": 0,
+      "kind": 6,
+      "upgrade_types": [
+        0,
+        1,
+        4,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6718e28",
+        "virtual_address": "0x146719e28",
+        "size_bytes": 120,
+        "sha256": "395f282d87e66b2c72952588bab156c9c8b20d5c08c7e1ac45b3ac7caeba801b",
+        "raw_hex": "167971460100000004000000000000000e8e7146010000000400000000000000128e7146010000000d000000000000001f8e71460100000004000000000000000403000000009c42000040400000004100000000030000000000a04005000000000000000000000000000000000000000000000000060000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e1f",
+        "virtual_address": "0x146718e1f",
+        "size_bytes": 4,
+        "sha256": "0a7623721ffb3c45272ccf1f497cbb6f172ec1c38be06117b4d1e20d17554f72",
+        "raw_hex": "00010402"
+      }
+    },
+    {
+      "key": "shield_slam",
+      "name": "Shield Slam",
+      "icon": "INV_Shield_05",
+      "base_power": 150.0,
+      "base_cooldown": 6.0,
+      "range": 7.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 23922,
+      "targets": 2,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 0,
+      "kind": 5,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 3,
+        "value": 1.5,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6718ea0",
+        "virtual_address": "0x146719ea0",
+        "size_bytes": 120,
+        "sha256": "388a9dee5e348a6e83417109a23d54eb4e73b04f510210d781ad0018f541f4e7",
+        "raw_hex": "1a797146010000000b00000000000000238e7146010000000b000000000000002e8e7146010000000d00000000000000308d7146010000000300000000000000725d0000000016430000c0400000e040000000000200000000000000000000000000000000000000030000000000c03f0000000000050000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "bloodrage",
+      "name": "Bloodrage",
+      "icon": "Ability_Racial_BloodRage",
+      "base_power": 145.0,
+      "base_cooldown": 7.150000095367432,
+      "range": 0.0,
+      "radius": 9.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 2687,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 0,
+      "kind": 11,
+      "upgrade_types": [
+        0,
+        1,
+        3
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6718f18",
+        "virtual_address": "0x146719f18",
+        "size_bytes": 120,
+        "sha256": "11664007fc4a624e91dae10aca2583827c4c366e49c9ed1d834db503dcb7ca03",
+        "raw_hex": "257971460100000009000000000000003b8e7146010000000900000000000000448e71460100000018000000000000004d8d71460100000003000000000000007f0a000000001143cdcce44000000000000010410000000000000000000000000000000000000000000000000000000000000000000b0000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d4d",
+        "virtual_address": "0x146718d4d",
+        "size_bytes": 3,
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24",
+        "raw_hex": "000103"
+      }
+    },
+    {
+      "key": "consecration",
+      "name": "Consecration",
+      "icon": "Spell_Holy_InnerFire",
+      "base_power": 96.0,
+      "base_cooldown": 8.0,
+      "range": 0.0,
+      "radius": 8.0,
+      "duration": 8.0,
+      "projectile_speed": 0.0,
+      "spell_id": 26573,
+      "targets": 0,
+      "ticks": 8,
+      "pulse_spell_id": 0,
+      "school": 1,
+      "kind": 3,
+      "upgrade_types": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6718f90",
+        "virtual_address": "0x146719f90",
+        "size_bytes": 120,
+        "sha256": "964be44d0c7b6ba96773e35fcb3fa1292fa1f8723e0eca96d40379e694e1c920",
+        "raw_hex": "5d7a7146010000000c000000000000005c8e7146010000000c00000000000000688e71460100000014000000000000007c8e7146010000000400000000000000cd6700000000c042000000410000000000000041000000000000004108000000000000000000000000000000000000000000000001030000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e7c",
+        "virtual_address": "0x146718e7c",
+        "size_bytes": 4,
+        "sha256": "f682d654a310a7d6579b0a0bfa3f274615d3e789af868555fde0e197206dccc9",
+        "raw_hex": "00010304"
+      }
+    },
+    {
+      "key": "exorcism",
+      "name": "Exorcism",
+      "icon": "Spell_Holy_Excorcism_02",
+      "base_power": 135.0,
+      "base_cooldown": 3.5,
+      "range": 25.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 879,
+      "targets": 1,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 1,
+      "kind": 0,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6719008",
+        "virtual_address": "0x14671a008",
+        "size_bytes": 120,
+        "sha256": "09b67d11316d76e88d76c618f13816a1bac7c00460b000d461c74ed1e5ceb0b8",
+        "raw_hex": "697a7146010000000800000000000000808e7146010000000800000000000000888e7146010000001700000000000000308d71460100000003000000000000006f03000000000743000060400000c84100000000010000000000000000000000000000000000000000000000000000000000000001000000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "hammer_of_wrath",
+      "name": "Hammer of Wrath",
+      "icon": "Ability_ThunderClap",
+      "base_power": 66.5,
+      "base_cooldown": 1.600000023841858,
+      "range": 28.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 35.0,
+      "spell_id": 24275,
+      "targets": 1,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 1,
+      "kind": 0,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6719080",
+        "virtual_address": "0x14671a080",
+        "size_bytes": 120,
+        "sha256": "88a2b73704cc78ecd16413df105c9d88c299ce2b4e4ec6eaa3d45a8e12eadcc2",
+        "raw_hex": "717a7146010000000f000000000000009f8e7146010000000f00000000000000ae8e7146010000001300000000000000308d7146010000000300000000000000d35e000000008542cdcccc3f0000e0410000000001000000000000000000000000000c420000000000000000000000000000000001000000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "holy_shock",
+      "name": "Holy Shock",
+      "icon": "Spell_Holy_SearingLight",
+      "base_power": 83.5,
+      "base_cooldown": 3.0,
+      "range": 22.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 25912,
+      "targets": 2,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 1,
+      "kind": 1,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 6,
+        "value": 0.029999999329447746,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x67190f8",
+        "virtual_address": "0x14671a0f8",
+        "size_bytes": 120,
+        "sha256": "d76b2963e95c9983d424d9f336e4f4b003128714d15ffe6a115015c694126c4c",
+        "raw_hex": "807a7146010000000a00000000000000c18e7146010000000a00000000000000cb8e7146010000001700000000000000308d7146010000000300000000000000386500000000a742000040400000b041000000000200000000000000000000000000000000000000060000008fc2f53c0000000001010000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "holy_wrath",
+      "name": "Holy Wrath",
+      "icon": "Spell_Holy_Excorcism",
+      "base_power": 56.099998474121094,
+      "base_cooldown": 7.0,
+      "range": 0.0,
+      "radius": 12.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 2812,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 1,
+      "kind": 2,
+      "upgrade_types": [
+        0,
+        1,
+        3
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6719170",
+        "virtual_address": "0x14671a170",
+        "size_bytes": 120,
+        "sha256": "f2390b9089ee824dc6b7fd43862953c5ae6c39c484475b1f46ceb2101ccf9c7f",
+        "raw_hex": "8a7a7146010000000a00000000000000e28e7146010000000a00000000000000ec8e71460100000014000000000000004d8d7146010000000300000000000000fc0a0000666660420000e0400000000000004041000000000000000000000000000000000000000000000000000000000000000001020000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d4d",
+        "virtual_address": "0x146718d4d",
+        "size_bytes": 3,
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24",
+        "raw_hex": "000103"
+      }
+    },
+    {
+      "key": "judgement",
+      "name": "Judgement",
+      "icon": "Spell_Holy_RighteousFury",
+      "base_power": 200.0,
+      "base_cooldown": 6.0,
+      "range": 12.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 20271,
+      "targets": 1,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 1,
+      "kind": 0,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x67191e8",
+        "virtual_address": "0x14671a1e8",
+        "size_bytes": 120,
+        "sha256": "dd14a88785901e4a58cd8919c21ac92e674b3e32c795693756aeb2c87cb57341",
+        "raw_hex": "947a7146010000000900000000000000008f7146010000000900000000000000098f7146010000001800000000000000308d71460100000003000000000000002f4f0000000048430000c0400000404100000000010000000000000000000000000000000000000000000000000000000000000001000000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "hammer_of_justice",
+      "name": "Hammer of Justice",
+      "icon": "Spell_Holy_SealOfMight",
+      "base_power": 55.0,
+      "base_cooldown": 7.0,
+      "range": 12.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 853,
+      "targets": 2,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 1,
+      "kind": 0,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 3,
+        "value": 3.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6719260",
+        "virtual_address": "0x14671a260",
+        "size_bytes": 120,
+        "sha256": "b04499b5914a6ae6d3427ddbec21fa47fa89e2490f8daa546e86baa636554e9f",
+        "raw_hex": "9d7a7146010000001100000000000000218f7146010000001100000000000000328f7146010000001600000000000000308d71460100000003000000000000005503000000005c420000e0400000404100000000020000000000000000000000000000000000000003000000000040400000000001000000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "holy_light",
+      "name": "Holy Light",
+      "icon": "Spell_Holy_HolyBolt",
+      "base_power": 0.0,
+      "base_cooldown": 12.0,
+      "range": 0.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 635,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 1,
+      "kind": 9,
+      "upgrade_types": [
+        0,
+        1
+      ],
+      "effect": {
+        "tag": 6,
+        "value": 0.30000001192092896,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x67192d8",
+        "virtual_address": "0x14671a2d8",
+        "size_bytes": 120,
+        "sha256": "3edf8e3175c34a0576fcf6d9d617a73e7bbc55e8f106fb190b903c353549e610",
+        "raw_hex": "ae7a7146010000000a00000000000000488f7146010000000a00000000000000977b7146010000001300000000000000ae8d71460100000002000000000000007b020000000000000000404100000000000000000000000000000000000000000000000000000000060000009a99993e0000000001090000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717dae",
+        "virtual_address": "0x146718dae",
+        "size_bytes": 2,
+        "sha256": "b413f47d13ee2fe6c845b2ee141af81de858df4ec549a58b7970bb96645bc8d2",
+        "raw_hex": "0001"
+      }
+    },
+    {
+      "key": "divine_shield",
+      "name": "Divine Shield",
+      "icon": "Spell_Holy_DivineIntervention",
+      "base_power": 0.0,
+      "base_cooldown": 32.0,
+      "range": 0.0,
+      "radius": 0.0,
+      "duration": 4.0,
+      "projectile_speed": 0.0,
+      "spell_id": 642,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 1,
+      "kind": 9,
+      "upgrade_types": [
+        1,
+        4
+      ],
+      "effect": {
+        "tag": 11,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6719350",
+        "virtual_address": "0x14671a350",
+        "size_bytes": 120,
+        "sha256": "9cf921b3233430a519ad35e1bb7a047cdeca800d460aaa231445b7e90bbe5095",
+        "raw_hex": "b87a7146010000000d00000000000000528f7146010000000d000000000000005f8f7146010000001d00000000000000018e7146010000000200000000000000820200000000000000000042000000000000000000000000000080400000000000000000000000000b000000000000000000000001090000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e01",
+        "virtual_address": "0x146718e01",
+        "size_bytes": 2,
+        "sha256": "a8d5dd63fba471ebcb1f3e8f7c1e1879b7152a6e7298a91ce119a63400ade7c5",
+        "raw_hex": "0104"
+      }
+    },
+    {
+      "key": "holy_shield",
+      "name": "Holy Shield",
+      "icon": "Spell_Holy_BlessingOfProtection",
+      "base_power": 0.0,
+      "base_cooldown": 14.0,
+      "range": 0.0,
+      "radius": 0.0,
+      "duration": 10.0,
+      "projectile_speed": 0.0,
+      "spell_id": 20925,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 1,
+      "kind": 9,
+      "upgrade_types": [
+        0,
+        1,
+        4
+      ],
+      "effect": {
+        "tag": 12,
+        "value": 30.5,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x67193c8",
+        "virtual_address": "0x14671a3c8",
+        "size_bytes": 120,
+        "sha256": "7d04bf68f694c17af41e1a2908ef3c841097fde0ba1f7f1deba3e471bd8ab860",
+        "raw_hex": "c57a7146010000000b000000000000007c8f7146010000000b00000000000000878f7146010000001f00000000000000a68f7146010000000300000000000000bd5100000000000000006041000000000000000000000000000020410000000000000000000000000c0000000000f4410000000001090000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717fa6",
+        "virtual_address": "0x146718fa6",
+        "size_bytes": 3,
+        "sha256": "3f078d3b7e22c8944e5561909a236ae48b48a7ea42f28dd861c22b6f64d7e97b",
+        "raw_hex": "000104"
+      }
+    },
+    {
+      "key": "redemption",
+      "name": "Redemption",
+      "icon": "Spell_Holy_Resurrection",
+      "base_power": 52.0,
+      "base_cooldown": 0.36000001430511475,
+      "range": 0.0,
+      "radius": 8.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 7328,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 1,
+      "kind": 11,
+      "upgrade_types": [
+        0,
+        1,
+        3
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6719440",
+        "virtual_address": "0x14671a440",
+        "size_bytes": 120,
+        "sha256": "33211be8034b1b002e6f78c578891ca9fb016f4885d2290c395a669fdf58200a",
+        "raw_hex": "d07a7146010000000a00000000000000a98f7146010000000a00000000000000b38f71460100000017000000000000004d8d7146010000000300000000000000a01c000000005042ec51b83e00000000000000410000000000000000000000000000000000000000000000000000000000000000010b0000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d4d",
+        "virtual_address": "0x146718d4d",
+        "size_bytes": 3,
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24",
+        "raw_hex": "000103"
+      }
+    },
+    {
+      "key": "auto_shot",
+      "name": "Auto Shot",
+      "icon": "Ability_Whirlwind",
+      "base_power": 34.5,
+      "base_cooldown": 1.100000023841858,
+      "range": 32.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 40.0,
+      "spell_id": 75,
+      "targets": 2,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 0,
+      "kind": 0,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x67194b8",
+        "virtual_address": "0x14671a4b8",
+        "size_bytes": 120,
+        "sha256": "814c1cfac51e48924d547ce4b34ada114fddf493065b6d23559a74c63fc112ea",
+        "raw_hex": "097c7146010000000900000000000000ca8f71460100000009000000000000003c8d7146010000001100000000000000308d71460100000003000000000000004b00000000000a42cdcc8c3f0000004200000000020000000000000000000000000020420000000000000000000000000000000000000000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "arcane_shot",
+      "name": "Arcane Shot",
+      "icon": "Ability_ImpalingBolt",
+      "base_power": 68.5,
+      "base_cooldown": 2.5,
+      "range": 32.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 40.0,
+      "spell_id": 3044,
+      "targets": 1,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 6,
+      "kind": 0,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6719530",
+        "virtual_address": "0x14671a530",
+        "size_bytes": 120,
+        "sha256": "bbfd0c1c3f3813c70ef0818c3a8d65e536a0ccbd83e52fca7aad1766093b2ec1",
+        "raw_hex": "127c7146010000000b00000000000000d38f7146010000000b00000000000000de8f7146010000001400000000000000308d7146010000000300000000000000e40b000000008942000020400000004200000000010000000000000000000000000020420000000000000000000000000000000006000000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "multi_shot",
+      "name": "Multi-Shot",
+      "icon": "Ability_UpgradeMoonGlaive",
+      "base_power": 30.0,
+      "base_cooldown": 1.600000023841858,
+      "range": 30.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 30.0,
+      "spell_id": 2643,
+      "targets": 3,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 0,
+      "kind": 0,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x67195a8",
+        "virtual_address": "0x14671a5a8",
+        "size_bytes": 120,
+        "sha256": "f4a526089fefc932bc06136125d7c6c8cce87a6d819f9b3f7a674db7bfbd244e",
+        "raw_hex": "1d7c7146010000000a00000000000000f28f7146010000000a00000000000000fc8f7146010000001900000000000000308d7146010000000300000000000000530a00000000f041cdcccc3f0000f041000000000300000000000000000000000000f0410000000000000000000000000000000000000000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "serpent_sting",
+      "name": "Serpent Sting",
+      "icon": "Ability_Hunter_Quickshot",
+      "base_power": 57.0,
+      "base_cooldown": 2.5,
+      "range": 30.0,
+      "radius": 0.0,
+      "duration": 5.0,
+      "projectile_speed": 40.0,
+      "spell_id": 1978,
+      "targets": 2,
+      "ticks": 5,
+      "pulse_spell_id": 0,
+      "school": 3,
+      "kind": 6,
+      "upgrade_types": [
+        0,
+        1,
+        4,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6719620",
+        "virtual_address": "0x14671a620",
+        "size_bytes": 120,
+        "sha256": "ffd929072ced3708a8206756bbaa6ecc6422e053346ab42bf80e17ff0acfc1bf",
+        "raw_hex": "277c7146010000000d0000000000000015907146010000000d00000000000000229071460100000018000000000000001f8e7146010000000400000000000000ba07000000006442000020400000f04100000000020000000000a04005000000000020420000000000000000000000000000000003060000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e1f",
+        "virtual_address": "0x146718e1f",
+        "size_bytes": 4,
+        "sha256": "0a7623721ffb3c45272ccf1f497cbb6f172ec1c38be06117b4d1e20d17554f72",
+        "raw_hex": "00010402"
+      }
+    },
+    {
+      "key": "volley",
+      "name": "Volley",
+      "icon": "Ability_Marksmanship",
+      "base_power": 51.599998474121094,
+      "base_cooldown": 8.0,
+      "range": 28.0,
+      "radius": 8.0,
+      "duration": 6.0,
+      "projectile_speed": 0.0,
+      "spell_id": 1510,
+      "targets": 0,
+      "ticks": 6,
+      "pulse_spell_id": 0,
+      "school": 6,
+      "kind": 3,
+      "upgrade_types": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6719698",
+        "virtual_address": "0x14671a698",
+        "size_bytes": 120,
+        "sha256": "be3125cc1238e12fade296f6cdb1e1e6956090e226598b5b34d2b68418b0ec4c",
+        "raw_hex": "347c71460100000006000000000000003a907146010000000600000000000000409071460100000014000000000000007c8e7146010000000400000000000000e605000066664e42000000410000e04100000041000000000000c04006000000000000000000000000000000000000000000000006030000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e7c",
+        "virtual_address": "0x146718e7c",
+        "size_bytes": 4,
+        "sha256": "f682d654a310a7d6579b0a0bfa3f274615d3e789af868555fde0e197206dccc9",
+        "raw_hex": "00010304"
+      }
+    },
+    {
+      "key": "explosive_trap",
+      "name": "Explosive Trap",
+      "icon": "Spell_Fire_SelfDestruct",
+      "base_power": 34.79999923706055,
+      "base_cooldown": 6.0,
+      "range": 0.0,
+      "radius": 9.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 13812,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 2,
+      "kind": 2,
+      "upgrade_types": [
+        0,
+        1,
+        3
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6719710",
+        "virtual_address": "0x14671a710",
+        "size_bytes": 120,
+        "sha256": "0f7342479b0df2d3af2bde3cccb3a05a2368a81247aaf52e1e28b5fb9f3c5594",
+        "raw_hex": "3a7c7146010000000e0000000000000054907146010000000e00000000000000629071460100000017000000000000004d8d7146010000000300000000000000f435000033330b420000c0400000000000001041000000000000000000000000000000000000000000000000000000000000000002020000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d4d",
+        "virtual_address": "0x146718d4d",
+        "size_bytes": 3,
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24",
+        "raw_hex": "000103"
+      }
+    },
+    {
+      "key": "concussive_shot",
+      "name": "Concussive Shot",
+      "icon": "Spell_Frost_Stun",
+      "base_power": 17.0,
+      "base_cooldown": 4.0,
+      "range": 30.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 40.0,
+      "spell_id": 5116,
+      "targets": 2,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 6,
+      "kind": 0,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 1,
+        "value": 0.6000000238418579,
+        "duration": 4.0
+      },
+      "record": {
+        "file_offset": "0x6719788",
+        "virtual_address": "0x14671a788",
+        "size_bytes": 120,
+        "sha256": "e3c40b0b832fd3ba3d8a5a9f1e6d249f8c0f4c6a99da5b1eaca4cb55a5132f6d",
+        "raw_hex": "487c7146010000000f0000000000000079907146010000000f0000000000000088907146010000001000000000000000308d7146010000000300000000000000fc13000000008841000080400000f041000000000200000000000000000000000000204200000000010000009a99193f0000804006000000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "aimed_shot",
+      "name": "Aimed Shot",
+      "icon": "INV_Spear_07",
+      "base_power": 340.0,
+      "base_cooldown": 4.5,
+      "range": 35.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 40.0,
+      "spell_id": 19434,
+      "targets": 1,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 0,
+      "kind": 0,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6719800",
+        "virtual_address": "0x14671a800",
+        "size_bytes": 120,
+        "sha256": "d95bec43f389cd587940fc11fe5727ed925515d1b0580fd765bd2b10deaa8377",
+        "raw_hex": "577c7146010000000a0000000000000098907146010000000a00000000000000a2907146010000000c00000000000000308d7146010000000300000000000000ea4b00000000aa430000904000000c4200000000010000000000000000000000000020420000000000000000000000000000000000000000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "immolation_trap",
+      "name": "Immolation Trap",
+      "icon": "Spell_Fire_FlameShock",
+      "base_power": 60.0,
+      "base_cooldown": 9.0,
+      "range": 0.0,
+      "radius": 7.0,
+      "duration": 8.0,
+      "projectile_speed": 0.0,
+      "spell_id": 13797,
+      "targets": 0,
+      "ticks": 4,
+      "pulse_spell_id": 0,
+      "school": 2,
+      "kind": 3,
+      "upgrade_types": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6719878",
+        "virtual_address": "0x14671a878",
+        "size_bytes": 120,
+        "sha256": "83cd528502c329a9b9a208417c70a77870ac453f432482a504e8b189f0c22ec2",
+        "raw_hex": "617c7146010000000f00000000000000ae907146010000000f00000000000000bd9071460100000015000000000000007c8e7146010000000400000000000000e53500000000704200001041000000000000e040000000000000004104000000000000000000000000000000000000000000000002030000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e7c",
+        "virtual_address": "0x146718e7c",
+        "size_bytes": 4,
+        "sha256": "f682d654a310a7d6579b0a0bfa3f274615d3e789af868555fde0e197206dccc9",
+        "raw_hex": "00010304"
+      }
+    },
+    {
+      "key": "frost_trap",
+      "name": "Frost Trap",
+      "icon": "Spell_Frost_FreezingBreath",
+      "base_power": 16.5,
+      "base_cooldown": 10.0,
+      "range": 0.0,
+      "radius": 10.0,
+      "duration": 6.0,
+      "projectile_speed": 0.0,
+      "spell_id": 13810,
+      "targets": 0,
+      "ticks": 3,
+      "pulse_spell_id": 0,
+      "school": 4,
+      "kind": 3,
+      "upgrade_types": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "effect": {
+        "tag": 2,
+        "value": 1.5,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x67198f0",
+        "virtual_address": "0x14671a8f0",
+        "size_bytes": 120,
+        "sha256": "cf40a0eb4018b2cad7ebccd406db5c06be01023de3893378b811a260dd0b0aff",
+        "raw_hex": "707c7146010000000a00000000000000d2907146010000000a00000000000000dc907146010000001a000000000000007c8e7146010000000400000000000000f235000000008441000020410000000000002041000000000000c040030000000000000000000000020000000000c03f0000000004030000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e7c",
+        "virtual_address": "0x146718e7c",
+        "size_bytes": 4,
+        "sha256": "f682d654a310a7d6579b0a0bfa3f274615d3e789af868555fde0e197206dccc9",
+        "raw_hex": "00010304"
+      }
+    },
+    {
+      "key": "hunters_mark",
+      "name": "Hunter's Mark",
+      "icon": "Ability_Hunter_SniperShot",
+      "base_power": 250.0,
+      "base_cooldown": 1.4299999475479126,
+      "range": 35.0,
+      "radius": 8.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 1130,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 6,
+      "kind": 11,
+      "upgrade_types": [
+        0,
+        1,
+        3
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6719968",
+        "virtual_address": "0x14671a968",
+        "size_bytes": 120,
+        "sha256": "c0b344b62deff78a86230ceb35cd29dd68a410cc1b2acdaad1f1a9b49d1e3cca",
+        "raw_hex": "7a7c7146010000000c00000000000000f6907146010000000d00000000000000039171460100000019000000000000004d8d71460100000003000000000000006a04000000007a433d0ab73f00000c42000000410000000000000000000000000000000000000000000000000000000000000000060b0000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d4d",
+        "virtual_address": "0x146718d4d",
+        "size_bytes": 3,
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24",
+        "raw_hex": "000103"
+      }
+    },
+    {
+      "key": "sinister_strike",
+      "name": "Sinister Strike",
+      "icon": "Spell_Shadow_RitualOfSacrifice",
+      "base_power": 35.0,
+      "base_cooldown": 1.0,
+      "range": 7.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 1752,
+      "targets": 2,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 0,
+      "kind": 5,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x67199e0",
+        "virtual_address": "0x14671a9e0",
+        "size_bytes": 120,
+        "sha256": "324b469bd13f13646f826f2baf70f852350ae66253455ed36c6a387abe604699",
+        "raw_hex": "a97d7146010000000f000000000000001c917146010000000f000000000000002b917146010000001e00000000000000308d7146010000000300000000000000d806000000000c420000803f0000e04000000000020000000000000000000000000000000000000000000000000000000000000000050000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "eviscerate",
+      "name": "Eviscerate",
+      "icon": "Ability_Rogue_Eviscerate",
+      "base_power": 91.0,
+      "base_cooldown": 3.0,
+      "range": 8.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 2098,
+      "targets": 2,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 0,
+      "kind": 7,
+      "upgrade_types": [
+        0,
+        1
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6719a58",
+        "virtual_address": "0x14671aa58",
+        "size_bytes": 120,
+        "sha256": "68e1eab77607b44ae04517cbea66a754d05e72f36f2dac52a49f3400384949d8",
+        "raw_hex": "b87d7146010000000a0000000000000049917146010000000a0000000000000053917146010000001800000000000000ae8d7146010000000200000000000000320800000000b642000040400000004100000000020000000000000000000000000000000000000000000000000000000000000000070000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717dae",
+        "virtual_address": "0x146718dae",
+        "size_bytes": 2,
+        "sha256": "b413f47d13ee2fe6c845b2ee141af81de858df4ec549a58b7970bb96645bc8d2",
+        "raw_hex": "0001"
+      }
+    },
+    {
+      "key": "blade_flurry",
+      "name": "Blade Flurry",
+      "icon": "Ability_Warrior_PunishingBlow",
+      "base_power": 24.0,
+      "base_cooldown": 2.5,
+      "range": 0.0,
+      "radius": 7.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 13877,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 0,
+      "kind": 2,
+      "upgrade_types": [
+        0,
+        1,
+        3
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6719ad0",
+        "virtual_address": "0x14671aad0",
+        "size_bytes": 120,
+        "sha256": "c8f609b946200e8f4dda79fab1861b6dffea1c1533063f095a375bf2f012f123",
+        "raw_hex": "c27d7146010000000c000000000000006b917146010000000c0000000000000077917146010000001d000000000000004d8d7146010000000300000000000000353600000000c04100002040000000000000e040000000000000000000000000000000000000000000000000000000000000000000020000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d4d",
+        "virtual_address": "0x146718d4d",
+        "size_bytes": 3,
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24",
+        "raw_hex": "000103"
+      }
+    },
+    {
+      "key": "rupture",
+      "name": "Rupture",
+      "icon": "Ability_Rogue_Rupture",
+      "base_power": 61.0,
+      "base_cooldown": 3.5,
+      "range": 8.0,
+      "radius": 0.0,
+      "duration": 4.0,
+      "projectile_speed": 0.0,
+      "spell_id": 1943,
+      "targets": 2,
+      "ticks": 4,
+      "pulse_spell_id": 0,
+      "school": 0,
+      "kind": 6,
+      "upgrade_types": [
+        0,
+        1,
+        4,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6719b48",
+        "virtual_address": "0x14671ab48",
+        "size_bytes": 120,
+        "sha256": "51cb77cf1ee376e8a6d2f378cb2acd6950d5594172258ca83b011e340e598e43",
+        "raw_hex": "ce7d7146010000000700000000000000949171460100000007000000000000009b9171460100000015000000000000001f8e71460100000004000000000000009707000000007442000060400000004100000000020000000000804004000000000000000000000000000000000000000000000000060000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e1f",
+        "virtual_address": "0x146718e1f",
+        "size_bytes": 4,
+        "sha256": "0a7623721ffb3c45272ccf1f497cbb6f172ec1c38be06117b4d1e20d17554f72",
+        "raw_hex": "00010402"
+      }
+    },
+    {
+      "key": "kidney_shot",
+      "name": "Kidney Shot",
+      "icon": "Ability_Rogue_KidneyShot",
+      "base_power": 25.0,
+      "base_cooldown": 6.0,
+      "range": 7.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 408,
+      "targets": 2,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 0,
+      "kind": 5,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 3,
+        "value": 2.5,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6719bc0",
+        "virtual_address": "0x14671abc0",
+        "size_bytes": 120,
+        "sha256": "50047096f83a844681eba53b225f7f16c6a1ffc9630871f00758027fd0b54a5c",
+        "raw_hex": "d57d7146010000000b00000000000000b0917146010000000b00000000000000bb917146010000001800000000000000308d7146010000000300000000000000980100000000c8410000c0400000e04000000000020000000000000000000000000000000000000003000000000020400000000000050000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "gouge",
+      "name": "Gouge",
+      "icon": "Ability_Gouge",
+      "base_power": 25.5,
+      "base_cooldown": 5.0,
+      "range": 7.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 1776,
+      "targets": 3,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 0,
+      "kind": 5,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 3,
+        "value": 1.5,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6719c38",
+        "virtual_address": "0x14671ac38",
+        "size_bytes": 120,
+        "sha256": "2907564708475d57459749ec098a2eb1e8e03312ca93084c7a78228602594119",
+        "raw_hex": "e07d7146010000000500000000000000d3917146010000000500000000000000128e7146010000000d00000000000000308d7146010000000300000000000000f00600000000cc410000a0400000e040000000000300000000000000000000000000000000000000030000000000c03f0000000000050000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "ghostly_strike",
+      "name": "Ghostly Strike",
+      "icon": "Spell_Shadow_Curse",
+      "base_power": 46.0,
+      "base_cooldown": 4.0,
+      "range": 7.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 14278,
+      "targets": 1,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 0,
+      "kind": 5,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 7,
+        "value": 0.07999999821186066,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6719cb0",
+        "virtual_address": "0x14671acb0",
+        "size_bytes": 120,
+        "sha256": "c728f5f5be9749926ad48f9d0190306800b5e45d58112229cace384b9b036cf5",
+        "raw_hex": "e57d7146010000000e00000000000000d8917146010000000e00000000000000e6917146010000001200000000000000308d7146010000000300000000000000c637000000003842000080400000e040000000000100000000000000000000000000000000000000070000000ad7a33d0000000000050000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "adrenaline_rush",
+      "name": "Adrenaline Rush",
+      "icon": "Spell_Shadow_ShadowWordDominate",
+      "base_power": 0.0,
+      "base_cooldown": 20.0,
+      "range": 0.0,
+      "radius": 0.0,
+      "duration": 8.0,
+      "projectile_speed": 0.0,
+      "spell_id": 13750,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 0,
+      "kind": 9,
+      "upgrade_types": [
+        1,
+        4
+      ],
+      "effect": {
+        "tag": 9,
+        "value": 0.6000000238418579,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6719d28",
+        "virtual_address": "0x14671ad28",
+        "size_bytes": 120,
+        "sha256": "bc40bf81842a14ae4e7476b1181b9af8e6d7f87ed32e0f297fd4c478ec5912fb",
+        "raw_hex": "f37d7146010000000f00000000000000f8917146010000000f0000000000000007927146010000001f00000000000000018e7146010000000200000000000000b6350000000000000000a04100000000000000000000000000000041000000000000000000000000090000009a99193f0000000000090000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e01",
+        "virtual_address": "0x146718e01",
+        "size_bytes": 2,
+        "sha256": "a8d5dd63fba471ebcb1f3e8f7c1e1879b7152a6e7298a91ce119a63400ade7c5",
+        "raw_hex": "0104"
+      }
+    },
+    {
+      "key": "backstab",
+      "name": "Backstab",
+      "icon": "Ability_BackStab",
+      "base_power": 55.5,
+      "base_cooldown": 1.7999999523162842,
+      "range": 7.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 53,
+      "targets": 2,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 0,
+      "kind": 7,
+      "upgrade_types": [
+        0,
+        1
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6719da0",
+        "virtual_address": "0x14671ada0",
+        "size_bytes": 120,
+        "sha256": "4d39b732fd942b497fc862168c760d44fdbecd8ae45e092df60933acb5208bf7",
+        "raw_hex": "027e7146010000000800000000000000269271460100000008000000000000002e927146010000001000000000000000ae8d71460100000002000000000000003500000000005e426666e63f0000e04000000000020000000000000000000000000000000000000000000000000000000000000000070000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717dae",
+        "virtual_address": "0x146718dae",
+        "size_bytes": 2,
+        "sha256": "b413f47d13ee2fe6c845b2ee141af81de858df4ec549a58b7970bb96645bc8d2",
+        "raw_hex": "0001"
+      }
+    },
+    {
+      "key": "slice_and_dice",
+      "name": "Slice and Dice",
+      "icon": "Ability_Rogue_SliceDice",
+      "base_power": 0.0,
+      "base_cooldown": 15.0,
+      "range": 0.0,
+      "radius": 0.0,
+      "duration": 9.0,
+      "projectile_speed": 0.0,
+      "spell_id": 5171,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 0,
+      "kind": 9,
+      "upgrade_types": [
+        1,
+        4
+      ],
+      "effect": {
+        "tag": 8,
+        "value": 0.3199999928474426,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6719e18",
+        "virtual_address": "0x14671ae18",
+        "size_bytes": 120,
+        "sha256": "b40bef94795e7c49a20ceb845019fcc0cbe224a532847b37ea2549e040c09817",
+        "raw_hex": "0a7e7146010000000e000000000000003e927146010000000e000000000000004c927146010000001700000000000000018e714601000000020000000000000033140000000000000000704100000000000000000000000000001041000000000000000000000000080000000ad7a33e0000000000090000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e01",
+        "virtual_address": "0x146718e01",
+        "size_bytes": 2,
+        "sha256": "a8d5dd63fba471ebcb1f3e8f7c1e1879b7152a6e7298a91ce119a63400ade7c5",
+        "raw_hex": "0104"
+      }
+    },
+    {
+      "key": "seal_fate",
+      "name": "Seal Fate",
+      "icon": "Spell_Shadow_ChillTouch",
+      "base_power": 130.0,
+      "base_cooldown": 1.7899999618530273,
+      "range": 8.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 14186,
+      "targets": 1,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 0,
+      "kind": 11,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6719e90",
+        "virtual_address": "0x14671ae90",
+        "size_bytes": 120,
+        "sha256": "12eb8d3d3916e6a08d3f4a2389e4286102d60979b71182493e652878170a4f38",
+        "raw_hex": "187e7146010000000900000000000000639271460100000009000000000000006c927146010000001700000000000000308d71460100000003000000000000006a37000000000243b81ee53f00000041000000000100000000000000000000000000000000000000000000000000000000000000000b0000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "smite",
+      "name": "Smite",
+      "icon": "Spell_Holy_HolySmite",
+      "base_power": 41.5,
+      "base_cooldown": 1.2000000476837158,
+      "range": 28.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 585,
+      "targets": 1,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 1,
+      "kind": 0,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6719f08",
+        "virtual_address": "0x14671af08",
+        "size_bytes": 120,
+        "sha256": "ca52489737e850d201262078799b47284a3a049ea31152477d10f13902d474d7",
+        "raw_hex": "4a7f71460100000005000000000000008392714601000000050000000000000088927146010000001400000000000000308d714601000000030000000000000049020000000026429a99993f0000e04100000000010000000000000000000000000000000000000000000000000000000000000001000000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "sw_pain",
+      "name": "Shadow Word: Pain",
+      "icon": "Spell_Shadow_ShadowWordPain",
+      "base_power": 72.0,
+      "base_cooldown": 1.600000023841858,
+      "range": 28.0,
+      "radius": 0.0,
+      "duration": 6.0,
+      "projectile_speed": 0.0,
+      "spell_id": 589,
+      "targets": 2,
+      "ticks": 6,
+      "pulse_spell_id": 0,
+      "school": 5,
+      "kind": 6,
+      "upgrade_types": [
+        0,
+        1,
+        4,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6719f80",
+        "virtual_address": "0x14671af80",
+        "size_bytes": 120,
+        "sha256": "021d26bb20d8bf6ef232e2512efef8977b6bbce3ae56707a7215657d812bcb7c",
+        "raw_hex": "4f7f71460100000007000000000000009c927146010000001100000000000000ad927146010000001b000000000000001f8e71460100000004000000000000004d02000000009042cdcccc3f0000e04100000000020000000000c04006000000000000000000000000000000000000000000000005060000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e1f",
+        "virtual_address": "0x146718e1f",
+        "size_bytes": 4,
+        "sha256": "0a7623721ffb3c45272ccf1f497cbb6f172ec1c38be06117b4d1e20d17554f72",
+        "raw_hex": "00010402"
+      }
+    },
+    {
+      "key": "mind_blast",
+      "name": "Mind Blast",
+      "icon": "Spell_Shadow_UnholyFrenzy",
+      "base_power": 93.0,
+      "base_cooldown": 4.0,
+      "range": 28.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 8092,
+      "targets": 1,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 5,
+      "kind": 0,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x6719ff8",
+        "virtual_address": "0x14671aff8",
+        "size_bytes": 120,
+        "sha256": "a9fc62cc8f1097a9b5df893ce54d076f3b0b76d8d63ba966ec95aadcc65f23e3",
+        "raw_hex": "567f7146010000000a00000000000000c8927146010000000a00000000000000d2927146010000001900000000000000308d71460100000003000000000000009c1f00000000ba42000080400000e04100000000010000000000000000000000000000000000000000000000000000000000000005000000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "holy_nova",
+      "name": "Holy Nova",
+      "icon": "Spell_Holy_HolyNova",
+      "base_power": 27.299999237060547,
+      "base_cooldown": 4.0,
+      "range": 0.0,
+      "radius": 10.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 15237,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 1,
+      "kind": 2,
+      "upgrade_types": [
+        0,
+        1,
+        3
+      ],
+      "effect": {
+        "tag": 6,
+        "value": 0.03999999910593033,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671a070",
+        "virtual_address": "0x14671b070",
+        "size_bytes": 120,
+        "sha256": "278d276a29c706aff5464332503a7cb0902ed0469c14652764dbc056471aabb0",
+        "raw_hex": "607f7146010000000900000000000000eb927146010000000900000000000000f49271460100000013000000000000004d8d7146010000000300000000000000853b00006666da410000804000000000000020410000000000000000000000000000000000000000060000000ad7233d0000000001020000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d4d",
+        "virtual_address": "0x146718d4d",
+        "size_bytes": 3,
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24",
+        "raw_hex": "000103"
+      }
+    },
+    {
+      "key": "pw_shield",
+      "name": "Power Word: Shield",
+      "icon": "Spell_Holy_PowerWordShield",
+      "base_power": 0.0,
+      "base_cooldown": 12.0,
+      "range": 0.0,
+      "radius": 0.0,
+      "duration": 12.0,
+      "projectile_speed": 0.0,
+      "spell_id": 17,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 1,
+      "kind": 9,
+      "upgrade_types": [
+        0,
+        1
+      ],
+      "effect": {
+        "tag": 7,
+        "value": 0.3199999928474426,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671a0e8",
+        "virtual_address": "0x14671b0e8",
+        "size_bytes": 120,
+        "sha256": "03b3059edd40c1aae56822ca72688e43aea36ecb21e2b89de1cf51c3fd0db0e6",
+        "raw_hex": "697f71460100000009000000000000000793714601000000120000000000000019937146010000001a00000000000000ae8d714601000000020000000000000011000000000000000000404100000000000000000000000000004041000000000000000000000000070000000ad7a33e0000000001090000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717dae",
+        "virtual_address": "0x146718dae",
+        "size_bytes": 2,
+        "sha256": "b413f47d13ee2fe6c845b2ee141af81de858df4ec549a58b7970bb96645bc8d2",
+        "raw_hex": "0001"
+      }
+    },
+    {
+      "key": "renew",
+      "name": "Renew",
+      "icon": "Spell_Holy_Renew",
+      "base_power": 0.0,
+      "base_cooldown": 10.0,
+      "range": 0.0,
+      "radius": 0.0,
+      "duration": 10.0,
+      "projectile_speed": 0.0,
+      "spell_id": 139,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 1,
+      "kind": 9,
+      "upgrade_types": [
+        0,
+        1
+      ],
+      "effect": {
+        "tag": 6,
+        "value": 0.36000001430511475,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671a160",
+        "virtual_address": "0x14671b160",
+        "size_bytes": 120,
+        "sha256": "205e767a644bdcf5bd839fdec09613d2581d3df91fa17af5f0b2da08e17838f6",
+        "raw_hex": "727f71460100000005000000000000003393714601000000050000000000000038937146010000001000000000000000ae8d71460100000002000000000000008b00000000000000000020410000000000000000000000000000204100000000000000000000000006000000ec51b83e0000000001090000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717dae",
+        "virtual_address": "0x146718dae",
+        "size_bytes": 2,
+        "sha256": "b413f47d13ee2fe6c845b2ee141af81de858df4ec549a58b7970bb96645bc8d2",
+        "raw_hex": "0001"
+      }
+    },
+    {
+      "key": "holy_fire",
+      "name": "Holy Fire",
+      "icon": "Spell_Holy_SearingLight",
+      "base_power": 160.0,
+      "base_cooldown": 5.0,
+      "range": 28.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 14914,
+      "targets": 1,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 1,
+      "kind": 0,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671a1d8",
+        "virtual_address": "0x14671b1d8",
+        "size_bytes": 120,
+        "sha256": "f6ed445175b88ef76344d41c9f91cb274802f3ddff1729d88408542b14df1ce7",
+        "raw_hex": "777f714601000000090000000000000048937146010000000900000000000000cb8e7146010000001700000000000000308d7146010000000300000000000000423a0000000020430000a0400000e04100000000010000000000000000000000000000000000000000000000000000000000000001000000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "mind_flay",
+      "name": "Mind Flay",
+      "icon": "Spell_Shadow_SiphonMana",
+      "base_power": 52.79999923706055,
+      "base_cooldown": 2.5,
+      "range": 16.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 15407,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 5,
+      "kind": 8,
+      "upgrade_types": [
+        0,
+        1,
+        3
+      ],
+      "effect": {
+        "tag": 1,
+        "value": 0.5,
+        "duration": 2.0
+      },
+      "record": {
+        "file_offset": "0x671a250",
+        "virtual_address": "0x14671b250",
+        "size_bytes": 120,
+        "sha256": "efafdf21f05b432e9ff705da1bc3721e3423e788161b67c9d8f9bdf1dd62e2d0",
+        "raw_hex": "807f7146010000000900000000000000519371460100000009000000000000005a9371460100000017000000000000004d8d71460100000003000000000000002f3c0000333353420000204000008041000000000000000000000000000000000000000000000000010000000000003f0000004005080000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d4d",
+        "virtual_address": "0x146718d4d",
+        "size_bytes": 3,
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24",
+        "raw_hex": "000103"
+      }
+    },
+    {
+      "key": "psychic_scream",
+      "name": "Psychic Scream",
+      "icon": "Spell_Shadow_PsychicScream",
+      "base_power": 10.5,
+      "base_cooldown": 12.0,
+      "range": 0.0,
+      "radius": 10.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 8122,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 5,
+      "kind": 2,
+      "upgrade_types": [
+        1,
+        3
+      ],
+      "effect": {
+        "tag": 4,
+        "value": 3.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671a2c8",
+        "virtual_address": "0x14671b2c8",
+        "size_bytes": 120,
+        "sha256": "f2689a7d443de162c31cec86a235af89b15f2b69ebc3a94c63cd2b1690c90275",
+        "raw_hex": "897f7146010000000e0000000000000071937146010000000e000000000000007f937146010000001a00000000000000d88d7146010000000200000000000000ba1f000000002841000040410000000000002041000000000000000000000000000000000000000004000000000040400000000005020000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717dd8",
+        "virtual_address": "0x146718dd8",
+        "size_bytes": 2,
+        "sha256": "c79b932e1e1da3c0e098e5ad2c422937eb904a76cf61d83975a74a68fbb04b99",
+        "raw_hex": "0103"
+      }
+    },
+    {
+      "key": "devouring_plague",
+      "name": "Devouring Plague",
+      "icon": "Spell_Shadow_BlackPlague",
+      "base_power": 106.5,
+      "base_cooldown": 6.0,
+      "range": 28.0,
+      "radius": 0.0,
+      "duration": 6.0,
+      "projectile_speed": 0.0,
+      "spell_id": 2944,
+      "targets": 3,
+      "ticks": 6,
+      "pulse_spell_id": 0,
+      "school": 5,
+      "kind": 6,
+      "upgrade_types": [
+        0,
+        1,
+        4,
+        2
+      ],
+      "effect": {
+        "tag": 5,
+        "value": 0.30000001192092896,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671a340",
+        "virtual_address": "0x14671b340",
+        "size_bytes": 120,
+        "sha256": "8fb590e6021e9cf91c3df078febedf6c1bcd004f5d9b89d877e427630d4904b9",
+        "raw_hex": "977f714601000000100000000000000099937146010000001000000000000000a99371460100000018000000000000001f8e7146010000000400000000000000800b00000000d5420000c0400000e04100000000030000000000c040060000000000000000000000050000009a99993e0000000005060000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e1f",
+        "virtual_address": "0x146718e1f",
+        "size_bytes": 4,
+        "sha256": "0a7623721ffb3c45272ccf1f497cbb6f172ec1c38be06117b4d1e20d17554f72",
+        "raw_hex": "00010402"
+      }
+    },
+    {
+      "key": "lightwell",
+      "name": "Lightwell",
+      "icon": "Spell_Holy_SummonLightwell",
+      "base_power": 80.0,
+      "base_cooldown": 14.300000190734863,
+      "range": 25.0,
+      "radius": 0.0,
+      "duration": 7.150000095367432,
+      "projectile_speed": 0.0,
+      "spell_id": 724,
+      "targets": 1,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 1,
+      "kind": 11,
+      "upgrade_types": [
+        0,
+        1,
+        4,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671a3b8",
+        "virtual_address": "0x14671b3b8",
+        "size_bytes": 120,
+        "sha256": "31308316d3bce0b2561ccc23dd9cfa0a74755b683f3f95f6c7c78997b12c548a",
+        "raw_hex": "93ea7046010000000900000000000000de8c7146010000000900000000000000c1937146010000001a000000000000001f8e7146010000000400000000000000d40200000000a042cdcc64410000c8410000000001000000cdcce440000000000000000000000000000000000000000000000000010b0000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e1f",
+        "virtual_address": "0x146718e1f",
+        "size_bytes": 4,
+        "sha256": "0a7623721ffb3c45272ccf1f497cbb6f172ec1c38be06117b4d1e20d17554f72",
+        "raw_hex": "00010402"
+      }
+    },
+    {
+      "key": "lightning_bolt",
+      "name": "Lightning Bolt",
+      "icon": "Spell_Nature_Lightning",
+      "base_power": 36.5,
+      "base_cooldown": 1.399999976158142,
+      "range": 30.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 30.0,
+      "spell_id": 403,
+      "targets": 2,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 3,
+      "kind": 0,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671a430",
+        "virtual_address": "0x14671b430",
+        "size_bytes": 120,
+        "sha256": "ef8a208343d0477b3954f02aca125b178c2e3cb9b5d8681399602ad1595a3cc4",
+        "raw_hex": "cf807146010000000e00000000000000db937146010000000e00000000000000e9937146010000001600000000000000308d714601000000030000000000000093010000000012423333b33f0000f041000000000200000000000000000000000000f0410000000000000000000000000000000003000000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "chain_lightning",
+      "name": "Chain Lightning",
+      "icon": "Spell_Nature_ChainLightning",
+      "base_power": 39.5,
+      "base_cooldown": 2.4000000953674316,
+      "range": 28.0,
+      "radius": 12.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 421,
+      "targets": 5,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 3,
+      "kind": 4,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671a4a8",
+        "virtual_address": "0x14671b4a8",
+        "size_bytes": 120,
+        "sha256": "ea06c487c27d4dfa8203d3720623fca173e68d553e831f85c06914d3db8866d6",
+        "raw_hex": "dd807146010000000f00000000000000ff937146010000000f000000000000000e947146010000001b00000000000000308d7146010000000300000000000000a501000000001e429a9919400000e04100004041050000000000000000000000000000000000000000000000000000000000000003040000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "earth_shock",
+      "name": "Earth Shock",
+      "icon": "Spell_Nature_EarthShock",
+      "base_power": 93.5,
+      "base_cooldown": 3.0,
+      "range": 20.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 8042,
+      "targets": 1,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 3,
+      "kind": 0,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671a520",
+        "virtual_address": "0x14671b520",
+        "size_bytes": 120,
+        "sha256": "072872635bff9c3d76329ad885acef4ef563fa2afd276f44e8ae39887cc171a9",
+        "raw_hex": "ec807146010000000b0000000000000029947146010000000b0000000000000034947146010000001700000000000000308d71460100000003000000000000006a1f00000000bb42000040400000a04100000000010000000000000000000000000000000000000000000000000000000000000003000000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "flame_shock",
+      "name": "Flame Shock",
+      "icon": "Spell_Fire_FlameShock",
+      "base_power": 82.5,
+      "base_cooldown": 3.0,
+      "range": 20.0,
+      "radius": 0.0,
+      "duration": 6.0,
+      "projectile_speed": 0.0,
+      "spell_id": 8050,
+      "targets": 2,
+      "ticks": 6,
+      "pulse_spell_id": 0,
+      "school": 2,
+      "kind": 6,
+      "upgrade_types": [
+        0,
+        1,
+        4,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671a598",
+        "virtual_address": "0x14671b598",
+        "size_bytes": 120,
+        "sha256": "9e41eb7ca0f2f5f0f00030b34541909711473fb50648a2ee4d595bb7f60298b5",
+        "raw_hex": "f7807146010000000b000000000000004b947146010000000b00000000000000bd9071460100000015000000000000001f8e7146010000000400000000000000721f00000000a542000040400000a04100000000020000000000c04006000000000000000000000000000000000000000000000002060000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e1f",
+        "virtual_address": "0x146718e1f",
+        "size_bytes": 4,
+        "sha256": "0a7623721ffb3c45272ccf1f497cbb6f172ec1c38be06117b4d1e20d17554f72",
+        "raw_hex": "00010402"
+      }
+    },
+    {
+      "key": "frost_shock",
+      "name": "Frost Shock",
+      "icon": "Spell_Frost_FrostShock",
+      "base_power": 58.0,
+      "base_cooldown": 3.5,
+      "range": 20.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 8056,
+      "targets": 2,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 4,
+      "kind": 0,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 1,
+        "value": 0.5,
+        "duration": 4.0
+      },
+      "record": {
+        "file_offset": "0x671a610",
+        "virtual_address": "0x14671b610",
+        "size_bytes": 120,
+        "sha256": "306485cb37be2ec50bc55b2ebb93921cea07f5bd604c0a88c81aea4392c530af",
+        "raw_hex": "02817146010000000b0000000000000056947146010000000b0000000000000061947146010000001600000000000000308d7146010000000300000000000000781f000000006842000060400000a041000000000200000000000000000000000000000000000000010000000000003f0000804004000000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "lightning_shield",
+      "name": "Lightning Shield",
+      "icon": "Spell_Nature_LightningShield",
+      "base_power": 0.0,
+      "base_cooldown": 15.0,
+      "range": 0.0,
+      "radius": 0.0,
+      "duration": 15.0,
+      "projectile_speed": 0.0,
+      "spell_id": 324,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 3,
+      "kind": 9,
+      "upgrade_types": [
+        0
+      ],
+      "effect": {
+        "tag": 12,
+        "value": 20.5,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671a688",
+        "virtual_address": "0x14671b688",
+        "size_bytes": 120,
+        "sha256": "9e2aa7c3c837245674dedef86275b1e15d47b5fb9c4abbcfc2299a7a0058ea0f",
+        "raw_hex": "0d8171460100000010000000000000007794714601000000100000000000000087947146010000001c00000000000000a3947146010000000100000000000000440100000000000000007041000000000000000000000000000070410000000000000000000000000c0000000000a4410000000003090000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x67184a3",
+        "virtual_address": "0x1467194a3",
+        "size_bytes": 1,
+        "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+        "raw_hex": "00"
+      }
+    },
+    {
+      "key": "magma_totem",
+      "name": "Magma Totem",
+      "icon": "Spell_Fire_SelfDestruct",
+      "base_power": 24.0,
+      "base_cooldown": 12.0,
+      "range": 0.0,
+      "radius": 10.0,
+      "duration": 12.0,
+      "projectile_speed": 0.0,
+      "spell_id": 8190,
+      "targets": 0,
+      "ticks": 6,
+      "pulse_spell_id": 8187,
+      "school": 2,
+      "kind": 10,
+      "upgrade_types": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671a700",
+        "virtual_address": "0x14671b700",
+        "size_bytes": 120,
+        "sha256": "89351b196e22687f2d687e91e056d92e078fe7b9358a27dbf39aa4c82f074cd3",
+        "raw_hex": "1d817146010000000b00000000000000a4947146010000000b00000000000000629071460100000017000000000000007c8e7146010000000400000000000000fe1f00000000c04100004041000000000000204100000000000040410600000000000000fb1f0000000000000000000000000000020a0000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e7c",
+        "virtual_address": "0x146718e7c",
+        "size_bytes": 4,
+        "sha256": "f682d654a310a7d6579b0a0bfa3f274615d3e789af868555fde0e197206dccc9",
+        "raw_hex": "00010304"
+      }
+    },
+    {
+      "key": "searing_totem",
+      "name": "Searing Totem",
+      "icon": "Spell_Fire_SearingTotem",
+      "base_power": 34.0,
+      "base_cooldown": 10.0,
+      "range": 22.0,
+      "radius": 0.0,
+      "duration": 15.0,
+      "projectile_speed": 0.0,
+      "spell_id": 3599,
+      "targets": 1,
+      "ticks": 10,
+      "pulse_spell_id": 3606,
+      "school": 2,
+      "kind": 10,
+      "upgrade_types": [
+        0,
+        1,
+        4,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671a778",
+        "virtual_address": "0x14671b778",
+        "size_bytes": 120,
+        "sha256": "d3c0fc32a6573b637f11ef101a7c43a5d5d270c784560ece0702475c5230e570",
+        "raw_hex": "28817146010000000d00000000000000af947146010000000d00000000000000bc9471460100000017000000000000001f8e71460100000004000000000000000f0e000000000842000020410000b0410000000001000000000070410a00000000000000160e0000000000000000000000000000020a0000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e1f",
+        "virtual_address": "0x146718e1f",
+        "size_bytes": 4,
+        "sha256": "0a7623721ffb3c45272ccf1f497cbb6f172ec1c38be06117b4d1e20d17554f72",
+        "raw_hex": "00010402"
+      }
+    },
+    {
+      "key": "fire_nova",
+      "name": "Fire Nova",
+      "icon": "Spell_Fire_SealOfFire",
+      "base_power": 42.0,
+      "base_cooldown": 5.0,
+      "range": 0.0,
+      "radius": 12.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 1535,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 2,
+      "kind": 2,
+      "upgrade_types": [
+        0,
+        1,
+        3
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671a7f0",
+        "virtual_address": "0x14671b7f0",
+        "size_bytes": 120,
+        "sha256": "0837f89b3a02119fb05364d3bf1f3005fb1730c75b11eb01333125d2135bbe5e",
+        "raw_hex": "35817146010000000900000000000000d3947146010000000900000000000000dc9471460100000015000000000000004d8d7146010000000300000000000000ff050000000028420000a0400000000000004041000000000000000000000000000000000000000000000000000000000000000002020000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d4d",
+        "virtual_address": "0x146718d4d",
+        "size_bytes": 3,
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24",
+        "raw_hex": "000103"
+      }
+    },
+    {
+      "key": "healing_wave",
+      "name": "Healing Wave",
+      "icon": "Spell_Nature_MagicImmunity",
+      "base_power": 0.0,
+      "base_cooldown": 12.0,
+      "range": 0.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 331,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 3,
+      "kind": 9,
+      "upgrade_types": [
+        0,
+        1
+      ],
+      "effect": {
+        "tag": 6,
+        "value": 0.2800000011920929,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671a868",
+        "virtual_address": "0x14671b868",
+        "size_bytes": 120,
+        "sha256": "682e2c5bb408e2366d3eb4213dbab08756cedfed6169eea7c20eef3095472071",
+        "raw_hex": "3e817146010000000c00000000000000f1947146010000000c00000000000000fd947146010000001a00000000000000ae8d71460100000002000000000000004b01000000000000000040410000000000000000000000000000000000000000000000000000000006000000295c8f3e0000000003090000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717dae",
+        "virtual_address": "0x146718dae",
+        "size_bytes": 2,
+        "sha256": "b413f47d13ee2fe6c845b2ee141af81de858df4ec549a58b7970bb96645bc8d2",
+        "raw_hex": "0001"
+      }
+    },
+    {
+      "key": "call_of_flame",
+      "name": "Call of Flame",
+      "icon": "Spell_Fire_Immolation",
+      "base_power": 450.0,
+      "base_cooldown": 1.0700000524520874,
+      "range": 0.0,
+      "radius": 8.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 16038,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 2,
+      "kind": 11,
+      "upgrade_types": [
+        0,
+        3
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671a8e0",
+        "virtual_address": "0x14671b8e0",
+        "size_bytes": 120,
+        "sha256": "aebab0d3eda1ab37e934ab5582d224d0d0442cc61d35e7cc245e41e9d4c85193",
+        "raw_hex": "4a817146010000000d0000000000000017957146010000000d000000000000002495714601000000150000000000000039957146010000000200000000000000a63e00000000e143c3f5883f00000000000000410000000000000000000000000000000000000000000000000000000000000000020b0000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6718539",
+        "virtual_address": "0x146719539",
+        "size_bytes": 2,
+        "sha256": "583c7dfb7b3055d99465544032a571e10a134b1b6f769422bbb71fd7fa167a5d",
+        "raw_hex": "0003"
+      }
+    },
+    {
+      "key": "fireball",
+      "name": "Fireball",
+      "icon": "Spell_Fire_FlameBolt",
+      "base_power": 50.5,
+      "base_cooldown": 1.2999999523162842,
+      "range": 30.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 24.0,
+      "spell_id": 133,
+      "targets": 1,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 2,
+      "kind": 0,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671a958",
+        "virtual_address": "0x14671b958",
+        "size_bytes": 120,
+        "sha256": "bb7766356a96e405b45668cc51d84e3e1a2375db388ed1af41d6cd35dd5d6e89",
+        "raw_hex": "708271460100000008000000000000003b95714601000000080000000000000043957146010000001400000000000000308d71460100000003000000000000008500000000004a426666a63f0000f041000000000100000000000000000000000000c0410000000000000000000000000000000002000000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "frostbolt",
+      "name": "Frostbolt",
+      "icon": "Spell_Frost_FrostBolt02",
+      "base_power": 36.5,
+      "base_cooldown": 1.5,
+      "range": 30.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 28.0,
+      "spell_id": 116,
+      "targets": 1,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 4,
+      "kind": 0,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 1,
+        "value": 0.5,
+        "duration": 3.0
+      },
+      "record": {
+        "file_offset": "0x671a9d0",
+        "virtual_address": "0x14671b9d0",
+        "size_bytes": 120,
+        "sha256": "c610fac53c96328fe5870a2381ebc81fb6c54807a6e8f5c44cbb49ba9b026527",
+        "raw_hex": "788271460100000009000000000000005795714601000000090000000000000060957146010000001700000000000000308d714601000000030000000000000074000000000012420000c03f0000f041000000000100000000000000000000000000e04100000000010000000000003f0000404004000000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "arcane_missiles",
+      "name": "Arcane Missiles",
+      "icon": "Spell_Nature_StarFall",
+      "base_power": 25.200000762939453,
+      "base_cooldown": 1.7999999523162842,
+      "range": 28.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 20.0,
+      "spell_id": 7269,
+      "targets": 4,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 6,
+      "kind": 1,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671aa48",
+        "virtual_address": "0x14671ba48",
+        "size_bytes": 120,
+        "sha256": "64b478b2b8b498d1cbe88cca40ad263991e02d7c1ff6ed731997273b014e1695",
+        "raw_hex": "81827146010000000f0000000000000077957146010000000f0000000000000086957146010000001500000000000000308d7146010000000300000000000000651c00009a99c9416666e63f0000e041000000000400000000000000000000000000a0410000000000000000000000000000000006010000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "frost_nova",
+      "name": "Frost Nova",
+      "icon": "Spell_Frost_FrostNova",
+      "base_power": 12.300000190734863,
+      "base_cooldown": 7.0,
+      "range": 0.0,
+      "radius": 10.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 122,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 4,
+      "kind": 2,
+      "upgrade_types": [
+        0,
+        1,
+        3
+      ],
+      "effect": {
+        "tag": 2,
+        "value": 3.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671aac0",
+        "virtual_address": "0x14671bac0",
+        "size_bytes": 120,
+        "sha256": "229faaa1e3658f2bb73288b78b7b0c1ff6720b1d072c49c316cce6f78ef6f579",
+        "raw_hex": "90827146010000000a000000000000009b957146010000000a00000000000000a59571460100000015000000000000004d8d71460100000003000000000000007a000000cdcc44410000e0400000000000002041000000000000000000000000000000000000000002000000000040400000000004020000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d4d",
+        "virtual_address": "0x146718d4d",
+        "size_bytes": 3,
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24",
+        "raw_hex": "000103"
+      }
+    },
+    {
+      "key": "arcane_explosion",
+      "name": "Arcane Explosion",
+      "icon": "Spell_Nature_WispSplode",
+      "base_power": 25.200000762939453,
+      "base_cooldown": 2.5,
+      "range": 0.0,
+      "radius": 9.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 1449,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 6,
+      "kind": 2,
+      "upgrade_types": [
+        0,
+        1,
+        3
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671ab38",
+        "virtual_address": "0x14671bb38",
+        "size_bytes": 120,
+        "sha256": "94ba3b575681404987ff472e7fac6b646124282eff950caa01c6eb67522278b2",
+        "raw_hex": "9a827146010000001000000000000000ba957146010000001000000000000000ca9571460100000017000000000000004d8d7146010000000300000000000000a90500009a99c941000020400000000000001041000000000000000000000000000000000000000000000000000000000000000006020000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d4d",
+        "virtual_address": "0x146718d4d",
+        "size_bytes": 3,
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24",
+        "raw_hex": "000103"
+      }
+    },
+    {
+      "key": "blizzard",
+      "name": "Blizzard",
+      "icon": "Spell_Frost_IceStorm",
+      "base_power": 60.900001525878906,
+      "base_cooldown": 8.0,
+      "range": 30.0,
+      "radius": 9.0,
+      "duration": 7.0,
+      "projectile_speed": 0.0,
+      "spell_id": 10,
+      "targets": 0,
+      "ticks": 7,
+      "pulse_spell_id": 0,
+      "school": 4,
+      "kind": 3,
+      "upgrade_types": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "effect": {
+        "tag": 1,
+        "value": 0.4000000059604645,
+        "duration": 1.5
+      },
+      "record": {
+        "file_offset": "0x671abb0",
+        "virtual_address": "0x14671bbb0",
+        "size_bytes": 120,
+        "sha256": "cca4b7db87ef3a3dab8211b52b971233f4293fad940ee670fa5a8c3c675cf92a",
+        "raw_hex": "aa827146010000000800000000000000e1957146010000000800000000000000e99571460100000014000000000000007c8e71460100000004000000000000000a0000009a997342000000410000f04100001041000000000000e04007000000000000000000000001000000cdcccc3e0000c03f04030000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e7c",
+        "virtual_address": "0x146718e7c",
+        "size_bytes": 4,
+        "sha256": "f682d654a310a7d6579b0a0bfa3f274615d3e789af868555fde0e197206dccc9",
+        "raw_hex": "00010304"
+      }
+    },
+    {
+      "key": "flamestrike",
+      "name": "Flamestrike",
+      "icon": "Spell_Fire_SelfDestruct",
+      "base_power": 53.099998474121094,
+      "base_cooldown": 7.0,
+      "range": 30.0,
+      "radius": 8.0,
+      "duration": 6.0,
+      "projectile_speed": 0.0,
+      "spell_id": 2120,
+      "targets": 0,
+      "ticks": 3,
+      "pulse_spell_id": 0,
+      "school": 2,
+      "kind": 3,
+      "upgrade_types": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671ac28",
+        "virtual_address": "0x14671bc28",
+        "size_bytes": 120,
+        "sha256": "9fcd23527a573dc5223bbf2814031226fc91895059f1ba6270d64c53097b5376",
+        "raw_hex": "b2827146010000000b00000000000000fd957146010000000b00000000000000629071460100000017000000000000007c8e714601000000040000000000000048080000666654420000e0400000f04100000041000000000000c04003000000000000000000000000000000000000000000000002030000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e7c",
+        "virtual_address": "0x146718e7c",
+        "size_bytes": 4,
+        "sha256": "f682d654a310a7d6579b0a0bfa3f274615d3e789af868555fde0e197206dccc9",
+        "raw_hex": "00010304"
+      }
+    },
+    {
+      "key": "fire_blast",
+      "name": "Fire Blast",
+      "icon": "Spell_Fire_Fireball",
+      "base_power": 68.0,
+      "base_cooldown": 3.0,
+      "range": 22.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 2136,
+      "targets": 1,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 2,
+      "kind": 1,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671aca0",
+        "virtual_address": "0x14671bca0",
+        "size_bytes": 120,
+        "sha256": "f74bd50a50394de79a15b0155a3830540a0a6b1ec5b01e7d10fb5743349e9d4a",
+        "raw_hex": "bd827146010000000a0000000000000008967146010000000a0000000000000012967146010000001300000000000000308d71460100000003000000000000005808000000008842000040400000b04100000000010000000000000000000000000000000000000000000000000000000000000002010000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "cone_of_cold",
+      "name": "Cone of Cold",
+      "icon": "Spell_Frost_Glacier",
+      "base_power": 34.79999923706055,
+      "base_cooldown": 4.0,
+      "range": 12.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 120,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 4,
+      "kind": 8,
+      "upgrade_types": [
+        0,
+        1,
+        3
+      ],
+      "effect": {
+        "tag": 1,
+        "value": 0.6000000238418579,
+        "duration": 3.0
+      },
+      "record": {
+        "file_offset": "0x671ad18",
+        "virtual_address": "0x14671bd18",
+        "size_bytes": 120,
+        "sha256": "109084a33cce85eafa4001d54d5e2383ecb4714e51ee2ff85225cbad98d90a10",
+        "raw_hex": "c7827146010000000c0000000000000025967146010000000c00000000000000319671460100000013000000000000004d8d71460100000003000000000000007800000033330b420000804000004041000000000000000000000000000000000000000000000000010000009a99193f0000404004080000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d4d",
+        "virtual_address": "0x146718d4d",
+        "size_bytes": 3,
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24",
+        "raw_hex": "000103"
+      }
+    },
+    {
+      "key": "blast_wave",
+      "name": "Blast Wave",
+      "icon": "Spell_Holy_Excorcism_02",
+      "base_power": 33.900001525878906,
+      "base_cooldown": 8.0,
+      "range": 0.0,
+      "radius": 10.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 11113,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 2,
+      "kind": 2,
+      "upgrade_types": [
+        0,
+        1,
+        3
+      ],
+      "effect": {
+        "tag": 1,
+        "value": 0.5,
+        "duration": 3.0
+      },
+      "record": {
+        "file_offset": "0x671ad90",
+        "virtual_address": "0x14671bd90",
+        "size_bytes": 120,
+        "sha256": "40bd627a8f23b4930207ef695241f69f0b0712c96fdf6ca062a814320e3e3f34",
+        "raw_hex": "d3827146010000000a0000000000000044967146010000000a00000000000000888e71460100000017000000000000004d8d7146010000000300000000000000692b00009a9907420000004100000000000020410000000000000000000000000000000000000000010000000000003f0000404002020000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d4d",
+        "virtual_address": "0x146718d4d",
+        "size_bytes": 3,
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24",
+        "raw_hex": "000103"
+      }
+    },
+    {
+      "key": "pyroblast",
+      "name": "Pyroblast",
+      "icon": "Spell_Fire_Fireball02",
+      "base_power": 379.5,
+      "base_cooldown": 7.0,
+      "range": 35.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 24.0,
+      "spell_id": 11366,
+      "targets": 1,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 2,
+      "kind": 0,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671ae08",
+        "virtual_address": "0x14671be08",
+        "size_bytes": 120,
+        "sha256": "7c70c86c4996036b9efccb9f37923307db10f170a9d771a6ea296a0f98c2a7d7",
+        "raw_hex": "dd8271460100000009000000000000004e96714601000000090000000000000057967146010000001500000000000000308d7146010000000300000000000000662c000000c0bd430000e04000000c42000000000100000000000000000000000000c0410000000000000000000000000000000002000000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "ice_barrier",
+      "name": "Ice Barrier",
+      "icon": "Spell_Ice_Lament",
+      "base_power": 0.0,
+      "base_cooldown": 15.0,
+      "range": 0.0,
+      "radius": 0.0,
+      "duration": 15.0,
+      "projectile_speed": 0.0,
+      "spell_id": 11426,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 4,
+      "kind": 9,
+      "upgrade_types": [
+        0,
+        1
+      ],
+      "effect": {
+        "tag": 7,
+        "value": 0.44999998807907104,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671ae80",
+        "virtual_address": "0x14671be80",
+        "size_bytes": 120,
+        "sha256": "6db3c8bd49e371b996263cc549bcc25229fa2dc68981ad83ee8f743ea9a5ce47",
+        "raw_hex": "e6827146010000000b000000000000006c967146010000000b0000000000000077967146010000001000000000000000ae8d7146010000000200000000000000a22c0000000000000000704100000000000000000000000000007041000000000000000000000000070000006666e63e0000000004090000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717dae",
+        "virtual_address": "0x146718dae",
+        "size_bytes": 2,
+        "sha256": "b413f47d13ee2fe6c845b2ee141af81de858df4ec549a58b7970bb96645bc8d2",
+        "raw_hex": "0001"
+      }
+    },
+    {
+      "key": "polymorph",
+      "name": "Polymorph",
+      "icon": "Spell_Nature_Polymorph",
+      "base_power": 115.0,
+      "base_cooldown": 2.1429998874664307,
+      "range": 0.0,
+      "radius": 7.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 118,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 6,
+      "kind": 11,
+      "upgrade_types": [
+        0,
+        3
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671aef8",
+        "virtual_address": "0x14671bef8",
+        "size_bytes": 120,
+        "sha256": "a864fde731ed9e09f905d92bf5970e016c06fa7632ee9670bc7a2a55fac0ebae",
+        "raw_hex": "f1827146010000000900000000000000879671460100000009000000000000009096714601000000160000000000000039957146010000000200000000000000760000000000e642e9260940000000000000e0400000000000000000000000000000000000000000000000000000000000000000060b0000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6718539",
+        "virtual_address": "0x146719539",
+        "size_bytes": 2,
+        "sha256": "583c7dfb7b3055d99465544032a571e10a134b1b6f769422bbb71fd7fa167a5d",
+        "raw_hex": "0003"
+      }
+    },
+    {
+      "key": "shadow_bolt",
+      "name": "Shadow Bolt",
+      "icon": "Spell_Shadow_ShadowBolt",
+      "base_power": 34.0,
+      "base_cooldown": 1.399999976158142,
+      "range": 30.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 20.0,
+      "spell_id": 686,
+      "targets": 1,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 5,
+      "kind": 0,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671af70",
+        "virtual_address": "0x14671bf70",
+        "size_bytes": 120,
+        "sha256": "206567e86177600c725f27c7c22cd4aca74109d2624181254a0973b689473f59",
+        "raw_hex": "42847146010000000b00000000000000a6967146010000000b00000000000000b1967146010000001700000000000000308d7146010000000300000000000000ae020000000008423333b33f0000f041000000000100000000000000000000000000a0410000000000000000000000000000000005000000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "corruption",
+      "name": "Corruption",
+      "icon": "Spell_Shadow_AbominationExplosion",
+      "base_power": 62.5,
+      "base_cooldown": 1.399999976158142,
+      "range": 30.0,
+      "radius": 0.0,
+      "duration": 6.0,
+      "projectile_speed": 0.0,
+      "spell_id": 172,
+      "targets": 2,
+      "ticks": 6,
+      "pulse_spell_id": 0,
+      "school": 5,
+      "kind": 6,
+      "upgrade_types": [
+        0,
+        1,
+        4,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671afe8",
+        "virtual_address": "0x14671bfe8",
+        "size_bytes": 120,
+        "sha256": "7eb7599f481ace87529c66e61fa7855ff27c30c6f3be26995fa4b4ee1510c299",
+        "raw_hex": "4d847146010000000a00000000000000c8967146010000000a00000000000000d29671460100000021000000000000001f8e7146010000000400000000000000ac00000000007a423333b33f0000f04100000000020000000000c04006000000000000000000000000000000000000000000000005060000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e1f",
+        "virtual_address": "0x146718e1f",
+        "size_bytes": 4,
+        "sha256": "0a7623721ffb3c45272ccf1f497cbb6f172ec1c38be06117b4d1e20d17554f72",
+        "raw_hex": "00010402"
+      }
+    },
+    {
+      "key": "immolate",
+      "name": "Immolate",
+      "icon": "Spell_Fire_Immolation",
+      "base_power": 69.0,
+      "base_cooldown": 2.5,
+      "range": 30.0,
+      "radius": 0.0,
+      "duration": 5.0,
+      "projectile_speed": 0.0,
+      "spell_id": 348,
+      "targets": 1,
+      "ticks": 5,
+      "pulse_spell_id": 0,
+      "school": 2,
+      "kind": 6,
+      "upgrade_types": [
+        0,
+        1,
+        4,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671b060",
+        "virtual_address": "0x14671c060",
+        "size_bytes": 120,
+        "sha256": "95f4ef9ab3bf8055e8114ac64381f5cc860392c68ec13e2603f27fd6d9ea1b63",
+        "raw_hex": "57847146010000000800000000000000f3967146010000000800000000000000249571460100000015000000000000001f8e71460100000004000000000000005c01000000008a42000020400000f04100000000010000000000a04005000000000000000000000000000000000000000000000002060000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e1f",
+        "virtual_address": "0x146718e1f",
+        "size_bytes": 4,
+        "sha256": "0a7623721ffb3c45272ccf1f497cbb6f172ec1c38be06117b4d1e20d17554f72",
+        "raw_hex": "00010402"
+      }
+    },
+    {
+      "key": "curse_of_agony",
+      "name": "Curse of Agony",
+      "icon": "Spell_Shadow_CurseOfSargeras",
+      "base_power": 103.5,
+      "base_cooldown": 3.0,
+      "range": 30.0,
+      "radius": 0.0,
+      "duration": 9.0,
+      "projectile_speed": 0.0,
+      "spell_id": 980,
+      "targets": 3,
+      "ticks": 9,
+      "pulse_spell_id": 0,
+      "school": 5,
+      "kind": 6,
+      "upgrade_types": [
+        0,
+        1,
+        4,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671b0d8",
+        "virtual_address": "0x14671c0d8",
+        "size_bytes": 120,
+        "sha256": "db87a5f46fed0edd06701c452376fe032979a4aa3c845abbd3758b351a019273",
+        "raw_hex": "5f847146010000000e00000000000000fb967146010000000e0000000000000009977146010000001c000000000000001f8e7146010000000400000000000000d40300000000cf42000040400000f04100000000030000000000104109000000000000000000000000000000000000000000000005060000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e1f",
+        "virtual_address": "0x146718e1f",
+        "size_bytes": 4,
+        "sha256": "0a7623721ffb3c45272ccf1f497cbb6f172ec1c38be06117b4d1e20d17554f72",
+        "raw_hex": "00010402"
+      }
+    },
+    {
+      "key": "rain_of_fire",
+      "name": "Rain of Fire",
+      "icon": "Spell_Shadow_RainOfFire",
+      "base_power": 52.79999923706055,
+      "base_cooldown": 8.0,
+      "range": 30.0,
+      "radius": 8.0,
+      "duration": 8.0,
+      "projectile_speed": 0.0,
+      "spell_id": 5740,
+      "targets": 0,
+      "ticks": 4,
+      "pulse_spell_id": 0,
+      "school": 2,
+      "kind": 3,
+      "upgrade_types": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671b150",
+        "virtual_address": "0x14671c150",
+        "size_bytes": 120,
+        "sha256": "f0edb2bdbd8c284a2286ed861b753448bf8d8b126b51463b950fb681e205fd42",
+        "raw_hex": "6d847146010000000c0000000000000025977146010000000c00000000000000319771460100000017000000000000007c8e71460100000004000000000000006c16000033335342000000410000f04100000041000000000000004104000000000000000000000000000000000000000000000002030000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e7c",
+        "virtual_address": "0x146718e7c",
+        "size_bytes": 4,
+        "sha256": "f682d654a310a7d6579b0a0bfa3f274615d3e789af868555fde0e197206dccc9",
+        "raw_hex": "00010304"
+      }
+    },
+    {
+      "key": "hellfire",
+      "name": "Hellfire",
+      "icon": "Spell_Fire_Incinerate",
+      "base_power": 12.0,
+      "base_cooldown": 1.5,
+      "range": 0.0,
+      "radius": 7.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 1949,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 2,
+      "kind": 2,
+      "upgrade_types": [
+        0,
+        1,
+        3
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671b1c8",
+        "virtual_address": "0x14671c1c8",
+        "size_bytes": 120,
+        "sha256": "0aa1d09c7d1e1fc10ecd8a0ecd25119a80bf0cc8576e4fa95dd4862a8327804a",
+        "raw_hex": "7984714601000000080000000000000048977146010000000800000000000000509771460100000015000000000000004d8d71460100000003000000000000009d070000000040410000c03f000000000000e040000000000000000000000000000000000000000000000000000000000000000002020000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d4d",
+        "virtual_address": "0x146718d4d",
+        "size_bytes": 3,
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24",
+        "raw_hex": "000103"
+      }
+    },
+    {
+      "key": "death_coil",
+      "name": "Death Coil",
+      "icon": "Spell_Shadow_DeathCoil",
+      "base_power": 75.0,
+      "base_cooldown": 6.0,
+      "range": 25.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 24.0,
+      "spell_id": 6789,
+      "targets": 1,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 5,
+      "kind": 0,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 5,
+        "value": 1.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671b240",
+        "virtual_address": "0x14671c240",
+        "size_bytes": 120,
+        "sha256": "f30390cbb6e095077abbc64d11827a982e7f1de1fbea665896294e19abe7104c",
+        "raw_hex": "81847146010000000a0000000000000065977146010000000a000000000000006f977146010000001600000000000000308d7146010000000300000000000000851a0000000096420000c0400000c841000000000100000000000000000000000000c04100000000050000000000803f0000000005000000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "searing_pain",
+      "name": "Searing Pain",
+      "icon": "Spell_Fire_SoulBurn",
+      "base_power": 40.0,
+      "base_cooldown": 1.600000023841858,
+      "range": 26.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 5676,
+      "targets": 1,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 2,
+      "kind": 1,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671b2b8",
+        "virtual_address": "0x14671c2b8",
+        "size_bytes": 120,
+        "sha256": "06441c0c86f41f892a6fc71c145a136c644ac703d8189f2326218f3a043919f1",
+        "raw_hex": "8b847146010000000c0000000000000085977146010000000c0000000000000091977146010000001300000000000000308d71460100000003000000000000002c16000000002042cdcccc3f0000d04100000000010000000000000000000000000000000000000000000000000000000000000002010000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "drain_life",
+      "name": "Drain Life",
+      "icon": "Spell_Shadow_LifeDrain02",
+      "base_power": 57.5,
+      "base_cooldown": 4.0,
+      "range": 22.0,
+      "radius": 0.0,
+      "duration": 3.0,
+      "projectile_speed": 0.0,
+      "spell_id": 689,
+      "targets": 1,
+      "ticks": 3,
+      "pulse_spell_id": 0,
+      "school": 5,
+      "kind": 6,
+      "upgrade_types": [
+        0,
+        1,
+        4,
+        2
+      ],
+      "effect": {
+        "tag": 5,
+        "value": 0.6000000238418579,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671b330",
+        "virtual_address": "0x14671c330",
+        "size_bytes": 120,
+        "sha256": "50397bf8bb89df050c426890e7f2218833ad3d4b73b29ccb159d16888201a487",
+        "raw_hex": "97847146010000000a00000000000000a4977146010000000a00000000000000ae9771460100000018000000000000001f8e7146010000000400000000000000b102000000006642000080400000b041000000000100000000004040030000000000000000000000050000009a99193f0000000005060000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e1f",
+        "virtual_address": "0x146718e1f",
+        "size_bytes": 4,
+        "sha256": "0a7623721ffb3c45272ccf1f497cbb6f172ec1c38be06117b4d1e20d17554f72",
+        "raw_hex": "00010402"
+      }
+    },
+    {
+      "key": "fear",
+      "name": "Fear",
+      "icon": "Spell_Shadow_Possession",
+      "base_power": 5.5,
+      "base_cooldown": 6.0,
+      "range": 20.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 5782,
+      "targets": 3,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 5,
+      "kind": 0,
+      "upgrade_types": [
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 4,
+        "value": 4.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671b3a8",
+        "virtual_address": "0x14671c3a8",
+        "size_bytes": 120,
+        "sha256": "949affe7a9aff656fcaa36426e4a177a781c3e375f4c17a59ed541f169e5c6fa",
+        "raw_hex": "a1847146010000000400000000000000c6977146010000000400000000000000ca977146010000001700000000000000e1977146010000000200000000000000961600000000b0400000c0400000a04100000000030000000000000000000000000000000000000004000000000080400000000005000000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x67187e1",
+        "virtual_address": "0x1467197e1",
+        "size_bytes": 2,
+        "sha256": "a12871fee210fb8619291eaea194581cbd2531e4b23759d225f6806923f63222",
+        "raw_hex": "0102"
+      }
+    },
+    {
+      "key": "soul_fire",
+      "name": "Soul Fire",
+      "icon": "Spell_Fire_Fireball02",
+      "base_power": 600.0,
+      "base_cooldown": 4.289999961853027,
+      "range": 35.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 6353,
+      "targets": 1,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 2,
+      "kind": 11,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671b420",
+        "virtual_address": "0x14671c420",
+        "size_bytes": 120,
+        "sha256": "8f96af91f79a6f60de797e0eb7ba7e6256828578fe351bfd9d528f528e6f4ad7",
+        "raw_hex": "a5847146010000000900000000000000e397714601000000090000000000000057967146010000001500000000000000308d7146010000000300000000000000d118000000001644ae47894000000c42000000000100000000000000000000000000000000000000000000000000000000000000020b0000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "wrath",
+      "name": "Wrath",
+      "icon": "Spell_Nature_AbolishMagic",
+      "base_power": 37.5,
+      "base_cooldown": 1.2000000476837158,
+      "range": 30.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 20.0,
+      "spell_id": 5176,
+      "targets": 2,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 3,
+      "kind": 0,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671b498",
+        "virtual_address": "0x14671c498",
+        "size_bytes": 120,
+        "sha256": "dd98b5cb65ba238218e47ef85be903e3530b25c8cf9005b3f5f2241957238bf9",
+        "raw_hex": "d2857146010000000500000000000000ec977146010000000500000000000000f1977146010000001900000000000000308d714601000000030000000000000038140000000016429a99993f0000f041000000000200000000000000000000000000a0410000000000000000000000000000000003000000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "moonfire",
+      "name": "Moonfire",
+      "icon": "Spell_Nature_StarFall",
+      "base_power": 71.5,
+      "base_cooldown": 1.7999999523162842,
+      "range": 30.0,
+      "radius": 0.0,
+      "duration": 5.0,
+      "projectile_speed": 0.0,
+      "spell_id": 8921,
+      "targets": 3,
+      "ticks": 5,
+      "pulse_spell_id": 0,
+      "school": 6,
+      "kind": 6,
+      "upgrade_types": [
+        0,
+        1,
+        4,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671b510",
+        "virtual_address": "0x14671c510",
+        "size_bytes": 120,
+        "sha256": "73c99c46d0a070fab27d40f2e98dd055f91aa5663691920be4da9638109f008c",
+        "raw_hex": "d78571460100000008000000000000000a987146010000000800000000000000869571460100000015000000000000001f8e7146010000000400000000000000d922000000008f426666e63f0000f04100000000030000000000a04005000000000000000000000000000000000000000000000006060000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e1f",
+        "virtual_address": "0x146718e1f",
+        "size_bytes": 4,
+        "sha256": "0a7623721ffb3c45272ccf1f497cbb6f172ec1c38be06117b4d1e20d17554f72",
+        "raw_hex": "00010402"
+      }
+    },
+    {
+      "key": "starfire",
+      "name": "Starfire",
+      "icon": "Spell_Arcane_StarFire",
+      "base_power": 136.0,
+      "base_cooldown": 4.5,
+      "range": 32.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 2912,
+      "targets": 1,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 6,
+      "kind": 0,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671b588",
+        "virtual_address": "0x14671c588",
+        "size_bytes": 120,
+        "sha256": "9fb995115794da45b9813468b52feb87bef22b1cac0f53e8c9685b97ae1595c8",
+        "raw_hex": "df857146010000000800000000000000129871460100000008000000000000001a987146010000001500000000000000308d7146010000000300000000000000600b000000000843000090400000004200000000010000000000000000000000000000000000000000000000000000000000000006000000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "hurricane",
+      "name": "Hurricane",
+      "icon": "Spell_Nature_Cyclone",
+      "base_power": 68.69999694824219,
+      "base_cooldown": 9.0,
+      "range": 28.0,
+      "radius": 10.0,
+      "duration": 8.0,
+      "projectile_speed": 0.0,
+      "spell_id": 16914,
+      "targets": 0,
+      "ticks": 8,
+      "pulse_spell_id": 0,
+      "school": 3,
+      "kind": 3,
+      "upgrade_types": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "effect": {
+        "tag": 1,
+        "value": 0.4000000059604645,
+        "duration": 1.5
+      },
+      "record": {
+        "file_offset": "0x671b600",
+        "virtual_address": "0x14671c600",
+        "size_bytes": 120,
+        "sha256": "d19f4298398c1bbfe4e1b6850348b0f6bb59dfef03a9188fc01bb607538a62aa",
+        "raw_hex": "e78571460100000009000000000000002f987146010000000900000000000000389871460100000014000000000000007c8e71460100000004000000000000001242000066668942000010410000e04100002041000000000000004108000000000000000000000001000000cdcccc3e0000c03f03030000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e7c",
+        "virtual_address": "0x146718e7c",
+        "size_bytes": 4,
+        "sha256": "f682d654a310a7d6579b0a0bfa3f274615d3e789af868555fde0e197206dccc9",
+        "raw_hex": "00010304"
+      }
+    },
+    {
+      "key": "insect_swarm",
+      "name": "Insect Swarm",
+      "icon": "Spell_Nature_InsectSwarm",
+      "base_power": 69.0,
+      "base_cooldown": 2.5,
+      "range": 28.0,
+      "radius": 0.0,
+      "duration": 6.0,
+      "projectile_speed": 0.0,
+      "spell_id": 5570,
+      "targets": 3,
+      "ticks": 6,
+      "pulse_spell_id": 0,
+      "school": 3,
+      "kind": 6,
+      "upgrade_types": [
+        0,
+        1,
+        4,
+        2
+      ],
+      "effect": {
+        "tag": 10,
+        "value": 0.15000000596046448,
+        "duration": 12.0
+      },
+      "record": {
+        "file_offset": "0x671b678",
+        "virtual_address": "0x14671c678",
+        "size_bytes": 120,
+        "sha256": "fe5c4a75b32d4dcdad27e3e2f7a84cf5d5700ccf96ed3a0762792836c7a337a5",
+        "raw_hex": "f0857146010000000c000000000000004c987146010000000c00000000000000589871460100000018000000000000001f8e7146010000000400000000000000c215000000008a42000020400000e04100000000030000000000c0400600000000000000000000000a0000009a99193e0000404103060000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e1f",
+        "virtual_address": "0x146718e1f",
+        "size_bytes": 4,
+        "sha256": "0a7623721ffb3c45272ccf1f497cbb6f172ec1c38be06117b4d1e20d17554f72",
+        "raw_hex": "00010402"
+      }
+    },
+    {
+      "key": "entangling_roots",
+      "name": "Entangling Roots",
+      "icon": "Spell_Nature_StrangleVines",
+      "base_power": 28.5,
+      "base_cooldown": 5.0,
+      "range": 25.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 339,
+      "targets": 3,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 3,
+      "kind": 0,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 2,
+        "value": 3.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671b6f0",
+        "virtual_address": "0x14671c6f0",
+        "size_bytes": 120,
+        "sha256": "870aa93a59d4b56f32d4c44872a7368915ffec86ba69bef028fc2c5316b7a214",
+        "raw_hex": "fc8571460100000010000000000000007098714601000000100000000000000080987146010000001a00000000000000308d7146010000000300000000000000530100000000e4410000a0400000c84100000000030000000000000000000000000000000000000002000000000040400000000003000000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "rejuvenation",
+      "name": "Rejuvenation",
+      "icon": "Spell_Nature_Rejuvenation",
+      "base_power": 0.0,
+      "base_cooldown": 8.0,
+      "range": 0.0,
+      "radius": 0.0,
+      "duration": 12.0,
+      "projectile_speed": 0.0,
+      "spell_id": 774,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 3,
+      "kind": 9,
+      "upgrade_types": [
+        0,
+        1
+      ],
+      "effect": {
+        "tag": 6,
+        "value": 0.30000001192092896,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671b768",
+        "virtual_address": "0x14671c768",
+        "size_bytes": 120,
+        "sha256": "ffdf6de2bea7dc54866c4c0e711056e98ec3653573e89715a382fb7efbda1ccb",
+        "raw_hex": "0c867146010000000c000000000000009a987146010000000c00000000000000a6987146010000001900000000000000ae8d714601000000020000000000000006030000000000000000004100000000000000000000000000004041000000000000000000000000060000009a99993e0000000003090000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717dae",
+        "virtual_address": "0x146718dae",
+        "size_bytes": 2,
+        "sha256": "b413f47d13ee2fe6c845b2ee141af81de858df4ec549a58b7970bb96645bc8d2",
+        "raw_hex": "0001"
+      }
+    },
+    {
+      "key": "regrowth",
+      "name": "Regrowth",
+      "icon": "Spell_Nature_ResistNature",
+      "base_power": 0.0,
+      "base_cooldown": 14.0,
+      "range": 0.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 8936,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 3,
+      "kind": 9,
+      "upgrade_types": [
+        0,
+        1
+      ],
+      "effect": {
+        "tag": 6,
+        "value": 0.41999998688697815,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671b7e0",
+        "virtual_address": "0x14671c7e0",
+        "size_bytes": 120,
+        "sha256": "f6b6aa502e2c4feb048db5290a522988c7e6cd91641e77cf490ca41aa8c31411",
+        "raw_hex": "18867146010000000800000000000000bf987146010000000800000000000000c7987146010000001900000000000000ae8d7146010000000200000000000000e8220000000000000000604100000000000000000000000000000000000000000000000000000000060000003d0ad73e0000000003090000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717dae",
+        "virtual_address": "0x146718dae",
+        "size_bytes": 2,
+        "sha256": "b413f47d13ee2fe6c845b2ee141af81de858df4ec549a58b7970bb96645bc8d2",
+        "raw_hex": "0001"
+      }
+    },
+    {
+      "key": "thorns",
+      "name": "Thorns",
+      "icon": "Spell_Nature_Thorns",
+      "base_power": 0.0,
+      "base_cooldown": 20.0,
+      "range": 0.0,
+      "radius": 0.0,
+      "duration": 20.0,
+      "projectile_speed": 0.0,
+      "spell_id": 467,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 3,
+      "kind": 9,
+      "upgrade_types": [
+        0
+      ],
+      "effect": {
+        "tag": 12,
+        "value": 24.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671b858",
+        "virtual_address": "0x14671c858",
+        "size_bytes": 120,
+        "sha256": "093a9219c11cc79c4a81eb248823b3416820584ec5da080f512bb99c268c5439",
+        "raw_hex": "20867146010000000600000000000000e0987146010000000600000000000000e6987146010000001300000000000000a3947146010000000100000000000000d3010000000000000000a0410000000000000000000000000000a0410000000000000000000000000c0000000000c0410000000003090000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x67184a3",
+        "virtual_address": "0x1467194a3",
+        "size_bytes": 1,
+        "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+        "raw_hex": "00"
+      }
+    },
+    {
+      "key": "swipe",
+      "name": "Swipe",
+      "icon": "INV_Misc_MonsterClaw_03",
+      "base_power": 25.799999237060547,
+      "base_cooldown": 3.0,
+      "range": 0.0,
+      "radius": 7.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 779,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 0,
+      "kind": 2,
+      "upgrade_types": [
+        0,
+        1,
+        3
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671b8d0",
+        "virtual_address": "0x14671c8d0",
+        "size_bytes": 120,
+        "sha256": "458113dc8bf0ce12f7d7e8231d3afb165a520c476b419548c83f34337b139f2d",
+        "raw_hex": "26867146010000000500000000000000f9987146010000000500000000000000fe9871460100000017000000000000004d8d71460100000003000000000000000b0300006666ce4100004040000000000000e040000000000000000000000000000000000000000000000000000000000000000000020000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d4d",
+        "virtual_address": "0x146718d4d",
+        "size_bytes": 3,
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24",
+        "raw_hex": "000103"
+      }
+    },
+    {
+      "key": "shred",
+      "name": "Shred",
+      "icon": "Spell_Shadow_VampiricAura",
+      "base_power": 105.0,
+      "base_cooldown": 2.0,
+      "range": 7.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 5221,
+      "targets": 1,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 0,
+      "kind": 5,
+      "upgrade_types": [
+        0,
+        1
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671b948",
+        "virtual_address": "0x14671c948",
+        "size_bytes": 120,
+        "sha256": "9a5cd6ca3be56fb47659bc6cf4ca0110aedb6a4f7dd0018042a1c0225c9145b9",
+        "raw_hex": "36867146010000000500000000000000159971460100000005000000000000001a997146010000001900000000000000ae8d7146010000000200000000000000651400000000d242000000400000e04000000000010000000000000000000000000000000000000000000000000000000000000000050000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717dae",
+        "virtual_address": "0x146718dae",
+        "size_bytes": 2,
+        "sha256": "b413f47d13ee2fe6c845b2ee141af81de858df4ec549a58b7970bb96645bc8d2",
+        "raw_hex": "0001"
+      }
+    },
+    {
+      "key": "faerie_fire",
+      "name": "Faerie Fire",
+      "icon": "Spell_Nature_FaerieFire",
+      "base_power": 200.0,
+      "base_cooldown": 1.0,
+      "range": 30.0,
+      "radius": 8.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 770,
+      "targets": 1,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 3,
+      "kind": 11,
+      "upgrade_types": [
+        0,
+        2,
+        3
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671b9c0",
+        "virtual_address": "0x14671c9c0",
+        "size_bytes": 120,
+        "sha256": "f0d2c432a7f27333977776777176dd27f6751bc29850ba68db7e4c9ba153ba29",
+        "raw_hex": "2b867146010000000b0000000000000033997146010000000b00000000000000678571460100000017000000000000003e99714601000000030000000000000002030000000048430000803f0000f041000000410100000000000000000000000000000000000000000000000000000000000000030b0000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x671893e",
+        "virtual_address": "0x14671993e",
+        "size_bytes": 3,
+        "sha256": "e9969bdc67747c3797d62fd1c3e4277269a0945fdb999e8ccc6c7bfb4eeb06bd",
+        "raw_hex": "000203"
+      }
+    },
+    {
+      "key": "perception",
+      "name": "Perception",
+      "icon": "Spell_Nature_Sleep",
+      "base_power": 0.0,
+      "base_cooldown": 30.0,
+      "range": 0.0,
+      "radius": 0.0,
+      "duration": 10.0,
+      "projectile_speed": 0.0,
+      "spell_id": 20600,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 1,
+      "kind": 9,
+      "upgrade_types": [
+        1,
+        4
+      ],
+      "effect": {
+        "tag": 8,
+        "value": 0.15000000596046448,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671ba38",
+        "virtual_address": "0x14671ca38",
+        "size_bytes": 120,
+        "sha256": "21247b573bee97ac024dbe1c1756b8385ad3652b02cbe7bbb7489e5de18c3b1e",
+        "raw_hex": "946f7146010000000a0000000000000041997146010000000a000000000000004b997146010000001200000000000000018e714601000000020000000000000078500000000000000000f04100000000000000000000000000002041000000000000000000000000080000009a99193e0000000001090000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e01",
+        "virtual_address": "0x146718e01",
+        "size_bytes": 2,
+        "sha256": "a8d5dd63fba471ebcb1f3e8f7c1e1879b7152a6e7298a91ce119a63400ade7c5",
+        "raw_hex": "0104"
+      }
+    },
+    {
+      "key": "blood_fury",
+      "name": "Blood Fury",
+      "icon": "Racial_Orc_BerserkerStrength",
+      "base_power": 0.0,
+      "base_cooldown": 40.0,
+      "range": 0.0,
+      "radius": 0.0,
+      "duration": 12.0,
+      "projectile_speed": 0.0,
+      "spell_id": 23234,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 0,
+      "kind": 9,
+      "upgrade_types": [
+        1,
+        4
+      ],
+      "effect": {
+        "tag": 8,
+        "value": 0.3499999940395355,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671bab0",
+        "virtual_address": "0x14671cab0",
+        "size_bytes": 120,
+        "sha256": "518f2826487a246e09129c0b63a851196bd8ba40cfe56264a9875cb886bc5079",
+        "raw_hex": "50707146010000000a000000000000005d997146010000000a0000000000000067997146010000001c00000000000000018e7146010000000200000000000000c25a0000000000000000204200000000000000000000000000004041000000000000000000000000080000003333b33e0000000000090000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e01",
+        "virtual_address": "0x146718e01",
+        "size_bytes": 2,
+        "sha256": "a8d5dd63fba471ebcb1f3e8f7c1e1879b7152a6e7298a91ce119a63400ade7c5",
+        "raw_hex": "0104"
+      }
+    },
+    {
+      "key": "stoneform",
+      "name": "Stoneform",
+      "icon": "Spell_Shadow_UnholyStrength",
+      "base_power": 0.0,
+      "base_cooldown": 45.0,
+      "range": 0.0,
+      "radius": 0.0,
+      "duration": 8.0,
+      "projectile_speed": 0.0,
+      "spell_id": 20594,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 0,
+      "kind": 9,
+      "upgrade_types": [
+        0,
+        1
+      ],
+      "effect": {
+        "tag": 7,
+        "value": 0.30000001192092896,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671bb28",
+        "virtual_address": "0x14671cb28",
+        "size_bytes": 120,
+        "sha256": "a14d2be31c339dbf1062829c9f999a9b7871bac1d0f4a16fccfcc86b31610975",
+        "raw_hex": "e4707146010000000900000000000000839971460100000009000000000000008c997146010000001b00000000000000ae8d714601000000020000000000000072500000000000000000344200000000000000000000000000000041000000000000000000000000070000009a99993e0000000000090000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717dae",
+        "virtual_address": "0x146718dae",
+        "size_bytes": 2,
+        "sha256": "b413f47d13ee2fe6c845b2ee141af81de858df4ec549a58b7970bb96645bc8d2",
+        "raw_hex": "0001"
+      }
+    },
+    {
+      "key": "shadowmeld",
+      "name": "Shadowmeld",
+      "icon": "Ability_Ambush",
+      "base_power": 0.0,
+      "base_cooldown": 75.0,
+      "range": 0.0,
+      "radius": 0.0,
+      "duration": 3.0,
+      "projectile_speed": 0.0,
+      "spell_id": 20580,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 5,
+      "kind": 9,
+      "upgrade_types": [
+        1,
+        4
+      ],
+      "effect": {
+        "tag": 11,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671bba0",
+        "virtual_address": "0x14671cba0",
+        "size_bytes": 120,
+        "sha256": "2509376859e1bfe062145d506bf0b80a713279fb38518d0805dfb0a5b3de63d7",
+        "raw_hex": "cc717146010000000a00000000000000a7997146010000000a00000000000000b1997146010000000e00000000000000018e7146010000000200000000000000645000000000000000009642000000000000000000000000000040400000000000000000000000000b000000000000000000000005090000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e01",
+        "virtual_address": "0x146718e01",
+        "size_bytes": 2,
+        "sha256": "a8d5dd63fba471ebcb1f3e8f7c1e1879b7152a6e7298a91ce119a63400ade7c5",
+        "raw_hex": "0104"
+      }
+    },
+    {
+      "key": "will_of_the_forsaken",
+      "name": "Will of the Forsaken",
+      "icon": "Spell_Shadow_RaiseDead",
+      "base_power": 0.0,
+      "base_cooldown": 60.0,
+      "range": 0.0,
+      "radius": 0.0,
+      "duration": 4.0,
+      "projectile_speed": 0.0,
+      "spell_id": 7744,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 5,
+      "kind": 9,
+      "upgrade_types": [
+        1,
+        4
+      ],
+      "effect": {
+        "tag": 11,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671bc18",
+        "virtual_address": "0x14671cc18",
+        "size_bytes": 120,
+        "sha256": "4e6945280b927886e8fb5ab00b3d5a699639e871792cf287ef0ae3eba39dc706",
+        "raw_hex": "b0727146010000001400000000000000bf997146010000001400000000000000d3997146010000001600000000000000018e7146010000000200000000000000401e00000000000000007042000000000000000000000000000080400000000000000000000000000b000000000000000000000005090000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e01",
+        "virtual_address": "0x146718e01",
+        "size_bytes": 2,
+        "sha256": "a8d5dd63fba471ebcb1f3e8f7c1e1879b7152a6e7298a91ce119a63400ade7c5",
+        "raw_hex": "0104"
+      }
+    },
+    {
+      "key": "war_stomp",
+      "name": "War Stomp",
+      "icon": "Ability_WarStomp",
+      "base_power": 12.0,
+      "base_cooldown": 15.0,
+      "range": 0.0,
+      "radius": 8.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 20549,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 0,
+      "kind": 2,
+      "upgrade_types": [
+        0,
+        1,
+        3
+      ],
+      "effect": {
+        "tag": 3,
+        "value": 2.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671bc90",
+        "virtual_address": "0x14671cc90",
+        "size_bytes": 120,
+        "sha256": "c12b0efbbe0db0822f3b52d476d2c850728b9aeba760e8bf4854b78158b79665",
+        "raw_hex": "a4737146010000000900000000000000e9997146010000000900000000000000f29971460100000010000000000000004d8d71460100000003000000000000004550000000004041000070410000000000000041000000000000000000000000000000000000000003000000000000400000000000020000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d4d",
+        "virtual_address": "0x146718d4d",
+        "size_bytes": 3,
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24",
+        "raw_hex": "000103"
+      }
+    },
+    {
+      "key": "escape_artist",
+      "name": "Escape Artist",
+      "icon": "Ability_Rogue_Trip",
+      "base_power": 6.0,
+      "base_cooldown": 20.0,
+      "range": 0.0,
+      "radius": 8.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 20589,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 6,
+      "kind": 2,
+      "upgrade_types": [
+        0,
+        1,
+        3
+      ],
+      "effect": {
+        "tag": 2,
+        "value": 2.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671bd08",
+        "virtual_address": "0x14671cd08",
+        "size_bytes": 120,
+        "sha256": "1cda7e9242943f8310f83c22779d19a0212e3d33ce46a9a1ce0e8b9e17a914d0",
+        "raw_hex": "44747146010000000d00000000000000029a7146010000000d000000000000000f9a71460100000012000000000000004d8d71460100000003000000000000006d5000000000c0400000a0410000000000000041000000000000000000000000000000000000000002000000000000400000000006020000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d4d",
+        "virtual_address": "0x146718d4d",
+        "size_bytes": 3,
+        "sha256": "b744d600fbe3853702978ec726c166d26274fe7b09b2c600ddf2d7d895667b24",
+        "raw_hex": "000103"
+      }
+    },
+    {
+      "key": "berserking",
+      "name": "Berserking",
+      "icon": "Racial_Troll_Berserk",
+      "base_power": 0.0,
+      "base_cooldown": 35.0,
+      "range": 0.0,
+      "radius": 0.0,
+      "duration": 10.0,
+      "projectile_speed": 0.0,
+      "spell_id": 26635,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 0,
+      "kind": 9,
+      "upgrade_types": [
+        1,
+        4
+      ],
+      "effect": {
+        "tag": 9,
+        "value": 0.30000001192092896,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671bd80",
+        "virtual_address": "0x14671cd80",
+        "size_bytes": 120,
+        "sha256": "9f1d8643b5448a501d1236206b4d3923e19c2d44aad3801355e7b62a87008077",
+        "raw_hex": "24757146010000000a00000000000000219a7146010000000a000000000000002b9a7146010000001400000000000000018e71460100000002000000000000000b6800000000000000000c4200000000000000000000000000002041000000000000000000000000090000009a99993e0000000000090000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e01",
+        "virtual_address": "0x146718e01",
+        "size_bytes": 2,
+        "sha256": "a8d5dd63fba471ebcb1f3e8f7c1e1879b7152a6e7298a91ce119a63400ade7c5",
+        "raw_hex": "0104"
+      }
+    },
+    {
+      "key": "penance",
+      "name": "Penance",
+      "icon": "Spell_Holy_SearingLight",
+      "base_power": 50.5,
+      "base_cooldown": 2.200000047683716,
+      "range": 26.0,
+      "radius": 0.0,
+      "duration": 0.0,
+      "projectile_speed": 0.0,
+      "spell_id": 25912,
+      "targets": 3,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 1,
+      "kind": 1,
+      "upgrade_types": [
+        0,
+        1,
+        2
+      ],
+      "effect": {
+        "tag": 0,
+        "value": 0.0,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671bdf8",
+        "virtual_address": "0x14671cdf8",
+        "size_bytes": 120,
+        "sha256": "e68ec28d04f922047ef0b1813bba645035949a0c9d849d7fcecaeb02abf94092",
+        "raw_hex": "3f9a7146010000000700000000000000469a7146010000000700000000000000cb8e7146010000001700000000000000308d71460100000003000000000000003865000000004a42cdcc0c400000d04100000000030000000000000000000000000000000000000000000000000000000000000001010000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717d30",
+        "virtual_address": "0x146718d30",
+        "size_bytes": 3,
+        "sha256": "ae4b3280e56e2faf83f414a6e3dabe9d5fbe18976544c05fed121accb85b53fc",
+        "raw_hex": "000102"
+      }
+    },
+    {
+      "key": "arcane_power",
+      "name": "Arcane Power",
+      "icon": "Spell_Nature_Lightning",
+      "base_power": 0.0,
+      "base_cooldown": 30.0,
+      "range": 0.0,
+      "radius": 0.0,
+      "duration": 12.0,
+      "projectile_speed": 0.0,
+      "spell_id": 12042,
+      "targets": 0,
+      "ticks": 0,
+      "pulse_spell_id": 0,
+      "school": 6,
+      "kind": 9,
+      "upgrade_types": [
+        1,
+        4
+      ],
+      "effect": {
+        "tag": 8,
+        "value": 0.3499999940395355,
+        "duration": 0.0
+      },
+      "record": {
+        "file_offset": "0x671be70",
+        "virtual_address": "0x14671ce70",
+        "size_bytes": 120,
+        "sha256": "55d1d0e1d86526a1ee71e93333f8ff9fe1a3ba9bcd4f869a077209628360fb7c",
+        "raw_hex": "4d9a7146010000000c00000000000000599a7146010000000c00000000000000e9937146010000001600000000000000018e71460100000002000000000000000a2f0000000000000000f04100000000000000000000000000004041000000000000000000000000080000003333b33e0000000006090000"
+      },
+      "upgrade_slice": {
+        "file_offset": "0x6717e01",
+        "virtual_address": "0x146718e01",
+        "size_bytes": 2,
+        "sha256": "a8d5dd63fba471ebcb1f3e8f7c1e1879b7152a6e7298a91ce119a63400ade7c5",
+        "raw_hex": "0104"
+      }
+    }
+  ],
+  "classes": [
+    {
+      "key": "warrior",
+      "starter": "cleave",
+      "class_id": 1,
+      "pool": [
+        "cleave",
+        "whirlwind",
+        "thunder_clap",
+        "mortal_strike",
+        "execute",
+        "demo_shout",
+        "battle_shout",
+        "bloodthirst",
+        "rend",
+        "shield_slam",
+        "bloodrage"
+      ],
+      "record": {
+        "file_offset": "0x6717768",
+        "virtual_address": "0x146718768",
+        "size_bytes": 144,
+        "sha256": "2df30634262d879583800a428737fea2703faa379c3ca4d434b25c41d3760550",
+        "raw_hex": "010000000000dc41cdcccc3f0000c040b8787146010000000700000000000000bf78714601000000070000000000000030797146010000000b00000000000000c6787146010000000600000000000000e0797146010000000700000000000000e7797146010000000c00000000000000f3797146010000005c0000000000000000006643ae47613e8fc2753c01010000"
+      }
+    },
+    {
+      "key": "paladin",
+      "starter": "consecration",
+      "class_id": 2,
+      "pool": [
+        "consecration",
+        "exorcism",
+        "hammer_of_wrath",
+        "holy_shock",
+        "holy_wrath",
+        "judgement",
+        "hammer_of_justice",
+        "holy_light",
+        "divine_shield",
+        "holy_shield",
+        "redemption"
+      ],
+      "record": {
+        "file_offset": "0x67177f8",
+        "virtual_address": "0x1467187f8",
+        "size_bytes": 144,
+        "sha256": "c1461fed8bedbd58fa9abf93e98f354d937d17d1919013cf974d688eb2895f3d",
+        "raw_hex": "010000000000d8416666e63f0000c0404f7a7146010000000700000000000000567a7146010000000700000000000000e07a7146010000000b000000000000005d7a7146010000000c00000000000000907b7146010000000700000000000000977b7146010000001300000000000000aa7b714601000000530000000000000000007543cdcc4c3ea69bc43b02000000"
+      }
+    },
+    {
+      "key": "hunter",
+      "starter": "auto_shot",
+      "class_id": 3,
+      "pool": [
+        "auto_shot",
+        "arcane_shot",
+        "multi_shot",
+        "serpent_sting",
+        "volley",
+        "explosive_trap",
+        "concussive_shot",
+        "aimed_shot",
+        "immolation_trap",
+        "frost_trap",
+        "hunters_mark"
+      ],
+      "record": {
+        "file_offset": "0x6717888",
+        "virtual_address": "0x146718888",
+        "size_bytes": 144,
+        "sha256": "6d5ab6f670c77f4fcd7f0b7142f9c3e431ae8709ed619dd7cd129890f574cf65",
+        "raw_hex": "00000000000000000000000000000000fd7b7146010000000600000000000000037c7146010000000600000000000000887c7146010000000b00000000000000097c7146010000000900000000000000387d71460100000007000000000000003f7d7146010000001100000000000000507d7146010000004f00000000000000000070430ad7233e0ad7a33b03000000"
+      }
+    },
+    {
+      "key": "rogue",
+      "starter": "sinister_strike",
+      "class_id": 4,
+      "pool": [
+        "sinister_strike",
+        "eviscerate",
+        "blade_flurry",
+        "rupture",
+        "kidney_shot",
+        "gouge",
+        "ghostly_strike",
+        "adrenaline_rush",
+        "backstab",
+        "slice_and_dice",
+        "seal_fate"
+      ],
+      "record": {
+        "file_offset": "0x6717918",
+        "virtual_address": "0x146718918",
+        "size_bytes": 144,
+        "sha256": "7fc95ecda4dc668198f019c29e6f58495d4da86d5043b0ccd6ab581da0004427",
+        "raw_hex": "01000000000060419a99993f0000c0409f7d7146010000000500000000000000a47d7146010000000500000000000000287e7146010000000b00000000000000a97d7146010000000f00000000000000d87e7146010000000700000000000000df7e7146010000001400000000000000f37e7146010000004b0000000000000000003e43ec51383e8fc2f53c04030000"
+      }
+    },
+    {
+      "key": "priest",
+      "starter": "smite",
+      "class_id": 5,
+      "pool": [
+        "smite",
+        "sw_pain",
+        "mind_blast",
+        "holy_nova",
+        "pw_shield",
+        "renew",
+        "holy_fire",
+        "mind_flay",
+        "psychic_scream",
+        "devouring_plague",
+        "lightwell"
+      ],
+      "record": {
+        "file_offset": "0x67179a8",
+        "virtual_address": "0x1467189a8",
+        "size_bytes": 144,
+        "sha256": "bca644e5b0ba66aa7ac29a75dbad1594f46e056975096a4b1a3a46cc5963e604",
+        "raw_hex": "000000000000000000000000000000003e7f7146010000000600000000000000447f7146010000000600000000000000a87f7146010000000b000000000000004a7f7146010000000500000000000000588071460100000007000000000000005f807146010000000c000000000000006b80714601000000580000000000000000002a430ad7a33d4260653c05000000"
+      }
+    },
+    {
+      "key": "shaman",
+      "starter": "lightning_bolt",
+      "class_id": 7,
+      "pool": [
+        "lightning_bolt",
+        "chain_lightning",
+        "earth_shock",
+        "flame_shock",
+        "frost_shock",
+        "lightning_shield",
+        "magma_totem",
+        "searing_totem",
+        "fire_nova",
+        "healing_wave",
+        "call_of_flame"
+      ],
+      "record": {
+        "file_offset": "0x6717a38",
+        "virtual_address": "0x146718a38",
+        "size_bytes": 144,
+        "sha256": "6c28b2aa54003c7d900ccdc3626103c7b2043683f2aa650677e34a6806843e06",
+        "raw_hex": "00000000000000000000000000000000c3807146010000000600000000000000c980714601000000060000000000000058817146010000000b00000000000000cf807146010000000e00000000000000088271460100000007000000000000000f82714601000000160000000000000025827146010000004300000000000000000043437b142e3e0000000007000000"
+      }
+    },
+    {
+      "key": "mage",
+      "starter": "fireball",
+      "class_id": 8,
+      "pool": [
+        "fireball",
+        "frostbolt",
+        "arcane_missiles",
+        "frost_nova",
+        "arcane_explosion",
+        "blizzard",
+        "flamestrike",
+        "fire_blast",
+        "cone_of_cold",
+        "blast_wave",
+        "pyroblast",
+        "ice_barrier",
+        "polymorph"
+      ],
+      "record": {
+        "file_offset": "0x6717ac8",
+        "virtual_address": "0x146718ac8",
+        "size_bytes": 144,
+        "sha256": "3302da3e1a35a1fb88b0115c93fabb41437e549a84b897309b101e6e1cd57ed5",
+        "raw_hex": "00000000000000000000000000000000688271460100000004000000000000006c82714601000000040000000000000000837146010000000d0000000000000070827146010000000800000000000000d0837146010000000700000000000000d7837146010000000c00000000000000e3837146010000005100000000000000000057430ad7a33d0000000008000000"
+      }
+    },
+    {
+      "key": "warlock",
+      "starter": "shadow_bolt",
+      "class_id": 9,
+      "pool": [
+        "shadow_bolt",
+        "corruption",
+        "immolate",
+        "curse_of_agony",
+        "rain_of_fire",
+        "hellfire",
+        "death_coil",
+        "searing_pain",
+        "drain_life",
+        "fear",
+        "soul_fire"
+      ],
+      "record": {
+        "file_offset": "0x6717b58",
+        "virtual_address": "0x146718b58",
+        "size_bytes": 144,
+        "sha256": "2db24ccb02366db3a8dce748c6327e80cc2ef6f12903a2625b021d03df1d916d",
+        "raw_hex": "00000000000000000000000000000000348471460100000007000000000000003b847146010000000700000000000000b0847146010000000b0000000000000042847146010000000b0000000000000060857146010000000700000000000000678571460100000017000000000000007e857146010000004a00000000000000000025438fc2753d0ad7233c09000000"
+      }
+    },
+    {
+      "key": "druid",
+      "starter": "wrath",
+      "class_id": 11,
+      "pool": [
+        "wrath",
+        "moonfire",
+        "starfire",
+        "hurricane",
+        "insect_swarm",
+        "entangling_roots",
+        "rejuvenation",
+        "regrowth",
+        "thorns",
+        "swipe",
+        "faerie_fire",
+        "shred"
+      ],
+      "record": {
+        "file_offset": "0x6717be8",
+        "virtual_address": "0x146718be8",
+        "size_bytes": 144,
+        "sha256": "c4b5e0da362fd476d3eae5e461b3f0a8751f78cbee346159cec4602023d97748",
+        "raw_hex": "00000000000000000000000000000000c8857146010000000500000000000000cd85714601000000050000000000000040867146010000000c00000000000000d285714601000000050000000000000000877146010000000700000000000000078771460100000012000000000000001987714601000000490000000000000000004d438fc2f53d000000000b000000"
+      }
+    }
+  ],
+  "constants": {
+    "upgrade_power": {
+      "values": [
+        0.18000000715255737,
+        0.25,
+        0.3400000035762787,
+        0.46000000834465027,
+        0.6499999761581421
+      ],
+      "source": {
+        "file_offset": "0x69ac0d4",
+        "virtual_address": "0x1469ad0d4",
+        "size_bytes": 20,
+        "sha256": "4d4dd659e77d55323c3388420d4041fe90fc678657ef3e7c614a7fd98aa05c0a",
+        "raw_hex": "ec51383e0000803e7b14ae3e1f85eb3e6666263f"
+      }
+    },
+    "upgrade_cooldown": {
+      "values": [
+        0.07000000029802322,
+        0.10000000149011612,
+        0.12999999523162842,
+        0.17000000178813934,
+        0.23000000417232513
+      ],
+      "source": {
+        "file_offset": "0x69ac100",
+        "virtual_address": "0x1469ad100",
+        "size_bytes": 20,
+        "sha256": "2ce51b76784775bddcb4c4eb37d6405f17b8ffdcf9a042b0f111ff2ffd0d5dbb",
+        "raw_hex": "295c8f3dcdcccc3db81e053e7b142e3e1f856b3e"
+      }
+    },
+    "upgrade_targets": {
+      "values": [
+        1,
+        1,
+        1,
+        2,
+        2
+      ],
+      "source": {
+        "file_offset": "0x69ac130",
+        "virtual_address": "0x1469ad130",
+        "size_bytes": 20,
+        "sha256": "c7a5958727276cdee4286492253978d00e716955fd04834ea62dfeb962a95291",
+        "raw_hex": "0100000001000000010000000200000002000000"
+      }
+    },
+    "upgrade_area": {
+      "values": [
+        0.11999999731779099,
+        0.18000000715255737,
+        0.25,
+        0.3499999940395355,
+        0.5
+      ],
+      "source": {
+        "file_offset": "0x69ac160",
+        "virtual_address": "0x1469ad160",
+        "size_bytes": 20,
+        "sha256": "d5139f32188f8bd7419a9ebaeb6a2dc494109f7b4881cedbb7b94e3eb74be2d4",
+        "raw_hex": "8fc2f53dec51383e0000803e3333b33e0000003f"
+      }
+    },
+    "upgrade_duration": {
+      "values": [
+        0.15000000596046448,
+        0.2199999988079071,
+        0.30000001192092896,
+        0.4000000059604645,
+        0.6000000238418579
+      ],
+      "source": {
+        "file_offset": "0x69ac190",
+        "virtual_address": "0x1469ad190",
+        "size_bytes": 20,
+        "sha256": "74ec3c67c4fc280877855dc4cff0d087827ab62f072f9139ce46e3bdc06c5790",
+        "raw_hex": "9a99193eae47613e9a99993ecdcccc3e9a99193f"
+      }
+    },
+    "cast_kind_weight_2_to_8": {
+      "values": [
+        0.5,
+        0.5,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.5
+      ],
+      "source": {
+        "file_offset": "0x69aba9c",
+        "virtual_address": "0x1469aca9c",
+        "size_bytes": 28,
+        "sha256": "8159b4de4a913e60a73077ce348176642e5f5afdecbc64d5eb455a4d0533f74a",
+        "raw_hex": "0000003f0000003f0000803f0000803f0000803f0000803f0000003f"
+      }
+    },
+    "initial_power": {
+      "values": [
+        0.18000000715255737,
+        0.25,
+        0.3400000035762787,
+        0.46000000834465027,
+        0.6499999761581421
+      ],
+      "source": {
+        "file_offset": "0x671bfa8",
+        "virtual_address": "0x14671cfa8",
+        "size_bytes": 20,
+        "sha256": "4d4dd659e77d55323c3388420d4041fe90fc678657ef3e7c614a7fd98aa05c0a",
+        "raw_hex": "ec51383e0000803e7b14ae3e1f85eb3e6666263f"
+      }
+    },
+    "initial_cooldown": {
+      "values": [
+        0.07000000029802322,
+        0.10000000149011612,
+        0.12999999523162842,
+        0.17000000178813934,
+        0.23000000417232513
+      ],
+      "source": {
+        "file_offset": "0x671bf3c",
+        "virtual_address": "0x14671cf3c",
+        "size_bytes": 20,
+        "sha256": "2ce51b76784775bddcb4c4eb37d6405f17b8ffdcf9a042b0f111ff2ffd0d5dbb",
+        "raw_hex": "295c8f3dcdcccc3db81e053e7b142e3e1f856b3e"
+      }
+    }
+  },
+  "limitations": [
+    "Raw school/kind/effect tags are retained; consumer recovery owns their semantics.",
+    "Table extraction and source reproduction are not compilation or gameplay parity."
+  ]
+}

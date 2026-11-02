@@ -1,0 +1,4 @@
+1401c091f: 4180b97501000003 cmp byte ptr [r9 + 0x175], 3
+1401c0927: 740a je 0x1401c0933
+1401c0929: 8901 mov dword ptr [rcx], eax
+1401c092b: 41c6817501000003 mov byte ptr [r9 + 0x175], 3

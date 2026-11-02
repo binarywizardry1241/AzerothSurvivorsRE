@@ -1,0 +1,41 @@
+{
+  "target_sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+  "cases": [
+    {"removed":[],"retained":[100,101,102,103,104],"payload":[200,201,202,203,204]},
+    {"removed":[100],"retained":[101,102,103,104],"payload":[201,202,203,204]},
+    {"removed":[101],"retained":[100,102,103,104],"payload":[200,202,203,204]},
+    {"removed":[100,101],"retained":[102,103,104],"payload":[202,203,204]},
+    {"removed":[102],"retained":[100,101,103,104],"payload":[200,201,203,204]},
+    {"removed":[100,102],"retained":[101,103,104],"payload":[201,203,204]},
+    {"removed":[101,102],"retained":[100,103,104],"payload":[200,203,204]},
+    {"removed":[100,101,102],"retained":[103,104],"payload":[203,204]},
+    {"removed":[103],"retained":[100,101,102,104],"payload":[200,201,202,204]},
+    {"removed":[100,103],"retained":[101,102,104],"payload":[201,202,204]},
+    {"removed":[101,103],"retained":[100,102,104],"payload":[200,202,204]},
+    {"removed":[100,101,103],"retained":[102,104],"payload":[202,204]},
+    {"removed":[102,103],"retained":[100,101,104],"payload":[200,201,204]},
+    {"removed":[100,102,103],"retained":[101,104],"payload":[201,204]},
+    {"removed":[101,102,103],"retained":[100,104],"payload":[200,204]},
+    {"removed":[100,101,102,103],"retained":[104],"payload":[204]},
+    {"removed":[104],"retained":[100,101,102,103],"payload":[200,201,202,203]},
+    {"removed":[100,104],"retained":[101,102,103],"payload":[201,202,203]},
+    {"removed":[101,104],"retained":[100,102,103],"payload":[200,202,203]},
+    {"removed":[100,101,104],"retained":[102,103],"payload":[202,203]},
+    {"removed":[102,104],"retained":[100,101,103],"payload":[200,201,203]},
+    {"removed":[100,102,104],"retained":[101,103],"payload":[201,203]},
+    {"removed":[101,102,104],"retained":[100,103],"payload":[200,203]},
+    {"removed":[100,101,102,104],"retained":[103],"payload":[203]},
+    {"removed":[103,104],"retained":[100,101,102],"payload":[200,201,202]},
+    {"removed":[100,103,104],"retained":[101,102],"payload":[201,202]},
+    {"removed":[101,103,104],"retained":[100,102],"payload":[200,202]},
+    {"removed":[100,101,103,104],"retained":[102],"payload":[202]},
+    {"removed":[102,103,104],"retained":[100,101],"payload":[200,201]},
+    {"removed":[100,102,103,104],"retained":[101],"payload":[201]},
+    {"removed":[101,102,103,104],"retained":[100],"payload":[200]},
+    {"removed":[100,101,102,103,104],"retained":[],"payload":[]}
+  ],
+  "method": "Unchanged selected EXE instructions in Unicorn with explicit native-layout inputs; no game process.",
+  "seams": [
+    "Complete native stable-retain helper, no external seams."
+  ]
+}

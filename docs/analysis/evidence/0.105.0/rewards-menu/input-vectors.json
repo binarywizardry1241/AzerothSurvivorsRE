@@ -1,0 +1,117 @@
+{
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "companion_selection": [
+    {
+      "before": [
+        "rabbit",
+        "owl"
+      ],
+      "slot": 0,
+      "selected": "macaw",
+      "after": [
+        "macaw",
+        "owl"
+      ]
+    },
+    {
+      "before": [
+        "rabbit",
+        "owl"
+      ],
+      "slot": 1,
+      "selected": "macaw",
+      "after": [
+        "rabbit",
+        "macaw"
+      ]
+    },
+    {
+      "before": [
+        "rabbit",
+        "owl"
+      ],
+      "slot": 7,
+      "selected": "macaw",
+      "after": [
+        "rabbit",
+        "macaw"
+      ]
+    },
+    {
+      "before": [
+        "panda",
+        "sapphiron"
+      ],
+      "slot": 0,
+      "selected": "macaw",
+      "after": [
+        "macaw",
+        "sapphiron"
+      ]
+    },
+    {
+      "before": [
+        "panda",
+        "sapphiron"
+      ],
+      "slot": 1,
+      "selected": "macaw",
+      "after": [
+        "panda",
+        "macaw"
+      ]
+    },
+    {
+      "before": [
+        "panda",
+        "sapphiron"
+      ],
+      "slot": 7,
+      "selected": "macaw",
+      "after": [
+        "panda",
+        "macaw"
+      ]
+    }
+  ],
+  "navigation": [
+    {
+      "kind": "keep",
+      "requested": 3,
+      "pending": 254,
+      "armory_open": 1,
+      "page": 6,
+      "plan": 123
+    },
+    {
+      "kind": "discard",
+      "requested": 0,
+      "pending": 254,
+      "armory_open": 1,
+      "page": 0,
+      "plan": 18446744073709551615
+    },
+    {
+      "kind": "discard",
+      "requested": 3,
+      "pending": 254,
+      "armory_open": 1,
+      "page": 3,
+      "plan": 18446744073709551615
+    },
+    {
+      "kind": "discard",
+      "requested": 255,
+      "pending": 254,
+      "armory_open": 0,
+      "page": 6,
+      "plan": 18446744073709551615
+    }
+  ],
+  "limitations": [
+    "Bounded original instruction replay; no app, UI query iteration or file write.",
+    "The incoming two-slot clone and allocated replacement string are fixture inputs; allocator release is a no-op.",
+    "Companion normalization/publication after140136cb8 is not executed.",
+    "Discard vectors start after dropping the owned plan; they cover clearing and navigation continuation. Confirm validation/save is not replayed."
+  ]
+}

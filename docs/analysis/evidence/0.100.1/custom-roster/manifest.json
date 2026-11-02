@@ -1,0 +1,48 @@
+{
+  "target_sha256": "17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b",
+  "source": {
+    "address": "0x14544d300",
+    "end_exclusive": "0x14544d440",
+    "file_offset": "0x544c700",
+    "size": 320,
+    "sha256": "fff7cade27335cdd96375ed9943f0b15847589ab5ffcacde49c705743ea2a8b4",
+    "rea_evidence_id": "ev_edca4b1b8f62b2eaff56802a0e7ad8168e6202c798041b61025349694a65c728",
+    "limits": [
+      "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+      "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+      "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+      "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+      "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+      "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+      "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+      "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+      "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+      "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+    ]
+  },
+  "method": "Current custom-menu roster factory: bounded native instructions and Ghidra evidence.\n\nOnly the current custom-mode branch runs. Allocation and String clone are\nexplicit memory-only seams; unknown instructions/calls fail closed. No original\nprocess or OS/network operation is launched.\n",
+  "custom_guid": 16777214,
+  "entry_chain": [
+    {
+      "role": "enter-json",
+      "address": "0x140062b50",
+      "end_exclusive": "0x140065255",
+      "file_offset": "0x61f50",
+      "sha256": "9ff9c3f8b1e3075d8e517256917d69298a9211e0ba956f451f8d3afe630f3ccb"
+    },
+    {
+      "role": "enter-keyboard",
+      "address": "0x14005f670",
+      "end_exclusive": "0x14005f8f6",
+      "file_offset": "0x5ea70",
+      "sha256": "d443a0a8b57d819a0f321b22b2a48b4a8350a5218654f136a30a46c38fdc412a"
+    },
+    {
+      "role": "enter-key-inject",
+      "address": "0x140038240",
+      "end_exclusive": "0x14003850d",
+      "file_offset": "0x37640",
+      "sha256": "2a4d1f8cef6155c5d21ae7cfa7b033100583d84aba51e2af7c01b3b340709c37"
+    }
+  ]
+}

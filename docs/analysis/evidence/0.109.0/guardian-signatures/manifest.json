@@ -1,0 +1,94 @@
+{
+  "target_version": "0.109.0",
+  "target_sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+  "target_executed": false,
+  "ranges": [
+    {
+      "role": "selector",
+      "va": "0x14588d220",
+      "file_offset": "0x588c620",
+      "byte_count": 866,
+      "sha256": "3cb8950f35dd570b8a86d95197ac7e02ac2a6c5c2b948e168a6f0c417a129f3a",
+      "end_exclusive": "0x14588d582",
+      "assembly": "selector.asm"
+    },
+    {
+      "role": "decision",
+      "va": "0x145899e70",
+      "file_offset": "0x5899270",
+      "byte_count": 934,
+      "sha256": "c6d2fa8837cfa41bdd2ea6d3c952f1abcfcd8105e85d04c4039193735e90a6fa",
+      "end_exclusive": "0x14589a216",
+      "assembly": "decision.asm"
+    },
+    {
+      "role": "selection-constructor",
+      "va": "0x14593e120",
+      "file_offset": "0x593d520",
+      "byte_count": 907,
+      "sha256": "ececdc9b7ea352746d743157897f34a2204e1e3d3fed930fcbba0c04715729b2",
+      "end_exclusive": "0x14593e4ab",
+      "assembly": "selection-constructor.asm"
+    },
+    {
+      "role": "phase-gates",
+      "va": "0x145979b20",
+      "file_offset": "0x5978f20",
+      "byte_count": 448,
+      "sha256": "9626105f451bfc9a7290e7d0d7e1810fa64060b3857a6820a26ec998735f0c54",
+      "end_exclusive": "0x145979ce0",
+      "assembly": "phase-gates.asm"
+    },
+    {
+      "role": "scheduler",
+      "va": "0x14597a230",
+      "file_offset": "0x5979630",
+      "byte_count": 609,
+      "sha256": "43791058022da5fa50e284bae7e668855aae3db7fb01d8a5b501e3471a7e6d4b",
+      "end_exclusive": "0x14597a491",
+      "assembly": "scheduler.asm"
+    },
+    {
+      "role": "zone-health-inputs",
+      "va": "0x14599c230",
+      "file_offset": "0x599b630",
+      "byte_count": 103,
+      "sha256": "dd00c938bfe6bb0624772e5db4d2ff79bc590e43cb512a4fe6b94032080d5f54",
+      "end_exclusive": "0x14599c297",
+      "assembly": "zone-health-inputs.asm"
+    },
+    {
+      "role": "zone-enemy-inputs",
+      "va": "0x14599c612",
+      "file_offset": "0x599ba12",
+      "byte_count": 104,
+      "sha256": "54a5bdcb31cc499ba7661c48c47e72503636951b36ad6a9be1eafbdfa1b35d2b",
+      "end_exclusive": "0x14599c67a",
+      "assembly": "zone-enemy-inputs.asm"
+    },
+    {
+      "role": "phase-emote-producer",
+      "va": "0x14597c453",
+      "file_offset": "0x597b853",
+      "byte_count": 39,
+      "sha256": "5006573be114901d687099d55514238b73b15e2a373901138b11d312e369dfa0",
+      "end_exclusive": "0x14597c47a",
+      "assembly": "phase-emote-producer.asm"
+    },
+    {
+      "role": "phase-emote-kind",
+      "va": "0x1458c12b0",
+      "file_offset": "0x58c06b0",
+      "byte_count": 10,
+      "sha256": "1610426e294845c0522d4cf2f4d8aa40455e82402d6c07b6f82b05d6b8d8179f",
+      "end_exclusive": "0x1458c12ba",
+      "assembly": "phase-emote-kind.asm"
+    }
+  ],
+  "native_cases": 2352,
+  "limitations": [
+    "Native calls are rejected in all instruction cases; synthetic state only.",
+    "Source connections are generated independently by connect-raid-mechanics-0.109.0.py; remaining native actions retain gap42.",
+    "The complete guardian encounter, spawn/scaling dependencies, compilation and original/rebuilt parity are unverified."
+  ]
+}

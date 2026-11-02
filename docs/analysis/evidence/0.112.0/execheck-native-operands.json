@@ -1,0 +1,599 @@
+{
+  "target": {
+    "version": "0.112.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+    "size_bytes": 140514816
+  },
+  "generator": {
+    "path": "scripts/audit-native-operands.py",
+    "sha256": "012c0af321278104720c60c373b6c966779dcf5a7c735a74c9801124f2f53293"
+  },
+  "source_census": {
+    "path": "docs/analysis/evidence/0.112.0/execheck-native-census.json",
+    "sha256": "02b8799208fac7fd5d39fa62f549e1d3ca3455f0df86282cbb79288f1d720a06"
+  },
+  "diagnostic_input": {
+    "path": "runtime/coverage/dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a/diagnostic-ownership.json",
+    "sha256": "9aa4230db380cb89c21962c876ebed68648e13e6fd30553c9fa3f30af5721ed8"
+  },
+  "verified_instruction_count": 22505703,
+  "generator_dependencies": [
+    {
+      "path": "scripts/summarize-native-image.py",
+      "sha256": "5e0873407d07276ca6642677f63848d737244411cbad672aa83f4657dbf128b5"
+    },
+    {
+      "path": "scripts/inventory-current-target.py",
+      "sha256": "f2cf5be70267aa01865b7c34bef7eeb87898d67b5e36f0a91d20d37e3b1299c5"
+    },
+    {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+    },
+    {
+      "path": "scripts/recover-native-import-thunks.py",
+      "sha256": "65883151064e3974474ea249020d5c20a7accb2fd2cf81404b205f893c3f6909"
+    },
+    {
+      "path": "scripts/coverage_common.py",
+      "sha256": "3aaa705f6fe366d06b59fbb1cc011bf98f28e59299e91371bd084c63b77d8eeb"
+    }
+  ],
+  "all_explicit_operand_domains": {
+    "base-register-dependent-memory": 7492019,
+    "explicit-static-memory-or-address": 664549,
+    "immediate-operands": 6433538,
+    "index-dependent-memory": 657290,
+    "register-operands": 20832217,
+    "segment-dependent-memory": 28691,
+    "unmapped-immediate-candidates-excluded": 3496724
+  },
+  "retained_explicit_operand_counts": {
+    "address-expression": 490902,
+    "address-expression:program-pair-absent": 490902,
+    "fixed-memory": 173647,
+    "fixed-memory:program-pair-present": 173647
+  },
+  "source_ownership": {
+    "source-owned": 654266,
+    "source-unowned": 10283
+  },
+  "inventory": {
+    "path": "runtime/execheck-0.112.0-20261023/operands/operands.jsonl.gz",
+    "sha256": "1486875b32aabc67f7d8e648a41cd7fe80717ab62918dc37cd9cfb0e86252834"
+  },
+  "complete_runtime_aliases_or_source_semantics": false,
+  "limits": [
+    "All verified instruction boundaries were inspected; only operand addresses independent of incoming registers, indices and segments are enumerated. PE headers and out-of-image static addresses are retained; only immediate numeric candidates require an image mapping. Register-based addresses require additional producer/alias evidence.",
+    "Mapped immediates are numeric address candidates. An address expression alone does not establish a function entry, source owner, referenced-data type or executable flow.",
+    "Program reference presence is a source/destination pair comparison, not a comparison of reference access semantics. Initial DIR64 values are image facts, not values observed after writes."
+  ],
+  "unowned_executable_candidates": {
+    "destinations": 5971,
+    "exact_observed_instructions": 5962,
+    "observed_instruction_interiors": 0,
+    "not_observed": 9,
+    "exact_import_thunk_sources": 0
+  },
+  "import_slots_with_owned_explicit_operands": 420,
+  "diagnostic_paths_with_explicit_operands": 564,
+  "details": {
+    "path": "runtime/execheck-0.112.0-20261023/operands/operand-boundaries.json",
+    "sha256": "0ec82a84d3d069946c35ba2f738ad5fce54f0e2cc8e9de59c62c2af0435f71ce"
+  },
+  "encoded_access_review": {
+    "fixed_memory_access_records": {
+      "read_only": 173008,
+      "write_only": 326,
+      "read_write": 242,
+      "unspecified": 71
+    },
+    "fixed_memory": {
+      "read_instruction_sites": 173250,
+      "read_targets": 49896,
+      "write_instruction_sites": 568,
+      "write_targets": 319,
+      "all_fixed_memory_source_destination_pairs_present_in_exported_Program": true,
+      "pair_presence_proves_access_semantics": false
+    },
+    "initial_dir64_carrier_operands": {
+      "distinct_slots": 43455,
+      "records": [
+        {
+          "kind": "address-expression",
+          "access": 1,
+          "records": 150009
+        },
+        {
+          "kind": "fixed-memory",
+          "access": 0,
+          "records": 1
+        },
+        {
+          "kind": "fixed-memory",
+          "access": 1,
+          "records": 32883
+        },
+        {
+          "kind": "fixed-memory",
+          "access": 2,
+          "records": 15
+        }
+      ],
+      "initial_image_values_only": true,
+      "post_write_values_or_dynamic_callees_established": false
+    },
+    "not_observed_executable_candidates": [
+      {
+        "destination": "0x14352a0b0",
+        "operand_kinds": {
+          "address-expression": 1
+        },
+        "decode_status": "not-observed",
+        "file_offset": "0x35294b0",
+        "file_backed": true,
+        "current_up_to_16_bytes": "89d14489c2e986c6feffcccccccccccc"
+      },
+      {
+        "destination": "0x14352a0c0",
+        "operand_kinds": {
+          "address-expression": 1
+        },
+        "decode_status": "not-observed",
+        "file_offset": "0x35294c0",
+        "file_backed": true,
+        "current_up_to_16_bytes": "4489c2e978c9feffcccccccccccccccc"
+      },
+      {
+        "destination": "0x144063390",
+        "operand_kinds": {
+          "address-expression": 1
+        },
+        "decode_status": "not-observed",
+        "file_offset": "0x4062790",
+        "file_backed": true,
+        "current_up_to_16_bytes": "4889d00fb609488d15d32a7d024c8b04"
+      },
+      {
+        "destination": "0x145216c70",
+        "operand_kinds": {
+          "address-expression": 2
+        },
+        "decode_status": "not-observed",
+        "file_offset": "0x5216070",
+        "file_backed": true,
+        "current_up_to_16_bytes": "660f2ec17a4666480f7ec848b9ffffff"
+      },
+      {
+        "destination": "0x145861fa0",
+        "operand_kinds": {
+          "address-expression": 1
+        },
+        "decode_status": "not-observed",
+        "file_offset": "0x58613a0",
+        "file_backed": true,
+        "current_up_to_16_bytes": "89c809d0c3cccccccccccccccccccccc"
+      },
+      {
+        "destination": "0x145861fb0",
+        "operand_kinds": {
+          "address-expression": 1
+        },
+        "decode_status": "not-observed",
+        "file_offset": "0x58613b0",
+        "file_backed": true,
+        "current_up_to_16_bytes": "89c831d0c3cccccccccccccccccccccc"
+      },
+      {
+        "destination": "0x145861fc0",
+        "operand_kinds": {
+          "address-expression": 1
+        },
+        "decode_status": "not-observed",
+        "file_offset": "0x58613c0",
+        "file_backed": true,
+        "current_up_to_16_bytes": "89c821d0c3cccccccccccccccccccccc"
+      },
+      {
+        "destination": "0x1458936b0",
+        "operand_kinds": {
+          "address-expression": 1
+        },
+        "decode_status": "not-observed",
+        "file_offset": "0x5892ab0",
+        "file_backed": true,
+        "current_up_to_16_bytes": "8d51bf448d8140ffffff8d41204183f8"
+      },
+      {
+        "destination": "0x1458936d0",
+        "operand_kinds": {
+          "address-expression": 1
+        },
+        "decode_status": "not-observed",
+        "file_offset": "0x5892ad0",
+        "file_backed": true,
+        "current_up_to_16_bytes": "8d519f448d8120ffffff8d41e04183f8"
+      }
+    ],
+    "review_witness": {
+      "path": "runtime/execheck-0.112.0-20261023/operands/review.json",
+      "sha256": "2e2cffe69c9f83182402bafe2433192a87bc329243898f37aa51d8410e71f80a"
+    },
+    "unknowns": [
+      "Register, index and segment dependent addresses require incoming producer and alias evidence.",
+      "A LEA or a mapped address immediate is not proof of a read/write, live pointer, function entry or call.",
+      "Program source/destination pair presence does not establish access semantics.",
+      "Observed native ownership is not source identity or current reconstructed behavior.",
+      "Initial DIR64 values do not establish later slot contents or dynamic call destinations.",
+      "No application compile, game launch or original/rebuilt parity test occurred."
+    ]
+  },
+  "residual_lead_review": {
+    "decoder": {
+      "name": "Capstone",
+      "version": "5.0.7"
+    },
+    "review_boundary": {
+      "targets": 9,
+      "exact_LEA_producers": 10,
+      "source_body_owners_observed": 0,
+      "target_body_owners_observed": 0,
+      "sources_inside_declared_extents": 3,
+      "distinct_declared_source_extents": 2,
+      "diagnostic_paths_in_those_extents": 0,
+      "target_prefix_instruction_limit": 24,
+      "target_prefix_byte_window": 160,
+      "new_Ghidra_analysis": false
+    },
+    "candidate_source_anchors": [
+      {
+        "path": "crates/benilla-lua/src/vm.rs",
+        "sha256": "a9c06e94d06c0a8443daedef1faa9c5b03f92cd50e6434e235fbc76fb035574e",
+        "role": "candidate shared-source consumer; historical Vanilla comments do not establish full selected-target parity"
+      },
+      {
+        "path": "crates/benilla-lua/src/lib_math.rs",
+        "sha256": "d87ed5f6b8fc89ea810603b903d414449c61248852d1bc42f8c1880c04dc4db0",
+        "role": "candidate shared-source consumer; historical Vanilla comments do not establish full selected-target parity"
+      },
+      {
+        "path": "crates/benilla-lua/src/lib_string.rs",
+        "sha256": "4ca51fe3402e74f6de503ae435672a7a8c886aaaf70a4d87fe5c0e5d1033a093",
+        "role": "candidate shared-source consumer; historical Vanilla comments do not establish full selected-target parity"
+      }
+    ],
+    "conclusion": "Six targets join the shared Lua VM through exact producer tail jumps to existing native helper owners with benilla-lua vm diagnostics. Three targets remain unattributed supporting native leads. None supplies a demonstrated AS contract mismatch or a distinct gameplay failure; retain every lead under existing gap 41 and do not append a new gap.",
+    "next_static_recovery": "Follow callback publication and invocation ancestry only when a concrete Survivors contract requires one of these helpers. For the three unattributed leaves, first recover a bounded named dependency/caller before assigning gameplay ownership.",
+    "limits": [
+      "Exact small leaf arithmetic/bitwise/case operations do not prove their caller domain, API registration, argument conversion, mutation ancestry or runtime reachability.",
+      "The floating-point prefix has an outgoing conditional branch beyond this bounded extraction; full numerical behavior is not claimed.",
+      "Byte-indexed table lengths, enum domain, strings/types and formatter semantics were not inferred from adjacent data or the callback address.",
+      "No application build, current source execution, original-game execution or parity comparison was performed."
+    ],
+    "new_gap_recommended": false,
+    "targets": [
+      {
+        "target": "0x14352a0b0",
+        "bounded_operation_observation": "argument-adapter-tail-jump",
+        "review_classification": "unattributed-supporting-lead",
+        "concrete_AS_contract_demonstrated": false,
+        "gap_ids": [
+          41
+        ],
+        "exact_prefix": {
+          "file_offset": "0x35294b0",
+          "byte_count": 10,
+          "sha256": "885e1fcfae53ffa6063ebc24842498e139b7cfc1632fbe35a972cdd79cba6cfc"
+        },
+        "LEA_producers": [
+          {
+            "site": "0x14352b9d2",
+            "instruction_bytes": "488d0dd7e6ffff",
+            "source_native_owner": null,
+            "source_declared_extent": [
+              "0x14352a8b0",
+              "0x14352ec0f"
+            ],
+            "source_extent_diagnostic_paths": []
+          }
+        ],
+        "producer_tail_forward_helper": null,
+        "outgoing_direct_branches_in_prefix": [
+          {
+            "source": "0x14352a0b5",
+            "target": "0x143516740",
+            "kind": "jmp",
+            "target_actual_owner": "0x143516740"
+          }
+        ]
+      },
+      {
+        "target": "0x14352a0c0",
+        "bounded_operation_observation": "argument-adapter-tail-jump",
+        "review_classification": "unattributed-supporting-lead",
+        "concrete_AS_contract_demonstrated": false,
+        "gap_ids": [
+          41
+        ],
+        "exact_prefix": {
+          "file_offset": "0x35294c0",
+          "byte_count": 8,
+          "sha256": "4a17093f7bd50a25a9f94c5ac5f65473d969f3cffa9a981212e052917667230c"
+        },
+        "LEA_producers": [
+          {
+            "site": "0x14352b9c3",
+            "instruction_bytes": "488d0df6e6ffff",
+            "source_native_owner": null,
+            "source_declared_extent": [
+              "0x14352a8b0",
+              "0x14352ec0f"
+            ],
+            "source_extent_diagnostic_paths": []
+          }
+        ],
+        "producer_tail_forward_helper": null,
+        "outgoing_direct_branches_in_prefix": [
+          {
+            "source": "0x14352a0c3",
+            "target": "0x143516a40",
+            "kind": "jmp",
+            "target_actual_owner": "0x143516a40"
+          }
+        ]
+      },
+      {
+        "target": "0x144063390",
+        "bounded_operation_observation": "byte-indexed-relative-data-adapter",
+        "review_classification": "unattributed-supporting-lead",
+        "concrete_AS_contract_demonstrated": false,
+        "gap_ids": [
+          41
+        ],
+        "exact_prefix": {
+          "file_offset": "0x4062790",
+          "byte_count": 39,
+          "sha256": "f8778bcb264acc5b25e58d42d463cca21760de42aab6075195ffabd3c663bf58"
+        },
+        "LEA_producers": [
+          {
+            "site": "0x14405062c",
+            "instruction_bytes": "488d055d2d0100",
+            "source_native_owner": null,
+            "source_declared_extent": [
+              "0x14404bb40",
+              "0x1440514d4"
+            ],
+            "source_extent_diagnostic_paths": []
+          }
+        ],
+        "producer_tail_forward_helper": null,
+        "outgoing_direct_branches_in_prefix": [
+          {
+            "source": "0x1440633b2",
+            "target": "0x145be3ff0",
+            "kind": "jmp",
+            "target_actual_owner": "0x145bdd9c0"
+          }
+        ]
+      },
+      {
+        "target": "0x145216c70",
+        "bounded_operation_observation": "floating-special-value-prefix",
+        "review_classification": "shared-lua-dependency",
+        "concrete_AS_contract_demonstrated": false,
+        "gap_ids": [
+          41
+        ],
+        "exact_prefix": {
+          "file_offset": "0x5216070",
+          "byte_count": 85,
+          "sha256": "323a88bcd2fc8b028ebb469a152aca694a6f06459cba0969026324a522af03b8"
+        },
+        "LEA_producers": [
+          {
+            "site": "0x14524a530",
+            "instruction_bytes": "4c8d0539c7fcff",
+            "source_native_owner": null,
+            "source_declared_extent": null,
+            "source_extent_diagnostic_paths": []
+          },
+          {
+            "site": "0x1458643b0",
+            "instruction_bytes": "4c8d05b9289bff",
+            "source_native_owner": null,
+            "source_declared_extent": null,
+            "source_extent_diagnostic_paths": []
+          }
+        ],
+        "producer_tail_forward_helper": {
+          "address": "0x14585cbf0",
+          "actual_owner": "0x14585cbf0",
+          "diagnostic_paths": [
+            "crates/benilla-lua/src/vm.rs"
+          ],
+          "custom_diagnostic_paths": []
+        },
+        "outgoing_direct_branches_in_prefix": [
+          {
+            "source": "0x145216c74",
+            "target": "0x145216cbc",
+            "kind": "jp",
+            "target_actual_owner": null
+          },
+          {
+            "source": "0x145216cb6",
+            "target": "0x145c0a46b",
+            "kind": "je",
+            "target_actual_owner": "0x145c0a46b"
+          }
+        ]
+      },
+      {
+        "target": "0x145861fa0",
+        "bounded_operation_observation": "u32-bitwise-or",
+        "review_classification": "shared-lua-dependency",
+        "concrete_AS_contract_demonstrated": false,
+        "gap_ids": [
+          41
+        ],
+        "exact_prefix": {
+          "file_offset": "0x58613a0",
+          "byte_count": 5,
+          "sha256": "58774d5e1bcba81cf404ea132602e02aadcbbd7315c3a7d2f1b5403fcec0a991"
+        },
+        "LEA_producers": [
+          {
+            "site": "0x145862170",
+            "instruction_bytes": "4c8d0529feffff",
+            "source_native_owner": null,
+            "source_declared_extent": null,
+            "source_extent_diagnostic_paths": []
+          }
+        ],
+        "producer_tail_forward_helper": {
+          "address": "0x14585d350",
+          "actual_owner": "0x14585d350",
+          "diagnostic_paths": [
+            "crates/benilla-lua/src/vm.rs"
+          ],
+          "custom_diagnostic_paths": []
+        },
+        "outgoing_direct_branches_in_prefix": []
+      },
+      {
+        "target": "0x145861fb0",
+        "bounded_operation_observation": "u32-bitwise-xor",
+        "review_classification": "shared-lua-dependency",
+        "concrete_AS_contract_demonstrated": false,
+        "gap_ids": [
+          41
+        ],
+        "exact_prefix": {
+          "file_offset": "0x58613b0",
+          "byte_count": 5,
+          "sha256": "228bb5ad96baa4b2e2a61203986601aec2c2aa30b4973fcbc6c166c561114e31"
+        },
+        "LEA_producers": [
+          {
+            "site": "0x145862180",
+            "instruction_bytes": "4c8d0529feffff",
+            "source_native_owner": null,
+            "source_declared_extent": null,
+            "source_extent_diagnostic_paths": []
+          }
+        ],
+        "producer_tail_forward_helper": {
+          "address": "0x14585d350",
+          "actual_owner": "0x14585d350",
+          "diagnostic_paths": [
+            "crates/benilla-lua/src/vm.rs"
+          ],
+          "custom_diagnostic_paths": []
+        },
+        "outgoing_direct_branches_in_prefix": []
+      },
+      {
+        "target": "0x145861fc0",
+        "bounded_operation_observation": "u32-bitwise-and",
+        "review_classification": "shared-lua-dependency",
+        "concrete_AS_contract_demonstrated": false,
+        "gap_ids": [
+          41
+        ],
+        "exact_prefix": {
+          "file_offset": "0x58613c0",
+          "byte_count": 5,
+          "sha256": "0f5b1c60531ec7429bbd802780d71d2a3710d140675cc696833e01e2c0f4d8ee"
+        },
+        "LEA_producers": [
+          {
+            "site": "0x145862d20",
+            "instruction_bytes": "4c8d0599f2ffff",
+            "source_native_owner": null,
+            "source_declared_extent": null,
+            "source_extent_diagnostic_paths": []
+          }
+        ],
+        "producer_tail_forward_helper": {
+          "address": "0x14585d350",
+          "actual_owner": "0x14585d350",
+          "diagnostic_paths": [
+            "crates/benilla-lua/src/vm.rs"
+          ],
+          "custom_diagnostic_paths": []
+        },
+        "outgoing_direct_branches_in_prefix": []
+      },
+      {
+        "target": "0x1458936b0",
+        "bounded_operation_observation": "integer-range-add-0x20",
+        "review_classification": "shared-lua-dependency",
+        "concrete_AS_contract_demonstrated": false,
+        "gap_ids": [
+          41
+        ],
+        "exact_prefix": {
+          "file_offset": "0x5892ab0",
+          "byte_count": 27,
+          "sha256": "32be91fda83953a1e1bdab840493dc3b8c57a6ed089f5840f6ad50e3d7605e9f"
+        },
+        "LEA_producers": [
+          {
+            "site": "0x145891a90",
+            "instruction_bytes": "4c8d05191c0000",
+            "source_native_owner": null,
+            "source_declared_extent": null,
+            "source_extent_diagnostic_paths": []
+          }
+        ],
+        "producer_tail_forward_helper": {
+          "address": "0x145892b80",
+          "actual_owner": "0x145892b80",
+          "diagnostic_paths": [
+            "crates/benilla-lua/src/vm.rs"
+          ],
+          "custom_diagnostic_paths": []
+        },
+        "outgoing_direct_branches_in_prefix": []
+      },
+      {
+        "target": "0x1458936d0",
+        "bounded_operation_observation": "integer-range-subtract-0x20",
+        "review_classification": "shared-lua-dependency",
+        "concrete_AS_contract_demonstrated": false,
+        "gap_ids": [
+          41
+        ],
+        "exact_prefix": {
+          "file_offset": "0x5892ad0",
+          "byte_count": 27,
+          "sha256": "d81dd3e7b819ec803a6634452dc05ca80ee33d05f3bd363618cc1cc77cf01354"
+        },
+        "LEA_producers": [
+          {
+            "site": "0x145891aa0",
+            "instruction_bytes": "4c8d05291c0000",
+            "source_native_owner": null,
+            "source_declared_extent": null,
+            "source_extent_diagnostic_paths": []
+          }
+        ],
+        "producer_tail_forward_helper": {
+          "address": "0x145892b80",
+          "actual_owner": "0x145892b80",
+          "diagnostic_paths": [
+            "crates/benilla-lua/src/vm.rs"
+          ],
+          "custom_diagnostic_paths": []
+        },
+        "outgoing_direct_branches_in_prefix": []
+      }
+    ],
+    "review_witness": {
+      "path": "runtime/execheck-0.112.0-20261023/operands/unobserved-lea-review.json",
+      "sha256": "c2671b066c794e470e81e74cb65c70590fa885030a78c6e515ef76a54062bf2d"
+    }
+  }
+}

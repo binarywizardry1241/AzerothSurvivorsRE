@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.115.0",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
+  },
+  "gap_ids": [
+    41,
+    105
+  ],
+  "lead_ids": [
+    "Q41-I01"
+  ],
+  "generator": {
+    "path": "scripts/check-q41-framexml-lifetime-0.115.0.py",
+    "sha256": "4ad023b04614abc64ccab4a67e3c8de384515630a8e74c076de1be6e6302e698"
+  },
+  "native_core_contract": {
+    "descriptor": {
+      "file_offset": "0x73352f0",
+      "bytes": "d43b3347010000001a2b000000000000",
+      "address": "0x1473366f0",
+      "pointer": "0x147333bd4",
+      "length": 11034
+    },
+    "payload_sha256": "c71f24c567d36c3c7f7c557e71ef8e136c6d62ae34369f3fdae386f623061809",
+    "canonical": {
+      "path": "docs/analysis/evidence/0.108.0/hud-framexml/world-state-patch.lua",
+      "sha256": "3b5ff88881d8b8c733440604d0f34ee29a6f7628e435a5c136d71cc02b2daa88"
+    },
+    "popup": {
+      "path": "docs/analysis/evidence/0.115.0/raid-targets/popup.lua",
+      "sha256": "aaa7e325170aa8d3e35274b691b51bf04dc9fd642bf183cedd0909b1e62639a9"
+    }
+  },
+  "source": {
+    "path": "crates/azeroth-survivors-re/src/gameplay/client/talent_view.rs",
+    "sha256": "f622502b5ef6c6f306b671958c948fcf062ad480a528d6e8d87569b3b67d431c"
+  },
+  "source_fragments": [
+    {
+      "path": "crates/benilla-app/src/local_client.rs",
+      "start_anchor": "if !session.active {\n        *talent_counter = TalentToggleCounter::default();\n    }",
+      "end_anchor": null,
+      "byte_count": 84,
+      "sha256": "7b0e7cad13089b4fc5b04d7c6236333b848f1a4d48e5e246a82c6316cf15800d"
+    },
+    {
+      "path": "crates/benilla-app/src/local_client.rs",
+      "start_anchor": "            if session.active {\n                if let Some(name) = extension.talent_toggle_counter.as_deref() {",
+      "end_anchor": "                        input.talent_toggle = talent_counter.observe(script.session(), value);\n                    }\n                }\n            }",
+      "byte_count": 345,
+      "sha256": "5a71e5269917af00a6aa4d7da41949ca20204b2b8caec4c1c3160afd1929a95a"
+    },
+    {
+      "path": "crates/benilla-app/src/local_client.rs",
+      "start_anchor": "impl TalentToggleCounter {",
+      "end_anchor": "\n}\n\n#[cfg(test)]",
+      "byte_count": 358,
+      "sha256": "a56ae55593cf2240266a67bc839c242dbc106b67b0c8430a418451779580cb41"
+    },
+    {
+      "path": "crates/benilla-app/src/local_client.rs",
+      "start_anchor": "            if !extension.script_update.is_empty() {",
+      "end_anchor": "                    error!(\"local client extension state publication failed: {error}\");\n                }\n            }",
+      "byte_count": 247,
+      "sha256": "21ce85e36ecbf8a9fd7b96f47c8f8ac482edbc2a5e5d2464254e8ecb28adb229"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/client.rs",
+      "start_anchor": "        extension.talent_toggle_counter = Some(\"AZS_TALENT_TOGGLES\".into());",
+      "end_anchor": null,
+      "byte_count": 76,
+      "sha256": "413e589f677a1ee929c0828b48fa9c219602c40e29903d265f7d600459b78f8d"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/client.rs",
+      "start_anchor": "        extension.framexml_appends.splice(0..0, framexml_hud::appends());",
+      "end_anchor": null,
+      "byte_count": 73,
+      "sha256": "1721f022d0b46e6130966590ccb7194609006379156ccf1fcdc96a88c866d98d"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/client.rs",
+      "start_anchor": "        if menu.entering && client.active {",
+      "end_anchor": "            client.set_paused(true);\n            return;\n        }",
+      "byte_count": 265,
+      "sha256": "4211caf3ff75223a36276887fa1aac2846533209ba5364463de312077e1460d2"
+    },
+    {
+      "path": "crates/benilla-app/src/ui_script/lifecycle.rs",
+      "start_anchor": "    close_ui_session(world, ShutdownRoot::Reload);\n    install_boot_vm(world);\n    load_ingame_ui_seated(world, LoadSeat::Live);",
+      "end_anchor": null,
+      "byte_count": 128,
+      "sha256": "8e08eebca49a34440d911fa822fa0fb9c0cda6b8872c3188ee9af10b93f384db"
+    },
+    {
+      "path": "crates/benilla-app/src/ui_script/lifecycle.rs",
+      "start_anchor": "        files.load_addons(script);\n        if !extension_postlude.is_empty() {",
+      "end_anchor": "                error!(\"local client FrameXML extension failed: {error}\");\n            }\n        }",
+      "byte_count": 251,
+      "sha256": "90b8ab54164889795ecc5d104fb9e9c7d7419aaaf751ac68f23dba56cd7a580b"
+    },
+    {
+      "path": "crates/benilla-app/src/ui_script/addons.rs",
+      "start_anchor": "            for (target, source) in appends {",
+      "end_anchor": "                    bytes.extend_from_slice(source.as_bytes());\n                }\n            }",
+      "byte_count": 270,
+      "sha256": "780925a761d3f5909b2b837b5f3e397f071813e103d8c4062d47ad9f8d16aeae"
+    },
+    {
+      "path": "crates/benilla-app/src/ui_script/manifest.rs",
+      "start_anchor": "                    self.failures.extend(core.load_files_into_with_appends(",
+      "end_anchor": "                        &self.appends,\n                    ));",
+      "byte_count": 261,
+      "sha256": "dc054300a64cf6aee66cdcd6af2fff9eb1b6bab29728cc0ab52d343564d5f5a6"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/client/framexml_hud.rs",
+      "start_anchor": "            r\"Interface\\FrameXML\\WorldStateFrame.lua\".into(),\n            SOURCE.into(),",
+      "end_anchor": null,
+      "byte_count": 88,
+      "sha256": "80921f26304de545099cd475feae0822adef389854452497ea9933b4dad8447a"
+    }
+  ],
+  "historical_watcher_evidence": {
+    "path": "docs/analysis/evidence/0.105.0/talent-view/input-vectors.json",
+    "sha256": "257afd3e60f10bb55ccf1468686b918a021f6ba84a69136cd77d3c3325b4a598",
+    "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+    "cases": 11,
+    "current_native_watcher_revalidation": false
+  },
+  "interpreted": {
+    "harness": {
+      "path": "scripts/check-q41-framexml-lifetime.lua",
+      "sha256": "5d522660310ce64a32c75dfe38587c71b22a56b73ae50202b0e668cda531f4d3"
+    },
+    "reused_core_fixture": {
+      "path": "scripts/check-framexml-hud.lua",
+      "sha256": "3e0b53c650969dbc97a4c8099af1ee98b9289f068dbd9ae2b492a45702e206d6"
+    },
+    "compatibility_entrypoint": {
+      "path": "scripts/check-talent-view-bridge.lua",
+      "sha256": "91c213c53cbb05c22e97e670f24bf6139983861de08d54297c3b485815e6cd58"
+    },
+    "core_fixture_assertions": 244,
+    "lifetime_assertions": 241,
+    "VM_fixtures": 2,
+    "negative_mutations": [
+      {
+        "name": "late-toggle-wrapper",
+        "expected_rejection": "publication preserves the later addon toggle hook"
+      },
+      {
+        "name": "late-counter-reset",
+        "expected_rejection": "entry/retry/inactive publication does not reset or clear the core counter"
+      },
+      {
+        "name": "late-button-anchor",
+        "expected_rejection": "publication never reanchors the talent button"
+      },
+      {
+        "name": "inactive-counter-clear",
+        "expected_rejection": "entry/retry/inactive publication does not reset or clear the core counter"
+      }
+    ]
+  },
+  "checks": {
+    "core_owns_functions_and_initial_counter": true,
+    "publication_owns_only_overlay_guard": true,
+    "inactive_reader_resets_observation_without_clearing_Lua_counter": true,
+    "fresh_VM_identity_establishes_baseline": true,
+    "retry_retains_current_VM_and_counter": true,
+    "ReloadUI_rebuilds_core_in_new_VM": true
+  },
+  "compilation_run": false,
+  "game_execution_run": false,
+  "parity_verified": false,
+  "limits": [
+    "The current native core payload is byte-verified; the unchanged counter reader retains its explicitly historical 0.105.0 watcher provenance.",
+    "Interpreted Lua uses declared stock/widget seams. Narrow source fragments check current lifecycle connections without executing Rust/ECS/VM/core loading.",
+    "The updated Rust regression is authored but uncompiled. No native/application execution, input/rendering or original/rebuilt comparison."
+  ]
+}

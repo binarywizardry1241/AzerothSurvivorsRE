@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "reviewed_date": "2026-10-21",
+  "selected_target": "0.107.0",
+  "current_target": {
+    "version": "0.107.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "size_bytes": 140192768,
+    "sha256": "92eaef3bc806144860ca838660286c02b66f9d7bbee0771f1f07a628209e9f7a",
+    "format": "PE32+",
+    "architecture": "x86_64",
+    "machine": "0x8664",
+    "image_base": "0x140000000",
+    "identity_status": "Whole installed EXE SHA-256, AMD64 PE32+ header and three exact embedded version literals verified. Unique updater-checker and new-version-dialog markers agree. Target not executed."
+  },
+  "input_policy": {
+    "mode": "installed_game_read_only",
+    "configuration": ".codex/reference-game.json (local and ignored)",
+    "copies_or_symlinks_created": false,
+    "installed_files_modified": false,
+    "portable_identifiers": "installed-game identifiers resolve directly to the configured installed EXE/Data, not project copies."
+  },
+  "version_markers": [
+    {
+      "role": "footer-build-literal",
+      "value": "0.107.0",
+      "file_offset": "0x5da98c0",
+      "virtual_address": "0x145daa4c0",
+      "context_file_offset": "0x5da98a8",
+      "context_byte_count": 111,
+      "context_sha256": "2b6f884521f790a933b1e26c56a732e703e8c7c48a17ed2c9cd47f275b4952d5",
+      "context_hex": "2e0000000000000038010000200000003162316335643061302e3130372e3000c0a4da450100000007000000000000000176c0022028c0012900256d70713a2f2f696e746572666163652f676c7565732f6c6f6164696e6773637265656e732fc0042e626c70000000000000000000"
+    },
+    {
+      "role": "updater-checker",
+      "value": "0.107.0",
+      "file_offset": "0x5dabf38",
+      "virtual_address": "0x145dacb38",
+      "context_file_offset": "0x5dabf20",
+      "context_byte_count": 111,
+      "context_sha256": "14e6780ee2dcd73951a22d15cf71e0de9fa33bc3a84e65492b42dce7805ef4e4",
+      "context_hex": "f0c8da45010000006c000000000000003e01000034000000302e3130372e301e7570646174653a20757020746f2064617465202873697465206861732076c002290a00097570646174653a2076c012206973206f75742028746869732069732076c002290a00187570646174653a20"
+    },
+    {
+      "role": "new-version-dialog",
+      "value": "0.107.0",
+      "file_offset": "0x5ddb259",
+      "virtual_address": "0x145ddbe59",
+      "context_file_offset": "0x5ddb241",
+      "context_byte_count": 111,
+      "context_sha256": "1b240b7966ae7e371c107dad7b82d2c635f56b8115bbfd45141438dff6888b49",
+      "context_hex": "000000000000000800000000000000e0200040010000006e302e3130372e3041206e65772076657273696f6e206973206f7574214e65772067616d652064617461000000000000aaf1723f79e9663f5eba493f0000803f7b73697a657d20646f776e6c6f616420c2b7207468652067"
+    }
+  ],
+  "runtime_data": {
+    "directory": "installed-game/Data",
+    "selection": "Reference discovery reads the configured installed Data directly. Runtime launches accept --data-dir or WOW_DATA; scripts/run-menu resolves the configured Data when neither is supplied.",
+    "archive_count": 8,
+    "total_bytes": 1641903179,
+    "archives": [
+      {
+        "path": "installed-game/Data/patch-2.MPQ",
+        "size_bytes": 4690878,
+        "sha256": "366edee41642a5dda22ed90cc252b543ee375755b7e8bee81e2a6cd59fd7b286"
+      },
+      {
+        "path": "installed-game/Data/patch-3.MPQ",
+        "size_bytes": 2580491,
+        "sha256": "75c35ca5b8075197252581e301e8900143007fdf37b493ad271ae1bd39f95a29"
+      },
+      {
+        "path": "installed-game/Data/patch-4.MPQ",
+        "size_bytes": 22769233,
+        "sha256": "2e895e0e0ff6a4781d0e0aaa6ea7d32ed1fe36841e17806fe1855cb880d18865"
+      },
+      {
+        "path": "installed-game/Data/patch-5.MPQ",
+        "size_bytes": 267019039,
+        "sha256": "5008e56873718b468fa5ae1b697dcbe4f5da9ffe6c793f3ef9939dbd7716f3d8"
+      },
+      {
+        "path": "installed-game/Data/patch-6.MPQ",
+        "size_bytes": 212228,
+        "sha256": "cad6ff59b5df028a507581befb836fce07894057e15fe63d9fdc553a95b7ceb5"
+      },
+      {
+        "path": "installed-game/Data/patch-7.MPQ",
+        "size_bytes": 276649,
+        "sha256": "f5fb15b181cf01cc6b5cf2ee9948a27ecc4ba27bab9a8bec584df4381932aae6"
+      },
+      {
+        "path": "installed-game/Data/patch-8.MPQ",
+        "size_bytes": 4155417,
+        "sha256": "ae3aaa29cadb7aeba8255f5b4a8305c7cbecfe8f0d3ed9646522113d16c3e12e"
+      },
+      {
+        "path": "installed-game/Data/patch.MPQ",
+        "size_bytes": 1340199244,
+        "sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf"
+      }
+    ]
+  },
+  "resource_comparison": {
+    "previous_identity_manifest": "docs/analysis/target-refresh-0.105.0.json",
+    "previous_target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+    "comparison_method": "Rehash every configured installed MPQ; compare complete archive membership, SHA-256 and size by filename with the historical manifest. No historical binary/archive copies are used.",
+    "unchanged_archives": [
+      "patch-2.MPQ",
+      "patch-3.MPQ",
+      "patch-4.MPQ",
+      "patch-5.MPQ",
+      "patch-6.MPQ",
+      "patch-7.MPQ",
+      "patch-8.MPQ",
+      "patch.MPQ"
+    ],
+    "changed_archives": [],
+    "added_archives": [],
+    "removed_archives": [],
+    "archive_content_compatibility": "Unverified. Matching file bytes establish unchanged archive inputs, not compatibility with changed executable code or correctness of reconstructed consumers."
+  },
+  "implementation_baseline": {
+    "package_version": "0.107.0",
+    "reconstruction_target": "0.107.0",
+    "source_logic_changed_by_identity_refresh": false,
+    "historical_source_and_evidence": "Source, catalogs, menus, fields, IDs, RVAs and fixtures retain their actual earlier target provenance until individually revalidated.",
+    "menu_footer_source": "crates/azeroth-survivors-re/assets/menu-identity-0.100.1.json",
+    "menu_footer_changed": false,
+    "parity_with_selected_target": "Not established."
+  },
+  "changelog": {
+    "path": "docs/CHANGELOG.md",
+    "latest_supplied_version": "0.107.0",
+    "new_supplied_versions": [
+      "0.106.0",
+      "0.107.0"
+    ],
+    "authority": "User-supplied release notes; recovery leads, not verified reconstructed behavior.",
+    "new_release_claims_invented": false
+  },
+  "coverage_boundary": {
+    "owning_status": "docs/CURRENT-STATE.md",
+    "workflow": "docs/analysis/reconstruction-coverage.md",
+    "identity_registration_is_full_refresh": false,
+    "native_completeness_gap": 41,
+    "description": "This manifest establishes exact input identity and archive accounting only. Whole-file inventory, decoded diagnostic ownership, full-image Ghidra census, system/source correspondence and claim assessments have separate owning records; their status must not be inferred from package metadata."
+  },
+  "validation": {
+    "whole_installed_exe_hashed": true,
+    "three_version_contexts_bound": true,
+    "all_registered_archives_rehashed": true,
+    "archive_membership_verified": true,
+    "installed_exe_unchanged_after_resource_verification": true,
+    "compilation": "not run",
+    "game_launch": "not run",
+    "mpq_content_compatibility": "not run",
+    "original_rebuilt_comparison": "not run"
+  },
+  "limitations": [
+    "No EXE, MPQ, save, configuration, DLL or font was copied or modified.",
+    "No compilation, compiling tests, application launch, archive-content compatibility check or original/rebuilt parity comparison was performed by this identity refresh.",
+    "The reference EXE is never needed to build the source. Users provide compatible MPQs at runtime.",
+    "All earlier reports and recovered assets preserve their original version/hash provenance."
+  ]
+}

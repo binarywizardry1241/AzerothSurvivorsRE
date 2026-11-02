@@ -1,0 +1,135 @@
+{
+  "target": {
+    "version": "0.115.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+    "size_bytes": 142111232
+  },
+  "previous_target": {
+    "version": "0.113.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+    "size_bytes": 141932032
+  },
+  "generator": {
+    "path": "scripts/review-target-refresh.py",
+    "sha256": "992bef592a0f68d9ab3c3de962962f97b858a2bc65387f48bd878ea4e24591b9"
+  },
+  "inventories": {
+    "current": {
+      "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/inventory.json",
+      "sha256": "64f2b0cc33c2a41f794704c2b81c836efd426aa8bfc806c8ea346623a44d2d3c",
+      "regenerate": "python3 scripts/inventory-current-target.py --write"
+    },
+    "historical": {
+      "path": "runtime/coverage/58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb/inventory.json",
+      "sha256": "b3753d3045ed2a4589ad518a437d1aacaaed92d8368ad16969ab33b3a2ce5bb2",
+      "regenerate": "python3 scripts/inventory-current-target.py --write"
+    }
+  },
+  "version_evidence": {
+    "updater": {
+      "file_offset": "0x5f0ed68",
+      "virtual_address": "0x145f10168",
+      "byte_count": 26,
+      "sha256": "bed938b1d1d7671bda54ba873efa67b2a749b39f15333e550ec975ae5d538d88"
+    },
+    "platform_descriptors": [
+      {
+        "file_offset": "0x5ef3cf0",
+        "virtual_address": "0x145ef50f0",
+        "byte_count": 48,
+        "sha256": "f2e8d5b0b39c3c8dd2a97e7a1a4ffd3a1def632dc280688238585371ff1c2f28"
+      }
+    ]
+  },
+  "custom_paths_added": [
+    "crates/wenilla-rogue/src/banners.rs"
+  ],
+  "custom_paths_removed": [],
+  "candidate_changes": {
+    "module_type_namespace": {
+      "added": [
+        "benilla_app::menu_scene::MenuScenePluginbenilla_app::hero_preview::HeroPreviewPluginbenilla_app::host_controls::TouchDrivePlugin",
+        "benilla_app::spell_override::WorldHoldPlugin",
+        "benilla_app::ui_text::enginemessageQ",
+        "benilla_world::skyboxmessage",
+        "wenilla_rogue_app::screens::discordmessage",
+        "wenilla_rogue_app::window::GameWindowPluginwenilla_rogue_app::screens::ScreensPlugin"
+      ],
+      "removed": [
+        "benilla_app::ui_text::enginemessage",
+        "benilla_world::skyboxmessagey",
+        "wenilla_rogue_app::screens::ScreensPluginbenilla_app::menu_scene::MenuScenePluginbenilla_app::hero_preview::HeroPreviewPluginbenilla_app::host_controls::TouchDrivePluginbenilla_app::spell_override::WorldHoldPlugind",
+        "wenilla_rogue_app::screens::discordmessageyP",
+        "wenilla_rogue_app::window::GameWindowPlugin"
+      ],
+      "same_distinct_literals": false
+    },
+    "game_binding_identifier": {
+      "added": [
+        "AZS_GetTimers",
+        "AZS_TIMERS",
+        "AZS_TIMERS_UPDATED",
+        "AZS_UnitPopup_HideButtons"
+      ],
+      "removed": [
+        "AZS_OPENLEVELS"
+      ],
+      "same_distinct_literals": false
+    },
+    "lua_ui_registration": {
+      "added": [],
+      "removed": [],
+      "same_distinct_literals": true
+    },
+    "textual_id_assignment": {
+      "added": [],
+      "removed": [],
+      "same_distinct_literals": true
+    },
+    "textual_numeric_id": {
+      "added": [],
+      "removed": [],
+      "same_distinct_literals": true
+    },
+    "save_configuration_key_lead": {
+      "added": [],
+      "removed": [],
+      "same_distinct_literals": true
+    },
+    "resource_path": {
+      "added": [
+        "DBFilesClient\\CreatureFamily.dbc",
+        "DBFilesClient\\EmotesTextData.dbc",
+        "DBFilesClient\\PetPersonality.dbc",
+        "EchoesDBFilesClient\\CreatureSoundData.dbc",
+        "SpellShapeshiftForm.dbcSpellShapeshiftFormSpellShapeshiftForm.dbc"
+      ],
+      "removed": [
+        "DBFilesClient\\CreatureSoundData.dbc",
+        "SpellDispelType.dbcSpellDispelType.dbc"
+      ],
+      "same_distinct_literals": false
+    },
+    "lua_function_declaration": {
+      "added": [
+        "function AZS_GetTimers(",
+        "function UnitPopup_HideButtons("
+      ],
+      "removed": [],
+      "same_distinct_literals": false
+    }
+  },
+  "import_library_function_sets_equal": true,
+  "embedded_api": {
+    "file_offset": "0x70063f0",
+    "virtual_address": "0x1470077f0",
+    "byte_count": 16665,
+    "sha256": "a0066d2d6356e9f21fe4544e600def13887047a6608bb588cd6c27859b78ccc5",
+    "canonical_extract": "docs/analysis/evidence/0.115.0/embedded-api.lua",
+    "boundary": "Exact start comment through final event-handler registration; adjacent packed constants excluded.",
+    "native_dependencies_revalidated": false
+  },
+  "limits": "Full-file byte observations and bounded script extract only; source behavior, native dependencies and parity are not certified."
+}

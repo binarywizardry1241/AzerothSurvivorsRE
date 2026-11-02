@@ -1,0 +1,111 @@
+{
+  "target": "AzerothSurvivors/AzerothSurvivors-0.105.0.exe",
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "ranges": [
+    {
+      "role": "tester-factory",
+      "start": "0x1458b6e90",
+      "end_exclusive": "0x1458b7efa",
+      "file_offset": "0x58b6290",
+      "byte_count": 4202,
+      "sha256": "ee0d06d43441d7f489eb04ba863f0df75ef21051fcf4c6b5ebadf40f333b6748",
+      "pseudocode": "tester-factory.c",
+      "pseudocode_sha256": "7ece4b28dbab72d7f5d10ad0a91d0ab43f3a02d18fc521a1d085973aaa87e908",
+      "rea_evidence_id": "ev_5cf1af5bd8a85812257093730e4051372bdf4cc3cde2c1cc5d12411a350ce175",
+      "provider": "ghidra",
+      "analysis_profile_digest": "08a3d76d986e54bcb3bfdaa41dc5ec6c2a883c7a60a798592ae5df3c88b4b63f"
+    },
+    {
+      "role": "zone-parser",
+      "start": "0x1458753b0",
+      "end_exclusive": "0x1458754d9",
+      "file_offset": "0x58747b0",
+      "byte_count": 297,
+      "sha256": "89ee74613a09e7dd84df815b8f3553ce4e778e19b6c1838a6d6438e3d08366a7",
+      "pseudocode": "zone-parser.c",
+      "pseudocode_sha256": "54d5348c97bf832121736be1214fcd56e0737af6e1302ed3a438c8fd1048874e",
+      "rea_evidence_id": "ev_8fdb0d93761c160e7685aef087e703efafc6285e606c57901137554f03c9430c",
+      "provider": "ghidra",
+      "analysis_profile_digest": "24ac7e1fe570b489487004d464dfb3d8e0d9732dc8e591b0b38a01e8e4836b54",
+      "assembly": "zone-parser.asm",
+      "assembly_sha256": "cceb1cdb07fbaae27fcc48767451f6763632211de6eea649f55fc520f5ad0d42"
+    },
+    {
+      "role": "startup-name-and-sex",
+      "start": "0x14000ff8b",
+      "end_exclusive": "0x14001003f",
+      "file_offset": "0xf38b",
+      "byte_count": 180,
+      "sha256": "51f0760d6047b048b33bc75e08bab6f9aba0b1fb5de9ddb9c97cfbfb61f591f6",
+      "assembly": "startup-name-and-sex.asm",
+      "assembly_sha256": "2f78eb40b7406a1b5c8bc62e43c1415f8354bdfa8067e6f336cf64640e79aa33"
+    },
+    {
+      "role": "positional-sex",
+      "start": "0x140001b47",
+      "end_exclusive": "0x140001c55",
+      "file_offset": "0xf47",
+      "byte_count": 270,
+      "sha256": "239be5776950ee03bcedf5363a7f2c7ba6c16e268e366dbe7c5772df780fe951",
+      "assembly": "positional-sex.asm",
+      "assembly_sha256": "16afbd6c6e6b652857dfb39acf624b3932d6fc6a9fab49375564031ca1702acb"
+    },
+    {
+      "role": "argv-skip-program",
+      "start": "0x140001276",
+      "end_exclusive": "0x1400012e6",
+      "file_offset": "0x676",
+      "byte_count": 112,
+      "sha256": "fb60f084e7d68f2f5bd8b3183b53b6bf02ac5c65a5ba71438dac0902b428d6f3",
+      "assembly": "argv-skip-program.asm",
+      "assembly_sha256": "38c70b409a911d0ecbaa3d1c0733ba3ce6570e2471202cce5691be9729d990a9"
+    }
+  ],
+  "instruction_contracts": [
+    {
+      "role": "Tester bypasses class zone unlock gate",
+      "address": "0x14589cda3",
+      "bytes_hex": "4981feffffff004c898df8240000750c0fb69d99230000e99a000000"
+    },
+    {
+      "role": "Gear projected before sentinel talent gate",
+      "address": "0x14589ce7f",
+      "bytes_hex": "4c8daed00a0000448aa598230000488d4dc84c89ea4189d84589e1e881fafeff904981feffffff00752348c785182400000000000048c785202400000800000048c7852824000000000000eb13"
+    },
+    {
+      "role": "Ordinary allocation owner after sentinel skip",
+      "address": "0x14589cecc",
+      "bytes_hex": "488d8d182400004c89ea4189d8e8229cfeff90"
+    },
+    {
+      "role": "Factory WOW_CHAR publication",
+      "address": "0x145878fe0",
+      "bytes_hex": "488d0dfca3330149890cc749c744c708080000004d8964c7104d896cc7184d8964c72049ffc6"
+    },
+    {
+      "role": "Factory WOW_REALM publication",
+      "address": "0x145878f1d",
+      "bytes_hex": "488d05b6a433014989477849c7878000000009000000488b45f849898788000000488b4df049898f9000000049898798000000"
+    }
+  ],
+  "shared_evidence": [
+    "../../showcase/manifest.json (tester-arguments/tester-row)",
+    "../../terminal/return-routing-manifest.json (startup-mode)",
+    "../roster-projection-manifest.json (optional-leading-row projection)",
+    "../backend-manifest.json (login/account semantics)"
+  ],
+  "source_owners": [
+    "crates/azeroth-survivors-re/src/startup.rs",
+    "crates/azeroth-survivors-re/src/stock_frontend.rs",
+    "crates/azeroth-survivors-re/src/menu_state.rs",
+    "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+    "crates/benilla-app/src/local_client/stock_frontend.rs",
+    "crates/benilla-app/src/glue_session/roster.rs"
+  ],
+  "limitations": [
+    "Ghidra raw imports use generic x86-64 ABI and omit external data/callees; original PE instructions establish Windows argument and field bindings.",
+    "The native factory vectors use explicit allocation/vector-growth, memcpy and optional ASCII comparison seams. No original native callee executes; allocator ownership/failure paths are not emulated.",
+    "Positional/name/sex startup publication and login gate evidence is static assembly/source tracing, separate from factory/zone instruction vectors.",
+    "No compilation, compiling tests, game application or original/rebuilt input/rendering comparison."
+  ]
+}

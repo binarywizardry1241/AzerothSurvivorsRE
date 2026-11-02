@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "gap_ids": [
+    235
+  ],
+  "queries": [
+    {
+      "procedure": "0x145aa6a10",
+      "evidence_id": "ev_62216b5f19a86dacf2fb97961712c9d5829832652fb91cf65feac19d5d5c1ae7",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "c31c6cf6ffea8cc4e0ab9ec2637fd26bb206d139d333ef210da60b4742000ede",
+      "normalized_text_sha256": "bed3a308b3c669381995ac11b81fe4590831cd180e8f569548fd515c8fcc1e0b",
+      "result": {
+        "path": "runtime/fixgap220229/heroic/save/query-v2/results/76677863f891c0fdcb9570a937b6051a6c47588cdc405ee099e475fb5799fdc4-7a7adca276bf137c.json",
+        "sha256": "3f82565313ae358a53cf2813e51c539c5210d81bd5cb4de737b509af8b421829"
+      },
+      "plan": {
+        "path": "runtime/fixgap220229/heroic/save/plan-v2.json",
+        "sha256": "403d4433c403175f68147dc97622d63af53d35c5d866f82380fe1249ca2c21dd"
+      },
+      "journal": {
+        "path": "runtime/fixgap220229/heroic/save/query-v2/journal.json",
+        "sha256": "9e62d6d8e6cb8c5a6ff1be875865321c5addbd1e4ccaafe83c7f2dbde60cca89"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap220229/heroic/save/code.bin",
+        "sha256": "ec411846fa38b9b0457fc1ccfdde4cd791ee60734940d1918e05c6d508aa1976"
+      },
+      "slice_virtual_address": "0x145aa6a10"
+    },
+    {
+      "procedure": "0x145aaf840",
+      "evidence_id": "ev_766c2b76a438d6a72d95c1dc7187bb03cb0555543f6dcac85d3fbc78fb09d6d4",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "c31c6cf6ffea8cc4e0ab9ec2637fd26bb206d139d333ef210da60b4742000ede",
+      "normalized_text_sha256": "4b46ce69e7367e533ef9a9619a4f01b4255d1302e120b658e404cd88d58bb221",
+      "result": {
+        "path": "runtime/fixgap220229/heroic/save/query-v2/results/736d7aaf424b077616510f3277fc0c9219a3a0d1c0ff218cd9a6d23f6146ef34-88fe2fe154f08d06.json",
+        "sha256": "27723acc9b02582938035f838096ff3c8ff06726ad62e9afd2d0189904562702"
+      },
+      "plan": {
+        "path": "runtime/fixgap220229/heroic/save/plan-v2.json",
+        "sha256": "403d4433c403175f68147dc97622d63af53d35c5d866f82380fe1249ca2c21dd"
+      },
+      "journal": {
+        "path": "runtime/fixgap220229/heroic/save/query-v2/journal.json",
+        "sha256": "9e62d6d8e6cb8c5a6ff1be875865321c5addbd1e4ccaafe83c7f2dbde60cca89"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap220229/heroic/save/code.bin",
+        "sha256": "ec411846fa38b9b0457fc1ccfdde4cd791ee60734940d1918e05c6d508aa1976"
+      },
+      "slice_virtual_address": "0x145aa6a10"
+    }
+  ],
+  "native_ranges": [
+    {
+      "role": "glow-token-parser",
+      "virtual_address": "0x145aabae6",
+      "file_offset": "0x5aaaee6",
+      "byte_count": 1184,
+      "sha256": "602355ec0e4a9a3ed87a3c72494abc0a9086c5f9d1f5358bf826582ea8e23048"
+    },
+    {
+      "role": "glow-writer-fields",
+      "virtual_address": "0x145ab22f4",
+      "file_offset": "0x5ab16f4",
+      "byte_count": 140,
+      "sha256": "9df85d55847ef7a5b2e1fd97d77ec5aee7b50d927e5f9f8760a156bee574b4dc"
+    }
+  ],
+  "writer": {
+    "case_count": 55,
+    "original_instruction_steps": 1375,
+    "format_address": "0x146fc88b6",
+    "cases_sha256": "7b8ab680aa91a4b19820980a678341177169a3f6f488a95089da10dc48dc95d7"
+  },
+  "case_count": 4077,
+  "original_instruction_steps": 456614,
+  "cases_sha256": "a4084e35c9ef25f543326765cdce20134443dcecaff25ef615518e4bb64be549",
+  "source": {
+    "path": "crates/azeroth-survivors-re/src/save/weapon_glow.rs",
+    "sha256": "a02cc6b8c2ada52c6160c94f50832e08350d9d29d9670c46401b2220694493f4"
+  },
+  "contract": "Exactly three fields glow|class|enchant; class is valid u8 domain0xbbe<12; enchant0/803/1894/1900; last valid class removes all prior class rows then appends; locked known selections survive parser and are rechecked by getter. Writer emits class byte and enchant u32 from eight-byte Save rows.",
+  "seams": [
+    "token splitting/outer line iteration",
+    "initial valid-class mask0xbbe and decimal multiplierBL10",
+    "preallocated Vec storage"
+  ],
+  "compilation": "not_run",
+  "application_executed": false,
+  "parity_verified": false
+}

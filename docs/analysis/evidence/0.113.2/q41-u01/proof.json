@@ -1,0 +1,394 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.113.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+    "size_bytes": 141932032
+  },
+  "lead_id": "Q41-U01",
+  "classification_id": "Q41-U01-upgrade-magnitude-145840d78",
+  "gap_ids": [
+    41
+  ],
+  "queue_input": {
+    "path": "docs/analysis/evidence/0.113.2/unknown-recovery.json",
+    "sha256": "d4148a7bcd2feb746bdd36dd5c88dfbe804b5f608edeafe16792841405ac342b"
+  },
+  "selector": {
+    "inputs": [
+      "missing-executable-ranges.tsv.gz"
+    ],
+    "selector": "CSV rows where location == 'declared'",
+    "projection": [
+      "start",
+      "end_exclusive",
+      "byte_count",
+      "location",
+      "category",
+      "sha256"
+    ],
+    "order": "source file row order",
+    "records": 54975,
+    "output_sha256": "779bc81c239105a96029cb0c339810063d5d34e2c54d37bcf033c516a80520e8",
+    "bytes_by_candidate_kind": {
+      "NOP-CC-instruction-candidate": 365310,
+      "mixed-unclassified": 4849350,
+      "uniform-CC-candidate": 2,
+      "uniform-NOP-candidate": 4541
+    },
+    "section": ".text",
+    "bytes": 5219203,
+    "record_groups": {
+      "NOP-CC-instruction-candidate": 42828,
+      "mixed-unclassified": 8395,
+      "uniform-CC-candidate": 2,
+      "uniform-NOP-candidate": 3750
+    }
+  },
+  "selected_row": {
+    "start": "145840d78",
+    "end_exclusive": "145840f24",
+    "byte_count": "428",
+    "location": "declared",
+    "category": "mixed-unclassified",
+    "sha256": "1cd22c78272280aa9d3a6972733b34f1e810a1a743d32a2b9bf10684ddec2f47"
+  },
+  "original_census_bytes_removed": 0,
+  "classification": "AS_ordinary_upgrade_magnitude_switch_cases",
+  "source_change_required": false,
+  "declared_extent": {
+    "va": "0x145840d60",
+    "end_exclusive": "0x145840f61",
+    "sha256": "3f91df8d199dac8e4faeae9eac3ce9b68890f959c68d2e8d930f09cec7720eb5",
+    "assembly": "magnitude.asm",
+    "assembly_sha256": "7ed3854f37c39ebc1f55db468aabbb2a3f56f92ff240178367264416486ec12f"
+  },
+  "relative_table": {
+    "va": "0x147014ff8",
+    "bytes_hex": "80bd82fea0be82fee4bd82fe78be82feb9bd82fe",
+    "targets": [
+      "0x145840d78",
+      "0x145840e98",
+      "0x145840ddc",
+      "0x145840e70",
+      "0x145840db1"
+    ]
+  },
+  "magnitude_tables": [
+    {
+      "name": "POWER",
+      "address": "0x14700bd34",
+      "bytes_hex": "ec51383e0000803e7b14ae3e1f85eb3e6666263f"
+    },
+    {
+      "name": "COOLDOWN",
+      "address": "0x14700bd60",
+      "bytes_hex": "295c8f3dcdcccc3db81e053e7b142e3e1f856b3e"
+    },
+    {
+      "name": "TARGETS",
+      "address": "0x14700bd90",
+      "bytes_hex": "0100000001000000010000000200000002000000"
+    },
+    {
+      "name": "AREA",
+      "address": "0x14700bdc0",
+      "bytes_hex": "8fc2f53dec51383e0000803e3333b33e0000003f"
+    },
+    {
+      "name": "DURATION",
+      "address": "0x14700bdf0",
+      "bytes_hex": "9a99193eae47613e9a99993ecdcccc3e9a99193f"
+    }
+  ],
+  "native_cases": 1050,
+  "result_bits_sha256": "8eb4fe902f5dadac24d822517c2b460d0b256d0cc5c90ed04ddb7b3c2c2bec2a",
+  "current_observed_incoming": [
+    {
+      "from": "14599f060",
+      "to": "145840d60",
+      "type": "UNCONDITIONAL_CALL",
+      "operand": "0",
+      "primary": "true",
+      "source": "DEFAULT"
+    },
+    {
+      "from": "1459a9372",
+      "to": "145840d60",
+      "type": "UNCONDITIONAL_CALL",
+      "operand": "0",
+      "primary": "true",
+      "source": "DEFAULT"
+    },
+    {
+      "from": "1485b9a60",
+      "to": "145840d60",
+      "type": "DATA",
+      "operand": "0",
+      "primary": "true",
+      "source": "DEFAULT"
+    }
+  ],
+  "caller_ranges": [
+    {
+      "va": "0x14599f053",
+      "end_exclusive": "0x14599f06f",
+      "sha256": "493dc3c8b7fad6287e3b73c2f8bec266e622806995b73525fdd37f276f6e3114"
+    },
+    {
+      "va": "0x1459a9362",
+      "end_exclusive": "0x1459a937b",
+      "sha256": "28df7edb430bbc6f2aba02b1404a6f26e9b0714c7c744c14c2132b7a08fa3210"
+    }
+  ],
+  "native_panic_cases": [
+    {
+      "kind": 0,
+      "rarity": 5,
+      "location": "0x14700bd48"
+    },
+    {
+      "kind": 0,
+      "rarity": 255,
+      "location": "0x14700bd48"
+    },
+    {
+      "kind": 0,
+      "rarity": 18446744073709551615,
+      "location": "0x14700bd48"
+    },
+    {
+      "kind": 1,
+      "rarity": 5,
+      "location": "0x14700bd78"
+    },
+    {
+      "kind": 1,
+      "rarity": 255,
+      "location": "0x14700bd78"
+    },
+    {
+      "kind": 1,
+      "rarity": 18446744073709551615,
+      "location": "0x14700bd78"
+    },
+    {
+      "kind": 2,
+      "rarity": 5,
+      "location": "0x14700bda8"
+    },
+    {
+      "kind": 2,
+      "rarity": 255,
+      "location": "0x14700bda8"
+    },
+    {
+      "kind": 2,
+      "rarity": 18446744073709551615,
+      "location": "0x14700bda8"
+    },
+    {
+      "kind": 3,
+      "rarity": 5,
+      "location": "0x14700bdd8"
+    },
+    {
+      "kind": 3,
+      "rarity": 255,
+      "location": "0x14700bdd8"
+    },
+    {
+      "kind": 3,
+      "rarity": 18446744073709551615,
+      "location": "0x14700bdd8"
+    },
+    {
+      "kind": 4,
+      "rarity": 5,
+      "location": "0x14700be08"
+    },
+    {
+      "kind": 4,
+      "rarity": 255,
+      "location": "0x14700be08"
+    },
+    {
+      "kind": 4,
+      "rarity": 18446744073709551615,
+      "location": "0x14700be08"
+    }
+  ],
+  "instruction_sites_executed": 107,
+  "source_refs": [
+    {
+      "path": "crates/azeroth-survivors-re/src/player_abilities/upgrades.rs",
+      "sha256": "c8461806f42e5cc1d8f7fa13f5f1429b21b9bfcdbc8590f362b61c8738f4c56e"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/player_abilities/mod.rs",
+      "sha256": "1df743d5bc8726b2b2462239afc2d7a939a8edea86d84ca31c1245d42fe85d40"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/native_overlay_payload.rs",
+      "sha256": "baa2161f6867654a32e7860f0ad26588801bfdeb8d5eedf4c2af814541671b32"
+    }
+  ],
+  "rea": {
+    "seed_input": {
+      "path": "runtime/q41-u01-0.113.2/seeds.tsv",
+      "sha256": "72f3ae78502e91c21602eb901a522e99b1e906e5632c4743fe78ee006b00b90e"
+    },
+    "seed_rows": [
+      "0x145840d60\tfunction",
+      "0x145840d60\tcode",
+      "0x14599efd0\tfunction",
+      "0x14599efd0\tcode",
+      "0x1459a92a0\tfunction",
+      "0x1459a92a0\tcode",
+      "0x145840d78\tcode",
+      "0x145840e98\tcode",
+      "0x145840ddc\tcode",
+      "0x145840e70\tcode",
+      "0x145840db1\tcode"
+    ],
+    "provider": {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "version": "12.1.4"
+    },
+    "profile_digest": "5a5d022c5301f409169181963a2aec00c9c43a390fda99a3492a404eb98c02c1",
+    "disabled_analyzers": [
+      "Stack",
+      "Decompiler Switch Analysis",
+      "Function ID",
+      "Function Start Search",
+      "Disassemble Entry Points",
+      "Subroutine References",
+      "Data Reference",
+      "Reference",
+      "Non-Returning Functions - Discovered",
+      "Shared Return Calls",
+      "Create Address Tables",
+      "Call Convention ID"
+    ],
+    "plan": {
+      "path": "runtime/q41-u01-0.113.2/rea-pe/plan.json",
+      "sha256": "346d3d0d8bee8fc131a6e5b7c2eb34deed48dcb4950a27d5a8aecee8ab06528f"
+    },
+    "observations": [
+      {
+        "evidence_id": "ev_d4effeb163faec0dae923f9c5772f7fd581feab9fb71f77fd58791444481f767",
+        "operation": "read_bytes",
+        "parameters": {
+          "address": "0x145840d60",
+          "length": 513
+        },
+        "result": {
+          "matched_installed_file_bytes": true
+        },
+        "envelope": {
+          "path": "runtime/q41-u01-0.113.2/rea-pe/003-owner-bytes.json",
+          "sha256": "eea36303cfbbbbaca69561f61b43079c4b0d16e6f77b7b513851fef93884a97f"
+        }
+      },
+      {
+        "evidence_id": "ev_38ac15e4d3f0306065cd902789431c6ac0b05ffcbfb3983a748072b24907f525",
+        "operation": "read_bytes",
+        "parameters": {
+          "address": "0x147014ff8",
+          "length": 20
+        },
+        "result": {
+          "matched_installed_file_bytes": true
+        },
+        "envelope": {
+          "path": "runtime/q41-u01-0.113.2/rea-pe/004-jump-table.json",
+          "sha256": "fddd7d929460a297c156c0a5dc32c864c045f7d23f1b7b72c25409c32ba4f7cc"
+        }
+      },
+      {
+        "evidence_id": "ev_20e1ec603929a1f8fab81e5da63a5eb41d7509c6d9be2e8ce7b0c3b9c55ff650",
+        "operation": "procedure_info",
+        "parameters": {
+          "procedure": "0x145840d60"
+        },
+        "result": {
+          "name": "FUN_145840d60",
+          "entrypoint": "0x145840d60",
+          "basicblock_count": 1,
+          "length": 24,
+          "signature": "undefined FUN_145840d60()",
+          "locals": [],
+          "classification": {
+            "external": false,
+            "thunk": false,
+            "thunk_target": null,
+            "provenance": "ghidra-function-manager"
+          },
+          "body": {
+            "available": true,
+            "provenance": "ghidra-function-body-address-set",
+            "ranges": [
+              {
+                "start": "0x145840d60",
+                "end": "0x145840d77"
+              }
+            ],
+            "total_bytes": 24,
+            "span_bytes": 24,
+            "non_contiguous": false,
+            "contains_entry": true
+          }
+        },
+        "envelope": {
+          "path": "runtime/q41-u01-0.113.2/rea-pe/005-entry-body.json",
+          "sha256": "0a21a9b2205e1f27489d3b4f081ecb463ed4156909d32b321b1098ad4cc42bdd"
+        }
+      },
+      {
+        "evidence_id": "ev_d6baf32b2a8a2eb28659ce5e0c8bfd4db99236a5d72c558b12721b6f5a8b5e6f",
+        "operation": "resolve_containing_procedure",
+        "parameters": {
+          "address": "0x145840d78"
+        },
+        "result": {
+          "query_address": "0x145840d78",
+          "found": false,
+          "procedure": null,
+          "reason": "not_in_procedure"
+        },
+        "envelope": {
+          "path": "runtime/q41-u01-0.113.2/rea-pe/006-case-body.json",
+          "sha256": "bc6ccaf13b6c82f62167b7947d47ba43956e6025f781790f598552e2f7f6a41b"
+        }
+      }
+    ],
+    "unavailable": "Full-PE pseudocode operation returned execution_failure; successful byte/body observations are retained. Raw-fragment decompilation resolves only the dispatch head."
+  },
+  "inputs": [
+    {
+      "path": "runtime/execheck-0.113.2/ghidra-comprehensive/missing-executable-ranges.tsv.gz",
+      "sha256": "ba4a557d6b23548a495220de44978d051ce0729a2417b77f5398de468de4edd1"
+    },
+    {
+      "path": "runtime/execheck-0.113.2/ghidra-comprehensive/references.tsv.gz",
+      "sha256": "2975e8ccd5269f6ce1e926e92b6a8c73bcb2c58778c9f8d0f9a9785b073b11f1"
+    },
+    {
+      "path": "docs/analysis/coverage/full-image-execheck.json",
+      "sha256": "ebae5060940521069357ab552e63b0fded96efdecc7b9372692a03d3bb058252"
+    }
+  ],
+  "limits": [
+    "Selected typed kind domain is 0..4; this entry has no lexical bounds check for a malformed kind byte.",
+    "Synthetic instance/descriptor memory and an intercepted panic entry; no Rust, allocation, live choices or UI execution.",
+    "Fresh code-only seeds decode cases without creating function entries; original census remains immutable.",
+    "This bounded classification identifies no source mismatch and does not close #41 or whole-system/claim recovery.",
+    "No compilation, game, rendered comparison, Windows ABI execution or original/rebuilt parity."
+  ],
+  "generator": {
+    "path": "scripts/check-q41-u01-0.113.2.py",
+    "sha256": "1acce2aab784f4ebe6134eca5a14402544b2b81e74dd2051de2fe551d28ff7eb"
+  }
+}

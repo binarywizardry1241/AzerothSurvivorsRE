@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-16",
+  "target_sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+  "engine": "Unicorn x86-64",
+  "start": "0x1456a6570",
+  "end_exclusive": "0x1456a66c5",
+  "code_sha256": "ec37203cad2676e79ba7ce0acc6f40d5718cfee4c548fb4f2e4f93b2cf7ff4ce",
+  "boundary": "Only the original flag arithmetic executes. Every branch outside the interval aborts. Execution stops before the CreateFileW call instruction; no import/native helper, OS, filesystem, network or process function can execute.",
+  "cases": [
+    {
+      "create": true,
+      "truncate": true,
+      "write": true,
+      "access": 1073741824,
+      "share": 7,
+      "disposition": 4,
+      "flags": 0
+    },
+    {
+      "create": false,
+      "truncate": false,
+      "write": true,
+      "access": 1073741824,
+      "share": 7,
+      "disposition": 3,
+      "flags": 0
+    },
+    {
+      "create": false,
+      "truncate": true,
+      "write": true,
+      "access": 1073741824,
+      "share": 7,
+      "disposition": 5,
+      "flags": 0
+    }
+  ]
+}

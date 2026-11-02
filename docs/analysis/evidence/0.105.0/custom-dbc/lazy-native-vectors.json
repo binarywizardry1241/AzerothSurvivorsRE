@@ -1,0 +1,161 @@
+{
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "cases": [
+    {
+      "kind": "item",
+      "case": "chain-failure-then-success",
+      "opens": 2,
+      "final_state": 0,
+      "subsequent_getter_opens": 0,
+      "final_empty_cached": true
+    },
+    {
+      "kind": "item",
+      "case": "read-failure-then-success",
+      "opens": 2,
+      "final_state": 0,
+      "subsequent_getter_opens": 0,
+      "final_empty_cached": true
+    },
+    {
+      "kind": "item",
+      "case": "header-failure-then-success",
+      "opens": 2,
+      "final_state": 0,
+      "subsequent_getter_opens": 0,
+      "final_empty_cached": true
+    },
+    {
+      "kind": "item",
+      "case": "success-empty-publishes",
+      "paths": [
+        "DBFilesClient\\ItemDisplayInfo.dbc"
+      ],
+      "final_state": 0
+    },
+    {
+      "kind": "item",
+      "case": "publication-moves-all-48-bytes",
+      "consumed_source": true,
+      "final_state": 0
+    },
+    {
+      "kind": "item",
+      "case": "later-success-does-not-replace-first",
+      "consumed_source": false,
+      "final_state": 0
+    },
+    {
+      "kind": "item",
+      "case": "waiter-observes-first-publisher",
+      "waits": 1,
+      "consumed_source": false,
+      "final_state": 0
+    },
+    {
+      "kind": "item",
+      "case": "publisher-wakes-waiters",
+      "wakes": 1,
+      "final_state": 0
+    },
+    {
+      "kind": "item",
+      "case": "forced-publish-recovers-poison",
+      "final_state": 0
+    },
+    {
+      "kind": "item",
+      "case": "concurrent-builder-first-success-wins",
+      "final_state": 0
+    },
+    {
+      "kind": "spell",
+      "case": "chain-failure-then-success",
+      "opens": 2,
+      "final_state": 0,
+      "subsequent_getter_opens": 0,
+      "final_empty_cached": true
+    },
+    {
+      "kind": "spell",
+      "case": "read-failure-then-success",
+      "opens": 2,
+      "final_state": 0,
+      "subsequent_getter_opens": 0,
+      "final_empty_cached": true
+    },
+    {
+      "kind": "spell",
+      "case": "header-failure-then-success",
+      "opens": 2,
+      "final_state": 0,
+      "subsequent_getter_opens": 0,
+      "final_empty_cached": true
+    },
+    {
+      "kind": "spell",
+      "case": "success-empty-publishes",
+      "paths": [
+        "DBFilesClient\\Spell.dbc",
+        "DBFilesClient\\SpellIcon.dbc"
+      ],
+      "final_state": 0
+    },
+    {
+      "kind": "spell",
+      "case": "publication-moves-all-48-bytes",
+      "consumed_source": true,
+      "final_state": 0
+    },
+    {
+      "kind": "spell",
+      "case": "later-success-does-not-replace-first",
+      "consumed_source": false,
+      "final_state": 0
+    },
+    {
+      "kind": "spell",
+      "case": "waiter-observes-first-publisher",
+      "waits": 1,
+      "consumed_source": false,
+      "final_state": 0
+    },
+    {
+      "kind": "spell",
+      "case": "publisher-wakes-waiters",
+      "wakes": 1,
+      "final_state": 0
+    },
+    {
+      "kind": "spell",
+      "case": "forced-publish-recovers-poison",
+      "final_state": 0
+    },
+    {
+      "kind": "spell",
+      "case": "concurrent-builder-first-success-wins",
+      "final_state": 0
+    }
+  ],
+  "seams": [
+    "0x1405d2cc0",
+    "0x143d98020",
+    "0x1458b9140",
+    "0x1458bc2e0",
+    "0x1459ad750",
+    "0x1459b2e30",
+    "0x145a36150",
+    "0x145aa6bf0",
+    "0x145aa7f80",
+    "0x145b6c710",
+    "0x145d4cf00",
+    "OS WaitOnAddress",
+    "OS WakeByAddressAll"
+  ],
+  "limitations": [
+    "Original getter, publication, move-closure and synchronization instructions are replayed using synthetic dictionaries and controlled interleavings. MPQ open/read, dictionary producers, allocator/drop and OS wait/wake calls are explicit seams.",
+    "Raw-slice Ghidra pseudocode uses the generic GCC ABI and omits external code/data; original Win64 instructions determine arguments and state.",
+    "Controlled interleavings establish bounded atomic first-success, waiting and retry contracts; they are not platform threading or MPQ runtime validation.",
+    "No native call/reference completeness, compilation, game rendering or original/rebuilt parity is certified."
+  ]
+}

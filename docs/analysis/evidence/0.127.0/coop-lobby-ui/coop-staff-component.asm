@@ -1,0 +1,18 @@
+0x1403c2f30: push rsi
+0x1403c2f31: sub rsp, 0x30
+0x1403c2f35: add qword ptr [r8], 0x10
+0x1403c2f39: test rdx, rdx
+0x1403c2f3c: je 0x1403c2f64
+0x1403c2f3e: movups xmm0, xmmword ptr [rcx]
+0x1403c2f41: movaps xmmword ptr [rsp + 0x20], xmm0
+0x1403c2f46: lea rcx, [rsp + 0x20]
+0x1403c2f4b: mov rsi, rdx
+0x1403c2f4e: call 0x140177bd0
+0x1403c2f53: mov rcx, rsi
+0x1403c2f56: call 0x1450a6fb0
+0x1403c2f5b: mov rcx, rsi
+0x1403c2f5e: call 0x1450a6f60
+0x1403c2f63: nop 
+0x1403c2f64: add rsp, 0x30
+0x1403c2f68: pop rsi
+0x1403c2f69: ret 

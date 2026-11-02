@@ -1,0 +1,405 @@
+{
+  "target_version": "0.97.2",
+  "target_sha256": "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589",
+  "target_executed": false,
+  "original_function": {
+    "va": "0x145531cb0",
+    "end_exclusive": "0x145531fb8",
+    "file_offset": "0x55310b0",
+    "byte_count": 776,
+    "sha256": "95fd023e30870a78ec3779177086da4458b562dc7a425825d5dc2408a045d4e0"
+  },
+  "boundary": "selected PE RUNTIME_FUNCTION",
+  "rea_evidence": {
+    "evidence_id": "ev_e1e2e5cb7502849ccfc7ede6ea9b1f274ec5904017d202e2869823621ab28fdb",
+    "operation": "analyze_function",
+    "parameters": {
+      "procedure": "0x145531cb0"
+    },
+    "subject": {
+      "name": "145531cb0.bin",
+      "digest": {
+        "sha256": "95fd023e30870a78ec3779177086da4458b562dc7a425825d5dc2408a045d4e0"
+      },
+      "local_path": "runtime/enemies-relocation-0.97.2/145531cb0.bin",
+      "format": "raw-binary",
+      "architecture": "x86_64"
+    },
+    "provider": {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "version": "12.1.4"
+    },
+    "analysis_profile": {
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "parameters": {
+        "target_kind": "executable",
+        "target_format": "raw-binary",
+        "architecture": "x86_64",
+        "available_architectures": [
+          "x86_64"
+        ],
+        "import_mode": "ephemeral-source-immutable",
+        "annotation_policy": "atomic-function-entry-metadata-v1",
+        "load_image_observations": "source-mappings-entry-context-v2",
+        "function_body_evidence": "complete-inclusive-ranges-v1",
+        "function_references": "complete-body-and-entry-reference-manager-v2",
+        "call_relationship_coverage": "function-body-call-coverage-v5",
+        "function_dossier_coverage": "observed-facets-and-call-relationships-v1",
+        "string_inventory_evidence": "defined-data-coverage-v1",
+        "location_resolution": "explicit-address-exact-entry-symbol-first-v3",
+        "procedure_file_offset_resolution": "address-first-unique-target-source-mapping-v2",
+        "instruction_flow_evidence": "decoded-return-pcode-v1",
+        "instruction_references": "exact-address-incoming-v1",
+        "function_boundary_observations": "ghidra-function-boundary-limitations-v3",
+        "no_return_repair": "returning-imports-decoded-return-v2",
+        "process_launch": "inspected-jvm-launch-support-v1",
+        "load_image_evidence": "independent-raw-mapping-context-v4",
+        "jump_table_evidence": "typed-case-default-blocks-v1",
+        "decompiler_jump_loads": true,
+        "loader": "BinaryLoader",
+        "language_id": "x86:LE:64:default",
+        "compiler_spec_id": "gcc",
+        "language_selection": "caller-supplied-v1",
+        "entry_point": "0x145531cb0",
+        "entry_seed": "external-entry-and-function-before-analysis-v1",
+        "analyzer_preset": "ghidra-default"
+      },
+      "digest": "91ad60eca61adb47b9effea11cad25111379a7046784ec3da50340c39bc7a046"
+    },
+    "limitations": [
+      "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+      "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+      "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+      "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+      "References cover the complete Ghidra function-body AddressSet and exact entry. Dossier incoming edges omit sources owned by that function; procedure_references also retains those internal edges.",
+      "The dossier combines Ghidra FunctionManager, Listing, ReferenceManager, BasicBlockModel, and decompiler observations; provider-specific pseudocode and assembly are not cross-provider text invariants.",
+      "Resolved reference metadata identifies computed, indirect, external, call, jump, and data edges; unresolved targetless flows remain unknown, and function classifications distinguish thunks and externals.",
+      "Synthetic Ghidra entry-point references without actionable memory sources are omitted.",
+      "The Java bridge serializes one function request per Program and lets each decompilation run until it completes or the caller cancels.",
+      "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state.",
+      "Headerless raw-binary analysis uses the caller-supplied architecture and entry address; file offset 0 is mapped at that address. Headers are not discovered from file bytes.",
+      "Little-endian generic Ghidra languages are used for x86, x86_64, arm, arm64, and NMOS 6502. Big-endian, Thumb-only, Cortex-M, 65C02, 65816, and other processor variants are unsupported in this increment.",
+      "Static analysis does not emulate reset vectors, memory-mapped I/O, or firmware boot sequences."
+    ],
+    "relationship_coverage": {
+      "status": "partial",
+      "limitations": [
+        "Ghidra's callee inventory omits targets of 4 call reference(s) or decoded call(s) without destinations."
+      ],
+      "limited_directions": [
+        "callees"
+      ],
+      "diagnostics": [
+        "Only resolved Ghidra call references are returned; unresolved computed or indirect calls remain unknown, while function classifications distinguish thunks and externals."
+      ]
+    },
+    "retention": "Curated native facets; full original Evidence remains in the exported runtime bundle.",
+    "full_record_canonical_sha256": "6ea37f88ddeb4e1c94f9a4bed989a1427aacc5f9f702d347761ca763e27ff9c5",
+    "normalized_result": {
+      "procedure": {
+        "address": "0x145531cb0",
+        "name": "entry",
+        "classification": {
+          "external": false,
+          "thunk": false,
+          "thunk_target": null,
+          "provenance": "ghidra-function-manager"
+        },
+        "body": {
+          "available": true,
+          "provenance": "ghidra-function-body-address-set",
+          "ranges": [
+            {
+              "start": "0x145531cb0",
+              "end": "0x145531fb7"
+            }
+          ],
+          "total_bytes": 776,
+          "span_bytes": 776,
+          "non_contiguous": false,
+          "contains_entry": true
+        },
+        "signature": "undefined entry()",
+        "locals": [
+          {
+            "description": "undefined local_48 @ Stack[-0x48]:1",
+            "provenance": "ghidra-function-database"
+          },
+          {
+            "description": "undefined1[16] local_58 @ Stack[-0x58]:16",
+            "provenance": "ghidra-function-database"
+          },
+          {
+            "description": "undefined1[16] local_68 @ Stack[-0x68]:16",
+            "provenance": "ghidra-function-database"
+          },
+          {
+            "description": "undefined1[16] local_78 @ Stack[-0x78]:16",
+            "provenance": "ghidra-function-database"
+          },
+          {
+            "description": "undefined8 local_80 @ Stack[-0x80]:8",
+            "provenance": "ghidra-function-database"
+          },
+          {
+            "description": "undefined8 local_88 @ Stack[-0x88]:8",
+            "provenance": "ghidra-function-database"
+          },
+          {
+            "description": "undefined8 local_90 @ Stack[-0x90]:8",
+            "provenance": "ghidra-function-database"
+          },
+          {
+            "description": "undefined8 local_98 @ Stack[-0x98]:8",
+            "provenance": "ghidra-function-database"
+          },
+          {
+            "description": "undefined8 local_a0 @ Stack[-0xa0]:8",
+            "provenance": "ghidra-function-database"
+          },
+          {
+            "description": "undefined8 local_a8 @ Stack[-0xa8]:8",
+            "provenance": "ghidra-function-database"
+          }
+        ]
+      },
+      "assembly": [
+        "0x145531cb0: PUSH RBP",
+        "0x145531cb1: PUSH R15",
+        "0x145531cb3: PUSH R14",
+        "0x145531cb5: PUSH R13",
+        "0x145531cb7: PUSH R12",
+        "0x145531cb9: PUSH RSI",
+        "0x145531cba: PUSH RDI",
+        "0x145531cbb: PUSH RBX",
+        "0x145531cbc: SUB RSP, 0x88",
+        "0x145531cc3: LEA RBP, [RSP + 0x80]",
+        "0x145531ccb: MOVAPS xmmword ptr [RBP + -0x10], XMM8",
+        "0x145531cd0: MOVAPS xmmword ptr [RBP + -0x20], XMM7",
+        "0x145531cd4: MOVAPS xmmword ptr [RBP + -0x30], XMM6",
+        "0x145531cd8: MOV qword ptr [RBP + -0x38], -0x2",
+        "0x145531ce0: MOV RAX, RCX",
+        "0x145531ce3: MOV RBX, qword ptr [RDX + 0x20]",
+        "0x145531ce7: TEST RBX, RBX",
+        "0x145531cea: JZ 0x145531de6",
+        "0x145531cf0: DEC RBX",
+        "0x145531cf3: MOV qword ptr [RDX + 0x20], RBX",
+        "0x145531cf7: MOV R15, qword ptr [RDX]",
+        "0x145531cfa: MOV R14, qword ptr [RDX + 0x8]",
+        "0x145531cfe: CMP R15, R14",
+        "0x145531d01: JZ 0x145531de6",
+        "0x145531d07: MOV R12, qword ptr [RDX + 0x10]",
+        "0x145531d0b: MOV R13, qword ptr [RDX + 0x18]",
+        "0x145531d0f: ADD R15, 0x160",
+        "0x145531d16: XORPS XMM0, XMM0",
+        "0x145531d19: MOVSS XMM6, dword ptr [0x1458eb480]",
+        "0x145531d21: MOVSS XMM7, dword ptr [0x14670e5a4]",
+        "0x145531d29: JMP 0x145531d9a",
+        "0x145531d2b: MOVSS XMM2, dword ptr [R12]",
+        "0x145531d31: SUBSS XMM2, dword ptr [R15 + -0x3c]",
+        "0x145531d37: DIVSS XMM2, XMM1",
+        "0x145531d3b: XORPS XMM1, XMM1",
+        "0x145531d3e: MAXSS XMM1, XMM2",
+        "0x145531d42: MOVAPS XMM2, XMM6",
+        "0x145531d45: MINSS XMM2, XMM1",
+        "0x145531d49: MOVSD XMM3, qword ptr [R15 + -0x54]",
+        "0x145531d4f: MOVSD XMM4, qword ptr [R15 + -0x48]",
+        "0x145531d55: SUBPS XMM4, XMM3",
+        "0x145531d58: MOVSLDUP XMM1, XMM2",
+        "0x145531d5c: MULPS XMM1, XMM4",
+        "0x145531d5f: ADDPS XMM1, XMM3",
+        "0x145531d62: MOVSD XMM2, qword ptr [R13]",
+        "0x145531d68: SUBPS XMM1, XMM2",
+        "0x145531d6b: MULPS XMM1, XMM1",
+        "0x145531d6e: MOVSHDUP XMM2, XMM1",
+        "0x145531d72: ADDSS XMM2, XMM1",
+        "0x145531d76: UCOMISS XMM2, XMM7",
+        "0x145531d79: JA 0x145531e1e",
+        "0x145531d7f: NOP",
+        "0x145531d80: LEA RCX, [R15 + -0x160]",
+        "0x145531d87: ADD R15, 0x160",
+        "0x145531d8e: ADD RCX, 0x160",
+        "0x145531d95: CMP RCX, R14",
+        "0x145531d98: JZ 0x145531de6",
+        "0x145531d9a: CMP byte ptr [R15 + -0xf8], 0x0",
+        "0x145531da2: JNZ 0x145531d80",
+        "0x145531da4: CMP qword ptr [R15 + -0xd0], 0x0",
+        "0x145531dac: JZ 0x145531d80",
+        "0x145531dae: CMP qword ptr [R15 + -0x148], -0x1",
+        "0x145531db6: JNZ 0x145531d80",
+        "0x145531db8: CMP qword ptr [R15 + -0x120], -0x1",
+        "0x145531dc0: JNZ 0x145531d80",
+        "0x145531dc2: CMP byte ptr [R15 + -0xe8], 0x0",
+        "0x145531dca: JNZ 0x145531d80",
+        "0x145531dcc: MOVSS XMM1, dword ptr [R15 + -0x38]",
+        "0x145531dd2: UCOMISS XMM0, XMM1",
+        "0x145531dd5: JC 0x145531d2b",
+        "0x145531ddb: MOVSD XMM1, qword ptr [R15 + -0x48]",
+        "0x145531de1: JMP 0x145531d62",
+        "0x145531de6: MOV qword ptr [RAX], 0x0",
+        "0x145531ded: MOV qword ptr [RAX + 0x8], 0x8",
+        "0x145531df5: MOV qword ptr [RAX + 0x10], 0x0",
+        "0x145531dfd: MOVAPS XMM6, xmmword ptr [RBP + -0x30]",
+        "0x145531e01: MOVAPS XMM7, xmmword ptr [RBP + -0x20]",
+        "0x145531e05: MOVAPS XMM8, xmmword ptr [RBP + -0x10]",
+        "0x145531e0a: ADD RSP, 0x88",
+        "0x145531e11: POP RBX",
+        "0x145531e12: POP RDI",
+        "0x145531e13: POP RSI",
+        "0x145531e14: POP R12",
+        "0x145531e16: POP R13",
+        "0x145531e18: POP R14",
+        "0x145531e1a: POP R15",
+        "0x145531e1c: POP RBP",
+        "0x145531e1d: RET",
+        "0x145531e1e: MOV RDI, RAX",
+        "0x145531e21: MOV qword ptr [RDX], R15",
+        "0x145531e24: MOV RSI, qword ptr [R15 + -0xd8]",
+        "0x145531e2b: CALL 0x140002200",
+        "0x145531e30: MOV ECX, 0x20",
+        "0x145531e35: MOV EDX, 0x8",
+        "0x145531e3a: CALL 0x1400021c0",
+        "0x145531e3f: TEST RAX, RAX",
+        "0x145531e42: JZ 0x145531fa7",
+        "0x145531e48: MOV RCX, RAX",
+        "0x145531e4b: MOV qword ptr [RAX], RSI",
+        "0x145531e4e: MOV qword ptr [RBP + -0x50], 0x4",
+        "0x145531e56: MOV qword ptr [RBP + -0x48], RAX",
+        "0x145531e5a: MOV qword ptr [RBP + -0x40], 0x1",
+        "0x145531e62: TEST RBX, RBX",
+        "0x145531e65: MOV RAX, RDI",
+        "0x145531e68: JZ 0x145531f8b",
+        "0x145531e6e: MOV ESI, 0x1",
+        "0x145531e73: XORPS XMM8, XMM8",
+        "0x145531e77: CMP R15, R14",
+        "0x145531e7a: JZ 0x145531f8b",
+        "0x145531e80: DEC RBX",
+        "0x145531e83: ADD R15, 0x160",
+        "0x145531e8a: JMP 0x145531ebf",
+        "0x145531e8c: MOVSD XMM0, qword ptr [R15 + -0x48]",
+        "0x145531e92: MOVSD XMM1, qword ptr [R13]",
+        "0x145531e98: SUBPS XMM0, XMM1",
+        "0x145531e9b: MULPS XMM0, XMM0",
+        "0x145531e9e: MOVSHDUP XMM1, XMM0",
+        "0x145531ea2: ADDSS XMM1, XMM0",
+        "0x145531ea6: UCOMISS XMM1, XMM7",
+        "0x145531ea9: JA 0x145531f39",
+        "0x145531eaf: CMP R15, R14",
+        "0x145531eb2: LEA R15, [R15 + 0x160]",
+        "0x145531eb9: JZ 0x145531f8b",
+        "0x145531ebf: CMP byte ptr [R15 + -0xf8], 0x0",
+        "0x145531ec7: JNZ 0x145531eaf",
+        "0x145531ec9: CMP qword ptr [R15 + -0xd0], 0x0",
+        "0x145531ed1: JZ 0x145531eaf",
+        "0x145531ed3: CMP qword ptr [R15 + -0x148], -0x1",
+        "0x145531edb: JNZ 0x145531eaf",
+        "0x145531edd: CMP qword ptr [R15 + -0x120], -0x1",
+        "0x145531ee5: JNZ 0x145531eaf",
+        "0x145531ee7: CMP byte ptr [R15 + -0xe8], 0x0",
+        "0x145531eef: JNZ 0x145531eaf",
+        "0x145531ef1: MOVSS XMM0, dword ptr [R15 + -0x38]",
+        "0x145531ef7: UCOMISS XMM8, XMM0",
+        "0x145531efb: JNC 0x145531e8c",
+        "0x145531efd: MOVSS XMM1, dword ptr [R12]",
+        "0x145531f03: SUBSS XMM1, dword ptr [R15 + -0x3c]",
+        "0x145531f09: DIVSS XMM1, XMM0",
+        "0x145531f0d: XORPS XMM0, XMM0",
+        "0x145531f10: MAXSS XMM0, XMM1",
+        "0x145531f14: MOVAPS XMM1, XMM6",
+        "0x145531f17: MINSS XMM1, XMM0",
+        "0x145531f1b: MOVSD XMM2, qword ptr [R15 + -0x54]",
+        "0x145531f21: MOVSD XMM3, qword ptr [R15 + -0x48]",
+        "0x145531f27: SUBPS XMM3, XMM2",
+        "0x145531f2a: MOVSLDUP XMM0, XMM1",
+        "0x145531f2e: MULPS XMM0, XMM3",
+        "0x145531f31: ADDPS XMM0, XMM2",
+        "0x145531f34: JMP 0x145531e92",
+        "0x145531f39: MOV RAX, qword ptr [R15 + -0xd8]",
+        "0x145531f40: MOV qword ptr [RBP + -0x58], RAX",
+        "0x145531f44: CMP RSI, qword ptr [RBP + -0x50]",
+        "0x145531f48: JNZ 0x145531f70",
+        "0x145531f4a: MOV qword ptr [RSP + 0x20], 0x8",
+        "0x145531f53: MOV R8D, 0x1",
+        "0x145531f59: MOV R9D, 0x8",
+        "0x145531f5f: LEA RCX, [RBP + -0x50]",
+        "0x145531f63: MOV RDX, RSI",
+        "0x145531f66: CALL 0x145757d40",
+        "0x145531f6b: NOP",
+        "0x145531f6c: MOV RCX, qword ptr [RBP + -0x48]",
+        "0x145531f70: MOV RAX, qword ptr [RBP + -0x58]",
+        "0x145531f74: MOV qword ptr [RCX + RSI*0x8], RAX",
+        "0x145531f78: INC RSI",
+        "0x145531f7b: MOV qword ptr [RBP + -0x40], RSI",
+        "0x145531f7f: TEST RBX, RBX",
+        "0x145531f82: MOV RAX, RDI",
+        "0x145531f85: JNZ 0x145531e77",
+        "0x145531f8b: MOV RCX, qword ptr [RBP + -0x40]",
+        "0x145531f8f: MOV qword ptr [RAX + 0x10], RCX",
+        "0x145531f93: MOV RCX, qword ptr [RBP + -0x50]",
+        "0x145531f97: MOV qword ptr [RAX], RCX",
+        "0x145531f9a: MOV RCX, qword ptr [RBP + -0x48]",
+        "0x145531f9e: MOV qword ptr [RAX + 0x8], RCX",
+        "0x145531fa2: JMP 0x145531dfd",
+        "0x145531fa7: MOV ECX, 0x8",
+        "0x145531fac: MOV EDX, 0x20",
+        "0x145531fb1: CALL 0x1458e721b",
+        "0x145531fb6: UD2"
+      ],
+      "pseudocode": "\n/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */\n\nvoid entry(undefined8 param_1,undefined8 param_2,long *param_3,undefined8 *param_4)\n\n{\n  undefined8 uVar1;\n  long lVar2;\n  float *pfVar3;\n  undefined8 *puVar4;\n  code *pcVar5;\n  undefined8 *puVar6;\n  long lVar7;\n  long lVar8;\n  undefined8 uVar9;\n  long lVar10;\n  long lVar11;\n  float fVar12;\n  float fVar13;\n  float fVar14;\n  float fVar15;\n  float fVar16;\n  float fVar17;\n  long local_88;\n  \n  if (param_3[4] != 0) {\n    lVar8 = param_3[4] + -1;\n    param_3[4] = lVar8;\n    fVar17 = _DAT_14670e5a4;\n    fVar16 = _DAT_1458eb480;\n    lVar2 = param_3[1];\n    if (*param_3 != lVar2) {\n      pfVar3 = (float *)param_3[2];\n      puVar4 = (undefined8 *)param_3[3];\n      lVar11 = *param_3;\n      do {\n        lVar10 = lVar11 + 0x160;\n        if ((((*(char *)(lVar11 + 0x68) == '\\0') && (*(long *)(lVar11 + 0x90) != 0)) &&\n            (*(long *)(lVar11 + 0x18) == -1)) &&\n           ((*(long *)(lVar11 + 0x40) == -1 && (*(char *)(lVar11 + 0x78) == '\\0')))) {\n          if (0.0 < *(float *)(lVar11 + 0x128)) {\n            fVar14 = (*pfVar3 - *(float *)(lVar11 + 0x124)) / *(float *)(lVar11 + 0x128);\n            fVar12 = 0.0;\n            if (0.0 <= fVar14) {\n              fVar12 = fVar14;\n            }\n            fVar14 = _DAT_1458eb480;\n            if (fVar12 <= _DAT_1458eb480) {\n              fVar14 = fVar12;\n            }\n            fVar12 = (float)*(undefined8 *)(lVar11 + 0x10c);\n            fVar13 = (float)((ulong)*(undefined8 *)(lVar11 + 0x10c) >> 0x20);\n            uVar9 = CONCAT44(fVar14 * ((float)((ulong)*(undefined8 *)(lVar11 + 0x118) >> 0x20) -\n                                      fVar13) + fVar13,\n                             fVar14 * ((float)*(undefined8 *)(lVar11 + 0x118) - fVar12) + fVar12);\n          }\n          else {\n            uVar9 = *(undefined8 *)(lVar11 + 0x118);\n          }\n          uVar1 = *puVar4;\n          fVar12 = (float)uVar9 - (float)uVar1;\n          fVar14 = (float)((ulong)uVar9 >> 0x20) - (float)((ulong)uVar1 >> 0x20);\n          if (_DAT_14670e5a4 < fVar14 * fVar14 + fVar12 * fVar12) {\n            *param_3 = lVar10;\n            uVar9 = *(undefined8 *)(lVar11 + 0x88);\n            func_0x000140002200();\n            puVar6 = (undefined8 *)func_0x0001400021c0();\n            if (puVar6 == (undefined8 *)0x0) {\n              func_0x0001458e721b();\n                    /* WARNING: Does not return */\n              pcVar5 = (code *)invalidInstructionException();\n              (*pcVar5)();\n            }\n            *puVar6 = uVar9;\n            local_88 = 1;\n            if (lVar8 == 0) goto LAB_145531f8b;\n            fVar12 = 0.0;\n            goto LAB_145531e77;\n          }\n        }\n        lVar7 = lVar11 + 0x160;\n        lVar11 = lVar10;\n      } while (lVar7 != lVar2);\n    }\n  }\n  *param_4 = 0;\n  param_4[1] = 8;\n  param_4[2] = 0;\n  return;\nLAB_145531e77:\n  if (lVar10 != lVar2) {\n    lVar8 = lVar8 + -1;\n    lVar11 = lVar10;\n    do {\n      lVar10 = lVar11 + 0x160;\n      if (((*(char *)(lVar11 + 0x68) == '\\0') && (*(long *)(lVar11 + 0x90) != 0)) &&\n         ((*(long *)(lVar11 + 0x18) == -1 &&\n          ((*(long *)(lVar11 + 0x40) == -1 && (*(char *)(lVar11 + 0x78) == '\\0')))))) {\n        if (*(float *)(lVar11 + 0x128) <= fVar12) {\n          uVar9 = *(undefined8 *)(lVar11 + 0x118);\n        }\n        else {\n          fVar13 = (*pfVar3 - *(float *)(lVar11 + 0x124)) / *(float *)(lVar11 + 0x128);\n          fVar14 = 0.0;\n          if (0.0 <= fVar13) {\n            fVar14 = fVar13;\n          }\n          fVar13 = fVar16;\n          if (fVar14 <= fVar16) {\n            fVar13 = fVar14;\n          }\n          fVar14 = (float)*(undefined8 *)(lVar11 + 0x10c);\n          fVar15 = (float)((ulong)*(undefined8 *)(lVar11 + 0x10c) >> 0x20);\n          uVar9 = CONCAT44(fVar13 * ((float)((ulong)*(undefined8 *)(lVar11 + 0x118) >> 0x20) -\n                                    fVar15) + fVar15,\n                           fVar13 * ((float)*(undefined8 *)(lVar11 + 0x118) - fVar14) + fVar14);\n        }\n        uVar1 = *puVar4;\n        fVar14 = (float)uVar9 - (float)uVar1;\n        fVar13 = (float)((ulong)uVar9 >> 0x20) - (float)((ulong)uVar1 >> 0x20);\n        if (fVar17 < fVar13 * fVar13 + fVar14 * fVar14) goto LAB_145531f39;\n      }\n      lVar11 = lVar10;\n      if (lVar10 == lVar2) break;\n    } while( true );\n  }\n  goto LAB_145531f8b;\nLAB_145531f39:\n  uVar9 = *(undefined8 *)(lVar11 + 0x88);\n  if (local_88 == 4) {\n    func_0x000145757d40();\n  }\n  puVar6[local_88] = uVar9;\n  local_88 = local_88 + 1;\n  if (lVar8 == 0) {\nLAB_145531f8b:\n    param_4[2] = local_88;\n    *param_4 = 4;\n    param_4[1] = puVar6;\n    return;\n  }\n  goto LAB_145531e77;\n}\n\n",
+      "facet_availability": {
+        "pseudocode": {
+          "available": true
+        },
+        "assembly": {
+          "available": true
+        },
+        "comments": {
+          "available": true
+        },
+        "callers": {
+          "available": true
+        },
+        "callees": {
+          "available": true
+        },
+        "references": {
+          "available": true
+        },
+        "strings_names": {
+          "available": true
+        },
+        "cfg": {
+          "available": true
+        }
+      },
+      "limitations": [
+        "Unresolved computed or indirect flows without target addresses are not represented as reference edges.",
+        "Thunk and external classifications are Ghidra FunctionManager observations; they do not resolve targetless calls.",
+        "Pseudocode and assembly are Ghidra-specific representations, not original source or Hopper-equivalent text.",
+        "Synthetic Ghidra entry-point references without actionable memory sources are omitted."
+      ]
+    },
+    "omitted_normalized_facets": [
+      "basic_blocks",
+      "callees",
+      "callers",
+      "comments",
+      "incoming_references",
+      "native_api",
+      "native_value_flow",
+      "outgoing_references",
+      "referenced_names",
+      "referenced_strings",
+      "unresolved_calls"
+    ]
+  },
+  "limitations": [
+    "Static Ghidra analysis is not original source or runtime parity.",
+    "Unchanged raw slice omits callees/data; generic inferred ABI types require Win64 instruction verification."
+  ]
+}

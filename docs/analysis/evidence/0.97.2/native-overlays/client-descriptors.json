@@ -1,0 +1,223 @@
+{
+  "target_sha256": "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589",
+  "target_executed": false,
+  "ranges": [
+    {
+      "role": "normal-rest-state",
+      "address": "0x145492353",
+      "end_exclusive": "0x14549240a",
+      "file_offset": "0x5491753",
+      "byte_count": 183,
+      "sha256": "fcd871eec2895905a481b0343a5f3fa45113b979947795074c214c3d19315945"
+    },
+    {
+      "role": "player-faction",
+      "address": "0x145491906",
+      "end_exclusive": "0x1454919c3",
+      "file_offset": "0x5490d06",
+      "byte_count": 189,
+      "sha256": "91f3ee3178601399479391f032327204a856ea037f657e4bbc97adbf46745e25"
+    },
+    {
+      "role": "ordinary-actor-level",
+      "address": "0x1454c0820",
+      "end_exclusive": "0x1454c086f",
+      "file_offset": "0x54bfc20",
+      "byte_count": 79,
+      "sha256": "0ee76bc739cf0f5f52e18ebc708453f132e332efb9c760fa2597d1d0a87982f3"
+    },
+    {
+      "role": "ordinary-actor-faction-flags",
+      "address": "0x1454c0ce0",
+      "end_exclusive": "0x1454c0eed",
+      "file_offset": "0x54c00e0",
+      "byte_count": 525,
+      "sha256": "243a76ce37e5e135144a347964bce208cc85e3015fa946ea4e0f61982827105a"
+    },
+    {
+      "role": "racial-initial-instance",
+      "address": "0x14549c169",
+      "end_exclusive": "0x14549c1b2",
+      "file_offset": "0x549b569",
+      "byte_count": 73,
+      "sha256": "147f436bcec899c7128019970776ba509750f2f6f30b4279d2cc19efc4ad01b4"
+    },
+    {
+      "role": "racial-scheduler",
+      "address": "0x14549ed8b",
+      "end_exclusive": "0x14549efd3",
+      "file_offset": "0x549e18b",
+      "byte_count": 584,
+      "sha256": "cb5d9935cc44a168db4738db9c11b5dc0487817656a0f3996697b4a39adcde7c"
+    },
+    {
+      "role": "racial-retry",
+      "address": "0x14549f4e1",
+      "end_exclusive": "0x14549f4ec",
+      "file_offset": "0x549e8e1",
+      "byte_count": 11,
+      "sha256": "13880ca1ed96e7a100e9dd73a1772bf489cddfcdd3c140af4cc4ffbc9501c2b7"
+    },
+    {
+      "role": "ordinary-cooldown-publication",
+      "address": "0x14549ec0f",
+      "end_exclusive": "0x14549ed8b",
+      "file_offset": "0x549e00f",
+      "byte_count": 380,
+      "sha256": "e55f2de1864d08f92874c2f464ee4eafac1e66565f3052cb440286e59d95ecb6"
+    }
+  ],
+  "player": {
+    "rest_state": {
+      "field": 194,
+      "byte": 3,
+      "value": 2,
+      "low_byte": "actual facial hair"
+    },
+    "faction": {
+      "field": 35,
+      "race_table": "0x1469acab8",
+      "human_fallback": 1
+    },
+    "experience_fields": {
+      "current": 716,
+      "next_level": 717
+    },
+    "rest_experience_pool": {
+      "field": 1175,
+      "status": "No explicit write in145491140; zero omission is not an independently recovered write."
+    }
+  },
+  "ordinary_creature": {
+    "owner": "0x1454c0820",
+    "fields": {
+      "object_type": [
+        2,
+        9
+      ],
+      "faction": [
+        35,
+        14
+      ],
+      "bytes0": [
+        36,
+        256
+      ],
+      "unit_flags": [
+        46,
+        0
+      ],
+      "base_attack_time": [
+        126,
+        2000
+      ],
+      "offhand_attack_time": [
+        127,
+        2000
+      ]
+    },
+    "level": {
+      "field": 34,
+      "formula": "min(wrapping_u32(run_level + 3*definition_flag4c),63)",
+      "callsite": "1454c24f8..1454c252a passes definition+4c unchanged"
+    },
+    "scope_limit": "Boss/guardian values require their actual callsites; this is the ordinary actor creator."
+  },
+  "racial": {
+    "action_slot_zero_based": 11,
+    "initial_instance": "RuntimeInstance::learned: rank1, remaining.5, neutral multipliers/upgrades",
+    "scheduler": {
+      "order": "after ordinary auto-casts, before passive/pending/ground/totem owners",
+      "ready": "remaining-=delta; cast when zero>=remaining",
+      "failure_retry": 0.5,
+      "success": "max(.25, (((base_cooldown*1.4)*cooldown_multiplier)*talent_cooldown_multiplier)*global_cooldown)",
+      "ordinary_after_success_proc": false,
+      "kind11_special_case": false
+    },
+    "races": [
+      {
+        "race_id": 1,
+        "key": "perception",
+        "spell_id": 20600,
+        "base_cooldown": 30.0,
+        "icon": "Spell_Nature_Sleep",
+        "faction_template": 1,
+        "definition_address": "0x14671ca38"
+      },
+      {
+        "race_id": 2,
+        "key": "blood_fury",
+        "spell_id": 23234,
+        "base_cooldown": 40.0,
+        "icon": "Racial_Orc_BerserkerStrength",
+        "faction_template": 2,
+        "definition_address": "0x14671cab0"
+      },
+      {
+        "race_id": 3,
+        "key": "stoneform",
+        "spell_id": 20594,
+        "base_cooldown": 45.0,
+        "icon": "Spell_Shadow_UnholyStrength",
+        "faction_template": 3,
+        "definition_address": "0x14671cb28"
+      },
+      {
+        "race_id": 4,
+        "key": "shadowmeld",
+        "spell_id": 20580,
+        "base_cooldown": 75.0,
+        "icon": "Ability_Ambush",
+        "faction_template": 4,
+        "definition_address": "0x14671cba0"
+      },
+      {
+        "race_id": 5,
+        "key": "will_of_the_forsaken",
+        "spell_id": 7744,
+        "base_cooldown": 60.0,
+        "icon": "Spell_Shadow_RaiseDead",
+        "faction_template": 5,
+        "definition_address": "0x14671cc18"
+      },
+      {
+        "race_id": 6,
+        "key": "war_stomp",
+        "spell_id": 20549,
+        "base_cooldown": 15.0,
+        "icon": "Ability_WarStomp",
+        "faction_template": 6,
+        "definition_address": "0x14671cc90"
+      },
+      {
+        "race_id": 7,
+        "key": "escape_artist",
+        "spell_id": 20589,
+        "base_cooldown": 20.0,
+        "icon": "Ability_Rogue_Trip",
+        "faction_template": 115,
+        "definition_address": "0x14671cd08"
+      },
+      {
+        "race_id": 8,
+        "key": "berserking",
+        "spell_id": 26635,
+        "base_cooldown": 35.0,
+        "icon": "Racial_Troll_Berserk",
+        "faction_template": 116,
+        "definition_address": "0x14671cd80"
+      }
+    ]
+  },
+  "limitations": [
+    "Static field bindings are not runtime or targeting parity.",
+    "Do not infer unwritten descriptor fields or generalize an ordinary actor constructor to other owners."
+  ],
+  "ordinary_cooldown": {
+    "owner": "14549ec0f..14549ed8b",
+    "publication": "success only; final min-preserving-NaN scheduled remaining, truncated saturated u32 milliseconds",
+    "failure_retry": 0.2,
+    "initial_timer": 0.5,
+    "retry_and_initial_timer_published": false
+  }
+}

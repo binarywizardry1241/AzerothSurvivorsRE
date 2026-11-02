@@ -1,0 +1,902 @@
+{
+  "target_sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+  "source_assets": {
+    "crates/azeroth-survivors-re/assets/addon-spell-metadata-0.112.0.json": "667f487a0bc6f47e46254be9ed690820723184a1133811510463957b5cb4dbda",
+    "crates/azeroth-survivors-re/assets/addon-zones-0.105.0.json": "32474102227808e129077681bb7688b50120b6d45b86b453bf06475da44d241e",
+    "crates/azeroth-survivors-re/assets/addon-summons-0.112.0.json": "a554cb3f66abdb598ef2c077c68f0b573171b293f601f4ba052a560802c033a5",
+    "crates/azeroth-survivors-re/assets/talents.json": "010903233c2376de79d1c892d8ef03eb17548f0b8cece32dffdbad7a5ad2df32",
+    "crates/azeroth-survivors-re/assets/warrior-talents-0.112.0.json": "712ad254137e60dbb763bd2ba4f12089b228e2a9645b76b384e19e4bc0bc5d8c",
+    "crates/azeroth-survivors-re/assets/warlock-effects-0.112.0.json": "2ba3b2a7383acf3db06aff62bdb1dcbc71b45ea862c31789a0e10b89b0560291",
+    "crates/azeroth-survivors-re/assets/native-amulets-0.100.1.json": "c8f5a6c1d147f6097ac5017592cbe75999c93b5935a99d9ce6f7869736ad043d"
+  },
+  "spells": {
+    "count": 113,
+    "native": {
+      "va": "0x146cc4580",
+      "file_offset": "0x6cc3180",
+      "size": 13560,
+      "sha256": "a1819af824e96186fad799603793b27c5bab8861413bfdad99387935103e0e8c"
+    },
+    "semantic_sha256": "cbad298ec7b172c570bea10cb0c4f60e94ec03db6e652ba006ba63e4a87218a5",
+    "equal": true
+  },
+  "zones": {
+    "count": 12,
+    "boss_count": 60,
+    "native": {
+      "va": "0x146cc0d08",
+      "file_offset": "0x6cbf908",
+      "size": 2880,
+      "sha256": "53102de4bceb794baacd0eb363c32af05cb851ea69dc1ac7b3f7f639d12acec7"
+    },
+    "bosses": [
+      {
+        "zone": "elwynn",
+        "va": "0x146cb5e00",
+        "file_offset": "0x6cb4a00",
+        "size": 520,
+        "sha256": "8c569a564cc4dcc1c697a50813ad17c24ab346b5de4b0d0140b56682c34bd25c"
+      },
+      {
+        "zone": "duskwood",
+        "va": "0x146cb6c68",
+        "file_offset": "0x6cb5868",
+        "size": 520,
+        "sha256": "e55b5a18ec925aaf5edd4a683cdfe67b72d13c26f1b3863b41ce73499ab6e494"
+      },
+      {
+        "zone": "wsg",
+        "va": "0x146cb7a98",
+        "file_offset": "0x6cb6698",
+        "size": 520,
+        "sha256": "4f959e77c88dd5938d45424ae19c340ad591cc29c3ae92db2f3b8b4257123dd3"
+      },
+      {
+        "zone": "ungoro",
+        "va": "0x146cb88c8",
+        "file_offset": "0x6cb74c8",
+        "size": 520,
+        "sha256": "3929440713757298b997af0ba5db884e707e26d1959045c897fdaeaaa17ba962"
+      },
+      {
+        "zone": "ab",
+        "va": "0x146cb96d8",
+        "file_offset": "0x6cb82d8",
+        "size": 520,
+        "sha256": "7f16442b686c6c1270b1744a28e38be8edb3929596f17e74306bab740d208168"
+      },
+      {
+        "zone": "feralas",
+        "va": "0x146cba628",
+        "file_offset": "0x6cb9228",
+        "size": 520,
+        "sha256": "1216c02dcbcd71e4e543e18ee4f2f4794f84e77314b91b805ec228773a56e8d5"
+      },
+      {
+        "zone": "arena",
+        "va": "0x146cbb568",
+        "file_offset": "0x6cba168",
+        "size": 520,
+        "sha256": "18f6fc5c04822212e9fd17239b71cb3c7ec4e7316bc628ba18bd69b7922ce549"
+      },
+      {
+        "zone": "sm",
+        "va": "0x146cbc608",
+        "file_offset": "0x6cbb208",
+        "size": 520,
+        "sha256": "d3c3c3755969628f063e59dd57147eecee58b5f2c4053c8492fcbdee9b62809e"
+      },
+      {
+        "zone": "av",
+        "va": "0x146cbd510",
+        "file_offset": "0x6cbc110",
+        "size": 520,
+        "sha256": "4000e6ced2b3b372d7e31bc92670a3959ea7a3517d3820e9bbc7097b607f6d82"
+      },
+      {
+        "zone": "brm",
+        "va": "0x146cbe7e0",
+        "file_offset": "0x6cbd3e0",
+        "size": 520,
+        "sha256": "0afe7b2f046472665b4ca4885fffdcf6f8f8567ff39b01209486c31bf6aa2b7f"
+      },
+      {
+        "zone": "aq",
+        "va": "0x146cbf690",
+        "file_offset": "0x6cbe290",
+        "size": 520,
+        "sha256": "b4495545b63b773930c05d7b307c39d61548b4c0590f95806e2723f938a2580e"
+      },
+      {
+        "zone": "naxx",
+        "va": "0x146cc0a20",
+        "file_offset": "0x6cbf620",
+        "size": 520,
+        "sha256": "52a0ac5cc0fe7c33ef076c14013e05a5e240c224504dc5bcce9b1ae273721555"
+      }
+    ],
+    "semantic_sha256": "c897d238f8cb01e15fe29c9b69f284334dc2ba0f53aa6884b48a655d1d826960",
+    "equal": true
+  },
+  "summons": {
+    "count": 13,
+    "descriptors": [
+      {
+        "entry": 9510,
+        "va": "0x14702a770",
+        "file_offset": "0x7029370",
+        "size": 64,
+        "sha256": "5383f6d7176b67dbaeb413ebabbb107c50c0c60ca306b6db937f6b3e905a5f6d",
+        "fallback": {
+          "talent": "0x147014e08",
+          "effect": "0x147014620",
+          "icon": "Ability_Hunter_BeastTaming"
+        }
+      },
+      {
+        "entry": 9511,
+        "va": "0x14702a7c0",
+        "file_offset": "0x70293c0",
+        "size": 64,
+        "sha256": "8b2d524c236172cf23d5f55c70372c21ee98ae8f7cb0b04bd4bcf8b9e45e2343",
+        "fallback": {
+          "talent": "0x147015308",
+          "effect": "0x147014a90",
+          "icon": "Ability_Druid_FerociousBite"
+        }
+      },
+      {
+        "entry": 9512,
+        "va": "0x14702a728",
+        "file_offset": "0x7029328",
+        "size": 64,
+        "sha256": "dbae895fb20308e8aae56a8ebb40636a2171bf2d915c91377e93d7f4a3e99a41",
+        "fallback": null
+      },
+      {
+        "entry": 9514,
+        "va": "0x14702a850",
+        "file_offset": "0x7029450",
+        "size": 64,
+        "sha256": "e894bf17d989dc1465bb344923aa20d1d7009c7e3cf23bee3c126e8191bf92c4",
+        "fallback": null
+      },
+      {
+        "entry": 9515,
+        "va": "0x14702a808",
+        "file_offset": "0x7029408",
+        "size": 64,
+        "sha256": "0632d04b9865de03d67e864463f15471669f7e1aa5ded427b721b64b3cff5b5a",
+        "fallback": {
+          "talent": "0x147027b28",
+          "effect": "0x147027298",
+          "icon": "Spell_Nature_ForceOfNature"
+        }
+      },
+      {
+        "entry": 9516,
+        "va": "0x14700d458",
+        "file_offset": "0x700c058",
+        "size": 64,
+        "sha256": "05af1df0a0d69977fdc53f1f35df58319c7a42d160328e1e39286694aa26c982",
+        "fallback": {
+          "talent": "0x14701f188",
+          "effect": "0x14701e908",
+          "icon": "Spell_Nature_SpiritWolf"
+        }
+      },
+      {
+        "entry": 9517,
+        "va": "0x14702a6e0",
+        "file_offset": "0x70292e0",
+        "size": 64,
+        "sha256": "535496bc75a6470b06460656b593629f4fae2a5bdbd890edc583362855b1741e",
+        "fallback": {
+          "talent": "0x147023090",
+          "effect": "0x1470227a0",
+          "icon": "Spell_Frost_SummonWaterElemental"
+        }
+      },
+      {
+        "entry": 9518,
+        "va": "0x14702a9c8",
+        "file_offset": "0x70295c8",
+        "size": 64,
+        "sha256": "e5c1d01b31230c67bee80c76f3829a3be291a6ae8a0794f8b94349df780c7628",
+        "fallback": null
+      },
+      {
+        "entry": 9519,
+        "va": "0x14700d3b8",
+        "file_offset": "0x700bfb8",
+        "size": 64,
+        "sha256": "d7f39a762680fc47620d7762a020db12a685e379b1ab5d46ec389a6754c608e9",
+        "fallback": null
+      },
+      {
+        "entry": 9520,
+        "va": "0x14702a928",
+        "file_offset": "0x7029528",
+        "size": 64,
+        "sha256": "6cbcc9b2d4571228ee6449022bce3c6774a8977947a53eb7bf4c300e68a04572",
+        "fallback": null
+      },
+      {
+        "entry": 9521,
+        "va": "0x14702a898",
+        "file_offset": "0x7029498",
+        "size": 64,
+        "sha256": "3092381ae7db0f552f4d28fce64c53ff54d10943018c90563b599edc9af16cc9",
+        "fallback": null
+      },
+      {
+        "entry": 9522,
+        "va": "0x14702a978",
+        "file_offset": "0x7029578",
+        "size": 64,
+        "sha256": "b8050285de7006e6424e58be7d9e55afdd6f5ebbfad00472f185306b95b9e45b",
+        "fallback": null
+      },
+      {
+        "entry": 9523,
+        "va": "0x14702a8e0",
+        "file_offset": "0x70294e0",
+        "size": 64,
+        "sha256": "4030dee74ba3befcd183ee309d3a3b6c8cb79af401ad3fad4287e610e20645b3",
+        "fallback": null
+      }
+    ],
+    "kinds": {
+      "va": "0x14733be68",
+      "file_offset": "0x733aa68",
+      "size": 144,
+      "sha256": "549a155fa56de56b4071226a0b7066f17e9d323db91db98c0e9fc7f66695b3cd"
+    },
+    "semantic_sha256": "967c83d59a7e5b07d1f9629687dfae9a578c56118cf7474a214e9e10e79c410d",
+    "equal": true
+  },
+  "talent_fallback": {
+    "count": 355,
+    "class_descriptors": {
+      "va": "0x147029fc8",
+      "file_offset": "0x7028bc8",
+      "size": 1800,
+      "sha256": "e40464107c01d5374413f48c9e4dcf94760554321682b6fb2c07e1a5b8d6e062"
+    },
+    "ordered_record_effect_sha256": "60df6ea5af3ecb8527e3b20f025a0442ccbe1de702cd53b053f4bf6fec951ec3"
+  },
+  "timer_talents": {
+    "count": 21,
+    "canonical_sha256": "161f1291e2d846533c5f9d236c35e12bfbb61c060d43fef1489e879a147b6d5f",
+    "records": [
+      {
+        "key": "mortal_wounds",
+        "effect_index": 1,
+        "native_tag": 10,
+        "internal_tag": 10,
+        "marker": null,
+        "timer_lanes_hex": "0000803f0200000000000000",
+        "source_sha256": "f58ec86b7ee53f7108fd5b24909411a280cdf9776e6c2e7059c366f4547ea91b",
+        "native": {
+          "va": "0x14700ddb0",
+          "file_offset": "0x700c9b0",
+          "size": 64,
+          "sha256": "ccd3360e8a3d409e84a359042d104870caea6d885cf1da3e745a475deb2073ee"
+        }
+      },
+      {
+        "key": "last_stand",
+        "effect_index": 0,
+        "native_tag": 19,
+        "internal_tag": 19,
+        "marker": null,
+        "timer_lanes_hex": "0000b442cdcccc3e00000000",
+        "source_sha256": "056a08f8ba83cb44a40eec4cff7434e973ab79bdc1e6c0fc571afe4f7de22fa7",
+        "native": {
+          "va": "0x147010120",
+          "file_offset": "0x700ed20",
+          "size": 64,
+          "sha256": "056a08f8ba83cb44a40eec4cff7434e973ab79bdc1e6c0fc571afe4f7de22fa7"
+        }
+      },
+      {
+        "key": "daybreak",
+        "effect_index": 0,
+        "native_tag": 0,
+        "internal_tag": 0,
+        "marker": null,
+        "timer_lanes_hex": "0000803f0000404000000000",
+        "source_sha256": "4763acfc9d9009af461e959bc92ccc46d7c46ab3c65917ebacb582e50a168836",
+        "native": {
+          "va": "0x147011310",
+          "file_offset": "0x700ff10",
+          "size": 64,
+          "sha256": "28bfbaa6c039bef9d31f1e1f3b9df9a9373d675e124443124da50e62d1807f58"
+        }
+      },
+      {
+        "key": "hallowed_ground",
+        "effect_index": 0,
+        "native_tag": 0,
+        "internal_tag": 0,
+        "marker": null,
+        "timer_lanes_hex": "0000803f0000804000000000",
+        "source_sha256": "8ede80354682955e5e1c9573fa410cc27c8b9b517f352e4f0db660843f5d84ce",
+        "native": {
+          "va": "0x147012110",
+          "file_offset": "0x7010d10",
+          "size": 64,
+          "sha256": "8846fc3ff90582774f9b311beadc565264ef4ffd276846e831219a40a27c17ab"
+        }
+      },
+      {
+        "key": "divine_intervention",
+        "effect_index": 0,
+        "native_tag": 19,
+        "internal_tag": 19,
+        "marker": null,
+        "timer_lanes_hex": "0000b4429a99993e00000000",
+        "source_sha256": "d364dabdaa1d67104de488f0031b782576cfe3430a458960da4f48d2d4530492",
+        "native": {
+          "va": "0x147012728",
+          "file_offset": "0x7011328",
+          "size": 64,
+          "sha256": "d364dabdaa1d67104de488f0031b782576cfe3430a458960da4f48d2d4530492"
+        }
+      },
+      {
+        "key": "art_of_war",
+        "effect_index": 0,
+        "native_tag": 0,
+        "internal_tag": 0,
+        "marker": null,
+        "timer_lanes_hex": "9a99193e0000803f00000000",
+        "source_sha256": "de6d92e01d0f5d5e437b0d6527fe2f3ceb27547a0a371597cd46dd3f2364c71b",
+        "native": {
+          "va": "0x147013940",
+          "file_offset": "0x7012540",
+          "size": 64,
+          "sha256": "093dbf50d5ba216832049865bffe3acb97ec8684f8b564afee5f5f84189806a1"
+        }
+      },
+      {
+        "key": "kill_shot",
+        "effect_index": 2,
+        "native_tag": 10,
+        "internal_tag": 10,
+        "marker": null,
+        "timer_lanes_hex": "000000400100000000000000",
+        "source_sha256": "d791832685888fc40143848cdf14720f23c74f1f0ceeca91627f81149233a88a",
+        "native": {
+          "va": "0x147015b50",
+          "file_offset": "0x7014750",
+          "size": 64,
+          "sha256": "771f0442f2ebfb1ba0375b7949f40415eee7a5a4b72cdc6d615f7bf59d500d08"
+        }
+      },
+      {
+        "key": "counterattack",
+        "effect_index": 0,
+        "native_tag": 0,
+        "internal_tag": 0,
+        "marker": null,
+        "timer_lanes_hex": "9a99193e0000803f00000000",
+        "source_sha256": "3a37d503e9fc1968e85e43f0125ca8f939bfe93c636e32a73b01f1d98d4f542f",
+        "native": {
+          "va": "0x147016a68",
+          "file_offset": "0x7015668",
+          "size": 64,
+          "sha256": "a9526849dc154478b03ca4a4d729db47660294722730faa0deec8d4a61db8a24"
+        }
+      },
+      {
+        "key": "riposte",
+        "effect_index": 0,
+        "native_tag": 0,
+        "internal_tag": 0,
+        "marker": null,
+        "timer_lanes_hex": "8fc2f53d0000803f00000000",
+        "source_sha256": "5dfd969b935b73e98ee366c9d98fefc5b0a1413997ad755d6d90c30f33ec02a3",
+        "native": {
+          "va": "0x1470188a0",
+          "file_offset": "0x70174a0",
+          "size": 64,
+          "sha256": "8d412c67820ac8c748032609ff74f65b9a66eafb1c7999bf13c5a15842504d4d"
+        }
+      },
+      {
+        "key": "cheat_death",
+        "effect_index": 0,
+        "native_tag": 19,
+        "internal_tag": 19,
+        "marker": null,
+        "timer_lanes_hex": "000016430000803e00004040",
+        "source_sha256": "32339456841161158efba8914211075f1c160510ef737f2aa33b43e36ff4a782",
+        "native": {
+          "va": "0x147019470",
+          "file_offset": "0x7018070",
+          "size": 64,
+          "sha256": "32339456841161158efba8914211075f1c160510ef737f2aa33b43e36ff4a782"
+        }
+      },
+      {
+        "key": "rapture",
+        "effect_index": 0,
+        "native_tag": 0,
+        "internal_tag": 0,
+        "marker": null,
+        "timer_lanes_hex": "0000803f0000704100000000",
+        "source_sha256": "a94671d77ac58133e31061017ad730bc50b0e072d23dcf3e23b5366401aa4c24",
+        "native": {
+          "va": "0x14701a618",
+          "file_offset": "0x7019218",
+          "size": 64,
+          "sha256": "95cb8ffc07eebf432ef52bcd2672398f9de13612305e3190785ac88d983c4254"
+        }
+      },
+      {
+        "key": "inspiration",
+        "effect_index": 0,
+        "native_tag": 17,
+        "internal_tag": 17,
+        "marker": null,
+        "timer_lanes_hex": "6f12033b0000803f00000000",
+        "source_sha256": "c892ca3bd6637c22b4ad13d657cb0bdf5bac8cc87e74e573ac2228e373fbd7e8",
+        "native": {
+          "va": "0x14701b3e8",
+          "file_offset": "0x7019fe8",
+          "size": 64,
+          "sha256": "c892ca3bd6637c22b4ad13d657cb0bdf5bac8cc87e74e573ac2228e373fbd7e8"
+        }
+      },
+      {
+        "key": "shadowy_apparitions",
+        "effect_index": 1,
+        "native_tag": 0,
+        "internal_tag": 0,
+        "marker": null,
+        "timer_lanes_hex": "0ad7233d0000003f00000000",
+        "source_sha256": "50e09dd3baf06b3b80af3dc223013f69773d00c9742be041b84a753cb4751d96",
+        "native": {
+          "va": "0x14701c5a0",
+          "file_offset": "0x701b1a0",
+          "size": 64,
+          "sha256": "7700b7b1910bc2e5d3425b5f7972a52c3cfdde849301fbd5e9fe6135305cea28"
+        }
+      },
+      {
+        "key": "reincarnation",
+        "effect_index": 0,
+        "native_tag": 19,
+        "internal_tag": 19,
+        "marker": null,
+        "timer_lanes_hex": "0000f0420000003f00000000",
+        "source_sha256": "7a238424d65c0db57207a3c3a2a31f9319c64d66dedd3f7fd5623c41ada69e04",
+        "native": {
+          "va": "0x14701f628",
+          "file_offset": "0x701e228",
+          "size": 64,
+          "sha256": "7a238424d65c0db57207a3c3a2a31f9319c64d66dedd3f7fd5623c41ada69e04"
+        }
+      },
+      {
+        "key": "nightfall",
+        "effect_index": 1,
+        "native_tag": 0,
+        "internal_tag": 0,
+        "marker": null,
+        "timer_lanes_hex": "0ad7a33c0000003f00000000",
+        "source_sha256": "504a1b9c7f0d8aa1a702317508d47e82657240621c89db3bf65e8cf13631db85",
+        "native": {
+          "va": "0x147023418",
+          "file_offset": "0x7022018",
+          "size": 64,
+          "sha256": "1f52ca0bc326f11ac3bd2ec2d927131c64a509fd6a42198971254627cd6da065"
+        }
+      },
+      {
+        "key": "legion_gate",
+        "effect_index": 0,
+        "native_tag": 32,
+        "internal_tag": 253,
+        "marker": 32,
+        "timer_lanes_hex": "000080400300000000008041",
+        "source_sha256": "70676afd46badb3873ae8e460113b62eb14b85b70246bd148ecda1ce2a437808",
+        "native": {
+          "va": "0x147024b78",
+          "file_offset": "0x7023778",
+          "size": 64,
+          "sha256": "f8dd62edf5c37cfbdf3276aafe514e477b1119e863bc9240e7f2d5b52939257c"
+        }
+      },
+      {
+        "key": "pact_of_the_annihilan",
+        "effect_index": 0,
+        "native_tag": 34,
+        "internal_tag": 253,
+        "marker": 34,
+        "timer_lanes_hex": "0000a0410000f04100005041",
+        "source_sha256": "98e97c77b4ad5a2d58c01bc2ad6bda4ec633c0020a80e0c114aafa948ba27c17",
+        "native": {
+          "va": "0x147025078",
+          "file_offset": "0x7023c78",
+          "size": 64,
+          "sha256": "7a9ebb31d9842b2a2984c815e032a08469588124fea8911f59397b864a3047dc"
+        }
+      },
+      {
+        "key": "butcher",
+        "effect_index": 0,
+        "native_tag": 34,
+        "internal_tag": 253,
+        "marker": 34,
+        "timer_lanes_hex": "0000a0410000f04100005041",
+        "source_sha256": "d3d5e2afe9ab2093f723e4e01a06dcf6219ccfa1e181770fd20c895c1d6e5c72",
+        "native": {
+          "va": "0x1470251c0",
+          "file_offset": "0x7023dc0",
+          "size": 64,
+          "sha256": "b0c98489f005fce81fb46c102569bd265d6ed24d645c71c8d184f93117457204"
+        }
+      },
+      {
+        "key": "natures_grasp",
+        "effect_index": 0,
+        "native_tag": 0,
+        "internal_tag": 0,
+        "marker": null,
+        "timer_lanes_hex": "8fc2753d0000004000000000",
+        "source_sha256": "e835eac79aba00a08f552a6dbc1e3bfc1467777a9c84392c218b9e4785216989",
+        "native": {
+          "va": "0x147026d40",
+          "file_offset": "0x7025940",
+          "size": 64,
+          "sha256": "b25a74a15d4143ee779605d4e2b9d2d581b1107ff41b7222645e6c327e7e53e7"
+        }
+      },
+      {
+        "key": "brutal_impact",
+        "effect_index": 0,
+        "native_tag": 0,
+        "internal_tag": 0,
+        "marker": null,
+        "timer_lanes_hex": "cdcccc3d0000004000000000",
+        "source_sha256": "0d7efa677f03c6c17264442b4ba470181ea8aa6c14ca41237ec5dcac1ae0fbf5",
+        "native": {
+          "va": "0x147027da0",
+          "file_offset": "0x70269a0",
+          "size": 64,
+          "sha256": "64cbd428454c4cb5f153145f6e912d853dc88adceeaffca40fa6e449932e578d"
+        }
+      },
+      {
+        "key": "swiftmend",
+        "effect_index": 0,
+        "native_tag": 0,
+        "internal_tag": 0,
+        "marker": null,
+        "timer_lanes_hex": "0000803f0000004100000000",
+        "source_sha256": "5a8defec2ed4ca5731690f890d3e97658ac864046bbacf73ee96162e9b02a055",
+        "native": {
+          "va": "0x1470292b0",
+          "file_offset": "0x7027eb0",
+          "size": 64,
+          "sha256": "fc264578ef34f1bb28cff8585ad55e7a70163d47d3f3409e4ee9dc8817944137"
+        }
+      }
+    ],
+    "no_extra_or_missing": true
+  },
+  "supremacy_stat32": {
+    "native": {
+      "va": "0x147024cf0",
+      "file_offset": "0x70238f0",
+      "size": 64,
+      "sha256": "31e6f7c25af3e540904c06f97a3700a944ce6c5cccb7fc734a464804e27dcd2f"
+    },
+    "internal_tag": 30,
+    "native_tag": 36,
+    "stat_tag": 32,
+    "amount": 1.0,
+    "equal": true
+  },
+  "shared_amulets": {
+    "count": 16,
+    "descriptors": [
+      {
+        "key": "mark_of_fordring",
+        "descriptor": {
+          "va": "0x1470068f0",
+          "file_offset": "0x70054f0",
+          "size": 80,
+          "sha256": "ab650d25b80fca2a96508431001564e37165fa26a17fac2dadac060f6029fc54"
+        },
+        "effects": {
+          "va": "0x147005d60",
+          "file_offset": "0x7004960",
+          "size": 64,
+          "sha256": "6a92fa97b795f00e12d6b4687bff2c1ae5f92023279834a8b15ea5df1f43eded"
+        }
+      },
+      {
+        "key": "talvash",
+        "descriptor": {
+          "va": "0x147006940",
+          "file_offset": "0x7005540",
+          "size": 80,
+          "sha256": "aab552d90b8f19154dfe380205b7feb7693dd97557c94393f5cc54dc37e739e1"
+        },
+        "effects": {
+          "va": "0x147005de0",
+          "file_offset": "0x70049e0",
+          "size": 64,
+          "sha256": "e5849c644fc902a162a9bfc85044901f27a5420ddc9ba3c36f132971063e7902"
+        }
+      },
+      {
+        "key": "south_seas_kelp",
+        "descriptor": {
+          "va": "0x147006990",
+          "file_offset": "0x7005590",
+          "size": 80,
+          "sha256": "068cac757337bf838fb68a69b2f930566600737699a05a3d73be2c89c0e9560f"
+        },
+        "effects": {
+          "va": "0x147005e68",
+          "file_offset": "0x7004a68",
+          "size": 128,
+          "sha256": "36b1228a8726fe95832fe8d84342ce6f593f3575b3d138c4503081d413561283"
+        }
+      },
+      {
+        "key": "prestor",
+        "descriptor": {
+          "va": "0x1470069e0",
+          "file_offset": "0x70055e0",
+          "size": 80,
+          "sha256": "46be143943d2c598f9dbb3959b5c6133722a0b4685729c6cf2e0a607f830e48b"
+        },
+        "effects": {
+          "va": "0x147005f28",
+          "file_offset": "0x7004b28",
+          "size": 128,
+          "sha256": "830b8d27e9236a5071d85dc3afbbad16839479dd41b7645aca5794244cad6065"
+        }
+      },
+      {
+        "key": "animated_chain",
+        "descriptor": {
+          "va": "0x147006a30",
+          "file_offset": "0x7005630",
+          "size": 80,
+          "sha256": "a0a6fbff9dcbc7df4c745809a9e679c498d7e0dcab4dac2ef5bb4eb5e2a7cf32"
+        },
+        "effects": {
+          "va": "0x147005fe8",
+          "file_offset": "0x7004be8",
+          "size": 128,
+          "sha256": "c76a14df5c1276d3be97bc08e3dae4161df453571025a53531f3e69542028e5e"
+        }
+      },
+      {
+        "key": "woven_ivy",
+        "descriptor": {
+          "va": "0x147006a80",
+          "file_offset": "0x7005680",
+          "size": 80,
+          "sha256": "7466a32cc19be7defaab77e8a1665dcc5625bcab22ad19abfb463436a1653f1e"
+        },
+        "effects": {
+          "va": "0x147006098",
+          "file_offset": "0x7004c98",
+          "size": 192,
+          "sha256": "435f05270f460f6c27ff8a69a2fb91bcbe2d439acd2f4875b7066b220605dfdf"
+        }
+      },
+      {
+        "key": "darkmoon",
+        "descriptor": {
+          "va": "0x147006ad0",
+          "file_offset": "0x70056d0",
+          "size": 80,
+          "sha256": "92e670b31286c2814c05aaeded1bc6e07239a9f8b5a9308c0de724e722b93f29"
+        },
+        "effects": {
+          "va": "0x147006190",
+          "file_offset": "0x7004d90",
+          "size": 128,
+          "sha256": "3b189fd657ef7ba76c2672ba70095b3392d2326bbccd7723cfefa69240188ef1"
+        }
+      },
+      {
+        "key": "jeklik",
+        "descriptor": {
+          "va": "0x147006b20",
+          "file_offset": "0x7005720",
+          "size": 80,
+          "sha256": "8cc47e72d0d31e9cb806458d0966265a6867dab821a1a28d451418241b5bf5c0"
+        },
+        "effects": {
+          "va": "0x147006248",
+          "file_offset": "0x7004e48",
+          "size": 128,
+          "sha256": "338432a79761da302b6b366fdfa8af6ca2952fc45fdef8bd8d2d6eacb8913ec5"
+        }
+      },
+      {
+        "key": "eye_of_hakkar",
+        "descriptor": {
+          "va": "0x147006b70",
+          "file_offset": "0x7005770",
+          "size": 80,
+          "sha256": "468fde1a3ba02404030d80214469c8f9b3a0ce4848d0f6069fdf9d2bc83c1b81"
+        },
+        "effects": {
+          "va": "0x147006300",
+          "file_offset": "0x7004f00",
+          "size": 128,
+          "sha256": "25f688e296ddf6c678de1f8dfb4bf424b925f1bc30357079d54007e8faf046d6"
+        }
+      },
+      {
+        "key": "steadfast_might",
+        "descriptor": {
+          "va": "0x147006bc0",
+          "file_offset": "0x70057c0",
+          "size": 80,
+          "sha256": "97338626cb3e5e5f888e2864ee22f998800d053223784088d38b1c4aaf00ba48"
+        },
+        "effects": {
+          "va": "0x1470063c0",
+          "file_offset": "0x7004fc0",
+          "size": 192,
+          "sha256": "d34b635a713f2b4ac252acdb298210c8af5b6446c430e9121faf7b038b7a78d0"
+        }
+      },
+      {
+        "key": "enlightenment",
+        "descriptor": {
+          "va": "0x147006c10",
+          "file_offset": "0x7005810",
+          "size": 80,
+          "sha256": "92036a0786dea31e1b1c9fc0f714939eda07cb990234cd93819e348c9105fcc9"
+        },
+        "effects": {
+          "va": "0x1470064c0",
+          "file_offset": "0x70050c0",
+          "size": 64,
+          "sha256": "00c661a97735dabadaacd52f6f82ade88e7519ca3d057f0281adb14cb133505e"
+        }
+      },
+      {
+        "key": "vek_nilash",
+        "descriptor": {
+          "va": "0x147006c60",
+          "file_offset": "0x7005860",
+          "size": 80,
+          "sha256": "20e0a77c4fbf5a00e4f4b93ab832059840b6086384a5fc636255b6ebb3b1d010"
+        },
+        "effects": {
+          "va": "0x147006540",
+          "file_offset": "0x7005140",
+          "size": 128,
+          "sha256": "0fdfb1ea06ceaaf73183f33e6b362761e17299c013c7609bd9f68d11ed46a28a"
+        }
+      },
+      {
+        "key": "fallen_dragon",
+        "descriptor": {
+          "va": "0x147006cb0",
+          "file_offset": "0x70058b0",
+          "size": 80,
+          "sha256": "a43e259bf1d270f998ba01e9575fced617926518f272a96ccade8cb2cc6d8d99"
+        },
+        "effects": {
+          "va": "0x147006600",
+          "file_offset": "0x7005200",
+          "size": 192,
+          "sha256": "b08d6e18aeafd0ee3ea768917b906dd86b1c2445e10b5a0fe04f46aac7483f68"
+        }
+      },
+      {
+        "key": "malice_stone",
+        "descriptor": {
+          "va": "0x147006d00",
+          "file_offset": "0x7005900",
+          "size": 80,
+          "sha256": "46bfea5073e60f87900954451a6f82f2f78b9d8724db0e3f3ee2e9e675cfa8b3"
+        },
+        "effects": {
+          "va": "0x147006700",
+          "file_offset": "0x7005300",
+          "size": 128,
+          "sha256": "0469b89360819fb9ab8a3e71565156e90bebcbe79e927c439d57bce757bd95b7"
+        }
+      },
+      {
+        "key": "onyxia_tooth",
+        "descriptor": {
+          "va": "0x147006d50",
+          "file_offset": "0x7005950",
+          "size": 80,
+          "sha256": "43a44d1ec3f329485aee3ff77afb4a418ee23a5436ae03d89064a2e1eed175a5"
+        },
+        "effects": {
+          "va": "0x1470067b8",
+          "file_offset": "0x70053b8",
+          "size": 192,
+          "sha256": "b3d5ce50d43d9ee3b0a11e511b807be839ad2734a22a5d13ba8a1978a2d8c2ee"
+        }
+      },
+      {
+        "key": "fire_lord",
+        "descriptor": {
+          "va": "0x147006da0",
+          "file_offset": "0x70059a0",
+          "size": 80,
+          "sha256": "c4d91b03c1b69906a305fce4f95d239b143ba26769852a93ba32004d28b918b8"
+        },
+        "effects": {
+          "va": "0x1470068b0",
+          "file_offset": "0x70054b0",
+          "size": 64,
+          "sha256": "6c5cb9e2963e89a401b35021685227b3f7b50fbc7dc3c5f1eacb73c3a97ff80f"
+        }
+      }
+    ],
+    "equal": true
+  },
+  "generated_timer_amulets": {
+    "factory": {
+      "va": "0x14583d3e0",
+      "file_offset": "0x583c7e0",
+      "size": 5804,
+      "sha256": "5bf14b2755821305cbad2a5781f1244df2a065a8ecf273e189eeb06a4a15c4e4"
+    },
+    "boundary": "0x14583e84a",
+    "cases": [
+      {
+        "key": "legendary:execute",
+        "effect_count": 3,
+        "timer_tag": 10,
+        "base_wait": 0.5,
+        "semantic_sha256": "0fe9d9ad8b24fabcf31a911e877a885a3e3f6bb9b47988a44c7bbcd4bdc8218e",
+        "prefix": "The Reaper's Amulet",
+        "icon": "INV_Jewelry_Necklace_27Naxxramas",
+        "executed_instructions": 68,
+        "executed_bytes_sha256": "9748ecabe9d806c16c6107a771f36465e21c310cd083d0ce44a497020523bbb1"
+      },
+      {
+        "key": "legendary:eviscerate",
+        "effect_count": 3,
+        "timer_tag": 10,
+        "base_wait": 0.5,
+        "semantic_sha256": "a334cf039ce5a624741a149166ed7f8adda228564965eec81c9eafe2c378849a",
+        "prefix": "The Reaper's Amulet",
+        "icon": "INV_Jewelry_Necklace_27Naxxramas",
+        "executed_instructions": 68,
+        "executed_bytes_sha256": "9748ecabe9d806c16c6107a771f36465e21c310cd083d0ce44a497020523bbb1"
+      },
+      {
+        "key": "legendary:backstab",
+        "effect_count": 3,
+        "timer_tag": 10,
+        "base_wait": 0.5,
+        "semantic_sha256": "e2bb94316dcfefe530e33e7ccae4be48e7b8b11c348a66d1b571242b0ecd6115",
+        "prefix": "The Reaper's Amulet",
+        "icon": "INV_Jewelry_Necklace_27Naxxramas",
+        "executed_instructions": 68,
+        "executed_bytes_sha256": "9748ecabe9d806c16c6107a771f36465e21c310cd083d0ce44a497020523bbb1"
+      }
+    ],
+    "storage_seam": "0x145d40630",
+    "english_locale_miss_seam": "0x1458dff90"
+  },
+  "limits": [
+    "Immutable fields match the113spell,12zone/60boss,13summon,21timer-talent and16shared-amulet source records; historical source provenance is retained.",
+    "All355talents are traversed for ordered summon icon fallback candidates. Current icon-selection instructions and summon-key normalization are not replayed by this data check.",
+    "All3generated timer amulets execute current factory instructions only up to the common formatter. Vec reserve supplies storage and locale lookup returns a miss; final formatting, allocation, key construction and generator gameplay do not execute.",
+    "Complete normalized3generated and16shared effect rows compare owned strings and decoded payloads; enum padding and forensic string pointers are excluded. Stat36/spell37 map to internal30/31.",
+    "No compiler, game, addon, reconstructed Rust or original/rebuilt runtime or visual parity verification."
+  ]
+}

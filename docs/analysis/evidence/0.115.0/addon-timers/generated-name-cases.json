@@ -1,0 +1,64 @@
+{
+  "target_sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+  "factory_reference": "metadata.json#/generated_timer_amulets/factory",
+  "rea_evidence_id": "ev_4ccdd20d98d77b34649f97e4337d60e664812ddc4edbd16462e9886c22ad8b7b",
+  "formatter_literals": [
+    {
+      "va": "0x146cccd97",
+      "bytes_hex": "0a6c6567656e646172793ac000",
+      "sha256": "c617db6dd7ce27bc0f041473aa8b3b333b45e5b31b789bc4b468d6004145ea4a"
+    },
+    {
+      "va": "0x146cb4e80",
+      "bytes_hex": "086162696c6974792ec0052e6e616d6500",
+      "sha256": "2594e351c8ed04b434d6b2f86ef78725c3d9177abd7103c7555b12188e7ad2f2"
+    },
+    {
+      "va": "0x146ccce3c",
+      "bytes_hex": "c0023a20c000",
+      "sha256": "611492f5c27b3b96723d17bb229f9150cc70c9e7efd0503982d6b6d1fc3ce226"
+    }
+  ],
+  "common_tail": {
+    "start": "0x14583e84a",
+    "end": "0x14583e9fe",
+    "sha256": "ff196c7e0a26fafa87450596d52c175c6a5bb94a6c2310d70737c4f7f7efa2d7",
+    "assembly": "generated-name.asm",
+    "assembly_sha256": "51c91754f4e9ae518325452009be6f72c24c583e8ecd09d3d4bf6c1d3f6fb4fc"
+  },
+  "case_count": 24,
+  "cases": [
+    {"ability": "execute","case": "missing","translations": {},"lookups": ["The Reaper's Amulet","ability.execute.name"],"formats": [{"template": "0x146cccd97","value": "legendary:execute"},{"template": "0x146cb4e80","value": "ability.execute.name"},{"template": "0x146ccce3c","value": "The Reaper's Amulet: Execute"}],"key": "legendary:execute","name": "The Reaper's Amulet: Execute"},
+    {"ability": "execute","case": "prefix-only","translations": {"The Reaper's Amulet": "Prefix"},"lookups": ["The Reaper's Amulet","ability.execute.name"],"formats": [{"template": "0x146cccd97","value": "legendary:execute"},{"template": "0x146cb4e80","value": "ability.execute.name"},{"template": "0x146ccce3c","value": "Prefix: Execute"}],"key": "legendary:execute","name": "Prefix: Execute"},
+    {"ability": "execute","case": "ability-only","translations": {"ability.execute.name": "Ability"},"lookups": ["The Reaper's Amulet","ability.execute.name"],"formats": [{"template": "0x146cccd97","value": "legendary:execute"},{"template": "0x146cb4e80","value": "ability.execute.name"},{"template": "0x146ccce3c","value": "The Reaper's Amulet: Ability"}],"key": "legendary:execute","name": "The Reaper's Amulet: Ability"},
+    {"ability": "execute","case": "both","translations": {"The Reaper's Amulet": "Prefix","ability.execute.name": "Ability"},"lookups": ["The Reaper's Amulet","ability.execute.name"],"formats": [{"template": "0x146cccd97","value": "legendary:execute"},{"template": "0x146cb4e80","value": "ability.execute.name"},{"template": "0x146ccce3c","value": "Prefix: Ability"}],"key": "legendary:execute","name": "Prefix: Ability"},
+    {"ability": "execute","case": "empty-prefix","translations": {"The Reaper's Amulet": "","ability.execute.name": "Ability"},"lookups": ["The Reaper's Amulet","ability.execute.name"],"formats": [{"template": "0x146cccd97","value": "legendary:execute"},{"template": "0x146cb4e80","value": "ability.execute.name"},{"template": "0x146ccce3c","value": ": Ability"}],"key": "legendary:execute","name": ": Ability"},
+    {"ability": "execute","case": "empty-ability","translations": {"The Reaper's Amulet": "Prefix","ability.execute.name": ""},"lookups": ["The Reaper's Amulet","ability.execute.name"],"formats": [{"template": "0x146cccd97","value": "legendary:execute"},{"template": "0x146cb4e80","value": "ability.execute.name"},{"template": "0x146ccce3c","value": "Prefix: "}],"key": "legendary:execute","name": "Prefix: "},
+    {"ability": "execute","case": "both-empty","translations": {"The Reaper's Amulet": "","ability.execute.name": ""},"lookups": ["The Reaper's Amulet","ability.execute.name"],"formats": [{"template": "0x146cccd97","value": "legendary:execute"},{"template": "0x146cb4e80","value": "ability.execute.name"},{"template": "0x146ccce3c","value": ": "}],"key": "legendary:execute","name": ": "},
+    {"ability": "execute","case": "ignore-literal-name","translations": {"Execute": "Wrong"},"lookups": ["The Reaper's Amulet","ability.execute.name"],"formats": [{"template": "0x146cccd97","value": "legendary:execute"},{"template": "0x146cb4e80","value": "ability.execute.name"},{"template": "0x146ccce3c","value": "The Reaper's Amulet: Execute"}],"key": "legendary:execute","name": "The Reaper's Amulet: Execute"},
+    {"ability": "eviscerate","case": "missing","translations": {},"lookups": ["The Reaper's Amulet","ability.eviscerate.name"],"formats": [{"template": "0x146cccd97","value": "legendary:eviscerate"},{"template": "0x146cb4e80","value": "ability.eviscerate.name"},{"template": "0x146ccce3c","value": "The Reaper's Amulet: Eviscerate"}],"key": "legendary:eviscerate","name": "The Reaper's Amulet: Eviscerate"},
+    {"ability": "eviscerate","case": "prefix-only","translations": {"The Reaper's Amulet": "Prefix"},"lookups": ["The Reaper's Amulet","ability.eviscerate.name"],"formats": [{"template": "0x146cccd97","value": "legendary:eviscerate"},{"template": "0x146cb4e80","value": "ability.eviscerate.name"},{"template": "0x146ccce3c","value": "Prefix: Eviscerate"}],"key": "legendary:eviscerate","name": "Prefix: Eviscerate"},
+    {"ability": "eviscerate","case": "ability-only","translations": {"ability.eviscerate.name": "Ability"},"lookups": ["The Reaper's Amulet","ability.eviscerate.name"],"formats": [{"template": "0x146cccd97","value": "legendary:eviscerate"},{"template": "0x146cb4e80","value": "ability.eviscerate.name"},{"template": "0x146ccce3c","value": "The Reaper's Amulet: Ability"}],"key": "legendary:eviscerate","name": "The Reaper's Amulet: Ability"},
+    {"ability": "eviscerate","case": "both","translations": {"The Reaper's Amulet": "Prefix","ability.eviscerate.name": "Ability"},"lookups": ["The Reaper's Amulet","ability.eviscerate.name"],"formats": [{"template": "0x146cccd97","value": "legendary:eviscerate"},{"template": "0x146cb4e80","value": "ability.eviscerate.name"},{"template": "0x146ccce3c","value": "Prefix: Ability"}],"key": "legendary:eviscerate","name": "Prefix: Ability"},
+    {"ability": "eviscerate","case": "empty-prefix","translations": {"The Reaper's Amulet": "","ability.eviscerate.name": "Ability"},"lookups": ["The Reaper's Amulet","ability.eviscerate.name"],"formats": [{"template": "0x146cccd97","value": "legendary:eviscerate"},{"template": "0x146cb4e80","value": "ability.eviscerate.name"},{"template": "0x146ccce3c","value": ": Ability"}],"key": "legendary:eviscerate","name": ": Ability"},
+    {"ability": "eviscerate","case": "empty-ability","translations": {"The Reaper's Amulet": "Prefix","ability.eviscerate.name": ""},"lookups": ["The Reaper's Amulet","ability.eviscerate.name"],"formats": [{"template": "0x146cccd97","value": "legendary:eviscerate"},{"template": "0x146cb4e80","value": "ability.eviscerate.name"},{"template": "0x146ccce3c","value": "Prefix: "}],"key": "legendary:eviscerate","name": "Prefix: "},
+    {"ability": "eviscerate","case": "both-empty","translations": {"The Reaper's Amulet": "","ability.eviscerate.name": ""},"lookups": ["The Reaper's Amulet","ability.eviscerate.name"],"formats": [{"template": "0x146cccd97","value": "legendary:eviscerate"},{"template": "0x146cb4e80","value": "ability.eviscerate.name"},{"template": "0x146ccce3c","value": ": "}],"key": "legendary:eviscerate","name": ": "},
+    {"ability": "eviscerate","case": "ignore-literal-name","translations": {"Eviscerate": "Wrong"},"lookups": ["The Reaper's Amulet","ability.eviscerate.name"],"formats": [{"template": "0x146cccd97","value": "legendary:eviscerate"},{"template": "0x146cb4e80","value": "ability.eviscerate.name"},{"template": "0x146ccce3c","value": "The Reaper's Amulet: Eviscerate"}],"key": "legendary:eviscerate","name": "The Reaper's Amulet: Eviscerate"},
+    {"ability": "backstab","case": "missing","translations": {},"lookups": ["The Reaper's Amulet","ability.backstab.name"],"formats": [{"template": "0x146cccd97","value": "legendary:backstab"},{"template": "0x146cb4e80","value": "ability.backstab.name"},{"template": "0x146ccce3c","value": "The Reaper's Amulet: Backstab"}],"key": "legendary:backstab","name": "The Reaper's Amulet: Backstab"},
+    {"ability": "backstab","case": "prefix-only","translations": {"The Reaper's Amulet": "Prefix"},"lookups": ["The Reaper's Amulet","ability.backstab.name"],"formats": [{"template": "0x146cccd97","value": "legendary:backstab"},{"template": "0x146cb4e80","value": "ability.backstab.name"},{"template": "0x146ccce3c","value": "Prefix: Backstab"}],"key": "legendary:backstab","name": "Prefix: Backstab"},
+    {"ability": "backstab","case": "ability-only","translations": {"ability.backstab.name": "Ability"},"lookups": ["The Reaper's Amulet","ability.backstab.name"],"formats": [{"template": "0x146cccd97","value": "legendary:backstab"},{"template": "0x146cb4e80","value": "ability.backstab.name"},{"template": "0x146ccce3c","value": "The Reaper's Amulet: Ability"}],"key": "legendary:backstab","name": "The Reaper's Amulet: Ability"},
+    {"ability": "backstab","case": "both","translations": {"The Reaper's Amulet": "Prefix","ability.backstab.name": "Ability"},"lookups": ["The Reaper's Amulet","ability.backstab.name"],"formats": [{"template": "0x146cccd97","value": "legendary:backstab"},{"template": "0x146cb4e80","value": "ability.backstab.name"},{"template": "0x146ccce3c","value": "Prefix: Ability"}],"key": "legendary:backstab","name": "Prefix: Ability"},
+    {"ability": "backstab","case": "empty-prefix","translations": {"The Reaper's Amulet": "","ability.backstab.name": "Ability"},"lookups": ["The Reaper's Amulet","ability.backstab.name"],"formats": [{"template": "0x146cccd97","value": "legendary:backstab"},{"template": "0x146cb4e80","value": "ability.backstab.name"},{"template": "0x146ccce3c","value": ": Ability"}],"key": "legendary:backstab","name": ": Ability"},
+    {"ability": "backstab","case": "empty-ability","translations": {"The Reaper's Amulet": "Prefix","ability.backstab.name": ""},"lookups": ["The Reaper's Amulet","ability.backstab.name"],"formats": [{"template": "0x146cccd97","value": "legendary:backstab"},{"template": "0x146cb4e80","value": "ability.backstab.name"},{"template": "0x146ccce3c","value": "Prefix: "}],"key": "legendary:backstab","name": "Prefix: "},
+    {"ability": "backstab","case": "both-empty","translations": {"The Reaper's Amulet": "","ability.backstab.name": ""},"lookups": ["The Reaper's Amulet","ability.backstab.name"],"formats": [{"template": "0x146cccd97","value": "legendary:backstab"},{"template": "0x146cb4e80","value": "ability.backstab.name"},{"template": "0x146ccce3c","value": ": "}],"key": "legendary:backstab","name": ": "},
+    {"ability": "backstab","case": "ignore-literal-name","translations": {"Backstab": "Wrong"},"lookups": ["The Reaper's Amulet","ability.backstab.name"],"formats": [{"template": "0x146cccd97","value": "legendary:backstab"},{"template": "0x146cb4e80","value": "ability.backstab.name"},{"template": "0x146ccce3c","value": "The Reaper's Amulet: Backstab"}],"key": "legendary:backstab","name": "The Reaper's Amulet: Backstab"}
+  ],
+  "executed_instruction_count": 163,
+  "executed_bytes_sha256": "6ec2f91bd73394efc3f7ae0f3534a3075f34a6120cbe9715bbfa2e78f9fe7b26",
+  "limits": [
+    "Original constructor instructions execute with synthetic storage, locale-map and literal formatting seams. No application, addon, reconstructed Rust or build executes.",
+    "Formatting seams assert all three exact current templates and supply their string outputs; allocation and std formatting are not reimplemented as native evidence.",
+    "The broader Ghidra result overextended the containing procedure and has unrelated bad instruction/control-flow warnings. Only the original-address common tail and successful bounded instruction cases support these names.",
+    "The source uses these recovered parts for timer publication. Actual locale selection/reward timing and original/rebuilt runtime parity remain unverified."
+  ]
+}

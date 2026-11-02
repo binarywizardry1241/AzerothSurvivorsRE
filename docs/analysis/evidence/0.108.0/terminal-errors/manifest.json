@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.108.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b",
+    "size_bytes": 140203520
+  },
+  "method": "Fresh current EXE Ghidra 12.1.4 raw x86-64 imports, independently decoded current PE instructions and explicit constructor/retention field tracing.",
+  "ranges": [
+    {
+      "role": "driver-spawn",
+      "start": "0x1458e7cc0",
+      "end_exclusive": "0x1458e7e15",
+      "file_offset": "0x58e70c0",
+      "byte_count": 341,
+      "sha256": "b72772d8802aae923fa2bffba2f2601b5bd772695769f0eea22ca9aaba48ef55",
+      "kind": "code",
+      "assembly": "driver-spawn.asm",
+      "assembly_sha256": "7f9174bc1704f40b97d709b3346667af0cb2190f2347154cc619bad64103bf1d",
+      "pseudocode": "driver-spawn.c",
+      "pseudocode_sha256": "963247c69bc46a3a86d679a1bffa23ff21212b046c3301168a1ec9a4659c16b3",
+      "rea_evidence_id": "ev_11fbd630433d33b47a7267f242664693b8e908fe6f34411cbb7f312e0a08b9f5",
+      "analysis_profile_digest": "fe8e70c3efbf0f7ff31027bf059b40860dc1d98957edfa150dea6e90b852c9a2",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "pseudocode_normalization": "Whitespace only: outer blank lines and trailing line whitespace removed; one final LF."
+    },
+    {
+      "role": "menu-return-precondition",
+      "start": "0x145944640",
+      "end_exclusive": "0x145944758",
+      "file_offset": "0x5943a40",
+      "byte_count": 280,
+      "sha256": "03e293e6eb045eea4a75f0101e47efc42bca6c1bfe03da69abd46adeb2bce3f3",
+      "kind": "code",
+      "assembly": "menu-return-precondition.asm",
+      "assembly_sha256": "71ecd49d8d973be5bbfdff2e3aecd1f6dd1a87066010e6ef976b723fd3ae16f2",
+      "pseudocode": "menu-return-precondition.c",
+      "pseudocode_sha256": "74783031c85c238bb43b892330b59ea63f31b8b10540c33c478d9164d5802795",
+      "rea_evidence_id": "ev_be10689287cdb751bcfaff05835072a0eb0aedce93c1c070a45d0816031e7f33",
+      "analysis_profile_digest": "9a7154e0d9f5b7feb0078889071d0360f49a9955e43dea82a8a39478bddbcc2f",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "pseudocode_normalization": "Whitespace only: outer blank lines and trailing line whitespace removed; one final LF."
+    },
+    {
+      "role": "terminal-freeze",
+      "start": "0x14591da20",
+      "end_exclusive": "0x14591e17d",
+      "file_offset": "0x591ce20",
+      "byte_count": 1885,
+      "sha256": "fa20e497090026f828a285e7236aa2cb6a6a27d6eece6d051c544ee906b6a4c8",
+      "kind": "code",
+      "assembly": "terminal-freeze.asm",
+      "assembly_sha256": "ca21d55f316db3dd3fd54422a8bee23407710634e8cc2b430a1acfb1512fde9b",
+      "pseudocode": "terminal-freeze.c",
+      "pseudocode_sha256": "538cf61fc059047aa6ab9d93119962f9a584a452a94904b14fef8ff46f94eeee",
+      "rea_evidence_id": "ev_b5d6b5da5a6b818dd585dc3bdbe3bc7cdb269469234df626b01a2565431f3cf0",
+      "analysis_profile_digest": "f2767b728eff608198348516bb59106baf2e03d84518db4bf92679cd2b51cb88",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "pseudocode_normalization": "Whitespace only: outer blank lines and trailing line whitespace removed; one final LF."
+    },
+    {
+      "role": "command10-dispatch",
+      "start": "0x1458b573f",
+      "end_exclusive": "0x1458b5771",
+      "file_offset": "0x58b4b3f",
+      "byte_count": 50,
+      "sha256": "dcc6f26d68bd25c8424c4b53cc121f250f89584e3acb7ed67c0528fd724b7f04",
+      "kind": "code",
+      "assembly": "command10-dispatch.asm",
+      "assembly_sha256": "370459d4b34d69fb056af9c80f6d06e32c7d23563992d78a122c253920f337e3"
+    },
+    {
+      "role": "thread-result",
+      "start": "0x1458e0854",
+      "end_exclusive": "0x1458e08b1",
+      "file_offset": "0x58dfc54",
+      "byte_count": 93,
+      "sha256": "d5986ae143cc5910b5f995ae1a2987a2175fc53fc7c8edd6b5f1ad669cf971b7",
+      "kind": "code",
+      "assembly": "thread-result.asm",
+      "assembly_sha256": "60cbe9eea64ac747893618e89a48383664da860a495225bf3237f59b478dab40"
+    },
+    {
+      "role": "combat-follower-create",
+      "start": "0x145960403",
+      "end_exclusive": "0x1459604b0",
+      "file_offset": "0x595f803",
+      "byte_count": 173,
+      "sha256": "3187d7a8dd971c8d9b8ebd6cc683e0bd1f415597d7cb8489a1eafbd1adb392c9",
+      "kind": "code",
+      "assembly": "combat-follower-create.asm",
+      "assembly_sha256": "197c83b832537f16c7c35a1b6c9b579b02d1dde9331521a408ae9bccb01e69d3"
+    },
+    {
+      "role": "loot-companion-create",
+      "start": "0x14594069d",
+      "end_exclusive": "0x14594075c",
+      "file_offset": "0x593fa9d",
+      "byte_count": 191,
+      "sha256": "68158301a433eafe47dbe1025e7cd3f205f75ae39ef1112383704e0e76f82d4c",
+      "kind": "code",
+      "assembly": "loot-companion-create.asm",
+      "assembly_sha256": "6b55625cfd0a5a3f62b6ec53e0e3f7ac86c329d7133eb4dd9b9c79c92ac83edb"
+    },
+    {
+      "role": "combat-follower-retention",
+      "start": "0x14592b66b",
+      "end_exclusive": "0x14592b795",
+      "file_offset": "0x592aa6b",
+      "byte_count": 298,
+      "sha256": "77f4c616ae9b8d0d3f3da5880c68dbe188a403f1d31c3b94ac3d8b0225947acd",
+      "kind": "code",
+      "assembly": "combat-follower-retention.asm",
+      "assembly_sha256": "e1dba28f0c3d66e1ab37aa40f46d484a8a0db5a9366ced5dff37d0d66d322971"
+    },
+    {
+      "role": "driver-error-literal",
+      "start": "0x146e96438",
+      "end_exclusive": "0x146e96455",
+      "file_offset": "0x6e95638",
+      "byte_count": 29,
+      "sha256": "23f5136b3b090119f33f3d82b04de347d637d2523546dee6180f49f16c678744",
+      "kind": "data"
+    },
+    {
+      "role": "driver-error-location",
+      "start": "0x146e96478",
+      "end_exclusive": "0x146e96490",
+      "file_offset": "0x6e95678",
+      "byte_count": 24,
+      "sha256": "ce9f0b208c202151ed9d00a11e8fb53a0a62eed456469c9a124ecabb5e916d1c",
+      "kind": "data"
+    },
+    {
+      "role": "command-table",
+      "start": "0x146be7534",
+      "end_exclusive": "0x146be7564",
+      "file_offset": "0x6be6734",
+      "byte_count": 48,
+      "sha256": "c49de63a0006b7dd14098f06120182a8bdb94f1a2deec11156b83b28f591db34",
+      "kind": "data"
+    },
+    {
+      "role": "terminal-result-label",
+      "start": "0x1471ef9c1",
+      "end_exclusive": "0x1471ef9c7",
+      "file_offset": "0x71eebc1",
+      "byte_count": 6,
+      "sha256": "5fff5b4eec6c48b6a82dbaadf38a0735e57ba6a1d6ee5672af4accbf100727e8",
+      "kind": "data"
+    },
+    {
+      "role": "freeze-constant-0x145d97610",
+      "start": "0x145d97610",
+      "end_exclusive": "0x145d97614",
+      "file_offset": "0x5d96810",
+      "byte_count": 4,
+      "sha256": "e00e5eb9444182f352323374ef4e08ebcb784725fdd4fd612d7730540b3e0c8c",
+      "kind": "data"
+    }
+  ],
+  "source_refs": [
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/terminal_movement.rs",
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs",
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs",
+    "crates/azeroth-survivors-re/src/gameplay/run_hud/pause.rs",
+    "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+    "crates/azeroth-survivors-re/src/gameplay/client/events.rs"
+  ],
+  "limitations": [
+    "No compilation, compiling tests, original/rebuilt applications or rendering comparison.",
+    "Scratch-memory replay seams replace allocators, vector growth, primary height, packet construction, choice destruction and result JSON creation; no native application or OS thread executes.",
+    "The in-process local-client embedding has no rogue-server thread, so recovered thread expect-panic behavior does not add a synthetic dialog or retry policy.",
+    "Complete network/auth/channel failures, global UI hooks and full native ownership remain outside this bounded recovery."
+  ],
+  "import_contracts": [
+    {
+      "iat_address": "0x145d948c0",
+      "library": "kernel32.dll",
+      "function": "CloseHandle"
+    }
+  ]
+}

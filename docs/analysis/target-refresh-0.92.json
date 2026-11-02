@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "selected_target": "0.92.0",
+  "milestone": "Buildable source reaching the main menu",
+  "method": "Read-only SHA-256 comparison of explicitly authorized external current files; changed project files copied through fsynced temporary files and atomically replaced after prior REA session closure confirmation. No game execution or MPQ content analysis.",
+  "source_directory": "installed-game",
+  "project_directory": "AzerothSurvivors",
+  "historical_target": {
+    "version": "0.91.4",
+    "path": "AzerothSurvivors/AzerothSurvivors-0.91.4.exe",
+    "size_bytes": 130840064,
+    "sha256": "719da61487e0ffaf6491a1ca65410a6666028e83271f059692ad46bc4d8af150",
+    "analysis_status": "historical; retained reports/evidence remain bound to this old hash"
+  },
+  "current_target": {
+    "version": "0.92.0",
+    "path": "AzerothSurvivors/AzerothSurvivors.exe",
+    "size_bytes": 130888192,
+    "sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+    "version_basis": "Three exact ASCII 0.92.0 hits in update/version-label contexts; no exact ASCII 0.91.4 hit. Static embedded identity, no running process inspected."
+  },
+  "changed_files": [
+    "AzerothSurvivors.exe"
+  ],
+  "files": [
+    {
+      "path": "AzerothSurvivors.exe",
+      "source": {
+        "size_bytes": 130888192,
+        "sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2"
+      },
+      "project_before": {
+        "size_bytes": 130840064,
+        "sha256": "719da61487e0ffaf6491a1ca65410a6666028e83271f059692ad46bc4d8af150"
+      },
+      "changed": true,
+      "project_after": {
+        "size_bytes": 130888192,
+        "sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2"
+      }
+    },
+    {
+      "path": "d3d9.dll",
+      "source": {
+        "size_bytes": 3399680,
+        "sha256": "033cef34aafc409075c764684cd97751903f5850b4f8b9d9c09eb5b6e882045e"
+      },
+      "project_before": {
+        "size_bytes": 3399680,
+        "sha256": "033cef34aafc409075c764684cd97751903f5850b4f8b9d9c09eb5b6e882045e"
+      },
+      "changed": false,
+      "project_after": {
+        "size_bytes": 3399680,
+        "sha256": "033cef34aafc409075c764684cd97751903f5850b4f8b9d9c09eb5b6e882045e"
+      }
+    },
+    {
+      "path": "Data/patch-2.MPQ",
+      "source": {
+        "size_bytes": 4690878,
+        "sha256": "366edee41642a5dda22ed90cc252b543ee375755b7e8bee81e2a6cd59fd7b286"
+      },
+      "project_before": {
+        "size_bytes": 4690878,
+        "sha256": "366edee41642a5dda22ed90cc252b543ee375755b7e8bee81e2a6cd59fd7b286"
+      },
+      "changed": false,
+      "project_after": {
+        "size_bytes": 4690878,
+        "sha256": "366edee41642a5dda22ed90cc252b543ee375755b7e8bee81e2a6cd59fd7b286"
+      }
+    },
+    {
+      "path": "Data/patch.MPQ",
+      "source": {
+        "size_bytes": 1340199244,
+        "sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf"
+      },
+      "project_before": {
+        "size_bytes": 1340199244,
+        "sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf"
+      },
+      "changed": false,
+      "project_after": {
+        "size_bytes": 1340199244,
+        "sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf"
+      }
+    }
+  ],
+  "version_marker_search": [
+    {
+      "exact_ascii_term": "0.91.4",
+      "occurrence_count": 0,
+      "locations": []
+    },
+    {
+      "exact_ascii_term": "0.92.0",
+      "occurrence_count": 3,
+      "locations": [
+        {
+          "file_offset": "0x58a78c1",
+          "virtual_address": "0x1458a90c1",
+          "context_file_offset": "0x58a7891",
+          "context_sha256": "61d391c7dcea6f3a1c8daa9d47585d0f43cd3277e3b4ebc3bb0db07c9baafaec",
+          "context_hex": "6e7d204d42c5200000700100000000207600400100000018000000000000000800000000000000e0200040010000006e302e39322e3041206e65772076657273696f6e206973206f7574214e65772067616d65206461746100000000000000aaf1723f79e9663f5eba493f0000803f7b73697a657d20646f776e6c6f616420c2b7207468652067616d65207265737461727473207768",
+          "context_printable": "n} MB. ..p..... v.@..................... .@....n0.92.0A new version is out!New game data.........r?y.f?^.I?...?{size} download .. the game restarts wh"
+        },
+        {
+          "file_offset": "0x58be363",
+          "virtual_address": "0x1458bfb63",
+          "context_file_offset": "0x58be333",
+          "context_sha256": "705e184cfc41b92699333ef7d3bb26e56951083cf2aada2412168e784c433f31",
+          "context_hex": "66663332696e666636344e614e4e614e6633324e614e66363470726f636573736f72525553545f4d494e5f535441434b302e39322e301e7570646174653a20757020746f2064617465202873697465206861732076c002290a00097570646174653a2076c012206973206f75742028746869732069732076c002290a00187570646174653a20636f756c64206e6f7420636865636b20",
+          "context_printable": "ff32inff64NaNNaNf32NaNf64processorRUST_MIN_STACK0.92.0.update: up to date (site has v..)...update: v.. is out (this is v..)...update: could not check "
+        },
+        {
+          "file_offset": "0x58e33b0",
+          "virtual_address": "0x1458e4bb0",
+          "context_file_offset": "0x58e3380",
+          "context_sha256": "c8925c4ce7fa1729a33b96a3ab2d19fd1f754ca479d5c401f235f89b5b71ef83",
+          "context_hex": "2e00000000000000ee0100000e00000084458e45010000002e000000000000002f010000200000003931396130313833302e39322e300000b04b8e450100000006000000000000000176c0022028c0012900256d70713a2f2f696e746572666163652f676c7565732f6c6f6164696e6773637265656e732fc0042e626c700000000000000000000000246cabd7af0000000000000000",
+          "context_printable": ".................E.E............/... ...919a01830.92.0...K.E.............v.. (..).%mpq://interface/glues/loadingscreens/...blp...........$l..........."
+        }
+      ]
+    }
+  ],
+  "mpq_scope": "Names, sizes and whole-file SHA-256 only; no archive entries, asset contents or DBC data analyzed.",
+  "historical_reports": [
+    "docs/analysis/benilla-baseline.md",
+    "docs/analysis/executable-inventory.md",
+    "docs/analysis/embedded-game-data.md",
+    "docs/analysis/changelog-guide.md",
+    "docs/analysis/main-menu-evidence.md",
+    "docs/analysis/mechanics-tables.md"
+  ],
+  "limits": [
+    "Embedded version strings do not authenticate release provenance or establish runtime behavior.",
+    "The 0.91.4 analysis and formula discoveries were not revalidated against 0.92.0."
+  ],
+  "historical_report_marking": "Each listed historical report has an explicit 0.91.4/archive-hash notice; existing source reports and evidence retain their original observations."
+}

@@ -1,0 +1,244 @@
+{
+  "target": "AzerothSurvivors/AzerothSurvivors-0.105.0.exe",
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "method": "REA/Ghidra raw slices corroborated by original PE instructions; bounded Unicorn leaf vectors.",
+  "ranges": [
+    {
+      "role": "environment-read",
+      "start": "0x1458a720e",
+      "end_exclusive": "0x1458a727a",
+      "file_offset": "0x58a660e",
+      "byte_count": 108,
+      "sha256": "5be804305d7883a346df533e6eebcaa2cedda23f81fd867fbd0f1c836aedb42f",
+      "assembly": "environment-read.asm"
+    },
+    {
+      "role": "environment-result",
+      "start": "0x1458a747e",
+      "end_exclusive": "0x1458a749d",
+      "file_offset": "0x58a687e",
+      "byte_count": 31,
+      "sha256": "7cee52b5abd434a172d0e44563bdd449e36719f21dfd235f571540d8e18f4a2d",
+      "assembly": "environment-result.asm"
+    },
+    {
+      "role": "showcase-begin",
+      "start": "0x145917d45",
+      "end_exclusive": "0x14591806e",
+      "file_offset": "0x5917145",
+      "byte_count": 809,
+      "sha256": "86792a0f78dfd612725ef846310a5cc9be4741b298736321c500e3b56cdf6d3d",
+      "assembly": "showcase-begin.asm"
+    },
+    {
+      "role": "extra-abilities",
+      "start": "0x1458e5d80",
+      "end_exclusive": "0x1458e611d",
+      "file_offset": "0x58e5180",
+      "byte_count": 925,
+      "sha256": "0e415a58ad0041c42574952a1215d465ebdb0c08fa387416cedd1fc4ff976dcc",
+      "assembly": "extra-abilities.asm"
+    },
+    {
+      "role": "learned-constructor",
+      "start": "0x1459b964b",
+      "end_exclusive": "0x1459b96a3",
+      "file_offset": "0x59b8a4b",
+      "byte_count": 88,
+      "sha256": "978a7051fce0ac73601e9f44b0ac001c9e07a7c4a7c42e08b6e013e9a7d0f20f",
+      "assembly": "learned-constructor.asm"
+    },
+    {
+      "role": "tick-prefix",
+      "start": "0x145901e4c",
+      "end_exclusive": "0x1459021ba",
+      "file_offset": "0x590124c",
+      "byte_count": 878,
+      "sha256": "e4f4ff44ccc41ecf6b2b5713bc8b5c7a15feeb249a39f277ad0760e7002a0cad",
+      "assembly": "tick-prefix.asm"
+    },
+    {
+      "role": "incoming-gate",
+      "start": "0x1458f338d",
+      "end_exclusive": "0x1458f33aa",
+      "file_offset": "0x58f278d",
+      "byte_count": 29,
+      "sha256": "7fff19aa25366b5f4180c2cdb2342ca235d4b206f45e0c4133be3521a2d3425e",
+      "assembly": "incoming-gate.asm"
+    },
+    {
+      "role": "level-offer-gate",
+      "start": "0x14591ce03",
+      "end_exclusive": "0x14591ce34",
+      "file_offset": "0x591c203",
+      "byte_count": 49,
+      "sha256": "0363a22e567c0b361a972c6a43d5714ecf5745f813218c3164a12793969fb978",
+      "assembly": "level-offer-gate.asm"
+    },
+    {
+      "role": "cache-offer-gate",
+      "start": "0x14590c812",
+      "end_exclusive": "0x14590c859",
+      "file_offset": "0x590bc12",
+      "byte_count": 71,
+      "sha256": "00d11a4a282385c5dbc3028b4d850f4692c62a04c51b8000fc795757a23668a8",
+      "assembly": "cache-offer-gate.asm"
+    },
+    {
+      "role": "guardian-offer-gate",
+      "start": "0x145910091",
+      "end_exclusive": "0x1459100bc",
+      "file_offset": "0x590f491",
+      "byte_count": 43,
+      "sha256": "4d6edea805d32e9324e4ddb4f11159fb1607a09ee4175633afec7cc7ee8363f4",
+      "assembly": "guardian-offer-gate.asm"
+    },
+    {
+      "role": "equipment-gate",
+      "start": "0x145935a18",
+      "end_exclusive": "0x145935a25",
+      "file_offset": "0x5934e18",
+      "byte_count": 13,
+      "sha256": "6db0d91d890d2ea9dfd394cf3f3f2bb1223f2f58c936a560469ad369c45204df",
+      "assembly": "equipment-gate.asm"
+    },
+    {
+      "role": "equipment-rejoin",
+      "start": "0x145935cf4",
+      "end_exclusive": "0x145935d37",
+      "file_offset": "0x59350f4",
+      "byte_count": 67,
+      "sha256": "ba115befb8b4e20d3f1f10a38f7681cc68fa5c8613c340baf09eb67a4bced844",
+      "assembly": "equipment-rejoin.asm"
+    },
+    {
+      "role": "initial-lair-gate",
+      "start": "0x145918878",
+      "end_exclusive": "0x145918886",
+      "file_offset": "0x5917c78",
+      "byte_count": 14,
+      "sha256": "7f206aba453b1b47259e4e12c3d1630f356c78dee4de59b17367fcb9d0df1909",
+      "assembly": "initial-lair-gate.asm"
+    },
+    {
+      "role": "all-companion-spells",
+      "start": "0x1459187ae",
+      "end_exclusive": "0x145918878",
+      "file_offset": "0x5917bae",
+      "byte_count": 202,
+      "sha256": "24d0b48f876e221c8b4b68b21871ab854df7c075977131ff41524f2d8ec7c961",
+      "assembly": "all-companion-spells.asm"
+    },
+    {
+      "role": "tester-row",
+      "start": "0x1458b7e58",
+      "end_exclusive": "0x1458b7ee9",
+      "file_offset": "0x58b7258",
+      "byte_count": 145,
+      "sha256": "c3d89705843a2d2c82f0a4d434c200e543a03fc7cb0d3a561cae47597f5b5259",
+      "assembly": "tester-row.asm"
+    },
+    {
+      "role": "tester-arguments",
+      "start": "0x14000ff00",
+      "end_exclusive": "0x14000ff8b",
+      "file_offset": "0xf300",
+      "byte_count": 139,
+      "sha256": "59f6d921e7e101b7048d8255ad96213f9a4333f68687850686997bb334a971dc",
+      "assembly": "tester-arguments.asm"
+    },
+    {
+      "role": "showcase-env-bytes",
+      "start": "0x146bb7868",
+      "end_exclusive": "0x146bb787a",
+      "file_offset": "0x6bb6a68",
+      "byte_count": 18,
+      "sha256": "71beb3813624abc86e70fcf86138e41f093584da2c4ae99f48186760f1ca3fbf"
+    },
+    {
+      "role": "repeat-seconds",
+      "start": "0x145d6d270",
+      "end_exclusive": "0x145d6d274",
+      "file_offset": "0x5d6c470",
+      "byte_count": 4,
+      "sha256": "d9fc8a51763953481a1808af3156bcb8144c2f925e96dec623c886f6d9d975b2"
+    },
+    {
+      "role": "circle-radius",
+      "start": "0x146e783d0",
+      "end_exclusive": "0x146e783d8",
+      "file_offset": "0x6e775d0",
+      "byte_count": 8,
+      "sha256": "129f7791aca449d32491eb15580f5f00b3a5d61564983f981424f36de7102f0f"
+    },
+    {
+      "role": "circle-tau",
+      "start": "0x145d74048",
+      "end_exclusive": "0x145d7404c",
+      "file_offset": "0x5d73248",
+      "byte_count": 4,
+      "sha256": "12d85026b5109a3119231704608d5991a63d8d397d2867a9fc522305810ddb76"
+    },
+    {
+      "role": "first-pickup-offset",
+      "start": "0x145e5bcf8",
+      "end_exclusive": "0x145e5bcfc",
+      "file_offset": "0x5e5aef8",
+      "byte_count": 4,
+      "sha256": "7b5162138ba6d8ae67efbf14d2266a9b11a531bf8e8b090e4bb2586f8f87a52e"
+    },
+    {
+      "role": "pickup-offsets",
+      "start": "0x146e783e0",
+      "end_exclusive": "0x146e78458",
+      "file_offset": "0x6e775e0",
+      "byte_count": 120,
+      "sha256": "84ceb0685d0fd6f477433f7dcbfdcb55209939c634c2dfa1b8dd7e46699d063c"
+    },
+    {
+      "role": "initial-world-tail",
+      "start": "0x145919894",
+      "end_exclusive": "0x145919949",
+      "file_offset": "0x5918c94",
+      "byte_count": 181,
+      "sha256": "74a6838895435b3f890ad49b415778cd4712cd6ac56ce401fa37758f61ed2c70",
+      "assembly": "initial-world-tail.asm"
+    }
+  ],
+  "rea": [
+    {
+      "role": "factory",
+      "evidence_id": "ev_ace2e4cc96f0feef2512de6e8b067a687a650fba3ead8631b8b64e371efe1b0a",
+      "raw_import_sha256": "0ec952854497aab38639225c5f641203f6714faef9eaaa6f3862120b4c044e9c",
+      "analysis_profile_digest": "a4082400e6475d614155958d5ed86ed1c396521a6ca18d00706f78a5caeb034e"
+    },
+    {
+      "role": "begin",
+      "evidence_id": "ev_419101e9c9480b80011c12dda4bc004638b72be793b7107a33d6d2e035de79cf",
+      "raw_import_sha256": "ef32f0f48d1f88259d4543a9f8c5da3ecbf4a57943b0dcf0438e3dbed362131e",
+      "analysis_profile_digest": "01d51f923034fb8f5f5cdd84a838a25dd044801553ce4f8e279ad0237ccea177"
+    },
+    {
+      "role": "tick-prefix",
+      "evidence_id": "ev_9eac17daf3839e4543f90a96cf5300153eae148ca76c7e488f76d7599bd33a14",
+      "raw_import_sha256": "3132014db2869cceab7b7423f6c1d941b036395c8e14bf3bdee6b863e3f52ac6",
+      "analysis_profile_digest": "78b06c6f84fbb0436d4e376923b84a06498b425056d8a7d5f4e34b910747e546"
+    },
+    {
+      "role": "extra-abilities",
+      "evidence_id": "ev_371c53d4ef2eb296bbfea6b97db2a9464d7c9319594129e5d14410a28af105b7",
+      "raw_import_sha256": "0e415a58ad0041c42574952a1215d465ebdb0c08fa387416cedd1fc4ff976dcc",
+      "analysis_profile_digest": "05241ffd810088ae5eecc4353e0e42defbce2a6cded42ace1771174a9f1ae9e6"
+    }
+  ],
+  "shared_evidence": [
+    "docs/analysis/evidence/0.105.0/boundary-pillars/manifest.json",
+    "docs/analysis/evidence/0.105.0/pet-creation/manifest.json",
+    "docs/analysis/evidence/0.105.0/addon-bridge/native-manifest.json",
+    "docs/analysis/evidence/0.105.0/stock-frontend/roster-projection-manifest.json"
+  ],
+  "limits": [
+    "Ghidra raw slices omit external data/callees and use generic x86-64 ABI; original PE supplies Windows register/data bindings.",
+    "No native callee or original/rebuilt application executed; no source compilation or runtime/visual parity check."
+  ]
+}

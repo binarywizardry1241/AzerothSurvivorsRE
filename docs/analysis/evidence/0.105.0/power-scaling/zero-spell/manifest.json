@@ -1,0 +1,43 @@
+{
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "target_version": "0.105.0",
+  "application_executed": false,
+  "owners": [
+    {
+      "role": "selector",
+      "address": "0x14592e820",
+      "end_exclusive": "0x14592ea75",
+      "file_offset": "0x592dc20",
+      "byte_count": 597,
+      "sha256": "6bb2bc8fa16f27cb0a92b1b17490cabb43d30ed075c8d86517036c1b2873aca9",
+      "assembly": "selector.asm",
+      "pseudocode": "selector.ghidra.c",
+      "evidence_id": "ev_a22cea94c60000e3ad5c0de610ff236c0264822cbe07feae763b953dd71065ba",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "38c511203d263d2bcff4787faf4cf7f4383938d480db7356b9369897266ccc35"
+    },
+    {
+      "role": "condition",
+      "address": "0x145929aa0",
+      "end_exclusive": "0x145929ba6",
+      "file_offset": "0x5928ea0",
+      "byte_count": 262,
+      "sha256": "44850450713ca049fd8f600c1710989db8da5e2fbe6ed3d10fcb9fa14da261f9",
+      "assembly": "condition.asm"
+    }
+  ],
+  "vectors": "native-zero-spell.json",
+  "observations": [
+    "Condition 145929aa0 forwards event spell+8, school+1c and source+1e to selector 14592e820.",
+    "Selectors 1/2/4 reject source2 and spell0 before reading the class or learned definitions.",
+    "Selector5 independently admits spell0/source0; school/source selectors need no definition."
+  ],
+  "limits": [
+    "Raw Ghidra imports omit external callees and static tables; original mapped-PE instructions and switch data control the fixture results.",
+    "No original/rebuilt application comparison or gameplay parity is implied."
+  ]
+}

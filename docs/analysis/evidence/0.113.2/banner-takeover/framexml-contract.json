@@ -1,0 +1,9 @@
+{
+  "archive": "installed-game/Data/patch.MPQ",
+  "member": "Interface\\FrameXML\\ChatFrame.lua",
+  "member_sha256": "f224ac3ec8805da02a8e1b8f70bb19fe956fc8c2b451a3692afc17c28f715f9d",
+  "line_start": 1455,
+  "source": "\t\t\t\t\t-- Add raid boss emote message\n\t\t\t\t\tif ( type == \"RAID_BOSS_EMOTE\" ) then\n\t\t\t\t\t\tRaidBossEmoteFrame:AddMessage(body, info.r, info.g, info.b, 1.0);\n\t\t\t\t\tend",
+  "meaning": "The loaded stock event handler performs an ordinary frame-table AddMessage lookup. The host routes the event through this handler; it has no independent native MessageFrame insertion here.",
+  "limits": "MPQ bytes and source trace, not execution of the actual FrameXML VM or unchanged addon."
+}

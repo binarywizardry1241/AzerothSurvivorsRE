@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "gap_ids": [
+    227
+  ],
+  "existing_evidence": [
+    {
+      "manifest": "docs/analysis/evidence/0.121.0/affixes/manifest.json",
+      "roles": [
+        "again-ui-command-selector",
+        "again-ui-command-table",
+        "again-command-selector",
+        "again-command-table"
+      ],
+      "meaning": "Already replayed action1 selects command8 and destination145b2aa47; reuse those canonical bytes."
+    },
+    {
+      "manifest": "docs/analysis/evidence/0.121.0/affixes/manifest.json",
+      "query_role": "actor-hit",
+      "meaning": "Complete current death owner has reward145c1815b before phase write145c181f9."
+    },
+    {
+      "manifest": "docs/analysis/evidence/0.121.0/gear-rewards.json",
+      "query_role": "boss-roll",
+      "meaning": "Current reward145c136c4 reads low b90 byte, then shared cd8 for the post-clear branch."
+    }
+  ],
+  "native_ranges": [
+    {
+      "role": "endless-ui-label-action",
+      "virtual_address": "0x1400d5b18",
+      "file_offset": "0xd4f18",
+      "byte_count": 100,
+      "sha256": "77b46162bd0f368cd3e03b9772a78df94d1f33bd8917204c0dd3818c12e4b3f9",
+      "bytes_hex": "488b85600700008038007458488d0de1660d06ba0b000000e87b53a105904889c74889d3488bb560050000483bb550050000750d488d8d50050000e8d868f10590488b8558050000488d0c76c604c80148897cc80848895cc81048ffc64889b560050000",
+      "instruction_count": 22,
+      "containing_unwind_owner": [
+        "0x1400d3cc0",
+        "0x1400d6242"
+      ],
+      "assembly": "00000001400d5b18 488b8560070000                 mov rax, qword ptr [rbp + 0x760]\n00000001400d5b1f 803800                         cmp byte ptr [rax], 0\n00000001400d5b22 7458                           je 0x1400d5b7c\n00000001400d5b24 488d0de1660d06                 lea rcx, [rip + 0x60d66e1]\n00000001400d5b2b ba0b000000                     mov edx, 0xb\n00000001400d5b30 e87b53a105                     call 0x145aeaeb0\n00000001400d5b35 90                             nop\n00000001400d5b36 4889c7                         mov rdi, rax\n00000001400d5b39 4889d3                         mov rbx, rdx\n00000001400d5b3c 488bb560050000                 mov rsi, qword ptr [rbp + 0x560]\n00000001400d5b43 483bb550050000                 cmp rsi, qword ptr [rbp + 0x550]\n00000001400d5b4a 750d                           jne 0x1400d5b59\n00000001400d5b4c 488d8d50050000                 lea rcx, [rbp + 0x550]\n00000001400d5b53 e8d868f105                     call 0x145fec430\n00000001400d5b58 90                             nop\n00000001400d5b59 488b8558050000                 mov rax, qword ptr [rbp + 0x558]\n00000001400d5b60 488d0c76                       lea rcx, [rsi + rsi*2]\n00000001400d5b64 c604c801                       mov byte ptr [rax + rcx*8], 1\n00000001400d5b68 48897cc808                     mov qword ptr [rax + rcx*8 + 8], rdi\n00000001400d5b6d 48895cc810                     mov qword ptr [rax + rcx*8 + 0x10], rbx\n00000001400d5b72 48ffc6                         inc rsi\n00000001400d5b75 4889b560050000                 mov qword ptr [rbp + 0x560], rsi\n"
+    },
+    {
+      "role": "command8-admission-and-party-call",
+      "virtual_address": "0x145b2aa47",
+      "file_offset": "0x5b29e47",
+      "byte_count": 33,
+      "sha256": "09687c98d30ff98189c514fccdc83cb6c2109d2d1df413ef70b7bc35925edcea",
+      "bytes_hex": "837e10020f8429faffff488d4e1080be3a0d0000000f842d090000e88983090090",
+      "instruction_count": 7,
+      "containing_unwind_owner": [
+        "0x145b2a420",
+        "0x145b2bbf1"
+      ],
+      "assembly": "0000000145b2aa47 837e1002                       cmp dword ptr [rsi + 0x10], 2\n0000000145b2aa4b 0f8429faffff                   je 0x145b2a47a\n0000000145b2aa51 488d4e10                       lea rcx, [rsi + 0x10]\n0000000145b2aa55 80be3a0d000000                 cmp byte ptr [rsi + 0xd3a], 0\n0000000145b2aa5c 0f842d090000                   je 0x145b2b38f\n0000000145b2aa62 e889830900                     call 0x145bc2df0\n0000000145b2aa67 90                             nop\n"
+    },
+    {
+      "role": "command8-solo-call",
+      "virtual_address": "0x145b2b38f",
+      "file_offset": "0x5b2a78f",
+      "byte_count": 14,
+      "sha256": "558fbdcb9c48c6fbabafc5f7a1d8353f14cc85e809e7e22cbf0fbbd52704389b",
+      "bytes_hex": "e83cd609009048c7462000000000",
+      "instruction_count": 3,
+      "containing_unwind_owner": [
+        "0x145b2a420",
+        "0x145b2bbf1"
+      ],
+      "assembly": "0000000145b2b38f e83cd60900                     call 0x145bc89d0\n0000000145b2b394 90                             nop\n0000000145b2b395 48c7462000000000               mov qword ptr [rsi + 0x20], 0\n"
+    },
+    {
+      "role": "continue-solo",
+      "virtual_address": "0x145bc89d0",
+      "file_offset": "0x5bc7dd0",
+      "byte_count": 376,
+      "sha256": "f8b2daae8d144ec19345bcbf174adff8a93225d778d5da98405e6c85c9163285",
+      "bytes_hex": "554157415641545657534883ec50488d6c245048c745f8feffffff80b92f0d0000050f85410100004889ce0fb6991c0d0000c6811c0d000001c6812f0d000001f30f1081740c0000f30f5805902ba901f30f1181d40c0000488db970060000488b91b0040000448b81a0050000488d4dd8e83a2afbff4c8bb6800600004c3bb67006000075094889f9e8723c420090488b86780600004c89f148c1e1050f1045d80f104de80f114c08100f11040849ffc64c89b680060000ff86a005000084db0f85a3000000488d1d8a78ac0141be07000000ba070000004889d9e8b024f2ff4885c0480f45d84c0f45f24c8d3d6c78ac0141bc1b000000ba1b0000004c89f9e88b24f2ff4885c04c0f45f8490f44d44889542420488d4dd84889da4d89f04d89f9e8f904fbff488b9e80060000483b9e7006000075094889f9e8c13b420090488b86780600004889d948c1e1050f1045d80f104de80f114c08100f11040848ffc348899e800600004883c4505b5f5e415c415e415f5dc3",
+      "instruction_count": 88,
+      "containing_unwind_owner": [
+        "0x145bc89d0",
+        "0x145bc8b48"
+      ],
+      "assembly": "0000000145bc89d0 55                             push rbp\n0000000145bc89d1 4157                           push r15\n0000000145bc89d3 4156                           push r14\n0000000145bc89d5 4154                           push r12\n0000000145bc89d7 56                             push rsi\n0000000145bc89d8 57                             push rdi\n0000000145bc89d9 53                             push rbx\n0000000145bc89da 4883ec50                       sub rsp, 0x50\n0000000145bc89de 488d6c2450                     lea rbp, [rsp + 0x50]\n0000000145bc89e3 48c745f8feffffff               mov qword ptr [rbp - 8], 0xfffffffffffffffe\n0000000145bc89eb 80b92f0d000005                 cmp byte ptr [rcx + 0xd2f], 5\n0000000145bc89f2 0f8541010000                   jne 0x145bc8b39\n0000000145bc89f8 4889ce                         mov rsi, rcx\n0000000145bc89fb 0fb6991c0d0000                 movzx ebx, byte ptr [rcx + 0xd1c]\n0000000145bc8a02 c6811c0d000001                 mov byte ptr [rcx + 0xd1c], 1\n0000000145bc8a09 c6812f0d000001                 mov byte ptr [rcx + 0xd2f], 1\n0000000145bc8a10 f30f1081740c0000               movss xmm0, dword ptr [rcx + 0xc74]\n0000000145bc8a18 f30f5805902ba901               addss xmm0, dword ptr [rip + 0x1a92b90]\n0000000145bc8a20 f30f1181d40c0000               movss dword ptr [rcx + 0xcd4], xmm0\n0000000145bc8a28 488db970060000                 lea rdi, [rcx + 0x670]\n0000000145bc8a2f 488b91b0040000                 mov rdx, qword ptr [rcx + 0x4b0]\n0000000145bc8a36 448b81a0050000                 mov r8d, dword ptr [rcx + 0x5a0]\n0000000145bc8a3d 488d4dd8                       lea rcx, [rbp - 0x28]\n0000000145bc8a41 e83a2afbff                     call 0x145b7b480\n0000000145bc8a46 4c8bb680060000                 mov r14, qword ptr [rsi + 0x680]\n0000000145bc8a4d 4c3bb670060000                 cmp r14, qword ptr [rsi + 0x670]\n0000000145bc8a54 7509                           jne 0x145bc8a5f\n0000000145bc8a56 4889f9                         mov rcx, rdi\n0000000145bc8a59 e8723c4200                     call 0x145fec6d0\n0000000145bc8a5e 90                             nop\n0000000145bc8a5f 488b8678060000                 mov rax, qword ptr [rsi + 0x678]\n0000000145bc8a66 4c89f1                         mov rcx, r14\n0000000145bc8a69 48c1e105                       shl rcx, 5\n0000000145bc8a6d 0f1045d8                       movups xmm0, xmmword ptr [rbp - 0x28]\n0000000145bc8a71 0f104de8                       movups xmm1, xmmword ptr [rbp - 0x18]\n0000000145bc8a75 0f114c0810                     movups xmmword ptr [rax + rcx + 0x10], xmm1\n0000000145bc8a7a 0f110408                       movups xmmword ptr [rax + rcx], xmm0\n0000000145bc8a7e 49ffc6                         inc r14\n0000000145bc8a81 4c89b680060000                 mov qword ptr [rsi + 0x680], r14\n0000000145bc8a88 ff86a0050000                   inc dword ptr [rsi + 0x5a0]\n0000000145bc8a8e 84db                           test bl, bl\n0000000145bc8a90 0f85a3000000                   jne 0x145bc8b39\n0000000145bc8a96 488d1d8a78ac01                 lea rbx, [rip + 0x1ac788a]\n0000000145bc8a9d 41be07000000                   mov r14d, 7\n0000000145bc8aa3 ba07000000                     mov edx, 7\n0000000145bc8aa8 4889d9                         mov rcx, rbx\n0000000145bc8aab e8b024f2ff                     call 0x145aeaf60\n0000000145bc8ab0 4885c0                         test rax, rax\n0000000145bc8ab3 480f45d8                       cmovne rbx, rax\n0000000145bc8ab7 4c0f45f2                       cmovne r14, rdx\n0000000145bc8abb 4c8d3d6c78ac01                 lea r15, [rip + 0x1ac786c]\n0000000145bc8ac2 41bc1b000000                   mov r12d, 0x1b\n0000000145bc8ac8 ba1b000000                     mov edx, 0x1b\n0000000145bc8acd 4c89f9                         mov rcx, r15\n0000000145bc8ad0 e88b24f2ff                     call 0x145aeaf60\n0000000145bc8ad5 4885c0                         test rax, rax\n0000000145bc8ad8 4c0f45f8                       cmovne r15, rax\n0000000145bc8adc 490f44d4                       cmove rdx, r12\n0000000145bc8ae0 4889542420                     mov qword ptr [rsp + 0x20], rdx\n0000000145bc8ae5 488d4dd8                       lea rcx, [rbp - 0x28]\n0000000145bc8ae9 4889da                         mov rdx, rbx\n0000000145bc8aec 4d89f0                         mov r8, r14\n0000000145bc8aef 4d89f9                         mov r9, r15\n0000000145bc8af2 e8f904fbff                     call 0x145b78ff0\n0000000145bc8af7 488b9e80060000                 mov rbx, qword ptr [rsi + 0x680]\n0000000145bc8afe 483b9e70060000                 cmp rbx, qword ptr [rsi + 0x670]\n0000000145bc8b05 7509                           jne 0x145bc8b10\n0000000145bc8b07 4889f9                         mov rcx, rdi\n0000000145bc8b0a e8c13b4200                     call 0x145fec6d0\n0000000145bc8b0f 90                             nop\n0000000145bc8b10 488b8678060000                 mov rax, qword ptr [rsi + 0x678]\n0000000145bc8b17 4889d9                         mov rcx, rbx\n0000000145bc8b1a 48c1e105                       shl rcx, 5\n0000000145bc8b1e 0f1045d8                       movups xmm0, xmmword ptr [rbp - 0x28]\n0000000145bc8b22 0f104de8                       movups xmm1, xmmword ptr [rbp - 0x18]\n0000000145bc8b26 0f114c0810                     movups xmmword ptr [rax + rcx + 0x10], xmm1\n0000000145bc8b2b 0f110408                       movups xmmword ptr [rax + rcx], xmm0\n0000000145bc8b2f 48ffc3                         inc rbx\n0000000145bc8b32 48899e80060000                 mov qword ptr [rsi + 0x680], rbx\n0000000145bc8b39 4883c450                       add rsp, 0x50\n0000000145bc8b3d 5b                             pop rbx\n0000000145bc8b3e 5f                             pop rdi\n0000000145bc8b3f 5e                             pop rsi\n0000000145bc8b40 415c                           pop r12\n0000000145bc8b42 415e                           pop r14\n0000000145bc8b44 415f                           pop r15\n0000000145bc8b46 5d                             pop rbp\n0000000145bc8b47 c3                             ret\n"
+    },
+    {
+      "role": "continue-party-local-gate",
+      "virtual_address": "0x145bc2e0f",
+      "file_offset": "0x5bc220f",
+      "byte_count": 60,
+      "sha256": "638abcee8253a30deaeabb4e8abc9e5bf864a9f9de825a41d82c2d077e6faaa9",
+      "bytes_hex": "80b92a0d0000010f85670200004989ce80b9300d0000050f85570200000f57c0410f2e8638050000730a4c89f1e88f5b0000eb0841c6862f0d000004",
+      "instruction_count": 12,
+      "containing_unwind_owner": [
+        "0x145bc2df0",
+        "0x145bc30cf"
+      ],
+      "assembly": "0000000145bc2e0f 80b92a0d000001                 cmp byte ptr [rcx + 0xd2a], 1\n0000000145bc2e16 0f8567020000                   jne 0x145bc3083\n0000000145bc2e1c 4989ce                         mov r14, rcx\n0000000145bc2e1f 80b9300d000005                 cmp byte ptr [rcx + 0xd30], 5\n0000000145bc2e26 0f8557020000                   jne 0x145bc3083\n0000000145bc2e2c 0f57c0                         xorps xmm0, xmm0\n0000000145bc2e2f 410f2e8638050000               ucomiss xmm0, dword ptr [r14 + 0x538]\n0000000145bc2e37 730a                           jae 0x145bc2e43\n0000000145bc2e39 4c89f1                         mov rcx, r14\n0000000145bc2e3c e88f5b0000                     call 0x145bc89d0\n0000000145bc2e41 eb08                           jmp 0x145bc2e4b\n0000000145bc2e43 41c6862f0d000004               mov byte ptr [r14 + 0xd2f], 4\n"
+    },
+    {
+      "role": "constructor-counter-zero",
+      "virtual_address": "0x145bdd6ed",
+      "file_offset": "0x5bdcaed",
+      "byte_count": 11,
+      "sha256": "6be8b4020fb4c907173cba7da89e56f2244c9c95e369629e9a4f9d5457fe61d0",
+      "bytes_hex": "48c785e40c000000000000",
+      "instruction_count": 1,
+      "containing_unwind_owner": [
+        "0x145bdcb10",
+        "0x145bde31a"
+      ],
+      "assembly": "0000000145bdd6ed 48c785e40c000000000000         mov qword ptr [rbp + 0xce4], 0\n"
+    },
+    {
+      "role": "constructor-phase-and-endless-zero",
+      "virtual_address": "0x145bdd735",
+      "file_offset": "0x5bdcb35",
+      "byte_count": 48,
+      "sha256": "a332b2948070b06bbac62b9d0ea1e5a13ee31f5204ee2d150212037e346d97b7",
+      "bytes_hex": "c785a00b000000000000c785a80b000000000000c785280d00000100000048c785080c000000000000c6852c0d000000",
+      "instruction_count": 5,
+      "containing_unwind_owner": [
+        "0x145bdcb10",
+        "0x145bde31a"
+      ],
+      "assembly": "0000000145bdd735 c785a00b000000000000           mov dword ptr [rbp + 0xba0], 0\n0000000145bdd73f c785a80b000000000000           mov dword ptr [rbp + 0xba8], 0\n0000000145bdd749 c785280d000001000000           mov dword ptr [rbp + 0xd28], 1\n0000000145bdd753 48c785080c000000000000         mov qword ptr [rbp + 0xc08], 0\n0000000145bdd75e c6852c0d000000                 mov byte ptr [rbp + 0xd2c], 0\n"
+    },
+    {
+      "role": "constructor-whole-game-copy",
+      "virtual_address": "0x145bde16f",
+      "file_offset": "0x5bdd56f",
+      "byte_count": 25,
+      "sha256": "034480d2f17dc83fdd156ca529899d2b02ad12f3a16cfae0a1cf60c9554299c6",
+      "bytes_hex": "488d551041b8380d0000488bb5080f00004889f1e893da4000",
+      "instruction_count": 5,
+      "containing_unwind_owner": [
+        "0x145bdcb10",
+        "0x145bde31a"
+      ],
+      "assembly": "0000000145bde16f 488d5510                       lea rdx, [rbp + 0x10]\n0000000145bde173 41b8380d0000                   mov r8d, 0xd38\n0000000145bde179 488bb5080f0000                 mov rsi, qword ptr [rbp + 0xf08]\n0000000145bde180 4889f1                         mov rcx, rsi\n0000000145bde183 e893da4000                     call 0x145febc1b\n"
+    },
+    {
+      "role": "post-reward-phase-write",
+      "virtual_address": "0x145c181d8",
+      "file_offset": "0x5c175d8",
+      "byte_count": 60,
+      "sha256": "7f85f113b0cd2974b6cab1b3a022489f27f0230dc1d4e75d62538b2b28562c74",
+      "bytes_hex": "41807d64014c8ba5e80100000f85f50200004180bc24900b0000000f85e602000041c78424900b000001000000f3450f11ac24940b0000e9cb020000",
+      "instruction_count": 8,
+      "containing_unwind_owner": [
+        "0x145c159a0",
+        "0x145c19d53"
+      ],
+      "assembly": "0000000145c181d8 41807d6401                     cmp byte ptr [r13 + 0x64], 1\n0000000145c181dd 4c8ba5e8010000                 mov r12, qword ptr [rbp + 0x1e8]\n0000000145c181e4 0f85f5020000                   jne 0x145c184df\n0000000145c181ea 4180bc24900b000000             cmp byte ptr [r12 + 0xb90], 0\n0000000145c181f3 0f85e6020000                   jne 0x145c184df\n0000000145c181f9 41c78424900b000001000000       mov dword ptr [r12 + 0xb90], 1\n0000000145c18205 f3450f11ac24940b0000           movss dword ptr [r12 + 0xb94], xmm13\n0000000145c1820f e9cb020000                     jmp 0x145c184df\n"
+    }
+  ],
+  "native_data": [
+    {
+      "role": "endless-localized-key",
+      "virtual_address": "0x1461ac20c",
+      "file_offset": "0x61ab00c",
+      "byte_count": 11,
+      "sha256": "77e4e3d860b3fa598ab0b714fe8bfab6fb2350281d6134d8ec51648dbb53c3d7",
+      "bytes_hex": "656e642e656e646c657373"
+    },
+    {
+      "role": "continue-deadline-seconds",
+      "virtual_address": "0x14765b5b0",
+      "file_offset": "0x765a3b0",
+      "byte_count": 4,
+      "sha256": "bfdc115a065d54c11547d050bc55134b079bc62fcb88bff853d2fad5f136b711",
+      "bytes_hex": "00009643"
+    }
+  ],
+  "contracts": {
+    "b90": "Shared u32 phase: constructor0; final-boss definition+64==1 sets1 after reward only if prior LOW BYTE was0. Continue preserves it.",
+    "d1c": "Separate Endless-enabled byte: constructor0; mode5 Continue sets1 before mode1 and now+300 deadline. Prior flag suppresses repeated notice.",
+    "cd8": "Shared boss count: constructor0; Continue preserves it. Death owner increments before reward when d24==0 and b90!=0.",
+    "ordering": "First final kill reward sees b90==0, then setsb90=1/b94=now. Later eligible boss deaths incrementcd8 and select post-clear reward independently of d1c."
+  },
+  "static_check": {
+    "result": "passed",
+    "original_instruction_cases": {
+      "continue_mode_flag_phase_counter": 72,
+      "post_reward_final_clear": 9,
+      "constructor_resets": 6
+    },
+    "original_instruction_steps": 372,
+    "fixture_seams": [
+      "Synthetic Game/frame/definition memory; Continue stops before packet builder; constructor field slices stop before remaining initialization/copy. No external call executes."
+    ],
+    "source_execution": false,
+    "compilation": "not_run",
+    "runtime": "not_run",
+    "parity": "unverified"
+  },
+  "limits": "Bounded current native producers/selectors, not a whole-image alias/write census. Existing receipts reused; no new query, application, server, account/filesystem operation or reconstructed Rust execution. No source edits."
+}

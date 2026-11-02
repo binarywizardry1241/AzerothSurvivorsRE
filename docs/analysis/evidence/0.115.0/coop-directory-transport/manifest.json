@@ -1,0 +1,545 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.115.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+    "size_bytes": 142111232
+  },
+  "target_executed": false,
+  "owners": [
+    {
+      "role": "url-override",
+      "start": "0x145891ab0",
+      "end_exclusive": "0x145891b62",
+      "file_offset": "0x5890eb0",
+      "sha256": "4b13da4433ba845f1d0b57c3a25c422db652a83215ff4db3c952717e1300df49",
+      "boundary": "registered PE unwind extent",
+      "extract": "docs/analysis/evidence/0.115.0/coop-directory-transport/url-override.asm",
+      "extract_sha256": "53851e05221bcd40baf744e11bbf87b1908f750ddd2a52721574695f2d5edbce"
+    },
+    {
+      "role": "ensure-service",
+      "start": "0x145891330",
+      "end_exclusive": "0x14589152b",
+      "file_offset": "0x5890730",
+      "sha256": "efbf976499cf85be1f1372d4d65a5bf95306d35d3a33c0c42160795daeb05b28",
+      "boundary": "registered PE unwind extent",
+      "extract": "docs/analysis/evidence/0.115.0/coop-directory-transport/ensure-service.asm",
+      "extract_sha256": "b298e85c65d009d827bfabe490b15d52a1fa65012d6483c57abc1a2ecdac1dba"
+    },
+    {
+      "role": "transport-constructor",
+      "start": "0x1458544c0",
+      "end_exclusive": "0x145854a96",
+      "file_offset": "0x58538c0",
+      "sha256": "8e92b0618cb869c92f1bf6ee6f30998c4827ec9719f7568560f2a0f1af5b0154",
+      "boundary": "registered PE unwind extent",
+      "extract": "docs/analysis/evidence/0.115.0/coop-directory-transport/transport-constructor.asm",
+      "extract_sha256": "ca77b52edd52beb2882193fcd35271a82325ceedb24276a649acdb6a598007bc"
+    },
+    {
+      "role": "thread-spawn",
+      "start": "0x145850b20",
+      "end_exclusive": "0x14585100e",
+      "file_offset": "0x584ff20",
+      "sha256": "46962c2f9556623356d0a3d574dbc5a9258ddc0bfeb88faf5c0c1cd661deb48f",
+      "boundary": "registered PE unwind extent",
+      "extract": "docs/analysis/evidence/0.115.0/coop-directory-transport/thread-spawn.asm",
+      "extract_sha256": "7b1a97e22ccaceecc66d5108a198b800a56ef68160f787a61c80298e4bd22cda"
+    },
+    {
+      "role": "thread-closure",
+      "start": "0x145851e30",
+      "end_exclusive": "0x145852031",
+      "file_offset": "0x5851230",
+      "sha256": "f974ff5154d8c86b6108f0e8cce9946909cdf0bf814416c245d7041140c9f359",
+      "boundary": "registered PE unwind extent",
+      "extract": "docs/analysis/evidence/0.115.0/coop-directory-transport/thread-closure.asm",
+      "extract_sha256": "9a09757e6e69e9c339a30d2e99fbe458224cf5a35570f9e2de646817e7b0969c"
+    },
+    {
+      "role": "thread-exit-status",
+      "start": "0x1458b1940",
+      "end_exclusive": "0x1458b199b",
+      "file_offset": "0x58b0d40",
+      "sha256": "131d1b6ea9235cb77bee1b183c6aa67f3e3fb28d5ed970c4b5014bbb84695755",
+      "boundary": "registered PE unwind extent",
+      "extract": "docs/analysis/evidence/0.115.0/coop-directory-transport/thread-exit-status.asm",
+      "extract_sha256": "69b9c9e09e1e8119e7ec50b7ced90791f43c8bb9d9f6f62d48a9184006663990"
+    },
+    {
+      "role": "websocket-worker",
+      "start": "0x14586a9c0",
+      "end_exclusive": "0x14586b5c9",
+      "file_offset": "0x5869dc0",
+      "sha256": "5682b27b8401981fe381d74821352d6a43d018bc18d386fcb4382a48f0169a23",
+      "boundary": "registered PE unwind extent",
+      "extract": "docs/analysis/evidence/0.115.0/coop-directory-transport/websocket-worker.asm",
+      "extract_sha256": "a8d1b3ace992d1b4a109b2cbc55b1e544189e640ac79d4d1c691fb375d59c0fb"
+    },
+    {
+      "role": "websocket-connect",
+      "start": "0x1458b0720",
+      "end_exclusive": "0x1458b1097",
+      "file_offset": "0x58afb20",
+      "sha256": "7f205a03550a25b4d1304169dfeaba213661379b1bb6fd94d192217da58b281e",
+      "boundary": "registered PE unwind extent",
+      "extract": "docs/analysis/evidence/0.115.0/coop-directory-transport/websocket-connect.asm",
+      "extract_sha256": "c4785eead98a2312e0fdecdeea6757638f129f5b508d193abe7744673601f413"
+    },
+    {
+      "role": "send-queue",
+      "start": "0x14586da20",
+      "end_exclusive": "0x14586da5d",
+      "file_offset": "0x586ce20",
+      "sha256": "c6032343a47cde4e44a8a124cedc6bd0d4b33ed773a9690954fdcc32fc967049",
+      "boundary": "registered PE unwind extent",
+      "extract": "docs/analysis/evidence/0.115.0/coop-directory-transport/send-queue.asm",
+      "extract_sha256": "798abcbc8eb3c8ada2b4871ae6346aa1dd3a22a547d17ed475635ded4a5d49ee"
+    },
+    {
+      "role": "receive-queue",
+      "start": "0x14586d9a0",
+      "end_exclusive": "0x14586da12",
+      "file_offset": "0x586cda0",
+      "sha256": "04fb1ef8d125c4d572923a2f3181431fdaa1d861a8abd05ae26d68346ae9033c",
+      "boundary": "registered PE unwind extent",
+      "extract": "docs/analysis/evidence/0.115.0/coop-directory-transport/receive-queue.asm",
+      "extract_sha256": "ec759119059216d08c545549673f8e0733961c060f55dca87d849ca8d527d08f"
+    },
+    {
+      "role": "connection-status",
+      "start": "0x14586da60",
+      "end_exclusive": "0x14586da7c",
+      "file_offset": "0x586ce60",
+      "sha256": "c0f2a2d773d5488e4403d6ee50d8018249553af20aee7e15b5e3e3254eeb3503",
+      "boundary": "leaf entry through first ret; no PE unwind extent",
+      "extract": "docs/analysis/evidence/0.115.0/coop-directory-transport/connection-status.asm",
+      "extract_sha256": "133cdc8c14363dbb0bc9d596d57b6a0fba30c43196390bae35a03d84af48f373"
+    },
+    {
+      "role": "close-signal",
+      "start": "0x14586b880",
+      "end_exclusive": "0x14586b88a",
+      "file_offset": "0x586ac80",
+      "sha256": "fb111ed08156c4ee0e94f82f3fe5e3d2cdb2f600019948c54a729f2eca43a181",
+      "boundary": "leaf entry through first ret; no PE unwind extent",
+      "extract": "docs/analysis/evidence/0.115.0/coop-directory-transport/close-signal.asm",
+      "extract_sha256": "837cec2b3888cacda04ba48512353ef818c018840a2d55f0933d79f90fb44a42"
+    },
+    {
+      "role": "vec-to-bytes",
+      "start": "0x145b794b0",
+      "end_exclusive": "0x145b79590",
+      "file_offset": "0x5b788b0",
+      "sha256": "38f6ea83e18845ff145fcb5cf79838751dcb6898c9dd0447d8989b0fd11c73f1",
+      "boundary": "registered PE unwind extent",
+      "extract": "docs/analysis/evidence/0.115.0/coop-directory-transport/vec-to-bytes.asm",
+      "extract_sha256": "b865faa54114c1f44888df86aafd240c6f80a737ea222cf4b419822191c07bfa"
+    },
+    {
+      "role": "websocket-send",
+      "start": "0x14582a230",
+      "end_exclusive": "0x14582a80f",
+      "file_offset": "0x5829630",
+      "sha256": "99e65e7e3639cfc48128ab5a07191e0f89ebb48c20e4d8150993473c226cb35f",
+      "boundary": "registered PE unwind extent",
+      "extract": "docs/analysis/evidence/0.115.0/coop-directory-transport/websocket-send.asm",
+      "extract_sha256": "b4cd566b7de24c280fce59161a0c1bd5a98fbccc266dc4da40b5e98cf5c058d4"
+    },
+    {
+      "role": "websocket-flush",
+      "start": "0x145828250",
+      "end_exclusive": "0x1458285b4",
+      "file_offset": "0x5827650",
+      "sha256": "9fbafe9f29599a8b8ff1955ca91ffa22cd0cb8bfa0791622aec7729d30323888",
+      "boundary": "registered PE unwind extent",
+      "extract": "docs/analysis/evidence/0.115.0/coop-directory-transport/websocket-flush.asm",
+      "extract_sha256": "160545529cc538872128d4fbd9a2e0668d351c9148f96bf1dcfe9cccf2a702fc"
+    }
+  ],
+  "ghidra_queries": [
+    {
+      "role": "ensure-service",
+      "owner": "0x145891330",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_6ac99a3f0aefd72cd4f65eed637444c82384b449d21f74ec1fa6f3448dca3686",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "subject_sha256": "efbf976499cf85be1f1372d4d65a5bf95306d35d3a33c0c42160795daeb05b28",
+      "analysis_profile_sha256": "02d59211b069d5ae71fe95eb2c18e88a04167deb52cc9b0e63e052813d70ec1a",
+      "normalized_result_sha256": "d94e84dc7bb770cecada2f79dc23da5290339abe23e5b9fc0a8d48bdd9c8f900",
+      "retained_result": {
+        "path": "runtime/fixgap-99-transport/rea-0x145891330/results/0e4f8b949981e8836005a309fb746a52ffee0b57adb0f57bc296eb8aaf7b1364.json",
+        "sha256": "4d9d45b6bb6c6320373f4c61ec0120bfe90593502ab0a9b0ae9e5dc3a9caf319"
+      },
+      "journal_ref": "runtime/fixgap-99-transport/rea-0x145891330/journal.json",
+      "query_plan_sha256": "5ba5ff285425ce2ec73a08dc78e8d024255776e3a16b17687b99170c97e29ed9"
+    },
+    {
+      "role": "transport-constructor",
+      "owner": "0x1458544c0",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_597f235f64fb431bde23680e18f55ef752d3b90e743a0255537cd7d069a6d4e4",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "subject_sha256": "8e92b0618cb869c92f1bf6ee6f30998c4827ec9719f7568560f2a0f1af5b0154",
+      "analysis_profile_sha256": "e1f666267a9bedca01c4d2b744dc3458601b4dd3ac264067f826fb23d546a821",
+      "normalized_result_sha256": "6648ae2653daf75f77fc2730076bf4de15f936671e4afb6015eb40eaa460e786",
+      "retained_result": {
+        "path": "runtime/fixgap-99-transport/rea-0x1458544c0/results/5834f2ee3aacb0dcb00263fae2591116cf43f1b547c8aa9729560692eac80431.json",
+        "sha256": "db13f8e0228df4cddb8d2e847e16094e9a85703896241f852c09761975d5d72c"
+      },
+      "journal_ref": "runtime/fixgap-99-transport/rea-0x1458544c0/journal.json",
+      "query_plan_sha256": "7316d95566b9628be5d7b0c0bd3d9983a2016c1a43c65ff95a0b59268e47cc35"
+    },
+    {
+      "role": "websocket-worker",
+      "owner": "0x14586a9c0",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_54ad6e22df7c32513d3baf6763f8ab1c589d1f52889eace613896bbc831c3e09",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "subject_sha256": "5682b27b8401981fe381d74821352d6a43d018bc18d386fcb4382a48f0169a23",
+      "analysis_profile_sha256": "ce6a65f54365e1c756672a790132343cf60d9a633d734dfbe6554f1cc948d368",
+      "normalized_result_sha256": "311b78a94034967304605cfdf82d5cbe53c555c6f19dd7db1aa1505412db1ed0",
+      "retained_result": {
+        "path": "runtime/fixgap-99-transport/rea-0x14586a9c0/results/ff979816e28538fa4260dafaa12d61b8fe0b53f0a7ae2f7174cb86def0f32236.json",
+        "sha256": "ce701f13bad9d13569293e1a550b0e465bfe699f48cb186d40a73bf5633a37e8"
+      },
+      "journal_ref": "runtime/fixgap-99-transport/rea-0x14586a9c0/journal.json",
+      "query_plan_sha256": "e9725721beb16256c5d6ba25605d7f608f7905b0c010823a5fbc01818f678bce"
+    },
+    {
+      "role": "websocket-connect",
+      "owner": "0x1458b0720",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_3be2ebf61902280e9f3f42d3296cd7f914bbc6882bfd826b6b87ad2e665d4e6d",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "subject_sha256": "7f205a03550a25b4d1304169dfeaba213661379b1bb6fd94d192217da58b281e",
+      "analysis_profile_sha256": "34ad516b2976870ee41333683fe4e6236c52017db31574fec7afa723f21d4210",
+      "normalized_result_sha256": "716694535c212f2d66870f70b09a89075229ca48b5fbdeab50949c54615f31af",
+      "retained_result": {
+        "path": "runtime/fixgap-99-transport/rea-0x1458b0720/results/eaae2c80a93e6307825f72ad453506759064de1b6135d128dc418f3198bd6328.json",
+        "sha256": "16d49e0449ab102b09614d86a0e58bc5d11a06a9f0e0554044364a749014d5d6"
+      },
+      "journal_ref": "runtime/fixgap-99-transport/rea-0x1458b0720/journal.json",
+      "query_plan_sha256": "dd6b85a381c408d31579a275145fd541d9948c427c6c92a557c2ea035731fa3c"
+    },
+    {
+      "role": "send-queue",
+      "owner": "0x14586da20",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_6a40a240b7a2b875a741efd431c916e3672470a15ba405e61050d719f2187935",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "subject_sha256": "c6032343a47cde4e44a8a124cedc6bd0d4b33ed773a9690954fdcc32fc967049",
+      "analysis_profile_sha256": "d9a382450a36ba1dd70dbd4ab63ce3a03dbc842b38225d6ef2acd6343782f220",
+      "normalized_result_sha256": "02285ae787d98e5715147570c4cc80985943cebd68c4016b52cd6da1e64cc44e",
+      "retained_result": {
+        "path": "runtime/fixgap-99-transport/rea-0x14586da20/results/ab68ae197ce561f6d72382598467d1ec1a08094f72f414c2c839c29428662c38.json",
+        "sha256": "a0bc5bb99d69713b5c7c1486f84c1c9ee75fd51d6d37517af5862dc17408cb6a"
+      },
+      "journal_ref": "runtime/fixgap-99-transport/rea-0x14586da20/journal.json",
+      "query_plan_sha256": "b4a7304441020cb9db8fb7661c6b945f63bdab288eb207303c75219f3dc00341"
+    },
+    {
+      "role": "receive-queue",
+      "owner": "0x14586d9a0",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_2c99bb0dae981f4e1d95cbe7f6d33e8145fe04ace5d6f9f8ba5bba8d5aad521b",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "subject_sha256": "04fb1ef8d125c4d572923a2f3181431fdaa1d861a8abd05ae26d68346ae9033c",
+      "analysis_profile_sha256": "05eef533667e72f33be86471ec2996771d0f7c6f9452551e7d064b778beaffe8",
+      "normalized_result_sha256": "7678ea950930bf4677b1eb50b4ba1d26cc8710be7c72c8579b73a5accd0f5e4b",
+      "retained_result": {
+        "path": "runtime/fixgap-99-transport/rea-0x14586d9a0/results/9042481a30addf791c3b1eadf28322472f9534cf8a097d29a97dd3a843ef6684.json",
+        "sha256": "e5699ae553d4813f13aa5e8ff20139ca8f2d56927a8ee344e7d1a49f5b5e077b"
+      },
+      "journal_ref": "runtime/fixgap-99-transport/rea-0x14586d9a0/journal.json",
+      "query_plan_sha256": "dcc354f01795fe0115e96e1472c91b2262bac259c5cf3a93447ab5e0d73dc277"
+    },
+    {
+      "role": "connection-status",
+      "owner": "0x14586da60",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_747dc73b1078d8466899f71208e5bddccad31e5ebdeb6d7fa1c22c29d874caff",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "subject_sha256": "c0f2a2d773d5488e4403d6ee50d8018249553af20aee7e15b5e3e3254eeb3503",
+      "analysis_profile_sha256": "77f2f2d3405ad2d242a0bd764b59e2a8f5e57db396eafb9a70d38fe114465fb7",
+      "normalized_result_sha256": "b8583d55b9513e692635fefc13cf536e3b6678fe65f1a62404b287511644fc6b",
+      "retained_result": {
+        "path": "runtime/fixgap-99-transport/rea-0x14586da60/results/df565202dcb7c943b8c93ad1f94c99eb05d04d71d50e856c59073bb44485049a.json",
+        "sha256": "641058ee135ffadc9cc8fad3d65df64cc8164f2387f61087705e4d57c2c53acf"
+      },
+      "journal_ref": "runtime/fixgap-99-transport/rea-0x14586da60/journal.json",
+      "query_plan_sha256": "d911e7f6d01154c1bf178711662f0292316bad0dabd7d91c603c2faff8aebda7"
+    },
+    {
+      "role": "close-signal",
+      "owner": "0x14586b880",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_befffff2a5554d2c435d37d6a2e530266cb81afd9a9aac628a832defe4ccb403",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "subject_sha256": "fb111ed08156c4ee0e94f82f3fe5e3d2cdb2f600019948c54a729f2eca43a181",
+      "analysis_profile_sha256": "e485a4b9f42110af7244f4527528bbcf11b30dde622d32c17bfea903e23cc1a3",
+      "normalized_result_sha256": "89792c2f23f95fcf74aec9e59bfa22ba9813ca6040154990de6d07225c827fcb",
+      "retained_result": {
+        "path": "runtime/fixgap-99-transport/rea-0x14586b880/results/005f5087646652fdb14f22112a54fc7dc787042c29241ce80f46ed904e6a460c.json",
+        "sha256": "385a2cfea00de1a11732ba95110f530c1d59618d4f242371c5fb7d226a910a69"
+      },
+      "journal_ref": "runtime/fixgap-99-transport/rea-0x14586b880/journal.json",
+      "query_plan_sha256": "101d02bf57b407e5ea32b5395f6836928f0bd51d9e5f4497c77b79509062d6bc"
+    },
+    {
+      "role": "vec-to-bytes",
+      "owner": "0x145b794b0",
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_74995818fc44b647fa55e1c77d2976464a15225b65d473f37df734c6f7130d7e",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "subject_sha256": "38f6ea83e18845ff145fcb5cf79838751dcb6898c9dd0447d8989b0fd11c73f1",
+      "analysis_profile_sha256": "908056e66f04a03d64348f722dc3c551da32a413a381e78922511410ad7aef91",
+      "normalized_result_sha256": "d6a25d4db54d3559366fcaf76db673d836bb031ce5dcaf7053ae787ae90c9710",
+      "retained_result": {
+        "path": "runtime/fixgap-99-transport/rea-0x145b794b0/results/abefb8a02d332ce6e1b471d87f8279884194744b4a86e2232d3c433370f944b8.json",
+        "sha256": "8a2afcbbfc51b878783fdca3a211b9543ae8397ab16376ba76724c078af0fc28"
+      },
+      "journal_ref": "runtime/fixgap-99-transport/rea-0x145b794b0/journal.json",
+      "query_plan_sha256": "be6d2b0095c43efcda5695280799afb6c77913645a91f509091de2821189832d"
+    }
+  ],
+  "tables": [
+    {
+      "role": "transport-vtable",
+      "address": "0x147030e00",
+      "file_offset": "0x702fa00",
+      "byte_count": 64,
+      "sha256": "de15b064688c06de6559261a70e2f4d1fcacdc8a4a12f82d15a9d5fc234dbe1a",
+      "encoding": "absolute-u64",
+      "values": [
+        "0x1458b0610",
+        "0x30",
+        "0x8",
+        "0x14586da20",
+        "0x14586d9a0",
+        "0x14586da60",
+        "0x14586b880",
+        "0x20746f6e6e616321"
+      ]
+    },
+    {
+      "role": "thread-vtable",
+      "address": "0x14700ca58",
+      "file_offset": "0x700b658",
+      "byte_count": 32,
+      "sha256": "ee89b2a10c7997921e22bd369104ea0d871b62f6fa959b41446627e13ae5b78e",
+      "encoding": "absolute-u64",
+      "values": [
+        "0x14584fe60",
+        "0x70",
+        "0x8",
+        "0x145851e30"
+      ]
+    },
+    {
+      "role": "send-error-kind",
+      "address": "0x14702c4f8",
+      "file_offset": "0x702b0f8",
+      "byte_count": 16,
+      "sha256": "04bd9c7cceed1467158945d5bc410fcab4038aafa7ac153c01118a15f91706c8",
+      "encoding": "signed-relative-i32",
+      "values": [
+        "0x14586add3",
+        "0x14586ae26",
+        "0x14586ade0",
+        "0x14586ae16"
+      ]
+    },
+    {
+      "role": "read-error-kind",
+      "address": "0x14702c508",
+      "file_offset": "0x702b108",
+      "byte_count": 16,
+      "sha256": "2567b64235b2493820671c73ae02132712ea4f601526b73489541ca5d9327367",
+      "encoding": "signed-relative-i32",
+      "values": [
+        "0x14586afdb",
+        "0x14586b021",
+        "0x14586afe8",
+        "0x14586b015"
+      ]
+    },
+    {
+      "role": "websocket-send-message",
+      "address": "0x146ccc4b0",
+      "file_offset": "0x6ccb0b0",
+      "byte_count": 24,
+      "sha256": "b6a2dd577d383fd9f8f1c9eb5ebafde214efbb36024ddca2f11ae1cc8e6cbd88",
+      "encoding": "signed-relative-i32",
+      "values": [
+        "0x14582a2a2",
+        "0x14582a3e6",
+        "0x14582a32b",
+        "0x14582a34f",
+        "0x14582a2e0",
+        "0x14582a40d"
+      ]
+    }
+  ],
+  "literals": [
+    {
+      "role": "embedded-websocket-dependency-path",
+      "address": "0x147030b36",
+      "file_offset": "0x702f736",
+      "sha256": "434ef3336875120c226e042d84596591653394f83e924305dd54c5ca8f0cde16",
+      "byte_count": 101,
+      "source_path": "registry/src/index.crates.io-1949cf8c6b5b557f/tungstenite-0.30.0/src/client.rs"
+    }
+  ],
+  "contracts": {
+    "url": {
+      "owner": "url-override",
+      "storage": [
+        "+0x16d8",
+        "+0x16e0",
+        "+0x16e8"
+      ],
+      "semantics": "Clone exact configured String, replacing previous optional URL; no network operation in setter."
+    },
+    "ensure": {
+      "owner": "ensure-service",
+      "semantics": "An existing +0x1590 service succeeds immediately. Otherwise require configured URL, create transport and session, retain request/activity times and status connecting. Missing URL returns false and publishes unavailable/co-op needs the game site."
+    },
+    "vtable": {
+      "send": "+0x18",
+      "receive": "+0x20",
+      "status": "+0x28",
+      "close": "+0x30"
+    },
+    "status": {
+      "owner": "connection-status",
+      "values": {
+        "0": "connecting",
+        "1": "connected",
+        "2": "dead"
+      },
+      "semantics": "Worker writes 1 after socket setup; thread-exit-status writes 2 after every worker return. close-signal atomically sets separate cancellation byte1."
+    },
+    "wire": {
+      "owner": "websocket-worker",
+      "send_sites": [
+        "0x14586ad49",
+        "0x14586ad8a"
+      ],
+      "semantics": "Dequeue an already encoded native Vec; vec-to-bytes changes allocation ownership only. Send exactly those bytes as one WebSocket Binary. Received Binary payloads are cloned into the incoming queue; text and control frames are not native payloads. The native send owner enqueues a frame then flushes; worker does not requeue a send that returns Io(WouldBlock).",
+      "send_owner": "websocket-send",
+      "send_owner_sites": [
+        "0x14582a3e6",
+        "0x14582a472",
+        "0x14582a6c8"
+      ]
+    },
+    "activity": {
+      "owner": "websocket-worker",
+      "reset_sites": [
+        "0x14586ad29",
+        "0x14586af20"
+      ],
+      "semantics": "Reset Instant before each dequeued outbound send attempt, including WouldBlock, and on each incoming Binary, including empty. Other received variants do not reset it."
+    },
+    "socket_mode": {
+      "owner": "websocket-worker",
+      "initial_sites": [
+        "0x14586aa5e",
+        "0x14586aaa4",
+        "0x14586ab10",
+        "0x14586ab56"
+      ],
+      "mode_sites": [
+        "0x14586abc6",
+        "0x14586ac0c",
+        "0x14586ac5b"
+      ],
+      "semantics": "Set TCP_NODELAY true, initially nonblocking true and read timeout 40000000ns. At each iteration, nonblocking is elapsed whole seconds ==0; only a mode change repeats nonblocking/read-timeout setters. Their errors are dropped."
+    },
+    "send_errors": {
+      "owner": "websocket-worker",
+      "sites": [
+        "0x14586ad90",
+        "0x14586add3",
+        "0x14586ae32"
+      ],
+      "semantics": "Only WebSocket Io WouldBlock(ErrorKind0x0d) is admitted; other errors terminate worker. No Interrupted retry and no TimedOut admission on send."
+    },
+    "read_errors": {
+      "owner": "websocket-worker",
+      "sites": [
+        "0x14586afb1",
+        "0x14586afdb",
+        "0x14586b02c",
+        "0x14586b039",
+        "0x14586b063",
+        "0x14586b165",
+        "0x14586b19c",
+        "0x14586b27a"
+      ],
+      "semantics": "Only WebSocket Io WouldBlock(0x0d) or TimedOut(0x16) continues. Only this idle-read arm attempts pending-output flush, fails on any flush error, then sleeps1000000ns if current mode is nonblocking. Binary, text and control receives iterate immediately. Interrupted(0x23) is not admitted."
+    },
+    "close": {
+      "owner": "websocket-worker",
+      "sites": [
+        "0x14586aca0",
+        "0x14586b37c",
+        "0x14586b39e",
+        "0x14586b3da",
+        "0x14586b42b"
+      ],
+      "semantics": "Cancellation is checked before draining outgoing queue. Issue close(None), attempt flush and release socket; worker itself contains one connect attempt and no reconnect loop."
+    },
+    "source_limit": "Static native transport dependency for public-directory source. Service request/response schema and owner dispatch remain separately recovered; these observations alone do not establish any running directory.",
+    "connect": {
+      "owner": "websocket-connect",
+      "caller_site": "0x14586a9fa",
+      "maximum_redirects": 3,
+      "semantics": "The caller supplies default configuration and redirect maximum3 to the selected tungstenite0.30 connect implementation. No worker-level reconnect loop is introduced; URI/DNS/TCP/TLS/HTTP work remains owned by the pinned library."
+    }
+  },
+  "limitations": [
+    "Raw-function Ghidra imports omit external functions/data and use generic GCC signatures; Win64 arguments and control branches are checked in original instruction transcripts.",
+    "Worker Ghidra pseudocode omits two external four-entry error-kind dispatch tables; both original tables are committed above.",
+    "The send-queue and receive-queue adapters use ordinary channel operations; no channel scheduling, socket, TLS, native application, compilation or interoperability execution was performed."
+  ]
+}

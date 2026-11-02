@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.115.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+    "size_bytes": 142111232
+  },
+  "generator": {
+    "path": "scripts/audit-native-diagnostic-sites.py",
+    "sha256": "172ed9636010ac9156fe535d1dba48da329ed9e986e1d68e17f742c7bd5f4f18"
+  },
+  "generator_dependencies": [
+    {
+      "path": "scripts/coverage_common.py",
+      "sha256": "8e076cd7c55c918ff626e5e4c7df2e2efb0a8861ed3f39844b53ccd3d4c391ce"
+    },
+    {
+      "path": "scripts/script_sources.py",
+      "sha256": "6b0d00b50784cca57d122d4abc4f0ee34a23d226d409ff3180e668b6df78f74d"
+    },
+    {
+      "path": "scripts/summarize-native-image.py",
+      "sha256": "dd5748de3b992dfd49bf0eca53dac1f8fabfb27102fda0c4815dc331c7f28e14"
+    },
+    {
+      "path": "scripts/inventory-current-target.py",
+      "sha256": "f2cf5be70267aa01865b7c34bef7eeb87898d67b5e36f0a91d20d37e3b1299c5"
+    },
+    {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+    },
+    {
+      "path": "scripts/derived_gzip.py",
+      "sha256": "27f82ab71c755614d19f72257d09100a721534dc45a2aa017e6062cc2429cdd5"
+    }
+  ],
+  "profiles": {
+    "canonical_declared": {
+      "census_summary": {
+        "path": "docs/analysis/coverage/full-image-census.json",
+        "sha256": "8918323779f56759fada5da333abf290c4323393bab739a8e202b0e9737c95fd"
+      },
+      "census_profile_digest": "dcdb60b2ecbb77992bbea14c45047fb842d666b78022d8c89c02409897b8f8ad",
+      "source_summary": {
+        "path": "docs/analysis/coverage/diagnostic-ownership.json",
+        "sha256": "4747047720b2840015a2e08156c65737184f04098f658bc03ee0c6bbb8c31c15"
+      },
+      "source_inventory": {
+        "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/diagnostic-ownership.json",
+        "sha256": "ce30a3f6e853f7e1c2a57d6851a2f36560de3851b5f61cffa7c03ee3e69e266a"
+      },
+      "census_exports": {
+        "instructions.tsv.gz": {
+          "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/full-image-durable/instructions.tsv.gz",
+          "sha256": "0b550ebf235dd1325feb0daf29ee11e6ad996dec8cc1b58d12dc28757fbde8a6"
+        },
+        "bodies.tsv.gz": {
+          "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/full-image-durable/bodies.tsv.gz",
+          "sha256": "98b29cee6dab4cba31326645be1e6b7b49abe20fd1177b2614e875ba4cb4ea49"
+        },
+        "references.tsv.gz": {
+          "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/full-image-durable/references.tsv.gz",
+          "sha256": "6e042ff6654781bed0264d207b30f143125404517c709057aea8d3cd578c712f"
+        },
+        "externals.tsv.gz": {
+          "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/full-image-durable/externals.tsv.gz",
+          "sha256": "cce4b07835282995edd27552b871f3df627ac82d73d7f9d7ce32fada6220f603"
+        },
+        "direct-call-helpers.tsv.gz": {
+          "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/full-image-durable/direct-call-helpers.tsv.gz",
+          "sha256": "f2f1f40d092a619e09ac61f08791b9dc4cd0d7f13511423e459076ff222b3bc1"
+        }
+      },
+      "counts": {
+        "paths": 731,
+        "custom_paths": 60,
+        "paths_with_verified_diagnostic_sites": 570,
+        "paths_with_actual_native_owners": 552,
+        "verified_sites": 17790,
+        "sites_without_actual_native_owner": 1885,
+        "custom_verified_sites": 788,
+        "custom_sites_without_actual_native_owner": 113,
+        "exact_exported_instruction_sites": 15905,
+        "without_exact_exported_instruction_sites": 1885
+      },
+      "reference_kinds": {
+        "path_literal": 477,
+        "rust_location": 17313
+      },
+      "artifacts": {
+        "json": {
+          "path": "runtime/execheck-2026-10-25/canonical-diagnostic-sites/diagnostic-sites.json",
+          "sha256": "c281e88a0aa97a6ca611e9767339239aa11c608c5b1a7ca8c2248953480654dc"
+        },
+        "jsonl": {
+          "path": "runtime/execheck-2026-10-25/canonical-diagnostic-sites/diagnostic-sites.jsonl",
+          "sha256": "0b8ce88338e6643acae8c3d4bd0514f9f3479b4f1fd69c1c7ba7be4dd7fbf781"
+        }
+      },
+      "selectors": {
+        "all": "reference_records[*]",
+        "ownerless": "reference_records[actual_native_owner == null]",
+        "custom_ownerless": "reference_records[custom_game_crate == true and actual_native_owner == null]",
+        "without_exact_exported_instruction": "reference_records[exact_exported_instruction_observed == false]"
+      },
+      "projection_summary": {
+        "path": "runtime/execheck-2026-10-25/canonical-diagnostic-sites/diagnostic-site-summary.json",
+        "sha256": "37511cef0eeddd0b6c2dbb2f62f1c93d6ae6f0164e94dc2ccf3c8fd8b0f08f0d"
+      },
+      "invocation": [
+        "python3",
+        "-B",
+        "scripts/audit-native-diagnostic-sites.py",
+        "--census-summary",
+        "docs/analysis/coverage/full-image-census.json",
+        "--output-directory",
+        "runtime/execheck-2026-10-25/canonical-diagnostic-sites"
+      ]
+    },
+    "expanded_all_seeds": {
+      "census_summary": {
+        "path": "docs/analysis/coverage/full-image-execheck-0.115.0.json",
+        "sha256": "121df2416b8462945a48f1af9539c3cdf476b756f531ad5dce98720b4ae84684"
+      },
+      "census_profile_digest": "66270ad4a97c9a2584303bec80892ea2dee6fe88e46196c9fe05f2ace107a6ab",
+      "source_summary": {
+        "path": "docs/analysis/coverage/diagnostic-ownership.json",
+        "sha256": "4747047720b2840015a2e08156c65737184f04098f658bc03ee0c6bbb8c31c15"
+      },
+      "source_inventory": {
+        "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/diagnostic-ownership.json",
+        "sha256": "ce30a3f6e853f7e1c2a57d6851a2f36560de3851b5f61cffa7c03ee3e69e266a"
+      },
+      "census_exports": {
+        "instructions.tsv.gz": {
+          "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/execheck-2026-10-25/instructions.tsv.gz",
+          "sha256": "94a38a5766f02524b8bf56aef8a1164a48218b61132bdaab217d9349154a99b2"
+        },
+        "bodies.tsv.gz": {
+          "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/execheck-2026-10-25/bodies.tsv.gz",
+          "sha256": "d7907c54ebdf0ee00e8e048e14ae1aa5d23d65abc741b56df8e31da035032b4a"
+        },
+        "references.tsv.gz": {
+          "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/execheck-2026-10-25/references.tsv.gz",
+          "sha256": "0227e719cf906e8cc2b4f09d5ca38fff98da009f38c412a376e2d912e1839f9a"
+        },
+        "externals.tsv.gz": {
+          "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/execheck-2026-10-25/externals.tsv.gz",
+          "sha256": "66534cafa1c1faeb56a01903a8b7e53d38a461368ad51520287b96b0062e2a69"
+        },
+        "direct-call-helpers.tsv.gz": {
+          "path": "runtime/coverage/0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c/ghidra/execheck-2026-10-25/direct-call-helpers.tsv.gz",
+          "sha256": "b71a24ade786f539df91acc4e0d7a54d88d9fddad4ca1090ef367ab4e5956d4e"
+        }
+      },
+      "counts": {
+        "paths": 731,
+        "custom_paths": 60,
+        "paths_with_verified_diagnostic_sites": 570,
+        "paths_with_actual_native_owners": 555,
+        "verified_sites": 17790,
+        "sites_without_actual_native_owner": 1756,
+        "custom_verified_sites": 788,
+        "custom_sites_without_actual_native_owner": 60,
+        "exact_exported_instruction_sites": 17790,
+        "without_exact_exported_instruction_sites": 0
+      },
+      "reference_kinds": {
+        "path_literal": 477,
+        "rust_location": 17313
+      },
+      "artifacts": {
+        "json": {
+          "path": "runtime/execheck-2026-10-25/expanded-diagnostic-sites/diagnostic-sites.json",
+          "sha256": "08675863b086710924eb7d70a0c0e5b362dd2d19617eeb5de78c5959b14f994d"
+        },
+        "jsonl": {
+          "path": "runtime/execheck-2026-10-25/expanded-diagnostic-sites/diagnostic-sites.jsonl",
+          "sha256": "50f2e956b2736acf95862daf0f9d5fdbd9a6daffd41fab0a60391641222aacd0"
+        }
+      },
+      "selectors": {
+        "all": "reference_records[*]",
+        "ownerless": "reference_records[actual_native_owner == null]",
+        "custom_ownerless": "reference_records[custom_game_crate == true and actual_native_owner == null]",
+        "without_exact_exported_instruction": "reference_records[exact_exported_instruction_observed == false]"
+      },
+      "projection_summary": {
+        "path": "runtime/execheck-2026-10-25/expanded-diagnostic-sites/diagnostic-site-summary.json",
+        "sha256": "699e94ee9d4bbaa45b996c09116e79477f5cfcb9cfa3c561244cf1e270f4cb92"
+      },
+      "invocation": [
+        "python3",
+        "-B",
+        "scripts/audit-native-diagnostic-sites.py",
+        "--census-summary",
+        "docs/analysis/coverage/full-image-execheck-0.115.0.json",
+        "--output-directory",
+        "runtime/execheck-2026-10-25/expanded-diagnostic-sites"
+      ]
+    }
+  },
+  "native_source_semantics_established": false,
+  "parity_verified": false,
+  "gap_ids": [
+    41
+  ],
+  "limits": [
+    "Actual body ownership and exact exported starts/bytes describe only the explicit saved census.",
+    "The projection reuses independently verified census boundaries; it neither decodes nor adds instructions.",
+    "Declared extent candidates are preserved in original_reference; they do not replace actual flow bodies.",
+    "A body owner or exact instruction does not prove a callable entry, reachable behavior, source semantics or parity.",
+    "No native analysis mutation, compilation, source/game execution or original/rebuilt comparison occurs.",
+    "Original reference records are retained in both projections. Body ownership and exact exported starts are independent, profile-specific observations."
+  ]
+}

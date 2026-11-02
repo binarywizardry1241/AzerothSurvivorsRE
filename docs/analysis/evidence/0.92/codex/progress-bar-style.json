@@ -1,0 +1,68 @@
+{
+  "version": "0.92.0",
+  "target_sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+  "constructor": "0x140320620..0x140320d12",
+  "outer": {
+    "width": "Percent(100)",
+    "height_px": 8,
+    "border_px": 1,
+    "border_radius_px": 4,
+    "overflow_x": "Clip",
+    "overflow_y": "Clip",
+    "background_srgba": [
+      0,
+      0,
+      0,
+      0.6
+    ],
+    "border_srgba": [
+      0.169,
+      0.129,
+      0.071,
+      1
+    ],
+    "proof": "Outer Node passed at1403209b0; dimensions320863, border/radius3208a6..3208c2, overflow32090a, black alpha32098d. Border constant145909f18. Native overflow bytes are1/1, matching OverflowAxis::Clip; Hidden is2 in the matched Bevy enum."
+  },
+  "fill": {
+    "width": "Percent(clamp(input_fraction,0,1)*100)",
+    "height": "Percent(100)",
+    "border_px": 0,
+    "border_radius_px": 0,
+    "proof": "Clamp/MAXSS/MINSS/MULSS1403209b5..3209c8; Node width3209f0..3209fa, height320a02..320a0c; inner spawn320c90."
+  },
+  "gradient": {
+    "kind": "Linear",
+    "angle_radians_bits": "0x3fc90fdb",
+    "angle": "PI/2",
+    "color_space": "Oklaba",
+    "stops": [
+      {
+        "point": "Auto",
+        "hint": 0.5,
+        "color_linear_rgba": [
+          0.69,
+          0.541,
+          0.227,
+          1
+        ]
+      },
+      {
+        "point": "Auto",
+        "hint": 0.5,
+        "color_linear_rgba": [
+          1,
+          0.914,
+          0.659,
+          1
+        ]
+      }
+    ],
+    "proof": "Native raw colors145909f2c/145909f40 are passed to144c4bc10, then Color tag1 stored320bdf/320bf2. Each32-byte ColorStop stores Val::Auto tag0 at+0, Color at+8, interpolation hint.5 at+28. The qword at320bea sets first hint and second Auto tag together. PI/2 and interpolation mode0 at320c38/320c3f.",
+    "layout_check": "Project-local Bevy ColorStop is32 bytes, point+0,color+8,hint+28; LinearGradient stops+0,angle+24,color_space+28. Native gradient allocation includes its enum tag before this payload."
+  },
+  "implementation_status": "Compiled in parent checkpoint22 (11.82s), with26 binary tests passing. Rendered comparison pending; no application launch.",
+  "limitations": [
+    "This static finding does not establish rendered parity. No original or rebuilt application was launched for this recovery.",
+    "Ghidra generic ABI guesses are not treated as source signatures; original Win64 literal stores and existing matched Bevy layouts determine these values."
+  ]
+}

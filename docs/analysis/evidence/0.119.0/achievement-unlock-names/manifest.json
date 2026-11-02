@@ -1,0 +1,956 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.119.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f",
+    "size_bytes": 145357824
+  },
+  "finding": 172,
+  "target_executed": false,
+  "ranges": [
+    {
+      "role": "reward-unlock-names",
+      "start": "0x145c3e7f0",
+      "end_exclusive": "0x145c3ecfe",
+      "file_offset": "0x5c3dbf0",
+      "byte_count": 1294,
+      "sha256": "e6355a9bb037bb11182d83d604a737af168289508239feb242a1d0487854ff5c",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.119.0/achievement-unlock-names/reward-unlock-names.asm",
+        "sha256": "7892d7f8b7d3e2faa9355b5c62c4e3fc067297f57b1769f34717d954f8ac4fc1"
+      },
+      "instruction_count": 318,
+      "decompilation": {
+        "path": "docs/analysis/evidence/0.119.0/achievement-unlock-names/reward-unlock-names.c",
+        "sha256": "353a7a7d23b570b7a3487dceaadb8da9a07620f87ad1640d93b603bccabb9008"
+      }
+    },
+    {
+      "role": "reward-unlock-collector",
+      "start": "0x145c2af10",
+      "end_exclusive": "0x145c2b15c",
+      "file_offset": "0x5c2a310",
+      "byte_count": 588,
+      "sha256": "c53d775082014a7a82a9c946d334beb86c613e589a63ffca1208955dbcaf9f88",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.119.0/achievement-unlock-names/reward-unlock-collector.asm",
+        "sha256": "0e946d7d820fd89dcd49097ba268afb1dda71274b5d28ab42975c25f1a15615c"
+      },
+      "instruction_count": 134,
+      "decompilation": {
+        "path": "docs/analysis/evidence/0.119.0/achievement-unlock-names/reward-unlock-collector.c",
+        "sha256": "4db7dbb4d17e1bee1a19a8bf443e713337340b7d41db7d497cf63fced2fed67c"
+      }
+    },
+    {
+      "role": "achievement-unlocks-wrapper",
+      "start": "0x145b445f0",
+      "end_exclusive": "0x145b447cf",
+      "file_offset": "0x5b439f0",
+      "byte_count": 479,
+      "sha256": "a63754436701984a05c7afec5b31bffc1e52cc28c997dec916a4547b0b62cad4",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.119.0/achievement-unlock-names/achievement-unlocks-wrapper.asm",
+        "sha256": "766d21c30d0caa955612cdded40556329c70bb255a22789072d133b806463a55"
+      },
+      "instruction_count": 87,
+      "decompilation": {
+        "path": "docs/analysis/evidence/0.119.0/achievement-unlock-names/achievement-unlocks-wrapper.c",
+        "sha256": "01d0ed1691bcc09581e962c81d3ebbd83397e2d8584bf3b493d867656862f677"
+      }
+    },
+    {
+      "role": "achievement-unlocks-caller-0",
+      "start": "0x140264b70",
+      "end_exclusive": "0x140264fee",
+      "file_offset": "0x263f70",
+      "byte_count": 1150,
+      "sha256": "f490d9b009594ec93aa3afb023d763cd91fe9aeffc899b53657cfa091e5c7b24",
+      "assembly": {
+        "path": "docs/analysis/evidence/0.119.0/achievement-unlock-names/achievement-unlocks-caller-0.asm",
+        "sha256": "1f0e6fbb2de6d274335aa5b3df81dc8b0442dc2824d86f8f589ce701ea82de7f"
+      },
+      "instruction_count": 206,
+      "decompilation": {
+        "path": "docs/analysis/evidence/0.119.0/achievement-unlock-names/achievement-unlocks-caller-0.c",
+        "sha256": "9689cd4326cf78412f37c27df404823dfe5a5d1e4ca78c7425789c23a1cbb65b"
+      }
+    },
+    {
+      "role": "achievement-card-list",
+      "start": "0x140267f30",
+      "end_exclusive": "0x140269267",
+      "file_offset": "0x267330",
+      "byte_count": 4919,
+      "sha256": "225b5a7df161d0573322023015d4de9c23f5f5cc92993db935828f2b7be32f31",
+      "instruction_count": 818,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.119.0/achievement-unlock-names/achievement-card-list.asm",
+        "sha256": "39d0cf8ee7d250621a41181138edfde1e61fb895ee072b36c619bd9aa55fe9ca"
+      },
+      "decompilation": {
+        "path": "docs/analysis/evidence/0.119.0/achievement-unlock-names/achievement-card-list.c",
+        "sha256": "8adc946734558b84c7c8bc4d717f7fe272db31c58cfdc3cb296239d51e3b6a39"
+      }
+    },
+    {
+      "role": "achievement-card-secondary",
+      "start": "0x1402df510",
+      "end_exclusive": "0x1402dfafd",
+      "file_offset": "0x2de910",
+      "byte_count": 1517,
+      "sha256": "da044578618a6d904b5daf1328a467ea3acaa7d0809437061623cbbee3647bb6",
+      "instruction_count": 237,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.119.0/achievement-unlock-names/achievement-card-secondary.asm",
+        "sha256": "7ac37875ee08f71e432aa9e15fe563990da5b7a336984a2ab9f75211fcb8e65b"
+      },
+      "decompilation": {
+        "path": "docs/analysis/evidence/0.119.0/achievement-unlock-names/achievement-card-secondary.c",
+        "sha256": "78f164377c2a442e0e0ed80b7f20b164623f37877cd72dd3a4816e86093f4fc9"
+      }
+    },
+    {
+      "role": "achievement-summary-page",
+      "start": "0x140265680",
+      "end_exclusive": "0x1402665e0",
+      "file_offset": "0x264a80",
+      "byte_count": 3936,
+      "sha256": "9198cf512824ead775d029928d216c4e8dbd20e9563a9842b0b762e6dc50e9b2",
+      "instruction_count": 719,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.119.0/achievement-unlock-names/achievement-summary-page.asm",
+        "sha256": "acced1b72aa26320a87df694146f68e19ad43ab6b96d63ff558dd3b830e3376a"
+      },
+      "decompilation": {
+        "path": "docs/analysis/evidence/0.119.0/achievement-unlock-names/achievement-summary-page.c",
+        "sha256": "39c4553988897d8ea38754deec645a2e2273bfbba3754e74e953e2366c1faca6"
+      }
+    },
+    {
+      "role": "achievement-category-page",
+      "start": "0x140269940",
+      "end_exclusive": "0x14026a418",
+      "file_offset": "0x268d40",
+      "byte_count": 2776,
+      "sha256": "23a2a978b5fc0d6a19fce78e5d678a7a87ba5076b2d5c8890d4419c74209e192",
+      "instruction_count": 448,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.119.0/achievement-unlock-names/achievement-category-page.asm",
+        "sha256": "00174b0a83330c77bc430df52dd68bcd6398ab12f825c4a992c3b81317faaee2"
+      },
+      "decompilation": {
+        "path": "docs/analysis/evidence/0.119.0/achievement-unlock-names/achievement-category-page.c",
+        "sha256": "a15c6968526eec788c3a68f78333f2bd67009224f91f6cf6102317ad61ed50be"
+      }
+    },
+    {
+      "role": "achievement-card-body",
+      "start": "0x1402d9570",
+      "end_exclusive": "0x1402db5a2",
+      "file_offset": "0x2d8970",
+      "byte_count": 8242,
+      "sha256": "0d94ff95423e59d3cbc4bd85c725a3714fbee2f88670cb87bde036fc9d760e18",
+      "instruction_count": 1303,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.119.0/achievement-unlock-names/achievement-card-body.asm",
+        "sha256": "6aa06957084ca9cc1583b087090804bef24e5529987dcc7a47266f8fbe43c267"
+      },
+      "decompilation": {
+        "path": "docs/analysis/evidence/0.119.0/achievement-unlock-names/achievement-card-body.c",
+        "sha256": "a1015843870c7e5c864bb0b18a3203af2d5954f49bf093265df5616cd10af093"
+      }
+    }
+  ],
+  "registries": [
+    {
+      "role": "tabards",
+      "start": "0x1475dafd0",
+      "end_exclusive": "0x1475db510",
+      "file_offset": "0x75d9dd0",
+      "byte_count": 1344,
+      "sha256": "779ef886c8eb00911f94261a9d33b1acee26b71d64ff45561ed6f38f39f20cb9",
+      "stride": 64,
+      "rows": [
+        {
+          "va": "0x1475dafd0",
+          "name": "Warsong Battle Tabard",
+          "icon": "INV_Shirt_GuildTabard_01",
+          "achievement": "zone:wsg",
+          "id": 90001
+        },
+        {
+          "va": "0x1475db010",
+          "name": "Silverwing Battle Tabard",
+          "icon": "INV_Shirt_GuildTabard_01",
+          "achievement": "zone:wsg",
+          "id": 90002
+        },
+        {
+          "va": "0x1475db050",
+          "name": "Arathor Battle Tabard",
+          "icon": "INV_Shirt_GuildTabard_01",
+          "achievement": "zone:ab",
+          "id": 90003
+        },
+        {
+          "va": "0x1475db090",
+          "name": "Defilers Battle Tabard",
+          "icon": "INV_Shirt_GuildTabard_01",
+          "achievement": "zone:ab",
+          "id": 90004
+        },
+        {
+          "va": "0x1475db0d0",
+          "name": "Stormpike Battle Tabard",
+          "icon": "INV_Shirt_GuildTabard_01",
+          "achievement": "zone:av",
+          "id": 90005
+        },
+        {
+          "va": "0x1475db110",
+          "name": "Frostwolf Battle Tabard",
+          "icon": "INV_Shirt_GuildTabard_01",
+          "achievement": "zone:av",
+          "id": 90006
+        },
+        {
+          "va": "0x1475db150",
+          "name": "Scarlet Crusade Tabard",
+          "icon": "INV_Banner_02",
+          "achievement": "feat:herod",
+          "id": 90016
+        },
+        {
+          "va": "0x1475db190",
+          "name": "Contest Winner's Tabard",
+          "icon": "INV_Shirt_GuildTabard_01",
+          "achievement": "coop:odds",
+          "id": 90025
+        },
+        {
+          "va": "0x1475db1d0",
+          "name": "Stormwind Tabard",
+          "icon": "INV_Shirt_GuildTabard_01",
+          "achievement": null,
+          "id": 90011
+        },
+        {
+          "va": "0x1475db210",
+          "name": "Tabard of Lordaeron",
+          "icon": "INV_Banner_02",
+          "achievement": null,
+          "id": 90012
+        },
+        {
+          "va": "0x1475db250",
+          "name": "Tabard of Stromgarde",
+          "icon": "INV_Shirt_GuildTabard_01",
+          "achievement": null,
+          "id": 90013
+        },
+        {
+          "va": "0x1475db290",
+          "name": "Tabard of Theramore",
+          "icon": "INV_Shirt_GuildTabard_01",
+          "achievement": null,
+          "id": 90014
+        },
+        {
+          "va": "0x1475db2d0",
+          "name": "Tabard of Dalaran",
+          "icon": "INV_Shirt_GuildTabard_01",
+          "achievement": null,
+          "id": 90015
+        },
+        {
+          "va": "0x1475db310",
+          "name": "Darkmoon Faire Tabard",
+          "icon": "INV_Shirt_GuildTabard_01",
+          "achievement": null,
+          "id": 90017
+        },
+        {
+          "va": "0x1475db350",
+          "name": "Tabard of the Alliance",
+          "icon": "INV_Misc_TabardPVP_01",
+          "achievement": null,
+          "id": 90018
+        },
+        {
+          "va": "0x1475db390",
+          "name": "Tabard of the Horde",
+          "icon": "INV_Misc_TabardPVP_02",
+          "achievement": null,
+          "id": 90019
+        },
+        {
+          "va": "0x1475db3d0",
+          "name": "Tabard of the Argent Dawn",
+          "icon": "INV_Shirt_GuildTabard_01",
+          "achievement": null,
+          "id": 90020
+        },
+        {
+          "va": "0x1475db410",
+          "name": "Tabard of Flame",
+          "icon": "INV_Shirt_GuildTabard_01",
+          "achievement": null,
+          "id": 90021
+        },
+        {
+          "va": "0x1475db450",
+          "name": "Tabard of Frost",
+          "icon": "INV_Shirt_GuildTabard_01",
+          "achievement": null,
+          "id": 90022
+        },
+        {
+          "va": "0x1475db490",
+          "name": "Alliance Officer's Tabard",
+          "icon": "INV_Misc_TabardPVP_03",
+          "achievement": null,
+          "id": 90023
+        },
+        {
+          "va": "0x1475db4d0",
+          "name": "Horde Officer's Tabard",
+          "icon": "INV_Misc_TabardPVP_04",
+          "achievement": null,
+          "id": 90024
+        }
+      ]
+    },
+    {
+      "role": "cosmetics",
+      "start": "0x1475dc560",
+      "end_exclusive": "0x1475dc8e0",
+      "file_offset": "0x75db360",
+      "byte_count": 896,
+      "sha256": "8be211c636c3b4d6928a8c697e7f9c271883dfa81b2db63c9f26f49d486db234",
+      "stride": 64,
+      "rows": [
+        {
+          "va": "0x1475dc560",
+          "name": "Defias Bandana",
+          "icon": "INV_Misc_Bandana_03",
+          "achievement": "feat:vancleef",
+          "id": 90101
+        },
+        {
+          "va": "0x1475dc5a0",
+          "name": "Zul'Gurub Mask",
+          "icon": "INV_Mask_02",
+          "achievement": "feat:hakkar",
+          "id": 90102
+        },
+        {
+          "va": "0x1475dc5e0",
+          "name": "Gnomish Mind Control Cap",
+          "icon": "INV_Helmet_49",
+          "achievement": "feat:cthun",
+          "id": 90103
+        },
+        {
+          "va": "0x1475dc620",
+          "name": "Gnomish Goggles",
+          "icon": "INV_Helmet_47",
+          "achievement": "feat:azuregos",
+          "id": 90104
+        },
+        {
+          "va": "0x1475dc660",
+          "name": "Onyxia Scale Cloak",
+          "icon": "INV_Misc_Cape_05",
+          "achievement": "feat:nefarian",
+          "id": 90105
+        },
+        {
+          "va": "0x1475dc6a0",
+          "name": "Glacial Cloak",
+          "icon": "INV_Misc_Cape_Naxxramas_01",
+          "achievement": "feat:nou",
+          "id": 90106
+        },
+        {
+          "va": "0x1475dc6e0",
+          "name": "Dashing Scarlet Cloak",
+          "icon": "INV_Misc_Cape_08",
+          "achievement": "feat:herod",
+          "id": 90107
+        },
+        {
+          "va": "0x1475dc720",
+          "name": "Admiral's Hat",
+          "icon": "INV_Helmet_29",
+          "achievement": "coop:together",
+          "id": 90108
+        },
+        {
+          "va": "0x1475dc760",
+          "name": "Bloodsail Admiral's Hat",
+          "icon": "INV_Helmet_66",
+          "achievement": "coop:fiveofakind",
+          "id": 90109
+        },
+        {
+          "va": "0x1475dc7a0",
+          "name": "Cape of the Brotherhood",
+          "icon": "INV_Misc_Cape_08",
+          "achievement": "coop:brotherhood",
+          "id": 90110
+        },
+        {
+          "va": "0x1475dc7e0",
+          "name": "Embrace of the Lycan",
+          "icon": "Ability_Mount_WhiteDireWolf",
+          "achievement": "coop:bump",
+          "id": 90111
+        },
+        {
+          "va": "0x1475dc820",
+          "name": "Whitemane's Chapeau",
+          "icon": "INV_Helmet_12",
+          "achievement": "coop:holyframe",
+          "id": 90112
+        },
+        {
+          "va": "0x1475dc860",
+          "name": "Cloak of the Brood Lord",
+          "icon": "INV_Misc_Cape_20",
+          "achievement": "coop:dragonslayers",
+          "id": 90113
+        },
+        {
+          "va": "0x1475dc8a0",
+          "name": "Cloak of the Devoured",
+          "icon": "INV_Misc_Cape_18",
+          "achievement": "coop:oldgods",
+          "id": 90114
+        }
+      ]
+    }
+  ],
+  "queries": [
+    {
+      "role": "reward-unlock-names",
+      "plan": {
+        "path": "runtime/gap172/reward-unlock-names-query/plan.json",
+        "sha256": "1e284f007975552c73bf65597f0bafc821902a8a9ef5d7656c4792149f597c40"
+      },
+      "journal": {
+        "path": "runtime/gap172/reward-unlock-names-query/journal.json",
+        "sha256": "a1f26b49def54eb3bbd700f4b3f982f335a8b7b202a992e9f7a1ef9ee4396529"
+      },
+      "result": {
+        "path": "runtime/gap172/reward-unlock-names-query/results/7f8826a5832ab6e7e8fb708667b6a869569b8b19d3925fdad72271681ff58f4b.json",
+        "sha256": "672103be9916dae1cb7c2b227277821cb0aa3c7425c48fd8c0d46815d3b6cbe1"
+      },
+      "input": {
+        "path": "runtime/gap172/reward-unlock-names.bin",
+        "sha256": "e6355a9bb037bb11182d83d604a737af168289508239feb242a1d0487854ff5c"
+      },
+      "evidence_id": "ev_c8d78d3c406dab4bffc90bca9bca424c6411ac77fc9adc3c9a1f5b6fa700459c",
+      "analysis_profile_digest": "4f31b7f163bd9bbfc68539f23d692e4e925ec31e91043ce398d16dd657536a5b",
+      "normalized_sha256": "845d9aca1a399278d09085587de88ba027d4c5607b20c7164ab021d7b123c556",
+      "limits": "Raw import excludes PE globals/callees; inferred GCC ABI. Exact PE Windows-x64 assembly establishes argument and data flow."
+    },
+    {
+      "role": "reward-unlock-collector",
+      "plan": {
+        "path": "runtime/gap172/reward-unlock-collector-query/plan.json",
+        "sha256": "e701edaf6e5b51e8251a2511e564ddd2ff75e74e6d28765cc8ac11f23719bd5c"
+      },
+      "journal": {
+        "path": "runtime/gap172/reward-unlock-collector-query/journal.json",
+        "sha256": "17d473bd7e6685a19e7b32db1046e68297e1873aeca8d8ea07825c7296c549a3"
+      },
+      "result": {
+        "path": "runtime/gap172/reward-unlock-collector-query/results/a841427f61a44c016bea4900f7e5fcdae76ed789bfd0017002b3acdfee980661.json",
+        "sha256": "c305cc273859babcbbcf0ab20568c3f4039cb962b123151cce2426033b5ccf92"
+      },
+      "input": {
+        "path": "runtime/gap172/reward-unlock-collector.bin",
+        "sha256": "c53d775082014a7a82a9c946d334beb86c613e589a63ffca1208955dbcaf9f88"
+      },
+      "evidence_id": "ev_d6a3cb220ce3fd7d36d96d841b9ac04c35588b94be649d6a7e26f7e39f1ddc39",
+      "analysis_profile_digest": "fdefc3a80fac00e569baa971989ccc0582bfa197d63f2d22597944d7dac09ebf",
+      "normalized_sha256": "0f7ccf11406659147098ce345517ec88049dc12f371a4778647f8d423db5e26f",
+      "limits": "Raw import excludes PE globals/callees; inferred GCC ABI. Exact PE Windows-x64 assembly establishes argument and data flow."
+    },
+    {
+      "role": "achievement-unlocks-wrapper",
+      "plan": {
+        "path": "runtime/gap172/achievement-unlocks-wrapper-query/plan.json",
+        "sha256": "fa28d2e55fdcb5e137fd6bfe240939302c3dbbcf3a22f2e4789a505f8dba282e"
+      },
+      "journal": {
+        "path": "runtime/gap172/achievement-unlocks-wrapper-query/journal.json",
+        "sha256": "24bbef6f893378b750b4cfe1299a9ca918258bfb16b8f1c1d9cb9acf80b45a22"
+      },
+      "result": {
+        "path": "runtime/gap172/achievement-unlocks-wrapper-query/results/3da01fa73bdfd990e32b9dd1be945fcf728b047261abefecbf6ec4f08b8193cb.json",
+        "sha256": "97501203bfeb164c40712dc021b96f14a6a24b85c60edf54d536d9fe93b01d2d"
+      },
+      "input": {
+        "path": "runtime/gap172/achievement-unlocks-wrapper.bin",
+        "sha256": "a63754436701984a05c7afec5b31bffc1e52cc28c997dec916a4547b0b62cad4"
+      },
+      "evidence_id": "ev_be79e1d745d54dd4c4a2956198323b9e5ff3ec7252f91f24384bb26267d72bf2",
+      "analysis_profile_digest": "3596916b3d1e70b7f1c6feeb30852c063b937a068ce03c4cf492bc451b16be09",
+      "normalized_sha256": "a957b2bcbbf24c2f0ae440f753151535ae833b02cb9f7c5f8ec9e56cb7f6525e",
+      "limits": "Raw import excludes PE globals/callees; inferred GCC ABI. Exact PE Windows-x64 assembly establishes argument and data flow."
+    },
+    {
+      "role": "achievement-unlocks-caller-0",
+      "plan": {
+        "path": "runtime/gap172/achievement-unlocks-caller-0-query/plan.json",
+        "sha256": "7be368f2c354236cad726ef504e1700b42c5482a63739c66d07a517959996be2"
+      },
+      "journal": {
+        "path": "runtime/gap172/achievement-unlocks-caller-0-query/journal.json",
+        "sha256": "f429a73d94503be81b04d99f01ffea508113738039b3ba7f50cdf459c51d46ad"
+      },
+      "result": {
+        "path": "runtime/gap172/achievement-unlocks-caller-0-query/results/6d1375f24cb487125d10e4a4eca5767ee527fbdfcfb45d5107538edb936569ba.json",
+        "sha256": "7db527932583c53a6bf5a6e90109355c3b9e355354b3c8e2206f73dbdf4c0441"
+      },
+      "input": {
+        "path": "runtime/gap172/achievement-unlocks-caller-0.bin",
+        "sha256": "f490d9b009594ec93aa3afb023d763cd91fe9aeffc899b53657cfa091e5c7b24"
+      },
+      "evidence_id": "ev_dc192fb0eb3639ee605dacf7ff54f1f4ff426e683fdada19cda9f5ee27c1c068",
+      "analysis_profile_digest": "7c1c59916fddf4941cea011f03f12bfbbda4f492c4cc7689e9a0b2fc55222324",
+      "normalized_sha256": "9dbe5554674ac0178bf17cbb975a8e266dd48e47880a2dfb8d25bb56f7be9b79",
+      "limits": "Raw import excludes PE globals/callees; inferred GCC ABI. Exact PE Windows-x64 assembly establishes argument and data flow."
+    },
+    {
+      "role": "achievement-card-list",
+      "plan": {
+        "path": "runtime/gap172/ui-binding/achievement-card-list-query/plan.json",
+        "sha256": "0d0de8f1741d10dadaf469fc7a5df442503d0aade60e4143412d52f17ad796ab"
+      },
+      "journal": {
+        "path": "runtime/gap172/ui-binding/achievement-card-list-query/journal.json",
+        "sha256": "796a95c710ad239cb2dcf73832eef66f61a80be6bf1506234fd02c7d1a3bd341"
+      },
+      "result": {
+        "path": "runtime/gap172/ui-binding/achievement-card-list-query/results/ae72d54ab8342cac5c1d12d460a3007fb87dcfa95e0dcd930596f9d45e179d0f.json",
+        "sha256": "6d900e55b021b08652b20290a935a064e3bf227f1131f43daa78560a36aa7503"
+      },
+      "input": {
+        "path": "runtime/gap172/ui-binding/achievement-card-list.bin",
+        "sha256": "225b5a7df161d0573322023015d4de9c23f5f5cc92993db935828f2b7be32f31"
+      },
+      "evidence_id": "ev_fd9d75c8409b4fdb9a0d1574766da4ff8b36078bcc05befc9a3ccc2dabf69318",
+      "analysis_profile_digest": "0a5414a01b3d1831163edf8b1fc11f42473e9fa18003866c007f1832a8bbe86c",
+      "normalized_sha256": "ccf3e7811fdf29eac9f38708312301798e26d85e4dc7d4b320b83d5f185ad28c",
+      "limits": "Raw import excludes PE globals/callees; inferred GCC ABI. Exact PE Windows-x64 assembly establishes argument and data flow."
+    },
+    {
+      "role": "achievement-card-secondary",
+      "plan": {
+        "path": "runtime/gap172/ui-binding/achievement-card-secondary-query/plan.json",
+        "sha256": "a7408f6490118f8094b5ba98dd9af01f3a64d97907d32701fdd841e20dbbae65"
+      },
+      "journal": {
+        "path": "runtime/gap172/ui-binding/achievement-card-secondary-query/journal.json",
+        "sha256": "9ce6b491fdb16fc2fe808f3951f55f00250e040c738cec76909e1f20ea87d1ed"
+      },
+      "result": {
+        "path": "runtime/gap172/ui-binding/achievement-card-secondary-query/results/050606b8426652e42cf33d5f362654d05871d8abbd5744960ce2999d29b36962.json",
+        "sha256": "37ed7b4aa2470ec9d4a180b095a0918dcddb2484d36e1119787805f65860df29"
+      },
+      "input": {
+        "path": "runtime/gap172/ui-binding/achievement-card-secondary.bin",
+        "sha256": "da044578618a6d904b5daf1328a467ea3acaa7d0809437061623cbbee3647bb6"
+      },
+      "evidence_id": "ev_8a64c1573c7d459fc61e8edc2d2ab7570057d47888dafdc2b4771779737200df",
+      "analysis_profile_digest": "f8d9acc7868d1a3d4b1f504d3d93daa0a464a7046ffa6e78dd2451ffbbd2569c",
+      "normalized_sha256": "511168c35ff085d4643cf562a02498760daa41c8167032b921e0f8b53c0ab0c2",
+      "limits": "Raw import excludes PE globals/callees; inferred GCC ABI. Exact PE Windows-x64 assembly establishes argument and data flow."
+    },
+    {
+      "role": "achievement-summary-page",
+      "plan": {
+        "path": "runtime/gap172/ui-binding/achievement-summary-page-query/plan.json",
+        "sha256": "63a2ace3229b5b21474efb7c765a6ede97e607491d03e7564605edd4280b643d"
+      },
+      "journal": {
+        "path": "runtime/gap172/ui-binding/achievement-summary-page-query/journal.json",
+        "sha256": "b0a98ca9f961c196fa2bf35150dee83ede82b8648f8910334675f273bdab808d"
+      },
+      "result": {
+        "path": "runtime/gap172/ui-binding/achievement-summary-page-query/results/8c42ac4a55a2476de183f27935ed5daea633f4cbb6f5da82b0190dc3d7c5be84.json",
+        "sha256": "d7da0af62cb8a302cae9732e3d0c37b6fb9ff4354614220271ace4287f73c3ef"
+      },
+      "input": {
+        "path": "runtime/gap172/ui-binding/achievement-summary-page.bin",
+        "sha256": "9198cf512824ead775d029928d216c4e8dbd20e9563a9842b0b762e6dc50e9b2"
+      },
+      "evidence_id": "ev_6cc99cd86430adcf8860696725fb070f60320b000cae6a58b55b009dfaca7dd7",
+      "analysis_profile_digest": "16c3d2d7c7dfc541aee2623eeb0416a2aa160559e07660fbeab3100e840ce81d",
+      "normalized_sha256": "bc7687082471cfb62beca4e35f0b231dc63eeba49f44bcddb826dbf3fb6f274e",
+      "limits": "Raw import excludes PE globals/callees; inferred GCC ABI. Exact PE Windows-x64 assembly establishes argument and data flow."
+    },
+    {
+      "role": "achievement-category-page",
+      "plan": {
+        "path": "runtime/gap172/ui-binding/achievement-category-page-query/plan.json",
+        "sha256": "c1e4cd95d1396d908e135c829c55d6de6b28399eadf6c63b957755005841aeed"
+      },
+      "journal": {
+        "path": "runtime/gap172/ui-binding/achievement-category-page-query/journal.json",
+        "sha256": "c5ad7235cb317207d76a377ff40aee0bf762af9ca51ca0539ad5c7f3d933263a"
+      },
+      "result": {
+        "path": "runtime/gap172/ui-binding/achievement-category-page-query/results/b202678404c4b5002fa4d23552e06f3d1722a515b9e53165fca0952f7d61791e.json",
+        "sha256": "ecbcf920ad89f49e63544cd79d3ede46d7f594a59ecf134a0fd435865057f6b6"
+      },
+      "input": {
+        "path": "runtime/gap172/ui-binding/achievement-category-page.bin",
+        "sha256": "23a2a978b5fc0d6a19fce78e5d678a7a87ba5076b2d5c8890d4419c74209e192"
+      },
+      "evidence_id": "ev_0beaeab95f9715705a7dbc23d1c9825463283661237f4d5ab7985be36c39bf26",
+      "analysis_profile_digest": "c4dfabf0256ea7c9832584866786c0c3b61c4a9d8b44ff466a27662e73fd5ae1",
+      "normalized_sha256": "70fb69f38ac1c8ae144ca0a9c2963e76084e3dfd6c2e909f64a014cbb67bccb3",
+      "limits": "Raw import excludes PE globals/callees; inferred GCC ABI. Exact PE Windows-x64 assembly establishes argument and data flow."
+    },
+    {
+      "role": "achievement-card-body",
+      "plan": {
+        "path": "runtime/gap172/ui-binding/achievement-card-body-query/plan.json",
+        "sha256": "bf3dacbd302d8054fb14c4327e518f893c0b8a87da041c1369dcc14fff0b110d"
+      },
+      "journal": {
+        "path": "runtime/gap172/ui-binding/achievement-card-body-query/journal.json",
+        "sha256": "ab5ebb631aba72f4321538ca66f68e29af871d81b93ef53c154bf9daa0cf6780"
+      },
+      "result": {
+        "path": "runtime/gap172/ui-binding/achievement-card-body-query/results/f1275187e43cc731aae76f50dc8e5e409a3441d99e7d930d7d8e9bb660ab1b66.json",
+        "sha256": "f1025fcb4c5cd80dedb398b41a3408788f74e83ed43bad478229108144ce780c"
+      },
+      "input": {
+        "path": "runtime/gap172/ui-binding/achievement-card-body.bin",
+        "sha256": "0d94ff95423e59d3cbc4bd85c725a3714fbee2f88670cb87bde036fc9d760e18"
+      },
+      "evidence_id": "ev_433ca25e18cbd1c28e2ec2b413a6cb32c0e0761e69172f71395878ea897029f6",
+      "analysis_profile_digest": "d91e9e6143ad9402b3220534ee0a706ce06bf89e701017e8b8474cef72e59c99",
+      "normalized_sha256": "717cb5c405426e1eb893fbb7b505cdfe7cadc820cd8a6da4784ed3ebd0e12d3e",
+      "limits": "Raw import excludes PE globals/callees; inferred GCC ABI. Exact PE Windows-x64 assembly establishes argument and data flow."
+    }
+  ],
+  "direct_call_edges": [
+    {
+      "va": "0x145c2af43",
+      "owner": [
+        "0x145c2af10",
+        "0x145c2b15c"
+      ],
+      "target": "0x145c3e7f0"
+    },
+    {
+      "va": "0x145c2b0bb",
+      "owner": [
+        "0x145c2af10",
+        "0x145c2b15c"
+      ],
+      "target": "0x145c3e7f0"
+    },
+    {
+      "va": "0x145b447b4",
+      "owner": [
+        "0x145b445f0",
+        "0x145b447cf"
+      ],
+      "target": "0x145c2af10"
+    },
+    {
+      "va": "0x140264c20",
+      "owner": [
+        "0x140264b70",
+        "0x140264fee"
+      ],
+      "target": "0x145b445f0"
+    },
+    {
+      "va": "0x1402686c5",
+      "target": "0x140264b70",
+      "bytes": "e8a6c4ffff",
+      "file_offset": "0x267ac5",
+      "linear_instruction_boundary_verified": true,
+      "owner": [
+        "0x140267f30",
+        "0x140269267"
+      ]
+    },
+    {
+      "va": "0x1402690d5",
+      "target": "0x140264b70",
+      "bytes": "e896baffff",
+      "file_offset": "0x2684d5",
+      "linear_instruction_boundary_verified": true,
+      "owner": [
+        "0x140267f30",
+        "0x140269267"
+      ]
+    },
+    {
+      "va": "0x1402dfa79",
+      "target": "0x140264b70",
+      "bytes": "e8f250f8ff",
+      "file_offset": "0x2dee79",
+      "linear_instruction_boundary_verified": true,
+      "owner": [
+        "0x1402df510",
+        "0x1402dfafd"
+      ]
+    },
+    {
+      "va": "0x14026656c",
+      "target": "0x140267f30",
+      "bytes": "e8bf190000",
+      "file_offset": "0x26596c",
+      "linear_instruction_boundary_verified": true,
+      "owner": [
+        "0x140265680",
+        "0x1402665e0"
+      ]
+    },
+    {
+      "va": "0x14026a0d8",
+      "target": "0x1402df510",
+      "bytes": "e833540700",
+      "file_offset": "0x2694d8",
+      "linear_instruction_boundary_verified": true,
+      "owner": [
+        "0x140269940",
+        "0x14026a418"
+      ]
+    },
+    {
+      "va": "0x140264fad",
+      "target": "0x1402d9570",
+      "bytes": "e8be450700",
+      "file_offset": "0x2643ad",
+      "linear_instruction_boundary_verified": true,
+      "owner": [
+        "0x140264b70",
+        "0x140264fee"
+      ]
+    },
+    {
+      "va": "0x1402db01e",
+      "target": "0x145f66f30",
+      "bytes": "e80dbfc805",
+      "file_offset": "0x2da41e",
+      "linear_instruction_boundary_verified": true,
+      "owner": [
+        "0x1402d9570",
+        "0x1402db5a2"
+      ]
+    },
+    {
+      "va": "0x1402daac3",
+      "target": "0x1402cf480",
+      "bytes": "e8b849ffff",
+      "file_offset": "0x2d9ec3",
+      "linear_instruction_boundary_verified": true,
+      "owner": [
+        "0x1402d9570",
+        "0x1402db5a2"
+      ]
+    }
+  ],
+  "source_connections": [
+    {
+      "path": "crates/azeroth-survivors-re/src/progression.rs",
+      "start_marker": "        // Native unlock rows retain",
+      "end_marker": "        catalog\n",
+      "sha256": "0faffd3d9f27c27f68902cf205964419534da200ff12c5e87c6b7febc0cdebac"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/progression.rs",
+      "start_marker": "#[derive(Deserialize)]\nstruct Unlock {",
+      "end_marker": "impl Achievement {",
+      "sha256": "b83c2ff866eef847b99036437e4299035a63f279d67834761cd3c0f299e27cdf"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/progression.rs",
+      "start_marker": "            for unlock in &entry.unlocks {\n                body.spawn",
+      "end_marker": "        });\n        ui.spawn(Node {",
+      "sha256": "7343ded054e55e454ad0582eb2f46e86591f1ca98285b1a2269bbd587731c75f"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/progression.rs",
+      "start_marker": "#[cfg(test)]\nmod unlock_name_tests {",
+      "end_marker": null,
+      "sha256": "1d6464507d70e0be967e5ab6c9e430014f25f1cc2a6d82ae2fd6df9497d497a3"
+    }
+  ],
+  "formats": [
+    {
+      "role": "tabard-ID-format",
+      "start": "0x1472c8640",
+      "end_exclusive": "0x1472c864a",
+      "file_offset": "0x72c7440",
+      "byte_count": 10,
+      "sha256": "01d7853ba174f9ca6100d479917d1a5daf644602fe2c920fbfab85af4604b8a7",
+      "bytes_hex": "077461626172642ec000"
+    },
+    {
+      "role": "cosmetic-ID-format",
+      "start": "0x1472c864a",
+      "end_exclusive": "0x1472c8656",
+      "file_offset": "0x72c744a",
+      "byte_count": 12,
+      "sha256": "b0d876b6470d1a978498440efc1f70bf9db72b812a9f96515c6641fbd0b511e1",
+      "bytes_hex": "09636f736d657469632ec000"
+    },
+    {
+      "role": "summary-label",
+      "file_offset": "0x619c584",
+      "byte_count": 7,
+      "sha256": "8e76a94ac8320d515375e625bef1829238b097ecbd33611b59eeefd4ffefebfb",
+      "meaning": "Summary",
+      "start": "0x14619d784",
+      "end_exclusive": "0x14619d78b",
+      "bytes_hex": "53756d6d617279"
+    },
+    {
+      "role": "recent-label",
+      "file_offset": "0x619c58b",
+      "byte_count": 15,
+      "sha256": "b0867d9f447703b726e1ec42edadea89bb96e7838ae83c02dc8320ba83a19e3a",
+      "meaning": "RECENTLY EARNED",
+      "start": "0x14619d78b",
+      "end_exclusive": "0x14619d79a",
+      "bytes_hex": "524543454e544c59204541524e4544"
+    },
+    {
+      "role": "recent-empty-label",
+      "file_offset": "0x619c59a",
+      "byte_count": 84,
+      "sha256": "731c3767a172edb75135de660cee8731b45e0e95c596916bbfdbfc412f0d03fc",
+      "meaning": "Nothing yet. Win a zone, collect gear or survive long into a run: every hero counts.",
+      "start": "0x14619d79a",
+      "end_exclusive": "0x14619d7ee",
+      "bytes_hex": "4e6f7468696e67207965742e2057696e2061207a6f6e652c20636f6c6c6563742067656172206f722073757276697665206c6f6e6720696e746f20612072756e3a206576657279206865726f20636f756e74732e"
+    },
+    {
+      "role": "prefix-name-format",
+      "file_offset": "0x61a7d98",
+      "byte_count": 6,
+      "sha256": "611492f5c27b3b96723d17bb229f9150cc70c9e7efd0503982d6b6d1fc3ce226",
+      "meaning": "Rust format encoding for two string arguments separated by colon+space",
+      "start": "0x1461a8f98",
+      "end_exclusive": "0x1461a8f9e",
+      "bytes_hex": "c0023a20c000"
+    }
+  ],
+  "limits": [
+    "Bounded appearance-name interface, registry identity, collector and observed UI call edges only; not whole achievement/module completeness.",
+    "Historical catalog files retain their provenance; current descriptor joins are independently checked.",
+    "No compilation, compiling tests, application/client/network/server execution, emulation, save/configuration changes or original/rebuilt comparison.",
+    "Summary/recent/category achievement UI ownership and text consumer are established within these bounded callers; whole main-menu dispatch, indirect callback closure, runtime rendering and original/rebuilt parity are not certified."
+  ],
+  "ui_anchors": [
+    {
+      "owner": "canonical achievement-unlocks-caller-0",
+      "range": [
+        "0x140264ba6",
+        "0x140264bc3"
+      ],
+      "meaning": "Fifth argument achievement descriptor loaded; key pointer and length at descriptor+8/+0x10 forwarded for earned lookup."
+    },
+    {
+      "owner": "canonical achievement-unlocks-caller-0",
+      "range": [
+        "0x140264c13",
+        "0x140264c25"
+      ],
+      "meaning": "Same key pointer/length forwarded to current unlock wrapper145b445f0, output vector stored at rbp+0x360."
+    },
+    {
+      "owner": "canonical achievement-unlocks-caller-0",
+      "range": [
+        "0x140264f6a",
+        "0x140264fb2"
+      ],
+      "meaning": "Card closure context contains achievement descriptor+0x10 and unlock-vector reference+0x28; delivered to1402d9570."
+    },
+    {
+      "owner": "achievement-card-body",
+      "range": [
+        "0x1402d9f2e",
+        "0x1402d9f48"
+      ],
+      "meaning": "Card body reads closure+0x28 unlock vector reference."
+    },
+    {
+      "owner": "achievement-card-body",
+      "range": [
+        "0x1402da940",
+        "0x1402da95b"
+      ],
+      "meaning": "Reads vector length at+0x10 and pointer at+8, multiplies row count by48 bytes."
+    },
+    {
+      "owner": "achievement-card-body",
+      "range": [
+        "0x1402dafe6",
+        "0x1402db023"
+      ],
+      "meaning": "Formats row pair at row+0 and row+0x10 through exact prefix/name separator record1461a8f98 and formatter145f66f30."
+    },
+    {
+      "owner": "achievement-card-body",
+      "range": [
+        "0x1402da9c3",
+        "0x1402daad2"
+      ],
+      "meaning": "Advances row pointer by48 bytes and submits resulting text bundle to widget1402cf480 at1402daac3."
+    },
+    {
+      "owner": "achievement-card-secondary",
+      "range": [
+        "0x1402dfa2f",
+        "0x1402dfa81"
+      ],
+      "meaning": "Gets current achievement registry145b39020, filters category byte at descriptor+0x94, iterates152-byte descriptors and forwards selected descriptor to shared card."
+    },
+    {
+      "owner": "achievement-card-list",
+      "range": [
+        "0x140267fb0",
+        "0x140267fc1"
+      ],
+      "meaning": "Localizes Summary label using selected current text lookup145b29a00."
+    },
+    {
+      "owner": "achievement-card-list",
+      "range": [
+        "0x140268273",
+        "0x140268284"
+      ],
+      "meaning": "Localizes RECENTLY EARNED label; this section renders shared achievement cards at1402686c5."
+    },
+    {
+      "owner": "achievement-card-list",
+      "range": [
+        "0x1402686fe",
+        "0x14026870f"
+      ],
+      "meaning": "Localizes exact achievement-empty-state prose; second in-progress card loop calls at1402690d5."
+    }
+  ],
+  "lookup_dependency": {
+    "manifest": "docs/analysis/evidence/0.119.0/localization-loader/contracts.json",
+    "role": "lookup",
+    "va": "0x145b29ab0",
+    "end_exclusive": "0x145b29d2a",
+    "sha256": "85877b35c834d51b92d5ef5ecfc11793fa7badf372045c069bf2cc87edecd629"
+  },
+  "pseudocode_export_normalization": "Trim outer whitespace and per-line trailing whitespace only; raw Ghidra results and their normalized-result hashes remain unchanged."
+}

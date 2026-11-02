@@ -1,0 +1,101 @@
+{
+  "target_sha256": "dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b",
+  "target_version": "0.108.0",
+  "ranges": [
+    {
+      "role": "create",
+      "va": "0x1459508f0",
+      "end_exclusive": "0x145950af7",
+      "file_offset": "0x594fcf0",
+      "byte_count": 519,
+      "sha256": "27cd366eee6ff5cf9a397bd56678cc1e12951f914f1e10f0cb2922459149b963",
+      "assembly": "create.asm"
+    },
+    {
+      "role": "follow",
+      "va": "0x145948715",
+      "end_exclusive": "0x145948a53",
+      "file_offset": "0x5947b15",
+      "byte_count": 830,
+      "sha256": "100723280f99ddfde8da6cb3731b439da7dc86fe20d871f35b8c2123eeabd115",
+      "assembly": "follow.asm"
+    },
+    {
+      "role": "publish_gate",
+      "va": "0x145949366",
+      "end_exclusive": "0x145949444",
+      "file_offset": "0x5948766",
+      "byte_count": 222,
+      "sha256": "1595a0e2cca342bde094d7b7bef7edb263974c8d23293efec32491eaf7a8c5a8",
+      "assembly": "publish_gate.asm"
+    },
+    {
+      "role": "circle_gate",
+      "va": "0x1459496c9",
+      "end_exclusive": "0x145949746",
+      "file_offset": "0x5948ac9",
+      "byte_count": 125,
+      "sha256": "f67892482a0f1fd831596c25b68d417bbda55be490136191c984bd52a9a942df",
+      "assembly": "circle_gate.asm"
+    },
+    {
+      "role": "damage",
+      "va": "0x14594984a",
+      "end_exclusive": "0x145949895",
+      "file_offset": "0x5948c4a",
+      "byte_count": 75,
+      "sha256": "e2d1b0c15e03c4ab6111250cb04a17afe143e3cd78d52bb5cc00a8c9dc086d2b",
+      "assembly": "damage.asm"
+    },
+    {
+      "role": "optional_visual",
+      "va": "0x14594a0f5",
+      "end_exclusive": "0x14594a118",
+      "file_offset": "0x59494f5",
+      "byte_count": 35,
+      "sha256": "65425b8b70c64c1d771ce48d63722edbd7d64d67a3eeff1e8a5043c5e695bc17",
+      "assembly": "optional_visual.asm"
+    },
+    {
+      "role": "emit_circle",
+      "va": "0x14594b39b",
+      "end_exclusive": "0x14594b5f9",
+      "file_offset": "0x594a79b",
+      "byte_count": 606,
+      "sha256": "6cbfb4b6f13a61b58f6e3c47956e484db1496718f319ab364278fac6932d48fa",
+      "assembly": "emit_circle.asm"
+    },
+    {
+      "role": "emit_times",
+      "va": "0x14594b83c",
+      "end_exclusive": "0x14594b99c",
+      "file_offset": "0x594ac3c",
+      "byte_count": 352,
+      "sha256": "e73768a0c9eb2ae024ab726caf546f72e68a39b2b8df4b8069ab5cc9f02805b1",
+      "assembly": "emit_times.asm"
+    },
+    {
+      "role": "emit_end",
+      "va": "0x14594bcf3",
+      "end_exclusive": "0x14594bdad",
+      "file_offset": "0x594b0f3",
+      "byte_count": 186,
+      "sha256": "06448f59cf23211dccb7b16ccec163cf2039bb1a6314e1c6ae20225bfc30bf7d",
+      "assembly": "emit_end.asm"
+    },
+    {
+      "role": "emit_clock",
+      "va": "0x14594be47",
+      "end_exclusive": "0x14594c000",
+      "file_offset": "0x594b247",
+      "byte_count": 441,
+      "sha256": "d2c6894499756619f87efcbbe15110a27e55e2d38f583e5a1b3e2b0b1db0709b",
+      "assembly": "emit_clock.asm"
+    }
+  ],
+  "static_cases": 83,
+  "limitations": [
+    "Synthetic terrain height; preallocated native vector, no real terrain or allocator.",
+    "Native instruction execution and textual source tracing do not execute Rust or establish compile/runtime/rendering parity."
+  ]
+}

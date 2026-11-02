@@ -1,0 +1,20 @@
+0x1458939c0: sub rsp, 0x28
+0x1458939c4: mov byte ptr [rsp + 0x26], r8b
+0x1458939c9: mov byte ptr [rsp + 0x27], r9b
+0x1458939ce: cmp dword ptr [rcx + 0xc58], 3
+0x1458939d5: jne 0x145893a0e
+0x1458939d7: cmp rdx, qword ptr [rcx + 0xc98]
+0x1458939de: jae 0x145893a0e
+0x1458939e0: mov rax, qword ptr [rcx + 0xc90]
+0x1458939e7: imul rdx, rdx, 0x478
+0x1458939ee: cmp dword ptr [rax + rdx], 1
+0x1458939f2: jne 0x145893a0e
+0x1458939f4: cmp dword ptr [rcx + 0x10], 2
+0x1458939f8: je 0x145893a0e
+0x1458939fa: mov rdx, qword ptr [rax + rdx + 8]
+0x1458939ff: add rcx, 0x10
+0x145893a03: lea r8, [rsp + 0x26]
+0x145893a08: call 0x1458ee600
+0x145893a0d: nop
+0x145893a0e: add rsp, 0x28
+0x145893a12: ret

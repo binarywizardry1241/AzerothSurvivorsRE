@@ -1,0 +1,124 @@
+{
+  "target_sha256": "17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b",
+  "target_executed": false,
+  "method": "Bind treasure presentation owners to 0.100.1 and retain REA/Ghidra evidence.\n\nCandidate mapping only locates exact-fragment leads; reviewed target assembly\nand Ghidra output establish recovered behavior. No application is executed.\n",
+  "owners": [
+    {
+      "role": "choice-payload",
+      "address": "0x1454f0f10",
+      "end_exclusive": "0x1454f2ba9",
+      "file_offset": "0x54f0310",
+      "byte_count": 7321,
+      "sha256": "88a797bc042790f78370ae0b4031fb784d24a233ecfe8c2598cc40106f73ad6c",
+      "assembly": "../native-overlays/new-spell-payload.asm"
+    },
+    {
+      "role": "cards-root",
+      "address": "0x14021aed0",
+      "end_exclusive": "0x14021c080",
+      "file_offset": "0x21a2d0",
+      "byte_count": 4528,
+      "sha256": "657d2fdf5d594fac7431ffdafb22a8d88589b1405193539301fb08d12eb6d67a"
+    },
+    {
+      "role": "card-tile",
+      "address": "0x1401f47e0",
+      "end_exclusive": "0x1401f7545",
+      "file_offset": "0x1f3be0",
+      "byte_count": 11621,
+      "sha256": "f090003f7481f1bfd1a90f615b359ee92116984cf262d0e6559a4481c2280476"
+    },
+    {
+      "role": "card-content",
+      "address": "0x140109b00",
+      "end_exclusive": "0x14010c46d",
+      "file_offset": "0x108f00",
+      "byte_count": 10605,
+      "sha256": "6961f8d2d956c65d18eb5c1fb0a5783ddfe2378e8c755ed157b5e4b306168e51"
+    },
+    {
+      "role": "card-tooltip",
+      "address": "0x1401f3210",
+      "end_exclusive": "0x1401f3dcb",
+      "file_offset": "0x1f2610",
+      "byte_count": 3003,
+      "sha256": "567d8735d82504f92dac6dacb4229b2dcdd830d6d1f9899d893886706d51788d"
+    },
+    {
+      "role": "cards-layout",
+      "address": "0x14010cdf0",
+      "end_exclusive": "0x14010fdcc",
+      "file_offset": "0x10c1f0",
+      "byte_count": 12252,
+      "sha256": "3dfd7e6f9d442f2bc8b6635d663e6c4d47c0e765ea5ad10bf6a7fc20fb73811d"
+    },
+    {
+      "role": "cards-animate",
+      "address": "0x14021ce50",
+      "end_exclusive": "0x14021df4e",
+      "file_offset": "0x21c250",
+      "byte_count": 4350,
+      "sha256": "407c5d28a53f7931b444f016d59b058d59d8885652ae4fe86adee6972c43d016"
+    },
+    {
+      "role": "effect-scale-map",
+      "address": "0x145544de0",
+      "end_exclusive": "0x145544eaa",
+      "file_offset": "0x55441e0",
+      "byte_count": 202,
+      "sha256": "6166917197ce76b3f658bf100188c5939cff974b661548669882d8f90d038ca8"
+    },
+    {
+      "role": "effect-description-map",
+      "address": "0x1455526c0",
+      "end_exclusive": "0x14555558d",
+      "file_offset": "0x5551ac0",
+      "byte_count": 11981,
+      "sha256": "306ba22e059c326dde5d69384652452f77cf6af8e1c3e3b3736c9a2322e0b020"
+    },
+    {
+      "role": "amulet-current-description",
+      "address": "0x1454251d0",
+      "end_exclusive": "0x14542533a",
+      "file_offset": "0x54245d0",
+      "byte_count": 362,
+      "sha256": "69930bf83107b684f2f3dcd20fd1a8467d750b1a42acd96836c203cd4b472d1c"
+    },
+    {
+      "role": "amulet-comparison-lines",
+      "address": "0x145542df0",
+      "end_exclusive": "0x145542eea",
+      "file_offset": "0x55421f0",
+      "byte_count": 250,
+      "sha256": "66189a4a566bd834161b07bebd76fa60253762775f86ea326d84d33d56387772"
+    },
+    {
+      "role": "jewelry-description",
+      "address": "0x145424a90",
+      "end_exclusive": "0x145424e6c",
+      "file_offset": "0x5423e90",
+      "byte_count": 988,
+      "sha256": "d983dc5e8f2cd5a4d5185765d6455b5e418b82ec531f457039cc1983cd190d0d"
+    },
+    {
+      "role": "amulet-worn-description",
+      "address": "0x1454253b0",
+      "end_exclusive": "0x1454254a2",
+      "file_offset": "0x54247b0",
+      "byte_count": 242,
+      "sha256": "a6bbe1b2ef96093c0997a07160029fb59c9147ff307014754390e0e807553976"
+    },
+    {
+      "role": "amulet-new-description",
+      "address": "0x145425910",
+      "end_exclusive": "0x145425a75",
+      "file_offset": "0x5424d10",
+      "byte_count": 357,
+      "sha256": "8309901b2b40c5c890e130945f1fbd29bfb827dc944c7beb581534a8dfa45f28"
+    }
+  ],
+  "limitations": [
+    "Raw slices preserve all original instructions; external call/constant meanings require original PE assembly and bounded data reads.",
+    "Static or emulated evidence does not establish visual or application-runtime parity."
+  ]
+}

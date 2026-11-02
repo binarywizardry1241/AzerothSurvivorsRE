@@ -1,0 +1,13 @@
+1458af14c 41833c2402 cmp dword ptr [r12], 2
+1458af151 488bb528050000 mov rsi, qword ptr [rbp + 0x528]
+1458af158 0f8419030000 je 0x1458af477
+1458af15e 0fb686d70a0000 movzx eax, byte ptr [rsi + 0xad7]
+1458af165 89c1 mov ecx, eax
+1458af167 80e106 and cl, 6
+1458af16a 80f904 cmp cl, 4
+1458af16d 750c jne 0x1458af17b
+1458af16f 388666110000 cmp byte ptr [rsi + 0x1166], al
+1458af175 0f85d9030000 jne 0x1458af554
+1458af554 888666110000 mov byte ptr [rsi + 0x1166], al
+1458af55a 4889f1 mov rcx, rsi
+1458af55d e8be900000 call 0x1458b8620

@@ -1,0 +1,100 @@
+{
+  "target_version": "0.112.0",
+  "target_sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+  "target_executed": false,
+  "cases": {
+    "admission_boundaries": 208,
+    "pull_publications": 4,
+    "sequential_stale_reports": 13,
+    "marker_position_inputs": 4
+  },
+  "source_checks": {
+    "source_files": 4,
+    "only_forced_tick_output_seeds_pending": true,
+    "publication_precedes_marker_and_pickup_consumers": true
+  },
+  "visited_instruction_ranges": {
+    "report-admission": [
+      {
+        "va": "0x1458f1b50",
+        "file_offset": "0x58f0f50",
+        "byte_count": 195,
+        "sha256": "40de22b475aaccb336b5e3f8b1494c271a94a0b5d2af7d5d345c9ce9c42d7a2e",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1458f26b1",
+        "file_offset": "0x58f1ab1",
+        "byte_count": 70,
+        "sha256": "141fd142f8a29da4b2ed7714b29072f534a7484428c661985d575c936f1183ae",
+        "assembly": "selected-native.asm"
+      }
+    ],
+    "pull-publication": [
+      {
+        "va": "0x145916f23",
+        "file_offset": "0x5916323",
+        "byte_count": 49,
+        "sha256": "bb5b64516eb3c134c4a25391139d2348abf4a8a1d1e530d6b3d1c7dcf58dd052",
+        "assembly": "../raid-lifecycles/selected-native.asm"
+      }
+    ],
+    "stale-report-sequence": [
+      {
+        "va": "0x1458f1b50",
+        "file_offset": "0x58f0f50",
+        "byte_count": 177,
+        "sha256": "faf551ee2f1d178c2bb1ea192e67b13e811734ba43a8aa161ce5481b9eed2dad",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1458f1c09",
+        "file_offset": "0x58f1009",
+        "byte_count": 10,
+        "sha256": "de46eab8bc60b214659f7cc59a9f3770105f4993e79eb76531a27a3d71d88aab",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x1458f26b1",
+        "file_offset": "0x58f1ab1",
+        "byte_count": 70,
+        "sha256": "141fd142f8a29da4b2ed7714b29072f534a7484428c661985d575c936f1183ae",
+        "assembly": "selected-native.asm"
+      }
+    ],
+    "marker-position-input": [
+      {
+        "va": "0x1459073c5",
+        "file_offset": "0x59067c5",
+        "byte_count": 120,
+        "sha256": "5129c7882208992bb10e26b547a6711fbc814eb906bc5b30858a6b6c0a518747",
+        "assembly": "selected-native.asm"
+      },
+      {
+        "va": "0x145907440",
+        "file_offset": "0x5906840",
+        "byte_count": 98,
+        "sha256": "c0324e4ae639e515c81260d45b722fdcc9e6c0c097d9122e17670abf107ac849",
+        "assembly": "selected-native.asm"
+      }
+    ]
+  },
+  "movement_report_owner": {
+    "va": "0x1458f1b50",
+    "file_offset": "0x58f0f50",
+    "byte_count": 3086,
+    "sha256": "a253b3e529980d39fb5ba4f18a0e7ef6fd6a366f0b3ee3127ef6f83a1dae61fc"
+  },
+  "squared_radius_constant": {
+    "va": "0x145df1a50",
+    "file_offset": "0x5df0c50",
+    "byte_count": 4,
+    "sha256": "5eaa5c1a4fa99cf34af94ccef42ea122dbc921d2498f68c20bf9b4d5150f5083"
+  },
+  "seams": [],
+  "limits": [
+    "The report prefix stops at its unchanged terrain/query continuation; ignored reports execute the actual epilogue and return.",
+    "Pull geometry, movement packet construction and client delivery retain the current lifecycle proof. Marker profiles stop after nearest-lair selection, before publication.",
+    "No Rust execution, compiler, game, terrain/client rendering, movement interaction or original/rebuilt parity comparison."
+  ]
+}

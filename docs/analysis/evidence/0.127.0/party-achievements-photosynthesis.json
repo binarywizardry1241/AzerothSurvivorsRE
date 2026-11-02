@@ -1,0 +1,350 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.127.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+    "size_bytes": 146721280
+  },
+  "gap_ids": [
+    157
+  ],
+  "queries": [
+    {
+      "procedure": "0x145b2da80",
+      "evidence_id": "ev_74f435abd66ae05b8c3bd7c80cdf1583c53c39f409647d41468087795d2219e2",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "54e3a6f95acfc57d47f866a6fdd7ac5ff7030e2a7957d7639a0aaa021ea9fd98",
+      "normalized_text_sha256": "d2fdbb5d59dd367895a7a48b4575ab3c4bd5dfa9c55dd3b195ba6edb7a96a4f0",
+      "result": {
+        "path": "runtime/analysis/tasks/party-achievements-0.127.0/body-145b2da80/rea/results/e57f31e60931bb6f9934ee973befff25fa180481c44a33bd926b13d3e2a465ea.json",
+        "sha256": "b63d3335666f328d163d583cb5e52e5f3224b9b73628bb99e43be789bd2027a0"
+      },
+      "plan": {
+        "path": "runtime/analysis/tasks/party-achievements-0.127.0/body-145b2da80/plan.json",
+        "sha256": "e17bdd4d4284a3ef48cd2eca58b2d1d2a32c6b4f411820e3324099e8c1ca332c"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/party-achievements-0.127.0/body-145b2da80/rea/journal.json",
+        "sha256": "be49fd4db4f3460122c0420358637d8ee11893f0be5159b21a5262195974e97b"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/party-achievements-0.127.0/body-145b2da80/body.bin",
+        "sha256": "fb60c6e68a5e83f5100f69ce362eb00fa7de8be90eb33a13b254d3f507ca2816"
+      },
+      "slice_virtual_address": "0x145b2da80"
+    },
+    {
+      "procedure": "0x145b3cd70",
+      "evidence_id": "ev_da6a591d21ffe3a52bb17f4205779b0575b04b33b6593e276f949e5809e43f2b",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "ec82622667b222b1bd61f66a773816f1bc5973665a9cbf328183838c1ea6855e",
+      "normalized_text_sha256": "e90325df7421b3bc46284f4258ddbfbf7d20a8e76252cc601a14e3c9b9a98ba9",
+      "result": {
+        "path": "runtime/analysis/tasks/party-achievements-0.127.0/body-145b3cd70/rea/results/04fa099e637d812ecd1e105e4580e9909d730fcb3ecfa52b8dd8577e2fbba65c.json",
+        "sha256": "edffdb99fe36fe59b41c6b6fd6db1d7d5afaf7189b99a7f21438a82f25ef17e4"
+      },
+      "plan": {
+        "path": "runtime/analysis/tasks/party-achievements-0.127.0/body-145b3cd70/plan.json",
+        "sha256": "7078bb44148c17cf16be3a6bc7469163a6ba0705bfa4e655e2af2e4fff3c3a18"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/party-achievements-0.127.0/body-145b3cd70/rea/journal.json",
+        "sha256": "cbfccd0f483ef0b945dac5fb5ff4f06bc243c9b3096ed4f2bda28cc6d8c0ce2d"
+      },
+      "raw_input": {
+        "path": "runtime/analysis/tasks/party-achievements-0.127.0/body-145b3cd70/body.bin",
+        "sha256": "7003dd011495ca37d043eb9eb296c2d359bd7fe235875aa817f6f2ccc9796618"
+      },
+      "slice_virtual_address": "0x145b3cd70"
+    }
+  ],
+  "ranges": [
+    {
+      "role": "photosynthesis_name_description",
+      "start": "0x145b35d3f",
+      "end_exclusive": "0x145b35dd5",
+      "file_offset": "0x5b3513f",
+      "sha256": "b75fd0d569e577c79f6567fa4edaa00b4c2fadced1f4e3f315a646645d3b06fe",
+      "bytes_hex": "488d0dbb235101be16000000ba1600000048898d78140000e874250b00488995881400004885c0488b8d78140000480f45c848898d78140000488b8588140000480f44c648898588140000488d0d86235101be81000000ba8100000048898d28140000e829250b00488995181400004885c0488b8d28140000480f45c848898d28140000488b8518140000480f44c648898518140000"
+    },
+    {
+      "role": "photosynthesis_descriptor",
+      "start": "0x145b366e1",
+      "end_exclusive": "0x145b367b8",
+      "file_offset": "0x5b35ae1",
+      "sha256": "f0dfc11aadad70a93a7d916d51516b0567b2edaf94af440228eacbeb7d3572b4",
+      "bytes_hex": "488d05c01a5101488985d007000048c785d807000013000000488b8578140000488985e0070000488b8588140000488985e8070000488b8528140000488985f0070000488b8518140000488985f8070000488d05821a51014889850008000048c7850808000018000000c7851008000032000000c6851808000009c6851908000002c6851a08000003c7851c080000d6050000488d05291a51014889852008000048c785280800000100000048c7853008000001000000488d05f91951014889853808000048c785400800000b000000c685480800000b"
+    },
+    {
+      "role": "cooperative_category_and_record_copy",
+      "start": "0x145b3733f",
+      "end_exclusive": "0x145b373b2",
+      "file_offset": "0x5b3673f",
+      "sha256": "72d556bc5094d78c0d4a422817a36ac50b9820c5987c9da92c410a7f46f9102a",
+      "bytes_hex": "8b8590140000898588020000c6858c02000005488b85a014000048898578020000488b85a8140000488985800200004088bd40020000488bb568140000483bb558140000750d488d8d58140000e86ff05800904869ce9800000048038d6014000041b898000000488d95f8010000e869a35200"
+    },
+    {
+      "role": "recipient_rank_clamp",
+      "start": "0x145b3ce43",
+      "end_exclusive": "0x145b3ce78",
+      "file_offset": "0x5b3c243",
+      "sha256": "b0a40b7a1654b185722b72d6ac25a889aa507b943848d12bca4f2ac0cfc0220f",
+      "bytes_hex": "458b477cf3410f10b790000000f3410f10bf84000000410fb687ae0000008885f40000000fb6c04438c0440f42c0448985dc000000"
+    },
+    {
+      "role": "boss_rank_mode_dispatch",
+      "start": "0x145b3d296",
+      "end_exclusive": "0x145b3d2ca",
+      "file_offset": "0x5b3c696",
+      "sha256": "ba7888f217ca20f75677106884ac1ab98a9b98f66e1ba559eea887970ed851a4",
+      "bytes_hex": "48837d78ff0f848ffdffff85c00f84d503000083f8010f85b90300000fb685070100003885dc0000000f826bfdffffe9b4030000"
+    },
+    {
+      "role": "boss_exact_rank",
+      "start": "0x145b3d66b",
+      "end_exclusive": "0x145b3d67e",
+      "file_offset": "0x5b3ca6b",
+      "sha256": "4003fbbde95e778add6436df1dee4ae8fef97f2ad3c23c8ef204cb5764cafa70",
+      "bytes_hex": "0fb685070100003885dc0000000f85b2f9ffff"
+    },
+    {
+      "role": "boss_event_and_party_consumers",
+      "start": "0x145b3d67e",
+      "end_exclusive": "0x145b3d73e",
+      "file_offset": "0x5b3ca7e",
+      "sha256": "6d6af21dbe74ebbcd07f6c70da55e27b0baa620210381b569f7845b346d58ef5",
+      "bytes_hex": "48837d10000f84a7f9ffff488b8df80000004885c90f84220100004989ca48b8f0ffffffffffff1f4921c283e10f4a8d3c96c1e10248898df80000004c8bb588000000eb1b666666662e0f1f8400000000004983c6284c3b75700f8452f9ffff4539461875ec4d89e54d89d44489c3488b85e000000048894548488b4530488d4d5048894110660f6f4520f30f7f01498b56084d8b4610488d4d48e822e6feff9084c04c8b9dc80000004189d84d89e24d89ec4c8b6d68749941807e21027492"
+    }
+  ],
+  "literals": [
+    {
+      "role": "name",
+      "address": "0x147048101",
+      "bytes": 22,
+      "text": "Rest in Photosynthesis",
+      "sha256": "ec1a5bbc55f9cb668d1a455201aad1e53ea6c6fd0702fb65c4d46734338d28b6"
+    },
+    {
+      "role": "description",
+      "address": "0x147048117",
+      "bytes": 129,
+      "text": "Defeat Kel'Thuzad on Heroic III in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.",
+      "sha256": "4203e49672519331879e198622df032a82204de04531256c368a5280e2019205"
+    },
+    {
+      "role": "key",
+      "address": "0x1470481a8",
+      "bytes": 19,
+      "text": "coop:photosynthesis",
+      "sha256": "23a92416851643e942e3e6798c0c22af1c4c0d9dfb1dd4295abf317da0e37250"
+    },
+    {
+      "role": "icon",
+      "address": "0x1470481bb",
+      "bytes": 24,
+      "text": "Spell_Nature_Tranquility",
+      "sha256": "2f72326a4257f616202448eb6a4aa87e6c221dd8a7a8fec90e8596618326da6c"
+    }
+  ],
+  "descriptor": {
+    "kind": 9,
+    "heroic_mode": 2,
+    "heroic_rank": 3,
+    "boss_id": 1494,
+    "spells": [
+      740
+    ],
+    "party_kind": 1,
+    "party_class": 11,
+    "party_key": "tranquility",
+    "points": 50,
+    "category": 5
+  },
+  "native_checks": {
+    "isolated_instruction_cases": 162,
+    "original_instruction_steps": 2673,
+    "contract": "Optional party context present and min(run rank,recipient cap)==3; mode2 exact equality. Both producer values are u8. Existing lethal membership/composition/spell consumers retain their separate proof."
+  },
+  "compilation": false,
+  "game_or_service_execution": false,
+  "parity_verified": false,
+  "locale_bindings": [
+    {
+      "code": "en",
+      "payload": {
+        "virtual_address": "0x147086446",
+        "file_offset": "0x7084a46",
+        "byte_count": 221489,
+        "sha256": "ab4970dccafac5b5ea7920bba16f159f96e8e0f02042a00fd62193e520f6169a"
+      },
+      "entries": {
+        "Defeat Kel'Thuzad on Heroic III in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.": "Defeat Kel'Thuzad on Heroic III in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow."
+      }
+    },
+    {
+      "code": "pl",
+      "payload": {
+        "virtual_address": "0x1470bc57f",
+        "file_offset": "0x70bab7f",
+        "byte_count": 236278,
+        "sha256": "45d932234f52de6014360fecbcc434283c6215a00e3431f1c0d9524a3f64a814"
+      },
+      "entries": {
+        "Defeat Kel'Thuzad on Heroic III in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.": "Pokonaj Kel'Thuzada na poziomie Heroicznym III w trybie co-op 5 druidami, z kt\u00f3rych ka\u017cdy ma talent Ukojenie. Ostatni cios musi zada\u0107 Ukojenie."
+      }
+    },
+    {
+      "code": "cs",
+      "payload": {
+        "virtual_address": "0x1470f6080",
+        "file_offset": "0x70f4680",
+        "byte_count": 236496,
+        "sha256": "294522c7a54f1d46786f8af2ef2b1cb0bd9a9d6cce72f9ed84327aba25550edf"
+      },
+      "entries": {
+        "Defeat Kel'Thuzad on Heroic III in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.": "Poraz Kel'Thuzada na obt\u00ed\u017enost Hrdinsk\u00fd III v kooperaci s 5 druidy, kte\u0159\u00ed v\u0161ichni maj\u00ed talent Poklid. Posledn\u00ed \u00fader mus\u00ed zasadit Poklid."
+      }
+    },
+    {
+      "code": "de",
+      "payload": {
+        "virtual_address": "0x14712fc59",
+        "file_offset": "0x712e259",
+        "byte_count": 241954,
+        "sha256": "646e32c97c8cfe0c95d36c8adb955a43a2ddf38cf176b0bfaa85e16ed090a1f4"
+      },
+      "entries": {
+        "Defeat Kel'Thuzad on Heroic III in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.": "Besiege Kel'Thuzad auf Heroisch III im Koop mit 5 Druiden, alle mit dem Talent Gelassenheit. Gelassenheit muss den Todessto\u00df versetzen."
+      }
+    },
+    {
+      "code": "pt",
+      "payload": {
+        "virtual_address": "0x14716ad90",
+        "file_offset": "0x7169390",
+        "byte_count": 234452,
+        "sha256": "fb87b43bd82d7d609d2a0f7e83a76362e804abae79454b7e9650557418b1f59c"
+      },
+      "entries": {
+        "Defeat Kel'Thuzad on Heroic III in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.": "Derrote Kel'Thuzad no Heroico III no cooperativo com 5 druidas, todos com o talento Tranquilidade. Tranquilidade deve desferir o golpe final."
+      }
+    },
+    {
+      "code": "es",
+      "payload": {
+        "virtual_address": "0x1471a416e",
+        "file_offset": "0x71a276e",
+        "byte_count": 241562,
+        "sha256": "de4c013287b8f9bb3c3b16616874ce31be63ac44e4336728294b3387b288e9ad"
+      },
+      "entries": {
+        "Defeat Kel'Thuzad on Heroic III in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.": "Derrota a Kel'Thuzad en Heroico III en cooperativo con 5 druidas, todos con el talento Tranquilidad. Tranquilidad debe asestar el golpe de gracia."
+      }
+    },
+    {
+      "code": "fr",
+      "payload": {
+        "virtual_address": "0x1471df113",
+        "file_offset": "0x71dd713",
+        "byte_count": 246439,
+        "sha256": "94e6f183ebe2dbc9ab581523bfc5e3811b0ed1b127c90605d788cbeb3dffb2dc"
+      },
+      "entries": {
+        "Defeat Kel'Thuzad on Heroic III in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.": "Vainquez Kel'Thuzad en H\u00e9ro\u00efque III en coop avec 5 druides, tous dot\u00e9s du talent Tranquillit\u00e9. Tranquillit\u00e9 doit porter le coup fatal."
+      }
+    },
+    {
+      "code": "ro",
+      "payload": {
+        "virtual_address": "0x14721b3c4",
+        "file_offset": "0x72199c4",
+        "byte_count": 241996,
+        "sha256": "b6fec8c2c228497bae33a50c20136ce59d891c85ebfd14e3534141f79506b8fa"
+      },
+      "entries": {
+        "Defeat Kel'Thuzad on Heroic III in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.": "\u00cenvinge-l pe Kel'Thuzad pe Eroic III \u00een co-op cu 5 druizi, to\u021bi cu talentul Lini\u0219te. Lini\u0219te trebuie s\u0103 dea lovitura de gra\u021bie."
+      }
+    },
+    {
+      "code": "tr",
+      "payload": {
+        "virtual_address": "0x14725651a",
+        "file_offset": "0x7254b1a",
+        "byte_count": 234235,
+        "sha256": "2823790ed9fe18a1cebbfc8317872535766a6fe740143681b1ddfde62811a917"
+      },
+      "entries": {
+        "Defeat Kel'Thuzad on Heroic III in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.": "Hepsi Dinginlik yetene\u011fini alm\u0131\u015f 5 Druid ile ortak oyunda Kahramanl\u0131k III zorlu\u011funda Kel'Thuzad'\u0131 yen. Son darbeyi Dinginlik vurmal\u0131."
+      }
+    },
+    {
+      "code": "ru",
+      "payload": {
+        "virtual_address": "0x14728f825",
+        "file_offset": "0x728de25",
+        "byte_count": 320079,
+        "sha256": "558385eec6aa8c6cb709f2ec8d96d9d77d0b81700b1eff281592f523a6b8c3dc"
+      },
+      "entries": {
+        "Defeat Kel'Thuzad on Heroic III in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.": "\u041f\u043e\u0431\u0435\u0434\u0438\u0442\u0435 \u041a\u0435\u043b'\u0422\u0443\u0437\u0430\u0434\u0430 \u043d\u0430 \u00ab\u0413\u0435\u0440\u043e\u0438\u0447\u0435\u0441\u043a\u043e\u043c III\u00bb \u0432 \u043a\u043e\u043e\u043f\u0435\u0440\u0430\u0442\u0438\u0432\u0435 \u043f\u044f\u0442\u044c\u044e \u0434\u0440\u0443\u0438\u0434\u0430\u043c\u0438, \u0443 \u043a\u0430\u0436\u0434\u043e\u0433\u043e \u0438\u0437 \u043a\u043e\u0442\u043e\u0440\u044b\u0445 \u0438\u0437\u0443\u0447\u0435\u043d\u043e \u0421\u043f\u043e\u043a\u043e\u0439\u0441\u0442\u0432\u0438\u0435. \u0421\u043c\u0435\u0440\u0442\u0435\u043b\u044c\u043d\u044b\u0439 \u0443\u0434\u0430\u0440 \u0434\u043e\u043b\u0436\u043d\u043e \u043d\u0430\u043d\u0435\u0441\u0442\u0438 \u0421\u043f\u043e\u043a\u043e\u0439\u0441\u0442\u0432\u0438\u0435."
+      }
+    },
+    {
+      "code": "uk",
+      "payload": {
+        "virtual_address": "0x1472dda8a",
+        "file_offset": "0x72dc08a",
+        "byte_count": 312296,
+        "sha256": "bca10587591dc1697ebad4fca550f4b13cf4394c5bd327662b166e58c1fb9a28"
+      },
+      "entries": {
+        "Defeat Kel'Thuzad on Heroic III in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.": "\u041f\u0435\u0440\u0435\u043c\u043e\u0436\u0456\u0442\u044c \u041a\u0435\u043b'\u0422\u0443\u0437\u0430\u0434\u0430 \u043d\u0430 \u00ab\u0413\u0435\u0440\u043e\u0457\u0447\u043d\u043e\u043c\u0443 III\u00bb \u0432 \u043a\u043e\u043e\u043f\u0435\u0440\u0430\u0442\u0438\u0432\u0456 \u043f'\u044f\u0442\u044c\u043c\u0430 \u0434\u0440\u0443\u0457\u0434\u0430\u043c\u0438, \u0443 \u043a\u043e\u0436\u043d\u043e\u0433\u043e \u0437 \u044f\u043a\u0438\u0445 \u0432\u0438\u0432\u0447\u0435\u043d\u043e \u0421\u043f\u043e\u043a\u0456\u0439. \u0421\u043c\u0435\u0440\u0442\u0435\u043b\u044c\u043d\u043e\u0433\u043e \u0443\u0434\u0430\u0440\u0443 \u043c\u0430\u0454 \u0437\u0430\u0432\u0434\u0430\u0442\u0438 \u0421\u043f\u043e\u043a\u0456\u0439."
+      }
+    },
+    {
+      "code": "zh",
+      "payload": {
+        "virtual_address": "0x147329e80",
+        "file_offset": "0x7328480",
+        "byte_count": 220079,
+        "sha256": "ec71709d5d94501fb63ca7371d1ee6bbeccab50487208bd3bdf21cbfcd2e9dda"
+      },
+      "entries": {
+        "Defeat Kel'Thuzad on Heroic III in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.": "\u5728\u5408\u4f5c\u6a21\u5f0f\u4e2d\uff0c\u75285\u540d\u90fd\u70b9\u51fa\u4e86\u5b81\u9759\u5929\u8d4b\u7684\u5fb7\u9c81\u4f0a\u5728\u82f1\u96c4III\u96be\u5ea6\u4e0b\u51fb\u8d25\u514b\u5c14\u82cf\u52a0\u5fb7\u3002\u5fc5\u987b\u7531\u5b81\u9759\u9020\u6210\u81f4\u547d\u4e00\u51fb\u3002"
+      }
+    },
+    {
+      "code": "ja",
+      "payload": {
+        "virtual_address": "0x14735fa3a",
+        "file_offset": "0x735e03a",
+        "byte_count": 266217,
+        "sha256": "053bbd4a3612bce3453b2cafaaa113f2ce7ce6eb98433f82766b2cefdeff7f8c"
+      },
+      "entries": {
+        "Defeat Kel'Thuzad on Heroic III in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.": "\u5354\u529b\u30d7\u30ec\u30a4\u3067\u3001\u5168\u54e1\u304c\u30c8\u30e9\u30f3\u30af\u30a3\u30ea\u30c6\u30a3\u306e\u30bf\u30ec\u30f3\u30c8\u3092\u53d6\u3063\u305f5\u4eba\u306e\u30c9\u30eb\u30a4\u30c9\u3067\u30d2\u30ed\u30a4\u30c3\u30afIII\u306e\u30b1\u30eb\u30fb\u30b9\u30b6\u30fc\u30c9\u3092\u5012\u3059\u3002\u3068\u3069\u3081\u306f\u30c8\u30e9\u30f3\u30af\u30a3\u30ea\u30c6\u30a3\u3067\u523a\u3059\u3053\u3068\u3002"
+      }
+    },
+    {
+      "code": "ko",
+      "payload": {
+        "virtual_address": "0x1473a0a2e",
+        "file_offset": "0x739f02e",
+        "byte_count": 248530,
+        "sha256": "fa560f38f57c175ba16e8ca09f9fcf3fc2e1a3723b5bf206c1db9116f1f0fc91"
+      },
+      "entries": {
+        "Defeat Kel'Thuzad on Heroic III in co-op with 5 Druids, all talented into Tranquility. Tranquility must deliver the killing blow.": "\ud611\ub3d9\uc5d0\uc11c \ubaa8\ub450 \ud3c9\uc628 \ud2b9\uc131\uc744 \ucc0d\uc740 \ub4dc\ub8e8\uc774\ub4dc 5\uba85\uc73c\ub85c \uc601\uc6c5 III \ucf08\ud22c\uc790\ub4dc\ub97c \ucc98\uce58\ud558\uc2ed\uc2dc\uc624. \ud3c9\uc628\uc73c\ub85c \uacb0\uc815\ud0c0\ub97c \uac00\ud574\uc57c \ud569\ub2c8\ub2e4."
+      }
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "schema": "as-party-achievement-delivery-writer-v1",
+  "target": {
+    "version": "0.117.0",
+    "sha256": "507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293",
+    "size": 145283072
+  },
+  "writer": {
+    "start": "0x145ac2a90",
+    "end_exclusive": "0x145ac2ca2",
+    "file_offset": "0x5ac1e90",
+    "size": 530,
+    "sha256": "83f37c899bcdb1d9664d92cbbd00f4a47d4d08048f8a1ce7ea00adcd84097b93",
+    "extract": "docs/analysis/evidence/0.117.0/party-achievement-delivery/writer.asm",
+    "extract_sha256": "811cecfa869868af1754a1b13bf5e81e13ff2456ce4a6fd5e31093cd58b2ed9e"
+  },
+  "abi": {
+    "rcx": "Save object",
+    "rdx": "key UTF8 pointer",
+    "r8": "key byte length",
+    "r9b": "date-enabled native bool",
+    "fifth_argument": "supplied Unix timestamp:u64 at entry[rsp+0x28]",
+    "return_al": "true only when the earned key was newly inserted; independent of whether its date was written"
+  },
+  "contract": {
+    "earned_key_insert": "Calls145acb580 before examining date-enabled. Existing key returnsfalse; absent key is inserted in lexicographic order and returnstrue.",
+    "date_gate": "145ac2ac1 tests returned_new_key & date_enabled; ifzero, returns without touching dates.",
+    "date_insert": "For a new dated key, binary-searches32B date rows; an existing exact key returns without replacing its timestamp, otherwise inserts the supplied timestamp atrow+0x18.",
+    "legacy_undated": "Already-earned keys remain undated even when later delivered with a date.",
+    "repeat_delivery": "Repeated grants returnfalse and preserve earned/date records.",
+    "undated_new": "A newly inserted key with date_enabled=false is retained without creating a date.",
+    "new_key_existing_date": "A newly inserted earned key with an existing date returns true but preserves the date.",
+    "timestamp_domain": "Copies all supplied64bits, including0; clock acquisition/conversion belongs to callers."
+  },
+  "native_dependencies": {
+    "earned_set": {
+      "start": "0x145acb580",
+      "end_exclusive": "0x145acb74e",
+      "file_offset": "0x5aca980",
+      "size": 462,
+      "sha256": "9c7cce767d1ce5333dbce974354bfb4157b0a85493a25b8eed8044db9577a99d",
+      "interface": "Save+a8/b0/b8 sorted24B key vector; existing-equal returns0 at145acb6cd, absent insertion returns1 at145acb73b. No surrounding collection-engine reconstruction."
+    },
+    "save_boundary": {
+      "start": "0x145aca3e0",
+      "end_exclusive": "0x145acb1bf",
+      "file_offset": "0x5ac97e0",
+      "size": 3551,
+      "sha256": "2d6a1df5c31afc11706a889fc573108004e49c79c15b8557d790a8e53a7829fc",
+      "scope": "Owning account-save boundary called by the grant wrappers. This bounded task neither reimplements nor certifies its envelope, backups or filesystem behavior; existing Save::write remains the established source interface."
+    }
+  },
+  "source_connection": {
+    "path": "crates/azeroth-survivors-re/src/save/achievements.rs",
+    "function": "Save::grant_achievements",
+    "correspondence": "BTreeSet::insert skips existing keys; optional earned_at stamps only new keys; dates.entry(key).or_insert(seconds) preserves existing dates; returnedVec contains newly inserted keys only. Comparison concerns valid nativecatalogkeys supplied by the recovered callers.",
+    "persistence_boundary": "MenuState::commit_account ordered save snapshot -> Save::write is owned by existing save/account implementation; caller ordering is separately recovered."
+  },
+  "static_trace_cases": [
+    {
+      "initial_earned": [
+        "legacy"
+      ],
+      "initial_dates": {},
+      "key": "legacy",
+      "date_enabled": true,
+      "timestamp": 200,
+      "returned_new": false,
+      "final_dates": {}
+    },
+    {
+      "initial_earned": [],
+      "initial_dates": {},
+      "key": "new",
+      "date_enabled": false,
+      "timestamp": 200,
+      "returned_new": true,
+      "final_dates": {}
+    },
+    {
+      "initial_earned": [],
+      "initial_dates": {},
+      "key": "new",
+      "date_enabled": true,
+      "timestamp": 200,
+      "returned_new": true,
+      "final_dates": {
+        "new": 200
+      }
+    },
+    {
+      "initial_earned": [
+        "dated"
+      ],
+      "initial_dates": {
+        "dated": 100
+      },
+      "key": "dated",
+      "date_enabled": true,
+      "timestamp": 200,
+      "returned_new": false,
+      "final_dates": {
+        "dated": 100
+      }
+    },
+    {
+      "initial_earned": [],
+      "initial_dates": {
+        "new": 100
+      },
+      "key": "new",
+      "date_enabled": true,
+      "timestamp": 200,
+      "returned_new": true,
+      "final_dates": {
+        "new": 100
+      }
+    },
+    {
+      "initial_earned": [],
+      "initial_dates": {},
+      "key": "new",
+      "date_enabled": true,
+      "timestamp": 0,
+      "returned_new": true,
+      "final_dates": {
+        "new": 0
+      }
+    }
+  ],
+  "limits": [
+    "Static branch tracing cases, not executed Rust or original-instruction fixtures.",
+    "Raw Ghidra imports omit surrounding PE data/external callees; ABI and layouts above are independently decoded from current instructions.",
+    "No compilation, game/server/network execution, real filesystem/save operation or original/rebuilt parity."
+  ],
+  "query": {
+    "plan": "runtime/0.117.0/party-achievement-delivery/insert-earned-plan.json",
+    "plan_sha256": "ef3d4eb021982002cf305bd8a255948b815ef6fd8929f70e6d6b7f10f3abf95b",
+    "input": "runtime/0.117.0/party-achievement-delivery/insert-earned.bin",
+    "input_sha256": "83f37c899bcdb1d9664d92cbbd00f4a47d4d08048f8a1ce7ea00adcd84097b93",
+    "result": "runtime/0.117.0/party-achievement-delivery/insert-earned-query/results/aa90be18468cfbb62b04c4b9acbe63863d166267e33954d57c9132d81cfda889.json",
+    "result_sha256": "4f099538e9c9b46b568756e07af0707e7b12680bb57a24b1138f0ce6890fd29a",
+    "evidence_id": "ev_ba208e2199d5891c94e9ca647a3889005b132349bcaa990b5b9b515c38d0e595",
+    "analysis_profile_digest": "56a240887f6d8d8f84c84a0a69b9e0297032d7098c26ceb72bca4fdacbdd6204",
+    "normalized_result_sha256": "1c928d9cecc243aa033982d5d8d2ffd685c01578d8a27f2eab61d96dd83b422a",
+    "provider": "ghidra"
+  }
+}

@@ -1,0 +1,627 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.127.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+    "size_bytes": 146721280
+  },
+  "finding_ids": [
+    41,
+    17,
+    73
+  ],
+  "lead_id": "AS-context-table:0x140352e9a",
+  "classification": "existing_codex_growth_text_family_selector_no_source_omission_identified",
+  "inputs": [
+    {
+      "path": "docs/analysis/evidence/0.127.0/switch-context-source-review.json",
+      "sha256": "7186d6b8e9c01e84b85a1104ab6003252a9d7fc1f93a38f8b6929efbb9dc9cd5"
+    },
+    {
+      "path": "scripts/discovery_native_subject.py",
+      "sha256": "e0bedb2d826d136b6b4c1bfb51b970160c2c42875b713fb1d2814ac360090a6a"
+    },
+    {
+      "path": "scripts/check-codex-growth-dispatch.py",
+      "sha256": "8a20a8295326f8063557d375a66eebf188373351323f4ce833746a48117c1ad9"
+    }
+  ],
+  "source_first": [
+    {
+      "path": "crates/azeroth-survivors-re/src/codex.rs",
+      "sha256": "159f37324f1a79bf99479b65df1b96f38bb9163dbbf4bde1e0400ea58bdd9043"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/loot_rewards/catalog_01120.rs",
+      "sha256": "d18c16eb16c36e15c1c70eeefcc8247f997a56ae6de1eafbeb77a823d92e43c6"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/assets/codex-locales-0.105.0.json",
+      "sha256": "2994aa975e89bd13a94adb5df94d76a23a8a34a85080ba4ade2e29d39fdd5ccc"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/assets/jewelry-codex-0.112.0.json",
+      "sha256": "6c1abab90c968fe6391f5533a1413a7a5535058f1aa0c08035777cef94f4b843"
+    }
+  ],
+  "native_ranges": [
+    {
+      "role": "row-producer",
+      "virtual_address": "0x140351c5e",
+      "end_exclusive": "0x140351c84",
+      "file_offset": "0x35105e",
+      "byte_count": 38,
+      "sha256": "60df404849cc108b0590f90a91d3a9692a199f01db09f80df5351751c7ce8ba0",
+      "instruction_count": 8,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/codex-growth-dispatch/row-producer.asm",
+        "sha256": "414d83979ebe6d452c994a3265fd6e6d56f53d5ac0936a9aa1dd535808ca8b6c"
+      }
+    },
+    {
+      "role": "outer-selector",
+      "virtual_address": "0x140352e77",
+      "end_exclusive": "0x140352e9c",
+      "file_offset": "0x352277",
+      "byte_count": 37,
+      "sha256": "83ffd4fffd2a5b703895e623d0d9676d8da1b9fc6d91e7436dc560727167f710",
+      "instruction_count": 8,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/codex-growth-dispatch/outer-selector.asm",
+        "sha256": "cd2ec807cb6fe3c683b017cd7ed37c316c924df6a26aad864166081ed4059b16"
+      }
+    },
+    {
+      "role": "unbounded-template",
+      "virtual_address": "0x140352e9c",
+      "end_exclusive": "0x140352ebb",
+      "file_offset": "0x35229c",
+      "byte_count": 31,
+      "sha256": "90521ebbaae2a713a069523cbfaa3b81c8145cb80d81f29b3044b5d4934c3d0d",
+      "instruction_count": 7,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/codex-growth-dispatch/unbounded-template.asm",
+        "sha256": "33ea99d23027a88b6213c9c6c4894e7d073a73600ba1c6a91e9ca2d681925bdf"
+      }
+    },
+    {
+      "role": "soft-cap-template",
+      "virtual_address": "0x1403531fb",
+      "end_exclusive": "0x1403532b6",
+      "file_offset": "0x3525fb",
+      "byte_count": 187,
+      "sha256": "e30ce21e7dd894577ed4cd529333a7a8aaafe00878821ba9af29e204f158eb05",
+      "instruction_count": 34,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/codex-growth-dispatch/soft-cap-template.asm",
+        "sha256": "f3e8ae302dafbbc44bcccba7f4f7d2c11cbe67ace44f4ba475c67467b7cd6b69"
+      }
+    },
+    {
+      "role": "split-cap-template",
+      "virtual_address": "0x1403532b6",
+      "end_exclusive": "0x14035346b",
+      "file_offset": "0x3526b6",
+      "byte_count": 437,
+      "sha256": "2e5a527417573e32e4573a783faa6b93bf9f4ac4a3d8f3120565f373c928bed6",
+      "instruction_count": 74,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/codex-growth-dispatch/split-cap-template.asm",
+        "sha256": "e4e516e695de2ba0990938a37e8a856492cffc6b8714007b0a549f3a32d26b44"
+      }
+    },
+    {
+      "role": "finite-cap-template",
+      "virtual_address": "0x14035346b",
+      "end_exclusive": "0x1403534cb",
+      "file_offset": "0x35286b",
+      "byte_count": 96,
+      "sha256": "41cbbad0fe0430d2aa49e131579cbf337ae2c923bfd2eb746a1c0f284d2220f4",
+      "instruction_count": 19,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/codex-growth-dispatch/finite-cap-template.asm",
+        "sha256": "031b4fb65aad9d5a69de8a63eba0a367ffed71939adf11ba4731d0ae37564a5e"
+      }
+    },
+    {
+      "role": "lives-template",
+      "virtual_address": "0x1403534cb",
+      "end_exclusive": "0x140353513",
+      "file_offset": "0x3528cb",
+      "byte_count": 72,
+      "sha256": "efd7807f61a97c16e8ecf1690ee6654c5da8c06f3abd29181f54ef0058125edd",
+      "instruction_count": 14,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/codex-growth-dispatch/lives-template.asm",
+        "sha256": "c877cf8be43d392da9f81d4b737c5a4d04b84b228eb34f270fccf1b3dcdcc114"
+      }
+    },
+    {
+      "role": "echo-cap-template",
+      "virtual_address": "0x140353513",
+      "end_exclusive": "0x140353573",
+      "file_offset": "0x352913",
+      "byte_count": 96,
+      "sha256": "bdf17d34da3fe5fbd238b072f427e1c8ec559e6cc928e99958ac8883f94ecb9f",
+      "instruction_count": 19,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/codex-growth-dispatch/echo-cap-template.asm",
+        "sha256": "2ee085295389cfabd3603965a4e5453fedf598514f04fc87ad7bba67f537a3a9"
+      }
+    },
+    {
+      "role": "shared-ceiling-and-formatters",
+      "virtual_address": "0x140353592",
+      "end_exclusive": "0x1403536dc",
+      "file_offset": "0x352992",
+      "byte_count": 330,
+      "sha256": "49fb5fea9e5b0c34822e04c1498240ec2aeed7feb2f5c274ee958ee5720b59ed",
+      "instruction_count": 56,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/codex-growth-dispatch/shared-ceiling-and-formatters.asm",
+        "sha256": "f3a7d4a81402aa0c80b6f7fa3782a7ff429767cc01de541b1f29b26a37c9d305"
+      }
+    },
+    {
+      "role": "growth-consumer",
+      "virtual_address": "0x1403536dc",
+      "end_exclusive": "0x140353815",
+      "file_offset": "0x352adc",
+      "byte_count": 313,
+      "sha256": "ab4eef892bbe99a56b517e208989572a485050c7d314c44b2cfc6a4604ea7851",
+      "instruction_count": 52,
+      "assembly": {
+        "path": "docs/analysis/evidence/0.127.0/codex-growth-dispatch/growth-consumer.asm",
+        "sha256": "6e2bc1a43315313941667244fbb4f47af1d985e345c4f773ed744f0591fb3a58"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "role": "outer",
+      "virtual_address": "0x146281adc",
+      "case_targets": [
+        "0x140352e9c",
+        "0x140352e9c",
+        "0x1403531fb",
+        "0x140352e9c",
+        "0x140352e9c",
+        "0x1403532b6",
+        "0x1403531fb",
+        "0x14035346b",
+        "0x140352e9c",
+        "0x140353513",
+        "0x14035346b",
+        "0x14035346b",
+        "0x14035346b",
+        "0x14035346b",
+        "0x14035346b",
+        "0x14035346b",
+        "0x1403534cb"
+      ]
+    },
+    {
+      "role": "finite-ceiling",
+      "virtual_address": "0x146281b70",
+      "case_targets": [
+        "0x1403534b7",
+        "0x1403534b7",
+        "0x1403534b7",
+        "0x1403534b7",
+        "0x1403534b7",
+        "0x1403534b7",
+        "0x1403534b7",
+        "0x140353592",
+        "0x1403534b7",
+        "0x140353623",
+        "0x1403535b1",
+        "0x1403535b1",
+        "0x1403535b1",
+        "0x1403535b1",
+        "0x1403535b1",
+        "0x140353592",
+        "0x1403535b1",
+        "0x1403535b1",
+        "0x140353592",
+        "0x1403535a9"
+      ]
+    },
+    {
+      "role": "echo-ceiling",
+      "virtual_address": "0x146281b20",
+      "case_targets": [
+        "0x14035355f",
+        "0x14035355f",
+        "0x14035355f",
+        "0x14035355f",
+        "0x14035355f",
+        "0x14035355f",
+        "0x14035355f",
+        "0x14035359c",
+        "0x14035355f",
+        "0x140353815",
+        "0x140353638",
+        "0x140353638",
+        "0x140353638",
+        "0x140353638",
+        "0x140353638",
+        "0x14035359c",
+        "0x140353638",
+        "0x140353638",
+        "0x14035359c",
+        "0x140353630"
+      ]
+    }
+  ],
+  "row_input": {
+    "global_address": "0x14865e628",
+    "descriptor": "0x1470505d0",
+    "data_address": "0x14704e5b0",
+    "row_stride": 72,
+    "kind_offset": 68,
+    "base_offset": 64
+  },
+  "jewelry_rows": [
+    {
+      "index": 0,
+      "address": "0x14704e5b0",
+      "key": "accuria",
+      "base_bits": "0x3e2e147b",
+      "kind": 0,
+      "slot": 0
+    },
+    {
+      "index": 1,
+      "address": "0x14704e5f8",
+      "key": "quick_strike",
+      "base_bits": "0x3db851ec",
+      "kind": 1,
+      "slot": 0
+    },
+    {
+      "index": 2,
+      "address": "0x14704e640",
+      "key": "dark_iron",
+      "base_bits": "0x3e4ccccd",
+      "kind": 2,
+      "slot": 0
+    },
+    {
+      "index": 3,
+      "address": "0x14704e688",
+      "key": "dragonslayer",
+      "base_bits": "0x3d23d70a",
+      "kind": 3,
+      "slot": 0
+    },
+    {
+      "index": 4,
+      "address": "0x14704e6d0",
+      "key": "archimtiros",
+      "base_bits": "0x3d0f5c29",
+      "kind": 5,
+      "slot": 0
+    },
+    {
+      "index": 5,
+      "address": "0x14704e718",
+      "key": "devoured",
+      "base_bits": "0x3fc00000",
+      "kind": 7,
+      "slot": 0
+    },
+    {
+      "index": 6,
+      "address": "0x14704e760",
+      "key": "spell_power",
+      "base_bits": "0x3e0f5c29",
+      "kind": 8,
+      "slot": 0
+    },
+    {
+      "index": 7,
+      "address": "0x14704e7a8",
+      "key": "seal_damned",
+      "base_bits": "0x3dcccccd",
+      "kind": 19,
+      "slot": 0
+    },
+    {
+      "index": 8,
+      "address": "0x14704e7f0",
+      "key": "blooddrinker",
+      "base_bits": "0x3c23d70a",
+      "kind": 18,
+      "slot": 0
+    },
+    {
+      "index": 9,
+      "address": "0x14704e838",
+      "key": "earthstrike",
+      "base_bits": "0x3e051eb8",
+      "kind": 0,
+      "slot": 1
+    },
+    {
+      "index": 10,
+      "address": "0x14704e880",
+      "key": "tep",
+      "base_bits": "0x3d8f5c29",
+      "kind": 1,
+      "slot": 1
+    },
+    {
+      "index": 11,
+      "address": "0x14704e8c8",
+      "key": "lifegiving",
+      "base_bits": "0x3e23d70a",
+      "kind": 2,
+      "slot": 1
+    },
+    {
+      "index": 12,
+      "address": "0x14704e910",
+      "key": "hoj",
+      "base_bits": "0x3d75c28f",
+      "kind": 9,
+      "slot": 1
+    },
+    {
+      "index": 13,
+      "address": "0x14704e958",
+      "key": "blackhand",
+      "base_bits": "0x3e47ae14",
+      "kind": 4,
+      "slot": 1
+    },
+    {
+      "index": 14,
+      "address": "0x14704e9a0",
+      "key": "carrot",
+      "base_bits": "0x3da3d70a",
+      "kind": 10,
+      "slot": 1
+    },
+    {
+      "index": 15,
+      "address": "0x14704e9e8",
+      "key": "remote",
+      "base_bits": "0x3eb33333",
+      "kind": 11,
+      "slot": 1
+    },
+    {
+      "index": 16,
+      "address": "0x14704ea30",
+      "key": "insignia",
+      "base_bits": "0x3df5c28f",
+      "kind": 12,
+      "slot": 1
+    },
+    {
+      "index": 17,
+      "address": "0x14704ea78",
+      "key": "eldre_thalas",
+      "base_bits": "0x3e800000",
+      "kind": 13,
+      "slot": 1
+    },
+    {
+      "index": 18,
+      "address": "0x14704eac0",
+      "key": "chosen",
+      "base_bits": "0x3e19999a",
+      "kind": 14,
+      "slot": 1
+    },
+    {
+      "index": 19,
+      "address": "0x14704eb08",
+      "key": "onyxia_blood",
+      "base_bits": "0x40000000",
+      "kind": 15,
+      "slot": 1
+    },
+    {
+      "index": 20,
+      "address": "0x14704eb50",
+      "key": "war_horn",
+      "base_bits": "0x3e19999a",
+      "kind": 17,
+      "slot": 1
+    },
+    {
+      "index": 21,
+      "address": "0x14704eb98",
+      "key": "soulstone",
+      "base_bits": "0x3f800000",
+      "kind": 16,
+      "slot": 1
+    },
+    {
+      "index": 22,
+      "address": "0x14704ebe0",
+      "key": "star_of_mystaria",
+      "base_bits": "0x3e2aaaab",
+      "kind": 6,
+      "slot": 1
+    }
+  ],
+  "growth_roles": [
+    {
+      "role": "unbounded",
+      "destination": "0x140352e9c",
+      "outer_case_kinds": [
+        0,
+        1,
+        3,
+        4,
+        8
+      ],
+      "template_address": "0x14627fe8e",
+      "template_byte_count": 67,
+      "template": "Picked again, it grows by nearly the pick's whole worth every time.",
+      "source_example_key": "accuria",
+      "source_example_growth": "Picked again, it grows by nearly the pick's whole worth every time."
+    },
+    {
+      "role": "max-health-soft-cap",
+      "destination": "0x1403531fb",
+      "outer_case_kinds": [
+        2,
+        6
+      ],
+      "template_address": "0x14627fe1f",
+      "template_byte_count": 104,
+      "template": "Picked again, it keeps growing, by a little less each time up to {ceiling} and by less and less past it.",
+      "source_example_key": "dark_iron",
+      "source_example_growth": "Picked again, it keeps growing, by a little less each time up to +60% max health and by less and less past it."
+    },
+    {
+      "role": "split-dr-health-cap",
+      "destination": "0x1403532b6",
+      "outer_case_kinds": [
+        5
+      ],
+      "template_address": "0x14627fd87",
+      "template_byte_count": 134,
+      "template": "Picked again, its damage reduction grows up to {dr}% and stops there, while its max health keeps growing, by less and less past {hp}%.",
+      "source_example_key": "archimtiros",
+      "source_example_growth": "Picked again, its damage reduction grows up to 10.5% and stops there, while its max health keeps growing, by less and less past 42%."
+    },
+    {
+      "role": "finite-ceiling",
+      "destination": "0x14035346b",
+      "outer_case_kinds": [
+        7,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "template_address": "0x14627ff1a",
+      "template_byte_count": 71,
+      "template": "Picked again, it grows toward {ceiling}, each pick less as it nears it.",
+      "source_example_key": "carrot",
+      "source_example_growth": "Picked again, it grows toward +40% movement speed, each pick less as it nears it."
+    },
+    {
+      "role": "lives",
+      "destination": "0x1403534cb",
+      "outer_case_kinds": [
+        16
+      ],
+      "template_address": "0x14627ff61",
+      "template_byte_count": 57,
+      "template": "Picked again, it refills its lives; it holds {n} at most.",
+      "source_example_key": "soulstone",
+      "source_example_growth": "Picked again, it refills its lives; it holds 2 at most."
+    },
+    {
+      "role": "echo-ceiling",
+      "destination": "0x140353513",
+      "outer_case_kinds": [
+        9
+      ],
+      "template_address": "0x14627fed1",
+      "template_byte_count": 73,
+      "template": "Picked again, it grows by nearly the pick's whole worth, up to {ceiling}.",
+      "source_example_key": "hoj",
+      "source_example_growth": "Picked again, it grows by nearly the pick's whole worth, up to 60% chance for a spell to cast twice."
+    }
+  ],
+  "outer_selector": {
+    "start": "0x140352e77",
+    "site": "0x140352e9a",
+    "default_target": "0x14035346b",
+    "maximum_table_kind": 16
+  },
+  "native_data": [
+    {
+      "role": "jewelry-global",
+      "virtual_address": "0x14865e628",
+      "byte_count": 8,
+      "sha256": "0fa35ac410ffae4e101aa0fc5cebfe03327a0b9f9db18805b8de1c858382a701"
+    },
+    {
+      "role": "jewelry-slice",
+      "virtual_address": "0x1470505d0",
+      "byte_count": 16,
+      "sha256": "e8bbb78ee2fce1175a96cb9725ab033dfb9a7067f588dc79b376733c83e202d9"
+    },
+    {
+      "role": "jewelry-rows",
+      "virtual_address": "0x14704e5b0",
+      "byte_count": 1656,
+      "sha256": "5d39e1bf92c270e5ad14a0ac3a3d8e9514cffb9c45f5bb905ab7f86796a5bd0c"
+    },
+    {
+      "role": "outer-table",
+      "virtual_address": "0x146281adc",
+      "byte_count": 68,
+      "sha256": "ea7e4107a218c2233a9b4b37f5e731e4978d14e26d169f36ce361d1fd7d90073"
+    },
+    {
+      "role": "finite-ceiling-table",
+      "virtual_address": "0x146281b70",
+      "byte_count": 80,
+      "sha256": "abb2cebc82bbc394f5a431a8a77e3b6e5a23b5a8b2b5c13a1d5016aa55dc6eb0"
+    },
+    {
+      "role": "echo-ceiling-table",
+      "virtual_address": "0x146281b20",
+      "byte_count": 80,
+      "sha256": "1c4c4ad878ebefd09a102fa3dae228618c39e60532466d054f6d6ed5dec7aa7f"
+    }
+  ],
+  "queries": [
+    {
+      "plan": {
+        "path": "runtime/analysis/tasks/fixgap-41-codex-0.127.0/slices/plan-140350420.json",
+        "sha256": "8e1832aa0b583b43ef6037f0388044d0bf2cb6d1a1b7b72f0aa141c35574ef22"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/fixgap-41-codex-0.127.0/rea-140350420/journal.json",
+        "sha256": "16d6586692c11adbbfaa69badcbbb92de68a57acfa7469e3eff3d69f25e8bd4c"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/fixgap-41-codex-0.127.0/rea-140350420/results/83044c5df229c2f368b3a326d0962c47ace146d950b6467e316db12f238ac94c.json",
+        "sha256": "0fca33e955ab59e98502051b77a1154984f7b250a20c6eea3956cc162bda3d7e"
+      },
+      "procedure": "0x140350420",
+      "evidence_id": "ev_82eb43a1a0fa42d6f6151d793f20d07b05d9c045f8ebf67e1dcdf5b0f41fa443",
+      "normalized_sha256": "238b3a569535d8b14c50fdcafeeb2b501ab4fcf3cdd56b75ba12746b5b3db8a5",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "0d38e1ab56f38a84761a624b89b7021e7c6577d0bd609c37f459987f185b85fe",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/fixgap-41-codex-0.127.0/slices/picker-140350420.bin",
+        "sha256": "d303f4948021732c60d9fc3ae935f20ea47f83181a0b40b48346e085f6f2f334"
+      },
+      "slice_virtual_address": "0x140350420"
+    }
+  ],
+  "limits": [
+    "Finite row-producer/outer-text-family/source classification only; no whole-Codex or arbitrary mutable alias proof.",
+    "Inner tables are retained exact current data and match prior bounded ceiling pattern, not a new whole-formatter or locale-map recovery.",
+    "Existing native-derived growth strings remain implementation knowledge; no gameplay source omission is identified.",
+    "No compilation, game, client, network, server execution or original/rebuilt comparison.",
+    "Raw Ghidra body omits external table/data/callees; its computed jumps remain unresolved and type propagation does not settle. Independent original-instruction/data checks establish only the finite recorded selector roles."
+  ],
+  "raw_subject": {
+    "path": "runtime/analysis/tasks/fixgap-41-codex-0.127.0/slices/picker-140350420.bin",
+    "sha256": "d303f4948021732c60d9fc3ae935f20ea47f83181a0b40b48346e085f6f2f334",
+    "virtual_address": "0x140350420",
+    "byte_count": 13402
+  },
+  "native_tool_versions": {
+    "capstone": "5.0.7",
+    "unicorn": "2.1.4"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "target_sha256": "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb",
+  "zone_contract": {
+    "va": "0x146fdcd48",
+    "stride": 240,
+    "count": 12,
+    "sha256": "f5fbae444d26c6011f0885815cddd710cb4e52abc2cc44648d4df65c676f3278",
+    "values_sha256": "558487f3f60c7023099b8ce8a69a64fe2f629bec26bc882317fd3f9b0310bd34",
+    "source_values_match": true
+  },
+  "ranges": [
+    {
+      "role": "dispatch",
+      "va": "0x145949ab2",
+      "byte_count": 336,
+      "file_offset": "0x5948eb2",
+      "sha256": "efd7874905e9f0e35e6b72a7e15c6cdc985d6cdaed2bbbcfffc40c622bdad0bc"
+    },
+    {
+      "role": "travel",
+      "va": "0x1458cb3d0",
+      "byte_count": 669,
+      "file_offset": "0x58ca7d0",
+      "sha256": "00829e014fda4de553fedccf13700f565586b676e476b89c2b6a368393f3154a"
+    },
+    {
+      "role": "facing",
+      "va": "0x1458caf10",
+      "byte_count": 766,
+      "file_offset": "0x58ca310",
+      "sha256": "556835b41690ed88ee5cd4c9719c80ff173b4a0efcc6c79af1228f90ab44b464"
+    },
+    {
+      "role": "primary-height",
+      "va": "0x1458a67e0",
+      "byte_count": 709,
+      "file_offset": "0x58a5be0",
+      "sha256": "4c2e190a9f29e877ad80b1a9c9138fa44c41c186885b1c714078214a65a47181"
+    },
+    {
+      "role": "actor",
+      "va": "0x145945cf0",
+      "byte_count": 23101,
+      "file_offset": "0x59450f0",
+      "sha256": "b9e3d13a853959631e96ac0955aea11f1039aa4146ee4f0e3e30e24392367ca3"
+    },
+    {
+      "role": "terrain-constructor",
+      "va": "0x1458a3640",
+      "byte_count": 8345,
+      "file_offset": "0x58a2a40",
+      "sha256": "1e7abd4a902a71786072cc8fd6a7b875dca553014c2e2aa710ce72bb188a31e7"
+    }
+  ],
+  "primary_cases": 576,
+  "primary_results_sha256": "3d35c563ec85da2918e79b5ec3b050fd7a02b659d2290554e9eda82643022739",
+  "movement_cases": 44,
+  "movement_results_sha256": "cfee05dad98e31ccba79155535a8e5cceaf531e29cb108705c3757a2db33708b",
+  "source_connection": "NativeFloor -> unit_path -> existing LocalUnitPath/client ground owner",
+  "limits": [
+    "Native primary-query replay supplies immutable 2x2 synthetic grids and an ADT return seam. No geometry or MPQ execution.",
+    "Movement replay executes current caller and serializers; allocator, buffer growth, packed GUID/vector writes and supplied endpoint heights are explicit seams.",
+    "Source guards do not execute Rust. Native constructor/actor identity alone does not prove full behavior, rendering or runtime parity."
+  ]
+}

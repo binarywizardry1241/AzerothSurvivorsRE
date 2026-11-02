@@ -1,0 +1,24 @@
+0x145c53aaf: MOV EAX, dword ptr [R15 + 0x48]
+0x145c53ab3: LEA RDX, [RBP + 0x22c]
+0x145c53aba: MOV dword ptr [RDX + 0x8], EAX
+0x145c53abd: MOV RAX, qword ptr [R15 + 0x40]
+0x145c53ac1: MOV qword ptr [RDX], RAX
+0x145c53ac4: MOVSS XMM10, dword ptr [R15 + 0x4c]
+0x145c53aca: MOV RAX, qword ptr [R13]
+0x145c53ace: MOV qword ptr [RBP + 0x220], RAX
+0x145c53ad5: MOV EAX, dword ptr [R13 + 0x8]
+0x145c53ad9: MOV dword ptr [RBP + 0x228], EAX
+0x145c53adf: MOVSS dword ptr [RBP + 0x238], XMM10
+0x145c53ae8: LEA RCX, [RBP + 0x220]
+0x145c53aef: MOVAPS XMM2, XMM10
+0x145c53af3: LEA R9, [RBP + 0x128]
+0x145c53afa: CALL 0x145b75e60
+0x145c53aff: TEST AL, AL
+0x145c53b01: JZ 0x145c53ca2
+0x145c53b07: LEA RCX, [RBP + 0x220]
+0x145c53b0e: LEA RDX, [RBP + 0x22c]
+0x145c53b15: MOVAPS XMM2, XMM10
+0x145c53b19: LEA R9, [RBP + 0x8]
+0x145c53b1d: CALL 0x145b75e60
+0x145c53b22: TEST AL, AL
+0x145c53b24: JZ 0x145c53ca2

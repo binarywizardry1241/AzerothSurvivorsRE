@@ -1,0 +1,565 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "gap_ids": [
+    41
+  ],
+  "lead_ids": [
+    "Q41-F01",
+    "Q41-M01"
+  ],
+  "generator": {
+    "path": "scripts/check-q41-transport-boundary-0.121.0.py",
+    "sha256": "d15ddec4d936da54a8e55a1df156c8608b987cecb4ca71ce7246c2b2aeeb7677"
+  },
+  "dependencies": [
+    {
+      "path": "scripts/coverage_common.py",
+      "sha256": "aec38237b60b6982f17e0e93c6f6ba111100956fb389d44b397dbd5a6bdb1903"
+    },
+    {
+      "path": "scripts/script_sources.py",
+      "sha256": "bc4cdf0f6c4a0805b7052d06c28acc48e644484d08decb79a97168cec6458cfa"
+    },
+    {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+    },
+    {
+      "path": "scripts/discovery_native_subject.py",
+      "sha256": "e0bedb2d826d136b6b4c1bfb51b970160c2c42875b713fb1d2814ac360090a6a"
+    }
+  ],
+  "decoder": {
+    "name": "Capstone",
+    "version": "5.0.7"
+  },
+  "ranges": [
+    {
+      "role": "party-rejection-send",
+      "virtual_address": "0x145b34840",
+      "end_exclusive": "0x145b34a25",
+      "file_offset": "0x5b33c40",
+      "byte_count": 485,
+      "sha256": "d94e1199ba2507038e5e8d6bdaae55f1f8359427f3c4c0cfbda341cd2ed30242",
+      "instructions": 104
+    },
+    {
+      "role": "TCP-accept-factory",
+      "virtual_address": "0x145b5caa0",
+      "end_exclusive": "0x145b5cbe5",
+      "file_offset": "0x5b5bea0",
+      "byte_count": 325,
+      "sha256": "9dc35e06ec22b76123e8e110be6f9322d3eb5713792894e4cc5bc5889c4cd112",
+      "instructions": 88
+    },
+    {
+      "role": "TCP-receive",
+      "virtual_address": "0x145b5d900",
+      "end_exclusive": "0x145b5da12",
+      "file_offset": "0x5b5cd00",
+      "byte_count": 274,
+      "sha256": "85aac7004459064baff79917069907828b5ed27accceda12fc9ef43ca4d9ed47",
+      "instructions": 84
+    },
+    {
+      "role": "TCP-send",
+      "virtual_address": "0x145b5da60",
+      "end_exclusive": "0x145b5db39",
+      "file_offset": "0x5b5ce60",
+      "byte_count": 217,
+      "sha256": "d818a08cd67eefb48e79b2b26be0469330d6e28a1a662590f9e24808d5aa7a3a",
+      "instructions": 63
+    },
+    {
+      "role": "TCP-close",
+      "virtual_address": "0x145b5db40",
+      "end_exclusive": "0x145b5db90",
+      "file_offset": "0x5b5cf40",
+      "byte_count": 80,
+      "sha256": "1cb5c846cf91dea87db6d6b9d7aa14e6928a2f85771770102de7b5ac1a26115c",
+      "instructions": 25
+    },
+    {
+      "role": "TCP-alive",
+      "virtual_address": "0x1400719f0",
+      "end_exclusive": "0x1400719f5",
+      "file_offset": "0x70df0",
+      "byte_count": 5,
+      "sha256": "e3d994c9dec2007c9417004921ee138de0e19659c3776e2dc16c0289b7bf2c28",
+      "instructions": 2
+    },
+    {
+      "role": "TCP-optional-transport-stat-zero",
+      "virtual_address": "0x14007e9a0",
+      "end_exclusive": "0x14007e9a3",
+      "file_offset": "0x7dda0",
+      "byte_count": 3,
+      "sha256": "251447ee91a9067dcd6ab96703133f617565974cd6c4819021760c4688c91abf",
+      "instructions": 2
+    },
+    {
+      "role": "accept-to-peer-copy",
+      "virtual_address": "0x145b15730",
+      "end_exclusive": "0x145b159e8",
+      "file_offset": "0x5b14b30",
+      "byte_count": 696,
+      "sha256": "0c233b41cf51a359593d3432649ea643a01374f57e8293f2c99f8a376fdba208",
+      "instructions": 85
+    },
+    {
+      "role": "enemy-finite-function-selection",
+      "virtual_address": "0x145c14e24",
+      "end_exclusive": "0x145c14e5f",
+      "file_offset": "0x5c14224",
+      "byte_count": 59,
+      "sha256": "e23900525a7b30729d36f8b8f3974f396be9cfa1270ef51456f2fdfe3586c61c",
+      "instructions": 10
+    },
+    {
+      "role": "server-input-capture",
+      "virtual_address": "0x145b12840",
+      "end_exclusive": "0x145b12885",
+      "file_offset": "0x5b11c40",
+      "byte_count": 69,
+      "sha256": "59c629ff5b055451d88476adce47e92b62b43edfa2b912b8d67e08114e2b0065",
+      "instructions": 16
+    },
+    {
+      "role": "server-input-publication",
+      "virtual_address": "0x145b12f68",
+      "end_exclusive": "0x145b12f84",
+      "file_offset": "0x5b12368",
+      "byte_count": 28,
+      "sha256": "7a16c5f197fbe9bf35b9b43df027c66ec88067d0068df1600e35c0191065e67a",
+      "instructions": 4
+    },
+    {
+      "role": "server-thread-input-forwarding",
+      "virtual_address": "0x145b38c16",
+      "end_exclusive": "0x145b38c44",
+      "file_offset": "0x5b38016",
+      "byte_count": 46,
+      "sha256": "b39fa11ebba0507a377f9d8cc19bf51337ec693ba0d6aa085f14beb03197e691",
+      "instructions": 10
+    },
+    {
+      "role": "server-core-poll-interface",
+      "virtual_address": "0x145b16c45",
+      "end_exclusive": "0x145b16c60",
+      "file_offset": "0x5b16045",
+      "byte_count": 27,
+      "sha256": "f0effa0828fc99f798354c03e78d77404820de8b2852e0877f64d488a8064a9e",
+      "instructions": 5
+    },
+    {
+      "role": "host-accept-and-scratch-peer-base",
+      "virtual_address": "0x145b156d6",
+      "end_exclusive": "0x145b15730",
+      "file_offset": "0x5b14ad6",
+      "byte_count": 90,
+      "sha256": "3c104b70cc7f6b9a1532f0d3f27c08f82b971000ab27a323e90035955692f1b0",
+      "instructions": 14
+    }
+  ],
+  "instructions": [
+    {
+      "site": "0x145b5cb55",
+      "bytes": "488d15b485b201",
+      "instruction": "lea rdx, [rip + 0x1b285b4]"
+    },
+    {
+      "site": "0x145b5cb9e",
+      "bytes": "b940000000",
+      "instruction": "mov ecx, 0x40"
+    },
+    {
+      "site": "0x145b5cbc2",
+      "bytes": "0f115830",
+      "instruction": "movups xmmword ptr [rax + 0x30], xmm3"
+    },
+    {
+      "site": "0x145b5cbc6",
+      "bytes": "0f115020",
+      "instruction": "movups xmmword ptr [rax + 0x20], xmm2"
+    },
+    {
+      "site": "0x145b5cbca",
+      "bytes": "0f114810",
+      "instruction": "movups xmmword ptr [rax + 0x10], xmm1"
+    },
+    {
+      "site": "0x145b5cbce",
+      "bytes": "0f1100",
+      "instruction": "movups xmmword ptr [rax], xmm0"
+    },
+    {
+      "site": "0x145b15737",
+      "bytes": "4c8bad200d0000",
+      "instruction": "mov r13, qword ptr [rbp + 0xd20]"
+    },
+    {
+      "site": "0x145b15718",
+      "bytes": "4c8db5f0050000",
+      "instruction": "lea r14, [rbp + 0x5f0]"
+    },
+    {
+      "site": "0x145b15730",
+      "bytes": "4969cfc8040000",
+      "instruction": "imul rcx, r15, 0x4c8"
+    },
+    {
+      "site": "0x145b1573e",
+      "bytes": "49038d800d0000",
+      "instruction": "add rcx, qword ptr [r13 + 0xd80]"
+    },
+    {
+      "site": "0x145b15745",
+      "bytes": "41b8c8040000",
+      "instruction": "mov r8d, 0x4c8"
+    },
+    {
+      "site": "0x145b1574b",
+      "bytes": "4c89f2",
+      "instruction": "mov rdx, r14"
+    },
+    {
+      "site": "0x145b1574e",
+      "bytes": "e8c8644d00",
+      "instruction": "call 0x145febc1b"
+    },
+    {
+      "site": "0x145b1576b",
+      "bytes": "ff5018",
+      "instruction": "call qword ptr [rax + 0x18]"
+    },
+    {
+      "site": "0x145b15832",
+      "bytes": "488985a00a0000",
+      "instruction": "mov qword ptr [rbp + 0xaa0], rax"
+    },
+    {
+      "site": "0x145b15839",
+      "bytes": "488995a80a0000",
+      "instruction": "mov qword ptr [rbp + 0xaa8], rdx"
+    },
+    {
+      "site": "0x145b34936",
+      "bytes": "41ff5618",
+      "instruction": "call qword ptr [r14 + 0x18]"
+    },
+    {
+      "site": "0x145b5da84",
+      "bytes": "893438",
+      "instruction": "mov dword ptr [rax + rdi], esi"
+    },
+    {
+      "site": "0x145b5daa8",
+      "bytes": "e86ee14800",
+      "instruction": "call 0x145febc1b"
+    },
+    {
+      "site": "0x145b5dac0",
+      "bytes": "e9ab3efeff",
+      "instruction": "jmp 0x145b41970"
+    },
+    {
+      "site": "0x145b5d93a",
+      "bytes": "4981ff00001000",
+      "instruction": "cmp r15, 0x100000"
+    },
+    {
+      "site": "0x145b5db48",
+      "bytes": "e8233efeff",
+      "instruction": "call 0x145b41970"
+    },
+    {
+      "site": "0x145b5db51",
+      "bytes": "b202",
+      "instruction": "mov dl, 2"
+    },
+    {
+      "site": "0x145b5db86",
+      "bytes": "c6463800",
+      "instruction": "mov byte ptr [rsi + 0x38], 0"
+    },
+    {
+      "site": "0x1400719f0",
+      "bytes": "0fb64138",
+      "instruction": "movzx eax, byte ptr [rcx + 0x38]"
+    },
+    {
+      "site": "0x14007e9a0",
+      "bytes": "31c0",
+      "instruction": "xor eax, eax"
+    },
+    {
+      "site": "0x145c14e24",
+      "bytes": "488d0565c70300",
+      "instruction": "lea rax, [rip + 0x3c765]"
+    },
+    {
+      "site": "0x145c14e2b",
+      "bytes": "488d0daec70300",
+      "instruction": "lea rcx, [rip + 0x3c7ae]"
+    },
+    {
+      "site": "0x145c14e32",
+      "bytes": "480f45c8",
+      "instruction": "cmovne rcx, rax"
+    },
+    {
+      "site": "0x145c14e5d",
+      "bytes": "ffd1",
+      "instruction": "call rcx"
+    },
+    {
+      "site": "0x145b12874",
+      "bytes": "4c8985d0070000",
+      "instruction": "mov qword ptr [rbp + 0x7d0], r8"
+    },
+    {
+      "site": "0x145b1287b",
+      "bytes": "488995d8070000",
+      "instruction": "mov qword ptr [rbp + 0x7d8], rdx"
+    },
+    {
+      "site": "0x145b12f6f",
+      "bytes": "48898668190000",
+      "instruction": "mov qword ptr [rsi + 0x1968], rax"
+    },
+    {
+      "site": "0x145b12f7d",
+      "bytes": "48898670190000",
+      "instruction": "mov qword ptr [rsi + 0x1970], rax"
+    },
+    {
+      "site": "0x145b12f68",
+      "bytes": "488b85d8070000",
+      "instruction": "mov rax, qword ptr [rbp + 0x7d8]"
+    },
+    {
+      "site": "0x145b12f76",
+      "bytes": "488b85d0070000",
+      "instruction": "mov rax, qword ptr [rbp + 0x7d0]"
+    },
+    {
+      "site": "0x145b38c16",
+      "bytes": "4c89c8",
+      "instruction": "mov rax, r9"
+    },
+    {
+      "site": "0x145b38c39",
+      "bytes": "4c89c2",
+      "instruction": "mov rdx, r8"
+    },
+    {
+      "site": "0x145b38c3c",
+      "bytes": "4989c0",
+      "instruction": "mov r8, rax"
+    },
+    {
+      "site": "0x145b38c3f",
+      "bytes": "e8fc9bfdff",
+      "instruction": "call 0x145b12840"
+    },
+    {
+      "site": "0x145b16c45",
+      "bytes": "488b9668190000",
+      "instruction": "mov rdx, qword ptr [rsi + 0x1968]"
+    },
+    {
+      "site": "0x145b16c4c",
+      "bytes": "488b8670190000",
+      "instruction": "mov rax, qword ptr [rsi + 0x1970]"
+    },
+    {
+      "site": "0x145b16c53",
+      "bytes": "4c8da5f0050000",
+      "instruction": "lea r12, [rbp + 0x5f0]"
+    },
+    {
+      "site": "0x145b16c5a",
+      "bytes": "4c89e1",
+      "instruction": "mov rcx, r12"
+    },
+    {
+      "site": "0x145b16c5d",
+      "bytes": "ff5028",
+      "instruction": "call qword ptr [rax + 0x28]"
+    }
+  ],
+  "transport_vtables": [
+    {
+      "address": "0x14619cb38",
+      "file_offset": "0x619b938",
+      "byte_count": 80,
+      "sha256": "398da172d216a2f0ab8bd51584c91cf8d60f29882078f6269fd6666d6165ab54",
+      "slots": {
+        "0x0": "0x140051760",
+        "0x8": "0x40",
+        "0x10": "0x8",
+        "0x18": "0x145b5da60",
+        "0x20": "0x145b5d900",
+        "0x28": "0x1400719f0",
+        "0x30": "0x145b5db40",
+        "0x38": "0x14007e9a0",
+        "0x40": "0x14007e9a0",
+        "0x48": "0x14007e9a0"
+      }
+    },
+    {
+      "address": "0x147685110",
+      "file_offset": "0x7683f10",
+      "byte_count": 80,
+      "sha256": "398da172d216a2f0ab8bd51584c91cf8d60f29882078f6269fd6666d6165ab54",
+      "slots": {
+        "0x0": "0x140051760",
+        "0x8": "0x40",
+        "0x10": "0x8",
+        "0x18": "0x145b5da60",
+        "0x20": "0x145b5d900",
+        "0x28": "0x1400719f0",
+        "0x30": "0x145b5db40",
+        "0x38": "0x14007e9a0",
+        "0x40": "0x14007e9a0",
+        "0x48": "0x14007e9a0"
+      }
+    }
+  ],
+  "host_listener_accept_slot": {
+    "vtable_address": "0x14619cab8",
+    "slot": "0x18",
+    "address": "0x14619cad0",
+    "file_offset": "0x619b8d0",
+    "byte_count": 8,
+    "sha256": "e769928f0364fc97c8728b7fbce7460ccf183b3741715cdf3a78748e8e7fef58",
+    "target": "0x145b5caa0"
+  },
+  "native_query": {
+    "procedure": "0x145b34840",
+    "slice_virtual_address": "0x145b34840",
+    "plan": {
+      "path": "runtime/fixgap41-dispatch/party-send/plan.json",
+      "sha256": "757c67e53db2e49402df0d357384c290b470b0fd36097e0c7f352a6f2a793eb7"
+    },
+    "journal": {
+      "path": "runtime/fixgap41-dispatch/party-send/query/journal.json",
+      "sha256": "cfb8eb5038a036ce70d2dd09765f165d88b4dd11f053e7a9bbc8e8fa92bef9bd"
+    },
+    "result": {
+      "path": "runtime/fixgap41-dispatch/party-send/query/results/cfd98b55f8d683d2f440abc756244d0c645a90677539cff2fbfe522a631770ee.json",
+      "sha256": "ad03d2287aca067a1795ec3e1baedc9052b9b6fb8eff55369e2d53bd1f92d9ed"
+    },
+    "raw_input": {
+      "path": "runtime/fixgap41-dispatch/party-send/code.bin",
+      "sha256": "d94e1199ba2507038e5e8d6bdaae55f1f8359427f3c4c0cfbda341cd2ed30242"
+    },
+    "evidence_id": "ev_4b9ef37aa8011bebc87b3be3a197fb5872d7b3ca99c7a6e587af2029be109bd6",
+    "provider": {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "version": "12.1.4"
+    },
+    "analysis_profile_digest": "304cb82c1bd115a92369429115d1584d86517ed53277059e827507b608504bb3",
+    "normalized_text_sha256": "3e717d49c75163fe26100269e8aee8a388bb2a9c710d6320494c60d327dfd9fc",
+    "subject_binding": {
+      "kind": "exact_declared_PE_raw_slice",
+      "target_sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+      "raw_sha256": "d94e1199ba2507038e5e8d6bdaae55f1f8359427f3c4c0cfbda341cd2ed30242",
+      "virtual_address": "0x145b34840",
+      "file_offset": "0x5b33c40",
+      "byte_count": 485,
+      "result": "runtime/fixgap41-dispatch/party-send/query/results/cfd98b55f8d683d2f440abc756244d0c645a90677539cff2fbfe522a631770ee.json",
+      "semantic_or_runtime_correspondence_established": false
+    },
+    "limit": "Raw decompilation reports external-call/no-return/PIC truncation; original complete instruction boundaries own this bounded connection classification, not printed incoming types."
+  },
+  "source_receipts": [
+    {
+      "path": "crates/azeroth-survivors-re/src/coop/tcp.rs",
+      "sha256": "791750b577dd42c6a81cc6caeb243a0893aeb1fd65480f6ec9899d07a89b8a90"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop/session.rs",
+      "sha256": "71d97a3ed91e24e15694433a817af18031ec0eafa585322bfab60865a7aefd95"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/enemies/scaling.rs",
+      "sha256": "ae85f5e782c5e73253d611e09a37704669594f6b07ecd4dfd8e92ded42c54730"
+    }
+  ],
+  "recovered_boundary": {
+    "peer_constructor": "Host accept returns data/vtable in RAX/RDX. Current scratch peer at rbp+5f0 stores them at +4b0/+4b8; the complete0x4c8 memcpy publishes them unchanged into the peer vector.",
+    "TCP_implementation": "Current accept factory returns a64-byte TCP object and vtable147685110. Its send/receive/alive/close slots are18/20/28/30; send writes a little-endianu32 length and payload then pumps. Optional transport-stat slots38/40/48 return zero.",
+    "call_classification": "Peer+4b0/+4b8 connection operations are polymorphic transport interfaces. The concrete target depends on the admitted connection factory. Current TCP targets are recovered, not arbitrary missing AS bodies; other receiver layouts and transport factories remain separately bound to their owning contracts.",
+    "source_counterpart": "coop/tcp.rs::TcpHost::accept and TcpConnection send/receive/is_alive/close; coop/session.rs::Connection dispatch and Session flush.",
+    "separate_core_interface": "Server initializer145b12840 captures the caller-supplied data/vtable pair fromRDX/R8 unchanged and publishes it to server+1968/+1970. Thread wrapper145b38bf0 forwards that pair. Its slot28 uses a result pointer plus receiver, unlike TCP slot28's alive getter; these are distinct interfaces. The existing local-client request/event adapters supply the reconstructed AS-to-engine boundary; backend type enumeration is separate from this interface classification.",
+    "enemy_finite_callback": {
+      "site": "0x145c14e5d",
+      "targets": [
+        "0x145c51590",
+        "0x145c515e0"
+      ],
+      "basis": "Two RIP-relative LEAs and CMOVNE supply the only call-target values in the preserved selection range; formula/state applicability remains separate."
+    }
+  },
+  "source_defect_established": false,
+  "source_change": null,
+  "receiver_site_groups": {
+    "caller_supplied_server_core_interface_1968_1970": [
+      "0x145b0d859",
+      "0x145b15fd0",
+      "0x145b16c5d",
+      "0x145b1820c",
+      "0x145b1991e",
+      "0x145b19b66",
+      "0x145b1a4be",
+      "0x145b1a566",
+      "0x145b1a741",
+      "0x145b224f6",
+      "0x145b22ef1",
+      "0x145b25911",
+      "0x145b282ff",
+      "0x145b2f190",
+      "0x145b30199"
+    ],
+    "host_listener_0da8_0db0_accept_interface": [
+      "0x145b156f4",
+      "0x145b1576b"
+    ],
+    "guest_upstream_connection_1088_1090_interface": [
+      "0x145b15f0a",
+      "0x145b15f23",
+      "0x145b1618d",
+      "0x145b161a6",
+      "0x145b161bc",
+      "0x145b2218f"
+    ],
+    "peer_connection_4b0_4b8_interface": [
+      "0x145b15b94",
+      "0x145b15c10",
+      "0x145b15e67",
+      "0x145b1610e",
+      "0x145b1613c",
+      "0x145b162a1",
+      "0x145b16332",
+      "0x145b260b7",
+      "0x145b34936",
+      "0x145b35513"
+    ],
+    "actor_connection_250_258_interface": [
+      "0x145b16fd6",
+      "0x145b17038"
+    ]
+  },
+  "receiver_site_group_limit": "These35 sites are interface-role classifications, not35 concrete TCP calls or proofs that every dynamic backend/type/alias is closed. Distinct core and peer/upstream receiver layouts retain their own source/protocol owners and deferred applicability.",
+  "runtime_targets_globally_complete": false,
+  "compilation_or_execution": "not_run",
+  "parity_verified": false
+}

@@ -1,0 +1,59 @@
+{
+  "target": {
+    "version": "0.110.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048",
+    "size_bytes": 140523520
+  },
+  "previous_target": {
+    "version": "0.109.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
+    "size_bytes": 140447744
+  },
+  "diagnostic_paths_added": [],
+  "diagnostic_paths_removed": [],
+  "candidate_differences": {
+    "module_type_namespace": {
+      "added_count": 18,
+      "removed_count": 13
+    },
+    "game_binding_identifier": {
+      "added_count": 6,
+      "removed_count": 0
+    },
+    "lua_ui_registration": {
+      "added_count": 0,
+      "removed_count": 0
+    },
+    "textual_id_assignment": {
+      "added_count": 0,
+      "removed_count": 0
+    },
+    "textual_numeric_id": {
+      "added_count": 0,
+      "removed_count": 0
+    },
+    "save_configuration_key_lead": {
+      "added_count": 0,
+      "removed_count": 0
+    },
+    "resource_path": {
+      "added_count": 5,
+      "removed_count": 1
+    },
+    "lua_function_declaration": {
+      "added_count": 3,
+      "removed_count": 0
+    }
+  },
+  "limits": [
+    "Whole-file literal/resource/path leads only; no inferred implementation or unchanged native behavior."
+  ],
+  "reviewed_leads": [
+    "Demonology balance and summon lifecycle/cadence; #24 and shared #6 dependencies.",
+    "New summon API literals and combat-log option; #11/#17/#41.",
+    "Achievement/appearance/scrolling and Hunter equipment release claims; existing rewards/menu owners.",
+    "No added/removed diagnostic paths; filename identity does not establish unchanged behavior."
+  ]
+}

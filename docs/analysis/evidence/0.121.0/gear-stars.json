@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.121.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150",
+    "size_bytes": 146088960
+  },
+  "gap_ids": [
+    230
+  ],
+  "queries": [
+    {
+      "role": "star-0x145b007c0",
+      "procedure": "0x145b007c0",
+      "evidence_id": "ev_ac115060729c9192e045922f63af522b6f2ed7c1ce85e3a87d0d06f6b9cbadf5",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "d48dfc9cd91665be2a6d4acba790e8d1b9e6552e8548658e714f0acfdf32d41d",
+      "normalized_text_sha256": "02e66b124c22a8ea76df67e534cb63e669735373f45671d88f5d6ea93cd965f9",
+      "plan": {
+        "path": "runtime/fixgap-230-235/plan-stars.json",
+        "sha256": "74bdbdd60019662c7fe5580f1924a5f2549f6193eace14083df5b435e1a6051d"
+      },
+      "journal": {
+        "path": "runtime/fixgap-230-235/query-stars/journal.json",
+        "sha256": "be1506daf4d4a4e0e6432fc8ed7cede7f956bb6662226f37d0da1c633614d5d3"
+      },
+      "result": {
+        "path": "runtime/fixgap-230-235/query-stars/results/2c6a492c2d9471305bebd22f5b01cc3d8c56a8d64b0740caf07b65ff810999d9.json",
+        "sha256": "bad6e8d7d6642685d2437ff3fa8ef7379ebc398d8d483d819d5ab946af088041"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap-230-235/code.bin",
+        "sha256": "824dd32af280f5c52f2eb8c65525be6662e47011e006206fbebf2eedb22a602d"
+      },
+      "slice_virtual_address": "0x145affbe0"
+    },
+    {
+      "role": "star-0x145b00a20",
+      "procedure": "0x145b00a20",
+      "evidence_id": "ev_100703713eb71a1c3408feff03ad22772e6b18c677afc8a1d35832dee4b73f40",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "d48dfc9cd91665be2a6d4acba790e8d1b9e6552e8548658e714f0acfdf32d41d",
+      "normalized_text_sha256": "9d819327bb77b5de151ba9d0f269b587ee5ee391726c1c8c5de7f83b9a8c1f7d",
+      "plan": {
+        "path": "runtime/fixgap-230-235/plan-stars.json",
+        "sha256": "74bdbdd60019662c7fe5580f1924a5f2549f6193eace14083df5b435e1a6051d"
+      },
+      "journal": {
+        "path": "runtime/fixgap-230-235/query-stars/journal.json",
+        "sha256": "be1506daf4d4a4e0e6432fc8ed7cede7f956bb6662226f37d0da1c633614d5d3"
+      },
+      "result": {
+        "path": "runtime/fixgap-230-235/query-stars/results/8853d52de38c776878a4a78809aefb0537c4d4f3e3048b6680c9fb8d497d43ea-6911f110ff8be393.json",
+        "sha256": "814e97ec4171eb827685fbb2d3376aa7f71c0fae6a0fa04d7c2323d6715071e8"
+      },
+      "raw_input": {
+        "path": "runtime/fixgap-230-235/code.bin",
+        "sha256": "824dd32af280f5c52f2eb8c65525be6662e47011e006206fbebf2eedb22a602d"
+      },
+      "slice_virtual_address": "0x145affbe0"
+    }
+  ],
+  "native_ranges": [
+    {
+      "role": "total-star-helper",
+      "virtual_address": "0x145b00a20",
+      "file_offset": "0x5affe20",
+      "byte_count": 505,
+      "sha256": "939d7694bb5c248ce9272dc72d8c59d6ef0996c7929749ec4f242150066c6a07",
+      "bytes_hex": "55415741565657534881ec18010000488dac248000000048c78590000000feffffff4489c34889ce81faa0860100724e8d826079feff3ddf2e00007741b9cdcccccc480fafc848c1e92301c98d0c894189c04129c8752769c0cdcc0000c1e81369c0cdccffff053233000066d1c80fb7c08d4af63d991900000f43ca89ca488d4da8e8c90e0000488b7da84883ffff0f843a010000488b4db04c8b75c04c8b7dc884db0f84f9000000807d11000f84ef000000488d45b0488b486048898d800000000f1040500f1145700f1040400f1145600f10000f1048100f1050200f1058300f115d500f1155400f114d300f11452048897d18488b4d484883f905b805000000480f42c10fb6cb80fb04ba040000000f42d10fbeca0f57c0f30f2ac189c1488d1599b9b501f30f59048a760c488d0da3b9b501f30f580481488b5d38488b4540f30f11858c000000488d04c348895da8488945b0488d858c000000488945b8488d55a84889f1e8a3081700904885ff7412488b4d2041b8010000004889fae82b1650fa488b55304885d2745848c1e20341b8040000004889d9e8101650faeb444885ff740e41b8010000004889fae8fb1550fa4d85f6741549c1e60341b8040000004c89f94c89f2e8e11550fa48c7060000000048c746080400000048c74610000000004889f04881c4180100005b5f5e415e415f5dc3",
+      "instruction_count": 129
+    },
+    {
+      "role": "increment-star-helper",
+      "virtual_address": "0x145b007c0",
+      "file_offset": "0x5affbc0",
+      "byte_count": 552,
+      "sha256": "17b5edba358376e0a66c946e8803dc4cb7da96f9cdd4c3d903928a14b9455311",
+      "bytes_hex": "55415741565657534881ec18010000488dac248000000048c78590000000feffffff4489c34889ce81faa0860100724e8d826079feff3ddf2e00007741b9cdcccccc480fafc848c1e92301c98d0c894189c04129c8752769c0cdcc0000c1e81369c0cdccffff053233000066d1c80fb7c08d4af63d991900000f43ca89ca488d4da8e829110000488b7da84883ffff0f84ed000000488b4db04c8b75c04c8b7dc884db0f84ac000000807d11000f84a2000000488d45b0488b486048898d800000000f1040500f1145700f1040400f1145600f10000f1048100f1050200f1058300f115d500f1155400f114d300f11452048897d18488b4d484883f905b805000000480f42c10fb6cb80fb04ba040000000f42d10fbeca0f57c0f30f2ac189c1488d15f9bbb501f30f100c8af30f59c17669488d0dffbbb501f30f101481f30f58c2f30f590de679690080fb05745cf30f58caeb564885ff740e41b8010000004889fae8a81850fa4d85f6741549c1e60341b8040000004c89f94c89f2e88e1850fa48c7060000000048c746080400000048c7461000000000eb7afecb0fbec30f57d2f30f2ad0f30f59caf30f5cc1488b5d38488b4540f30f11858c000000488d04c348895da8488945b0488d858c000000488945b8488d55a84889f1e88e0a1700904885ff7412488b4d2041b8010000004889fae8161850fa488b55304885d2741248c1e20341b8040000004889d9e8fb1750fa4889f04881c4180100005b5f5e415e415f5dc3",
+      "instruction_count": 142
+    },
+    {
+      "role": "effect-projector",
+      "virtual_address": "0x145c71430",
+      "file_offset": "0x5c70830",
+      "byte_count": 489,
+      "sha256": "b84c3a9f7ea550738afabd12ba46aa60eeea5578bc97d6d8f9b5cabb10476540",
+      "bytes_hex": "5541574156415541545657534883ec58488d6c245048c74500feffffff4889ce488b024c8b72084c39f074120f1f400083380b75254883c0084c39f075f248c7060000000048c746080400000048c7461000000000e94a0100004c8d78084c893a488b4a10488b3848894de0f30f10014889fb48c1eb2089f8488d0de834a201486304814801c8ffe0660f6ecbf30f59c1660f7ec3e8360d39fab920000000ba04000000e8e70c39fa4885c00f8426010000893889580448c745e804000000488945f048c745f8010000004d39f70f84b9000000bf01000000488d4de80f1f0041833f0b750e4983c7084d39f775f1e9990000004d8b2f488b55e0f30f10024c89eb48c1eb204589e8488d159434a2014e6304824901d041ffe0660f6ecbf30f59c1660f7ec3483b7de8752848c74424200800000041b80100000041b9040000004989cc4889fae814ae370090488b45f04c89e14983c70844892cf8895cf80448ffc748897df84d39f70f8570ffffffeb1b660f6ecbf30f59c14889c34989cce8c0a637004c89e14889d8eb95488b45f848894610488b45e8488906488b45f0488946084889f04883c4585b5f5e415c415d415e415f5dc383ffff0f847dfeffffe9cffeffff660f6ecbf30f59c1e872a63700e9b9feffffb904000000ba20000000e8a42a52000f0b",
+      "instruction_count": 132
+    },
+    {
+      "role": "live-piece-effects",
+      "virtual_address": "0x145aff210",
+      "file_offset": "0x5afe610",
+      "byte_count": 1181,
+      "sha256": "0ebc202167910ef7458f84cd64cd2dcb0cdc1b92502ce726831c41bdc964edbc",
+      "bytes_hex": "5541574156415541545657534881ec38010000488dac248000000048c785b0000000feffffff4489c389d74889ce488d4da8e829270000488b45a84883f8ff0f84be0300004889755848898588000000488b45b048898580000000488b45c0488985a8000000488b45c848894578488b75d0488d8d9000000089fa4189d8e88d170000904c8b75784d8d2cf6488b8d90000000488b9d98000000488b85a00000004c8d3cc34c8975184c8975204c8b8da80000004c894d284c896d3048c785900000000000000048c785980000000400000048c785a00000000000000048895d3848895d4048894d6048894d484c897d504a8d04cd000000004889457048895d684d89f44d85e47521e992000000669048893cf048ffc64889b5a00000004c8b8da80000004d85e474764d39ee7421498d460848894520498b3e83ffff75514989c64d85c97516eb260f1f8000000000bfffffffff4d89ee4d85c9741241b8040000004c89e1488b5570e8512e50fa48c745180000000083ffff742483ffff753fe9ad020000662e0f1f84000000000083ffff0f84830200004989c6eb2566904c39fb0f848a020000488d430848894540488b3b4889c383ffff0f84730200004531e4488b8598000000488bb5a0000000488d14f5000000004531c00f1f40004c39c2744b498d480842393c004989c875ee4c8b4408f84c89c248c1ea204189f94531c1745a4589c04c8b8da800000048c1e2204c09c248895408f84d85e40f8505ffffffe976ffffff660f1f440000483bb5900000000f85d3feffff488d8d90000000e807c4510090488b8598000000e9bafeffff662e0f1f84000000000048c1ef204589c04c8d0daa31b6014f6304814d01c84c8b8da800000041ffe0660f6ec2660f6ecff30f58c8660f7eca4531c0e979ffffff660f6ec2660f6ecff30f58c8660f7eca41b80e000000e95effffff01fa41b80b000000e951ffffff660f6ec2660f6ecff30f58c8660f7eca41b804000000e936ffffff660f6ec2660f6ecff30f58c8660f7eca41b80c000000e91bffffff660f6ec2660f6ecff30f58c8660f7eca41b809000000e900ffffff660f6ec2660f6ecff30f58c8660f7eca41b802000000e9e5feffff660f6ec2660f6ecff30f58c8660f7eca41b803000000e9cafeffff660f6ec2660f6ecff30f58c8660f7eca41b807000000e9affeffff660f6ec2660f6ecff30f58c8660f7eca41b801000000e994feffff660f6ec2660f6ecff30f58c8660f7eca41b805000000e979feffff660f6ec2660f6ecff30f58c8660f7eca41b80d000000e95efeffff660f6ec2660f6ecff30f58c8660f7eca41b806000000e943feffff660f6ec2660f6ecff30f58c8660f7eca41b80a000000e928feffff660f6ec2660f6ecff30f58c8660f7eca41b808000000e90dfeffff48c7060000000048c746080400000048c7461000000000eb6a4d85c9741241b8040000004c89e1488b5570e88d2b50fa488b55604885d2741348c1e20341b804000000488b4d68e8712b50fa488b85a0000000488b7558488946100f1085900000000f1106488b95880000004885d2741241b801000000488b8d80000000e83a2b50fa4889f04881c4380100005b5f5e415c415d415e415f5dc3",
+      "instruction_count": 274
+    },
+    {
+      "role": "roundf-import-thunk",
+      "virtual_address": "0x145febc75",
+      "file_offset": "0x5feb075",
+      "byte_count": 6,
+      "sha256": "0699e82761eb218fdc88a81e092715209e969f4128c8713df1b219507f0a3b6d",
+      "bytes_hex": "ff25f5961a00",
+      "instruction_count": 1
+    },
+    {
+      "role": "aggregate-piece-star-order",
+      "virtual_address": "0x145b03280",
+      "file_offset": "0x5b02680",
+      "byte_count": 339,
+      "sha256": "e2e091ec97bad4e8e7c6a6795b271ac1c937916a68d86d35f546483d6d097a72",
+      "bytes_hex": "4c3b85280100000f8453010000498d40084889856001000048894550498b1883fbff0f85e8010000488b55584885d2741648c1e20341b804000000488b8d70010000e809ef4ffa48c745480000000083fbff0f857903000048c78570010000000000004885f60f84420100004c3bbd200100000f832e01000049ffc70f1f4000428b54befc85d275174a8d043f48ffc049ffc74883f80175e7e90201000066904c89bda8000000488b4518460fb64438ff488d8d00010000e8d3beffff90488b9d000100004883fbff0f84df000000488b850801000048898560010000488b85100100004883bd7001000000742d488b55584885d2742448c1e20341b804000000488b8d7001000048898570010000e83cee4ffa488b85700100004c8b8560010000498d04c04c8945484c89455048895d58488985280100004889456031c04c898570010000a8010f84b2feffffe991feffff",
+      "instruction_count": 70
+    }
+  ],
+  "native_data": [
+    {
+      "role": "ordinary-star-table",
+      "virtual_address": "0x14765c4e0",
+      "file_offset": "0x765b2e0",
+      "byte_count": 24,
+      "sha256": "b4d6f19d010321a276de96ff9e6538c4690655d8817ea850ce56a454501e44c9",
+      "bytes_hex": "0ad7233fcdcccc3e295c8f3e7b142e3e8fc2f53d9a99193e"
+    },
+    {
+      "role": "final-star-table",
+      "virtual_address": "0x14765c4f8",
+      "file_offset": "0x765b2f8",
+      "byte_count": 24,
+      "sha256": "c050bd2d5b4c551c0c6bb6436b7bdbdd6bcc6a3703957c9ab97fe3e549433dc7",
+      "bytes_hex": "b81e8540d7a30040ae47613fcdcccc3e8fc2f53d9a99193e"
+    },
+    {
+      "role": "effect-first-dispatch",
+      "virtual_address": "0x147694998",
+      "file_offset": "0x7693798",
+      "byte_count": 60,
+      "sha256": "b9046d8aedc1f9ecc390662c761e5bc5cb038b73bbc428b043cde69c6fcc3725",
+      "bytes_hex": "21cb5dfe21cb5dfe5ecc5dfe21cb5dfe21cb5dfe21cb5dfe21cb5dfe21cb5dfe21cb5dfe21cb5dfe21cb5dfe50cc5dfe21cb5dfe21cb5dfe21cb5dfe"
+    },
+    {
+      "role": "effect-next-dispatch",
+      "virtual_address": "0x1476949d4",
+      "file_offset": "0x76937d4",
+      "byte_count": 60,
+      "sha256": "29ed1d5e87fc0092ac5f573f39a8ed654eeb3661c5e02e74fcfcbc5163d01e83",
+      "bytes_hex": "76cb5dfe76cb5dfececb5dfe76cb5dfe76cb5dfe76cb5dfe76cb5dfe76cb5dfe76cb5dfe76cb5dfe76cb5dfe82cb5dfe76cb5dfe76cb5dfe76cb5dfe"
+    },
+    {
+      "role": "effect-merge-dispatch",
+      "virtual_address": "0x147662628",
+      "file_offset": "0x7661428",
+      "byte_count": 60,
+      "sha256": "e5de759e3560b9fb9f9f0b72c76fdedbf995074320b73a0c729594ec995e6f74",
+      "bytes_hex": "67ce49fe49cf49fef8ce49fe13cf49fea7ce49fe64cf49fe9acf49fe2ecf49fed0cf49feddce49feb5cf49fe9ace49fec2ce49fe7fcf49fe7fce49fe"
+    },
+    {
+      "role": "four-star-constant",
+      "virtual_address": "0x1461982f0",
+      "file_offset": "0x61970f0",
+      "byte_count": 4,
+      "sha256": "4f4b9b7d8b86633e2824e2f439819357b0cd010ab410ea1a691b12c5f94e91e0",
+      "bytes_hex": "00008040"
+    }
+  ],
+  "source_bindings": [
+    {
+      "path": "crates/azeroth-survivors-re/src/gear_stars.rs",
+      "sha256": "0b06c5a9d3e77546ca716799b0ba1c0e4324eacd2776d958714e4785e808b7c5"
+    }
+  ],
+  "recovered_contract": {
+    "total": "Additional factor=min(stars,4)*STEP[tier.min(5)] plus FINAL[tier.min(5)] for stars>4, each operation f32. Outer helper rejects0 stars and descriptors with zero class byte at+0x69.",
+    "increment": "Subtract previous total from current total as f32 before projecting each original effect. Stars beyond5 have zero increment.",
+    "projection": "Tags0..10 and12..14 multiply f32 original effect by factor. Tag2 additionally calls imported C roundf. Tag11 is excluded.",
+    "combination": "Current145aff210 obtains base piece effects, invokes145b00a20, and folds original effects first then star extras, adding equal variants. Original float operations and health-bonus rounding remain separate."
+  },
+  "native_imports": [
+    {
+      "library": "api-ms-win-crt-math-l1-1-0.dll",
+      "name": "roundf",
+      "iat_address": "0x146195370",
+      "thunk": "0x145febc75"
+    }
+  ],
+  "pending": [
+    "Inventory metadata and cooperative snapshot integration are tracked by #234/#238, separately from the connected local stat projection.",
+    "Purchase admission/costs retain #229 ownership.",
+    "Compilation, rendered and game behavior require separate validation."
+  ],
+  "static_validation": "Original bytes and independent Capstone boundaries; successful Ghidra total/increment receipts; original scalar and typed-projector instruction replay with explicit synthetic seams.",
+  "application_executed": false,
+  "compilation": "not_run",
+  "parity": "unverified"
+}

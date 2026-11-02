@@ -1,0 +1,277 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.115.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+    "size_bytes": 142111232
+  },
+  "target_executed": false,
+  "limits": [
+    "Raw-range Ghidra omits external bodies/data and cannot recover omitted jump tables by itself.",
+    "Native instruction replay uses explicit allocation, string-cloning, trim and queue seams; it does not execute reconstructed Rust, a game or any service.",
+    "Compilation, input/network/rendered execution and original/rebuilt parity remain unverified.",
+    "Headerless Ghidra imports omit external code/data and switch-table destinations; original PE instructions/data and bounded replay supply those selected contracts.",
+    "Keyboard replay starts after ECS acquisition and stops before the next event; it does not execute the actual ECS queue/reader or a Bevy keyboard source. Unicode counts, reserve, and submit helpers are explicit seams.",
+    "Status replay has explicit English lookup, allocation, formatting, and zone-display seams. Native zone-key selector executes original instructions; whole locale/runtime execution remains unverified.",
+    "Node captures bind selected geometry only; the engine child builders, renderer, fonts, input timing and layout execution remain unverified.",
+    "No compilation, Rust regression execution, service connection, sockets, application/game launch or original/rebuilt comparison ran.",
+    "zone-key raw query range retains seven trailing INT3 bytes beyond the last observed return; it is not a declared unwind extent."
+  ],
+  "functions": [
+    {
+      "role": "service-lifecycle",
+      "start": "0x145891be0",
+      "end_exclusive": "0x145891d5c",
+      "file_offset": "0x5890fe0",
+      "sha256": "ec9b17123393eed1b4eaf6b75cd308db6c87b630c9fe6b135c9d86dce261c190"
+    },
+    {
+      "role": "service-lifecycle",
+      "start": "0x145891df0",
+      "end_exclusive": "0x145892086",
+      "file_offset": "0x58911f0",
+      "sha256": "682083b94a5b8306b2321f39e99b86c7e4a5ea87a016853b88576ee42a6ab8dd"
+    },
+    {
+      "role": "service-lifecycle",
+      "start": "0x145824440",
+      "end_exclusive": "0x1458245c2",
+      "file_offset": "0x5823840",
+      "sha256": "32ed201a76caecd9171f205bde657e9979fa7267e43127c1c70cc84138476f5c"
+    },
+    {
+      "role": "service-lifecycle",
+      "start": "0x145824b10",
+      "end_exclusive": "0x145824cbe",
+      "file_offset": "0x5823f10",
+      "sha256": "0939428f31e9ab5980c70308c821b95ec2d073a819e3f81307d1f207fb2b1972"
+    },
+    {
+      "role": "service-lifecycle",
+      "start": "0x145824900",
+      "end_exclusive": "0x145824ade",
+      "file_offset": "0x5823d00",
+      "sha256": "4c796f0b8a21cae5442ffcef11fd2aa0e34e86731734a3732812fff5fe6d632b"
+    },
+    {
+      "role": "service-lifecycle",
+      "start": "0x145825290",
+      "end_exclusive": "0x14582547b",
+      "file_offset": "0x5824690",
+      "sha256": "339fb0df1dfc6639b2e5918160323fd4b5bc74f706ad412eb0aaae4780d5af96"
+    },
+    {
+      "role": "service-lifecycle",
+      "start": "0x145824d40",
+      "end_exclusive": "0x1458251c8",
+      "file_offset": "0x5824140",
+      "sha256": "1cdf510afc6a9da572074a1bb148c2247015e689972b9b7e0fea1cf8a712ef88"
+    },
+    {
+      "role": "service-lifecycle",
+      "start": "0x145825dd0",
+      "end_exclusive": "0x145825f76",
+      "file_offset": "0x58251d0",
+      "sha256": "5b73098f86a747720f1d18724011eb94437887c798c940e9cb5bb047074bbe34"
+    },
+    {
+      "role": "service-lifecycle",
+      "start": "0x145825c80",
+      "end_exclusive": "0x145825d99",
+      "file_offset": "0x5825080",
+      "sha256": "f5743ab3d4465db9f75dbbae4ad052c13fe986226c2f94c99e959632f4568809"
+    },
+    {
+      "role": "service-lifecycle",
+      "start": "0x1458261e0",
+      "end_exclusive": "0x14582632a",
+      "file_offset": "0x58255e0",
+      "sha256": "69c3bdfb23cb30cb70fe99572cde45150026e385f831d45bfd7919fd6d98f997"
+    },
+    {
+      "role": "service-lifecycle",
+      "start": "0x145825ff0",
+      "end_exclusive": "0x145826135",
+      "file_offset": "0x58253f0",
+      "sha256": "5311d5c0f0e0061ba2ddf3dbffb3b51b654c7deb4ef3bca36bbe0a51937ce85d"
+    },
+    {
+      "role": "service-lifecycle",
+      "start": "0x1458bde10",
+      "end_exclusive": "0x1458bde80",
+      "file_offset": "0x58bd210",
+      "sha256": "8f40dd246b2fcd108a0d71a69b090164a2396658e825709bdbbcc4db6975b3e2"
+    },
+    {
+      "role": "service-lifecycle",
+      "start": "0x145893140",
+      "end_exclusive": "0x1458934f9",
+      "file_offset": "0x5892540",
+      "sha256": "30774dcedd884661c4108893c857b49a270c9e2fc3d69d776b6a113a0a468028"
+    },
+    {
+      "role": "service-lifecycle",
+      "start": "0x145816db0",
+      "end_exclusive": "0x145817f6d",
+      "file_offset": "0x58161b0",
+      "sha256": "c7cbe92fe609c75ea450383dead9ea9c7ead0b1d7fab8e13a905c6d487191464"
+    },
+    {
+      "role": "service-lifecycle",
+      "start": "0x14581df40",
+      "end_exclusive": "0x14581e01a",
+      "file_offset": "0x581d340",
+      "sha256": "ac7220141c7e5362ec287ab8117a6b139bfedfe9ecd92235912b824a34c3de64"
+    },
+    {
+      "role": "service-lifecycle",
+      "start": "0x14581ea10",
+      "end_exclusive": "0x14581eacc",
+      "file_offset": "0x581de10",
+      "sha256": "4731d151f47c17ebf794845631b56335b95899fbb75bd9071482ce4088cf8eb0"
+    },
+    {
+      "role": "staff-key-path",
+      "start": "0x1458e2590",
+      "end_exclusive": "0x1458e291d",
+      "file_offset": "0x58e1990",
+      "sha256": "e94081613fbc9d076b28c59599383557afddd0a783e1ed1c27f9f5b21f00ae17"
+    }
+  ],
+  "ghidra": [
+    {
+      "role": "service-lifecycle",
+      "evidence_id": "ev_31caa3222a7f1941fea8f7f0c6c13ad6d106afb0e0cfcd4c215e2c177be03e24",
+      "input_sha256": "ec9b17123393eed1b4eaf6b75cd308db6c87b630c9fe6b135c9d86dce261c190",
+      "profile_digest": "eec28118acf13e0165d8035702e62004421ab227fb9590ca94855d04961c240c",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "retained_result": {
+        "path": "runtime/gap100/query-0x145891be0/results/b644b2ad61184ec280049a5a507e1163bf669140d700e9b46d24e417b5c0cf7a.json",
+        "sha256": "9d8e421d9fa7320a420e43b42c8ee26dfa0de2ee6257150fb6b9af1af37d78cf"
+      },
+      "journal_ref": "runtime/gap100/query-0x145891be0/journal.json"
+    },
+    {
+      "role": "service-lifecycle",
+      "evidence_id": "ev_54f38832d5bb573a8de4bce100fd87667e36d696062e742fae45e37bee8db419",
+      "input_sha256": "32ed201a76caecd9171f205bde657e9979fa7267e43127c1c70cc84138476f5c",
+      "profile_digest": "00fc6ba4406ad9de102ce559df89fc0d9e924cef92664f3013a0e97e0368a3fe",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "retained_result": {
+        "path": "runtime/gap100/query-0x145824440/results/b6586add9e40e2d2f32667ff61a12f31193f122cf3db7f18a39b377967789993.json",
+        "sha256": "00901ab152c4ca99412ac732696e2336c069c599fea95373605f3184edf7cfec"
+      },
+      "journal_ref": "runtime/gap100/query-0x145824440/journal.json"
+    },
+    {
+      "role": "service-lifecycle",
+      "evidence_id": "ev_584af85146e3d67f5ee7863c9264070ad02f3084cb4b580f14f0614f7587ebf6",
+      "input_sha256": "0939428f31e9ab5980c70308c821b95ec2d073a819e3f81307d1f207fb2b1972",
+      "profile_digest": "a0ed9f3546986419528c402caa8a6f6e0577238b9ab36e90373a5ce0128d1ac6",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "retained_result": {
+        "path": "runtime/gap100/query-0x145824b10/results/f777ae93b61e9ce1fdcf581bf8b55c0d7bfdd6a89bef9ed50a81e826283e4040.json",
+        "sha256": "16f8a0903a3395b2489279344dd1746f34c25df5560939591ac11491ccf2d1f2"
+      },
+      "journal_ref": "runtime/gap100/query-0x145824b10/journal.json"
+    },
+    {
+      "role": "service-lifecycle",
+      "evidence_id": "ev_0da32b2089a5220494e457e18b3be917ca551bbab258dd80eb872d44d7129f01",
+      "input_sha256": "8f40dd246b2fcd108a0d71a69b090164a2396658e825709bdbbcc4db6975b3e2",
+      "profile_digest": "80a5242264d4702018867371fea247406aa40ac40cba8c78e2a2359de0069437",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "retained_result": {
+        "path": "runtime/gap100/query-0x1458bde10/results/3cfe1557874c666cbce0d963a31c6c56ddb6e52435267be2f6fe8a997d257f3d.json",
+        "sha256": "40701aea51237f30456ab213c6fedb9131a64303a0ae8c921d8732d1c2fb5309"
+      },
+      "journal_ref": "runtime/gap100/query-0x1458bde10/journal.json"
+    },
+    {
+      "role": "staff-key-path",
+      "evidence_id": "ev_dc1ed20b75f62c4632b23d5890be280c621bb8de5402db811942c72a00bc274c",
+      "input_sha256": "e94081613fbc9d076b28c59599383557afddd0a783e1ed1c27f9f5b21f00ae17",
+      "profile_digest": "c06a77f532ef1ef78c3f406314c41671fc719890fdf23f51169c7e5adc7db681",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "retained_result": {
+        "path": "runtime/gap100/query-0x1458e2590/results/3991c7c469662c5c61975733218ff551866fcb7fc3a88b5bc4333869981632ca.json",
+        "sha256": "42ce008c4fa9bb9e559af615b2fd18b14cbcbd457fdd970b89adbba25a10fc12"
+      },
+      "journal_ref": "runtime/gap100/query-0x1458e2590/journal.json"
+    }
+  ],
+  "extracts": {
+    "0x145824440.asm": "62d014720db3c6b66197db04fd8c483bc9f09dbfe0b343a4ff58889df50c5d9e",
+    "0x1458e2590.c": "804d45babd2437b18feba977bed34e2b0ed8db08a41b0f1e4db972fff00d939f",
+    "0x1458261e0.asm": "64523d19b3a4ca3a46dca37fd776919c0f2dcd064a8fe185cdcfea70ebc20f0c",
+    "0x145824b10.c": "bad7d2b023cd93ac3a2567f2ccb3d280e3e88e4a39c0f507a24e141d19b57540",
+    "0x145824b10.asm": "e1eef41027c276170a4dc9a674e6a769603e4ccc4cde37cabe0807c0bb562fbf",
+    "0x145824900.asm": "a6fad1661d9b20df8708dc3733f7e3f43450a32900ebf7404c4027a37911f6b8",
+    "0x145824440.c": "49358264ba08ea0885523794ce8009aa4f37480623cd0cbf09ba46e258993dac",
+    "0x145825c80.asm": "564a5af39169be085eb507e4afc6cb4916568e1f03dd6402105cc3fccb460ab1",
+    "0x145825dd0.asm": "06bdcc3417f22ba3442985f53d1e515a992134ab00267ae958c5be29dac76c66",
+    "0x145891be0.asm": "e3c83fac8cef7a27e9a7e4b82b8c526ac12dd759e43f37c97da2ce018783bf6f",
+    "0x1458bde10.asm": "df1ed96243b8169c1887536b7d7f38e0e5dc249e520cb996a47e74aed797dc3d",
+    "0x145825ff0.asm": "1bc5430a348d4f3c469a93df7a781196c3a06986ae129c1f3d426a4b58e9186f",
+    "0x145891df0.asm": "5c57a6dd9d69c413ef13868d04292e5cf939a189f9ae85c9ba76fa45b1a18901",
+    "0x14581ea10.asm": "752e8ad5120ce2522e81710ba77ee260b0e5bc9ed56d32879a642e6d789a02da",
+    "0x145825290.asm": "3e9d0144308eb8b2b4940ad8ea28b95321e99d6eeb13d8bf590eaabed870accc",
+    "0x145824d40.asm": "3ec615ae8824abc0146fb39c401ca78a4e915e9ea8309e288c585f8f0979dd4c",
+    "0x1458e2590.asm": "50a194e9f4321edc5b348dee73bd8f6840648c3ccde23b223cb96f1b31b3fd6f",
+    "0x145893140.asm": "e051743d745c15cff9eeb6c65a0723d0eb6cf6c041bd59910871c10aa6b6cdd1",
+    "0x14581df40.asm": "607f546e002e0f967058265d4013b85c2352b6e53cc772f8b6888c963b51fc92",
+    "0x145891be0.c": "6219096b80b0f611b2b92010d77ff0f2317a0819d3b505845a08d21157337934",
+    "0x145816db0.asm": "aff163bc7e0b59151bc16303bfe52e6216a40f135fd373342f087e3bee485c07",
+    "0x1458bde10.c": "1dc84d32491ae106c9947e7d5597e1d29b5bc7afda8777194257bbc8f69afc8b"
+  },
+  "data_ranges": [],
+  "canonical_owner_refs": [
+    {
+      "start": "0x1458916c0",
+      "end_exclusive": "0x145891964",
+      "sha256": "be4c4722af7fc05d48c7e272e56f56eaec22ec5d2559c43133f90e530d22f00c",
+      "manifest": "docs/analysis/evidence/0.115.0/coop-server-party/manifest.json"
+    },
+    {
+      "start": "0x14588bd10",
+      "end_exclusive": "0x14588d33a",
+      "sha256": "17037246ee45c9659417be47686267ec23f20a9d93e6194ea20a296bc864766b",
+      "manifest": "docs/analysis/evidence/0.115.0/coop-logout/manifest.json"
+    },
+    {
+      "start": "0x145877810",
+      "end_exclusive": "0x14587e0c1",
+      "sha256": "49f002c7826267770134a4d83b3532d552a8863cd4bc260cdb7f16156598bbd6",
+      "manifest": "docs/analysis/evidence/0.115.0/coop-server-party/manifest.json"
+    },
+    {
+      "role": "service-lifecycle",
+      "start": "0x14581e820",
+      "end_exclusive": "0x14581e96d",
+      "file_offset": "0x581dc20",
+      "sha256": "1ab09b26d81c72539d9f5a04e32ceb5a4099732d4b835686be56cb49642b436c",
+      "manifest": "docs/analysis/evidence/0.115.0/coop-directory-lifetime/manifest.json"
+    }
+  ]
+}

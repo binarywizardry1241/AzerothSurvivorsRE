@@ -1,0 +1,1531 @@
+{
+  "date": "2026-10-16",
+  "target_sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+  "native_functions": [
+    {
+      "address": "0x140112920",
+      "end": "0x140112d7b",
+      "byte_sha256": "4e95898bfe60ae39b9c2acf9e9c7ba450bf8643d1bc635ffe8a6acc2af96d24c",
+      "rea_evidence_id": "ev_9a55292fc52ef2a953f764eccb7cbbef7ecaa96b117c817784a5565e0c9f9ffc",
+      "role": "Eligibility, previous-backup cleanup, independent URL env overrides/defaults"
+    },
+    {
+      "address": "0x140118e40",
+      "end": "0x140119191",
+      "byte_sha256": "732883b1a7bd0aefdd30a76f404ba7a436d2dd6f72b554030e2cd7fbda14f447",
+      "rea_evidence_id": "ev_2c7aa2e0c88f68acbbc9aed377bfc0b1f6f4086a8a15a7e16f3b785c85427454",
+      "role": "GET data manifest, JSON reader, required patches array"
+    },
+    {
+      "address": "0x14013a7d0",
+      "end": "0x14013a8c0",
+      "byte_sha256": "3ff70cef25381347b1fa4d449b9eacbf3a414fb559a9244a4d88634304dceaf9",
+      "rea_evidence_id": "ev_bfd0dcc69d45b13bfa3ce40a966cd56ef5f5b9a54505692f6e747a5304ab546d",
+      "role": "Result collector stops on first invalid patch"
+    },
+    {
+      "address": "0x1400f1360",
+      "end": "0x1400f150c",
+      "byte_sha256": "dc3d922fbff9e3de3c3e22bc8425f5b36cae50b5faff9d8aed9a36fd85184242",
+      "rea_evidence_id": "ev_45bab7bb9d86c0ebae851c867f6af920e76b3e36492402c021117c3708b215c7",
+      "role": "Mapped patch Vec collector"
+    },
+    {
+      "address": "0x140150850",
+      "end": "0x140150eb1",
+      "byte_sha256": "dae79a669eb0f209b76d16740522554882f156ffb1ac01365d09d5ec0820a982",
+      "rea_evidence_id": "ev_d7dae1767041769069a85da54bcccef295bfe4da125687d2ba3d104f4c6d81f0",
+      "role": "Download parser then ASCII case-insensitive patch filename validation"
+    },
+    {
+      "address": "0x140158bd0",
+      "end": "0x140158ec9",
+      "byte_sha256": "3986f9e74543a97b34d177f0b4f3d29d46d0829e70248d422ce9e39731d2d651",
+      "rea_evidence_id": "ev_cb6604e3ff8b65675b15340d72ff3376f31244f193706a969907160bcdc50749",
+      "role": "Keep metadata error or file length unequal to decoded size"
+    },
+    {
+      "address": "0x1400e7f80",
+      "end": "0x1400e88c2",
+      "byte_sha256": "3e84181cf5929a247f704850b51a995f4eb237a5c86350a7fb5d92ac43d4b8a5",
+      "rea_evidence_id": "ev_7907d7964ba80316dc470613484b7d6700fdd0c7c908ccd87c70944f7038bb9c",
+      "role": "Sequential EXE/data checks, local patch selection, data-only Available synthesis"
+    }
+  ],
+  "literals": [
+    {
+      "address": "0x1458e4490",
+      "bytes_hex": "70617463686573",
+      "text": "patches",
+      "role": "Required patches key"
+    },
+    {
+      "address": "0x1458e4497",
+      "bytes_hex": "6e6f2070617463686573",
+      "text": "no patches",
+      "role": "Wrong/missing patches error"
+    },
+    {
+      "address": "0x1458e758d",
+      "bytes_hex": "c01b206973206e6f74206120646174612070617463682773206e616d6500",
+      "text": "\\xc0\u001b is not a data patch's name\u0000",
+      "role": "Rust compact format: {name} is not a data patch's name"
+    },
+    {
+      "address": "0x1458bfb63",
+      "bytes_hex": "302e39322e30",
+      "text": "0.92.0",
+      "role": "Synthetic data-only plan current version"
+    },
+    {
+      "address": "0x1458bfbe9",
+      "bytes_hex": "4e65772067616d65206461746120666f7220746869732076657273696f6e3a20746865206d6f64656c7320616e642074657874757265732069742073686f77732e",
+      "text": "New game data for this version: the models and textures it shows.",
+      "role": "Synthetic data-only plan notes"
+    },
+    {
+      "address": "0x1458a90dc",
+      "bytes_hex": "4e65772067616d652064617461",
+      "text": "New game data",
+      "role": "Data-only dialog heading locale key"
+    },
+    {
+      "address": "0x1458e3fc8",
+      "bytes_hex": "6f6c64",
+      "text": "old",
+      "role": "Startup previous-backup extension"
+    },
+    {
+      "address": "0x1458e3fcb",
+      "bytes_hex": "574f575f524f4755455f5550444154455f55524c",
+      "text": "WOW_ROGUE_UPDATE_URL",
+      "role": "Executable metadata URL env key"
+    },
+    {
+      "address": "0x1458e4004",
+      "bytes_hex": "574f575f524f4755455f444154415f55524c",
+      "text": "WOW_ROGUE_DATA_URL",
+      "role": "Data metadata URL env key"
+    },
+    {
+      "address": "0x1458e3fdf",
+      "bytes_hex": "68747470733a2f2f776f772e6165746875732e706c2f6578652f6c61746573742e6a736f6e",
+      "text": "https://wow.aethus.pl/exe/latest.json",
+      "role": "Default executable metadata URL"
+    },
+    {
+      "address": "0x1458c0ddf",
+      "bytes_hex": "68747470733a2f2f776f772e6165746875732e706c2f6578652f646174612f706174636865732e6a736f6e",
+      "text": "https://wow.aethus.pl/exe/data/patches.json",
+      "role": "Default data metadata URL"
+    },
+    {
+      "address": "0x146ae3338",
+      "bytes_hex": "7374646f7574",
+      "text": "stdout",
+      "role": "Native log helper1456b36b0 stdout selector"
+    }
+  ],
+  "manifest": {
+    "required": "Root patches array; empty accepted; missing/wrong type produces no patches",
+    "entries": "Existing Download parser runs first. Stop on the first error; never return a partial successful list.",
+    "name": "Make ASCII-lowercase copy; require exactly11 bytes: patch-, one ASCII alphanumeric byte, .mpq. Preserve original name/case in Download and error.",
+    "invalid_name_error": "{name} is not a data patch's name",
+    "base": "Prefix of full data manifest URL through last slash, or empty. Part URL resolution remains literal concatenation from Download parser."
+  },
+  "preparation": {
+    "owner": "0x140112920",
+    "steps": [
+      "Read exact opt-out env before current_exe. Exact0 short-circuits; otherwise require shipped stem. Failure returns empty updater without worker.",
+      "Remove current_exe.with_extension('old'), ignoring result; std wrapper1456b39b0\u21921456b6420\u2192DeleteFileW.",
+      "Read WOW_ROGUE_UPDATE_URL, retaining successful string verbatim (including empty); otherwise use embedded executable metadata URL.",
+      "Read WOW_ROGUE_DATA_URL, retaining successful string verbatim (including empty); otherwise use embedded data metadata URL.",
+      "Capture both URLs and eligibility-returned current_exe into rogue-update thread closure."
+    ],
+    "data_path": "Sibling Data derived from current_exe, independent of source app --data-dir. No data-directory env override in these owners."
+  },
+  "selection": {
+    "owner": "0x140158bd0",
+    "directory": "current_exe.parent().unwrap_or(Path::new('.')).join('Data')",
+    "callback": "std::fs::metadata(Data.join(original_name))",
+    "keep": "Any metadata error, or metadata.len() != Download.size",
+    "skip": "Matching length only. No local SHA, type restriction or deduplication in this selection owner.",
+    "metadata_binding": {
+      "chain": "1456b3d60 \u21921456b62b0 \u21921456b6570",
+      "len_offset": "Result+0x38",
+      "compare": "158d18 loads length,158d80 compares Download+0x48",
+      "proof": "FindFirstFileExW buffer+28/+32 size high/low combined at1456b66ac/66b0;1456b66d0 writes Result+0x38",
+      "imports": [
+        {
+          "address": "0x1458a51a8",
+          "library": "KERNEL32.dll",
+          "name": "FindFirstFileExW"
+        },
+        {
+          "address": "0x1458a51a0",
+          "library": "KERNEL32.dll",
+          "name": "FindClose"
+        },
+        {
+          "address": "0x1458a5178",
+          "library": "KERNEL32.dll",
+          "name": "DeleteFileW"
+        }
+      ]
+    }
+  },
+  "check_sequence": {
+    "owner": "0x1400e7f80",
+    "steps": [
+      "Fetch latest EXE metadata; on error log and retain no EXE; non-newer manifest also discarded.",
+      "Fetch data metadata even without a newer EXE; on error log and use empty patch list.",
+      "Select pending local patches by metadata length in original order.",
+      "If no EXE and no pending patches, do not publish Available.",
+      "If no EXE but patches remain, synthesize version0.92.0 and literal notes; optional EXE remains None.",
+      "Otherwise retain newer EXE version/notes and optional download; add pending data patches.",
+      "Publish Available1, then exact WOW_ROGUE_UPDATE_AUTO=1 may start native install worker."
+    ],
+    "data_only_notes": "New game data for this version: the models and textures it shows.",
+    "ui": "00ec39 tests optional EXE atplan+0x50; None uses New game data heading and omits versions row; part-size display sums optional EXE parts plus all pending patch parts."
+  },
+  "native_filename_checks": {
+    "count": 261,
+    "cases": [
+      {
+        "name_hex": "70617463682d002e6d7071",
+        "lowered_hex": "70617463682d002e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d012e6d7071",
+        "lowered_hex": "70617463682d012e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d022e6d7071",
+        "lowered_hex": "70617463682d022e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d032e6d7071",
+        "lowered_hex": "70617463682d032e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d042e6d7071",
+        "lowered_hex": "70617463682d042e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d052e6d7071",
+        "lowered_hex": "70617463682d052e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d062e6d7071",
+        "lowered_hex": "70617463682d062e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d072e6d7071",
+        "lowered_hex": "70617463682d072e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d082e6d7071",
+        "lowered_hex": "70617463682d082e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d092e6d7071",
+        "lowered_hex": "70617463682d092e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d0a2e6d7071",
+        "lowered_hex": "70617463682d0a2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d0b2e6d7071",
+        "lowered_hex": "70617463682d0b2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d0c2e6d7071",
+        "lowered_hex": "70617463682d0c2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d0d2e6d7071",
+        "lowered_hex": "70617463682d0d2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d0e2e6d7071",
+        "lowered_hex": "70617463682d0e2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d0f2e6d7071",
+        "lowered_hex": "70617463682d0f2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d102e6d7071",
+        "lowered_hex": "70617463682d102e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d112e6d7071",
+        "lowered_hex": "70617463682d112e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d122e6d7071",
+        "lowered_hex": "70617463682d122e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d132e6d7071",
+        "lowered_hex": "70617463682d132e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d142e6d7071",
+        "lowered_hex": "70617463682d142e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d152e6d7071",
+        "lowered_hex": "70617463682d152e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d162e6d7071",
+        "lowered_hex": "70617463682d162e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d172e6d7071",
+        "lowered_hex": "70617463682d172e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d182e6d7071",
+        "lowered_hex": "70617463682d182e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d192e6d7071",
+        "lowered_hex": "70617463682d192e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d1a2e6d7071",
+        "lowered_hex": "70617463682d1a2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d1b2e6d7071",
+        "lowered_hex": "70617463682d1b2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d1c2e6d7071",
+        "lowered_hex": "70617463682d1c2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d1d2e6d7071",
+        "lowered_hex": "70617463682d1d2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d1e2e6d7071",
+        "lowered_hex": "70617463682d1e2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d1f2e6d7071",
+        "lowered_hex": "70617463682d1f2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d202e6d7071",
+        "lowered_hex": "70617463682d202e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d212e6d7071",
+        "lowered_hex": "70617463682d212e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d222e6d7071",
+        "lowered_hex": "70617463682d222e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d232e6d7071",
+        "lowered_hex": "70617463682d232e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d242e6d7071",
+        "lowered_hex": "70617463682d242e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d252e6d7071",
+        "lowered_hex": "70617463682d252e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d262e6d7071",
+        "lowered_hex": "70617463682d262e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d272e6d7071",
+        "lowered_hex": "70617463682d272e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d282e6d7071",
+        "lowered_hex": "70617463682d282e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d292e6d7071",
+        "lowered_hex": "70617463682d292e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d2a2e6d7071",
+        "lowered_hex": "70617463682d2a2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d2b2e6d7071",
+        "lowered_hex": "70617463682d2b2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d2c2e6d7071",
+        "lowered_hex": "70617463682d2c2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d2d2e6d7071",
+        "lowered_hex": "70617463682d2d2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d2e2e6d7071",
+        "lowered_hex": "70617463682d2e2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d2f2e6d7071",
+        "lowered_hex": "70617463682d2f2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d302e6d7071",
+        "lowered_hex": "70617463682d302e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d312e6d7071",
+        "lowered_hex": "70617463682d312e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d322e6d7071",
+        "lowered_hex": "70617463682d322e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d332e6d7071",
+        "lowered_hex": "70617463682d332e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d342e6d7071",
+        "lowered_hex": "70617463682d342e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d352e6d7071",
+        "lowered_hex": "70617463682d352e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d362e6d7071",
+        "lowered_hex": "70617463682d362e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d372e6d7071",
+        "lowered_hex": "70617463682d372e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d382e6d7071",
+        "lowered_hex": "70617463682d382e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d392e6d7071",
+        "lowered_hex": "70617463682d392e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d3a2e6d7071",
+        "lowered_hex": "70617463682d3a2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d3b2e6d7071",
+        "lowered_hex": "70617463682d3b2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d3c2e6d7071",
+        "lowered_hex": "70617463682d3c2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d3d2e6d7071",
+        "lowered_hex": "70617463682d3d2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d3e2e6d7071",
+        "lowered_hex": "70617463682d3e2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d3f2e6d7071",
+        "lowered_hex": "70617463682d3f2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d402e6d7071",
+        "lowered_hex": "70617463682d402e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d412e6d7071",
+        "lowered_hex": "70617463682d612e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d422e6d7071",
+        "lowered_hex": "70617463682d622e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d432e6d7071",
+        "lowered_hex": "70617463682d632e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d442e6d7071",
+        "lowered_hex": "70617463682d642e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d452e6d7071",
+        "lowered_hex": "70617463682d652e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d462e6d7071",
+        "lowered_hex": "70617463682d662e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d472e6d7071",
+        "lowered_hex": "70617463682d672e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d482e6d7071",
+        "lowered_hex": "70617463682d682e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d492e6d7071",
+        "lowered_hex": "70617463682d692e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d4a2e6d7071",
+        "lowered_hex": "70617463682d6a2e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d4b2e6d7071",
+        "lowered_hex": "70617463682d6b2e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d4c2e6d7071",
+        "lowered_hex": "70617463682d6c2e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d4d2e6d7071",
+        "lowered_hex": "70617463682d6d2e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d4e2e6d7071",
+        "lowered_hex": "70617463682d6e2e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d4f2e6d7071",
+        "lowered_hex": "70617463682d6f2e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d502e6d7071",
+        "lowered_hex": "70617463682d702e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d512e6d7071",
+        "lowered_hex": "70617463682d712e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d522e6d7071",
+        "lowered_hex": "70617463682d722e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d532e6d7071",
+        "lowered_hex": "70617463682d732e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d542e6d7071",
+        "lowered_hex": "70617463682d742e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d552e6d7071",
+        "lowered_hex": "70617463682d752e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d562e6d7071",
+        "lowered_hex": "70617463682d762e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d572e6d7071",
+        "lowered_hex": "70617463682d772e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d582e6d7071",
+        "lowered_hex": "70617463682d782e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d592e6d7071",
+        "lowered_hex": "70617463682d792e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d5a2e6d7071",
+        "lowered_hex": "70617463682d7a2e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d5b2e6d7071",
+        "lowered_hex": "70617463682d5b2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d5c2e6d7071",
+        "lowered_hex": "70617463682d5c2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d5d2e6d7071",
+        "lowered_hex": "70617463682d5d2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d5e2e6d7071",
+        "lowered_hex": "70617463682d5e2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d5f2e6d7071",
+        "lowered_hex": "70617463682d5f2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d602e6d7071",
+        "lowered_hex": "70617463682d602e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d612e6d7071",
+        "lowered_hex": "70617463682d612e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d622e6d7071",
+        "lowered_hex": "70617463682d622e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d632e6d7071",
+        "lowered_hex": "70617463682d632e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d642e6d7071",
+        "lowered_hex": "70617463682d642e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d652e6d7071",
+        "lowered_hex": "70617463682d652e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d662e6d7071",
+        "lowered_hex": "70617463682d662e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d672e6d7071",
+        "lowered_hex": "70617463682d672e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d682e6d7071",
+        "lowered_hex": "70617463682d682e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d692e6d7071",
+        "lowered_hex": "70617463682d692e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d6a2e6d7071",
+        "lowered_hex": "70617463682d6a2e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d6b2e6d7071",
+        "lowered_hex": "70617463682d6b2e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d6c2e6d7071",
+        "lowered_hex": "70617463682d6c2e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d6d2e6d7071",
+        "lowered_hex": "70617463682d6d2e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d6e2e6d7071",
+        "lowered_hex": "70617463682d6e2e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d6f2e6d7071",
+        "lowered_hex": "70617463682d6f2e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d702e6d7071",
+        "lowered_hex": "70617463682d702e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d712e6d7071",
+        "lowered_hex": "70617463682d712e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d722e6d7071",
+        "lowered_hex": "70617463682d722e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d732e6d7071",
+        "lowered_hex": "70617463682d732e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d742e6d7071",
+        "lowered_hex": "70617463682d742e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d752e6d7071",
+        "lowered_hex": "70617463682d752e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d762e6d7071",
+        "lowered_hex": "70617463682d762e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d772e6d7071",
+        "lowered_hex": "70617463682d772e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d782e6d7071",
+        "lowered_hex": "70617463682d782e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d792e6d7071",
+        "lowered_hex": "70617463682d792e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d7a2e6d7071",
+        "lowered_hex": "70617463682d7a2e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "70617463682d7b2e6d7071",
+        "lowered_hex": "70617463682d7b2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d7c2e6d7071",
+        "lowered_hex": "70617463682d7c2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d7d2e6d7071",
+        "lowered_hex": "70617463682d7d2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d7e2e6d7071",
+        "lowered_hex": "70617463682d7e2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d7f2e6d7071",
+        "lowered_hex": "70617463682d7f2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d802e6d7071",
+        "lowered_hex": "70617463682d802e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d812e6d7071",
+        "lowered_hex": "70617463682d812e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d822e6d7071",
+        "lowered_hex": "70617463682d822e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d832e6d7071",
+        "lowered_hex": "70617463682d832e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d842e6d7071",
+        "lowered_hex": "70617463682d842e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d852e6d7071",
+        "lowered_hex": "70617463682d852e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d862e6d7071",
+        "lowered_hex": "70617463682d862e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d872e6d7071",
+        "lowered_hex": "70617463682d872e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d882e6d7071",
+        "lowered_hex": "70617463682d882e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d892e6d7071",
+        "lowered_hex": "70617463682d892e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d8a2e6d7071",
+        "lowered_hex": "70617463682d8a2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d8b2e6d7071",
+        "lowered_hex": "70617463682d8b2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d8c2e6d7071",
+        "lowered_hex": "70617463682d8c2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d8d2e6d7071",
+        "lowered_hex": "70617463682d8d2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d8e2e6d7071",
+        "lowered_hex": "70617463682d8e2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d8f2e6d7071",
+        "lowered_hex": "70617463682d8f2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d902e6d7071",
+        "lowered_hex": "70617463682d902e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d912e6d7071",
+        "lowered_hex": "70617463682d912e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d922e6d7071",
+        "lowered_hex": "70617463682d922e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d932e6d7071",
+        "lowered_hex": "70617463682d932e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d942e6d7071",
+        "lowered_hex": "70617463682d942e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d952e6d7071",
+        "lowered_hex": "70617463682d952e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d962e6d7071",
+        "lowered_hex": "70617463682d962e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d972e6d7071",
+        "lowered_hex": "70617463682d972e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d982e6d7071",
+        "lowered_hex": "70617463682d982e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d992e6d7071",
+        "lowered_hex": "70617463682d992e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d9a2e6d7071",
+        "lowered_hex": "70617463682d9a2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d9b2e6d7071",
+        "lowered_hex": "70617463682d9b2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d9c2e6d7071",
+        "lowered_hex": "70617463682d9c2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d9d2e6d7071",
+        "lowered_hex": "70617463682d9d2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d9e2e6d7071",
+        "lowered_hex": "70617463682d9e2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d9f2e6d7071",
+        "lowered_hex": "70617463682d9f2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682da02e6d7071",
+        "lowered_hex": "70617463682da02e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682da12e6d7071",
+        "lowered_hex": "70617463682da12e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682da22e6d7071",
+        "lowered_hex": "70617463682da22e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682da32e6d7071",
+        "lowered_hex": "70617463682da32e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682da42e6d7071",
+        "lowered_hex": "70617463682da42e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682da52e6d7071",
+        "lowered_hex": "70617463682da52e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682da62e6d7071",
+        "lowered_hex": "70617463682da62e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682da72e6d7071",
+        "lowered_hex": "70617463682da72e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682da82e6d7071",
+        "lowered_hex": "70617463682da82e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682da92e6d7071",
+        "lowered_hex": "70617463682da92e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682daa2e6d7071",
+        "lowered_hex": "70617463682daa2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dab2e6d7071",
+        "lowered_hex": "70617463682dab2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dac2e6d7071",
+        "lowered_hex": "70617463682dac2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dad2e6d7071",
+        "lowered_hex": "70617463682dad2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dae2e6d7071",
+        "lowered_hex": "70617463682dae2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682daf2e6d7071",
+        "lowered_hex": "70617463682daf2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682db02e6d7071",
+        "lowered_hex": "70617463682db02e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682db12e6d7071",
+        "lowered_hex": "70617463682db12e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682db22e6d7071",
+        "lowered_hex": "70617463682db22e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682db32e6d7071",
+        "lowered_hex": "70617463682db32e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682db42e6d7071",
+        "lowered_hex": "70617463682db42e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682db52e6d7071",
+        "lowered_hex": "70617463682db52e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682db62e6d7071",
+        "lowered_hex": "70617463682db62e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682db72e6d7071",
+        "lowered_hex": "70617463682db72e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682db82e6d7071",
+        "lowered_hex": "70617463682db82e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682db92e6d7071",
+        "lowered_hex": "70617463682db92e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dba2e6d7071",
+        "lowered_hex": "70617463682dba2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dbb2e6d7071",
+        "lowered_hex": "70617463682dbb2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dbc2e6d7071",
+        "lowered_hex": "70617463682dbc2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dbd2e6d7071",
+        "lowered_hex": "70617463682dbd2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dbe2e6d7071",
+        "lowered_hex": "70617463682dbe2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dbf2e6d7071",
+        "lowered_hex": "70617463682dbf2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dc02e6d7071",
+        "lowered_hex": "70617463682dc02e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dc12e6d7071",
+        "lowered_hex": "70617463682dc12e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dc22e6d7071",
+        "lowered_hex": "70617463682dc22e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dc32e6d7071",
+        "lowered_hex": "70617463682dc32e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dc42e6d7071",
+        "lowered_hex": "70617463682dc42e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dc52e6d7071",
+        "lowered_hex": "70617463682dc52e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dc62e6d7071",
+        "lowered_hex": "70617463682dc62e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dc72e6d7071",
+        "lowered_hex": "70617463682dc72e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dc82e6d7071",
+        "lowered_hex": "70617463682dc82e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dc92e6d7071",
+        "lowered_hex": "70617463682dc92e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dca2e6d7071",
+        "lowered_hex": "70617463682dca2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dcb2e6d7071",
+        "lowered_hex": "70617463682dcb2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dcc2e6d7071",
+        "lowered_hex": "70617463682dcc2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dcd2e6d7071",
+        "lowered_hex": "70617463682dcd2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dce2e6d7071",
+        "lowered_hex": "70617463682dce2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dcf2e6d7071",
+        "lowered_hex": "70617463682dcf2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dd02e6d7071",
+        "lowered_hex": "70617463682dd02e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dd12e6d7071",
+        "lowered_hex": "70617463682dd12e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dd22e6d7071",
+        "lowered_hex": "70617463682dd22e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dd32e6d7071",
+        "lowered_hex": "70617463682dd32e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dd42e6d7071",
+        "lowered_hex": "70617463682dd42e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dd52e6d7071",
+        "lowered_hex": "70617463682dd52e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dd62e6d7071",
+        "lowered_hex": "70617463682dd62e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dd72e6d7071",
+        "lowered_hex": "70617463682dd72e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dd82e6d7071",
+        "lowered_hex": "70617463682dd82e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dd92e6d7071",
+        "lowered_hex": "70617463682dd92e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dda2e6d7071",
+        "lowered_hex": "70617463682dda2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682ddb2e6d7071",
+        "lowered_hex": "70617463682ddb2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682ddc2e6d7071",
+        "lowered_hex": "70617463682ddc2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682ddd2e6d7071",
+        "lowered_hex": "70617463682ddd2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dde2e6d7071",
+        "lowered_hex": "70617463682dde2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682ddf2e6d7071",
+        "lowered_hex": "70617463682ddf2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682de02e6d7071",
+        "lowered_hex": "70617463682de02e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682de12e6d7071",
+        "lowered_hex": "70617463682de12e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682de22e6d7071",
+        "lowered_hex": "70617463682de22e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682de32e6d7071",
+        "lowered_hex": "70617463682de32e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682de42e6d7071",
+        "lowered_hex": "70617463682de42e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682de52e6d7071",
+        "lowered_hex": "70617463682de52e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682de62e6d7071",
+        "lowered_hex": "70617463682de62e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682de72e6d7071",
+        "lowered_hex": "70617463682de72e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682de82e6d7071",
+        "lowered_hex": "70617463682de82e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682de92e6d7071",
+        "lowered_hex": "70617463682de92e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dea2e6d7071",
+        "lowered_hex": "70617463682dea2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682deb2e6d7071",
+        "lowered_hex": "70617463682deb2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dec2e6d7071",
+        "lowered_hex": "70617463682dec2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682ded2e6d7071",
+        "lowered_hex": "70617463682ded2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dee2e6d7071",
+        "lowered_hex": "70617463682dee2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682def2e6d7071",
+        "lowered_hex": "70617463682def2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682df02e6d7071",
+        "lowered_hex": "70617463682df02e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682df12e6d7071",
+        "lowered_hex": "70617463682df12e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682df22e6d7071",
+        "lowered_hex": "70617463682df22e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682df32e6d7071",
+        "lowered_hex": "70617463682df32e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682df42e6d7071",
+        "lowered_hex": "70617463682df42e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682df52e6d7071",
+        "lowered_hex": "70617463682df52e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682df62e6d7071",
+        "lowered_hex": "70617463682df62e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682df72e6d7071",
+        "lowered_hex": "70617463682df72e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682df82e6d7071",
+        "lowered_hex": "70617463682df82e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682df92e6d7071",
+        "lowered_hex": "70617463682df92e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dfa2e6d7071",
+        "lowered_hex": "70617463682dfa2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dfb2e6d7071",
+        "lowered_hex": "70617463682dfb2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dfc2e6d7071",
+        "lowered_hex": "70617463682dfc2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dfd2e6d7071",
+        "lowered_hex": "70617463682dfd2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dfe2e6d7071",
+        "lowered_hex": "70617463682dfe2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682dff2e6d7071",
+        "lowered_hex": "70617463682dff2e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "50615463482d5a2e4d7051",
+        "lowered_hex": "70617463682d7a2e6d7071",
+        "accepted": true
+      },
+      {
+        "name_hex": "",
+        "lowered_hex": "",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d61612e6d7071",
+        "lowered_hex": "70617463682d61612e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "2e2e2f70617463682d612e6d7071",
+        "lowered_hex": "2e2e2f70617463682d612e6d7071",
+        "accepted": false
+      },
+      {
+        "name_hex": "70617463682d612e6d707120",
+        "lowered_hex": "70617463682d612e6d707120",
+        "accepted": false
+      }
+    ],
+    "interval": {
+      "start": "0x140150b50",
+      "end": "0x140150b9c",
+      "sha256": "de872dff0f27fe76578cf250c6b80de681eb575dc698675c91fd766334436604"
+    },
+    "boundary": "Only comparison instructions run in Unicorn. ASCII-lowercase-copy input supplied; success/failure branch stops before allocation/helper/import calls. No OS or update code reachable."
+  },
+  "env_conversion": {
+    "interval": [
+      "0x1456c7890",
+      "0x1456c7952"
+    ],
+    "byte_sha256": "0621f35438a1995c8f0ee58defee86f53da17247073a49129ae6aebf0b52828c",
+    "rea_evidence_id": "ev_115a1839879063b6c3bdac8945cc524f40de8270977c49459047bb4b95661f64",
+    "boundary": "Explicit194-byte leaf interval; no PE unwind entry; original ret/CC boundary retained, not claimed as unwind-proven function.",
+    "rule": "WTF8 String conversion rejects ED A0..BF surrogate encodings; failed env String conversion takes the default URL branch, not lossy substitution."
+  },
+  "implementation": {
+    "module": "crates/azeroth-survivors-re/src/update_data.rs",
+    "api": "update::data::DataManifest::{from_json,patches,into_pending}",
+    "pipeline": "crates/azeroth-survivors-re/src/update_check.rs; CheckRequest::{prepare_with,check_with}; injected PrepareHost/CheckHost and gated environment/metadata adapter",
+    "scope": "Data validation/selection connected to sequential EXE/data checks and UpdatePlan; native gated old-backup cleanup, independent HTTP agents, local metadata; optional EXE/data-only UI. Source26 connects the gated download/install/restart adapters as code; no live backend was executed.",
+    "tests": "Four data fixtures passed build22 (11.82s;26 bin tests). Six new preparation/check sequence fixtures passed23 (15.47s;64 harness cases:35 binary,15 native-save,14 update integration).",
+    "source26_validation": "Build26 final --locked --offline PASS in11.08s (menu-build-26-final.log); preceding combined build PASS in29.09s. All169 focused harness cases with overlap PASS:74 binary,19 native-save,6 config,1 run-modifier,14 save-browser,37 updater,18 installer; test compilation12.95s (menu-tests-26-menu-bridges.log). The five connected memory-only fixtures passed within those harnesses. No live adapter, app, metadata/HTTP request, download, staging/replacement/install or process launch was executed."
+  },
+  "limitations": [
+    "Manifest/check sequence is static reconstruction, not an acquired live response or runtime installer observation.",
+    "Combined metadata/UI pipeline compiled and injected tests passed23 (15.47s;64 harness cases). No real adapter call, metadata request, backup cleanup or new UI launch was performed.",
+    "Source26 connects native-gated adapters as code; compilation and all five connected memory-only fixtures passed in build26, no live adapter execution.",
+    "std::fs metadata import chain is bound from original instruction bytes; the scoped generic-GCC Ghidra signature is not trusted as a Windows ABI declaration."
+  ]
+}

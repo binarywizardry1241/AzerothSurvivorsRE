@@ -1,0 +1,42 @@
+{
+  "target_version": "0.97.2",
+  "target_sha256": "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589",
+  "target_executed": false,
+  "scopes": [
+    {
+      "label": "relocation-predicate",
+      "va": "0x145531cb0",
+      "end_exclusive": "0x145531fb8",
+      "file_offset": "0x55310b0",
+      "byte_count": 776,
+      "sha256": "95fd023e30870a78ec3779177086da4458b562dc7a425825d5dc2408a045d4e0",
+      "assembly": "relocation-predicate.asm",
+      "assembly_sha256": "ec9ba928d8baf0d455e54eb0778077fd6985a9227ab94c2d86908e7ef638f2ac"
+    },
+    {
+      "label": "relocation-tick",
+      "va": "0x1454a70fd",
+      "end_exclusive": "0x1454a7339",
+      "file_offset": "0x54a64fd",
+      "byte_count": 572,
+      "sha256": "ea20e1cbacc4c7e5e802abf44354951bf2b0bc74aed079d10f9bf7f9111be021",
+      "assembly": "relocation-tick.asm",
+      "assembly_sha256": "3c54d69046ae649187df00e104e87f94f5f9fdedd814e621a4c48018a70e30e5"
+    }
+  ],
+  "constants": [
+    {
+      "va": "0x14670e5a4",
+      "end_exclusive": "0x14670e5a8",
+      "file_offset": "0x670d5a4",
+      "byte_count": 4,
+      "sha256": "18ffa05ff56d44e979ab1b0fd2c76aa6b24b75987c2204c7bdb209e4dca30c7d",
+      "value": 3025.0
+    }
+  ],
+  "limitations": [
+    "Predicate returns the first four qualifying GUIDs in actor-vector order.",
+    "Actor escape-state+0x78 is retained as a raw byte; only zero qualifies regardless of other encodings.",
+    "Selection and reset are separate native stages; sampling occurs before GUID lookup."
+  ]
+}

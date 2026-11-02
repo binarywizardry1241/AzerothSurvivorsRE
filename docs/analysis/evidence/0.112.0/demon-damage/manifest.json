@@ -1,0 +1,82 @@
+{
+  "target_sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a",
+  "ranges": [
+    {
+      "role": "critical",
+      "address": "0x14595c200",
+      "file_offset": "0x595b600",
+      "byte_count": 1597,
+      "sha256": "c457a3d511a6da1392ef24c4f7ee65d8440763af6c9791f8bda42adf36b597dc",
+      "assembly": "critical.asm",
+      "assembly_sha256": "fce92100c9be54e520a2a54613bcc21c07fb7753734d61edcaa7917745fc02e7"
+    },
+    {
+      "role": "devourer-scaling",
+      "address": "0x146c0b8c0",
+      "file_offset": "0x6c0aac0",
+      "byte_count": 12,
+      "sha256": "98c798252938d3f2b39d4c1d4c8e706395736ff65c372658e36b1d1d48b5e47a"
+    },
+    {
+      "role": "target-kind-dispatch",
+      "address": "0x146c0c6b4",
+      "file_offset": "0x6c0b8b4",
+      "byte_count": 56,
+      "sha256": "f65894d5e7b61f21aa879158cfe0bf451a84b9a3adaa4e55efc67d23720d9fb0"
+    },
+    {
+      "role": "imp-voidwalker-scalars",
+      "address": "0x145ebe450",
+      "file_offset": "0x5ebd650",
+      "byte_count": 12,
+      "sha256": "48c6a072626ada6df8a11f03c23bec0655c1b6d62fb30c0f2d3278276e54feac"
+    },
+    {
+      "role": "health-ratio-compose",
+      "address": "0x1458f3234",
+      "file_offset": "0x58f2634",
+      "byte_count": 58,
+      "sha256": "2ab413006c4320fe969ad9fba0719d7c3868f3c54080643a21c9770f8a1091a2",
+      "assembly": "health-ratio-compose.asm",
+      "assembly_sha256": "c5805c32cc6a9e442818029544c16d9b9ee71ae8e981e1caf6a32654211749ab"
+    },
+    {
+      "role": "health-ratio-minus-one",
+      "address": "0x1458f331e",
+      "file_offset": "0x58f271e",
+      "byte_count": 14,
+      "sha256": "726321b744a382aa99c0588700ab5d0fddad53f9ea366fb5a7b54a9157c8d0d1",
+      "assembly": "health-ratio-minus-one.asm",
+      "assembly_sha256": "00b29d7d2c3c61ba49d162ad850cd21e999923cf12346a2d626f2feeac8faa8a"
+    },
+    {
+      "role": "health-ratio-store",
+      "address": "0x1458f3408",
+      "file_offset": "0x58f2808",
+      "byte_count": 9,
+      "sha256": "915348a1b3b1dd4ffbc028bbed5444fd713b93652c76d828468002ed11facbb7",
+      "assembly": "health-ratio-store.asm",
+      "assembly_sha256": "c9cf7ee14be65ae8dd587a9b60f2120d02a3bd3bac0d4230a399d5237451fffe"
+    }
+  ],
+  "ghidra": {
+    "evidence_id": "ev_e9585dea0efb73697d608476ee3296c3121cce7e07e89201110d68ea236055f0",
+    "provider": {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "version": "12.1.4"
+    },
+    "raw_input": {
+      "address": "0x14595a460",
+      "byte_count": 14005,
+      "sha256": "5d882c0b1fafac20f3f1af44e3eaa220153fa9634520a176a81842762ccdec19"
+    },
+    "pseudocode": "critical.c",
+    "pseudocode_sha256": "16e3191803598489cc86f4cda89ac9aa97d6455ed8b5d30ace6b19a1414a976c"
+  },
+  "limits": [
+    "Current original bytes and full mapped PE replay control ABI/arithmetic.",
+    "Ghidra raw import has external-data/dispatch and inferred return ABI limits; its C omits float results, so assembly and instruction replay are authoritative.",
+    "Synthetic finite scalar/vector inputs; no source compilation, application, gameplay, rendering or parity."
+  ]
+}

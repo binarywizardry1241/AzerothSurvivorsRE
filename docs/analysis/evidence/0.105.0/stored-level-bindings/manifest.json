@@ -1,0 +1,82 @@
+{
+  "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+  "extracts": [
+    {
+      "role": "xml-patch",
+      "virtual_address": "0x1458e68a0",
+      "end_exclusive": "0x1458e6e4b",
+      "file_offset": "0x58e5ca0",
+      "byte_count": 1451,
+      "sha256": "ece14f1b12ab2abe52f836cc7db82100eead761eaee871ef16ede3d9ea412ef4",
+      "assembly": "xml-patch.asm",
+      "assembly_sha256": "f242efb0f3628d76a29f326c848a1d77428b0b846e94acead55cc1afb9d29393",
+      "rea_evidence_id": "ev_c9d66b0635559b2a37fc079f91a1d4469d62e98e843e4d61197e0e2e819bdefb",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "41d6472b1b6834e7fe7ad793c75995b51b7746d29491cee4970027877e870e80",
+      "rea_input_sha256": "2b9c97bad89c25d8fc1d0876519242297a4faffff9860931f53470766c108363"
+    },
+    {
+      "role": "default-patch",
+      "virtual_address": "0x1458e6ea0",
+      "end_exclusive": "0x1458e7118",
+      "file_offset": "0x58e62a0",
+      "byte_count": 632,
+      "sha256": "d1da1651b5a0032d2fb06c29544728790df09d211f1d20510f2b36d6ee26f7d7",
+      "assembly": "default-patch.asm",
+      "assembly_sha256": "f464bbd35fe79b3a9f287ed35317cf3d4f36df774410a2c822f0770121550e16",
+      "rea_evidence_id": "ev_5dca7d3d99ef4354a8af8993bfadd406f9104fb288fa221e18360428a23c2ef8",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "41d6472b1b6834e7fe7ad793c75995b51b7746d29491cee4970027877e870e80",
+      "rea_input_sha256": "2b9c97bad89c25d8fc1d0876519242297a4faffff9860931f53470766c108363"
+    },
+    {
+      "role": "install-patches",
+      "virtual_address": "0x1458e71b0",
+      "end_exclusive": "0x1458e737a",
+      "file_offset": "0x58e65b0",
+      "byte_count": 458,
+      "sha256": "a977613c3cc7f8dcbb9e0046d7e0112b2354d0ef25caa5ac2c69166a018f6533",
+      "assembly": "install-patches.asm",
+      "assembly_sha256": "8cee59a603e061c001fabbfa53f7429885f40face67a24c5d5a561d18a26b504",
+      "rea_evidence_id": "ev_237a1ef0b2f1813ce7e72b46ca4be605a8f91c5a10fcbd9eb73c3c56b8694f23",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "41d6472b1b6834e7fe7ad793c75995b51b7746d29491cee4970027877e870e80",
+      "rea_input_sha256": "2b9c97bad89c25d8fc1d0876519242297a4faffff9860931f53470766c108363"
+    },
+    {
+      "role": "menu-label",
+      "virtual_address": "0x1400f39a0",
+      "end_exclusive": "0x1400f3b46",
+      "file_offset": "0xf2da0",
+      "byte_count": 422,
+      "sha256": "f273bb1766df996a9a5816eef78bec106615d8f9b7d89a5aeaab5c4f2ff18097",
+      "assembly": "menu-label.asm",
+      "assembly_sha256": "3e22abbc537b3a46113c769c6c4778df20637cbf41d00d744ce373819fb2d912",
+      "rea_evidence_id": "ev_e1c4533d4b767956b73726ec6f63fa1502533f4bc6f4aa329b75f00ccee60c87",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "01b92cd0061f6afcfc064579b848be2cb9ad9055ce0c6b37bba23f6a50d44d88",
+      "rea_input_sha256": "f273bb1766df996a9a5816eef78bec106615d8f9b7d89a5aeaab5c4f2ff18097"
+    }
+  ],
+  "limitations": [
+    "Static raw x86-64 Ghidra slices; external bodies/data are absent from the analysis inputs.",
+    "Original PE byte ranges and decoded instruction operands control Windows ABI and literal interpretation; generic raw decompiler types are not source declarations.",
+    "No keyboard input, game process, Rust compilation, real VM lifecycle or rendered comparison executed."
+  ]
+}
