@@ -1,0 +1,3467 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.139.1",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d",
+    "size_bytes": 150633472
+  },
+  "status": "bounded_InputGate_descriptor_dispatch_and_record_filter_recovered; source_assignment_pending",
+  "finding_ids": [
+    310
+  ],
+  "system": "engine-selected-target-deltas",
+  "diagnostic_module_denominator": "Outside the 77 AS diagnostic paths; no invented input_gate.rs diagnostic module.",
+  "inventory_selector": "Q41-I01:module_type_namespace:241",
+  "source_first_question": "Which current descriptor and callable owner implement the named InputGatePlugin, and what exact state, schedules and consumers separate overlay input from world input? Existing overlay/capture/UI schedules are the source seam; a packed type name cannot establish its behavior.",
+  "static_inputs": [
+    {
+      "path": "runtime/coverage/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/inventory.json",
+      "sha256": "c96af38af8bf84c2c07bd00c136258815ae4df2f50fec592c112821d0cb6d9fb"
+    },
+    {
+      "path": "docs/analysis/coverage/instruction-summary.json",
+      "sha256": "6fe329be6c319d1592a4c2703817ddd221315945cc269ade014b714e1ca8aa79"
+    },
+    {
+      "path": "docs/analysis/coverage/unwind-complement-summary.json",
+      "sha256": "cc0d7c74122c38effd5523deedff6500b65db470ca548239a2fda9d54f7f8483"
+    }
+  ],
+  "source_receipts": [
+    {
+      "path": "crates/benilla-app/src/local_client.rs",
+      "sha256": "77349aa97420295ac8a07c5e2edd36bf3df3ff5efce26b94f1783773a6bd2b40",
+      "role": "Overlay capture initialization/reset and UI/world input ordering source seam."
+    },
+    {
+      "path": "crates/benilla-app/src/ui_script/mod.rs",
+      "sha256": "a8c137e7690cdcded8192309c6145630d4c7be425797b09f002fb7deb41a2836",
+      "role": "UiInput schedule source seam."
+    },
+    {
+      "path": "crates/benilla-app/src/ui_script/input.rs",
+      "sha256": "2de18bc98972ea247c77ca84e52becafae53096d8b2327ad5919687d4a01d9f1",
+      "role": "UI pointer/key dispatch source seam."
+    },
+    {
+      "path": "crates/benilla-app/src/player/camera.rs",
+      "sha256": "7e0341472e96558c6c6e888ce27821c41768bdab71c415feddc8a8387af4f1b7",
+      "role": "sync_look_focus release/reacquire source seam."
+    },
+    {
+      "path": "crates/benilla-app/src/cursor.rs",
+      "sha256": "dd254993f11648b64916bb4c385bbf3c0329601738a218431b1b5ea992466db1",
+      "role": "macOS-only WindowFocused reassertion is separate."
+    },
+    {
+      "path": "crates/benilla-world/src/bgwin.rs",
+      "sha256": "f879354a3e0c599980abb4c4d48237dddc653d81032c383592061650640a8d1f",
+      "role": "macOS background activation source; not Windows repair."
+    },
+    {
+      "path": "crates/benilla-world/src/thread_qos.rs",
+      "sha256": "9601264690d12675c8dbf40dc60c0f6e2dfa5029a323c681be4f30c83a5be219",
+      "role": "cfg-selected macOS QoS; not Windows repair."
+    },
+    {
+      "path": "crates/benilla-app/src/shutdown.rs",
+      "sha256": "83701090f49983fcd34ea6662af11d34d7ca6df9d5c168af250920c2860a8b6d",
+      "role": "AltF4 close-chord interface."
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/native_input/acquisition.rs",
+      "sha256": "62305e4bdb3a3b11c34ae097ba44d995e143dfe55b9eb42f2f0756c6ef0c0e29",
+      "role": "Wine/XInput backend source only."
+    },
+    {
+      "path": "runtime/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_app-0.18.1/src/plugin.rs",
+      "sha256": "292bbdba4179db8ce4c58313965f9c957be3f389fedc91de47204b30bf7811c3",
+      "role": "Plugin build/name/uniqueness interface; local dependency revision not entire native identity proof."
+    },
+    {
+      "path": "runtime/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_app-0.18.1/src/app.rs",
+      "sha256": "37a71f5eecbb498984b476840839c15af44a3c42ec0b6dbb48a2892aff266117",
+      "role": "add_boxed_plugin name/unique/build dispatch source interface."
+    },
+    {
+      "path": "runtime/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/winit-0.30.13/src/platform_impl/windows/window.rs",
+      "sha256": "337a9fe3162e6ec2c4075b0a483fcdb9f424d57ac4c758bffc17adf712845bd7",
+      "role": "force_window_active/focus_window source interfaces."
+    },
+    {
+      "path": "runtime/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/winit-0.30.13/src/platform_impl/windows/window_state.rs",
+      "sha256": "505e7ea90e1fa75500cb296cf6ec4cf3f04407c44731ffc9ae1f48e78d8d0f34",
+      "role": "CursorFlags::refresh_os_cursor source interface."
+    },
+    {
+      "path": "runtime/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/winit-0.30.13/src/platform_impl/windows/util.rs",
+      "sha256": "beed128bdedfb31daaa28da786bc6bdae037cbb41e5bf4db4d10678a44c72a68",
+      "role": "is_focused and cursor clip helper interfaces."
+    }
+  ],
+  "namespace_and_registration": {
+    "inventory_selector": "Q41-I01:module_type_namespace:241",
+    "packed_candidate": {
+      "file_offset": "0x6519630",
+      "virtual_address": "0x14651a830",
+      "byte_count": 290,
+      "sha256": "2c5d9b774db813051388f6a030dbd49ea22c1af0c7dbadaae5451e066777a792",
+      "literal": "benilla_app::menu_scene::MenuScenePluginbenilla_app::host_controls::LocalClockPluginbenilla_app::host_controls::TouchDrivePluginbenilla_app::host_controls::PlayerPositionPluginbenilla_app::host_controls::input_gate::InputGatePluginbenilla_app::host_controls::over_screens::OverScreensPlugin"
+    },
+    "name": "benilla_app::host_controls::input_gate::InputGatePlugin",
+    "name_start": "0x14651a8e0",
+    "name_byte_count": 55,
+    "name_sha256": "f7e274d13e030e8f2b4811b2265c95b08f9d981e5ad30dc650a61eb5e11938db",
+    "pointer_occurrences": [],
+    "whole_code_RIP_LEA_pattern_candidates": [
+      {
+        "instruction_address": "0x1401a0290",
+        "target_address": "0x14651a8e0",
+        "path_address": "0x14651a8e0"
+      }
+    ],
+    "matching_Rust_location_candidates": [],
+    "indexed_reference_checks": [
+      {
+        "summary": "unwind-complement-summary.json",
+        "inventory": {
+          "path": "runtime/coverage/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/unwind-complement.sqlite",
+          "sha256": "25811a880bf9d2f483da315faf65c8e31c8c462fd6c2134425ffcade9a432169",
+          "regenerate": "python3 -B scripts/inventory-unwind-complement.py --write"
+        },
+        "query_target_start": "0x14651a830",
+        "query_target_end_exclusive": "0x14651a952",
+        "result_count": 0
+      },
+      {
+        "summary": "instruction-summary.json",
+        "inventory": {
+          "path": "runtime/analysis/inventories/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/native-instructions-66670cb0e029e040.sqlite",
+          "sha256": "c4efe888e1860c4ec7b02bb6babe61e1eaea38c1ca9ebf3de323b85b8236bfd5",
+          "regenerate": "python3 -B scripts/inventory-native-instructions.py --write"
+        },
+        "query_target_start": "0x14651a830",
+        "query_target_end_exclusive": "0x14651a952",
+        "result_count": 0
+      }
+    ],
+    "name_returning_leaf": {
+      "virtual_address": "0x1401a0290",
+      "end_exclusive": "0x1401a029d",
+      "file_offset": "0x19f690",
+      "byte_count": 13,
+      "sha256": "03221c44f2793d1b48297c880746240d2f6aef5f38c79db7ac105d7d52e9130d",
+      "instructions": [
+        {
+          "address": "0x1401a0290",
+          "bytes_hex": "488d0549a63706",
+          "mnemonic": "lea",
+          "operands": "rax, [rip + 0x637a649]"
+        },
+        {
+          "address": "0x1401a0297",
+          "bytes_hex": "ba37000000",
+          "mnemonic": "mov",
+          "operands": "edx, 0x37"
+        },
+        {
+          "address": "0x1401a029c",
+          "bytes_hex": "c3",
+          "mnemonic": "ret",
+          "operands": ""
+        }
+      ],
+      "declared_unwind_owner": null,
+      "pointer_occurrences": [
+        {
+          "file_offset": "0x65181c8",
+          "virtual_address": "0x1465193c8",
+          "section": ".rdata",
+          "cells": [
+            {
+              "relative_offset": -48,
+              "raw_value": "0x140168b80"
+            },
+            {
+              "relative_offset": -40,
+              "raw_value": "0x140168b80"
+            },
+            {
+              "relative_offset": -32,
+              "raw_value": "0x1408882e0"
+            },
+            {
+              "relative_offset": -24,
+              "raw_value": "0x14002e680"
+            },
+            {
+              "relative_offset": -16,
+              "raw_value": "0x140002200"
+            },
+            {
+              "relative_offset": -8,
+              "raw_value": "0x140002200"
+            },
+            {
+              "relative_offset": 0,
+              "raw_value": "0x1401a0290"
+            },
+            {
+              "relative_offset": 8,
+              "raw_value": "0x14002e680"
+            },
+            {
+              "relative_offset": 16,
+              "raw_value": "0x0"
+            },
+            {
+              "relative_offset": 24,
+              "raw_value": "0x0"
+            },
+            {
+              "relative_offset": 32,
+              "raw_value": "0x1"
+            },
+            {
+              "relative_offset": 40,
+              "raw_value": "0x140168c30"
+            },
+            {
+              "relative_offset": 48,
+              "raw_value": "0x140168b90"
+            },
+            {
+              "relative_offset": 56,
+              "raw_value": "0x140168b90"
+            },
+            {
+              "relative_offset": 64,
+              "raw_value": "0x140168b90"
+            },
+            {
+              "relative_offset": 72,
+              "raw_value": "0x140168b90"
+            }
+          ]
+        }
+      ],
+      "scope": "This exact decoded leaf returns the InputGatePlugin name pointer and 55-byte length. The associated descriptor and indirect dispatch below are separately checked; input-state behavior remains pending."
+    },
+    "finding_ids": [
+      310
+    ],
+    "source_first_question": "Which current descriptor and callable owner implement the named InputGatePlugin, and what exact state, schedules and consumers separate overlay input from world input? Existing overlay/capture/UI schedules are the source seam; a packed type name cannot establish its behavior.",
+    "descriptor": {
+      "start": "0x146519368",
+      "end_exclusive": "0x1465193d8",
+      "file_offset": "0x6518168",
+      "byte_count": 112,
+      "sha256": "0434bf9202d29cf89f58e8199fcc323d952a78a66595175f0054168763c93b18",
+      "bytes_hex": "000000000000000000000000000000000100000000000000208c164001000000808b164001000000808b164001000000808b164001000000808b164001000000e08288400100000080e60240010000000022004001000000002200400100000090021a400100000080e6024001000000",
+      "qwords": [
+        {
+          "offset": "0x0",
+          "value": "0x0"
+        },
+        {
+          "offset": "0x8",
+          "value": "0x0"
+        },
+        {
+          "offset": "0x10",
+          "value": "0x1"
+        },
+        {
+          "offset": "0x18",
+          "value": "0x140168c20"
+        },
+        {
+          "offset": "0x20",
+          "value": "0x140168b80"
+        },
+        {
+          "offset": "0x28",
+          "value": "0x140168b80"
+        },
+        {
+          "offset": "0x30",
+          "value": "0x140168b80"
+        },
+        {
+          "offset": "0x38",
+          "value": "0x140168b80"
+        },
+        {
+          "offset": "0x40",
+          "value": "0x1408882e0"
+        },
+        {
+          "offset": "0x48",
+          "value": "0x14002e680"
+        },
+        {
+          "offset": "0x50",
+          "value": "0x140002200"
+        },
+        {
+          "offset": "0x58",
+          "value": "0x140002200"
+        },
+        {
+          "offset": "0x60",
+          "value": "0x1401a0290"
+        },
+        {
+          "offset": "0x68",
+          "value": "0x14002e680"
+        }
+      ]
+    },
+    "registration_seam": {
+      "owner": {
+        "start": "0x140108a10",
+        "end_exclusive": "0x140108aad",
+        "file_offset": "0x107e10",
+        "byte_count": 157,
+        "sha256": "ffa4f117d82494cb6ba3eb5b59b50b62ce965e33e8f8aaaa457fff140697f5bf"
+      },
+      "descriptor_load": {
+        "start": "0x140108a33",
+        "end_exclusive": "0x140108a4c",
+        "file_offset": "0x107e33",
+        "byte_count": 25,
+        "sha256": "6f3eec5443e89e1f1e07e5747b6629b352eedb4a3941586b242cc9b42e30ea34",
+        "bytes_hex": "4c8d0d2e094106488d4db841b8010000004889fae8f447a505",
+        "instructions": [
+          {
+            "address": "0x140108a33",
+            "bytes_hex": "4c8d0d2e094106",
+            "mnemonic": "lea",
+            "operands": "r9, [rip + 0x641092e]"
+          },
+          {
+            "address": "0x140108a3a",
+            "bytes_hex": "488d4db8",
+            "mnemonic": "lea",
+            "operands": "rcx, [rbp - 0x48]"
+          },
+          {
+            "address": "0x140108a3e",
+            "bytes_hex": "41b801000000",
+            "mnemonic": "mov",
+            "operands": "r8d, 1"
+          },
+          {
+            "address": "0x140108a44",
+            "bytes_hex": "4889fa",
+            "mnemonic": "mov",
+            "operands": "rdx, rdi"
+          },
+          {
+            "address": "0x140108a47",
+            "bytes_hex": "e8f447a505",
+            "mnemonic": "call",
+            "operands": "0x145b5d240"
+          }
+        ]
+      },
+      "admission": {
+        "start": "0x140108a2a",
+        "end_exclusive": "0x140108a33",
+        "file_offset": "0x107e2a",
+        "byte_count": 9,
+        "sha256": "32b5b989588800a4d82a4c920e3a910979e93273039c4e7c5f46df102f5d5ddb",
+        "bytes_hex": "e851fe00003c01772b",
+        "instructions": [
+          {
+            "address": "0x140108a2a",
+            "bytes_hex": "e851fe0000",
+            "mnemonic": "call",
+            "operands": "0x140118880"
+          },
+          {
+            "address": "0x140108a2f",
+            "bytes_hex": "3c01",
+            "mnemonic": "cmp",
+            "operands": "al, 1"
+          },
+          {
+            "address": "0x140108a31",
+            "bytes_hex": "772b",
+            "mnemonic": "ja",
+            "operands": "0x140108a5e"
+          }
+        ]
+      },
+      "consumer_owner": {
+        "start": "0x145b5d240",
+        "end_exclusive": "0x145b5daf4",
+        "file_offset": "0x5b5c640",
+        "byte_count": 2228,
+        "sha256": "742611f5df2c8245549f3de0c6c395a65fa98aff25ca3e942b4da3a7298a447c"
+      },
+      "consumer_argument_saves": {
+        "start": "0x145b5d27f",
+        "end_exclusive": "0x145b5d28a",
+        "file_offset": "0x5b5c67f",
+        "byte_count": 11,
+        "sha256": "883e1ef312cfc81f74a6b04b2a77ff83b5b49cbd8af2dedca70e62e66582fb01",
+        "bytes_hex": "4889959000000048894d48",
+        "instructions": [
+          {
+            "address": "0x145b5d27f",
+            "bytes_hex": "48899590000000",
+            "mnemonic": "mov",
+            "operands": "qword ptr [rbp + 0x90], rdx"
+          },
+          {
+            "address": "0x145b5d286",
+            "bytes_hex": "48894d48",
+            "mnemonic": "mov",
+            "operands": "qword ptr [rbp + 0x48], rcx"
+          }
+        ]
+      },
+      "consumer_descriptor_save": {
+        "start": "0x145b5d298",
+        "end_exclusive": "0x145b5d2a6",
+        "file_offset": "0x5b5c698",
+        "byte_count": 14,
+        "sha256": "9ec5ea4074b3fb75e3d981a1d5cb90f34374684daa9d8e90c8854bcd5b78412c",
+        "bytes_hex": "4c8985980000004c898da0000000",
+        "instructions": [
+          {
+            "address": "0x145b5d298",
+            "bytes_hex": "4c898598000000",
+            "mnemonic": "mov",
+            "operands": "qword ptr [rbp + 0x98], r8"
+          },
+          {
+            "address": "0x145b5d29f",
+            "bytes_hex": "4c898da0000000",
+            "mnemonic": "mov",
+            "operands": "qword ptr [rbp + 0xa0], r9"
+          }
+        ]
+      },
+      "consumer_name_slot": {
+        "start": "0x145b5d2ac",
+        "end_exclusive": "0x145b5d2bc",
+        "file_offset": "0x5b5c6ac",
+        "byte_count": 16,
+        "sha256": "595da0653d7ff136ead28cb954d75cf543698d6e0a2b6b3157f174c8a68048a0",
+        "bytes_hex": "498b4160c685af000000014c89c1ffd0",
+        "instructions": [
+          {
+            "address": "0x145b5d2ac",
+            "bytes_hex": "498b4160",
+            "mnemonic": "mov",
+            "operands": "rax, qword ptr [r9 + 0x60]"
+          },
+          {
+            "address": "0x145b5d2b0",
+            "bytes_hex": "c685af00000001",
+            "mnemonic": "mov",
+            "operands": "byte ptr [rbp + 0xaf], 1"
+          },
+          {
+            "address": "0x145b5d2b7",
+            "bytes_hex": "4c89c1",
+            "mnemonic": "mov",
+            "operands": "rcx, r8"
+          },
+          {
+            "address": "0x145b5d2ba",
+            "bytes_hex": "ffd0",
+            "mnemonic": "call",
+            "operands": "rax"
+          }
+        ]
+      },
+      "consumer_callback_slot": {
+        "start": "0x145b5d58c",
+        "end_exclusive": "0x145b5d59d",
+        "file_offset": "0x5b5c98c",
+        "byte_count": 17,
+        "sha256": "a1e9ac00c13a3c8be5604b36599589f103d14f820cd7282a5a3a7e647f3990f2",
+        "bytes_hex": "488b8d98000000488b85a0000000ff5040",
+        "instructions": [
+          {
+            "address": "0x145b5d58c",
+            "bytes_hex": "488b8d98000000",
+            "mnemonic": "mov",
+            "operands": "rcx, qword ptr [rbp + 0x98]"
+          },
+          {
+            "address": "0x145b5d593",
+            "bytes_hex": "488b85a0000000",
+            "mnemonic": "mov",
+            "operands": "rax, qword ptr [rbp + 0xa0]"
+          },
+          {
+            "address": "0x145b5d59a",
+            "bytes_hex": "ff5040",
+            "mnemonic": "call",
+            "operands": "qword ptr [rax + 0x40]"
+          }
+        ]
+      },
+      "observed": "The caller supplies descriptor 0x146519368 in R9, zero-sized instance value 1 in R8 and its saved context in RDX to 0x145b5d240. That consumer saves R9, calls slot +0x60 (exact name leaf) and, on its ordinary path, slot +0x40 (0x1408882e0). The registration owner first calls 0x140118880 and admits AL <= 1; the predicate implementation and successful startup execution are not recovered.",
+      "limits": [
+        "The method roles are a bounded Plugin-interface correspondence supported by exact slots, exact name and existing Plugin source; no whole-callee/class semantics are assigned.",
+        "No actual input state producer, consumer, schedule graph or modal behavior follows from the descriptor.",
+        "No broad generic engine recovery beyond this dispatch interface."
+      ]
+    },
+    "callback_owner_candidate": {
+      "start": "0x1408882e0",
+      "end_exclusive": "0x140888a05",
+      "file_offset": "0x8876e0",
+      "byte_count": 1829,
+      "sha256": "18084b160314446252985ea2a97a392b17b97abaf134511cbd5237c1d4dd5280",
+      "declared_inventory_ordinal": 25574
+    },
+    "indexed_descriptor_reference": {
+      "summary": "docs/analysis/coverage/instruction-summary.json",
+      "query": "refs.target in [0x146519368,0x1465193d8)",
+      "result_count": 1,
+      "site": "0x140108a33",
+      "kind": "address",
+      "target": "0x146519368",
+      "extent": 3293,
+      "bytes_hex": "4c8d0d2e094106"
+    },
+    "callback_type_formatting_leads": [
+      {
+        "table": {
+          "start": "0x146645518",
+          "end_exclusive": "0x146645538",
+          "file_offset": "0x6644318",
+          "byte_count": 32,
+          "sha256": "21503e1d1e8be12ec6a268b4cf0be43fe82c03d42e3e20313508b00278fc6512",
+          "formatter_pointer_offset": "0x18",
+          "formatter_pointer": "0x140b00640"
+        },
+        "formatter": {
+          "start": "0x140b00640",
+          "end_exclusive": "0x140b00655",
+          "file_offset": "0xaffa40",
+          "byte_count": 21,
+          "sha256": "7eed315802d789469bd6292e93a35ae48d6b84df41ca3710b207d525712908ef",
+          "bytes_hex": "4889d1488d150e92b40541b807000000e95b588005",
+          "instructions": [
+            {
+              "address": "0x140b00640",
+              "bytes_hex": "4889d1",
+              "mnemonic": "mov",
+              "operands": "rcx, rdx"
+            },
+            {
+              "address": "0x140b00643",
+              "bytes_hex": "488d150e92b405",
+              "mnemonic": "lea",
+              "operands": "rdx, [rip + 0x5b4920e]"
+            },
+            {
+              "address": "0x140b0064a",
+              "bytes_hex": "41b807000000",
+              "mnemonic": "mov",
+              "operands": "r8d, 7"
+            },
+            {
+              "address": "0x140b00650",
+              "bytes_hex": "e95b588005",
+              "mnemonic": "jmp",
+              "operands": "0x146305eb0"
+            }
+          ]
+        },
+        "payload": {
+          "start": "0x146649858",
+          "end_exclusive": "0x14664985f",
+          "file_offset": "0x6648658",
+          "byte_count": 7,
+          "sha256": "a3d43c3b6b97e6c2001bbd7354c021ec6ff82f05c828d6a39d3cf49553ec81d0",
+          "text": "UiInput"
+        },
+        "scope": "Exact formatter payload and pointer only; these label candidate input interfaces. Builder argument use, system ordering, predicates and consumers remain unproved."
+      },
+      {
+        "table": {
+          "start": "0x1466455f8",
+          "end_exclusive": "0x146645618",
+          "file_offset": "0x66443f8",
+          "byte_count": 32,
+          "sha256": "1d346dd8fc163fdef1e0227af687510ecb487f1dc29fe29dc40c76bd13fbe92b",
+          "formatter_pointer_offset": "0x18",
+          "formatter_pointer": "0x140b00770"
+        },
+        "formatter": {
+          "start": "0x140b00770",
+          "end_exclusive": "0x140b00785",
+          "file_offset": "0xaffb70",
+          "byte_count": 21,
+          "sha256": "f29c5498387ebe4b0a778d4d994210b7044cabb25b0bfe075f6be74464406189",
+          "bytes_hex": "4889d1488d158c91b40541b80c000000e92b578005",
+          "instructions": [
+            {
+              "address": "0x140b00770",
+              "bytes_hex": "4889d1",
+              "mnemonic": "mov",
+              "operands": "rcx, rdx"
+            },
+            {
+              "address": "0x140b00773",
+              "bytes_hex": "488d158c91b405",
+              "mnemonic": "lea",
+              "operands": "rdx, [rip + 0x5b4918c]"
+            },
+            {
+              "address": "0x140b0077a",
+              "bytes_hex": "41b80c000000",
+              "mnemonic": "mov",
+              "operands": "r8d, 0xc"
+            },
+            {
+              "address": "0x140b00780",
+              "bytes_hex": "e92b578005",
+              "mnemonic": "jmp",
+              "operands": "0x146305eb0"
+            }
+          ]
+        },
+        "payload": {
+          "start": "0x146649906",
+          "end_exclusive": "0x146649912",
+          "file_offset": "0x6648706",
+          "byte_count": 12,
+          "sha256": "c7b0cb0bafe57bf5915e92375607ca5fb11c6d0321f610493a214e941fd9fdf9",
+          "text": "UiInputViews"
+        },
+        "scope": "Exact formatter payload and pointer only; these label candidate input interfaces. Builder argument use, system ordering, predicates and consumers remain unproved."
+      },
+      {
+        "table": {
+          "start": "0x146609e20",
+          "end_exclusive": "0x146609e40",
+          "file_offset": "0x6608c20",
+          "byte_count": 32,
+          "sha256": "2c3a063fbb1c6c9507b432734819ad611c3fba58599a5cc994324a004823c7cc",
+          "formatter_pointer_offset": "0x18",
+          "formatter_pointer": "0x1408a8b60"
+        },
+        "formatter": {
+          "start": "0x1408a8b60",
+          "end_exclusive": "0x1408a8b75",
+          "file_offset": "0x8a7f60",
+          "byte_count": 21,
+          "sha256": "b901690f78ec56f74e39a5790cc0f88788809ac2bd5d6fee112ffc6d3b9a1220",
+          "bytes_hex": "4889d1488d15ee52d60541b80b000000e93bd3a505",
+          "instructions": [
+            {
+              "address": "0x1408a8b60",
+              "bytes_hex": "4889d1",
+              "mnemonic": "mov",
+              "operands": "rcx, rdx"
+            },
+            {
+              "address": "0x1408a8b63",
+              "bytes_hex": "488d15ee52d605",
+              "mnemonic": "lea",
+              "operands": "rdx, [rip + 0x5d652ee]"
+            },
+            {
+              "address": "0x1408a8b6a",
+              "bytes_hex": "41b80b000000",
+              "mnemonic": "mov",
+              "operands": "r8d, 0xb"
+            },
+            {
+              "address": "0x1408a8b70",
+              "bytes_hex": "e93bd3a505",
+              "mnemonic": "jmp",
+              "operands": "0x146305eb0"
+            }
+          ]
+        },
+        "payload": {
+          "start": "0x14660de58",
+          "end_exclusive": "0x14660de63",
+          "file_offset": "0x660cc58",
+          "byte_count": 11,
+          "sha256": "4f405e379890fbd5aae6c3b48d4284c664f005a9bf0d4b047341abaa30add4c2",
+          "text": "BindingHead"
+        },
+        "scope": "Exact formatter payload and pointer only; these label candidate input interfaces. Builder argument use, system ordering, predicates and consumers remain unproved."
+      }
+    ],
+    "source_status": "Existing source seams remain candidates. Native query recovery below does not assign the new plugin or gate resource to the current source implementation."
+  },
+  "queries": [
+    {
+      "procedure": "0x1408882e0",
+      "source_first_question": "Which resource initialization and scheduled callable descriptors does the dispatch-linked InputGatePlugin callback construct, and which actual input state producer/clear/consumer contract can be established from this owner? Existing LocalClientExtension capture/reset and UiInput ordering are source seams only. Stop at generic App/ECS interfaces; descriptor labels alone do not prove modal input behavior or schedule ordering.",
+      "invocation": "./scripts/rea query runtime/execheck-0.139.1/input-gate-native/slices/plan-1408882e0.json",
+      "raw_mapping": {
+        "path": "runtime/execheck-0.139.1/input-gate-native/slices/picker-1408882e0.bin",
+        "sha256": "18084b160314446252985ea2a97a392b17b97abaf134511cbd5237c1d4dd5280",
+        "source_file_offset": "0x8876e0",
+        "source_file_end_exclusive": "0x887e05",
+        "original_virtual_address": "0x1408882e0",
+        "original_virtual_end_exclusive": "0x140888a05",
+        "byte_count": 1829,
+        "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+      },
+      "input_provenance": {
+        "path": "runtime/execheck-0.139.1/input-gate-native/input.json",
+        "sha256": "369a791fffddb162ed6aa595cdbe188f8ff0457df8ec15afce88cc570340d16e"
+      },
+      "operations": [
+        {
+          "name": "procedure_info",
+          "status": "completed",
+          "attempts": 1,
+          "proof": {
+            "raw_input": {
+              "path": "runtime/execheck-0.139.1/input-gate-native/slices/picker-1408882e0.bin",
+              "sha256": "18084b160314446252985ea2a97a392b17b97abaf134511cbd5237c1d4dd5280"
+            },
+            "slice_virtual_address": "0x1408882e0",
+            "procedure": "0x1408882e0",
+            "plan": {
+              "path": "runtime/execheck-0.139.1/input-gate-native/slices/plan-1408882e0.json",
+              "sha256": "12b4625a3005a0c451c803ecded3aa5934321ddc0517df8510f780fd5d293a7e"
+            },
+            "journal": {
+              "path": "runtime/analysis/tasks/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/input-gate-interface-1408882e0/journal.json",
+              "sha256": "c1b765d1126f20f293fcf5ded6f2aa159b11108e371eb8f16e2a2f0dc0ee0d0d"
+            },
+            "result": {
+              "path": "runtime/analysis/tasks/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/input-gate-interface-1408882e0/results/0428b051fe037d3d0fa861b811640e5bcb2274cb987ed0bc53b2ce1b12df07b2-ee764b5a9cb08ad5.json",
+              "sha256": "7c2feb22e92a9cf822c8f20ef21702a434f4cd015929605bd4ff71e7ad032c7b"
+            },
+            "evidence_id": "ev_7973407e2a409b49c6c5acad266bee95b7c7f9e38fe984a3dc84c06a7394dd21",
+            "provider": {
+              "id": "ghidra",
+              "name": "Ghidra",
+              "version": "12.1.4"
+            },
+            "analysis_profile_digest": "0631dd8ef03faa372753cacda7502890dbd761a0488ec2db92370cf3614f2ce9"
+          },
+          "subject_verification": {
+            "kind": "exact_declared_PE_raw_slice",
+            "target_sha256": "1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d",
+            "raw_sha256": "18084b160314446252985ea2a97a392b17b97abaf134511cbd5237c1d4dd5280",
+            "virtual_address": "0x1408882e0",
+            "file_offset": "0x8876e0",
+            "byte_count": 1829,
+            "result": "runtime/analysis/objects/7c/7c2feb22e92a9cf822c8f20ef21702a434f4cd015929605bd4ff71e7ad032c7b",
+            "semantic_or_runtime_correspondence_established": false
+          },
+          "program": {
+            "target_sha256": "18084b160314446252985ea2a97a392b17b97abaf134511cbd5237c1d4dd5280",
+            "workspace_id": "4912dca1808acaa8ee1c70a31fbd969d008976b1a6d176d4f6efe6840a5aebee",
+            "revision": 1,
+            "preparation_sha256": "dbab8f99e2b2bd26d755a401190f2489a4189f7dce4c17ed0397cb94f6e89ba3"
+          },
+          "native_body": {
+            "available": true,
+            "contains_entry": true,
+            "non_contiguous": false,
+            "provenance": "ghidra-function-body-address-set",
+            "ranges": [
+              {
+                "end": "0x140888a04",
+                "start": "0x1408882e0"
+              }
+            ],
+            "span_bytes": 1829,
+            "total_bytes": 1829
+          },
+          "basicblock_count": 39
+        },
+        {
+          "name": "procedure_pseudo_code",
+          "status": "completed",
+          "attempts": 1,
+          "proof": {
+            "raw_input": {
+              "path": "runtime/execheck-0.139.1/input-gate-native/slices/picker-1408882e0.bin",
+              "sha256": "18084b160314446252985ea2a97a392b17b97abaf134511cbd5237c1d4dd5280"
+            },
+            "slice_virtual_address": "0x1408882e0",
+            "procedure": "0x1408882e0",
+            "plan": {
+              "path": "runtime/execheck-0.139.1/input-gate-native/slices/plan-1408882e0.json",
+              "sha256": "12b4625a3005a0c451c803ecded3aa5934321ddc0517df8510f780fd5d293a7e"
+            },
+            "journal": {
+              "path": "runtime/analysis/tasks/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/input-gate-interface-1408882e0/journal.json",
+              "sha256": "c1b765d1126f20f293fcf5ded6f2aa159b11108e371eb8f16e2a2f0dc0ee0d0d"
+            },
+            "result": {
+              "path": "runtime/analysis/tasks/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/input-gate-interface-1408882e0/results/8974a1d48a42653c6a34462221ff13096d0bdeebac6e5bfef810ee2dec7b4f6a-eaf1cdb3f0c206a3.json",
+              "sha256": "e376ac3bc99a72412406ba91574e6ef4684a3bdcf5dcd7aaafca8707b31fe360"
+            },
+            "evidence_id": "ev_8b38dcd249c951122e557fb8174efbb8c1950cbea2b47a2ba47d31ea9fd8e336",
+            "provider": {
+              "id": "ghidra",
+              "name": "Ghidra",
+              "version": "12.1.4"
+            },
+            "analysis_profile_digest": "0631dd8ef03faa372753cacda7502890dbd761a0488ec2db92370cf3614f2ce9"
+          },
+          "subject_verification": {
+            "kind": "exact_declared_PE_raw_slice",
+            "target_sha256": "1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d",
+            "raw_sha256": "18084b160314446252985ea2a97a392b17b97abaf134511cbd5237c1d4dd5280",
+            "virtual_address": "0x1408882e0",
+            "file_offset": "0x8876e0",
+            "byte_count": 1829,
+            "result": "runtime/analysis/objects/e3/e376ac3bc99a72412406ba91574e6ef4684a3bdcf5dcd7aaafca8707b31fe360",
+            "semantic_or_runtime_correspondence_established": false
+          },
+          "program": {
+            "target_sha256": "18084b160314446252985ea2a97a392b17b97abaf134511cbd5237c1d4dd5280",
+            "workspace_id": "4912dca1808acaa8ee1c70a31fbd969d008976b1a6d176d4f6efe6840a5aebee",
+            "revision": 1,
+            "preparation_sha256": "dbab8f99e2b2bd26d755a401190f2489a4189f7dce4c17ed0397cb94f6e89ba3"
+          },
+          "canonical_pseudocode": {
+            "path": "docs/analysis/evidence/0.139.1/input-gate/owner-1408882e0.c",
+            "sha256": "2e32968da421359b07bc75e70b8ad830cfdc92b685abf493da0a0537c2307226"
+          }
+        }
+      ]
+    },
+    {
+      "procedure": "0x140f1f330",
+      "source_first_question": "Which exact 96-byte record predicate and in-place retain/compaction behavior does the InputGate System slot +0x48 wrapper call at 0x140f1f330? Decode the two input resource operands and raw gate bytes without assuming the LocalClientExtension or event enum layouts. The two external four-case table payloads are checked independently; raw-slice Ghidra lacks them and cannot alone prove full dispatch coverage. Stop at membership predicates and event teardown helpers unless essential to distinguish the AS contract.",
+      "invocation": "./scripts/rea query runtime/execheck-0.139.1/input-gate-native/filter/slices/plan-140f1f330.json",
+      "raw_mapping": {
+        "path": "runtime/execheck-0.139.1/input-gate-native/filter/slices/picker-140f1f330.bin",
+        "sha256": "56a7f36ccbcdcfacace833a8e1abbb518fec8ded1ef3a36d275ec088278429f2",
+        "source_file_offset": "0xf1e730",
+        "source_file_end_exclusive": "0xf1e983",
+        "original_virtual_address": "0x140f1f330",
+        "original_virtual_end_exclusive": "0x140f1f583",
+        "byte_count": 595,
+        "boundary_source": "original PE exception directory RUNTIME_FUNCTION start/end"
+      },
+      "input_provenance": {
+        "path": "runtime/execheck-0.139.1/input-gate-native/filter/input.json",
+        "sha256": "88b4f6a183d2c68fd6c25d01a7914b67e95a666f1190be31f5ccdadf104fbac5"
+      },
+      "operations": [
+        {
+          "name": "procedure_info",
+          "status": "completed",
+          "attempts": 1,
+          "proof": {
+            "raw_input": {
+              "path": "runtime/execheck-0.139.1/input-gate-native/filter/slices/picker-140f1f330.bin",
+              "sha256": "56a7f36ccbcdcfacace833a8e1abbb518fec8ded1ef3a36d275ec088278429f2"
+            },
+            "slice_virtual_address": "0x140f1f330",
+            "procedure": "0x140f1f330",
+            "plan": {
+              "path": "runtime/execheck-0.139.1/input-gate-native/filter/slices/plan-140f1f330.json",
+              "sha256": "155791406e83bcef18eb546aab3b852212d3f82ebec4739cc4557cb612498337"
+            },
+            "journal": {
+              "path": "runtime/analysis/tasks/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/input-gate-filter-140f1f330/journal.json",
+              "sha256": "17608c1446a658e018c4087d6c3810c1a5c326da09f37fcdde1638cea857b971"
+            },
+            "result": {
+              "path": "runtime/analysis/tasks/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/input-gate-filter-140f1f330/results/38ae7dda23e14f1c67514dbe4a5e2b2f22bf42b4b6a67873347298d284d43983-c10a374422a10b37.json",
+              "sha256": "21f2f09c20b14f7d5c305a2e9ebe2e80466ed4bbe317a91512f60c64069b958c"
+            },
+            "evidence_id": "ev_b54e0c9229ccf438eeeb0ae16107aa6a8fe7ddd99dc82f0106f0ab665c8ccb2f",
+            "provider": {
+              "id": "ghidra",
+              "name": "Ghidra",
+              "version": "12.1.4"
+            },
+            "analysis_profile_digest": "766e48aad8d027e3d1b5dc9c7991f5534376270d6ae465782e138a58de6b5f98"
+          },
+          "subject_verification": {
+            "kind": "exact_declared_PE_raw_slice",
+            "target_sha256": "1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d",
+            "raw_sha256": "56a7f36ccbcdcfacace833a8e1abbb518fec8ded1ef3a36d275ec088278429f2",
+            "virtual_address": "0x140f1f330",
+            "file_offset": "0xf1e730",
+            "byte_count": 595,
+            "result": "runtime/analysis/objects/21/21f2f09c20b14f7d5c305a2e9ebe2e80466ed4bbe317a91512f60c64069b958c",
+            "semantic_or_runtime_correspondence_established": false
+          },
+          "program": {
+            "target_sha256": "56a7f36ccbcdcfacace833a8e1abbb518fec8ded1ef3a36d275ec088278429f2",
+            "workspace_id": "509da90d2c97faecce08b328ff8624b1377d8170170dc3dbc187008cb3001466",
+            "revision": 1,
+            "preparation_sha256": "b5e85bf0c02097532b58227e49060625597012522d17c72b8483a333ca7a80ae"
+          },
+          "native_body": {
+            "available": true,
+            "contains_entry": true,
+            "non_contiguous": true,
+            "provenance": "ghidra-function-body-address-set",
+            "ranges": [
+              {
+                "end": "0x140f1f38d",
+                "start": "0x140f1f330"
+              },
+              {
+                "end": "0x140f1f3ca",
+                "start": "0x140f1f3aa"
+              },
+              {
+                "end": "0x140f1f582",
+                "start": "0x140f1f572"
+              }
+            ],
+            "span_bytes": 595,
+            "total_bytes": 144
+          },
+          "basicblock_count": 4
+        },
+        {
+          "name": "procedure_pseudo_code",
+          "status": "completed",
+          "attempts": 1,
+          "proof": {
+            "raw_input": {
+              "path": "runtime/execheck-0.139.1/input-gate-native/filter/slices/picker-140f1f330.bin",
+              "sha256": "56a7f36ccbcdcfacace833a8e1abbb518fec8ded1ef3a36d275ec088278429f2"
+            },
+            "slice_virtual_address": "0x140f1f330",
+            "procedure": "0x140f1f330",
+            "plan": {
+              "path": "runtime/execheck-0.139.1/input-gate-native/filter/slices/plan-140f1f330.json",
+              "sha256": "155791406e83bcef18eb546aab3b852212d3f82ebec4739cc4557cb612498337"
+            },
+            "journal": {
+              "path": "runtime/analysis/tasks/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/input-gate-filter-140f1f330/journal.json",
+              "sha256": "17608c1446a658e018c4087d6c3810c1a5c326da09f37fcdde1638cea857b971"
+            },
+            "result": {
+              "path": "runtime/analysis/tasks/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/input-gate-filter-140f1f330/results/8f82f367bcf7493ba3ce534e893ad50f28405189155adac21f8eb32e23523b9a-2c1cb379c2cd33be.json",
+              "sha256": "f9fa0cb377008602e7414751ac383a3662e4e6af2fa2f9e85aa2607a56737830"
+            },
+            "evidence_id": "ev_24189c89dfc06fa7dc879ddadbaa54cbbb7f673778170b86bb7780b409519fca",
+            "provider": {
+              "id": "ghidra",
+              "name": "Ghidra",
+              "version": "12.1.4"
+            },
+            "analysis_profile_digest": "766e48aad8d027e3d1b5dc9c7991f5534376270d6ae465782e138a58de6b5f98"
+          },
+          "subject_verification": {
+            "kind": "exact_declared_PE_raw_slice",
+            "target_sha256": "1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d",
+            "raw_sha256": "56a7f36ccbcdcfacace833a8e1abbb518fec8ded1ef3a36d275ec088278429f2",
+            "virtual_address": "0x140f1f330",
+            "file_offset": "0xf1e730",
+            "byte_count": 595,
+            "result": "runtime/analysis/objects/f9/f9fa0cb377008602e7414751ac383a3662e4e6af2fa2f9e85aa2607a56737830",
+            "semantic_or_runtime_correspondence_established": false
+          },
+          "program": {
+            "target_sha256": "56a7f36ccbcdcfacace833a8e1abbb518fec8ded1ef3a36d275ec088278429f2",
+            "workspace_id": "509da90d2c97faecce08b328ff8624b1377d8170170dc3dbc187008cb3001466",
+            "revision": 1,
+            "preparation_sha256": "b5e85bf0c02097532b58227e49060625597012522d17c72b8483a333ca7a80ae"
+          },
+          "canonical_pseudocode": {
+            "path": "docs/analysis/evidence/0.139.1/input-gate/owner-140f1f330.c",
+            "sha256": "a0791e40dc99c6f898d287c7aa97a951bcf12857d496eeee91808126eb660d8a"
+          }
+        }
+      ]
+    }
+  ],
+  "execution_summary": {
+    "plans": 2,
+    "successful_plans": 2,
+    "completed_native_operations": 4,
+    "failed_operations": 0,
+    "attempts_per_operation": 1,
+    "full_PE_imports": 0
+  },
+  "source_context_receipt_relocation": {
+    "original": {
+      "path": "runtime/execheck-0.139.1/input-platform-leads.json",
+      "sha256": "2d95fb5d03e9e90b753aec3f9966d42968918cf39617f5e2c0808e7cee4d9fc5"
+    },
+    "retained": {
+      "sha256": "2d95fb5d03e9e90b753aec3f9966d42968918cf39617f5e2c0808e7cee4d9fc5",
+      "path": "runtime/analysis/objects/2d/2d95fb5d03e9e90b753aec3f9966d42968918cf39617f5e2c0808e7cee4d9fc5",
+      "bytes": 57617,
+      "kind": "input-gate-source-first-query-context"
+    },
+    "reason": "Executed plan source_first_receipts commit to the exact old handoff bytes. The obsolete runtime path is removed after promotion; this immutable CAS receipt preserves that commitment."
+  },
+  "limits": [
+    "Packed namespace, name leaf, exact descriptor dispatch, callback owner, bounded filter contract and source assignment remain distinct evidence levels.",
+    "Four static native operations were executed through the shared query route; no full-PE import, build, game/client/server/network execution or Program annotation mutation was performed.",
+    "No gameplay source, canonical coverage metadata, CURRENT-STATE or existing four-scope proof was edited.",
+    "The Wine/Proton repair remains unproved; ordinary platform API/body correspondence is not fix identity."
+  ],
+  "system_descriptor": {
+    "start": "0x14660b4c8",
+    "end_exclusive": "0x14660b570",
+    "file_offset": "0x660a2c8",
+    "byte_count": 168,
+    "sha256": "59c5e85e614244d1b1bb655c55b7713803feb251852d64efe8fbf762801a2df1",
+    "bytes_hex": "000000000000000028000000000000000800000000000000002200400100000000928a4001000000302c14400100000000d7144001000000f0d6144001000000e0d6144001000000a081894001000000e0457841010000001044784101000000000c894001000000300c894001000000a083894001000000406c764101000000707f894001000000102b144001000000604a6f4101000000902a144001000000a02a144001000000",
+    "slot_0x48": {
+      "pointer_cell": "0x14660b510",
+      "target": "0x1408981a0",
+      "role": "System::run_unsafe-shaped source interface; exact slot pointer and wrapper call are checked independently."
+    }
+  },
+  "wrapper": {
+    "start": "0x1408981a0",
+    "end_exclusive": "0x140898397",
+    "file_offset": "0x8975a0",
+    "byte_count": 503,
+    "sha256": "d8f8e24977b099ef7645c84c3b2aed9b9b7bfcf20cfaee5273848b7a0193e8e3",
+    "instructions": [
+      {
+        "address": "0x1408981a0",
+        "bytes_hex": "4157",
+        "mnemonic": "push",
+        "operands": "r15"
+      },
+      {
+        "address": "0x1408981a2",
+        "bytes_hex": "4156",
+        "mnemonic": "push",
+        "operands": "r14"
+      },
+      {
+        "address": "0x1408981a4",
+        "bytes_hex": "56",
+        "mnemonic": "push",
+        "operands": "rsi"
+      },
+      {
+        "address": "0x1408981a5",
+        "bytes_hex": "57",
+        "mnemonic": "push",
+        "operands": "rdi"
+      },
+      {
+        "address": "0x1408981a6",
+        "bytes_hex": "53",
+        "mnemonic": "push",
+        "operands": "rbx"
+      },
+      {
+        "address": "0x1408981a7",
+        "bytes_hex": "4881ec80000000",
+        "mnemonic": "sub",
+        "operands": "rsp, 0x80"
+      },
+      {
+        "address": "0x1408981ae",
+        "bytes_hex": "bb01000000",
+        "mnemonic": "mov",
+        "operands": "ebx, 1"
+      },
+      {
+        "address": "0x1408981b3",
+        "bytes_hex": "f0410fc198b0050000",
+        "mnemonic": "lock xadd",
+        "operands": "dword ptr [r8 + 0x5b0], ebx"
+      },
+      {
+        "address": "0x1408981bc",
+        "bytes_hex": "833a01",
+        "mnemonic": "cmp",
+        "operands": "dword ptr [rdx], 1"
+      },
+      {
+        "address": "0x1408981bf",
+        "bytes_hex": "0f850b010000",
+        "mnemonic": "jne",
+        "operands": "0x1408982d0"
+      },
+      {
+        "address": "0x1408981c5",
+        "bytes_hex": "4889d6",
+        "mnemonic": "mov",
+        "operands": "rsi, rdx"
+      },
+      {
+        "address": "0x1408981c8",
+        "bytes_hex": "498b80a0050000",
+        "mnemonic": "mov",
+        "operands": "rax, qword ptr [r8 + 0x5a0]"
+      },
+      {
+        "address": "0x1408981cf",
+        "bytes_hex": "4889442440",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rsp + 0x40], rax"
+      },
+      {
+        "address": "0x1408981d4",
+        "bytes_hex": "48394218",
+        "mnemonic": "cmp",
+        "operands": "qword ptr [rdx + 0x18], rax"
+      },
+      {
+        "address": "0x1408981d8",
+        "bytes_hex": "0f850c010000",
+        "mnemonic": "jne",
+        "operands": "0x1408982ea"
+      },
+      {
+        "address": "0x1408981de",
+        "bytes_hex": "488b4608",
+        "mnemonic": "mov",
+        "operands": "rax, qword ptr [rsi + 8]"
+      },
+      {
+        "address": "0x1408981e2",
+        "bytes_hex": "498b9018020000",
+        "mnemonic": "mov",
+        "operands": "rdx, qword ptr [r8 + 0x218]"
+      },
+      {
+        "address": "0x1408981e9",
+        "bytes_hex": "4839d0",
+        "mnemonic": "cmp",
+        "operands": "rax, rdx"
+      },
+      {
+        "address": "0x1408981ec",
+        "bytes_hex": "0f8329010000",
+        "mnemonic": "jae",
+        "operands": "0x14089831b"
+      },
+      {
+        "address": "0x1408981f2",
+        "bytes_hex": "4d8b8810020000",
+        "mnemonic": "mov",
+        "operands": "r9, qword ptr [r8 + 0x210]"
+      },
+      {
+        "address": "0x1408981f9",
+        "bytes_hex": "498b04c1",
+        "mnemonic": "mov",
+        "operands": "rax, qword ptr [r9 + rax*8]"
+      },
+      {
+        "address": "0x1408981fd",
+        "bytes_hex": "4885c0",
+        "mnemonic": "test",
+        "operands": "rax, rax"
+      },
+      {
+        "address": "0x140898200",
+        "bytes_hex": "0f8415010000",
+        "mnemonic": "je",
+        "operands": "0x14089831b"
+      },
+      {
+        "address": "0x140898206",
+        "bytes_hex": "4889cf",
+        "mnemonic": "mov",
+        "operands": "rdi, rcx"
+      },
+      {
+        "address": "0x140898209",
+        "bytes_hex": "498b88e0010000",
+        "mnemonic": "mov",
+        "operands": "rcx, qword ptr [r8 + 0x1e0]"
+      },
+      {
+        "address": "0x140898210",
+        "bytes_hex": "48f7d0",
+        "mnemonic": "not",
+        "operands": "rax"
+      },
+      {
+        "address": "0x140898213",
+        "bytes_hex": "486bc038",
+        "mnemonic": "imul",
+        "operands": "rax, rax, 0x38"
+      },
+      {
+        "address": "0x140898217",
+        "bytes_hex": "807c013000",
+        "mnemonic": "cmp",
+        "operands": "byte ptr [rcx + rax + 0x30], 0"
+      },
+      {
+        "address": "0x14089821c",
+        "bytes_hex": "0f84f9000000",
+        "mnemonic": "je",
+        "operands": "0x14089831b"
+      },
+      {
+        "address": "0x140898222",
+        "bytes_hex": "4c8b5610",
+        "mnemonic": "mov",
+        "operands": "r10, qword ptr [rsi + 0x10]"
+      },
+      {
+        "address": "0x140898226",
+        "bytes_hex": "4939d2",
+        "mnemonic": "cmp",
+        "operands": "r10, rdx"
+      },
+      {
+        "address": "0x140898229",
+        "bytes_hex": "0f832a010000",
+        "mnemonic": "jae",
+        "operands": "0x140898359"
+      },
+      {
+        "address": "0x14089822f",
+        "bytes_hex": "4b8b14d1",
+        "mnemonic": "mov",
+        "operands": "rdx, qword ptr [r9 + r10*8]"
+      },
+      {
+        "address": "0x140898233",
+        "bytes_hex": "4885d2",
+        "mnemonic": "test",
+        "operands": "rdx, rdx"
+      },
+      {
+        "address": "0x140898236",
+        "bytes_hex": "0f841d010000",
+        "mnemonic": "je",
+        "operands": "0x140898359"
+      },
+      {
+        "address": "0x14089823c",
+        "bytes_hex": "48f7d2",
+        "mnemonic": "not",
+        "operands": "rdx"
+      },
+      {
+        "address": "0x14089823f",
+        "bytes_hex": "486bd238",
+        "mnemonic": "imul",
+        "operands": "rdx, rdx, 0x38"
+      },
+      {
+        "address": "0x140898243",
+        "bytes_hex": "807c113000",
+        "mnemonic": "cmp",
+        "operands": "byte ptr [rcx + rdx + 0x30], 0"
+      },
+      {
+        "address": "0x140898248",
+        "bytes_hex": "0f840b010000",
+        "mnemonic": "je",
+        "operands": "0x140898359"
+      },
+      {
+        "address": "0x14089824e",
+        "bytes_hex": "4801c8",
+        "mnemonic": "add",
+        "operands": "rax, rcx"
+      },
+      {
+        "address": "0x140898251",
+        "bytes_hex": "4c8b4810",
+        "mnemonic": "mov",
+        "operands": "r9, qword ptr [rax + 0x10]"
+      },
+      {
+        "address": "0x140898255",
+        "bytes_hex": "448b5620",
+        "mnemonic": "mov",
+        "operands": "r10d, dword ptr [rsi + 0x20]"
+      },
+      {
+        "address": "0x140898259",
+        "bytes_hex": "4801ca",
+        "mnemonic": "add",
+        "operands": "rdx, rcx"
+      },
+      {
+        "address": "0x14089825c",
+        "bytes_hex": "4c8d582c",
+        "mnemonic": "lea",
+        "operands": "r11, [rax + 0x2c]"
+      },
+      {
+        "address": "0x140898260",
+        "bytes_hex": "4883c028",
+        "mnemonic": "add",
+        "operands": "rax, 0x28"
+      },
+      {
+        "address": "0x140898264",
+        "bytes_hex": "488b4a10",
+        "mnemonic": "mov",
+        "operands": "rcx, qword ptr [rdx + 0x10]"
+      },
+      {
+        "address": "0x140898268",
+        "bytes_hex": "4c8d7228",
+        "mnemonic": "lea",
+        "operands": "r14, [rdx + 0x28]"
+      },
+      {
+        "address": "0x14089826c",
+        "bytes_hex": "4c8d7a2c",
+        "mnemonic": "lea",
+        "operands": "r15, [rdx + 0x2c]"
+      },
+      {
+        "address": "0x140898270",
+        "bytes_hex": "458b80b0050000",
+        "mnemonic": "mov",
+        "operands": "r8d, dword ptr [r8 + 0x5b0]"
+      },
+      {
+        "address": "0x140898277",
+        "bytes_hex": "4c894c2440",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rsp + 0x40], r9"
+      },
+      {
+        "address": "0x14089827c",
+        "bytes_hex": "4889442448",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rsp + 0x48], rax"
+      },
+      {
+        "address": "0x140898281",
+        "bytes_hex": "4c895c2450",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rsp + 0x50], r11"
+      },
+      {
+        "address": "0x140898286",
+        "bytes_hex": "4489542458",
+        "mnemonic": "mov",
+        "operands": "dword ptr [rsp + 0x58], r10d"
+      },
+      {
+        "address": "0x14089828b",
+        "bytes_hex": "895c245c",
+        "mnemonic": "mov",
+        "operands": "dword ptr [rsp + 0x5c], ebx"
+      },
+      {
+        "address": "0x14089828f",
+        "bytes_hex": "48894c2460",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rsp + 0x60], rcx"
+      },
+      {
+        "address": "0x140898294",
+        "bytes_hex": "4c89742468",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rsp + 0x68], r14"
+      },
+      {
+        "address": "0x140898299",
+        "bytes_hex": "4c897c2470",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rsp + 0x70], r15"
+      },
+      {
+        "address": "0x14089829e",
+        "bytes_hex": "4489542478",
+        "mnemonic": "mov",
+        "operands": "dword ptr [rsp + 0x78], r10d"
+      },
+      {
+        "address": "0x1408982a3",
+        "bytes_hex": "895c247c",
+        "mnemonic": "mov",
+        "operands": "dword ptr [rsp + 0x7c], ebx"
+      },
+      {
+        "address": "0x1408982a7",
+        "bytes_hex": "895a2c",
+        "mnemonic": "mov",
+        "operands": "dword ptr [rdx + 0x2c], ebx"
+      },
+      {
+        "address": "0x1408982aa",
+        "bytes_hex": "488d542440",
+        "mnemonic": "lea",
+        "operands": "rdx, [rsp + 0x40]"
+      },
+      {
+        "address": "0x1408982af",
+        "bytes_hex": "e87c706800",
+        "mnemonic": "call",
+        "operands": "0x140f1f330"
+      },
+      {
+        "address": "0x1408982b4",
+        "bytes_hex": "895e20",
+        "mnemonic": "mov",
+        "operands": "dword ptr [rsi + 0x20], ebx"
+      },
+      {
+        "address": "0x1408982b7",
+        "bytes_hex": "48c707fdffffff",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rdi], 0xfffffffffffffffd"
+      },
+      {
+        "address": "0x1408982be",
+        "bytes_hex": "4889f8",
+        "mnemonic": "mov",
+        "operands": "rax, rdi"
+      },
+      {
+        "address": "0x1408982c1",
+        "bytes_hex": "4881c480000000",
+        "mnemonic": "add",
+        "operands": "rsp, 0x80"
+      },
+      {
+        "address": "0x1408982c8",
+        "bytes_hex": "5b",
+        "mnemonic": "pop",
+        "operands": "rbx"
+      },
+      {
+        "address": "0x1408982c9",
+        "bytes_hex": "5f",
+        "mnemonic": "pop",
+        "operands": "rdi"
+      },
+      {
+        "address": "0x1408982ca",
+        "bytes_hex": "5e",
+        "mnemonic": "pop",
+        "operands": "rsi"
+      },
+      {
+        "address": "0x1408982cb",
+        "bytes_hex": "415e",
+        "mnemonic": "pop",
+        "operands": "r14"
+      },
+      {
+        "address": "0x1408982cd",
+        "bytes_hex": "415f",
+        "mnemonic": "pop",
+        "operands": "r15"
+      },
+      {
+        "address": "0x1408982cf",
+        "bytes_hex": "c3",
+        "mnemonic": "ret",
+        "operands": ""
+      },
+      {
+        "address": "0x1408982d0",
+        "bytes_hex": "488d0d9152d705",
+        "mnemonic": "lea",
+        "operands": "rcx, [rip + 0x5d75291]"
+      },
+      {
+        "address": "0x1408982d7",
+        "bytes_hex": "4c8d05ea52d705",
+        "mnemonic": "lea",
+        "operands": "r8, [rip + 0x5d752ea]"
+      },
+      {
+        "address": "0x1408982de",
+        "bytes_hex": "ba59000000",
+        "mnemonic": "mov",
+        "operands": "edx, 0x59"
+      },
+      {
+        "address": "0x1408982e3",
+        "bytes_hex": "e8f8bfc305",
+        "mnemonic": "call",
+        "operands": "0x1464d42e0"
+      },
+      {
+        "address": "0x1408982e8",
+        "bytes_hex": "0f0b",
+        "mnemonic": "ud2",
+        "operands": ""
+      },
+      {
+        "address": "0x1408982ea",
+        "bytes_hex": "4883c618",
+        "mnemonic": "add",
+        "operands": "rsi, 0x18"
+      },
+      {
+        "address": "0x1408982ee",
+        "bytes_hex": "488d055b53d705",
+        "mnemonic": "lea",
+        "operands": "rax, [rip + 0x5d7535b]"
+      },
+      {
+        "address": "0x1408982f5",
+        "bytes_hex": "4889442428",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rsp + 0x28], rax"
+      },
+      {
+        "address": "0x1408982fa",
+        "bytes_hex": "48c7442420df000000",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rsp + 0x20], 0xdf"
+      },
+      {
+        "address": "0x140898303",
+        "bytes_hex": "4c8d0dd652d705",
+        "mnemonic": "lea",
+        "operands": "r9, [rip + 0x5d752d6]"
+      },
+      {
+        "address": "0x14089830a",
+        "bytes_hex": "4c8d442440",
+        "mnemonic": "lea",
+        "operands": "r8, [rsp + 0x40]"
+      },
+      {
+        "address": "0x14089830f",
+        "bytes_hex": "31c9",
+        "mnemonic": "xor",
+        "operands": "ecx, ecx"
+      },
+      {
+        "address": "0x140898311",
+        "bytes_hex": "4889f2",
+        "mnemonic": "mov",
+        "operands": "rdx, rsi"
+      },
+      {
+        "address": "0x140898314",
+        "bytes_hex": "e8b40bc005",
+        "mnemonic": "call",
+        "operands": "0x146498ecd"
+      },
+      {
+        "address": "0x140898319",
+        "bytes_hex": "0f0b",
+        "mnemonic": "ud2",
+        "operands": ""
+      },
+      {
+        "address": "0x14089831b",
+        "bytes_hex": "4883c624",
+        "mnemonic": "add",
+        "operands": "rsi, 0x24"
+      },
+      {
+        "address": "0x14089831f",
+        "bytes_hex": "4889742440",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rsp + 0x40], rsi"
+      },
+      {
+        "address": "0x140898324",
+        "bytes_hex": "488d05957c4d05",
+        "mnemonic": "lea",
+        "operands": "rax, [rip + 0x54d7c95]"
+      },
+      {
+        "address": "0x14089832b",
+        "bytes_hex": "4889442448",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rsp + 0x48], rax"
+      },
+      {
+        "address": "0x140898330",
+        "bytes_hex": "488d4c243f",
+        "mnemonic": "lea",
+        "operands": "rcx, [rsp + 0x3f]"
+      },
+      {
+        "address": "0x140898335",
+        "bytes_hex": "48894c2450",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rsp + 0x50], rcx"
+      },
+      {
+        "address": "0x14089833a",
+        "bytes_hex": "4889442458",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rsp + 0x58], rax"
+      },
+      {
+        "address": "0x14089833f",
+        "bytes_hex": "488d0d224ad705",
+        "mnemonic": "lea",
+        "operands": "rcx, [rip + 0x5d74a22]"
+      },
+      {
+        "address": "0x140898346",
+        "bytes_hex": "4c8d05bb4ad705",
+        "mnemonic": "lea",
+        "operands": "r8, [rip + 0x5d74abb]"
+      },
+      {
+        "address": "0x14089834d",
+        "bytes_hex": "488d542440",
+        "mnemonic": "lea",
+        "operands": "rdx, [rsp + 0x40]"
+      },
+      {
+        "address": "0x140898352",
+        "bytes_hex": "e849c2c305",
+        "mnemonic": "call",
+        "operands": "0x1464d45a0"
+      },
+      {
+        "address": "0x140898357",
+        "bytes_hex": "0f0b",
+        "mnemonic": "ud2",
+        "operands": ""
+      },
+      {
+        "address": "0x140898359",
+        "bytes_hex": "4883c624",
+        "mnemonic": "add",
+        "operands": "rsi, 0x24"
+      },
+      {
+        "address": "0x14089835d",
+        "bytes_hex": "4889742440",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rsp + 0x40], rsi"
+      },
+      {
+        "address": "0x140898362",
+        "bytes_hex": "488d05577c4d05",
+        "mnemonic": "lea",
+        "operands": "rax, [rip + 0x54d7c57]"
+      },
+      {
+        "address": "0x140898369",
+        "bytes_hex": "4889442448",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rsp + 0x48], rax"
+      },
+      {
+        "address": "0x14089836e",
+        "bytes_hex": "488d4c243f",
+        "mnemonic": "lea",
+        "operands": "rcx, [rsp + 0x3f]"
+      },
+      {
+        "address": "0x140898373",
+        "bytes_hex": "48894c2450",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rsp + 0x50], rcx"
+      },
+      {
+        "address": "0x140898378",
+        "bytes_hex": "4889442458",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rsp + 0x58], rax"
+      },
+      {
+        "address": "0x14089837d",
+        "bytes_hex": "488d0de449d705",
+        "mnemonic": "lea",
+        "operands": "rcx, [rip + 0x5d749e4]"
+      },
+      {
+        "address": "0x140898384",
+        "bytes_hex": "4c8d05d54ad705",
+        "mnemonic": "lea",
+        "operands": "r8, [rip + 0x5d74ad5]"
+      },
+      {
+        "address": "0x14089838b",
+        "bytes_hex": "488d542440",
+        "mnemonic": "lea",
+        "operands": "rdx, [rsp + 0x40]"
+      },
+      {
+        "address": "0x140898390",
+        "bytes_hex": "e80bc2c305",
+        "mnemonic": "call",
+        "operands": "0x1464d45a0"
+      },
+      {
+        "address": "0x140898395",
+        "bytes_hex": "0f0b",
+        "mnemonic": "ud2",
+        "operands": ""
+      }
+    ],
+    "internal_direct_branches": [
+      {
+        "site": "0x1408981bf",
+        "target": "0x1408982d0",
+        "target_offset": "0x130"
+      },
+      {
+        "site": "0x1408981d8",
+        "target": "0x1408982ea",
+        "target_offset": "0x14a"
+      },
+      {
+        "site": "0x1408981ec",
+        "target": "0x14089831b",
+        "target_offset": "0x17b"
+      },
+      {
+        "site": "0x140898200",
+        "target": "0x14089831b",
+        "target_offset": "0x17b"
+      },
+      {
+        "site": "0x14089821c",
+        "target": "0x14089831b",
+        "target_offset": "0x17b"
+      },
+      {
+        "site": "0x140898229",
+        "target": "0x140898359",
+        "target_offset": "0x1b9"
+      },
+      {
+        "site": "0x140898236",
+        "target": "0x140898359",
+        "target_offset": "0x1b9"
+      },
+      {
+        "site": "0x140898248",
+        "target": "0x140898359",
+        "target_offset": "0x1b9"
+      }
+    ],
+    "direct_filter_call_site": "0x1408982af",
+    "direct_filter_call_target": "0x140f1f330"
+  },
+  "filter": {
+    "start": "0x140f1f330",
+    "end_exclusive": "0x140f1f583",
+    "file_offset": "0xf1e730",
+    "byte_count": 595,
+    "sha256": "56a7f36ccbcdcfacace833a8e1abbb518fec8ded1ef3a36d275ec088278429f2",
+    "instructions": [
+      {
+        "address": "0x140f1f330",
+        "bytes_hex": "55",
+        "mnemonic": "push",
+        "operands": "rbp"
+      },
+      {
+        "address": "0x140f1f331",
+        "bytes_hex": "4157",
+        "mnemonic": "push",
+        "operands": "r15"
+      },
+      {
+        "address": "0x140f1f333",
+        "bytes_hex": "4156",
+        "mnemonic": "push",
+        "operands": "r14"
+      },
+      {
+        "address": "0x140f1f335",
+        "bytes_hex": "4155",
+        "mnemonic": "push",
+        "operands": "r13"
+      },
+      {
+        "address": "0x140f1f337",
+        "bytes_hex": "4154",
+        "mnemonic": "push",
+        "operands": "r12"
+      },
+      {
+        "address": "0x140f1f339",
+        "bytes_hex": "56",
+        "mnemonic": "push",
+        "operands": "rsi"
+      },
+      {
+        "address": "0x140f1f33a",
+        "bytes_hex": "57",
+        "mnemonic": "push",
+        "operands": "rdi"
+      },
+      {
+        "address": "0x140f1f33b",
+        "bytes_hex": "53",
+        "mnemonic": "push",
+        "operands": "rbx"
+      },
+      {
+        "address": "0x140f1f33c",
+        "bytes_hex": "4883ec58",
+        "mnemonic": "sub",
+        "operands": "rsp, 0x58"
+      },
+      {
+        "address": "0x140f1f340",
+        "bytes_hex": "488d6c2450",
+        "mnemonic": "lea",
+        "operands": "rbp, [rsp + 0x50]"
+      },
+      {
+        "address": "0x140f1f345",
+        "bytes_hex": "48c74500feffffff",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rbp], 0xfffffffffffffffe"
+      },
+      {
+        "address": "0x140f1f34d",
+        "bytes_hex": "48894de0",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rbp - 0x20], rcx"
+      },
+      {
+        "address": "0x140f1f351",
+        "bytes_hex": "4c8b4110",
+        "mnemonic": "mov",
+        "operands": "r8, qword ptr [rcx + 0x10]"
+      },
+      {
+        "address": "0x140f1f355",
+        "bytes_hex": "4d85c0",
+        "mnemonic": "test",
+        "operands": "r8, r8"
+      },
+      {
+        "address": "0x140f1f358",
+        "bytes_hex": "0f8414020000",
+        "mnemonic": "je",
+        "operands": "0x140f1f572"
+      },
+      {
+        "address": "0x140f1f35e",
+        "bytes_hex": "488b45e0",
+        "mnemonic": "mov",
+        "operands": "rax, qword ptr [rbp - 0x20]"
+      },
+      {
+        "address": "0x140f1f362",
+        "bytes_hex": "488b4008",
+        "mnemonic": "mov",
+        "operands": "rax, qword ptr [rax + 8]"
+      },
+      {
+        "address": "0x140f1f366",
+        "bytes_hex": "488b1a",
+        "mnemonic": "mov",
+        "operands": "rbx, qword ptr [rdx]"
+      },
+      {
+        "address": "0x140f1f369",
+        "bytes_hex": "488945f8",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rbp - 8], rax"
+      },
+      {
+        "address": "0x140f1f36d",
+        "bytes_hex": "488d7040",
+        "mnemonic": "lea",
+        "operands": "rsi, [rax + 0x40]"
+      },
+      {
+        "address": "0x140f1f371",
+        "bytes_hex": "4531e4",
+        "mnemonic": "xor",
+        "operands": "r12d, r12d"
+      },
+      {
+        "address": "0x140f1f374",
+        "bytes_hex": "4c8d2d955c7705",
+        "mnemonic": "lea",
+        "operands": "r13, [rip + 0x5775c95]"
+      },
+      {
+        "address": "0x140f1f37b",
+        "bytes_hex": "49be000000000000187b",
+        "mnemonic": "movabs",
+        "operands": "r14, 0x7b18000000000000"
+      },
+      {
+        "address": "0x140f1f385",
+        "bytes_hex": "4531ff",
+        "mnemonic": "xor",
+        "operands": "r15d, r15d"
+      },
+      {
+        "address": "0x140f1f388",
+        "bytes_hex": "4c8945d8",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rbp - 0x28], r8"
+      },
+      {
+        "address": "0x140f1f38c",
+        "bytes_hex": "eb1c",
+        "mnemonic": "jmp",
+        "operands": "0x140f1f3aa"
+      },
+      {
+        "address": "0x140f1f38e",
+        "bytes_hex": "6690",
+        "mnemonic": "nop",
+        "operands": ""
+      },
+      {
+        "address": "0x140f1f390",
+        "bytes_hex": "807b3100",
+        "mnemonic": "cmp",
+        "operands": "byte ptr [rbx + 0x31], 0"
+      },
+      {
+        "address": "0x140f1f394",
+        "bytes_hex": "0f8592000000",
+        "mnemonic": "jne",
+        "operands": "0x140f1f42c"
+      },
+      {
+        "address": "0x140f1f39a",
+        "bytes_hex": "49ffc7",
+        "mnemonic": "inc",
+        "operands": "r15"
+      },
+      {
+        "address": "0x140f1f39d",
+        "bytes_hex": "4883c660",
+        "mnemonic": "add",
+        "operands": "rsi, 0x60"
+      },
+      {
+        "address": "0x140f1f3a1",
+        "bytes_hex": "4d39f8",
+        "mnemonic": "cmp",
+        "operands": "r8, r15"
+      },
+      {
+        "address": "0x140f1f3a4",
+        "bytes_hex": "0f84c8010000",
+        "mnemonic": "je",
+        "operands": "0x140f1f572"
+      },
+      {
+        "address": "0x140f1f3aa",
+        "bytes_hex": "488d7ec0",
+        "mnemonic": "lea",
+        "operands": "rdi, [rsi - 0x40]"
+      },
+      {
+        "address": "0x140f1f3ae",
+        "bytes_hex": "8b06",
+        "mnemonic": "mov",
+        "operands": "eax, dword ptr [rsi]"
+      },
+      {
+        "address": "0x140f1f3b0",
+        "bytes_hex": "488d883effffff",
+        "mnemonic": "lea",
+        "operands": "rcx, [rax - 0xc2]"
+      },
+      {
+        "address": "0x140f1f3b7",
+        "bytes_hex": "483dc3000000",
+        "mnemonic": "cmp",
+        "operands": "rax, 0xc3"
+      },
+      {
+        "address": "0x140f1f3bd",
+        "bytes_hex": "490f42cc",
+        "mnemonic": "cmovb",
+        "operands": "rcx, r12"
+      },
+      {
+        "address": "0x140f1f3c1",
+        "bytes_hex": "49634c8d00",
+        "mnemonic": "movsxd",
+        "operands": "rcx, dword ptr [r13 + rcx*4]"
+      },
+      {
+        "address": "0x140f1f3c6",
+        "bytes_hex": "4c01e9",
+        "mnemonic": "add",
+        "operands": "rcx, r13"
+      },
+      {
+        "address": "0x140f1f3c9",
+        "bytes_hex": "ffe1",
+        "mnemonic": "jmp",
+        "operands": "rcx"
+      },
+      {
+        "address": "0x140f1f3cb",
+        "bytes_hex": "807b3001",
+        "mnemonic": "cmp",
+        "operands": "byte ptr [rbx + 0x30], 1"
+      },
+      {
+        "address": "0x140f1f3cf",
+        "bytes_hex": "7506",
+        "mnemonic": "jne",
+        "operands": "0x140f1f3d7"
+      },
+      {
+        "address": "0x140f1f3d1",
+        "bytes_hex": "807e0c00",
+        "mnemonic": "cmp",
+        "operands": "byte ptr [rsi + 0xc], 0"
+      },
+      {
+        "address": "0x140f1f3d5",
+        "bytes_hex": "7448",
+        "mnemonic": "je",
+        "operands": "0x140f1f41f"
+      },
+      {
+        "address": "0x140f1f3d7",
+        "bytes_hex": "488b5308",
+        "mnemonic": "mov",
+        "operands": "rdx, qword ptr [rbx + 8]"
+      },
+      {
+        "address": "0x140f1f3db",
+        "bytes_hex": "4c8b4310",
+        "mnemonic": "mov",
+        "operands": "r8, qword ptr [rbx + 0x10]"
+      },
+      {
+        "address": "0x140f1f3df",
+        "bytes_hex": "4889f1",
+        "mnemonic": "mov",
+        "operands": "rcx, rsi"
+      },
+      {
+        "address": "0x140f1f3e2",
+        "bytes_hex": "e8a9cd70ff",
+        "mnemonic": "call",
+        "operands": "0x14062c190"
+      },
+      {
+        "address": "0x140f1f3e7",
+        "bytes_hex": "84c0",
+        "mnemonic": "test",
+        "operands": "al, al"
+      },
+      {
+        "address": "0x140f1f3e9",
+        "bytes_hex": "7541",
+        "mnemonic": "jne",
+        "operands": "0x140f1f42c"
+      },
+      {
+        "address": "0x140f1f3eb",
+        "bytes_hex": "488b5320",
+        "mnemonic": "mov",
+        "operands": "rdx, qword ptr [rbx + 0x20]"
+      },
+      {
+        "address": "0x140f1f3ef",
+        "bytes_hex": "4c8b4328",
+        "mnemonic": "mov",
+        "operands": "r8, qword ptr [rbx + 0x28]"
+      },
+      {
+        "address": "0x140f1f3f3",
+        "bytes_hex": "4889f9",
+        "mnemonic": "mov",
+        "operands": "rcx, rdi"
+      },
+      {
+        "address": "0x140f1f3f6",
+        "bytes_hex": "e815cb70ff",
+        "mnemonic": "call",
+        "operands": "0x14062bf10"
+      },
+      {
+        "address": "0x140f1f3fb",
+        "bytes_hex": "4c8b45d8",
+        "mnemonic": "mov",
+        "operands": "r8, qword ptr [rbp - 0x28]"
+      },
+      {
+        "address": "0x140f1f3ff",
+        "bytes_hex": "84c0",
+        "mnemonic": "test",
+        "operands": "al, al"
+      },
+      {
+        "address": "0x140f1f401",
+        "bytes_hex": "7497",
+        "mnemonic": "je",
+        "operands": "0x140f1f39a"
+      },
+      {
+        "address": "0x140f1f403",
+        "bytes_hex": "eb27",
+        "mnemonic": "jmp",
+        "operands": "0x140f1f42c"
+      },
+      {
+        "address": "0x140f1f405",
+        "bytes_hex": "66662e0f1f840000000000",
+        "mnemonic": "nop",
+        "operands": "word ptr cs:[rax + rax]"
+      },
+      {
+        "address": "0x140f1f410",
+        "bytes_hex": "807ec400",
+        "mnemonic": "cmp",
+        "operands": "byte ptr [rsi - 0x3c], 0"
+      },
+      {
+        "address": "0x140f1f414",
+        "bytes_hex": "0f8476ffffff",
+        "mnemonic": "je",
+        "operands": "0x140f1f390"
+      },
+      {
+        "address": "0x140f1f41a",
+        "bytes_hex": "e97bffffff",
+        "mnemonic": "jmp",
+        "operands": "0x140f1f39a"
+      },
+      {
+        "address": "0x140f1f41f",
+        "bytes_hex": "83f83e",
+        "mnemonic": "cmp",
+        "operands": "eax, 0x3e"
+      },
+      {
+        "address": "0x140f1f422",
+        "bytes_hex": "7708",
+        "mnemonic": "ja",
+        "operands": "0x140f1f42c"
+      },
+      {
+        "address": "0x140f1f424",
+        "bytes_hex": "89c0",
+        "mnemonic": "mov",
+        "operands": "eax, eax"
+      },
+      {
+        "address": "0x140f1f426",
+        "bytes_hex": "490fa3c6",
+        "mnemonic": "bt",
+        "operands": "r14, rax"
+      },
+      {
+        "address": "0x140f1f42a",
+        "bytes_hex": "72ab",
+        "mnemonic": "jb",
+        "operands": "0x140f1f3d7"
+      },
+      {
+        "address": "0x140f1f42c",
+        "bytes_hex": "4d8d6701",
+        "mnemonic": "lea",
+        "operands": "r12, [r15 + 1]"
+      },
+      {
+        "address": "0x140f1f430",
+        "bytes_hex": "4c8965f0",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rbp - 0x10], r12"
+      },
+      {
+        "address": "0x140f1f434",
+        "bytes_hex": "4c897de8",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rbp - 0x18], r15"
+      },
+      {
+        "address": "0x140f1f438",
+        "bytes_hex": "4889f9",
+        "mnemonic": "mov",
+        "operands": "rcx, rdi"
+      },
+      {
+        "address": "0x140f1f43b",
+        "bytes_hex": "e820cf0200",
+        "mnemonic": "call",
+        "operands": "0x140f4c360"
+      },
+      {
+        "address": "0x140f1f440",
+        "bytes_hex": "90",
+        "mnemonic": "nop",
+        "operands": ""
+      },
+      {
+        "address": "0x140f1f441",
+        "bytes_hex": "31ff",
+        "mnemonic": "xor",
+        "operands": "edi, edi"
+      },
+      {
+        "address": "0x140f1f443",
+        "bytes_hex": "4c8d2dd65b7705",
+        "mnemonic": "lea",
+        "operands": "r13, [rip + 0x5775bd6]"
+      },
+      {
+        "address": "0x140f1f44a",
+        "bytes_hex": "4c3b65d8",
+        "mnemonic": "cmp",
+        "operands": "r12, qword ptr [rbp - 0x28]"
+      },
+      {
+        "address": "0x140f1f44e",
+        "bytes_hex": "7237",
+        "mnemonic": "jb",
+        "operands": "0x140f1f487"
+      },
+      {
+        "address": "0x140f1f450",
+        "bytes_hex": "e915010000",
+        "mnemonic": "jmp",
+        "operands": "0x140f1f56a"
+      },
+      {
+        "address": "0x140f1f455",
+        "bytes_hex": "807e0400",
+        "mnemonic": "cmp",
+        "operands": "byte ptr [rsi + 4], 0"
+      },
+      {
+        "address": "0x140f1f459",
+        "bytes_hex": "0f85bb000000",
+        "mnemonic": "jne",
+        "operands": "0x140f1f51a"
+      },
+      {
+        "address": "0x140f1f45f",
+        "bytes_hex": "807b3101",
+        "mnemonic": "cmp",
+        "operands": "byte ptr [rbx + 0x31], 1"
+      },
+      {
+        "address": "0x140f1f463",
+        "bytes_hex": "0f85b1000000",
+        "mnemonic": "jne",
+        "operands": "0x140f1f51a"
+      },
+      {
+        "address": "0x140f1f469",
+        "bytes_hex": "49ffc4",
+        "mnemonic": "inc",
+        "operands": "r12"
+      },
+      {
+        "address": "0x140f1f46c",
+        "bytes_hex": "4c8965f0",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rbp - 0x10], r12"
+      },
+      {
+        "address": "0x140f1f470",
+        "bytes_hex": "4c897de8",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rbp - 0x18], r15"
+      },
+      {
+        "address": "0x140f1f474",
+        "bytes_hex": "4889f1",
+        "mnemonic": "mov",
+        "operands": "rcx, rsi"
+      },
+      {
+        "address": "0x140f1f477",
+        "bytes_hex": "e8e4ce0200",
+        "mnemonic": "call",
+        "operands": "0x140f4c360"
+      },
+      {
+        "address": "0x140f1f47c",
+        "bytes_hex": "90",
+        "mnemonic": "nop",
+        "operands": ""
+      },
+      {
+        "address": "0x140f1f47d",
+        "bytes_hex": "4c3b65d8",
+        "mnemonic": "cmp",
+        "operands": "r12, qword ptr [rbp - 0x28]"
+      },
+      {
+        "address": "0x140f1f481",
+        "bytes_hex": "0f83e3000000",
+        "mnemonic": "jae",
+        "operands": "0x140f1f56a"
+      },
+      {
+        "address": "0x140f1f487",
+        "bytes_hex": "4b8d0464",
+        "mnemonic": "lea",
+        "operands": "rax, [r12 + r12*2]"
+      },
+      {
+        "address": "0x140f1f48b",
+        "bytes_hex": "48c1e005",
+        "mnemonic": "shl",
+        "operands": "rax, 5"
+      },
+      {
+        "address": "0x140f1f48f",
+        "bytes_hex": "488b4df8",
+        "mnemonic": "mov",
+        "operands": "rcx, qword ptr [rbp - 8]"
+      },
+      {
+        "address": "0x140f1f493",
+        "bytes_hex": "488d3401",
+        "mnemonic": "lea",
+        "operands": "rsi, [rcx + rax]"
+      },
+      {
+        "address": "0x140f1f497",
+        "bytes_hex": "8b4c0140",
+        "mnemonic": "mov",
+        "operands": "ecx, dword ptr [rcx + rax + 0x40]"
+      },
+      {
+        "address": "0x140f1f49b",
+        "bytes_hex": "488d913effffff",
+        "mnemonic": "lea",
+        "operands": "rdx, [rcx - 0xc2]"
+      },
+      {
+        "address": "0x140f1f4a2",
+        "bytes_hex": "4881f9c3000000",
+        "mnemonic": "cmp",
+        "operands": "rcx, 0xc3"
+      },
+      {
+        "address": "0x140f1f4a9",
+        "bytes_hex": "480f42d7",
+        "mnemonic": "cmovb",
+        "operands": "rdx, rdi"
+      },
+      {
+        "address": "0x140f1f4ad",
+        "bytes_hex": "4963549500",
+        "mnemonic": "movsxd",
+        "operands": "rdx, dword ptr [r13 + rdx*4]"
+      },
+      {
+        "address": "0x140f1f4b2",
+        "bytes_hex": "4c01ea",
+        "mnemonic": "add",
+        "operands": "rdx, r13"
+      },
+      {
+        "address": "0x140f1f4b5",
+        "bytes_hex": "ffe2",
+        "mnemonic": "jmp",
+        "operands": "rdx"
+      },
+      {
+        "address": "0x140f1f4b7",
+        "bytes_hex": "807b3001",
+        "mnemonic": "cmp",
+        "operands": "byte ptr [rbx + 0x30], 1"
+      },
+      {
+        "address": "0x140f1f4bb",
+        "bytes_hex": "7513",
+        "mnemonic": "jne",
+        "operands": "0x140f1f4d0"
+      },
+      {
+        "address": "0x140f1f4bd",
+        "bytes_hex": "807e4c00",
+        "mnemonic": "cmp",
+        "operands": "byte ptr [rsi + 0x4c], 0"
+      },
+      {
+        "address": "0x140f1f4c1",
+        "bytes_hex": "750d",
+        "mnemonic": "jne",
+        "operands": "0x140f1f4d0"
+      },
+      {
+        "address": "0x140f1f4c3",
+        "bytes_hex": "83f93e",
+        "mnemonic": "cmp",
+        "operands": "ecx, 0x3e"
+      },
+      {
+        "address": "0x140f1f4c6",
+        "bytes_hex": "77a1",
+        "mnemonic": "ja",
+        "operands": "0x140f1f469"
+      },
+      {
+        "address": "0x140f1f4c8",
+        "bytes_hex": "89c9",
+        "mnemonic": "mov",
+        "operands": "ecx, ecx"
+      },
+      {
+        "address": "0x140f1f4ca",
+        "bytes_hex": "490fa3ce",
+        "mnemonic": "bt",
+        "operands": "r14, rcx"
+      },
+      {
+        "address": "0x140f1f4ce",
+        "bytes_hex": "7399",
+        "mnemonic": "jae",
+        "operands": "0x140f1f469"
+      },
+      {
+        "address": "0x140f1f4d0",
+        "bytes_hex": "488b4df8",
+        "mnemonic": "mov",
+        "operands": "rcx, qword ptr [rbp - 8]"
+      },
+      {
+        "address": "0x140f1f4d4",
+        "bytes_hex": "4801c1",
+        "mnemonic": "add",
+        "operands": "rcx, rax"
+      },
+      {
+        "address": "0x140f1f4d7",
+        "bytes_hex": "4883c140",
+        "mnemonic": "add",
+        "operands": "rcx, 0x40"
+      },
+      {
+        "address": "0x140f1f4db",
+        "bytes_hex": "488b5308",
+        "mnemonic": "mov",
+        "operands": "rdx, qword ptr [rbx + 8]"
+      },
+      {
+        "address": "0x140f1f4df",
+        "bytes_hex": "4c8b4310",
+        "mnemonic": "mov",
+        "operands": "r8, qword ptr [rbx + 0x10]"
+      },
+      {
+        "address": "0x140f1f4e3",
+        "bytes_hex": "4c8965f0",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rbp - 0x10], r12"
+      },
+      {
+        "address": "0x140f1f4e7",
+        "bytes_hex": "4c897de8",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rbp - 0x18], r15"
+      },
+      {
+        "address": "0x140f1f4eb",
+        "bytes_hex": "e8a0cc70ff",
+        "mnemonic": "call",
+        "operands": "0x14062c190"
+      },
+      {
+        "address": "0x140f1f4f0",
+        "bytes_hex": "90",
+        "mnemonic": "nop",
+        "operands": ""
+      },
+      {
+        "address": "0x140f1f4f1",
+        "bytes_hex": "84c0",
+        "mnemonic": "test",
+        "operands": "al, al"
+      },
+      {
+        "address": "0x140f1f4f3",
+        "bytes_hex": "0f8570ffffff",
+        "mnemonic": "jne",
+        "operands": "0x140f1f469"
+      },
+      {
+        "address": "0x140f1f4f9",
+        "bytes_hex": "488b5320",
+        "mnemonic": "mov",
+        "operands": "rdx, qword ptr [rbx + 0x20]"
+      },
+      {
+        "address": "0x140f1f4fd",
+        "bytes_hex": "4c8b4328",
+        "mnemonic": "mov",
+        "operands": "r8, qword ptr [rbx + 0x28]"
+      },
+      {
+        "address": "0x140f1f501",
+        "bytes_hex": "4c8965f0",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rbp - 0x10], r12"
+      },
+      {
+        "address": "0x140f1f505",
+        "bytes_hex": "4c897de8",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rbp - 0x18], r15"
+      },
+      {
+        "address": "0x140f1f509",
+        "bytes_hex": "4889f1",
+        "mnemonic": "mov",
+        "operands": "rcx, rsi"
+      },
+      {
+        "address": "0x140f1f50c",
+        "bytes_hex": "e8ffc970ff",
+        "mnemonic": "call",
+        "operands": "0x14062bf10"
+      },
+      {
+        "address": "0x140f1f511",
+        "bytes_hex": "90",
+        "mnemonic": "nop",
+        "operands": ""
+      },
+      {
+        "address": "0x140f1f512",
+        "bytes_hex": "84c0",
+        "mnemonic": "test",
+        "operands": "al, al"
+      },
+      {
+        "address": "0x140f1f514",
+        "bytes_hex": "0f854fffffff",
+        "mnemonic": "jne",
+        "operands": "0x140f1f469"
+      },
+      {
+        "address": "0x140f1f51a",
+        "bytes_hex": "4b8d047f",
+        "mnemonic": "lea",
+        "operands": "rax, [r15 + r15*2]"
+      },
+      {
+        "address": "0x140f1f51e",
+        "bytes_hex": "48c1e005",
+        "mnemonic": "shl",
+        "operands": "rax, 5"
+      },
+      {
+        "address": "0x140f1f522",
+        "bytes_hex": "0f104650",
+        "mnemonic": "movups",
+        "operands": "xmm0, xmmword ptr [rsi + 0x50]"
+      },
+      {
+        "address": "0x140f1f526",
+        "bytes_hex": "488b4df8",
+        "mnemonic": "mov",
+        "operands": "rcx, qword ptr [rbp - 8]"
+      },
+      {
+        "address": "0x140f1f52a",
+        "bytes_hex": "0f11440150",
+        "mnemonic": "movups",
+        "operands": "xmmword ptr [rcx + rax + 0x50], xmm0"
+      },
+      {
+        "address": "0x140f1f52f",
+        "bytes_hex": "0f104640",
+        "mnemonic": "movups",
+        "operands": "xmm0, xmmword ptr [rsi + 0x40]"
+      },
+      {
+        "address": "0x140f1f533",
+        "bytes_hex": "0f11440140",
+        "mnemonic": "movups",
+        "operands": "xmmword ptr [rcx + rax + 0x40], xmm0"
+      },
+      {
+        "address": "0x140f1f538",
+        "bytes_hex": "0f1006",
+        "mnemonic": "movups",
+        "operands": "xmm0, xmmword ptr [rsi]"
+      },
+      {
+        "address": "0x140f1f53b",
+        "bytes_hex": "0f104e10",
+        "mnemonic": "movups",
+        "operands": "xmm1, xmmword ptr [rsi + 0x10]"
+      },
+      {
+        "address": "0x140f1f53f",
+        "bytes_hex": "0f105620",
+        "mnemonic": "movups",
+        "operands": "xmm2, xmmword ptr [rsi + 0x20]"
+      },
+      {
+        "address": "0x140f1f543",
+        "bytes_hex": "0f105e30",
+        "mnemonic": "movups",
+        "operands": "xmm3, xmmword ptr [rsi + 0x30]"
+      },
+      {
+        "address": "0x140f1f547",
+        "bytes_hex": "0f115c0130",
+        "mnemonic": "movups",
+        "operands": "xmmword ptr [rcx + rax + 0x30], xmm3"
+      },
+      {
+        "address": "0x140f1f54c",
+        "bytes_hex": "0f11540120",
+        "mnemonic": "movups",
+        "operands": "xmmword ptr [rcx + rax + 0x20], xmm2"
+      },
+      {
+        "address": "0x140f1f551",
+        "bytes_hex": "0f114c0110",
+        "mnemonic": "movups",
+        "operands": "xmmword ptr [rcx + rax + 0x10], xmm1"
+      },
+      {
+        "address": "0x140f1f556",
+        "bytes_hex": "0f110401",
+        "mnemonic": "movups",
+        "operands": "xmmword ptr [rcx + rax], xmm0"
+      },
+      {
+        "address": "0x140f1f55a",
+        "bytes_hex": "49ffc7",
+        "mnemonic": "inc",
+        "operands": "r15"
+      },
+      {
+        "address": "0x140f1f55d",
+        "bytes_hex": "49ffc4",
+        "mnemonic": "inc",
+        "operands": "r12"
+      },
+      {
+        "address": "0x140f1f560",
+        "bytes_hex": "4c3b65d8",
+        "mnemonic": "cmp",
+        "operands": "r12, qword ptr [rbp - 0x28]"
+      },
+      {
+        "address": "0x140f1f564",
+        "bytes_hex": "0f821dffffff",
+        "mnemonic": "jb",
+        "operands": "0x140f1f487"
+      },
+      {
+        "address": "0x140f1f56a",
+        "bytes_hex": "488b45e0",
+        "mnemonic": "mov",
+        "operands": "rax, qword ptr [rbp - 0x20]"
+      },
+      {
+        "address": "0x140f1f56e",
+        "bytes_hex": "4c897810",
+        "mnemonic": "mov",
+        "operands": "qword ptr [rax + 0x10], r15"
+      },
+      {
+        "address": "0x140f1f572",
+        "bytes_hex": "4883c458",
+        "mnemonic": "add",
+        "operands": "rsp, 0x58"
+      },
+      {
+        "address": "0x140f1f576",
+        "bytes_hex": "5b",
+        "mnemonic": "pop",
+        "operands": "rbx"
+      },
+      {
+        "address": "0x140f1f577",
+        "bytes_hex": "5f",
+        "mnemonic": "pop",
+        "operands": "rdi"
+      },
+      {
+        "address": "0x140f1f578",
+        "bytes_hex": "5e",
+        "mnemonic": "pop",
+        "operands": "rsi"
+      },
+      {
+        "address": "0x140f1f579",
+        "bytes_hex": "415c",
+        "mnemonic": "pop",
+        "operands": "r12"
+      },
+      {
+        "address": "0x140f1f57b",
+        "bytes_hex": "415d",
+        "mnemonic": "pop",
+        "operands": "r13"
+      },
+      {
+        "address": "0x140f1f57d",
+        "bytes_hex": "415e",
+        "mnemonic": "pop",
+        "operands": "r14"
+      },
+      {
+        "address": "0x140f1f57f",
+        "bytes_hex": "415f",
+        "mnemonic": "pop",
+        "operands": "r15"
+      },
+      {
+        "address": "0x140f1f581",
+        "bytes_hex": "5d",
+        "mnemonic": "pop",
+        "operands": "rbp"
+      },
+      {
+        "address": "0x140f1f582",
+        "bytes_hex": "c3",
+        "mnemonic": "ret",
+        "operands": ""
+      }
+    ],
+    "internal_direct_branches": [
+      {
+        "site": "0x140f1f358",
+        "target": "0x140f1f572",
+        "target_offset": "0x242"
+      },
+      {
+        "site": "0x140f1f38c",
+        "target": "0x140f1f3aa",
+        "target_offset": "0x7a"
+      },
+      {
+        "site": "0x140f1f394",
+        "target": "0x140f1f42c",
+        "target_offset": "0xfc"
+      },
+      {
+        "site": "0x140f1f3a4",
+        "target": "0x140f1f572",
+        "target_offset": "0x242"
+      },
+      {
+        "site": "0x140f1f3cf",
+        "target": "0x140f1f3d7",
+        "target_offset": "0xa7"
+      },
+      {
+        "site": "0x140f1f3d5",
+        "target": "0x140f1f41f",
+        "target_offset": "0xef"
+      },
+      {
+        "site": "0x140f1f3e9",
+        "target": "0x140f1f42c",
+        "target_offset": "0xfc"
+      },
+      {
+        "site": "0x140f1f401",
+        "target": "0x140f1f39a",
+        "target_offset": "0x6a"
+      },
+      {
+        "site": "0x140f1f403",
+        "target": "0x140f1f42c",
+        "target_offset": "0xfc"
+      },
+      {
+        "site": "0x140f1f414",
+        "target": "0x140f1f390",
+        "target_offset": "0x60"
+      },
+      {
+        "site": "0x140f1f41a",
+        "target": "0x140f1f39a",
+        "target_offset": "0x6a"
+      },
+      {
+        "site": "0x140f1f422",
+        "target": "0x140f1f42c",
+        "target_offset": "0xfc"
+      },
+      {
+        "site": "0x140f1f42a",
+        "target": "0x140f1f3d7",
+        "target_offset": "0xa7"
+      },
+      {
+        "site": "0x140f1f44e",
+        "target": "0x140f1f487",
+        "target_offset": "0x157"
+      },
+      {
+        "site": "0x140f1f450",
+        "target": "0x140f1f56a",
+        "target_offset": "0x23a"
+      },
+      {
+        "site": "0x140f1f459",
+        "target": "0x140f1f51a",
+        "target_offset": "0x1ea"
+      },
+      {
+        "site": "0x140f1f463",
+        "target": "0x140f1f51a",
+        "target_offset": "0x1ea"
+      },
+      {
+        "site": "0x140f1f481",
+        "target": "0x140f1f56a",
+        "target_offset": "0x23a"
+      },
+      {
+        "site": "0x140f1f4bb",
+        "target": "0x140f1f4d0",
+        "target_offset": "0x1a0"
+      },
+      {
+        "site": "0x140f1f4c1",
+        "target": "0x140f1f4d0",
+        "target_offset": "0x1a0"
+      },
+      {
+        "site": "0x140f1f4c6",
+        "target": "0x140f1f469",
+        "target_offset": "0x139"
+      },
+      {
+        "site": "0x140f1f4ce",
+        "target": "0x140f1f469",
+        "target_offset": "0x139"
+      },
+      {
+        "site": "0x140f1f4f3",
+        "target": "0x140f1f469",
+        "target_offset": "0x139"
+      },
+      {
+        "site": "0x140f1f514",
+        "target": "0x140f1f469",
+        "target_offset": "0x139"
+      },
+      {
+        "site": "0x140f1f564",
+        "target": "0x140f1f487",
+        "target_offset": "0x157"
+      }
+    ]
+  },
+  "filter_dispatch_tables": [
+    {
+      "start": "0x146695010",
+      "end_exclusive": "0x146695020",
+      "file_offset": "0x6693e10",
+      "byte_count": 16,
+      "sha256": "968e13e36cb35ef0dbeec2f2a1b7300b5e7b5120945315fa330e8aace45fce81",
+      "bytes_hex": "bba388fa00a488fa8aa388fa80a388fa",
+      "entries": [
+        {
+          "index": 0,
+          "signed_relative_offset": -91708485,
+          "target": "0x140f1f3cb",
+          "owner_offset": "0x9b"
+        },
+        {
+          "index": 1,
+          "signed_relative_offset": -91708416,
+          "target": "0x140f1f410",
+          "owner_offset": "0xe0"
+        },
+        {
+          "index": 2,
+          "signed_relative_offset": -91708534,
+          "target": "0x140f1f39a",
+          "owner_offset": "0x6a"
+        },
+        {
+          "index": 3,
+          "signed_relative_offset": -91708544,
+          "target": "0x140f1f390",
+          "owner_offset": "0x60"
+        }
+      ]
+    },
+    {
+      "start": "0x146695020",
+      "end_exclusive": "0x146695030",
+      "file_offset": "0x6693e20",
+      "byte_count": 16,
+      "sha256": "4d8b8377f2c5c89f4c38d24508e1e7e3ffa1dafd6af940c5868c7f286ed75ea8",
+      "bytes_hex": "97a488fa35a488fafaa488fa3fa488fa",
+      "entries": [
+        {
+          "index": 0,
+          "signed_relative_offset": -91708265,
+          "target": "0x140f1f4b7",
+          "owner_offset": "0x187"
+        },
+        {
+          "index": 1,
+          "signed_relative_offset": -91708363,
+          "target": "0x140f1f455",
+          "owner_offset": "0x125"
+        },
+        {
+          "index": 2,
+          "signed_relative_offset": -91708166,
+          "target": "0x140f1f51a",
+          "owner_offset": "0x1ea"
+        },
+        {
+          "index": 3,
+          "signed_relative_offset": -91708353,
+          "target": "0x140f1f45f",
+          "owner_offset": "0x12f"
+        }
+      ]
+    }
+  ],
+  "filter_contract": {
+    "scope": "Normal-path record filtering for observed dispatch indices 0..3; exact raw operands and external predicate returns, not source enum identities.",
+    "win64_inputs": {
+      "RCX": "Queue structure: record pointer +0x8 and count +0x10.",
+      "RDX": "Pointer to fetched-resource operand tuple; [RDX] is the gate resource data pointer."
+    },
+    "record_stride": "0x60 (96 bytes)",
+    "gate_fields": {
+      "0x08/0x10": "First predicate data pointer/count, passed to 0x14062c190.",
+      "0x20/0x28": "Second predicate data pointer/count, passed to 0x14062bf10.",
+      "0x30": "Gate byte used by key-like record case.",
+      "0x31": "Gate byte used by two other record cases."
+    },
+    "dispatch_index": "raw dword at record +0x40; index=0 when raw<0xc3, otherwise raw-0xc2. No upper-tag validity guard is present here; the producer/type range remains unknown.",
+    "observed_cases": [
+      {
+        "index": 0,
+        "raw_tag": "0..0xc2",
+        "predicate": "If gate+0x30 == 1 and record+0x4c == 0, drop unless raw<=0x3e and bit(raw) is set in 0x7b18000000000000. Otherwise, or for the mask exception, drop when either external list predicate returns nonzero; keep if both return zero.",
+        "mask_set_raw_codes": [
+          51,
+          52,
+          56,
+          57,
+          59,
+          60,
+          61,
+          62
+        ]
+      },
+      {
+        "index": 1,
+        "raw_tag": "0xc3",
+        "predicate": "Drop when record+0x4 == 0 and gate+0x31 != 0 in the first scan; compaction drops when that byte == 1. They agree for gate bytes 0/1, whose producer invariant is unproved."
+      },
+      {
+        "index": 2,
+        "raw_tag": "0xc4",
+        "predicate": "Keep."
+      },
+      {
+        "index": 3,
+        "raw_tag": "0xc5",
+        "predicate": "Drop when gate+0x31 != 0 in the first scan, or == 1 during compaction. They agree for gate bytes 0/1; other raw values are not assigned one common predicate."
+      }
+    ],
+    "retain_action": "Each discarded record is passed to 0x140f4c360. Later kept records are copied in six 16-byte chunks to close gaps, preserving order. The queue count +0x10 is set to the number kept.",
+    "unproved": [
+      "Native event/physical/logical-key enum identity and mask key names",
+      "Membership/equality semantics and list element identities inside 0x14062c190/0x14062bf10",
+      "Teardown internals, unwinding and invalid-tag behavior",
+      "Capture/list producers, resets and resource lifetime",
+      "Exact system ordering/admission and typed schedule meanings",
+      "Picker/menu/world wheel, click, Escape and held-input consumers/source assignments"
+    ]
+  },
+  "resource_and_labels": {
+    "resource_type_key": {
+      "start": "0x1465af888",
+      "end_exclusive": "0x1465af898",
+      "file_offset": "0x65ae688",
+      "byte_count": 16,
+      "sha256": "cf6176c077975afb8e6708e8e17c28006d1b6ed7e36ddf079ee52e10874d49f2",
+      "bytes_hex": "ab05b739ddcaeac72fbf3a7949a92465"
+    },
+    "metadata": "Callback prepares size 0x38, alignment 8 and cleanup pointer 0x1401a2430 for this 16-byte key. Resource type name and field identity remain unknown.",
+    "formatting_leads": [
+      {
+        "table": {
+          "start": "0x146645518",
+          "end_exclusive": "0x146645538",
+          "file_offset": "0x6644318",
+          "byte_count": 32,
+          "sha256": "21503e1d1e8be12ec6a268b4cf0be43fe82c03d42e3e20313508b00278fc6512",
+          "formatter_pointer_offset": "0x18",
+          "formatter_pointer": "0x140b00640"
+        },
+        "formatter": {
+          "start": "0x140b00640",
+          "end_exclusive": "0x140b00655",
+          "file_offset": "0xaffa40",
+          "byte_count": 21,
+          "sha256": "7eed315802d789469bd6292e93a35ae48d6b84df41ca3710b207d525712908ef",
+          "bytes_hex": "4889d1488d150e92b40541b807000000e95b588005",
+          "instructions": [
+            {
+              "address": "0x140b00640",
+              "bytes_hex": "4889d1",
+              "mnemonic": "mov",
+              "operands": "rcx, rdx"
+            },
+            {
+              "address": "0x140b00643",
+              "bytes_hex": "488d150e92b405",
+              "mnemonic": "lea",
+              "operands": "rdx, [rip + 0x5b4920e]"
+            },
+            {
+              "address": "0x140b0064a",
+              "bytes_hex": "41b807000000",
+              "mnemonic": "mov",
+              "operands": "r8d, 7"
+            },
+            {
+              "address": "0x140b00650",
+              "bytes_hex": "e95b588005",
+              "mnemonic": "jmp",
+              "operands": "0x146305eb0"
+            }
+          ]
+        },
+        "payload": {
+          "start": "0x146649858",
+          "end_exclusive": "0x14664985f",
+          "file_offset": "0x6648658",
+          "byte_count": 7,
+          "sha256": "a3d43c3b6b97e6c2001bbd7354c021ec6ff82f05c828d6a39d3cf49553ec81d0",
+          "text": "UiInput"
+        },
+        "scope": "Exact formatter payload and pointer only; these label candidate input interfaces. Builder argument use, system ordering, predicates and consumers remain unproved."
+      },
+      {
+        "table": {
+          "start": "0x1466455f8",
+          "end_exclusive": "0x146645618",
+          "file_offset": "0x66443f8",
+          "byte_count": 32,
+          "sha256": "1d346dd8fc163fdef1e0227af687510ecb487f1dc29fe29dc40c76bd13fbe92b",
+          "formatter_pointer_offset": "0x18",
+          "formatter_pointer": "0x140b00770"
+        },
+        "formatter": {
+          "start": "0x140b00770",
+          "end_exclusive": "0x140b00785",
+          "file_offset": "0xaffb70",
+          "byte_count": 21,
+          "sha256": "f29c5498387ebe4b0a778d4d994210b7044cabb25b0bfe075f6be74464406189",
+          "bytes_hex": "4889d1488d158c91b40541b80c000000e92b578005",
+          "instructions": [
+            {
+              "address": "0x140b00770",
+              "bytes_hex": "4889d1",
+              "mnemonic": "mov",
+              "operands": "rcx, rdx"
+            },
+            {
+              "address": "0x140b00773",
+              "bytes_hex": "488d158c91b405",
+              "mnemonic": "lea",
+              "operands": "rdx, [rip + 0x5b4918c]"
+            },
+            {
+              "address": "0x140b0077a",
+              "bytes_hex": "41b80c000000",
+              "mnemonic": "mov",
+              "operands": "r8d, 0xc"
+            },
+            {
+              "address": "0x140b00780",
+              "bytes_hex": "e92b578005",
+              "mnemonic": "jmp",
+              "operands": "0x146305eb0"
+            }
+          ]
+        },
+        "payload": {
+          "start": "0x146649906",
+          "end_exclusive": "0x146649912",
+          "file_offset": "0x6648706",
+          "byte_count": 12,
+          "sha256": "c7b0cb0bafe57bf5915e92375607ca5fb11c6d0321f610493a214e941fd9fdf9",
+          "text": "UiInputViews"
+        },
+        "scope": "Exact formatter payload and pointer only; these label candidate input interfaces. Builder argument use, system ordering, predicates and consumers remain unproved."
+      },
+      {
+        "table": {
+          "start": "0x146609e20",
+          "end_exclusive": "0x146609e40",
+          "file_offset": "0x6608c20",
+          "byte_count": 32,
+          "sha256": "2c3a063fbb1c6c9507b432734819ad611c3fba58599a5cc994324a004823c7cc",
+          "formatter_pointer_offset": "0x18",
+          "formatter_pointer": "0x1408a8b60"
+        },
+        "formatter": {
+          "start": "0x1408a8b60",
+          "end_exclusive": "0x1408a8b75",
+          "file_offset": "0x8a7f60",
+          "byte_count": 21,
+          "sha256": "b901690f78ec56f74e39a5790cc0f88788809ac2bd5d6fee112ffc6d3b9a1220",
+          "bytes_hex": "4889d1488d15ee52d60541b80b000000e93bd3a505",
+          "instructions": [
+            {
+              "address": "0x1408a8b60",
+              "bytes_hex": "4889d1",
+              "mnemonic": "mov",
+              "operands": "rcx, rdx"
+            },
+            {
+              "address": "0x1408a8b63",
+              "bytes_hex": "488d15ee52d605",
+              "mnemonic": "lea",
+              "operands": "rdx, [rip + 0x5d652ee]"
+            },
+            {
+              "address": "0x1408a8b6a",
+              "bytes_hex": "41b80b000000",
+              "mnemonic": "mov",
+              "operands": "r8d, 0xb"
+            },
+            {
+              "address": "0x1408a8b70",
+              "bytes_hex": "e93bd3a505",
+              "mnemonic": "jmp",
+              "operands": "0x146305eb0"
+            }
+          ]
+        },
+        "payload": {
+          "start": "0x14660de58",
+          "end_exclusive": "0x14660de63",
+          "file_offset": "0x660cc58",
+          "byte_count": 11,
+          "sha256": "4f405e379890fbd5aae6c3b48d4284c664f005a9bf0d4b047341abaa30add4c2",
+          "text": "BindingHead"
+        },
+        "scope": "Exact formatter payload and pointer only; these label candidate input interfaces. Builder argument use, system ordering, predicates and consumers remain unproved."
+      }
+    ],
+    "scope": "UiInput, UiInputViews and BindingHead payloads are exact formatting labels only. Builder arguments and before/after/in-set meaning remain pending."
+  },
+  "decompiler_limits": [
+    "Raw Ghidra compiler specification is gcc; no inferred signature is accepted as Win64 ABI proof.",
+    "The callback procedure_info reports one contiguous 1,829-byte body and 39 blocks. Its external resource/schedule callees are not loaded.",
+    "The filter procedure_info reports only 144 non-contiguous bytes across four blocks within the 595-byte declared extent. Pseudocode stops at the first indirect dispatch and explicitly fails to recover the jump table.",
+    "Full filter observations come from independent current Capstone instruction bytes and the two exact four-entry table payloads, with every shown table target and internal direct branch checked as an instruction start. They do not extend the decompiler body claim."
+  ],
+  "wine_boundary": {
+    "finding_ids": [
+      311
+    ],
+    "status": "Repair and crash cause unproved; no edge to this InputGate contract established.",
+    "ordinary_platform_context": {
+      "force_window_active": {
+        "owner": {
+          "start": "0x1431cc110",
+          "end_exclusive": "0x1431cc197",
+          "file_offset": "0x31cb510",
+          "byte_count": 135,
+          "sha256": "111e394be021fb93df3e2c99192a98e3c84f77efddb2072551f1728a7f4e0c32"
+        },
+        "instructions": {
+          "start": "0x1431cc110",
+          "end_exclusive": "0x1431cc197",
+          "file_offset": "0x31cb510",
+          "byte_count": 135,
+          "sha256": "111e394be021fb93df3e2c99192a98e3c84f77efddb2072551f1728a7f4e0c32",
+          "bytes_hex": "564883ec704889ceb91200000031d2ff15b39b3003c74424200100000066c7442428a400668944242a48c744242c0100000048c744243800000000c74424480100000066c7442450a400668944245248c74424540300000048c744246000000000488d542420b90200000041b828000000ff15e99a30034889f1ff15d89a3003904883c4705ec3",
+          "instructions": [
+            {
+              "address": "0x1431cc110",
+              "bytes_hex": "56",
+              "mnemonic": "push",
+              "operands": "rsi"
+            },
+            {
+              "address": "0x1431cc111",
+              "bytes_hex": "4883ec70",
+              "mnemonic": "sub",
+              "operands": "rsp, 0x70"
+            },
+            {
+              "address": "0x1431cc115",
+              "bytes_hex": "4889ce",
+              "mnemonic": "mov",
+              "operands": "rsi, rcx"
+            },
+            {
+              "address": "0x1431cc118",
+              "bytes_hex": "b912000000",
+              "mnemonic": "mov",
+              "operands": "ecx, 0x12"
+            },
+            {
+              "address": "0x1431cc11d",
+              "bytes_hex": "31d2",
+              "mnemonic": "xor",
+              "operands": "edx, edx"
+            },
+            {
+              "address": "0x1431cc11f",
+              "bytes_hex": "ff15b39b3003",
+              "mnemonic": "call",
+              "operands": "qword ptr [rip + 0x3309bb3]"
+            },
+            {
+              "address": "0x1431cc125",
+              "bytes_hex": "c744242001000000",
+              "mnemonic": "mov",
+              "operands": "dword ptr [rsp + 0x20], 1"
+            },
+            {
+              "address": "0x1431cc12d",
+              "bytes_hex": "66c7442428a400",
+              "mnemonic": "mov",
+              "operands": "word ptr [rsp + 0x28], 0xa4"
+            },
+            {
+              "address": "0x1431cc134",
+              "bytes_hex": "668944242a",
+              "mnemonic": "mov",
+              "operands": "word ptr [rsp + 0x2a], ax"
+            },
+            {
+              "address": "0x1431cc139",
+              "bytes_hex": "48c744242c01000000",
+              "mnemonic": "mov",
+              "operands": "qword ptr [rsp + 0x2c], 1"
+            },
+            {
+              "address": "0x1431cc142",
+              "bytes_hex": "48c744243800000000",
+              "mnemonic": "mov",
+              "operands": "qword ptr [rsp + 0x38], 0"
+            },
+            {
+              "address": "0x1431cc14b",
+              "bytes_hex": "c744244801000000",
+              "mnemonic": "mov",
+              "operands": "dword ptr [rsp + 0x48], 1"
+            },
+            {
+              "address": "0x1431cc153",
+              "bytes_hex": "66c7442450a400",
+              "mnemonic": "mov",
+              "operands": "word ptr [rsp + 0x50], 0xa4"
+            },
+            {
+              "address": "0x1431cc15a",
+              "bytes_hex": "6689442452",
+              "mnemonic": "mov",
+              "operands": "word ptr [rsp + 0x52], ax"
+            },
+            {
+              "address": "0x1431cc15f",
+              "bytes_hex": "48c744245403000000",
+              "mnemonic": "mov",
+              "operands": "qword ptr [rsp + 0x54], 3"
+            },
+            {
+              "address": "0x1431cc168",
+              "bytes_hex": "48c744246000000000",
+              "mnemonic": "mov",
+              "operands": "qword ptr [rsp + 0x60], 0"
+            },
+            {
+              "address": "0x1431cc171",
+              "bytes_hex": "488d542420",
+              "mnemonic": "lea",
+              "operands": "rdx, [rsp + 0x20]"
+            },
+            {
+              "address": "0x1431cc176",
+              "bytes_hex": "b902000000",
+              "mnemonic": "mov",
+              "operands": "ecx, 2"
+            },
+            {
+              "address": "0x1431cc17b",
+              "bytes_hex": "41b828000000",
+              "mnemonic": "mov",
+              "operands": "r8d, 0x28"
+            },
+            {
+              "address": "0x1431cc181",
+              "bytes_hex": "ff15e99a3003",
+              "mnemonic": "call",
+              "operands": "qword ptr [rip + 0x3309ae9]"
+            },
+            {
+              "address": "0x1431cc187",
+              "bytes_hex": "4889f1",
+              "mnemonic": "mov",
+              "operands": "rcx, rsi"
+            },
+            {
+              "address": "0x1431cc18a",
+              "bytes_hex": "ff15d89a3003",
+              "mnemonic": "call",
+              "operands": "qword ptr [rip + 0x3309ad8]"
+            },
+            {
+              "address": "0x1431cc190",
+              "bytes_hex": "90",
+              "mnemonic": "nop",
+              "operands": ""
+            },
+            {
+              "address": "0x1431cc191",
+              "bytes_hex": "4883c470",
+              "mnemonic": "add",
+              "operands": "rsp, 0x70"
+            },
+            {
+              "address": "0x1431cc195",
+              "bytes_hex": "5e",
+              "mnemonic": "pop",
+              "operands": "rsi"
+            },
+            {
+              "address": "0x1431cc196",
+              "bytes_hex": "c3",
+              "mnemonic": "ret",
+              "operands": ""
+            }
+          ]
+        },
+        "observed": "Calls MapVirtualKeyW(0x12,0), constructs two INPUT records using VK_LMENU 0xa4 with flags 1 and 3, calls SendInput(2, records, 0x28), then SetForegroundWindow with the original supplied handle. This is a direct body correspondence to existing winit force_window_active, not an alt-tab repair identification.",
+        "source_counterpart": "runtime/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/winit-0.30.13/src/platform_impl/windows/window.rs:1537"
+      },
+      "cursor_refresh": {
+        "owner": {
+          "start": "0x1431cf230",
+          "end_exclusive": "0x1431cf4f6",
+          "file_offset": "0x31ce630",
+          "byte_count": 710,
+          "sha256": "656a6afda401ea6d4233e91e664a5f2f26cebad967251a657e2443c370a4cf82"
+        },
+        "focus_gate": {
+          "start": "0x1431cf273",
+          "end_exclusive": "0x1431cf282",
+          "file_offset": "0x31ce673",
+          "byte_count": 15,
+          "sha256": "a810f1be3557807a9c9706cb54e53ae79c114d8e42ae1ebc1c0d6fd3ab99f7c2",
+          "bytes_hex": "ff15976930034839c60f85d8010000",
+          "instructions": [
+            {
+              "address": "0x1431cf273",
+              "bytes_hex": "ff1597693003",
+              "mnemonic": "call",
+              "operands": "qword ptr [rip + 0x3306997]"
+            },
+            {
+              "address": "0x1431cf279",
+              "bytes_hex": "4839c6",
+              "mnemonic": "cmp",
+              "operands": "rsi, rax"
+            },
+            {
+              "address": "0x1431cf27c",
+              "bytes_hex": "0f85d8010000",
+              "mnemonic": "jne",
+              "operands": "0x1431cf45a"
+            }
+          ]
+        },
+        "clip_call": {
+          "start": "0x1431cf442",
+          "end_exclusive": "0x1431cf45a",
+          "file_offset": "0x31ce842",
+          "byte_count": 24,
+          "sha256": "1b22902605ff84071ac9b394c7908bb2a858d3bc50f303cc9582557217e0776f",
+          "bytes_hex": "31c9f6c301488d442428480f45c8ff15aa67300385c07443",
+          "instructions": [
+            {
+              "address": "0x1431cf442",
+              "bytes_hex": "31c9",
+              "mnemonic": "xor",
+              "operands": "ecx, ecx"
+            },
+            {
+              "address": "0x1431cf444",
+              "bytes_hex": "f6c301",
+              "mnemonic": "test",
+              "operands": "bl, 1"
+            },
+            {
+              "address": "0x1431cf447",
+              "bytes_hex": "488d442428",
+              "mnemonic": "lea",
+              "operands": "rax, [rsp + 0x28]"
+            },
+            {
+              "address": "0x1431cf44c",
+              "bytes_hex": "480f45c8",
+              "mnemonic": "cmovne",
+              "operands": "rcx, rax"
+            },
+            {
+              "address": "0x1431cf450",
+              "bytes_hex": "ff15aa673003",
+              "mnemonic": "call",
+              "operands": "qword ptr [rip + 0x33067aa]"
+            },
+            {
+              "address": "0x1431cf456",
+              "bytes_hex": "85c0",
+              "mnemonic": "test",
+              "operands": "eax, eax"
+            },
+            {
+              "address": "0x1431cf458",
+              "bytes_hex": "7443",
+              "mnemonic": "je",
+              "operands": "0x1431cf49d"
+            }
+          ]
+        },
+        "observed": "GetActiveWindow is compared with the supplied window handle. A nonmatching handle branches to 0x1431cf45a, bypassing the ClipCursor path. Cursor geometry/visibility and error paths resemble existing winit CursorFlags::refresh_os_cursor; only the listed API/branch facts are asserted.",
+        "source_counterpart": "runtime/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/winit-0.30.13/src/platform_impl/windows/window_state.rs:482"
+      }
+    },
+    "stopped_boundary": "Existing winit Windows activation/cursor interfaces. MacOS BgWin/ThreadQos, AltF4 and XInput Wine detection are not identified as the Wine/Proton alt-tab repair."
+  },
+  "remaining_source_action": "Recover gate/list producers and clear/lifetime ownership, typed event mappings and the actual input consumer/schedule edges, then compare the available LocalClientExtension/UiKeyboardCapture/binding/UI sources. Current applicability of those sources is pending; no new missing implementation is inferred merely from a new target.",
+  "retained_runtime_purpose": "Exact raw slices (shared CAS aliases), execution plans/seeds/provenance, four successful result receipts, journals and reusable cold Program archives remain for validation/resume. Full attempt responses/logs and the obsolete navigation handoff are removed after final proof verification.",
+  "report": {
+    "path": "docs/analysis/input-gate-native-0.139.1.md",
+    "sha256": "48ee694134591ce14c3fe1992522efb2811f4fd8a47c53eb099a00c5b8179468"
+  },
+  "retained_execution_inputs": {
+    "retained_raw_inputs": [
+      {
+        "path": "runtime/execheck-0.139.1/input-gate-native/slices/picker-1408882e0.bin",
+        "sha256": "18084b160314446252985ea2a97a392b17b97abaf134511cbd5237c1d4dd5280"
+      },
+      {
+        "path": "runtime/execheck-0.139.1/input-gate-native/filter/slices/picker-140f1f330.bin",
+        "sha256": "56a7f36ccbcdcfacace833a8e1abbb518fec8ded1ef3a36d275ec088278429f2"
+      }
+    ],
+    "retained_task_roots": [
+      "runtime/analysis/tasks/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/input-gate-interface-1408882e0",
+      "runtime/analysis/tasks/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/input-gate-filter-140f1f330"
+    ],
+    "retained_selection_roots": [
+      "runtime/execheck-0.139.1/input-gate-native"
+    ],
+    "immutable_context_relocation": {
+      "sha256": "2d95fb5d03e9e90b753aec3f9966d42968918cf39617f5e2c0808e7cee4d9fc5",
+      "path": "runtime/analysis/objects/2d/2d95fb5d03e9e90b753aec3f9966d42968918cf39617f5e2c0808e7cee4d9fc5",
+      "bytes": 57617,
+      "kind": "input-gate-source-first-query-context"
+    },
+    "reason": "Exact source-first and raw-slice commitments, four successful query result receipts/journals and reusable cold Program state. Original navigation handoff is relocated to immutable CAS; canonical scoped evidence is above."
+  }
+}
