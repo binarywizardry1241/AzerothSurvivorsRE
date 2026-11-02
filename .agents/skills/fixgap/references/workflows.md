@@ -16,7 +16,10 @@ Apply `SKILL.md`'s source-only/REA/mixed routing before these guides. Their trac
 and recovery steps identify the relevant contract; they do not require fresh
 native analysis when retained applicable evidence already establishes it. For
 an established source defect, inspect and repair its live path directly, using
-only the domain guidance needed. Recover only necessary missing facts.
+only the domain guidance needed. Apply
+[cross-version repair](../SKILL.md#repair-existing-gaps-across-versions): the gap's
+original version and pending newest-target applicability do not gate that repair.
+Recover only necessary missing facts.
 
 ## 1. Target coverage
 

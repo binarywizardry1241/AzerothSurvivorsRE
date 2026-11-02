@@ -16,6 +16,14 @@ reason to fall back to historical results. Run resource hash verification when
 registering/changing the reference input chain, not merely to repeat an unchanged
 gap list.
 
+Apply [cross-version repair](../SKILL.md#repair-existing-gaps-across-versions):
+an existing gap can be fixed on a different version from its discovery/recovery.
+Stale target registration or missing newest-hash correspondence does not block
+concrete source repairs supported by retained evidence and live source tracing.
+Report that accounting limit without presenting historical coverage as current
+or automatically selecting a refresh. Target-bound classification queries and
+explicit refresh/audit work still require correctly bound inputs and evidence.
+
 For `$fixgap` choices and pending-work summaries, apply the skill's
 [proof-only exclusion](../SKILL.md#work-that-fits-this-skill). An existing
 implementation does not become a reportable gap merely because its evidence

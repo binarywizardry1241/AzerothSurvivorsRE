@@ -37,10 +37,28 @@ version or old inventory must not select the working target. The
 [coverage workflow](references/coverage.md) owns target registration, discovery,
 system/source accounting and individual changelog claims.
 Apply the shared [incremental recovery rules](../shared/autonomy.md#incremental-recovery-across-target-updates).
-Continue prior repairs and #41 questions from their saved results. A new EXE
-hash requires correspondence checks for the contracts actually needed by the
-selected task, not re-recovery of every known module. Preserve completed work
-and omit proof-only applicability/registration tasks from ordinary repair choices.
+Continue prior repairs and #41 questions from their saved results. Preserve
+completed work and omit proof-only applicability/registration tasks from ordinary
+repair choices.
+
+## Repair existing gaps across versions
+
+A gap's discovery version or EXE hash does not restrict which version it can be
+fixed on. Offer and repair the same permanent gap against the live source even
+when the installed game differs from the version used to identify or recover it.
+Reuse established behavior and trace the remaining source discrepancy. A version
+or hash mismatch, missing newest-target correspondence or stale coverage
+registration alone must not block the repair, require the historical EXE, force
+fresh REA or turn it into a target-refresh audit.
+
+Keep retained evidence bound to its actual version/hash and record unverified
+current applicability separately from source completion. Older evidence can
+support a source repair without certifying current-target fidelity. Recover a
+new native fact only when the implementation needs an unresolved value, condition
+or connection, or concrete conflicting evidence makes the intended behavior
+uncertain. Fresh queries must still verify the EXE they actually analyze and
+resolve its addresses correctly. Explicit target-refresh and coverage selections
+retain their full audit requirements.
 
 ## Choose the shortest sufficient repair path
 
@@ -74,13 +92,11 @@ arithmetic without starting REA. If "5x less damage" is only a symptom or releas
 note and the intended formula/phase is unknown, it is a recovery question rather
 than permission to guess a multiplier.
 
-Evidence still follows the target/provenance rules above. Reading retained
-evidence and checking target identity/accounting do not require fresh native
-analysis. Reuse an existing sufficient applicability assessment; missing
-newest-target proof alone does not require rediscovering an established source
-defect or reopening completed work. Preserve historical provenance and pending
-applicability honestly; do not claim current fidelity without its proof. If an
-uncertain native fact is necessary to justify the change, resolve that fact.
+Apply [cross-version repair](#repair-existing-gaps-across-versions) when reusing
+retained evidence. Reuse an existing applicability assessment when available;
+its absence alone neither blocks an established source correction nor reopens
+completed work. If an uncertain native fact is necessary to
+justify the change, resolve that fact.
 Keep review, documentation and permitted checks proportional to the actual fix;
 a small correction does not need a new recovery project or redundant fixtures.
 
@@ -231,13 +247,21 @@ them, inventing missing behavior or treating static checks as gameplay proof.
    accounting preflight. It verifies the newest supplied target and current
    system/changelog records without compiling, launching REA or running a game.
    If it fails, report the exact stale/missing accounting; do not silently use an
-   older inventory or offer its findings as current. Existing records with open
-   recovery are expected and do not constitute a preflight failure.
+   older inventory or offer its findings as current. Version/hash/registration
+   drift alone does not block offering or repairing concrete source gaps from
+   retained reports after checking their live source. State the evidence's
+   provenance and pending current applicability. An evidence-integrity failure
+   requires resolving only the affected facts needed for that repair. Existing
+   records with open recovery are expected and do not constitute a preflight
+   failure.
    For a bare invocation with an unregistered/new target, offer the bounded
-   latest-target registration and coverage refresh under #41 and wait for that
-   selection before writing records or running native discovery. When an exact
-   repair or game-file update is already selected, necessary target/accounting
-   refresh is part of that scope; do not request the same authorization again.
+   latest-target registration and coverage refresh under #41 alongside eligible
+   source repairs; do not make that refresh their prerequisite. Wait for a
+   selection before writing records or running native discovery. An exact
+   source repair does not implicitly select a coverage refresh. Register/verify
+   inputs needed for fresh targeted native queries without expanding into an
+   audit. An explicitly selected game-file update or coverage refresh retains
+   that scope; do not request the same authorization again.
    Consult `docs/analysis/coverage/systems.json` for source work and pending
    native questions associated with each gap, including all diagnostic paths.
    For a bare invocation or selected #41 work, follow #41's link to the current
@@ -325,9 +349,10 @@ new selection only for work outside that authorization or an explicit user limit
   the latest target returned by `scripts/coverage_common.py` through the
   [coverage workflow](references/coverage.md), including its identity manifest,
   and verify its hash before fresh native analysis. Reuse recorded current
-  correspondence assessments for older evidence; where necessary, establish
-  only the missing correspondence or changed dependency needed by this task.
-  Preserve historical provenance and do not use old addresses unverified.
+  correspondence assessments when available. Establish missing correspondence
+  only where a necessary query or unresolved behavior needs it, following
+  [cross-version repair](#repair-existing-gaps-across-versions). Preserve
+  historical provenance and do not use old addresses unverified.
 - Submit native work through the [shared query queue](../shared/autonomy.md#durable-native-queries).
   Its worker limit and compatible-Program leases cover all chats and delegates;
   leave queued work waiting and continue independent source work. Batch related

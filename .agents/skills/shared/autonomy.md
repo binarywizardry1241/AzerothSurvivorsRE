@@ -138,6 +138,15 @@ resolved classifications or completed repairs. Preserve their original target,
 stable system/lead/gap identities and exact remaining questions. Never reset an
 entire module or #41 to unknown merely because the whole-file hash changed.
 
+For existing `fixgap` findings, apply the skill's
+[cross-version repair rule](../fixgap/SKILL.md#repair-existing-gaps-across-versions).
+The discovery/recovery version does not gate source repairs on another version.
+Pending current-target applicability stays separate from source completion;
+correspondence and coverage-refresh requirements below govern audit claims and
+fresh native queries and do not gate established source corrections.
+Resolve a necessary unknown or concrete behavioral conflict with targeted
+recovery; version/hash drift alone does not require that work.
+
 - **Same target and inputs:** verify the target, Data and relevant source,
   query/profile/input commitments, then reuse completed results and saved
   Programs. Resume unfinished queries/census batches. Repeat the workflow's
@@ -145,10 +154,11 @@ entire module or #41 to unknown merely because the whole-file hash changed.
   fresh Ghidra import or repeat completed decompilation/census work just because
   another audit was invoked. Missing outputs, changed analysis inputs or a
   demonstrated analysis defect can require a replacement pass; identify why.
-- **Changed target:** perform the required whole-image discovery and obtain a
-  census bound to the new hash; never resume an old Program as if it contained
-  the new EXE. Before repeating semantic recovery, correlate retained contracts,
-  classifications and unresolved leads with the new code/data. Keep predecessor
+- **Changed target during a selected refresh/audit:** perform the required
+  whole-image discovery and obtain a census bound to the new hash; an ordinary
+  source repair does not select that audit. Never resume an old Program as if
+  it contained the new EXE. Before repeating semantic recovery, correlate retained
+  contracts, classifications and unresolved leads with the new code/data. Keep predecessor
   links and old/new exact selectors. Recompilation, moved addresses or changed
   encodings are reasons to establish correspondence, not proof of new behavior.
 - **Changed Data or source:** reassess the resource consumers or source
