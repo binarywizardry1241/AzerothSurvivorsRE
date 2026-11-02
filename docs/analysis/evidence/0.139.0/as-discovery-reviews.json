@@ -1,0 +1,3402 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.139.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274",
+    "size_bytes": 150595584
+  },
+  "reviews": [
+    {
+      "id": "native-interface-14030a950",
+      "selector": "Q41-NEW:custom-app-screens-inspect:0x14030a950",
+      "finding_ids": [
+        299
+      ],
+      "ownership": "unknown",
+      "conclusion": "Inspect item/appearance tooltip consumer. Slot-index bound 18, byte read at subject+0x14e+slot and rank clamp 5. Direct armory.card_bonuses/Hidden/Shown-as text references. Complete body/module ownership and native/source equivalence are not inferred.",
+      "next_action": "Raw slice omits guarded item-kind 1\u20135 table 0x1465461f8; Ghidra treats that branch as an indirect call. Recover caller/subject identity and external gear/text helpers.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/coop_ui.rs",
+            "sha256": "25ba0960a29aa2ef09d6215237067fda598e5120910e11028096b36382a6c9d5"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/armory.rs",
+            "sha256": "f5557f19f1de7b78e7e5fcfd8de446ef66cb5160dcc997fba56da981f84ea03c"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_spell_text.rs",
+            "sha256": "0e7fa7d18e67998e9d9c4b38817c0cc153979c854ff940ffd84fbb6f13aa3cd9"
+          }
+        ],
+        "conclusion": "Which inspected-subject fields reach the ranked item/appearance popup, and is this the current consumer of armory.card_bonuses and Hidden/Shown-as text? Recover only this tooltip input/consumer interface; caller/profile delivery stays pending. Existing source interfaces are candidates; reconstructed_source_connected remains false."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/native-frontier-results.json",
+        "sha256": "92e3221c5f2662dc3c2816166771e909513330ca0da8f18ee96f0725fb8e9fcf"
+      },
+      "query": {
+        "selector": [
+          "queries",
+          0,
+          "query_proof"
+        ],
+        "sha256": "899c38b60dd038b99ac0a9c42502ad974803ec014a383ea27278f39e26a31590"
+      },
+      "results": [
+        {
+          "path": "runtime/analysis/tasks/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/new-module-interface-14030a950/results/7391ae8c1cccae257c03b4243a1360e157576c8f37662f03cb3b161ab06df390-a5d3aa7cc42efbdb.json",
+          "sha256": "2aec76b1d92a8142708c5a3a4efcae5b42894d61bc9af8b6aa3db15f76aec9ea"
+        }
+      ]
+    },
+    {
+      "id": "native-interface-140319c90",
+      "selector": "Q41-NEW:custom-app-screens-inspect:0x140319c90",
+      "finding_ids": [
+        299
+      ],
+      "ownership": "unknown",
+      "conclusion": "Inspect display/entity lifecycle. External 0x140151930 gate can clear retained state; generic ECS traversal retires display entities. Conditional view reset writes +0x70=0 and +0x8f=0xff, then calls 0x1403e8f00. Complete body/module ownership and native/source equivalence are not inferred.",
+      "next_action": "Bind concrete subject/result gate and construction consumer; do not expand generic ECS traversal.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/coop_ui.rs",
+            "sha256": "25ba0960a29aa2ef09d6215237067fda598e5120910e11028096b36382a6c9d5"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/coop_profile.rs",
+            "sha256": "261ad48971ad973a54e0800808c785c20671008e81f4d41c611f2cd4b310a95e"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/armory.rs",
+            "sha256": "f5557f19f1de7b78e7e5fcfd8de446ef66cb5160dcc997fba56da981f84ea03c"
+          }
+        ],
+        "conclusion": "Classify the owner of inspect.rs279/290 before assuming it updates the inspection window: which subject/state operands reach its display-entity query, and what remains an ordinary ECS interface? Compare the retained source lack of inspection snapshot/action. Existing source interfaces are candidates; reconstructed_source_connected remains false."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/native-frontier-results.json",
+        "sha256": "92e3221c5f2662dc3c2816166771e909513330ca0da8f18ee96f0725fb8e9fcf"
+      },
+      "query": {
+        "selector": [
+          "queries",
+          1,
+          "query_proof"
+        ],
+        "sha256": "de91e8b76da21288af91c9a3bf00947345078838e49c7cdd36888d9b5794da7d"
+      },
+      "results": [
+        {
+          "path": "runtime/analysis/tasks/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/new-module-interface-140319c90/results/920c66d820ae3c00f8ad3463f2b3d1a1df8a89274e5184aaae27da0225c999c3-32d0bb361efed028.json",
+          "sha256": "51e26367a026fe86a9a02f656b78a83f8a44ae5dbf7812233ca79cfe1b09d5da"
+        }
+      ]
+    },
+    {
+      "id": "native-interface-140311940",
+      "selector": "Q41-NEW:custom-app-screens-localclock:0x140311940",
+      "finding_ids": [
+        302
+      ],
+      "ownership": "unknown",
+      "conclusion": "Clock geometry/visibility update. Calls 0x1405f7710 for float tuple and divides three derived geometry values by a resource scalar. Three conditions gate changed-value-only component updates/visibility. Complete body/module ownership and native/source equivalence are not inferred.",
+      "next_action": "Resolve resource/component identities and rectangle producer before naming minimap/HUD scale. Device time/text provider remains separate.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/run_hud/settings.rs",
+            "sha256": "3357e441be1c0dc3076a77b7a2d4702ebd409e02cb3dd4479e37d473db5a4b09"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs",
+            "sha256": "17c20a02756d09f6f541042612a419e0f076691742d92abcf77ec75c7bd29fbd"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/options.rs",
+            "sha256": "842b84d68bef6f8d7dfa8f8b725811e8f90d6d247b791f5c15f6a66a6623dc38"
+          }
+        ],
+        "conclusion": "Which visibility, minimap geometry, scale and text state are consumed at localclock.rs114\u2013117? Distinguish the AS clock update from generic ECS access; native time provider and Lua registration remain separate boundaries. Existing source interfaces are candidates; reconstructed_source_connected remains false."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/native-frontier-results.json",
+        "sha256": "92e3221c5f2662dc3c2816166771e909513330ca0da8f18ee96f0725fb8e9fcf"
+      },
+      "query": {
+        "selector": [
+          "queries",
+          2,
+          "query_proof"
+        ],
+        "sha256": "985f4af116fa7862bfbdcd1e790df9f9e07c2ef17717265e50836e583428ef62"
+      },
+      "results": [
+        {
+          "path": "runtime/analysis/tasks/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/new-module-interface-140311940/results/e3cbf5ea6b6b63db4df72ce462c80964085da92f3ab07a2385568870691a0793-cad9c35b13afb4bd.json",
+          "sha256": "c5be334460db940e48963162db402413b5ea8bfb671594b4a9d0945837e6368c"
+        }
+      ]
+    },
+    {
+      "id": "native-interface-140312430",
+      "selector": "Q41-NEW:custom-app-screens-localclock:0x140312430",
+      "finding_ids": [
+        302
+      ],
+      "ownership": "unknown",
+      "conclusion": "Clock entity construction guard. A matching live query entry causes return. Empty query also requires non-null constructor input before root/text-like bundle construction. Complete body/module ownership and native/source equivalence are not inferred.",
+      "next_action": "Resolve component markers and passed handle/text identity. The separately queried localclock.rs:22 owner registers AZS_NativeLocalTime; formatting/provider behavior remains at callback 0x1402fe5a0.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/run_hud/settings.rs",
+            "sha256": "3357e441be1c0dc3076a77b7a2d4702ebd409e02cb3dd4479e37d473db5a4b09"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs",
+            "sha256": "17c20a02756d09f6f541042612a419e0f076691742d92abcf77ec75c7bd29fbd"
+          }
+        ],
+        "conclusion": "Classify the localclock.rs64 owner and its create/hide/read conditions against the existing ten-part HUD registry; identify the exact AS clock entity/visibility interface without recursively decompiling engine widget helpers. Existing source interfaces are candidates; reconstructed_source_connected remains false."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/native-frontier-results.json",
+        "sha256": "92e3221c5f2662dc3c2816166771e909513330ca0da8f18ee96f0725fb8e9fcf"
+      },
+      "query": {
+        "selector": [
+          "queries",
+          3,
+          "query_proof"
+        ],
+        "sha256": "4010ba983ce77dc57dd953e03f4989edf9c81644adfac09f5e05ec4e2b28b1fa"
+      },
+      "results": [
+        {
+          "path": "runtime/analysis/tasks/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/new-module-interface-140312430/results/f74b8c408b1b42c5ddf59856bb1cca8c21a356af47c6675d487f84ed97547044-ea78bca368958a45.json",
+          "sha256": "cc316ab8c9c632db69eeeb3727e98940534b6ebc4e481aeb664b431ab7e87894"
+        }
+      ]
+    },
+    {
+      "id": "native-interface-14011dc10",
+      "selector": "Q41-NEW:custom-app-screens-readycheck:0x14011dc10",
+      "finding_ids": [
+        306
+      ],
+      "ownership": "unknown",
+      "conclusion": "Ready Check snapshot/modal lifecycle. Calls 0x140151190 for snapshot; missing/sentinel state retires modal. Compares retained fields/flags/vectors, reconstructs changed content through 0x1401135a0/0x1403677e0. Complete body/module ownership and native/source equivalence are not inferred.",
+      "next_action": "Recover typed snapshot/answer/countdown/action interfaces and 30-second/start/cancel protocol. Stop generic ECS traversal.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/coop_ui.rs",
+            "sha256": "25ba0960a29aa2ef09d6215237067fda598e5120910e11028096b36382a6c9d5"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/coop/replication.rs",
+            "sha256": "d3ea43b43070477540d1308776b4303dff0885c3f67d1585ef35d3ed31a82951"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/coop/game_party.rs",
+            "sha256": "6ec6effaf1b9b277ec03212ad0ecda3c13a6860b5e1ef9aa72655fc9acc8ac28"
+          }
+        ],
+        "conclusion": "Which ready-check member-answer/countdown/action operands are used by the sole readycheck UI diagnostic owner at63/76/86, and which portions are generic ECS query access? Recover this UI interface only; authoritative start/cancel/timeout wire semantics remain separate. Existing source interfaces are candidates; reconstructed_source_connected remains false."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/native-frontier-results.json",
+        "sha256": "92e3221c5f2662dc3c2816166771e909513330ca0da8f18ee96f0725fb8e9fcf"
+      },
+      "query": {
+        "selector": [
+          "queries",
+          4,
+          "query_proof"
+        ],
+        "sha256": "ab60db3050ac75ba456e99946ec1ec122c8665e1b3ca4dbef365a856e39d756c"
+      },
+      "results": [
+        {
+          "path": "runtime/analysis/tasks/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/new-module-interface-14011dc10/results/42cd3a626bcbc6cd2191474d8deaf549cd2a04ae067dc493e2fb84d2d9e596b1-52429071596536ee.json",
+          "sha256": "2d6f5093419265da987fc55700ed105cbfb95016c2874e5d89a8518a35351c8f"
+        }
+      ]
+    },
+    {
+      "id": "native-interface-140161d90",
+      "selector": "Q41-NEW:custom-app-screens-recap:0x140161d90",
+      "finding_ids": [
+        300
+      ],
+      "ownership": "as_specific",
+      "conclusion": "Death recap payload renderer. Named inputs secs/absorbed/hits/by/avoidable feed Final Blows and Damage by Source. Iterates 32-byte value entries; avoidable ratio uses 100 scaling and 0..100 presentation bounds. Complete body/module ownership and native/source equivalence are not inferred.",
+      "next_action": "History capture/window/grouping and recipient publication are upstream. External lookup/row-builder/formatting helpers and numeric edge behavior remain pending; decompiler type propagation did not settle.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/terminal_view.rs",
+            "sha256": "ef9166cb007570dfb4cd7e1bf18ea2fd3cc49ef5706c0230fe665419c0dc475b"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
+            "sha256": "1744bc61c04ead90ea80a6ad74804cfb47395fabcc52f73e92dcdf0b196e185b"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/addon_meters.rs",
+            "sha256": "ecd828caac2a595074c514b15c9314244d5f106ea39ee9c36af0f31f6c6eaf8b"
+          }
+        ],
+        "conclusion": "What recap payload/container fields feed Final Blows, hit grouping, Damage by Source and avoidable-share rendering in this independently string-linked owner? Establish only the renderer input/layout/action boundary, not how damage history is captured. Existing source interfaces are candidates; reconstructed_source_connected remains false."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/native-frontier-results.json",
+        "sha256": "92e3221c5f2662dc3c2816166771e909513330ca0da8f18ee96f0725fb8e9fcf"
+      },
+      "query": {
+        "selector": [
+          "queries",
+          5,
+          "query_proof"
+        ],
+        "sha256": "c6da99a8759c4e3b796096915a9963efef9e0283ed7c00dc35f3f980dc733fd9"
+      },
+      "results": [
+        {
+          "path": "runtime/analysis/tasks/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/new-module-interface-140161d90/results/5241d8d917a88b272e802e52130cc80050f1afec5b1539b5c253da1e86a3351f-a6b68db0e0de981a.json",
+          "sha256": "3f964f6f73cf49c86a7a8dc5f67699d0d94f69249b2348e70f968033b8bfe1a9"
+        }
+      ]
+    },
+    {
+      "id": "native-interface-140178750",
+      "selector": "Q41-NEW:custom-app-screens-recap:0x140178750",
+      "finding_ids": [
+        300
+      ],
+      "ownership": "as_specific",
+      "conclusion": "Terminal killing-blow payload/lifecycle. Nested keys recap (length 5) / killer (length 6) require object-like tag 5. Generation/state +0xe4 comparison and invalidation clear open state before display teardown/rebuild. Calls 0x1403add50 with selected recap object. Complete body/module ownership and native/source equivalence are not inferred.",
+      "next_action": "Capture/recipient delivery and complete button/Escape action dispatch remain upstream/out-of-slice.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
+            "sha256": "1744bc61c04ead90ea80a6ad74804cfb47395fabcc52f73e92dcdf0b196e185b"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/terminal_view.rs",
+            "sha256": "ef9166cb007570dfb4cd7e1bf18ea2fd3cc49ef5706c0230fe665419c0dc475b"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/coop/replication.rs",
+            "sha256": "d3ea43b43070477540d1308776b4303dff0885c3f67d1585ef35d3ed31a82951"
+          }
+        ],
+        "conclusion": "Does the owner linked to recapkiller parse, project or emit those payload members, and what concrete fields/lifetimes connect to terminal state? Keep any generic serialization/error calls as stopped interfaces. Existing source interfaces are candidates; reconstructed_source_connected remains false."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/native-frontier-results.json",
+        "sha256": "92e3221c5f2662dc3c2816166771e909513330ca0da8f18ee96f0725fb8e9fcf"
+      },
+      "query": {
+        "selector": [
+          "queries",
+          6,
+          "query_proof"
+        ],
+        "sha256": "bad8a79c85e007bc0f878c84b3d4efef34eff6cad9482df6ebd0e2226e7c3cfd"
+      },
+      "results": [
+        {
+          "path": "runtime/analysis/tasks/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/new-module-interface-140178750/results/aa6b5faed7a8ba4cf7260df0ad6028d97aec03eff04adbeaf8844c9148d2e6ed-071d68e37b332250.json",
+          "sha256": "9093a2bc134b54a72d0c55fce521348edf4b5558edb2c2d019e815d06aa9415a"
+        }
+      ]
+    },
+    {
+      "id": "native-interface-145ebdd50",
+      "selector": "Q41-NEW:custom-game-game-enhancement:0x145ebdd50",
+      "finding_ids": [
+        305
+      ],
+      "ownership": "unknown",
+      "conclusion": "Mixed main-update owner with inlined Enhancement regions. Rockbiter/Stormstrike exact-key branch scans raw effect tag 42 / subtype 10 and rank byte at effect +1. While timestamp +0x13c exceeds clock +0xe88, an existing cooldown decrements by delta*(1+rank*6/100). A second branch adjusts published remaining cooldown across the active rate window. Complete body/module ownership and native/source equivalence are not inferred.",
+      "next_action": "Map subtype 10 to current Flurry descriptor, four-second expiry producer and actual source consumer. Windfury/repeat/cast-origin callees remain pending; surrounding regen/update regions are supporting context, not whole-function Enhancement ownership.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+            "sha256": "27c0258680cb0c842e2872242b50583093fe5137bc1857cee29c7f9a56fe9e27"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
+            "sha256": "2ff1e7a127f06bec47319b03fb6cd167a08c59cccdc122fc8b78357cf0975dd2"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/run_effects.rs",
+            "sha256": "24a4fac04de27ccde33908fb1818a73f6b8cfb46b4b353cae384744cbfdca629"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/save/talents.rs",
+            "sha256": "d38a4f72d283c680ce142c0a7ee15d3cf42b9077bec95fac2ba8a8cdcf3309ce"
+          }
+        ],
+        "conclusion": "Which incoming cast/state flags in the sole Enhancement diagnostic owner distinguish Rockbiter/Stormstrike, Windfury and repeat-origin execution? Recover one bounded proc-admission/dispatch interface and explicit external edges; do not infer the whole new tree from its rockbiter/sweeping-storm literals. Existing source interfaces are candidates; reconstructed_source_connected remains false."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/native-frontier-results.json",
+        "sha256": "92e3221c5f2662dc3c2816166771e909513330ca0da8f18ee96f0725fb8e9fcf"
+      },
+      "query": {
+        "selector": [
+          "queries",
+          7,
+          "query_proof"
+        ],
+        "sha256": "8c4651c89f46c482a3c17ea93e001951f316294cb54cb976b19a927a443b6d1a"
+      },
+      "results": [
+        {
+          "path": "runtime/analysis/tasks/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/new-module-interface-145ebdd50/results/98bf868834de92b6c316dd681b2dcd41a57a2ca57db9d9679a5df6c6a721ab55-cbe4534b3b399221.json",
+          "sha256": "0f32d2aadde557326927f3302de59540723d7db08ad4842e68da1fe2276cdc87"
+        }
+      ]
+    },
+    {
+      "id": "native-interface-145f50e10",
+      "selector": "Q41-NEW:custom-game-game-meterfeed:0x145f50e10",
+      "finding_ids": [
+        75
+      ],
+      "ownership": "unknown",
+      "conclusion": "Meterfeed entry gate and external descriptor dispatch. Original Windows x64 entry gates require state byte +0xf4b == 2, selected index below +0x740, and state byte +0xf49 != 0xff. Selects a 0xa0-stride record and dispatches through external table 0x147a1f7f8 using its +0x78 tag. Complete body/module ownership and native/source equivalence are not inferred.",
+      "next_action": "Missing switch-table bytes prevent Ghidra from following the dispatch; the pseudocode covers only entry gates. No complete descriptor schema or source identity is recovered.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/addon_meters.rs",
+            "sha256": "ecd828caac2a595074c514b15c9314244d5f106ea39ee9c36af0f31f6c6eaf8b"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/run_effects/healing.rs",
+            "sha256": "e669f15727237e0d5ccaa1efcf13fc38cf7abc54b837b0c4299aaefa0e1a0134"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs",
+            "sha256": "17c20a02756d09f6f541042612a419e0f076691742d92abcf77ec75c7bd29fbd"
+          }
+        ],
+        "conclusion": "Which source/borrowed-spell/loadout descriptors are constructed by this meterfeed owner, independently linked to a static cleave descriptor? Identify one actual meter row identity interface before following serializers or treating a spell label as the damage-meter source. Existing source interfaces are candidates; reconstructed_source_connected remains false."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/native-frontier-results.json",
+        "sha256": "92e3221c5f2662dc3c2816166771e909513330ca0da8f18ee96f0725fb8e9fcf"
+      },
+      "query": {
+        "selector": [
+          "queries",
+          8,
+          "query_proof"
+        ],
+        "sha256": "3255352ebd9ad0cbf936641f0745454e7ded2726fbd74ae1e21cd033893c3344"
+      },
+      "results": [
+        {
+          "path": "runtime/analysis/tasks/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/new-module-interface-145f50e10/results/8c1f56bcc891a90825e0fdbff79be9fa5f673c67025d4e9c691c1a6299db0225-7815958f3cb123c4.json",
+          "sha256": "8a7a0dbceb391f35085cbe857eecf36dc85d72622a9e71ac477fac8cd90e85ed"
+        }
+      ]
+    },
+    {
+      "id": "native-interface-145e768f0",
+      "selector": "Q41-NEW:custom-game-game-meterlog:0x145e768f0",
+      "finding_ids": [
+        75
+      ],
+      "ownership": "unknown",
+      "conclusion": "Pointer sorting with inlined meter-log ordering comparator. Derives category bytes from record +0x18/+0x58/+0x200, nested +0x64 and exact final/elite labels. Original instructions 0x145e76b40..0x145e76b5d compare the low unsigned 32 bits at +0xf0 within equal categories. Surrounding merge/run-reversal logic is generic sorting and remains a stopped engine boundary. Complete body/module ownership and native/source equivalence are not inferred.",
+      "next_action": "Map actor/category fields and the ordered-subject caller contract. This body does not establish ledger creation, aggregation or snapshot/reload lifetime.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/run_effects/healing.rs",
+            "sha256": "e669f15727237e0d5ccaa1efcf13fc38cf7abc54b837b0c4299aaefa0e1a0134"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/run_meter.rs",
+            "sha256": "b3f3a91144d546ba04d16b3e2ec5911fab5e411751d5143d0f764d951c796687"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/addon_meters.rs",
+            "sha256": "ecd828caac2a595074c514b15c9314244d5f106ea39ee9c36af0f31f6c6eaf8b"
+          }
+        ],
+        "conclusion": "What subject/owner identity and ordinary/elite/final classification operands are handled by this meterlog owner, and is it a ledger row constructor, serializer or another role? Do not assume snapshot/reload lifetime from the filename; compare the existing source-aware meter ledger. Existing source interfaces are candidates; reconstructed_source_connected remains false."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/native-frontier-results.json",
+        "sha256": "92e3221c5f2662dc3c2816166771e909513330ca0da8f18ee96f0725fb8e9fcf"
+      },
+      "query": {
+        "selector": [
+          "queries",
+          10,
+          "query_proof"
+        ],
+        "sha256": "4c6628bb42f5852406a5c7a86f98190da61dec8b0adc91f6a4c30d59e4ac3d9b"
+      },
+      "results": [
+        {
+          "path": "runtime/analysis/tasks/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/new-module-interface-145e768f0/results/4c859c4e712d6bb2d3e4eb77ce9b8e5d0c79599cc4809742986f6a451cbba1ea-f967d10e7f3ad810.json",
+          "sha256": "de0ebd9d97abd48da0f1fa0eff1668e1b1c74566f2d266f1ef52afca0b96dcf7"
+        }
+      ]
+    },
+    {
+      "id": "native-interface-145e4bdb0",
+      "selector": "Q41-NEW:custom-game-server-party-readycheck:0x145e4bdb0",
+      "finding_ids": [
+        306
+      ],
+      "ownership": "unknown",
+      "conclusion": "Ready Check first-answer admission and mutation. Requires phase +0xf60 == 3, bounded member index, non-sentinel member/context fields and a nonempty response vector. Matches member identity +0x560 in 16-byte rows; only a matching unanswered byte 0 becomes 2-r8b under original Windows x64 operands. Member stride is 0x858; repeated answers cannot overwrite an already nonzero row byte within this owner. Complete body/module ownership and native/source equivalence are not inferred.",
+      "next_action": "Caller boolean/enum meanings, authenticated request routing, response membership creation and phase meaning remain pending. Start/cancel/timeout and all-ready admission are independent external interfaces.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
+            "sha256": "009c67624841ac6f036c7a5eaa139b5f5a5e816f61cdfea69caa291b1a91b66c"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/coop/game_party.rs",
+            "sha256": "6ec6effaf1b9b277ec03212ad0ecda3c13a6860b5e1ef9aa72655fc9acc8ac28"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/coop/replication.rs",
+            "sha256": "d3ea43b43070477540d1308776b4303dff0885c3f67d1585ef35d3ed31a82951"
+          }
+        ],
+        "conclusion": "The complete sole168-byte diagnostic owner compares[rcx+f60] with3, bounds rdx by[rcx+fa0], reads member stride858/field560, scans16-byte rows and writes byte+8 as2-r8b. Which native request/member/answer contract do those operands represent? Recover this response mutation/admission only; the panic helper is generic stopped context and start/cancel/timeout remain pending. Existing source interfaces are candidates; reconstructed_source_connected remains false."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/native-frontier-results.json",
+        "sha256": "92e3221c5f2662dc3c2816166771e909513330ca0da8f18ee96f0725fb8e9fcf"
+      },
+      "query": {
+        "selector": [
+          "queries",
+          11,
+          "query_proof"
+        ],
+        "sha256": "fc89ae39cab1680add96b0a9851913fefc3f1a744f40b88e9079e9c905f1d426"
+      },
+      "results": [
+        {
+          "path": "runtime/analysis/tasks/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/new-module-interface-145e4bdb0/results/a19e43368cde1b2a19707adbb70dcba3a527c01a1e720afadcbdb0e5e43954ef-db9a5b723b5ef538.json",
+          "sha256": "93fbd3f304f06de8fab10cc1b81a79a7be5626d0d9883c41171cbbc4c089c2fc"
+        }
+      ]
+    },
+    {
+      "id": "native-interface-1402fe070",
+      "selector": "Q41-NEW:custom-app-screens-localclock:0x1402fe070",
+      "finding_ids": [
+        302
+      ],
+      "ownership": "unknown",
+      "conclusion": "Native local-time binding descriptor registration. Original instructions 0x1402fe090..0x1402fe0b9 pass name pointer 0x146543640, exact length 19 and callback 0x1402fe5a0 to 0x14013fd20. An independent current-target read of those 19 bytes is exactly AZS_NativeLocalTime. Subsequent bundle/scheduling setup stays at the generic engine boundary. Complete body/module ownership and native/source equivalence are not inferred.",
+      "next_action": "Actual time acquisition, locale/12\u201324-hour format, return schema, cached text/time and VM lifetime stop at unqueried callback 0x1402fe5a0.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/run_hud/settings.rs",
+            "sha256": "3357e441be1c0dc3076a77b7a2d4702ebd409e02cb3dd4479e37d473db5a4b09"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs",
+            "sha256": "17c20a02756d09f6f541042612a419e0f076691742d92abcf77ec75c7bd29fbd"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/options.rs",
+            "sha256": "842b84d68bef6f8d7dfa8f8b725811e8f90d6d247b791f5c15f6a66a6623dc38"
+          }
+        ],
+        "conclusion": "Which clock/sample fields are formatted or refreshed by the localclock.rs22 owner0x1402fe070, what chooses12/24-hour or locale formatting, and how is cached text/time lifetime updated? Identify whether this is the provider, formatter or consumer; stop at a concrete unknown callee and do not recurse through generic ECS/clock-library internals. Existing source interfaces are candidates; reconstructed_source_connected remains false."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/native-frontier-results.json",
+        "sha256": "92e3221c5f2662dc3c2816166771e909513330ca0da8f18ee96f0725fb8e9fcf"
+      },
+      "query": {
+        "selector": [
+          "queries",
+          12,
+          "query_proof"
+        ],
+        "sha256": "1a561fe66f3b1ea5eae911e229c236caa2ab22aaccf5186e4f5674b4054cfcdf"
+      },
+      "results": [
+        {
+          "path": "runtime/analysis/tasks/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/new-module-interface-1402fe070/results/55993f64167d9f3ec75b7a4e96831c20b1bed6290386a062275ed9b670cad8c5-a78a017f25ffcd94.json",
+          "sha256": "5ce0a082e0c7d0d17c04b610a255c2b22423bc0a2c3895d3296914c37bf9e625"
+        }
+      ]
+    }
+  ],
+  "pending_native_leads": [
+    {
+      "id": "meterfeed-decompiler-145f56de0",
+      "selector": "Q41-NEW:meterfeed-decompiler:0x145f56de0",
+      "finding_ids": [
+        75
+      ],
+      "conclusion": "The exact current meterfeed producer retains successful procedure metadata but failed pseudocode with non-retryable Ghidra decompile_failed/Unable to find unique hash for varnode. No semantic body is invented.",
+      "next_action": "Inspect the exact current full-PE flow/guarded table and declared-boundary context, diagnose a concrete analysis-boundary/profile issue, then select a new durable query only for that repair. Preserve the failed original plan/journal; do not repeat it unchanged.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/native-frontier-results.json",
+        "sha256": "92e3221c5f2662dc3c2816166771e909513330ca0da8f18ee96f0725fb8e9fcf"
+      },
+      "proof": {
+        "selector": [
+          "queries",
+          9,
+          "native_candidate"
+        ],
+        "sha256": "8d60f93417b11e4c389ecdf6f96994dbcd6bb41d2feec56a983b8a8243c5613f"
+      },
+      "inputs": [
+        {
+          "path": "docs/analysis/evidence/0.139.0/native-frontier-plan.json",
+          "sha256": "b77bcccd8a9fe87666682b6d0b6079cb641febd045aca5a3bd9c84b91e5358dc"
+        },
+        {
+          "path": "runtime/execheck-0.139.0/native-frontier-inputs/slices/picker-145f56de0.bin",
+          "sha256": "4079f65a63a12aa7aed09db8f850e9fe4650b1986a5371070ab783d033c48d07"
+        },
+        {
+          "path": "runtime/analysis/tasks/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/new-module-interface-145f56de0/journal.json",
+          "sha256": "9c408b09003acd90f065d6c31286b9d8c7e2553f85f2fbccd755047a2bbb6805"
+        }
+      ],
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/addon_meters.rs",
+            "sha256": "ecd828caac2a595074c514b15c9314244d5f106ea39ee9c36af0f31f6c6eaf8b"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/addon_feed.rs",
+            "sha256": "ca66508ca91162fdb1cce4049e73c2fb87f0fcbaf2de8c9eabeb41dd4409c81e"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/run_effects/healing.rs",
+            "sha256": "e669f15727237e0d5ccaa1efcf13fc38cf7abc54b837b0c4299aaefa0e1a0134"
+          }
+        ],
+        "conclusion": "Classify the multi-location meterfeed owner at379/397/426/452/460: which input ledger/player context and output frame fields are handled here? Recover one producer/consumer boundary for the retained aggregate meter source, stopping at generic formatting/serialization calls. Existing addon_meters/feed interfaces are candidates, not an established current producer assignment."
+      },
+      "failure_receipt": {
+        "operation": "procedure_pseudo_code",
+        "attempts": 1,
+        "error_code": "execution_failure",
+        "retryable": false,
+        "provider_failure_code": "decompile_failed",
+        "provider_message": "Ghidra decompilation failed:  Recoverable Error: Unable to find unique hash for varnode",
+        "raw_response_sha256": "d442630fbaa4c05d9503ea8c86ed68ced01ae6b52dde6796c9a4e07dbf235e75",
+        "raw_response_retention": "Full protocol diagnostics were summarized here and removed after verifying retained journals, immutable results and saved Program provenance."
+      },
+      "state": "pending",
+      "ownership": "unknown",
+      "complete": false
+    }
+  ],
+  "finding_bindings": [
+    {
+      "id": "source-frontier-lobby-inspect",
+      "selectors": [
+        "Q41-I01:module_type_namespace:125",
+        "Q41-I01:module_type_namespace:126",
+        "Q41-I01:module_type_namespace:127",
+        "Q41-I01:module_type_namespace:128",
+        "Q41-I01:module_type_namespace:130",
+        "Q41-I01:module_type_namespace:132",
+        "Q41-I01:module_type_namespace:133",
+        "Q41-I01:module_type_namespace:211",
+        "Q41-I01:resource_path:3"
+      ],
+      "finding_ids": [
+        299
+      ],
+      "conclusion": "Explicit issue attribution for this exact source-first candidate group only. Preserve unknown native ownership and pending recovery/source/current-target-contract questions. Candidate source interfaces and retained historical implementations do not certify current behavioral correspondence, completed implementation or parity.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/source-frontier.json",
+        "sha256": "9855f91cf068ab7827a1540953dfaab6c9e54eb0d6b3034b4ecbad666a706a46"
+      },
+      "proof": {
+        "selector": [
+          "candidate_review_groups",
+          "lobby-inspect"
+        ],
+        "sha256": "922e5381e53da3cd33e5413823ee45d295de7f3735ce79ff854825942d7091f6"
+      }
+    },
+    {
+      "id": "source-frontier-local-clock",
+      "selectors": [
+        "Q41-I01:module_type_namespace:164",
+        "Q41-I01:module_type_namespace:166",
+        "Q41-I01:module_type_namespace:224",
+        "Q41-I01:module_type_namespace:742",
+        "Q41-I01:game_binding_identifier:11",
+        "Q41-I01:game_binding_identifier:124",
+        "Q41-I01:game_binding_identifier:125",
+        "Q41-I01:lua_function_declaration:140"
+      ],
+      "finding_ids": [
+        302
+      ],
+      "conclusion": "Explicit issue attribution for this exact source-first candidate group only. Preserve unknown native ownership and pending recovery/source/current-target-contract questions. Candidate source interfaces and retained historical implementations do not certify current behavioral correspondence, completed implementation or parity.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/source-frontier.json",
+        "sha256": "9855f91cf068ab7827a1540953dfaab6c9e54eb0d6b3034b4ecbad666a706a46"
+      },
+      "proof": {
+        "selector": [
+          "candidate_review_groups",
+          "local-clock"
+        ],
+        "sha256": "b21c78a9d651a0acd8687059e029da3acfc5e89ca071ec56330f75c891f5673a"
+      }
+    },
+    {
+      "id": "source-frontier-ready-check",
+      "selectors": [
+        "Q41-I01:module_type_namespace:7",
+        "Q41-I01:module_type_namespace:9",
+        "Q41-I01:module_type_namespace:11",
+        "Q41-I01:module_type_namespace:167",
+        "Q41-I01:module_type_namespace:225"
+      ],
+      "finding_ids": [
+        306
+      ],
+      "conclusion": "Explicit issue attribution for this exact source-first candidate group only. Preserve unknown native ownership and pending recovery/source/current-target-contract questions. Candidate source interfaces and retained historical implementations do not certify current behavioral correspondence, completed implementation or parity.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/source-frontier.json",
+        "sha256": "9855f91cf068ab7827a1540953dfaab6c9e54eb0d6b3034b4ecbad666a706a46"
+      },
+      "proof": {
+        "selector": [
+          "candidate_review_groups",
+          "ready-check"
+        ],
+        "sha256": "c2d5f31cc7d7b2fb256d7c66a581334a2977f86f18d8283065000858b245e00c"
+      }
+    },
+    {
+      "id": "source-frontier-death-recap",
+      "selectors": [
+        "Q41-I01:module_type_namespace:73",
+        "Q41-I01:module_type_namespace:190"
+      ],
+      "finding_ids": [
+        300
+      ],
+      "conclusion": "Explicit issue attribution for this exact source-first candidate group only. Preserve unknown native ownership and pending recovery/source/current-target-contract questions. Candidate source interfaces and retained historical implementations do not certify current behavioral correspondence, completed implementation or parity.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/source-frontier.json",
+        "sha256": "9855f91cf068ab7827a1540953dfaab6c9e54eb0d6b3034b4ecbad666a706a46"
+      },
+      "proof": {
+        "selector": [
+          "candidate_review_groups",
+          "death-recap"
+        ],
+        "sha256": "4fb6d5f965a1777eaeeda207f55dec71baa64113b09b8c4c3be88cb971d3c2c7"
+      }
+    },
+    {
+      "id": "source-frontier-enhancement",
+      "selectors": [
+        "Q41-I01:game_binding_identifier:782",
+        "Q41-I01:game_binding_identifier:802",
+        "Q41-I01:lua_function_declaration:240"
+      ],
+      "finding_ids": [
+        305
+      ],
+      "conclusion": "Explicit issue attribution for this exact source-first candidate group only. Preserve unknown native ownership and pending recovery/source/current-target-contract questions. Candidate source interfaces and retained historical implementations do not certify current behavioral correspondence, completed implementation or parity.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/source-frontier.json",
+        "sha256": "9855f91cf068ab7827a1540953dfaab6c9e54eb0d6b3034b4ecbad666a706a46"
+      },
+      "proof": {
+        "selector": [
+          "candidate_review_groups",
+          "enhancement"
+        ],
+        "sha256": "0dfc7f323a2d257185d8f7dba49bdbbd75c2d450dcea7dda5db01153b6e14b8c"
+      }
+    },
+    {
+      "id": "source-frontier-meter-ledger",
+      "selectors": [
+        "Q41-I01:game_binding_identifier:278",
+        "Q41-I01:game_binding_identifier:279",
+        "Q41-I01:game_binding_identifier:280",
+        "Q41-I01:game_binding_identifier:281",
+        "Q41-I01:game_binding_identifier:282",
+        "Q41-I01:game_binding_identifier:283",
+        "Q41-I01:game_binding_identifier:284",
+        "Q41-I01:game_binding_identifier:285",
+        "Q41-I01:game_binding_identifier:286",
+        "Q41-I01:game_binding_identifier:287",
+        "Q41-I01:game_binding_identifier:288",
+        "Q41-I01:game_binding_identifier:289",
+        "Q41-I01:game_binding_identifier:290",
+        "Q41-I01:game_binding_identifier:291",
+        "Q41-I01:game_binding_identifier:292",
+        "Q41-I01:game_binding_identifier:293",
+        "Q41-I01:game_binding_identifier:294",
+        "Q41-I01:game_binding_identifier:295",
+        "Q41-I01:game_binding_identifier:296",
+        "Q41-I01:game_binding_identifier:297",
+        "Q41-I01:game_binding_identifier:298",
+        "Q41-I01:game_binding_identifier:299",
+        "Q41-I01:game_binding_identifier:300",
+        "Q41-I01:game_binding_identifier:301",
+        "Q41-I01:game_binding_identifier:302",
+        "Q41-I01:game_binding_identifier:303",
+        "Q41-I01:game_binding_identifier:304",
+        "Q41-I01:game_binding_identifier:305",
+        "Q41-I01:game_binding_identifier:306",
+        "Q41-I01:game_binding_identifier:307",
+        "Q41-I01:game_binding_identifier:308",
+        "Q41-I01:game_binding_identifier:309",
+        "Q41-I01:game_binding_identifier:310",
+        "Q41-I01:game_binding_identifier:311",
+        "Q41-I01:game_binding_identifier:312",
+        "Q41-I01:game_binding_identifier:313",
+        "Q41-I01:game_binding_identifier:314",
+        "Q41-I01:game_binding_identifier:315",
+        "Q41-I01:game_binding_identifier:316",
+        "Q41-I01:game_binding_identifier:317",
+        "Q41-I01:game_binding_identifier:318",
+        "Q41-I01:game_binding_identifier:319",
+        "Q41-I01:game_binding_identifier:320",
+        "Q41-I01:game_binding_identifier:321",
+        "Q41-I01:game_binding_identifier:322",
+        "Q41-I01:game_binding_identifier:323",
+        "Q41-I01:game_binding_identifier:324",
+        "Q41-I01:game_binding_identifier:325",
+        "Q41-I01:game_binding_identifier:326",
+        "Q41-I01:game_binding_identifier:327",
+        "Q41-I01:game_binding_identifier:328",
+        "Q41-I01:game_binding_identifier:329",
+        "Q41-I01:game_binding_identifier:330",
+        "Q41-I01:game_binding_identifier:331",
+        "Q41-I01:game_binding_identifier:332",
+        "Q41-I01:game_binding_identifier:333",
+        "Q41-I01:game_binding_identifier:334",
+        "Q41-I01:game_binding_identifier:335",
+        "Q41-I01:game_binding_identifier:336",
+        "Q41-I01:game_binding_identifier:337",
+        "Q41-I01:game_binding_identifier:338",
+        "Q41-I01:game_binding_identifier:339",
+        "Q41-I01:game_binding_identifier:340",
+        "Q41-I01:game_binding_identifier:341",
+        "Q41-I01:game_binding_identifier:342",
+        "Q41-I01:game_binding_identifier:343",
+        "Q41-I01:game_binding_identifier:344",
+        "Q41-I01:game_binding_identifier:345",
+        "Q41-I01:game_binding_identifier:346",
+        "Q41-I01:game_binding_identifier:347",
+        "Q41-I01:game_binding_identifier:348",
+        "Q41-I01:game_binding_identifier:349",
+        "Q41-I01:game_binding_identifier:350",
+        "Q41-I01:game_binding_identifier:351",
+        "Q41-I01:game_binding_identifier:352",
+        "Q41-I01:game_binding_identifier:353",
+        "Q41-I01:game_binding_identifier:354",
+        "Q41-I01:game_binding_identifier:355",
+        "Q41-I01:game_binding_identifier:356",
+        "Q41-I01:game_binding_identifier:357",
+        "Q41-I01:game_binding_identifier:358",
+        "Q41-I01:game_binding_identifier:359",
+        "Q41-I01:game_binding_identifier:360",
+        "Q41-I01:game_binding_identifier:361",
+        "Q41-I01:game_binding_identifier:362",
+        "Q41-I01:game_binding_identifier:363",
+        "Q41-I01:game_binding_identifier:364",
+        "Q41-I01:game_binding_identifier:365",
+        "Q41-I01:game_binding_identifier:366",
+        "Q41-I01:game_binding_identifier:367",
+        "Q41-I01:game_binding_identifier:368",
+        "Q41-I01:game_binding_identifier:369",
+        "Q41-I01:game_binding_identifier:370",
+        "Q41-I01:game_binding_identifier:371",
+        "Q41-I01:game_binding_identifier:372",
+        "Q41-I01:game_binding_identifier:373",
+        "Q41-I01:game_binding_identifier:374",
+        "Q41-I01:game_binding_identifier:375",
+        "Q41-I01:game_binding_identifier:376",
+        "Q41-I01:game_binding_identifier:377",
+        "Q41-I01:game_binding_identifier:378",
+        "Q41-I01:game_binding_identifier:379",
+        "Q41-I01:game_binding_identifier:380",
+        "Q41-I01:game_binding_identifier:381",
+        "Q41-I01:game_binding_identifier:382",
+        "Q41-I01:game_binding_identifier:383",
+        "Q41-I01:game_binding_identifier:384",
+        "Q41-I01:game_binding_identifier:385",
+        "Q41-I01:game_binding_identifier:386",
+        "Q41-I01:game_binding_identifier:387",
+        "Q41-I01:game_binding_identifier:388",
+        "Q41-I01:game_binding_identifier:389",
+        "Q41-I01:game_binding_identifier:390",
+        "Q41-I01:game_binding_identifier:391",
+        "Q41-I01:game_binding_identifier:392",
+        "Q41-I01:game_binding_identifier:393",
+        "Q41-I01:game_binding_identifier:394",
+        "Q41-I01:game_binding_identifier:395",
+        "Q41-I01:game_binding_identifier:396",
+        "Q41-I01:game_binding_identifier:397",
+        "Q41-I01:game_binding_identifier:398",
+        "Q41-I01:game_binding_identifier:399",
+        "Q41-I01:game_binding_identifier:400",
+        "Q41-I01:game_binding_identifier:401",
+        "Q41-I01:game_binding_identifier:402",
+        "Q41-I01:game_binding_identifier:403",
+        "Q41-I01:game_binding_identifier:404",
+        "Q41-I01:game_binding_identifier:405",
+        "Q41-I01:game_binding_identifier:406",
+        "Q41-I01:game_binding_identifier:407",
+        "Q41-I01:game_binding_identifier:408",
+        "Q41-I01:game_binding_identifier:409",
+        "Q41-I01:game_binding_identifier:410",
+        "Q41-I01:game_binding_identifier:411",
+        "Q41-I01:game_binding_identifier:412",
+        "Q41-I01:game_binding_identifier:413",
+        "Q41-I01:game_binding_identifier:414",
+        "Q41-I01:game_binding_identifier:415",
+        "Q41-I01:game_binding_identifier:416",
+        "Q41-I01:game_binding_identifier:417",
+        "Q41-I01:game_binding_identifier:418",
+        "Q41-I01:game_binding_identifier:419",
+        "Q41-I01:game_binding_identifier:420",
+        "Q41-I01:game_binding_identifier:421",
+        "Q41-I01:game_binding_identifier:422",
+        "Q41-I01:game_binding_identifier:423",
+        "Q41-I01:game_binding_identifier:424",
+        "Q41-I01:game_binding_identifier:425",
+        "Q41-I01:game_binding_identifier:426",
+        "Q41-I01:game_binding_identifier:427",
+        "Q41-I01:game_binding_identifier:428",
+        "Q41-I01:game_binding_identifier:429",
+        "Q41-I01:game_binding_identifier:430",
+        "Q41-I01:game_binding_identifier:431",
+        "Q41-I01:game_binding_identifier:432",
+        "Q41-I01:game_binding_identifier:433",
+        "Q41-I01:game_binding_identifier:434",
+        "Q41-I01:game_binding_identifier:435",
+        "Q41-I01:game_binding_identifier:436",
+        "Q41-I01:game_binding_identifier:437",
+        "Q41-I01:game_binding_identifier:438",
+        "Q41-I01:game_binding_identifier:439",
+        "Q41-I01:game_binding_identifier:440",
+        "Q41-I01:game_binding_identifier:441",
+        "Q41-I01:game_binding_identifier:442",
+        "Q41-I01:game_binding_identifier:443",
+        "Q41-I01:game_binding_identifier:444",
+        "Q41-I01:game_binding_identifier:445",
+        "Q41-I01:game_binding_identifier:446",
+        "Q41-I01:game_binding_identifier:447",
+        "Q41-I01:game_binding_identifier:448",
+        "Q41-I01:game_binding_identifier:449",
+        "Q41-I01:game_binding_identifier:450",
+        "Q41-I01:game_binding_identifier:451",
+        "Q41-I01:game_binding_identifier:452",
+        "Q41-I01:game_binding_identifier:453",
+        "Q41-I01:game_binding_identifier:454",
+        "Q41-I01:game_binding_identifier:455",
+        "Q41-I01:game_binding_identifier:456",
+        "Q41-I01:game_binding_identifier:457",
+        "Q41-I01:game_binding_identifier:458",
+        "Q41-I01:game_binding_identifier:459",
+        "Q41-I01:game_binding_identifier:460",
+        "Q41-I01:game_binding_identifier:461",
+        "Q41-I01:game_binding_identifier:462",
+        "Q41-I01:game_binding_identifier:463",
+        "Q41-I01:game_binding_identifier:464",
+        "Q41-I01:game_binding_identifier:465",
+        "Q41-I01:game_binding_identifier:466",
+        "Q41-I01:game_binding_identifier:467",
+        "Q41-I01:game_binding_identifier:468",
+        "Q41-I01:game_binding_identifier:469",
+        "Q41-I01:game_binding_identifier:470",
+        "Q41-I01:game_binding_identifier:471",
+        "Q41-I01:game_binding_identifier:472",
+        "Q41-I01:game_binding_identifier:473",
+        "Q41-I01:game_binding_identifier:474",
+        "Q41-I01:game_binding_identifier:475",
+        "Q41-I01:game_binding_identifier:476",
+        "Q41-I01:game_binding_identifier:477",
+        "Q41-I01:game_binding_identifier:478",
+        "Q41-I01:game_binding_identifier:479",
+        "Q41-I01:game_binding_identifier:480",
+        "Q41-I01:game_binding_identifier:481",
+        "Q41-I01:game_binding_identifier:482",
+        "Q41-I01:game_binding_identifier:483",
+        "Q41-I01:game_binding_identifier:484",
+        "Q41-I01:game_binding_identifier:485",
+        "Q41-I01:game_binding_identifier:486",
+        "Q41-I01:game_binding_identifier:487",
+        "Q41-I01:game_binding_identifier:488",
+        "Q41-I01:game_binding_identifier:489",
+        "Q41-I01:game_binding_identifier:490",
+        "Q41-I01:game_binding_identifier:491",
+        "Q41-I01:game_binding_identifier:492",
+        "Q41-I01:game_binding_identifier:493",
+        "Q41-I01:game_binding_identifier:494",
+        "Q41-I01:game_binding_identifier:495",
+        "Q41-I01:game_binding_identifier:496",
+        "Q41-I01:game_binding_identifier:497",
+        "Q41-I01:game_binding_identifier:498",
+        "Q41-I01:game_binding_identifier:499",
+        "Q41-I01:game_binding_identifier:500",
+        "Q41-I01:game_binding_identifier:501",
+        "Q41-I01:game_binding_identifier:502",
+        "Q41-I01:game_binding_identifier:503",
+        "Q41-I01:game_binding_identifier:504",
+        "Q41-I01:game_binding_identifier:505",
+        "Q41-I01:game_binding_identifier:506",
+        "Q41-I01:game_binding_identifier:507",
+        "Q41-I01:game_binding_identifier:508",
+        "Q41-I01:game_binding_identifier:509",
+        "Q41-I01:game_binding_identifier:510",
+        "Q41-I01:game_binding_identifier:511",
+        "Q41-I01:game_binding_identifier:512",
+        "Q41-I01:game_binding_identifier:513",
+        "Q41-I01:game_binding_identifier:514",
+        "Q41-I01:game_binding_identifier:515",
+        "Q41-I01:game_binding_identifier:516",
+        "Q41-I01:game_binding_identifier:517",
+        "Q41-I01:game_binding_identifier:518",
+        "Q41-I01:game_binding_identifier:519",
+        "Q41-I01:game_binding_identifier:520",
+        "Q41-I01:game_binding_identifier:521",
+        "Q41-I01:game_binding_identifier:522",
+        "Q41-I01:game_binding_identifier:523",
+        "Q41-I01:game_binding_identifier:524",
+        "Q41-I01:game_binding_identifier:525",
+        "Q41-I01:game_binding_identifier:526",
+        "Q41-I01:game_binding_identifier:527",
+        "Q41-I01:game_binding_identifier:528",
+        "Q41-I01:game_binding_identifier:529",
+        "Q41-I01:game_binding_identifier:530",
+        "Q41-I01:game_binding_identifier:531",
+        "Q41-I01:game_binding_identifier:532",
+        "Q41-I01:game_binding_identifier:533",
+        "Q41-I01:game_binding_identifier:534",
+        "Q41-I01:game_binding_identifier:535",
+        "Q41-I01:game_binding_identifier:536",
+        "Q41-I01:game_binding_identifier:537",
+        "Q41-I01:game_binding_identifier:538",
+        "Q41-I01:game_binding_identifier:539",
+        "Q41-I01:game_binding_identifier:540",
+        "Q41-I01:game_binding_identifier:541",
+        "Q41-I01:game_binding_identifier:542",
+        "Q41-I01:game_binding_identifier:543",
+        "Q41-I01:game_binding_identifier:544",
+        "Q41-I01:game_binding_identifier:545",
+        "Q41-I01:game_binding_identifier:546",
+        "Q41-I01:game_binding_identifier:547",
+        "Q41-I01:game_binding_identifier:548",
+        "Q41-I01:game_binding_identifier:549",
+        "Q41-I01:game_binding_identifier:550",
+        "Q41-I01:game_binding_identifier:551",
+        "Q41-I01:game_binding_identifier:552",
+        "Q41-I01:game_binding_identifier:553",
+        "Q41-I01:game_binding_identifier:554",
+        "Q41-I01:game_binding_identifier:555",
+        "Q41-I01:game_binding_identifier:556",
+        "Q41-I01:game_binding_identifier:557",
+        "Q41-I01:game_binding_identifier:558",
+        "Q41-I01:game_binding_identifier:559",
+        "Q41-I01:game_binding_identifier:560",
+        "Q41-I01:game_binding_identifier:561",
+        "Q41-I01:game_binding_identifier:562",
+        "Q41-I01:game_binding_identifier:563",
+        "Q41-I01:game_binding_identifier:564",
+        "Q41-I01:game_binding_identifier:565",
+        "Q41-I01:game_binding_identifier:566",
+        "Q41-I01:game_binding_identifier:567",
+        "Q41-I01:game_binding_identifier:568",
+        "Q41-I01:game_binding_identifier:569",
+        "Q41-I01:game_binding_identifier:570",
+        "Q41-I01:game_binding_identifier:571",
+        "Q41-I01:game_binding_identifier:572",
+        "Q41-I01:game_binding_identifier:573",
+        "Q41-I01:game_binding_identifier:574",
+        "Q41-I01:game_binding_identifier:575",
+        "Q41-I01:game_binding_identifier:576",
+        "Q41-I01:game_binding_identifier:577",
+        "Q41-I01:game_binding_identifier:578",
+        "Q41-I01:game_binding_identifier:579",
+        "Q41-I01:game_binding_identifier:580",
+        "Q41-I01:game_binding_identifier:581",
+        "Q41-I01:game_binding_identifier:582",
+        "Q41-I01:game_binding_identifier:583",
+        "Q41-I01:game_binding_identifier:584",
+        "Q41-I01:game_binding_identifier:585",
+        "Q41-I01:game_binding_identifier:586",
+        "Q41-I01:game_binding_identifier:587",
+        "Q41-I01:game_binding_identifier:588",
+        "Q41-I01:game_binding_identifier:589",
+        "Q41-I01:game_binding_identifier:590",
+        "Q41-I01:game_binding_identifier:591",
+        "Q41-I01:game_binding_identifier:592",
+        "Q41-I01:game_binding_identifier:593",
+        "Q41-I01:game_binding_identifier:594",
+        "Q41-I01:game_binding_identifier:595",
+        "Q41-I01:game_binding_identifier:596",
+        "Q41-I01:game_binding_identifier:597",
+        "Q41-I01:game_binding_identifier:598",
+        "Q41-I01:game_binding_identifier:599",
+        "Q41-I01:game_binding_identifier:600",
+        "Q41-I01:game_binding_identifier:601",
+        "Q41-I01:game_binding_identifier:602",
+        "Q41-I01:game_binding_identifier:603",
+        "Q41-I01:game_binding_identifier:604",
+        "Q41-I01:game_binding_identifier:605",
+        "Q41-I01:game_binding_identifier:606",
+        "Q41-I01:game_binding_identifier:607",
+        "Q41-I01:game_binding_identifier:608",
+        "Q41-I01:game_binding_identifier:609",
+        "Q41-I01:game_binding_identifier:610",
+        "Q41-I01:game_binding_identifier:611",
+        "Q41-I01:game_binding_identifier:612",
+        "Q41-I01:game_binding_identifier:613",
+        "Q41-I01:game_binding_identifier:614",
+        "Q41-I01:game_binding_identifier:615",
+        "Q41-I01:game_binding_identifier:616",
+        "Q41-I01:game_binding_identifier:617",
+        "Q41-I01:game_binding_identifier:618",
+        "Q41-I01:game_binding_identifier:619",
+        "Q41-I01:game_binding_identifier:620",
+        "Q41-I01:game_binding_identifier:621",
+        "Q41-I01:game_binding_identifier:622",
+        "Q41-I01:game_binding_identifier:623",
+        "Q41-I01:game_binding_identifier:624",
+        "Q41-I01:game_binding_identifier:625",
+        "Q41-I01:game_binding_identifier:626",
+        "Q41-I01:game_binding_identifier:627",
+        "Q41-I01:game_binding_identifier:628",
+        "Q41-I01:game_binding_identifier:629",
+        "Q41-I01:game_binding_identifier:630",
+        "Q41-I01:game_binding_identifier:631",
+        "Q41-I01:game_binding_identifier:632",
+        "Q41-I01:game_binding_identifier:633",
+        "Q41-I01:game_binding_identifier:634",
+        "Q41-I01:game_binding_identifier:635",
+        "Q41-I01:game_binding_identifier:637",
+        "Q41-I01:game_binding_identifier:639",
+        "Q41-I01:game_binding_identifier:640",
+        "Q41-I01:game_binding_identifier:642",
+        "Q41-I01:game_binding_identifier:643",
+        "Q41-I01:game_binding_identifier:644",
+        "Q41-I01:game_binding_identifier:645",
+        "Q41-I01:game_binding_identifier:646",
+        "Q41-I01:game_binding_identifier:647",
+        "Q41-I01:game_binding_identifier:653",
+        "Q41-I01:game_binding_identifier:654",
+        "Q41-I01:game_binding_identifier:655",
+        "Q41-I01:game_binding_identifier:656",
+        "Q41-I01:game_binding_identifier:657",
+        "Q41-I01:game_binding_identifier:658",
+        "Q41-I01:game_binding_identifier:659",
+        "Q41-I01:game_binding_identifier:660",
+        "Q41-I01:game_binding_identifier:661",
+        "Q41-I01:game_binding_identifier:662",
+        "Q41-I01:game_binding_identifier:663",
+        "Q41-I01:game_binding_identifier:664",
+        "Q41-I01:game_binding_identifier:665",
+        "Q41-I01:game_binding_identifier:666",
+        "Q41-I01:game_binding_identifier:667",
+        "Q41-I01:game_binding_identifier:668",
+        "Q41-I01:game_binding_identifier:669",
+        "Q41-I01:game_binding_identifier:670",
+        "Q41-I01:game_binding_identifier:672",
+        "Q41-I01:game_binding_identifier:674",
+        "Q41-I01:game_binding_identifier:675",
+        "Q41-I01:game_binding_identifier:676",
+        "Q41-I01:game_binding_identifier:677",
+        "Q41-I01:game_binding_identifier:678",
+        "Q41-I01:game_binding_identifier:679",
+        "Q41-I01:game_binding_identifier:680",
+        "Q41-I01:game_binding_identifier:681",
+        "Q41-I01:game_binding_identifier:682",
+        "Q41-I01:game_binding_identifier:683",
+        "Q41-I01:game_binding_identifier:684",
+        "Q41-I01:game_binding_identifier:685",
+        "Q41-I01:game_binding_identifier:686",
+        "Q41-I01:game_binding_identifier:687",
+        "Q41-I01:game_binding_identifier:688",
+        "Q41-I01:game_binding_identifier:689",
+        "Q41-I01:game_binding_identifier:690",
+        "Q41-I01:game_binding_identifier:691",
+        "Q41-I01:game_binding_identifier:692",
+        "Q41-I01:game_binding_identifier:693",
+        "Q41-I01:game_binding_identifier:696",
+        "Q41-I01:game_binding_identifier:697",
+        "Q41-I01:game_binding_identifier:698",
+        "Q41-I01:game_binding_identifier:699",
+        "Q41-I01:game_binding_identifier:700",
+        "Q41-I01:game_binding_identifier:701",
+        "Q41-I01:game_binding_identifier:702",
+        "Q41-I01:game_binding_identifier:703",
+        "Q41-I01:game_binding_identifier:704",
+        "Q41-I01:game_binding_identifier:705",
+        "Q41-I01:game_binding_identifier:706",
+        "Q41-I01:game_binding_identifier:707",
+        "Q41-I01:textual_id_assignment:2",
+        "Q41-I01:textual_id_assignment:3",
+        "Q41-I01:textual_id_assignment:4",
+        "Q41-I01:textual_id_assignment:5",
+        "Q41-I01:textual_id_assignment:6",
+        "Q41-I01:lua_function_declaration:160",
+        "Q41-I01:lua_function_declaration:161",
+        "Q41-I01:lua_function_declaration:162",
+        "Q41-I01:lua_function_declaration:163",
+        "Q41-I01:lua_function_declaration:164",
+        "Q41-I01:lua_function_declaration:165",
+        "Q41-I01:lua_function_declaration:166",
+        "Q41-I01:lua_function_declaration:167",
+        "Q41-I01:lua_function_declaration:168",
+        "Q41-I01:lua_function_declaration:169",
+        "Q41-I01:lua_function_declaration:170",
+        "Q41-I01:lua_function_declaration:171",
+        "Q41-I01:lua_function_declaration:172",
+        "Q41-I01:lua_function_declaration:173",
+        "Q41-I01:lua_function_declaration:174",
+        "Q41-I01:lua_function_declaration:175",
+        "Q41-I01:lua_function_declaration:176",
+        "Q41-I01:lua_function_declaration:177",
+        "Q41-I01:lua_function_declaration:178",
+        "Q41-I01:lua_function_declaration:179",
+        "Q41-I01:lua_function_declaration:180",
+        "Q41-I01:lua_function_declaration:181",
+        "Q41-I01:lua_function_declaration:182",
+        "Q41-I01:lua_function_declaration:183",
+        "Q41-I01:lua_function_declaration:184",
+        "Q41-I01:lua_function_declaration:185",
+        "Q41-I01:lua_function_declaration:186",
+        "Q41-I01:lua_function_declaration:187",
+        "Q41-I01:lua_function_declaration:188",
+        "Q41-I01:lua_function_declaration:189",
+        "Q41-I01:lua_function_declaration:190",
+        "Q41-I01:lua_function_declaration:191",
+        "Q41-I01:lua_function_declaration:192",
+        "Q41-I01:lua_function_declaration:193",
+        "Q41-I01:lua_function_declaration:194",
+        "Q41-I01:lua_function_declaration:195",
+        "Q41-I01:lua_function_declaration:196",
+        "Q41-I01:lua_function_declaration:197",
+        "Q41-I01:lua_function_declaration:198",
+        "Q41-I01:lua_function_declaration:199",
+        "Q41-I01:lua_function_declaration:200",
+        "Q41-I01:lua_function_declaration:201",
+        "Q41-I01:lua_function_declaration:202",
+        "Q41-I01:lua_function_declaration:203",
+        "Q41-I01:lua_function_declaration:204",
+        "Q41-I01:lua_function_declaration:207",
+        "Q41-I01:lua_function_declaration:208",
+        "Q41-I01:lua_function_declaration:209",
+        "Q41-I01:lua_function_declaration:211",
+        "Q41-I01:lua_function_declaration:212",
+        "Q41-I01:lua_function_declaration:213",
+        "Q41-I01:lua_function_declaration:214",
+        "Q41-I01:lua_function_declaration:215",
+        "Q41-I01:lua_function_declaration:216"
+      ],
+      "finding_ids": [
+        75
+      ],
+      "conclusion": "Explicit issue attribution for this exact source-first candidate group only. Preserve unknown native ownership and pending recovery/source/current-target-contract questions. Candidate source interfaces and retained historical implementations do not certify current behavioral correspondence, completed implementation or parity.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/source-frontier.json",
+        "sha256": "9855f91cf068ab7827a1540953dfaab6c9e54eb0d6b3034b4ecbad666a706a46"
+      },
+      "proof": {
+        "selector": [
+          "candidate_review_groups",
+          "meter-ledger"
+        ],
+        "sha256": "9ae0ab06b0947ced5bc29fb58af41d28281bbb65a06d8f23f80737c2783fd581"
+      }
+    },
+    {
+      "id": "source-frontier-player-position",
+      "selectors": [
+        "Q41-I01:module_type_namespace:776",
+        "Q41-I01:game_binding_identifier:9",
+        "Q41-I01:game_binding_identifier:105",
+        "Q41-I01:game_binding_identifier:108",
+        "Q41-I01:game_binding_identifier:109",
+        "Q41-I01:game_binding_identifier:112",
+        "Q41-I01:game_binding_identifier:257",
+        "Q41-I01:game_binding_identifier:261",
+        "Q41-I01:game_binding_identifier:636",
+        "Q41-I01:game_binding_identifier:638",
+        "Q41-I01:game_binding_identifier:641",
+        "Q41-I01:game_binding_identifier:652",
+        "Q41-I01:game_binding_identifier:671",
+        "Q41-I01:game_binding_identifier:673",
+        "Q41-I01:lua_function_declaration:132",
+        "Q41-I01:lua_function_declaration:133",
+        "Q41-I01:lua_function_declaration:205",
+        "Q41-I01:lua_function_declaration:206",
+        "Q41-I01:lua_function_declaration:210"
+      ],
+      "finding_ids": [
+        137
+      ],
+      "conclusion": "Explicit issue attribution for this exact source-first candidate group only. Preserve unknown native ownership and pending recovery/source/current-target-contract questions. Candidate source interfaces and retained historical implementations do not certify current behavioral correspondence, completed implementation or parity.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/source-frontier.json",
+        "sha256": "9855f91cf068ab7827a1540953dfaab6c9e54eb0d6b3034b4ecbad666a706a46"
+      },
+      "proof": {
+        "selector": [
+          "candidate_review_groups",
+          "player-position"
+        ],
+        "sha256": "aef2a153abff46b4f31cfdc0c734f10506f108af2ecb4144b9c07848ca89514c"
+      }
+    },
+    {
+      "id": "source-frontier-combat-text-anchors",
+      "selectors": [
+        "Q41-I01:module_type_namespace:238",
+        "Q41-I01:module_type_namespace:358",
+        "Q41-I01:module_type_namespace:683",
+        "Q41-I01:game_binding_identifier:10",
+        "Q41-I01:game_binding_identifier:126",
+        "Q41-I01:game_binding_identifier:127",
+        "Q41-I01:game_binding_identifier:128",
+        "Q41-I01:game_binding_identifier:129",
+        "Q41-I01:game_binding_identifier:130",
+        "Q41-I01:game_binding_identifier:131",
+        "Q41-I01:game_binding_identifier:132",
+        "Q41-I01:game_binding_identifier:133",
+        "Q41-I01:game_binding_identifier:134",
+        "Q41-I01:game_binding_identifier:135",
+        "Q41-I01:game_binding_identifier:136",
+        "Q41-I01:game_binding_identifier:137",
+        "Q41-I01:game_binding_identifier:138",
+        "Q41-I01:game_binding_identifier:139",
+        "Q41-I01:game_binding_identifier:140",
+        "Q41-I01:game_binding_identifier:141",
+        "Q41-I01:game_binding_identifier:142",
+        "Q41-I01:game_binding_identifier:143",
+        "Q41-I01:game_binding_identifier:144",
+        "Q41-I01:game_binding_identifier:145",
+        "Q41-I01:game_binding_identifier:146",
+        "Q41-I01:game_binding_identifier:147",
+        "Q41-I01:game_binding_identifier:148",
+        "Q41-I01:game_binding_identifier:149",
+        "Q41-I01:game_binding_identifier:150",
+        "Q41-I01:game_binding_identifier:151",
+        "Q41-I01:lua_function_declaration:141",
+        "Q41-I01:lua_function_declaration:142",
+        "Q41-I01:lua_function_declaration:143",
+        "Q41-I01:lua_function_declaration:144",
+        "Q41-I01:lua_function_declaration:145",
+        "Q41-I01:lua_function_declaration:146",
+        "Q41-I01:lua_function_declaration:147"
+      ],
+      "finding_ids": [
+        307
+      ],
+      "conclusion": "Explicit issue attribution for this exact source-first candidate group only. Preserve unknown native ownership and pending recovery/source/current-target-contract questions. Candidate source interfaces and retained historical implementations do not certify current behavioral correspondence, completed implementation or parity.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/source-frontier.json",
+        "sha256": "9855f91cf068ab7827a1540953dfaab6c9e54eb0d6b3034b4ecbad666a706a46"
+      },
+      "proof": {
+        "selector": [
+          "candidate_review_groups",
+          "combat-text-anchors"
+        ],
+        "sha256": "6d6fabd5fbb913a9716d7bca8fe5695546252646eda756dc690d0771fa3faf76"
+      }
+    },
+    {
+      "id": "source-frontier-on-top-interface",
+      "selectors": [
+        "systems[id=custom-app-screens-ontop]"
+      ],
+      "finding_ids": [
+        11
+      ],
+      "conclusion": "Explicit issue attribution for this exact source-first candidate group only. Preserve unknown native ownership and pending recovery/source/current-target-contract questions. Candidate source interfaces and retained historical implementations do not certify current behavioral correspondence, completed implementation or parity.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/source-frontier.json",
+        "sha256": "9855f91cf068ab7827a1540953dfaab6c9e54eb0d6b3034b4ecbad666a706a46"
+      },
+      "proof": {
+        "selector": [
+          "candidate_review_groups",
+          "on-top-interface"
+        ],
+        "sha256": "c6e1d380e1b4d3cb56c364c638884d8242f73724cf7330ea89daef9057e42ebe"
+      }
+    },
+    {
+      "id": "source-frontier-host-control-composition",
+      "selectors": [
+        "Q41-I01:module_type_namespace:241"
+      ],
+      "finding_ids": [
+        302,
+        137,
+        11
+      ],
+      "conclusion": "Explicit issue attribution for this exact source-first candidate group only. Preserve unknown native ownership and pending recovery/source/current-target-contract questions. Candidate source interfaces and retained historical implementations do not certify current behavioral correspondence, completed implementation or parity.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/source-frontier.json",
+        "sha256": "9855f91cf068ab7827a1540953dfaab6c9e54eb0d6b3034b4ecbad666a706a46"
+      },
+      "proof": {
+        "selector": [
+          "candidate_review_groups",
+          "host-control-composition"
+        ],
+        "sha256": "8c65075ab1a59e504447c85e03de6b68e9a89c57610d7f72aa1cc15a7e1d5386"
+      }
+    },
+    {
+      "id": "source-frontier-skip-binding",
+      "selectors": [
+        "Q41-I01:game_binding_identifier:0",
+        "Q41-I01:game_binding_identifier:1",
+        "Q41-I01:game_binding_identifier:4",
+        "Q41-I01:game_binding_identifier:5",
+        "Q41-I01:game_binding_identifier:6",
+        "Q41-I01:game_binding_identifier:8"
+      ],
+      "finding_ids": [
+        304
+      ],
+      "conclusion": "Explicit issue attribution for this exact source-first candidate group only. Preserve unknown native ownership and pending recovery/source/current-target-contract questions. Candidate source interfaces and retained historical implementations do not certify current behavioral correspondence, completed implementation or parity.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/source-frontier.json",
+        "sha256": "9855f91cf068ab7827a1540953dfaab6c9e54eb0d6b3034b4ecbad666a706a46"
+      },
+      "proof": {
+        "selector": [
+          "candidate_review_groups",
+          "skip-binding"
+        ],
+        "sha256": "94028736820e37f51d23b2e91646934aa0bc9c8238748c466b127742ab909570"
+      }
+    },
+    {
+      "id": "source-frontier-stored-level-binding",
+      "selectors": [
+        "Q41-I01:game_binding_identifier:3"
+      ],
+      "finding_ids": [
+        21
+      ],
+      "conclusion": "Explicit issue attribution for this exact source-first candidate group only. Preserve unknown native ownership and pending recovery/source/current-target-contract questions. The bounded stored-level literal comparison does not establish dispatch, VM publication or a module contract.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/source-frontier.json",
+        "sha256": "9855f91cf068ab7827a1540953dfaab6c9e54eb0d6b3034b4ecbad666a706a46"
+      },
+      "proof": {
+        "selector": [
+          "candidate_review_groups",
+          "stored-level-binding"
+        ],
+        "sha256": "5530f517fa0f63c4fca603028908a2011a5374dc7878f7e2a5d02e21a50d3b49"
+      }
+    },
+    {
+      "id": "source-frontier-manual-update-check",
+      "selectors": [
+        "Q41-I01:module_type_namespace:0",
+        "Q41-I01:module_type_namespace:210"
+      ],
+      "finding_ids": [
+        132,
+        77
+      ],
+      "conclusion": "Explicit issue attribution for this exact source-first candidate group only. Preserve unknown native ownership and pending recovery/source/current-target-contract questions. Candidate source interfaces and retained historical implementations do not certify current behavioral correspondence, completed implementation or parity.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/source-frontier.json",
+        "sha256": "9855f91cf068ab7827a1540953dfaab6c9e54eb0d6b3034b4ecbad666a706a46"
+      },
+      "proof": {
+        "selector": [
+          "candidate_review_groups",
+          "manual-update-check"
+        ],
+        "sha256": "eb48e22ee6713701b2b2e216d7ecfb3a6eee4cd7d4ac1164eba3537d713182af"
+      }
+    },
+    {
+      "id": "source-frontier-menu-preview-interface",
+      "selectors": [
+        "Q41-I01:module_type_namespace:237"
+      ],
+      "finding_ids": [
+        60,
+        297
+      ],
+      "conclusion": "Explicit issue attribution for this exact source-first candidate group only. Preserve unknown native ownership and pending recovery/source/current-target-contract questions. Candidate source interfaces and retained historical implementations do not certify current behavioral correspondence, completed implementation or parity.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/source-frontier.json",
+        "sha256": "9855f91cf068ab7827a1540953dfaab6c9e54eb0d6b3034b4ecbad666a706a46"
+      },
+      "proof": {
+        "selector": [
+          "candidate_review_groups",
+          "menu-preview-interface"
+        ],
+        "sha256": "f086857cd88350b55d572834f41aae305fb83467ad75a3cc05f241f49d32f182"
+      }
+    },
+    {
+      "id": "source-frontier-loading-interface",
+      "selectors": [
+        "Q41-I01:module_type_namespace:406",
+        "Q41-I01:module_type_namespace:493",
+        "Q41-I01:module_type_namespace:494",
+        "Q41-I01:module_type_namespace:663",
+        "Q41-I01:module_type_namespace:681",
+        "Q41-I01:resource_path:37",
+        "Q41-I01:resource_path:175",
+        "Q41-I01:resource_path:266"
+      ],
+      "finding_ids": [
+        61
+      ],
+      "conclusion": "Explicit issue attribution for this exact source-first candidate group only. Preserve unknown native ownership and pending recovery/source/current-target-contract questions. Candidate source interfaces and retained historical implementations do not certify current behavioral correspondence, completed implementation or parity.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/source-frontier.json",
+        "sha256": "9855f91cf068ab7827a1540953dfaab6c9e54eb0d6b3034b4ecbad666a706a46"
+      },
+      "proof": {
+        "selector": [
+          "candidate_review_groups",
+          "loading-interface"
+        ],
+        "sha256": "00f5bb4bbfd2a90d753119fa923dcfe5207bca25927122e4fd7ce7eae5f1c346"
+      }
+    },
+    {
+      "id": "source-frontier-custom-app-screens-inspect",
+      "selectors": [
+        "systems[id=custom-app-screens-inspect]"
+      ],
+      "finding_ids": [
+        299
+      ],
+      "conclusion": "Explicit existing finding owner for the new current diagnostic module. Exact declared native ranges and inspected candidate source files are retained; source assignment and current-target bounded-contract registration both remain pending. No native query completion, semantic ownership, reconstructed-source correspondence or parity is inferred.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/source-frontier.json",
+        "sha256": "9855f91cf068ab7827a1540953dfaab6c9e54eb0d6b3034b4ecbad666a706a46"
+      },
+      "proof": {
+        "selector": [
+          "new_AS_modules",
+          0
+        ],
+        "sha256": "1c2fd9b1573425518bba37b9789866d677397f435a648407e500c5329b8f7f7a"
+      }
+    },
+    {
+      "id": "source-frontier-custom-app-screens-localclock",
+      "selectors": [
+        "systems[id=custom-app-screens-localclock]"
+      ],
+      "finding_ids": [
+        302
+      ],
+      "conclusion": "Explicit existing finding owner for the new current diagnostic module. Exact declared native ranges and inspected candidate source files are retained; source assignment and current-target bounded-contract registration both remain pending. No native query completion, semantic ownership, reconstructed-source correspondence or parity is inferred.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/source-frontier.json",
+        "sha256": "9855f91cf068ab7827a1540953dfaab6c9e54eb0d6b3034b4ecbad666a706a46"
+      },
+      "proof": {
+        "selector": [
+          "new_AS_modules",
+          1
+        ],
+        "sha256": "6c4d843051dc8a002538680731ede244709162e119a6ab6869292e43aac4ed71"
+      }
+    },
+    {
+      "id": "source-frontier-custom-app-screens-readycheck",
+      "selectors": [
+        "systems[id=custom-app-screens-readycheck]"
+      ],
+      "finding_ids": [
+        306
+      ],
+      "conclusion": "Explicit existing finding owner for the new current diagnostic module. Exact declared native ranges and inspected candidate source files are retained; source assignment and current-target bounded-contract registration both remain pending. No native query completion, semantic ownership, reconstructed-source correspondence or parity is inferred.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/source-frontier.json",
+        "sha256": "9855f91cf068ab7827a1540953dfaab6c9e54eb0d6b3034b4ecbad666a706a46"
+      },
+      "proof": {
+        "selector": [
+          "new_AS_modules",
+          2
+        ],
+        "sha256": "ad559c2bf0368361e53ef38295fa92afc5935cb314630a2dd08dc7d5d13762e8"
+      }
+    },
+    {
+      "id": "source-frontier-custom-app-screens-recap",
+      "selectors": [
+        "systems[id=custom-app-screens-recap]"
+      ],
+      "finding_ids": [
+        300
+      ],
+      "conclusion": "Explicit existing finding owner for the new current diagnostic module. Exact declared native ranges and inspected candidate source files are retained; source assignment and current-target bounded-contract registration both remain pending. No native query completion, semantic ownership, reconstructed-source correspondence or parity is inferred.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/source-frontier.json",
+        "sha256": "9855f91cf068ab7827a1540953dfaab6c9e54eb0d6b3034b4ecbad666a706a46"
+      },
+      "proof": {
+        "selector": [
+          "new_AS_modules",
+          3
+        ],
+        "sha256": "9842fff0f74168a23c6576bdf2eec6b017e077abce348989295a3983f9546f47"
+      }
+    },
+    {
+      "id": "source-frontier-custom-game-game-enhancement",
+      "selectors": [
+        "systems[id=custom-game-game-enhancement]"
+      ],
+      "finding_ids": [
+        305
+      ],
+      "conclusion": "Explicit existing finding owner for the new current diagnostic module. Exact declared native ranges and inspected candidate source files are retained; source assignment and current-target bounded-contract registration both remain pending. No native query completion, semantic ownership, reconstructed-source correspondence or parity is inferred.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/source-frontier.json",
+        "sha256": "9855f91cf068ab7827a1540953dfaab6c9e54eb0d6b3034b4ecbad666a706a46"
+      },
+      "proof": {
+        "selector": [
+          "new_AS_modules",
+          4
+        ],
+        "sha256": "603f2699b8aa407d890f0db3c29d6d9abd0fc0fc22d4171317bd7b4bc38cd3af"
+      }
+    },
+    {
+      "id": "source-frontier-custom-game-game-meterfeed",
+      "selectors": [
+        "systems[id=custom-game-game-meterfeed]"
+      ],
+      "finding_ids": [
+        75
+      ],
+      "conclusion": "Explicit existing finding owner for the new current diagnostic module. Exact declared native ranges and inspected candidate source files are retained; source assignment and current-target bounded-contract registration both remain pending. No native query completion, semantic ownership, reconstructed-source correspondence or parity is inferred.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/source-frontier.json",
+        "sha256": "9855f91cf068ab7827a1540953dfaab6c9e54eb0d6b3034b4ecbad666a706a46"
+      },
+      "proof": {
+        "selector": [
+          "new_AS_modules",
+          5
+        ],
+        "sha256": "4e9996aa099489af30bb6ab16d31b2a9ed4628799006a70c2cbc54ced26f9df0"
+      }
+    },
+    {
+      "id": "source-frontier-custom-game-game-meterlog",
+      "selectors": [
+        "systems[id=custom-game-game-meterlog]"
+      ],
+      "finding_ids": [
+        75
+      ],
+      "conclusion": "Explicit existing finding owner for the new current diagnostic module. Exact declared native ranges and inspected candidate source files are retained; source assignment and current-target bounded-contract registration both remain pending. No native query completion, semantic ownership, reconstructed-source correspondence or parity is inferred.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/source-frontier.json",
+        "sha256": "9855f91cf068ab7827a1540953dfaab6c9e54eb0d6b3034b4ecbad666a706a46"
+      },
+      "proof": {
+        "selector": [
+          "new_AS_modules",
+          6
+        ],
+        "sha256": "0c8eed2e59089c5d28af10eb2df0a4eba443d2bbc1dbf725593faa564c5adf3a"
+      }
+    },
+    {
+      "id": "source-frontier-custom-game-server-party-readycheck",
+      "selectors": [
+        "systems[id=custom-game-server-party-readycheck]"
+      ],
+      "finding_ids": [
+        306
+      ],
+      "conclusion": "Explicit existing finding owner for the new current diagnostic module. Exact declared native ranges and inspected candidate source files are retained; source assignment and current-target bounded-contract registration both remain pending. No native query completion, semantic ownership, reconstructed-source correspondence or parity is inferred.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/source-frontier.json",
+        "sha256": "9855f91cf068ab7827a1540953dfaab6c9e54eb0d6b3034b4ecbad666a706a46"
+      },
+      "proof": {
+        "selector": [
+          "new_AS_modules",
+          7
+        ],
+        "sha256": "1d93424c3eb135878b9635fc03daa4a896529611482303acad53dc6e52106d15"
+      }
+    },
+    {
+      "id": "switch-context-0x1402dcff8",
+      "selectors": [
+        "AS-context-table:0x1402dcff8",
+        "finding:128:current-switch:0x1402dcff8"
+      ],
+      "finding_ids": [
+        128
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          0
+        ],
+        "sha256": "e75ac1032593b58dc8f3e89b854ac65f2d6ded11df5df6c73d569ac1ceb58506"
+      }
+    },
+    {
+      "id": "switch-context-0x14030824f",
+      "selectors": [
+        "AS-context-table:0x14030824f",
+        "finding:299:current-switch:0x14030824f"
+      ],
+      "finding_ids": [
+        299
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          1
+        ],
+        "sha256": "b3722cb6fb045bf1514e172f1882333a08f1381f3a623a6628a57444ca2217f1"
+      }
+    },
+    {
+      "id": "switch-context-0x14030aa18",
+      "selectors": [
+        "AS-context-table:0x14030aa18",
+        "finding:299:current-switch:0x14030aa18"
+      ],
+      "finding_ids": [
+        299
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          2
+        ],
+        "sha256": "49442cb8dec7026f7a8ad7ee2284a36b6840e105f0e55b029e5be3b389d0f042"
+      }
+    },
+    {
+      "id": "switch-context-0x1403a30e0",
+      "selectors": [
+        "AS-context-table:0x1403a30e0",
+        "finding:73:current-switch:0x1403a30e0"
+      ],
+      "finding_ids": [
+        73
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          3
+        ],
+        "sha256": "87ec1859d3fb3e78f34c326a699b16da6e9d61bf751b3d799132861be2e6a05c"
+      }
+    },
+    {
+      "id": "switch-context-0x1403a377d",
+      "selectors": [
+        "AS-context-table:0x1403a377d",
+        "finding:73:current-switch:0x1403a377d"
+      ],
+      "finding_ids": [
+        73
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          4
+        ],
+        "sha256": "ea93c33bbca3f56cd8805e8877776bf17bbd545276a16ade7f4530f33a72d784"
+      }
+    },
+    {
+      "id": "switch-context-0x1403a3825",
+      "selectors": [
+        "AS-context-table:0x1403a3825",
+        "finding:73:current-switch:0x1403a3825"
+      ],
+      "finding_ids": [
+        73
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          5
+        ],
+        "sha256": "0fc65e78fed290ed526a6876e6950f3985d61172ca37e640b9a3651e68ff334b"
+      }
+    },
+    {
+      "id": "switch-context-0x1403b438b",
+      "selectors": [
+        "AS-context-table:0x1403b438b",
+        "finding:123:current-switch:0x1403b438b"
+      ],
+      "finding_ids": [
+        123
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          6
+        ],
+        "sha256": "91051cd186006b95f5d7c621014b8819a159eb2ef23cf4156e107f99ef05e313"
+      }
+    },
+    {
+      "id": "switch-context-0x1403b7989",
+      "selectors": [
+        "AS-context-table:0x1403b7989",
+        "finding:123:current-switch:0x1403b7989"
+      ],
+      "finding_ids": [
+        123
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          7
+        ],
+        "sha256": "9c57c3ec7b8d2a831d39ba81d93eef5ce17fde415195a33ef035a128eb296184"
+      }
+    },
+    {
+      "id": "switch-context-0x1403c075d",
+      "selectors": [
+        "AS-context-table:0x1403c075d",
+        "finding:123:current-switch:0x1403c075d"
+      ],
+      "finding_ids": [
+        123
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          8
+        ],
+        "sha256": "d4e5b85a3dcf0e91736e33ea15f2636d35ea31b0a7c383377698ed80ca3566d4"
+      }
+    },
+    {
+      "id": "switch-context-0x1403c5340",
+      "selectors": [
+        "AS-context-table:0x1403c5340",
+        "finding:123:current-switch:0x1403c5340"
+      ],
+      "finding_ids": [
+        123
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          9
+        ],
+        "sha256": "86fc126757f47cd70001a9aff27666dd564f28a163b3ae0cc50cc304d6f8d060"
+      }
+    },
+    {
+      "id": "switch-context-0x1403c5ec1",
+      "selectors": [
+        "AS-context-table:0x1403c5ec1",
+        "finding:123:current-switch:0x1403c5ec1"
+      ],
+      "finding_ids": [
+        123
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          10
+        ],
+        "sha256": "c7f3fac3e0943bf4a29123d87c840cff334df2808877b16bfec94b79339f30ce"
+      }
+    },
+    {
+      "id": "switch-context-0x1403c911c",
+      "selectors": [
+        "AS-context-table:0x1403c911c",
+        "finding:123:current-switch:0x1403c911c"
+      ],
+      "finding_ids": [
+        123
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          11
+        ],
+        "sha256": "7515defa2349a88374f52b616d9db30a9baa546a278b9f102f8a16c2fe089cce"
+      }
+    },
+    {
+      "id": "switch-context-0x1403dcb63",
+      "selectors": [
+        "AS-context-table:0x1403dcb63",
+        "finding:77:current-switch:0x1403dcb63"
+      ],
+      "finding_ids": [
+        77
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          12
+        ],
+        "sha256": "7dd5748c72c5bfee8ffdcaca41c945827e4ffbdd874deec592e82859cd2ebd71"
+      }
+    },
+    {
+      "id": "switch-context-0x1403ef2e6",
+      "selectors": [
+        "AS-context-table:0x1403ef2e6",
+        "finding:299:current-switch:0x1403ef2e6"
+      ],
+      "finding_ids": [
+        299
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          13
+        ],
+        "sha256": "f6e72854a928c86caa97e40f0a8dd71966fe909ea1d494fe3e6c89a95ec6236c"
+      }
+    },
+    {
+      "id": "switch-context-0x145dcad7c",
+      "selectors": [
+        "AS-context-table:0x145dcad7c",
+        "finding:148:current-switch:0x145dcad7c"
+      ],
+      "finding_ids": [
+        148
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          14
+        ],
+        "sha256": "3738126134dc605af7212a930652a0c63be6980a271d68ae0f252612bb97a896"
+      }
+    },
+    {
+      "id": "switch-context-0x145dd16c1",
+      "selectors": [
+        "AS-context-table:0x145dd16c1",
+        "finding:151:current-switch:0x145dd16c1"
+      ],
+      "finding_ids": [
+        151
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          15
+        ],
+        "sha256": "fbc58df3b719f61f369a1e32312b526acda21362a59be8ad8352499d1dffc52e"
+      }
+    },
+    {
+      "id": "switch-context-0x145df328a",
+      "selectors": [
+        "AS-context-table:0x145df328a",
+        "finding:186:current-switch:0x145df328a"
+      ],
+      "finding_ids": [
+        186
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          16
+        ],
+        "sha256": "711898c367412e56e95c3ac82efc3d62f2c9dfd3150319032a87938bfa44bb27"
+      }
+    },
+    {
+      "id": "switch-context-0x145e08f2a",
+      "selectors": [
+        "AS-context-table:0x145e08f2a",
+        "finding:152:current-switch:0x145e08f2a"
+      ],
+      "finding_ids": [
+        152
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          17
+        ],
+        "sha256": "91debfbb42bfa05c19d337f066ac8091237abde3418a3b43df9ac8b206eea845"
+      }
+    },
+    {
+      "id": "switch-context-0x145e0d8b3",
+      "selectors": [
+        "AS-context-table:0x145e0d8b3",
+        "finding:92:current-switch:0x145e0d8b3"
+      ],
+      "finding_ids": [
+        92
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          18
+        ],
+        "sha256": "178a85e60774c77599d8257991625ce1ebe5e8d65c09f18486cde14d06d2d717"
+      }
+    },
+    {
+      "id": "switch-context-0x145e0e5d6",
+      "selectors": [
+        "AS-context-table:0x145e0e5d6",
+        "finding:92:current-switch:0x145e0e5d6"
+      ],
+      "finding_ids": [
+        92
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          19
+        ],
+        "sha256": "d1504524608e0f34b1d69271522006c5588b7acd29bf20f6c3f95d37595cd13d"
+      }
+    },
+    {
+      "id": "switch-context-0x145e0f35c",
+      "selectors": [
+        "AS-context-table:0x145e0f35c",
+        "finding:92:current-switch:0x145e0f35c"
+      ],
+      "finding_ids": [
+        92
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          20
+        ],
+        "sha256": "a603fb5c84890b8642a5014d82c18ff285bcfc7022326f642d06b8009bdbeba2"
+      }
+    },
+    {
+      "id": "switch-context-0x145e251bc",
+      "selectors": [
+        "AS-context-table:0x145e251bc",
+        "finding:63:current-switch:0x145e251bc",
+        "finding:154:current-switch:0x145e251bc"
+      ],
+      "finding_ids": [
+        63,
+        154
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          21
+        ],
+        "sha256": "dd7d21023158d3c193d4a212785359b47f99e58398ce259074cfda571eef0c92"
+      }
+    },
+    {
+      "id": "switch-context-0x145e25201",
+      "selectors": [
+        "AS-context-table:0x145e25201",
+        "finding:63:current-switch:0x145e25201",
+        "finding:154:current-switch:0x145e25201"
+      ],
+      "finding_ids": [
+        63,
+        154
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          22
+        ],
+        "sha256": "7a0435101d946fc61e4f3751de878dd94e1d0eae7d7c572048991396c51af646"
+      }
+    },
+    {
+      "id": "switch-context-0x145e25ac4",
+      "selectors": [
+        "AS-context-table:0x145e25ac4",
+        "finding:64:current-switch:0x145e25ac4",
+        "finding:65:current-switch:0x145e25ac4"
+      ],
+      "finding_ids": [
+        64,
+        65
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          23
+        ],
+        "sha256": "a1246492b7b6d41d54a0b805b8d436cd73a896185596a1976d61f4b9e86549ac"
+      }
+    },
+    {
+      "id": "switch-context-0x145e27690",
+      "selectors": [
+        "AS-context-table:0x145e27690",
+        "finding:64:current-switch:0x145e27690",
+        "finding:65:current-switch:0x145e27690"
+      ],
+      "finding_ids": [
+        64,
+        65
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          24
+        ],
+        "sha256": "a3e9b247e013f781e4830c52943f5fa410ba8e1f1d23e96b77e572532a9143b6"
+      }
+    },
+    {
+      "id": "switch-context-0x145e276dd",
+      "selectors": [
+        "AS-context-table:0x145e276dd",
+        "finding:64:current-switch:0x145e276dd",
+        "finding:65:current-switch:0x145e276dd"
+      ],
+      "finding_ids": [
+        64,
+        65
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          25
+        ],
+        "sha256": "a9a6e425c3a72e1f29b39139b9a4961c6c006c35e1b6ea50bee9d4a905952893"
+      }
+    },
+    {
+      "id": "switch-context-0x145e278cf",
+      "selectors": [
+        "AS-context-table:0x145e278cf",
+        "finding:64:current-switch:0x145e278cf",
+        "finding:65:current-switch:0x145e278cf"
+      ],
+      "finding_ids": [
+        64,
+        65
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          26
+        ],
+        "sha256": "a4decb5a4f5bc9e93a5de8e2978f807bb0e573908243f3d8be281e17c3072e54"
+      }
+    },
+    {
+      "id": "switch-context-0x145e27a19",
+      "selectors": [
+        "AS-context-table:0x145e27a19",
+        "finding:64:current-switch:0x145e27a19",
+        "finding:65:current-switch:0x145e27a19"
+      ],
+      "finding_ids": [
+        64,
+        65
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          27
+        ],
+        "sha256": "bf56db8bc598a13b37ea47923377db54f97a75496be5f9ccac9d955618f07824"
+      }
+    },
+    {
+      "id": "switch-context-0x145e27a42",
+      "selectors": [
+        "AS-context-table:0x145e27a42",
+        "finding:64:current-switch:0x145e27a42",
+        "finding:65:current-switch:0x145e27a42"
+      ],
+      "finding_ids": [
+        64,
+        65
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          28
+        ],
+        "sha256": "300efd826311302d3fabb24139a9d7e0f7e26de17c1f2ad59cd46a4990c26088"
+      }
+    },
+    {
+      "id": "switch-context-0x145e27a6e",
+      "selectors": [
+        "AS-context-table:0x145e27a6e",
+        "finding:64:current-switch:0x145e27a6e",
+        "finding:65:current-switch:0x145e27a6e"
+      ],
+      "finding_ids": [
+        64,
+        65
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          29
+        ],
+        "sha256": "4e54ff2994f22d193ad8a747e1124039e4d685957dd641d59867567fb55b2e0c"
+      }
+    },
+    {
+      "id": "switch-context-0x145e27d69",
+      "selectors": [
+        "AS-context-table:0x145e27d69",
+        "finding:64:current-switch:0x145e27d69",
+        "finding:65:current-switch:0x145e27d69"
+      ],
+      "finding_ids": [
+        64,
+        65
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          30
+        ],
+        "sha256": "205b39a4be6aeccdf6b251e10c4175d0d6650094d3e7ad1a7009c22a850068bb"
+      }
+    },
+    {
+      "id": "switch-context-0x145e27d91",
+      "selectors": [
+        "AS-context-table:0x145e27d91",
+        "finding:64:current-switch:0x145e27d91",
+        "finding:65:current-switch:0x145e27d91"
+      ],
+      "finding_ids": [
+        64,
+        65
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          31
+        ],
+        "sha256": "77cf328f051ce64a1ba7943dab60836fa30e74a2e6bdf274cc1819e7ab046d1a"
+      }
+    },
+    {
+      "id": "switch-context-0x145e27dce",
+      "selectors": [
+        "AS-context-table:0x145e27dce",
+        "finding:64:current-switch:0x145e27dce",
+        "finding:65:current-switch:0x145e27dce"
+      ],
+      "finding_ids": [
+        64,
+        65
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          32
+        ],
+        "sha256": "986cc1dc166d93a6f3ba5358e4d7be60412a8d9c2dd3d5056c96ac34ba62ce6e"
+      }
+    },
+    {
+      "id": "switch-context-0x145e27dfa",
+      "selectors": [
+        "AS-context-table:0x145e27dfa",
+        "finding:64:current-switch:0x145e27dfa",
+        "finding:65:current-switch:0x145e27dfa"
+      ],
+      "finding_ids": [
+        64,
+        65
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          33
+        ],
+        "sha256": "9b29ddb1d19d7b7b8eb7159bc26b8bb31de41c10ac1e8b17a5a4498ea3128a55"
+      }
+    },
+    {
+      "id": "switch-context-0x145e2809d",
+      "selectors": [
+        "AS-context-table:0x145e2809d",
+        "finding:64:current-switch:0x145e2809d",
+        "finding:65:current-switch:0x145e2809d"
+      ],
+      "finding_ids": [
+        64,
+        65
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          34
+        ],
+        "sha256": "b5362e250b37791b6a5428014a55d2d532b79700e1d2cbf859d512a9d96f735e"
+      }
+    },
+    {
+      "id": "switch-context-0x145e28131",
+      "selectors": [
+        "AS-context-table:0x145e28131",
+        "finding:64:current-switch:0x145e28131",
+        "finding:65:current-switch:0x145e28131"
+      ],
+      "finding_ids": [
+        64,
+        65
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          35
+        ],
+        "sha256": "c4500dbd882ceaac06ca5cf6d9bdddae1c3fc45d61eb526a5badd364106ed8e1"
+      }
+    },
+    {
+      "id": "switch-context-0x145e2d8f7",
+      "selectors": [
+        "AS-context-table:0x145e2d8f7",
+        "finding:63:current-switch:0x145e2d8f7",
+        "finding:154:current-switch:0x145e2d8f7"
+      ],
+      "finding_ids": [
+        63,
+        154
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          36
+        ],
+        "sha256": "052fcc678febd7fbad0ad401ec4122d6ce8757e6b37be534454aadf71adc78b5"
+      }
+    },
+    {
+      "id": "switch-context-0x145e3badb",
+      "selectors": [
+        "AS-context-table:0x145e3badb",
+        "finding:63:current-switch:0x145e3badb",
+        "finding:154:current-switch:0x145e3badb"
+      ],
+      "finding_ids": [
+        63,
+        154
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          37
+        ],
+        "sha256": "38fb1483b1838d705195493a9b09c135db83ed3f8cbf06502e1b4c0ef1c6953d"
+      }
+    },
+    {
+      "id": "switch-context-0x145e508c3",
+      "selectors": [
+        "AS-context-table:0x145e508c3",
+        "finding:63:current-switch:0x145e508c3",
+        "finding:154:current-switch:0x145e508c3"
+      ],
+      "finding_ids": [
+        63,
+        154
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          38
+        ],
+        "sha256": "81e67414b5801f8d51392163e5a1588f4c06ebc3a0e42ea2bec603e311a762cb"
+      }
+    },
+    {
+      "id": "switch-context-0x145e50bf3",
+      "selectors": [
+        "AS-context-table:0x145e50bf3",
+        "finding:63:current-switch:0x145e50bf3",
+        "finding:154:current-switch:0x145e50bf3"
+      ],
+      "finding_ids": [
+        63,
+        154
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          39
+        ],
+        "sha256": "667e676272eb5bb9736fc857f1b64a1f7f631072d3ab004d9dee91b1663df19d"
+      }
+    },
+    {
+      "id": "switch-context-0x145e513e1",
+      "selectors": [
+        "AS-context-table:0x145e513e1",
+        "finding:63:current-switch:0x145e513e1",
+        "finding:154:current-switch:0x145e513e1"
+      ],
+      "finding_ids": [
+        63,
+        154
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          40
+        ],
+        "sha256": "24b6732fb619484130b3ac64cad7f3bbd6ae580363acc369aba5d22afd8e7b52"
+      }
+    },
+    {
+      "id": "switch-context-0x145e5ee04",
+      "selectors": [
+        "AS-context-table:0x145e5ee04",
+        "finding:146:current-switch:0x145e5ee04"
+      ],
+      "finding_ids": [
+        146
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          41
+        ],
+        "sha256": "7ff2225be895f1ca8c49202b7a47c58ae2b208b8294b9d556145b94aa5ffc21b"
+      }
+    },
+    {
+      "id": "switch-context-0x145e60ac7",
+      "selectors": [
+        "AS-context-table:0x145e60ac7",
+        "finding:146:current-switch:0x145e60ac7"
+      ],
+      "finding_ids": [
+        146
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          42
+        ],
+        "sha256": "fa84b55698c3371a21dbd68eee4ced93a4c73b9a2aa413c46ed3f19e9260fced"
+      }
+    },
+    {
+      "id": "switch-context-0x145f11b94",
+      "selectors": [
+        "AS-context-table:0x145f11b94",
+        "finding:149:current-switch:0x145f11b94",
+        "finding:294:current-switch:0x145f11b94"
+      ],
+      "finding_ids": [
+        149,
+        294
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          43
+        ],
+        "sha256": "779bc358a7e2ad9c1f3df3cb307611229439bb9c55c0f12c341280781929412c"
+      }
+    },
+    {
+      "id": "switch-context-0x145f46698",
+      "selectors": [
+        "AS-context-table:0x145f46698",
+        "finding:138:current-switch:0x145f46698",
+        "finding:24:current-switch:0x145f46698"
+      ],
+      "finding_ids": [
+        138,
+        24
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          44
+        ],
+        "sha256": "0b6892849a90c0ceacc78a9971377d5d64da577fb7e7b4c86380ba20465e7ac9"
+      }
+    },
+    {
+      "id": "switch-context-0x145f4671c",
+      "selectors": [
+        "AS-context-table:0x145f4671c",
+        "finding:138:current-switch:0x145f4671c",
+        "finding:24:current-switch:0x145f4671c"
+      ],
+      "finding_ids": [
+        138,
+        24
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          45
+        ],
+        "sha256": "f4738b7a59b47ae6108e0b3defc700e5cd8721f6ecef8f507ee7c9096251516f"
+      }
+    },
+    {
+      "id": "switch-context-0x145f655a6",
+      "selectors": [
+        "AS-context-table:0x145f655a6",
+        "finding:197:current-switch:0x145f655a6",
+        "finding:198:current-switch:0x145f655a6"
+      ],
+      "finding_ids": [
+        197,
+        198
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          46
+        ],
+        "sha256": "827804fcbe3fbc45753f1cade4f18b7c0d59a7eaf949bdae6d791b396c3b3709"
+      }
+    },
+    {
+      "id": "switch-context-0x145fe5152",
+      "selectors": [
+        "AS-context-table:0x145fe5152",
+        "finding:142:current-switch:0x145fe5152"
+      ],
+      "finding_ids": [
+        142
+      ],
+      "conclusion": "Exact current source/context finding attribution only. Guarded edges, geometry and diagnostic context do not establish semantic/source equivalence, whole-owner AS ownership, completed implementation or parity. Retain the stated bounded recovery action and historical source.",
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/switch-context-source-review.json",
+        "sha256": "47e4e01d71f952f1c873c6ff38ae88f5d98f31428b3f90d60577f122f2c83d3d"
+      },
+      "proof": {
+        "selector": [
+          "records",
+          47
+        ],
+        "sha256": "0d20c5a0e7ade912286aa98e1b63b8f9e23f09fad19df5938f2b56c99061849e"
+      }
+    }
+  ],
+  "pending_correspondence_leads": [
+    {
+      "id": "retained-table-1403076a2",
+      "selector": "Q41-F01:correspondence:retained-table-1403076a2",
+      "finding_ids": [
+        17,
+        73
+      ],
+      "state": "pending",
+      "ownership": "unknown",
+      "complete": false,
+      "conclusion": "Retained finite classifications and source repairs preserve their actual targets. Current geometry and source availability do not establish input/state/dependency/consumer applicability or runtime parity.",
+      "next_action": "Map the current guarded Codex input/type/field producer and live Details formatter/source consumer to the retained jewelry-growth contract; geometry alone does not revalidate dependencies. Preserve prior recovery and source; pending remapping alone is excluded from ordinary fixgap repairs.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/codex.rs",
+            "sha256": "159f37324f1a79bf99479b65df1b96f38bb9163dbbf4bde1e0400ea58bdd9043"
+          }
+        ],
+        "conclusion": "The existing Codex details/growth or CreatureQuery request/catalog/serializer/parser interface was inspected against the retained source and owning reports. These are retained or candidate current counterparts, not proved current native behavioral correspondence."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/computed-correspondence-frontier.json",
+        "sha256": "b651d62bd5d0f55888576476e12100470b1c13dc387b059758692cf7e4a74743"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "retained-table-1403076a2"
+        ],
+        "sha256": "6503b00eeb3aca576191ba78cb84a954c69b0da5fbd0985508f9079161486f9c"
+      }
+    },
+    {
+      "id": "retained-table-145afa2a7",
+      "selector": "Q41-F01:correspondence:retained-table-145afa2a7",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "state": "pending",
+      "ownership": "unknown",
+      "complete": false,
+      "conclusion": "Retained finite classifications and source repairs preserve their actual targets. Current geometry and source availability do not establish input/state/dependency/consumer applicability or runtime parity.",
+      "next_action": "Map the retained guard/selector and required producer/consumer range into the current target without resetting recovered semantics or source. Preserve prior recovery and source; pending remapping alone is excluded from ordinary fixgap repairs.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+            "sha256": "500bb58ad5c434015062cf6b622a4717cf374bd391a3b909bcc789fee1ff07bb"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+            "sha256": "247392320b99aade2292c9b3459a8dd7a4da6352705c74431ba700a8b4156836"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+            "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+          },
+          {
+            "path": "crates/benilla-protocol/src/messages/parse.rs",
+            "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+          }
+        ],
+        "conclusion": "The existing Codex details/growth or CreatureQuery request/catalog/serializer/parser interface was inspected against the retained source and owning reports. These are retained or candidate current counterparts, not proved current native behavioral correspondence."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/computed-correspondence-frontier.json",
+        "sha256": "b651d62bd5d0f55888576476e12100470b1c13dc387b059758692cf7e4a74743"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "retained-table-145afa2a7"
+        ],
+        "sha256": "c77eb3e8ebafa402357a1dcc5278016c7dac5eeb45aaa87450cf7a514511caa5"
+      }
+    },
+    {
+      "id": "retained-table-145afb3fb",
+      "selector": "Q41-F01:correspondence:retained-table-145afb3fb",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "state": "pending",
+      "ownership": "unknown",
+      "complete": false,
+      "conclusion": "Retained finite classifications and source repairs preserve their actual targets. Current geometry and source availability do not establish input/state/dependency/consumer applicability or runtime parity.",
+      "next_action": "Map the retained guard/selector and required producer/consumer range into the current target without resetting recovered semantics or source. Preserve prior recovery and source; pending remapping alone is excluded from ordinary fixgap repairs.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+            "sha256": "500bb58ad5c434015062cf6b622a4717cf374bd391a3b909bcc789fee1ff07bb"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+            "sha256": "247392320b99aade2292c9b3459a8dd7a4da6352705c74431ba700a8b4156836"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+            "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+          },
+          {
+            "path": "crates/benilla-protocol/src/messages/parse.rs",
+            "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+          }
+        ],
+        "conclusion": "The existing Codex details/growth or CreatureQuery request/catalog/serializer/parser interface was inspected against the retained source and owning reports. These are retained or candidate current counterparts, not proved current native behavioral correspondence."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/computed-correspondence-frontier.json",
+        "sha256": "b651d62bd5d0f55888576476e12100470b1c13dc387b059758692cf7e4a74743"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "retained-table-145afb3fb"
+        ],
+        "sha256": "bb9168af3c5a53fdd892dfce206e4d9fd359e8dfa0f40a71c321fd4af58751d8"
+      }
+    },
+    {
+      "id": "retained-table-145afb49a",
+      "selector": "Q41-F01:correspondence:retained-table-145afb49a",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "state": "pending",
+      "ownership": "unknown",
+      "complete": false,
+      "conclusion": "Retained finite classifications and source repairs preserve their actual targets. Current geometry and source availability do not establish input/state/dependency/consumer applicability or runtime parity.",
+      "next_action": "Map the retained guard/selector and required producer/consumer range into the current target without resetting recovered semantics or source. Preserve prior recovery and source; pending remapping alone is excluded from ordinary fixgap repairs.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+            "sha256": "500bb58ad5c434015062cf6b622a4717cf374bd391a3b909bcc789fee1ff07bb"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+            "sha256": "247392320b99aade2292c9b3459a8dd7a4da6352705c74431ba700a8b4156836"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+            "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+          },
+          {
+            "path": "crates/benilla-protocol/src/messages/parse.rs",
+            "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+          }
+        ],
+        "conclusion": "The existing Codex details/growth or CreatureQuery request/catalog/serializer/parser interface was inspected against the retained source and owning reports. These are retained or candidate current counterparts, not proved current native behavioral correspondence."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/computed-correspondence-frontier.json",
+        "sha256": "b651d62bd5d0f55888576476e12100470b1c13dc387b059758692cf7e4a74743"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "retained-table-145afb49a"
+        ],
+        "sha256": "e00f9ed3d606eb1c574b381fbda80fc610cfcc582130b27b1b9dcd0999697790"
+      }
+    },
+    {
+      "id": "retained-table-145afb64e",
+      "selector": "Q41-F01:correspondence:retained-table-145afb64e",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "state": "pending",
+      "ownership": "unknown",
+      "complete": false,
+      "conclusion": "Retained finite classifications and source repairs preserve their actual targets. Current geometry and source availability do not establish input/state/dependency/consumer applicability or runtime parity.",
+      "next_action": "Map the retained guard/selector and required producer/consumer range into the current target without resetting recovered semantics or source. Preserve prior recovery and source; pending remapping alone is excluded from ordinary fixgap repairs.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+            "sha256": "500bb58ad5c434015062cf6b622a4717cf374bd391a3b909bcc789fee1ff07bb"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+            "sha256": "247392320b99aade2292c9b3459a8dd7a4da6352705c74431ba700a8b4156836"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+            "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+          },
+          {
+            "path": "crates/benilla-protocol/src/messages/parse.rs",
+            "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+          }
+        ],
+        "conclusion": "The existing Codex details/growth or CreatureQuery request/catalog/serializer/parser interface was inspected against the retained source and owning reports. These are retained or candidate current counterparts, not proved current native behavioral correspondence."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/computed-correspondence-frontier.json",
+        "sha256": "b651d62bd5d0f55888576476e12100470b1c13dc387b059758692cf7e4a74743"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "retained-table-145afb64e"
+        ],
+        "sha256": "8f94d0d63bedc9bf8af438b7b1b191d62ff1523a16cdb75b8393c5d44fb899e5"
+      }
+    },
+    {
+      "id": "retained-table-145afb798",
+      "selector": "Q41-F01:correspondence:retained-table-145afb798",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "state": "pending",
+      "ownership": "unknown",
+      "complete": false,
+      "conclusion": "Retained finite classifications and source repairs preserve their actual targets. Current geometry and source availability do not establish input/state/dependency/consumer applicability or runtime parity.",
+      "next_action": "Map the retained guard/selector and required producer/consumer range into the current target without resetting recovered semantics or source. Preserve prior recovery and source; pending remapping alone is excluded from ordinary fixgap repairs.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+            "sha256": "500bb58ad5c434015062cf6b622a4717cf374bd391a3b909bcc789fee1ff07bb"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+            "sha256": "247392320b99aade2292c9b3459a8dd7a4da6352705c74431ba700a8b4156836"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+            "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+          },
+          {
+            "path": "crates/benilla-protocol/src/messages/parse.rs",
+            "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+          }
+        ],
+        "conclusion": "The existing Codex details/growth or CreatureQuery request/catalog/serializer/parser interface was inspected against the retained source and owning reports. These are retained or candidate current counterparts, not proved current native behavioral correspondence."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/computed-correspondence-frontier.json",
+        "sha256": "b651d62bd5d0f55888576476e12100470b1c13dc387b059758692cf7e4a74743"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "retained-table-145afb798"
+        ],
+        "sha256": "fe55901ebd67430d4c132a94c74705e2c589e891045f161de61a458dfa890280"
+      }
+    },
+    {
+      "id": "retained-table-145afb7c1",
+      "selector": "Q41-F01:correspondence:retained-table-145afb7c1",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "state": "pending",
+      "ownership": "unknown",
+      "complete": false,
+      "conclusion": "Retained finite classifications and source repairs preserve their actual targets. Current geometry and source availability do not establish input/state/dependency/consumer applicability or runtime parity.",
+      "next_action": "Map the retained guard/selector and required producer/consumer range into the current target without resetting recovered semantics or source. Preserve prior recovery and source; pending remapping alone is excluded from ordinary fixgap repairs.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+            "sha256": "500bb58ad5c434015062cf6b622a4717cf374bd391a3b909bcc789fee1ff07bb"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+            "sha256": "247392320b99aade2292c9b3459a8dd7a4da6352705c74431ba700a8b4156836"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+            "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+          },
+          {
+            "path": "crates/benilla-protocol/src/messages/parse.rs",
+            "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+          }
+        ],
+        "conclusion": "The existing Codex details/growth or CreatureQuery request/catalog/serializer/parser interface was inspected against the retained source and owning reports. These are retained or candidate current counterparts, not proved current native behavioral correspondence."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/computed-correspondence-frontier.json",
+        "sha256": "b651d62bd5d0f55888576476e12100470b1c13dc387b059758692cf7e4a74743"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "retained-table-145afb7c1"
+        ],
+        "sha256": "632a5ad20b596b6a6b698e83a69e782ebd87efaef1536133ae95f5615515aaf4"
+      }
+    },
+    {
+      "id": "retained-table-145afb7ed",
+      "selector": "Q41-F01:correspondence:retained-table-145afb7ed",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "state": "pending",
+      "ownership": "unknown",
+      "complete": false,
+      "conclusion": "Retained finite classifications and source repairs preserve their actual targets. Current geometry and source availability do not establish input/state/dependency/consumer applicability or runtime parity.",
+      "next_action": "Map the retained guard/selector and required producer/consumer range into the current target without resetting recovered semantics or source. Preserve prior recovery and source; pending remapping alone is excluded from ordinary fixgap repairs.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+            "sha256": "500bb58ad5c434015062cf6b622a4717cf374bd391a3b909bcc789fee1ff07bb"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+            "sha256": "247392320b99aade2292c9b3459a8dd7a4da6352705c74431ba700a8b4156836"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+            "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+          },
+          {
+            "path": "crates/benilla-protocol/src/messages/parse.rs",
+            "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+          }
+        ],
+        "conclusion": "The existing Codex details/growth or CreatureQuery request/catalog/serializer/parser interface was inspected against the retained source and owning reports. These are retained or candidate current counterparts, not proved current native behavioral correspondence."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/computed-correspondence-frontier.json",
+        "sha256": "b651d62bd5d0f55888576476e12100470b1c13dc387b059758692cf7e4a74743"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "retained-table-145afb7ed"
+        ],
+        "sha256": "8ba734a49c05746667103d80a677b8a5911c1a92077d0e72a803d9378eef4a85"
+      }
+    },
+    {
+      "id": "retained-table-145afbad2",
+      "selector": "Q41-F01:correspondence:retained-table-145afbad2",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "state": "pending",
+      "ownership": "unknown",
+      "complete": false,
+      "conclusion": "Retained finite classifications and source repairs preserve their actual targets. Current geometry and source availability do not establish input/state/dependency/consumer applicability or runtime parity.",
+      "next_action": "Map the current CreatureQuery entry/selector producer, finite metadata cells and reply/source consumer to the retained classified contract; preserve recovered schemas/source and verify only changed or unresolved dependencies. Preserve prior recovery and source; pending remapping alone is excluded from ordinary fixgap repairs.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+            "sha256": "500bb58ad5c434015062cf6b622a4717cf374bd391a3b909bcc789fee1ff07bb"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+            "sha256": "247392320b99aade2292c9b3459a8dd7a4da6352705c74431ba700a8b4156836"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+            "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+          },
+          {
+            "path": "crates/benilla-protocol/src/messages/parse.rs",
+            "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+          }
+        ],
+        "conclusion": "The existing Codex details/growth or CreatureQuery request/catalog/serializer/parser interface was inspected against the retained source and owning reports. These are retained or candidate current counterparts, not proved current native behavioral correspondence."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/computed-correspondence-frontier.json",
+        "sha256": "b651d62bd5d0f55888576476e12100470b1c13dc387b059758692cf7e4a74743"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "retained-table-145afbad2"
+        ],
+        "sha256": "be50670580df3b9d2a783caf7829557beb3e0b1991820ed482a88bcacf9f880b"
+      }
+    },
+    {
+      "id": "retained-table-145afbb29",
+      "selector": "Q41-F01:correspondence:retained-table-145afbb29",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "state": "pending",
+      "ownership": "unknown",
+      "complete": false,
+      "conclusion": "Retained finite classifications and source repairs preserve their actual targets. Current geometry and source availability do not establish input/state/dependency/consumer applicability or runtime parity.",
+      "next_action": "Map the current CreatureQuery entry/selector producer, finite metadata cells and reply/source consumer to the retained classified contract; preserve recovered schemas/source and verify only changed or unresolved dependencies. Preserve prior recovery and source; pending remapping alone is excluded from ordinary fixgap repairs.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+            "sha256": "500bb58ad5c434015062cf6b622a4717cf374bd391a3b909bcc789fee1ff07bb"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+            "sha256": "247392320b99aade2292c9b3459a8dd7a4da6352705c74431ba700a8b4156836"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+            "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+          },
+          {
+            "path": "crates/benilla-protocol/src/messages/parse.rs",
+            "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+          }
+        ],
+        "conclusion": "The existing Codex details/growth or CreatureQuery request/catalog/serializer/parser interface was inspected against the retained source and owning reports. These are retained or candidate current counterparts, not proved current native behavioral correspondence."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/computed-correspondence-frontier.json",
+        "sha256": "b651d62bd5d0f55888576476e12100470b1c13dc387b059758692cf7e4a74743"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "retained-table-145afbb29"
+        ],
+        "sha256": "161ead62e75e3c7b6df08088eac409c2523b91376e441eafae106322f527c47d"
+      }
+    },
+    {
+      "id": "retained-table-145afbb66",
+      "selector": "Q41-F01:correspondence:retained-table-145afbb66",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "state": "pending",
+      "ownership": "unknown",
+      "complete": false,
+      "conclusion": "Retained finite classifications and source repairs preserve their actual targets. Current geometry and source availability do not establish input/state/dependency/consumer applicability or runtime parity.",
+      "next_action": "Map the current CreatureQuery entry/selector producer, finite metadata cells and reply/source consumer to the retained classified contract; preserve recovered schemas/source and verify only changed or unresolved dependencies. Preserve prior recovery and source; pending remapping alone is excluded from ordinary fixgap repairs.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+            "sha256": "500bb58ad5c434015062cf6b622a4717cf374bd391a3b909bcc789fee1ff07bb"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+            "sha256": "247392320b99aade2292c9b3459a8dd7a4da6352705c74431ba700a8b4156836"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+            "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+          },
+          {
+            "path": "crates/benilla-protocol/src/messages/parse.rs",
+            "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+          }
+        ],
+        "conclusion": "The existing Codex details/growth or CreatureQuery request/catalog/serializer/parser interface was inspected against the retained source and owning reports. These are retained or candidate current counterparts, not proved current native behavioral correspondence."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/computed-correspondence-frontier.json",
+        "sha256": "b651d62bd5d0f55888576476e12100470b1c13dc387b059758692cf7e4a74743"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "retained-table-145afbb66"
+        ],
+        "sha256": "05abf10d4de32c98c16a7584e7777a802c74a42c578aab5fa7f32ab84621f45c"
+      }
+    },
+    {
+      "id": "retained-table-145afbb92",
+      "selector": "Q41-F01:correspondence:retained-table-145afbb92",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "state": "pending",
+      "ownership": "unknown",
+      "complete": false,
+      "conclusion": "Retained finite classifications and source repairs preserve their actual targets. Current geometry and source availability do not establish input/state/dependency/consumer applicability or runtime parity.",
+      "next_action": "Map the retained guard/selector and required producer/consumer range into the current target without resetting recovered semantics or source. Preserve prior recovery and source; pending remapping alone is excluded from ordinary fixgap repairs.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+            "sha256": "500bb58ad5c434015062cf6b622a4717cf374bd391a3b909bcc789fee1ff07bb"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+            "sha256": "247392320b99aade2292c9b3459a8dd7a4da6352705c74431ba700a8b4156836"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+            "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+          },
+          {
+            "path": "crates/benilla-protocol/src/messages/parse.rs",
+            "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+          }
+        ],
+        "conclusion": "The existing Codex details/growth or CreatureQuery request/catalog/serializer/parser interface was inspected against the retained source and owning reports. These are retained or candidate current counterparts, not proved current native behavioral correspondence."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/computed-correspondence-frontier.json",
+        "sha256": "b651d62bd5d0f55888576476e12100470b1c13dc387b059758692cf7e4a74743"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "retained-table-145afbb92"
+        ],
+        "sha256": "3f4b075a3d107348c39e72cff51713ec62bcaddfc2b3dd133281b4163ef09cf5"
+      }
+    },
+    {
+      "id": "retained-table-145afbe39",
+      "selector": "Q41-F01:correspondence:retained-table-145afbe39",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "state": "pending",
+      "ownership": "unknown",
+      "complete": false,
+      "conclusion": "Retained finite classifications and source repairs preserve their actual targets. Current geometry and source availability do not establish input/state/dependency/consumer applicability or runtime parity.",
+      "next_action": "Map the retained guard/selector and required producer/consumer range into the current target without resetting recovered semantics or source. Preserve prior recovery and source; pending remapping alone is excluded from ordinary fixgap repairs.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+            "sha256": "500bb58ad5c434015062cf6b622a4717cf374bd391a3b909bcc789fee1ff07bb"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+            "sha256": "247392320b99aade2292c9b3459a8dd7a4da6352705c74431ba700a8b4156836"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+            "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+          },
+          {
+            "path": "crates/benilla-protocol/src/messages/parse.rs",
+            "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+          }
+        ],
+        "conclusion": "The existing Codex details/growth or CreatureQuery request/catalog/serializer/parser interface was inspected against the retained source and owning reports. These are retained or candidate current counterparts, not proved current native behavioral correspondence."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/computed-correspondence-frontier.json",
+        "sha256": "b651d62bd5d0f55888576476e12100470b1c13dc387b059758692cf7e4a74743"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "retained-table-145afbe39"
+        ],
+        "sha256": "da4925db8b3e6727b3f64d6a895ffe3859d0a7e8205b9764811949bac2577ed6"
+      }
+    },
+    {
+      "id": "retained-table-145afbed3",
+      "selector": "Q41-F01:correspondence:retained-table-145afbed3",
+      "finding_ids": [
+        64,
+        65
+      ],
+      "state": "pending",
+      "ownership": "unknown",
+      "complete": false,
+      "conclusion": "Retained finite classifications and source repairs preserve their actual targets. Current geometry and source availability do not establish input/state/dependency/consumer applicability or runtime parity.",
+      "next_action": "Map the retained guard/selector and required producer/consumer range into the current target without resetting recovered semantics or source. Preserve prior recovery and source; pending remapping alone is excluded from ordinary fixgap repairs.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+            "sha256": "500bb58ad5c434015062cf6b622a4717cf374bd391a3b909bcc789fee1ff07bb"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+            "sha256": "247392320b99aade2292c9b3459a8dd7a4da6352705c74431ba700a8b4156836"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs",
+            "sha256": "d68f2c4df52cb6ae83a884e8b64c4cea2173a3025b0d7d852e4e1a5562c52829"
+          },
+          {
+            "path": "crates/benilla-protocol/src/messages/parse.rs",
+            "sha256": "799608675160089bf33d926dd0cb92c4eed30ce4a49ef9abe6e0c76ccc7d5346"
+          }
+        ],
+        "conclusion": "The existing Codex details/growth or CreatureQuery request/catalog/serializer/parser interface was inspected against the retained source and owning reports. These are retained or candidate current counterparts, not proved current native behavioral correspondence."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.139.0/computed-correspondence-frontier.json",
+        "sha256": "b651d62bd5d0f55888576476e12100470b1c13dc387b059758692cf7e4a74743"
+      },
+      "proof": {
+        "selector": [
+          "leads",
+          "retained-table-145afbed3"
+        ],
+        "sha256": "0643aadb1cfa8dcb4b68d04835c776427068d1c0556611b09a5d9d38afab2672"
+      }
+    }
+  ],
+  "historical_recovery": {
+    "previous_graph": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/as-discovery/35870ad87b9a37c13ae0a8f3d9817785266e735ce37b9771987384398871d225/graph.json",
+    "previous_source_frontier": "docs/analysis/evidence/0.127.0/source-frontier.json",
+    "scope": "Preserve historical recovery and classifications with original target provenance through docs/analysis/evidence/0.139.0/incremental-correspondence.json. Its predecessor graph/queue/profile/reviews and inherited correspondence retain exact receipts. Fourteen strict current-target pending-correspondence records preserve those questions; geometry does not promote their semantics, source applicability or parity."
+  },
+  "limits": "Finding attribution only:23 bindings for15 non-generic groups and8 new diagnostic modules. No completed bounded semantic review is declared. Generic engine context retains its residual queue. The eight module source assignments/current bounded contracts remain pending. Native-frontier-plan selected_declared_owner/original_* ranges and dict inputs do not satisfy the current pending_native_lead schema; no replacement fields or executed queries were invented. No new strict current-target pending-correspondence evidence was supplied here; historical links do not establish current mappings. Compose/graph/queue generation, native queries, compilation and execution were not run by this preparation."
+}
