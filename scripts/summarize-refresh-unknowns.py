@@ -15,6 +15,7 @@ import sqlite3
 
 from coverage_common import ROOT, file_sha256, json_text, latest_target, load_json
 from native_residual_inputs import verified_classifications
+from portable_paths import portable_record
 from shared_native_inventory import open_readonly_uri as open_native_inventory, inventory_size
 
 GENERATOR_PATH = 'scripts/summarize-refresh-unknowns.py'
@@ -92,11 +93,17 @@ def ghidra_census_input(selected, *, root=None, census_summary=None):
     if (independent.get('instruction_records') != summary.get('counts', {}).get('instructions')
             or independent.get('decoded_bytes') != summary.get('counts', {}).get('instruction_bytes')):
         raise ValueError('Current Ghidra census independent instruction counters differ')
-    if artifacts.get('files') != progress.get('files'):
+    files = artifacts.get('files')
+    required = {'instructions.tsv.gz', 'bodies.tsv.gz', 'references.tsv.gz',
+                'externals.tsv.gz', 'direct-call-helpers.tsv.gz'}
+    if (not isinstance(files, dict) or not required <= files.keys()
+            or files != portable_record(progress.get('files'), root=root)):
         raise ValueError('Current Ghidra census export commitments differ')
-    for name in ('instructions.tsv.gz', 'bodies.tsv.gz', 'references.tsv.gz',
-                 'externals.tsv.gz', 'direct-call-helpers.tsv.gz'):
-        record = artifacts.get('files', {}).get(name, {})
+    for name, record in files.items():
+        expected = (directory / name).resolve()
+        if (Path(name).name != name
+                or (root / record.get('path', str(directory / name))).resolve() != expected):
+            raise ValueError('Current Ghidra census export path differs: ' + name)
         committed[name] = bound({**record, 'path': str(directory / name)}, name)
 
     snapshot = bound(summary.get('full_summary_snapshot'), 'immutable full summary')
@@ -160,7 +167,7 @@ def summarize(census_summary=None):
     selected = {key: target[key] for key in ("version", "path", "sha256", "size_bytes")}
     dependencies = [dict(path=name, sha256=file_sha256(ROOT/name)) for name in (
         'scripts/native_residual_inputs.py', 'scripts/check-native-residuals.py',
-        'scripts/check-independent-indirects.py')]
+        'scripts/check-independent-indirects.py', 'scripts/portable_paths.py')]
     records = {}
     for name in ("native-summary", "diagnostic-ownership", "file-range-summary",
                  "instruction-summary", "unwind-complement-summary"):

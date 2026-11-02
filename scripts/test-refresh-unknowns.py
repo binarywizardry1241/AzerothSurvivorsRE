@@ -82,6 +82,40 @@ class CurrentCensus(unittest.TestCase):
         self.assertFalse(selected['global_aliasing_complete'])
         self.assertFalse(selected['parity_verified'])
 
+    def add_reuse_state(self):
+        record = self.artifact('reuse-state.json.gz', b'checkpoint reuse state')
+        record['bytes'] = (self.root / record['path']).stat().st_size
+        self.summary['artifacts']['files'] = copy.deepcopy(self.exports)
+        self.progress['files'] = copy.deepcopy(self.exports)
+        self.summary['artifacts']['files']['reuse-state.json.gz'] = record
+        self.progress['files']['reuse-state.json.gz'] = {
+            **record, 'path': str(self.root / record['path'])}
+        self.save()
+
+    def test_portable_and_absolute_reuse_state_paths_admit_same_verified_export(self):
+        self.add_reuse_state()
+        selected = self.load()
+        self.assertIn('reuse-state.json.gz', selected['execution_artifacts'])
+
+    def test_optional_reuse_state_still_requires_exact_bytes(self):
+        self.add_reuse_state()
+        (self.directory / 'reuse-state.json.gz').write_bytes(b'substituted')
+        with self.assertRaisesRegex(ValueError, 'changed or missing'):
+            self.load()
+
+    def test_portable_normalization_does_not_admit_another_export_path(self):
+        self.add_reuse_state()
+        self.progress['files']['reuse-state.json.gz']['path'] = str(self.root / 'elsewhere')
+        self.save()
+        with self.assertRaisesRegex(ValueError, 'export commitments differ'):
+            self.load()
+
+    def test_required_export_cannot_be_omitted_from_both_receipts(self):
+        del self.exports['instructions.tsv.gz']
+        self.save()
+        with self.assertRaisesRegex(ValueError, 'export commitments differ'):
+            self.load()
+
     def test_absent_or_historical_summary_does_not_block_current_refresh(self):
         self.path.unlink()
         self.assertIsNone(self.load())
