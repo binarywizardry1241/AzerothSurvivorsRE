@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.139.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274",
+    "size_bytes": 150595584
+  },
+  "gap_ids": [
+    41
+  ],
+  "counts": {
+    "applied_tables": 3783,
+    "proposed_tables": 3783,
+    "added_tables": 0,
+    "changed_case_vectors": 0,
+    "removed_proposals": 0,
+    "distinct_proposed_target_addresses": 0,
+    "exact_target_starts": 0,
+    "targets_in_instruction_interiors": 0,
+    "undecoded_targets": 0,
+    "tables_with_as_owner_context": 0,
+    "tables_with_as_extent_context": 0,
+    "proposal_sites_not_exact_exported_instructions": 0
+  },
+  "generator": {
+    "path": "scripts/review-native-switch-frontier.py",
+    "sha256": "1f5d7610cdc735674a162586aeb00f23b17ab1c8378d03fdb84d4dc9eae65ab6"
+  },
+  "changed_case_vector_sites": [],
+  "removed_proposal_sites": [],
+  "as_context_records": [],
+  "source_semantics_complete": false,
+  "source_ownership_established": false,
+  "parity_verified": false,
+  "limits": [
+    "Diagnostic/body/extent association is supporting context, not semantic AS ownership.",
+    "Proposed edges are not applied census edges; current table geometry/bytes do not transfer semantic, source, runtime or parity proof."
+  ],
+  "predecessor_input_resolutions": [
+    {
+      "role": "census_summary",
+      "recorded_input_index": 0,
+      "recorded_input_path": "docs/analysis/coverage/full-image-execheck-0.127.0.json",
+      "recorded_input_sha256": "b4ceaa4e01be2febed5c096d300c38c4baebaa8aedddf883604cd85e689e4c25",
+      "explicit_supplied_path": "docs/analysis/coverage/full-image-execheck-0.127.0.json",
+      "resolved_input": {
+        "path": "docs/analysis/coverage/full-image-execheck-0.127.0.json",
+        "sha256": "b4ceaa4e01be2febed5c096d300c38c4baebaa8aedddf883604cd85e689e4c25"
+      },
+      "relocated": false,
+      "verification": "Unique exact full-byte digest at the same recorded input role; no implicit alias search or historical commitment rewrite."
+    },
+    {
+      "role": "applied_summary",
+      "recorded_input_index": 1,
+      "recorded_input_path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/pipeline/1cfe85a0d48b5149/leads/jump-summary.json",
+      "recorded_input_sha256": "2e725ffbe1b5a1b76e9aa453051e0f7710d7faed2b8a6199121ab77bf5c78040",
+      "explicit_supplied_path": "runtime/analysis/objects/2e/2e725ffbe1b5a1b76e9aa453051e0f7710d7faed2b8a6199121ab77bf5c78040",
+      "resolved_input": {
+        "path": "runtime/analysis/objects/2e/2e725ffbe1b5a1b76e9aa453051e0f7710d7faed2b8a6199121ab77bf5c78040",
+        "sha256": "2e725ffbe1b5a1b76e9aa453051e0f7710d7faed2b8a6199121ab77bf5c78040"
+      },
+      "relocated": true,
+      "verification": "Unique exact full-byte digest at the same recorded input role; no implicit alias search or historical commitment rewrite."
+    }
+  ],
+  "inputs": [
+    {
+      "path": "runtime/analysis/objects/cb/cbe33e665bbcd3e3b3f47ef093a1a69c2c114cc69ba4f9e3af9e5709364bdfde",
+      "sha256": "cbe33e665bbcd3e3b3f47ef093a1a69c2c114cc69ba4f9e3af9e5709364bdfde"
+    },
+    {
+      "path": "docs/analysis/coverage/full-image-selected-0.139.0.json",
+      "sha256": "9f5a6c325e41cad7ab9b70b6c8e9fa0e09c087a98e1a381e5b1412a57295673e"
+    },
+    {
+      "path": "runtime/coverage/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/pipeline/39c76fdd2bc3e80d/saturated-review/guarded-proposals-summary.json",
+      "sha256": "1063534d6b9933df210c803f6cc6522548b5ebccb990fcd09f2c4d097b6d2688"
+    },
+    {
+      "path": "runtime/coverage/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/pipeline/39c76fdd2bc3e80d/selected-review/guarded-proposals-summary.json",
+      "sha256": "6289e850aef80de4c2719e55b890b4919c784009aa5c23f4f66b539419ce56e3"
+    },
+    {
+      "path": "runtime/coverage/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/pipeline/39c76fdd2bc3e80d/saturated-review/guarded-proposals.json",
+      "sha256": "a7ce56333d5e0304a8090a4eca3c31ea38a907bbc218fcdbac17c6aedef9727d"
+    },
+    {
+      "path": "runtime/analysis/census/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/9a95409b80d83ba9744c74e88bc4f071eaf24ef43f895deba03b376214bda9b6/guarded-tables-input.json",
+      "sha256": "a7ce56333d5e0304a8090a4eca3c31ea38a907bbc218fcdbac17c6aedef9727d"
+    },
+    {
+      "path": "runtime/coverage/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/pipeline/39c76fdd2bc3e80d/selected-review/guarded-proposals.json",
+      "sha256": "54914f5acf2a81d6cfe662f550485d64683fd70993ca7ac7da28342508a2ea53"
+    },
+    {
+      "path": "runtime/analysis/census/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/9a95409b80d83ba9744c74e88bc4f071eaf24ef43f895deba03b376214bda9b6/instructions.tsv.gz",
+      "sha256": "bb24edeff6d287c83c532daa31b59abc811907ecb76c5dcc7666864653f437b6"
+    },
+    {
+      "path": "runtime/analysis/census/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/9a95409b80d83ba9744c74e88bc4f071eaf24ef43f895deba03b376214bda9b6/bodies.tsv.gz",
+      "sha256": "3294cd58a2aef0b3454ae3125062642be66f759c8dda7974c58db6bd61ba2ec6"
+    },
+    {
+      "path": "runtime/coverage/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/diagnostic-ownership.json",
+      "sha256": "818559f70f29b1819e862adf73285a057aa7f2b771abdead8e06a970c661c2ef"
+    },
+    {
+      "path": "scripts/summarize-native-image.py",
+      "sha256": "78d82d1db8f9b5e2d8212d57f77ef7782d2a524f34465697e77532f6184f3588"
+    },
+    {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "e2a4746cf3c5c0a8433c2000d6000b768a2a17b01b25040505705f61ddf1f6fa"
+    },
+    {
+      "path": "scripts/coverage_common.py",
+      "sha256": "4adab1999dab972a63e3ab29b7a95d4ab223471398a383967b17f8a39dee5d2a"
+    },
+    {
+      "path": "scripts/shared_analysis.py",
+      "sha256": "33d0c298ead191b2560d848cc486c7681b5a80eef0b39cbf1ffee55bfdac4e01"
+    },
+    {
+      "path": "docs/analysis/evidence/0.127.0/computed-correspondence-frontier.json",
+      "sha256": "e2bdd8dac1977cc8e3485e9447c863a9135989a514f94cfdf0b69866e01a7d45"
+    },
+    {
+      "path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/pipeline/1cfe85a0d48b5149/review/guarded-proposals.json",
+      "sha256": "0e5aa1ecb0b1bb7997d8b4dc5dd931a3217884f0f4c22ab2d23b61c593ed9e88"
+    },
+    {
+      "path": "scripts/review-native-switch-frontier.py",
+      "sha256": "1f5d7610cdc735674a162586aeb00f23b17ab1c8378d03fdb84d4dc9eae65ab6"
+    },
+    {
+      "path": "docs/analysis/evidence/0.120.2/codex-growth-dispatch/manifest.json",
+      "sha256": "970ae1af4357eb1914698bca238b48ba1bf772656075c35c75f318494c323c53"
+    },
+    {
+      "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
+      "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
+    },
+    {
+      "path": "docs/analysis/evidence/0.123.0/computed-correspondence-frontier.json",
+      "sha256": "fef72fb455d29c5fdc3014dbeb106785e0350b6f5ba87b074cf19139db080655"
+    },
+    {
+      "path": "docs/analysis/evidence/0.121.0/computed-correspondence-frontier.json",
+      "sha256": "01836403f217662b6f6818e602e2411460969695f7202c18d08c505e44b15025"
+    },
+    {
+      "path": "docs/analysis/evidence/0.120.5/computed-correspondence-frontier.json",
+      "sha256": "161fd9e2d892d75e70b90d52e99f173dc04d885622aa520133814461467f75cf"
+    },
+    {
+      "path": "runtime/coverage/522e1c831b3b4627875a28a1030368ef9d2e7f98c5606c34cb30448d3b7d776e/native-final/guarded-proposals.json",
+      "sha256": "a4c98131c2ef9d7980f6993efb7421bc5d556046f944231f484eaf81d7385f24"
+    },
+    {
+      "path": "runtime/coverage/22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150/native-final/guarded-proposals.json",
+      "sha256": "87e703d1a2e2c3c8080ee340b3f7348f30f3f82540090dda4b32aa8025a2b708"
+    },
+    {
+      "path": "docs/analysis/coverage/full-image-execheck-0.127.0.json",
+      "sha256": "b4ceaa4e01be2febed5c096d300c38c4baebaa8aedddf883604cd85e689e4c25"
+    },
+    {
+      "path": "runtime/analysis/objects/2e/2e725ffbe1b5a1b76e9aa453051e0f7710d7faed2b8a6199121ab77bf5c78040",
+      "sha256": "2e725ffbe1b5a1b76e9aa453051e0f7710d7faed2b8a6199121ab77bf5c78040"
+    },
+    {
+      "path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/pipeline/1cfe85a0d48b5149/leads/guarded.json",
+      "sha256": "62c5383c945bbdb483686441cc7f362c06b3c8c89a97a12bef6567a7049dbe0c"
+    },
+    {
+      "path": "runtime/analysis/census/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/42680c2ae461bcdfe7cd797c66fb2737a9beeb67e7b7959cdd10d6d0405f6a8e/guarded-tables-input.json",
+      "sha256": "62c5383c945bbdb483686441cc7f362c06b3c8c89a97a12bef6567a7049dbe0c"
+    },
+    {
+      "path": "runtime/analysis/census/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/42680c2ae461bcdfe7cd797c66fb2737a9beeb67e7b7959cdd10d6d0405f6a8e/bodies.tsv.gz",
+      "sha256": "1cb005249a2b0ad04e92f22900f66204041f029a39d067a5a39f28d205c88eca"
+    },
+    {
+      "path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/diagnostic-ownership.json",
+      "sha256": "0a31df9145a09fdf794622cca45e7cacb4d5138dad3c2f9ccfed2de4e5fb2db3"
+    }
+  ],
+  "complete_AS_context_reconciliation": {
+    "counts": {
+      "current_AS_context_tables": 48,
+      "current_applied_AS_context_tables": 48,
+      "current_proposal_only_AS_context_tables": 0,
+      "predecessor_AS_context_tables": 46,
+      "predecessor_applied_AS_context_tables": 32,
+      "current_unique_predecessor_AS_geometry_candidate": 16,
+      "current_ambiguous_predecessor_AS_geometry_candidates": 2,
+      "current_without_predecessor_AS_geometry_candidate": 30,
+      "current_without_any_predecessor_proposed_geometry_candidate": 30,
+      "predecessor_AS_tables_without_current_AS_geometry_candidate": 28,
+      "new_semantics_or_behavioral_equivalence_inferred": 0
+    },
+    "evidence": {
+      "path": "runtime/analysis/objects/cb/cbe33e665bbcd3e3b3f47ef093a1a69c2c114cc69ba4f9e3af9e5709364bdfde",
+      "sha256": "cbe33e665bbcd3e3b3f47ef093a1a69c2c114cc69ba4f9e3af9e5709364bdfde"
+    },
+    "selector": [
+      "complete_AS_context_reconciliation"
+    ]
+  }
+}

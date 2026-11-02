@@ -1,33 +1,33 @@
 {
   "schema_version": 1,
   "target": {
-    "version": "0.127.0",
+    "version": "0.139.0",
     "path": "installed-game/AzerothSurvivors.exe",
-    "sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
-    "size_bytes": 146721280
+    "sha256": "0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274",
+    "size_bytes": 150595584
   },
-  "census_summary": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/pipeline/1cfe85a0d48b5149/declared-summary.json",
-  "census_summary_sha256": "8af5c79de249390572033632c765abb975b513c02f15b093b4ecf29de2fc6822",
+  "census_summary": "docs/analysis/coverage/full-image-saturated-0.139.0.json",
+  "census_summary_sha256": "2b9b4a621e2368457f159f8c9ead9f26a8ccd29e9f3827905ddf60501bea8bf5",
   "generator": {
     "path": "scripts/recover-native-jump-tables.py",
     "sha256": "e334caee6931e56e9aa4b81a40fbec0a1137223c30acd946fe3538bdf6074a46",
     "capstone_version": "5.0.7"
   },
   "counts": {
-    "bounded-table-has-non-executable-target": 1067,
+    "bounded-table-has-non-executable-target": 1159,
     "guarded-fallthrough-has-empty-proved-domain": 2,
-    "guarded-relative-tables": 2587,
-    "not-register-jump": 146,
-    "not-relative-add": 1250,
+    "guarded-relative-tables": 3783,
+    "not-register-jump": 161,
+    "not-relative-add": 3928,
     "not-signed-table-load": 15,
-    "relative-table-without-proven-unsigned-bound": 1697,
-    "scalar-domain-has-unproved-or-conflicting-instruction-targets": 225,
-    "short-context": 146,
-    "table-base-not-static": 562
+    "relative-table-without-proven-unsigned-bound": 1881,
+    "scalar-domain-has-unproved-or-conflicting-instruction-targets": 293,
+    "short-context": 172,
+    "table-base-not-static": 571
   },
   "linear_boundary_input": {
-    "path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/pipeline/1cfe85a0d48b5149/leads/guarded-linear-boundaries.json",
-    "sha256": "3f688e5cd5d0e5f052588add55091cd24476160cab3e30a43ea2bcd5cbf182b4"
+    "path": "runtime/coverage/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/pipeline/39c76fdd2bc3e80d/saturated-review/guarded-proposals-linear-boundaries.json",
+    "sha256": "947c00c908c0534a4c8ad5b9bc48854869b842653d96d58c7b047fa20890648e"
   },
   "pe_parser_helpers": [
     {
@@ -36,30 +36,30 @@
     },
     {
       "path": "scripts/inventory-executable.py",
-      "sha256": "db0d282df8356b712f24868a4b44b73c920cc393e8d17c1a4a6c8fe911856e09"
+      "sha256": "e2a4746cf3c5c0a8433c2000d6000b768a2a17b01b25040505705f61ddf1f6fa"
     }
   ],
   "native_semantics_or_all_computed_edges_complete": false,
-  "rejected_scalar_domain_tables": 225,
+  "rejected_scalar_domain_tables": 293,
   "selector_alias_helpers": {
     "path": "scripts/native_scalar_aliases.py",
     "sha256": "d262801367fbfd316920a73f051f744edc1cd5126913a591288c93c08abba335"
   },
-  "alias_guard_tables": 144,
-  "case_entries": 53145,
-  "unique_target_addresses": 16914,
-  "edge_digest": "e51f898e4895939ce344040d8276daec30738fd70502afaa6483a0dc9d0c7098",
+  "alias_guard_tables": 148,
+  "case_entries": 74199,
+  "unique_target_addresses": 24282,
+  "edge_digest": "dadaab6412016840702026b4727ad9495cfd95ddf4150d7a30cbb1469eaf7ed6",
   "census_helpers": {
     "path": "scripts/summarize-native-image.py",
-    "sha256": "df9a85d0c98689681ef700ad0a5ea3fc421fa275ba84124cff3d42d027046807"
+    "sha256": "78d82d1db8f9b5e2d8212d57f77ef7782d2a524f34465697e77532f6184f3588"
   },
   "scalar_helpers": {
     "path": "scripts/classify-native-ownership.py",
     "sha256": "5c6ec1b54808da1b09cf2ffa0a5d7b54456237869f3ff69d7e40d973d11ab265"
   },
   "inventory": {
-    "path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/pipeline/1cfe85a0d48b5149/leads/guarded.json",
-    "sha256": "62c5383c945bbdb483686441cc7f362c06b3c8c89a97a12bef6567a7049dbe0c"
+    "path": "runtime/coverage/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/pipeline/39c76fdd2bc3e80d/saturated-review/guarded-proposals.json",
+    "sha256": "a7ce56333d5e0304a8090a4eca3c31ea38a907bbc218fcdbac17c6aedef9727d"
   },
   "gap_ids": [
     41
