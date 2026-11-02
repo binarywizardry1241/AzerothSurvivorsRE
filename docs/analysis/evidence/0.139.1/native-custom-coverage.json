@@ -1,0 +1,1567 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.139.1",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d",
+    "size_bytes": 150633472
+  },
+  "generator": {
+    "path": "scripts/summarize-custom-native-coverage.py",
+    "sha256": "31e460dd0998d4041b6e045a0cc4e2f446c2176964842bc80ebc04a16426fc93"
+  },
+  "generator_dependencies": [
+    {
+      "path": "scripts/summarize-native-image.py",
+      "sha256": "78d82d1db8f9b5e2d8212d57f77ef7782d2a524f34465697e77532f6184f3588"
+    },
+    {
+      "path": "scripts/script_sources.py",
+      "sha256": "412da3516eed05f3bc6216abd16dc9cfb2f0fddeb40384918f41ab50dfee0093"
+    },
+    {
+      "path": "docs/analysis/script-provenance.json",
+      "sha256": "76bd23b96c1acc3ee271081aed20d7f1124f90c0f4bfc1e5fc7ec74a1ceb9344"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "docs/analysis/coverage/full-image-selected-0.139.1.json",
+      "sha256": "ff4d8ade21d386b138ee678cdda16efeca1d7d99f4f9a50a7c8b7e4d0f56eb18"
+    },
+    {
+      "path": "runtime/coverage/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/diagnostic-ownership.json",
+      "sha256": "7f993ead783ce57f2516d7713a75e5ccd75de70719dd4bfd3f8e04cffd0c9c0e"
+    },
+    {
+      "path": "runtime/analysis/census/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/ea7d61a859494cbb4de6918c7f356046d6bd5100989ad80cb61166828a1eead9/instructions.tsv.gz",
+      "sha256": "0507fa3601a33cef251bf857af2280f9a45631cac6bbd169ade1936fb3591f2e"
+    },
+    {
+      "path": "runtime/analysis/census/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/ea7d61a859494cbb4de6918c7f356046d6bd5100989ad80cb61166828a1eead9/bodies.tsv.gz",
+      "sha256": "d5248f6c71fb4e7a85e2307d793b1a0321a14bf305941642a4931ce59283550e"
+    }
+  ],
+  "counts": {
+    "custom_paths": 77,
+    "custom_paths_with_source_correspondence": 69,
+    "custom_paths_without_source_correspondence": 8,
+    "custom_paths_with_all_reference_sites_decoded": 77,
+    "unique_instruction_sites": 1034,
+    "distinct_actual_native_owners": 382,
+    "custom_paths_with_native_location_references": 77,
+    "custom_paths_with_native_location_body_owners": 77,
+    "distinct_native_location_body_owners": 347,
+    "reference_records": 1034,
+    "exact_decoded_instruction_sites": 1034,
+    "reference_records_with_body_owner": 975,
+    "reference_records_without_body_owner": 59,
+    "native_location_reference_records": 919,
+    "native_location_records_with_body_owner": 867,
+    "native_location_records_without_body_owner": 52,
+    "path_literal_candidate_reference_records": 115,
+    "path_literal_candidate_records_with_body_owner": 108,
+    "path_literal_candidate_records_without_body_owner": 7,
+    "literal_candidates_near_filename": 115
+  },
+  "paths": [
+    {
+      "path": "crates/wenilla-rogue-app/src/legacy_config.rs",
+      "system": "custom-app-legacy-config",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 4,
+      "expanded_native_reference_owner_count": 1,
+      "counts": {
+        "reference_records": 1,
+        "exact_decoded_instruction_sites": 1,
+        "reference_records_with_body_owner": 1,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 1,
+        "native_location_records_with_body_owner": 1,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/lib.rs",
+      "system": "custom-app-lib",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 55,
+      "expanded_native_reference_owner_count": 3,
+      "counts": {
+        "reference_records": 4,
+        "exact_decoded_instruction_sites": 4,
+        "reference_records_with_body_owner": 4,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 2,
+        "native_location_records_with_body_owner": 2,
+        "native_location_records_without_body_owner": 0,
+        "path_literal_candidate_reference_records": 2,
+        "path_literal_candidate_records_with_body_owner": 2,
+        "path_literal_candidate_records_without_body_owner": 0,
+        "literal_candidates_near_filename": 2
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/armory.rs",
+      "system": "custom-app-screens-armory",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 42,
+      "expanded_native_reference_owner_count": 16,
+      "counts": {
+        "reference_records": 35,
+        "exact_decoded_instruction_sites": 35,
+        "reference_records_with_body_owner": 30,
+        "reference_records_without_body_owner": 5,
+        "native_location_reference_records": 35,
+        "native_location_records_with_body_owner": 30,
+        "native_location_records_without_body_owner": 5
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/backdrop.rs",
+      "system": "custom-app-screens-backdrop",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 6,
+      "expanded_native_reference_owner_count": 1,
+      "counts": {
+        "reference_records": 2,
+        "exact_decoded_instruction_sites": 2,
+        "reference_records_with_body_owner": 2,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 2,
+        "native_location_records_with_body_owner": 2,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/cards.rs",
+      "system": "custom-app-screens-cards",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 20,
+      "expanded_native_reference_owner_count": 8,
+      "counts": {
+        "reference_records": 27,
+        "exact_decoded_instruction_sites": 27,
+        "reference_records_with_body_owner": 27,
+        "reference_records_without_body_owner": 0,
+        "path_literal_candidate_reference_records": 3,
+        "path_literal_candidate_records_with_body_owner": 3,
+        "path_literal_candidate_records_without_body_owner": 0,
+        "literal_candidates_near_filename": 3,
+        "native_location_reference_records": 24,
+        "native_location_records_with_body_owner": 24,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/codex.rs",
+      "system": "custom-app-screens-codex",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 15,
+      "expanded_native_reference_owner_count": 13,
+      "counts": {
+        "reference_records": 38,
+        "exact_decoded_instruction_sites": 38,
+        "reference_records_with_body_owner": 38,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 38,
+        "native_location_records_with_body_owner": 38,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/coop.rs",
+      "system": "custom-app-screens-coop",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 60,
+      "expanded_native_reference_owner_count": 4,
+      "counts": {
+        "reference_records": 8,
+        "exact_decoded_instruction_sites": 8,
+        "reference_records_with_body_owner": 8,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 8,
+        "native_location_records_with_body_owner": 8,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/discord.rs",
+      "system": "custom-app-screens-discord",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 3,
+      "expanded_native_reference_owner_count": 4,
+      "counts": {
+        "reference_records": 12,
+        "exact_decoded_instruction_sites": 12,
+        "reference_records_with_body_owner": 12,
+        "reference_records_without_body_owner": 0,
+        "path_literal_candidate_reference_records": 1,
+        "path_literal_candidate_records_with_body_owner": 1,
+        "path_literal_candidate_records_without_body_owner": 0,
+        "literal_candidates_near_filename": 1,
+        "native_location_reference_records": 11,
+        "native_location_records_with_body_owner": 11,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/hud.rs",
+      "system": "custom-app-screens-hud",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 38,
+      "expanded_native_reference_owner_count": 7,
+      "counts": {
+        "reference_records": 22,
+        "exact_decoded_instruction_sites": 22,
+        "reference_records_with_body_owner": 22,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 22,
+        "native_location_records_with_body_owner": 22,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/hudparts.rs",
+      "system": "custom-app-screens-hudparts",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 11,
+      "expanded_native_reference_owner_count": 1,
+      "counts": {
+        "reference_records": 3,
+        "exact_decoded_instruction_sites": 3,
+        "reference_records_with_body_owner": 3,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 3,
+        "native_location_records_with_body_owner": 3,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/ime.rs",
+      "system": "custom-app-screens-ime",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 5,
+      "expanded_native_reference_owner_count": 3,
+      "counts": {
+        "reference_records": 4,
+        "exact_decoded_instruction_sites": 4,
+        "reference_records_with_body_owner": 4,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 4,
+        "native_location_records_with_body_owner": 4,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/inspect.rs",
+      "system": "custom-app-screens-inspect",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": false,
+      "reconstruction_source_ref_count": 0,
+      "expanded_native_reference_owner_count": 12,
+      "counts": {
+        "reference_records": 19,
+        "exact_decoded_instruction_sites": 19,
+        "reference_records_with_body_owner": 19,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 19,
+        "native_location_records_with_body_owner": 19,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/language.rs",
+      "system": "custom-app-screens-language",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 32,
+      "expanded_native_reference_owner_count": 1,
+      "counts": {
+        "reference_records": 3,
+        "exact_decoded_instruction_sites": 3,
+        "reference_records_with_body_owner": 3,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 3,
+        "native_location_records_with_body_owner": 3,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/localclock.rs",
+      "system": "custom-app-screens-localclock",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": false,
+      "reconstruction_source_ref_count": 0,
+      "expanded_native_reference_owner_count": 3,
+      "counts": {
+        "reference_records": 7,
+        "exact_decoded_instruction_sites": 7,
+        "reference_records_with_body_owner": 7,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 7,
+        "native_location_records_with_body_owner": 7,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/markers.rs",
+      "system": "custom-app-screens-markers",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 66,
+      "expanded_native_reference_owner_count": 5,
+      "counts": {
+        "reference_records": 10,
+        "exact_decoded_instruction_sites": 10,
+        "reference_records_with_body_owner": 9,
+        "reference_records_without_body_owner": 1,
+        "native_location_reference_records": 10,
+        "native_location_records_with_body_owner": 9,
+        "native_location_records_without_body_owner": 1
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/meter.rs",
+      "system": "custom-app-screens-meter",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 9,
+      "expanded_native_reference_owner_count": 15,
+      "counts": {
+        "reference_records": 33,
+        "exact_decoded_instruction_sites": 33,
+        "reference_records_with_body_owner": 33,
+        "reference_records_without_body_owner": 0,
+        "path_literal_candidate_reference_records": 14,
+        "path_literal_candidate_records_with_body_owner": 14,
+        "path_literal_candidate_records_without_body_owner": 0,
+        "literal_candidates_near_filename": 14,
+        "native_location_reference_records": 19,
+        "native_location_records_with_body_owner": 19,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/mod.rs",
+      "system": "custom-app-screens-mod",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 38,
+      "expanded_native_reference_owner_count": 12,
+      "counts": {
+        "reference_records": 32,
+        "exact_decoded_instruction_sites": 32,
+        "reference_records_with_body_owner": 32,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 23,
+        "native_location_records_with_body_owner": 23,
+        "native_location_records_without_body_owner": 0,
+        "path_literal_candidate_reference_records": 9,
+        "path_literal_candidate_records_with_body_owner": 9,
+        "path_literal_candidate_records_without_body_owner": 0,
+        "literal_candidates_near_filename": 9
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/ontop.rs",
+      "system": "custom-app-screens-ontop",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 11,
+      "expanded_native_reference_owner_count": 3,
+      "counts": {
+        "reference_records": 5,
+        "exact_decoded_instruction_sites": 5,
+        "reference_records_with_body_owner": 5,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 5,
+        "native_location_records_with_body_owner": 5,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/options.rs",
+      "system": "custom-app-screens-options",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 33,
+      "expanded_native_reference_owner_count": 7,
+      "counts": {
+        "reference_records": 26,
+        "exact_decoded_instruction_sites": 26,
+        "reference_records_with_body_owner": 17,
+        "reference_records_without_body_owner": 9,
+        "native_location_reference_records": 26,
+        "native_location_records_with_body_owner": 17,
+        "native_location_records_without_body_owner": 9
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/pad.rs",
+      "system": "custom-app-screens-pad",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 12,
+      "expanded_native_reference_owner_count": 3,
+      "counts": {
+        "reference_records": 3,
+        "exact_decoded_instruction_sites": 3,
+        "reference_records_with_body_owner": 3,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 3,
+        "native_location_records_with_body_owner": 3,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/picker.rs",
+      "system": "custom-app-screens-picker",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 9,
+      "expanded_native_reference_owner_count": 5,
+      "counts": {
+        "reference_records": 15,
+        "exact_decoded_instruction_sites": 15,
+        "reference_records_with_body_owner": 15,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 15,
+        "native_location_records_with_body_owner": 15,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/readycheck.rs",
+      "system": "custom-app-screens-readycheck",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": false,
+      "reconstruction_source_ref_count": 0,
+      "expanded_native_reference_owner_count": 1,
+      "counts": {
+        "reference_records": 4,
+        "exact_decoded_instruction_sites": 4,
+        "reference_records_with_body_owner": 4,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 4,
+        "native_location_records_with_body_owner": 4,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/recap.rs",
+      "system": "custom-app-screens-recap",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": false,
+      "reconstruction_source_ref_count": 0,
+      "expanded_native_reference_owner_count": 4,
+      "counts": {
+        "reference_records": 10,
+        "exact_decoded_instruction_sites": 10,
+        "reference_records_with_body_owner": 10,
+        "reference_records_without_body_owner": 0,
+        "path_literal_candidate_reference_records": 7,
+        "path_literal_candidate_records_with_body_owner": 7,
+        "path_literal_candidate_records_without_body_owner": 0,
+        "literal_candidates_near_filename": 7,
+        "native_location_reference_records": 3,
+        "native_location_records_with_body_owner": 3,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/rewards.rs",
+      "system": "custom-app-screens-rewards",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 56,
+      "expanded_native_reference_owner_count": 1,
+      "counts": {
+        "reference_records": 4,
+        "exact_decoded_instruction_sites": 4,
+        "reference_records_with_body_owner": 1,
+        "reference_records_without_body_owner": 3,
+        "native_location_reference_records": 4,
+        "native_location_records_with_body_owner": 1,
+        "native_location_records_without_body_owner": 3
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/runmods.rs",
+      "system": "custom-app-screens-runmods",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 51,
+      "expanded_native_reference_owner_count": 3,
+      "counts": {
+        "reference_records": 6,
+        "exact_decoded_instruction_sites": 6,
+        "reference_records_with_body_owner": 6,
+        "reference_records_without_body_owner": 0,
+        "path_literal_candidate_reference_records": 2,
+        "path_literal_candidate_records_with_body_owner": 2,
+        "path_literal_candidate_records_without_body_owner": 0,
+        "literal_candidates_near_filename": 2,
+        "native_location_reference_records": 4,
+        "native_location_records_with_body_owner": 4,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/talents.rs",
+      "system": "custom-app-screens-talents",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 28,
+      "expanded_native_reference_owner_count": 2,
+      "counts": {
+        "reference_records": 2,
+        "exact_decoded_instruction_sites": 2,
+        "reference_records_with_body_owner": 2,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 2,
+        "native_location_records_with_body_owner": 2,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/talentview.rs",
+      "system": "custom-app-screens-talentview",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 15,
+      "expanded_native_reference_owner_count": 2,
+      "counts": {
+        "reference_records": 6,
+        "exact_decoded_instruction_sites": 6,
+        "reference_records_with_body_owner": 6,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 6,
+        "native_location_records_with_body_owner": 6,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/touch.rs",
+      "system": "custom-app-screens-touch",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 7,
+      "expanded_native_reference_owner_count": 3,
+      "counts": {
+        "reference_records": 6,
+        "exact_decoded_instruction_sites": 6,
+        "reference_records_with_body_owner": 6,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 6,
+        "native_location_records_with_body_owner": 6,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/update.rs",
+      "system": "custom-app-screens-update",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 3,
+      "expanded_native_reference_owner_count": 3,
+      "counts": {
+        "reference_records": 12,
+        "exact_decoded_instruction_sites": 12,
+        "reference_records_with_body_owner": 12,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 12,
+        "native_location_records_with_body_owner": 12,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/screens/xinput.rs",
+      "system": "custom-app-screens-xinput",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 8,
+      "expanded_native_reference_owner_count": 1,
+      "counts": {
+        "reference_records": 1,
+        "exact_decoded_instruction_sites": 1,
+        "reference_records_with_body_owner": 1,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 1,
+        "native_location_records_with_body_owner": 1,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue-app/src/update.rs",
+      "system": "custom-app-update",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 7,
+      "expanded_native_reference_owner_count": 2,
+      "counts": {
+        "reference_records": 2,
+        "exact_decoded_instruction_sites": 2,
+        "reference_records_with_body_owner": 2,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 2,
+        "native_location_records_with_body_owner": 2,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/achievements.rs",
+      "system": "custom-game-achievements",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 52,
+      "expanded_native_reference_owner_count": 2,
+      "counts": {
+        "reference_records": 3,
+        "exact_decoded_instruction_sites": 3,
+        "reference_records_with_body_owner": 3,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 3,
+        "native_location_records_with_body_owner": 3,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/appearance.rs",
+      "system": "custom-game-appearance",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 22,
+      "expanded_native_reference_owner_count": 1,
+      "counts": {
+        "reference_records": 2,
+        "exact_decoded_instruction_sites": 2,
+        "reference_records_with_body_owner": 2,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 2,
+        "native_location_records_with_body_owner": 2,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/banners.rs",
+      "system": "custom-game-banners",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 4,
+      "expanded_native_reference_owner_count": 1,
+      "counts": {
+        "reference_records": 1,
+        "exact_decoded_instruction_sites": 1,
+        "reference_records_with_body_owner": 1,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 1,
+        "native_location_records_with_body_owner": 1,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/bindings.rs",
+      "system": "custom-game-bindings",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 17,
+      "expanded_native_reference_owner_count": 1,
+      "counts": {
+        "reference_records": 1,
+        "exact_decoded_instruction_sites": 1,
+        "reference_records_with_body_owner": 1,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 1,
+        "native_location_records_with_body_owner": 1,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/content.rs",
+      "system": "custom-game-content",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 20,
+      "expanded_native_reference_owner_count": 31,
+      "counts": {
+        "reference_records": 44,
+        "exact_decoded_instruction_sites": 44,
+        "reference_records_with_body_owner": 33,
+        "reference_records_without_body_owner": 11,
+        "native_location_reference_records": 44,
+        "native_location_records_with_body_owner": 33,
+        "native_location_records_without_body_owner": 11
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/coop/pick.rs",
+      "system": "custom-game-coop-pick",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 8,
+      "expanded_native_reference_owner_count": 1,
+      "counts": {
+        "reference_records": 1,
+        "exact_decoded_instruction_sites": 1,
+        "reference_records_with_body_owner": 1,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 1,
+        "native_location_records_with_body_owner": 1,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/coop/relay.rs",
+      "system": "custom-game-coop-relay",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 23,
+      "expanded_native_reference_owner_count": 2,
+      "counts": {
+        "reference_records": 2,
+        "exact_decoded_instruction_sites": 2,
+        "reference_records_with_body_owner": 2,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 2,
+        "native_location_records_with_body_owner": 2,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/coop/route.rs",
+      "system": "custom-game-coop-route",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 23,
+      "expanded_native_reference_owner_count": 1,
+      "counts": {
+        "reference_records": 2,
+        "exact_decoded_instruction_sites": 2,
+        "reference_records_with_body_owner": 2,
+        "reference_records_without_body_owner": 0,
+        "path_literal_candidate_reference_records": 1,
+        "path_literal_candidate_records_with_body_owner": 1,
+        "path_literal_candidate_records_without_body_owner": 0,
+        "literal_candidates_near_filename": 1,
+        "native_location_reference_records": 1,
+        "native_location_records_with_body_owner": 1,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/coop/smooth.rs",
+      "system": "custom-game-coop-smooth",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 5,
+      "expanded_native_reference_owner_count": 1,
+      "counts": {
+        "reference_records": 2,
+        "exact_decoded_instruction_sites": 2,
+        "reference_records_with_body_owner": 2,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 2,
+        "native_location_records_with_body_owner": 2,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/coop/tcp.rs",
+      "system": "custom-game-coop-tcp",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 25,
+      "expanded_native_reference_owner_count": 1,
+      "counts": {
+        "reference_records": 1,
+        "exact_decoded_instruction_sites": 1,
+        "reference_records_with_body_owner": 1,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 1,
+        "native_location_records_with_body_owner": 1,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/coop/trust.rs",
+      "system": "custom-game-coop-trust",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 6,
+      "expanded_native_reference_owner_count": 1,
+      "counts": {
+        "reference_records": 1,
+        "exact_decoded_instruction_sites": 1,
+        "reference_records_with_body_owner": 1,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 1,
+        "native_location_records_with_body_owner": 1,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/dbc.rs",
+      "system": "custom-game-dbc",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 5,
+      "expanded_native_reference_owner_count": 4,
+      "counts": {
+        "reference_records": 8,
+        "exact_decoded_instruction_sites": 8,
+        "reference_records_with_body_owner": 8,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 8,
+        "native_location_records_with_body_owner": 8,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/driver.rs",
+      "system": "custom-game-driver",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 33,
+      "expanded_native_reference_owner_count": 1,
+      "counts": {
+        "reference_records": 1,
+        "exact_decoded_instruction_sites": 1,
+        "reference_records_with_body_owner": 1,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 1,
+        "native_location_records_with_body_owner": 1,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/fonts.rs",
+      "system": "custom-game-fonts",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 6,
+      "expanded_native_reference_owner_count": 5,
+      "counts": {
+        "reference_records": 16,
+        "exact_decoded_instruction_sites": 16,
+        "reference_records_with_body_owner": 15,
+        "reference_records_without_body_owner": 1,
+        "native_location_reference_records": 16,
+        "native_location_records_with_body_owner": 15,
+        "native_location_records_without_body_owner": 1
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/abilities.rs",
+      "system": "custom-game-game-abilities",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 39,
+      "expanded_native_reference_owner_count": 4,
+      "counts": {
+        "reference_records": 20,
+        "exact_decoded_instruction_sites": 20,
+        "reference_records_with_body_owner": 13,
+        "reference_records_without_body_owner": 7,
+        "native_location_reference_records": 20,
+        "native_location_records_with_body_owner": 13,
+        "native_location_records_without_body_owner": 7
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/addon.rs",
+      "system": "custom-game-game-addon",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 46,
+      "expanded_native_reference_owner_count": 1,
+      "counts": {
+        "reference_records": 1,
+        "exact_decoded_instruction_sites": 1,
+        "reference_records_with_body_owner": 1,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 1,
+        "native_location_records_with_body_owner": 1,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/affixes.rs",
+      "system": "custom-game-game-affixes",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 16,
+      "expanded_native_reference_owner_count": 1,
+      "counts": {
+        "reference_records": 1,
+        "exact_decoded_instruction_sites": 1,
+        "reference_records_with_body_owner": 1,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 1,
+        "native_location_records_with_body_owner": 1,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/auras.rs",
+      "system": "custom-game-game-auras",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 20,
+      "expanded_native_reference_owner_count": 2,
+      "counts": {
+        "reference_records": 6,
+        "exact_decoded_instruction_sites": 6,
+        "reference_records_with_body_owner": 4,
+        "reference_records_without_body_owner": 2,
+        "path_literal_candidate_reference_records": 5,
+        "path_literal_candidate_records_with_body_owner": 3,
+        "path_literal_candidate_records_without_body_owner": 2,
+        "literal_candidates_near_filename": 5,
+        "native_location_reference_records": 1,
+        "native_location_records_with_body_owner": 1,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/companions.rs",
+      "system": "custom-game-game-companions",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 29,
+      "expanded_native_reference_owner_count": 4,
+      "counts": {
+        "reference_records": 18,
+        "exact_decoded_instruction_sites": 18,
+        "reference_records_with_body_owner": 18,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 18,
+        "native_location_records_with_body_owner": 18,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/demons.rs",
+      "system": "custom-game-game-demons",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 46,
+      "expanded_native_reference_owner_count": 13,
+      "counts": {
+        "reference_records": 28,
+        "exact_decoded_instruction_sites": 28,
+        "reference_records_with_body_owner": 28,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 27,
+        "native_location_records_with_body_owner": 27,
+        "native_location_records_without_body_owner": 0,
+        "path_literal_candidate_reference_records": 1,
+        "path_literal_candidate_records_with_body_owner": 1,
+        "path_literal_candidate_records_without_body_owner": 0,
+        "literal_candidates_near_filename": 1
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/enemy.rs",
+      "system": "custom-game-game-enemy",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 72,
+      "expanded_native_reference_owner_count": 13,
+      "counts": {
+        "reference_records": 30,
+        "exact_decoded_instruction_sites": 30,
+        "reference_records_with_body_owner": 23,
+        "reference_records_without_body_owner": 7,
+        "native_location_reference_records": 30,
+        "native_location_records_with_body_owner": 23,
+        "native_location_records_without_body_owner": 7
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/enhancement.rs",
+      "system": "custom-game-game-enhancement",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": false,
+      "reconstruction_source_ref_count": 0,
+      "expanded_native_reference_owner_count": 1,
+      "counts": {
+        "reference_records": 1,
+        "exact_decoded_instruction_sites": 1,
+        "reference_records_with_body_owner": 1,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 1,
+        "native_location_records_with_body_owner": 1,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/guardians.rs",
+      "system": "custom-game-game-guardians",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 71,
+      "expanded_native_reference_owner_count": 6,
+      "counts": {
+        "reference_records": 16,
+        "exact_decoded_instruction_sites": 16,
+        "reference_records_with_body_owner": 16,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 14,
+        "native_location_records_with_body_owner": 14,
+        "native_location_records_without_body_owner": 0,
+        "path_literal_candidate_reference_records": 2,
+        "path_literal_candidate_records_with_body_owner": 2,
+        "path_literal_candidate_records_without_body_owner": 0,
+        "literal_candidates_near_filename": 2
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/hazards.rs",
+      "system": "custom-game-hazards",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 58,
+      "expanded_native_reference_owner_count": 5,
+      "counts": {
+        "reference_records": 48,
+        "exact_decoded_instruction_sites": 48,
+        "reference_records_with_body_owner": 46,
+        "reference_records_without_body_owner": 2,
+        "native_location_reference_records": 46,
+        "native_location_records_with_body_owner": 44,
+        "native_location_records_without_body_owner": 2,
+        "path_literal_candidate_reference_records": 2,
+        "path_literal_candidate_records_with_body_owner": 2,
+        "path_literal_candidate_records_without_body_owner": 0,
+        "literal_candidates_near_filename": 2
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/meterfeed.rs",
+      "system": "custom-game-game-meterfeed",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": false,
+      "reconstruction_source_ref_count": 0,
+      "expanded_native_reference_owner_count": 5,
+      "counts": {
+        "reference_records": 14,
+        "exact_decoded_instruction_sites": 14,
+        "reference_records_with_body_owner": 12,
+        "reference_records_without_body_owner": 2,
+        "native_location_reference_records": 12,
+        "native_location_records_with_body_owner": 12,
+        "native_location_records_without_body_owner": 0,
+        "path_literal_candidate_reference_records": 2,
+        "path_literal_candidate_records_with_body_owner": 0,
+        "path_literal_candidate_records_without_body_owner": 2,
+        "literal_candidates_near_filename": 2
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/meterlog.rs",
+      "system": "custom-game-game-meterlog",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": false,
+      "reconstruction_source_ref_count": 0,
+      "expanded_native_reference_owner_count": 11,
+      "counts": {
+        "reference_records": 81,
+        "exact_decoded_instruction_sites": 81,
+        "reference_records_with_body_owner": 81,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 37,
+        "native_location_records_with_body_owner": 37,
+        "native_location_records_without_body_owner": 0,
+        "path_literal_candidate_reference_records": 44,
+        "path_literal_candidate_records_with_body_owner": 44,
+        "path_literal_candidate_records_without_body_owner": 0,
+        "literal_candidates_near_filename": 44
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/mod.rs",
+      "system": "custom-game-game-mod",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 100,
+      "expanded_native_reference_owner_count": 7,
+      "counts": {
+        "reference_records": 16,
+        "exact_decoded_instruction_sites": 16,
+        "reference_records_with_body_owner": 16,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 16,
+        "native_location_records_with_body_owner": 16,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/party.rs",
+      "system": "custom-game-game-party",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 80,
+      "expanded_native_reference_owner_count": 28,
+      "counts": {
+        "reference_records": 61,
+        "exact_decoded_instruction_sites": 61,
+        "reference_records_with_body_owner": 61,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 60,
+        "native_location_records_with_body_owner": 60,
+        "native_location_records_without_body_owner": 0,
+        "path_literal_candidate_reference_records": 1,
+        "path_literal_candidate_records_with_body_owner": 1,
+        "path_literal_candidate_records_without_body_owner": 0,
+        "literal_candidates_near_filename": 1
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/procs.rs",
+      "system": "custom-game-game-procs",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 26,
+      "expanded_native_reference_owner_count": 2,
+      "counts": {
+        "reference_records": 2,
+        "exact_decoded_instruction_sites": 2,
+        "reference_records_with_body_owner": 2,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 2,
+        "native_location_records_with_body_owner": 2,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/talents.rs",
+      "system": "custom-game-game-talents",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 47,
+      "expanded_native_reference_owner_count": 3,
+      "counts": {
+        "reference_records": 18,
+        "exact_decoded_instruction_sites": 18,
+        "reference_records_with_body_owner": 17,
+        "reference_records_without_body_owner": 1,
+        "native_location_reference_records": 18,
+        "native_location_records_with_body_owner": 17,
+        "native_location_records_without_body_owner": 1
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/game/upgrades.rs",
+      "system": "custom-game-game-upgrades",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 31,
+      "expanded_native_reference_owner_count": 5,
+      "counts": {
+        "reference_records": 11,
+        "exact_decoded_instruction_sites": 11,
+        "reference_records_with_body_owner": 10,
+        "reference_records_without_body_owner": 1,
+        "native_location_reference_records": 11,
+        "native_location_records_with_body_owner": 10,
+        "native_location_records_without_body_owner": 1
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/gear.rs",
+      "system": "custom-game-gear",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 33,
+      "expanded_native_reference_owner_count": 12,
+      "counts": {
+        "reference_records": 18,
+        "exact_decoded_instruction_sites": 18,
+        "reference_records_with_body_owner": 18,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 18,
+        "native_location_records_with_body_owner": 18,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/heroic.rs",
+      "system": "custom-game-heroic",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 22,
+      "expanded_native_reference_owner_count": 2,
+      "counts": {
+        "reference_records": 2,
+        "exact_decoded_instruction_sites": 2,
+        "reference_records_with_body_owner": 2,
+        "reference_records_without_body_owner": 0,
+        "path_literal_candidate_reference_records": 1,
+        "path_literal_candidate_records_with_body_owner": 1,
+        "path_literal_candidate_records_without_body_owner": 0,
+        "literal_candidates_near_filename": 1,
+        "native_location_reference_records": 1,
+        "native_location_records_with_body_owner": 1,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/i18n.rs",
+      "system": "custom-game-i18n",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 45,
+      "expanded_native_reference_owner_count": 8,
+      "counts": {
+        "reference_records": 23,
+        "exact_decoded_instruction_sites": 23,
+        "reference_records_with_body_owner": 20,
+        "reference_records_without_body_owner": 3,
+        "native_location_reference_records": 14,
+        "native_location_records_with_body_owner": 14,
+        "native_location_records_without_body_owner": 0,
+        "path_literal_candidate_reference_records": 9,
+        "path_literal_candidate_records_with_body_owner": 6,
+        "path_literal_candidate_records_without_body_owner": 3,
+        "literal_candidates_near_filename": 9
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/jewelry.rs",
+      "system": "custom-game-jewelry",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 37,
+      "expanded_native_reference_owner_count": 2,
+      "counts": {
+        "reference_records": 2,
+        "exact_decoded_instruction_sites": 2,
+        "reference_records_with_body_owner": 2,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 2,
+        "native_location_records_with_body_owner": 2,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/nav.rs",
+      "system": "custom-game-nav",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 4,
+      "expanded_native_reference_owner_count": 17,
+      "counts": {
+        "reference_records": 61,
+        "exact_decoded_instruction_sites": 61,
+        "reference_records_with_body_owner": 57,
+        "reference_records_without_body_owner": 4,
+        "native_location_reference_records": 61,
+        "native_location_records_with_body_owner": 57,
+        "native_location_records_without_body_owner": 4
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/proto.rs",
+      "system": "custom-game-proto",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 48,
+      "expanded_native_reference_owner_count": 2,
+      "counts": {
+        "reference_records": 2,
+        "exact_decoded_instruction_sites": 2,
+        "reference_records_with_body_owner": 2,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 2,
+        "native_location_records_with_body_owner": 2,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/realmd.rs",
+      "system": "custom-game-realmd",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 9,
+      "expanded_native_reference_owner_count": 1,
+      "counts": {
+        "reference_records": 2,
+        "exact_decoded_instruction_sites": 2,
+        "reference_records_with_body_owner": 2,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 2,
+        "native_location_records_with_body_owner": 2,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/save.rs",
+      "system": "custom-game-save",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 90,
+      "expanded_native_reference_owner_count": 10,
+      "counts": {
+        "reference_records": 17,
+        "exact_decoded_instruction_sites": 17,
+        "reference_records_with_body_owner": 17,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 17,
+        "native_location_records_with_body_owner": 17,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/server.rs",
+      "system": "custom-game-server",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 45,
+      "expanded_native_reference_owner_count": 8,
+      "counts": {
+        "reference_records": 16,
+        "exact_decoded_instruction_sites": 16,
+        "reference_records_with_body_owner": 16,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 12,
+        "native_location_records_with_body_owner": 12,
+        "native_location_records_without_body_owner": 0,
+        "path_literal_candidate_reference_records": 4,
+        "path_literal_candidate_records_with_body_owner": 4,
+        "path_literal_candidate_records_without_body_owner": 0,
+        "literal_candidates_near_filename": 4
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/server/party.rs",
+      "system": "custom-game-server-party",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 72,
+      "expanded_native_reference_owner_count": 14,
+      "counts": {
+        "reference_records": 28,
+        "exact_decoded_instruction_sites": 28,
+        "reference_records_with_body_owner": 28,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 26,
+        "native_location_records_with_body_owner": 26,
+        "native_location_records_without_body_owner": 0,
+        "path_literal_candidate_reference_records": 2,
+        "path_literal_candidate_records_with_body_owner": 2,
+        "path_literal_candidate_records_without_body_owner": 0,
+        "literal_candidates_near_filename": 2
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/server/party/readycheck.rs",
+      "system": "custom-game-server-party-readycheck",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": false,
+      "reconstruction_source_ref_count": 0,
+      "expanded_native_reference_owner_count": 1,
+      "counts": {
+        "reference_records": 1,
+        "exact_decoded_instruction_sites": 1,
+        "reference_records_with_body_owner": 1,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 1,
+        "native_location_records_with_body_owner": 1,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/sets.rs",
+      "system": "custom-game-sets",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 17,
+      "expanded_native_reference_owner_count": 3,
+      "counts": {
+        "reference_records": 4,
+        "exact_decoded_instruction_sites": 4,
+        "reference_records_with_body_owner": 4,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 2,
+        "native_location_records_with_body_owner": 2,
+        "native_location_records_without_body_owner": 0,
+        "path_literal_candidate_reference_records": 2,
+        "path_literal_candidate_records_with_body_owner": 2,
+        "path_literal_candidate_records_without_body_owner": 0,
+        "literal_candidates_near_filename": 2
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/smsg.rs",
+      "system": "custom-game-smsg",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 5,
+      "expanded_native_reference_owner_count": 2,
+      "counts": {
+        "reference_records": 5,
+        "exact_decoded_instruction_sites": 5,
+        "reference_records_with_body_owner": 5,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 5,
+        "native_location_records_with_body_owner": 5,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/talents.rs",
+      "system": "custom-game-talents",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 44,
+      "expanded_native_reference_owner_count": 4,
+      "counts": {
+        "reference_records": 6,
+        "exact_decoded_instruction_sites": 6,
+        "reference_records_with_body_owner": 6,
+        "reference_records_without_body_owner": 0,
+        "path_literal_candidate_reference_records": 1,
+        "path_literal_candidate_records_with_body_owner": 1,
+        "path_literal_candidate_records_without_body_owner": 0,
+        "literal_candidates_near_filename": 1,
+        "native_location_reference_records": 5,
+        "native_location_records_with_body_owner": 5,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    },
+    {
+      "path": "crates/wenilla-rogue/src/terrain.rs",
+      "system": "custom-game-terrain",
+      "path_evidence_role": "reviewed-source-correspondence-candidate-not-native-semantics",
+      "source_mapping_present": true,
+      "reconstruction_source_ref_count": 10,
+      "expanded_native_reference_owner_count": 8,
+      "counts": {
+        "reference_records": 28,
+        "exact_decoded_instruction_sites": 28,
+        "reference_records_with_body_owner": 28,
+        "reference_records_without_body_owner": 0,
+        "native_location_reference_records": 28,
+        "native_location_records_with_body_owner": 28,
+        "native_location_records_without_body_owner": 0
+      },
+      "native_source_semantics_established": false
+    }
+  ],
+  "inventory": {
+    "path": "runtime/analysis/census/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/ea7d61a859494cbb4de6918c7f356046d6bd5100989ad80cb61166828a1eead9/custom-diagnostic-sites.json",
+    "sha256": "fabda42f90771aaed6622d4a02d852c00d407d040d8d72b89baa1f674e0b9f37"
+  },
+  "semantic_site_role_input": null,
+  "source_mapping_review": {
+    "systems_path": "docs/analysis/coverage/systems.json",
+    "projection_fields": [
+      "original_path",
+      "source_refs",
+      "source_review_anchors",
+      "source_candidate_hashes"
+    ],
+    "projection_sha256": "478119760bc8607ec164e96c79fd10c7bef641623339c8206a786c296c612185",
+    "snapshot": {
+      "path": "runtime/analysis/census/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/ea7d61a859494cbb4de6918c7f356046d6bd5100989ad80cb61166828a1eead9/custom-source-mapping.json",
+      "sha256": "478119760bc8607ec164e96c79fd10c7bef641623339c8206a786c296c612185"
+    },
+    "source_hash_role": "Reviewed analyst source correspondence candidates; no whole-function or runtime equivalence claim."
+  },
+  "scope": "Azeroth Survivors custom deltas over the existing public benilla/wenilla baseline. Generic engine/compiler/Windows reconstruction is not a prerequisite.",
+  "whole_custom_behavior_recovered": false,
+  "parity_verified": false,
+  "limits": [
+    "A source correspondence and decoded diagnostic instruction do not establish whole-function semantics, dispatch completeness or gameplay parity.",
+    "Ownerless decoded custom blocks remain explicit recovery leads for their actual Survivors mechanisms; enclosing PE unwind ranges are never assigned as body owners.",
+    "The path inventory cannot prove absence of systems that emit no diagnostic filename. Their discovery remains an AS-specific evidence question, not a mandate to reconstruct the engine."
+  ]
+}
