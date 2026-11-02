@@ -111,8 +111,7 @@ def main():
     diagnostic_counts, diagnostic_context = Counter(), Counter()
     with derived_gzip_text(out/'diagnostic-sites.jsonl.gz', publish=True) as f:
         for path in diagnostic['diagnostics']:
-            context = ('excluded-coop-path' if '/coop/' in path['path'] or path['path'].endswith('/party.rs')
-                       else 'AS-custom-path' if path['custom_game_crate'] else 'shared-engine-or-other-path')
+            context = 'AS-custom-path' if path['custom_game_crate'] else 'shared-engine-or-other-path'
             for reference in path['verified_references']:
                 site = int(reference['instruction_address'],16)
                 actual = owner(site)
@@ -232,7 +231,7 @@ def main():
                 limits=['All source rows are retained, without a sampling cap. Joins describe the saved Program and independent inventories only.',
                         'A Location/path is context, not complete function/source ownership. Header/data reference sources outside code do not imply missing executable instructions.',
                         'Spatial body/data/import classifications do not prove reachable calls, runtime values, data types, padding or native/source equivalence.',
-                        'Generic engine reconstruction remains supporting context. Legacy excluded-coop-path labels retain their collection scope; cooperative gameplay/network/server reconstruction is in scope under #63. No application compilation or execution.'])
+                        'Generic engine reconstruction remains supporting context. AS diagnostic counts include cooperative gameplay/network/server paths under #63. No application compilation or execution.'])
     destination=project_path(args.summary_output)
     destination.parent.mkdir(parents=True,exist_ok=True)
     destination.write_text(json_text(report))
