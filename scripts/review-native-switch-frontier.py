@@ -87,8 +87,12 @@ def retained_question_geometry(root, previous_path, previous, question):
         candidate = lead.get("current_native_candidate", lead.get("native_candidate"))
         if candidate is not None:
             matches = []
-            references = {r["path"]: r for r in document.get("inputs", [])
-                          if r.get("path", "").endswith("/guarded-proposals.json")}
+            references = {}
+            for reference in document.get("inputs", []):
+                if reference.get("path", "").endswith("/guarded-proposals.json"):
+                    if reference["path"] in references and references[reference["path"]] != reference:
+                        raise ValueError("Conflicting retained proposal input commitments")
+                    references[reference["path"]] = reference
             for reference in references.values():
                 proposal_path, proposals = verified(reference)
                 if proposals.get("target") != document.get("target"):
@@ -98,17 +102,23 @@ def retained_question_geometry(root, previous_path, previous, question):
                 if len(rows) != 1 or table_candidate(rows[0]) != candidate:
                     raise ValueError("Retained candidate differs from its exact proposal")
                 matches.append((proposal_path, rows[0]))
-            if len(matches) != 1:
-                raise ValueError("Retained question needs one exact target proposal input")
+            if not matches:
+                raise ValueError("Retained question needs an exact target proposal input")
             proposal_path, row = matches[0]
-            inputs.append(proposal_path)
-            return row, {
+            if any(key(other) != key(row) for _, other in matches[1:]):
+                raise ValueError("Retained proposal inputs have conflicting guarded geometry")
+            receipts = [{"path": path.relative_to(root).as_posix(), "sha256": file_sha256(path)}
+                        for path, _ in matches]
+            inputs.extend(path for path, _ in matches if path not in inputs)
+            baseline = {
                 "target": document["target"], "native_candidate": candidate,
                 "question_evidence": chain[-1], "predecessor_chain": chain,
-                "proposal_input": {"path": proposal_path.relative_to(root).as_posix(),
-                                   "sha256": file_sha256(proposal_path)},
+                "proposal_input": receipts[0],
                 "scope": "Last retained mapped table supplies geometry only; current dependency/behavioral applicability remains pending.",
-            }, inputs
+            }
+            if len(receipts) > 1:
+                baseline["equivalent_proposal_inputs"] = receipts
+            return row, baseline, inputs
         predecessor = document.get("predecessor")
         if predecessor is None:
             return None, {"native_candidate": None, "predecessor_chain": chain,
@@ -202,7 +212,7 @@ def predecessor_input(root, previous, supplied, role):
     matching a different document's bytes or a second copy is not sufficient.
     Never search for aliases or fall back from a changed recorded input path.
     """
-    positions = {"census_summary": 0, "applied_summary": 1}
+    positions = {"census_summary": 0, "applied_summary": 1, "proposed_summary": 2}
     if role not in positions:
         raise ValueError("Unsupported predecessor input role")
     root = root.resolve()
@@ -256,6 +266,27 @@ def predecessor_input(root, previous, supplied, role):
         "verification": "Unique exact full-byte digest at the same recorded input role; no implicit alias search or historical commitment rewrite.",
     }
     return path, document, witness
+
+
+def predecessor_proposal_input(root, previous):
+    """Use the producer's proposed-summary role, never its first applied payload."""
+    records = previous.get("inputs", [])
+    if len(records) < 3:
+        raise ValueError("Missing recorded predecessor proposed-summary role")
+    summary_path, summary, _ = predecessor_input(root, previous, records[2]["path"], "proposed_summary")
+    reference = summary["inventory"]
+    matches = [row for row in records if row.get("path") == reference.get("path")]
+    if len(matches) != 1 or matches[0] != reference:
+        raise ValueError("Predecessor proposed inventory differs from its recorded input")
+    path = (root / reference["path"]).resolve()
+    if not path.is_relative_to(root.resolve()):
+        raise ValueError("Predecessor proposed inventory leaves the project")
+    if file_sha256(path) != reference["sha256"]:
+        raise ValueError("Predecessor proposed inventory hash differs")
+    proposals = json.loads(path.read_text())
+    if proposals.get("target") != previous["target"]:
+        raise ValueError("Predecessor proposed inventory target differs")
+    return path, proposals, summary_path
 
 
 def verify_applied_input(census, applied_summary):
@@ -400,16 +431,12 @@ def main():
     applied, proposed = [json.loads(path.read_text()) for path in (applied_path, proposed_path)]
     assert applied["target"] == proposed["target"] == census["target"]
     assert proposed["census_summary_sha256"] == file_sha256(census_path)
-    previous_proposal_ref = next(row for row in previous["inputs"] if row["path"].endswith("/guarded-proposals.json"))
-    previous_proposal_path = project_path(previous_proposal_ref["path"])
-    assert file_sha256(previous_proposal_path) == previous_proposal_ref["sha256"]
-    previous_proposals = json.loads(previous_proposal_path.read_text())
-    assert previous_proposals["target"] == previous["target"]
+    previous_proposal_path, previous_proposals, previous_proposed_summary_path = predecessor_proposal_input(ROOT, previous)
     inputs = [census_path, applied_summary_path, proposed_summary_path, applied_path, frozen_applied_path, proposed_path,
               directory / "instructions.tsv.gz", directory / "bodies.tsv.gz", base / "diagnostic-ownership.json",
               ROOT / "scripts/summarize-native-image.py", ROOT / "scripts/inventory-executable.py",
               ROOT / "scripts/coverage_common.py", ROOT / "scripts/shared_analysis.py",
-              previous_path, previous_proposal_path, Path(__file__)]
+              previous_path, previous_proposal_path, previous_proposed_summary_path, Path(__file__)]
     historical_proofs = {}
     for lead in previous["leads"].values():
         ref = lead["historical_classification"]["classification_evidence"]

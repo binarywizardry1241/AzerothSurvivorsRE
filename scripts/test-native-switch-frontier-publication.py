@@ -265,7 +265,7 @@ class PublicationTests(unittest.TestCase):
                      selector_register="rax", guard_bound=1, selector_minimum=0,
                      selector_maximum=1, case_targets=["0x140000030", "0x140000038"])
         proposal = self.root / "runtime/older/guarded-proposals.json"
-        proposal.parent.mkdir(parents=True)
+        proposal.parent.mkdir(parents=True, exist_ok=True)
         proposal.write_text(json.dumps(dict(target=self.target, tables=[table])))
         receipt = lambda p: dict(path=p.relative_to(self.root).as_posix(),
                                  sha256=hashlib.sha256(p.read_bytes()).hexdigest())
@@ -295,6 +295,80 @@ class PublicationTests(unittest.TestCase):
         self.assertEqual(current, original)
         self.assertIsNone(current["leads"]["retained"]["current_native_candidate"])
         self.assertNotIn("current_native_candidate", baseline)
+        self.assertNotIn("equivalent_proposal_inputs", baseline)
+
+    def add_retained_proposal(self, old_path, current_path, current, table):
+        proposal = self.root / "runtime/selected/guarded-proposals.json"
+        proposal.parent.mkdir(parents=True, exist_ok=True)
+        proposal.write_text(json.dumps(dict(target=self.target, tables=[table])))
+        old = json.loads(old_path.read_text())
+        old["inputs"].append(dict(path=proposal.relative_to(self.root).as_posix(),
+                                  sha256=hashlib.sha256(proposal.read_bytes()).hexdigest()))
+        old_path.write_text(json.dumps(old))
+        current["predecessor"]["sha256"] = hashlib.sha256(old_path.read_bytes()).hexdigest()
+        current_path.write_text(json.dumps(current))
+        return proposal
+
+    def test_identical_applied_and_proposed_table_receipts_preserve_both_commitments(self):
+        table, old_path, current_path, current = self.retained_geometry_fixture()
+        proposal = self.add_retained_proposal(old_path, current_path, current, table)
+        before = {p: p.read_bytes() for p in (old_path, current_path, proposal)}
+        row, baseline, inputs = frontier.retained_question_geometry(self.root, current_path, current, "retained")
+        self.assertEqual(row, table)
+        self.assertEqual(len(baseline["equivalent_proposal_inputs"]), 2)
+        self.assertEqual(baseline["proposal_input"], baseline["equivalent_proposal_inputs"][0])
+        for receipt in baseline["equivalent_proposal_inputs"]:
+            path = self.root / receipt["path"]
+            self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), receipt["sha256"])
+            self.assertIn(path, inputs)
+        self.assertEqual({p: p.read_bytes() for p in before}, before)
+
+    def test_equal_candidate_cannot_hide_conflicting_guard_domain_or_successor_geometry(self):
+        for change in ({"guard": "0x140000017"}, {"guard_kind": "jae"},
+                       {"selector_register": "rcx"}, {"guard_bound": 2},
+                       {"selector_minimum": 1}, {"selector_maximum": 2},
+                       {"case_targets": ["0x140000030", "0x140000039"]}):
+            with self.subTest(change=change):
+                table, old_path, current_path, current = self.retained_geometry_fixture()
+                self.add_retained_proposal(old_path, current_path, current, {**table, **change})
+                with self.assertRaisesRegex(ValueError, "conflicting guarded geometry"):
+                    frontier.retained_question_geometry(self.root, current_path, current, "retained")
+
+    def test_duplicate_proposal_stale_hash_and_changed_candidate_are_rejected(self):
+        table, old_path, current_path, current = self.retained_geometry_fixture()
+        proposal = self.add_retained_proposal(old_path, current_path, current, table)
+        proposal.write_text("{}")
+        with self.assertRaisesRegex(ValueError, "input hash differs"):
+            frontier.retained_question_geometry(self.root, current_path, current, "retained")
+        table, old_path, current_path, current = self.retained_geometry_fixture()
+        self.add_retained_proposal(old_path, current_path, current, {**table, "sha256": "c" * 64})
+        with self.assertRaisesRegex(ValueError, "candidate differs"):
+            frontier.retained_question_geometry(self.root, current_path, current, "retained")
+
+    def test_authoritative_predecessor_proposal_role_selects_proposed_not_first_applied_payload(self):
+        previous, census_path, applied_path = self.predecessor_inputs_fixture()
+        proposal = self.root / "runtime/selected/guarded-proposals.json"
+        proposal.parent.mkdir(parents=True)
+        proposal.write_text(json.dumps(dict(target=self.target, tables=[dict(proposed_only=True)])))
+        receipt = lambda p: dict(path=p.relative_to(self.root).as_posix(),
+                                 sha256=hashlib.sha256(p.read_bytes()).hexdigest())
+        summary_path = proposal.parent / "guarded-proposals-summary.json"
+        summary_path.write_text(json.dumps(dict(target=self.target, inventory=receipt(proposal),
+            census_summary_sha256=receipt(census_path)["sha256"])))
+        applied_payload = self.root / json.loads(applied_path.read_text())["inventory"]["path"]
+        previous["inputs"] = previous["inputs"][:2] + [receipt(summary_path), receipt(applied_payload), receipt(proposal)]
+        path, payload, source = frontier.predecessor_proposal_input(self.root, previous)
+        self.assertEqual(path, proposal)
+        self.assertEqual(source, summary_path)
+        self.assertEqual(payload["tables"], [dict(proposed_only=True)])
+        changed = json.loads(proposal.read_text())
+        changed["target"] = dict(version="different", sha256="e" * 64)
+        proposal.write_text(json.dumps(changed))
+        previous["inputs"][-1] = receipt(proposal)
+        summary = json.loads(summary_path.read_text()); summary["inventory"] = receipt(proposal)
+        summary_path.write_text(json.dumps(summary)); previous["inputs"][2] = receipt(summary_path)
+        with self.assertRaisesRegex(ValueError, "inventory target differs"):
+            frontier.predecessor_proposal_input(self.root, previous)
 
     def test_stale_retained_predecessor_cannot_supply_geometry(self):
         _, old_path, current_path, current = self.retained_geometry_fixture()
