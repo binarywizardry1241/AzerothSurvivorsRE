@@ -134,6 +134,131 @@ class PublicationTests(unittest.TestCase):
         self.assertTrue(frontier.as_context(contexts["0x100"]))
         self.assertFalse(frontier.as_context(contexts["0x300"]))
 
+    def predecessor_inputs_fixture(self):
+        receipt = lambda p: dict(path=p.relative_to(self.root).as_posix(),
+                                 sha256=hashlib.sha256(p.read_bytes()).hexdigest())
+        frozen = self.root / "runtime/census/guarded-input.json"
+        frozen.parent.mkdir(parents=True)
+        frozen.write_bytes(b'{"tables":[]}\n')
+        inventory = self.root / "runtime/leads/guarded.json"
+        inventory.parent.mkdir(parents=True)
+        inventory.write_bytes(frozen.read_bytes())
+        census = dict(target=self.target, artifacts={},
+                      independent_instructions=dict(exact_source_bytes_verified=True),
+                      guarded_table_input=receipt(frozen))
+        census_path = self.root / "runtime/census/summary.json"
+        census_path.write_text(json.dumps(census))
+        applied = dict(target=self.target, inventory=receipt(inventory),
+                       census_summary_sha256=receipt(census_path)["sha256"])
+        applied_path = self.root / "runtime/leads/jump-summary.json"
+        applied_path.write_text(json.dumps(applied))
+        previous = dict(target=self.target,
+                        inputs=[receipt(census_path), receipt(applied_path), self.commitments[0]])
+        return previous, census_path, applied_path
+
+    def relocated_receipt(self, path):
+        alias = self.root / "runtime/archive" / hashlib.sha256(path.read_bytes()).hexdigest()
+        alias.parent.mkdir(exist_ok=True)
+        alias.write_bytes(path.read_bytes())
+        return alias
+
+    def test_original_predecessor_inputs_keep_exact_recorded_roles_and_receipts(self):
+        previous, census_path, applied_path = self.predecessor_inputs_fixture()
+        original = deepcopy(previous)
+        for role, path in (("census_summary", census_path), ("applied_summary", applied_path)):
+            with self.subTest(role=role):
+                resolved, payload, witness = frontier.predecessor_input(self.root, previous, path, role)
+                self.assertEqual(resolved, path)
+                self.assertEqual(payload, json.loads(path.read_text()))
+                self.assertFalse(witness["relocated"])
+                self.assertEqual(witness["recorded_input_path"], witness["resolved_input"]["path"])
+                self.assertEqual(witness["recorded_input_sha256"], witness["resolved_input"]["sha256"])
+        self.assertEqual(previous, original)
+
+    def test_explicit_relocated_applied_summary_preserves_stale_original_and_frozen_proof(self):
+        previous, census_path, applied_path = self.predecessor_inputs_fixture()
+        original = deepcopy(previous)
+        expected = json.loads(applied_path.read_text())
+        alias = self.relocated_receipt(applied_path)
+        stale = dict(expected, census_summary_sha256="e" * 64)
+        applied_path.write_text(json.dumps(stale))
+        resolved, payload, witness = frontier.predecessor_input(self.root, previous, alias, "applied_summary")
+        self.assertEqual(resolved, alias)
+        self.assertEqual(payload, expected)
+        self.assertTrue(witness["relocated"])
+        self.assertEqual(witness["recorded_input_path"], original["inputs"][1]["path"])
+        self.assertEqual(witness["recorded_input_sha256"], original["inputs"][1]["sha256"])
+        self.assertEqual(witness["resolved_input"]["path"], alias.relative_to(self.root).as_posix())
+        with mock.patch.object(frontier, "project_path", side_effect=lambda p: self.root / p):
+            supplied, frozen = frontier.verify_applied_input(json.loads(census_path.read_text()), payload)
+        self.assertEqual(supplied.read_bytes(), frozen.read_bytes())
+        self.assertEqual(json.loads(applied_path.read_text()), stale)
+        self.assertEqual(previous, original)
+
+    def test_explicit_relocated_census_matches_original_commitment_after_original_disappears(self):
+        previous, census_path, _ = self.predecessor_inputs_fixture()
+        expected = json.loads(census_path.read_text())
+        alias = self.relocated_receipt(census_path)
+        census_path.unlink()
+        resolved, payload, witness = frontier.predecessor_input(self.root, previous, alias, "census_summary")
+        self.assertEqual(resolved, alias)
+        self.assertEqual(payload, expected)
+        self.assertTrue(witness["relocated"])
+        self.assertEqual(witness["recorded_input_path"], previous["inputs"][0]["path"])
+        self.assertFalse(census_path.exists())
+
+    def test_changed_recorded_path_never_implicitly_uses_an_available_alias(self):
+        previous, _, applied_path = self.predecessor_inputs_fixture()
+        self.relocated_receipt(applied_path)
+        applied_path.write_text(json.dumps(dict(target=self.target, inventory={}, census_summary_sha256="e" * 64)))
+        with self.assertRaisesRegex(ValueError, "Recorded predecessor input bytes differ"):
+            frontier.predecessor_input(self.root, previous, applied_path, "applied_summary")
+
+    def test_unrecorded_or_ambiguous_relocated_bytes_are_rejected(self):
+        previous, _, applied_path = self.predecessor_inputs_fixture()
+        alias = self.relocated_receipt(applied_path)
+        alias.write_bytes(alias.read_bytes() + b" ")
+        with self.assertRaisesRegex(ValueError, "one unique recorded digest"):
+            frontier.predecessor_input(self.root, previous, alias, "applied_summary")
+        alias.write_bytes(applied_path.read_bytes())
+        previous["inputs"].append(dict(previous["inputs"][1], path="runtime/second/jump-summary.json"))
+        with self.assertRaisesRegex(ValueError, "one unique recorded digest"):
+            frontier.predecessor_input(self.root, previous, alias, "applied_summary")
+
+    def test_relocated_receipt_cannot_substitute_another_recorded_role(self):
+        previous, census_path, _ = self.predecessor_inputs_fixture()
+        alias = self.relocated_receipt(census_path)
+        with self.assertRaisesRegex(ValueError, "different recorded role"):
+            frontier.predecessor_input(self.root, previous, alias, "applied_summary")
+
+    def test_committed_receipt_still_requires_predecessor_target_and_role_payload(self):
+        previous, _, applied_path = self.predecessor_inputs_fixture()
+        for payload, error in ((dict(target=self.target, not_an_applied_summary=True), "payload differs"),
+                               (dict(target=dict(self.target, sha256="e" * 64), inventory={},
+                                     census_summary_sha256="d" * 64), "target differs")):
+            with self.subTest(error=error):
+                applied_path.write_text(json.dumps(payload))
+                previous["inputs"][1]["sha256"] = hashlib.sha256(applied_path.read_bytes()).hexdigest()
+                alias = self.relocated_receipt(applied_path)
+                with self.assertRaisesRegex(ValueError, error):
+                    frontier.predecessor_input(self.root, previous, alias, "applied_summary")
+
+    def test_exact_relocated_summary_cannot_replace_the_census_frozen_inventory(self):
+        previous, census_path, applied_path = self.predecessor_inputs_fixture()
+        applied = json.loads(applied_path.read_text())
+        applied["inventory"]["sha256"] = "d" * 64
+        applied_path.write_text(json.dumps(applied))
+        previous["inputs"][1]["sha256"] = hashlib.sha256(applied_path.read_bytes()).hexdigest()
+        alias = self.relocated_receipt(applied_path)
+        _, payload, _ = frontier.predecessor_input(self.root, previous, alias, "applied_summary")
+        with self.assertRaisesRegex(ValueError, "not the census's frozen guarded-table input"):
+            frontier.verify_applied_input(json.loads(census_path.read_text()), payload)
+
+    def test_predecessor_receipt_cannot_escape_project_even_when_explicit(self):
+        previous, _, _ = self.predecessor_inputs_fixture()
+        with self.assertRaisesRegex(ValueError, "leaves the project"):
+            frontier.predecessor_input(self.root, previous, self.root.parent / "outside.json", "applied_summary")
+
     def retained_geometry_fixture(self):
         table = dict(site="0x140000020", table_address="0x140000040", file_offset="0x40",
                      byte_count=8, sha256="d" * 64, guard="0x140000018", guard_kind="ja",

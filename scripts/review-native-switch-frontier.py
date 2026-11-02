@@ -8,6 +8,7 @@ import importlib.util
 import json
 import os
 from pathlib import Path
+import re
 import struct
 import sys
 import tempfile
@@ -192,6 +193,71 @@ def reconcile_context_tables(current, current_contexts, applied, previous, previ
             "limits": "Context is not semantic ownership. Equal geometry supplies correspondence candidates only; missing/ambiguous geometry does not prove new behavior, removed implementation or lost recovery. Historical original table bytes retain their prior proof; only current table bytes are re-read from the installed EXE."}
 
 
+def predecessor_input(root, previous, supplied, role):
+    """Bind an explicitly supplied original or relocated predecessor receipt.
+
+    This producer's ordered input contract starts with census, applied summary,
+    then proposed summary. Preserve those recorded roles and paths. A relocated
+    input must match exactly one recorded commitment, at the requested role;
+    matching a different document's bytes or a second copy is not sufficient.
+    Never search for aliases or fall back from a changed recorded input path.
+    """
+    positions = {"census_summary": 0, "applied_summary": 1}
+    if role not in positions:
+        raise ValueError("Unsupported predecessor input role")
+    root = root.resolve()
+    requested = Path(os.path.abspath(root / supplied))
+    path = requested.resolve()
+    if not requested.is_relative_to(root) or not path.is_relative_to(root):
+        raise ValueError("Predecessor input leaves the project")
+    requested_relative = requested.relative_to(root).as_posix()
+    raw = path.read_bytes()
+    checksum = file_sha256_bytes(raw)
+    records = previous.get("inputs", [])
+    position = positions[role]
+    if not isinstance(records, list) or len(records) <= position:
+        raise ValueError("Missing recorded predecessor input role")
+    if any(not isinstance(row, dict) or not isinstance(row.get("path"), str)
+           or re.fullmatch(r"[0-9a-f]{64}", str(row.get("sha256", ""))) is None for row in records):
+        raise ValueError("Invalid recorded predecessor input commitment")
+    recorded = records[position]
+    # A caller naming the original path must get that exact receipt. Do not
+    # reinterpret changed bytes as a relocated copy of another recorded input.
+    path_matches = [row for row in records if row.get("path") == requested_relative]
+    if path_matches and (len(path_matches) != 1 or path_matches[0]["sha256"] != checksum):
+        raise ValueError("Recorded predecessor input bytes differ: " + requested_relative)
+    matches = [(index, row) for index, row in enumerate(records) if row.get("sha256") == checksum]
+    if len(matches) != 1:
+        raise ValueError("Predecessor input needs one unique recorded digest")
+    if matches[0][0] != position:
+        raise ValueError("Predecessor input digest belongs to a different recorded role")
+    document = json.loads(raw)
+    if not isinstance(document, dict):
+        raise ValueError("Predecessor input payload differs from the recorded role")
+    if document.get("target") != previous["target"]:
+        raise ValueError("Predecessor input target differs")
+    if role == "census_summary":
+        valid = all(isinstance(document.get(key), dict)
+                    for key in ("artifacts", "guarded_table_input", "independent_instructions"))
+    else:
+        valid = (isinstance(document.get("inventory"), dict)
+                 and re.fullmatch(r"[0-9a-f]{64}", str(document.get("census_summary_sha256", ""))) is not None)
+    if not valid:
+        raise ValueError("Predecessor input payload differs from the recorded role")
+    resolved = {"path": path.relative_to(root).as_posix(), "sha256": checksum}
+    witness = {
+        "role": role, "recorded_input_index": position,
+        # These describe immutable historical provenance, not a live input
+        # commitment at a path whose bytes may now differ. The current producer
+        # commits resolved_input independently in its ordinary inputs list.
+        "recorded_input_path": recorded["path"], "recorded_input_sha256": recorded["sha256"],
+        "explicit_supplied_path": requested_relative, "resolved_input": resolved,
+        "relocated": requested_relative != recorded["path"] or resolved["path"] != recorded["path"],
+        "verification": "Unique exact full-byte digest at the same recorded input role; no implicit alias search or historical commitment rewrite.",
+    }
+    return path, document, witness
+
+
 def verify_applied_input(census, applied_summary):
     """The applied proof must be the census's frozen bytes, not a new proposal."""
     if applied_summary["target"] != census["target"]:
@@ -358,19 +424,19 @@ def main():
         geometry_baselines[name] = (row, baseline)
         inputs.extend(path for path in baseline_inputs if path not in inputs)
     previous_contexts, previous_applied = None, None
+    predecessor_input_resolutions = []
     if args.predecessor_census_summary:
-        previous_census_path = project_path(args.predecessor_census_summary)
-        previous_applied_summary_path = project_path(args.predecessor_applied_summary)
         # Bind the selected census to the retained predecessor's original input,
-        # rather than accepting a same-version filename or an arbitrary census.
+        # including explicitly supplied exact relocated receipts. The role,
+        # original path and resolved commitment stay separate in current proof.
+        previous_census_path, previous_census, census_resolution = predecessor_input(
+            ROOT, previous, args.predecessor_census_summary, "census_summary")
+        previous_applied_summary_path, previous_applied_summary, applied_resolution = predecessor_input(
+            ROOT, previous, args.predecessor_applied_summary, "applied_summary")
+        predecessor_input_resolutions = [census_resolution, applied_resolution]
         previous_inputs = {row["path"]: row["sha256"] for row in previous["inputs"]}
-        for path in (previous_census_path, previous_applied_summary_path):
-            relative = path.relative_to(ROOT).as_posix()
-            assert previous_inputs.get(relative) == file_sha256(path)
-        previous_census = json.loads(previous_census_path.read_text())
         assert previous_census["target"] == previous["target"]
         assert previous_census["independent_instructions"]["exact_source_bytes_verified"]
-        previous_applied_summary = json.loads(previous_applied_summary_path.read_text())
         previous_applied_path, previous_frozen_path = verify_applied_input(previous_census, previous_applied_summary)
         previous_applied = json.loads(previous_applied_path.read_text())
         previous_directory = project_path(previous_census["artifacts"]["directory"])
@@ -386,6 +452,10 @@ def main():
         inputs.extend((previous_census_path, previous_applied_summary_path, previous_applied_path,
                        previous_frozen_path, previous_bodies, previous_diagnostics_path))
     commitments = [{"path": p.relative_to(ROOT).as_posix(), "sha256": file_sha256(p)} for p in inputs]
+    for resolution in predecessor_input_resolutions:
+        resolved = resolution["resolved_input"]
+        if resolved not in commitments:
+            raise ValueError("Resolved predecessor input changed before commitment")
     for name in ("instructions.tsv.gz", "bodies.tsv.gz"):
         assert file_sha256(directory / name) == census["artifacts"]["files"][name]["sha256"]
     print("verified current census, immutable proposal inputs and predecessor", flush=True)
@@ -443,6 +513,8 @@ def main():
             "input_commitments": commitments, "counts": counts,
             "changed_case_vector_sites": sorted(changed), "removed_proposal_sites": sorted(removed),
             "records": records, "limits": limits}
+    if predecessor_input_resolutions:
+        full["predecessor_input_resolutions"] = predecessor_input_resolutions
     as_context = [row for row in records if row["as_owner_diagnostic_contexts"] or row["as_declared_extent_contexts"]]
     compact = {"schema_version": 1, "target": target, "gap_ids": [41], "counts": counts,
                "generator": full["generator"],
@@ -450,6 +522,8 @@ def main():
                "as_context_records": [{k: v for k, v in row.items() if k != "case_targets"} for row in as_context],
                "source_semantics_complete": False, "source_ownership_established": False,
                "parity_verified": False, "limits": limits}
+    if predecessor_input_resolutions:
+        compact["predecessor_input_resolutions"] = deepcopy(predecessor_input_resolutions)
     candidate_population = {site: row for site, row in p.items() if contexts[site]["as_owner_diagnostic_contexts"]
                             or contexts[site]["as_declared_extent_contexts"]}
     # A retained question can match an already-applied table outside the new
@@ -511,6 +585,8 @@ def main():
         "semantic_or_source_implementation_reset": False,
         "current_native_behavioral_equivalence_established": False, "parity_verified": False,
         "limits": limits + ["Retained classifications and source repairs preserve their actual target; current input/state/dependency/consumer applicability remains separate from geometry correspondence."]}
+    if predecessor_input_resolutions:
+        correspondence["predecessor_input_resolutions"] = deepcopy(predecessor_input_resolutions)
     publish_results(ROOT, full, compact, correspondence, commitments, args.publish)
     print(json_text({"counts": counts, "correspondence_counts": correspondence["counts"],
                      "complete_AS_context_reconciliation_counts": full.get("complete_AS_context_reconciliation", {}).get("counts"),
