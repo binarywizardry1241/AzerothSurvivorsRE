@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "target": {
-    "version": "0.139.0",
+    "version": "0.139.1",
     "path": "installed-game/AzerothSurvivors.exe",
-    "sha256": "0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274",
-    "size_bytes": 150595584
+    "sha256": "1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d",
+    "size_bytes": 150633472
   },
   "generator": [
     {
@@ -21,24 +21,24 @@
     }
   ],
   "ledger": {
-    "path": "runtime/coverage/0e8e314df4d78ab211b1bef5c48d78d713ed64260894af342f998d298d74d274/file-ranges.json",
-    "sha256": "26b7f18673fee3405d67ce2075dfe353c19331cec53a1081a1626d6da71bf897"
+    "path": "runtime/coverage/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/file-ranges.json",
+    "sha256": "83b503024b77effc4875bf279ffe478b6343b112d48be1e6011704b769c50091"
   },
   "counts": {
     "ranges": 26,
-    "partition_bytes": 150595584,
+    "partition_bytes": 150633472,
     "overlap_bytes": 0,
     "omitted_bytes": 0,
     "bytes_by_structural_class": {
       "coff_header": 20,
       "dos_header": 64,
       "dos_stub_unknown": 208,
-      "executable_section_semantics_unknown": 105699438,
+      "executable_section_semantics_unknown": 105723934,
       "header_slack_unknown": 248,
-      "nonexecutable_section_semantics_unknown": 44893722,
+      "nonexecutable_section_semantics_unknown": 44906606,
       "optional_header": 240,
       "pe_signature": 4,
-      "raw_alignment_tail_unknown": 1400,
+      "raw_alignment_tail_unknown": 1908,
       "section_table": 240
     },
     "semantic_recovery_status": "unknown_not_measured_by_structural_partition",
@@ -50,7 +50,7 @@
     "exe": "ranges[selector]; exact file_start/file_end_exclusive and sha256",
     "data": "data_resources[selector]; exact portable path and complete sha256"
   },
-  "unknown_queue": "docs/analysis/unknown-recovery-0.139.0.md#whole-file-and-data-range-leads",
+  "unknown_queue": "docs/analysis/unknown-recovery-0.139.1.md#whole-file-and-data-range-leads",
   "limits": [
     "Structural PE classes do not establish semantic/source recovery.",
     "Uniform bytes and raw alignment tails remain unknown; no padding is proved.",
