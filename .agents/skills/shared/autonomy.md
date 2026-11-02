@@ -314,8 +314,10 @@ when current EXE evidence proves them, without another permission question;
 this explicit exception does not expand `execheck` audits or
 authorize other unrelated work. A bare `fixgap` still presents eligible gaps
 for user selection. Build/compilation and game-launch restrictions remain
-as specified in `AGENTS.md` and the invoked skill. Keep reference inputs read-only,
-the repository private and GitHub delivery source-only.
+as specified in `AGENTS.md` and the invoked skill. Keep reference inputs read-only
+and GitHub delivery source-only to the configured public repository. Apply
+`AGENTS.md`'s public-repository privacy rules; machine-specific configuration and
+the shared `runtime/analysis/` store remain local and Git-ignored.
 `execheck` commits locally; `fixgap` pushes its completed repairs as specified,
 subject to the project-account check. Scoped completion cleanup is authorized; do not infer permission for
 unrelated work, PRs, Actions, deletion of required/active material or rewriting

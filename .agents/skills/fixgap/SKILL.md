@@ -362,7 +362,7 @@ new selection only for work outside that authorization or an explicit user limit
   do not invent behavior or turn it into a request for user gameplay validation.
 - Keep useful progress updates at meaningful steps and at least every 60 seconds.
   Preserve existing changes and follow the current checkout's workspace, evidence
-  and commit rules. Deliver source-only commits to the private GitHub repository;
+  and commit rules. Deliver source-only commits to the configured public GitHub repository;
   do not open PRs or run Actions.
 - When facts change, update the owning report and the two finding registers.
   Keep only remaining source/recovery actions in `docs/CURRENT-STATE.md`.
