@@ -201,8 +201,10 @@ export function queryWorkspaceIdentity(commitment,variant='shared'){
 }
 export function queryWorkspaceKey(commitment,variant='shared'){return digest(queryWorkspaceIdentity(commitment,variant));}
 export function censusWorkspaceIdentity(plan,providerVersion){
+ const decoder=plan.decoder_contract===undefined?'rea-incremental-census-v1':plan.decoder_contract;
+ if(!['rea-incremental-census-v1','rea-incremental-census-v2'].includes(decoder))throw Error('Unsupported census decoder contract');
  return {format:PROGRAM_FORMAT,kind:'census',target_sha256:plan.target_sha256,
-  provider_version:providerVersion,decoder:'rea-incremental-census-v1',
+  provider_version:providerVersion,decoder,
   disabled_analyzers:[...(plan.disabled_analyzers??[])].sort(),variant:plan.persistence?.variant??'shared'};
 }
 export function preparationDigest(commitment){return digest({seeds:commitment.seeds?.sha256??null,extensions:extensionIdentity(commitment.extensions),preparation_tools:commitment.preparation_tools??{}});}
@@ -272,6 +274,7 @@ export async function selectCensusWorkspace({workspaceRoot,legacyRoot,plan,provi
    if(plan.output&&actual===await realpath(plan.output)&&plan.persistence?.shared_workspace)continue;
    const prior=await json(join(actual,'plan.json')),progress=await json(join(actual,'progress.json'));
    if(!prior||prior.target_sha256!==plan.target_sha256||canonical([...(prior.disabled_analyzers??[])].sort())!==canonical(identity.disabled_analyzers))continue;
+   if(censusWorkspaceIdentity(prior,providerVersion).decoder!==identity.decoder)continue;
    if(progress?.stage!=='completed'){
     if(!progress?.ghidra_version||progress.ghidra_version===providerVersion)unfinished.push(oldRoot);
     continue;

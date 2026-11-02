@@ -416,6 +416,10 @@ public class ReaNativeCensus extends GhidraScript {
                 if(currentProgram.getMemory().getBytes(dataAddress,raw)!=raw.length ||
                     !HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(raw)).equals(table.get("sha256").getAsString()))
                     throw new IllegalArgumentException("Guarded jump table source bytes differ");
+                if(!executable.contains(site))throw new IllegalArgumentException("Non-executable guarded dispatch site: "+site);
+                // Linear-only proposals may have no existing dispatch instruction.
+                // Seed code without inferring a function entry or incoming flow.
+                decodeSet.add(site);
                 for(JsonElement target:table.getAsJsonArray("case_targets")) {
                     Address destination=space.getAddress(Long.parseUnsignedLong(target.getAsString().substring(2),16));
                     if(!executable.contains(destination))throw new IllegalArgumentException("Non-executable guarded table target");
@@ -492,7 +496,7 @@ public class ReaNativeCensus extends GhidraScript {
             monitor.checkCancelled();
             Instruction branch=listing.getInstructionAt(edge.from());
             if(branch==null || !branch.getMnemonicString().equalsIgnoreCase("JMP") || !branch.getFlowType().isComputed())
-                throw new IllegalArgumentException("Guarded dispatch instruction differs");
+                throw new IllegalArgumentException("Guarded dispatch instruction differs at "+edge.from());
             currentProgram.getReferenceManager().addMemoryReference(edge.from(),edge.to(),RefType.COMPUTED_JUMP,SourceType.ANALYSIS,-1);
             appliedEdges++;
         }

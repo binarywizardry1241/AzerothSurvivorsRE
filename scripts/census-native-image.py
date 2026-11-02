@@ -35,10 +35,13 @@ STORAGE_PREDECESSORS = {
 # execute these retained sources; it never labels their output as this collector.
 RETAINED_PREDECESSORS = {
     'scripts/census-native-image.py': {'8eef819cdb2ac9d3b52db40574d25fca77c07a68cc1f11506105950ad22138e4', 'd82a3403c34190240869e4add97faa71b3212bc9657a0a2999b9828cbbb1b077',
-                                     '52e6f0de2d6706651c0ff5eef6e0e79993e77655e3d162b207db935388326d82'},
+                                     '52e6f0de2d6706651c0ff5eef6e0e79993e77655e3d162b207db935388326d82',
+                                     '5f3ed21972cd41a1a7842a56d9c660a2ef74d511553d98c39c6798f7c8ab7834'},
     'scripts/rea-native-census.mjs': {'14f5884b7354d2713118bd250a7ea19e23b487690ddd2a705979ca15d0dec780', '8df8dc3bfa71e20831a8ae0a0163aae92e7680bfbf0ed0c0b1d1c3a4ed98ca70',
-                                   '69da5e89ef57528e5f9a036d32b403a4e78f793b2bf4def28657c64eb8381f61'},
-    'scripts/ghidra/ReaNativeCensus.java': {'3d06fe81ef6d16802020e2b1013c11a6d50fde3090ba277fb2ac161de81b0eb3'},
+                                   '69da5e89ef57528e5f9a036d32b403a4e78f793b2bf4def28657c64eb8381f61',
+                                   '4df2787ab8a73cc106bf295f0eed9c9d772e61d0474d87c242dffe37d3f96f68'},
+    'scripts/ghidra/ReaNativeCensus.java': {'3d06fe81ef6d16802020e2b1013c11a6d50fde3090ba277fb2ac161de81b0eb3',
+                                         '9620e0505314b2ce1797f7419c89c9919beac2adfa772289bcfc15006a9be9df'},
 }
 
 def committed_tool_path(name, expected, root=ROOT):
@@ -52,6 +55,10 @@ def committed_tool_path(name, expected, root=ROOT):
 def canonical_census_directory(plan, root=ROOT):
     """A pass receipt is content/analysis-bound, never task-name/path-bound."""
     identity={key:plan.get(key) for key in ('format','target_sha256','starts_sha256','script_sha256','seed_scope')}
+    if 'decoder_contract' in plan:
+        if plan['decoder_contract'] not in ('rea-incremental-census-v1','rea-incremental-census-v2'):
+            raise ValueError('Unsupported census decoder contract')
+        identity['decoder_contract']=plan['decoder_contract']
     for name in ('address_leads','unwind_handlers','import_thunks','jump_tables','diagnostic_leads'):
         identity[name]=(plan.get(name) or {}).get('sha256')
     identity['disabled_analyzers']=sorted(plan.get('disabled_analyzers',[]))
@@ -148,6 +155,8 @@ def validate_resume_plan(plan, target, root=ROOT):
     persistence = plan.get('persistence', {})
     if persistence.get('format') != 'ghidra-program-checkpoint-v1':
         raise ValueError('Legacy census has no durable Program checkpoint; use a new output')
+    if plan.get('decoder_contract','rea-incremental-census-v1') not in ('rea-incremental-census-v1','rea-incremental-census-v2'):
+        raise ValueError('Unsupported census decoder contract')
     for key, expected in (('target_version', target['version']), ('target_sha256', target['sha256'])):
         if plan.get(key) != expected:
             raise ValueError('Resume target identity differs: ' + key)
@@ -375,7 +384,7 @@ def main():
     if import_thunks:tools['scripts/recover-native-import-thunks.py']=file_sha256(ROOT/'scripts/recover-native-import-thunks.py')
     if unwind_handlers:tools['scripts/recover-native-unwind-handlers.py']=file_sha256(ROOT/'scripts/recover-native-unwind-handlers.py')
     plan={'format':'rea-whole-image-native-census-address-code-v6' if address_leads else 'rea-whole-image-native-census-pe-entries-v5' if unwind_handlers else 'rea-whole-image-native-census-import-thunks-v4' if import_thunks else 'rea-whole-image-native-census-diagnostic-code-v3' if diagnostic_leads else 'rea-whole-image-native-census-guarded-tables-v2' if jump_tables else 'rea-whole-image-native-census-v1','address_leads':address_leads,'unwind_handlers':unwind_handlers,'import_thunks':import_thunks,'jump_tables':jump_tables,'diagnostic_leads':diagnostic_leads,'output':str(directory),'target_path':str(artifact_path(target['path'])),
-        'target_sha256':target['sha256'],'target_version':target['version'],
+        'target_sha256':target['sha256'],'target_version':target['version'],'decoder_contract':'rea-incremental-census-v2',
         'starts':str(starts_path),'starts_sha256':file_sha256(starts_path),'seed_count':len(starts),
         'seed_scope':args.seed_scope,'declared_start_count':len(declared),'complement_inventory':supplemental,'pointer_selection':pointer_selection,
         'script_sha256':tools['scripts/ghidra/ReaNativeCensus.java'],'tooling':tools,

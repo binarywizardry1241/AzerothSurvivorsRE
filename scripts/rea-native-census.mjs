@@ -21,9 +21,9 @@ const STORAGE_PREDECESSORS={
  'scripts/rea-native-census.mjs':'234161bf645f2473bfdebea16c9753f2955b7f945236604193536f968670edc4',
  'scripts/ghidra/ReaNativeCensus.java':'d91f77b533a723c6c8ab128b4d55c9aa0d94abc6f3f6e6ae8e54c46f1a045b09'};
 const RETAINED_PREDECESSORS={
- 'scripts/census-native-image.py':['8eef819cdb2ac9d3b52db40574d25fca77c07a68cc1f11506105950ad22138e4','d82a3403c34190240869e4add97faa71b3212bc9657a0a2999b9828cbbb1b077','52e6f0de2d6706651c0ff5eef6e0e79993e77655e3d162b207db935388326d82'],
- 'scripts/rea-native-census.mjs':['14f5884b7354d2713118bd250a7ea19e23b487690ddd2a705979ca15d0dec780','8df8dc3bfa71e20831a8ae0a0163aae92e7680bfbf0ed0c0b1d1c3a4ed98ca70','69da5e89ef57528e5f9a036d32b403a4e78f793b2bf4def28657c64eb8381f61'],
- 'scripts/ghidra/ReaNativeCensus.java':['3d06fe81ef6d16802020e2b1013c11a6d50fde3090ba277fb2ac161de81b0eb3']};
+ 'scripts/census-native-image.py':['8eef819cdb2ac9d3b52db40574d25fca77c07a68cc1f11506105950ad22138e4','d82a3403c34190240869e4add97faa71b3212bc9657a0a2999b9828cbbb1b077','52e6f0de2d6706651c0ff5eef6e0e79993e77655e3d162b207db935388326d82','5f3ed21972cd41a1a7842a56d9c660a2ef74d511553d98c39c6798f7c8ab7834'],
+ 'scripts/rea-native-census.mjs':['14f5884b7354d2713118bd250a7ea19e23b487690ddd2a705979ca15d0dec780','8df8dc3bfa71e20831a8ae0a0163aae92e7680bfbf0ed0c0b1d1c3a4ed98ca70','69da5e89ef57528e5f9a036d32b403a4e78f793b2bf4def28657c64eb8381f61','4df2787ab8a73cc106bf295f0eed9c9d772e61d0474d87c242dffe37d3f96f68'],
+ 'scripts/ghidra/ReaNativeCensus.java':['3d06fe81ef6d16802020e2b1013c11a6d50fde3090ba277fb2ac161de81b0eb3','9620e0505314b2ce1797f7419c89c9919beac2adfa772289bcfc15006a9be9df']};
 async function committedTool(name,expected){
  const current=await realConfined(resolve(root,name));if(await sha256(current)===expected)return current;
  if(STORAGE_PREDECESSORS[name]!==expected&&!RETAINED_PREDECESSORS[name]?.includes(expected))throw Error('Census tool digest differs: '+name);
@@ -138,6 +138,7 @@ async function main() {
   installed_reference_import:targetPath===installedTargetPath?'read-only-in-place':'project-local-analysis-input',
   heap:plan.heap,ghidra_version:install.providerVersion,loader_options:loaderOptions,
   execution:'persistent-headless-process',checkpoint_authority:'saved-Program-options',
+  ...(plan.decoder_contract===undefined?{}:{decoder_contract:plan.decoder_contract}),
   ...(plan.incremental_reuse===undefined?{}:{incremental_reuse:plan.incremental_reuse,checkpoint_interval_ms:plan.checkpoint_interval_ms,checkpoint_max_batches:plan.checkpoint_max_batches})};
  profileDigest=createHash('sha256').update(JSON.stringify(parameters)).digest('hex');
  const storageExecution={shared_workspace_id:shared?.key??null,driver_adaptations:adaptations,collector_source_path:relative(root,script)};
