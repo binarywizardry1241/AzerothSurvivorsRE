@@ -89,7 +89,9 @@ current native producer/state/schedule/consumer contracts before claiming a
 missing implementation or changing them.
 
 The new InputGate name is a concrete **#310** registration/interface candidate,
-not proof of its typed behavior. No added literal establishes **#311**'s actual
+not proof of its typed behavior. Subsequent [bounded native recovery](input-gate-native-0.139.1.md)
+establishes descriptor/filter facts while retaining typed producer, schedule and
+consumer questions. No added literal establishes **#311**'s actual
 Windows activation failure path; it remains an explicit recovery question.
 Neither macOS process plugins nor audio COM labels are assigned that cause.
 Generic engine branches stop at the inspected source interface unless a proved

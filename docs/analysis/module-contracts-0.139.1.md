@@ -1,6 +1,6 @@
 # AS module source and contract dimensions — 0.139.1
 
-Current implementation and remaining applicability are owned by [CURRENT-STATE](../CURRENT-STATE.md). Four original local scopes have current code/data/CFG revalidation; fresh full-image/connection publication remains pending.
+Current implementation and remaining applicability are owned by [CURRENT-STATE](../CURRENT-STATE.md). Four original local scopes have current code/data/CFG revalidation. Selected full-image and connection publications are complete; semantic/source closure remains open.
 
 Recorded EXE SHA-256: `1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d`. The verified [connection ledger](coverage/exe-connections.json) owns final counts. Prior source/recovery remains preserved in [incremental correspondence](evidence/0.139.1/incremental-correspondence.json); current applicability does not reset implementation.
 
