@@ -1,10 +1,10 @@
 # AzerothSurvivorsRE
 
-Source reconstruction targeting **Azeroth Survivors 0.127.0**, using the Rust/Bevy
-benilla engine. The [installed identity](docs/analysis/target-refresh-0.127.0.json)
+Source reconstruction targeting **Azeroth Survivors 0.139.1**, using the Rust/Bevy
+benilla engine. The [installed identity](docs/analysis/target-refresh-0.139.1.json)
 binds the reference EXE and eleven MPQ archives. The
-[release review](docs/analysis/release-review-0.127.0.md) tracks the supplied
-0.123–0.127 notes and their source/recovery findings.
+[release review](docs/analysis/release-review-0.139.1.md) tracks the supplied
+0.128–0.139.1 notes and their source/recovery findings.
 
 The source connects the menu, real MPQ worlds, Vanilla controller/camera/FrameXML
 and recovered run mechanics. Reference inputs are read directly from the
@@ -12,7 +12,7 @@ configured installed game; this checkout contains no game EXE or MPQ copies.
 Existing gameplay, catalogs, repairs and native contracts retain their actual
 historical version/hash until current applicability is established.
 
-The [module register](docs/analysis/module-contracts-0.127.0.md) distinguishes
+The [module register](docs/analysis/module-contracts-0.139.1.md) distinguishes
 partial source, bounded native contracts and remaining source connections.
 Co-op transport, server/party, world bootstrap and replication source remains
 available. New release requirements and current-target correspondence remain
