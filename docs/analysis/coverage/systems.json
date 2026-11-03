@@ -51839,6 +51839,25 @@
     },
     {
       "id": "engine-selected-target-deltas",
+      "source_assessment_0_139_2": {
+        "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
+        "gap_id": 311,
+        "source_status": "existing_source_matched",
+        "evidence_refs": [
+          "docs/analysis/wine-accesskit-0.139.2.md",
+          "docs/analysis/evidence/0.139.2/wine-accesskit.json"
+        ],
+        "static_validation": "bounded_registration_message_consumer_and_win32_teardown_checks_pass",
+        "runtime_validation": "not_run",
+        "parity": "unverified",
+        "scope": "Windows WindowCreated system in First, entity-keyed AccessKit adapter removal and saved Win32 procedure restoration. The benilla 0.3.0 integration already connects this source.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/main.rs",
+          "crates/benilla-app/src/local_client.rs",
+          "crates/benilla-app/src/game_plugins.rs",
+          "crates/benilla-app/src/video.rs"
+        ]
+      },
       "title": "Target-specific engine, shared namespaces and unnamed native ownership",
       "original_path": null,
       "native_path_evidence": [],
