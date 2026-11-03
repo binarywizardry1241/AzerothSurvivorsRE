@@ -61,8 +61,8 @@ pub struct EffectString {
 
 /// 0.100.1 iterator14554e050 and scalar leaf1454848a0..145484c07.
 /// Scale only the variant's magnitude. Durations, chance selectors, proc limits
-/// and rescue cooldowns are copied unchanged. Native spell target scaling uses
-/// floor(x+.0001), while cooldown reduction caps at one half.
+/// and rescue cooldowns are copied unchanged. Spell targets use the 0.139.2
+/// integer ceiling below the asymptotic maximum.
 pub fn scaled_bytes(raw_hex: &str, factor: f32) -> [u8; 64] {
     assert_eq!(raw_hex.len(), 128, "native Effect64 record");
     let mut bytes = [0; 64];
@@ -78,17 +78,61 @@ pub fn scaled_bytes(raw_hex: &str, factor: f32) -> [u8; 64] {
         _ => None,
     };
     if let Some(offset) = offset {
-        let mut amount = f32::from_le_bytes(bytes[offset..offset + 4].try_into().unwrap()) * factor;
+        let base = f32::from_le_bytes(bytes[offset..offset + 4].try_into().unwrap());
+        let mut amount = base * factor;
         if bytes[0] == 31 {
             match bytes[36] {
                 1 => amount = amount.min(0.5),
-                2 => amount = (amount + f32::from_bits(0x38d1_b717)).floor(),
+                2 => amount = scale_target_bonus(base, factor),
                 _ => {}
             }
         }
         bytes[offset..offset + 4].copy_from_slice(&amount.to_le_bytes());
     }
     bytes
+}
+
+fn scale_target_bonus(base: f32, factor: f32) -> f32 {
+    let maximum = ((base * 3.0 - 0.001).ceil() - 1.0).max(0.0);
+    (base * factor + 0.0001).floor().min(maximum)
+}
+
+pub(super) fn future_target_ranks(
+    definition: &Definition,
+    rarity: usize,
+    picks: u32,
+) -> Option<Vec<u32>> {
+    let targets = definition
+        .effects
+        .iter()
+        .filter_map(|record| match &record.effect {
+            Effect::Spell { modifier: 2, amount_bits, .. } => Some(f32::from_bits(*amount_bits)),
+            _ => None,
+        })
+        .collect::<Vec<_>>();
+    if targets.is_empty() {
+        return None;
+    }
+    let total_at = |factor| {
+        targets.iter().fold(0u32, |total, &base| {
+            total.wrapping_add(scale_target_bonus(base, factor) as u32)
+        })
+    };
+    let mut factor = super::amulet_effect_multiplier(rarity, picks);
+    let mut previous = total_at(factor);
+    let mut ranks = Vec::new();
+    for rank in (picks..2000).map(|rank| rank + 1) {
+        if factor >= 3.0 {
+            break;
+        }
+        factor = super::amulet_effect_multiplier(rarity, rank);
+        let total = total_at(factor);
+        if total > previous {
+            ranks.push(rank);
+            previous = total;
+        }
+    }
+    Some(ranks)
 }
 
 pub const LEGIONLORD_KEY: &str = "legendary:demonic_empowerment";

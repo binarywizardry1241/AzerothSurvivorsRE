@@ -380,6 +380,24 @@ pub fn amulet_lines(definition: &Definition, rarity: usize, picks: u32) -> Optio
         .collect()
 }
 
+pub fn amulet_target_upgrades(definition: &Definition, rarity: usize, picks: u32) -> Option<Text> {
+    let ranks = amulets::future_target_ranks(definition, rarity, picks)?;
+    Some(match ranks.as_slice() {
+        [] => template("Target upgrades complete.", vec![]),
+        [rank] => template(
+            "Another target at amulet rank {rank}.",
+            vec![("rank", literal(rank))],
+        ),
+        ranks => template(
+            "More targets at amulet ranks {ranks}.",
+            vec![(
+                "ranks",
+                literal(ranks.iter().map(u32::to_string).collect::<Vec<_>>().join(", ")),
+            )],
+        ),
+    })
+}
+
 /// Native145424a90 takes an actual magnitude, so both current totals and the
 /// offer's increment use this one formatter. It does not invent item deltas.
 pub fn jewelry_description(definition: &JewelryDefinition, amount: f32) -> Text {

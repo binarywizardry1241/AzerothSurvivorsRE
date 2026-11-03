@@ -427,6 +427,11 @@ fn temporary(game: &Mechanics, locale: &Localization, labels: &MenuCatalog) -> V
         item.quality = row.rarity as u32 + 1;
         item.inventory_type = 2;
         item.lines = amulet_lines(labels, row.payload, row.rarity, row.picks);
+        if let Some(line) = azeroth_survivors_re::loot_rewards::prose::amulet_target_upgrades(
+            row.payload, row.rarity, row.picks,
+        ) {
+            item.lines.push(line.render(&|key| labels.label(key).to_owned()));
+        }
         output.push(item);
     }
     output

@@ -3,6 +3,7 @@
 //! See docs/analysis/codex-0.109.0.md for target evidence and comparison limits.
 use std::collections::{BTreeMap, BTreeSet};
 
+use azeroth_survivors_re::loot_rewards::{amulets, prose};
 use bevy::{prelude::*, ui::FocusPolicy};
 use serde::Deserialize;
 
@@ -563,6 +564,16 @@ fn detail(
                 12.,
                 MUTED,
             );
+            if let Some(line) = amulets::catalog()
+                .by_key(&entry.key)
+                .and_then(|definition| {
+                    prose::amulet_target_upgrades(definition, entry.quality as usize, 1)
+                })
+            {
+                label(
+                    panel, art, line.render(&|key| catalog.label(key).to_owned()), 12., MUTED,
+                );
+            }
         }
     });
 }
