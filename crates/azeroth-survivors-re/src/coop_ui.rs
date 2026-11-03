@@ -14,6 +14,7 @@ use bevy::input::{
 use bevy::prelude::*;
 use bevy::ui::FocusPolicy;
 use std::collections::VecDeque;
+use azeroth_survivors_re::coop::readycheck::{Answer, Snapshot, Status, SECONDS};
 
 #[path = "coop_forms.rs"]
 mod forms;
@@ -24,6 +25,8 @@ use forms::{Field, Forms};
 mod chat;
 #[path = "coop_staff_ui.rs"]
 mod staff;
+#[path = "coop_ready_ui.rs"]
+mod ready;
 
 #[derive(Clone, Copy, Default, PartialEq, Eq)]
 pub(crate) enum Tab {
@@ -51,6 +54,8 @@ enum Click {
     Lobby(usize),
     Leave,
     Refresh,
+    ReadyAnswer(bool),
+    ReadyCancel,
 }
 #[derive(Component)]
 struct Disabled(bool);
@@ -124,6 +129,7 @@ pub(crate) struct CoopUi {
     pub code: Option<String>,
     pub lobbies: Option<Vec<LobbyRow>>,
     pub lobby: Option<LobbyView>,
+    pub(crate) ready_check: Option<(Snapshot, f32)>,
     pub unavailable_reason: Option<String>,
     pub chat: chat::Chat,
     chat_status: String,
@@ -147,6 +153,7 @@ impl Default for CoopUi {
             code: None,
             lobbies: None,
             lobby: None,
+            ready_check: None,
             unavailable_reason: None,
             chat: chat::Chat::default(),
             chat_status: String::new(),
@@ -174,6 +181,38 @@ impl CoopUi {
     pub(crate) fn waiting_for_players(&self) -> bool {
         self.role == "host" && self.party_active()
             && self.lobby.as_ref().map_or(0, |lobby| lobby.heroes.len()) < 2
+    }
+
+    pub(crate) fn ready_modal_visible(&self, now: f32) -> bool {
+        self.party_active() && self.ready_check.as_ref().is_some_and(|(snapshot, received)| {
+            snapshot.status == Status::Running || now - received <= 2.5
+        })
+    }
+
+    pub(crate) fn receive_ready_check(&mut self, snapshot: Snapshot, identity: u64, now: f32, locale: &Localization) {
+        if !self.party_active() || (snapshot.status == Status::Running && !snapshot.answers.iter().any(|(id, _)| *id == identity))
+            || self.ready_check.as_ref().is_some_and(|(previous, _)| *previous == snapshot) {
+            return;
+        }
+        let outcome = match snapshot.status {
+            Status::Running => None,
+            Status::Ready => Some(("Ready check: everyone is ready.", None)),
+            Status::Declined => Some(("Ready check failed. Not ready: {names}", Some(Answer::NotReady))),
+            Status::Expired => Some(("Ready check failed. No answer from: {names}", Some(Answer::Pending))),
+            Status::Cancelled => Some(("The ready check was called off.", None)),
+        };
+        if let Some((template, answer)) = outcome {
+            let mut text = label(locale, template);
+            if let Some(answer) = answer {
+                let names = snapshot.answers.iter().filter(|(_, value)| *value == answer)
+                    .filter_map(|(id, _)| self.lobby.as_ref()?.heroes.iter().find(|hero| hero.hero_identity == *id))
+                    .map(|hero| hero.name.as_str()).collect::<Vec<_>>().join(", ");
+                text = text.replace("{names}", &names);
+            }
+            self.chat.push(chat::Line { sequence: 0, hero_identity: 0, name: String::new(),
+                class: 0, text, me: false, system: true });
+        }
+        self.ready_check = Some((snapshot, now));
     }
 
     /// 1400feda0/1400ff0f0 compare the received member identities (+0x80),
@@ -218,6 +257,7 @@ impl CoopUi {
             | "unavailable" | "joining" | "hosting") {
             self.chat.reset();
             self.forms.chat.clear();
+            self.ready_check = None;
         }
         self.chat_status.clone_from(&self.status);
     }
@@ -367,6 +407,7 @@ impl Plugin for CoopUiPlugin {
                 input.run_if(crate::update_ui::menu_input_enabled),
                 localize_picker,
                 rebuild,
+                ready::rebuild,
                 chat::synchronize,
                 staff::animate,
             )
@@ -652,11 +693,31 @@ fn input(
     fields: Query<(&Click, &ComputedNode, &UiGlobalTransform)>,
     mut keyboard: MessageReader<KeyboardInput>,
     mut ime: ResMut<crate::ime::ImeRequest>,
+    time: Res<Time>,
+    mut runtime: ResMut<crate::coop_runtime::CoopRuntime>,
 ) {
     let chat_open = !state.in_run && matches!(state.dialog, Some(Dialog::Coop))
         && view.party_active();
     view.bypass_change_detection().chat.set_open(chat_open);
     if state.in_run || state.entering || options.open {
+        keyboard.clear();
+        return;
+    }
+    if view.ready_modal_visible(time.elapsed_secs()) {
+        if let Some((snapshot, _)) = view.ready_check.as_ref().filter(|(snapshot, _)| snapshot.status == Status::Running) {
+            for (interaction, click, disabled) in &buttons {
+                if *interaction != Interaction::Pressed || disabled.is_some_and(|disabled| disabled.0) {
+                    continue;
+                }
+                match click {
+                    Click::ReadyCancel if view.role == "host" => runtime.cancel_ready_check = true,
+                    Click::ReadyAnswer(ready) if view.role == "guest" && snapshot.answers.iter().any(|(id, answer)| {
+                        Some(*id) == runtime.world_guid && *answer == Answer::Pending
+                    }) => { runtime.ready_answer.get_or_insert(*ready); }
+                    _ => {}
+                }
+            }
+        }
         keyboard.clear();
         return;
     }
@@ -742,6 +803,7 @@ fn input(
         view.edit_key(party, &event.logical_key);
     }
 }
+
 fn rebuild(
     mut commands: Commands,
     state: Res<MenuState>,

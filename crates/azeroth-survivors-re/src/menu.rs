@@ -162,11 +162,11 @@ fn input(
     mut exit: MessageWriter<AppExit>,
     time: Res<Time>,
     device: Option<Res<benilla_app::local_client::LocalDeviceInput>>,
-    coop: Res<crate::coop_ui::CoopUi>,
+    (coop, mut runtime): (Res<crate::coop_ui::CoopUi>, ResMut<crate::coop_runtime::CoopRuntime>),
     mut ime: ResMut<crate::ime::ImeRequest>,
     name_fields: Query<(&ComputedNode, &UiGlobalTransform), With<crate::picker::HeroNameButton>>,
 ) {
-    if state.in_run {
+    if state.in_run || coop.ready_modal_visible(time.elapsed_secs()) {
         keyboard.clear();
         return;
     }
@@ -253,7 +253,7 @@ fn input(
     if enter_requested {
         // Native action3 sets a local request; the shared post-loop path commits it.
         if !coop.waiting_for_players() {
-            state.begin_enter(&catalog, time.elapsed_secs());
+            request_enter(&mut state, &catalog, time.elapsed_secs(), &mut runtime);
         }
         keyboard.clear();
         return;
@@ -303,8 +303,20 @@ fn input(
         if state.dialog.is_none() && state.page == Page::Picker && !state.entering
             && !coop.waiting_for_players() {
             // Current 140067ee0 has no name-focus exception for either Enter key.
-            state.begin_enter(&catalog, time.elapsed_secs());
+            request_enter(&mut state, &catalog, time.elapsed_secs(), &mut runtime);
         }
+    }
+}
+
+fn request_enter(
+    state: &mut MenuState, catalog: &MenuCatalog, elapsed: f32,
+    runtime: &mut crate::coop_runtime::CoopRuntime,
+) {
+    if runtime.driver.as_ref().is_some_and(|driver| driver.is_hosting()) {
+        state.commit_enter(catalog);
+        runtime.begin_ready_check = true;
+    } else if !runtime.is_guest() {
+        state.begin_enter(catalog, elapsed);
     }
 }
 fn random_name(state: &mut MenuState) {

@@ -17,6 +17,7 @@ pub mod tcp;
 pub mod trust;
 pub mod smooth;
 pub mod pick;
+pub mod readycheck;
 pub mod directory;
 pub mod directory_wire;
 pub mod directory_refresh;

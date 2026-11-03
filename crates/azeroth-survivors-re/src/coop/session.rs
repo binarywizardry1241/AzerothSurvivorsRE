@@ -508,6 +508,8 @@ pub struct Session {
     party_events: VecDeque<PartyEvent>,
     host_tick: Option<HostTick>,
     roster: Option<super::server_party::NativeRoster>,
+    ready_check: Option<super::readycheck::Check>,
+    ready_updates: Vec<super::readycheck::Snapshot>,
     lobby_chat: Vec<NativeLobbyChat>,
     chat_times: HashMap<ClientId, VecDeque<f64>>,
     lobby_ping: bool,
@@ -540,6 +542,8 @@ impl Session {
             party_events: VecDeque::new(),
             host_tick: None,
             roster: None,
+            ready_check: None,
+            ready_updates: Vec::new(),
             lobby_chat: Vec::new(),
             chat_times: HashMap::new(),
             lobby_ping: true,
@@ -971,6 +975,7 @@ impl Session {
                     }
                     NativeMessage::Lifecycle(LifecyclePacket::Hero(_))
                     | NativeMessage::Lifecycle(LifecyclePacket::LobbyChat(_))
+                    | NativeMessage::Lifecycle(LifecyclePacket::ReadyAnswer(_))
                     | NativeMessage::Control { .. }
                         if joined =>
                     {
@@ -1072,6 +1077,11 @@ impl Session {
                         }
                         NativeMessage::Lifecycle(LifecyclePacket::LobbyChat(chat)) => {
                             self.lobby_chat.push(chat.clone());
+                        }
+                        NativeMessage::Lifecycle(LifecyclePacket::ReadyCheck(snapshot))
+                            if self.accepted.is_some() && self.lobby_ping =>
+                        {
+                            self.ready_updates.push(snapshot.clone());
                         }
                         _ => {}
                     }
@@ -1259,7 +1269,60 @@ impl Session {
             NativeLobbyChat { hero_identity: 0, name: Vec::new(), class: 0, text })))
     }
 
-    pub fn set_lobby_ping(&mut self, enabled: bool) { self.lobby_ping = enabled; }
+    pub fn set_lobby_ping(&mut self, enabled: bool) {
+        self.lobby_ping = enabled;
+        if !enabled {
+            self.ready_check = None;
+        }
+    }
+
+    pub fn answer_ready_check(&mut self, hero_identity: u64, ready: bool) {
+        if let Some(check) = &mut self.ready_check {
+            check.answer(hero_identity, ready);
+        }
+    }
+
+    pub fn send_ready_answer(&mut self, ready: bool) {
+        if !self.is_hosting() && self.accepted.is_some() && self.denial.is_none() {
+            self.send_message(None, NativeMessage::Lifecycle(LifecyclePacket::ReadyAnswer(ready)));
+        }
+    }
+
+    /// Consume a host action against the same normalized roster just published to peers.
+    pub fn advance_ready_check(&mut self, now: f64, begin: bool, cancel: bool) -> bool {
+        use super::readycheck::{Check, Status};
+        if !self.is_hosting() || !self.lobby_ping {
+            self.ready_check = None;
+            return false;
+        }
+        if self.ready_check.is_none() && !begin {
+            return false;
+        }
+        let members = self.roster.iter().flat_map(|roster| &roster.entries)
+            .map(|row| row.hero_identity).collect::<Vec<_>>();
+        if self.ready_check.is_none() && begin {
+            self.ready_check = Check::begin(now, &members);
+        }
+        let Some(snapshot) = self.ready_check.as_mut().and_then(|check| check.update(now, &members, cancel)) else {
+            return false;
+        };
+        if snapshot.status != Status::Running {
+            self.ready_check = None;
+        }
+        let ready = snapshot.status == Status::Ready;
+        let recipients = self.server.clients().iter()
+            .filter(|row| row.joined && row.closing_since.is_none())
+            .map(|row| row.id).collect::<Vec<_>>();
+        for client in recipients {
+            self.send_message(Some(client), NativeMessage::Lifecycle(LifecyclePacket::ReadyCheck(snapshot.clone())));
+        }
+        self.ready_updates.push(snapshot);
+        ready
+    }
+
+    pub fn take_ready_checks(&mut self) -> Vec<super::readycheck::Snapshot> {
+        std::mem::take(&mut self.ready_updates)
+    }
 
     pub fn peer_lobby_metadata(&self, client: ClientId) -> (Option<u16>, String) {
         self.peers.iter().find(|peer| peer.id == client)
@@ -1343,6 +1406,8 @@ impl Session {
         self.peers.clear();
         self.chat_times.clear();
         self.lobby_chat.clear();
+        self.ready_check = None;
+        self.ready_updates.clear();
         if let Some(upstream) = &mut self.upstream {
             upstream.close();
             self.relay_commands.extend(upstream.take_relay_commands());

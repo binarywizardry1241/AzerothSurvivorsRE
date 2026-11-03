@@ -413,7 +413,7 @@ pub fn decode_message(bytes: &[u8]) -> Result<(NativeMessage, usize), WireError>
     let mut reader = Reader { bytes, cursor: 0 };
     let tag = reader.byte()?;
     let message = match tag {
-        1..=4 | 6 | 7 | 9 | 16 | 17 | 22..=24 => {
+        1..=4 | 6 | 7 | 9 | 16 | 17 | 22..=24 | 26 | 27 => {
             let (mut value, used) = server_party::decode_lifecycle(bytes)?;
             // The native c600 reader owns lossy String decoding; c940 engine
             // command and compressed payload readers retain arbitrary bytes.
@@ -964,6 +964,32 @@ mod tests {
                 ));
             }
         }
+    }
+
+    #[test]
+    fn ready_check_messages_preserve_the_native_state_and_answer_bytes() {
+        use super::super::readycheck::{Answer, Snapshot, Status};
+        let snapshot = NativeMessage::Lifecycle(LifecyclePacket::ReadyCheck(Snapshot {
+            status: Status::Running,
+            left: 30,
+            answers: vec![(0x0102_0304_0506_0708, Answer::Ready), (9, Answer::Pending)],
+        }));
+        let bytes = [26, 0, 30, 2, 0, 0, 0, 8, 7, 6, 5, 4, 3, 2, 1, 1, 9, 0, 0, 0, 0, 0, 0, 0, 0];
+        assert_eq!(encode_message(&snapshot).unwrap(), bytes);
+        assert_eq!(decode_message(&bytes).unwrap(), (snapshot, bytes.len()));
+        assert_eq!(decode_message(&bytes[..bytes.len() - 1]), Err(PacketError::Truncated.into()));
+        let mut unusual = bytes;
+        unusual[1] = 0xff;
+        unusual[15] = 0xfe;
+        let (message, _) = decode_message(&unusual).unwrap();
+        let NativeMessage::Lifecycle(LifecyclePacket::ReadyCheck(snapshot)) = message else {
+            panic!("expected Ready Check snapshot");
+        };
+        assert_eq!(snapshot.status, Status::Running);
+        assert_eq!(snapshot.answers[0].1, Answer::Unknown(0xfe));
+        let answer = NativeMessage::Lifecycle(LifecyclePacket::ReadyAnswer(true));
+        assert_eq!(encode_message(&answer).unwrap(), [27, 1]);
+        assert_eq!(decode_message(&[27, 0xff]).unwrap(), (answer, 2));
     }
 
     #[test]

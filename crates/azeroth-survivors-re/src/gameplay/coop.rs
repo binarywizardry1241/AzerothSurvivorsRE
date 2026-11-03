@@ -440,6 +440,13 @@ fn receive(
     // The queued batch belongs to its upstream guest even after Session has
     // switched that refused endpoint Off. Earlier packets still precede Denied.
     let guest = runtime.driver.as_ref().is_some_and(|driver| !driver.is_hosting());
+    let begin_ready_check = std::mem::take(&mut runtime.begin_ready_check);
+    let cancel_ready_check = std::mem::take(&mut runtime.cancel_ready_check);
+    if let Some(answer) = runtime.ready_answer.take().filter(|_| guest && state.zone.is_none()) {
+        if let Some(driver) = runtime.driver.as_mut() {
+            driver.send_ready_answer(answer);
+        }
+    }
     let pick = menu.backend_pick().clone();
     let flags = [
         u8::from(
@@ -544,6 +551,11 @@ fn receive(
                         hero_identity: hero.guid, name: hero.name.clone(), class: hero.class,
                         text: text.into_bytes(),
                     });
+                }
+            }
+            NativeMessage::Lifecycle(LifecyclePacket::ReadyAnswer(ready)) if !guest => {
+                if let Some((driver, hero)) = runtime.driver.as_mut().zip(client.and_then(|id| state.profiles.get(&id))) {
+                    driver.answer_ready_check(hero.guid, ready);
                 }
             }
             NativeMessage::Lifecycle(LifecyclePacket::Accepted(_)) if guest => {
@@ -799,6 +811,10 @@ fn receive(
                 }
             }
             driver.publish_roster(rows, selected_zone.key.into(), selected_rank);
+            if driver.advance_ready_check(time.elapsed_secs_f64(), begin_ready_check, cancel_ready_check)
+                && !menu.in_run && !menu.entering {
+                menu.admit_enter(time.elapsed_secs());
+            }
         }
     }
     if guest {

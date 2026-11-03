@@ -273,6 +273,8 @@ pub enum LifecyclePacket {
     /// Wire23 carries the host's millisecond clock; wire24 echoes it unchanged.
     Ping(u32),
     Pong(u32),
+    ReadyCheck(super::readycheck::Snapshot),
+    ReadyAnswer(bool),
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -340,6 +342,16 @@ pub fn encode_lifecycle(packet: &LifecyclePacket) -> Result<Vec<u8>, PacketError
             out.push(if matches!(packet, LifecyclePacket::Ping(_)) { 23 } else { 24 });
             out.extend_from_slice(&stamp.to_le_bytes());
         }
+        LifecyclePacket::ReadyCheck(snapshot) => {
+            out.extend_from_slice(&[26, snapshot.status as u8, snapshot.left]);
+            let count = u32::try_from(snapshot.answers.len()).map_err(|_| PacketError::LengthOverflow)?;
+            out.extend_from_slice(&count.to_le_bytes());
+            for &(id, answer) in &snapshot.answers {
+                out.extend_from_slice(&id.to_le_bytes());
+                out.push(answer.wire());
+            }
+        }
+        LifecyclePacket::ReadyAnswer(ready) => out.extend_from_slice(&[27, u8::from(*ready)]),
         LifecyclePacket::Hero(hero) => {
             out.push(4);
             out.extend_from_slice(&hero.guid.to_le_bytes());
@@ -486,6 +498,23 @@ pub fn decode_lifecycle(input: &[u8]) -> Result<(LifecyclePacket, usize), Packet
         }),
         23 => LifecyclePacket::Ping(reader.u32()?),
         24 => LifecyclePacket::Pong(reader.u32()?),
+        26 => {
+            use super::readycheck::{Answer, Snapshot, Status};
+            let status = Status::from_wire(reader.u8()?);
+            let left = reader.u8()?;
+            let count = reader.u32()? as usize;
+            if count > input.len().saturating_sub(reader.cursor) / 9 {
+                return Err(PacketError::Truncated);
+            }
+            let mut answers = Vec::with_capacity(count);
+            for _ in 0..count {
+                let id = reader.u64()?;
+                let answer = Answer::from_wire(reader.u8()?);
+                answers.push((id, answer));
+            }
+            LifecyclePacket::ReadyCheck(Snapshot { status, left, answers })
+        }
+        27 => LifecyclePacket::ReadyAnswer(reader.u8()? != 0),
         17 => {
             let count = reader.u32()? as usize;
             // The current reader's allocation guard uses fifteen bytes per

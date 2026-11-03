@@ -37,6 +37,9 @@ pub(crate) struct CoopRuntime {
     pub transport_lost: bool,
     /// Lobby text waits for the actual local/admitted Hero in the party owner.
     pub lobby_chat_requests: Vec<String>,
+    pub(crate) begin_ready_check: bool,
+    pub(crate) cancel_ready_check: bool,
+    pub(crate) ready_answer: Option<bool>,
     /// Local request26 carries the actual admitted Hero GUID, never a service ID.
     pub kick_requests: Vec<u64>,
     defer_engine: bool,
@@ -376,10 +379,15 @@ fn poll(
         }
         view.bypass_change_detection().sync_chat_status();
         if let Some(identity) = chat_identity {
+            for snapshot in driver.take_ready_checks() {
+                view.receive_ready_check(snapshot, identity, time.elapsed_secs(), &locale);
+            }
             for row in driver.take_lobby_chat() {
                 view.bypass_change_detection().receive_chat(row, identity);
             }
         }
+    } else if view.ready_check.is_some() {
+        view.ready_check = None;
     }
     if let Some(error) = &runtime.error {
         if view.status != "unavailable" { view.status = "unavailable".into(); }

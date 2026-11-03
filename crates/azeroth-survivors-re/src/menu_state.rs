@@ -382,6 +382,10 @@ impl MenuState {
             return;
         }
         self.commit_enter(catalog);
+        self.admit_enter(elapsed);
+    }
+    /// The host already committed the selected Pick when requesting a Ready Check.
+    pub(crate) fn admit_enter(&mut self, elapsed: f32) {
         self.heroic_week = crate::heroic::current_week();
         self.heroic_restart_rank = None;
         self.entering = true;
