@@ -5,7 +5,7 @@
 
 use std::{collections::BTreeMap, sync::{OnceLock, atomic::{AtomicU32, Ordering}}};
 
-use azeroth_survivors_re::loot_rewards::amulets;
+use azeroth_survivors_re::loot_rewards::{SEAL_OF_THE_DAMNED_TICK_CAP, amulets};
 use benilla_app::local_client::{
     events::{LocalPresentationEvents, ObjectFields, SessionEvent},
     ItemInfo, ItemSpellEntry, LocalClientSession, LocalClientSet, LocalItemDescriptions, LocalItemQueries,
@@ -478,7 +478,8 @@ fn jewelry_lines(labels: &MenuCatalog, tag: u8, amount: f32, base: f32) -> Vec<S
         16 => vec![stat("Your damage, haste, shield and thorns buffs are {p} stronger.", amount)],
         17 => vec![stat("Heals you for {p} of all damage you deal.", amount)],
         18 => vec![labels.label("Your damage over time spells tick {v}% faster: more ticks, and more damage, in the same time. {max}% at most.")
-            .replace("{v}", &format!("{:.0}", amount * 100.0)).replace("{max}", "40")],
+            .replace("{v}", &format!("{:.0}", amount * 100.0))
+            .replace("{max}", &format!("{:.0}", SEAL_OF_THE_DAMNED_TICK_CAP * 100.0))],
         _ => Vec::new(),
     }
 }
@@ -766,8 +767,15 @@ mod tests {
         let lines = |row: &serde_json::Value| row["lines"].as_array().unwrap().iter()
             .map(|line| line.as_str().unwrap().to_owned()).collect::<Vec<_>>();
         for row in fixture["jewelry"].as_array().unwrap() {
-            assert_eq!(jewelry_lines(&labels, row["tag"].as_u64().unwrap() as u8,
-                row["amount"].as_f64().unwrap() as f32, row["base"].as_f64().unwrap() as f32), lines(row));
+            let tag = row["tag"].as_u64().unwrap() as u8;
+            let mut expected = lines(row);
+            if tag == 18 {
+                for line in &mut expected {
+                    *line = line.replace("40% at most.", "100% at most.");
+                }
+            }
+            assert_eq!(jewelry_lines(&labels, tag,
+                row["amount"].as_f64().unwrap() as f32, row["base"].as_f64().unwrap() as f32), expected);
         }
         for row in fixture["amulets"].as_array().unwrap() {
             let definition = amulets::catalog().by_key(row["key"].as_str().unwrap()).unwrap();

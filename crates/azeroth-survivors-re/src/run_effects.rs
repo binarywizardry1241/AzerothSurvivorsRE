@@ -20,7 +20,10 @@ pub mod player_auras;
 pub mod presentation;
 pub mod weapon;
 use crate::{
-    loot_rewards::amulets::{self, SpellModifiers},
+    loot_rewards::{
+        SEAL_OF_THE_DAMNED_TICK_CAP,
+        amulets::{self, SpellModifiers},
+    },
     player_abilities::{
         AbilityDefinition,
         behavior::{
@@ -470,7 +473,7 @@ impl Numeric {
             13 => self.luck += value,
             14 => self.heal_on_kill += value,
             16 => self.buff_bonus += value,
-            18 => self.dot_tick = (self.dot_tick + value).min(0.4),
+            18 => self.dot_tick = (self.dot_tick + value).min(SEAL_OF_THE_DAMNED_TICK_CAP),
             // 0.112.0 native tag 6; stable source tag 19. Health keeps
             // growing while this item's independent mitigation stops at 12%.
             19 => {

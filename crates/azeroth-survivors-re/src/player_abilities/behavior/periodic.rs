@@ -25,7 +25,10 @@ impl DotPlan {
         let duration = scaled_duration(instance);
         let base_spacing = definition.duration / definition.ticks.max(1) as f32;
         let duration_ticks = (duration / base_spacing.max(0.01)).round().max(1.0);
-        let factor = global_tick_bonus + 1.0;
+        // The worn Seal accelerates the ability kind that places a DoT on
+        // enemies. Channels, ground pulses and proc-owned periodic rows have
+        // separate constructors and retain their own tick schedules.
+        let factor = if definition.kind == 6 { global_tick_bonus + 1.0 } else { 1.0 };
         let ticks_float = (factor * duration_ticks).round();
         let ticks = ticks_float as u32;
         Self { total_power: factor * effective_power * (duration / definition.duration.max(0.01)),

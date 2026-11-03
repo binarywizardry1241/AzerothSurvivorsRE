@@ -3,7 +3,7 @@
 //! See docs/analysis/codex-0.109.0.md for target evidence and comparison limits.
 use std::collections::{BTreeMap, BTreeSet};
 
-use azeroth_survivors_re::loot_rewards::{amulets, prose};
+use azeroth_survivors_re::loot_rewards::{JewelryDefinition, amulets, prose};
 use bevy::{prelude::*, ui::FocusPolicy};
 use serde::Deserialize;
 
@@ -524,6 +524,9 @@ fn detail(
                 quality_color(highest),
             );
             label(panel, art, catalog.label("A NEW ONE, BY RARITY"), 11., GOLD);
+            let seal = (entry.key == "seal_damned")
+                .then(|| JewelryDefinition::by_key(&entry.key))
+                .flatten();
             for (index, description) in entry_text.descriptions.iter().enumerate() {
                 panel
                     .spawn(Node {
@@ -545,10 +548,26 @@ fn detail(
                                 quality_color(index as u8),
                             )
                         });
-                        label(row, art, description, 13., STAT);
+                        if let Some(seal) = seal {
+                            let text = prose::jewelry_description(seal, seal.increment(index, None))
+                                .render(&|key| catalog.label(key).to_owned());
+                            label(row, art, text, 13., STAT);
+                        } else {
+                            label(row, art, description, 13., STAT);
+                        }
                     });
             }
-            label(panel, art, &entry_text.growth, 12., MUTED);
+            if let Some(seal) = seal {
+                let ceiling = prose::jewelry_description(seal, seal.value_cap())
+                    .render(&|key| catalog.label(key).to_owned());
+                label(panel, art, substitute(
+                    catalog,
+                    "Picked again, it grows toward {ceiling}, each pick less as it nears it.",
+                    &[("ceiling", ceiling)],
+                ), 12., MUTED);
+            } else {
+                label(panel, art, &entry_text.growth, 12., MUTED);
+            }
         } else {
             for description in &entry_text.descriptions {
                 label(panel, art, description, 13., STAT);

@@ -12,6 +12,7 @@ pub mod amulets;
 mod catalog;
 pub mod prose;
 pub use catalog::{AMULET_STEPS, JEWELRY, RARITY_MULTIPLIERS};
+pub const SEAL_OF_THE_DAMNED_TICK_CAP: f32 = 1.0;
 
 use crate::treasure_chests::NativeRng;
 
@@ -44,7 +45,7 @@ impl JewelryDefinition {
             0..=5 | 7 | 19 => f32::INFINITY,
             6 | 14 | 17 => self.base * 3.0,
             8 => 0.6,
-            18 => self.base * 4.0,
+            18 => self.base * 10.0,
             _ => self.base * 5.0,
         }
     }
@@ -56,7 +57,7 @@ impl JewelryDefinition {
             0..=5 | 7 | 19 => f32::INFINITY,
             6 | 14 | 17 => (3.0 * self.base) * 0.9,
             8 => f32::from_bits(0x3f0a_3d71), // native 0.54, not 0.6 * 0.9
-            18 => (4.0 * self.base) * 0.9,
+            18 => (10.0 * self.base) * 0.9,
             _ => (5.0 * self.base) * 0.9,
         }
     }
@@ -93,12 +94,7 @@ impl JewelryDefinition {
             }
             return total - current;
         }
-        let cap_multiplier = match self.tag {
-            6 | 14 | 17 => 3.0,
-            18 => 4.0,
-            _ => 5.0,
-        };
-        ((raw * remaining) / (cap_multiplier * self.base)).min(remaining)
+        ((raw * remaining) / self.value_cap()).min(remaining)
     }
 }
 
