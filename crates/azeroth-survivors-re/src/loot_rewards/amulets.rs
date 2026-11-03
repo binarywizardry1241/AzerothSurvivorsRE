@@ -61,9 +61,12 @@ pub struct EffectString {
 
 /// 0.100.1 iterator14554e050 and scalar leaf1454848a0..145484c07.
 /// Scale only the variant's magnitude. Durations, chance selectors, proc limits
-/// and rescue cooldowns are copied unchanged. Spell targets use the 0.139.2
-/// integer ceiling below the asymptotic maximum.
+/// and rescue cooldowns are copied unchanged.
 pub fn scaled_bytes(raw_hex: &str, factor: f32) -> [u8; 64] {
+    scale_effect(raw_hex, factor, false)
+}
+
+fn scale_effect(raw_hex: &str, factor: f32, equipped_amulet: bool) -> [u8; 64] {
     assert_eq!(raw_hex.len(), 128, "native Effect64 record");
     let mut bytes = [0; 64];
     for (index, byte) in bytes.iter_mut().enumerate() {
@@ -83,7 +86,8 @@ pub fn scaled_bytes(raw_hex: &str, factor: f32) -> [u8; 64] {
         if bytes[0] == 31 {
             match bytes[36] {
                 1 => amount = amount.min(0.5),
-                2 => amount = scale_target_bonus(base, factor),
+                2 if equipped_amulet => amount = scale_target_bonus(base, factor),
+                2 => amount = (amount + 0.0001).floor(),
                 _ => {}
             }
         }
@@ -146,7 +150,7 @@ pub fn equipped_bytes(
     rarity: usize,
     picks: u32,
 ) -> [u8; 64] {
-    scaled_bytes(&record.raw_hex, super::amulet_effect_multiplier(rarity, picks))
+    scale_effect(&record.raw_hex, super::amulet_effect_multiplier(rarity, picks), true)
 }
 
 /// The two numeric aggregate variants are decoded from native Effect64.
