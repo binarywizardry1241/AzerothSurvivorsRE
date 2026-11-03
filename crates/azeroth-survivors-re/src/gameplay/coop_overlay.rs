@@ -190,7 +190,7 @@ fn spell_secondary(
         effect *= instance.effect_multiplier;
     }
     if native_tag == 11 {
-        effect = (effect * instance.effect_multiplier).min(0.95);
+        effect = azeroth_survivors_re::player_abilities::behavior::state::scaled_hit_effect(instance).value;
     }
     let replace = |template: &str, values: &[(&str, String)]| {
         let mut text = locale.label(template).to_owned();

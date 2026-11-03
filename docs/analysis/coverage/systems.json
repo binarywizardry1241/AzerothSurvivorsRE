@@ -27670,6 +27670,25 @@
     },
     {
       "id": "custom-game-game-abilities",
+      "gap_136_source_review_0_139_2": {
+        "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
+        "gap_id": 136,
+        "source_status": "connected",
+        "evidence_refs": [
+          "docs/analysis/status-weakening-0.139.2.md",
+          "docs/analysis/evidence/0.139.2/status-weakening.json"
+        ],
+        "static_validation": "bounded_native_and_source_checks",
+        "runtime_validation": "not_run",
+        "parity": "unverified",
+        "scope": "Current damage-weakening status tag identity and 90% magnitude cap, including guest preview. The enclosing audit remains bound to 0.139.1.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
+          "crates/azeroth-survivors-re/src/player_abilities/behavior/state.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs",
+          "crates/azeroth-survivors-re/src/gameplay/coop_overlay.rs"
+        ]
+      },
       "arcane_echo_source_repair_0_139_2": {
         "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
         "gap_id": 309,

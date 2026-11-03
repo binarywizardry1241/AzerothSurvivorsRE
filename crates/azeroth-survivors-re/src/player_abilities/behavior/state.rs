@@ -7,14 +7,14 @@ use crate::player_abilities::catalog::StatusEffect;
 
 /// Scale a hit's secondary effect. Native status tables use the instance's
 /// talent-duration field for slow/weaken duration, effect multiplier for the
-/// single-float variants, and cap enemy damage weakening at95%.
+/// single-float variants, and cap enemy damage weakening at 90% (0.139.2).
 pub fn scaled_hit_effect(instance: &RuntimeInstance<'_>) -> StatusEffect {
     let mut effect = instance.definition.effect;
     match effect.tag {
         1 => effect.duration *= instance.talent_duration_multiplier,
         2 | 3 | 7 | 8 | 9 => effect.value *= instance.effect_multiplier,
         10 => {
-            effect.value = (effect.value * instance.effect_multiplier).min(0.95);
+            effect.value = (effect.value * instance.effect_multiplier).min(0.9);
             effect.duration *= instance.talent_duration_multiplier;
         }
         _ => {}
