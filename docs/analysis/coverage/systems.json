@@ -28962,6 +28962,24 @@
     },
     {
       "id": "custom-game-game-addon",
+      "gap_307_source_review_0_139_2": {
+        "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
+        "gap_id": 307,
+        "source_status": "partial",
+        "evidence_refs": [
+          "docs/analysis/combat-text-0.139.2.md",
+          "docs/analysis/evidence/0.139.2/combat-text/manifest.json"
+        ],
+        "static_validation": "bounded_native_and_source_checks",
+        "runtime_validation": "not_run",
+        "parity": "unverified",
+        "scope": "Post-camera Lua handler registration and VM lifetime. World event, anchor, and meter attribution source paths remain open. The enclosing audit remains bound to 0.139.1.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs",
+          "crates/benilla-app/src/local_client/extension.rs",
+          "crates/benilla-app/src/ui_script/extract/mod.rs"
+        ]
+      },
       "title": "Game-mode addon API and publication",
       "original_path": "crates/wenilla-rogue/src/game/addon.rs",
       "native_path_evidence": [
@@ -64672,6 +64690,24 @@
     },
     {
       "id": "custom-game-game-meterfeed",
+      "gap_307_source_review_0_139_2": {
+        "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
+        "gap_id": 307,
+        "source_status": "partial",
+        "evidence_refs": [
+          "docs/analysis/combat-text-0.139.2.md",
+          "docs/analysis/evidence/0.139.2/combat-text/manifest.json"
+        ],
+        "static_validation": "bounded_native_and_source_checks",
+        "runtime_validation": "not_run",
+        "parity": "unverified",
+        "scope": "Post-camera Lua handler registration and VM lifetime. World event, anchor, and meter attribution source paths remain open. The enclosing audit remains bound to 0.139.1.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs",
+          "crates/benilla-app/src/local_client/extension.rs",
+          "crates/benilla-app/src/ui_script/extract/mod.rs"
+        ]
+      },
       "title": "game/meterfeed.rs",
       "original_path": "crates/wenilla-rogue/src/game/meterfeed.rs",
       "native_path_evidence": [

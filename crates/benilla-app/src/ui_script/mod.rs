@@ -164,6 +164,8 @@ pub(crate) struct PlayerUiPressConsumed(pub(crate) bool);
 #[derive(Resource, Default)]
 pub(crate) struct UiPassState {
     pub(crate) live: bool,
+    /// This tick belongs to the visible in-world FrameXML VM.
+    pub(crate) world_frame: bool,
     /// The 768-virtual seam scale this frame was ticked under.
     pub(crate) seam: f32,
     pub(crate) dpi: f32,

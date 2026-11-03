@@ -684,6 +684,7 @@ pub(super) fn tick_script(
         // ── The handover ────────────────────────────────────────────────────────────────────────
         *pass = super::UiPassState {
             live: true,
+            world_frame: !covered && script.vm_kind() == benilla_ui::script::VmKind::InGame,
             seam: s,
             dpi,
             us_tick,
@@ -741,6 +742,19 @@ pub(super) fn paint_script(
             booths.tiles.above_screens.clear();
             return;
         };
+        let callback = embedding.as_ref()
+            .filter(|_| pass.world_frame)
+            .and_then(|extension| extension.world_frame_callback);
+        if let Some(callback) = callback {
+            use benilla_ui::mlua::Function;
+
+            let globals = script.lua().globals();
+            if let Err(error) = globals.get::<Option<Function>>(callback).and_then(|handler| {
+                handler.map_or(Ok(()), |handler| handler.call::<()>(()))
+            }) {
+                warn!("world frame callback {callback} failed: {error}");
+            }
+        }
         let prev = prev.get(script);
         let screen = super::UiScreen::of_window(window, widescreen.as_ref());
         let Vec2 { x: w, y: h } = screen.size;

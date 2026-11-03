@@ -63,6 +63,9 @@ pub struct LocalClientExtension {
     /// Install embedding-owned native functions on each in-game VM before
     /// FrameXML or addons load, including on ReloadUI.
     pub script_initializer: Option<fn(&World, &UiScript) -> Result<(), String>>,
+    /// Optional embedding-owned Lua callback invoked after the world camera
+    /// moves, before FrameXML layout and paint consume the new anchors.
+    pub world_frame_callback: Option<&'static str>,
     /// Installed before FrameXML/addons, including after ReloadUI.
     pub script_prelude: String,
     /// Lua appended to named core FrameXML files before their normal chunk load.
