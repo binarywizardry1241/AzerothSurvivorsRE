@@ -5,3 +5,8 @@
 /docs/analysis/evidence/**/*.c whitespace=-blank-at-eol,-blank-at-eof
 /docs/analysis/evidence/**/*.asm whitespace=-blank-at-eol,-blank-at-eof
 /docs/analysis/evidence/*/sanguine-native.txt whitespace=-blank-at-eol,-blank-at-eof
+
+# Keep the vendored GPU backend source byte for byte.
+third_party/wgpu-hal/** -text
+third_party/wgpu-hal/src/auxil/dxgi/result.rs whitespace=cr-at-eol
+third_party/wgpu-hal/README.md whitespace=-blank-at-eof
