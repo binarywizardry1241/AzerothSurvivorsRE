@@ -1,4 +1,4 @@
 interface:
   display_name: "Fix Gap"
-  short_description: "Fix known source gaps directly; recover only missing facts"
-  default_prompt: "Use $fixgap to offer actionable source/static-recovery gaps labeled Source-only, Needs REA or Mixed, ask which to fix, then complete the selected repair using retained evidence and REA only for missing native facts, including incidental AS defects proved by current EXE evidence, without builds or in-game checks; keep source gaps in CURRENT-STATE and completed-source verification in verification-needed."
+  short_description: "Select a source gap or release lead to investigate and fix"
+  default_prompt: "Use $fixgap to show the selectable gaps and release leads in CURRENT-STATE, then check the live source and recover any missing facts from the installed EXE for the item I select."

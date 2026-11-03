@@ -7,14 +7,12 @@ supplied version and verifies its bytes. A newly supplied EXE or a changed hash
 must be registered and receive current coverage before older records can be used
 as current. Do not select by filesystem timestamps or relabel old native RVAs.
 
-Before offering gaps, the read-only consistency checker verifies target binding,
-diagnostic-path accounting, native byte ranges, source/evidence references,
-permanent gap ownership and current changelog claims. It does not launch REA,
-recreate disposable native inventories or certify implementation completeness.
-Missing project-local reference inputs are an explicit unavailable check, not a
-reason to fall back to historical results. Run resource hash verification when
-registering/changing the reference input chain, not merely to repeat an unchanged
-gap list.
+The full consistency checker belongs to explicit `$execheck` audits. For
+`$fixgap`, inspect the installed EXE with `scripts/register-target.py
+--inspect-installed` and check only the selected gap's inputs and evidence.
+Installed EXE identity, bounded recovery and published audit coverage are
+separate states. Journaled REA plans can analyze the installed EXE by portable
+path before it has a full audit or MPQ registration.
 
 Apply [cross-version repair](../SKILL.md#repair-existing-gaps-across-versions):
 an existing gap can be fixed on a different version from its discovery/recovery.
@@ -31,7 +29,7 @@ has older provenance or lacks exact newest-version/hash proof or a registered
 current bounded contract. Inspect the source and prior repair before offering
 work; require a concrete remaining defect, missing behavior or implementation
 contract beyond that proof deficit. Preserve honest target/provenance records.
-Explicitly requested revalidation and target-refresh audits keep their scope.
+Explicit full refreshes and coverage audits belong to `$execheck`.
 Apply the shared [incremental recovery rules](../../shared/autonomy.md#incremental-recovery-across-target-updates)
 to those audits and selected repairs. Completed recovery and implementation
 survive target updates; their current applicability is a separate assessment.
@@ -47,16 +45,10 @@ historical excluded-co-op classifications describe earlier evidence scope, not
 a current stop rule. Apply `AGENTS.md`'s no-server-running boundary and the
 invoked workflow's separate compilation/execution limits.
 
-A user request to update the game, EXE or game files already selects static
-ingestion and discovery. Do not stop after copying inputs or updating a version
-label, and do not ask them to select the refresh again. Register the exact new
-EXE/resource identity, scan the whole new artifact, review new native/system
-leads and supplied changelog claims, and refresh current system/claim/gap
-accounting. Do not limit discovery to added filenames or strings from release
-notes. Same-version changed bytes also require this process. Preserve existing
-source while revalidating reused native contracts and relevant dependencies;
-the apparent size of an update is not evidence that it is purely additive.
-Existing gameplay repairs outside that update remain separately selectable.
+An explicit `$execheck` audit registers the exact EXE/resource identity, scans
+the whole artifact, and reconciles discovered leads, claims and source gaps.
+An installed version or hash change is an input to scoped `$fixgap` recovery
+and does not select that audit.
 
 When the user selects a target refresh or coverage task, register the supplied
 artifact, reproduce the whole PE inventory and update the compact summary.

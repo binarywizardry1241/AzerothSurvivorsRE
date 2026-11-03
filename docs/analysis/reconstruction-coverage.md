@@ -427,7 +427,21 @@ Evidence, within a bounded raw range. Its Ghidra/independent-decoder results
 remain separate from global callers, imports and semantic/source recovery.
 See [REA setup and transport details](../REA.md) and the owning native report.
 
-## Reconcile and check
+## Release intake and selected repairs
+
+Use [`$changelog`](../../.agents/skills/changelog/SKILL.md) to ingest release
+text. `python3 -B scripts/index-current-changelog.py --claims-only <version> ...`
+prints the same claim IDs and provenance used in the audit ledger without
+opening the EXE or loading coverage records. The selectable groups live in
+[CURRENT-STATE](../CURRENT-STATE.md#unreviewed-release-leads).
+
+[`$fixgap`](../../.agents/skills/fixgap/SKILL.md) identifies the installed EXE
+independently of audit registration. It uses the relevant claim reviews,
+source and hash-bound evidence for a selected repair. New bounded evidence can
+be recorded before the next full audit. The audit ledger remains a snapshot of
+its recorded inputs until reconciliation.
+
+## Reconcile and check a full audit
 
 ```sh
 python3 -B scripts/index-current-changelog.py --write

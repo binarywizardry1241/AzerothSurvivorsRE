@@ -147,12 +147,11 @@ fresh native queries and do not gate established source corrections.
 Resolve a necessary unknown or concrete behavioral conflict with targeted
 recovery; version/hash drift alone does not require that work.
 
-- **Same target and inputs:** verify the target, Data and relevant source,
+- **Same target and inputs:** verify the target, any Data used and relevant source,
   query/profile/input commitments, then reuse completed results and saved
-  Programs. Resume unfinished queries/census batches. Repeat the workflow's
-  required whole-file inventory scans and reconciliation, but do not create a
-  fresh Ghidra import or repeat completed decompilation/census work just because
-  another audit was invoked. Missing outputs, changed analysis inputs or a
+  Programs. Resume unfinished queries/census batches. In explicit audits, repeat
+  the required whole-file inventory scans and reconciliation. Reuse compatible
+  Ghidra imports and completed decompilation/census work. Missing outputs, changed analysis inputs or a
   demonstrated analysis defect can require a replacement pass; identify why.
 - **Changed target during a selected refresh/audit:** perform the required
   whole-image discovery and obtain a census bound to the new hash; an ordinary

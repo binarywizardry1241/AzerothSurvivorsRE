@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Non-compiling regression checks for historical release-context inheritance."""
+"""Non-compiling regression checks for release intake and context inheritance."""
 
 import hashlib
 import importlib.util
@@ -10,7 +10,7 @@ import sys
 import tempfile
 import unittest
 from unittest.mock import patch
-from contextlib import redirect_stderr
+from contextlib import redirect_stderr, redirect_stdout
 
 PROJECT = Path(__file__).resolve().parent.parent
 spec = importlib.util.spec_from_file_location('changelog_index', PROJECT / 'scripts/index-current-changelog.py')
@@ -46,6 +46,20 @@ class HistoricalCrosswalk(unittest.TestCase):
         for release, status, owner in rows or [('0.106.0', 'partial', 'docs/current.md')]:
             text += f'| {release} | Spell contract | {status} | Review #41 | [owner]({owner}) |\n'
         return self.write(name, text)
+
+    def test_claim_intake_works_before_target_registration(self):
+        changelog = self.write('CHANGELOG.md', '## 0.107.0\n\n- Older claim\n\n'
+                               '## 0.108.0\n\n- Spell damage\n  - Boss phase condition\n')
+        argv = ['index-current-changelog.py', '--claims-only', '0.108.0', '--changelog', str(changelog)]
+        output = io.StringIO()
+        with patch.object(sys, 'argv', argv), patch.object(index, 'latest_target', side_effect=AssertionError), redirect_stdout(output):
+            index.main()
+        parent, child = (json.loads(line) for line in output.getvalue().splitlines())
+        expected = hashlib.sha256(b'Spell damage').hexdigest()[:16]
+        self.assertEqual(parent['id'], f'changelog:0.108.0:{expected}')
+        self.assertEqual(child['parent_id'], parent['id'])
+        self.assertEqual(child['source_span']['line_start'], 8)
+        self.assertNotIn('target', parent)
 
     def test_no_inheritance_preserves_existing_context_and_identity_shape(self):
         path = self.crosswalk('current.md')

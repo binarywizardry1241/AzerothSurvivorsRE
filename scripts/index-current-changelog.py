@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Account for every supplied changelog claim against the latest registered EXE.
+"""Index supplied changelog text or account for it against the registered EXE.
 
 This does not recover native behavior. Release-level owner links are leads only;
 each claim stays pending until its own native contract and source are reviewed.
@@ -18,7 +18,7 @@ from urllib.parse import unquote
 
 sys.dont_write_bytecode = True
 
-from coverage_common import latest_target
+from coverage_common import latest_target, version_key
 from script_sources import current_path, historical_source
 
 
@@ -538,6 +538,8 @@ def main():
     action = parser.add_mutually_exclusive_group()
     action.add_argument("--write", action="store_true", help="explicitly replace the project-local output ledger")
     action.add_argument("--check", action="store_true", help="read-only reproducibility check (the default)")
+    action.add_argument("--claims-only", nargs="*", metavar="VERSION",
+                        help="print release claims as JSON without target or coverage inputs; optionally filter by release")
     parser.add_argument("--output", type=project_path, default=DEFAULT_OUTPUT)
     parser.add_argument("--changelog", type=project_path, default=ROOT / "docs/CHANGELOG.md")
     parser.add_argument("--crosswalk", type=project_path,
@@ -548,6 +550,16 @@ def main():
                         help="current system ledger; exact shared source paths provide contextual owners only")
     args = parser.parse_args()
     try:
+        if args.claims_only is not None:
+            entries, releases, _ = parse_claims(args.changelog)
+            for version in args.claims_only:
+                version_key(version)
+                if version not in releases:
+                    raise ValueError(f"no changelog section for {version}")
+            for entry in entries:
+                if not args.claims_only or entry["release"] in args.claims_only:
+                    print(json.dumps(entry, ensure_ascii=False))
+            return
         target = latest_target(verify=True)
         crosswalk = args.crosswalk or ROOT / f"docs/analysis/changelog-coverage-{target['version']}.md"
         if args.output in (args.changelog, crosswalk, args.reviews, args.systems, ROOT / "changelog_2026-10-15_1.json"):

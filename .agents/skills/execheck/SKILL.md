@@ -1,15 +1,16 @@
 ---
 name: execheck
-description: Refresh AzerothSurvivorsRE against the installed EXE and Data, discover AS-specific code/data/behavior, audit source connections and group connected changelog claims into coherent findings in docs/CURRENT-STATE.md while preserving individual evidence. Use for $execheck, requests to update the reference game, EXE or game files, or full EXE-to-rebuild coverage audits, including unchanged versions.
+description: Run an explicit full AzerothSurvivorsRE audit against the installed EXE and Data, discover AS-specific behavior, and reconcile source connections, changelog claims and findings. Use for $execheck or an explicit full EXE-to-rebuild coverage audit, including unchanged versions.
 ---
 
 # EXE check
 
 Refresh the installed target and audit the entire selected EXE and the
 reconstruction's evidence/connection map in one workflow. Run every stage below
-for `$execheck` and requests to update the reference game, EXE or
-game files, including an unchanged target. Complete each stage by extending and
-reconciling retained work, not by discarding it.
+for `$execheck` and explicit full-audit requests, including an unchanged target.
+Use [`$changelog`](../changelog/SKILL.md) for release-note intake and
+[`$fixgap`](../fixgap/SKILL.md) for selected repairs on the installed EXE.
+Complete each audit stage by extending and reconciling retained work.
 The primary deliverable is the numbered findings in `docs/CURRENT-STATE.md`:
 report coherent AS issues with their connected discoveries, missing source
 connections and recovery questions, exact evidence and next static steps. The
@@ -242,8 +243,8 @@ previous coverage as current until the installed inputs are verified.
    An unchanged registered target needs verification, not a replacement
    identity-manifest pointer; it still receives the complete scan and
    reconciliation below.
-3. Use supplied release notes when available; preserve `docs/CHANGELOG.md` as the
-   canonical readable changelog and its historical JSON archive unchanged.
+3. Use supplied release notes when available. Use the `$changelog` intake rules
+   for any newly supplied text and keep its historical JSON archive unchanged.
    Missing newer notes remain explicit; do not invent claims or read unrelated
    installed files without authorization.
 
@@ -300,6 +301,10 @@ inconclusive current aspects explicitly pending; release text alone proves
 neither a defect nor completion. Before finishing,
 reconcile every supplied claim to its review and owning finding/group, including
 summary context and intentionally independent items, so grouping loses nothing.
+Reconcile CURRENT-STATE's **Unreviewed release leads** against those individual
+reviews. Remove a claim from intake when its bounded assessment resolves it or
+an owning numbered finding now carries the remaining action. Retain unreviewed
+or inapplicable leads, including notes for releases newer than the installed EXE.
 
 ## Sweep the whole image
 
@@ -519,7 +524,7 @@ a separate numbered finding only when it has no coherent existing issue/group.
 Use the same grouped work items in chat; preserve existing member identities and
 closed rows rather than presenting each as an independent new task.
 
-On every installed-target update or repeat audit, give each distinct newly
+On every explicit audit, give each distinct newly
 discovered or changed AS-specific code, data, script, UI, resource, ID, format or
 behavior lead requiring recovery/reconstruction a traceable CURRENT-STATE owner,
 as a finding or explicit constituent of its connected issue/group.

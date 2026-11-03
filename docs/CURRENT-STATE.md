@@ -7,9 +7,9 @@ Reviewed **2026-11-02**. Last completed audit target: **0.139.1**,
 `1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d`.
 The installed EXE is now **0.139.2**, 150,793,728 bytes, SHA-256
 `0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908`.
-It is unregistered and awaits a full target refresh. The records and counts
-below retain their 0.139.1 scope; current-installed-target coverage accounting
-rejects this newer identity. Targeted repairs for [Death Recap](analysis/death-recap-0.139.2.md)
+Its full audit remains pending. The records and counts below retain their
+0.139.1 scope. Targeted recovery and repairs can use the installed hash directly.
+Targeted repairs for [Death Recap](analysis/death-recap-0.139.2.md)
 and the [local clock](analysis/local-clock-0.139.2.md) have their own 0.139.2
 evidence and verification records [#300](verification-needed.md#gap-300) and
 [#302](verification-needed.md#gap-302).
@@ -59,6 +59,20 @@ assignments, repairs and recovered contracts keep their original targets until
 their precise current scopes are revalidated; missing registration does not erase
 implementation. No compilation, compiling test, client/game/network/server
 operation or original/rebuilt comparison was run; parity remains unverified.
+
+## Unreviewed release leads
+
+[`$changelog`](../.agents/skills/changelog/SKILL.md) adds grouped leads here for
+[`$fixgap`](../.agents/skills/fixgap/SKILL.md) selection alongside numbered gaps.
+Each row links the original release and its individual claim IDs, the next
+source or recovery question, and any existing finding that owns the same work.
+Selecting a group covers its actionable claims. An exact claim ID selects that
+claim and its required dependencies. Retire a lead once its claim assessment
+resolves it or its remaining work has moved to an owning finding. Release notes
+are investigation leads until checked against source and applicable EXE evidence.
+
+| Selectable lead | Release and claim IDs | Next question or existing finding |
+| --- | --- | --- |
 
 ## Gap register
 

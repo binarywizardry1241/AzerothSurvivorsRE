@@ -1,6 +1,6 @@
 ---
 name: fixgap
-description: "Offer and repair Azeroth Survivors gamemode, gameplay and mechanics gaps. Fix established source defects directly from retained evidence; use REA/Ghidra only for missing native contracts. Include incidental AS defects proved by current EXE evidence. Check, commit and push source/static repairs without builds or game validation. Reuse the open-source benilla/wenilla engine. Use for $fixgap or choosing AS reconstruction gaps that do not require in-game checks."
+description: "Offer Azeroth Survivors source gaps and changelog leads from CURRENT-STATE for selection. Repair established defects from retained evidence and recover missing contracts on demand against the installed EXE. Check, commit and push source/static repairs without builds or game validation. Use for $fixgap or choosing static AS reconstruction work."
 ---
 
 # Fix Gap
@@ -31,11 +31,11 @@ for those operations: search retained operations, reuse compatible saved
 Programs and append missing work. Task paths and compatible seed additions must
 not create another large database. Preserve cross-version correspondence limits.
 
-Current coverage always follows the **newest supplied, hash-verified EXE**.
-Historical reports retain their original target; a familiar filename, package
-version or old inventory must not select the working target. The
-[coverage workflow](references/coverage.md) owns target registration, discovery,
-system/source accounting and individual changelog claims.
+Use the **currently installed, hash-verified EXE** for fresh native work. Keep
+its identity separate from the last fully audited target. Historical reports
+retain their original target. Use the [coverage reference](references/coverage.md)
+for retained accounting and bounded #41 leads. Route explicit full audits to
+[`$execheck`](../execheck/SKILL.md).
 Apply the shared [incremental recovery rules](../shared/autonomy.md#incremental-recovery-across-target-updates).
 Continue prior repairs and #41 questions from their saved results. Preserve
 completed work and omit proof-only applicability/registration tasks from ordinary
@@ -57,8 +57,7 @@ support a source repair without certifying current-target fidelity. Recover a
 new native fact only when the implementation needs an unresolved value, condition
 or connection, or concrete conflicting evidence makes the intended behavior
 uncertain. Fresh queries must still verify the EXE they actually analyze and
-resolve its addresses correctly. Explicit target-refresh and coverage selections
-retain their full audit requirements.
+resolve its addresses correctly.
 
 ## Choose the shortest sufficient repair path
 
@@ -80,8 +79,8 @@ route automatically and state it with the selected deliverable:
 - **Needs REA:** a necessary value, condition, ordering, identity, layout or
   producer/consumer contract is unresolved or conflicting. Identify that exact
   missing fact and recover it with the smallest sufficient targeted operation,
-  then implement the repair. Do not expand it into a whole-image audit unless
-  the selected task actually requires that audit.
+  then implement the repair. Reuse only the discovery and verification steps
+  needed for that contract.
 - **Mixed:** complete independent, established source corrections directly and
   use targeted recovery only for the unresolved parts of the selected gap.
 
@@ -243,29 +242,19 @@ them, inventing missing behavior or treating static checks as gameplay proof.
    registration alone is not evidence of unfinished source work.
    Consult `docs/verification-needed.md` for the selected IDs' retained evidence
    or completed source history; it is not a second source-repair backlog.
-   Run `python3 -B scripts/check-reconstruction-coverage.py` as a read-only
-   accounting preflight. It verifies the newest supplied target and current
-   system/changelog records without compiling, launching REA or running a game.
-   If it fails, report the exact stale/missing accounting; do not silently use an
-   older inventory or offer its findings as current. Version/hash/registration
-   drift alone does not block offering or repairing concrete source gaps from
-   retained reports after checking their live source. State the evidence's
-   provenance and pending current applicability. An evidence-integrity failure
-   requires resolving only the affected facts needed for that repair. Existing
-   records with open recovery are expected and do not constitute a preflight
-   failure.
-   For a bare invocation with an unregistered/new target, offer the bounded
-   latest-target registration and coverage refresh under #41 alongside eligible
-   source repairs; do not make that refresh their prerequisite. Wait for a
-   selection before writing records or running native discovery. An exact
-   source repair does not implicitly select a coverage refresh. Register/verify
-   inputs needed for fresh targeted native queries without expanding into an
-   audit. An explicitly selected game-file update or coverage refresh retains
-   that scope; do not request the same authorization again.
+   Run `python3 -B scripts/register-target.py --inspect-installed` for the
+   configured EXE's version and SHA-256. Compare the pair with the audit identity
+   in CURRENT-STATE. Report an unaudited hash as such and keep established source
+   work selectable. If inspection fails, report the reason and continue eligible
+   source-only work. Resolve the installed identity before fresh native recovery.
+   Use the full coverage checker only for explicit audit work. A bare invocation
+   remains read-only, including on a new hash.
    Consult `docs/analysis/coverage/systems.json` for source work and pending
    native questions associated with each gap, including all diagnostic paths.
-   For a bare invocation or selected #41 work, follow #41's link to the current
-   target's unknown recovery queue and verify its target/evidence bindings.
+   For a bare invocation or selected #41 work, follow #41's queue link and
+   compare its target/evidence binding to the installed EXE. Historical
+   selectors may guide a selected investigation after current mapping. Keep
+   their original provenance and present them as historical leads.
    Read actionable unclassified leads as well as
    known AS recovery tasks; do not silently filter out unknown ownership.
    Resolve broad residual selectors against retained classification results and
@@ -289,9 +278,18 @@ them, inventing missing behavior or treating static checks as gameplay proof.
    separate; grouping does not reopen completed/proof-only/runtime-only work.
    Selecting the named group covers its eligible members; selecting exact `#N`
    IDs retains that explicit scope and does not silently select their siblings.
-   Apply the proof-only exclusion before listing rows; do not turn missing
-   newest-target evidence into a repair or revalidation choice. Explicit requests
-   for target revalidation or a coverage refresh retain that separate audit scope.
+   Apply the proof-only exclusion before listing rows. Also read CURRENT-STATE's
+   **Unreviewed release leads** from [`$changelog`](../changelog/SKILL.md). Offer
+   them in the same menu as **Release lead — review first** choices, by group
+   name and with stable claim IDs. Attach them to an eligible existing finding
+   when it owns the same work so the choice appears once. Use
+   `python3 -B scripts/index-current-changelog.py --claims-only <version> ...`
+   to resolve their exact text without an audit. Selecting a release group
+   covers its actionable claims. An exact claim ID selects that claim and its
+   required dependencies. Notes ahead of the installed version or for a
+   different artifact stay pending until applicable. Where
+   installed identity is unavailable, identify the affected leads as pending
+   rather than guessing applicability.
    For a mixed gap, describe only its actionable source/recovery portion. Use
    explicit `#N` labels in a table or bullets so filtered findings cannot cause
    Markdown to renumber the choices. These are stable identifiers, not
@@ -308,8 +306,8 @@ them, inventing missing behavior or treating static checks as gameplay proof.
    Briefly note that proof-only revalidation and build/game-validation-only rows
    are excluded, without enumerating them as pending fixes. If no eligible work
    remains, say so and stop without requesting gameplay checks.
-3. Ask: **"Which of these source/recovery gaps should I fix?"** Let the user
-   select one or more listed gaps or describe another exact eligible gap. Use the
+3. Ask **"Which of these gaps or release leads should I work on?"** Let the user
+   select one or more listed gaps or leads or describe another exact task. Use the
    available user-input tool to present the choices when possible; otherwise ask
    in the final response.
    Wait for their answer. A bare `$fixgap` authorizes learning and presenting
@@ -333,6 +331,14 @@ new selection only for work outside that authorization or an explicit user limit
 
 ## Complete the selected source/recovery task
 
+- For a selected release lead, trace the live source and compare applicable
+  retained evidence before choosing a route. If the needed behavior is unclear,
+  recover only that contract from the installed EXE. A note supplies a question
+  for investigation. If the contract is already connected, record the bounded
+  result and close the intake item. If a defect is established, reuse its
+  permanent finding or assign one under the register rules, then repair it in
+  the same selection. Retain unresolved subcases as selectable leads and keep
+  every constituent claim traceable to its assessment.
 - State the selected issue, the source/recovery deliverable and the static
   evidence that can establish its completion. Follow necessary cross-cutting
   dependencies and the additional-AS-repair rule above; announce each proved
@@ -345,11 +351,16 @@ new selection only for work outside that authorization or an explicit user limit
   when necessary; they do not require completing all five scopes.
 - When a necessary native contract is missing, use the existing
   [reverse-engineer-anything skill](../reverse-engineer-anything/SKILL.md),
-  `docs/REA.md`, the project `./scripts/rea` wrapper and Ghidra. Read
-  the latest target returned by `scripts/coverage_common.py` through the
-  [coverage workflow](references/coverage.md), including its identity manifest,
-  and verify its hash before fresh native analysis. Reuse recorded current
-  correspondence assessments when available. Establish missing correspondence
+  `docs/REA.md`, the project `./scripts/rea` wrapper and Ghidra. Verify the
+  installed identity immediately before fresh native analysis. Use
+  `installed-game/AzerothSurvivors.exe` for direct queries and check the
+  journal's target digest against the inspected hash. If a compatible prepared
+  Program is unavailable, use bounded PE discovery and journaled raw-slice
+  queries as needed. Bind each slice's bytes, digest and VA to the inspected
+  EXE and check its journal against the slice digest. A newer version or changed
+  same-version hash can be queried before full registration. Verify the specific
+  Data inputs only when the selected contract depends on them. Reuse recorded
+  current correspondence assessments when available. Establish missing correspondence
   only where a necessary query or unresolved behavior needs it, following
   [cross-version repair](#repair-existing-gaps-across-versions). Preserve
   historical provenance and do not use old addresses unverified.
@@ -407,7 +418,13 @@ new selection only for work outside that authorization or an explicit user limit
   table or release-level crosswalk cannot certify a whole system or every
   changelog claim. Preserve unresolved code/data/indirect-reference coverage
   under its permanent gap until the native/source work is demonstrated. Check
-  the coverage records again before delivery; retain open runtime/parity fields.
+  the affected claim IDs, finding links, evidence and source before delivery.
+  Reconcile the selected intake row so resolved claims stop appearing in the menu.
+  For an unaudited hash, record the assessment with its actual version/hash in
+  the durable reviews and owning report. When only historical evidence supports
+  a source repair, retain that provenance and record current applicability as
+  pending. Keep the published audit ledger bound to its reviewed inputs and
+  retain open runtime/parity fields.
 - As each focused change is ready, review and commit its intended durable changes
   in the chosen checkout. A worktree may use its own task branch; confirm branch
   ownership before implementation and preserve pending work. Follow the
