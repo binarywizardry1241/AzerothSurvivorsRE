@@ -131,7 +131,7 @@ fn register_units(
     mut names: ResMut<crate::names::NameCache>,
     mut selection: ResMut<Selection>,
     mut fields_changed: MessageWriter<FieldChanged>,
-    mut field_notices: MessageWriter<FieldNotice>,
+    mut field_notices: ResMut<crate::field_watch::NoticeLane>,
     mut units: Query<(
         Entity,
         Ref<LocalUnitVisual>,
@@ -446,7 +446,7 @@ mod tests {
         .init_resource::<crate::names::NameCache>()
         .init_resource::<Selection>()
         .add_message::<FieldChanged>()
-        .add_message::<FieldNotice>()
+        .init_resource::<crate::field_watch::NoticeLane>()
         .add_systems(Update, register_units);
         app
     }
@@ -695,8 +695,8 @@ mod tests {
             .init_resource::<crate::ui_guild::GuildState>()
             .insert_resource(crate::net::NetCommands(crossbeam_channel::unbounded().0))
             .insert_non_send_resource(script)
-            .configure_sets(Update, crate::ui_unit::UnitSnapshots.after(register_units));
-        crate::ui_unit::add_unit_feed(&mut app);
+            .configure_sets(Update, crate::ui_unit::UnitFeed.after(register_units));
+        crate::ui_unit::add_token_seats(&mut app);
         app.world_mut().spawn((
             SelfPlayer,
             Guid(ME),

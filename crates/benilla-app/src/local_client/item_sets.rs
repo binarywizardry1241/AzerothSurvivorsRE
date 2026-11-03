@@ -46,6 +46,35 @@ impl LocalItemSets {
     }
 }
 
+pub(super) fn feed(
+    mut vm: crate::script_calls::HostedVm,
+    sets: Res<LocalItemSets>,
+    mut descriptions: ResMut<super::LocalItemDescriptions>,
+    mut requested: Local<crate::ui_script::VmMemo<Vec<u32>>>,
+) {
+    vm.run(|script| {
+        let Some(script) = script else { return };
+        let requested = requested.get(script);
+        let asks = script.take_item_set_asks();
+        sets.intern_asked_bonuses(&asks, &mut descriptions);
+        for id in asks {
+            if !requested.contains(&id) {
+                requested.push(id);
+            }
+            if let Some(view) = sets.lookup(id) {
+                script.set_item_set(id, view.clone());
+            }
+        }
+        if sets.is_changed() {
+            for &id in requested.iter() {
+                if let Some(view) = sets.lookup(id) {
+                    script.set_item_set(id, view.clone());
+                }
+            }
+        }
+    });
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

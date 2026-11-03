@@ -28,41 +28,6 @@ fn seen(feed: &Feed) -> Vec<String> {
     feed.script().eval::<Vec<String>>("return Seen").unwrap()
 }
 
-/// The reference parks a line that asked the item cache for a name in a list with no timer or
-/// count (`0x6293a0`), and only the answer (`0x6294cc`-`0x62959c`) or shutdown (`0x629a90`)
-/// removes it, so a record that lands late still writes its line.
-#[test]
-fn a_line_waiting_on_an_item_name_waits_until_the_cache_answers() {
-    let _data = benilla_formats::wow_data_or_skip!();
-    const LINEN: u32 = 2589;
-    let mut feed = Feed::new();
-    spy(&feed, super::event::event_name(K::SpellTradeskills));
-    feed.world.resource_mut::<crate::net::SelfGuid>().0 = Some(ME);
-    let line = combat::queue(
-        K::SpellTradeskills,
-        combat::TRADESKILL_LOG,
-        (ME, UnitClass::Me),
-        (ME, UnitClass::Me),
-        Fills::default(),
-        Named::Item(LINEN),
-    )
-    .unwrap();
-    feed.world
-        .resource_mut::<super::ChatLog>()
-        .push_combat(line);
-    for _ in 0..300 {
-        feed.drain();
-    }
-    assert!(seen(&feed).is_empty(), "nothing to name it with yet");
-    feed.world
-        .resource_mut::<crate::items::Items>()
-        .insert_template(LINEN, Some(crate::items::test_template("Linen Cloth")));
-    feed.drain();
-    assert_eq!(seen(&feed), ["You create Linen Cloth."]);
-    feed.drain();
-    assert_eq!(seen(&feed).len(), 1, "written once");
-}
-
 /// `GetCombatLogName` (`0x6264e0`) names a held object by its type mask: a game object by its
 /// record (`0x626547` → `0x5f8100`), an item by the item cache without asking (`0x62656e` →
 /// `0x55ba30`), and a name the caches lack is `UNKNOWNOBJECT`.

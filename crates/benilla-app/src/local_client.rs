@@ -95,13 +95,21 @@ pub enum LocalClientSet {
 #[derive(Resource)]
 pub(crate) struct LocalClientMode;
 
+#[derive(Resource, Default)]
+pub(crate) struct LocalUiCalls {
+    pub(crate) session: std::sync::Mutex<Vec<SessionRequest>>,
+    pub(crate) cancel_aura: std::sync::Mutex<Vec<u32>>,
+}
+
 impl Plugin for LocalClientPlugin {
     fn build(&self, app: &mut App) {
         item_descriptions::install(app);
         spell_descriptions::install(app);
+        app.add_systems(Update, item_sets::feed.in_set(crate::ui_script::UiFeed));
         app.insert_resource(LocalClientMode)
             .init_resource::<LocalItemSets>()
             .init_resource::<LocalClientSession>()
+            .init_resource::<LocalUiCalls>()
             .init_resource::<LocalClientInput>()
             .init_resource::<LocalDeviceInput>()
             .init_resource::<LocalClientExtension>()
@@ -232,6 +240,19 @@ pub struct LocalUnitUi {
 pub struct LocalCooldown {
     pub remaining: f32,
     pub duration: f32,
+}
+
+impl LocalCooldown {
+    pub(crate) fn ui_triple(self, ui_now: f64) -> Option<benilla_ui::script::CooldownTriple> {
+        (self.remaining.is_finite() && self.remaining > 0.0
+            && self.duration.is_finite() && self.duration > 0.0).then(|| {
+            (
+                ((ui_now - f64::from(self.duration - self.remaining)) * 1000.0).round() as i64,
+                (self.duration * 1000.0).round() as u32,
+                true,
+            )
+        })
+    }
 }
 
 #[derive(Clone, Debug, Default, PartialEq)]
@@ -408,7 +429,6 @@ fn follow_session(
             crate::spell::net::list_opener(spell_id, spells.as_deref(), &mut actions);
         }
         actions.spells = known;
-        actions.dirty = true;
     }
 }
 
@@ -466,8 +486,8 @@ fn player_state(player: &LocalPlayerUi, names: crate::ui_unit::UnitNames<'_>) ->
         is_player: true,
         player_controlled: true,
         is_connected: true,
-        faction_group: crate::ui_unit::race_faction_group(player.race).map(str::to_owned),
-        faction_group_localized: crate::ui_unit::race_faction_group(player.race).map(str::to_owned),
+        faction_group: names.faction_group(player.race).map(str::to_owned),
+        faction_group_localized: names.faction_group(player.race).map(str::to_owned),
         has_relic_slot: matches!(player.class, 2 | 7 | 11),
         ..Default::default()
     }
@@ -533,7 +553,8 @@ fn feed_ui(
     names: crate::ui_unit::NameTables,
 ) {
     let names = names.get();
-    vm.turn(|script, (extension, cvars)| {
+    use benilla_ui::script::origin::{within, Origin};
+    within(Origin::Allowed("local_client::feed_ui"), || vm.turn(|script, (extension, cvars)| {
         let Some(script) = script else { return };
         if let Some(mut extension) = extension {
             if let Some(mut cvars) = cvars {
@@ -620,30 +641,9 @@ fn feed_ui(
                 script.fire_event("SPELLS_CHANGED", vec![]);
             }
         } else {
-            // Preserve the production DBC mapper's names, ordering and skill-line tabs. Only the
-            // recovered game's actual timers replace the server cooldown list's absent values.
-            let mut book = script.spellbook();
-            let mut cooldowns = Vec::new();
-            for slot in &mut book.slots {
-                slot.cooldown = session
-                    .spell_cooldowns
-                    .iter()
-                    .find(|(id, _)| *id == slot.spell_id)
-                    .and_then(|(_, c)| {
-                        (c.remaining > 0.0 && c.remaining.is_finite() && c.duration > 0.0).then(
-                            || {
-                                (
-                                    ((clock.ui_now - f64::from(c.duration - c.remaining)) * 1000.0)
-                                        .round() as i64,
-                                    (c.duration * 1000.0).round() as u32,
-                                    true,
-                                )
-                            },
-                        )
-                    });
-                cooldowns.push((slot.spell_id, slot.cooldown));
-            }
-            script.set_spellbook(book);
+            let cooldowns = session.spell_cooldowns.iter()
+                .map(|(spell, cooldown)| (*spell, cooldown.ui_triple(clock.ui_now)))
+                .collect::<Vec<_>>();
             if memory.spell_cooldowns != cooldowns {
                 script.fire_event("SPELL_UPDATE_COOLDOWN", vec![]);
             }
@@ -660,7 +660,7 @@ fn feed_ui(
         for (event, args) in std::mem::take(&mut session.events) {
             script.fire_event(&event, args);
         }
-    });
+    }));
 }
 
 /// The selected AS input filter owns Escape before the Lua key/binding walk.
@@ -708,6 +708,7 @@ fn capture_input(
     cvars: Option<Res<crate::cvars::Cvars>>,
     loading: Option<Res<crate::loading_screen::LoadingScreen>>,
     mut talent_counter: Local<TalentToggleCounter>,
+    calls: Option<Res<LocalUiCalls>>,
     minimap: Option<Res<crate::minimap::MinimapWidget>>,
     device: Option<Res<LocalDeviceInput>>,
 ) {
@@ -805,7 +806,12 @@ fn capture_input(
             input
                 .aura_cancels
                 .extend(script.take_cancel_aura_requests());
-            for request in script.take_session_requests() {
+            let mut requests = script.take_session_requests();
+            if let Some(calls) = calls.as_ref() {
+                requests.extend(calls.session.lock().unwrap().drain(..));
+                input.aura_cancels.extend(calls.cancel_aura.lock().unwrap().drain(..));
+            }
+            for request in requests {
                 if request == SessionRequest::ReloadUi {
                     reload.0 = true;
                 }

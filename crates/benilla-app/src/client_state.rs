@@ -42,10 +42,13 @@ impl Plugin for ClientStatePlugin {
         app.insert_state(self.start)
             .init_resource::<LocalMenuSceneActive>()
             .configure_sets(Update, InWorldGated.run_if(in_state(ClientState::InWorld)))
-            // Ahead of every world stage, so `WorldLive` and its falling edge are this frame's.
+            // Ahead of the frame's input records and every world stage, so `WorldLive` and its
+            // falling edge are this frame's.
             .add_systems(
                 Update,
-                publish_world_live.before(benilla_world::schedule::WorldStage::Net),
+                publish_world_live
+                    .before(crate::ui_script::UiInput)
+                    .before(benilla_world::schedule::WorldStage::Net),
             );
     }
 }

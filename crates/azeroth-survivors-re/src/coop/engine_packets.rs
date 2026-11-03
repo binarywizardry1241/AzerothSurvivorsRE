@@ -125,13 +125,13 @@ fn update(out: &mut Vec<u8>, kind: u8, id: u64) {
     out.push(kind);
     guid(out, id);
 }
+pub(crate) fn spell_target_mask(target: Option<u64>, go_target: Option<u64>, dest: Option<[f32; 3]>) -> u16 {
+    u16::from(target.is_some()) * 2
+        | u16::from(go_target.is_some()) * 0x800
+        | u16::from(dest.is_some()) * 0x40
+}
 fn targets(out: &mut Vec<u8>, target: Option<u64>, go_target: Option<u64>, dest: Option<[f32; 3]>) {
-    u16v(
-        out,
-        u16::from(target.is_some()) * 2
-            + u16::from(go_target.is_some()) * 0x800
-            + u16::from(dest.is_some()) * 0x40,
-    );
+    u16v(out, spell_target_mask(target, go_target, dest));
     if let Some(target) = target.or(go_target) {
         guid(out, target);
     }
@@ -529,11 +529,14 @@ pub fn encode(
             go_target,
             item_caster,
             misses,
+            source,
+            target_mask,
         } => {
             if *cast_flags & 0x20 != 0 || ammo_display_id.is_some() {
                 return Err(EncodeError::IncompleteAmmo);
             }
-            if target.is_some() && go_target.is_some()
+            if source.is_some() || *target_mask != spell_target_mask(*target, *go_target, *dest)
+                || target.is_some() && go_target.is_some()
                 || (*unit_caster != 0 && *unit_caster != *caster)
                 || item_caster.is_some_and(|item| item == *caster || *unit_caster == 0)
                 || misses
@@ -1027,6 +1030,8 @@ mod tests {
             spell_id: 10,
             cast_flags: 0x100,
             hits: vec![0xf130_0001_0000_0007],
+            target_mask: 0x40,
+            source: None,
             target: None,
             dest: Some([1., 2., 3.]),
             ammo_display_id: None,
@@ -1422,6 +1427,8 @@ mod tests {
             spell_id: 75,
             cast_flags: 0x120,
             hits: vec![2],
+            target_mask: 2,
+            source: None,
             misses: vec![],
             target: Some(2),
             go_target: None,
@@ -1498,6 +1505,8 @@ mod tests {
                 spell_id: 133,
                 cast_flags: 0x100,
                 hits: vec![id],
+                target_mask: 0x840,
+                source: None,
                 misses: vec![SpellGoMiss {
                     target: 2,
                     info: 11,

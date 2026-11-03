@@ -24,7 +24,7 @@ pub(super) fn install(app: &mut App) {
         publish
             .in_set(crate::ui_script::UiFeed)
             .after(super::LocalClientSet::Feed)
-            .after(crate::ui_tooltip::SpellTooltipFeed),
+            .after(crate::ui_unit::UnitFeed),
     );
 }
 

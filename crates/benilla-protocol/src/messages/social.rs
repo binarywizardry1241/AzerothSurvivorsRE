@@ -4,7 +4,7 @@
 
 use std::io::{self, Read};
 
-use crate::wire::{capacity_hint, read_cstring, read_u32_le, read_u64_le, read_u8};
+use crate::wire::{capacity_hint, read_cstring_capped, read_u32_le, read_u64_le, read_u8};
 
 /// `SMSG_FRIEND_STATUS`'s result byte, vmangos `FriendsResult` (`SocialMgr.h:81-110`). The client
 /// (`0x5acab0`) prints each result's `ERR_*` string to the chat frame, not the red error line.
@@ -175,30 +175,62 @@ pub struct WhoResults {
     pub displayed: u32,
     /// The full match count when over 49, else equal to [`Self::displayed`].
     pub total: u32,
-    /// In server order.
+    /// In server order, one per record to [`Self::displayed`], those past a cut or poisoned read
+    /// empty and kept to 50 ([`read_who`]).
     pub entries: Vec<WhoEntry>,
 }
 
-/// Read `SMSG_WHO` (vmangos `WhoListClientQueryTask`, client `0x5adde0`): two `u32` counts, then
-/// `{name, guild, level, class, race, zone}` per entry. 1.12 has no trailing party-status `u32`.
-pub fn read_who(r: &mut impl Read) -> io::Result<WhoResults> {
+/// The records `OnWhoList` keeps (`0x5adf87`-`0x5adf92`, the array's `0x1f40` bytes at
+/// `0x5ae045`).
+const WHO_KEPT: usize = 50;
+
+/// Read `SMSG_WHO` as `OnWhoList` (`0x5adf60`) reads it: two `u32` counts, then
+/// `{name, guild, level, class, race, zone}` per record, the name and the guild through
+/// `GetCString` at `0x30` and `0x60` (`0x5adff0`, `0x5adffd`). 1.12 has no trailing party-status
+/// `u32`. A string with no NUL inside its capacity or before the end reads `""` and poisons the
+/// store, and every read after it fails, a dword staying the 0 it was zeroed to
+/// (`0x5ae013`-`0x5ae03d`); the loop still runs to the count (`0x5ae0c1`), so a short or poisoned
+/// answer keeps its records, those past the cut empty. The empty tail is kept to the 50 the list
+/// holds; the chat exit, the only reader of more, takes at most 3 (`0x5adfc1`).
+pub fn read_who(r: &mut &[u8]) -> io::Result<WhoResults> {
     let displayed = read_u32_le(r)?;
     let total = read_u32_le(r)?;
-    let mut entries = Vec::with_capacity(capacity_hint(displayed, 64));
+    let mut entries = Vec::with_capacity(capacity_hint(displayed, WHO_KEPT));
     for _ in 0..displayed {
+        if r.is_empty() && entries.len() >= WHO_KEPT {
+            break;
+        }
         entries.push(WhoEntry {
-            name: read_cstring(r)?,
-            guild: read_cstring(r)?,
-            level: read_u32_le(r)?,
-            class: read_u32_le(r)?,
-            race: read_u32_le(r)?,
-            zone: read_u32_le(r)?,
+            name: who_string(r, 0x30),
+            guild: who_string(r, 0x60),
+            level: who_dword(r),
+            class: who_dword(r),
+            race: who_dword(r),
+            zone: who_dword(r),
         });
     }
     Ok(WhoResults {
         displayed,
         total,
         entries,
+    })
+}
+
+/// `GetCString` (`0x4191b0`) at `capacity`; a miss empties the store, as its poisoned cursor fails
+/// every later read.
+fn who_string(r: &mut &[u8], capacity: usize) -> String {
+    read_cstring_capped(r, capacity).unwrap_or_else(|| {
+        *r = &[];
+        String::new()
+    })
+}
+
+/// A dword (`0x418e30`): short of four bytes it reads 0 and empties the store, a failed read
+/// poisoning it.
+fn who_dword(r: &mut &[u8]) -> u32 {
+    read_u32_le(r).unwrap_or_else(|_| {
+        *r = &[];
+        0
     })
 }
 
@@ -303,6 +335,76 @@ pub fn set_looking_for_group(slots: [u32; 3], comment: &str) -> Vec<u8> {
     }
     push_cstring(&mut body, comment);
     body
+}
+
+/// One looking-for-group record as `0x4e8dc0` reads it over the stored one (`0x4e8e8e`-`0x4e8f17`).
+/// The handler reads straight into the record, so a dword the store falls short of is `None`: the
+/// read writes nothing (`0x418e44`) and the record keeps its old value. A string always writes,
+/// `""` when the store is short or poisoned.
+#[derive(Debug, Clone, PartialEq, Eq, Default)]
+pub struct LfgEntry {
+    pub name: String,
+    pub level: Option<u32>,
+    /// `ChrClasses.dbc` id.
+    pub class: Option<u32>,
+    /// The three slot words: the type in the top byte, the entry in the low 24 bits.
+    pub slots: [Option<u32>; 3],
+    pub comment: String,
+}
+
+/// `MSG_LOOKING_FOR_GROUP`'s reply, as written over the stored list.
+#[derive(Debug, Clone, PartialEq, Eq, Default)]
+pub struct LfgResults {
+    /// The first dword, at most 50 (`0x4e8e60`); `None` when the store is short of it, which
+    /// keeps the stored count (`0x418eb0` writes nothing).
+    pub count: Option<u32>,
+    /// The second dword, the server's total; `None` keeps the stored one.
+    pub total: Option<u32>,
+    /// The records read before the store ran out, the last perhaps cut. Every record past them up
+    /// to the count reads a poisoned store: its name and comment `""`, its dwords unwritten.
+    pub entries: Vec<LfgEntry>,
+}
+
+/// The records `HandleLookingForGroupPacket` keeps (`0x4e8e60`).
+const LFG_KEPT: u32 = 50;
+
+/// Read the reply as `0x4e8dc0` does: two `u32` (`0x4e8e4a`, `0x4e8e56`), the first clamped to 50,
+/// then per record a name at cap `0x30` (`0x4e8e8e`), level and class dwords, three slot words and
+/// a comment at cap `0x80` (`0x4e8f17`). A short dword or a string with no NUL in its capacity
+/// poisons the store ([`who_string`], [`lfg_dword`]), and the loop still runs to the count, so a
+/// truncated reply still stands and is signalled; the records past the bytes are left to the
+/// caller, which knows the stored count a short header keeps.
+pub fn read_lfg(r: &mut &[u8]) -> io::Result<LfgResults> {
+    let count = lfg_dword(r).map(|count| count.min(LFG_KEPT));
+    let total = lfg_dword(r);
+    let mut entries = Vec::new();
+    for _ in 0..count.unwrap_or(0) {
+        if r.is_empty() {
+            break;
+        }
+        entries.push(LfgEntry {
+            name: who_string(r, 0x30),
+            level: lfg_dword(r),
+            class: lfg_dword(r),
+            slots: [lfg_dword(r), lfg_dword(r), lfg_dword(r)],
+            comment: who_string(r, 0x80),
+        });
+    }
+    Ok(LfgResults {
+        count,
+        total,
+        entries,
+    })
+}
+
+/// `GetUInt32`/`GetInt32` (`0x418eb0`, `0x418e30`): short of four bytes it moves the cursor past
+/// the end and writes nothing (`0x418e44`), which poisons every later read.
+fn lfg_dword(r: &mut &[u8]) -> Option<u32> {
+    let value = read_u32_le(r).ok();
+    if value.is_none() {
+        *r = &[];
+    }
+    value
 }
 
 /// Body of `MSG_LOOKING_FOR_GROUP` as `LFGQuery` sends it (`0x4e97f9`..`0x4e983a`): two
@@ -415,6 +517,94 @@ mod tests {
         assert_eq!(status.online, None);
     }
 
+    /// `0x4e8dc0`: count, total, then per record name, level, class, three slots, comment.
+    #[test]
+    fn lfg_reply_golden() {
+        let mut body = Vec::new();
+        body.extend_from_slice(&2u32.to_le_bytes()); // count
+        body.extend_from_slice(&7u32.to_le_bytes()); // total
+        body.extend_from_slice(b"Aria\0");
+        body.extend_from_slice(&60u32.to_le_bytes()); // level
+        body.extend_from_slice(&8u32.to_le_bytes()); // class
+        body.extend_from_slice(&0x0100_0002u32.to_le_bytes());
+        body.extend_from_slice(&0x0300_0abcu32.to_le_bytes());
+        body.extend_from_slice(&0u32.to_le_bytes());
+        body.extend_from_slice(b"LF Strat\0");
+        body.extend_from_slice(b"Bo\0");
+        body.extend_from_slice(&1u32.to_le_bytes());
+        body.extend_from_slice(&2u32.to_le_bytes());
+        body.extend_from_slice(&[0; 12]);
+        body.extend_from_slice(b"\0");
+        let got = read_lfg(&mut &body[..]).unwrap();
+        assert_eq!(
+            got,
+            LfgResults {
+                count: Some(2),
+                total: Some(7),
+                entries: vec![
+                    LfgEntry {
+                        name: "Aria".into(),
+                        level: Some(60),
+                        class: Some(8),
+                        slots: [Some(0x0100_0002), Some(0x0300_0abc), Some(0)],
+                        comment: "LF Strat".into(),
+                    },
+                    LfgEntry {
+                        name: "Bo".into(),
+                        level: Some(1),
+                        class: Some(2),
+                        slots: [Some(0); 3],
+                        comment: String::new(),
+                    },
+                ],
+            }
+        );
+        // A count of 0 has no records.
+        let zero = [0u8; 8];
+        let got = read_lfg(&mut &zero[..]).unwrap();
+        assert_eq!(
+            (got.count, got.total, got.entries.len()),
+            (Some(0), Some(0), 0)
+        );
+    }
+
+    /// A short reply still stands, as `0x4e8dc0` reads on through a poisoned store: a short header
+    /// leaves the stored count and total unwritten (`0x418eb0`), a count past 50 keeps 50
+    /// (`0x4e8e60`), and a cut record keeps what it read, its dwords past the cut unwritten
+    /// (`0x418e30`).
+    #[test]
+    fn a_short_lfg_reply_writes_only_what_it_read() {
+        for short in [&[][..], &[2, 0, 0][..]] {
+            assert_eq!(
+                read_lfg(&mut &short[..]).unwrap(),
+                LfgResults::default(),
+                "{short:?}"
+            );
+        }
+        let mut body = Vec::new();
+        body.extend_from_slice(&9000u32.to_le_bytes());
+        let got = read_lfg(&mut &body[..]).unwrap();
+        assert_eq!(
+            (got.count, got.total, got.entries.len()),
+            (Some(50), None, 0)
+        );
+
+        body.extend_from_slice(&9u32.to_le_bytes());
+        body.extend_from_slice(b"Aria\0");
+        body.extend_from_slice(&60u32.to_le_bytes());
+        body.extend_from_slice(&[8, 0]);
+        let got = read_lfg(&mut &body[..]).unwrap();
+        assert_eq!((got.count, got.total), (Some(50), Some(9)));
+        assert_eq!(
+            got.entries,
+            [LfgEntry {
+                name: "Aria".into(),
+                level: Some(60),
+                ..LfgEntry::default()
+            }]
+        );
+    }
+
     #[test]
     fn who_results_carry_both_counts() {
         let mut body = Vec::new();
@@ -458,6 +648,75 @@ mod tests {
         let who = read_who(&mut &body[..]).unwrap();
         assert_eq!(who.entries[0].guild, "");
         assert_eq!(who.entries[0].level, 5);
+    }
+
+    fn who_record(body: &mut Vec<u8>, name: &[u8], guild: &[u8], level: u32) {
+        body.extend_from_slice(name);
+        body.push(0);
+        body.extend_from_slice(guild);
+        body.push(0);
+        for v in [level, 1, 1, 12] {
+            body.extend_from_slice(&v.to_le_bytes());
+        }
+    }
+
+    /// `0x5adf60` reads the name and guild with `GetCString` at `0x30` and `0x60` (`0x5adff0`,
+    /// `0x5adffd`): 47 and 95 bytes fit with their NUL; one more reads `""` and poisons the store,
+    /// so the record's dwords and every later record read empty, and each is still kept.
+    #[test]
+    fn who_strings_read_at_their_capacities() {
+        let mut body = Vec::new();
+        body.extend_from_slice(&3u32.to_le_bytes());
+        body.extend_from_slice(&3u32.to_le_bytes());
+        who_record(&mut body, &[b'a'; 47], &[b'g'; 95], 10);
+        who_record(&mut body, b"Bob", &[b'g'; 96], 20);
+        who_record(&mut body, b"Cid", b"", 30);
+        let who = read_who(&mut &body[..]).unwrap();
+        assert_eq!(who.entries.len(), 3);
+        assert_eq!(who.entries[0].name.len(), 47);
+        assert_eq!(who.entries[0].guild.len(), 95);
+        assert_eq!(who.entries[0].level, 10);
+        let poisoned = WhoEntry {
+            name: "Bob".into(),
+            ..WhoEntry::default()
+        };
+        assert_eq!(who.entries[1..], [poisoned, WhoEntry::default()]);
+
+        let mut body = Vec::new();
+        body.extend_from_slice(&1u32.to_le_bytes());
+        body.extend_from_slice(&1u32.to_le_bytes());
+        who_record(&mut body, &[b'a'; 48], b"", 10);
+        let who = read_who(&mut &body[..]).unwrap();
+        assert_eq!(who.entries, [WhoEntry::default()], "a 48-byte name");
+    }
+
+    /// A short `SMSG_WHO` keeps every record up to its count, as the loop reads on through a
+    /// poisoned store (`0x5ae045`-`0x5ae0c6`): the cut record keeps what it read and the rest
+    /// are empty, up to the 50 the list keeps (`0x5adf87`).
+    #[test]
+    fn a_short_who_answer_keeps_its_rows() {
+        let mut body = Vec::new();
+        body.extend_from_slice(&80u32.to_le_bytes());
+        body.extend_from_slice(&80u32.to_le_bytes());
+        who_record(&mut body, b"Ann", b"G", 7);
+        who_record(&mut body, b"Ben", b"H", 8);
+        body.truncate(body.len() - 6);
+        let who = read_who(&mut &body[..]).unwrap();
+        assert_eq!((who.displayed, who.total), (80, 80));
+        assert_eq!(who.entries.len(), 50);
+        assert_eq!(who.entries[0].level, 7);
+        let cut = &who.entries[1];
+        assert_eq!(
+            (
+                cut.name.as_str(),
+                cut.guild.as_str(),
+                cut.level,
+                cut.class,
+                cut.race
+            ),
+            ("Ben", "H", 8, 1, 0)
+        );
+        assert!(who.entries[2..].iter().all(|e| *e == WhoEntry::default()));
     }
 
     #[test]

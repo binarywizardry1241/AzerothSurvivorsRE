@@ -16,7 +16,6 @@ use benilla_ui::script::UiScript;
 use super::probes::ProbeClock;
 use crate::net::{ChatKind, ClientCommand, Guid, NetCommands, NetEntity, ObjectStore, SelfPlayer};
 use crate::player::Player;
-use crate::ui_item_text::ItemTextOpen;
 use crate::ui_script::{UiCostWanted, UiFrameCost};
 
 /// A standing position beside the plaque.
@@ -203,7 +202,8 @@ fn report(label: &str, s: &[Sample]) {
 }
 
 fn book_probe(
-    mut vm: crate::script_calls::VmWith<ResMut<'static, ItemTextOpen>>,
+    mut vm: crate::script_calls::HostedVm,
+    mut commands: Commands,
     time: ProbeClock,
     mut probe: ResMut<BookProbe>,
     mut wanted: ResMut<UiCostWanted>,
@@ -214,7 +214,10 @@ fn book_probe(
     net: Res<NetCommands>,
     mut exit: MessageWriter<AppExit>,
 ) {
-    vm.turn(|script, mut reader| {
+    // The step's Lua runs with the host lent, so the calls it makes apply inside their verbs; the
+    // reader opens outside it, once it has run.
+    let mut open_pages = None;
+    vm.run(|script| {
         if self_player.is_empty() {
             return; // not in-world yet
         }
@@ -283,10 +286,10 @@ fn book_probe(
                 if probe.closed.len() >= SAMPLE_FRAMES {
                     let guid = probe.plaque.unwrap_or_default();
                     info!(
-                        "PROBE_BOOK: opening the reader on {guid:#x} (the right-click's own \
-                           route — `ItemTextOpen::read_pages`)"
+                        "PROBE_BOOK: opening the reader on {guid:#x} (the engine's own read, \
+                           `ui_item_text::read_now`)"
                     );
-                    reader.read_pages(guid);
+                    open_pages = Some(guid);
                     probe.phase = Phase::WaitReady { since: now };
                 }
             }
@@ -342,5 +345,8 @@ fn book_probe(
                 });
             }
         }
-    })
+    });
+    if let Some(guid) = open_pages {
+        commands.queue(move |world: &mut World| crate::ui_item_text::read_now(world, guid));
+    }
 }

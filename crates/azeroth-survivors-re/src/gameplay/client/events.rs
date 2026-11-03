@@ -249,7 +249,8 @@ fn spell_go(cast: SpellCast) -> SessionEvent {
     };
     SessionEvent::SpellGo { caster:cast.source_guid,unit_caster:cast.source_guid,spell_id:cast.spell_id,
         cast_flags:0x100,hits:cast.hit_targets.into_iter().take(255).collect(),
-        misses:Vec::new(),target,go_target:None,dest,ammo_display_id:None,item_caster:None }
+        misses:Vec::new(),target,go_target:None,dest,ammo_display_id:None,item_caster:None,
+        target_mask: crate::coop::engine_packets::spell_target_mask(target, None, dest), source: None }
 }
 
 fn object(guid:u64,kind:EntityKind,point:Position,orientation:f32,

@@ -36,27 +36,27 @@ impl Plugin for LocalPresentationPlugin {
             dispatch
                 .in_set(LocalPresentationDispatch)
                 .after(LocalActorSet::Register)
+                .after(crate::ui_script::UiInput)
                 .before(benilla_world::schedule::WorldStage::Net),
         );
     }
 }
 
 fn dispatch(world: &mut World) {
-    if world.resource::<LocalClientSession>().active {
-        let packets = std::mem::take(&mut world.resource_mut::<LocalWireEvents>().0);
-        for (opcode, payload) in packets {
-            match benilla_protocol::messages::parse_server(opcode, &payload) {
-                Ok(packet) => world.resource_mut::<LocalPresentationEvents>().0
-                    .extend(benilla_protocol::decode(packet)),
-                Err(error) => warn!("embedding packet {opcode:#x} rejected: {error}"),
-            }
-        }
-    }
-    let events = std::mem::take(&mut world.resource_mut::<LocalPresentationEvents>().0);
-    if events.is_empty() || !world.resource::<LocalClientSession>().active {
+    let packets = world.get_resource_mut::<LocalWireEvents>().map_or_else(Vec::new, |mut events| std::mem::take(&mut events.0));
+    let local = std::mem::take(&mut world.resource_mut::<LocalPresentationEvents>().0);
+    if !world.resource::<LocalClientSession>().active {
         return;
     }
-    crate::net::handlers::dispatch(world, complete_object_packets(events));
+    let mut events = Vec::new();
+    for (opcode, payload) in packets {
+        match benilla_protocol::messages::parse_server(opcode, &payload) {
+            Ok(packet) => events.extend(benilla_protocol::decode(packet)),
+            Err(error) => warn!("embedding packet {opcode:#x} rejected: {error}"),
+        }
+    }
+    events.extend(complete_object_packets(local));
+    crate::net::handlers::dispatch(world, events);
 }
 
 /// Deliver the embedding's final packets through the production inbound and
@@ -73,6 +73,7 @@ pub fn flush_events(world: &mut World) {
 /// event can inspect its state. First-pass GUIDs also need their explicit notify position.
 fn complete_object_packets(events: Vec<SessionEvent>) -> Vec<SessionEvent> {
     use benilla_protocol::{guid, NotifyBlock};
+
     let mut framed = Vec::with_capacity(events.len());
     for event in events {
         let notify = match &event {
@@ -182,6 +183,9 @@ mod tests {
                 spell_id: 133,
                 cast_flags: 0,
                 hits: vec![2],
+                unit_caster: 1,
+                target_mask: 2,
+                source: None,
                 misses: vec![],
                 target: Some(2),
                 go_target: None,

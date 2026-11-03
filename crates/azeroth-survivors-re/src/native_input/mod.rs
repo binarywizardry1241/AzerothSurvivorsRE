@@ -316,7 +316,7 @@ fn update(world: &mut World) {
             .iter_just_pressed()
             .map(|touch| (touch.id(), touch.position()))
             .find(|(_, point)| {
-                benilla_app::local_client::touch_over_interface(world, size.y, *point)
+                benilla_app::local_client::touch_over_interface(world, size, *point)
             })
         {
             state.interface_touch = Some((id, point));
@@ -346,7 +346,7 @@ fn update(world: &mut World) {
                 .movement
                 .is_some_and(|movement| movement.0 == touch.0)
                 || !custom_press
-                    && !benilla_app::local_client::touch_over_interface(world, size.y, touch.1)
+                    && !benilla_app::local_client::touch_over_interface(world, size, touch.1)
         })
         .collect();
     let touch = state.touch.step(

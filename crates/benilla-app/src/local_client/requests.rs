@@ -70,7 +70,7 @@ impl Plugin for LocalRequestsPlugin {
 fn publish_actions(
     session: Res<LocalClientSession>,
     mut previous: ResMut<PublishedActions>,
-    mut actions: ResMut<crate::ui_action::PlayerActions>,
+    mut actions: ResMut<crate::ui_action::ActionSlots>,
 ) {
     let player = session
         .player
@@ -103,7 +103,6 @@ fn publish_actions(
             );
         }
     }
-    actions.dirty = true;
     *previous = PublishedActions { player, spells };
 }
 
@@ -386,7 +385,7 @@ mod tests {
         let mut app = App::new();
         app.init_resource::<LocalClientSession>()
             .init_resource::<PublishedActions>()
-            .init_resource::<crate::ui_action::PlayerActions>();
+            .init_resource::<crate::ui_action::ActionSlots>();
         {
             let mut session = app.world_mut().resource_mut::<LocalClientSession>();
             session.active = true;
@@ -407,7 +406,7 @@ mod tests {
             kind: benilla_protocol::messages::ACTION_KIND_MACRO,
         };
         app.world_mut()
-            .resource_mut::<crate::ui_action::PlayerActions>()
+            .resource_mut::<crate::ui_action::ActionSlots>()
             .buttons
             .insert(0, macro_button);
         app.world_mut().resource_mut::<LocalClientSession>().actions[0].cooldown =
@@ -418,7 +417,7 @@ mod tests {
         app.world_mut().run_system_once(publish_actions).unwrap();
         assert_eq!(
             app.world()
-                .resource::<crate::ui_action::PlayerActions>()
+                .resource::<crate::ui_action::ActionSlots>()
                 .buttons[&0]
                 .action,
             7
@@ -427,7 +426,7 @@ mod tests {
         app.world_mut().run_system_once(publish_actions).unwrap();
         assert_eq!(
             app.world()
-                .resource::<crate::ui_action::PlayerActions>()
+                .resource::<crate::ui_action::ActionSlots>()
                 .buttons[&0]
                 .action,
             133
@@ -459,7 +458,7 @@ mod tests {
             }
             app.insert_resource(session)
                 .init_resource::<PublishedActions>()
-                .init_resource::<crate::ui_action::PlayerActions>();
+                .init_resource::<crate::ui_action::ActionSlots>();
             app.world_mut().run_system_once(publish_actions).unwrap();
             let pairs = row["pairs"].clone();
             let expected = fixtures["tables"]
@@ -468,7 +467,7 @@ mod tests {
                 .iter()
                 .find(|table| table["pairs"] == pairs)
                 .unwrap();
-            let actions = app.world().resource::<crate::ui_action::PlayerActions>();
+            let actions = app.world().resource::<crate::ui_action::ActionSlots>();
             for (slot, value) in expected["expected"].as_array().unwrap().iter().enumerate() {
                 assert_eq!(
                     actions

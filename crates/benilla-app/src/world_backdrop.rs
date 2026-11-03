@@ -254,7 +254,10 @@ pub(crate) struct WorldBackdropPlugin;
 
 /// Render scale's change callback, clamped to [`RENDER_SCALE_RANGE`]; the backdrop and the
 /// camera's factor follow together on the next frame.
-pub(crate) fn on_cvar(ev: On<crate::cvars::CvarChanged>, mut scale: ResMut<RenderScale>) {
+pub(crate) fn on_cvar(
+    ev: &crate::cvars::CvarChanged,
+    mut scale: bevy::prelude::Mut<'_, RenderScale>,
+) {
     if ev.is("renderScale") {
         // Selected 0.109.0 observer140c04c60 trims Unicode whitespace and
         // parses the entire value as Rust f32; the CVar record's prefix parser
@@ -266,12 +269,11 @@ pub(crate) fn on_cvar(ev: On<crate::cvars::CvarChanged>, mut scale: ResMut<Rende
 
 impl Plugin for WorldBackdropPlugin {
     fn build(&self, app: &mut App) {
-        app.add_observer(on_cvar);
         app.init_resource::<RenderScale>()
             .add_systems(Startup, setup_backdrop)
             .add_systems(
                 Update,
-                (track_render_size, retarget_world_camera).chain(),
+                (track_render_size, retarget_world_camera).chain().after(crate::vm_pass::VmPass::End),
             )
             .add_systems(PostUpdate, claim_backdrop);
     }

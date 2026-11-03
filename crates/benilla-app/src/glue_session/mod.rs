@@ -57,7 +57,7 @@ impl Plugin for GlueSessionPlugin {
                 )
                     .chain()
                     .in_set(NetworkSession)
-                    .after(crate::ui_script::UiInput)
+                    .after(crate::ui_script::UiTick)
                     .after(crate::ui_script::glue_mgr::drive_glue_mgr)
                     .after(edges::SessionEdges)
                     .after(login::LoginPolicy),

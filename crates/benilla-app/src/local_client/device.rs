@@ -43,11 +43,13 @@ pub struct LocalTouchPointer {
 }
 
 /// Hit the actual laid-out FrameXML tree; a world-frame hit remains gameplay.
-pub fn touch_over_interface(world: &World, height: f32, point: Vec2) -> bool {
+pub fn touch_over_interface(world: &World, size: Vec2, point: Vec2) -> bool {
     let Some(script) = world.get_non_send_resource::<benilla_ui::script::UiScript>() else {
         return false;
     };
-    let point = crate::ui_script::window_to_ui(height, point);
+    let widescreen = world.get_resource::<crate::video::Widescreen>();
+    let screen = crate::ui_script::UiScreen::of(size, widescreen.is_none_or(|mode| mode.0));
+    let point = crate::ui_script::window_to_ui(screen, point);
     script
         .hit_test(point.x, point.y)
         .is_some_and(|id| !script.is_world_frame(id))

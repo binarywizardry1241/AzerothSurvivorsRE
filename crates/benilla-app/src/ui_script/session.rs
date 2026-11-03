@@ -36,13 +36,12 @@ impl<T: Default> VmMemo<T> {
     /// [`VmMemo::get`] for a system that also runs with no VM, at the character screen; no VM is
     /// session 0, so the memo holds there too.
     pub(crate) fn get_for(&mut self, script: Option<&UiScript>) -> &mut T {
-        self.get_reset_for(script).0
-    }
-
-    /// [`VmMemo::get`], plus whether this read reset it: a gated feed must re-push into a fresh VM
-    /// even when every input is unchanged.
-    pub(crate) fn get_reset(&mut self, script: &UiScript) -> (&mut T, bool) {
-        self.get_reset_for(Some(script))
+        let now = script.map_or(0, UiScript::session);
+        if self.session != now {
+            self.session = now;
+            self.inner = T::default();
+        }
+        &mut self.inner
     }
 
     /// [`VmMemo::get`] for what a window's feed last told the VM: cleared as well once a
@@ -54,16 +53,6 @@ impl<T: Default> VmMemo<T> {
             self.inner = T::default();
         }
         self.get(script)
-    }
-
-    fn get_reset_for(&mut self, script: Option<&UiScript>) -> (&mut T, bool) {
-        let now = script.map_or(0, UiScript::session);
-        let reset = self.session != now;
-        if reset {
-            self.session = now;
-            self.inner = T::default();
-        }
-        (&mut self.inner, reset)
     }
 }
 
@@ -122,23 +111,6 @@ mod tests {
             memo.get(&first).is_empty(),
             "and moving back does not resurrect it — the memory is gone, not shelved"
         );
-    }
-
-    #[test]
-    fn get_reset_reports_each_session_flip_once() {
-        let first = UiScript::new().expect("VM");
-        let second = UiScript::new().expect("VM");
-        let mut memo: VmMemo<u32> = VmMemo::default();
-
-        let (m, reset) = memo.get_reset(&first);
-        assert!(reset, "the first read of a session is the reset");
-        *m = 7;
-        let (m, reset) = memo.get_reset(&first);
-        assert!(!reset, "steady frames read quietly");
-        assert_eq!(*m, 7);
-        let (m, reset) = memo.get_reset(&second);
-        assert!(reset, "a new VM resets again");
-        assert_eq!(*m, 0, "…and the memory is gone with the old one");
     }
 
     #[test]
@@ -240,12 +212,6 @@ mod tests {
         // The glue booth's stage numbers, which must outlive the VM: a scene parked under the old
         // VM keeps its number until the booth drops it, so a new VM's scenes take fresh ones.
         ("ui_script/glue_scene.rs", "top"),
-        // The reactive spells' list, engine state the reference keeps past a `/reload` and empties
-        // at the active player's arrival (`0x5dea86`), on whose creation the system clears it.
-        ("ui_action/state.rs", "reactive"),
-        // The action bar's usable cache, engine state the reference keeps past a `/reload`: its
-        // zeroing `0x4e4f50` runs only from `InitializeGame 0x48f480`.
-        ("ui_action/state.rs", "cache"),
     ];
 
     use crate::test_support::{fn_parameter_lists, rust_files};
