@@ -1,13 +1,15 @@
 ---
 name: execheck
-description: Run an explicit full AzerothSurvivorsRE audit against the installed EXE and Data, discover AS-specific behavior, and reconcile source connections, changelog claims and findings. Use for $execheck or an explicit full EXE-to-rebuild coverage audit, including unchanged versions.
+description: Run a full AzerothSurvivorsRE audit against the installed EXE and Data, discover AS-specific behavior, and reconcile source connections, changelog claims and findings. Use for $execheck, explicit full-audit requests or selected $fixgap work that requires the complete audit.
 ---
 
 # EXE check
 
 Refresh the installed target and audit the entire selected EXE and the
 reconstruction's evidence/connection map in one workflow. Run every stage below
-for `$execheck` and explicit full-audit requests, including an unchanged target.
+for `$execheck`, explicit full-audit requests and selected `$fixgap` work that
+[requires the full audit](../fixgap/SKILL.md#escalate-when-the-selected-gap-requires-it),
+including an unchanged target.
 Use [`$changelog`](../changelog/SKILL.md) for release-note intake and
 [`$fixgap`](../fixgap/SKILL.md) for selected repairs on the installed EXE.
 Complete each audit stage by extending and reconciling retained work.
@@ -524,7 +526,7 @@ a separate numbered finding only when it has no coherent existing issue/group.
 Use the same grouped work items in chat; preserve existing member identities and
 closed rows rather than presenting each as an independent new task.
 
-On every explicit audit, give each distinct newly
+On every full audit, give each distinct newly
 discovered or changed AS-specific code, data, script, UI, resource, ID, format or
 behavior lead requiring recovery/reconstruction a traceable CURRENT-STATE owner,
 as a finding or explicit constituent of its connected issue/group.

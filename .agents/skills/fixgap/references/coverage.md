@@ -7,7 +7,7 @@ supplied version and verifies its bytes. A newly supplied EXE or a changed hash
 must be registered and receive current coverage before older records can be used
 as current. Do not select by filesystem timestamps or relabel old native RVAs.
 
-The full consistency checker belongs to explicit `$execheck` audits. For
+The full consistency checker belongs to full `$execheck` audits. For
 `$fixgap`, inspect the installed EXE with `scripts/register-target.py
 --inspect-installed` and check only the selected gap's inputs and evidence.
 Installed EXE identity, bounded recovery and published audit coverage are
@@ -29,7 +29,8 @@ has older provenance or lacks exact newest-version/hash proof or a registered
 current bounded contract. Inspect the source and prior repair before offering
 work; require a concrete remaining defect, missing behavior or implementation
 contract beyond that proof deficit. Preserve honest target/provenance records.
-Explicit full refreshes and coverage audits belong to `$execheck`.
+Follow `$execheck` for a full refresh or audit, including when the selected
+gap [requires the complete audit](../SKILL.md#escalate-when-the-selected-gap-requires-it).
 Apply the shared [incremental recovery rules](../../shared/autonomy.md#incremental-recovery-across-target-updates)
 to those audits and selected repairs. Completed recovery and implementation
 survive target updates; their current applicability is a separate assessment.
@@ -45,7 +46,7 @@ historical excluded-co-op classifications describe earlier evidence scope, not
 a current stop rule. Apply `AGENTS.md`'s no-server-running boundary and the
 invoked workflow's separate compilation/execution limits.
 
-An explicit `$execheck` audit registers the exact EXE/resource identity, scans
+A full `$execheck` audit registers the exact EXE/resource identity, scans
 the whole artifact, and reconciles discovered leads, claims and source gaps.
 An installed version or hash change is an input to scoped `$fixgap` recovery
 and does not select that audit.

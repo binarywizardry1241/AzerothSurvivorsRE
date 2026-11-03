@@ -437,9 +437,11 @@ opening the EXE or loading coverage records. The selectable groups live in
 
 [`$fixgap`](../../.agents/skills/fixgap/SKILL.md) identifies the installed EXE
 independently of audit registration. It uses the relevant claim reviews,
-source and hash-bound evidence for a selected repair. New bounded evidence can
-be recorded before the next full audit. The audit ledger remains a snapshot of
-its recorded inputs until reconciliation.
+source and hash-bound evidence for a selected repair. It can reuse individual
+audit procedures or run the [full `$execheck` workflow](../../.agents/skills/execheck/SKILL.md)
+when the selected gap requires it. New bounded evidence can be recorded before
+the next full audit. The audit ledger remains a snapshot of its recorded inputs
+until reconciliation.
 
 ## Reconcile and check a full audit
 

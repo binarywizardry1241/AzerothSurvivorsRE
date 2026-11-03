@@ -149,7 +149,7 @@ and active work.
 - [Newest-target coverage workflow](docs/analysis/reconstruction-coverage.md), [system map](docs/analysis/system-coverage.md) and [individual changelog claims](docs/analysis/coverage/changelog.json)
 - [$changelog](.agents/skills/changelog/SKILL.md) saves pasted release notes and queues selectable leads.
 - [$fixgap](.agents/skills/fixgap/SKILL.md) works on selected gaps or release leads and uses the installed EXE for targeted recovery.
-- [$execheck](.agents/skills/execheck/SKILL.md) runs the full EXE and Data audit on request.
+- [$execheck](.agents/skills/execheck/SKILL.md) runs the full EXE and Data audit on request or when a selected gap requires it.
 - [Recovered behavior and evidence index](docs/analysis/README.md)
 - [Original-game changelog](docs/CHANGELOG.md) and its unchanged [source archive](changelog_2026-10-15_1.json)
 - [Source distribution and runtime data](docs/SOURCE-DISTRIBUTION.md)

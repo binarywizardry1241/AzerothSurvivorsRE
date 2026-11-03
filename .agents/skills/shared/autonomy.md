@@ -149,7 +149,7 @@ recovery; version/hash drift alone does not require that work.
 
 - **Same target and inputs:** verify the target, any Data used and relevant source,
   query/profile/input commitments, then reuse completed results and saved
-  Programs. Resume unfinished queries/census batches. In explicit audits, repeat
+  Programs. Resume unfinished queries/census batches. In full audits, repeat
   the required whole-file inventory scans and reconciliation. Reuse compatible
   Ghidra imports and completed decompilation/census work. Missing outputs, changed analysis inputs or a
   demonstrated analysis defect can require a replacement pass; identify why.

@@ -34,8 +34,8 @@ not create another large database. Preserve cross-version correspondence limits.
 Use the **currently installed, hash-verified EXE** for fresh native work. Keep
 its identity separate from the last fully audited target. Historical reports
 retain their original target. Use the [coverage reference](references/coverage.md)
-for retained accounting and bounded #41 leads. Route explicit full audits to
-[`$execheck`](../execheck/SKILL.md).
+for retained accounting and bounded #41 leads. Use the
+[`$execheck` workflow](../execheck/SKILL.md) for full audits.
 Apply the shared [incremental recovery rules](../shared/autonomy.md#incremental-recovery-across-target-updates).
 Continue prior repairs and #41 questions from their saved results. Preserve
 completed work and omit proof-only applicability/registration tasks from ordinary
@@ -98,6 +98,21 @@ completed work. If an uncertain native fact is necessary to
 justify the change, resolve that fact.
 Keep review, documentation and permitted checks proportional to the actual fix;
 a small correction does not need a new recovery project or redundant fixtures.
+
+## Escalate when the selected gap requires it
+
+Reuse any `$execheck` procedure that supplies evidence the selected gap needs,
+including a whole-image scan or census when the question requires it. If the
+selected work requires the complete audit, such as a full #41 coverage review,
+follow `$execheck` end to end in the same task. Explain which required result
+depends on the full audit and why retained evidence or a smaller pass is
+insufficient. The existing selection authorizes this dependency. Reuse completed
+work and resume the selected gap with the audited evidence.
+
+A new EXE hash, stale coverage ledger, difficult query or one required audit
+stage alone does not trigger the complete workflow. Keep standalone audit
+findings and audit-only commits local. Carry only evidence needed for the
+selected repair into its delivery, with verified provenance and working links.
 
 ## Stay within Azeroth Survivors
 
@@ -247,7 +262,7 @@ them, inventing missing behavior or treating static checks as gameplay proof.
    in CURRENT-STATE. Report an unaudited hash as such and keep established source
    work selectable. If inspection fails, report the reason and continue eligible
    source-only work. Resolve the installed identity before fresh native recovery.
-   Use the full coverage checker only for explicit audit work. A bare invocation
+   Use the full coverage checker as part of a full audit. A bare invocation
    remains read-only, including on a new hash.
    Consult `docs/analysis/coverage/systems.json` for source work and pending
    native questions associated with each gap, including all diagnostic paths.
@@ -431,6 +446,8 @@ new selection only for work outside that authorization or an explicit user limit
   repository's focused-commit discipline, staging only the selected repair or an
   authorized incidental repair and its related evidence/checks/documentation.
   Keep distinct repairs in separate commits and leave other pending work alone.
+  When a full audit is a repair dependency, keep audit-only commits on a local
+  branch outside the history pushed for the repair.
   Integrate each focused repair into local `main` in coordination with its owning
   checkout, without switching/resetting another task's dirty checkout or folding
   unrelated work into the repair. For work already on `main`, deliver immediately;
