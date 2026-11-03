@@ -1,6 +1,6 @@
 {
   "target_sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0",
-  "default_provenance": "Eight added engine defaults and descriptor literals: 0.109.0. Other defaults retain their owning historical contracts. combatLogFile descriptor/default: 0.112.0; cardRays descriptor/default: 0.127.0; hudLocalClock descriptor/default: 0.139.2; other descriptor/default evidence retains its stated target.",
+  "default_provenance": "Eight added engine defaults and descriptor literals: 0.109.0. Other defaults retain their owning historical contracts. combatLogFile descriptor/default: 0.112.0; cardRays descriptor/default: 0.127.0; hudLocalClock and nameplateLayout descriptors/defaults: 0.139.2; other descriptor/default evidence retains its stated target.",
   "pages": [
     "controls",
     "gamepad",
@@ -1259,6 +1259,34 @@
       "linked": "PetSpellDamage",
       "multiplier": 1.0,
       "source_address": "0x145da3c48"
+    },
+    {
+      "key": "nameplateLayout",
+      "label": "Nameplate Layout",
+      "page": 4,
+      "storage": 0,
+      "control": 7,
+      "default": "stack",
+      "range": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "inverted": false,
+      "choices": [
+        {
+          "label": "Stacking",
+          "value": "stack"
+        },
+        {
+          "label": "Overlapping",
+          "value": "overlap"
+        }
+      ],
+      "indent": false,
+      "linked": "",
+      "multiplier": 0.0,
+      "source_address": "0x14653e430"
     },
     {
       "key": "combatLogFile",

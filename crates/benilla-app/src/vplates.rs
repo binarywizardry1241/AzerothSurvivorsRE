@@ -356,6 +356,8 @@ struct PlateWorld<'w, 's> {
     window: Query<'w, 's, &'static Window, With<bevy::window::PrimaryWindow>>,
     /// `widescreen`, which shapes the interface's screen the plates seat on.
     widescreen: Option<Res<'w, crate::video::Widescreen>>,
+    cvars: Option<Res<'w, crate::cvars::Cvars>>,
+    extension: Option<Res<'w, crate::local_client::LocalClientExtension>>,
     // The pending ground-target cast, for the plate's hit-test veto (`0x7cba30`).
     targeting: Res<'w, crate::spell::SpellTargeting>,
     /// The script bits, which a plate's `OnShow` may move inside its call.
@@ -404,6 +406,22 @@ fn drive_vplates(
         // Every early return retires the plates first, or the widgets stay on screen; the reference
         // hides each live plate and returns it to the pool (`0x608a10`).
         let mode = *world.mode;
+        // Options writes reach the registry on the next First pass. Use the
+        // pending value for the frame in which the player changes the layout.
+        let layout_key = "nameplateLayout";
+        let overlap = world
+            .extension
+            .as_deref()
+            .and_then(|extension| {
+                extension
+                    .cvar_writes
+                    .iter()
+                    .rev()
+                    .find(|(key, _)| key.eq_ignore_ascii_case(layout_key))
+                    .map(|(_, value)| value.as_str())
+            })
+            .or_else(|| world.cvars.as_deref()?.get(layout_key))
+            .is_some_and(|value| value.trim() == "overlap");
         // The camera's object (`[cam+0x88]`), resolved with the unit mask alone (`0x60f677`): the
         // far-sight object while the camera follows one (`0x5ee483`, `0x5ee4ae`, whatever its
         // type), else our body. No camera unit (`0x60f685`), or an object that is no unit, a Far
@@ -572,7 +590,11 @@ fn drive_vplates(
                 screen.x + pw * 0.5,
                 screen.y + ph,
             );
-            let solved = bucket.resolve(desired, viewport);
+            let solved = if overlap {
+                crate::smart_rect::SmartBucket::resolve_overlapping(desired, viewport)
+            } else {
+                bucket.resolve(desired, viewport)
+            };
             // Snap the left edge, not the centre, which an odd width would put between texels; the
             // claim takes the snapped rect, so later plates dodge what is drawn.
             let top = device_snap(solved.min.y, scale);
@@ -850,7 +872,10 @@ impl Plugin for VPlatesPlugin {
                 // After the targeting chain, itself after `WorldStage::Input`, so this projects
                 // through this frame's camera; `ui_script::extract::paint_script` runs after it,
                 // so the plates paint the same frame.
-                drive_vplates.after(TargetUpdate).in_set(VPlateSet),
+                drive_vplates
+                    .after(TargetUpdate)
+                    .after(crate::local_client::LocalClientSet::Options)
+                    .in_set(VPlateSet),
             );
     }
 }

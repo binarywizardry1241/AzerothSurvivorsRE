@@ -10925,6 +10925,23 @@
     },
     {
       "id": "custom-app-screens-options",
+      "gap_303_source_review_0_139_2": {
+        "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
+        "gap_id": 303,
+        "source_status": "connected",
+        "evidence_refs": [
+          "docs/analysis/nameplate-layout-0.139.2.md"
+        ],
+        "static_validation": "bounded_native_and_source_checks",
+        "runtime_validation": "not_run",
+        "parity": "unverified",
+        "scope": "Live Combat option for stacking and overlapping enemy health bars. The enclosing audit remains bound to 0.139.1.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/assets/options.json",
+          "crates/benilla-app/src/smart_rect.rs",
+          "crates/benilla-app/src/vplates.rs"
+        ]
+      },
       "title": "Options UI and settings consumers",
       "original_path": "crates/wenilla-rogue-app/src/screens/options.rs",
       "native_path_evidence": [

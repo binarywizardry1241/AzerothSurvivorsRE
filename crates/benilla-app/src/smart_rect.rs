@@ -50,10 +50,18 @@ impl SmartBucket {
     /// The seat without the claim. Deviation: the plate caller snaps the result to device
     /// pixels before [`Self::claim`], because that way its border art blits 1:1.
     pub(crate) fn resolve(&self, desired: Rect, viewport: Vec2) -> Rect {
-        let (w, h) = (desired.width(), desired.height());
-        let (half_w, half_h) = (w * 0.5, h * 0.5);
         let input = normalize(desired, viewport);
         let solved = self.solve(input, viewport);
+        Self::seat(solved, viewport, desired.size())
+    }
+
+    /// The AS overlapping mode retains the screen seat without the displacement search.
+    pub(crate) fn resolve_overlapping(desired: Rect, viewport: Vec2) -> Rect {
+        Self::seat(normalize(desired, viewport), viewport, desired.size())
+    }
+
+    fn seat(solved: Rect, viewport: Vec2, size: Vec2) -> Rect {
+        let (half_w, half_h) = (size.x * 0.5, size.y * 0.5);
         // `0x509720`'s center-X and top edge; `max()` keeps an over-wide rect's bounds ordered.
         let cx =
             ((solved.min.x + solved.max.x) * 0.5).clamp(half_w, (viewport.x - half_w).max(half_w));
@@ -61,7 +69,7 @@ impl SmartBucket {
             .min
             .y
             .clamp(half_h, (viewport.y - half_h).max(half_h));
-        normalize(Rect::new(cx - half_w, top, cx + half_w, top + h), viewport)
+        normalize(Rect::new(cx - half_w, top, cx + half_w, top + size.y), viewport)
     }
 
     /// `0x509660`.
