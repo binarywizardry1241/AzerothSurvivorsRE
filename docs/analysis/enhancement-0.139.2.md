@@ -27,6 +27,10 @@ outside that pool. The two 120-byte descriptors at `0x14734a278` and
 Stormstrike targets one enemy and Rockbiter targets two. The stored
 cooldown values produce the 8.5 and 2.2 second baseline intervals under
 the ordinary multiplier.
+The ordinary Shaman offer pool now uses the current Stormstrike descriptor
+and the existing priority-targeted melee cast. Fourteen locale labels were
+matched against the installed catalogs. The picker tooltip and Rockbiter
+startup grant remain open.
 
 Thirteen contiguous talent descriptors at `0x147367c38` retain native
 keys, position, ranks, prerequisites and effect references. Stormguard
