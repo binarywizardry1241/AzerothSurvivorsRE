@@ -37,6 +37,7 @@ ambiguous, request only that input.
 
 Intake is documentation work independent of the installed game. Keep the
 target-bound audit ledger and its reviewed EXE/Data baseline separate. Review
-and commit the changelog and queue updates together locally. Report the new
-`$fixgap` choices and their release links. With no new items, report that result
-without making a commit.
+and commit the changelog and queue updates together. Push the commit to
+`origin/main` and verify delivery under the [commit delivery rules](../../../AGENTS.md#commit-delivery).
+Report the new `$fixgap` choices, their release links and the delivered commit.
+With no new items, report that result without making a commit.

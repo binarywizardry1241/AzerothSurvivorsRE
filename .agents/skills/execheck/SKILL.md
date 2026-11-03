@@ -97,7 +97,8 @@ reconstruction requires a separate explicit user request.
 
 Read and apply the [shared autonomy rules](../shared/autonomy.md). A selected
 audit includes the necessary work within this workflow, relevant coordination,
-subagent delegation and focused local commits.
+subagent delegation, focused commits and delivery under the
+[commit delivery rules](../../../AGENTS.md#commit-delivery).
 
 Apply the shared [durable native query rules](../shared/autonomy.md#durable-native-queries)
 to individual Ghidra searches and decompilation as well as multi-operation plans.
@@ -581,11 +582,12 @@ preserve required evidence and unfinished recovery, remove finished disposable
 output and retire an unused temporary worktree after integration. Check that
 retained reports/checks do not rely on deleted runtime payloads; missing optional
 regenerable inventories must remain explicitly optional.
-Review the full diff and commit cohesive durable changes locally in focused
-commits without separate commit approval. This audit does not authorize push or
-PR creation. Report which
-whole-file scans/native passes completed, what changed in the gap register,
-what remains under #41 and which checks were not run. Compilation, compiling
+Review the full diff and commit cohesive durable changes in focused commits.
+Push each commit to `origin/main` and verify delivery under the
+[commit delivery rules](../../../AGENTS.md#commit-delivery), including when
+`$fixgap` invokes this audit. Report which whole-file scans/native passes
+completed, what changed in the gap register, what remains under #41 and which
+checks were not run. Compilation, compiling
 tests and game launches remain subject to `AGENTS.md`; current source execution,
 original-game behavior and parity require their own evidence.
 Include the queue link and actionable lead IDs with their next recovery steps;

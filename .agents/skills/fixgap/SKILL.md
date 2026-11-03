@@ -110,9 +110,10 @@ insufficient. The existing selection authorizes this dependency. Reuse completed
 work and resume the selected gap with the audited evidence.
 
 A new EXE hash, stale coverage ledger, difficult query or one required audit
-stage alone does not trigger the complete workflow. Keep standalone audit
-findings and audit-only commits local. Carry only evidence needed for the
-selected repair into its delivery, with verified provenance and working links.
+stage alone does not trigger the complete workflow. Keep audit findings in
+focused audit commits and deliver them under the
+[commit delivery rules](../../../AGENTS.md#commit-delivery). Link the evidence
+needed by the selected repair with verified provenance.
 
 ## Stay within Azeroth Survivors
 
@@ -413,8 +414,7 @@ new selection only for work outside that authorization or an explicit user limit
   do not invent behavior or turn it into a request for user gameplay validation.
 - Keep useful progress updates at meaningful steps and at least every 60 seconds.
   Preserve existing changes and follow the current checkout's workspace, evidence
-  and commit rules. Deliver source-only commits to the configured public GitHub repository;
-  do not open PRs or run Actions.
+  and commit rules.
 - When facts change, update the owning report and the two finding registers.
   Keep only remaining source/recovery actions in `docs/CURRENT-STATE.md`.
   Move a source-complete row and its evidence to `docs/verification-needed.md`;
@@ -443,26 +443,12 @@ new selection only for work outside that authorization or an explicit user limit
 - As each focused change is ready, review and commit its intended durable changes
   in the chosen checkout. A worktree may use its own task branch; confirm branch
   ownership before implementation and preserve pending work. Follow the
-  repository's focused-commit discipline, staging only the selected repair or an
-  authorized incidental repair and its related evidence/checks/documentation.
-  Keep distinct repairs in separate commits and leave other pending work alone.
-  When a full audit is a repair dependency, keep audit-only commits on a local
-  branch outside the history pushed for the repair.
-  Integrate each focused repair into local `main` in coordination with its owning
-  checkout, without switching/resetting another task's dirty checkout or folding
-  unrelated work into the repair. For work already on `main`, deliver immediately;
-  for a worktree branch, deliver as soon as its reviewed integration is safe.
-  Verify the intended repair is on `main`, push it to `origin/main`
-  over HTTPS and verify that GitHub's `refs/heads/main` matches the committed SHA
-  before continuing the repair or creating another commit. Do not accumulate
-  local commits or wait until the whole selected gap is finished to push them.
-  Each push delivers that focused change; continue the remaining selected work
-  under the completion requirement above. Do not leave delivery as a suggested
-  next step or ask for separate permission unless the user's current instructions
-  explicitly limit delivery. Report the delivered commit hashes in the final
-  reply. If a push fails, report the blocker and preserve the commits; resolve
-  delivery before creating more commits, and do not force-push or rewrite
-  published history.
+  repository's focused-commit discipline, staging only that change and its
+  related evidence, checks and documentation. Keep distinct repairs and audit
+  findings in separate commits. Push each commit to `origin/main` and verify
+  delivery under the [commit delivery rules](../../../AGENTS.md#commit-delivery).
+  Deliver each focused change as it is ready, then continue the remaining
+  selected work under the completion requirement above.
 
 Apply completion cleanup before the final report. Keep a worktree only while its
 changes or required outputs still need integration or another task is using it;

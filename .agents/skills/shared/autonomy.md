@@ -327,9 +327,9 @@ as specified in `AGENTS.md` and the invoked skill. Keep reference inputs read-on
 and GitHub delivery source-only to the configured public repository. Apply
 `AGENTS.md`'s public-repository privacy rules; machine-specific configuration and
 the shared `runtime/analysis/` store remain local and Git-ignored.
-`execheck` commits locally; `fixgap` pushes its completed repairs as specified,
-subject to the project-account check. Scoped completion cleanup is authorized; do not infer permission for
-unrelated work, PRs, Actions, deletion of required/active material or rewriting
-published history. Ask only for genuinely missing task
+Push each commit under the [commit delivery rules](../../../AGENTS.md#commit-delivery).
+Scoped completion cleanup is authorized. Do not infer permission for unrelated
+work, PRs, Actions, deletion of required/active material or rewriting published
+history. Ask only for genuinely missing task
 information or an action outside existing authorization, after completing
 independent work that can proceed.
