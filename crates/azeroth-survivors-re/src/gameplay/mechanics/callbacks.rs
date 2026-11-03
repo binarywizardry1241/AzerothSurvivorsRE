@@ -8,6 +8,8 @@ use behavior::targeting;
 #[path = "milestones.rs"]
 mod milestones;
 
+pub(super) const FROST_SHOCK_AURA: u32 = 8056;
+
 #[derive(Debug, Default)]
 pub(super) struct State {
     /// Selected feat snapshot's ordered (definition id, killing spell id) pairs.
@@ -33,6 +35,7 @@ pub(super) struct State {
     pub player_auras: azeroth_survivors_re::run_effects::player_auras::PlayerAuraState,
     pub aura_slots:
         std::collections::BTreeMap<u64, azeroth_survivors_re::run_effects::presentation::AuraSlots>,
+    pub frost_shock_durations: std::collections::BTreeMap<u64, f32>,
     pub reduction_spells: std::collections::BTreeMap<u64, u32>,
     pub reduction_durations: std::collections::BTreeMap<u64, f32>,
     pub actor_weakening: std::collections::BTreeMap<u64, state::StrongestWindow>,
@@ -91,8 +94,7 @@ impl State {
                 fields,
             })
     }
-    /// Current shared status1454ff860 publishes auras only for control2/3 and
-    /// the stored damage-reduction10 spell. Slow1 and ordinary fear4 do not.
+    /// The shared status publishes control, weakening, and Frost Shock auras.
     pub(super) fn apply_actor_status(
         &mut self,
         actor: &mut Actor,
@@ -117,6 +119,14 @@ impl State {
             actor.damage_reduction = weakening.active;
             true
         } else { state::apply_actor_reduction_or_fear(actor, window, ordinary, now, effect) };
+        if effect.tag == 1 && changed {
+            if spell_id == FROST_SHOCK_AURA {
+                self.frost_shock_durations.insert(actor.guid, effect.duration);
+                events.extend(self.aura_event(actor.guid, spell_id, true, periodic));
+            } else if self.frost_shock_durations.remove(&actor.guid).is_some() {
+                events.extend(self.aura_event(actor.guid, FROST_SHOCK_AURA, false, periodic));
+            }
+        }
         if matches!(effect.tag, 2 | 3) {
             let position = actor.movement.position_at(now);
             if state::apply_control(actor, window, ordinary, now, effect.value, position) {
@@ -198,6 +208,12 @@ impl State {
                 spell_id: reduction,
             });
         }
+        if now >= actor.slow.until && self.frost_shock_durations.remove(&actor.guid).is_some() {
+            events.push(ActorAuraUpdate::Remove {
+                target: actor.guid,
+                spell_id: FROST_SHOCK_AURA,
+            });
+        }
         let control_expired = actor.stun_until > 0.0 && now >= actor.stun_until;
         state::expire_control(actor, window, now);
         if control_expired {
@@ -209,6 +225,8 @@ impl State {
             for spell_id in spells {
                 if spell_id != 0
                     && spell_id != reduction
+                    && !(spell_id == FROST_SHOCK_AURA
+                        && self.frost_shock_durations.contains_key(&actor.guid))
                     && !periodic.iter().any(|row| row.spell_id == spell_id)
                 {
                     events.push(ActorAuraUpdate::Remove {

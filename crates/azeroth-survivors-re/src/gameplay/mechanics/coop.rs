@@ -126,6 +126,7 @@ macro_rules! hero_state {
                 // These maps belong to the shared actors, although the solo
                 // adapter historically grouped them with perhero callbacks.
                 std::mem::swap(&mut self.effect_state.generic.aura_slots, &mut game.effect_state.generic.aura_slots);
+                std::mem::swap(&mut self.effect_state.generic.frost_shock_durations, &mut game.effect_state.generic.frost_shock_durations);
                 std::mem::swap(&mut self.effect_state.generic.reduction_spells, &mut game.effect_state.generic.reduction_spells);
                 std::mem::swap(&mut self.effect_state.generic.reduction_durations, &mut game.effect_state.generic.reduction_durations);
                 std::mem::swap(&mut self.effect_state.generic.actor_weakening, &mut game.effect_state.generic.actor_weakening);

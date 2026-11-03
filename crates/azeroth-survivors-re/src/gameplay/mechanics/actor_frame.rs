@@ -69,6 +69,7 @@ impl Mechanics {
         self.boss_state.other_deadlines.remove(&guid);
         let generic = &mut self.effect_state.generic;
         generic.aura_slots.remove(&guid);
+        generic.frost_shock_durations.remove(&guid);
         generic.reduction_spells.remove(&guid);
         generic.reduction_durations.remove(&guid);
         generic.actor_weakening.remove(&guid);
