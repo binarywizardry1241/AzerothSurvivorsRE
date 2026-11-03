@@ -73,6 +73,8 @@ are investigation leads until checked against source and applicable EXE evidence
 
 | Selectable lead | Release and claim IDs | Next question or existing finding |
 | --- | --- | --- |
+| Downed party member locations | [0.139.2](CHANGELOG.md#01392)<br>`changelog:0.139.2:c456a516752982b8`<br>Release summary: `changelog:0.139.2:abd40bd242005cfd` | Where does `AZS_GetDownedPartyMembers` get each ally's revive location, what does it return across maps, and how do host and guest results change on downing, revival and map transitions? Related: [co-op state #63](#gap-63) and the [existing revive snapshot #11](verification-needed.md#gap-11). |
+| World anchors and distance from the hero | [0.139.2](CHANGELOG.md#01392)<br>`changelog:0.139.2:a6b9bed3be9c9ffa`<br>`changelog:0.139.2:20d7218da9c188d5`<br>Release summary: `changelog:0.139.2:abd40bd242005cfd` | Recover how `AZS_GetWorldAnchors` enumerates enemies and world objects without selection or nameplates, how anchors persist at death, and how `AZS_ProjectWorldAnchors` applies height offsets. Trace the hero-relative distance returned by world markers and combat text independently of the camera; compare with the existing [combat anchor and projection finding #307](#gap-307). |
 
 ## Gap register
 
