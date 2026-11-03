@@ -212,7 +212,9 @@ def check_current(evidence, write):
                   '!sight_clear && !(range < player_distance)']:
         assert token in source, token
     mechanics = (ROOT / 'crates/azeroth-survivors-re/src/gameplay/mechanics.rs').read_text()
-    assert mechanics.index('if !world.sight_clear(from, player) { continue; }') < mechanics.index('self.damage_player(hit.damage, false, hit.source_guid, player, facing, world)')
+    assert mechanics.index('if !world.sight_clear(from, player) { continue; }') < mechanics.index(
+        'hit.damage, incoming::DamageKind::Spell(hit.spell_id),'
+    )
     actor_frame = (ROOT / 'crates/azeroth-survivors-re/src/gameplay/mechanics/actor_frame.rs').read_text()
     assert 'hostile_origin: Some([from.x.to_bits(), from.y.to_bits(), from.z.to_bits()])' in actor_frame
     navigation = (ROOT / 'crates/azeroth-survivors-re/src/floor_recovery/navigation.rs').read_text()

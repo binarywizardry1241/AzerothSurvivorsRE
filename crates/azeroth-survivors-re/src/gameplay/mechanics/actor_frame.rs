@@ -338,8 +338,9 @@ impl Mechanics {
             .extend(frame.emotes.into_iter().map(RunEvent::Announcement));
         let raid_damage = self.dispatch_pending_raid_requests(player, world);
         let (player, facing) = self.boss_state.player_override.unwrap_or((player, facing));
-        for (amount, melee, source) in raid_damage {
-            self.damage_player(amount, melee, source, player, facing, world);
+        for (amount, source, spell_id) in raid_damage {
+            self.damage_player_from(amount, super::incoming::DamageKind::Mechanic(spell_id),
+                source, player, facing, world);
         }
         self.resolve_ward_actions(ward_actions, player, facing, world);
         if self.has_party() {

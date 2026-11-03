@@ -1539,7 +1539,7 @@ def inspect_fixture_context(raw,span,visited):
 def source_checks():
  base=ROOT/'crates/azeroth-survivors-re/src'
  checks={
-  'bosses/raid_areas.rs':['self.dispatch_line(record, context, port, math)','self.dispatch_bomb(record, context, port)','self.dispatch_shape(record, context, port)','port.raid_bomb_damage(center,radius,damage,spell)','row.inner_radius.is_none_or(|inner| distance >= inner)','port.damage_player(total * port.raid_damage_multiplier(), last_source)','let distance = dx.hypot(dy)','let angle = if !(distance < 0.5)','if distance < 0.5 { return true; }'],
+  'bosses/raid_areas.rs':['self.dispatch_line(record, context, port, math)','self.dispatch_bomb(record, context, port)','self.dispatch_shape(record, context, port)','port.raid_bomb_damage(center,radius,damage,spell)','row.inner_radius.is_none_or(|inner| distance >= inner)','port.damage_player(total * port.raid_damage_multiplier(), source, spell)','let distance = dx.hypot(dy)','let angle = if !(distance < 0.5)','if distance < 0.5 { return true; }'],
   'bosses/raid_sequences.rs':['abilities::dispatch_live(&native_action(first)','effects.raid_areas.lines.ability_at','action.duration'],
   'bosses/raid_extra.rs':['let dx = c.source.x - c.player.x','let dy = c.source.y - c.player.y','let distance = (dy * dy + dx * dx).sqrt()','if !(distance > 30.)','port.ray_fraction(c.player, requested).filter(|v| !(*v >= 1.))','let length = (dy * dy + dx * dx).sqrt().max(0.5)','port.raid_hold_facing(c.source_guid, 0.5, facing)'],
   'bosses/raid_lines.rs':['port.begin_raid_charge(','port.raid_aura(source, spell, false)'],

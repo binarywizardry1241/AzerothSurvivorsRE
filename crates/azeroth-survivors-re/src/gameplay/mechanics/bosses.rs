@@ -2,6 +2,7 @@
 //! death arithmetic is delegated to the hash-bound recovered source owners.
 
 use super::*;
+use super::incoming::DamageKind;
 use azeroth_survivors_re::{
     bosses as native,
     mob_loot::{EquipmentRoll, MobLootWorld},
@@ -335,8 +336,8 @@ impl Mechanics {
         // the separate delayed-visual queue. Preserve that order through the
         // adapter's deferred damage calls.
         let trailing = boundary.map(|index| self.events.split_off(index)).unwrap_or_default();
-        for (amount, source_guid) in incoming {
-            self.damage_player(amount, false, source_guid, player, facing, world);
+        for (amount, source_guid, spell_id) in incoming {
+            self.damage_player_from(amount, DamageKind::Mechanic(spell_id), source_guid, player, facing, world);
         }
         if self.active_run_state() {
             if let Some((angle, speed)) = knockback {
@@ -382,7 +383,7 @@ impl Mechanics {
     /// Current guardian signatures dispatch into the same hazard vector,
     /// serials and client event channel as primary bosses.
     pub(super) fn dispatch_pending_raid_requests(&mut self, player: Position,
-        world: &mut impl RunWorld) -> Vec<(f32, bool, u64)> {
+        world: &mut impl RunWorld) -> Vec<(f32, u64, u32)> {
         let requests = std::mem::take(&mut self.boss_state.pending_actions);
         if !self.has_party() { return self.dispatch_raid_requests(requests, player, world); }
         for request @ (actor_index, ability) in requests {
@@ -397,8 +398,8 @@ impl Mechanics {
             let Some(input) = self.party_input_for(slot) else { continue; };
             self.with_party_hero(slot, |game| {
                 let incoming = game.dispatch_raid_requests(vec![request], input.position, world);
-                for (amount, melee, source) in incoming {
-                    game.damage_player(amount, melee, source, input.position, input.facing, world);
+                for (amount, source, spell_id) in incoming {
+                    game.damage_player_from(amount, DamageKind::Mechanic(spell_id), source, input.position, input.facing, world);
                 }
             });
         }
@@ -406,7 +407,7 @@ impl Mechanics {
     }
 
     fn dispatch_raid_requests(&mut self, requests: Vec<(usize, native::RawBossAbility)>, player: Position,
-        world: &mut impl RunWorld) -> Vec<(f32, bool, u64)> {
+        world: &mut impl RunWorld) -> Vec<(f32, u64, u32)> {
         // Selected0.109.0 SHA76e7fb48: all493 current semantic records,
         // including recursive children, use queued hazards or non-damage
         // producers. Historical immediate AreaStrike is unreachable here;
@@ -456,7 +457,7 @@ impl Mechanics {
                     bevy::log::warn!("Unrecovered current raid ability tag {}", error.0);
             }
         }
-        incoming.into_iter().map(|(amount, source)| (amount, false, source)).collect()
+        incoming
     }
 
     pub(super) fn finish_boss_completion(&mut self, world: &mut impl RunWorld) {
@@ -593,7 +594,7 @@ struct BossCombat<'a, W> {
     player: Position,
     events: &'a mut Vec<RunEvent>,
     movement_counter: &'a mut dyn NativeCounter,
-    incoming: &'a mut Vec<(f32, u64)>,
+    incoming: &'a mut Vec<(f32, u64, u32)>,
     damage_event_boundary: Option<usize>,
     knockback: Option<(f32, f32)>,
     bomb_bursts: Vec<(Position,f32,f32,u32)>,
@@ -939,9 +940,9 @@ impl<W: RunWorld> native::abilities::CombatPort for BossCombat<'_, W> {
     fn player_position(&self) -> Position {
         self.player
     }
-    fn damage_player(&mut self, amount: f32, source_guid: u64) {
+    fn damage_player(&mut self, amount: f32, source_guid: u64, spell_id: u32) {
         self.damage_event_boundary.get_or_insert(self.events.len());
-        self.incoming.push((amount, source_guid));
+        self.incoming.push((amount, source_guid, spell_id));
     }
 }
 

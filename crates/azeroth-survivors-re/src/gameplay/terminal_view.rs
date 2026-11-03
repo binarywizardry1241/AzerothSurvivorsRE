@@ -4,6 +4,9 @@
 
 use bevy::prelude::*;
 
+mod recap;
+pub(super) use recap::{RecapModal, input as recap_input};
+
 use crate::{
     assets::MenuArt,
     canvas::NativeCanvas,
@@ -59,7 +62,9 @@ pub(super) fn install(app: &mut App) {
             .in_set(benilla_app::local_client::LocalClientSet::OverlayCapture),
     );
     app.init_resource::<XpClock>()
-        .add_systems(Update, (render, animate_xp).chain().in_set(RunSet::Present));
+        .init_resource::<RecapModal>()
+        .add_systems(Update, (render, animate_xp).chain().in_set(RunSet::Present))
+        .add_systems(Update, recap::render.in_set(RunSet::Present));
 }
 
 fn render(
@@ -67,6 +72,7 @@ fn render(
     state: Res<TerminalState>,
     menu: Res<MenuState>,
     art: Res<MenuArt>,
+    assets: Res<AssetServer>,
     locale: Res<Localization>,
     time: Res<Time>,
     mut clock: ResMut<XpClock>,
@@ -103,7 +109,7 @@ fn render(
             pop_at: None,
         };
     }
-    rendered.root = Some(spawn(&mut commands, &art, &locale, summary.unwrap()));
+    rendered.root = Some(spawn(&mut commands, &art, &assets, &locale, summary.unwrap()));
     rendered.identity = Some(state.identity);
     rendered.language = locale.code().to_owned();
 }
@@ -111,6 +117,7 @@ fn render(
 fn spawn(
     commands: &mut Commands,
     art: &MenuArt,
+    assets: &AssetServer,
     locale: &Localization,
     summary: &TerminalSummary,
 ) -> Entity {
@@ -157,7 +164,7 @@ fn spawn(
                 padding: UiRect::axes(Val::Px(30.), Val::Px(22.)),
                 ..default()
             },
-            |panel| content(panel, art, locale, summary),
+            |panel| content(panel, art, assets, locale, summary),
         );
     });
     root
@@ -166,6 +173,7 @@ fn spawn(
 fn content(
     ui: &mut ChildSpawnerCommands,
     art: &MenuArt,
+    assets: &AssetServer,
     locale: &Localization,
     summary: &TerminalSummary,
 ) {
@@ -186,6 +194,9 @@ fn content(
         PAPER,
         false,
     );
+    if let Some(recap) = summary.recap.as_ref().filter(|_| summary.outcome == Outcome::Defeat) {
+        recap::killer(ui, art, assets, locale, &recap.killer);
+    }
     if let Some(zone) = &summary.unlocked_zone {
         text(
             ui,
@@ -256,6 +267,9 @@ fn content(
             }),
             TerminalAction::Menu,
         );
+        if summary.outcome == Outcome::Defeat && summary.recap.is_some() {
+            recap::open_button(buttons, art, locale);
+        }
     });
 }
 

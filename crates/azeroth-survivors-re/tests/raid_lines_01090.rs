@@ -42,7 +42,7 @@ impl CombatPort for Port {
     fn begin_raid_charge(&mut self, v: Charge) { self.charges.push(v); self.order.push("movement"); }
     fn yell(&mut self, _: u64, _: &'static str) { panic!("no invented native7 warning text"); }
     fn player_position(&self) -> Position { self.player }
-    fn damage_player(&mut self, amount: f32, source: u64) { self.damage.push((amount, source)); }
+    fn damage_player(&mut self, amount: f32, source: u64, _: u32) { self.damage.push((amount, source)); }
 }
 fn point(x: f32, y: f32, z: f32) -> Position { Position { x, y, z } }
 fn context() -> CombatContext {

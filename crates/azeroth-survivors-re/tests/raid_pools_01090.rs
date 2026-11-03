@@ -19,7 +19,7 @@ impl CombatPort for Port {
     fn begin_charge(&mut self,_:Charge){}
     fn yell(&mut self,_:u64,_:&'static str){}
     fn player_position(&self)->Position{self.player}
-    fn damage_player(&mut self,v:f32,guid:u64){self.hits.push((v,guid))}
+    fn damage_player(&mut self,v:f32,guid:u64, _: u32){self.hits.push((v,guid))}
 }
 fn pool()->(Pending,Port){
     let mut pending=Pending::default();

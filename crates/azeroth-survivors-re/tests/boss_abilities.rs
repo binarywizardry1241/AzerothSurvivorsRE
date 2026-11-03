@@ -73,7 +73,7 @@ impl CombatPort for Port {
     fn begin_charge(&mut self,request:Charge){self.charges.push(request);}
     fn yell(&mut self,_:u64,text:&'static str){self.yells.push(text);}
     fn player_position(&self)->Position{self.player}
-    fn damage_player(&mut self,amount:f32,source:u64){self.damage.push((amount,source));}
+    fn damage_player(&mut self,amount:f32,source:u64, _: u32){self.damage.push((amount,source));}
 }
 
 #[test]
@@ -86,7 +86,7 @@ fn ground_area_uses_real_object_fields_and_delayed_current_position_hit() {
     assert_eq!(port.objects[0].fields.iter().find(|(key,_)|*key==4).unwrap().1,(9.0_f32/8.0).to_bits());
     assert!(port.damage.is_empty());assert_eq!(effects.impacts[0].resolves_at,121.5);
     port.player=position(33.0,0.0,10000.0);effects.resolve_due(121.499,&mut port);assert!(port.damage.is_empty());
-    effects.resolve_due(121.5,&mut port);assert_eq!(port.damage,vec![(2.6_f32*100.0,0)]);
+    effects.resolve_due(121.5,&mut port);assert_eq!(port.damage,vec![(2.6_f32*100.0,context().source_guid)]);
     assert_eq!(port.casts[0].spell_id,13812);assert_eq!(port.removed,vec![port.objects[0].guid]);assert!(effects.impacts.is_empty());
 }
 

@@ -144,7 +144,7 @@ impl CombatPort for DeferredPort {
     fn begin_charge(&mut self,_:Charge) {panic!("unexpected charge")}
     fn yell(&mut self,guid:u64,_:&'static str) {self.yells.push(guid)}
     fn player_position(&self)->Position {Position::default()}
-    fn damage_player(&mut self,_:f32,_:u64) {panic!("unexpected damage")}
+    fn damage_player(&mut self,_:f32,_:u64, _: u32) {panic!("unexpected damage")}
 }
 impl DispatchPort for DeferredPort {
     fn ability_actor(&self,index:usize)->Option<AbilityActor> {self.actors.get(index).copied().flatten()}

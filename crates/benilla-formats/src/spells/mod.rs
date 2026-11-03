@@ -48,7 +48,7 @@ use crate::Chain;
 use anyhow::{Context, Result};
 use benilla_dbc::{FieldType, Schema, SchemaField};
 
-use crate::dbc::{f32_at, i32_at, loc_str, parse, u32_at};
+use crate::dbc::{f32_at, i32_at, loc_str, parse, str_at, u32_at};
 
 const SPELL: &str = "DBFilesClient\\Spell.dbc";
 
@@ -293,6 +293,7 @@ pub const SPELL_EFFECT_PROSPECTING: u32 = 127;
 /// wrapper, and [`Self::learned_spell`] follows it to the ability it teaches.
 pub struct SpellCatalog {
     spells: HashMap<u32, SpellDisplay>,
+    base_names: HashMap<u32, String>,
     learned_spell: HashMap<u32, u32>,
     /// Learn effects in slot order, for spells that have any.
     learn_effects: HashMap<u32, Vec<LearnEffect>>,
@@ -301,11 +302,20 @@ pub struct SpellCatalog {
     dispel_types: SpellDispelTypes,
 }
 
+impl std::fmt::Debug for SpellCatalog {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("SpellCatalog")
+            .field("spell_count", &self.spells.len())
+            .finish_non_exhaustive()
+    }
+}
+
 impl SpellCatalog {
     /// A custom gamemode's registered item-tooltip text. These passive template
     /// rows add no gameplay spell or DBC-derived visual; the existing tooltip
     /// builder still resolves the item spell ID through this catalog.
     pub fn insert_tooltip_description(&mut self, id: u32, text: String) {
+        self.base_names.remove(&id);
         self.spells.insert(id, SpellDisplay {
             id, description: Some(text), ..Default::default()
         });
@@ -333,6 +343,7 @@ impl SpellCatalog {
             .collect();
         Self {
             spells,
+            base_names: HashMap::new(),
             learned_spell,
             learn_effects,
             declared_language: HashMap::new(),
@@ -347,6 +358,11 @@ impl SpellCatalog {
 
     pub fn get(&self, id: u32) -> Option<&SpellDisplay> {
         self.spells.get(&id)
+    }
+
+    /// Column 120, independent of the locale selected for the tooltip catalog.
+    pub fn base_name<'a>(&'a self, spell: &'a SpellDisplay) -> &'a str {
+        self.base_names.get(&spell.id).unwrap_or(&spell.name)
     }
 
     /// The dispel class's key, the `debuffType` `UnitDebuff` returns (`0x519a89`) and the debuff
@@ -478,6 +494,7 @@ pub fn load_spell_catalog(chain: &mut Chain) -> Result<SpellCatalog> {
     let spells_set = parse(&spell_bytes, spell_schema(), "Spell.dbc")?;
     let locale = chain.locale();
     let mut spells: HashMap<u32, SpellDisplay> = HashMap::new();
+    let mut base_names = HashMap::new();
     let mut learned_spell: HashMap<u32, u32> = HashMap::new();
     let mut learn_effects: HashMap<u32, Vec<LearnEffect>> = HashMap::new();
     let mut declared_language: HashMap<u32, u32> = HashMap::new();
@@ -523,6 +540,12 @@ pub fn load_spell_catalog(chain: &mut Chain) -> Result<SpellCatalog> {
             }
         }
         let name = loc_str(&spells_set, r, COL_NAME, locale).unwrap_or_default();
+        if locale.index() != 0 {
+            let base_name = str_at(&spells_set, r, COL_NAME).unwrap_or_default();
+            if base_name != name {
+                base_names.insert(id, base_name);
+            }
+        }
         let rank = loc_str(&spells_set, r, COL_NAME_SUBTEXT, locale);
         let icon = u32_at(r, COL_ICON_ID)
             .filter(|&i| i != 0)
@@ -686,6 +709,7 @@ pub fn load_spell_catalog(chain: &mut Chain) -> Result<SpellCatalog> {
     }
     Ok(SpellCatalog {
         spells,
+        base_names,
         learned_spell,
         learn_effects,
         declared_language,

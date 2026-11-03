@@ -3,6 +3,8 @@
 mod commands;
 #[path = "coop_reconnection.rs"]
 mod reconnection;
+#[path = "coop_recap.rs"]
+mod recap;
 #[path = "coop_party_frames.rs"]
 mod party_frames;
 #[path = "coop_overlay.rs"]
@@ -64,11 +66,19 @@ pub(crate) struct CoopGame {
     entry: Option<guest_settlement::Entry>,
     checkpoints: guest_settlement::Checkpoints,
     pending_events: Vec<RunEvent>,
+    terminal_recap: Option<death_recap::DeathRecap>,
     pub(super) terminal_delivery: Option<azeroth_survivors_re::run_progression::TerminalDelivery>,
     pub(super) terminal_unlocked_zone: Option<Option<String>>,
 }
 
 impl CoopGame {
+    pub(super) fn terminal_recap(&self) -> Option<&death_recap::DeathRecap> {
+        self.state.as_ref().filter(|state| {
+            state.flag_8c && RunPhase::from_native(state.byte_8f) == RunPhase::Dead
+        })?;
+        self.terminal_recap.as_ref()
+    }
+
     fn receive_denied(&mut self, client: Option<ClientId>) -> bool {
         if client.is_some() { return false; }
         // Denied drops the old guest role's cache. It does not establish a
@@ -121,6 +131,7 @@ impl CoopGame {
         self.entry = None;
         self.checkpoints = Default::default();
         self.pending_events.clear();
+        self.terminal_recap = None;
         self.duplicate_marks = Default::default();
         self.terminal_delivery = None;
         self.terminal_unlocked_zone = None;
@@ -656,6 +667,14 @@ fn receive(
                     },
                 ) {
                     let projection = RunProjection::read(&value);
+                    if projection.phase == RunPhase::Victory
+                        || (projection.phase != RunPhase::Dead
+                            && state.state.as_ref().is_some_and(|previous| {
+                                RunPhase::from_native(previous.byte_8f) == RunPhase::Dead
+                            }))
+                    {
+                        state.terminal_recap = None;
+                    }
                     run.started = !matches!(projection.phase, RunPhase::Ready);
                     run.paused = matches!(projection.phase, RunPhase::Paused);
                     if let Some(game) = run.mechanics.as_mut() {
@@ -674,6 +693,9 @@ fn receive(
             }
             NativeMessage::Lifecycle(LifecyclePacket::EventBytes(bytes)) if guest => {
                 overlay::receive_choices(&mut state, &bytes);
+                if client.is_none() && state.zone.is_some() {
+                    recap::receive(&mut state.terminal_recap, &bytes);
+                }
             }
             NativeMessage::HudJson(text) if guest => {
                 if let Ok(value) = serde_json::from_str(&text) {
@@ -815,7 +837,7 @@ fn receive(
                         aura,
                         duration,
                         expiration,
-                        bridge.spells.as_ref(),
+                        bridge.spells.as_deref(),
                         bridge.spell_durations.as_ref(),
                     )
                 })

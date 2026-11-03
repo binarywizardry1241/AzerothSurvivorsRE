@@ -891,6 +891,9 @@ hero_state! {
     choices: Vec<RunChoice>, dead: bool, completed: bool, abandoned: bool,
     alive_since: f32,
     taken_damage: super::super::addon_meters::TakenLedger,
+    damage_history: super::super::death_recap::DamageHistory,
+    death_recap: Option<super::super::death_recap::DeathRecap>,
+    death_recap_generation: u64,
     published_cooldowns: Vec<(u32, RunCooldown)>, pending_healing: Vec<PendingHealing>,
     pending_absorb: Vec<f32>, pending_levels: u32, passive_state: PassiveTickState,
     player_mover: player_mover::PlayerMover, native_7e4: u32,
@@ -2380,6 +2383,7 @@ impl Mechanics {
 
     fn apply_party_revive(&mut self, row: azeroth_survivors_re::coop::game_party::Revived) {
         self.dead = false;
+        self.death_recap = None;
         // Current145c084fe..145c08506: successful revival samples shared time.
         self.alive_since = self.clock;
         self.execution.vitals.health = row.health;

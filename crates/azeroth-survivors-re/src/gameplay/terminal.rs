@@ -58,6 +58,7 @@ pub(super) struct TerminalSummary {
     pub unlocked_zone: Option<String>,
     pub talent: Option<TalentSummary>,
     pub loot: Vec<TerminalLoot>,
+    pub recap: Option<super::death_recap::DeathRecap>,
     pub return_to_main_menu: bool,
 }
 
@@ -165,10 +166,23 @@ pub(super) fn capture(
         state.talent_context.clear();
         return;
     }
-    if state.summary.is_some() || !session.started {
+    let game = session.mechanics.as_ref().unwrap();
+    let remote_recap = guest.as_deref().and_then(|guest| guest.terminal_recap());
+    if let Some(summary) = state.summary.as_mut() {
+        // The ordered party lane can seat State before the private JSON event.
+        // Refresh presentation without repeating terminal settlement.
+        if game.replica_phase().is_some()
+            && summary.outcome == Outcome::Defeat
+            && summary.recap.as_ref() != remote_recap
+        {
+            summary.recap = remote_recap.cloned();
+            state.identity = state.identity.wrapping_add(1);
+        }
         return;
     }
-    let game = session.mechanics.as_ref().unwrap();
+    if !session.started {
+        return;
+    }
     if game.has_party() && game.party_shared_running() { return; }
     if !game.dead && !game.completed {
         return;
@@ -225,14 +239,23 @@ pub(super) fn capture(
         })
         .collect();
     state.talent_context.activate();
+    let outcome = if game.completed {
+        Outcome::Victory
+    } else if session.ended_by_player {
+        Outcome::Left
+    } else {
+        Outcome::Defeat
+    };
+    let recap = if outcome == Outcome::Defeat {
+        guest.as_deref()
+            .and_then(|guest| guest.terminal_recap())
+            .or_else(|| game.death_recap())
+            .cloned()
+    } else {
+        None
+    };
     state.summary = Some(TerminalSummary {
-        outcome: if game.completed {
-            Outcome::Victory
-        } else if session.ended_by_player {
-            Outcome::Left
-        } else {
-            Outcome::Defeat
-        },
+        outcome,
         hero: session.name.clone(),
         race_name,
         class_name,
@@ -250,6 +273,7 @@ pub(super) fn capture(
         unlocked_zone,
         talent: None,
         loot,
+        recap,
         // Selected-target frontend-resource+c stores the process picker mode.
         return_to_main_menu: stock.is_none(),
     });
@@ -284,6 +308,7 @@ pub(super) fn capture_pointer(
 
 pub(super) fn input(
     clicks: Query<(&Interaction, &TerminalAction), Changed<Interaction>>,
+    recap_modal: Res<super::terminal_view::RecapModal>,
     mut state: ResMut<TerminalState>,
     mut session: ResMut<RunSession>,
     mut menu: ResMut<MenuState>,
@@ -305,7 +330,7 @@ pub(super) fn input(
     ),
 ) {
     extension.pointer_over_ui |= menu.in_run && state.summary.is_some();
-    if menu.in_run && state.summary.is_some() {
+    if menu.in_run && state.summary.is_some() && !recap_modal.blocks_terminal() {
         // Native140287210 iterates every changed pressed row and sends each
         // action, then clears the displayed summary. A first-match shortcut
         // loses simultaneous input and makes later commands use the old Game.

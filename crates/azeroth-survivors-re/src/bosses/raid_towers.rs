@@ -38,7 +38,7 @@ const TOWERS: &[Tower] = &[
 pub(super) struct TowerResolution {
     pub(super) ended: Vec<(usize, u32)>,
     pub(super) visuals: Vec<SpellCast>,
-    pub(super) source: Option<u64>,
+    pub(super) source: Option<(u64, u32)>,
 }
 
 impl Pending {
@@ -107,7 +107,7 @@ impl Pending {
             if !first.contains(player) && !rows.any(|row| row.contains(player)) {
                 // One ADDSS per failed group, after existing circle/pool damage.
                 *total += first.damage;
-                result.source = Some(first.source);
+                result.source = Some((first.source, first.impact_spell));
                 if first.impact_spell != 0 {
                     result.visuals.push(SpellCast { source_guid: first.source,
                         spell_id: first.impact_spell, target: CastTarget::Ground(visual_position),

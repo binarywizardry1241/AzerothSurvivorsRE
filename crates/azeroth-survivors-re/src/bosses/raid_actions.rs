@@ -126,7 +126,7 @@ mod tests {
         fn begin_charge(&mut self, _: Charge) { unreachable!() }
         fn yell(&mut self, _: u64, _: &'static str) { unreachable!() }
         fn player_position(&self) -> Position { unreachable!() }
-        fn damage_player(&mut self, _: f32, _: u64) { unreachable!() }
+        fn damage_player(&mut self, _: f32, _: u64, _: u32) { unreachable!() }
     }
 
     #[test]

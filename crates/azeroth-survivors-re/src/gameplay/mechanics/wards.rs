@@ -119,7 +119,8 @@ impl Mechanics {
                 let reduction = 1.0 - self.stats.armor_fraction;
                 let reduction = if reduction > 0.1 { reduction } else { 0.1 };
                 let raw = (fraction * self.execution.vitals.maximum_health) / reduction;
-                self.damage_player(raw, false, guid, player, facing, world);
+                self.damage_player_from(raw, super::incoming::DamageKind::Mechanic(20475),
+                    guid, player, facing, world);
                 self.remove_ward(guid);
             }
             Some(Effect::Heal {

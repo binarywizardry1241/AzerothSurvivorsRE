@@ -26,7 +26,7 @@ impl CombatPort for Port {
     fn begin_charge(&mut self,_:Charge) { unreachable!() }
     fn yell(&mut self,_:u64,_:&'static str) { panic!("neither selected native branch warns") }
     fn player_position(&self)->Position { self.player }
-    fn damage_player(&mut self,amount:f32,source:u64) { self.damage.push((amount,source)); }
+    fn damage_player(&mut self,amount:f32,source:u64, _: u32) { self.damage.push((amount,source)); }
 }
 fn point(x:f32)->Position { Position{x,y:0.,z:999.} }
 fn context(source:u64)->CombatContext { CombatContext { source_guid:source,player_guid:1,

@@ -627,6 +627,10 @@ pub struct Mechanics {
     boundary_started: bool,
     boundary_objects: Vec<u64>,
     taken_damage: super::addon_meters::TakenLedger,
+    damage_history: super::death_recap::DamageHistory,
+    death_recap: Option<super::death_recap::DeathRecap>,
+    death_recap_generation: u64,
+    pub(super) recap_spells: Option<std::sync::Arc<benilla_formats::SpellCatalog>>,
     addon_flag: Option<usize>,
     world_flag: addon_lists::WorldFlag,
     showcase: showcase::State,
@@ -779,6 +783,10 @@ impl Mechanics {
             boundary_started: false,
             boundary_objects: Vec::new(),
             taken_damage: super::addon_meters::TakenLedger::default(),
+            damage_history: Default::default(),
+            death_recap: None,
+            death_recap_generation: 0,
+            recap_spells: None,
             addon_flag: None,
             world_flag: Default::default(),
             showcase: showcase::State::default(),
@@ -1316,7 +1324,10 @@ impl Mechanics {
                     y: f32::from_bits(origin[1]), z: f32::from_bits(origin[2]) };
                 if !world.sight_clear(from, player) { continue; }
             }
-            self.damage_player(hit.damage, false, hit.source_guid, player, facing, world);
+            self.damage_player_from(
+                hit.damage, incoming::DamageKind::Spell(hit.spell_id),
+                hit.source_guid, player, facing, world,
+            );
         }
         // Current145900736 continues the admitted frame after lethal damage.
         // Individual damage/movement callbacks retain their own mode gates.

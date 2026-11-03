@@ -20,6 +20,7 @@ mod notifications;
 pub(crate) mod run_hud;
 pub(crate) mod stored_hud;
 mod talent_view;
+mod death_recap;
 mod terminal;
 pub(crate) use terminal::TerminalAction as DeviceTerminalAction;
 mod terminal_view;
@@ -337,6 +338,7 @@ fn enter(
     mut loading: ResMut<benilla_app::local_client::LocalLoadingScreen>,
     coop: Option<Res<crate::coop_runtime::CoopRuntime>>,
     locale: Res<crate::localization::Localization>,
+    bridge: Res<client::BridgeCatalog>,
 ) {
     if !menu.entering || menu.in_run {
         return;
@@ -411,6 +413,7 @@ fn enter(
         Ok(mut game) => {
             game.configure_heroic_affixes(heroic_rank, menu.heroic_week);
             game.set_spell_display_locale(&locale);
+            game.recap_spells = bridge.spells.clone();
             game.player_guid = player_guid;
             session.showcase = std::env::var("WOW_ROGUE_SHOWCASE")
                 .is_ok_and(|value| value == "1");

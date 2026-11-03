@@ -16,6 +16,7 @@ struct Published {
     at: f64,
     choices: HashMap<ClientId, (u64, String)>,
     resumes: HashMap<ClientId, u64>,
+    recaps: HashMap<ClientId, recap::Published>,
     hud: HashMap<ClientId, Value>,
     resources: HashMap<ClientId, Vec<ResourceRow>>,
     timers: HashMap<ClientId, Vec<TimerRow>>,
@@ -570,6 +571,7 @@ fn publish(
             ..Default::default()
         };
     }
+    let cache = &mut *cache;
     let Some(game) = run.mechanics.as_mut() else {
         return;
     };
@@ -578,6 +580,7 @@ fn publish(
     if due {
         cache.at = now;
     }
+    cache.recaps.retain(|client, _| state.admitted.contains_key(client));
     let members = state
         .admitted
         .iter()
@@ -599,24 +602,24 @@ fn publish(
                 .iter()
                 .any(|row| row.id == client && row.synchronized && row.closing_since.is_none())
         });
-        if !synchronized {
-            continue;
-        }
         let code = String::from_utf8_lossy(&hero.bytes_30).into_owned();
         let member_locale = cache
             .locales
             .entry(code.clone())
             .or_insert_with(|| locale.for_code(&code));
         let generation = state.choice_generations.get(&client).copied().unwrap_or(0);
-        let Some((signature, choices, hud, resources, timers)) =
+        let Some(Some((signature, choices, hud, resources, timers))) =
             game.with_party_hero(slot, |game| {
-                (
+                cache.recaps.entry(client).or_default().publish(
+                    &mut runtime, client, &hero, game, member_locale,
+                );
+                synchronized.then(|| (
                     format!("{}:{}", game.choice_offer(), offer_signature(game)),
                     choice_payload(game, &art, member_locale),
                     due.then(|| game.coop_hud(member_locale)),
                     due.then(|| spell_resources(game, member_locale)),
                     due.then(|| spell_intervals(game)),
-                )
+                ))
             })
         else {
             continue;

@@ -209,8 +209,8 @@ pub trait CombatPort {
     fn raid_cast(&mut self, _source_guid: u64, _spell_id: u32, _seconds: f32) {}
     fn yell(&mut self, source_guid: u64, text: &'static str);
     fn player_position(&self) -> Position;
-    /// Raid hazards retain their source GUID; historical deferred effects pass zero.
-    fn damage_player(&mut self, amount: f32, source_guid: u64);
+    /// The live hazard hit retains the emitter and impact spell.
+    fn damage_player(&mut self, amount: f32, source_guid: u64, spell_id: u32);
 }
 
 fn height(port: &mut impl CombatPort, x: f32, y: f32) -> f32 {
@@ -308,7 +308,7 @@ impl PendingEffects {
                     spell_id: impact.impact_spell, target: CastTarget::Ground(impact.center), hit_targets: vec![] });
             }
             if in_radius(port.player_position(), impact.center, impact.radius) {
-                port.damage_player(impact.damage, 0);
+                port.damage_player(impact.damage, impact.source_guid, impact.impact_spell);
             }
             if let Some(guid) = impact.remove_object { port.remove_ground_object(guid); }
         }
@@ -404,7 +404,7 @@ pub fn dispatch(record: &RawBossAbility, context: CombatContext,
             let hit = in_radius(context.source, context.player, radius);
             port.cast_spell(SpellCast { source_guid: context.source_guid, spell_id,
                 target: CastTarget::None, hit_targets: if hit { vec![context.player_guid] } else { vec![] } });
-            if hit { port.damage_player(context.effective_damage * damage_factor, context.source_guid); }
+            if hit { port.damage_player(context.effective_damage * damage_factor, context.source_guid, spell_id); }
         }
         Ability::Charge { spell_id } => {
             let target = Position { z: height(port, context.player.x, context.player.y), ..context.player };

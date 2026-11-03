@@ -1,6 +1,15 @@
 //! Native incoming-player staging with synchronous shared hit/death consumers.
+use super::super::death_recap::{DamageRecord, DamageSource, DeathRecap};
 use super::*;
 use behavior::incoming::{self as native, ReactiveHit, ReactivePort};
+
+#[derive(Clone, Copy)]
+pub(super) enum DamageKind {
+    Melee,
+    Spell(u32),
+    Mechanic(u32),
+}
+
 #[derive(Clone, Copy)]
 enum IncomingAction {
     Hit(ReactiveHit),
@@ -13,6 +22,70 @@ impl Mechanics {
 
     pub fn taken_total(&self) -> f64 {
         self.taken_damage.total
+    }
+
+    pub(in crate::gameplay) fn death_recap(&self) -> Option<&DeathRecap> {
+        self.death_recap.as_ref()
+    }
+
+    pub(in crate::gameplay) fn death_recap_generation(&self) -> u64 {
+        self.death_recap_generation
+    }
+
+    fn recap_damage_source(&self, guid: u64, kind: DamageKind) -> DamageSource {
+        let locale = self.effect_state.display_locale.as_ref();
+        let label = |key: &str| locale.map_or(key, |locale| locale.label(key)).to_owned();
+        let (who, rank) = if let Some(boss) = self.bosses.iter().find(|row| row.guid == guid) {
+            (
+                AnnouncementLabel::boss(boss.definition.id, boss.definition.name).render(&label),
+                "boss",
+            )
+        } else if let Some(row) = self.actors.iter().find(|row| row.guid == guid) {
+            let rank = if row.definition.flag_4c != 0 || self.guardian_state.contains(guid) {
+                "elite"
+            } else {
+                "mob"
+            };
+            (
+                AnnouncementLabel::enemy(row.definition.id, row.definition.name).render(&label),
+                rank,
+            )
+        } else if let Some(ward) = self.boss_state.wards.actors.iter().find(|row| row.guid == guid) {
+            let key = format!("object.{}.name", ward.template.entry);
+            let name = locale
+                .and_then(|locale| locale.lookup(&key))
+                .unwrap_or(ward.template.name);
+            (name.to_owned(), "object")
+        } else {
+            (String::new(), "none")
+        };
+        let (spell_id, fallback, fallback_icon) = match kind {
+            DamageKind::Melee => (0, "Melee", "INV_Sword_04"),
+            DamageKind::Spell(id) => (id, "Spell", "Spell_Shadow_ShadowBolt"),
+            DamageKind::Mechanic(id) => (id, "Boss mechanic", "Spell_Fire_SelfDestruct"),
+        };
+        let display = self.recap_spells.as_ref().and_then(|spells| {
+            let spell = spells.get(spell_id)?;
+            let name = spells.base_name(spell);
+            (spell_id != 0 && !name.is_empty()).then_some((
+                name,
+                spell.icon
+                    .as_deref()
+                    .filter(|path| !path.is_empty())
+                    .unwrap_or("INV_Misc_QuestionMark"),
+            ))
+        });
+        let (what, icon) = display.map_or_else(
+            || (label(fallback), fallback_icon.to_owned()),
+            |(name, icon)| (name.to_owned(), icon.to_owned()),
+        );
+        DamageSource {
+            who,
+            rank: rank.to_owned(),
+            what,
+            icon,
+            mechanic: matches!(kind, DamageKind::Mechanic(_)),
+        }
     }
 
     /// Current1458f3794..3ac9 uses source categories rather than actor names.
@@ -43,6 +116,24 @@ impl Mechanics {
         facing: f32,
         world: &mut impl RunWorld,
     ) {
+        let kind = if physical {
+            DamageKind::Melee
+        } else {
+            DamageKind::Spell(0)
+        };
+        self.damage_player_from(raw, kind, source_guid, player, facing, world);
+    }
+
+    pub(super) fn damage_player_from(
+        &mut self,
+        raw: f32,
+        kind: DamageKind,
+        source_guid: u64,
+        player: Position,
+        facing: f32,
+        world: &mut impl RunWorld,
+    ) {
+        let physical = matches!(kind, DamageKind::Melee);
         // Current1458ec44d..1458ec46a admits mode1 without showcase before
         // armor, absorption, meters, reactive effects or lethal protection.
         if !self.active_run_state() || self.is_showcase() {
@@ -97,6 +188,17 @@ impl Mechanics {
         // its source or change the run state.
         let category = self.taken_category(source_guid, physical);
         self.taken_damage.record(category, applied.amount);
+        // 0.139.2 145ef16eb..195d samples the resolved source and signed HP
+        // before any retaliation or lethal rescue can mutate them.
+        let source = self.recap_damage_source(source_guid, kind);
+        self.damage_history.record(DamageRecord {
+            source,
+            time: self.clock,
+            amount: applied.amount,
+            absorbed: applied.absorbed,
+            health: self.execution.vitals.health,
+            max_health: self.max_health(),
+        });
         let mut rng = self.rng;
         native::reactive_effects(
             self.clock,
@@ -183,6 +285,8 @@ impl Mechanics {
             self.publish_player_damage(applied.amount);
             return;
         }
+        self.death_recap = self.damage_history.recap(self.clock);
+        self.death_recap_generation = self.death_recap_generation.wrapping_add(1);
         self.execution.vitals.health = 0.0;
         self.dead = true;
         // Current145b95bf0 counts irreversible deaths across every swapped

@@ -237,7 +237,7 @@ def main():
     area=(ROOT/'crates/azeroth-survivors-re/src/bosses/raid_areas.rs').read_text()
     for token in ('self.next_id.wrapping_add(1)','if self.rows.is_empty() { return; }',
                   'ended.into_iter().rev()', 'total += row.damage',
-                  'port.damage_player(total * port.raid_damage_multiplier(), last_source)', 'follow: false'):
+                  'port.damage_player(total * port.raid_damage_multiplier(), source, spell)', 'follow: false'):
         assert token in area,token
     adapter=(ROOT/'crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs').read_text()
     assert 'endless_enabled: self.boss_state.completion.endless_enabled' in adapter

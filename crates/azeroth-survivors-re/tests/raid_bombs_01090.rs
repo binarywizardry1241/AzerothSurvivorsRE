@@ -33,7 +33,7 @@ impl CombatPort for Port {
     fn begin_charge(&mut self, _: Charge) { unreachable!(); }
     fn yell(&mut self, _: u64, _: &'static str) { panic!("warning uses native raid emote"); }
     fn player_position(&self) -> Position { self.player }
-    fn damage_player(&mut self, amount: f32, source: u64) {
+    fn damage_player(&mut self, amount: f32, source: u64, _: u32) {
         self.player_damage.push((amount, source)); self.order.push("player-damage");
     }
 }

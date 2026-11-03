@@ -35,7 +35,7 @@ impl Plugin for RunHudPlugin {
             )
             .add_systems(
                 Update,
-                (settings::sync, pause::input, controls::input)
+                (settings::sync, super::terminal_view::recap_input, pause::input, controls::input)
                     .chain()
                     .before(super::controls)
                     .in_set(RunSet::Input)

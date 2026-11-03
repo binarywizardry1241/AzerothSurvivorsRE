@@ -64216,6 +64216,28 @@
     },
     {
       "id": "custom-app-screens-recap",
+      "source_repair_0_139_2": {
+        "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
+        "gap_id": 300,
+        "source_status": "connected",
+        "evidence_refs": [
+          "docs/analysis/death-recap-0.139.2.md",
+          "docs/analysis/evidence/0.139.2/death-recap.json"
+        ],
+        "static_validation": "bounded_native_trace_and_window_replay_pass",
+        "runtime_validation": "not_run",
+        "parity": "unverified",
+        "scope": "Damage capture, summary aggregation, private party event, terminal view and input. The enclosing 0.139.1 accounting retains its historical target.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs",
+          "crates/azeroth-survivors-re/src/gameplay/death_recap.rs",
+          "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
+          "crates/azeroth-survivors-re/src/gameplay/terminal_view.rs",
+          "crates/azeroth-survivors-re/src/gameplay/terminal_view/recap.rs",
+          "crates/azeroth-survivors-re/src/gameplay/coop_recap.rs",
+          "crates/azeroth-survivors-re/src/gameplay/coop.rs"
+        ]
+      },
       "title": "screens/recap.rs",
       "original_path": "crates/wenilla-rogue-app/src/screens/recap.rs",
       "native_path_evidence": [

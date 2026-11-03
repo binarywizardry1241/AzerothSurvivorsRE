@@ -121,7 +121,7 @@ impl Plugin for ClientBridgePlugin {
 #[derive(Resource, Default)]
 pub(super) struct BridgeCatalog {
     pub(super) creation: Option<CharCreateCatalog>,
-    pub(super) spells: Option<SpellCatalog>,
+    pub(super) spells: Option<std::sync::Arc<SpellCatalog>>,
     pub(super) spell_durations: Option<SpellDurationCatalog>,
     map_areas: Option<WorldMapAreaCatalog>,
 }
@@ -147,7 +147,7 @@ fn load_catalog(mut catalog: ResMut<BridgeCatalog>, assets: Option<Res<WorldAsse
         Err(error) => warn!("local client body catalog unavailable: {error}"),
     }
     match benilla_formats::load_spell_catalog(&mut chain) {
-        Ok(spells) => catalog.spells = Some(spells),
+        Ok(spells) => catalog.spells = Some(spells.into()),
         Err(error) => warn!("local client spell presentation catalog unavailable: {error}"),
     }
     match benilla_formats::load_world_map_area_catalog(&mut chain) {
@@ -449,7 +449,7 @@ fn sync_to_client(
                 },
                 duration,
                 expiration,
-                catalog.spells.as_ref(),
+                catalog.spells.as_deref(),
                 catalog.spell_durations.as_ref(),
             )
         })

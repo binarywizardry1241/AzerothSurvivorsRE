@@ -194,7 +194,7 @@ impl Pending {
         let mut moves = Vec::new();
         let mut visuals = Vec::new();
         let mut total = 0.0f32;
-        let mut last_source = 0;
+        let mut last_source = (0, 0);
         let mut knockback = None;
         let mut occupied = Vec::new();
         let mut enemy_bursts = Vec::new();
@@ -226,7 +226,7 @@ impl Pending {
                 if let Some(fraction) = heal { heals.push((row.source,fraction,row.impact_spell)); }
                 if let Some(until) = expose { exposures.push((row.source,until)); }
                 if matches!(&row.extra,Some(extra::Extra::Gaze{..}|extra::Extra::Crystal{..})) && !remove && row.contains(player) { occupied.push(json!(row.id)); }
-                if damage > 0. { last_source = row.source; }
+                if damage > 0. { last_source = (row.source, row.impact_spell); }
                 if replaced && row.impact_spell != 0 {
                     visuals.push(SpellCast { source_guid: row.source, spell_id: row.impact_spell,
                         target: CastTarget::Ground(row.visual_position()), hit_targets: Vec::new() });
@@ -270,13 +270,16 @@ impl Pending {
                 }
                 if now >= pool.next_tick {
                     pool.next_tick += 0.5;
-                    if row.damage_contains(player, projected) { total += row.damage; last_source = row.source; }
+                    if row.damage_contains(player, projected) {
+                        total += row.damage;
+                        last_source = (row.source, row.impact_spell);
+                    }
                 }
             } else if now >= row.end {
                 let distance = (player.x - row.center.x).hypot(player.y - row.center.y);
                 if row.damage_contains(player, projected) {
                     total += row.damage;
-                    last_source = row.source;
+                    last_source = (row.source, row.impact_spell);
                     if row.knockback > 0. {
                         let angle = if !(distance < 0.5) {
                             (player.y - row.center.y).atan2(player.x - row.center.x)
@@ -339,7 +342,10 @@ impl Pending {
         if !moves.is_empty() { clock["m"] = Value::Array(moves); }
         if !occupied.is_empty() { clock["in"] = Value::Array(occupied); }
         port.raid_marker(clock);
-        if total > 0. { port.damage_player(total * port.raid_damage_multiplier(), last_source); }
+        if total > 0. {
+            let (source, spell) = last_source;
+            port.damage_player(total * port.raid_damage_multiplier(), source, spell);
+        }
         if let Some((angle, speed)) = knockback { port.raid_knockback(angle, speed); }
         for (center,radius,damage,spell) in enemy_bursts { port.raid_bomb_damage(center,radius,damage,spell); }
         for (kind,index,point) in spawns { port.raid_spawn_at(kind,index,point); }
