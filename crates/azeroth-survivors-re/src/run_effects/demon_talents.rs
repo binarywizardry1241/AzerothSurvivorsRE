@@ -7,6 +7,15 @@ use super::Talent;
 /// Current 0.112.0 localized description, separately verified by its formatter.
 pub const EMPOWERMENT_DESCRIPTION: &str = "Your demons deal {d}% more damage for {dur} sec. Cast once enemies are within 30 yd and a demon fights for you.";
 
+/// The 0.139.2 label changes without changing the serialized talent key.
+pub const PACT_KEY: &str = "pact_of_the_annihilan";
+pub const PACT_NAME: &str = "Pact of the Nathrezim";
+pub const PACT_DESCRIPTION: &str = concat!(
+    "Capstone. Summons a Dread Lord for {v} sec every 30 sec, reduced by CDR (min 13 sec). Up to 2 active.\n",
+    "Felseeker inherits your Searing Pain upgrades and deals 25% more damage to its primary target. It hits up to 6 enemies.\n",
+    "Exclusive with Butcher.",
+);
+
 pub const KEYS: [&str; 14] = [
     "demonic_familiar",
     "demonic_embrace",
@@ -20,7 +29,7 @@ pub const KEYS: [&str; 14] = [
     "demonic_supremacy",
     "summon_infernal",
     "summon_doomguard",
-    "pact_of_the_annihilan",
+    PACT_KEY,
     "butcher",
 ];
 pub const OLD_KEYS: [&str; 13] = [
@@ -74,7 +83,7 @@ impl Config {
             supremacy: rank("demonic_supremacy", 1) != 0,
             infernal_rank: rank("summon_infernal", 3),
             doomguard_rank: rank("summon_doomguard", 3),
-            pit_lord: rank("pact_of_the_annihilan", 1) != 0,
+            pit_lord: rank(PACT_KEY, 1) != 0,
             felguard: rank("butcher", 1) != 0,
             damage_bonus: f32::from_bits(0x3d4c_cccd) * f32::from(rank("unholy_power", 5)),
             crit_bonus: f32::from_bits(0x3cf5_c28f) * f32::from(master),
@@ -126,6 +135,11 @@ pub(super) fn overlay(talents: &mut Vec<Talent>) {
     assert_eq!(current.target_sha256,
         "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a");
     *talents = current.talents;
+    talents
+        .iter_mut()
+        .find(|talent| talent.key == PACT_KEY)
+        .expect("retained Nathrezim save key")
+        .name = PACT_NAME.into();
 }
 
 /// Current 145925d75..145925da8 uses the ordinary Battle Shout aura

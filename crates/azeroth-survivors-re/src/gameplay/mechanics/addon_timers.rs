@@ -98,7 +98,7 @@ mod tests {
             ("pact_of_the_annihilan".into(), 1)], &[]);
         game.clock = 40.0;
         let initial = game.addon_timers();
-        let pact = initial.iter().find(|row| row.name == "Pact of the Annihilan").unwrap();
+        let pact = initial.iter().find(|row| row.name == "Pact of the Nathrezim").unwrap();
         let index = pact.index;
         assert_eq!((pact.kind, pact.ready, pact.wait), ("summon", 40.0, 30.0));
         game.effect_state.generic.deadlines[index] = 10.0;

@@ -2,6 +2,7 @@
 //! Current 0.112.0 Warlock and selected Warrior definitions, with shared
 //! allocation/persistence rules. Other records retain 0.109.0 provenance. See
 //! docs/analysis/talent-allocations-0.112.0.md for current native evidence.
+use crate::run_effects::demon_talents::{PACT_DESCRIPTION, PACT_KEY, PACT_NAME};
 use serde::Deserialize;
 use std::{collections::BTreeMap, sync::OnceLock};
 pub const MAX_POINTS: u32 = 51;
@@ -28,6 +29,29 @@ impl Catalog {
             "../../assets/warlock-talents-0.112.0.json"
         ))
         .expect("recovered 0.112.0 Warlock talent definitions");
+        let warlock = catalog
+            .classes
+            .iter_mut()
+            .find(|class| class.id == 9)
+            .expect("native Warlock class");
+        for talent in warlock
+            .trees
+            .iter_mut()
+            .flat_map(|tree| tree.talents.iter_mut())
+        {
+            match talent.key.as_str() {
+                PACT_KEY => {
+                    talent.name = PACT_NAME.into();
+                    talent.description = PACT_DESCRIPTION.into();
+                }
+                "butcher" => {
+                    talent.description = talent
+                        .description
+                        .replace("Pact of the Annihilan", PACT_NAME);
+                }
+                _ => {}
+            }
+        }
         let replacements: WarriorReplacements = serde_json::from_str(include_str!(
             "../../assets/warrior-talents-0.112.0.json"
         ))

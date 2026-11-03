@@ -4,6 +4,7 @@
 
 use std::sync::LazyLock;
 
+use azeroth_survivors_re::run_effects::pets::DREAD_LORD;
 use serde::Deserialize;
 
 use crate::{gameplay::mechanics::Mechanics, localization::Localization};
@@ -30,10 +31,15 @@ pub(super) fn snapshot(game: &Mechanics, locale: &Localization) -> String {
                 .expect("native combat-summon descriptor");
             // This producer cleans only list delimiters in the translated name.
             // Keys and bare icon names retain their native immutable bytes.
-            let name = locale.label(&metadata.name).replace([',', ';'], " ");
+            let (key, name) = if row.entry == DREAD_LORD.entry {
+                (DREAD_LORD.key, DREAD_LORD.name)
+            } else {
+                (metadata.key.as_str(), metadata.name.as_str())
+            };
+            let name = locale.label(name).replace([',', ';'], " ");
             format!(
                 "{},{},{},{},{:.1},{:.1},{},{}",
-                row.id, row.entry, metadata.key, metadata.kind,
+                row.id, row.entry, key, metadata.kind,
                 row.ends, row.duration, metadata.icon, name,
             )
         })

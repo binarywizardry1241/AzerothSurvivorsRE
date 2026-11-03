@@ -1,0 +1,341 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.139.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
+    "size_bytes": 150793728
+  },
+  "gap_id": 24,
+  "queries": [
+    {
+      "role": "creature_query",
+      "range": {
+        "virtual_address": "0x145e4c400",
+        "file_offset": "0x5e4b800",
+        "byte_count": 13084,
+        "sha256": "bd4a72325bd0b87760d9e488433c3f30adaf3342be4b23a60e0e206849040a16"
+      },
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_5f4c11690fa50e828f83da4c1bda39fa0ad1860ec21da0882c5618ec72634cde",
+      "result_sha256": "26fbd7560674446709e509fdf74f740d17e1ff3e19d64532288e0e74d13f2c94"
+    },
+    {
+      "role": "combat_descriptor_dispatch",
+      "range": {
+        "virtual_address": "0x145f465f0",
+        "file_offset": "0x5f459f0",
+        "byte_count": 4898,
+        "sha256": "6ab144627cd60c5b4a3af7b880e9115af0d06bada5ab275e19e69e86cb70a078"
+      },
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_098fb6d34408ce8c2c12b11a1fe445a5aab63a0e9d10a982f4d1ccfda54ff3f7",
+      "result_sha256": "728a35f876acbcd134672c0ffb0ac20cc36d67a607fb7deb17d01f412a4e3e15"
+    },
+    {
+      "role": "unit_field_constructor",
+      "range": {
+        "virtual_address": "0x145f4c2d0",
+        "file_offset": "0x5f4b6d0",
+        "byte_count": 3362,
+        "sha256": "b79c9977f6d17f0c991d3e8a35c3612ae5c7ae5fb12d020358b6448d1b19624e"
+      },
+      "operation": "procedure_pseudo_code",
+      "evidence_id": "ev_53fc06a90b404934b0eebd7bee5166c7f2663a9addee9be52c5c1a63e9388b2a",
+      "result_sha256": "b0c7a90c209ef1b0dcd35296f28f06b1606ecb1e1cf09e0b145133e0e84d78cb"
+    }
+  ],
+  "talent": {
+    "row": {
+      "virtual_address": "0x14736f250",
+      "file_offset": "0x736e450",
+      "byte_count": 112,
+      "sha256": "bce39e55a1afe39eec7d438858df1b4fc38f1c41cce7dd8a4dfee936c18b5052"
+    },
+    "save_key": "pact_of_the_annihilan",
+    "name": "Pact of the Nathrezim",
+    "icon": "Spell_Shadow_UnholyStrength",
+    "description": "Capstone. Summons a Dread Lord for {v} sec every 30 sec, reduced by CDR (min 13 sec). Up to 2 active.\nFelseeker inherits your Searing Pain upgrades and deals 25% more damage to its primary target. It hits up to 6 enemies.\nExclusive with Butcher.",
+    "butcher_description": "Capstone. Summons a Felguard for {v} sec every 30 sec, reduced by CDR (min 13 sec). Up to 2 active.\nCleaves up to 10 enemies within 15 yd. Every third swing deals double damage. Deals 50% more damage below 30% enemy health.\nExclusive with Pact of the Nathrezim.",
+    "effect": {
+      "virtual_address": "0x14736e740",
+      "file_offset": "0x736d940",
+      "byte_count": 64,
+      "sha256": "4d9667186093b3fd64633c25b633f294edb7c6553ea1b946f8a8492cb6019d76",
+      "tag": 35,
+      "duration": 20,
+      "cooldown": 30,
+      "minimum_cooldown": 13
+    }
+  },
+  "summon": {
+    "virtual_address": "0x147374370",
+    "file_offset": "0x7373570",
+    "byte_count": 64,
+    "sha256": "d2645c88577e0d9322f4248052c3bc4ad8bcb0fcf1231fd99bcfc92e36161157",
+    "entry": 9523,
+    "key": "dread_lord",
+    "kind": "pitlord",
+    "name": "Dread Lord",
+    "icon": "Spell_Shadow_UnholyStrength",
+    "model": 11658,
+    "descriptor_scale_bits": 1050253722,
+    "display_multiplier_bits": 1080452710,
+    "display_bits": 1066024305,
+    "damage_bits": 1070386381,
+    "period_bits": 1074580685,
+    "spell_id": 5676,
+    "school": 2,
+    "special": 8
+  },
+  "display": {
+    "selector": {
+      "virtual_address": "0x145f4c586",
+      "file_offset": "0x5f4b986",
+      "byte_count": 40,
+      "sha256": "99c7f249d1c2777437f33d001391b73dfcfe06288acc322f25c05cb46967c245"
+    },
+    "multipliers": {
+      "virtual_address": "0x147a45400",
+      "file_offset": "0x7a44600",
+      "byte_count": 32,
+      "sha256": "b16f37fdc93a65abf74a019253f9c2f0efc6045335710473c11b869d63c89f9e"
+    },
+    "cases": [
+      {
+        "special": 0,
+        "display_bits": 1050253722
+      },
+      {
+        "special": 1,
+        "display_bits": 1052266988
+      },
+      {
+        "special": 2,
+        "display_bits": 1052266988
+      },
+      {
+        "special": 3,
+        "display_bits": 1052266988
+      },
+      {
+        "special": 4,
+        "display_bits": 1052266988
+      },
+      {
+        "special": 5,
+        "display_bits": 1055286887
+      },
+      {
+        "special": 6,
+        "display_bits": 1055286887
+      },
+      {
+        "special": 7,
+        "display_bits": 1055286887
+      },
+      {
+        "special": 8,
+        "display_bits": 1066024305
+      }
+    ],
+    "radius_multiplier": {
+      "virtual_address": "0x1464fb080",
+      "file_offset": "0x64fa280",
+      "byte_count": 4,
+      "sha256": "d99e58435243d9fef9c88273b8d553b4fba4d0baf8009d29eae74fa99e0d9f57"
+    },
+    "reach_multiplier": {
+      "virtual_address": "0x1464fb138",
+      "file_offset": "0x64fa338",
+      "byte_count": 4,
+      "sha256": "c0e336a5f371ef22cd534e094269f2c1a9635cd080b71ffa671086832d3b60b7"
+    }
+  },
+  "assets": [
+    {
+      "archive": "installed-game/Data/patch.MPQ",
+      "member": "DBFilesClient\\CreatureDisplayInfo.dbc",
+      "byte_count": 531291,
+      "sha256": "aa6dbb0601f5abec1bb21b8ee96bd7f1e695948410835a06f7ab4257c2d4cf8b",
+      "rows": [
+        {
+          "id": 130,
+          "sha256": "6b2eb8ae008b23db396155acb599d810ad1a1de9b3f39ce619a60ac25f87eb87",
+          "model_id": 130,
+          "scale_bits": 1065353216
+        },
+        {
+          "id": 11658,
+          "sha256": "5b4367e9eaa86319f2e78db8347b5b69de4ef49e2057990a6dd780dc004b2f32",
+          "model_id": 130,
+          "scale_bits": 1067030938
+        }
+      ]
+    },
+    {
+      "archive": "installed-game/Data/patch.MPQ",
+      "member": "DBFilesClient\\CreatureModelData.dbc",
+      "byte_count": 42563,
+      "sha256": "e973e78ea0894d2afc802b06db0ed2d7c77238671df7235e9f744791d54256c9",
+      "rows": [
+        {
+          "id": 130,
+          "sha256": "f38b4869426d8ba396b645ba6a91de1b72268a60e8cda67561144b82a249d717",
+          "model_path": "Creature\\Dreadlord\\DreadLord.mdx"
+        }
+      ]
+    },
+    {
+      "archive": "installed-game/Data/patch.MPQ",
+      "member": "Creature\\Dreadlord\\DreadLord.m2",
+      "byte_count": 1065184,
+      "sha256": "b8ae74e24527a4ad367b74d86c44d64f50f3b6d7b20e62a8ba52de48200a747e",
+      "rows": []
+    }
+  ],
+  "locales": [
+    {
+      "code": "en",
+      "embedded_object": {
+        "virtual_address": "0x1476ca5e6",
+        "file_offset": "0x76c97e6",
+        "byte_count": 230388,
+        "sha256": "71266d2886bf4da59727e2796ccfbf6aa5e60f5d8c435c381d3eac222b3d213b"
+      },
+      "four_labels_sha256": "246e51282cb2b5fdb5579ef041c1e0d5dbd8746622440725b442fc2c94ddc303"
+    },
+    {
+      "code": "pl",
+      "embedded_object": {
+        "virtual_address": "0x1477029e3",
+        "file_offset": "0x7701be3",
+        "byte_count": 244925,
+        "sha256": "50ef7ad8d1f89cb3f09a42db66475a3a9b66ee33f6a2bb88ee2228be1e88f941"
+      },
+      "four_labels_sha256": "9a99aedc949f80235d0c7e3d1fae4ead29628d233e82c50c6c1cfa09d6a0b2b6"
+    },
+    {
+      "code": "cs",
+      "embedded_object": {
+        "virtual_address": "0x14773e6ac",
+        "file_offset": "0x773d8ac",
+        "byte_count": 245256,
+        "sha256": "6072783fdd09d5201a3dc0d72c1365340f53e9cd752b7c625258694fafcf101e"
+      },
+      "four_labels_sha256": "d599bc6ac9567e1f3a92f98d18fdd488fe2ee3691b6584939b570a50d185deba"
+    },
+    {
+      "code": "de",
+      "embedded_object": {
+        "virtual_address": "0x14777a4be",
+        "file_offset": "0x77796be",
+        "byte_count": 250747,
+        "sha256": "11fa168157e49671a9c0938f2b36d0801de3519fcb2d11ce487fbb7020c90079"
+      },
+      "four_labels_sha256": "2e3e1070ed58664fa10ba09fa2ed69fe93d453cb7d3432cd302bde5a1afa69db"
+    },
+    {
+      "code": "pt",
+      "embedded_object": {
+        "virtual_address": "0x1477b784f",
+        "file_offset": "0x77b6a4f",
+        "byte_count": 243183,
+        "sha256": "d25de2585738f2cc5701bc33fd95ad4a00e2b4d2faceaecfce53e645590c8649"
+      },
+      "four_labels_sha256": "878b375285922ab93b1c6580958538cc644855e6632dc9fa5f92cff78fa4c8ea"
+    },
+    {
+      "code": "es",
+      "embedded_object": {
+        "virtual_address": "0x1477f2e49",
+        "file_offset": "0x77f2049",
+        "byte_count": 250535,
+        "sha256": "c11974d220694e7003aacf509fc3f73e81482d76defdf8bec64d5db019499d3b"
+      },
+      "four_labels_sha256": "187b8171b978456234d15181cd8311e926e4baf04486fa4bdb7474c4536533d5"
+    },
+    {
+      "code": "fr",
+      "embedded_object": {
+        "virtual_address": "0x1478300fc",
+        "file_offset": "0x782f2fc",
+        "byte_count": 255397,
+        "sha256": "cd1ff2b6146de981bd2629fbd60c708b5270f11fee30126723b0090c22ce04cb"
+      },
+      "four_labels_sha256": "03349415f61b5996c3e52f27c5c7e6fc5332f3236ade1e5044d7eae004e33d01"
+    },
+    {
+      "code": "ro",
+      "embedded_object": {
+        "virtual_address": "0x14786e6ac",
+        "file_offset": "0x786d8ac",
+        "byte_count": 250940,
+        "sha256": "0e5bdd90fc3c04630f4f43a8fcc7fd7e53843c308c51fb8991f096741c605ae9"
+      },
+      "four_labels_sha256": "d44c1d3a026bb4850958904b65dcdf6effeac87ab8acc2f91113c5f7fa731a25"
+    },
+    {
+      "code": "tr",
+      "embedded_object": {
+        "virtual_address": "0x1478abaf3",
+        "file_offset": "0x78aacf3",
+        "byte_count": 242745,
+        "sha256": "744630e0373c4c839af13e13c913e75260801dca7fe6efdbda18483fae97077a"
+      },
+      "four_labels_sha256": "5fc2609a6cd8529bab9b789088b5426f53bc52135e3fbeff771ede6b8c436eea"
+    },
+    {
+      "code": "ru",
+      "embedded_object": {
+        "virtual_address": "0x1478e6f3d",
+        "file_offset": "0x78e613d",
+        "byte_count": 331410,
+        "sha256": "6c6f5c8de7cea64eb141ac7e7eaceeddf76967034b8288c8026945d40dfcaaa2"
+      },
+      "four_labels_sha256": "ef1983c04c8746b25d90559ca046e2382cf17f5c34226dd3f403bb9630c986f4"
+    },
+    {
+      "code": "uk",
+      "embedded_object": {
+        "virtual_address": "0x147937de6",
+        "file_offset": "0x7936fe6",
+        "byte_count": 323488,
+        "sha256": "bb0dc2b1acd76a4ed580bc5938fb461a392461e277fb0f0b09a9c7e629bdf526"
+      },
+      "four_labels_sha256": "2db76cc2bb1b68e7c6bc3bfbcf4c7d8581b37bfa083904c018f3e9b72d5aacc2"
+    },
+    {
+      "code": "zh",
+      "embedded_object": {
+        "virtual_address": "0x147986d95",
+        "file_offset": "0x7985f95",
+        "byte_count": 228065,
+        "sha256": "f0dc3c5f00d6931b0a0bd01b7b7cdf24572cd916bdd69ddbf590e0f9290f690d"
+      },
+      "four_labels_sha256": "187190eec6615a550bce7a94413b2e814fc5a9b66c35bb18b187112ba6128140"
+    },
+    {
+      "code": "ja",
+      "embedded_object": {
+        "virtual_address": "0x1479be882",
+        "file_offset": "0x79bda82",
+        "byte_count": 276078,
+        "sha256": "7bbc5474b5b8138ab1ddbded3dd52021f410bc11f72a55c8fb09a1d9e180dd0a"
+      },
+      "four_labels_sha256": "e76a85c84ec3f6a2c76244553d993f7e1dfa66ad3edfcfa159cff9ba0259b450"
+    },
+    {
+      "code": "ko",
+      "embedded_object": {
+        "virtual_address": "0x147a01efc",
+        "file_offset": "0x7a010fc",
+        "byte_count": 257660,
+        "sha256": "5a87a295823c3e618a8de5d7e8ad2bf51a8cd539a620b50ba346a0bd2fbdc516"
+      },
+      "four_labels_sha256": "a008dbf9a51cfa7b4e519e7f69c7ff18604ca43461b06bedb5989e039ec4d8b3"
+    }
+  ],
+  "application_executed": false,
+  "parity_verified": false
+}

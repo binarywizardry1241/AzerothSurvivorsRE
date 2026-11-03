@@ -5,7 +5,10 @@
 use std::sync::OnceLock;
 
 use crate::{catalog::MenuCatalog, localization::Localization};
-use azeroth_survivors_re::guardians::catalog::ZONES;
+use azeroth_survivors_re::{
+    guardians::catalog::ZONES,
+    run_effects::pets::DREAD_LORD,
+};
 use benilla_app::local_client::events::SessionEvent;
 
 pub(crate) fn creature_query(entry: u32, locale: &Localization) -> Option<SessionEvent> {
@@ -122,7 +125,14 @@ const SPECIALS: &[(u32, &str, &str, &str, u32, u32)] = &[
     (9520, "Succubus", "Succubus", "Companion", 1, 4162),
     (9521, "Infernal", "Infernal", "Companion", 1, 169),
     (9522, "Doomguard", "Doomguard", "Companion", 1, 433),
-    (9523, "Pit Lord", "Pit Lord", "Companion", 1, 12449),
+    (
+        DREAD_LORD.entry,
+        DREAD_LORD.name,
+        DREAD_LORD.name,
+        "Companion",
+        1,
+        DREAD_LORD.model,
+    ),
     (9530, "White Devilsaur", "White Devilsaur", "Companion", 1, 5239),
     (9531, "White Devilsaur", "White Devilsaur", "Companion", 1, 5239),
     (9600, "Egg Sac", "object.9600.name", "", 10, 10056),

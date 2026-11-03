@@ -31620,6 +31620,26 @@
     },
     {
       "id": "custom-game-game-demons",
+      "source_repair_0_139_2": {
+        "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
+        "gap_id": 24,
+        "source_status": "connected",
+        "evidence_refs": [
+          "docs/analysis/nathrezim-summon-0.139.2.md",
+          "docs/analysis/evidence/0.139.2/nathrezim-summon.json"
+        ],
+        "static_validation": "bounded_descriptor_consumer_and_display_selector_checks_pass",
+        "runtime_validation": "not_run",
+        "parity": "unverified",
+        "scope": "Pact and Dread Lord identity, timed-effect descriptor, display/radius fields, creature query and addon publication. The enclosing 0.139.1 module accounting retains its target.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/run_effects/demon_talents.rs",
+          "crates/azeroth-survivors-re/src/run_effects/pets.rs",
+          "crates/azeroth-survivors-re/src/save/talents.rs",
+          "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "crates/azeroth-survivors-re/src/gameplay/client/addon_summons.rs"
+        ]
+      },
       "title": "Special Demonology army and spells",
       "original_path": "crates/wenilla-rogue/src/game/demons.rs",
       "native_path_evidence": [

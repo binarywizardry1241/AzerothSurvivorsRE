@@ -22,6 +22,23 @@ pub struct PetDefinition {
 
 pub const TARGET_SHA256: &str = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7";
 
+/// 0.139.2 presentation at 0x147374370. The address field identifies the
+/// retained 0.105.0 source payload for this same entry.
+pub const DREAD_LORD: PetDefinition = PetDefinition {
+    key: "dread_lord",
+    name: "Dread Lord",
+    icon: Some("Spell_Shadow_UnholyStrength"),
+    entry: 9523,
+    model: 11658,
+    scale: f32::from_bits(0x3e99999a),
+    damage: f32::from_bits(0x3fcccccd),
+    period: f32::from_bits(0x400ccccd),
+    spell_id: 5676,
+    school: 2,
+    special: 8,
+    native_address: 0x146e75178,
+};
+
 pub static DEFINITIONS: [PetDefinition; 15] = [
     PetDefinition {
         key: "wolf",
@@ -191,20 +208,7 @@ pub static DEFINITIONS: [PetDefinition; 15] = [
         special: 7,
         native_address: 0x146e75210,
     },
-    PetDefinition {
-        key: "pit_lord",
-        name: "Pit Lord",
-        icon: Some("Spell_Shadow_UnholyStrength"),
-        entry: 9523,
-        model: 12449,
-        scale: f32::from_bits(0x3e99999a),
-        damage: f32::from_bits(0x3fcccccd),
-        period: f32::from_bits(0x400ccccd),
-        spell_id: 5676,
-        school: 2,
-        special: 8,
-        native_address: 0x146e75178,
-    },
+    DREAD_LORD,
     // 0.117.0 independent Hunter switch; both use the ordinary special0
     // creature lifecycle. Keep their actual target addresses separate from
     // the historical descriptor addresses above.
@@ -436,12 +440,13 @@ pub fn initial_state(
     }
 }
 
-/// Current constructor14592e636 uses display factors1.2 for specials1..4
-/// and1.5 for5..8. Collision radius/reach retain the descriptor's original scale.
+/// The 0.139.2 constructor uses an indexed display multiplier. Collision
+/// radius and reach use the descriptor scale independently.
 pub fn display_scale(definition: &PetDefinition) -> f32 {
     let factor = match definition.special {
         1..=4 => 1.2,
-        5..=8 => 1.5,
+        5..=7 => 1.5,
+        8 => 3.6,
         _ => 1.0,
     };
     definition.scale * factor
@@ -513,12 +518,21 @@ mod tests {
         ))
         .unwrap();
         assert_eq!(fixture["target_sha256"], TARGET_SHA256);
+        let current: serde_json::Value = serde_json::from_str(include_str!(
+            "../../../../docs/analysis/evidence/0.139.2/nathrezim-summon.json"
+        ))
+        .unwrap();
         for row in fixture["definitions"].as_array().unwrap() {
             let value = definition(row["entry"].as_u64().unwrap() as u32).unwrap();
-            assert_eq!(value.key, row["key"].as_str().unwrap());
-            assert_eq!(value.name, row["name"].as_str().unwrap());
+            let presentation = if value.entry == DREAD_LORD.entry {
+                &current["summon"]
+            } else {
+                row
+            };
+            assert_eq!(value.key, presentation["key"].as_str().unwrap());
+            assert_eq!(value.name, presentation["name"].as_str().unwrap());
             assert_eq!(value.icon, row["icon"].as_str());
-            assert_eq!(value.model, row["model"].as_u64().unwrap() as u32);
+            assert_eq!(value.model, presentation["model"].as_u64().unwrap() as u32);
             assert_eq!(
                 value.scale.to_bits(),
                 row["scale_bits"].as_u64().unwrap() as u32
@@ -626,12 +640,21 @@ mod tests {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
             "../../../../docs/analysis/evidence/0.112.0/demon-actors/native-scale-cases.json"
         )).unwrap();
+        let current: serde_json::Value = serde_json::from_str(include_str!(
+            "../../../../docs/analysis/evidence/0.139.2/nathrezim-summon.json"
+        ))
+        .unwrap();
         for row in fixture["cases"].as_array().unwrap() {
             let definition = definition(row["entry"].as_u64().unwrap() as u32).unwrap();
             let fields = object_fields(definition, 1, 2, 1, 1);
             for (field, key) in [(4, "display_bits"), (129, "radius_bits"), (130, "reach_bits")] {
                 let actual = fields.iter().find(|(index, _)| *index == field).unwrap().1;
-                assert_eq!(actual, row[key].as_u64().unwrap() as u32, "{row}");
+                let evidence = if field == 4 && definition.entry == DREAD_LORD.entry {
+                    &current["summon"]
+                } else {
+                    row
+                };
+                assert_eq!(actual, evidence[key].as_u64().unwrap() as u32, "{row}");
             }
         }
     }
