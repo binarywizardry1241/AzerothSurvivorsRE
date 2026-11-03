@@ -135,20 +135,49 @@ pub fn unit24(rng: &mut NativeRng) -> f32 {
     (rng.next_u64() >> 40) as u32 as f32 * (1.0 / 16_777_216.0)
 }
 
-/// 14549e91c..14549ead9: guaranteed whole extra casts, then consecutive
-/// fractional successes, stopping at the first failure. The caller supplies
-/// the sum of current talent-effect variant-24 counts, not an invented cap.
+/// 0.139.2: resolve the first echo and its talent continuation at full Echo
+/// chance, then roll the fractional part of any chance beyond the first 100%.
 pub fn extra_cast_count(factor: f32, additional_attempts: u32, rng: &mut NativeRng) -> u32 {
     if !(factor > 0.0) {
         return 0;
     }
-    let mut count = factor.floor() as u32;
-    let fraction = factor - factor.trunc();
-    for _ in 0..additional_attempts.wrapping_add(1) {
-        if unit24(rng) >= fraction {
-            break;
+    let attempts = additional_attempts.wrapping_add(1);
+    let mut count = 0u32;
+    if factor >= 1.0 {
+        count = attempts;
+    } else {
+        for _ in 0..attempts {
+            if unit24(rng) >= factor {
+                break;
+            }
+            count += 1;
         }
+    }
+    let overflow = (factor - 1.0).max(0.0);
+    count = count.wrapping_add(overflow.floor() as u32);
+    let fraction = overflow.fract();
+    if fraction > 0.0 && unit24(rng) < fraction {
         count = count.wrapping_add(1);
     }
     count
+}
+
+#[cfg(test)]
+mod echo_tests {
+    use super::*;
+
+    #[test]
+    fn arcane_power_cascades_at_full_chance_with_native_rng_use() {
+        let mut rng = NativeRng::from_words([1, 2, 3, 4]);
+        let initial = rng;
+        assert_eq!(extra_cast_count(1.0, 3, &mut rng), 4);
+        assert_eq!(extra_cast_count(2.0, 3, &mut rng), 5);
+        assert_eq!(extra_cast_count(2.0, 0, &mut rng), 2);
+        assert_eq!(rng, initial);
+
+        let mut one_draw = initial;
+        one_draw.next_u64();
+        assert_eq!(extra_cast_count(1.25, 3, &mut rng), 5);
+        assert_eq!(rng, one_draw);
+    }
 }
