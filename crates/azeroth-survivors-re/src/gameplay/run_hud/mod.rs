@@ -3,12 +3,13 @@
 
 mod controls;
 mod layout;
+pub(super) mod local_clock;
 mod loot;
 mod pause;
 mod settings;
 mod view;
 pub(crate) use pause::Pause;
-pub(crate) use settings::{defaults, owns_cvar, HudSettings};
+pub(crate) use settings::{defaults, owns_cvar, HudSettings, PARTS};
 pub(crate) use loot::LootNotices;
 
 use super::RunSet;
@@ -19,9 +20,14 @@ pub(super) struct RunHudPlugin;
 impl Plugin for RunHudPlugin {
     fn build(&self, app: &mut App) {
         app.init_resource::<HudSettings>()
+            .init_resource::<local_clock::ClockFormat>()
             .init_resource::<LootNotices>()
             .init_resource::<controls::LayoutState>()
             .init_resource::<Pause>()
+            .add_systems(
+                First,
+                local_clock::sync_format.before(benilla_app::local_client::LocalClientSet::Lifecycle),
+            )
             .add_systems(
                 Update,
                 controls::capture_pointer
@@ -37,7 +43,7 @@ impl Plugin for RunHudPlugin {
             )
             .add_systems(
                 Update,
-                (view::sync, controls::place, pause::sync, loot::sync, loot::animate)
+                (view::sync, controls::place, local_clock::sync, pause::sync, loot::sync, loot::animate)
                     .chain()
                     .in_set(RunSet::Present),
             );

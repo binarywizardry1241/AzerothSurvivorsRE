@@ -9,6 +9,8 @@ mod creature_sound;
 
 const SOURCE: &str =
     include_str!("../../../../../docs/analysis/evidence/0.127.0/embedded-api.lua");
+const LOCAL_CLOCK_API: &str =
+    include_str!("../../../../../docs/analysis/evidence/0.139.1/embedded-api.lua");
 const STATS_PARSER: &str = include_str!(
     "../../../../../docs/analysis/evidence/0.105.0/addon-bridge/native-stats-parser.lua"
 );
@@ -21,24 +23,25 @@ pub(super) fn extension() -> LocalClientExtension {
     .into_iter()
     .chain(super::super::run_hud::defaults())
     .collect::<Vec<(String, String)>>();
-    // Share the selected-target visibility registry. Its ten hudX names
-    // correspond to the API's lowercase part keys; hudScale is a separate scalar.
-    let parts = cvar_defaults
-        .iter()
-        .filter_map(|(name, _)| {
-            let part = name.strip_prefix("hud").filter(|part| *part != "Scale")?;
-            Some(format!("{} = '{name}'", part.to_ascii_lowercase()))
-        })
+    let parts = super::super::run_hud::PARTS
+        .into_iter()
+        .map(|(part, name)| format!("{part} = '{name}'"))
         .collect::<Vec<_>>()
         .join(", ");
-    let source = SOURCE;
-    assert_eq!(source.matches("HUD_CVARS_LUA").count(), 1);
+    let clock_start = LOCAL_CLOCK_API.find("function AZS_GetLocalTime()").unwrap();
+    let clock = &LOCAL_CLOCK_API[clock_start..];
+    let (clock, _) = clock.split_once("-- Outgoing combat text").unwrap();
+    assert_eq!(SOURCE.matches("HUD_CVARS_LUA").count(), 1);
+    let mut source = SOURCE.replace("HUD_CVARS_LUA", &parts);
+    source.push('\n');
+    source.push_str(clock);
     LocalClientExtension {
         creature_sound_data_patch: Some(creature_sound::patch),
         on_top_frames_global: Some("AZS_ON_TOP_FRAMES".into()),
         cvar_defaults,
         binding_commands: crate::native_bindings::commands(),
         binding_defaults: crate::native_bindings::defaults(),
+        script_initializer: Some(super::super::run_hud::local_clock::install_lua),
         script_postlude: super::run_stats::source(None),
         // The character-pane owns this parser. Keep it available before the
         // WorldStateFrame API registers its CHAT_MSG_ADDON handler.
@@ -48,7 +51,7 @@ pub(super) fn extension() -> LocalClientExtension {
         // stock core files and before external addons.
         framexml_appends: vec![(
             r"Interface\FrameXML\WorldStateFrame.lua".into(),
-            source.replace("HUD_CVARS_LUA", &parts),
+            source,
         )],
         ..Default::default()
     }

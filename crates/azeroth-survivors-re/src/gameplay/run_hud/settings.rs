@@ -1,4 +1,4 @@
-//! Ten 0.115.0 HUD visibility keys (native1402b1ed0), including hudRevive.
+//! The run HUD visibility keys and the independent minimap clock.
 //! The real client registry owns addon writes and their persistence.
 
 use benilla_app::local_client::{LocalClientExtension, LocalClientInput};
@@ -6,7 +6,7 @@ use bevy::prelude::*;
 
 use crate::options::OptionsState;
 
-pub(super) const PARTS: [(&str, &str); 10] = [
+pub(crate) const PARTS: [(&str, &str); 11] = [
     ("clock", "hudClock"),
     ("bosses", "hudBosses"),
     ("tally", "hudTally"),
@@ -17,6 +17,7 @@ pub(super) const PARTS: [(&str, &str); 10] = [
     ("levels", "hudLevels"),
     ("flag", "hudFlag"),
     ("revive", "hudRevive"),
+    ("localClock", "hudLocalClock"),
 ];
 
 pub(crate) fn defaults() -> impl Iterator<Item = (String, String)> {

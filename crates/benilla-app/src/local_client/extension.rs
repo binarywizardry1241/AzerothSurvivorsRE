@@ -60,6 +60,9 @@ pub struct LocalClientExtension {
     /// Added to set 0 before account/character overrides are resolved. These
     /// are defaults, never a per-frame SetBinding that defeats a user rebind.
     pub binding_defaults: Vec<benilla_ui::script::keybind::KeyBinding>,
+    /// Install embedding-owned native functions on each in-game VM before
+    /// FrameXML or addons load, including on ReloadUI.
+    pub script_initializer: Option<fn(&World, &UiScript) -> Result<(), String>>,
     /// Installed before FrameXML/addons, including after ReloadUI.
     pub script_prelude: String,
     /// Lua appended to named core FrameXML files before their normal chunk load.
@@ -119,6 +122,11 @@ pub(crate) fn seed(world: &mut World, script: &mut UiScript) {
             cvars.learn_addon_row(name, default);
         }
         cvars.seed_vm(script);
+    }
+    if let Some(initialize) = extension.script_initializer {
+        if let Err(error) = initialize(world, script) {
+            error!("local client native script initialization failed: {error}");
+        }
     }
     if !extension.script_prelude.is_empty() {
         if let Err(error) = script.run(&extension.script_prelude) {

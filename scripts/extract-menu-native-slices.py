@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Derive exact 0.92 picker function bytes for scoped REA analysis; never execute them."""
+"""Derive exact PE function bytes for scoped REA analysis; never execute them."""
 
 import argparse
 import hashlib
@@ -22,15 +22,19 @@ def main():
     parser.add_argument("--range", action="append", default=[], metavar="START:END",
                         help="Explicit VA interval for a leaf without unwind metadata; repeat as needed")
     parser.add_argument("--provenance", help="Explicit project-local provenance output; current-target runs default inside workdir")
-    parser.add_argument("--current-target", action="store_true",
+    target_mode = parser.add_mutually_exclusive_group()
+    target_mode.add_argument("--current-target", action="store_true",
                         help="Resolve and hash-verify the configured installed target")
+    target_mode.add_argument("--installed-sha256",
+                        help="Verify the installed EXE by exact SHA-256 without requiring a coverage registration")
     parser.add_argument("--workdir", default="runtime/menu-recovery",
                         help="Project-local query workspace")
     args = parser.parse_args()
     workdir = (ROOT / args.workdir).resolve()
     if not workdir.is_relative_to(ROOT / "runtime"):
         parser.error("workdir must stay inside project runtime")
-    default_provenance = (workdir / "input.json" if args.current_target else
+    installed = args.current_target or args.installed_sha256 is not None
+    default_provenance = (workdir / "input.json" if installed else
                           ROOT / "docs/analysis/evidence/0.92/menu-slices-provenance.json")
     provenance_path = (ROOT / args.provenance).resolve() if args.provenance else default_provenance
     if not provenance_path.is_relative_to(ROOT):
@@ -39,9 +43,13 @@ def main():
     inventory = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(inventory)
     target, expected = TARGET, SHA256
-    if args.current_target:
-        from coverage_common import latest_target, target_bytes
-        current = latest_target(verify=True)
+    if installed:
+        from coverage_common import installed_identity, latest_target, target_bytes
+        current = latest_target(verify=True) if args.current_target else installed_identity()
+        if args.installed_sha256 is not None and current["sha256"] != args.installed_sha256:
+            parser.error(f"Installed target SHA-256 mismatch: {current['sha256']}")
+        if not args.address and not args.range and args.installed_sha256 is not None:
+            parser.error("--installed-sha256 requires an explicit --address or --range")
         target, expected = ROOT / current["path"], current["sha256"]
         data = target_bytes(current)
     else:
@@ -89,7 +97,7 @@ def main():
         }
         (directory / f"plan-{start:x}.json").write_text(json.dumps(plan, indent=2) + "\n")
     provenance = {
-        "date": date.today().isoformat() if args.current_target else "2026-10-16",
+        "date": date.today().isoformat() if installed else "2026-10-16",
         "original_target": str(target.relative_to(ROOT)),
         "original_sha256": actual,
         "original_byte_count": len(data),

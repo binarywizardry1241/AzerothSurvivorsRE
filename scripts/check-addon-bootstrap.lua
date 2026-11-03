@@ -51,9 +51,11 @@ local parts = "clock = 'hudClock', bosses = 'hudBosses', tally = 'hudTally', " .
     "meter = 'hudMeter', levels = 'hudLevels', flag = 'hudFlag'";
 local api = read(api_path);
 local has_revive = string.find(api, "function AZS_GetRevive()", 1, true) ~= nil;
+local has_local_clock = string.find(api, "function AZS_GetLocalTime()", 1, true) ~= nil;
 if has_revive then parts = parts .. ", revive = 'hudRevive'"; end
+if has_local_clock then parts = parts .. ", localClock = 'hudLocalClock'"; end
 local source, substitutions = string.gsub(api, "HUD_CVARS_LUA", parts);
-assert(substitutions == 1);
+assert(substitutions == 1 or (substitutions == 0 and string.find(api, "AZS_HUD_CVARS = {", 1, true)));
 assert(execute(read(parser_path), "native-stats-parser"))();
 assert(execute(source, "native-addon-api"))();
 assert(created == 1 and registered == 1);
@@ -65,7 +67,8 @@ local count = 0;
 for part, cvar in pairs(AZS_HUD_CVARS) do
     count = count + 1; assert(settings[cvar] == "0");
 end
-assert(count == (has_revive and 10 or 9) and settings.hudScale == "1.5" and settings.storeLevels == "1");
+assert(count == 9 + (has_revive and 1 or 0) + (has_local_clock and 1 or 0));
+assert(settings.hudScale == "1.5" and settings.storeLevels == "1");
 AZS_SetHudShown("clock", true);
 assert(AZS_IsHudShown("clock") and not AZS_IsHudShown("bosses"));
 AZS_SetStoringLevels(false); assert(settings.storeLevels == "0");
@@ -120,6 +123,28 @@ assert(table.getn(AZS_GetBosses()) == 0 and table.getn(AZS_GetGuardians()) == 0)
 assert(table.getn(AZS_GetLairs()) == 0 and AZS_GetFlaggedLair() == nil);
 assert(created == 1 and registered == 1);
 print("Passed embedded Lua checks: established streams, getters, clock/phase, numeric stats parser and " .. count .. " HUD CVars; stub host only");
+end
+if type(AZS_GetLocalTime) == "function" then
+    assert(AZS_HUD_CVARS.localClock == "hudLocalClock");
+    assert(AZS_GetLocalTime() == nil);
+    AZS_NativeLocalTime = function() error("local time unavailable"); end;
+    assert(AZS_GetLocalTime() == nil);
+    AZS_NativeLocalTime = function() return nil, 0, 0, true; end;
+    assert(AZS_GetLocalTime() == nil);
+    AZS_NativeLocalTime = function() return "12:05 AM", 0, 5, false; end;
+    assert(AZS_IsHudShown("clock"));
+    AZS_SetHudShown("localClock", false);
+    assert(not AZS_IsHudShown("localClock") and AZS_IsHudShown("clock"));
+    local first, second = AZS_GetLocalTime(), AZS_GetLocalTime();
+    assert(first ~= second and first.text == "12:05 AM" and first.hour == 0);
+    assert(first.minute == 5 and first.is24Hour == false);
+    first.hour = 99;
+    assert(second.hour == 0 and AZS_GetLocalTime().hour == 0);
+    AZS_NativeLocalTime = function() return "23:59", 23, 59, true; end;
+    local current = AZS_GetLocalTime();
+    assert(current.text == "23:59" and current.hour == 23);
+    assert(current.minute == 59 and current.is24Hour == true);
+    print("Passed local clock API: protected reads, fresh tables, both formats and independent HUD visibility; stub host only");
 end
 if type(AZS_GetRevive) == "function" then
 -- Current revive additions share the native API frame and legacy event arguments.

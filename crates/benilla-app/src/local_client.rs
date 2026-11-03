@@ -64,6 +64,12 @@ pub fn client_locale_index() -> usize {
     crate::ui_script::client_locale().index()
 }
 
+/// Device-local wall-clock hour (0–23) and minute.
+pub fn local_hour_minute() -> (u32, u32) {
+    let [_, _, hour, minute, _, _] = crate::ui_chat::logging::local_now();
+    (hour, minute)
+}
+
 /// Installs on top of Bevy's default plugins and `benilla_world::WorldPlugins`.
 /// The parent application starts a session through [`LocalClientSession`]. Its
 /// custom menu is the default; [`LocalStockFrontend`] opts into real GlueXML.

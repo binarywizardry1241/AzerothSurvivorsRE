@@ -64057,6 +64057,26 @@
     },
     {
       "id": "custom-app-screens-localclock",
+      "source_repair_0_139_2": {
+        "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
+        "gap_id": 302,
+        "source_status": "connected",
+        "scope": "Windows local-time callback and locale formatting, minimap-relative clock, independently saved Options/HUD visibility and addon VM registration. The enclosing 0.139.1 accounting remains historical.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/gameplay/run_hud/local_clock.rs",
+          "crates/azeroth-survivors-re/src/gameplay/run_hud/settings.rs",
+          "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs",
+          "crates/azeroth-survivors-re/assets/options.json",
+          "crates/benilla-app/src/local_client/extension.rs"
+        ],
+        "evidence_refs": [
+          "docs/analysis/local-clock-0.139.2.md",
+          "docs/analysis/evidence/0.139.2/local-clock.json"
+        ],
+        "static_validation": "bounded_native_replay_and_lua_stub_pass",
+        "runtime_validation": "not_run",
+        "parity": "unverified"
+      },
       "title": "screens/localclock.rs",
       "original_path": "crates/wenilla-rogue-app/src/screens/localclock.rs",
       "native_path_evidence": [

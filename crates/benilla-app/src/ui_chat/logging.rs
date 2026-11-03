@@ -79,7 +79,7 @@ pub(crate) fn stamp() -> String {
 
 /// `[month, day, hour, minute, second, millisecond]` of now, from the reference's `GetLocalTime`.
 #[cfg(windows)]
-fn local_now() -> [u32; 6] {
+pub(crate) fn local_now() -> [u32; 6] {
     use windows_sys::Win32::{Foundation::SYSTEMTIME, System::SystemInformation::GetLocalTime};
     // SAFETY: `GetLocalTime` fully writes the out-param and reads nothing from it; zeroed is
     // valid for a struct of plain integers.
@@ -101,7 +101,7 @@ fn local_now() -> [u32; 6] {
 
 /// `[month, day, hour, minute, second, millisecond]` of now, in the process's time zone.
 #[cfg(unix)]
-fn local_now() -> [u32; 6] {
+pub(crate) fn local_now() -> [u32; 6] {
     let now = std::time::SystemTime::now()
         .duration_since(std::time::UNIX_EPOCH)
         .unwrap_or_default();

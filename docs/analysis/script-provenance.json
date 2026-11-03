@@ -3012,6 +3012,10 @@
     }
   },
   "retained_execution_sources": {
+    "scripts/extract-menu-native-slices.py": {
+      "source_commit": "c929d9242f769f08b5da9cae533ed765794eba68",
+      "reason": "Retain the extractor used by earlier scoped native plans after adding exact installed-hash selection."
+    },
     "scripts/audit-native-constant-dispatch.py": {
       "source_commit": "6b1c0798772a026f9eb822fe34b40c448791af40",
       "reason": "Preserve exact pre-fix producers for completed audits; cold-path performance repairs do not relabel earlier evidence."
