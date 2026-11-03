@@ -3,6 +3,16 @@
 
 pub(crate) const COMMAND: &str = "AZS_OPENLEVELS";
 pub(crate) const XML: &str = include_str!("../assets/stored-level-bindings-0.105.0.xml");
+pub(crate) const SKIP_COMMAND: &str = "AZS_SKIP";
+pub(crate) const SKIP_CVAR: &str = "skipKey";
+pub(crate) const DEFAULT_SKIP_KEY: &str = "X";
+
+pub(crate) fn skip_keys(value: &str) -> Vec<String> {
+    value
+        .split_whitespace()
+        .map(str::to_owned)
+        .collect()
+}
 
 pub(crate) fn commands() -> Vec<benilla_ui::bindings_xml::Binding> {
     benilla_ui::bindings_xml::parse(XML).expect("recovered stored-level binding")

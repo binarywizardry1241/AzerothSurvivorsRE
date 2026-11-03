@@ -695,6 +695,7 @@ fn guest_hud(
     mut previous: Local<String>,
     mut images: ResMut<Assets<Image>>,
     mut rays: Local<Option<Handle<Image>>>,
+    options: Option<Res<crate::options::OptionsState>>,
 ) {
     if !runtime.is_guest() {
         return;
@@ -713,8 +714,9 @@ fn guest_hud(
         .as_ref()
         .and_then(|hud| hud["abilities"].as_array())
         .map(Vec::len);
+    let skip_key = options.as_deref().and_then(crate::options::OptionsState::skip_key_label);
     let stamp = format!(
-        "{}:{}:{}:{}:{ability_count:?}",
+        "{}:{}:{}:{}:{ability_count:?}:{skip_key:?}",
         state.pick.revision(),
         opened.at.to_bits(),
         session.paused,
@@ -807,12 +809,20 @@ fn guest_hud(
                 .as_bool()
                 .unwrap_or(false)
                 .then(|| number("skipGold")),
+            skip_key,
             can_reroll: number("rerolls") != 0 || number("gold") >= number("rerollCost"),
             inputs_enabled: !session.paused,
             opened_at: Some(opened.at),
             ray_image: Some(ray),
         },
     );
+}
+
+pub(in crate::gameplay) fn guest_skip_available(state: &CoopGame) -> bool {
+    state.pick.visible().is_some_and(|payload| {
+        payload["skip"].as_bool() == Some(true)
+            && payload["choices"].as_array().is_some_and(|rows| !rows.is_empty())
+    })
 }
 
 #[allow(clippy::too_many_arguments)]
@@ -962,12 +972,14 @@ pub(in crate::gameplay) fn guest_controls<'a>(
         let count = cards.len();
         let number = |key: &str| payload[key].as_u64().unwrap_or(0);
         let can_reroll = number("rerolls") != 0 || number("gold") >= number("rerollCost");
+        let can_skip = guest_skip_available(state);
         let replacements: Vec<_> = cards.iter()
             .map(native_overlays::confirmation::payload_requires_confirmation).collect();
         let age = time.elapsed_secs() - opened.at;
         let admitted = age >= CHOICE_OPENING_SECONDS;
         let mut actions = Vec::new();
         let mut selected = None;
+        let mut pointer_skip = false;
         for (interaction, action, enabled) in clicks {
             if extension.on_top_pointer || *interaction != Interaction::Pressed || !enabled.0 {
                 continue;
@@ -975,29 +987,34 @@ pub(in crate::gameplay) fn guest_controls<'a>(
             match *action {
                 native_overlays::OverlayAction::Select(index) if admitted => selected = Some(index),
                 native_overlays::OverlayAction::Reroll if can_reroll => actions.push(*action),
-                native_overlays::OverlayAction::Banish(_)
-                | native_overlays::OverlayAction::Skip
-                    if admitted =>
-                {
-                    actions.push(*action)
-                }
+                native_overlays::OverlayAction::Banish(_) if admitted => actions.push(*action),
+                native_overlays::OverlayAction::Skip if admitted && can_skip => pointer_skip = true,
                 _ => {}
             }
         }
-        if let Some(index) = selected.filter(|index| *index < count) {
+        if pointer_skip {
+            actions.push(native_overlays::OverlayAction::Skip);
+        }
+        if let Some(index) = selected.filter(|index| !pointer_skip && *index < count) {
             if opened.select_or_confirm(index, replacements[index], time.elapsed_secs()) {
                 actions.push(native_overlays::OverlayAction::Select(index));
             }
         }
-        if !input.keyboard_captured && opened.closing.is_none() && opened.confirming.is_none() {
-            let (selected, reroll) = keyboard_choice_actions(keys, count, age, can_reroll);
-            if let Some(index) = selected {
-                if opened.select_or_confirm(index, replacements[index], time.elapsed_secs()) {
-                    actions.push(native_overlays::OverlayAction::Select(index));
+        if !pointer_skip && !input.keyboard_captured && opened.closing.is_none() && opened.confirming.is_none() {
+            if input.contextual_key_pressed && can_skip {
+                if admitted {
+                    actions.push(native_overlays::OverlayAction::Skip);
                 }
-            }
-            if reroll {
-                actions.push(native_overlays::OverlayAction::Reroll);
+            } else {
+                let (selected, reroll) = keyboard_choice_actions(keys, count, age, can_reroll);
+                if let Some(index) = selected {
+                    if opened.select_or_confirm(index, replacements[index], time.elapsed_secs()) {
+                        actions.push(native_overlays::OverlayAction::Select(index));
+                    }
+                }
+                if reroll {
+                    actions.push(native_overlays::OverlayAction::Reroll);
+                }
             }
         }
         for action in actions {
@@ -1013,6 +1030,9 @@ pub(in crate::gameplay) fn guest_controls<'a>(
                 let sent = runtime.send(None, NativeMessage::Control { kind, argument, offer });
                 if matches!(kind, 0 | 3) {
                     if sent {
+                        if kind == 3 {
+                            opened.skip(time.elapsed_secs());
+                        }
                         state.pick.selected(time.elapsed_secs_f64());
                         break;
                     }

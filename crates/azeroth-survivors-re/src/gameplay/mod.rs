@@ -247,6 +247,10 @@ impl Plugin for GameplayPlugin {
         )
         .add_systems(
             Update,
+            capture_card_skip.in_set(benilla_app::local_client::LocalClientSet::OverlayCapture),
+        )
+        .add_systems(
+            Update,
             native_requests.after(benilla_world::schedule::WorldStage::Input).after(RunSet::Input),
         )
         .add_systems(
@@ -524,6 +528,37 @@ fn enter(
     }
 }
 
+fn capture_card_skip(
+    mut context: ResMut<benilla_app::local_client::LocalContextBinding>,
+    input: Res<benilla_app::local_client::LocalClientInput>,
+    session: Res<RunSession>,
+    menu: Res<MenuState>,
+    options: Res<crate::options::OptionsState>,
+    pause: Res<run_hud::Pause>,
+    loading: Res<benilla_app::local_client::LocalLoadingScreen>,
+    opened: Res<ChoicePresentation>,
+    runtime: Option<Res<crate::coop_runtime::CoopRuntime>>,
+    replica: Option<Res<coop::CoopGame>>,
+) {
+    let Some(game) = session.mechanics.as_ref().filter(|game| !game.dead && !game.completed) else {
+        return;
+    };
+    if !menu.in_run || input.game_menu_open || session.talent_view_open || options.open
+        || pause.paused(&options) || loading.covering() || opened.signature.is_empty()
+        || opened.closing.is_some() || opened.confirming.is_some()
+    {
+        return;
+    }
+    let skippable = if runtime.is_some_and(|runtime| runtime.is_guest()) {
+        replica.as_deref().is_some_and(coop::overlay::guest_skip_available)
+    } else {
+        !game.choices.is_empty() && game.choice_footer().skip_gold.is_some()
+    };
+    if skippable {
+        context.chords.extend_from_slice(options.skip_keys());
+    }
+}
+
 fn controls(
     keys: Res<ButtonInput<KeyCode>>,
     input: Res<benilla_app::local_client::LocalClientInput>,
@@ -688,7 +723,9 @@ fn controls(
         // cannot change its count or affordability while input is collected.
         let game = session.mechanics.as_ref().unwrap();
         let count = game.choices.len();
-        let can_reroll = game.choice_footer().can_reroll;
+        let footer = game.choice_footer();
+        let can_reroll = footer.can_reroll;
+        let can_skip = footer.skip_gold.is_some();
         let replacements: Vec<_> = (0..count).map(|index| {
             game.cache_reward(index).is_some_and(|reward|
                 native_overlay_payload::replaced_amulet(reward, game).is_some())
@@ -697,6 +734,7 @@ fn controls(
         // Pointer selection commits after the other pointer commands, so a
         // preceding reroll can change the row that the backend later accepts.
         let mut selected = None;
+        let mut pointer_skip = false;
         for (interaction, action, enabled) in clicks.iter() {
             if !extension.on_top_pointer && *interaction == Interaction::Pressed && enabled.0 {
                 match *action {
@@ -704,30 +742,39 @@ fn controls(
                         selected = Some(index);
                     }
                     native_overlays::OverlayAction::Reroll if can_reroll => actions.push(*action),
-                    native_overlays::OverlayAction::Banish(_) | native_overlays::OverlayAction::Skip
-                        if admitted => actions.push(*action),
+                    native_overlays::OverlayAction::Banish(_) if admitted => actions.push(*action),
+                    native_overlays::OverlayAction::Skip if admitted && can_skip => pointer_skip = true,
                     _ => {}
                 }
             }
         }
-        if let Some(index) = selected {
+        if pointer_skip {
+            actions.push(native_overlays::OverlayAction::Skip);
+        }
+        if let Some(index) = selected.filter(|_| !pointer_skip) {
             if index < count {
                 if opened.select_or_confirm(index, replacements[index], time.elapsed_secs()) {
                     actions.push(native_overlays::OverlayAction::Select(index));
                 }
             }
         }
-        if !input.keyboard_captured && opened.closing.is_none() && opened.confirming.is_none() {
-            let (selected, reroll) = keyboard_choice_actions(&keys, count, age, can_reroll);
-            if let Some(index) = selected {
-                if opened.select_or_confirm(index, replacements[index], time.elapsed_secs()) {
-                    actions.push(native_overlays::OverlayAction::Select(index));
+        if !pointer_skip && !input.keyboard_captured && opened.closing.is_none() && opened.confirming.is_none() {
+            if input.contextual_key_pressed && can_skip {
+                if admitted {
+                    actions.push(native_overlays::OverlayAction::Skip);
                 }
-            }
-            // Native R reads the same snapshot after digits set closing. It
-            // still emits, and its backend sees the preceding accepted choice.
-            if reroll {
-                actions.push(native_overlays::OverlayAction::Reroll);
+            } else {
+                let (selected, reroll) = keyboard_choice_actions(&keys, count, age, can_reroll);
+                if let Some(index) = selected {
+                    if opened.select_or_confirm(index, replacements[index], time.elapsed_secs()) {
+                        actions.push(native_overlays::OverlayAction::Select(index));
+                    }
+                }
+                // Native R reads the same snapshot after digits set closing.
+                // Its backend sees the preceding accepted choice.
+                if reroll {
+                    actions.push(native_overlays::OverlayAction::Reroll);
+                }
             }
         }
         if let Some(game) = session.mechanics.as_mut() {
@@ -736,7 +783,12 @@ fn controls(
                     native_overlays::OverlayAction::Select(index) => { game.choose(index); }
                     native_overlays::OverlayAction::Reroll => { regenerated |= game.reroll_choices(); }
                     native_overlays::OverlayAction::Banish(index) => { regenerated |= game.banish_choice(index); }
-                    native_overlays::OverlayAction::Skip => { regenerated |= game.skip_choices(); }
+                    native_overlays::OverlayAction::Skip => {
+                        if game.skip_choices() {
+                            regenerated = true;
+                            opened.skip(time.elapsed_secs());
+                        }
+                    }
                     native_overlays::OverlayAction::Confirm | native_overlays::OverlayAction::Cancel => {}
                 }
             }
@@ -1258,6 +1310,7 @@ fn hud(
     mut images: ResMut<Assets<Image>>,
     mut rays: Local<Option<Handle<Image>>>,
     coop:Option<Res<crate::coop_runtime::CoopRuntime>>,
+    options: Option<Res<crate::options::OptionsState>>,
 ) {
     if coop.as_ref().is_some_and(|runtime|runtime.is_guest()){return;}
     if session.mechanics.as_ref().is_none_or(|game| game.dead || game.completed) {
@@ -1286,10 +1339,11 @@ fn hud(
     let start = opened.at;
     let enabled = !session.paused;
     let game = session.mechanics.as_ref().unwrap();
+    let skip_key = options.as_deref().and_then(crate::options::OptionsState::skip_key_label);
     // Payload equality alone cannot identify a fresh consecutive offer.
     // Pause/affordability changes also need fresh Enabled components.
     let stamp = format!(
-        "{}:{}:{}:{}:{}",
+        "{}:{}:{}:{}:{}:{skip_key:?}",
         opened.at.to_bits(),
         enabled,
         game.cache_choices_active(),
@@ -1367,6 +1421,7 @@ fn hud(
             can_reroll: footer.can_reroll,
             banishes: footer.banishes.into(),
             skip_gold: footer.skip_gold.map(u64::from),
+            skip_key,
             ray_image: Some(ray_image),
             ..Default::default()
         },
@@ -1399,6 +1454,11 @@ struct ChoicePresentation {
 }
 
 impl ChoicePresentation {
+    fn skip(&mut self, now: f32) {
+        // A skip closes the hand with every card on the unselected exit leg.
+        self.closing = Some((usize::MAX, now));
+    }
+
     /// 0.127.0 stores a pending slot without emitting Select or beginning exit.
     /// Its captured slot is accepted by the modal's ordinary Select command.
     fn select_or_confirm(&mut self, index: usize, replaces: bool, now: f32) -> bool {
@@ -2810,6 +2870,29 @@ mod tests {
     }
 
     #[test]
+    fn keyboard_skip_precedes_the_other_card_shortcuts_and_closes_without_a_pick() {
+        use benilla_app::local_client::LocalClientInput;
+
+        let mut game = fixture_game();
+        game.set_choice_grants(3, 0, true);
+        game.add_experience(15);
+        let mut app = choice_controls_app(game, default(), LocalClientInput::default());
+        app.update();
+        app.world_mut().resource_mut::<Time>().advance_by(std::time::Duration::from_secs_f32(0.5));
+        let mut keys = app.world_mut().resource_mut::<ButtonInput<KeyCode>>();
+        keys.press(KeyCode::Digit1);
+        keys.press(KeyCode::KeyR);
+        drop(keys);
+        app.world_mut().resource_mut::<LocalClientInput>().contextual_key_pressed = true;
+        app.update();
+
+        let game = app.world().resource::<RunSession>().mechanics.as_ref().unwrap();
+        assert!(game.gold > 0);
+        assert_eq!(game.choice_footer().rerolls, 3);
+        assert_eq!(app.world().resource::<ChoicePresentation>().closing, Some((usize::MAX, 0.5)));
+    }
+
+    #[test]
     fn pointer_skip_cannot_make_an_initially_unaffordable_keyboard_reroll_admitted() {
         use benilla_app::local_client::LocalClientInput;
         let mut expected = fixture_game();
@@ -2895,7 +2978,11 @@ mod tests {
         app.update();
         let game = app.world().resource::<RunSession>().mechanics.as_ref().unwrap();
         assert_eq!(offer_signature(game), before, "the replacement really has identical cards and footer");
-        assert_eq!(app.world().resource::<ChoicePresentation>().at, 0.5);
+        assert_eq!(app.world().resource::<ChoicePresentation>().closing, Some((usize::MAX, 0.5)));
+        app.world_mut().resource_mut::<Time>().advance_by(std::time::Duration::from_secs_f32(0.33));
+        app.update();
+        let now = app.world().resource::<Time>().elapsed_secs();
+        assert_eq!(app.world().resource::<ChoicePresentation>().at, now);
         app.world_mut().resource_mut::<Time>().advance_by(std::time::Duration::from_secs_f32(0.1));
         app.world_mut().resource_mut::<ButtonInput<KeyCode>>().press(KeyCode::Digit1);
         app.update();

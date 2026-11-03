@@ -73,6 +73,7 @@ pub struct OverlayState {
     pub gold: u64,
     pub banishes: u64,
     pub skip_gold: Option<u64>,
+    pub skip_key: Option<String>,
     /// 0.127.0 CardsState+120 gates reroll in addition to its affordability.
     pub can_reroll: bool,
     /// Caller enforces native per-action timing and terminal/session gates;
@@ -94,6 +95,7 @@ impl Default for OverlayState {
             gold: 0,
             banishes: 0,
             skip_gold: None,
+            skip_key: None,
             can_reroll: false,
             inputs_enabled: false,
             opened_at: None,
@@ -533,6 +535,23 @@ pub fn spawn(
                                         false,
                                         Node::default(),
                                     );
+                                    if let Some(key) = &state.skip_key {
+                                        ui.spawn((
+                                            Node {
+                                                padding: UiRect::horizontal(Val::Px(5.)),
+                                                border: UiRect::all(Val::Px(1.)),
+                                                border_radius: BorderRadius::all(Val::Px(3.)),
+                                                ..default()
+                                            },
+                                            BorderColor::all(Color::srgb(0.427, 0.333, 0.145)),
+                                        )).with_children(|badge| {
+                                            text(
+                                                badge, art, key, 11.,
+                                                Color::srgb(0.725, 0.663, 0.510), false,
+                                                Node::default(),
+                                            );
+                                        });
+                                    }
                                 });
                             }
                             let enabled = state.inputs_enabled

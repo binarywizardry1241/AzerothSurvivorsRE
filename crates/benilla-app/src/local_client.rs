@@ -113,6 +113,7 @@ impl Plugin for LocalClientPlugin {
             .init_resource::<LocalClientInput>()
             .init_resource::<LocalDeviceInput>()
             .init_resource::<LocalClientExtension>()
+            .init_resource::<LocalContextBinding>()
             .init_resource::<LocalFeedMemory>()
             .init_resource::<crate::BuildId>()
             .add_plugins(crate::game_plugins::GamePlugins {
@@ -178,10 +179,15 @@ impl Plugin for LocalClientPlugin {
 
 /// Overlay capture is a per-frame union. Reset it before every Update reader,
 /// then let each embedding overlay OR its current hover/drag contribution.
-fn reset_overlay_pointer(mut extension: ResMut<LocalClientExtension>) {
+fn reset_overlay_pointer(
+    mut extension: ResMut<LocalClientExtension>,
+    mut context: ResMut<LocalContextBinding>,
+) {
     extension.pointer_over_ui = false;
     extension.on_top_pointer = false;
     extension.binding_capture = false;
+    context.chords.clear();
+    context.pressed = false;
 }
 
 /// The character creation bytes and actual item-entry IDs, with native equipment slots 1..19.
@@ -322,6 +328,8 @@ pub struct LocalClientInput {
     /// window pixels; independent of the FrameXML frame's registered name.
     pub rendered_minimap_rect: Option<[f32; 4]>,
     pub keyboard_captured: bool,
+    /// A fresh key press consumed by the embedding's active contextual binding.
+    pub contextual_key_pressed: bool,
     pub game_menu_open: bool,
     /// A fresh embedding-owned Escape, device menu request or stock-menu opening.
     pub custom_game_menu_requested: bool,
@@ -353,6 +361,14 @@ pub struct LocalClientInput {
     /// use Lua truthiness and are exposed as 1/0 for the custom controls.
     pub option_globals: Vec<(String, String)>,
     pub bindings: Option<LocalBindingsSnapshot>,
+}
+
+/// An embedding shortcut with a narrower lifetime than the normal binding map.
+/// Publish the active chords in OverlayCapture before the world binding walk.
+#[derive(Resource, Default)]
+pub struct LocalContextBinding {
+    pub chords: Vec<String>,
+    pub(crate) pressed: bool,
 }
 
 #[derive(Clone, Debug, Default)]
@@ -711,6 +727,7 @@ fn capture_input(
     calls: Option<Res<LocalUiCalls>>,
     minimap: Option<Res<crate::minimap::MinimapWidget>>,
     device: Option<Res<LocalDeviceInput>>,
+    context: Option<Res<LocalContextBinding>>,
 ) {
     input.talent_toggle = false;
     input.custom_game_menu_requested |= device.as_ref().is_some_and(|device| device.menu_requested);
@@ -725,6 +742,7 @@ fn capture_input(
     input.loading_screen_covering = loading.is_some_and(|loading| loading.covering());
     input.pointer_over_ui = session.active && pointer.0;
     input.keyboard_captured = session.active && keyboard.typing;
+    input.contextual_key_pressed = session.active && context.is_some_and(|context| context.pressed);
     input.consumed_keys.clone_from(&keyboard.consumed);
     input.ui_time = clock.ui_now;
     input.script_session = None;

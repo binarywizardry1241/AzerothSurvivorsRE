@@ -756,6 +756,7 @@ pub(crate) struct KeyVerdict {
 pub(crate) struct WorldFrameBindings<'w> {
     dispatch: Option<Res<'w, BindingDispatch>>,
     state: Option<ResMut<'w, BindingLatches>>,
+    context: Option<ResMut<'w, crate::local_client::LocalContextBinding>>,
 }
 
 impl WorldFrameBindings<'_> {
@@ -770,7 +771,16 @@ impl WorldFrameBindings<'_> {
     ) {
         if let (Some(dispatch), Some(state)) = (self.dispatch.as_deref(), self.state.as_deref_mut())
         {
-            key_leg(dispatch, state, script, ev, mods, verdict, layout);
+            key_leg(
+                dispatch,
+                state,
+                script,
+                ev,
+                mods,
+                verdict,
+                layout,
+                self.context.as_deref_mut(),
+            );
         }
     }
 
@@ -836,6 +846,7 @@ fn key_leg(
     mods: Mods,
     verdict: KeyVerdict,
     layout: &LayoutNames,
+    context: Option<&mut crate::local_client::LocalContextBinding>,
 ) {
     let Mods {
         shift,
@@ -883,6 +894,18 @@ fn key_leg(
                 shift,
                 key: BindKey::Key(name),
             };
+            if let Some(context) = context.filter(|context| !verdict.typing && !context.chords.is_empty()) {
+                let key = format!(
+                    "{}{}{}{name}",
+                    if alt { "ALT-" } else { "" },
+                    if ctrl { "CTRL-" } else { "" },
+                    if shift { "SHIFT-" } else { "" },
+                );
+                if context.chords.contains(&key) {
+                    context.pressed = true;
+                    return;
+                }
+            }
             if let Some(command) = dispatch.resolve(chord, dev_plane) {
                 // The world frame's key-down ran it and returned that (`0x483b70`), so its key-up
                 // and repeats are the world frame's, not a stale earlier consumer's.
@@ -1331,6 +1354,29 @@ mod tests {
             &benilla_ui::bindings_xml::parse(bindings).expect("well-formed"),
         );
         script
+    }
+
+    #[test]
+    fn a_contextual_key_yields_the_same_chord_to_its_ordinary_binding_when_inactive() {
+        use crate::local_client::LocalContextBinding;
+
+        let script = with_addon(PROBE_BINDINGS);
+        script.run(r#"SetBinding("X", "PROBEEDGE")"#).unwrap();
+        let mut app = vm_harness(script);
+        app.insert_resource(LocalContextBinding { chords: vec!["X".into()], pressed: false });
+
+        press_key(&mut app, KeyCode::KeyX);
+        app.update();
+        assert!(app.world().resource::<LocalContextBinding>().pressed);
+        assert_eq!(lua_count(&app, "PROBE_EDGE"), 0);
+
+        release_key(&mut app, KeyCode::KeyX);
+        app.update();
+        *app.world_mut().resource_mut::<LocalContextBinding>() = LocalContextBinding::default();
+        press_key(&mut app, KeyCode::KeyX);
+        app.update();
+        assert!(!app.world().resource::<LocalContextBinding>().pressed);
+        assert_eq!(lua_count(&app, "PROBE_EDGE"), 1);
     }
 
     /// `SetBinding` signalled its `UPDATE_BINDINGS` in place (`0x4b805b`): the dispatch map still

@@ -19,7 +19,7 @@ use bevy::{
 };
 use serde::Deserialize;
 
-use crate::{assets::MenuArt, catalog::MenuCatalog, menu_state::MenuState, save_browser};
+use crate::{assets::MenuArt, catalog::MenuCatalog, menu_state::MenuState, native_bindings, save_browser};
 
 const GOLD: Color = Color::srgb(0.973, 0.824, 0.416);
 const EDGE: Color = Color::srgb(0.427, 0.333, 0.145);
@@ -158,6 +158,7 @@ struct BindingsState {
     rows: Vec<BindingRow>,
     defaults: BTreeMap<String, Vec<String>>,
     keys: BTreeMap<String, Vec<String>>,
+    skip_keys: Vec<String>,
     labels: BTreeMap<String, String>,
     capture: Option<(usize, usize)>,
     error: Option<String>,
@@ -249,6 +250,7 @@ impl BindingsState {
                     command: Some(command),
                 });
             }
+            state.insert_skip_row();
             for token in [
                 "SPACE",
                 "UP",
@@ -298,6 +300,17 @@ impl BindingsState {
             state.error = Some(error);
         }
         state
+    }
+
+    fn insert_skip_row(&mut self) {
+        if let Some(index) = self.rows.iter().position(|row| {
+            row.command.as_deref() == Some(native_bindings::COMMAND)
+        }) {
+            self.rows.insert(index + 1, BindingRow {
+                command: Some(native_bindings::SKIP_COMMAND.into()),
+                label: "Skip".into(),
+            });
+        }
     }
 
     fn account_keys(&self, home: Option<&Path>) -> BTreeMap<String, Vec<String>> {
@@ -465,7 +478,11 @@ impl Default for OptionsState {
                 values.insert("3:gamma".into(), value);
             }
         }
-        let bindings = BindingsState::load(state_home.as_deref());
+        let mut bindings = BindingsState::load(state_home.as_deref());
+        let skip_value = config.cvars.iter()
+            .find(|(name, _)| name.eq_ignore_ascii_case(native_bindings::SKIP_CVAR))
+            .map_or(native_bindings::DEFAULT_SKIP_KEY, |(_, value)| value.as_str());
+        bindings.skip_keys = native_bindings::skip_keys(skip_value);
         let addons = crate::addons::Addons::load(state_home.as_deref());
         Self {
             open: false,
@@ -582,6 +599,45 @@ impl OptionsState {
                 .map(String::as_str).or(row.default.as_deref())
         } else { row.default.as_deref() }
     }
+
+    pub(crate) fn skip_keys(&self) -> &[String] {
+        &self.bindings.skip_keys
+    }
+
+    pub(crate) fn skip_key_label(&self) -> Option<String> {
+        self.skip_keys().first().map(|key| self.bindings.key_label(key))
+    }
+
+    fn assign_binding(&mut self, row: usize, slot: usize, key: Option<String>) {
+        if self.bindings.rows.get(row).and_then(|row| row.command.as_deref())
+            != Some(native_bindings::SKIP_COMMAND)
+        {
+            self.bindings.assign(row, slot, key);
+            return;
+        }
+        let mut keys = self.bindings.skip_keys.clone();
+        if slot < keys.len() {
+            keys.remove(slot);
+        }
+        if let Some(key) = key {
+            keys.retain(|existing| existing != &key);
+            keys.insert(slot.min(keys.len()), key);
+        }
+        self.bindings.capture = None;
+        self.set_skip_keys(keys);
+    }
+
+    fn set_skip_keys(&mut self, keys: Vec<String>) {
+        if keys != self.bindings.skip_keys {
+            let value = keys.join(" ");
+            self.bindings.skip_keys = keys;
+            self.engine_writes.push((native_bindings::SKIP_CVAR.into(), value));
+            if !self.engine_connected {
+                self.cvars_pending = Some(Instant::now());
+            }
+            self.dirty = true;
+        }
+    }
     fn set(&mut self, row: &Definition, value: String) {
         let linked = (!row.linked.is_empty()).then(|| value.parse::<f32>().ok())
             .flatten().map(|number| number_string(number * row.multiplier));
@@ -638,6 +694,11 @@ impl OptionsState {
         }
         let definitions = Definitions::embedded();
         let mut rows = Vec::new();
+        if let Some((name, value)) = self.engine_writes.iter().rev()
+            .find(|(name, _)| name == native_bindings::SKIP_CVAR)
+        {
+            rows.push((name.clone(), value.clone(), native_bindings::DEFAULT_SKIP_KEY.into()));
+        }
         for row in &definitions.rows {
             if !matches!(row.storage, 0 | 3) {
                 continue;
@@ -716,6 +777,7 @@ fn sync_engine(
                     name.strip_prefix("HEADER_").unwrap_or(name).into()
                 } else { label.clone() },
             }).collect();
+            state.bindings.insert_skip_row();
             state.bindings.capture = None;
             state.dirty = true;
         }
@@ -745,7 +807,6 @@ fn sync_engine(
     }
     for (name, applied) in &input.cvars {
         let key = name.to_ascii_lowercase();
-        let Some(default) = defaults.get(&key) else { continue };
         let value = input.staged_cvars.iter()
             .find(|(staged, _)| staged.eq_ignore_ascii_case(name))
             .map_or(applied, |(_, value)| value);
@@ -753,6 +814,15 @@ fn sync_engine(
         if extension.cvar_writes.iter().any(|(pending, _)| pending.eq_ignore_ascii_case(name)) {
             continue;
         }
+        if name.eq_ignore_ascii_case(native_bindings::SKIP_CVAR) {
+            let keys = native_bindings::skip_keys(value);
+            if state.bindings.skip_keys != keys {
+                state.bindings.skip_keys = keys;
+                state.dirty = true;
+            }
+            continue;
+        }
+        let Some(default) = defaults.get(&key) else { continue };
         if state.values.get(&format!("0:{key}")) != Some(value) {
             state.values.insert(format!("0:{key}"), value.clone());
             if key == "gamma" { state.values.insert("3:gamma".into(), value.clone()); }
@@ -928,7 +998,7 @@ fn input(
     if state.page == 6 {
         if mouse.just_pressed(MouseButton::Right) {
             if let Some((_, slot)) = binding_slots.iter().find(|(cursor, _)| cursor.cursor_over) {
-                state.bindings.assign(slot.row, slot.slot, None);
+                state.assign_binding(slot.row, slot.slot, None);
                 state.definitions_pending = true;
                 state.dirty = true;
                 keyboard.clear();
@@ -972,7 +1042,10 @@ fn input(
             if wheel_key.is_some() {
                 state.suppress_wheel = true;
             }
-            if let Some(token) = pressed.or(mouse_key).or(wheel_key) {
+            let contextual = state.bindings.rows.get(row).and_then(|row| row.command.as_deref())
+                == Some(native_bindings::SKIP_COMMAND);
+            let token = if contextual { pressed } else { pressed.or(mouse_key).or(wheel_key) };
+            if let Some(token) = token {
                 if !keys.any_pressed([KeyCode::SuperLeft, KeyCode::SuperRight]) {
                     let mut key = String::new();
                     for (modifier, held) in [
@@ -996,7 +1069,7 @@ fn input(
                     }
                     key.push_str(&token);
                     if let Some(key) = benilla_ui::script::keybind::normalize_binding_key(&key) {
-                        state.bindings.assign(row, slot, Some(key));
+                        state.assign_binding(row, slot, Some(key));
                         state.definitions_pending = true;
                         state.dirty = true;
                     }
@@ -1064,6 +1137,7 @@ fn input(
                     state.bindings.pending = true;
                     state.bindings.engine_writes.clear();
                     state.bindings.engine_reset = true;
+                    state.set_skip_keys(vec![native_bindings::DEFAULT_SKIP_KEY.into()]);
                     state.dirty = true;
                 }
                 // Native Defaults applies only the current page’s recovered rows.
@@ -1446,10 +1520,12 @@ fn draw_bindings(
         .with_children(|line| {
             // 218130 spawns Text and the width300 Node as one bundle.
             line.spawn((
-                Text::new(if command == crate::native_bindings::COMMAND {
+                Text::new(if command == native_bindings::COMMAND {
                     // 0x1400f39a0 gives this command the localized custom
                     // menu label; FrameXML keeps its separate API label.
                     catalog.label("Level Up!")
+                } else if command == native_bindings::SKIP_COMMAND {
+                    catalog.label("Skip")
                 } else { &row.label }),
                 TextFont {
                     font: art.font.clone(),
@@ -1468,11 +1544,12 @@ fn draw_bindings(
                 let value = if capturing {
                     catalog.label("options.press_a_key").into()
                 } else {
-                    state
-                        .bindings
-                        .keys
-                        .get(command)
-                        .and_then(|keys| keys.get(slot))
+                    let keys = if command == native_bindings::SKIP_COMMAND {
+                        state.skip_keys()
+                    } else {
+                        state.bindings.keys.get(command).map(Vec::as_slice).unwrap_or_default()
+                    };
+                    keys.get(slot)
                         .map(|key| state.bindings.key_label(key))
                         .unwrap_or_else(|| catalog.label("options.not_bound").into())
                 };
@@ -2543,6 +2620,30 @@ mod persistence_tests {
         app.update();
         assert_eq!(app.world().resource::<OptionsState>().bindings.rows[0].label,
             "Azeroth Survivors", "An unchanged snapshot retains the projected header");
+    }
+
+    #[test]
+    fn skip_edits_its_cvar_without_taking_the_stock_chord() {
+        let mut state = isolated_options();
+        state.bindings.rows.push(BindingRow {
+            command: Some(native_bindings::COMMAND.into()),
+            label: "Open Level-Ups".into(),
+        });
+        state.bindings.insert_skip_row();
+        state.bindings.keys.insert("SITORSTAND".into(), vec!["X".into()]);
+
+        state.assign_binding(1, 0, Some("CTRL-F8".into()));
+        assert_eq!(state.skip_keys(), ["CTRL-F8"]);
+        assert_eq!(state.bindings.keys["SITORSTAND"], ["X"]);
+        assert!(state.bindings.engine_writes.is_empty());
+        assert_eq!(
+            state.engine_writes,
+            [(native_bindings::SKIP_CVAR.to_owned(), "CTRL-F8".to_owned())]
+        );
+
+        state.assign_binding(1, 0, None);
+        assert!(state.skip_key_label().is_none());
+        assert_eq!(state.engine_writes.last().unwrap().1, "");
     }
 
     #[test]

@@ -21,6 +21,10 @@ pub(super) fn extension() -> LocalClientExtension {
     let cvar_defaults = [
         ("storeLevels".into(), "0".into()),
         ("spendLevels".into(), "0".into()),
+        (
+            crate::native_bindings::SKIP_CVAR.into(),
+            crate::native_bindings::DEFAULT_SKIP_KEY.into(),
+        ),
     ]
     .into_iter()
     .chain(super::super::run_hud::defaults())
