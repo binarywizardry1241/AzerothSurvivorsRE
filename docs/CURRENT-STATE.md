@@ -132,13 +132,11 @@ Apply source eligibility per member; selecting an exact ID does not select sibli
 | Choice-only Skip binding | #304, #84, #124 | Binding/label, card eligibility and ordinary sit/stand fallback. | Controls & camera · Card offers |
 | Co-op Ready Check | #306, #150, #153, #154 | Authoritative ready/response/countdown/cancel roster and run-start boundary. | Co-op & networking · Lobby |
 | World combat-text addon feed | #307, #75 | Exact events, target/anchor lifetime, camera projection/frame callbacks and source-key correspondence. | Addons & Lua · Combat text, meter source keys |
-| Arcane Power echo cascade | #309, #90, #136 | Full-Echo continuation and repeat admission. | Classes & talents · Mage, Arcane, echoes |
 | Party damage symmetry | #239, #153, #147 | Two-player guest context and host/recipient incoming-damage factors. | Co-op & networking · Incoming damage |
 | Menu/window input ownership and composition | #17, #22, #59, #293, #310 | Preserve distinct binding, Back/Select, Escape and IME identities. Map current gate producers, event lifetime and actual downstream consumers; HUD/meter drag source history stays under #7/#8 in verification. No shared root cause is proved. | Controls & camera · IME, focus |
 | Scholomance zone and encounter sequence | #312, #313, #89, #142 | Join map 289, the zone’s ordered scheduler, scripted boss and Guardian mechanics, and matching locale consumers. | Bosses & guardians · Scholomance, zone entry |
 | Scholomance gear, drops and progression | #314, #315, #285 | Trace roll and paired grants through set and feat consumers. The revised Insane party gate has a separate predicate. | Loot, gear & upgrades · Scholomance, Tier 0.5 |
 | World anchor and downed-party publication | #317, #63, #307 | Connect native world catalog and projection, authoritative revive locations, and hero-relative distance. | Addons & Lua · World anchors, Co-op, revive |
-| Hunter pet changes | #316, #119 | Trace Kill Command and its pet integrations and the distinct White Devilsaur appearance switch. | Classes & talents · Hunter, combat pets |
 
 ### Individual source/recovery findings
 
