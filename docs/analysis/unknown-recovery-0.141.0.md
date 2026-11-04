@@ -71,6 +71,7 @@ Full caller semantics and dynamic aliases remain separate.
 ```sh
 PYTHONPATH=runtime/tests/query-python-deps python3 -B scripts/classify-as-ownerless-sites.py
 ```
+
 ## Q41-E01 shared diagnostic interfaces
 
 The [0.141.0 proof](evidence/0.141.0/engine-diagnostic-roles.json) classifies the
@@ -105,7 +106,6 @@ successful AS state, and original/rebuilt parity remain separate.
 ```sh
 PYTHONPATH=runtime/tests/query-python-deps python3 -B scripts/check-engine-diagnostic-roles.py
 ```
-
 
 The [module register](module-contracts-0.141.0.md) links each pending module
 contract to its permanent finding and current diagnostic selector. Wider
