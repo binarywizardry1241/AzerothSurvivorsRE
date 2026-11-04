@@ -13,7 +13,7 @@ use crate::{
     preview::HeroPreviewOutput,
     progression,
     talents::{self, TalentArt, TalentCatalog, TreeMode},
-    tooltip::{InspectionTooltip, NativeTooltip},
+    tooltip::NativeTooltip,
 };
 
 use super::{CoopUi, HeroRow};
@@ -34,6 +34,15 @@ enum Click {
 
 #[derive(Component)]
 struct Root;
+
+#[derive(Component)]
+struct EquipmentHover(NativeTooltip);
+
+#[derive(Component)]
+struct EquipmentSummary;
+
+#[derive(Component)]
+struct EquipmentDetail;
 
 #[derive(Resource, Default)]
 pub(super) struct View {
@@ -95,6 +104,57 @@ pub(super) fn input(
             }
             Click::Tab(tab) => view.tab = tab,
         }
+    }
+}
+
+pub(super) fn update_sidebar(
+    mut commands: Commands,
+    state: Res<MenuState>,
+    options: Res<OptionsState>,
+    coop: Res<CoopUi>,
+    time: Res<Time>,
+    art: Res<MenuArt>,
+    slots: Query<(Entity, &Interaction, &EquipmentHover)>,
+    mut summary: Query<&mut Node, (With<EquipmentSummary>, Without<EquipmentDetail>)>,
+    mut detail: Query<(Entity, &mut Node), With<EquipmentDetail>>,
+    mut previous: Local<Option<(Entity, Option<Entity>)>>,
+) {
+    let (Ok(mut summary), Ok((panel, mut detail))) = (summary.single_mut(), detail.single_mut())
+    else {
+        *previous = None;
+        return;
+    };
+    let active = matches!(state.dialog, Some(Dialog::CoopInspect(_)))
+        && !options.open
+        && !coop.ready_modal_visible(time.elapsed_secs());
+    let hovered = active
+        .then(|| {
+            slots
+                .iter()
+                .find(|(_, interaction, _)| **interaction != Interaction::None)
+        })
+        .flatten();
+    let key = (panel, hovered.map(|(entity, _, _)| entity));
+    if *previous == Some(key) {
+        return;
+    }
+    *previous = Some(key);
+
+    let mut panel = commands.entity(panel);
+    panel.despawn_children();
+    if let Some((_, _, EquipmentHover(text))) = hovered {
+        summary.display = Display::None;
+        detail.display = Display::Flex;
+        panel.with_children(|ui| {
+            crate::codex::section_heading(ui, &art, &text.title);
+            super::text(ui, &art, &text.subtitle, 14., MUTED);
+            if !text.body.is_empty() {
+                super::text(ui, &art, &text.body, 14., PAPER);
+            }
+        });
+    } else {
+        summary.display = Display::Flex;
+        detail.display = Display::None;
     }
 }
 
@@ -514,7 +574,9 @@ fn equipment_slot(
     } else {
         labels.label(&slot_key)
     };
-    let name = item_name(catalog, labels, id, race)
+    let worn_name = item_name(catalog, labels, id, race);
+    let show_details = worn_name.is_some();
+    let name = worn_name
         .or_else(|| item_name(catalog, labels, appearance, race))
         .unwrap_or_else(|| slot_name.into());
     let subtitle = if piece.is_some() {
@@ -566,7 +628,7 @@ fn equipment_slot(
             labels.label("Shown as another piece.").into()
         });
     }
-    ui.spawn((
+    let mut cell = ui.spawn((
         Button,
         Node {
             column_gap: Val::Px(8.),
@@ -577,14 +639,15 @@ fn equipment_slot(
         },
         BackgroundColor(DARK),
         BorderColor::all(EDGE),
-        InspectionTooltip,
-        NativeTooltip {
+    ));
+    if show_details {
+        cell.insert(EquipmentHover(NativeTooltip {
             title: name.clone(),
             subtitle: subtitle.clone(),
             body: body.join("\n"),
-        },
-    ))
-    .with_children(|cell| {
+        }));
+    }
+    cell.with_children(|cell| {
         if let Some(icon) = catalog
             .appearance(if id != 0 { id } else { appearance }, race)
             .and_then(|item| art.icons.get(&format!("gear.{}", item.display_id)))
@@ -651,57 +714,76 @@ fn equipment_summary(
             ..default()
         },
         |side| {
-            crate::codex::section_heading(side, art, labels.label("picker.equipment"));
-            let pieces = data
-                .equipped
-                .iter()
-                .filter(|id| catalog.piece(**id).is_some())
-                .count();
-            let total: u32 = data.stars.iter().map(|rank| u32::from(*rank)).sum();
-            super::text(side, art, total.to_string(), 34., GOLD);
-            super::text(
-                side,
-                art,
-                crate::localization::format(
-                    labels,
-                    "of {most} stars on {n} pieces",
-                    &[
-                        ("most", (pieces * 5).to_string()),
-                        ("n", pieces.to_string()),
-                    ],
-                ),
-                12.,
-                MUTED,
-            );
-            let mut bonuses = Vec::new();
-            for tier in [
-                0,
-                1,
-                2,
-                3,
-                4,
-                5,
-                usize::from(azeroth_survivors_re::sets::TIER_HALF),
-            ] {
-                set_bonuses(&mut bonuses, labels, catalog, class, gear, tier, true);
-            }
-            if !bonuses.is_empty() {
-                crate::codex::section_heading(side, art, labels.label("Set bonuses"));
-                for line in bonuses {
-                    super::text(side, art, line, 14., PAPER);
+            side.spawn((
+                EquipmentSummary,
+                Node {
+                    flex_direction: FlexDirection::Column,
+                    row_gap: Val::Px(8.),
+                    ..default()
+                },
+            ))
+            .with_children(|side| {
+                crate::codex::section_heading(side, art, labels.label("picker.equipment"));
+                let pieces = data
+                    .equipped
+                    .iter()
+                    .filter(|id| catalog.piece(**id).is_some())
+                    .count();
+                let total: u32 = data.stars.iter().map(|rank| u32::from(*rank)).sum();
+                super::text(side, art, total.to_string(), 34., GOLD);
+                super::text(
+                    side,
+                    art,
+                    crate::localization::format(
+                        labels,
+                        "of {most} stars on {n} pieces",
+                        &[
+                            ("most", (pieces * 5).to_string()),
+                            ("n", pieces.to_string()),
+                        ],
+                    ),
+                    12.,
+                    MUTED,
+                );
+                let mut bonuses = Vec::new();
+                for tier in [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    usize::from(azeroth_survivors_re::sets::TIER_HALF),
+                ] {
+                    set_bonuses(&mut bonuses, labels, catalog, class, gear, tier, true);
                 }
-            }
-            if let Some(sum) = armory::equipment_summary_for(gear, class, catalog, labels) {
-                crate::codex::section_heading(side, art, labels.label("All together"));
-                super::text(side, art, sum, 14., PAPER);
-            }
-            super::text(
-                side,
-                art,
-                labels.label("Point at a piece to read it."),
-                12.,
-                MUTED,
-            );
+                if !bonuses.is_empty() {
+                    crate::codex::section_heading(side, art, labels.label("Set bonuses"));
+                    for line in bonuses {
+                        super::text(side, art, line, 14., PAPER);
+                    }
+                }
+                if let Some(sum) = armory::equipment_summary_for(gear, class, catalog, labels) {
+                    crate::codex::section_heading(side, art, labels.label("All together"));
+                    super::text(side, art, sum, 14., PAPER);
+                }
+                super::text(
+                    side,
+                    art,
+                    labels.label("Point at a piece to read it."),
+                    12.,
+                    MUTED,
+                );
+            });
+            side.spawn((
+                EquipmentDetail,
+                Node {
+                    display: Display::None,
+                    flex_direction: FlexDirection::Column,
+                    row_gap: Val::Px(8.),
+                    ..default()
+                },
+            ));
         },
     );
 }

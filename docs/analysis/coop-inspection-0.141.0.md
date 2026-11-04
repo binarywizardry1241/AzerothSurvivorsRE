@@ -76,6 +76,15 @@ rank and references `armory.card_bonuses`, hidden appearance and shown-as
 text. The summary owner at `0x1401ba620` emits the 34 px star total and
 the equipment, set bonus and aggregate labels.
 
+The right-hand panel dispatcher at `0x1403ba590` checks the hovered slot
+and its worn ID. It maps a nonzero ID through the inspected race and resolves
+the item descriptor. A resolved worn item calls the ranked detail renderer
+`0x1401b9200` with the existing panel builder. The empty, absent or
+unresolved case calls the equipment summary renderer `0x1401ba620` with
+that same builder. The source now switches the 380 px sidebar between the
+summary and the selected item's details. Slot entities stay in place as the
+cursor enters and leaves, preserving the hover that selected the item.
+
 [`coop_inspect.rs`](../../crates/azeroth-survivors-re/src/coop_inspect.rs)
 connects these inputs to the shared Armory outfit and rotation,
 rank-scaled item and set text, read-only talent trees and earned achievement
@@ -103,6 +112,7 @@ and its generic x86-64 calling convention does not establish the original ABI.
 | Panel/tab dispatch | `0x1403bd5b0` | `0x3bc9b0` | 2096 | `76011a7e9b6b34f808af9d5e0b2a811ec128cf7f635796d71c4a75288c81d19a` |
 | Paperdoll rows | `0x1401bb330` | `0x1ba730` | 2861 | `51fad6b634cc097bd0d3d4602d0ec2080b4af252694c2310630065f9238ab1ae` |
 | Model and weapon lanes | `0x1403be530` | `0x3bd930` | 5500 | `8de682a550d9ccf7a03874751b356cbed788d8ef920e6853eb200c4f532c5f9b` |
+| Sidebar hover dispatch | `0x1403ba590` | `0x3b9990` | 459 | `6777f47fddaafa93b314a2057eac2265d4da941b532f156a9cd9b854bfb99eed` |
 
 The four completed `analyze_function` results in the shared store have
 these exact Ghidra Evidence IDs:
@@ -117,8 +127,8 @@ these exact Ghidra Evidence IDs:
 Fifteen changed Rust paths parse with the pinned formatter, and all 154
 locale values match. The fixed two-row Rust regression covers optional
 rows, truncation, clamped stars, hidden looks and earned-date byte order.
-Compilation and execution of that regression remain open. Exact item tooltip
-placement, all item-kind color/branch details, inspection-specific floor
+Compilation and execution of that regression remain open. Item-kind
+color and branch details, inspection-specific floor
 lighting, and achievement scroll and selection details still require native
 consumer correspondence. Live recipient delivery, model/rendered behavior,
 client/server execution and original/rebuilt parity remain in

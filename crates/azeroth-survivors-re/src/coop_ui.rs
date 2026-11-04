@@ -427,6 +427,7 @@ impl Plugin for CoopUiPlugin {
                 rebuild,
                 ready::rebuild,
                 inspect::rebuild,
+                inspect::update_sidebar,
                 chat::synchronize,
                 staff::animate,
             )
