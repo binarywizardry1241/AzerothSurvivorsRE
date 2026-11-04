@@ -920,14 +920,20 @@ class NativeWriter:
                 _insert_chunk(connection, self.snapshot, "metadata", 0, [(1, 1, canonical(metadata))])
         for table in ("extents", "refs"):
             with self.store.connect() as connection:
-                rows = connection.execute("SELECT m.ordinal,c.payload,c.sha256,c.rows FROM native_membership m JOIN native_chunks c ON c.sha256=m.sha256 WHERE m.snapshot=? AND m.table_name=? ORDER BY m.ordinal", (self.snapshot, table)).fetchall()
-            self.counts[table] = sum(r[3] for r in rows)
-            self.ordinals[table] = len(rows)
+                count, total, tail = connection.execute(
+                    "SELECT count(*),coalesce(sum(c.rows),0),max(m.ordinal) FROM native_membership m "
+                    "JOIN native_chunks c ON c.sha256=m.sha256 WHERE m.snapshot=? AND m.table_name=?",
+                    (self.snapshot, table)).fetchone()
+                last = connection.execute(
+                    "SELECT c.payload,c.sha256 FROM native_membership m JOIN native_chunks c ON c.sha256=m.sha256 "
+                    "WHERE m.snapshot=? AND m.table_name=? AND m.ordinal=? AND c.rows<?",
+                    (self.snapshot, table, tail, CHUNK_ROWS)).fetchone()
+            self.counts[table] = total
+            self.ordinals[table] = count
             self.buffers[table] = []
-            if rows and rows[-1][3] < CHUNK_ROWS:
-                last = rows[-1]
-                self.ordinals[table] = last[0]
-                self.buffers[table] = json.loads(_expand(last[1], last[2]))
+            if last:
+                self.ordinals[table] = tail
+                self.buffers[table] = json.loads(_expand(*last))
         self.commit()
 
     def execute(self, sql, parameters=()):

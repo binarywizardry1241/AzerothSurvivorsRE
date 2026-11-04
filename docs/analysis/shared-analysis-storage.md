@@ -157,7 +157,8 @@ SQLite file's hash or claim an old producer ran against new bytes.
 A bounded shared hot index retains normal indexed lookup performance. Active
 readers hold leases; only inactive materializations are evicted. Native writers
 append shared chunks directly and preserve committed partial progress without
-rebuilding the hot index after each checkpoint.
+rebuilding the hot index after each checkpoint. A resumed writer reads the
+saved counts and at most one unfinished chunk per table.
 
 ## Migration, verification and recovery
 
