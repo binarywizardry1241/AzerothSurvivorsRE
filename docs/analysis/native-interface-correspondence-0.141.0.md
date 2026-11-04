@@ -102,18 +102,52 @@ and height at `0x140338c88` and the plain canvas dimensions at
 the `f32` representation of 1.4. The packed layout records reproduce
 the corresponding bytes retained in the [0.139.2 modal evidence](evidence/0.139.2/coop-ready-check.json).
 
+The lobby's outer constructor at `0x140103540` sends the same kind of
+full-viewport Node and packed backdrop at `0x140103b1d..0x140103b5d`.
+It writes alpha 0.75 and layer 5500. The ordinary lobby canvas at
+`0x140357600` reads 820 × 680 at `0x140357763` and stores the 1.4 scale cap
+at `0x140357871`. The active-party path at `0x14010a5ef..0x14010a77c`
+selects 1120 × 680 instead and updates both canvas dimensions and Node
+width. The inspector's outer constructor at `0x1401c6bf0` packs alpha
+0.8 and layer 5600 at `0x1401c72d9`. The inspector's design dimensions
+and scale cap remain independently traced in the
+[inspection report](coop-inspection-0.141.0.md#read-only-screen).
+
 The [co-op UI plugin](../../crates/azeroth-survivors-re/src/coop_ui.rs)
-schedules [`ready::rebuild`](../../crates/azeroth-survivors-re/src/coop_ready_ui.rs),
-which creates the full-viewport blocking backdrop, alpha 0.55 and the
-460 × 400 canvas capped at 1.4. The source Ready Check layer is 6100.
-The rebuilt co-op lobby uses 6000 and [hero inspection](../../crates/azeroth-survivors-re/src/coop_inspect.rs)
-uses 6080, so the existing source value places Ready Check above both
-when their roots coexist. An isolated change to 5800 would place it
-below them. Recover the surrounding native layer order and verify the
-relative focus and occlusion before changing that integration. This
-registers only the construction scope of `custom-app-screens-readycheck`.
-Current response routing, timer and canvas lifetime, and native layer
-correspondence remain open under [#306](../verification-needed.md#gap-306).
+now spawns the fullscreen lobby backdrop and its fitted canvas. The
+[inspector](../../crates/azeroth-survivors-re/src/coop_inspect.rs) and
+[Ready Check](../../crates/azeroth-survivors-re/src/coop_ready_ui.rs) use
+their corresponding native layer and opacity. This preserves the lobby,
+inspection and Ready Check order when the three roots coexist. The
+Ready Check root remains blocking while its own canvas refreshes.
+
+## Ready Check visibility and answer routing
+
+The modal owner calls `0x1400e49c0` with the current clock and the f32
+2.5 read from `0x14656dd30` at `0x1401424a8`. The helper checks snapshot
+presence, nonempty role and the exact party phases `hosting`, `joining`,
+`joined` and `left`. Running snapshots bypass expiry. The terminal path
+at `0x1400e4aca` returns a visible snapshot when current time minus the
+stored receipt time is at most 2.5. The countdown updater at
+`0x1401434c0` independently calls the same helper and computes
+`min(left / 30 × 100, 100)` at `0x140143539..0x140143559`. The rebuilt
+`ready_modal_visible`, localized countdown and fill width consume the
+same inputs. Native drawing and frame-by-frame UI focus remain
+unverified.
+
+The changed-interaction collector at `0x140143b00` filters on interaction
+change and pressed state. Its two storage branches read the Answer byte,
+store it at request +4 and write tag 29 at `0x140143cf4..0x140143d0d`
+and `0x140143ed4..0x140143eed`. Both submit to `0x140040100`.
+No keyboard action enters this collector. The live UI consumes a changed
+press on Ready, Not Ready or Cancel, and the existing runtime passes the
+guest bool to `Session::send_ready_answer` or the host cancel flag to
+`Session::advance_ready_check`. The lobby's `readycheck` event branch
+at `0x140106444` and its typed state/answer consumer are separate from
+the interaction collector. The [lobby dispatch
+mapping](switch-context-source-review-0.141.0.md#lobby-event-dispatch)
+binds that entry to its type selector. Current wire and authoritative
+party admission retain separate producer and consumer scopes.
 
 ## Exact current ranges
 
@@ -127,9 +161,25 @@ correspondence remain open under [#306](../verification-needed.md#gap-306).
 | Ready Check answer owner | `0x145ec57e0..0x145ec5888` | `0x5ec4be0` | 168 | `58ec8a09c567756b8726b9f9d103cc327ab8f05bbb4044b7e41d0bcae66eee94` |
 | Ready Check modal owner | `0x140142370..0x140143259` | `0x141770` | 3,817 | `ae0d5ddfe1dbaf2bced4284a22cf511c7b6e48032b5d3d9d55d7903d4dd6c0bb` |
 | Backdrop and canvas call sites | `0x140143074..0x1401430dd` | `0x142474` | 105 | `d7ea6967e7827418df5118e3873b4fb6e66735191a516c977e34f2ba40fffedc` |
+| Lobby backdrop owner | `0x140103540..0x140103b81` | `0x102940` | 1,601 | `86c71c4f1858462a2167dd9176a14d0f10c236d710eaf685ad99f39c0d4b06b8` |
+| Lobby canvas constructor | `0x140357600..0x1403578c5` | `0x356a00` | 709 | `7f7219897e237ec6c31e1554320e28b42a314e5c088868b1244b6574415ac2e1` |
+| Lobby canvas resize | `0x140109fa0..0x14010afa9` | `0x1093a0` | 4,105 | `65818558a159bbdffe4d8eda5059cfcc0052083670511faea8d05d551e566090` |
+| Inspector backdrop owner | `0x1401c6bf0..0x1401c7364` | `0x1c5ff0` | 1,908 | `1460373ddc06f32e62bd6160e461ff8349ecbfc8b69bd539d7d6c126a366309b` |
+| Ready Check visibility | `0x1400e49c0..0x1400e4c85` | `0xe3dc0` | 709 | `6efd9ccf52b83408523d2cfb973a9f91d6c517d27b6a6e82bfb12916c1cef6d8` |
+| Ready Check countdown updater | `0x1401434c0..0x140143aa9` | `0x1428c0` | 1,513 | `214bda7e8ecc417bd2b3bdb280442dad7bfe6edbe15af48bbfabf8415aa2a775` |
+| Ready Check interaction collector | `0x140143b00..0x140143f18` | `0x142f00` | 1,048 | `bc8535dcc950124b6be70da08f67990a8fff9ac0b276f15065b960a548ce85f4` |
 | Canvas constructor | `0x140338b20..0x140338e3e` | `0x337f20` | 798 | `54609fe08dc8ef278a4247f4cdaa58ce47816386595bda34146268ac09258a74` |
 | Backdrop dimensions | `0x146568060..0x146568070` | `0x6566660` | 16 | `5f505ae0f714cf77c9a198337585c124d69ece35995e4d1e68f4e991e039ac5c` |
 | Node and canvas dimensions | `0x1465c4520..0x1465c4538` | `0x65c2b20` | 24 | `002e115a6c6bf804ce112816ae3aeee312221252b6a4b8ed04a0c0cdc3d1b0a3` |
+
+Journaled raw-slice Ghidra results were verified against their PE range
+digests. The shared result digests for modal construction, visibility and
+answer collection are respectively
+`a3c97d779b4f3f6736660202e3a2f287648667148e113f86a6e7a21344098a3c`,
+`5757343673fba7444e22294c2c8f3c6aa3cd3fd9100fc45dcdca6e57a2c2e62a` and
+`032c3d6bf5cc6412353ed3419b9b9cac9a49afd9bc0f241f84dc61806778a7c1`.
+Independent instruction and data reads establish external table and literal
+references beyond the raw slices.
 
 Static instruction decoding, import resolution, referenced-byte checks and
 source inspection cover the scopes above. The earlier synthetic replay

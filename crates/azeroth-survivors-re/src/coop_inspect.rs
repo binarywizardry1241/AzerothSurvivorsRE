@@ -245,8 +245,8 @@ pub(super) fn rebuild(
             },
             Interaction::None,
             FocusPolicy::Block,
-            GlobalZIndex(6080),
-            BackgroundColor(Color::srgba(0., 0., 0., 0.72)),
+            GlobalZIndex(5600),
+            BackgroundColor(Color::srgba(0., 0., 0., 0.8)),
         ))
         .with_children(|root| {
             root.spawn((

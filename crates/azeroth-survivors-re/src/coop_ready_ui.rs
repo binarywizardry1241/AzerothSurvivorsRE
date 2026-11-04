@@ -84,7 +84,7 @@ pub(super) fn rebuild(
     commands
         .spawn((
             ReadyRoot,
-            GlobalZIndex(6100),
+            GlobalZIndex(5800),
             Interaction::None,
             FocusPolicy::Block,
             BackgroundColor(Color::srgba(0., 0., 0., 0.55)),

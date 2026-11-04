@@ -869,19 +869,33 @@ fn rebuild(
         commands.entity(root).despawn();
     }
     let mut chat_parent = None;
-    commands
+    let width = if view.party_active() { 1120. } else { 820. };
+    let backdrop = commands
         .spawn((
             Root,
-            GlobalZIndex(6000),
+            GlobalZIndex(5500),
             Interaction::None,
             FocusPolicy::Block,
+            BackgroundColor(Color::srgba(0., 0., 0., 0.75)),
             Node {
                 position_type: PositionType::Absolute,
-                left: Val::Percent(50.), top: Val::Percent(50.),
-                width: Val::Px(if view.party_active() { 1120. } else { 820. }),
+                width: Val::Percent(100.),
+                height: Val::Percent(100.),
+                ..default()
+            },
+        ))
+        .id();
+    commands
+        .spawn((
+            ChildOf(backdrop),
+            crate::canvas::NativeCanvas {
+                design: Vec2::new(width, 680.),
+                max_scale: 1.4,
+            },
+            Node {
+                position_type: PositionType::Absolute,
+                width: Val::Px(width),
                 height: Val::Px(680.),
-                margin: UiRect { left: Val::Px(if view.party_active() { -560. } else { -410. }),
-                    top: Val::Px(-340.), ..default() },
                 padding: UiRect::axes(Val::Px(36.), Val::Px(24.)),
                 flex_direction: FlexDirection::Column,
                 row_gap: Val::Px(12.),
