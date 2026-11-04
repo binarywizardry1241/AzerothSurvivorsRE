@@ -391,6 +391,11 @@ fn armor(class: u32, subclass: u32, rarity: usize) -> u32 {
     else { (([0.0f32, 6.0, 12.0, 22.0, 40.0][subclass.min(4) as usize] * scale) * 4.0) as u32 }
 }
 
+pub(crate) fn item_name(catalog: &ArmoryCatalog, labels: &MenuCatalog, entry: u32) -> SessionEvent {
+    let name = definition(catalog, labels, entry, 0).map(|item| item.name);
+    SessionEvent::ItemName { entry: entry & 0x7fff_ffff, name }
+}
+
 fn empty(slot: u8) -> Item {
     Item { slot, entry: 0, guid: 0, name: String::new(), display: 0, quality: 0,
         class: 4, subclass: 0, inventory_type: 0, sheath: 0, armor: 0, health: 0,
@@ -840,4 +845,10 @@ impl RemoteInventory {
         SessionEvent::ItemTemplate { entry, info }
     }
 
+    pub(crate) fn query_name(&mut self, entry: u32, armory: &ArmoryCatalog,
+        host: &Localization, code: &str) -> SessionEvent {
+        self.set_locale(host, code);
+        let display = self.display.as_ref().expect("recipient item locale");
+        item_name(armory, &display.labels, entry)
+    }
 }

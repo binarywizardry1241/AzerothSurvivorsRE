@@ -959,6 +959,15 @@ pub fn encode(
             u64v(&mut b, *id);
             op::MSG_RAID_TARGET_UPDATE
         }
+        SessionEvent::ItemName { entry, name } => {
+            if let Some(name) = name {
+                u32v(&mut b, *entry);
+                cstr(&mut b, name);
+            } else {
+                u32v(&mut b, *entry | 0x8000_0000);
+            }
+            op::SMSG_ITEM_NAME_QUERY_RESPONSE
+        }
         SessionEvent::RaidTargetList { entries } => {
             b.push(1);
             for (icon, id) in entries {
@@ -1444,6 +1453,21 @@ mod tests {
             ammo_display_id: Some(5996),
         };
         assert_eq!(encode(&event, None), Err(EncodeError::IncompleteAmmo));
+    }
+
+    #[test]
+    fn item_name_reply_uses_a_nul_terminated_name_or_high_bit_refusal() {
+        for (name, expected) in [
+            (Some("Linen".into()), &b"\x19\0\0\0Linen\0"[..]),
+            (None, &b"\x19\0\0\x80"[..]),
+        ] {
+            let event = SessionEvent::ItemName { entry: 25, name: name.clone() };
+            let packet = encode(&event, None).unwrap().unwrap();
+            assert_eq!(packet.opcode, op::SMSG_ITEM_NAME_QUERY_RESPONSE);
+            assert_eq!(packet.payload, expected);
+            assert!(matches!(&packet.decode_server().unwrap()[..],
+                [SessionEvent::ItemName { entry: 25, name: actual }] if *actual == name));
+        }
     }
 
     #[test]

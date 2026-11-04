@@ -18,11 +18,158 @@ import json
 import sqlite3
 import struct
 
-from coverage_common import ROOT, file_sha256, latest_target, project_path, target_bytes
+from coverage_common import ROOT, file_sha256, installed_identity, latest_target, project_path, target_bytes
 from script_sources import load_script
 from shared_native_inventory import open_readonly
 
 BASE = ROOT / 'docs/analysis/evidence/0.121.0/coop-item-registry'
+
+
+def item_name_check(run_native):
+    proof = json.loads((ROOT / 'docs/analysis/evidence/0.139.2/coop-item-name.json').read_text())
+    target = installed_identity()
+    assert target == proof['target']
+    image = target_bytes(target)
+    pe = load_script('item_name_pe', ROOT / 'scripts/inventory-executable.py').PE(image)
+    shared = json.loads(project_path(proof['shared_request_manifest']).read_text())
+    assert shared['target'] == target
+    ranges = {}
+    for row in [next(row for row in shared['native_ranges'] if row['role'] == 'request'),
+                *proof['native_ranges']]:
+        start, end = int(row['start'], 16), int(row['end_exclusive'], 16)
+        offset = pe.rva_offset(start - pe.image_base)
+        assert offset == int(row['file_offset'], 16)
+        assert digest(image[offset:offset + end - start]) == row['sha256'], row['role']
+        ranges[row['role']] = start, end
+    requirements = {
+        'crates/benilla-app/src/local_client/requests.rs': [
+            'ClientCommand::ItemNameQuery { entry, .. } => Some(LocalClientRequest::ItemNameQuery { entry })',
+            'ClientCommand::QueryTime | ClientCommand::ItemNameQuery { .. }',
+            'requests.0.extend(resolved(command))'],
+        'crates/azeroth-survivors-re/src/gameplay/mod.rs': [
+            'LocalClientRequest::ItemNameQuery { entry } =>',
+            'presentation.0.push(client::inventory::item_name(armory, labels, entry))'],
+        'crates/azeroth-survivors-re/src/gameplay/client/inventory.rs': [
+            'definition(catalog, labels, entry, 0).map(|item| item.name)',
+            'SessionEvent::ItemName { entry: entry & 0x7fff_ffff, name }',
+            'item_name(armory, &display.labels, entry)'],
+        'crates/azeroth-survivors-re/src/gameplay/coop.rs': [
+            'if opcode == benilla_protocol::messages::opcode::CMSG_ITEM_NAME_QUERY',
+            'let entry = commands::template_entry(&payload)',
+            '.and_then(|guid| state.world_profiles.get(guid))',
+            '.query_name(entry, &armory, &locale, &language)',
+            'runtime.send(Some(client), packet.into_message())'],
+        'crates/azeroth-survivors-re/src/coop/engine_packets.rs': [
+            'SessionEvent::ItemName { entry, name } =>', 'cstr(&mut b, name)',
+            'u32v(&mut b, *entry | 0x8000_0000)', 'op::SMSG_ITEM_NAME_QUERY_RESPONSE'],
+        'crates/benilla-app/src/item_names.rs': [
+            '.net_handler(SessionEventKind::ItemName, on_item_name)', 'names.file(entry, name)'],
+    }
+    for file, fragments in requirements.items():
+        source = (ROOT / file).read_text()
+        assert all(fragment in source for fragment in fragments), file
+    server = (ROOT / 'crates/azeroth-survivors-re/src/coop/server_party.rs').read_text()
+    opcode_list = server.split('const GUEST_ENGINE_OPCODES:', 1)[1].split('];', 1)[0]
+    assert '0x2c5' not in opcode_list
+    result = dict(target=target, native_ranges=len(ranges), source_paths=len(requirements),
+        compilation='not_run', runtime_validation='not_run', parity='unverified')
+    if run_native:
+        result['native'] = item_name_replay(image, pe, ranges, proof['routing_exits'])
+    return result
+
+
+def item_name_replay(image, pe, ranges, routing_exits):
+    from equipment_native import EquipmentProbe
+
+    gate = ranges['guest local request selector']
+    request = ranges['request']
+    serializer = ranges['item name reply serializer']
+    predicate = ranges['guest engine reply admission']
+    lookup = ranges['item descriptor lookup'][0]
+    exits = {int(address, 16): label for label, address in routing_exits.items()}
+
+    class Probe(EquipmentProbe):
+        def hook(self, uc, pc, size, unused):
+            if pc in exits and self.routing:
+                uc.emu_stop()
+                return
+            rcx, rdx, r8, r9 = (self.reg(name) for name in ('RCX', 'RDX', 'R8', 'R9'))
+            if pc == lookup:
+                self.entries.append(rdx & 0xffffffff)
+                if self.name is None:
+                    self.put(rcx, 0xffffffffffffffff)
+                else:
+                    self.output(rcx, self.name)
+                    self.put(rcx + 24, 0, 0)
+            elif pc == 0x145e77490:
+                count = self.q(r9 + 16)
+                payload = bytes(uc.mem_read(self.q(r9 + 8), count))
+                self.replies.append((rdx, r8, self.q(r9 + 24) & 0xffff, payload))
+            elif pc == 0x14634b1ab:
+                uc.mem_write(rcx, bytes(uc.mem_read(rdx, r8)))
+                self.reg('RAX', rcx)
+            elif pc in (0x1464f3410, 0x14634b750):
+                count = self.q(rcx + 16)
+                need = 1 if pc == 0x1464f3410 else r8
+                capacity = max(2 * self.q(rcx), count + need)
+                replacement = self.alloc(capacity)
+                uc.mem_write(replacement, bytes(uc.mem_read(self.q(rcx + 8), count)))
+                self.put(rcx, capacity, replacement)
+            else:
+                return super().hook(uc, pc, size, unused)
+            stack = self.reg('RSP')
+            self.reg('RSP', stack + 8)
+            self.reg('RIP', self.q(stack))
+
+    probe = Probe(image, pe, [gate, request, serializer, predicate])
+    probe.routing = True
+    context = probe.alloc(0x2200)
+    routing_cases = 0
+    for role in (0, 1, 2, 3):
+        probe.put(context + 0xf78, role)
+        for synchronized in (0, 1, 255):
+            probe.native.mem_write(context + 0x13b5, bytes([synchronized]))
+            for opcode in (0x4a, 0x4b, 0x56, 0x1ce, 0x1dc, 0x2c3, 0x2c4, 0x2c5, 0x321):
+                for reg, value in [('RCX', context), ('RSI', context), ('R14', opcode)]:
+                    probe.reg(reg, value)
+                probe.native.emu_start(gate[0], probe.DONE, count=32)
+                expected = ('fallback' if role >= 2 or not synchronized else
+                            'local' if opcode in (0x4b, 0x1ce, 0x1dc, 0x2c4) else 'forward')
+                assert exits.get(probe.reg('RIP')) == expected, (role, synchronized, opcode)
+                routing_cases += 1
+    probe.routing = False
+    for opcode in (0x2c2, 0x2c4, 0x2c5, 0x2d2, 0x321):
+        for length in (0, 0xfffd, 0xfffe):
+            probe.invoke(predicate[0], opcode, length)
+            expected = opcode in (0x2c2, 0x2d2, 0x321) and length <= 0xfffd
+            assert bool(probe.reg('RAX') & 0xff) == expected, (opcode, length)
+    cases = 0
+    for role, index in ((0, 0), (1, 5)):
+        for source in (bytes.fromhex('197856120102030405060708'), b'\xff' * 12):
+            for length in range(len(source) + 1):
+                for name in (None, '', 'Linen', '中文' * 20):
+                    probe.cursor = probe.HEAP + 0x1000
+                    probe.name, probe.entries, probe.replies = name, [], []
+                    body = source[:length]
+                    address = probe.alloc(len(body))
+                    if body:
+                        probe.native.mem_write(address, body)
+                    stack = probe.STACK + 0x1f0008
+                    probe.put(stack, probe.DONE)
+                    probe.put(stack + 40, address, len(body))
+                    for reg, value in [('RSP', stack), ('RCX', 0), ('RDX', role),
+                                       ('R8', index), ('R9', 0x2c4)]:
+                        probe.reg(reg, value)
+                    probe.native.emu_start(request[0], probe.DONE, count=10000)
+                    assert probe.reg('RIP') == probe.DONE
+                    entry = int.from_bytes(body[:4], 'little')
+                    assert probe.entries == [entry]
+                    reply = struct.pack('<I', entry | 0x80000000 if name is None else entry)
+                    if name is not None:
+                        reply += name.encode() + b'\0'
+                    assert probe.replies == [(role, index, 0x2c5, reply)]
+                    cases += 1
+    return dict(routing_cases=routing_cases, request_reply_cases=cases, guest_opcode_cases=15)
 
 
 def carrier_check(run_native):
@@ -401,7 +548,12 @@ if __name__ == '__main__':
     parser.add_argument('--native', action='store_true')
     parser.add_argument('--write', action='store_true')
     parser.add_argument('--carrier', action='store_true', help='check current wire25 item text delivery')
+    parser.add_argument('--names', action='store_true', help='check current item-name request and reply')
     args = parser.parse_args()
+    if args.names:
+        assert not args.write and not args.carrier
+        print(json.dumps(item_name_check(args.native), ensure_ascii=False))
+        raise SystemExit(0)
     if args.carrier:
         assert not args.write, 'Current carrier check prints its result without rewriting evidence'
         print(json.dumps(carrier_check(args.native), ensure_ascii=False))

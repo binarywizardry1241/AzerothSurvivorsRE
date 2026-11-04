@@ -619,6 +619,20 @@ fn receive(
                         }
                         continue;
                     }
+                    if opcode == benilla_protocol::messages::opcode::CMSG_ITEM_NAME_QUERY {
+                        let entry = commands::template_entry(&payload);
+                        let actor = run.mechanics.as_ref()
+                            .and_then(|_| state.admitted.get(&client))
+                            .and_then(|guid| state.world_profiles.get(guid));
+                        let language = actor.map(|hero| String::from_utf8_lossy(&hero.bytes_30))
+                            .unwrap_or_else(|| locale.code().into()).into_owned();
+                        let reply = state.inventory.entry(client).or_default()
+                            .query_name(entry, &armory, &locale, &language);
+                        if let Ok(Some(packet)) = engine_packets::encode(&reply, None) {
+                            runtime.send(Some(client), packet.into_message());
+                        }
+                        continue;
+                    }
                     state
                         .commands
                         .push((client, EnginePacket { opcode, payload }));

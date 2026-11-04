@@ -30,7 +30,7 @@ fn u32_at(body: &[u8], offset: usize) -> Option<u32> {
 }
 // The native template-query readers consume up to four bytes, with zeroes for
 // an absent suffix; they still answer an empty or truncated query.
-fn template_entry(body: &[u8]) -> u32 {
+pub(super) fn template_entry(body: &[u8]) -> u32 {
     let mut bytes = [0; 4];
     for (to, from) in bytes.iter_mut().zip(body) {
         *to = *from;

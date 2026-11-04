@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "gap_ids": [
+    63
+  ],
+  "target": {
+    "version": "0.139.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
+    "size_bytes": 150793728
+  },
+  "shared_request_manifest": "docs/analysis/evidence/0.139.2/coop-raid-targets.json",
+  "native_ranges": [
+    {
+      "role": "guest local request selector",
+      "start": "0x145e62df6",
+      "end_exclusive": "0x145e62e8e",
+      "file_offset": "0x5e621f6",
+      "sha256": "ca7e7c512656f0172aae6385ccf2efcc69936ce09adeab036b846c9b0303dd10"
+    },
+    {
+      "role": "local role projection",
+      "start": "0x145e62fc9",
+      "end_exclusive": "0x145e62fe8",
+      "file_offset": "0x5e623c9",
+      "sha256": "9334d8385a57f2c82fdf3bce0c0663446ccf3472299c1351812b36c44e385c0c"
+    },
+    {
+      "role": "item descriptor lookup",
+      "start": "0x145e35550",
+      "end_exclusive": "0x145e36815",
+      "file_offset": "0x5e34950",
+      "sha256": "95c3ae94c73a6c39741985b403781f6ae47ed8692df7d433fff5d8827db25db9"
+    },
+    {
+      "role": "lower item descriptor fallback",
+      "start": "0x145e34b00",
+      "end_exclusive": "0x145e35064",
+      "file_offset": "0x5e33f00",
+      "sha256": "7c85833afbe7bed756ee3cdb4531a3f69000d0d2a60cb5c71243c817525c4a06"
+    },
+    {
+      "role": "item name reply serializer",
+      "start": "0x145da1860",
+      "end_exclusive": "0x145da19c7",
+      "file_offset": "0x5da0c60",
+      "sha256": "d16c2cd6763ddf1250c78868c21a08df94b45da0b588b578b9c1e8788220db55"
+    },
+    {
+      "role": "sender world locale selection",
+      "start": "0x145e44870",
+      "end_exclusive": "0x145e448df",
+      "file_offset": "0x5e43c70",
+      "sha256": "a8a55556c61e97bcc0074d787e428931f4943ae78b0e4c9e8b575307b85654c1"
+    },
+    {
+      "role": "guest Engine variant selects admission",
+      "start": "0x145e7a0d0",
+      "end_exclusive": "0x145e7a11c",
+      "file_offset": "0x5e794d0",
+      "sha256": "4efa643a07196ce3d559e30fdd32621de0aef3d04ca16f4e8375b544fc5a9674"
+    },
+    {
+      "role": "guest engine reply admission",
+      "start": "0x145e17f30",
+      "end_exclusive": "0x145e18054",
+      "file_offset": "0x5e17330",
+      "sha256": "e4adfbcb6560aab2c1d1b30b5d1c75223318936f1d12f077d3437ac0f2f3ac9a"
+    }
+  ],
+  "routing_exits": {
+    "fallback": "0x145e62e2d",
+    "local": "0x145e62fc9",
+    "forward": "0x145e62e8e"
+  },
+  "raw_lookup_ghidra": {
+    "journal_identity_sha256": "d7de3dcad7315284aa97f72f0eed8d3495d52f48a9fb6d7e8f0182a859ed23df",
+    "slice_sha256": "95c3ae94c73a6c39741985b403781f6ae47ed8692df7d433fff5d8827db25db9",
+    "completed_queries": [
+      {
+        "operation": "procedure_info",
+        "address": "0x145e35550",
+        "result_sha256": "d82e9d04b588167cc9cca1eecf492b0edf35214e3f4a7a277f1557d0253e9078",
+        "evidence_id": "ev_eed7c3aa0c3a1a4637eaf4e14b6adb68969f6155464b33404a584f1d0cd5d359"
+      },
+      {
+        "operation": "procedure_pseudo_code",
+        "address": "0x145e35550",
+        "result_sha256": "87992f1a1ca0f5962528099c3d92c109c26988967aeb4b564e14825e322b9214",
+        "evidence_id": "ev_b65b308fa0d0368f03b79b6a944431afc4acf5efc6d8db3b09801997980327fb"
+      }
+    ]
+  }
+}

@@ -1677,6 +1677,7 @@ fn resolved_requests(
     local: Option<Res<benilla_app::local_client::LocalClientSession>>,
     mut raid_targets: Option<ResMut<client::raid_targets::RaidTargets>>,
     mut runtime: Option<ResMut<crate::coop_runtime::CoopRuntime>>,
+    item_catalog: (Option<Res<crate::armory::ArmoryCatalog>>, Option<Res<MenuCatalog>>),
 ) {
     use benilla_app::local_client::{events::SessionEvent, LocalClientRequest};
     // The local channel outlives the optional AS Game. Metadata and refusals
@@ -1720,6 +1721,11 @@ fn resolved_requests(
             LocalClientRequest::InventoryChange { opcode, first, second } => {
                 if let Some(event) = client::inventory_requests::refused(opcode, first, second) {
                     presentation.0.push(event);
+                }
+            }
+            LocalClientRequest::ItemNameQuery { entry } => {
+                if let (Some(armory), Some(labels)) = (&item_catalog.0, &item_catalog.1) {
+                    presentation.0.push(client::inventory::item_name(armory, labels, entry));
                 }
             }
             LocalClientRequest::CreatureQuery { entry } => {

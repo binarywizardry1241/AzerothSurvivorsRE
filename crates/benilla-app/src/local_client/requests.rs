@@ -13,6 +13,7 @@ pub enum LocalClientRequest {
     QueryTime,
     SetRaidTarget { icon: u8, guid: u64 },
     NameQuery { guid: u64 },
+    ItemNameQuery { entry: u32 },
     CastSpell { spell_id: u32 },
     GameObjectUse { guid: u64 },
     GameObjectQuery { entry: u32 },
@@ -116,6 +117,7 @@ fn resolved(command: ClientCommand) -> Option<LocalClientRequest> {
         ClientCommand::SetRaidTarget { icon, guid } => Some(LocalClientRequest::SetRaidTarget { icon, guid }),
         ClientCommand::RequestRaidTargets => Some(LocalClientRequest::SetRaidTarget { icon: 0xff, guid: 0 }),
         ClientCommand::NameQuery { guid } => Some(LocalClientRequest::NameQuery { guid }),
+        ClientCommand::ItemNameQuery { entry, .. } => Some(LocalClientRequest::ItemNameQuery { entry }),
         ClientCommand::CastSpell { spell_id, .. }
         | ClientCommand::CastSpellCorpse { spell_id, .. }
         | ClientCommand::CastSpellAtDest { spell_id, .. }
@@ -181,8 +183,11 @@ fn collect(
                 });
             }
             if wire.enabled {
-                // Native guest CMSG_QUERY_TIME stays on the local server port.
-                if matches!(&command,ClientCommand::QueryTime) {requests.0.push(LocalClientRequest::QueryTime);continue;}
+                // These requests stay on the native guest's local engine port.
+                if matches!(&command, ClientCommand::QueryTime | ClientCommand::ItemNameQuery { .. }) {
+                    requests.0.extend(resolved(command));
+                    continue;
+                }
                 if let Err(error) = crate::net::io::write_command(&mut writer, command) {
                     warn!("embedding command encoding failed: {error}");
                 }
@@ -309,6 +314,22 @@ mod tests {
                 assert_eq!(resolved(ClientCommand::SetRaidTarget { icon, guid }),
                     Some(LocalClientRequest::SetRaidTarget { icon, guid }));
             }
+        }
+    }
+
+    #[test]
+    fn item_name_queries_stay_local_after_guest_synchronization() {
+        let mut app = App::new();
+        app.init_resource::<LocalClientSession>().add_plugins(LocalRequestsPlugin);
+        app.world_mut().resource_mut::<LocalClientSession>().active = true;
+        let sender = app.world().resource::<NetCommands>().0.clone();
+        for guest in [false, true] {
+            app.world_mut().resource_mut::<LocalWireRequests>().enabled = guest;
+            sender.send(ClientCommand::ItemNameQuery { entry: 101010, guid: u64::MAX }).unwrap();
+            app.world_mut().run_system_once(collect).unwrap();
+            assert!(app.world().resource::<LocalWireRequests>().packets.is_empty());
+            assert_eq!(std::mem::take(&mut app.world_mut().resource_mut::<LocalClientRequests>().0),
+                [LocalClientRequest::ItemNameQuery { entry: 101010 }]);
         }
     }
 
