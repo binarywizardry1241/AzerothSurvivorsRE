@@ -9,7 +9,7 @@ import platform
 import struct
 import subprocess
 
-from coverage_common import ROOT, latest_target, target_bytes
+from coverage_common import ROOT, installed_identity, latest_target, target_bytes
 from discovery_native_subject import verify_native_query_subject
 from equipment_native import EquipmentProbe
 from script_sources import load_script
@@ -502,10 +502,53 @@ def receive_order_cases(image, pe):
     return {"receive_order": count}, probe.steps
 
 
+def ordered_world_input():
+    proof = json.loads((ROOT / 'docs/analysis/evidence/0.139.2/coop-ordered-input.json').read_text())
+    target = installed_identity()
+    assert target == proof['target']
+    image = target_bytes(target)
+    pe = load_script('party_frames_pe', ROOT / 'scripts/inventory-executable.py').PE(image)
+
+    def read(address, size):
+        offset = pe.rva_offset(address - pe.image_base)
+        return image[offset:offset + size]
+
+    for row in proof['native_ranges']:
+        start, end = (int(row[key], 16) for key in ('start', 'end_exclusive'))
+        assert pe.rva_offset(start - pe.image_base) == int(row['file_offset'], 16)
+        assert sha(read(start, end - start)) == row['sha256']
+    for address, destination, opcode in ((0x145e53233, 0x145e77bd0, 0xe8),
+                                         (0x145e5323c, 0x145e53160, 0xe9),
+                                         (0x145e7851c, 0x145eb4880, 0xe8),
+                                         (0x145e7833a, 0x145e766f0, 0xe8),
+                                         (0x145e76733, 0x145ec30a0, 0xe8)):
+        raw = read(address, 5)
+        assert raw[0] == opcode and address + 5 + struct.unpack('<i', raw[1:])[0] == destination
+    table = 0x1476c81ec
+    assert [table + cell for cell in struct.unpack('<2i', read(table + 3 * 4, 8))] == [
+        0x145e782b7, 0x145e78310,
+    ]
+
+    gameplay = ROOT / 'crates/azeroth-survivors-re/src/gameplay'
+    receive = (gameplay / 'coop.rs').read_text().split('fn receive(', 1)[1].split('fn finish_transport_lost(', 1)[0]
+    command = (gameplay / 'coop_commands.rs').read_text()
+    loop = receive.split('driver.next_host_event()', 1)[1]
+    assert loop.index('commands::Input::Engine') < loop.index('commands::Input::Control') < loop.index('commands::drain(')
+    assert 'commands: VecDeque<(ClientId, commands::Input)>' in (gameplay / 'coop.rs').read_text()
+    drain = command.split('pub(super) fn drain(', 1)[1]
+    assert drain.index('!world.ready') < drain.index('terrain.native.terrain()') < drain.index('state.commands.pop_front()')
+    assert 'apply.after(bootstrap).before(RunSet::Tick)' in command
+    assert 'Input::Engine(packet) => packet' in drain and 'Input::Control { kind, argument, offer }' in drain
+    print('PASS: current host Engine/Control dispatch, ordered ready-world source drain and bootstrap fallback')
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--write", action="store_true")
+    parser.add_argument("--ordered-input", action="store_true")
     args = parser.parse_args()
+    if args.ordered_input:
+        return ordered_world_input()
     target = latest_target(verify=True)
     assert target["sha256"] == SHA
     image = target_bytes(target)

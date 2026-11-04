@@ -25,7 +25,7 @@ use benilla_app::local_client::{
     events::{LocalPresentationEvents, LocalWireEvents, SessionEvent},
     local_player_fields,
 };
-use std::collections::{HashMap, HashSet};
+use std::collections::{HashMap, HashSet, VecDeque};
 
 #[derive(Resource, Default)]
 pub(crate) struct CoopGame {
@@ -33,8 +33,7 @@ pub(crate) struct CoopGame {
     profiles: HashMap<ClientId, NativeHero>,
     world_profiles: HashMap<u64, NativeHero>,
     admitted: HashMap<ClientId, u64>,
-    commands: Vec<(ClientId, EnginePacket)>,
-    controls: Vec<(ClientId, u8, u8, u32)>,
+    commands: VecDeque<(ClientId, commands::Input)>,
     zone: Option<String>,
     zone_started: f64,
     sync_sent: bool,
@@ -122,7 +121,7 @@ impl CoopGame {
         self.fields = None;
         self.hud = None;
         self.pick.clear();
-        self.controls.clear();
+        self.commands.clear();
         self.sync_sent = false;
         self.resources.clear();
         self.timers.clear();
@@ -388,7 +387,7 @@ fn receive(
     armory: Res<crate::armory::ArmoryCatalog>,
     mut commands: Commands,
     mut world: ResMut<ZoneWorld>,
-    (input, bridge, hud_settings, catalog, stock, mut notifications, mut board, units): (
+    (input, bridge, hud_settings, catalog, stock, mut notifications, mut board, units, mut terrain): (
         Res<benilla_app::local_client::LocalClientInput>,
         Res<client::BridgeCatalog>,
         Res<run_hud::HudSettings>,
@@ -397,6 +396,7 @@ fn receive(
         ResMut<notifications::Notifications>,
         ResMut<client::raid_targets::RaidTargets>,
         Query<(&LocalUnitVisual, &Transform, Option<&benilla_app::local_client::LocalUnitPath>)>,
+        commands::CommandTerrain,
     ),
 ) {
     let now = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH)
@@ -633,9 +633,10 @@ fn receive(
                         }
                         continue;
                     }
-                    state
-                        .commands
-                        .push((client, EnginePacket { opcode, payload }));
+                    state.commands.push_back((client, commands::Input::Engine(EnginePacket {
+                        opcode,
+                        payload,
+                    })));
                 } else if guest {
                     let Some(packet) = state.guest_engine_packet(opcode, payload, local.active) else {
                         continue;
@@ -687,7 +688,9 @@ fn receive(
             }
             NativeMessage::Control { kind, argument, offer } if !guest => {
                 if let Some(client) = client {
-                    state.controls.push((client, kind, argument, offer));
+                    state.commands.push_back((client, commands::Input::Control {
+                        kind, argument, offer,
+                    }));
                 }
             }
             NativeMessage::State(value) if guest => {
@@ -814,6 +817,14 @@ fn receive(
                 );
             }
             _ => {}
+        }
+        // Apply authenticated world input before the host pump can advance to
+        // another packet or retire this peer. Bootstrap can finish in Update.
+        if !state.commands.is_empty() {
+            commands::drain(
+                &mut state, &mut runtime, &mut run, &world, &mut terrain,
+                &locale, &mut presentation, &armory, &mut item_texts,
+            );
         }
     }
     if !guest {

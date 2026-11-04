@@ -60609,6 +60609,23 @@
     },
     {
       "id": "custom-game-server-party",
+      "gap_63_ordered_world_input_0_139_2": {
+        "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
+        "gap_id": 63,
+        "source_status": "bounded_source_connected",
+        "scope": "Authenticated host Engine and Control actions share one ready-world FIFO and drain before the next peer event. The existing bootstrap fallback uses the same handler.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+          "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs"
+        ],
+        "evidence_refs": [
+          "docs/analysis/coop-ordered-input-0.139.2.md",
+          "docs/analysis/evidence/0.139.2/coop-ordered-input.json"
+        ],
+        "static_checker": "scripts/check-coop-party-frames.py --ordered-input",
+        "runtime_validation": "not_run",
+        "parity": "unverified"
+      },
       "coop_version_admission_0_139_2": {
         "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
         "gap_ids": [63, 163],

@@ -6,6 +6,18 @@ use azeroth_survivors_re::{
 };
 use benilla_protocol::messages::{opcode, parse_movement_info};
 
+pub(super) enum Input {
+    Engine(EnginePacket),
+    Control { kind: u8, argument: u8, offer: u32 },
+}
+
+#[derive(bevy::ecs::system::SystemParam)]
+pub(super) struct CommandTerrain<'w> {
+    native: ResMut<'w, world::native_floor::NativeFloor>,
+    terrain: Option<Res<'w, TerrainStreamer>>,
+    tiles: Option<Res<'w, Assets<AdtTile>>>,
+}
+
 #[derive(Default)]
 pub(super) struct Motion {
     pub recovery: Recovery,
@@ -65,13 +77,28 @@ fn apply(
     mut runtime: ResMut<CoopRuntime>,
     mut run: ResMut<RunSession>,
     world: Res<ZoneWorld>,
-    mut native: ResMut<world::native_floor::NativeFloor>,
-    terrain: Option<Res<TerrainStreamer>>,
-    tiles: Option<Res<Assets<AdtTile>>>,
+    mut terrain: CommandTerrain,
     locale: Res<crate::localization::Localization>,
     mut presentation: ResMut<LocalPresentationEvents>,
     armory: Res<crate::armory::ArmoryCatalog>,
     mut item_texts: ResMut<benilla_app::local_client::LocalItemDescriptions>,
+) {
+    drain(
+        &mut state, &mut runtime, &mut run, &world, &mut terrain,
+        &locale, &mut presentation, &armory, &mut item_texts,
+    );
+}
+
+pub(super) fn drain(
+    state: &mut CoopGame,
+    runtime: &mut CoopRuntime,
+    run: &mut RunSession,
+    world: &ZoneWorld,
+    terrain: &mut CommandTerrain<'_>,
+    locale: &crate::localization::Localization,
+    presentation: &mut LocalPresentationEvents,
+    armory: &crate::armory::ArmoryCatalog,
+    item_texts: &mut benilla_app::local_client::LocalItemDescriptions,
 ) {
     if runtime.is_guest() || !world.ready {
         return;
@@ -80,21 +107,38 @@ fn apply(
     let Some(game) = run.mechanics.as_mut() else {
         return;
     };
-    let Some((streamer, tiles)) = terrain.as_deref().zip(tiles.as_deref()) else {
+    let Some((streamer, tiles)) = terrain.terrain.as_deref().zip(terrain.tiles.as_deref()) else {
         return;
     };
-    let Some(floor) = native.terrain() else {
+    let Some(floor) = terrain.native.terrain() else {
         return;
     };
     let Some(zone) = azeroth_survivors_re::floor_recovery::Zone::for_key(game.zone.key) else {
         return;
     };
-    for (client, packet) in std::mem::take(&mut state.commands) {
+    while let Some((client, input)) = state.commands.pop_front() {
         let Some(guid) = state.admitted.get(&client).copied() else {
             continue;
         };
         let Some(slot) = game.party_slot(guid) else {
             continue;
+        };
+        let packet = match input {
+            Input::Engine(packet) => packet,
+            Input::Control { kind, argument, offer } => {
+                let stale = game.with_party_hero(slot, |hero|
+                    !azeroth_survivors_re::coop::pick::admits(kind, offer, hero.choice_offer())
+                ).unwrap_or(false);
+                let applied = game.party_control(slot, kind, argument, offer, |xy| {
+                    azeroth_survivors_re::floor_recovery::Terrain::height(floor, xy)
+                });
+                // Stale picks and missing-card requests republish the current offer.
+                if (applied && matches!(kind, 0..=3 | 6 | 10)) || stale {
+                    let revision = state.choice_generations.entry(client).or_default();
+                    *revision = revision.wrapping_add(1).max(1);
+                }
+                continue;
+            }
         };
         if movement(packet.opcode) {
             let Ok(info) = parse_movement_info(&packet.payload) else {
@@ -286,27 +330,6 @@ fn apply(
                     item_texts.0.iter().find(|(entry, _)| *entry == id).map(|(_, text)| text.clone()));
                 runtime.send(Some(client), message);
             }
-        }
-    }
-    for (client, kind, argument, offer) in std::mem::take(&mut state.controls) {
-        let Some(guid) = state.admitted.get(&client).copied() else {
-            continue;
-        };
-        let Some(slot) = game.party_slot(guid) else {
-            continue;
-        };
-        let stale = game.with_party_hero(slot, |hero|
-            !azeroth_survivors_re::coop::pick::admits(kind, offer, hero.choice_offer())
-        ).unwrap_or(false);
-        let applied = game.party_control(slot, kind, argument, offer, |xy| {
-            azeroth_survivors_re::floor_recovery::Terrain::height(floor, xy)
-        });
-        // Stale picks and explicit missing-card requests both republish the
-        // current authoritative choices/resume without advancing its offer ID.
-        if (applied && matches!(kind, 0..=3 | 6 | 10)) || stale {
-            let revision = state.choice_generations.entry(client).or_default();
-            // Zero is the publisher's "no response requested" sentinel.
-            *revision = revision.wrapping_add(1).max(1);
         }
     }
 }
