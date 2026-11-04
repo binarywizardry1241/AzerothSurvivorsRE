@@ -228,7 +228,7 @@ def source_checks():
     assert "pub movement_opcode: Option<u16>" in capture
     assert movement.count("record_timestamped_movement(wow_pos, facing, wire_flags, None, timestamp)") == 2
     assert "pub timestamp_ms: Option<u32>" in capture
-    assert "record_timestamped_movement(wow_pos, facing, wire_flags, Some($kind.opcode()), timestamp)" in movement
+    assert "record_timestamped_movement(wire.pos, wire.facing, wire.flags, Some(kind.opcode()), timestamp)" in movement
     assert "record_timestamped_movement(pos, facing, 0, Some(MoveKind::Stop.opcode()), timestamp)" in movement
     assert movement.count(".map(|_| benilla_protocol::world::client_uptime_ms())") == 4
     writer = (ROOT / "crates/benilla-app/src/net/io.rs").read_text()
@@ -238,7 +238,7 @@ def source_checks():
     requests = (ROOT / "crates/benilla-app/src/local_client/requests.rs").read_text()
     assert "let ordinary = matches!(&command, ClientCommand::Move{..})" in requests
     assert "if wire.observe_movement && ordinary { wire.packets.push(packet); }" in requests
-    assert "coop.as_deref_mut().zip(report.movement_opcode)" in live
+    assert "let Some(opcode) = report.movement_opcode else { continue; };" in live
     assert "coop.local_admissions.push((opcode,report.position_wow,admitted))" in live
     paths.extend(ROOT / "crates/benilla-app/src/player" / name for name in ("state.rs", "movement_net.rs", "wire_in.rs"))
     paths.extend(ROOT / name for name in (

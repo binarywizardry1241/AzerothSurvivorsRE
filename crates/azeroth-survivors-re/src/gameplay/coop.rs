@@ -1197,6 +1197,7 @@ fn bootstrap(
     mut spawn: ResMut<LocalPlayerSpawn>,
     mut loading: ResMut<benilla_app::local_client::LocalLoadingScreen>,
     time: Res<Time>,
+    real_time: Res<Time<Real>>,
     (locale, mut presentation, mut terminal, stock, mut equipment, mut equipment_metadata, mut wire): (
         Res<crate::localization::Localization>,
         ResMut<LocalPresentationEvents>,
@@ -1207,6 +1208,19 @@ fn bootstrap(
         ResMut<LocalWireEvents>,
     ),
 ) {
+    if let Some(since) = run.coop_start_wait_since {
+        // The host driver releases the start restriction after the assigned
+        // clients finish initial-world sync or 60 seconds elapse.
+        let waiting = real_time.elapsed_secs_f64() - since < 60.0
+            && runtime.driver.as_ref().is_some_and(|driver| {
+                driver.is_hosting() && driver.server.clients().iter().any(|client| {
+                    client.world_hero.is_some() && !client.synchronized
+                })
+            });
+        if !waiting {
+            run.coop_start_wait_since = None;
+        }
+    }
     let Some(profile) = state.local.clone() else {
         return;
     };
@@ -1437,7 +1451,8 @@ fn bootstrap(
             inserted.push((client, hero));
         }
     }
-    if state.initial_list_identity != Some(identity) {
+    let initial_world = state.initial_list_identity != Some(identity);
+    if initial_world {
         party_frames::initial(&runtime, game, &mut wire);
         state.initial_list_identity = Some(identity);
     }
@@ -1480,6 +1495,9 @@ fn bootstrap(
         } else {
             game.remove_party_hero(slot);
         }
+    }
+    if initial_world && !state.admitted.is_empty() {
+        run.coop_start_wait_since = Some(real_time.elapsed_secs_f64());
     }
 }
 

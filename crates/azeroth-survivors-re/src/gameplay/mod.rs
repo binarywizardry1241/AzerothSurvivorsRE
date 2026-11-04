@@ -167,6 +167,8 @@ pub struct RunSession {
     showcase: bool,
     last_position: Option<[f32; 3]>,
     accepted_position: Option<[f32; 3]>,
+    previous_directional_movement: bool,
+    coop_start_wait_since: Option<f64>,
     recovery: azeroth_survivors_re::floor_recovery::Recovery,
     last_report: u32,
     pub started: bool,
@@ -507,6 +509,8 @@ fn enter(
             session.error = None;
             session.last_position = None;
             session.accepted_position = Some(zone.spawn);
+            session.previous_directional_movement = false;
+            session.coop_start_wait_since = None;
             session.recovery = Default::default();
             session.started = false;
             session.last_report = 0;
@@ -949,6 +953,9 @@ fn tick(
     if reports.identity == session.identity {
         for report in &reports.reports {
             use azeroth_survivors_re::floor_recovery::Report;
+            // The stock mover also captures speed/knockback acknowledgements.
+            // The AS floor dispatcher admits ordinary movement packets only.
+            let Some(opcode) = report.movement_opcode else { continue; };
             session.mechanics.as_mut().unwrap().record_boss_movement_flags(report.flags);
             let now = session.mechanics.as_ref().unwrap().clock;
             let phase = u8::from(session.started);
@@ -964,13 +971,13 @@ fn tick(
             } else {
                 session.recovery.admit(zone, floor_report, floor)
             };
-            if let Some((coop, opcode))=coop.as_deref_mut().zip(report.movement_opcode) {
+            if let Some(coop) = coop.as_deref_mut() {
                 let admitted=match admission {azeroth_survivors_re::floor_recovery::Admission::Ignored=>None,
                     azeroth_survivors_re::floor_recovery::Admission::Accepted=>Some(report.position_wow),
                     azeroth_survivors_re::floor_recovery::Admission::Corrected(point)=>(point == report.position_wow).then_some(report.position_wow)};
                 coop.local_admissions.push((opcode,report.position_wow,admitted));
             }
-            commit_movement_report(&mut session, report.position_wow, report.facing, admission);
+            commit_movement_report(&mut session, report.position_wow, report.facing, report.flags, admission);
             if !matches!(admission, azeroth_survivors_re::floor_recovery::Admission::Ignored) {
                 let point = session.accepted_position.unwrap();
                 session.mechanics.as_mut().unwrap().record_boss_movement_report(
@@ -1791,15 +1798,21 @@ fn flush_exit(
     }
 }
 
-/// Current1458fddc7 commits the final admitted/corrected position before its
-/// ready-to-running check. An ignored report reaches neither operation.
+/// The local 0.140.0 floor owner samples directional flags even on an ignored
+/// report. An admitted pose must match the reported XYZ to start the run.
 fn commit_movement_report(
     session: &mut RunSession,
     reported: [f32; 3],
     facing: f32,
+    flags: u32,
     admission: azeroth_survivors_re::floor_recovery::Admission,
 ) {
     use azeroth_survivors_re::floor_recovery::Admission;
+    // The wire's forward, backward and two strafe bits are the low nibble.
+    let directional_movement = flags & 0x0f != 0;
+    let previous_directional = std::mem::replace(
+        &mut session.previous_directional_movement, directional_movement,
+    );
     let position = match admission {
         Admission::Ignored => return,
         Admission::Accepted => reported,
@@ -1809,7 +1822,12 @@ fn commit_movement_report(
         }
     };
     let previous = session.accepted_position.replace(position);
-    if !session.started && movement_begins(previous, position) {
+    if !session.started
+        && session.coop_start_wait_since.is_none()
+        && (directional_movement || previous_directional)
+        && position == reported
+        && movement_begins(previous, position)
+    {
         session.started = true;
     }
 }
@@ -2272,7 +2290,7 @@ mod tests {
     }
 
     #[test]
-    fn correction_commits_its_position_and_teleport_before_starting_the_run() {
+    fn correction_commits_its_position_and_teleport_without_starting_the_run() {
         use azeroth_survivors_re::floor_recovery::Admission;
         let mut session = RunSession {
             mechanics: Some(fixture_game()),
@@ -2280,9 +2298,9 @@ mod tests {
             ..default()
         };
         let corrected = [-9395., -633., 0.5];
-        commit_movement_report(&mut session, [-9395., -633., -100.], 1.25,
+        commit_movement_report(&mut session, [-9395., -633., -100.], 1.25, 0x01,
             Admission::Corrected(corrected));
-        assert!(session.started);
+        assert!(!session.started);
         assert_eq!(session.accepted_position, Some(corrected));
         let packets = session.mechanics.as_mut().unwrap().drain_player_mover();
         assert_eq!(packets.len(), 1);
@@ -2292,24 +2310,29 @@ mod tests {
     }
 
     #[test]
-    fn ready_transition_uses_final_xy_and_ignored_reports_have_no_effect() {
+    fn ready_transition_uses_the_current_and_previous_directional_report() {
         use azeroth_survivors_re::floor_recovery::Admission;
         let origin = [-9270., -633., 0.5];
         let mut session = RunSession {
             mechanics: Some(fixture_game()), accepted_position: Some(origin), ..default()
         };
-        // Raw movement is large, but correction returns to the current point.
-        commit_movement_report(&mut session, [-9200., -633., 0.], 0.,
-            Admission::Corrected(origin));
+        let settled = [-9269., -633., 0.];
+        commit_movement_report(&mut session, settled, 0., 0x2000, Admission::Accepted);
         assert!(!session.started);
-        session.mechanics.as_mut().unwrap().drain_player_mover();
-        commit_movement_report(&mut session, [0.; 3], 0., Admission::Ignored);
-        assert_eq!(session.accepted_position, Some(origin));
+        commit_movement_report(&mut session, [0.; 3], 0., 0x08, Admission::Ignored);
+        assert_eq!(session.accepted_position, Some(settled));
         assert!(!session.started);
         assert!(session.mechanics.as_mut().unwrap().drain_player_mover().is_empty());
-        commit_movement_report(&mut session, [-9270., -633., 500.], 0., Admission::Accepted);
+        commit_movement_report(&mut session, settled, 0., 0, Admission::Accepted);
         assert!(!session.started);
-        commit_movement_report(&mut session, [-9269., -633., 500.], 0., Admission::Accepted);
+        let walking = [-9268., -633., 0.];
+        commit_movement_report(&mut session, walking, 0., 0, Admission::Accepted);
+        assert!(!session.started);
+        session.coop_start_wait_since = Some(0.);
+        commit_movement_report(&mut session, [-9267., -633., 0.], 0., 0x02, Admission::Accepted);
+        assert!(!session.started);
+        session.coop_start_wait_since = None;
+        commit_movement_report(&mut session, [-9266., -633., 0.], 0., 0, Admission::Accepted);
         assert!(session.started);
     }
 
