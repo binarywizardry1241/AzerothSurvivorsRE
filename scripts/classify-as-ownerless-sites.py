@@ -22,7 +22,7 @@ import struct
 
 import coverage_common as coverage
 from capstone import Cs, CS_ARCH_X86, CS_MODE_64, CS_GRP_CALL, CS_GRP_JUMP, CS_GRP_RET
-from capstone.x86_const import X86_OP_IMM
+from capstone.x86_const import X86_OP_IMM, X86_OP_MEM, X86_OP_REG, X86_REG_RIP
 
 SOURCE_ROOT = coverage.ROOT
 PROOF = 'docs/analysis/evidence/0.121.0/as-ownerless-sites.json'
@@ -33,20 +33,41 @@ FAILURES = {0x146194453, 0x146194630, 0x146194370, 0x1461943b0}
 REMOVALS = {0x140195640: (0x14019569b, 8), 0x145c6ca50: (0x145c6cb60, 120)}
 
 
-def generate(root):
+def load_reference(root):
     # A linked checkout uses the primary checkout's retained runtime evidence;
     # there is no independent store or copy of any installed reference input.
     coverage.ROOT = root
     coverage.REGISTRY = root / 'docs/analysis/coverage/targets.json'
     coverage.REFERENCE_CONFIG = root / '.codex/reference-game.json'
     target = coverage.latest_target(verify=True)
-    assert target['version'] == '0.121.0' and target['sha256'] == TARGET
     spec = importlib.util.spec_from_file_location('ownerless_pe', root / 'scripts/inventory-current-target.py')
     parser = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(parser)
     pe = parser.pe_parser(coverage.target_bytes(target))
     decoder = Cs(CS_ARCH_X86, CS_MODE_64)
     decoder.detail = True
+    return target, pe, decoder
+
+
+def first_call(instructions, site):
+    cursor, route = site, []
+    while cursor in instructions and cursor not in route:
+        instruction = instructions[cursor]
+        route.append(cursor)
+        if instruction.group(CS_GRP_CALL):
+            assert instruction.operands[0].type == X86_OP_IMM, hex(cursor)
+            return [instructions[address] for address in route]
+        assert not instruction.group(CS_GRP_RET) and instruction.mnemonic != 'ud2', hex(cursor)
+        if instruction.group(CS_GRP_JUMP):
+            assert instruction.mnemonic == 'jmp' and instruction.operands[0].type == X86_OP_IMM
+            cursor = instruction.operands[0].imm
+        else:
+            cursor += instruction.size
+    raise AssertionError('No bounded first consumer at ' + hex(site))
+
+
+def generate(root, target, pe, decoder):
+    assert target['version'] == '0.121.0' and target['sha256'] == TARGET
 
     def commitment(path, source=False):
         return {'path': path, 'sha256': coverage.file_sha256((SOURCE_ROOT if source else root) / path)}
@@ -81,21 +102,8 @@ def generate(root):
         start, site = int(row['runtime_function_start'], 16), int(row['instruction_address'], 16)
         instructions = bodies[start][1]
         assert instructions[site].bytes.hex() == row['instruction_bytes']
-        cursor, route = site, []
-        for _ in range(80):
-            instruction = instructions[cursor]
-            route.append(instruction)
-            if instruction.group(CS_GRP_CALL):
-                break
-            if instruction.group(CS_GRP_JUMP):
-                assert instruction.mnemonic == 'jmp' and instruction.operands[0].type == X86_OP_IMM
-                cursor = instruction.operands[0].imm
-            else:
-                cursor += instruction.size
-        else:
-            raise AssertionError('No bounded first consumer at ' + hex(site))
+        route = first_call(instructions, site)
         call = route[-1]
-        assert call.operands[0].type == X86_OP_IMM
         destination = call.operands[0].imm
         record = dict(site=hex(site), original_path=row['path'], original_kind=row['kind'],
                       original_body_owner=None, declared_extent=hex(start),
@@ -255,14 +263,187 @@ def generate(root):
                         'No new native query, Program import/mutation, compilation, client/game/network/server execution or parity comparison.'])
 
 
+def generate_current(root, target, pe, decoder):
+    evidence_dir = Path('docs/analysis/evidence') / target['version']
+    residual_path = evidence_dir / 'native-residuals.json'
+    residual = json.loads((root / residual_path).read_text())
+    assert residual['target'] == {key: target[key] for key in ('version', 'path', 'sha256', 'size_bytes')}
+    artifact = residual['artifacts']['diagnostic-sites.jsonl.gz']
+    assert coverage.file_sha256(root / artifact['path']) == artifact['sha256']
+    selector = "context == 'AS-custom-path' and actual_body_owner == null"
+    with gzip.open(root / artifact['path'], 'rt') as stream:
+        selected = [row for line in stream if (row := json.loads(line))['context'] == 'AS-custom-path'
+                    and row['actual_body_owner'] is None]
+    assert selected and len(selected) == residual['counts']['diagnostic_contexts']['AS-custom-path:ownerless']
+
+    def raw(start, end):
+        offset = pe.rva_offset(start - pe.image_base)
+        return pe.data[offset:offset + end - start]
+
+    def span(start, end):
+        return dict(start=hex(start), end_exclusive=hex(end), file_offset=hex(pe.rva_offset(start - pe.image_base)),
+                    sha256=hashlib.sha256(raw(start, end)).hexdigest())
+
+    declared = {pe.image_base + a: pe.image_base + b for a, b, _ in pe.functions()}
+    bodies = {}
+
+    def body(start):
+        if start not in bodies:
+            end = declared[start]
+            data = raw(start, end)
+            rows = {i.address: i for i in decoder.disasm(data, start)}
+            assert sum(i.size for i in rows.values()) == len(data), hex(start)
+            bodies[start] = (rows, span(start, end))
+        return bodies[start]
+
+    imports = {int(row['iat_start_address'], 16) + 8 * i: (row['library'], symbol)
+               for row in pe.imports() for i, symbol in enumerate(row['functions'])}
+
+    def rip_target(instruction):
+        operands = [op for op in instruction.operands if op.type == X86_OP_MEM and op.mem.base == X86_REG_RIP]
+        assert len(operands) == 1, hex(instruction.address)
+        return instruction.address + instruction.size + operands[0].mem.disp
+
+    helpers = {}
+
+    def classify_location(destination):
+        if destination in helpers:
+            return helpers[destination]['role']
+        rows, digest = body(destination)
+        instructions = list(rows.values())
+        calls = [i for i in instructions if i.group(CS_GRP_CALL)]
+        assert calls and instructions[-1].mnemonic == 'ud2', hex(destination)
+        if not any(i.group(CS_GRP_JUMP) or i.group(CS_GRP_RET) for i in instructions):
+            role = 'terminal-failure-location'
+            helpers[destination] = dict(digest, role=role, terminal_trap=hex(instructions[-1].address))
+            return role
+
+        assert len(calls) == 2 and all(i.operands[0].type == X86_OP_IMM for i in calls), hex(destination)
+        move, fail = calls
+        thunk_address = move.operands[0].imm
+        thunk = next(decoder.disasm(raw(thunk_address, thunk_address + 15), thunk_address))
+        assert thunk.mnemonic == 'jmp'
+        slot = rip_target(thunk)
+        library, symbol = imports[slot]
+        assert symbol == 'memmove'
+        shifts = {i.operands[1].imm for i in instructions if i.mnemonic == 'shl'
+                  and i.operands[1].type == X86_OP_IMM}
+        assert len(shifts) == 1
+        width = 1 << shifts.pop()
+        guard = next(i for i in instructions if i.mnemonic == 'jae' and i.operands[0].type == X86_OP_IMM)
+        assert first_call(rows, guard.operands[0].imm)[-1].address == fail.address
+        assert first_call(rows, guard.address + guard.size)[-1].address == move.address
+        assert any(i.mnemonic == 'dec' and move.address < i.address < fail.address for i in instructions)
+        assert any(i.group(CS_GRP_RET) and move.address < i.address < fail.address for i in instructions)
+        role = 'location-forwarded-to-returning-removal'
+        helpers[destination] = dict(digest, role=role, row_width=width, move_site=hex(move.address),
+                                    move_import=dict(slot=hex(slot), library=library, symbol=symbol),
+                                    bounds_branch=hex(guard.address), bounds_failure_call=hex(fail.address),
+                                    terminal_trap=hex(instructions[-1].address))
+        return role
+
+    formatters = {}
+
+    def classify_adjacent(route, start, end):
+        call = route[-1]
+        destination = call.operands[0].imm
+        payload = raw(start, end)
+        if payload in (b'spell', b'p'):
+            store, length = route[1:3]
+            assert store.mnemonic == length.mnemonic == 'mov'
+            assert store.operands[0].type == length.operands[0].type == X86_OP_MEM
+            assert store.operands[1].type == X86_OP_REG
+            assert store.operands[1].reg == route[0].operands[0].reg
+            assert length.operands[0].mem.base == store.operands[0].mem.base
+            assert length.operands[0].mem.disp == store.operands[0].mem.disp + 8
+            assert length.operands[1].type == X86_OP_IMM and length.operands[1].imm == len(payload)
+            assert any(i.mnemonic == 'lea' and i.operands[0].type == X86_OP_REG
+                       and i.reg_name(i.operands[0].reg) == 'r9' and i.operands[1].type == X86_OP_MEM
+                       and i.operands[1].mem.base == store.operands[0].mem.base
+                       and i.operands[1].mem.disp == store.operands[0].mem.disp for i in route[3:-1])
+            return dict(role='adjacent-named-token', token=payload.decode(), explicit_length=len(payload))
+
+        assert payload == b'\xc0\xc0\x00' and route[0].op_str.startswith('rdx, '), hex(call.address)
+        if destination not in formatters:
+            rows, digest = body(destination)
+            instructions = list(rows.values())
+            forwarded = next(i for n, i in enumerate(instructions) if i.group(CS_GRP_CALL) and
+                             [j.op_str for j in instructions[n - 2:n]] == ['r8, rbx', 'r9, rdi'])
+            assert forwarded.operands[0].type == X86_OP_IMM
+            interpreter, interpreter_digest = body(forwarded.operands[0].imm)
+            reads = list(interpreter.values())
+            default = next(i for i in reads if i.mnemonic == 'cmp' and i.op_str == 'r13d, 0xc0')
+            callback = next(i for i in reads if i.mnemonic == 'call' and i.op_str == 'qword ptr [rsi + rax + 8]')
+            assert any(default.address < i.address < callback.address and i.mnemonic == 'shl'
+                       and i.op_str == 'rax, 4' for i in reads)
+            assert any(i.address > callback.address and i.mnemonic == 'inc' and i.op_str == 'rbx' for i in reads)
+            formatters[destination] = dict(digest, forwarded_at=hex(forwarded.address),
+                                           interpreter=dict(interpreter_digest, default_piece=hex(default.address),
+                                                            argument_callback=hex(callback.address)))
+        return dict(role='adjacent-packed-format-program', program=payload.hex(), default_arguments=2)
+
+    sites = []
+    extents = set()
+    for row in sorted(selected, key=lambda r: int(r['instruction_address'], 16)):
+        start, end = (int(row[key], 16) for key in ('runtime_function_start', 'runtime_function_end'))
+        site, target_address = (int(row[key], 16) for key in ('instruction_address', 'target_address'))
+        instructions, digest = body(start)
+        extents.add(start)
+        assert declared[start] == end and digest['sha256'] == row['owner_sha256']
+        assert instructions[site].bytes.hex() == row['instruction_bytes']
+        assert instructions[site].mnemonic == 'lea' and rip_target(instructions[site]) == target_address
+        route = first_call(instructions, site)
+        call = route[-1]
+        destination = call.operands[0].imm
+        if row['kind'] == 'rust_location':
+            location_reg = route[0].operands[0].reg
+            for i in route[1:-1]:
+                if (i.mnemonic == 'mov' and all(op.type == X86_OP_REG for op in i.operands)
+                        and i.operands[1].reg == location_reg):
+                    location_reg = i.operands[0].reg
+                else:
+                    assert location_reg not in i.regs_access()[1], hex(i.address)
+            argument = call.reg_name(location_reg)
+            assert argument in ('rcx', 'rdx', 'r8', 'r9')
+            pointer, length, line, column = struct.unpack('<QQII', raw(target_address, target_address + 24))
+            assert raw(pointer, pointer + length).decode().replace('\\', '/') == row['path']
+            assert (line, column) == (row['source_line'], row['source_column'])
+            result = dict(role=classify_location(destination), line=line, column=column, argument=argument)
+        else:
+            assert row['kind'] == 'path_literal'
+            result = classify_adjacent(route, target_address, int(row['path_address'], 16))
+        sites.append(dict(site=hex(site), original_path=row['path'], kind=row['kind'], target_address=hex(target_address),
+                          declared_extent=hex(start), call_site=hex(call.address), call_target=hex(destination),
+                          route_sha256=hashlib.sha256(b''.join(i.bytes for i in route)).hexdigest(), **result))
+
+    generator = Path(__file__).relative_to(SOURCE_ROOT)
+    return dict(schema_version=1, target=residual['target'],
+                generator=dict(path=generator.as_posix(), sha256=coverage.file_sha256(SOURCE_ROOT / generator)),
+                inputs=[dict(path=residual_path.as_posix(), sha256=coverage.file_sha256(root / residual_path)), artifact],
+                lead_ids=['Q41-D01'], gap_ids=[41], selector=selector,
+                counts=dict(sites=len(sites), declared_extents=len(extents),
+                            diagnostic_paths=len({row['path'] for row in selected}),
+                            roles=dict(Counter(row['role'] for row in sites))),
+                location_helpers=list(helpers.values()), format_helpers=list(formatters.values()), sites=sites,
+                limits=['Immediate operands and first consumers only. Raw census body ownership is unchanged.',
+                        'Collection type, full caller behavior and native source parity are separate proof obligations.',
+                        'No new native query, Program import or mutation, compilation or application execution.'])
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--write', action='store_true')
     parser.add_argument('--analysis-workspace', type=Path, default=SOURCE_ROOT,
                         help='Primary checkout holding retained evidence when checking from a linked worktree')
     args = parser.parse_args()
-    result = generate(args.analysis_workspace.resolve())
-    output = SOURCE_ROOT / PROOF
+    root = args.analysis_workspace.resolve()
+    target, pe, decoder = load_reference(root)
+    if target['version'] == '0.121.0':
+        result = generate(root, target, pe, decoder)
+        output = SOURCE_ROOT / PROOF
+    else:
+        result = generate_current(root, target, pe, decoder)
+        output = SOURCE_ROOT / 'docs/analysis/evidence' / target['version'] / 'as-ownerless-sites.json'
     if args.write:
         output.write_text(coverage.json_text(result))
     else:
