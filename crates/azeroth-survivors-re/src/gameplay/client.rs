@@ -50,20 +50,22 @@ pub(super) fn presence_phase(session: &RunSession) -> &'static str {
     addon_scalars::phase(session)
 }
 
-/// Build only the new recovered recipient streams while with_party_hero owns
-/// that hero's totems, identity and the shared run's actual affix vector.
+/// Build the recovered recipient streams while with_party_hero seats that
+/// hero's state and the shared world's actual destinations and affix vector.
 pub(super) fn recipient_addon_snapshot(
     game: &super::mechanics::Mechanics, name: &str,
     started: bool, paused: bool, pose: (azeroth_survivors_re::enemies::Position, f32),
-    locale: &crate::localization::Localization,
+    locale: &crate::localization::Localization, catalog: &BridgeCatalog,
 ) -> Vec<addon_feed::AddonMessage> {
     let Some(scalars) = addon_scalars::snapshot_for(game, name,
         addon_scalars::phase_for(game, started, paused), addon_scalars::Inputs {
             position: pose.0, facing: pose.1, target: None,
         }, locale) else { return Vec::new() };
+    let [chests, lairs] = addon_lists::destination_messages(game, locale, catalog);
     vec![addon_feed::AddonMessage::new("AZSZONE", scalars.zone),
         addon_feed::AddonMessage::new("AZSRUN", scalars.run),
-        addon_feed::AddonMessage::new("AZSTOTEMS", addon_summons::totems(game, locale))]
+        addon_feed::AddonMessage::new("AZSTOTEMS", addon_summons::totems(game, locale)),
+        chests, lairs]
 }
 
 /// Drain the run's shared player-mover queue, including an immediate terminal

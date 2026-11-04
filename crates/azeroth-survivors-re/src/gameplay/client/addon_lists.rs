@@ -125,7 +125,6 @@ pub(super) fn snapshot(
     _position: Position,
 ) -> Vec<AddonMessage> {
     let zone = zone_record(game.zone.key);
-    let basis = zone.and_then(|zone| map_basis(zone, catalog));
     let progress = game.addon_progress();
     let schedule = zone.map_or_else(String::new, |zone| {
         zone.bosses
@@ -287,6 +286,25 @@ pub(super) fn snapshot(
         .map(|aura| format!("{},{:.1}", aura.spell_id, aura.expires_at - game.clock))
         .collect::<Vec<_>>()
         .join(";");
+    let [chests, lairs] = destination_messages(game, locale, catalog);
+    vec![
+        AddonMessage::new("AZSBOSSES", schedule),
+        AddonMessage::new("AZSUNITS", unit_rows),
+        AddonMessage::new("AZSDEBUFFS", debuffs),
+        AddonMessage::new("AZSSPELLS", spells),
+        AddonMessage::new("AZSBUFFS", buffs),
+        chests,
+        lairs,
+    ]
+}
+
+/// Shared world destinations with the active recipient's guardian flag and locale.
+pub(super) fn destination_messages(
+    game: &Mechanics,
+    locale: &Localization,
+    catalog: &BridgeCatalog,
+) -> [AddonMessage; 2] {
+    let basis = zone_record(game.zone.key).and_then(|zone| map_basis(zone, catalog));
     let chests = game
         .cache_records()
         .iter()
@@ -351,12 +369,7 @@ pub(super) fn snapshot(
             })
             .collect::<Vec<_>>()
             .join(";");
-    vec![
-        AddonMessage::new("AZSBOSSES", schedule),
-        AddonMessage::new("AZSUNITS", unit_rows),
-        AddonMessage::new("AZSDEBUFFS", debuffs),
-        AddonMessage::new("AZSSPELLS", spells),
-        AddonMessage::new("AZSBUFFS", buffs),
+    [
         AddonMessage::new("AZSCHESTS", chests),
         AddonMessage::new("AZSLAIRS", lairs),
     ]

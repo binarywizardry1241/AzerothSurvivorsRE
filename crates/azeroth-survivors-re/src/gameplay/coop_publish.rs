@@ -182,7 +182,7 @@ pub(in crate::gameplay) fn publish(
                     std::str::from_utf8(&hero.bytes_30).unwrap_or("en"));
                 let addon = addon_pose.map_or_else(Vec::new, |pose|
                     client::recipient_addon_snapshot(game, &String::from_utf8_lossy(&hero.name),
-                        started, addon_paused, pose, &recipient_locale));
+                        started, addon_paused, pose, &recipient_locale, &bridge));
                 (
                     fields,
                     game.native_state(),
