@@ -3,13 +3,9 @@ use super::*;
 use azeroth_survivors_re::coop::party_frames::{Client, Member, packet};
 
 pub(super) fn install(app: &mut App) {
-    app.add_systems(
-        Update,
-        solo_initial
-            .after(RunSet::Input)
-            .after(super::bootstrap)
-            .before(benilla_app::local_client::events::LocalPresentationDispatch),
-    );
+    // World readiness is published after the frame's packet dispatch. Queue
+    // the initial list after bootstrap for the next dispatch.
+    app.add_systems(Update, solo_initial.after(super::bootstrap));
 }
 
 /// Offline Begin has no network profile/bootstrap owner. It still publishes

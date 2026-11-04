@@ -789,7 +789,6 @@ impl Plugin for PortraitPlugin {
             .init_resource::<BoothLight>()
             .add_systems(Startup, setup_booths)
             .add_systems(Update, hero_booth::feed
-                .in_set(crate::ui_script::UiFeed)
                 .after(crate::ui_dressup::compose_dressup)
                 .before(crate::entities::EntityVisualsSet)
                 .in_set(hero_booth::LocalHeroPreviewSet::Feed))

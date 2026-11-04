@@ -24,7 +24,7 @@ impl Plugin for NativeScrollbarPlugin {
                 Update,
                 (kept_wheel, begin_drag, continue_drag, synchronize)
                     .chain()
-                    .after(benilla_app::local_client::LocalClientSet::Feed)
+                    .after(benilla_app::local_client::LocalClientSet::Input)
                     .before(OptionsSet::Input),
             );
     }
