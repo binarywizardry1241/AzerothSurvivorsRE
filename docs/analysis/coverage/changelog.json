@@ -129,13 +129,13 @@
     },
     "systems": {
       "path": "docs/analysis/coverage/systems.json",
-      "sha256": "d02b8da3404d91ba57bf640150547c41db2ef1e467da0232f5991afa9059ea15",
+      "sha256": "4da2a1cfaba659c4491cf7812ca2e691817f20686bc5028b58c6be73ecc97d1d",
       "status": "current_source_owner_context"
     },
     "reviews": {
       "path": "docs/analysis/coverage/changelog-reviews.json",
-      "sha256": "8628c67638828c031dc0229d749fba6c0e59ccaf360a62b22360e03108c0ef15",
-      "applied_reviews": 0,
+      "sha256": "9eac4a323a1139d3280d87cb6d02725295e64b1113f6a989dcb2540e0bc7c8d5",
+      "applied_reviews": 6,
       "historical_unapplied_reviews": [
         {
           "claim_id": "changelog:0.24.0:e5293718609400f3",
@@ -5814,6 +5814,7 @@
             "crates/azeroth-survivors-re/src/gameplay/client.rs",
             "crates/azeroth-survivors-re/src/gameplay/client/events.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs",
+            "crates/azeroth-survivors-re/src/gameplay/notifications.rs",
             "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
             "crates/azeroth-survivors-re/src/coop_directory.rs",
             "docs/analysis/guest-settlement-0.119.0.md"
@@ -5974,6 +5975,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/save.rs",
             "crates/azeroth-survivors-re/src/catalog.rs",
+            "crates/azeroth-survivors-re/src/localization.rs",
             "crates/azeroth-survivors-re/src/armory.rs",
             "crates/azeroth-survivors-re/src/menu.rs",
             "scripts/check-race-hover-0.120.0.py",
@@ -6422,7 +6424,9 @@
             "crates/azeroth-survivors-re/src/bosses/raid_extra.rs",
             "crates/azeroth-survivors-re/src/bosses/raid_sequence_areas.rs",
             "crates/azeroth-survivors-re/src/bosses/raid_towers.rs",
+            "crates/azeroth-survivors-re/src/bosses/spawning.rs",
             "crates/azeroth-survivors-re/src/coop/game_party.rs",
+            "crates/azeroth-survivors-re/src/enemies/scaling.rs",
             "crates/azeroth-survivors-re/src/gameplay/client/events.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/actor_frame.rs",
@@ -6439,6 +6443,8 @@
             "crates/azeroth-survivors-re/src/gameplay/mechanics/wards.rs",
             "crates/azeroth-survivors-re/src/gameplay/mod.rs",
             "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
+            "crates/azeroth-survivors-re/src/guardians/signatures.rs",
+            "crates/azeroth-survivors-re/src/heroic/affix_calendar.rs",
             "crates/azeroth-survivors-re/src/menu.rs",
             "crates/azeroth-survivors-re/src/menu_state.rs",
             "crates/azeroth-survivors-re/src/picker.rs",
@@ -6450,6 +6456,7 @@
             "crates/azeroth-survivors-re/src/run_effects/demon_effects.rs",
             "crates/azeroth-survivors-re/src/run_effects/healing.rs",
             "crates/azeroth-survivors-re/src/run_options.rs",
+            "crates/azeroth-survivors-re/src/treasure_chests/mod.rs",
             "scripts/check-again-entry-0.121.0.py",
             "scripts/check-difficulty-state-0.121.0.py",
             "scripts/check-difficulty-ui-0.121.0.py",
@@ -6470,6 +6477,7 @@
             "crates/azeroth-survivors-re/src/gameplay/client/events.rs",
             "crates/azeroth-survivors-re/src/gameplay/coop.rs",
             "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs",
+            "crates/azeroth-survivors-re/src/gameplay/heroic_progress.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
             "crates/azeroth-survivors-re/src/gameplay/mod.rs",
@@ -6497,6 +6505,7 @@
             "crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/wards.rs",
             "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+            "crates/azeroth-survivors-re/src/heroic/affix_calendar.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/player_abilities/damage.rs",
             "scripts/check-affixes-0.121.0.py",
@@ -6522,6 +6531,7 @@
             "crates/azeroth-survivors-re/src/gameplay/mechanics/demons.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/wards.rs",
+            "crates/azeroth-survivors-re/src/heroic/affix_calendar.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/player_abilities/damage.rs",
             "scripts/check-affixes-0.121.0.py",
@@ -6546,6 +6556,7 @@
             "crates/azeroth-survivors-re/src/gameplay/mechanics/demons.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/wards.rs",
+            "crates/azeroth-survivors-re/src/heroic/affix_calendar.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/player_abilities/damage.rs",
             "scripts/check-affixes-0.121.0.py",
@@ -6577,6 +6588,7 @@
             "crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/wards.rs",
             "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+            "crates/azeroth-survivors-re/src/heroic/affix_calendar.rs",
             "crates/azeroth-survivors-re/src/main.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/player_abilities/damage.rs",
@@ -6627,6 +6639,7 @@
             "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs",
             "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+            "crates/azeroth-survivors-re/src/mob_loot.rs",
             "crates/azeroth-survivors-re/src/run_progression.rs",
             "crates/azeroth-survivors-re/src/save/gear_rewards.rs",
             "scripts/check-gear-rewards-0.121.0.py",
@@ -6648,6 +6661,7 @@
             "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs",
+            "crates/azeroth-survivors-re/src/mob_loot.rs",
             "crates/azeroth-survivors-re/src/save/gear_rewards.rs",
             "scripts/check-coop-heroic-wire-0.121.0.py",
             "scripts/check-gear-rewards-0.121.0.py",
@@ -6668,6 +6682,7 @@
             "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs",
             "crates/azeroth-survivors-re/src/gameplay/mod.rs",
             "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
+            "crates/azeroth-survivors-re/src/mob_loot.rs",
             "crates/azeroth-survivors-re/src/save/gear_rewards.rs",
             "scripts/check-again-entry-0.121.0.py",
             "scripts/check-coop-heroic-wire-0.121.0.py",
@@ -6685,6 +6700,7 @@
           "application": "historical_unapplied",
           "changed_refs": [
             "crates/azeroth-survivors-re/src/armory.rs",
+            "crates/azeroth-survivors-re/src/save/gear_progression.rs",
             "scripts/check-armory-star-purchase-0.121.0.py",
             "scripts/check-set-localization-0.121.0.py",
             "docs/analysis/gear-progression-0.121.0.md"
@@ -6704,6 +6720,7 @@
             "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
             "crates/azeroth-survivors-re/src/gear_stars.rs",
+            "crates/azeroth-survivors-re/src/save/gear_progression.rs",
             "scripts/check-gear-stars-0.121.0.py",
             "scripts/check-item-query-ranks-0.121.0.py",
             "docs/analysis/gear-stars-0.121.0.md"
@@ -6851,6 +6868,7 @@
             "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs",
             "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
+            "crates/azeroth-survivors-re/src/save/gear_progression.rs",
             "crates/benilla-app/src/local_client.rs",
             "crates/benilla-app/src/local_client/item_sets.rs",
             "crates/benilla-app/src/ui_items/feed.rs",
@@ -6926,6 +6944,7 @@
             "crates/azeroth-survivors-re/assets/locales/uk.json",
             "crates/azeroth-survivors-re/assets/locales/zh.json",
             "crates/azeroth-survivors-re/src/armory.rs",
+            "crates/azeroth-survivors-re/src/save/gear_progression.rs",
             "scripts/check-armory-collection-0.121.0.py",
             "scripts/check-armory-star-purchase-0.121.0.py",
             "scripts/check-armory-stat-format-0.121.0.py",
@@ -6982,9 +7001,11 @@
             "crates/azeroth-survivors-re/src/gameplay/client/events.rs",
             "crates/azeroth-survivors-re/src/gameplay/coop.rs",
             "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs",
+            "crates/azeroth-survivors-re/src/gameplay/heroic_progress.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
             "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+            "crates/azeroth-survivors-re/src/mob_loot.rs",
             "crates/azeroth-survivors-re/src/save/gear_rewards.rs",
             "scripts/check-coop-heroic-status-0.121.0.py",
             "scripts/check-coop-heroic-wire-0.121.0.py",
@@ -7004,6 +7025,7 @@
           "status": "static_checked",
           "application": "historical_unapplied",
           "changed_refs": [
+            "crates/azeroth-survivors-re/src/enemies/scaling.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
             "scripts/check-coop-scaling-0.121.0.py",
@@ -7209,6 +7231,7 @@
             "crates/azeroth-survivors-re/src/gameplay/mod.rs",
             "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs",
             "crates/azeroth-survivors-re/src/gameplay/coop_publish.rs",
+            "crates/azeroth-survivors-re/src/gameplay/mechanics/player_mover.rs",
             "crates/azeroth-survivors-re/src/gameplay/client/events.rs",
             "crates/azeroth-survivors-re/src/gameplay/client.rs",
             "docs/analysis/again-retirement-0.123.0.md",
@@ -7289,6 +7312,7 @@
           "status": "static_checked",
           "application": "historical_unapplied",
           "changed_refs": [
+            "crates/azeroth-survivors-re/src/floor_recovery.rs",
             "crates/azeroth-survivors-re/src/coop_runtime.rs",
             "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
             "crates/azeroth-survivors-re/src/gameplay/coop.rs",
@@ -7738,6 +7762,7 @@
           "status": "static_checked",
           "application": "historical_unapplied",
           "changed_refs": [
+            "crates/azeroth-survivors-re/src/coop/directory_wire.rs",
             "crates/azeroth-survivors-re/src/coop/replication.rs",
             "crates/azeroth-survivors-re/src/coop/server_party.rs",
             "crates/azeroth-survivors-re/src/coop/session.rs",
@@ -7761,6 +7786,7 @@
           "status": "static_checked",
           "application": "historical_unapplied",
           "changed_refs": [
+            "crates/azeroth-survivors-re/src/coop/directory_wire.rs",
             "crates/azeroth-survivors-re/src/coop/replication.rs",
             "crates/azeroth-survivors-re/src/coop/server_party.rs",
             "crates/azeroth-survivors-re/src/coop/session.rs",
@@ -7784,6 +7810,7 @@
           "status": "static_checked",
           "application": "historical_unapplied",
           "changed_refs": [
+            "crates/azeroth-survivors-re/src/coop/directory_wire.rs",
             "crates/azeroth-survivors-re/src/coop/replication.rs",
             "crates/azeroth-survivors-re/src/coop/server_party.rs",
             "crates/azeroth-survivors-re/src/coop/session.rs",
@@ -7807,6 +7834,7 @@
           "status": "static_checked",
           "application": "historical_unapplied",
           "changed_refs": [
+            "crates/azeroth-survivors-re/src/coop/directory_wire.rs",
             "crates/azeroth-survivors-re/src/coop/replication.rs",
             "crates/azeroth-survivors-re/src/coop/server_party.rs",
             "crates/azeroth-survivors-re/src/coop/session.rs",
@@ -7904,6 +7932,7 @@
           "application": "historical_unapplied",
           "changed_refs": [
             "crates/azeroth-survivors-re/src/bosses/abilities.rs",
+            "crates/azeroth-survivors-re/src/bosses/prediction.rs",
             "crates/azeroth-survivors-re/src/coop/server_party.rs",
             "crates/azeroth-survivors-re/src/coop_forms.rs",
             "crates/azeroth-survivors-re/src/coop_ui.rs",
@@ -7927,6 +7956,7 @@
             "crates/benilla-app/src/lib.rs",
             "crates/benilla-app/src/ui_script/mod.rs",
             "scripts/check-picker-name.py",
+            "crates/azeroth-survivors-re/tests/current_menu_save.rs",
             "scripts/check-stock-lifecycle.py",
             "crates/azeroth-survivors-re/src/coop_forms.rs",
             "crates/azeroth-survivors-re/src/coop_ui.rs",
@@ -7950,6 +7980,7 @@
             "crates/benilla-app/src/lib.rs",
             "crates/benilla-app/src/ui_script/mod.rs",
             "scripts/check-picker-name.py",
+            "crates/azeroth-survivors-re/tests/current_menu_save.rs",
             "scripts/check-stock-lifecycle.py",
             "docs/analysis/ime-bridge-0.127.0.md"
           ]
@@ -7990,7 +8021,9 @@
           "application": "historical_unapplied",
           "changed_refs": [
             "crates/azeroth-survivors-re/src/bosses/abilities.rs",
+            "crates/azeroth-survivors-re/src/bosses/prediction.rs",
             "crates/azeroth-survivors-re/src/bosses/raid_areas.rs",
+            "crates/azeroth-survivors-re/src/bosses/raid_extra.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs"
           ]
         },
@@ -8004,7 +8037,9 @@
           "application": "historical_unapplied",
           "changed_refs": [
             "crates/azeroth-survivors-re/src/bosses/abilities.rs",
+            "crates/azeroth-survivors-re/src/bosses/prediction.rs",
             "crates/azeroth-survivors-re/src/bosses/raid_areas.rs",
+            "crates/azeroth-survivors-re/src/bosses/raid_extra.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs"
           ]
         },
@@ -8018,7 +8053,9 @@
           "application": "historical_unapplied",
           "changed_refs": [
             "crates/azeroth-survivors-re/src/bosses/abilities.rs",
+            "crates/azeroth-survivors-re/src/bosses/prediction.rs",
             "crates/azeroth-survivors-re/src/bosses/raid_areas.rs",
+            "crates/azeroth-survivors-re/src/bosses/raid_extra.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs"
           ]
         },
@@ -8077,6 +8114,7 @@
           "status": "static_checked",
           "application": "historical_unapplied",
           "changed_refs": [
+            "crates/azeroth-survivors-re/src/coop/directory_wire.rs",
             "crates/azeroth-survivors-re/src/coop/replication.rs",
             "crates/azeroth-survivors-re/src/coop/server_party.rs",
             "crates/azeroth-survivors-re/src/coop/session.rs",
@@ -8150,7 +8188,11 @@
           },
           "status": "static_checked",
           "application": "historical_unapplied",
-          "changed_refs": []
+          "changed_refs": [
+            "crates/azeroth-survivors-re/src/enemies/catalog.rs",
+            "crates/azeroth-survivors-re/src/guardians/catalog.rs",
+            "crates/azeroth-survivors-re/src/enemies/scaling.rs"
+          ]
         },
         {
           "claim_id": "changelog:0.126.0:ab42f3972f2df0b5",
@@ -8160,7 +8202,11 @@
           },
           "status": "static_checked",
           "application": "historical_unapplied",
-          "changed_refs": []
+          "changed_refs": [
+            "crates/azeroth-survivors-re/src/enemies/catalog.rs",
+            "crates/azeroth-survivors-re/src/guardians/catalog.rs",
+            "crates/azeroth-survivors-re/src/enemies/scaling.rs"
+          ]
         },
         {
           "claim_id": "changelog:0.126.0:8faa1b2f6cc31bbc",
@@ -8170,7 +8216,11 @@
           },
           "status": "static_checked",
           "application": "historical_unapplied",
-          "changed_refs": []
+          "changed_refs": [
+            "crates/azeroth-survivors-re/src/enemies/catalog.rs",
+            "crates/azeroth-survivors-re/src/guardians/catalog.rs",
+            "crates/azeroth-survivors-re/src/enemies/scaling.rs"
+          ]
         },
         {
           "claim_id": "changelog:0.126.0:7dcc581c12d53693",
@@ -8180,7 +8230,11 @@
           },
           "status": "static_checked",
           "application": "historical_unapplied",
-          "changed_refs": []
+          "changed_refs": [
+            "crates/azeroth-survivors-re/src/enemies/catalog.rs",
+            "crates/azeroth-survivors-re/src/guardians/catalog.rs",
+            "crates/azeroth-survivors-re/src/enemies/scaling.rs"
+          ]
         },
         {
           "claim_id": "changelog:0.127.0:8f79e39cf6ba0b2d",
@@ -8222,6 +8276,7 @@
           "status": "static_checked",
           "application": "historical_unapplied",
           "changed_refs": [
+            "crates/azeroth-survivors-re/src/coop/directory_wire.rs",
             "crates/azeroth-survivors-re/src/coop/replication.rs",
             "crates/azeroth-survivors-re/src/coop/server_party.rs",
             "crates/azeroth-survivors-re/src/coop/session.rs",
@@ -8245,6 +8300,7 @@
           "status": "static_checked",
           "application": "historical_unapplied",
           "changed_refs": [
+            "crates/azeroth-survivors-re/src/coop/directory_wire.rs",
             "crates/azeroth-survivors-re/src/coop/replication.rs",
             "crates/azeroth-survivors-re/src/coop/server_party.rs",
             "crates/azeroth-survivors-re/src/coop/session.rs",
@@ -11100,6 +11156,7 @@
           "application": "historical_unapplied",
           "changed_refs": [
             "crates/azeroth-survivors-re/src/menu.rs",
+            "crates/azeroth-survivors-re/src/stock_frontend.rs",
             "crates/benilla-app/src/local_client.rs",
             "crates/benilla-app/src/ui_script/input.rs",
             "crates/benilla-app/src/ui_script/glue.rs"
@@ -11175,7 +11232,9 @@
           },
           "status": "static_checked",
           "application": "historical_unapplied",
-          "changed_refs": []
+          "changed_refs": [
+            "crates/benilla-app/src/local_client.rs"
+          ]
         },
         {
           "claim_id": "changelog:0.139.1:9bc9e9a945e88a72",
@@ -11208,7 +11267,7 @@
           "changed_refs": []
         }
       ],
-      "applied_ownership_reviews": 52
+      "applied_ownership_reviews": 46
     },
     "historical_archive": {
       "path": "changelog_2026-10-15_1.json",
@@ -11229,9 +11288,9 @@
     "release_count": 211,
     "entry_count": 1084,
     "covered_nonblank_release_lines": 1276,
-    "pending_claim_recovery": 1084,
-    "applied_claim_reviews": 0,
-    "applied_ownership_reviews": 52,
+    "pending_claim_recovery": 1078,
+    "applied_claim_reviews": 6,
+    "applied_ownership_reviews": 46,
     "release_contexts_with_system_owners": 129,
     "scope_counts": {
       "addons": 42,
@@ -12505,20 +12564,20 @@
     {"id":"changelog:0.139.2:a6b9bed3be9c9ffa","release":"0.139.2","text":"New for addons: AZS_GetWorldAnchors and AZS_ProjectWorldAnchors put a marker on any enemy, on the spot it fell, or on a cache, guardian, boss or lair, without selecting it or showing its nameplate, and lift it any number of yards above that spot.","text_sha256":"a6b9bed3be9c9ffabbc880882de3bbbce2757fcc5728183bcfdbc430e88af6ac","normalized_claim_sha256":"a6b9bed3be9c9ffabbc880882de3bbbce2757fcc5728183bcfdbc430e88af6ac","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2086,"line_end":2086,"sha256":"a7be8019f94209a31beabedb3283e839c1811e13ecb60f5e486245965788de7c"},"scope":["addons","ui_ux","gameplay"],"status":"pending_claim_recovery","contextual_status":"Current Lua consumer ranges and native registration leads reviewed","context_ref":"0.139.2","systems":["custom-game-game-addon"],"gap_ids":[317],"source_refs":[],"evidence_refs":["docs/analysis/world-anchors-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Follow the six current native registrations through catalog sync, retention, paging and projection.","ownership_source_refs":["crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
     {"id":"changelog:0.139.2:20d7218da9c188d5","release":"0.139.2","text":"New for addons: combat text and world markers now tell the distance from your hero, so an addon can size text by how far the enemy is whatever the camera does.","text_sha256":"20d7218da9c188d5cf0139acfe29ce9b73e6a579c888f8f7e2d52f62b4fb1407","normalized_claim_sha256":"20d7218da9c188d5cf0139acfe29ce9b73e6a579c888f8f7e2d52f62b4fb1407","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2087,"line_end":2087,"sha256":"cd4909f33da4b1b97d88a44189e6598b8e0bb6577174835f9d61881fca39af41"},"scope":["addons","gameplay"],"status":"pending_claim_recovery","contextual_status":"Current Lua consumer ranges and native registration leads reviewed","context_ref":"0.139.2","systems":["custom-game-game-addon"],"gap_ids":[307,317],"source_refs":[],"evidence_refs":["docs/analysis/world-anchors-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Revalidate native hero-relative distance behind the byte-identical combat wrappers and trace the distinct world projection output.","ownership_source_refs":["crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
     {"id":"changelog:0.140.0:fdf1a184b8a5af46","release":"0.140.0","text":"A new zone opens after Blackrock Mountain: Scholomance, fought in Rattlegore's Great Ossuary. Five new bosses bring twenty new mechanics with exact warnings on the ground, and they drop the Tier 0.5 sets and a weapon for every class. &#x20;","text_sha256":"fdf1a184b8a5af464b2eb1c9d76a137364961a4a9b150c43bf9488997977f71e","normalized_claim_sha256":"fdf1a184b8a5af464b2eb1c9d76a137364961a4a9b150c43bf9488997977f71e","entry_kind":"paragraph","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2091,"line_end":2091,"sha256":"a562a0d244aa2e7255f752352b07620fb4d2189943d33ac8d40d7494e54f8e1c"},"scope":["gameplay"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-content"],"gap_ids":[312,313,314],"source_refs":[],"evidence_refs":["docs/analysis/scholomance-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Summary context. Its entry, encounter and reward claims own the specific work.","ownership_source_refs":["crates/azeroth-survivors-re/src/enemies/catalog.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
-    {"id":"changelog:0.140.0:83b104d0d618ca20","release":"0.140.0","text":"New zone: Scholomance, between Blackrock Mountain and the Gates of Ahn'Qiraj. Anyone who has already passed that point keeps everything they have opened.","text_sha256":"83b104d0d618ca20d212044911ee3c73ec98581d9f300eb6be59f4fc085123c2","normalized_claim_sha256":"83b104d0d618ca20d212044911ee3c73ec98581d9f300eb6be59f4fc085123c2","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2093,"line_end":2093,"sha256":"6967713c03719d4b132631297cbda205f5e152a46bf78ac8300f2cab1cb56124"},"scope":["gameplay"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-content"],"gap_ids":[312],"source_refs":[],"evidence_refs":["docs/analysis/scholomance-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Trace the current zone row at 0x1473b6420 into map entry, source menus and existing unlock migration.","ownership_source_refs":["crates/azeroth-survivors-re/src/enemies/catalog.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
-    {"id":"changelog:0.140.0:a97b78ae28053be4","release":"0.140.0","text":"Five bosses, at 4, 8, 12, 16 and 20 minutes: Kirtonos the Herald, Ras Frostwhisper, Doctor Theolen Krastinov, Lord Alexei Barov and Darkmaster Gandling. If one still stands when the next is due, the next waits for it.","text_sha256":"a97b78ae28053be425e81f31ade8a46f42058c8057eabcaad43cebc1e0049bc2","normalized_claim_sha256":"a97b78ae28053be425e81f31ade8a46f42058c8057eabcaad43cebc1e0049bc2","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2094,"line_end":2094,"sha256":"0868e70391357145840fb29e023c54af9e69267c4ce0978db0dc1c736a2da2a6"},"scope":["gameplay"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-game-scripts-mod"],"gap_ids":[313],"source_refs":[],"evidence_refs":["docs/analysis/scholomance-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Five current descriptors bind minutes and creature IDs. Trace preceding boss liveness and deferred spawning.","ownership_source_refs":["crates/azeroth-survivors-re/src/bosses/spawning.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
-    {"id":"changelog:0.140.0:69975afd7bcbea6f","release":"0.140.0","text":"Kirtonos changes form at 65% health, then alternates on a set rhythm below 30%. Each form has its own attacks.","text_sha256":"69975afd7bcbea6f1f4f9d34ae0123d9e32369f568a86a4cb7de319b1c71d4ea","normalized_claim_sha256":"69975afd7bcbea6f1f4f9d34ae0123d9e32369f568a86a4cb7de319b1c71d4ea","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2095,"line_end":2095,"sha256":"0936855ad1936184ca1db2858792089366a6a0b7bbe07b0ca21757d258a3fa86"},"scope":["gameplay"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-game-scripts-mod"],"gap_ids":[313],"source_refs":[],"evidence_refs":["docs/analysis/scholomance-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Recover Kirtonos health gates, per-form moves and last-phase clock from current encounter dispatch.","ownership_source_refs":["crates/azeroth-survivors-re/src/bosses/raid_transforms.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
+    {"id":"changelog:0.140.0:83b104d0d618ca20","release":"0.140.0","text":"New zone: Scholomance, between Blackrock Mountain and the Gates of Ahn'Qiraj. Anyone who has already passed that point keeps everything they have opened.","text_sha256":"83b104d0d618ca20d212044911ee3c73ec98581d9f300eb6be59f4fc085123c2","normalized_claim_sha256":"83b104d0d618ca20d212044911ee3c73ec98581d9f300eb6be59f4fc085123c2","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2093,"line_end":2093,"sha256":"6967713c03719d4b132631297cbda205f5e152a46bf78ac8300f2cab1cb56124"},"scope":["gameplay"],"status":"source_connected","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-content"],"gap_ids":[312],"source_refs":["crates/azeroth-survivors-re/src/zones/scholomance.rs","crates/azeroth-survivors-re/src/gameplay/mod.rs","crates/azeroth-survivors-re/src/save/progress.rs","crates/azeroth-survivors-re/src/coop/bootstrap.rs"],"evidence_refs":["docs/analysis/scholomance-entry-0.140.0.md"],"mapping_basis":"individual_target_review","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Only the individually reviewed contract is assessed; runtime and complete claim parity remain unverified.","review_rationale":"The exact current zone row, world and floor inputs and keyed progress reach solo and co-op source. Current remote Heroic vector normalization remains a separate check.","assessment":{"recovery":"unknown","implementation":"source_connected","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
+    {"id":"changelog:0.140.0:a97b78ae28053be4","release":"0.140.0","text":"Five bosses, at 4, 8, 12, 16 and 20 minutes: Kirtonos the Herald, Ras Frostwhisper, Doctor Theolen Krastinov, Lord Alexei Barov and Darkmaster Gandling. If one still stands when the next is due, the next waits for it.","text_sha256":"a97b78ae28053be425e81f31ade8a46f42058c8057eabcaad43cebc1e0049bc2","normalized_claim_sha256":"a97b78ae28053be425e81f31ade8a46f42058c8057eabcaad43cebc1e0049bc2","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2094,"line_end":2094,"sha256":"0868e70391357145840fb29e023c54af9e69267c4ce0978db0dc1c736a2da2a6"},"scope":["gameplay"],"status":"source_connected","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-game-scripts-mod"],"gap_ids":[313],"source_refs":["crates/azeroth-survivors-re/src/bosses/spawning.rs","crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs"],"evidence_refs":["docs/analysis/scholomance-encounters-0.140.0.md"],"mapping_basis":"individual_target_review","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Only the individually reviewed contract is assessed; runtime and complete claim parity remain unverified.","review_rationale":"Scholomance’s living-primary gate precedes the ordinary one-per-tick schedule, with Council and Endless retained separately.","assessment":{"recovery":"unknown","implementation":"source_connected","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
+    {"id":"changelog:0.140.0:69975afd7bcbea6f","release":"0.140.0","text":"Kirtonos changes form at 65% health, then alternates on a set rhythm below 30%. Each form has its own attacks.","text_sha256":"69975afd7bcbea6f1f4f9d34ae0123d9e32369f568a86a4cb7de319b1c71d4ea","normalized_claim_sha256":"69975afd7bcbea6f1f4f9d34ae0123d9e32369f568a86a4cb7de319b1c71d4ea","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2095,"line_end":2095,"sha256":"0936855ad1936184ca1db2858792089366a6a0b7bbe07b0ca21757d258a3fa86"},"scope":["gameplay"],"status":"source_connected","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-game-scripts-mod"],"gap_ids":[313],"source_refs":["crates/azeroth-survivors-re/src/bosses/raid_transforms.rs","crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs"],"evidence_refs":["docs/analysis/scholomance-encounters-0.140.0.md"],"mapping_basis":"individual_target_review","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Only the individually reviewed contract is assessed; runtime and complete claim parity remain unverified.","review_rationale":"The threshold order, form changes and fixed phase clock are connected. The four scripted attacks and their warnings remain open.","assessment":{"recovery":"unknown","implementation":"source_connected","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
     {"id":"changelog:0.140.0:763ec669be4a88e7","release":"0.140.0","text":"Ras strikes half the floor at a time with a checkerboard, and at 60% health armors himself: touch one of his two runes to break the armor and make him vulnerable.","text_sha256":"763ec669be4a88e7adc6777cef500de9d45139952a0b95bf602955bd5e5a6fc0","normalized_claim_sha256":"763ec669be4a88e7adc6777cef500de9d45139952a0b95bf602955bd5e5a6fc0","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2096,"line_end":2096,"sha256":"74933e5e9fe41b88520286997515b77439e8380c8cfed78e5d2d17736b6d1e2a"},"scope":["gameplay"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-game-scripts-ras"],"gap_ids":[313],"source_refs":[],"evidence_refs":["docs/analysis/scholomance-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Trace Ras Location owners to alternating tiles, rune touch and vulnerability.","ownership_source_refs":["crates/azeroth-survivors-re/src/bosses/raid_shapes.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
     {"id":"changelog:0.140.0:abf600240606fb36","release":"0.140.0","text":"Krastinov dashes, cleaves a half circle to one side and then the other, spins through the room in Butcher's Bladestorm as he walks after a distant hero, and hooks whoever stands farthest away.","text_sha256":"abf600240606fb36d21de3b8f9c009d820ab0edd936b3b0ad539374230ae7aa8","normalized_claim_sha256":"abf600240606fb36d21de3b8f9c009d820ab0edd936b3b0ad539374230ae7aa8","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2097,"line_end":2097,"sha256":"8f4f84da18dc628763a08f2b11a83f1f729d2739afbf07c0f24d46ec3c2bcee7"},"scope":["unknown"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-game-scripts-krastinov"],"gap_ids":[313],"source_refs":[],"evidence_refs":["docs/analysis/scholomance-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Trace Krastinov Location owners to dash, cleave, pursuit, hook and warning lifetimes.","ownership_source_refs":["crates/azeroth-survivors-re/src/bosses/raid_sequences.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
     {"id":"changelog:0.140.0:8c658dbf737af799","release":"0.140.0","text":"Barov strikes in rings rolling outward, each shown just before the last lands, burns the ground, marks an X and only then a +, and sends a moving wall of shadow with a gap to run through.","text_sha256":"8c658dbf737af799596a88e5f984d74ae9159cb03e2ec395fab3b300594395a8","normalized_claim_sha256":"8c658dbf737af799596a88e5f984d74ae9159cb03e2ec395fab3b300594395a8","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2098,"line_end":2098,"sha256":"fbeb008e4cafb364b48d0c89d9b0f55e5383885c12284e9d18017f1ef714e809"},"scope":["unknown"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-game-scripts-mod"],"gap_ids":[313],"source_refs":[],"evidence_refs":["docs/analysis/scholomance-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Recover Barov rings, burns, crosses and moving-wall geometry from the current encounter path.","ownership_source_refs":["crates/azeroth-survivors-re/src/bosses/raid_sequences.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
     {"id":"changelog:0.140.0:9438516c781c1935","release":"0.140.0","text":"Gandling calls you to Headmaster's Office, then the whole floor burns but for one small square in the middle: run for it when he speaks. He also fills the room with four bands and three safe gaps in Class Dismissed, marks whoever stands farthest with Pop Quiz, and at 35% health calls The Last Examination: get to the line, then cross it as one half of the room burns and then the other.","text_sha256":"9438516c781c1935e9e1afe77c9a2f7831a2660dec1131599c4f21325c110c80","normalized_claim_sha256":"9438516c781c1935e9e1afe77c9a2f7831a2660dec1131599c4f21325c110c80","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2099,"line_end":2099,"sha256":"5e9e17b66a27c896dd95fffbfd2b364c80aae5643ff5437c27d43e424e428505"},"scope":["gameplay"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-game-scripts-mod"],"gap_ids":[313],"source_refs":[],"evidence_refs":["docs/analysis/scholomance-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Recover Gandling warning, targeting, safe geometry and impact for each of the four moves.","ownership_source_refs":["crates/azeroth-survivors-re/src/bosses/raid_sequences.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
-    {"id":"changelog:0.140.0:c078696451fa5441","release":"0.140.0","text":"Four Guardians hold the corners of the room: Risen Construct, Necrofiend, Spectral Tutor and Scholomance Dark Summoner, with two moves each.","text_sha256":"c078696451fa5441eb26e009e7ee8908c0816b2b89314c3fff6daf97a048b42b","normalized_claim_sha256":"c078696451fa5441eb26e009e7ee8908c0816b2b89314c3fff6daf97a048b42b","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2100,"line_end":2100,"sha256":"1a0b81d70bacd86e5ac9e76386843f680d5d24391eff3992efa677cb8be8d27f"},"scope":["gameplay"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-game-guardians"],"gap_ids":[89],"source_refs":[],"evidence_refs":["docs/analysis/scholomance-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Four current records supply the placements and creature IDs. Trace both moves and warnings per Guardian.","ownership_source_refs":["crates/azeroth-survivors-re/src/guardians/catalog.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
+    {"id":"changelog:0.140.0:c078696451fa5441","release":"0.140.0","text":"Four Guardians hold the corners of the room: Risen Construct, Necrofiend, Spectral Tutor and Scholomance Dark Summoner, with two moves each.","text_sha256":"c078696451fa5441eb26e009e7ee8908c0816b2b89314c3fff6daf97a048b42b","normalized_claim_sha256":"c078696451fa5441eb26e009e7ee8908c0816b2b89314c3fff6daf97a048b42b","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2100,"line_end":2100,"sha256":"1a0b81d70bacd86e5ac9e76386843f680d5d24391eff3992efa677cb8be8d27f"},"scope":["gameplay"],"status":"source_connected","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-game-guardians"],"gap_ids":[89],"source_refs":["crates/azeroth-survivors-re/src/zones/scholomance.rs","crates/azeroth-survivors-re/src/guardians/signatures.rs","crates/azeroth-survivors-re/src/gameplay/mechanics/player_mover.rs"],"evidence_refs":["docs/analysis/scholomance-guardians-0.140.0.md"],"mapping_basis":"individual_target_review","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Only the individually reviewed contract is assessed; runtime and complete claim parity remain unverified.","review_rationale":"The four exact corner placements and all eight native Guardian actions reach the existing hazard, actor and recipient-root owners.","assessment":{"recovery":"unknown","implementation":"source_connected","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
     {"id":"changelog:0.140.0:3af814319808b3f0","release":"0.140.0","text":"Every class gets its Tier 0.5 set, eight pieces with their own stats and new 4-piece, 8-piece and five-star bonuses: Heroism, Soulforge, Beastmaster (with a permanent Devilsaur Matriarch), Darkmantle, Virtuous, The Five Thunders, Sorcerer's, Deathmist and Feralheart.","text_sha256":"3af814319808b3f063795b4930119f5c3cbed8ba6e6f470725617a0eba891166","normalized_claim_sha256":"3af814319808b3f063795b4930119f5c3cbed8ba6e6f470725617a0eba891166","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2101,"line_end":2101,"sha256":"35d480e69914fbebb2c46389cc5194992a07dca792986931dc5f2a6eed024e97"},"scope":["unknown"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-sets"],"gap_ids":[314],"source_refs":[],"evidence_refs":["docs/analysis/scholomance-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Trace current set and slot identities, stats, activation thresholds and per-class effect consumers.","ownership_source_refs":["crates/azeroth-survivors-re/src/gear_stars.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
     {"id":"changelog:0.140.0:3e24ce3552cb9657","release":"0.140.0","text":"Loot: each of the first four bosses has one 25% roll for one of two armor slots. Gandling has one 25% roll for your class's weapon, and Rogues and Shamans get both of theirs together.","text_sha256":"3e24ce3552cb965711939dd555fc3cee2dd4d021aebd402412e2432128620a5a","normalized_claim_sha256":"3e24ce3552cb965711939dd555fc3cee2dd4d021aebd402412e2432128620a5a","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2102,"line_end":2102,"sha256":"cac11d49cc9395314f2a20aeef17b1ff10100c76797d94717a44556003b9f72c"},"scope":["gameplay"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-gear"],"gap_ids":[314],"source_refs":[],"evidence_refs":["docs/analysis/scholomance-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Trace one-roll admission, slot selection, paired grants and recipient/save handling.","ownership_source_refs":["crates/azeroth-survivors-re/src/mob_loot.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
     {"id":"changelog:0.140.0:1bd2ec64e4e8aedc","release":"0.140.0","text":"New achievements: Stormstrike Graduation, Straight A's, You Are Not Prepared! and Yes, I am prepared!: a solo Heroic V clear with each of the nine classes, each in its full Tier 0.5 set at 3 stars and its matching talents. It opens the Lifestealing weapon glow.","text_sha256":"1bd2ec64e4e8aedc4b0c9fd09f779142d6ecb5ee912210becf997aed26a84564","normalized_claim_sha256":"1bd2ec64e4e8aedc4b0c9fd09f779142d6ecb5ee912210becf997aed26a84564","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2103,"line_end":2103,"sha256":"c3b6cce9111c6958752081a081e766d19f310233d4e3e8f5bb7b0d57ad99f945"},"scope":["gameplay"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-achievements"],"gap_ids":[315],"source_refs":[],"evidence_refs":["docs/analysis/scholomance-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Distinct current text identifies kill, avoidance, ownership and nine-class requirements. Recover evaluators, persisted masks and Lifestealing grant.","ownership_source_refs":["crates/azeroth-survivors-re/src/account_progression.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
-    {"id":"changelog:0.140.0:3196e4f9f93e005a","release":"0.140.0","text":"On Heroic II and up, Relentless speeds up these bosses' moves as it does every other boss's, apart from Ras's Frozen Checkmate and Kirtonos's last phase, which keep their rhythm.","text_sha256":"3196e4f9f93e005ad50e7908da3594e5718bce151ec72b6ec56fc4c42d1c95f8","normalized_claim_sha256":"3196e4f9f93e005ad50e7908da3594e5718bce151ec72b6ec56fc4c42d1c95f8","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2105,"line_end":2105,"sha256":"2e362bfc2d632f59e28d5ac2d462f0074a4059c2530228c0d80412a86f7e31fd"},"scope":["gameplay"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-game-affixes"],"gap_ids":[313],"source_refs":[],"evidence_refs":["docs/analysis/scholomance-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Follow the Relentless modifier into scripted clocks and establish the two exemptions.","ownership_source_refs":["crates/azeroth-survivors-re/src/bosses/scaling.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
-    {"id":"changelog:0.140.0:ff8adfa9691fea41","release":"0.140.0","text":"Armor counts for less against these five bosses' mechanics: past 40% damage reduction, only half of the rest applies, so a failed mechanic still costs a well-armored hero.","text_sha256":"ff8adfa9691fea4199ce9d8cf60e9d5f4d819cdb46d0b059ddf02a13bd2f35af","normalized_claim_sha256":"ff8adfa9691fea4199ce9d8cf60e9d5f4d819cdb46d0b059ddf02a13bd2f35af","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2106,"line_end":2106,"sha256":"4ed2d0ec666b1a3ea78a602c95f21846999ade6d9ab2f81736a03cf0273a10ed"},"scope":["gameplay"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-hazards"],"gap_ids":[313],"source_refs":[],"evidence_refs":["docs/analysis/scholomance-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Follow mechanic damage to the armor mitigation and exact threshold.","ownership_source_refs":["crates/azeroth-survivors-re/src/gameplay/mechanics/raid_hits.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
-    {"id":"changelog:0.140.0:9ccf5d7e81cd52ca","release":"0.140.0","text":"Scholomance's new text is translated into every language.","text_sha256":"9ccf5d7e81cd52ca68e6ba4b1da22d22699154723db7a9d314a84b8b06106dce","normalized_claim_sha256":"9ccf5d7e81cd52ca68e6ba4b1da22d22699154723db7a9d314a84b8b06106dce","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2107,"line_end":2107,"sha256":"9778fb05d1b66e998d08f8deb7292ca398de59cc7c0e5a83657380afca7b8876"},"scope":["localization"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-i18n"],"gap_ids":[142],"source_refs":[],"evidence_refs":["docs/analysis/scholomance-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Enumerate current Scholomance locale keys and values, then trace lookup, fallback and consumers.","ownership_source_refs":["crates/azeroth-survivors-re/src/localization.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
+    {"id":"changelog:0.140.0:3196e4f9f93e005a","release":"0.140.0","text":"On Heroic II and up, Relentless speeds up these bosses' moves as it does every other boss's, apart from Ras's Frozen Checkmate and Kirtonos's last phase, which keep their rhythm.","text_sha256":"3196e4f9f93e005ad50e7908da3594e5718bce151ec72b6ec56fc4c42d1c95f8","normalized_claim_sha256":"3196e4f9f93e005ad50e7908da3594e5718bce151ec72b6ec56fc4c42d1c95f8","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2105,"line_end":2105,"sha256":"2e362bfc2d632f59e28d5ac2d462f0074a4059c2530228c0d80412a86f7e31fd"},"scope":["gameplay"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-game-affixes"],"gap_ids":[313],"source_refs":[],"evidence_refs":["docs/analysis/scholomance-encounters-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Fixed repeat exemptions and Kirtonos form timing are located. Connect the remaining normal scripted action timers and both fixed attack producers.","ownership_source_refs":["crates/azeroth-survivors-re/src/bosses/raid_transforms.rs","crates/azeroth-survivors-re/src/bosses/spawning.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
+    {"id":"changelog:0.140.0:ff8adfa9691fea41","release":"0.140.0","text":"Armor counts for less against these five bosses' mechanics: past 40% damage reduction, only half of the rest applies, so a failed mechanic still costs a well-armored hero.","text_sha256":"ff8adfa9691fea4199ce9d8cf60e9d5f4d819cdb46d0b059ddf02a13bd2f35af","normalized_claim_sha256":"ff8adfa9691fea4199ce9d8cf60e9d5f4d819cdb46d0b059ddf02a13bd2f35af","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2106,"line_end":2106,"sha256":"4ed2d0ec666b1a3ea78a602c95f21846999ade6d9ab2f81736a03cf0273a10ed"},"scope":["gameplay"],"status":"source_connected","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-hazards"],"gap_ids":[313],"source_refs":["crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs"],"evidence_refs":["docs/analysis/scholomance-encounters-0.140.0.md"],"mapping_basis":"individual_target_review","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Only the individually reviewed contract is assessed; runtime and complete claim parity remain unverified.","review_rationale":"Scripted boss armor compensation is connected before common incoming damage. The individual scripted hit producers remain open.","assessment":{"recovery":"unknown","implementation":"source_connected","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
+    {"id":"changelog:0.140.0:9ccf5d7e81cd52ca","release":"0.140.0","text":"Scholomance's new text is translated into every language.","text_sha256":"9ccf5d7e81cd52ca68e6ba4b1da22d22699154723db7a9d314a84b8b06106dce","normalized_claim_sha256":"9ccf5d7e81cd52ca68e6ba4b1da22d22699154723db7a9d314a84b8b06106dce","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2107,"line_end":2107,"sha256":"9778fb05d1b66e998d08f8deb7292ca398de59cc7c0e5a83657380afca7b8876"},"scope":["localization"],"status":"source_connected","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-i18n"],"gap_ids":[142],"source_refs":["crates/azeroth-survivors-re/src/localization.rs","crates/azeroth-survivors-re/assets/locales/en.json"],"evidence_refs":["docs/analysis/scholomance-localization-0.140.0.md"],"mapping_basis":"individual_target_review","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Only the individually reviewed contract is assessed; runtime and complete claim parity remain unverified.","review_rationale":"All fourteen source catalogs include 166 verified Scholomance translations. Encounter, gear and progression formatting still depends on their remaining gameplay consumers.","assessment":{"recovery":"unknown","implementation":"source_connected","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
     {"id":"changelog:0.140.0:54b0f4d4dce2fdd3","release":"0.140.0","text":"Sweeping Storm, rank 3: Stormstrike and Windfury now deal 20% more damage, in place of 10% more Stormstrike critical damage. It still adds 2 targets.","text_sha256":"54b0f4d4dce2fdd3c5e8bc066af21e24f097e541be740cff20343318247167c0","normalized_claim_sha256":"54b0f4d4dce2fdd3c5e8bc066af21e24f097e541be740cff20343318247167c0","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2108,"line_end":2108,"sha256":"ba8942a1af483851f6393c5411635dbb75e2ad0b29c0ace5705acc663a6f0cf6"},"scope":["gameplay"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-game-enhancement"],"gap_ids":[305],"source_refs":[],"evidence_refs":["docs/analysis/class-balance-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Trace the third Sweeping Storm rank to its two damage consumers and retained target count.","ownership_source_refs":["crates/azeroth-survivors-re/src/player_abilities/behavior/hit_passives.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
     {"id":"changelog:0.140.0:4a2e1ed28b7af869","release":"0.140.0","text":"Heroism: Shield Slam no longer strikes again. The 8-piece now gives it 20% more damage and the 5-star 30%, beside its damage from your maximum health.","text_sha256":"4a2e1ed28b7af8697c8d77cf1e44c72ce255e42510b0c69763df992697dbffb2","normalized_claim_sha256":"4a2e1ed28b7af8697c8d77cf1e44c72ce255e42510b0c69763df992697dbffb2","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2109,"line_end":2109,"sha256":"ec46a5d383bade0cc34e09be141cd79d87decd1dcaf67608b66e32e3119b21b7"},"scope":["gameplay"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-sets"],"gap_ids":[314],"source_refs":[],"evidence_refs":["docs/analysis/scholomance-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Recover Heroism activation and Shield Slam health/damage ordering, including replacement of the extra strike.","ownership_source_refs":["crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
     {"id":"changelog:0.140.0:09b7d43f6452dba3","release":"0.140.0","text":"Consecration deals 50% more damage for every Paladin. The Amulet of the Inferno no longer adds its own 50% damage; it keeps its area, duration and explosions.","text_sha256":"09b7d43f6452dba3bd526e4d924f1ef773bf1a9ca209e21ae466669d0c2ed240","normalized_claim_sha256":"09b7d43f6452dba3bd526e4d924f1ef773bf1a9ca209e21ae466669d0c2ed240","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2110,"line_end":2110,"sha256":"d3fff7b7f258bb544a6d1da4e086bb416772925574bf9314c0c55d3ad48c686f"},"scope":["gameplay"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-jewelry"],"gap_ids":[143],"source_refs":[],"evidence_refs":["docs/analysis/class-balance-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Trace the current 144 raw Consecration power and removal of Inferno’s damage lane while retaining its other three effects.","ownership_source_refs":["crates/azeroth-survivors-re/src/player_abilities/catalog.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
