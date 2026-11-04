@@ -49,6 +49,12 @@ Lua suite passes both extracts with host stubs. The Rust regression
 checks the real non-solo sender GUID and distinct IDs for repeated
 banners and awaits compilation.
 
+The 0.141.0 visibility read at `0x1401c9b82` selects the same
+`hudBanners` key. It shows by default and hides on the trimmed
+one-byte value `0` at `0x1401c9bca..0x1401c9bd8`. The 112-byte
+range starting at file offset `0x1c8f82` has SHA-256
+`2a5be90e3f29656724c3f5eb9b124b2346825e537f4c5198b7d6dff031321033`.
+
 The guest wire-9 arm at `0x145ecd54a` admits the event and invokes
 its frontend callback at `0x145ecd5ce`. The selected helper
 `0x145e83100` handles the choices and resume inputs. The frontend
@@ -57,6 +63,24 @@ separate whisper still need evidence. The source fix addresses sender
 identity. The reported sustained takeover duplication still needs
 correlated callbacks, hooks, CVar readback and visible roots in the
 actual VM. No application, client or game server ran.
+
+### Shared banner identity
+
+The native publisher passes the same process ID to the JSON formatter
+and whisper formatter at `0x145f85893` and `0x145f858ee`. The JSON
+formatter writes that ID at `0x145e81fc4..0x145e81fdb` with the kind,
+localized text, name and boss flag in the same record.
+
+The rebuilt shared boss, final boss, boss defeat and guardian routes
+now reserve one ID for both outputs and retain all of those fields in
+the JSON. The existing JSON consumer carries its unsigned 32-bit ID
+through to the addon packet, including zero after wrap. Older or
+malformed IDs use a local counter as before. The Lua receiver keeps
+its original callback behavior. An addon can correlate both lanes
+using the ID, while actual callback counts and the sustained
+native/addon overlap still require the frontend and VM checks above.
+The Rust regression covers zero, the upper bound and legacy or
+malformed IDs. It awaits compilation.
 
 ## 0.140.0 presentation reads the applied CVar
 

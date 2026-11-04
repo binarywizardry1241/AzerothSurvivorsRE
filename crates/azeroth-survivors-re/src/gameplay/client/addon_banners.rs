@@ -12,6 +12,10 @@ use crate::localization::Localization;
 // Native 14808a5c8 starts at one. It belongs to the process, not a run or VM.
 static NEXT_ID: AtomicU32 = AtomicU32::new(1);
 
+pub(super) fn next_id() -> u32 {
+    NEXT_ID.fetch_add(1, Ordering::Relaxed)
+}
+
 pub(super) fn payload(id: u32, kind: &str, boss: bool, name: &str, text: &str) -> String {
     // The native wire leaves commas/semicolon/equals in the final text whole.
     // Only the name has the extra field-delimiter replacement pass.
@@ -42,17 +46,31 @@ pub(in crate::gameplay) fn packet(
     name: &str,
     text: &str,
 ) -> SessionEvent {
-    AddonMessage::new(
-        "AZSBANNER",
-        payload(
-            NEXT_ID.fetch_add(1, Ordering::Relaxed),
-            kind,
-            boss,
-            name,
-            text,
-        ),
-    )
-    .packet_from(player_guid)
+    packet_with_id(player_guid, next_id(), kind, boss, name, text)
+}
+
+pub(super) fn packet_with_id(
+    player_guid: u64,
+    id: u32,
+    kind: &str,
+    boss: bool,
+    name: &str,
+    text: &str,
+) -> SessionEvent {
+    AddonMessage::new("AZSBANNER", payload(id, kind, boss, name, text)).packet_from(player_guid)
+}
+
+pub(super) fn shared_record_packet(
+    player_guid: u64,
+    record: &serde_json::Value,
+    kind: &str,
+    name: &str,
+    text: &str,
+) -> SessionEvent {
+    let id = record.get("id").and_then(serde_json::Value::as_u64)
+        .and_then(|id| u32::try_from(id).ok())
+        .unwrap_or_else(next_id);
+    packet_with_id(player_guid, id, kind, true, name, text)
 }
 
 pub(super) fn party_packet(
@@ -117,5 +135,34 @@ mod tests {
         assert_eq!(second.sender_guid, player_guid);
         assert!(first.text.starts_with("AZSBANNER\tid="));
         assert_ne!(first.text, second.text);
+    }
+
+    #[test]
+    fn shared_banner_reuses_the_whisper_id_and_legacy_rows_still_deliver() {
+        let player_guid = 0x0080_0042;
+        let project = |record| {
+            let SessionEvent::Chat(chat) =
+                shared_record_packet(player_guid, &record, "boss", "Boss", "Arrived")
+            else {
+                panic!("addon packet")
+            };
+            assert_eq!(chat.sender_guid, player_guid);
+            let payload = chat.text.strip_prefix("AZSBANNER\tid=").unwrap();
+            let (id, fields) = payload.split_once(';').unwrap();
+            assert_eq!(fields, "kind=boss;boss=1;name=Boss;text=Arrived");
+            id.parse::<u32>().unwrap()
+        };
+        for id in [0, u32::MAX] {
+            assert_eq!(project(serde_json::json!({"id": id})), id);
+        }
+        for legacy in [
+            serde_json::json!({}),
+            serde_json::json!({"id": null}),
+            serde_json::json!({"id": -1}),
+            serde_json::json!({"id": u64::from(u32::MAX) + 1}),
+            serde_json::json!({"id": "1"}),
+        ] {
+            project(legacy);
+        }
     }
 }

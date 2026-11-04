@@ -135,6 +135,26 @@ fn settlement_messages(events:&mut Vec<RunEvent>, player_guid: Option<u64>, cata
     messages
 }
 
+fn publish_shared_banner(
+    packets: &mut LocalPresentationEvents,
+    coop: Option<&mut crate::coop_runtime::CoopRuntime>,
+    source_slot: u8,
+    player_guid: u64,
+    kind: &str,
+    name: &str,
+    text: &str,
+) {
+    let id = super::addon_banners::next_id();
+    if let Some(coop) = coop {
+        coop.send_value_from(source_slot, &serde_json::json!({
+            "type": "banner", "id": id, "kind": kind, "text": text, "name": name, "boss": true,
+        }));
+    }
+    packets.0.push(super::addon_banners::packet_with_id(
+        player_guid, id, kind, true, name, text,
+    ));
+}
+
 fn receive_coop(mut coop: Option<ResMut<crate::coop_runtime::CoopRuntime>>,
                 mut terminal: ResMut<super::super::terminal::TerminalState>,
                 mut markers: ResMut<super::super::raid_markers::MarkerInbox>,
@@ -159,7 +179,9 @@ fn receive_coop(mut coop: Option<ResMut<crate::coop_runtime::CoopRuntime>>,
                     _ => None,
                 };
                 if let (Some(text), Some(guid)) = (text, coop.world_guid) {
-                    packets.0.push(super::addon_banners::packet(guid, kind, true, name, &text));
+                    packets.0.push(super::addon_banners::shared_record_packet(
+                        guid, &value, kind, name, &text,
+                    ));
                 }
             }
             _ => {}
@@ -521,9 +543,9 @@ fn project(events:Vec<RunEvent>,player_guid:u64,source_slot:u8,packets:&mut Loca
             RunEvent::Account {kind,name}=>{
                 let name=name.render(&|key|locale.label(key).to_owned());
                 if let Some(text)=notifications.named(kind,&name,now,&locale) {
-                    if let Some(coop)=coop.as_mut() { coop.send_value_from(source_slot,&serde_json::json!({
-                        "type":"banner","kind":kind,"name":name,"text":text})); }
-                    packets.0.push(super::addon_banners::packet(player_guid,kind,true,&name,&text));
+                    publish_shared_banner(
+                        packets, coop.as_deref_mut(), source_slot, player_guid, kind, &name, &text,
+                    );
                 }
                 None
             },
@@ -531,10 +553,11 @@ fn project(events:Vec<RunEvent>,player_guid:u64,source_slot:u8,packets:&mut Loca
                 let name=super::addon_scalars::localized(&locale,format!("boss.{id}.name"),name);
                 let (kind,key)=if final_boss { ("finalboss","{name} has come!") }
                     else { ("boss","{name} approaches!") };
-                if let Some(coop)=coop.as_mut() { coop.send_value_from(source_slot,&serde_json::json!({
-                    "type":"banner","kind":kind,"name":name})); }
-                packets.0.push(super::addon_banners::packet(player_guid,kind,true,&name,
-                    &locale.label(key).replace("{name}",&name)));None
+                let text = locale.label(key).replace("{name}", &name);
+                publish_shared_banner(
+                    packets, coop.as_deref_mut(), source_slot, player_guid, kind, &name, &text,
+                );
+                None
             },
             RunEvent::ZoneUnlocked {key,name}=>{
                 let name=super::addon_scalars::localized(&locale,key,&name);
