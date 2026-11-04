@@ -14,11 +14,14 @@ import io
 import json
 from pathlib import Path
 
-from coverage_common import ROOT, file_sha256, latest_target, project_path
+from coverage_common import ROOT, file_sha256, latest_target, project_path, target_bytes
+from script_sources import load_script
 
 TARGET_SHA = "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150"
 OUTPUT = "docs/analysis/evidence/0.121.0/as-reference-frontier.json"
 SITE_ARTIFACT = "runtime/fixgap41-dispatch/contextual-reference-sites.jsonl.gz"
+REFERENCE_KINDS = frozenset(("address", "call_direct", "jump_direct", "memory"))
+FLOW_TYPES = frozenset(("CONDITIONAL_JUMP", "UNCONDITIONAL_JUMP", "UNCONDITIONAL_CALL"))
 
 
 def load(path):
@@ -237,10 +240,238 @@ def collect():
                    "Unresolved call/jump values remain exact recovery questions, not a count of missing implementations. No source execution, compilation, game/server operation or parity validation."]}
 
 
+def collect_encoded_frontier(target):
+    """Project all saved references without modifying the selected Program."""
+    identity = {key: target[key] for key in ("version", "path", "sha256", "size_bytes")}
+    base = f"docs/analysis/evidence/{target['version']}"
+    paths = [f"{base}/native-residuals.json", f"{base}/unknown-recovery.json",
+             "docs/analysis/coverage/instruction-summary.json",
+             "docs/analysis/coverage/unwind-complement-summary.json"]
+    inputs = [receipt(path) for path in paths]
+    residual, queue, declared, complement = (load(path) for path in paths)
+    if any(doc["target"] != identity for doc in (residual, queue, declared, complement)):
+        raise ValueError("Mixed reference inventory targets")
+    artifacts = residual["artifacts"]
+    used = set()
+
+    def rows(name, read=tsv_rows):
+        used.add(name)
+        record = artifacts[name]
+        count = 0
+        for row in read(record):
+            count += 1
+            yield row
+        if count != record["rows"]:
+            raise ValueError("Incomplete reference frontier input: " + name)
+
+    body_paths, extent_paths, diagnostic_bodies = defaultdict(set), defaultdict(set), defaultdict(set)
+    for row in rows("diagnostic-sites.jsonl.gz", json_rows):
+        if row["context"] != "AS-custom-path":
+            continue
+        if row["actual_body_owner"]:
+            diagnostic_bodies[row["actual_body_owner"]].add(row["path"])
+        if row["kind"] != "rust_location":
+            continue
+        if row["actual_body_owner"]:
+            body_paths[row["actual_body_owner"]].add(row["path"])
+        extent_paths[int(row["runtime_function_start"], 16)].add(row["path"])
+    extents = [(int(row["start"], 16), int(row["end_exclusive"], 16))
+               for row in rows("declared-extent-roles.tsv.gz")]
+    starts = [a for a, _ in extents]
+    if any(b > c for (_, b), (c, _) in zip(extents, extents[1:])):
+        raise ValueError("Overlapping declared extents")
+
+    def extent(site):
+        i = bisect_right(starts, site) - 1
+        return starts[i] if i >= 0 and site < extents[i][1] else None
+
+    ownerless_instructions = {int(row["address"], 16)
+                              for row in rows("ownerless-instructions.tsv.gz")}
+    unowned_destinations = Counter({int(row["destination"], 16): int(row["reference_records"])
+                                    for row in rows("unowned-executable-destinations.tsv.gz")})
+    pe_source = "scripts/inventory-executable.py"
+    pe = load_script("q41_frontier_pe", ROOT / pe_source).PE(target_bytes(target))
+    sections = [(pe.image_base + s["rva"], pe.image_base + s["rva"] + s["virtual_size"],
+                 s["name"]) for s in pe.sections]
+    iat = {int(dll["iat_start_address"], 16) + 8 * index: (dll["library"], name)
+           for dll in pe.imports() for index, name in enumerate(dll["functions"])}
+    header_end = pe.image_base + pe.u32(pe.optional + 60)
+
+    def section(site):
+        if pe.image_base <= site < header_end:
+            return "PE-headers"
+        return next((name for a, b, name in sections if a <= site < b), "unmapped")
+
+    def context(row, site):
+        if row["source_owner"] in body_paths:
+            return "AS-Location-body"
+        if extent(site) in extent_paths:
+            return "AS-Location-extent-only"
+        return "no-AS-Location"
+
+    def contextual_candidate(row, site, dest):
+        source_extent = extent(site)
+        dest_extent = extent(dest)
+        return {**row, "source_context": context(row, site),
+                "source_extent": hex(source_extent) if source_extent is not None else None,
+                "destination_extent": hex(dest_extent) if dest_extent is not None else None,
+                "destination_is_observed_ownerless_instruction": dest in ownerless_instructions}
+
+    def projection(items, key):
+        raw = json.dumps(items, sort_keys=True, separators=(",", ":")).encode()
+        return {"rows": len(items), "by_role": dict(Counter(key(row) for row in items)),
+                "ordered_records_sha256": hashlib.sha256(raw).hexdigest()}
+
+    queue_counts = {row["lead_id"]: row["records"] for row in queue["sqlite_selectors"]}
+    encoded = {}
+    for lead, label, summary in (("Q41-A01", "declared", declared),
+                                 ("Q41-A02", "complement", complement)):
+        kinds, roles, contextual, unowned_roles, unobserved_roles = (Counter() for _ in range(5))
+        candidates, import_roles, import_slots, import_transfers = [], Counter(), set(), {}
+        complement_diagnostic_context, complement_executable_addresses = [], []
+        indirect_sites = ({int(row["site"], 16) for row in rows("complement-indirect-sites.tsv.gz")}
+                          if label == "complement" else set())
+        for row in rows(f"{label}-reference-roles.tsv.gz"):
+            kind = row["kind"]
+            kinds[kind] += 1
+            site = int(row["site"], 16)
+            domain = row["destination_domain"]
+            dest = int(row["target"], 16) if row["target"] and domain != "external-or-unencoded" else None
+            if dest in iat:
+                dll, name = iat[dest]
+                if kind in REFERENCE_KINDS:
+                    import_roles[f"{dll}:{kind}:{row['access']}"] += 1
+                    import_slots.add(dest)
+                if kind == "memory" and site in indirect_sites:
+                    at = pe.rva_offset(site - pe.image_base)
+                    raw = pe.data[at:at + 7]
+                    prefix = 1 if raw[0] == 0x48 else 0
+                    end = prefix + 6
+                    if (raw[prefix:prefix + 2] != b"\xff\x25"
+                            or site + end + int.from_bytes(raw[end - 4:end], "little", signed=True) != dest
+                            or site in import_transfers):
+                        raise ValueError(f"Unexpected complement IAT transfer at {site:#x}")
+                    import_transfers[site] = (dest, dll, name)
+            if kind not in REFERENCE_KINDS:
+                continue
+            membership = "owned" if row["destination_owner"] else "unowned"
+            roles[f"{kind}:{domain}:{membership}"] += 1
+            source_context = context(row, site)
+            contextual[f"{source_context}:{kind}"] += 1
+            if label == "complement":
+                source_paths = diagnostic_bodies.get(row["source_owner"], ())
+                destination_paths = diagnostic_bodies.get(row["destination_owner"], ())
+                if source_paths or destination_paths:
+                    complement_diagnostic_context.append({
+                        **row, "source_diagnostic_paths": sorted(source_paths),
+                        "destination_diagnostic_paths": sorted(destination_paths)})
+                if kind == "address" and domain == "executable":
+                    complement_executable_addresses.append(contextual_candidate(row, site, dest))
+            if domain == "executable" and membership == "unowned":
+                geometry = ("same-declared-extent" if extent(site) is not None
+                            and extent(site) == extent(dest) else "other-or-no-declared-extent")
+                unowned_roles[f"{kind}:{geometry}"] += 1
+                if dest not in ownerless_instructions:
+                    unobserved_roles[f"{kind}:{geometry}"] += 1
+                if source_context != "no-AS-Location" or extent(dest) in extent_paths:
+                    candidates.append(contextual_candidate(row, site, dest))
+        if dict(kinds) != summary["counts"]["reference_kinds"] or sum(roles.values()) != queue_counts[lead]:
+            raise ValueError("Encoded reference population differs: " + lead)
+        transfer_slots = {item[0] for item in import_transfers.values()}
+        if label == "complement" and (
+                len(import_transfers) != summary["counts"]["imported_pointer_transfer_sites"]
+                or len(transfer_slots) != summary["counts"]["imported_pointer_slots"]):
+            raise ValueError("Complement IAT transfer projection differs")
+        encoded[lead] = {
+            "population": sum(roles.values()), "kind_destination_and_membership": dict(roles),
+            "source_location_context_by_kind": dict(contextual),
+            "unowned_executable_references_by_kind_and_geometry": dict(unowned_roles),
+            "unowned_executable_destinations_without_observed_start_by_kind_and_geometry": dict(unobserved_roles),
+            "AS_location_context_unowned_executable_projection": projection(
+                candidates, lambda row: f"{row['source_context']}:{row['kind']}:"
+                                        f"{row['destination_is_observed_ownerless_instruction']}"),
+            "AS_location_context_unowned_executable_nonlocal_sites": [
+                row for row in candidates if row["kind"] != "jump_direct"
+                or row["source_extent"] != row["destination_extent"]],
+            "exact_IAT_operands_by_library_kind_access": dict(import_roles),
+            "exact_IAT_operand_slots": len(import_slots),
+        }
+        if label == "complement":
+            encoded[lead]["AS_diagnostic_body_context_sites"] = complement_diagnostic_context
+            encoded[lead]["executable_address_sites"] = complement_executable_addresses
+            payload = "".join(f"{site:#x}\t{dest:#x}\t{dll}\t{name}\n"
+                              for site, (dest, dll, name) in sorted(import_transfers.items()))
+            encoded[lead]["complement_indirect_IAT_transfers"] = {
+                "sites": len(import_transfers), "slots": len(transfer_slots),
+                "sha256": hashlib.sha256(payload.encode()).hexdigest(),
+                "canonical_rows": "ascending numeric site; hex(site), hex(slot), PE library and symbol separated by tabs; LF",
+            }
+
+    static_unowned, source_roles, incoming, outgoing = Counter(), Counter(), [], []
+    for row in rows("static-reference-roles.tsv.gz"):
+        site = int(row["from"], 16)
+        dest = int(row["to"], 16) if row["destination_domain"] != "external-or-unencoded" else None
+        if row["destination_domain"] == "executable" and not row["destination_owner"]:
+            static_unowned[dest] += 1
+            if context(row, site) != "no-AS-Location" or extent(dest) in extent_paths:
+                outgoing.append(contextual_candidate(row, site, dest))
+        if not row["source_owner"]:
+            source_role = ("observed-ownerless-instruction" if site in ownerless_instructions
+                           else section(site))
+            source_roles[f"{source_role}:{row['type']}"] += 1
+            if row["destination_owner"] in body_paths and row["type"] in FLOW_TYPES:
+                incoming.append({**row, "source_role": source_role,
+                                 "destination_location_paths": sorted(body_paths[row["destination_owner"]])})
+    if (static_unowned != unowned_destinations or sum(source_roles.values()) !=
+            artifacts["ownerless-reference-sources.tsv.gz"]["rows"]):
+        raise ValueError("Saved Ghidra reference residual projection differs")
+    native = [artifacts[name] for name in sorted(used)]
+    producers = [receipt(path) for path in ("scripts/classify-q41-as-references.py",
+                                           "scripts/coverage_common.py", pe_source, "scripts/script_sources.py")]
+    for record in [*inputs, *native, *producers]:
+        checked(record)
+    return {
+        "schema_version": 1, "target": identity, "gap_ids": [41],
+        "lead_ids": ["Q41-A01", "Q41-A02", "Q41-G01"], "producers": producers,
+        "inputs": inputs, "native_inputs": native, "encoded_references": encoded,
+        "saved_Ghidra_references": {
+            "population": artifacts["static-reference-roles.tsv.gz"]["rows"],
+            "unowned_executable_destinations": len(static_unowned),
+            "unowned_executable_destination_reference_records": sum(static_unowned.values()),
+            "source_outside_bodies_by_kind_and_role": dict(source_roles),
+            "AS_location_context_unowned_executable_projection": projection(
+                outgoing, lambda row: f"{row['source_context']}:{row['type']}"),
+            "ownerless_direct_flow_into_AS_location_bodies": projection(
+                incoming, lambda row: f"{row['source_role']}:{row['type']}"),
+        },
+        "limits": [
+            "The independent encoded and saved Ghidra reference populations overlap. Do not add their totals.",
+            "A destination with no observed start is not necessarily an unobserved byte or a callable entry.",
+            "A genuine AS Rust Location is contextual evidence, not ownership of every instruction in that body or extent.",
+            "An IAT address and its initial bytes establish the loader declaration, not a runtime target or a completed call.",
+            "Source semantics, computed aliases, execution and original/rebuilt parity remain open.",
+        ],
+    }
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--write", action="store_true")
+    parser.add_argument("--encoded-frontier", action="store_true",
+                        help="project current encoded reference and ownerless Ghidra flow populations")
     args = parser.parse_args()
+    if args.encoded_frontier:
+        target = latest_target(verify=True)
+        value = collect_encoded_frontier(target)
+        path = project_path(f"docs/analysis/evidence/{target['version']}/encoded-reference-frontier.json")
+        if args.write:
+            pending = path.with_suffix(".json.pending")
+            pending.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n")
+            pending.replace(path)
+        elif load(path) != value:
+            raise ValueError("Saved encoded reference frontier differs")
+        print("Verified exact encoded reference, IAT, and ownerless Ghidra flow populations.")
+        return
     value = collect()
     rows = value.pop("indirect_sites")
     encoded = ("\n".join(json.dumps(row, sort_keys=True, separators=(",", ":"))

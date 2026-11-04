@@ -1,0 +1,597 @@
+{
+  "encoded_references": {
+    "Q41-A01": {
+      "AS_location_context_unowned_executable_nonlocal_sites": [
+        {
+          "access": "0",
+          "destination_domain": "executable",
+          "destination_extent": null,
+          "destination_is_observed_ownerless_instruction": true,
+          "destination_owner": "",
+          "kind": "address",
+          "operand": "1",
+          "site": "140201235",
+          "source_context": "AS-Location-extent-only",
+          "source_extent": "0x1401ff940",
+          "source_owner": "",
+          "target": "0x1401df4e0"
+        },
+        {
+          "access": "0",
+          "destination_domain": "executable",
+          "destination_extent": null,
+          "destination_is_observed_ownerless_instruction": true,
+          "destination_owner": "",
+          "kind": "address",
+          "operand": "1",
+          "site": "145df1345",
+          "source_context": "AS-Location-body",
+          "source_extent": "0x145df0640",
+          "source_owner": "0x145df0640",
+          "target": "0x144c813b0"
+        },
+        {
+          "access": "0",
+          "destination_domain": "executable",
+          "destination_extent": null,
+          "destination_is_observed_ownerless_instruction": true,
+          "destination_owner": "",
+          "kind": "address",
+          "operand": "1",
+          "site": "145df16f0",
+          "source_context": "AS-Location-body",
+          "source_extent": "0x145df0640",
+          "source_owner": "0x145df0640",
+          "target": "0x144c813b0"
+        },
+        {
+          "access": "0",
+          "destination_domain": "executable",
+          "destination_extent": null,
+          "destination_is_observed_ownerless_instruction": true,
+          "destination_owner": "",
+          "kind": "address",
+          "operand": "1",
+          "site": "145f19f0e",
+          "source_context": "AS-Location-body",
+          "source_extent": "0x145f19be0",
+          "source_owner": "0x145f19be0",
+          "target": "0x145fd1f70"
+        },
+        {
+          "access": "0",
+          "destination_domain": "executable",
+          "destination_extent": null,
+          "destination_is_observed_ownerless_instruction": true,
+          "destination_owner": "",
+          "kind": "address",
+          "operand": "1",
+          "site": "145f19f15",
+          "source_context": "AS-Location-body",
+          "source_extent": "0x145f19be0",
+          "source_owner": "0x145f19be0",
+          "target": "0x145fd1fc0"
+        }
+      ],
+      "AS_location_context_unowned_executable_projection": {
+        "by_role": {
+          "AS-Location-body:address:True": 4,
+          "AS-Location-extent-only:address:True": 1,
+          "AS-Location-extent-only:jump_direct:False": 2407,
+          "AS-Location-extent-only:jump_direct:True": 345
+        },
+        "ordered_records_sha256": "95a6034dac646bc9a27ee5c340b4a1020f6a5cd9e5bd02945dff2f1753bdbdff",
+        "rows": 2757
+      },
+      "exact_IAT_operand_slots": 327,
+      "exact_IAT_operands_by_library_kind_access": {
+        "ADVAPI32.dll:memory:1": 1,
+        "GDI32.dll:memory:1": 6,
+        "KERNEL32.dll:memory:1": 102,
+        "USER32.dll:memory:1": 17,
+        "advapi32.dll:memory:1": 13,
+        "api-ms-win-core-synch-l1-2-0.dll:memory:1": 272,
+        "api-ms-win-core-winrt-l1-1-0.dll:memory:1": 6,
+        "avrt.dll:memory:1": 5,
+        "bcrypt.dll:memory:1": 1,
+        "bcryptprimitives.dll:memory:1": 4,
+        "dwmapi.dll:memory:1": 6,
+        "gdi32.dll:memory:1": 9,
+        "imm32.dll:memory:1": 15,
+        "kernel32.dll:memory:1": 621,
+        "ntdll.dll:memory:1": 24,
+        "ole32.dll:memory:1": 26,
+        "oleaut32.dll:memory:1": 30,
+        "opengl32.dll:memory:1": 78,
+        "pdh.dll:memory:1": 8,
+        "powrprof.dll:memory:1": 1,
+        "psapi.dll:memory:1": 2,
+        "shell32.dll:memory:1": 6,
+        "uiautomationcore.dll:memory:1": 6,
+        "user32.dll:memory:1": 261,
+        "uxtheme.dll:memory:1": 1,
+        "ws2_32.dll:memory:1": 160
+      },
+      "kind_destination_and_membership": {
+        "address:PE-headers:unowned": 5,
+        "address:data:.data:unowned": 12638,
+        "address:data:.rdata:unowned": 410199,
+        "address:executable:owned": 65307,
+        "address:executable:unowned": 12842,
+        "call_direct:executable:owned": 1202837,
+        "jump_direct:executable:owned": 1995721,
+        "jump_direct:executable:unowned": 113504,
+        "memory:PE-headers:unowned": 2,
+        "memory:data:.data:unowned": 36844,
+        "memory:data:.rdata:unowned": 138121
+      },
+      "population": 3988020,
+      "source_location_context_by_kind": {
+        "AS-Location-body:address": 4229,
+        "AS-Location-body:call_direct": 10846,
+        "AS-Location-body:jump_direct": 24522,
+        "AS-Location-body:memory": 4277,
+        "AS-Location-extent-only:address": 918,
+        "AS-Location-extent-only:call_direct": 1838,
+        "AS-Location-extent-only:jump_direct": 3745,
+        "AS-Location-extent-only:memory": 562,
+        "no-AS-Location:address": 495844,
+        "no-AS-Location:call_direct": 1190153,
+        "no-AS-Location:jump_direct": 2080958,
+        "no-AS-Location:memory": 170128
+      },
+      "unowned_executable_destinations_without_observed_start_by_kind_and_geometry": {
+        "address:other-or-no-declared-extent": 139,
+        "jump_direct:same-declared-extent": 100610
+      },
+      "unowned_executable_references_by_kind_and_geometry": {
+        "address:other-or-no-declared-extent": 12842,
+        "jump_direct:same-declared-extent": 113504
+      }
+    },
+    "Q41-A02": {
+      "AS_diagnostic_body_context_sites": [
+        {
+          "access": "2",
+          "destination_diagnostic_paths": [],
+          "destination_domain": "data:.data",
+          "destination_owner": "",
+          "kind": "memory",
+          "operand": "0",
+          "site": "14074cee0",
+          "source_diagnostic_paths": [
+            "crates/wenilla-rogue-app/src/screens/mod.rs"
+          ],
+          "source_owner": "0x140051da0",
+          "target": "0x148ac3488"
+        },
+        {
+          "access": "0",
+          "destination_diagnostic_paths": [],
+          "destination_domain": "executable",
+          "destination_owner": "0x1409a3e60",
+          "kind": "jump_direct",
+          "operand": "0",
+          "site": "1408b1180",
+          "source_diagnostic_paths": [
+            "crates/wenilla-rogue-app/src/screens/mod.rs"
+          ],
+          "source_owner": "0x140051fb0",
+          "target": "0x1409a3e60"
+        },
+        {
+          "access": "0",
+          "destination_diagnostic_paths": [
+            "crates/wenilla-rogue/src/game/party.rs"
+          ],
+          "destination_domain": "executable",
+          "destination_owner": "0x145ef38f0",
+          "kind": "jump_direct",
+          "operand": "0",
+          "site": "145e957b4",
+          "source_diagnostic_paths": [],
+          "source_owner": "0x145e95770",
+          "target": "0x145ef38f0"
+        },
+        {
+          "access": "0",
+          "destination_diagnostic_paths": [
+            "crates/wenilla-rogue/src/game/upgrades.rs"
+          ],
+          "destination_domain": "executable",
+          "destination_owner": "0x145fb7120",
+          "kind": "jump_direct",
+          "operand": "0",
+          "site": "145fb9cd1",
+          "source_diagnostic_paths": [],
+          "source_owner": "0x145fb9ca0",
+          "target": "0x145fb7120"
+        },
+        {
+          "access": "0",
+          "destination_diagnostic_paths": [
+            "crates/wenilla-rogue/src/game/upgrades.rs"
+          ],
+          "destination_domain": "executable",
+          "destination_owner": "0x145fb7120",
+          "kind": "jump_direct",
+          "operand": "0",
+          "site": "145fc10bb",
+          "source_diagnostic_paths": [],
+          "source_owner": "0x145fc1090",
+          "target": "0x145fb7120"
+        }
+      ],
+      "AS_location_context_unowned_executable_nonlocal_sites": [],
+      "AS_location_context_unowned_executable_projection": {
+        "by_role": {},
+        "ordered_records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "rows": 0
+      },
+      "complement_indirect_IAT_transfers": {
+        "canonical_rows": "ascending numeric site; hex(site), hex(slot), PE library and symbol separated by tabs; LF",
+        "sha256": "34537fe6abfbb3224223ba9fd42c16a4f47e02146af06eea62cf8f6875ff4868",
+        "sites": 126,
+        "slots": 119
+      },
+      "exact_IAT_operand_slots": 119,
+      "exact_IAT_operands_by_library_kind_access": {
+        "KERNEL32.dll:memory:1": 4,
+        "VCRUNTIME140.dll:memory:1": 7,
+        "api-ms-win-core-synch-l1-2-0.dll:memory:1": 5,
+        "api-ms-win-crt-heap-l1-1-0.dll:memory:1": 2,
+        "api-ms-win-crt-locale-l1-1-0.dll:memory:1": 1,
+        "api-ms-win-crt-math-l1-1-0.dll:memory:1": 56,
+        "api-ms-win-crt-runtime-l1-1-0.dll:memory:1": 19,
+        "api-ms-win-crt-stdio-l1-1-0.dll:memory:1": 2,
+        "api-ms-win-crt-string-l1-1-0.dll:memory:1": 2,
+        "api-ms-win-crt-time-l1-1-0.dll:memory:1": 5,
+        "imm32.dll:memory:1": 1,
+        "kernel32.dll:memory:1": 16,
+        "user32.dll:memory:1": 3,
+        "ws2_32.dll:memory:1": 3
+      },
+      "executable_address_sites": [
+        {
+          "access": "0",
+          "destination_domain": "executable",
+          "destination_extent": null,
+          "destination_is_observed_ownerless_instruction": true,
+          "destination_owner": "",
+          "kind": "address",
+          "operand": "1",
+          "site": "142524987",
+          "source_context": "no-AS-Location",
+          "source_extent": null,
+          "source_owner": "0x142524980",
+          "target": "0x142523c50"
+        },
+        {
+          "access": "0",
+          "destination_domain": "executable",
+          "destination_extent": null,
+          "destination_is_observed_ownerless_instruction": true,
+          "destination_owner": "",
+          "kind": "address",
+          "operand": "1",
+          "site": "1425249a7",
+          "source_context": "no-AS-Location",
+          "source_extent": null,
+          "source_owner": "0x1425249a0",
+          "target": "0x142523cf0"
+        },
+        {
+          "access": "0",
+          "destination_domain": "executable",
+          "destination_extent": null,
+          "destination_is_observed_ownerless_instruction": true,
+          "destination_owner": "",
+          "kind": "address",
+          "operand": "1",
+          "site": "143334cb7",
+          "source_context": "no-AS-Location",
+          "source_extent": null,
+          "source_owner": "0x143334cb0",
+          "target": "0x14332a630"
+        },
+        {
+          "access": "0",
+          "destination_domain": "executable",
+          "destination_extent": null,
+          "destination_is_observed_ownerless_instruction": true,
+          "destination_owner": "",
+          "kind": "address",
+          "operand": "1",
+          "site": "144483967",
+          "source_context": "no-AS-Location",
+          "source_extent": null,
+          "source_owner": "0x144483960",
+          "target": "0x144488360"
+        },
+        {
+          "access": "0",
+          "destination_domain": "executable",
+          "destination_extent": null,
+          "destination_is_observed_ownerless_instruction": true,
+          "destination_owner": "",
+          "kind": "address",
+          "operand": "1",
+          "site": "14452dc57",
+          "source_context": "no-AS-Location",
+          "source_extent": null,
+          "source_owner": "0x14452dc50",
+          "target": "0x14452df90"
+        },
+        {
+          "access": "0",
+          "destination_domain": "executable",
+          "destination_extent": null,
+          "destination_is_observed_ownerless_instruction": true,
+          "destination_owner": "",
+          "kind": "address",
+          "operand": "1",
+          "site": "144550fa7",
+          "source_context": "no-AS-Location",
+          "source_extent": null,
+          "source_owner": "0x144550fa0",
+          "target": "0x144547930"
+        },
+        {
+          "access": "0",
+          "destination_domain": "executable",
+          "destination_extent": null,
+          "destination_is_observed_ownerless_instruction": true,
+          "destination_owner": "",
+          "kind": "address",
+          "operand": "1",
+          "site": "144565fc7",
+          "source_context": "no-AS-Location",
+          "source_extent": null,
+          "source_owner": "0x144565fc0",
+          "target": "0x14456b3d0"
+        },
+        {
+          "access": "0",
+          "destination_domain": "executable",
+          "destination_extent": null,
+          "destination_is_observed_ownerless_instruction": true,
+          "destination_owner": "",
+          "kind": "address",
+          "operand": "1",
+          "site": "14457b3a7",
+          "source_context": "no-AS-Location",
+          "source_extent": null,
+          "source_owner": "0x14457b3a0",
+          "target": "0x144571fc0"
+        },
+        {
+          "access": "0",
+          "destination_domain": "executable",
+          "destination_extent": null,
+          "destination_is_observed_ownerless_instruction": false,
+          "destination_owner": "0x140002200",
+          "kind": "address",
+          "operand": "1",
+          "site": "1445921a7",
+          "source_context": "no-AS-Location",
+          "source_extent": null,
+          "source_owner": "0x1445921a0",
+          "target": "0x140002200"
+        },
+        {
+          "access": "0",
+          "destination_domain": "executable",
+          "destination_extent": null,
+          "destination_is_observed_ownerless_instruction": true,
+          "destination_owner": "",
+          "kind": "address",
+          "operand": "1",
+          "site": "1451d3547",
+          "source_context": "no-AS-Location",
+          "source_extent": null,
+          "source_owner": "0x1451d3540",
+          "target": "0x1451d13e0"
+        },
+        {
+          "access": "0",
+          "destination_domain": "executable",
+          "destination_extent": null,
+          "destination_is_observed_ownerless_instruction": true,
+          "destination_owner": "",
+          "kind": "address",
+          "operand": "1",
+          "site": "145334bd7",
+          "source_context": "no-AS-Location",
+          "source_extent": null,
+          "source_owner": "0x145334bd0",
+          "target": "0x145333390"
+        },
+        {
+          "access": "0",
+          "destination_domain": "executable",
+          "destination_extent": null,
+          "destination_is_observed_ownerless_instruction": true,
+          "destination_owner": "",
+          "kind": "address",
+          "operand": "1",
+          "site": "145557c57",
+          "source_context": "no-AS-Location",
+          "source_extent": null,
+          "source_owner": "0x145557c50",
+          "target": "0x1455581a0"
+        },
+        {
+          "access": "0",
+          "destination_domain": "executable",
+          "destination_extent": "0x1463a5024",
+          "destination_is_observed_ownerless_instruction": false,
+          "destination_owner": "0x1463a5024",
+          "kind": "address",
+          "operand": "1",
+          "site": "1463a5014",
+          "source_context": "no-AS-Location",
+          "source_extent": null,
+          "source_owner": "0x1463a5014",
+          "target": "0x1463a5024"
+        }
+      ],
+      "kind_destination_and_membership": {
+        "address:data:.data:unowned": 10,
+        "address:data:.rdata:unowned": 1605,
+        "address:executable:owned": 2,
+        "address:executable:unowned": 11,
+        "call_direct:executable:owned": 18,
+        "jump_direct:executable:owned": 10360,
+        "memory:data:.data:unowned": 95,
+        "memory:data:.rdata:unowned": 1179
+      },
+      "population": 13280,
+      "source_location_context_by_kind": {
+        "AS-Location-body:jump_direct": 1,
+        "no-AS-Location:address": 1628,
+        "no-AS-Location:call_direct": 18,
+        "no-AS-Location:jump_direct": 10359,
+        "no-AS-Location:memory": 1274
+      },
+      "unowned_executable_destinations_without_observed_start_by_kind_and_geometry": {},
+      "unowned_executable_references_by_kind_and_geometry": {
+        "address:other-or-no-declared-extent": 11
+      }
+    }
+  },
+  "gap_ids": [
+    41
+  ],
+  "inputs": [
+    {
+      "path": "docs/analysis/evidence/0.141.0/native-residuals.json",
+      "sha256": "0a8726853199aae94b84f7fe30b7631a145f5ea285005a60b767460adbe191aa"
+    },
+    {
+      "path": "docs/analysis/evidence/0.141.0/unknown-recovery.json",
+      "sha256": "496bf40b284452aa547da5e95d7b71428c13ac42d944eca9c60059d9d4858578"
+    },
+    {
+      "path": "docs/analysis/coverage/instruction-summary.json",
+      "sha256": "783f8e6499ac6130b17abd764eb64da8bf8d9d635418837c246f0dbe6c227d2b"
+    },
+    {
+      "path": "docs/analysis/coverage/unwind-complement-summary.json",
+      "sha256": "7f3d8927d6590bb1728dbe4d624e542dfefc1e075e340907866315968418652d"
+    }
+  ],
+  "lead_ids": [
+    "Q41-A01",
+    "Q41-A02",
+    "Q41-G01"
+  ],
+  "limits": [
+    "The independent encoded and saved Ghidra reference populations overlap. Do not add their totals.",
+    "A destination with no observed start is not necessarily an unobserved byte or a callable entry.",
+    "A genuine AS Rust Location is contextual evidence, not ownership of every instruction in that body or extent.",
+    "An IAT address and its initial bytes establish the loader declaration, not a runtime target or a completed call.",
+    "Source semantics, computed aliases, execution and original/rebuilt parity remain open."
+  ],
+  "native_inputs": [
+    {
+      "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/residuals/complement-indirect-sites.tsv.gz",
+      "rows": 665,
+      "sha256": "e3f654f2470dfae8976c421e3b8e239d02fd681e94fb47246d6ed51689ad5024"
+    },
+    {
+      "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/residuals/complement-reference-roles.tsv.gz",
+      "rows": 13945,
+      "sha256": "897d183f55e9461a074f058163e59b1def6a3387e81acff7a2283fb16f9dfef0"
+    },
+    {
+      "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/residuals/declared-extent-roles.tsv.gz",
+      "rows": 372623,
+      "sha256": "f1e40133f274e7be668af02106e33842ad74c40c7c5d04e94f0b4a900b519eeb"
+    },
+    {
+      "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/residuals/declared-reference-roles.tsv.gz",
+      "rows": 4073041,
+      "sha256": "3a2449b0c281cff4c1c6f6961cc0919d7f8dc506a3a5f095e72636a296bb77d9"
+    },
+    {
+      "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/residuals/diagnostic-sites.jsonl.gz",
+      "rows": 19956,
+      "sha256": "24a9e0bf2710d4bf0f1056a4f3d4fd347673e76c81a04f48cf4c6cd1cbdb17a5"
+    },
+    {
+      "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/residuals/ownerless-instructions.tsv.gz",
+      "rows": 123402,
+      "sha256": "6d209568a6b3a4e6d8c4a47b0428f35973f7642d2ce7215575e30aef4ea551e6"
+    },
+    {
+      "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/residuals/static-reference-roles.tsv.gz",
+      "rows": 4218711,
+      "sha256": "72d53a278ac784262b67c7c29edd9d13c9b838b8129dd8dc138cc8e9213c12a2"
+    },
+    {
+      "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/residuals/unowned-executable-destinations.tsv.gz",
+      "rows": 11205,
+      "sha256": "542b425d77cc41c5c818e16c1406ac80697cd485c6e8bc08d2d12108b4ebd78d"
+    }
+  ],
+  "producers": [
+    {
+      "path": "scripts/classify-q41-as-references.py",
+      "sha256": "3f44f3b081efde397af11d29608120c79178ba22900c1070881f36383468dbb8"
+    },
+    {
+      "path": "scripts/coverage_common.py",
+      "sha256": "fc822cd7fb76f61442c20288907bf2eef9c5cd162512901496dbb6b47e4131f6"
+    },
+    {
+      "path": "scripts/inventory-executable.py",
+      "sha256": "e2a4746cf3c5c0a8433c2000d6000b768a2a17b01b25040505705f61ddf1f6fa"
+    },
+    {
+      "path": "scripts/script_sources.py",
+      "sha256": "412da3516eed05f3bc6216abd16dc9cfb2f0fddeb40384918f41ab50dfee0093"
+    }
+  ],
+  "saved_Ghidra_references": {
+    "AS_location_context_unowned_executable_projection": {
+      "by_role": {
+        "AS-Location-extent-only:COMPUTED_JUMP": 46,
+        "AS-Location-extent-only:CONDITIONAL_JUMP": 151,
+        "AS-Location-extent-only:UNCONDITIONAL_JUMP": 101
+      },
+      "ordered_records_sha256": "82f8309279e849fddad33102ef78eccb88e192070ab3d62e71dca4c6557895fe",
+      "rows": 298
+    },
+    "ownerless_direct_flow_into_AS_location_bodies": {
+      "by_role": {
+        "observed-ownerless-instruction:CONDITIONAL_JUMP": 14,
+        "observed-ownerless-instruction:UNCONDITIONAL_CALL": 68,
+        "observed-ownerless-instruction:UNCONDITIONAL_JUMP": 28
+      },
+      "ordered_records_sha256": "4f8cffb3d657b05c705e5955c3ed68d022687856a0f11fa6a210c7f6c65412f3",
+      "rows": 110
+    },
+    "population": 4218711,
+    "source_outside_bodies_by_kind_and_role": {
+      ".pdata:DATA": 745246,
+      ".rdata:DATA": 78317,
+      "PE-headers:DATA": 17,
+      "observed-ownerless-instruction:COMPUTED_JUMP": 923,
+      "observed-ownerless-instruction:CONDITIONAL_JUMP": 11411,
+      "observed-ownerless-instruction:INDIRECTION": 3,
+      "observed-ownerless-instruction:READ": 1659,
+      "observed-ownerless-instruction:READ_WRITE": 3,
+      "observed-ownerless-instruction:UNCONDITIONAL_CALL": 6021,
+      "observed-ownerless-instruction:UNCONDITIONAL_JUMP": 5184
+    },
+    "unowned_executable_destination_reference_records": 15305,
+    "unowned_executable_destinations": 11205
+  },
+  "schema_version": 1,
+  "target": {
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+    "size_bytes": 151493632,
+    "version": "0.141.0"
+  }
+}

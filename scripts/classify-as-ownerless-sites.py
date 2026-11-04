@@ -11,8 +11,9 @@ if __name__ == '__main__':
 
 import argparse
 from bisect import bisect_right
-from collections import Counter
+from collections import Counter, defaultdict
 import csv
+from functools import lru_cache
 import gzip
 import hashlib
 import importlib.util
@@ -21,8 +22,10 @@ from pathlib import Path
 import struct
 
 import coverage_common as coverage
-from capstone import Cs, CS_ARCH_X86, CS_MODE_64, CS_GRP_CALL, CS_GRP_JUMP, CS_GRP_RET
+from capstone import (Cs, CS_ARCH_X86, CS_MODE_64, CS_GRP_CALL, CS_GRP_INT, CS_GRP_IRET,
+                      CS_GRP_JUMP, CS_GRP_PRIVILEGE, CS_GRP_RET)
 from capstone.x86_const import X86_OP_IMM, X86_OP_MEM, X86_OP_REG, X86_REG_RIP
+from script_sources import current_path, recorded_input_matches
 
 SOURCE_ROOT = coverage.ROOT
 PROOF = 'docs/analysis/evidence/0.121.0/as-ownerless-sites.json'
@@ -263,7 +266,7 @@ def generate(root, target, pe, decoder):
                         'No new native query, Program import/mutation, compilation, client/game/network/server execution or parity comparison.'])
 
 
-def generate_current(root, target, pe, decoder):
+def generate_current(root, target, pe, decoder, instruction_frontier=False):
     evidence_dir = Path('docs/analysis/evidence') / target['version']
     residual_path = evidence_dir / 'native-residuals.json'
     residual = json.loads((root / residual_path).read_text())
@@ -287,14 +290,15 @@ def generate_current(root, target, pe, decoder):
     declared = {pe.image_base + a: pe.image_base + b for a, b, _ in pe.functions()}
     bodies = {}
 
-    def body(start):
+    def body(start, require_complete=True):
         if start not in bodies:
             end = declared[start]
             data = raw(start, end)
             rows = {i.address: i for i in decoder.disasm(data, start)}
-            assert sum(i.size for i in rows.values()) == len(data), hex(start)
-            bodies[start] = (rows, span(start, end))
-        return bodies[start]
+            bodies[start] = (rows, span(start, end), sum(i.size for i in rows.values()) == len(data))
+        rows, digest, complete = bodies[start]
+        assert complete or not require_complete, hex(start)
+        return rows, digest
 
     imports = {int(row['iat_start_address'], 16) + 8 * i: (row['library'], symbol)
                for row in pe.imports() for i, symbol in enumerate(row['functions'])}
@@ -417,7 +421,7 @@ def generate_current(root, target, pe, decoder):
                           route_sha256=hashlib.sha256(b''.join(i.bytes for i in route)).hexdigest(), **result))
 
     generator = Path(__file__).relative_to(SOURCE_ROOT)
-    return dict(schema_version=1, target=residual['target'],
+    result = dict(schema_version=1, target=residual['target'],
                 generator=dict(path=generator.as_posix(), sha256=coverage.file_sha256(SOURCE_ROOT / generator)),
                 inputs=[dict(path=residual_path.as_posix(), sha256=coverage.file_sha256(root / residual_path)), artifact],
                 lead_ids=['Q41-D01'], gap_ids=[41], selector=selector,
@@ -428,26 +432,224 @@ def generate_current(root, target, pe, decoder):
                 limits=['Immediate operands and first consumers only. Raw census body ownership is unchanged.',
                         'Collection type, full caller behavior and native source parity are separate proof obligations.',
                         'No new native query, Program import or mutation, compilation or application execution.'])
+    if not instruction_frontier:
+        return result
+    diagnostic_proof = root / evidence_dir / 'as-ownerless-sites.json'
+    verify_proof(result, diagnostic_proof, root)
+    return classify_instruction_frontier(root, residual, declared, body, span, result, diagnostic_proof)
+
+
+def verify_proof(result, output, root):
+    saved = json.loads(output.read_text())
+    producer = saved['generator']
+    assert current_path(producer['path'], root) == root / result['generator']['path']
+    assert recorded_input_matches(producer['path'], producer['sha256'], root)
+    assert dict(result, generator=producer) == saved, 'Ownerless-AS role proof differs'
+
+
+def classify_instruction_frontier(root, residual, declared, body, span, immediate, diagnostic_proof):
+    """Join exact retained ownerless instructions and observed incoming references."""
+    artifacts = residual['artifacts']
+    used = [artifacts[name] for name in ('diagnostic-sites.jsonl.gz', 'ownerless-instructions.tsv.gz',
+                                        'static-reference-roles.tsv.gz')]
+    for record in used:
+        assert coverage.file_sha256(root / record['path']) == record['sha256'], record['path']
+    contexts, as_locations = set(), defaultdict(set)
+    with gzip.open(root / used[0]['path'], 'rt') as stream:
+        for line in stream:
+            row = json.loads(line)
+            start = int(row['runtime_function_start'], 16)
+            assert declared[start] == int(row['runtime_function_end'], 16)
+            contexts.add(start)
+            if row['kind'] == 'rust_location' and row['path'].startswith(
+                    ('crates/wenilla-rogue/', 'crates/wenilla-rogue-app/')):
+                as_locations[start].add(row['path'])
+    starts = sorted(declared)
+
+    def extent_at(address):
+        index = bisect_right(starts, address) - 1
+        if index >= 0 and address < declared[starts[index]]:
+            return starts[index]
+        return None
+
+    failures = {int(row['start'], 16) for row in immediate['location_helpers']
+                if row['role'] == 'terminal-failure-location'}
+    supplemental_wrappers = {}
+    in_path = set()
+
+    @lru_cache(maxsize=None)
+    def failure_wrapper(address):
+        if address in failures:
+            return True
+        end = declared.get(address)
+        if end is None or end - address > 0x40:
+            return False
+        instructions, digest = body(address, require_complete=False)
+        if (sum(i.size for i in instructions.values()) != end - address
+                or not any(i.group(CS_GRP_CALL) for i in instructions.values())
+                or not terminal_route(address, address, through_calls=True)):
+            return False
+        calls = [[hex(i.address), hex(i.operands[0].imm)] for i in instructions.values()
+                 if i.group(CS_GRP_CALL) and i.operands[0].type == X86_OP_IMM]
+        supplemental_wrappers[address] = dict(digest, direct_calls=calls, trap_sites=[
+            hex(i.address) for i in instructions.values() if i.mnemonic == 'ud2'])
+        return True
+
+    @lru_cache(maxsize=None)
+    def terminal_route(extent, address, through_calls=False):
+        instruction = body(extent)[0].get(address)
+        state = extent, address, through_calls
+        if instruction is None or state in in_path:
+            return False
+        if instruction.mnemonic == 'ud2':
+            return True
+        if instruction.mnemonic in ('ud0', 'ud1') or any(instruction.group(group) for group in (
+                CS_GRP_INT, CS_GRP_IRET, CS_GRP_PRIVILEGE, CS_GRP_RET)):
+            return False
+        if instruction.group(CS_GRP_CALL):
+            operand = instruction.operands[0]
+            if operand.type != X86_OP_IMM:
+                return False
+            if not through_calls:
+                return failure_wrapper(operand.imm)
+        successors = [address + instruction.size]
+        if instruction.group(CS_GRP_JUMP):
+            operand = instruction.operands[0]
+            if operand.type != X86_OP_IMM:
+                return False
+            if instruction.mnemonic == 'jmp':
+                successors.clear()
+            successors.append(operand.imm)
+        in_path.add(state)
+        try:
+            return all(terminal_route(extent, successor, through_calls) for successor in successors)
+        finally:
+            in_path.remove(state)
+
+    counts, selected, flow_counts = Counter(), {}, Counter()
+    runs = []
+    with gzip.open(root / used[1]['path'], 'rt') as stream:
+        for row in csv.DictReader(stream, delimiter='\t'):
+            address, length = int(row['address'], 16), int(row['length'])
+            extent = extent_at(address)
+            if extent not in as_locations:
+                role = ('outside_declared_extents' if extent is None else
+                        'other_diagnostic_context' if extent in contexts else 'no_diagnostic_context')
+                counts[role] += 1
+                continue
+            counts['genuine_AS_Location_context'] += 1
+            assert address not in selected
+            instruction = body(extent)[0][address]
+            assert instruction.bytes.hex() == row['bytes'] and instruction.size == length
+            flow_counts[row['flow']] += 1
+            terminal = terminal_route(extent, address)
+            selected[address] = (extent, terminal)
+            if runs and runs[-1]['extent'] == extent and runs[-1]['end'] == address:
+                run = runs[-1]
+            else:
+                run = dict(extent=extent, start=address, end=address, instructions=0, terminal_ranges=[])
+                runs.append(run)
+            run['end'] = address + length
+            run['instructions'] += 1
+            if terminal:
+                ranges = run['terminal_ranges']
+                if ranges and ranges[-1][1] == address:
+                    ranges[-1][1] = address + length
+                    ranges[-1][2] += 1
+                else:
+                    ranges.append([address, address + length, 1])
+    assert sum(counts.values()) == used[1]['rows']
+    # Include equally bounded local callees of a supplemental wrapper once.
+    for wrapper in tuple(supplemental_wrappers.values()):
+        for _, target in wrapper['direct_calls']:
+            failure_wrapper(int(target, 16))
+
+    incoming = defaultdict(Counter)
+    incoming_sha256 = hashlib.sha256()
+    with gzip.open(root / used[2]['path'], 'rt') as stream:
+        header = next(stream).rstrip('\n').split('\t')
+        assert header == ['ordinal', 'from', 'to', 'type', 'source_owner', 'destination_owner',
+                          'destination_domain']
+        rows = 0
+        for line in stream:
+            _, source, destination, kind, source_owner, owner, _ = line.rstrip('\n').split('\t')
+            rows += 1
+            site = int(destination, 16) if destination and ':' not in destination else None
+            if site not in selected:
+                continue
+            assert not owner
+            extent, _ = selected[site]
+            if source_owner:
+                source_role = 'owned_body'
+            elif source and ':' not in source and int(source, 16) in selected:
+                source_role = 'selected_ownerless_instruction'
+            else:
+                source_role = 'other_ownerless_source'
+            incoming[extent][f'{kind}:{source_role}'] += 1
+            incoming_sha256.update(line.encode())
+        assert rows == used[2]['rows']
+
+    published_runs = defaultdict(list)
+    for run in runs:
+        ranges = [[hex(a), hex(b), count] for a, b, count in run['terminal_ranges']]
+        published_runs[run['extent']].append(dict(span(run['start'], run['end']),
+                                                   instructions=run['instructions'], terminal_ranges=ranges))
+    extents = []
+    for extent, extent_runs in published_runs.items():
+        total = sum(run['instructions'] for run in extent_runs)
+        terminal = sum(r[2] for run in extent_runs for r in run['terminal_ranges'])
+        extents.append(dict(start=hex(extent), end_exclusive=hex(declared[extent]),
+                            paths=sorted(as_locations[extent]), instructions=total,
+                            terminal_instructions=terminal, other_instructions=total - terminal,
+                            observed_incoming_references=dict(sorted(incoming[extent].items())),
+                            runs=extent_runs))
+    return dict(schema_version=1, target=residual['target'],
+                generator=dict(path=immediate['generator']['path'], sha256=immediate['generator']['sha256']),
+                inputs=[*immediate['inputs'][:1], *used,
+                        dict(path=diagnostic_proof.relative_to(root).as_posix(),
+                             sha256=coverage.file_sha256(diagnostic_proof))],
+                lead_ids=['Q41-G01'], gap_ids=[41],
+                selector='ownerless-instructions.tsv.gz joined to declared PE unwind extents containing a genuine Rust Location for either AS crate',
+                counts=dict(ownerless_by_declared_extent_context=dict(counts),
+                            AS_location_extents=len(as_locations), selected_extents=len(extents), runs=len(runs),
+                            terminal_instructions=sum(terminal for _, terminal in selected.values()),
+                            entirely_terminal_runs=sum(run['instructions'] == sum(r[2] for r in run['terminal_ranges'])
+                                                        for run in runs),
+                            selected_flow_records=dict(sorted(flow_counts.items())),
+                            incoming_reference_records=sum(sum(values.values()) for values in incoming.values())),
+                incoming_reference_rows_sha256=incoming_sha256.hexdigest(),
+                additional_local_terminal_wrappers=[supplemental_wrappers[a] for a in sorted(supplemental_wrappers)],
+                wrapper_direct_call_columns=['site', 'target'],
+                terminal_range_columns=['start', 'end_exclusive', 'instruction_count'],
+                extents=extents,
+                limits=['Terminal routes stop at UD2 or a checked terminal wrapper. Supplemental wrappers have a fully decoded declared extent of at most 64 bytes and every local normal path reaches UD2, following direct calls only at their return sites.',
+                        'Both conditional successors must qualify. A cycle, return, other call, computed jump or missing instruction fails the outer route test. Callee internals and nonlocal exits remain separate.',
+                        'Diagnostic context is an exact extent association. Incoming references are saved observations, including data and computed relations. Neither fact establishes the source owner, runtime callee or successful gameplay behavior.',
+                        'Other instruction rows retain their selectors. Q41-D01 removal and format-argument roles apply only to their verified operand routes.',
+                        'No census changes, new native query, compilation or application execution.'])
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--write', action='store_true')
+    parser.add_argument('--instruction-frontier', action='store_true',
+                        help='Check the selected ownerless instruction and incoming-reference proof')
     parser.add_argument('--analysis-workspace', type=Path, default=SOURCE_ROOT,
                         help='Primary checkout holding retained evidence when checking from a linked worktree')
     args = parser.parse_args()
     root = args.analysis_workspace.resolve()
     target, pe, decoder = load_reference(root)
-    if target['version'] == '0.121.0':
+    if target['version'] == '0.121.0' and not args.instruction_frontier:
         result = generate(root, target, pe, decoder)
         output = SOURCE_ROOT / PROOF
     else:
-        result = generate_current(root, target, pe, decoder)
-        output = SOURCE_ROOT / 'docs/analysis/evidence' / target['version'] / 'as-ownerless-sites.json'
+        result = generate_current(root, target, pe, decoder, args.instruction_frontier)
+        name = 'as-ownerless-instructions.json' if args.instruction_frontier else 'as-ownerless-sites.json'
+        output = SOURCE_ROOT / 'docs/analysis/evidence' / target['version'] / name
     if args.write:
         output.write_text(coverage.json_text(result))
     else:
-        assert result == json.loads(output.read_text()), 'Current ownerless-AS role proof differs'
+        verify_proof(result, output, root)
     print(coverage.json_text(result['counts']).strip())
 
 
