@@ -953,7 +953,7 @@ impl Session {
                         }
                     }
                     NativeMessage::Lifecycle(LifecyclePacket::EventBytes(_)) => {}
-                    NativeMessage::Lifecycle(LifecyclePacket::Disconnect) => {
+                    NativeMessage::Lifecycle(LifecyclePacket::Disconnect) if joined => {
                         self.peers[tick.index].connection.close();
                         self.retire_client(client);
                     }
@@ -2021,6 +2021,19 @@ mod reconnection_tests {
                 .received
                 .push_back(encode_lifecycle(packet).unwrap());
         }
+    }
+
+    #[test]
+    fn disconnect_requires_a_joined_transport_row() {
+        let (mut host, clients) = assigned_host(&[7]);
+        let waiting = host.service_peer_open(8).unwrap();
+        inbox(&mut host, 8, &[LifecyclePacket::Disconnect]);
+        host.tick(1.);
+        assert!(host.server.clients().iter().any(|row| row.id == waiting));
+
+        inbox(&mut host, 7, &[LifecyclePacket::Disconnect]);
+        host.tick(2.);
+        assert!(!host.server.clients().iter().any(|row| row.id == clients[0]));
     }
 
     #[test]

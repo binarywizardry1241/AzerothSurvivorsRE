@@ -119,8 +119,22 @@ def guest_end_run():
         probe.cpu.mem_write(game + 0xf4f, bytes([abandoned]))
         probe.stop = 0x145edc4ab if 1 <= phase <= 3 and not abandoned else 0x145edc466
         probe.run(0x145edc493)
+    admission = harness.Native(data, pe, [(0x145e77c65, 0x145e77ca5)],
+                               [0x145e78345, 0x145e78794])
+    host = admission.HEAP
+    peer = host + 0x2000
+    admission.put(host + 0xfb0, peer)
+    admission.reg('RSI', host)
+    admission.reg('RDX', 0)
+    for joined in (0, 1, 255):
+        admission.reg('RAX', 16)
+        admission.cpu.mem_write(peer + 0x86c, bytes([joined]))
+        admission.stop = 0x145e78345 if joined else 0x145e78794
+        admission.run(0x145e77c65)
 
     source = ROOT / 'crates/azeroth-survivors-re/src'
+    session = (source / 'coop/session.rs').read_text()
+    assert 'NativeMessage::Lifecycle(LifecyclePacket::Disconnect) if joined =>' in session
     pause = (source / 'gameplay/run_hud/pause.rs').read_text()
     assert 'coop_ui.request_leave_run();' in pause and 'kind:5' not in pause
     directory = (source / 'coop_directory.rs').read_text()
@@ -131,7 +145,7 @@ def guest_end_run():
     departure = mechanics.split('pub fn leave_party_hero(', 1)[1].split('fn refresh_party_live_heroes', 1)[0]
     assert '.all(|hero| hero.departed)' in departure
     assert departure.index('self.abandon(|_| None)') < departure.index('self.rescale_party_actor_health(previous)')
-    print('PASS: 47 native singleton/phase cases, hash-bound End Run dispatch and live source routes')
+    print('PASS: 50 native singleton, phase and Disconnect admission cases; live source routes')
 
 
 if __name__ == '__main__':

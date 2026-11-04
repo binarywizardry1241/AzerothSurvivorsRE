@@ -18,6 +18,8 @@ and account state before the role-Off publication with the exact local reason
 `you left the run`. The writer case
 `0x145dc9290` emits only byte `0x10`. The joined-host variant 16 cell at
 `0x1476c8220` selects the connection close slot through `0x145e78345`.
+At `0x145e77c76`, an unjoined row goes to ordinary cleanup before dispatch.
+The reconstructed host likewise admits Disconnect only after Join.
 Control 5 has its own per-actor action under `0x145ec30a0` and does not own
 this request.
 
@@ -51,7 +53,8 @@ health rescale and spawn-density consumers use the refreshed live count and
 retain their [bounded scaling proof](coop-scaling-0.127.0.md).
 
 `scripts/check-coop-logout.py --end-run` verifies the selected target ranges,
-dispatch cells, payload tag and reason and replays 47 native count/phase cases.
+dispatch cells, payload tag and reason and replays 50 native count, phase and
+Disconnect admission cases.
 The authored Rust regression covers a downed remaining member, repeated
 retirement and the last active host's terminal state. Compilation, authored
 regression execution, socket delivery, picker/result display and original/rebuilt
