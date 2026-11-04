@@ -39,7 +39,8 @@ function CreateFrame(kind, name)
             if name == "AZSApiFrame" then
                 assert(event == "CHAT_MSG_ADDON"); registered = registered + 1;
             else
-                assert(event == "PLAYER_ENTERING_WORLD");
+                assert(event == "PLAYER_ENTERING_WORLD" or event == "PLAYER_LEAVING_WORLD"
+                    or event == "CHAT_MSG_ADDON");
             end
         end,
         SetScript = function(self, name, handler)
@@ -71,6 +72,7 @@ if AZSMeterFrame then
     assert(table.getn(replay_requests) == 1);
     local request = replay_requests[1];
     assert(request[1] == "AZSMREQ" and request[2] == "full" and request[3] == "PARTY");
+    event = "PLAYER_ENTERING_WORLD";
     AZSMeterFrame.handler();
     assert(table.getn(replay_requests) == 1);
     now = now + 1;
@@ -78,6 +80,50 @@ if AZSMeterFrame then
     assert(table.getn(replay_requests) == 2);
     now = now - 1;
     print("Passed addon replay request: bootstrap, world entry and one-second throttle; stub host only");
+end
+if type(AZS_GetMeterSnapshot) == "function" then
+    local saved_arg = arg;
+    arg = { n = 0 };
+    local function line(distribution, sender, payload)
+        event, arg1, arg2, arg3, arg4 = "CHAT_MSG_ADDON", "AZSM", payload, distribution, sender;
+        AZSMeterFrame.handler();
+    end
+    local f = table.concat({
+        "F", "0", "1", "run", "party:fixture", "e1", "12", "playing", "en", "l.en",
+        "5", "9", "H101", "active", "fixture", "1", "0", "", "", "", "", "", "", ""
+    }, ",");
+    local tail = table.concat({
+        "H,H101,active",
+        "S,ability:fireball:r1,ability,ability,Fireball,en,r,Interface%5CIcons%5CSpell_Fire_FlameBolt,133,,,,fireball,,,,,,1",
+        "A,H101,hero,Boss,en,active,H101,m,missing,mage,,,,,,",
+        "R,H101,1,d,H101,ability:fireball:r1,,n,n,d,0,k,4,1,k,,,,,21,0,0,"
+    }, ";");
+    local first, second = "v=1;seq=7;i=1;n=2|" .. f, "v=1;seq=7;i=2;n=2|" .. tail;
+    assert(AZS_GetMeterCapabilities().features.liveInstancePosition);
+    assert(not AZS_GetMeterCapabilities().features.completeSourceBreakdowns);
+    line("PARTY", "Boss", first);
+    line("UNKNOWN", "Another player", first);
+    assert(AZS_ML.pend == nil);
+    line("UNKNOWN", "Boss", second);
+    assert(AZS_GetMeterContext() == nil);
+    line("UNKNOWN", "Boss", first);
+    local context = AZS_GetMeterContext();
+    assert(context.runId == "run" and context.localOwnerId == "H101");
+    assert(AZS_GetMeterCapabilities().features.completeSourceBreakdowns);
+    arg = { n = 1, {
+        apiVersion = 1, runId = "run", metric = "damage", scope = "self",
+        period = "run", groupBy = "source", windowSeconds = 0
+    } };
+    local snapshot, err = AZS_GetMeterSnapshot();
+    assert(err == nil and snapshot.complete and snapshot.totals.displayAmount == 21);
+    assert(snapshot.rows[1].sourceKey == "ability:fireball:r1");
+    event = "PLAYER_LEAVING_WORLD";
+    AZSMeterFrame.handler();
+    arg = { n = 0 };
+    assert(AZS_GetMeterContext() == nil);
+    assert(not AZS_GetMeterCapabilities().features.completeSourceBreakdowns);
+    arg = saved_arg;
+    print("Passed detailed meter receiver: recipient lane, multipart assembly, typed snapshot and world reset; stub host only");
 end
 assert(AZS_GetPhase() == nil and AZS_GetRunSummary() == nil);
 assert(AZS_GetStoredLevels() == 0 and AZS_IsStoringLevels());

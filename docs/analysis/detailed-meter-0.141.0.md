@@ -1,0 +1,134 @@
+# Detailed addon meter in 0.141.0
+
+Installed `installed-game/AzerothSurvivors.exe` is 151,493,632 bytes,
+SHA-256 `6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`.
+This is a bounded source/recovery result for [#75](../CURRENT-STATE.md#gap-75).
+The [earlier ledger report](party-healing-meter-0.139.2.md) retains its own
+received-heal, replay, and recorder evidence.
+
+## Lua receiver
+
+The complete [retained meter Lua](evidence/0.139.1/meter-api.lua) is
+byte-identical to 50,637 bytes at file offset `0x76dfef4`
+(VA `0x1476e18f4`, SHA-256
+`2871135e74cc78964c4997e12d3c9360a80adfa57ca166ddde3f4d4af1295588`).
+The [FrameXML bootstrap](../../crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs)
+now loads the entire receiver instead of extracting the position query and
+replay request alone. Frame assembly, sequence recovery, descriptors,
+windows, checkpoints, loadouts and portrait queries use that retained Lua.
+It requests a full replay on installation and on world entry, and clears
+the ledger and checkpoints on world exit.
+
+The addon receiver checks the recipient's own name and the engine's
+`UNKNOWN` distribution for the server's LANG_ADDON whisper. The
+[recipient request and publication trace](#recipient-request-and-publication)
+establishes the self GUID and whisper lane. Guest engine admission already
+requires synchronization and the active local port; its chat trust path
+preserves LANG_ADDON whispers byte for byte, including the multipart `|`
+delimiter. The ordinary `SendAddonMessage` binding cannot send on that
+lane. This guards receipt from ordinary party addon messages without
+changing the shared chat transport. The capability getter advertises
+position alone until the current VM assembles a detailed frame. It does
+not build detailed data from the reconstructed authority's legacy totals.
+
+The composed bootstrap passed the standalone Lua checks for admission,
+out-of-order multipart assembly, a typed damage row, world reset, and
+ordinary replay throttling. This exercises the shipped receiver with
+synthetic parts and stub host bindings. The Rust adapter parses with
+Rustfmt. Compilation, native-host interoperability, actual frame
+delivery after `/reload`, and gameplay parity remain unverified.
+
+## Recipient request and publication
+
+The current chat owner `0x145e9e690` builds the `AZSMREQ` plus tab
+prefix from the descriptor at `0x147aeb868`, compares it at
+`0x145ea0746`, and passes the remaining text to `0x145e07350`.
+The request branch selects the indexed peer's `+0x260` state in
+host mode and the local server's `+0x1b20` state otherwise.
+After trimming the suffix, `full` sets `+0xf8/+0xfa`, `party`
+sets `+0xf8/+0xf9`, and `lines` sets `+0xfa` only. Unknown
+tokens leave those flags alone.
+
+The peer poll at `0x145ea96b6..0x145ea97e6` stages and restores
+the 256-byte recipient state around the frame builder. Its
+`0x145ea97eb..0x145ea9804` branch consumes the ordinary-line
+refresh flag before invalidating the peer's line cache.
+`0x146044c70` appends each detailed part under the four-byte
+`AZSM` prefix, alongside the ordinary lines. The subsequent
+`0x145eaa6a4` call seats the receiving hero and passes those
+rows to the local chat serializer via `0x145e737b0`. In that
+seated context, `0x145e738ee` reads the recipient GUID and
+`0x145e73a42` uses it as the whisper sender. The same serializer
+sets chat type 6 and language `0xffffffff`; its solo caller
+`0x145eacb13` supplies the local hero GUID. The host engine
+sender at `0x145ecac30` requires the active synchronized peer
+and uses Engine variant 6 (wire 7) for that opcode/body.
+The adjacent resource-vector write is a different wire message.
+
+| Original range | File offset | SHA-256 |
+| --- | --- | --- |
+| Request ingress `0x145e9e690..0x145ea2004` | `0x5e9da90` | `ac64bb527d54f19058a76a4de5493ed1738f366ddec5c6d49a41b4c70ad21daa` |
+| Token handler `0x145e07350..0x145e073d1` | `0x5e06750` | `4fc8043d17e5eb0131566d841c241b847121beb341d8d50fea01899136c0d890` |
+| Poller `0x145ea3420..0x145ead071` | `0x5ea2820` | `6d3fe23bd5b101096f0343322ea410be01dca9f7e9054551af1742a4192583f5` |
+| Frame wrapper `0x145fce150..0x145fce544` | `0x5fcd550` | `19a6c6aa0ea4f5fa9f829a28ca5ecc0ce5aa9b98e8c27a903fa9eaff7077489e` |
+| Borrowed recipient `0x145e737b0..0x145e73b42` | `0x5e72bb0` | `31304531fffb82bad5d8be3885da904fdc1a74d13ef7308ddcc244ec33406478` |
+| Whisper serializer `0x145fdf630..0x145fdf8dd` | `0x5fdea30` | `6dd9da7d7f3ca1d70c6dee95a9121f7f5f74d156ecf7fa662c3fec50132526e8` |
+
+The frame wrapper's Ghidra result
+`ev_7b30a497a35e00cd924f67372ae62be36753627de94348018c41b6cdc8f64573`
+uses the exact original slice. Original PE operands establish external
+call and data edges omitted by that slice. This trace establishes the
+transport shape and source receipt route, with no live co-op validation.
+
+## Native recorder and frame
+
+The 0.141.0 counter reducer at `0x145e10f60` is called from the damage
+recorder at `0x145f70abb` and `0x145f70e16`. It still interns 0x108-byte
+source descriptors and matches the 0x80-byte counters against the typed
+row key and actor/owner fields. The one-based ID is assigned at
+`0x145e11830` before insertion; `0x145e11915..0x145e11920` adds the
+effective amount to the run amount. A nonzero encounter ID is tested
+separately. When it changes, the current encounter amount is zeroed
+before credit; the qualifying cumulative amount is retained at
+`+0x58`, and the current encounter amount is `+0x60`
+(`0x145e11927..0x145e11971`).
+
+History keeps cumulative and in-bucket totals for both the ordinary
+and qualifying amounts in each 0x28-byte entry. The update at
+`0x145e11ab9..0x145e11ae3` coalesces the zero-based counter index.
+The equal-clock path reuses its last bucket. An increasing clock within
+the recovered 0.2-second gate can advance that bucket and clear its
+in-bucket amounts before the new contribution. The retention comparison
+at `0x145e11b65..0x145e11bb7` uses the next bucket and keeps at least one.
+These are typed-ledger operations; the legacy accumulated labels cannot
+recover their keys, history or epoch state.
+
+The current frame builder at `0x145fc7330` invokes the typed counter-row
+serializer at `0x145fc9614`. It updates the retained per-recipient
+sequence at `0x145fcacef..0x145fcacfa`, using predecessor zero for a
+full frame and the previous sequence for a delta. `0x145fcada2`
+constructs the first `F,` record before passing all records to
+`0x145e1b4d0` at `0x145fcaf00`. The partitioner starts another part
+when the nonempty current part's byte length plus the next whole record
+exceeds 7,999. It appends a semicolon between records within one part;
+it does not split a record. `0x146044d20` prepends the version, sequence,
+one-based part index and part count using the packed format at
+`0x147af8318`.
+
+| Original range | File offset | SHA-256 |
+| --- | --- | --- |
+| Counter reducer `0x145e10f60..0x145e11f8a` | `0x5e10360` | `2f63b0c822be5fb429b1cc74b1cc477abbdb0bef05f727d64a83d8fb2e260c5c` |
+| Frame builder `0x145fc7330..0x145fcb971` | `0x5fc6730` | `2d89fed7e8c2b88593a4f56a9aa7442cded39ebc17fbd593b255bdc66b99ee6b` |
+| Partitioner `0x145e1b4d0..0x145e1b795` | `0x5e1a8d0` | `bd37bcca38f8d3d6176eff0deb4925d3d7f0899617ff93aca58c9ee4dfb6aa63` |
+| Part envelope `0x146044d20..0x146044e77` | `0x6044120` | `3bf7bcaa32d1590e766435b5fbd39a880069bb26ed66305d7c34c2ef12e2c6af` |
+
+Ghidra raw-slice pseudocode
+`ev_74da9644debfd05b2eda230555ca9cec2e3092f87388466841a13bf74125438f`
+covers the reducer. The frame builder returned procedure metadata
+`ev_abea76416b16216683559c2919588af9c682677a5e34f26cc69605342e78a111`;
+whole-function decompilation failed. The original PE instructions
+establish the bounded sequence and partition behavior independently.
+
+The rebuilt authority still needs typed combat and healing input, actor
+and owner joins, encounter fences, loadout transition and recipient replay
+producers before it can send this feed.

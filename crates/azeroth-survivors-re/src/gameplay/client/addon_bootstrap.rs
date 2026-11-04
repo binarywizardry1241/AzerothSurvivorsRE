@@ -28,32 +28,24 @@ fn section<'a>(source: &'a str, first: &str, next: &str) -> &'a str {
     source[start..].split_once(next).expect("retained Lua section end").0
 }
 
-fn append_position_api(source: &mut String) {
+fn append_meter_api(source: &mut String) {
     source.push_str(section(LATER_API, "function AZS_SpaceOf", "-- The lair the minimap"));
-    // Position is independently connected. The remaining ledger capabilities
-    // need their own native producers before their Lua interfaces can load.
-    source.push_str("AZS_ML_FEATURES = { liveInstancePosition = true };\n");
-    source.push_str(section(METER_API, "AZS_ML_ERRS = ", "-- Every feature"));
-    for (first, next) in [
-        ("function AZS_MErr", "-- ── text and numbers"),
-        ("function AZS_MIsInt", "function AZS_MIsId"),
-        ("function AZS_MPosition", "-- ── the API"),
-        ("function AZS_MCall", "function AZS_GetMeterCapabilities"),
-        ("function AZS_GetPlayerPosition", "function AZS_GetMeterSnapshot"),
-    ] {
-        source.push_str(section(METER_API, first, next));
-    }
-}
-
-fn append_meter_replay_request(source: &mut String) {
-    source.push_str("AZS_ML = { req = {} };\n");
-    source.push_str(section(METER_API, "function AZS_MRequest", "function AZS_MEpoch"));
-    source.push_str(r#"
-AZSMeterFrame = CreateFrame("Frame", "AZSMeterFrame");
-AZSMeterFrame:RegisterEvent("PLAYER_ENTERING_WORLD");
-AZSMeterFrame:SetScript("OnEvent", function() AZS_MRequest("full"); end);
-AZS_MRequest("full");
-"#);
+    // The native server uses LANG_ADDON whispers from the recipient's own
+    // GUID. FrameXML reports this server-only lane as UNKNOWN; addon sends
+    // support PARTY, RAID, GUILD and BATTLEGROUND only.
+    let meter = METER_API.replacen(
+        r#"if ( arg1 == "AZSM" ) then"#,
+        r#"if ( arg1 == "AZSM" and arg3 == "UNKNOWN" and arg4 and arg4 == UnitName("player") ) then"#,
+        1,
+    );
+    // The reconstructed authority still publishes only legacy lines. Until
+    // the current VM assembles a detailed frame, advertise the independently
+    // connected player-position capability only.
+    source.push_str(&meter.replacen(
+        "features = AZS_MCopy(AZS_ML_FEATURES)",
+        "features = AZS_ML.st and AZS_MCopy(AZS_ML_FEATURES) or { liveInstancePosition = true }",
+        1,
+    ));
 }
 
 pub(super) fn extension() -> LocalClientExtension {
@@ -88,8 +80,7 @@ pub(super) fn extension() -> LocalClientExtension {
         section(CURRENT_API, "function AZS_GetBosses()", "-- The bosses still to come"), 1);
     source.push('\n');
     source.push_str(section(LATER_API, "function AZS_GetLocalTime()", "-- Outgoing combat text"));
-    append_position_api(&mut source);
-    append_meter_replay_request(&mut source);
+    append_meter_api(&mut source);
     source.push_str(COMBAT_TEXT_API);
     source.push_str(COMBAT_TEXT_FRAME_HANDLERS);
     source.push_str(section(CURRENT_API, "function AZS_GetWorldAnchorCapabilities(", "-- Show or hide one of the run's screens"));
