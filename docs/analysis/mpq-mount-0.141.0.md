@@ -77,6 +77,50 @@ unique in the selected chain.
 | `World/Generic/PassiveDoodads/DuelingFlag/DUST2B.blp` | `patch-B.MPQ` | [#246](../verification-needed.md#gap-246) retains four authored model particle references in the unchanged `patch.MPQ`. |
 | `World/Maps/SchoolofNecromancy/SchoolofNecromancy.wdt` | `patch-C.MPQ` | The [terrain stream](../../crates/benilla-world/src/terrain_stream.rs) builds this key from the map directory. Its 32,836-byte payload matches the [earlier WDT digest](scholomance-0.140.0.md#zone-entry-resources-and-unlocks). |
 
+## Explosive Orb model
+
+[#248](../verification-needed.md#gap-248) resolves to the exact model in
+`installed-game/Data/patch-C.MPQ`, SHA-256
+`b2b17d7732de1902e1befed90eeed0fc9588c88d8951a396559f6937c3928a44`.
+The [0.121.0 report](explosive-orb-model-0.121.0.md) preserves the native
+publication and filename proofs and the negative searches in its eleven
+archives. The selected twelve-archive chain supplies the original name.
+
+The live [Explosive affix](../../crates/azeroth-survivors-re/src/gameplay/mechanics/affixes.rs)
+spawns [ward template 12](../../crates/azeroth-survivors-re/src/bosses/raid_wards.rs)
+with entry 9612, display 16111 and scale 0.9. The [ward visual adapter](../../crates/azeroth-survivors-re/src/gameplay/visuals.rs)
+passes that display to the shared creature path. The selected
+`CreatureDisplayInfo.dbc` and `CreatureModelData.dbc` in `patch.MPQ` are
+byte-identical to the [historical DBC receipt](evidence/0.121.0/resource-consumer-9612.json).
+Display 16111 selects model 2247 and variation `SporeCreature_DeathParticle`.
+The [catalog](../../crates/benilla-formats/src/creatures.rs) supplies the
+authored `Creature\SporeCreature\SporeCreature.mdx` to the
+[creature display](../../crates/benilla-app/src/entities/display.rs).
+The [shared URL helper](../../crates/benilla-assets/src/lib.rs) normalizes it
+to `mpq://creature/sporecreature/sporecreature.m2` for the existing chain.
+
+The M2 is a 206,624-byte `MD20` version 256 payload in hash slot 424,
+block 14, starting at archive offset 439,345. Its SHA-256 is
+`7a500a0c250fee9f6671822935b59f9d34b5c748f68591bfc71a3904e5c2664d`.
+The texture table at model offset `0x30700` has six rows. The four
+emitters at `0x31440` use the following authored filenames. Their
+geometry and recursion filename fields are empty.
+
+| Emitter / texture row | Exact BLP2 member | Archive | Payload SHA-256 |
+| --- | --- | --- | --- |
+| 0 / 2 | `Spells/Shockwave9.blp` | `patch.MPQ` | `8f51ecfff4aa2f8446703e72c75f8062a2bc2058739131d3398d04bcec2ce644` |
+| 1 / 3 | `Creature/MountedDeathKnight/Smoke02_Flip.blp` | `patch.MPQ` | `44e1463a5be250a9345eded8735eb57f924009f8ecfea85591e1f6d9eb334412` |
+| 2 / 4 | `Creature/MountedDeathKnight/Smoke02A.blp` | `patch.MPQ` | `0d7d1b0f73981168087704cc29e4c9c5f589a8860402d12b370ea5afd7c47945` |
+| 3 / 5 | `Creature/SporeCreature/SporeCreature_DeathParticle.blp` | `patch-C.MPQ` | `f00f25c131e1f904c5ddffbd64f28927cb237472b436fccbebe26f475596735d` |
+
+The archive identities, exact name lookups and payload reads were checked
+in place with the existing MPQ reader. Both DBCs, the M2 and each emitter
+texture have one exact match in the mounted archives. The [M2 loader](../../crates/benilla-assets/src/m2.rs)
+already forwards the emitter texture names to the image loader. This
+closes the named-resource gap through the existing source route.
+Compilation, in-game model loading, rendered particles and original/rebuilt
+comparison remain open.
+
 ## Checks and remaining scope
 
 `python3 -B scripts/inventory-current-mpq-members.py` reproduces the
