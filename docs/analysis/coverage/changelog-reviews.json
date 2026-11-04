@@ -34478,6 +34478,41 @@
         "crates/azeroth-survivors-re/src/gameplay/native_overlay_payload.rs": "2c02a16595d243a9d113e94724268def98bbd3e587fdfa5b489956f94ac052fb",
         "docs/analysis/soulfire-0.141.0.md": "077bd61dff548f7d2a0ea9de057c3282a5dc8536112548b9d9f4e018d86a3cf1"
       }
+    },
+    {
+      "claim_id": "changelog:0.141.0:8fdf49158695cf60",
+      "gap_ids": [
+        176
+      ],
+      "systems": [
+        "custom-game-game-procs"
+      ],
+      "rationale": "The shared direct and periodic healing helper now credits Tranquility with the full spell heal, including overheal at full health and absorb. The shield and effective-healing meter retain their separate native rules.",
+      "native_contract": "The 0.141.0 direct and HoT owners add effective healing plus raw excess to the tag 33 pool while raw tag 32 independently caps absorb. Seed impacts suppress pool addition and direct spell ID zero bypasses both talent effects.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/run_effects/healing.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/tranquility-overheal-0.141.0.md"
+      ],
+      "static_checks": [
+        {
+          "command": "python3 -B scripts/check-tranquility.py --installed-credit",
+          "result": "passed",
+          "evidence_ref": "docs/analysis/tranquility-overheal-0.141.0.md"
+        }
+      ],
+      "target": {
+        "version": "0.141.0",
+        "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
+      },
+      "status": "static_checked",
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/run_effects/healing.rs": "8765f8d624235e853cbc5814c48441c5427c2b8e90fe34e70fd87c585b0d3082",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "fa1d5e497c4f3d66d6b9343fe84e1c49872c3b7b5a987af31a291d20daa3ca24",
+        "docs/analysis/tranquility-overheal-0.141.0.md": "455d92ce8c2c0c064daefa5e73ac8f3a0f3bed538f05724d9c8283ee9c40c09d"
+      }
     }
   ]
 }

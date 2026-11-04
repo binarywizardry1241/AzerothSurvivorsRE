@@ -346,8 +346,8 @@ pub fn apply(
         fields: vital_fields(vitals),
     }
 }
-/// 0.140.0 145f9d163 and 145f8d1b5. Lost overheal does not enter the
-/// pool. Tree of Life still absorbs normally during Seed of Life impacts.
+/// 0.141.0 145f70070 and 145f61f3c credit Tranquility with effective
+/// healing plus overheal. Tree of Life caps its absorb independently.
 fn credit_healing(
     vitals: &mut Vitals,
     rows: &[EffectRow],
@@ -356,17 +356,15 @@ fn credit_healing(
     excess: f32,
 ) {
     let before = vitals.absorb;
-    let mut added = 0.0;
     if excess > 0.0 {
         if let Some(row) = rows.iter().find(|row| row.tag() == 20) {
             let cap = row.float(4) * vitals.maximum_health;
             if cap > before {
                 vitals.absorb = min_preserving_original_nan(before + excess, cap);
-                added = vitals.absorb - before;
             }
         }
     }
-    let credited = actual + added;
+    let credited = actual + excess;
     if credited > 0.0 && !state.seed_impact && rows.iter().any(|row| row.tag() == 21) {
         state.pool += credited;
     }
@@ -555,7 +553,7 @@ mod tests {
         }
     }
     #[test]
-    fn tranquility_counts_effective_health_and_only_the_shield_delta() {
+    fn tranquility_counts_overheal_independently_of_the_shield_cap() {
         let row = |tag, value: f32| {
             let mut bytes = [0; 64];
             bytes[0] = tag;
@@ -575,15 +573,22 @@ mod tests {
             let mut vitals = start.clone();
             apply(&mut vitals, &rows, &mut state, 20.0, 774);
             assert_eq!(vitals.absorb, 10.0);
-            assert_eq!(state.pool, if seed_impact { 0.0 } else { 7.0 });
-            apply(&mut vitals, &rows, &mut state, 20.0, 774);
-            assert_eq!(state.pool, if seed_impact { 0.0 } else { 7.0 });
+            assert_eq!(state.pool, if seed_impact { 0.0 } else { 20.0 });
+            let result = apply(&mut vitals, &rows, &mut state, 20.0, 774);
+            assert_eq!(result.actual, 0.0);
+            assert!(!result.emit_log);
+            assert_eq!(vitals.absorb, 10.0);
+            assert_eq!(state.pool, if seed_impact { 0.0 } else { 40.0 });
 
             let mut state = HealingState { seed_impact, ..Default::default() };
             let mut vitals = start.clone();
             apply_batch(&mut vitals, &rows, &mut state, 3.0, &[(774, 20.0)]);
             assert_eq!(vitals.absorb, 10.0);
-            assert_eq!(state.pool, if seed_impact { 0.0 } else { 4.0 });
+            assert_eq!(state.pool, if seed_impact { 0.0 } else { 20.0 });
+            let batch = apply_batch(&mut vitals, &rows, &mut state, 3.0, &[(774, 20.0)]);
+            assert!(batch.credits.is_empty());
+            assert_eq!(vitals.absorb, 10.0);
+            assert_eq!(state.pool, if seed_impact { 0.0 } else { 40.0 });
         }
     }
 
