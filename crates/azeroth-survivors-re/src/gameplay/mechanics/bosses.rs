@@ -1000,7 +1000,7 @@ impl<W: RunWorld> native::ai::DispatchPort for BossCombat<'_, W> {
 
 impl<W: RunWorld> CombatAdapter<'_, W> {
     pub(super) fn hit_boss(&mut self, hit: PendingHit, rng: &mut NativeRng,
-        vitals: Option<&mut Vitals>) -> Option<HitInput> {
+        vitals: Option<&mut Vitals>, packlord: f32) -> Option<HitInput> {
         let leech = self.current_leech();
         let secondary_source = (hit.effect.tag == 5).then(|| self.healing_source(hit.spell_id));
         let meter_source = self.damage_source(&hit);
@@ -1053,7 +1053,7 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             vulnerability_until: row.vulnerability_until,
             demoralizing_amplification: self.generic.demoralizing_amplification
                 .get(&row.guid).map_or(0.0, |window| window.value_at(self.now)),
-            additional_damage_taken: row.additional_damage_taken,
+            additional_damage_taken: row.additional_damage_taken + packlord,
             dead: false,
         };
         let raid_multiplier = self.boss_state.defenses.get(&row.guid).copied().unwrap_or_default()

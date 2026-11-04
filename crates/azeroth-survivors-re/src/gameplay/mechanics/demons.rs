@@ -297,6 +297,8 @@ impl Mechanics {
             showcase: self.showcase.enabled,
             actors: &mut self.actors,
             bosses: &mut self.bosses,
+            pets: &mut self.pet_state.rows,
+            hunter_mark: self.passive_state.hunters_mark.guid,
             boss_state: &mut self.boss_state,
             guardian_state: &mut self.guardian_state,
             affixes: &mut self.affixes,

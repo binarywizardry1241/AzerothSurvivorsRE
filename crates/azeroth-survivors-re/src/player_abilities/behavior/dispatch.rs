@@ -1,4 +1,5 @@
-//! Current1454e7a20 twelve-way cast dispatcher. Terrain, packet emission,
+//! Retained ordinary cast dispatcher with the current kind-12 companion port.
+//! Terrain, packet emission,
 //! combat/death and recomputed player stats use required engine ports.
 
 use super::{
@@ -66,6 +67,8 @@ pub trait CastPort: ProjectilePort {
     fn begin_cast(&mut self, _spell_id: u32) {}
     /// Selected0.105.0 Empowerment additionally requires a live special demon.
     fn has_special_demons(&self) -> bool { false }
+    fn command_pets(&mut self, _instance: &RuntimeInstance<'_>, _context: CastContext,
+                    _targets: &[Target]) -> bool { false }
     /// Native Game+0x464/+0x468, read for each victim/launch after prior procs.
     fn critical(&self) -> Critical;
     fn primary_height(&mut self, xy: [f32; 2]) -> Option<f32>;
@@ -212,6 +215,7 @@ pub fn cast<'a>(
     let power = effective_power(instance, &context.power);
     let count = execution::target_count(instance, context.global_target_bonus);
     match definition.kind {
+        12 => port.command_pets(instance, context, targets),
         0 | 1 => {
             let mut selected =
                 targeting::ordered_targets(targets, context.now, context.player, definition.range);

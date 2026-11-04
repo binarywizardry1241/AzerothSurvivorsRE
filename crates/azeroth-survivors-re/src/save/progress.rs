@@ -365,7 +365,7 @@ impl super::Save {
             if key.is_empty() || key.contains(['|', ',', '=', '\r', '\n']) {
                 continue;
             }
-            let previous = seen.entry(key.clone()).or_default();
+            let previous = seen.entry(super::gear::canonical_seen_key(key).to_owned()).or_default();
             *previous = (*previous).max((*quality).min(4));
         }
         self.lines.retain(|line| !line.trim().starts_with("seen|"));

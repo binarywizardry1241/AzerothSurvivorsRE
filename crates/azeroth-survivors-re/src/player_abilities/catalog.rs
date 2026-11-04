@@ -43,6 +43,8 @@ pub struct ClassAbilities {
     pub pool: &'static [&'static str],
 }
 
+pub const KILL_COMMAND_DESCRIPTION: &str = "Commands each of your pets to charge its own target, prioritizing bosses and elites. The Wolf bites, the Raptor strikes three times, and the Devilsaur Matriarch delivers a crushing blow.";
+
 pub static ABILITIES: &[AbilityDefinition] = &[
     AbilityDefinition {
         key: "cleave",
@@ -547,6 +549,26 @@ pub static ABILITIES: &[AbilityDefinition] = &[
         pulse_spell_id: 0,
         effect: StatusEffect { tag: 0, value: f32::from_bits(0x00000000), duration: f32::from_bits(0x00000000) },
         school: 2, kind: 2,
+    },
+    // Installed 0.140.0 descriptor at 0x1473ba208. Explosive Trap retains its
+    // independent descriptor for Counterattack.
+    AbilityDefinition {
+        key: "kill_command",
+        name: "Kill Command",
+        icon: "Ability_Hunter_BeastCall",
+        upgrade_types: &[0, 1],
+        spell_id: 883,
+        base_power: 67.0,
+        base_cooldown: f32::from_bits(0x41092493),
+        range: 35.0,
+        radius: 0.0,
+        targets: 0,
+        duration: 0.0,
+        ticks: 0,
+        projectile_speed: 0.0,
+        pulse_spell_id: 0,
+        effect: StatusEffect { tag: 0, value: 0.0, duration: 0.0 },
+        school: 0, kind: 12,
     },
     AbilityDefinition {
         key: "concussive_shot",
@@ -2114,7 +2136,7 @@ pub static ABILITIES: &[AbilityDefinition] = &[
 pub static CLASSES: &[ClassAbilities] = &[
     ClassAbilities { class_id: 1, key: "warrior", starter: "cleave", pool: &["cleave", "whirlwind", "thunder_clap", "mortal_strike", "execute", "demo_shout", "battle_shout", "bloodthirst", "rend", "shield_slam", "bloodrage"] },
     ClassAbilities { class_id: 2, key: "paladin", starter: "consecration", pool: &["consecration", "exorcism", "hammer_of_wrath", "holy_shock", "holy_wrath", "judgement", "hammer_of_justice", "holy_light", "divine_shield", "holy_shield", "redemption"] },
-    ClassAbilities { class_id: 3, key: "hunter", starter: "auto_shot", pool: &["auto_shot", "arcane_shot", "multi_shot", "serpent_sting", "volley", "explosive_trap", "concussive_shot", "aimed_shot", "immolation_trap", "frost_trap", "hunters_mark"] },
+    ClassAbilities { class_id: 3, key: "hunter", starter: "auto_shot", pool: &["auto_shot", "arcane_shot", "multi_shot", "serpent_sting", "volley", "kill_command", "concussive_shot", "aimed_shot", "immolation_trap", "frost_trap", "hunters_mark"] },
     ClassAbilities { class_id: 4, key: "rogue", starter: "sinister_strike", pool: &["sinister_strike", "eviscerate", "blade_flurry", "rupture", "kidney_shot", "gouge", "ghostly_strike", "adrenaline_rush", "backstab", "slice_and_dice", "seal_fate"] },
     ClassAbilities { class_id: 5, key: "priest", starter: "smite", pool: &["smite", "sw_pain", "mind_blast", "holy_nova", "pw_shield", "renew", "holy_fire", "mind_flay", "psychic_scream", "devouring_plague", "lightwell"] },
     ClassAbilities { class_id: 7, key: "shaman", starter: "lightning_bolt", pool: &["lightning_bolt", "chain_lightning", "earth_shock", "flame_shock", "frost_shock", "lightning_shield", "magma_totem", "searing_totem", "fire_nova", "healing_wave", "stormstrike"] },

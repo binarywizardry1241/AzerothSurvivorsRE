@@ -41,6 +41,7 @@ pub(super) struct State {
     pub reduction_durations: std::collections::BTreeMap<u64, f32>,
     pub actor_weakening: std::collections::BTreeMap<u64, state::StrongestWindow>,
     pub demoralizing_amplification: std::collections::BTreeMap<u64, state::StrongestWindow>,
+    pub packlord_howl: std::collections::BTreeMap<u64, std::collections::BTreeMap<u8, (f32, f32)>>,
     pub appearance_overrides: std::collections::BTreeMap<u64, (u32, f32)>,
     /// Current Game128 vector: all Felhunters share a3-second victim cooldown.
     pub consume_magic_ready_at: std::collections::BTreeMap<u64, f32>,
@@ -67,6 +68,13 @@ pub(super) enum ActorAuraUpdate {
 }
 
 impl State {
+    pub(super) fn packlord_amplification(&self, guid: u64, owner: u8, now: f32) -> f32 {
+        self.packlord_howl.get(&guid)
+            .and_then(|howls| howls.get(&owner))
+            .filter(|(expires_at, _)| now < *expires_at)
+            .map_or(0.0, |(_, amount)| *amount)
+    }
+
     /// Current145c02620 consumes the dirty flag and publishes every positive,
     /// finite learned timer through the ordinary millisecond cooldown path.
     pub(super) fn flush_cooldowns(
@@ -186,6 +194,7 @@ impl State {
         now: f32,
     ) -> Vec<ActorAuraUpdate> {
         if actor.dead {
+            self.packlord_howl.remove(&actor.guid);
             return Vec::new();
         }
         let mut events = Vec::new();
@@ -227,6 +236,13 @@ impl State {
                 spell_id: FROST_SHOCK_AURA,
             });
         }
+        if let Some(howls) = self.packlord_howl.get_mut(&actor.guid) {
+            howls.retain(|_, (expires_at, _)| now < *expires_at);
+            if howls.is_empty() {
+                self.packlord_howl.remove(&actor.guid);
+                events.push(ActorAuraUpdate::Remove { target: actor.guid, spell_id: 24_604 });
+            }
+        }
         let control_expired = actor.stun_until > 0.0 && now >= actor.stun_until;
         state::expire_control(actor, window, now);
         if control_expired {
@@ -240,6 +256,7 @@ impl State {
                     && spell_id != reduction
                     && !(spell_id == FROST_SHOCK_AURA
                         && self.frost_shock_durations.contains_key(&actor.guid))
+                    && !(spell_id == 24_604 && self.packlord_howl.contains_key(&actor.guid))
                     && !periodic.iter().any(|row| row.spell_id == spell_id)
                 {
                     events.push(ActorAuraUpdate::Remove {

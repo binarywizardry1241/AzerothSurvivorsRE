@@ -1092,6 +1092,8 @@ impl Mechanics {
             showcase: self.showcase.enabled,
             actors: &mut self.actors,
             bosses: &mut self.bosses,
+            pets: &mut self.pet_state.rows,
+            hunter_mark: self.passive_state.hunters_mark.guid,
             boss_state: &mut self.boss_state,
             guardian_state: &mut self.guardian_state,
             affixes: &mut self.affixes,
@@ -1248,7 +1250,6 @@ impl Mechanics {
                 &mut self.rng, object_counter,
             );
             passive.pet_tick(
-                &mut self.pet_state.rows,
                 facing,
                 &mut self.execution,
                 &mut self.rng,
@@ -1540,6 +1541,8 @@ impl Mechanics {
             showcase: self.showcase.enabled,
             actors: &mut self.actors,
             bosses: &mut self.bosses,
+            pets: &mut self.pet_state.rows,
+            hunter_mark: self.passive_state.hunters_mark.guid,
             boss_state: &mut self.boss_state,
             guardian_state: &mut self.guardian_state,
             affixes: &mut self.affixes,
@@ -1784,6 +1787,8 @@ impl Mechanics {
             showcase: self.showcase.enabled,
             actors: &mut self.actors,
             bosses: &mut self.bosses,
+            pets: &mut self.pet_state.rows,
+            hunter_mark: self.passive_state.hunters_mark.guid,
             boss_state: &mut self.boss_state,
             guardian_state: &mut self.guardian_state,
             affixes: &mut self.affixes,
@@ -2060,6 +2065,8 @@ struct CombatAdapter<'a, W> {
     showcase: bool,
     actors: &'a mut Vec<RunActor>,
     bosses: &'a mut Vec<RunBoss>,
+    pets: &'a mut [pets::Pet],
+    hunter_mark: Option<u64>,
     boss_state: &'a mut bosses::BossState,
     guardian_state: &'a mut guardians::GuardianState,
     affixes: &'a mut affixes::State,
@@ -2304,11 +2311,24 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
 
     fn hit(&mut self, hit: PendingHit, rng: &mut NativeRng,
         vitals: Option<&mut Vitals>) -> Option<HitInput> {
+        // 0.140.0 0x145f4333b..0x145f434c4 skips pet hits, pet-origin
+        // effects and Packlord bleed before looking up the active hero's Howl.
+        let words = hit.context.source_words;
+        let effect_index = (u64::from(words[2]) | (u64::from(words[3]) << 32)) as usize;
+        let packlord_bleed = self.attribution.source_kind == 1 && words[..2] == [1, 0]
+            && self.equipped.rows.get(effect_index).is_some_and(|row| row.tag() == 62);
+        let packlord = if self.attribution.source_kind == 2 || hit.context.pet_entry.is_some()
+            || packlord_bleed
+        {
+            0.0
+        } else {
+            self.generic.packlord_amplification(hit.target_guid, self.party_healing.source_slot, self.now)
+        };
         if self.bosses.iter().any(|row| row.guid == hit.target_guid) {
-            return self.hit_boss(hit, rng, vitals);
+            return self.hit_boss(hit, rng, vitals, packlord);
         }
         if self.boss_state.wards.actors.iter().any(|row| row.guid == hit.target_guid) {
-            return self.hit_ward(hit, rng, vitals);
+            return self.hit_ward(hit, rng, vitals, packlord);
         }
         let leech = self.current_leech();
         let secondary_source = (hit.effect.tag == 5).then(|| self.healing_source(hit.spell_id));
@@ -2365,7 +2385,7 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             vulnerability_until: row.vulnerability_until,
             demoralizing_amplification: self.generic.demoralizing_amplification
                 .get(&row.guid).map_or(0.0, |window| window.value_at(self.now)),
-            additional_damage_taken: row.additional_damage_taken,
+            additional_damage_taken: row.additional_damage_taken + packlord,
             dead: row.actor.dead,
         };
         let raid_multiplier = if victim.guardian {
@@ -2505,6 +2525,10 @@ impl<W: RunWorld> CastPort for CombatAdapter<'_, W> {
         self.party_healing.enqueue_aura(self.player_guid, self.player, aura);
     }
     fn has_special_demons(&self) -> bool { self.special_demons != 0 }
+    fn command_pets(&mut self, instance: &RuntimeInstance<'_>, context: CastContext,
+                    targets: &[Target]) -> bool {
+        self.queue_kill_command(instance, context, targets, self.hunter_mark)
+    }
     fn critical(&self) -> Critical {
         Critical {
             chance: self.stats.critical_chance,

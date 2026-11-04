@@ -177,6 +177,10 @@ impl<W: RunWorld> CastPort for PassiveCombat<'_, '_, '_, W> {
     fn has_special_demons(&self) -> bool {
         self.core.special_demons != 0
     }
+    fn command_pets(&mut self, instance: &RuntimeInstance<'_>, context: CastContext,
+                    targets: &[Target]) -> bool {
+        self.core.queue_kill_command(instance, context, targets, self.state.hunters_mark.guid)
+    }
     fn begin_cast(&mut self, spell_id: u32) {
         self.core.generic.begin_cast(spell_id);
     }

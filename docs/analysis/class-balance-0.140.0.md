@@ -12,9 +12,9 @@ items](../CHANGELOG.md#01400).
 
 ## Hunter pets, offers and Kill Command
 
-[Finding #316](../CURRENT-STATE.md#gap-316) owns the Kill Command lifecycle,
+[Finding #316](../verification-needed.md#gap-316) owns the Kill Command lifecycle,
 with the retained [ordinary pets #6](../verification-needed.md#gap-6),
-[jewelry #143](../CURRENT-STATE.md#gap-143), and
+[jewelry #143](../verification-needed.md#gap-143), and
 [set mechanics #242](../CURRENT-STATE.md#gap-242) as dependencies.
 The new `crates/wenilla-rogue/src/game/kill_command.rs` diagnostic has 33
 verified references in 12 candidate extents. In particular, `0x145f807a9`
@@ -24,10 +24,100 @@ the cast path, effect handling and shared failure paths.
 
 | Claim | Current observation and source frontier |
 | --- | --- |
-| `d02bb19fb7a35f89` Kill Command, pet admission and Counterattack | The Hunter class row at `0x1473b8028` points to eleven pool entries at `0x1473b7400`, with `kill_command` at slot 5 in place of `explosive_trap`. Its 120-byte ability row at `0x1473ba208` binds spell 883, raw power 67, range 35 and cast kind 12. The adjacent `explosive_trap` record at `0x1473ba190` retains spell 13812, and Counterattack's 64-byte effect at `0x1473d1328` selects that key. Source `player_abilities/catalog.rs` still supplies `explosive_trap` in the ordinary pool and `behavior/dispatch.rs` falls through for kind 12. Trace the current pet offer predicate, cast-kind branch, per-pet target and attack queue, and independent Counterattack trigger. Compare with the existing actor lifecycle in `gameplay/mechanics/pets.rs` and `run_effects/pet_tick.rs`. |
-| `406566b77dfca87b` Heart of the Packlord | The new title at `0x1473c4624` and retained Heart of the Earthshaker title at `0x1473c43d8` are separate strings. The source loads `legendary:explosive_trap` from `assets/native-amulets-0.100.1.json` through `loot_rewards/amulets.rs`, and the cooperative save registry also carries that key. Resolve the keyed constructor, old-key translation, scaled effects, wolf howl target cap and damage taken, raptor bleed and Matriarch shockwave through jewelry/kill-command consumers. |
-| `294bc25772dd45de` Giantstalker eight-piece | The title at `0x1473eeddf` seeds the set lookup. The checkout loads `assets/sets-0.121.0.json` through `sets.rs`. Follow the current descriptor's eight-piece effect through spell selection and effective cooldown/power before recording the 20% and 30% claim values as live rules. |
-| `4ce9c90071dde8fd` Beastmaster Matriarch | The pet name begins at `0x1473e640f`; it also appears in set descriptions near `0x1473eb244`. The retained `run_effects/pets.rs` table has the ordinary Wolf/Raptor lifecycle, with no Matriarch descriptor. Follow the set's actor grant and bind normal bite, Hunter's Mark and five-star branches, including whether a bleed producer remains. |
+| `d02bb19fb7a35f89` Kill Command, pet admission and Counterattack | Hunter class row `0x1473b8028` points to eleven pool entries at `0x1473b7400`. Slot 5 selects `kill_command`, whose 120-byte row at `0x1473ba208` binds spell 883, power 67, range 35, a 12-second composed cooldown and cast kind 12. The offer owner `0x145fe59e0` checks composed pet effects rather than waiting for a visual spawn. Its collector `0x14602c5f0` reads tag 42 and leaves the original Wolf, Raptor and Matriarch descriptors eligible even when stat 32 filters special pets. Source offers use the same effect-derived grants. The adjacent Explosive Trap row `0x1473ba190` and Counterattack's keyed effect `0x1473d1328` still route spell 13812 independently. |
+| `406566b77dfca87b` Heart of the Packlord | Constructor `0x145deb11c..0x145deb286` uses the new title and copies tags 61–63 from `0x1473c4640`, `0x1473c4680` and `0x1473c46c0`. It keeps the adjacent Earthshaker constructor. Save reader `0x145e0b81d..0x145e0b89b` maps the old 24-byte legendary key onto `legendary:kill_command`. The current source catalog, save reads and Seen writes, cooperative Seen admission, descriptions and pet callbacks carry the replacement. |
+| `294bc25772dd45de` Giantstalker eight-piece | `0x145e32b56..0x145e32bfe` writes two keyed native tag 73 effects. Modifier 1 receives `0.2 × set_multiplier` and modifier 0 `0.3 × set_multiplier`. The current set override feeds these through the existing cooldown and power lanes, including the five-star multiplier. |
+| `4ce9c90071dde8fd` Beastmaster Matriarch | Mode 1 at `0x145e30c4e` and mode 2 at `0x145e30edf` both grant native tag 42 with descriptor `0x1473e6d38` and add tag 64 with the mark-only bonus 0.5 or 1.0. The descriptor carries entry 9532, model 5238, scale 0.3, period 1.2 and bite base 100.5, 150% of Wolf 67. The attack owner reads mark GUID `Game+0xc28` and the tag 64 row for the normal bite and command hit separately. The source uses the current eight-piece descriptor and publishes the Matriarch through the existing pet and creature-query path. The broader Tier 0.5 reward and four-piece work remains with [#314](../CURRENT-STATE.md#gap-314). |
+
+<a id="kill-command-recovery"></a>
+
+The cast table at `0x147afad20` sends kind 12 to `0x145f7c182`. The
+`0x1460369a0` collector accepts the three original combat descriptors in
+stored order and skips an active command. `0x145f27eb0` uses the player's
+position and the spell range, sorts assigned targets behind unassigned ones,
+and prioritizes bosses, elites and marked targets. The caster publishes the
+spell, assigns targets round-robin and starts a two-second command window.
+The queue stores the composed ability power multipliers, not an ordinary pet
+bite snapshot. The [White Devilsaur constituent](../verification-needed.md#gap-119)
+changes appearance while preserving those combat identities.
+
+The pet tick at `0x145fc2760` continues a live target, reacquires from the
+pet within 12 yards when needed, and uses the existing collision and pet
+motion ports for the 30-unit/second charge. The strike gate uses a 3.5-yard
+reach and runs one strike, or three for Raptor with 0.2 seconds between
+strikes. `0x145fc338c..0x145fc3729` composes descriptor damage × 1.4,
+live damage and pet stat 17, stored upgrade and set power, and a per-pet
+strike coefficient of 2.8 (Wolf), 0.945 (Raptor) or 2.1 (Matriarch).
+Matriarch's mark factor applies before the per-strike critical draw. Source
+retains the pet's melee event and Kill Command combat attribution.
+
+`0x145f271e0` clears the command and resumes the ordinary bite deadline
+before checking the accumulated pre-crit damage. A positive result enables
+Packlord's equipped row. Wolf spell 24604 marks up to six enemies around
+the saved impact position in radius 10 for five seconds and adds its
+rank-scaled damage-taken amount, capped at 20%. Raptor spell 11977 installs
+five bleed ticks for its scaled share of accumulated strike damage, around
+the impact in radius 6. Matriarch spell 20549 applies its scaled shockwave
+in radius 6 while excluding the direct target. These use the existing
+actor hit, aura and periodic queues. Native `0x145f27930` and
+`0x145f27a05` carry the equipped effect index through the Raptor bleed row.
+The Matriarch shockwave puts the same kind-1 provenance and effect index at
+`Game+0x20/+0x28` before calling the common damage owner. The source feeds
+both into the existing meter provenance resolver, while the direct strikes
+use the native `Wolf Bite`, `Raptor Strikes` and `Crushing Bite` breakdown keys.
+
+Fourteen selected name, description and breakdown keys were verified through
+all fourteen embedded locale descriptors and appended to their corresponding
+source catalogs. The class picker and reward card resolve
+`ability.kill_command.name`, and use the literal description beginning
+`Commands each of your pets` where the current target has no `.desc` entry.
+The Packlord constructor uses the literal name and its three parameterized
+effect keys. Beastmaster uses `set.hunter.7` and the two separately recovered
+Matriarch bite descriptions. The existing local and party meter presentation
+uses the literal attack and pet keys. The broader Tier 0.5 catalog and meter
+protocol work remain separate.
+
+The current PE supplied the descriptor/constructor bytes and direct x64
+instructions. Journaled Ghidra queries independently covered the three
+owners below. Each maps raw offset zero to the original VA. Detached
+queries lack the external jump table and globals, so the full PE instruction
+and data reads resolved those references.
+
+| Bounded owner | Exact slice SHA-256 | Saved Ghidra result SHA-256 |
+| --- | --- | --- |
+| `0x145f7bb40..0x145f80854` cast dispatcher | `fcd3fbcb42fa4963c81fde9208b8eff15f63b7cf9e8f3ecd238bf7040c2cf09d` | `fc7a4461b0825d0cf62b2bfb28c4361822ed0e63bf90f5e2e6a3648121150db6` |
+| `0x145fc2760..0x145fc663c` pet tick | `433f7dec65b11be75a363ee1ee48d07ff84749627e106bd07e0c7f6153db602f` | `babdb7859e26c63317974a1fc7c9428327a884c45f3dc6b10e6d2d88cd20130e` |
+| `0x145f271e0..0x145f27ab8` command completion | `e154395f955c7b0757157a1502b675eecb07a2367c5943ae244bf7a19c9e6f0e` | `403b272896973aec141de96b84e6a304722d6150f3ceb08c5bc9b46437ccde3a` |
+
+### Pet priority, Packlord ownership and Matriarch presentation
+
+The initial command and 12-yard reacquisition both use `0x145f27eb0`.
+The comparator `0x145edfa30` sorts unassigned targets before assigned
+targets, then uses target tier and Hunter's Mark within the tier. A protected
+boss drops to the elite tier unless exposed. Active Guardians and live wards
+with a parent share the elite tier. The existing ward and raid defense state
+supplies those conditions. Reacquisition resets the movement deadline while
+retaining the strike deadline.
+
+Packlord's Wolf completion removes an existing contribution from the same
+owner before appending its new howl (`0x145f271e0..0x145f275e0`).
+The hit consumer `0x145f4333b..0x145f434c9` uses the active hero's own
+entry and excludes pet hits and the Packlord bleed. Each Raptor completion
+appends its own five ticks at `0x145f27930..0x145f27983`. Their shared
+victim may therefore retain overlapping bleed applications.
+
+At `0x145fb7c96`, the Matriarch's display scale uses the descriptor's
+0.3 multiplied by 1.25, while collision retains the original descriptor.
+The addon pet serializer `0x146068840..0x146068d8c` reads the combat
+descriptor for entry 9532, key `devilsaur_matriarch`, name Devilsaur
+Matriarch, kind `pet`, and the explicit Beast Taming icon. The live
+addon adapter recognizes this entry, including when it appears beside
+White visual variants.
+
+Six saved Ghidra results were checked against exact source slices and the
+installed PE digest. Rust syntax and the modified source paths were checked.
+Compilation, gameplay, co-op, addon runtime and original/rebuilt parity
+remain open.
 
 The timed Hunter casts share the [proc dispatcher #90](../verification-needed.md#gap-90).
 The White Devilsaur variant remains a separate appearance constituent under

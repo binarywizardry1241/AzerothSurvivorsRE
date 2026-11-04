@@ -146,6 +146,11 @@ fn slot_pair(value: &str) -> Option<(usize, u32)> {
     (slot < 19).then_some((slot, id.parse::<u32>().ok()?))
 }
 
+pub(super) fn canonical_seen_key(key: &str) -> &str {
+    // 0.140.0 save reader 0x145e0b81d..0x145e0b89b migrates the old necklace.
+    if key == "legendary:explosive_trap" { "legendary:kill_command" } else { key }
+}
+
 pub(crate) fn seen<'a>(lines: impl IntoIterator<Item = &'a str>) -> BTreeMap<String, u8> {
     let mut output = BTreeMap::<String, u8>::new();
     for line in lines {
@@ -162,7 +167,7 @@ pub(crate) fn seen<'a>(lines: impl IntoIterator<Item = &'a str>) -> BTreeMap<Str
             let Ok(quality) = quality.parse::<u8>() else {
                 continue;
             };
-            let highest = output.entry(key.to_owned()).or_default();
+            let highest = output.entry(canonical_seen_key(key).to_owned()).or_default();
             *highest = (*highest).max(quality.min(4));
         }
     }

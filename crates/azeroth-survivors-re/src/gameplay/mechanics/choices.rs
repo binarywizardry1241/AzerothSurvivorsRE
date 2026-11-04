@@ -67,6 +67,7 @@ impl Mechanics {
                     || self.choice_state.controls.banished_keys.iter().any(|entry| entry == key)
                     || self.choice_state.banished_abilities.contains(key)
                     || self.choice_state.excluded_new.contains(key)
+                    || (*key == "kill_command" && !self.pet_state.can_learn_kill_command())
                     || (*key == "demonic_empowerment" && !self.demon_state.config.enables_empowerment())
                     || (*key == "call_of_flame"
                         && !self.abilities.iter().any(|row| row.definition.kind == 10))

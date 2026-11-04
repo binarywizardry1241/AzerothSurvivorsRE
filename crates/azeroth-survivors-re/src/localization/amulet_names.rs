@@ -7,8 +7,8 @@ pub(super) fn localized(
     mut lookup: impl FnMut(&str) -> Option<String>,
 ) -> String {
     let key = match generated_ability_key {
-        // The Legionlord constructor returns a single literal name.
-        None | Some("demonic_empowerment") => {
+        // The Legionlord and Packlord constructors return literal names.
+        None | Some("demonic_empowerment" | "kill_command") => {
             return lookup(name).unwrap_or_else(|| name.to_owned());
         }
         Some(key) => key,

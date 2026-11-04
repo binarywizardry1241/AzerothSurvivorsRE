@@ -236,8 +236,13 @@ pub fn for_choice(
     let Some(definition) = AbilityDefinition::by_key(choice.ability_key) else {
         return Card::default();
     };
+    let name = if definition.key == "kill_command" {
+        locale.lookup("ability.kill_command.name").unwrap_or(definition.name)
+    } else {
+        locale.label(definition.name)
+    };
     let mut card = Card {
-        name: locale.label(definition.name).to_owned(),
+        name: name.to_owned(),
         icon: art.icons.get(choice.ability_key).cloned(),
         rarity: choice.rarity,
         ..Default::default()
@@ -437,6 +442,10 @@ pub fn description(
     bonuses: &DescriptionBonuses,
     locale: &Localization,
 ) -> Option<String> {
+    if instance.definition.key == "kill_command" {
+        use azeroth_survivors_re::player_abilities::catalog::KILL_COMMAND_DESCRIPTION;
+        return Some(locale.label(KILL_COMMAND_DESCRIPTION).into());
+    }
     let row = selected_description(instance, context, bonuses)?;
     let duration = (instance.definition.key == "divine_shield").then(|| {
         azeroth_survivors_re::player_abilities::damage::scaled_duration(instance)

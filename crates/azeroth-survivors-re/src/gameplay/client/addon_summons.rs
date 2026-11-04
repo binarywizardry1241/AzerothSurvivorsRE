@@ -2,9 +2,9 @@
 //! Native metadata includes the first matching talent's icon fallback; it is
 //! independent of the historical gameplay descriptor representation.
 
-use std::sync::LazyLock;
+use std::{borrow::Cow, sync::LazyLock};
 
-use azeroth_survivors_re::run_effects::pets::DREAD_LORD;
+use azeroth_survivors_re::run_effects::pets::{DREAD_LORD, MATRIARCH};
 use serde::Deserialize;
 
 use crate::{gameplay::mechanics::Mechanics, localization::Localization};
@@ -27,20 +27,27 @@ pub(super) fn snapshot(game: &Mechanics, locale: &Localization) -> String {
     game.addon_summons()
         .into_iter()
         .map(|row| {
-            let metadata = METADATA.iter().find(|metadata| metadata.entry == row.entry)
-                .expect("native combat-summon descriptor");
-            // This producer cleans only list delimiters in the translated name.
-            // Keys and bare icon names retain their native immutable bytes.
-            let (key, name) = if row.entry == DREAD_LORD.entry {
-                (DREAD_LORD.key, DREAD_LORD.name)
+            let (key, name, kind, icon) = if row.entry == MATRIARCH.entry {
+                // The 0.140.0 formatter prefixes the explicit icon.
+                // Special 0 selects the "pet" kind.
+                let icon = MATRIARCH.icon.expect("Matriarch descriptor icon");
+                (MATRIARCH.key, MATRIARCH.name, "pet", Cow::Owned(format!("Interface\\Icons\\{icon}")))
             } else {
-                (metadata.key.as_str(), metadata.name.as_str())
+                let metadata = METADATA.iter().find(|metadata| metadata.entry == row.entry)
+                    .expect("native combat-summon descriptor");
+                let (key, name) = if row.entry == DREAD_LORD.entry {
+                    (DREAD_LORD.key, DREAD_LORD.name)
+                } else {
+                    (metadata.key.as_str(), metadata.name.as_str())
+                };
+                (key, name, metadata.kind.as_str(), Cow::Borrowed(metadata.icon.as_str()))
             };
+            // This producer cleans only list delimiters in the translated name.
             let name = locale.label(name).replace([',', ';'], " ");
             format!(
                 "{},{},{},{},{:.1},{:.1},{},{}",
-                row.id, row.entry, key, metadata.kind,
-                row.ends, row.duration, metadata.icon, name,
+                row.id, row.entry, key, kind,
+                row.ends, row.duration, icon, name,
             )
         })
         .collect::<Vec<_>>()

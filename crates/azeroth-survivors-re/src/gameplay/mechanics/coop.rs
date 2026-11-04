@@ -132,6 +132,7 @@ macro_rules! hero_state {
                 std::mem::swap(&mut self.effect_state.generic.actor_weakening, &mut game.effect_state.generic.actor_weakening);
                 std::mem::swap(&mut self.effect_state.generic.demoralizing_amplification, &mut game.effect_state.generic.demoralizing_amplification);
                 std::mem::swap(&mut self.effect_state.generic.appearance_overrides, &mut game.effect_state.generic.appearance_overrides);
+                std::mem::swap(&mut self.effect_state.generic.packlord_howl, &mut game.effect_state.generic.packlord_howl);
                 self.chest_state.swap_world(&mut game.chest_state);
                 $( std::mem::swap(&mut self.$field, &mut game.$field); )*
                 std::mem::swap(&mut self.boss_player_override, &mut game.boss_state.player_override);

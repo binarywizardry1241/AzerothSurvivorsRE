@@ -173,7 +173,9 @@ impl EffectRow {
                 bytes[63] = 36;
             }
             37 => bytes[0] = 30,
-            38 => bytes[0] = 31,
+            38 | 73 => bytes[0] = 31,
+            42 => bytes[0] = 29,
+            64 => {},
             tag => panic!("unsupported recovered armor-set effect variant {tag}"),
         }
         Self { bytes, strings: &payload.strings, lists: &payload.lists }

@@ -68,6 +68,23 @@ impl MenuCatalog {
                 description: String::new(),
             });
         }
+        use azeroth_survivors_re::player_abilities::catalog::{
+            AbilityDefinition, KILL_COMMAND_DESCRIPTION,
+        };
+        let kill_command = AbilityDefinition::by_key("kill_command")
+            .expect("recovered Hunter Kill Command");
+        let hunter = catalog.classes.iter_mut().find(|class| class.key == "hunter")
+            .expect("embedded Hunter class");
+        let slot = hunter.spell_keys.iter().position(|key| key == "explosive_trap")
+            .expect("retained Hunter Explosive Trap slot");
+        hunter.spell_keys[slot] = kill_command.key.into();
+        hunter.spell_names[slot] = kill_command.name.into();
+        catalog.abilities.push(AbilityDef {
+            key: kill_command.key.into(),
+            name: kill_command.name.into(),
+            icon: kill_command.icon.into(),
+            description: KILL_COMMAND_DESCRIPTION.into(),
+        });
         catalog
     }
 

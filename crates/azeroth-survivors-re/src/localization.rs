@@ -211,7 +211,11 @@ impl Localization {
                 .lookup(&format!("ability.{}.name", ability.key))
                 .unwrap_or(&ability.name)
                 .into();
-            ability.description = self.label(&format!("ability.{}.desc", ability.key)).into();
+            ability.description = if ability.key == "kill_command" {
+                self.label(&ability.description).into()
+            } else {
+                self.label(&format!("ability.{}.desc", ability.key)).into()
+            };
         }
         translated
     }

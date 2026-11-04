@@ -241,7 +241,27 @@ pub static DEFINITIONS: [PetDefinition; 15] = [
     },
 ];
 
+/// 0.140.0 Beastmaster's permanent companion. The active set supplies a
+/// separate Hunter's Mark modifier instead of embedding it in the bite power.
+pub const MATRIARCH: PetDefinition = PetDefinition {
+    key: "devilsaur_matriarch",
+    name: "Devilsaur Matriarch",
+    icon: Some("Ability_Hunter_BeastTaming"),
+    entry: 9532,
+    model: 5238,
+    scale: 0.3,
+    damage: 100.5,
+    period: 1.2,
+    spell_id: 0,
+    school: 0,
+    special: 0,
+    native_address: 0x1473e6d38,
+};
+
 pub fn definition(entry: u32) -> Option<&'static PetDefinition> {
+    if entry == MATRIARCH.entry {
+        return Some(&MATRIARCH);
+    }
     DEFINITIONS
         .iter()
         .find(|definition| definition.entry == entry)
@@ -270,6 +290,9 @@ pub fn raw29_definition(bytes: &[u8; 64]) -> Option<&'static PetDefinition> {
         return None;
     }
     let address = u64::from_le_bytes(bytes[8..16].try_into().unwrap());
+    if address == MATRIARCH.native_address {
+        return Some(&MATRIARCH);
+    }
     // talents.json (0.100.1) remains the live ordinary-effect source. Its
     // descriptors predate the 0.105.0 table used by DEFINITIONS; normalize only
     // the five established ordinary identities at this source-data boundary.
@@ -421,6 +444,10 @@ pub fn initial_state(
 /// The 0.139.2 constructor uses an indexed display multiplier. Collision
 /// radius and reach use the descriptor scale independently.
 pub fn display_scale(definition: &PetDefinition) -> f32 {
+    // The 0.140.0 Matriarch uses a separate display multiplier.
+    if definition.entry == MATRIARCH.entry {
+        return definition.scale * 1.25;
+    }
     let factor = match definition.special {
         1..=4 => 1.2,
         5..=7 => 1.5,

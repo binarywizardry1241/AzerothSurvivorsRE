@@ -243,6 +243,20 @@ fn effect_description(record: &EffectRecord, bytes: &[u8; 64]) -> Option<Text> {
             };
             template(pattern, vec![("who", who), (name, value)])
         }
+        61 => template(
+            "Wolf: Howl makes {n} nearby enemies take {p} more damage from you",
+            vec![("n", literal(u32::from_le_bytes(bytes[8..12].try_into().unwrap()))),
+                 ("p", percent(value(4)))],
+        ),
+        62 => template(
+            "Raptor: {spell} bleeds nearby enemies for {p} of its strike damage over {secs} sec",
+            vec![("spell", ability("kill_command")?), ("p", percent(value(4))),
+                 ("secs", number(value(12)))],
+        ),
+        63 => template(
+            "Devilsaur Matriarch: {spell} unleashes a devastating shockwave",
+            vec![("spell", ability("kill_command")?)],
+        ),
         3 => template(
             "A broken shield bursts for {frac} of what it absorbed on enemies within {radius} yd",
             vec![("frac", percent(value(4))), ("radius", number(value(8)))],

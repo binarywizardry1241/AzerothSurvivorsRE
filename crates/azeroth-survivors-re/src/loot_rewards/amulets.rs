@@ -74,7 +74,7 @@ fn scale_effect(raw_hex: &str, factor: f32, equipped_amulet: bool) -> [u8; 64] {
             .expect("source-owned Effect64 hex");
     }
     let offset = match bytes[0] {
-        0 | 2 | 3 | 4 | 5 | 7 | 11 | 13 | 15 | 16 | 17 | 18 | 22 | 30 => Some(4),
+        0 | 2 | 3 | 4 | 5 | 7 | 11 | 13 | 15 | 16 | 17 | 18 | 22 | 30 | 61..=63 => Some(4),
         6 | 9 | 12 => Some(8),
         8 => Some(if bytes[8..12] == [255; 4] { 12 } else { 4 }),
         31 => Some(32),
@@ -83,6 +83,9 @@ fn scale_effect(raw_hex: &str, factor: f32, equipped_amulet: bool) -> [u8; 64] {
     if let Some(offset) = offset {
         let base = f32::from_le_bytes(bytes[offset..offset + 4].try_into().unwrap());
         let mut amount = base * factor;
+        if bytes[0] == 61 {
+            amount = amount.min(0.2);
+        }
         if bytes[0] == 31 {
             match bytes[36] {
                 1 => amount = amount.min(0.5),
@@ -215,6 +218,24 @@ pub fn catalog() -> &'static Catalog {
         // asset's provenance while exposing only the current shared pool.
         catalog.shared.retain(|row| row.key != "star_of_mystaria");
         catalog.generated.push(current.definition);
+        // Installed 0.140.0 constructor 0x145deb11c..0x145deb286 keeps
+        // Earthshaker independently constructible for Explosive Trap.
+        catalog.generated.push(Definition {
+            ability_key: Some("kill_command".into()),
+            key: "legendary:kill_command".into(),
+            name: "Heart of the Packlord".into(),
+            icon: "INV_Jewelry_Necklace_AhnQiraj_03".into(),
+            rarity: 4,
+            effects: [
+                (61, "3d0000009a99193e06000000000020410000a0400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"),
+                (62, "3e000000cdcccc3e0000c0400000a040000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"),
+                (63, "3f0000009a99993e0000c04000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"),
+            ].into_iter().map(|(tag, raw_hex)| EffectRecord {
+                effect: Effect::Passive { tag },
+                raw_hex: raw_hex.into(),
+                strings: vec![],
+            }).collect(),
+        });
         // Current generic constructor1458a1730 uses the current Soulfire name;
         // preserve the historical descriptor asset and unchanged collection key.
         catalog.generated.iter_mut().find(|row| row.key == "legendary:soul_fire")

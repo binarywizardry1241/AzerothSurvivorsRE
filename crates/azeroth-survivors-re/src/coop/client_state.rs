@@ -625,6 +625,7 @@ pub fn recognized_seen_key(key: &str) -> bool {
         "legendary:insect_swarm",
         "legendary:judgement",
         "legendary:kidney_shot",
+        "legendary:kill_command",
         "legendary:lightning_bolt",
         "legendary:lightning_shield",
         "legendary:lightwell",

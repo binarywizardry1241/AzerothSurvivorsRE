@@ -225,12 +225,14 @@ fn catalog() -> &'static Catalog {
 /// Nine supported classes, six tiers, both actual multiplier domains. Invalid
 /// class/tier values return None, matching the constructor's empty variant.
 pub fn descriptor(class_id: u8, tier: u8, empowered: bool) -> Option<&'static Descriptor> {
-    if class_id == 11 && tier == TIER_HALF {
-        return Some(tier_half_druid(empowered));
+    match (class_id, tier) {
+        (3, 2) => Some(giantstalker(empowered)),
+        (3, TIER_HALF) => Some(beastmaster(empowered)),
+        (11, TIER_HALF) => Some(tier_half_druid(empowered)),
+        _ => catalog().entries.iter().find(|entry| {
+            entry.class_id == class_id && entry.tier == tier && entry.empowered == empowered
+        }),
     }
-    catalog().entries.iter().find(|entry| {
-        entry.class_id == class_id && entry.tier == tier && entry.empowered == empowered
-    })
 }
 
 /// Native 0.140.0 145e30baa..145e30c18, with values at 1473ea130.
@@ -259,6 +261,64 @@ fn tier_half_druid(empowered: bool) -> &'static Descriptor {
             }],
         })
     })[usize::from(empowered)]
+}
+
+fn giantstalker(empowered: bool) -> &'static Descriptor {
+    static CURRENT: OnceLock<[Descriptor; 2]> = OnceLock::new();
+    &CURRENT.get_or_init(|| [false, true].map(|empowered| {
+        // 0.140.0 0x145e32b56: native tag 73 selects Kill Command for
+        // cooldown lane 1 and damage lane 0 at the existing set multiplier.
+        let multiplier = ActiveSet { tier: 2, empowered }.multiplier();
+        let effect = |modifier: u8, amount: f32| {
+            let mut bytes = [0; 64];
+            bytes[0] = 73;
+            bytes[8] = 1;
+            bytes[32..36].copy_from_slice(&amount.to_le_bytes());
+            bytes[36] = modifier;
+            NativeEffect {
+                raw_hex: bytes.iter().map(|byte| format!("{byte:02x}")).collect(),
+                strings: vec![crate::loot_rewards::amulets::EffectString {
+                    offset: 16, value: "kill_command".into(),
+                }],
+                lists: vec![],
+            }
+        };
+        Descriptor {
+            class_id: 3, tier: 2, empowered,
+            spell_key: "kill_command".into(),
+            description: "Kill Command's cooldown is {v}% shorter and it deals {v2}% more damage.".into(),
+            display_values: [20.0 * multiplier, f32::from_bits(0x41f00001) * multiplier],
+            effects: vec![effect(1, 0.2 * multiplier), effect(0, 0.3 * multiplier)],
+        }
+    }))[usize::from(empowered)]
+}
+
+fn beastmaster(empowered: bool) -> &'static Descriptor {
+    static CURRENT: OnceLock<[Descriptor; 2]> = OnceLock::new();
+    &CURRENT.get_or_init(|| [false, true].map(|empowered| {
+        // 0.140.0 0x145e30c4e / 0x145e30edf grant the same descriptor and
+        // select the mark-only bonus for mode 1 or 2.
+        let mut pet = [0; 64];
+        pet[0] = 42;
+        pet[8..16].copy_from_slice(&crate::run_effects::pets::MATRIARCH.native_address.to_le_bytes());
+        let mut bite = [0; 64];
+        bite[0] = 64;
+        bite[4..8].copy_from_slice(&(if empowered { 1.0f32 } else { 0.5 }).to_le_bytes());
+        Descriptor {
+            class_id: 3, tier: TIER_HALF, empowered,
+            spell_key: "hunters_mark".into(),
+            description: if empowered {
+                "The Devilsaur Matriarch's bites deal 100% additional damage against Hunter's Mark targets instead of 50%."
+            } else {
+                "Gain an additional permanent Devilsaur Matriarch. Her bites deal 150% of Wolf base bite damage, and 50% more against Hunter's Mark targets."
+            }.into(),
+            display_values: [0.0; 2],
+            effects: [pet, bite].iter().map(|bytes| NativeEffect {
+                raw_hex: bytes.iter().map(|byte| format!("{byte:02x}")).collect(),
+                strings: vec![], lists: vec![],
+            }).collect(),
+        }
+    }))[usize::from(empowered)]
 }
 
 pub fn equipped_descriptor(

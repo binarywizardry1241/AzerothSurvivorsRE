@@ -200,7 +200,7 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
     /// Shared145971490 applies actor damage and common kill side effects; an
     /// absent EnemyDefinition suppresses the later ordinary XP/gold/drop lane.
     pub(super) fn hit_ward(&mut self, hit: PendingHit, _rng: &mut NativeRng,
-        vitals: Option<&mut Vitals>) -> Option<HitInput> {
+        vitals: Option<&mut Vitals>, packlord: f32) -> Option<HitInput> {
         let leech = self.current_leech();
         let orb = self
             .boss_state
@@ -280,7 +280,7 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             vulnerability_until: row.vulnerability_until,
             demoralizing_amplification: self.generic.demoralizing_amplification
                 .get(&row.guid).map_or(0.0, |window| window.value_at(self.now)),
-            additional_damage_taken: row.additional_damage_taken,
+            additional_damage_taken: row.additional_damage_taken + packlord,
             dead: false,
         };
         let cap = orb.then_some(victim.maximum_health / 5.0);

@@ -7,7 +7,7 @@ use std::sync::OnceLock;
 use crate::{catalog::MenuCatalog, localization::Localization};
 use azeroth_survivors_re::{
     guardians::catalog::ZONES,
-    run_effects::pets::DREAD_LORD,
+    run_effects::pets::{DREAD_LORD, MATRIARCH},
 };
 use benilla_app::local_client::events::SessionEvent;
 
@@ -135,6 +135,7 @@ const SPECIALS: &[(u32, &str, &str, &str, u32, u32)] = &[
     ),
     (9530, "White Devilsaur", "White Devilsaur", "Companion", 1, 5239),
     (9531, "White Devilsaur", "White Devilsaur", "Companion", 1, 5239),
+    (MATRIARCH.entry, MATRIARCH.name, MATRIARCH.name, "Companion", 1, MATRIARCH.model),
     (9600, "Egg Sac", "object.9600.name", "", 10, 10056),
     (9601, "Fel Totem", "object.9601.name", "", 10, 4589),
     (9602, "Hex Totem", "object.9602.name", "", 10, 1529),
