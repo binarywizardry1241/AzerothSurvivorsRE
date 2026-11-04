@@ -10,6 +10,7 @@ mod settings;
 mod view;
 pub(crate) use pause::Pause;
 pub(crate) use settings::{defaults, owns_cvar, HudSettings, PARTS};
+pub(super) use settings::shown as cvar_shown;
 pub(crate) use loot::LootNotices;
 
 use super::RunSet;

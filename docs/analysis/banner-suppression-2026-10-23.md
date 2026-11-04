@@ -1,12 +1,35 @@
 # Native banners and addon takeover (#58)
 
-[CURRENT-STATE](../CURRENT-STATE.md#gap-register) owns the reported duplicate
-native/addon displays. Current bounded recovery uses installed **0.115.0**,
-SHA-256 `0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c`.
-The earlier **0.113.2** CVar snapshot repair remains connected; its evidence keeps
-that actual target. No additional source omission was established by current
-recovery. Sustained duplicate causality and actual VM/addon/rendered comparison
-remain open. The addon and event delivery are unchanged by this recovery.
+[CURRENT-STATE](../CURRENT-STATE.md#gap-58) owns the unresolved report of
+sustained duplicate native/addon displays. The **0.140.0** presentation repair
+below addresses a stale-frame route in the rebuilt host. The 0.115.0 and
+0.113.2 sections retain their original evidence and scope.
+
+## 0.140.0 presentation reads the applied CVar
+
+Installed SHA-256 `27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9`.
+The registration at `0x1401bfc10` and read at `0x1401bfea2` form the ten-byte
+`hudBanners` key at `0x14659fb81`. The read, default and post-trim predicate at
+`0x1401bfea2..0x1401bff12` (file offset `0x1bf2a2`, 112 bytes, SHA-256
+`3c8fb436d9c0baac329c01ced315418df6444f48aa3b315750789bf65a22d91f`)
+show by default and hide on the trimmed one-byte value `0`. Eight isolated
+instruction cases from `0x1401bfeea..0x1401bfefe` pass with synthetic post-trim
+inputs. The six HUD and banner Lua bodies match the actual bootstrap source
+and pass the [stub-host checks](../../scripts/check-addon-bootstrap.lua).
+
+The early local input snapshot feeds mouse arbitration ahead of the network
+drain. The packet UI feed and `OnUpdate` can write `hudBanners` later in the
+same VM pass, after that snapshot. The custom Notifications root was reading
+the early mirror despite running in `RunSet::Present`, after world presentation
+and the VM pass. It now reads the applied client registry at that presentation
+point and uses the shared visibility predicate. This covers both newly
+created and cached roots and retains the early input snapshot for its existing
+consumers. The normal Lua CVar owner still applies validation and callbacks.
+
+Four changed Rust files syntax-parse. The sustained duplicate still requires
+correlated evidence of the loaded addon's official callback, stock emote
+hook, CVar readback and displayed roots. Compilation, the actual VM schedule,
+rendered visibility and original/rebuilt comparison remain unverified.
 
 ## Current 0.115.0 bounded recovery
 

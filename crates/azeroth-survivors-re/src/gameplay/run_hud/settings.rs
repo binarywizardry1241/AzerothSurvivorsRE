@@ -39,7 +39,7 @@ pub(super) fn scale(value: &str) -> f32 {
         .map_or(1., |value| value.clamp(0.5, 2.))
 }
 
-pub(super) fn shown(value: &str) -> bool {
+pub(in crate::gameplay) fn shown(value: &str) -> bool {
     value.trim() != "0"
 }
 

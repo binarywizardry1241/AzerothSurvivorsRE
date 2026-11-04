@@ -5,6 +5,7 @@
 //! world-entry lifecycle. This is independent of the developer capture and UI demonstration paths.
 
 use benilla_ui::script::{PlayerRecord, ScriptValue, UiScript, UnitGuids};
+use bevy::ecs::system::SystemParam;
 use bevy::prelude::*;
 
 mod actors;
@@ -393,6 +394,18 @@ impl LocalClientInput {
     }
     pub fn take_script_calls(&mut self) -> Vec<ScriptCall> {
         std::mem::take(&mut self.script_calls)
+    }
+}
+
+/// Read the applied registry in presentation systems after the FrameXML pass.
+#[derive(SystemParam)]
+pub struct LocalClientCvars<'w> {
+    registry: Option<Res<'w, crate::cvars::Cvars>>,
+}
+
+impl LocalClientCvars<'_> {
+    pub fn get(&self, name: &str) -> Option<&str> {
+        self.registry.as_deref()?.get(name)
     }
 }
 

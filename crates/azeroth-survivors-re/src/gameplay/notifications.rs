@@ -4,7 +4,7 @@
 //! loading defers expiry independently of run pause.
 
 use bevy::{picking::Pickable, prelude::*};
-use benilla_app::local_client::LocalClientInput;
+use benilla_app::local_client::{LocalClientCvars, LocalClientInput};
 
 use crate::{assets::MenuArt, localization::Localization};
 
@@ -95,7 +95,7 @@ fn alpha(age: f32) -> f32 {
 
 fn sync(mut commands: Commands, time: Res<Time>, session: Res<RunSession>,
         art: Res<MenuArt>, input: Res<LocalClientInput>, mut state: ResMut<Notifications>,
-        settings: Res<super::run_hud::HudSettings>) {
+        settings: Res<super::run_hud::HudSettings>, cvars: LocalClientCvars) {
     let now = time.elapsed_secs();
     state.defer_expiry = input.loading_screen_covering;
     state.update(now);
@@ -107,7 +107,11 @@ fn sync(mut commands: Commands, time: Res<Time>, session: Res<RunSession>,
         state.rendered_key = None;
         return;
     }
-    let visibility = if settings.shown("banners") && !input.loading_screen_covering {
+    // Banner callbacks and OnUpdate can write after the early input snapshot.
+    let shown = cvars.get("hudBanners").map_or_else(
+        || settings.shown("banners"), super::run_hud::cvar_shown,
+    );
+    let visibility = if shown && !input.loading_screen_covering {
         Visibility::Inherited
     } else { Visibility::Hidden };
     if let Some(root) = state.root { commands.entity(root).insert(visibility); }
