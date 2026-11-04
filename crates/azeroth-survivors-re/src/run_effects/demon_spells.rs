@@ -34,6 +34,7 @@ pub fn proxy(
             talent_area_multiplier: instance.talent_area_multiplier,
             talent_duration_multiplier: instance.talent_duration_multiplier,
             health_power: instance.health_power,
+            healing_multiplier: instance.healing_multiplier,
             effect_multiplier: instance.effect_multiplier,
         };
     }

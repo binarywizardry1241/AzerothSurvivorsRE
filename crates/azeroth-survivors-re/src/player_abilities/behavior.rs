@@ -48,6 +48,8 @@ pub struct RuntimeInstance<'a> {
     pub talent_duration_multiplier: f32, // +84
     pub health_power: f32,        // +88
     pub effect_multiplier: f32,   // +92
+    /// Current keyed selector 7, stored at native instance +0x24.
+    pub healing_multiplier: f32,
 }
 
 impl<'a> RuntimeInstance<'a> {
@@ -70,6 +72,7 @@ impl<'a> RuntimeInstance<'a> {
             talent_duration_multiplier: 1.0,
             health_power: 0.0,
             effect_multiplier: 1.0,
+            healing_multiplier: 1.0,
         }
     }
 }

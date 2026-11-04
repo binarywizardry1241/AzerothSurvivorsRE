@@ -76,12 +76,16 @@ pub fn tick_auras(auras: &mut Vec<Aura>, now: f32, delta: f32,
     let ice_expired = result.expired.contains(&ICE_BARRIER);
     if ice_expired {
         vitals.absorb = native_max(vitals.absorb - shield.ice_barrier_absorb, 0.0);
+        shield.party_absorb = native_max(shield.party_absorb - shield.ice_barrier_absorb, 0.0);
         shield.ice_barrier_absorb = 0.0;
         result.absorb_changed = true;
     }
     if shield.spell_id != 0 && result.expired.contains(&shield.spell_id) {
         if !(ice_expired && shield.spell_id == ICE_BARRIER) {
             vitals.absorb = (vitals.absorb - shield.amount).max(0.0);
+            if shield.spell_id == shield.party_absorb_spell_id {
+                shield.party_absorb = native_max(shield.party_absorb - shield.amount, 0.0);
+            }
         }
         shield.clear_spell();
         result.absorb_changed = true;
@@ -89,11 +93,13 @@ pub fn tick_auras(auras: &mut Vec<Aura>, now: f32, delta: f32,
     shield.shared_spell_absorb.retain(|(spell_id, amount)| {
         if !result.expired.contains(spell_id) { return true; }
         vitals.absorb = native_max(vitals.absorb - *amount, 0.0);
+        shield.party_absorb = native_max(shield.party_absorb - *amount, 0.0);
         result.absorb_changed = true;
         false
     });
     shield.ice_barrier_absorb =
         min_preserving_original_nan(shield.ice_barrier_absorb, vitals.absorb);
+    shield.clamp_party_absorb(vitals.absorb);
     auras.retain(|a| !(now >= a.expires_at));
     result
 }
@@ -104,6 +110,9 @@ pub struct ShieldReservation {
     pub amount: f32,
     /// Total Ice Barrier absorb from self and party casts.
     pub(super) ice_barrier_absorb: f32,
+    /// Current Game+294 tracks absorb granted by other party members.
+    pub(super) party_absorb: f32,
+    pub(super) party_absorb_spell_id: u32,
     /// Separate party reservations retain their insertion order for damage.
     pub(super) shared_spell_absorb: Vec<(u32, f32)>,
     pub(super) power_word_shield_cap_bonus: f32,
@@ -111,6 +120,14 @@ pub struct ShieldReservation {
 }
 
 impl ShieldReservation {
+    pub fn own_absorb(&self, total: f32) -> f32 {
+        native_max(total - self.party_absorb, 0.0)
+    }
+
+    pub(super) fn clamp_party_absorb(&mut self, total: f32) {
+        self.party_absorb = min_preserving_original_nan(self.party_absorb, total);
+    }
+
     pub(super) fn clear_spell(&mut self) {
         self.spell_id = 0;
         self.amount = 0.0;
@@ -180,6 +197,7 @@ impl ShieldReservation {
         if excess > 0.0 {
             vitals.absorb = native_max(vitals.absorb - excess, 0.0);
             *soul_link_absorb = min_preserving_original_nan(*soul_link_absorb, vitals.absorb);
+            self.clamp_party_absorb(vitals.absorb);
             if self.spell_id == POWER_WORD_SHIELD {
                 spend_absorb(&mut excess, &mut self.amount);
             }
@@ -232,6 +250,8 @@ impl ShieldReservation {
             }
         };
         vitals.absorb += added;
+        self.party_absorb += added;
+        self.party_absorb_spell_id = spell_id;
     }
 }
 
@@ -393,7 +413,9 @@ pub fn apply_self_buff_with_party(
             if 0.85 * vitals.maximum_health < vitals.health && !party_needs_healing {
                 return Err(BuffFailure::HealthAboveThreshold);
             }
-            let factor = power_root * 1.4;
+            // 0.140.0 145f80213..145f80222 applies selector 7 to both
+            // this recipient's heal and the outgoing party coefficient.
+            let factor = (power_root * 1.4) * instance.healing_multiplier;
             let amount = (vitals.maximum_health * definition.effect.value) * factor;
             actions.shared_healing = Some(SharedHealing {
                 spell_id: definition.spell_id,
@@ -433,6 +455,37 @@ pub fn apply_self_buff_with_party(
         actions.shared_aura = Some(SharedAura { spell_id: definition.spell_id, effect, duration });
     }
     Ok(actions)
+}
+
+#[cfg(test)]
+mod feralheart_tests {
+    use super::*;
+    use crate::{player_abilities::AbilityDefinition, run_effects::{EffectRow, Effects}, sets};
+
+    #[test]
+    fn feralheart_scales_both_local_and_shared_healing_coefficients() {
+        let descriptor = sets::tier_half_four_piece(11).unwrap();
+        let mut effects = Effects::default();
+        effects.talents.extend(descriptor.effects.iter().map(EffectRow::armor_set));
+        effects.rebuild(None);
+
+        for key in ["regrowth", "rejuvenation"] {
+            let definition = AbilityDefinition::by_key(key).unwrap();
+            let mut instance = RuntimeInstance::learned(definition);
+            effects.spell_modifiers(definition).apply(&mut instance);
+            let mut vitals = Vitals {
+                health: 50.0, maximum_health: 100.0, absorb: 0.0,
+                absorb_applied_at: 0.0, absorb_same_tick_count: 0,
+            };
+            let mut shield = ShieldReservation::default();
+            let mut auras = Vec::new();
+            let actions = apply_self_buff(&instance, 1.0, true, 0.0, &mut vitals, &mut shield, &mut auras)
+                .unwrap();
+            let factor = 1.4_f32 * 1.2;
+            assert_eq!(auras[0].healing_power, (100.0 * definition.effect.value) * factor);
+            assert_eq!(actions.shared_healing.unwrap().coefficient, factor * definition.effect.value);
+        }
+    }
 }
 
 #[cfg(test)]

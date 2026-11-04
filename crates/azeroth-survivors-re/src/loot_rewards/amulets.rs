@@ -526,6 +526,7 @@ impl Aggregate {
                 4 => result.duration += amount,
                 5 => result.health_power += amount,
                 6 => result.effect += amount,
+                7 => result.healing += amount,
                 ABSORB_CAP_MODIFIER => result.absorb_cap_bonus += amount,
                 _ => unreachable!("unmapped amulet spell modifier"),
             }
@@ -545,6 +546,7 @@ pub struct SpellModifiers {
     pub duration: f32,
     pub health_power: f32,
     pub effect: f32,
+    pub healing: f32,
     pub absorb_cap_bonus: f32,
 }
 
@@ -558,13 +560,14 @@ impl Default for SpellModifiers {
             duration: 1.0,
             health_power: 0.0,
             effect: 1.0,
+            healing: 1.0,
             absorb_cap_bonus: 0.0,
         }
     }
 }
 
 impl SpellModifiers {
-    /// Reward refresh overwrites the seven current modifier lanes, retaining
+    /// Reward refresh overwrites the current modifier lanes, retaining
     /// learned rank/upgrades/remaining cooldown and ordinary multipliers.
     pub fn apply(self, instance: &mut RuntimeInstance<'_>) {
         instance.talent_power_multiplier = self.power;
@@ -574,5 +577,6 @@ impl SpellModifiers {
         instance.talent_duration_multiplier = self.duration;
         instance.health_power = self.health_power;
         instance.effect_multiplier = self.effect;
+        instance.healing_multiplier = self.healing;
     }
 }

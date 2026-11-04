@@ -193,7 +193,7 @@ impl EffectRow {
     pub fn armor_set(payload: &'static crate::sets::NativeEffect) -> Self {
         let mut bytes = payload.bytes();
         match bytes[0] {
-            0..=23 | 65 | 66 | 70 | 71 => {}
+            0..=23 | 59 | 60 | 65..=68 | 70 | 71 => {}
             24 => {
                 bytes[0] = 253;
                 bytes[63] = 36;
@@ -274,6 +274,11 @@ impl EffectRow {
             .find(|s| s.offset == at)
             .map(|s| s.value.as_str())
     }
+    /// Native raw16, unconditional keyed Frostbolt splash.
+    pub fn is_splitting_ice(&self) -> bool {
+        self.tag() == 4 && self.word(24) == 0
+            && self.bytes[32] == 1 && self.key(40) == Some("frostbolt")
+    }
     /// 1454848a0 rank leaf and14554e050 equipped-scale iterator. Integer
     /// payloads, selectors and duration/cooldown fields are never blanket-scaled.
     pub fn scale(&mut self, factor: f32) {
@@ -305,6 +310,8 @@ pub struct Effects {
     pub talents: Vec<EffectRow>,
     /// The rank-three damage lane is independent of the keyed target effect.
     pub sweeping_storm_rank: u8,
+    /// Native raw 59 checks the recipient's allocated Fortified talent.
+    pub fortified: bool,
     /// Allocation key and rank in generic talent row order. Set and amulet
     /// rows follow this prefix and use separate source descriptors.
     pub meter_talents: Vec<(&'static str, u8)>,
@@ -380,6 +387,7 @@ impl Effects {
                 4 => result.duration += amount,
                 5 => result.health_power += amount,
                 6 => result.effect += amount,
+                7 => result.healing += amount,
                 amulets::ABSORB_CAP_MODIFIER => result.absorb_cap_bonus += amount,
                 _ => {}
             }

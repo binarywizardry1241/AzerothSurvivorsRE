@@ -2431,6 +2431,10 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             self.boss_state.defenses.get(&row.guid).copied().unwrap_or_default()
                 .multiplier_with_ward(self.now, self.boss_state.wards.protects(row.guid))
         } else { 1.0 };
+        let spell_amplification = enhancement::spell_amplification(
+            self.equipped, hit.spell_id, self.now, &row.control,
+            &victim, self.attribution.source_kind, self.player_absorb,
+        );
         let Some(result) = damage::apply_hit_with_darkmantle(
             &mut victim,
             hit.damage,
@@ -2439,10 +2443,7 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
                 now: self.now,
                 player_absorb: self.player_absorb,
                 talent_effects: &effect_stats,
-                spell_amplification: enhancement::spell_amplification(
-                    &self.equipped.rows, hit.spell_id, self.now, &row.control,
-                    row.health, row.maximum_health,
-                ),
+                spell_amplification,
                 elemental_sunder: row.control.elemental_sunder(hit.school, self.now),
                 packlord_amplification: packlord,
             },

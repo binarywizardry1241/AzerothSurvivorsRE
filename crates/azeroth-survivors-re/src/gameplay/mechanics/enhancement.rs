@@ -128,21 +128,32 @@ pub(super) fn winter_slow(
 }
 
 pub(super) fn spell_amplification(
-    rows: &[EffectRow],
+    effects: &run_effects::Effects,
     spell_id: u32,
     now: f32,
     control: &ControlWindow,
-    health: f32,
-    maximum_health: f32,
+    victim: &Victim,
+    source_kind: u8,
+    player_absorb: f32,
 ) -> f32 {
     // 0.140.0 145fbb990 sums qualifying keyed rows before the canonical hit.
-    rows.iter().fold(0.0, |sum, row| match row.tag() {
+    effects.rows.iter().fold(0.0, |sum, row| match row.tag() {
         50 if control.winter_chill_until > now && spell_matches(row, spell_id) => {
             sum + row.float(24)
         }
-        51 if maximum_health * row.float(24) > health && spell_matches(row, spell_id) => {
+        51 if victim.maximum_health * row.float(24) > victim.health && spell_matches(row, spell_id) => {
             sum + row.float(28)
         }
+        // Raw 59 uses total absorb and the allocated talent independently.
+        59 if player_absorb > 0.0 && source_kind != 3 && effects.fortified
+            && row.key(24) == Some("fortified") && spell_matches(row, spell_id) => sum + row.float(40),
+        // The pet Frostbolt branch excludes Guardian-only targets. The
+        // separate player branch uses the full boss/elite/Guardian predicate.
+        67 if source_kind == 2 && spell_id == 116
+            && (victim.primary_boss || victim.native_flag_158 == 1) => sum + row.float(4),
+        68 if source_kind == 0
+            && (victim.primary_boss || victim.native_flag_158 != 0 || victim.guardian)
+            && spell_matches(row, spell_id) => sum + row.float(24),
         _ => sum,
     })
 }

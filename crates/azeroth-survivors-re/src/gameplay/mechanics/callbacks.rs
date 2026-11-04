@@ -786,6 +786,36 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
             index, guid, spell_id, school, damage, false, false, false, execution, rng, counter,
         );
     }
+    /// 0.140.0 145fc1f10 is shared by ordinary raw16 and Sorcerer raw67.
+    fn splash_hit(
+        &mut self,
+        index: usize,
+        event: Event,
+        victim_guid: u64,
+        center: Position,
+        radius: f32,
+        damage: f32,
+        execution: &mut ExecutionState<'_>,
+        rng: &mut NativeRng,
+        counter: &mut dyn NativeCounter,
+    ) {
+        let status = self.definition_for_event(event.spell_id)
+            .map(|definition| definition.effect)
+            .filter(|effect| matches!(effect.tag, 1..=4 | 10));
+        let actors = actor_targets(
+            self.core.actors, self.core.bosses, &self.core.boss_state.wards,
+            self.core.object_counter.sequence(),
+        );
+        for target in targeting::radius_targets(
+            &actors, self.context.now, center, radius, &[victim_guid],
+        ) {
+            let guid = target.actor.guid;
+            self.effect_hit(index, guid, event.spell_id, event.school, damage, execution, rng, counter);
+            if let Some(status) = status {
+                self.apply_effect_status(guid, status, event.spell_id, damage, execution);
+            }
+        }
+    }
     pub(super) fn effect_hit_with_suppression(
         &mut self,
         index: usize,
@@ -802,6 +832,9 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
     ) {
         let original = self.core.attribution;
         self.core.attribution.source_kind = 3;
+        // The Sorcerer wrapper changes Game+0x2a6 but keeps the pet origin.
+        let pet_entry = self.core.generic.meter_pet_entry
+            .filter(|_| self.core.equipped.rows.get(index).is_some_and(|row| row.tag() == 67));
         self.hit_with_execution(
             PendingHit {
                 context: HitContext {
@@ -810,6 +843,7 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                     proc_source: self.core.generic.source,
                     suppress_damage_log,
                     effect_critical_procs,
+                    pet_entry,
                     ..Default::default()
                 },
                 target_guid: guid,
@@ -1013,6 +1047,38 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
         )
     }
 
+    fn soulforge_shield_burst(
+        &mut self,
+        row: &EffectRow,
+        index: usize,
+        center: Position,
+        execution: &mut ExecutionState<'_>,
+        rng: &mut NativeRng,
+        counter: &mut dyn NativeCounter,
+    ) {
+        let own_absorb = execution.shield.own_absorb(execution.vitals.absorb);
+        if own_absorb <= 0.0 {
+            return;
+        }
+        let damage = self.core.current_context(self.cast_context, execution).power.damage_multiplier;
+        let power = (own_absorb * row.float(40)) * damage;
+        let spell_id = row.word(48);
+        let actors = actor_targets(
+            self.core.actors, self.core.bosses, &self.core.boss_state.wards,
+            self.core.object_counter.sequence(),
+        );
+        let targets = targeting::radius_targets(&actors, self.context.now, center, row.float(44), &[]);
+        self.core.cast_spell(SpellCast {
+            source_guid: self.context.player_guid,
+            spell_id,
+            target: CastTarget::Ground(center),
+            hit_targets: Vec::new(),
+        });
+        for target in targets {
+            self.effect_hit(index, target.actor.guid, spell_id, row.bytes[52], power, execution, rng, counter);
+        }
+    }
+
     pub(super) fn generic_event(
         &mut self,
         event: Event,
@@ -1077,6 +1143,19 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                 }
                 continue;
             }
+            if row.tag() == 67 {
+                // 145fbcbca..145fbf430 takes the first live Splitting Ice row.
+                if event.kind == 0 && event.source_kind == 2 && event.spell_id == 116
+                    && let Some(center) = victim_position
+                    && let Some(splash) = self.core.equipped.rows.iter().find(|row| row.is_splitting_ice())
+                {
+                    self.splash_hit(
+                        index, event, victim_guid, center, splash.float(8),
+                        splash.float(4) * amount, execution, rng, counter,
+                    );
+                }
+                continue;
+            }
             // Semantic marker keeps current army effects in their original order.
             // Creation, landing hits and their random draws finish before
             // the next generic or demon effect observes the shared state.
@@ -1115,6 +1194,18 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                 continue;
             }
             match row.tag() {
+                60 => {
+                    // 145fbdf06 uses the first keyed hit and its captured position.
+                    if let Some(center) = victim_position
+                        && row.condition_matches(
+                            8, &event, definition, execution.vitals.health,
+                            execution.vitals.maximum_health,
+                        )
+                    {
+                        self.soulforge_shield_burst(row, index, center, execution, rng, counter);
+                    }
+                    continue;
+                }
                 52 if event.kind == 2 && event.source_kind == 0 => {
                     self.earthshatter_kill(row, event.spell_id, execution);
                     continue;
@@ -1234,44 +1325,10 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                             hit_targets: Vec::new(),
                         });
                     }
-                    let actors = actor_targets(
-                        self.core.actors,
-                        self.core.bosses,
-                        &self.core.boss_state.wards,
-                        self.core.object_counter.sequence(),
+                    self.splash_hit(
+                        index, event, victim_guid, victim_position.unwrap_or(actor.position),
+                        row.float(8), row.float(4) * amount, execution, rng, counter,
                     );
-                    let targets = targeting::radius_targets(
-                        &actors,
-                        self.context.now,
-                        actor.position,
-                        row.float(8),
-                        &[victim_guid],
-                    );
-                    for target in targets {
-                        self.effect_hit(
-                            index,
-                            target.actor.guid,
-                            event.spell_id,
-                            event.school,
-                            row.float(4) * amount,
-                            execution,
-                            rng,
-                            counter,
-                        );
-                        if definition
-                            .is_some_and(|definition| matches!(definition.effect.tag, 1..=4 | 10))
-                        {
-                            // Native1454ce4ed..cef10 additionally invokes the shared
-                            // status owner using the definition's unscaled base effect.
-                            self.apply_effect_status(
-                                target.actor.guid,
-                                definition.unwrap().effect,
-                                event.spell_id,
-                                amount,
-                                execution,
-                            );
-                        }
-                    }
                 }
                 6 | 53 => {
                     // 0x145fbff64 uses the captured periodic hit position and

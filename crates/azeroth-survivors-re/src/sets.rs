@@ -226,10 +226,13 @@ fn catalog() -> &'static Catalog {
 pub fn descriptor(class_id: u8, tier: u8, empowered: bool) -> Option<&'static Descriptor> {
     match (class_id, tier) {
         (1, TIER_HALF) => Some(heroism(empowered)),
+        (2, TIER_HALF) => Some(soulforge(empowered)),
         (3, 2) => Some(giantstalker(empowered)),
         (3, TIER_HALF) => Some(beastmaster(empowered)),
         (4, TIER_HALF) => Some(darkmantle(empowered)),
+        (5, TIER_HALF) => Some(vestments_of_the_virtuous(empowered)),
         (7, TIER_HALF) => Some(five_thunders(empowered)),
+        (8, TIER_HALF) => Some(sorcerer(empowered)),
         (11, TIER_HALF) => Some(tier_half_druid(empowered)),
         _ => catalog().entries.iter().find(|entry| {
             entry.class_id == class_id && entry.tier == tier && entry.empowered == empowered
@@ -239,27 +242,75 @@ pub fn descriptor(class_id: u8, tier: u8, empowered: bool) -> Option<&'static De
 
 pub const DARKMANTLE_SPELLS: [&str; 2] = ["backstab", "eviscerate"];
 
-fn darkmantle_execute(threshold: f32) -> NativeEffect {
+fn spell_list_modifier(keys: &[&str], selector: u8, amount: f32) -> NativeEffect {
     let mut bytes = [0; 64];
     bytes[0] = 73;
     bytes[8] = 2;
-    bytes[32..36].copy_from_slice(&threshold.to_le_bytes());
-    bytes[36] = 8;
+    bytes[32..36].copy_from_slice(&amount.to_le_bytes());
+    bytes[36] = selector;
     NativeEffect {
         raw_hex: bytes.iter().map(|byte| format!("{byte:02x}")).collect(),
         strings: Vec::new(),
         lists: vec![NativeKeyList {
             offset: 16,
-            values: DARKMANTLE_SPELLS.map(str::to_owned).into(),
+            values: keys.iter().map(|key| (*key).to_owned()).collect(),
         }],
     }
 }
 
 /// 0.140.0 145e30990 mode 0 is independent of the active eight-piece selection.
 pub fn tier_half_four_piece(class: u8) -> Option<&'static Descriptor> {
+    static DEATHMIST: OnceLock<Descriptor> = OnceLock::new();
+    static BEASTMASTER: OnceLock<Descriptor> = OnceLock::new();
+    static VESTMENTS: OnceLock<Descriptor> = OnceLock::new();
+    static HEROISM: OnceLock<Descriptor> = OnceLock::new();
+    static SOULFORGE: OnceLock<Descriptor> = OnceLock::new();
     static DARKMANTLE: OnceLock<Descriptor> = OnceLock::new();
     static FIVE_THUNDERS: OnceLock<Descriptor> = OnceLock::new();
+    static SORCERER: OnceLock<Descriptor> = OnceLock::new();
+    static FERALHEART: OnceLock<Descriptor> = OnceLock::new();
     match class {
+        1 => Some(HEROISM.get_or_init(|| {
+            use crate::loot_rewards::amulets::EffectString;
+
+            let mut bytes = [0; 64];
+            bytes[0] = 59;
+            bytes[40..44].copy_from_slice(&0.10_f32.to_le_bytes());
+            Descriptor {
+                class_id: 1,
+                tier: TIER_HALF,
+                empowered: false,
+                spell_key: "shield_slam".to_owned(),
+                description: "Fortified holds shielding up to 50% of your maximum health (62% with Shield Mastery). Shield Slam deals 10% more damage while Fortified protects you.".to_owned(),
+                display_values: [0.0; 2],
+                effects: vec![NativeEffect {
+                    raw_hex: bytes.iter().map(|byte| format!("{byte:02x}")).collect(),
+                    strings: vec![
+                        EffectString { offset: 8, value: "shield_slam".to_owned() },
+                        EffectString { offset: 24, value: "fortified".to_owned() },
+                    ],
+                    lists: Vec::new(),
+                }],
+            }
+        })),
+        2 => Some(SOULFORGE.get_or_init(|| Descriptor {
+            class_id: 2,
+            tier: TIER_HALF,
+            empowered: false,
+            spell_key: "hammer_of_justice".to_owned(),
+            description: "Hammer of the Righteous's shield explosions deal 75% of absorbed damage instead of 50%.".to_owned(),
+            display_values: [0.0; 2],
+            effects: Vec::new(),
+        })),
+        3 => Some(BEASTMASTER.get_or_init(|| Descriptor {
+            class_id: 3,
+            tier: TIER_HALF,
+            empowered: false,
+            spell_key: "bestial_wrath".to_owned(),
+            description: "Bestial Wrath causes pet bites to strike 5 additional enemies for 150% damage each.".to_owned(),
+            display_values: [0.0; 2],
+            effects: Vec::new(),
+        })),
         4 => Some(DARKMANTLE.get_or_init(|| Descriptor {
             class_id: 4,
             tier: TIER_HALF,
@@ -267,7 +318,16 @@ pub fn tier_half_four_piece(class: u8) -> Option<&'static Descriptor> {
             spell_key: "backstab".to_owned(),
             description: "Backstab and Eviscerate deal double damage below 40% enemy health instead of 30%.".to_owned(),
             display_values: [0.0; 2],
-            effects: vec![darkmantle_execute(0.40)],
+            effects: vec![spell_list_modifier(&DARKMANTLE_SPELLS, 8, 0.40)],
+        })),
+        5 => Some(VESTMENTS.get_or_init(|| Descriptor {
+            class_id: 5,
+            tier: TIER_HALF,
+            empowered: false,
+            spell_key: "sw_pain".to_owned(),
+            description: "Shadowy Apparitions has an 8% chance to fire a free Mind Blast per Shadow Word: Pain tick, increased from 4%.".to_owned(),
+            display_values: [0.0; 2],
+            effects: Vec::new(),
         })),
         7 => Some(FIVE_THUNDERS.get_or_init(|| Descriptor {
             class_id: 7,
@@ -277,6 +337,33 @@ pub fn tier_half_four_piece(class: u8) -> Option<&'static Descriptor> {
             description: "Stormstrike deals 15% more damage and has 35% reduced cooldown.".to_owned(),
             display_values: [0.0; 2],
             effects: vec![spell_modifier("stormstrike", 0, 0.15), spell_modifier("stormstrike", 1, 0.35)],
+        })),
+        8 => Some(SORCERER.get_or_init(|| Descriptor {
+            class_id: 8,
+            tier: TIER_HALF,
+            empowered: false,
+            spell_key: "frostbolt".to_owned(),
+            description: "Splitting Ice reaches 7 yd instead of 5 yd and deals 125% damage instead of 100%.".to_owned(),
+            display_values: [0.0; 2],
+            effects: Vec::new(),
+        })),
+        11 => Some(FERALHEART.get_or_init(|| Descriptor {
+            class_id: 11,
+            tier: TIER_HALF,
+            empowered: false,
+            spell_key: "regrowth".to_owned(),
+            description: "Regrowth and Rejuvenation heal 20% more; Tranquility reaches 15 yd instead of 12 yd.".to_owned(),
+            display_values: [0.0; 2],
+            effects: vec![spell_list_modifier(&["regrowth", "rejuvenation"], 7, 0.20)],
+        })),
+        9 => Some(DEATHMIST.get_or_init(|| Descriptor {
+            class_id: 9,
+            tier: TIER_HALF,
+            empowered: false,
+            spell_key: "immolate".to_owned(),
+            description: "Conflagrate explodes for 35% of the triggering direct hit's damage within 8 yd.".to_owned(),
+            display_values: [0.0; 2],
+            effects: Vec::new(),
         })),
         _ => None,
     }
@@ -293,6 +380,22 @@ fn spell_modifier(key: &str, selector: u8, amount: f32) -> NativeEffect {
         strings: vec![crate::loot_rewards::amulets::EffectString { offset: 16, value: key.to_owned() }],
         lists: Vec::new(),
     }
+}
+
+fn vestments_of_the_virtuous(empowered: bool) -> &'static Descriptor {
+    static DESCRIPTORS: OnceLock<[Descriptor; 2]> = OnceLock::new();
+    &DESCRIPTORS.get_or_init(|| [
+        (false, "Shadowform death explosions deal 8% of the defeated enemy's maximum health instead of 4%; Shadow Word: Pain jumps to 2 enemies."),
+        (true, "Shadowy Apparitions chance rises to 12%; Shadowform explosions deal 10% maximum health; Shadow Word: Pain jumps to 3 enemies."),
+    ].map(|(empowered, description)| Descriptor {
+        class_id: 5,
+        tier: TIER_HALF,
+        empowered,
+        spell_key: "sw_pain".to_owned(),
+        description: description.to_owned(),
+        display_values: [0.0; 2],
+        effects: Vec::new(),
+    }))[usize::from(empowered)]
 }
 
 fn five_thunders(empowered: bool) -> &'static Descriptor {
@@ -344,7 +447,7 @@ fn darkmantle(empowered: bool) -> &'static Descriptor {
                 lists: Vec::new(),
             }];
             if empowered {
-                effects.push(darkmantle_execute(0.45));
+                effects.push(spell_list_modifier(&DARKMANTLE_SPELLS, 8, 0.45));
             }
             Descriptor {
                 class_id: 4,
@@ -354,6 +457,43 @@ fn darkmantle(empowered: bool) -> &'static Descriptor {
                 description: description.to_owned(),
                 display_values: [0.0; 2],
                 effects,
+            }
+        })
+    })[usize::from(empowered)]
+}
+
+/// 0.140.0 145e30ac5..145e30b43 publishes the keyed shield explosion.
+fn soulforge(empowered: bool) -> &'static Descriptor {
+    use crate::loot_rewards::amulets::EffectString;
+
+    static DESCRIPTORS: OnceLock<[Descriptor; 2]> = OnceLock::new();
+    &DESCRIPTORS.get_or_init(|| {
+        [
+            (false, 0.40_f32,
+                "Hammer of Justice deals 1.75% of the target's maximum health instead of 1.5% and explodes for 40% of your remaining shield absorption within 10 yd of its target."),
+            (true, 0.65_f32,
+                "Hammer of Justice deals 1.9% of target maximum health; the explosion deals 65% of remaining shield absorption."),
+        ].map(|(empowered, fraction, description)| {
+            let mut bytes = [0; 64];
+            bytes[0] = 60;
+            bytes[8] = 1;
+            bytes[16] = 1;
+            bytes[40..44].copy_from_slice(&fraction.to_le_bytes());
+            bytes[44..48].copy_from_slice(&10.0_f32.to_le_bytes());
+            bytes[48..52].copy_from_slice(&15237_u32.to_le_bytes());
+            bytes[52] = 1;
+            Descriptor {
+                class_id: 2,
+                tier: TIER_HALF,
+                empowered,
+                spell_key: "hammer_of_justice".to_owned(),
+                description: description.to_owned(),
+                display_values: [0.0; 2],
+                effects: vec![NativeEffect {
+                    raw_hex: bytes.iter().map(|byte| format!("{byte:02x}")).collect(),
+                    strings: vec![EffectString { offset: 24, value: "hammer_of_justice".to_owned() }],
+                    lists: Vec::new(),
+                }],
             }
         })
     })[usize::from(empowered)]
@@ -387,6 +527,49 @@ fn heroism(empowered: bool) -> &'static Descriptor {
                     strings: vec![EffectString { offset: 8, value: "shield_slam".to_owned() }],
                     lists: Vec::new(),
                 }],
+            }
+        })
+    })[usize::from(empowered)]
+}
+
+/// 0.140.0 145e30990 class 8 emits raw67 and appends raw68 in mode 2.
+fn sorcerer(empowered: bool) -> &'static Descriptor {
+    use crate::loot_rewards::amulets::EffectString;
+
+    static DESCRIPTORS: OnceLock<[Descriptor; 2]> = OnceLock::new();
+    &DESCRIPTORS.get_or_init(|| {
+        [
+            (false, 1.0_f32,
+                "Water Elemental Frostbolts also trigger Splitting Ice and deal 100% more damage to bosses and elites."),
+            (true, 1.5_f32,
+                "Splitting Ice deals 150% damage. Water Elemental Frostbolts deal 150% more damage to bosses and elites. Your Frostbolt also deals 50% more damage to bosses and elites."),
+        ].map(|(empowered, pet_bonus, description)| {
+            let mut pet = [0; 64];
+            pet[0] = 67;
+            pet[4..8].copy_from_slice(&pet_bonus.to_le_bytes());
+            let mut effects = vec![NativeEffect {
+                raw_hex: pet.iter().map(|byte| format!("{byte:02x}")).collect(),
+                strings: Vec::new(),
+                lists: Vec::new(),
+            }];
+            if empowered {
+                let mut player = [0; 64];
+                player[0] = 68;
+                player[24..28].copy_from_slice(&0.5_f32.to_le_bytes());
+                effects.push(NativeEffect {
+                    raw_hex: player.iter().map(|byte| format!("{byte:02x}")).collect(),
+                    strings: vec![EffectString { offset: 8, value: "frostbolt".to_owned() }],
+                    lists: Vec::new(),
+                });
+            }
+            Descriptor {
+                class_id: 8,
+                tier: TIER_HALF,
+                empowered,
+                spell_key: "frostbolt".to_owned(),
+                description: description.to_owned(),
+                display_values: [0.0; 2],
+                effects,
             }
         })
     })[usize::from(empowered)]

@@ -146,8 +146,21 @@ constructors and combat consumers retain separate verification below.
 ### Heroism and Darkmantle
 
 The class constructor at `0x145e30990` uses modes 0, 1 and 2 for
-four-piece, eight-piece and empowered payloads. Heroism's eight-piece
-branches at `0x145e309c1` emit Shield Slam selectors 0 and 5. The spell
+four-piece, eight-piece and empowered payloads. The per-talent rewrite
+at `0x145e30fa0` runs before those rows enter the generic effect vector.
+Heroism's mode 0 at `0x145e30ff8..0x145e3107a` adds 20 percentage points
+to the existing Shield Slam absorb caps in Fortified and Shield Mastery.
+The raw 59 row enters the keyed hit amplifier `0x145fbb990`. Table
+`0x147afb0f8` selects `0x145fbbb84..0x145fbbc6d` for this row. Positive
+total absorb, a nonzero allocated Fortified rank, a matching Shield Slam
+spell ID and a source kind other than 3 admit the additive 10% bonus.
+The four-piece row retains its position ahead of eight-piece meter data.
+Five isolated rewrite cases and 32 shield, rank, source and spell
+combinations were checked against the installed instructions. The
+amplifier check substitutes only the external byte comparison routine.
+
+Heroism's eight-piece branches at `0x145e309c1` emit Shield Slam
+selectors 0 and 5. The spell
 power path applies the 20% or 30% modifier to the base power, adds 4.5%
 or 6% of the hero's maximum health, then applies the outgoing power
 multiplier. The resulting spell resolves one damage hit. Raw effect 71
@@ -173,6 +186,20 @@ slot, which the native Gouge and Kidney Shot cleanup paths at
 marks independently of control and periodic effects.
 [Set data](../../crates/azeroth-survivors-re/src/sets.rs), [mark consumer](../../crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs).
 
+### Feralheart
+
+Mode 0 publishes the raw 73 healing modifier for Regrowth and
+Rejuvenation. Selector 7 at `0x145df20a6` adds 0.20 to the multiplier
+starting at 1.0 and stores it at modifier offset `+0x1c`. The status-6
+cast at `0x145f8021b` reads the resulting instance field `+0x24` and
+applies it after the square-root power scaling and 1.4 factor. Both
+the local heal and party coefficient use that result. The same
+four-piece mode rewrites raw 33 Tranquility radius at `0x145e3116c`
+from 12 to 15 yd in the allocated effect row before the pulse at
+`0x145fb8eaa` reads it. Tranquility and Seed of Life's priority
+selection consume that radius through the existing pulse owner.
+[Healing cast](../../crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs), [talent rewrite](../../crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs).
+
 ### The Five Thunders
 
 The four-piece rows apply the keyed Stormstrike power and cooldown
@@ -187,6 +214,130 @@ at `0x145f250e0` labels the separate meter row `Thunderburst` and uses
 `Spell_Nature_ThunderClap`. The recipient shares the same proc callback
 and radius lookup with its other local or admitted party hits.
 
+### Sorcerer
+
+The live equipment builder at `0x145ffe2c0..0x145ffe32d` applies the
+Tier 0.5 modes to the existing talent rows before appending set payloads.
+`0x145e357f0` supplies mode 0 for the qualifying four-piece and mode 2
+for an active empowered Tier 0.5 set. The Mage branch at
+`0x145e3128e..0x145e31315` and `0x145e314ad..0x145e3155f` selects
+raw 16 with condition 0 and the single-key Frostbolt selector. Mode 0
+sets the fraction to 1.25 and the radius to 7 yd. Mode 2 sets the
+fraction to 1.50 and preserves the radius written by mode 0.
+
+At `0x145fbcbca`, raw 67 takes a direct source-kind 2 Frostbolt event
+(spell 116). The search at `0x145fbf363..0x145fbf430` selects the first
+matching live Splitting Ice talent row. `0x145fc1f10` then uses the
+captured impact position and that row's radius, excludes the triggering
+victim and applies the row's fraction of the raw hit power as source-kind
+3 Frostbolt damage. The shared status owner receives the unscaled
+Frostbolt definition's status and the splash power after each hit.
+
+The canonical hit calls the ordered additive sum at `0x145fbb990`
+before multiplying the raw hit power. Its raw 67 branch at
+`0x145fbbd54` adds 1.00 or 1.50 for source-kind 2 Frostbolt against
+primary bosses or elite flag 1. Raw 68 at `0x145fbbd80` adds 0.50 for
+source-kind 0 Frostbolt against primary bosses, Guardians or any
+nonzero elite flag. The shared source hit path retains these different
+target predicates and the original hit power for the splash event.
+
+| Native Ghidra slice | Slice SHA-256 | Shared result SHA-256 |
+| --- | --- | --- |
+| `0x145e30fa0..0x145e31818` talent rewrite | `d4e54192b2e0ab9472a90f518f11d635bdbc692dfc37410f847667e661ff6d13` | `a7bdd938a297a15ddc587a60e4dc6f018fef2de186c4e50d3ada4782f567c599` |
+| `0x145fc1f10..0x145fc209d` splash helper | `f8567e1c4718217ddf39a14cc4051f2fe15ceda04481768e62e951ffece64057` | `5b528524159d9bf3e9b122935bb01175fc409166afb22a1066f62775705a0127` |
+
+The keyed sum range `0x145fbb990..0x145fbbe87` has SHA-256
+`ad646f9ad43325cc17efc8c26847485c71c4c4a6296278b205d39bfdbdc90791`.
+Static x86 slice replay against the installed target passed 96 talent
+rewrite, 180 keyed hit and 120 splash helper cases. The splash replay
+captured the arguments to radius, hit and status callees. Rust source
+syntax and whitespace checks passed. Compilation, live combat and
+original/rebuilt parity remain open.
+
+### Soulforge
+
+The class-2 constructor at `0x145e30ac5..0x145e30b43` publishes one
+raw 60 row at eight pieces. The row selects Hammer of Justice on the
+first hit, with a 10 yd radius, Holy school and spell 15237. Its shield
+fraction is 0.40 at eight pieces and 0.65 with five-star empowerment.
+The raw callback at `0x145fbdf06..0x145fbe127` subtracts shield granted
+by other party members from total remaining absorb. A positive balance
+triggers the visual at the captured impact point and an inclusive XY
+radius search. It leaves the shield in place and applies the fraction
+times the current global damage multiplier as source-kind 3 damage.
+
+The separate allocated-talent builder calls `0x145e30fa0` from
+`0x145ffe2f0`. Four pieces rewrite the raw 15 shield-break coefficient
+from 0.50 to 0.75 at `0x145e3133b`. Eight pieces rewrite the keyed raw 17
+Hammer of Justice target maximum-health fraction from 0.015 to 0.0175
+at `0x145e3115f`. Empowerment instead writes 0.019 at `0x145e315ba`.
+The existing Hammer of the Righteous talent callbacks consume both
+rewrites.
+
+The party recipient path at `0x145f2f0b0..0x145f2f10c` excludes the
+active hero's own cast. `0x145f39991..0x145f399a9` accumulates the
+actual absorb granted and records the latest spell. Incoming damage
+and Power Word: Shield capacity reduction clamp that balance to total
+absorb at `0x145f9ab53..0x145f9ab7e` and `0x145f9962d..0x145f9966e`.
+Expiry adjusts the Ice Barrier, matching primary, and shared
+reservations at `0x145f8cac3..0x145f8cda5` and `0x14601fa81..0x14601fab4`.
+The native host context swap moves the balance and last spell together
+at `0x145f62972..0x145f629a3`. The common Game constructor clears both
+fields at `0x145fab8c0..0x145fab8d0` before the Game copy at
+`0x145fac17f..0x145fac198`. The source keeps both in the existing
+hero-owned shield reservation, initialized to zero at run construction.
+
+The selected EXE passed 809 bounded x86 replay vectors over 19,200
+original instructions. Cases cover construction, keyed talent rewrites,
+hit admission, shield power, party receipt, context swap and shield
+lifecycle. Allocation, ability lookup and the byte comparator use
+explicit seams. All three bonus texts are present across the 14 locale
+catalogs. Source syntax and whitespace checks passed. Compilation,
+combat, rendered output and original/rebuilt parity remain open.
+
+### Beastmaster, Vestments and Deathmist talent rows
+
+The live builder passes each allocated talent effect to
+`0x145e30fa0` with the qualified tier's modes. Beastmaster's
+four-piece branch at `0x145e311a7` requires raw 18, condition 0 and
+pet selector 6. It replaces the existing Bestial Wrath bounce's
+count and fraction with five and 1.50. The separate Matriarch grant
+retains its current pet descriptor and does not participate in the
+talent rewrite.
+
+Vestments of the Virtuous uses no additional generic set rows. The
+Priest rewrite at `0x145e311f1` matches Shadow Word: Pain selectors
+in the allocated effects. Mode 0 writes an 0.08 Apparitions chance
+for raw 12, condition 4 and the keyed Mind Blast cast. Mode 1 writes
+the 0.08 maximum-health fraction for the flagged raw 23 Shadowform
+death explosion and two targets for raw 26 propagation. Mode 2
+writes 0.12, 0.10 and three targets respectively. The source keeps
+the original event conditions and runs the existing talent callbacks
+with these fields.
+
+Deathmist's mode 0 at `0x145e3107f` matches the raw 16 area row
+requiring Immolate 348 and replaces its fraction and radius with
+0.35 and 8.0. Its condition, selector and applied status are retained.
+The source applies all these rewrites before adding independent set
+or jewelry effects. Isolated replay passed 234 rewrite cases over 13,365
+original instructions. The Priest selector used an external byte-compare
+seam. [Talent owner](../../crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs).
+
+The Deathmist eight-piece branch at `0x145fbea7b..0x145fbec24` checks
+the first admitted raw 16/348 condition against the event and requires
+stored Immolate on the victim. Game +0x50/+0x58/+0x60 stores one
+ten-second brand. Replacing its target removes aura 17800 from the
+old target. The tick at `0x145fb8e19` clears it on expiry or loss of
+its actor. At `0x145fbbc72` the ordered spell modifier adds 0.35 or
+0.55 for source-kind 0 on the branded boss, elite or Guardian when
+the resolved ability kind is in mask 0x11b7. The empowered branch
+recomputes the base victim and keyed spell factors before refreshing
+the brand, then installs four seconds of Fire spell 12654 through
+`0x145ee0d10`. That writer carries forward unspent ticks belonging to
+the matching effect owner. The source still needs the brand state,
+the post-hit multiplier recomputation, and the effect-owned burn and
+meter attribution.
+
 ### Current class payloads and open consumers
 
 The three modes of `0x145e30990` were read for each class using the jump
@@ -197,15 +348,15 @@ the next owner to trace in those cases.
 
 | Set | Four-piece mode 0 | Eight-piece mode 1 and empowered mode 2 | Source status and next native owner |
 | --- | --- | --- | --- |
-| Heroism | 59, `shield_slam` and `fortified`, 0.10 | 73 selectors 0 and 5, plus 71, as above | Eight-piece and empowered connected. Raw 59 enters the generic vector at `0x145df1bf8` and takes the callback loop's skip edge at `0x145fbca60`. The ordinary raw 30 absorb owner at `0x145fbe33d..0x145fbe3d5` uses its payload cap. Resolve the separate condition and cap override for the Fortified and Shield Mastery rows at `0x1473ca3a8` and `0x1473ca300`. |
-| Soulforge | Empty | 60, `hammer_of_justice`, 0.40/0.65, radius 10, spell 15237 | Trace the raw 60 branch `0x145fbdf06`, the separate target max-health hit and the four-piece shield-break coefficient. |
-| Beastmaster | Empty | 42, Waterfall Matriarch, then 64, 0.50/1.00 | Eight-piece and empowered pet grant and condition are connected. The four-piece owner remains separate. |
+| Heroism | 59, `shield_slam` and `fortified`, 0.10 | 73 selectors 0 and 5, plus 71, as above | Connected through the talent cap, conditional hit amplifier and meter consumers above. |
+| Soulforge | Empty, with a separate Hammer of the Righteous talent rewrite | 60, `hammer_of_justice`, 0.40/0.65, radius 10, spell 15237 | Connected through the allocated-talent rewrites, remaining self-shield callback and party shield reservation above. |
+| Beastmaster | Empty | 42, Waterfall Matriarch, then 64, 0.50/1.00 | Bestial Wrath cleave, the Matriarch grant and the empowered Hunter’s Mark damage are connected. |
 | Darkmantle | 73 selector 8, `[backstab,eviscerate]`, 0.40 | 65, 0.35 and cap 1, or 0.40 and cap 2 followed by selector 8 at 0.45 | Connected through the execute, mark, damage and aura consumers above. |
-| Vestments of the Virtuous | Empty | Empty in both modes | Trace the separate Shadowform, Shadow Word: Pain and Shadowy Apparitions consumers. The constructor gives no generic effect rows for this class. |
+| Vestments of the Virtuous | Empty | Empty in both modes | All three modes rewrite the allocated Shadow Word: Pain-related talents in the separate builder. |
 | The Five Thunders | 73 `stormstrike` selectors 0 and 1, 0.15 and 0.35 | 66, 0.25 within 6 yd / 0.50 within 8 yd | Connected through the keyed spell modifiers, localized set text and Thunderburst callback and meter above. |
-| Sorcerer | Empty | 67, 1.00/1.50, with empowered 68 `frostbolt` at 0.50 | Resolve the raw 67 branch `0x145fbcbca` and the separate raw 68 consumer. Trace the four-piece effect through Splitting Ice. |
-| Deathmist | Empty | 69, 0.35 and 0 / 0.55 and 0.40 | Trace the raw 69 branch `0x145fbea7b` and the separate four-piece owner. |
-| Feralheart | 73 selector 7, `[regrowth,rejuvenation]`, 0.20 | 70, 0.60, count 5 and radius 6 / 1.00, count 7 and radius 8 with flag 1 | Eight-piece and empowered Seed of Life are connected. Trace selector 7's healing consumer and the independent Tranquility range override. |
+| Sorcerer | Empty, with the separate Splitting Ice talent rewrite | 67, 1.00/1.50, with empowered 68 `frostbolt` at 0.50 | Connected through the talent rewrite, Water Elemental splash callback and source-specific Frostbolt amplification above. |
+| Deathmist | Empty | 69, 0.35 and 0 / 0.55 and 0.40 | Four-piece Conflagrate connects to the talent row. Eight-piece and empowered brand, burn and meter source work remain. |
+| Feralheart | 73 selector 7, `[regrowth,rejuvenation]`, 0.20 | 70, 0.60, count 5 and radius 6 / 1.00, count 7 and radius 8 with flag 1 | Connected through the healing selector, Tranquility talent rewrite and existing Seed of Life consumer. |
 
 `python3 -B scripts/recover-gear-effects.py --scholomance` verifies all
 72 armor and 11 weapon records against the installed hash, including
@@ -215,8 +366,8 @@ delivery, rendered output and original/rebuilt parity remain open.
 | 0.140.0 claim ID | Finding and next static step |
 | --- | --- |
 | `changelog:0.140.0:3e24ce3552cb9657` | #314 rewards. The one-roll gate, exact armor groups, paired weapon receipts and pity bypass are connected through the retained recipient delivery path. |
-| `changelog:0.140.0:3af814319808b3f0` | #314 catalog and sets. The 83 items, star arithmetic, wear thresholds and item publication are connected. The class effect constructor at `0x145e30990` branches by class through `0x1473f70e0` with distinct four-, eight- and five-star modes. Its remaining unconnected payloads and their gameplay consumers need separate proof. |
-| `changelog:0.140.0:4a2e1ed28b7af869` | #314 Heroism. Shield Slam uses the eight-piece and empowered modifiers in the existing hit, with its maximum-health share attributed to the set in damage meters. The separate four-piece effect needs a source consumer. |
+| `changelog:0.140.0:3af814319808b3f0` | #314. Heroism, Soulforge, Beastmaster, Darkmantle, Vestments of the Virtuous, Five Thunders, Sorcerer and Feralheart connect through their equipped talent and hit consumers. Deathmist’s four-piece Conflagrate rewrite is connected. Its eight-piece and empowered brand/burn remain open. |
+| `changelog:0.140.0:4a2e1ed28b7af869` | #314 Heroism. Four pieces raise the Fortified cap and conditionally amplify Shield Slam. Eight-piece and empowered modifiers feed the existing hit, with its maximum-health share attributed to the set in damage meters. |
 | `changelog:0.140.0:cf7efae2d63eba41` | #314 Darkmantle. Execute thresholds, ordered per-hero marks, additive amplification and the protected aura are connected. Runtime display and parity remain open. |
 
 ## Achievements, progression and glow
@@ -379,7 +530,7 @@ in the table at `0x147733b48`.
 | Paladin | `hammer_righteous`, `ardent_defender` | Hammer of Justice hit |
 | Hunter | `bestial_wrath` | Matriarch bite or Kill Command strike, entry 9532 |
 | Rogue | `shadow_dance` | Backstab or Eviscerate on a living boss, elite or Guardian |
-| Priest | `shadowform`, `shadowy_apparitions` | Shadow Word: Pain kill |
+| Priest | `shadowform`, `shadowy_apparitions` | Shadow Word: Pain periodic event |
 | Shaman | `enh_stormbound_echoes` | Stormstrike hit |
 | Mage | `water_elemental`, `splitting_ice` | Pet-origin Frostbolt hit, spell 116 |
 | Warlock | `rain_of_chaos`, `conflagrate` | Conflagrate on an Immolated living boss, elite or Guardian |

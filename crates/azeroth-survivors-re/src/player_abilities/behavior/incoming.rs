@@ -109,6 +109,7 @@ pub fn apply_damage_with_crowd(
             result.soul_link_absorbed = soul_link;
         }
         state.soul_link_absorb = min_preserving_original_nan(state.soul_link_absorb, vitals.absorb);
+        reservation.clamp_party_absorb(vitals.absorb);
         let remove_all_shields = vitals.absorb <= 0.0;
         if remove_all_shields {
             reservation.clear_absorb();

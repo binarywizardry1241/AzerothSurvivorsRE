@@ -284,6 +284,10 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             dead: false,
         };
         let cap = orb.then_some(victim.maximum_health / 5.0);
+        let spell_amplification = enhancement::spell_amplification(
+            self.equipped, hit.spell_id, self.now, &row.control,
+            &victim, self.attribution.source_kind, self.player_absorb,
+        );
         let result = damage::apply_hit_with_cap(
             &mut victim,
             hit.damage,
@@ -292,10 +296,7 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
                 now: self.now,
                 player_absorb: self.player_absorb,
                 talent_effects: &effect_stats,
-                spell_amplification: enhancement::spell_amplification(
-                    &self.equipped.rows, hit.spell_id, self.now, &row.control,
-                    row.health, row.maximum_health,
-                ),
+                spell_amplification,
                 elemental_sunder: row.control.elemental_sunder(hit.school, self.now),
                 packlord_amplification: packlord,
             },

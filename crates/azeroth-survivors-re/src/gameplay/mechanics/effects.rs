@@ -3,6 +3,23 @@
 //! Other effect contracts retain their separately recorded target provenance.
 use super::*;
 use azeroth_survivors_re::run_effects::{self, EffectRow, Effects, Numeric};
+
+fn apply_heroism_feralheart_talent(class: u8, row: &mut EffectRow) {
+    match (class, row.tag()) {
+        // 0.140.0 145e30ff8 modifies the cap in the original Shield Slam
+        // absorb rows, including the allocated Shield Mastery ranks.
+        (1, 18) if row.word(16) == 7 && row.bytes[24] == 1
+            && row.key(32) == Some("shield_slam") =>
+        {
+            let cap = row.float(8) + 0.20;
+            row.bytes[8..12].copy_from_slice(&cap.to_le_bytes());
+        }
+        // 0.140.0 145e3116c replaces the allocated Tranquility radius.
+        (11, 21) => row.bytes[8..12].copy_from_slice(&15.0_f32.to_le_bytes()),
+        _ => {}
+    }
+}
+
 // Native refresh computes growth before adding the racial payload. Retain the
 // original components instead of trying to recover them from a rounded sum.
 #[derive(Clone, Copy, Debug)]
@@ -177,6 +194,61 @@ impl EffectsState {
         execution.shield.refresh_capacities(vitals, soul_link_absorb, effects);
     }
 }
+impl EffectsState {
+    fn apply_tier_half_talent_rows(&mut self, class: u8) {
+        let four_piece = self.tier_half_four_piece.is_some();
+        if class == 3 && four_piece {
+            // 0.140.0 145e311a7 rewrites the pet-hit bounce row, not the grant.
+            for row in &mut self.equipped.talents {
+                if row.tag() == 6 && row.word(16) == 0 && row.bytes[24] == 6 {
+                    row.bytes[4..8].copy_from_slice(&5_u32.to_le_bytes());
+                    row.bytes[8..12].copy_from_slice(&1.5_f32.to_le_bytes());
+                }
+            }
+        }
+        if class == 9 && four_piece {
+            // 0.140.0 145e3107f rewrites Conflagrate's fraction and radius,
+            // preserving its selector and required Immolate spell.
+            for row in &mut self.equipped.talents {
+                if row.tag() == 4 && row.word(16) == 348 {
+                    row.bytes[4..8].copy_from_slice(&0.35_f32.to_le_bytes());
+                    row.bytes[8..12].copy_from_slice(&8.0_f32.to_le_bytes());
+                }
+            }
+        }
+        if class != 5 {
+            return;
+        }
+        let active = self.set_descriptor
+            .filter(|set| set.tier == azeroth_survivors_re::sets::TIER_HALF);
+        let empowered = active.is_some_and(|set| set.empowered);
+        if !four_piece && active.is_none() {
+            return;
+        }
+        // Native 145e311f1 rewrites only the corresponding Shadow Word: Pain
+        // rows in the ranked talents. The existing callbacks retain event order.
+        for row in &mut self.equipped.talents {
+            match row.tag() {
+                0 if (four_piece || empowered) && row.word(32) == 4
+                    && row.key(16) == Some("mind_blast") && row.bytes[40] == 1 && row.key(48) == Some("sw_pain") =>
+                {
+                    let chance = if empowered { 0.12_f32 } else { 0.08 };
+                    row.bytes[4..8].copy_from_slice(&chance.to_le_bytes());
+                }
+                11 if active.is_some() && row.bytes[1] != 0 && row.bytes[24] == 1 && row.key(32) == Some("sw_pain") => {
+                    let fraction = if empowered { 0.10_f32 } else { 0.08 };
+                    row.bytes[4..8].copy_from_slice(&fraction.to_le_bytes());
+                }
+                14 if active.is_some() && row.bytes[8] == 1 && row.key(16) == Some("sw_pain") => {
+                    let targets = if empowered { 3_u32 } else { 2 };
+                    row.bytes[4..8].copy_from_slice(&targets.to_le_bytes());
+                }
+                _ => {}
+            }
+        }
+    }
+}
+
 impl Mechanics {
     /// Current145c4f090 builds talents first, then the worn armor-set descriptor
     /// from the same class/equipment/star snapshot. No ownership-only item enters.
@@ -309,6 +381,10 @@ impl Mechanics {
     /// order, then each talent's native payload order.
     pub fn configure_effects(&mut self, allocation: &[(String, u8)], gear: &[(u8, f32)]) {
         let class = self.class.class_id;
+        let soulforge_four_piece = class == 2 && self.effect_state.tier_half_four_piece.is_some();
+        let soulforge_hammer_fraction = self.effect_state.set_descriptor
+            .filter(|descriptor| class == 2 && descriptor.tier == azeroth_survivors_re::sets::TIER_HALF)
+            .map(|descriptor| if descriptor.empowered { 0.019_f32 } else { 0.0175_f32 });
         self.effect_state.graduation_enhancement =
             super::kill_feats::graduation_enhancement(class, allocation);
         self.configure_demons(if class == 9 {
@@ -321,6 +397,8 @@ impl Mechanics {
             .iter()
             .find(|row| row.id == class);
         self.effect_state.equipped.talents.clear();
+        self.effect_state.equipped.fortified = class == 1
+            && allocation.iter().any(|(key, rank)| key == "fortified" && *rank != 0);
         self.effect_state.equipped.sweeping_storm_rank = if class == 7 {
             allocation.iter().find(|(key, _)| key == "enh_sweeping_storm")
                 .map_or(0, |(_, rank)| *rank)
@@ -350,7 +428,23 @@ impl Mechanics {
                         let effects: Vec<_> = talent
                             .effects
                             .iter()
-                            .map(|effect| EffectRow::talent(effect, *rank))
+                            .map(|effect| {
+                                let mut row = EffectRow::talent(effect, *rank);
+                                // 145e310dc rewrites the allocated Paladin rows in place.
+                                if soulforge_four_piece && row.tag() == 3 && row.word(16) == 10 {
+                                    row.bytes[4..8].copy_from_slice(&0.75_f32.to_le_bytes());
+                                }
+                                if let Some(fraction) = soulforge_hammer_fraction
+                                    && row.tag() == 5 && row.word(8) == 0
+                                    && row.bytes[16] == 1 && row.key(24) == Some("hammer_of_justice")
+                                {
+                                    row.bytes[4..8].copy_from_slice(&fraction.to_le_bytes());
+                                }
+                                if self.effect_state.tier_half_four_piece.is_some() {
+                                    apply_heroism_feralheart_talent(class, &mut row);
+                                }
+                                row
+                            })
                             .collect();
                         let generic_count = effects.iter().filter(|row| row.is_generic()).count();
                         self.effect_state.equipped.meter_talents.extend(std::iter::repeat_n(
@@ -378,23 +472,47 @@ impl Mechanics {
                 }
             }
         }
-        self.effect_state.set_generic_start = self.effect_state.talent_provenance.len();
-        self.effect_state.set_generic_count = 0;
-        if let Some(descriptor) = self.effect_state.tier_half_four_piece {
-            self.effect_state.equipped.talents.extend(descriptor.effects.iter().map(EffectRow::armor_set));
+        if class == 8 {
+            // 0.140.0 145ffe2c0 rewrites talent rows before appending set effects.
+            // Mode 0 replaces radius and damage, then mode 2 replaces only damage.
+            let four_piece = self.effect_state.tier_half_four_piece.is_some();
+            let empowered = self.effect_state.set_descriptor
+                .is_some_and(|set| set.tier == azeroth_survivors_re::sets::TIER_HALF && set.empowered);
+            if four_piece || empowered {
+                let fraction = if empowered { 1.5_f32 } else { 1.25_f32 };
+                for row in self.effect_state.equipped.talents.iter_mut()
+                    .filter(|row| row.is_splitting_ice())
+                {
+                    row.bytes[4..8].copy_from_slice(&fraction.to_le_bytes());
+                    if four_piece {
+                        row.bytes[8..12].copy_from_slice(&7.0_f32.to_le_bytes());
+                    }
+                }
+            }
         }
-        if let Some(descriptor) = self.effect_state.set_descriptor {
-            let icon = AbilityDefinition::by_key(&descriptor.spell_key)
-                .expect("current set descriptor has an ability icon").icon;
+        self.effect_state.apply_tier_half_talent_rows(class);
+        self.effect_state.set_generic_count = 0;
+        for (eight_piece, descriptor) in [
+            (false, self.effect_state.tier_half_four_piece),
+            (true, self.effect_state.set_descriptor),
+        ] {
+            if eight_piece {
+                self.effect_state.set_generic_start = self.effect_state.talent_provenance.len();
+            }
+            let Some(descriptor) = descriptor else { continue; };
             for payload in &descriptor.effects {
                 let row = EffectRow::armor_set(payload);
                 if row.is_generic() {
-                    self.effect_state.talent_provenance.push(self.effect_state.set_meter_name);
+                    let set_name = crate::armory::set_name_base(class, usize::from(descriptor.tier))
+                        .unwrap_or("");
+                    let icon = AbilityDefinition::by_key(&descriptor.spell_key)
+                        .expect("current set descriptor has an ability icon").icon;
+                    self.effect_state.talent_provenance.push(set_name);
                     let (name, icon) = if row.tag() == 66 {
                         // 0.140.0 145f250e0 uses a distinct source descriptor.
                         ("Thunderburst", "Spell_Nature_ThunderClap")
                     } else {
-                        (self.effect_state.set_meter_name, icon)
+                        (set_name, icon)
                     };
                     self.effect_state.talent_meter_sources.push(
                         azeroth_survivors_re::run_effects::healing::MeterSource {
@@ -403,7 +521,7 @@ impl Mechanics {
                             talent: true,
                         },
                     );
-                    self.effect_state.set_generic_count += 1;
+                    self.effect_state.set_generic_count += usize::from(eight_piece);
                 }
                 self.effect_state.equipped.talents.push(row);
             }
