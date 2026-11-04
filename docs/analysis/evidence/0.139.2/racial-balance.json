@@ -120,6 +120,36 @@
       "start_va": "0x145f5a035",
       "end_va_exclusive": "0x145f5a07b",
       "sha256": "dfdd7bca1de624a0e236877b97f23b19bb59d381463fd8de44754f11166dcb42"
+    },
+    {
+      "role": "party shield coefficient and duration",
+      "start_va": "0x145f414f5",
+      "end_va_exclusive": "0x145f4150b",
+      "sha256": "fbc411508e6d7cd75f69d8c42ad0d318f563e8c502236d33b60e1ba55462e6d6"
+    },
+    {
+      "role": "party shield event kind and fields",
+      "start_va": "0x145ed903a",
+      "end_va_exclusive": "0x145ed9088",
+      "sha256": "3429045175ac2dc7ad3a55abf129a6067bb452d48f30f7bb6f16516272127460"
+    },
+    {
+      "role": "party shield recipient max health and tag",
+      "start_va": "0x145eda22c",
+      "end_va_exclusive": "0x145eda26d",
+      "sha256": "ab9f481bc14ff5529ae6c54ebfe46d00c70b1c29cc72f84012560db5b43f4e31"
+    },
+    {
+      "role": "ordinary recipient absorb and empty-reservation gate",
+      "start_va": "0x145eda3d7",
+      "end_va_exclusive": "0x145eda402",
+      "sha256": "635ae6ffe2081f4f6103411b53c07f3e65c11d9c92df1dc62ad677b57f7fa316"
+    },
+    {
+      "role": "party shield source-zero aura",
+      "start_va": "0x145eda605",
+      "end_va_exclusive": "0x145eda667",
+      "sha256": "fdb94d8393b1470bbca8491d3e9f1cd547d12708c4f2bfd475352d3f542b1e8c"
     }
   ],
   "stoneform": {
@@ -203,5 +233,29 @@
       "byte_count": 228066,
       "sha256": "3510ee2dae7521793eb692545fdf2f03fbbe03b20abbc669ed084e81bb7a4db3"
     }
-  }
+  },
+  "party_shield_queries": [
+    {
+      "role": "party shield event producer",
+      "start_va": "0x145ed8fc0",
+      "end_va_exclusive": "0x145ed909d",
+      "sha256": "fddcb0ee46ae418d062467d904795ce4c69e2312f0d5d94954fafb59c9493dab",
+      "provider": "ghidra",
+      "result_sha256": "761e18fb777e89ef107cdefe561127b07465fd31646960871dba82d5c5a968d6",
+      "evidence_ids": [
+        "ev_be8b42d1944f89d49f1b1fb14f005fee1f267f122b235c584f3f759d1e64b52c"
+      ]
+    },
+    {
+      "role": "party shield event receiver",
+      "start_va": "0x145eda200",
+      "end_va_exclusive": "0x145edaabf",
+      "sha256": "f3fcb729adce64937bc5b8f382484437e4aaf942250cc635c516e1000adc6833",
+      "provider": "ghidra",
+      "result_sha256": "1d514663353d4a277284d24f0b7bfc0151068d88bec37ca41d82f04aff606b69",
+      "evidence_ids": [
+        "ev_8c88dbb90e4bb714660f7edaae027146f5704366dc22a693620727bbf98f5249"
+      ]
+    }
+  ]
 }

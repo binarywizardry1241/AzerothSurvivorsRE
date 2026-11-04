@@ -35,7 +35,16 @@ fallback and all fourteen locale catalogs use the recovered racial descriptions.
 The existing Stoneform regression asserts the new scheduled cooldown and
 absorb while retaining its checks for the separate racial slot and aura.
 
+The caster also emits party event 15 through `0x145ed8fc0`. The event carries
+the spell ID, the caster's modified shield coefficient before maximum-health
+scaling, and the scaled duration. The receiver at `0x145eda200` multiplies
+the coefficient by its own maximum health, adds that absorb, initializes the
+ordinary reservation only when it is empty, and refreshes one source-zero
+shield aura for the spell. The shared party buff path now applies this
+Stoneform event to admitted nearby peers. A source regression covers the
+live party tick with distinct caster and recipient maximum health.
+
 Static checks compared exact native descriptor/passive bytes, current localized
 values, the source inputs and the connected consumers. The Rust regression
-was parsed and remains uncompiled and unrun. Gameplay, rendering, co-op
+source was parsed and remains uncompiled and unrun. Gameplay, rendering, co-op
 execution and original/rebuilt comparison remain open.

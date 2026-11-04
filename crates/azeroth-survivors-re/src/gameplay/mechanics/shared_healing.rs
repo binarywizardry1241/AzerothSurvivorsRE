@@ -79,8 +79,19 @@ impl Mechanics {
                 || !within_range(event.position, input.position) { continue; }
             let Payload::Healing(healing) = event.payload else {
                 let Payload::Aura(aura) = event.payload else { unreachable!() };
+                let source_guid = if aura.effect.tag == 7 {
+                    let amount = self.execution.vitals.maximum_health * aura.effect.value;
+                    self.execution.vitals.absorb += amount;
+                    if self.execution.shield.spell_id == 0 {
+                        self.execution.shield = buffs::ShieldReservation { spell_id: aura.spell_id, amount };
+                    }
+                    // Kind 15 uses one source-zero shield aura per spell.
+                    0
+                } else {
+                    event.source_guid
+                };
                 buffs::refresh_aura(&mut self.execution.auras, buffs::Aura {
-                    source_guid: event.source_guid, effect: aura.effect, spell_id: aura.spell_id,
+                    source_guid, effect: aura.effect, spell_id: aura.spell_id,
                     expires_at: self.clock + aura.duration, healing_power: 0.0,
                 });
                 self.publish_player_auras();

@@ -195,6 +195,15 @@ pub fn apply_self_buff_with_party(
             vitals.absorb = (vitals.absorb - shield.amount).max(0.0) + amount;
             *shield = ShieldReservation { spell_id: definition.spell_id, amount };
             actions.absorb_changed = true;
+            if definition.key == "stoneform" {
+                // Kind 15 carries the caster's coefficient and scaled duration.
+                let coefficient = ((power_root * 1.4) * effect_power) * (shield_bonus + 1.0);
+                actions.shared_aura = Some(SharedAura {
+                    spell_id: definition.spell_id,
+                    effect: StatusEffect { tag, value: coefficient, duration: 0.0 },
+                    duration,
+                });
+            }
         }
         6 => {
             if 0.85 * vitals.maximum_health < vitals.health && !party_needs_healing {

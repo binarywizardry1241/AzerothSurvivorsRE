@@ -67,6 +67,28 @@ fn rejuvenations(game: &mut Mechanics, slot: u8) -> Vec<buffs::Aura> {
 }
 
 #[test]
+fn stoneform_cast_shields_a_party_recipient_using_their_maximum_health() {
+    let mut game = party(2);
+    set_casts(&mut game, &[]);
+    let mut racial = RuntimeInstance::learned(racial_definition(3).unwrap());
+    racial.remaining = 0.0;
+    game.racial = Some(racial);
+    game.with_party_hero(1, |hero| {
+        hero.execution.vitals.maximum_health = 200.0;
+    }).unwrap();
+    tick(&mut game);
+
+    assert!((game.execution.vitals.absorb - 63.0).abs() < 0.0001);
+    game.with_party_hero(1, |hero| {
+        assert!((hero.execution.vitals.absorb - 126.0).abs() < 0.0001);
+        assert_eq!(hero.execution.shield.spell_id, 20594);
+        let aura = hero.execution.auras.iter().find(|aura| aura.spell_id == 20594).unwrap();
+        assert_eq!(aura.source_guid, 0);
+        assert_eq!(aura.expires_at, hero.clock + 8.0_f32 * 1.4);
+    }).unwrap();
+}
+
+#[test]
 fn battle_shout_keeps_two_casters_and_uses_the_weaker_aura_after_expiry() {
     let mut game = party(2);
     let center = game.zone.center.into();
