@@ -157,6 +157,34 @@ delivery, rendered output and original/rebuilt parity remain open.
 
 ## Achievements, progression and glow
 
+### Collection and Heroic progress
+
+The Whole Armory descriptor constructs the key at `0x145e4e873` and stores
+kind 23 and the target at `0x145e4ea4b`. Its preceding loop calls
+`0x146038a10` for all nine classes and sums their full seven-tier catalog
+lengths. The native tier selector is `0x1473ec068`. Each tier has 83 IDs,
+including the two classes with paired weapons, for 581 total.
+The kind 23 evaluator at `0x145e5b0a3` reads the saved owned-item count.
+
+The kind 40 descriptor at `0x145e4f8d6..0x145e4f92f` adds
+`collection:t05` after Armory of Legends. The evaluator at
+`0x145e5b41f` gets the current 83 compact IDs from `0x1460385f0`
+and tests each against the sorted owned items. The source uses the
+existing startup, reload and live reward account evaluators for both
+collections, including items already present in a save.
+
+Heroic Across Azeroth uses kind 34, minimum rank 3 at `0x145e504e4`.
+Its evaluator begins at `0x145e5a43e` and checks the thirteen current
+zone ordinals. The existing card at `0x140385eaa` gets the missing
+zones from `0x145e4ba00`, joins the localized names with comma-space,
+and formats `Still to beat: {zones}`. The source reads the existing
+keyed Heroic records and shares the zone predicate between the count
+and the missing list. Historical achievement ordinals remain separate.
+
+PE byte/operand review and the gear catalog check cover the descriptor,
+collection and display inputs. Both changed Rust files syntax-parse.
+The authored Rust checks, actual save/UI behavior and parity remain open.
+
 | 0.140.0 claim ID | Finding and next static step |
 | --- | --- |
 | `changelog:0.140.0:1bd2ec64e4e8aedc` | #315. The packed catalog separates four descriptions. `collection:t05` at `0x1473f9f79` requires all eight armor pieces and the full fixed Gandling weapon reward for each class. `feat:graduation` at `0x1473fab9a` describes an Enhancement Shaman's Stormstrike killing blow on Gandling. `feat:straightas` at `0x1473fac38` describes a Gandling defeat with no player damaged by Headmaster's Office or The Last Examination. `Yes, I am prepared!` at `0x1473fa266` describes solo Heroic V clears with all nine classes using their Tier 0.5 bonuses and matching specialization talents. Its class-clear progress text is in the English region near the Lifestealing glow label at `0x147770399`. Follow the catalog constructor from the `achievements.rs` location owners `0x145e4c2f0` and `0x145e4c9d0` and resolve the individual evaluator cases. Trace the exact star, set and talent predicates, ability-attributed lethal hit, party-wide mechanic hit history, fixed weapon ownership, persisted class bits and the Armory glow gate. Existing damage history records boss identity before HP loss, so the narrower source/spell and post-mitigation boundaries for Straight A's need proof. [Achievements](../../crates/azeroth-survivors-re/src/account_progression.rs), [hit history](../../crates/azeroth-survivors-re/src/gameplay/mechanics/kill_feats.rs), [glow source](../../crates/azeroth-survivors-re/src/armory_cosmetics.rs), [prior achievements #19](../verification-needed.md#gap-19), [achievement module #82](../CURRENT-STATE.md#gap-82). |

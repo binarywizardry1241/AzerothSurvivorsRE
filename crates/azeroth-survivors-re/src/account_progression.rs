@@ -62,6 +62,9 @@ fn catalog() -> &'static Catalog {
         ))
         .expect("current owned-armor and Heroic account conditions");
         catalog.achievements.extend(additions.achievements);
+        // 0.140.0 enumerates seven armor tiers with 83 items per tier.
+        catalog.achievements.iter_mut().find(|row| row.key == "pieces:all")
+            .expect("The Whole Armory descriptor").target = 581;
         let current: CooperativeCatalog = serde_json::from_str(include_str!(
             "../assets/coop-achievements-0.127.0.json"
         ))
@@ -79,6 +82,14 @@ fn catalog() -> &'static Catalog {
                 insertion = Some(catalog.achievements.len());
             }
         }
+        let scholomance: CooperativeCatalog = serde_json::from_str(include_str!(
+            "../assets/scholomance-achievements-0.140.0.json"
+        ))
+        .expect("Scholomance achievement descriptors");
+        let collection_index = catalog.achievements.iter()
+            .position(|entry| entry.key == "armoryoflegends")
+            .expect("Armory of Legends achievement") + 1;
+        catalog.achievements.splice(collection_index..collection_index, scholomance.achievements);
         catalog
     })
 }
@@ -289,6 +300,10 @@ pub fn progress(definition: &Definition, account: &Account) -> Option<(u64, u64)
                 | CooperativeCondition::Survival { .. } => None,
         };
     }
+    if definition.key == "heroic:all3" {
+        let total = crate::zones::COUNT as u64;
+        return Some((total - account.missing_heroic_zones(definition.selector).count() as u64, total));
+    }
     let have = match definition.kind {
         0 => u64::from(CLASSES.iter().any(|c| {
             account
@@ -381,6 +396,15 @@ pub fn progress(definition: &Definition, account: &Account) -> Option<(u64, u64)
             .filter(|class| account.armor_pieces(**class, 4, 3) == 8).count() as u64, 9)),
         36 => return Some((CLASSES.iter().filter(|class| ARMOR_TIERS.iter()
             .any(|tier| account.armor_pieces(**class, *tier, 5) == 8)).count() as u64, 9)),
+        40 => {
+            let items = CLASSES.into_iter().flat_map(|class| {
+                (0..8).map(move |slot| crate::tier05::item_id(class, slot))
+                    .chain(crate::tier05::weapon_ids(class))
+            });
+            return Some(items.fold((0, 0), |(have, total), id| {
+                (have + u64::from(account.gear.contains(&id)), total + 1)
+            }));
+        }
         _ => return None,
     };
     Some((have, definition.target))
@@ -389,6 +413,18 @@ pub fn progress(definition: &Definition, account: &Account) -> Option<(u64, u64)
 const ARMOR_TIERS: [u8; 6] = [0, 1, 2, 3, 5, 4];
 
 impl Account {
+    pub fn missing_heroic_zones(&self, rank: u8)
+        -> impl Iterator<Item = &'static crate::guardians::catalog::ZoneDefinition> + '_
+    {
+        crate::guardians::catalog::ZONES.iter().filter(move |zone| {
+            let index = crate::mob_loot::BOSS_ZONES.iter().position(|row| row.key == zone.key)
+                .unwrap_or(crate::mob_loot::BOSS_ZONES.len());
+            !self.heroic_clears.iter().any(|((_, cleared), earned)| {
+                *cleared == index && *earned >= rank
+            })
+        })
+    }
+
     /// Current145ba3940 tests eight constructed IDs in the raw owned set,
     /// then their canonical rank keys. Tier6 shares tier5's rank key, but
     /// the owned test itself retains the requested (clamped) tier identity.
@@ -592,6 +628,34 @@ pub fn killing_spell(spell: u32) -> u32 {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn scholomance_collection_needs_both_paired_weapons_and_accepts_existing_items() {
+        let definition = definitions().iter().find(|row| row.key == "collection:t05").unwrap();
+        let mut account = Account::default();
+        for class in CLASSES {
+            account.gear.extend((0..8).map(|slot| crate::tier05::item_id(class, slot)));
+            account.gear.extend(crate::tier05::weapon_ids(class));
+        }
+        assert_eq!(progress(definition, &account), Some((83, 83)));
+        account.gear.remove(&crate::tier05::item_id(7, 9));
+        account.gear.insert(107_060);
+        assert_eq!(progress(definition, &account), Some((82, 83)));
+    }
+
+    #[test]
+    fn heroic_across_azeroth_includes_scholomance_in_world_order() {
+        let definition = definitions().iter().find(|row| row.key == "heroic:all3").unwrap();
+        let mut account = Account::default();
+        let old_zones = crate::mob_loot::BOSS_ZONES.len();
+        account.heroic_clears.extend((0..old_zones).map(|zone| ((1, zone), 3)));
+        account.heroic_clears.insert((4, old_zones), 2);
+        assert_eq!(progress(definition, &account), Some((12, 13)));
+        assert_eq!(account.missing_heroic_zones(3).map(|zone| zone.key).collect::<Vec<_>>(),
+            ["scholomance"]);
+        account.heroic_clears.insert((4, old_zones), 3);
+        assert_eq!(progress(definition, &account), Some((13, 13)));
+    }
 
     #[test]
     fn owned_armor_heroic_and_marks_match_current_native_cases() {

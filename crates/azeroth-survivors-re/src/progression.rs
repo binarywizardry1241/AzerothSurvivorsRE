@@ -146,6 +146,14 @@ impl Catalog {
                 insertion = Some(catalog.achievements.len());
             }
         }
+        let scholomance: CurrentAchievements = serde_json::from_str(include_str!(
+            "../assets/scholomance-achievements-0.140.0.json"
+        ))
+        .expect("Scholomance achievement descriptors");
+        let collection_index = catalog.achievements.iter()
+            .position(|entry| entry.key == "armoryoflegends")
+            .expect("Armory of Legends achievement") + 1;
+        catalog.achievements.splice(collection_index..collection_index, scholomance.achievements);
         // Native unlock rows retain their descriptor identity until the name
         // lookup (0.119.0 145c3e7f0); their English names are not locale keys.
         for achievement in &mut catalog.achievements {
@@ -563,7 +571,14 @@ fn achievement_inputs(save: &Save) -> azeroth_survivors_re::account_progression:
         gear: gear.owned,
         stars: gear.stars.into_iter().collect(),
         heroic_clears: save.heroic_clears().into_iter()
-            .filter_map(|((class, index), rank)| Some(((class, retained_zone(index)?), rank))).collect(),
+            .filter_map(|((class, index), rank)| {
+                let index = if index == azeroth_survivors_re::zones::scholomance::INDEX {
+                    azeroth_survivors_re::mob_loot::BOSS_ZONES.len()
+                } else {
+                    retained_zone(index)?
+                };
+                Some(((class, index), rank))
+            }).collect(),
         seen: save.seen().len(),
         statistics: [
             "kills",
@@ -1233,6 +1248,7 @@ fn achievement_card(
     entry: &Achievement,
     account: &Progress,
     partial: Option<(u64, u64)>,
+    save: &Save,
 ) {
     let earned = account.earned.contains(&entry.key);
     let partial = partial.filter(|(_, total)| !earned && *total >= 2);
@@ -1382,6 +1398,15 @@ fn achievement_card(
                         MUTED,
                     );
                 });
+                if entry.key == "heroic:all3" {
+                    let zones = achievement_inputs(save).missing_heroic_zones(3)
+                        .map(|zone| labels.label(&format!("zone.{}.name", zone.key)).to_owned())
+                        .collect::<Vec<_>>();
+                    if !zones.is_empty() {
+                        text(body, art, labels.label("Still to beat: {zones}")
+                            .replace("{zones}", &zones.join(", ")), 11., MUTED);
+                    }
+                }
             }
             for unlock in &entry.unlocks {
                 body.spawn(Node {
@@ -1684,6 +1709,7 @@ fn draw_achievements(
                                             entry,
                                             account,
                                             progress(entry, account, save, gear, armory),
+                                            save,
                                         );
                                     }
                                 });
@@ -1739,7 +1765,7 @@ fn draw_achievements(
                 } else {
                     right.spawn(grid()).with_children(|ui| {
                         for entry in recent.iter().take(4) {
-                            achievement_card(ui, art, images, labels, entry, account, None);
+                            achievement_card(ui, art, images, labels, entry, account, None, save);
                         }
                     });
                 }
@@ -1837,7 +1863,7 @@ fn draw_achievements(
                     small_heading(right, art, labels.label("ALMOST THERE"));
                     right.spawn(grid()).with_children(|ui| {
                         for (entry, value) in partial.iter().take(4) {
-                            achievement_card(ui, art, images, labels, entry, account, Some(*value));
+                            achievement_card(ui, art, images, labels, entry, account, Some(*value), save);
                         }
                     });
                 }
