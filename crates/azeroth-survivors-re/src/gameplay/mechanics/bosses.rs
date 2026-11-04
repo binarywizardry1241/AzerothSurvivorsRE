@@ -1053,8 +1053,7 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             vulnerability_until: row.vulnerability_until,
             demoralizing_amplification: self.generic.demoralizing_amplification
                 .get(&row.guid).map_or(0.0, |window| window.value_at(self.now)),
-            additional_damage_taken: row.additional_damage_taken
-                + row.control.elemental_sunder(hit.school, self.now) + packlord,
+            additional_damage_taken: row.additional_damage_taken,
             dead: false,
         };
         let raid_multiplier = self.boss_state.defenses.get(&row.guid).copied().unwrap_or_default()
@@ -1067,6 +1066,12 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
                 now: self.now,
                 player_absorb: self.player_absorb,
                 talent_effects: &effect_stats,
+                spell_amplification: enhancement::spell_amplification(
+                    &self.equipped.rows, hit.spell_id, self.now, &row.control,
+                    row.health, row.maximum_health,
+                ),
+                elemental_sunder: row.control.elemental_sunder(hit.school, self.now),
+                packlord_amplification: packlord,
             },
             raid_multiplier,
         ) else {
@@ -1116,6 +1121,7 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
                 self.now,
                 hit.effect,
                 hit.spell_id,
+                self.equipped,
                 self.movement_counter,
                 self.world,
             ));

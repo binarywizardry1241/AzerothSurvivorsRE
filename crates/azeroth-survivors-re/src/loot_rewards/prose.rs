@@ -186,6 +186,39 @@ fn effect_description(definition: &Definition, record: &EffectRecord, bytes: &[u
                 vec![("spell", ability("stormstrike")?), ("p", percent(value(4)))],
             ),
         30 => return stat_description(bytes[8], value(4)),
+        49 => template(
+            "{spell} slows by {pct} for {secs} sec",
+            vec![
+                ("spell", ability(key(record)?)?),
+                ("pct", percent(value(24))),
+                ("secs", number(value(28))),
+            ],
+        ),
+        50 => template(
+            "{spell} deals {bonus} more damage to already chilled enemies",
+            vec![("spell", ability(key(record)?)?), ("bonus", percent(value(24)))],
+        ),
+        51 => template(
+            "{spell} deals {bonus} more damage to enemies below {below} health",
+            vec![
+                ("spell", ability(key(record)?)?),
+                ("bonus", percent(value(28))),
+                ("below", percent(value(24))),
+            ],
+        ),
+        52 => template(
+            "A kill with {spell} cuts its remaining cooldown by {frac}",
+            vec![("spell", ability(key(record)?)?), ("frac", percent(value(24)))],
+        ),
+        53 => template(
+            "Each tick of {spell} also hits {n} nearby enemies within {radius} yd for {frac} damage",
+            vec![
+                ("spell", ability(key(record)?)?),
+                ("n", literal(u32::from_le_bytes(bytes[24..28].try_into().unwrap()))),
+                ("radius", number(value(32))),
+                ("frac", percent(value(28))),
+            ],
+        ),
         55 => template(
             "{spell}'s primary hit unleashes a seismic shockwave, dealing {p} damage to enemies within {r} yd.",
             vec![

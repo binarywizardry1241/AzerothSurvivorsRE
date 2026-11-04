@@ -145,6 +145,7 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                         duration: 0.0,
                     },
                     6358,
+                    self.core.equipped,
                     self.core.movement_counter,
                     self.core.world,
                 ));
@@ -170,6 +171,7 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                         duration: 0.0,
                     },
                     6358,
+                    self.core.equipped,
                     self.core.movement_counter,
                     self.core.world,
                 ));

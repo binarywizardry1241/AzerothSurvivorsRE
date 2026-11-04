@@ -13,6 +13,7 @@ pub(super) struct State {
     capture: Option<Capture>,
     ancestral_strikes: u32,
     previous_shock: Option<(&'static str, f32)>,
+    earthshatter_ready: bool,
 }
 
 #[derive(Debug)]
@@ -99,6 +100,51 @@ pub(super) fn critical_bonus(rows: &[EffectRow], key: &str) -> f32 {
         return 0.0;
     }
     talent(rows, 0).map_or(0.0, |(_, rank)| f32::from(rank) * 1.5 / 100.0)
+}
+
+fn spell_matches(row: &EffectRow, spell_id: u32) -> bool {
+    row.key(8)
+        .and_then(AbilityDefinition::by_key)
+        .is_some_and(|definition| definition.spell_id == spell_id)
+}
+
+pub(super) fn winter_slow(
+    rows: &[EffectRow],
+    spell_id: u32,
+    effect: player_abilities::StatusEffect,
+) -> Option<player_abilities::StatusEffect> {
+    if effect.tag != 1 {
+        return None;
+    }
+    // 0.140.0 145f85155..145f85262 selects the first keyed slow override.
+    let row = rows
+        .iter()
+        .find(|row| row.tag() == 49 && spell_matches(row, spell_id))?;
+    Some(player_abilities::StatusEffect {
+        value: row.float(24),
+        duration: row.float(28),
+        ..effect
+    })
+}
+
+pub(super) fn spell_amplification(
+    rows: &[EffectRow],
+    spell_id: u32,
+    now: f32,
+    control: &ControlWindow,
+    health: f32,
+    maximum_health: f32,
+) -> f32 {
+    // 0.140.0 145fbb990 sums qualifying keyed rows before the canonical hit.
+    rows.iter().fold(0.0, |sum, row| match row.tag() {
+        50 if control.winter_chill_until > now && spell_matches(row, spell_id) => {
+            sum + row.float(24)
+        }
+        51 if maximum_health * row.float(24) > health && spell_matches(row, spell_id) => {
+            sum + row.float(28)
+        }
+        _ => sum,
+    })
 }
 
 pub(super) fn sweeping_storm_power(
@@ -352,6 +398,13 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
     ) -> bool {
         let now = self.context.now;
         let key = instance.definition.key;
+        // 0.140.0 145f7bbbd inserts this separate token before target selection.
+        if key == "earth_shock"
+            && context.hit_context.proc_source.is_none()
+            && !context.hit_context.overcast
+        {
+            self.core.generic.enhancement.earthshatter_ready = true;
+        }
         let shattering = talent(&self.core.equipped.rows, 3);
         let resonant = talent(&self.core.equipped.rows, 2);
         let mut instance = *instance;
@@ -407,6 +460,43 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
             }
         }
         success
+    }
+
+    pub(super) fn earthshatter_kill(
+        &mut self,
+        row: &EffectRow,
+        spell_id: u32,
+        execution: &ExecutionState<'_>,
+    ) {
+        if self.core.generic.source.is_some()
+            || self.core.extra_cast
+            || !spell_matches(row, spell_id)
+            || !std::mem::take(&mut self.core.generic.enhancement.earthshatter_ready)
+        {
+            return;
+        }
+        // 0.140.0 145fbf79a consumes the token before resolving learned timers.
+        let recovery = aura_cooldown(
+            self.core.numeric.recovery,
+            &execution.auras,
+            self.context.now,
+            self.core.numeric.buff_bonus,
+        );
+        for ability in self
+            .learned
+            .iter_mut()
+            .filter(|ability| ability.definition.spell_id == spell_id)
+        {
+            let remaining = if ability.remaining.is_finite() {
+                ability.remaining
+            } else {
+                damage::cooldown(ability, recovery)
+            };
+            if remaining > 0.0 {
+                ability.remaining = (remaining * (1.0 - row.float(24))).max(remaining.min(0.25));
+            }
+        }
+        self.core.generic.cooldowns_dirty = true;
     }
 
     fn resonant_shocks(

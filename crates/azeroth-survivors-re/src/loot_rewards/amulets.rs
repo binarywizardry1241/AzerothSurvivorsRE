@@ -82,6 +82,7 @@ fn scale_effect(raw_hex: &str, factor: f32, equipped_amulet: bool) -> [u8; 64] {
         6 | 9 | 12 => Some(8),
         8 => Some(if bytes[8..12] == [255; 4] { 12 } else { 4 }),
         31 => Some(32),
+        // Current native tags 49–53 copy the complete Shock necklace row.
         _ => None,
     };
     if let Some(offset) = offset {
@@ -297,9 +298,9 @@ pub fn catalog() -> &'static Catalog {
     })
 }
 
-/// Native order: shared definitions of the sampled rarity, then one legendary
-/// constructor output per learned row when rarity4 was sampled. The current
-/// worn key and banished keys are removed while preserving the remaining order.
+/// Native order: shared definitions of the sampled rarity, then eligible
+/// learned-spell legendaries when rarity 4 was sampled. The current worn key
+/// and banished keys are removed while preserving the remaining order.
 /// Selection and its shared-RNG draw are a later stage.
 pub fn offering_pool<'a>(
     catalogue: &'a Catalog,
@@ -315,6 +316,10 @@ pub fn offering_pool<'a>(
         .collect();
     if rarity == 4 {
         for ability in learned {
+            // 0.140.0 0x146020620 skips these keys before the constructor.
+            if matches!(ability.key, "lightning_shield" | "healing_wave" | "explosive_trap") {
+                continue;
+            }
             pool.push(
                 catalogue
                     .generated

@@ -203,7 +203,7 @@ and original/rebuilt parity remain open.
 
 ## Enhancement, Consecration and Mind Blast
 
-[#305](../CURRENT-STATE.md#gap-305) retains the [0.139.2 Enhancement
+[#305](../verification-needed.md#gap-305) retains the [0.139.2 Enhancement
 proof](enhancement-0.139.2.md). Current `game/enhancement.rs:124` is referenced
 by `0x145f8f2bb` within `0x145f8c810`. The historical proc driver, repeat rules
 and necklace scaling supply correspondence candidates. Continue through that

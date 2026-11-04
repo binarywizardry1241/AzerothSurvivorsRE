@@ -112,7 +112,7 @@ timed consumer for `custom-game-game-enhancement`. The checkout has an
 ordinary spell dispatch and effect collection seam in `player_abilities` and
 `run_effects.rs`. The live Enhancement state, migrated effect collection,
 surrounding procs and remaining source integration stay under
-[#305](../CURRENT-STATE.md#gap-305).
+[#305](../verification-needed.md#gap-305).
 
 | Current VA range | File offset | Bytes | SHA-256 |
 | --- | --- | ---: | --- |

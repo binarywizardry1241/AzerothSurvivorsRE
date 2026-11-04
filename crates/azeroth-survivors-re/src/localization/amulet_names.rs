@@ -6,15 +6,10 @@ pub(super) fn localized(
     generated_ability_key: Option<&str>,
     mut lookup: impl FnMut(&str) -> Option<String>,
 ) -> String {
-    let key = match generated_ability_key {
-        // These constructors return complete names rather than prefix/spell pairs.
-        None | Some("demonic_empowerment" | "kill_command" | "rockbiter" | "stormstrike" | "fire_nova") => {
-            return lookup(name).unwrap_or_else(|| name.to_owned());
-        }
-        Some(key) => key,
+    let Some((key, (prefix, fallback))) = generated_ability_key.zip(name.split_once(": ")) else {
+        // Named necklaces and shared amulets use one complete locale key.
+        return lookup(name).unwrap_or_else(|| name.to_owned());
     };
-    let (prefix, fallback) = name.split_once(": ")
-        .expect("current generated amulet prefix and ability name");
     let prefix = lookup(prefix).unwrap_or_else(|| prefix.to_owned());
     // The two healing constructors use these literal keys in their common tail.
     let ability_key = match key {

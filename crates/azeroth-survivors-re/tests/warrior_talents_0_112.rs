@@ -85,6 +85,9 @@ fn victim_periodic_state_matches_current_native_damage_prefix() {
                 now: 10.0,
                 player_absorb: if active("shield") { 10.0 } else { 0.0 },
                 talent_effects: &effects,
+                spell_amplification: 0.0,
+                elemental_sunder: 0.0,
+                packlord_amplification: 0.0,
             },
         );
         assert_eq!(

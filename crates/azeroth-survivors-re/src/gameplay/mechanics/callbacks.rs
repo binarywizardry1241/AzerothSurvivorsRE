@@ -131,11 +131,18 @@ impl State {
         now: f32,
         effect: player_abilities::StatusEffect,
         spell_id: u32,
+        equipped: &azeroth_survivors_re::run_effects::Effects,
         movement_counter: &mut u32,
         world: &mut impl RunWorld,
     ) -> Vec<RunEvent> {
         if actor.dead {
             return Vec::new();
+        }
+        let winter_slow = enhancement::winter_slow(&equipped.rows, spell_id, effect);
+        let effect = winter_slow.unwrap_or(effect);
+        if winter_slow.is_some() {
+            // 0.140.0 145f85570 writes this lane only for the keyed override.
+            window.winter_chill_until = now + effect.duration;
         }
         let mut events = Vec::new();
         let changed = if effect.tag == 10 {
@@ -666,6 +673,7 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                     self.context.now,
                     effect,
                     spell_id,
+                    self.core.equipped,
                     self.core.movement_counter,
                     self.core.world,
                 ));
@@ -680,6 +688,7 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                     self.context.now,
                     effect,
                     spell_id,
+                    self.core.equipped,
                     self.core.movement_counter,
                     self.core.world,
                 ));
@@ -701,6 +710,7 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                     self.context.now,
                     effect,
                     spell_id,
+                    self.core.equipped,
                     self.core.movement_counter,
                     self.core.world,
                 ));
@@ -854,23 +864,28 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
             if event.source_kind == 3 && hit.context.effect_critical_procs && event.critical {
                 // 0.140.0 145f47a5b..145f47b80 bypasses ordinary hit/kill
                 // dispatch and first-hit/first-critical token consumption.
-                self.generic_event(event, input.raw_power, input.victim_guid, execution, rng, counter);
+                self.generic_event_with_demons(
+                    event, input.raw_power, input.victim_guid, Some(input.position),
+                    execution, rng, counter, None,
+                );
             } else if let Some(event) = azeroth_survivors_re::run_effects::hit_event(
                 event,
                 !self.core.equipped.rows.is_empty(),
                 &mut execution.seen_spells,
                 &mut self.core.generic.first_criticals,
             ) {
-                self.generic_event(
+                self.generic_event_with_demons(
                     event,
                     input.raw_power,
                     input.victim_guid,
+                    Some(input.position),
                     execution,
                     rng,
                     counter,
+                    None,
                 );
                 if self.gates().qualifies_death(input.remaining_health) {
-                    self.generic_event(
+                    self.generic_event_with_demons(
                         Event {
                             kind: 2,
                             first_periodic: false,
@@ -878,9 +893,11 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                         },
                         input.raw_power,
                         input.victim_guid,
+                        Some(input.position),
                         execution,
                         rng,
                         counter,
+                        None,
                     );
                 }
             }
@@ -950,7 +967,7 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
         rng: &mut NativeRng,
         counter: &mut dyn NativeCounter,
     ) {
-        self.generic_event_with_demons(event, amount, victim_guid, execution, rng, counter, None);
+        self.generic_event_with_demons(event, amount, victim_guid, None, execution, rng, counter, None);
     }
 
     pub(super) fn generic_event_with_demons(
@@ -958,6 +975,7 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
         event: Event,
         amount: f32,
         victim_guid: u64,
+        victim_position: Option<Position>,
         execution: &mut ExecutionState<'_>,
         rng: &mut NativeRng,
         counter: &mut dyn NativeCounter,
@@ -1014,8 +1032,14 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                 continue;
             }
             match row.tag() {
+                52 if event.kind == 2 && event.source_kind == 0 => {
+                    self.earthshatter_kill(row, event.spell_id, execution);
+                    continue;
+                }
                 11 | 12 | 14 if victim.is_some() => {}
                 10 if event.kind == 2 && row.matches_event(8, &event, definition) => {}
+                53 if event.kind == 1 && event.source_kind == 1
+                    && definition.is_some_and(|definition| row.key(8) == Some(definition.key)) => {}
                 0 | 1 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 15 | 16 | 17 | 18 => {
                     let condition = match row.tag() {
                         0 | 1 => 32,
@@ -1166,8 +1190,17 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                         }
                     }
                 }
-                6 => {
-                    let Some(actor) = self.core.victim_snapshot(victim_guid) else {
+                6 | 53 => {
+                    // 0x145fbff64 uses the captured periodic hit position and
+                    // raw amount for Emberwake. Ordinary splash retains its
+                    // existing actor lookup and independent payload layout.
+                    let (center, radius, count, fraction) = if row.tag() == 53 {
+                        (victim_position, row.float(32), row.word(24), row.float(28))
+                    } else {
+                        (self.core.victim_snapshot(victim_guid).map(|actor| actor.position),
+                            10.0, row.word(4), row.float(8))
+                    };
+                    let Some(center) = center else {
                         continue;
                     };
                     let actors = actor_targets(
@@ -1179,15 +1212,15 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                     let targets = targeting::radius_targets(
                         &actors,
                         self.context.now,
-                        actor.position,
-                        10.0,
+                        center,
+                        radius,
                         &[victim_guid],
                     )
                     .into_iter()
-                    .take(row.word(4) as usize)
+                    .take(count as usize)
                     .map(|target| target.actor.guid)
                     .collect::<Vec<_>>();
-                    let damage = row.float(8) * amount;
+                    let damage = fraction * amount;
                     for guid in targets {
                         if event.spell_id != 0 {
                             self.core.cast_spell(SpellCast {

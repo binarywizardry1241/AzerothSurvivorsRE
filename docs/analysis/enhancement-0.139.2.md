@@ -1,6 +1,6 @@
 # Enhancement recovery in 0.139.2
 
-[Finding #305](../CURRENT-STATE.md#gap-305) and the [native
+[Finding #305](../verification-needed.md#gap-305) and the [native
 receipt](evidence/0.139.2/enhancement.json) use the installed EXE with
 SHA-256 `0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908`.
 
@@ -249,3 +249,78 @@ declared extent decoding. Current tree, necklace and Armor labels were
 compared across all fourteen native locale payloads. Compilation, rebuilt
 execution, network exchange, rendered UI and original/rebuilt comparison
 remain open.
+
+## Shock necklaces in 0.140.0
+
+The same installed 0.140.0 PE supplies three keyed constructors. The current
+source replaces the old definitions at their existing save keys.
+
+| Key | Constructor | Current effect rows |
+| --- | --- | --- |
+| `legendary:frost_shock` | `0x145dffa40` | Winter's Embrace writes raw 49 (70% slow, six seconds) and raw 50 (75% damage bonus against already chilled victims). |
+| `legendary:earth_shock` | `0x145dffb90` | Earthshatter Seal writes raw 51 (75% damage bonus below 35% health) and raw 52 (50% of remaining cooldown removed on an eligible kill). |
+| `legendary:flame_shock` | `0x145dffae0` | Emberwake Pendant writes keyed raw 73 (40% Flame Shock power) and raw 53 (two additional targets, six yards, 50% of the tick's input power). |
+
+The worn-amulet iterator at `0x146064af0..0x146064b06` passes the growth
+factor to `0x145de6d70`. Five signed entries at
+`0x1473e71d0..0x1473e71e4` select the same 64-byte copy path
+`0x145de71f5..0x145de7218` for raw 49–53. Those records keep their
+original fields at all ranks. The keyed raw 73 lane scales separately at
+`0x146064b57..0x146064b69`.
+
+Winter's status override first selects the keyed raw 49 record. The
+ordinary movement slow and its published aura use the applied magnitude
+and duration. The independent chill deadline at actor `+0x1dc` is refreshed
+by this keyed effect and remains available to the next Frost Shock even if
+a different source replaces the movement slow. The raw 50 branch at
+`0x145fbbb13` checks a strictly future chill deadline before adding the
+keyed bonus. The raw 51 branch at `0x145fbbcd6` compares
+`max_health * 0.35 > health` before adding Earthshatter's bonus. The common
+hit owner adds these keyed contributions before Elemental Sunder and
+Packlord.
+
+Raw 52 at `0x145fbce23` consumes one eligible ordinary Earth Shock
+cast token on a kill before looking up the learned timer. Failed or
+nonlethal casts keep the token until an eligible kill. Procs and overcasts
+do not arm or spend it. A nonfinite timer first resolves the ordinary live
+cooldown. The reduction leaves at least the smaller of the original timer
+and 0.25 seconds. The dirty cooldown publishes through the existing timer
+adapter.
+
+Raw 53 dispatches at `0x145fbcd19` only for a periodic Flame Shock hit
+with the original periodic source kind. It queries around the captured
+victim position, excludes that victim, takes the first two candidates
+within six yards, and publishes the spell independently for each. The
+secondary hit takes half of the tick's incoming power before victim
+modifiers, uses source kind 3, and does not draw a critical. The addon
+damage row carries the worn amulet's current key and rank.
+
+The learned-spell legendary builder at `0x146020620`, called at
+`0x145fee6c4`, skips `lightning_shield`, `healing_wave` and
+`explosive_trap` before invoking the constructor. The first name's
+separate Talisman constructor remains visible at `0x145dead80`. Source
+applies the exclusion in the offer path and retains the keyed definitions
+for other lookups. Rockbiter and Stormstrike's generated keys are admitted
+by the co-op Seen source registry.
+
+| Current PE range | SHA-256 |
+| --- | --- |
+| `0x145f84b00..0x145f856e6` shared status owner | `ecd6385054c26b226f5fa59961b696afcae3e97ad3e2f9f4619e848da129aeef` |
+| `0x145fbb990..0x145fbbe87` keyed hit sum | `ad646f9ad43325cc17efc8c26847485c71c4c4a6296278b205d39bfdbdc90791` |
+| `0x145fbce23..0x145fbcf17` Earthshatter event admission | `b87c1306f7fed5cc7c19b6b0c860466afb1e7746652fbcde87c0b0ca492010f8` |
+| `0x145fbf79a..0x145fbf937` Earthshatter timer write | `d88845c3c1b31caeb172b748cb3636996cd5c297579abd8a2c153c860451eee1` |
+| `0x145fbcd19..0x145fbcd85` Emberwake event admission | `5d33a7a7f255060fa3a7aa969fbf7384a24290ef8f8ad2a86626ee31bbc9879f` |
+| `0x145fbff64..0x145fc012e` Emberwake query and hit | `c36f6d379d68b0da976654a31165b32e46ba202a755d457fb62e530e2e0d6385` |
+| `0x1473e71d0..0x1473e71e4` worn dispatch cells | `3912964b4b2434edf15e7cee290a49dce56c1a20fdada1a6b85efd7141ffc790` |
+| `0x145de71f5..0x145de7218` unscaled copy leaf | `f890a5e5b47771db8b35fcc599bd9eb682cb15253fea1de4628fa1e10ec10f6e` |
+| `0x146020620..0x14602078a` offer filter | `3424b66e2342f0fddd11a7d5514864d03d70010d6ec1e1c3da33206f97c85c80` |
+
+The status owner Ghidra result has digest
+`3fde62d270f26a0256ed78078e0ea3ccb4e09353d6bc07ab742a993e5814fe7a`.
+The direct PE instructions resolve its detached table and keyed references.
+The item labels and effect templates were compared with 112 values across all
+fourteen native locale payloads. The selected Emberwake native instructions
+passed 25 event cases and 192 count and power cases. Winter and Earthshatter
+passed 64 keyed damage and 44 timer cases. Rust source syntax and
+the live source connections were checked. Compilation, runtime behavior
+and original/rebuilt parity remain open.

@@ -163,6 +163,9 @@ pub struct VictimContext<'a> {
     pub player_absorb: f32,          // Game+1028
     /// Ordered current talent-effect records, retaining native discriminants.
     pub talent_effects: &'a [(u8, f32)],
+    pub spell_amplification: f32,
+    pub elemental_sunder: f32,
+    pub packlord_amplification: f32,
 }
 
 fn talent_sum(effects: &[(u8, f32)], tag: u8) -> f32 {
@@ -191,7 +194,11 @@ pub fn victim_multiplier(victim: &Victim, context: &VictimContext<'_>) -> f32 {
     if victim.vulnerability_until > context.now { multiplier += victim.vulnerability; }
     multiplier += victim.demoralizing_amplification;
     if context.player_absorb > 0.0 { multiplier += talent_sum(context.talent_effects, 28); }
-    multiplier + victim.additional_damage_taken
+    multiplier += victim.additional_damage_taken;
+    // 0.140.0 145f432a4..145f43372 adds these three lanes in order.
+    multiplier += context.spell_amplification;
+    multiplier += context.elemental_sunder;
+    multiplier + context.packlord_amplification
 }
 
 #[cfg(test)]
@@ -220,6 +227,7 @@ mod shout_damage_tests {
             };
             let actual = victim_multiplier(&victim, &VictimContext {
                 run_state: 1, now: f(0), player_absorb: 0., talent_effects: &[],
+                spell_amplification: 0., elemental_sunder: 0., packlord_amplification: 0.,
             });
             assert_eq!(actual.to_bits(), case[4].as_u64().unwrap() as u32);
         }

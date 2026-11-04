@@ -101,6 +101,8 @@ pub struct ControlWindow {
     pub resistant: bool,
     pub polymorph_duration: f32,
     pub elemental_sunder_until: f32,
+    /// Current Actor+0x1dc, independent of the ordinary movement slow.
+    pub winter_chill_until: f32,
 }
 
 impl ControlWindow {

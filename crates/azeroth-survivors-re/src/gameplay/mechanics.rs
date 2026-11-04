@@ -2246,14 +2246,23 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
                 return Some((source, key));
             }
         }
-        let talent = azeroth_survivors_re::run_effects::healing::meter_effect_index(
+        let effect_index = azeroth_survivors_re::run_effects::healing::meter_effect_index(
             kind,
             self.attribution.source_words,
             self.attribution.cast_words,
             self.generic.source,
         )
         .filter(|_| !resonant)
-        .filter(|&index| self.meter_sources.get(index) == Some(&source))
+        .filter(|&index| self.meter_sources.get(index) == Some(&source));
+        // Native 145de85e0 gives the equipped Emberwake proc its item key
+        // and live pick count, separately from Flame Shock's ordinary row.
+        if kind == 3 && effect_index.and_then(|index| self.equipped.rows.get(index))
+            .is_some_and(|row| row.tag() == 53)
+            && let Some((key, picks)) = self.equipped.meter_amulet
+        {
+            return Some((source, format!("amulet:{key}:r{picks}")));
+        }
+        let talent = effect_index
         .and_then(|index| self.equipped.meter_talents.get(index).copied());
         let talent_attribution = |(key, rank)| (source, format!("talent:{key}:r{rank}"));
         let sourced_cast = matches!(kind, 0 | 1)
@@ -2411,8 +2420,7 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             vulnerability_until: row.vulnerability_until,
             demoralizing_amplification: self.generic.demoralizing_amplification
                 .get(&row.guid).map_or(0.0, |window| window.value_at(self.now)),
-            additional_damage_taken: row.additional_damage_taken
-                + row.control.elemental_sunder(hit.school, self.now) + packlord,
+            additional_damage_taken: row.additional_damage_taken,
             dead: row.actor.dead,
         };
         let raid_multiplier = if victim.guardian {
@@ -2427,6 +2435,12 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
                 now: self.now,
                 player_absorb: self.player_absorb,
                 talent_effects: &effect_stats,
+                spell_amplification: enhancement::spell_amplification(
+                    &self.equipped.rows, hit.spell_id, self.now, &row.control,
+                    row.health, row.maximum_health,
+                ),
+                elemental_sunder: row.control.elemental_sunder(hit.school, self.now),
+                packlord_amplification: packlord,
             },
             raid_multiplier,
         ) else {
@@ -2475,6 +2489,7 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
                 self.now,
                 hit.effect,
                 hit.spell_id,
+                self.equipped,
                 self.movement_counter,
                 self.world,
             ));
@@ -2874,6 +2889,7 @@ impl<W: RunWorld> AbilityScheduler<'_, '_, W> {
             },
             0.0,
             0,
+            None,
             self.execution,
             self.rng,
             self.counter,

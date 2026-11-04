@@ -308,6 +308,8 @@ pub struct Effects {
     /// Allocation key and rank in generic talent row order. Set and amulet
     /// rows follow this prefix and use separate source descriptors.
     pub meter_talents: Vec<(&'static str, u8)>,
+    /// Stable key and pick count of the equipped amulet supplying the tail.
+    pub meter_amulet: Option<(&'static str, u32)>,
     /// Native Game+828: only generic effects, in talent then amulet order.
     pub rows: Vec<EffectRow>,
     /// Numeric spell modifiers have their own native vector and no proc index.
@@ -326,6 +328,7 @@ impl Effects {
     }
 
     pub fn rebuild(&mut self, amulet: Option<(&'static amulets::Definition, usize, u32)>) {
+        self.meter_amulet = amulet.map(|(definition, _, picks)| (definition.key.as_str(), picks));
         let mut inputs = self.talents.clone();
         if let Some((definition, rarity, picks)) = amulet {
             inputs
