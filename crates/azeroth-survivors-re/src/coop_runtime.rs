@@ -24,6 +24,12 @@ struct EngineDispatch {
     localized: Vec<(ClientId, EnginePacket)>,
 }
 
+struct ValueDispatch {
+    source: u8,
+    value: serde_json::Value,
+    localized: Vec<(ClientId, serde_json::Value)>,
+}
+
 #[derive(Resource, Default)]
 pub(crate) struct CoopRuntime {
     pub party: Party,
@@ -51,7 +57,7 @@ pub(crate) struct CoopRuntime {
     /// Local request26 carries the actual admitted Hero GUID, never a service ID.
     pub kick_requests: Vec<u64>,
     defer_engine: bool,
-    deferred_values: Vec<(u8, serde_json::Value)>,
+    deferred_values: Vec<ValueDispatch>,
     engine_events: Vec<EngineDispatch>,
 }
 
@@ -158,16 +164,24 @@ impl CoopRuntime {
         for dispatch in std::mem::take(&mut self.engine_events) {
             self.route_clients(dispatch);
         }
-        for (source, value) in std::mem::take(&mut self.deferred_values) {
-            self.send_value_from(source, &value);
+        for ValueDispatch { source, value, localized } in std::mem::take(&mut self.deferred_values) {
+            self.send_value_localized_from(source, &value, localized);
         }
     }
     pub(crate) fn send_value(&mut self, value: &serde_json::Value) {
         self.send_value_from(0, value);
     }
     pub(crate) fn send_value_from(&mut self, source: u8, value: &serde_json::Value) {
+        self.send_value_localized_from(source, value, Vec::new());
+    }
+    pub(crate) fn send_value_localized_from(
+        &mut self,
+        source: u8,
+        value: &serde_json::Value,
+        localized: Vec<(ClientId, serde_json::Value)>,
+    ) {
         if self.defer_engine {
-            self.deferred_values.push((source, value.clone()));
+            self.deferred_values.push(ValueDispatch { source, value: value.clone(), localized });
             return;
         }
         let Some(original) = native_event_text(value) else {
@@ -201,6 +215,10 @@ impl CoopRuntime {
                     forwarded.as_deref()
                 };
                 if let Some(text) = text {
+                    let localized = localized.iter()
+                        .find_map(|(recipient, value)| (*recipient == client).then_some(value))
+                        .and_then(native_event_text);
+                    let text = localized.as_deref().unwrap_or(text);
                     driver.send_message(
                         Some(client),
                         NativeMessage::Lifecycle(

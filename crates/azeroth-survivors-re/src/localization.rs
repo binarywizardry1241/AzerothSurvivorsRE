@@ -127,6 +127,14 @@ impl Localization {
         self.lookup(key).unwrap_or(key)
     }
 
+    pub(crate) fn label_for_language<'a>(&'a self, key: &'a str, language: &[u8]) -> &'a str {
+        let Some(index) = std::str::from_utf8(language).ok().and_then(language_index) else {
+            return self.label(key);
+        };
+        self.catalogs[index].get(key).or_else(|| self.catalogs[0].get(key))
+            .map_or(key, String::as_str)
+    }
+
     /// The host has already rendered the name and body into this locale.
     /// Recover their literal keys before looking up the recipient's values.
     pub(crate) fn translate_announcement<'a>(&'a self, text: &'a str, language: &[u8]) -> &'a str {

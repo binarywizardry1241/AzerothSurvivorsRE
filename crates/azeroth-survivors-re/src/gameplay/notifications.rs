@@ -1,12 +1,11 @@
-//! Current native custom banners: JSON140062b50, update1400925b0,
-//! row1401034a0. These named events are presentation, not Save counters.
+//! Native custom banners: 0.141.0 JSON 0x140053430 and row 0x14034e540.
 //! Producer140061430 mirrors the actual engine LoadingScreen covering flag;
 //! loading defers expiry independently of run pause.
 
 use bevy::{picking::Pickable, prelude::*};
 use benilla_app::local_client::{LocalClientCvars, LocalClientInput};
 
-use crate::{assets::MenuArt, localization::Localization};
+use crate::assets::MenuArt;
 
 use super::{RunSet, RunSession};
 
@@ -15,6 +14,7 @@ struct Row {
     text: String,
     born: f32,
     account: bool,
+    boss: bool,
 }
 
 #[derive(Resource, Default)]
@@ -29,28 +29,24 @@ pub(crate) struct Notifications {
 impl Notifications {
     /// Current toast arm1400637e5..1400646f8 appends kind0 directly.
     pub fn toast(&mut self, text: String, now: f32) {
-        self.rows.push(Row { text, born: now, account: false });
+        self.banner(text, false, now);
     }
     /// Guest account delivery sends its frontend toast even without an active
     /// world (0.119.0 145b13d30). Retain that notice across the teardown.
     pub fn account_toast(&mut self, text: String, now: f32) {
-        self.rows.push(Row { text, born: now, account: true });
+        self.rows.push(Row { text, born: now, account: true, boss: false });
     }
-    /// Names are already localized by the death owner. The native JSON
-    /// consumer localizes the template before substituting that name.
-    pub fn named(&mut self, kind: &str, name: &str, now: f32, locale: &Localization) -> Option<String> {
-        let key = match kind {
-            "bossdown" => "{name} is defeated!",
-            "guardian" => "{name} is slain! Its hoard and a level.",
-            _ => return None,
-        };
-        let text = locale.label(key).replace("{name}", name);
-        self.rows.push(Row {
-            text: text.clone(),
-            born: now,
-            account: false,
-        });
-        Some(text)
+
+    pub fn banner(&mut self, text: String, boss: bool, now: f32) {
+        self.rows.push(Row { text, born: now, account: false, boss });
+    }
+
+    /// The desktop event consumer uses the serialized text and Boolean flag.
+    /// It never republishes the independent addon whisper.
+    pub fn receive_banner(&mut self, record: &serde_json::Value, now: f32) {
+        let text = record.get("text").and_then(serde_json::Value::as_str).unwrap_or_default();
+        let boss = record.get("boss").and_then(serde_json::Value::as_bool).unwrap_or(false);
+        self.banner(text.to_owned(), boss, now);
     }
 
     fn update(&mut self, now: f32) {
@@ -71,7 +67,7 @@ impl Notifications {
 }
 
 #[derive(Component)]
-struct Born(f32);
+struct Born(f32, bool);
 
 pub(super) struct NotificationsPlugin;
 impl Plugin for NotificationsPlugin {
@@ -91,6 +87,15 @@ fn alpha(age: f32) -> f32 {
         1.
     };
     value.clamp(0., 1.)
+}
+
+fn banner_color(boss: bool, age: f32) -> Color {
+    let alpha = alpha(age);
+    if boss {
+        Color::srgba(1., 0.353, 0.235, alpha)
+    } else {
+        Color::srgba(0.973, 0.824, 0.416, alpha)
+    }
 }
 
 fn sync(mut commands: Commands, time: Res<Time>, session: Res<RunSession>,
@@ -138,10 +143,10 @@ fn sync(mut commands: Commands, time: Res<Time>, session: Res<RunSession>,
     )).with_children(|root| {
         for row in state.rows.iter().filter(|row| in_run || row.account) {
             root.spawn((
-                Born(row.born),
+                Born(row.born, row.boss),
                 Text::new(&row.text),
-                TextFont { font: art.heading_font.clone(), font_size: 24., ..default() },
-                TextColor(Color::srgba(0.973, 0.824, 0.416, alpha(now - row.born))),
+                TextFont { font: art.heading_font.clone(), font_size: if row.boss { 34. } else { 24. }, ..default() },
+                TextColor(banner_color(row.boss, now - row.born)),
                 TextShadow { color: Color::srgba(0., 0., 0., 0.85), offset: Vec2::new(0., 1.5) },
             ));
         }
@@ -151,7 +156,7 @@ fn sync(mut commands: Commands, time: Res<Time>, session: Res<RunSession>,
 
 fn animate(time: Res<Time>, mut rows: Query<(&Born, &mut TextColor)>) {
     for (born, mut color) in &mut rows {
-        color.0 = Color::srgba(0.973, 0.824, 0.416, alpha(time.elapsed_secs() - born.0));
+        color.0 = banner_color(born.1, time.elapsed_secs() - born.0);
     }
 }
 
@@ -176,9 +181,9 @@ mod tests {
     #[test]
     fn equal_and_unordered_expiry_and_loading_cover_deferral() {
         let mut state = Notifications::default();
-        state.rows = vec![Row { text: "first".into(), born: 10., account: false },
-            Row { text: "second".into(), born: 11., account: false },
-            Row { text: "invalid".into(), born: f32::NAN, account: false }];
+        state.toast("first".into(), 10.);
+        state.toast("second".into(), 11.);
+        state.toast("invalid".into(), f32::NAN);
         state.update(13.);
         assert_eq!(state.rows.iter().map(|row| row.text.as_str()).collect::<Vec<_>>(), ["second"]);
         state.defer_expiry = true;
@@ -189,5 +194,18 @@ mod tests {
         state.defer_expiry = false;
         state.update(103.);
         assert!(state.rows.is_empty());
+    }
+
+    #[test]
+    fn coop_rows_use_serialized_text_and_boss_boolean_without_needing_an_id() {
+        let mut state = Notifications::default();
+        for (event, time) in [
+            (serde_json::json!({"type":"banner", "kind":"guardian", "text":"Écho!", "boss":true}), 1.),
+            (serde_json::json!({"type":"banner", "id":0, "text":12, "boss":1}), 2.),
+        ] {
+            state.receive_banner(&event, time);
+        }
+        let rows: Vec<_> = state.rows.iter().map(|row| (row.text.as_str(), row.boss, row.born)).collect();
+        assert_eq!(rows, [("Écho!", true, 1.), ("", false, 2.)]);
     }
 }

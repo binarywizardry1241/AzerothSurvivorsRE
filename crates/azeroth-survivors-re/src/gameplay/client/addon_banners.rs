@@ -60,19 +60,6 @@ pub(super) fn packet_with_id(
     AddonMessage::new("AZSBANNER", payload(id, kind, boss, name, text)).packet_from(player_guid)
 }
 
-pub(super) fn shared_record_packet(
-    player_guid: u64,
-    record: &serde_json::Value,
-    kind: &str,
-    name: &str,
-    text: &str,
-) -> SessionEvent {
-    let id = record.get("id").and_then(serde_json::Value::as_u64)
-        .and_then(|id| u32::try_from(id).ok())
-        .unwrap_or_else(next_id);
-    packet_with_id(player_guid, id, kind, true, name, text)
-}
-
 pub(super) fn party_packet(
     player_guid: u64,
     banner: PartyBanner,
@@ -138,31 +125,12 @@ mod tests {
     }
 
     #[test]
-    fn shared_banner_reuses_the_whisper_id_and_legacy_rows_still_deliver() {
-        let player_guid = 0x0080_0042;
-        let project = |record| {
-            let SessionEvent::Chat(chat) =
-                shared_record_packet(player_guid, &record, "boss", "Boss", "Arrived")
-            else {
-                panic!("addon packet")
-            };
-            assert_eq!(chat.sender_guid, player_guid);
-            let payload = chat.text.strip_prefix("AZSBANNER\tid=").unwrap();
-            let (id, fields) = payload.split_once(';').unwrap();
-            assert_eq!(fields, "kind=boss;boss=1;name=Boss;text=Arrived");
-            id.parse::<u32>().unwrap()
-        };
+    fn private_whisper_keeps_the_supplied_shared_id() {
         for id in [0, u32::MAX] {
-            assert_eq!(project(serde_json::json!({"id": id})), id);
-        }
-        for legacy in [
-            serde_json::json!({}),
-            serde_json::json!({"id": null}),
-            serde_json::json!({"id": -1}),
-            serde_json::json!({"id": u64::from(u32::MAX) + 1}),
-            serde_json::json!({"id": "1"}),
-        ] {
-            project(legacy);
+            let SessionEvent::Chat(chat) = packet_with_id(42, id, "boss", true, "Boss", "Arrived")
+            else { panic!("addon packet") };
+            assert_eq!(chat.sender_guid, 42);
+            assert_eq!(chat.text, format!("AZSBANNER\tid={id};kind=boss;boss=1;name=Boss;text=Arrived"));
         }
     }
 }

@@ -139,23 +139,64 @@ fn settlement_messages(events:&mut Vec<RunEvent>, player_guid: Option<u64>, cata
     messages
 }
 
+struct SharedBanner<'a> {
+    kind: &'a str,
+    name: super::super::mechanics::AnnouncementLabel,
+    template: &'static str,
+}
+
+impl SharedBanner<'_> {
+    fn render(&self, locale: &Localization, language: Option<&[u8]>) -> (String, String) {
+        let label = |key: &str| match language {
+            Some(language) => locale.label_for_language(key, language).to_owned(),
+            None => locale.label(key).to_owned(),
+        };
+        let name = self.name.render(&label);
+        let text = label(self.template).replace("{name}", &name);
+        (name, text)
+    }
+}
+
 fn publish_shared_banner(
     packets: &mut LocalPresentationEvents,
     coop: Option<&mut crate::coop_runtime::CoopRuntime>,
+    notifications: &mut super::super::notifications::Notifications,
+    now: f32,
     source_slot: u8,
     player_guid: u64,
-    kind: &str,
-    name: &str,
-    text: &str,
+    banner: SharedBanner<'_>,
+    locale: &Localization,
+    party: Option<&super::super::coop::CoopGame>,
 ) {
     let id = super::addon_banners::next_id();
+    let (name, text) = banner.render(locale, None);
+    let mut origin = None;
     if let Some(coop) = coop {
-        coop.send_value_from(source_slot, &serde_json::json!({
-            "type": "banner", "id": id, "kind": kind, "text": text, "name": name, "boss": true,
-        }));
+        let record = |name: &str, text: &str| serde_json::json!({
+            "type": "banner", "id": id, "kind": banner.kind, "text": text, "name": name, "boss": true,
+        });
+        let localized = coop.actor_clients.iter().filter_map(|(&slot, &client)| {
+            let language = party?.member_language(client)?;
+            if language == locale.code().as_bytes() {
+                return None;
+            }
+            let translated = banner.render(locale, Some(language));
+            let value = record(&translated.0, &translated.1);
+            if slot == source_slot {
+                origin = Some(translated);
+            }
+            Some((client, value))
+        }).collect();
+        coop.send_value_localized_from(source_slot, &record(&name, &text), localized);
     }
+    // The local frontend consumes the same record directly. A borrowed hero's
+    // record reaches its own frontend and the host through the co-op route.
+    if source_slot == 0 {
+        notifications.banner(text.clone(), true, now);
+    }
+    let (name, text) = origin.unwrap_or((name, text));
     packets.0.push(super::addon_banners::packet_with_id(
-        player_guid, id, kind, true, name, text,
+        player_guid, id, banner.kind, true, &name, &text,
     ));
 }
 
@@ -163,8 +204,7 @@ fn receive_coop(mut coop: Option<ResMut<crate::coop_runtime::CoopRuntime>>,
                 mut terminal: ResMut<super::super::terminal::TerminalState>,
                 mut markers: ResMut<super::super::raid_markers::MarkerInbox>,
                 mut notifications: ResMut<super::super::notifications::Notifications>,
-                mut packets: ResMut<LocalPresentationEvents>,
-                locale: Res<Localization>, time: Res<Time>) {
+                time: Res<Time>) {
     let Some(coop) = coop.as_mut() else { return };
     for text in coop.take_events() {
         let Ok(value) = serde_json::from_str::<serde_json::Value>(&text) else { continue };
@@ -173,21 +213,7 @@ fn receive_coop(mut coop: Option<ResMut<crate::coop_runtime::CoopRuntime>>,
             Some("hz" | "hzt" | "hzend" | "atk" | "atku" | "atkl" | "atka" | "atkx") => {
                 markers.0.push(value);
             }
-            Some("banner") => {
-                let kind = value.get("kind").and_then(serde_json::Value::as_str).unwrap_or("");
-                let name = value.get("name").and_then(serde_json::Value::as_str).unwrap_or("");
-                let text = match kind {
-                    "boss" => Some(locale.label("{name} approaches!").replace("{name}",name)),
-                    "finalboss" => Some(locale.label("{name} has come!").replace("{name}",name)),
-                    "bossdown" | "guardian" => notifications.named(kind,name,time.elapsed_secs(),&locale),
-                    _ => None,
-                };
-                if let (Some(text), Some(guid)) = (text, coop.world_guid) {
-                    packets.0.push(super::addon_banners::shared_record_packet(
-                        guid, &value, kind, name, &text,
-                    ));
-                }
-            }
+            Some("banner") => notifications.receive_banner(&value, time.elapsed_secs()),
             _ => {}
         }
     }
@@ -382,7 +408,7 @@ fn collect(mut session:ResMut<RunSession>,menu:Res<MenuState>,
     let remote=game.take_party_events();
     let mut local=LocalPresentationEvents::default();
     project(events,player_guid,0,&mut local,&mut unsupported,&mut notifications,&mut loot,&mut markers,
-        time.elapsed_secs(),&locale,&catalog,coop.as_deref_mut(),Some(&mut terminal),None,
+        time.elapsed_secs(),&locale,&catalog,coop.as_deref_mut(),Some(&mut terminal),None,party.as_deref(),
         floor.as_deref().and_then(|floor| floor.terrain_ref()));
     for event in local.0 {
         if let Some(coop)=coop.as_deref_mut() {
@@ -398,7 +424,7 @@ fn collect(mut session:ResMut<RunSession>,menu:Res<MenuState>,
         let language = client.and_then(|client| party.as_deref()?.member_language(client));
         let mut projected=LocalPresentationEvents::default();
         project(events,guid,slot,&mut projected,&mut unsupported,&mut Default::default(),&mut Default::default(),
-            &mut Default::default(),time.elapsed_secs(),&locale,&catalog,coop.as_deref_mut(),None,language,None);
+            &mut Default::default(),time.elapsed_secs(),&locale,&catalog,coop.as_deref_mut(),None,language,party.as_deref(),None);
         for event in projected.0 {
             if let Some(coop)=coop.as_deref_mut() {
                 if route_run_event(coop, party.as_deref(), &locale, slot, &event) {
@@ -415,7 +441,8 @@ fn project(events:Vec<RunEvent>,player_guid:u64,source_slot:u8,packets:&mut Loca
     now:f32,locale:&Localization,catalog:&crate::catalog::MenuCatalog,
     mut coop:Option<&mut crate::coop_runtime::CoopRuntime>,
     mut terminal:Option<&mut super::super::terminal::TerminalState>,
-    recipient_language:Option<&[u8]>, terrain:Option<&NativeTerrain>) {
+    recipient_language:Option<&[u8]>, party:Option<&super::super::coop::CoopGame>,
+    terrain:Option<&NativeTerrain>) {
     for event in events {
         let missing=match event {
             RunEvent::TalentXp {gain,before,total,class_key,parts}=>{
@@ -568,21 +595,26 @@ fn project(events:Vec<RunEvent>,player_guid:u64,source_slot:u8,packets:&mut Loca
             },
             RunEvent::ResourceBar(_)=>None, // Same authoritative player descriptor in client.rs.
             RunEvent::Account {kind,name}=>{
-                let name=name.render(&|key|locale.label(key).to_owned());
-                if let Some(text)=notifications.named(kind,&name,now,&locale) {
+                let key = match kind {
+                    "bossdown" => Some("{name} is defeated!"),
+                    "guardian" => Some("{name} is slain! Its hoard and a level."),
+                    _ => None,
+                };
+                if let Some(key) = key {
                     publish_shared_banner(
-                        packets, coop.as_deref_mut(), source_slot, player_guid, kind, &name, &text,
+                        packets, coop.as_deref_mut(), notifications, now,
+                        source_slot, player_guid, SharedBanner { kind, name, template: key }, locale, party,
                     );
                 }
                 None
             },
             RunEvent::BossBanner {id,name,final_boss}=>{
-                let name=super::addon_scalars::localized(&locale,format!("boss.{id}.name"),name);
+                let name=super::super::mechanics::AnnouncementLabel::boss(id, name);
                 let (kind,key)=if final_boss { ("finalboss","{name} has come!") }
                     else { ("boss","{name} approaches!") };
-                let text = locale.label(key).replace("{name}", &name);
                 publish_shared_banner(
-                    packets, coop.as_deref_mut(), source_slot, player_guid, kind, &name, &text,
+                    packets, coop.as_deref_mut(), notifications, now,
+                    source_slot, player_guid, SharedBanner { kind, name, template: key }, locale, party,
                 );
                 None
             },
@@ -714,6 +746,20 @@ fn project(events:Vec<RunEvent>,player_guid:u64,source_slot:u8,packets:&mut Loca
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn shared_banner_renders_for_the_recipient_before_publication() {
+        let banner = SharedBanner {
+            kind: "boss",
+            name: super::super::super::mechanics::AnnouncementLabel::literal("The Example"),
+            template: "{name} approaches!",
+        };
+        let locale = Localization::english_for_tests();
+        assert_eq!(banner.render(&locale, Some(b"pl")),
+            ("The Example".to_owned(), "The Example nadciąga!".to_owned()));
+        assert_eq!(banner.render(&locale, Some(b"unknown")), banner.render(&locale, None));
+    }
+
     #[test]
     fn currency_receipts_keep_native_fractional_text_and_colored_suffixes() {
         let catalog=crate::catalog::MenuCatalog::embedded();
@@ -840,6 +886,7 @@ mod tests {
                 1.0,
                 &Localization::english_for_tests(),
                 &crate::catalog::MenuCatalog::embedded(),
+                None,
                 None,
                 None,
                 None,

@@ -55,15 +55,6 @@ one-byte value `0` at `0x1401c9bca..0x1401c9bd8`. The 112-byte
 range starting at file offset `0x1c8f82` has SHA-256
 `2a5be90e3f29656724c3f5eb9b124b2346825e537f4c5198b7d6dff031321033`.
 
-The guest wire-9 arm at `0x145ecd54a` admits the event and invokes
-its frontend callback at `0x145ecd5ce`. The selected helper
-`0x145e83100` handles the choices and resume inputs. The frontend
-callback's full banner behavior and potential overlap with the
-separate whisper still need evidence. The source fix addresses sender
-identity. The reported sustained takeover duplication still needs
-correlated callbacks, hooks, CVar readback and visible roots in the
-actual VM. No application, client or game server ran.
-
 ### Shared banner identity
 
 The native publisher passes the same process ID to the JSON formatter
@@ -71,16 +62,87 @@ and whisper formatter at `0x145f85893` and `0x145f858ee`. The JSON
 formatter writes that ID at `0x145e81fc4..0x145e81fdb` with the kind,
 localized text, name and boss flag in the same record.
 
-The rebuilt shared boss, final boss, boss defeat and guardian routes
-now reserve one ID for both outputs and retain all of those fields in
-the JSON. The existing JSON consumer carries its unsigned 32-bit ID
-through to the addon packet, including zero after wrap. Older or
-malformed IDs use a local counter as before. The Lua receiver keeps
-its original callback behavior. An addon can correlate both lanes
-using the ID, while actual callback counts and the sustained
-native/addon overlap still require the frontend and VM checks above.
-The Rust regression covers zero, the upper bound and legacy or
-malformed IDs. It awaits compilation.
+The rebuilt shared boss, final boss, boss defeat and guardian producers
+reserve one ID for the JSON and private whisper, including zero after
+wrap. The desktop consumes those outputs independently.
+
+### Desktop EventBytes and private whispers
+
+Guest wire 9 admits the event at `0x145ecd571` and calls Core's
+frontend slot `+0x18` at `0x145ecd5ce` with the raw pointer and length.
+The [desktop vtable registration](coop-command-ingress-0.141.0.md#desktop-and-guest-gossip-capability-initialization)
+binds that slot to `0x145e94430`. That callback optionally logs the
+record and observes the separate choices diagnostic, then copies the
+bytes into a queue of 24-byte owned strings at `0x145e94588..0x145e945ba`.
+It does not form an engine chat packet. The frontend owner
+`0x140052100` drains the 24-byte entries and parses their JSON.
+Its exact six-byte `banner` case at `0x140052ca3` reads `text` as a
+string (default empty) and `boss` as a Boolean (default false).
+The case appends one 32-byte native banner row, with the flag at
+`+0x18` and elapsed time at `+0x1c`. It does not use the ID, name or kind
+to select the row and does not call the Lua banner receiver. The row
+renderer reads the flag for 34 px red or 24 px gold text.
+
+The host handles the origin separately at `0x145eab236`. For a peer
+with a different locale, `0x145eab3ed` calls the scoped locale wrapper
+`0x145e6c4d0`, which selects the recipient locale while the record
+parser `0x145e821c0` rewrites the banner. The caller selects the
+rewritten bytes when present and the original otherwise. It then
+publishes to the host frontend for slot zero or prepares the guest
+EventBytes at `0x145eab5d2`. The recipient's frontend reads the resulting
+text without doing a second translation.
+
+| Original span | File offset | Bytes | SHA-256 |
+| --- | --- | ---: | --- |
+| Wire-9 arm `0x145ecd54a..0x145ecd5d7` | `0x5ecc94a` | 141 | `94412bb4f37061daf2b72347f4663b53f21ab35b12274c93e36b4db791a39bb8` |
+| Desktop vtable slot `0x146554a20` | `0x6553020` | 8 | `c73a5053d04caa63e9a13b731fe5b1bdefbb0382d9abd8a5b10561ab66fb9ecb` |
+| Event callback `0x145e94430..0x145e94622` | `0x5e93830` | 498 | `337a557eeb6320b2c28f7ac4b35b200de723d4279cfb464133e7daaf4f9c0dfc` |
+| Frontend queue consumer `0x140052100..0x14005388a` | `0x51500` | 6,026 | `67ff7ae2c1adf204662f8f16f1e29c3138c4c6e4482751ef1aca5dd3cde088fe` |
+| Frontend field keys `0x146554fa8..0x146554fc4` | `0x65535a8` | 28 | `6c6ab56a443e5a5974fc2642592c8c658dd3e1a3d966209ed94f05b0cb8745c2` |
+| Banner row style selector `0x14034e72c..0x14034e779` | `0x34db2c` | 77 | `9f19d7c7b680c3dc7e1bdc1a9764c54727e1f8544de324e223025ec067a93ff1` |
+| Peer locale rewrite and fallback `0x145eab3b5..0x145eab459` | `0x5eaa7b5` | 164 | `bd201d81f9a17bba4ab5d9f69d27db544eaddd63bd0e36fd459f4e2c1edd2cf9` |
+| Scoped locale wrapper `0x145e6c4d0..0x145e6c645` | `0x5e6b8d0` | 373 | `03447ebf2574b8b91d69e8690c1b12081af0ae94752d6fc395025c255da35b7c` |
+| Banner record parser `0x145e821c0..0x145e82907` | `0x5e815c0` | 1,863 | `6948f2f9f07a8d002456ca426f33d15e873670a614b8772134584bc5856d39ca` |
+
+The journaled callback result is
+`ev_4a87d794add7a0aa643e91d14e51cd9dfe8a116f4af3a196f0974acab18a0388`
+(result SHA-256 `83d00b7f2ae32a783ad596c76548a49d9a21ab0e28261f57bd16afc4b6a1ab1b`).
+The scoped locale wrapper result is
+`ev_fd317fd57d5b664563d8255dc1bfcbf65518ddec828537158680fdb47c24ab55`
+(result SHA-256 `783269fd91d905be7923cebe1c857ac4ab239c2d70d1c06a63885937acb1997e`).
+The frontend's exact input is already bound in the
+[source frontier](source-frontier-0.141.0.md#native-query-receipts).
+The original instructions and PE data resolve the omitted vtable,
+JSON keys, jump table and palette data outside the raw imports. The
+red/gold color and size bytes match the historical
+[row constants](evidence/0.100.1/notifications/manifest.json)
+at current VAs `0x1465c5558`/`0x1465c54e8` and
+`0x1465c4690`/`0x1465c4664`.
+
+Previously the rebuilt guest converted EventBytes into an additional
+`AZSBANNER` whisper. The guest that originated a shared event could receive
+both its private packet and the synthesized one. Peers without the private
+packet also got a Lua callback in place of the original native row.
+[The event bridge](../../crates/azeroth-survivors-re/src/gameplay/client/events.rs)
+now delivers received banner JSON only to
+[Notifications](../../crates/azeroth-survivors-re/src/gameplay/notifications.rs).
+The host's own shared publication adds its local native row directly;
+the borrowed hero's publication uses the existing EventBytes fanout for
+the guest and the host's local projection. Both retain the source hero's
+private whisper and its allocated ID. The shared sender formats the known
+name and template in each admitted recipient's language and carries the
+per-recipient record through the existing deferred EventBytes route.
+The private whisper uses the origin's language. Native HUD visibility still uses
+the applied `hudBanners` CVar. The legacy raid-emote route remains separate.
+
+Rust syntax and the isolated Lua banner suite were checked. Rust
+regressions for typed fields/defaults, recipient text and whisper identity await
+compilation. The original sustained duplicate still requires a
+same-publication VM trace identifying the active legacy hook, the
+actual addon callback count, applied CVar and visible roots. This
+repair establishes the desktop JSON/whisper boundary and its source
+connection; it does not establish the cause of a reported rendered
+overlap. No application, client or game server ran.
 
 ## 0.140.0 presentation reads the applied CVar
 
