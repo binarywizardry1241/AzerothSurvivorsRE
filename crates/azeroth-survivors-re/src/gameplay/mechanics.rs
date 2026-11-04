@@ -72,6 +72,8 @@ mod bosses;
 mod actor_frame;
 #[path = "mechanics/enhancement.rs"]
 mod enhancement;
+#[path = "mechanics/deathmist.rs"]
+mod deathmist;
 #[path = "mechanics/affixes.rs"]
 mod affixes;
 mod wards;
@@ -196,6 +198,27 @@ pub struct RunActor {
     pub vulnerability: f32,
     pub vulnerability_until: f32,
     pub additional_damage_taken: f32,
+}
+
+impl RunActor {
+    fn hit_victim(&self, guardian: bool, demoralizing_amplification: f32) -> Victim {
+        Victim {
+            health: self.health,
+            maximum_health: self.maximum_health,
+            primary_boss: false,
+            guardian,
+            has_periodic: !self.periodic.is_empty(),
+            native_flag_158: self.definition.flag_4c,
+            slow_until: self.actor.slow.until,
+            stun_until: self.actor.stun_until,
+            forced_escape_until: self.actor.forced_escape_until,
+            vulnerability: self.vulnerability,
+            vulnerability_until: self.vulnerability_until,
+            demoralizing_amplification,
+            additional_damage_taken: self.additional_damage_taken,
+            dead: self.actor.dead,
+        }
+    }
 }
 
 /// Current1454d2910, retained in run-effects/actor-create.asm: the byte argument is
@@ -1245,6 +1268,7 @@ impl Mechanics {
                 .object_counter
                 .take()
                 .expect("live run object serial");
+            passive.core.expire_deathmist_brand();
             passive.pulse_healing_pool(&mut self.execution, &mut self.rng, object_counter);
             passive.resolve_seeds_of_life(&mut self.execution, &mut self.rng, object_counter);
             passive.object_counter = Some(object_counter);
@@ -2369,6 +2393,7 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             return self.hit_ward(hit, rng, vitals, packlord, share);
         }
         let darkmantle = self.darkmantle_bonus(hit.target_guid);
+        let deathmist_kind = self.deathmist_ability_kind(hit.target_guid, hit.spell_id);
         let leech = self.current_leech();
         let secondary_source = (hit.effect.tag == 5).then(|| self.healing_source(hit.spell_id));
         let meter_source = self.damage_source(&hit);
@@ -2410,30 +2435,18 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             // DoT installation is not an extra minimum-one direct hit.
             return None;
         }
-        let mut victim = Victim {
-            health: row.health,
-            maximum_health: row.maximum_health,
-            primary_boss: false,
-            guardian: self.guardian_state.contains(row.guid),
-            has_periodic: !row.periodic.is_empty(),
-            native_flag_158: row.definition.flag_4c,
-            slow_until: row.actor.slow.until,
-            stun_until: row.actor.stun_until,
-            forced_escape_until: row.actor.forced_escape_until,
-            vulnerability: row.vulnerability,
-            vulnerability_until: row.vulnerability_until,
-            demoralizing_amplification: self.generic.demoralizing_amplification
-                .get(&row.guid).map_or(0.0, |window| window.value_at(self.now)),
-            additional_damage_taken: row.additional_damage_taken,
-            dead: row.actor.dead,
-        };
+        let mut victim = row.hit_victim(
+            self.guardian_state.contains(row.guid),
+            self.generic.demoralizing_amplification.get(&row.guid)
+                .map_or(0.0, |window| window.value_at(self.now)),
+        );
         let raid_multiplier = if victim.guardian {
             self.boss_state.defenses.get(&row.guid).copied().unwrap_or_default()
                 .multiplier_with_ward(self.now, self.boss_state.wards.protects(row.guid))
         } else { 1.0 };
         let spell_amplification = enhancement::spell_amplification(
             self.equipped, hit.spell_id, self.now, &row.control,
-            &victim, self.attribution.source_kind, self.player_absorb,
+            &victim, self.attribution.source_kind, self.player_absorb, deathmist_kind,
         );
         let Some(result) = damage::apply_hit_with_darkmantle(
             &mut victim,

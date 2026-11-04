@@ -508,11 +508,11 @@ impl Mechanics {
                     let icon = AbilityDefinition::by_key(&descriptor.spell_key)
                         .expect("current set descriptor has an ability icon").icon;
                     self.effect_state.talent_provenance.push(set_name);
-                    let (name, icon) = if row.tag() == 66 {
-                        // 0.140.0 145f250e0 uses a distinct source descriptor.
-                        ("Thunderburst", "Spell_Nature_ThunderClap")
-                    } else {
-                        (set_name, icon)
+                    let (name, icon) = match row.tag() {
+                        // 0.140.0 145f250be..145f250e7 uses distinct source descriptors.
+                        66 => ("Thunderburst", "Spell_Nature_ThunderClap"),
+                        69 => ("Deathmist burn", "Spell_Fire_Immolation"),
+                        _ => (set_name, icon),
                     };
                     self.effect_state.talent_meter_sources.push(
                         azeroth_survivors_re::run_effects::healing::MeterSource {

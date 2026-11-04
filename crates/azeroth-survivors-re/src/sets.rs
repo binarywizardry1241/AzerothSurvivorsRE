@@ -233,6 +233,7 @@ pub fn descriptor(class_id: u8, tier: u8, empowered: bool) -> Option<&'static De
         (5, TIER_HALF) => Some(vestments_of_the_virtuous(empowered)),
         (7, TIER_HALF) => Some(five_thunders(empowered)),
         (8, TIER_HALF) => Some(sorcerer(empowered)),
+        (9, TIER_HALF) => Some(deathmist(empowered)),
         (11, TIER_HALF) => Some(tier_half_druid(empowered)),
         _ => catalog().entries.iter().find(|entry| {
             entry.class_id == class_id && entry.tier == tier && entry.empowered == empowered
@@ -380,6 +381,36 @@ fn spell_modifier(key: &str, selector: u8, amount: f32) -> NativeEffect {
         strings: vec![crate::loot_rewards::amulets::EffectString { offset: 16, value: key.to_owned() }],
         lists: Vec::new(),
     }
+}
+
+fn deathmist(empowered: bool) -> &'static Descriptor {
+    static DESCRIPTORS: OnceLock<[Descriptor; 2]> = OnceLock::new();
+    &DESCRIPTORS.get_or_init(|| {
+        [
+            (false, 0.35_f32, 0.0_f32,
+                "Conflagrate brands its primary target for 10 seconds. Your direct spells deal 35% more damage to branded bosses and elites."),
+            (true, 0.55_f32, 0.40_f32,
+                "The damage bonus against branded bosses and elites increases to 55%. Conflagrate also burns branded targets for 40% of its direct-hit damage over 4 seconds."),
+        ].map(|(empowered, damage, burn, description)| {
+            let mut bytes = [0; 64];
+            bytes[0] = 69;
+            bytes[4..8].copy_from_slice(&damage.to_le_bytes());
+            bytes[8..12].copy_from_slice(&burn.to_le_bytes());
+            Descriptor {
+                class_id: 9,
+                tier: TIER_HALF,
+                empowered,
+                spell_key: "immolate".to_owned(),
+                description: description.to_owned(),
+                display_values: [0.0; 2],
+                effects: vec![NativeEffect {
+                    raw_hex: bytes.iter().map(|byte| format!("{byte:02x}")).collect(),
+                    strings: Vec::new(),
+                    lists: Vec::new(),
+                }],
+            }
+        })
+    })[usize::from(empowered)]
 }
 
 fn vestments_of_the_virtuous(empowered: bool) -> &'static Descriptor {

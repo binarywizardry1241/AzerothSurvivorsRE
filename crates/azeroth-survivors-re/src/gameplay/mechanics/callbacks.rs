@@ -47,6 +47,7 @@ pub(super) struct State {
     pub demoralizing_amplification: std::collections::BTreeMap<u64, state::StrongestWindow>,
     pub packlord_howl: std::collections::BTreeMap<u64, std::collections::BTreeMap<u8, (f32, f32)>>,
     darkmantle_targets: Vec<u64>,
+    pub deathmist_brand: Option<super::deathmist::Brand>,
     pub appearance_overrides: std::collections::BTreeMap<u64, (u32, f32)>,
     /// Current Game128 vector: all Felhunters share a3-second victim cooldown.
     pub consume_magic_ready_at: std::collections::BTreeMap<u64, f32>,
@@ -1154,6 +1155,12 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                         splash.float(4) * amount, execution, rng, counter,
                     );
                 }
+                continue;
+            }
+            if row.tag() == 69 {
+                self.core.deathmist_brand_event(
+                    row, index, event, definition, victim_guid, amount, &execution.vitals,
+                );
                 continue;
             }
             // Semantic marker keeps current army effects in their original order.

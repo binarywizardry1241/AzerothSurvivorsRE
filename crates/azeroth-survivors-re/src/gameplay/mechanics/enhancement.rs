@@ -135,6 +135,7 @@ pub(super) fn spell_amplification(
     victim: &Victim,
     source_kind: u8,
     player_absorb: f32,
+    deathmist_kind: Option<u8>,
 ) -> f32 {
     // 0.140.0 145fbb990 sums qualifying keyed rows before the canonical hit.
     effects.rows.iter().fold(0.0, |sum, row| match row.tag() {
@@ -154,6 +155,10 @@ pub(super) fn spell_amplification(
         68 if source_kind == 0
             && (victim.primary_boss || victim.native_flag_158 != 0 || victim.guardian)
             && spell_matches(row, spell_id) => sum + row.float(24),
+        69 if source_kind == 0
+            && (victim.primary_boss || victim.native_flag_158 != 0 || victim.guardian)
+            && deathmist_kind.is_some_and(|kind| kind <= 12 && 0x11b7 & (1 << kind) != 0) =>
+                sum + row.float(4),
         _ => sum,
     })
 }

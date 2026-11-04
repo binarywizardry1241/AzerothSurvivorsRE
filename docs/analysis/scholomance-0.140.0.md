@@ -302,8 +302,7 @@ The live builder passes each allocated talent effect to
 four-piece branch at `0x145e311a7` requires raw 18, condition 0 and
 pet selector 6. It replaces the existing Bestial Wrath bounce's
 count and fraction with five and 1.50. The separate Matriarch grant
-retains its current pet descriptor and does not participate in the
-talent rewrite.
+retains its current pet descriptor.
 
 Vestments of the Virtuous uses no additional generic set rows. The
 Priest rewrite at `0x145e311f1` matches Shadow Word: Pain selectors
@@ -333,12 +332,18 @@ its actor. At `0x145fbbc72` the ordered spell modifier adds 0.35 or
 the resolved ability kind is in mask 0x11b7. The empowered branch
 recomputes the base victim and keyed spell factors before refreshing
 the brand, then installs four seconds of Fire spell 12654 through
-`0x145ee0d10`. That writer carries forward unspent ticks belonging to
-the matching effect owner. The source still needs the brand state,
-the post-hit multiplier recomputation, and the effect-owned burn and
-meter attribution.
+`0x145ee0d10`. At `0x145fbec48` the base is floored at 0.01. The
+burn power is `((base + amplification) * raw_hit / base) * 0.40`.
+The writer carries forward unspent damage from matching effect-index
+rows, preserves other rows, and starts four one-second ticks at the
+current clock. The row metadata at `0x145f250be` publishes
+`Deathmist burn` with `Spell_Fire_Immolation`. The source connects this
+through the same actor hit projection, periodic writer and aura fields.
+Six isolated arithmetic cases and three periodic replacement cases
+passed against the installed instructions.
+[Deathmist source](../../crates/azeroth-survivors-re/src/gameplay/mechanics/deathmist.rs).
 
-### Current class payloads and open consumers
+### Current class payloads and source consumers
 
 The three modes of `0x145e30990` were read for each class using the jump
 table at `0x1473f70e0`. The table below gives the constructor's ordered
@@ -355,7 +360,7 @@ the next owner to trace in those cases.
 | Vestments of the Virtuous | Empty | Empty in both modes | All three modes rewrite the allocated Shadow Word: Pain-related talents in the separate builder. |
 | The Five Thunders | 73 `stormstrike` selectors 0 and 1, 0.15 and 0.35 | 66, 0.25 within 6 yd / 0.50 within 8 yd | Connected through the keyed spell modifiers, localized set text and Thunderburst callback and meter above. |
 | Sorcerer | Empty, with the separate Splitting Ice talent rewrite | 67, 1.00/1.50, with empowered 68 `frostbolt` at 0.50 | Connected through the talent rewrite, Water Elemental splash callback and source-specific Frostbolt amplification above. |
-| Deathmist | Empty | 69, 0.35 and 0 / 0.55 and 0.40 | Four-piece Conflagrate connects to the talent row. Eight-piece and empowered brand, burn and meter source work remain. |
+| Deathmist | Empty | 69, 0.35 and 0 / 0.55 and 0.40 | Connected through the Conflagrate rewrite, brand and aura, ordered hit bonus, empowered burn refresh and meter above. |
 | Feralheart | 73 selector 7, `[regrowth,rejuvenation]`, 0.20 | 70, 0.60, count 5 and radius 6 / 1.00, count 7 and radius 8 with flag 1 | Connected through the healing selector, Tranquility talent rewrite and existing Seed of Life consumer. |
 
 `python3 -B scripts/recover-gear-effects.py --scholomance` verifies all
@@ -366,7 +371,7 @@ delivery, rendered output and original/rebuilt parity remain open.
 | 0.140.0 claim ID | Finding and next static step |
 | --- | --- |
 | `changelog:0.140.0:3e24ce3552cb9657` | #314 rewards. The one-roll gate, exact armor groups, paired weapon receipts and pity bypass are connected through the retained recipient delivery path. |
-| `changelog:0.140.0:3af814319808b3f0` | #314. Heroism, Soulforge, Beastmaster, Darkmantle, Vestments of the Virtuous, Five Thunders, Sorcerer and Feralheart connect through their equipped talent and hit consumers. Deathmist’s four-piece Conflagrate rewrite is connected. Its eight-piece and empowered brand/burn remain open. |
+| `changelog:0.140.0:3af814319808b3f0` | #314. All nine Tier 0.5 classes connect their four-piece, eight-piece and empowered behavior through worn gear, current talent rows, hit callbacks and meters. |
 | `changelog:0.140.0:4a2e1ed28b7af869` | #314 Heroism. Four pieces raise the Fortified cap and conditionally amplify Shield Slam. Eight-piece and empowered modifiers feed the existing hit, with its maximum-health share attributed to the set in damage meters. |
 | `changelog:0.140.0:cf7efae2d63eba41` | #314 Darkmantle. Execute thresholds, ordered per-hero marks, additive amplification and the protected aura are connected. Runtime display and parity remain open. |
 

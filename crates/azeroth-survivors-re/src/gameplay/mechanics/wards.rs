@@ -3,6 +3,25 @@
 use super::*;
 use azeroth_survivors_re::bosses::raid_wards::{self as native, Action, Effect};
 
+pub(super) fn ward_hit_victim(row: &native::Ward, demoralizing_amplification: f32) -> Victim {
+    Victim {
+        health: row.health,
+        maximum_health: row.maximum_health,
+        primary_boss: false,
+        guardian: false,
+        has_periodic: !row.periodic.is_empty(),
+        native_flag_158: 0,
+        slow_until: row.actor.slow.until,
+        stun_until: row.actor.stun_until,
+        forced_escape_until: row.actor.forced_escape_until,
+        vulnerability: row.vulnerability,
+        vulnerability_until: row.vulnerability_until,
+        demoralizing_amplification,
+        additional_damage_taken: row.additional_damage_taken,
+        dead: row.actor.dead,
+    }
+}
+
 ///14594dd30 is shared by kind1 wards and kind6 tether hazards. It first finds
 /// an alive source, mutates health once and publishes fields before the log.
 pub(super) fn heal_source(
@@ -201,6 +220,7 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
     /// absent EnemyDefinition suppresses the later ordinary XP/gold/drop lane.
     pub(super) fn hit_ward(&mut self, hit: PendingHit, _rng: &mut NativeRng,
         vitals: Option<&mut Vitals>, packlord: f32, share: Option<DamageShare>) -> Option<HitInput> {
+        let deathmist_kind = self.deathmist_ability_kind(hit.target_guid, hit.spell_id);
         let leech = self.current_leech();
         let orb = self
             .boss_state
@@ -266,27 +286,12 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             ));
             return None;
         }
-        let mut victim = Victim {
-            health: row.health,
-            maximum_health: row.maximum_health,
-            primary_boss: false,
-            guardian: false,
-            has_periodic: !row.periodic.is_empty(),
-            native_flag_158: 0,
-            slow_until: row.actor.slow.until,
-            stun_until: row.actor.stun_until,
-            forced_escape_until: row.actor.forced_escape_until,
-            vulnerability: row.vulnerability,
-            vulnerability_until: row.vulnerability_until,
-            demoralizing_amplification: self.generic.demoralizing_amplification
-                .get(&row.guid).map_or(0.0, |window| window.value_at(self.now)),
-            additional_damage_taken: row.additional_damage_taken,
-            dead: false,
-        };
+        let mut victim = ward_hit_victim(row, self.generic.demoralizing_amplification.get(&row.guid)
+            .map_or(0.0, |window| window.value_at(self.now)));
         let cap = orb.then_some(victim.maximum_health / 5.0);
         let spell_amplification = enhancement::spell_amplification(
             self.equipped, hit.spell_id, self.now, &row.control,
-            &victim, self.attribution.source_kind, self.player_absorb,
+            &victim, self.attribution.source_kind, self.player_absorb, deathmist_kind,
         );
         let result = damage::apply_hit_with_cap(
             &mut victim,
