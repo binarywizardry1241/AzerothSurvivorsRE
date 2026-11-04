@@ -442,7 +442,7 @@ impl Mechanics {
         }
         let pickup = self.remove_pickup_at(index);
         match pickup.drop {
-            PickupDrop::Experience { amount, .. } => self.credit_pickup_experience(amount, true),
+            PickupDrop::Experience { amount, .. } => self.credit_pickup_experience(amount, !self.has_party()),
             PickupDrop::Gold { amount, .. } => self.credit_pickup_gold(amount),
             PickupDrop::Rune { rune, .. } => self.collect_rune(rune),
             PickupDrop::Magnet { .. } => {

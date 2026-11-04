@@ -1,5 +1,5 @@
-//! Selected 0.100.1 completion owner 1454edd70 and XP owner 1454c69e0.
-//! Hash-bound assembly and REA evidence: docs/analysis/evidence/0.100.1/upgrade-flow.
+//! 0.141.0 completion at 0x145fb8d80 and stored-level inputs at 0x145fb9ca0
+//! and 0x145fc1090. See docs/analysis/q41-reference-frontier-0.141.0.md.
 use super::*;
 use azeroth_survivors_re::player_abilities::{behavior::buffs::Aura, catalog::StatusEffect};
 
@@ -22,12 +22,17 @@ impl Mechanics {
 
     pub fn set_store_levels(&mut self, enabled: bool) {
         self.choice_state.store_levels = enabled;
-        self.maybe_generate_level_choices();
+        if !enabled {
+            self.generate_level_choices();
+        }
     }
 
     pub fn open_stored_levels(&mut self) {
-        self.choice_state.spend_levels = self.pending_levels != 0;
-        self.maybe_generate_level_choices();
+        if self.pending_levels == 0 || !self.active_run_state() || self.is_showcase() {
+            return;
+        }
+        self.choice_state.spend_levels = true;
+        self.generate_level_choices();
     }
 
     pub fn spending_levels(&self) -> bool {
@@ -44,15 +49,14 @@ impl Mechanics {
     /// never decrement pending_levels. Native completion then sweeps raw XP,
     /// dispatches another pending reward, or clears spending and resumes.
     pub(super) fn complete_choice(&mut self) {
-        // Current XP owner14591db30 requires playing phase1 to open levels.
-        // Completion retains phase2 through its XP sweep even after rows clear.
+        // Completion retains phase 2 through the XP sweep even after rows clear.
         self.choice_state.completing = true;
         self.choices.clear();
         let player = self.choice_state.last_position.unwrap_or_else(|| self.zone.center.into());
         let radius = self.stats.pickup_radius;
         let mut raw_xp = 0u32;
         let mut index = 0;
-        // Current14595e4a4..14595e577 removes forwards, publishing every
+        // 0x145fb8e34..0x145fb8ebd removes forwards, publishing every
         // primary/auxiliary object before the single combined XP callback.
         while index < self.pickups.len() {
             let pickup = self.pickups[index];
@@ -68,8 +72,7 @@ impl Mechanics {
             index += 1;
         }
         if raw_xp != 0 {
-            // Combine wrapping raw XP before multiplying/rounding once. A
-            // nonzero raw sum grants at least 1; a wrapped zero grants nothing.
+            // The minimum of one also applies to the party-scaled collector.
             self.credit_pickup_experience(raw_xp, true);
         }
         self.choice_state.completing = false;
@@ -95,6 +98,13 @@ impl Mechanics {
             expires_at: self.clock + 1.0,
             healing_power: 0.0,
         });
+        self.events.push(RunEvent::Spell(SpellCast {
+            source_guid: self.player_guid,
+            spell_id: 1020,
+            target: azeroth_survivors_re::bosses::abilities::CastTarget::None,
+            hit_targets: vec![self.player_guid],
+        }));
+        self.publish_player_auras();
     }
 }
 

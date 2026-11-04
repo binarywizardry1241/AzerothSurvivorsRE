@@ -157,8 +157,57 @@ republish behavior are outside this admission proof. The suffix at
 at `0x145fb8d80`. The verified completion prefix saturating-decrements the
 level, cache or guardian count at `+0x103c`, `+0x1040` or `+0x1044`, then
 clears and drops the 160-byte offer rows. The [rebuilt completion](../../crates/azeroth-survivors-re/src/gameplay/mechanics/completion.rs)
-has the same separate source counters and shared offer closure. Later cleanup
-and arbitrary payload aliases retain their exact run selectors.
+has the same separate source counters and shared offer closure. The suffix
+at `0x145fc330d` drops temporary strings and vectors allocated by selection.
+
+### Choice completion and republish
+
+The [current completion proof](evidence/0.141.0/choice-completion.json)
+extends the retained Ghidra completion query to its outgoing branches.
+The sweep at `0x145fb8e34` reads the selected hero's XY at `Game+0x5e0`
+and the current pickup radius at `+0x670`. It removes in-flight XP and
+stationary XP within that radius in stable order. It sums raw XP with
+32-bit wrapping, skips a zero sum, and shares the combined raw value once.
+The collector's scaled value is rounded and floored to one even in co-op
+at `0x145fb8fa9..0x145fb8fd8`. The hero swap exchanges the XY lane at
+`0x145f37bc8..0x145f37bf9`. The rebuilt seated action now supplies the
+selected hero's admitted position to completion and applies the same
+one-XP floor there.
+
+The tail at `0x145fb8fdd` selects a cache, then guardian equipment, then
+an eligible level offer. It preserves choice phase for a chained offer.
+The final branch clears the source and spending flag, restores phase 1
+and replaces all existing spell 1020 rows with one expiring at run clock
+plus one second. It then emits ordinary SpellGo (`0x132`), with the player
+as the caster and sole hit, flags `0x100` and no explicit target, refreshes
+the player's aura fields, and queues `{"type":"resume"}`. The optional
+Gossip close depends on a populated alternate-presentation handle. The
+[desktop capability trace](coop-command-ingress-0.141.0.md#desktop-and-guest-gossip-capability-initialization)
+keeps the desktop custom overlay on its existing route.
+
+The rebuilt completion now queues the spell and aura projection immediately.
+Both simulation ticks preserve pre-tick packets for the existing client
+drain. Clearing the queue during the same update as an accepted choice
+could drop those packets as well as XP object removals and player fields.
+The stored-level command at `0x145fb9ca0` requires pending levels, playing
+phase and no active offer before setting the spending flag. The rebuilt
+command now refuses to arm spending during a cache, guardian or level offer.
+The Store Levels setter at `0x145fc1090` requests generation on the disabled
+branch only. The native suppression byte at `+0x10dd` is clear in the
+ordinary run constructor; its other producers are outside this trace.
+
+The republish helper at `0x145fc10c0` serializes the existing offer when
+phase is 2 and the source byte is active. Otherwise it emits resume. The
+stale-pick route at `0x145e73f24` already reaches the rebuilt recipient's
+republish through the request generation counter. It does not regenerate
+the cards or spend another reward.
+
+`scripts/check-coop-overlay.py --choice-completion` checks eight hash-bound
+PE spans and replays 66 cases for scheduling, spending admission, XP credit,
+aura compaction and choices-versus-resume dispatch. The XP replay supplies
+the zone lookup and CRT rounding seams. The resume replay stops at the
+packet serializer and checks its arguments against the serializer's
+instruction anchors. Compilation, packet delivery and gameplay remain open.
 
 ### Gold credit for selected offers
 

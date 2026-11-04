@@ -1649,7 +1649,7 @@ impl Mechanics {
     fn party_reward_factor(&self) -> f32 {
         self.party_scaling().map_or(1.0, |scaling| scaling.reward())
     }
-    pub(super) fn credit_pickup_experience(&mut self, raw: u32, solo_minimum: bool) {
+    pub(super) fn credit_pickup_experience(&mut self, raw: u32, minimum_one: bool) {
         if self.has_party() {
             self.coop
                 .shared_experience
@@ -1657,11 +1657,7 @@ impl Mechanics {
         }
         let amount = ((raw as f32 * self.stats.experience_multiplier) * self.party_reward_factor())
             .round() as u32;
-        self.add_experience(if solo_minimum && !self.has_party() {
-            amount.max(1)
-        } else {
-            amount
-        });
+        self.add_experience(if minimum_one { amount.max(1) } else { amount });
     }
     pub(super) fn credit_pickup_gold(&mut self, raw: u32) {
         if self.has_party() {
@@ -2211,6 +2207,7 @@ impl Mechanics {
         let previous_slot = self.coop.active_slot;
         self.coop.active_slot = slot;
         hero.state.swap(self);
+        self.set_choice_player_position(hero.input.position);
         let start = self.events.len();
         let result = action(self);
         let events = self.events.split_off(start);
@@ -2474,8 +2471,6 @@ impl Mechanics {
         if !self.party_shared_running() {
             return None;
         }
-        self.events
-            .retain(|event| matches!(event, RunEvent::PlayerMover(_)));
         self.begin_boundary(world);
         self.clock += delta;
         self.capture_healing_snapshot();

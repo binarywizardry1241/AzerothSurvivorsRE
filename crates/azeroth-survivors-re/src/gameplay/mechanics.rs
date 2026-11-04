@@ -664,6 +664,7 @@ pub struct Mechanics {
     elite_kills: u32,
     pub choices: Vec<RunChoice>,
     /// Presentation requests from the most recently admitted run tick.
+    /// Drained by client presentation. Inputs may append before the run tick.
     pub events: Vec<RunEvent>,
     pub dead: bool,
     pub completed: bool,
@@ -990,6 +991,9 @@ impl Mechanics {
     }
 
     pub fn choose(&mut self, index: usize) -> bool {
+        if self.dead || self.completed {
+            return false;
+        }
         if self.cache_choices_active() {
             return self.choose_cache_reward(index);
         }
@@ -1052,9 +1056,6 @@ impl Mechanics {
         // the native NaN propagation; f32::min would replace NaN with the cap.
         let delta = if delta > 0.1 { 0.1 } else { delta };
         let mut forced_position = None;
-        // Report corrections and constructor/equipment speed updates can be
-        // queued before this tick. Keep their ordered, unconsumed packets.
-        if !player_only { self.events.retain(|event| matches!(event, RunEvent::PlayerMover(_))); }
         self.begin_showcase(player, velocity, world);
         self.begin_pets(player, facing, world);
         self.begin_loot_companions(player, facing, world);
@@ -4191,6 +4192,7 @@ mod rng_integration {
                 .unwrap();
             assert!(stop < aura);
         }
+        game.events.clear();
         fixture_hit(&mut game, guids[0], 1.0);
         game.execution.pending.0.last_mut().unwrap().effect = player_abilities::StatusEffect {
             tag: 3,
@@ -5034,6 +5036,7 @@ mod rng_integration {
         }
         let nova = AbilityDefinition::by_key("holy_nova").unwrap().spell_id;
         for _ in 0..2 {
+            game.events.clear();
             game.abilities[0].remaining = 0.0;
             game.tick(0.01, player, [0.0; 2], 0.0, &mut terrain);
             let immediate = game
@@ -5041,6 +5044,7 @@ mod rng_integration {
                 .iter()
                 .filter(|event| matches!(event,RunEvent::Spell(cast) if cast.spell_id==nova))
                 .count();
+            game.events.clear();
             game.tick(0.5, player, [0.0; 2], 0.0, &mut terrain);
             assert_eq!(
                 immediate

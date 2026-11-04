@@ -3,6 +3,7 @@
 import argparse
 import hashlib
 import importlib.util
+import itertools
 import json
 import re
 import struct
@@ -237,6 +238,137 @@ def check_choice_gold():
     print(f'PASS: {len(offers)} current native gold payload and dispatch cases, both live choice credit routes')
 
 
+def check_choice_completion():
+    from capstone import Cs, CS_ARCH_X86, CS_MODE_64
+    from native_terminal import NativeReplay
+    from script_sources import load_script
+
+    proof = json.loads((ROOT / 'docs/analysis/evidence/0.141.0/choice-completion.json').read_text())
+    target = latest_target(verify=True)
+    assert all(target[key] == value for key, value in proof['target'].items())
+    image = target_bytes(target)
+    pe = load_script('overlay_pe', ROOT / 'scripts/inventory-executable.py').PE(image)
+    cpu = NativeReplay(image, pe)
+    decoder = Cs(CS_ARCH_X86, CS_MODE_64)
+    ranges, decoded = {}, {}
+    for role, (start, end, digest) in proof['ranges'].items():
+        start, end = int(start, 16), int(end, 16)
+        data = cpu.raw(start, end - start)
+        assert hashlib.sha256(data).hexdigest() == digest, role
+        ranges[role] = (start, end)
+        decoded.update((hex(i.address), f'{i.mnemonic} {i.op_str}') for i in decoder.disasm(data, start))
+    for address, text in proof['instruction_anchors'].items():
+        assert decoded[address] == text, address
+
+    r = cpu.registers
+    put = lambda offset, fmt, *values: cpu.put(cpu.app + offset, fmt, *values)
+    get = lambda offset, fmt: cpu.get(cpu.app + offset, fmt)
+    write = lambda register, value: cpu.machine.reg_write(getattr(r, 'UC_X86_REG_' + register), value)
+    read = lambda register: cpu.machine.reg_read(getattr(r, 'UC_X86_REG_' + register))
+
+    schedule = 0x145fb8ff9
+    start, resume = ranges['next_offer']
+    cases = 0
+    for level, cache, guardian, store, spend in itertools.product(range(2), repeat=5):
+        cpu.reset('next_offer', [ranges['next_offer']], [schedule, resume])
+        write('RSI', cpu.app)
+        put(0x103c, '<III', level, cache, guardian)
+        put(0x10d8, '<BB', store, spend)
+        expected = 1 if cache else 2 if guardian else 0 if level and (not store or spend) else None
+        assert cpu.run(start) == (resume if expected is None else schedule)
+        if expected is not None:
+            assert read('RDX') == expected and read('R8') == 0 and read('RCX') == cpu.app
+        cases += 1
+
+    generate = 0x145fb7120
+    for pending, phase, active in itertools.product(range(2), (1, 2, 4), (0xff, 1)):
+        cpu.reset('spend_levels', [ranges['spend_levels']], [cpu.done, generate])
+        write('RCX', cpu.app)
+        put(0x103c, '<I', pending)
+        put(0x10e7, '<BxB', active, phase)
+        opens = bool(pending and phase == 1 and active == 0xff)
+        assert cpu.run(ranges['spend_levels'][0]) == (generate if opens else cpu.done)
+        assert get(0x10d9, '<B') == (int(opens),)
+        cases += 1
+
+    def credit_seam(address):
+        if address == 0x145dbaa60:
+            write('RAX', 3)  # Later-zone coefficient of 1.0.
+        elif address == 0x1463a559b:
+            amount = struct.unpack('<f', struct.pack('<I', read('XMM0') & 0xffffffff))[0]
+            cpu.scalar(r.UC_X86_REG_XMM0, int(amount + 0.5))
+        else:
+            return False
+        cpu.return_seam()
+        return True
+
+    cpu.seam = credit_seam
+    for mode, raw, multiplier, expected in ((0, 0, 1., 0), (0, 2, 1.3, 3),
+                                             (0, 1, 0.1, 1), (1, 1, 1., 1),
+                                             (1, 10, 1., 4), (2, 1, 0.1, 1)):
+        credit = 0x145fb8fd8
+        cpu.reset('credit_sweep', [ranges['sweep_and_credit']], [credit, ranges['next_offer'][0]])
+        write('RSI', cpu.app)
+        write('RBX', raw)
+        put(0x674, '<f', multiplier)
+        put(0x10e3, '<B', mode)
+        put(0xfd8, '<Q', 2)
+        put(0xfe8, '<Q', 5)
+        queue = cpu.mem + 0x6000
+        put(0xcf8, '<QQQ', 1, queue, 0)
+        assert cpu.run(0x145fb8ebd) == (credit if raw else ranges['next_offer'][0])
+        assert read('RDX') == expected
+        if mode and raw:
+            assert get(0xd08, '<Q') == (1,) and cpu.get(queue, '<QI') == (2, raw)
+        else:
+            assert get(0xd08, '<Q') == (0,)
+        cases += 1
+    cpu.seam = None
+
+    auras = cpu.mem + 0x6000
+    for spells in ([], [1020], [1020, 123, 1020], [123, 1020, 456]):
+        serializer = 0x145fb91c0
+        cpu.reset('resume_aura', [ranges['final_resume']], [serializer])
+        write('RSI', cpu.app)
+        put(0x10d9, '<B', 1)
+        put(0x10e3, '<B', 1)
+        put(0x10e7, '<BxB', 2, 2)
+        put(0x1028, '<f', 14.5)
+        put(0x5c8, '<Q', 0x1234)
+        put(0x4e0, '<QQQ', 8, auras, len(spells))
+        for index, spell in enumerate(spells):
+            cpu.put(auras + index * 32 + 0x14, '<I', spell)
+        assert cpu.run(resume) == serializer
+        assert get(0x10d9, '<B') == (0,) and get(0x10e7, '<BxB') == (0xff, 1)
+        expected = [spell for spell in spells if spell != 1020] + [1020]
+        assert get(0x4f0, '<Q') == (len(expected),)
+        assert [cpu.get(auras + index * 32 + 0x14, '<I')[0] for index in range(len(expected))] == expected
+        assert cpu.get(auras + (len(expected) - 1) * 32 + 0x18, '<f') == (15.5,)
+        assert read('RDX') == 0x1234 and read('R8') == 1020
+        assert cpu.get(read('R9'), '<Q') == (0x1234,)
+        assert cpu.get(cpu.bp - 8, '<I') == (2,)  # No explicit target.
+        assert cpu.get(cpu.bp - 0x3c, '<I') == (0,)  # (0 + 8) << 5 gives cast flags 0x100.
+        cases += 1
+
+    for phase, active in itertools.product((1, 2, 4), (0, 1, 2, 0xff)):
+        cpu.reset('republish', [ranges['republish']], [0x145fc111a, 0x145fc1177])
+        put(0x10e7, '<BxB', active, phase)
+        write('RCX', cpu.app)
+        assert cpu.run(ranges['republish'][0]) == (0x145fc111a if phase == 2 and active != 0xff else 0x145fc1177)
+        cases += 1
+
+    gameplay = ROOT / 'crates/azeroth-survivors-re/src/gameplay'
+    completion = (gameplay / 'mechanics/completion.rs').read_text()
+    assert 'self.credit_pickup_experience(raw_xp, true)' in completion
+    assert completion.index('RunEvent::Spell(SpellCast') < completion.index('self.publish_player_auras()')
+    assert 'target: azeroth_survivors_re::bosses::abilities::CastTarget::None' in completion
+    assert 'hit_targets: vec![self.player_guid]' in completion
+    events = (gameplay / 'client/events.rs').read_text()
+    assert 'RunEvent::Spell(cast)=>{ packets.0.push(spell_go(cast));None }' in events
+    assert 'cast_flags:0x100' in events
+    print(f'PASS: {cases} current native choice completion, spending and republish cases')
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     mode = parser.add_mutually_exclusive_group()
@@ -244,10 +376,14 @@ if __name__ == '__main__':
                       help='Verify the installed 0.141.0 diagnostic callers and payload boundaries')
     mode.add_argument('--choice-gold', action='store_true',
                       help='Replay the installed 0.141.0 gold-card producer and credit route')
+    mode.add_argument('--choice-completion', action='store_true',
+                      help='Replay installed 0.141.0 choice completion and republish branches')
     args = parser.parse_args()
     if args.diagnostic_consumers:
         check_diagnostic_consumers()
     elif args.choice_gold:
         check_choice_gold()
+    elif args.choice_completion:
+        check_choice_completion()
     else:
         check()
